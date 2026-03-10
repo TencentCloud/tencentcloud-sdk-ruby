@@ -192,13 +192,13 @@ module TencentCloud
         # @type PeriodRetain: String
         # @param BuyingChannel: 实例购买渠道("cdn" 等)
         # @type BuyingChannel: String
-        # @param ResourcePackageType: 预付费资源包类型(仅预付费需要)
+        # @param ResourcePackageType: 资源包类型：1=5百万/30天，2=10百万/30天，3=50百万/180天，4=100百万/180天，5=300百万/180天，6=500百万/180天，7=1000百万/180天，8=2500百万/180天，9=10000百万/360天（单位：上报量=百万条，周期=天）
         # @type ResourcePackageType: Integer
         # @param ResourcePackageNum: 预付费资源包数量(仅预付费需要)
         # @type ResourcePackageNum: Integer
         # @param InstanceType: 实例类型 1:原web相关类型 2:app端类型
         # @type InstanceType: Integer
-        # @param AutoRenewalType: 自动续费类型
+        # @param AutoRenewalType: 自动续费类型：0=不自动续费，1=开启自动续费；开启时需填写 AutoRenewalThreshold（1~50%）；同一实例最多允许存在 1 个自动续费资源包。
         # @type AutoRenewalType: Integer
         # @param AutoRenewalThreshold: 自动续费阈值
         # @type AutoRenewalThreshold: Integer
@@ -787,6 +787,174 @@ module TencentCloud
         end
       end
 
+      # DescribeDataBridgeUrlV2请求参数结构体
+      class DescribeDataBridgeUrlV2Request < TencentCloud::Common::AbstractModel
+        # @param ID: 项目ID
+        # @type ID: Integer
+        # @param StartTime: 开始时间
+        # @type StartTime: Integer
+        # @param EndTime: 结束时间
+        # @type EndTime: Integer
+        # @param Type: pagepv：性能视图，allcount：性能视图，falls：页面加载瀑布图，samp：首屏时间，day：14天数据，nettype：网络/平台视图，performance：页面性能TOP视图，version/platform/isp/region/device/browser/ext1/ext2/ext3/ret/status/from/url/env/：ISP视图/地区视图/浏览器视图等
+        # @type Type: String
+        # @param Level: 日志等级
+        # @type Level: String
+        # @param Isp: 运营商
+        # @type Isp: String
+        # @param Area: 地区
+        # @type Area: String
+        # @param NetType: 网络类型
+        # @type NetType: String
+        # @param Platform: 平台
+        # @type Platform: String
+        # @param Device: 机型
+        # @type Device: String
+        # @param VersionNum: 版本
+        # @type VersionNum: String
+        # @param ExtFirst: 自定义1
+        # @type ExtFirst: String
+        # @param ExtSecond: 自定义2
+        # @type ExtSecond: String
+        # @param ExtThird: 自定义3
+        # @type ExtThird: String
+        # @param IsAbroad: 是否海外
+        # @type IsAbroad: String
+        # @param Browser: 浏览器
+        # @type Browser: String
+        # @param Os: 操作系统
+        # @type Os: String
+        # @param Engine: 浏览器引擎
+        # @type Engine: String
+        # @param Brand: 品牌
+        # @type Brand: String
+        # @param From: 来源页面
+        # @type From: String
+        # @param CostType: 耗时计算方式
+        # @type CostType: String
+        # @param Env: 环境变量
+        # @type Env: String
+        # @param Name: url名称
+        # @type Name: String
+        # @param Status: http状态码
+        # @type Status: String
+        # @param Ret: retcode
+        # @type Ret: String
+        # @param NetStatus: 网络状态
+        # @type NetStatus: String
+        # @param ExtFourth: 自定义4
+        # @type ExtFourth: String
+        # @param ExtFifth: 自定义5
+        # @type ExtFifth: String
+        # @param ExtSixth: 自定义6
+        # @type ExtSixth: String
+        # @param ExtSeventh: 自定义7
+        # @type ExtSeventh: String
+        # @param ExtEighth: 自定义8
+        # @type ExtEighth: String
+        # @param ExtNinth: 自定义9
+        # @type ExtNinth: String
+        # @param ExtTenth: 自定义10
+        # @type ExtTenth: String
+        # @param Granularity: 时间段
+        # @type Granularity: String
+
+        attr_accessor :ID, :StartTime, :EndTime, :Type, :Level, :Isp, :Area, :NetType, :Platform, :Device, :VersionNum, :ExtFirst, :ExtSecond, :ExtThird, :IsAbroad, :Browser, :Os, :Engine, :Brand, :From, :CostType, :Env, :Name, :Status, :Ret, :NetStatus, :ExtFourth, :ExtFifth, :ExtSixth, :ExtSeventh, :ExtEighth, :ExtNinth, :ExtTenth, :Granularity
+
+        def initialize(id=nil, starttime=nil, endtime=nil, type=nil, level=nil, isp=nil, area=nil, nettype=nil, platform=nil, device=nil, versionnum=nil, extfirst=nil, extsecond=nil, extthird=nil, isabroad=nil, browser=nil, os=nil, engine=nil, brand=nil, from=nil, costtype=nil, env=nil, name=nil, status=nil, ret=nil, netstatus=nil, extfourth=nil, extfifth=nil, extsixth=nil, extseventh=nil, exteighth=nil, extninth=nil, exttenth=nil, granularity=nil)
+          @ID = id
+          @StartTime = starttime
+          @EndTime = endtime
+          @Type = type
+          @Level = level
+          @Isp = isp
+          @Area = area
+          @NetType = nettype
+          @Platform = platform
+          @Device = device
+          @VersionNum = versionnum
+          @ExtFirst = extfirst
+          @ExtSecond = extsecond
+          @ExtThird = extthird
+          @IsAbroad = isabroad
+          @Browser = browser
+          @Os = os
+          @Engine = engine
+          @Brand = brand
+          @From = from
+          @CostType = costtype
+          @Env = env
+          @Name = name
+          @Status = status
+          @Ret = ret
+          @NetStatus = netstatus
+          @ExtFourth = extfourth
+          @ExtFifth = extfifth
+          @ExtSixth = extsixth
+          @ExtSeventh = extseventh
+          @ExtEighth = exteighth
+          @ExtNinth = extninth
+          @ExtTenth = exttenth
+          @Granularity = granularity
+        end
+
+        def deserialize(params)
+          @ID = params['ID']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Type = params['Type']
+          @Level = params['Level']
+          @Isp = params['Isp']
+          @Area = params['Area']
+          @NetType = params['NetType']
+          @Platform = params['Platform']
+          @Device = params['Device']
+          @VersionNum = params['VersionNum']
+          @ExtFirst = params['ExtFirst']
+          @ExtSecond = params['ExtSecond']
+          @ExtThird = params['ExtThird']
+          @IsAbroad = params['IsAbroad']
+          @Browser = params['Browser']
+          @Os = params['Os']
+          @Engine = params['Engine']
+          @Brand = params['Brand']
+          @From = params['From']
+          @CostType = params['CostType']
+          @Env = params['Env']
+          @Name = params['Name']
+          @Status = params['Status']
+          @Ret = params['Ret']
+          @NetStatus = params['NetStatus']
+          @ExtFourth = params['ExtFourth']
+          @ExtFifth = params['ExtFifth']
+          @ExtSixth = params['ExtSixth']
+          @ExtSeventh = params['ExtSeventh']
+          @ExtEighth = params['ExtEighth']
+          @ExtNinth = params['ExtNinth']
+          @ExtTenth = params['ExtTenth']
+          @Granularity = params['Granularity']
+        end
+      end
+
+      # DescribeDataBridgeUrlV2返回参数结构体
+      class DescribeDataBridgeUrlV2Response < TencentCloud::Common::AbstractModel
+        # @param Result: 返回值
+        # @type Result: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDataCustomUrl请求参数结构体
       class DescribeDataCustomUrlRequest < TencentCloud::Common::AbstractModel
         # @param StartTime: 开始时间
@@ -829,7 +997,7 @@ module TencentCloud
         # @type Os: String
         # @param Browser: 浏览器
         # @type Browser: String
-        # @param CostType: 耗时计算方式
+        # @param CostType: 耗时口径："50"/"75"/"90"/"95"/"99"/"99.5" 分别表示 TP50/TP75/TP90/TP95/TP99/TP99.5（使用 percentile2 计算分位数）；"avg" 表示均值（使用 avg 计算）。
         # @type CostType: String
         # @param Url: 自定义测速的key的值
         # @type Url: String
@@ -911,6 +1079,162 @@ module TencentCloud
         end
       end
 
+      # DescribeDataCustomUrlV2请求参数结构体
+      class DescribeDataCustomUrlV2Request < TencentCloud::Common::AbstractModel
+        # @param StartTime: 开始时间
+        # @type StartTime: Integer
+        # @param Type: top：资源top视图，allcount：性能视图，day：14天数据，condition：条件列表，pagepv：性能视图，area：请求速度分布，nettype/version/platform/isp/region/device/browser/ext1/ext2/ext3/ret/status/from/url/env/：网络平台视图/Version视图/设备视图/ISP视图/地区视图/浏览器视图/ext1视图等等
+        # @type Type: String
+        # @param EndTime: 结束时间
+        # @type EndTime: Integer
+        # @param ID: 项目ID
+        # @type ID: Integer
+        # @param ExtSecond: 自定义2
+        # @type ExtSecond: String
+        # @param Engine: 浏览器引擎
+        # @type Engine: String
+        # @param Isp: 运营商
+        # @type Isp: String
+        # @param From: 来源页面
+        # @type From: String
+        # @param Level: 日志等级
+        # @type Level: String
+        # @param Brand: 品牌
+        # @type Brand: String
+        # @param Area: 地区
+        # @type Area: String
+        # @param VersionNum: 版本
+        # @type VersionNum: String
+        # @param Platform: 平台
+        # @type Platform: String
+        # @param ExtThird: 自定义3
+        # @type ExtThird: String
+        # @param ExtFirst: 自定义1
+        # @type ExtFirst: String
+        # @param NetType: 网络类型（1,2,3,4,5,100），1表示WIFI, 2表示2G, 3表示3G, 4表示4G, 5表示5G, 6表示6G, 100表示未知。
+        # @type NetType: String
+        # @param Device: 机型
+        # @type Device: String
+        # @param IsAbroad: 显示是否海外,1表示海外，0表示非海外；默认值为空，查询所有。
+        # @type IsAbroad: String
+        # @param Os: 操作系统
+        # @type Os: String
+        # @param Browser: 浏览器
+        # @type Browser: String
+        # @param CostType: 耗时计算方式
+        # @type CostType: String
+        # @param Url: 自定义测速的key的值
+        # @type Url: String
+        # @param Env: 环境
+        # @type Env: String
+        # @param ExtFourth: 自定义4
+        # @type ExtFourth: String
+        # @param ExtFifth: 自定义5
+        # @type ExtFifth: String
+        # @param ExtSixth: 自定义6
+        # @type ExtSixth: String
+        # @param ExtSeventh: 自定义7
+        # @type ExtSeventh: String
+        # @param ExtEighth: 自定义8
+        # @type ExtEighth: String
+        # @param ExtNinth: 自定义9
+        # @type ExtNinth: String
+        # @param ExtTenth: 自定义10
+        # @type ExtTenth: String
+        # @param Granularity: 时间段
+        # @type Granularity: String
+
+        attr_accessor :StartTime, :Type, :EndTime, :ID, :ExtSecond, :Engine, :Isp, :From, :Level, :Brand, :Area, :VersionNum, :Platform, :ExtThird, :ExtFirst, :NetType, :Device, :IsAbroad, :Os, :Browser, :CostType, :Url, :Env, :ExtFourth, :ExtFifth, :ExtSixth, :ExtSeventh, :ExtEighth, :ExtNinth, :ExtTenth, :Granularity
+
+        def initialize(starttime=nil, type=nil, endtime=nil, id=nil, extsecond=nil, engine=nil, isp=nil, from=nil, level=nil, brand=nil, area=nil, versionnum=nil, platform=nil, extthird=nil, extfirst=nil, nettype=nil, device=nil, isabroad=nil, os=nil, browser=nil, costtype=nil, url=nil, env=nil, extfourth=nil, extfifth=nil, extsixth=nil, extseventh=nil, exteighth=nil, extninth=nil, exttenth=nil, granularity=nil)
+          @StartTime = starttime
+          @Type = type
+          @EndTime = endtime
+          @ID = id
+          @ExtSecond = extsecond
+          @Engine = engine
+          @Isp = isp
+          @From = from
+          @Level = level
+          @Brand = brand
+          @Area = area
+          @VersionNum = versionnum
+          @Platform = platform
+          @ExtThird = extthird
+          @ExtFirst = extfirst
+          @NetType = nettype
+          @Device = device
+          @IsAbroad = isabroad
+          @Os = os
+          @Browser = browser
+          @CostType = costtype
+          @Url = url
+          @Env = env
+          @ExtFourth = extfourth
+          @ExtFifth = extfifth
+          @ExtSixth = extsixth
+          @ExtSeventh = extseventh
+          @ExtEighth = exteighth
+          @ExtNinth = extninth
+          @ExtTenth = exttenth
+          @Granularity = granularity
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @Type = params['Type']
+          @EndTime = params['EndTime']
+          @ID = params['ID']
+          @ExtSecond = params['ExtSecond']
+          @Engine = params['Engine']
+          @Isp = params['Isp']
+          @From = params['From']
+          @Level = params['Level']
+          @Brand = params['Brand']
+          @Area = params['Area']
+          @VersionNum = params['VersionNum']
+          @Platform = params['Platform']
+          @ExtThird = params['ExtThird']
+          @ExtFirst = params['ExtFirst']
+          @NetType = params['NetType']
+          @Device = params['Device']
+          @IsAbroad = params['IsAbroad']
+          @Os = params['Os']
+          @Browser = params['Browser']
+          @CostType = params['CostType']
+          @Url = params['Url']
+          @Env = params['Env']
+          @ExtFourth = params['ExtFourth']
+          @ExtFifth = params['ExtFifth']
+          @ExtSixth = params['ExtSixth']
+          @ExtSeventh = params['ExtSeventh']
+          @ExtEighth = params['ExtEighth']
+          @ExtNinth = params['ExtNinth']
+          @ExtTenth = params['ExtTenth']
+          @Granularity = params['Granularity']
+        end
+      end
+
+      # DescribeDataCustomUrlV2返回参数结构体
+      class DescribeDataCustomUrlV2Response < TencentCloud::Common::AbstractModel
+        # @param Result: 返回值
+        # @type Result: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDataEventUrl请求参数结构体
       class DescribeDataEventUrlRequest < TencentCloud::Common::AbstractModel
         # @param StartTime: 开始时间
@@ -943,7 +1267,7 @@ module TencentCloud
         # @type ExtThird: String
         # @param ExtFirst: 自定义1
         # @type ExtFirst: String
-        # @param NetType: 网络类型
+        # @param NetType: netType | 网络类型(tag 值):用于过滤/聚合字段 netType；枚举值：1(WiFi)、2(2G)、3(3G)、4(4G)、5(5G)、6(6G)、100(未知网络)。也可通过 Type=condition（show tag values）查询当前数据集中的实际可选值。
         # @type NetType: String
         # @param Device: 机型
         # @type Device: String
@@ -1031,6 +1355,158 @@ module TencentCloud
         end
       end
 
+      # DescribeDataEventUrlV2请求参数结构体
+      class DescribeDataEventUrlV2Request < TencentCloud::Common::AbstractModel
+        # @param StartTime: 开始时间
+        # @type StartTime: Integer
+        # @param Type: allcount：性能视图，day：14天数据，condition：条件列表，ckuv：获取uv趋势，ckpv：获取pv趋势，nettype/version/platform/isp/region/device/browser/ext1/ext2/ext3/ret/status/from/url/env/：网络平台视图/Version视图/设备视图/ISP视图/地区视图/浏览器视图/ext1视图等等
+        # @type Type: String
+        # @param EndTime: 结束时间
+        # @type EndTime: Integer
+        # @param ID: 项目ID
+        # @type ID: Integer
+        # @param ExtSecond: 自定义2
+        # @type ExtSecond: String
+        # @param Engine: 浏览器引擎
+        # @type Engine: String
+        # @param Isp: 运营商
+        # @type Isp: String
+        # @param From: 来源页面
+        # @type From: String
+        # @param Level: 日志等级
+        # @type Level: String
+        # @param Brand: 品牌
+        # @type Brand: String
+        # @param Area: 地区
+        # @type Area: String
+        # @param VersionNum: 版本
+        # @type VersionNum: String
+        # @param Platform: 平台
+        # @type Platform: String
+        # @param ExtThird: 自定义3
+        # @type ExtThird: String
+        # @param ExtFirst: 自定义1
+        # @type ExtFirst: String
+        # @param NetType: 网络类型
+        # @type NetType: String
+        # @param Device: 机型
+        # @type Device: String
+        # @param IsAbroad: 显示是否海外,1表示海外，0表示非海外；默认值为空，查询所有。
+        # @type IsAbroad: String
+        # @param Os: 操作系统
+        # @type Os: String
+        # @param Browser: 浏览器
+        # @type Browser: String
+        # @param Name: 筛选条件
+        # @type Name: String
+        # @param Env: 环境
+        # @type Env: String
+        # @param ExtFourth: 自定义4
+        # @type ExtFourth: String
+        # @param ExtFifth: 自定义5
+        # @type ExtFifth: String
+        # @param ExtSixth: 自定义6
+        # @type ExtSixth: String
+        # @param ExtSeventh: 自定义7
+        # @type ExtSeventh: String
+        # @param ExtEighth: 自定义8
+        # @type ExtEighth: String
+        # @param ExtNinth: 自定义9
+        # @type ExtNinth: String
+        # @param ExtTenth: 自定义10
+        # @type ExtTenth: String
+        # @param Granularity: 时间段
+        # @type Granularity: String
+
+        attr_accessor :StartTime, :Type, :EndTime, :ID, :ExtSecond, :Engine, :Isp, :From, :Level, :Brand, :Area, :VersionNum, :Platform, :ExtThird, :ExtFirst, :NetType, :Device, :IsAbroad, :Os, :Browser, :Name, :Env, :ExtFourth, :ExtFifth, :ExtSixth, :ExtSeventh, :ExtEighth, :ExtNinth, :ExtTenth, :Granularity
+
+        def initialize(starttime=nil, type=nil, endtime=nil, id=nil, extsecond=nil, engine=nil, isp=nil, from=nil, level=nil, brand=nil, area=nil, versionnum=nil, platform=nil, extthird=nil, extfirst=nil, nettype=nil, device=nil, isabroad=nil, os=nil, browser=nil, name=nil, env=nil, extfourth=nil, extfifth=nil, extsixth=nil, extseventh=nil, exteighth=nil, extninth=nil, exttenth=nil, granularity=nil)
+          @StartTime = starttime
+          @Type = type
+          @EndTime = endtime
+          @ID = id
+          @ExtSecond = extsecond
+          @Engine = engine
+          @Isp = isp
+          @From = from
+          @Level = level
+          @Brand = brand
+          @Area = area
+          @VersionNum = versionnum
+          @Platform = platform
+          @ExtThird = extthird
+          @ExtFirst = extfirst
+          @NetType = nettype
+          @Device = device
+          @IsAbroad = isabroad
+          @Os = os
+          @Browser = browser
+          @Name = name
+          @Env = env
+          @ExtFourth = extfourth
+          @ExtFifth = extfifth
+          @ExtSixth = extsixth
+          @ExtSeventh = extseventh
+          @ExtEighth = exteighth
+          @ExtNinth = extninth
+          @ExtTenth = exttenth
+          @Granularity = granularity
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @Type = params['Type']
+          @EndTime = params['EndTime']
+          @ID = params['ID']
+          @ExtSecond = params['ExtSecond']
+          @Engine = params['Engine']
+          @Isp = params['Isp']
+          @From = params['From']
+          @Level = params['Level']
+          @Brand = params['Brand']
+          @Area = params['Area']
+          @VersionNum = params['VersionNum']
+          @Platform = params['Platform']
+          @ExtThird = params['ExtThird']
+          @ExtFirst = params['ExtFirst']
+          @NetType = params['NetType']
+          @Device = params['Device']
+          @IsAbroad = params['IsAbroad']
+          @Os = params['Os']
+          @Browser = params['Browser']
+          @Name = params['Name']
+          @Env = params['Env']
+          @ExtFourth = params['ExtFourth']
+          @ExtFifth = params['ExtFifth']
+          @ExtSixth = params['ExtSixth']
+          @ExtSeventh = params['ExtSeventh']
+          @ExtEighth = params['ExtEighth']
+          @ExtNinth = params['ExtNinth']
+          @ExtTenth = params['ExtTenth']
+          @Granularity = params['Granularity']
+        end
+      end
+
+      # DescribeDataEventUrlV2返回参数结构体
+      class DescribeDataEventUrlV2Response < TencentCloud::Common::AbstractModel
+        # @param Result: 返回值
+        # @type Result: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDataFetchProject请求参数结构体
       class DescribeDataFetchProjectRequest < TencentCloud::Common::AbstractModel
         # @param StartTime: 开始时间，示例值：1625454840
@@ -1073,13 +1549,13 @@ module TencentCloud
         # @type Os: String
         # @param Browser: 浏览器
         # @type Browser: String
-        # @param CostType: 耗时计算方式
+        # @param CostType: 耗时口径："50"/"75"/"90"/"95"/"99"/"99.5" 分别表示 TP50/TP75/TP90/TP95/TP99/TP99.5（percentile2）；"avg" 表示均值（avg）。
         # @type CostType: String
         # @param Url: 来源
         # @type Url: String
         # @param Env: 环境
         # @type Env: String
-        # @param Status: httpcode响应码
+        # @param Status: HTTP 状态码（tag 值）：用于过滤字段 status；取值一般为 200/301/404/500 等，也可配合 4xx/5xx 统计逻辑使用
         # @type Status: String
         # @param Ret: retcode
         # @type Ret: String
@@ -1195,7 +1671,7 @@ module TencentCloud
         # @type ExtThird: String
         # @param ExtFirst: 自定义1
         # @type ExtFirst: String
-        # @param NetType: 网络类型
+        # @param NetType: 网络类型(tag 值):用于过滤/聚合字段 netType；枚举值：1(WiFi)、2(2G)、3(3G)、4(4G)、5(5G)、6(6G)、100(未知网络)。
         # @type NetType: String
         # @param Device: 机型
         # @type Device: String
@@ -1205,7 +1681,7 @@ module TencentCloud
         # @type Os: String
         # @param Browser: 浏览器
         # @type Browser: String
-        # @param CostType: 耗时计算方式
+        # @param CostType: 耗时口径："50"/"75"/"90"/"95"/"99"/"99.5" 分别表示 TP50/TP75/TP90/TP95/TP99/TP99.5（percentile2）；"avg" 表示均值（avg）。
         # @type CostType: String
         # @param Url: 来源
         # @type Url: String
@@ -1319,7 +1795,7 @@ module TencentCloud
         # @type ExtThird: String
         # @param ExtFirst: 自定义1
         # @type ExtFirst: String
-        # @param NetType: 网络类型
+        # @param NetType: 网络类型(tag 值):用于过滤/聚合字段 netType；枚举值：1(WiFi)、2(2G)、3(3G)、4(4G)、5(5G)、6(6G)、100(未知网络)。
         # @type NetType: String
         # @param Device: 机型
         # @type Device: String
@@ -1329,13 +1805,13 @@ module TencentCloud
         # @type Os: String
         # @param Browser: 浏览器
         # @type Browser: String
-        # @param CostType: 耗时计算方式
+        # @param CostType: 耗时口径："50"/"75"/"90"/"95"/"99"/"99.5" 分别表示 TP50/TP75/TP90/TP95/TP99/TP99.5（percentile2）；"avg" 表示均值（avg）。
         # @type CostType: String
         # @param Url: 来源
         # @type Url: String
         # @param Env: 环境
         # @type Env: String
-        # @param Status: httpcode响应码
+        # @param Status: HTTP 状态码（tag 值）：用于过滤字段 status；支持 4xx（status =~ /4[0-9]{2}/）和 5xx（status =~ /5[0-9]{2}/）等错误码统计。
         # @type Status: String
         # @param Ret: retcode
         # @type Ret: String
@@ -1405,6 +1881,174 @@ module TencentCloud
 
       # DescribeDataFetchUrl返回参数结构体
       class DescribeDataFetchUrlResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 返回值
+        # @type Result: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDataFetchUrlV2请求参数结构体
+      class DescribeDataFetchUrlV2Request < TencentCloud::Common::AbstractModel
+        # @param StartTime: 开始时间
+        # @type StartTime: Integer
+        # @param Type: allcount：性能视图，pagepv：pv视图，day：14天数据，count40x：40X视图，count50x：50X视图，count5xand4x：40∑50视图，top：资源top视图，nettype/version/platform/isp/region/device/browser/ext1/ext2/ext3/ret/status/from/url/env/：网络平台视图/Version视图/设备视图/ISP视图/地区视图/浏览器视图/ext1视图等等
+        # @type Type: String
+        # @param EndTime: 结束时间
+        # @type EndTime: Integer
+        # @param ID: 项目ID
+        # @type ID: Integer
+        # @param ExtSecond: 自定义2
+        # @type ExtSecond: String
+        # @param Engine: 浏览器引擎
+        # @type Engine: String
+        # @param Isp: 运营商
+        # @type Isp: String
+        # @param From: 来源页面
+        # @type From: String
+        # @param Level: 日志等级
+        # @type Level: String
+        # @param Brand: 品牌
+        # @type Brand: String
+        # @param Area: 地区
+        # @type Area: String
+        # @param VersionNum: 版本
+        # @type VersionNum: String
+        # @param Platform: 平台
+        # @type Platform: String
+        # @param ExtThird: 自定义3
+        # @type ExtThird: String
+        # @param ExtFirst: 自定义1
+        # @type ExtFirst: String
+        # @param NetType: 网络类型
+        # @type NetType: String
+        # @param Device: 机型
+        # @type Device: String
+        # @param IsAbroad: 显示是否海外,1表示海外，0表示非海外；默认值为空，查询所有。
+        # @type IsAbroad: String
+        # @param Os: 操作系统
+        # @type Os: String
+        # @param Browser: 浏览器
+        # @type Browser: String
+        # @param CostType: 耗时计算方式
+        # @type CostType: String
+        # @param Url: 来源
+        # @type Url: String
+        # @param Env: 环境
+        # @type Env: String
+        # @param Status: httpcode响应码
+        # @type Status: String
+        # @param Ret: retcode
+        # @type Ret: String
+        # @param NetStatus: 网络状态
+        # @type NetStatus: String
+        # @param ExtFourth: 自定义4
+        # @type ExtFourth: String
+        # @param ExtFifth: 自定义5
+        # @type ExtFifth: String
+        # @param ExtSixth: 自定义6
+        # @type ExtSixth: String
+        # @param ExtSeventh: 自定义7
+        # @type ExtSeventh: String
+        # @param ExtEighth: 自定义8
+        # @type ExtEighth: String
+        # @param ExtNinth: 自定义9
+        # @type ExtNinth: String
+        # @param ExtTenth: 自定义10
+        # @type ExtTenth: String
+        # @param Granularity: 时间段
+        # @type Granularity: String
+
+        attr_accessor :StartTime, :Type, :EndTime, :ID, :ExtSecond, :Engine, :Isp, :From, :Level, :Brand, :Area, :VersionNum, :Platform, :ExtThird, :ExtFirst, :NetType, :Device, :IsAbroad, :Os, :Browser, :CostType, :Url, :Env, :Status, :Ret, :NetStatus, :ExtFourth, :ExtFifth, :ExtSixth, :ExtSeventh, :ExtEighth, :ExtNinth, :ExtTenth, :Granularity
+
+        def initialize(starttime=nil, type=nil, endtime=nil, id=nil, extsecond=nil, engine=nil, isp=nil, from=nil, level=nil, brand=nil, area=nil, versionnum=nil, platform=nil, extthird=nil, extfirst=nil, nettype=nil, device=nil, isabroad=nil, os=nil, browser=nil, costtype=nil, url=nil, env=nil, status=nil, ret=nil, netstatus=nil, extfourth=nil, extfifth=nil, extsixth=nil, extseventh=nil, exteighth=nil, extninth=nil, exttenth=nil, granularity=nil)
+          @StartTime = starttime
+          @Type = type
+          @EndTime = endtime
+          @ID = id
+          @ExtSecond = extsecond
+          @Engine = engine
+          @Isp = isp
+          @From = from
+          @Level = level
+          @Brand = brand
+          @Area = area
+          @VersionNum = versionnum
+          @Platform = platform
+          @ExtThird = extthird
+          @ExtFirst = extfirst
+          @NetType = nettype
+          @Device = device
+          @IsAbroad = isabroad
+          @Os = os
+          @Browser = browser
+          @CostType = costtype
+          @Url = url
+          @Env = env
+          @Status = status
+          @Ret = ret
+          @NetStatus = netstatus
+          @ExtFourth = extfourth
+          @ExtFifth = extfifth
+          @ExtSixth = extsixth
+          @ExtSeventh = extseventh
+          @ExtEighth = exteighth
+          @ExtNinth = extninth
+          @ExtTenth = exttenth
+          @Granularity = granularity
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @Type = params['Type']
+          @EndTime = params['EndTime']
+          @ID = params['ID']
+          @ExtSecond = params['ExtSecond']
+          @Engine = params['Engine']
+          @Isp = params['Isp']
+          @From = params['From']
+          @Level = params['Level']
+          @Brand = params['Brand']
+          @Area = params['Area']
+          @VersionNum = params['VersionNum']
+          @Platform = params['Platform']
+          @ExtThird = params['ExtThird']
+          @ExtFirst = params['ExtFirst']
+          @NetType = params['NetType']
+          @Device = params['Device']
+          @IsAbroad = params['IsAbroad']
+          @Os = params['Os']
+          @Browser = params['Browser']
+          @CostType = params['CostType']
+          @Url = params['Url']
+          @Env = params['Env']
+          @Status = params['Status']
+          @Ret = params['Ret']
+          @NetStatus = params['NetStatus']
+          @ExtFourth = params['ExtFourth']
+          @ExtFifth = params['ExtFifth']
+          @ExtSixth = params['ExtSixth']
+          @ExtSeventh = params['ExtSeventh']
+          @ExtEighth = params['ExtEighth']
+          @ExtNinth = params['ExtNinth']
+          @ExtTenth = params['ExtTenth']
+          @Granularity = params['Granularity']
+        end
+      end
+
+      # DescribeDataFetchUrlV2返回参数结构体
+      class DescribeDataFetchUrlV2Response < TencentCloud::Common::AbstractModel
         # @param Result: 返回值
         # @type Result: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -1499,7 +2143,7 @@ module TencentCloud
         # @type ExtThird: String
         # @param ExtFirst: 自定义1
         # @type ExtFirst: String
-        # @param NetType: 网络类型
+        # @param NetType: 网络类型(tag 值):用于过滤/聚合字段 netType；枚举值：1(WiFi)、2(2G)、3(3G)、4(4G)、5(5G)、6(6G)、100(未知网络)。
         # @type NetType: String
         # @param Device: 机型
         # @type Device: String
@@ -1587,6 +2231,158 @@ module TencentCloud
         end
       end
 
+      # DescribeDataLogUrlStatisticsV2请求参数结构体
+      class DescribeDataLogUrlStatisticsV2Request < TencentCloud::Common::AbstractModel
+        # @param StartTime: 开始时间
+        # @type StartTime: Integer
+        # @param Type: analysis：异常分析，compare：异常列表对比，allcount：性能视图，condition：条件列表，nettype/version/platform/isp/region/device/browser/ext1/ext2/ext3/ret/status/from/url/env/：网络平台视图/Version视图/设备视图/ISP视图/地区视图/浏览器视图/ext1视图等等
+        # @type Type: String
+        # @param EndTime: 结束时间
+        # @type EndTime: Integer
+        # @param ID: 项目ID
+        # @type ID: Integer
+        # @param ExtSecond: 自定义2
+        # @type ExtSecond: String
+        # @param Engine: 浏览器引擎
+        # @type Engine: String
+        # @param Isp: 运营商
+        # @type Isp: String
+        # @param From: 来源页面
+        # @type From: String
+        # @param Level: 日志等级
+        # @type Level: String
+        # @param Brand: 品牌
+        # @type Brand: String
+        # @param Area: 地区
+        # @type Area: String
+        # @param VersionNum: 版本
+        # @type VersionNum: String
+        # @param Platform: 平台
+        # @type Platform: String
+        # @param ExtThird: 自定义3
+        # @type ExtThird: String
+        # @param ExtFirst: 自定义1
+        # @type ExtFirst: String
+        # @param NetType: 网络类型
+        # @type NetType: String
+        # @param Device: 机型
+        # @type Device: String
+        # @param IsAbroad: 显示是否海外,1表示海外，0表示非海外；默认值为空，查询所有。
+        # @type IsAbroad: String
+        # @param Os: 操作系统
+        # @type Os: String
+        # @param Browser: 浏览器
+        # @type Browser: String
+        # @param Env: 环境区分
+        # @type Env: String
+        # @param ErrorMsg: js异常信息
+        # @type ErrorMsg: String
+        # @param ExtFourth: 自定义4
+        # @type ExtFourth: String
+        # @param ExtFifth: 自定义5
+        # @type ExtFifth: String
+        # @param ExtSixth: 自定义6
+        # @type ExtSixth: String
+        # @param ExtSeventh: 自定义7
+        # @type ExtSeventh: String
+        # @param ExtEighth: 自定义8
+        # @type ExtEighth: String
+        # @param ExtNinth: 自定义9
+        # @type ExtNinth: String
+        # @param ExtTenth: 自定义10
+        # @type ExtTenth: String
+        # @param Granularity: 时间段
+        # @type Granularity: String
+
+        attr_accessor :StartTime, :Type, :EndTime, :ID, :ExtSecond, :Engine, :Isp, :From, :Level, :Brand, :Area, :VersionNum, :Platform, :ExtThird, :ExtFirst, :NetType, :Device, :IsAbroad, :Os, :Browser, :Env, :ErrorMsg, :ExtFourth, :ExtFifth, :ExtSixth, :ExtSeventh, :ExtEighth, :ExtNinth, :ExtTenth, :Granularity
+
+        def initialize(starttime=nil, type=nil, endtime=nil, id=nil, extsecond=nil, engine=nil, isp=nil, from=nil, level=nil, brand=nil, area=nil, versionnum=nil, platform=nil, extthird=nil, extfirst=nil, nettype=nil, device=nil, isabroad=nil, os=nil, browser=nil, env=nil, errormsg=nil, extfourth=nil, extfifth=nil, extsixth=nil, extseventh=nil, exteighth=nil, extninth=nil, exttenth=nil, granularity=nil)
+          @StartTime = starttime
+          @Type = type
+          @EndTime = endtime
+          @ID = id
+          @ExtSecond = extsecond
+          @Engine = engine
+          @Isp = isp
+          @From = from
+          @Level = level
+          @Brand = brand
+          @Area = area
+          @VersionNum = versionnum
+          @Platform = platform
+          @ExtThird = extthird
+          @ExtFirst = extfirst
+          @NetType = nettype
+          @Device = device
+          @IsAbroad = isabroad
+          @Os = os
+          @Browser = browser
+          @Env = env
+          @ErrorMsg = errormsg
+          @ExtFourth = extfourth
+          @ExtFifth = extfifth
+          @ExtSixth = extsixth
+          @ExtSeventh = extseventh
+          @ExtEighth = exteighth
+          @ExtNinth = extninth
+          @ExtTenth = exttenth
+          @Granularity = granularity
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @Type = params['Type']
+          @EndTime = params['EndTime']
+          @ID = params['ID']
+          @ExtSecond = params['ExtSecond']
+          @Engine = params['Engine']
+          @Isp = params['Isp']
+          @From = params['From']
+          @Level = params['Level']
+          @Brand = params['Brand']
+          @Area = params['Area']
+          @VersionNum = params['VersionNum']
+          @Platform = params['Platform']
+          @ExtThird = params['ExtThird']
+          @ExtFirst = params['ExtFirst']
+          @NetType = params['NetType']
+          @Device = params['Device']
+          @IsAbroad = params['IsAbroad']
+          @Os = params['Os']
+          @Browser = params['Browser']
+          @Env = params['Env']
+          @ErrorMsg = params['ErrorMsg']
+          @ExtFourth = params['ExtFourth']
+          @ExtFifth = params['ExtFifth']
+          @ExtSixth = params['ExtSixth']
+          @ExtSeventh = params['ExtSeventh']
+          @ExtEighth = params['ExtEighth']
+          @ExtNinth = params['ExtNinth']
+          @ExtTenth = params['ExtTenth']
+          @Granularity = params['Granularity']
+        end
+      end
+
+      # DescribeDataLogUrlStatisticsV2返回参数结构体
+      class DescribeDataLogUrlStatisticsV2Response < TencentCloud::Common::AbstractModel
+        # @param Result: 返回值
+        # @type Result: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDataPerformancePage请求参数结构体
       class DescribeDataPerformancePageRequest < TencentCloud::Common::AbstractModel
         # @param ID: 项目ID
@@ -1603,7 +2399,7 @@ module TencentCloud
         # @type Isp: String
         # @param Area: 地区
         # @type Area: String
-        # @param NetType: 网络类型
+        # @param NetType: 网络类型(tag 值):用于过滤/聚合字段 netType；枚举值：1(WiFi)、2(2G)、3(3G)、4(4G)、5(5G)、6(6G)、100(未知网络)。
         # @type NetType: String
         # @param Platform: 平台
         # @type Platform: String
@@ -1629,11 +2425,11 @@ module TencentCloud
         # @type Brand: String
         # @param From: 来源页面
         # @type From: String
-        # @param CostType: 耗时计算方式
+        # @param CostType: 耗时口径："50"/"75"/"90"/"95"/"99"/"99.5" 分别表示 TP50/TP75/TP90/TP95/TP99/TP99.5（percentile2）；"avg" 表示均值（avg）。
         # @type CostType: String
         # @param Env: 环境变量
         # @type Env: String
-        # @param NetStatus: 网络状态
+        # @param NetStatus: 网络状态(tag 值):用于过滤/聚合字段 netStatus；枚举值：0(正常)、1(弱网)、2(断网)、3(其他)。
         # @type NetStatus: String
         # @param WebVitals: 是否返回webvitals数据
         # @type WebVitals: Boolean
@@ -1715,11 +2511,171 @@ module TencentCloud
         end
       end
 
+      # DescribeDataPerformancePageV2请求参数结构体
+      class DescribeDataPerformancePageV2Request < TencentCloud::Common::AbstractModel
+        # @param ID: 项目ID
+        # @type ID: Integer
+        # @param StartTime: 开始时间
+        # @type StartTime: Integer
+        # @param EndTime: 结束时间
+        # @type EndTime: Integer
+        # @param Type: pagepv：pv视图，allcount：性能视图，falls：页面加载瀑布图，samp：首屏时间，day：14天数据，nettype：网络/平台视图，performance：页面性能TOP视图，version/platform/isp/region/device/browser/ext1/ext2/ext3/ret/status/from/url/env/：ISP视图/地区视图/浏览器视图等
+        # @type Type: String
+        # @param Level: 日志等级
+        # @type Level: String
+        # @param Isp: 运营商
+        # @type Isp: String
+        # @param Area: 地区
+        # @type Area: String
+        # @param NetType: 网络类型
+        # @type NetType: String
+        # @param Platform: 平台
+        # @type Platform: String
+        # @param Device: 机型
+        # @type Device: String
+        # @param VersionNum: 版本
+        # @type VersionNum: String
+        # @param ExtFirst: 自定义1
+        # @type ExtFirst: String
+        # @param ExtSecond: 自定义2
+        # @type ExtSecond: String
+        # @param ExtThird: 自定义3
+        # @type ExtThird: String
+        # @param IsAbroad: 显示是否海外,1表示海外，0表示非海外；默认值为空，查询所有。
+        # @type IsAbroad: String
+        # @param Browser: 浏览器
+        # @type Browser: String
+        # @param Os: 操作系统
+        # @type Os: String
+        # @param Engine: 浏览器引擎
+        # @type Engine: String
+        # @param Brand: 品牌
+        # @type Brand: String
+        # @param From: 来源页面
+        # @type From: String
+        # @param CostType: 耗时计算方式
+        # @type CostType: String
+        # @param Env: 环境变量
+        # @type Env: String
+        # @param NetStatus: 网络状态
+        # @type NetStatus: String
+        # @param WebVitals: 是否返回webvitals数据
+        # @type WebVitals: Boolean
+        # @param ExtFourth: 自定义4
+        # @type ExtFourth: String
+        # @param ExtFifth: 自定义5
+        # @type ExtFifth: String
+        # @param ExtSixth: 自定义6
+        # @type ExtSixth: String
+        # @param ExtSeventh: 自定义7
+        # @type ExtSeventh: String
+        # @param ExtEighth: 自定义8
+        # @type ExtEighth: String
+        # @param ExtNinth: 自定义9
+        # @type ExtNinth: String
+        # @param ExtTenth: 自定义10
+        # @type ExtTenth: String
+        # @param Granularity: 时间段
+        # @type Granularity: String
+
+        attr_accessor :ID, :StartTime, :EndTime, :Type, :Level, :Isp, :Area, :NetType, :Platform, :Device, :VersionNum, :ExtFirst, :ExtSecond, :ExtThird, :IsAbroad, :Browser, :Os, :Engine, :Brand, :From, :CostType, :Env, :NetStatus, :WebVitals, :ExtFourth, :ExtFifth, :ExtSixth, :ExtSeventh, :ExtEighth, :ExtNinth, :ExtTenth, :Granularity
+
+        def initialize(id=nil, starttime=nil, endtime=nil, type=nil, level=nil, isp=nil, area=nil, nettype=nil, platform=nil, device=nil, versionnum=nil, extfirst=nil, extsecond=nil, extthird=nil, isabroad=nil, browser=nil, os=nil, engine=nil, brand=nil, from=nil, costtype=nil, env=nil, netstatus=nil, webvitals=nil, extfourth=nil, extfifth=nil, extsixth=nil, extseventh=nil, exteighth=nil, extninth=nil, exttenth=nil, granularity=nil)
+          @ID = id
+          @StartTime = starttime
+          @EndTime = endtime
+          @Type = type
+          @Level = level
+          @Isp = isp
+          @Area = area
+          @NetType = nettype
+          @Platform = platform
+          @Device = device
+          @VersionNum = versionnum
+          @ExtFirst = extfirst
+          @ExtSecond = extsecond
+          @ExtThird = extthird
+          @IsAbroad = isabroad
+          @Browser = browser
+          @Os = os
+          @Engine = engine
+          @Brand = brand
+          @From = from
+          @CostType = costtype
+          @Env = env
+          @NetStatus = netstatus
+          @WebVitals = webvitals
+          @ExtFourth = extfourth
+          @ExtFifth = extfifth
+          @ExtSixth = extsixth
+          @ExtSeventh = extseventh
+          @ExtEighth = exteighth
+          @ExtNinth = extninth
+          @ExtTenth = exttenth
+          @Granularity = granularity
+        end
+
+        def deserialize(params)
+          @ID = params['ID']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Type = params['Type']
+          @Level = params['Level']
+          @Isp = params['Isp']
+          @Area = params['Area']
+          @NetType = params['NetType']
+          @Platform = params['Platform']
+          @Device = params['Device']
+          @VersionNum = params['VersionNum']
+          @ExtFirst = params['ExtFirst']
+          @ExtSecond = params['ExtSecond']
+          @ExtThird = params['ExtThird']
+          @IsAbroad = params['IsAbroad']
+          @Browser = params['Browser']
+          @Os = params['Os']
+          @Engine = params['Engine']
+          @Brand = params['Brand']
+          @From = params['From']
+          @CostType = params['CostType']
+          @Env = params['Env']
+          @NetStatus = params['NetStatus']
+          @WebVitals = params['WebVitals']
+          @ExtFourth = params['ExtFourth']
+          @ExtFifth = params['ExtFifth']
+          @ExtSixth = params['ExtSixth']
+          @ExtSeventh = params['ExtSeventh']
+          @ExtEighth = params['ExtEighth']
+          @ExtNinth = params['ExtNinth']
+          @ExtTenth = params['ExtTenth']
+          @Granularity = params['Granularity']
+        end
+      end
+
+      # DescribeDataPerformancePageV2返回参数结构体
+      class DescribeDataPerformancePageV2Response < TencentCloud::Common::AbstractModel
+        # @param Result: 返回值
+        # @type Result: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDataPvUrlInfo请求参数结构体
       class DescribeDataPvUrlInfoRequest < TencentCloud::Common::AbstractModel
         # @param StartTime: 开始时间
         # @type StartTime: Integer
-        # @param Type: 类型
+        # @param Type: 查询类型（string）：当前后端实现固定按 from 聚合统计，未使用该字段（保留字段，传值不会影响结果）。
         # @type Type: String
         # @param EndTime: 结束时间
         # @type EndTime: Integer
@@ -1747,7 +2703,7 @@ module TencentCloud
         # @type ExtThird: String
         # @param ExtFirst: 自定义1
         # @type ExtFirst: String
-        # @param NetType: 网络类型
+        # @param NetType: 网络类型(tag 值):用于过滤/聚合字段 netType；枚举值：1(WiFi)、2(2G)、3(3G)、4(4G)、5(5G)、6(6G)、100(未知网络)。
         # @type NetType: String
         # @param Device: 机型
         # @type Device: String
@@ -1835,7 +2791,7 @@ module TencentCloud
       class DescribeDataPvUrlStatisticsRequest < TencentCloud::Common::AbstractModel
         # @param StartTime: 开始时间
         # @type StartTime: Integer
-        # @param Type: allcount：性能视图，day：14天数据，vp：性能，ckuv：uv，ckpv：pv，condition：条件列表，nettype/version/platform/isp/region/device/browser/ext1/ext2/ext3/ret/status/from/url/env/：网络平台视图/Version视图/设备视图/ISP视图/地区视图/浏览器视图/ext1视图等等
+        # @param Type: allcount：性能视图，day：14天数据，vp：性能，ckuv：uv，ckpv：pv，condition：条件列表，nettype/version/platform/isp/region/device/browser/ext1/ext2/ext3/ret/status/from/url/env/：网络平台视图/Version视图/设备视图/ISP视图/地区视图/浏览器视图/ext1视图等
         # @type Type: String
         # @param EndTime: 结束时间
         # @type EndTime: Integer
@@ -1863,7 +2819,7 @@ module TencentCloud
         # @type ExtThird: String
         # @param ExtFirst: 自定义1
         # @type ExtFirst: String
-        # @param NetType: 网络类型
+        # @param NetType: 网络类型(tag 值):用于过滤/聚合字段 netType；枚举值：1(WiFi)、2(2G)、3(3G)、4(4G)、5(5G)、6(6G)、100(未知网络)。
         # @type NetType: String
         # @param Device: 机型
         # @type Device: String
@@ -1989,7 +2945,7 @@ module TencentCloud
         # @type ExtThird: String
         # @param ExtFirst: 自定义1
         # @type ExtFirst: String
-        # @param NetType: 网络类型
+        # @param NetType: 网络类型（1,2,3,4,5,100），1表示WIFI, 2表示2G, 3表示3G, 4表示4G, 5表示5G, 6表示6G, 100表示未知
         # @type NetType: String
         # @param Device: 机型
         # @type Device: String
@@ -2291,7 +3247,7 @@ module TencentCloud
         # @type ExtThird: String
         # @param ExtFirst: 自定义1
         # @type ExtFirst: String
-        # @param NetType: 网络类型
+        # @param NetType: 网络类型(tag 值):用于过滤/聚合字段 netType；枚举值：1(WiFi)、2(2G)、3(3G)、4(4G)、5(5G)、6(6G)、100(未知网络)。
         # @type NetType: String
         # @param Device: 机型
         # @type Device: String
@@ -2301,11 +3257,11 @@ module TencentCloud
         # @type Os: String
         # @param Browser: 浏览器
         # @type Browser: String
-        # @param CostType: 耗时计算
+        # @param CostType: 耗时/数据量口径："50"/"75"/"90"/"95"/"99"/"99.5" 分别表示 TP50/TP75/TP90/TP95/TP99/TP99.5（percentile2）；"avg" 表示均值（avg）。
         # @type CostType: String
         # @param Env: 环境
         # @type Env: String
-        # @param PackageType: 获取package
+        # @param PackageType: 小程序包类型（tag 值）：用于过滤字段 type（请求参数名为 PackageType）；取值由上报数据决定，可通过 Type=condition（show tag values）获取可选值集合。
         # @type PackageType: String
 
         attr_accessor :StartTime, :Type, :EndTime, :ID, :ExtSecond, :Engine, :Isp, :From, :Level, :Brand, :Area, :VersionNum, :Platform, :ExtThird, :ExtFirst, :NetType, :Device, :IsAbroad, :Os, :Browser, :CostType, :Env, :PackageType
@@ -2383,6 +3339,162 @@ module TencentCloud
         end
       end
 
+      # DescribeDataSetUrlStatisticsV2请求参数结构体
+      class DescribeDataSetUrlStatisticsV2Request < TencentCloud::Common::AbstractModel
+        # @param StartTime: 开始时间
+        # @type StartTime: Integer
+        # @param Type: allcount：性能视图，data：小程序，component：小程序相关，day：14天数据，nettype：网络/平台视图，performance：页面性能TOP视图，version/platform/isp/region/device/browser/ext1/ext2/ext3/ret/status/from/url/env/：ISP视图/地区视图/浏览器视图等
+        # @type Type: String
+        # @param EndTime: 结束时间
+        # @type EndTime: Integer
+        # @param ID: 项目ID
+        # @type ID: Integer
+        # @param ExtSecond: 自定义2
+        # @type ExtSecond: String
+        # @param Engine: 浏览器引擎
+        # @type Engine: String
+        # @param Isp: 运营商
+        # @type Isp: String
+        # @param From: 来源页面
+        # @type From: String
+        # @param Level: 日志等级
+        # @type Level: String
+        # @param Brand: 品牌
+        # @type Brand: String
+        # @param Area: 地区
+        # @type Area: String
+        # @param VersionNum: 版本
+        # @type VersionNum: String
+        # @param Platform: 平台
+        # @type Platform: String
+        # @param ExtThird: 自定义3
+        # @type ExtThird: String
+        # @param ExtFirst: 自定义1
+        # @type ExtFirst: String
+        # @param NetType: 网络类型
+        # @type NetType: String
+        # @param Device: 机型
+        # @type Device: String
+        # @param IsAbroad: 显示是否海外,1表示海外，0表示非海外；默认值为空，查询所有。
+        # @type IsAbroad: String
+        # @param Os: 操作系统
+        # @type Os: String
+        # @param Browser: 浏览器
+        # @type Browser: String
+        # @param CostType: 耗时计算
+        # @type CostType: String
+        # @param Env: 环境
+        # @type Env: String
+        # @param PackageType: 获取package
+        # @type PackageType: String
+        # @param ExtFourth: 自定义4
+        # @type ExtFourth: String
+        # @param ExtFifth: 自定义5
+        # @type ExtFifth: String
+        # @param ExtSixth: 自定义6
+        # @type ExtSixth: String
+        # @param ExtSeventh: 自定义7
+        # @type ExtSeventh: String
+        # @param ExtEighth: 自定义8
+        # @type ExtEighth: String
+        # @param ExtNinth: 自定义9
+        # @type ExtNinth: String
+        # @param ExtTenth: 自定义10
+        # @type ExtTenth: String
+        # @param Granularity: 时间段
+        # @type Granularity: String
+
+        attr_accessor :StartTime, :Type, :EndTime, :ID, :ExtSecond, :Engine, :Isp, :From, :Level, :Brand, :Area, :VersionNum, :Platform, :ExtThird, :ExtFirst, :NetType, :Device, :IsAbroad, :Os, :Browser, :CostType, :Env, :PackageType, :ExtFourth, :ExtFifth, :ExtSixth, :ExtSeventh, :ExtEighth, :ExtNinth, :ExtTenth, :Granularity
+
+        def initialize(starttime=nil, type=nil, endtime=nil, id=nil, extsecond=nil, engine=nil, isp=nil, from=nil, level=nil, brand=nil, area=nil, versionnum=nil, platform=nil, extthird=nil, extfirst=nil, nettype=nil, device=nil, isabroad=nil, os=nil, browser=nil, costtype=nil, env=nil, packagetype=nil, extfourth=nil, extfifth=nil, extsixth=nil, extseventh=nil, exteighth=nil, extninth=nil, exttenth=nil, granularity=nil)
+          @StartTime = starttime
+          @Type = type
+          @EndTime = endtime
+          @ID = id
+          @ExtSecond = extsecond
+          @Engine = engine
+          @Isp = isp
+          @From = from
+          @Level = level
+          @Brand = brand
+          @Area = area
+          @VersionNum = versionnum
+          @Platform = platform
+          @ExtThird = extthird
+          @ExtFirst = extfirst
+          @NetType = nettype
+          @Device = device
+          @IsAbroad = isabroad
+          @Os = os
+          @Browser = browser
+          @CostType = costtype
+          @Env = env
+          @PackageType = packagetype
+          @ExtFourth = extfourth
+          @ExtFifth = extfifth
+          @ExtSixth = extsixth
+          @ExtSeventh = extseventh
+          @ExtEighth = exteighth
+          @ExtNinth = extninth
+          @ExtTenth = exttenth
+          @Granularity = granularity
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @Type = params['Type']
+          @EndTime = params['EndTime']
+          @ID = params['ID']
+          @ExtSecond = params['ExtSecond']
+          @Engine = params['Engine']
+          @Isp = params['Isp']
+          @From = params['From']
+          @Level = params['Level']
+          @Brand = params['Brand']
+          @Area = params['Area']
+          @VersionNum = params['VersionNum']
+          @Platform = params['Platform']
+          @ExtThird = params['ExtThird']
+          @ExtFirst = params['ExtFirst']
+          @NetType = params['NetType']
+          @Device = params['Device']
+          @IsAbroad = params['IsAbroad']
+          @Os = params['Os']
+          @Browser = params['Browser']
+          @CostType = params['CostType']
+          @Env = params['Env']
+          @PackageType = params['PackageType']
+          @ExtFourth = params['ExtFourth']
+          @ExtFifth = params['ExtFifth']
+          @ExtSixth = params['ExtSixth']
+          @ExtSeventh = params['ExtSeventh']
+          @ExtEighth = params['ExtEighth']
+          @ExtNinth = params['ExtNinth']
+          @ExtTenth = params['ExtTenth']
+          @Granularity = params['Granularity']
+        end
+      end
+
+      # DescribeDataSetUrlStatisticsV2返回参数结构体
+      class DescribeDataSetUrlStatisticsV2Response < TencentCloud::Common::AbstractModel
+        # @param Result: 返回值
+        # @type Result: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDataStaticProject请求参数结构体
       class DescribeDataStaticProjectRequest < TencentCloud::Common::AbstractModel
         # @param StartTime: 开始时间
@@ -2425,7 +3537,7 @@ module TencentCloud
         # @type Os: String
         # @param Browser: 浏览器
         # @type Browser: String
-        # @param CostType: 耗时计算
+        # @param CostType: 耗时口径："50"/"75"/"90"/"95"/"99"/"99.5" 分别表示 TP50/TP75/TP90/TP95/TP99/TP99.5（percentile2）；"avg" 表示均值（avg）。
         # @type CostType: String
         # @param Url: 来源
         # @type Url: Array
@@ -2507,6 +3619,162 @@ module TencentCloud
         end
       end
 
+      # DescribeDataStaticProjectV2请求参数结构体
+      class DescribeDataStaticProjectV2Request < TencentCloud::Common::AbstractModel
+        # @param StartTime: 开始时间
+        # @type StartTime: Integer
+        # @param Type: allcount：性能视图，day：14天数据，condition：条件列表，area：请求速度分布，nettype/version/platform/isp/region/device/browser/ext1/ext2/ext3/ret/status/from/url/env/：网络平台视图/Version视图/设备视图/ISP视图/地区视图/浏览器视图/ext1视图等等
+        # @type Type: String
+        # @param EndTime: 结束时间
+        # @type EndTime: Integer
+        # @param ID: 项目ID
+        # @type ID: Integer
+        # @param ExtSecond: 自定义2
+        # @type ExtSecond: String
+        # @param Engine: 浏览器引擎
+        # @type Engine: String
+        # @param Isp: 运营商
+        # @type Isp: String
+        # @param From: 来源页面
+        # @type From: String
+        # @param Level: 日志等级（1表示白名单日志，2表示一般日志，4表示错误日志，8表示Promise 错误，16表示Ajax 请求异常，32表示JS 加载异常，64表示图片加载异常，128表示css 加载异常，256表示console.error，512表示音视频资源异常，1024表示retcode 异常，2048表示aegis report，4096表示PV日志，8192表示自定义事件，16384表示小程序 页面不存在，32768表示websocket错误，65536表示js bridge错误）
+        # @type Level: String
+        # @param Brand: 品牌
+        # @type Brand: String
+        # @param Area: 地区
+        # @type Area: String
+        # @param VersionNum: 版本
+        # @type VersionNum: String
+        # @param Platform: 平台
+        # @type Platform: String
+        # @param ExtThird: 自定义3
+        # @type ExtThird: String
+        # @param ExtFirst: 自定义1
+        # @type ExtFirst: String
+        # @param NetType: 网络类型（1,2,3,4,5,100），1表示WIFI, 2表示2G, 3表示3G, 4表示4G, 5表示5G, 6表示6G, 100表示未知。
+        # @type NetType: String
+        # @param Device: 机型
+        # @type Device: String
+        # @param IsAbroad: 显示是否海外,1表示海外，0表示非海外；默认值为空，查询所有。
+        # @type IsAbroad: String
+        # @param Os: 操作系统
+        # @type Os: String
+        # @param Browser: 浏览器
+        # @type Browser: String
+        # @param CostType: 耗时计算
+        # @type CostType: String
+        # @param Url: 来源
+        # @type Url: Array
+        # @param Env: 环境
+        # @type Env: String
+        # @param ExtFourth: 自定义4
+        # @type ExtFourth: String
+        # @param ExtFifth: 自定义5
+        # @type ExtFifth: String
+        # @param ExtSixth: 自定义6
+        # @type ExtSixth: String
+        # @param ExtSeventh: 自定义7
+        # @type ExtSeventh: String
+        # @param ExtEighth: 自定义8
+        # @type ExtEighth: String
+        # @param ExtNinth: 自定义9
+        # @type ExtNinth: String
+        # @param ExtTenth: 自定义10
+        # @type ExtTenth: String
+        # @param Granularity: 时间段
+        # @type Granularity: String
+
+        attr_accessor :StartTime, :Type, :EndTime, :ID, :ExtSecond, :Engine, :Isp, :From, :Level, :Brand, :Area, :VersionNum, :Platform, :ExtThird, :ExtFirst, :NetType, :Device, :IsAbroad, :Os, :Browser, :CostType, :Url, :Env, :ExtFourth, :ExtFifth, :ExtSixth, :ExtSeventh, :ExtEighth, :ExtNinth, :ExtTenth, :Granularity
+
+        def initialize(starttime=nil, type=nil, endtime=nil, id=nil, extsecond=nil, engine=nil, isp=nil, from=nil, level=nil, brand=nil, area=nil, versionnum=nil, platform=nil, extthird=nil, extfirst=nil, nettype=nil, device=nil, isabroad=nil, os=nil, browser=nil, costtype=nil, url=nil, env=nil, extfourth=nil, extfifth=nil, extsixth=nil, extseventh=nil, exteighth=nil, extninth=nil, exttenth=nil, granularity=nil)
+          @StartTime = starttime
+          @Type = type
+          @EndTime = endtime
+          @ID = id
+          @ExtSecond = extsecond
+          @Engine = engine
+          @Isp = isp
+          @From = from
+          @Level = level
+          @Brand = brand
+          @Area = area
+          @VersionNum = versionnum
+          @Platform = platform
+          @ExtThird = extthird
+          @ExtFirst = extfirst
+          @NetType = nettype
+          @Device = device
+          @IsAbroad = isabroad
+          @Os = os
+          @Browser = browser
+          @CostType = costtype
+          @Url = url
+          @Env = env
+          @ExtFourth = extfourth
+          @ExtFifth = extfifth
+          @ExtSixth = extsixth
+          @ExtSeventh = extseventh
+          @ExtEighth = exteighth
+          @ExtNinth = extninth
+          @ExtTenth = exttenth
+          @Granularity = granularity
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @Type = params['Type']
+          @EndTime = params['EndTime']
+          @ID = params['ID']
+          @ExtSecond = params['ExtSecond']
+          @Engine = params['Engine']
+          @Isp = params['Isp']
+          @From = params['From']
+          @Level = params['Level']
+          @Brand = params['Brand']
+          @Area = params['Area']
+          @VersionNum = params['VersionNum']
+          @Platform = params['Platform']
+          @ExtThird = params['ExtThird']
+          @ExtFirst = params['ExtFirst']
+          @NetType = params['NetType']
+          @Device = params['Device']
+          @IsAbroad = params['IsAbroad']
+          @Os = params['Os']
+          @Browser = params['Browser']
+          @CostType = params['CostType']
+          @Url = params['Url']
+          @Env = params['Env']
+          @ExtFourth = params['ExtFourth']
+          @ExtFifth = params['ExtFifth']
+          @ExtSixth = params['ExtSixth']
+          @ExtSeventh = params['ExtSeventh']
+          @ExtEighth = params['ExtEighth']
+          @ExtNinth = params['ExtNinth']
+          @ExtTenth = params['ExtTenth']
+          @Granularity = params['Granularity']
+        end
+      end
+
+      # DescribeDataStaticProjectV2返回参数结构体
+      class DescribeDataStaticProjectV2Response < TencentCloud::Common::AbstractModel
+        # @param Result: 返回值
+        # @type Result: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDataStaticResource请求参数结构体
       class DescribeDataStaticResourceRequest < TencentCloud::Common::AbstractModel
         # @param StartTime: 开始时间
@@ -2539,7 +3807,7 @@ module TencentCloud
         # @type ExtThird: String
         # @param ExtFirst: 自定义1
         # @type ExtFirst: String
-        # @param NetType: 网络类型
+        # @param NetType: 网络类型(tag 值):用于过滤/聚合字段 netType；枚举值：1(WiFi)、2(2G)、3(3G)、4(4G)、5(5G)、6(6G)、100(未知网络)。
         # @type NetType: String
         # @param Device: 机型
         # @type Device: String
@@ -2549,7 +3817,7 @@ module TencentCloud
         # @type Os: String
         # @param Browser: 浏览器
         # @type Browser: String
-        # @param CostType: 耗时计算方式
+        # @param CostType: 耗时口径："50"/"75"/"90"/"95"/"99"/"99.5" 分别表示 TP50/TP75/TP90/TP95/TP99/TP99.5（percentile2）；"avg" 表示均值（avg）。
         # @type CostType: String
         # @param Url: 来源
         # @type Url: String
@@ -2631,11 +3899,11 @@ module TencentCloud
         end
       end
 
-      # DescribeDataStaticUrl请求参数结构体
-      class DescribeDataStaticUrlRequest < TencentCloud::Common::AbstractModel
+      # DescribeDataStaticResourceV2请求参数结构体
+      class DescribeDataStaticResourceV2Request < TencentCloud::Common::AbstractModel
         # @param StartTime: 开始时间
         # @type StartTime: Integer
-        # @param Type: pagepv：性能视图，nettype/version/platform/isp/region/device/browser/ext1/ext2/ext3/ret/status/from/url/env/：网络平台视图/Version视图/设备视图/ISP视图/地区视图/浏览器视图//ext1视图等等
+        # @param Type: top：资源top视图，count40x：40X视图，nettype/version/platform/isp/region/device/browser/ext1/ext2/ext3/ret/status/from/url/env/：网络平台视图/Version视图/设备视图/ISP视图/地区视图/浏览器视图//ext1视图等等
         # @type Type: String
         # @param EndTime: 结束时间
         # @type EndTime: Integer
@@ -2674,6 +3942,162 @@ module TencentCloud
         # @param Browser: 浏览器
         # @type Browser: String
         # @param CostType: 耗时计算方式
+        # @type CostType: String
+        # @param Url: 来源
+        # @type Url: String
+        # @param Env: 环境
+        # @type Env: String
+        # @param ExtFourth: 自定义4
+        # @type ExtFourth: String
+        # @param ExtFifth: 自定义5
+        # @type ExtFifth: String
+        # @param ExtSixth: 自定义6
+        # @type ExtSixth: String
+        # @param ExtSeventh: 自定义7
+        # @type ExtSeventh: String
+        # @param ExtEighth: 自定义8
+        # @type ExtEighth: String
+        # @param ExtNinth: 自定义9
+        # @type ExtNinth: String
+        # @param ExtTenth: 自定义10
+        # @type ExtTenth: String
+        # @param Granularity: 时间段
+        # @type Granularity: String
+
+        attr_accessor :StartTime, :Type, :EndTime, :ID, :ExtSecond, :Engine, :Isp, :From, :Level, :Brand, :Area, :VersionNum, :Platform, :ExtThird, :ExtFirst, :NetType, :Device, :IsAbroad, :Os, :Browser, :CostType, :Url, :Env, :ExtFourth, :ExtFifth, :ExtSixth, :ExtSeventh, :ExtEighth, :ExtNinth, :ExtTenth, :Granularity
+
+        def initialize(starttime=nil, type=nil, endtime=nil, id=nil, extsecond=nil, engine=nil, isp=nil, from=nil, level=nil, brand=nil, area=nil, versionnum=nil, platform=nil, extthird=nil, extfirst=nil, nettype=nil, device=nil, isabroad=nil, os=nil, browser=nil, costtype=nil, url=nil, env=nil, extfourth=nil, extfifth=nil, extsixth=nil, extseventh=nil, exteighth=nil, extninth=nil, exttenth=nil, granularity=nil)
+          @StartTime = starttime
+          @Type = type
+          @EndTime = endtime
+          @ID = id
+          @ExtSecond = extsecond
+          @Engine = engine
+          @Isp = isp
+          @From = from
+          @Level = level
+          @Brand = brand
+          @Area = area
+          @VersionNum = versionnum
+          @Platform = platform
+          @ExtThird = extthird
+          @ExtFirst = extfirst
+          @NetType = nettype
+          @Device = device
+          @IsAbroad = isabroad
+          @Os = os
+          @Browser = browser
+          @CostType = costtype
+          @Url = url
+          @Env = env
+          @ExtFourth = extfourth
+          @ExtFifth = extfifth
+          @ExtSixth = extsixth
+          @ExtSeventh = extseventh
+          @ExtEighth = exteighth
+          @ExtNinth = extninth
+          @ExtTenth = exttenth
+          @Granularity = granularity
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @Type = params['Type']
+          @EndTime = params['EndTime']
+          @ID = params['ID']
+          @ExtSecond = params['ExtSecond']
+          @Engine = params['Engine']
+          @Isp = params['Isp']
+          @From = params['From']
+          @Level = params['Level']
+          @Brand = params['Brand']
+          @Area = params['Area']
+          @VersionNum = params['VersionNum']
+          @Platform = params['Platform']
+          @ExtThird = params['ExtThird']
+          @ExtFirst = params['ExtFirst']
+          @NetType = params['NetType']
+          @Device = params['Device']
+          @IsAbroad = params['IsAbroad']
+          @Os = params['Os']
+          @Browser = params['Browser']
+          @CostType = params['CostType']
+          @Url = params['Url']
+          @Env = params['Env']
+          @ExtFourth = params['ExtFourth']
+          @ExtFifth = params['ExtFifth']
+          @ExtSixth = params['ExtSixth']
+          @ExtSeventh = params['ExtSeventh']
+          @ExtEighth = params['ExtEighth']
+          @ExtNinth = params['ExtNinth']
+          @ExtTenth = params['ExtTenth']
+          @Granularity = params['Granularity']
+        end
+      end
+
+      # DescribeDataStaticResourceV2返回参数结构体
+      class DescribeDataStaticResourceV2Response < TencentCloud::Common::AbstractModel
+        # @param Result: 返回值
+        # @type Result: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDataStaticUrl请求参数结构体
+      class DescribeDataStaticUrlRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: 开始时间
+        # @type StartTime: Integer
+        # @param Type: pagepv：性能视图，nettype/version/platform/isp/region/device/browser/ext1/ext2/ext3/ret/status/from/url/env/：网络平台视图/Version视图/设备视图/ISP视图/地区视图/浏览器视图//ext1视图等等
+        # @type Type: String
+        # @param EndTime: 结束时间
+        # @type EndTime: Integer
+        # @param ID: 项目ID
+        # @type ID: Integer
+        # @param ExtSecond: 自定义2
+        # @type ExtSecond: String
+        # @param Engine: 浏览器引擎
+        # @type Engine: String
+        # @param Isp: 运营商
+        # @type Isp: String
+        # @param From: 来源页面
+        # @type From: String
+        # @param Level: 日志等级
+        # @type Level: String
+        # @param Brand: 品牌
+        # @type Brand: String
+        # @param Area: 地区
+        # @type Area: String
+        # @param VersionNum: 版本
+        # @type VersionNum: String
+        # @param Platform: 平台
+        # @type Platform: String
+        # @param ExtThird: 自定义3
+        # @type ExtThird: String
+        # @param ExtFirst: 自定义1
+        # @type ExtFirst: String
+        # @param NetType: 网络类型(tag 值):用于过滤/聚合字段 netType；枚举值：1(WiFi)、2(2G)、3(3G)、4(4G)、5(5G)、6(6G)、100(未知网络)。
+        # @type NetType: String
+        # @param Device: 机型
+        # @type Device: String
+        # @param IsAbroad: 显示是否海外,1表示海外，0表示非海外；默认值为空，查询所有。
+        # @type IsAbroad: String
+        # @param Os: 操作系统
+        # @type Os: String
+        # @param Browser: 浏览器
+        # @type Browser: String
+        # @param CostType: 耗时口径："50"/"75"/"90"/"95"/"99"/"99.5" 分别表示 TP50/TP75/TP90/TP95/TP99/TP99.5（percentile2）；"avg" 表示均值（avg）。
         # @type CostType: String
         # @param Url: 来源
         # @type Url: String
@@ -2755,10 +4179,12 @@ module TencentCloud
         end
       end
 
-      # DescribeDataWebVitalsPage请求参数结构体
-      class DescribeDataWebVitalsPageRequest < TencentCloud::Common::AbstractModel
+      # DescribeDataStaticUrlV2请求参数结构体
+      class DescribeDataStaticUrlV2Request < TencentCloud::Common::AbstractModel
         # @param StartTime: 开始时间
         # @type StartTime: Integer
+        # @param Type: pagepv：性能视图，nettype/version/platform/isp/region/device/browser/ext1/ext2/ext3/ret/status/from/url/env/：网络平台视图/Version视图/设备视图/ISP视图/地区视图/浏览器视图//ext1视图等等
+        # @type Type: String
         # @param EndTime: 结束时间
         # @type EndTime: Integer
         # @param ID: 项目ID
@@ -2773,8 +4199,6 @@ module TencentCloud
         # @type From: String
         # @param Level: 日志等级
         # @type Level: String
-        # @param Type: 类型暂无
-        # @type Type: String
         # @param Brand: 品牌
         # @type Brand: String
         # @param Area: 地区
@@ -2797,7 +4221,163 @@ module TencentCloud
         # @type Os: String
         # @param Browser: 浏览器
         # @type Browser: String
-        # @param CostType: 耗时计算
+        # @param CostType: 耗时计算方式
+        # @type CostType: String
+        # @param Url: 来源
+        # @type Url: String
+        # @param Env: 环境
+        # @type Env: String
+        # @param ExtFourth: 自定义4
+        # @type ExtFourth: String
+        # @param ExtFifth: 自定义5
+        # @type ExtFifth: String
+        # @param ExtSixth: 自定义6
+        # @type ExtSixth: String
+        # @param ExtSeventh: 自定义7
+        # @type ExtSeventh: String
+        # @param ExtEighth: 自定义8
+        # @type ExtEighth: String
+        # @param ExtNinth: 自定义9
+        # @type ExtNinth: String
+        # @param ExtTenth: 自定义10
+        # @type ExtTenth: String
+        # @param Granularity: 时间段
+        # @type Granularity: String
+
+        attr_accessor :StartTime, :Type, :EndTime, :ID, :ExtSecond, :Engine, :Isp, :From, :Level, :Brand, :Area, :VersionNum, :Platform, :ExtThird, :ExtFirst, :NetType, :Device, :IsAbroad, :Os, :Browser, :CostType, :Url, :Env, :ExtFourth, :ExtFifth, :ExtSixth, :ExtSeventh, :ExtEighth, :ExtNinth, :ExtTenth, :Granularity
+
+        def initialize(starttime=nil, type=nil, endtime=nil, id=nil, extsecond=nil, engine=nil, isp=nil, from=nil, level=nil, brand=nil, area=nil, versionnum=nil, platform=nil, extthird=nil, extfirst=nil, nettype=nil, device=nil, isabroad=nil, os=nil, browser=nil, costtype=nil, url=nil, env=nil, extfourth=nil, extfifth=nil, extsixth=nil, extseventh=nil, exteighth=nil, extninth=nil, exttenth=nil, granularity=nil)
+          @StartTime = starttime
+          @Type = type
+          @EndTime = endtime
+          @ID = id
+          @ExtSecond = extsecond
+          @Engine = engine
+          @Isp = isp
+          @From = from
+          @Level = level
+          @Brand = brand
+          @Area = area
+          @VersionNum = versionnum
+          @Platform = platform
+          @ExtThird = extthird
+          @ExtFirst = extfirst
+          @NetType = nettype
+          @Device = device
+          @IsAbroad = isabroad
+          @Os = os
+          @Browser = browser
+          @CostType = costtype
+          @Url = url
+          @Env = env
+          @ExtFourth = extfourth
+          @ExtFifth = extfifth
+          @ExtSixth = extsixth
+          @ExtSeventh = extseventh
+          @ExtEighth = exteighth
+          @ExtNinth = extninth
+          @ExtTenth = exttenth
+          @Granularity = granularity
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @Type = params['Type']
+          @EndTime = params['EndTime']
+          @ID = params['ID']
+          @ExtSecond = params['ExtSecond']
+          @Engine = params['Engine']
+          @Isp = params['Isp']
+          @From = params['From']
+          @Level = params['Level']
+          @Brand = params['Brand']
+          @Area = params['Area']
+          @VersionNum = params['VersionNum']
+          @Platform = params['Platform']
+          @ExtThird = params['ExtThird']
+          @ExtFirst = params['ExtFirst']
+          @NetType = params['NetType']
+          @Device = params['Device']
+          @IsAbroad = params['IsAbroad']
+          @Os = params['Os']
+          @Browser = params['Browser']
+          @CostType = params['CostType']
+          @Url = params['Url']
+          @Env = params['Env']
+          @ExtFourth = params['ExtFourth']
+          @ExtFifth = params['ExtFifth']
+          @ExtSixth = params['ExtSixth']
+          @ExtSeventh = params['ExtSeventh']
+          @ExtEighth = params['ExtEighth']
+          @ExtNinth = params['ExtNinth']
+          @ExtTenth = params['ExtTenth']
+          @Granularity = params['Granularity']
+        end
+      end
+
+      # DescribeDataStaticUrlV2返回参数结构体
+      class DescribeDataStaticUrlV2Response < TencentCloud::Common::AbstractModel
+        # @param Result: 返回值
+        # @type Result: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDataWebVitalsPage请求参数结构体
+      class DescribeDataWebVitalsPageRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: 开始时间
+        # @type StartTime: Integer
+        # @param EndTime: 结束时间
+        # @type EndTime: Integer
+        # @param ID: 项目ID
+        # @type ID: Integer
+        # @param ExtSecond: 自定义2
+        # @type ExtSecond: String
+        # @param Engine: 浏览器引擎
+        # @type Engine: String
+        # @param Isp: 运营商
+        # @type Isp: String
+        # @param From: 查询维度：from=按页面来源(from)聚合输出；其他值/空值=输出整体汇总。
+        # @type From: String
+        # @param Level: 日志等级
+        # @type Level: String
+        # @param Type: 类型暂无
+        # @type Type: String
+        # @param Brand: 品牌
+        # @type Brand: String
+        # @param Area: 地区
+        # @type Area: String
+        # @param VersionNum: 版本
+        # @type VersionNum: String
+        # @param Platform: 平台
+        # @type Platform: String
+        # @param ExtThird: 自定义3
+        # @type ExtThird: String
+        # @param ExtFirst: 自定义1
+        # @type ExtFirst: String
+        # @param NetType: 网络类型(tag 值):用于过滤/聚合字段 netType；枚举值：1(WiFi)、2(2G)、3(3G)、4(4G)、5(5G)、6(6G)、100(未知网络)。
+        # @type NetType: String
+        # @param Device: 机型
+        # @type Device: String
+        # @param IsAbroad: 显示是否海外,1表示海外，0表示非海外；默认值为空，查询所有。
+        # @type IsAbroad: String
+        # @param Os: 操作系统
+        # @type Os: String
+        # @param Browser: 浏览器
+        # @type Browser: String
+        # @param CostType: Web Vitals 口径："50"/"75"/"90"/"95"/"99"/"99.5" 分别表示 TP50/TP75/TP90/TP95/TP99/TP99.5（percentile2）；"avg" 表示均值（avg）。
         # @type CostType: String
         # @param Env: 环境
         # @type Env: String
@@ -2857,6 +4437,130 @@ module TencentCloud
 
       # DescribeDataWebVitalsPage返回参数结构体
       class DescribeDataWebVitalsPageResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 返回值
+        # @type Result: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDataWebVitalsPageV2请求参数结构体
+      class DescribeDataWebVitalsPageV2Request < TencentCloud::Common::AbstractModel
+        # @param StartTime: 开始时间
+        # @type StartTime: Integer
+        # @param EndTime: 结束时间
+        # @type EndTime: Integer
+        # @param ID: 项目ID
+        # @type ID: Integer
+        # @param ExtSecond: 自定义2
+        # @type ExtSecond: String
+        # @param Engine: 浏览器引擎
+        # @type Engine: String
+        # @param Isp: 运营商
+        # @type Isp: String
+        # @param From: 来源页面
+        # @type From: String
+        # @param Level: 日志等级
+        # @type Level: String
+        # @param Type: 类型暂无
+        # @type Type: String
+        # @param Brand: 品牌
+        # @type Brand: String
+        # @param Area: 地区
+        # @type Area: String
+        # @param VersionNum: 版本
+        # @type VersionNum: String
+        # @param Platform: 平台
+        # @type Platform: String
+        # @param ExtThird: 自定义3
+        # @type ExtThird: String
+        # @param ExtFirst: 自定义1
+        # @type ExtFirst: String
+        # @param NetType: 网络类型
+        # @type NetType: String
+        # @param Device: 机型
+        # @type Device: String
+        # @param IsAbroad: 显示是否海外,1表示海外，0表示非海外；默认值为空，查询所有。
+        # @type IsAbroad: String
+        # @param Os: 操作系统
+        # @type Os: String
+        # @param Browser: 浏览器
+        # @type Browser: String
+        # @param CostType: 耗时计算
+        # @type CostType: String
+        # @param Env: 环境
+        # @type Env: String
+        # @param Granularity: 时间段
+        # @type Granularity: String
+
+        attr_accessor :StartTime, :EndTime, :ID, :ExtSecond, :Engine, :Isp, :From, :Level, :Type, :Brand, :Area, :VersionNum, :Platform, :ExtThird, :ExtFirst, :NetType, :Device, :IsAbroad, :Os, :Browser, :CostType, :Env, :Granularity
+
+        def initialize(starttime=nil, endtime=nil, id=nil, extsecond=nil, engine=nil, isp=nil, from=nil, level=nil, type=nil, brand=nil, area=nil, versionnum=nil, platform=nil, extthird=nil, extfirst=nil, nettype=nil, device=nil, isabroad=nil, os=nil, browser=nil, costtype=nil, env=nil, granularity=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @ID = id
+          @ExtSecond = extsecond
+          @Engine = engine
+          @Isp = isp
+          @From = from
+          @Level = level
+          @Type = type
+          @Brand = brand
+          @Area = area
+          @VersionNum = versionnum
+          @Platform = platform
+          @ExtThird = extthird
+          @ExtFirst = extfirst
+          @NetType = nettype
+          @Device = device
+          @IsAbroad = isabroad
+          @Os = os
+          @Browser = browser
+          @CostType = costtype
+          @Env = env
+          @Granularity = granularity
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @ID = params['ID']
+          @ExtSecond = params['ExtSecond']
+          @Engine = params['Engine']
+          @Isp = params['Isp']
+          @From = params['From']
+          @Level = params['Level']
+          @Type = params['Type']
+          @Brand = params['Brand']
+          @Area = params['Area']
+          @VersionNum = params['VersionNum']
+          @Platform = params['Platform']
+          @ExtThird = params['ExtThird']
+          @ExtFirst = params['ExtFirst']
+          @NetType = params['NetType']
+          @Device = params['Device']
+          @IsAbroad = params['IsAbroad']
+          @Os = params['Os']
+          @Browser = params['Browser']
+          @CostType = params['CostType']
+          @Env = params['Env']
+          @Granularity = params['Granularity']
+        end
+      end
+
+      # DescribeDataWebVitalsPageV2返回参数结构体
+      class DescribeDataWebVitalsPageV2Response < TencentCloud::Common::AbstractModel
         # @param Result: 返回值
         # @type Result: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -3537,6 +5241,65 @@ module TencentCloud
               scoreinfo_tmp = ScoreInfo.new
               scoreinfo_tmp.deserialize(i)
               @ScoreSet << scoreinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeScoresV2请求参数结构体
+      class DescribeScoresV2Request < TencentCloud::Common::AbstractModel
+        # @param StartTime: 开始时间
+        # @type StartTime: String
+        # @param EndTime: 结束时间
+        # @type EndTime: String
+        # @param IDList: 项目 ID 列表
+        # @type IDList: Array
+        # @param Type: 查询粒度，hour 或 day
+        # @type Type: String
+        # @param Env: 环境
+        # @type Env: String
+
+        attr_accessor :StartTime, :EndTime, :IDList, :Type, :Env
+
+        def initialize(starttime=nil, endtime=nil, idlist=nil, type=nil, env=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @IDList = idlist
+          @Type = type
+          @Env = env
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @IDList = params['IDList']
+          @Type = params['Type']
+          @Env = params['Env']
+        end
+      end
+
+      # DescribeScoresV2返回参数结构体
+      class DescribeScoresV2Response < TencentCloud::Common::AbstractModel
+        # @param ScoreSet: 项目得分数组
+        # @type ScoreSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ScoreSet, :RequestId
+
+        def initialize(scoreset=nil, requestid=nil)
+          @ScoreSet = scoreset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ScoreSet'].nil?
+            @ScoreSet = []
+            params['ScoreSet'].each do |i|
+              scoreinfov2_tmp = ScoreInfoV2.new
+              scoreinfov2_tmp.deserialize(i)
+              @ScoreSet << scoreinfov2_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -4529,6 +6292,110 @@ module TencentCloud
           @ApiAvaliableScore = params['ApiAvaliableScore']
           @StaticPerformanceScore = params['StaticPerformanceScore']
           @StaticAvaliableScore = params['StaticAvaliableScore']
+        end
+      end
+
+      # project Score分数实体
+      class ScoreInfoV2 < TencentCloud::Common::AbstractModel
+        # @param ProjectID: 项目id
+        # @type ProjectID: Integer
+        # @param Score: 项目总分
+        # @type Score: Float
+        # @param ApiPerformanceScore: API性能评分
+        # @type ApiPerformanceScore: Float
+        # @param ApiAvailableScore: API可用性评分
+        # @type ApiAvailableScore: Float
+        # @param ApiNum: API调用总数
+        # @type ApiNum: Integer
+        # @param ApiFail: API失败次数
+        # @type ApiFail: Integer
+        # @param ApiDuration: API平均持续时间
+        # @type ApiDuration: Float
+        # @param PagePerformanceScore: 页面性能评分
+        # @type PagePerformanceScore: Float
+        # @param PagePv: 页面浏览量
+        # @type PagePv: Integer
+        # @param PageUv: 独立访客数
+        # @type PageUv: Integer
+        # @param PageError: 页面错误数
+        # @type PageError: Integer
+        # @param PageDuration: 首屏时间
+        # @type PageDuration: Float
+        # @param PageLCP: 平均 LCP
+        # @type PageLCP: Float
+        # @param PageFID: 平均 FID
+        # @type PageFID: Float
+        # @param PageCLS: 平均 CLS
+        # @type PageCLS: Float
+        # @param PageFCP: 平均 FCP
+        # @type PageFCP: Float
+        # @param PageINP: 平均 INP
+        # @type PageINP: Float
+        # @param JsErrorScore: JavaScript错误评分
+        # @type JsErrorScore: Float
+        # @param StaticAvailableScore: 静态资源可用性评分
+        # @type StaticAvailableScore: Float
+        # @param StaticPerformanceScore: 静态资源性能评分
+        # @type StaticPerformanceScore: Float
+        # @param StaticNum: 静态资源请求总数
+        # @type StaticNum: Integer
+        # @param StaticFail: 静态资源加载失败数
+        # @type StaticFail: Integer
+        # @param StaticDuration: 静态资源加载时间
+        # @type StaticDuration: Float
+
+        attr_accessor :ProjectID, :Score, :ApiPerformanceScore, :ApiAvailableScore, :ApiNum, :ApiFail, :ApiDuration, :PagePerformanceScore, :PagePv, :PageUv, :PageError, :PageDuration, :PageLCP, :PageFID, :PageCLS, :PageFCP, :PageINP, :JsErrorScore, :StaticAvailableScore, :StaticPerformanceScore, :StaticNum, :StaticFail, :StaticDuration
+
+        def initialize(projectid=nil, score=nil, apiperformancescore=nil, apiavailablescore=nil, apinum=nil, apifail=nil, apiduration=nil, pageperformancescore=nil, pagepv=nil, pageuv=nil, pageerror=nil, pageduration=nil, pagelcp=nil, pagefid=nil, pagecls=nil, pagefcp=nil, pageinp=nil, jserrorscore=nil, staticavailablescore=nil, staticperformancescore=nil, staticnum=nil, staticfail=nil, staticduration=nil)
+          @ProjectID = projectid
+          @Score = score
+          @ApiPerformanceScore = apiperformancescore
+          @ApiAvailableScore = apiavailablescore
+          @ApiNum = apinum
+          @ApiFail = apifail
+          @ApiDuration = apiduration
+          @PagePerformanceScore = pageperformancescore
+          @PagePv = pagepv
+          @PageUv = pageuv
+          @PageError = pageerror
+          @PageDuration = pageduration
+          @PageLCP = pagelcp
+          @PageFID = pagefid
+          @PageCLS = pagecls
+          @PageFCP = pagefcp
+          @PageINP = pageinp
+          @JsErrorScore = jserrorscore
+          @StaticAvailableScore = staticavailablescore
+          @StaticPerformanceScore = staticperformancescore
+          @StaticNum = staticnum
+          @StaticFail = staticfail
+          @StaticDuration = staticduration
+        end
+
+        def deserialize(params)
+          @ProjectID = params['ProjectID']
+          @Score = params['Score']
+          @ApiPerformanceScore = params['ApiPerformanceScore']
+          @ApiAvailableScore = params['ApiAvailableScore']
+          @ApiNum = params['ApiNum']
+          @ApiFail = params['ApiFail']
+          @ApiDuration = params['ApiDuration']
+          @PagePerformanceScore = params['PagePerformanceScore']
+          @PagePv = params['PagePv']
+          @PageUv = params['PageUv']
+          @PageError = params['PageError']
+          @PageDuration = params['PageDuration']
+          @PageLCP = params['PageLCP']
+          @PageFID = params['PageFID']
+          @PageCLS = params['PageCLS']
+          @PageFCP = params['PageFCP']
+          @PageINP = params['PageINP']
+          @JsErrorScore = params['JsErrorScore']
+          @StaticAvailableScore = params['StaticAvailableScore']
+          @StaticPerformanceScore = params['StaticPerformanceScore']
+          @StaticNum = params['StaticNum']
+          @StaticFail = params['StaticFail']
+          @StaticDuration = params['StaticDuration']
         end
       end
 

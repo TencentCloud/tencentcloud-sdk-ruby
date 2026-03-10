@@ -66,6 +66,111 @@ module TencentCloud
         end
       end
 
+      # cos挂载信息
+      class COSStorage < TencentCloud::Common::AbstractModel
+        # @param URI: cos桶uri
+        # @type URI: String
+
+        attr_accessor :URI
+
+        def initialize(uri=nil)
+          @URI = uri
+        end
+
+        def deserialize(params)
+          @URI = params['URI']
+        end
+      end
+
+      # 算力详情
+      class ComputeDetail < TencentCloud::Common::AbstractModel
+        # @param BundleType: 算力套餐ID
+        # @type BundleType: String
+        # @param Count: 节点数量
+        # @type Count: Integer
+        # @param GPUCount: 显卡数量
+        # @type GPUCount: String
+        # @param GPUMemory: 显存
+        # @type GPUMemory: String
+        # @param GPUPerformance: 算力
+        # @type GPUPerformance: String
+        # @param CPU: CPU核数
+        # @type CPU: String
+        # @param Memory: 内存
+        # @type Memory: String
+
+        attr_accessor :BundleType, :Count, :GPUCount, :GPUMemory, :GPUPerformance, :CPU, :Memory
+
+        def initialize(bundletype=nil, count=nil, gpucount=nil, gpumemory=nil, gpuperformance=nil, cpu=nil, memory=nil)
+          @BundleType = bundletype
+          @Count = count
+          @GPUCount = gpucount
+          @GPUMemory = gpumemory
+          @GPUPerformance = gpuperformance
+          @CPU = cpu
+          @Memory = memory
+        end
+
+        def deserialize(params)
+          @BundleType = params['BundleType']
+          @Count = params['Count']
+          @GPUCount = params['GPUCount']
+          @GPUMemory = params['GPUMemory']
+          @GPUPerformance = params['GPUPerformance']
+          @CPU = params['CPU']
+          @Memory = params['Memory']
+        end
+      end
+
+      # 容器信息
+      class ContainerInfo < TencentCloud::Common::AbstractModel
+        # @param Image: 镜像相关信息
+        # @type Image: :class:`Tencentcloud::Hai.v20230812.models.ImageInfo`
+        # @param Port: 服务监听端口
+        # @type Port: String
+        # @param Scripts: 启动命令
+        # @type Scripts: Array
+        # @param Envs: 环境变量列表
+        # @type Envs: Array
+        # @param Storages: 存储挂载配置
+        # @type Storages: Array
+
+        attr_accessor :Image, :Port, :Scripts, :Envs, :Storages
+
+        def initialize(image=nil, port=nil, scripts=nil, envs=nil, storages=nil)
+          @Image = image
+          @Port = port
+          @Scripts = scripts
+          @Envs = envs
+          @Storages = storages
+        end
+
+        def deserialize(params)
+          unless params['Image'].nil?
+            @Image = ImageInfo.new
+            @Image.deserialize(params['Image'])
+          end
+          @Port = params['Port']
+          @Scripts = params['Scripts']
+          unless params['Envs'].nil?
+            @Envs = []
+            params['Envs'].each do |i|
+              envparam_tmp = EnvParam.new
+              envparam_tmp.deserialize(i)
+              @Envs << envparam_tmp
+            end
+          end
+          unless params['Storages'].nil?
+            @Storages = []
+            params['Storages'].each do |i|
+              storageinfo_tmp = StorageInfo.new
+              storageinfo_tmp.deserialize(i)
+              @Storages << storageinfo_tmp
+            end
+          end
+        end
+      end
+
       # CreateApplication请求参数结构体
       class CreateApplicationRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 需要制作自定义应用的HAI实例ID
@@ -151,6 +256,29 @@ module TencentCloud
         def deserialize(params)
           @PromptId = params['PromptId']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 服务部署信息
+      class DeploymentConfig < TencentCloud::Common::AbstractModel
+        # @param Container: 容器配置
+        # @type Container: :class:`Tencentcloud::Hai.v20230812.models.ContainerInfo`
+        # @param ContainerCount: 容器数量
+        # @type ContainerCount: Integer
+
+        attr_accessor :Container, :ContainerCount
+
+        def initialize(container=nil, containercount=nil)
+          @Container = container
+          @ContainerCount = containercount
+        end
+
+        def deserialize(params)
+          unless params['Container'].nil?
+            @Container = ContainerInfo.new
+            @Container.deserialize(params['Container'])
+          end
+          @ContainerCount = params['ContainerCount']
         end
       end
 
@@ -539,6 +667,81 @@ module TencentCloud
         end
       end
 
+      # DescribeServices请求参数结构体
+      class DescribeServicesRequest < TencentCloud::Common::AbstractModel
+        # @param ServiceIds: 服务列表
+        # @type ServiceIds: Array
+        # @param Limit: 分页大小
+        # @type Limit: Integer
+        # @param Offset: 偏移量
+        # @type Offset: Integer
+
+        attr_accessor :ServiceIds, :Limit, :Offset
+
+        def initialize(serviceids=nil, limit=nil, offset=nil)
+          @ServiceIds = serviceids
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @ServiceIds = params['ServiceIds']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeServices返回参数结构体
+      class DescribeServicesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总数
+        # @type TotalCount: Integer
+        # @param ServiceInfoSet: 服务列表
+        # @type ServiceInfoSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :ServiceInfoSet, :RequestId
+
+        def initialize(totalcount=nil, serviceinfoset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @ServiceInfoSet = serviceinfoset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['ServiceInfoSet'].nil?
+            @ServiceInfoSet = []
+            params['ServiceInfoSet'].each do |i|
+              servicedetail_tmp = ServiceDetail.new
+              servicedetail_tmp.deserialize(i)
+              @ServiceInfoSet << servicedetail_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 环境变量键值对
+      class EnvParam < TencentCloud::Common::AbstractModel
+        # @param Name: 环境变量名
+        # @type Name: String
+        # @param Value: 环境变量值
+        # @type Value: String
+
+        attr_accessor :Name, :Value
+
+        def initialize(name=nil, value=nil)
+          @Name = name
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Value = params['Value']
+        end
+      end
+
       # 描述键值对过滤器，用于条件过滤查询。例如过滤ID、名称、状态等
 
       # - 若存在多个Filter时，Filter间的关系为逻辑与（AND）关系。
@@ -559,6 +762,57 @@ module TencentCloud
         def deserialize(params)
           @Name = params['Name']
           @Values = params['Values']
+        end
+      end
+
+      # HiCache信息
+      class HiCacheInfo < TencentCloud::Common::AbstractModel
+        # @param HiCacheLevel: HiCache缓存等级
+        # @type HiCacheLevel: String
+
+        attr_accessor :HiCacheLevel
+
+        def initialize(hicachelevel=nil)
+          @HiCacheLevel = hicachelevel
+        end
+
+        def deserialize(params)
+          @HiCacheLevel = params['HiCacheLevel']
+        end
+      end
+
+      # 描述了服务的超参数配置
+      class HyperParam < TencentCloud::Common::AbstractModel
+        # @param HiCache: HiCache缓存
+        # @type HiCache: :class:`Tencentcloud::Hai.v20230812.models.HiCacheInfo`
+
+        attr_accessor :HiCache
+
+        def initialize(hicache=nil)
+          @HiCache = hicache
+        end
+
+        def deserialize(params)
+          unless params['HiCache'].nil?
+            @HiCache = HiCacheInfo.new
+            @HiCache.deserialize(params['HiCache'])
+          end
+        end
+      end
+
+      # 镜像相关配置
+      class ImageInfo < TencentCloud::Common::AbstractModel
+        # @param ImageRegistryUrl: tcr仓库地址
+        # @type ImageRegistryUrl: String
+
+        attr_accessor :ImageRegistryUrl
+
+        def initialize(imageregistryurl=nil)
+          @ImageRegistryUrl = imageregistryurl
+        end
+
+        def deserialize(params)
+          @ImageRegistryUrl = params['ImageRegistryUrl']
         end
       end
 
@@ -1249,6 +1503,75 @@ module TencentCloud
         end
       end
 
+      # 服务详情
+      class ServiceDetail < TencentCloud::Common::AbstractModel
+        # @param ServiceId: 服务id
+        # @type ServiceId: String
+        # @param ServiceName: 服务名称
+        # @type ServiceName: String
+        # @param ServiceState: 服务状态
+        # @type ServiceState: String
+        # @param RunningReplicas: 运行中的副本数
+        # @type RunningReplicas: Integer
+        # @param TotalReplicas: 期望的副本总数
+        # @type TotalReplicas: Integer
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
+        # @param ComputeSet: 算力套餐详情
+        # @type ComputeSet: Array
+        # @param ModelName: 模型名称
+        # @type ModelName: String
+        # @param DeploymentConfigs: 服务部署信息
+        # @type DeploymentConfigs: Array
+        # @param HyperParam: 服务超参数配置
+        # @type HyperParam: :class:`Tencentcloud::Hai.v20230812.models.HyperParam`
+
+        attr_accessor :ServiceId, :ServiceName, :ServiceState, :RunningReplicas, :TotalReplicas, :CreateTime, :ComputeSet, :ModelName, :DeploymentConfigs, :HyperParam
+
+        def initialize(serviceid=nil, servicename=nil, servicestate=nil, runningreplicas=nil, totalreplicas=nil, createtime=nil, computeset=nil, modelname=nil, deploymentconfigs=nil, hyperparam=nil)
+          @ServiceId = serviceid
+          @ServiceName = servicename
+          @ServiceState = servicestate
+          @RunningReplicas = runningreplicas
+          @TotalReplicas = totalreplicas
+          @CreateTime = createtime
+          @ComputeSet = computeset
+          @ModelName = modelname
+          @DeploymentConfigs = deploymentconfigs
+          @HyperParam = hyperparam
+        end
+
+        def deserialize(params)
+          @ServiceId = params['ServiceId']
+          @ServiceName = params['ServiceName']
+          @ServiceState = params['ServiceState']
+          @RunningReplicas = params['RunningReplicas']
+          @TotalReplicas = params['TotalReplicas']
+          @CreateTime = params['CreateTime']
+          unless params['ComputeSet'].nil?
+            @ComputeSet = []
+            params['ComputeSet'].each do |i|
+              computedetail_tmp = ComputeDetail.new
+              computedetail_tmp.deserialize(i)
+              @ComputeSet << computedetail_tmp
+            end
+          end
+          @ModelName = params['ModelName']
+          unless params['DeploymentConfigs'].nil?
+            @DeploymentConfigs = []
+            params['DeploymentConfigs'].each do |i|
+              deploymentconfig_tmp = DeploymentConfig.new
+              deploymentconfig_tmp.deserialize(i)
+              @DeploymentConfigs << deploymentconfig_tmp
+            end
+          end
+          unless params['HyperParam'].nil?
+            @HyperParam = HyperParam.new
+            @HyperParam.deserialize(params['HyperParam'])
+          end
+        end
+      end
+
       # 推理集群费用数据结构体
       class ServicePriceDetail < TencentCloud::Common::AbstractModel
         # @param ServicePrice: 推理集群价格信息
@@ -1351,6 +1674,29 @@ module TencentCloud
         def deserialize(params)
           @TaskId = params['TaskId']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 存储信息
+      class StorageInfo < TencentCloud::Common::AbstractModel
+        # @param MountPath: 挂载路径
+        # @type MountPath: String
+        # @param COSStorage: cos挂载信息
+        # @type COSStorage: :class:`Tencentcloud::Hai.v20230812.models.COSStorage`
+
+        attr_accessor :MountPath, :COSStorage
+
+        def initialize(mountpath=nil, cosstorage=nil)
+          @MountPath = mountpath
+          @COSStorage = cosstorage
+        end
+
+        def deserialize(params)
+          @MountPath = params['MountPath']
+          unless params['COSStorage'].nil?
+            @COSStorage = COSStorage.new
+            @COSStorage.deserialize(params['COSStorage'])
+          end
         end
       end
 

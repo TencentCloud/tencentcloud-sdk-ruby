@@ -197,6 +197,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 添加共享单元部门
+
+        # @param request: Request instance for AddShareUnitNode.
+        # @type request: :class:`Tencentcloud::organization::V20210331::AddShareUnitNodeRequest`
+        # @rtype: :class:`Tencentcloud::organization::V20210331::AddShareUnitNodeResponse`
+        def AddShareUnitNode(request)
+          body = send_request('AddShareUnitNode', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AddShareUnitNodeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 添加共享单元资源
 
         # @param request: Request instance for AddShareUnitResources.
@@ -1109,6 +1133,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除共享单元部门
+
+        # @param request: Request instance for DeleteShareUnitNode.
+        # @type request: :class:`Tencentcloud::organization::V20210331::DeleteShareUnitNodeRequest`
+        # @rtype: :class:`Tencentcloud::organization::V20210331::DeleteShareUnitNodeResponse`
+        def DeleteShareUnitNode(request)
+          body = send_request('DeleteShareUnitNode', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteShareUnitNodeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除共享单元资源
 
         # @param request: Request instance for DeleteShareUnitResources.
@@ -1623,6 +1671,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeShareUnitMembersResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取共享单元部门列表。
+
+        # @param request: Request instance for DescribeShareUnitNodes.
+        # @type request: :class:`Tencentcloud::organization::V20210331::DescribeShareUnitNodesRequest`
+        # @rtype: :class:`Tencentcloud::organization::V20210331::DescribeShareUnitNodesResponse`
+        def DescribeShareUnitNodes(request)
+          body = send_request('DescribeShareUnitNodes', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeShareUnitNodesResponse.new
             model.deserialize(response['Response'])
             model
           else

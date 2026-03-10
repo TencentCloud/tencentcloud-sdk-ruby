@@ -2433,76 +2433,58 @@ module TencentCloud
 
       # CreateAlarm请求参数结构体
       class CreateAlarmRequest < TencentCloud::Common::AbstractModel
-        # @param Name: 告警策略名称。最大支持255个字节。 不支持 '|'。
+        # @param Name: <p>告警策略名称。最大支持255个字节。 不支持 &#39;|&#39;。</p>
         # @type Name: String
-        # @param AlarmTargets: 监控对象列表。
+        # @param AlarmTargets: <p>监控对象列表。</p>
         # @type AlarmTargets: Array
-        # @param MonitorTime: 监控任务运行时间点。
+        # @param MonitorTime: <p>监控任务运行时间点。</p>
         # @type MonitorTime: :class:`Tencentcloud::Cls.v20201016.models.MonitorTime`
-        # @param TriggerCount: 持续周期。持续满足触发条件TriggerCount个周期后，再进行告警；最小值为1，最大值为2000。
+        # @param TriggerCount: <p>持续周期。持续满足触发条件TriggerCount个周期后，再进行告警；最小值为1，最大值为2000。</p>
         # @type TriggerCount: Integer
-        # @param AlarmPeriod: 告警重复的周期，单位是分钟。取值范围是0~1440。
+        # @param AlarmPeriod: <p>告警重复的周期，单位是分钟。取值范围是0~1440。</p>
         # @type AlarmPeriod: Integer
-        # @param AlarmNoticeIds: 关联的告警通知渠道组列表。-通过[获取通知渠道组列表](https://cloud.tencent.com/document/product/614/56462)获取关联的告警通知渠道组列表，和MonitorNotice互斥
-        # @type AlarmNoticeIds: Array
-        # @param Condition: 告警发送通知的触发条件
-        #  注意:
-        # - Condition和AlarmLevel是一组配置，MultiConditions是另一组配置，2组配置互斥。
+        # @param Condition: <p>告警发送通知的触发条件<br> 注意:  </p><ul><li>Condition和AlarmLevel是一组配置，MultiConditions是另一组配置，2组配置互斥。</li></ul>
         # @type Condition: String
-        # @param AlarmLevel: 告警级别
-        # 0:警告(Warn); 1:提醒(Info); 2:紧急 (Critical)。
-        # 注意:
-        # - 不填则默认为0。
-        # - Condition和AlarmLevel是一组配置，MultiConditions是另一组配置，2组配置互斥。
+        # @param AlarmLevel: <p>告警级别<br>0:警告(Warn); 1:提醒(Info); 2:紧急 (Critical)。<br>注意:  </p><ul><li>不填则默认为0。</li><li>Condition和AlarmLevel是一组配置，MultiConditions是另一组配置，2组配置互斥。</li></ul>
         # @type AlarmLevel: Integer
-        # @param MultiConditions: 多触发条件
-        #  注意:
-        # - Condition和AlarmLevel是一组配置，MultiConditions是另一组配置，2组配置互斥。
-
-
+        # @param MultiConditions: <p>多触发条件<br> 注意:  </p><ul><li>Condition和AlarmLevel是一组配置，MultiConditions是另一组配置，2组配置互斥。</li></ul>
         # @type MultiConditions: Array
-        # @param Status: 是否开启告警策略。
-        # 默认值为true
+        # @param Status: <p>是否开启告警策略。<br>默认值为true</p>
         # @type Status: Boolean
-        # @param Enable: 请使用Status参数控制是否开启告警策略。
+        # @param Enable: <p>请使用Status参数控制是否开启告警策略。</p>
         # @type Enable: Boolean
-        # @param MessageTemplate: 用户自定义告警内容
+        # @param MessageTemplate: <p>用户自定义告警内容</p>
         # @type MessageTemplate: String
-        # @param CallBack: 用户自定义回调
+        # @param CallBack: <p>用户自定义回调</p>
         # @type CallBack: :class:`Tencentcloud::Cls.v20201016.models.CallBackInfo`
-        # @param Analysis: 多维分析
+        # @param Analysis: <p>多维分析</p>
         # @type Analysis: Array
-        # @param GroupTriggerStatus: 分组触发状态。
-        # 默认值false
+        # @param GroupTriggerStatus: <p>分组触发状态。<br>默认值false</p>
         # @type GroupTriggerStatus: Boolean
-        # @param GroupTriggerCondition: 分组触发条件。
+        # @param GroupTriggerCondition: <p>分组触发条件。</p>
         # @type GroupTriggerCondition: Array
-        # @param Tags: 标签描述列表，通过指定该参数可以同时绑定标签到相应的告警策略。
-
-        # 最大支持10个标签键值对，并且不能有重复的键值对。
+        # @param Tags: <p>标签描述列表，通过指定该参数可以同时绑定标签到相应的告警策略。</p><p>最大支持10个标签键值对，并且不能有重复的键值对。</p>
         # @type Tags: Array
-        # @param MonitorObjectType: 监控对象类型。0:执行语句共用监控对象; 1:每个执行语句单独选择监控对象。
-        # 不填则默认为0。
-        # 当值为1时，AlarmTargets元素个数不能超过10个，AlarmTargets中的Number必须是从1开始的连续正整数，不能重复。
+        # @param MonitorObjectType: <p>监控对象类型。0:执行语句共用监控对象; 1:每个执行语句单独选择监控对象。<br>不填则默认为0。<br>当值为1时，AlarmTargets元素个数不能超过10个，AlarmTargets中的Number必须是从1开始的连续正整数，不能重复。</p>
         # @type MonitorObjectType: Integer
-        # @param Classifications: 告警附加分类信息列表。
-        # Classifications元素个数不能超过20个。
-        # Classifications元素的Key不能为空，不能重复，长度不能超过50个字符，符合正则 `^[a-z]([a-z0-9_]{0,49})$`。
-        # Classifications元素的Value长度不能超过200个字符。
+        # @param Classifications: <p>告警附加分类信息列表。<br>Classifications元素个数不能超过20个。<br>Classifications元素的Key不能为空，不能重复，长度不能超过50个字符，符合正则 <code>^[a-z]([a-z0-9_]{0,49})$</code>。<br>Classifications元素的Value长度不能超过200个字符。</p>
         # @type Classifications: Array
+        # @param AlarmNoticeIds: <p>关联的日志服务告警通知渠道组列表。-通过<a href="https://cloud.tencent.com/document/product/614/56462">获取通知渠道组列表</a>获取关联的告警通知渠道组列表，和MonitorNotice互斥</p>
+        # @type AlarmNoticeIds: Array
+        # @param MonitorNotice: <p>关联的可观测平台通知模板，与 AlarmNoticeIds 参数互斥，不能同时使用</p>
+        # @type MonitorNotice: :class:`Tencentcloud::Cls.v20201016.models.MonitorNotice`
 
-        attr_accessor :Name, :AlarmTargets, :MonitorTime, :TriggerCount, :AlarmPeriod, :AlarmNoticeIds, :Condition, :AlarmLevel, :MultiConditions, :Status, :Enable, :MessageTemplate, :CallBack, :Analysis, :GroupTriggerStatus, :GroupTriggerCondition, :Tags, :MonitorObjectType, :Classifications
+        attr_accessor :Name, :AlarmTargets, :MonitorTime, :TriggerCount, :AlarmPeriod, :Condition, :AlarmLevel, :MultiConditions, :Status, :Enable, :MessageTemplate, :CallBack, :Analysis, :GroupTriggerStatus, :GroupTriggerCondition, :Tags, :MonitorObjectType, :Classifications, :AlarmNoticeIds, :MonitorNotice
         extend Gem::Deprecate
         deprecate :Enable, :none, 2026, 3
         deprecate :Enable=, :none, 2026, 3
 
-        def initialize(name=nil, alarmtargets=nil, monitortime=nil, triggercount=nil, alarmperiod=nil, alarmnoticeids=nil, condition=nil, alarmlevel=nil, multiconditions=nil, status=nil, enable=nil, messagetemplate=nil, callback=nil, analysis=nil, grouptriggerstatus=nil, grouptriggercondition=nil, tags=nil, monitorobjecttype=nil, classifications=nil)
+        def initialize(name=nil, alarmtargets=nil, monitortime=nil, triggercount=nil, alarmperiod=nil, condition=nil, alarmlevel=nil, multiconditions=nil, status=nil, enable=nil, messagetemplate=nil, callback=nil, analysis=nil, grouptriggerstatus=nil, grouptriggercondition=nil, tags=nil, monitorobjecttype=nil, classifications=nil, alarmnoticeids=nil, monitornotice=nil)
           @Name = name
           @AlarmTargets = alarmtargets
           @MonitorTime = monitortime
           @TriggerCount = triggercount
           @AlarmPeriod = alarmperiod
-          @AlarmNoticeIds = alarmnoticeids
           @Condition = condition
           @AlarmLevel = alarmlevel
           @MultiConditions = multiconditions
@@ -2516,6 +2498,8 @@ module TencentCloud
           @Tags = tags
           @MonitorObjectType = monitorobjecttype
           @Classifications = classifications
+          @AlarmNoticeIds = alarmnoticeids
+          @MonitorNotice = monitornotice
         end
 
         def deserialize(params)
@@ -2534,7 +2518,6 @@ module TencentCloud
           end
           @TriggerCount = params['TriggerCount']
           @AlarmPeriod = params['AlarmPeriod']
-          @AlarmNoticeIds = params['AlarmNoticeIds']
           @Condition = params['Condition']
           @AlarmLevel = params['AlarmLevel']
           unless params['MultiConditions'].nil?
@@ -2579,12 +2562,17 @@ module TencentCloud
               @Classifications << alarmclassification_tmp
             end
           end
+          @AlarmNoticeIds = params['AlarmNoticeIds']
+          unless params['MonitorNotice'].nil?
+            @MonitorNotice = MonitorNotice.new
+            @MonitorNotice.deserialize(params['MonitorNotice'])
+          end
         end
       end
 
       # CreateAlarm返回参数结构体
       class CreateAlarmResponse < TencentCloud::Common::AbstractModel
-        # @param AlarmId: 告警策略ID。
+        # @param AlarmId: <p>告警策略ID。</p>
         # @type AlarmId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3398,7 +3386,7 @@ module TencentCloud
         # 名称限制
         # - 不能为空字符串
         # - 不能包含字符'|'
-        # - 最长 255 个字符
+        # - 最长128 个字符
         # @type Name: String
         # @param EtlContent: 加工语句。 当FuncType为2时，EtlContent必须使用[log_auto_output](https://cloud.tencent.com/document/product/614/70733#b3c58797-4825-4807-bef4-68106e25024f)
 
@@ -5394,23 +5382,41 @@ module TencentCloud
 
       # 数据加工的资源信息
       class DataTransformResouceInfo < TencentCloud::Common::AbstractModel
-        # @param TopicId: 日志主题ID
-        # - 通过[获取日志主题列表](https://cloud.tencent.com/document/product/614/56454)获取日志主题Id。
+        # @param TopicId: <p>日志主题ID</p><ul><li>通过<a href="https://cloud.tencent.com/document/product/614/56454">获取日志主题列表</a>获取日志主题Id。</li></ul>
         # @type TopicId: String
-        # @param Alias: 别名
-        # 限制：不能包含字符 |。
+        # @param Alias: <p>别名<br>限制：不能包含字符 |。</p>
         # @type Alias: String
+        # @param IsCrossAccount: <p>是否是跨账号主题，false不是跨账号主题，true是跨账号主题</p><p>默认值：false</p>
+        # @type IsCrossAccount: Boolean
+        # @param RoleARN: <p>跨账号场景下，被投递账号给投递账号创建的角色ARN值，在被投递账号的角色里查找</p>
+        # @type RoleARN: String
+        # @param ExternalId: <p>外部ID值，可以在被投递账号的角色-载体里找到该值</p>
+        # @type ExternalId: String
+        # @param TopicName: <p>topic名称</p>
+        # @type TopicName: String
+        # @param LogsetName: <p>日志集的名称</p>
+        # @type LogsetName: String
 
-        attr_accessor :TopicId, :Alias
+        attr_accessor :TopicId, :Alias, :IsCrossAccount, :RoleARN, :ExternalId, :TopicName, :LogsetName
 
-        def initialize(topicid=nil, _alias=nil)
+        def initialize(topicid=nil, _alias=nil, iscrossaccount=nil, rolearn=nil, externalid=nil, topicname=nil, logsetname=nil)
           @TopicId = topicid
           @Alias = _alias
+          @IsCrossAccount = iscrossaccount
+          @RoleARN = rolearn
+          @ExternalId = externalid
+          @TopicName = topicname
+          @LogsetName = logsetname
         end
 
         def deserialize(params)
           @TopicId = params['TopicId']
           @Alias = params['Alias']
+          @IsCrossAccount = params['IsCrossAccount']
+          @RoleARN = params['RoleARN']
+          @ExternalId = params['ExternalId']
+          @TopicName = params['TopicName']
+          @LogsetName = params['LogsetName']
         end
       end
 
@@ -13412,68 +13418,55 @@ module TencentCloud
 
       # ModifyAlarm请求参数结构体
       class ModifyAlarmRequest < TencentCloud::Common::AbstractModel
-        # @param AlarmId: 告警策略ID。-通过[获取告警策略列表](https://cloud.tencent.com/document/product/614/56461)获取告警策略ID
+        # @param AlarmId: <p>告警策略ID。-通过<a href="https://cloud.tencent.com/document/product/614/56461">获取告警策略列表</a>获取告警策略ID</p>
         # @type AlarmId: String
-        # @param Name: 告警策略名称。最大支持255个字节，不支持 '|'。
+        # @param Name: <p>告警策略名称。最大支持255个字节，不支持 &#39;|&#39;。</p>
         # @type Name: String
-        # @param MonitorTime: 监控任务运行时间点。
+        # @param MonitorTime: <p>监控任务运行时间点。</p>
         # @type MonitorTime: :class:`Tencentcloud::Cls.v20201016.models.MonitorTime`
-        # @param Condition: 告警信息发送的触发条件。
-
-        # 注意:
-        # - Condition和AlarmLevel是一组配置，MultiConditions是另一组配置，2组配置互斥。
+        # @param Condition: <p>告警信息发送的触发条件。</p><p>注意:  </p><ul><li>Condition和AlarmLevel是一组配置，MultiConditions是另一组配置，2组配置互斥。</li></ul>
         # @type Condition: String
-        # @param AlarmLevel: 告警级别。
-
-        # 0:警告(Warn);1:提醒(Info);2:紧急 (Critical)
-
-        # 注意:
-        # - Condition和AlarmLevel是一组配置，MultiConditions是另一组配置，2组配置互斥。
+        # @param AlarmLevel: <p>告警级别。</p><p>0:警告(Warn);1:提醒(Info);2:紧急 (Critical)</p><p>注意:  </p><ul><li>Condition和AlarmLevel是一组配置，MultiConditions是另一组配置，2组配置互斥。</li></ul>
         # @type AlarmLevel: Integer
-        # @param MultiConditions: 多触发条件。
-
-        # 注意:
-        # - Condition和AlarmLevel是一组配置，MultiConditions是另一组配置，2组配置互斥。
+        # @param MultiConditions: <p>多触发条件。 </p><p>注意:  </p><ul><li>Condition和AlarmLevel是一组配置，MultiConditions是另一组配置，2组配置互斥。</li></ul>
         # @type MultiConditions: Array
-        # @param TriggerCount: 持续周期。持续满足触发条件TriggerCount个周期后，再进行告警；最小值为1，最大值为2000。
+        # @param TriggerCount: <p>持续周期。持续满足触发条件TriggerCount个周期后，再进行告警；最小值为1，最大值为2000。</p>
         # @type TriggerCount: Integer
-        # @param AlarmPeriod: 告警重复的周期。单位是分钟。取值范围是0~1440。
+        # @param AlarmPeriod: <p>告警重复的周期。单位是分钟。取值范围是0~1440。</p>
         # @type AlarmPeriod: Integer
-        # @param AlarmNoticeIds: 关联的告警通知渠道组列表。-通过[获取通知渠道组列表](https://cloud.tencent.com/document/product/614/56462)获取关联的告警通知渠道组列表，和MonitorNotice互斥
-        # @type AlarmNoticeIds: Array
-        # @param AlarmTargets: 监控对象列表。
+        # @param AlarmTargets: <p>监控对象列表。</p>
         # @type AlarmTargets: Array
-        # @param Status: 是否开启告警策略。
+        # @param Status: <p>是否开启告警策略。</p>
         # @type Status: Boolean
-        # @param Enable: 该参数已废弃，请使用Status参数控制是否开启告警策略。
+        # @param Enable: <p>该参数已废弃，请使用Status参数控制是否开启告警策略。</p>
         # @type Enable: Boolean
-        # @param MessageTemplate: 用户自定义告警内容
+        # @param MessageTemplate: <p>用户自定义告警内容</p>
         # @type MessageTemplate: String
-        # @param CallBack: 用户自定义回调
+        # @param CallBack: <p>用户自定义回调</p>
         # @type CallBack: :class:`Tencentcloud::Cls.v20201016.models.CallBackInfo`
-        # @param Analysis: 多维分析
+        # @param Analysis: <p>多维分析</p>
         # @type Analysis: Array
-        # @param GroupTriggerStatus: 分组触发状态。true：开启，false：关闭（默认）
+        # @param GroupTriggerStatus: <p>分组触发状态。true：开启，false：关闭（默认）</p>
         # @type GroupTriggerStatus: Boolean
-        # @param GroupTriggerCondition: 分组触发条件。
+        # @param GroupTriggerCondition: <p>分组触发条件。</p>
         # @type GroupTriggerCondition: Array
-        # @param Tags: 标签描述列表，通过指定该参数可以同时绑定标签到相应的告警策略。最大支持10个标签键值对，并且不能有重复的键值对。
+        # @param Tags: <p>标签描述列表，通过指定该参数可以同时绑定标签到相应的告警策略。最大支持10个标签键值对，并且不能有重复的键值对。</p>
         # @type Tags: Array
-        # @param MonitorObjectType: 监控对象类型。0:执行语句共用监控对象; 1:每个执行语句单独选择监控对象。
-        # 当值为1时，AlarmTargets元素个数不能超过10个，AlarmTargets中的Number必须是从1开始的连续正整数，不能重复。
+        # @param MonitorObjectType: <p>监控对象类型。0:执行语句共用监控对象; 1:每个执行语句单独选择监控对象。<br>当值为1时，AlarmTargets元素个数不能超过10个，AlarmTargets中的Number必须是从1开始的连续正整数，不能重复。</p>
         # @type MonitorObjectType: Integer
-        # @param Classifications: 告警附加分类信息列表。
-        # Classifications元素个数不能超过20个。
-        # Classifications元素的Key不能为空，不能重复，长度不能超过50个字符，符合正则 `^[a-z]([a-z0-9_]{0,49})$`。
-        # Classifications元素的Value长度不能超过200个字符。
+        # @param Classifications: <p>告警附加分类信息列表。<br>Classifications元素个数不能超过20个。<br>Classifications元素的Key不能为空，不能重复，长度不能超过50个字符，符合正则 <code>^[a-z]([a-z0-9_]{0,49})$</code>。<br>Classifications元素的Value长度不能超过200个字符。</p>
         # @type Classifications: Array
+        # @param AlarmNoticeIds: <p>关联的日志服务告警通知渠道组列表。-通过<a href="https://cloud.tencent.com/document/product/614/56462">获取通知渠道组列表</a>获取关联的告警通知渠道组列表，和MonitorNotice互斥</p>
+        # @type AlarmNoticeIds: Array
+        # @param MonitorNotice: <p>关联的可观测平台通知模板，与 AlarmNoticeIds 参数互斥，不能同时使用</p>
+        # @type MonitorNotice: :class:`Tencentcloud::Cls.v20201016.models.MonitorNotice`
 
-        attr_accessor :AlarmId, :Name, :MonitorTime, :Condition, :AlarmLevel, :MultiConditions, :TriggerCount, :AlarmPeriod, :AlarmNoticeIds, :AlarmTargets, :Status, :Enable, :MessageTemplate, :CallBack, :Analysis, :GroupTriggerStatus, :GroupTriggerCondition, :Tags, :MonitorObjectType, :Classifications
+        attr_accessor :AlarmId, :Name, :MonitorTime, :Condition, :AlarmLevel, :MultiConditions, :TriggerCount, :AlarmPeriod, :AlarmTargets, :Status, :Enable, :MessageTemplate, :CallBack, :Analysis, :GroupTriggerStatus, :GroupTriggerCondition, :Tags, :MonitorObjectType, :Classifications, :AlarmNoticeIds, :MonitorNotice
         extend Gem::Deprecate
         deprecate :Enable, :none, 2026, 3
         deprecate :Enable=, :none, 2026, 3
 
-        def initialize(alarmid=nil, name=nil, monitortime=nil, condition=nil, alarmlevel=nil, multiconditions=nil, triggercount=nil, alarmperiod=nil, alarmnoticeids=nil, alarmtargets=nil, status=nil, enable=nil, messagetemplate=nil, callback=nil, analysis=nil, grouptriggerstatus=nil, grouptriggercondition=nil, tags=nil, monitorobjecttype=nil, classifications=nil)
+        def initialize(alarmid=nil, name=nil, monitortime=nil, condition=nil, alarmlevel=nil, multiconditions=nil, triggercount=nil, alarmperiod=nil, alarmtargets=nil, status=nil, enable=nil, messagetemplate=nil, callback=nil, analysis=nil, grouptriggerstatus=nil, grouptriggercondition=nil, tags=nil, monitorobjecttype=nil, classifications=nil, alarmnoticeids=nil, monitornotice=nil)
           @AlarmId = alarmid
           @Name = name
           @MonitorTime = monitortime
@@ -13482,7 +13475,6 @@ module TencentCloud
           @MultiConditions = multiconditions
           @TriggerCount = triggercount
           @AlarmPeriod = alarmperiod
-          @AlarmNoticeIds = alarmnoticeids
           @AlarmTargets = alarmtargets
           @Status = status
           @Enable = enable
@@ -13494,6 +13486,8 @@ module TencentCloud
           @Tags = tags
           @MonitorObjectType = monitorobjecttype
           @Classifications = classifications
+          @AlarmNoticeIds = alarmnoticeids
+          @MonitorNotice = monitornotice
         end
 
         def deserialize(params)
@@ -13515,7 +13509,6 @@ module TencentCloud
           end
           @TriggerCount = params['TriggerCount']
           @AlarmPeriod = params['AlarmPeriod']
-          @AlarmNoticeIds = params['AlarmNoticeIds']
           unless params['AlarmTargets'].nil?
             @AlarmTargets = []
             params['AlarmTargets'].each do |i|
@@ -13557,6 +13550,11 @@ module TencentCloud
               alarmclassification_tmp.deserialize(i)
               @Classifications << alarmclassification_tmp
             end
+          end
+          @AlarmNoticeIds = params['AlarmNoticeIds']
+          unless params['MonitorNotice'].nil?
+            @MonitorNotice = MonitorNotice.new
+            @MonitorNotice.deserialize(params['MonitorNotice'])
           end
         end
       end
@@ -15739,12 +15737,12 @@ module TencentCloud
 
       # 腾讯云可观测平台通知渠道组信息
       class MonitorNoticeRule < TencentCloud::Common::AbstractModel
-        # @param NoticeId: 腾讯云可观测平台通知模板 ID
+        # @param NoticeId: <p>腾讯云可观测平台通知模板 ID</p>
         # @type NoticeId: String
-        # @param ContentTmplId: 腾讯云可观测平台内容模板ID，不传默认内容模板
+        # @param ContentTmplId: <p>腾讯云可观测平台内容模板ID，为空时使用默认内容模板</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ContentTmplId: String
-        # @param AlarmLevels: 告警级别,0:警告(Warn); 1:提醒(Info); 2:紧急 (Critical)
+        # @param AlarmLevels: <p>告警级别,0:警告(Warn); 1:提醒(Info); 2:紧急 (Critical)</p>
         # @type AlarmLevels: Array
 
         attr_accessor :NoticeId, :ContentTmplId, :AlarmLevels

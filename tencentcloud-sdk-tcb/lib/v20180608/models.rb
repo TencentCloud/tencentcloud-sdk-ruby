@@ -2621,15 +2621,18 @@ module TencentCloud
         # @type EnvId: String
         # @param MongoConnector: MongoConnector
         # @type MongoConnector: :class:`Tencentcloud::Tcb.v20180608.models.MongoConnector`
+        # @param TableNames: 指定表名过滤，为空时返回所有表
+        # @type TableNames: Array
 
-        attr_accessor :MgoLimit, :Tag, :MgoOffset, :EnvId, :MongoConnector
+        attr_accessor :MgoLimit, :Tag, :MgoOffset, :EnvId, :MongoConnector, :TableNames
 
-        def initialize(mgolimit=nil, tag=nil, mgooffset=nil, envid=nil, mongoconnector=nil)
+        def initialize(mgolimit=nil, tag=nil, mgooffset=nil, envid=nil, mongoconnector=nil, tablenames=nil)
           @MgoLimit = mgolimit
           @Tag = tag
           @MgoOffset = mgooffset
           @EnvId = envid
           @MongoConnector = mongoconnector
+          @TableNames = tablenames
         end
 
         def deserialize(params)
@@ -2641,6 +2644,7 @@ module TencentCloud
             @MongoConnector = MongoConnector.new
             @MongoConnector.deserialize(params['MongoConnector'])
           end
+          @TableNames = params['TableNames']
         end
       end
 

@@ -415,6 +415,8 @@ module TencentCloud
 
         # 本接口(DeleteTable)用于删除表，删除表后表中数据将会被删除且无法恢复，请谨慎操作
 
+        # 接口入参中的 Tag 为 flexdb 的实例 Id，可以通过 [DescribeEnvs](https://cloud.tencent.com/document/api/876/34820) 接口返回的 EnvList[0].Databases[0].InstanceId 获取
+
         # @param request: Request instance for DeleteTable.
         # @type request: :class:`Tencentcloud::tcb::V20180608::DeleteTableRequest`
         # @rtype: :class:`Tencentcloud::tcb::V20180608::DeleteTableResponse`
@@ -862,6 +864,8 @@ module TencentCloud
 
         # 查询表的相关信息，包括索引等信息
 
+        # 接口入参中的 Tag 为 flexdb 的实例 Id，可以通过 [DescribeEnvs](https://cloud.tencent.com/document/api/876/34820) 接口返回的 EnvList[0].Databases[0].InstanceId 获取
+
         # @param request: Request instance for DescribeTable.
         # @type request: :class:`Tencentcloud::tcb::V20180608::DescribeTableRequest`
         # @rtype: :class:`Tencentcloud::tcb::V20180608::DescribeTableResponse`
@@ -884,7 +888,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口(ListTables)用于查询所有表信息，包括表名、表中数据条数、表中数据量、索引个数及索引的大小等
+        # 本接口(DescribeTables)用于查询所有表信息，包括表名、表中数据条数、表中数据量、索引个数及索引的大小等
 
         # @param request: Request instance for DescribeTables.
         # @type request: :class:`Tencentcloud::tcb::V20180608::DescribeTablesRequest`

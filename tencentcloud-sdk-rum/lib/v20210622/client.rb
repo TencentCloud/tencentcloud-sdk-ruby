@@ -389,6 +389,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取DescribeDataBridgeUrl信息
+
+        # @param request: Request instance for DescribeDataBridgeUrlV2.
+        # @type request: :class:`Tencentcloud::rum::V20210622::DescribeDataBridgeUrlV2Request`
+        # @rtype: :class:`Tencentcloud::rum::V20210622::DescribeDataBridgeUrlV2Response`
+        def DescribeDataBridgeUrlV2(request)
+          body = send_request('DescribeDataBridgeUrlV2', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDataBridgeUrlV2Response.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取DescribeDataCustomUrl信息
 
         # @param request: Request instance for DescribeDataCustomUrl.
@@ -413,6 +437,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取DescribeDataCustomUrl信息
+
+        # @param request: Request instance for DescribeDataCustomUrlV2.
+        # @type request: :class:`Tencentcloud::rum::V20210622::DescribeDataCustomUrlV2Request`
+        # @rtype: :class:`Tencentcloud::rum::V20210622::DescribeDataCustomUrlV2Response`
+        def DescribeDataCustomUrlV2(request)
+          body = send_request('DescribeDataCustomUrlV2', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDataCustomUrlV2Response.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取DescribeDataEventUrl信息
 
         # @param request: Request instance for DescribeDataEventUrl.
@@ -423,6 +471,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeDataEventUrlResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取DescribeDataEventUrl信息
+
+        # @param request: Request instance for DescribeDataEventUrlV2.
+        # @type request: :class:`Tencentcloud::rum::V20210622::DescribeDataEventUrlV2Request`
+        # @rtype: :class:`Tencentcloud::rum::V20210622::DescribeDataEventUrlV2Response`
+        def DescribeDataEventUrlV2(request)
+          body = send_request('DescribeDataEventUrlV2', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDataEventUrlV2Response.new
             model.deserialize(response['Response'])
             model
           else
@@ -509,6 +581,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取DescribeDataFetchUrl信息
+
+        # @param request: Request instance for DescribeDataFetchUrlV2.
+        # @type request: :class:`Tencentcloud::rum::V20210622::DescribeDataFetchUrlV2Request`
+        # @rtype: :class:`Tencentcloud::rum::V20210622::DescribeDataFetchUrlV2Response`
+        def DescribeDataFetchUrlV2(request)
+          body = send_request('DescribeDataFetchUrlV2', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDataFetchUrlV2Response.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取loginfo信息
 
         # @param request: Request instance for DescribeDataLogUrlInfo.
@@ -557,6 +653,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取LogUrlStatistics信息
+
+        # @param request: Request instance for DescribeDataLogUrlStatisticsV2.
+        # @type request: :class:`Tencentcloud::rum::V20210622::DescribeDataLogUrlStatisticsV2Request`
+        # @rtype: :class:`Tencentcloud::rum::V20210622::DescribeDataLogUrlStatisticsV2Response`
+        def DescribeDataLogUrlStatisticsV2(request)
+          body = send_request('DescribeDataLogUrlStatisticsV2', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDataLogUrlStatisticsV2Response.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取PerformancePage信息
 
         # @param request: Request instance for DescribeDataPerformancePage.
@@ -567,6 +687,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeDataPerformancePageResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取PerformancePage信息
+
+        # @param request: Request instance for DescribeDataPerformancePageV2.
+        # @type request: :class:`Tencentcloud::rum::V20210622::DescribeDataPerformancePageV2Request`
+        # @rtype: :class:`Tencentcloud::rum::V20210622::DescribeDataPerformancePageV2Response`
+        def DescribeDataPerformancePageV2(request)
+          body = send_request('DescribeDataPerformancePageV2', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDataPerformancePageV2Response.new
             model.deserialize(response['Response'])
             model
           else
@@ -725,6 +869,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取DescribeDataSetUrlStatistics信息
+
+        # @param request: Request instance for DescribeDataSetUrlStatisticsV2.
+        # @type request: :class:`Tencentcloud::rum::V20210622::DescribeDataSetUrlStatisticsV2Request`
+        # @rtype: :class:`Tencentcloud::rum::V20210622::DescribeDataSetUrlStatisticsV2Response`
+        def DescribeDataSetUrlStatisticsV2(request)
+          body = send_request('DescribeDataSetUrlStatisticsV2', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDataSetUrlStatisticsV2Response.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取DescribeDataStaticProject信息
 
         # @param request: Request instance for DescribeDataStaticProject.
@@ -735,6 +903,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeDataStaticProjectResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取DescribeDataStaticProject信息
+
+        # @param request: Request instance for DescribeDataStaticProjectV2.
+        # @type request: :class:`Tencentcloud::rum::V20210622::DescribeDataStaticProjectV2Request`
+        # @rtype: :class:`Tencentcloud::rum::V20210622::DescribeDataStaticProjectV2Response`
+        def DescribeDataStaticProjectV2(request)
+          body = send_request('DescribeDataStaticProjectV2', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDataStaticProjectV2Response.new
             model.deserialize(response['Response'])
             model
           else
@@ -773,6 +965,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取DescribeDataStaticResource信息
+
+        # @param request: Request instance for DescribeDataStaticResourceV2.
+        # @type request: :class:`Tencentcloud::rum::V20210622::DescribeDataStaticResourceV2Request`
+        # @rtype: :class:`Tencentcloud::rum::V20210622::DescribeDataStaticResourceV2Response`
+        def DescribeDataStaticResourceV2(request)
+          body = send_request('DescribeDataStaticResourceV2', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDataStaticResourceV2Response.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取DescribeDataStaticUrl信息
 
         # @param request: Request instance for DescribeDataStaticUrl.
@@ -783,6 +999,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeDataStaticUrlResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取DescribeDataStaticUrl信息
+
+        # @param request: Request instance for DescribeDataStaticUrlV2.
+        # @type request: :class:`Tencentcloud::rum::V20210622::DescribeDataStaticUrlV2Request`
+        # @rtype: :class:`Tencentcloud::rum::V20210622::DescribeDataStaticUrlV2Response`
+        def DescribeDataStaticUrlV2(request)
+          body = send_request('DescribeDataStaticUrlV2', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDataStaticUrlV2Response.new
             model.deserialize(response['Response'])
             model
           else
@@ -808,6 +1048,31 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeDataWebVitalsPageResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取DescribeDataWebVitalsPage信息，用户核心活动信息
+        # 页面加载性能之Web Vitals。性能关键点
+
+        # @param request: Request instance for DescribeDataWebVitalsPageV2.
+        # @type request: :class:`Tencentcloud::rum::V20210622::DescribeDataWebVitalsPageV2Request`
+        # @rtype: :class:`Tencentcloud::rum::V20210622::DescribeDataWebVitalsPageV2Response`
+        def DescribeDataWebVitalsPageV2(request)
+          body = send_request('DescribeDataWebVitalsPageV2', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDataWebVitalsPageV2Response.new
             model.deserialize(response['Response'])
             model
           else
@@ -1096,6 +1361,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeScoresResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取首页分数列表
+
+        # @param request: Request instance for DescribeScoresV2.
+        # @type request: :class:`Tencentcloud::rum::V20210622::DescribeScoresV2Request`
+        # @rtype: :class:`Tencentcloud::rum::V20210622::DescribeScoresV2Response`
+        def DescribeScoresV2(request)
+          body = send_request('DescribeScoresV2', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeScoresV2Response.new
             model.deserialize(response['Response'])
             model
           else

@@ -966,15 +966,15 @@ module TencentCloud
 
       # DescribeTagValues请求参数结构体
       class DescribeTagValuesRequest < TencentCloud::Common::AbstractModel
-        # @param TagKeys: 标签键列表
+        # @param TagKeys: <p>标签键列表</p>
         # @type TagKeys: Array
-        # @param CreateUin: 创建者用户 Uin，不传或为空只将 Uin 作为条件查询
+        # @param CreateUin: <p>创建者用户 Uin，不传或为空只将 Uin 作为条件查询</p>
         # @type CreateUin: Integer
-        # @param Offset: 数据偏移量，默认为 0, 必须为Limit参数的整数倍
+        # @param Offset: <p>数据偏移量，默认为 0, 必须为Limit参数的整数倍</p>
         # @type Offset: Integer
-        # @param Limit: 每页大小，默认为 15
+        # @param Limit: <p>每页大小，默认为 15，最大1000</p>
         # @type Limit: Integer
-        # @param Category: 标签类型。取值： Custom：自定义标签。 System：系统标签。 All：全部标签。 默认值：All。
+        # @param Category: <p>标签类型。取值： Custom：自定义标签。 System：系统标签。 All：全部标签。 默认值：All。</p>
         # @type Category: String
 
         attr_accessor :TagKeys, :CreateUin, :Offset, :Limit, :Category
@@ -998,13 +998,13 @@ module TencentCloud
 
       # DescribeTagValues返回参数结构体
       class DescribeTagValuesResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 结果总数
+        # @param TotalCount: <p>结果总数</p>
         # @type TotalCount: Integer
-        # @param Offset: 数据位移偏量
+        # @param Offset: <p>数据位移偏量</p>
         # @type Offset: Integer
-        # @param Limit: 每页大小
+        # @param Limit: <p>每页大小</p>
         # @type Limit: Integer
-        # @param Tags: 标签列表
+        # @param Tags: <p>标签列表</p>
         # @type Tags: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1104,19 +1104,19 @@ module TencentCloud
 
       # DescribeTags请求参数结构体
       class DescribeTagsRequest < TencentCloud::Common::AbstractModel
-        # @param TagKey: 标签键,与标签值同时存在或同时不存在，不存在时表示查询该用户所有标签
+        # @param TagKey: <p>标签键,与标签值同时存在或同时不存在，不存在时表示查询该用户所有标签</p>
         # @type TagKey: String
-        # @param TagValue: 标签值,与标签键同时存在或同时不存在，不存在时表示查询该用户所有标签
+        # @param TagValue: <p>标签值,与标签键同时存在或同时不存在，不存在时表示查询该用户所有标签</p>
         # @type TagValue: String
-        # @param Offset: 数据偏移量，默认为 0, 必须为Limit参数的整数倍
+        # @param Offset: <p>数据偏移量，默认为 0, 必须为Limit参数的整数倍</p>
         # @type Offset: Integer
-        # @param Limit: 每页大小，默认为 15
+        # @param Limit: <p>每页大小，默认为 15，最大1000</p>
         # @type Limit: Integer
-        # @param CreateUin: 创建者用户 Uin，不传或为空只将 Uin 作为条件查询
+        # @param CreateUin: <p>创建者用户 Uin，不传或为空只将 Uin 作为条件查询</p>
         # @type CreateUin: Integer
-        # @param TagKeys: 标签键数组,与标签值同时存在或同时不存在，不存在时表示查询该用户所有标签,当与TagKey同时传递时只取本值
+        # @param TagKeys: <p>标签键数组,与标签值同时存在或同时不存在，不存在时表示查询该用户所有标签,当与TagKey同时传递时只取本值</p>
         # @type TagKeys: Array
-        # @param ShowProject: 是否展现项目标签。1:展示  0:不展示
+        # @param ShowProject: <p>是否展现项目标签。1:展示  0:不展示</p>
         # @type ShowProject: Integer
 
         attr_accessor :TagKey, :TagValue, :Offset, :Limit, :CreateUin, :TagKeys, :ShowProject
@@ -1144,13 +1144,13 @@ module TencentCloud
 
       # DescribeTags返回参数结构体
       class DescribeTagsResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 结果总数
+        # @param TotalCount: <p>结果总数</p>
         # @type TotalCount: Integer
-        # @param Offset: 数据位移偏量
+        # @param Offset: <p>数据位移偏量</p>
         # @type Offset: Integer
-        # @param Limit: 每页大小
+        # @param Limit: <p>每页大小</p>
         # @type Limit: Integer
-        # @param Tags: 标签列表
+        # @param Tags: <p>标签列表</p>
         # @type Tags: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

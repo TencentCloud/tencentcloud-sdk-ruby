@@ -172,6 +172,31 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 接口说明：
+        # 启动云端转录功能。
+
+        # @param request: Request instance for CreateCloudTranscription.
+        # @type request: :class:`Tencentcloud::trtc::V20190722::CreateCloudTranscriptionRequest`
+        # @rtype: :class:`Tencentcloud::trtc::V20190722::CreateCloudTranscriptionResponse`
+        def CreateCloudTranscription(request)
+          body = send_request('CreateCloudTranscription', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateCloudTranscriptionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 如果您需要在 [云端混流转码](https://cloud.tencent.com/document/product/647/16827) 时频繁新增自定义背景图或水印，可通过此接口上传新的图片素材。无需频繁新增图片的场景，建议直接在 [控制台 > 应用管理 > 素材管理](https://cloud.tencent.com/document/product/647/50769) 中操作。
 
         # @param request: Request instance for CreatePicture.
@@ -278,6 +303,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteCloudSliceTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 成功开启转录后，可以使用此接口来停止转录任务。
+
+        # @param request: Request instance for DeleteCloudTranscription.
+        # @type request: :class:`Tencentcloud::trtc::V20190722::DeleteCloudTranscriptionRequest`
+        # @rtype: :class:`Tencentcloud::trtc::V20190722::DeleteCloudTranscriptionResponse`
+        def DeleteCloudTranscription(request)
+          body = send_request('DeleteCloudTranscription', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteCloudTranscriptionResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -476,6 +525,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeCloudSliceTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 成功开启转录后，可以使用此接口来查询录制状态。仅在转录任务进行时有效，转录退出后查询将会返回错误。
+
+        # @param request: Request instance for DescribeCloudTranscription.
+        # @type request: :class:`Tencentcloud::trtc::V20190722::DescribeCloudTranscriptionRequest`
+        # @rtype: :class:`Tencentcloud::trtc::V20190722::DescribeCloudTranscriptionResponse`
+        def DescribeCloudTranscription(request)
+          body = send_request('DescribeCloudTranscription', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCloudTranscriptionResponse.new
             model.deserialize(response['Response'])
             model
           else

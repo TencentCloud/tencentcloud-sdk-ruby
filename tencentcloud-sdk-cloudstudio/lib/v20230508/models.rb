@@ -242,7 +242,7 @@ module TencentCloud
 
       # DescribeWorkspaces请求参数结构体
       class DescribeWorkspacesRequest < TencentCloud::Common::AbstractModel
-        # @param Name: 工作空间名称过滤条件
+        # @param Name: <p>工作空间名称过滤条件</p>
         # @type Name: String
 
         attr_accessor :Name
@@ -258,7 +258,7 @@ module TencentCloud
 
       # DescribeWorkspaces返回参数结构体
       class DescribeWorkspacesResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 工作空间列表
+        # @param Data: <p>工作空间列表</p>
         # @type Data: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

@@ -41,15 +41,22 @@ module TencentCloud
       class ArchiveKeyRequest < TencentCloud::Common::AbstractModel
         # @param KeyId: CMK唯一标识符
         # @type KeyId: String
+        # @param MemberAccount: 可信服务成员账号信息,当前账号时管理员或者委派管理员时有效。
+        # @type MemberAccount: :class:`Tencentcloud::Kms.v20190118.models.MemberAccount`
 
-        attr_accessor :KeyId
+        attr_accessor :KeyId, :MemberAccount
 
-        def initialize(keyid=nil)
+        def initialize(keyid=nil, memberaccount=nil)
           @KeyId = keyid
+          @MemberAccount = memberaccount
         end
 
         def deserialize(params)
           @KeyId = params['KeyId']
+          unless params['MemberAccount'].nil?
+            @MemberAccount = MemberAccount.new
+            @MemberAccount.deserialize(params['MemberAccount'])
+          end
         end
       end
 
@@ -205,15 +212,22 @@ module TencentCloud
       class CancelDataKeyDeletionRequest < TencentCloud::Common::AbstractModel
         # @param DataKeyId: 数据密钥的唯一标志符
         # @type DataKeyId: String
+        # @param MemberAccount: 可信服务成员账号信息,当前账号时管理员或者委派管理员时有效。
+        # @type MemberAccount: :class:`Tencentcloud::Kms.v20190118.models.MemberAccount`
 
-        attr_accessor :DataKeyId
+        attr_accessor :DataKeyId, :MemberAccount
 
-        def initialize(datakeyid=nil)
+        def initialize(datakeyid=nil, memberaccount=nil)
           @DataKeyId = datakeyid
+          @MemberAccount = memberaccount
         end
 
         def deserialize(params)
           @DataKeyId = params['DataKeyId']
+          unless params['MemberAccount'].nil?
+            @MemberAccount = MemberAccount.new
+            @MemberAccount.deserialize(params['MemberAccount'])
+          end
         end
       end
 
@@ -241,15 +255,22 @@ module TencentCloud
       class CancelKeyArchiveRequest < TencentCloud::Common::AbstractModel
         # @param KeyId: CMK唯一标识符
         # @type KeyId: String
+        # @param MemberAccount: 可信服务成员账号信息,当前账号时管理员或者委派管理员时有效。
+        # @type MemberAccount: :class:`Tencentcloud::Kms.v20190118.models.MemberAccount`
 
-        attr_accessor :KeyId
+        attr_accessor :KeyId, :MemberAccount
 
-        def initialize(keyid=nil)
+        def initialize(keyid=nil, memberaccount=nil)
           @KeyId = keyid
+          @MemberAccount = memberaccount
         end
 
         def deserialize(params)
           @KeyId = params['KeyId']
+          unless params['MemberAccount'].nil?
+            @MemberAccount = MemberAccount.new
+            @MemberAccount.deserialize(params['MemberAccount'])
+          end
         end
       end
 
@@ -273,15 +294,22 @@ module TencentCloud
       class CancelKeyDeletionRequest < TencentCloud::Common::AbstractModel
         # @param KeyId: 需要被取消删除的CMK的唯一标志
         # @type KeyId: String
+        # @param MemberAccount: 可信服务成员账号信息,当前账号时管理员或者委派管理员时有效。
+        # @type MemberAccount: :class:`Tencentcloud::Kms.v20190118.models.MemberAccount`
 
-        attr_accessor :KeyId
+        attr_accessor :KeyId, :MemberAccount
 
-        def initialize(keyid=nil)
+        def initialize(keyid=nil, memberaccount=nil)
           @KeyId = keyid
+          @MemberAccount = memberaccount
         end
 
         def deserialize(params)
           @KeyId = params['KeyId']
+          unless params['MemberAccount'].nil?
+            @MemberAccount = MemberAccount.new
+            @MemberAccount.deserialize(params['MemberAccount'])
+          end
         end
       end
 
@@ -531,10 +559,16 @@ module TencentCloud
         # @type SyncEndTime: Integer
         # @param SourceHsmClusterId: 同步的原始集群，如果为空，是公有云公共集群
         # @type SourceHsmClusterId: String
+        # @param AccountAppId: 成员账号appId
+        # @type AccountAppId: Integer
+        # @param AccountUin: 成员账号uin
+        # @type AccountUin: Integer
+        # @param AccountName: 成员账号名称
+        # @type AccountName: String
 
-        attr_accessor :DataKeyId, :KeyId, :KeyName, :DataKeyName, :NumberOfBytes, :CreateTime, :Description, :KeyState, :CreatorUin, :Owner, :DeletionDate, :Origin, :HsmClusterId, :ResourceId, :IsSyncReplica, :SourceRegion, :SyncStatus, :SyncMessages, :SyncStartTime, :SyncEndTime, :SourceHsmClusterId
+        attr_accessor :DataKeyId, :KeyId, :KeyName, :DataKeyName, :NumberOfBytes, :CreateTime, :Description, :KeyState, :CreatorUin, :Owner, :DeletionDate, :Origin, :HsmClusterId, :ResourceId, :IsSyncReplica, :SourceRegion, :SyncStatus, :SyncMessages, :SyncStartTime, :SyncEndTime, :SourceHsmClusterId, :AccountAppId, :AccountUin, :AccountName
 
-        def initialize(datakeyid=nil, keyid=nil, keyname=nil, datakeyname=nil, numberofbytes=nil, createtime=nil, description=nil, keystate=nil, creatoruin=nil, owner=nil, deletiondate=nil, origin=nil, hsmclusterid=nil, resourceid=nil, issyncreplica=nil, sourceregion=nil, syncstatus=nil, syncmessages=nil, syncstarttime=nil, syncendtime=nil, sourcehsmclusterid=nil)
+        def initialize(datakeyid=nil, keyid=nil, keyname=nil, datakeyname=nil, numberofbytes=nil, createtime=nil, description=nil, keystate=nil, creatoruin=nil, owner=nil, deletiondate=nil, origin=nil, hsmclusterid=nil, resourceid=nil, issyncreplica=nil, sourceregion=nil, syncstatus=nil, syncmessages=nil, syncstarttime=nil, syncendtime=nil, sourcehsmclusterid=nil, accountappid=nil, accountuin=nil, accountname=nil)
           @DataKeyId = datakeyid
           @KeyId = keyid
           @KeyName = keyname
@@ -556,6 +590,9 @@ module TencentCloud
           @SyncStartTime = syncstarttime
           @SyncEndTime = syncendtime
           @SourceHsmClusterId = sourcehsmclusterid
+          @AccountAppId = accountappid
+          @AccountUin = accountuin
+          @AccountName = accountname
         end
 
         def deserialize(params)
@@ -580,6 +617,9 @@ module TencentCloud
           @SyncStartTime = params['SyncStartTime']
           @SyncEndTime = params['SyncEndTime']
           @SourceHsmClusterId = params['SourceHsmClusterId']
+          @AccountAppId = params['AccountAppId']
+          @AccountUin = params['AccountUin']
+          @AccountName = params['AccountName']
         end
       end
 
@@ -704,15 +744,22 @@ module TencentCloud
       class DescribeDataKeyRequest < TencentCloud::Common::AbstractModel
         # @param DataKeyId: 数据密钥全局唯一标识符
         # @type DataKeyId: String
+        # @param MemberAccount: 可信服务成员账号信息,当前账号时管理员或者委派管理员时有效。
+        # @type MemberAccount: :class:`Tencentcloud::Kms.v20190118.models.MemberAccount`
 
-        attr_accessor :DataKeyId
+        attr_accessor :DataKeyId, :MemberAccount
 
-        def initialize(datakeyid=nil)
+        def initialize(datakeyid=nil, memberaccount=nil)
           @DataKeyId = datakeyid
+          @MemberAccount = memberaccount
         end
 
         def deserialize(params)
           @DataKeyId = params['DataKeyId']
+          unless params['MemberAccount'].nil?
+            @MemberAccount = MemberAccount.new
+            @MemberAccount.deserialize(params['MemberAccount'])
+          end
         end
       end
 
@@ -743,15 +790,22 @@ module TencentCloud
       class DescribeDataKeysRequest < TencentCloud::Common::AbstractModel
         # @param DataKeyIds: 查询DataKey的ID列表，批量查询一次最多支持100个DataKeyId
         # @type DataKeyIds: Array
+        # @param MemberAccount: 可信服务成员账号信息,当前账号时管理员或者委派管理员时有效。
+        # @type MemberAccount: :class:`Tencentcloud::Kms.v20190118.models.MemberAccount`
 
-        attr_accessor :DataKeyIds
+        attr_accessor :DataKeyIds, :MemberAccount
 
-        def initialize(datakeyids=nil)
+        def initialize(datakeyids=nil, memberaccount=nil)
           @DataKeyIds = datakeyids
+          @MemberAccount = memberaccount
         end
 
         def deserialize(params)
           @DataKeyIds = params['DataKeyIds']
+          unless params['MemberAccount'].nil?
+            @MemberAccount = MemberAccount.new
+            @MemberAccount.deserialize(params['MemberAccount'])
+          end
         end
       end
 
@@ -786,15 +840,22 @@ module TencentCloud
       class DescribeKeyRequest < TencentCloud::Common::AbstractModel
         # @param KeyId: CMK全局唯一标识符
         # @type KeyId: String
+        # @param MemberAccount: 可信服务成员账号信息
+        # @type MemberAccount: :class:`Tencentcloud::Kms.v20190118.models.MemberAccount`
 
-        attr_accessor :KeyId
+        attr_accessor :KeyId, :MemberAccount
 
-        def initialize(keyid=nil)
+        def initialize(keyid=nil, memberaccount=nil)
           @KeyId = keyid
+          @MemberAccount = memberaccount
         end
 
         def deserialize(params)
           @KeyId = params['KeyId']
+          unless params['MemberAccount'].nil?
+            @MemberAccount = MemberAccount.new
+            @MemberAccount.deserialize(params['MemberAccount'])
+          end
         end
       end
 
@@ -825,15 +886,22 @@ module TencentCloud
       class DescribeKeysRequest < TencentCloud::Common::AbstractModel
         # @param KeyIds: 查询CMK的ID列表，批量查询一次最多支持100个KeyId
         # @type KeyIds: Array
+        # @param MemberAccount: 可信服务成员账号信息,当前账号时管理员或者委派管理员时有效。
+        # @type MemberAccount: :class:`Tencentcloud::Kms.v20190118.models.MemberAccount`
 
-        attr_accessor :KeyIds
+        attr_accessor :KeyIds, :MemberAccount
 
-        def initialize(keyids=nil)
+        def initialize(keyids=nil, memberaccount=nil)
           @KeyIds = keyids
+          @MemberAccount = memberaccount
         end
 
         def deserialize(params)
           @KeyIds = params['KeyIds']
+          unless params['MemberAccount'].nil?
+            @MemberAccount = MemberAccount.new
+            @MemberAccount.deserialize(params['MemberAccount'])
+          end
         end
       end
 
@@ -1123,15 +1191,22 @@ module TencentCloud
       class DisableDataKeyRequest < TencentCloud::Common::AbstractModel
         # @param DataKeyId: 数据密钥唯一标识符
         # @type DataKeyId: String
+        # @param MemberAccount: 可信服务成员账号信息,当前账号时管理员或者委派管理员时有效。
+        # @type MemberAccount: :class:`Tencentcloud::Kms.v20190118.models.MemberAccount`
 
-        attr_accessor :DataKeyId
+        attr_accessor :DataKeyId, :MemberAccount
 
-        def initialize(datakeyid=nil)
+        def initialize(datakeyid=nil, memberaccount=nil)
           @DataKeyId = datakeyid
+          @MemberAccount = memberaccount
         end
 
         def deserialize(params)
           @DataKeyId = params['DataKeyId']
+          unless params['MemberAccount'].nil?
+            @MemberAccount = MemberAccount.new
+            @MemberAccount.deserialize(params['MemberAccount'])
+          end
         end
       end
 
@@ -1155,15 +1230,22 @@ module TencentCloud
       class DisableDataKeysRequest < TencentCloud::Common::AbstractModel
         # @param DataKeyIds: 需要批量禁用的DataKey Id 列表，数据密钥数量最大支持100
         # @type DataKeyIds: Array
+        # @param MemberAccount: 可信服务成员账号信息,当前账号时管理员或者委派管理员时有效。
+        # @type MemberAccount: :class:`Tencentcloud::Kms.v20190118.models.MemberAccount`
 
-        attr_accessor :DataKeyIds
+        attr_accessor :DataKeyIds, :MemberAccount
 
-        def initialize(datakeyids=nil)
+        def initialize(datakeyids=nil, memberaccount=nil)
           @DataKeyIds = datakeyids
+          @MemberAccount = memberaccount
         end
 
         def deserialize(params)
           @DataKeyIds = params['DataKeyIds']
+          unless params['MemberAccount'].nil?
+            @MemberAccount = MemberAccount.new
+            @MemberAccount.deserialize(params['MemberAccount'])
+          end
         end
       end
 
@@ -1187,15 +1269,22 @@ module TencentCloud
       class DisableKeyRequest < TencentCloud::Common::AbstractModel
         # @param KeyId: CMK唯一标识符
         # @type KeyId: String
+        # @param MemberAccount: 可信服务成员账号信息,当前账号时管理员或者委派管理员时有效。
+        # @type MemberAccount: :class:`Tencentcloud::Kms.v20190118.models.MemberAccount`
 
-        attr_accessor :KeyId
+        attr_accessor :KeyId, :MemberAccount
 
-        def initialize(keyid=nil)
+        def initialize(keyid=nil, memberaccount=nil)
           @KeyId = keyid
+          @MemberAccount = memberaccount
         end
 
         def deserialize(params)
           @KeyId = params['KeyId']
+          unless params['MemberAccount'].nil?
+            @MemberAccount = MemberAccount.new
+            @MemberAccount.deserialize(params['MemberAccount'])
+          end
         end
       end
 
@@ -1219,15 +1308,22 @@ module TencentCloud
       class DisableKeyRotationRequest < TencentCloud::Common::AbstractModel
         # @param KeyId: CMK唯一标识符
         # @type KeyId: String
+        # @param MemberAccount: 可信服务成员账号信息,当前账号时管理员或者委派管理员时有效。
+        # @type MemberAccount: :class:`Tencentcloud::Kms.v20190118.models.MemberAccount`
 
-        attr_accessor :KeyId
+        attr_accessor :KeyId, :MemberAccount
 
-        def initialize(keyid=nil)
+        def initialize(keyid=nil, memberaccount=nil)
           @KeyId = keyid
+          @MemberAccount = memberaccount
         end
 
         def deserialize(params)
           @KeyId = params['KeyId']
+          unless params['MemberAccount'].nil?
+            @MemberAccount = MemberAccount.new
+            @MemberAccount.deserialize(params['MemberAccount'])
+          end
         end
       end
 
@@ -1251,15 +1347,22 @@ module TencentCloud
       class DisableKeysRequest < TencentCloud::Common::AbstractModel
         # @param KeyIds: 需要批量禁用的CMK Id 列表，CMK数量最大支持100
         # @type KeyIds: Array
+        # @param MemberAccount: 可信服务成员账号信息,当前账号时管理员或者委派管理员时有效。
+        # @type MemberAccount: :class:`Tencentcloud::Kms.v20190118.models.MemberAccount`
 
-        attr_accessor :KeyIds
+        attr_accessor :KeyIds, :MemberAccount
 
-        def initialize(keyids=nil)
+        def initialize(keyids=nil, memberaccount=nil)
           @KeyIds = keyids
+          @MemberAccount = memberaccount
         end
 
         def deserialize(params)
           @KeyIds = params['KeyIds']
+          unless params['MemberAccount'].nil?
+            @MemberAccount = MemberAccount.new
+            @MemberAccount.deserialize(params['MemberAccount'])
+          end
         end
       end
 
@@ -1347,15 +1450,22 @@ module TencentCloud
       class EnableDataKeyRequest < TencentCloud::Common::AbstractModel
         # @param DataKeyId: 数据密钥唯一标识符
         # @type DataKeyId: String
+        # @param MemberAccount: 可信服务成员账号信息,当前账号时管理员或者委派管理员时有效。
+        # @type MemberAccount: :class:`Tencentcloud::Kms.v20190118.models.MemberAccount`
 
-        attr_accessor :DataKeyId
+        attr_accessor :DataKeyId, :MemberAccount
 
-        def initialize(datakeyid=nil)
+        def initialize(datakeyid=nil, memberaccount=nil)
           @DataKeyId = datakeyid
+          @MemberAccount = memberaccount
         end
 
         def deserialize(params)
           @DataKeyId = params['DataKeyId']
+          unless params['MemberAccount'].nil?
+            @MemberAccount = MemberAccount.new
+            @MemberAccount.deserialize(params['MemberAccount'])
+          end
         end
       end
 
@@ -1379,15 +1489,22 @@ module TencentCloud
       class EnableDataKeysRequest < TencentCloud::Common::AbstractModel
         # @param DataKeyIds: 需要批量启用的DataKey Id 列表， 数据密钥数量最大支持100
         # @type DataKeyIds: Array
+        # @param MemberAccount: 可信服务成员账号信息,当前账号时管理员或者委派管理员时有效。
+        # @type MemberAccount: :class:`Tencentcloud::Kms.v20190118.models.MemberAccount`
 
-        attr_accessor :DataKeyIds
+        attr_accessor :DataKeyIds, :MemberAccount
 
-        def initialize(datakeyids=nil)
+        def initialize(datakeyids=nil, memberaccount=nil)
           @DataKeyIds = datakeyids
+          @MemberAccount = memberaccount
         end
 
         def deserialize(params)
           @DataKeyIds = params['DataKeyIds']
+          unless params['MemberAccount'].nil?
+            @MemberAccount = MemberAccount.new
+            @MemberAccount.deserialize(params['MemberAccount'])
+          end
         end
       end
 
@@ -1411,15 +1528,22 @@ module TencentCloud
       class EnableKeyRequest < TencentCloud::Common::AbstractModel
         # @param KeyId: CMK唯一标识符
         # @type KeyId: String
+        # @param MemberAccount: 可信服务成员账号信息,当前账号时管理员或者委派管理员时有效。
+        # @type MemberAccount: :class:`Tencentcloud::Kms.v20190118.models.MemberAccount`
 
-        attr_accessor :KeyId
+        attr_accessor :KeyId, :MemberAccount
 
-        def initialize(keyid=nil)
+        def initialize(keyid=nil, memberaccount=nil)
           @KeyId = keyid
+          @MemberAccount = memberaccount
         end
 
         def deserialize(params)
           @KeyId = params['KeyId']
+          unless params['MemberAccount'].nil?
+            @MemberAccount = MemberAccount.new
+            @MemberAccount.deserialize(params['MemberAccount'])
+          end
         end
       end
 
@@ -1445,17 +1569,24 @@ module TencentCloud
         # @type KeyId: String
         # @param RotateDays: 密钥轮转周期，单位天，允许范围 7 ~ 365，默认值 365。
         # @type RotateDays: Integer
+        # @param MemberAccount: 可信服务成员账号信息,当前账号时管理员或者委派管理员时有效。
+        # @type MemberAccount: :class:`Tencentcloud::Kms.v20190118.models.MemberAccount`
 
-        attr_accessor :KeyId, :RotateDays
+        attr_accessor :KeyId, :RotateDays, :MemberAccount
 
-        def initialize(keyid=nil, rotatedays=nil)
+        def initialize(keyid=nil, rotatedays=nil, memberaccount=nil)
           @KeyId = keyid
           @RotateDays = rotatedays
+          @MemberAccount = memberaccount
         end
 
         def deserialize(params)
           @KeyId = params['KeyId']
           @RotateDays = params['RotateDays']
+          unless params['MemberAccount'].nil?
+            @MemberAccount = MemberAccount.new
+            @MemberAccount.deserialize(params['MemberAccount'])
+          end
         end
       end
 
@@ -1479,15 +1610,22 @@ module TencentCloud
       class EnableKeysRequest < TencentCloud::Common::AbstractModel
         # @param KeyIds: 需要批量启用的CMK Id 列表， CMK数量最大支持100
         # @type KeyIds: Array
+        # @param MemberAccount: 可信服务成员账号信息,当前账号时管理员或者委派管理员时有效。
+        # @type MemberAccount: :class:`Tencentcloud::Kms.v20190118.models.MemberAccount`
 
-        attr_accessor :KeyIds
+        attr_accessor :KeyIds, :MemberAccount
 
-        def initialize(keyids=nil)
+        def initialize(keyids=nil, memberaccount=nil)
           @KeyIds = keyids
+          @MemberAccount = memberaccount
         end
 
         def deserialize(params)
           @KeyIds = params['KeyIds']
+          unless params['MemberAccount'].nil?
+            @MemberAccount = MemberAccount.new
+            @MemberAccount.deserialize(params['MemberAccount'])
+          end
         end
       end
 
@@ -1831,15 +1969,22 @@ module TencentCloud
       class GetDataKeyCiphertextBlobRequest < TencentCloud::Common::AbstractModel
         # @param DataKeyId: 数据密钥的唯一标志符
         # @type DataKeyId: String
+        # @param MemberAccount: 可信服务成员账号信息,当前账号时管理员或者委派管理员时有效。
+        # @type MemberAccount: :class:`Tencentcloud::Kms.v20190118.models.MemberAccount`
 
-        attr_accessor :DataKeyId
+        attr_accessor :DataKeyId, :MemberAccount
 
-        def initialize(datakeyid=nil)
+        def initialize(datakeyid=nil, memberaccount=nil)
           @DataKeyId = datakeyid
+          @MemberAccount = memberaccount
         end
 
         def deserialize(params)
           @DataKeyId = params['DataKeyId']
+          unless params['MemberAccount'].nil?
+            @MemberAccount = MemberAccount.new
+            @MemberAccount.deserialize(params['MemberAccount'])
+          end
         end
       end
 
@@ -1911,15 +2056,22 @@ module TencentCloud
       class GetKeyRotationStatusRequest < TencentCloud::Common::AbstractModel
         # @param KeyId: CMK唯一标识符
         # @type KeyId: String
+        # @param MemberAccount: 可信服务成员账号信息,当前账号时管理员或者委派管理员时有效。
+        # @type MemberAccount: :class:`Tencentcloud::Kms.v20190118.models.MemberAccount`
 
-        attr_accessor :KeyId
+        attr_accessor :KeyId, :MemberAccount
 
-        def initialize(keyid=nil)
+        def initialize(keyid=nil, memberaccount=nil)
           @KeyId = keyid
+          @MemberAccount = memberaccount
         end
 
         def deserialize(params)
           @KeyId = params['KeyId']
+          unless params['MemberAccount'].nil?
+            @MemberAccount = MemberAccount.new
+            @MemberAccount.deserialize(params['MemberAccount'])
+          end
         end
       end
 
@@ -2379,10 +2531,16 @@ module TencentCloud
         # @type SyncEndTime: Integer
         # @param SourceHsmClusterId: 同步的原始集群，如果为空，是公有云公共集群
         # @type SourceHsmClusterId: String
+        # @param AccountAppId: 成员账号appId
+        # @type AccountAppId: Integer
+        # @param AccountUin: 成员账号uin
+        # @type AccountUin: Integer
+        # @param AccountName: 成员账号名称
+        # @type AccountName: String
 
-        attr_accessor :KeyId, :Alias, :CreateTime, :Description, :KeyState, :KeyUsage, :Type, :CreatorUin, :KeyRotationEnabled, :Owner, :NextRotateTime, :DeletionDate, :Origin, :ValidTo, :ResourceId, :HsmClusterId, :RotateDays, :LastRotateTime, :IsSyncReplica, :SourceRegion, :SyncStatus, :SyncMessages, :SyncStartTime, :SyncEndTime, :SourceHsmClusterId
+        attr_accessor :KeyId, :Alias, :CreateTime, :Description, :KeyState, :KeyUsage, :Type, :CreatorUin, :KeyRotationEnabled, :Owner, :NextRotateTime, :DeletionDate, :Origin, :ValidTo, :ResourceId, :HsmClusterId, :RotateDays, :LastRotateTime, :IsSyncReplica, :SourceRegion, :SyncStatus, :SyncMessages, :SyncStartTime, :SyncEndTime, :SourceHsmClusterId, :AccountAppId, :AccountUin, :AccountName
 
-        def initialize(keyid=nil, _alias=nil, createtime=nil, description=nil, keystate=nil, keyusage=nil, type=nil, creatoruin=nil, keyrotationenabled=nil, owner=nil, nextrotatetime=nil, deletiondate=nil, origin=nil, validto=nil, resourceid=nil, hsmclusterid=nil, rotatedays=nil, lastrotatetime=nil, issyncreplica=nil, sourceregion=nil, syncstatus=nil, syncmessages=nil, syncstarttime=nil, syncendtime=nil, sourcehsmclusterid=nil)
+        def initialize(keyid=nil, _alias=nil, createtime=nil, description=nil, keystate=nil, keyusage=nil, type=nil, creatoruin=nil, keyrotationenabled=nil, owner=nil, nextrotatetime=nil, deletiondate=nil, origin=nil, validto=nil, resourceid=nil, hsmclusterid=nil, rotatedays=nil, lastrotatetime=nil, issyncreplica=nil, sourceregion=nil, syncstatus=nil, syncmessages=nil, syncstarttime=nil, syncendtime=nil, sourcehsmclusterid=nil, accountappid=nil, accountuin=nil, accountname=nil)
           @KeyId = keyid
           @Alias = _alias
           @CreateTime = createtime
@@ -2408,6 +2566,9 @@ module TencentCloud
           @SyncStartTime = syncstarttime
           @SyncEndTime = syncendtime
           @SourceHsmClusterId = sourcehsmclusterid
+          @AccountAppId = accountappid
+          @AccountUin = accountuin
+          @AccountName = accountname
         end
 
         def deserialize(params)
@@ -2436,6 +2597,9 @@ module TencentCloud
           @SyncStartTime = params['SyncStartTime']
           @SyncEndTime = params['SyncEndTime']
           @SourceHsmClusterId = params['SourceHsmClusterId']
+          @AccountAppId = params['AccountAppId']
+          @AccountUin = params['AccountUin']
+          @AccountName = params['AccountName']
         end
       end
 
@@ -2523,10 +2687,12 @@ module TencentCloud
         # @type DataKeyLen: Integer
         # @param TagFilters: 标签过滤条件
         # @type TagFilters: Array
+        # @param MemberAccounts: 成员账号信息数组
+        # @type MemberAccounts: Array
 
-        attr_accessor :Offset, :Limit, :Role, :OrderType, :KeyState, :SearchKeyAlias, :Origin, :HsmClusterId, :KeyId, :DataKeyLen, :TagFilters
+        attr_accessor :Offset, :Limit, :Role, :OrderType, :KeyState, :SearchKeyAlias, :Origin, :HsmClusterId, :KeyId, :DataKeyLen, :TagFilters, :MemberAccounts
 
-        def initialize(offset=nil, limit=nil, role=nil, ordertype=nil, keystate=nil, searchkeyalias=nil, origin=nil, hsmclusterid=nil, keyid=nil, datakeylen=nil, tagfilters=nil)
+        def initialize(offset=nil, limit=nil, role=nil, ordertype=nil, keystate=nil, searchkeyalias=nil, origin=nil, hsmclusterid=nil, keyid=nil, datakeylen=nil, tagfilters=nil, memberaccounts=nil)
           @Offset = offset
           @Limit = limit
           @Role = role
@@ -2538,6 +2704,7 @@ module TencentCloud
           @KeyId = keyid
           @DataKeyLen = datakeylen
           @TagFilters = tagfilters
+          @MemberAccounts = memberaccounts
         end
 
         def deserialize(params)
@@ -2557,6 +2724,14 @@ module TencentCloud
               tagfilter_tmp = TagFilter.new
               tagfilter_tmp.deserialize(i)
               @TagFilters << tagfilter_tmp
+            end
+          end
+          unless params['MemberAccounts'].nil?
+            @MemberAccounts = []
+            params['MemberAccounts'].each do |i|
+              memberaccount_tmp = MemberAccount.new
+              memberaccount_tmp.deserialize(i)
+              @MemberAccounts << memberaccount_tmp
             end
           end
         end
@@ -2674,10 +2849,12 @@ module TencentCloud
         # @type TagFilters: Array
         # @param HsmClusterId: KMS 高级版对应的 HSM 集群 ID（仅对 KMS 独占版/托管版服务实例有效）。
         # @type HsmClusterId: String
+        # @param MemberAccounts: 可信服务成员账号信息数组
+        # @type MemberAccounts: Array
 
-        attr_accessor :Offset, :Limit, :Role, :OrderType, :KeyState, :SearchKeyAlias, :Origin, :KeyUsage, :TagFilters, :HsmClusterId
+        attr_accessor :Offset, :Limit, :Role, :OrderType, :KeyState, :SearchKeyAlias, :Origin, :KeyUsage, :TagFilters, :HsmClusterId, :MemberAccounts
 
-        def initialize(offset=nil, limit=nil, role=nil, ordertype=nil, keystate=nil, searchkeyalias=nil, origin=nil, keyusage=nil, tagfilters=nil, hsmclusterid=nil)
+        def initialize(offset=nil, limit=nil, role=nil, ordertype=nil, keystate=nil, searchkeyalias=nil, origin=nil, keyusage=nil, tagfilters=nil, hsmclusterid=nil, memberaccounts=nil)
           @Offset = offset
           @Limit = limit
           @Role = role
@@ -2688,6 +2865,7 @@ module TencentCloud
           @KeyUsage = keyusage
           @TagFilters = tagfilters
           @HsmClusterId = hsmclusterid
+          @MemberAccounts = memberaccounts
         end
 
         def deserialize(params)
@@ -2708,6 +2886,14 @@ module TencentCloud
             end
           end
           @HsmClusterId = params['HsmClusterId']
+          unless params['MemberAccounts'].nil?
+            @MemberAccounts = []
+            params['MemberAccounts'].each do |i|
+              memberaccount_tmp = MemberAccount.new
+              memberaccount_tmp.deserialize(i)
+              @MemberAccounts << memberaccount_tmp
+            end
+          end
         end
       end
 
@@ -2798,6 +2984,26 @@ module TencentCloud
           end
           @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 共享成员账号信息
+      class MemberAccount < TencentCloud::Common::AbstractModel
+        # @param MemberAppId: 成员账号appid
+        # @type MemberAppId: Integer
+        # @param MemberUin: 成员账号uin
+        # @type MemberUin: Integer
+
+        attr_accessor :MemberAppId, :MemberUin
+
+        def initialize(memberappid=nil, memberuin=nil)
+          @MemberAppId = memberappid
+          @MemberUin = memberuin
+        end
+
+        def deserialize(params)
+          @MemberAppId = params['MemberAppId']
+          @MemberUin = params['MemberUin']
         end
       end
 
@@ -3087,17 +3293,24 @@ module TencentCloud
         # @type DataKeyId: String
         # @param PendingWindowInDays: 计划删除时间区间[7,30]
         # @type PendingWindowInDays: Integer
+        # @param MemberAccount: 可信服务成员账号信息,当前账号时管理员或者委派管理员时有效。
+        # @type MemberAccount: :class:`Tencentcloud::Kms.v20190118.models.MemberAccount`
 
-        attr_accessor :DataKeyId, :PendingWindowInDays
+        attr_accessor :DataKeyId, :PendingWindowInDays, :MemberAccount
 
-        def initialize(datakeyid=nil, pendingwindowindays=nil)
+        def initialize(datakeyid=nil, pendingwindowindays=nil, memberaccount=nil)
           @DataKeyId = datakeyid
           @PendingWindowInDays = pendingwindowindays
+          @MemberAccount = memberaccount
         end
 
         def deserialize(params)
           @DataKeyId = params['DataKeyId']
           @PendingWindowInDays = params['PendingWindowInDays']
+          unless params['MemberAccount'].nil?
+            @MemberAccount = MemberAccount.new
+            @MemberAccount.deserialize(params['MemberAccount'])
+          end
         end
       end
 
@@ -3131,17 +3344,24 @@ module TencentCloud
         # @type KeyId: String
         # @param PendingWindowInDays: 计划删除时间区间[7,30]
         # @type PendingWindowInDays: Integer
+        # @param MemberAccount: 可信服务成员账号信息,当前账号时管理员或者委派管理员时有效。
+        # @type MemberAccount: :class:`Tencentcloud::Kms.v20190118.models.MemberAccount`
 
-        attr_accessor :KeyId, :PendingWindowInDays
+        attr_accessor :KeyId, :PendingWindowInDays, :MemberAccount
 
-        def initialize(keyid=nil, pendingwindowindays=nil)
+        def initialize(keyid=nil, pendingwindowindays=nil, memberaccount=nil)
           @KeyId = keyid
           @PendingWindowInDays = pendingwindowindays
+          @MemberAccount = memberaccount
         end
 
         def deserialize(params)
           @KeyId = params['KeyId']
           @PendingWindowInDays = params['PendingWindowInDays']
+          unless params['MemberAccount'].nil?
+            @MemberAccount = MemberAccount.new
+            @MemberAccount.deserialize(params['MemberAccount'])
+          end
         end
       end
 
@@ -3303,17 +3523,24 @@ module TencentCloud
         # @type Alias: String
         # @param KeyId: CMK的全局唯一标识符
         # @type KeyId: String
+        # @param MemberAccount: 可信服务成员账号信息,当前账号时管理员或者委派管理员时有效。
+        # @type MemberAccount: :class:`Tencentcloud::Kms.v20190118.models.MemberAccount`
 
-        attr_accessor :Alias, :KeyId
+        attr_accessor :Alias, :KeyId, :MemberAccount
 
-        def initialize(_alias=nil, keyid=nil)
+        def initialize(_alias=nil, keyid=nil, memberaccount=nil)
           @Alias = _alias
           @KeyId = keyid
+          @MemberAccount = memberaccount
         end
 
         def deserialize(params)
           @Alias = params['Alias']
           @KeyId = params['KeyId']
+          unless params['MemberAccount'].nil?
+            @MemberAccount = MemberAccount.new
+            @MemberAccount.deserialize(params['MemberAccount'])
+          end
         end
       end
 
@@ -3339,17 +3566,24 @@ module TencentCloud
         # @type DataKeyId: String
         # @param Description: 数据密钥 的描述，最大100字节
         # @type Description: String
+        # @param MemberAccount: 可信服务成员账号信息,当前账号时管理员或者委派管理员时有效。
+        # @type MemberAccount: :class:`Tencentcloud::Kms.v20190118.models.MemberAccount`
 
-        attr_accessor :DataKeyId, :Description
+        attr_accessor :DataKeyId, :Description, :MemberAccount
 
-        def initialize(datakeyid=nil, description=nil)
+        def initialize(datakeyid=nil, description=nil, memberaccount=nil)
           @DataKeyId = datakeyid
           @Description = description
+          @MemberAccount = memberaccount
         end
 
         def deserialize(params)
           @DataKeyId = params['DataKeyId']
           @Description = params['Description']
+          unless params['MemberAccount'].nil?
+            @MemberAccount = MemberAccount.new
+            @MemberAccount.deserialize(params['MemberAccount'])
+          end
         end
       end
 
@@ -3375,17 +3609,24 @@ module TencentCloud
         # @type DataKeyId: String
         # @param DataKeyName: 数据密钥的名称
         # @type DataKeyName: String
+        # @param MemberAccount: 可信服务成员账号信息,当前账号时管理员或者委派管理员时有效。
+        # @type MemberAccount: :class:`Tencentcloud::Kms.v20190118.models.MemberAccount`
 
-        attr_accessor :DataKeyId, :DataKeyName
+        attr_accessor :DataKeyId, :DataKeyName, :MemberAccount
 
-        def initialize(datakeyid=nil, datakeyname=nil)
+        def initialize(datakeyid=nil, datakeyname=nil, memberaccount=nil)
           @DataKeyId = datakeyid
           @DataKeyName = datakeyname
+          @MemberAccount = memberaccount
         end
 
         def deserialize(params)
           @DataKeyId = params['DataKeyId']
           @DataKeyName = params['DataKeyName']
+          unless params['MemberAccount'].nil?
+            @MemberAccount = MemberAccount.new
+            @MemberAccount.deserialize(params['MemberAccount'])
+          end
         end
       end
 
@@ -3411,17 +3652,24 @@ module TencentCloud
         # @type Description: String
         # @param KeyId: 需要修改描述信息的CMK ID
         # @type KeyId: String
+        # @param MemberAccount: 可信服务成员账号信息,当前账号时管理员或者委派管理员时有效。
+        # @type MemberAccount: :class:`Tencentcloud::Kms.v20190118.models.MemberAccount`
 
-        attr_accessor :Description, :KeyId
+        attr_accessor :Description, :KeyId, :MemberAccount
 
-        def initialize(description=nil, keyid=nil)
+        def initialize(description=nil, keyid=nil, memberaccount=nil)
           @Description = description
           @KeyId = keyid
+          @MemberAccount = memberaccount
         end
 
         def deserialize(params)
           @Description = params['Description']
           @KeyId = params['KeyId']
+          unless params['MemberAccount'].nil?
+            @MemberAccount = MemberAccount.new
+            @MemberAccount.deserialize(params['MemberAccount'])
+          end
         end
       end
 

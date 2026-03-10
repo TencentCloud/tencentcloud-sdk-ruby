@@ -285,6 +285,12 @@ module TencentCloud
         # @param ServiceType: 后端提供字典：域类型，1、腾讯云，2、本地
         # @type ServiceType: String
         # @param DbType: 驱动
+        # 取值范围：
+        # MYSQL：MySQL数据库
+        # PRESTO：PRESTO数据库
+        # POSTGRE：PostgreSQL数据库
+        # DLC：DLC数据库
+        # MSSQL：微软SQL Server数据库
         # @type DbType: String
         # @param Charset: 数据库编码
         # @type Charset: String
@@ -431,6 +437,12 @@ module TencentCloud
         # @param ServiceType: 后端提供字典：域类型，1、腾讯云，2、本地
         # @type ServiceType: String
         # @param DbType: 驱动
+        # 取值范围：
+        # MYSQL：MySQL数据库
+        # PRESTO：PRESTO数据库
+        # POSTGRE：PostgreSQL数据库
+        # DLC：DLC数据库
+        # MSSQL：微软SQL Server数据库
         # @type DbType: String
         # @param Charset: 数据库编码
         # @type Charset: String
@@ -722,17 +734,45 @@ module TencentCloud
       class CreatePermissionRanksRequest < TencentCloud::Common::AbstractModel
         # @param TableId: 页数
         # @type TableId: Integer
-        # @param Mode: 条数
+        # @param Mode: 模式。
+        # 取值范围：
+        # - ALL：全部
+        # - Specify：指定
+        # - TAG：标签
+
+        # 默认值：ALL
+        # 示例值：ALL
         # @type Mode: String
-        # @param RoleType: 角色类型
+        # @param RoleType: 角色类型。
+        # 取值范围：
+
+        # - ROLES：按角色
+        # - Others：其它
+
+        # 默认值：Others
+        # 示例值：Others
         # @type RoleType: String
         # @param RoleId: 所有页码
         # @type RoleId: Integer
         # @param RulerInfo: 规则信息
         # @type RulerInfo: String
-        # @param Type: 类型
+        # @param Type: 类型。
+        # 取值范围：
+
+        # - ROW：行权限
+        # - COLUMN：列权限
+
+        # 默认值：ROW
+        # 示例值：ROW
         # @type Type: String
-        # @param OpenStatus: 状态
+        # @param OpenStatus: 开启状态。
+        # 取值范围：
+
+        # - Open：开启
+        # - Close：关闭
+
+        # 默认值：Close
+        # 示例值：Close
         # @type OpenStatus: String
         # @param ProjectId: 项目id
         # @type ProjectId: Integer
@@ -825,6 +865,9 @@ module TencentCloud
         # @param IsApply: 是否允许用户申请
         # @type IsApply: Boolean
         # @param DefaultPanelType: 默认看板
+        # 取值范围：
+        # 1：项目看板
+        # 2：我的看板
         # @type DefaultPanelType: Integer
         # @param ManagePlatform: 管理平台
         # @type ManagePlatform: String
@@ -904,8 +947,8 @@ module TencentCloud
 
         attr_accessor :ProjectId, :RoleIdList, :UserList, :UserInfoList
         extend Gem::Deprecate
-        deprecate :UserList, :none, 2026, 2
-        deprecate :UserList=, :none, 2026, 2
+        deprecate :UserList, :none, 2026, 3
+        deprecate :UserList=, :none, 2026, 3
 
         def initialize(projectid=nil, roleidlist=nil, userlist=nil, userinfolist=nil)
           @ProjectId = projectid
@@ -991,8 +1034,8 @@ module TencentCloud
 
         attr_accessor :RoleIdList, :UserList, :UserInfoList, :UserGroups
         extend Gem::Deprecate
-        deprecate :UserList, :none, 2026, 2
-        deprecate :UserList=, :none, 2026, 2
+        deprecate :UserList, :none, 2026, 3
+        deprecate :UserList=, :none, 2026, 3
 
         def initialize(roleidlist=nil, userlist=nil, userinfolist=nil, usergroups=nil)
           @RoleIdList = roleidlist
@@ -1418,6 +1461,9 @@ module TencentCloud
         # @param Seed: 随机数
         # @type Seed: String
         # @param DefaultPanelType: 默认看板
+        # 取值范围：
+        # 1：项目看板
+        # 2：我的看板
         # @type DefaultPanelType: Integer
 
         attr_accessor :Id, :Seed, :DefaultPanelType
@@ -1733,13 +1779,35 @@ module TencentCloud
       class DescribePermissionRanksInfoRequest < TencentCloud::Common::AbstractModel
         # @param TableId: 页数
         # @type TableId: Integer
-        # @param Mode: 条数
+        # @param Mode: 模式。
+        # 取值范围：
+
+        # - ALL：全部
+        # - Specify：指定
+        # - TAG：标签
+
+        # 默认值：ALL
+        # 示例值：ALL
         # @type Mode: String
-        # @param RoleType: 角色类型
+        # @param RoleType: 角色类型。
+        # 取值范围：
+
+        # - ROLES：按角色
+        # - Others：其它
+
+        # 默认值：Others
+        # 示例值：Others
         # @type RoleType: String
         # @param RoleId: 所有页码
         # @type RoleId: Integer
-        # @param Type: 类型
+        # @param Type: 类型。
+        # 取值范围：
+
+        # - ROW：行权限
+        # - COLUMN：列权限
+
+        # 默认值：ROW
+        # 示例值：ROW
         # @type Type: String
         # @param ProjectId: 项目id
         # @type ProjectId: Integer
@@ -1885,7 +1953,14 @@ module TencentCloud
       class DescribePermissionStatusInfoRequest < TencentCloud::Common::AbstractModel
         # @param TableId: 页数
         # @type TableId: Integer
-        # @param Type: 类型
+        # @param Type: 类型。
+        # 取值范围：
+
+        # - ROW：行权限
+        # - COLUMN：列权限
+
+        # 默认值：ROW
+        # 示例值：ROW
         # @type Type: String
         # @param ProjectId: 1
         # @type ProjectId: String
@@ -1952,6 +2027,9 @@ module TencentCloud
         # @param Id: 项目Id
         # @type Id: Integer
         # @param DefaultPanelType: 默认看板
+        # 取值范围：
+        # 1：项目看板
+        # 2：我的看板
         # @type DefaultPanelType: Integer
 
         attr_accessor :Id, :DefaultPanelType
@@ -2593,6 +2671,10 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TranId: String
         # @param TranStatus: 事务状态
+        # 取值范围：
+        # 1: 处理中
+        # 2: 处理成功
+        # 3: 处理失败
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TranStatus: Integer
 
@@ -2620,6 +2702,12 @@ module TencentCloud
         # @param ServiceType: 后端提供字典：域类型，1、腾讯云，2、本地
         # @type ServiceType: String
         # @param DbType: 驱动
+        # 取值范围：
+        # MYSQL：MySQL数据库
+        # PRESTO：PRESTO数据库
+        # POSTGRE：PostgreSQL数据库
+        # DLC：DLC数据库
+        # MSSQL：微软SQL Server数据库
         # @type DbType: String
         # @param Charset: 数据库编码
         # @type Charset: String
@@ -2767,6 +2855,12 @@ module TencentCloud
         # @param ServiceType: 后端提供字典：域类型，1、腾讯云，2、本地
         # @type ServiceType: String
         # @param DbType: 驱动
+        # 取值范围：
+        # MYSQL：MySQL数据库
+        # PRESTO：PRESTO数据库
+        # POSTGRE：PostgreSQL数据库
+        # DLC：DLC数据库
+        # MSSQL：微软SQL Server数据库
         # @type DbType: String
         # @param Charset: 数据库编码
         # @type Charset: String
@@ -2922,6 +3016,9 @@ module TencentCloud
         # @param Seed: 种子
         # @type Seed: String
         # @param DefaultPanelType: 默认看板
+        # 取值范围：
+        # 1：项目看板
+        # 2：我的看板
         # @type DefaultPanelType: Integer
         # @param PanelScope: 2
         # @type PanelScope: String
@@ -3233,7 +3330,16 @@ module TencentCloud
         # @param ModuleId: 权限值
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModuleId: String
-        # @param IncludeType: 可见/可用
+        # @param IncludeType: 可用性。
+        # 取值范围：
+
+        # - usable：可用
+        # - visible：可见
+        # - disabled：不可用
+        # - hidden：隐藏
+
+        # 默认值：disabled
+        # 示例值：disabled
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IncludeType: String
         # @param UpgradeVersionType: 目标升级版本
@@ -3486,7 +3592,16 @@ module TencentCloud
         # @param ModuleId: 配置名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModuleId: String
-        # @param IncludeType: 配置方式
+        # @param IncludeType: 配置方式。
+        # 取值范围：
+
+        # - usable：可用
+        # - visible：可见
+        # - disabled：不可用
+        # - hidden：隐藏
+
+        # 默认值：disabled
+        # 示例值：disabled
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IncludeType: String
         # @param Params: 额外参数
@@ -3827,7 +3942,14 @@ module TencentCloud
         # @param LastLogin: 最后一次登录时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LastLogin: String
-        # @param Status: 停启用状态
+        # @param Status: 用户状态。
+        # 取值范围：
+
+        # - 1：启用
+        # - 0：停用
+
+        # 默认值：1
+        # 示例值：1
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param FirstModify: 首次登录是否修改密码

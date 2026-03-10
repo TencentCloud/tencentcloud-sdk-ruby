@@ -30729,7 +30729,7 @@ module TencentCloud
         # @type RenewFlag: String
         # @param InstanceChargeType: 网关付费类型：POSTPAID_BY_HOUR：按量计费，PREPAID：包年包月预付费。
         # @type InstanceChargeType: String
-        # @param InternetMaxBandwidthOut: 网关出带宽。
+        # @param InternetMaxBandwidthOut: 网关出带宽，单位：Mbps。
         # @type InternetMaxBandwidthOut: Integer
         # @param CreatedTime: 创建时间。
         # @type CreatedTime: String
@@ -30816,7 +30816,7 @@ module TencentCloud
 
       # VPN网关配额对象
       class VpnGatewayQuota < TencentCloud::Common::AbstractModel
-        # @param Bandwidth: 带宽配额
+        # @param Bandwidth: 带宽配额，单位：Mbps。
         # @type Bandwidth: Integer
         # @param Cname: 配额中文名称
         # @type Cname: String

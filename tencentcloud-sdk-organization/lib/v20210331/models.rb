@@ -302,6 +302,42 @@ module TencentCloud
         end
       end
 
+      # AddShareUnitNode请求参数结构体
+      class AddShareUnitNodeRequest < TencentCloud::Common::AbstractModel
+        # @param UnitId: <p>共享单元ID。</p>
+        # @type UnitId: String
+        # @param NodeId: <p>共享部门ID。</p>
+        # @type NodeId: Integer
+
+        attr_accessor :UnitId, :NodeId
+
+        def initialize(unitid=nil, nodeid=nil)
+          @UnitId = unitid
+          @NodeId = nodeid
+        end
+
+        def deserialize(params)
+          @UnitId = params['UnitId']
+          @NodeId = params['NodeId']
+        end
+      end
+
+      # AddShareUnitNode返回参数结构体
+      class AddShareUnitNodeResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # AddShareUnit请求参数结构体
       class AddShareUnitRequest < TencentCloud::Common::AbstractModel
         # @param Name: 共享单元名称。仅支持大小写字母、数字、-、以及_的组合，3-128个字符。
@@ -2031,6 +2067,42 @@ module TencentCloud
         end
       end
 
+      # DeleteShareUnitNode请求参数结构体
+      class DeleteShareUnitNodeRequest < TencentCloud::Common::AbstractModel
+        # @param UnitId: <p>共享单元ID。</p>
+        # @type UnitId: String
+        # @param NodeId: <p>部门ID。</p>
+        # @type NodeId: Integer
+
+        attr_accessor :UnitId, :NodeId
+
+        def initialize(unitid=nil, nodeid=nil)
+          @UnitId = unitid
+          @NodeId = nodeid
+        end
+
+        def deserialize(params)
+          @UnitId = params['UnitId']
+          @NodeId = params['NodeId']
+        end
+      end
+
+      # DeleteShareUnitNode返回参数结构体
+      class DeleteShareUnitNodeResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteShareUnit请求参数结构体
       class DeleteShareUnitRequest < TencentCloud::Common::AbstractModel
         # @param UnitId: 共享单元ID。
@@ -3377,6 +3449,65 @@ module TencentCloud
               shareunitmember_tmp = ShareUnitMember.new
               shareunitmember_tmp.deserialize(i)
               @Items << shareunitmember_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeShareUnitNodes请求参数结构体
+      class DescribeShareUnitNodesRequest < TencentCloud::Common::AbstractModel
+        # @param UnitId: <p>共享单元ID。</p>
+        # @type UnitId: String
+        # @param Offset: <p>偏移量。取值是limit的整数倍，默认值 : 0</p>
+        # @type Offset: Integer
+        # @param Limit: <p>限制数目。取值范围：1~50。</p>
+        # @type Limit: Integer
+        # @param SearchKey: <p>搜索关键字。支持部门ID搜索。</p>
+        # @type SearchKey: String
+
+        attr_accessor :UnitId, :Offset, :Limit, :SearchKey
+
+        def initialize(unitid=nil, offset=nil, limit=nil, searchkey=nil)
+          @UnitId = unitid
+          @Offset = offset
+          @Limit = limit
+          @SearchKey = searchkey
+        end
+
+        def deserialize(params)
+          @UnitId = params['UnitId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @SearchKey = params['SearchKey']
+        end
+      end
+
+      # DescribeShareUnitNodes返回参数结构体
+      class DescribeShareUnitNodesResponse < TencentCloud::Common::AbstractModel
+        # @param Total: <p>总数目。</p>
+        # @type Total: Integer
+        # @param Items: <p>共享单元部门列表。</p>
+        # @type Items: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :Items, :RequestId
+
+        def initialize(total=nil, items=nil, requestid=nil)
+          @Total = total
+          @Items = items
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              shareunitnode_tmp = ShareUnitNode.new
+              shareunitnode_tmp.deserialize(i)
+              @Items << shareunitnode_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -6740,8 +6871,8 @@ module TencentCloud
 
         attr_accessor :ProductResourceId, :ResourceGrantLast
         extend Gem::Deprecate
-        deprecate :ResourceGrantLast, :none, 2026, 2
-        deprecate :ResourceGrantLast=, :none, 2026, 2
+        deprecate :ResourceGrantLast, :none, 2026, 3
+        deprecate :ResourceGrantLast=, :none, 2026, 3
 
         def initialize(productresourceid=nil, resourcegrantlast=nil)
           @ProductResourceId = productresourceid
@@ -7575,8 +7706,8 @@ module TencentCloud
 
         attr_accessor :ResourceId, :ProductResourceId
         extend Gem::Deprecate
-        deprecate :ResourceId, :none, 2026, 2
-        deprecate :ResourceId=, :none, 2026, 2
+        deprecate :ResourceId, :none, 2026, 3
+        deprecate :ResourceId=, :none, 2026, 3
 
         def initialize(resourceid=nil, productresourceid=nil)
           @ResourceId = resourceid
@@ -7645,6 +7776,26 @@ module TencentCloud
 
         def deserialize(params)
           @ShareMemberUin = params['ShareMemberUin']
+          @CreateTime = params['CreateTime']
+        end
+      end
+
+      # 共享单元部门
+      class ShareUnitNode < TencentCloud::Common::AbstractModel
+        # @param ShareNodeId: <p>共享部门ID。</p>
+        # @type ShareNodeId: Integer
+        # @param CreateTime: <p>创建时间。</p>
+        # @type CreateTime: String
+
+        attr_accessor :ShareNodeId, :CreateTime
+
+        def initialize(sharenodeid=nil, createtime=nil)
+          @ShareNodeId = sharenodeid
+          @CreateTime = createtime
+        end
+
+        def deserialize(params)
+          @ShareNodeId = params['ShareNodeId']
           @CreateTime = params['CreateTime']
         end
       end
