@@ -3556,6 +3556,90 @@ module TencentCloud
         end
       end
 
+      # CreateTriggerWorkflowRun请求参数结构体
+      class CreateTriggerWorkflowRunRequest < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 项目ID
+        # @type ProjectId: String
+        # @param WorkflowId: 工作流ID
+        # @type WorkflowId: String
+        # @param AdvancedParams: 自定义运行参数，如果为空或者null则使用工作流最新配置
+        # @type AdvancedParams: Array
+        # @param TaskIds: 本次需要运行指定的任务ID集合，如果为null或为空则运行全部
+        # @type TaskIds: Array
+        # @param SchedulingResourceGroupId: 指定的调度资源组id，为空默认原资源组
+        # @type SchedulingResourceGroupId: String
+        # @param IntegrationResourceGroupId: 指定的集成资源组id，为空默认原资源组
+        # @type IntegrationResourceGroupId: String
+
+        attr_accessor :ProjectId, :WorkflowId, :AdvancedParams, :TaskIds, :SchedulingResourceGroupId, :IntegrationResourceGroupId
+
+        def initialize(projectid=nil, workflowid=nil, advancedparams=nil, taskids=nil, schedulingresourcegroupid=nil, integrationresourcegroupid=nil)
+          @ProjectId = projectid
+          @WorkflowId = workflowid
+          @AdvancedParams = advancedparams
+          @TaskIds = taskids
+          @SchedulingResourceGroupId = schedulingresourcegroupid
+          @IntegrationResourceGroupId = integrationresourcegroupid
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @WorkflowId = params['WorkflowId']
+          unless params['AdvancedParams'].nil?
+            @AdvancedParams = []
+            params['AdvancedParams'].each do |i|
+              schedulingparameter_tmp = SchedulingParameter.new
+              schedulingparameter_tmp.deserialize(i)
+              @AdvancedParams << schedulingparameter_tmp
+            end
+          end
+          @TaskIds = params['TaskIds']
+          @SchedulingResourceGroupId = params['SchedulingResourceGroupId']
+          @IntegrationResourceGroupId = params['IntegrationResourceGroupId']
+        end
+      end
+
+      # CreateTriggerWorkflowRun返回参数结构体
+      class CreateTriggerWorkflowRunResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 操作结果信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Wedata.v20250806.models.CreateTriggerWorkflowRunResult`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = CreateTriggerWorkflowRunResult.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 工作流调度模式下，工作流触发运行结果
+      class CreateTriggerWorkflowRunResult < TencentCloud::Common::AbstractModel
+        # @param WorkflowExecutionId: 工作流执行id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WorkflowExecutionId: String
+
+        attr_accessor :WorkflowExecutionId
+
+        def initialize(workflowexecutionid=nil)
+          @WorkflowExecutionId = workflowexecutionid
+        end
+
+        def deserialize(params)
+          @WorkflowExecutionId = params['WorkflowExecutionId']
+        end
+      end
+
       # CreateWorkflowFolder请求参数结构体
       class CreateWorkflowFolderRequest < TencentCloud::Common::AbstractModel
         # @param ProjectId: 项目ID

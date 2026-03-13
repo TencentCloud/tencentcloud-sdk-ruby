@@ -200,23 +200,23 @@ module TencentCloud
 
       # 回执数据统计响应包体
       class CallbackStatusStatistics < TencentCloud::Common::AbstractModel
-        # @param CallbackCount: 短信回执量统计。
+        # @param CallbackCount: <p>短信回执量统计。</p><p>单位：数</p>
         # @type CallbackCount: Integer
-        # @param RequestSuccessCount: 短信提交成功量统计。
+        # @param RequestSuccessCount: <p>短信提交成功量统计。</p><p>单位：数</p>
         # @type RequestSuccessCount: Integer
-        # @param CallbackFailCount: 短信回执失败量统计。
+        # @param CallbackFailCount: <p>短信回执失败量统计。</p><p>单位：数</p>
         # @type CallbackFailCount: Integer
-        # @param CallbackSuccessCount: 短信回执成功量统计。
+        # @param CallbackSuccessCount: <p>短信回执成功量统计。</p><p>单位：数</p>
         # @type CallbackSuccessCount: Integer
-        # @param InternalErrorCount: 运营商内部错误统计。
+        # @param InternalErrorCount: <p>运营商内部错误统计。</p><p>单位：数</p>
         # @type InternalErrorCount: Integer
-        # @param InvalidNumberCount: 号码无效或空号统计。
+        # @param InvalidNumberCount: <p>号码无效或空号统计。</p><p>单位：数</p>
         # @type InvalidNumberCount: Integer
-        # @param ShutdownErrorCount: 停机、关机等错误统计。
+        # @param ShutdownErrorCount: <p>停机、关机等错误统计。</p><p>单位：数</p>
         # @type ShutdownErrorCount: Integer
-        # @param BlackListCount: 号码拉入黑名单统计。
+        # @param BlackListCount: <p>号码拉入免打扰名单统计。</p><p>单位：数</p>
         # @type BlackListCount: Integer
-        # @param FrequencyLimitCount: 运营商频率限制统计。
+        # @param FrequencyLimitCount: <p>运营商频率限制统计。</p><p>单位：数</p>
         # @type FrequencyLimitCount: Integer
 
         attr_accessor :CallbackCount, :RequestSuccessCount, :CallbackFailCount, :CallbackSuccessCount, :InternalErrorCount, :InvalidNumberCount, :ShutdownErrorCount, :BlackListCount, :FrequencyLimitCount
@@ -306,9 +306,9 @@ module TencentCloud
 
       # 删除签名响应
       class DeleteSignStatus < TencentCloud::Common::AbstractModel
-        # @param DeleteStatus: 删除状态信息。
+        # @param DeleteStatus: <p>删除状态信息。</p>
         # @type DeleteStatus: String
-        # @param DeleteTime: 删除时间，UNIX 时间戳（单位：秒）。
+        # @param DeleteTime: <p>删除时间，UNIX 时间戳（单位：秒）。</p>
         # @type DeleteTime: Integer
 
         attr_accessor :DeleteStatus, :DeleteTime
@@ -1477,19 +1477,19 @@ module TencentCloud
 
       # 套餐包信息统计响应包体
       class SmsPackagesStatistics < TencentCloud::Common::AbstractModel
-        # @param PackageCreateTime: 套餐包创建时间，UNIX 时间戳（单位：秒）。
+        # @param PackageCreateTime: <p>套餐包创建时间，UNIX 时间戳。</p><p>单位：秒</p>
         # @type PackageCreateTime: Integer
-        # @param PackageEffectiveTime: 套餐包生效时间，UNIX 时间戳（单位：秒）。
+        # @param PackageEffectiveTime: <p>套餐包生效时间，UNIX 时间戳。</p><p>单位：秒</p>
         # @type PackageEffectiveTime: Integer
-        # @param PackageExpiredTime: 套餐包过期时间，UNIX 时间戳（单位：秒）。
+        # @param PackageExpiredTime: <p>套餐包过期时间，UNIX 时间戳。</p><p>单位：秒</p>
         # @type PackageExpiredTime: Integer
-        # @param PackageAmount: 套餐包条数。
+        # @param PackageAmount: <p>套餐包条数。</p><p>单位：条</p>
         # @type PackageAmount: Integer
-        # @param PackageType: 套餐包类别，0表示赠送套餐包，1表示购买套餐包。
+        # @param PackageType: <p>套餐包类别。</p><p>枚举值：</p><ul><li>0： 赠送套餐</li><li>1： 购买套餐包</li></ul>
         # @type PackageType: Integer
-        # @param PackageId: 套餐包 ID。
+        # @param PackageId: <p>套餐包 ID。</p>
         # @type PackageId: Integer
-        # @param CurrentUsage: 当前使用套餐包条数。
+        # @param CurrentUsage: <p>当前使用套餐包条数。</p><p>单位：条</p>
         # @type CurrentUsage: Integer
 
         attr_accessor :PackageCreateTime, :PackageEffectiveTime, :PackageExpiredTime, :PackageAmount, :PackageType, :PackageId, :CurrentUsage

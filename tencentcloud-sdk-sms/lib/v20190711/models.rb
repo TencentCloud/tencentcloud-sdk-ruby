@@ -39,43 +39,23 @@ module TencentCloud
 
       # AddSmsSign请求参数结构体
       class AddSmsSignRequest < TencentCloud::Common::AbstractModel
-        # @param SignName: 签名名称。
-        # 注：不能重复申请已通过或待审核的签名。
+        # @param SignName: <p>签名名称。<br>注：不能重复申请已通过或待审核的签名。</p>
         # @type SignName: String
-        # @param SignType: 签名类型。其中每种类型后面标注了其可选的 DocumentType（证明类型）：
-        # 0：公司，可选 DocumentType 有（0，1）。
-        # 1：APP，可选 DocumentType 有（0，1，2，3，4） 。
-        # 4：商标，可选 DocumentType 有（7）。
-        # 5：政府/机关事业单位/其他机构，可选 DocumentType 有（2，3）。
-        # 注1：必须按照对应关系选择证明类型，否则会审核失败。
-        # 注2：签名类型2（网站）、3（公众号）、6（小程序）已不再支持，具体可参考 [关于腾讯云短信签名申请规则更新的公告](https://cloud.tencent.com/document/product/382/116397)。
+        # @param SignType: <p>签名类型。其中每种类型后面标注了其可选的 DocumentType（证明类型）：<br>0：公司，可选 DocumentType 有（0，1）。<br>1：APP，可选 DocumentType 有（0，1，2，3，4） 。<br>4：商标，可选 DocumentType 有（7）。<br>5：政府/机关事业单位/其他机构，可选 DocumentType 有（2，3）。<br>注1：必须按照对应关系选择证明类型，否则会审核失败。<br>注2：签名类型2（网站）、3（公众号）、6（小程序）已不再支持，具体可参考 <a href="https://cloud.tencent.com/document/product/382/116397">关于腾讯云短信签名申请规则更新的公告</a>。</p>
         # @type SignType: Integer
-        # @param DocumentType: 证明类型：
-        # 0：三证合一。
-        # 1：企业营业执照。
-        # 2：组织机构代码证书。
-        # 3：社会信用代码证书。
-        # 4：应用后台管理截图（个人开发APP）。
-        # 7：商标注册书。
-        # 注：证明类型5（网站备案后台截图）、6（小程序设置页面截图）、8（公众号设置页面截图）已不再支持，具体可参考 [关于腾讯云短信签名申请规则更新的公告](https://cloud.tencent.com/document/product/382/116397)。
+        # @param DocumentType: <p>证明类型：<br>0：三证合一。<br>1：企业营业执照。<br>2：组织机构代码证书。<br>3：社会信用代码证书。<br>4：应用后台管理截图（个人开发APP）。<br>7：商标注册书。<br>注：证明类型5（网站备案后台截图）、6（小程序设置页面截图）、8（公众号设置页面截图）已不再支持，具体可参考 <a href="https://cloud.tencent.com/document/product/382/116397">关于腾讯云短信签名申请规则更新的公告</a>。</p>
         # @type DocumentType: Integer
-        # @param International: 是否国际/港澳台短信：
-        # 0：表示国内短信。
-        # 1：表示国际/港澳台短信。
+        # @param International: <p>是否国际/港澳台短信：<br>0：表示国内短信。<br>1：表示国际/港澳台短信。</p>
         # @type International: Integer
-        # @param UsedMethod: 签名用途：
-        # 0：自用。
-        # 1：他用。
+        # @param UsedMethod: <p>签名用途：<br>0：自用。<br>1：他用。</p>
         # @type UsedMethod: Integer
-        # @param ProofImage: 签名对应的资质证明图片需先进行 base64 编码格式转换，将转换后的字符串去掉前缀`data:image/jpeg;base64,`再赋值给该参数。
+        # @param ProofImage: <p>签名对应的资质证明图片需先进行 base64 编码格式转换，将转换后的字符串去掉前缀<code>data:image/jpeg;base64,</code>再赋值给该参数。</p>
         # @type ProofImage: String
-        # @param CommissionImage: 委托授权证明。选择 UsedMethod 为他用之后需要提交委托的授权证明。
-        # 图片需先进行 base64 编码格式转换，将转换后的字符串去掉前缀`data:image/jpeg;base64,`再赋值给该参数。
-        # 注：只有 UsedMethod 在选择为 1（他用）时，这个字段才会生效。
+        # @param CommissionImage: <p>委托授权证明。选择 UsedMethod 为他用之后需要提交委托的授权证明。<br>图片需先进行 base64 编码格式转换，将转换后的字符串去掉前缀<code>data:image/jpeg;base64,</code>再赋值给该参数。<br>注：只有 UsedMethod 在选择为 1（他用）时，这个字段才会生效。</p>
         # @type CommissionImage: String
-        # @param Remark: 签名的申请备注。
+        # @param Remark: <p>签名的申请备注。</p>
         # @type Remark: String
-        # @param QualificationId: 已审核通过的国内短信的资质 ID。资质 ID 信息可前往国内短信的 [实名资质管理](https://console.cloud.tencent.com/smsv2/enterprise) 页查看。<dx-alert infotype="notice" title="说明"><ul><li>国内短信需填写资质ID，国际短信无需填写。</li></ul></dx-alert>
+        # @param QualificationId: <p>已审核通过的国内短信的资质 ID。资质 ID 信息可前往国内短信的 <a href="https://console.cloud.tencent.com/smsv2/enterprise">实名资质管理</a> 页查看。<blockquote class="rno-document-tips rno-document-tips-notice">    <div class="rno-document-tips-body">        <i class="rno-document-tip-icon"></i>        <div class="rno-document-tip-title">说明</div>        <div class="rno-document-tip-desc"><ul><li>国内短信需填写资质ID，国际短信无需填写。</li></ul></div>    </div></blockquote></p>
         # @type QualificationId: Integer
 
         attr_accessor :SignName, :SignType, :DocumentType, :International, :UsedMethod, :ProofImage, :CommissionImage, :Remark, :QualificationId
@@ -107,7 +87,7 @@ module TencentCloud
 
       # AddSmsSign返回参数结构体
       class AddSmsSignResponse < TencentCloud::Common::AbstractModel
-        # @param AddSignStatus: 添加签名响应
+        # @param AddSignStatus: <p>添加签名响应</p>
         # @type AddSignStatus: :class:`Tencentcloud::Sms.v20190711.models.AddSignStatus`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -204,23 +184,23 @@ module TencentCloud
 
       # 回执数据统计响应包体
       class CallbackStatusStatistics < TencentCloud::Common::AbstractModel
-        # @param CallbackCount: 短信回执量统计。
+        # @param CallbackCount: <p>短信回执量统计。</p><p>单位：数</p>
         # @type CallbackCount: Integer
-        # @param RequestSuccessCount: 短信提交成功量统计。
+        # @param RequestSuccessCount: <p>短信提交成功量统计。</p><p>单位：数</p>
         # @type RequestSuccessCount: Integer
-        # @param CallbackFailCount: 短信回执失败量统计。
+        # @param CallbackFailCount: <p>短信回执失败量统计。</p><p>单位：数</p>
         # @type CallbackFailCount: Integer
-        # @param CallbackSuccessCount: 短信回执成功量统计。
+        # @param CallbackSuccessCount: <p>短信回执成功量统计。</p><p>单位：数</p>
         # @type CallbackSuccessCount: Integer
-        # @param InternalErrorCount: 运营商内部错误统计。
+        # @param InternalErrorCount: <p>运营商内部错误统计。</p><p>单位：数</p>
         # @type InternalErrorCount: Integer
-        # @param InvalidNumberCount: 号码无效或空号统计。
+        # @param InvalidNumberCount: <p>号码无效或空号统计。</p><p>单位：数</p>
         # @type InvalidNumberCount: Integer
-        # @param ShutdownErrorCount: 停机、关机等错误统计。
+        # @param ShutdownErrorCount: <p>停机、关机等错误统计。</p><p>单位：数</p>
         # @type ShutdownErrorCount: Integer
-        # @param BlackListCount: 号码拉入黑名单统计。
+        # @param BlackListCount: <p>号码拉入黑名单统计。</p><p>单位：数</p>
         # @type BlackListCount: Integer
-        # @param FrequencyLimitCount: 运营商频率限制统计。
+        # @param FrequencyLimitCount: <p>运营商频率限制数</p><p>单位：数</p>
         # @type FrequencyLimitCount: Integer
 
         attr_accessor :CallbackCount, :RequestSuccessCount, :CallbackFailCount, :CallbackSuccessCount, :InternalErrorCount, :InvalidNumberCount, :ShutdownErrorCount, :BlackListCount, :FrequencyLimitCount
@@ -310,9 +290,9 @@ module TencentCloud
 
       # 删除签名响应
       class DeleteSignStatus < TencentCloud::Common::AbstractModel
-        # @param DeleteStatus: 删除状态信息。
+        # @param DeleteStatus: <p>删除状态信息。</p>
         # @type DeleteStatus: String
-        # @param DeleteTime: 删除时间，UNIX 时间戳（单位：秒）。
+        # @param DeleteTime: <p>删除时间，UNIX 时间戳（单位：秒）。</p>
         # @type DeleteTime: Integer
 
         attr_accessor :DeleteStatus, :DeleteTime
@@ -330,7 +310,7 @@ module TencentCloud
 
       # DeleteSmsSign请求参数结构体
       class DeleteSmsSignRequest < TencentCloud::Common::AbstractModel
-        # @param SignId: 待删除的签名 ID。
+        # @param SignId: <p>待删除的签名 ID。</p>
         # @type SignId: Integer
 
         attr_accessor :SignId
@@ -346,7 +326,7 @@ module TencentCloud
 
       # DeleteSmsSign返回参数结构体
       class DeleteSmsSignResponse < TencentCloud::Common::AbstractModel
-        # @param DeleteSignStatus: 删除签名响应
+        # @param DeleteSignStatus: <p>删除签名响应</p>
         # @type DeleteSignStatus: :class:`Tencentcloud::Sms.v20190711.models.DeleteSignStatus`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -369,7 +349,7 @@ module TencentCloud
 
       # DeleteSmsTemplate请求参数结构体
       class DeleteSmsTemplateRequest < TencentCloud::Common::AbstractModel
-        # @param TemplateId: 待删除的模板 ID。
+        # @param TemplateId: <p>待删除的模板 ID。</p>
         # @type TemplateId: Integer
 
         attr_accessor :TemplateId
@@ -385,7 +365,7 @@ module TencentCloud
 
       # DeleteSmsTemplate返回参数结构体
       class DeleteSmsTemplateResponse < TencentCloud::Common::AbstractModel
-        # @param DeleteTemplateStatus: 删除模板响应
+        # @param DeleteTemplateStatus: <p>删除模板响应</p>
         # @type DeleteTemplateStatus: :class:`Tencentcloud::Sms.v20190711.models.DeleteTemplateStatus`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -639,45 +619,25 @@ module TencentCloud
 
       # ModifySmsSign请求参数结构体
       class ModifySmsSignRequest < TencentCloud::Common::AbstractModel
-        # @param SignId: 待修改的签名 ID。
+        # @param SignId: <p>待修改的签名 ID。</p>
         # @type SignId: Integer
-        # @param SignName: 签名名称。
+        # @param SignName: <p>签名名称。</p>
         # @type SignName: String
-        # @param SignType: 签名类型。其中每种类型后面标注了其可选的 DocumentType（证明类型）：
-        # 0：公司，可选 DocumentType 有（0，1）。
-        # 1：APP，可选 DocumentType 有（0，1，2，3，4） 。
-        # 4：商标，可选 DocumentType 有（7）。
-        # 5：政府/机关事业单位/其他机构，可选 DocumentType 有（2，3）。
-        # 注1：必须按照对应关系选择证明类型，否则会审核失败。
-        # 注2：签名类型2（网站）、3（公众号）、6（小程序）已不再支持，具体可参考 [关于腾讯云短信签名申请规则更新的公告](https://cloud.tencent.com/document/product/382/116397)。
+        # @param SignType: <p>签名类型。其中每种类型后面标注了其可选的 DocumentType（证明类型）：<br>0：公司，可选 DocumentType 有（0，1）。<br>1：APP，可选 DocumentType 有（0，1，2，3，4） 。<br>4：商标，可选 DocumentType 有（7）。<br>5：政府/机关事业单位/其他机构，可选 DocumentType 有（2，3）。<br>注1：必须按照对应关系选择证明类型，否则会审核失败。<br>注2：签名类型2（网站）、3（公众号）、6（小程序）已不再支持，具体可参考 <a href="https://cloud.tencent.com/document/product/382/116397">关于腾讯云短信签名申请规则更新的公告</a>。</p>
         # @type SignType: Integer
-        # @param DocumentType: 证明类型：
-        # 0：三证合一。
-        # 1：企业营业执照。
-        # 2：组织机构代码证书。
-        # 3：社会信用代码证书。
-        # 4：应用后台管理截图（个人开发APP）。
-        # 7：商标注册书。
-        # 注：证明类型5（网站备案后台截图）、6（小程序设置页面截图）、8（公众号设置页面截图）已不再支持，具体可参考 [关于腾讯云短信签名申请规则更新的公告](https://cloud.tencent.com/document/product/382/116397)。
+        # @param DocumentType: <p>证明类型：<br>0：三证合一。<br>1：企业营业执照。<br>2：组织机构代码证书。<br>3：社会信用代码证书。<br>4：应用后台管理截图（个人开发APP）。<br>7：商标注册书。<br>注：证明类型5（网站备案后台截图）、6（小程序设置页面截图）、8（公众号设置页面截图）已不再支持，具体可参考 <a href="https://cloud.tencent.com/document/product/382/116397">关于腾讯云短信签名申请规则更新的公告</a>。</p>
         # @type DocumentType: Integer
-        # @param International: 是否国际/港澳台短信：
-        # 0：表示国内短信。
-        # 1：表示国际/港澳台短信。
-        # 注：需要和待修改签名International值保持一致，该参数不能直接修改国内签名到国际签名。
+        # @param International: <p>是否国际/港澳台短信：<br>0：表示国内短信。<br>1：表示国际/港澳台短信。<br>注：需要和待修改签名International值保持一致，该参数不能直接修改国内签名到国际签名。</p>
         # @type International: Integer
-        # @param UsedMethod: 签名用途：
-        # 0：自用。
-        # 1：他用。
+        # @param UsedMethod: <p>签名用途：<br>0：自用。<br>1：他用。</p>
         # @type UsedMethod: Integer
-        # @param ProofImage: 签名对应的资质证明图片需先进行 base64 编码格式转换，将转换后的字符串去掉前缀`data:image/jpeg;base64,`再赋值给该参数。
+        # @param ProofImage: <p>签名对应的资质证明图片需先进行 base64 编码格式转换，将转换后的字符串去掉前缀<code>data:image/jpeg;base64,</code>再赋值给该参数。</p>
         # @type ProofImage: String
-        # @param CommissionImage: 委托授权证明。选择 UsedMethod 为他用之后需要提交委托的授权证明。
-        # 图片需先进行 base64 编码格式转换，将转换后的字符串去掉前缀`data:image/jpeg;base64,`再赋值给该参数。
-        # 注：只有 UsedMethod 在选择为 1（他用）时，这个字段才会生效。
+        # @param CommissionImage: <p>委托授权证明。选择 UsedMethod 为他用之后需要提交委托的授权证明。<br>图片需先进行 base64 编码格式转换，将转换后的字符串去掉前缀<code>data:image/jpeg;base64,</code>再赋值给该参数。<br>注：只有 UsedMethod 在选择为 1（他用）时，这个字段才会生效。</p>
         # @type CommissionImage: String
-        # @param Remark: 签名的申请备注。
+        # @param Remark: <p>签名的申请备注。</p>
         # @type Remark: String
-        # @param QualificationId: 已审核通过的国内短信的资质 ID。资质 ID 信息可前往国内短信的 [实名资质管理](https://console.cloud.tencent.com/smsv2/enterprise) 页查看。<dx-alert infotype="notice" title="说明"><ul><li>国内短信需填写资质ID，国际短信无需填写。</li></ul></dx-alert>
+        # @param QualificationId: <p>已审核通过的国内短信的资质 ID。资质 ID 信息可前往国内短信的 <a href="https://console.cloud.tencent.com/smsv2/enterprise">实名资质管理</a> 页查看。<blockquote class="rno-document-tips rno-document-tips-notice">    <div class="rno-document-tips-body">        <i class="rno-document-tip-icon"></i>        <div class="rno-document-tip-title">说明</div>        <div class="rno-document-tip-desc"><ul><li>国内短信需填写资质ID，国际短信无需填写。</li></ul></div>    </div></blockquote></p>
         # @type QualificationId: Integer
 
         attr_accessor :SignId, :SignName, :SignType, :DocumentType, :International, :UsedMethod, :ProofImage, :CommissionImage, :Remark, :QualificationId
@@ -711,7 +671,7 @@ module TencentCloud
 
       # ModifySmsSign返回参数结构体
       class ModifySmsSignResponse < TencentCloud::Common::AbstractModel
-        # @param ModifySignStatus: 修改签名响应
+        # @param ModifySignStatus: <p>修改签名响应</p>
         # @type ModifySignStatus: :class:`Tencentcloud::Sms.v20190711.models.ModifySignStatus`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1317,25 +1277,25 @@ module TencentCloud
 
       # 套餐包信息统计响应包体
       class SmsPackagesStatistics < TencentCloud::Common::AbstractModel
-        # @param PackageCreateTime: 套餐包创建时间，标准时间，例如：2019-10-08 17:18:37。
+        # @param PackageCreateTime: <p>套餐包创建时间，标准时间，例如：2019-10-08 17:18:37。</p>
         # @type PackageCreateTime: String
-        # @param PackageCreateUnixTime: 套餐包创建时间，UNIX 时间戳（单位：秒）。
+        # @param PackageCreateUnixTime: <p>套餐包创建时间，UNIX 时间戳。</p><p>单位：秒</p>
         # @type PackageCreateUnixTime: Integer
-        # @param PackageEffectiveTime: 套餐包生效时间，标准时间，例如：2019-10-08 17:18:37。
+        # @param PackageEffectiveTime: <p>套餐包生效时间，标准时间，例如：2019-10-08 17:18:37。</p>
         # @type PackageEffectiveTime: String
-        # @param PackageEffectiveUnixTime: 套餐包生效时间，UNIX 时间戳（单位：秒）。
+        # @param PackageEffectiveUnixTime: <p>套餐包生效时间，UNIX 时间戳。</p><p>单位：秒</p>
         # @type PackageEffectiveUnixTime: Integer
-        # @param PackageExpiredTime: 套餐包过期时间，标准时间，例如：2019-10-08 17:18:37。
+        # @param PackageExpiredTime: <p>套餐包过期时间，标准时间，例如：2019-10-08 17:18:37。</p>
         # @type PackageExpiredTime: String
-        # @param PackageExpiredUnixTime: 套餐包过期时间，UNIX 时间戳（单位：秒）。
+        # @param PackageExpiredUnixTime: <p>套餐包过期时间，UNIX 时间戳。</p><p>单位：秒</p>
         # @type PackageExpiredUnixTime: Integer
-        # @param AmountOfPackage: 套餐包条数。
+        # @param AmountOfPackage: <p>套餐包条数。</p><p>单位：条</p>
         # @type AmountOfPackage: Integer
-        # @param TypeOfPackage: 0表示赠送套餐包，1表示购买套餐包。
+        # @param TypeOfPackage: <p>套餐包类别。</p><p>枚举值：</p><ul><li>0： 赠送套餐包</li><li>1： 购买套餐包</li></ul>
         # @type TypeOfPackage: Integer
-        # @param PackageId: 套餐包 ID。
+        # @param PackageId: <p>套餐包 ID。</p>
         # @type PackageId: Integer
-        # @param CurrentUsage: 当前使用量。
+        # @param CurrentUsage: <p>当前使用量。</p><p>单位：条</p>
         # @type CurrentUsage: Integer
 
         attr_accessor :PackageCreateTime, :PackageCreateUnixTime, :PackageEffectiveTime, :PackageEffectiveUnixTime, :PackageExpiredTime, :PackageExpiredUnixTime, :AmountOfPackage, :TypeOfPackage, :PackageId, :CurrentUsage
