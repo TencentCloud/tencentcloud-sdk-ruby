@@ -29,30 +29,6 @@ module TencentCloud
         end
 
 
-        # 创建 RUM 应用（归属于某个团队）
-
-        # @param request: Request instance for CreateProject.
-        # @type request: :class:`Tencentcloud::rum::V20210622::CreateProjectRequest`
-        # @rtype: :class:`Tencentcloud::rum::V20210622::CreateProjectResponse`
-        def CreateProject(request)
-          body = send_request('CreateProject', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = CreateProjectResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 创建对应项目的文件记录
 
         # @param request: Request instance for CreateReleaseFile.
@@ -87,30 +63,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateStarProjectResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 创建 RUM 业务系统
-
-        # @param request: Request instance for CreateTawInstance.
-        # @type request: :class:`Tencentcloud::rum::V20210622::CreateTawInstanceRequest`
-        # @rtype: :class:`Tencentcloud::rum::V20210622::CreateTawInstanceResponse`
-        def CreateTawInstance(request)
-          body = send_request('CreateTawInstance', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = CreateTawInstanceResponse.new
             model.deserialize(response['Response'])
             model
           else

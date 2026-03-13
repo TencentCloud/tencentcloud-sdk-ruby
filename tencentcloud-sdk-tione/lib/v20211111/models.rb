@@ -1630,10 +1630,13 @@ module TencentCloud
         # @type CBSSource: :class:`Tencentcloud::Tione.v20211111.models.CBSConfig`
         # @param HostPathSource: 主机路径信息
         # @type HostPathSource: :class:`Tencentcloud::Tione.v20211111.models.HostPath`
+        # @param PublicDataSource: 公有云数据源
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PublicDataSource: :class:`Tencentcloud::Tione.v20211111.models.PublicDataSourceFS`
 
-        attr_accessor :MappingPath, :DataSourceUsage, :DataSourceType, :DataSetSource, :COSSource, :CFSSource, :HDFSSource, :GooseFSSource, :CFSTurboSource, :LocalDiskSource, :CBSSource, :HostPathSource
+        attr_accessor :MappingPath, :DataSourceUsage, :DataSourceType, :DataSetSource, :COSSource, :CFSSource, :HDFSSource, :GooseFSSource, :CFSTurboSource, :LocalDiskSource, :CBSSource, :HostPathSource, :PublicDataSource
 
-        def initialize(mappingpath=nil, datasourceusage=nil, datasourcetype=nil, datasetsource=nil, cossource=nil, cfssource=nil, hdfssource=nil, goosefssource=nil, cfsturbosource=nil, localdisksource=nil, cbssource=nil, hostpathsource=nil)
+        def initialize(mappingpath=nil, datasourceusage=nil, datasourcetype=nil, datasetsource=nil, cossource=nil, cfssource=nil, hdfssource=nil, goosefssource=nil, cfsturbosource=nil, localdisksource=nil, cbssource=nil, hostpathsource=nil, publicdatasource=nil)
           @MappingPath = mappingpath
           @DataSourceUsage = datasourceusage
           @DataSourceType = datasourcetype
@@ -1646,6 +1649,7 @@ module TencentCloud
           @LocalDiskSource = localdisksource
           @CBSSource = cbssource
           @HostPathSource = hostpathsource
+          @PublicDataSource = publicdatasource
         end
 
         def deserialize(params)
@@ -1687,6 +1691,10 @@ module TencentCloud
           unless params['HostPathSource'].nil?
             @HostPathSource = HostPath.new
             @HostPathSource.deserialize(params['HostPathSource'])
+          end
+          unless params['PublicDataSource'].nil?
+            @PublicDataSource = PublicDataSourceFS.new
+            @PublicDataSource.deserialize(params['PublicDataSource'])
           end
         end
       end

@@ -341,7 +341,7 @@ module TencentCloud
 
         # 用于试题批改Agent查询任务。主要面向K12的试题批改产品，支持整卷/单题端到端（试卷切题+题目批改+手写坐标回显）处理，主要聚焦的场景包括试题批改（含手写答案）、试题解析（不含手写答案），其中低年级算式批改效果比线上[数学作业批改](https://cloud.tencent.com/document/product/1004)效果更好。精准输出题目、正误判定、答案对比、错误及知识点等结构化评估结果。
 
-        # 默认接口请求并发限制：10题/分钟。
+        # 默认接口请求并发限制：10张/分钟。
 
         # @param request: Request instance for DescribeQuestionMarkAgentJob.
         # @type request: :class:`Tencentcloud::ocr::V20181119::DescribeQuestionMarkAgentJobRequest`
@@ -2497,7 +2497,7 @@ module TencentCloud
 
         # 用于试题批改Agent提交任务。主要面向K12的试题批改产品，支持整卷/单题端到端（试卷切题+题目批改+手写坐标回显）处理，主要聚焦的场景包括试题批改（含手写答案）、试题解析（不含手写答案），其中低年级算式批改效果比线上[数学作业批改](https://cloud.tencent.com/document/product/1004)效果更好。精准输出题目、正误判定、答案对比、错误及知识点等结构化评估结果。
 
-        # 默认接口请求并发限制：10题/分钟。
+        # 默认接口请求并发限制：10张/分钟。
 
         # @param request: Request instance for SubmitQuestionMarkAgentJob.
         # @type request: :class:`Tencentcloud::ocr::V20181119::SubmitQuestionMarkAgentJobRequest`
@@ -2777,6 +2777,33 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = VehicleRegCertOCRResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 提供比对校验企业名称、统一社会信用代码、法人姓名、注册登记证件号码一致性的服务，助力快速核验企业资质。
+        # 注意：
+        # 存在个别特殊情况下核验结果不准确，请选用前知悉；
+        # 按周更新企业信息变更情况，如遇到未及时更新的情况，可联系在线客服转产品团队进行人工处理。
+
+        # @param request: Request instance for VerifyBizLicenseEnterprise4.
+        # @type request: :class:`Tencentcloud::ocr::V20181119::VerifyBizLicenseEnterprise4Request`
+        # @rtype: :class:`Tencentcloud::ocr::V20181119::VerifyBizLicenseEnterprise4Response`
+        def VerifyBizLicenseEnterprise4(request)
+          body = send_request('VerifyBizLicenseEnterprise4', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = VerifyBizLicenseEnterprise4Response.new
             model.deserialize(response['Response'])
             model
           else

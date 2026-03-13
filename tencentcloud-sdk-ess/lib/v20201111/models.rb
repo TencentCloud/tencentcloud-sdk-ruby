@@ -4062,10 +4062,12 @@ module TencentCloud
         # @type FlowDisplayType: Integer
         # @param OpenDynamicSignFlow: 是否开启动态签署合同：<ul><li> **true**：开启动态签署合同，可在发起时可以不传签署人，在签署过程中追加签署人（必须满足：1，发起方企业开启了模块化计费能力；2，发起方企业在企业应用管理中开启了动态签署人2.0能力）    。</li><li> **false**：不开启动态签署合同。</li></ul>
         # @type OpenDynamicSignFlow: Boolean
+        # @param Workflow: 是否开启发起合同审批，默认：false（不开启），开启后，发起合同（StartFlow），会提交电子签内置的审批流
+        # @type Workflow: Boolean
 
-        attr_accessor :Operator, :FlowName, :FileIds, :Approvers, :FlowDescription, :FlowType, :Components, :CcInfos, :CcNotifyType, :NeedPreview, :PreviewType, :Deadline, :Unordered, :UserData, :RemindedOn, :ApproverVerifyType, :SignBeanTag, :CustomShowMap, :Agent, :AutoSignScene, :NeedSignReview, :FlowDisplayType, :OpenDynamicSignFlow
+        attr_accessor :Operator, :FlowName, :FileIds, :Approvers, :FlowDescription, :FlowType, :Components, :CcInfos, :CcNotifyType, :NeedPreview, :PreviewType, :Deadline, :Unordered, :UserData, :RemindedOn, :ApproverVerifyType, :SignBeanTag, :CustomShowMap, :Agent, :AutoSignScene, :NeedSignReview, :FlowDisplayType, :OpenDynamicSignFlow, :Workflow
 
-        def initialize(operator=nil, flowname=nil, fileids=nil, approvers=nil, flowdescription=nil, flowtype=nil, components=nil, ccinfos=nil, ccnotifytype=nil, needpreview=nil, previewtype=nil, deadline=nil, unordered=nil, userdata=nil, remindedon=nil, approververifytype=nil, signbeantag=nil, customshowmap=nil, agent=nil, autosignscene=nil, needsignreview=nil, flowdisplaytype=nil, opendynamicsignflow=nil)
+        def initialize(operator=nil, flowname=nil, fileids=nil, approvers=nil, flowdescription=nil, flowtype=nil, components=nil, ccinfos=nil, ccnotifytype=nil, needpreview=nil, previewtype=nil, deadline=nil, unordered=nil, userdata=nil, remindedon=nil, approververifytype=nil, signbeantag=nil, customshowmap=nil, agent=nil, autosignscene=nil, needsignreview=nil, flowdisplaytype=nil, opendynamicsignflow=nil, workflow=nil)
           @Operator = operator
           @FlowName = flowname
           @FileIds = fileids
@@ -4089,6 +4091,7 @@ module TencentCloud
           @NeedSignReview = needsignreview
           @FlowDisplayType = flowdisplaytype
           @OpenDynamicSignFlow = opendynamicsignflow
+          @Workflow = workflow
         end
 
         def deserialize(params)
@@ -4142,6 +4145,7 @@ module TencentCloud
           @NeedSignReview = params['NeedSignReview']
           @FlowDisplayType = params['FlowDisplayType']
           @OpenDynamicSignFlow = params['OpenDynamicSignFlow']
+          @Workflow = params['Workflow']
         end
       end
 
@@ -4160,15 +4164,18 @@ module TencentCloud
         # @type PreviewUrl: String
         # @param Approvers: 签署方信息，如角色ID、角色名称等
         # @type Approvers: Array
+        # @param WorkflowInstanceId: 发起审批流id，仅在CreateFlowByFiles时指定了WorkFlow=true时返回
+        # @type WorkflowInstanceId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :FlowId, :PreviewUrl, :Approvers, :RequestId
+        attr_accessor :FlowId, :PreviewUrl, :Approvers, :WorkflowInstanceId, :RequestId
 
-        def initialize(flowid=nil, previewurl=nil, approvers=nil, requestid=nil)
+        def initialize(flowid=nil, previewurl=nil, approvers=nil, workflowinstanceid=nil, requestid=nil)
           @FlowId = flowid
           @PreviewUrl = previewurl
           @Approvers = approvers
+          @WorkflowInstanceId = workflowinstanceid
           @RequestId = requestid
         end
 
@@ -4183,6 +4190,7 @@ module TencentCloud
               @Approvers << approveritem_tmp
             end
           end
+          @WorkflowInstanceId = params['WorkflowInstanceId']
           @RequestId = params['RequestId']
         end
       end
@@ -4424,15 +4432,18 @@ module TencentCloud
         # @type FlowIds: Array
         # @param Approvers: 合同组签署方信息。
         # @type Approvers: Array
+        # @param WorkflowInstanceId: 发起审批流id，仅在发起时指定FlowGroupOptions.FlowGroupNeedWorkflow=true时返回
+        # @type WorkflowInstanceId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :FlowGroupId, :FlowIds, :Approvers, :RequestId
+        attr_accessor :FlowGroupId, :FlowIds, :Approvers, :WorkflowInstanceId, :RequestId
 
-        def initialize(flowgroupid=nil, flowids=nil, approvers=nil, requestid=nil)
+        def initialize(flowgroupid=nil, flowids=nil, approvers=nil, workflowinstanceid=nil, requestid=nil)
           @FlowGroupId = flowgroupid
           @FlowIds = flowids
           @Approvers = approvers
+          @WorkflowInstanceId = workflowinstanceid
           @RequestId = requestid
         end
 
@@ -4447,6 +4458,7 @@ module TencentCloud
               @Approvers << flowgroupapprovers_tmp
             end
           end
+          @WorkflowInstanceId = params['WorkflowInstanceId']
           @RequestId = params['RequestId']
         end
       end
@@ -4524,15 +4536,18 @@ module TencentCloud
         # @type FlowIds: Array
         # @param Approvers: 合同组签署人信息。
         # @type Approvers: Array
+        # @param WorkflowInstanceId: FlowGroupNeedWorkflow
+        # @type WorkflowInstanceId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :FlowGroupId, :FlowIds, :Approvers, :RequestId
+        attr_accessor :FlowGroupId, :FlowIds, :Approvers, :WorkflowInstanceId, :RequestId
 
-        def initialize(flowgroupid=nil, flowids=nil, approvers=nil, requestid=nil)
+        def initialize(flowgroupid=nil, flowids=nil, approvers=nil, workflowinstanceid=nil, requestid=nil)
           @FlowGroupId = flowgroupid
           @FlowIds = flowids
           @Approvers = approvers
+          @WorkflowInstanceId = workflowinstanceid
           @RequestId = requestid
         end
 
@@ -4547,6 +4562,7 @@ module TencentCloud
               @Approvers << flowgroupapprovers_tmp
             end
           end
+          @WorkflowInstanceId = params['WorkflowInstanceId']
           @RequestId = params['RequestId']
         end
       end
@@ -4991,15 +5007,17 @@ module TencentCloud
         # 效果如下:
         # ![FlowDisplayType](https://qcloudimg.tencent-cloud.cn/raw/e4a2c4d638717cc901d3dbd5137c9bbc.png)
         # @type FlowDisplayType: Integer
+        # @param Workflow: 是否开启发起合同审批，默认：false（不开启），开启后，发起合同（StartFlow），会提交电子签内置的审批流
+        # @type Workflow: Boolean
 
-        attr_accessor :Operator, :FlowName, :Approvers, :FlowDescription, :FlowType, :ClientToken, :DeadLine, :RemindedOn, :UserData, :Unordered, :CustomShowMap, :NeedSignReview, :Agent, :CcInfos, :AutoSignScene, :RelatedFlowId, :CallbackUrl, :FlowDisplayType
+        attr_accessor :Operator, :FlowName, :Approvers, :FlowDescription, :FlowType, :ClientToken, :DeadLine, :RemindedOn, :UserData, :Unordered, :CustomShowMap, :NeedSignReview, :Agent, :CcInfos, :AutoSignScene, :RelatedFlowId, :CallbackUrl, :FlowDisplayType, :Workflow
         extend Gem::Deprecate
         deprecate :RelatedFlowId, :none, 2026, 3
         deprecate :RelatedFlowId=, :none, 2026, 3
         deprecate :CallbackUrl, :none, 2026, 3
         deprecate :CallbackUrl=, :none, 2026, 3
 
-        def initialize(operator=nil, flowname=nil, approvers=nil, flowdescription=nil, flowtype=nil, clienttoken=nil, deadline=nil, remindedon=nil, userdata=nil, unordered=nil, customshowmap=nil, needsignreview=nil, agent=nil, ccinfos=nil, autosignscene=nil, relatedflowid=nil, callbackurl=nil, flowdisplaytype=nil)
+        def initialize(operator=nil, flowname=nil, approvers=nil, flowdescription=nil, flowtype=nil, clienttoken=nil, deadline=nil, remindedon=nil, userdata=nil, unordered=nil, customshowmap=nil, needsignreview=nil, agent=nil, ccinfos=nil, autosignscene=nil, relatedflowid=nil, callbackurl=nil, flowdisplaytype=nil, workflow=nil)
           @Operator = operator
           @FlowName = flowname
           @Approvers = approvers
@@ -5018,6 +5036,7 @@ module TencentCloud
           @RelatedFlowId = relatedflowid
           @CallbackUrl = callbackurl
           @FlowDisplayType = flowdisplaytype
+          @Workflow = workflow
         end
 
         def deserialize(params)
@@ -5059,6 +5078,7 @@ module TencentCloud
           @RelatedFlowId = params['RelatedFlowId']
           @CallbackUrl = params['CallbackUrl']
           @FlowDisplayType = params['FlowDisplayType']
+          @Workflow = params['Workflow']
         end
       end
 
@@ -6877,15 +6897,18 @@ module TencentCloud
         # @param Agent: 代理企业和员工的信息。
         # 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
+        # @param FlowGroupOptions: 合同组发起控制参数，当前仅支持FlowGroupNeedWorkflow，表示开启嵌入式合同组发起审批
+        # @type FlowGroupOptions: :class:`Tencentcloud::Ess.v20201111.models.FlowGroupOptions`
 
-        attr_accessor :Operator, :FlowGroupName, :FlowGroupInfos, :ResourceType, :Agent
+        attr_accessor :Operator, :FlowGroupName, :FlowGroupInfos, :ResourceType, :Agent, :FlowGroupOptions
 
-        def initialize(operator=nil, flowgroupname=nil, flowgroupinfos=nil, resourcetype=nil, agent=nil)
+        def initialize(operator=nil, flowgroupname=nil, flowgroupinfos=nil, resourcetype=nil, agent=nil, flowgroupoptions=nil)
           @Operator = operator
           @FlowGroupName = flowgroupname
           @FlowGroupInfos = flowgroupinfos
           @ResourceType = resourcetype
           @Agent = agent
+          @FlowGroupOptions = flowgroupoptions
         end
 
         def deserialize(params)
@@ -6906,6 +6929,10 @@ module TencentCloud
           unless params['Agent'].nil?
             @Agent = Agent.new
             @Agent.deserialize(params['Agent'])
+          end
+          unless params['FlowGroupOptions'].nil?
+            @FlowGroupOptions = FlowGroupOptions.new
+            @FlowGroupOptions.deserialize(params['FlowGroupOptions'])
           end
         end
       end
@@ -7028,13 +7055,15 @@ module TencentCloud
 
         # - 签署控件 是否默认展示日期.
         # @type SignComponentConfig: :class:`Tencentcloud::Ess.v20201111.models.SignComponentConfig`
+        # @param Workflow: 是否开启嵌入式合同发起时，提交发起审批流，默认：false（不开启），开启后，嵌入式合同发起后，会提交电子签内置审批流
+        # @type Workflow: Boolean
 
-        attr_accessor :Operator, :ResourceId, :FlowName, :ResourceType, :Unordered, :Deadline, :UserFlowTypeId, :FlowType, :Approvers, :IntelligentStatus, :Components, :FlowOption, :NeedSignReview, :NeedCreateReview, :UserData, :CcInfos, :FlowId, :Agent, :InitiatorComponents, :FlowDisplayType, :SignComponentConfig
+        attr_accessor :Operator, :ResourceId, :FlowName, :ResourceType, :Unordered, :Deadline, :UserFlowTypeId, :FlowType, :Approvers, :IntelligentStatus, :Components, :FlowOption, :NeedSignReview, :NeedCreateReview, :UserData, :CcInfos, :FlowId, :Agent, :InitiatorComponents, :FlowDisplayType, :SignComponentConfig, :Workflow
         extend Gem::Deprecate
         deprecate :SignComponentConfig, :none, 2026, 3
         deprecate :SignComponentConfig=, :none, 2026, 3
 
-        def initialize(operator=nil, resourceid=nil, flowname=nil, resourcetype=nil, unordered=nil, deadline=nil, userflowtypeid=nil, flowtype=nil, approvers=nil, intelligentstatus=nil, components=nil, flowoption=nil, needsignreview=nil, needcreatereview=nil, userdata=nil, ccinfos=nil, flowid=nil, agent=nil, initiatorcomponents=nil, flowdisplaytype=nil, signcomponentconfig=nil)
+        def initialize(operator=nil, resourceid=nil, flowname=nil, resourcetype=nil, unordered=nil, deadline=nil, userflowtypeid=nil, flowtype=nil, approvers=nil, intelligentstatus=nil, components=nil, flowoption=nil, needsignreview=nil, needcreatereview=nil, userdata=nil, ccinfos=nil, flowid=nil, agent=nil, initiatorcomponents=nil, flowdisplaytype=nil, signcomponentconfig=nil, workflow=nil)
           @Operator = operator
           @ResourceId = resourceid
           @FlowName = flowname
@@ -7056,6 +7085,7 @@ module TencentCloud
           @InitiatorComponents = initiatorcomponents
           @FlowDisplayType = flowdisplaytype
           @SignComponentConfig = signcomponentconfig
+          @Workflow = workflow
         end
 
         def deserialize(params)
@@ -7116,6 +7146,7 @@ module TencentCloud
             @SignComponentConfig = SignComponentConfig.new
             @SignComponentConfig.deserialize(params['SignComponentConfig'])
           end
+          @Workflow = params['Workflow']
         end
       end
 
@@ -12386,7 +12417,7 @@ module TencentCloud
         # 印章来源类型包括下面几种：
         # <ul>
         # <li>CREATE-客户上传图片创建</li>
-        # <li>GENERATE-系统模版印章生成</li>
+        # <li>GENERATE-系统模板印章生成</li>
         # <li>SIST_SEAL-深圳电子印章</li>
         # </ul>
         # @type GenerateType: String
@@ -13770,19 +13801,23 @@ module TencentCloud
         # 签署通知类型，支持以下类型
         # <ul><li>sms : 短信 (默认值)</li><li>none : 不通知</li></ul>
         # @type OtherApproverNotifyType: String
+        # @param FlowGroupNeedWorkflow: 是否开启发起合同组的发起审批，默认：false(不开启)，开启后，发起合同组会提交电子签内置审批流
+        # @type FlowGroupNeedWorkflow: Boolean
 
-        attr_accessor :ApproverVerifyType, :SelfOrganizationApproverNotifyType, :OtherApproverNotifyType
+        attr_accessor :ApproverVerifyType, :SelfOrganizationApproverNotifyType, :OtherApproverNotifyType, :FlowGroupNeedWorkflow
 
-        def initialize(approververifytype=nil, selforganizationapprovernotifytype=nil, otherapprovernotifytype=nil)
+        def initialize(approververifytype=nil, selforganizationapprovernotifytype=nil, otherapprovernotifytype=nil, flowgroupneedworkflow=nil)
           @ApproverVerifyType = approververifytype
           @SelfOrganizationApproverNotifyType = selforganizationapprovernotifytype
           @OtherApproverNotifyType = otherapprovernotifytype
+          @FlowGroupNeedWorkflow = flowgroupneedworkflow
         end
 
         def deserialize(params)
           @ApproverVerifyType = params['ApproverVerifyType']
           @SelfOrganizationApproverNotifyType = params['SelfOrganizationApproverNotifyType']
           @OtherApproverNotifyType = params['OtherApproverNotifyType']
+          @FlowGroupNeedWorkflow = params['FlowGroupNeedWorkflow']
         end
       end
 
@@ -17406,18 +17441,22 @@ module TencentCloud
         # <li> **REVIEW** : 提交审核成功, 合同需要发起审核, 发起方企业通过接口审核通过后合同才进入签署环境  `白名单功能，使用前请联系对接的客户经理沟通。`</li>
         # <li> **EXECUTING** : 已提交发起任务且PDF合同正在合成中, 等PDF合同合成成功后进入签署环节</li></ul>
         # @type Status: String
+        # @param WorkflowInstanceId: 发起审批流id，仅在CreateFlow时指定了WorkFlow=true时返回
+        # @type WorkflowInstanceId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Status, :RequestId
+        attr_accessor :Status, :WorkflowInstanceId, :RequestId
 
-        def initialize(status=nil, requestid=nil)
+        def initialize(status=nil, workflowinstanceid=nil, requestid=nil)
           @Status = status
+          @WorkflowInstanceId = workflowinstanceid
           @RequestId = requestid
         end
 
         def deserialize(params)
           @Status = params['Status']
+          @WorkflowInstanceId = params['WorkflowInstanceId']
           @RequestId = params['RequestId']
         end
       end

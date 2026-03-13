@@ -5404,7 +5404,7 @@ module TencentCloud
         # @type Authority: String
         # @param ValidDate: <p>证件有效期（国徽面）</p>
         # @type ValidDate: String
-        # @param AdvancedInfo: <p>扩展信息，不请求则不返回，具体输入参考示例3和示例4。<br>IdCard，裁剪后身份证照片的base64编码，请求 Config.CropIdCard 时返回；<br>Portrait，身份证头像照片的base64编码，请求 Config.CropPortrait 时返回；<br>Quality，图片质量分数，请求 Config.Quality 时返回（取值范围：0 ~ 100，分数越低越模糊，建议阈值≥50）;<br>BorderCodeValue，身份证边框不完整告警阈值分数，请求 Config.BorderCheckWarn时返回（取值范围：0 ~ 100，分数越低边框遮挡可能性越低，建议阈值≤50）;<br>WarnInfos，告警信息，Code 告警码列表和释义：<br>-9100 身份证有效日期不合法告警，<br>-9101 身份证边框不完整告警，<br>-9102 身份证复印件告警（黑白及彩色复印件）,<br>-9108 身份证复印件告警（仅黑白复印件），<br>-9103 身份证翻拍告警，<br>-9105 身份证框内遮挡告警，<br>-9104 临时身份证告警，<br>-9106 身份证疑似存在PS痕迹告警，<br>-9107 身份证反光告警，<br>-9110 电子身份证告警，<br>-9111 水印告警（仅CardWarnType参数为Advanced时）</p>
+        # @param AdvancedInfo: <p>扩展信息，不请求则不返回，具体输入参考示例3和示例4。<br>IdCard，裁剪后身份证照片的base64编码，请求 Config.CropIdCard 时返回；<br>Portrait，身份证头像照片的base64编码，请求 Config.CropPortrait 时返回；<br>Quality，图片质量分数，请求 Config.Quality 时返回（取值范围：0 ~ 100，分数越低越模糊，建议阈值≥50）;<br>BorderCodeValue，身份证边框不完整告警阈值分数，请求 Config.BorderCheckWarn时返回（取值范围：0 ~ 100，分数越低边框遮挡可能性越低，建议阈值≤50）;<br>WarnInfos，告警信息，Code 告警码列表和释义：<br>-9109 身份证有效日期不合法告警，<br>-9101 身份证边框不完整告警，<br>-9102 身份证复印件告警（黑白及彩色复印件）,<br>-9108 身份证复印件告警（仅黑白复印件），<br>-9103 身份证翻拍告警，<br>-9105 身份证框内遮挡告警，<br>-9104 临时身份证告警，<br>-9106 身份证疑似存在PS痕迹告警，<br>-9107 身份证反光告警，<br>-9110 电子身份证告警，<br>-9111 水印告警（仅CardWarnType参数为Advanced时）</p>
         # @type AdvancedInfo: String
         # @param ReflectDetailInfos: <p>反光点覆盖区域详情结果，具体内容请点击左侧链接</p>
         # @type ReflectDetailInfos: Array
@@ -9672,39 +9672,43 @@ module TencentCloud
 
       # RecognizeTableAccurateOCR请求参数结构体
       class RecognizeTableAccurateOCRRequest < TencentCloud::Common::AbstractModel
-        # @param ImageBase64: 图片/PDF的 Base64 值。要求图片/PDF经Base64编码后不超过 10M，分辨率建议600*800以上，且长宽比小于3（短边分辨率大于600, 长边分辨率小于等于短边分辨率的三倍）。支持PNG、JPG、JPEG、BMP、PDF格式。图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
+        # @param ImageBase64: <p>图片/PDF的 Base64 值。要求图片/PDF经Base64编码后不超过 10M，分辨率建议600*800以上，且长宽比小于3（短边分辨率大于600, 长边分辨率小于等于短边分辨率的三倍）。支持PNG、JPG、JPEG、BMP、PDF格式。图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。</p>
         # @type ImageBase64: String
-        # @param ImageUrl: 图片/PDF的 Url 地址。要求图片/PDF经Base64编码后不超过 10M，分辨率建议600*800以上，且长宽比小于3（短边分辨率大于600, 长边分辨率小于等于短边分辨率的三倍）。支持PNG、JPG、JPEG、BMP、PDF格式。图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。非腾讯云存储的 Url 速度和稳定性可能受一定影响。
+        # @param ImageUrl: <p>图片/PDF的 Url 地址。要求图片/PDF经Base64编码后不超过 10M，分辨率建议600*800以上，且长宽比小于3（短边分辨率大于600, 长边分辨率小于等于短边分辨率的三倍）。支持PNG、JPG、JPEG、BMP、PDF格式。图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。非腾讯云存储的 Url 速度和稳定性可能受一定影响。</p>
         # @type ImageUrl: String
-        # @param PdfPageNumber: 需要识别的PDF页面的对应页码，仅支持PDF单页识别，当上传文件为PDF有效，默认值为1。
+        # @param PdfPageNumber: <p>需要识别的PDF页面的对应页码，仅支持PDF单页识别，当上传文件为PDF有效，默认值为1。</p>
         # @type PdfPageNumber: Integer
+        # @param UseNewModel: <p>是否使用新模型</p><p>枚举值：</p><ul><li>false： 使用当前默认模型，耗时短且支持坐标返回</li><li>true： 使用新模型，复杂表格识别效果更好，耗时稍长</li></ul><p>默认值：false</p>
+        # @type UseNewModel: Boolean
 
-        attr_accessor :ImageBase64, :ImageUrl, :PdfPageNumber
+        attr_accessor :ImageBase64, :ImageUrl, :PdfPageNumber, :UseNewModel
 
-        def initialize(imagebase64=nil, imageurl=nil, pdfpagenumber=nil)
+        def initialize(imagebase64=nil, imageurl=nil, pdfpagenumber=nil, usenewmodel=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
           @PdfPageNumber = pdfpagenumber
+          @UseNewModel = usenewmodel
         end
 
         def deserialize(params)
           @ImageBase64 = params['ImageBase64']
           @ImageUrl = params['ImageUrl']
           @PdfPageNumber = params['PdfPageNumber']
+          @UseNewModel = params['UseNewModel']
         end
       end
 
       # RecognizeTableAccurateOCR返回参数结构体
       class RecognizeTableAccurateOCRResponse < TencentCloud::Common::AbstractModel
-        # @param TableDetections: 检测到的文本信息，具体内容请点击左侧链接。
+        # @param TableDetections: <p>检测到的文本信息，具体内容请点击左侧链接。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TableDetections: Array
-        # @param Data: Base64 编码后的 Excel 数据。
+        # @param Data: <p>Base64 编码后的 Excel 数据。</p>
         # @type Data: String
-        # @param PdfPageSize: 图片为PDF时，返回PDF的总页数，默认为0
+        # @param PdfPageSize: <p>图片为PDF时，返回PDF的总页数，默认为0</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PdfPageSize: Integer
-        # @param Angle: 图片旋转角度（角度制），文本的水平方向为0°。
+        # @param Angle: <p>图片旋转角度（角度制），文本的水平方向为0°。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Angle: Float
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -15187,6 +15191,82 @@ module TencentCloud
               @VehicleRegCertInfos << vehicleregcertinfo_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # VerifyBizLicenseEnterprise4请求参数结构体
+      class VerifyBizLicenseEnterprise4Request < TencentCloud::Common::AbstractModel
+        # @param CreditCode: <p>统一社会信用代码</p>
+        # @type CreditCode: String
+        # @param EntName: <p>企业名称</p>
+        # @type EntName: String
+        # @param LrName: <p>法人代表</p>
+        # @type LrName: String
+        # @param IdNum: <p>注册登记证件号码</p>
+        # @type IdNum: String
+
+        attr_accessor :CreditCode, :EntName, :LrName, :IdNum
+
+        def initialize(creditcode=nil, entname=nil, lrname=nil, idnum=nil)
+          @CreditCode = creditcode
+          @EntName = entname
+          @LrName = lrname
+          @IdNum = idnum
+        end
+
+        def deserialize(params)
+          @CreditCode = params['CreditCode']
+          @EntName = params['EntName']
+          @LrName = params['LrName']
+          @IdNum = params['IdNum']
+        end
+      end
+
+      # VerifyBizLicenseEnterprise4返回参数结构体
+      class VerifyBizLicenseEnterprise4Response < TencentCloud::Common::AbstractModel
+        # @param StatusCode: <p>请求状态</p><p>枚举值：</p><ul><li>0： 成功，计费</li><li>1： 系统异常，不计费</li></ul>
+        # @type StatusCode: Integer
+        # @param VerifyResult: <p>验证结果<br>1：四要素完全匹配<br>0：四要素不完全匹配<br>仅StatusCode为0时返回</p>
+        # @type VerifyResult: Integer
+        # @param IsCreditCodeConsistent: <p>统一社会信用代码是否一致<br>仅StatusCode为0时返回</p>
+        # @type IsCreditCodeConsistent: Boolean
+        # @param IsEntNameConsistent: <p>企业名称是否一致<br>仅StatusCode为0时返回</p>
+        # @type IsEntNameConsistent: Boolean
+        # @param IsLrNameConsistent: <p>法人代表是否一致<br>仅StatusCode为0时返回，企业名称与统一社会信用代码均未查得时，固定返回false</p>
+        # @type IsLrNameConsistent: Boolean
+        # @param IsIdNumConsistent: <p>注册登记证件号码是否一致<br>仅StatusCode为0时返回，企业名称与统一社会信用代码均未查得时，固定返回false</p>
+        # @type IsIdNumConsistent: Boolean
+        # @param OperatingStatus: <p>经营状态</p><p>枚举值：</p><ul><li>1： 开业（在营）</li><li>2： 迁出</li><li>3： 注销</li><li>4： 吊销</li><li>5： 撤销</li><li>6： 停业</li><li>0： 其他</li><li>-10002： 企业信息不正确，无法查询</li></ul>
+        # @type OperatingStatus: String
+        # @param OperatingPeriod: <p>营业期限：一般包括营业开始时间和结束时间</p><p>参数格式：yyyy-MM-dd/yyyy-MM-dd</p><p>无固定期限的格式为：yyyy-MM-dd/<br>部分企业历史数据可能为空，将返回：/<br>企业信息不正确，无法查询，将返回：-10002</p>
+        # @type OperatingPeriod: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :StatusCode, :VerifyResult, :IsCreditCodeConsistent, :IsEntNameConsistent, :IsLrNameConsistent, :IsIdNumConsistent, :OperatingStatus, :OperatingPeriod, :RequestId
+
+        def initialize(statuscode=nil, verifyresult=nil, iscreditcodeconsistent=nil, isentnameconsistent=nil, islrnameconsistent=nil, isidnumconsistent=nil, operatingstatus=nil, operatingperiod=nil, requestid=nil)
+          @StatusCode = statuscode
+          @VerifyResult = verifyresult
+          @IsCreditCodeConsistent = iscreditcodeconsistent
+          @IsEntNameConsistent = isentnameconsistent
+          @IsLrNameConsistent = islrnameconsistent
+          @IsIdNumConsistent = isidnumconsistent
+          @OperatingStatus = operatingstatus
+          @OperatingPeriod = operatingperiod
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @StatusCode = params['StatusCode']
+          @VerifyResult = params['VerifyResult']
+          @IsCreditCodeConsistent = params['IsCreditCodeConsistent']
+          @IsEntNameConsistent = params['IsEntNameConsistent']
+          @IsLrNameConsistent = params['IsLrNameConsistent']
+          @IsIdNumConsistent = params['IsIdNumConsistent']
+          @OperatingStatus = params['OperatingStatus']
+          @OperatingPeriod = params['OperatingPeriod']
           @RequestId = params['RequestId']
         end
       end
