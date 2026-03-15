@@ -149,6 +149,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 构建客户端集群
+
+        # @param request: Request instance for BuildCustomerCluster.
+        # @type request: :class:`Tencentcloud::goosefs::V20220519::BuildCustomerClusterRequest`
+        # @rtype: :class:`Tencentcloud::goosefs::V20220519::BuildCustomerClusterResponse`
+        def BuildCustomerCluster(request)
+          body = send_request('BuildCustomerCluster', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = BuildCustomerClusterResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 取消单个预热任务，仅任务在 waiting、running 状态时可以调用此接口。注意，该接口需要 GooseFS 集群版本 ≥ 1.5.1。
 
         # @param request: Request instance for CancelLoadTask.
@@ -293,6 +317,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除客户端集群
+
+        # @param request: Request instance for DeleteCustomerCluster.
+        # @type request: :class:`Tencentcloud::goosefs::V20220519::DeleteCustomerClusterRequest`
+        # @rtype: :class:`Tencentcloud::goosefs::V20220519::DeleteCustomerClusterResponse`
+        def DeleteCustomerCluster(request)
+          body = send_request('DeleteCustomerCluster', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteCustomerClusterResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除文件系统
 
         # @param request: Request instance for DeleteFileSystem.
@@ -399,6 +447,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeClusterRoleTokenResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询客户端集群
+
+        # @param request: Request instance for DescribeCustomerCluster.
+        # @type request: :class:`Tencentcloud::goosefs::V20220519::DescribeCustomerClusterRequest`
+        # @rtype: :class:`Tencentcloud::goosefs::V20220519::DescribeCustomerClusterResponse`
+        def DescribeCustomerCluster(request)
+          body = send_request('DescribeCustomerCluster', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCustomerClusterResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -639,6 +711,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyDataRepositoryBandwidthResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 客户端集群挂载存储集群
+
+        # @param request: Request instance for MountMultipleStorageFileSystem.
+        # @type request: :class:`Tencentcloud::goosefs::V20220519::MountMultipleStorageFileSystemRequest`
+        # @rtype: :class:`Tencentcloud::goosefs::V20220519::MountMultipleStorageFileSystemResponse`
+        def MountMultipleStorageFileSystem(request)
+          body = send_request('MountMultipleStorageFileSystem', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = MountMultipleStorageFileSystemResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 生成客户端的挂载命令
+
+        # @param request: Request instance for QueryClientNodeMountCommand.
+        # @type request: :class:`Tencentcloud::goosefs::V20220519::QueryClientNodeMountCommandRequest`
+        # @rtype: :class:`Tencentcloud::goosefs::V20220519::QueryClientNodeMountCommandResponse`
+        def QueryClientNodeMountCommand(request)
+          body = send_request('QueryClientNodeMountCommand', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = QueryClientNodeMountCommandResponse.new
             model.deserialize(response['Response'])
             model
           else

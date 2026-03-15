@@ -101,32 +101,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 已无地方调用
-
-        # 本接口（DescribeBillingEnable）用于查询计费是否开启
-
-        # @param request: Request instance for DescribeBillingEnable.
-        # @type request: :class:`Tencentcloud::tdmysql::V20211122::DescribeBillingEnableRequest`
-        # @rtype: :class:`Tencentcloud::tdmysql::V20211122::DescribeBillingEnableResponse`
-        def DescribeBillingEnable(request)
-          body = send_request('DescribeBillingEnable', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeBillingEnableResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 本接口（DescribeDBParameters）用于获取实例的当前参数设置。
 
         # @param request: Request instance for DescribeDBParameters.
@@ -247,32 +221,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 冗余接口，无人调用
-
-        # 本接口（DescribeDatabaseTable）用于查询云数据库实例的表信息。
-
-        # @param request: Request instance for DescribeDatabaseTable.
-        # @type request: :class:`Tencentcloud::tdmysql::V20211122::DescribeDatabaseTableRequest`
-        # @rtype: :class:`Tencentcloud::tdmysql::V20211122::DescribeDatabaseTableResponse`
-        def DescribeDatabaseTable(request)
-          body = send_request('DescribeDatabaseTable', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeDatabaseTableResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 本接口（DescribeFlow）用于查询异步任务流程状态
 
         # @param request: Request instance for DescribeFlow.
@@ -355,32 +303,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyAutoRenewFlagResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 接口功能已被 ModifyInstanceCdc 完全覆盖
-
-        # 修改binlog状态
-
-        # @param request: Request instance for ModifyBinlogStatus.
-        # @type request: :class:`Tencentcloud::tdmysql::V20211122::ModifyBinlogStatusRequest`
-        # @rtype: :class:`Tencentcloud::tdmysql::V20211122::ModifyBinlogStatusResponse`
-        def ModifyBinlogStatus(request)
-          body = send_request('ModifyBinlogStatus', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = ModifyBinlogStatusResponse.new
             model.deserialize(response['Response'])
             model
           else

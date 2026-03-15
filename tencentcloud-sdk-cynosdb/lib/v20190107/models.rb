@@ -342,8 +342,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :Cpu, :Memory, :ReadOnlyCount, :DeviceType, :InstanceGrpId, :VpcId, :SubnetId, :Port, :InstanceName, :AutoVoucher, :DbType, :OrderSource, :DealMode, :ParamTemplateId, :InstanceParams, :SecurityGroupIds, :UpgradeProxy
         extend Gem::Deprecate
-        deprecate :InstanceGrpId, :none, 2026, 2
-        deprecate :InstanceGrpId=, :none, 2026, 2
+        deprecate :InstanceGrpId, :none, 2026, 3
+        deprecate :InstanceGrpId=, :none, 2026, 3
 
         def initialize(clusterid=nil, cpu=nil, memory=nil, readonlycount=nil, devicetype=nil, instancegrpid=nil, vpcid=nil, subnetid=nil, port=nil, instancename=nil, autovoucher=nil, dbtype=nil, ordersource=nil, dealmode=nil, paramtemplateid=nil, instanceparams=nil, securitygroupids=nil, upgradeproxy=nil)
           @ClusterId = clusterid
@@ -892,12 +892,14 @@ module TencentCloud
         # @param CrossRegions: 跨地域备份地域
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CrossRegions: Array
-        # @param BackupTriggerStrategy: 动数据备份触发策略，periodically:自动周期备份,frequent:高频备份
+        # @param BackupTriggerStrategy: 自动数据备份触发策略，periodically:自动周期备份,frequent:高频备份
         # @type BackupTriggerStrategy: String
+        # @param AutoCopyVaults: 备份投递关系
+        # @type AutoCopyVaults: Array
 
-        attr_accessor :BackupCustomAutoTime, :BackupTimeBeg, :BackupTimeEnd, :BackupWeekDays, :BackupIntervalTime, :ReserveDuration, :CrossRegionsEnable, :CrossRegions, :BackupTriggerStrategy
+        attr_accessor :BackupCustomAutoTime, :BackupTimeBeg, :BackupTimeEnd, :BackupWeekDays, :BackupIntervalTime, :ReserveDuration, :CrossRegionsEnable, :CrossRegions, :BackupTriggerStrategy, :AutoCopyVaults
 
-        def initialize(backupcustomautotime=nil, backuptimebeg=nil, backuptimeend=nil, backupweekdays=nil, backupintervaltime=nil, reserveduration=nil, crossregionsenable=nil, crossregions=nil, backuptriggerstrategy=nil)
+        def initialize(backupcustomautotime=nil, backuptimebeg=nil, backuptimeend=nil, backupweekdays=nil, backupintervaltime=nil, reserveduration=nil, crossregionsenable=nil, crossregions=nil, backuptriggerstrategy=nil, autocopyvaults=nil)
           @BackupCustomAutoTime = backupcustomautotime
           @BackupTimeBeg = backuptimebeg
           @BackupTimeEnd = backuptimeend
@@ -907,6 +909,7 @@ module TencentCloud
           @CrossRegionsEnable = crossregionsenable
           @CrossRegions = crossregions
           @BackupTriggerStrategy = backuptriggerstrategy
+          @AutoCopyVaults = autocopyvaults
         end
 
         def deserialize(params)
@@ -919,6 +922,14 @@ module TencentCloud
           @CrossRegionsEnable = params['CrossRegionsEnable']
           @CrossRegions = params['CrossRegions']
           @BackupTriggerStrategy = params['BackupTriggerStrategy']
+          unless params['AutoCopyVaults'].nil?
+            @AutoCopyVaults = []
+            params['AutoCopyVaults'].each do |i|
+              createbackupvaultitem_tmp = CreateBackupVaultItem.new
+              createbackupvaultitem_tmp.deserialize(i)
+              @AutoCopyVaults << createbackupvaultitem_tmp
+            end
+          end
         end
       end
 
@@ -948,10 +959,18 @@ module TencentCloud
         # @type SnapShotType: String
         # @param BackupName: 备份文件备注
         # @type BackupName: String
+        # @param CopyStatus: 投递状态
+        # @type CopyStatus: String
+        # @param EncryptKeyId: 秘钥id
+        # @type EncryptKeyId: String
+        # @param EncryptRegion: 秘钥地域
+        # @type EncryptRegion: String
+        # @param VaultInfos: 保险箱信息
+        # @type VaultInfos: Array
 
-        attr_accessor :SnapshotId, :FileName, :FileSize, :StartTime, :FinishTime, :BackupType, :BackupMethod, :BackupStatus, :SnapshotTime, :BackupId, :SnapShotType, :BackupName
+        attr_accessor :SnapshotId, :FileName, :FileSize, :StartTime, :FinishTime, :BackupType, :BackupMethod, :BackupStatus, :SnapshotTime, :BackupId, :SnapShotType, :BackupName, :CopyStatus, :EncryptKeyId, :EncryptRegion, :VaultInfos
 
-        def initialize(snapshotid=nil, filename=nil, filesize=nil, starttime=nil, finishtime=nil, backuptype=nil, backupmethod=nil, backupstatus=nil, snapshottime=nil, backupid=nil, snapshottype=nil, backupname=nil)
+        def initialize(snapshotid=nil, filename=nil, filesize=nil, starttime=nil, finishtime=nil, backuptype=nil, backupmethod=nil, backupstatus=nil, snapshottime=nil, backupid=nil, snapshottype=nil, backupname=nil, copystatus=nil, encryptkeyid=nil, encryptregion=nil, vaultinfos=nil)
           @SnapshotId = snapshotid
           @FileName = filename
           @FileSize = filesize
@@ -964,6 +983,10 @@ module TencentCloud
           @BackupId = backupid
           @SnapShotType = snapshottype
           @BackupName = backupname
+          @CopyStatus = copystatus
+          @EncryptKeyId = encryptkeyid
+          @EncryptRegion = encryptregion
+          @VaultInfos = vaultinfos
         end
 
         def deserialize(params)
@@ -979,6 +1002,17 @@ module TencentCloud
           @BackupId = params['BackupId']
           @SnapShotType = params['SnapShotType']
           @BackupName = params['BackupName']
+          @CopyStatus = params['CopyStatus']
+          @EncryptKeyId = params['EncryptKeyId']
+          @EncryptRegion = params['EncryptRegion']
+          unless params['VaultInfos'].nil?
+            @VaultInfos = []
+            params['VaultInfos'].each do |i|
+              vaultinfo_tmp = VaultInfo.new
+              vaultinfo_tmp.deserialize(i)
+              @VaultInfos << vaultinfo_tmp
+            end
+          end
         end
       end
 
@@ -1183,19 +1217,30 @@ module TencentCloud
         # @param BinlogCrossRegions: binlog异地地域
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BinlogCrossRegions: Array
+        # @param AutoCopyVaults: 保险箱信息
+        # @type AutoCopyVaults: Array
 
-        attr_accessor :BinlogSaveDays, :BinlogCrossRegionsEnable, :BinlogCrossRegions
+        attr_accessor :BinlogSaveDays, :BinlogCrossRegionsEnable, :BinlogCrossRegions, :AutoCopyVaults
 
-        def initialize(binlogsavedays=nil, binlogcrossregionsenable=nil, binlogcrossregions=nil)
+        def initialize(binlogsavedays=nil, binlogcrossregionsenable=nil, binlogcrossregions=nil, autocopyvaults=nil)
           @BinlogSaveDays = binlogsavedays
           @BinlogCrossRegionsEnable = binlogcrossregionsenable
           @BinlogCrossRegions = binlogcrossregions
+          @AutoCopyVaults = autocopyvaults
         end
 
         def deserialize(params)
           @BinlogSaveDays = params['BinlogSaveDays']
           @BinlogCrossRegionsEnable = params['BinlogCrossRegionsEnable']
           @BinlogCrossRegions = params['BinlogCrossRegions']
+          unless params['AutoCopyVaults'].nil?
+            @AutoCopyVaults = []
+            params['AutoCopyVaults'].each do |i|
+              createbackupvaultitem_tmp = CreateBackupVaultItem.new
+              createbackupvaultitem_tmp.deserialize(i)
+              @AutoCopyVaults << createbackupvaultitem_tmp
+            end
+          end
         end
       end
 
@@ -1213,16 +1258,28 @@ module TencentCloud
         # @type BinlogId: Integer
         # @param CrossRegions: binlog所跨地域
         # @type CrossRegions: Array
+        # @param CopyStatus: 备份投递状态
+        # @type CopyStatus: String
+        # @param VaultInfos: 保险箱信息
+        # @type VaultInfos: Array
+        # @param EncryptKeyId: 加密秘钥key
+        # @type EncryptKeyId: String
+        # @param EncryptRegion: 加密秘钥地域
+        # @type EncryptRegion: String
 
-        attr_accessor :FileName, :FileSize, :StartTime, :FinishTime, :BinlogId, :CrossRegions
+        attr_accessor :FileName, :FileSize, :StartTime, :FinishTime, :BinlogId, :CrossRegions, :CopyStatus, :VaultInfos, :EncryptKeyId, :EncryptRegion
 
-        def initialize(filename=nil, filesize=nil, starttime=nil, finishtime=nil, binlogid=nil, crossregions=nil)
+        def initialize(filename=nil, filesize=nil, starttime=nil, finishtime=nil, binlogid=nil, crossregions=nil, copystatus=nil, vaultinfos=nil, encryptkeyid=nil, encryptregion=nil)
           @FileName = filename
           @FileSize = filesize
           @StartTime = starttime
           @FinishTime = finishtime
           @BinlogId = binlogid
           @CrossRegions = crossregions
+          @CopyStatus = copystatus
+          @VaultInfos = vaultinfos
+          @EncryptKeyId = encryptkeyid
+          @EncryptRegion = encryptregion
         end
 
         def deserialize(params)
@@ -1232,6 +1289,17 @@ module TencentCloud
           @FinishTime = params['FinishTime']
           @BinlogId = params['BinlogId']
           @CrossRegions = params['CrossRegions']
+          @CopyStatus = params['CopyStatus']
+          unless params['VaultInfos'].nil?
+            @VaultInfos = []
+            params['VaultInfos'].each do |i|
+              vaultinfo_tmp = VaultInfo.new
+              vaultinfo_tmp.deserialize(i)
+              @VaultInfos << vaultinfo_tmp
+            end
+          end
+          @EncryptKeyId = params['EncryptKeyId']
+          @EncryptRegion = params['EncryptRegion']
         end
       end
 
@@ -1317,15 +1385,19 @@ module TencentCloud
         # @type TaskProgressInfo: :class:`Tencentcloud::Cynosdb.v20190107.models.TaskProgressInfo`
         # @param GdnTaskInfo: 全球数据库网络任务
         # @type GdnTaskInfo: :class:`Tencentcloud::Cynosdb.v20190107.models.GdnTaskInfo`
+        # @param VaultId: 保险箱id
+        # @type VaultId: String
+        # @param VaultName: 保险箱名称
+        # @type VaultName: String
 
-        attr_accessor :ID, :AppId, :ClusterId, :Region, :CreateTime, :DelayTime, :ErrMsg, :FlowId, :Input, :InstanceGrpId, :InstanceGroupId, :InstanceId, :ObjectId, :ObjectType, :Operator, :Output, :Status, :TaskType, :TriggerTaskId, :UpdateTime, :StartTime, :EndTime, :ClusterName, :InstanceName, :Process, :ModifyParamsData, :CreateClustersData, :RollbackData, :ModifyInstanceData, :ManualBackupData, :ModifyDbVersionData, :ClusterSlaveData, :SwitchClusterLogBin, :ModifyInstanceParamsData, :TaskMaintainInfo, :InstanceCLSDeliveryInfos, :TaskProgressInfo, :GdnTaskInfo
+        attr_accessor :ID, :AppId, :ClusterId, :Region, :CreateTime, :DelayTime, :ErrMsg, :FlowId, :Input, :InstanceGrpId, :InstanceGroupId, :InstanceId, :ObjectId, :ObjectType, :Operator, :Output, :Status, :TaskType, :TriggerTaskId, :UpdateTime, :StartTime, :EndTime, :ClusterName, :InstanceName, :Process, :ModifyParamsData, :CreateClustersData, :RollbackData, :ModifyInstanceData, :ManualBackupData, :ModifyDbVersionData, :ClusterSlaveData, :SwitchClusterLogBin, :ModifyInstanceParamsData, :TaskMaintainInfo, :InstanceCLSDeliveryInfos, :TaskProgressInfo, :GdnTaskInfo, :VaultId, :VaultName
         extend Gem::Deprecate
-        deprecate :InstanceGrpId, :none, 2026, 2
-        deprecate :InstanceGrpId=, :none, 2026, 2
-        deprecate :ModifyParamsData, :none, 2026, 2
-        deprecate :ModifyParamsData=, :none, 2026, 2
+        deprecate :InstanceGrpId, :none, 2026, 3
+        deprecate :InstanceGrpId=, :none, 2026, 3
+        deprecate :ModifyParamsData, :none, 2026, 3
+        deprecate :ModifyParamsData=, :none, 2026, 3
 
-        def initialize(id=nil, appid=nil, clusterid=nil, region=nil, createtime=nil, delaytime=nil, errmsg=nil, flowid=nil, input=nil, instancegrpid=nil, instancegroupid=nil, instanceid=nil, objectid=nil, objecttype=nil, operator=nil, output=nil, status=nil, tasktype=nil, triggertaskid=nil, updatetime=nil, starttime=nil, endtime=nil, clustername=nil, instancename=nil, process=nil, modifyparamsdata=nil, createclustersdata=nil, rollbackdata=nil, modifyinstancedata=nil, manualbackupdata=nil, modifydbversiondata=nil, clusterslavedata=nil, switchclusterlogbin=nil, modifyinstanceparamsdata=nil, taskmaintaininfo=nil, instanceclsdeliveryinfos=nil, taskprogressinfo=nil, gdntaskinfo=nil)
+        def initialize(id=nil, appid=nil, clusterid=nil, region=nil, createtime=nil, delaytime=nil, errmsg=nil, flowid=nil, input=nil, instancegrpid=nil, instancegroupid=nil, instanceid=nil, objectid=nil, objecttype=nil, operator=nil, output=nil, status=nil, tasktype=nil, triggertaskid=nil, updatetime=nil, starttime=nil, endtime=nil, clustername=nil, instancename=nil, process=nil, modifyparamsdata=nil, createclustersdata=nil, rollbackdata=nil, modifyinstancedata=nil, manualbackupdata=nil, modifydbversiondata=nil, clusterslavedata=nil, switchclusterlogbin=nil, modifyinstanceparamsdata=nil, taskmaintaininfo=nil, instanceclsdeliveryinfos=nil, taskprogressinfo=nil, gdntaskinfo=nil, vaultid=nil, vaultname=nil)
           @ID = id
           @AppId = appid
           @ClusterId = clusterid
@@ -1364,6 +1436,8 @@ module TencentCloud
           @InstanceCLSDeliveryInfos = instanceclsdeliveryinfos
           @TaskProgressInfo = taskprogressinfo
           @GdnTaskInfo = gdntaskinfo
+          @VaultId = vaultid
+          @VaultName = vaultname
         end
 
         def deserialize(params)
@@ -1452,6 +1526,8 @@ module TencentCloud
             @GdnTaskInfo = GdnTaskInfo.new
             @GdnTaskInfo.deserialize(params['GdnTaskInfo'])
           end
+          @VaultId = params['VaultId']
+          @VaultName = params['VaultName']
         end
       end
 
@@ -1866,8 +1942,8 @@ module TencentCloud
 
         attr_accessor :InstanceGrpId, :InstanceGroupId, :InstanceId
         extend Gem::Deprecate
-        deprecate :InstanceGrpId, :none, 2026, 2
-        deprecate :InstanceGrpId=, :none, 2026, 2
+        deprecate :InstanceGrpId, :none, 2026, 3
+        deprecate :InstanceGrpId=, :none, 2026, 3
 
         def initialize(instancegrpid=nil, instancegroupid=nil, instanceid=nil)
           @InstanceGrpId = instancegrpid
@@ -2240,8 +2316,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :StartTime, :EndTime, :Order, :OrderBy, :Filter, :LogFilter, :ColumnFilter
         extend Gem::Deprecate
-        deprecate :Filter, :none, 2026, 2
-        deprecate :Filter=, :none, 2026, 2
+        deprecate :Filter, :none, 2026, 3
+        deprecate :Filter=, :none, 2026, 3
 
         def initialize(instanceid=nil, starttime=nil, endtime=nil, order=nil, orderby=nil, filter=nil, logfilter=nil, columnfilter=nil)
           @InstanceId = instanceid
@@ -2411,6 +2487,28 @@ module TencentCloud
         def deserialize(params)
           @FlowId = params['FlowId']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 保险箱信息
+      class CreateBackupVaultItem < TencentCloud::Common::AbstractModel
+        # @param VaultId: 保险箱id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VaultId: String
+        # @param VaultRegion: 保险箱地域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VaultRegion: String
+
+        attr_accessor :VaultId, :VaultRegion
+
+        def initialize(vaultid=nil, vaultregion=nil)
+          @VaultId = vaultid
+          @VaultRegion = vaultregion
+        end
+
+        def deserialize(params)
+          @VaultId = params['VaultId']
+          @VaultRegion = params['VaultRegion']
         end
       end
 
@@ -5803,8 +5901,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :StartTime, :EndTime, :Order, :OrderBy, :Filter, :Limit, :Offset, :LogFilter
         extend Gem::Deprecate
-        deprecate :Filter, :none, 2026, 2
-        deprecate :Filter=, :none, 2026, 2
+        deprecate :Filter, :none, 2026, 3
+        deprecate :Filter=, :none, 2026, 3
 
         def initialize(instanceid=nil, starttime=nil, endtime=nil, order=nil, orderby=nil, filter=nil, limit=nil, offset=nil, logfilter=nil)
           @InstanceId = instanceid
@@ -6849,8 +6947,8 @@ module TencentCloud
 
         attr_accessor :TotalCount, :InstanceGrpInfoList, :InstanceGroupInfoList, :RequestId
         extend Gem::Deprecate
-        deprecate :InstanceGrpInfoList, :none, 2026, 2
-        deprecate :InstanceGrpInfoList=, :none, 2026, 2
+        deprecate :InstanceGrpInfoList, :none, 2026, 3
+        deprecate :InstanceGrpInfoList=, :none, 2026, 3
 
         def initialize(totalcount=nil, instancegrpinfolist=nil, instancegroupinfolist=nil, requestid=nil)
           @TotalCount = totalcount
@@ -7255,8 +7353,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :InstanceGroupId
         extend Gem::Deprecate
-        deprecate :InstanceId, :none, 2026, 2
-        deprecate :InstanceId=, :none, 2026, 2
+        deprecate :InstanceId, :none, 2026, 3
+        deprecate :InstanceId=, :none, 2026, 3
 
         def initialize(instanceid=nil, instancegroupid=nil)
           @InstanceId = instanceid
@@ -12661,16 +12759,19 @@ module TencentCloud
         # @param LogicCrossRegions: 逻辑备份所跨地域
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogicCrossRegions: Array
+        # @param AutoCopyVaults: 备份投递关系
+        # @type AutoCopyVaults: Array
 
-        attr_accessor :LogicBackupEnable, :LogicBackupTimeBeg, :LogicBackupTimeEnd, :LogicReserveDuration, :LogicCrossRegionsEnable, :LogicCrossRegions
+        attr_accessor :LogicBackupEnable, :LogicBackupTimeBeg, :LogicBackupTimeEnd, :LogicReserveDuration, :LogicCrossRegionsEnable, :LogicCrossRegions, :AutoCopyVaults
 
-        def initialize(logicbackupenable=nil, logicbackuptimebeg=nil, logicbackuptimeend=nil, logicreserveduration=nil, logiccrossregionsenable=nil, logiccrossregions=nil)
+        def initialize(logicbackupenable=nil, logicbackuptimebeg=nil, logicbackuptimeend=nil, logicreserveduration=nil, logiccrossregionsenable=nil, logiccrossregions=nil, autocopyvaults=nil)
           @LogicBackupEnable = logicbackupenable
           @LogicBackupTimeBeg = logicbackuptimebeg
           @LogicBackupTimeEnd = logicbackuptimeend
           @LogicReserveDuration = logicreserveduration
           @LogicCrossRegionsEnable = logiccrossregionsenable
           @LogicCrossRegions = logiccrossregions
+          @AutoCopyVaults = autocopyvaults
         end
 
         def deserialize(params)
@@ -12680,6 +12781,14 @@ module TencentCloud
           @LogicReserveDuration = params['LogicReserveDuration']
           @LogicCrossRegionsEnable = params['LogicCrossRegionsEnable']
           @LogicCrossRegions = params['LogicCrossRegions']
+          unless params['AutoCopyVaults'].nil?
+            @AutoCopyVaults = []
+            params['AutoCopyVaults'].each do |i|
+              createbackupvaultitem_tmp = CreateBackupVaultItem.new
+              createbackupvaultitem_tmp.deserialize(i)
+              @AutoCopyVaults << createbackupvaultitem_tmp
+            end
+          end
         end
       end
 
@@ -14995,10 +15104,12 @@ module TencentCloud
         # @type AutoArchive: String
         # @param UpgradeType: 升级类型。 默认值：upgradeImmediate。 可选值： upgradeImmediate：立即完成修改 upgradeInMaintain：在维护时间窗口内完成修改
         # @type UpgradeType: String
+        # @param SecurityGroupIdsForNewRo: 新增的只读实例需要绑定的安全组列表。仅仅针对于在这次调整策略过程中新产生的只读实例绑定安全组，存量的实例不绑定。
+        # @type SecurityGroupIdsForNewRo: Array
 
-        attr_accessor :ClusterId, :AutoPause, :AutoPauseDelay, :AutoScaleUpDelay, :AutoScaleDownDelay, :MinCpu, :MaxCpu, :MinRoCpu, :MaxRoCpu, :MinRoCount, :MaxRoCount, :AutoArchive, :UpgradeType
+        attr_accessor :ClusterId, :AutoPause, :AutoPauseDelay, :AutoScaleUpDelay, :AutoScaleDownDelay, :MinCpu, :MaxCpu, :MinRoCpu, :MaxRoCpu, :MinRoCount, :MaxRoCount, :AutoArchive, :UpgradeType, :SecurityGroupIdsForNewRo
 
-        def initialize(clusterid=nil, autopause=nil, autopausedelay=nil, autoscaleupdelay=nil, autoscaledowndelay=nil, mincpu=nil, maxcpu=nil, minrocpu=nil, maxrocpu=nil, minrocount=nil, maxrocount=nil, autoarchive=nil, upgradetype=nil)
+        def initialize(clusterid=nil, autopause=nil, autopausedelay=nil, autoscaleupdelay=nil, autoscaledowndelay=nil, mincpu=nil, maxcpu=nil, minrocpu=nil, maxrocpu=nil, minrocount=nil, maxrocount=nil, autoarchive=nil, upgradetype=nil, securitygroupidsfornewro=nil)
           @ClusterId = clusterid
           @AutoPause = autopause
           @AutoPauseDelay = autopausedelay
@@ -15012,6 +15123,7 @@ module TencentCloud
           @MaxRoCount = maxrocount
           @AutoArchive = autoarchive
           @UpgradeType = upgradetype
+          @SecurityGroupIdsForNewRo = securitygroupidsfornewro
         end
 
         def deserialize(params)
@@ -15028,6 +15140,7 @@ module TencentCloud
           @MaxRoCount = params['MaxRoCount']
           @AutoArchive = params['AutoArchive']
           @UpgradeType = params['UpgradeType']
+          @SecurityGroupIdsForNewRo = params['SecurityGroupIdsForNewRo']
         end
       end
 
@@ -15042,8 +15155,8 @@ module TencentCloud
 
         attr_accessor :FlowId, :TaskId, :RequestId
         extend Gem::Deprecate
-        deprecate :FlowId, :none, 2026, 2
-        deprecate :FlowId=, :none, 2026, 2
+        deprecate :FlowId, :none, 2026, 3
+        deprecate :FlowId=, :none, 2026, 3
 
         def initialize(flowid=nil, taskid=nil, requestid=nil)
           @FlowId = flowid
@@ -15122,8 +15235,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :InstanceGrpId, :InstanceGroupId, :Vip, :Vport, :DbType, :OldIpReserveHours
         extend Gem::Deprecate
-        deprecate :InstanceGrpId, :none, 2026, 2
-        deprecate :InstanceGrpId=, :none, 2026, 2
+        deprecate :InstanceGrpId, :none, 2026, 3
+        deprecate :InstanceGrpId=, :none, 2026, 3
 
         def initialize(clusterid=nil, instancegrpid=nil, instancegroupid=nil, vip=nil, vport=nil, dbtype=nil, oldipreservehours=nil)
           @ClusterId = clusterid
@@ -15500,8 +15613,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :LogExpireDay, :HighLogExpireDay, :AuditRuleFilters, :RuleTemplateIds, :AuditAll
         extend Gem::Deprecate
-        deprecate :AuditRuleFilters, :none, 2026, 2
-        deprecate :AuditRuleFilters=, :none, 2026, 2
+        deprecate :AuditRuleFilters, :none, 2026, 3
+        deprecate :AuditRuleFilters=, :none, 2026, 3
 
         def initialize(instanceid=nil, logexpireday=nil, highlogexpireday=nil, auditrulefilters=nil, ruletemplateids=nil, auditall=nil)
           @InstanceId = instanceid
@@ -15812,8 +15925,8 @@ module TencentCloud
 
         attr_accessor :InstanceGrpId, :InstanceId, :InstanceGroupId
         extend Gem::Deprecate
-        deprecate :InstanceGrpId, :none, 2026, 2
-        deprecate :InstanceGrpId=, :none, 2026, 2
+        deprecate :InstanceGrpId, :none, 2026, 3
+        deprecate :InstanceGrpId=, :none, 2026, 3
 
         def initialize(instancegrpid=nil, instanceid=nil, instancegroupid=nil)
           @InstanceGrpId = instancegrpid
@@ -16899,8 +17012,8 @@ module TencentCloud
 
         attr_accessor :Values, :Names, :ExactMatch, :Name, :Operator
         extend Gem::Deprecate
-        deprecate :Operator, :none, 2026, 2
-        deprecate :Operator=, :none, 2026, 2
+        deprecate :Operator, :none, 2026, 3
+        deprecate :Operator=, :none, 2026, 3
 
         def initialize(values=nil, names=nil, exactmatch=nil, name=nil, operator=nil)
           @Values = values
@@ -16985,10 +17098,18 @@ module TencentCloud
         # @type StartTime: String
         # @param FinishTime: 完成时间
         # @type FinishTime: String
+        # @param VaultInfos: 保险箱信息
+        # @type VaultInfos: Array
+        # @param CopyStatus: 备份投递状态
+        # @type CopyStatus: String
+        # @param EncryptKeyId: 加密秘钥key
+        # @type EncryptKeyId: String
+        # @param EncryptRegion: 加密秘钥地域
+        # @type EncryptRegion: String
 
-        attr_accessor :FileName, :FileSize, :BackupTime, :RedoLogId, :RedoCrossRegions, :Status, :StartTime, :FinishTime
+        attr_accessor :FileName, :FileSize, :BackupTime, :RedoLogId, :RedoCrossRegions, :Status, :StartTime, :FinishTime, :VaultInfos, :CopyStatus, :EncryptKeyId, :EncryptRegion
 
-        def initialize(filename=nil, filesize=nil, backuptime=nil, redologid=nil, redocrossregions=nil, status=nil, starttime=nil, finishtime=nil)
+        def initialize(filename=nil, filesize=nil, backuptime=nil, redologid=nil, redocrossregions=nil, status=nil, starttime=nil, finishtime=nil, vaultinfos=nil, copystatus=nil, encryptkeyid=nil, encryptregion=nil)
           @FileName = filename
           @FileSize = filesize
           @BackupTime = backuptime
@@ -16997,6 +17118,10 @@ module TencentCloud
           @Status = status
           @StartTime = starttime
           @FinishTime = finishtime
+          @VaultInfos = vaultinfos
+          @CopyStatus = copystatus
+          @EncryptKeyId = encryptkeyid
+          @EncryptRegion = encryptregion
         end
 
         def deserialize(params)
@@ -17015,6 +17140,17 @@ module TencentCloud
           @Status = params['Status']
           @StartTime = params['StartTime']
           @FinishTime = params['FinishTime']
+          unless params['VaultInfos'].nil?
+            @VaultInfos = []
+            params['VaultInfos'].each do |i|
+              vaultinfo_tmp = VaultInfo.new
+              vaultinfo_tmp.deserialize(i)
+              @VaultInfos << vaultinfo_tmp
+            end
+          end
+          @CopyStatus = params['CopyStatus']
+          @EncryptKeyId = params['EncryptKeyId']
+          @EncryptRegion = params['EncryptRegion']
         end
       end
 
@@ -19095,10 +19231,12 @@ module TencentCloud
         # @type ReserveDuration: Integer
         # @param BackupTriggerStrategy: 自动数据备份触发策略，periodically:自动周期备份,frequent:高频备份
         # @type BackupTriggerStrategy: String
+        # @param AutoCopyVaults: 保险箱信息
+        # @type AutoCopyVaults: Array
 
-        attr_accessor :BackupCustomAutoTime, :BackupTimeBeg, :BackupTimeEnd, :BackupWeekDays, :BackupIntervalTime, :ReserveDuration, :BackupTriggerStrategy
+        attr_accessor :BackupCustomAutoTime, :BackupTimeBeg, :BackupTimeEnd, :BackupWeekDays, :BackupIntervalTime, :ReserveDuration, :BackupTriggerStrategy, :AutoCopyVaults
 
-        def initialize(backupcustomautotime=nil, backuptimebeg=nil, backuptimeend=nil, backupweekdays=nil, backupintervaltime=nil, reserveduration=nil, backuptriggerstrategy=nil)
+        def initialize(backupcustomautotime=nil, backuptimebeg=nil, backuptimeend=nil, backupweekdays=nil, backupintervaltime=nil, reserveduration=nil, backuptriggerstrategy=nil, autocopyvaults=nil)
           @BackupCustomAutoTime = backupcustomautotime
           @BackupTimeBeg = backuptimebeg
           @BackupTimeEnd = backuptimeend
@@ -19106,6 +19244,7 @@ module TencentCloud
           @BackupIntervalTime = backupintervaltime
           @ReserveDuration = reserveduration
           @BackupTriggerStrategy = backuptriggerstrategy
+          @AutoCopyVaults = autocopyvaults
         end
 
         def deserialize(params)
@@ -19116,6 +19255,14 @@ module TencentCloud
           @BackupIntervalTime = params['BackupIntervalTime']
           @ReserveDuration = params['ReserveDuration']
           @BackupTriggerStrategy = params['BackupTriggerStrategy']
+          unless params['AutoCopyVaults'].nil?
+            @AutoCopyVaults = []
+            params['AutoCopyVaults'].each do |i|
+              createbackupvaultitem_tmp = CreateBackupVaultItem.new
+              createbackupvaultitem_tmp.deserialize(i)
+              @AutoCopyVaults << createbackupvaultitem_tmp
+            end
+          end
         end
       end
 
@@ -19985,6 +20132,38 @@ module TencentCloud
           @DbUserName = params['DbUserName']
           @DbHost = params['DbHost']
           @DbPrivilege = params['DbPrivilege']
+        end
+      end
+
+      # 保险箱信息
+      class VaultInfo < TencentCloud::Common::AbstractModel
+        # @param VaultId: 保险箱id
+        # @type VaultId: String
+        # @param VaultName: 保险箱name
+        # @type VaultName: String
+        # @param VaultRegion: 保险箱地域
+        # @type VaultRegion: String
+        # @param VaultStatus: 保险箱状态
+        # @type VaultStatus: String
+        # @param BackupSaveSeconds: 备份保留时间
+        # @type BackupSaveSeconds: Integer
+
+        attr_accessor :VaultId, :VaultName, :VaultRegion, :VaultStatus, :BackupSaveSeconds
+
+        def initialize(vaultid=nil, vaultname=nil, vaultregion=nil, vaultstatus=nil, backupsaveseconds=nil)
+          @VaultId = vaultid
+          @VaultName = vaultname
+          @VaultRegion = vaultregion
+          @VaultStatus = vaultstatus
+          @BackupSaveSeconds = backupsaveseconds
+        end
+
+        def deserialize(params)
+          @VaultId = params['VaultId']
+          @VaultName = params['VaultName']
+          @VaultRegion = params['VaultRegion']
+          @VaultStatus = params['VaultStatus']
+          @BackupSaveSeconds = params['BackupSaveSeconds']
         end
       end
 

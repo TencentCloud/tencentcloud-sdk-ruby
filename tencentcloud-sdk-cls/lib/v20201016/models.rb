@@ -8548,8 +8548,7 @@ module TencentCloud
 
       # DescribeIndex请求参数结构体
       class DescribeIndexRequest < TencentCloud::Common::AbstractModel
-        # @param TopicId: 日志主题Id。
-        # - 通过[获取日志主题列表](https://cloud.tencent.com/document/product/614/56454)获取日志主题Id。
+        # @param TopicId: <p>日志主题Id。</p><ul><li>通过<a href="https://cloud.tencent.com/document/product/614/56454">获取日志主题列表</a>获取日志主题Id。</li></ul>
         # @type TopicId: String
 
         attr_accessor :TopicId
@@ -8565,26 +8564,20 @@ module TencentCloud
 
       # DescribeIndex返回参数结构体
       class DescribeIndexResponse < TencentCloud::Common::AbstractModel
-        # @param TopicId: 日志主题Id
+        # @param TopicId: <p>日志主题Id</p>
         # @type TopicId: String
-        # @param Status: 索引状态。true：开启状态，false：关闭状态
-        # 开启后可对日志进行检索分析，将产生索引流量、索引存储及相应费用。[费用详情](https://cloud.tencent.com/document/product/614/45802#.E8.AE.A1.E8.B4.B9.E9.A1.B9)
+        # @param Status: <p>索引状态。true：开启状态，false：关闭状态<br>开启后可对日志进行检索分析，将产生索引流量、索引存储及相应费用。<a href="https://cloud.tencent.com/document/product/614/45802#.E8.AE.A1.E8.B4.B9.E9.A1.B9">费用详情</a></p>
         # @type Status: Boolean
-        # @param Rule: 索引配置信息
+        # @param Rule: <p>索引配置信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Rule: :class:`Tencentcloud::Cls.v20201016.models.RuleInfo`
-        # @param ModifyTime: 索引修改时间，初始值为索引创建时间。格式 `YYYY-MM-DD HH:MM:SS`
+        # @param ModifyTime: <p>索引修改时间，初始值为索引创建时间。格式 <code>YYYY-MM-DD HH:MM:SS</code></p>
         # @type ModifyTime: String
-        # @param IncludeInternalFields: 内置保留字段（`__FILENAME__`，`__HOSTNAME__`及`__SOURCE__`）是否包含至全文索引
-        # * false:不包含
-        # * true:包含
+        # @param IncludeInternalFields: <p>内置保留字段（<code>__FILENAME__</code>，<code>__HOSTNAME__</code>及<code>__SOURCE__</code>）是否包含至全文索引</p><ul><li>false:不包含</li><li>true:包含</li></ul>
         # @type IncludeInternalFields: Boolean
-        # @param MetadataFlag: 元数据字段（前缀为`__TAG__`的字段）是否包含至全文索引
-        # * 0:仅包含开启键值索引的元数据字段
-        # * 1:包含所有元数据字段
-        # * 2:不包含任何元数据字段
+        # @param MetadataFlag: <p>元数据字段（前缀为<code>__TAG__</code>的字段）是否包含至全文索引</p><ul><li>0:仅包含开启键值索引的元数据字段</li><li>1:包含所有元数据字段</li><li>2:不包含任何元数据字段</li></ul>
         # @type MetadataFlag: Integer
-        # @param CoverageField: 自定义日志解析异常存储字段。
+        # @param CoverageField: <p>自定义日志解析异常存储字段。</p>
         # @type CoverageField: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

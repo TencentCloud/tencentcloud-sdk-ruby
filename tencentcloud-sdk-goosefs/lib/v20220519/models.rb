@@ -241,6 +241,54 @@ module TencentCloud
         end
       end
 
+      # BuildCustomerCluster请求参数结构体
+      class BuildCustomerClusterRequest < TencentCloud::Common::AbstractModel
+        # @param FileSystemId: 文件系统id
+        # @type FileSystemId: String
+        # @param VpcId: vpc网络ID
+        # @type VpcId: String
+        # @param SubnetId: 子网id
+        # @type SubnetId: String
+        # @param ClusterName: 集群名称
+        # @type ClusterName: String
+
+        attr_accessor :FileSystemId, :VpcId, :SubnetId, :ClusterName
+
+        def initialize(filesystemid=nil, vpcid=nil, subnetid=nil, clustername=nil)
+          @FileSystemId = filesystemid
+          @VpcId = vpcid
+          @SubnetId = subnetid
+          @ClusterName = clustername
+        end
+
+        def deserialize(params)
+          @FileSystemId = params['FileSystemId']
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+          @ClusterName = params['ClusterName']
+        end
+      end
+
+      # BuildCustomerCluster返回参数结构体
+      class BuildCustomerClusterResponse < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 客户端集群Id
+        # @type ClusterId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ClusterId, :RequestId
+
+        def initialize(clusterid=nil, requestid=nil)
+          @ClusterId = clusterid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CancelLoadTask请求参数结构体
       class CancelLoadTaskRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群 ID
@@ -405,6 +453,27 @@ module TencentCloud
         end
       end
 
+      # 客户端集群挂载信息
+      class ClusterMountAttr < TencentCloud::Common::AbstractModel
+        # @param StorageFileSystemId: 挂载的文件系统Id
+        # @type StorageFileSystemId: String
+        # @param MountPoint: 客户端集群挂载点。入参是节点的自定义挂载点，出参是集群的默认挂载点
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MountPoint: String
+
+        attr_accessor :StorageFileSystemId, :MountPoint
+
+        def initialize(storagefilesystemid=nil, mountpoint=nil)
+          @StorageFileSystemId = storagefilesystemid
+          @MountPoint = mountpoint
+        end
+
+        def deserialize(params)
+          @StorageFileSystemId = params['StorageFileSystemId']
+          @MountPoint = params['MountPoint']
+        end
+      end
+
       # CreateDataRepositoryTask请求参数结构体
       class CreateDataRepositoryTaskRequest < TencentCloud::Common::AbstractModel
         # @param TaskType: 数据流通任务类型, FS_TO_COS(文件系统到COS Bucket),或者COS_TO_FS(COS Bucket到文件系统)
@@ -498,8 +567,8 @@ module TencentCloud
 
         attr_accessor :Name, :Description, :VpcId, :SubnetId, :Zone, :Type, :Tag, :GooseFSxBuildElements, :SecurityGroupId, :ClusterPort
         extend Gem::Deprecate
-        deprecate :Type, :none, 2026, 2
-        deprecate :Type=, :none, 2026, 2
+        deprecate :Type, :none, 2026, 3
+        deprecate :Type=, :none, 2026, 3
 
         def initialize(name=nil, description=nil, vpcid=nil, subnetid=nil, zone=nil, type=nil, tag=nil, goosefsxbuildelements=nil, securitygroupid=nil, clusterport=nil)
           @Name = name
@@ -657,6 +726,68 @@ module TencentCloud
         end
       end
 
+      # goosefsx客户端集群信息
+      class CustomerClusterAttr < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群id
+        # @type ClusterId: String
+        # @param VpcId: vpc网络id
+        # @type VpcId: String
+        # @param SubnetId: 子网id
+        # @type SubnetId: String
+        # @param ClientNum: 客户端数量
+        # @type ClientNum: Integer
+        # @param ClusterName: 集群名称
+        # @type ClusterName: String
+        # @param ClusterType: 集群类型：0: 默认集群（文件系统创建时构建，不可销毁）；1: 扩展集群（客户端数量为0时可销毁）
+        # @type ClusterType: Integer
+        # @param ManagerNodes: 管理节点信息
+        # @type ManagerNodes: Array
+        # @param Status: 集群状态：0:creating 创建中；1: created 创建完成; 2: deleting 删除中； 3: deleted 删除完成； 4:  failed 创建失败
+        # @type Status: Integer
+        # @param ClusterMountSet: 客户端集群挂载存储集合
+        # @type ClusterMountSet: Array
+
+        attr_accessor :ClusterId, :VpcId, :SubnetId, :ClientNum, :ClusterName, :ClusterType, :ManagerNodes, :Status, :ClusterMountSet
+
+        def initialize(clusterid=nil, vpcid=nil, subnetid=nil, clientnum=nil, clustername=nil, clustertype=nil, managernodes=nil, status=nil, clustermountset=nil)
+          @ClusterId = clusterid
+          @VpcId = vpcid
+          @SubnetId = subnetid
+          @ClientNum = clientnum
+          @ClusterName = clustername
+          @ClusterType = clustertype
+          @ManagerNodes = managernodes
+          @Status = status
+          @ClusterMountSet = clustermountset
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+          @ClientNum = params['ClientNum']
+          @ClusterName = params['ClusterName']
+          @ClusterType = params['ClusterType']
+          unless params['ManagerNodes'].nil?
+            @ManagerNodes = []
+            params['ManagerNodes'].each do |i|
+              clientclustermanagernodeinfo_tmp = ClientClusterManagerNodeInfo.new
+              clientclustermanagernodeinfo_tmp.deserialize(i)
+              @ManagerNodes << clientclustermanagernodeinfo_tmp
+            end
+          end
+          @Status = params['Status']
+          unless params['ClusterMountSet'].nil?
+            @ClusterMountSet = []
+            params['ClusterMountSet'].each do |i|
+              clustermountattr_tmp = ClusterMountAttr.new
+              clustermountattr_tmp.deserialize(i)
+              @ClusterMountSet << clustermountattr_tmp
+            end
+          end
+        end
+      end
+
       # DeleteCrossVpcSubnetSupportForClientNode请求参数结构体
       class DeleteCrossVpcSubnetSupportForClientNodeRequest < TencentCloud::Common::AbstractModel
         # @param FileSystemId: 文件系统ID
@@ -682,6 +813,42 @@ module TencentCloud
 
       # DeleteCrossVpcSubnetSupportForClientNode返回参数结构体
       class DeleteCrossVpcSubnetSupportForClientNodeResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteCustomerCluster请求参数结构体
+      class DeleteCustomerClusterRequest < TencentCloud::Common::AbstractModel
+        # @param FileSystemId: 文件系统id
+        # @type FileSystemId: String
+        # @param ClusterId: 客户端集群ID
+        # @type ClusterId: String
+
+        attr_accessor :FileSystemId, :ClusterId
+
+        def initialize(filesystemid=nil, clusterid=nil)
+          @FileSystemId = filesystemid
+          @ClusterId = clusterid
+        end
+
+        def deserialize(params)
+          @FileSystemId = params['FileSystemId']
+          @ClusterId = params['ClusterId']
+        end
+      end
+
+      # DeleteCustomerCluster返回参数结构体
+      class DeleteCustomerClusterResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -891,6 +1058,49 @@ module TencentCloud
               roletoken_tmp = RoleToken.new
               roletoken_tmp.deserialize(i)
               @RoleTokens << roletoken_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCustomerCluster请求参数结构体
+      class DescribeCustomerClusterRequest < TencentCloud::Common::AbstractModel
+        # @param FileSystemId: 文件系统id
+        # @type FileSystemId: String
+
+        attr_accessor :FileSystemId
+
+        def initialize(filesystemid=nil)
+          @FileSystemId = filesystemid
+        end
+
+        def deserialize(params)
+          @FileSystemId = params['FileSystemId']
+        end
+      end
+
+      # DescribeCustomerCluster返回参数结构体
+      class DescribeCustomerClusterResponse < TencentCloud::Common::AbstractModel
+        # @param ClusterSet: 客户端集群列表
+        # @type ClusterSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ClusterSet, :RequestId
+
+        def initialize(clusterset=nil, requestid=nil)
+          @ClusterSet = clusterset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ClusterSet'].nil?
+            @ClusterSet = []
+            params['ClusterSet'].each do |i|
+              customerclusterattr_tmp = CustomerClusterAttr.new
+              customerclusterattr_tmp.deserialize(i)
+              @ClusterSet << customerclusterattr_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1483,8 +1693,8 @@ module TencentCloud
 
         attr_accessor :Model, :Capacity, :MappedBucketList
         extend Gem::Deprecate
-        deprecate :MappedBucketList, :none, 2026, 2
-        deprecate :MappedBucketList=, :none, 2026, 2
+        deprecate :MappedBucketList, :none, 2026, 3
+        deprecate :MappedBucketList=, :none, 2026, 3
 
         def initialize(model=nil, capacity=nil, mappedbucketlist=nil)
           @Model = model
@@ -1832,6 +2042,97 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # MountMultipleStorageFileSystem请求参数结构体
+      class MountMultipleStorageFileSystemRequest < TencentCloud::Common::AbstractModel
+        # @param FileSystemId: 客户端集群所属的文件系统id
+        # @type FileSystemId: String
+        # @param CustomerClusterId: 客户端集群Id
+        # @type CustomerClusterId: String
+        # @param StorageFileSystemId: 挂载的存储集群的id
+        # @type StorageFileSystemId: String
+
+        attr_accessor :FileSystemId, :CustomerClusterId, :StorageFileSystemId
+
+        def initialize(filesystemid=nil, customerclusterid=nil, storagefilesystemid=nil)
+          @FileSystemId = filesystemid
+          @CustomerClusterId = customerclusterid
+          @StorageFileSystemId = storagefilesystemid
+        end
+
+        def deserialize(params)
+          @FileSystemId = params['FileSystemId']
+          @CustomerClusterId = params['CustomerClusterId']
+          @StorageFileSystemId = params['StorageFileSystemId']
+        end
+      end
+
+      # MountMultipleStorageFileSystem返回参数结构体
+      class MountMultipleStorageFileSystemResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # QueryClientNodeMountCommand请求参数结构体
+      class QueryClientNodeMountCommandRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 客户端集群ID
+        # @type ClusterId: String
+        # @param ClusterMountInfo: 集群挂载信息
+        # @type ClusterMountInfo: Array
+        # @param FileSystemId: 文件系统id
+        # @type FileSystemId: String
+
+        attr_accessor :ClusterId, :ClusterMountInfo, :FileSystemId
+
+        def initialize(clusterid=nil, clustermountinfo=nil, filesystemid=nil)
+          @ClusterId = clusterid
+          @ClusterMountInfo = clustermountinfo
+          @FileSystemId = filesystemid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          unless params['ClusterMountInfo'].nil?
+            @ClusterMountInfo = []
+            params['ClusterMountInfo'].each do |i|
+              clustermountattr_tmp = ClusterMountAttr.new
+              clustermountattr_tmp.deserialize(i)
+              @ClusterMountInfo << clustermountattr_tmp
+            end
+          end
+          @FileSystemId = params['FileSystemId']
+        end
+      end
+
+      # QueryClientNodeMountCommand返回参数结构体
+      class QueryClientNodeMountCommandResponse < TencentCloud::Common::AbstractModel
+        # @param Command: 挂载命令
+        # @type Command: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Command, :RequestId
+
+        def initialize(command=nil, requestid=nil)
+          @Command = command
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Command = params['Command']
           @RequestId = params['RequestId']
         end
       end

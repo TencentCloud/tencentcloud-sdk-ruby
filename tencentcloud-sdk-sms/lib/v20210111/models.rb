@@ -200,23 +200,23 @@ module TencentCloud
 
       # 回执数据统计响应包体
       class CallbackStatusStatistics < TencentCloud::Common::AbstractModel
-        # @param CallbackCount: <p>短信回执量统计。</p><p>单位：数</p>
+        # @param CallbackCount: <p>短信回执量统计。</p><p>单位：个</p>
         # @type CallbackCount: Integer
-        # @param RequestSuccessCount: <p>短信提交成功量统计。</p><p>单位：数</p>
+        # @param RequestSuccessCount: <p>短信提交成功量统计。</p><p>单位：个</p>
         # @type RequestSuccessCount: Integer
-        # @param CallbackFailCount: <p>短信回执失败量统计。</p><p>单位：数</p>
+        # @param CallbackFailCount: <p>短信回执失败量统计。</p><p>单位：个</p>
         # @type CallbackFailCount: Integer
-        # @param CallbackSuccessCount: <p>短信回执成功量统计。</p><p>单位：数</p>
+        # @param CallbackSuccessCount: <p>短信回执成功量统计。</p><p>单位：个</p>
         # @type CallbackSuccessCount: Integer
-        # @param InternalErrorCount: <p>运营商内部错误统计。</p><p>单位：数</p>
+        # @param InternalErrorCount: <p>运营商内部错误统计。</p><p>单位：个</p>
         # @type InternalErrorCount: Integer
-        # @param InvalidNumberCount: <p>号码无效或空号统计。</p><p>单位：数</p>
+        # @param InvalidNumberCount: <p>号码无效或空号统计。</p><p>单位：个</p>
         # @type InvalidNumberCount: Integer
-        # @param ShutdownErrorCount: <p>停机、关机等错误统计。</p><p>单位：数</p>
+        # @param ShutdownErrorCount: <p>停机、关机等错误统计。</p><p>单位：个</p>
         # @type ShutdownErrorCount: Integer
-        # @param BlackListCount: <p>号码拉入免打扰名单统计。</p><p>单位：数</p>
+        # @param BlackListCount: <p>号码拉入免打扰名单统计。</p><p>单位：个</p>
         # @type BlackListCount: Integer
-        # @param FrequencyLimitCount: <p>运营商频率限制统计。</p><p>单位：数</p>
+        # @param FrequencyLimitCount: <p>运营商频率限制统计。</p><p>单位：个</p>
         # @type FrequencyLimitCount: Integer
 
         attr_accessor :CallbackCount, :RequestSuccessCount, :CallbackFailCount, :CallbackSuccessCount, :InternalErrorCount, :InvalidNumberCount, :ShutdownErrorCount, :BlackListCount, :FrequencyLimitCount

@@ -2394,8 +2394,8 @@ module TencentCloud
 
         attr_accessor :Switch, :CacheTime, :IgnoreCacheControl
         extend Gem::Deprecate
-        deprecate :IgnoreCacheControl, :none, 2026, 2
-        deprecate :IgnoreCacheControl=, :none, 2026, 2
+        deprecate :IgnoreCacheControl, :none, 2026, 3
+        deprecate :IgnoreCacheControl=, :none, 2026, 3
 
         def initialize(switch=nil, cachetime=nil, ignorecachecontrol=nil)
           @Switch = switch
@@ -4471,8 +4471,8 @@ module TencentCloud
 
         attr_accessor :ZoneId, :ProxyName, :Area, :Ipv6, :StaticIp, :AccelerateMainland, :DDosProtectionConfig
         extend Gem::Deprecate
-        deprecate :DDosProtectionConfig, :none, 2026, 2
-        deprecate :DDosProtectionConfig=, :none, 2026, 2
+        deprecate :DDosProtectionConfig, :none, 2026, 3
+        deprecate :DDosProtectionConfig=, :none, 2026, 3
 
         def initialize(zoneid=nil, proxyname=nil, area=nil, ipv6=nil, staticip=nil, acceleratemainland=nil, ddosprotectionconfig=nil)
           @ZoneId = zoneid
@@ -5053,8 +5053,8 @@ module TencentCloud
 
         attr_accessor :ZoneId, :Targets, :Mode, :EncodeUrl, :Headers, :PrefetchMediaSegments
         extend Gem::Deprecate
-        deprecate :EncodeUrl, :none, 2026, 2
-        deprecate :EncodeUrl=, :none, 2026, 2
+        deprecate :EncodeUrl, :none, 2026, 3
+        deprecate :EncodeUrl=, :none, 2026, 3
 
         def initialize(zoneid=nil, targets=nil, mode=nil, encodeurl=nil, headers=nil, prefetchmediasegments=nil)
           @ZoneId = zoneid
@@ -5138,8 +5138,8 @@ module TencentCloud
 
         attr_accessor :ZoneId, :Type, :Method, :Targets, :EncodeUrl, :CacheTag
         extend Gem::Deprecate
-        deprecate :EncodeUrl, :none, 2026, 2
-        deprecate :EncodeUrl=, :none, 2026, 2
+        deprecate :EncodeUrl, :none, 2026, 3
+        deprecate :EncodeUrl=, :none, 2026, 3
 
         def initialize(zoneid=nil, type=nil, method=nil, targets=nil, encodeurl=nil, cachetag=nil)
           @ZoneId = zoneid
@@ -5750,10 +5750,10 @@ module TencentCloud
 
         attr_accessor :Type, :ZoneName, :Area, :PlanId, :AliasZoneName, :Tags, :AllowDuplicates, :JumpStart
         extend Gem::Deprecate
-        deprecate :AllowDuplicates, :none, 2026, 2
-        deprecate :AllowDuplicates=, :none, 2026, 2
-        deprecate :JumpStart, :none, 2026, 2
-        deprecate :JumpStart=, :none, 2026, 2
+        deprecate :AllowDuplicates, :none, 2026, 3
+        deprecate :AllowDuplicates=, :none, 2026, 3
+        deprecate :JumpStart, :none, 2026, 3
+        deprecate :JumpStart=, :none, 2026, 3
 
         def initialize(type=nil, zonename=nil, area=nil, planid=nil, aliaszonename=nil, tags=nil, allowduplicates=nil, jumpstart=nil)
           @Type = type
@@ -11059,8 +11059,8 @@ module TencentCloud
 
         attr_accessor :StartTime, :EndTime, :MetricNames, :ZoneIds, :ProxyIds, :Interval, :Filters, :Area
         extend Gem::Deprecate
-        deprecate :Area, :none, 2026, 2
-        deprecate :Area=, :none, 2026, 2
+        deprecate :Area, :none, 2026, 3
+        deprecate :Area=, :none, 2026, 3
 
         def initialize(starttime=nil, endtime=nil, metricnames=nil, zoneids=nil, proxyids=nil, interval=nil, filters=nil, area=nil)
           @StartTime = starttime
@@ -12585,27 +12585,37 @@ module TencentCloud
       class EnableOriginACLRequest < TencentCloud::Common::AbstractModel
         # @param ZoneId: 站点 ID。
         # @type ZoneId: String
-        # @param L7EnableMode: 七层加速域名开启源站防护的模式。
-        # <li>all：针对站点下的所有七层加速域名开启。</li>
-        # <li>specific：针对站点下指定的七层加速域名开启。</li>当参数为空时，默认为 specific。
+        # @param L7EnableMode: 站点首次开启源站防护时，为七层加速域名配置特定回源 IP 网段的模式。
+        # <li>all：针对当前站点下的所有七层加速域名开启，当域名数量超过 200 时，请先通过 specific 模式启用 200 个域名，剩余资源通过 ModifyOriginACL 接口启用。</li>
+        # <li>specific：针对站点下指定的七层加速域名开启。</li>注意：当参数为空时，默认为 specific。后续新增七层加速域名/四层代理实例均请通过 ModifyOriginACL 接口配置。
         # @type L7EnableMode: String
         # @param L7Hosts: 开启源站防护的七层加速域名列表，仅当参数 L7EnableMode 为 specific 时生效。L7EnableMode 为 all 时，请保留此参数为空。单次最大仅支持填写 200 个七层加速域名。
         # @type L7Hosts: Array
-        # @param L4EnableMode: 四层代理实例开启源站防护的模式。
-        # <li>all：针对站点下的所有四层代理实例开启。</li>
-        # <li>specific：针对站点下指定的四层代理实例开启。</li>当参数为空时，默认为 specific。
+        # @param L4EnableMode: 站点首次开启源站防护时，为四层代理实例配置特定回源 IP 网段的模式。
+        # <li>all：针对当前站点下的所有四层代理实例开启，当实例数量超过 100 时，请先通过 specific 模式启用 100 个域名，剩余资源通过 ModifyOriginACL 接口启用。</li>
+        # <li>specific：针对站点下指定的四层代理实例开启。</li>注意：当参数为空时，默认为 specific。后续新增七层加速域名/四层代理实例均请通过 ModifyOriginACL 接口配置。
         # @type L4EnableMode: String
         # @param L4ProxyIds: 开启源站防护的四层代理实例列表，仅当参数 L4EnableMode 为 specific 时生效。L4EnableMode 为 all 时，请保留此参数为空。单次最大仅支持填写 100 个四层代理实例。
         # @type L4ProxyIds: Array
+        # @param OriginACLFamily: 源站防护回源ACL控制域，不填则默认用标准全球控制域；可用控制域信息可以通过DescribeAvailableOriginACLFamily接口查询获得。
+        # 具体取值说明如下：
+        # <li>gaz：标准全球可用区控制域；</li>
+        # <li>mlc：标准中国大陆可用区控制域；</li>
+        # <li>emc：标准全球(不含中国大陆)可用区控制域；</li>
+        # <li>plat-gaz：精简全球可用区控制域；</li>
+        # <li>plat-mlc：精简中国大陆可用区控制域；</li>
+        # <li>plat-emc：精简全球(不含中国大陆)可用区控制域；</li>
+        # @type OriginACLFamily: String
 
-        attr_accessor :ZoneId, :L7EnableMode, :L7Hosts, :L4EnableMode, :L4ProxyIds
+        attr_accessor :ZoneId, :L7EnableMode, :L7Hosts, :L4EnableMode, :L4ProxyIds, :OriginACLFamily
 
-        def initialize(zoneid=nil, l7enablemode=nil, l7hosts=nil, l4enablemode=nil, l4proxyids=nil)
+        def initialize(zoneid=nil, l7enablemode=nil, l7hosts=nil, l4enablemode=nil, l4proxyids=nil, originaclfamily=nil)
           @ZoneId = zoneid
           @L7EnableMode = l7enablemode
           @L7Hosts = l7hosts
           @L4EnableMode = l4enablemode
           @L4ProxyIds = l4proxyids
+          @OriginACLFamily = originaclfamily
         end
 
         def deserialize(params)
@@ -12614,6 +12624,7 @@ module TencentCloud
           @L7Hosts = params['L7Hosts']
           @L4EnableMode = params['L4EnableMode']
           @L4ProxyIds = params['L4ProxyIds']
+          @OriginACLFamily = params['OriginACLFamily']
         end
       end
 
@@ -14877,8 +14888,8 @@ module TencentCloud
 
         attr_accessor :ZoneId, :ProxyId, :ProxyName, :Area, :Cname, :Ips, :Status, :Ipv6, :StaticIp, :AccelerateMainland, :DDosProtectionConfig, :L4ProxyRuleCount, :UpdateTime
         extend Gem::Deprecate
-        deprecate :DDosProtectionConfig, :none, 2026, 2
-        deprecate :DDosProtectionConfig=, :none, 2026, 2
+        deprecate :DDosProtectionConfig, :none, 2026, 3
+        deprecate :DDosProtectionConfig=, :none, 2026, 3
 
         def initialize(zoneid=nil, proxyid=nil, proxyname=nil, area=nil, cname=nil, ips=nil, status=nil, ipv6=nil, staticip=nil, acceleratemainland=nil, ddosprotectionconfig=nil, l4proxyrulecount=nil, updatetime=nil)
           @ZoneId = zoneid
@@ -16372,8 +16383,8 @@ module TencentCloud
 
         attr_accessor :ZoneId, :Hosts, :Mode, :ServerCertInfo, :ApplyType, :ClientCertInfo, :UpstreamCertInfo
         extend Gem::Deprecate
-        deprecate :ApplyType, :none, 2026, 2
-        deprecate :ApplyType=, :none, 2026, 2
+        deprecate :ApplyType, :none, 2026, 3
+        deprecate :ApplyType=, :none, 2026, 3
 
         def initialize(zoneid=nil, hosts=nil, mode=nil, servercertinfo=nil, applytype=nil, clientcertinfo=nil, upstreamcertinfo=nil)
           @ZoneId = zoneid
@@ -16983,12 +16994,22 @@ module TencentCloud
         # @type ZoneId: String
         # @param OriginACLEntities: 需要启用/关闭特定回源 IP 网段回源的实例。
         # @type OriginACLEntities: Array
+        # @param OriginACLFamily: 源站防护回源ACL控制域，不填则默认不变；控制域信息可以通过DescribeAvailableOriginACLFamily接口查询获得。
+        # 具体取值说明如下：
+        # <li>gaz：标准全球可用区控制域；</li>
+        # <li>mlc：标准中国大陆可用区控制域；</li>
+        # <li>emc：标准全球(不含中国大陆)可用区控制域；</li>
+        # <li>plat-gaz：精简全球可用区控制域；</li>
+        # <li>plat-mlc：精简中国大陆可用区控制域；</li>
+        # <li>plat-emc：精简全球(不含中国大陆)可用区控制域；</li>
+        # @type OriginACLFamily: String
 
-        attr_accessor :ZoneId, :OriginACLEntities
+        attr_accessor :ZoneId, :OriginACLEntities, :OriginACLFamily
 
-        def initialize(zoneid=nil, originaclentities=nil)
+        def initialize(zoneid=nil, originaclentities=nil, originaclfamily=nil)
           @ZoneId = zoneid
           @OriginACLEntities = originaclentities
+          @OriginACLFamily = originaclfamily
         end
 
         def deserialize(params)
@@ -17001,6 +17022,7 @@ module TencentCloud
               @OriginACLEntities << originaclentity_tmp
             end
           end
+          @OriginACLFamily = params['OriginACLFamily']
         end
       end
 
@@ -18667,7 +18689,7 @@ module TencentCloud
         end
       end
 
-      # 七层加速域名/四层代理实例与回源 IP 网段的绑定关系，以及回源 IP 网段详情。
+      # 七层加速域名/四层代理实例与回源 IP 网段的绑定关系，同时包含回源 IP 网段详情和选择可切换的回源 IP 网段列表。
       class OriginACLInfo < TencentCloud::Common::AbstractModel
         # @param L7Hosts: 启用了特定回源 IP 网段回源的七层加速域名列表。源站防护未开启时为空。
         # @type L7Hosts: Array
@@ -18684,15 +18706,18 @@ module TencentCloud
         # <li>offline：已停用；</li>
         # <li>updating: 配置部署中。</li>
         # @type Status: String
+        # @param OriginACLFamily: 源站防护回源ACL控制域。
+        # @type OriginACLFamily: String
 
-        attr_accessor :L7Hosts, :L4ProxyIds, :CurrentOriginACL, :NextOriginACL, :Status
+        attr_accessor :L7Hosts, :L4ProxyIds, :CurrentOriginACL, :NextOriginACL, :Status, :OriginACLFamily
 
-        def initialize(l7hosts=nil, l4proxyids=nil, currentoriginacl=nil, nextoriginacl=nil, status=nil)
+        def initialize(l7hosts=nil, l4proxyids=nil, currentoriginacl=nil, nextoriginacl=nil, status=nil, originaclfamily=nil)
           @L7Hosts = l7hosts
           @L4ProxyIds = l4proxyids
           @CurrentOriginACL = currentoriginacl
           @NextOriginACL = nextoriginacl
           @Status = status
+          @OriginACLFamily = originaclfamily
         end
 
         def deserialize(params)
@@ -18707,6 +18732,7 @@ module TencentCloud
             @NextOriginACL.deserialize(params['NextOriginACL'])
           end
           @Status = params['Status']
+          @OriginACLFamily = params['OriginACLFamily']
         end
       end
 
@@ -18833,12 +18859,12 @@ module TencentCloud
 
         attr_accessor :OriginType, :Origin, :BackupOrigin, :OriginGroupName, :BackOriginGroupName, :PrivateAccess, :PrivateParameters, :HostHeader, :VodeoSubAppId, :VodeoDistributionRange, :VodeoBucketId, :VodOriginScope, :VodBucketId
         extend Gem::Deprecate
-        deprecate :VodeoSubAppId, :none, 2026, 2
-        deprecate :VodeoSubAppId=, :none, 2026, 2
-        deprecate :VodeoDistributionRange, :none, 2026, 2
-        deprecate :VodeoDistributionRange=, :none, 2026, 2
-        deprecate :VodeoBucketId, :none, 2026, 2
-        deprecate :VodeoBucketId=, :none, 2026, 2
+        deprecate :VodeoSubAppId, :none, 2026, 3
+        deprecate :VodeoSubAppId=, :none, 2026, 3
+        deprecate :VodeoDistributionRange, :none, 2026, 3
+        deprecate :VodeoDistributionRange=, :none, 2026, 3
+        deprecate :VodeoBucketId, :none, 2026, 3
+        deprecate :VodeoBucketId=, :none, 2026, 3
 
         def initialize(origintype=nil, origin=nil, backuporigin=nil, origingroupname=nil, backorigingroupname=nil, privateaccess=nil, privateparameters=nil, hostheader=nil, vodeosubappid=nil, vodeodistributionrange=nil, vodeobucketid=nil, vodoriginscope=nil, vodbucketid=nil)
           @OriginType = origintype
@@ -19153,12 +19179,12 @@ module TencentCloud
 
         attr_accessor :OriginType, :Origin, :BackupOrigin, :PrivateAccess, :PrivateParameters, :HostHeader, :VodeoSubAppId, :VodeoDistributionRange, :VodeoBucketId, :VodOriginScope, :VodBucketId
         extend Gem::Deprecate
-        deprecate :VodeoSubAppId, :none, 2026, 2
-        deprecate :VodeoSubAppId=, :none, 2026, 2
-        deprecate :VodeoDistributionRange, :none, 2026, 2
-        deprecate :VodeoDistributionRange=, :none, 2026, 2
-        deprecate :VodeoBucketId, :none, 2026, 2
-        deprecate :VodeoBucketId=, :none, 2026, 2
+        deprecate :VodeoSubAppId, :none, 2026, 3
+        deprecate :VodeoSubAppId=, :none, 2026, 3
+        deprecate :VodeoDistributionRange, :none, 2026, 3
+        deprecate :VodeoDistributionRange=, :none, 2026, 3
+        deprecate :VodeoBucketId, :none, 2026, 3
+        deprecate :VodeoBucketId=, :none, 2026, 3
 
         def initialize(origintype=nil, origin=nil, backuporigin=nil, privateaccess=nil, privateparameters=nil, hostheader=nil, vodeosubappid=nil, vodeodistributionrange=nil, vodeobucketid=nil, vodoriginscope=nil, vodbucketid=nil)
           @OriginType = origintype
@@ -20887,8 +20913,8 @@ module TencentCloud
 
         attr_accessor :Operator, :Target, :Values, :IgnoreCase, :Name, :IgnoreNameCase
         extend Gem::Deprecate
-        deprecate :IgnoreNameCase, :none, 2026, 2
-        deprecate :IgnoreNameCase=, :none, 2026, 2
+        deprecate :IgnoreNameCase, :none, 2026, 3
+        deprecate :IgnoreNameCase=, :none, 2026, 3
 
         def initialize(operator=nil, target=nil, values=nil, ignorecase=nil, name=nil, ignorenamecase=nil)
           @Operator = operator

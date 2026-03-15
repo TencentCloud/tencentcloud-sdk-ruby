@@ -1397,7 +1397,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 枚举地域,只支持广州地域
+        # 枚举地域信息
 
         # @param request: Request instance for DescribeRegion.
         # @type request: :class:`Tencentcloud::ckafka::V20190819::DescribeRegionRequest`

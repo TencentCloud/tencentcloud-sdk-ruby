@@ -427,33 +427,6 @@ module TencentCloud
         end
       end
 
-      # DescribeBillingEnable请求参数结构体
-      class DescribeBillingEnableRequest < TencentCloud::Common::AbstractModel
-
-
-        def initialize()
-        end
-
-        def deserialize(params)
-        end
-      end
-
-      # DescribeBillingEnable返回参数结构体
-      class DescribeBillingEnableResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :RequestId
-
-        def initialize(requestid=nil)
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @RequestId = params['RequestId']
-        end
-      end
-
       # DescribeDBParameters请求参数结构体
       class DescribeDBParametersRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID，形如：tdsql3-ow728lmc。
@@ -784,71 +757,6 @@ module TencentCloud
         end
       end
 
-      # DescribeDatabaseTable请求参数结构体
-      class DescribeDatabaseTableRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID，形如：tdsql3-ow7t8lmc。
-        # @type InstanceId: String
-        # @param DbName: 数据库名称，通过 DescribeDatabases 接口获取。
-        # @type DbName: String
-        # @param Table: 表名称，通过 DescribeDatabaseObjects 接口获取。
-        # @type Table: String
-
-        attr_accessor :InstanceId, :DbName, :Table
-
-        def initialize(instanceid=nil, dbname=nil, table=nil)
-          @InstanceId = instanceid
-          @DbName = dbname
-          @Table = table
-        end
-
-        def deserialize(params)
-          @InstanceId = params['InstanceId']
-          @DbName = params['DbName']
-          @Table = params['Table']
-        end
-      end
-
-      # DescribeDatabaseTable返回参数结构体
-      class DescribeDatabaseTableResponse < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例名称。
-        # @type InstanceId: String
-        # @param DbName: 数据库名称。
-        # @type DbName: String
-        # @param Table: 表名称。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Table: String
-        # @param Cols: 列信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Cols: Array
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :InstanceId, :DbName, :Table, :Cols, :RequestId
-
-        def initialize(instanceid=nil, dbname=nil, table=nil, cols=nil, requestid=nil)
-          @InstanceId = instanceid
-          @DbName = dbname
-          @Table = table
-          @Cols = cols
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @InstanceId = params['InstanceId']
-          @DbName = params['DbName']
-          @Table = params['Table']
-          unless params['Cols'].nil?
-            @Cols = []
-            params['Cols'].each do |i|
-              tablecolumn_tmp = TableColumn.new
-              tablecolumn_tmp.deserialize(i)
-              @Cols << tablecolumn_tmp
-            end
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
       # DescribeFlow请求参数结构体
       class DescribeFlowRequest < TencentCloud::Common::AbstractModel
 
@@ -958,9 +866,9 @@ module TencentCloud
 
       # ModifyAutoRenewFlag请求参数结构体
       class ModifyAutoRenewFlagRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceIds: 需要修改的实例列表
+        # @param InstanceIds: <p>需要修改的实例列表</p>
         # @type InstanceIds: Array
-        # @param AutoRenewFlag: 1表示开启自动续费，0为关闭自动续费
+        # @param AutoRenewFlag: <p>1表示开启自动续费，0为关闭自动续费</p>
         # @type AutoRenewFlag: Integer
 
         attr_accessor :InstanceIds, :AutoRenewFlag
@@ -988,46 +896,6 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # ModifyBinlogStatus请求参数结构体
-      class ModifyBinlogStatusRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例id
-        # @type InstanceId: String
-        # @param Status: 1打开0关闭
-        # @type Status: Integer
-
-        attr_accessor :InstanceId, :Status
-
-        def initialize(instanceid=nil, status=nil)
-          @InstanceId = instanceid
-          @Status = status
-        end
-
-        def deserialize(params)
-          @InstanceId = params['InstanceId']
-          @Status = params['Status']
-        end
-      end
-
-      # ModifyBinlogStatus返回参数结构体
-      class ModifyBinlogStatusResponse < TencentCloud::Common::AbstractModel
-        # @param FlowId: flow的流程id
-        # @type FlowId: Integer
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :FlowId, :RequestId
-
-        def initialize(flowid=nil, requestid=nil)
-          @FlowId = flowid
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @FlowId = params['FlowId']
           @RequestId = params['RequestId']
         end
       end
@@ -1409,26 +1277,6 @@ module TencentCloud
           @Action = params['Action']
           @PortRange = params['PortRange']
           @IpProtocol = params['IpProtocol']
-        end
-      end
-
-      # 数据库列信息
-      class TableColumn < TencentCloud::Common::AbstractModel
-        # @param Col: 列名称
-        # @type Col: String
-        # @param Type: 列类型
-        # @type Type: String
-
-        attr_accessor :Col, :Type
-
-        def initialize(col=nil, type=nil)
-          @Col = col
-          @Type = type
-        end
-
-        def deserialize(params)
-          @Col = params['Col']
-          @Type = params['Type']
         end
       end
 
