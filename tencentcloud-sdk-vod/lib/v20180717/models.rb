@@ -30926,34 +30926,28 @@ module TencentCloud
 
       # AIGC 场景化生图任务的输出媒体文件配置。
       class SceneAigcImageOutputConfig < TencentCloud::Common::AbstractModel
-        # @param StorageMode: 存储模式。取值有： <li>Permanent：永久存储，生成的图片文件将存储到云点播，可在事件通知中获取到 FileId；</li> <li>Temporary：临时存储，生成的图片文件不会存储到云点播，可在事件通知中获取到临时访问的 URL；</li>
-        # 默认值：Temporary
+        # @param StorageMode: <p>存储模式。取值有： <li>Permanent：永久存储，生成的图片文件将存储到云点播，可在事件通知中获取到 FileId；</li> <li>Temporary：临时存储，生成的图片文件不会存储到云点播，可在事件通知中获取到临时访问的 URL；</li><br>默认值：Temporary</p>
         # @type StorageMode: String
-        # @param MediaName: 输出文件名，最长 64 个字符。缺省由系统指定生成文件名。
+        # @param MediaName: <p>输出文件名，最长 64 个字符。缺省由系统指定生成文件名。</p>
         # @type MediaName: String
-        # @param ClassId: 分类ID，用于对媒体进行分类管理，可通过 [创建分类](/document/product/266/7812) 接口，创建分类，获得分类 ID。
-        # <li>默认值：0，表示其他分类。</li>
+        # @param ClassId: <p>分类ID，用于对媒体进行分类管理，可通过 <a href="/document/product/266/7812">创建分类</a> 接口，创建分类，获得分类 ID。</p><li>默认值：0，表示其他分类。</li>
         # @type ClassId: Integer
-        # @param ExpireTime: 输出文件的过期时间，超过该时间文件将被删除，默认为永久不过期，格式按照 ISO 8601标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @param ExpireTime: <p>输出文件的过期时间，超过该时间文件将被删除，默认为永久不过期，格式按照 ISO 8601标准表示，详见 <a href="https://cloud.tencent.com/document/product/266/11732#I">ISO 日期格式说明</a>。</p>
         # @type ExpireTime: String
-        # @param AspectRatio: 指定所生成图片的宽高比。输入格式为 W:H。
-        # 本字段在以下场景有效：
-        # * 生商品图场景，可选值为：1:1、3:2、2:3、3:4、4:3、4:5、5:4、16:9、9:16、21:9
-        # * AI扩图场景。可选值为：1:1、3:2、2:3、3:4、4:3、4:5、5:4、9:16、16:9、21:9，可以配合 ImageWidth 和 ImageHeight 使用，规则如下：
-        #     1. 仅指定 AspectRatio 时，根据原图输入进行自适应调整。
-        #     2. 指定 AspectRatio 和 ImageWidth 时，ImageHeight  由两者计算得出，反亦是如此。
-        #     3. 当AspectRatio、ImageWidth、ImageHeight 同时指定的时候，优先使用ImageWidth、ImageHeight。
+        # @param AspectRatio: <p>指定所生成图片的宽高比。输入格式为 W:H。<br>本字段在以下场景有效：</p><ul><li>生商品图场景，可选值为：1:1、3:2、2:3、3:4、4:3、4:5、5:4、16:9、9:16、21:9</li><li>AI扩图场景。可选值为：1:1、3:2、2:3、3:4、4:3、4:5、5:4、9:16、16:9、21:9，可以配合 ImageWidth 和 ImageHeight 使用，规则如下： <ol><li>仅指定 AspectRatio 时，根据原图输入进行自适应调整。</li><li>指定 AspectRatio 和 ImageWidth 时，ImageHeight  由两者计算得出，反亦是如此。</li><li>当AspectRatio、ImageWidth、ImageHeight 同时指定的时候，优先使用ImageWidth、ImageHeight。</li></ol></li></ul>
         # @type AspectRatio: String
-        # @param EncodeConfig: 输出图片编码格式参数。**仅AI换衣场景有效。**
+        # @param EncodeConfig: <p>输出图片编码格式参数。<strong>仅AI换衣场景有效。</strong></p>
         # @type EncodeConfig: :class:`Tencentcloud::Vod.v20180717.models.ImageSceneAigcEncodeConfig`
-        # @param ImageWidth: 输出图像宽度，**仅AI扩图场景有效**。
+        # @param ImageWidth: <p>输出图像宽度，<strong>仅AI扩图场景有效</strong>。</p>
         # @type ImageWidth: Integer
-        # @param ImageHeight: 输出图像高度，**仅AI扩图场景有效**。
+        # @param ImageHeight: <p>输出图像高度，<strong>仅AI扩图场景有效</strong>。</p>
         # @type ImageHeight: Integer
+        # @param Resolution: <p>输出分辨率。仅change_clothes、change_clothes_under场景有效。可选值：1K、2K、4K。</p>
+        # @type Resolution: String
 
-        attr_accessor :StorageMode, :MediaName, :ClassId, :ExpireTime, :AspectRatio, :EncodeConfig, :ImageWidth, :ImageHeight
+        attr_accessor :StorageMode, :MediaName, :ClassId, :ExpireTime, :AspectRatio, :EncodeConfig, :ImageWidth, :ImageHeight, :Resolution
 
-        def initialize(storagemode=nil, medianame=nil, classid=nil, expiretime=nil, aspectratio=nil, encodeconfig=nil, imagewidth=nil, imageheight=nil)
+        def initialize(storagemode=nil, medianame=nil, classid=nil, expiretime=nil, aspectratio=nil, encodeconfig=nil, imagewidth=nil, imageheight=nil, resolution=nil)
           @StorageMode = storagemode
           @MediaName = medianame
           @ClassId = classid
@@ -30962,6 +30956,7 @@ module TencentCloud
           @EncodeConfig = encodeconfig
           @ImageWidth = imagewidth
           @ImageHeight = imageheight
+          @Resolution = resolution
         end
 
         def deserialize(params)
@@ -30976,6 +30971,7 @@ module TencentCloud
           end
           @ImageWidth = params['ImageWidth']
           @ImageHeight = params['ImageHeight']
+          @Resolution = params['Resolution']
         end
       end
 

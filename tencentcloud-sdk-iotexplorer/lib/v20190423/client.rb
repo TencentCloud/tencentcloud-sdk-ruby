@@ -53,6 +53,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # TWeTalk设备激活接口。
+
+        # @param request: Request instance for ActivateTWeTalk.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::ActivateTWeTalkRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::ActivateTWeTalkResponse`
+        def ActivateTWeTalk(request)
+          body = send_request('ActivateTWeTalk', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ActivateTWeTalkResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 批量同步执行 TWeSee 语义理解任务
 
         # @param request: Request instance for BatchCreateTWeSeeRecognitionTask.
@@ -3351,6 +3375,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = GetTWeTalkAIBotListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # TWeTalk消耗账单明细。
+
+        # @param request: Request instance for GetTWeTalkActiveRecordList.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::GetTWeTalkActiveRecordListRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::GetTWeTalkActiveRecordListResponse`
+        def GetTWeTalkActiveRecordList(request)
+          body = send_request('GetTWeTalkActiveRecordList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetTWeTalkActiveRecordListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询TWeTalk设备激活状态。
+
+        # @param request: Request instance for GetTWeTalkActiveStatus.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::GetTWeTalkActiveStatusRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::GetTWeTalkActiveStatusResponse`
+        def GetTWeTalkActiveStatus(request)
+          body = send_request('GetTWeTalkActiveStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetTWeTalkActiveStatusResponse.new
             model.deserialize(response['Response'])
             model
           else

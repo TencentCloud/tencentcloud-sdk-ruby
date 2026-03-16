@@ -287,8 +287,8 @@ module TencentCloud
 
         attr_accessor :AndroidAppId, :Name, :AndroidAppVersion, :PackageName, :PackageVersion, :PackageLabel, :VersionName
         extend Gem::Deprecate
-        deprecate :PackageVersion, :none, 2026, 2
-        deprecate :PackageVersion=, :none, 2026, 2
+        deprecate :PackageVersion, :none, 2026, 3
+        deprecate :PackageVersion=, :none, 2026, 3
 
         def initialize(androidappid=nil, name=nil, androidappversion=nil, packagename=nil, packageversion=nil, packagelabel=nil, versionname=nil)
           @AndroidAppId = androidappid
@@ -1000,15 +1000,19 @@ module TencentCloud
       class CreateAndroidInstanceADBRequest < TencentCloud::Common::AbstractModel
         # @param AndroidInstanceId: 安卓实例 ID
         # @type AndroidInstanceId: String
+        # @param ExpiredTime: 过期时间。默认 1 小时，最长 30 天。格式为 2025-07-02T10:15:36Z
+        # @type ExpiredTime: String
 
-        attr_accessor :AndroidInstanceId
+        attr_accessor :AndroidInstanceId, :ExpiredTime
 
-        def initialize(androidinstanceid=nil)
+        def initialize(androidinstanceid=nil, expiredtime=nil)
           @AndroidInstanceId = androidinstanceid
+          @ExpiredTime = expiredtime
         end
 
         def deserialize(params)
           @AndroidInstanceId = params['AndroidInstanceId']
+          @ExpiredTime = params['ExpiredTime']
         end
       end
 
@@ -2170,8 +2174,8 @@ module TencentCloud
 
         attr_accessor :Total, :Labels, :AndroidInstanceLabels, :RequestId
         extend Gem::Deprecate
-        deprecate :Labels, :none, 2026, 2
-        deprecate :Labels=, :none, 2026, 2
+        deprecate :Labels, :none, 2026, 3
+        deprecate :Labels=, :none, 2026, 3
 
         def initialize(total=nil, labels=nil, androidinstancelabels=nil, requestid=nil)
           @Total = total

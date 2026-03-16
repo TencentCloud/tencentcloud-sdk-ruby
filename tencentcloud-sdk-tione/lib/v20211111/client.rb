@@ -56,6 +56,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建数据源
+
+        # @param request: Request instance for CreateDataSource.
+        # @type request: :class:`Tencentcloud::tione::V20211111::CreateDataSourceRequest`
+        # @rtype: :class:`Tencentcloud::tione::V20211111::CreateDataSourceResponse`
+        def CreateDataSource(request)
+          body = send_request('CreateDataSource', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateDataSourceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建数据集
 
         # @param request: Request instance for CreateDataset.
@@ -152,6 +176,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建挂载限制
+
+        # @param request: Request instance for CreateMountLimit.
+        # @type request: :class:`Tencentcloud::tione::V20211111::CreateMountLimitRequest`
+        # @rtype: :class:`Tencentcloud::tione::V20211111::CreateMountLimitResponse`
+        def CreateMountLimit(request)
+          body = send_request('CreateMountLimit', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateMountLimitResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建Notebook
 
         # @param request: Request instance for CreateNotebook.
@@ -234,6 +282,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateTrainingTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除数据源
+
+        # @param request: Request instance for DeleteDataSource.
+        # @type request: :class:`Tencentcloud::tione::V20211111::DeleteDataSourceRequest`
+        # @rtype: :class:`Tencentcloud::tione::V20211111::DeleteDataSourceResponse`
+        def DeleteDataSource(request)
+          body = send_request('DeleteDataSource', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteDataSourceResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -354,6 +426,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteModelServiceGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除挂载限制。注意：删除挂载限制后，该存储对应的所有数据源也会被删除
+
+        # @param request: Request instance for DeleteMountLimit.
+        # @type request: :class:`Tencentcloud::tione::V20211111::DeleteMountLimitRequest`
+        # @rtype: :class:`Tencentcloud::tione::V20211111::DeleteMountLimitResponse`
+        def DeleteMountLimit(request)
+          body = send_request('DeleteMountLimit', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteMountLimitResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -594,6 +690,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeBuildInImagesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取数据源详情
+
+        # @param request: Request instance for DescribeDataSource.
+        # @type request: :class:`Tencentcloud::tione::V20211111::DescribeDataSourceRequest`
+        # @rtype: :class:`Tencentcloud::tione::V20211111::DescribeDataSourceResponse`
+        def DescribeDataSource(request)
+          body = send_request('DescribeDataSource', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDataSourceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取数据源列表
+
+        # @param request: Request instance for DescribeDataSources.
+        # @type request: :class:`Tencentcloud::tione::V20211111::DescribeDataSourcesRequest`
+        # @rtype: :class:`Tencentcloud::tione::V20211111::DescribeDataSourcesResponse`
+        def DescribeDataSources(request)
+          body = send_request('DescribeDataSources', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDataSourcesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -884,6 +1028,78 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeModelServiceHotUpdatedResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # DescribeMountInstance
+
+        # @param request: Request instance for DescribeMountInstance.
+        # @type request: :class:`Tencentcloud::tione::V20211111::DescribeMountInstanceRequest`
+        # @rtype: :class:`Tencentcloud::tione::V20211111::DescribeMountInstanceResponse`
+        def DescribeMountInstance(request)
+          body = send_request('DescribeMountInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeMountInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 非数据源挂载时获取实例列表
+
+        # @param request: Request instance for DescribeMountInstances.
+        # @type request: :class:`Tencentcloud::tione::V20211111::DescribeMountInstancesRequest`
+        # @rtype: :class:`Tencentcloud::tione::V20211111::DescribeMountInstancesResponse`
+        def DescribeMountInstances(request)
+          body = send_request('DescribeMountInstances', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeMountInstancesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取挂载限制列表
+
+        # @param request: Request instance for DescribeMountLimits.
+        # @type request: :class:`Tencentcloud::tione::V20211111::DescribeMountLimitsRequest`
+        # @rtype: :class:`Tencentcloud::tione::V20211111::DescribeMountLimitsResponse`
+        def DescribeMountLimits(request)
+          body = send_request('DescribeMountLimits', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeMountLimitsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1388,6 +1604,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = StopTrainingTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 更新数据源
+
+        # @param request: Request instance for UpdateDataSource.
+        # @type request: :class:`Tencentcloud::tione::V20211111::UpdateDataSourceRequest`
+        # @rtype: :class:`Tencentcloud::tione::V20211111::UpdateDataSourceResponse`
+        def UpdateDataSource(request)
+          body = send_request('UpdateDataSource', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateDataSourceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建挂载限制
+
+        # @param request: Request instance for UpdateMountLimit.
+        # @type request: :class:`Tencentcloud::tione::V20211111::UpdateMountLimitRequest`
+        # @rtype: :class:`Tencentcloud::tione::V20211111::UpdateMountLimitResponse`
+        def UpdateMountLimit(request)
+          body = send_request('UpdateMountLimit', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateMountLimitResponse.new
             model.deserialize(response['Response'])
             model
           else

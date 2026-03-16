@@ -651,21 +651,21 @@ module TencentCloud
 
       # DescribeRabbitMQServerlessBindings请求参数结构体
       class DescribeRabbitMQServerlessBindingsRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例Id
+        # @param InstanceId: <p>实例Id</p>
         # @type InstanceId: String
-        # @param VirtualHost: Vhost参数
+        # @param VirtualHost: <p>Vhost参数</p>
         # @type VirtualHost: String
-        # @param Offset: 分页offset
+        # @param Offset: <p>分页offset</p>
         # @type Offset: Integer
-        # @param Limit: 分页limit
+        # @param Limit: <p>分页limit</p>
         # @type Limit: Integer
-        # @param SearchWord: 搜索关键词，根据源exchange名称/目标资源名称/绑定key进行模糊搜索
+        # @param SearchWord: <p>搜索关键词，根据源exchange名称/目标资源名称进行模糊搜索</p>
         # @type SearchWord: String
-        # @param SourceExchange: 根据源Exchange精准搜索过滤
+        # @param SourceExchange: <p>根据源Exchange精准搜索过滤</p>
         # @type SourceExchange: String
-        # @param QueueName: 根据目标QueueName精准搜索过滤，和DestinationExchange过滤不可同时设置
+        # @param QueueName: <p>根据目标QueueName精准搜索过滤，和DestinationExchange过滤不可同时设置</p>
         # @type QueueName: String
-        # @param DestinationExchange: 根据目标Exchange精准搜索过滤，和QueueName过滤不可同时设置
+        # @param DestinationExchange: <p>根据目标Exchange精准搜索过滤，和QueueName过滤不可同时设置</p>
         # @type DestinationExchange: String
 
         attr_accessor :InstanceId, :VirtualHost, :Offset, :Limit, :SearchWord, :SourceExchange, :QueueName, :DestinationExchange
@@ -695,9 +695,9 @@ module TencentCloud
 
       # DescribeRabbitMQServerlessBindings返回参数结构体
       class DescribeRabbitMQServerlessBindingsResponse < TencentCloud::Common::AbstractModel
-        # @param BindingInfoList: 路由关系列表
+        # @param BindingInfoList: <p>路由关系列表</p>
         # @type BindingInfoList: Array
-        # @param TotalCount: 数量
+        # @param TotalCount: <p>数量</p>
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1680,14 +1680,17 @@ module TencentCloud
         # @type ExchangeName: String
         # @param Remark: 备注信息
         # @type Remark: String
+        # @param AlternateExchange: 备用交换机
+        # @type AlternateExchange: String
 
-        attr_accessor :InstanceId, :VirtualHost, :ExchangeName, :Remark
+        attr_accessor :InstanceId, :VirtualHost, :ExchangeName, :Remark, :AlternateExchange
 
-        def initialize(instanceid=nil, virtualhost=nil, exchangename=nil, remark=nil)
+        def initialize(instanceid=nil, virtualhost=nil, exchangename=nil, remark=nil, alternateexchange=nil)
           @InstanceId = instanceid
           @VirtualHost = virtualhost
           @ExchangeName = exchangename
           @Remark = remark
+          @AlternateExchange = alternateexchange
         end
 
         def deserialize(params)
@@ -1695,6 +1698,7 @@ module TencentCloud
           @VirtualHost = params['VirtualHost']
           @ExchangeName = params['ExchangeName']
           @Remark = params['Remark']
+          @AlternateExchange = params['AlternateExchange']
         end
       end
 
@@ -2067,66 +2071,74 @@ module TencentCloud
 
       # RabbiteMQ集群基本信息
       class RabbitMQClusterInfo < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群ID
+        # @param ClusterId: <p>集群ID</p>
         # @type ClusterId: String
-        # @param ClusterName: 集群名称
+        # @param ClusterName: <p>集群名称</p>
         # @type ClusterName: String
-        # @param Region: 地域信息
+        # @param Region: <p>地域信息</p>
         # @type Region: String
-        # @param CreateTime: 创建时间，毫秒为单位
+        # @param CreateTime: <p>创建时间，毫秒为单位</p>
         # @type CreateTime: Integer
-        # @param Remark: 集群说明信息
+        # @param Remark: <p>集群说明信息</p>
         # @type Remark: String
-        # @param Vpcs: VPC及网络信息
+        # @param Vpcs: <p>VPC及网络信息</p>
         # @type Vpcs: Array
-        # @param ZoneIds: 可用区信息
+        # @param ZoneIds: <p>可用区信息</p>
         # @type ZoneIds: Array
-        # @param VirtualHostNumber: 虚拟主机数量
+        # @param VirtualHostNumber: <p>虚拟主机数量</p>
         # @type VirtualHostNumber: Integer
-        # @param QueueNumber: 队列数量
+        # @param QueueNumber: <p>队列数量</p>
         # @type QueueNumber: Integer
-        # @param MessagePublishRate: 每秒生产消息数 单位：条/秒
+        # @param MessagePublishRate: <p>每秒生产消息数 单位：条/秒</p>
         # @type MessagePublishRate: Float
-        # @param MessageStackNumber: 堆积消息数 单位：条
+        # @param MessageStackNumber: <p>堆积消息数 单位：条</p>
         # @type MessageStackNumber: Integer
-        # @param ExpireTime: 过期时间
+        # @param ExpireTime: <p>过期时间</p>
         # @type ExpireTime: Integer
-        # @param ChannelNumber: Channel数量
+        # @param ChannelNumber: <p>Channel数量</p>
         # @type ChannelNumber: Integer
-        # @param ConnectionNumber: Connection数量
+        # @param ConnectionNumber: <p>Connection数量</p>
         # @type ConnectionNumber: Integer
-        # @param ConsumerNumber: Consumer数量
+        # @param ConsumerNumber: <p>Consumer数量</p>
         # @type ConsumerNumber: Integer
-        # @param ExchangeNumber: Exchang数量
+        # @param ExchangeNumber: <p>Exchang数量</p>
         # @type ExchangeNumber: Integer
-        # @param ExceptionInformation: 集群异常信息
+        # @param ExceptionInformation: <p>集群异常信息</p>
         # @type ExceptionInformation: String
-        # @param ClusterStatus: 实例状态，0表示创建中，1表示正常，2表示隔离中，3表示已销毁，4 - 异常, 5 - 发货失败
+        # @param ClusterStatus: <p>实例状态，0表示创建中，1表示正常，2表示隔离中，3表示已销毁，4 - 异常, 5 - 发货失败</p>
         # @type ClusterStatus: Integer
-        # @param AutoRenewFlag: 自动续费标记，0表示默认状态(用户未设置，即初始状态即手动续费)， 1表示自动续费，2表示明确不自动续费(用户设置)
+        # @param AutoRenewFlag: <p>自动续费标记，0表示默认状态(用户未设置，即初始状态即手动续费)， 1表示自动续费，2表示明确不自动续费(用户设置)</p>
         # @type AutoRenewFlag: Integer
-        # @param MirrorQueuePolicyFlag: 是否开启镜像队列策略。1表示开启，0表示没开启。
+        # @param MirrorQueuePolicyFlag: <p>是否开启镜像队列策略。1表示开启，0表示没开启。</p>
         # @type MirrorQueuePolicyFlag: Integer
-        # @param MessageConsumeRate: 每秒消费消息数 单位：条/秒
+        # @param MessageConsumeRate: <p>每秒消费消息数 单位：条/秒</p>
         # @type MessageConsumeRate: Float
-        # @param ClusterVersion: 集群版本信息
+        # @param ClusterVersion: <p>集群版本信息</p>
         # @type ClusterVersion: String
-        # @param PayMode: 计费模式，0-后付费，1-预付费
+        # @param PayMode: <p>计费模式，0-后付费，1-预付费</p>
         # @type PayMode: Integer
-        # @param InstanceType: 集群类型
+        # @param InstanceType: <p>集群类型</p>
         # @type InstanceType: Integer
-        # @param MessageRetainTime: 消息保留时间，单位小时
+        # @param MessageRetainTime: <p>消息保留时间，单位小时</p>
         # @type MessageRetainTime: Integer
-        # @param SendReceiveRatio: 发送消息流量比例
+        # @param SendReceiveRatio: <p>发送消息流量比例</p>
         # @type SendReceiveRatio: Float
-        # @param TraceTime: 消息轨迹保留时间，单位小时
+        # @param TraceTime: <p>消息轨迹保留时间，单位小时</p>
         # @type TraceTime: Integer
-        # @param Tags: 实例标签列表
+        # @param Tags: <p>实例标签列表</p>
         # @type Tags: Array
+        # @param ElasticTpsFlag: <p>是否开启弹性tps</p>
+        # @type ElasticTpsFlag: Boolean
+        # @param ElasticTpsRatio: <p>弹性tps倍数，默认弹1倍</p>
+        # @type ElasticTpsRatio: Float
+        # @param MaxRedeliverCount: <p>最大重投次数</p>
+        # @type MaxRedeliverCount: Integer
+        # @param ConsumerTimeout: <p>消费超时时间，单位min</p>
+        # @type ConsumerTimeout: Integer
 
-        attr_accessor :ClusterId, :ClusterName, :Region, :CreateTime, :Remark, :Vpcs, :ZoneIds, :VirtualHostNumber, :QueueNumber, :MessagePublishRate, :MessageStackNumber, :ExpireTime, :ChannelNumber, :ConnectionNumber, :ConsumerNumber, :ExchangeNumber, :ExceptionInformation, :ClusterStatus, :AutoRenewFlag, :MirrorQueuePolicyFlag, :MessageConsumeRate, :ClusterVersion, :PayMode, :InstanceType, :MessageRetainTime, :SendReceiveRatio, :TraceTime, :Tags
+        attr_accessor :ClusterId, :ClusterName, :Region, :CreateTime, :Remark, :Vpcs, :ZoneIds, :VirtualHostNumber, :QueueNumber, :MessagePublishRate, :MessageStackNumber, :ExpireTime, :ChannelNumber, :ConnectionNumber, :ConsumerNumber, :ExchangeNumber, :ExceptionInformation, :ClusterStatus, :AutoRenewFlag, :MirrorQueuePolicyFlag, :MessageConsumeRate, :ClusterVersion, :PayMode, :InstanceType, :MessageRetainTime, :SendReceiveRatio, :TraceTime, :Tags, :ElasticTpsFlag, :ElasticTpsRatio, :MaxRedeliverCount, :ConsumerTimeout
 
-        def initialize(clusterid=nil, clustername=nil, region=nil, createtime=nil, remark=nil, vpcs=nil, zoneids=nil, virtualhostnumber=nil, queuenumber=nil, messagepublishrate=nil, messagestacknumber=nil, expiretime=nil, channelnumber=nil, connectionnumber=nil, consumernumber=nil, exchangenumber=nil, exceptioninformation=nil, clusterstatus=nil, autorenewflag=nil, mirrorqueuepolicyflag=nil, messageconsumerate=nil, clusterversion=nil, paymode=nil, instancetype=nil, messageretaintime=nil, sendreceiveratio=nil, tracetime=nil, tags=nil)
+        def initialize(clusterid=nil, clustername=nil, region=nil, createtime=nil, remark=nil, vpcs=nil, zoneids=nil, virtualhostnumber=nil, queuenumber=nil, messagepublishrate=nil, messagestacknumber=nil, expiretime=nil, channelnumber=nil, connectionnumber=nil, consumernumber=nil, exchangenumber=nil, exceptioninformation=nil, clusterstatus=nil, autorenewflag=nil, mirrorqueuepolicyflag=nil, messageconsumerate=nil, clusterversion=nil, paymode=nil, instancetype=nil, messageretaintime=nil, sendreceiveratio=nil, tracetime=nil, tags=nil, elastictpsflag=nil, elastictpsratio=nil, maxredelivercount=nil, consumertimeout=nil)
           @ClusterId = clusterid
           @ClusterName = clustername
           @Region = region
@@ -2155,6 +2167,10 @@ module TencentCloud
           @SendReceiveRatio = sendreceiveratio
           @TraceTime = tracetime
           @Tags = tags
+          @ElasticTpsFlag = elastictpsflag
+          @ElasticTpsRatio = elastictpsratio
+          @MaxRedeliverCount = maxredelivercount
+          @ConsumerTimeout = consumertimeout
         end
 
         def deserialize(params)
@@ -2200,6 +2216,10 @@ module TencentCloud
               @Tags << rabbitmqserverlesstag_tmp
             end
           end
+          @ElasticTpsFlag = params['ElasticTpsFlag']
+          @ElasticTpsRatio = params['ElasticTpsRatio']
+          @MaxRedeliverCount = params['MaxRedeliverCount']
+          @ConsumerTimeout = params['ConsumerTimeout']
         end
       end
 

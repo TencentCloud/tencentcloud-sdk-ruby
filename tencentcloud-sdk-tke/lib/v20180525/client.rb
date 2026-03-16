@@ -701,6 +701,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建第三方节点池
+
+        # @param request: Request instance for CreateExternalNodePool.
+        # @type request: :class:`Tencentcloud::tke::V20180525::CreateExternalNodePoolRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::CreateExternalNodePoolResponse`
+        def CreateExternalNodePool(request)
+          body = send_request('CreateExternalNodePool', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateExternalNodePoolResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建全局维护时间窗口和排除项
 
         # @param request: Request instance for CreateGlobalMaintenanceWindowAndExclusions.
@@ -1455,6 +1479,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteEdgeClusterInstancesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除第三方节点
+
+        # @param request: Request instance for DeleteExternalNode.
+        # @type request: :class:`Tencentcloud::tke::V20180525::DeleteExternalNodeRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::DeleteExternalNodeResponse`
+        def DeleteExternalNode(request)
+          body = send_request('DeleteExternalNode', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteExternalNodeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除第三方节点池
+
+        # @param request: Request instance for DeleteExternalNodePool.
+        # @type request: :class:`Tencentcloud::tke::V20180525::DeleteExternalNodePoolRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::DeleteExternalNodePoolResponse`
+        def DeleteExternalNodePool(request)
+          body = send_request('DeleteExternalNodePool', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteExternalNodePoolResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -3125,6 +3197,78 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查看第三方节点列表
+
+        # @param request: Request instance for DescribeExternalNode.
+        # @type request: :class:`Tencentcloud::tke::V20180525::DescribeExternalNodeRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::DescribeExternalNodeResponse`
+        def DescribeExternalNode(request)
+          body = send_request('DescribeExternalNode', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeExternalNodeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查看第三方节点池列表
+
+        # @param request: Request instance for DescribeExternalNodePools.
+        # @type request: :class:`Tencentcloud::tke::V20180525::DescribeExternalNodePoolsRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::DescribeExternalNodePoolsResponse`
+        def DescribeExternalNodePools(request)
+          body = send_request('DescribeExternalNodePools', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeExternalNodePoolsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取第三方节点添加脚本
+
+        # @param request: Request instance for DescribeExternalNodeScript.
+        # @type request: :class:`Tencentcloud::tke::V20180525::DescribeExternalNodeScriptRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::DescribeExternalNodeScriptResponse`
+        def DescribeExternalNodeScript(request)
+          body = send_request('DescribeExternalNodeScript', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeExternalNodeScriptResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查看开启第三方节点池配置信息
 
         # @param request: Request instance for DescribeExternalNodeSupportConfig.
@@ -4541,6 +4685,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 驱逐第三方节点
+
+        # @param request: Request instance for DrainExternalNode.
+        # @type request: :class:`Tencentcloud::tke::V20180525::DrainExternalNodeRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::DrainExternalNodeResponse`
+        def DrainExternalNode(request)
+          body = send_request('DrainExternalNode', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DrainExternalNodeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 开启集群审计
 
         # @param request: Request instance for EnableClusterAudit.
@@ -4671,6 +4839,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = EnableEventPersistenceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 开启第三方节点池支持
+
+        # @param request: Request instance for EnableExternalNodeSupport.
+        # @type request: :class:`Tencentcloud::tke::V20180525::EnableExternalNodeSupportRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::EnableExternalNodeSupportResponse`
+        def EnableExternalNodeSupport(request)
+          body = send_request('EnableExternalNodeSupport', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = EnableExternalNodeSupportResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -5295,6 +5487,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyClusterVirtualNodePoolResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改第三方节点池
+
+        # @param request: Request instance for ModifyExternalNodePool.
+        # @type request: :class:`Tencentcloud::tke::V20180525::ModifyExternalNodePoolRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::ModifyExternalNodePoolResponse`
+        def ModifyExternalNodePool(request)
+          body = send_request('ModifyExternalNodePool', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyExternalNodePoolResponse.new
             model.deserialize(response['Response'])
             model
           else

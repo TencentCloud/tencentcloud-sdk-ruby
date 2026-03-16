@@ -1409,6 +1409,35 @@ module TencentCloud
         end
       end
 
+      # 开启第三方节点池支持配置信息
+      class ClusterExternalConfig < TencentCloud::Common::AbstractModel
+        # @param NetworkType: 集群网络插件类型，支持：Flannel、CiliumBGP、CiliumVXLan
+        # @type NetworkType: String
+        # @param SubnetId: 子网ID
+        # @type SubnetId: String
+        # @param ClusterCIDR: Pod CIDR
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterCIDR: String
+        # @param Enabled: 是否开启第三方节点池支持
+        # @type Enabled: Boolean
+
+        attr_accessor :NetworkType, :SubnetId, :ClusterCIDR, :Enabled
+
+        def initialize(networktype=nil, subnetid=nil, clustercidr=nil, enabled=nil)
+          @NetworkType = networktype
+          @SubnetId = subnetid
+          @ClusterCIDR = clustercidr
+          @Enabled = enabled
+        end
+
+        def deserialize(params)
+          @NetworkType = params['NetworkType']
+          @SubnetId = params['SubnetId']
+          @ClusterCIDR = params['ClusterCIDR']
+          @Enabled = params['Enabled']
+        end
+      end
+
       # 集群master自定义参数
       class ClusterExtraArgs < TencentCloud::Common::AbstractModel
         # @param Etcd: etcd自定义参数，只支持独立集群
@@ -3373,6 +3402,91 @@ module TencentCloud
         end
       end
 
+      # CreateExternalNodePool请求参数结构体
+      class CreateExternalNodePoolRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群Id
+        # @type ClusterId: String
+        # @param Name: 节点池名称
+        # @type Name: String
+        # @param ContainerRuntime: 运行时
+        # @type ContainerRuntime: String
+        # @param RuntimeVersion: 运行时版本
+        # @type RuntimeVersion: String
+        # @param Labels: 第三方节点label
+        # @type Labels: Array
+        # @param Taints: 第三方节点taint
+        # @type Taints: Array
+        # @param InstanceAdvancedSettings: 第三方节点高级设置
+        # @type InstanceAdvancedSettings: :class:`Tencentcloud::Tke.v20180525.models.InstanceAdvancedSettings`
+        # @param DeletionProtection: 删除保护开关
+        # @type DeletionProtection: Boolean
+        # @param NodeType: 节点类型
+        # @type NodeType: String
+
+        attr_accessor :ClusterId, :Name, :ContainerRuntime, :RuntimeVersion, :Labels, :Taints, :InstanceAdvancedSettings, :DeletionProtection, :NodeType
+
+        def initialize(clusterid=nil, name=nil, containerruntime=nil, runtimeversion=nil, labels=nil, taints=nil, instanceadvancedsettings=nil, deletionprotection=nil, nodetype=nil)
+          @ClusterId = clusterid
+          @Name = name
+          @ContainerRuntime = containerruntime
+          @RuntimeVersion = runtimeversion
+          @Labels = labels
+          @Taints = taints
+          @InstanceAdvancedSettings = instanceadvancedsettings
+          @DeletionProtection = deletionprotection
+          @NodeType = nodetype
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @Name = params['Name']
+          @ContainerRuntime = params['ContainerRuntime']
+          @RuntimeVersion = params['RuntimeVersion']
+          unless params['Labels'].nil?
+            @Labels = []
+            params['Labels'].each do |i|
+              label_tmp = Label.new
+              label_tmp.deserialize(i)
+              @Labels << label_tmp
+            end
+          end
+          unless params['Taints'].nil?
+            @Taints = []
+            params['Taints'].each do |i|
+              taint_tmp = Taint.new
+              taint_tmp.deserialize(i)
+              @Taints << taint_tmp
+            end
+          end
+          unless params['InstanceAdvancedSettings'].nil?
+            @InstanceAdvancedSettings = InstanceAdvancedSettings.new
+            @InstanceAdvancedSettings.deserialize(params['InstanceAdvancedSettings'])
+          end
+          @DeletionProtection = params['DeletionProtection']
+          @NodeType = params['NodeType']
+        end
+      end
+
+      # CreateExternalNodePool返回参数结构体
+      class CreateExternalNodePoolResponse < TencentCloud::Common::AbstractModel
+        # @param NodePoolId: 节点池ID
+        # @type NodePoolId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :NodePoolId, :RequestId
+
+        def initialize(nodepoolid=nil, requestid=nil)
+          @NodePoolId = nodepoolid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @NodePoolId = params['NodePoolId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateGlobalMaintenanceWindowAndExclusions请求参数结构体
       class CreateGlobalMaintenanceWindowAndExclusionsRequest < TencentCloud::Common::AbstractModel
         # @param MaintenanceTime: 维护开始时间
@@ -4950,6 +5064,86 @@ module TencentCloud
 
       # DeleteEdgeClusterInstances返回参数结构体
       class DeleteEdgeClusterInstancesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteExternalNodePool请求参数结构体
+      class DeleteExternalNodePoolRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param NodePoolIds: 第三方节点池ID列表
+        # @type NodePoolIds: Array
+        # @param Force: 是否强制删除，在第三方节点上有pod的情况下，如果选择非强制删除，则删除会失败
+        # @type Force: Boolean
+
+        attr_accessor :ClusterId, :NodePoolIds, :Force
+
+        def initialize(clusterid=nil, nodepoolids=nil, force=nil)
+          @ClusterId = clusterid
+          @NodePoolIds = nodepoolids
+          @Force = force
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @NodePoolIds = params['NodePoolIds']
+          @Force = params['Force']
+        end
+      end
+
+      # DeleteExternalNodePool返回参数结构体
+      class DeleteExternalNodePoolResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteExternalNode请求参数结构体
+      class DeleteExternalNodeRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param Names: 第三方节点列表
+        # @type Names: Array
+        # @param Force: 是否强制删除：如果第三方节点上有运行中Pod，则非强制删除状态下不会进行删除
+        # @type Force: Boolean
+
+        attr_accessor :ClusterId, :Names, :Force
+
+        def initialize(clusterid=nil, names=nil, force=nil)
+          @ClusterId = clusterid
+          @Names = names
+          @Force = force
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @Names = params['Names']
+          @Force = params['Force']
+        end
+      end
+
+      # DeleteExternalNode返回参数结构体
+      class DeleteExternalNodeResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -8481,6 +8675,172 @@ module TencentCloud
         end
       end
 
+      # DescribeExternalNodePools请求参数结构体
+      class DescribeExternalNodePoolsRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+
+        attr_accessor :ClusterId
+
+        def initialize(clusterid=nil)
+          @ClusterId = clusterid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+        end
+      end
+
+      # DescribeExternalNodePools返回参数结构体
+      class DescribeExternalNodePoolsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 节点池总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param NodePoolSet: 第三方节点池列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NodePoolSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :NodePoolSet, :RequestId
+
+        def initialize(totalcount=nil, nodepoolset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @NodePoolSet = nodepoolset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['NodePoolSet'].nil?
+            @NodePoolSet = []
+            params['NodePoolSet'].each do |i|
+              externalnodepool_tmp = ExternalNodePool.new
+              externalnodepool_tmp.deserialize(i)
+              @NodePoolSet << externalnodepool_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeExternalNode请求参数结构体
+      class DescribeExternalNodeRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param NodePoolId: 节点池ID
+        # @type NodePoolId: String
+        # @param Names: 节点名称
+        # @type Names: Array
+
+        attr_accessor :ClusterId, :NodePoolId, :Names
+
+        def initialize(clusterid=nil, nodepoolid=nil, names=nil)
+          @ClusterId = clusterid
+          @NodePoolId = nodepoolid
+          @Names = names
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @NodePoolId = params['NodePoolId']
+          @Names = params['Names']
+        end
+      end
+
+      # DescribeExternalNode返回参数结构体
+      class DescribeExternalNodeResponse < TencentCloud::Common::AbstractModel
+        # @param Nodes: 节点列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Nodes: Array
+        # @param TotalCount: 节点总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Nodes, :TotalCount, :RequestId
+
+        def initialize(nodes=nil, totalcount=nil, requestid=nil)
+          @Nodes = nodes
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Nodes'].nil?
+            @Nodes = []
+            params['Nodes'].each do |i|
+              externalnode_tmp = ExternalNode.new
+              externalnode_tmp.deserialize(i)
+              @Nodes << externalnode_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeExternalNodeScript请求参数结构体
+      class DescribeExternalNodeScriptRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param NodePoolId: 节点池ID
+        # @type NodePoolId: String
+        # @param Interface: 网卡名
+        # @type Interface: String
+        # @param Name: 节点名称
+        # @type Name: String
+        # @param Internal: 是否内网获取节点初始化脚本
+        # @type Internal: Boolean
+
+        attr_accessor :ClusterId, :NodePoolId, :Interface, :Name, :Internal
+
+        def initialize(clusterid=nil, nodepoolid=nil, interface=nil, name=nil, internal=nil)
+          @ClusterId = clusterid
+          @NodePoolId = nodepoolid
+          @Interface = interface
+          @Name = name
+          @Internal = internal
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @NodePoolId = params['NodePoolId']
+          @Interface = params['Interface']
+          @Name = params['Name']
+          @Internal = params['Internal']
+        end
+      end
+
+      # DescribeExternalNodeScript返回参数结构体
+      class DescribeExternalNodeScriptResponse < TencentCloud::Common::AbstractModel
+        # @param Link: 添加脚本cos下载链接
+        # @type Link: String
+        # @param Token: cos临时密钥
+        # @type Token: String
+        # @param Command: 添加脚本下载命令
+        # @type Command: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Link, :Token, :Command, :RequestId
+
+        def initialize(link=nil, token=nil, command=nil, requestid=nil)
+          @Link = link
+          @Token = token
+          @Command = command
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Link = params['Link']
+          @Token = params['Token']
+          @Command = params['Command']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeExternalNodeSupportConfig请求参数结构体
       class DescribeExternalNodeSupportConfigRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群Id
@@ -11867,6 +12227,42 @@ module TencentCloud
         end
       end
 
+      # DrainExternalNode请求参数结构体
+      class DrainExternalNodeRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param Name: 节点名
+        # @type Name: String
+
+        attr_accessor :ClusterId, :Name
+
+        def initialize(clusterid=nil, name=nil)
+          @ClusterId = clusterid
+          @Name = name
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @Name = params['Name']
+        end
+      end
+
+      # DrainExternalNode返回参数结构体
+      class DrainExternalNodeResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # GPU驱动和CUDA的版本信息
       class DriverVersion < TencentCloud::Common::AbstractModel
         # @param Name: GPU驱动或者CUDA的名字
@@ -12793,6 +13189,45 @@ module TencentCloud
         end
       end
 
+      # EnableExternalNodeSupport请求参数结构体
+      class EnableExternalNodeSupportRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群Id
+        # @type ClusterId: String
+        # @param ClusterExternalConfig: 开启第三方节点池支持配置信息
+        # @type ClusterExternalConfig: :class:`Tencentcloud::Tke.v20180525.models.ClusterExternalConfig`
+
+        attr_accessor :ClusterId, :ClusterExternalConfig
+
+        def initialize(clusterid=nil, clusterexternalconfig=nil)
+          @ClusterId = clusterid
+          @ClusterExternalConfig = clusterexternalconfig
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          unless params['ClusterExternalConfig'].nil?
+            @ClusterExternalConfig = ClusterExternalConfig.new
+            @ClusterExternalConfig.deserialize(params['ClusterExternalConfig'])
+          end
+        end
+      end
+
+      # EnableExternalNodeSupport返回参数结构体
+      class EnableExternalNodeSupportResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # EnableVpcCniNetworkType请求参数结构体
       class EnableVpcCniNetworkTypeRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
@@ -13144,6 +13579,130 @@ module TencentCloud
         def deserialize(params)
           @AddonName = params['AddonName']
           @AddonParam = params['AddonParam']
+        end
+      end
+
+      # 第三方节点
+      class ExternalNode < TencentCloud::Common::AbstractModel
+        # @param Name: 第三方节点名称
+        # @type Name: String
+        # @param NodePoolId: 第三方节点所属节点池
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NodePoolId: String
+        # @param IP: 第三方IP地址
+        # @type IP: String
+        # @param Location: 第三方地域
+        # @type Location: String
+        # @param Status: 第三方节点状态
+        # @type Status: String
+        # @param CreatedTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreatedTime: String
+        # @param Reason: 异常原因
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Reason: String
+        # @param Unschedulable: 是否封锁。true表示已封锁，false表示未封锁
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Unschedulable: Boolean
+
+        attr_accessor :Name, :NodePoolId, :IP, :Location, :Status, :CreatedTime, :Reason, :Unschedulable
+
+        def initialize(name=nil, nodepoolid=nil, ip=nil, location=nil, status=nil, createdtime=nil, reason=nil, unschedulable=nil)
+          @Name = name
+          @NodePoolId = nodepoolid
+          @IP = ip
+          @Location = location
+          @Status = status
+          @CreatedTime = createdtime
+          @Reason = reason
+          @Unschedulable = unschedulable
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @NodePoolId = params['NodePoolId']
+          @IP = params['IP']
+          @Location = params['Location']
+          @Status = params['Status']
+          @CreatedTime = params['CreatedTime']
+          @Reason = params['Reason']
+          @Unschedulable = params['Unschedulable']
+        end
+      end
+
+      # 第三方节点池信息
+      class ExternalNodePool < TencentCloud::Common::AbstractModel
+        # @param NodePoolId: 第三方节点池ID
+        # @type NodePoolId: String
+        # @param Name: 第三方节点池名称
+        # @type Name: String
+        # @param LifeState: 节点池生命周期
+        # @type LifeState: String
+        # @param ClusterCIDR: 集群CIDR
+        # @type ClusterCIDR: String
+        # @param NetworkType: 集群网络插件类型
+        # @type NetworkType: String
+        # @param RuntimeConfig: 第三方节点Runtime配置
+        # @type RuntimeConfig: :class:`Tencentcloud::Tke.v20180525.models.RuntimeConfig`
+        # @param Labels: 第三方节点label
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Labels: Array
+        # @param Taints: 第三方节点taint
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Taints: Array
+        # @param InstanceAdvancedSettings: 第三方节点高级设置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceAdvancedSettings: :class:`Tencentcloud::Tke.v20180525.models.InstanceAdvancedSettings`
+        # @param DeletionProtection: 删除保护开关
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeletionProtection: Boolean
+
+        attr_accessor :NodePoolId, :Name, :LifeState, :ClusterCIDR, :NetworkType, :RuntimeConfig, :Labels, :Taints, :InstanceAdvancedSettings, :DeletionProtection
+
+        def initialize(nodepoolid=nil, name=nil, lifestate=nil, clustercidr=nil, networktype=nil, runtimeconfig=nil, labels=nil, taints=nil, instanceadvancedsettings=nil, deletionprotection=nil)
+          @NodePoolId = nodepoolid
+          @Name = name
+          @LifeState = lifestate
+          @ClusterCIDR = clustercidr
+          @NetworkType = networktype
+          @RuntimeConfig = runtimeconfig
+          @Labels = labels
+          @Taints = taints
+          @InstanceAdvancedSettings = instanceadvancedsettings
+          @DeletionProtection = deletionprotection
+        end
+
+        def deserialize(params)
+          @NodePoolId = params['NodePoolId']
+          @Name = params['Name']
+          @LifeState = params['LifeState']
+          @ClusterCIDR = params['ClusterCIDR']
+          @NetworkType = params['NetworkType']
+          unless params['RuntimeConfig'].nil?
+            @RuntimeConfig = RuntimeConfig.new
+            @RuntimeConfig.deserialize(params['RuntimeConfig'])
+          end
+          unless params['Labels'].nil?
+            @Labels = []
+            params['Labels'].each do |i|
+              label_tmp = Label.new
+              label_tmp.deserialize(i)
+              @Labels << label_tmp
+            end
+          end
+          unless params['Taints'].nil?
+            @Taints = []
+            params['Taints'].each do |i|
+              taint_tmp = Taint.new
+              taint_tmp.deserialize(i)
+              @Taints << taint_tmp
+            end
+          end
+          unless params['InstanceAdvancedSettings'].nil?
+            @InstanceAdvancedSettings = InstanceAdvancedSettings.new
+            @InstanceAdvancedSettings.deserialize(params['InstanceAdvancedSettings'])
+          end
+          @DeletionProtection = params['DeletionProtection']
         end
       end
 
@@ -15809,6 +16368,76 @@ module TencentCloud
 
       # ModifyClusterVirtualNodePool返回参数结构体
       class ModifyClusterVirtualNodePoolResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyExternalNodePool请求参数结构体
+      class ModifyExternalNodePoolRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param NodePoolId: 节点池ID
+        # @type NodePoolId: String
+        # @param Name: 节点池名称
+        # @type Name: String
+        # @param Labels: 第三方节点label
+        # @type Labels: Array
+        # @param Taints: 第三方节点taint
+        # @type Taints: Array
+        # @param DeletionProtection: 删除保护开关
+        # @type DeletionProtection: Boolean
+        # @param UserScript: base64 编码的用户脚本, 此脚本会在 k8s 组件运行后执行, 需要用户保证脚本的可重入及重试逻辑, 脚本及其生成的日志文件可在节点的 /data/ccs_userscript/ 路径查看
+        # @type UserScript: String
+
+        attr_accessor :ClusterId, :NodePoolId, :Name, :Labels, :Taints, :DeletionProtection, :UserScript
+
+        def initialize(clusterid=nil, nodepoolid=nil, name=nil, labels=nil, taints=nil, deletionprotection=nil, userscript=nil)
+          @ClusterId = clusterid
+          @NodePoolId = nodepoolid
+          @Name = name
+          @Labels = labels
+          @Taints = taints
+          @DeletionProtection = deletionprotection
+          @UserScript = userscript
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @NodePoolId = params['NodePoolId']
+          @Name = params['Name']
+          unless params['Labels'].nil?
+            @Labels = []
+            params['Labels'].each do |i|
+              label_tmp = Label.new
+              label_tmp.deserialize(i)
+              @Labels << label_tmp
+            end
+          end
+          unless params['Taints'].nil?
+            @Taints = []
+            params['Taints'].each do |i|
+              taint_tmp = Taint.new
+              taint_tmp.deserialize(i)
+              @Taints << taint_tmp
+            end
+          end
+          @DeletionProtection = params['DeletionProtection']
+          @UserScript = params['UserScript']
+        end
+      end
+
+      # ModifyExternalNodePool返回参数结构体
+      class ModifyExternalNodePoolResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

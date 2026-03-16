@@ -916,7 +916,7 @@ module TencentCloud
       class DescribeDataCustomUrlV2Request < TencentCloud::Common::AbstractModel
         # @param StartTime: 开始时间
         # @type StartTime: Integer
-        # @param Type: top：资源top视图，allcount：性能视图，day：14天数据，condition：条件列表，pagepv：性能视图，area：请求速度分布，nettype/version/platform/isp/region/device/browser/ext1/ext2/ext3/ret/status/from/url/env/：网络平台视图/Version视图/设备视图/ISP视图/地区视图/浏览器视图/ext1视图等等
+        # @param Type: top：资源top视图，allcount：性能视图，day：14天数据，condition：条件列表，pagepv：性能视图，area：请求速度分布，nettype/version/platform/isp/region/device/browser/ext1/ext2/ext3/ret/status/from/url/env/：网络平台视图/Version视图/设备视图/ISP视图/地区视图/浏览器视图/ext1视图等
         # @type Type: String
         # @param EndTime: 结束时间
         # @type EndTime: Integer
@@ -1192,7 +1192,7 @@ module TencentCloud
       class DescribeDataEventUrlV2Request < TencentCloud::Common::AbstractModel
         # @param StartTime: 开始时间
         # @type StartTime: Integer
-        # @param Type: allcount：性能视图，day：14天数据，condition：条件列表，ckuv：获取uv趋势，ckpv：获取pv趋势，nettype/version/platform/isp/region/device/browser/ext1/ext2/ext3/ret/status/from/url/env/：网络平台视图/Version视图/设备视图/ISP视图/地区视图/浏览器视图/ext1视图等等
+        # @param Type: allcount：性能视图，day：14天数据，condition：条件列表，ckuv：获取uv趋势，ckpv：获取pv趋势，nettype/version/platform/isp/region/device/browser/ext1/ext2/ext3/ret/status/from/url/env/：网络平台视图/Version视图/设备视图/ISP视图/地区视图/浏览器视图/ext1视图等
         # @type Type: String
         # @param EndTime: 结束时间
         # @type EndTime: Integer
@@ -1476,7 +1476,7 @@ module TencentCloud
       class DescribeDataFetchUrlInfoRequest < TencentCloud::Common::AbstractModel
         # @param StartTime: 开始时间
         # @type StartTime: Integer
-        # @param Type: 类型
+        # @param Type: Type	是	String	无枚举值。此接口不使用 Type 做分支判断，SQL 固定 group by "url"，Type 字段传任何值不影响查询。
         # @type Type: String
         # @param EndTime: 结束时间
         # @type EndTime: Integer
@@ -1648,7 +1648,7 @@ module TencentCloud
         # @type Status: String
         # @param Ret: retcode
         # @type Ret: String
-        # @param NetStatus: 网络状态
+        # @param NetStatus: 网络状态(tag 值):用于过滤/聚合字段 netStatus；枚举值：0(正常)、1(弱网)、2(断网)、3(其他)。
         # @type NetStatus: String
 
         attr_accessor :StartTime, :Type, :EndTime, :ID, :ExtSecond, :Engine, :Isp, :From, :Level, :Brand, :Area, :VersionNum, :Platform, :ExtThird, :ExtFirst, :NetType, :Device, :IsAbroad, :Os, :Browser, :CostType, :Url, :Env, :Status, :Ret, :NetStatus
@@ -1736,7 +1736,7 @@ module TencentCloud
       class DescribeDataFetchUrlV2Request < TencentCloud::Common::AbstractModel
         # @param StartTime: 开始时间
         # @type StartTime: Integer
-        # @param Type: allcount：性能视图，pagepv：pv视图，day：14天数据，count40x：40X视图，count50x：50X视图，count5xand4x：40∑50视图，top：资源top视图，nettype/version/platform/isp/region/device/browser/ext1/ext2/ext3/ret/status/from/url/env/：网络平台视图/Version视图/设备视图/ISP视图/地区视图/浏览器视图/ext1视图等等
+        # @param Type: allcount：性能视图，pagepv：pv视图，day：14天数据，count40x：40X视图，count50x：50X视图，count5xand4x：40∑50视图，top：资源top视图，nettype/version/platform/isp/region/device/browser/ext1/ext2/ext3/ret/status/from/url/env/：网络平台视图/Version视图/设备视图/ISP视图/地区视图/浏览器视图/ext1视图等
         # @type Type: String
         # @param EndTime: 结束时间
         # @type EndTime: Integer
@@ -2068,7 +2068,7 @@ module TencentCloud
       class DescribeDataLogUrlStatisticsV2Request < TencentCloud::Common::AbstractModel
         # @param StartTime: 开始时间
         # @type StartTime: Integer
-        # @param Type: analysis：异常分析，compare：异常列表对比，allcount：性能视图，condition：条件列表，nettype/version/platform/isp/region/device/browser/ext1/ext2/ext3/ret/status/from/url/env/：网络平台视图/Version视图/设备视图/ISP视图/地区视图/浏览器视图/ext1视图等等
+        # @param Type: analysis：异常分析，compare：异常列表对比，allcount：性能视图，condition：条件列表，nettype/version/platform/isp/region/device/browser/ext1/ext2/ext3/ret/status/from/url/env/：网络平台视图/Version视图/设备视图/ISP视图/地区视图/浏览器视图/ext1视图等
         # @type Type: String
         # @param EndTime: 结束时间
         # @type EndTime: Integer
@@ -2750,7 +2750,7 @@ module TencentCloud
       class DescribeDataPvUrlStatisticsV2Request < TencentCloud::Common::AbstractModel
         # @param StartTime: 开始时间
         # @type StartTime: Integer
-        # @param Type: allcount：性能视图，day：14天数据，vp：性能，ckuv：uv，ckpv：pv，condition：条件列表，nettype/version/platform/isp/region/device/browser/ext1/ext2/ext3/ret/status/from/url/env/：网络平台视图/Version视图/设备视图/ISP视图/地区视图/浏览器视图/ext1视图等等
+        # @param Type: allcount：性能视图，day：14天数据，vp：性能，ckuv：uv，ckpv：pv，condition：条件列表，nettype/version/platform/isp/region/device/browser/ext1/ext2/ext3/ret/status/from/url/env/：网络平台视图/Version视图/设备视图/ISP视图/地区视图/浏览器视图/ext1视图等
         # @type Type: String
         # @param EndTime: 结束时间
         # @type EndTime: Integer
@@ -3456,7 +3456,7 @@ module TencentCloud
       class DescribeDataStaticProjectV2Request < TencentCloud::Common::AbstractModel
         # @param StartTime: 开始时间
         # @type StartTime: Integer
-        # @param Type: allcount：性能视图，day：14天数据，condition：条件列表，area：请求速度分布，nettype/version/platform/isp/region/device/browser/ext1/ext2/ext3/ret/status/from/url/env/：网络平台视图/Version视图/设备视图/ISP视图/地区视图/浏览器视图/ext1视图等等
+        # @param Type: allcount：性能视图，day：14天数据，condition：条件列表，area：请求速度分布，nettype/version/platform/isp/region/device/browser/ext1/ext2/ext3/ret/status/from/url/env/：网络平台视图/Version视图/设备视图/ISP视图/地区视图/浏览器视图/ext1视图等
         # @type Type: String
         # @param EndTime: 结束时间
         # @type EndTime: Integer
@@ -3736,7 +3736,7 @@ module TencentCloud
       class DescribeDataStaticResourceV2Request < TencentCloud::Common::AbstractModel
         # @param StartTime: 开始时间
         # @type StartTime: Integer
-        # @param Type: top：资源top视图，count40x：40X视图，nettype/version/platform/isp/region/device/browser/ext1/ext2/ext3/ret/status/from/url/env/：网络平台视图/Version视图/设备视图/ISP视图/地区视图/浏览器视图//ext1视图等等
+        # @param Type: top：资源top视图，count40x：40X视图，nettype/version/platform/isp/region/device/browser/ext1/ext2/ext3/ret/status/from/url/env/：网络平台视图/Version视图/设备视图/ISP视图/地区视图/浏览器视图//ext1视图等
         # @type Type: String
         # @param EndTime: 结束时间
         # @type EndTime: Integer
@@ -4016,7 +4016,7 @@ module TencentCloud
       class DescribeDataStaticUrlV2Request < TencentCloud::Common::AbstractModel
         # @param StartTime: 开始时间
         # @type StartTime: Integer
-        # @param Type: pagepv：性能视图，nettype/version/platform/isp/region/device/browser/ext1/ext2/ext3/ret/status/from/url/env/：网络平台视图/Version视图/设备视图/ISP视图/地区视图/浏览器视图//ext1视图等等
+        # @param Type: pagepv：性能视图，nettype/version/platform/isp/region/device/browser/ext1/ext2/ext3/ret/status/from/url/env/：网络平台视图/Version视图/设备视图/ISP视图/地区视图/浏览器视图//ext1视图等
         # @type Type: String
         # @param EndTime: 结束时间
         # @type EndTime: Integer
@@ -4186,7 +4186,7 @@ module TencentCloud
         # @type From: String
         # @param Level: 日志等级
         # @type Level: String
-        # @param Type: 类型暂无
+        # @param Type: 按页面来源分组（group by from），返回每个页面的 LCP/FID/CLS/FCP
         # @type Type: String
         # @param Brand: 品牌
         # @type Brand: String

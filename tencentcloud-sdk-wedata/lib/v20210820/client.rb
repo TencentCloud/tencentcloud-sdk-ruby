@@ -6517,7 +6517,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 上报table元数据
+        # 上报table元数据,当前列数量限制在300
 
         # @param request: Request instance for ReportTable.
         # @type request: :class:`Tencentcloud::wedata::V20210820::ReportTableRequest`

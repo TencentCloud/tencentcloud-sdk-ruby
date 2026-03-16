@@ -2648,46 +2648,32 @@ module TencentCloud
 
       # CreateCloudProductLogCollection请求参数结构体
       class CreateCloudProductLogCollectionRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
-        # - 通过各个接入云产品官方文档获取
+        # @param InstanceId: <p>实例ID</p><ul><li>通过各个接入云产品官方文档获取</li></ul>
         # @type InstanceId: String
-        # @param AssumerName: 云产品标识，支持枚举：CDS、CWP、CDB、TDSQL-C、MongoDB、TDStore、DCDB、MariaDB、PostgreSQL、BH、APIS
+        # @param AssumerName: <p>云产品标识，支持枚举：CDS、CWP、CDB、TDSQL-C、MongoDB、TDStore、DCDB、MariaDB、PostgreSQL、BH、APIS</p>
         # @type AssumerName: String
-        # @param LogType: 日志类型，支持枚举：CDS-AUDIT、CDS-RISK、CDB-AUDIT、TDSQL-C-AUDIT、MongoDB-AUDIT、MongoDB-SlowLog、MongoDB-ErrorLog、TDMYSQL-SLOW、DCDB-AUDIT、DCDB-SLOW、DCDB-ERROR、MariaDB-AUDIT、MariaDB-SLOW、MariaDB-ERROR、PostgreSQL-SLOW、PostgreSQL-ERROR、PostgreSQL-AUDIT、BH-FILELOG、BH-COMMANDLOG、APIS-ACCESS
+        # @param LogType: <p>日志类型，支持枚举：CDS-AUDIT、CDS-RISK、CDB-AUDIT、TDSQL-C-AUDIT、MongoDB-AUDIT、MongoDB-SlowLog、MongoDB-ErrorLog、TDMYSQL-SLOW、DCDB-AUDIT、DCDB-SLOW、DCDB-ERROR、MariaDB-AUDIT、MariaDB-SLOW、MariaDB-ERROR、PostgreSQL-SLOW、PostgreSQL-ERROR、PostgreSQL-AUDIT、BH-FILELOG、BH-COMMANDLOG、APIS-ACCESS</p>
         # @type LogType: String
-        # @param CloudProductRegion: 云产品地域。 不同日志类型(LogType)地域入参格式存在差异， 请参考如下示例：
-        # - CDS所有日志类型：ap-guangzhou
-        # - CDB-AUDIT: gz
-        # - TDSQL-C-AUDIT:  gz
-        # - MongoDB-AUDIT:  gz
-        # - MongoDB-SlowLog：ap-guangzhou
-        # - MongoDB-ErrorLog：ap-guangzhou
-        # - TDMYSQL-SLOW：gz
-        # - DCDB所有日志类型：gz
-        # - MariaDB所有日志类型：gz
-        # - PostgreSQL所有日志类型：gz
-        # - BH所有日志类型：overseas-polaris(中国香港地区和其他)/fsi-polaris(金融区)/general-polaris(普通区)/intl-sg-prod(国际站)
-        # - APIS所有日志类型：gz
+        # @param CloudProductRegion: <p>云产品地域。 不同日志类型(LogType)地域入参格式存在差异， 请参考如下示例：</p><ul><li>CDS所有日志类型：ap-guangzhou</li><li>CDB-AUDIT: gz</li><li>TDSQL-C-AUDIT:  gz</li><li>MongoDB-AUDIT:  gz</li><li>MongoDB-SlowLog：ap-guangzhou</li><li>MongoDB-ErrorLog：ap-guangzhou</li><li>TDMYSQL-SLOW：gz</li><li>DCDB所有日志类型：gz</li><li>MariaDB所有日志类型：gz</li><li>PostgreSQL所有日志类型：gz</li><li>BH所有日志类型：overseas-polaris(中国香港地区和其他)/fsi-polaris(金融区)/general-polaris(普通区)/intl-sg-prod(国际站)</li><li>APIS所有日志类型：gz</li></ul>
         # @type CloudProductRegion: String
-        # @param ClsRegion: CLS目标地域
-        # - 支持地域参考  [地域列表](https://cloud.tencent.com/document/api/614/56474#.E5.9C.B0.E5.9F.9F.E5.88.97.E8.A1.A8) 文档
+        # @param ClsRegion: <p>CLS目标地域</p><ul><li>支持地域参考  <a href="https://cloud.tencent.com/document/api/614/56474#.E5.9C.B0.E5.9F.9F.E5.88.97.E8.A1.A8">地域列表</a> 文档</li></ul>
         # @type ClsRegion: String
-        # @param LogsetName: 日志集名称，未填LogsetId时必填。若日志集不存在, 将自动创建
+        # @param LogsetName: <p>日志集名称，未填LogsetId时必填。若日志集不存在, 将自动创建</p>
         # @type LogsetName: String
-        # @param TopicName: 日志主题名称，在未填TopicId时必填。 若日志主题不存在，将自动创建
+        # @param TopicName: <p>日志主题名称，在未填TopicId时必填。 若日志主题不存在，将自动创建</p>
         # @type TopicName: String
-        # @param Extend: 日志配置扩展信息， 一般用于存储额外的日志投递配置
+        # @param Extend: <p>日志配置扩展信息， 一般用于存储额外的日志投递配置</p>
         # @type Extend: String
-        # @param LogsetId: 日志集id
-        # - 通过[获取日志集列表](https://cloud.tencent.com/document/api/614/58624)获取日志集Id。
+        # @param LogsetId: <p>日志集id</p><ul><li>通过<a href="https://cloud.tencent.com/document/api/614/58624">获取日志集列表</a>获取日志集Id。</li></ul>
         # @type LogsetId: String
-        # @param TopicId: 日志主题id
-        # - 通过[获取日志主题列表](https://cloud.tencent.com/document/product/614/56454)获取日志主题Id。
+        # @param TopicId: <p>日志主题id</p><ul><li>通过<a href="https://cloud.tencent.com/document/product/614/56454">获取日志主题列表</a>获取日志主题Id。</li></ul>
         # @type TopicId: String
+        # @param Tags: <p>标签描述列表，通过指定该参数可以同时绑定标签到相应的主题。最大支持10个标签键值对，同一个资源只能绑定到同一个标签键下。</p>
+        # @type Tags: Array
 
-        attr_accessor :InstanceId, :AssumerName, :LogType, :CloudProductRegion, :ClsRegion, :LogsetName, :TopicName, :Extend, :LogsetId, :TopicId
+        attr_accessor :InstanceId, :AssumerName, :LogType, :CloudProductRegion, :ClsRegion, :LogsetName, :TopicName, :Extend, :LogsetId, :TopicId, :Tags
 
-        def initialize(instanceid=nil, assumername=nil, logtype=nil, cloudproductregion=nil, clsregion=nil, logsetname=nil, topicname=nil, extend=nil, logsetid=nil, topicid=nil)
+        def initialize(instanceid=nil, assumername=nil, logtype=nil, cloudproductregion=nil, clsregion=nil, logsetname=nil, topicname=nil, extend=nil, logsetid=nil, topicid=nil, tags=nil)
           @InstanceId = instanceid
           @AssumerName = assumername
           @LogType = logtype
@@ -2698,6 +2684,7 @@ module TencentCloud
           @Extend = extend
           @LogsetId = logsetid
           @TopicId = topicid
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -2711,20 +2698,28 @@ module TencentCloud
           @Extend = params['Extend']
           @LogsetId = params['LogsetId']
           @TopicId = params['TopicId']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 
       # CreateCloudProductLogCollection返回参数结构体
       class CreateCloudProductLogCollectionResponse < TencentCloud::Common::AbstractModel
-        # @param TopicId: 日志主题ID
+        # @param TopicId: <p>日志主题ID</p>
         # @type TopicId: String
-        # @param TopicName: 日志主题名称
+        # @param TopicName: <p>日志主题名称</p>
         # @type TopicName: String
-        # @param LogsetId: 日志集ID
+        # @param LogsetId: <p>日志集ID</p>
         # @type LogsetId: String
-        # @param LogsetName: 日志集名称
+        # @param LogsetName: <p>日志集名称</p>
         # @type LogsetName: String
-        # @param Status: -1 创建中，1创建完成
+        # @param Status: <p>-1 创建中，1创建完成</p>
         # @type Status: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4719,9 +4714,9 @@ module TencentCloud
 
       # CreateSplunkDeliver请求参数结构体
       class CreateSplunkDeliverRequest < TencentCloud::Common::AbstractModel
-        # @param TopicId: <p>日志主题id- 通过<a href="https://cloud.tencent.com/document/product/614/56454">获取日志主题列表</a>获取日志主题Id。</p>
+        # @param TopicId: <p>日志主题id</p><ul><li>通过<a href="https://cloud.tencent.com/document/product/614/56454">获取日志主题列表</a>获取日志主题Id。</li></ul>
         # @type TopicId: String
-        # @param Name: <p>splunk投递任务名称；name有如下限制：- 不能为空- 长度不大于64- 只能包含aA-zZ、下划线、-、0-9</p>
+        # @param Name: <p>splunk投递任务名称；<br>name有如下限制：</p><ul><li>不能为空</li><li>长度不大于64</li><li>只能包含aA-zZ、下划线、-、0-9</li></ul>
         # @type Name: String
         # @param NetInfo: <p>Splunk投递任务-目标配置-网络信息</p>
         # @type NetInfo: :class:`Tencentcloud::Cls.v20201016.models.NetInfo`
@@ -4729,7 +4724,7 @@ module TencentCloud
         # @type MetadataInfo: :class:`Tencentcloud::Cls.v20201016.models.MetadataInfo`
         # @param HasServiceLog: <p>是否开启服务日志 1:关闭；2:开启 ;默认开启</p>
         # @type HasServiceLog: Integer
-        # @param IndexAck: <p>高级配置-是否启用索引器；1-不启用；2-启用；默认：1</p>
+        # @param IndexAck: <p>高级配置-是否启用索引器；1-不启用；2-启用；<br>默认：1</p>
         # @type IndexAck: Integer
         # @param Source: <p>高级配置-数据来源；不超过64个字符</p>
         # @type Source: String
@@ -4737,14 +4732,16 @@ module TencentCloud
         # @type SourceType: String
         # @param Index: <p>高级配置-Splunk写入的索引；不超过64个字符</p>
         # @type Index: String
-        # @param Channel: <p>高级配置-通道需满足限制：如果启用索引器，那么Channel必填</p>
+        # @param Channel: <p>高级配置-通道<br>需满足限制：如果启用索引器，那么Channel必填</p>
         # @type Channel: String
         # @param DSLFilter: <p>日志预过滤-数据写入 Splunk 的原始数据进行预过滤处理</p>
         # @type DSLFilter: String
+        # @param ExternalRole: <p>高级配置-跨账户投递用户角色授权信息</p><p>取值参考：<a href="https://console.cloud.tencent.com/cam/role/create?payloadType=account">新建自定义角色</a></p>
+        # @type ExternalRole: :class:`Tencentcloud::Cls.v20201016.models.ExternalRole`
 
-        attr_accessor :TopicId, :Name, :NetInfo, :MetadataInfo, :HasServiceLog, :IndexAck, :Source, :SourceType, :Index, :Channel, :DSLFilter
+        attr_accessor :TopicId, :Name, :NetInfo, :MetadataInfo, :HasServiceLog, :IndexAck, :Source, :SourceType, :Index, :Channel, :DSLFilter, :ExternalRole
 
-        def initialize(topicid=nil, name=nil, netinfo=nil, metadatainfo=nil, hasservicelog=nil, indexack=nil, source=nil, sourcetype=nil, index=nil, channel=nil, dslfilter=nil)
+        def initialize(topicid=nil, name=nil, netinfo=nil, metadatainfo=nil, hasservicelog=nil, indexack=nil, source=nil, sourcetype=nil, index=nil, channel=nil, dslfilter=nil, externalrole=nil)
           @TopicId = topicid
           @Name = name
           @NetInfo = netinfo
@@ -4756,6 +4753,7 @@ module TencentCloud
           @Index = index
           @Channel = channel
           @DSLFilter = dslfilter
+          @ExternalRole = externalrole
         end
 
         def deserialize(params)
@@ -4776,6 +4774,10 @@ module TencentCloud
           @Index = params['Index']
           @Channel = params['Channel']
           @DSLFilter = params['DSLFilter']
+          unless params['ExternalRole'].nil?
+            @ExternalRole = ExternalRole.new
+            @ExternalRole.deserialize(params['ExternalRole'])
+          end
         end
       end
 
@@ -5694,34 +5696,28 @@ module TencentCloud
 
       # DeleteCloudProductLogCollection请求参数结构体
       class DeleteCloudProductLogCollectionRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: <p>实例ID</p>
         # @type InstanceId: String
-        # @param AssumerName: 云产品标识，支持枚举：CDS、CWP、CDB、TDSQL-C、MongoDB、TDStore、DCDB、MariaDB、PostgreSQL、BH、APIS
+        # @param AssumerName: <p>云产品标识，支持枚举：CDS、CWP、CDB、TDSQL-C、MongoDB、TDStore、DCDB、MariaDB、PostgreSQL、BH、APIS</p>
         # @type AssumerName: String
-        # @param LogType: 日志类型，支持枚举：CDS-AUDIT、CDS-RISK、CDB-AUDIT、TDSQL-C-AUDIT、MongoDB-AUDIT、MongoDB-SlowLog、MongoDB-ErrorLog、TDMYSQL-SLOW、DCDB-AUDIT、DCDB-SLOW、DCDB-ERROR、MariaDB-AUDIT、MariaDB-SLOW、MariaDB-ERROR、PostgreSQL-SLOW、PostgreSQL-ERROR、PostgreSQL-AUDIT、BH-FILELOG、BH-COMMANDLOG、APIS-ACCESS
+        # @param LogType: <p>日志类型，支持枚举：CDS-AUDIT、CDS-RISK、CDB-AUDIT、TDSQL-C-AUDIT、MongoDB-AUDIT、MongoDB-SlowLog、MongoDB-ErrorLog、TDMYSQL-SLOW、DCDB-AUDIT、DCDB-SLOW、DCDB-ERROR、MariaDB-AUDIT、MariaDB-SLOW、MariaDB-ERROR、PostgreSQL-SLOW、PostgreSQL-ERROR、PostgreSQL-AUDIT、BH-FILELOG、BH-COMMANDLOG、APIS-ACCESS</p>
         # @type LogType: String
-        # @param CloudProductRegion: 云产品地域。 不同日志类型(LogType)地域入参格式存在差异， 请参考如下示例：
-        # - CDS所有日志类型：ap-guangzhou
-        # - CDB-AUDIT: gz
-        # - TDSQL-C-AUDIT: gz
-        # - MongoDB-AUDIT: gz
-        # - MongoDB-SlowLog：ap-guangzhou
-        # - MongoDB-ErrorLog：ap-guangzhou
-        # - TDMYSQL-SLOW：gz
-        # - DCDB所有日志类型：gz
-        # - MariaDB所有日志类型：gz
-        # - PostgreSQL所有日志类型：gz
-        # - BH所有日志类型：overseas-polaris(中国香港地区和其他)/fsi-polaris(金融区)/general-polaris(普通区)/intl-sg-prod(国际站)
-        # - APIS所有日志类型：gz
+        # @param CloudProductRegion: <p>云产品地域。 不同日志类型(LogType)地域入参格式存在差异， 请参考如下示例：</p><ul><li>CDS所有日志类型：ap-guangzhou</li><li>CDB-AUDIT: gz</li><li>TDSQL-C-AUDIT: gz</li><li>MongoDB-AUDIT: gz</li><li>MongoDB-SlowLog：ap-guangzhou</li><li>MongoDB-ErrorLog：ap-guangzhou</li><li>TDMYSQL-SLOW：gz</li><li>DCDB所有日志类型：gz</li><li>MariaDB所有日志类型：gz</li><li>PostgreSQL所有日志类型：gz</li><li>BH所有日志类型：overseas-polaris(中国香港地区和其他)/fsi-polaris(金融区)/general-polaris(普通区)/intl-sg-prod(国际站)</li><li>APIS所有日志类型：gz</li></ul>
         # @type CloudProductRegion: String
+        # @param IsDeleteTopic: <p>是否删除关联的topic</p>
+        # @type IsDeleteTopic: Boolean
+        # @param IsDeleteLogset: <p>是否删除关联的logset。如果logset下还有topic的话，不会进行删除</p>
+        # @type IsDeleteLogset: Boolean
 
-        attr_accessor :InstanceId, :AssumerName, :LogType, :CloudProductRegion
+        attr_accessor :InstanceId, :AssumerName, :LogType, :CloudProductRegion, :IsDeleteTopic, :IsDeleteLogset
 
-        def initialize(instanceid=nil, assumername=nil, logtype=nil, cloudproductregion=nil)
+        def initialize(instanceid=nil, assumername=nil, logtype=nil, cloudproductregion=nil, isdeletetopic=nil, isdeletelogset=nil)
           @InstanceId = instanceid
           @AssumerName = assumername
           @LogType = logtype
           @CloudProductRegion = cloudproductregion
+          @IsDeleteTopic = isdeletetopic
+          @IsDeleteLogset = isdeletelogset
         end
 
         def deserialize(params)
@@ -5729,12 +5725,14 @@ module TencentCloud
           @AssumerName = params['AssumerName']
           @LogType = params['LogType']
           @CloudProductRegion = params['CloudProductRegion']
+          @IsDeleteTopic = params['IsDeleteTopic']
+          @IsDeleteLogset = params['IsDeleteLogset']
         end
       end
 
       # DeleteCloudProductLogCollection返回参数结构体
       class DeleteCloudProductLogCollectionResponse < TencentCloud::Common::AbstractModel
-        # @param Status: 枚举值，0创建中 1创建完成 2删除中 3删除完成
+        # @param Status: <p>枚举值，0创建中 1创建完成 2删除中 3删除完成</p>
         # @type Status: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -7089,24 +7087,11 @@ module TencentCloud
 
       # DescribeCloudProductLogTasks请求参数结构体
       class DescribeCloudProductLogTasksRequest < TencentCloud::Common::AbstractModel
-        # @param Offset: 分页的偏移量，默认值为0。
+        # @param Offset: <p>分页的偏移量，默认值为0。</p>
         # @type Offset: Integer
-        # @param Limit: 分页单页限制数目，默认值为100，最大值100。
+        # @param Limit: <p>分页单页限制数目，默认值为20，最大值100。</p>
         # @type Limit: Integer
-        # @param Filters: - assumerName
-        #   - 按照【云产品标识】进行过滤。
-        #   - 类型：String
-        #   - 必选：否
-        #   - 枚举：CDS、CWP、CDB、TDSQL-C、MongoDB、TDStore、DCDB、MariaDB、PostgreSQL、BH、APIS
-        # - logType
-        #   - 按照【日志类型】进行过滤。
-        #   - 类型：String
-        #   - 必选：否
-        #   - 枚举：CDS-AUDIT、CDS-RISK、CDB-AUDIT、TDSQL-C-AUDIT、MongoDB-AUDIT、MongoDB-SlowLog、MongoDB-ErrorLog、TDMYSQL-SLOW、DCDB-AUDIT、DCDB-SLOW、DCDB-ERROR、MariaDB-AUDIT、MariaDB-SLOW、MariaDB-ERROR、PostgreSQL-SLOW、PostgreSQL-ERROR、PostgreSQL-AUDIT、BH-FILELOG、BH-COMMANDLOG、APIS-ACCESS
-        # - instanceId
-        #   - 按照【实例ID】进行过滤。
-        #   - 类型：String
-        #   - 必选：否
+        # @param Filters: <ul><li>assumerName<ul><li>按照【云产品标识】进行过滤。</li><li>类型：String</li><li>必选：否</li><li>枚举：CDS、CWP、CDB、TDSQL-C、MongoDB、TDStore、DCDB、MariaDB、PostgreSQL、BH、APIS</li></ul></li><li>logType<ul><li>按照【日志类型】进行过滤。</li><li>类型：String</li><li>必选：否</li><li>枚举：CDS-AUDIT、CDS-RISK、CDB-AUDIT、TDSQL-C-AUDIT、MongoDB-AUDIT、MongoDB-SlowLog、MongoDB-ErrorLog、TDMYSQL-SLOW、DCDB-AUDIT、DCDB-SLOW、DCDB-ERROR、MariaDB-AUDIT、MariaDB-SLOW、MariaDB-ERROR、PostgreSQL-SLOW、PostgreSQL-ERROR、PostgreSQL-AUDIT、BH-FILELOG、BH-COMMANDLOG、APIS-ACCESS</li></ul></li><li>instanceId<ul><li>按照【实例ID】进行过滤。</li><li>类型：String</li><li>必选：否</li></ul></li></ul>
         # @type Filters: Array
 
         attr_accessor :Offset, :Limit, :Filters
@@ -7133,9 +7118,9 @@ module TencentCloud
 
       # DescribeCloudProductLogTasks返回参数结构体
       class DescribeCloudProductLogTasksResponse < TencentCloud::Common::AbstractModel
-        # @param Tasks: 日志配置详情列表
+        # @param Tasks: <p>日志配置详情列表</p>
         # @type Tasks: Array
-        # @param TotalCount: 日志配置总数
+        # @param TotalCount: <p>日志配置总数</p>
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -10091,9 +10076,9 @@ module TencentCloud
 
       # DescribeSplunkDelivers请求参数结构体
       class DescribeSplunkDeliversRequest < TencentCloud::Common::AbstractModel
-        # @param TopicId: <p>日志主题Id- 通过<a href="https://cloud.tencent.com/document/product/614/56454">获取日志主题列表</a>获取日志主题Id。</p>
+        # @param TopicId: <p>日志主题Id</p><ul><li>通过<a href="https://cloud.tencent.com/document/product/614/56454">获取日志主题列表</a>获取日志主题Id。</li></ul>
         # @type TopicId: String
-        # @param Filters: <ul><li>taskId 按照【任务id】进行过滤。 类型：String 必选：否  </li><li>name 按照【任务名称】进行过滤。 类型：String 必选：否  </li><li>statusFlag 按照【状态】进行过滤。 类型：String 必选：否<br /> 每次请求的Filters的上限为10，Filter.Values的上限为10。</li></ul>
+        # @param Filters: <ul><li>taskId 按照【任务id】进行过滤。 类型：String 必选：否  </li><li>name 按照【任务名称】进行过滤。 类型：String 必选：否  </li><li>statusFlag 按照【状态】进行过滤。 类型：String 必选：否<br>每次请求的Filters的上限为10，Filter.Values的上限为10。</li></ul>
         # @type Filters: Array
         # @param Offset: <p>分页的偏移量，默认值为0。</p>
         # @type Offset: Integer
@@ -11235,6 +11220,26 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @SyntaxRule = params['SyntaxRule']
           @DerivedFields = params['DerivedFields']
+        end
+      end
+
+      # 跨账户投递外部角色
+      class ExternalRole < TencentCloud::Common::AbstractModel
+        # @param RoleArn: <p>跨账户投递-用户角色RoleArn</p>
+        # @type RoleArn: String
+        # @param ExternalId: <p>跨账户投递-用户角色名称</p>
+        # @type ExternalId: String
+
+        attr_accessor :RoleArn, :ExternalId
+
+        def initialize(rolearn=nil, externalid=nil)
+          @RoleArn = rolearn
+          @ExternalId = externalid
+        end
+
+        def deserialize(params)
+          @RoleArn = params['RoleArn']
+          @ExternalId = params['ExternalId']
         end
       end
 
@@ -15447,9 +15452,9 @@ module TencentCloud
       class ModifySplunkDeliverRequest < TencentCloud::Common::AbstractModel
         # @param TaskId: <p>任务id</p>
         # @type TaskId: String
-        # @param TopicId: <p>日志主题id- 通过<a href="https://cloud.tencent.com/document/product/614/56454">获取日志主题列表</a>获取日志主题Id。</p>
+        # @param TopicId: <p>日志主题id</p><ul><li>通过<a href="https://cloud.tencent.com/document/product/614/56454">获取日志主题列表</a>获取日志主题Id。</li></ul>
         # @type TopicId: String
-        # @param Name: <p>投递任务名称name有以下限制：- 不能为空- 长度不大于64- 只能包含aA-zZ、下划线、-、0-9</p>
+        # @param Name: <p>投递任务名称<br>name有以下限制：</p><ul><li>不能为空</li><li>长度不大于64</li><li>只能包含aA-zZ、下划线、-、0-9</li></ul>
         # @type Name: String
         # @param Enable: <p>投递任务启用状态；0:禁用；1:启用</p>
         # @type Enable: Integer
@@ -15459,7 +15464,7 @@ module TencentCloud
         # @type MetadataInfo: :class:`Tencentcloud::Cls.v20201016.models.MetadataInfo`
         # @param HasServiceLog: <p>是否启用服务日志；1:关闭；2:开启</p>
         # @type HasServiceLog: Integer
-        # @param IndexAck: <p>高级配置-是否启用索引器;1-不开启；2-开启；默认为：1</p>
+        # @param IndexAck: <p>高级配置-是否启用索引器;<br>1-不开启；2-开启；默认为：1</p>
         # @type IndexAck: Integer
         # @param Source: <p>高级配置-数据来源；不超过64个字符</p>
         # @type Source: String
@@ -15467,14 +15472,16 @@ module TencentCloud
         # @type SourceType: String
         # @param Index: <p>高级配置-Splunk写入的索引；不超过64个字符</p>
         # @type Index: String
-        # @param Channel: <p>高级配置-通道。需满足限制：如果启用索引器，该值不能为空</p>
+        # @param Channel: <p>高级配置-通道。<br>需满足限制：如果启用索引器，该值不能为空</p>
         # @type Channel: String
         # @param DSLFilter: <p>预过滤处理-对写入 Splunk 原始数据进行预过滤处理</p>
         # @type DSLFilter: String
+        # @param ExternalRole: <p>高级配置-跨账户投递用户角色授权信息</p><p>取值参考：<a href="https://console.cloud.tencent.com/cam/role/create?payloadType=account">新建自定义角色</a></p>
+        # @type ExternalRole: :class:`Tencentcloud::Cls.v20201016.models.ExternalRole`
 
-        attr_accessor :TaskId, :TopicId, :Name, :Enable, :NetInfo, :MetadataInfo, :HasServiceLog, :IndexAck, :Source, :SourceType, :Index, :Channel, :DSLFilter
+        attr_accessor :TaskId, :TopicId, :Name, :Enable, :NetInfo, :MetadataInfo, :HasServiceLog, :IndexAck, :Source, :SourceType, :Index, :Channel, :DSLFilter, :ExternalRole
 
-        def initialize(taskid=nil, topicid=nil, name=nil, enable=nil, netinfo=nil, metadatainfo=nil, hasservicelog=nil, indexack=nil, source=nil, sourcetype=nil, index=nil, channel=nil, dslfilter=nil)
+        def initialize(taskid=nil, topicid=nil, name=nil, enable=nil, netinfo=nil, metadatainfo=nil, hasservicelog=nil, indexack=nil, source=nil, sourcetype=nil, index=nil, channel=nil, dslfilter=nil, externalrole=nil)
           @TaskId = taskid
           @TopicId = topicid
           @Name = name
@@ -15488,6 +15495,7 @@ module TencentCloud
           @Index = index
           @Channel = channel
           @DSLFilter = dslfilter
+          @ExternalRole = externalrole
         end
 
         def deserialize(params)
@@ -15510,6 +15518,10 @@ module TencentCloud
           @Index = params['Index']
           @Channel = params['Channel']
           @DSLFilter = params['DSLFilter']
+          unless params['ExternalRole'].nil?
+            @ExternalRole = ExternalRole.new
+            @ExternalRole.deserialize(params['ExternalRole'])
+          end
         end
       end
 
@@ -17555,69 +17567,51 @@ module TencentCloud
 
       # 投递规则
       class ShipperInfo < TencentCloud::Common::AbstractModel
-        # @param ShipperId: 投递规则ID
+        # @param ShipperId: <p>投递规则ID</p>
         # @type ShipperId: String
-        # @param TopicId: 日志主题ID
+        # @param TopicId: <p>日志主题ID</p>
         # @type TopicId: String
-        # @param Bucket: 投递的bucket地址
+        # @param Bucket: <p>投递的bucket地址</p>
         # @type Bucket: String
-        # @param Prefix: 投递的前缀目录
+        # @param Prefix: <p>投递的前缀目录</p>
         # @type Prefix: String
-        # @param ShipperName: 投递规则的名字
+        # @param ShipperName: <p>投递规则的名字</p>
         # @type ShipperName: String
-        # @param Interval: 投递的时间间隔，单位 秒
+        # @param Interval: <p>投递的时间间隔，单位 秒</p>
         # @type Interval: Integer
-        # @param MaxSize: 投递的文件的最大值，单位 MB
+        # @param MaxSize: <p>投递的文件的最大值，单位 MB</p>
         # @type MaxSize: Integer
-        # @param Status: 是否生效
+        # @param Status: <p>是否生效</p>
         # @type Status: Boolean
-        # @param FilterRules: 投递日志的过滤规则
+        # @param FilterRules: <p>投递日志的过滤规则</p>
         # @type FilterRules: Array
-        # @param Partition: 投递日志的分区规则，支持strftime的时间格式表示
+        # @param Partition: <p>投递日志的分区规则，支持strftime的时间格式表示</p>
         # @type Partition: String
-        # @param Compress: 投递日志的压缩配置
+        # @param Compress: <p>投递日志的压缩配置</p>
         # @type Compress: :class:`Tencentcloud::Cls.v20201016.models.CompressInfo`
-        # @param Content: 投递日志的内容格式配置
+        # @param Content: <p>投递日志的内容格式配置</p>
         # @type Content: :class:`Tencentcloud::Cls.v20201016.models.ContentInfo`
-        # @param CreateTime: 投递日志的创建时间。格式：YYYY-MM-DD HH:MM:SS
+        # @param CreateTime: <p>投递日志的创建时间。格式：YYYY-MM-DD HH:MM:SS</p>
         # @type CreateTime: String
-        # @param FilenameMode: 投递文件命名配置，0：随机数命名，1：投递时间命名，默认0（随机数命名）
+        # @param FilenameMode: <p>投递文件命名配置，0：随机数命名，1：投递时间命名，默认0（随机数命名）</p>
         # @type FilenameMode: Integer
-        # @param StartTime: 投递数据范围的开始时间点
+        # @param StartTime: <p>投递数据范围的开始时间点</p>
         # @type StartTime: Integer
-        # @param EndTime: 投递数据范围的结束时间点
+        # @param EndTime: <p>投递数据范围的结束时间点</p>
         # @type EndTime: Integer
-        # @param Progress: 历史数据投递的进度（仅当用户选择的数据内中历史数据时才有效）
+        # @param Progress: <p>历史数据投递的进度（仅当用户选择的数据内中历史数据时才有效）</p>
         # @type Progress: Float
-        # @param RemainTime: 历史数据全部投递完成剩余的时间（仅当用户选择的数据中有历史数据时才有效）
+        # @param RemainTime: <p>历史数据全部投递完成剩余的时间（仅当用户选择的数据中有历史数据时才有效）</p><p>单位：秒</p>
         # @type RemainTime: Integer
-        # @param HistoryStatus: 历史任务状态：
-        # 0：实时任务
-        # 1：任务准备中
-        # 2：任务运行中
-        # 3：任务运行异常
-        # 4：任务运行结束
+        # @param HistoryStatus: <p>历史任务状态：<br>0：实时任务<br>1：任务准备中<br>2：任务运行中<br>3：任务运行异常<br>4：任务运行结束</p>
         # @type HistoryStatus: Integer
-        # @param StorageType: 对象存储类型，默认值为 STANDARD。枚举值请参见[ 存储类型概述](https://cloud.tencent.com/document/product/436/33417) 文档。
-        # 参考值有：
-        # STANDARD：标准存储
-        # STANDARD_IA：低频存储
-        # ARCHIVE：归档存储
-        # DEEP_ARCHIVE：深度归档存储
-        # MAZ_STANDARD：标准存储（多 AZ）
-        # MAZ_STANDARD_IA：低频存储（多 AZ）
-        # INTELLIGENT_TIERING：智能分层存储
-        # MAZ_INTELLIGENT_TIERING：智能分层存储（多 AZ）
+        # @param StorageType: <p>对象存储类型，默认值为 STANDARD。枚举值请参见<a href="https://cloud.tencent.com/document/product/436/33417"> 存储类型概述</a> 文档。<br>参考值有：<br>STANDARD：标准存储<br>STANDARD_IA：低频存储<br>ARCHIVE：归档存储<br>DEEP_ARCHIVE：深度归档存储<br>MAZ_STANDARD：标准存储（多 AZ）<br>MAZ_STANDARD_IA：低频存储（多 AZ）<br>INTELLIGENT_TIERING：智能分层存储<br>MAZ_INTELLIGENT_TIERING：智能分层存储（多 AZ）</p>
         # @type StorageType: String
-        # @param RoleArn: 角色访问描述名 [创建角色](https://cloud.tencent.com/document/product/598/19381)
+        # @param RoleArn: <p>角色访问描述名 <a href="https://cloud.tencent.com/document/product/598/19381">创建角色</a></p>
         # @type RoleArn: String
-        # @param ExternalId: 外部ID
+        # @param ExternalId: <p>外部ID</p>
         # @type ExternalId: String
-        # @param TaskStatus: 任务运行状态。支持`0`,`1`,`2`
-
-        # - `0`: 停止
-        # - `1`: 运行中
-        # - `2`: 异常
+        # @param TaskStatus: <p>任务运行状态。支持<code>0</code>,<code>1</code>,<code>2</code></p><ul><li><code>0</code>: 停止</li><li><code>1</code>: 运行中</li><li><code>2</code>: 异常</li></ul>
         # @type TaskStatus: Integer
 
         attr_accessor :ShipperId, :TopicId, :Bucket, :Prefix, :ShipperName, :Interval, :MaxSize, :Status, :FilterRules, :Partition, :Compress, :Content, :CreateTime, :FilenameMode, :StartTime, :EndTime, :Progress, :RemainTime, :HistoryStatus, :StorageType, :RoleArn, :ExternalId, :TaskStatus
@@ -17833,10 +17827,12 @@ module TencentCloud
         # @type Channel: String
         # @param DSLFilter: <p>预过滤处理-对写入 Splunk 原始数据进行预过滤处理语句</p>
         # @type DSLFilter: String
+        # @param ExternalRole: <p>高级配置-跨账户投递参数</p>
+        # @type ExternalRole: :class:`Tencentcloud::Cls.v20201016.models.ExternalRole`
 
-        attr_accessor :TaskId, :Name, :Uin, :TopicId, :Status, :Enable, :CreateTime, :UpdateTime, :NetInfo, :Metadata, :HasServiceLog, :Source, :SourceType, :Index, :IndexAck, :Channel, :DSLFilter
+        attr_accessor :TaskId, :Name, :Uin, :TopicId, :Status, :Enable, :CreateTime, :UpdateTime, :NetInfo, :Metadata, :HasServiceLog, :Source, :SourceType, :Index, :IndexAck, :Channel, :DSLFilter, :ExternalRole
 
-        def initialize(taskid=nil, name=nil, uin=nil, topicid=nil, status=nil, enable=nil, createtime=nil, updatetime=nil, netinfo=nil, metadata=nil, hasservicelog=nil, source=nil, sourcetype=nil, index=nil, indexack=nil, channel=nil, dslfilter=nil)
+        def initialize(taskid=nil, name=nil, uin=nil, topicid=nil, status=nil, enable=nil, createtime=nil, updatetime=nil, netinfo=nil, metadata=nil, hasservicelog=nil, source=nil, sourcetype=nil, index=nil, indexack=nil, channel=nil, dslfilter=nil, externalrole=nil)
           @TaskId = taskid
           @Name = name
           @Uin = uin
@@ -17854,6 +17850,7 @@ module TencentCloud
           @IndexAck = indexack
           @Channel = channel
           @DSLFilter = dslfilter
+          @ExternalRole = externalrole
         end
 
         def deserialize(params)
@@ -17880,6 +17877,10 @@ module TencentCloud
           @IndexAck = params['IndexAck']
           @Channel = params['Channel']
           @DSLFilter = params['DSLFilter']
+          unless params['ExternalRole'].nil?
+            @ExternalRole = ExternalRole.new
+            @ExternalRole.deserialize(params['ExternalRole'])
+          end
         end
       end
 

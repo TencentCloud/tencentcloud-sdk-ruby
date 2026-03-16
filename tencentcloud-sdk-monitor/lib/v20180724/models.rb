@@ -10204,9 +10204,9 @@ module TencentCloud
         # @type Namespace: String
         # @param MetricName: 指标名称，如CPUUsage，仅支持单指标拉取。各个云产品的详细指标说明请参阅各个产品[监控指标](https://cloud.tencent.com/document/product/248/6140)文档，对应的指标英文名即为MetricName
         # @type MetricName: String
-        # @param Instances: 实例对象的维度组合，格式为key-value键值对形式的集合。不同类型的实例字段完全不同，如CVM为[{"Name":"InstanceId","Value":"ins-j0hk02zo"}]，Ckafka为[{"Name":"instanceId","Value":"ckafka-l49k54dd"}]，COS为[{"Name":"appid","Value":"1258344699"},{"Name":"bucket","Value":"rig-1258344699"}]。各个云产品的维度请参阅各个产品[监控指标](https://cloud.tencent.com/document/product/248/6140)文档，对应的维度列即为维度组合的key，value为key对应的值。单请求最多支持批量拉取10个实例的监控数据。
+        # @param Instances: 实例对象的维度组合，格式为key-value键值对形式的集合。不同类型的实例字段完全不同，如CVM为[{"Name":"InstanceId","Value":"ins-j0hk02zo"}]，Ckafka为[{"Name":"instanceId","Value":"ckafka-l49k54dd"}]，COS为[{"Name":"appid","Value":"1258344699"},{"Name":"bucket","Value":"rig-1258344699"}]。各个云产品的维度请参阅各个产品[监控指标](https://cloud.tencent.com/document/product/248/6140)文档，对应的维度列即为维度组合的key，value为key对应的值。单请求最多支持批量拉取50个实例的监控数据。
         # @type Instances: Array
-        # @param Period: 监控统计周期，如60。默认为取值为300，单位为s。每个指标支持的统计周期不一定相同，各个云产品支持的统计周期请参阅各个产品[监控指标](https://cloud.tencent.com/document/product/248/6140)文档，对应的统计周期列即为支持的统计周期。单请求的数据点数限制为1440个。
+        # @param Period: 监控统计周期，如60。默认为取值为300，单位为s。每个指标支持的统计周期不一定相同，各个云产品支持的统计周期请参阅各个产品[监控指标](https://cloud.tencent.com/document/product/248/6140)文档，对应的统计周期列即为支持的统计周期。单请求的数据点数限制为7200个。
         # @type Period: Integer
         # @param StartTime: 起始时间，如2018-09-22T19:51:23+08:00
         # @type StartTime: String
@@ -11826,14 +11826,14 @@ module TencentCloud
 
         attr_accessor :AlarmNotifyPeriod, :AlarmNotifyType, :EventID, :RuleID, :MetricName, :Description
         extend Gem::Deprecate
-        deprecate :AlarmNotifyPeriod, :none, 2026, 2
-        deprecate :AlarmNotifyPeriod=, :none, 2026, 2
-        deprecate :AlarmNotifyType, :none, 2026, 2
-        deprecate :AlarmNotifyType=, :none, 2026, 2
-        deprecate :EventID, :none, 2026, 2
-        deprecate :EventID=, :none, 2026, 2
-        deprecate :RuleID, :none, 2026, 2
-        deprecate :RuleID=, :none, 2026, 2
+        deprecate :AlarmNotifyPeriod, :none, 2026, 3
+        deprecate :AlarmNotifyPeriod=, :none, 2026, 3
+        deprecate :AlarmNotifyType, :none, 2026, 3
+        deprecate :AlarmNotifyType=, :none, 2026, 3
+        deprecate :EventID, :none, 2026, 3
+        deprecate :EventID=, :none, 2026, 3
+        deprecate :RuleID, :none, 2026, 3
+        deprecate :RuleID=, :none, 2026, 3
 
         def initialize(alarmnotifyperiod=nil, alarmnotifytype=nil, eventid=nil, ruleid=nil, metricname=nil, description=nil)
           @AlarmNotifyPeriod = alarmnotifyperiod
@@ -14793,10 +14793,10 @@ module TencentCloud
 
         attr_accessor :URL, :URLRelabelConfig, :BasicAuth, :MaxBlockSize, :Label, :Headers
         extend Gem::Deprecate
-        deprecate :MaxBlockSize, :none, 2026, 2
-        deprecate :MaxBlockSize=, :none, 2026, 2
-        deprecate :Label, :none, 2026, 2
-        deprecate :Label=, :none, 2026, 2
+        deprecate :MaxBlockSize, :none, 2026, 3
+        deprecate :MaxBlockSize=, :none, 2026, 3
+        deprecate :Label, :none, 2026, 3
+        deprecate :Label=, :none, 2026, 3
 
         def initialize(url=nil, urlrelabelconfig=nil, basicauth=nil, maxblocksize=nil, label=nil, headers=nil)
           @URL = url

@@ -432,6 +432,72 @@ module TencentCloud
         end
       end
 
+      # CreateDataSource请求参数结构体
+      class CreateDataSourceRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 数据源名称
+        # @type Name: String
+        # @param Type: 数据源类型英文名
+        # @type Type: String
+        # @param Permission: 数据源权限，取值有RW RO
+        # @type Permission: String
+        # @param StorageId: 存储实例ID
+        # @type StorageId: String
+        # @param MountConfigure: 数据源挂载配置
+        # @type MountConfigure: :class:`Tencentcloud::Tione.v20211111.models.MountConfigureInfo`
+        # @param Tags: 标签配置
+        # @type Tags: Array
+
+        attr_accessor :Name, :Type, :Permission, :StorageId, :MountConfigure, :Tags
+
+        def initialize(name=nil, type=nil, permission=nil, storageid=nil, mountconfigure=nil, tags=nil)
+          @Name = name
+          @Type = type
+          @Permission = permission
+          @StorageId = storageid
+          @MountConfigure = mountconfigure
+          @Tags = tags
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Type = params['Type']
+          @Permission = params['Permission']
+          @StorageId = params['StorageId']
+          unless params['MountConfigure'].nil?
+            @MountConfigure = MountConfigureInfo.new
+            @MountConfigure.deserialize(params['MountConfigure'])
+          end
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+        end
+      end
+
+      # CreateDataSource返回参数结构体
+      class CreateDataSourceResponse < TencentCloud::Common::AbstractModel
+        # @param Id: 数据源ID
+        # @type Id: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Id, :RequestId
+
+        def initialize(id=nil, requestid=nil)
+          @Id = id
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateDataset请求参数结构体
       class CreateDatasetRequest < TencentCloud::Common::AbstractModel
         # @param DatasetName: 数据集名称，不超过60个字符，仅支持中英文、数字、下划线"_"、短横"-"，只能以中英文、数字开头
@@ -791,10 +857,12 @@ module TencentCloud
         # @type SchedulingStrategy: String
         # @param GatewayLogConfig: 网关日志投递相关配置
         # @type GatewayLogConfig: :class:`Tencentcloud::Tione.v20211111.models.LogConfig`
+        # @param GatewayConfig: 网关相关配置
+        # @type GatewayConfig: :class:`Tencentcloud::Tione.v20211111.models.GatewayConfig`
 
-        attr_accessor :ServiceGroupId, :ServiceGroupName, :ServiceDescription, :ChargeType, :ResourceGroupId, :ModelInfo, :ImageInfo, :Env, :Resources, :InstanceType, :ScaleMode, :Replicas, :HorizontalPodAutoscaler, :LogEnable, :LogConfig, :AuthorizationEnable, :Tags, :NewVersion, :CronScaleJobs, :ScaleStrategy, :HybridBillingPrepaidReplicas, :CreateSource, :ModelHotUpdateEnable, :ScheduledAction, :VolumeMount, :ServiceLimit, :CallbackUrl, :ModelTurboEnable, :ServiceCategory, :Command, :ServiceEIP, :CommandBase64, :ServicePort, :DeployType, :InstancePerReplicas, :TerminationGracePeriodSeconds, :PreStopCommand, :GrpcEnable, :HealthProbe, :RollingUpdate, :Sidecar, :VolumeMounts, :SchedulingStrategy, :GatewayLogConfig
+        attr_accessor :ServiceGroupId, :ServiceGroupName, :ServiceDescription, :ChargeType, :ResourceGroupId, :ModelInfo, :ImageInfo, :Env, :Resources, :InstanceType, :ScaleMode, :Replicas, :HorizontalPodAutoscaler, :LogEnable, :LogConfig, :AuthorizationEnable, :Tags, :NewVersion, :CronScaleJobs, :ScaleStrategy, :HybridBillingPrepaidReplicas, :CreateSource, :ModelHotUpdateEnable, :ScheduledAction, :VolumeMount, :ServiceLimit, :CallbackUrl, :ModelTurboEnable, :ServiceCategory, :Command, :ServiceEIP, :CommandBase64, :ServicePort, :DeployType, :InstancePerReplicas, :TerminationGracePeriodSeconds, :PreStopCommand, :GrpcEnable, :HealthProbe, :RollingUpdate, :Sidecar, :VolumeMounts, :SchedulingStrategy, :GatewayLogConfig, :GatewayConfig
 
-        def initialize(servicegroupid=nil, servicegroupname=nil, servicedescription=nil, chargetype=nil, resourcegroupid=nil, modelinfo=nil, imageinfo=nil, env=nil, resources=nil, instancetype=nil, scalemode=nil, replicas=nil, horizontalpodautoscaler=nil, logenable=nil, logconfig=nil, authorizationenable=nil, tags=nil, newversion=nil, cronscalejobs=nil, scalestrategy=nil, hybridbillingprepaidreplicas=nil, createsource=nil, modelhotupdateenable=nil, scheduledaction=nil, volumemount=nil, servicelimit=nil, callbackurl=nil, modelturboenable=nil, servicecategory=nil, command=nil, serviceeip=nil, commandbase64=nil, serviceport=nil, deploytype=nil, instanceperreplicas=nil, terminationgraceperiodseconds=nil, prestopcommand=nil, grpcenable=nil, healthprobe=nil, rollingupdate=nil, sidecar=nil, volumemounts=nil, schedulingstrategy=nil, gatewaylogconfig=nil)
+        def initialize(servicegroupid=nil, servicegroupname=nil, servicedescription=nil, chargetype=nil, resourcegroupid=nil, modelinfo=nil, imageinfo=nil, env=nil, resources=nil, instancetype=nil, scalemode=nil, replicas=nil, horizontalpodautoscaler=nil, logenable=nil, logconfig=nil, authorizationenable=nil, tags=nil, newversion=nil, cronscalejobs=nil, scalestrategy=nil, hybridbillingprepaidreplicas=nil, createsource=nil, modelhotupdateenable=nil, scheduledaction=nil, volumemount=nil, servicelimit=nil, callbackurl=nil, modelturboenable=nil, servicecategory=nil, command=nil, serviceeip=nil, commandbase64=nil, serviceport=nil, deploytype=nil, instanceperreplicas=nil, terminationgraceperiodseconds=nil, prestopcommand=nil, grpcenable=nil, healthprobe=nil, rollingupdate=nil, sidecar=nil, volumemounts=nil, schedulingstrategy=nil, gatewaylogconfig=nil, gatewayconfig=nil)
           @ServiceGroupId = servicegroupid
           @ServiceGroupName = servicegroupname
           @ServiceDescription = servicedescription
@@ -839,6 +907,7 @@ module TencentCloud
           @VolumeMounts = volumemounts
           @SchedulingStrategy = schedulingstrategy
           @GatewayLogConfig = gatewaylogconfig
+          @GatewayConfig = gatewayconfig
         end
 
         def deserialize(params)
@@ -953,6 +1022,10 @@ module TencentCloud
             @GatewayLogConfig = LogConfig.new
             @GatewayLogConfig.deserialize(params['GatewayLogConfig'])
           end
+          unless params['GatewayConfig'].nil?
+            @GatewayConfig = GatewayConfig.new
+            @GatewayConfig.deserialize(params['GatewayConfig'])
+          end
         end
       end
 
@@ -975,6 +1048,46 @@ module TencentCloud
             @Service = Service.new
             @Service.deserialize(params['Service'])
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateMountLimit请求参数结构体
+      class CreateMountLimitRequest < TencentCloud::Common::AbstractModel
+        # @param Type: 数据源类型英文名
+        # @type Type: String
+        # @param StorageId: 存储实例ID
+        # @type StorageId: String
+        # @param LimitMount: 限制开关是否开启，只有开启时才有限制，默认关闭
+        # @type LimitMount: Boolean
+
+        attr_accessor :Type, :StorageId, :LimitMount
+
+        def initialize(type=nil, storageid=nil, limitmount=nil)
+          @Type = type
+          @StorageId = storageid
+          @LimitMount = limitmount
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @StorageId = params['StorageId']
+          @LimitMount = params['LimitMount']
+        end
+      end
+
+      # CreateMountLimit返回参数结构体
+      class CreateMountLimitResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -1735,6 +1848,88 @@ module TencentCloud
         end
       end
 
+      # 数据源信息
+      class DataSourceInfo < TencentCloud::Common::AbstractModel
+        # @param Id: 数据源ID
+        # @type Id: String
+        # @param Name: 数据源名称
+        # @type Name: String
+        # @param Creator: 创建者uin
+        # @type Creator: String
+        # @param CreatorName: 创建者名称
+        # @type CreatorName: String
+        # @param Type: 数据源类型英文名
+        # @type Type: String
+        # @param Permission: 数据源权限，取值有RW RO
+        # @type Permission: String
+        # @param StorageId: 数据源所属存储实例ID
+        # @type StorageId: String
+        # @param StorageName: 数据源所属存储实例名称
+        # @type StorageName: String
+        # @param MountConfigure: 数据源挂载配置
+        # @type MountConfigure: :class:`Tencentcloud::Tione.v20211111.models.MountConfigureInfo`
+        # @param CreateTime: 创建时间, 格式为yyyy-mm-ddThh:mm:ssZ
+        # @type CreateTime: String
+        # @param UpdateTime: 更新时间, 格式为yyyy-mm-ddThh:mm:ssZ
+        # @type UpdateTime: String
+        # @param LimitMount: 限制开关是否开启，只有开启时才有限制
+        # @type LimitMount: Boolean
+        # @param Tags: 标签配置
+        # @type Tags: Array
+        # @param ExtraConf: 额外配置,对应存储实例的额外配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExtraConf: :class:`Tencentcloud::Tione.v20211111.models.StorageExtraConf`
+
+        attr_accessor :Id, :Name, :Creator, :CreatorName, :Type, :Permission, :StorageId, :StorageName, :MountConfigure, :CreateTime, :UpdateTime, :LimitMount, :Tags, :ExtraConf
+
+        def initialize(id=nil, name=nil, creator=nil, creatorname=nil, type=nil, permission=nil, storageid=nil, storagename=nil, mountconfigure=nil, createtime=nil, updatetime=nil, limitmount=nil, tags=nil, extraconf=nil)
+          @Id = id
+          @Name = name
+          @Creator = creator
+          @CreatorName = creatorname
+          @Type = type
+          @Permission = permission
+          @StorageId = storageid
+          @StorageName = storagename
+          @MountConfigure = mountconfigure
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @LimitMount = limitmount
+          @Tags = tags
+          @ExtraConf = extraconf
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Name = params['Name']
+          @Creator = params['Creator']
+          @CreatorName = params['CreatorName']
+          @Type = params['Type']
+          @Permission = params['Permission']
+          @StorageId = params['StorageId']
+          @StorageName = params['StorageName']
+          unless params['MountConfigure'].nil?
+            @MountConfigure = MountConfigureInfo.new
+            @MountConfigure.deserialize(params['MountConfigure'])
+          end
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @LimitMount = params['LimitMount']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+          unless params['ExtraConf'].nil?
+            @ExtraConf = StorageExtraConf.new
+            @ExtraConf.deserialize(params['ExtraConf'])
+          end
+        end
+      end
+
       # 数据集组
       class DatasetGroup < TencentCloud::Common::AbstractModel
         # @param DatasetId: 数据集ID
@@ -2172,6 +2367,38 @@ module TencentCloud
         end
       end
 
+      # DeleteDataSource请求参数结构体
+      class DeleteDataSourceRequest < TencentCloud::Common::AbstractModel
+        # @param Id: 数据源ID
+        # @type Id: String
+
+        attr_accessor :Id
+
+        def initialize(id=nil)
+          @Id = id
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+        end
+      end
+
+      # DeleteDataSource返回参数结构体
+      class DeleteDataSourceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteDataset请求参数结构体
       class DeleteDatasetRequest < TencentCloud::Common::AbstractModel
         # @param DatasetId: 数据集id
@@ -2337,6 +2564,42 @@ module TencentCloud
 
       # DeleteModelService返回参数结构体
       class DeleteModelServiceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteMountLimit请求参数结构体
+      class DeleteMountLimitRequest < TencentCloud::Common::AbstractModel
+        # @param Type: 数据源类型英文名
+        # @type Type: String
+        # @param StorageId: 存储实例ID
+        # @type StorageId: String
+
+        attr_accessor :Type, :StorageId
+
+        def initialize(type=nil, storageid=nil)
+          @Type = type
+          @StorageId = storageid
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @StorageId = params['StorageId']
+        end
+      end
+
+      # DeleteMountLimit返回参数结构体
+      class DeleteMountLimitResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -2858,6 +3121,126 @@ module TencentCloud
               @BuildInImageInfos << imageinfo_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDataSource请求参数结构体
+      class DescribeDataSourceRequest < TencentCloud::Common::AbstractModel
+        # @param Id: 数据源id
+        # @type Id: String
+
+        attr_accessor :Id
+
+        def initialize(id=nil)
+          @Id = id
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+        end
+      end
+
+      # DescribeDataSource返回参数结构体
+      class DescribeDataSourceResponse < TencentCloud::Common::AbstractModel
+        # @param DataSourceInfo: 数据源信息
+        # @type DataSourceInfo: :class:`Tencentcloud::Tione.v20211111.models.DataSourceInfo`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DataSourceInfo, :RequestId
+
+        def initialize(datasourceinfo=nil, requestid=nil)
+          @DataSourceInfo = datasourceinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['DataSourceInfo'].nil?
+            @DataSourceInfo = DataSourceInfo.new
+            @DataSourceInfo.deserialize(params['DataSourceInfo'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDataSources请求参数结构体
+      class DescribeDataSourcesRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: 过滤条件
+        # @type Filters: Array
+        # @param TagFilters: 标签过滤条件
+        # @type TagFilters: Array
+        # @param Offset: 偏移量
+        # @type Offset: Integer
+        # @param Limit: 分页大小
+        # @type Limit: Integer
+        # @param OrderField: 排序的依据字段
+        # @type OrderField: String
+        # @param Order: 输出列表的排列顺序。取值范围：ASC：升序排列 DESC：降序排列
+        # @type Order: String
+
+        attr_accessor :Filters, :TagFilters, :Offset, :Limit, :OrderField, :Order
+
+        def initialize(filters=nil, tagfilters=nil, offset=nil, limit=nil, orderfield=nil, order=nil)
+          @Filters = filters
+          @TagFilters = tagfilters
+          @Offset = offset
+          @Limit = limit
+          @OrderField = orderfield
+          @Order = order
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          unless params['TagFilters'].nil?
+            @TagFilters = []
+            params['TagFilters'].each do |i|
+              tagfilter_tmp = TagFilter.new
+              tagfilter_tmp.deserialize(i)
+              @TagFilters << tagfilter_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @OrderField = params['OrderField']
+          @Order = params['Order']
+        end
+      end
+
+      # DescribeDataSources返回参数结构体
+      class DescribeDataSourcesResponse < TencentCloud::Common::AbstractModel
+        # @param DataSourceInfos: 数据源列表
+        # @type DataSourceInfos: Array
+        # @param TotalCount: 总条数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DataSourceInfos, :TotalCount, :RequestId
+
+        def initialize(datasourceinfos=nil, totalcount=nil, requestid=nil)
+          @DataSourceInfos = datasourceinfos
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['DataSourceInfos'].nil?
+            @DataSourceInfos = []
+            params['DataSourceInfos'].each do |i|
+              datasourceinfo_tmp = DataSourceInfo.new
+              datasourceinfo_tmp.deserialize(i)
+              @DataSourceInfos << datasourceinfo_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -3752,6 +4135,174 @@ module TencentCloud
         end
       end
 
+      # DescribeMountInstance请求参数结构体
+      class DescribeMountInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param Type: 数据源类型英文名
+        # @type Type: String
+        # @param StorageId: 存储实例ID
+        # @type StorageId: String
+
+        attr_accessor :Type, :StorageId
+
+        def initialize(type=nil, storageid=nil)
+          @Type = type
+          @StorageId = storageid
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @StorageId = params['StorageId']
+        end
+      end
+
+      # DescribeMountInstance返回参数结构体
+      class DescribeMountInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param MountInstance: 挂载的实例详情
+        # @type MountInstance: :class:`Tencentcloud::Tione.v20211111.models.MountInstanceInfo`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :MountInstance, :RequestId
+
+        def initialize(mountinstance=nil, requestid=nil)
+          @MountInstance = mountinstance
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['MountInstance'].nil?
+            @MountInstance = MountInstanceInfo.new
+            @MountInstance.deserialize(params['MountInstance'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeMountInstances请求参数结构体
+      class DescribeMountInstancesRequest < TencentCloud::Common::AbstractModel
+        # @param Type: 数据源类型英文名
+        # @type Type: String
+        # @param Offset: 偏移量
+        # @type Offset: Integer
+        # @param Limit: 分页大小
+        # @type Limit: Integer
+
+        attr_accessor :Type, :Offset, :Limit
+
+        def initialize(type=nil, offset=nil, limit=nil)
+          @Type = type
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeMountInstances返回参数结构体
+      class DescribeMountInstancesResponse < TencentCloud::Common::AbstractModel
+        # @param MountInstances: 挂载的实例列表
+        # @type MountInstances: Array
+        # @param TotalCount: 总条数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :MountInstances, :TotalCount, :RequestId
+
+        def initialize(mountinstances=nil, totalcount=nil, requestid=nil)
+          @MountInstances = mountinstances
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['MountInstances'].nil?
+            @MountInstances = []
+            params['MountInstances'].each do |i|
+              mountinstanceinfo_tmp = MountInstanceInfo.new
+              mountinstanceinfo_tmp.deserialize(i)
+              @MountInstances << mountinstanceinfo_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeMountLimits请求参数结构体
+      class DescribeMountLimitsRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: 过滤条件
+        # @type Filters: Array
+        # @param Offset: 偏移量
+        # @type Offset: Integer
+        # @param Limit: 分页大小
+        # @type Limit: Integer
+        # @param Order: 输出列表的排列顺序。取值范围：ASC：升序排列 DESC：降序排列
+        # @type Order: String
+        # @param OrderField: 排序的依据字段
+        # @type OrderField: String
+
+        attr_accessor :Filters, :Offset, :Limit, :Order, :OrderField
+
+        def initialize(filters=nil, offset=nil, limit=nil, order=nil, orderfield=nil)
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+          @Order = order
+          @OrderField = orderfield
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @Order = params['Order']
+          @OrderField = params['OrderField']
+        end
+      end
+
+      # DescribeMountLimits返回参数结构体
+      class DescribeMountLimitsResponse < TencentCloud::Common::AbstractModel
+        # @param MountLimits: 挂载限制列表
+        # @type MountLimits: Array
+        # @param TotalCount: 总数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :MountLimits, :TotalCount, :RequestId
+
+        def initialize(mountlimits=nil, totalcount=nil, requestid=nil)
+          @MountLimits = mountlimits
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['MountLimits'].nil?
+            @MountLimits = []
+            params['MountLimits'].each do |i|
+              mountlimitinfo_tmp = MountLimitInfo.new
+              mountlimitinfo_tmp.deserialize(i)
+              @MountLimits << mountlimitinfo_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeNotebook请求参数结构体
       class DescribeNotebookRequest < TencentCloud::Common::AbstractModel
         # @param Id: notebook id
@@ -4457,6 +5008,30 @@ module TencentCloud
           @Values = params['Values']
           @Negative = params['Negative']
           @Fuzzy = params['Fuzzy']
+        end
+      end
+
+      # 描述网关相关配置
+      class GatewayConfig < TencentCloud::Common::AbstractModel
+        # @param GatewayType: 网关类型
+        # @type GatewayType: String
+        # @param SchedulingAlgorithm: 网关调度算法：轮询、一致性哈希等
+        # @type SchedulingAlgorithm: String
+        # @param HashHeaderKey: 一致性哈希使用的Header字段名
+        # @type HashHeaderKey: String
+
+        attr_accessor :GatewayType, :SchedulingAlgorithm, :HashHeaderKey
+
+        def initialize(gatewaytype=nil, schedulingalgorithm=nil, hashheaderkey=nil)
+          @GatewayType = gatewaytype
+          @SchedulingAlgorithm = schedulingalgorithm
+          @HashHeaderKey = hashheaderkey
+        end
+
+        def deserialize(params)
+          @GatewayType = params['GatewayType']
+          @SchedulingAlgorithm = params['SchedulingAlgorithm']
+          @HashHeaderKey = params['HashHeaderKey']
         end
       end
 
@@ -5964,10 +6539,12 @@ module TencentCloud
         # @type VolumeMounts: Array
         # @param SchedulingStrategy: 调度策略 [binpack] 优先占满整机，尽量避免碎卡（默认值）[spread] 优先分散在各个节点，确保服务高可用
         # @type SchedulingStrategy: String
+        # @param TargetProjectId: 目标工作空间，不为0则进行迁移，源服务只允许在默认空间
+        # @type TargetProjectId: Integer
 
-        attr_accessor :ServiceId, :ModelInfo, :ImageInfo, :Env, :Resources, :InstanceType, :ScaleMode, :Replicas, :HorizontalPodAutoscaler, :LogEnable, :LogConfig, :ServiceAction, :ServiceDescription, :ScaleStrategy, :CronScaleJobs, :HybridBillingPrepaidReplicas, :ModelHotUpdateEnable, :ScheduledAction, :ServiceLimit, :VolumeMount, :ModelTurboEnable, :Command, :ServiceEIP, :CommandBase64, :ServicePort, :InstancePerReplicas, :TerminationGracePeriodSeconds, :PreStopCommand, :GrpcEnable, :HealthProbe, :RollingUpdate, :Sidecar, :ResourceGroupId, :VolumeMounts, :SchedulingStrategy
+        attr_accessor :ServiceId, :ModelInfo, :ImageInfo, :Env, :Resources, :InstanceType, :ScaleMode, :Replicas, :HorizontalPodAutoscaler, :LogEnable, :LogConfig, :ServiceAction, :ServiceDescription, :ScaleStrategy, :CronScaleJobs, :HybridBillingPrepaidReplicas, :ModelHotUpdateEnable, :ScheduledAction, :ServiceLimit, :VolumeMount, :ModelTurboEnable, :Command, :ServiceEIP, :CommandBase64, :ServicePort, :InstancePerReplicas, :TerminationGracePeriodSeconds, :PreStopCommand, :GrpcEnable, :HealthProbe, :RollingUpdate, :Sidecar, :ResourceGroupId, :VolumeMounts, :SchedulingStrategy, :TargetProjectId
 
-        def initialize(serviceid=nil, modelinfo=nil, imageinfo=nil, env=nil, resources=nil, instancetype=nil, scalemode=nil, replicas=nil, horizontalpodautoscaler=nil, logenable=nil, logconfig=nil, serviceaction=nil, servicedescription=nil, scalestrategy=nil, cronscalejobs=nil, hybridbillingprepaidreplicas=nil, modelhotupdateenable=nil, scheduledaction=nil, servicelimit=nil, volumemount=nil, modelturboenable=nil, command=nil, serviceeip=nil, commandbase64=nil, serviceport=nil, instanceperreplicas=nil, terminationgraceperiodseconds=nil, prestopcommand=nil, grpcenable=nil, healthprobe=nil, rollingupdate=nil, sidecar=nil, resourcegroupid=nil, volumemounts=nil, schedulingstrategy=nil)
+        def initialize(serviceid=nil, modelinfo=nil, imageinfo=nil, env=nil, resources=nil, instancetype=nil, scalemode=nil, replicas=nil, horizontalpodautoscaler=nil, logenable=nil, logconfig=nil, serviceaction=nil, servicedescription=nil, scalestrategy=nil, cronscalejobs=nil, hybridbillingprepaidreplicas=nil, modelhotupdateenable=nil, scheduledaction=nil, servicelimit=nil, volumemount=nil, modelturboenable=nil, command=nil, serviceeip=nil, commandbase64=nil, serviceport=nil, instanceperreplicas=nil, terminationgraceperiodseconds=nil, prestopcommand=nil, grpcenable=nil, healthprobe=nil, rollingupdate=nil, sidecar=nil, resourcegroupid=nil, volumemounts=nil, schedulingstrategy=nil, targetprojectid=nil)
           @ServiceId = serviceid
           @ModelInfo = modelinfo
           @ImageInfo = imageinfo
@@ -6003,6 +6580,7 @@ module TencentCloud
           @ResourceGroupId = resourcegroupid
           @VolumeMounts = volumemounts
           @SchedulingStrategy = schedulingstrategy
+          @TargetProjectId = targetprojectid
         end
 
         def deserialize(params)
@@ -6098,6 +6676,7 @@ module TencentCloud
             end
           end
           @SchedulingStrategy = params['SchedulingStrategy']
+          @TargetProjectId = params['TargetProjectId']
         end
       end
 
@@ -6390,6 +6969,110 @@ module TencentCloud
             @ServiceGroup.deserialize(params['ServiceGroup'])
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 数据源挂载配置
+      class MountConfigureInfo < TencentCloud::Common::AbstractModel
+        # @param WorkDir: 数据源的相对路径，支持<@subaccount>这样的占位符
+        # @type WorkDir: String
+
+        attr_accessor :WorkDir
+
+        def initialize(workdir=nil)
+          @WorkDir = workdir
+        end
+
+        def deserialize(params)
+          @WorkDir = params['WorkDir']
+        end
+      end
+
+      # 挂载的实例列表
+      class MountInstanceInfo < TencentCloud::Common::AbstractModel
+        # @param Type: 类型英文名
+        # @type Type: String
+        # @param StorageId: 存储实例ID
+        # @type StorageId: String
+        # @param StorageName: 存储实例名称
+        # @type StorageName: String
+        # @param Status: 状态，0可挂载 1不可挂载(挂载限制)
+        # @type Status: Integer
+        # @param ExtraConf: 额外配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExtraConf: :class:`Tencentcloud::Tione.v20211111.models.StorageExtraConf`
+
+        attr_accessor :Type, :StorageId, :StorageName, :Status, :ExtraConf
+
+        def initialize(type=nil, storageid=nil, storagename=nil, status=nil, extraconf=nil)
+          @Type = type
+          @StorageId = storageid
+          @StorageName = storagename
+          @Status = status
+          @ExtraConf = extraconf
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @StorageId = params['StorageId']
+          @StorageName = params['StorageName']
+          @Status = params['Status']
+          unless params['ExtraConf'].nil?
+            @ExtraConf = StorageExtraConf.new
+            @ExtraConf.deserialize(params['ExtraConf'])
+          end
+        end
+      end
+
+      # 挂载限制
+      class MountLimitInfo < TencentCloud::Common::AbstractModel
+        # @param Type: 数据源类型英文名
+        # @type Type: String
+        # @param StorageId: 数据源所属存储实例ID
+        # @type StorageId: String
+        # @param StorageName: 数据源所属存储实例名称
+        # @type StorageName: String
+        # @param LimitMount: 限制开关是否开启，只有开启时才有限制
+        # @type LimitMount: Boolean
+        # @param Creator: 创建者uin
+        # @type Creator: String
+        # @param CreatorName: 创建者名称
+        # @type CreatorName: String
+        # @param CreateTime: 创建时间, 格式为yyyy-mm-ddThh:mm:ssZ
+        # @type CreateTime: String
+        # @param UpdateTime: 更新时间, 格式为yyyy-mm-ddThh:mm:ssZ
+        # @type UpdateTime: String
+        # @param ExtraConf: 额外配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExtraConf: :class:`Tencentcloud::Tione.v20211111.models.StorageExtraConf`
+
+        attr_accessor :Type, :StorageId, :StorageName, :LimitMount, :Creator, :CreatorName, :CreateTime, :UpdateTime, :ExtraConf
+
+        def initialize(type=nil, storageid=nil, storagename=nil, limitmount=nil, creator=nil, creatorname=nil, createtime=nil, updatetime=nil, extraconf=nil)
+          @Type = type
+          @StorageId = storageid
+          @StorageName = storagename
+          @LimitMount = limitmount
+          @Creator = creator
+          @CreatorName = creatorname
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @ExtraConf = extraconf
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @StorageId = params['StorageId']
+          @StorageName = params['StorageName']
+          @LimitMount = params['LimitMount']
+          @Creator = params['Creator']
+          @CreatorName = params['CreatorName']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          unless params['ExtraConf'].nil?
+            @ExtraConf = StorageExtraConf.new
+            @ExtraConf.deserialize(params['ExtraConf'])
+          end
         end
       end
 
@@ -8122,10 +8805,12 @@ module TencentCloud
         # @type EnableLimit: Boolean
         # @param GrpcHost: 访问grpc时需携带的虚拟Host
         # @type GrpcHost: String
+        # @param GatewayConfig: 网关相关配置
+        # @type GatewayConfig: :class:`Tencentcloud::Tione.v20211111.models.GatewayConfig`
 
-        attr_accessor :ServiceGroupId, :InternetEndpoint, :AuthorizationEnable, :AuthToken, :AuthTokens, :EnableLimit, :GrpcHost
+        attr_accessor :ServiceGroupId, :InternetEndpoint, :AuthorizationEnable, :AuthToken, :AuthTokens, :EnableLimit, :GrpcHost, :GatewayConfig
 
-        def initialize(servicegroupid=nil, internetendpoint=nil, authorizationenable=nil, authtoken=nil, authtokens=nil, enablelimit=nil, grpchost=nil)
+        def initialize(servicegroupid=nil, internetendpoint=nil, authorizationenable=nil, authtoken=nil, authtokens=nil, enablelimit=nil, grpchost=nil, gatewayconfig=nil)
           @ServiceGroupId = servicegroupid
           @InternetEndpoint = internetendpoint
           @AuthorizationEnable = authorizationenable
@@ -8133,6 +8818,7 @@ module TencentCloud
           @AuthTokens = authtokens
           @EnableLimit = enablelimit
           @GrpcHost = grpchost
+          @GatewayConfig = gatewayconfig
         end
 
         def deserialize(params)
@@ -8150,6 +8836,10 @@ module TencentCloud
           end
           @EnableLimit = params['EnableLimit']
           @GrpcHost = params['GrpcHost']
+          unless params['GatewayConfig'].nil?
+            @GatewayConfig = GatewayConfig.new
+            @GatewayConfig.deserialize(params['GatewayConfig'])
+          end
         end
       end
 
@@ -8288,10 +8978,12 @@ module TencentCloud
         # @type SubUinName: String
         # @param GatewayLogConfig: 网关日志投递相关配置
         # @type GatewayLogConfig: :class:`Tencentcloud::Tione.v20211111.models.LogConfig`
+        # @param GatewayConfig: 网关路由相关配置
+        # @type GatewayConfig: :class:`Tencentcloud::Tione.v20211111.models.GatewayConfig`
 
-        attr_accessor :ServiceGroupId, :ServiceGroupName, :CreatedBy, :CreateTime, :UpdateTime, :Uin, :ServiceCount, :RunningServiceCount, :Services, :Status, :Tags, :LatestVersion, :BusinessStatus, :BillingInfo, :CreateSource, :WeightUpdateStatus, :ReplicasCount, :AvailableReplicasCount, :SubUin, :AppId, :AuthorizationEnable, :AuthTokens, :MonitorSource, :SubUinName, :GatewayLogConfig
+        attr_accessor :ServiceGroupId, :ServiceGroupName, :CreatedBy, :CreateTime, :UpdateTime, :Uin, :ServiceCount, :RunningServiceCount, :Services, :Status, :Tags, :LatestVersion, :BusinessStatus, :BillingInfo, :CreateSource, :WeightUpdateStatus, :ReplicasCount, :AvailableReplicasCount, :SubUin, :AppId, :AuthorizationEnable, :AuthTokens, :MonitorSource, :SubUinName, :GatewayLogConfig, :GatewayConfig
 
-        def initialize(servicegroupid=nil, servicegroupname=nil, createdby=nil, createtime=nil, updatetime=nil, uin=nil, servicecount=nil, runningservicecount=nil, services=nil, status=nil, tags=nil, latestversion=nil, businessstatus=nil, billinginfo=nil, createsource=nil, weightupdatestatus=nil, replicascount=nil, availablereplicascount=nil, subuin=nil, appid=nil, authorizationenable=nil, authtokens=nil, monitorsource=nil, subuinname=nil, gatewaylogconfig=nil)
+        def initialize(servicegroupid=nil, servicegroupname=nil, createdby=nil, createtime=nil, updatetime=nil, uin=nil, servicecount=nil, runningservicecount=nil, services=nil, status=nil, tags=nil, latestversion=nil, businessstatus=nil, billinginfo=nil, createsource=nil, weightupdatestatus=nil, replicascount=nil, availablereplicascount=nil, subuin=nil, appid=nil, authorizationenable=nil, authtokens=nil, monitorsource=nil, subuinname=nil, gatewaylogconfig=nil, gatewayconfig=nil)
           @ServiceGroupId = servicegroupid
           @ServiceGroupName = servicegroupname
           @CreatedBy = createdby
@@ -8317,6 +9009,7 @@ module TencentCloud
           @MonitorSource = monitorsource
           @SubUinName = subuinname
           @GatewayLogConfig = gatewaylogconfig
+          @GatewayConfig = gatewayconfig
         end
 
         def deserialize(params)
@@ -8368,6 +9061,10 @@ module TencentCloud
           unless params['GatewayLogConfig'].nil?
             @GatewayLogConfig = LogConfig.new
             @GatewayLogConfig.deserialize(params['GatewayLogConfig'])
+          end
+          unless params['GatewayConfig'].nil?
+            @GatewayConfig = GatewayConfig.new
+            @GatewayConfig.deserialize(params['GatewayConfig'])
           end
         end
       end
@@ -9039,6 +9736,31 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 存储额外配置
+      class StorageExtraConf < TencentCloud::Common::AbstractModel
+        # @param CFSStorageType: cfs的存储类型
+        #   // HP:通用性能型
+        #   // SD:通用标准型
+        #   // TP:turbo性能型
+        #   // TB:turbo标准型
+        #   // THP:吞吐型
+        # @type CFSStorageType: String
+        # @param CFSProtocol: cfs的协议
+        # @type CFSProtocol: String
+
+        attr_accessor :CFSStorageType, :CFSProtocol
+
+        def initialize(cfsstoragetype=nil, cfsprotocol=nil)
+          @CFSStorageType = cfsstoragetype
+          @CFSProtocol = cfsprotocol
+        end
+
+        def deserialize(params)
+          @CFSStorageType = params['CFSStorageType']
+          @CFSProtocol = params['CFSProtocol']
         end
       end
 
@@ -9728,6 +10450,93 @@ module TencentCloud
           @SubUin = params['SubUin']
           @SubUinName = params['SubUinName']
           @AppId = params['AppId']
+        end
+      end
+
+      # UpdateDataSource请求参数结构体
+      class UpdateDataSourceRequest < TencentCloud::Common::AbstractModel
+        # @param Id: 数据源ID
+        # @type Id: String
+        # @param Name: 数据源名称
+        # @type Name: String
+        # @param Permission: 数据源权限，取值有RW RO
+        # @type Permission: String
+        # @param MountConfigure: 数据源挂载配置
+        # @type MountConfigure: :class:`Tencentcloud::Tione.v20211111.models.MountConfigureInfo`
+
+        attr_accessor :Id, :Name, :Permission, :MountConfigure
+
+        def initialize(id=nil, name=nil, permission=nil, mountconfigure=nil)
+          @Id = id
+          @Name = name
+          @Permission = permission
+          @MountConfigure = mountconfigure
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Name = params['Name']
+          @Permission = params['Permission']
+          unless params['MountConfigure'].nil?
+            @MountConfigure = MountConfigureInfo.new
+            @MountConfigure.deserialize(params['MountConfigure'])
+          end
+        end
+      end
+
+      # UpdateDataSource返回参数结构体
+      class UpdateDataSourceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateMountLimit请求参数结构体
+      class UpdateMountLimitRequest < TencentCloud::Common::AbstractModel
+        # @param Type: 数据源类型英文名
+        # @type Type: String
+        # @param StorageId: 存储实例ID
+        # @type StorageId: String
+        # @param LimitMount: 限制开关是否开启，只有开启时才有限制，默认关闭
+        # @type LimitMount: Boolean
+
+        attr_accessor :Type, :StorageId, :LimitMount
+
+        def initialize(type=nil, storageid=nil, limitmount=nil)
+          @Type = type
+          @StorageId = storageid
+          @LimitMount = limitmount
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @StorageId = params['StorageId']
+          @LimitMount = params['LimitMount']
+        end
+      end
+
+      # UpdateMountLimit返回参数结构体
+      class UpdateMountLimitResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 

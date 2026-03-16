@@ -175,6 +175,64 @@ module TencentCloud
         end
       end
 
+      # ActivateTWeTalk请求参数结构体
+      class ActivateTWeTalkRequest < TencentCloud::Common::AbstractModel
+        # @param ServiceType: TWeTalk类型：1-基础版；2-高级版；3-多模态；
+        # @type ServiceType: Integer
+        # @param DeviceIds: 设备列表, 产品ID_设备名；
+        # @type DeviceIds: Array
+
+        attr_accessor :ServiceType, :DeviceIds
+
+        def initialize(servicetype=nil, deviceids=nil)
+          @ServiceType = servicetype
+          @DeviceIds = deviceids
+        end
+
+        def deserialize(params)
+          @ServiceType = params['ServiceType']
+          @DeviceIds = params['DeviceIds']
+        end
+      end
+
+      # ActivateTWeTalk返回参数结构体
+      class ActivateTWeTalkResponse < TencentCloud::Common::AbstractModel
+        # @param FailureRecords: 设备激活失败返回数据
+        # @type FailureRecords: Array
+        # @param SuccessRecords: 设备激活成功返回数据
+        # @type SuccessRecords: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FailureRecords, :SuccessRecords, :RequestId
+
+        def initialize(failurerecords=nil, successrecords=nil, requestid=nil)
+          @FailureRecords = failurerecords
+          @SuccessRecords = successrecords
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['FailureRecords'].nil?
+            @FailureRecords = []
+            params['FailureRecords'].each do |i|
+              talkactivationinfo_tmp = TalkActivationInfo.new
+              talkactivationinfo_tmp.deserialize(i)
+              @FailureRecords << talkactivationinfo_tmp
+            end
+          end
+          unless params['SuccessRecords'].nil?
+            @SuccessRecords = []
+            params['SuccessRecords'].each do |i|
+              talkactivationinfo_tmp = TalkActivationInfo.new
+              talkactivationinfo_tmp.deserialize(i)
+              @SuccessRecords << talkactivationinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 云api直接绑定设备出参
       class AppDeviceInfo < TencentCloud::Common::AbstractModel
         # @param DeviceId: 产品ID/设备名
@@ -9145,6 +9203,122 @@ module TencentCloud
         end
       end
 
+      # GetTWeTalkActiveRecordList请求参数结构体
+      class GetTWeTalkActiveRecordListRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: 最早的时间。
+        # @type StartTime: Integer
+        # @param EndTime: 查询的最晚时间。
+        # 跟StartTime形成时间段，用于查询时间段中的记录。
+        # @type EndTime: Integer
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Limit: 分页的大小。
+        # 默认为10，最大不超过500。
+        # @type Limit: Integer
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+        # @param DeviceName: 设备名称
+        # @type DeviceName: String
+        # @param ServiceType: TWeTalk类型：1-基础版；2-高级版；3-多模态；
+        # @type ServiceType: Array
+
+        attr_accessor :StartTime, :EndTime, :Offset, :Limit, :ProductId, :DeviceName, :ServiceType
+
+        def initialize(starttime=nil, endtime=nil, offset=nil, limit=nil, productid=nil, devicename=nil, servicetype=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @Offset = offset
+          @Limit = limit
+          @ProductId = productid
+          @DeviceName = devicename
+          @ServiceType = servicetype
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+          @ServiceType = params['ServiceType']
+        end
+      end
+
+      # GetTWeTalkActiveRecordList返回参数结构体
+      class GetTWeTalkActiveRecordListResponse < TencentCloud::Common::AbstractModel
+        # @param ActiveRecords: 设备激活记录列表。
+        # @type ActiveRecords: Array
+        # @param Total: 数据总数量。
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ActiveRecords, :Total, :RequestId
+
+        def initialize(activerecords=nil, total=nil, requestid=nil)
+          @ActiveRecords = activerecords
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ActiveRecords'].nil?
+            @ActiveRecords = []
+            params['ActiveRecords'].each do |i|
+              talkactivaterecordloginfo_tmp = TalkActivateRecordLogInfo.new
+              talkactivaterecordloginfo_tmp.deserialize(i)
+              @ActiveRecords << talkactivaterecordloginfo_tmp
+            end
+          end
+          @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GetTWeTalkActiveStatus请求参数结构体
+      class GetTWeTalkActiveStatusRequest < TencentCloud::Common::AbstractModel
+        # @param DeviceIds: 设备列表， 产品ID_设备名称
+        # @type DeviceIds: Array
+
+        attr_accessor :DeviceIds
+
+        def initialize(deviceids=nil)
+          @DeviceIds = deviceids
+        end
+
+        def deserialize(params)
+          @DeviceIds = params['DeviceIds']
+        end
+      end
+
+      # GetTWeTalkActiveStatus返回参数结构体
+      class GetTWeTalkActiveStatusResponse < TencentCloud::Common::AbstractModel
+        # @param TalkActivationRecords: 激活状态
+        # @type TalkActivationRecords: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TalkActivationRecords, :RequestId
+
+        def initialize(talkactivationrecords=nil, requestid=nil)
+          @TalkActivationRecords = talkactivationrecords
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['TalkActivationRecords'].nil?
+            @TalkActivationRecords = []
+            params['TalkActivationRecords'].each do |i|
+              talkactivationstatusinfo_tmp = TalkActivationStatusInfo.new
+              talkactivationstatusinfo_tmp.deserialize(i)
+              @TalkActivationRecords << talkactivationstatusinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # GetTWeTalkProductConfigList请求参数结构体
       class GetTWeTalkProductConfigListRequest < TencentCloud::Common::AbstractModel
         # @param ProductId: 产品ID
@@ -13356,6 +13530,98 @@ module TencentCloud
           @WebhookTools = params['WebhookTools']
           @BotType = params['BotType']
           @RAGConfig = params['RAGConfig']
+        end
+      end
+
+      # Talk激活审计信息。
+      class TalkActivateRecordLogInfo < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+        # @param DeviceName: 设备名称
+        # @type DeviceName: String
+        # @param ActiveTime: 激活时间，秒级时间戳
+        # @type ActiveTime: Integer
+        # @param ExpireTime: 过期时间，秒级时间戳
+        # @type ExpireTime: Integer
+        # @param ServiceType: TWeTalk类型：1-基础版；2-高级版；3-多模态；
+        # @type ServiceType: Integer
+        # @param Status: 状态: 0-未激活, 1-已激活, 2-已过期, 3-已作废
+        # @type Status: Integer
+        # @param ErrorMsg: 错误信息
+        # @type ErrorMsg: String
+
+        attr_accessor :ProductId, :DeviceName, :ActiveTime, :ExpireTime, :ServiceType, :Status, :ErrorMsg
+
+        def initialize(productid=nil, devicename=nil, activetime=nil, expiretime=nil, servicetype=nil, status=nil, errormsg=nil)
+          @ProductId = productid
+          @DeviceName = devicename
+          @ActiveTime = activetime
+          @ExpireTime = expiretime
+          @ServiceType = servicetype
+          @Status = status
+          @ErrorMsg = errormsg
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+          @ActiveTime = params['ActiveTime']
+          @ExpireTime = params['ExpireTime']
+          @ServiceType = params['ServiceType']
+          @Status = params['Status']
+          @ErrorMsg = params['ErrorMsg']
+        end
+      end
+
+      # Talk设备激活信息。
+      class TalkActivationInfo < TencentCloud::Common::AbstractModel
+        # @param DeviceId: 设备ID，产品ID_设备名称
+        # @type DeviceId: String
+        # @param ErrCode: 设备激活状态，0：激活成功；60001：激活码类型不匹配；60002：激活码数量不足；60003：设备不存在；60004：产品不存在；60005：权限不足；60006：设备已激活；60007：无效的参数；60008：系统错误；60009：产品不是码音视频类型
+        # @type ErrCode: Integer
+        # @param ErrMessage: 激活错误信息
+        # @type ErrMessage: String
+        # @param ExpireTime: 过期时间，秒级时间戳
+        # @type ExpireTime: Integer
+
+        attr_accessor :DeviceId, :ErrCode, :ErrMessage, :ExpireTime
+
+        def initialize(deviceid=nil, errcode=nil, errmessage=nil, expiretime=nil)
+          @DeviceId = deviceid
+          @ErrCode = errcode
+          @ErrMessage = errmessage
+          @ExpireTime = expiretime
+        end
+
+        def deserialize(params)
+          @DeviceId = params['DeviceId']
+          @ErrCode = params['ErrCode']
+          @ErrMessage = params['ErrMessage']
+          @ExpireTime = params['ExpireTime']
+        end
+      end
+
+      # Talk激活状态响应定义。
+      class TalkActivationStatusInfo < TencentCloud::Common::AbstractModel
+        # @param DeviceId: 设备ID，产品ID_设备名称
+        # @type DeviceId: String
+        # @param ExpireTime: 过期时间，秒级时间戳
+        # @type ExpireTime: Integer
+        # @param ServiceType: TWeTalk类型：1-基础版；2-高级版；3-多模态；
+        # @type ServiceType: Integer
+
+        attr_accessor :DeviceId, :ExpireTime, :ServiceType
+
+        def initialize(deviceid=nil, expiretime=nil, servicetype=nil)
+          @DeviceId = deviceid
+          @ExpireTime = expiretime
+          @ServiceType = servicetype
+        end
+
+        def deserialize(params)
+          @DeviceId = params['DeviceId']
+          @ExpireTime = params['ExpireTime']
+          @ServiceType = params['ServiceType']
         end
       end
 

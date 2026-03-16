@@ -269,7 +269,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询文档转码任务的执行进度与转码结果
+        # 查询文档转码任务的执行进度与转码结果，支持查询最近半年内的任务结果
 
         # @param request: Request instance for DescribeTranscode.
         # @type request: :class:`Tencentcloud::tiw::V20190919::DescribeTranscodeRequest`

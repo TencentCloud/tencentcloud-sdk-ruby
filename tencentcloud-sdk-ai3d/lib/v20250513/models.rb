@@ -398,7 +398,7 @@ module TencentCloud
 
       # QueryHunyuanTo3DProJob请求参数结构体
       class QueryHunyuanTo3DProJobRequest < TencentCloud::Common::AbstractModel
-        # @param JobId: 任务ID。
+        # @param JobId: <p>任务ID。</p>
         # @type JobId: String
 
         attr_accessor :JobId
@@ -414,24 +414,30 @@ module TencentCloud
 
       # QueryHunyuanTo3DProJob返回参数结构体
       class QueryHunyuanTo3DProJobResponse < TencentCloud::Common::AbstractModel
-        # @param Status: 任务状态。WAIT：等待中，RUN：执行中，FAIL：任务失败，DONE：任务成功
+        # @param Status: <p>任务状态。WAIT：等待中，RUN：执行中，FAIL：任务失败，DONE：任务成功</p>
         # @type Status: String
-        # @param ErrorCode: 错误码
+        # @param ErrorCode: <p>错误码</p>
         # @type ErrorCode: String
-        # @param ErrorMessage: 错误信息
+        # @param ErrorMessage: <p>错误信息</p>
         # @type ErrorMessage: String
-        # @param ResultFile3Ds: 生成的3D文件数组。
+        # @param ResultFile3Ds: <p>生成的3D文件数组。</p>
         # @type ResultFile3Ds: Array
+        # @param ResultCreditDetails: <p>接口任务功能参数及积分详情，返回形式为字符串。Generate参数返回对应模式及消耗积分，如：Generate-Normal：20<br>附加参数返回参数名称及消耗积分，如：MultiViewImages：10</p>
+        # @type ResultCreditDetails: String
+        # @param ResultCreditConsumed: <p>任务总消耗积分。</p>
+        # @type ResultCreditConsumed: Float
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Status, :ErrorCode, :ErrorMessage, :ResultFile3Ds, :RequestId
+        attr_accessor :Status, :ErrorCode, :ErrorMessage, :ResultFile3Ds, :ResultCreditDetails, :ResultCreditConsumed, :RequestId
 
-        def initialize(status=nil, errorcode=nil, errormessage=nil, resultfile3ds=nil, requestid=nil)
+        def initialize(status=nil, errorcode=nil, errormessage=nil, resultfile3ds=nil, resultcreditdetails=nil, resultcreditconsumed=nil, requestid=nil)
           @Status = status
           @ErrorCode = errorcode
           @ErrorMessage = errormessage
           @ResultFile3Ds = resultfile3ds
+          @ResultCreditDetails = resultcreditdetails
+          @ResultCreditConsumed = resultcreditconsumed
           @RequestId = requestid
         end
 
@@ -447,6 +453,8 @@ module TencentCloud
               @ResultFile3Ds << file3d_tmp
             end
           end
+          @ResultCreditDetails = params['ResultCreditDetails']
+          @ResultCreditConsumed = params['ResultCreditConsumed']
           @RequestId = params['RequestId']
         end
       end
@@ -565,7 +573,7 @@ module TencentCloud
         # @type EnablePBR: Boolean
         # @param FaceCount: <p>生成3D模型的面数，默认值为500000。可支持生成面数范围，参考值：3000-1500000。GenerateType中选择LowPoly时，此参数不生效。</p><p>取值范围：[3000, 1500000]</p>
         # @type FaceCount: Integer
-        # @param GenerateType: <p>生成任务类型，默认Normal，参考值：<br>Normal：可生成带纹理的几何模型。<br>LowPoly：可生成智能拓扑后的模型，FaceCount参数不生效。<br>Geometry：可生成不带纹理的几何模型（白模），EnablePBR参数不生效。<br>Sketch：可输入草图或线稿图生成模型，此模式下prompt和ImageUrl/ImageBase64可一起输入。</p><p>枚举值：</p><ul><li>Normal： 可生成带纹理的几何模型</li><li>LowPoly： 可生成智能拓扑后的模型，FaceCount参数不生效。</li><li>Geometry： 可生成不带纹理的几何模型（白模），EnablePBR参数不生效。</li><li>Sketch： 可输入草图或线稿图生成模型，此模式下prompt和ImageUrl/ImageBase64可一起输入。</li></ul>
+        # @param GenerateType: <p>生成任务类型，默认Normal</p><p>枚举值：</p><ul><li>Normal： 可生成带纹理的几何模型</li><li>LowPoly： 可生成智能拓扑后的模型，FaceCount参数不生效。</li><li>Geometry： 可生成不带纹理的几何模型（白模），EnablePBR参数不生效。</li><li>Sketch： 可输入草图或线稿图生成模型，此模式下prompt和ImageUrl/ImageBase64可一起输入。</li></ul>
         # @type GenerateType: String
         # @param PolygonType: <p>该参数仅在GenerateType中选择LowPoly模式可生效。</p><p>多边形类型，表示模型的表面由几边形网格构成，默认为triangle,参考值:<br>triangle: 三角形面。<br>quadrilateral: 四边形面与三角形面混合生成。</p>
         # @type PolygonType: String
@@ -870,18 +878,13 @@ module TencentCloud
 
       # SubmitTextureTo3DJob请求参数结构体
       class SubmitTextureTo3DJobRequest < TencentCloud::Common::AbstractModel
-        # @param File3D: 源3D模型文件。
-        # Type可选值：OBJ，GLB
+        # @param File3D: <p>源3D模型文件。<br>Type可选值：OBJ，GLB</p>
         # @type File3D: :class:`Tencentcloud::Ai3d.v20250513.models.File3D`
-        # @param Prompt: 文生3D，3D内容的描述，中文正向提示词。
-        # 最多支持200个 utf-8 字符。
-        # 文生3D, image、image_url和 prompt必填其一，且prompt和image/image_url不能同时存在。
+        # @param Prompt: <p>文生3D，3D内容的描述，中文正向提示词。<br>最多支持200个 utf-8 字符。<br>文生3D, image、image_url和 prompt必填其一，且prompt和image/image_url不能同时存在。</p>
         # @type Prompt: String
-        # @param Image: 3D模型纹理参考图 Base64 数据和参考图图 Url。
-        # - Base64 和 Url 必须提供一个，如果都提供以 Url 为准。
-        # - 图片限制：单边分辨率小于4096且大于128，转成 Base64 字符串后小于 10MB，格式支持 jpg、jpeg、png。
+        # @param Image: <p>3D模型纹理参考图 Base64 数据和参考图 Url。</p><ul><li>Base64 和 Url 必须提供一个，如果都提供以 Url 为准。</li><li>图片限制：单边分辨率小于4096且大于128，转成 Base64 字符串后小于 10MB，格式支持 jpg、jpeg、png。</li></ul>
         # @type Image: :class:`Tencentcloud::Ai3d.v20250513.models.Image`
-        # @param EnablePBR: 是否开启 PBR材质生成，默认 false。
+        # @param EnablePBR: <p>是否开启 PBR材质生成，默认 false。</p>
         # @type EnablePBR: Boolean
 
         attr_accessor :File3D, :Prompt, :Image, :EnablePBR
@@ -909,7 +912,7 @@ module TencentCloud
 
       # SubmitTextureTo3DJob返回参数结构体
       class SubmitTextureTo3DJobResponse < TencentCloud::Common::AbstractModel
-        # @param JobId: 任务ID（有效期24小时）
+        # @param JobId: <p>任务ID（有效期24小时）</p>
         # @type JobId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
