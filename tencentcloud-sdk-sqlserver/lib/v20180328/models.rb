@@ -2679,8 +2679,8 @@ module TencentCloud
 
         attr_accessor :IsSubscribed, :CollationName, :IsAutoCleanupOn, :IsBrokerEnabled, :IsCdcEnabled, :IsDbChainingOn, :IsEncrypted, :IsFulltextEnabled, :IsMirroring, :IsPublished, :IsReadCommittedSnapshotOn, :IsTrustworthyOn, :MirroringState, :Name, :RecoveryModelDesc, :RetentionPeriod, :StateDesc, :UserAccessDesc, :CreateTime, :IsFullTextEnabled, :IsAvailabilityGroups, :AGSyncState
         extend Gem::Deprecate
-        deprecate :IsFulltextEnabled, :none, 2025, 12
-        deprecate :IsFulltextEnabled=, :none, 2025, 12
+        deprecate :IsFulltextEnabled, :none, 2026, 3
+        deprecate :IsFulltextEnabled=, :none, 2026, 3
 
         def initialize(issubscribed=nil, collationname=nil, isautocleanupon=nil, isbrokerenabled=nil, iscdcenabled=nil, isdbchainingon=nil, isencrypted=nil, ismirroring=nil, ispublished=nil, isreadcommittedsnapshoton=nil, istrustworthyon=nil, mirroringstate=nil, name=nil, recoverymodeldesc=nil, retentionperiod=nil, statedesc=nil, useraccessdesc=nil, createtime=nil, isfulltextenabled=nil, isavailabilitygroups=nil, agsyncstate=nil)
           @IsSubscribed = issubscribed
@@ -2957,27 +2957,31 @@ module TencentCloud
 
       # DeleteDB请求参数结构体
       class DeleteDBRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID，形如mssql-rljoi3bf
+        # @param InstanceId: <p>实例ID，形如mssql-rljoi3bf</p>
         # @type InstanceId: String
-        # @param Names: 数据库名数组
+        # @param Names: <p>数据库名数组</p>
         # @type Names: Array
+        # @param NoDoBackup: <p>删除数据库前是否创建备份。</p><p>取值范围：[0, 1]</p><p>默认值：0</p>
+        # @type NoDoBackup: Integer
 
-        attr_accessor :InstanceId, :Names
+        attr_accessor :InstanceId, :Names, :NoDoBackup
 
-        def initialize(instanceid=nil, names=nil)
+        def initialize(instanceid=nil, names=nil, nodobackup=nil)
           @InstanceId = instanceid
           @Names = names
+          @NoDoBackup = nodobackup
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
           @Names = params['Names']
+          @NoDoBackup = params['NoDoBackup']
         end
       end
 
       # DeleteDB返回参数结构体
       class DeleteDBResponse < TencentCloud::Common::AbstractModel
-        # @param FlowId: 任务流ID
+        # @param FlowId: <p>任务流ID</p>
         # @type FlowId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6819,8 +6823,8 @@ module TencentCloud
 
         attr_accessor :TotalCount, :Slowlogs, :SlowLogs, :RequestId
         extend Gem::Deprecate
-        deprecate :Slowlogs, :none, 2025, 12
-        deprecate :Slowlogs=, :none, 2025, 12
+        deprecate :Slowlogs, :none, 2026, 3
+        deprecate :Slowlogs=, :none, 2026, 3
 
         def initialize(totalcount=nil, slowlogs=nil, requestid=nil)
           @TotalCount = totalcount
@@ -7040,8 +7044,8 @@ module TencentCloud
 
         attr_accessor :BucketName, :Region, :Path, :TmpSecretId, :TmpSecretKey, :XCosSecurityToken, :StartTime, :ExpiredTime, :CosSecurityToken, :RequestId
         extend Gem::Deprecate
-        deprecate :XCosSecurityToken, :none, 2025, 12
-        deprecate :XCosSecurityToken=, :none, 2025, 12
+        deprecate :XCosSecurityToken, :none, 2026, 3
+        deprecate :XCosSecurityToken=, :none, 2026, 3
 
         def initialize(bucketname=nil, region=nil, path=nil, tmpsecretid=nil, tmpsecretkey=nil, xcossecuritytoken=nil, starttime=nil, expiredtime=nil, cossecuritytoken=nil, requestid=nil)
           @BucketName = bucketname
@@ -7119,8 +7123,8 @@ module TencentCloud
 
         attr_accessor :BucketName, :Region, :Path, :TmpSecretId, :TmpSecretKey, :XCosSecurityToken, :StartTime, :ExpiredTime, :CosSecurityToken, :RequestId
         extend Gem::Deprecate
-        deprecate :XCosSecurityToken, :none, 2025, 12
-        deprecate :XCosSecurityToken=, :none, 2025, 12
+        deprecate :XCosSecurityToken, :none, 2026, 3
+        deprecate :XCosSecurityToken=, :none, 2026, 3
 
         def initialize(bucketname=nil, region=nil, path=nil, tmpsecretid=nil, tmpsecretkey=nil, xcossecuritytoken=nil, starttime=nil, expiredtime=nil, cossecuritytoken=nil, requestid=nil)
           @BucketName = bucketname
@@ -8448,8 +8452,8 @@ module TencentCloud
 
         attr_accessor :Errno, :Msg, :Code, :RequestId
         extend Gem::Deprecate
-        deprecate :Errno, :none, 2025, 12
-        deprecate :Errno=, :none, 2025, 12
+        deprecate :Errno, :none, 2026, 3
+        deprecate :Errno=, :none, 2026, 3
 
         def initialize(errno=nil, msg=nil, code=nil, requestid=nil)
           @Errno = errno

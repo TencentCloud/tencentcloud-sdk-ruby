@@ -242,8 +242,8 @@ module TencentCloud
 
         attr_accessor :BatchId, :CorpId, :BatchCode, :CodeCnt, :MerchantId, :ProductId, :BatchType, :Remark, :MpTpl, :Status, :CreateTime, :UpdateTime, :MerchantName, :ProductName, :Ext, :TplName, :Job, :ProductionDate, :ValidDate, :Attrs
         extend Gem::Deprecate
-        deprecate :Ext, :none, 2025, 11
-        deprecate :Ext=, :none, 2025, 11
+        deprecate :Ext, :none, 2026, 3
+        deprecate :Ext=, :none, 2026, 3
 
         def initialize(batchid=nil, corpid=nil, batchcode=nil, codecnt=nil, merchantid=nil, productid=nil, batchtype=nil, remark=nil, mptpl=nil, status=nil, createtime=nil, updatetime=nil, merchantname=nil, productname=nil, ext=nil, tplname=nil, job=nil, productiondate=nil, validdate=nil, attrs=nil)
           @BatchId = batchid
@@ -2651,8 +2651,8 @@ module TencentCloud
 
         attr_accessor :Products, :TotalCount, :ScanLogs, :RequestId
         extend Gem::Deprecate
-        deprecate :Products, :none, 2025, 11
-        deprecate :Products=, :none, 2025, 11
+        deprecate :Products, :none, 2026, 3
+        deprecate :Products=, :none, 2026, 3
 
         def initialize(products=nil, totalcount=nil, scanlogs=nil, requestid=nil)
           @Products = products
@@ -3060,8 +3060,8 @@ module TencentCloud
 
         attr_accessor :Value
         extend Gem::Deprecate
-        deprecate :Value, :none, 2025, 11
-        deprecate :Value=, :none, 2025, 11
+        deprecate :Value, :none, 2026, 3
+        deprecate :Value=, :none, 2026, 3
 
         def initialize(value=nil)
           @Value = value
@@ -4132,6 +4132,116 @@ module TencentCloud
         end
       end
 
+      # ReportScanDetail请求参数结构体
+      class ReportScanDetailRequest < TencentCloud::Common::AbstractModel
+        # @param ScanDetails: <p>请求参数</p>
+        # @type ScanDetails: Array
+
+        attr_accessor :ScanDetails
+
+        def initialize(scandetails=nil)
+          @ScanDetails = scandetails
+        end
+
+        def deserialize(params)
+          unless params['ScanDetails'].nil?
+            @ScanDetails = []
+            params['ScanDetails'].each do |i|
+              scandetailitem_tmp = ScanDetailItem.new
+              scandetailitem_tmp.deserialize(i)
+              @ScanDetails << scandetailitem_tmp
+            end
+          end
+        end
+      end
+
+      # ReportScanDetail返回参数结构体
+      class ReportScanDetailResponse < TencentCloud::Common::AbstractModel
+        # @param Data: <p>结果返回，成功数</p>
+        # @type Data: :class:`Tencentcloud::Trp.v20210515.models.ReportScanDetailResult`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = ReportScanDetailResult.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 扫码明细上报响应，成功数
+      class ReportScanDetailResult < TencentCloud::Common::AbstractModel
+        # @param Count: <p>成功数量</p>
+        # @type Count: Integer
+
+        attr_accessor :Count
+
+        def initialize(count=nil)
+          @Count = count
+        end
+
+        def deserialize(params)
+          @Count = params['Count']
+        end
+      end
+
+      # 扫码信息
+      class ScanDetailItem < TencentCloud::Common::AbstractModel
+        # @param Uid: <p>用户ID，也可以为手机号</p>
+        # @type Uid: String
+        # @param Time: <p>时间</p><p>参数格式：YYYYMMDDHHMMSS</p>
+        # @type Time: String
+        # @param ProvinceName: <p>省</p>
+        # @type ProvinceName: String
+        # @param CityName: <p>市</p>
+        # @type CityName: String
+        # @param RegionName: <p>区</p>
+        # @type RegionName: String
+        # @param BrandName: <p>品牌</p>
+        # @type BrandName: String
+        # @param SpecName: <p>品规</p>
+        # @type SpecName: String
+        # @param IP: <p>IP，可选，需符合IP格式</p>
+        # @type IP: String
+        # @param Code: <p>码</p>
+        # @type Code: String
+
+        attr_accessor :Uid, :Time, :ProvinceName, :CityName, :RegionName, :BrandName, :SpecName, :IP, :Code
+
+        def initialize(uid=nil, time=nil, provincename=nil, cityname=nil, regionname=nil, brandname=nil, specname=nil, ip=nil, code=nil)
+          @Uid = uid
+          @Time = time
+          @ProvinceName = provincename
+          @CityName = cityname
+          @RegionName = regionname
+          @BrandName = brandname
+          @SpecName = specname
+          @IP = ip
+          @Code = code
+        end
+
+        def deserialize(params)
+          @Uid = params['Uid']
+          @Time = params['Time']
+          @ProvinceName = params['ProvinceName']
+          @CityName = params['CityName']
+          @RegionName = params['RegionName']
+          @BrandName = params['BrandName']
+          @SpecName = params['SpecName']
+          @IP = params['IP']
+          @Code = params['Code']
+        end
+      end
+
       # 扫码明细
       class ScanLog < TencentCloud::Common::AbstractModel
         # @param LogId: 行ID
@@ -4560,8 +4670,8 @@ module TencentCloud
 
         attr_accessor :CorpId, :FactoryCnt, :ItemCnt, :TrackCnt, :SaleCnt, :ChainCnt, :RiskCnt, :UpdateTime
         extend Gem::Deprecate
-        deprecate :RiskCnt, :none, 2025, 11
-        deprecate :RiskCnt=, :none, 2025, 11
+        deprecate :RiskCnt, :none, 2026, 3
+        deprecate :RiskCnt=, :none, 2026, 3
 
         def initialize(corpid=nil, factorycnt=nil, itemcnt=nil, trackcnt=nil, salecnt=nil, chaincnt=nil, riskcnt=nil, updatetime=nil)
           @CorpId = corpid

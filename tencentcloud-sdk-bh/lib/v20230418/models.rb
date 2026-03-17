@@ -335,10 +335,12 @@ module TencentCloud
         # @type TicketId: String
         # @param TicketName: 权限所属工单名称
         # @type TicketName: String
+        # @param MaxAccessCredentialDuration: 访问串有效期最大时长，秒数，允许使用访问串时需大于0且必须为86400整数倍
+        # @type MaxAccessCredentialDuration: Integer
 
-        attr_accessor :Id, :Name, :AllowDiskRedirect, :AllowClipFileUp, :AllowClipFileDown, :AllowClipTextUp, :AllowClipTextDown, :AllowFileUp, :MaxFileUpSize, :AllowFileDown, :MaxFileDownSize, :AllowAnyAccount, :UserSet, :UserGroupSet, :DeviceSet, :DeviceGroupSet, :AccountSet, :CmdTemplateSet, :AllowDiskFileUp, :AllowDiskFileDown, :AllowShellFileUp, :AllowShellFileDown, :AllowFileDel, :ValidateFrom, :ValidateTo, :Status, :Department, :AllowAccessCredential, :ACTemplateSet, :WhiteCmds, :AllowKeyboardLogger, :AppAssetSet, :AclType, :TicketId, :TicketName
+        attr_accessor :Id, :Name, :AllowDiskRedirect, :AllowClipFileUp, :AllowClipFileDown, :AllowClipTextUp, :AllowClipTextDown, :AllowFileUp, :MaxFileUpSize, :AllowFileDown, :MaxFileDownSize, :AllowAnyAccount, :UserSet, :UserGroupSet, :DeviceSet, :DeviceGroupSet, :AccountSet, :CmdTemplateSet, :AllowDiskFileUp, :AllowDiskFileDown, :AllowShellFileUp, :AllowShellFileDown, :AllowFileDel, :ValidateFrom, :ValidateTo, :Status, :Department, :AllowAccessCredential, :ACTemplateSet, :WhiteCmds, :AllowKeyboardLogger, :AppAssetSet, :AclType, :TicketId, :TicketName, :MaxAccessCredentialDuration
 
-        def initialize(id=nil, name=nil, allowdiskredirect=nil, allowclipfileup=nil, allowclipfiledown=nil, allowcliptextup=nil, allowcliptextdown=nil, allowfileup=nil, maxfileupsize=nil, allowfiledown=nil, maxfiledownsize=nil, allowanyaccount=nil, userset=nil, usergroupset=nil, deviceset=nil, devicegroupset=nil, accountset=nil, cmdtemplateset=nil, allowdiskfileup=nil, allowdiskfiledown=nil, allowshellfileup=nil, allowshellfiledown=nil, allowfiledel=nil, validatefrom=nil, validateto=nil, status=nil, department=nil, allowaccesscredential=nil, actemplateset=nil, whitecmds=nil, allowkeyboardlogger=nil, appassetset=nil, acltype=nil, ticketid=nil, ticketname=nil)
+        def initialize(id=nil, name=nil, allowdiskredirect=nil, allowclipfileup=nil, allowclipfiledown=nil, allowcliptextup=nil, allowcliptextdown=nil, allowfileup=nil, maxfileupsize=nil, allowfiledown=nil, maxfiledownsize=nil, allowanyaccount=nil, userset=nil, usergroupset=nil, deviceset=nil, devicegroupset=nil, accountset=nil, cmdtemplateset=nil, allowdiskfileup=nil, allowdiskfiledown=nil, allowshellfileup=nil, allowshellfiledown=nil, allowfiledel=nil, validatefrom=nil, validateto=nil, status=nil, department=nil, allowaccesscredential=nil, actemplateset=nil, whitecmds=nil, allowkeyboardlogger=nil, appassetset=nil, acltype=nil, ticketid=nil, ticketname=nil, maxaccesscredentialduration=nil)
           @Id = id
           @Name = name
           @AllowDiskRedirect = allowdiskredirect
@@ -374,6 +376,7 @@ module TencentCloud
           @AclType = acltype
           @TicketId = ticketid
           @TicketName = ticketname
+          @MaxAccessCredentialDuration = maxaccesscredentialduration
         end
 
         def deserialize(params)
@@ -464,6 +467,7 @@ module TencentCloud
           @AclType = params['AclType']
           @TicketId = params['TicketId']
           @TicketName = params['TicketName']
+          @MaxAccessCredentialDuration = params['MaxAccessCredentialDuration']
         end
       end
 
@@ -1283,10 +1287,12 @@ module TencentCloud
         # @type AllowAccessCredential: Boolean
         # @param AllowKeyboardLogger: 是否允许键盘记录
         # @type AllowKeyboardLogger: Boolean
+        # @param MaxAccessCredentialDuration: 访问串有效期最大时长，秒数，允许使用访问串时需大于0且必须为86400整数倍
+        # @type MaxAccessCredentialDuration: Integer
 
-        attr_accessor :Name, :AllowDiskRedirect, :AllowAnyAccount, :AllowClipFileUp, :AllowClipFileDown, :AllowClipTextUp, :AllowClipTextDown, :AllowFileUp, :MaxFileUpSize, :AllowFileDown, :MaxFileDownSize, :UserIdSet, :UserGroupIdSet, :DeviceIdSet, :AppAssetIdSet, :DeviceGroupIdSet, :AccountSet, :CmdTemplateIdSet, :ACTemplateIdSet, :AllowDiskFileUp, :AllowDiskFileDown, :AllowShellFileUp, :AllowShellFileDown, :AllowFileDel, :ValidateFrom, :ValidateTo, :DepartmentId, :AllowAccessCredential, :AllowKeyboardLogger
+        attr_accessor :Name, :AllowDiskRedirect, :AllowAnyAccount, :AllowClipFileUp, :AllowClipFileDown, :AllowClipTextUp, :AllowClipTextDown, :AllowFileUp, :MaxFileUpSize, :AllowFileDown, :MaxFileDownSize, :UserIdSet, :UserGroupIdSet, :DeviceIdSet, :AppAssetIdSet, :DeviceGroupIdSet, :AccountSet, :CmdTemplateIdSet, :ACTemplateIdSet, :AllowDiskFileUp, :AllowDiskFileDown, :AllowShellFileUp, :AllowShellFileDown, :AllowFileDel, :ValidateFrom, :ValidateTo, :DepartmentId, :AllowAccessCredential, :AllowKeyboardLogger, :MaxAccessCredentialDuration
 
-        def initialize(name=nil, allowdiskredirect=nil, allowanyaccount=nil, allowclipfileup=nil, allowclipfiledown=nil, allowcliptextup=nil, allowcliptextdown=nil, allowfileup=nil, maxfileupsize=nil, allowfiledown=nil, maxfiledownsize=nil, useridset=nil, usergroupidset=nil, deviceidset=nil, appassetidset=nil, devicegroupidset=nil, accountset=nil, cmdtemplateidset=nil, actemplateidset=nil, allowdiskfileup=nil, allowdiskfiledown=nil, allowshellfileup=nil, allowshellfiledown=nil, allowfiledel=nil, validatefrom=nil, validateto=nil, departmentid=nil, allowaccesscredential=nil, allowkeyboardlogger=nil)
+        def initialize(name=nil, allowdiskredirect=nil, allowanyaccount=nil, allowclipfileup=nil, allowclipfiledown=nil, allowcliptextup=nil, allowcliptextdown=nil, allowfileup=nil, maxfileupsize=nil, allowfiledown=nil, maxfiledownsize=nil, useridset=nil, usergroupidset=nil, deviceidset=nil, appassetidset=nil, devicegroupidset=nil, accountset=nil, cmdtemplateidset=nil, actemplateidset=nil, allowdiskfileup=nil, allowdiskfiledown=nil, allowshellfileup=nil, allowshellfiledown=nil, allowfiledel=nil, validatefrom=nil, validateto=nil, departmentid=nil, allowaccesscredential=nil, allowkeyboardlogger=nil, maxaccesscredentialduration=nil)
           @Name = name
           @AllowDiskRedirect = allowdiskredirect
           @AllowAnyAccount = allowanyaccount
@@ -1316,6 +1322,7 @@ module TencentCloud
           @DepartmentId = departmentid
           @AllowAccessCredential = allowaccesscredential
           @AllowKeyboardLogger = allowkeyboardlogger
+          @MaxAccessCredentialDuration = maxaccesscredentialduration
         end
 
         def deserialize(params)
@@ -1348,6 +1355,7 @@ module TencentCloud
           @DepartmentId = params['DepartmentId']
           @AllowAccessCredential = params['AllowAccessCredential']
           @AllowKeyboardLogger = params['AllowKeyboardLogger']
+          @MaxAccessCredentialDuration = params['MaxAccessCredentialDuration']
         end
       end
 
@@ -3650,7 +3658,7 @@ module TencentCloud
         # @type ResultSet: Array
         # @param Offset: 分页偏移位置，默认值为0
         # @type Offset: Integer
-        # @param Limit: 分页每页记录数，默认20
+        # @param Limit: 分页每页记录数，默认20，最大200
         # @type Limit: Integer
 
         attr_accessor :UserName, :RealName, :StartTime, :EndTime, :SourceIp, :Entry, :EntrySet, :Result, :ResultSet, :Offset, :Limit
@@ -3737,7 +3745,7 @@ module TencentCloud
         # @type ResultSet: Array
         # @param Offset: 分页偏移位置，默认值为0
         # @type Offset: Integer
-        # @param Limit: 分页每页记录数，默认20
+        # @param Limit: 分页每页记录数，默认20，最大200
         # @type Limit: Integer
 
         attr_accessor :UserName, :RealName, :StartTime, :EndTime, :SourceIp, :Kind, :KindSet, :Result, :ResultSet, :Offset, :Limit
@@ -5266,10 +5274,12 @@ module TencentCloud
         # @type AllowAccessCredential: Boolean
         # @param AllowKeyboardLogger: 是否允许键盘记录
         # @type AllowKeyboardLogger: Boolean
+        # @param MaxAccessCredentialDuration: 访问串有效期最大时长，秒数，允许使用访问串时需大于0且必须为86400整数倍
+        # @type MaxAccessCredentialDuration: Integer
 
-        attr_accessor :Name, :AllowDiskRedirect, :AllowAnyAccount, :Id, :AllowClipFileUp, :AllowClipFileDown, :AllowClipTextUp, :AllowClipTextDown, :AllowFileUp, :MaxFileUpSize, :AllowFileDown, :MaxFileDownSize, :UserIdSet, :UserGroupIdSet, :DeviceIdSet, :AppAssetIdSet, :DeviceGroupIdSet, :AccountSet, :CmdTemplateIdSet, :ACTemplateIdSet, :AllowDiskFileUp, :AllowDiskFileDown, :AllowShellFileUp, :AllowShellFileDown, :AllowFileDel, :ValidateFrom, :ValidateTo, :DepartmentId, :AllowAccessCredential, :AllowKeyboardLogger
+        attr_accessor :Name, :AllowDiskRedirect, :AllowAnyAccount, :Id, :AllowClipFileUp, :AllowClipFileDown, :AllowClipTextUp, :AllowClipTextDown, :AllowFileUp, :MaxFileUpSize, :AllowFileDown, :MaxFileDownSize, :UserIdSet, :UserGroupIdSet, :DeviceIdSet, :AppAssetIdSet, :DeviceGroupIdSet, :AccountSet, :CmdTemplateIdSet, :ACTemplateIdSet, :AllowDiskFileUp, :AllowDiskFileDown, :AllowShellFileUp, :AllowShellFileDown, :AllowFileDel, :ValidateFrom, :ValidateTo, :DepartmentId, :AllowAccessCredential, :AllowKeyboardLogger, :MaxAccessCredentialDuration
 
-        def initialize(name=nil, allowdiskredirect=nil, allowanyaccount=nil, id=nil, allowclipfileup=nil, allowclipfiledown=nil, allowcliptextup=nil, allowcliptextdown=nil, allowfileup=nil, maxfileupsize=nil, allowfiledown=nil, maxfiledownsize=nil, useridset=nil, usergroupidset=nil, deviceidset=nil, appassetidset=nil, devicegroupidset=nil, accountset=nil, cmdtemplateidset=nil, actemplateidset=nil, allowdiskfileup=nil, allowdiskfiledown=nil, allowshellfileup=nil, allowshellfiledown=nil, allowfiledel=nil, validatefrom=nil, validateto=nil, departmentid=nil, allowaccesscredential=nil, allowkeyboardlogger=nil)
+        def initialize(name=nil, allowdiskredirect=nil, allowanyaccount=nil, id=nil, allowclipfileup=nil, allowclipfiledown=nil, allowcliptextup=nil, allowcliptextdown=nil, allowfileup=nil, maxfileupsize=nil, allowfiledown=nil, maxfiledownsize=nil, useridset=nil, usergroupidset=nil, deviceidset=nil, appassetidset=nil, devicegroupidset=nil, accountset=nil, cmdtemplateidset=nil, actemplateidset=nil, allowdiskfileup=nil, allowdiskfiledown=nil, allowshellfileup=nil, allowshellfiledown=nil, allowfiledel=nil, validatefrom=nil, validateto=nil, departmentid=nil, allowaccesscredential=nil, allowkeyboardlogger=nil, maxaccesscredentialduration=nil)
           @Name = name
           @AllowDiskRedirect = allowdiskredirect
           @AllowAnyAccount = allowanyaccount
@@ -5300,6 +5310,7 @@ module TencentCloud
           @DepartmentId = departmentid
           @AllowAccessCredential = allowaccesscredential
           @AllowKeyboardLogger = allowkeyboardlogger
+          @MaxAccessCredentialDuration = maxaccesscredentialduration
         end
 
         def deserialize(params)
@@ -5333,6 +5344,7 @@ module TencentCloud
           @DepartmentId = params['DepartmentId']
           @AllowAccessCredential = params['AllowAccessCredential']
           @AllowKeyboardLogger = params['AllowKeyboardLogger']
+          @MaxAccessCredentialDuration = params['MaxAccessCredentialDuration']
         end
       end
 
@@ -6616,10 +6628,18 @@ module TencentCloud
         # @type PackageIOABandwidth: Integer
         # @param IOAResourceId: 堡垒机实例对应的零信任实例id
         # @type IOAResourceId: String
+        # @param ResourceEdition: 资源类型 免费版/标准版/专业版 /国密版 free/standard/pro/gm
+        # @type ResourceEdition: String
+        # @param TimeUnit: 计费周期 年：y，月：m，日：d，时：h，分：M，秒：s，一次性购买：p
+        # @type TimeUnit: String
+        # @param TimeSpan: 计费时长
+        # @type TimeSpan: Integer
+        # @param PayMode: 计费模式 0后付费，1预付费
+        # @type PayMode: Integer
 
-        attr_accessor :ResourceId, :ApCode, :SvArgs, :VpcId, :Nodes, :RenewFlag, :ExpireTime, :Status, :ResourceName, :Pid, :CreateTime, :ProductCode, :SubProductCode, :Zone, :Expired, :Deployed, :VpcName, :VpcCidrBlock, :SubnetId, :SubnetName, :CidrBlock, :PublicIpSet, :PrivateIpSet, :ModuleSet, :UsedNodes, :ExtendPoints, :PackageBandwidth, :PackageNode, :LogDeliveryArgs, :ClbSet, :DomainCount, :UsedDomainCount, :Trial, :LogDelivery, :CdcClusterId, :DeployModel, :IntranetAccess, :IntranetPrivateIpSet, :IntranetVpcId, :IntranetSubnetId, :IntranetVpcCidr, :DomainName, :ShareClb, :OpenClbId, :LbVipIsp, :TUICmdPort, :TUIDirectPort, :WebAccess, :ClientAccess, :ExternalAccess, :IOAResource, :PackageIOAUserCount, :PackageIOABandwidth, :IOAResourceId
+        attr_accessor :ResourceId, :ApCode, :SvArgs, :VpcId, :Nodes, :RenewFlag, :ExpireTime, :Status, :ResourceName, :Pid, :CreateTime, :ProductCode, :SubProductCode, :Zone, :Expired, :Deployed, :VpcName, :VpcCidrBlock, :SubnetId, :SubnetName, :CidrBlock, :PublicIpSet, :PrivateIpSet, :ModuleSet, :UsedNodes, :ExtendPoints, :PackageBandwidth, :PackageNode, :LogDeliveryArgs, :ClbSet, :DomainCount, :UsedDomainCount, :Trial, :LogDelivery, :CdcClusterId, :DeployModel, :IntranetAccess, :IntranetPrivateIpSet, :IntranetVpcId, :IntranetSubnetId, :IntranetVpcCidr, :DomainName, :ShareClb, :OpenClbId, :LbVipIsp, :TUICmdPort, :TUIDirectPort, :WebAccess, :ClientAccess, :ExternalAccess, :IOAResource, :PackageIOAUserCount, :PackageIOABandwidth, :IOAResourceId, :ResourceEdition, :TimeUnit, :TimeSpan, :PayMode
 
-        def initialize(resourceid=nil, apcode=nil, svargs=nil, vpcid=nil, nodes=nil, renewflag=nil, expiretime=nil, status=nil, resourcename=nil, pid=nil, createtime=nil, productcode=nil, subproductcode=nil, zone=nil, expired=nil, deployed=nil, vpcname=nil, vpccidrblock=nil, subnetid=nil, subnetname=nil, cidrblock=nil, publicipset=nil, privateipset=nil, moduleset=nil, usednodes=nil, extendpoints=nil, packagebandwidth=nil, packagenode=nil, logdeliveryargs=nil, clbset=nil, domaincount=nil, useddomaincount=nil, trial=nil, logdelivery=nil, cdcclusterid=nil, deploymodel=nil, intranetaccess=nil, intranetprivateipset=nil, intranetvpcid=nil, intranetsubnetid=nil, intranetvpccidr=nil, domainname=nil, shareclb=nil, openclbid=nil, lbvipisp=nil, tuicmdport=nil, tuidirectport=nil, webaccess=nil, clientaccess=nil, externalaccess=nil, ioaresource=nil, packageioausercount=nil, packageioabandwidth=nil, ioaresourceid=nil)
+        def initialize(resourceid=nil, apcode=nil, svargs=nil, vpcid=nil, nodes=nil, renewflag=nil, expiretime=nil, status=nil, resourcename=nil, pid=nil, createtime=nil, productcode=nil, subproductcode=nil, zone=nil, expired=nil, deployed=nil, vpcname=nil, vpccidrblock=nil, subnetid=nil, subnetname=nil, cidrblock=nil, publicipset=nil, privateipset=nil, moduleset=nil, usednodes=nil, extendpoints=nil, packagebandwidth=nil, packagenode=nil, logdeliveryargs=nil, clbset=nil, domaincount=nil, useddomaincount=nil, trial=nil, logdelivery=nil, cdcclusterid=nil, deploymodel=nil, intranetaccess=nil, intranetprivateipset=nil, intranetvpcid=nil, intranetsubnetid=nil, intranetvpccidr=nil, domainname=nil, shareclb=nil, openclbid=nil, lbvipisp=nil, tuicmdport=nil, tuidirectport=nil, webaccess=nil, clientaccess=nil, externalaccess=nil, ioaresource=nil, packageioausercount=nil, packageioabandwidth=nil, ioaresourceid=nil, resourceedition=nil, timeunit=nil, timespan=nil, paymode=nil)
           @ResourceId = resourceid
           @ApCode = apcode
           @SvArgs = svargs
@@ -6674,6 +6694,10 @@ module TencentCloud
           @PackageIOAUserCount = packageioausercount
           @PackageIOABandwidth = packageioabandwidth
           @IOAResourceId = ioaresourceid
+          @ResourceEdition = resourceedition
+          @TimeUnit = timeunit
+          @TimeSpan = timespan
+          @PayMode = paymode
         end
 
         def deserialize(params)
@@ -6738,6 +6762,10 @@ module TencentCloud
           @PackageIOAUserCount = params['PackageIOAUserCount']
           @PackageIOABandwidth = params['PackageIOABandwidth']
           @IOAResourceId = params['IOAResourceId']
+          @ResourceEdition = params['ResourceEdition']
+          @TimeUnit = params['TimeUnit']
+          @TimeSpan = params['TimeSpan']
+          @PayMode = params['PayMode']
         end
       end
 

@@ -559,12 +559,11 @@ module TencentCloud
 
       # DescribeCloudRunEnvs请求参数结构体
       class DescribeCloudRunEnvsRequest < TencentCloud::Common::AbstractModel
-        # @param EnvId: 环境ID，如果传了这个参数则只返回该环境的相关信息
+        # @param EnvId: <p>环境ID，如果传了这个参数则只返回该环境的相关信息</p>
         # @type EnvId: String
-        # @param IsVisible: 指定Channels字段为可见渠道列表或不可见渠道列表
-        # 如只想获取渠道A的环境 就填写IsVisible= true,Channels = ["A"], 过滤渠道A拉取其他渠道环境时填写IsVisible= false,Channels = ["A"]
+        # @param IsVisible: <p>指定Channels字段为可见渠道列表或不可见渠道列表<br>如只想获取渠道A的环境 就填写IsVisible= true,Channels = [&quot;A&quot;], 过滤渠道A拉取其他渠道环境时填写IsVisible= false,Channels = [&quot;A&quot;]</p>
         # @type IsVisible: Boolean
-        # @param Channels: 渠道列表，代表可见或不可见渠道由IsVisible参数指定
+        # @param Channels: <p>渠道列表，代表可见或不可见渠道由IsVisible参数指定</p>
         # @type Channels: Array
 
         attr_accessor :EnvId, :IsVisible, :Channels
@@ -584,7 +583,7 @@ module TencentCloud
 
       # DescribeCloudRunEnvs返回参数结构体
       class DescribeCloudRunEnvsResponse < TencentCloud::Common::AbstractModel
-        # @param EnvList: 环境信息列表
+        # @param EnvList: <p>环境信息列表</p>
         # @type EnvList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

@@ -13795,6 +13795,591 @@ module TencentCloud
         end
       end
 
+      # DescribeImageDenyEventDetail请求参数结构体
+      class DescribeImageDenyEventDetailRequest < TencentCloud::Common::AbstractModel
+        # @param EventID: 事件ID
+        # @type EventID: Integer
+
+        attr_accessor :EventID
+
+        def initialize(eventid=nil)
+          @EventID = eventid
+        end
+
+        def deserialize(params)
+          @EventID = params['EventID']
+        end
+      end
+
+      # DescribeImageDenyEventDetail返回参数结构体
+      class DescribeImageDenyEventDetailResponse < TencentCloud::Common::AbstractModel
+        # @param EventID: 事件ID
+        # @type EventID: Integer
+        # @param EventType: 事件类型 EVENT_RISK:风险事件类型，EVENT_PRIVILEGE:特权
+        # @type EventType: String
+        # @param RuleName: 规则名称
+        # @type RuleName: String
+        # @param RuleID: 规则RuleID
+        # @type RuleID: String
+        # @param RuleType: 规则类型
+        # @type RuleType: String
+        # @param RuleStatus: 规则启用状态 0:开启，1:关闭
+        # @type RuleStatus: Integer
+        # @param RuleEffectStatus: 规则策略状态 IN_THE_TEST ：观察中，IN_EFFECT：生效中
+        # @type RuleEffectStatus: String
+        # @param RuleInfo: 规则内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleInfo: Array
+        # @param RuleDescription: 规则描述
+        # @type RuleDescription: String
+        # @param ImageID: 镜像ID
+        # @type ImageID: String
+        # @param ImageName: 镜像名称
+        # @type ImageName: String
+        # @param NodeName: 节点名称
+        # @type NodeName: String
+        # @param NodeIP: 内网IP
+        # @type NodeIP: String
+        # @param PublicIP: 外网IP
+        # @type PublicIP: String
+        # @param QUUID: 主机Quuid
+        # @type QUUID: String
+        # @param FoundTime: 首次生成时间
+        # @type FoundTime: String
+        # @param LatestFoundTime: 最近生成时间
+        # @type LatestFoundTime: String
+        # @param EventCount: 事件数量
+        # @type EventCount: Integer
+        # @param DealBehavior: 执行动作:
+        # BEHAVIOR_ALERT:告警，
+        # BEHAVIOR_HOLDUP_SUCCESSED:拦截
+        # @type DealBehavior: String
+        # @param PodName: Pod名称
+        # @type PodName: String
+        # @param RuleEffectTime: 规则开始拦截时间
+        # @type RuleEffectTime: String
+        # @param Description: 事件描述
+        # @type Description: String
+        # @param StartParam: 镜像启动参数
+        # @type StartParam: String
+        # @param Solution: 解决方案
+        # @type Solution: String
+        # @param PodIP: pod ip
+        # @type PodIP: String
+        # @param PodStatus:  pod状态
+        # @type PodStatus: String
+        # @param ClusterID: 集群id
+        # @type ClusterID: String
+        # @param NodeType: 节点类型
+        # @type NodeType: String
+        # @param NodeID: 节点id
+        # @type NodeID: String
+        # @param NodeUniqueID: 节点唯一id
+        # @type NodeUniqueID: String
+        # @param NodeSubNetID: 节点子网id
+        # @type NodeSubNetID: String
+        # @param NodeSubNetName: 节点子网名称
+        # @type NodeSubNetName: String
+        # @param NodeSubNetCIDR: 节点子网cidr
+        # @type NodeSubNetCIDR: String
+        # @param ClusterName: 集群名称
+        # @type ClusterName: String
+        # @param ImageRegistryInfo: 镜像仓库信息
+        # @type ImageRegistryInfo: :class:`Tencentcloud::Tcss.v20201101.models.ImageRegistryInfo`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :EventID, :EventType, :RuleName, :RuleID, :RuleType, :RuleStatus, :RuleEffectStatus, :RuleInfo, :RuleDescription, :ImageID, :ImageName, :NodeName, :NodeIP, :PublicIP, :QUUID, :FoundTime, :LatestFoundTime, :EventCount, :DealBehavior, :PodName, :RuleEffectTime, :Description, :StartParam, :Solution, :PodIP, :PodStatus, :ClusterID, :NodeType, :NodeID, :NodeUniqueID, :NodeSubNetID, :NodeSubNetName, :NodeSubNetCIDR, :ClusterName, :ImageRegistryInfo, :RequestId
+
+        def initialize(eventid=nil, eventtype=nil, rulename=nil, ruleid=nil, ruletype=nil, rulestatus=nil, ruleeffectstatus=nil, ruleinfo=nil, ruledescription=nil, imageid=nil, imagename=nil, nodename=nil, nodeip=nil, publicip=nil, quuid=nil, foundtime=nil, latestfoundtime=nil, eventcount=nil, dealbehavior=nil, podname=nil, ruleeffecttime=nil, description=nil, startparam=nil, solution=nil, podip=nil, podstatus=nil, clusterid=nil, nodetype=nil, nodeid=nil, nodeuniqueid=nil, nodesubnetid=nil, nodesubnetname=nil, nodesubnetcidr=nil, clustername=nil, imageregistryinfo=nil, requestid=nil)
+          @EventID = eventid
+          @EventType = eventtype
+          @RuleName = rulename
+          @RuleID = ruleid
+          @RuleType = ruletype
+          @RuleStatus = rulestatus
+          @RuleEffectStatus = ruleeffectstatus
+          @RuleInfo = ruleinfo
+          @RuleDescription = ruledescription
+          @ImageID = imageid
+          @ImageName = imagename
+          @NodeName = nodename
+          @NodeIP = nodeip
+          @PublicIP = publicip
+          @QUUID = quuid
+          @FoundTime = foundtime
+          @LatestFoundTime = latestfoundtime
+          @EventCount = eventcount
+          @DealBehavior = dealbehavior
+          @PodName = podname
+          @RuleEffectTime = ruleeffecttime
+          @Description = description
+          @StartParam = startparam
+          @Solution = solution
+          @PodIP = podip
+          @PodStatus = podstatus
+          @ClusterID = clusterid
+          @NodeType = nodetype
+          @NodeID = nodeid
+          @NodeUniqueID = nodeuniqueid
+          @NodeSubNetID = nodesubnetid
+          @NodeSubNetName = nodesubnetname
+          @NodeSubNetCIDR = nodesubnetcidr
+          @ClusterName = clustername
+          @ImageRegistryInfo = imageregistryinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @EventID = params['EventID']
+          @EventType = params['EventType']
+          @RuleName = params['RuleName']
+          @RuleID = params['RuleID']
+          @RuleType = params['RuleType']
+          @RuleStatus = params['RuleStatus']
+          @RuleEffectStatus = params['RuleEffectStatus']
+          @RuleInfo = params['RuleInfo']
+          @RuleDescription = params['RuleDescription']
+          @ImageID = params['ImageID']
+          @ImageName = params['ImageName']
+          @NodeName = params['NodeName']
+          @NodeIP = params['NodeIP']
+          @PublicIP = params['PublicIP']
+          @QUUID = params['QUUID']
+          @FoundTime = params['FoundTime']
+          @LatestFoundTime = params['LatestFoundTime']
+          @EventCount = params['EventCount']
+          @DealBehavior = params['DealBehavior']
+          @PodName = params['PodName']
+          @RuleEffectTime = params['RuleEffectTime']
+          @Description = params['Description']
+          @StartParam = params['StartParam']
+          @Solution = params['Solution']
+          @PodIP = params['PodIP']
+          @PodStatus = params['PodStatus']
+          @ClusterID = params['ClusterID']
+          @NodeType = params['NodeType']
+          @NodeID = params['NodeID']
+          @NodeUniqueID = params['NodeUniqueID']
+          @NodeSubNetID = params['NodeSubNetID']
+          @NodeSubNetName = params['NodeSubNetName']
+          @NodeSubNetCIDR = params['NodeSubNetCIDR']
+          @ClusterName = params['ClusterName']
+          unless params['ImageRegistryInfo'].nil?
+            @ImageRegistryInfo = ImageRegistryInfo.new
+            @ImageRegistryInfo.deserialize(params['ImageRegistryInfo'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeImageDenyEventList请求参数结构体
+      class DescribeImageDenyEventListRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: 过滤条件。
+        # <li>EventType- String - 是否必填：否 -事件类型 EVENT_RISK:风险事件类型，EVENT_PRIVILEGE:特权。</li>
+        # <li>DealBehavior- String - 是否必填：否 - 执行动作,BEHAVIOR_ALERT:告警，BEHAVIOR_HOLDUP_SUCCESSED:拦截。</li>
+        # <li>RuleName- string - 是否必填：否 - 规则名称。</li>
+        # <li>NodeName- string - 是否必填：否 - 节点名称。</li>
+        # <li>NodeIP- string - 是否必填：否 - 内外IP。</li>
+        # <li>PublicIP- string - 是否必填：否 - 外网IP。</li>
+        # <li>ImageName- string - 是否必填：否 - 镜像名称。</li>
+        # <li>ImageID- string - 是否必填：否 - 镜像ID。</li>
+        # <li>TimeRange- String -是否必填: 否 -  时间范围，第一个值表示开始时间，第二个值表示结束时间 </li>
+        # @type Filters: Array
+        # @param Limit: 需要返回的数量，默认为10，最大值为100
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Order: 排序方式：asc/desc
+        # @type Order: String
+        # @param By: 排序字段：告警数量：EventCount，最近生成时间：LatestFoundTime
+        # @type By: String
+
+        attr_accessor :Filters, :Limit, :Offset, :Order, :By
+
+        def initialize(filters=nil, limit=nil, offset=nil, order=nil, by=nil)
+          @Filters = filters
+          @Limit = limit
+          @Offset = offset
+          @Order = order
+          @By = by
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              runtimefilters_tmp = RunTimeFilters.new
+              runtimefilters_tmp.deserialize(i)
+              @Filters << runtimefilters_tmp
+            end
+          end
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @Order = params['Order']
+          @By = params['By']
+        end
+      end
+
+      # DescribeImageDenyEventList返回参数结构体
+      class DescribeImageDenyEventListResponse < TencentCloud::Common::AbstractModel
+        # @param List: 镜像拦截列表
+        # @type List: Array
+        # @param TotalCount: 总数量
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :List, :TotalCount, :RequestId
+
+        def initialize(list=nil, totalcount=nil, requestid=nil)
+          @List = list
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              imagedenyevent_tmp = ImageDenyEvent.new
+              imagedenyevent_tmp.deserialize(i)
+              @List << imagedenyevent_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeImageDenyEventTendency请求参数结构体
+      class DescribeImageDenyEventTendencyRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: 开始时间
+        # @type StartTime: String
+        # @param EndTime: 结束时间
+        # @type EndTime: String
+
+        attr_accessor :StartTime, :EndTime
+
+        def initialize(starttime=nil, endtime=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+        end
+      end
+
+      # DescribeImageDenyEventTendency返回参数结构体
+      class DescribeImageDenyEventTendencyResponse < TencentCloud::Common::AbstractModel
+        # @param DenyList: 镜像拦截成功事件趋势
+        # @type DenyList: Array
+        # @param AlarmList: 镜像拦截告警事件趋势
+        # @type AlarmList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DenyList, :AlarmList, :RequestId
+
+        def initialize(denylist=nil, alarmlist=nil, requestid=nil)
+          @DenyList = denylist
+          @AlarmList = alarmlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['DenyList'].nil?
+            @DenyList = []
+            params['DenyList'].each do |i|
+              imagedenyeventtendency_tmp = ImageDenyEventTendency.new
+              imagedenyeventtendency_tmp.deserialize(i)
+              @DenyList << imagedenyeventtendency_tmp
+            end
+          end
+          unless params['AlarmList'].nil?
+            @AlarmList = []
+            params['AlarmList'].each do |i|
+              imagedenyeventtendency_tmp = ImageDenyEventTendency.new
+              imagedenyeventtendency_tmp.deserialize(i)
+              @AlarmList << imagedenyeventtendency_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeImageDenyRuleDetail请求参数结构体
+      class DescribeImageDenyRuleDetailRequest < TencentCloud::Common::AbstractModel
+        # @param RuleID: 规则RuleID
+        # @type RuleID: String
+
+        attr_accessor :RuleID
+
+        def initialize(ruleid=nil)
+          @RuleID = ruleid
+        end
+
+        def deserialize(params)
+          @RuleID = params['RuleID']
+        end
+      end
+
+      # DescribeImageDenyRuleDetail返回参数结构体
+      class DescribeImageDenyRuleDetailResponse < TencentCloud::Common::AbstractModel
+        # @param ID: 规则ID
+        # @type ID: Integer
+        # @param RuleName: 规则名称
+        # @type RuleName: String
+        # @param RuleType: 规则类型 RULE_RISK：风险， RULE_PRIVILEGE：特权
+        # @type RuleType: String
+        # @param EffectImageCount: 生效的镜像数量
+        # @type EffectImageCount: Integer
+        # @param IsEffectAllImage: 是否对全部扫描镜像生效。0:全选镜像，1:自选镜像
+        # @type IsEffectAllImage: Integer
+        # @param EffectTime: 规则开始生效时间
+        # @type EffectTime: String
+        # @param UpdateTime: 更新时间
+        # @type UpdateTime: String
+        # @param OperationUin: 操作用户
+        # @type OperationUin: String
+        # @param EffectStatus: 生效状态 IN_THE_TEST ：观察中，IN_EFFECT：生效中
+        # @type EffectStatus: String
+        # @param RuleDescription: 规则描述
+        # @type RuleDescription: String
+        # @param Status: 启用状态 0:开启，1:关闭
+        # @type Status: Integer
+        # @param Vul: 漏洞，0:未选中，1:选中
+        # @type Vul: Integer
+        # @param CVEIDSet: cve编号
+        # @type CVEIDSet: Array
+        # @param ComponentSet: 组件编号
+        # @type ComponentSet: Array
+        # @param VulClassSet: 漏洞分类
+        # @type VulClassSet: Array
+        # @param VulLevelSet: 漏洞等级
+        # @type VulLevelSet: Array
+        # @param VulLabelSet: 漏洞标签
+        # @type VulLabelSet: Array
+        # @param Virus: 木马，0:未选中，1:选中
+        # @type Virus: Integer
+        # @param VirusMD5Set: 木马md5列表
+        # @type VirusMD5Set: Array
+        # @param VirusLevelSet: 木马等级
+        # @type VirusLevelSet: Array
+        # @param VirusName: 病毒名
+        # @type VirusName: Array
+        # @param Risk: 敏感信息，0:未选中，1:选中
+        # @type Risk: Integer
+        # @param RiskLevelSet: 敏感等级
+        # @type RiskLevelSet: Array
+        # @param RiskType: 敏感信息分类
+        # @type RiskType: Array
+        # @param PrivilegeRun: 特权启动 0:不允许，1:允许
+        # @type PrivilegeRun: Integer
+        # @param PrivilegeDetail: 特权类型,
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PrivilegeDetail: Array
+        # @param EffectImageSet: 镜像ID列表
+        # @type EffectImageSet: Array
+        # @param EffectDay: 多少天后生效
+        # @type EffectDay: Integer
+        # @param RuleID: 规则RuelD
+        # @type RuleID: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ID, :RuleName, :RuleType, :EffectImageCount, :IsEffectAllImage, :EffectTime, :UpdateTime, :OperationUin, :EffectStatus, :RuleDescription, :Status, :Vul, :CVEIDSet, :ComponentSet, :VulClassSet, :VulLevelSet, :VulLabelSet, :Virus, :VirusMD5Set, :VirusLevelSet, :VirusName, :Risk, :RiskLevelSet, :RiskType, :PrivilegeRun, :PrivilegeDetail, :EffectImageSet, :EffectDay, :RuleID, :RequestId
+
+        def initialize(id=nil, rulename=nil, ruletype=nil, effectimagecount=nil, iseffectallimage=nil, effecttime=nil, updatetime=nil, operationuin=nil, effectstatus=nil, ruledescription=nil, status=nil, vul=nil, cveidset=nil, componentset=nil, vulclassset=nil, vullevelset=nil, vullabelset=nil, virus=nil, virusmd5set=nil, viruslevelset=nil, virusname=nil, risk=nil, risklevelset=nil, risktype=nil, privilegerun=nil, privilegedetail=nil, effectimageset=nil, effectday=nil, ruleid=nil, requestid=nil)
+          @ID = id
+          @RuleName = rulename
+          @RuleType = ruletype
+          @EffectImageCount = effectimagecount
+          @IsEffectAllImage = iseffectallimage
+          @EffectTime = effecttime
+          @UpdateTime = updatetime
+          @OperationUin = operationuin
+          @EffectStatus = effectstatus
+          @RuleDescription = ruledescription
+          @Status = status
+          @Vul = vul
+          @CVEIDSet = cveidset
+          @ComponentSet = componentset
+          @VulClassSet = vulclassset
+          @VulLevelSet = vullevelset
+          @VulLabelSet = vullabelset
+          @Virus = virus
+          @VirusMD5Set = virusmd5set
+          @VirusLevelSet = viruslevelset
+          @VirusName = virusname
+          @Risk = risk
+          @RiskLevelSet = risklevelset
+          @RiskType = risktype
+          @PrivilegeRun = privilegerun
+          @PrivilegeDetail = privilegedetail
+          @EffectImageSet = effectimageset
+          @EffectDay = effectday
+          @RuleID = ruleid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ID = params['ID']
+          @RuleName = params['RuleName']
+          @RuleType = params['RuleType']
+          @EffectImageCount = params['EffectImageCount']
+          @IsEffectAllImage = params['IsEffectAllImage']
+          @EffectTime = params['EffectTime']
+          @UpdateTime = params['UpdateTime']
+          @OperationUin = params['OperationUin']
+          @EffectStatus = params['EffectStatus']
+          @RuleDescription = params['RuleDescription']
+          @Status = params['Status']
+          @Vul = params['Vul']
+          @CVEIDSet = params['CVEIDSet']
+          @ComponentSet = params['ComponentSet']
+          @VulClassSet = params['VulClassSet']
+          @VulLevelSet = params['VulLevelSet']
+          @VulLabelSet = params['VulLabelSet']
+          @Virus = params['Virus']
+          @VirusMD5Set = params['VirusMD5Set']
+          @VirusLevelSet = params['VirusLevelSet']
+          @VirusName = params['VirusName']
+          @Risk = params['Risk']
+          @RiskLevelSet = params['RiskLevelSet']
+          @RiskType = params['RiskType']
+          @PrivilegeRun = params['PrivilegeRun']
+          @PrivilegeDetail = params['PrivilegeDetail']
+          @EffectImageSet = params['EffectImageSet']
+          @EffectDay = params['EffectDay']
+          @RuleID = params['RuleID']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeImageDenyRuleList请求参数结构体
+      class DescribeImageDenyRuleListRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: 过滤条件。
+        # <li>RuleType- String - 是否必填：否 -规则类型 RULE_RISK：风险， RULE_PRIVILEGE：特权</li>
+        # <li>EffectStatus- String - 是否必填：否 - 生效状态 IN_THE_TEST ：观察中，IN_EFFECT：生效中。</li>
+        # <li>RuleName- string - 是否必填：否 - 规则名称。</li>
+        # <li>Status- string - 是否必填：否 - 开启状态 0：开启，1：关闭。</li>
+        # @type Filters: Array
+        # @param Limit: 需要返回的数量，默认为10，最大值为100
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Order: 排序方式：asc/desc
+        # @type Order: String
+        # @param By: 排序字段：生效时间：EffectTime，更新时间：UpdateTime
+        # @type By: String
+        # @param TopTurnOn: 置顶已开启规则 true：是 ，否：false
+        # @type TopTurnOn: Boolean
+
+        attr_accessor :Filters, :Limit, :Offset, :Order, :By, :TopTurnOn
+
+        def initialize(filters=nil, limit=nil, offset=nil, order=nil, by=nil, topturnon=nil)
+          @Filters = filters
+          @Limit = limit
+          @Offset = offset
+          @Order = order
+          @By = by
+          @TopTurnOn = topturnon
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              runtimefilters_tmp = RunTimeFilters.new
+              runtimefilters_tmp.deserialize(i)
+              @Filters << runtimefilters_tmp
+            end
+          end
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @Order = params['Order']
+          @By = params['By']
+          @TopTurnOn = params['TopTurnOn']
+        end
+      end
+
+      # DescribeImageDenyRuleList返回参数结构体
+      class DescribeImageDenyRuleListResponse < TencentCloud::Common::AbstractModel
+        # @param List: 规则列表
+        # @type List: Array
+        # @param TotalCount: 规则总数量
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :List, :TotalCount, :RequestId
+
+        def initialize(list=nil, totalcount=nil, requestid=nil)
+          @List = list
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              imagedenyrule_tmp = ImageDenyRule.new
+              imagedenyrule_tmp.deserialize(i)
+              @List << imagedenyrule_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeImageDenyRuleSummary请求参数结构体
+      class DescribeImageDenyRuleSummaryRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeImageDenyRuleSummary返回参数结构体
+      class DescribeImageDenyRuleSummaryResponse < TencentCloud::Common::AbstractModel
+        # @param RuleTotalCount: 镜像拦截规则总数(含关闭的和开启的)
+        # @type RuleTotalCount: Integer
+        # @param EnabledRuleCount: 开启的镜像拦截规则数
+        # @type EnabledRuleCount: Integer
+        # @param ObservedRuleCount: 观察期中的镜像拦截规则数
+        # @type ObservedRuleCount: Integer
+        # @param EffectiveRuleCount: 已生效的镜像拦截规则数
+        # @type EffectiveRuleCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RuleTotalCount, :EnabledRuleCount, :ObservedRuleCount, :EffectiveRuleCount, :RequestId
+
+        def initialize(ruletotalcount=nil, enabledrulecount=nil, observedrulecount=nil, effectiverulecount=nil, requestid=nil)
+          @RuleTotalCount = ruletotalcount
+          @EnabledRuleCount = enabledrulecount
+          @ObservedRuleCount = observedrulecount
+          @EffectiveRuleCount = effectiverulecount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RuleTotalCount = params['RuleTotalCount']
+          @EnabledRuleCount = params['EnabledRuleCount']
+          @ObservedRuleCount = params['ObservedRuleCount']
+          @EffectiveRuleCount = params['EffectiveRuleCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeImageRegistryNamespaceList请求参数结构体
       class DescribeImageRegistryNamespaceListRequest < TencentCloud::Common::AbstractModel
         # @param Offset: 本次查询的起始偏移量，默认为0。
@@ -14626,6 +15211,152 @@ module TencentCloud
         def deserialize(params)
           @TotalSize = params['TotalSize']
           @UsedSize = params['UsedSize']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeMaliciousConnectionBlackList请求参数结构体
+      class DescribeMaliciousConnectionBlackListRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 需要返回的数量，默认为10，最大值为100
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Filters: 过滤条件。
+        # <li>RequestType- string - 是否必填：否 - 请求类型，全部请求类型：ALL；域名：DOMAIN；IP: IP</li>
+        # <li>BlackDomain- string - 是否必填：否 - 自定义黑域名</li>
+        # <li>BlackIP- string - 是否必填：否 - 自定义黑IP</li>
+        # @type Filters: Array
+        # @param Order: 排序方式
+        # @type Order: String
+        # @param By: 排序字段
+        # @type By: String
+
+        attr_accessor :Limit, :Offset, :Filters, :Order, :By
+
+        def initialize(limit=nil, offset=nil, filters=nil, order=nil, by=nil)
+          @Limit = limit
+          @Offset = offset
+          @Filters = filters
+          @Order = order
+          @By = by
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              runtimefilters_tmp = RunTimeFilters.new
+              runtimefilters_tmp.deserialize(i)
+              @Filters << runtimefilters_tmp
+            end
+          end
+          @Order = params['Order']
+          @By = params['By']
+        end
+      end
+
+      # DescribeMaliciousConnectionBlackList返回参数结构体
+      class DescribeMaliciousConnectionBlackListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 恶意请求白名单总数
+        # @type TotalCount: Integer
+        # @param List: 恶意请求白名单列表
+        # @type List: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :List, :RequestId
+
+        def initialize(totalcount=nil, list=nil, requestid=nil)
+          @TotalCount = totalcount
+          @List = list
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              maliciousconnectionruleinfo_tmp = MaliciousConnectionRuleInfo.new
+              maliciousconnectionruleinfo_tmp.deserialize(i)
+              @List << maliciousconnectionruleinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeMaliciousConnectionWhiteList请求参数结构体
+      class DescribeMaliciousConnectionWhiteListRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 需要返回的数量，默认为10，最大值为100
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Filters: 过滤条件。
+        # <li>RequestType- string - 是否必填：是 - 请求类型，全部请求类型：ALL；域名：DOMAIN；IP: IP</li>
+        # <li>WhiteDomain- string - 是否必填：否 - 自定义白域名</li>
+        # <li>WhiteIP- string - 是否必填：否 - 自定义白名单IP</li>
+        # @type Filters: Array
+        # @param Order: 排序方式
+        # @type Order: String
+        # @param By: 排序字段
+        # @type By: String
+
+        attr_accessor :Limit, :Offset, :Filters, :Order, :By
+
+        def initialize(limit=nil, offset=nil, filters=nil, order=nil, by=nil)
+          @Limit = limit
+          @Offset = offset
+          @Filters = filters
+          @Order = order
+          @By = by
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              runtimefilters_tmp = RunTimeFilters.new
+              runtimefilters_tmp.deserialize(i)
+              @Filters << runtimefilters_tmp
+            end
+          end
+          @Order = params['Order']
+          @By = params['By']
+        end
+      end
+
+      # DescribeMaliciousConnectionWhiteList返回参数结构体
+      class DescribeMaliciousConnectionWhiteListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 恶意请求白名单总数
+        # @type TotalCount: Integer
+        # @param List: 恶意请求白名单列表
+        # @type List: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :List, :RequestId
+
+        def initialize(totalcount=nil, list=nil, requestid=nil)
+          @TotalCount = totalcount
+          @List = list
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              maliciousconnectionruleinfo_tmp = MaliciousConnectionRuleInfo.new
+              maliciousconnectionruleinfo_tmp.deserialize(i)
+              @List << maliciousconnectionruleinfo_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -16070,6 +16801,117 @@ module TencentCloud
               reverseshelleventinfo_tmp = ReverseShellEventInfo.new
               reverseshelleventinfo_tmp.deserialize(i)
               @EventSet << reverseshelleventinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeReverseShellRegexpWhiteListInfo请求参数结构体
+      class DescribeReverseShellRegexpWhiteListInfoRequest < TencentCloud::Common::AbstractModel
+        # @param RuleID: 规则ID
+        # @type RuleID: String
+
+        attr_accessor :RuleID
+
+        def initialize(ruleid=nil)
+          @RuleID = ruleid
+        end
+
+        def deserialize(params)
+          @RuleID = params['RuleID']
+        end
+      end
+
+      # DescribeReverseShellRegexpWhiteListInfo返回参数结构体
+      class DescribeReverseShellRegexpWhiteListInfoResponse < TencentCloud::Common::AbstractModel
+        # @param RuleInfo: 规则详情
+        # @type RuleInfo: :class:`Tencentcloud::Tcss.v20201101.models.RegexpRuleInfo`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RuleInfo, :RequestId
+
+        def initialize(ruleinfo=nil, requestid=nil)
+          @RuleInfo = ruleinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['RuleInfo'].nil?
+            @RuleInfo = RegexpRuleInfo.new
+            @RuleInfo.deserialize(params['RuleInfo'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeReverseShellRegexpWhiteList请求参数结构体
+      class DescribeReverseShellRegexpWhiteListRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: 过滤条件。
+
+        # RuleName- String - 是否必填：否 - 规则名称
+        # @type Filters: Array
+        # @param Limit: 需要返回的数量，默认为10，最大值为100
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param By: 排序字段
+        # @type By: String
+        # @param Order: 排序方式
+        # @type Order: String
+
+        attr_accessor :Filters, :Limit, :Offset, :By, :Order
+
+        def initialize(filters=nil, limit=nil, offset=nil, by=nil, order=nil)
+          @Filters = filters
+          @Limit = limit
+          @Offset = offset
+          @By = by
+          @Order = order
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              runtimefilters_tmp = RunTimeFilters.new
+              runtimefilters_tmp.deserialize(i)
+              @Filters << runtimefilters_tmp
+            end
+          end
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @By = params['By']
+          @Order = params['Order']
+        end
+      end
+
+      # DescribeReverseShellRegexpWhiteList返回参数结构体
+      class DescribeReverseShellRegexpWhiteListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总数
+        # @type TotalCount: Integer
+        # @param List: 列表
+        # @type List: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :List, :RequestId
+
+        def initialize(totalcount=nil, list=nil, requestid=nil)
+          @TotalCount = totalcount
+          @List = list
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              regexprulelistitem_tmp = RegexpRuleListItem.new
+              regexprulelistitem_tmp.deserialize(i)
+              @List << regexprulelistitem_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -21823,6 +22665,207 @@ module TencentCloud
         end
       end
 
+      # 镜像拦截事件
+      class ImageDenyEvent < TencentCloud::Common::AbstractModel
+        # @param EventType: 事件类型 EVENT_RISK:风险事件类型，EVENT_PRIVILEGE:特权
+        # @type EventType: String
+        # @param RuleName: 规则名称
+        # @type RuleName: String
+        # @param RuleID: 规则RuleID
+        # @type RuleID: String
+        # @param RuleType: 规则类型
+        # @type RuleType: String
+        # @param RuleStatus: 规则启用状态 0:开启，1:关闭
+        # @type RuleStatus: Integer
+        # @param RuleEffectStatus: 规则策略状态 IN_THE_TEST ：观察中，IN_EFFECT：生效中
+        # @type RuleEffectStatus: String
+        # @param RuleInfo: 规则内容
+        # @type RuleInfo: Array
+        # @param RuleDescription: 规则描述
+        # @type RuleDescription: String
+        # @param ImageID: 镜像ID
+        # @type ImageID: String
+        # @param ImageName: 镜像名称
+        # @type ImageName: String
+        # @param NodeName: 节点名称
+        # @type NodeName: String
+        # @param NodeIP: 内网IP
+        # @type NodeIP: String
+        # @param QUUID: 主机Quuid
+        # @type QUUID: String
+        # @param FoundTime: 首次生成时间
+        # @type FoundTime: String
+        # @param LatestFoundTime: 最近生成时间
+        # @type LatestFoundTime: String
+        # @param EventCount: 事件数量
+        # @type EventCount: Integer
+        # @param DealBehavior: 执行动作:
+        # BEHAVIOR_ALERT:告警，
+        # BEHAVIOR_HOLDUP_SUCCESSED:拦截
+        # @type DealBehavior: String
+        # @param EventID: 事件ID
+        # @type EventID: Integer
+        # @param PublicIP: 外网IP
+        # @type PublicIP: String
+        # @param NodeID: 节点ID
+        # @type NodeID: String
+        # @param ClusterID: 集群ID
+        # @type ClusterID: String
+        # @param NodeType: 节点类型
+        # @type NodeType: String
+        # @param NodeUniqueID: 超级节点唯一id
+        # @type NodeUniqueID: String
+        # @param PodIP: pod ip
+        # @type PodIP: String
+        # @param PodName: pod name
+        # @type PodName: String
+        # @param ClusterName: 集群名称
+        # @type ClusterName: String
+        # @param ImageRegistryInfo: 镜像仓库信息
+        # @type ImageRegistryInfo: :class:`Tencentcloud::Tcss.v20201101.models.ImageRegistryInfo`
+
+        attr_accessor :EventType, :RuleName, :RuleID, :RuleType, :RuleStatus, :RuleEffectStatus, :RuleInfo, :RuleDescription, :ImageID, :ImageName, :NodeName, :NodeIP, :QUUID, :FoundTime, :LatestFoundTime, :EventCount, :DealBehavior, :EventID, :PublicIP, :NodeID, :ClusterID, :NodeType, :NodeUniqueID, :PodIP, :PodName, :ClusterName, :ImageRegistryInfo
+
+        def initialize(eventtype=nil, rulename=nil, ruleid=nil, ruletype=nil, rulestatus=nil, ruleeffectstatus=nil, ruleinfo=nil, ruledescription=nil, imageid=nil, imagename=nil, nodename=nil, nodeip=nil, quuid=nil, foundtime=nil, latestfoundtime=nil, eventcount=nil, dealbehavior=nil, eventid=nil, publicip=nil, nodeid=nil, clusterid=nil, nodetype=nil, nodeuniqueid=nil, podip=nil, podname=nil, clustername=nil, imageregistryinfo=nil)
+          @EventType = eventtype
+          @RuleName = rulename
+          @RuleID = ruleid
+          @RuleType = ruletype
+          @RuleStatus = rulestatus
+          @RuleEffectStatus = ruleeffectstatus
+          @RuleInfo = ruleinfo
+          @RuleDescription = ruledescription
+          @ImageID = imageid
+          @ImageName = imagename
+          @NodeName = nodename
+          @NodeIP = nodeip
+          @QUUID = quuid
+          @FoundTime = foundtime
+          @LatestFoundTime = latestfoundtime
+          @EventCount = eventcount
+          @DealBehavior = dealbehavior
+          @EventID = eventid
+          @PublicIP = publicip
+          @NodeID = nodeid
+          @ClusterID = clusterid
+          @NodeType = nodetype
+          @NodeUniqueID = nodeuniqueid
+          @PodIP = podip
+          @PodName = podname
+          @ClusterName = clustername
+          @ImageRegistryInfo = imageregistryinfo
+        end
+
+        def deserialize(params)
+          @EventType = params['EventType']
+          @RuleName = params['RuleName']
+          @RuleID = params['RuleID']
+          @RuleType = params['RuleType']
+          @RuleStatus = params['RuleStatus']
+          @RuleEffectStatus = params['RuleEffectStatus']
+          @RuleInfo = params['RuleInfo']
+          @RuleDescription = params['RuleDescription']
+          @ImageID = params['ImageID']
+          @ImageName = params['ImageName']
+          @NodeName = params['NodeName']
+          @NodeIP = params['NodeIP']
+          @QUUID = params['QUUID']
+          @FoundTime = params['FoundTime']
+          @LatestFoundTime = params['LatestFoundTime']
+          @EventCount = params['EventCount']
+          @DealBehavior = params['DealBehavior']
+          @EventID = params['EventID']
+          @PublicIP = params['PublicIP']
+          @NodeID = params['NodeID']
+          @ClusterID = params['ClusterID']
+          @NodeType = params['NodeType']
+          @NodeUniqueID = params['NodeUniqueID']
+          @PodIP = params['PodIP']
+          @PodName = params['PodName']
+          @ClusterName = params['ClusterName']
+          unless params['ImageRegistryInfo'].nil?
+            @ImageRegistryInfo = ImageRegistryInfo.new
+            @ImageRegistryInfo.deserialize(params['ImageRegistryInfo'])
+          end
+        end
+      end
+
+      # 镜像拦截事件趋势
+      class ImageDenyEventTendency < TencentCloud::Common::AbstractModel
+        # @param Date: 日期
+        # @type Date: String
+        # @param EventCount: 事件数量
+        # @type EventCount: Integer
+
+        attr_accessor :Date, :EventCount
+
+        def initialize(date=nil, eventcount=nil)
+          @Date = date
+          @EventCount = eventcount
+        end
+
+        def deserialize(params)
+          @Date = params['Date']
+          @EventCount = params['EventCount']
+        end
+      end
+
+      # 镜像拦截规则
+      class ImageDenyRule < TencentCloud::Common::AbstractModel
+        # @param RuleID: 规则RuleID
+        # @type RuleID: String
+        # @param RuleName: 规则名称
+        # @type RuleName: String
+        # @param RuleType: 规则类型 RULE_RISK：风险， RULE_PRIVILEGE：特权
+        # @type RuleType: String
+        # @param EffectImageCount: 生效的镜像数量
+        # @type EffectImageCount: Integer
+        # @param IsEffectAllImage: 是否对全部扫描镜像生效。0:全选镜像，1:自选镜像
+        # @type IsEffectAllImage: Integer
+        # @param EffectTime: 规则开始生效时间
+        # @type EffectTime: String
+        # @param UpdateTime: 更新时间
+        # @type UpdateTime: String
+        # @param OperationUin: 操作用户
+        # @type OperationUin: String
+        # @param Status: 启用状态
+        # @type Status: Integer
+        # @param EffectStatus: 生效状态 IN_THE_TEST ：观察中，IN_EFFECT：生效中
+        # @type EffectStatus: String
+        # @param ID: 规则ID
+        # @type ID: Integer
+
+        attr_accessor :RuleID, :RuleName, :RuleType, :EffectImageCount, :IsEffectAllImage, :EffectTime, :UpdateTime, :OperationUin, :Status, :EffectStatus, :ID
+
+        def initialize(ruleid=nil, rulename=nil, ruletype=nil, effectimagecount=nil, iseffectallimage=nil, effecttime=nil, updatetime=nil, operationuin=nil, status=nil, effectstatus=nil, id=nil)
+          @RuleID = ruleid
+          @RuleName = rulename
+          @RuleType = ruletype
+          @EffectImageCount = effectimagecount
+          @IsEffectAllImage = iseffectallimage
+          @EffectTime = effecttime
+          @UpdateTime = updatetime
+          @OperationUin = operationuin
+          @Status = status
+          @EffectStatus = effectstatus
+          @ID = id
+        end
+
+        def deserialize(params)
+          @RuleID = params['RuleID']
+          @RuleName = params['RuleName']
+          @RuleType = params['RuleType']
+          @EffectImageCount = params['EffectImageCount']
+          @IsEffectAllImage = params['IsEffectAllImage']
+          @EffectTime = params['EffectTime']
+          @UpdateTime = params['UpdateTime']
+          @OperationUin = params['OperationUin']
+          @Status = params['Status']
+          @EffectStatus = params['EffectStatus']
+          @ID = params['ID']
+        end
+      end
+
       # 容器安全 主机镜像关联列表
       class ImageHost < TencentCloud::Common::AbstractModel
         # @param ImageID: 镜像id
@@ -23362,6 +24405,44 @@ module TencentCloud
           @UserDefinedRuleCount = params['UserDefinedRuleCount']
           @AnonymousAccessCount = params['AnonymousAccessCount']
           @PrivilegeContainerCount = params['PrivilegeContainerCount']
+        end
+      end
+
+      # 恶意外连黑白名单信息
+      class MaliciousConnectionRuleInfo < TencentCloud::Common::AbstractModel
+        # @param RuleType: 枚举：
+        # IP: 表示ipv4或者ipv6
+        # DOMAIN: 表示域名
+        # @type RuleType: String
+        # @param Address: 自定义黑白名单的域名/IP
+        # @type Address: String
+        # @param CreatedTime: 创建时间
+        # @type CreatedTime: String
+        # @param UpdateTime: 更新时间
+        # @type UpdateTime: String
+        # @param Remark: 备注
+        # @type Remark: String
+        # @param RuleID: 规则ID
+        # @type RuleID: Integer
+
+        attr_accessor :RuleType, :Address, :CreatedTime, :UpdateTime, :Remark, :RuleID
+
+        def initialize(ruletype=nil, address=nil, createdtime=nil, updatetime=nil, remark=nil, ruleid=nil)
+          @RuleType = ruletype
+          @Address = address
+          @CreatedTime = createdtime
+          @UpdateTime = updatetime
+          @Remark = remark
+          @RuleID = ruleid
+        end
+
+        def deserialize(params)
+          @RuleType = params['RuleType']
+          @Address = params['Address']
+          @CreatedTime = params['CreatedTime']
+          @UpdateTime = params['UpdateTime']
+          @Remark = params['Remark']
+          @RuleID = params['RuleID']
         end
       end
 
@@ -25962,6 +27043,97 @@ module TencentCloud
           @VulVulsName = params['VulVulsName']
           @CveID = params['CveID']
           @SupportDefense = params['SupportDefense']
+        end
+      end
+
+      # 正则规则详情
+      class RegexpRuleInfo < TencentCloud::Common::AbstractModel
+        # @param RuleName: 规则名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleName: String
+        # @param Status: 启用状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Boolean
+        # @param ExpressionList: 正则表达式列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExpressionList: Array
+        # @param RuleID: 规则ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleID: String
+        # @param UpdateTime: 最近更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+        # @param OperatorUIN: 最近操作账号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OperatorUIN: String
+
+        attr_accessor :RuleName, :Status, :ExpressionList, :RuleID, :UpdateTime, :OperatorUIN
+
+        def initialize(rulename=nil, status=nil, expressionlist=nil, ruleid=nil, updatetime=nil, operatoruin=nil)
+          @RuleName = rulename
+          @Status = status
+          @ExpressionList = expressionlist
+          @RuleID = ruleid
+          @UpdateTime = updatetime
+          @OperatorUIN = operatoruin
+        end
+
+        def deserialize(params)
+          @RuleName = params['RuleName']
+          @Status = params['Status']
+          unless params['ExpressionList'].nil?
+            @ExpressionList = []
+            params['ExpressionList'].each do |i|
+              whitelistregexpexpressioninfo_tmp = WhiteListRegexpExpressionInfo.new
+              whitelistregexpexpressioninfo_tmp.deserialize(i)
+              @ExpressionList << whitelistregexpexpressioninfo_tmp
+            end
+          end
+          @RuleID = params['RuleID']
+          @UpdateTime = params['UpdateTime']
+          @OperatorUIN = params['OperatorUIN']
+        end
+      end
+
+      # 正则规则列表Item
+      class RegexpRuleListItem < TencentCloud::Common::AbstractModel
+        # @param RuleID: 规则ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleID: String
+        # @param RuleName: 规则名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleName: String
+        # @param EffectiveExpression: 生效表达式个数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EffectiveExpression: Integer
+        # @param UpdateTime: 最新编辑时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+        # @param OperatorUin: 最近编辑账号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OperatorUin: String
+        # @param Status: 启用状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Boolean
+
+        attr_accessor :RuleID, :RuleName, :EffectiveExpression, :UpdateTime, :OperatorUin, :Status
+
+        def initialize(ruleid=nil, rulename=nil, effectiveexpression=nil, updatetime=nil, operatoruin=nil, status=nil)
+          @RuleID = ruleid
+          @RuleName = rulename
+          @EffectiveExpression = effectiveexpression
+          @UpdateTime = updatetime
+          @OperatorUin = operatoruin
+          @Status = status
+        end
+
+        def deserialize(params)
+          @RuleID = params['RuleID']
+          @RuleName = params['RuleName']
+          @EffectiveExpression = params['EffectiveExpression']
+          @UpdateTime = params['UpdateTime']
+          @OperatorUin = params['OperatorUin']
+          @Status = params['Status']
         end
       end
 
@@ -30234,6 +31406,33 @@ module TencentCloud
           @BeginTime = params['BeginTime']
           @EndTime = params['EndTime']
           @ControlBits = params['ControlBits']
+        end
+      end
+
+      # 白名单正则表达式信息
+      class WhiteListRegexpExpressionInfo < TencentCloud::Common::AbstractModel
+        # @param LogicSymbol: 逻辑符号
+        # 与 (AND)
+        # 或 (OR)
+        # 非 (NOT)
+        # @type LogicSymbol: String
+        # @param MatchField: 匹配字段
+        # @type MatchField: String
+        # @param MatchContent: 匹配内容
+        # @type MatchContent: String
+
+        attr_accessor :LogicSymbol, :MatchField, :MatchContent
+
+        def initialize(logicsymbol=nil, matchfield=nil, matchcontent=nil)
+          @LogicSymbol = logicsymbol
+          @MatchField = matchfield
+          @MatchContent = matchcontent
+        end
+
+        def deserialize(params)
+          @LogicSymbol = params['LogicSymbol']
+          @MatchField = params['MatchField']
+          @MatchContent = params['MatchContent']
         end
       end
 

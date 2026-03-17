@@ -2093,6 +2093,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 根据数据库名称和数据源id获取数据库信息
+
+        # @param request: Request instance for DescribeDatabaseByName.
+        # @type request: :class:`Tencentcloud::wedata::V20210820::DescribeDatabaseByNameRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20210820::DescribeDatabaseByNameResponse`
+        def DescribeDatabaseByName(request)
+          body = send_request('DescribeDatabaseByName', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDatabaseByNameResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取数据库信息
 
         # @param request: Request instance for DescribeDatabaseInfoList.
@@ -2103,6 +2127,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeDatabaseInfoListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 根据数据库Id查询数据库元数据，带有数据源和项目信息
+
+        # @param request: Request instance for DescribeDatabaseMeta.
+        # @type request: :class:`Tencentcloud::wedata::V20210820::DescribeDatabaseMetaRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20210820::DescribeDatabaseMetaResponse`
+        def DescribeDatabaseMeta(request)
+          body = send_request('DescribeDatabaseMeta', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDatabaseMetaResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -3029,6 +3077,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 列出血缘中心字段信息
+
+        # @param request: Request instance for DescribeLineageColumns.
+        # @type request: :class:`Tencentcloud::wedata::V20210820::DescribeLineageColumnsRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20210820::DescribeLineageColumnsResponse`
+        def DescribeLineageColumns(request)
+          body = send_request('DescribeLineageColumns', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeLineageColumnsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 通用血缘查询接口
 
         # @param request: Request instance for DescribeLineageInfo.
@@ -3471,6 +3543,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeRealTimeTaskSpeedResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 离线通过表名称获取表信息
+
+        # @param request: Request instance for DescribeRealViewDatabasePage.
+        # @type request: :class:`Tencentcloud::wedata::V20210820::DescribeRealViewDatabasePageRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20210820::DescribeRealViewDatabasePageResponse`
+        def DescribeRealViewDatabasePage(request)
+          body = send_request('DescribeRealViewDatabasePage', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRealViewDatabasePageResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -4256,6 +4352,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询表的数据预览
+
+        # @param request: Request instance for DescribeTableContentPreview.
+        # @type request: :class:`Tencentcloud::wedata::V20210820::DescribeTableContentPreviewRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20210820::DescribeTableContentPreviewResponse`
+        def DescribeTableContentPreview(request)
+          body = send_request('DescribeTableContentPreview', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeTableContentPreviewResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询表的DDL
+
+        # @param request: Request instance for DescribeTableDdl.
+        # @type request: :class:`Tencentcloud::wedata::V20210820::DescribeTableDdlRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20210820::DescribeTableDdlResponse`
+        def DescribeTableDdl(request)
+          body = send_request('DescribeTableDdl', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeTableDdlResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取数据表信息
 
         # @param request: Request instance for DescribeTableInfoList.
@@ -4458,6 +4602,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeTableScoreTrendResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询表的select语句
+
+        # @param request: Request instance for DescribeTableSelect.
+        # @type request: :class:`Tencentcloud::wedata::V20210820::DescribeTableSelectRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20210820::DescribeTableSelectResponse`
+        def DescribeTableSelect(request)
+          body = send_request('DescribeTableSelect', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeTableSelectResponse.new
             model.deserialize(response['Response'])
             model
           else

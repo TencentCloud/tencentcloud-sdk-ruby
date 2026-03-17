@@ -893,6 +893,54 @@ module TencentCloud
         end
       end
 
+      # DescribeGPUInfo请求参数结构体
+      class DescribeGPUInfoRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceType: 实例机型名称，默认值""
+        # @type InstanceType: String
+        # @param OsName: 操作系统oskey，默认值""
+        # @type OsName: String
+
+        attr_accessor :InstanceType, :OsName
+
+        def initialize(instancetype=nil, osname=nil)
+          @InstanceType = instancetype
+          @OsName = osname
+        end
+
+        def deserialize(params)
+          @InstanceType = params['InstanceType']
+          @OsName = params['OsName']
+        end
+      end
+
+      # DescribeGPUInfo返回参数结构体
+      class DescribeGPUInfoResponse < TencentCloud::Common::AbstractModel
+        # @param GPUParams: GPU相关配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GPUParams: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :GPUParams, :RequestId
+
+        def initialize(gpuparams=nil, requestid=nil)
+          @GPUParams = gpuparams
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['GPUParams'].nil?
+            @GPUParams = []
+            params['GPUParams'].each do |i|
+              gpuparams_tmp = GPUParams.new
+              gpuparams_tmp.deserialize(i)
+              @GPUParams << gpuparams_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeHealthCheckPolicies请求参数结构体
       class DescribeHealthCheckPoliciesRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群 ID
@@ -1148,6 +1196,45 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeZoneInstanceConfigInfos请求参数结构体
+      class DescribeZoneInstanceConfigInfosRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: 机型过滤设置
+        # @type Filters: Array
+
+        attr_accessor :Filters
+
+        def initialize(filters=nil)
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeZoneInstanceConfigInfos返回参数结构体
+      class DescribeZoneInstanceConfigInfosResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end

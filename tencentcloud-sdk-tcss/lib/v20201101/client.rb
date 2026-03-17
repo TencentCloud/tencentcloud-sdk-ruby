@@ -4160,6 +4160,150 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询镜像拦截事件详情
+
+        # @param request: Request instance for DescribeImageDenyEventDetail.
+        # @type request: :class:`Tencentcloud::tcss::V20201101::DescribeImageDenyEventDetailRequest`
+        # @rtype: :class:`Tencentcloud::tcss::V20201101::DescribeImageDenyEventDetailResponse`
+        def DescribeImageDenyEventDetail(request)
+          body = send_request('DescribeImageDenyEventDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeImageDenyEventDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询镜像拦截事件列表
+
+        # @param request: Request instance for DescribeImageDenyEventList.
+        # @type request: :class:`Tencentcloud::tcss::V20201101::DescribeImageDenyEventListRequest`
+        # @rtype: :class:`Tencentcloud::tcss::V20201101::DescribeImageDenyEventListResponse`
+        def DescribeImageDenyEventList(request)
+          body = send_request('DescribeImageDenyEventList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeImageDenyEventListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询镜像拦截事件趋势
+
+        # @param request: Request instance for DescribeImageDenyEventTendency.
+        # @type request: :class:`Tencentcloud::tcss::V20201101::DescribeImageDenyEventTendencyRequest`
+        # @rtype: :class:`Tencentcloud::tcss::V20201101::DescribeImageDenyEventTendencyResponse`
+        def DescribeImageDenyEventTendency(request)
+          body = send_request('DescribeImageDenyEventTendency', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeImageDenyEventTendencyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询镜像拦截规则详情
+
+        # @param request: Request instance for DescribeImageDenyRuleDetail.
+        # @type request: :class:`Tencentcloud::tcss::V20201101::DescribeImageDenyRuleDetailRequest`
+        # @rtype: :class:`Tencentcloud::tcss::V20201101::DescribeImageDenyRuleDetailResponse`
+        def DescribeImageDenyRuleDetail(request)
+          body = send_request('DescribeImageDenyRuleDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeImageDenyRuleDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询镜像拦截规则列表
+
+        # @param request: Request instance for DescribeImageDenyRuleList.
+        # @type request: :class:`Tencentcloud::tcss::V20201101::DescribeImageDenyRuleListRequest`
+        # @rtype: :class:`Tencentcloud::tcss::V20201101::DescribeImageDenyRuleListResponse`
+        def DescribeImageDenyRuleList(request)
+          body = send_request('DescribeImageDenyRuleList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeImageDenyRuleListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询镜像拦截规则统计
+
+        # @param request: Request instance for DescribeImageDenyRuleSummary.
+        # @type request: :class:`Tencentcloud::tcss::V20201101::DescribeImageDenyRuleSummaryRequest`
+        # @rtype: :class:`Tencentcloud::tcss::V20201101::DescribeImageDenyRuleSummaryResponse`
+        def DescribeImageDenyRuleSummary(request)
+          body = send_request('DescribeImageDenyRuleSummary', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeImageDenyRuleSummaryResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询用户镜像仓库下的命令空间列表
 
         # @param request: Request instance for DescribeImageRegistryNamespaceList.
@@ -4506,6 +4650,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeLogStorageStatisticResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询恶意外连黑名单
+
+        # @param request: Request instance for DescribeMaliciousConnectionBlackList.
+        # @type request: :class:`Tencentcloud::tcss::V20201101::DescribeMaliciousConnectionBlackListRequest`
+        # @rtype: :class:`Tencentcloud::tcss::V20201101::DescribeMaliciousConnectionBlackListResponse`
+        def DescribeMaliciousConnectionBlackList(request)
+          body = send_request('DescribeMaliciousConnectionBlackList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeMaliciousConnectionBlackListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询恶意外连白名单
+
+        # @param request: Request instance for DescribeMaliciousConnectionWhiteList.
+        # @type request: :class:`Tencentcloud::tcss::V20201101::DescribeMaliciousConnectionWhiteListRequest`
+        # @rtype: :class:`Tencentcloud::tcss::V20201101::DescribeMaliciousConnectionWhiteListResponse`
+        def DescribeMaliciousConnectionWhiteList(request)
+          body = send_request('DescribeMaliciousConnectionWhiteList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeMaliciousConnectionWhiteListResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -5080,6 +5272,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeReverseShellEventsExportResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询反弹shell正则白名单列表
+
+        # @param request: Request instance for DescribeReverseShellRegexpWhiteList.
+        # @type request: :class:`Tencentcloud::tcss::V20201101::DescribeReverseShellRegexpWhiteListRequest`
+        # @rtype: :class:`Tencentcloud::tcss::V20201101::DescribeReverseShellRegexpWhiteListResponse`
+        def DescribeReverseShellRegexpWhiteList(request)
+          body = send_request('DescribeReverseShellRegexpWhiteList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeReverseShellRegexpWhiteListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询反弹shell正则白名单详情
+
+        # @param request: Request instance for DescribeReverseShellRegexpWhiteListInfo.
+        # @type request: :class:`Tencentcloud::tcss::V20201101::DescribeReverseShellRegexpWhiteListInfoRequest`
+        # @rtype: :class:`Tencentcloud::tcss::V20201101::DescribeReverseShellRegexpWhiteListInfoResponse`
+        def DescribeReverseShellRegexpWhiteListInfo(request)
+          body = send_request('DescribeReverseShellRegexpWhiteListInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeReverseShellRegexpWhiteListInfoResponse.new
             model.deserialize(response['Response'])
             model
           else

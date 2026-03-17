@@ -1480,21 +1480,25 @@ module TencentCloud
 
       # 子订单号列表
       class Deals < TencentCloud::Common::AbstractModel
-        # @param DealId: 子订单ID
+        # @param DealId: <p>子订单ID</p>
         # @type DealId: String
-        # @param DealName: 子订单号
+        # @param DealName: <p>子订单号</p>
         # @type DealName: String
+        # @param ResourceId: <p>资源ID</p>
+        # @type ResourceId: String
 
-        attr_accessor :DealId, :DealName
+        attr_accessor :DealId, :DealName, :ResourceId
 
-        def initialize(dealid=nil, dealname=nil)
+        def initialize(dealid=nil, dealname=nil, resourceid=nil)
           @DealId = dealid
           @DealName = dealname
+          @ResourceId = resourceid
         end
 
         def deserialize(params)
           @DealId = params['DealId']
           @DealName = params['DealName']
+          @ResourceId = params['ResourceId']
         end
       end
 
@@ -2354,50 +2358,37 @@ module TencentCloud
 
       # DescribeDomainFilterList请求参数结构体
       class DescribeDomainFilterListRequest < TencentCloud::Common::AbstractModel
-        # @param Type: 根据域名分组类型获取域名。可取值为 ALL，MINE，SHARE，RECENT。
-        # ALL：全部
-        # MINE：我的域名
-        # SHARE：共享给我的域名
-        # RECENT：最近操作过的域名
+        # @param Type: <p>根据域名分组类型获取域名。可取值为 ALL，MINE，SHARE，RECENT。<br>ALL：全部<br>MINE：我的域名<br>SHARE：共享给我的域名<br>RECENT：最近操作过的域名</p>
         # @type Type: String
-        # @param Offset: 记录开始的偏移, 第一条记录为 0, 依次类推。默认值为 0。
+        # @param Offset: <p>记录开始的偏移, 第一条记录为 0, 依次类推。默认值为 0。</p>
         # @type Offset: Integer
-        # @param Limit: 要获取的域名数量, 比如获取 20 个, 则为 20。默认值为 5000。如果账户中的域名数量超过了 5000, 将会强制分页并且只返回前 5000 条, 这时需要通过 Offset 和 Limit 参数去获取其它域名。
+        # @param Limit: <p>要获取的域名数量, 比如获取 20 个, 则为 20。默认值为 5000。如果账户中的域名数量超过了 5000, 将会强制分页并且只返回前 5000 条, 这时需要通过 Offset 和 Limit 参数去获取其它域名。</p>
         # @type Limit: Integer
-        # @param GroupId: 根据域名分组 id 获取域名
+        # @param GroupId: <p>根据域名分组 id 获取域名</p><p>取值参考：<a href="https://cloud.tencent.com/document/api/1427/56172">DescribeDomainList</a></p>
         # @type GroupId: Array
-        # @param Keyword: 根据关键字获取域名。
+        # @param Keyword: <p>根据关键字获取域名。</p>
         # @type Keyword: String
-        # @param SortField: 排序字段。可取值为 NAME，STATUS，RECORDS，GRADE，UPDATED_ON。
-        # NAME：域名名称
-        # STATUS：域名状态
-        # RECORDS：记录数量
-        # GRADE：套餐等级
-        # UPDATED_ON：更新时间
+        # @param SortField: <p>排序字段。可取值为 NAME，STATUS，RECORDS，GRADE，UPDATED_ON。<br>NAME：域名名称<br>STATUS：域名状态<br>RECORDS：记录数量<br>GRADE：套餐等级<br>UPDATED_ON：更新时间</p>
         # @type SortField: String
-        # @param SortType: 排序类型，升序：ASC，降序：DESC。
+        # @param SortType: <p>排序类型，升序：ASC，降序：DESC。</p>
         # @type SortType: String
-        # @param Status: 根据域名状态获取域名。可取值为 ENABLE，LOCK，PAUSE，SPAM。
-        # ENABLE：正常
-        # LOCK：锁定
-        # PAUSE：暂停
-        # SPAM：封禁
+        # @param Status: <p>根据域名状态获取域名。可取值为 ENABLE，LOCK，PAUSE，SPAM。<br>ENABLE：正常<br>LOCK：锁定<br>PAUSE：暂停<br>SPAM：封禁</p>
         # @type Status: Array
-        # @param Package: 根据套餐获取域名，可通过 DescribeDomain 或 DescribeDomainList 接口 Grade 字段获取。
+        # @param Package: <p>根据套餐获取域名，可通过 DescribeDomain 或 DescribeDomainList 接口 Grade 字段获取。</p>
         # @type Package: Array
-        # @param Remark: 根据备注信息获取域名。
+        # @param Remark: <p>根据备注信息获取域名。</p>
         # @type Remark: String
-        # @param UpdatedAtBegin: 要获取域名的更新时间起始时间点，如 '2021-05-01 03:00:00'。
+        # @param UpdatedAtBegin: <p>要获取域名的更新时间起始时间点，如 &#39;2021-05-01 03:00:00&#39;。</p>
         # @type UpdatedAtBegin: String
-        # @param UpdatedAtEnd: 要获取域名的更新时间终止时间点，如 '2021-05-10 20:00:00'。
+        # @param UpdatedAtEnd: <p>要获取域名的更新时间终止时间点，如 &#39;2021-05-10 20:00:00&#39;。</p>
         # @type UpdatedAtEnd: String
-        # @param RecordCountBegin: 要获取域名的记录数查询区间起点。
+        # @param RecordCountBegin: <p>要获取域名的记录数查询区间起点。</p>
         # @type RecordCountBegin: Integer
-        # @param RecordCountEnd: 要获取域名的记录数查询区间终点。
+        # @param RecordCountEnd: <p>要获取域名的记录数查询区间终点。</p>
         # @type RecordCountEnd: Integer
-        # @param ProjectId: 项目ID，"帐号中心-项目管理"拿到项目ID
+        # @param ProjectId: <p>项目ID，&quot;账号中心-项目管理&quot;拿到项目ID</p>
         # @type ProjectId: Integer
-        # @param Tags: 标签过滤
+        # @param Tags: <p>标签过滤</p>
         # @type Tags: Array
 
         attr_accessor :Type, :Offset, :Limit, :GroupId, :Keyword, :SortField, :SortType, :Status, :Package, :Remark, :UpdatedAtBegin, :UpdatedAtEnd, :RecordCountBegin, :RecordCountEnd, :ProjectId, :Tags
@@ -2450,9 +2441,9 @@ module TencentCloud
 
       # DescribeDomainFilterList返回参数结构体
       class DescribeDomainFilterListResponse < TencentCloud::Common::AbstractModel
-        # @param DomainCountInfo: 列表页统计信息
+        # @param DomainCountInfo: <p>列表页统计信息</p>
         # @type DomainCountInfo: :class:`Tencentcloud::Dnspod.v20210323.models.DomainCountInfo`
-        # @param DomainList: 域名列表
+        # @param DomainList: <p>域名列表</p>
         # @type DomainList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3495,34 +3486,36 @@ module TencentCloud
 
       # DescribeRecordList请求参数结构体
       class DescribeRecordListRequest < TencentCloud::Common::AbstractModel
-        # @param Domain: 域名
+        # @param Domain: <p>域名</p>
         # @type Domain: String
-        # @param DomainId: 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。可以通过接口DescribeDomainList查到所有的Domain以及DomainId
+        # @param DomainId: <p>域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。可以通过接口DescribeDomainList查到所有的Domain以及DomainId</p>
         # @type DomainId: Integer
-        # @param Subdomain: 解析记录的主机头，如果传了此参数，则只会返回此主机头对应的解析记录
+        # @param Subdomain: <p>解析记录的主机头，如果传了此参数，则只会返回此主机头对应的解析记录</p>
         # @type Subdomain: String
-        # @param RecordType: 获取某种类型的解析记录，如 A，CNAME，NS，AAAA，显性URL，隐性URL，CAA，SPF等
+        # @param RecordType: <p>获取某种类型的解析记录，如 A，CNAME，NS，AAAA，显性URL，隐性URL，CAA，SPF等</p>
         # @type RecordType: String
-        # @param RecordLine: 获取某条线路名称的解析记录。可以通过接口DescribeRecordLineList查看当前域名允许的线路信息
+        # @param RecordLine: <p>获取某条线路名称的解析记录。可以通过接口DescribeRecordLineList查看当前域名允许的线路信息</p>
         # @type RecordLine: String
-        # @param RecordLineId: 获取某个线路Id对应的解析记录，如果传RecordLineId，系统会忽略RecordLine参数。可以通过接口DescribeRecordLineList查看当前域名允许的线路信息
+        # @param RecordLineId: <p>获取某个线路Id对应的解析记录，如果传RecordLineId，系统会忽略RecordLine参数。可以通过接口DescribeRecordLineList查看当前域名允许的线路信息</p>
         # @type RecordLineId: String
-        # @param GroupId: 获取某个分组下的解析记录时，传这个分组Id。可通过DescribeRecordGroupList接口获取所有分组
+        # @param GroupId: <p>获取某个分组下的解析记录时，传这个分组Id。可通过DescribeRecordGroupList接口获取所有分组</p>
         # @type GroupId: Integer
-        # @param Keyword: 通过关键字搜索解析记录，当前支持搜索主机头和记录值
+        # @param Keyword: <p>通过关键字搜索解析记录，当前支持搜索主机头和记录值</p>
         # @type Keyword: String
-        # @param SortField: 排序字段，支持 name,line,type,value,weight,mx,ttl,updated_on 几个字段。
+        # @param SortField: <p>排序字段，支持 name,line,type,value,weight,mx,ttl,updated_on 几个字段。</p>
         # @type SortField: String
-        # @param SortType: 排序方式，正序：ASC，逆序：DESC。默认值为ASC。
+        # @param SortType: <p>排序方式，正序：ASC，逆序：DESC。默认值为ASC。</p>
         # @type SortType: String
-        # @param Offset: 偏移量，默认值为0。
+        # @param Offset: <p>偏移量，默认值为0。</p>
         # @type Offset: Integer
-        # @param Limit: 限制数量，当前Limit最大支持3000。默认值为100。
+        # @param Limit: <p>限制数量，当前Limit最大支持3000。默认值为100。</p>
         # @type Limit: Integer
+        # @param ErrorOnEmpty: <p>查询不到数据时是否报错</p>枚举值：<ul><li> yes： 报错</li><li> no： 不报错，返回空列表</li></ul>默认值：yes
+        # @type ErrorOnEmpty: String
 
-        attr_accessor :Domain, :DomainId, :Subdomain, :RecordType, :RecordLine, :RecordLineId, :GroupId, :Keyword, :SortField, :SortType, :Offset, :Limit
+        attr_accessor :Domain, :DomainId, :Subdomain, :RecordType, :RecordLine, :RecordLineId, :GroupId, :Keyword, :SortField, :SortType, :Offset, :Limit, :ErrorOnEmpty
 
-        def initialize(domain=nil, domainid=nil, subdomain=nil, recordtype=nil, recordline=nil, recordlineid=nil, groupid=nil, keyword=nil, sortfield=nil, sorttype=nil, offset=nil, limit=nil)
+        def initialize(domain=nil, domainid=nil, subdomain=nil, recordtype=nil, recordline=nil, recordlineid=nil, groupid=nil, keyword=nil, sortfield=nil, sorttype=nil, offset=nil, limit=nil, erroronempty=nil)
           @Domain = domain
           @DomainId = domainid
           @Subdomain = subdomain
@@ -3535,6 +3528,7 @@ module TencentCloud
           @SortType = sorttype
           @Offset = offset
           @Limit = limit
+          @ErrorOnEmpty = erroronempty
         end
 
         def deserialize(params)
@@ -3550,14 +3544,15 @@ module TencentCloud
           @SortType = params['SortType']
           @Offset = params['Offset']
           @Limit = params['Limit']
+          @ErrorOnEmpty = params['ErrorOnEmpty']
         end
       end
 
       # DescribeRecordList返回参数结构体
       class DescribeRecordListResponse < TencentCloud::Common::AbstractModel
-        # @param RecordCountInfo: 记录的数量统计信息
+        # @param RecordCountInfo: <p>记录的数量统计信息</p>
         # @type RecordCountInfo: :class:`Tencentcloud::Dnspod.v20210323.models.RecordCountInfo`
-        # @param RecordList: 获取的记录列表
+        # @param RecordList: <p>获取的记录列表</p>
         # @type RecordList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

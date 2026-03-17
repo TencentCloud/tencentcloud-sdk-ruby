@@ -4136,36 +4136,45 @@ module TencentCloud
 
       # 应用详细信息
       class ServiceDetail < TencentCloud::Common::AbstractModel
-        # @param ServiceID: 应用ID
+        # @param ServiceID: <p>应用ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceID: String
-        # @param InstanceKey: 业务系统ID
+        # @param InstanceKey: <p>业务系统ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceKey: String
-        # @param AppID: 用户appid
+        # @param AppID: <p>用户appid</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppID: Integer
-        # @param CreateUIN: 主账号uin
+        # @param CreateUIN: <p>主账号uin</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateUIN: String
-        # @param ServiceName: 应用名
+        # @param ServiceName: <p>应用名</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceName: String
-        # @param ServiceDescription: 应用描述
+        # @param ServiceDescription: <p>应用描述</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceDescription: String
-        # @param Region: 地域
+        # @param Region: <p>地域</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Region: String
-        # @param Tags: 标签
+        # @param Tags: <p>标签</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
-        # @param InstanceName: 业务系统名称
+        # @param InstanceName: <p>业务系统名称</p>
         # @type InstanceName: String
+        # @param EnableThresholdConfig: <p>阈值配置开关。true 表示使用应用级阈值；false 表示使用业务系统级阈值</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnableThresholdConfig: Boolean
+        # @param ErrRateThreshold: <p>错误率阈值（%），用于判断应用健康状态为&quot;红色&quot;</p><p>单位：%</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrRateThreshold: Integer
+        # @param ResponseDurationWarningThreshold: <p>响应时间预警阈值（ms），用于判断应用健康状态为&quot;黄色&quot;</p><p>单位：ms</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResponseDurationWarningThreshold: Integer
 
-        attr_accessor :ServiceID, :InstanceKey, :AppID, :CreateUIN, :ServiceName, :ServiceDescription, :Region, :Tags, :InstanceName
+        attr_accessor :ServiceID, :InstanceKey, :AppID, :CreateUIN, :ServiceName, :ServiceDescription, :Region, :Tags, :InstanceName, :EnableThresholdConfig, :ErrRateThreshold, :ResponseDurationWarningThreshold
 
-        def initialize(serviceid=nil, instancekey=nil, appid=nil, createuin=nil, servicename=nil, servicedescription=nil, region=nil, tags=nil, instancename=nil)
+        def initialize(serviceid=nil, instancekey=nil, appid=nil, createuin=nil, servicename=nil, servicedescription=nil, region=nil, tags=nil, instancename=nil, enablethresholdconfig=nil, errratethreshold=nil, responsedurationwarningthreshold=nil)
           @ServiceID = serviceid
           @InstanceKey = instancekey
           @AppID = appid
@@ -4175,6 +4184,9 @@ module TencentCloud
           @Region = region
           @Tags = tags
           @InstanceName = instancename
+          @EnableThresholdConfig = enablethresholdconfig
+          @ErrRateThreshold = errratethreshold
+          @ResponseDurationWarningThreshold = responsedurationwarningthreshold
         end
 
         def deserialize(params)
@@ -4194,6 +4206,9 @@ module TencentCloud
             end
           end
           @InstanceName = params['InstanceName']
+          @EnableThresholdConfig = params['EnableThresholdConfig']
+          @ErrRateThreshold = params['ErrRateThreshold']
+          @ResponseDurationWarningThreshold = params['ResponseDurationWarningThreshold']
         end
       end
 

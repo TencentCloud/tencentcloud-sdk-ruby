@@ -575,26 +575,23 @@ module TencentCloud
 
       # ListAggregateConfigRules请求参数结构体
       class ListAggregateConfigRulesRequest < TencentCloud::Common::AbstractModel
-        # @param Limit: 每页限制
+        # @param Limit: <p>每页限制</p>
         # @type Limit: Integer
-        # @param Offset: 偏移量
+        # @param Offset: <p>偏移量</p>
         # @type Offset: Integer
-        # @param AccountGroupId: 账号组ID
+        # @param AccountGroupId: <p>账号组ID</p>
         # @type AccountGroupId: String
-        # @param OrderType: 排序类型, 倒序：desc，顺序：asc
+        # @param OrderType: <p>排序类型, 倒序：desc，顺序：asc</p>
         # @type OrderType: String
-        # @param RiskLevel: 风险等级
-        # 1：高风险。
-        # 2：中风险。
-        # 3：低风险。
+        # @param RiskLevel: <p>风险等级<br>1：高风险。<br>2：中风险。<br>3：低风险。</p>
         # @type RiskLevel: Array
-        # @param State: 规则状态
+        # @param State: <p>规则状态</p>
         # @type State: String
-        # @param ComplianceResult: 评估结果
+        # @param ComplianceResult: <p>评估结果</p>
         # @type ComplianceResult: Array
-        # @param RuleName: 规则名
+        # @param RuleName: <p>规则名</p>
         # @type RuleName: String
-        # @param RuleOwnerId: 规则所属账号ID
+        # @param RuleOwnerId: <p>规则所属账号ID</p>
         # @type RuleOwnerId: Integer
 
         attr_accessor :Limit, :Offset, :AccountGroupId, :OrderType, :RiskLevel, :State, :ComplianceResult, :RuleName, :RuleOwnerId
@@ -626,9 +623,9 @@ module TencentCloud
 
       # ListAggregateConfigRules返回参数结构体
       class ListAggregateConfigRulesResponse < TencentCloud::Common::AbstractModel
-        # @param Total: 总数
+        # @param Total: <p>总数</p>
         # @type Total: Integer
-        # @param Items: 详情
+        # @param Items: <p>详情</p>
         # @type Items: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

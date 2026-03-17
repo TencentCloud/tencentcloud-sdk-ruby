@@ -2443,15 +2443,18 @@ module TencentCloud
         # @type BackupTables: Array
         # @param BackupName: 备注名
         # @type BackupName: String
+        # @param Vaults: 	投递到保险箱的信息
+        # @type Vaults: Array
 
-        attr_accessor :ClusterId, :BackupType, :BackupDatabases, :BackupTables, :BackupName
+        attr_accessor :ClusterId, :BackupType, :BackupDatabases, :BackupTables, :BackupName, :Vaults
 
-        def initialize(clusterid=nil, backuptype=nil, backupdatabases=nil, backuptables=nil, backupname=nil)
+        def initialize(clusterid=nil, backuptype=nil, backupdatabases=nil, backuptables=nil, backupname=nil, vaults=nil)
           @ClusterId = clusterid
           @BackupType = backuptype
           @BackupDatabases = backupdatabases
           @BackupTables = backuptables
           @BackupName = backupname
+          @Vaults = vaults
         end
 
         def deserialize(params)
@@ -2467,6 +2470,14 @@ module TencentCloud
             end
           end
           @BackupName = params['BackupName']
+          unless params['Vaults'].nil?
+            @Vaults = []
+            params['Vaults'].each do |i|
+              createbackupvaultitem_tmp = CreateBackupVaultItem.new
+              createbackupvaultitem_tmp.deserialize(i)
+              @Vaults << createbackupvaultitem_tmp
+            end
+          end
         end
       end
 
@@ -9774,15 +9785,23 @@ module TencentCloud
       class DescribeRollbackTimeRangeRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
         # @type ClusterId: String
+        # @param VaultId: 保险箱id
+        # @type VaultId: String
+        # @param VaultRegion: 保险箱地域
+        # @type VaultRegion: String
 
-        attr_accessor :ClusterId
+        attr_accessor :ClusterId, :VaultId, :VaultRegion
 
-        def initialize(clusterid=nil)
+        def initialize(clusterid=nil, vaultid=nil, vaultregion=nil)
           @ClusterId = clusterid
+          @VaultId = vaultid
+          @VaultRegion = vaultregion
         end
 
         def deserialize(params)
           @ClusterId = params['ClusterId']
+          @VaultId = params['VaultId']
+          @VaultRegion = params['VaultRegion']
         end
       end
 
@@ -17896,10 +17915,12 @@ module TencentCloud
         # @type RollbackTables: Array
         # @param RollbackMode: 按时间点回档模式，full: 普通; db: 快速; table: 极速  （默认是普通）
         # @type RollbackMode: String
+        # @param VaultId: 保险箱id
+        # @type VaultId: String
 
-        attr_accessor :ClusterId, :RollbackStrategy, :RollbackId, :ExpectTime, :ExpectTimeThresh, :RollbackDatabases, :RollbackTables, :RollbackMode
+        attr_accessor :ClusterId, :RollbackStrategy, :RollbackId, :ExpectTime, :ExpectTimeThresh, :RollbackDatabases, :RollbackTables, :RollbackMode, :VaultId
 
-        def initialize(clusterid=nil, rollbackstrategy=nil, rollbackid=nil, expecttime=nil, expecttimethresh=nil, rollbackdatabases=nil, rollbacktables=nil, rollbackmode=nil)
+        def initialize(clusterid=nil, rollbackstrategy=nil, rollbackid=nil, expecttime=nil, expecttimethresh=nil, rollbackdatabases=nil, rollbacktables=nil, rollbackmode=nil, vaultid=nil)
           @ClusterId = clusterid
           @RollbackStrategy = rollbackstrategy
           @RollbackId = rollbackid
@@ -17908,6 +17929,7 @@ module TencentCloud
           @RollbackDatabases = rollbackdatabases
           @RollbackTables = rollbacktables
           @RollbackMode = rollbackmode
+          @VaultId = vaultid
         end
 
         def deserialize(params)
@@ -17933,6 +17955,7 @@ module TencentCloud
             end
           end
           @RollbackMode = params['RollbackMode']
+          @VaultId = params['VaultId']
         end
       end
 

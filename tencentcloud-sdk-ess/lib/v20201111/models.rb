@@ -2112,9 +2112,9 @@ module TencentCloud
         # @param Operator: 执行合同审查任务的员工信息。
         # 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
-        # @param ResourceIds: 合同审查的PDF文件资源编号列表，通过[UploadFiles](https://qian.tencent.com/developers/companyApis/templatesAndFiles/UploadFiles)接口获取PDF文件资源编号。
+        # @param ResourceIds: 合同审查的PDF、WORD文件资源编号列表，通过[UploadFiles](https://qian.tencent.com/developers/companyApis/templatesAndFiles/UploadFiles)接口获取PDF、WORD文件资源编号。
 
-        # 注:  `目前，此接口仅支持5个文件发起。每个文件限制在10M以下，文件必须是PDF格式`
+        # 注:  `目前，此接口仅支持5个文件发起。每个文件限制在10M以下，文件必须是PDF、WORD格式`
         # @type ResourceIds: Array
         # @param PolicyType: 合同审查的审查尺度。默认为`0`严格尺度
 
@@ -2125,11 +2125,14 @@ module TencentCloud
         #     <li>**2** - 【宽松】以促成交易为核心，对合同条款的修改要求较为宽松，倾向于接受对方提出的条款，以尽快达成合作。</li>
         # </ul>
         # @type PolicyType: Integer
-        # @param Role: 合同审查中的角色信息，通过明确入参角色的名称和描述，可以提高合同审查的效率和准确性。用户不做配置时大模型会根据合同内容推荐出风险识别角色的名称和描述信息。
+        # @param Role: 合同审查中的角色信息，通过明确入参角色的名称和描述，可以提高合同审查的效率和准确性。用户不做配置时大模型会根据合同内容推荐出风险识别角色的名称和描述信息。(Depricated)
         # @type Role: :class:`Tencentcloud::Ess.v20201111.models.RiskIdentificationRoleInfo`
-        # @param ChecklistId: 用户配置的审查清单ID，基于此清单ID批量创建合同审查任务，为32位字符串。
-        # [点击查看审查清单ID在控制台上的位置](https://qcloudimg.tencent-cloud.cn/raw/2c6588549e28ca49bd8bb7f4a072b19e.png)。如果用户不做此配置大模型会根据合同内容在当前企业下的审查清单和系统默认的清单中选择一个清单进行审查。
+        # @param Roles: 合同审查中的角色信息，通过明确入参角色的名称和描述，可以提高合同审查的效率和准确性。用户不做配置时大模型会根据合同内容推荐出风险识别角色的名称和描述信息。
+        # @type Roles: Array
+        # @param ChecklistId: 用户配置的审查清单ID，基于此清单ID批量创建合同审查任务，为32位字符串。[点击查看审查清单ID在控制台上的位置](https://qcloudimg.tencent-cloud.cn/raw/2c6588549e28ca49bd8bb7f4a072b19e.png)。如果用户不做此配置大模型会根据合同内容在当前企业下的审查清单和系统默认的清单中选择一个清单进行审查。(Depricated)
         # @type ChecklistId: String
+        # @param ChecklistIds: 用户配置的审查清单ID，基于此清单ID批量创建合同审查任务，为32位字符串。[点击查看审查清单ID在控制台上的位置](https://qcloudimg.tencent-cloud.cn/raw/2c6588549e28ca49bd8bb7f4a072b19e.png)。如果用户不做此配置大模型会根据合同内容在当前企业下的审查清单和系统默认的清单中选择一个清单进行审查。
+        # @type ChecklistIds: Array
         # @param Agent: 代理企业和员工的信息。
         # 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
@@ -2146,14 +2149,16 @@ module TencentCloud
         # - 2:不启用系统提供的附加通用风险审查清单
         # @type EnableGeneralChecklist: Integer
 
-        attr_accessor :Operator, :ResourceIds, :PolicyType, :Role, :ChecklistId, :Agent, :Comment, :UserData, :EnableGeneralChecklist
+        attr_accessor :Operator, :ResourceIds, :PolicyType, :Role, :Roles, :ChecklistId, :ChecklistIds, :Agent, :Comment, :UserData, :EnableGeneralChecklist
 
-        def initialize(operator=nil, resourceids=nil, policytype=nil, role=nil, checklistid=nil, agent=nil, comment=nil, userdata=nil, enablegeneralchecklist=nil)
+        def initialize(operator=nil, resourceids=nil, policytype=nil, role=nil, roles=nil, checklistid=nil, checklistids=nil, agent=nil, comment=nil, userdata=nil, enablegeneralchecklist=nil)
           @Operator = operator
           @ResourceIds = resourceids
           @PolicyType = policytype
           @Role = role
+          @Roles = roles
           @ChecklistId = checklistid
+          @ChecklistIds = checklistids
           @Agent = agent
           @Comment = comment
           @UserData = userdata
@@ -2171,7 +2176,16 @@ module TencentCloud
             @Role = RiskIdentificationRoleInfo.new
             @Role.deserialize(params['Role'])
           end
+          unless params['Roles'].nil?
+            @Roles = []
+            params['Roles'].each do |i|
+              riskidentificationroleinfo_tmp = RiskIdentificationRoleInfo.new
+              riskidentificationroleinfo_tmp.deserialize(i)
+              @Roles << riskidentificationroleinfo_tmp
+            end
+          end
           @ChecklistId = params['ChecklistId']
+          @ChecklistIds = params['ChecklistIds']
           unless params['Agent'].nil?
             @Agent = Agent.new
             @Agent.deserialize(params['Agent'])
@@ -4064,10 +4078,12 @@ module TencentCloud
         # @type OpenDynamicSignFlow: Boolean
         # @param Workflow: 是否开启发起合同审批，默认：false（不开启），开启后，发起合同（StartFlow），会提交电子签内置的审批流
         # @type Workflow: Boolean
+        # @param FlowOperateLimit: 发起合同流程时对合同流程的部分操作加以限制的配置。
+        # @type FlowOperateLimit: :class:`Tencentcloud::Ess.v20201111.models.FlowOperateLimit`
 
-        attr_accessor :Operator, :FlowName, :FileIds, :Approvers, :FlowDescription, :FlowType, :Components, :CcInfos, :CcNotifyType, :NeedPreview, :PreviewType, :Deadline, :Unordered, :UserData, :RemindedOn, :ApproverVerifyType, :SignBeanTag, :CustomShowMap, :Agent, :AutoSignScene, :NeedSignReview, :FlowDisplayType, :OpenDynamicSignFlow, :Workflow
+        attr_accessor :Operator, :FlowName, :FileIds, :Approvers, :FlowDescription, :FlowType, :Components, :CcInfos, :CcNotifyType, :NeedPreview, :PreviewType, :Deadline, :Unordered, :UserData, :RemindedOn, :ApproverVerifyType, :SignBeanTag, :CustomShowMap, :Agent, :AutoSignScene, :NeedSignReview, :FlowDisplayType, :OpenDynamicSignFlow, :Workflow, :FlowOperateLimit
 
-        def initialize(operator=nil, flowname=nil, fileids=nil, approvers=nil, flowdescription=nil, flowtype=nil, components=nil, ccinfos=nil, ccnotifytype=nil, needpreview=nil, previewtype=nil, deadline=nil, unordered=nil, userdata=nil, remindedon=nil, approververifytype=nil, signbeantag=nil, customshowmap=nil, agent=nil, autosignscene=nil, needsignreview=nil, flowdisplaytype=nil, opendynamicsignflow=nil, workflow=nil)
+        def initialize(operator=nil, flowname=nil, fileids=nil, approvers=nil, flowdescription=nil, flowtype=nil, components=nil, ccinfos=nil, ccnotifytype=nil, needpreview=nil, previewtype=nil, deadline=nil, unordered=nil, userdata=nil, remindedon=nil, approververifytype=nil, signbeantag=nil, customshowmap=nil, agent=nil, autosignscene=nil, needsignreview=nil, flowdisplaytype=nil, opendynamicsignflow=nil, workflow=nil, flowoperatelimit=nil)
           @Operator = operator
           @FlowName = flowname
           @FileIds = fileids
@@ -4092,6 +4108,7 @@ module TencentCloud
           @FlowDisplayType = flowdisplaytype
           @OpenDynamicSignFlow = opendynamicsignflow
           @Workflow = workflow
+          @FlowOperateLimit = flowoperatelimit
         end
 
         def deserialize(params)
@@ -4146,6 +4163,10 @@ module TencentCloud
           @FlowDisplayType = params['FlowDisplayType']
           @OpenDynamicSignFlow = params['OpenDynamicSignFlow']
           @Workflow = params['Workflow']
+          unless params['FlowOperateLimit'].nil?
+            @FlowOperateLimit = FlowOperateLimit.new
+            @FlowOperateLimit.deserialize(params['FlowOperateLimit'])
+          end
         end
       end
 
@@ -5009,15 +5030,17 @@ module TencentCloud
         # @type FlowDisplayType: Integer
         # @param Workflow: 是否开启发起合同审批，默认：false（不开启），开启后，发起合同（StartFlow），会提交电子签内置的审批流
         # @type Workflow: Boolean
+        # @param FlowOperateLimit: 发起合同流程时对合同流程的部分操作加以限制的配置。
+        # @type FlowOperateLimit: :class:`Tencentcloud::Ess.v20201111.models.FlowOperateLimit`
 
-        attr_accessor :Operator, :FlowName, :Approvers, :FlowDescription, :FlowType, :ClientToken, :DeadLine, :RemindedOn, :UserData, :Unordered, :CustomShowMap, :NeedSignReview, :Agent, :CcInfos, :AutoSignScene, :RelatedFlowId, :CallbackUrl, :FlowDisplayType, :Workflow
+        attr_accessor :Operator, :FlowName, :Approvers, :FlowDescription, :FlowType, :ClientToken, :DeadLine, :RemindedOn, :UserData, :Unordered, :CustomShowMap, :NeedSignReview, :Agent, :CcInfos, :AutoSignScene, :RelatedFlowId, :CallbackUrl, :FlowDisplayType, :Workflow, :FlowOperateLimit
         extend Gem::Deprecate
         deprecate :RelatedFlowId, :none, 2026, 3
         deprecate :RelatedFlowId=, :none, 2026, 3
         deprecate :CallbackUrl, :none, 2026, 3
         deprecate :CallbackUrl=, :none, 2026, 3
 
-        def initialize(operator=nil, flowname=nil, approvers=nil, flowdescription=nil, flowtype=nil, clienttoken=nil, deadline=nil, remindedon=nil, userdata=nil, unordered=nil, customshowmap=nil, needsignreview=nil, agent=nil, ccinfos=nil, autosignscene=nil, relatedflowid=nil, callbackurl=nil, flowdisplaytype=nil, workflow=nil)
+        def initialize(operator=nil, flowname=nil, approvers=nil, flowdescription=nil, flowtype=nil, clienttoken=nil, deadline=nil, remindedon=nil, userdata=nil, unordered=nil, customshowmap=nil, needsignreview=nil, agent=nil, ccinfos=nil, autosignscene=nil, relatedflowid=nil, callbackurl=nil, flowdisplaytype=nil, workflow=nil, flowoperatelimit=nil)
           @Operator = operator
           @FlowName = flowname
           @Approvers = approvers
@@ -5037,6 +5060,7 @@ module TencentCloud
           @CallbackUrl = callbackurl
           @FlowDisplayType = flowdisplaytype
           @Workflow = workflow
+          @FlowOperateLimit = flowoperatelimit
         end
 
         def deserialize(params)
@@ -5079,6 +5103,10 @@ module TencentCloud
           @CallbackUrl = params['CallbackUrl']
           @FlowDisplayType = params['FlowDisplayType']
           @Workflow = params['Workflow']
+          unless params['FlowOperateLimit'].nil?
+            @FlowOperateLimit = FlowOperateLimit.new
+            @FlowOperateLimit.deserialize(params['FlowOperateLimit'])
+          end
         end
       end
 
@@ -9851,8 +9879,10 @@ module TencentCloud
 
       # DescribeContractReviewTask返回参数结构体
       class DescribeContractReviewTaskResponse < TencentCloud::Common::AbstractModel
-        # @param ChecklistId: 用于审查任务的审查清单ID。注意：如果用户没有配置清单时此值可能为空，需要等大模型根据合同内容推荐出可以使用的审查清单。
+        # @param ChecklistId: 用于审查任务的审查清单ID（Depricated）。注意：如果用户没有配置清单时此值可能为空，需要等大模型根据合同内容推荐出可以使用的审查清单。
         # @type ChecklistId: String
+        # @param ChecklistIds: 用于审查任务的审查清单ID。注意：如果用户没有配置清单时此值可能为空，需要等大模型根据合同内容推荐出可以使用的审查清单。
+        # @type ChecklistIds: Array
         # @param CreatedOn: 合同审查任务创建时间。
         # @type CreatedOn: Integer
         # @param FinishedOn: 合同审查任务完成时间。
@@ -9866,15 +9896,17 @@ module TencentCloud
         #     <li>**2** - 【宽松】以促成交易为核心，对合同条款的修改要求较为宽松，倾向于接受对方提出的条款，以尽快达成合作。</li>
         # </ul>
         # @type PolicyType: Integer
-        # @param ResourceId: 合同审查的PDF文件资源ID。
+        # @param ResourceId: 合同审查的PDF、WORD文件资源ID。
         # @type ResourceId: String
         # @param Risks: 合同审查识别出的PDF文件风险信息，如果是空数组表示无风险。
 
         # 注意：`审查结果由AI生成，仅供参考。请结合相关法律法规和公司制度要求综合判断。`
         # @type Risks: Array
-        # @param Role: 合同审查中的角色信息。注意： `如果用户没有配置审查角色时此值可能为null，需要等大模型根据合同内容推荐出审查角色信息。`
+        # @param Role: 合同审查中的角色信息（Depricated）。注意： `如果用户没有配置审查角色时此值可能为null，需要等大模型根据合同内容推荐出审查角色信息。`
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Role: :class:`Tencentcloud::Ess.v20201111.models.RiskIdentificationRoleInfo`
+        # @param Roles: 合同审查中的角色信息。注意： `如果用户没有配置审查角色时此值可能为null，需要等大模型根据合同内容推荐出审查角色信息。`
+        # @type Roles: Array
         # @param Status: 合同审查任务状态。
         # 状态如下：
         # <ul>
@@ -9905,16 +9937,18 @@ module TencentCloud
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ChecklistId, :CreatedOn, :FinishedOn, :PolicyType, :ResourceId, :Risks, :Role, :Status, :TaskId, :Comment, :UserData, :HighRiskCount, :TotalRiskCount, :ApprovedLists, :Summaries, :RequestId
+        attr_accessor :ChecklistId, :ChecklistIds, :CreatedOn, :FinishedOn, :PolicyType, :ResourceId, :Risks, :Role, :Roles, :Status, :TaskId, :Comment, :UserData, :HighRiskCount, :TotalRiskCount, :ApprovedLists, :Summaries, :RequestId
 
-        def initialize(checklistid=nil, createdon=nil, finishedon=nil, policytype=nil, resourceid=nil, risks=nil, role=nil, status=nil, taskid=nil, comment=nil, userdata=nil, highriskcount=nil, totalriskcount=nil, approvedlists=nil, summaries=nil, requestid=nil)
+        def initialize(checklistid=nil, checklistids=nil, createdon=nil, finishedon=nil, policytype=nil, resourceid=nil, risks=nil, role=nil, roles=nil, status=nil, taskid=nil, comment=nil, userdata=nil, highriskcount=nil, totalriskcount=nil, approvedlists=nil, summaries=nil, requestid=nil)
           @ChecklistId = checklistid
+          @ChecklistIds = checklistids
           @CreatedOn = createdon
           @FinishedOn = finishedon
           @PolicyType = policytype
           @ResourceId = resourceid
           @Risks = risks
           @Role = role
+          @Roles = roles
           @Status = status
           @TaskId = taskid
           @Comment = comment
@@ -9928,6 +9962,7 @@ module TencentCloud
 
         def deserialize(params)
           @ChecklistId = params['ChecklistId']
+          @ChecklistIds = params['ChecklistIds']
           @CreatedOn = params['CreatedOn']
           @FinishedOn = params['FinishedOn']
           @PolicyType = params['PolicyType']
@@ -9943,6 +9978,14 @@ module TencentCloud
           unless params['Role'].nil?
             @Role = RiskIdentificationRoleInfo.new
             @Role.deserialize(params['Role'])
+          end
+          unless params['Roles'].nil?
+            @Roles = []
+            params['Roles'].each do |i|
+              riskidentificationroleinfo_tmp = RiskIdentificationRoleInfo.new
+              riskidentificationroleinfo_tmp.deserialize(i)
+              @Roles << riskidentificationroleinfo_tmp
+            end
           end
           @Status = params['Status']
           @TaskId = params['TaskId']
@@ -13926,6 +13969,22 @@ module TencentCloud
               @FlowGroupApproverInfos << flowgroupapproverinfo_tmp
             end
           end
+        end
+      end
+
+      # 发起合同流程时对合同流程的部分操作加以限制的配置。
+      class FlowOperateLimit < TencentCloud::Common::AbstractModel
+        # @param NoRelease: 发起合同流程时，对签署完成后是否能发起对应的解除合同加以限制：<ul><li><b>false（默认值）</b>: 合同流程完成签署后，支持发起对应的解除协议。</li><li><b>true </b>: 合同流程完成签署后，<b>不支持</b>发起对应的解除协议。</li></ul>
+        # @type NoRelease: Boolean
+
+        attr_accessor :NoRelease
+
+        def initialize(norelease=nil)
+          @NoRelease = norelease
+        end
+
+        def deserialize(params)
+          @NoRelease = params['NoRelease']
         end
       end
 

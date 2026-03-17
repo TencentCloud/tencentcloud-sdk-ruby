@@ -221,6 +221,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 请求该接口，会返回所有适配该机型和操作系统组合的gpu驱动版本
+
+        # @param request: Request instance for DescribeGPUInfo.
+        # @type request: :class:`Tencentcloud::tke::V20220501::DescribeGPUInfoRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20220501::DescribeGPUInfoResponse`
+        def DescribeGPUInfo(request)
+          body = send_request('DescribeGPUInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeGPUInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询健康检测策略
 
         # @param request: Request instance for DescribeHealthCheckPolicies.
@@ -303,6 +327,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeNodePoolsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询原生节点机型配置
+
+        # @param request: Request instance for DescribeZoneInstanceConfigInfos.
+        # @type request: :class:`Tencentcloud::tke::V20220501::DescribeZoneInstanceConfigInfosRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20220501::DescribeZoneInstanceConfigInfosResponse`
+        def DescribeZoneInstanceConfigInfos(request)
+          body = send_request('DescribeZoneInstanceConfigInfos', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeZoneInstanceConfigInfosResponse.new
             model.deserialize(response['Response'])
             model
           else

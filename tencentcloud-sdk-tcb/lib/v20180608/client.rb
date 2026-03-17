@@ -660,6 +660,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 根据指定指标名称，查询某环境在指定时间范围内的监控数据，返回按统计粒度聚合后的时序数据。
+
+        # @param request: Request instance for DescribeCurveData.
+        # @type request: :class:`Tencentcloud::tcb::V20180608::DescribeCurveDataRequest`
+        # @rtype: :class:`Tencentcloud::tcb::V20180608::DescribeCurveDataResponse`
+        def DescribeCurveData(request)
+          body = send_request('DescribeCurveData', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCurveDataResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DescribeDatabaseACL）获取文档型数据库权限。
 
         # @param request: Request instance for DescribeDatabaseACL.
