@@ -338,6 +338,46 @@ module TencentCloud
         end
       end
 
+      # Google Chat 机器人内容模板配置
+      class GoogleChatRobotNoticeTmpl < TencentCloud::Common::AbstractModel
+        # @param ContentTmpl: 内容模板
+        # @type ContentTmpl: String
+
+        attr_accessor :ContentTmpl
+
+        def initialize(contenttmpl=nil)
+          @ContentTmpl = contenttmpl
+        end
+
+        def deserialize(params)
+          @ContentTmpl = params['ContentTmpl']
+        end
+      end
+
+      # Google Chat 机器人通知模板的匹配器
+      class GoogleChatRobotNoticeTmplMatcher < TencentCloud::Common::AbstractModel
+        # @param MatchingStatus: 匹配状态 Invalid;
+        # Trigger 告警触发; Recovery 告警恢复
+        # @type MatchingStatus: Array
+        # @param Template: 模板配置
+        # @type Template: :class:`Tencentcloud::Monitor.v20230616.models.GoogleChatRobotNoticeTmpl`
+
+        attr_accessor :MatchingStatus, :Template
+
+        def initialize(matchingstatus=nil, template=nil)
+          @MatchingStatus = matchingstatus
+          @Template = template
+        end
+
+        def deserialize(params)
+          @MatchingStatus = params['MatchingStatus']
+          unless params['Template'].nil?
+            @Template = GoogleChatRobotNoticeTmpl.new
+            @Template.deserialize(params['Template'])
+          end
+        end
+      end
+
       # ModifyNoticeContentTmpl请求参数结构体
       class ModifyNoticeContentTmplRequest < TencentCloud::Common::AbstractModel
         # @param TmplName: 模板名称
@@ -482,10 +522,12 @@ module TencentCloud
         # @param PagerDutyRobot: PagerDutyRobot机器人通知渠道配置
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PagerDutyRobot: Array
+        # @param GoogleChatRobot: GoogleChat
+        # @type GoogleChatRobot: Array
 
-        attr_accessor :QCloudYehe, :WeWorkRobot, :DingDingRobot, :FeiShuRobot, :Webhook, :TeamsRobot, :PagerDutyRobot
+        attr_accessor :QCloudYehe, :WeWorkRobot, :DingDingRobot, :FeiShuRobot, :Webhook, :TeamsRobot, :PagerDutyRobot, :GoogleChatRobot
 
-        def initialize(qcloudyehe=nil, weworkrobot=nil, dingdingrobot=nil, feishurobot=nil, webhook=nil, teamsrobot=nil, pagerdutyrobot=nil)
+        def initialize(qcloudyehe=nil, weworkrobot=nil, dingdingrobot=nil, feishurobot=nil, webhook=nil, teamsrobot=nil, pagerdutyrobot=nil, googlechatrobot=nil)
           @QCloudYehe = qcloudyehe
           @WeWorkRobot = weworkrobot
           @DingDingRobot = dingdingrobot
@@ -493,6 +535,7 @@ module TencentCloud
           @Webhook = webhook
           @TeamsRobot = teamsrobot
           @PagerDutyRobot = pagerdutyrobot
+          @GoogleChatRobot = googlechatrobot
         end
 
         def deserialize(params)
@@ -550,6 +593,14 @@ module TencentCloud
               pagerdutyrobotnoticetmplmatcher_tmp = PagerDutyRobotNoticeTmplMatcher.new
               pagerdutyrobotnoticetmplmatcher_tmp.deserialize(i)
               @PagerDutyRobot << pagerdutyrobotnoticetmplmatcher_tmp
+            end
+          end
+          unless params['GoogleChatRobot'].nil?
+            @GoogleChatRobot = []
+            params['GoogleChatRobot'].each do |i|
+              googlechatrobotnoticetmplmatcher_tmp = GoogleChatRobotNoticeTmplMatcher.new
+              googlechatrobotnoticetmplmatcher_tmp.deserialize(i)
+              @GoogleChatRobot << googlechatrobotnoticetmplmatcher_tmp
             end
           end
         end

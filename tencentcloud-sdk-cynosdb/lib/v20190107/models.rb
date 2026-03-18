@@ -838,6 +838,34 @@ module TencentCloud
         end
       end
 
+      # 保险箱自动投递关系
+      class AutoCopyConfig < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群id
+        # @type ClusterId: String
+        # @param VaultId: 保险箱ID
+        # @type VaultId: String
+        # @param VaultRegion: 保险箱地域
+        # @type VaultRegion: String
+        # @param CopyType: 投递类型：binlog, redolog, snapshot, logic
+        # @type CopyType: String
+
+        attr_accessor :ClusterId, :VaultId, :VaultRegion, :CopyType
+
+        def initialize(clusterid=nil, vaultid=nil, vaultregion=nil, copytype=nil)
+          @ClusterId = clusterid
+          @VaultId = vaultid
+          @VaultRegion = vaultregion
+          @CopyType = copytype
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @VaultId = params['VaultId']
+          @VaultRegion = params['VaultRegion']
+          @CopyType = params['CopyType']
+        end
+      end
+
       # 高级映射，自动映射规则
       class AutoMapRule < TencentCloud::Common::AbstractModel
         # @param SrcInstanceId: 源端实例Id
@@ -1642,6 +1670,103 @@ module TencentCloud
         end
       end
 
+      # CalculateBackupSaveSecExpires请求参数结构体
+      class CalculateBackupSaveSecExpiresRequest < TencentCloud::Common::AbstractModel
+        # @param VaultId: 备份保险箱ID
+        # @type VaultId: String
+        # @param BackupSaveSeconds: 备份保留时长（秒），必须大于0
+        # @type BackupSaveSeconds: Integer
+        # @param Limit: 每页数量，范围(0,100]，默认10
+        # @type Limit: Integer
+        # @param Offset: 偏移量，范围[0,INF)，默认0
+        # @type Offset: Integer
+        # @param OrderBy: 排序字段，可选值：VaultId,VaultName,BackupSaveSeconds,LockedTime,CreateTime,UpdateTime，默认endTime
+        # @type OrderBy: String
+        # @param OrderByType: 排序方式，可选值：desc,asc,DESC,ASC，默认desc
+        # @type OrderByType: String
+
+        attr_accessor :VaultId, :BackupSaveSeconds, :Limit, :Offset, :OrderBy, :OrderByType
+
+        def initialize(vaultid=nil, backupsaveseconds=nil, limit=nil, offset=nil, orderby=nil, orderbytype=nil)
+          @VaultId = vaultid
+          @BackupSaveSeconds = backupsaveseconds
+          @Limit = limit
+          @Offset = offset
+          @OrderBy = orderby
+          @OrderByType = orderbytype
+        end
+
+        def deserialize(params)
+          @VaultId = params['VaultId']
+          @BackupSaveSeconds = params['BackupSaveSeconds']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @OrderBy = params['OrderBy']
+          @OrderByType = params['OrderByType']
+        end
+      end
+
+      # CalculateBackupSaveSecExpires返回参数结构体
+      class CalculateBackupSaveSecExpiresResponse < TencentCloud::Common::AbstractModel
+        # @param WillDeleteBackupFileCount: 将被删除的备份文件总数
+        # @type WillDeleteBackupFileCount: Integer
+        # @param WillDeleteBackupFiles: 将被删除的备份文件列表
+        # @type WillDeleteBackupFiles: Array
+        # @param WillDeleteBinlogFileCount: 将被删除的Binlog文件总数
+        # @type WillDeleteBinlogFileCount: Integer
+        # @param WillDeleteBinlogFiles: 将被删除的Binlog文件列表
+        # @type WillDeleteBinlogFiles: Array
+        # @param WillDeleteRedoLogFileCount: 将被删除的Redolog文件总数
+        # @type WillDeleteRedoLogFileCount: Integer
+        # @param WillDeleteRedoLogFiles: 将被删除的Redolog文件列表
+        # @type WillDeleteRedoLogFiles: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :WillDeleteBackupFileCount, :WillDeleteBackupFiles, :WillDeleteBinlogFileCount, :WillDeleteBinlogFiles, :WillDeleteRedoLogFileCount, :WillDeleteRedoLogFiles, :RequestId
+
+        def initialize(willdeletebackupfilecount=nil, willdeletebackupfiles=nil, willdeletebinlogfilecount=nil, willdeletebinlogfiles=nil, willdeleteredologfilecount=nil, willdeleteredologfiles=nil, requestid=nil)
+          @WillDeleteBackupFileCount = willdeletebackupfilecount
+          @WillDeleteBackupFiles = willdeletebackupfiles
+          @WillDeleteBinlogFileCount = willdeletebinlogfilecount
+          @WillDeleteBinlogFiles = willdeletebinlogfiles
+          @WillDeleteRedoLogFileCount = willdeleteredologfilecount
+          @WillDeleteRedoLogFiles = willdeleteredologfiles
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @WillDeleteBackupFileCount = params['WillDeleteBackupFileCount']
+          unless params['WillDeleteBackupFiles'].nil?
+            @WillDeleteBackupFiles = []
+            params['WillDeleteBackupFiles'].each do |i|
+              willdeleteitem_tmp = WillDeleteItem.new
+              willdeleteitem_tmp.deserialize(i)
+              @WillDeleteBackupFiles << willdeleteitem_tmp
+            end
+          end
+          @WillDeleteBinlogFileCount = params['WillDeleteBinlogFileCount']
+          unless params['WillDeleteBinlogFiles'].nil?
+            @WillDeleteBinlogFiles = []
+            params['WillDeleteBinlogFiles'].each do |i|
+              willdeleteitem_tmp = WillDeleteItem.new
+              willdeleteitem_tmp.deserialize(i)
+              @WillDeleteBinlogFiles << willdeleteitem_tmp
+            end
+          end
+          @WillDeleteRedoLogFileCount = params['WillDeleteRedoLogFileCount']
+          unless params['WillDeleteRedoLogFiles'].nil?
+            @WillDeleteRedoLogFiles = []
+            params['WillDeleteRedoLogFiles'].each do |i|
+              willdeleteitem_tmp = WillDeleteItem.new
+              willdeleteitem_tmp.deserialize(i)
+              @WillDeleteRedoLogFiles << willdeleteitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CheckCreateLibraDBInstance请求参数结构体
       class CheckCreateLibraDBInstanceRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
@@ -1724,6 +1849,61 @@ module TencentCloud
           @Result = params['Result']
           @CurrentValue = params['CurrentValue']
           @ExpectedValue = params['ExpectedValue']
+        end
+      end
+
+      # CheckTransferClusterZone请求参数结构体
+      class CheckTransferClusterZoneRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 源集群Id
+        # @type ClusterId: String
+        # @param DstZone: 目标可用区
+        # @type DstZone: String
+        # @param ProxyZones: proxy迁移的目标可用区信息
+        # @type ProxyZones: Array
+
+        attr_accessor :ClusterId, :DstZone, :ProxyZones
+
+        def initialize(clusterid=nil, dstzone=nil, proxyzones=nil)
+          @ClusterId = clusterid
+          @DstZone = dstzone
+          @ProxyZones = proxyzones
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @DstZone = params['DstZone']
+          unless params['ProxyZones'].nil?
+            @ProxyZones = []
+            params['ProxyZones'].each do |i|
+              proxyzone_tmp = ProxyZone.new
+              proxyzone_tmp.deserialize(i)
+              @ProxyZones << proxyzone_tmp
+            end
+          end
+        end
+      end
+
+      # CheckTransferClusterZone返回参数结构体
+      class CheckTransferClusterZoneResponse < TencentCloud::Common::AbstractModel
+        # @param CheckStatus: 是否check成功
+        # @type CheckStatus: Boolean
+        # @param CheckMsg: check失败的原因
+        # @type CheckMsg: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CheckStatus, :CheckMsg, :RequestId
+
+        def initialize(checkstatus=nil, checkmsg=nil, requestid=nil)
+          @CheckStatus = checkstatus
+          @CheckMsg = checkmsg
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @CheckStatus = params['CheckStatus']
+          @CheckMsg = params['CheckMsg']
+          @RequestId = params['RequestId']
         end
       end
 
@@ -2206,6 +2386,46 @@ module TencentCloud
         def deserialize(params)
           @ClusterId = params['ClusterId']
           @TaskId = params['TaskId']
+        end
+      end
+
+      # CopyBackupToVault请求参数结构体
+      class CopyBackupToVaultRequest < TencentCloud::Common::AbstractModel
+        # @param VaultId: 目标保险箱ID，备份文件将复制到此保险箱
+        # @type VaultId: String
+        # @param BackupIds: 备份文件ID列表，支持批量复制多个备份文件
+        # @type BackupIds: Array
+
+        attr_accessor :VaultId, :BackupIds
+
+        def initialize(vaultid=nil, backupids=nil)
+          @VaultId = vaultid
+          @BackupIds = backupids
+        end
+
+        def deserialize(params)
+          @VaultId = params['VaultId']
+          @BackupIds = params['BackupIds']
+        end
+      end
+
+      # CopyBackupToVault返回参数结构体
+      class CopyBackupToVaultResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务ID
+        # @type TaskId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
         end
       end
 
@@ -3697,6 +3917,66 @@ module TencentCloud
         def deserialize(params)
           @BigDealIds = params['BigDealIds']
           @DealNames = params['DealNames']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateVault请求参数结构体
+      class CreateVaultRequest < TencentCloud::Common::AbstractModel
+        # @param VaultName: 保险箱名称，长度必须大于0
+        # @type VaultName: String
+        # @param BackupSaveSeconds: 备份保留时长（秒），必须大于0
+        # @type BackupSaveSeconds: Integer
+        # @param VaultDescribe: 保险箱描述
+        # @type VaultDescribe: String
+        # @param KeyId: KMS密钥ID，长度0-36字符
+        # @type KeyId: String
+        # @param KeyType: 密钥类型，可选值：cloud（云托管密钥）、custom（自定义密钥）
+        # @type KeyType: String
+        # @param KeyRegion: 密钥所在地域，长度0-32字符
+        # @type KeyRegion: String
+        # @param LockedTime: 锁定时间，格式：YYYY-MM-DD HH:mm:ss
+        # @type LockedTime: String
+
+        attr_accessor :VaultName, :BackupSaveSeconds, :VaultDescribe, :KeyId, :KeyType, :KeyRegion, :LockedTime
+
+        def initialize(vaultname=nil, backupsaveseconds=nil, vaultdescribe=nil, keyid=nil, keytype=nil, keyregion=nil, lockedtime=nil)
+          @VaultName = vaultname
+          @BackupSaveSeconds = backupsaveseconds
+          @VaultDescribe = vaultdescribe
+          @KeyId = keyid
+          @KeyType = keytype
+          @KeyRegion = keyregion
+          @LockedTime = lockedtime
+        end
+
+        def deserialize(params)
+          @VaultName = params['VaultName']
+          @BackupSaveSeconds = params['BackupSaveSeconds']
+          @VaultDescribe = params['VaultDescribe']
+          @KeyId = params['KeyId']
+          @KeyType = params['KeyType']
+          @KeyRegion = params['KeyRegion']
+          @LockedTime = params['LockedTime']
+        end
+      end
+
+      # CreateVault返回参数结构体
+      class CreateVaultResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务ID，用于查询任务执行状态
+        # @type TaskId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
           @RequestId = params['RequestId']
         end
       end
@@ -5294,6 +5574,46 @@ module TencentCloud
         end
       end
 
+      # DeleteBackupVault请求参数结构体
+      class DeleteBackupVaultRequest < TencentCloud::Common::AbstractModel
+        # @param VaultId: 备份保险箱ID，长度必须大于0
+        # @type VaultId: String
+        # @param BackupIds: 待删除的备份文件ID列表，不能为空
+        # @type BackupIds: Array
+
+        attr_accessor :VaultId, :BackupIds
+
+        def initialize(vaultid=nil, backupids=nil)
+          @VaultId = vaultid
+          @BackupIds = backupids
+        end
+
+        def deserialize(params)
+          @VaultId = params['VaultId']
+          @BackupIds = params['BackupIds']
+        end
+      end
+
+      # DeleteBackupVault返回参数结构体
+      class DeleteBackupVaultResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务ID，用于查询任务执行状态
+        # @type TaskId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteCLSDelivery请求参数结构体
       class DeleteCLSDeliveryRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例id
@@ -5525,6 +5845,69 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 删除保险箱任务信息
+      class DeleteVaultTask < TencentCloud::Common::AbstractModel
+        # @param VaultId: 保险箱ID
+        # @type VaultId: String
+        # @param TaskId: 任务ID
+        # @type TaskId: Integer
+
+        attr_accessor :VaultId, :TaskId
+
+        def initialize(vaultid=nil, taskid=nil)
+          @VaultId = vaultid
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @VaultId = params['VaultId']
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # DeleteVaults请求参数结构体
+      class DeleteVaultsRequest < TencentCloud::Common::AbstractModel
+        # @param VaultIds: 待删除的备份保险箱ID列表，不能为空，保险箱内必须已清空所有文件
+        # @type VaultIds: Array
+
+        attr_accessor :VaultIds
+
+        def initialize(vaultids=nil)
+          @VaultIds = vaultids
+        end
+
+        def deserialize(params)
+          @VaultIds = params['VaultIds']
+        end
+      end
+
+      # DeleteVaults返回参数结构体
+      class DeleteVaultsResponse < TencentCloud::Common::AbstractModel
+        # @param VaultTask: 删除任务列表，每个保险箱对应一个任务
+        # @type VaultTask: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :VaultTask, :RequestId
+
+        def initialize(vaulttask=nil, requestid=nil)
+          @VaultTask = vaulttask
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['VaultTask'].nil?
+            @VaultTask = []
+            params['VaultTask'].each do |i|
+              deletevaulttask_tmp = DeleteVaultTask.new
+              deletevaulttask_tmp.deserialize(i)
+              @VaultTask << deletevaulttask_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -6315,6 +6698,116 @@ module TencentCloud
         end
       end
 
+      # DescribeBackupListByVaultItem
+      class DescribeBackupListByVaultItem < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群id
+        # @type ClusterId: String
+        # @param ClusterName: 集群name
+        # @type ClusterName: String
+        # @param BackupFileInfo: 备份信息
+        # @type BackupFileInfo: :class:`Tencentcloud::Cynosdb.v20190107.models.BackupFileInfo`
+
+        attr_accessor :ClusterId, :ClusterName, :BackupFileInfo
+
+        def initialize(clusterid=nil, clustername=nil, backupfileinfo=nil)
+          @ClusterId = clusterid
+          @ClusterName = clustername
+          @BackupFileInfo = backupfileinfo
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @ClusterName = params['ClusterName']
+          unless params['BackupFileInfo'].nil?
+            @BackupFileInfo = BackupFileInfo.new
+            @BackupFileInfo.deserialize(params['BackupFileInfo'])
+          end
+        end
+      end
+
+      # DescribeBackupListByVault请求参数结构体
+      class DescribeBackupListByVaultRequest < TencentCloud::Common::AbstractModel
+        # @param VaultId: 保险箱ID，长度必须大于0
+        # @type VaultId: String
+        # @param BackupIds: 备份文件ID列表，用于筛选特定备份
+        # @type BackupIds: Array
+        # @param ClusterId: 集群ID，用于筛选特定集群的备份
+        # @type ClusterId: String
+        # @param BackupNames: 备份名称列表，用于精确匹配筛选
+        # @type BackupNames: Array
+        # @param FileNames: 文件名称列表，用于精确匹配筛选
+        # @type FileNames: Array
+        # @param Limit: 分页数量，取值范围：(0, 100]，默认100
+        # @type Limit: Integer
+        # @param Offset: 分页偏移量，取值范围：[0, INF)，默认0
+        # @type Offset: Integer
+        # @param OrderBy: 排序字段，可选值：VaultId, VaultName, BackupSaveSeconds, LockedTime, CreateTime, UpdateTime，默认createTime
+        # @type OrderBy: String
+        # @param OrderByType: 排序方式，可选值：desc, asc, DESC, ASC，默认desc
+        # @type OrderByType: String
+        # @param Status: 状态
+        # @type Status: String
+
+        attr_accessor :VaultId, :BackupIds, :ClusterId, :BackupNames, :FileNames, :Limit, :Offset, :OrderBy, :OrderByType, :Status
+
+        def initialize(vaultid=nil, backupids=nil, clusterid=nil, backupnames=nil, filenames=nil, limit=nil, offset=nil, orderby=nil, orderbytype=nil, status=nil)
+          @VaultId = vaultid
+          @BackupIds = backupids
+          @ClusterId = clusterid
+          @BackupNames = backupnames
+          @FileNames = filenames
+          @Limit = limit
+          @Offset = offset
+          @OrderBy = orderby
+          @OrderByType = orderbytype
+          @Status = status
+        end
+
+        def deserialize(params)
+          @VaultId = params['VaultId']
+          @BackupIds = params['BackupIds']
+          @ClusterId = params['ClusterId']
+          @BackupNames = params['BackupNames']
+          @FileNames = params['FileNames']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @OrderBy = params['OrderBy']
+          @OrderByType = params['OrderByType']
+          @Status = params['Status']
+        end
+      end
+
+      # DescribeBackupListByVault返回参数结构体
+      class DescribeBackupListByVaultResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 符合条件的备份文件总数
+        # @type TotalCount: Integer
+        # @param BackupList: 备份文件列表
+        # @type BackupList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :BackupList, :RequestId
+
+        def initialize(totalcount=nil, backuplist=nil, requestid=nil)
+          @TotalCount = totalcount
+          @BackupList = backuplist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['BackupList'].nil?
+            @BackupList = []
+            params['BackupList'].each do |i|
+              describebackuplistbyvaultitem_tmp = DescribeBackupListByVaultItem.new
+              describebackuplistbyvaultitem_tmp.deserialize(i)
+              @BackupList << describebackuplistbyvaultitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeBackupList请求参数结构体
       class DescribeBackupListRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
@@ -6348,10 +6841,12 @@ module TencentCloud
         # @type BackupRegion: String
         # @param IsCrossRegionsBackup: 是否跨地域备份
         # @type IsCrossRegionsBackup: String
+        # @param BackupStatus: 需要查询的状态
+        # @type BackupStatus: Array
 
-        attr_accessor :ClusterId, :Limit, :Offset, :DbType, :BackupIds, :BackupType, :BackupMethod, :SnapShotType, :StartTime, :EndTime, :FileNames, :BackupNames, :SnapshotIdList, :BackupRegion, :IsCrossRegionsBackup
+        attr_accessor :ClusterId, :Limit, :Offset, :DbType, :BackupIds, :BackupType, :BackupMethod, :SnapShotType, :StartTime, :EndTime, :FileNames, :BackupNames, :SnapshotIdList, :BackupRegion, :IsCrossRegionsBackup, :BackupStatus
 
-        def initialize(clusterid=nil, limit=nil, offset=nil, dbtype=nil, backupids=nil, backuptype=nil, backupmethod=nil, snapshottype=nil, starttime=nil, endtime=nil, filenames=nil, backupnames=nil, snapshotidlist=nil, backupregion=nil, iscrossregionsbackup=nil)
+        def initialize(clusterid=nil, limit=nil, offset=nil, dbtype=nil, backupids=nil, backuptype=nil, backupmethod=nil, snapshottype=nil, starttime=nil, endtime=nil, filenames=nil, backupnames=nil, snapshotidlist=nil, backupregion=nil, iscrossregionsbackup=nil, backupstatus=nil)
           @ClusterId = clusterid
           @Limit = limit
           @Offset = offset
@@ -6367,6 +6862,7 @@ module TencentCloud
           @SnapshotIdList = snapshotidlist
           @BackupRegion = backupregion
           @IsCrossRegionsBackup = iscrossregionsbackup
+          @BackupStatus = backupstatus
         end
 
         def deserialize(params)
@@ -6385,6 +6881,7 @@ module TencentCloud
           @SnapshotIdList = params['SnapshotIdList']
           @BackupRegion = params['BackupRegion']
           @IsCrossRegionsBackup = params['IsCrossRegionsBackup']
+          @BackupStatus = params['BackupStatus']
         end
       end
 
@@ -6505,6 +7002,116 @@ module TencentCloud
 
         def deserialize(params)
           @DownloadUrl = params['DownloadUrl']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # binlog备份信息
+      class DescribeBinlogListByVaultItem < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param ClusterName: 集群名称
+        # @type ClusterName: String
+        # @param BinlogFileInfo: Binlog文件信息
+        # @type BinlogFileInfo: :class:`Tencentcloud::Cynosdb.v20190107.models.BinlogItem`
+
+        attr_accessor :ClusterId, :ClusterName, :BinlogFileInfo
+
+        def initialize(clusterid=nil, clustername=nil, binlogfileinfo=nil)
+          @ClusterId = clusterid
+          @ClusterName = clustername
+          @BinlogFileInfo = binlogfileinfo
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @ClusterName = params['ClusterName']
+          unless params['BinlogFileInfo'].nil?
+            @BinlogFileInfo = BinlogItem.new
+            @BinlogFileInfo.deserialize(params['BinlogFileInfo'])
+          end
+        end
+      end
+
+      # DescribeBinlogListByVault请求参数结构体
+      class DescribeBinlogListByVaultRequest < TencentCloud::Common::AbstractModel
+        # @param VaultId: 保险箱ID
+        # @type VaultId: String
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param BackupIds: 备份ID列表
+        # @type BackupIds: Array
+        # @param BackupNames: 备份名称列表
+        # @type BackupNames: Array
+        # @param FileNames: 文件名列表
+        # @type FileNames: Array
+        # @param Limit: 返回数量，范围: (0, 100]，默认100
+        # @type Limit: Integer
+        # @param Offset: 偏移量，范围: [0, INF)，默认0
+        # @type Offset: Integer
+        # @param OrderBy: 排序字段，可选值: VaultId, VaultName, BackupSaveSeconds, LockedTime, CreateTime, UpdateTime，默认createTime
+        # @type OrderBy: String
+        # @param OrderByType: 排序方式，可选值: desc, asc, DESC, ASC，默认desc
+        # @type OrderByType: String
+        # @param Status: 状态
+        # @type Status: String
+
+        attr_accessor :VaultId, :ClusterId, :BackupIds, :BackupNames, :FileNames, :Limit, :Offset, :OrderBy, :OrderByType, :Status
+
+        def initialize(vaultid=nil, clusterid=nil, backupids=nil, backupnames=nil, filenames=nil, limit=nil, offset=nil, orderby=nil, orderbytype=nil, status=nil)
+          @VaultId = vaultid
+          @ClusterId = clusterid
+          @BackupIds = backupids
+          @BackupNames = backupnames
+          @FileNames = filenames
+          @Limit = limit
+          @Offset = offset
+          @OrderBy = orderby
+          @OrderByType = orderbytype
+          @Status = status
+        end
+
+        def deserialize(params)
+          @VaultId = params['VaultId']
+          @ClusterId = params['ClusterId']
+          @BackupIds = params['BackupIds']
+          @BackupNames = params['BackupNames']
+          @FileNames = params['FileNames']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @OrderBy = params['OrderBy']
+          @OrderByType = params['OrderByType']
+          @Status = params['Status']
+        end
+      end
+
+      # DescribeBinlogListByVault返回参数结构体
+      class DescribeBinlogListByVaultResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总数量
+        # @type TotalCount: Integer
+        # @param BinlogList: Binlog文件列表
+        # @type BinlogList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :BinlogList, :RequestId
+
+        def initialize(totalcount=nil, binloglist=nil, requestid=nil)
+          @TotalCount = totalcount
+          @BinlogList = binloglist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['BinlogList'].nil?
+            @BinlogList = []
+            params['BinlogList'].each do |i|
+              describebinloglistbyvaultitem_tmp = DescribeBinlogListByVaultItem.new
+              describebinloglistbyvaultitem_tmp.deserialize(i)
+              @BinlogList << describebinloglistbyvaultitem_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -9439,6 +10046,116 @@ module TencentCloud
         end
       end
 
+      # redolog信息
+      class DescribeRedoLogListByVaultItem < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param ClusterName: 集群名称
+        # @type ClusterName: String
+        # @param RedoFileInfo: RedoLog文件信息
+        # @type RedoFileInfo: :class:`Tencentcloud::Cynosdb.v20190107.models.RedoLogItem`
+
+        attr_accessor :ClusterId, :ClusterName, :RedoFileInfo
+
+        def initialize(clusterid=nil, clustername=nil, redofileinfo=nil)
+          @ClusterId = clusterid
+          @ClusterName = clustername
+          @RedoFileInfo = redofileinfo
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @ClusterName = params['ClusterName']
+          unless params['RedoFileInfo'].nil?
+            @RedoFileInfo = RedoLogItem.new
+            @RedoFileInfo.deserialize(params['RedoFileInfo'])
+          end
+        end
+      end
+
+      # DescribeRedoLogListByVault请求参数结构体
+      class DescribeRedoLogListByVaultRequest < TencentCloud::Common::AbstractModel
+        # @param VaultId: 保险箱ID
+        # @type VaultId: String
+        # @param BackupIds: 备份ID列表
+        # @type BackupIds: Array
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param BackupNames: 备份名称列表
+        # @type BackupNames: Array
+        # @param FileNames: 文件名称列表
+        # @type FileNames: Array
+        # @param Limit: 每页数量，范围(0,100]，默认100
+        # @type Limit: Integer
+        # @param Offset: 偏移量，范围[0,INF)，默认0
+        # @type Offset: Integer
+        # @param OrderBy: 排序字段，可选值：VaultId,VaultName,BackupSaveSeconds,LockedTime,CreateTime,UpdateTime，默认createTime
+        # @type OrderBy: String
+        # @param OrderByType: 排序方式，可选值：desc,asc,DESC,ASC，默认desc
+        # @type OrderByType: String
+        # @param Status: 状态
+        # @type Status: String
+
+        attr_accessor :VaultId, :BackupIds, :ClusterId, :BackupNames, :FileNames, :Limit, :Offset, :OrderBy, :OrderByType, :Status
+
+        def initialize(vaultid=nil, backupids=nil, clusterid=nil, backupnames=nil, filenames=nil, limit=nil, offset=nil, orderby=nil, orderbytype=nil, status=nil)
+          @VaultId = vaultid
+          @BackupIds = backupids
+          @ClusterId = clusterid
+          @BackupNames = backupnames
+          @FileNames = filenames
+          @Limit = limit
+          @Offset = offset
+          @OrderBy = orderby
+          @OrderByType = orderbytype
+          @Status = status
+        end
+
+        def deserialize(params)
+          @VaultId = params['VaultId']
+          @BackupIds = params['BackupIds']
+          @ClusterId = params['ClusterId']
+          @BackupNames = params['BackupNames']
+          @FileNames = params['FileNames']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @OrderBy = params['OrderBy']
+          @OrderByType = params['OrderByType']
+          @Status = params['Status']
+        end
+      end
+
+      # DescribeRedoLogListByVault返回参数结构体
+      class DescribeRedoLogListByVaultResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 符合条件的RedoLog文件总数
+        # @type TotalCount: Integer
+        # @param RedoLogList: RedoLog文件列表
+        # @type RedoLogList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :RedoLogList, :RequestId
+
+        def initialize(totalcount=nil, redologlist=nil, requestid=nil)
+          @TotalCount = totalcount
+          @RedoLogList = redologlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['RedoLogList'].nil?
+            @RedoLogList = []
+            params['RedoLogList'].each do |i|
+              describeredologlistbyvaultitem_tmp = DescribeRedoLogListByVaultItem.new
+              describeredologlistbyvaultitem_tmp.deserialize(i)
+              @RedoLogList << describeredologlistbyvaultitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeRedoLogs请求参数结构体
       class DescribeRedoLogsRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群id
@@ -10212,6 +10929,250 @@ module TencentCloud
               @TaskList << biztaskinfo_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 集群信息
+      class DescribeVaultBackupClusterInfo < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param ClusterName: 集群名称
+        # @type ClusterName: String
+        # @param ClusterStatus: 集群状态
+        # @type ClusterStatus: String
+        # @param ClusterRegion: 集群所在地域
+        # @type ClusterRegion: String
+        # @param ClusterZone: 集群所在可用区
+        # @type ClusterZone: String
+
+        attr_accessor :ClusterId, :ClusterName, :ClusterStatus, :ClusterRegion, :ClusterZone
+
+        def initialize(clusterid=nil, clustername=nil, clusterstatus=nil, clusterregion=nil, clusterzone=nil)
+          @ClusterId = clusterid
+          @ClusterName = clustername
+          @ClusterStatus = clusterstatus
+          @ClusterRegion = clusterregion
+          @ClusterZone = clusterzone
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @ClusterName = params['ClusterName']
+          @ClusterStatus = params['ClusterStatus']
+          @ClusterRegion = params['ClusterRegion']
+          @ClusterZone = params['ClusterZone']
+        end
+      end
+
+      # DescribeVaultBackupClusterInfo请求参数结构体
+      class DescribeVaultBackupClusterInfoRequest < TencentCloud::Common::AbstractModel
+        # @param VaultId: 备份保险箱ID
+        # @type VaultId: String
+
+        attr_accessor :VaultId
+
+        def initialize(vaultid=nil)
+          @VaultId = vaultid
+        end
+
+        def deserialize(params)
+          @VaultId = params['VaultId']
+        end
+      end
+
+      # DescribeVaultBackupClusterInfo返回参数结构体
+      class DescribeVaultBackupClusterInfoResponse < TencentCloud::Common::AbstractModel
+        # @param ClusterInfos: 保险箱信息
+        # @type ClusterInfos: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ClusterInfos, :RequestId
+
+        def initialize(clusterinfos=nil, requestid=nil)
+          @ClusterInfos = clusterinfos
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ClusterInfos'].nil?
+            @ClusterInfos = []
+            params['ClusterInfos'].each do |i|
+              describevaultbackupclusterinfo_tmp = DescribeVaultBackupClusterInfo.new
+              describevaultbackupclusterinfo_tmp.deserialize(i)
+              @ClusterInfos << describevaultbackupclusterinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 保险箱信息
+      class DescribeVaultsItem < TencentCloud::Common::AbstractModel
+        # @param VaultId: 保险箱ID
+        # @type VaultId: String
+        # @param VaultName: 保险箱名称
+        # @type VaultName: String
+        # @param VaultDescribe: 保险箱描述
+        # @type VaultDescribe: String
+        # @param KeyId: 加密密钥ID
+        # @type KeyId: String
+        # @param KeyRegion: 密钥所在地域
+        # @type KeyRegion: String
+        # @param KeyType: 密钥类型
+        # @type KeyType: String
+        # @param BackupFileCount: 备份文件数量
+        # @type BackupFileCount: Integer
+        # @param BackupFileSize: 备份文件总大小（字节）
+        # @type BackupFileSize: Integer
+        # @param BinlogFileCount: Binlog文件数量
+        # @type BinlogFileCount: Integer
+        # @param BinlogFileSize: Binlog文件总大小（字节）
+        # @type BinlogFileSize: Integer
+        # @param RedoLogFileCount: RedoLog文件数量
+        # @type RedoLogFileCount: Integer
+        # @param RedoLogFileSize: RedoLog文件总大小（字节）
+        # @type RedoLogFileSize: Integer
+        # @param Status: 保险箱状态
+        # @type Status: String
+        # @param BackupSaveSeconds: 备份保留时长（秒）
+        # @type BackupSaveSeconds: Integer
+        # @param LockedTime: 锁定时间
+        # @type LockedTime: String
+        # @param Tasks: 关联任务列表
+        # @type Tasks: Array
+        # @param VaultRegion: 保险箱所在地域
+        # @type VaultRegion: String
+        # @param AutoCopyConfigs: 自动投递关系
+        # @type AutoCopyConfigs: Array
+
+        attr_accessor :VaultId, :VaultName, :VaultDescribe, :KeyId, :KeyRegion, :KeyType, :BackupFileCount, :BackupFileSize, :BinlogFileCount, :BinlogFileSize, :RedoLogFileCount, :RedoLogFileSize, :Status, :BackupSaveSeconds, :LockedTime, :Tasks, :VaultRegion, :AutoCopyConfigs
+
+        def initialize(vaultid=nil, vaultname=nil, vaultdescribe=nil, keyid=nil, keyregion=nil, keytype=nil, backupfilecount=nil, backupfilesize=nil, binlogfilecount=nil, binlogfilesize=nil, redologfilecount=nil, redologfilesize=nil, status=nil, backupsaveseconds=nil, lockedtime=nil, tasks=nil, vaultregion=nil, autocopyconfigs=nil)
+          @VaultId = vaultid
+          @VaultName = vaultname
+          @VaultDescribe = vaultdescribe
+          @KeyId = keyid
+          @KeyRegion = keyregion
+          @KeyType = keytype
+          @BackupFileCount = backupfilecount
+          @BackupFileSize = backupfilesize
+          @BinlogFileCount = binlogfilecount
+          @BinlogFileSize = binlogfilesize
+          @RedoLogFileCount = redologfilecount
+          @RedoLogFileSize = redologfilesize
+          @Status = status
+          @BackupSaveSeconds = backupsaveseconds
+          @LockedTime = lockedtime
+          @Tasks = tasks
+          @VaultRegion = vaultregion
+          @AutoCopyConfigs = autocopyconfigs
+        end
+
+        def deserialize(params)
+          @VaultId = params['VaultId']
+          @VaultName = params['VaultName']
+          @VaultDescribe = params['VaultDescribe']
+          @KeyId = params['KeyId']
+          @KeyRegion = params['KeyRegion']
+          @KeyType = params['KeyType']
+          @BackupFileCount = params['BackupFileCount']
+          @BackupFileSize = params['BackupFileSize']
+          @BinlogFileCount = params['BinlogFileCount']
+          @BinlogFileSize = params['BinlogFileSize']
+          @RedoLogFileCount = params['RedoLogFileCount']
+          @RedoLogFileSize = params['RedoLogFileSize']
+          @Status = params['Status']
+          @BackupSaveSeconds = params['BackupSaveSeconds']
+          @LockedTime = params['LockedTime']
+          unless params['Tasks'].nil?
+            @Tasks = []
+            params['Tasks'].each do |i|
+              objecttask_tmp = ObjectTask.new
+              objecttask_tmp.deserialize(i)
+              @Tasks << objecttask_tmp
+            end
+          end
+          @VaultRegion = params['VaultRegion']
+          unless params['AutoCopyConfigs'].nil?
+            @AutoCopyConfigs = []
+            params['AutoCopyConfigs'].each do |i|
+              autocopyconfig_tmp = AutoCopyConfig.new
+              autocopyconfig_tmp.deserialize(i)
+              @AutoCopyConfigs << autocopyconfig_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeVaults请求参数结构体
+      class DescribeVaultsRequest < TencentCloud::Common::AbstractModel
+        # @param VaultIds: 保险箱ID列表，用于精确筛选
+        # @type VaultIds: Array
+        # @param VaultName: 保险箱名称，用于模糊筛选
+        # @type VaultName: String
+        # @param Status: 保险箱状态列表，用于筛选
+        # @type Status: Array
+        # @param Limit: 每页数量，范围(0,100]，默认100
+        # @type Limit: Integer
+        # @param Offset: 偏移量，范围[0,+∞)，默认0
+        # @type Offset: Integer
+        # @param OrderBy: 排序字段，可选值：VaultId, VaultName, BackupSaveSeconds, LockedTime, CreateTime, UpdateTime
+        # @type OrderBy: String
+        # @param OrderByType: 排序方式，可选值：desc, asc, DESC, ASC
+        # @type OrderByType: String
+
+        attr_accessor :VaultIds, :VaultName, :Status, :Limit, :Offset, :OrderBy, :OrderByType
+
+        def initialize(vaultids=nil, vaultname=nil, status=nil, limit=nil, offset=nil, orderby=nil, orderbytype=nil)
+          @VaultIds = vaultids
+          @VaultName = vaultname
+          @Status = status
+          @Limit = limit
+          @Offset = offset
+          @OrderBy = orderby
+          @OrderByType = orderbytype
+        end
+
+        def deserialize(params)
+          @VaultIds = params['VaultIds']
+          @VaultName = params['VaultName']
+          @Status = params['Status']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @OrderBy = params['OrderBy']
+          @OrderByType = params['OrderByType']
+        end
+      end
+
+      # DescribeVaults返回参数结构体
+      class DescribeVaultsResponse < TencentCloud::Common::AbstractModel
+        # @param Vaults: 保险箱列表
+        # @type Vaults: Array
+        # @param TotalCount: 总数量
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Vaults, :TotalCount, :RequestId
+
+        def initialize(vaults=nil, totalcount=nil, requestid=nil)
+          @Vaults = vaults
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Vaults'].nil?
+            @Vaults = []
+            params['Vaults'].each do |i|
+              describevaultsitem_tmp = DescribeVaultsItem.new
+              describevaultsitem_tmp.deserialize(i)
+              @Vaults << describevaultsitem_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -13581,6 +14542,53 @@ module TencentCloud
         end
       end
 
+      # ModifyClusterBinlogRedoLogAutoCopyVault请求参数结构体
+      class ModifyClusterBinlogRedoLogAutoCopyVaultRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param AutoCopyVaults: 自动拷贝保险箱配置列表
+        # @type AutoCopyVaults: Array
+
+        attr_accessor :ClusterId, :AutoCopyVaults
+
+        def initialize(clusterid=nil, autocopyvaults=nil)
+          @ClusterId = clusterid
+          @AutoCopyVaults = autocopyvaults
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          unless params['AutoCopyVaults'].nil?
+            @AutoCopyVaults = []
+            params['AutoCopyVaults'].each do |i|
+              createbackupvaultitem_tmp = CreateBackupVaultItem.new
+              createbackupvaultitem_tmp.deserialize(i)
+              @AutoCopyVaults << createbackupvaultitem_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyClusterBinlogRedoLogAutoCopyVault返回参数结构体
+      class ModifyClusterBinlogRedoLogAutoCopyVaultResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务ID
+        # @type TaskId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyClusterDatabase请求参数结构体
       class ModifyClusterDatabaseRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
@@ -15217,6 +16225,78 @@ module TencentCloud
       # ModifySnapBackupCrossRegionConfig返回参数结构体
       class ModifySnapBackupCrossRegionConfigResponse < TencentCloud::Common::AbstractModel
         # @param TaskId: 任务id
+        # @type TaskId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyVault请求参数结构体
+      class ModifyVaultRequest < TencentCloud::Common::AbstractModel
+        # @param VaultId: 保险箱ID
+        # @type VaultId: String
+        # @param VaultName: 保险箱名称，最大255字符
+        # @type VaultName: String
+        # @param VaultDescribe: 保险箱描述，最大1024字符
+        # @type VaultDescribe: String
+        # @param BackupSaveSeconds: 备份保留时长（秒），范围: (0, 632448000]
+        # @type BackupSaveSeconds: Integer
+        # @param KeyId: 加密密钥ID，最大36字符
+        # @type KeyId: String
+        # @param KeyType: 密钥类型，可选值: cloud、custom
+        # @type KeyType: String
+        # @param KeyRegion: 密钥所在地域，最大32字符
+        # @type KeyRegion: String
+        # @param IsLock: 是否锁定保险箱
+        # @type IsLock: Boolean
+        # @param LockedTime: 锁定到期时间，格式: 2006-01-02 15:04:05，锁定时间距当前最多15天
+        # @type LockedTime: String
+        # @param IsEncryption: 是否加密
+        # @type IsEncryption: Boolean
+
+        attr_accessor :VaultId, :VaultName, :VaultDescribe, :BackupSaveSeconds, :KeyId, :KeyType, :KeyRegion, :IsLock, :LockedTime, :IsEncryption
+
+        def initialize(vaultid=nil, vaultname=nil, vaultdescribe=nil, backupsaveseconds=nil, keyid=nil, keytype=nil, keyregion=nil, islock=nil, lockedtime=nil, isencryption=nil)
+          @VaultId = vaultid
+          @VaultName = vaultname
+          @VaultDescribe = vaultdescribe
+          @BackupSaveSeconds = backupsaveseconds
+          @KeyId = keyid
+          @KeyType = keytype
+          @KeyRegion = keyregion
+          @IsLock = islock
+          @LockedTime = lockedtime
+          @IsEncryption = isencryption
+        end
+
+        def deserialize(params)
+          @VaultId = params['VaultId']
+          @VaultName = params['VaultName']
+          @VaultDescribe = params['VaultDescribe']
+          @BackupSaveSeconds = params['BackupSaveSeconds']
+          @KeyId = params['KeyId']
+          @KeyType = params['KeyType']
+          @KeyRegion = params['KeyRegion']
+          @IsLock = params['IsLock']
+          @LockedTime = params['LockedTime']
+          @IsEncryption = params['IsEncryption']
+        end
+      end
+
+      # ModifyVault返回参数结构体
+      class ModifyVaultResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务ID
         # @type TaskId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -19793,6 +20873,69 @@ module TencentCloud
         end
       end
 
+      # TransferClusterZone请求参数结构体
+      class TransferClusterZoneRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 源集群Id
+        # @type ClusterId: String
+        # @param DstZone: 目标可用区
+        # @type DstZone: String
+        # @param MaxLag: 跨可用区迁移主从数据延迟校验阈值，单位毫秒(ms)
+        # @type MaxLag: Integer
+        # @param TransferType: Immediate:立即执行，InMaintain:时间窗口执行
+        # @type TransferType: String
+        # @param DstSlaveZone: 多可用区备区
+        # @type DstSlaveZone: String
+        # @param ProxyZones: proxy迁移的目标可用区信息
+        # @type ProxyZones: Array
+
+        attr_accessor :ClusterId, :DstZone, :MaxLag, :TransferType, :DstSlaveZone, :ProxyZones
+
+        def initialize(clusterid=nil, dstzone=nil, maxlag=nil, transfertype=nil, dstslavezone=nil, proxyzones=nil)
+          @ClusterId = clusterid
+          @DstZone = dstzone
+          @MaxLag = maxlag
+          @TransferType = transfertype
+          @DstSlaveZone = dstslavezone
+          @ProxyZones = proxyzones
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @DstZone = params['DstZone']
+          @MaxLag = params['MaxLag']
+          @TransferType = params['TransferType']
+          @DstSlaveZone = params['DstSlaveZone']
+          unless params['ProxyZones'].nil?
+            @ProxyZones = []
+            params['ProxyZones'].each do |i|
+              proxyzone_tmp = ProxyZone.new
+              proxyzone_tmp.deserialize(i)
+              @ProxyZones << proxyzone_tmp
+            end
+          end
+        end
+      end
+
+      # TransferClusterZone返回参数结构体
+      class TransferClusterZoneResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 异步任务id
+        # @type TaskId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # UnbindClusterResourcePackages请求参数结构体
       class UnbindClusterResourcePackagesRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
@@ -20187,6 +21330,26 @@ module TencentCloud
           @VaultRegion = params['VaultRegion']
           @VaultStatus = params['VaultStatus']
           @BackupSaveSeconds = params['BackupSaveSeconds']
+        end
+      end
+
+      # 将被删除的备份文件列表
+      class WillDeleteItem < TencentCloud::Common::AbstractModel
+        # @param BackupId: 备份文件ID
+        # @type BackupId: Integer
+        # @param BackupName: 备份文件名称
+        # @type BackupName: String
+
+        attr_accessor :BackupId, :BackupName
+
+        def initialize(backupid=nil, backupname=nil)
+          @BackupId = backupid
+          @BackupName = backupname
+        end
+
+        def deserialize(params)
+          @BackupId = params['BackupId']
+          @BackupName = params['BackupName']
         end
       end
 

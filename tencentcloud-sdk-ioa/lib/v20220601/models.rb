@@ -54,10 +54,12 @@ module TencentCloud
         # @type GenuineRate: Float
         # @param UpgradableDeviceNum: 有新版本可升级的设备数量
         # @type UpgradableDeviceNum: Integer
+        # @param UpgradeDeviceNum: 有新版本可升级的设备数量
+        # @type UpgradeDeviceNum: Integer
 
-        attr_accessor :ID, :Name, :PiracyRisk, :OsType, :CorpName, :InstalledDeviceNum, :PiracyInstalledDeviceNum, :InstalledUserNum, :PiracyInstalledUserNum, :AuthNum, :GenuineRate, :UpgradableDeviceNum
+        attr_accessor :ID, :Name, :PiracyRisk, :OsType, :CorpName, :InstalledDeviceNum, :PiracyInstalledDeviceNum, :InstalledUserNum, :PiracyInstalledUserNum, :AuthNum, :GenuineRate, :UpgradableDeviceNum, :UpgradeDeviceNum
 
-        def initialize(id=nil, name=nil, piracyrisk=nil, ostype=nil, corpname=nil, installeddevicenum=nil, piracyinstalleddevicenum=nil, installedusernum=nil, piracyinstalledusernum=nil, authnum=nil, genuinerate=nil, upgradabledevicenum=nil)
+        def initialize(id=nil, name=nil, piracyrisk=nil, ostype=nil, corpname=nil, installeddevicenum=nil, piracyinstalleddevicenum=nil, installedusernum=nil, piracyinstalledusernum=nil, authnum=nil, genuinerate=nil, upgradabledevicenum=nil, upgradedevicenum=nil)
           @ID = id
           @Name = name
           @PiracyRisk = piracyrisk
@@ -70,6 +72,7 @@ module TencentCloud
           @AuthNum = authnum
           @GenuineRate = genuinerate
           @UpgradableDeviceNum = upgradabledevicenum
+          @UpgradeDeviceNum = upgradedevicenum
         end
 
         def deserialize(params)
@@ -85,6 +88,7 @@ module TencentCloud
           @AuthNum = params['AuthNum']
           @GenuineRate = params['GenuineRate']
           @UpgradableDeviceNum = params['UpgradableDeviceNum']
+          @UpgradeDeviceNum = params['UpgradeDeviceNum']
         end
       end
 
@@ -3868,15 +3872,19 @@ module TencentCloud
         # @param RelateOption: RelateOption 关系操作符（and/or），用于根级别条件关系
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RelateOption: String
+        # @param ValueType: 值类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ValueType: String
 
-        attr_accessor :FieldKey, :Option, :Value, :Groups, :RelateOption
+        attr_accessor :FieldKey, :Option, :Value, :Groups, :RelateOption, :ValueType
 
-        def initialize(fieldkey=nil, option=nil, value=nil, groups=nil, relateoption=nil)
+        def initialize(fieldkey=nil, option=nil, value=nil, groups=nil, relateoption=nil, valuetype=nil)
           @FieldKey = fieldkey
           @Option = option
           @Value = value
           @Groups = groups
           @RelateOption = relateoption
+          @ValueType = valuetype
         end
 
         def deserialize(params)
@@ -3892,6 +3900,7 @@ module TencentCloud
             end
           end
           @RelateOption = params['RelateOption']
+          @ValueType = params['ValueType']
         end
       end
 

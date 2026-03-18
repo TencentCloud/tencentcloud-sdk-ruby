@@ -1126,10 +1126,10 @@ module TencentCloud
 
         attr_accessor :Id, :ClusterId, :Ftitle, :ClusterName, :RegionId, :ZoneId, :AppId, :Uin, :ProjectId, :VpcId, :SubnetId, :Status, :AddTime, :RunTime, :Config, :MasterIp, :EmrVersion, :ChargeType, :TradeVersion, :ResourceOrderId, :IsTradeCluster, :AlarmInfo, :IsWoodpeckerCluster, :MetaDb, :Tags, :HiveMetaDb, :ServiceClass, :AliasInfo, :ProductId, :Zone, :SceneName, :SceneServiceClass, :SceneEmrVersion, :DisplayName, :VpcName, :SubnetName, :ClusterExternalServiceInfo, :UniqVpcId, :UniqSubnetId, :TopologyInfoList, :IsMultiZoneCluster, :IsCvmReplace, :ClusterTitle, :ConfigDetail, :BindFileSystemNum, :ClusterRelationInfoList, :RedisId
         extend Gem::Deprecate
-        deprecate :Ftitle, :none, 2026, 2
-        deprecate :Ftitle=, :none, 2026, 2
-        deprecate :Config, :none, 2026, 2
-        deprecate :Config=, :none, 2026, 2
+        deprecate :Ftitle, :none, 2026, 3
+        deprecate :Ftitle=, :none, 2026, 3
+        deprecate :Config, :none, 2026, 3
+        deprecate :Config=, :none, 2026, 3
 
         def initialize(id=nil, clusterid=nil, ftitle=nil, clustername=nil, regionid=nil, zoneid=nil, appid=nil, uin=nil, projectid=nil, vpcid=nil, subnetid=nil, status=nil, addtime=nil, runtime=nil, config=nil, masterip=nil, emrversion=nil, chargetype=nil, tradeversion=nil, resourceorderid=nil, istradecluster=nil, alarminfo=nil, iswoodpeckercluster=nil, metadb=nil, tags=nil, hivemetadb=nil, serviceclass=nil, aliasinfo=nil, productid=nil, zone=nil, scenename=nil, sceneserviceclass=nil, sceneemrversion=nil, displayname=nil, vpcname=nil, subnetname=nil, clusterexternalserviceinfo=nil, uniqvpcid=nil, uniqsubnetid=nil, topologyinfolist=nil, ismultizonecluster=nil, iscvmreplace=nil, clustertitle=nil, configdetail=nil, bindfilesystemnum=nil, clusterrelationinfolist=nil, redisid=nil)
           @Id = id
@@ -2405,10 +2405,12 @@ module TencentCloud
         # @type ClientToken: String
         # @param DeploymentMode: 部署模式
         # @type DeploymentMode: String
+        # @param UserName: 服务用户名，对不需要用户名的服务不用传，8-16个字符，支持大写字母、小写字母、数字
+        # @type UserName: String
 
-        attr_accessor :InstanceName, :PayMode, :DiskType, :DiskSize, :NodeType, :ZoneSettings, :Tags, :PrePaySetting, :ClientToken, :DeploymentMode
+        attr_accessor :InstanceName, :PayMode, :DiskType, :DiskSize, :NodeType, :ZoneSettings, :Tags, :PrePaySetting, :ClientToken, :DeploymentMode, :UserName
 
-        def initialize(instancename=nil, paymode=nil, disktype=nil, disksize=nil, nodetype=nil, zonesettings=nil, tags=nil, prepaysetting=nil, clienttoken=nil, deploymentmode=nil)
+        def initialize(instancename=nil, paymode=nil, disktype=nil, disksize=nil, nodetype=nil, zonesettings=nil, tags=nil, prepaysetting=nil, clienttoken=nil, deploymentmode=nil, username=nil)
           @InstanceName = instancename
           @PayMode = paymode
           @DiskType = disktype
@@ -2419,6 +2421,7 @@ module TencentCloud
           @PrePaySetting = prepaysetting
           @ClientToken = clienttoken
           @DeploymentMode = deploymentmode
+          @UserName = username
         end
 
         def deserialize(params)
@@ -2449,6 +2452,7 @@ module TencentCloud
           end
           @ClientToken = params['ClientToken']
           @DeploymentMode = params['DeploymentMode']
+          @UserName = params['UserName']
         end
       end
 
@@ -12610,8 +12614,12 @@ module TencentCloud
         # @type AppId: Integer
         # @param VpcId: 主可用区私有网络ID
         # @type VpcId: Integer
+        # @param VpcName: 主可用区私有网络名
+        # @type VpcName: String
         # @param SubnetId: 主可用区子网ID
         # @type SubnetId: Integer
+        # @param SubnetName: 主可用区子网名
+        # @type SubnetName: String
         # @param Status: 状态码
         # @type Status: Integer
         # @param AddTime: 创建时间
@@ -12632,10 +12640,12 @@ module TencentCloud
         # @type ExpireTime: String
         # @param DeployRole: 主备部署角色
         # @type DeployRole: String
+        # @param WebUIUrl: webui地址
+        # @type WebUIUrl: String
 
-        attr_accessor :ClusterId, :Id, :StatusDesc, :HealthStatus, :ClusterName, :RegionId, :ZoneId, :Zone, :AppId, :VpcId, :SubnetId, :Status, :AddTime, :PayMode, :ZoneSettings, :Tags, :AutoRenewFlag, :IsolateTime, :ExpireTime, :DeployRole
+        attr_accessor :ClusterId, :Id, :StatusDesc, :HealthStatus, :ClusterName, :RegionId, :ZoneId, :Zone, :AppId, :VpcId, :VpcName, :SubnetId, :SubnetName, :Status, :AddTime, :PayMode, :ZoneSettings, :Tags, :AutoRenewFlag, :IsolateTime, :ExpireTime, :DeployRole, :WebUIUrl
 
-        def initialize(clusterid=nil, id=nil, statusdesc=nil, healthstatus=nil, clustername=nil, regionid=nil, zoneid=nil, zone=nil, appid=nil, vpcid=nil, subnetid=nil, status=nil, addtime=nil, paymode=nil, zonesettings=nil, tags=nil, autorenewflag=nil, isolatetime=nil, expiretime=nil, deployrole=nil)
+        def initialize(clusterid=nil, id=nil, statusdesc=nil, healthstatus=nil, clustername=nil, regionid=nil, zoneid=nil, zone=nil, appid=nil, vpcid=nil, vpcname=nil, subnetid=nil, subnetname=nil, status=nil, addtime=nil, paymode=nil, zonesettings=nil, tags=nil, autorenewflag=nil, isolatetime=nil, expiretime=nil, deployrole=nil, webuiurl=nil)
           @ClusterId = clusterid
           @Id = id
           @StatusDesc = statusdesc
@@ -12646,7 +12656,9 @@ module TencentCloud
           @Zone = zone
           @AppId = appid
           @VpcId = vpcid
+          @VpcName = vpcname
           @SubnetId = subnetid
+          @SubnetName = subnetname
           @Status = status
           @AddTime = addtime
           @PayMode = paymode
@@ -12656,6 +12668,7 @@ module TencentCloud
           @IsolateTime = isolatetime
           @ExpireTime = expiretime
           @DeployRole = deployrole
+          @WebUIUrl = webuiurl
         end
 
         def deserialize(params)
@@ -12669,7 +12682,9 @@ module TencentCloud
           @Zone = params['Zone']
           @AppId = params['AppId']
           @VpcId = params['VpcId']
+          @VpcName = params['VpcName']
           @SubnetId = params['SubnetId']
+          @SubnetName = params['SubnetName']
           @Status = params['Status']
           @AddTime = params['AddTime']
           @PayMode = params['PayMode']
@@ -12693,6 +12708,7 @@ module TencentCloud
           @IsolateTime = params['IsolateTime']
           @ExpireTime = params['ExpireTime']
           @DeployRole = params['DeployRole']
+          @WebUIUrl = params['WebUIUrl']
         end
       end
 
@@ -13456,12 +13472,12 @@ module TencentCloud
 
         attr_accessor :DetectAlert, :DetetcFunctionKey, :DetetcFunctionValue, :DetetcTime, :DetectFunctionKey, :DetectFunctionValue, :DetectTime
         extend Gem::Deprecate
-        deprecate :DetetcFunctionKey, :none, 2026, 2
-        deprecate :DetetcFunctionKey=, :none, 2026, 2
-        deprecate :DetetcFunctionValue, :none, 2026, 2
-        deprecate :DetetcFunctionValue=, :none, 2026, 2
-        deprecate :DetetcTime, :none, 2026, 2
-        deprecate :DetetcTime=, :none, 2026, 2
+        deprecate :DetetcFunctionKey, :none, 2026, 3
+        deprecate :DetetcFunctionKey=, :none, 2026, 3
+        deprecate :DetetcFunctionValue, :none, 2026, 3
+        deprecate :DetetcFunctionValue=, :none, 2026, 3
+        deprecate :DetetcTime, :none, 2026, 3
+        deprecate :DetetcTime=, :none, 2026, 3
 
         def initialize(detectalert=nil, detetcfunctionkey=nil, detetcfunctionvalue=nil, detetctime=nil, detectfunctionkey=nil, detectfunctionvalue=nil, detecttime=nil)
           @DetectAlert = detectalert

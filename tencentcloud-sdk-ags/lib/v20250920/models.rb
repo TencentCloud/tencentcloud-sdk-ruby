@@ -243,27 +243,27 @@ module TencentCloud
 
       # CreateSandboxTool请求参数结构体
       class CreateSandboxToolRequest < TencentCloud::Common::AbstractModel
-        # @param ToolName: 沙箱工具名称，长度 1-50 字符，支持英文、数字、下划线和连接线。同一 AppId 下沙箱工具名称必须唯一
+        # @param ToolName: <p>沙箱工具名称，长度 1-50 字符，支持英文、数字、下划线和连接线。同一 AppId 下沙箱工具名称必须唯一</p>
         # @type ToolName: String
-        # @param ToolType: 沙箱工具类型，目前支持：browser、code-interpreter、custom
+        # @param ToolType: <p>沙箱工具类型，目前支持：browser、code-interpreter、custom</p>
         # @type ToolType: String
-        # @param NetworkConfiguration: 网络配置
+        # @param NetworkConfiguration: <p>网络配置</p>
         # @type NetworkConfiguration: :class:`Tencentcloud::Ags.v20250920.models.NetworkConfiguration`
-        # @param Description: 沙箱工具描述，最大长度 200 字符
+        # @param Description: <p>沙箱工具描述，最大长度 200 字符</p>
         # @type Description: String
-        # @param DefaultTimeout: 默认超时时间，支持格式：5m、300s、1h 等，不指定则使用系统默认值（5 分钟）。最大 24 小时
+        # @param DefaultTimeout: <p>默认超时时间，支持格式：5m、300s、1h 等，不指定则使用系统默认值（5 分钟）。最大 24 小时</p>
         # @type DefaultTimeout: String
-        # @param Tags: 标签规格，为沙箱工具绑定标签，支持多种资源类型的标签绑定
+        # @param Tags: <p>标签规格，为沙箱工具绑定标签，支持多种资源类型的标签绑定</p>
         # @type Tags: Array
-        # @param ClientToken: 幂等性 Token，长度不超过 64 字符
+        # @param ClientToken: <p>幂等性 Token，长度不超过 64 字符</p>
         # @type ClientToken: String
-        # @param RoleArn: 角色ARN
+        # @param RoleArn: <p>角色ARN</p>
         # @type RoleArn: String
-        # @param StorageMounts: 沙箱工具存储配置
+        # @param StorageMounts: <p>沙箱工具存储配置</p>
         # @type StorageMounts: Array
-        # @param CustomConfiguration: 沙箱工具自定义配置
+        # @param CustomConfiguration: <p>沙箱工具自定义配置</p>
         # @type CustomConfiguration: :class:`Tencentcloud::Ags.v20250920.models.CustomConfiguration`
-        # @param LogConfiguration: 沙箱工具日志推送相关配置
+        # @param LogConfiguration: <p>沙箱工具日志推送相关配置</p>
         # @type LogConfiguration: :class:`Tencentcloud::Ags.v20250920.models.LogConfiguration`
 
         attr_accessor :ToolName, :ToolType, :NetworkConfiguration, :Description, :DefaultTimeout, :Tags, :ClientToken, :RoleArn, :StorageMounts, :CustomConfiguration, :LogConfiguration
@@ -322,7 +322,7 @@ module TencentCloud
 
       # CreateSandboxTool返回参数结构体
       class CreateSandboxToolResponse < TencentCloud::Common::AbstractModel
-        # @param ToolId: 创建的沙箱工具 ID
+        # @param ToolId: <p>创建的沙箱工具 ID</p>
         # @type ToolId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1085,27 +1085,27 @@ module TencentCloud
 
       # 沙箱实例结构体
       class SandboxInstance < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 沙箱实例唯一标识符
+        # @param InstanceId: <p>沙箱实例唯一标识符</p>
         # @type InstanceId: String
-        # @param ToolId: 所属沙箱工具 ID
+        # @param ToolId: <p>所属沙箱工具 ID</p>
         # @type ToolId: String
-        # @param ToolName: 所属沙箱工具名称
+        # @param ToolName: <p>所属沙箱工具名称</p>
         # @type ToolName: String
-        # @param Status: 实例状态：STARTING（启动中）、RUNNING（运行中）、STOPPING（停止中）、STOPPED（已停止）、STOP_FAILED（停止失败）、FAILED（失败状态）
+        # @param Status: <p>实例状态：STARTING（启动中）、RUNNING（运行中）、STOPPING（停止中）、STOPPED（已停止）、STOP_FAILED（停止失败）、FAILED（失败状态）</p>
         # @type Status: String
-        # @param TimeoutSeconds: 超时时间（秒），null 表示无超时设置
+        # @param TimeoutSeconds: <p>超时时间（秒），null 表示无超时设置</p>
         # @type TimeoutSeconds: Integer
-        # @param ExpiresAt: 过期时间（ISO 8601 格式），null 表示无过期时间
+        # @param ExpiresAt: <p>过期时间（ISO 8601 格式），null 表示无过期时间</p>
         # @type ExpiresAt: String
-        # @param StopReason: 停止原因：manual（手动）、timeout（超时）、error（错误）、system（系统），仅在状态为 STOPPED、STOP_FAILED 或 FAILED 时有值。当 provider 停止失败时，状态为 STOP_FAILED，原因为 error
+        # @param StopReason: <p>停止原因：manual（手动）、timeout（超时）、error（错误）、system（系统），仅在状态为 STOPPED、STOP_FAILED 或 FAILED 时有值。当 provider 停止失败时，状态为 STOP_FAILED，原因为 error</p>
         # @type StopReason: String
-        # @param CreateTime: 创建时间（ISO 8601 格式）
+        # @param CreateTime: <p>创建时间（ISO 8601 格式）</p>
         # @type CreateTime: String
-        # @param UpdateTime: 更新时间（ISO 8601 格式）
+        # @param UpdateTime: <p>更新时间（ISO 8601 格式）</p>
         # @type UpdateTime: String
-        # @param MountOptions: 存储挂载选项
+        # @param MountOptions: <p>存储挂载选项</p>
         # @type MountOptions: Array
-        # @param CustomConfiguration: 沙箱实例自定义配置
+        # @param CustomConfiguration: <p>沙箱实例自定义配置</p>
         # @type CustomConfiguration: :class:`Tencentcloud::Ags.v20250920.models.CustomConfigurationDetail`
 
         attr_accessor :InstanceId, :ToolId, :ToolName, :Status, :TimeoutSeconds, :ExpiresAt, :StopReason, :CreateTime, :UpdateTime, :MountOptions, :CustomConfiguration
@@ -1378,11 +1378,11 @@ module TencentCloud
 
       # 挂载存储配置
       class StorageSource < TencentCloud::Common::AbstractModel
-        # @param Cos: 对象存储桶配置
+        # @param Cos: <p>对象存储桶配置</p>
         # @type Cos: :class:`Tencentcloud::Ags.v20250920.models.CosStorageSource`
-        # @param Image: 镜像卷配置
+        # @param Image: <p>镜像卷配置</p>
         # @type Image: :class:`Tencentcloud::Ags.v20250920.models.ImageStorageSource`
-        # @param Cfs: 文件存储配置
+        # @param Cfs: <p>文件存储配置</p>
         # @type Cfs: :class:`Tencentcloud::Ags.v20250920.models.CfsStorageSource`
 
         attr_accessor :Cos, :Image, :Cfs

@@ -17,6 +17,109 @@
 module TencentCloud
   module Tcb
     module V20180608
+      # AddProvider请求参数结构体
+      class AddProviderRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: 云开发环境 ID，用于唯一标识当前操作所属的云开发环境。
+        # @type EnvId: String
+        # @param Name: 身份源的显示名称，支持国际化多语言配置。用户在登录页面看到的身份源名称将使用该字段，建议根据实际业务场景填写易于识别的名称，例如：企业微信、GitHub 等。
+        # @type Name: :class:`Tencentcloud::Tcb.v20180608.models.LocalizedMessage`
+        # @param ProviderType: 身份源协议类型，决定该身份源使用何种认证协议与第三方平台对接。可选值：
+        # OAUTH：标准 OAuth 2.0 协议
+        # OIDC：OpenID Connect 协议
+        # SAML：SAML 2.0 协议
+        # WX_MICRO_APP：微信小程序登录
+        # WX_QRCODE_MICRO_APP：微信小程序扫码登录
+        # WX_CLOUDBASE_MICRO_APP：云开发托管小程序登录
+        # WX_MP：微信公众号网页授权登录
+        # WX_OPEN：微信开放平台扫码登录
+        # WX_WORK_INTERNAL：企业微信自建应用登录
+        # WX_WORK_AGENT：企业微信代开发应用登录
+        # WX_WORK_THIRD_PARTY：企业微信第三方应用登录
+        # WX_WORK_THIRD_PARTY_ASSOCIATION：企业微信第三方应用关联登录
+        # CUSTOM：自定义登录
+        # EMAIL：邮箱登录
+        # @type ProviderType: String
+        # @param Id: 身份源的唯一标识符，用于在系统内区分不同的身份源。格式要求：2~32 位，仅支持小写英文字母和数字，不可包含空格或特殊字符。若不填写，系统将自动生成。例如：github、google。
+        # @type Id: String
+        # @param Picture: 身份源图标的访问地址，将展示在登录页的身份源按钮上。建议使用 64×64 像素的 SVG 格式图片以保证清晰度，支持 HTTP/HTTPS 公网可访问的图片链接。
+        # @type Picture: String
+        # @param Homepage: 身份源对应的官方主页地址。该信息将在用户查看自己的第三方账号绑定列表时展示，帮助用户识别已绑定的身份源来源。例如 GitHub 身份源可填写：https://github.com。
+        # @type Homepage: String
+        # @param Config: 身份认证源协议连接配置，包含与第三方平台对接所需的核心参数，如 ClientId、ClientSecret、授权端点、Token 端点、回调地址、Scope、SAML Metadata、请求和响应参数映射等。不同 ProviderType 对应不同的配置项要求。
+        # @type Config: :class:`Tencentcloud::Tcb.v20180608.models.ProviderConfig`
+        # @param TransparentMode: 是否开启透传登录模式。可选值：TRUE（开启）、FALSE（关闭）、UNSPECIFIED（默认为 FALSE，企业微信代开发应用 WX_WORK_AGENT 类型默认为 TRUE）。开启后，平台不会持久化存储用户数据，仅将第三方身份源返回的用户信息透传给业务方，适用于不希望平台留存用户数据的场景。注意：开启透传模式时，ReuseUserId 将自动设为 TRUE，AutoSignUpWithProviderUser 将自动设为 FALSE。
+        # @type TransparentMode: String
+        # @param Description: 身份源的详细描述信息，支持国际化多语言配置。可用于向用户说明该身份源的用途或使用场景，例如：谷歌授权登录。
+        # @type Description: :class:`Tencentcloud::Tcb.v20180608.models.LocalizedMessage`
+        # @param ReuseUserId: 是否直接复用第三方身份源的用户 ID 作为平台的用户 ID。可选值：TRUE（直接复用，适用于已有用户体系迁移场景）、FALSE（不复用，由平台生成独立用户 ID）、UNSPECIFIED（默认为 FALSE，但当 TransparentMode 为 TRUE 时自动设为 TRUE）。注意：开启后需确保第三方用户 ID 的唯一性，避免 ID 冲突。
+        # @type ReuseUserId: String
+        # @param On: 身份源的启用状态。可选值：TRUE（启用，用户可通过该身份源登录）、FALSE（禁用，登录入口将被隐藏，已有绑定关系不受影响）、UNSPECIFIED（默认为 TRUE）。
+        # @type On: String
+        # @param AutoSignInWhenEmailMatch: 是否开启邮箱自动关联登录。可选值：TRUE（开启）、FALSE（关闭）、UNSPECIFIED（默认为 FALSE）。开启后，若第三方身份源返回的邮箱与系统中已有用户的邮箱一致，则自动将该第三方账号与已有用户关联并完成登录，无需用户手动绑定。
+        # @type AutoSignInWhenEmailMatch: String
+        # @param AutoSignInWhenPhoneNumberMatch: 是否开启手机号自动关联登录。可选值：TRUE（开启）、FALSE（关闭）、UNSPECIFIED（默认行为等同 TRUE）。开启后，若第三方身份源返回的手机号与系统中已有用户的手机号一致，则自动将该第三方账号与已有用户关联并完成登录，无需用户手动绑定。注意：该字段默认行为（UNSPECIFIED）与 AutoSignInWhenEmailMatch 不同，手机号匹配在未显式关闭时默认生效。
+        # @type AutoSignInWhenPhoneNumberMatch: String
+
+        attr_accessor :EnvId, :Name, :ProviderType, :Id, :Picture, :Homepage, :Config, :TransparentMode, :Description, :ReuseUserId, :On, :AutoSignInWhenEmailMatch, :AutoSignInWhenPhoneNumberMatch
+
+        def initialize(envid=nil, name=nil, providertype=nil, id=nil, picture=nil, homepage=nil, config=nil, transparentmode=nil, description=nil, reuseuserid=nil, on=nil, autosigninwhenemailmatch=nil, autosigninwhenphonenumbermatch=nil)
+          @EnvId = envid
+          @Name = name
+          @ProviderType = providertype
+          @Id = id
+          @Picture = picture
+          @Homepage = homepage
+          @Config = config
+          @TransparentMode = transparentmode
+          @Description = description
+          @ReuseUserId = reuseuserid
+          @On = on
+          @AutoSignInWhenEmailMatch = autosigninwhenemailmatch
+          @AutoSignInWhenPhoneNumberMatch = autosigninwhenphonenumbermatch
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          unless params['Name'].nil?
+            @Name = LocalizedMessage.new
+            @Name.deserialize(params['Name'])
+          end
+          @ProviderType = params['ProviderType']
+          @Id = params['Id']
+          @Picture = params['Picture']
+          @Homepage = params['Homepage']
+          unless params['Config'].nil?
+            @Config = ProviderConfig.new
+            @Config.deserialize(params['Config'])
+          end
+          @TransparentMode = params['TransparentMode']
+          unless params['Description'].nil?
+            @Description = LocalizedMessage.new
+            @Description.deserialize(params['Description'])
+          end
+          @ReuseUserId = params['ReuseUserId']
+          @On = params['On']
+          @AutoSignInWhenEmailMatch = params['AutoSignInWhenEmailMatch']
+          @AutoSignInWhenPhoneNumberMatch = params['AutoSignInWhenPhoneNumberMatch']
+        end
+      end
+
+      # AddProvider返回参数结构体
+      class AddProviderResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 合法域名
       class AuthDomain < TencentCloud::Common::AbstractModel
         # @param Id: 域名ID
@@ -894,6 +997,42 @@ module TencentCloud
         end
       end
 
+      # CreateEnvResource请求参数结构体
+      class CreateEnvResourceRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: 环境ID
+        # @type EnvId: String
+        # @param Resources: 资源类型。代表本次开通哪些资源。 可取值以及含义： - log : 表示日志资源，当前仅支持 log（日志资源类型），后续版本可能扩展，该数组不能为空，且每个元素必须为合法的资源类型值
+        # @type Resources: Array
+
+        attr_accessor :EnvId, :Resources
+
+        def initialize(envid=nil, resources=nil)
+          @EnvId = envid
+          @Resources = resources
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @Resources = params['Resources']
+        end
+      end
+
+      # CreateEnvResource返回参数结构体
+      class CreateEnvResourceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateEnv返回参数结构体
       class CreateEnvResponse < TencentCloud::Common::AbstractModel
         # @param EnvId: 自动生成的环境ID
@@ -1302,7 +1441,7 @@ module TencentCloud
       class DeleteAuthDomainRequest < TencentCloud::Common::AbstractModel
         # @param EnvId: 开发者的环境ID
         # @type EnvId: String
-        # @param DomainIds: 域名ID列表，支持批量
+        # @param DomainIds: 域名ID列表，支持批量传递
         # @type DomainIds: Array
 
         attr_accessor :EnvId, :DomainIds
@@ -1434,6 +1573,42 @@ module TencentCloud
 
         def deserialize(params)
           @Count = params['Count']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteProvider请求参数结构体
+      class DeleteProviderRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: 环境ID
+        # @type EnvId: String
+        # @param Id: 认证源ID，比如：github, 格式必须为：2-32位小写英文字符串或数字
+        # @type Id: String
+
+        attr_accessor :EnvId, :Id
+
+        def initialize(envid=nil, id=nil)
+          @EnvId = envid
+          @Id = id
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @Id = params['Id']
+        end
+      end
+
+      # DeleteProvider返回参数结构体
+      class DeleteProviderResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -1707,6 +1882,71 @@ module TencentCloud
               @EnvBillingInfoList << envbillinginfoitem_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeClient请求参数结构体
+      class DescribeClientRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: 环境ID
+        # @type EnvId: String
+        # @param Id: 客户端的唯一标识符（Client ID），在 OAuth/OIDC 授权流程中作为 client_id 参数使用，创建后不可修改，一般使用环境id
+        # @type Id: String
+
+        attr_accessor :EnvId, :Id
+
+        def initialize(envid=nil, id=nil)
+          @EnvId = envid
+          @Id = id
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @Id = params['Id']
+        end
+      end
+
+      # DescribeClient返回参数结构体
+      class DescribeClientResponse < TencentCloud::Common::AbstractModel
+        # @param Id: 客户端的唯一标识符（Client ID），在 OAuth/OIDC 授权流程中作为 client_id 参数使用。创建时仅可传入环境 ID 或留空：传入环境 ID 时将直接使用该值作为客户端 ID（一个环境仅允许一个）；留空时由系统自动生成与环境 ID 关联的唯一 ID。创建后不可修改。
+        # @type Id: String
+        # @param CreatedAt: 客户端的创建时间，格式遵循 ISO 8601 标准（如：2024-01-01T00:00:00Z），由系统自动生成，不可手动修改。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreatedAt: String
+        # @param UpdatedAt: 客户端信息的最后修改时间，格式遵循 ISO 8601 标准（如：2024-01-01T00:00:00Z），每次更新应用配置时由系统自动更新。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdatedAt: String
+        # @param RefreshTokenExpiresIn: Refresh Token 的有效期，单位为秒。超过该时间后 Refresh Token 将失效，用户需重新登录。取值范围：最小 1800 秒（30 分钟），最大 2592000 秒（30 天），超出上限将自动截断为 30 天。若不设置则默认为 30 天。当该值小于等于 7200 秒时，系统会自动将 AccessTokenExpiresIn 调整为 RefreshTokenExpiresIn - 660 秒。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RefreshTokenExpiresIn: Integer
+        # @param AccessTokenExpiresIn: Access Token 的有效期，单位为秒。超过该时间后 Access Token 将失效，需通过 Refresh Token 换取新的 Access Token。若不设置则默认为 7200 秒（2 小时）。设置值小于 1800 秒时将被忽略，使用系统默认值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccessTokenExpiresIn: Integer
+        # @param MaxDevice: 单个用户在该客户端下允许同时登录的最大会话数量。取值范围：-1 至 50。-1 表示不限制设备数量；0 或不填默认按 User-Agent 区分设备（相同 User-Agent 共享一个会话，不同 User-Agent 各独立一个会话）；1 表示单设备登录，新登录将踢出旧会话；大于 1 时按真实设备 ID 限制，超出限制后最早登录的会话将被自动踢出。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxDevice: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Id, :CreatedAt, :UpdatedAt, :RefreshTokenExpiresIn, :AccessTokenExpiresIn, :MaxDevice, :RequestId
+
+        def initialize(id=nil, createdat=nil, updatedat=nil, refreshtokenexpiresin=nil, accesstokenexpiresin=nil, maxdevice=nil, requestid=nil)
+          @Id = id
+          @CreatedAt = createdat
+          @UpdatedAt = updatedat
+          @RefreshTokenExpiresIn = refreshtokenexpiresin
+          @AccessTokenExpiresIn = accesstokenexpiresin
+          @MaxDevice = maxdevice
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @CreatedAt = params['CreatedAt']
+          @UpdatedAt = params['UpdatedAt']
+          @RefreshTokenExpiresIn = params['RefreshTokenExpiresIn']
+          @AccessTokenExpiresIn = params['AccessTokenExpiresIn']
+          @MaxDevice = params['MaxDevice']
           @RequestId = params['RequestId']
         end
       end
@@ -2703,6 +2943,77 @@ module TencentCloud
         end
       end
 
+      # DescribeLoginConfig请求参数结构体
+      class DescribeLoginConfigRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: 环境id
+        # @type EnvId: String
+
+        attr_accessor :EnvId
+
+        def initialize(envid=nil)
+          @EnvId = envid
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+        end
+      end
+
+      # DescribeLoginConfig返回参数结构体
+      class DescribeLoginConfigResponse < TencentCloud::Common::AbstractModel
+        # @param EmailLogin: 是否开启邮箱登录方式。true 表示已开启，允许用户使用邮箱和密码进行登录；false 表示已关闭。
+        # @type EmailLogin: Boolean
+        # @param AnonymousLogin: 是否开启匿名登录方式。true 表示已开启，允许用户无需注册即可以匿名身份登录；false 表示已关闭。
+        # @type AnonymousLogin: Boolean
+        # @param UserNameLogin: 是否开启用户名密码登录方式。true 表示已开启，允许用户使用用户名和密码进行登录；false 表示已关闭。
+        # @type UserNameLogin: Boolean
+        # @param SmsVerificationConfig: 短信验证码发送配置，包含短信发送通道类型、自定义 APIs 数据源、调用方法及每日发送限额等信息。
+        # @type SmsVerificationConfig: :class:`Tencentcloud::Tcb.v20180608.models.VerificationConfig`
+        # @param PhoneNumberLogin: 是否开启手机号短信登录方式。true 表示已开启，允许用户使用手机号和短信验证码进行登录和注册；false 表示已关闭。
+        # @type PhoneNumberLogin: Boolean
+        # @param MfaConfig: MFA 多因子认证登录配置，包含 MFA 开关及各验证方式（短信、邮箱、TOTP、强制绑定手机号）的启用状态。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MfaConfig: :class:`Tencentcloud::Tcb.v20180608.models.MFALoginConfig`
+        # @param PwdUpdateStrategy: 密码修改策略配置，包含首次登录强制修改密码开关及定期修改密码策略（周期和时间单位）。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PwdUpdateStrategy: :class:`Tencentcloud::Tcb.v20180608.models.PasswordUpdateLoginConfig`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :EmailLogin, :AnonymousLogin, :UserNameLogin, :SmsVerificationConfig, :PhoneNumberLogin, :MfaConfig, :PwdUpdateStrategy, :RequestId
+
+        def initialize(emaillogin=nil, anonymouslogin=nil, usernamelogin=nil, smsverificationconfig=nil, phonenumberlogin=nil, mfaconfig=nil, pwdupdatestrategy=nil, requestid=nil)
+          @EmailLogin = emaillogin
+          @AnonymousLogin = anonymouslogin
+          @UserNameLogin = usernamelogin
+          @SmsVerificationConfig = smsverificationconfig
+          @PhoneNumberLogin = phonenumberlogin
+          @MfaConfig = mfaconfig
+          @PwdUpdateStrategy = pwdupdatestrategy
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @EmailLogin = params['EmailLogin']
+          @AnonymousLogin = params['AnonymousLogin']
+          @UserNameLogin = params['UserNameLogin']
+          unless params['SmsVerificationConfig'].nil?
+            @SmsVerificationConfig = VerificationConfig.new
+            @SmsVerificationConfig.deserialize(params['SmsVerificationConfig'])
+          end
+          @PhoneNumberLogin = params['PhoneNumberLogin']
+          unless params['MfaConfig'].nil?
+            @MfaConfig = MFALoginConfig.new
+            @MfaConfig.deserialize(params['MfaConfig'])
+          end
+          unless params['PwdUpdateStrategy'].nil?
+            @PwdUpdateStrategy = PasswordUpdateLoginConfig.new
+            @PwdUpdateStrategy.deserialize(params['PwdUpdateStrategy'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeMySQLClusterDetail请求参数结构体
       class DescribeMySQLClusterDetailRequest < TencentCloud::Common::AbstractModel
         # @param EnvId: 云开发环境ID
@@ -3197,6 +3508,51 @@ module TencentCloud
         end
       end
 
+      # DescribeVmSpec请求参数结构体
+      class DescribeVmSpecRequest < TencentCloud::Common::AbstractModel
+        # @param Type: 类型：
+        # LightHouse = 轻量云服务器
+        # CVM = 云服务器
+        # @type Type: String
+
+        attr_accessor :Type
+
+        def initialize(type=nil)
+          @Type = type
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+        end
+      end
+
+      # DescribeVmSpec返回参数结构体
+      class DescribeVmSpecResponse < TencentCloud::Common::AbstractModel
+        # @param SpecList: 规格列表
+        # @type SpecList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SpecList, :RequestId
+
+        def initialize(speclist=nil, requestid=nil)
+          @SpecList = speclist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['SpecList'].nil?
+            @SpecList = []
+            params['SpecList'].each do |i|
+              vmspec_tmp = VMSpec.new
+              vmspec_tmp.deserialize(i)
+              @SpecList << vmspec_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DestroyEnv请求参数结构体
       class DestroyEnvRequest < TencentCloud::Common::AbstractModel
         # @param EnvId: 环境Id
@@ -3397,6 +3753,65 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 邮箱登录配置
+      class EmailProviderConfig < TencentCloud::Common::AbstractModel
+        # @param SmtpConfig: smtp配置
+        # @type SmtpConfig: :class:`Tencentcloud::Tcb.v20180608.models.EmailSmtpConfig`
+        # @param On: 可选：TRUE，FALSE，如果On为TRUE，则表示采用默认代发。
+        # @type On: String
+
+        attr_accessor :SmtpConfig, :On
+
+        def initialize(smtpconfig=nil, on=nil)
+          @SmtpConfig = smtpconfig
+          @On = on
+        end
+
+        def deserialize(params)
+          unless params['SmtpConfig'].nil?
+            @SmtpConfig = EmailSmtpConfig.new
+            @SmtpConfig.deserialize(params['SmtpConfig'])
+          end
+          @On = params['On']
+        end
+      end
+
+      # 邮箱smtp配置
+      class EmailSmtpConfig < TencentCloud::Common::AbstractModel
+        # @param SenderAddress: 邮件发送者的邮箱地址，即收件人看到的发件人地址。需为有效的邮箱格式，且须与 SMTP 服务器的授权账号一致，否则可能被邮件服务商拒绝发送。例如：abc@example.com
+        # @type SenderAddress: String
+        # @param ServerHost: SMTP 邮件服务器的域名或 IP 地址，用于建立邮件发送连接。不同邮件服务商的 SMTP 地址不同，例如 QQ 邮箱为 smtp.qq.com，Gmail 为 smtp.gmail.com，请以实际服务商提供的地址为准。
+        # @type ServerHost: String
+        # @param ServerPort: SMTP 邮件服务器的端口号，需与所选安全模式（SecurityMode）匹配。常用端口：465（SSL 加密）、587（STARTTLS 加密）、25（无加密，不推荐）。建议优先使用 465 或 587 以保障传输安全。
+        # @type ServerPort: Integer
+        # @param AccountUsername: SMTP 服务器的登录账号，通常为发件人的完整邮箱地址。部分邮件服务商支持使用独立的 SMTP 授权账号，请以实际服务商的要求为准。
+        # @type AccountUsername: String
+        # @param AccountPassword: SMTP 服务器的登录密码。注意：部分邮件服务商（如 QQ 邮箱、163 邮箱）不支持直接使用账号登录密码，需在邮箱设置中开启 SMTP 服务并生成专用的授权码，请以实际服务商的要求为准。
+        # @type AccountPassword: String
+        # @param SecurityMode: SMTP 连接的加密模式，用于保障邮件传输安全。可选值：AUTO（自动选择，优先使用安全连接）、SSL（全程 SSL/TLS 加密，通常配合端口 465 使用）、STARTSSL（通过 STARTTLS 命令升级为加密连接，通常配合端口 587 使用）、NO_SSL（不使用加密，仅建议在内网或测试环境中使用）。推荐使用 AUTO 或 SSL 以确保传输安全。
+        # @type SecurityMode: String
+
+        attr_accessor :SenderAddress, :ServerHost, :ServerPort, :AccountUsername, :AccountPassword, :SecurityMode
+
+        def initialize(senderaddress=nil, serverhost=nil, serverport=nil, accountusername=nil, accountpassword=nil, securitymode=nil)
+          @SenderAddress = senderaddress
+          @ServerHost = serverhost
+          @ServerPort = serverport
+          @AccountUsername = accountusername
+          @AccountPassword = accountpassword
+          @SecurityMode = securitymode
+        end
+
+        def deserialize(params)
+          @SenderAddress = params['SenderAddress']
+          @ServerHost = params['ServerHost']
+          @ServerPort = params['ServerPort']
+          @AccountUsername = params['AccountUsername']
+          @AccountPassword = params['AccountPassword']
+          @SecurityMode = params['SecurityMode']
         end
       end
 
@@ -3678,6 +4093,55 @@ module TencentCloud
         end
       end
 
+      # GetProviders请求参数结构体
+      class GetProvidersRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: 环境 ID，用于指定需要查询配置第三方身份源的云开发环境。
+        # @type EnvId: String
+
+        attr_accessor :EnvId
+
+        def initialize(envid=nil)
+          @EnvId = envid
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+        end
+      end
+
+      # GetProviders返回参数结构体
+      class GetProvidersResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Total: Integer
+        # @param Data: 三方认证源列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :Data, :RequestId
+
+        def initialize(total=nil, data=nil, requestid=nil)
+          @Total = total
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              provider_tmp = Provider.new
+              provider_tmp.deserialize(i)
+              @Data << provider_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 扩缩容策略
       class HpaPolicy < TencentCloud::Common::AbstractModel
         # @param PolicyType: 策略类型
@@ -3890,6 +4354,33 @@ module TencentCloud
         end
       end
 
+      # 可以为每种语言配置一个字符串。比如：name，中文展示为：名字，英文展示为 name，韩文展示为：이름
+      class LocalizedMessage < TencentCloud::Common::AbstractModel
+        # @param Message: 默认展示的文本
+        # @type Message: String
+        # @param Localized: 针对每种语言展示的文字
+        # @type Localized: Array
+
+        attr_accessor :Message, :Localized
+
+        def initialize(message=nil, localized=nil)
+          @Message = message
+          @Localized = localized
+        end
+
+        def deserialize(params)
+          @Message = params['Message']
+          unless params['Localized'].nil?
+            @Localized = []
+            params['Localized'].each do |i|
+              messagelocalized_tmp = MessageLocalized.new
+              messagelocalized_tmp.deserialize(i)
+              @Localized << messagelocalized_tmp
+            end
+          end
+        end
+      end
+
       # CLS日志单条信息
       class LogObject < TencentCloud::Common::AbstractModel
         # @param TopicId: 日志属于的 topic ID
@@ -3997,6 +4488,70 @@ module TencentCloud
         end
       end
 
+      # 多因子认证登录配置，用于管理 MFA（Multi-Factor Authentication）相关设置。包括 MFA 总开关、短信验证、邮箱验证、强制绑定手机号、TOTP 动态验证码等认证方式的独立开关配置。当 MFA 总开关（On）开启时，用户在登录后需完成额外的身份验证步骤。各子开关可独立控制具体的验证方式。不传则不修改当前配置。
+      class MFALoginConfig < TencentCloud::Common::AbstractModel
+        # @param On: MFA 多因子认证开关。取值范围：
+        # TRUE：开启 MFA 多因子认证
+        # FALSE：关闭 MFA 多因子认证
+        # 不传则不修改当前配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type On: String
+        # @param Sms: 短信验证开关，控制是否在 MFA 流程中启用短信验证码校验。取值范围：
+        # TRUE：开启短信验证
+        # FALSE：关闭短信验证
+        # 不传则不修改当前配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Sms: String
+        # @param Email: 邮箱验证开关，控制是否在 MFA 流程中启用邮箱验证码校验。取值范围：
+        # TRUE：开启邮箱验证
+        # FALSE：关闭邮箱验证
+        # 不传则不修改当前配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Email: String
+        # @param RequiredBindPhone: 强制绑定手机号开关，控制用户在完成 MFA 认证前是否必须绑定手机号。取值范围：
+        # TRUE：要求绑定手机号
+        # FALSE：不要求绑定手机号
+        # 不传则不修改当前配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RequiredBindPhone: String
+
+        attr_accessor :On, :Sms, :Email, :RequiredBindPhone
+
+        def initialize(on=nil, sms=nil, email=nil, requiredbindphone=nil)
+          @On = on
+          @Sms = sms
+          @Email = email
+          @RequiredBindPhone = requiredbindphone
+        end
+
+        def deserialize(params)
+          @On = params['On']
+          @Sms = params['Sms']
+          @Email = params['Email']
+          @RequiredBindPhone = params['RequiredBindPhone']
+        end
+      end
+
+      # 多语言文字，在 Locale 中 展示的 Message
+      class MessageLocalized < TencentCloud::Common::AbstractModel
+        # @param Message: 字符串
+        # @type Message: String
+        # @param Locale: 在该语言中
+        # @type Locale: String
+
+        attr_accessor :Message, :Locale
+
+        def initialize(message=nil, locale=nil)
+          @Message = message
+          @Locale = locale
+        end
+
+        def deserialize(params)
+          @Message = params['Message']
+          @Locale = params['Locale']
+        end
+      end
+
       # 待执行命令
       class MgoCommandParam < TencentCloud::Common::AbstractModel
         # @param TableName: 表名
@@ -4069,6 +4624,54 @@ module TencentCloud
           end
           @MgoIsUnique = params['MgoIsUnique']
           @MgoIsSparse = params['MgoIsSparse']
+        end
+      end
+
+      # ModifyClient请求参数结构体
+      class ModifyClientRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: 客户端所属的云开发环境 ID，用于标识该应用归属的云开发环境。不同环境之间的应用数据相互隔离。
+        # @type EnvId: String
+        # @param Id: 需要修改的客户端唯一标识符（Client ID），在 OAuth/OIDC 授权流程中作为 client_id 参数使用。该字段为定位参数，仅用于指定目标客户端，不可修改。
+        # @type Id: String
+        # @param RefreshTokenExpiresIn: Refresh Token 的有效期，单位为秒。超过该时间后 Refresh Token 将失效，用户需重新登录。取值范围：1800~2592000（即 30 分钟至 30 天），超出上限将被截断为 2592000。默认值为 2592000（即 30 天）。注意：当该值 ≤ 7200 时，AccessTokenExpiresIn 将被自动设为该值减去 660 秒。
+        # @type RefreshTokenExpiresIn: Integer
+        # @param MaxDevice: 单个用户在该应用下允许同时登录的最大会话数量。取值范围：-1~50。特殊值说明：-1 表示不限制设备数；0 表示按客户端 User-Agent 区分设备（相同 User-Agent 视为同一设备）；1~50 为精确的最大会话数限制，超出限制后最早登录的会话将被自动踢出。不传则保持原有配置不变。
+        # @type MaxDevice: Integer
+        # @param AccessTokenExpiresIn: Access Token 的有效期，单位为秒。超过该时间后 Access Token 将失效，需使用 Refresh Token 重新换取。最小有效值为 1800 秒（小于 1800 将被忽略，使用默认值），默认值为 7200（即 2 小时）。该值应小于 RefreshTokenExpiresIn。
+        # @type AccessTokenExpiresIn: Integer
+
+        attr_accessor :EnvId, :Id, :RefreshTokenExpiresIn, :MaxDevice, :AccessTokenExpiresIn
+
+        def initialize(envid=nil, id=nil, refreshtokenexpiresin=nil, maxdevice=nil, accesstokenexpiresin=nil)
+          @EnvId = envid
+          @Id = id
+          @RefreshTokenExpiresIn = refreshtokenexpiresin
+          @MaxDevice = maxdevice
+          @AccessTokenExpiresIn = accesstokenexpiresin
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @Id = params['Id']
+          @RefreshTokenExpiresIn = params['RefreshTokenExpiresIn']
+          @MaxDevice = params['MaxDevice']
+          @AccessTokenExpiresIn = params['AccessTokenExpiresIn']
+        end
+      end
+
+      # ModifyClient返回参数结构体
+      class ModifyClientResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 
@@ -4262,6 +4865,185 @@ module TencentCloud
 
       # ModifyEnv返回参数结构体
       class ModifyEnvResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyLoginConfig请求参数结构体
+      class ModifyLoginConfigRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: 环境 ID，用于指定需要修改登录策略的云开发环境。
+        # @type EnvId: String
+        # @param PhoneNumberLogin: 手机号短信登录开关。设置为 true 开启手机号短信登录，允许用户使用手机号和短信验证码进行登录和注册；设置为 false 关闭手机号短信登录。
+        # @type PhoneNumberLogin: Boolean
+        # @param EmailLogin: 邮箱登录开关。设置为 true 开启邮箱登录，允许用户使用邮箱和密码进行登录和注册；设置为 false 关闭邮箱登录。
+        # @type EmailLogin: Boolean
+        # @param UserNameLogin: 用户名密码登录开关。设置为 true 开启用户名密码登录，允许用户使用用户名和密码进行登录和注册；设置为 false 关闭用户名密码登录。
+        # @type UserNameLogin: Boolean
+        # @param AnonymousLogin: 匿名登录开关。设置为 true 开启匿名登录，允许用户无需注册即可以匿名身份访问应用；设置为 false 关闭匿名登录。
+        # @type AnonymousLogin: Boolean
+        # @param SmsVerificationConfig: 短信验证码发送配置，用于设置短信验证码的发送通道类型和日发送限额。不传则不修改当前配置。
+        # @type SmsVerificationConfig: :class:`Tencentcloud::Tcb.v20180608.models.VerificationConfig`
+        # @param MfaConfig: MFA 多因子认证登录配置，用于设置多因子认证开关及验证方式（短信、邮箱、TOTP、强制绑定手机号）。不传则不修改当前配置。
+        # @type MfaConfig: :class:`Tencentcloud::Tcb.v20180608.models.MFALoginConfig`
+        # @param PwdUpdateStrategy: 密码更新策略配置，用于设置首次登录强制修改密码和定期强制修改密码策略。不传则不修改当前配置。
+        # @type PwdUpdateStrategy: :class:`Tencentcloud::Tcb.v20180608.models.PasswordUpdateLoginConfig`
+
+        attr_accessor :EnvId, :PhoneNumberLogin, :EmailLogin, :UserNameLogin, :AnonymousLogin, :SmsVerificationConfig, :MfaConfig, :PwdUpdateStrategy
+
+        def initialize(envid=nil, phonenumberlogin=nil, emaillogin=nil, usernamelogin=nil, anonymouslogin=nil, smsverificationconfig=nil, mfaconfig=nil, pwdupdatestrategy=nil)
+          @EnvId = envid
+          @PhoneNumberLogin = phonenumberlogin
+          @EmailLogin = emaillogin
+          @UserNameLogin = usernamelogin
+          @AnonymousLogin = anonymouslogin
+          @SmsVerificationConfig = smsverificationconfig
+          @MfaConfig = mfaconfig
+          @PwdUpdateStrategy = pwdupdatestrategy
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @PhoneNumberLogin = params['PhoneNumberLogin']
+          @EmailLogin = params['EmailLogin']
+          @UserNameLogin = params['UserNameLogin']
+          @AnonymousLogin = params['AnonymousLogin']
+          unless params['SmsVerificationConfig'].nil?
+            @SmsVerificationConfig = VerificationConfig.new
+            @SmsVerificationConfig.deserialize(params['SmsVerificationConfig'])
+          end
+          unless params['MfaConfig'].nil?
+            @MfaConfig = MFALoginConfig.new
+            @MfaConfig.deserialize(params['MfaConfig'])
+          end
+          unless params['PwdUpdateStrategy'].nil?
+            @PwdUpdateStrategy = PasswordUpdateLoginConfig.new
+            @PwdUpdateStrategy.deserialize(params['PwdUpdateStrategy'])
+          end
+        end
+      end
+
+      # ModifyLoginConfig返回参数结构体
+      class ModifyLoginConfigResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyProvider请求参数结构体
+      class ModifyProviderRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: 云开发环境 ID，用于唯一标识当前操作所属的云开发环境。
+        # @type EnvId: String
+        # @param Id: 身份源的唯一标识符，用于指定需要修改的目标身份源。格式要求：2~32 位，仅支持小写英文字母和数字，不可包含空格或特殊字符。例如：github、google。
+        # @type Id: String
+        # @param Name: 身份源的显示名称，支持国际化多语言配置。用户在登录页面看到的身份源名称将使用该字段，建议根据实际业务场景填写易于识别的名称，例如：GitHub、Google 等。
+        # @type Name: :class:`Tencentcloud::Tcb.v20180608.models.LocalizedMessage`
+        # @param Picture: 身份源图标的访问地址，将展示在登录页的身份源按钮上。建议使用 64×64 像素的 SVG 格式图片以保证清晰度，支持 HTTP/HTTPS 公网可访问的图片链接。
+        # @type Picture: String
+        # @param Homepage: 身份源对应的官方主页地址。该信息将在用户查看自己的第三方账号绑定列表时展示，帮助用户识别已绑定的身份源来源。例如 GitHub 身份源可填写：https://github.com。
+        # @type Homepage: String
+        # @param ProviderType: 身份源协议类型，决定该身份源使用何种认证协议与第三方平台对接。可选值：
+        # OAUTH：标准 OAuth 2.0 协议
+        # OIDC：OpenID Connect 协议
+        # SAML：SAML 2.0 协议
+        # WX_MICRO_APP：微信小程序登录
+        # WX_QRCODE_MICRO_APP：微信小程序扫码登录
+        # WX_CLOUDBASE_MICRO_APP：云开发托管小程序登录
+        # WX_MP：微信公众号网页授权登录
+        # WX_OPEN：微信开放平台扫码登录
+        # WX_WORK_INTERNAL：企业微信自建应用登录
+        # WX_WORK_AGENT：企业微信代开发应用登录
+        # WX_WORK_THIRD_PARTY：企业微信第三方应用登录
+        # WX_WORK_THIRD_PARTY_ASSOCIATION：企业微信第三方应用关联登录
+        # CUSTOM：自定义登录
+        # EMAIL：邮箱登录
+        # @type ProviderType: String
+        # @param Config: 身份认证源协议连接配置，包含与第三方平台对接所需的核心参数，如 ClientId、ClientSecret、授权端点、Token 端点、回调地址、Scope、SAML Metadata、请求和响应参数映射等。不同 ProviderType 对应不同的配置项要求。注意：CUSTOM 和 EMAIL 类型的身份源，其存储后端类型（StorageDb）不可修改。
+        # @type Config: :class:`Tencentcloud::Tcb.v20180608.models.ProviderConfig`
+        # @param TransparentMode: 是否开启透传登录模式。可选值：TRUE（开启）、FALSE（关闭，默认值）。开启后，平台不会持久化存储用户数据，仅将第三方身份源返回的用户信息透传给业务方，适用于不希望平台留存用户数据的场景。注意：开启透传模式时，ReuseUserId 将被强制设为 TRUE，AutoSignUpWithProviderUser 将被强制设为 FALSE。
+        # @type TransparentMode: String
+        # @param On: 身份源的启用状态。可选值：TRUE（启用，用户可通过该身份源登录）、FALSE（禁用，登录入口将被隐藏，已有绑定关系不受影响）、UNSPECIFIED（默认为 TRUE）。
+        # @type On: String
+        # @param Description: 身份源的详细描述信息，支持国际化多语言配置。可用于向用户说明该身份源的用途或使用场景，例如：谷歌授权登录。
+        # @type Description: :class:`Tencentcloud::Tcb.v20180608.models.LocalizedMessage`
+        # @param ReuseUserId: 是否直接复用第三方身份源的用户 ID 作为平台用户 ID。可选值：TRUE（开启，返回的用户 ID 将直接使用第三方身份源的用户 ID，适用于已有用户体系迁移场景）、FALSE（关闭，由平台生成独立用户 ID）、UNSPECIFIED（默认为 FALSE，但当 TransparentMode 为 TRUE 时将被强制设为 TRUE）。注意：开启后需确保第三方用户 ID 的全局唯一性，避免 ID 冲突。
+        # @type ReuseUserId: String
+        # @param EmailConfig: 邮箱身份源的专项配置，包含邮件服务商、发件人地址、SMTP 配置等参数，用于支持通过邮箱验证码或邮箱密码方式进行身份认证。仅当身份源 ID 为 email 时有效。若该身份源不存在，系统将自动创建一个默认关闭的邮箱身份源。
+        # @type EmailConfig: :class:`Tencentcloud::Tcb.v20180608.models.EmailProviderConfig`
+        # @param AutoSignInWhenEmailMatch: 是否开启邮箱自动关联登录。可选值：TRUE（开启）、FALSE（关闭）、UNSPECIFIED（默认为 FALSE）。开启后，若第三方身份源返回的邮箱与系统中已有用户的邮箱一致，则自动将该第三方账号与已有用户关联并完成登录，无需用户手动绑定。
+        # @type AutoSignInWhenEmailMatch: String
+        # @param AutoSignInWhenPhoneNumberMatch: 是否开启手机号自动关联登录。可选值：TRUE（开启）、FALSE（关闭）、UNSPECIFIED（默认行为等同 TRUE）。开启后，若第三方身份源返回的手机号与系统中已有用户的手机号一致，则自动将该第三方账号与已有用户关联并完成登录，无需用户手动绑定。注意：该字段默认行为（UNSPECIFIED）与 AutoSignInWhenEmailMatch 不同，手机号匹配在未显式关闭时默认生效。
+        # @type AutoSignInWhenPhoneNumberMatch: String
+
+        attr_accessor :EnvId, :Id, :Name, :Picture, :Homepage, :ProviderType, :Config, :TransparentMode, :On, :Description, :ReuseUserId, :EmailConfig, :AutoSignInWhenEmailMatch, :AutoSignInWhenPhoneNumberMatch
+
+        def initialize(envid=nil, id=nil, name=nil, picture=nil, homepage=nil, providertype=nil, config=nil, transparentmode=nil, on=nil, description=nil, reuseuserid=nil, emailconfig=nil, autosigninwhenemailmatch=nil, autosigninwhenphonenumbermatch=nil)
+          @EnvId = envid
+          @Id = id
+          @Name = name
+          @Picture = picture
+          @Homepage = homepage
+          @ProviderType = providertype
+          @Config = config
+          @TransparentMode = transparentmode
+          @On = on
+          @Description = description
+          @ReuseUserId = reuseuserid
+          @EmailConfig = emailconfig
+          @AutoSignInWhenEmailMatch = autosigninwhenemailmatch
+          @AutoSignInWhenPhoneNumberMatch = autosigninwhenphonenumbermatch
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @Id = params['Id']
+          unless params['Name'].nil?
+            @Name = LocalizedMessage.new
+            @Name.deserialize(params['Name'])
+          end
+          @Picture = params['Picture']
+          @Homepage = params['Homepage']
+          @ProviderType = params['ProviderType']
+          unless params['Config'].nil?
+            @Config = ProviderConfig.new
+            @Config.deserialize(params['Config'])
+          end
+          @TransparentMode = params['TransparentMode']
+          @On = params['On']
+          unless params['Description'].nil?
+            @Description = LocalizedMessage.new
+            @Description.deserialize(params['Description'])
+          end
+          @ReuseUserId = params['ReuseUserId']
+          unless params['EmailConfig'].nil?
+            @EmailConfig = EmailProviderConfig.new
+            @EmailConfig.deserialize(params['EmailConfig'])
+          end
+          @AutoSignInWhenEmailMatch = params['AutoSignInWhenEmailMatch']
+          @AutoSignInWhenPhoneNumberMatch = params['AutoSignInWhenPhoneNumberMatch']
+        end
+      end
+
+      # ModifyProvider返回参数结构体
+      class ModifyProviderResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -4638,6 +5420,42 @@ module TencentCloud
         end
       end
 
+      # 登录配置中密码更新配置策略，用于管理使用用户名密码登录方式时，密码的过期策略和更新策略。例如，首次登录需要更新密码、定期过期密码等策略。
+      class PasswordUpdateLoginConfig < TencentCloud::Common::AbstractModel
+        # @param FirstLoginUpdate: 首次登录强制修改密码开关。开启后，用户首次登录时将强制要求修改密码。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FirstLoginUpdate: Boolean
+        # @param PeriodUpdate: 定期强制修改密码开关。开启后，用户需按照 PeriodValue 和 PeriodType 指定的周期定期修改密码，超过周期未修改将在登录时强制要求修改。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PeriodUpdate: Boolean
+        # @param PeriodValue: 定期修改密码的周期数值，与 PeriodType 配合使用。例如 PeriodValue 为 6，PeriodType 为 MONTH，表示每 6 个月需修改一次密码。当 PeriodUpdate 为 true 时必填。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PeriodValue: Integer
+        # @param PeriodType: 定期修改密码的周期时间单位，与 PeriodValue 配合使用。取值范围：
+        # WEEK：周
+        # MONTH：月
+        # YEAR：年
+        # 当 PeriodUpdate 为 true 时必填。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PeriodType: String
+
+        attr_accessor :FirstLoginUpdate, :PeriodUpdate, :PeriodValue, :PeriodType
+
+        def initialize(firstloginupdate=nil, periodupdate=nil, periodvalue=nil, periodtype=nil)
+          @FirstLoginUpdate = firstloginupdate
+          @PeriodUpdate = periodupdate
+          @PeriodValue = periodvalue
+          @PeriodType = periodtype
+        end
+
+        def deserialize(params)
+          @FirstLoginUpdate = params['FirstLoginUpdate']
+          @PeriodUpdate = params['PeriodUpdate']
+          @PeriodValue = params['PeriodValue']
+          @PeriodType = params['PeriodType']
+        end
+      end
+
       # FlexDB数据库权限信息
       class PermissionInfo < TencentCloud::Common::AbstractModel
         # @param AclTag: "READONLY",   //公有读，私有写。所有用户可读，仅创建者及管理员可写
@@ -4663,6 +5481,300 @@ module TencentCloud
           @AclTag = params['AclTag']
           @EnvId = params['EnvId']
           @Rule = params['Rule']
+        end
+      end
+
+      # 身份源配置信息。描述云开发环境下用户登录身份源的完整配置，定义了用户通过何种方式进入系统并完成身份认证。支持多种类型：包括标准协议身份源（OAuth 2.0、OIDC、SAML 2.0）、内置身份源（邮箱登录、自定义登录）以及通过插件机制扩展的身份源（如 CAS）。每个身份源包含认证配置、启用状态、用户自动注册策略、信息透传模式等核心属性，是登录认证流程的核心数据结构。
+      class Provider < TencentCloud::Common::AbstractModel
+        # @param Id: 身份源的唯一标识符，用于在系统内区分不同的身份源。格式要求：2~32 位，仅支持小写英文字母和数字，不可包含空格或特殊字符。创建后不可修改
+        # @type Id: String
+        # @param Config: 身份源的安全认证配置，包含与第三方平台对接所需的核心参数，如 ClientId、ClientSecret、授权端点、Token 端点、回调地址、Scope 等。不同 ProviderType 对应不同的配置项。CUSTOM 类型无需手动配置（系统自动填充），OIDC 类型会根据 Issuer 自动补全端点信息，SAML 类型需提供 SamlMetadata（最大 10KB）
+        # @type Config: :class:`Tencentcloud::Tcb.v20180608.models.ProviderConfig`
+        # @param Name: 身份源的显示名称，支持国际化多语言配置。用户在登录页面看到的身份源名称将使用该字段，建议根据实际业务场景填写易于识别的名称。未传入时默认使用 Id 值作为显示名称
+        # @type Name: :class:`Tencentcloud::Tcb.v20180608.models.LocalizedMessage`
+        # @param Picture: 身份源图标的访问地址，将展示在登录页的身份源按钮上。建议使用 64×64 像素的 SVG 格式图片以保证清晰度，支持 HTTP/HTTPS 公网可访问的图片链接
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Picture: String
+        # @param Homepage: 身份源对应的官方主页地址。该信息将在用户查看自己的第三方账号绑定列表时展示，帮助用户识别已绑定的身份源来源。例如 GitHub 身份源可填写：https://github.com
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Homepage: String
+        # @param ProviderType: 身份源协议类型，决定该身份源使用何种认证协议与第三方平台对接。可选值：OAUTH（标准 OAuth 2.0 协议）、OIDC（OpenID Connect 协议）、SAML（SAML 2.0 协议）、CUSTOM（自定义登录，使用 RSA 密钥对签名验证）、EMAIL（邮箱登录，需配合 EmailConfig 使用）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProviderType: String
+        # @param AutoSignUpWithProviderUser: 控制第三方身份源登录时是否自动注册系统用户。可选值：TRUE（始终自动注册，无论第三方返回的用户信息是否包含手机号或邮箱）、FALSE（不自动注册，需用户手动绑定）、UNSPECIFIED（默认行为：仅当第三方身份源返回的用户信息中包含手机号或邮箱时才自动注册，否则登录完成后要求用户绑定手机号方可继续使用）。注意：企业微信类型（WX_WORK_AGENT/WX_WORK_INTERNAL/WX_WORK_THIRD_PARTY/WX_WORK_THIRD_PARTY_ASSOCIATION）和微信小程序类型（WX_MICRO_APP/WX_QRCODE_MICRO_APP/WX_OPEN）在 UNSPECIFIED 时会自动设为 TRUE。当 TransparentMode 为 TRUE 时，该字段将被强制设为 FALSE
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AutoSignUpWithProviderUser: String
+        # @param On: 身份源的启用状态。可选值：TRUE（启用，用户可通过该身份源登录）、FALSE（禁用，已有绑定关系不受影响）。未传入时默认为 TRUE（启用）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type On: String
+        # @param Description: 身份源的详细描述信息，支持国际化多语言配置。可用于向用户说明该身份源的用途或使用场景。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: :class:`Tencentcloud::Tcb.v20180608.models.LocalizedMessage`
+        # @param TransparentMode: 是否开启信息透传模式。可选值：TRUE（仅登录模式：平台不持久化存储用户数据，仅将第三方身份源返回的用户信息透传给业务方，适用于不希望平台留存用户数据的场景）、FALSE（登录且注册模式：平台正常注册并存储用户信息，默认值）。注意：开启透传模式时，AutoSignUpWithProviderUser 将被强制设为 FALSE；若 ReuseUserId 为 UNSPECIFIED，将被自动设为 TRUE。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TransparentMode: String
+        # @param ReuseUserId: 是否直接复用第三方身份源返回的用户标识（如 OpenID、UnionID 等）作为平台用户 ID。可选值：TRUE（开启，平台用户 ID 将直接使用第三方身份源返回的用户标识，适用于已有用户体系迁移场景）、FALSE（关闭，由平台生成独立用户 ID）。注意：开启后需确保第三方用户标识的全局唯一性，避免 ID 冲突。当 TransparentMode 为 TRUE 且该字段为 UNSPECIFIED 时，将被自动设为 TRUE
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReuseUserId: String
+        # @param EmailConfig: 邮箱身份源的专项配置，仅当 ProviderType 为 EMAIL 时有效且必填。包含邮件服务商、发件人地址、SMTP 配置等参数，用于支持通过邮箱验证码方式进行身份认证。支持两种模式：自有 SMTP 服务器（需填写完整的 SMTP 配置）和平台代发（EmailConfig.On 设为 TRUE 时由平台随机分配 SMTP 服务器）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EmailConfig: :class:`Tencentcloud::Tcb.v20180608.models.EmailProviderConfig`
+        # @param AutoSignInWhenEmailMatch: 是否开启邮箱自动关联登录。可选值：TRUE（开启）、FALSE（关闭）、UNSPECIFIED（默认为 FALSE）。开启后，若第三方身份源返回的邮箱与系统中已有用户的邮箱一致，则自动将该第三方账号与已有用户关联绑定并完成登录，无需用户手动绑定
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AutoSignInWhenEmailMatch: String
+        # @param AutoSignInWhenPhoneNumberMatch: 是否开启手机号自动关联登录。可选值：TRUE（开启）、FALSE（关闭）、UNSPECIFIED（默认行为等同于 TRUE，即默认开启）。开启后，若第三方身份源返回的手机号与系统中已有用户的手机号一致，则自动将该第三方账号与已有用户关联绑定并完成登录，无需用户手动绑定
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AutoSignInWhenPhoneNumberMatch: String
+
+        attr_accessor :Id, :Config, :Name, :Picture, :Homepage, :ProviderType, :AutoSignUpWithProviderUser, :On, :Description, :TransparentMode, :ReuseUserId, :EmailConfig, :AutoSignInWhenEmailMatch, :AutoSignInWhenPhoneNumberMatch
+
+        def initialize(id=nil, config=nil, name=nil, picture=nil, homepage=nil, providertype=nil, autosignupwithprovideruser=nil, on=nil, description=nil, transparentmode=nil, reuseuserid=nil, emailconfig=nil, autosigninwhenemailmatch=nil, autosigninwhenphonenumbermatch=nil)
+          @Id = id
+          @Config = config
+          @Name = name
+          @Picture = picture
+          @Homepage = homepage
+          @ProviderType = providertype
+          @AutoSignUpWithProviderUser = autosignupwithprovideruser
+          @On = on
+          @Description = description
+          @TransparentMode = transparentmode
+          @ReuseUserId = reuseuserid
+          @EmailConfig = emailconfig
+          @AutoSignInWhenEmailMatch = autosigninwhenemailmatch
+          @AutoSignInWhenPhoneNumberMatch = autosigninwhenphonenumbermatch
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          unless params['Config'].nil?
+            @Config = ProviderConfig.new
+            @Config.deserialize(params['Config'])
+          end
+          unless params['Name'].nil?
+            @Name = LocalizedMessage.new
+            @Name.deserialize(params['Name'])
+          end
+          @Picture = params['Picture']
+          @Homepage = params['Homepage']
+          @ProviderType = params['ProviderType']
+          @AutoSignUpWithProviderUser = params['AutoSignUpWithProviderUser']
+          @On = params['On']
+          unless params['Description'].nil?
+            @Description = LocalizedMessage.new
+            @Description.deserialize(params['Description'])
+          end
+          @TransparentMode = params['TransparentMode']
+          @ReuseUserId = params['ReuseUserId']
+          unless params['EmailConfig'].nil?
+            @EmailConfig = EmailProviderConfig.new
+            @EmailConfig.deserialize(params['EmailConfig'])
+          end
+          @AutoSignInWhenEmailMatch = params['AutoSignInWhenEmailMatch']
+          @AutoSignInWhenPhoneNumberMatch = params['AutoSignInWhenPhoneNumberMatch']
+        end
+      end
+
+      # 身份认证源协议连接配置。包含 OAuth 2.0 / OIDC 协议端点（授权端点、令牌端点、用户信息端点、JWKS 端点等）、客户端凭证（ClientId、ClientSecret）、SAML 元数据、请求与响应参数的字段映射等配置信息。OIDC 类型的认证源字段定义参考 https://openid.net/specs/openid-connect-discovery-1_0.html 规范。
+      class ProviderConfig < TencentCloud::Common::AbstractModel
+        # @param Issuer: 身份提供方的唯一标识符（Issuer URL），用于验证 ID Token 中的 iss 字段。仅当 ProviderType 为 OIDC 时需要填写，值通常为第三方 OIDC 服务的根地址，例如：https://accounts.google.com。填写后平台将自动通过 /.well-known/openid-configuration 发现并填充 AuthorizationEndpoint、TokenEndpoint、UserinfoEndpoint、JwksUri 等端点地址。详情参考 OpenID Connect Discovery 标准。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Issuer: String
+        # @param JwksUri: 第三方身份提供方的 JSON Web Key Set 地址，用于获取公钥以验证 ID Token 签名。仅当 ProviderType 为 OIDC 时需要填写。若已填写 Issuer，该字段将通过 OpenID Connect Discovery 自动获取，无需手动填写。详情参考 OpenID Connect Discovery 标准。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type JwksUri: String
+        # @param ClientId: 在第三方身份提供方注册的应用客户端 ID，用于标识当前接入应用。当 ProviderType 为 OIDC 或 OAUTH 时必须填写，可在对应平台的开发者控制台中获取。详情参考 OAuth 2.0 标准。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClientId: String
+        # @param ClientSecret: 在第三方身份提供方注册的应用客户端密钥，与 ClientId 配合使用，用于在 Token 端点进行身份验证。当 ProviderType 为 OIDC 或 OAUTH 时必须填写，请妥善保管，避免泄露。详情参考 OAuth 2.0 标准。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClientSecret: String
+        # @param RedirectUri: OAuth 授权完成后第三方平台回调的地址，需与在第三方平台注册的回调地址完全一致，否则授权将失败。当 ProviderType 为 OIDC 或 OAUTH 时必须填写，并需在对应平台的开发者控制台中配置该地址为合法回调地址。详情参考 OAuth 2.0 标准。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RedirectUri: String
+        # @param Scope: 向第三方身份提供方申请的权限范围，多个 scope 之间用空格分隔。当 ProviderType 为 OIDC 或 OAUTH 时必须填写，OIDC 场景下通常至少包含 openid，如需获取用户邮箱或手机号可追加 email、phone 等。若已填写 Issuer 且未指定 Scope，将自动使用 OpenID Connect Discovery 返回的 scopes_supported。详情参考 OAuth 2.0 标准。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Scope: String
+        # @param AuthorizationEndpoint: 第三方身份提供方的授权端点地址，用于发起 OAuth/OIDC 授权请求，引导用户跳转至第三方登录页面。当 ProviderType 为 OIDC 或 OAUTH 时必须填写。若已填写 Issuer，该字段将通过 OpenID Connect Discovery 自动获取，无需手动填写。详情参考 OAuth 2.0 / OIDC 标准。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AuthorizationEndpoint: String
+        # @param TokenEndpoint: 第三方身份提供方的 Token 端点地址，用于通过授权码（code）换取 Access Token 和 ID Token。当 ProviderType 为 OIDC 或 OAUTH 时必须填写。若已填写 Issuer，该字段将通过 OpenID Connect Discovery 自动获取，无需手动填写。详情参考 OAuth 2.0 / OIDC 标准。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TokenEndpoint: String
+        # @param UserinfoEndpoint: 第三方身份提供方的用户信息端点地址，用于通过 Access Token 获取用户的基本信息（如昵称、头像、邮箱等）。当 ProviderType 为 OIDC 或 OAUTH 且需要获取用户详细信息时填写。若已填写 Issuer，该字段将通过 OpenID Connect Discovery 自动获取，无需手动填写。详情参考 OIDC 标准。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserinfoEndpoint: String
+        # @param ResponseType: OAuth/OIDC 授权请求的响应类型，决定授权端点返回的内容。可选值：code（授权码模式，推荐）、token（隐式模式，直接返回 Access Token）、id_token（直接返回 ID Token）。当 ProviderType 为 OIDC 时默认使用 id_token，其他类型默认使用 code。当 ProviderType 为 OIDC 或 OAUTH 时可选填写。详情参考 OAuth 2.0 / OIDC 标准。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResponseType: String
+        # @param SignoutEndpoint: 第三方身份提供方的单点退出端点地址。配置后，用户退出当前应用时将被跳转至该地址，使第三方 IDP 的登录态也一并失效，实现单点退出（SLO）。适用于 OIDC、OAUTH、SAML 等所有支持单点退出的身份源类型。不填则退出时仅清除本平台登录态。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SignoutEndpoint: String
+        # @param TokenEndpointAuthMethod: Token 端点的客户端身份验证方式，决定请求 Token 时如何传递 ClientId 和 ClientSecret。可选值：CLIENT_SECRET_POST（将凭证放在请求 Body 中传递）、CLIENT_SECRET_BASIC（将凭证通过 HTTP Basic Auth Header 传递）。当 ProviderType 为 OIDC 或 OAUTH 时可选填写，默认使用 CLIENT_SECRET_POST。详情参考 OIDC 标准。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TokenEndpointAuthMethod: String
+        # @param SamlMetadata: SAML 身份提供方的 Metadata XML 内容，包含 IDP 的实体 ID、SSO 端点地址、签名证书等关键信息，平台将据此完成 SAML 协议的对接配置。仅当 ProviderType 为 SAML 时可填写，通常可从第三方 IDP 的管理控制台中下载获取。详情参考 SAML 2.0 标准。
+        # @type SamlMetadata: String
+        # @param RequestParametersMap: 请求参数映射配置，用于处理非标准 OAuth 协议的参数转换。默认情况下平台严格遵循 OAuth 2.0 标准进行参数传递，若对接的第三方平台（如微信、企业微信等）使用了非标准的参数名称或传参方式，可通过该字段配置自定义的参数映射规则，以确保请求参数与第三方平台的要求一致。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RequestParametersMap: :class:`Tencentcloud::Tcb.v20180608.models.ProviderRequestParametersMap`
+        # @param ResponseParametersMap: 响应参数映射配置，用于处理非标准 OAuth 协议的响应参数转换。默认情况下平台严格遵循 OAuth 2.0 标准解析响应参数，若对接的第三方平台（如微信、企业微信等）返回了非标准的字段名称或数据结构，可通过该字段配置自定义的响应参数映射规则，将第三方返回的字段映射为平台标准字段。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResponseParametersMap: :class:`Tencentcloud::Tcb.v20180608.models.ProviderResponseParametersMap`
+
+        attr_accessor :Issuer, :JwksUri, :ClientId, :ClientSecret, :RedirectUri, :Scope, :AuthorizationEndpoint, :TokenEndpoint, :UserinfoEndpoint, :ResponseType, :SignoutEndpoint, :TokenEndpointAuthMethod, :SamlMetadata, :RequestParametersMap, :ResponseParametersMap
+
+        def initialize(issuer=nil, jwksuri=nil, clientid=nil, clientsecret=nil, redirecturi=nil, scope=nil, authorizationendpoint=nil, tokenendpoint=nil, userinfoendpoint=nil, responsetype=nil, signoutendpoint=nil, tokenendpointauthmethod=nil, samlmetadata=nil, requestparametersmap=nil, responseparametersmap=nil)
+          @Issuer = issuer
+          @JwksUri = jwksuri
+          @ClientId = clientid
+          @ClientSecret = clientsecret
+          @RedirectUri = redirecturi
+          @Scope = scope
+          @AuthorizationEndpoint = authorizationendpoint
+          @TokenEndpoint = tokenendpoint
+          @UserinfoEndpoint = userinfoendpoint
+          @ResponseType = responsetype
+          @SignoutEndpoint = signoutendpoint
+          @TokenEndpointAuthMethod = tokenendpointauthmethod
+          @SamlMetadata = samlmetadata
+          @RequestParametersMap = requestparametersmap
+          @ResponseParametersMap = responseparametersmap
+        end
+
+        def deserialize(params)
+          @Issuer = params['Issuer']
+          @JwksUri = params['JwksUri']
+          @ClientId = params['ClientId']
+          @ClientSecret = params['ClientSecret']
+          @RedirectUri = params['RedirectUri']
+          @Scope = params['Scope']
+          @AuthorizationEndpoint = params['AuthorizationEndpoint']
+          @TokenEndpoint = params['TokenEndpoint']
+          @UserinfoEndpoint = params['UserinfoEndpoint']
+          @ResponseType = params['ResponseType']
+          @SignoutEndpoint = params['SignoutEndpoint']
+          @TokenEndpointAuthMethod = params['TokenEndpointAuthMethod']
+          @SamlMetadata = params['SamlMetadata']
+          unless params['RequestParametersMap'].nil?
+            @RequestParametersMap = ProviderRequestParametersMap.new
+            @RequestParametersMap.deserialize(params['RequestParametersMap'])
+          end
+          unless params['ResponseParametersMap'].nil?
+            @ResponseParametersMap = ProviderResponseParametersMap.new
+            @ResponseParametersMap.deserialize(params['ResponseParametersMap'])
+          end
+        end
+      end
+
+      # 三方认证入参映射。如果您的对接方不标准，则可以使用这个参数。默认情况下，该参数可以为空。比如：github,google,apple 接入，这些参数为空，但是国内的腾讯，新浪等则需要配置该参数。原因主要是：腾讯等公司在实现oauth时，未能完全遵循oauth标准。
+      class ProviderRequestParametersMap < TencentCloud::Common::AbstractModel
+        # @param ClientId: OAuth 标准协议中的 client_id。不同第三方平台的字段名称可能不同，例如微信平台对应 appid、新浪微博对应 app_id。
+        # @type ClientId: String
+        # @param ClientSecret: OAuth 标准协议中的 client_secret，用于身份认证源的密钥鉴权。请妥善保管，避免泄露。
+        # @type ClientSecret: String
+        # @param RedirectUri: OAuth 标准协议中的 redirect_uri，即授权回调地址。用户完成第三方认证后将重定向至该地址。
+        # @type RedirectUri: String
+        # @param RegisterUserRoleId: 身份源注册用户时自动绑定的角色 ID。配置后，通过该身份源注册的新用户将自动关联指定角色。
+        # @type RegisterUserRoleId: String
+        # @param RegisterUserAutoLicense: 身份源注册用户时是否自动授予许可证。取值范围：
+        # TRUE：自动授权许可证
+        # FALSE：不自动授权（默认值）
+        # @type RegisterUserAutoLicense: String
+        # @param AuthPosition: OAuth 获取 Token 时认证信息的请求位置。取值范围：
+        # URL：将认证信息放在请求 URL 参数中
+        # Headers：将认证信息放在请求 Header 中
+        # Body：将认证信息放在请求 Body 中
+        # @type AuthPosition: String
+        # @param GrantType: OAuth 授权模式匹配的参数字段名。用于指定获取 Token 请求中 grant_type 参数对应的字段名称。
+        # @type GrantType: String
+        # @param ClientCredentials: OAuth 授权模式类型。用于指定 grant_type 的值，例如 client_credentials 表示客户端凭证模式。
+        # @type ClientCredentials: String
+        # @param AccessToken: OAuth 返回中 access_token 的映射字段名。若第三方平台返回的 Token 字段名不是标准的 access_token，可通过此字段指定实际字段名。
+        # @type AccessToken: String
+        # @param ExpiresIn: OAuth 返回中 Token 有效期的映射字段名。若第三方平台返回的有效期字段名不是标准的 expires_in，可通过此字段指定实际字段名。
+        # @type ExpiresIn: String
+        # @param RegisterUserType: 身份源注册用户时的用户类型。取值范围：
+        # externalUser：外部用户
+        # internalUser：内部用户
+        # 默认值为 externalUser。
+        # @type RegisterUserType: String
+
+        attr_accessor :ClientId, :ClientSecret, :RedirectUri, :RegisterUserRoleId, :RegisterUserAutoLicense, :AuthPosition, :GrantType, :ClientCredentials, :AccessToken, :ExpiresIn, :RegisterUserType
+
+        def initialize(clientid=nil, clientsecret=nil, redirecturi=nil, registeruserroleid=nil, registeruserautolicense=nil, authposition=nil, granttype=nil, clientcredentials=nil, accesstoken=nil, expiresin=nil, registerusertype=nil)
+          @ClientId = clientid
+          @ClientSecret = clientsecret
+          @RedirectUri = redirecturi
+          @RegisterUserRoleId = registeruserroleid
+          @RegisterUserAutoLicense = registeruserautolicense
+          @AuthPosition = authposition
+          @GrantType = granttype
+          @ClientCredentials = clientcredentials
+          @AccessToken = accesstoken
+          @ExpiresIn = expiresin
+          @RegisterUserType = registerusertype
+        end
+
+        def deserialize(params)
+          @ClientId = params['ClientId']
+          @ClientSecret = params['ClientSecret']
+          @RedirectUri = params['RedirectUri']
+          @RegisterUserRoleId = params['RegisterUserRoleId']
+          @RegisterUserAutoLicense = params['RegisterUserAutoLicense']
+          @AuthPosition = params['AuthPosition']
+          @GrantType = params['GrantType']
+          @ClientCredentials = params['ClientCredentials']
+          @AccessToken = params['AccessToken']
+          @ExpiresIn = params['ExpiresIn']
+          @RegisterUserType = params['RegisterUserType']
+        end
+      end
+
+      # 三方认证出参映射。如果您的对接方不标准，则可以使用这个参数。默认情况下，该参数可以为空。比如：microsoft, github,google,apple 接入，这些参数为空，但是国内的腾讯，新浪等则需要配置该参数。原因主要是：腾讯等公司在实现oauth时，未能完全遵循oauth标准。
+      class ProviderResponseParametersMap < TencentCloud::Common::AbstractModel
+        # @param Sub: 用户唯一标识（sub）的映射字段名。对应 OIDC 标准中的 sub 字段，值为第三方平台返回的用户信息 JSON 中表示用户 ID 的字段路径。例如github平台填sub。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Sub: String
+        # @param Name: 用户名称（name）的映射字段名。对应 OIDC 标准中的 name 字段，值为第三方平台返回的用户信息 JSON 中表示用户昵称或姓名的字段路径。例如github平台填 name。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Picture: 用户头像（picture）的映射字段名。对应 OIDC 标准中的 picture 字段，值为第三方平台返回的用户信息 JSON 中表示用户头像 URL 的字段路径。需要公网可访问的url。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Picture: String
+        # @param Username: 用户登录名（username）的映射字段名。对应 OIDC 标准中的 preferred_username 字段，值为第三方平台返回的用户信息 JSON 中表示用户唯一登录名的字段, 例如可使用sub或email等唯一值的字段。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Username: String
+        # @param Email: 用户邮箱（email）的映射字段名。对应 OIDC 标准中的 email 字段，值为第三方平台返回的用户信息 JSON 中表示用户邮箱地址的字段。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Email: String
+        # @param PhoneNumber: 用户手机号（phone_number）的映射字段名。对应 OIDC 标准中的 phone_number 字段，值为第三方平台返回的用户信息 JSON 中表示用户手机号的字段。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PhoneNumber: String
+        # @param Groups: 用户角色/分组（groups）的映射字段名。对应 OIDC 标准中的 groups 字段，值为第三方平台返回的用户信息 JSON 中表示用户所属角色或分组的字段路径。支持字符串数组类型的返回值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Groups: String
+
+        attr_accessor :Sub, :Name, :Picture, :Username, :Email, :PhoneNumber, :Groups
+
+        def initialize(sub=nil, name=nil, picture=nil, username=nil, email=nil, phonenumber=nil, groups=nil)
+          @Sub = sub
+          @Name = name
+          @Picture = picture
+          @Username = username
+          @Email = email
+          @PhoneNumber = phonenumber
+          @Groups = groups
+        end
+
+        def deserialize(params)
+          @Sub = params['Sub']
+          @Name = params['Name']
+          @Picture = params['Picture']
+          @Username = params['Username']
+          @Email = params['Email']
+          @PhoneNumber = params['PhoneNumber']
+          @Groups = params['Groups']
         end
       end
 
@@ -5225,6 +6337,138 @@ module TencentCloud
           @Email = params['Email']
           @AvatarUrl = params['AvatarUrl']
           @Description = params['Description']
+        end
+      end
+
+      # 虚拟主机价格
+      class VMPrice < TencentCloud::Common::AbstractModel
+        # @param Currency: 价格货币单位。取值范围CNY:人民币。USD:美元。
+        # @type Currency: String
+        # @param OriginalPrice: 原始价格
+        # @type OriginalPrice: Float
+        # @param Discount: 折扣率
+        # @type Discount: Float
+        # @param DiscountPrice: 折扣后的价格
+        # @type DiscountPrice: Float
+        # @param OriginalCredits: 折扣前每天资源点
+        # @type OriginalCredits: Float
+        # @param DiscountCredits: 折扣后每天所需资源点
+        # @type DiscountCredits: Float
+
+        attr_accessor :Currency, :OriginalPrice, :Discount, :DiscountPrice, :OriginalCredits, :DiscountCredits
+
+        def initialize(currency=nil, originalprice=nil, discount=nil, discountprice=nil, originalcredits=nil, discountcredits=nil)
+          @Currency = currency
+          @OriginalPrice = originalprice
+          @Discount = discount
+          @DiscountPrice = discountprice
+          @OriginalCredits = originalcredits
+          @DiscountCredits = discountcredits
+        end
+
+        def deserialize(params)
+          @Currency = params['Currency']
+          @OriginalPrice = params['OriginalPrice']
+          @Discount = params['Discount']
+          @DiscountPrice = params['DiscountPrice']
+          @OriginalCredits = params['OriginalCredits']
+          @DiscountCredits = params['DiscountCredits']
+        end
+      end
+
+      # VM规格
+      class VMSpec < TencentCloud::Common::AbstractModel
+        # @param Type: LightHouse=轻量云服务器
+        # CVM=云服务器
+        # @type Type: String
+        # @param LightHouseSpec: 轻量云服务器规格。
+        # 当Type=LightHouse时有效
+        # @type LightHouseSpec: :class:`Tencentcloud::Tcb.v20180608.models.VMSpecLightHouse`
+        # @param Price: 价格信息
+        # @type Price: :class:`Tencentcloud::Tcb.v20180608.models.VMPrice`
+
+        attr_accessor :Type, :LightHouseSpec, :Price
+
+        def initialize(type=nil, lighthousespec=nil, price=nil)
+          @Type = type
+          @LightHouseSpec = lighthousespec
+          @Price = price
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          unless params['LightHouseSpec'].nil?
+            @LightHouseSpec = VMSpecLightHouse.new
+            @LightHouseSpec.deserialize(params['LightHouseSpec'])
+          end
+          unless params['Price'].nil?
+            @Price = VMPrice.new
+            @Price.deserialize(params['Price'])
+          end
+        end
+      end
+
+      # vm规格
+      class VMSpecLightHouse < TencentCloud::Common::AbstractModel
+        # @param BundleId: LH主机的BundleId
+        # @type BundleId: String
+        # @param BundleConfig: 主机配置详情json
+        # @type BundleConfig: String
+
+        attr_accessor :BundleId, :BundleConfig
+
+        def initialize(bundleid=nil, bundleconfig=nil)
+          @BundleId = bundleid
+          @BundleConfig = bundleconfig
+        end
+
+        def deserialize(params)
+          @BundleId = params['BundleId']
+          @BundleConfig = params['BundleConfig']
+        end
+      end
+
+      # 登录短信验证码发送配置。用于管理登录时使用的短信验证码发送的通道相关设置，目前提供云开发默认短信包和客户自定义短信包，推荐使用云开发默认短信包。
+      # 如果使用自定义APIs发送短信，方法命名规则
+      # 方法名称：发送验证码
+      # 方法标识：SendVerificationCode
+      # 入参
+      # Mobile：字符串（手机号，如：“+86 + 手机号”）
+      # VerificationCode：字符串（验证码，如：“123456”）
+      # 返回值
+      # ErrorCode：int（0 表示成功，非 0 表示失败）
+      # ErrorMessage：字符串（ErrorCode 非 0 时，返回错误信息）
+      class VerificationConfig < TencentCloud::Common::AbstractModel
+        # @param Type: 短信验证码发送通道类型。取值范围：
+        # default：使用默认云开发短信包发送短信。
+        # apis：使用云开发自定义 APIs 作为短信发送通道，需配合 Name 和 Method 参数使用。
+        # 不传则不修改当前配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param Name: 自定义 APIs 数据源唯一标识，当 Type 为 apis 时必填。用于定位微搭 APIs 中对应的数据源。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Method: 自定义 APIs 方法名，当 Type 为 apis 时必填。指定微搭 APIs 中用于发送验证码的方法。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Method: String
+        # @param SmsDayLimit: 单个手机号每日短信发送上限。默认值为 30，传 -1 表示不限制，如果设置为不限制，需要注意恶意攻击，导致短信套餐用量计费问题。仅支持正整数或 -1。不传则不修改当前配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SmsDayLimit: Integer
+
+        attr_accessor :Type, :Name, :Method, :SmsDayLimit
+
+        def initialize(type=nil, name=nil, method=nil, smsdaylimit=nil)
+          @Type = type
+          @Name = name
+          @Method = method
+          @SmsDayLimit = smsdaylimit
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Name = params['Name']
+          @Method = params['Method']
+          @SmsDayLimit = params['SmsDayLimit']
         end
       end
 

@@ -197,6 +197,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 计算修改备份保留时长后将会过期删除的备份文件列表
+
+        # @param request: Request instance for CalculateBackupSaveSecExpires.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::CalculateBackupSaveSecExpiresRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::CalculateBackupSaveSecExpiresResponse`
+        def CalculateBackupSaveSecExpires(request)
+          body = send_request('CalculateBackupSaveSecExpires', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CalculateBackupSaveSecExpiresResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（CheckCreateLibraDBInstance）用于校验集群是否可以添加只读分析引擎实例
 
         # @param request: Request instance for CheckCreateLibraDBInstance.
@@ -207,6 +231,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CheckCreateLibraDBInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（CheckTransferClusterZone）用于检查是否可以发起跨可用区迁移。
+
+        # @param request: Request instance for CheckTransferClusterZone.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::CheckTransferClusterZoneRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::CheckTransferClusterZoneResponse`
+        def CheckTransferClusterZone(request)
+          body = send_request('CheckTransferClusterZone', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CheckTransferClusterZoneResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -351,6 +399,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CloseWanResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 将备份文件复制到指定的备份保险箱
+
+        # @param request: Request instance for CopyBackupToVault.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::CopyBackupToVaultRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::CopyBackupToVaultResponse`
+        def CopyBackupToVault(request)
+          body = send_request('CopyBackupToVault', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CopyBackupToVaultResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -725,6 +797,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建备份保险箱
+
+        # @param request: Request instance for CreateVault.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::CreateVaultRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::CreateVaultResponse`
+        def CreateVault(request)
+          body = send_request('CreateVault', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateVaultResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DeleteAccounts）用于删除用户账号。
 
         # @param request: Request instance for DeleteAccounts.
@@ -807,6 +903,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteBackupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 从备份保险箱中删除指定的备份文件
+
+        # @param request: Request instance for DeleteBackupVault.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::DeleteBackupVaultRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::DeleteBackupVaultResponse`
+        def DeleteBackupVault(request)
+          body = send_request('DeleteBackupVault', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteBackupVaultResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -951,6 +1071,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteParamTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 批量删除备份保险箱
+
+        # @param request: Request instance for DeleteVaults.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::DeleteVaultsRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::DeleteVaultsResponse`
+        def DeleteVaults(request)
+          body = send_request('DeleteVaults', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteVaultsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1277,6 +1421,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 根据保险箱ID查询备份文件列表
+
+        # @param request: Request instance for DescribeBackupListByVault.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::DescribeBackupListByVaultRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::DescribeBackupListByVaultResponse`
+        def DescribeBackupListByVault(request)
+          body = send_request('DescribeBackupListByVault', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBackupListByVaultResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 该接口（DescribeBinlogConfig）用于查询binlog配置
 
         # @param request: Request instance for DescribeBinlogConfig.
@@ -1311,6 +1479,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeBinlogDownloadUrlResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询保险箱内binlog备份
+
+        # @param request: Request instance for DescribeBinlogListByVault.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::DescribeBinlogListByVaultRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::DescribeBinlogListByVaultResponse`
+        def DescribeBinlogListByVault(request)
+          body = send_request('DescribeBinlogListByVault', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBinlogListByVaultResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2453,6 +2645,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询RedoLog备份
+
+        # @param request: Request instance for DescribeRedoLogListByVault.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::DescribeRedoLogListByVaultRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::DescribeRedoLogListByVaultResponse`
+        def DescribeRedoLogListByVault(request)
+          body = send_request('DescribeRedoLogListByVault', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRedoLogListByVaultResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DescribeRedoLogs）用于查询redo日志列表。
 
         # @param request: Request instance for DescribeRedoLogs.
@@ -2751,6 +2967,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeTasksResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询备份保险箱关联的集群信息列表
+
+        # @param request: Request instance for DescribeVaultBackupClusterInfo.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::DescribeVaultBackupClusterInfoRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::DescribeVaultBackupClusterInfoResponse`
+        def DescribeVaultBackupClusterInfo(request)
+          body = send_request('DescribeVaultBackupClusterInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeVaultBackupClusterInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询备份保险箱列表，支持分页、筛选和排序
+
+        # @param request: Request instance for DescribeVaults.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::DescribeVaultsRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::DescribeVaultsResponse`
+        def DescribeVaults(request)
+          body = send_request('DescribeVaults', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeVaultsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -3399,6 +3663,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyBinlogSaveDaysResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改集群Binlog和RedoLog自动拷贝到保险箱的配置
+
+        # @param request: Request instance for ModifyClusterBinlogRedoLogAutoCopyVault.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::ModifyClusterBinlogRedoLogAutoCopyVaultRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::ModifyClusterBinlogRedoLogAutoCopyVaultResponse`
+        def ModifyClusterBinlogRedoLogAutoCopyVault(request)
+          body = send_request('ModifyClusterBinlogRedoLogAutoCopyVault', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyClusterBinlogRedoLogAutoCopyVaultResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -4095,6 +4383,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifySnapBackupCrossRegionConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改备份保险箱配置，包括名称、描述、保留时长、加密密钥、锁定时间等
+
+        # @param request: Request instance for ModifyVault.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::ModifyVaultRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::ModifyVaultResponse`
+        def ModifyVault(request)
+          body = send_request('ModifyVault', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyVaultResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -4959,6 +5271,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = SwitchProxyVpcResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（TransferClusterZone）用于发起跨可用区迁移。
+
+        # @param request: Request instance for TransferClusterZone.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::TransferClusterZoneRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::TransferClusterZoneResponse`
+        def TransferClusterZone(request)
+          body = send_request('TransferClusterZone', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = TransferClusterZoneResponse.new
             model.deserialize(response['Response'])
             model
           else

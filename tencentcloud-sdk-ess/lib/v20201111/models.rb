@@ -680,14 +680,18 @@ module TencentCloud
         # <li> **4**：AI识别中</li>
         # <li> **5**：客户确认AI信息</li></ul>
         # @type AuditStatus: Integer
+        # @param Reason: 审核失败原因，
+        # 当 AuditStatus 返回2时，则会返回具体的原因。
+        # @type Reason: String
 
-        attr_accessor :OperatorName, :OperatorMobile, :AuthType, :AuditStatus
+        attr_accessor :OperatorName, :OperatorMobile, :AuthType, :AuditStatus, :Reason
 
-        def initialize(operatorname=nil, operatormobile=nil, authtype=nil, auditstatus=nil)
+        def initialize(operatorname=nil, operatormobile=nil, authtype=nil, auditstatus=nil, reason=nil)
           @OperatorName = operatorname
           @OperatorMobile = operatormobile
           @AuthType = authtype
           @AuditStatus = auditstatus
+          @Reason = reason
         end
 
         def deserialize(params)
@@ -695,6 +699,7 @@ module TencentCloud
           @OperatorMobile = params['OperatorMobile']
           @AuthType = params['AuthType']
           @AuditStatus = params['AuditStatus']
+          @Reason = params['Reason']
         end
       end
 
@@ -826,19 +831,23 @@ module TencentCloud
         # @type Status: String
         # @param ErrorMessage: 如果任务失败,会返回错误信息
         # @type ErrorMessage: String
+        # @param AuthorizationInfoId: 认证流 Id 是指在企业认证过程中，当前操作人的认证流程的唯一标识。每个企业在认证过程中只能有一条认证流认证成功。这意味着在同一认证过程内，一个企业只能有一个认证流程处于成功状态，以确保认证的唯一性和有效性。认证流 Id可以通过回调[授权书认证审核结果回调](https://qian.tencent.com/developers/company/callback_types_staffs/#%E5%8D%81%E5%85%AD-%E6%8E%88%E6%9D%83%E4%B9%A6%E8%AE%A4%E8%AF%81%E5%AE%A1%E6%A0%B8%E7%BB%93%E6%9E%9C%E5%9B%9E%E8%B0%83)
+        # @type AuthorizationInfoId: String
 
-        attr_accessor :TaskId, :Status, :ErrorMessage
+        attr_accessor :TaskId, :Status, :ErrorMessage, :AuthorizationInfoId
 
-        def initialize(taskid=nil, status=nil, errormessage=nil)
+        def initialize(taskid=nil, status=nil, errormessage=nil, authorizationinfoid=nil)
           @TaskId = taskid
           @Status = status
           @ErrorMessage = errormessage
+          @AuthorizationInfoId = authorizationinfoid
         end
 
         def deserialize(params)
           @TaskId = params['TaskId']
           @Status = params['Status']
           @ErrorMessage = params['ErrorMessage']
+          @AuthorizationInfoId = params['AuthorizationInfoId']
         end
       end
 
@@ -2125,11 +2134,13 @@ module TencentCloud
         #     <li>**2** - 【宽松】以促成交易为核心，对合同条款的修改要求较为宽松，倾向于接受对方提出的条款，以尽快达成合作。</li>
         # </ul>
         # @type PolicyType: Integer
-        # @param Role: 合同审查中的角色信息，通过明确入参角色的名称和描述，可以提高合同审查的效率和准确性。用户不做配置时大模型会根据合同内容推荐出风险识别角色的名称和描述信息。(Depricated)
+        # @param Role: 该字段已不再使用！
+        # 合同审查中的角色信息，通过明确入参角色的名称和描述，可以提高合同审查的效率和准确性。用户不做配置时大模型会根据合同内容推荐出风险识别角色的名称和描述信息。
         # @type Role: :class:`Tencentcloud::Ess.v20201111.models.RiskIdentificationRoleInfo`
         # @param Roles: 合同审查中的角色信息，通过明确入参角色的名称和描述，可以提高合同审查的效率和准确性。用户不做配置时大模型会根据合同内容推荐出风险识别角色的名称和描述信息。
         # @type Roles: Array
-        # @param ChecklistId: 用户配置的审查清单ID，基于此清单ID批量创建合同审查任务，为32位字符串。[点击查看审查清单ID在控制台上的位置](https://qcloudimg.tencent-cloud.cn/raw/2c6588549e28ca49bd8bb7f4a072b19e.png)。如果用户不做此配置大模型会根据合同内容在当前企业下的审查清单和系统默认的清单中选择一个清单进行审查。(Depricated)
+        # @param ChecklistId: 该字段已不再使用！
+        # 用户配置的审查清单ID，基于此清单ID批量创建合同审查任务，为32位字符串。[点击查看审查清单ID在控制台上的位置](https://qcloudimg.tencent-cloud.cn/raw/2c6588549e28ca49bd8bb7f4a072b19e.png)。如果用户不做此配置大模型会根据合同内容在当前企业下的审查清单和系统默认的清单中选择一个清单进行审查。
         # @type ChecklistId: String
         # @param ChecklistIds: 用户配置的审查清单ID，基于此清单ID批量创建合同审查任务，为32位字符串。[点击查看审查清单ID在控制台上的位置](https://qcloudimg.tencent-cloud.cn/raw/2c6588549e28ca49bd8bb7f4a072b19e.png)。如果用户不做此配置大模型会根据合同内容在当前企业下的审查清单和系统默认的清单中选择一个清单进行审查。
         # @type ChecklistIds: Array
@@ -7662,10 +7673,12 @@ module TencentCloud
         # @type UrlUseEnv: String
         # @param PickUpAfterJoined: 在动态签署人场景预设了“企业名称”时，可通过该参数控制“已认证身份才可领取”，即在加入了预设的企业后才可领取。默认值：false，无须先加入企业。
         # @type PickUpAfterJoined: Boolean
+        # @param CanSkipReadFlow: 是否允许此链接中签署方批量确认已读文件。 <ul><li>false (默认): 不允许批量确认已读文件。</li> <li>true : 允许批量确认已读文件。</li></ul> 注：`1. 此功能为白名单功能，使用前请联系对应客户经理进行开通。2. 使用此功能时，FlowIds参数必传。3. 对于企业签署方，如果对印章/签名控件有限制要求，需要保证所有印章/签名签署控件限制要求(印章id或印章/签名类型限制)一致，否则无法使用此功能。`
+        # @type CanSkipReadFlow: Boolean
 
-        attr_accessor :Operator, :OrganizationName, :Name, :Mobile, :IdCardType, :IdCardNumber, :EndPoint, :FlowId, :FlowGroupId, :PathType, :AutoJumpBack, :Agent, :Hides, :RecipientId, :FlowGroupUrlInfo, :UrlUseEnv, :PickUpAfterJoined
+        attr_accessor :Operator, :OrganizationName, :Name, :Mobile, :IdCardType, :IdCardNumber, :EndPoint, :FlowId, :FlowGroupId, :PathType, :AutoJumpBack, :Agent, :Hides, :RecipientId, :FlowGroupUrlInfo, :UrlUseEnv, :PickUpAfterJoined, :CanSkipReadFlow
 
-        def initialize(operator=nil, organizationname=nil, name=nil, mobile=nil, idcardtype=nil, idcardnumber=nil, endpoint=nil, flowid=nil, flowgroupid=nil, pathtype=nil, autojumpback=nil, agent=nil, hides=nil, recipientid=nil, flowgroupurlinfo=nil, urluseenv=nil, pickupafterjoined=nil)
+        def initialize(operator=nil, organizationname=nil, name=nil, mobile=nil, idcardtype=nil, idcardnumber=nil, endpoint=nil, flowid=nil, flowgroupid=nil, pathtype=nil, autojumpback=nil, agent=nil, hides=nil, recipientid=nil, flowgroupurlinfo=nil, urluseenv=nil, pickupafterjoined=nil, canskipreadflow=nil)
           @Operator = operator
           @OrganizationName = organizationname
           @Name = name
@@ -7683,6 +7696,7 @@ module TencentCloud
           @FlowGroupUrlInfo = flowgroupurlinfo
           @UrlUseEnv = urluseenv
           @PickUpAfterJoined = pickupafterjoined
+          @CanSkipReadFlow = canskipreadflow
         end
 
         def deserialize(params)
@@ -7712,6 +7726,7 @@ module TencentCloud
           end
           @UrlUseEnv = params['UrlUseEnv']
           @PickUpAfterJoined = params['PickUpAfterJoined']
+          @CanSkipReadFlow = params['CanSkipReadFlow']
         end
       end
 
@@ -9879,7 +9894,8 @@ module TencentCloud
 
       # DescribeContractReviewTask返回参数结构体
       class DescribeContractReviewTaskResponse < TencentCloud::Common::AbstractModel
-        # @param ChecklistId: 用于审查任务的审查清单ID（Depricated）。注意：如果用户没有配置清单时此值可能为空，需要等大模型根据合同内容推荐出可以使用的审查清单。
+        # @param ChecklistId: 该字段已不再使用！
+        # 用于审查任务的审查清单ID。注意：如果用户没有配置清单时此值可能为空，需要等大模型根据合同内容推荐出可以使用的审查清单。
         # @type ChecklistId: String
         # @param ChecklistIds: 用于审查任务的审查清单ID。注意：如果用户没有配置清单时此值可能为空，需要等大模型根据合同内容推荐出可以使用的审查清单。
         # @type ChecklistIds: Array
@@ -9902,7 +9918,8 @@ module TencentCloud
 
         # 注意：`审查结果由AI生成，仅供参考。请结合相关法律法规和公司制度要求综合判断。`
         # @type Risks: Array
-        # @param Role: 合同审查中的角色信息（Depricated）。注意： `如果用户没有配置审查角色时此值可能为null，需要等大模型根据合同内容推荐出审查角色信息。`
+        # @param Role: 该字段已不再使用！
+        # 合同审查中的角色信息。注意： `如果用户没有配置审查角色时此值可能为null，需要等大模型根据合同内容推荐出审查角色信息。`
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Role: :class:`Tencentcloud::Ess.v20201111.models.RiskIdentificationRoleInfo`
         # @param Roles: 合同审查中的角色信息。注意： `如果用户没有配置审查角色时此值可能为null，需要等大模型根据合同内容推荐出审查角色信息。`
@@ -11326,14 +11343,24 @@ module TencentCloud
         # @type UniformSocialCreditCode: String
         # @param LegalName: 法人姓名
         # @type LegalName: String
+        # @param AuthorizationInfoId: 认证流 Id 是指在企业认证过程中，当前操作人的认证流程的唯一标识。每个企业在认证过程中只能有一条认证流认证成功。这意味着在同一认证过程内，一个企业只能有一个认证流程处于成功状态，以确保认证的唯一性和有效性。
 
-        attr_accessor :Operator, :OrganizationName, :UniformSocialCreditCode, :LegalName
 
-        def initialize(operator=nil, organizationname=nil, uniformsocialcreditcode=nil, legalname=nil)
+        # 认证流 Id可以通过回调[授权书认证审核结果回调](https://qian.tencent.com/developers/company/callback_types_staffs/#%E5%8D%81%E5%85%AD-%E6%8E%88%E6%9D%83%E4%B9%A6%E8%AE%A4%E8%AF%81%E5%AE%A1%E6%A0%B8%E7%BB%93%E6%9E%9C%E5%9B%9E%E8%B0%83)获取
+
+        # 注意：
+        # 如果传递了认证流Id，则下面的参数 超管二要素不会生效
+        # 示例值：yDCHHUUckpbdaiqbUxJVsHWy99WG6kTY
+        # @type AuthorizationInfoId: String
+
+        attr_accessor :Operator, :OrganizationName, :UniformSocialCreditCode, :LegalName, :AuthorizationInfoId
+
+        def initialize(operator=nil, organizationname=nil, uniformsocialcreditcode=nil, legalname=nil, authorizationinfoid=nil)
           @Operator = operator
           @OrganizationName = organizationname
           @UniformSocialCreditCode = uniformsocialcreditcode
           @LegalName = legalname
+          @AuthorizationInfoId = authorizationinfoid
         end
 
         def deserialize(params)
@@ -11344,6 +11371,7 @@ module TencentCloud
           @OrganizationName = params['OrganizationName']
           @UniformSocialCreditCode = params['UniformSocialCreditCode']
           @LegalName = params['LegalName']
+          @AuthorizationInfoId = params['AuthorizationInfoId']
         end
       end
 

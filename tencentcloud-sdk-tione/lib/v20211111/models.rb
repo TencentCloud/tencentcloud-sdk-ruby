@@ -17,6 +17,35 @@
 module TencentCloud
   module Tione
     module V20211111
+      # 聚合后的公共算法版本
+      class AggregatePublicAlgoVersion < TencentCloud::Common::AbstractModel
+        # @param GroupName: 用于聚合的系列名字
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupName: String
+        # @param PublicAlgoVersions: 算法公共版本列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PublicAlgoVersions: Array
+
+        attr_accessor :GroupName, :PublicAlgoVersions
+
+        def initialize(groupname=nil, publicalgoversions=nil)
+          @GroupName = groupname
+          @PublicAlgoVersions = publicalgoversions
+        end
+
+        def deserialize(params)
+          @GroupName = params['GroupName']
+          unless params['PublicAlgoVersions'].nil?
+            @PublicAlgoVersions = []
+            params['PublicAlgoVersions'].each do |i|
+              publicalgoversion_tmp = PublicAlgoVersion.new
+              publicalgoversion_tmp.deserialize(i)
+              @PublicAlgoVersions << publicalgoversion_tmp
+            end
+          end
+        end
+      end
+
       # 镜像属性
       class Attribute < TencentCloud::Common::AbstractModel
         # @param Type: 为‘List’时属性值取Values 否则取Value
@@ -4496,6 +4525,86 @@ module TencentCloud
         end
       end
 
+      # DescribePublicAlgoVersionList请求参数结构体
+      class DescribePublicAlgoVersionListRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: 过滤器
+        # @type Filters: Array
+        # @param Offset: 偏移量
+        # @type Offset: Integer
+        # @param Limit: 返回记录条数，默认10
+        # @type Limit: Integer
+        # @param NeedsAggregate: 是否需要聚合
+        # @type NeedsAggregate: Boolean
+
+        attr_accessor :Filters, :Offset, :Limit, :NeedsAggregate
+
+        def initialize(filters=nil, offset=nil, limit=nil, needsaggregate=nil)
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+          @NeedsAggregate = needsaggregate
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @NeedsAggregate = params['NeedsAggregate']
+        end
+      end
+
+      # DescribePublicAlgoVersionList返回参数结构体
+      class DescribePublicAlgoVersionListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 算法版本数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param PublicAlgoVersions: 公共算法版本列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PublicAlgoVersions: Array
+        # @param AggregatePublicAlgoVersions: 聚合后的公共算法版本列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AggregatePublicAlgoVersions: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :PublicAlgoVersions, :AggregatePublicAlgoVersions, :RequestId
+
+        def initialize(totalcount=nil, publicalgoversions=nil, aggregatepublicalgoversions=nil, requestid=nil)
+          @TotalCount = totalcount
+          @PublicAlgoVersions = publicalgoversions
+          @AggregatePublicAlgoVersions = aggregatepublicalgoversions
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['PublicAlgoVersions'].nil?
+            @PublicAlgoVersions = []
+            params['PublicAlgoVersions'].each do |i|
+              publicalgoversion_tmp = PublicAlgoVersion.new
+              publicalgoversion_tmp.deserialize(i)
+              @PublicAlgoVersions << publicalgoversion_tmp
+            end
+          end
+          unless params['AggregatePublicAlgoVersions'].nil?
+            @AggregatePublicAlgoVersions = []
+            params['AggregatePublicAlgoVersions'].each do |i|
+              aggregatepublicalgoversion_tmp = AggregatePublicAlgoVersion.new
+              aggregatepublicalgoversion_tmp.deserialize(i)
+              @AggregatePublicAlgoVersions << aggregatepublicalgoversion_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeSubAccountLinuxUserInfos请求参数结构体
       class DescribeSubAccountLinuxUserInfosRequest < TencentCloud::Common::AbstractModel
 
@@ -4816,6 +4925,56 @@ module TencentCloud
           end
           @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 设备对应的镜像信息
+      class DeviceImageInfo < TencentCloud::Common::AbstractModel
+        # @param DeviceType: 设备类型, 支持GPU等
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeviceType: String
+        # @param ImageInfo: 镜像信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImageInfo: :class:`Tencentcloud::Tione.v20211111.models.ImageInfo`
+
+        attr_accessor :DeviceType, :ImageInfo
+
+        def initialize(devicetype=nil, imageinfo=nil)
+          @DeviceType = devicetype
+          @ImageInfo = imageinfo
+        end
+
+        def deserialize(params)
+          @DeviceType = params['DeviceType']
+          unless params['ImageInfo'].nil?
+            @ImageInfo = ImageInfo.new
+            @ImageInfo.deserialize(params['ImageInfo'])
+          end
+        end
+      end
+
+      # 对应设备的物料信息
+      class DeviceMaterialInfo < TencentCloud::Common::AbstractModel
+        # @param DeviceType: 设备信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeviceType: String
+        # @param MaterialInfo: 物料信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaterialInfo: :class:`Tencentcloud::Tione.v20211111.models.MaterialInfo`
+
+        attr_accessor :DeviceType, :MaterialInfo
+
+        def initialize(devicetype=nil, materialinfo=nil)
+          @DeviceType = devicetype
+          @MaterialInfo = materialinfo
+        end
+
+        def deserialize(params)
+          @DeviceType = params['DeviceType']
+          unless params['MaterialInfo'].nil?
+            @MaterialInfo = MaterialInfo.new
+            @MaterialInfo.deserialize(params['MaterialInfo'])
+          end
         end
       end
 
@@ -5814,6 +5973,46 @@ module TencentCloud
           @Message = params['Message']
           @PodName = params['PodName']
           @Timestamp = params['Timestamp']
+        end
+      end
+
+      # 物料信息
+      class MaterialInfo < TencentCloud::Common::AbstractModel
+        # @param StorageType: 存储类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StorageType: String
+        # @param CosPathInfo: Cos存储信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CosPathInfo: :class:`Tencentcloud::Tione.v20211111.models.CosPathInfo`
+        # @param MaterialName: 物料名，支持Code、Model
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaterialName: String
+        # @param MaterialType: 物料类型，支持PreSet(预置)、 Custom(自定义)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaterialType: String
+        # @param MountPath: 训练任务挂载路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MountPath: String
+
+        attr_accessor :StorageType, :CosPathInfo, :MaterialName, :MaterialType, :MountPath
+
+        def initialize(storagetype=nil, cospathinfo=nil, materialname=nil, materialtype=nil, mountpath=nil)
+          @StorageType = storagetype
+          @CosPathInfo = cospathinfo
+          @MaterialName = materialname
+          @MaterialType = materialtype
+          @MountPath = mountpath
+        end
+
+        def deserialize(params)
+          @StorageType = params['StorageType']
+          unless params['CosPathInfo'].nil?
+            @CosPathInfo = CosPathInfo.new
+            @CosPathInfo.deserialize(params['CosPathInfo'])
+          end
+          @MaterialName = params['MaterialName']
+          @MaterialType = params['MaterialType']
+          @MountPath = params['MountPath']
         end
       end
 
@@ -7976,6 +8175,200 @@ module TencentCloud
         end
       end
 
+      # 公共算法版本信息
+      class PublicAlgoVersion < TencentCloud::Common::AbstractModel
+        # @param PublicAlgoVersionId: 公共算法版本Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PublicAlgoVersionId: String
+        # @param PublicAlgoGroupId: 对应的公共算法组Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PublicAlgoGroupId: String
+        # @param Version: 版本号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Version: String
+        # @param Introduction: 模型简介
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Introduction: String
+        # @param PreviewInfo: 预览信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PreviewInfo: String
+        # @param PresetTrainImageInfo: 预置训练镜像信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PresetTrainImageInfo: :class:`Tencentcloud::Tione.v20211111.models.ImageInfo`
+        # @param PresetTrainCodeInfo: 预置训练代码信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PresetTrainCodeInfo: :class:`Tencentcloud::Tione.v20211111.models.MaterialInfo`
+        # @param PresetModelInfo: 预置模型信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PresetModelInfo: :class:`Tencentcloud::Tione.v20211111.models.MaterialInfo`
+        # @param IsImported: 是否已经被导入到我的算法
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsImported: Boolean
+        # @param CreateTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param UpdateTime: 更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+        # @param DefaultResourceSpec: 默认训练资源规格
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DefaultResourceSpec: :class:`Tencentcloud::Tione.v20211111.models.ResourceSpec`
+        # @param DefaultInferenceResourceSpec: 默认推理资源规格
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DefaultInferenceResourceSpec: :class:`Tencentcloud::Tione.v20211111.models.ResourceSpec`
+        # @param SupportDeploy: 是否支持直接部署推理服务
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SupportDeploy: Boolean
+        # @param PresetTrainDataset: 内置训练数据集
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PresetTrainDataset: :class:`Tencentcloud::Tione.v20211111.models.MaterialInfo`
+        # @param TrainCodeDownloadUrl: 训练代码包下载路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TrainCodeDownloadUrl: String
+        # @param TrainDataDownloadUrl: 内置数据下载路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TrainDataDownloadUrl: String
+        # @param TrainParams: 训练参数列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TrainParams: Array
+        # @param PresetTrainCodeStartCmd: 训练启动命令
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PresetTrainCodeStartCmd: String
+        # @param IsPrivateModel: 是否非公开模型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsPrivateModel: Boolean
+        # @param PresetTrainImageInfoList: 各种设备下的训练镜像
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PresetTrainImageInfoList: Array
+        # @param PresetInferenceImageInfoList: 各种设备下的推理镜像
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PresetInferenceImageInfoList: Array
+        # @param PresetTrainCodeInfoList: 各种设备下的训练代码信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PresetTrainCodeInfoList: Array
+        # @param PresetModelInfoList: 各种设备下的内置模型信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PresetModelInfoList: Array
+        # @param ModelCategory: 模型类别，比如LLM/MultiModal
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModelCategory: String
+        # @param PublicAlgoSeriesId: 公共算法Id
+        # @type PublicAlgoSeriesId: String
+
+        attr_accessor :PublicAlgoVersionId, :PublicAlgoGroupId, :Version, :Introduction, :PreviewInfo, :PresetTrainImageInfo, :PresetTrainCodeInfo, :PresetModelInfo, :IsImported, :CreateTime, :UpdateTime, :DefaultResourceSpec, :DefaultInferenceResourceSpec, :SupportDeploy, :PresetTrainDataset, :TrainCodeDownloadUrl, :TrainDataDownloadUrl, :TrainParams, :PresetTrainCodeStartCmd, :IsPrivateModel, :PresetTrainImageInfoList, :PresetInferenceImageInfoList, :PresetTrainCodeInfoList, :PresetModelInfoList, :ModelCategory, :PublicAlgoSeriesId
+
+        def initialize(publicalgoversionid=nil, publicalgogroupid=nil, version=nil, introduction=nil, previewinfo=nil, presettrainimageinfo=nil, presettraincodeinfo=nil, presetmodelinfo=nil, isimported=nil, createtime=nil, updatetime=nil, defaultresourcespec=nil, defaultinferenceresourcespec=nil, supportdeploy=nil, presettraindataset=nil, traincodedownloadurl=nil, traindatadownloadurl=nil, trainparams=nil, presettraincodestartcmd=nil, isprivatemodel=nil, presettrainimageinfolist=nil, presetinferenceimageinfolist=nil, presettraincodeinfolist=nil, presetmodelinfolist=nil, modelcategory=nil, publicalgoseriesid=nil)
+          @PublicAlgoVersionId = publicalgoversionid
+          @PublicAlgoGroupId = publicalgogroupid
+          @Version = version
+          @Introduction = introduction
+          @PreviewInfo = previewinfo
+          @PresetTrainImageInfo = presettrainimageinfo
+          @PresetTrainCodeInfo = presettraincodeinfo
+          @PresetModelInfo = presetmodelinfo
+          @IsImported = isimported
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @DefaultResourceSpec = defaultresourcespec
+          @DefaultInferenceResourceSpec = defaultinferenceresourcespec
+          @SupportDeploy = supportdeploy
+          @PresetTrainDataset = presettraindataset
+          @TrainCodeDownloadUrl = traincodedownloadurl
+          @TrainDataDownloadUrl = traindatadownloadurl
+          @TrainParams = trainparams
+          @PresetTrainCodeStartCmd = presettraincodestartcmd
+          @IsPrivateModel = isprivatemodel
+          @PresetTrainImageInfoList = presettrainimageinfolist
+          @PresetInferenceImageInfoList = presetinferenceimageinfolist
+          @PresetTrainCodeInfoList = presettraincodeinfolist
+          @PresetModelInfoList = presetmodelinfolist
+          @ModelCategory = modelcategory
+          @PublicAlgoSeriesId = publicalgoseriesid
+        end
+
+        def deserialize(params)
+          @PublicAlgoVersionId = params['PublicAlgoVersionId']
+          @PublicAlgoGroupId = params['PublicAlgoGroupId']
+          @Version = params['Version']
+          @Introduction = params['Introduction']
+          @PreviewInfo = params['PreviewInfo']
+          unless params['PresetTrainImageInfo'].nil?
+            @PresetTrainImageInfo = ImageInfo.new
+            @PresetTrainImageInfo.deserialize(params['PresetTrainImageInfo'])
+          end
+          unless params['PresetTrainCodeInfo'].nil?
+            @PresetTrainCodeInfo = MaterialInfo.new
+            @PresetTrainCodeInfo.deserialize(params['PresetTrainCodeInfo'])
+          end
+          unless params['PresetModelInfo'].nil?
+            @PresetModelInfo = MaterialInfo.new
+            @PresetModelInfo.deserialize(params['PresetModelInfo'])
+          end
+          @IsImported = params['IsImported']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          unless params['DefaultResourceSpec'].nil?
+            @DefaultResourceSpec = ResourceSpec.new
+            @DefaultResourceSpec.deserialize(params['DefaultResourceSpec'])
+          end
+          unless params['DefaultInferenceResourceSpec'].nil?
+            @DefaultInferenceResourceSpec = ResourceSpec.new
+            @DefaultInferenceResourceSpec.deserialize(params['DefaultInferenceResourceSpec'])
+          end
+          @SupportDeploy = params['SupportDeploy']
+          unless params['PresetTrainDataset'].nil?
+            @PresetTrainDataset = MaterialInfo.new
+            @PresetTrainDataset.deserialize(params['PresetTrainDataset'])
+          end
+          @TrainCodeDownloadUrl = params['TrainCodeDownloadUrl']
+          @TrainDataDownloadUrl = params['TrainDataDownloadUrl']
+          unless params['TrainParams'].nil?
+            @TrainParams = []
+            params['TrainParams'].each do |i|
+              trainparam_tmp = TrainParam.new
+              trainparam_tmp.deserialize(i)
+              @TrainParams << trainparam_tmp
+            end
+          end
+          @PresetTrainCodeStartCmd = params['PresetTrainCodeStartCmd']
+          @IsPrivateModel = params['IsPrivateModel']
+          unless params['PresetTrainImageInfoList'].nil?
+            @PresetTrainImageInfoList = []
+            params['PresetTrainImageInfoList'].each do |i|
+              deviceimageinfo_tmp = DeviceImageInfo.new
+              deviceimageinfo_tmp.deserialize(i)
+              @PresetTrainImageInfoList << deviceimageinfo_tmp
+            end
+          end
+          unless params['PresetInferenceImageInfoList'].nil?
+            @PresetInferenceImageInfoList = []
+            params['PresetInferenceImageInfoList'].each do |i|
+              deviceimageinfo_tmp = DeviceImageInfo.new
+              deviceimageinfo_tmp.deserialize(i)
+              @PresetInferenceImageInfoList << deviceimageinfo_tmp
+            end
+          end
+          unless params['PresetTrainCodeInfoList'].nil?
+            @PresetTrainCodeInfoList = []
+            params['PresetTrainCodeInfoList'].each do |i|
+              devicematerialinfo_tmp = DeviceMaterialInfo.new
+              devicematerialinfo_tmp.deserialize(i)
+              @PresetTrainCodeInfoList << devicematerialinfo_tmp
+            end
+          end
+          unless params['PresetModelInfoList'].nil?
+            @PresetModelInfoList = []
+            params['PresetModelInfoList'].each do |i|
+              devicematerialinfo_tmp = DeviceMaterialInfo.new
+              devicematerialinfo_tmp.deserialize(i)
+              @PresetModelInfoList << devicematerialinfo_tmp
+            end
+          end
+          @ModelCategory = params['ModelCategory']
+          @PublicAlgoSeriesId = params['PublicAlgoSeriesId']
+        end
+      end
+
       # 公有云数据源结构
       class PublicDataSourceFS < TencentCloud::Common::AbstractModel
         # @param DataSourceId: 数据源id
@@ -8373,6 +8766,33 @@ module TencentCloud
           @TaskType = params['TaskType']
           @TaskId = params['TaskId']
           @TaskName = params['TaskName']
+        end
+      end
+
+      # TI资源规格
+      class ResourceSpec < TencentCloud::Common::AbstractModel
+        # @param SpecAlias: 规格简称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SpecAlias: String
+        # @param SpecId: 规格Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SpecId: String
+        # @param SpecName: 规则名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SpecName: String
+
+        attr_accessor :SpecAlias, :SpecId, :SpecName
+
+        def initialize(specalias=nil, specid=nil, specname=nil)
+          @SpecAlias = specalias
+          @SpecId = specid
+          @SpecName = specname
+        end
+
+        def deserialize(params)
+          @SpecAlias = params['SpecAlias']
+          @SpecId = params['SpecId']
+          @SpecName = params['SpecName']
         end
       end
 
@@ -9882,6 +10302,54 @@ module TencentCloud
         def deserialize(params)
           @TagKey = params['TagKey']
           @TagValues = params['TagValues']
+        end
+      end
+
+      # 训练超参
+      class TrainParam < TencentCloud::Common::AbstractModel
+        # @param Name: 参数名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param DefaultValue: 默认参数值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DefaultValue: String
+        # @param Comment: 参数注释
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Comment: String
+        # @param Type: 参数类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param Required: 是否必选
+        # @type Required: Boolean
+        # @param Value: 参数值
+        # @type Value: String
+        # @param Range: 参数范围
+        # @type Range: Array
+        # @param Enum: 参数选项
+        # @type Enum: Array
+
+        attr_accessor :Name, :DefaultValue, :Comment, :Type, :Required, :Value, :Range, :Enum
+
+        def initialize(name=nil, defaultvalue=nil, comment=nil, type=nil, required=nil, value=nil, range=nil, enum=nil)
+          @Name = name
+          @DefaultValue = defaultvalue
+          @Comment = comment
+          @Type = type
+          @Required = required
+          @Value = value
+          @Range = range
+          @Enum = enum
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @DefaultValue = params['DefaultValue']
+          @Comment = params['Comment']
+          @Type = params['Type']
+          @Required = params['Required']
+          @Value = params['Value']
+          @Range = params['Range']
+          @Enum = params['Enum']
         end
       end
 

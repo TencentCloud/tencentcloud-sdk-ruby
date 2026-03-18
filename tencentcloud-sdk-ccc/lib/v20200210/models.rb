@@ -136,13 +136,13 @@ module TencentCloud
 
       # AI 通话结果具体信息
       class AICallExtractResultInfo < TencentCloud::Common::AbstractModel
-        # @param Text: 提取的类型是文本
+        # @param Text: <p>提取的类型是文本</p>
         # @type Text: String
-        # @param Chosen: 提取的内型是选项
+        # @param Chosen: <p>提取的类型是选项</p>
         # @type Chosen: Array
-        # @param Boolean: 提取类型是布尔值
+        # @param Boolean: <p>提取类型是布尔值</p>
         # @type Boolean: Boolean
-        # @param Number: 提取类型是数字
+        # @param Number: <p>提取类型是数字</p>
         # @type Number: Float
 
         attr_accessor :Text, :Chosen, :Boolean, :Number
@@ -2573,9 +2573,9 @@ module TencentCloud
 
       # DeleteStaff请求参数结构体
       class DeleteStaffRequest < TencentCloud::Common::AbstractModel
-        # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
+        # @param SdkAppId: <p>应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc</p>
         # @type SdkAppId: Integer
-        # @param StaffList: 待删除客服邮箱列表，一次最大支持200个。
+        # @param StaffList: <p>待删除客服邮箱列表，一次最大支持200个。</p>
         # @type StaffList: Array
 
         attr_accessor :SdkAppId, :StaffList
@@ -2593,20 +2593,24 @@ module TencentCloud
 
       # DeleteStaff返回参数结构体
       class DeleteStaffResponse < TencentCloud::Common::AbstractModel
-        # @param OnlineStaffList: 无法删除的状态为在线的客服列表
+        # @param OnlineStaffList: <p>无法删除的状态为在线的客服列表</p>
         # @type OnlineStaffList: Array
+        # @param DeleteStatusInfo: <p>坐席删除详情</p>
+        # @type DeleteStatusInfo: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :OnlineStaffList, :RequestId
+        attr_accessor :OnlineStaffList, :DeleteStatusInfo, :RequestId
 
-        def initialize(onlinestafflist=nil, requestid=nil)
+        def initialize(onlinestafflist=nil, deletestatusinfo=nil, requestid=nil)
           @OnlineStaffList = onlinestafflist
+          @DeleteStatusInfo = deletestatusinfo
           @RequestId = requestid
         end
 
         def deserialize(params)
           @OnlineStaffList = params['OnlineStaffList']
+          @DeleteStatusInfo = params['DeleteStatusInfo']
           @RequestId = params['RequestId']
         end
       end
@@ -3888,11 +3892,11 @@ module TencentCloud
 
       # DescribeNumbers请求参数结构体
       class DescribeNumbersRequest < TencentCloud::Common::AbstractModel
-        # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
+        # @param SdkAppId: <p>应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc</p>
         # @type SdkAppId: Integer
-        # @param PageNumber: 页数，从0开始
+        # @param PageNumber: <p>页数，从0开始</p>
         # @type PageNumber: Integer
-        # @param PageSize: 分页大小，默认20
+        # @param PageSize: <p>分页大小，默认20</p>
         # @type PageSize: Integer
 
         attr_accessor :SdkAppId, :PageNumber, :PageSize
@@ -3912,9 +3916,9 @@ module TencentCloud
 
       # DescribeNumbers返回参数结构体
       class DescribeNumbersResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 总数量
+        # @param TotalCount: <p>总数量</p>
         # @type TotalCount: Integer
-        # @param Numbers: 号码列表
+        # @param Numbers: <p>号码列表</p>
         # @type Numbers: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5824,25 +5828,29 @@ module TencentCloud
 
       # 号码信息
       class NumberInfo < TencentCloud::Common::AbstractModel
-        # @param Number: 号码
+        # @param Number: <p>号码</p>
         # @type Number: String
-        # @param CallOutSkillGroupIds: 绑定的外呼技能组
+        # @param CallOutSkillGroupIds: <p>绑定的外呼技能组</p>
         # @type CallOutSkillGroupIds: Array
-        # @param State: 号码状态，1-正常，2-欠费停用，4-管理员停用，5-违规停用
+        # @param State: <p>号码状态，1-正常，2-欠费停用，4-管理员停用，5-违规停用</p>
         # @type State: Integer
+        # @param CostType: <p>是否自携号码</p><p>枚举值：</p><ul><li>0： 非自携</li><li>1： 自携</li></ul>
+        # @type CostType: Integer
 
-        attr_accessor :Number, :CallOutSkillGroupIds, :State
+        attr_accessor :Number, :CallOutSkillGroupIds, :State, :CostType
 
-        def initialize(number=nil, calloutskillgroupids=nil, state=nil)
+        def initialize(number=nil, calloutskillgroupids=nil, state=nil, costtype=nil)
           @Number = number
           @CallOutSkillGroupIds = calloutskillgroupids
           @State = state
+          @CostType = costtype
         end
 
         def deserialize(params)
           @Number = params['Number']
           @CallOutSkillGroupIds = params['CallOutSkillGroupIds']
           @State = params['State']
+          @CostType = params['CostType']
         end
       end
 

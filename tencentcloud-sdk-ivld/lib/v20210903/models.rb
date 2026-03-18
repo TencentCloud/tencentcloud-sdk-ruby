@@ -1619,19 +1619,19 @@ module TencentCloud
 
       # 图片文件元信息
       class ImageMetadata < TencentCloud::Common::AbstractModel
-        # @param FileSize: 媒资图片文件大小，单位为Byte
+        # @param FileSize: <p>媒资图片文件大小，单位为Byte</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileSize: Integer
-        # @param MD5: 媒资图片文件MD5
+        # @param MD5: <p>媒资图片文件MD5</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MD5: String
-        # @param Width: 媒资图片文件宽度
+        # @param Width: <p>媒资图片文件宽度</p><p>单位：像素（px）</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Width: Integer
-        # @param Height: 媒资图片文件高度
+        # @param Height: <p>媒资图片文件高度</p><p>单位：像素（px）</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Height: Integer
-        # @param Format: 媒资图片文件格式
+        # @param Format: <p>媒资图片文件格式</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Format: String
 
@@ -2338,16 +2338,16 @@ module TencentCloud
 
       # 矩形内容框
       class Rectf < TencentCloud::Common::AbstractModel
-        # @param X: 矩形框左上角水平座标
+        # @param X: <p>矩形框左上角水平座标</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type X: Float
-        # @param Y: 矩形框左上角竖直座标
+        # @param Y: <p>矩形框左上角竖直座标</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Y: Float
-        # @param Width: 矩形框宽度
+        # @param Width: <p>矩形框宽度</p><p>单位：像素（px）</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Width: Float
-        # @param Height: 矩形框长度
+        # @param Height: <p>矩形框长度</p><p>单位：像素（px）</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Height: Float
 
@@ -2652,50 +2652,50 @@ module TencentCloud
       # | TASK_STATUS_SUCCESS | 8 | 任务执行完成 |
       # | TASK_STATUS_FAILED | 9 | 任务执行失败 |
       class TaskInfo < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务ID
+        # @param TaskId: <p>任务ID</p>
         # @type TaskId: String
-        # @param TaskName: 描述任务名称，指定后可根据名称筛选
+        # @param TaskName: <p>描述任务名称，指定后可根据名称筛选</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskName: String
-        # @param MediaId: 媒资文件ID
+        # @param MediaId: <p>媒资文件ID</p>
         # @type MediaId: String
-        # @param TaskStatus: 任务执行状态
+        # @param TaskStatus: <p>任务执行状态</p>
         # @type TaskStatus: Integer
-        # @param TaskProgress: 任务进度，范围为[0，100]
+        # @param TaskProgress: <p>任务进度，范围为[0，100]</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskProgress: Float
-        # @param TaskTimeCost: 任务执行时间
+        # @param TaskTimeCost: <p>任务执行时间</p><p>单位：秒</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskTimeCost: Integer
-        # @param TaskCreateTime: 任务创建时间
+        # @param TaskCreateTime: <p>任务创建时间</p>
         # @type TaskCreateTime: String
-        # @param TaskStartTime: 任务开始执行时间
+        # @param TaskStartTime: <p>任务开始执行时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskStartTime: String
-        # @param FailedReason: 任务失败原因
+        # @param FailedReason: <p>任务失败原因</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FailedReason: String
-        # @param MediaPreknownInfo: 任务执行时指定的先验知识
+        # @param MediaPreknownInfo: <p>任务执行时指定的先验知识</p>
         # @type MediaPreknownInfo: :class:`Tencentcloud::Ivld.v20210903.models.MediaPreknownInfo`
-        # @param MediaName: 媒资文件名称
+        # @param MediaName: <p>媒资文件名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MediaName: String
-        # @param Label: 媒资自定义标签
+        # @param Label: <p>媒资自定义标签</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Label: String
-        # @param CallbackURL: 任务分析完成后的后调地址
+        # @param CallbackURL: <p>任务分析完成后的后调地址</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CallbackURL: String
-        # @param AudioMetadata: 任务对应的媒资文件元信息，仅在MediaType为Audio时有效
+        # @param AudioMetadata: <p>任务对应的媒资文件元信息，仅在MediaType为Audio时有效</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AudioMetadata: :class:`Tencentcloud::Ivld.v20210903.models.AudioMetadata`
-        # @param ImageMetadata: 任务对应的媒资文件元信息，仅在MediaType为Audio时有效
+        # @param ImageMetadata: <p>任务对应的媒资文件元信息，仅在MediaType为Audio时有效</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImageMetadata: :class:`Tencentcloud::Ivld.v20210903.models.ImageMetadata`
-        # @param TextMetadata: 任务对应的媒资文件元信息，仅在MediaType为Text时有效
+        # @param TextMetadata: <p>任务对应的媒资文件元信息，仅在MediaType为Text时有效</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TextMetadata: :class:`Tencentcloud::Ivld.v20210903.models.TextMetadata`
-        # @param Metadata: 任务对应的媒资文件元信息，仅在MediaType为Video时有效
+        # @param Metadata: <p>任务对应的媒资文件元信息，仅在MediaType为Video时有效</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Metadata: :class:`Tencentcloud::Ivld.v20210903.models.MediaMetadata`
 
@@ -2848,19 +2848,19 @@ module TencentCloud
 
       # 文本文件元信息
       class TextMetadata < TencentCloud::Common::AbstractModel
-        # @param FileSize: 媒资文本文件大小，单位为字节
+        # @param FileSize: <p>媒资文本文件大小，单位为字节</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileSize: Integer
-        # @param MD5: 媒资文本文件MD5
+        # @param MD5: <p>媒资文本文件MD5</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MD5: String
-        # @param Length: 媒资文本文件字符数
+        # @param Length: <p>媒资文本文件字符数</p><p>单位：字符</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Length: Integer
-        # @param Format: 媒资文本文件格式
+        # @param Format: <p>媒资文本文件格式</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Format: String
-        # @param ShortFormat: 封装格式短后缀
+        # @param ShortFormat: <p>封装格式短后缀</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ShortFormat: String
 

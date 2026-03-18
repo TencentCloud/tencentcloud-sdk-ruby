@@ -19,13 +19,13 @@ module TencentCloud
     module V20180321
       # 段落文本框位置：x，y代表左上顶点，width和height代表宽高
       class BoundingBox < TencentCloud::Common::AbstractModel
-        # @param X: 左上顶点x坐标
+        # @param X: <p>左上顶点x坐标</p>
         # @type X: Integer
-        # @param Y: 左上顶点y坐标
+        # @param Y: <p>左上顶点y坐标</p>
         # @type Y: Integer
-        # @param Width: 宽
+        # @param Width: <p>宽</p><p>单位：px</p>
         # @type Width: Integer
-        # @param Height: 高
+        # @param Height: <p>高</p><p>单位：px</p>
         # @type Height: Integer
 
         attr_accessor :X, :Y, :Width, :Height
@@ -283,19 +283,19 @@ module TencentCloud
 
       # 大模型图片翻译详情信息
       class TransDetail < TencentCloud::Common::AbstractModel
-        # @param SourceLineText: 当前行的原文本
+        # @param SourceLineText: <p>当前行的原文本</p>
         # @type SourceLineText: String
-        # @param TargetLineText: 当前行的译文
+        # @param TargetLineText: <p>当前行的译文</p>
         # @type TargetLineText: String
-        # @param BoundingBox: 段落文本框位置
+        # @param BoundingBox: <p>段落文本框位置</p>
         # @type BoundingBox: :class:`Tencentcloud::Tmt.v20180321.models.BoundingBox`
-        # @param LinesCount: 行数
+        # @param LinesCount: <p>行数</p>
         # @type LinesCount: Integer
-        # @param LineHeight: 行高
+        # @param LineHeight: <p>行高</p><p>单位：px</p>
         # @type LineHeight: Integer
-        # @param SpamCode: 正常段落spam_code字段为0；如果存在spam_code字段且值大于0（1: 命中垃圾检查；2: 命中安全策略；3: 其他。），则命中安全检查被过滤。
+        # @param SpamCode: <p>正常段落spam_code字段为0；如果存在spam_code字段且值大于0（1: 命中垃圾检查；2: 命中安全策略；3: 其他。），则命中安全检查被过滤。</p>
         # @type SpamCode: Integer
-        # @param RotateParagraphRect: 段落文本旋转信息，只在valid为true时表示坐标有效
+        # @param RotateParagraphRect: <p>段落文本旋转信息，只在valid为true时表示坐标有效</p>
         # @type RotateParagraphRect: :class:`Tencentcloud::Tmt.v20180321.models.RotateParagraphRect`
 
         attr_accessor :SourceLineText, :TargetLineText, :BoundingBox, :LinesCount, :LineHeight, :SpamCode, :RotateParagraphRect

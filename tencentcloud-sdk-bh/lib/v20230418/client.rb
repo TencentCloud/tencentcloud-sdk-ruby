@@ -1469,6 +1469,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 关闭客户端TCP访问堡垒机
+
+        # @param request: Request instance for DisableClientTcpAccess.
+        # @type request: :class:`Tencentcloud::bh::V20230418::DisableClientTcpAccessRequest`
+        # @rtype: :class:`Tencentcloud::bh::V20230418::DisableClientTcpAccessResponse`
+        def DisableClientTcpAccess(request)
+          body = send_request('DisableClientTcpAccess', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DisableClientTcpAccessResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 关闭公网访问堡垒机
 
         # @param request: Request instance for DisableExternalAccess.
@@ -1517,6 +1541,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 关闭web访问堡垒机
+
+        # @param request: Request instance for DisableWebAccess.
+        # @type request: :class:`Tencentcloud::bh::V20230418::DisableWebAccessRequest`
+        # @rtype: :class:`Tencentcloud::bh::V20230418::DisableWebAccessResponse`
+        def DisableWebAccess(request)
+          body = send_request('DisableWebAccess', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DisableWebAccessResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 开启客户端TCP访问堡垒机
+
+        # @param request: Request instance for EnableClientTcpAccess.
+        # @type request: :class:`Tencentcloud::bh::V20230418::EnableClientTcpAccessRequest`
+        # @rtype: :class:`Tencentcloud::bh::V20230418::EnableClientTcpAccessResponse`
+        def EnableClientTcpAccess(request)
+          body = send_request('EnableClientTcpAccess', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = EnableClientTcpAccessResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 开启公网访问堡垒机
 
         # @param request: Request instance for EnableExternalAccess.
@@ -1551,6 +1623,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = EnableIntranetAccessResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 开启web访问堡垒机
+
+        # @param request: Request instance for EnableWebAccess.
+        # @type request: :class:`Tencentcloud::bh::V20230418::EnableWebAccessRequest`
+        # @rtype: :class:`Tencentcloud::bh::V20230418::EnableWebAccessResponse`
+        def EnableWebAccess(request)
+          body = send_request('EnableWebAccess', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = EnableWebAccessResponse.new
             model.deserialize(response['Response'])
             model
           else

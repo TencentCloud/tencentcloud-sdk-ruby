@@ -12864,7 +12864,7 @@ module TencentCloud
 
       # 托管Prometheus agent信息
       class PrometheusAgentInfo < TencentCloud::Common::AbstractModel
-        # @param ClusterType: 集群类型。可填入tke、eks、tkeedge、tdcc，分别代表标准集群、弹性集群、边缘集群、注册集群
+        # @param ClusterType: 集群类型。可填入tke、eks、tkeedge、tdcc、external，分别代表标准集群、弹性集群、边缘集群、注册集群、外部集群
         # @type ClusterType: String
         # @param ClusterId: 集成容器服务中关联的集群ID
         # @type ClusterId: String
@@ -13406,13 +13406,13 @@ module TencentCloud
       class PrometheusClusterScrapeStatistics < TencentCloud::Common::AbstractModel
         # @param ClusterID: 集群ID
         # @type ClusterID: String
-        # @param ScrapedRate: 被采集的点数
+        # @param ScrapedRate: 被采集的点个数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScrapedRate: Float
         # @param Jobs: Job列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Jobs: Array
-        # @param SamplesRate: 过滤前的指标采集速率
+        # @param SamplesRate: 每秒过滤前的指标采集速率
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SamplesRate: Float
 
@@ -13513,14 +13513,14 @@ module TencentCloud
       class PrometheusInstanceScrapeStatistics < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID
         # @type InstanceId: String
-        # @param ScrapedRate: 被采集的点数
+        # @param ScrapedRate: 每秒被采集的点数
         # @type ScrapedRate: Float
         # @param Clusters: 集群指标列表
         # @type Clusters: Array
         # @param Global: 非容器指标列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Global: Array
-        # @param SamplesRate: 过滤前的指标采集速率
+        # @param SamplesRate: 过滤前的每秒指标采集速率
         # @type SamplesRate: Float
 
         attr_accessor :InstanceId, :ScrapedRate, :Clusters, :Global, :SamplesRate
@@ -13567,10 +13567,10 @@ module TencentCloud
         # @param Total: 总用量
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Total: Float
-        # @param Basic: 基础指标用量
+        # @param Basic: 基础指标用量个数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Basic: Float
-        # @param Fee: 付费指标用量
+        # @param Fee: 付费指标用量个数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Fee: Float
 

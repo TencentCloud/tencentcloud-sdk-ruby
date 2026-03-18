@@ -4532,6 +4532,38 @@ module TencentCloud
         end
       end
 
+      # DisableClientTcpAccess请求参数结构体
+      class DisableClientTcpAccessRequest < TencentCloud::Common::AbstractModel
+        # @param ResourceId: 堡垒机id
+        # @type ResourceId: String
+
+        attr_accessor :ResourceId
+
+        def initialize(resourceid=nil)
+          @ResourceId = resourceid
+        end
+
+        def deserialize(params)
+          @ResourceId = params['ResourceId']
+        end
+      end
+
+      # DisableClientTcpAccess返回参数结构体
+      class DisableClientTcpAccessResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DisableExternalAccess请求参数结构体
       class DisableExternalAccessRequest < TencentCloud::Common::AbstractModel
         # @param ResourceId: 堡垒机id
@@ -4596,6 +4628,38 @@ module TencentCloud
         end
       end
 
+      # DisableWebAccess请求参数结构体
+      class DisableWebAccessRequest < TencentCloud::Common::AbstractModel
+        # @param ResourceId: 堡垒机id
+        # @type ResourceId: String
+
+        attr_accessor :ResourceId
+
+        def initialize(resourceid=nil)
+          @ResourceId = resourceid
+        end
+
+        def deserialize(params)
+          @ResourceId = params['ResourceId']
+        end
+      end
+
+      # DisableWebAccess返回参数结构体
+      class DisableWebAccessResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 网络域
       class Domain < TencentCloud::Common::AbstractModel
         # @param Id: 自增id
@@ -4641,6 +4705,38 @@ module TencentCloud
           @Status = params['Status']
           @CreateTime = params['CreateTime']
           @Default = params['Default']
+        end
+      end
+
+      # EnableClientTcpAccess请求参数结构体
+      class EnableClientTcpAccessRequest < TencentCloud::Common::AbstractModel
+        # @param ResourceId: 堡垒机id
+        # @type ResourceId: String
+
+        attr_accessor :ResourceId
+
+        def initialize(resourceid=nil)
+          @ResourceId = resourceid
+        end
+
+        def deserialize(params)
+          @ResourceId = params['ResourceId']
+        end
+      end
+
+      # EnableClientTcpAccess返回参数结构体
+      class EnableClientTcpAccessResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 
@@ -4710,6 +4806,38 @@ module TencentCloud
 
       # EnableIntranetAccess返回参数结构体
       class EnableIntranetAccessResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # EnableWebAccess请求参数结构体
+      class EnableWebAccessRequest < TencentCloud::Common::AbstractModel
+        # @param ResourceId: 堡垒机id
+        # @type ResourceId: String
+
+        attr_accessor :ResourceId
+
+        def initialize(resourceid=nil)
+          @ResourceId = resourceid
+        end
+
+        def deserialize(params)
+          @ResourceId = params['ResourceId']
+        end
+      end
+
+      # EnableWebAccess返回参数结构体
+      class EnableWebAccessResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

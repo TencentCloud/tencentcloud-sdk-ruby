@@ -1580,13 +1580,13 @@ module TencentCloud
 
       # 智能译制结果信息
       class AiAnalysisTaskDubbingOutput < TencentCloud::Common::AbstractModel
-        # @param VideoPath: 译制视频路径。
+        # @param VideoPath: <p>译制视频路径。</p>
         # @type VideoPath: String
-        # @param SpeakerPath: 标记文件路径
+        # @param SpeakerPath: <p>标记文件路径</p>
         # @type SpeakerPath: String
-        # @param VoiceId: 音色id
+        # @param VoiceId: <p>音色id</p>
         # @type VoiceId: String
-        # @param OutputStorage: 译制视频存储位置。
+        # @param OutputStorage: <p>译制视频存储位置。</p>
         # @type OutputStorage: :class:`Tencentcloud::Mps.v20190612.models.TaskOutputStorage`
 
         attr_accessor :VideoPath, :SpeakerPath, :VoiceId, :OutputStorage
