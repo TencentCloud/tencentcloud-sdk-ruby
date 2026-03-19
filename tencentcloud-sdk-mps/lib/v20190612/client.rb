@@ -743,6 +743,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建自定义字幕压制模板
+
+        # @param request: Request instance for CreateSubtitleEmbedTemplate.
+        # @type request: :class:`Tencentcloud::mps::V20190612::CreateSubtitleEmbedTemplateRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::CreateSubtitleEmbedTemplateResponse`
+        def CreateSubtitleEmbedTemplate(request)
+          body = send_request('CreateSubtitleEmbedTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateSubtitleEmbedTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建用户自定义转码模板，数量上限：1000
 
         # @param request: Request instance for CreateTranscodeTemplate.
@@ -1391,6 +1415,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteStreamLinkSecurityGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除用户自定义字幕压制模板。
+
+        # @param request: Request instance for DeleteSubtitleEmbedTemplate.
+        # @type request: :class:`Tencentcloud::mps::V20190612::DeleteSubtitleEmbedTemplateRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::DeleteSubtitleEmbedTemplateResponse`
+        def DeleteSubtitleEmbedTemplate(request)
+          body = send_request('DeleteSubtitleEmbedTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteSubtitleEmbedTemplateResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2389,6 +2437,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 根据字幕压制模板唯一标识，获取字幕压制模板详情列表。返回结果包含符合条件的所有用户自定义字幕压制模板及系统预置字幕压制模板
+
+        # @param request: Request instance for DescribeSubtitleEmbedTemplates.
+        # @type request: :class:`Tencentcloud::mps::V20190612::DescribeSubtitleEmbedTemplatesRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::DescribeSubtitleEmbedTemplatesResponse`
+        def DescribeSubtitleEmbedTemplates(request)
+          body = send_request('DescribeSubtitleEmbedTemplates', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSubtitleEmbedTemplatesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 通过任务 ID 查询任务的执行状态和结果的详细信息（最多可以查询7天之内提交的任务）。
 
         # @param request: Request instance for DescribeTaskDetail.
@@ -3353,6 +3425,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyStreamLinkSecurityGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改用户自定义字幕压制模板。
+
+        # @param request: Request instance for ModifySubtitleEmbedTemplate.
+        # @type request: :class:`Tencentcloud::mps::V20190612::ModifySubtitleEmbedTemplateRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::ModifySubtitleEmbedTemplateResponse`
+        def ModifySubtitleEmbedTemplate(request)
+          body = send_request('ModifySubtitleEmbedTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifySubtitleEmbedTemplateResponse.new
             model.deserialize(response['Response'])
             model
           else

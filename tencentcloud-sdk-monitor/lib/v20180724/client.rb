@@ -902,6 +902,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 告警 1.0 API，不能再使用否则会导致后端数据不一致
+
         # 删除告警策略组
 
         # @param request: Request instance for DeletePolicyGroup.

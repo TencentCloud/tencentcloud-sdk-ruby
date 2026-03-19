@@ -940,6 +940,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取转推配置
+
+        # @param request: Request instance for DescribeLiveRelayConfig.
+        # @type request: :class:`Tencentcloud::lcic::V20220817::DescribeLiveRelayConfigRequest`
+        # @rtype: :class:`Tencentcloud::lcic::V20220817::DescribeLiveRelayConfigResponse`
+        def DescribeLiveRelayConfig(request)
+          body = send_request('DescribeLiveRelayConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeLiveRelayConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询跑马灯配置
 
         # @param request: Request instance for DescribeMarquee.
@@ -1650,6 +1674,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改转推配置
+
+        # @param request: Request instance for ModifyLiveRelayConfig.
+        # @type request: :class:`Tencentcloud::lcic::V20220817::ModifyLiveRelayConfigRequest`
+        # @rtype: :class:`Tencentcloud::lcic::V20220817::ModifyLiveRelayConfigResponse`
+        def ModifyLiveRelayConfig(request)
+          body = send_request('ModifyLiveRelayConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyLiveRelayConfigResponse.new
             model.deserialize(response['Response'])
             model
           else

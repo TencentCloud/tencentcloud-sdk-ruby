@@ -2233,13 +2233,15 @@ module TencentCloud
         # @type ResponseBuffering: Boolean
         # @param RegexPriority: 正则优先级
         # @type RegexPriority: Integer
+        # @param QueryStringParameters: queryString参数
+        # @type QueryStringParameters: Array
 
-        attr_accessor :GatewayId, :ServiceID, :RouteName, :Methods, :Hosts, :Paths, :Protocols, :PreserveHost, :HttpsRedirectStatusCode, :StripPath, :ForceHttps, :DestinationPorts, :Headers, :RequestBuffering, :ResponseBuffering, :RegexPriority
+        attr_accessor :GatewayId, :ServiceID, :RouteName, :Methods, :Hosts, :Paths, :Protocols, :PreserveHost, :HttpsRedirectStatusCode, :StripPath, :ForceHttps, :DestinationPorts, :Headers, :RequestBuffering, :ResponseBuffering, :RegexPriority, :QueryStringParameters
         extend Gem::Deprecate
         deprecate :ForceHttps, :none, 2026, 3
         deprecate :ForceHttps=, :none, 2026, 3
 
-        def initialize(gatewayid=nil, serviceid=nil, routename=nil, methods=nil, hosts=nil, paths=nil, protocols=nil, preservehost=nil, httpsredirectstatuscode=nil, strippath=nil, forcehttps=nil, destinationports=nil, headers=nil, requestbuffering=nil, responsebuffering=nil, regexpriority=nil)
+        def initialize(gatewayid=nil, serviceid=nil, routename=nil, methods=nil, hosts=nil, paths=nil, protocols=nil, preservehost=nil, httpsredirectstatuscode=nil, strippath=nil, forcehttps=nil, destinationports=nil, headers=nil, requestbuffering=nil, responsebuffering=nil, regexpriority=nil, querystringparameters=nil)
           @GatewayId = gatewayid
           @ServiceID = serviceid
           @RouteName = routename
@@ -2256,6 +2258,7 @@ module TencentCloud
           @RequestBuffering = requestbuffering
           @ResponseBuffering = responsebuffering
           @RegexPriority = regexpriority
+          @QueryStringParameters = querystringparameters
         end
 
         def deserialize(params)
@@ -2282,6 +2285,14 @@ module TencentCloud
           @RequestBuffering = params['RequestBuffering']
           @ResponseBuffering = params['ResponseBuffering']
           @RegexPriority = params['RegexPriority']
+          unless params['QueryStringParameters'].nil?
+            @QueryStringParameters = []
+            params['QueryStringParameters'].each do |i|
+              kvmapping_tmp = KVMapping.new
+              kvmapping_tmp.deserialize(i)
+              @QueryStringParameters << kvmapping_tmp
+            end
+          end
         end
       end
 
@@ -5132,10 +5143,14 @@ module TencentCloud
         # @param AvailableVersions: 表示可以升级的版本号
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AvailableVersions: Array
+        # @param AvailableUpgradeVersions: 网关可以升级的版本号列表
+        # @type AvailableUpgradeVersions: Array
+        # @param AvailableUpgrade: 是否提示可升级
+        # @type AvailableUpgrade: Boolean
 
-        attr_accessor :GatewayId, :Status, :Name, :Type, :GatewayVersion, :NodeConfig, :VpcConfig, :Description, :CreateTime, :Tags, :EnableCls, :TradeType, :FeatureVersion, :InternetMaxBandwidthOut, :AutoRenewFlag, :CurDeadline, :IsolateTime, :EnableInternet, :EngineRegion, :IngressClassName, :InternetPayMode, :GatewayMinorVersion, :InstancePort, :LoadBalancerType, :PublicIpAddresses, :DeleteProtect, :AvailableVersions
+        attr_accessor :GatewayId, :Status, :Name, :Type, :GatewayVersion, :NodeConfig, :VpcConfig, :Description, :CreateTime, :Tags, :EnableCls, :TradeType, :FeatureVersion, :InternetMaxBandwidthOut, :AutoRenewFlag, :CurDeadline, :IsolateTime, :EnableInternet, :EngineRegion, :IngressClassName, :InternetPayMode, :GatewayMinorVersion, :InstancePort, :LoadBalancerType, :PublicIpAddresses, :DeleteProtect, :AvailableVersions, :AvailableUpgradeVersions, :AvailableUpgrade
 
-        def initialize(gatewayid=nil, status=nil, name=nil, type=nil, gatewayversion=nil, nodeconfig=nil, vpcconfig=nil, description=nil, createtime=nil, tags=nil, enablecls=nil, tradetype=nil, featureversion=nil, internetmaxbandwidthout=nil, autorenewflag=nil, curdeadline=nil, isolatetime=nil, enableinternet=nil, engineregion=nil, ingressclassname=nil, internetpaymode=nil, gatewayminorversion=nil, instanceport=nil, loadbalancertype=nil, publicipaddresses=nil, deleteprotect=nil, availableversions=nil)
+        def initialize(gatewayid=nil, status=nil, name=nil, type=nil, gatewayversion=nil, nodeconfig=nil, vpcconfig=nil, description=nil, createtime=nil, tags=nil, enablecls=nil, tradetype=nil, featureversion=nil, internetmaxbandwidthout=nil, autorenewflag=nil, curdeadline=nil, isolatetime=nil, enableinternet=nil, engineregion=nil, ingressclassname=nil, internetpaymode=nil, gatewayminorversion=nil, instanceport=nil, loadbalancertype=nil, publicipaddresses=nil, deleteprotect=nil, availableversions=nil, availableupgradeversions=nil, availableupgrade=nil)
           @GatewayId = gatewayid
           @Status = status
           @Name = name
@@ -5163,6 +5178,8 @@ module TencentCloud
           @PublicIpAddresses = publicipaddresses
           @DeleteProtect = deleteprotect
           @AvailableVersions = availableversions
+          @AvailableUpgradeVersions = availableupgradeversions
+          @AvailableUpgrade = availableupgrade
         end
 
         def deserialize(params)
@@ -5209,6 +5226,8 @@ module TencentCloud
           @PublicIpAddresses = params['PublicIpAddresses']
           @DeleteProtect = params['DeleteProtect']
           @AvailableVersions = params['AvailableVersions']
+          @AvailableUpgradeVersions = params['AvailableUpgradeVersions']
+          @AvailableUpgrade = params['AvailableUpgrade']
         end
       end
 
@@ -9361,13 +9380,15 @@ module TencentCloud
         # @type ResponseBuffering: Boolean
         # @param RegexPriority: 正则优先级
         # @type RegexPriority: Integer
+        # @param QueryStringParameters: querystring参数
+        # @type QueryStringParameters: Array
 
-        attr_accessor :ID, :Name, :Methods, :Paths, :Hosts, :Protocols, :PreserveHost, :HttpsRedirectStatusCode, :StripPath, :CreatedTime, :ForceHttps, :ServiceName, :ServiceID, :DestinationPorts, :Headers, :RequestBuffering, :ResponseBuffering, :RegexPriority
+        attr_accessor :ID, :Name, :Methods, :Paths, :Hosts, :Protocols, :PreserveHost, :HttpsRedirectStatusCode, :StripPath, :CreatedTime, :ForceHttps, :ServiceName, :ServiceID, :DestinationPorts, :Headers, :RequestBuffering, :ResponseBuffering, :RegexPriority, :QueryStringParameters
         extend Gem::Deprecate
         deprecate :ForceHttps, :none, 2026, 3
         deprecate :ForceHttps=, :none, 2026, 3
 
-        def initialize(id=nil, name=nil, methods=nil, paths=nil, hosts=nil, protocols=nil, preservehost=nil, httpsredirectstatuscode=nil, strippath=nil, createdtime=nil, forcehttps=nil, servicename=nil, serviceid=nil, destinationports=nil, headers=nil, requestbuffering=nil, responsebuffering=nil, regexpriority=nil)
+        def initialize(id=nil, name=nil, methods=nil, paths=nil, hosts=nil, protocols=nil, preservehost=nil, httpsredirectstatuscode=nil, strippath=nil, createdtime=nil, forcehttps=nil, servicename=nil, serviceid=nil, destinationports=nil, headers=nil, requestbuffering=nil, responsebuffering=nil, regexpriority=nil, querystringparameters=nil)
           @ID = id
           @Name = name
           @Methods = methods
@@ -9386,6 +9407,7 @@ module TencentCloud
           @RequestBuffering = requestbuffering
           @ResponseBuffering = responsebuffering
           @RegexPriority = regexpriority
+          @QueryStringParameters = querystringparameters
         end
 
         def deserialize(params)
@@ -9414,6 +9436,14 @@ module TencentCloud
           @RequestBuffering = params['RequestBuffering']
           @ResponseBuffering = params['ResponseBuffering']
           @RegexPriority = params['RegexPriority']
+          unless params['QueryStringParameters'].nil?
+            @QueryStringParameters = []
+            params['QueryStringParameters'].each do |i|
+              kvmapping_tmp = KVMapping.new
+              kvmapping_tmp.deserialize(i)
+              @QueryStringParameters << kvmapping_tmp
+            end
+          end
         end
       end
 
@@ -10463,13 +10493,15 @@ module TencentCloud
         # @type ResponseBuffering: Boolean
         # @param RegexPriority: 增加优先级
         # @type RegexPriority: Integer
+        # @param QueryStringParameters: querysring参数
+        # @type QueryStringParameters: Array
 
-        attr_accessor :GatewayId, :ServiceID, :RouteID, :RouteName, :Methods, :Hosts, :Paths, :Protocols, :PreserveHost, :HttpsRedirectStatusCode, :StripPath, :ForceHttps, :DestinationPorts, :Headers, :RequestBuffering, :ResponseBuffering, :RegexPriority
+        attr_accessor :GatewayId, :ServiceID, :RouteID, :RouteName, :Methods, :Hosts, :Paths, :Protocols, :PreserveHost, :HttpsRedirectStatusCode, :StripPath, :ForceHttps, :DestinationPorts, :Headers, :RequestBuffering, :ResponseBuffering, :RegexPriority, :QueryStringParameters
         extend Gem::Deprecate
         deprecate :ForceHttps, :none, 2026, 3
         deprecate :ForceHttps=, :none, 2026, 3
 
-        def initialize(gatewayid=nil, serviceid=nil, routeid=nil, routename=nil, methods=nil, hosts=nil, paths=nil, protocols=nil, preservehost=nil, httpsredirectstatuscode=nil, strippath=nil, forcehttps=nil, destinationports=nil, headers=nil, requestbuffering=nil, responsebuffering=nil, regexpriority=nil)
+        def initialize(gatewayid=nil, serviceid=nil, routeid=nil, routename=nil, methods=nil, hosts=nil, paths=nil, protocols=nil, preservehost=nil, httpsredirectstatuscode=nil, strippath=nil, forcehttps=nil, destinationports=nil, headers=nil, requestbuffering=nil, responsebuffering=nil, regexpriority=nil, querystringparameters=nil)
           @GatewayId = gatewayid
           @ServiceID = serviceid
           @RouteID = routeid
@@ -10487,6 +10519,7 @@ module TencentCloud
           @RequestBuffering = requestbuffering
           @ResponseBuffering = responsebuffering
           @RegexPriority = regexpriority
+          @QueryStringParameters = querystringparameters
         end
 
         def deserialize(params)
@@ -10514,6 +10547,14 @@ module TencentCloud
           @RequestBuffering = params['RequestBuffering']
           @ResponseBuffering = params['ResponseBuffering']
           @RegexPriority = params['RegexPriority']
+          unless params['QueryStringParameters'].nil?
+            @QueryStringParameters = []
+            params['QueryStringParameters'].each do |i|
+              kvmapping_tmp = KVMapping.new
+              kvmapping_tmp.deserialize(i)
+              @QueryStringParameters << kvmapping_tmp
+            end
+          end
         end
       end
 

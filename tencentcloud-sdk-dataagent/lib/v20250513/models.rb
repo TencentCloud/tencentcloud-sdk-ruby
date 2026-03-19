@@ -482,34 +482,36 @@ module TencentCloud
 
       # 知识库文件信息
       class FileInfo < TencentCloud::Common::AbstractModel
-        # @param FileName: 文件名称
+        # @param FileName: <p>文件名称</p>
         # @type FileName: String
-        # @param FileSize: 文件大小，字节
+        # @param FileSize: <p>文件大小，字节</p>
         # @type FileSize: Float
-        # @param Type: 文件类型,0=文本,1=表格，默认0
+        # @param Type: <p>文件类型,0=文本,1=表格，默认0</p>
         # @type Type: Integer
-        # @param FileId: 文件ID
+        # @param FileId: <p>文件ID</p>
         # @type FileId: String
-        # @param Status: 状态，0：数据处理中  1：可用 -1：错误
+        # @param Status: <p>状态，0：数据处理中  1：可用 -1：错误</p>
         # @type Status: Integer
-        # @param CreateUser: 操作者
+        # @param CreateUser: <p>操作者</p>
         # @type CreateUser: String
-        # @param CreateTime: 创建时间
+        # @param CreateTime: <p>创建时间</p>
         # @type CreateTime: String
-        # @param ChunkConfig: 分片策略
+        # @param ChunkConfig: <p>分片策略</p>
         # @type ChunkConfig: :class:`Tencentcloud::Dataagent.v20250513.models.KnowledgeTaskConfig`
-        # @param Source: 文件来源0=unknow,1=user_cos,2=local
+        # @param Source: <p>文件来源0=unknow,1=user_cos,2=local</p>
         # @type Source: Integer
-        # @param FileUrl: 文件url
+        # @param FileUrl: <p>文件url</p>
         # @type FileUrl: String
-        # @param IsShowCase: 是否官方示例，0=否，1=是
+        # @param IsShowCase: <p>是否官方示例，0=否，1=是</p>
         # @type IsShowCase: Integer
-        # @param DocumentSummary: 文档摘要
+        # @param DocumentSummary: <p>文档摘要</p>
         # @type DocumentSummary: String
+        # @param WebUrl: <p>网页地址</p>
+        # @type WebUrl: String
 
-        attr_accessor :FileName, :FileSize, :Type, :FileId, :Status, :CreateUser, :CreateTime, :ChunkConfig, :Source, :FileUrl, :IsShowCase, :DocumentSummary
+        attr_accessor :FileName, :FileSize, :Type, :FileId, :Status, :CreateUser, :CreateTime, :ChunkConfig, :Source, :FileUrl, :IsShowCase, :DocumentSummary, :WebUrl
 
-        def initialize(filename=nil, filesize=nil, type=nil, fileid=nil, status=nil, createuser=nil, createtime=nil, chunkconfig=nil, source=nil, fileurl=nil, isshowcase=nil, documentsummary=nil)
+        def initialize(filename=nil, filesize=nil, type=nil, fileid=nil, status=nil, createuser=nil, createtime=nil, chunkconfig=nil, source=nil, fileurl=nil, isshowcase=nil, documentsummary=nil, weburl=nil)
           @FileName = filename
           @FileSize = filesize
           @Type = type
@@ -522,6 +524,7 @@ module TencentCloud
           @FileUrl = fileurl
           @IsShowCase = isshowcase
           @DocumentSummary = documentsummary
+          @WebUrl = weburl
         end
 
         def deserialize(params)
@@ -540,6 +543,7 @@ module TencentCloud
           @FileUrl = params['FileUrl']
           @IsShowCase = params['IsShowCase']
           @DocumentSummary = params['DocumentSummary']
+          @WebUrl = params['WebUrl']
         end
       end
 

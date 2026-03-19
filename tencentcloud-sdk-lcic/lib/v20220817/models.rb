@@ -2249,6 +2249,54 @@ module TencentCloud
         end
       end
 
+      # DescribeLiveRelayConfig请求参数结构体
+      class DescribeLiveRelayConfigRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: <p>低代码互动课堂的SdkAppId</p>
+        # @type SdkAppId: Integer
+        # @param RoomId: <p>房间ID</p>
+        # @type RoomId: Integer
+
+        attr_accessor :SdkAppId, :RoomId
+
+        def initialize(sdkappid=nil, roomid=nil)
+          @SdkAppId = sdkappid
+          @RoomId = roomid
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @RoomId = params['RoomId']
+        end
+      end
+
+      # DescribeLiveRelayConfig返回参数结构体
+      class DescribeLiveRelayConfigResponse < TencentCloud::Common::AbstractModel
+        # @param RelayType: <p>转推类型</p><p>枚举值：</p><ul><li>0： 单流</li><li>1： 混流</li></ul>
+        # @type RelayType: Integer
+        # @param Urls: <p>转推URL</p>
+        # @type Urls: Array
+        # @param IsTencentCdn: <p>是否是腾讯云CDN。</p><p>枚举值：</p><ul><li>0： 转推非腾讯云CDN</li><li>1： 转推腾讯CDN</li></ul>
+        # @type IsTencentCdn: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RelayType, :Urls, :IsTencentCdn, :RequestId
+
+        def initialize(relaytype=nil, urls=nil, istencentcdn=nil, requestid=nil)
+          @RelayType = relaytype
+          @Urls = urls
+          @IsTencentCdn = istencentcdn
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RelayType = params['RelayType']
+          @Urls = params['Urls']
+          @IsTencentCdn = params['IsTencentCdn']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeMarquee请求参数结构体
       class DescribeMarqueeRequest < TencentCloud::Common::AbstractModel
         # @param SdkAppId: 学校ID
@@ -4489,6 +4537,54 @@ module TencentCloud
         end
       end
 
+      # ModifyLiveRelayConfig请求参数结构体
+      class ModifyLiveRelayConfigRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: <p>低代码互动课堂的SdkAppId</p>
+        # @type SdkAppId: Integer
+        # @param RoomId: <p>房间ID</p>
+        # @type RoomId: Integer
+        # @param RelayType: <p>转推类型</p><p>枚举值：</p><ul><li>0： 单流</li><li>1： 混流</li></ul>
+        # @type RelayType: Integer
+        # @param Urls: <p>转推URL</p>
+        # @type Urls: Array
+        # @param IsTencentCdn: <p>是否是腾讯云CDN（默认为0）</p><p>枚举值：</p><ul><li>0： 转推非腾讯CDN</li><li>1： 转推腾讯CDN</li></ul>
+        # @type IsTencentCdn: Integer
+
+        attr_accessor :SdkAppId, :RoomId, :RelayType, :Urls, :IsTencentCdn
+
+        def initialize(sdkappid=nil, roomid=nil, relaytype=nil, urls=nil, istencentcdn=nil)
+          @SdkAppId = sdkappid
+          @RoomId = roomid
+          @RelayType = relaytype
+          @Urls = urls
+          @IsTencentCdn = istencentcdn
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @RoomId = params['RoomId']
+          @RelayType = params['RelayType']
+          @Urls = params['Urls']
+          @IsTencentCdn = params['IsTencentCdn']
+        end
+      end
+
+      # ModifyLiveRelayConfig返回参数结构体
+      class ModifyLiveRelayConfigResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyRoom请求参数结构体
       class ModifyRoomRequest < TencentCloud::Common::AbstractModel
         # @param RoomId: <p>房间ID。</p>
@@ -4798,14 +4894,17 @@ module TencentCloud
         # @type Duration: Integer
         # @param CreateTime: <p>录制开始时间</p>
         # @type CreateTime: Integer
+        # @param FileSize: <p>文件大小。</p><p>单位：MB</p>
+        # @type FileSize: Float
 
-        attr_accessor :RoomId, :PlaybackUrl, :Duration, :CreateTime
+        attr_accessor :RoomId, :PlaybackUrl, :Duration, :CreateTime, :FileSize
 
-        def initialize(roomid=nil, playbackurl=nil, duration=nil, createtime=nil)
+        def initialize(roomid=nil, playbackurl=nil, duration=nil, createtime=nil, filesize=nil)
           @RoomId = roomid
           @PlaybackUrl = playbackurl
           @Duration = duration
           @CreateTime = createtime
+          @FileSize = filesize
         end
 
         def deserialize(params)
@@ -4813,6 +4912,7 @@ module TencentCloud
           @PlaybackUrl = params['PlaybackUrl']
           @Duration = params['Duration']
           @CreateTime = params['CreateTime']
+          @FileSize = params['FileSize']
         end
       end
 

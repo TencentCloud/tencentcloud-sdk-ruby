@@ -677,6 +677,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建数据加签请求
+
+        # @param request: Request instance for CreateDigitalDataSign.
+        # @type request: :class:`Tencentcloud::ess::V20201111::CreateDigitalDataSignRequest`
+        # @rtype: :class:`Tencentcloud::ess::V20201111::CreateDigitalDataSignResponse`
+        def CreateDigitalDataSign(request)
+          body = send_request('CreateDigitalDataSign', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateDigitalDataSignResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建签署流程电子文档<br />
 
         # ###  调用流程
@@ -4476,6 +4500,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = VerifyDigitFileResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 数据加签验签接口
+
+        # @param request: Request instance for VerifyDigitalDataSign.
+        # @type request: :class:`Tencentcloud::ess::V20201111::VerifyDigitalDataSignRequest`
+        # @rtype: :class:`Tencentcloud::ess::V20201111::VerifyDigitalDataSignResponse`
+        def VerifyDigitalDataSign(request)
+          body = send_request('VerifyDigitalDataSign', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = VerifyDigitalDataSignResponse.new
             model.deserialize(response['Response'])
             model
           else

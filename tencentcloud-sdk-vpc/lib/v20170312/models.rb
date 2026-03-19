@@ -21744,16 +21744,19 @@ module TencentCloud
         # @type RouteOverlapFlag: Boolean
         # @param TrafficMarkingPolicyFlag: 是否开启qos功能。`False` 不开启，`True` 开启。
         # @type TrafficMarkingPolicyFlag: Boolean
+        # @param MixedBillingFlag: 是否切换为混合计费
+        # @type MixedBillingFlag: Boolean
 
-        attr_accessor :CcnId, :CcnName, :CcnDescription, :RouteECMPFlag, :RouteOverlapFlag, :TrafficMarkingPolicyFlag
+        attr_accessor :CcnId, :CcnName, :CcnDescription, :RouteECMPFlag, :RouteOverlapFlag, :TrafficMarkingPolicyFlag, :MixedBillingFlag
 
-        def initialize(ccnid=nil, ccnname=nil, ccndescription=nil, routeecmpflag=nil, routeoverlapflag=nil, trafficmarkingpolicyflag=nil)
+        def initialize(ccnid=nil, ccnname=nil, ccndescription=nil, routeecmpflag=nil, routeoverlapflag=nil, trafficmarkingpolicyflag=nil, mixedbillingflag=nil)
           @CcnId = ccnid
           @CcnName = ccnname
           @CcnDescription = ccndescription
           @RouteECMPFlag = routeecmpflag
           @RouteOverlapFlag = routeoverlapflag
           @TrafficMarkingPolicyFlag = trafficmarkingpolicyflag
+          @MixedBillingFlag = mixedbillingflag
         end
 
         def deserialize(params)
@@ -21763,6 +21766,7 @@ module TencentCloud
           @RouteECMPFlag = params['RouteECMPFlag']
           @RouteOverlapFlag = params['RouteOverlapFlag']
           @TrafficMarkingPolicyFlag = params['TrafficMarkingPolicyFlag']
+          @MixedBillingFlag = params['MixedBillingFlag']
         end
       end
 

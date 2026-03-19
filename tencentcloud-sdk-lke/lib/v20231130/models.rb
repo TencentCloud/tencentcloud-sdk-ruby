@@ -1740,7 +1740,8 @@ module TencentCloud
 
       # 标签引用信息
       class AttrLabelRefer < TencentCloud::Common::AbstractModel
-        # @param Source: 标签来源，1：标签
+        # @param Source: 标签来源，1：标签。
+        # 使用标签引用信息时，Source、AttributeBizId和LabelBizIds都需填写。
         # @type Source: Integer
         # @param AttributeBizId: 标签ID
         # @type AttributeBizId: String
@@ -11931,6 +11932,10 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
         # @param Action: 状态
+        # 2：待发布
+        # 3：发布中
+        # 4：已发布
+        # 5：发布失败
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Action: Integer
         # @param Value: 变更后的内容

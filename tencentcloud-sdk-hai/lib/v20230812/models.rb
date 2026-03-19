@@ -122,6 +122,53 @@ module TencentCloud
         end
       end
 
+      # 资源相关信息
+      class ComputeInfo < TencentCloud::Common::AbstractModel
+        # @param ComputeResources: 资源类型及数量
+        # @type ComputeResources: Array
+        # @param Replicas: 副本数
+        # @type Replicas: Integer
+
+        attr_accessor :ComputeResources, :Replicas
+
+        def initialize(computeresources=nil, replicas=nil)
+          @ComputeResources = computeresources
+          @Replicas = replicas
+        end
+
+        def deserialize(params)
+          unless params['ComputeResources'].nil?
+            @ComputeResources = []
+            params['ComputeResources'].each do |i|
+              computeresource_tmp = ComputeResource.new
+              computeresource_tmp.deserialize(i)
+              @ComputeResources << computeresource_tmp
+            end
+          end
+          @Replicas = params['Replicas']
+        end
+      end
+
+      # 推理服务的算力资源
+      class ComputeResource < TencentCloud::Common::AbstractModel
+        # @param BundleType: 算力套餐的类型
+        # @type BundleType: String
+        # @param Count: 节点数量
+        # @type Count: Integer
+
+        attr_accessor :BundleType, :Count
+
+        def initialize(bundletype=nil, count=nil)
+          @BundleType = bundletype
+          @Count = count
+        end
+
+        def deserialize(params)
+          @BundleType = params['BundleType']
+          @Count = params['Count']
+        end
+      end
+
       # 容器信息
       class ContainerInfo < TencentCloud::Common::AbstractModel
         # @param Image: 镜像相关信息
@@ -215,6 +262,68 @@ module TencentCloud
         end
       end
 
+      # CreateInferServiceByTemplate请求参数结构体
+      class CreateInferServiceByTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param TemplateId: 模版ID
+        # @type TemplateId: String
+        # @param ServiceName: 服务名称
+        # @type ServiceName: String
+        # @param Replicas: 副本数
+        # @type Replicas: Integer
+        # @param ServiceChargeType: 付费方式，POSTPAID_BY_HOUR按量后付费
+        # @type ServiceChargeType: String
+        # @param HyperParam: 描述了服务的超参数配置
+        # @type HyperParam: :class:`Tencentcloud::Hai.v20230812.models.HyperParam`
+        # @param NetworkSetting: 网络设置
+        # @type NetworkSetting: :class:`Tencentcloud::Hai.v20230812.models.NetworkSetting`
+
+        attr_accessor :TemplateId, :ServiceName, :Replicas, :ServiceChargeType, :HyperParam, :NetworkSetting
+
+        def initialize(templateid=nil, servicename=nil, replicas=nil, servicechargetype=nil, hyperparam=nil, networksetting=nil)
+          @TemplateId = templateid
+          @ServiceName = servicename
+          @Replicas = replicas
+          @ServiceChargeType = servicechargetype
+          @HyperParam = hyperparam
+          @NetworkSetting = networksetting
+        end
+
+        def deserialize(params)
+          @TemplateId = params['TemplateId']
+          @ServiceName = params['ServiceName']
+          @Replicas = params['Replicas']
+          @ServiceChargeType = params['ServiceChargeType']
+          unless params['HyperParam'].nil?
+            @HyperParam = HyperParam.new
+            @HyperParam.deserialize(params['HyperParam'])
+          end
+          unless params['NetworkSetting'].nil?
+            @NetworkSetting = NetworkSetting.new
+            @NetworkSetting.deserialize(params['NetworkSetting'])
+          end
+        end
+      end
+
+      # CreateInferServiceByTemplate返回参数结构体
+      class CreateInferServiceByTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param ServiceId: 服务ID
+        # @type ServiceId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ServiceId, :RequestId
+
+        def initialize(serviceid=nil, requestid=nil)
+          @ServiceId = serviceid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ServiceId = params['ServiceId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateMuskPrompt请求参数结构体
       class CreateMuskPromptRequest < TencentCloud::Common::AbstractModel
         # @param WorkgroupId: workgroup id
@@ -255,6 +364,77 @@ module TencentCloud
 
         def deserialize(params)
           @PromptId = params['PromptId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeployInferService请求参数结构体
+      class DeployInferServiceRequest < TencentCloud::Common::AbstractModel
+        # @param ServiceMetaData: 服务元数据信息，如服务名
+        # @type ServiceMetaData: :class:`Tencentcloud::Hai.v20230812.models.ServiceMetaData`
+        # @param ComputeInfo: 资源相关信息
+        # @type ComputeInfo: :class:`Tencentcloud::Hai.v20230812.models.ComputeInfo`
+        # @param DeploymentConfigs: 服务部署信息
+        # @type DeploymentConfigs: Array
+        # @param HyperParam: 服务超参数配置
+        # @type HyperParam: :class:`Tencentcloud::Hai.v20230812.models.HyperParam`
+        # @param NetworkSetting: 网络设置
+        # @type NetworkSetting: :class:`Tencentcloud::Hai.v20230812.models.NetworkSetting`
+
+        attr_accessor :ServiceMetaData, :ComputeInfo, :DeploymentConfigs, :HyperParam, :NetworkSetting
+
+        def initialize(servicemetadata=nil, computeinfo=nil, deploymentconfigs=nil, hyperparam=nil, networksetting=nil)
+          @ServiceMetaData = servicemetadata
+          @ComputeInfo = computeinfo
+          @DeploymentConfigs = deploymentconfigs
+          @HyperParam = hyperparam
+          @NetworkSetting = networksetting
+        end
+
+        def deserialize(params)
+          unless params['ServiceMetaData'].nil?
+            @ServiceMetaData = ServiceMetaData.new
+            @ServiceMetaData.deserialize(params['ServiceMetaData'])
+          end
+          unless params['ComputeInfo'].nil?
+            @ComputeInfo = ComputeInfo.new
+            @ComputeInfo.deserialize(params['ComputeInfo'])
+          end
+          unless params['DeploymentConfigs'].nil?
+            @DeploymentConfigs = []
+            params['DeploymentConfigs'].each do |i|
+              deploymentconfig_tmp = DeploymentConfig.new
+              deploymentconfig_tmp.deserialize(i)
+              @DeploymentConfigs << deploymentconfig_tmp
+            end
+          end
+          unless params['HyperParam'].nil?
+            @HyperParam = HyperParam.new
+            @HyperParam.deserialize(params['HyperParam'])
+          end
+          unless params['NetworkSetting'].nil?
+            @NetworkSetting = NetworkSetting.new
+            @NetworkSetting.deserialize(params['NetworkSetting'])
+          end
+        end
+      end
+
+      # DeployInferService返回参数结构体
+      class DeployInferServiceResponse < TencentCloud::Common::AbstractModel
+        # @param ServiceId: 服务ID
+        # @type ServiceId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ServiceId, :RequestId
+
+        def initialize(serviceid=nil, requestid=nil)
+          @ServiceId = serviceid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ServiceId = params['ServiceId']
           @RequestId = params['RequestId']
         end
       end
@@ -352,6 +532,53 @@ module TencentCloud
               @ApplicationSet << applicationinfo_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDeployTemplates请求参数结构体
+      class DescribeDeployTemplatesRequest < TencentCloud::Common::AbstractModel
+        # @param ModelId: 模型ID
+        # @type ModelId: String
+
+        attr_accessor :ModelId
+
+        def initialize(modelid=nil)
+          @ModelId = modelid
+        end
+
+        def deserialize(params)
+          @ModelId = params['ModelId']
+        end
+      end
+
+      # DescribeDeployTemplates返回参数结构体
+      class DescribeDeployTemplatesResponse < TencentCloud::Common::AbstractModel
+        # @param TemplateSet: 模板列表
+        # @type TemplateSet: Array
+        # @param EngineTypes: 支持的推理引擎
+        # @type EngineTypes: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TemplateSet, :EngineTypes, :RequestId
+
+        def initialize(templateset=nil, enginetypes=nil, requestid=nil)
+          @TemplateSet = templateset
+          @EngineTypes = enginetypes
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['TemplateSet'].nil?
+            @TemplateSet = []
+            params['TemplateSet'].each do |i|
+              templatedetail_tmp = TemplateDetail.new
+              templatedetail_tmp.deserialize(i)
+              @TemplateSet << templatedetail_tmp
+            end
+          end
+          @EngineTypes = params['EngineTypes']
           @RequestId = params['RequestId']
         end
       end
@@ -463,6 +690,72 @@ module TencentCloud
               instance_tmp = Instance.new
               instance_tmp.deserialize(i)
               @InstanceSet << instance_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeModels请求参数结构体
+      class DescribeModelsRequest < TencentCloud::Common::AbstractModel
+        # @param ModelIds: 模型id
+        # @type ModelIds: Array
+        # @param Filters: 过滤器。Name的可选值有scene-id
+        # @type Filters: Array
+        # @param Offset: 偏移量，不得小于0，默认为0
+        # @type Offset: Integer
+        # @param Limit: 返回量，不得大于100，默认为20
+        # @type Limit: Integer
+
+        attr_accessor :ModelIds, :Filters, :Offset, :Limit
+
+        def initialize(modelids=nil, filters=nil, offset=nil, limit=nil)
+          @ModelIds = modelids
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @ModelIds = params['ModelIds']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeModels返回参数结构体
+      class DescribeModelsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 模型总数
+        # @type TotalCount: Integer
+        # @param ModelSet: 分页返回的模型列表
+        # @type ModelSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :ModelSet, :RequestId
+
+        def initialize(totalcount=nil, modelset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @ModelSet = modelset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['ModelSet'].nil?
+            @ModelSet = []
+            params['ModelSet'].each do |i|
+              modeldetail_tmp = ModelDetail.new
+              modeldetail_tmp.deserialize(i)
+              @ModelSet << modeldetail_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1188,6 +1481,50 @@ module TencentCloud
         end
       end
 
+      # 模型详情
+      class ModelDetail < TencentCloud::Common::AbstractModel
+        # @param ModelName: 模型名称
+        # @type ModelName: String
+        # @param ModelId: 模型ID
+        # @type ModelId: String
+        # @param Description: 应用描述
+        # @type Description: String
+        # @param CommunityUrl: 官方社区链接
+        # @type CommunityUrl: String
+        # @param GuideUrl: 最佳实践链接
+        # @type GuideUrl: String
+        # @param ModelState: 模型状态
+        # @type ModelState: String
+        # @param Tags: 应用对应的标签，如机器学习
+        # @type Tags: Array
+        # @param ConfigEnvironment: 配置环境
+        # @type ConfigEnvironment: String
+
+        attr_accessor :ModelName, :ModelId, :Description, :CommunityUrl, :GuideUrl, :ModelState, :Tags, :ConfigEnvironment
+
+        def initialize(modelname=nil, modelid=nil, description=nil, communityurl=nil, guideurl=nil, modelstate=nil, tags=nil, configenvironment=nil)
+          @ModelName = modelname
+          @ModelId = modelid
+          @Description = description
+          @CommunityUrl = communityurl
+          @GuideUrl = guideurl
+          @ModelState = modelstate
+          @Tags = tags
+          @ConfigEnvironment = configenvironment
+        end
+
+        def deserialize(params)
+          @ModelName = params['ModelName']
+          @ModelId = params['ModelId']
+          @Description = params['Description']
+          @CommunityUrl = params['CommunityUrl']
+          @GuideUrl = params['GuideUrl']
+          @ModelState = params['ModelState']
+          @Tags = params['Tags']
+          @ConfigEnvironment = params['ConfigEnvironment']
+        end
+      end
+
       # musk prompt详情
       class MuskPromptInfo < TencentCloud::Common::AbstractModel
         # @param WorkflowId: workflow id
@@ -1236,6 +1573,34 @@ module TencentCloud
           @UpdateTime = params['UpdateTime']
           @Cost = params['Cost']
           @ErrorMessage = params['ErrorMessage']
+        end
+      end
+
+      # 推理集群的网络设置
+      class NetworkSetting < TencentCloud::Common::AbstractModel
+        # @param PublicEndpointEnable: 公网访问
+        # @type PublicEndpointEnable: Boolean
+        # @param VpcEndpointEnable: 内网访问
+        # @type VpcEndpointEnable: Boolean
+        # @param VpcId: vpc内网ID
+        # @type VpcId: String
+        # @param SubnetId: 子网ID
+        # @type SubnetId: String
+
+        attr_accessor :PublicEndpointEnable, :VpcEndpointEnable, :VpcId, :SubnetId
+
+        def initialize(publicendpointenable=nil, vpcendpointenable=nil, vpcid=nil, subnetid=nil)
+          @PublicEndpointEnable = publicendpointenable
+          @VpcEndpointEnable = vpcendpointenable
+          @VpcId = vpcid
+          @SubnetId = subnetid
+        end
+
+        def deserialize(params)
+          @PublicEndpointEnable = params['PublicEndpointEnable']
+          @VpcEndpointEnable = params['VpcEndpointEnable']
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
         end
       end
 
@@ -1572,6 +1937,26 @@ module TencentCloud
         end
       end
 
+      # 服务元数据信息，如服务名
+      class ServiceMetaData < TencentCloud::Common::AbstractModel
+        # @param ServiceName: 服务名称
+        # @type ServiceName: String
+        # @param ServiceChargeType: 收费类型
+        # @type ServiceChargeType: String
+
+        attr_accessor :ServiceName, :ServiceChargeType
+
+        def initialize(servicename=nil, servicechargetype=nil)
+          @ServiceName = servicename
+          @ServiceChargeType = servicechargetype
+        end
+
+        def deserialize(params)
+          @ServiceName = params['ServiceName']
+          @ServiceChargeType = params['ServiceChargeType']
+        end
+      end
+
       # 推理集群费用数据结构体
       class ServicePriceDetail < TencentCloud::Common::AbstractModel
         # @param ServicePrice: 推理集群价格信息
@@ -1721,6 +2106,45 @@ module TencentCloud
           @DiskType = params['DiskType']
           @DiskSize = params['DiskSize']
           @DiskName = params['DiskName']
+        end
+      end
+
+      # 模板详情
+      class TemplateDetail < TencentCloud::Common::AbstractModel
+        # @param TemplateId: 模板id
+        # @type TemplateId: String
+        # @param DeployMode: 部署方式
+        # @type DeployMode: String
+        # @param EngineType: 推理引擎
+        # @type EngineType: String
+        # @param ComputeSet: 算力详情
+        # @type ComputeSet: Array
+        # @param SupportFunc: 当前部署模板所支持的增强功能
+        # @type SupportFunc: Array
+
+        attr_accessor :TemplateId, :DeployMode, :EngineType, :ComputeSet, :SupportFunc
+
+        def initialize(templateid=nil, deploymode=nil, enginetype=nil, computeset=nil, supportfunc=nil)
+          @TemplateId = templateid
+          @DeployMode = deploymode
+          @EngineType = enginetype
+          @ComputeSet = computeset
+          @SupportFunc = supportfunc
+        end
+
+        def deserialize(params)
+          @TemplateId = params['TemplateId']
+          @DeployMode = params['DeployMode']
+          @EngineType = params['EngineType']
+          unless params['ComputeSet'].nil?
+            @ComputeSet = []
+            params['ComputeSet'].each do |i|
+              computedetail_tmp = ComputeDetail.new
+              computedetail_tmp.deserialize(i)
+              @ComputeSet << computedetail_tmp
+            end
+          end
+          @SupportFunc = params['SupportFunc']
         end
       end
 

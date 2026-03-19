@@ -53,6 +53,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口(CreateInferServiceByTemplate)用于根据模板创建服务
+
+        # @param request: Request instance for CreateInferServiceByTemplate.
+        # @type request: :class:`Tencentcloud::hai::V20230812::CreateInferServiceByTemplateRequest`
+        # @rtype: :class:`Tencentcloud::hai::V20230812::CreateInferServiceByTemplateResponse`
+        def CreateInferServiceByTemplate(request)
+          body = send_request('CreateInferServiceByTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateInferServiceByTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建musk prompt 任务
 
         # @param request: Request instance for CreateMuskPrompt.
@@ -77,6 +101,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口(DeployInferService)用于部署推理服务
+
+        # @param request: Request instance for DeployInferService.
+        # @type request: :class:`Tencentcloud::hai::V20230812::DeployInferServiceRequest`
+        # @rtype: :class:`Tencentcloud::hai::V20230812::DeployInferServiceResponse`
+        def DeployInferService(request)
+          body = send_request('DeployInferService', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeployInferServiceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DescribeApplications）用于查询应用
 
         # @param request: Request instance for DescribeApplications.
@@ -87,6 +135,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeApplicationsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口(DescribeDeployTemplates)用于查询模型支持的部署模板
+
+        # @param request: Request instance for DescribeDeployTemplates.
+        # @type request: :class:`Tencentcloud::hai::V20230812::DescribeDeployTemplatesRequest`
+        # @rtype: :class:`Tencentcloud::hai::V20230812::DescribeDeployTemplatesResponse`
+        def DescribeDeployTemplates(request)
+          body = send_request('DescribeDeployTemplates', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDeployTemplatesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -135,6 +207,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeInstancesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口(DescribeModels)用于查询模型
+
+        # @param request: Request instance for DescribeModels.
+        # @type request: :class:`Tencentcloud::hai::V20230812::DescribeModelsRequest`
+        # @rtype: :class:`Tencentcloud::hai::V20230812::DescribeModelsResponse`
+        def DescribeModels(request)
+          body = send_request('DescribeModels', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeModelsResponse.new
             model.deserialize(response['Response'])
             model
           else

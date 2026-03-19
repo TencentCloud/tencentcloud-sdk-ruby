@@ -6915,15 +6915,21 @@ module TencentCloud
         # @type EnableSearch: Boolean
         # @param Config: 配置参数
         # @type Config: String
+        # @param SummaryConfig: 摘要配置参数
+        # @type SummaryConfig: :class:`Tencentcloud::Iotexplorer.v20190423.models.VisionSummaryConfig`
+        # @param EventIdFilterConfig: 云存事件 ID 过滤规则配置项
+        # @type EventIdFilterConfig: :class:`Tencentcloud::Iotexplorer.v20190423.models.SeeEventIdFilterConfig`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :EnableSummary, :EnableSearch, :Config, :RequestId
+        attr_accessor :EnableSummary, :EnableSearch, :Config, :SummaryConfig, :EventIdFilterConfig, :RequestId
 
-        def initialize(enablesummary=nil, enablesearch=nil, config=nil, requestid=nil)
+        def initialize(enablesummary=nil, enablesearch=nil, config=nil, summaryconfig=nil, eventidfilterconfig=nil, requestid=nil)
           @EnableSummary = enablesummary
           @EnableSearch = enablesearch
           @Config = config
+          @SummaryConfig = summaryconfig
+          @EventIdFilterConfig = eventidfilterconfig
           @RequestId = requestid
         end
 
@@ -6931,6 +6937,14 @@ module TencentCloud
           @EnableSummary = params['EnableSummary']
           @EnableSearch = params['EnableSearch']
           @Config = params['Config']
+          unless params['SummaryConfig'].nil?
+            @SummaryConfig = VisionSummaryConfig.new
+            @SummaryConfig.deserialize(params['SummaryConfig'])
+          end
+          unless params['EventIdFilterConfig'].nil?
+            @EventIdFilterConfig = SeeEventIdFilterConfig.new
+            @EventIdFilterConfig.deserialize(params['EventIdFilterConfig'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -11613,10 +11627,12 @@ module TencentCloud
         # @type Config: String
         # @param SummaryConfig: 视频摘要配置参数，不传则不修改
         # @type SummaryConfig: :class:`Tencentcloud::Iotexplorer.v20190423.models.VisionSummaryConfig`
+        # @param EventIdFilterConfig: 云存事件 ID 过滤规则配置，不传则不修改
+        # @type EventIdFilterConfig: :class:`Tencentcloud::Iotexplorer.v20190423.models.SeeEventIdFilterConfig`
 
-        attr_accessor :ProductId, :DeviceName, :UserId, :ChannelId, :EnableSummary, :EnableSearch, :Config, :SummaryConfig
+        attr_accessor :ProductId, :DeviceName, :UserId, :ChannelId, :EnableSummary, :EnableSearch, :Config, :SummaryConfig, :EventIdFilterConfig
 
-        def initialize(productid=nil, devicename=nil, userid=nil, channelid=nil, enablesummary=nil, enablesearch=nil, config=nil, summaryconfig=nil)
+        def initialize(productid=nil, devicename=nil, userid=nil, channelid=nil, enablesummary=nil, enablesearch=nil, config=nil, summaryconfig=nil, eventidfilterconfig=nil)
           @ProductId = productid
           @DeviceName = devicename
           @UserId = userid
@@ -11625,6 +11641,7 @@ module TencentCloud
           @EnableSearch = enablesearch
           @Config = config
           @SummaryConfig = summaryconfig
+          @EventIdFilterConfig = eventidfilterconfig
         end
 
         def deserialize(params)
@@ -11638,6 +11655,10 @@ module TencentCloud
           unless params['SummaryConfig'].nil?
             @SummaryConfig = VisionSummaryConfig.new
             @SummaryConfig.deserialize(params['SummaryConfig'])
+          end
+          unless params['EventIdFilterConfig'].nil?
+            @EventIdFilterConfig = SeeEventIdFilterConfig.new
+            @EventIdFilterConfig.deserialize(params['EventIdFilterConfig'])
           end
         end
       end
@@ -13282,6 +13303,26 @@ module TencentCloud
             end
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # TWeSee 处理云存事件 EventId 的过滤规则配置
+      class SeeEventIdFilterConfig < TencentCloud::Common::AbstractModel
+        # @param IncludeOnly: 包含的云存事件 ID 集合
+        # @type IncludeOnly: Array
+        # @param Exclude: 排除的云存事件 ID 集合
+        # @type Exclude: Array
+
+        attr_accessor :IncludeOnly, :Exclude
+
+        def initialize(includeonly=nil, exclude=nil)
+          @IncludeOnly = includeonly
+          @Exclude = exclude
+        end
+
+        def deserialize(params)
+          @IncludeOnly = params['IncludeOnly']
+          @Exclude = params['Exclude']
         end
       end
 

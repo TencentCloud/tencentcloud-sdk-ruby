@@ -4258,14 +4258,10 @@ module TencentCloud
         # @type EnableDetectText: Boolean
         # @param ConfigID: <p>配置ID支持： OCR -- 通用场景 MulOCR--多语种场景，默认值为OCR</p>
         # @type ConfigID: String
-        # @param WordsType: <p>需要识别的文字类型，默认识别全部类型的文字。 0：自动识别全部类型文字 1：仅识别手写体文字 2：仅识别印刷体文字</p>
-        # @type WordsType: String
-        # @param LanguageInfo: <p>支持输出单行文字的语种信息，开启后耗时会略有增加。</p>
-        # @type LanguageInfo: Boolean
 
-        attr_accessor :ImageBase64, :ImageUrl, :IsWords, :EnableDetectSplit, :IsPdf, :PdfPageNumber, :EnableDetectText, :ConfigID, :WordsType, :LanguageInfo
+        attr_accessor :ImageBase64, :ImageUrl, :IsWords, :EnableDetectSplit, :IsPdf, :PdfPageNumber, :EnableDetectText, :ConfigID
 
-        def initialize(imagebase64=nil, imageurl=nil, iswords=nil, enabledetectsplit=nil, ispdf=nil, pdfpagenumber=nil, enabledetecttext=nil, configid=nil, wordstype=nil, languageinfo=nil)
+        def initialize(imagebase64=nil, imageurl=nil, iswords=nil, enabledetectsplit=nil, ispdf=nil, pdfpagenumber=nil, enabledetecttext=nil, configid=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
           @IsWords = iswords
@@ -4274,8 +4270,6 @@ module TencentCloud
           @PdfPageNumber = pdfpagenumber
           @EnableDetectText = enabledetecttext
           @ConfigID = configid
-          @WordsType = wordstype
-          @LanguageInfo = languageinfo
         end
 
         def deserialize(params)
@@ -4287,8 +4281,6 @@ module TencentCloud
           @PdfPageNumber = params['PdfPageNumber']
           @EnableDetectText = params['EnableDetectText']
           @ConfigID = params['ConfigID']
-          @WordsType = params['WordsType']
-          @LanguageInfo = params['LanguageInfo']
         end
       end
 

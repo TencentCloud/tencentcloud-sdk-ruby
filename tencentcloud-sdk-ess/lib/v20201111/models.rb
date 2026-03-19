@@ -3256,6 +3256,71 @@ module TencentCloud
         end
       end
 
+      # CreateDigitalDataSign请求参数结构体
+      class CreateDigitalDataSignRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: 执行本接口操作的员工信息。使用此接口时，必须填写userId。支持填入集团子公司经办人 userId 代发合同。注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param Agent: 代理企业和员工的信息。在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
+        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
+        # @param PlainText: 数据加签的原文
+        # @type PlainText: String
+
+        attr_accessor :Operator, :Agent, :PlainText
+
+        def initialize(operator=nil, agent=nil, plaintext=nil)
+          @Operator = operator
+          @Agent = agent
+          @PlainText = plaintext
+        end
+
+        def deserialize(params)
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+          @PlainText = params['PlainText']
+        end
+      end
+
+      # CreateDigitalDataSign返回参数结构体
+      class CreateDigitalDataSignResponse < TencentCloud::Common::AbstractModel
+        # @param SignValue: 加签签名值
+        # @type SignValue: String
+        # @param SignTimestamp: 加签时间戳
+        # @type SignTimestamp: String
+        # @param Certificate: 签署证书信息
+        # @type Certificate: :class:`Tencentcloud::Ess.v20201111.models.SignCertificate`
+        # @param SignAlgorithm: 签署算法
+        # @type SignAlgorithm: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SignValue, :SignTimestamp, :Certificate, :SignAlgorithm, :RequestId
+
+        def initialize(signvalue=nil, signtimestamp=nil, certificate=nil, signalgorithm=nil, requestid=nil)
+          @SignValue = signvalue
+          @SignTimestamp = signtimestamp
+          @Certificate = certificate
+          @SignAlgorithm = signalgorithm
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @SignValue = params['SignValue']
+          @SignTimestamp = params['SignTimestamp']
+          unless params['Certificate'].nil?
+            @Certificate = SignCertificate.new
+            @Certificate.deserialize(params['Certificate'])
+          end
+          @SignAlgorithm = params['SignAlgorithm']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateDocument请求参数结构体
       class CreateDocumentRequest < TencentCloud::Common::AbstractModel
         # @param Operator: 本合同的发起人，<a href="https://qcloudimg.tencent-cloud.cn/raw/f850cfbe163a1cb38439a9f551c2505c.png" target="_blank">点击查看合同发起人展示的位置</a>
@@ -17406,6 +17471,38 @@ module TencentCloud
         end
       end
 
+      # 签署证书信息结构体
+      class SignCertificate < TencentCloud::Common::AbstractModel
+        # @param SerialNumber: 证书序列号
+        # @type SerialNumber: String
+        # @param CommonName: 证书持有者名称
+        # @type CommonName: String
+        # @param NotBefore: 证书生效时间
+        # @type NotBefore: Integer
+        # @param NotAfter: 证书失效时间
+        # @type NotAfter: Integer
+        # @param IssuerCommonName: 证书颁发者名称
+        # @type IssuerCommonName: String
+
+        attr_accessor :SerialNumber, :CommonName, :NotBefore, :NotAfter, :IssuerCommonName
+
+        def initialize(serialnumber=nil, commonname=nil, notbefore=nil, notafter=nil, issuercommonname=nil)
+          @SerialNumber = serialnumber
+          @CommonName = commonname
+          @NotBefore = notbefore
+          @NotAfter = notafter
+          @IssuerCommonName = issuercommonname
+        end
+
+        def deserialize(params)
+          @SerialNumber = params['SerialNumber']
+          @CommonName = params['CommonName']
+          @NotBefore = params['NotBefore']
+          @NotAfter = params['NotAfter']
+          @IssuerCommonName = params['IssuerCommonName']
+        end
+      end
+
       # 签署控件的配置信息，用在嵌入式发起的页面配置，包括
 
       # - 签署控件是否默认展示日期.
@@ -18642,6 +18739,67 @@ module TencentCloud
           @SignTime = params['SignTime']
           @SignType = params['SignType']
           @SignerName = params['SignerName']
+        end
+      end
+
+      # VerifyDigitalDataSign请求参数结构体
+      class VerifyDigitalDataSignRequest < TencentCloud::Common::AbstractModel
+        # @param Agent: 代理企业和员工的信息。在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
+        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
+        # @param Operator: 执行本接口操作的员工信息。使用此接口时，必须填写userId。支持填入集团子公司经办人 userId 代发合同。注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param PlainText: 加签原文
+        # @type PlainText: String
+        # @param SignValue: 签名值
+        # @type SignValue: String
+
+        attr_accessor :Agent, :Operator, :PlainText, :SignValue
+
+        def initialize(agent=nil, operator=nil, plaintext=nil, signvalue=nil)
+          @Agent = agent
+          @Operator = operator
+          @PlainText = plaintext
+          @SignValue = signvalue
+        end
+
+        def deserialize(params)
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          @PlainText = params['PlainText']
+          @SignValue = params['SignValue']
+        end
+      end
+
+      # VerifyDigitalDataSign返回参数结构体
+      class VerifyDigitalDataSignResponse < TencentCloud::Common::AbstractModel
+        # @param VerifyResult: 签名值验证结果；1-验证成功；2-验证失败
+        # @type VerifyResult: Integer
+        # @param Certificate: 签名证书信息
+        # @type Certificate: :class:`Tencentcloud::Ess.v20201111.models.SignCertificate`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :VerifyResult, :Certificate, :RequestId
+
+        def initialize(verifyresult=nil, certificate=nil, requestid=nil)
+          @VerifyResult = verifyresult
+          @Certificate = certificate
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @VerifyResult = params['VerifyResult']
+          unless params['Certificate'].nil?
+            @Certificate = SignCertificate.new
+            @Certificate.deserialize(params['Certificate'])
+          end
+          @RequestId = params['RequestId']
         end
       end
 

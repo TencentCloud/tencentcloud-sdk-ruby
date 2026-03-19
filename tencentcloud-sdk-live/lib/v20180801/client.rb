@@ -295,6 +295,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 调用该接口，用于复制数字人直播间。
+
+        # @param request: Request instance for CopyLiveAvatarRoom.
+        # @type request: :class:`Tencentcloud::live::V20180801::CopyLiveAvatarRoomRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::CopyLiveAvatarRoomResponse`
+        def CopyLiveAvatarRoom(request)
+          body = send_request('CopyLiveAvatarRoom', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CopyLiveAvatarRoomResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建关键词库，直播审核功能使用。
 
         # @param request: Request instance for CreateAuditKeywordLib.
@@ -476,6 +500,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateCommonMixStreamResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 调用该接口，用于创建数字人直播间。
+
+        # @param request: Request instance for CreateLiveAvatarRoom.
+        # @type request: :class:`Tencentcloud::live::V20180801::CreateLiveAvatarRoomRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::CreateLiveAvatarRoomResponse`
+        def CreateLiveAvatarRoom(request)
+          body = send_request('CreateLiveAvatarRoom', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateLiveAvatarRoomResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 调用该接口，用于创建数字人直播间话术。
+
+        # @param request: Request instance for CreateLiveAvatarScript.
+        # @type request: :class:`Tencentcloud::live::V20180801::CreateLiveAvatarScriptRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::CreateLiveAvatarScriptResponse`
+        def CreateLiveAvatarScript(request)
+          body = send_request('CreateLiveAvatarScript', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateLiveAvatarScriptResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1180,6 +1252,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteCasterOutputInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 调用该接口，用于删除已有的数字人直播间。
+
+        # @param request: Request instance for DeleteLiveAvatarRoom.
+        # @type request: :class:`Tencentcloud::live::V20180801::DeleteLiveAvatarRoomRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::DeleteLiveAvatarRoomResponse`
+        def DeleteLiveAvatarRoom(request)
+          body = send_request('DeleteLiveAvatarRoom', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteLiveAvatarRoomResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 调用该接口，用于删除已有的数字人直播间里面的话术。
+
+        # @param request: Request instance for DeleteLiveAvatarScript.
+        # @type request: :class:`Tencentcloud::live::V20180801::DeleteLiveAvatarScriptRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::DeleteLiveAvatarScriptResponse`
+        def DeleteLiveAvatarScript(request)
+          body = send_request('DeleteLiveAvatarScript', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteLiveAvatarScriptResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2249,6 +2369,150 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeHttpStatusInfoListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 调用该接口，获取可用的数字人背景列表信息列表。根据入参，可返回官方预设背景，以及用户上传背景。
+
+        # @param request: Request instance for DescribeLiveAvatarBackgroundList.
+        # @type request: :class:`Tencentcloud::live::V20180801::DescribeLiveAvatarBackgroundListRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::DescribeLiveAvatarBackgroundListResponse`
+        def DescribeLiveAvatarBackgroundList(request)
+          body = send_request('DescribeLiveAvatarBackgroundList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeLiveAvatarBackgroundListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 调用该接口，获取可用的数字人形象信息列表。包括官方预制形象，以及个人定制形象。
+
+        # @param request: Request instance for DescribeLiveAvatarImageList.
+        # @type request: :class:`Tencentcloud::live::V20180801::DescribeLiveAvatarImageListRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::DescribeLiveAvatarImageListResponse`
+        def DescribeLiveAvatarImageList(request)
+          body = send_request('DescribeLiveAvatarImageList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeLiveAvatarImageListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 调用该接口，查询数字人直播间信息列表。
+
+        # @param request: Request instance for DescribeLiveAvatarRooms.
+        # @type request: :class:`Tencentcloud::live::V20180801::DescribeLiveAvatarRoomsRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::DescribeLiveAvatarRoomsResponse`
+        def DescribeLiveAvatarRooms(request)
+          body = send_request('DescribeLiveAvatarRooms', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeLiveAvatarRoomsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 调用该接口，查询数字人直播间话术信息列表。
+
+        # @param request: Request instance for DescribeLiveAvatarScripts.
+        # @type request: :class:`Tencentcloud::live::V20180801::DescribeLiveAvatarScriptsRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::DescribeLiveAvatarScriptsResponse`
+        def DescribeLiveAvatarScripts(request)
+          body = send_request('DescribeLiveAvatarScripts', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeLiveAvatarScriptsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 调用该接口，用于查询临时驱动数字人播报话术列表。
+
+        # @param request: Request instance for DescribeLiveAvatarTemporaryScriptList.
+        # @type request: :class:`Tencentcloud::live::V20180801::DescribeLiveAvatarTemporaryScriptListRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::DescribeLiveAvatarTemporaryScriptListResponse`
+        def DescribeLiveAvatarTemporaryScriptList(request)
+          body = send_request('DescribeLiveAvatarTemporaryScriptList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeLiveAvatarTemporaryScriptListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 调用该接口，获取可用的数字人声音信息列表。包括官方预制音色，以及个人复刻音色。
+
+        # @param request: Request instance for DescribeLiveAvatarTimbreList.
+        # @type request: :class:`Tencentcloud::live::V20180801::DescribeLiveAvatarTimbreListRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::DescribeLiveAvatarTimbreListResponse`
+        def DescribeLiveAvatarTimbreList(request)
+          body = send_request('DescribeLiveAvatarTimbreList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeLiveAvatarTimbreListResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -4158,6 +4422,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 调用该接口，用于触发话术播报生成，并返回音频播报URL。
+
+        # @param request: Request instance for GenerateLiveAvatarScriptBroadcast.
+        # @type request: :class:`Tencentcloud::live::V20180801::GenerateLiveAvatarScriptBroadcastRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::GenerateLiveAvatarScriptBroadcastResponse`
+        def GenerateLiveAvatarScriptBroadcast(request)
+          body = send_request('GenerateLiveAvatarScriptBroadcast', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GenerateLiveAvatarScriptBroadcastResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 可通过调用该接口，对点播源的直播拉流任务进行插播操作。
         # 注意：
         # 1. 仅支持对有效且运行中的点播源任务进行插播操作。
@@ -4318,6 +4606,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyCasterOutputInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 调用该接口，用于修改数字人直播间。
+
+        # @param request: Request instance for ModifyLiveAvatarRoom.
+        # @type request: :class:`Tencentcloud::live::V20180801::ModifyLiveAvatarRoomRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::ModifyLiveAvatarRoomResponse`
+        def ModifyLiveAvatarRoom(request)
+          body = send_request('ModifyLiveAvatarRoom', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyLiveAvatarRoomResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 调用该接口，用于修改数字人直播间话术。
+
+        # @param request: Request instance for ModifyLiveAvatarScript.
+        # @type request: :class:`Tencentcloud::live::V20180801::ModifyLiveAvatarScriptRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::ModifyLiveAvatarScriptResponse`
+        def ModifyLiveAvatarScript(request)
+          body = send_request('ModifyLiveAvatarScript', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyLiveAvatarScriptResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -4820,6 +5156,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 调用该接口，用于临时驱动数字人播报。
+
+        # @param request: Request instance for SendTemporaryScriptToAvatarRoom.
+        # @type request: :class:`Tencentcloud::live::V20180801::SendTemporaryScriptToAvatarRoomRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::SendTemporaryScriptToAvatarRoomResponse`
+        def SendTemporaryScriptToAvatarRoom(request)
+          body = send_request('SendTemporaryScriptToAvatarRoom', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SendTemporaryScriptToAvatarRoomResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 调用该接口，用于启动数字人直播间。
+
+        # @param request: Request instance for StartLiveAvatarRoom.
+        # @type request: :class:`Tencentcloud::live::V20180801::StartLiveAvatarRoomRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::StartLiveAvatarRoomResponse`
+        def StartLiveAvatarRoom(request)
+          body = send_request('StartLiveAvatarRoom', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = StartLiveAvatarRoomResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 使用该接口将直播流开始切入垫片。
 
         # @param request: Request instance for StartLivePadStream.
@@ -4903,6 +5287,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = StopCasterPvwResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 调用该接口，用于停止数字人直播间。
+
+        # @param request: Request instance for StopLiveAvatarRoom.
+        # @type request: :class:`Tencentcloud::live::V20180801::StopLiveAvatarRoomRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::StopLiveAvatarRoomResponse`
+        def StopLiveAvatarRoom(request)
+          body = send_request('StopLiveAvatarRoom', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = StopLiveAvatarRoomResponse.new
             model.deserialize(response['Response'])
             model
           else

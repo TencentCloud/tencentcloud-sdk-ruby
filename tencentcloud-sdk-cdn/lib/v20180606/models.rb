@@ -54,18 +54,16 @@ module TencentCloud
 
       # 访问控制规则
       class AccessControlRule < TencentCloud::Common::AbstractModel
-        # @param RuleType: requestHeader ：对请求头部进行访问控制
-        # url ： 对访问url进行访问控制
+        # @param RuleType: <p>规则类型：<br>requestHeader ：对请求头部进行访问控制<br>url ： 对访问url进行访问控制</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleType: String
-        # @param RuleContent: 封禁内容
+        # @param RuleContent: <p>封禁内容</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleContent: String
-        # @param Regex: on ：正则匹配
-        # off ：字面匹配
+        # @param Regex: <p>on ：正则匹配<br>off ：字面匹配</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Regex: String
-        # @param RuleHeader: RuleType为requestHeader时必填，否则不需要填
+        # @param RuleHeader: <p>RuleType为requestHeader时必填，否则不需要填</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleHeader: String
 
@@ -515,25 +513,22 @@ module TencentCloud
 
       # 回源的自定义Https配置
       class AdvanceHttps < TencentCloud::Common::AbstractModel
-        # @param CustomTlsStatus: 自定义Tls数据开关
+        # @param CustomTlsStatus: <p>自定义Tls数据开关<br>on - 开<br>off - 关</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CustomTlsStatus: String
-        # @param TlsVersion: Tls版本列表，支持设置 TLSv1, TLSV1.1, TLSV1.2, TLSv1.3，修改时必须开启连续的版本
+        # @param TlsVersion: <p>Tls版本列表，支持设置 TLSv1, TLSV1.1, TLSV1.2, TLSv1.3，修改时必须开启连续的版本</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TlsVersion: Array
-        # @param Cipher: 自定义加密套件
+        # @param Cipher: <p>自定义加密套件</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Cipher: String
-        # @param VerifyOriginType: 回源双向校验开启状态
-        # off - 关闭校验
-        # oneWay - 校验源站
-        # twoWay - 双向校验
+        # @param VerifyOriginType: <p>回源双向校验开启状态<br>off - 关闭校验<br>oneWay - 校验源站<br>twoWay - 双向校验</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VerifyOriginType: String
-        # @param CertInfo: 回源层证书配置信息
+        # @param CertInfo: <p>回源层证书配置信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CertInfo: :class:`Tencentcloud::Cdn.v20180606.models.ServerCert`
-        # @param OriginCertInfo: 源站证书配置信息
+        # @param OriginCertInfo: <p>源站证书配置信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OriginCertInfo: :class:`Tencentcloud::Cdn.v20180606.models.ClientCert`
 
@@ -2369,44 +2364,25 @@ module TencentCloud
 
       # DescribeBillingData请求参数结构体
       class DescribeBillingDataRequest < TencentCloud::Common::AbstractModel
-        # @param StartTime: 查询起始时间，如：2018-09-04 10:40:00，返回结果大于等于指定时间
-        # 根据指定时间粒度参数不同，会进行向前取整，如指定起始时间为 2018-09-04 10:40:00 按小时粒度查询，返回的第一个数据对应时间点为 2018-09-04 10:00:00
-        # 起始时间与结束时间间隔小于等于 90 天
+        # @param StartTime: <p>查询起始时间，如：2018-09-04 10:40:00，返回结果大于等于指定时间<br>根据指定时间粒度参数不同，会进行向前取整，如指定起始时间为 2018-09-04 10:40:00 按小时粒度查询，返回的第一个数据对应时间点为 2018-09-04 10:00:00<br>起始时间与结束时间间隔小于等于 90 天</p>
         # @type StartTime: String
-        # @param EndTime: 查询结束时间，如：2018-09-04 10:40:00，返回结果小于等于指定时间
-        # 根据指定时间粒度参数不同，会进行向前取整，如指定结束时间为  2018-09-04 10:40:00 按小时粒度查询时，返回的最后一个数据对应时间点为 2018-09-04 10:00:00
-        # 起始时间与结束时间间隔小于等于 90 天
+        # @param EndTime: <p>查询结束时间，如：2018-09-04 10:40:00，返回结果小于等于指定时间<br>根据指定时间粒度参数不同，会进行向前取整，如指定结束时间为  2018-09-04 10:40:00 按小时粒度查询时，返回的最后一个数据对应时间点为 2018-09-04 10:00:00<br>起始时间与结束时间间隔小于等于 90 天</p>
         # @type EndTime: String
-        # @param Interval: 时间粒度，支持模式如下：
-        # min：1 分钟粒度，查询区间需要小于等于 24 小时
-        # 5min：5 分钟粒度，查询区间需要小于等于 31 天(计费数据粒度)
-        # hour：1 小时粒度，查询区间需要小于等于 31 天内
-        # day：天粒度，查询区间需要大于 31 天
-
-        # Area 字段为 overseas 时暂不支持1分钟粒度数据查询
+        # @param Interval: <p>时间粒度，支持模式如下：<br>min：1 分钟粒度，查询区间需要小于等于 24 小时<br>5min：5 分钟粒度，查询区间需要小于等于 31 天(计费数据粒度)<br>hour：1 小时粒度，查询区间需要小于等于 31 天内<br>day：天粒度，查询区间需要大于 31 天</p><p>Area 字段为 overseas 时暂不支持1分钟粒度数据查询</p>
         # @type Interval: String
-        # @param Domain: 指定域名查询计费数据
+        # @param Domain: <p>指定域名查询计费数据</p>
         # @type Domain: String
-        # @param Project: 指定项目 ID 查询，[前往查看项目 ID](https://console.cloud.tencent.com/project)
-        # 若 Domain 参数填充了具体域名信息，则返回该域名的计费数据，而非指定项目计费数据
+        # @param Project: <p>指定项目 ID 查询，<a href="https://console.cloud.tencent.com/project">前往查看项目 ID</a><br>若 Domain 参数填充了具体域名信息，则返回该域名的计费数据，而非指定项目计费数据</p>
         # @type Project: Integer
-        # @param Area: 指定加速区域查询计费数据：
-        # mainland：中国境内
-        # overseas：中国境外
-        # 不填充时，默认为 mainland
+        # @param Area: <p>指定加速区域查询计费数据：<br>mainland：中国境内<br>overseas：中国境外<br>不填充时，默认为 mainland</p>
         # @type Area: String
-        # @param District: Area 为 overseas 时，指定国家/地区查询
-        # 省份、国家/地区编码可以查看 [省份编码映射](https://cloud.tencent.com/document/product/228/6316#.E7.9C.81.E4.BB.BD.E6.98.A0.E5.B0.84)
-        # 不填充时，查询所有国家/地区
+        # @param District: <p>Area 为 overseas 时，指定国家/地区查询<br>省份、国家/地区编码可以查看 <a href="https://cloud.tencent.com/document/product/228/6316#.E7.9C.81.E4.BB.BD.E6.98.A0.E5.B0.84">省份编码映射</a><br>不填充时，查询所有国家/地区</p>
         # @type District: Integer
-        # @param Metric: 计费统计类型
-        # flux：计费流量
-        # bandwidth：计费带宽
-        # 默认为 bandwidth
+        # @param Metric: <p>计费统计类型<br>flux：计费流量<br>bandwidth：计费带宽<br>https：https请求数<br>默认为 bandwidth</p>
         # @type Metric: String
-        # @param Product: 指定查询的产品数据，可选为cdn或者ecdn，默认为cdn
+        # @param Product: <p>指定查询的产品数据，可选为cdn或者ecdn，默认为cdn</p>
         # @type Product: String
-        # @param TimeZone: 指定查询时间的时区，默认UTC+08:00
+        # @param TimeZone: <p>指定查询时间的时区，默认UTC+08:00</p>
         # @type TimeZone: String
 
         attr_accessor :StartTime, :EndTime, :Interval, :Domain, :Project, :Area, :District, :Metric, :Product, :TimeZone
@@ -2440,13 +2416,9 @@ module TencentCloud
 
       # DescribeBillingData返回参数结构体
       class DescribeBillingDataResponse < TencentCloud::Common::AbstractModel
-        # @param Interval: 时间粒度，根据查询时传递参数指定：
-        # min：1 分钟粒度
-        # 5min：5 分钟粒度
-        # hour：1 小时粒度
-        # day：天粒度
+        # @param Interval: <p>时间粒度，根据查询时传递参数指定：<br>min：1 分钟粒度<br>5min：5 分钟粒度<br>hour：1 小时粒度<br>day：天粒度</p>
         # @type Interval: String
-        # @param Data: 数据明细
+        # @param Data: <p>数据明细</p>
         # @type Data: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2844,45 +2816,23 @@ module TencentCloud
 
       # DescribeDistrictIspData请求参数结构体
       class DescribeDistrictIspDataRequest < TencentCloud::Common::AbstractModel
-        # @param Domains: 域名列表，最多支持20个域名
+        # @param Domains: <p>域名列表，最多支持20个域名</p>
         # @type Domains: Array
-        # @param StartTime: 查询起始时间，如：2018-09-04 10:40:00，返回结果大于等于指定时间
-        # 支持近 60 天内的数据查询，每次查询时间区间为 3 小时
+        # @param StartTime: <p>查询起始时间，如：2018-09-04 10:40:00，返回结果大于等于指定时间<br>支持近 60 天内的数据查询，每次查询时间区间为 3 小时</p>
         # @type StartTime: String
-        # @param EndTime: 查询结束时间，如：2018-09-04 10:40:00，返回结果小于等于指定时间
-        # 结束时间与起始时间区间最大为 3 小时
+        # @param EndTime: <p>查询结束时间，如：2018-09-04 10:40:00，返回结果小于等于指定时间<br>结束时间与起始时间区间最大为 3 小时</p>
         # @type EndTime: String
-        # @param Metric: 指定查询指标，支持:
-        # bandwidth：带宽，单位为 bps
-        # flux：流量，单位为 byte
-        # request：请求数，单位为 次
-        # statusCode：状态码，返回 0、2xx、3xx、4xx、5xx 汇总数据，单位为 次
-        # 2xx：返回 2xx 状态码汇总及各 2 开头状态码数据，单位为 次
-        # 3xx：返回 3xx 状态码汇总及各 3 开头状态码数据，单位为 次
-        # 4xx：返回 4xx 状态码汇总及各 4 开头状态码数据，单位为 次
-        # 5xx：返回 5xx 状态码汇总及各 5 开头状态码数据，单位为 次
-        # 支持指定具体状态码查询，若未产生过，则返回为空
+        # @param Metric: <p>指定查询指标，支持:<br>bandwidth：带宽，单位为 bps<br>flux：流量，单位为 byte<br>request：请求数，单位为 次<br>statusCode：状态码，返回 0、2xx、3xx、4xx、5xx 汇总数据，单位为 次<br>2xx：返回 2xx 状态码汇总及各 2 开头状态码数据，单位为 次<br>3xx：返回 3xx 状态码汇总及各 3 开头状态码数据，单位为 次<br>4xx：返回 4xx 状态码汇总及各 4 开头状态码数据，单位为 次<br>5xx：返回 5xx 状态码汇总及各 5 开头状态码数据，单位为 次<br>支持指定具体状态码查询，若未产生过，则返回为空</p>
         # @type Metric: String
-        # @param Districts: 指定省份查询，不填充表示查询所有省份
-        # 省份、国家/地区编码可以查看 [省份编码映射](https://cloud.tencent.com/document/product/228/6316#.E5.8C.BA.E5.9F.9F-.2F-.E8.BF.90.E8.90.A5.E5.95.86.E6.98.A0.E5.B0.84.E8.A1.A8)
+        # @param Districts: <p>指定省份查询，不填充表示查询所有省份（注：指定条件查询只支持映射表范围）<br>省份、国家/地区编码可以查看 <a href="https://cloud.tencent.com/document/product/228/6316#.E5.8C.BA.E5.9F.9F-.2F-.E8.BF.90.E8.90.A5.E5.95.86.E6.98.A0.E5.B0.84.E8.A1.A8">省份编码映射</a></p>
         # @type Districts: Array
-        # @param Isps: 指定运营商查询，不填充表示查询所有运营商
-        # 运营商编码可以查看 [运营商编码映射](https://cloud.tencent.com/document/product/228/6316#.E5.8C.BA.E5.9F.9F-.2F-.E8.BF.90.E8.90.A5.E5.95.86.E6.98.A0.E5.B0.84.E8.A1.A8)
+        # @param Isps: <p>指定运营商查询，不填充表示查询所有运营商（注：指定条件查询只支持映射表范围）<br>运营商编码可以查看 <a href="https://cloud.tencent.com/document/product/228/6316#.E5.8C.BA.E5.9F.9F-.2F-.E8.BF.90.E8.90.A5.E5.95.86.E6.98.A0.E5.B0.84.E8.A1.A8">运营商编码映射</a></p>
         # @type Isps: Array
-        # @param Protocol: 指定协议查询，不填充表示查询所有协议
-        # all：所有协议
-        # http：指定查询 HTTP 对应指标
-        # https：指定查询 HTTPS 对应指标
+        # @param Protocol: <p>指定协议查询，不填充表示查询所有协议<br>all：所有协议<br>http：指定查询 HTTP 对应指标<br>https：指定查询 HTTPS 对应指标</p>
         # @type Protocol: String
-        # @param IpProtocol: 指定IP协议查询，不填充表示查询所有协议
-        # all：所有协议
-        # ipv4：指定查询 ipv4 对应指标
-        # ipv6：指定查询 ipv6 对应指标
-        # 指定IP协议查询时，不可同时指定省份、运营商查询
+        # @param IpProtocol: <p>指定IP协议查询，不填充表示查询所有协议<br>all：所有协议<br>ipv4：指定查询 ipv4 对应指标<br>ipv6：指定查询 ipv6 对应指标<br>指定IP协议查询时，不可同时指定省份、运营商查询</p>
         # @type IpProtocol: String
-        # @param Interval: 时间粒度，支持以下几种模式（默认5min）：
-        # min：1 分钟粒度，支持近 60 天内的数据查询，每次查询时间区间不超过10分钟，可返回 1 分钟粒度明细数据
-        # 5min：5 分钟粒度，支持近 60 天内的数据查询，每次查询时间区间不超过3 小时，可返回 5 分钟粒度明细数据
+        # @param Interval: <p>时间粒度，支持以下几种模式（默认5min）：<br>min：1 分钟粒度，支持近 60 天内的数据查询，每次查询时间区间不超过10分钟，可返回 1 分钟粒度明细数据<br>5min：5 分钟粒度，支持近 60 天内的数据查询，每次查询时间区间不超过3 小时，可返回 5 分钟粒度明细数据</p>
         # @type Interval: String
 
         attr_accessor :Domains, :StartTime, :EndTime, :Metric, :Districts, :Isps, :Protocol, :IpProtocol, :Interval
@@ -2914,7 +2864,7 @@ module TencentCloud
 
       # DescribeDistrictIspData返回参数结构体
       class DescribeDistrictIspDataResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 地区运营商数据明细
+        # @param Data: <p>地区运营商数据明细</p>
         # @type Data: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4012,34 +3962,23 @@ module TencentCloud
 
       # DescribeTopData请求参数结构体
       class DescribeTopDataRequest < TencentCloud::Common::AbstractModel
-        # @param StartTime: 查询起始日期：yyyy-MM-dd HH:mm:ss
-        # 仅支持按天粒度的数据查询，取入参中的天信息作为起始日期
-        # 返回大于等于起始日期当天 00:00:00 点产生的数据，如 StartTime为2018-09-04 10:40:00，返回数据的起始时间为2018-09-04 00:00:00
-        # 仅支持 90 天内数据查询
+        # @param StartTime: <p>查询起始日期：yyyy-MM-dd<br>仅支持按天粒度的数据查询，取入参中的天信息作为起始日期<br>返回大于等于起始日期当天 00:00:00 点产生的数据，如 StartTime为2018-09-04，返回数据的起始时间为2018-09-04 00:00:00<br>仅支持 90 天内数据查询</p>
         # @type StartTime: String
-        # @param EndTime: 查询结束日期：yyyy-MM-dd HH:mm:ss
-        # 仅支持按天粒度的数据查询，取入参中的天信息作为结束日期
-        # 返回小于等于结束日期当天 23:59:59 产生的数据，如EndTime为2018-09-05 22:40:00，返回数据的结束时间为2018-09-05 23:59:59
-        # EndTime 需要大于等于 StartTime
+        # @param EndTime: <p>查询结束日期：yyyy-MM-dd<br>仅支持按天粒度的数据查询，取入参中的天信息作为结束日期<br>返回小于等于结束日期当天 23:59:59 产生的数据，如EndTime为2018-09-05，返回数据的结束时间为2018-09-05 23:59:59<br>EndTime 需要大于等于 StartTime</p>
         # @type EndTime: String
-        # @param Metric: 排序对象，支持以下几种形式：
-        # ip、ua_device、ua_browser、ua_os、referer
+        # @param Metric: <p>排序对象，支持以下几种形式：<br>ip、ua_device、ua_browser、ua_os、referer</p>
         # @type Metric: String
-        # @param Filter: 排序使用的指标名称：
-        # flux：Metric 为 host 时指代访问流量
-        # request：Metric 为 host 时指代访问请求数
+        # @param Filter: <p>排序使用的指标名称：<br>flux：Metric 为 host 时指代访问流量<br>request：Metric 为 host 时指代访问请求数</p>
         # @type Filter: String
-        # @param Domains: 指定查询域名列表，最多可一次性查询 30 个加速域名明细
+        # @param Domains: <p>指定查询域名列表，最多可一次性查询 30 个加速域名明细</p>
         # @type Domains: Array
-        # @param Project: 未填充域名情况下，指定项目查询，若填充了具体域名信息，以域名为主
+        # @param Project: <p>未填充域名情况下，指定项目查询，若填充了具体域名信息，以域名为主</p>
         # @type Project: Integer
-        # @param Detail: 是否详细显示每个域名的的具体数值
+        # @param Detail: <p>是否详细显示每个域名的的具体数值</p>
         # @type Detail: Boolean
-        # @param Area: 指定服务地域查询，不填充表示查询中国境内 CDN 数据
-        # mainland：指定查询中国境内 CDN 数据
-        # overseas：指定查询中国境外 CDN 数据
+        # @param Area: <p>指定服务地域查询，不填充表示查询中国境内 CDN 数据<br>mainland：指定查询中国境内 CDN 数据<br>overseas：指定查询中国境外 CDN 数据</p>
         # @type Area: String
-        # @param Product: 指定查询的产品数据，目前仅可使用cdn
+        # @param Product: <p>指定查询的产品数据，目前仅可使用cdn</p>
         # @type Product: String
 
         attr_accessor :StartTime, :EndTime, :Metric, :Filter, :Domains, :Project, :Detail, :Area, :Product
@@ -4071,7 +4010,7 @@ module TencentCloud
 
       # DescribeTopData返回参数结构体
       class DescribeTopDataResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 各个资源的Top 访问数据详情。
+        # @param Data: <p>各个资源的Top 访问数据详情。</p>
         # @type Data: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5229,13 +5168,13 @@ module TencentCloud
 
       # 防盗刷配置规则
       class FilterRules < TencentCloud::Common::AbstractModel
-        # @param FilterType: 封禁类型
+        # @param FilterType: <p>封禁类型<br>forbidden - 封禁</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FilterType: String
-        # @param RuleType: 封禁规则类型
+        # @param RuleType: <p>封禁规则类型<br>all - 全部请求<br>file - 指定后缀的文件请求</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleType: String
-        # @param RulePaths: 封禁规则路径
+        # @param RulePaths: <p>封禁规则路径</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RulePaths: Array
 
