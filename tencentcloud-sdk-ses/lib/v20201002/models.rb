@@ -1976,36 +1976,33 @@ module TencentCloud
 
       # SendEmail请求参数结构体
       class SendEmailRequest < TencentCloud::Common::AbstractModel
-        # @param FromEmailAddress: 发件人邮箱地址。不使用别名时请直接填写发件人邮箱地址，例如：noreply@mail.qcloud.com如需填写发件人别名时，请按照如下方式（注意别名与邮箱地址之间必须使用一个空格隔开）：别名+一个空格+<邮箱地址>，别名中不能带有冒号(:)。
+        # @param FromEmailAddress: <p>发件人邮箱地址。不使用别名时请直接填写发件人邮箱地址，例如：noreply@mail.qcloud.com如需填写发件人别名时，请按照如下方式（注意别名与邮箱地址之间必须使用一个空格隔开）：别名+一个空格+&lt;邮箱地址&gt;，别名中不能带有冒号(:)。</p>
         # @type FromEmailAddress: String
-        # @param Subject: 邮件主题
+        # @param Subject: <p>邮件主题</p>
         # @type Subject: String
-        # @param Destination: 收信人邮箱地址，最多支持群发50人。注意：邮件内容会显示所有收件人地址，非群发邮件请多次调用API发送。
-        # Destination/Cc/Bcc三个参数必须至少存在一个。
+        # @param Destination: <p>收信人邮箱地址，最多支持群发50人。注意：邮件内容会显示所有收件人地址，非群发邮件请多次调用API发送。<br>Destination/Cc/Bcc三个参数必须至少存在一个。</p>
         # @type Destination: Array
-        # @param ReplyToAddresses: 邮件的“回复”电子邮件地址。可以填写您能收到邮件的邮箱地址，可以是个人邮箱。如果不填，收件人的回复邮件将会发送失败。
+        # @param ReplyToAddresses: <p>邮件的“回复”电子邮件地址。可以填写您能收到邮件的邮箱地址，可以是个人邮箱。如果不填，收件人的回复邮件将会发送失败。</p>
         # @type ReplyToAddresses: String
-        # @param Cc: 抄送人邮箱地址，最多支持抄送20人。
+        # @param Cc: <p>抄送人邮箱地址，最多支持抄送20人。</p>
         # @type Cc: Array
-        # @param Bcc: 密送人邮箱地址，最多支持抄送20人,Bcc和Destination不能重复。
+        # @param Bcc: <p>密送人邮箱地址，最多支持抄送20人,Bcc和Destination不能重复。</p>
         # @type Bcc: Array
-        # @param Template: 使用模板发送时，填写模板相关参数。
-        # <dx-alert infotype="notice" title="注意"> 如您未申请过特殊配置，则该字段为必填 </dx-alert>
+        # @param Template: <p>使用模板发送时，填写模板相关参数。</p><blockquote class="rno-document-tips rno-document-tips-notice">    <div class="rno-document-tips-body">        <i class="rno-document-tip-icon"></i>        <div class="rno-document-tip-title">注意</div>        <div class="rno-document-tip-desc"><p>如您未申请过特殊配置，则该字段为必填</p></div>    </div></blockquote>
         # @type Template: :class:`Tencentcloud::Ses.v20201002.models.Template`
-        # @param Simple: 已废弃
-        # <dx-alert infotype="notice" title="说明"> 仅部分历史上申请了特殊配置的客户需要使用。如您未申请过特殊配置，则不存在该字段。</dx-alert>
+        # @param Simple: <p>已废弃</p><blockquote class="rno-document-tips rno-document-tips-notice">    <div class="rno-document-tips-body">        <i class="rno-document-tip-icon"></i>        <div class="rno-document-tip-title">说明</div>        <div class="rno-document-tip-desc"><p>仅部分历史上申请了特殊配置的客户需要使用。如您未申请过特殊配置，则不存在该字段。</p></div>    </div></blockquote>
         # @type Simple: :class:`Tencentcloud::Ses.v20201002.models.Simple`
-        # @param Attachments: 需要发送附件时，填写附件相关参数。腾讯云接口请求最大支持 8M 的请求包，附件内容经过 Base64 预期扩大1.5倍，应该控制所有附件的总大小最大在 4M 以内，整体请求超出 8M 时接口会返回错误
+        # @param Attachments: <p>需要发送附件时，填写附件相关参数。腾讯云接口请求最大支持 8M 的请求包，附件内容经过 Base64 预期扩大1.5倍，应该控制所有附件的总大小最大在 4M 以内，整体请求超出 8M 时接口会返回错误</p>
         # @type Attachments: Array
-        # @param Unsubscribe: 退订链接选项 0: 不加入退订链接 1: 简体中文 2: 英文 3: 繁体中文 4: 西班牙语 5: 法语 6: 德语 7: 日语 8: 韩语 9: 阿拉伯语 10: 泰语
+        # @param Unsubscribe: <p>退订链接选项</p><p>枚举值：</p><ul><li>0： 不加入退订链接</li><li>1： 简体中文</li><li>2： 英文</li><li>3： 繁体中文</li><li>4： 西班牙语</li><li>5： 法语</li><li>6： 德语</li><li>7： 日语</li><li>8： 韩语</li><li>9： 阿拉伯语</li><li>10： 泰语</li><li>11： 印尼语</li></ul>
         # @type Unsubscribe: String
-        # @param TriggerType: 邮件触发类型 0:非触发类，默认类型，营销类邮件、非即时类邮件等选择此类型  1:触发类，验证码等即时发送类邮件，若邮件超过一定大小，系统会自动选择非触发类型通道
+        # @param TriggerType: <p>邮件触发类型 0:非触发类，默认类型，营销类邮件、非即时类邮件等选择此类型  1:触发类，验证码等即时发送类邮件，若邮件超过一定大小，系统会自动选择非触发类型通道</p>
         # @type TriggerType: Integer
-        # @param SmtpMessageId: smtp头中的Message-Id字段
+        # @param SmtpMessageId: <p>smtp头中的Message-Id字段</p>
         # @type SmtpMessageId: String
-        # @param SmtpHeaders: smtp头中可以设置的其它字段
+        # @param SmtpHeaders: <p>smtp头中可以设置的其它字段</p>
         # @type SmtpHeaders: String
-        # @param HeaderFrom: smtp头中的from字段，建议域名与FromEmailAddress保持一致
+        # @param HeaderFrom: <p>smtp头中的from字段，建议域名与FromEmailAddress保持一致</p>
         # @type HeaderFrom: String
 
         attr_accessor :FromEmailAddress, :Subject, :Destination, :ReplyToAddresses, :Cc, :Bcc, :Template, :Simple, :Attachments, :Unsubscribe, :TriggerType, :SmtpMessageId, :SmtpHeaders, :HeaderFrom
@@ -2060,7 +2057,7 @@ module TencentCloud
 
       # SendEmail返回参数结构体
       class SendEmailResponse < TencentCloud::Common::AbstractModel
-        # @param MessageId: 接受消息生成的唯一消息标识符。
+        # @param MessageId: <p>接受消息生成的唯一消息标识符。</p>
         # @type MessageId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2138,8 +2135,8 @@ module TencentCloud
 
         attr_accessor :MessageId, :ToEmailAddress, :FromEmailAddress, :SendStatus, :DeliverStatus, :DeliverMessage, :RequestTime, :DeliverTime, :UserOpened, :UserClicked, :UserUnsubscribed, :UserComplainted, :UserComplained
         extend Gem::Deprecate
-        deprecate :UserComplainted, :none, 2026, 2
-        deprecate :UserComplainted=, :none, 2026, 2
+        deprecate :UserComplainted, :none, 2026, 3
+        deprecate :UserComplainted=, :none, 2026, 3
 
         def initialize(messageid=nil, toemailaddress=nil, fromemailaddress=nil, sendstatus=nil, deliverstatus=nil, delivermessage=nil, requesttime=nil, delivertime=nil, useropened=nil, userclicked=nil, userunsubscribed=nil, usercomplainted=nil, usercomplained=nil)
           @MessageId = messageid

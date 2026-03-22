@@ -645,30 +645,25 @@ module TencentCloud
 
       # 扩展字段。
       class ExtraParam < TencentCloud::Common::AbstractModel
-        # @param UserDesignatedUrl: 预签名的上传url，支持把视频直接传到客户指定的地址。
+        # @param UserDesignatedUrl: <p>预签名的上传url，支持把视频直接传到客户指定的地址。</p>
         # @type UserDesignatedUrl: String
-        # @param CallbackUrl: 回调地址
-        # 需要您在创建任务时主动设置 CallbackUrl，请求方法为 POST，当视频生成结束时，我们将向此地址发送生成结果。
-        # 数据格式如下：
-        # {
-        #     "JobId": "1397428070633955328",
-        #     "Status": "DONE",
-        #     "ErrorCode": "",
-        #     "ErrorMessage": "",
-        #     "ResultVideoUrl": "https://vcg.cos.tencentcos.cn/template_to_video/fa80b846-b933-4981-afad-8a39b46ef2ca.mp4"
-        # }
+        # @param CallbackUrl: <p>回调地址<br>需要您在创建任务时主动设置 CallbackUrl，请求方法为 POST，当视频生成结束时，我们将向此地址发送生成结果。<br>数据格式如下：<br>{<br>    &quot;JobId&quot;: &quot;1397428070633955328&quot;,<br>    &quot;Status&quot;: &quot;DONE&quot;,<br>    &quot;ErrorCode&quot;: &quot;&quot;,<br>    &quot;ErrorMessage&quot;: &quot;&quot;,<br>    &quot;ResultVideoUrl&quot;: &quot;https://vcg.cos.tencentcos.cn/template_to_video/fa80b846-b933-4981-afad-8a39b46ef2ca.mp4&quot;<br>}</p>
         # @type CallbackUrl: String
+        # @param BGMText: <p>BGM音频文本。</p>
+        # @type BGMText: String
 
-        attr_accessor :UserDesignatedUrl, :CallbackUrl
+        attr_accessor :UserDesignatedUrl, :CallbackUrl, :BGMText
 
-        def initialize(userdesignatedurl=nil, callbackurl=nil)
+        def initialize(userdesignatedurl=nil, callbackurl=nil, bgmtext=nil)
           @UserDesignatedUrl = userdesignatedurl
           @CallbackUrl = callbackurl
+          @BGMText = bgmtext
         end
 
         def deserialize(params)
           @UserDesignatedUrl = params['UserDesignatedUrl']
           @CallbackUrl = params['CallbackUrl']
+          @BGMText = params['BGMText']
         end
       end
 
@@ -1282,27 +1277,19 @@ module TencentCloud
 
       # SubmitTemplateToVideoJob请求参数结构体
       class SubmitTemplateToVideoJobRequest < TencentCloud::Common::AbstractModel
-        # @param Template: 特效模板名称。请在 [视频特效模板列表](https://cloud.tencent.com/document/product/1616/119194)  中选择想要生成的特效对应的 template 名称。
+        # @param Template: <p>特效模板名称。请在 <a href="https://cloud.tencent.com/document/product/1616/119194">视频特效模板列表</a>  中选择想要生成的特效对应的 template 名称。</p>
         # @type Template: String
-        # @param Images: 参考图像，不同特效输入图片的数量详见： [视频特效模板-图片要求说明](https://cloud.tencent.com/document/product/1616/119194)
-        # - 支持传入图片Base64编码或图片URL（确保可访问）
-        # - 图片格式：支持png、jpg、jpeg、webp、bmp、tiff
-        # - 图片文件：大小不能超过10MB（base64后），图片分辨率不小于300*300px，不大于4096*4096，图片宽高比应在1:4 ~ 4:1之间
+        # @param Images: <p>参考图像，不同特效输入图片的数量详见： <a href="https://cloud.tencent.com/document/product/1616/119194">视频特效模板-图片要求说明</a></p><ul><li>支持传入图片Base64编码或图片URL（确保可访问）</li><li>图片格式：支持png、jpg、jpeg、webp、bmp、tiff</li><li>图片文件：大小不能超过10MB（base64后），图片分辨率不小于300×300px，不大于4096×4096，图片宽高比应在1:4 ~ 4:1之间</li></ul>
         # @type Images: Array
-        # @param LogoAdd: 为生成视频添加标识的开关，默认为1。传0 需前往  [控制台](https://console.cloud.tencent.com/vtc/setting) 申请开启显式标识自主完成后方可生效。
-        # 1：添加标识；
-        # 0：不添加标识；
-        # 其他数值：默认按1处理。
-        # 建议您使用显著标识来提示，该视频是 AI 生成的视频。
+        # @param LogoAdd: <p>为生成视频添加标识的开关，默认为1。传0 需前往  <a href="https://console.cloud.tencent.com/vtc/setting">控制台</a> 申请开启显式标识自主完成后方可生效。<br>1：添加标识；<br>0：不添加标识；<br>其他数值：默认按1处理。<br>建议您使用显著标识来提示，该视频是 AI 生成的视频。</p>
         # @type LogoAdd: Integer
-        # @param LogoParam: 标识内容设置。
-        # 默认在生成视频的右下角添加“ AI 生成”或“视频由 AI 生成”字样，如需替换为其他的标识图片，需前往  [控制台](https://console.cloud.tencent.com/vtc/setting) 申请开启显式标识自主完成。
+        # @param LogoParam: <p>标识内容设置。<br>默认在生成视频的右下角添加“ AI 生成”或“视频由 AI 生成”字样，如需替换为其他的标识图片，需前往  <a href="https://console.cloud.tencent.com/vtc/setting">控制台</a> 申请开启显式标识自主完成。</p>
         # @type LogoParam: :class:`Tencentcloud::Vclm.v20240523.models.LogoParam`
-        # @param Resolution: 视频输出分辨率，默认值：360p 。不同特效支持的清晰度及消耗积分数详见：[视频特效模板-单次调用消耗积分数列](https://cloud.tencent.com/document/product/1616/119194 )
+        # @param Resolution: <p>视频输出分辨率，默认值：360p 。不同特效支持的清晰度及消耗积分数详见：<a href="https://cloud.tencent.com/document/product/1616/119194">视频特效模板-单次调用消耗积分数列</a></p>
         # @type Resolution: String
-        # @param BGM: 是否为生成的视频添加背景音乐。默认：false，  传 true 时系统将从预设 BGM 库中自动挑选合适的音乐并添加；不传或为 false 则不添加 BGM。
+        # @param BGM: <p>是否为生成的视频添加背景音乐。默认：false，  传 true 时系统将从预设 BGM 库中自动挑选合适的音乐并添加；不传或为 false 则不添加 BGM。</p>
         # @type BGM: Boolean
-        # @param ExtraParam: 扩展字段。
+        # @param ExtraParam: <p>扩展字段。</p>
         # @type ExtraParam: :class:`Tencentcloud::Vclm.v20240523.models.ExtraParam`
 
         attr_accessor :Template, :Images, :LogoAdd, :LogoParam, :Resolution, :BGM, :ExtraParam
@@ -1343,7 +1330,7 @@ module TencentCloud
 
       # SubmitTemplateToVideoJob返回参数结构体
       class SubmitTemplateToVideoJobResponse < TencentCloud::Common::AbstractModel
-        # @param JobId: 任务ID。
+        # @param JobId: <p>任务ID。</p>
         # @type JobId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

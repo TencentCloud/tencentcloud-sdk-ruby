@@ -9083,19 +9083,15 @@ module TencentCloud
 
       # DescribeAssetImageList请求参数结构体
       class DescribeAssetImageListRequest < TencentCloud::Common::AbstractModel
-        # @param Limit: 需要返回的数量，默认为10，最大值为100
+        # @param Limit: <p>需要返回的数量，默认为10，最大值为100</p>
         # @type Limit: Integer
-        # @param Offset: 偏移量，默认为0。
+        # @param Offset: <p>偏移量，默认为0。</p>
         # @type Offset: Integer
-        # @param Filters: 过滤条件。
-        # <li>ImageName- String - 是否必填：否 - 镜像名称筛选，</li>
-        # <li>ScanStatus - String - 是否必填：否 - 镜像扫描状态notScan，scanning，scanned，scanErr</li>
-        # <li>ImageID- String - 是否必填：否 - 镜像ID筛选，</li>
-        # <li>SecurityRisk- String - 是否必填：否 - 安全风险，VulCnt 、VirusCnt、RiskCnt、IsTrustImage</li>
+        # @param Filters: <p>过滤条件。</p><li>ImageName- String - 是否必填：否 - 镜像名称筛选，</li><li>ScanStatus - String - 是否必填：否 - 镜像扫描状态notScan，scanning，scanned，scanErr</li><li>ImageID- String - 是否必填：否 - 镜像ID筛选，</li><li>SecurityRisk- String - 是否必填：否 - 安全风险，VirusCnt、RiskCnt、IsTrustImage、CriticalLevelVul、HighLevelVul、MediumLevelVul、LowLevelVul</li>
         # @type Filters: Array
-        # @param By: 排序字段
+        # @param By: <p>排序字段</p>
         # @type By: String
-        # @param Order: 排序方式 asc,desc
+        # @param Order: <p>排序方式 asc,desc</p>
         # @type Order: String
 
         attr_accessor :Limit, :Offset, :Filters, :By, :Order
@@ -9126,9 +9122,9 @@ module TencentCloud
 
       # DescribeAssetImageList返回参数结构体
       class DescribeAssetImageListResponse < TencentCloud::Common::AbstractModel
-        # @param List: 镜像列表
+        # @param List: <p>镜像列表</p>
         # @type List: Array
-        # @param TotalCount: 总数量
+        # @param TotalCount: <p>总数量</p>
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

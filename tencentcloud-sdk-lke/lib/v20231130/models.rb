@@ -3511,7 +3511,8 @@ module TencentCloud
       class DeleteDocRequest < TencentCloud::Common::AbstractModel
         # @param DocBizIds: 文档业务ID列表
         # @type DocBizIds: Array
-        # @param BotBizId: 应用ID
+        # @param BotBizId: 应用ID。
+        # 删除知识库文档时，该参数填入知识库ID。
         # @type BotBizId: String
 
         attr_accessor :DocBizIds, :BotBizId
@@ -8430,7 +8431,8 @@ module TencentCloud
 
       # ListDoc请求参数结构体
       class ListDocRequest < TencentCloud::Common::AbstractModel
-        # @param BotBizId: 应用ID, 获取方式参看 [BotBizId](https://cloud.tencent.com/document/product/1759/109469#4eecb8c1-6ce4-45f5-8fa2-b269449d8efa)
+        # @param BotBizId: 应用ID, 获取方式参看 [BotBizId](https://cloud.tencent.com/document/product/1759/109469#4eecb8c1-6ce4-45f5-8fa2-b269449d8efa)。
+        # 查询知识库下文档时，该参数填入知识库ID。
         # @type BotBizId: String
         # @param PageNumber: 页码(必须大于0)
         # @type PageNumber: Integer
@@ -10278,6 +10280,7 @@ module TencentCloud
       # ModifyDoc请求参数结构体
       class ModifyDocRequest < TencentCloud::Common::AbstractModel
         # @param BotBizId: 应用ID，获取方法参看[如何获取   BotBizId](https://cloud.tencent.com/document/product/1759/109469#4eecb8c1-6ce4-45f5-8fa2-b269449d8efa)
+        # 修改知识库文档时，该参数填入知识库ID。
         # @type BotBizId: String
         # @param DocBizId: 文档ID
         # @type DocBizId: String
@@ -12347,7 +12350,8 @@ module TencentCloud
 
       # SaveDoc请求参数结构体
       class SaveDocRequest < TencentCloud::Common::AbstractModel
-        # @param BotBizId: 应用ID，获取方法参看[如何获取   BotBizId](https://cloud.tencent.com/document/product/1759/109469#4eecb8c1-6ce4-45f5-8fa2-b269449d8efa)
+        # @param BotBizId: 应用ID。应用ID 获取方法参看[如何获取   BotBizId](https://cloud.tencent.com/document/product/1759/109469#4eecb8c1-6ce4-45f5-8fa2-b269449d8efa)
+        # 导入知识库文档时，该参数填入知识库 ID。
         # @type BotBizId: String
         # @param FileName: 文件名，需要包含文件扩展名
         # @type FileName: String

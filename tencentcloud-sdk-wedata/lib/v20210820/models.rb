@@ -2068,14 +2068,17 @@ module TencentCloud
         # @type EnableNotify: Boolean
         # @param ProjectId: 项目Id
         # @type ProjectId: String
+        # @param DeleteScript: 删除任务时是否删除脚本文件
+        # @type DeleteScript: Boolean
 
-        attr_accessor :TaskIdList, :DeleteMode, :EnableNotify, :ProjectId
+        attr_accessor :TaskIdList, :DeleteMode, :EnableNotify, :ProjectId, :DeleteScript
 
-        def initialize(taskidlist=nil, deletemode=nil, enablenotify=nil, projectid=nil)
+        def initialize(taskidlist=nil, deletemode=nil, enablenotify=nil, projectid=nil, deletescript=nil)
           @TaskIdList = taskidlist
           @DeleteMode = deletemode
           @EnableNotify = enablenotify
           @ProjectId = projectid
+          @DeleteScript = deletescript
         end
 
         def deserialize(params)
@@ -2083,6 +2086,7 @@ module TencentCloud
           @DeleteMode = params['DeleteMode']
           @EnableNotify = params['EnableNotify']
           @ProjectId = params['ProjectId']
+          @DeleteScript = params['DeleteScript']
         end
       end
 

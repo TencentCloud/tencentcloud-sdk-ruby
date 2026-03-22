@@ -16268,6 +16268,86 @@ module TencentCloud
         end
       end
 
+      # OpenClawService请求参数结构体
+      class OpenClawServiceRequest < TencentCloud::Common::AbstractModel
+        # @param Tag: <p>标签类型</p><p>枚举值：</p><ul><li>OpenClaw： OpenClaw类型</li><li>ClawPro： ClawPro类型</li></ul>
+        # @type Tag: String
+
+        attr_accessor :Tag
+
+        def initialize(tag=nil)
+          @Tag = tag
+        end
+
+        def deserialize(params)
+          @Tag = params['Tag']
+        end
+      end
+
+      # OpenClawService返回参数结构体
+      class OpenClawServiceResponse < TencentCloud::Common::AbstractModel
+        # @param LogsetId: <p>日志集id</p><p><a href="https://cloud.tencent.com/document/product/614/41034">日志集文档</a></p>
+        # @type LogsetId: String
+        # @param LogsetName: <p>日志集名称</p>
+        # @type LogsetName: String
+        # @param TopicId: <p>日志主题id</p><p><a href="https://cloud.tencent.com/document/product/614/41035">日志主题文档</a></p>
+        # @type TopicId: String
+        # @param TopicName: <p>日志主题名称</p>
+        # @type TopicName: String
+        # @param MetricTopicId: <p>指标主题id</p><p><a href="https://cloud.tencent.com/document/product/614/90328">指标主题文档</a></p>
+        # @type MetricTopicId: String
+        # @param MetricTopicName: <p>指标主题名称</p>
+        # @type MetricTopicName: String
+        # @param MachineGroupId: <p>机器组id</p><p><a href="https://cloud.tencent.com/document/product/614/17412">机器组文档</a></p>
+        # @type MachineGroupId: String
+        # @param MachineGroupName: <p>机器组名称</p>
+        # @type MachineGroupName: String
+        # @param AppLogConfigId: <p>采集配置id。应用日志</p><p><a href="https://cloud.tencent.com/document/product/614/33494">采集概述文档</a> - <a href="https://cloud.tencent.com/document/product/614/57497">LogListener 采集配置导入</a></p>
+        # @type AppLogConfigId: String
+        # @param AppLogConfigName: <p>采集配置名称。应用日志</p>
+        # @type AppLogConfigName: String
+        # @param SessionLogConfigId: <p>采集配置id。会话日志</p><p><a href="https://cloud.tencent.com/document/product/614/33494">采集概述文档</a> - <a href="https://cloud.tencent.com/document/product/614/57497">LogListener 采集配置导入</a></p>
+        # @type SessionLogConfigId: String
+        # @param SessionLogConfigName: <p>采集配置名称。会话日志</p>
+        # @type SessionLogConfigName: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :LogsetId, :LogsetName, :TopicId, :TopicName, :MetricTopicId, :MetricTopicName, :MachineGroupId, :MachineGroupName, :AppLogConfigId, :AppLogConfigName, :SessionLogConfigId, :SessionLogConfigName, :RequestId
+
+        def initialize(logsetid=nil, logsetname=nil, topicid=nil, topicname=nil, metrictopicid=nil, metrictopicname=nil, machinegroupid=nil, machinegroupname=nil, applogconfigid=nil, applogconfigname=nil, sessionlogconfigid=nil, sessionlogconfigname=nil, requestid=nil)
+          @LogsetId = logsetid
+          @LogsetName = logsetname
+          @TopicId = topicid
+          @TopicName = topicname
+          @MetricTopicId = metrictopicid
+          @MetricTopicName = metrictopicname
+          @MachineGroupId = machinegroupid
+          @MachineGroupName = machinegroupname
+          @AppLogConfigId = applogconfigid
+          @AppLogConfigName = applogconfigname
+          @SessionLogConfigId = sessionlogconfigid
+          @SessionLogConfigName = sessionlogconfigname
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @LogsetId = params['LogsetId']
+          @LogsetName = params['LogsetName']
+          @TopicId = params['TopicId']
+          @TopicName = params['TopicName']
+          @MetricTopicId = params['MetricTopicId']
+          @MetricTopicName = params['MetricTopicName']
+          @MachineGroupId = params['MachineGroupId']
+          @MachineGroupName = params['MachineGroupName']
+          @AppLogConfigId = params['AppLogConfigId']
+          @AppLogConfigName = params['AppLogConfigName']
+          @SessionLogConfigId = params['SessionLogConfigId']
+          @SessionLogConfigName = params['SessionLogConfigName']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # OpenKafkaConsumer请求参数结构体
       class OpenKafkaConsumerRequest < TencentCloud::Common::AbstractModel
         # @param FromTopicId: 日志主题Id。

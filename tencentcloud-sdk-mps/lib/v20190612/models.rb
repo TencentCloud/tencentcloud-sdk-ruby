@@ -29018,68 +29018,29 @@ module TencentCloud
 
       # SyncDubbing请求参数结构体
       class SyncDubbingRequest < TencentCloud::Common::AbstractModel
-        # @param Text: 合成文本，语音合成时必填，文本长度不超过2000字符
+        # @param Text: <p>合成文本，语音合成时必填，文本长度不超过2000字符</p>
         # @type Text: String
-        # @param TextLang: 文本语言，不填默认中文。
-        # 当前支持语言：
-        # zh	中文 (Chinese)
-        # en	英语 (English)
-        # ja	日语 (Japanese)
-        # de	德语 (German)
-        # fr	法语 (French)
-        # ko	韩语 (Korean)
-        # ru	俄语 (Russian)
-        # uk	乌克兰语 (Ukrainian)
-        # pt	葡萄牙语 (Portuguese)
-        # it	意大利语 (Italian)
-        # es	西班牙语 (Spanish)
-        # id	印度尼西亚语 (Indonesian)
-        # nl	荷兰语 (Dutch)
-        # tr	土耳其语 (Turkish)
-        # fil	菲律宾语 (Filipino)
-        # ms	马来语 (Malay)
-        # el	希腊语 (Greek)
-        # fi	芬兰语 (Finnish)
-        # hr	克罗地亚语 (Croatian)
-        # sk	斯洛伐克语 (Slovak)
-        # pl	波兰语 (Polish)
-        # sv	瑞典语 (Swedish)
-        # hi	印地语 (Hindi)
-        # bg	保加利亚语 (Bulgarian)
-        # ro	罗马尼亚语 (Romanian)
-        # ar	阿拉伯语 (Arabic)
-        # cs	捷克语 (Czech)
-        # da	丹麦语 (Danish)
-        # ta	泰米尔语 (Tamil)
-        # hun	匈牙利语（Hungarian）
-        # vi	越南语（Vietnamese）
-        # no	挪威语（Norwegian）
-        # yue	粤语（Cantonese）
-        # th	泰语（Thai）
-        # he	希伯来语（Hebrew）
-        # ca	加泰罗尼亚语（Catalan）
-        # nn	尼诺斯克语（Nynorsk）
-        # af	阿非利卡语（Afrikaans）
-        # fa	波斯语（Persian）
-        # sl	斯洛文尼亚语（Slovenian）
+        # @param TextLang: <p>文本语言，不填默认中文。<br>当前支持语言：<br>zh    中文 (Chinese)<br>en    英语 (English)<br>ja    日语 (Japanese)<br>de    德语 (German)<br>fr    法语 (French)<br>ko    韩语 (Korean)<br>ru    俄语 (Russian)<br>uk    乌克兰语 (Ukrainian)<br>pt    葡萄牙语 (Portuguese)<br>it    意大利语 (Italian)<br>es    西班牙语 (Spanish)<br>id    印度尼西亚语 (Indonesian)<br>nl    荷兰语 (Dutch)<br>tr    土耳其语 (Turkish)<br>fil    菲律宾语 (Filipino)<br>ms    马来语 (Malay)<br>el    希腊语 (Greek)<br>fi    芬兰语 (Finnish)<br>hr    克罗地亚语 (Croatian)<br>sk    斯洛伐克语 (Slovak)<br>pl    波兰语 (Polish)<br>sv    瑞典语 (Swedish)<br>hi    印地语 (Hindi)<br>bg    保加利亚语 (Bulgarian)<br>ro    罗马尼亚语 (Romanian)<br>ar    阿拉伯语 (Arabic)<br>cs    捷克语 (Czech)<br>da    丹麦语 (Danish)<br>ta    泰米尔语 (Tamil)<br>hun    匈牙利语（Hungarian）<br>vi    越南语（Vietnamese）<br>no    挪威语（Norwegian）<br>yue    粤语（Cantonese）<br>th    泰语（Thai）<br>he    希伯来语（Hebrew）<br>ca    加泰罗尼亚语（Catalan）<br>nn    尼诺斯克语（Nynorsk）<br>af    阿非利卡语（Afrikaans）<br>fa    波斯语（Persian）<br>sl    斯洛文尼亚语（Slovenian）</p>
         # @type TextLang: String
-        # @param VoiceId: 音色Id，指定音色合成时填写，支持系统音色和克隆音色。
+        # @param VoiceId: <p>音色Id，指定音色合成时填写，支持系统音色和克隆音色。</p>
         # @type VoiceId: String
-        # @param AudioData: 克隆音频base64编码。
+        # @param AudioData: <p>克隆音频base64编码。</p>
         # @type AudioData: String
-        # @param AudioLang: 克隆音频语言，默认中文。
-        # 当前支持语言同TextLang
+        # @param AudioUrl: <p>克隆音频Url，AudioData为空时有效</p>
+        # @type AudioUrl: String
+        # @param AudioLang: <p>克隆音频语言，默认中文。<br>当前支持语言同TextLang</p>
         # @type AudioLang: String
-        # @param ExtParam: 扩展参数，json字符串
+        # @param ExtParam: <p>扩展参数，json字符串</p><p>synExt    Object    语音合成扩展参数<br>    -duration    Float    合成音频时长，单位秒，示例：5.2<br>    -sampleRate    Integer    合成音频采样率，默认16000，支持[8000,16000,22050,32000,44100]<br>    -pitch    Integer    音调，默认0原音色输出，取值[-12, 12]<br>cloneExt    Object    音色克隆扩展参数<br>    -timeRanges    Float[][]    指定克隆音频时间范围，默认[[0, 20]]，示例[[5.2, 10], [45, 59.8]]</p>
         # @type ExtParam: String
 
-        attr_accessor :Text, :TextLang, :VoiceId, :AudioData, :AudioLang, :ExtParam
+        attr_accessor :Text, :TextLang, :VoiceId, :AudioData, :AudioUrl, :AudioLang, :ExtParam
 
-        def initialize(text=nil, textlang=nil, voiceid=nil, audiodata=nil, audiolang=nil, extparam=nil)
+        def initialize(text=nil, textlang=nil, voiceid=nil, audiodata=nil, audiourl=nil, audiolang=nil, extparam=nil)
           @Text = text
           @TextLang = textlang
           @VoiceId = voiceid
           @AudioData = audiodata
+          @AudioUrl = audiourl
           @AudioLang = audiolang
           @ExtParam = extparam
         end
@@ -29089,6 +29050,7 @@ module TencentCloud
           @TextLang = params['TextLang']
           @VoiceId = params['VoiceId']
           @AudioData = params['AudioData']
+          @AudioUrl = params['AudioUrl']
           @AudioLang = params['AudioLang']
           @ExtParam = params['ExtParam']
         end
@@ -29096,14 +29058,14 @@ module TencentCloud
 
       # SyncDubbing返回参数结构体
       class SyncDubbingResponse < TencentCloud::Common::AbstractModel
-        # @param ErrorCode: 错误码，成功时返回0
+        # @param ErrorCode: <p>错误码，成功时返回0</p>
         # @type ErrorCode: Integer
-        # @param Msg: 错误信息，成功时返回success
+        # @param Msg: <p>错误信息，成功时返回success</p>
         # @type Msg: String
-        # @param AudioData: 合成音频的base64编码，wav格式。
+        # @param AudioData: <p>合成音频的base64编码，wav格式。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AudioData: String
-        # @param VoiceId: 克隆的音色Id。
+        # @param VoiceId: <p>克隆的音色Id。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VoiceId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。

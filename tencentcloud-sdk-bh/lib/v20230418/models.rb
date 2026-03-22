@@ -3204,6 +3204,107 @@ module TencentCloud
         end
       end
 
+      # DescribeDeviceCount请求参数结构体
+      class DescribeDeviceCountRequest < TencentCloud::Common::AbstractModel
+        # @param ApCode: 地域码
+        # @type ApCode: String
+        # @param VpcId: 用户VPC实例ID
+        # @type VpcId: String
+        # @param ResourceId: 堡垒机服务ID
+        # @type ResourceId: String
+        # @param Kind: 资产类型,1-Linux, 2-Windows,3-MySQL,4-SqlServer 不传-全部
+        # @type Kind: Integer
+        # @param BindResource: 是否绑定服务,1-已绑定, 2-未绑定， 不传-全部
+        # @type BindResource: Integer
+
+        attr_accessor :ApCode, :VpcId, :ResourceId, :Kind, :BindResource
+
+        def initialize(apcode=nil, vpcid=nil, resourceid=nil, kind=nil, bindresource=nil)
+          @ApCode = apcode
+          @VpcId = vpcid
+          @ResourceId = resourceid
+          @Kind = kind
+          @BindResource = bindresource
+        end
+
+        def deserialize(params)
+          @ApCode = params['ApCode']
+          @VpcId = params['VpcId']
+          @ResourceId = params['ResourceId']
+          @Kind = params['Kind']
+          @BindResource = params['BindResource']
+        end
+      end
+
+      # DescribeDeviceCount返回参数结构体
+      class DescribeDeviceCountResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 主机总数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :RequestId
+
+        def initialize(totalcount=nil, requestid=nil)
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDeviceCountSummary请求参数结构体
+      class DescribeDeviceCountSummaryRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeDeviceCountSummary返回参数结构体
+      class DescribeDeviceCountSummaryResponse < TencentCloud::Common::AbstractModel
+        # @param DeviceCountSet: 各种类型的资产总数
+        # @type DeviceCountSet: Array
+        # @param AppAssetCountSet: 各种类型应用资产总数
+        # @type AppAssetCountSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DeviceCountSet, :AppAssetCountSet, :RequestId
+
+        def initialize(devicecountset=nil, appassetcountset=nil, requestid=nil)
+          @DeviceCountSet = devicecountset
+          @AppAssetCountSet = appassetcountset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['DeviceCountSet'].nil?
+            @DeviceCountSet = []
+            params['DeviceCountSet'].each do |i|
+              devicecount_tmp = DeviceCount.new
+              devicecount_tmp.deserialize(i)
+              @DeviceCountSet << devicecount_tmp
+            end
+          end
+          unless params['AppAssetCountSet'].nil?
+            @AppAssetCountSet = []
+            params['AppAssetCountSet'].each do |i|
+              devicecount_tmp = DeviceCount.new
+              devicecount_tmp.deserialize(i)
+              @AppAssetCountSet << devicecount_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDeviceGroupMembers请求参数结构体
       class DescribeDeviceGroupMembersRequest < TencentCloud::Common::AbstractModel
         # @param Bound: true - 查询已在该资产组的资产，false - 查询未在该资产组的资产
@@ -4529,6 +4630,26 @@ module TencentCloud
           @BoundPrivateKey = params['BoundPrivateKey']
           @BoundKubeconfig = params['BoundKubeconfig']
           @IsK8SManageAccount = params['IsK8SManageAccount']
+        end
+      end
+
+      # 资产数目
+      class DeviceCount < TencentCloud::Common::AbstractModel
+        # @param Kind: 资产类型
+        # @type Kind: Integer
+        # @param Count: 资产数目
+        # @type Count: Integer
+
+        attr_accessor :Kind, :Count
+
+        def initialize(kind=nil, count=nil)
+          @Kind = kind
+          @Count = count
+        end
+
+        def deserialize(params)
+          @Kind = params['Kind']
+          @Count = params['Count']
         end
       end
 
