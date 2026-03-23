@@ -12940,24 +12940,26 @@ module TencentCloud
 
       # 运单识别结果
       class TextWaybill < TencentCloud::Common::AbstractModel
-        # @param RecName: 收件人姓名
+        # @param RecName: <p>收件人姓名</p>
         # @type RecName: :class:`Tencentcloud::Ocr.v20181119.models.WaybillObj`
-        # @param RecNum: 收件人手机号
+        # @param RecNum: <p>收件人手机号</p>
         # @type RecNum: :class:`Tencentcloud::Ocr.v20181119.models.WaybillObj`
-        # @param RecAddr: 收件人地址
+        # @param RecAddr: <p>收件人地址</p>
         # @type RecAddr: :class:`Tencentcloud::Ocr.v20181119.models.WaybillObj`
-        # @param SenderName: 寄件人姓名
+        # @param SenderName: <p>寄件人姓名</p>
         # @type SenderName: :class:`Tencentcloud::Ocr.v20181119.models.WaybillObj`
-        # @param SenderNum: 寄件人手机号
+        # @param SenderNum: <p>寄件人手机号</p>
         # @type SenderNum: :class:`Tencentcloud::Ocr.v20181119.models.WaybillObj`
-        # @param SenderAddr: 寄件人地址
+        # @param SenderAddr: <p>寄件人地址</p>
         # @type SenderAddr: :class:`Tencentcloud::Ocr.v20181119.models.WaybillObj`
-        # @param WaybillNum: 运单号
+        # @param WaybillNum: <p>运单号, 当同时存在 母 / 子 运单号时， 该字段为子运单号</p>
         # @type WaybillNum: :class:`Tencentcloud::Ocr.v20181119.models.WaybillObj`
+        # @param MainWaybillNum: <p>母运单号， 当不存在母运单号时， 该字段为不存在</p>
+        # @type MainWaybillNum: :class:`Tencentcloud::Ocr.v20181119.models.WaybillObj`
 
-        attr_accessor :RecName, :RecNum, :RecAddr, :SenderName, :SenderNum, :SenderAddr, :WaybillNum
+        attr_accessor :RecName, :RecNum, :RecAddr, :SenderName, :SenderNum, :SenderAddr, :WaybillNum, :MainWaybillNum
 
-        def initialize(recname=nil, recnum=nil, recaddr=nil, sendername=nil, sendernum=nil, senderaddr=nil, waybillnum=nil)
+        def initialize(recname=nil, recnum=nil, recaddr=nil, sendername=nil, sendernum=nil, senderaddr=nil, waybillnum=nil, mainwaybillnum=nil)
           @RecName = recname
           @RecNum = recnum
           @RecAddr = recaddr
@@ -12965,6 +12967,7 @@ module TencentCloud
           @SenderNum = sendernum
           @SenderAddr = senderaddr
           @WaybillNum = waybillnum
+          @MainWaybillNum = mainwaybillnum
         end
 
         def deserialize(params)
@@ -12995,6 +12998,10 @@ module TencentCloud
           unless params['WaybillNum'].nil?
             @WaybillNum = WaybillObj.new
             @WaybillNum.deserialize(params['WaybillNum'])
+          end
+          unless params['MainWaybillNum'].nil?
+            @MainWaybillNum = WaybillObj.new
+            @MainWaybillNum.deserialize(params['MainWaybillNum'])
           end
         end
       end

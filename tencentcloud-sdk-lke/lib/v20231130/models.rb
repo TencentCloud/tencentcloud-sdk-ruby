@@ -12120,7 +12120,8 @@ module TencentCloud
         # @type LoginUin: String
         # @param LoginSubAccountUin: 登录用户子账号(集成商模式必填)
         # @type LoginSubAccountUin: String
-        # @param BotBizId: 应用ID
+        # @param BotBizId: 应用ID，获取方法参看[如何获取   BotBizId](https://cloud.tencent.com/document/product/1759/109469#4eecb8c1-6ce4-45f5-8fa2-b269449d8efa)。
+        # 重命名知识库文档时，该参数填入知识库ID。
         # @type BotBizId: String
         # @param DocBizId: 文档ID
         # @type DocBizId: String

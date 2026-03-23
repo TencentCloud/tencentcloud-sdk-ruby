@@ -7736,6 +7736,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 补丁详情
+
+        # @param request: Request instance for DescribeSkillInfo.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::DescribeSkillInfoRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::DescribeSkillInfoResponse`
+        def DescribeSkillInfo(request)
+          body = send_request('DescribeSkillInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSkillInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 根据策略名查询策略是否存在
 
         # @param request: Request instance for DescribeStrategyExist.

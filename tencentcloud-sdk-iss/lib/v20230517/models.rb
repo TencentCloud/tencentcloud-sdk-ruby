@@ -2571,72 +2571,74 @@ module TencentCloud
 
       # 查询设备接口返回数据
       class DescribeDeviceData < TencentCloud::Common::AbstractModel
-        # @param DeviceId: 设备ID
+        # @param DeviceId: <p>设备ID</p>
         # @type DeviceId: String
-        # @param Code: 设备编码（国标设备即我们为设备生成的20位国标编码，rtmp 设备为10 位设备编码）
+        # @param Code: <p>设备编码（国标设备即我们为设备生成的20位国标编码，rtmp 设备为10 位设备编码）</p>
         # @type Code: String
-        # @param Name: 设备名称
+        # @param Name: <p>设备名称</p>
         # @type Name: String
-        # @param AccessProtocol: 设备接入协议，1:RTMP,2:GB,3:GW
+        # @param AccessProtocol: <p>设备接入协议，1:RTMP,2:GB,3:GW</p>
         # @type AccessProtocol: Integer
-        # @param Type: 设备类型，1:IPC,2:NVR
+        # @param Type: <p>设备类型，1:IPC,2:NVR</p>
         # @type Type: Integer
-        # @param ClusterId: 设备接入服务节点id
+        # @param ClusterId: <p>设备接入服务节点id</p>
         # @type ClusterId: String
-        # @param ClusterName: 设备接入服务节点名称
+        # @param ClusterName: <p>设备接入服务节点名称</p>
         # @type ClusterName: String
-        # @param TransportProtocol: 设备流传输协议，1:UDP,2:TCP
+        # @param TransportProtocol: <p>设备流传输协议，1:UDP,2:TCP</p>
         # @type TransportProtocol: Integer
-        # @param Password: 设备密码
+        # @param Password: <p>设备密码</p>
         # @type Password: String
-        # @param Description: 设备描述
+        # @param Description: <p>设备描述</p>
         # @type Description: String
-        # @param SipId: sip服务ID
+        # @param SipId: <p>sip服务ID</p>
         # @type SipId: String
-        # @param SipDomain: sip服务域
+        # @param SipDomain: <p>sip服务域</p>
         # @type SipDomain: String
-        # @param SipIp: sip服务IP地址
+        # @param SipIp: <p>sip服务IP地址</p>
         # @type SipIp: String
-        # @param SipPort: sip服务端口
+        # @param SipPort: <p>sip服务端口</p>
         # @type SipPort: Integer
-        # @param PushStreamUrl: Rtmp设备推流地址(仅rtmp设备有效)
+        # @param PushStreamUrl: <p>Rtmp设备推流地址(仅rtmp设备有效)</p>
         # @type PushStreamUrl: String
-        # @param Status: 设备状态，0:未注册,1:在线,2:离线,3:禁用
+        # @param Status: <p>设备状态，0:未注册,1:在线,2:离线,3:禁用</p>
         # @type Status: Integer
-        # @param OrganizationId: 设备所属组织ID
+        # @param OrganizationId: <p>设备所属组织ID</p>
         # @type OrganizationId: String
-        # @param GatewayId: 设备接入网关ID，从查询网关列表接口中获取（仅网关接入需要）
+        # @param GatewayId: <p>设备接入网关ID，从查询网关列表接口中获取（仅网关接入需要）</p>
         # @type GatewayId: String
-        # @param GatewayName: 设备所属网关名称
+        # @param GatewayName: <p>设备所属网关名称</p>
         # @type GatewayName: String
-        # @param ProtocolTypeName: 设备网关协议名称
+        # @param ProtocolTypeName: <p>设备网关协议名称</p>
         # @type ProtocolTypeName: String
-        # @param ProtocolType: 网关接入协议类型，1.海康SDK，2.大华SDK，3.宇视SDK，4.Onvif（仅网关接入需要）
+        # @param ProtocolType: <p>网关接入协议类型，1.海康SDK，2.大华SDK，3.宇视SDK，4.Onvif（仅网关接入需要）</p>
         # @type ProtocolType: Integer
-        # @param Ip: 设备接入IP
+        # @param Ip: <p>设备接入IP</p>
         # @type Ip: String
-        # @param Port: 设备Port
+        # @param Port: <p>设备Port</p>
         # @type Port: Integer
-        # @param Username: 设备用户名
+        # @param Username: <p>设备用户名</p>
         # @type Username: String
-        # @param Region: 设备地域
+        # @param Region: <p>设备地域</p>
         # @type Region: String
-        # @param Manufacturer: 设备厂商
+        # @param Manufacturer: <p>设备厂商</p>
         # @type Manufacturer: String
-        # @param AudioSwitch: 音频关开（0：关闭；1：开启）关闭时丢弃音频
+        # @param AudioSwitch: <p>音频关开（0：关闭；1：开启）关闭时丢弃音频</p>
         # @type AudioSwitch: Integer
-        # @param SubscribeSwitch: 订阅开关（0：关闭；1：开启）默认开启，开启状态下会订阅设备通道变化，仅国标NVR设备有效
+        # @param SubscribeSwitch: <p>订阅开关（0：关闭；1：开启）默认开启，开启状态下会订阅设备通道变化，仅国标NVR设备有效</p>
         # @type SubscribeSwitch: Integer
-        # @param AppName: RTMP推流地址自定义appName
+        # @param AppName: <p>RTMP推流地址自定义appName</p>
         # @type AppName: String
-        # @param StreamName: RTMP推流地址自定义streamName
+        # @param StreamName: <p>RTMP推流地址自定义streamName</p>
         # @type StreamName: String
-        # @param SilentFrameSwitch: 是否开启静音帧（0：关闭；1 开启）
+        # @param SilentFrameSwitch: <p>是否开启静音帧（0：关闭；1 开启）</p>
         # @type SilentFrameSwitch: Integer
+        # @param PushStreamSecureUrl: <p>Rtmp设备安全认证推流地址(仅rtmp设备有效)</p>
+        # @type PushStreamSecureUrl: String
 
-        attr_accessor :DeviceId, :Code, :Name, :AccessProtocol, :Type, :ClusterId, :ClusterName, :TransportProtocol, :Password, :Description, :SipId, :SipDomain, :SipIp, :SipPort, :PushStreamUrl, :Status, :OrganizationId, :GatewayId, :GatewayName, :ProtocolTypeName, :ProtocolType, :Ip, :Port, :Username, :Region, :Manufacturer, :AudioSwitch, :SubscribeSwitch, :AppName, :StreamName, :SilentFrameSwitch
+        attr_accessor :DeviceId, :Code, :Name, :AccessProtocol, :Type, :ClusterId, :ClusterName, :TransportProtocol, :Password, :Description, :SipId, :SipDomain, :SipIp, :SipPort, :PushStreamUrl, :Status, :OrganizationId, :GatewayId, :GatewayName, :ProtocolTypeName, :ProtocolType, :Ip, :Port, :Username, :Region, :Manufacturer, :AudioSwitch, :SubscribeSwitch, :AppName, :StreamName, :SilentFrameSwitch, :PushStreamSecureUrl
 
-        def initialize(deviceid=nil, code=nil, name=nil, accessprotocol=nil, type=nil, clusterid=nil, clustername=nil, transportprotocol=nil, password=nil, description=nil, sipid=nil, sipdomain=nil, sipip=nil, sipport=nil, pushstreamurl=nil, status=nil, organizationid=nil, gatewayid=nil, gatewayname=nil, protocoltypename=nil, protocoltype=nil, ip=nil, port=nil, username=nil, region=nil, manufacturer=nil, audioswitch=nil, subscribeswitch=nil, appname=nil, streamname=nil, silentframeswitch=nil)
+        def initialize(deviceid=nil, code=nil, name=nil, accessprotocol=nil, type=nil, clusterid=nil, clustername=nil, transportprotocol=nil, password=nil, description=nil, sipid=nil, sipdomain=nil, sipip=nil, sipport=nil, pushstreamurl=nil, status=nil, organizationid=nil, gatewayid=nil, gatewayname=nil, protocoltypename=nil, protocoltype=nil, ip=nil, port=nil, username=nil, region=nil, manufacturer=nil, audioswitch=nil, subscribeswitch=nil, appname=nil, streamname=nil, silentframeswitch=nil, pushstreamsecureurl=nil)
           @DeviceId = deviceid
           @Code = code
           @Name = name
@@ -2668,6 +2670,7 @@ module TencentCloud
           @AppName = appname
           @StreamName = streamname
           @SilentFrameSwitch = silentframeswitch
+          @PushStreamSecureUrl = pushstreamsecureurl
         end
 
         def deserialize(params)
@@ -2702,6 +2705,7 @@ module TencentCloud
           @AppName = params['AppName']
           @StreamName = params['StreamName']
           @SilentFrameSwitch = params['SilentFrameSwitch']
+          @PushStreamSecureUrl = params['PushStreamSecureUrl']
         end
       end
 

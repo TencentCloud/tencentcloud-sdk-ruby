@@ -17,6 +17,59 @@
 module TencentCloud
   module Csip
     module V20221121
+      # Ai Agent 资产信息列表项
+      class AIAgentAsset < TencentCloud::Common::AbstractModel
+        # @param ID: ID 标识
+        # @type ID: String
+        # @param AgentName: agent 名称
+        # @type AgentName: String
+        # @param AgentModel: agent 使用模型名称
+        # @type AgentModel: Array
+        # @param InstanceID: 实例 ID
+        # @type InstanceID: String
+        # @param MetadataRiskList: metadata 风险列表。有如下枚举值: 1. AK_TMP  2. USER_DATA
+        # @type MetadataRiskList: Array
+        # @param IdentityTimeFirst: 首次检出时间
+        # @type IdentityTimeFirst: String
+        # @param IdentityTimeLast: 最近检出时间
+        # @type IdentityTimeLast: String
+        # @param IdentityMethod: 检出方式。有如下枚举值 1. FINGER 资产指纹方式检出 2. NETWORK 网络访问方式检出
+        # @type IdentityMethod: String
+        # @param ExposureStatus: 暴露状态。有如下枚举值。1. EXPOSED；2.UNEXPOSED；
+        # 3. UNKNOWN;
+        # @type ExposureStatus: String
+        # @param MetadataRiskURL: metadata 有风险时对应路径
+        # @type MetadataRiskURL: String
+
+        attr_accessor :ID, :AgentName, :AgentModel, :InstanceID, :MetadataRiskList, :IdentityTimeFirst, :IdentityTimeLast, :IdentityMethod, :ExposureStatus, :MetadataRiskURL
+
+        def initialize(id=nil, agentname=nil, agentmodel=nil, instanceid=nil, metadatarisklist=nil, identitytimefirst=nil, identitytimelast=nil, identitymethod=nil, exposurestatus=nil, metadatariskurl=nil)
+          @ID = id
+          @AgentName = agentname
+          @AgentModel = agentmodel
+          @InstanceID = instanceid
+          @MetadataRiskList = metadatarisklist
+          @IdentityTimeFirst = identitytimefirst
+          @IdentityTimeLast = identitytimelast
+          @IdentityMethod = identitymethod
+          @ExposureStatus = exposurestatus
+          @MetadataRiskURL = metadatariskurl
+        end
+
+        def deserialize(params)
+          @ID = params['ID']
+          @AgentName = params['AgentName']
+          @AgentModel = params['AgentModel']
+          @InstanceID = params['InstanceID']
+          @MetadataRiskList = params['MetadataRiskList']
+          @IdentityTimeFirst = params['IdentityTimeFirst']
+          @IdentityTimeLast = params['IdentityTimeLast']
+          @IdentityMethod = params['IdentityMethod']
+          @ExposureStatus = params['ExposureStatus']
+          @MetadataRiskURL = params['MetadataRiskURL']
+        end
+      end
+
       # AK简要信息
       class AKInfo < TencentCloud::Common::AbstractModel
         # @param ID: ak对应id
@@ -3862,6 +3915,60 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAIAgentAssetList请求参数结构体
+      class DescribeAIAgentAssetListRequest < TencentCloud::Common::AbstractModel
+        # @param MemberId: 集团账号的成员id
+        # @type MemberId: Array
+        # @param Filter: 筛选
+        # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
+
+        attr_accessor :MemberId, :Filter
+
+        def initialize(memberid=nil, filter=nil)
+          @MemberId = memberid
+          @Filter = filter
+        end
+
+        def deserialize(params)
+          @MemberId = params['MemberId']
+          unless params['Filter'].nil?
+            @Filter = Filter.new
+            @Filter.deserialize(params['Filter'])
+          end
+        end
+      end
+
+      # DescribeAIAgentAssetList返回参数结构体
+      class DescribeAIAgentAssetListResponse < TencentCloud::Common::AbstractModel
+        # @param AssetList: 资产列表
+        # @type AssetList: Array
+        # @param TotalCount: 资产总数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AssetList, :TotalCount, :RequestId
+
+        def initialize(assetlist=nil, totalcount=nil, requestid=nil)
+          @AssetList = assetlist
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['AssetList'].nil?
+            @AssetList = []
+            params['AssetList'].each do |i|
+              aiagentasset_tmp = AIAgentAsset.new
+              aiagentasset_tmp.deserialize(i)
+              @AssetList << aiagentasset_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end

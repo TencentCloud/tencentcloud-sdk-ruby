@@ -23533,6 +23533,49 @@ module TencentCloud
         end
       end
 
+      # DescribeSkillInfo请求参数结构体
+      class DescribeSkillInfoRequest < TencentCloud::Common::AbstractModel
+        # @param Ids: 事件id
+        # @type Ids: Array
+
+        attr_accessor :Ids
+
+        def initialize(ids=nil)
+          @Ids = ids
+        end
+
+        def deserialize(params)
+          @Ids = params['Ids']
+        end
+      end
+
+      # DescribeSkillInfo返回参数结构体
+      class DescribeSkillInfoResponse < TencentCloud::Common::AbstractModel
+        # @param SkillInfoList: skill信息列表
+        # @type SkillInfoList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SkillInfoList, :RequestId
+
+        def initialize(skillinfolist=nil, requestid=nil)
+          @SkillInfoList = skillinfolist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['SkillInfoList'].nil?
+            @SkillInfoList = []
+            params['SkillInfoList'].each do |i|
+              skillinfo_tmp = SkillInfo.new
+              skillinfo_tmp.deserialize(i)
+              @SkillInfoList << skillinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeStrategyExist请求参数结构体
       class DescribeStrategyExistRequest < TencentCloud::Common::AbstractModel
         # @param StrategyName: 策略名
@@ -41842,6 +41885,46 @@ module TencentCloud
           @IsEnabled = params['IsEnabled']
           @UpdateTime = params['UpdateTime']
           @HostScope = params['HostScope']
+        end
+      end
+
+      # Skill 的信息
+      class SkillInfo < TencentCloud::Common::AbstractModel
+        # @param SkillName: Skill名称
+        # @type SkillName: String
+        # @param SkillDesc: Skill 描述
+        # @type SkillDesc: String
+        # @param SkillSource: Skill来源
+        # @type SkillSource: String
+        # @param Tags: Skill风险标签
+        # @type Tags: Array
+        # @param RiskDesc: skill风险描述
+        # @type RiskDesc: String
+        # @param Evidence: 证据链
+        # @type Evidence: String
+        # @param Id: 事件ID
+        # @type Id: Integer
+
+        attr_accessor :SkillName, :SkillDesc, :SkillSource, :Tags, :RiskDesc, :Evidence, :Id
+
+        def initialize(skillname=nil, skilldesc=nil, skillsource=nil, tags=nil, riskdesc=nil, evidence=nil, id=nil)
+          @SkillName = skillname
+          @SkillDesc = skilldesc
+          @SkillSource = skillsource
+          @Tags = tags
+          @RiskDesc = riskdesc
+          @Evidence = evidence
+          @Id = id
+        end
+
+        def deserialize(params)
+          @SkillName = params['SkillName']
+          @SkillDesc = params['SkillDesc']
+          @SkillSource = params['SkillSource']
+          @Tags = params['Tags']
+          @RiskDesc = params['RiskDesc']
+          @Evidence = params['Evidence']
+          @Id = params['Id']
         end
       end
 

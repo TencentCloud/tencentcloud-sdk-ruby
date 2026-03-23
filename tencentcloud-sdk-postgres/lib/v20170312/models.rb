@@ -980,10 +980,12 @@ module TencentCloud
         # @type NeedSupportIpv6: Integer
         # @param DeletionProtection: <p>实例是否开启删除保护: true-开启删除保护；false-关闭删除保护。</p>
         # @type DeletionProtection: Boolean
+        # @param StorageType: <p>实例存储类型，可选值：PHYSICAL_LOCAL_SSD：物理机本地ssd硬盘 CLOUD_PREMIUM：高性能云硬盘 CLOUD_SSD：ssd云硬盘 CLOUD_HSSD：增强型ssd云硬盘</p>
+        # @type StorageType: String
 
-        attr_accessor :Zone, :SpecCode, :Storage, :InstanceCount, :Period, :Charset, :AdminName, :AdminPassword, :DBMajorVersion, :DBVersion, :DBKernelVersion, :InstanceChargeType, :VpcId, :SubnetId, :DBNodeSet, :AutoRenewFlag, :AutoVoucher, :VoucherIds, :ProjectId, :ActivityId, :Name, :TagList, :SecurityGroupIds, :NeedSupportTDE, :KMSKeyId, :KMSRegion, :KMSClusterId, :DBEngine, :DBEngineConfig, :SyncMode, :NeedSupportIpv6, :DeletionProtection
+        attr_accessor :Zone, :SpecCode, :Storage, :InstanceCount, :Period, :Charset, :AdminName, :AdminPassword, :DBMajorVersion, :DBVersion, :DBKernelVersion, :InstanceChargeType, :VpcId, :SubnetId, :DBNodeSet, :AutoRenewFlag, :AutoVoucher, :VoucherIds, :ProjectId, :ActivityId, :Name, :TagList, :SecurityGroupIds, :NeedSupportTDE, :KMSKeyId, :KMSRegion, :KMSClusterId, :DBEngine, :DBEngineConfig, :SyncMode, :NeedSupportIpv6, :DeletionProtection, :StorageType
 
-        def initialize(zone=nil, speccode=nil, storage=nil, instancecount=nil, period=nil, charset=nil, adminname=nil, adminpassword=nil, dbmajorversion=nil, dbversion=nil, dbkernelversion=nil, instancechargetype=nil, vpcid=nil, subnetid=nil, dbnodeset=nil, autorenewflag=nil, autovoucher=nil, voucherids=nil, projectid=nil, activityid=nil, name=nil, taglist=nil, securitygroupids=nil, needsupporttde=nil, kmskeyid=nil, kmsregion=nil, kmsclusterid=nil, dbengine=nil, dbengineconfig=nil, syncmode=nil, needsupportipv6=nil, deletionprotection=nil)
+        def initialize(zone=nil, speccode=nil, storage=nil, instancecount=nil, period=nil, charset=nil, adminname=nil, adminpassword=nil, dbmajorversion=nil, dbversion=nil, dbkernelversion=nil, instancechargetype=nil, vpcid=nil, subnetid=nil, dbnodeset=nil, autorenewflag=nil, autovoucher=nil, voucherids=nil, projectid=nil, activityid=nil, name=nil, taglist=nil, securitygroupids=nil, needsupporttde=nil, kmskeyid=nil, kmsregion=nil, kmsclusterid=nil, dbengine=nil, dbengineconfig=nil, syncmode=nil, needsupportipv6=nil, deletionprotection=nil, storagetype=nil)
           @Zone = zone
           @SpecCode = speccode
           @Storage = storage
@@ -1016,6 +1018,7 @@ module TencentCloud
           @SyncMode = syncmode
           @NeedSupportIpv6 = needsupportipv6
           @DeletionProtection = deletionprotection
+          @StorageType = storagetype
         end
 
         def deserialize(params)
@@ -1065,6 +1068,7 @@ module TencentCloud
           @SyncMode = params['SyncMode']
           @NeedSupportIpv6 = params['NeedSupportIpv6']
           @DeletionProtection = params['DeletionProtection']
+          @StorageType = params['StorageType']
         end
       end
 
@@ -1568,10 +1572,12 @@ module TencentCloud
         # @type ExpandedCpu: Integer
         # @param DeletionProtection: <p>实例是否开启删除保护，取值如下：</p><ul><li>true：开启删除保护</li><li>false：关闭删除保护</li></ul>
         # @type DeletionProtection: Boolean
+        # @param DBInstanceStorageType: <p>实例存储类型，可选值：PHYSICAL_LOCAL_SSD：物理机本地ssd硬盘 CLOUD_PREMIUM：高性能云硬盘 CLOUD_SSD：ssd云硬盘 CLOUD_HSSD：增强型ssd云硬盘</p>
+        # @type DBInstanceStorageType: String
 
-        attr_accessor :Region, :Zone, :VpcId, :SubnetId, :DBInstanceId, :DBInstanceName, :DBInstanceStatus, :DBInstanceMemory, :DBInstanceStorage, :DBInstanceCpu, :DBInstanceClass, :DBMajorVersion, :DBVersion, :DBKernelVersion, :DBInstanceType, :DBInstanceVersion, :DBCharset, :CreateTime, :UpdateTime, :ExpireTime, :IsolatedTime, :PayType, :AutoRenew, :DBInstanceNetInfo, :Type, :AppId, :Uid, :ProjectId, :TagList, :MasterDBInstanceId, :ReadOnlyInstanceNum, :StatusInReadonlyGroup, :OfflineTime, :DBNodeSet, :IsSupportTDE, :DBEngine, :DBEngineConfig, :NetworkAccessList, :SupportIpv6, :ExpandedCpu, :DeletionProtection
+        attr_accessor :Region, :Zone, :VpcId, :SubnetId, :DBInstanceId, :DBInstanceName, :DBInstanceStatus, :DBInstanceMemory, :DBInstanceStorage, :DBInstanceCpu, :DBInstanceClass, :DBMajorVersion, :DBVersion, :DBKernelVersion, :DBInstanceType, :DBInstanceVersion, :DBCharset, :CreateTime, :UpdateTime, :ExpireTime, :IsolatedTime, :PayType, :AutoRenew, :DBInstanceNetInfo, :Type, :AppId, :Uid, :ProjectId, :TagList, :MasterDBInstanceId, :ReadOnlyInstanceNum, :StatusInReadonlyGroup, :OfflineTime, :DBNodeSet, :IsSupportTDE, :DBEngine, :DBEngineConfig, :NetworkAccessList, :SupportIpv6, :ExpandedCpu, :DeletionProtection, :DBInstanceStorageType
 
-        def initialize(region=nil, zone=nil, vpcid=nil, subnetid=nil, dbinstanceid=nil, dbinstancename=nil, dbinstancestatus=nil, dbinstancememory=nil, dbinstancestorage=nil, dbinstancecpu=nil, dbinstanceclass=nil, dbmajorversion=nil, dbversion=nil, dbkernelversion=nil, dbinstancetype=nil, dbinstanceversion=nil, dbcharset=nil, createtime=nil, updatetime=nil, expiretime=nil, isolatedtime=nil, paytype=nil, autorenew=nil, dbinstancenetinfo=nil, type=nil, appid=nil, uid=nil, projectid=nil, taglist=nil, masterdbinstanceid=nil, readonlyinstancenum=nil, statusinreadonlygroup=nil, offlinetime=nil, dbnodeset=nil, issupporttde=nil, dbengine=nil, dbengineconfig=nil, networkaccesslist=nil, supportipv6=nil, expandedcpu=nil, deletionprotection=nil)
+        def initialize(region=nil, zone=nil, vpcid=nil, subnetid=nil, dbinstanceid=nil, dbinstancename=nil, dbinstancestatus=nil, dbinstancememory=nil, dbinstancestorage=nil, dbinstancecpu=nil, dbinstanceclass=nil, dbmajorversion=nil, dbversion=nil, dbkernelversion=nil, dbinstancetype=nil, dbinstanceversion=nil, dbcharset=nil, createtime=nil, updatetime=nil, expiretime=nil, isolatedtime=nil, paytype=nil, autorenew=nil, dbinstancenetinfo=nil, type=nil, appid=nil, uid=nil, projectid=nil, taglist=nil, masterdbinstanceid=nil, readonlyinstancenum=nil, statusinreadonlygroup=nil, offlinetime=nil, dbnodeset=nil, issupporttde=nil, dbengine=nil, dbengineconfig=nil, networkaccesslist=nil, supportipv6=nil, expandedcpu=nil, deletionprotection=nil, dbinstancestoragetype=nil)
           @Region = region
           @Zone = zone
           @VpcId = vpcid
@@ -1613,6 +1619,7 @@ module TencentCloud
           @SupportIpv6 = supportipv6
           @ExpandedCpu = expandedcpu
           @DeletionProtection = deletionprotection
+          @DBInstanceStorageType = dbinstancestoragetype
         end
 
         def deserialize(params)
@@ -1685,6 +1692,7 @@ module TencentCloud
           @SupportIpv6 = params['SupportIpv6']
           @ExpandedCpu = params['ExpandedCpu']
           @DeletionProtection = params['DeletionProtection']
+          @DBInstanceStorageType = params['DBInstanceStorageType']
         end
       end
 
@@ -2766,19 +2774,23 @@ module TencentCloud
         # @type DBEngine: String
         # @param DBMajorVersion: <p>数据库主版本号。例如12，13，可以通过接口<a href="https://cloud.tencent.com/document/product/409/89018">DescribeDBVersions</a>获取。</p>
         # @type DBMajorVersion: String
+        # @param StorageType: <p>实例存储类型，根据存储类型返回支持的规格。</p><p>枚举值：</p><ul><li>PHYSICAL_LOCAL_SSD： 物理机本地ssd硬盘</li><li>CLOUD_PREMIUM： 高性能云硬盘</li><li>CLOUD_SSD： ssd云硬盘</li><li>CLOUD_HSSD： 增强型ssd云硬盘</li></ul><p>默认值：PHYSICAL_LOCAL_SSD</p>
+        # @type StorageType: String
 
-        attr_accessor :Zone, :DBEngine, :DBMajorVersion
+        attr_accessor :Zone, :DBEngine, :DBMajorVersion, :StorageType
 
-        def initialize(zone=nil, dbengine=nil, dbmajorversion=nil)
+        def initialize(zone=nil, dbengine=nil, dbmajorversion=nil, storagetype=nil)
           @Zone = zone
           @DBEngine = dbengine
           @DBMajorVersion = dbmajorversion
+          @StorageType = storagetype
         end
 
         def deserialize(params)
           @Zone = params['Zone']
           @DBEngine = params['DBEngine']
           @DBMajorVersion = params['DBMajorVersion']
+          @StorageType = params['StorageType']
         end
       end
 
@@ -3322,12 +3334,17 @@ module TencentCloud
 
       # DescribeDBVersions请求参数结构体
       class DescribeDBVersionsRequest < TencentCloud::Common::AbstractModel
+        # @param StorageType: <p>实例存储类型，根据磁盘类型返回支持的版本</p><p>枚举值：</p><ul><li>PHYSICAL_LOCAL_SSD： 物理机本地ssd硬盘</li><li>CLOUD_PREMIUM： 高性能云硬盘</li><li>CLOUD_SSD： ssd云硬盘</li><li>CLOUD_HSSD： 增强型ssd云硬盘</li></ul><p>默认值：PHYSICAL_LOCAL_SSD</p>
+        # @type StorageType: String
 
+        attr_accessor :StorageType
 
-        def initialize()
+        def initialize(storagetype=nil)
+          @StorageType = storagetype
         end
 
         def deserialize(params)
+          @StorageType = params['StorageType']
         end
       end
 
@@ -4071,17 +4088,21 @@ module TencentCloud
         # @type Zone: String
         # @param DBEngine: <p>数据库引擎，支持：<br>1、postgresql（云数据库PostgreSQL）；<br>2、mssql_compatible（MSSQL兼容-云数据库PostgreSQL）；<br>如不指定默认使用postgresql。</p>
         # @type DBEngine: String
+        # @param StorageType: <p>实例存储类型，根据存储类型返回支持的版本和规格</p><p>枚举值：</p><ul><li>PHYSICAL_LOCAL_SSD： 物理机本地ssd硬盘</li><li>CLOUD_PREMIUM： 高性能云硬盘</li><li>CLOUD_SSD： ssd云硬盘</li><li>CLOUD_HSSD： 增强型ssd云硬盘</li></ul><p>默认值：PHYSICAL_LOCAL_SSD</p>
+        # @type StorageType: String
 
-        attr_accessor :Zone, :DBEngine
+        attr_accessor :Zone, :DBEngine, :StorageType
 
-        def initialize(zone=nil, dbengine=nil)
+        def initialize(zone=nil, dbengine=nil, storagetype=nil)
           @Zone = zone
           @DBEngine = dbengine
+          @StorageType = storagetype
         end
 
         def deserialize(params)
           @Zone = params['Zone']
           @DBEngine = params['DBEngine']
+          @StorageType = params['StorageType']
         end
       end
 
@@ -4814,10 +4835,12 @@ module TencentCloud
         # @type InstanceType: String
         # @param DBEngine: <p>DB引擎，默认postgresql，支持如下：<br>postgresql（云数据库PostgreSQL）<br>mssql_compatible（MSSQL兼容-云数据库PostgreSQL）</p>
         # @type DBEngine: String
+        # @param StorageType: <p>实例存储类型，可选值：PHYSICAL_LOCAL_SSD：物理机本地ssd硬盘 CLOUD_PREMIUM：高性能云硬盘 CLOUD_SSD：ssd云硬盘 CLOUD_HSSD：增强型ssd云硬盘</p>
+        # @type StorageType: String
 
-        attr_accessor :Zone, :SpecCode, :Storage, :InstanceCount, :Period, :Pid, :InstanceChargeType, :InstanceType, :DBEngine
+        attr_accessor :Zone, :SpecCode, :Storage, :InstanceCount, :Period, :Pid, :InstanceChargeType, :InstanceType, :DBEngine, :StorageType
 
-        def initialize(zone=nil, speccode=nil, storage=nil, instancecount=nil, period=nil, pid=nil, instancechargetype=nil, instancetype=nil, dbengine=nil)
+        def initialize(zone=nil, speccode=nil, storage=nil, instancecount=nil, period=nil, pid=nil, instancechargetype=nil, instancetype=nil, dbengine=nil, storagetype=nil)
           @Zone = zone
           @SpecCode = speccode
           @Storage = storage
@@ -4827,6 +4850,7 @@ module TencentCloud
           @InstanceChargeType = instancechargetype
           @InstanceType = instancetype
           @DBEngine = dbengine
+          @StorageType = storagetype
         end
 
         def deserialize(params)
@@ -4839,6 +4863,7 @@ module TencentCloud
           @InstanceChargeType = params['InstanceChargeType']
           @InstanceType = params['InstanceType']
           @DBEngine = params['DBEngine']
+          @StorageType = params['StorageType']
         end
       end
 
