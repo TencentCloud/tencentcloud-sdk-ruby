@@ -548,6 +548,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 销毁云服务器实例
+
+        # @param request: Request instance for DeleteVmInstance.
+        # @type request: :class:`Tencentcloud::tcb::V20180608::DeleteVmInstanceRequest`
+        # @rtype: :class:`Tencentcloud::tcb::V20180608::DeleteVmInstanceResponse`
+        def DeleteVmInstance(request)
+          body = send_request('DeleteVmInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteVmInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口用于获取当前环境的安全域名列表。
         # 云开发会校验网页应用请求的来源域名，您需要将来源域名加入到WEB安全域名列表中。
         # 可以通过接口 [CreateAuthDomain](https://cloud.tencent.com/document/product/876/42764) 增加安全域名。
@@ -1143,6 +1167,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询环境下的云服务器列表
+
+        # @param request: Request instance for DescribeVmInstances.
+        # @type request: :class:`Tencentcloud::tcb::V20180608::DescribeVmInstancesRequest`
+        # @rtype: :class:`Tencentcloud::tcb::V20180608::DescribeVmInstancesResponse`
+        def DescribeVmInstances(request)
+          body = send_request('DescribeVmInstances', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeVmInstancesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 云服务器规格list
 
         # @param request: Request instance for DescribeVmSpec.
@@ -1284,6 +1332,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = GetProvidersResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询服务器价格
+
+        # @param request: Request instance for InquireVmPrice.
+        # @type request: :class:`Tencentcloud::tcb::V20180608::InquireVmPriceRequest`
+        # @rtype: :class:`Tencentcloud::tcb::V20180608::InquireVmPriceResponse`
+        def InquireVmPrice(request)
+          body = send_request('InquireVmPrice', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = InquireVmPriceResponse.new
             model.deserialize(response['Response'])
             model
           else

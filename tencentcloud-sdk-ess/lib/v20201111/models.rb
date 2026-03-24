@@ -9884,6 +9884,62 @@ module TencentCloud
         end
       end
 
+      # DescribeContractReviewMarkedRiskExportTask请求参数结构体
+      class DescribeContractReviewMarkedRiskExportTaskRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: 执行本接口操作的员工信息。
+        # 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param TaskId: 导出任务 ID。
+        # @type TaskId: String
+        # @param Agent: 代理企业和员工的信息。
+        # 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
+        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
+
+        attr_accessor :Operator, :TaskId, :Agent
+
+        def initialize(operator=nil, taskid=nil, agent=nil)
+          @Operator = operator
+          @TaskId = taskid
+          @Agent = agent
+        end
+
+        def deserialize(params)
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          @TaskId = params['TaskId']
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+        end
+      end
+
+      # DescribeContractReviewMarkedRiskExportTask返回参数结构体
+      class DescribeContractReviewMarkedRiskExportTaskResponse < TencentCloud::Common::AbstractModel
+        # @param Url: 导出文件 url。
+        # @type Url: String
+        # @param Status: 任务状态。未知 = 0;   创建完成 = 1;   队列中 = 2;   执行中 = 3;   执行成功 = 4;   失败 = 5;   终止 = 6;
+        # @type Status: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Url, :Status, :RequestId
+
+        def initialize(url=nil, status=nil, requestid=nil)
+          @Url = url
+          @Status = status
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Url = params['Url']
+          @Status = params['Status']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeContractReviewTaskListWebUrl请求参数结构体
       class DescribeContractReviewTaskListWebUrlRequest < TencentCloud::Common::AbstractModel
         # @param Operator: 执行本接口操作的员工信息。使用此接口时，必须填写userId。
@@ -12514,6 +12570,62 @@ module TencentCloud
         def deserialize(params)
           @ResourceUrl = params['ResourceUrl']
           @ExpireTime = params['ExpireTime']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ExportContractReviewMarkedRisk请求参数结构体
+      class ExportContractReviewMarkedRiskRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: 执行本接口操作的员工信息。
+        # 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param FromDate: 开始日期。eg， "2006-01-02"
+        # @type FromDate: String
+        # @param ToDate: 结束日期。eg，"2006-02-01"
+        # @type ToDate: String
+        # @param Agent: 代理企业和员工的信息。
+        # 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
+        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
+
+        attr_accessor :Operator, :FromDate, :ToDate, :Agent
+
+        def initialize(operator=nil, fromdate=nil, todate=nil, agent=nil)
+          @Operator = operator
+          @FromDate = fromdate
+          @ToDate = todate
+          @Agent = agent
+        end
+
+        def deserialize(params)
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          @FromDate = params['FromDate']
+          @ToDate = params['ToDate']
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+        end
+      end
+
+      # ExportContractReviewMarkedRisk返回参数结构体
+      class ExportContractReviewMarkedRiskResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 导出任务 id。
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
           @RequestId = params['RequestId']
         end
       end

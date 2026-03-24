@@ -413,9 +413,9 @@ module TencentCloud
 
       # BatchModifyTargetWeight请求参数结构体
       class BatchModifyTargetWeightRequest < TencentCloud::Common::AbstractModel
-        # @param LoadBalancerId: 负载均衡实例 ID。
+        # @param LoadBalancerId: <p>负载均衡实例 ID。</p>
         # @type LoadBalancerId: String
-        # @param ModifyList: 要批量修改权重的列表。
+        # @param ModifyList: <p>要批量修改权重的列表。ModifyList数组最多100个元素，ModifyList[i].Targets最多50个，全部Targets累加不超过500。</p>
         # @type ModifyList: Array
 
         attr_accessor :LoadBalancerId, :ModifyList
@@ -4273,11 +4273,11 @@ module TencentCloud
 
       # DescribeTargetHealth请求参数结构体
       class DescribeTargetHealthRequest < TencentCloud::Common::AbstractModel
-        # @param LoadBalancerIds: 要查询的负载均衡实例ID列表。
+        # @param LoadBalancerIds: <p>要查询的负载均衡实例ID列表。数组大小最大支持30。</p>
         # @type LoadBalancerIds: Array
-        # @param ListenerIds: 要查询的监听器ID列表。
+        # @param ListenerIds: <p>要查询的监听器ID列表。</p>
         # @type ListenerIds: Array
-        # @param LocationIds: 要查询的转发规则ID列表。
+        # @param LocationIds: <p>要查询的转发规则ID列表。</p>
         # @type LocationIds: Array
 
         attr_accessor :LoadBalancerIds, :ListenerIds, :LocationIds
@@ -4297,7 +4297,7 @@ module TencentCloud
 
       # DescribeTargetHealth返回参数结构体
       class DescribeTargetHealthResponse < TencentCloud::Common::AbstractModel
-        # @param LoadBalancers: 负载均衡实例列表。
+        # @param LoadBalancers: <p>负载均衡实例列表。</p>
         # @type LoadBalancers: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

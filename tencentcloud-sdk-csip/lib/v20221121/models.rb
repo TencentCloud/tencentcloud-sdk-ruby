@@ -40,10 +40,12 @@ module TencentCloud
         # @type ExposureStatus: String
         # @param MetadataRiskURL: metadata 有风险时对应路径
         # @type MetadataRiskURL: String
+        # @param SkillState: 无
+        # @type SkillState: :class:`Tencentcloud::Csip.v20221121.models.SkillState`
 
-        attr_accessor :ID, :AgentName, :AgentModel, :InstanceID, :MetadataRiskList, :IdentityTimeFirst, :IdentityTimeLast, :IdentityMethod, :ExposureStatus, :MetadataRiskURL
+        attr_accessor :ID, :AgentName, :AgentModel, :InstanceID, :MetadataRiskList, :IdentityTimeFirst, :IdentityTimeLast, :IdentityMethod, :ExposureStatus, :MetadataRiskURL, :SkillState
 
-        def initialize(id=nil, agentname=nil, agentmodel=nil, instanceid=nil, metadatarisklist=nil, identitytimefirst=nil, identitytimelast=nil, identitymethod=nil, exposurestatus=nil, metadatariskurl=nil)
+        def initialize(id=nil, agentname=nil, agentmodel=nil, instanceid=nil, metadatarisklist=nil, identitytimefirst=nil, identitytimelast=nil, identitymethod=nil, exposurestatus=nil, metadatariskurl=nil, skillstate=nil)
           @ID = id
           @AgentName = agentname
           @AgentModel = agentmodel
@@ -54,6 +56,7 @@ module TencentCloud
           @IdentityMethod = identitymethod
           @ExposureStatus = exposurestatus
           @MetadataRiskURL = metadatariskurl
+          @SkillState = skillstate
         end
 
         def deserialize(params)
@@ -67,6 +70,10 @@ module TencentCloud
           @IdentityMethod = params['IdentityMethod']
           @ExposureStatus = params['ExposureStatus']
           @MetadataRiskURL = params['MetadataRiskURL']
+          unless params['SkillState'].nil?
+            @SkillState = SkillState.new
+            @SkillState.deserialize(params['SkillState'])
+          end
         end
       end
 
@@ -12085,6 +12092,38 @@ module TencentCloud
           @SupportHandledCount = params['SupportHandledCount']
           @SupportTotalCount = params['SupportTotalCount']
           @IsSupport = params['IsSupport']
+        end
+      end
+
+      # SKILL安装状态信息
+      class SkillState < TencentCloud::Common::AbstractModel
+        # @param SkillInstallStatus: SKILL安装状态
+        # 枚举值：
+        # 0：未安装
+        # 1：安装中
+        # 2：已安装
+        # 3：安装失败
+        # 4：卸载中
+        # 5：卸载失败
+        # @type SkillInstallStatus: Integer
+        # @param SkillInstallTime: SKILL安装/卸载操作时间
+        # 参数格式：YYYY-MM-DDTHH:mm:ssZ（ISO8601格式）
+        # @type SkillInstallTime: String
+        # @param SkillInstallResult: SKILL安装/卸载结果描述信息
+        # @type SkillInstallResult: String
+
+        attr_accessor :SkillInstallStatus, :SkillInstallTime, :SkillInstallResult
+
+        def initialize(skillinstallstatus=nil, skillinstalltime=nil, skillinstallresult=nil)
+          @SkillInstallStatus = skillinstallstatus
+          @SkillInstallTime = skillinstalltime
+          @SkillInstallResult = skillinstallresult
+        end
+
+        def deserialize(params)
+          @SkillInstallStatus = params['SkillInstallStatus']
+          @SkillInstallTime = params['SkillInstallTime']
+          @SkillInstallResult = params['SkillInstallResult']
         end
       end
 

@@ -9897,56 +9897,58 @@ module TencentCloud
 
       # DescribeVoucherInfo请求参数结构体
       class DescribeVoucherInfoRequest < TencentCloud::Common::AbstractModel
-        # @param Limit: 一页多少条数据，默认是20条，最大不超过1000
+        # @param Limit: <p>一页多少条数据，默认是20条，最大不超过1000</p>
         # @type Limit: Integer
-        # @param Offset: 第多少页，默认是1
+        # @param Offset: <p>第多少页，默认是1</p>
         # @type Offset: Integer
-        # @param Status: 券状态：待使用：unUsed，已使用： used，已发货：delivered，已作废： cancel，已过期：overdue
+        # @param Status: <p>券状态：待使用：unUsed，已使用：&nbsp;used，已发货：delivered，已作废：&nbsp;cancel，已过期：overdue</p>
         # @type Status: String
-        # @param VoucherId: 代金券id
+        # @param VoucherId: <p>代金券id</p>
         # @type VoucherId: String
-        # @param CodeId: 代金券订单id
+        # @param CodeId: <p>代金券订单id</p>
         # @type CodeId: String
-        # @param ProductCode: 商品码
+        # @param ProductCode: <p>商品码</p>
         # @type ProductCode: String
-        # @param ActivityId: 活动id
+        # @param ActivityId: <p>活动id</p>
         # @type ActivityId: String
-        # @param VoucherName: 代金券名称
+        # @param VoucherName: <p>代金券名称</p>
         # @type VoucherName: String
-        # @param TimeFrom: 发放开始时间,例：2021-01-01
+        # @param TimeFrom: <p>发放开始时间,例：2021-01-01</p>
         # @type TimeFrom: String
-        # @param TimeTo: 发放结束时间，例：2021-01-01
+        # @param TimeTo: <p>发放结束时间，例：2021-01-01</p>
         # @type TimeTo: String
-        # @param SortField: 指定排序字段：BeginTime开始时间、EndTime到期时间、CreateTime创建时间
+        # @param SortField: <p>指定排序字段：BeginTime开始时间、EndTime到期时间、CreateTime创建时间</p>
         # @type SortField: String
-        # @param SortOrder: 指定升序降序：desc、asc
+        # @param SortOrder: <p>指定升序降序：desc、asc</p>
         # @type SortOrder: String
-        # @param PayMode: 付费模式，postPay后付费/prePay预付费/riPay预留实例/""或者"*"表示全部模式，如果payMode为""或"*"，那么productCode与subProductCode必须传空
+        # @param PayMode: <p>付费模式，postPay后付费/prePay预付费/riPay预留实例/&quot;&quot;或者&quot;*&quot;表示全部模式，如果payMode为&quot;&quot;或&quot;*&quot;，那么productCode与subProductCode必须传空</p>
         # @type PayMode: String
-        # @param PayScene: 付费场景PayMode=postPay时：spotpay-竞价实例,"settle account"-普通后付费PayMode=prePay时：purchase-包年包月新购，renew-包年包月续费（自动续费），modify-包年包月配置变更(变配）PayMode=riPay时：oneOffFee-预留实例预付，hourlyFee-预留实例每小时扣费，*-支持全部付费场景
+        # @param PayScene: <p>付费场景PayMode=postPay时：spotpay-竞价实例,&quot;settle account&quot;-普通后付费PayMode=prePay时：purchase-包年包月新购，renew-包年包月续费（自动续费），modify-包年包月配置变更(变配）PayMode=riPay时：oneOffFee-预留实例预付，hourlyFee-预留实例每小时扣费，*-支持全部付费场景</p>
         # @type PayScene: String
-        # @param Operator: 操作人，默认就是用户uin
+        # @param Operator: <p>操作人，默认就是用户uin</p>
         # @type Operator: String
-        # @param VoucherMainType: 代金券主类型 has_price 为有价现金券 no_price 为无价代金券
+        # @param VoucherMainType: <p>代金券主类型 has_price 为有价现金券 no_price 为无价代金券</p>
         # @type VoucherMainType: String
-        # @param VoucherSubType: 代金券副类型 discount 为折扣券 deduct 为抵扣券
+        # @param VoucherSubType: <p>代金券副类型 discount 为折扣券 deduct 为抵扣券</p>
         # @type VoucherSubType: String
-        # @param StartTimeFrom: 券有效时间开始时间
+        # @param StartTimeFrom: <p>券有效时间开始时间</p>
         # @type StartTimeFrom: String
-        # @param StartTimeTo: 券有效时间结束时间
+        # @param StartTimeTo: <p>券有效时间结束时间</p>
         # @type StartTimeTo: String
-        # @param EndTimeFrom: 券失效时间开始时间
+        # @param EndTimeFrom: <p>券失效时间开始时间</p>
         # @type EndTimeFrom: String
-        # @param EndTimeTo: 券失效时间结束时间
+        # @param EndTimeTo: <p>券失效时间结束时间</p>
         # @type EndTimeTo: String
-        # @param CreateTimeFrom: 发券时间开始时间
+        # @param CreateTimeFrom: <p>发券时间开始时间</p>
         # @type CreateTimeFrom: String
-        # @param CreateTimeTo: 发券时间结束时间
+        # @param CreateTimeTo: <p>发券时间结束时间</p>
         # @type CreateTimeTo: String
+        # @param Lang: <p>语言参数</p><p>默认值：zh</p><p>期望返回产品名称中文或其他语言，目前仅支持中文、英文；填&quot;zh&quot;或不填时返回中文，其他情况返回英文</p>
+        # @type Lang: String
 
-        attr_accessor :Limit, :Offset, :Status, :VoucherId, :CodeId, :ProductCode, :ActivityId, :VoucherName, :TimeFrom, :TimeTo, :SortField, :SortOrder, :PayMode, :PayScene, :Operator, :VoucherMainType, :VoucherSubType, :StartTimeFrom, :StartTimeTo, :EndTimeFrom, :EndTimeTo, :CreateTimeFrom, :CreateTimeTo
+        attr_accessor :Limit, :Offset, :Status, :VoucherId, :CodeId, :ProductCode, :ActivityId, :VoucherName, :TimeFrom, :TimeTo, :SortField, :SortOrder, :PayMode, :PayScene, :Operator, :VoucherMainType, :VoucherSubType, :StartTimeFrom, :StartTimeTo, :EndTimeFrom, :EndTimeTo, :CreateTimeFrom, :CreateTimeTo, :Lang
 
-        def initialize(limit=nil, offset=nil, status=nil, voucherid=nil, codeid=nil, productcode=nil, activityid=nil, vouchername=nil, timefrom=nil, timeto=nil, sortfield=nil, sortorder=nil, paymode=nil, payscene=nil, operator=nil, vouchermaintype=nil, vouchersubtype=nil, starttimefrom=nil, starttimeto=nil, endtimefrom=nil, endtimeto=nil, createtimefrom=nil, createtimeto=nil)
+        def initialize(limit=nil, offset=nil, status=nil, voucherid=nil, codeid=nil, productcode=nil, activityid=nil, vouchername=nil, timefrom=nil, timeto=nil, sortfield=nil, sortorder=nil, paymode=nil, payscene=nil, operator=nil, vouchermaintype=nil, vouchersubtype=nil, starttimefrom=nil, starttimeto=nil, endtimefrom=nil, endtimeto=nil, createtimefrom=nil, createtimeto=nil, lang=nil)
           @Limit = limit
           @Offset = offset
           @Status = status
@@ -9970,6 +9972,7 @@ module TencentCloud
           @EndTimeTo = endtimeto
           @CreateTimeFrom = createtimefrom
           @CreateTimeTo = createtimeto
+          @Lang = lang
         end
 
         def deserialize(params)
@@ -9996,16 +9999,17 @@ module TencentCloud
           @EndTimeTo = params['EndTimeTo']
           @CreateTimeFrom = params['CreateTimeFrom']
           @CreateTimeTo = params['CreateTimeTo']
+          @Lang = params['Lang']
         end
       end
 
       # DescribeVoucherInfo返回参数结构体
       class DescribeVoucherInfoResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 券总数
+        # @param TotalCount: <p>券总数</p>
         # @type TotalCount: Integer
-        # @param TotalBalance: 总余额（微分）
+        # @param TotalBalance: <p>总余额（微分）</p>
         # @type TotalBalance: Integer
-        # @param VoucherInfos: 代金券相关信息
+        # @param VoucherInfos: <p>代金券相关信息</p>
         # @type VoucherInfos: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

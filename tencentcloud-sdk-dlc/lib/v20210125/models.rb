@@ -5277,10 +5277,19 @@ module TencentCloud
         # @type GovernPolicy: :class:`Tencentcloud::Dlc.v20210125.models.DataGovernPolicy`
         # @param DatabaseId: 数据库ID（无效字段）
         # @type DatabaseId: String
+        # @param CatalogName: 所属catalog名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CatalogName: String
+        # @param CatalogType: 所属catalog 类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CatalogType: String
+        # @param IsInformationSchema: 是否InformationSchema
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsInformationSchema: Boolean
 
-        attr_accessor :DatabaseName, :Comment, :Properties, :CreateTime, :ModifiedTime, :Location, :UserAlias, :UserSubUin, :GovernPolicy, :DatabaseId
+        attr_accessor :DatabaseName, :Comment, :Properties, :CreateTime, :ModifiedTime, :Location, :UserAlias, :UserSubUin, :GovernPolicy, :DatabaseId, :CatalogName, :CatalogType, :IsInformationSchema
 
-        def initialize(databasename=nil, comment=nil, properties=nil, createtime=nil, modifiedtime=nil, location=nil, useralias=nil, usersubuin=nil, governpolicy=nil, databaseid=nil)
+        def initialize(databasename=nil, comment=nil, properties=nil, createtime=nil, modifiedtime=nil, location=nil, useralias=nil, usersubuin=nil, governpolicy=nil, databaseid=nil, catalogname=nil, catalogtype=nil, isinformationschema=nil)
           @DatabaseName = databasename
           @Comment = comment
           @Properties = properties
@@ -5291,6 +5300,9 @@ module TencentCloud
           @UserSubUin = usersubuin
           @GovernPolicy = governpolicy
           @DatabaseId = databaseid
+          @CatalogName = catalogname
+          @CatalogType = catalogtype
+          @IsInformationSchema = isinformationschema
         end
 
         def deserialize(params)
@@ -5314,6 +5326,9 @@ module TencentCloud
             @GovernPolicy.deserialize(params['GovernPolicy'])
           end
           @DatabaseId = params['DatabaseId']
+          @CatalogName = params['CatalogName']
+          @CatalogType = params['CatalogType']
+          @IsInformationSchema = params['IsInformationSchema']
         end
       end
 
@@ -11278,7 +11293,7 @@ module TencentCloud
         end
       end
 
-      # 查询列表过滤条件参数
+      # 筛选条件定义
       class Filter < TencentCloud::Common::AbstractModel
         # @param Name: 属性名称, 若存在多个Filter时，Filter间的关系为逻辑或（OR）关系。
         # @type Name: String

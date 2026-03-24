@@ -1723,6 +1723,42 @@ module TencentCloud
         end
       end
 
+      # DeleteVmInstance请求参数结构体
+      class DeleteVmInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 服务器实例id
+        # @type InstanceId: String
+        # @param EnvId: 环境id
+        # @type EnvId: String
+
+        attr_accessor :InstanceId, :EnvId
+
+        def initialize(instanceid=nil, envid=nil)
+          @InstanceId = instanceid
+          @EnvId = envid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @EnvId = params['EnvId']
+        end
+      end
+
+      # DeleteVmInstance返回参数结构体
+      class DeleteVmInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeAuthDomains请求参数结构体
       class DescribeAuthDomainsRequest < TencentCloud::Common::AbstractModel
         # @param EnvId: 环境ID
@@ -3508,6 +3544,53 @@ module TencentCloud
         end
       end
 
+      # DescribeVmInstances请求参数结构体
+      class DescribeVmInstancesRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: 环境ID
+        # @type EnvId: String
+        # @param Type: 服务器类型： LightHouse = 轻量云服务器 CVM = 云服务器
+        # @type Type: String
+
+        attr_accessor :EnvId, :Type
+
+        def initialize(envid=nil, type=nil)
+          @EnvId = envid
+          @Type = type
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @Type = params['Type']
+        end
+      end
+
+      # DescribeVmInstances返回参数结构体
+      class DescribeVmInstancesResponse < TencentCloud::Common::AbstractModel
+        # @param InstanceList: 主机实例列表
+        # @type InstanceList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InstanceList, :RequestId
+
+        def initialize(instancelist=nil, requestid=nil)
+          @InstanceList = instancelist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['InstanceList'].nil?
+            @InstanceList = []
+            params['InstanceList'].each do |i|
+              vminstance_tmp = VmInstance.new
+              vminstance_tmp.deserialize(i)
+              @InstanceList << vminstance_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeVmSpec请求参数结构体
       class DescribeVmSpecRequest < TencentCloud::Common::AbstractModel
         # @param Type: 类型：
@@ -4248,6 +4331,73 @@ module TencentCloud
         def deserialize(params)
           @Name = params['Name']
           @Direction = params['Direction']
+        end
+      end
+
+      # InquireVmPrice请求参数结构体
+      class InquireVmPriceRequest < TencentCloud::Common::AbstractModel
+        # @param Type: 服务器类型：
+        # LightHouse = 轻量云服务器
+        # CVM = 云服务器
+        # @type Type: String
+        # @param LightHouseBundleId: 轻量云服务器套餐ID。
+        # 当Type=LightHouse时必传
+        # @type LightHouseBundleId: String
+        # @param LightHouseBlueprintId: 轻量云服务器镜像ID。当Type=LightHouse时必传
+        # @type LightHouseBlueprintId: String
+
+        attr_accessor :Type, :LightHouseBundleId, :LightHouseBlueprintId
+
+        def initialize(type=nil, lighthousebundleid=nil, lighthouseblueprintid=nil)
+          @Type = type
+          @LightHouseBundleId = lighthousebundleid
+          @LightHouseBlueprintId = lighthouseblueprintid
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @LightHouseBundleId = params['LightHouseBundleId']
+          @LightHouseBlueprintId = params['LightHouseBlueprintId']
+        end
+      end
+
+      # InquireVmPrice返回参数结构体
+      class InquireVmPriceResponse < TencentCloud::Common::AbstractModel
+        # @param Currency: 价格货币单位。取值范围CNY:人民币。USD:美元。
+        # @type Currency: String
+        # @param OriginalPrice: 原价（主机原始每月价格）
+        # @type OriginalPrice: Float
+        # @param Discount: 折扣率
+        # @type Discount: Float
+        # @param DiscountPrice: 折扣后每月价格
+        # @type DiscountPrice: Float
+        # @param OriginalCredits: 折扣前每天资源点
+        # @type OriginalCredits: Float
+        # @param DiscountCredits: 折扣后每天资源点
+        # @type DiscountCredits: Float
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Currency, :OriginalPrice, :Discount, :DiscountPrice, :OriginalCredits, :DiscountCredits, :RequestId
+
+        def initialize(currency=nil, originalprice=nil, discount=nil, discountprice=nil, originalcredits=nil, discountcredits=nil, requestid=nil)
+          @Currency = currency
+          @OriginalPrice = originalprice
+          @Discount = discount
+          @DiscountPrice = discountprice
+          @OriginalCredits = originalcredits
+          @DiscountCredits = discountcredits
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Currency = params['Currency']
+          @OriginalPrice = params['OriginalPrice']
+          @Discount = params['Discount']
+          @DiscountPrice = params['DiscountPrice']
+          @OriginalCredits = params['OriginalCredits']
+          @DiscountCredits = params['DiscountCredits']
+          @RequestId = params['RequestId']
         end
       end
 
@@ -6469,6 +6619,30 @@ module TencentCloud
           @Name = params['Name']
           @Method = params['Method']
           @SmsDayLimit = params['SmsDayLimit']
+        end
+      end
+
+      # 云主机实例
+      class VmInstance < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例id
+        # @type InstanceId: String
+        # @param Status: 实例状态
+        # @type Status: String
+        # @param Region: 实例地域
+        # @type Region: String
+
+        attr_accessor :InstanceId, :Status, :Region
+
+        def initialize(instanceid=nil, status=nil, region=nil)
+          @InstanceId = instanceid
+          @Status = status
+          @Region = region
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Status = params['Status']
+          @Region = params['Region']
         end
       end
 

@@ -31649,10 +31649,18 @@ module TencentCloud
         # @param InChargeNameList: 负责人name
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InChargeNameList: Array
+        # @param TaskStatus: 生产调度任务状态，参考调度任务侧状态信息，“DELETED”状态为质量侧单独加的，查不到任务时认为任务“DELETED”
+        # 'Y': '调度中',
+        # 'F': '已下线',
+        # 'O': '已暂停',
+        # 'INVALID': '已失效',
+        # 'DELETED': '已删除'
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskStatus: String
 
-        attr_accessor :WorkflowId, :TaskId, :TaskName, :CycleType, :TaskType, :ScheduleTimeZone, :InChargeIdList, :InChargeNameList
+        attr_accessor :WorkflowId, :TaskId, :TaskName, :CycleType, :TaskType, :ScheduleTimeZone, :InChargeIdList, :InChargeNameList, :TaskStatus
 
-        def initialize(workflowid=nil, taskid=nil, taskname=nil, cycletype=nil, tasktype=nil, scheduletimezone=nil, inchargeidlist=nil, inchargenamelist=nil)
+        def initialize(workflowid=nil, taskid=nil, taskname=nil, cycletype=nil, tasktype=nil, scheduletimezone=nil, inchargeidlist=nil, inchargenamelist=nil, taskstatus=nil)
           @WorkflowId = workflowid
           @TaskId = taskid
           @TaskName = taskname
@@ -31661,6 +31669,7 @@ module TencentCloud
           @ScheduleTimeZone = scheduletimezone
           @InChargeIdList = inchargeidlist
           @InChargeNameList = inchargenamelist
+          @TaskStatus = taskstatus
         end
 
         def deserialize(params)
@@ -31672,6 +31681,7 @@ module TencentCloud
           @ScheduleTimeZone = params['ScheduleTimeZone']
           @InChargeIdList = params['InChargeIdList']
           @InChargeNameList = params['InChargeNameList']
+          @TaskStatus = params['TaskStatus']
         end
       end
 
@@ -35298,18 +35308,22 @@ module TencentCloud
 
       # 规则组分页
       class RuleGroupPage < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 记录数
+        # @param TotalCount: 查询结果总数量
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param Items: 规则组列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Items: Array
+        # @param MonitorEnabledCount: 已开启监控任务数量（在查询结果总量中）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MonitorEnabledCount: Integer
 
-        attr_accessor :TotalCount, :Items
+        attr_accessor :TotalCount, :Items, :MonitorEnabledCount
 
-        def initialize(totalcount=nil, items=nil)
+        def initialize(totalcount=nil, items=nil, monitorenabledcount=nil)
           @TotalCount = totalcount
           @Items = items
+          @MonitorEnabledCount = monitorenabledcount
         end
 
         def deserialize(params)
@@ -35322,6 +35336,7 @@ module TencentCloud
               @Items << rulegroup_tmp
             end
           end
+          @MonitorEnabledCount = params['MonitorEnabledCount']
         end
       end
 

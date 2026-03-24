@@ -4577,6 +4577,52 @@ module TencentCloud
         end
       end
 
+      # CreateVideoRedrawTask请求参数结构体
+      class CreateVideoRedrawTaskRequest < TencentCloud::Common::AbstractModel
+        # @param Input: <p>输入待转绘视频url信息</p>
+        # @type Input: :class:`Tencentcloud::Live.v20180801.models.VideoRedrawInput`
+        # @param CosInfo: <p>用户自定义cos信息</p>
+        # @type CosInfo: :class:`Tencentcloud::Live.v20180801.models.VideoRedrawCosInfo`
+
+        attr_accessor :Input, :CosInfo
+
+        def initialize(input=nil, cosinfo=nil)
+          @Input = input
+          @CosInfo = cosinfo
+        end
+
+        def deserialize(params)
+          unless params['Input'].nil?
+            @Input = VideoRedrawInput.new
+            @Input.deserialize(params['Input'])
+          end
+          unless params['CosInfo'].nil?
+            @CosInfo = VideoRedrawCosInfo.new
+            @CosInfo.deserialize(params['CosInfo'])
+          end
+        end
+      end
+
+      # CreateVideoRedrawTask返回参数结构体
+      class CreateVideoRedrawTaskResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>任务id</p>
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 流播放信息
       class DayStreamPlayInfo < TencentCloud::Common::AbstractModel
         # @param Time: 数据时间点，接口返回支持两种时间格式：
@@ -10978,26 +11024,17 @@ module TencentCloud
 
       # DescribeStreamPlayInfoList请求参数结构体
       class DescribeStreamPlayInfoListRequest < TencentCloud::Common::AbstractModel
-        # @param StartTime: 起始时间点，接口查询支持两种时间格式：
-        # 1）YYYY-MM-DDThh:mm:ssZ：UTC时间格式，详见IOS日期格式说明文档: https://cloud.tencent.com/document/product/266/11732#I
-        # 2）yyyy-MM-dd HH:mm:ss：使用此格式时，默认代表北京时间。
-        # 开始时间和结束时间的格式需要保持一致。
+        # @param StartTime: <p>起始时间点，接口查询支持两种时间格式：<br>1）YYYY-MM-DDThh:mm:ssZ：UTC时间格式，详见IOS日期格式说明文档: https://cloud.tencent.com/document/product/266/11732#I<br>2）yyyy-MM-dd HH:mm:ss：使用此格式时，默认代表北京时间。<br>开始时间和结束时间的格式需要保持一致。</p>
         # @type StartTime: String
-        # @param EndTime: 结束时间点，接口查询支持两种时间格式：
-        # 1）YYYY-MM-DDThh:mm:ssZ：UTC时间格式，详见IOS日期格式说明文档: https://cloud.tencent.com/document/product/266/11732#I
-        # 2）yyyy-MM-dd HH:mm:ss：使用此格式时，默认代表北京时间。
-        # 开始时间和结束时间的格式需要保持一致。结束时间和开始时间跨度不支持超过24小时，支持距当前时间一个月内的数据查询。
+        # @param EndTime: <p>结束时间点，接口查询支持两种时间格式：<br>1）YYYY-MM-DDThh:mm:ssZ：UTC时间格式，详见IOS日期格式说明文档: https://cloud.tencent.com/document/product/266/11732#I<br>2）yyyy-MM-dd HH:mm:ss：使用此格式时，默认代表北京时间。<br>开始时间和结束时间的格式需要保持一致。结束时间和开始时间跨度不支持超过24小时，支持距当前时间一个月内的数据查询。</p>
         # @type EndTime: String
-        # @param PlayDomain: 播放域名，
-        # 若不填，则为查询所有播放域名的在线流数据。
+        # @param PlayDomain: <p>播放域名，<br>若不填，则为查询所有播放域名的在线流数据。</p>
         # @type PlayDomain: String
-        # @param StreamName: 流名称，精确匹配。
-        # 若不填，则为查询总体播放数据。
+        # @param StreamName: <p>流名称，精确匹配。<br>若不填，则为查询总体播放数据。</p>
         # @type StreamName: String
-        # @param AppName: 推流路径，与播放地址中的AppName保持一致，会精确匹配，在同时传递了StreamName时生效。
-        # 若不填，则为查询总体播放数据。
+        # @param AppName: <p>该参数暂不可用。</p>
         # @type AppName: String
-        # @param ServiceName: 服务名称，可选值包括LVB(标准直播)，LEB(快直播)，不填则查LVB+LEB总值。
+        # @param ServiceName: <p>服务名称，可选值包括LVB(标准直播)，LEB(快直播)，不填则查LVB+LEB总值。</p>
         # @type ServiceName: String
 
         attr_accessor :StartTime, :EndTime, :PlayDomain, :StreamName, :AppName, :ServiceName
@@ -11023,7 +11060,7 @@ module TencentCloud
 
       # DescribeStreamPlayInfoList返回参数结构体
       class DescribeStreamPlayInfoListResponse < TencentCloud::Common::AbstractModel
-        # @param DataInfoList: 统计信息列表，时间粒度是1分钟。
+        # @param DataInfoList: <p>统计信息列表，时间粒度是1分钟。</p>
         # @type DataInfoList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -17282,6 +17319,58 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # aigc cos信息，存储用户请求时填写的cos信息，存放结果
+      class VideoRedrawCosInfo < TencentCloud::Common::AbstractModel
+        # @param Region: <p>cos所在地域</p>
+        # @type Region: String
+        # @param Bucket: <p>cos桶信息</p>
+        # @type Bucket: String
+        # @param Dir: <p>任务存放cos的目录</p>
+        # @type Dir: String
+        # @param TmpSecretId: <p>临时Cos SecretId</p>
+        # @type TmpSecretId: String
+        # @param TmpSecretKey: <p>临时Cos SecretKey</p>
+        # @type TmpSecretKey: String
+        # @param Token: <p>临时token</p>
+        # @type Token: String
+
+        attr_accessor :Region, :Bucket, :Dir, :TmpSecretId, :TmpSecretKey, :Token
+
+        def initialize(region=nil, bucket=nil, dir=nil, tmpsecretid=nil, tmpsecretkey=nil, token=nil)
+          @Region = region
+          @Bucket = bucket
+          @Dir = dir
+          @TmpSecretId = tmpsecretid
+          @TmpSecretKey = tmpsecretkey
+          @Token = token
+        end
+
+        def deserialize(params)
+          @Region = params['Region']
+          @Bucket = params['Bucket']
+          @Dir = params['Dir']
+          @TmpSecretId = params['TmpSecretId']
+          @TmpSecretKey = params['TmpSecretKey']
+          @Token = params['Token']
+        end
+      end
+
+      # 视频转绘的输入源
+      class VideoRedrawInput < TencentCloud::Common::AbstractModel
+        # @param Url: <p>输入待转绘的视频URL</p>
+        # @type Url: String
+
+        attr_accessor :Url
+
+        def initialize(url=nil)
+          @Url = url
+        end
+
+        def deserialize(params)
+          @Url = params['Url']
         end
       end
 

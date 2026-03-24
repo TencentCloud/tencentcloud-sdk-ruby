@@ -5401,24 +5401,26 @@ module TencentCloud
 
       # ModifyNamespace请求参数结构体
       class ModifyNamespaceRequest < TencentCloud::Common::AbstractModel
-        # @param RegistryId: 实例Id
+        # @param RegistryId: <p>实例Id</p>
         # @type RegistryId: String
-        # @param NamespaceName: 命名空间名称
+        # @param NamespaceName: <p>命名空间名称</p>
         # @type NamespaceName: String
-        # @param IsPublic: 访问级别，True为公开，False为私有
+        # @param IsPublic: <p>访问级别，True为公开，False为私有</p>
         # @type IsPublic: Boolean
-        # @param IsAutoScan: 扫描级别，True为自动，False为手动
+        # @param IsAutoScan: <p>扫描级别，True为自动，False为手动</p>
         # @type IsAutoScan: Boolean
-        # @param IsPreventVUL: 阻断开关，True为开放，False为关闭
+        # @param IsPreventVUL: <p>阻断开关，True为开放，False为关闭</p>
         # @type IsPreventVUL: Boolean
-        # @param Severity: 阻断漏洞等级，目前仅支持 low、medium、high
+        # @param Severity: <p>阻断漏洞等级，目前仅支持 low、medium、high</p>
         # @type Severity: String
-        # @param CVEWhitelistItems: 漏洞白名单列表
+        # @param CVEWhitelistItems: <p>漏洞白名单列表</p>
         # @type CVEWhitelistItems: Array
+        # @param TagSpecification: <p>tag列表</p>
+        # @type TagSpecification: :class:`Tencentcloud::Tcr.v20190924.models.TagSpecification`
 
-        attr_accessor :RegistryId, :NamespaceName, :IsPublic, :IsAutoScan, :IsPreventVUL, :Severity, :CVEWhitelistItems
+        attr_accessor :RegistryId, :NamespaceName, :IsPublic, :IsAutoScan, :IsPreventVUL, :Severity, :CVEWhitelistItems, :TagSpecification
 
-        def initialize(registryid=nil, namespacename=nil, ispublic=nil, isautoscan=nil, ispreventvul=nil, severity=nil, cvewhitelistitems=nil)
+        def initialize(registryid=nil, namespacename=nil, ispublic=nil, isautoscan=nil, ispreventvul=nil, severity=nil, cvewhitelistitems=nil, tagspecification=nil)
           @RegistryId = registryid
           @NamespaceName = namespacename
           @IsPublic = ispublic
@@ -5426,6 +5428,7 @@ module TencentCloud
           @IsPreventVUL = ispreventvul
           @Severity = severity
           @CVEWhitelistItems = cvewhitelistitems
+          @TagSpecification = tagspecification
         end
 
         def deserialize(params)
@@ -5442,6 +5445,10 @@ module TencentCloud
               cvewhitelistitem_tmp.deserialize(i)
               @CVEWhitelistItems << cvewhitelistitem_tmp
             end
+          end
+          unless params['TagSpecification'].nil?
+            @TagSpecification = TagSpecification.new
+            @TagSpecification.deserialize(params['TagSpecification'])
           end
         end
       end

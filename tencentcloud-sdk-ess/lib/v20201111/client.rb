@@ -3001,6 +3001,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（DescribeContractReviewMarkedRiskExportTask）用于查询由 ExportContractReviewMarkedRisk 接口创建的导出任务状态。
+
+        # @param request: Request instance for DescribeContractReviewMarkedRiskExportTask.
+        # @type request: :class:`Tencentcloud::ess::V20201111::DescribeContractReviewMarkedRiskExportTaskRequest`
+        # @rtype: :class:`Tencentcloud::ess::V20201111::DescribeContractReviewMarkedRiskExportTaskResponse`
+        def DescribeContractReviewMarkedRiskExportTask(request)
+          body = send_request('DescribeContractReviewMarkedRiskExportTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeContractReviewMarkedRiskExportTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DescribeContractReviewTask）用于获取合同审查任务详情，包括任务的状态和识别出的风险信息。
 
         # @param request: Request instance for DescribeContractReviewTask.
@@ -3933,6 +3957,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ExportContractComparisonTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（ExportContractReviewMarkedRisk）用于创建导出任务，可以导出合同审查标注风险项,包括忽略的、标记错误的、人工标注的风险等
+
+        # @param request: Request instance for ExportContractReviewMarkedRisk.
+        # @type request: :class:`Tencentcloud::ess::V20201111::ExportContractReviewMarkedRiskRequest`
+        # @rtype: :class:`Tencentcloud::ess::V20201111::ExportContractReviewMarkedRiskResponse`
+        def ExportContractReviewMarkedRisk(request)
+          body = send_request('ExportContractReviewMarkedRisk', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ExportContractReviewMarkedRiskResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -2573,6 +2573,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取产品动态注册详情
+
+        # @param request: Request instance for DescribeProductDynamicRegister.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::DescribeProductDynamicRegisterRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::DescribeProductDynamicRegisterResponse`
+        def DescribeProductDynamicRegister(request)
+          body = send_request('DescribeProductDynamicRegister', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeProductDynamicRegisterResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询项目详情
 
         # @param request: Request instance for DescribeProject.
@@ -4047,6 +4071,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyProductCloudStorageAIServiceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改产品动态注册
+
+        # @param request: Request instance for ModifyProductDynamicRegister.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::ModifyProductDynamicRegisterRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::ModifyProductDynamicRegisterResponse`
+        def ModifyProductDynamicRegister(request)
+          body = send_request('ModifyProductDynamicRegister', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyProductDynamicRegisterResponse.new
             model.deserialize(response['Response'])
             model
           else
