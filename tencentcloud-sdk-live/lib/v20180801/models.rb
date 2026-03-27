@@ -5802,6 +5802,71 @@ module TencentCloud
         end
       end
 
+      # DescribeAIGCTaskStatus请求参数结构体
+      class DescribeAIGCTaskStatusRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>任务ID</p>
+        # @type TaskId: String
+
+        attr_accessor :TaskId
+
+        def initialize(taskid=nil)
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # DescribeAIGCTaskStatus返回参数结构体
+      class DescribeAIGCTaskStatusResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>任务ID</p>
+        # @type TaskId: String
+        # @param TaskStatus: <p>状态</p><p>枚举值：</p><ul><li>FINISHED： 1</li></ul>
+        # @type TaskStatus: String
+        # @param OutputUrl: <p>输出url</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OutputUrl: String
+        # @param CreateTime: <p>任务创建时间</p>
+        # @type CreateTime: String
+        # @param ScheduledTime: <p>任务调度时间</p>
+        # @type ScheduledTime: String
+        # @param FinishedTime: <p>任务完成时间</p>
+        # @type FinishedTime: String
+        # @param TaskResultCode: <p>任务错误码</p>
+        # @type TaskResultCode: Integer
+        # @param TaskResultMsg: <p>任务返回错误信息</p>
+        # @type TaskResultMsg: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :TaskStatus, :OutputUrl, :CreateTime, :ScheduledTime, :FinishedTime, :TaskResultCode, :TaskResultMsg, :RequestId
+
+        def initialize(taskid=nil, taskstatus=nil, outputurl=nil, createtime=nil, scheduledtime=nil, finishedtime=nil, taskresultcode=nil, taskresultmsg=nil, requestid=nil)
+          @TaskId = taskid
+          @TaskStatus = taskstatus
+          @OutputUrl = outputurl
+          @CreateTime = createtime
+          @ScheduledTime = scheduledtime
+          @FinishedTime = finishedtime
+          @TaskResultCode = taskresultcode
+          @TaskResultMsg = taskresultmsg
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @TaskStatus = params['TaskStatus']
+          @OutputUrl = params['OutputUrl']
+          @CreateTime = params['CreateTime']
+          @ScheduledTime = params['ScheduledTime']
+          @FinishedTime = params['FinishedTime']
+          @TaskResultCode = params['TaskResultCode']
+          @TaskResultMsg = params['TaskResultMsg']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeAllStreamPlayInfoList请求参数结构体
       class DescribeAllStreamPlayInfoListRequest < TencentCloud::Common::AbstractModel
         # @param QueryTime: 查询时间点，精确到分钟粒度，接口查询支持两种时间格式：

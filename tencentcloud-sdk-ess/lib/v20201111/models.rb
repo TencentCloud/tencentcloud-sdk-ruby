@@ -17163,7 +17163,7 @@ module TencentCloud
       # 具体可查看[视频](https://qian.tencent.com/developers/video/?menu=scene&id=6)
       class RegisterInfoOption < TencentCloud::Common::AbstractModel
         # @param LegalNameSame: 是否允许编辑企业注册时的法人姓名。
-        # <br/>true：允许编辑<br/>false：不允许编辑（默认值）<br/>
+        # <br/>true：不允许编辑<br/>false：允许编辑（默认值）<br/>
 
         # 注意：
         # RegisterInfo 中的LegalName值不为空的时候，才可设置为不可编辑。
@@ -17185,19 +17185,33 @@ module TencentCloud
         # 注意：
         # RegisterInfo 中的OrganizationIdCardType值不为空的时候，才可设置为不可编辑。
         # @type OrganizationIdCardTypeSame: Boolean
+        # @param UnifiedSocialCreditCodeSame: 是否允许编辑企业注册时统一社会信用代码。
+        # <br/>true:不允许编辑。
+        # <br/>false:允许编辑（默认值）。
+        # <br/>
 
-        attr_accessor :LegalNameSame, :UnifiedSocialCreditCodeCNameSame, :OrganizationIdCardTypeSame
 
-        def initialize(legalnamesame=nil, unifiedsocialcreditcodecnamesame=nil, organizationidcardtypesame=nil)
+        # 注意：
+        # RegisterInfo 中的UnifiedSocialCreditCode值不为空的时候，才可设置为不可编辑。
+        # @type UnifiedSocialCreditCodeSame: Boolean
+
+        attr_accessor :LegalNameSame, :UnifiedSocialCreditCodeCNameSame, :OrganizationIdCardTypeSame, :UnifiedSocialCreditCodeSame
+        extend Gem::Deprecate
+        deprecate :UnifiedSocialCreditCodeCNameSame, :none, 2026, 3
+        deprecate :UnifiedSocialCreditCodeCNameSame=, :none, 2026, 3
+
+        def initialize(legalnamesame=nil, unifiedsocialcreditcodecnamesame=nil, organizationidcardtypesame=nil, unifiedsocialcreditcodesame=nil)
           @LegalNameSame = legalnamesame
           @UnifiedSocialCreditCodeCNameSame = unifiedsocialcreditcodecnamesame
           @OrganizationIdCardTypeSame = organizationidcardtypesame
+          @UnifiedSocialCreditCodeSame = unifiedsocialcreditcodesame
         end
 
         def deserialize(params)
           @LegalNameSame = params['LegalNameSame']
           @UnifiedSocialCreditCodeCNameSame = params['UnifiedSocialCreditCodeCNameSame']
           @OrganizationIdCardTypeSame = params['OrganizationIdCardTypeSame']
+          @UnifiedSocialCreditCodeSame = params['UnifiedSocialCreditCodeSame']
         end
       end
 

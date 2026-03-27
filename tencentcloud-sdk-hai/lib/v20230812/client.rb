@@ -101,6 +101,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口 (DeleteService) 用于删除一个指定配置的实例。
+
+        # @param request: Request instance for DeleteService.
+        # @type request: :class:`Tencentcloud::hai::V20230812::DeleteServiceRequest`
+        # @rtype: :class:`Tencentcloud::hai::V20230812::DeleteServiceResponse`
+        def DeleteService(request)
+          body = send_request('DeleteService', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteServiceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口(DeployInferService)用于部署推理服务
 
         # @param request: Request instance for DeployInferService.
@@ -351,6 +375,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeServicesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口 (DescribeServciesCallInfo) 用于查询服务调用信息。
+
+        # @param request: Request instance for DescribeServicesCallInfo.
+        # @type request: :class:`Tencentcloud::hai::V20230812::DescribeServicesCallInfoRequest`
+        # @rtype: :class:`Tencentcloud::hai::V20230812::DescribeServicesCallInfoResponse`
+        def DescribeServicesCallInfo(request)
+          body = send_request('DescribeServicesCallInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeServicesCallInfoResponse.new
             model.deserialize(response['Response'])
             model
           else

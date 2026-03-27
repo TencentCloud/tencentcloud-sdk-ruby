@@ -134,10 +134,12 @@ module TencentCloud
         # @type CreateTime: Integer
         # @param TagList: 绑定的标签列表
         # @type TagList: Array
+        # @param RetryPolicy: 重试策略
+        # @type RetryPolicy: :class:`Tencentcloud::Trocket.v20230308.models.RetryPolicy`
 
-        attr_accessor :InstanceId, :ConsumerGroup, :ConsumeEnable, :ConsumeMessageOrderly, :MaxRetryTimes, :Remark, :ClusterIdV4, :NamespaceV4, :ConsumerGroupV4, :FullNamespaceV4, :SubscribeTopicNum, :CreateTime, :TagList
+        attr_accessor :InstanceId, :ConsumerGroup, :ConsumeEnable, :ConsumeMessageOrderly, :MaxRetryTimes, :Remark, :ClusterIdV4, :NamespaceV4, :ConsumerGroupV4, :FullNamespaceV4, :SubscribeTopicNum, :CreateTime, :TagList, :RetryPolicy
 
-        def initialize(instanceid=nil, consumergroup=nil, consumeenable=nil, consumemessageorderly=nil, maxretrytimes=nil, remark=nil, clusteridv4=nil, namespacev4=nil, consumergroupv4=nil, fullnamespacev4=nil, subscribetopicnum=nil, createtime=nil, taglist=nil)
+        def initialize(instanceid=nil, consumergroup=nil, consumeenable=nil, consumemessageorderly=nil, maxretrytimes=nil, remark=nil, clusteridv4=nil, namespacev4=nil, consumergroupv4=nil, fullnamespacev4=nil, subscribetopicnum=nil, createtime=nil, taglist=nil, retrypolicy=nil)
           @InstanceId = instanceid
           @ConsumerGroup = consumergroup
           @ConsumeEnable = consumeenable
@@ -151,6 +153,7 @@ module TencentCloud
           @SubscribeTopicNum = subscribetopicnum
           @CreateTime = createtime
           @TagList = taglist
+          @RetryPolicy = retrypolicy
         end
 
         def deserialize(params)
@@ -173,6 +176,10 @@ module TencentCloud
               tag_tmp.deserialize(i)
               @TagList << tag_tmp
             end
+          end
+          unless params['RetryPolicy'].nil?
+            @RetryPolicy = RetryPolicy.new
+            @RetryPolicy.deserialize(params['RetryPolicy'])
           end
         end
       end
@@ -236,10 +243,12 @@ module TencentCloud
         # @type Remark: String
         # @param TagList: 标签列表
         # @type TagList: Array
+        # @param RetryPolicy: 重试策略
+        # @type RetryPolicy: :class:`Tencentcloud::Trocket.v20230308.models.RetryPolicy`
 
-        attr_accessor :InstanceId, :MaxRetryTimes, :ConsumeEnable, :ConsumeMessageOrderly, :ConsumerGroup, :Remark, :TagList
+        attr_accessor :InstanceId, :MaxRetryTimes, :ConsumeEnable, :ConsumeMessageOrderly, :ConsumerGroup, :Remark, :TagList, :RetryPolicy
 
-        def initialize(instanceid=nil, maxretrytimes=nil, consumeenable=nil, consumemessageorderly=nil, consumergroup=nil, remark=nil, taglist=nil)
+        def initialize(instanceid=nil, maxretrytimes=nil, consumeenable=nil, consumemessageorderly=nil, consumergroup=nil, remark=nil, taglist=nil, retrypolicy=nil)
           @InstanceId = instanceid
           @MaxRetryTimes = maxretrytimes
           @ConsumeEnable = consumeenable
@@ -247,6 +256,7 @@ module TencentCloud
           @ConsumerGroup = consumergroup
           @Remark = remark
           @TagList = taglist
+          @RetryPolicy = retrypolicy
         end
 
         def deserialize(params)
@@ -263,6 +273,10 @@ module TencentCloud
               tag_tmp.deserialize(i)
               @TagList << tag_tmp
             end
+          end
+          unless params['RetryPolicy'].nil?
+            @RetryPolicy = RetryPolicy.new
+            @RetryPolicy.deserialize(params['RetryPolicy'])
           end
         end
       end
@@ -439,10 +453,16 @@ module TencentCloud
         # @type PermType: String
         # @param DetailedPerms: Topic&Group维度权限配置，权限类型为 TopicAndGroup 时必填
         # @type DetailedPerms: Array
+        # @param RoleGenerateMode: AK、SK的生成方式，AUTO：后端自动生成，MANUAL：用户手动输入
+        # @type RoleGenerateMode: String
+        # @param AccessKey: 选择MANUAL模式下，需要手动输入AK值
+        # @type AccessKey: String
+        # @param SecretKey: 选择MANUAL模式下，需要手动输入SK值
+        # @type SecretKey: String
 
-        attr_accessor :InstanceId, :Role, :PermWrite, :PermRead, :Remark, :PermType, :DetailedPerms
+        attr_accessor :InstanceId, :Role, :PermWrite, :PermRead, :Remark, :PermType, :DetailedPerms, :RoleGenerateMode, :AccessKey, :SecretKey
 
-        def initialize(instanceid=nil, role=nil, permwrite=nil, permread=nil, remark=nil, permtype=nil, detailedperms=nil)
+        def initialize(instanceid=nil, role=nil, permwrite=nil, permread=nil, remark=nil, permtype=nil, detailedperms=nil, rolegeneratemode=nil, accesskey=nil, secretkey=nil)
           @InstanceId = instanceid
           @Role = role
           @PermWrite = permwrite
@@ -450,6 +470,9 @@ module TencentCloud
           @Remark = remark
           @PermType = permtype
           @DetailedPerms = detailedperms
+          @RoleGenerateMode = rolegeneratemode
+          @AccessKey = accesskey
+          @SecretKey = secretkey
         end
 
         def deserialize(params)
@@ -467,6 +490,9 @@ module TencentCloud
               @DetailedPerms << detailedroleperm_tmp
             end
           end
+          @RoleGenerateMode = params['RoleGenerateMode']
+          @AccessKey = params['AccessKey']
+          @SecretKey = params['SecretKey']
         end
       end
 
@@ -1029,12 +1055,14 @@ module TencentCloud
         # BROADCASTING 广播模式
         # CLUSTERING 集群模式
         # @type MessageModel: String
+        # @param RetryPolicy: 重试策略
+        # @type RetryPolicy: :class:`Tencentcloud::Trocket.v20230308.models.RetryPolicy`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ConsumerNum, :Tps, :ConsumerLag, :ConsumeType, :CreatedTime, :ConsumeMessageOrderly, :ConsumeEnable, :MaxRetryTimes, :Remark, :MessageModel, :RequestId
+        attr_accessor :ConsumerNum, :Tps, :ConsumerLag, :ConsumeType, :CreatedTime, :ConsumeMessageOrderly, :ConsumeEnable, :MaxRetryTimes, :Remark, :MessageModel, :RetryPolicy, :RequestId
 
-        def initialize(consumernum=nil, tps=nil, consumerlag=nil, consumetype=nil, createdtime=nil, consumemessageorderly=nil, consumeenable=nil, maxretrytimes=nil, remark=nil, messagemodel=nil, requestid=nil)
+        def initialize(consumernum=nil, tps=nil, consumerlag=nil, consumetype=nil, createdtime=nil, consumemessageorderly=nil, consumeenable=nil, maxretrytimes=nil, remark=nil, messagemodel=nil, retrypolicy=nil, requestid=nil)
           @ConsumerNum = consumernum
           @Tps = tps
           @ConsumerLag = consumerlag
@@ -1045,6 +1073,7 @@ module TencentCloud
           @MaxRetryTimes = maxretrytimes
           @Remark = remark
           @MessageModel = messagemodel
+          @RetryPolicy = retrypolicy
           @RequestId = requestid
         end
 
@@ -1059,6 +1088,10 @@ module TencentCloud
           @MaxRetryTimes = params['MaxRetryTimes']
           @Remark = params['Remark']
           @MessageModel = params['MessageModel']
+          unless params['RetryPolicy'].nil?
+            @RetryPolicy = RetryPolicy.new
+            @RetryPolicy.deserialize(params['RetryPolicy'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -3404,16 +3437,19 @@ module TencentCloud
         # @type MaxRetryTimes: Integer
         # @param Remark: 备注信息，最多 128 个字符
         # @type Remark: String
+        # @param RetryPolicy: 重试策略
+        # @type RetryPolicy: :class:`Tencentcloud::Trocket.v20230308.models.RetryPolicy`
 
-        attr_accessor :InstanceId, :ConsumeEnable, :ConsumeMessageOrderly, :ConsumerGroup, :MaxRetryTimes, :Remark
+        attr_accessor :InstanceId, :ConsumeEnable, :ConsumeMessageOrderly, :ConsumerGroup, :MaxRetryTimes, :Remark, :RetryPolicy
 
-        def initialize(instanceid=nil, consumeenable=nil, consumemessageorderly=nil, consumergroup=nil, maxretrytimes=nil, remark=nil)
+        def initialize(instanceid=nil, consumeenable=nil, consumemessageorderly=nil, consumergroup=nil, maxretrytimes=nil, remark=nil, retrypolicy=nil)
           @InstanceId = instanceid
           @ConsumeEnable = consumeenable
           @ConsumeMessageOrderly = consumemessageorderly
           @ConsumerGroup = consumergroup
           @MaxRetryTimes = maxretrytimes
           @Remark = remark
+          @RetryPolicy = retrypolicy
         end
 
         def deserialize(params)
@@ -3423,6 +3459,10 @@ module TencentCloud
           @ConsumerGroup = params['ConsumerGroup']
           @MaxRetryTimes = params['MaxRetryTimes']
           @Remark = params['Remark']
+          unless params['RetryPolicy'].nil?
+            @RetryPolicy = RetryPolicy.new
+            @RetryPolicy.deserialize(params['RetryPolicy'])
+          end
         end
       end
 
@@ -3529,10 +3569,12 @@ module TencentCloud
         # @type ExtraTopicNum: String
         # @param EnableDeletionProtection: 是否开启删除保护
         # @type EnableDeletionProtection: Boolean
+        # @param ZoneIds: 部署可用区列表
+        # @type ZoneIds: Array
 
-        attr_accessor :InstanceId, :Name, :Remark, :SendReceiveRatio, :SkuCode, :MessageRetention, :ScaledTpsEnabled, :AclEnabled, :MaxTopicNum, :ExtraTopicNum, :EnableDeletionProtection
+        attr_accessor :InstanceId, :Name, :Remark, :SendReceiveRatio, :SkuCode, :MessageRetention, :ScaledTpsEnabled, :AclEnabled, :MaxTopicNum, :ExtraTopicNum, :EnableDeletionProtection, :ZoneIds
 
-        def initialize(instanceid=nil, name=nil, remark=nil, sendreceiveratio=nil, skucode=nil, messageretention=nil, scaledtpsenabled=nil, aclenabled=nil, maxtopicnum=nil, extratopicnum=nil, enabledeletionprotection=nil)
+        def initialize(instanceid=nil, name=nil, remark=nil, sendreceiveratio=nil, skucode=nil, messageretention=nil, scaledtpsenabled=nil, aclenabled=nil, maxtopicnum=nil, extratopicnum=nil, enabledeletionprotection=nil, zoneids=nil)
           @InstanceId = instanceid
           @Name = name
           @Remark = remark
@@ -3544,6 +3586,7 @@ module TencentCloud
           @MaxTopicNum = maxtopicnum
           @ExtraTopicNum = extratopicnum
           @EnableDeletionProtection = enabledeletionprotection
+          @ZoneIds = zoneids
         end
 
         def deserialize(params)
@@ -3558,6 +3601,7 @@ module TencentCloud
           @MaxTopicNum = params['MaxTopicNum']
           @ExtraTopicNum = params['ExtraTopicNum']
           @EnableDeletionProtection = params['EnableDeletionProtection']
+          @ZoneIds = params['ZoneIds']
         end
       end
 
@@ -3968,6 +4012,29 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 重试策略
+      class RetryPolicy < TencentCloud::Common::AbstractModel
+        # @param PolicyType: 重试策略类型，枚举值如下：
+
+        # - EXPONENTIAL：固定间隔
+        # - CUSTOMIZED：阶梯退避
+        # @type PolicyType: String
+        # @param RetryInterval: 固定重试间隔，仅在重试策略为固定间隔时生效
+        # @type RetryInterval: Integer
+
+        attr_accessor :PolicyType, :RetryInterval
+
+        def initialize(policytype=nil, retryinterval=nil)
+          @PolicyType = policytype
+          @RetryInterval = retryinterval
+        end
+
+        def deserialize(params)
+          @PolicyType = params['PolicyType']
+          @RetryInterval = params['RetryInterval']
         end
       end
 
@@ -4613,28 +4680,28 @@ module TencentCloud
         # @type InstanceId: String
         # @param Topic: 主题名称，从 [DescribeTopicList](https://cloud.tencent.com/document/api/1493/96030) 接口返回的 [TopicItem](https://cloud.tencent.com/document/api/1493/96031#TopicItem) 或控制台获得。
         # @type Topic: String
-        # @param ClientId: 客户端ID
-        # @type ClientId: String
         # @param MsgId: 消息ID
         # @type MsgId: String
+        # @param ClientId: 客户端 ID，不指定该参数时消息将被发送到对应消费组内任意客户端
+        # @type ClientId: String
         # @param ConsumerGroup: 消费组名称，从 [DescribeConsumerGroupList](https://cloud.tencent.com/document/api/1493/101535) 接口返回的 [ConsumeGroupItem](https://cloud.tencent.com/document/api/1493/96031#ConsumeGroupItem) 或控制台获得。
         # @type ConsumerGroup: String
 
-        attr_accessor :InstanceId, :Topic, :ClientId, :MsgId, :ConsumerGroup
+        attr_accessor :InstanceId, :Topic, :MsgId, :ClientId, :ConsumerGroup
 
-        def initialize(instanceid=nil, topic=nil, clientid=nil, msgid=nil, consumergroup=nil)
+        def initialize(instanceid=nil, topic=nil, msgid=nil, clientid=nil, consumergroup=nil)
           @InstanceId = instanceid
           @Topic = topic
-          @ClientId = clientid
           @MsgId = msgid
+          @ClientId = clientid
           @ConsumerGroup = consumergroup
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
           @Topic = params['Topic']
-          @ClientId = params['ClientId']
           @MsgId = params['MsgId']
+          @ClientId = params['ClientId']
           @ConsumerGroup = params['ConsumerGroup']
         end
       end

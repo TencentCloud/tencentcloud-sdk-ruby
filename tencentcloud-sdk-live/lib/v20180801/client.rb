@@ -1846,6 +1846,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询视频转绘任务
+
+        # @param request: Request instance for DescribeAIGCTaskStatus.
+        # @type request: :class:`Tencentcloud::live::V20180801::DescribeAIGCTaskStatusRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::DescribeAIGCTaskStatusResponse`
+        def DescribeAIGCTaskStatus(request)
+          body = send_request('DescribeAIGCTaskStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAIGCTaskStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 该接口为监控数据接口，数据采集及统计方式与计费数据不同，仅供运营分析使用，不能用于计费对账参考。
         # 输入某个时间点（1分钟维度），查询该时间点所有流的下行信息。
 

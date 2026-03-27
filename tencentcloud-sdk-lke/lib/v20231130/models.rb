@@ -3227,14 +3227,17 @@ module TencentCloud
         # @type Query: String
         # @param CustomVariables: API参数配置
         # @type CustomVariables: Array
+        # @param VisitorId: 用户ID
+        # @type VisitorId: String
 
-        attr_accessor :AppBizId, :RunEnv, :Query, :CustomVariables
+        attr_accessor :AppBizId, :RunEnv, :Query, :CustomVariables, :VisitorId
 
-        def initialize(appbizid=nil, runenv=nil, query=nil, customvariables=nil)
+        def initialize(appbizid=nil, runenv=nil, query=nil, customvariables=nil, visitorid=nil)
           @AppBizId = appbizid
           @RunEnv = runenv
           @Query = query
           @CustomVariables = customvariables
+          @VisitorId = visitorid
         end
 
         def deserialize(params)
@@ -3249,6 +3252,7 @@ module TencentCloud
               @CustomVariables << customvariable_tmp
             end
           end
+          @VisitorId = params['VisitorId']
         end
       end
 

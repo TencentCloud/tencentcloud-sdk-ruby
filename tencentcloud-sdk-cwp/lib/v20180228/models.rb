@@ -34439,6 +34439,10 @@ module TencentCloud
         # @param ResourceId: 资源ID
         # @type ResourceId: String
         # @param LicenseType: 授权类型
+        # - 0 按量付费-专业版
+        # - 1 包年包月-专业版
+        # - 2 包年包月-旗舰版
+        # - 3 包年包月-轻量版
         # @type LicenseType: Integer
         # @param IsAll: 是否全部机器(当全部机器数大于当前订单可用授权数时,多余机器会被跳过)
         # @type IsAll: Boolean
@@ -40101,7 +40105,7 @@ module TencentCloud
         # @type SuggestSolution: String
         # @param ReferenceLink: 参考链接
         # @type ReferenceLink: String
-        # @param HandleStatus: 处理状态；[0:待处理|2:已加白|3:非信任状态|4:已处理|5:已忽略]
+        # @param HandleStatus: 处理状态；[0:待处理|2:已加白|3:非信任状态|4:已处理|5:已忽略|6:已拦截]
         # @type HandleStatus: Integer
         # @param Pid: 进程ID
         # @type Pid: Integer

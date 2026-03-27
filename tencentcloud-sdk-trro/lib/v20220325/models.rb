@@ -582,17 +582,17 @@ module TencentCloud
 
       # DescribeDeviceSessionList请求参数结构体
       class DescribeDeviceSessionListRequest < TencentCloud::Common::AbstractModel
-        # @param ProjectId: 项目ID
+        # @param ProjectId: <p>项目ID</p>
         # @type ProjectId: String
-        # @param PageNumber: 页码，从1开始
+        # @param PageNumber: <p>页码，从1开始</p>
         # @type PageNumber: Integer
-        # @param PageSize: 每页个数
+        # @param PageSize: <p>每页个数</p>
         # @type PageSize: Integer
-        # @param DeviceId: 设备ID
+        # @param DeviceId: <p>设备ID</p>
         # @type DeviceId: String
-        # @param StartTime: 开始时间
+        # @param StartTime: <p>开始时间</p>
         # @type StartTime: Integer
-        # @param EndTime: 结束时间
+        # @param EndTime: <p>结束时间</p>
         # @type EndTime: Integer
 
         attr_accessor :ProjectId, :PageNumber, :PageSize, :DeviceId, :StartTime, :EndTime
@@ -618,11 +618,11 @@ module TencentCloud
 
       # DescribeDeviceSessionList返回参数结构体
       class DescribeDeviceSessionListResponse < TencentCloud::Common::AbstractModel
-        # @param Total: 总个数
+        # @param Total: <p>总个数</p>
         # @type Total: Integer
-        # @param DeviceSessionList: 会话列表
+        # @param DeviceSessionList: <p>会话列表</p>
         # @type DeviceSessionList: Array
-        # @param Num: 本页数量
+        # @param Num: <p>本页数量</p>
         # @type Num: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -835,17 +835,17 @@ module TencentCloud
 
       # DescribeRecentSessionList请求参数结构体
       class DescribeRecentSessionListRequest < TencentCloud::Common::AbstractModel
-        # @param ProjectId: 项目ID
+        # @param ProjectId: <p>项目ID</p>
         # @type ProjectId: String
-        # @param PageNumber: 页码，从1开始
+        # @param PageNumber: <p>页码，从1开始</p>
         # @type PageNumber: Integer
-        # @param PageSize: 每页个数
+        # @param PageSize: <p>每页个数</p>
         # @type PageSize: Integer
-        # @param DeviceId: 设备ID，支持过滤远端设备或现场设备
+        # @param DeviceId: <p>设备ID，支持过滤远端设备或现场设备</p>
         # @type DeviceId: String
-        # @param StartTime: 时间范围的起始时间。时间范围最大为最近两小时，若不传或超出范围，则起始时间按两小时前计算
+        # @param StartTime: <p>时间范围的起始时间。时间范围最大为最近两小时，若不传或超出范围，则起始时间按两小时前计算</p>
         # @type StartTime: Integer
-        # @param EndTime: 时间范围的结束时间。时间范围最大为最近两小时，若不传或超出范围，则结束时间按当前时间计算
+        # @param EndTime: <p>时间范围的结束时间。时间范围最大为最近两小时，若不传或超出范围，则结束时间按当前时间计算</p>
         # @type EndTime: Integer
 
         attr_accessor :ProjectId, :PageNumber, :PageSize, :DeviceId, :StartTime, :EndTime
@@ -871,11 +871,11 @@ module TencentCloud
 
       # DescribeRecentSessionList返回参数结构体
       class DescribeRecentSessionListResponse < TencentCloud::Common::AbstractModel
-        # @param Total: 总个数
+        # @param Total: <p>总个数</p>
         # @type Total: Integer
-        # @param RecentSessionList: 会话列表
+        # @param RecentSessionList: <p>会话列表</p>
         # @type RecentSessionList: Array
-        # @param Num: 本页数量
+        # @param Num: <p>本页数量</p>
         # @type Num: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -906,15 +906,15 @@ module TencentCloud
 
       # DescribeSessionStatisticsByInterval请求参数结构体
       class DescribeSessionStatisticsByIntervalRequest < TencentCloud::Common::AbstractModel
-        # @param ProjectId: 项目ID
+        # @param ProjectId: <p>项目ID</p>
         # @type ProjectId: String
-        # @param StatisticInterval: 统计时间间隔：hour|day|month
+        # @param StatisticInterval: <p>统计时间间隔：hour|day|month</p>
         # @type StatisticInterval: String
-        # @param DeviceId: 设备ID
+        # @param DeviceId: <p>设备ID</p>
         # @type DeviceId: String
-        # @param StartTime: 起始时间，单位：秒
+        # @param StartTime: <p>起始时间，单位：秒</p>
         # @type StartTime: Integer
-        # @param EndTime: 结束时间，单位：秒
+        # @param EndTime: <p>结束时间，单位：秒</p>
         # @type EndTime: Integer
 
         attr_accessor :ProjectId, :StatisticInterval, :DeviceId, :StartTime, :EndTime
@@ -938,7 +938,7 @@ module TencentCloud
 
       # DescribeSessionStatisticsByInterval返回参数结构体
       class DescribeSessionStatisticsByIntervalResponse < TencentCloud::Common::AbstractModel
-        # @param SessionStatistics: 各时间段的会话统计数据
+        # @param SessionStatistics: <p>各时间段的会话统计数据</p>
         # @type SessionStatistics: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -965,13 +965,13 @@ module TencentCloud
 
       # DescribeSessionStatistics请求参数结构体
       class DescribeSessionStatisticsRequest < TencentCloud::Common::AbstractModel
-        # @param ProjectId: 项目ID
+        # @param ProjectId: <p>项目ID</p>
         # @type ProjectId: String
-        # @param DeviceId: 设备ID
+        # @param DeviceId: <p>设备ID</p>
         # @type DeviceId: String
-        # @param StartTime: 起始时间，单位：秒
+        # @param StartTime: <p>起始时间，单位：秒</p>
         # @type StartTime: Integer
-        # @param EndTime: 结束时间，单位：秒
+        # @param EndTime: <p>结束时间，单位：秒</p>
         # @type EndTime: Integer
 
         attr_accessor :ProjectId, :DeviceId, :StartTime, :EndTime
@@ -993,15 +993,15 @@ module TencentCloud
 
       # DescribeSessionStatistics返回参数结构体
       class DescribeSessionStatisticsResponse < TencentCloud::Common::AbstractModel
-        # @param SessionNum: 会话数量
+        # @param SessionNum: <p>会话数量</p>
         # @type SessionNum: Integer
-        # @param TotalDuration: 通话时长，单位：分钟
+        # @param TotalDuration: <p>通话时长，单位：分钟</p>
         # @type TotalDuration: Integer
-        # @param ActiveFieldDeviceNum: 活跃现场设备数
+        # @param ActiveFieldDeviceNum: <p>活跃现场设备数</p>
         # @type ActiveFieldDeviceNum: Integer
-        # @param ActiveRemoteDeviceNum: 活跃远端设备数
+        # @param ActiveRemoteDeviceNum: <p>活跃远端设备数</p>
         # @type ActiveRemoteDeviceNum: Integer
-        # @param NotBadSessionRatio: 优良会话占比，单位：%
+        # @param NotBadSessionRatio: <p>优良会话占比，单位：%</p>
         # @type NotBadSessionRatio: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2073,8 +2073,8 @@ module TencentCloud
 
         attr_accessor :DeviceType, :StartTime, :EndTime, :SessionId, :Rate, :Fps, :Lost, :NetworkLatency, :VideoLatency, :CpuUsed, :MemUsed, :TimeOffset, :ProjectId, :DeviceId, :Ver, :SdkMode, :DecodeCost, :RenderConst, :K100, :K150, :NACK, :BitRateEstimate, :Width, :Height, :EncodeCost, :CaptureCost, :RenderCost, :ConfigWidth, :ConfigHeight, :FrameDelta, :MaxFrameDelta, :TotalBitrateEstimate, :Lag100Duration, :Lag150Duration, :MultiMode, :MultiNet
         extend Gem::Deprecate
-        deprecate :RenderConst, :none, 2026, 1
-        deprecate :RenderConst=, :none, 2026, 1
+        deprecate :RenderConst, :none, 2026, 3
+        deprecate :RenderConst=, :none, 2026, 3
 
         def initialize(devicetype=nil, starttime=nil, endtime=nil, sessionid=nil, rate=nil, fps=nil, lost=nil, networklatency=nil, videolatency=nil, cpuused=nil, memused=nil, timeoffset=nil, projectid=nil, deviceid=nil, ver=nil, sdkmode=nil, decodecost=nil, renderconst=nil, k100=nil, k150=nil, nack=nil, bitrateestimate=nil, width=nil, height=nil, encodecost=nil, capturecost=nil, rendercost=nil, configwidth=nil, configheight=nil, framedelta=nil, maxframedelta=nil, totalbitrateestimate=nil, lag100duration=nil, lag150duration=nil, multimode=nil, multinet=nil)
           @DeviceType = devicetype

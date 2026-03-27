@@ -5302,8 +5302,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :Memory, :Volume, :OplogSize, :NodeNum, :ReplicateSetNum, :InMaintenance, :MongosMemory, :AddNodeList, :RemoveNodeList
         extend Gem::Deprecate
-        deprecate :OplogSize, :none, 2026, 2
-        deprecate :OplogSize=, :none, 2026, 2
+        deprecate :OplogSize, :none, 2026, 3
+        deprecate :OplogSize=, :none, 2026, 3
 
         def initialize(instanceid=nil, memory=nil, volume=nil, oplogsize=nil, nodenum=nil, replicatesetnum=nil, inmaintenance=nil, mongosmemory=nil, addnodelist=nil, removenodelist=nil)
           @InstanceId = instanceid
@@ -5349,6 +5349,62 @@ module TencentCloud
       # ModifyDBInstanceSpec返回参数结构体
       class ModifyDBInstanceSpecResponse < TencentCloud::Common::AbstractModel
         # @param DealId: 订单 ID。
+        # @type DealId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DealId, :RequestId
+
+        def initialize(dealid=nil, requestid=nil)
+          @DealId = dealid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @DealId = params['DealId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyInstanceAz请求参数结构体
+      class ModifyInstanceAzRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>实例 ID，例如：cmgo-p8vn****。请登录 <a href="https://console.cloud.tencent.com/mongodb">MongoDB 控制台</a>在实例列表复制实例 ID。</p>
+        # @type InstanceId: String
+        # @param PrimaryNodeZone: <p>主节点所在的可用区 ID。获取方式，请参见<a href="https://cloud.tencent.com/document/product/240/3637">地域和可用区</a>。</p>
+        # @type PrimaryNodeZone: String
+        # @param SecondaryNodeZone: <p>从节点所在的可用区 ID 列表。<br><strong>注意</strong>：不可包含主节点与 Hidden 节点所在的可用区。</p>
+        # @type SecondaryNodeZone: Array
+        # @param HiddenNodeZone: <p>若当前实例未配置 Hidden 节点，则无需传入此参数。</p>
+        # @type HiddenNodeZone: String
+        # @param ReadonlyNodeZone: <p>只读节点所在的可用区 ID 列表。<br><strong>注意</strong>：若当前实例已包含只读节点，则此参数为必填项。</p>
+        # @type ReadonlyNodeZone: Array
+        # @param InMaintenance: <p>指定切换可用区的执行时间策略。</p><ul><li>0：立即执行切换。</li><li>1：在设定的维护时间窗执行切换。具体信息，请参见<a href="https://cloud.tencent.com/document/product/240/19910">设置实例维护时间</a>。</li></ul>
+        # @type InMaintenance: Integer
+
+        attr_accessor :InstanceId, :PrimaryNodeZone, :SecondaryNodeZone, :HiddenNodeZone, :ReadonlyNodeZone, :InMaintenance
+
+        def initialize(instanceid=nil, primarynodezone=nil, secondarynodezone=nil, hiddennodezone=nil, readonlynodezone=nil, inmaintenance=nil)
+          @InstanceId = instanceid
+          @PrimaryNodeZone = primarynodezone
+          @SecondaryNodeZone = secondarynodezone
+          @HiddenNodeZone = hiddennodezone
+          @ReadonlyNodeZone = readonlynodezone
+          @InMaintenance = inmaintenance
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @PrimaryNodeZone = params['PrimaryNodeZone']
+          @SecondaryNodeZone = params['SecondaryNodeZone']
+          @HiddenNodeZone = params['HiddenNodeZone']
+          @ReadonlyNodeZone = params['ReadonlyNodeZone']
+          @InMaintenance = params['InMaintenance']
+        end
+      end
+
+      # ModifyInstanceAz返回参数结构体
+      class ModifyInstanceAzResponse < TencentCloud::Common::AbstractModel
+        # @param DealId: <p>可用区调整订单ID。</p>
         # @type DealId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

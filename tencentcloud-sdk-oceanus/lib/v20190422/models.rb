@@ -794,17 +794,17 @@ module TencentCloud
 
       # 复制作业单条明细
       class CopyJobItem < TencentCloud::Common::AbstractModel
-        # @param SourceId: 需要复制的作业serial id
+        # @param SourceId: <p>需要复制的作业serial id</p>
         # @type SourceId: String
-        # @param TargetClusterId: 目标集群的cluster serial id
+        # @param TargetClusterId: <p>目标集群的cluster serial id</p>
         # @type TargetClusterId: String
-        # @param SourceName: 需要复制的作业名称
+        # @param SourceName: <p>需要复制的作业名称</p>
         # @type SourceName: String
-        # @param TargetName: 新作业的名称
+        # @param TargetName: <p>新作业的名称</p>
         # @type TargetName: String
-        # @param TargetFolderId: 新作业的目录id
+        # @param TargetFolderId: <p>新作业的目录id</p>
         # @type TargetFolderId: String
-        # @param JobType: 源作业类型
+        # @param JobType: <p>作业类型</p><p>枚举值：</p><ul><li>1： sql作业</li><li>2： jar作业</li><li>4： python作业</li></ul>
         # @type JobType: Integer
 
         attr_accessor :SourceId, :TargetClusterId, :SourceName, :TargetName, :TargetFolderId, :JobType
@@ -1052,86 +1052,88 @@ module TencentCloud
 
       # CreateJobConfig请求参数结构体
       class CreateJobConfigRequest < TencentCloud::Common::AbstractModel
-        # @param JobId: 作业Id
+        # @param JobId: <p>作业Id</p>
         # @type JobId: String
-        # @param EntrypointClass: 主类
+        # @param EntrypointClass: <p>主类</p>
         # @type EntrypointClass: String
-        # @param ProgramArgs: 主类入参，需要区分下Sql作业配置，Jar作业配置，Python作业配置，具体参考下面的示例值
+        # @param ProgramArgs: <p>主类入参，需要区分下Sql作业配置，Jar作业配置，Python作业配置，具体参考下面的示例值</p>
         # @type ProgramArgs: String
-        # @param Remark: 备注
+        # @param Remark: <p>备注</p>
         # @type Remark: String
-        # @param ResourceRefs: 资源引用数组
+        # @param ResourceRefs: <p>资源引用数组</p>
         # @type ResourceRefs: Array
-        # @param DefaultParallelism: 作业默认并行度
+        # @param DefaultParallelism: <p>作业默认并行度</p>
         # @type DefaultParallelism: Integer
-        # @param Properties: 系统参数
+        # @param Properties: <p>系统参数</p>
         # @type Properties: Array
-        # @param AutoDelete: 1: 作业配置达到上限之后，自动删除可删除的最早版本
+        # @param AutoDelete: <p>1: 作业配置达到上限之后，自动删除可删除的最早版本</p>
         # @type AutoDelete: Integer
-        # @param COSBucket: 作业使用的 COS 存储桶名
+        # @param COSBucket: <p>作业使用的 COS 存储桶名</p>
         # @type COSBucket: String
-        # @param LogCollect: 是否采集作业日志
+        # @param LogCollect: <p>是否采集作业日志</p>
         # @type LogCollect: Boolean
-        # @param JobManagerSpec: JobManager规格
+        # @param JobManagerSpec: <p>JobManager规格</p>
         # @type JobManagerSpec: Float
-        # @param TaskManagerSpec: TaskManager规格
+        # @param TaskManagerSpec: <p>TaskManager规格</p>
         # @type TaskManagerSpec: Float
-        # @param ClsLogsetId: CLS日志集ID
+        # @param ClsLogsetId: <p>CLS日志集ID</p>
         # @type ClsLogsetId: String
-        # @param ClsTopicId: CLS日志主题ID
+        # @param ClsTopicId: <p>CLS日志主题ID</p>
         # @type ClsTopicId: String
-        # @param LogCollectType: 日志采集类型 2：CLS；3：COS
+        # @param LogCollectType: <p>日志采集类型 2：CLS；3：COS</p>
         # @type LogCollectType: Integer
-        # @param PythonVersion: pyflink作业运行时使用的python版本
+        # @param PythonVersion: <p>pyflink作业运行时使用的python版本</p>
         # @type PythonVersion: String
-        # @param WorkSpaceId: 工作空间 SerialId
+        # @param WorkSpaceId: <p>工作空间 SerialId</p>
         # @type WorkSpaceId: String
-        # @param LogLevel: 日志级别
+        # @param LogLevel: <p>日志级别</p>
         # @type LogLevel: String
-        # @param AutoRecover: Oceanus 平台恢复作业开关 1:开启 -1: 关闭
+        # @param AutoRecover: <p>Oceanus 平台恢复作业开关 1:开启 -1: 关闭</p>
         # @type AutoRecover: Integer
-        # @param ClazzLevels: 类日志级别
+        # @param ClazzLevels: <p>类日志级别</p>
         # @type ClazzLevels: Array
-        # @param ExpertModeOn: 是否打开专家模式
+        # @param ExpertModeOn: <p>是否打开专家模式</p>
         # @type ExpertModeOn: Boolean
-        # @param ExpertModeConfiguration: 专家模式的配置
+        # @param ExpertModeConfiguration: <p>专家模式的配置</p>
         # @type ExpertModeConfiguration: :class:`Tencentcloud::Oceanus.v20190422.models.ExpertModeConfiguration`
-        # @param TraceModeOn: trace链路
+        # @param TraceModeOn: <p>trace链路</p>
         # @type TraceModeOn: Boolean
-        # @param TraceModeConfiguration: trace链路配置
+        # @param TraceModeConfiguration: <p>trace链路配置</p>
         # @type TraceModeConfiguration: :class:`Tencentcloud::Oceanus.v20190422.models.TraceModeConfiguration`
-        # @param CheckpointRetainedNum: checkpoint保留个数
+        # @param CheckpointRetainedNum: <p>checkpoint保留个数</p>
         # @type CheckpointRetainedNum: Integer
-        # @param JobGraph: 算子拓扑图
+        # @param JobGraph: <p>算子拓扑图</p>
         # @type JobGraph: :class:`Tencentcloud::Oceanus.v20190422.models.JobGraph`
-        # @param EsServerlessIndex: es索引名称
+        # @param EsServerlessIndex: <p>es索引名称</p>
         # @type EsServerlessIndex: String
-        # @param EsServerlessSpace: es索引空间
+        # @param EsServerlessSpace: <p>es索引空间</p>
         # @type EsServerlessSpace: String
-        # @param FlinkVersion: flink版本
+        # @param FlinkVersion: <p>flink版本</p>
         # @type FlinkVersion: String
-        # @param JobManagerCpu: JobManager cpu
+        # @param JobManagerCpu: <p>JobManager cpu</p>
         # @type JobManagerCpu: Float
-        # @param JobManagerMem: JobManager 内存
+        # @param JobManagerMem: <p>JobManager 内存</p>
         # @type JobManagerMem: Float
-        # @param JdkVersion: jdk版本
+        # @param JdkVersion: <p>jdk版本</p>
         # @type JdkVersion: String
-        # @param TaskManagerCpu: TaskManager cpu
+        # @param TaskManagerCpu: <p>TaskManager cpu</p>
         # @type TaskManagerCpu: Float
-        # @param TaskManagerMem: TaskManager 内存
+        # @param TaskManagerMem: <p>TaskManager 内存</p>
         # @type TaskManagerMem: Float
-        # @param UseOldSystemConnector: 0=默认使用老的 1=使用新的
+        # @param UseOldSystemConnector: <p>0=默认使用老的 1=使用新的</p>
         # @type UseOldSystemConnector: Integer
-        # @param ProgramArgsAfterGzip: 压缩参数
+        # @param ProgramArgsAfterGzip: <p>压缩参数</p>
         # @type ProgramArgsAfterGzip: String
-        # @param CheckpointTimeoutSecond: checkpoint 超时时间
+        # @param CheckpointTimeoutSecond: <p>checkpoint 超时时间</p>
         # @type CheckpointTimeoutSecond: Integer
-        # @param CheckpointIntervalSecond: checkpoint 间隔时间
+        # @param CheckpointIntervalSecond: <p>checkpoint 间隔时间</p>
         # @type CheckpointIntervalSecond: Integer
+        # @param VariableReplaceMode: <p>变量替换模式</p><p>枚举值：</p><ul><li>0： 表变量替换</li><li>1： SQL全局变量替换</li></ul><p>默认值：1</p>
+        # @type VariableReplaceMode: Integer
 
-        attr_accessor :JobId, :EntrypointClass, :ProgramArgs, :Remark, :ResourceRefs, :DefaultParallelism, :Properties, :AutoDelete, :COSBucket, :LogCollect, :JobManagerSpec, :TaskManagerSpec, :ClsLogsetId, :ClsTopicId, :LogCollectType, :PythonVersion, :WorkSpaceId, :LogLevel, :AutoRecover, :ClazzLevels, :ExpertModeOn, :ExpertModeConfiguration, :TraceModeOn, :TraceModeConfiguration, :CheckpointRetainedNum, :JobGraph, :EsServerlessIndex, :EsServerlessSpace, :FlinkVersion, :JobManagerCpu, :JobManagerMem, :JdkVersion, :TaskManagerCpu, :TaskManagerMem, :UseOldSystemConnector, :ProgramArgsAfterGzip, :CheckpointTimeoutSecond, :CheckpointIntervalSecond
+        attr_accessor :JobId, :EntrypointClass, :ProgramArgs, :Remark, :ResourceRefs, :DefaultParallelism, :Properties, :AutoDelete, :COSBucket, :LogCollect, :JobManagerSpec, :TaskManagerSpec, :ClsLogsetId, :ClsTopicId, :LogCollectType, :PythonVersion, :WorkSpaceId, :LogLevel, :AutoRecover, :ClazzLevels, :ExpertModeOn, :ExpertModeConfiguration, :TraceModeOn, :TraceModeConfiguration, :CheckpointRetainedNum, :JobGraph, :EsServerlessIndex, :EsServerlessSpace, :FlinkVersion, :JobManagerCpu, :JobManagerMem, :JdkVersion, :TaskManagerCpu, :TaskManagerMem, :UseOldSystemConnector, :ProgramArgsAfterGzip, :CheckpointTimeoutSecond, :CheckpointIntervalSecond, :VariableReplaceMode
 
-        def initialize(jobid=nil, entrypointclass=nil, programargs=nil, remark=nil, resourcerefs=nil, defaultparallelism=nil, properties=nil, autodelete=nil, cosbucket=nil, logcollect=nil, jobmanagerspec=nil, taskmanagerspec=nil, clslogsetid=nil, clstopicid=nil, logcollecttype=nil, pythonversion=nil, workspaceid=nil, loglevel=nil, autorecover=nil, clazzlevels=nil, expertmodeon=nil, expertmodeconfiguration=nil, tracemodeon=nil, tracemodeconfiguration=nil, checkpointretainednum=nil, jobgraph=nil, esserverlessindex=nil, esserverlessspace=nil, flinkversion=nil, jobmanagercpu=nil, jobmanagermem=nil, jdkversion=nil, taskmanagercpu=nil, taskmanagermem=nil, useoldsystemconnector=nil, programargsaftergzip=nil, checkpointtimeoutsecond=nil, checkpointintervalsecond=nil)
+        def initialize(jobid=nil, entrypointclass=nil, programargs=nil, remark=nil, resourcerefs=nil, defaultparallelism=nil, properties=nil, autodelete=nil, cosbucket=nil, logcollect=nil, jobmanagerspec=nil, taskmanagerspec=nil, clslogsetid=nil, clstopicid=nil, logcollecttype=nil, pythonversion=nil, workspaceid=nil, loglevel=nil, autorecover=nil, clazzlevels=nil, expertmodeon=nil, expertmodeconfiguration=nil, tracemodeon=nil, tracemodeconfiguration=nil, checkpointretainednum=nil, jobgraph=nil, esserverlessindex=nil, esserverlessspace=nil, flinkversion=nil, jobmanagercpu=nil, jobmanagermem=nil, jdkversion=nil, taskmanagercpu=nil, taskmanagermem=nil, useoldsystemconnector=nil, programargsaftergzip=nil, checkpointtimeoutsecond=nil, checkpointintervalsecond=nil, variablereplacemode=nil)
           @JobId = jobid
           @EntrypointClass = entrypointclass
           @ProgramArgs = programargs
@@ -1170,6 +1172,7 @@ module TencentCloud
           @ProgramArgsAfterGzip = programargsaftergzip
           @CheckpointTimeoutSecond = checkpointtimeoutsecond
           @CheckpointIntervalSecond = checkpointintervalsecond
+          @VariableReplaceMode = variablereplacemode
         end
 
         def deserialize(params)
@@ -1241,12 +1244,13 @@ module TencentCloud
           @ProgramArgsAfterGzip = params['ProgramArgsAfterGzip']
           @CheckpointTimeoutSecond = params['CheckpointTimeoutSecond']
           @CheckpointIntervalSecond = params['CheckpointIntervalSecond']
+          @VariableReplaceMode = params['VariableReplaceMode']
         end
       end
 
       # CreateJobConfig返回参数结构体
       class CreateJobConfigResponse < TencentCloud::Common::AbstractModel
-        # @param Version: 作业配置版本号
+        # @param Version: <p>作业配置版本号</p>
         # @type Version: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3079,16 +3083,27 @@ module TencentCloud
 
       # DescribeVariables返回参数结构体
       class DescribeVariablesResponse < TencentCloud::Common::AbstractModel
+        # @param VariableSet: ["x","y"]
+        # @type VariableSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :VariableSet, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(variableset=nil, requestid=nil)
+          @VariableSet = variableset
           @RequestId = requestid
         end
 
         def deserialize(params)
+          unless params['VariableSet'].nil?
+            @VariableSet = []
+            params['VariableSet'].each do |i|
+              variableitem_tmp = VariableItem.new
+              variableitem_tmp.deserialize(i)
+              @VariableSet << variableitem_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -3425,23 +3440,23 @@ module TencentCloud
 
       # hadoopYarn资源信息
       class HadoopYarnItem < TencentCloud::Common::AbstractModel
-        # @param ClusterGroupSerialId: ClusterGroupSerialId
+        # @param ClusterGroupSerialId: <p>ClusterGroupSerialId</p>
         # @type ClusterGroupSerialId: String
-        # @param Status: 状态
+        # @param Status: <p>状态</p><p>枚举值：</p><ul><li>1： 停止</li><li>2： 开启中</li><li>3： 启动</li><li>4： 开启失败</li><li>5： 停止中</li></ul>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
-        # @param Cpu: cpu
+        # @param Cpu: <p>cpu</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Cpu: Float
-        # @param Mem: mem
+        # @param Mem: <p>mem</p>
         # @type Mem: Float
-        # @param CreateTime: 创建时间
+        # @param CreateTime: <p>创建时间</p>
         # @type CreateTime: String
-        # @param UpdateTime: 更新时间
+        # @param UpdateTime: <p>更新时间</p>
         # @type UpdateTime: String
-        # @param Config: 配置文件内容
+        # @param Config: <p>配置文件内容</p>
         # @type Config: String
-        # @param CreatorUin: CreatorUin
+        # @param CreatorUin: <p>CreatorUin</p>
         # @type CreatorUin: String
 
         attr_accessor :ClusterGroupSerialId, :Status, :Cpu, :Mem, :CreateTime, :UpdateTime, :Config, :CreatorUin
@@ -3471,127 +3486,129 @@ module TencentCloud
 
       # 作业配置详情
       class JobConfig < TencentCloud::Common::AbstractModel
-        # @param JobId: 作业Id
+        # @param JobId: <p>作业Id</p>
         # @type JobId: String
-        # @param EntrypointClass: 主类
+        # @param EntrypointClass: <p>主类</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EntrypointClass: String
-        # @param ProgramArgs: 主类入参
+        # @param ProgramArgs: <p>主类入参</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProgramArgs: String
-        # @param Remark: 备注
+        # @param Remark: <p>备注</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Remark: String
-        # @param CreateTime: 作业配置创建时间
+        # @param CreateTime: <p>作业配置创建时间</p>
         # @type CreateTime: String
-        # @param Version: 作业配置的版本号
+        # @param Version: <p>作业配置的版本号</p>
         # @type Version: Integer
-        # @param DefaultParallelism: 作业默认并行度
+        # @param DefaultParallelism: <p>作业默认并行度</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DefaultParallelism: Integer
-        # @param Properties: 系统参数
+        # @param Properties: <p>系统参数</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Properties: Array
-        # @param ResourceRefDetails: 引用资源
+        # @param ResourceRefDetails: <p>引用资源</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceRefDetails: Array
-        # @param CreatorUin: 创建者uin
+        # @param CreatorUin: <p>创建者uin</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreatorUin: String
-        # @param UpdateTime: 作业配置上次启动时间
+        # @param UpdateTime: <p>作业配置上次启动时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
-        # @param COSBucket: 作业绑定的存储桶
+        # @param COSBucket: <p>作业绑定的存储桶</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type COSBucket: String
-        # @param LogCollect: 是否启用日志收集，0-未启用，1-采集到cls，4-采集到cos，5-采集到es
+        # @param LogCollect: <p>是否启用日志收集，0-未启用，1-采集到cls，4-采集到cos，5-采集到es</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogCollect: Integer
-        # @param MaxParallelism: 作业的最大并行度
+        # @param MaxParallelism: <p>作业的最大并行度</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxParallelism: Integer
-        # @param JobManagerSpec: JobManager规格
+        # @param JobManagerSpec: <p>JobManager规格</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JobManagerSpec: Float
-        # @param TaskManagerSpec: TaskManager规格
+        # @param TaskManagerSpec: <p>TaskManager规格</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskManagerSpec: Float
-        # @param ClsLogsetId: CLS日志集ID
+        # @param ClsLogsetId: <p>CLS日志集ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClsLogsetId: String
-        # @param ClsTopicId: CLS日志主题ID
+        # @param ClsTopicId: <p>CLS日志主题ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClsTopicId: String
-        # @param PythonVersion: pyflink作业运行的python版本
+        # @param PythonVersion: <p>pyflink作业运行的python版本</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PythonVersion: String
-        # @param AutoRecover: Oceanus 平台恢复作业开关 1:开启 -1: 关闭
+        # @param AutoRecover: <p>Oceanus 平台恢复作业开关 1:开启 -1: 关闭</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AutoRecover: Integer
-        # @param LogLevel: 日志级别
+        # @param LogLevel: <p>日志级别</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogLevel: String
-        # @param ClazzLevels: 类日志级别
+        # @param ClazzLevels: <p>类日志级别</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClazzLevels: Array
-        # @param ExpertModeOn: 是否开启专家模式
+        # @param ExpertModeOn: <p>是否开启专家模式</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExpertModeOn: Boolean
-        # @param ExpertModeConfiguration: 专家模式的配置
+        # @param ExpertModeConfiguration: <p>专家模式的配置</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExpertModeConfiguration: :class:`Tencentcloud::Oceanus.v20190422.models.ExpertModeConfiguration`
-        # @param TraceModeOn: trace链路
+        # @param TraceModeOn: <p>trace链路</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TraceModeOn: Boolean
-        # @param TraceModeConfiguration: trace链路配置
+        # @param TraceModeConfiguration: <p>trace链路配置</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TraceModeConfiguration: :class:`Tencentcloud::Oceanus.v20190422.models.TraceModeConfiguration`
-        # @param CheckpointRetainedNum: checkpoint保留个数
+        # @param CheckpointRetainedNum: <p>checkpoint保留个数</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CheckpointRetainedNum: Integer
-        # @param JobGraph: 算子拓扑图
+        # @param JobGraph: <p>算子拓扑图</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JobGraph: :class:`Tencentcloud::Oceanus.v20190422.models.JobGraph`
-        # @param EsServerlessIndex: es索引
+        # @param EsServerlessIndex: <p>es索引</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EsServerlessIndex: String
-        # @param EsServerlessSpace: es空间
+        # @param EsServerlessSpace: <p>es空间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EsServerlessSpace: String
-        # @param IndexName: es索引中文
+        # @param IndexName: <p>es索引中文</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IndexName: String
-        # @param WorkspaceName: es空间中文
+        # @param WorkspaceName: <p>es空间中文</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WorkspaceName: String
-        # @param FlinkVersion: flink 版本
+        # @param FlinkVersion: <p>flink 版本</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlinkVersion: String
-        # @param JdkVersion: jdk版本
+        # @param JdkVersion: <p>jdk版本</p>
         # @type JdkVersion: String
-        # @param JobManagerCpu: jm使用cpu数目
+        # @param JobManagerCpu: <p>jm使用cpu数目</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JobManagerCpu: Float
-        # @param JobManagerMem: jm使用内存数目
+        # @param JobManagerMem: <p>jm使用内存数目</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JobManagerMem: Float
-        # @param TaskManagerCpu: tm使用cpu数
+        # @param TaskManagerCpu: <p>tm使用cpu数</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskManagerCpu: Float
-        # @param TaskManagerMem: tm使用mem数
+        # @param TaskManagerMem: <p>tm使用mem数</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskManagerMem: Float
-        # @param JobConfigItem: 运行中配置
+        # @param JobConfigItem: <p>运行中配置</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JobConfigItem: :class:`Tencentcloud::Oceanus.v20190422.models.JobConfig`
-        # @param CheckpointTimeoutSecond: checkpoint 超时时间
+        # @param CheckpointTimeoutSecond: <p>checkpoint 超时时间</p>
         # @type CheckpointTimeoutSecond: Integer
-        # @param CheckpointIntervalSecond: checkpoint 间隔时间
+        # @param CheckpointIntervalSecond: <p>checkpoint 间隔时间</p>
         # @type CheckpointIntervalSecond: Integer
+        # @param VariableReplaceMode: <p>变量替换模式</p><p>枚举值：</p><ul><li>0： 表变量替换</li><li>1： 全局SQL变量替换</li></ul><p>默认值：0</p>
+        # @type VariableReplaceMode: Integer
 
-        attr_accessor :JobId, :EntrypointClass, :ProgramArgs, :Remark, :CreateTime, :Version, :DefaultParallelism, :Properties, :ResourceRefDetails, :CreatorUin, :UpdateTime, :COSBucket, :LogCollect, :MaxParallelism, :JobManagerSpec, :TaskManagerSpec, :ClsLogsetId, :ClsTopicId, :PythonVersion, :AutoRecover, :LogLevel, :ClazzLevels, :ExpertModeOn, :ExpertModeConfiguration, :TraceModeOn, :TraceModeConfiguration, :CheckpointRetainedNum, :JobGraph, :EsServerlessIndex, :EsServerlessSpace, :IndexName, :WorkspaceName, :FlinkVersion, :JdkVersion, :JobManagerCpu, :JobManagerMem, :TaskManagerCpu, :TaskManagerMem, :JobConfigItem, :CheckpointTimeoutSecond, :CheckpointIntervalSecond
+        attr_accessor :JobId, :EntrypointClass, :ProgramArgs, :Remark, :CreateTime, :Version, :DefaultParallelism, :Properties, :ResourceRefDetails, :CreatorUin, :UpdateTime, :COSBucket, :LogCollect, :MaxParallelism, :JobManagerSpec, :TaskManagerSpec, :ClsLogsetId, :ClsTopicId, :PythonVersion, :AutoRecover, :LogLevel, :ClazzLevels, :ExpertModeOn, :ExpertModeConfiguration, :TraceModeOn, :TraceModeConfiguration, :CheckpointRetainedNum, :JobGraph, :EsServerlessIndex, :EsServerlessSpace, :IndexName, :WorkspaceName, :FlinkVersion, :JdkVersion, :JobManagerCpu, :JobManagerMem, :TaskManagerCpu, :TaskManagerMem, :JobConfigItem, :CheckpointTimeoutSecond, :CheckpointIntervalSecond, :VariableReplaceMode
 
-        def initialize(jobid=nil, entrypointclass=nil, programargs=nil, remark=nil, createtime=nil, version=nil, defaultparallelism=nil, properties=nil, resourcerefdetails=nil, creatoruin=nil, updatetime=nil, cosbucket=nil, logcollect=nil, maxparallelism=nil, jobmanagerspec=nil, taskmanagerspec=nil, clslogsetid=nil, clstopicid=nil, pythonversion=nil, autorecover=nil, loglevel=nil, clazzlevels=nil, expertmodeon=nil, expertmodeconfiguration=nil, tracemodeon=nil, tracemodeconfiguration=nil, checkpointretainednum=nil, jobgraph=nil, esserverlessindex=nil, esserverlessspace=nil, indexname=nil, workspacename=nil, flinkversion=nil, jdkversion=nil, jobmanagercpu=nil, jobmanagermem=nil, taskmanagercpu=nil, taskmanagermem=nil, jobconfigitem=nil, checkpointtimeoutsecond=nil, checkpointintervalsecond=nil)
+        def initialize(jobid=nil, entrypointclass=nil, programargs=nil, remark=nil, createtime=nil, version=nil, defaultparallelism=nil, properties=nil, resourcerefdetails=nil, creatoruin=nil, updatetime=nil, cosbucket=nil, logcollect=nil, maxparallelism=nil, jobmanagerspec=nil, taskmanagerspec=nil, clslogsetid=nil, clstopicid=nil, pythonversion=nil, autorecover=nil, loglevel=nil, clazzlevels=nil, expertmodeon=nil, expertmodeconfiguration=nil, tracemodeon=nil, tracemodeconfiguration=nil, checkpointretainednum=nil, jobgraph=nil, esserverlessindex=nil, esserverlessspace=nil, indexname=nil, workspacename=nil, flinkversion=nil, jdkversion=nil, jobmanagercpu=nil, jobmanagermem=nil, taskmanagercpu=nil, taskmanagermem=nil, jobconfigitem=nil, checkpointtimeoutsecond=nil, checkpointintervalsecond=nil, variablereplacemode=nil)
           @JobId = jobid
           @EntrypointClass = entrypointclass
           @ProgramArgs = programargs
@@ -3633,6 +3650,7 @@ module TencentCloud
           @JobConfigItem = jobconfigitem
           @CheckpointTimeoutSecond = checkpointtimeoutsecond
           @CheckpointIntervalSecond = checkpointintervalsecond
+          @VariableReplaceMode = variablereplacemode
         end
 
         def deserialize(params)
@@ -3710,6 +3728,7 @@ module TencentCloud
           end
           @CheckpointTimeoutSecond = params['CheckpointTimeoutSecond']
           @CheckpointIntervalSecond = params['CheckpointIntervalSecond']
+          @VariableReplaceMode = params['VariableReplaceMode']
         end
       end
 
@@ -4923,22 +4942,22 @@ module TencentCloud
 
       # 资源引用
       class ResourceRefLatest < TencentCloud::Common::AbstractModel
-        # @param ResourceId: 资源id
+        # @param ResourceId: <p>资源id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceId: String
-        # @param Version: 版本号
+        # @param Version: <p>版本号</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Version: Integer
-        # @param Type: 资源类型
+        # @param Type: <p>资源类型</p><p>枚举值：</p><ul><li>1： Main资源</li><li>2： 依赖资源</li><li>3： python文件</li><li>4： 数据文件</li></ul>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: Integer
-        # @param Status: 状态
+        # @param Status: <p>状态</p><p>枚举值：</p><ul><li>1： 活跃</li><li>-2： 删除</li></ul>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
-        # @param WorkspaceId: 空间id
+        # @param WorkspaceId: <p>空间id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WorkspaceId: String
-        # @param Name: 资源名称
+        # @param Name: <p>资源名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
 
@@ -6126,15 +6145,62 @@ module TencentCloud
         end
       end
 
+      # 变量信息列表
+      class VariableItem < TencentCloud::Common::AbstractModel
+        # @param SerialId: 变量id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SerialId: String
+        # @param Name: 变量名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Value: 变量值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: String
+        # @param Type: 变量值是否隐藏
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: Integer
+        # @param Remark: 变量描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Remark: String
+        # @param CreateTime: 变量创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param CreatorUin: 变量创建人
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreatorUin: String
+
+        attr_accessor :SerialId, :Name, :Value, :Type, :Remark, :CreateTime, :CreatorUin
+
+        def initialize(serialid=nil, name=nil, value=nil, type=nil, remark=nil, createtime=nil, creatoruin=nil)
+          @SerialId = serialid
+          @Name = name
+          @Value = value
+          @Type = type
+          @Remark = remark
+          @CreateTime = createtime
+          @CreatorUin = creatoruin
+        end
+
+        def deserialize(params)
+          @SerialId = params['SerialId']
+          @Name = params['Name']
+          @Value = params['Value']
+          @Type = params['Type']
+          @Remark = params['Remark']
+          @CreateTime = params['CreateTime']
+          @CreatorUin = params['CreatorUin']
+        end
+      end
+
       # Setats Warehouse结构
       class Warehouse < TencentCloud::Common::AbstractModel
-        # @param Status: <p>状态</p>
+        # @param Status: <p>状态</p><p>枚举值：</p><ul><li>0： 未开启</li><li>1： 开启中</li><li>2： 已开启</li></ul>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param Location: <p>location</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Location: String
-        # @param CatalogType: <p>catalogtype</p>
+        # @param CatalogType: <p>catalog类型</p><p>枚举值：</p><ul><li>hadoop： hadoop catalog</li></ul>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CatalogType: String
         # @param Uri: <p>uri</p>

@@ -6072,53 +6072,45 @@ module TencentCloud
 
       # 实例信息结构体
       class Registry < TencentCloud::Common::AbstractModel
-        # @param RegistryId: 实例ID
+        # @param RegistryId: <p>实例ID</p>
         # @type RegistryId: String
-        # @param RegistryName: 实例名称
+        # @param RegistryName: <p>实例名称</p>
         # @type RegistryName: String
-        # @param RegistryType: 实例规格
+        # @param RegistryType: <p>实例规格</p>
         # @type RegistryType: String
-        # @param Status: 实例状态。有以下状态：
-        # Pending, 初始化中
-        # Deploying, 创建中
-        # Running, 运行中
-        # Unhealthy, 状态异常
-        # FailedCreated, 创建失败
-        # FailedUpdated, 更新失败
-        # Bucket-Error, 存储桶异常
-        # Isolate, 待回收
-        # Deleting, 删除中
-        # DeleteBucketFailed, 实例删除存储桶失败
-        # DeleteFailed, 实例删除失败
+        # @param Status: <p>实例状态。有以下状态：<br>Pending, 初始化中<br>Deploying, 创建中<br>Running, 运行中<br>Unhealthy, 状态异常<br>FailedCreated, 创建失败<br>FailedUpdated, 更新失败<br>Bucket-Error, 存储桶异常<br>Isolate, 待回收<br>Deleting, 删除中<br>DeleteBucketFailed, 实例删除存储桶失败<br>DeleteFailed, 实例删除失败</p>
         # @type Status: String
-        # @param PublicDomain: 实例的公共访问地址
+        # @param PublicDomain: <p>实例的公共访问地址</p>
         # @type PublicDomain: String
-        # @param CreatedAt: 实例创建时间
+        # @param CreatedAt: <p>实例创建时间</p>
         # @type CreatedAt: String
-        # @param RegionName: 地域名称
+        # @param RegionName: <p>地域名称</p>
         # @type RegionName: String
-        # @param RegionId: 地域Id
+        # @param RegionId: <p>地域Id</p>
         # @type RegionId: Integer
-        # @param EnableAnonymous: 是否支持匿名
+        # @param EnableAnonymous: <p>是否支持匿名</p>
         # @type EnableAnonymous: Boolean
-        # @param TokenValidTime: Token有效时间
+        # @param TokenValidTime: <p>Token有效时间</p>
         # @type TokenValidTime: Integer
-        # @param InternalEndpoint: 实例内部访问地址
+        # @param InternalEndpoint: <p>实例内部访问地址</p>
         # @type InternalEndpoint: String
-        # @param TagSpecification: 实例云标签
+        # @param TagSpecification: <p>实例云标签</p>
         # @type TagSpecification: :class:`Tencentcloud::Tcr.v20190924.models.TagSpecification`
-        # @param ExpiredAt: 实例过期时间（预付费）
+        # @param ExpiredAt: <p>实例过期时间（预付费）</p>
         # @type ExpiredAt: String
-        # @param PayMod: 实例付费类型，0表示后付费，1表示预付费
+        # @param PayMod: <p>实例付费类型，0表示后付费，1表示预付费</p>
         # @type PayMod: Integer
-        # @param RenewFlag: 预付费续费标识，0表示手动续费，1表示自动续费，2不续费并且不通知
+        # @param RenewFlag: <p>预付费续费标识，0表示手动续费，1表示自动续费，2不续费并且不通知</p>
         # @type RenewFlag: Integer
-        # @param DeletionProtection: 是否开启实例删除保护，false表示不开启
+        # @param DeletionProtection: <p>是否开启实例删除保护，false表示不开启</p>
         # @type DeletionProtection: Boolean
+        # @param AIFeature: <p>是否支持AI特性</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AIFeature: Boolean
 
-        attr_accessor :RegistryId, :RegistryName, :RegistryType, :Status, :PublicDomain, :CreatedAt, :RegionName, :RegionId, :EnableAnonymous, :TokenValidTime, :InternalEndpoint, :TagSpecification, :ExpiredAt, :PayMod, :RenewFlag, :DeletionProtection
+        attr_accessor :RegistryId, :RegistryName, :RegistryType, :Status, :PublicDomain, :CreatedAt, :RegionName, :RegionId, :EnableAnonymous, :TokenValidTime, :InternalEndpoint, :TagSpecification, :ExpiredAt, :PayMod, :RenewFlag, :DeletionProtection, :AIFeature
 
-        def initialize(registryid=nil, registryname=nil, registrytype=nil, status=nil, publicdomain=nil, createdat=nil, regionname=nil, regionid=nil, enableanonymous=nil, tokenvalidtime=nil, internalendpoint=nil, tagspecification=nil, expiredat=nil, paymod=nil, renewflag=nil, deletionprotection=nil)
+        def initialize(registryid=nil, registryname=nil, registrytype=nil, status=nil, publicdomain=nil, createdat=nil, regionname=nil, regionid=nil, enableanonymous=nil, tokenvalidtime=nil, internalendpoint=nil, tagspecification=nil, expiredat=nil, paymod=nil, renewflag=nil, deletionprotection=nil, aifeature=nil)
           @RegistryId = registryid
           @RegistryName = registryname
           @RegistryType = registrytype
@@ -6135,6 +6127,7 @@ module TencentCloud
           @PayMod = paymod
           @RenewFlag = renewflag
           @DeletionProtection = deletionprotection
+          @AIFeature = aifeature
         end
 
         def deserialize(params)
@@ -6157,6 +6150,7 @@ module TencentCloud
           @PayMod = params['PayMod']
           @RenewFlag = params['RenewFlag']
           @DeletionProtection = params['DeletionProtection']
+          @AIFeature = params['AIFeature']
         end
       end
 

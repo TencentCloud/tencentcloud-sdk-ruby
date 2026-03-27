@@ -120,6 +120,41 @@ module TencentCloud
         end
       end
 
+      # API Key 访问凭证信息。描述云开发环境下 API Key 的完整信息，包括标识符、名称、令牌值、创建时间和过期时间。支持两种类型：api_key（服务端管理员访问凭证，用于服务端接口调用的身份认证，可设置有效期，单个环境最多 5 个）和 publish_key（前端匿名访问凭证，固定有效期，每个环境仅保留一个）。注意：令牌值（ApiKey 字段）仅在创建时返回完整明文，列表查询时将进行脱敏处理。
+      class ApiKeyToken < TencentCloud::Common::AbstractModel
+        # @param KeyId: API Key 的唯一标识符，由系统基于 UUID 自动生成的 Base64 URL 编码字符串。后续对该 API Key 进行删除、修改名称或精确查询操作时，均需使用该值作为定位参数
+        # @type KeyId: String
+        # @param Name: API Key 的名称，即创建时传入的 KeyName 参数值。对于 publish_key 类型，该值固定为 publish_key
+        # @type Name: String
+        # @param ApiKey: API Key 的令牌值（JWT 格式），用于服务端接口调用时的身份认证。出于安全考虑，仅在创建时返回一次完整明文；后续通过列表查询接口获取时，api_key 类型将进行脱敏处理；publish_key 类型始终返回完整明文。请在创建后妥善保存
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApiKey: String
+        # @param ExpireAt: API Key 的过期时间，格式遵循 ISO 8601 标准。对于 api_key 类型：若创建时未指定有效期（ExpireIn），则该字段不返回，表示永不过期；若指定了有效期，则返回具体的过期时间。对于 publish_key 类型：始终返回，固定为约 2099 年
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExpireAt: String
+        # @param CreateAt: API Key 的创建时间，格式遵循 ISO 8601 标准。对于 api_key 类型：为该 Key 实际创建时的时间。对于 publish_key 类型：若环境下已存在 publish_key 记录，则返回首次创建的时间而非本次调用时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateAt: String
+
+        attr_accessor :KeyId, :Name, :ApiKey, :ExpireAt, :CreateAt
+
+        def initialize(keyid=nil, name=nil, apikey=nil, expireat=nil, createat=nil)
+          @KeyId = keyid
+          @Name = name
+          @ApiKey = apikey
+          @ExpireAt = expireat
+          @CreateAt = createat
+        end
+
+        def deserialize(params)
+          @KeyId = params['KeyId']
+          @Name = params['Name']
+          @ApiKey = params['ApiKey']
+          @ExpireAt = params['ExpireAt']
+          @CreateAt = params['CreateAt']
+        end
+      end
+
       # 合法域名
       class AuthDomain < TencentCloud::Common::AbstractModel
         # @param Id: 域名ID
@@ -211,100 +246,31 @@ module TencentCloud
         end
       end
 
-      # BindCloudBaseAccessDomain请求参数结构体
-      class BindCloudBaseAccessDomainRequest < TencentCloud::Common::AbstractModel
-        # @param ServiceId: 服务Id，目前是指环境Id
-        # @type ServiceId: String
-        # @param Domain: 自定义域名
-        # @type Domain: String
-        # @param CertId: 腾讯云证书Id
-        # @type CertId: String
-        # @param BindFlag: 默认1，1 绑定默认Cdn，2 绑定TcbIngress（不经过cdn），4 绑定自定义cdn
-        # @type BindFlag: Integer
-        # @param CustomCname: 自定义cdn cname域名
-        # @type CustomCname: String
+      # 封禁配置
+      class BanConfig < TencentCloud::Common::AbstractModel
+        # @param IpWhiteList: ip白名单，支持ipv4、ipv6，支持CIDR
+        # @type IpWhiteList: Array
+        # @param IpBlackList: ip黑名单，支持ipv4、ipv6，支持CIDR
+        # @type IpBlackList: Array
+        # @param CountryWhiteList: 地域白名单（国家英文名）
+        # @type CountryWhiteList: Array
+        # @param CountryBlackList: 地域黑名单（国家英文名）
+        # @type CountryBlackList: Array
 
-        attr_accessor :ServiceId, :Domain, :CertId, :BindFlag, :CustomCname
+        attr_accessor :IpWhiteList, :IpBlackList, :CountryWhiteList, :CountryBlackList
 
-        def initialize(serviceid=nil, domain=nil, certid=nil, bindflag=nil, customcname=nil)
-          @ServiceId = serviceid
-          @Domain = domain
-          @CertId = certid
-          @BindFlag = bindflag
-          @CustomCname = customcname
+        def initialize(ipwhitelist=nil, ipblacklist=nil, countrywhitelist=nil, countryblacklist=nil)
+          @IpWhiteList = ipwhitelist
+          @IpBlackList = ipblacklist
+          @CountryWhiteList = countrywhitelist
+          @CountryBlackList = countryblacklist
         end
 
         def deserialize(params)
-          @ServiceId = params['ServiceId']
-          @Domain = params['Domain']
-          @CertId = params['CertId']
-          @BindFlag = params['BindFlag']
-          @CustomCname = params['CustomCname']
-        end
-      end
-
-      # BindCloudBaseAccessDomain返回参数结构体
-      class BindCloudBaseAccessDomainResponse < TencentCloud::Common::AbstractModel
-        # @param ServiceId: 服务Id，目前是指环境Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ServiceId: String
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :ServiceId, :RequestId
-
-        def initialize(serviceid=nil, requestid=nil)
-          @ServiceId = serviceid
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @ServiceId = params['ServiceId']
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # BindCloudBaseGWDomain请求参数结构体
-      class BindCloudBaseGWDomainRequest < TencentCloud::Common::AbstractModel
-        # @param ServiceId: 服务ID
-        # @type ServiceId: String
-        # @param Domain: 服务域名
-        # @type Domain: String
-        # @param CertId: 证书ID
-        # @type CertId: String
-        # @param EnableRegion: 是否启用多地域
-        # @type EnableRegion: Boolean
-
-        attr_accessor :ServiceId, :Domain, :CertId, :EnableRegion
-
-        def initialize(serviceid=nil, domain=nil, certid=nil, enableregion=nil)
-          @ServiceId = serviceid
-          @Domain = domain
-          @CertId = certid
-          @EnableRegion = enableregion
-        end
-
-        def deserialize(params)
-          @ServiceId = params['ServiceId']
-          @Domain = params['Domain']
-          @CertId = params['CertId']
-          @EnableRegion = params['EnableRegion']
-        end
-      end
-
-      # BindCloudBaseGWDomain返回参数结构体
-      class BindCloudBaseGWDomainResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :RequestId
-
-        def initialize(requestid=nil)
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @RequestId = params['RequestId']
+          @IpWhiteList = params['IpWhiteList']
+          @IpBlackList = params['IpBlackList']
+          @CountryWhiteList = params['CountryWhiteList']
+          @CountryBlackList = params['CountryBlackList']
         end
       end
 
@@ -336,259 +302,6 @@ module TencentCloud
         def deserialize(params)
           @Initialized = params['Initialized']
           @RequestId = params['RequestId']
-        end
-      end
-
-      # http访问服务客户端限频
-      class CloudBaseClientQPSPolicy < TencentCloud::Common::AbstractModel
-        # @param LimitBy: UserID 或 ClientIP 或 None，如果为 None 代表不限制
-        # @type LimitBy: String
-        # @param LimitValue: 限制值
-        # @type LimitValue: Integer
-
-        attr_accessor :LimitBy, :LimitValue
-
-        def initialize(limitby=nil, limitvalue=nil)
-          @LimitBy = limitby
-          @LimitValue = limitvalue
-        end
-
-        def deserialize(params)
-          @LimitBy = params['LimitBy']
-          @LimitValue = params['LimitValue']
-        end
-      end
-
-      # tcb 网关API
-      class CloudBaseGWAPI < TencentCloud::Common::AbstractModel
-        # @param ServiceId: 服务ID
-        # @type ServiceId: String
-        # @param APIId: API ID
-        # @type APIId: String
-        # @param Path: API Path
-        # @type Path: String
-        # @param Type: API 类型
-        # @type Type: Integer
-        # @param Name: API 名
-        # @type Name: String
-        # @param CreateTime: API创建时间
-        # @type CreateTime: Integer
-        # @param Custom: 自定义值通用字段：
-        # Type为1时，该值为空。
-        # Type为2时，该值为容器的代理IP:PORT数组。
-        # @type Custom: String
-        # @param EnableAuth: 表示是否开启认证
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type EnableAuth: Boolean
-        # @param EnvId: 云开发环境ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type EnvId: String
-        # @param AccessType: 访问类型（该参数暂不对外暴露）
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type AccessType: Integer
-        # @param UnionStatus: 统一发布状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type UnionStatus: Integer
-        # @param Domain: 域名（*表示所有域名）
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Domain: String
-        # @param ConflictFlag: 是否有路径冲突
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ConflictFlag: Boolean
-        # @param DomainStatus: 域名状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type DomainStatus: Integer
-        # @param IsShortPath: 是否开启路径透传，默认true表示短路径，即不开启(已弃用)
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type IsShortPath: Boolean
-        # @param PathTransmission: 路径透传，默认0关闭，1开启，2关闭
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type PathTransmission: Integer
-        # @param EnableCheckAcrossDomain: 跨域校验，默认0开启，1开启，2关闭
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type EnableCheckAcrossDomain: Integer
-        # @param StaticFileDirectory: 静态托管文件目录
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type StaticFileDirectory: String
-        # @param QPSPolicy: QPS策略
-        # @type QPSPolicy: :class:`Tencentcloud::Tcb.v20180608.models.CloudBaseGWAPIQPSPolicy`
-
-        attr_accessor :ServiceId, :APIId, :Path, :Type, :Name, :CreateTime, :Custom, :EnableAuth, :EnvId, :AccessType, :UnionStatus, :Domain, :ConflictFlag, :DomainStatus, :IsShortPath, :PathTransmission, :EnableCheckAcrossDomain, :StaticFileDirectory, :QPSPolicy
-
-        def initialize(serviceid=nil, apiid=nil, path=nil, type=nil, name=nil, createtime=nil, custom=nil, enableauth=nil, envid=nil, accesstype=nil, unionstatus=nil, domain=nil, conflictflag=nil, domainstatus=nil, isshortpath=nil, pathtransmission=nil, enablecheckacrossdomain=nil, staticfiledirectory=nil, qpspolicy=nil)
-          @ServiceId = serviceid
-          @APIId = apiid
-          @Path = path
-          @Type = type
-          @Name = name
-          @CreateTime = createtime
-          @Custom = custom
-          @EnableAuth = enableauth
-          @EnvId = envid
-          @AccessType = accesstype
-          @UnionStatus = unionstatus
-          @Domain = domain
-          @ConflictFlag = conflictflag
-          @DomainStatus = domainstatus
-          @IsShortPath = isshortpath
-          @PathTransmission = pathtransmission
-          @EnableCheckAcrossDomain = enablecheckacrossdomain
-          @StaticFileDirectory = staticfiledirectory
-          @QPSPolicy = qpspolicy
-        end
-
-        def deserialize(params)
-          @ServiceId = params['ServiceId']
-          @APIId = params['APIId']
-          @Path = params['Path']
-          @Type = params['Type']
-          @Name = params['Name']
-          @CreateTime = params['CreateTime']
-          @Custom = params['Custom']
-          @EnableAuth = params['EnableAuth']
-          @EnvId = params['EnvId']
-          @AccessType = params['AccessType']
-          @UnionStatus = params['UnionStatus']
-          @Domain = params['Domain']
-          @ConflictFlag = params['ConflictFlag']
-          @DomainStatus = params['DomainStatus']
-          @IsShortPath = params['IsShortPath']
-          @PathTransmission = params['PathTransmission']
-          @EnableCheckAcrossDomain = params['EnableCheckAcrossDomain']
-          @StaticFileDirectory = params['StaticFileDirectory']
-          unless params['QPSPolicy'].nil?
-            @QPSPolicy = CloudBaseGWAPIQPSPolicy.new
-            @QPSPolicy.deserialize(params['QPSPolicy'])
-          end
-        end
-      end
-
-      # http访问服务路由qps策略
-      class CloudBaseGWAPIQPSPolicy < TencentCloud::Common::AbstractModel
-        # @param QPSTotal: qps限额总量
-        # @type QPSTotal: Integer
-        # @param QPSPerClient: 客户端限频，如果不限制，LimitBy=None
-        # @type QPSPerClient: :class:`Tencentcloud::Tcb.v20180608.models.CloudBaseClientQPSPolicy`
-
-        attr_accessor :QPSTotal, :QPSPerClient
-
-        def initialize(qpstotal=nil, qpsperclient=nil)
-          @QPSTotal = qpstotal
-          @QPSPerClient = qpsperclient
-        end
-
-        def deserialize(params)
-          @QPSTotal = params['QPSTotal']
-          unless params['QPSPerClient'].nil?
-            @QPSPerClient = CloudBaseClientQPSPolicy.new
-            @QPSPerClient.deserialize(params['QPSPerClient'])
-          end
-        end
-      end
-
-      # 网关服务
-      class CloudBaseGWService < TencentCloud::Common::AbstractModel
-        # @param ServiceId: 服务ID
-        # @type ServiceId: String
-        # @param Domain: 服务域名
-        # @type Domain: String
-        # @param OpenTime: 开启时间
-        # @type OpenTime: Integer
-        # @param Status: 绑定状态，1 绑定中；2绑定失败；3绑定成功
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Status: Integer
-        # @param IsPreempted: 是否被抢占, 被抢占表示域名被其他环境绑定了，需要解绑或者重新绑定。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type IsPreempted: Boolean
-        # @param EnableRegion: 是否开启多地域
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type EnableRegion: Boolean
-        # @param Cname: cdn CName地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Cname: String
-        # @param UnionStatus: 统一域名状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type UnionStatus: Integer
-        # @param CnameStatus: CName状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type CnameStatus: Integer
-        # @param CertId: 证书Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type CertId: String
-        # @param ForceHttps: 是否强制https
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ForceHttps: Boolean
-        # @param IcpForbidStatus: icp黑名单封禁状态，0-未封禁，1-封禁
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type IcpForbidStatus: Integer
-        # @param CustomRoutingRules: 自定义路由规则
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type CustomRoutingRules: String
-        # @param BindFlag: 绑定类型，1绑定cdn，2源站，4自定义
-        # @type BindFlag: Integer
-        # @param OriginCname: TcbIngress源站cname
-        # @type OriginCname: String
-        # @param CustomCname: 自定义cname
-        # @type CustomCname: String
-
-        attr_accessor :ServiceId, :Domain, :OpenTime, :Status, :IsPreempted, :EnableRegion, :Cname, :UnionStatus, :CnameStatus, :CertId, :ForceHttps, :IcpForbidStatus, :CustomRoutingRules, :BindFlag, :OriginCname, :CustomCname
-
-        def initialize(serviceid=nil, domain=nil, opentime=nil, status=nil, ispreempted=nil, enableregion=nil, cname=nil, unionstatus=nil, cnamestatus=nil, certid=nil, forcehttps=nil, icpforbidstatus=nil, customroutingrules=nil, bindflag=nil, origincname=nil, customcname=nil)
-          @ServiceId = serviceid
-          @Domain = domain
-          @OpenTime = opentime
-          @Status = status
-          @IsPreempted = ispreempted
-          @EnableRegion = enableregion
-          @Cname = cname
-          @UnionStatus = unionstatus
-          @CnameStatus = cnamestatus
-          @CertId = certid
-          @ForceHttps = forcehttps
-          @IcpForbidStatus = icpforbidstatus
-          @CustomRoutingRules = customroutingrules
-          @BindFlag = bindflag
-          @OriginCname = origincname
-          @CustomCname = customcname
-        end
-
-        def deserialize(params)
-          @ServiceId = params['ServiceId']
-          @Domain = params['Domain']
-          @OpenTime = params['OpenTime']
-          @Status = params['Status']
-          @IsPreempted = params['IsPreempted']
-          @EnableRegion = params['EnableRegion']
-          @Cname = params['Cname']
-          @UnionStatus = params['UnionStatus']
-          @CnameStatus = params['CnameStatus']
-          @CertId = params['CertId']
-          @ForceHttps = params['ForceHttps']
-          @IcpForbidStatus = params['IcpForbidStatus']
-          @CustomRoutingRules = params['CustomRoutingRules']
-          @BindFlag = params['BindFlag']
-          @OriginCname = params['OriginCname']
-          @CustomCname = params['CustomCname']
-        end
-      end
-
-      # http service选项
-      class CloudBaseOption < TencentCloud::Common::AbstractModel
-        # @param Key: 键
-        # @type Key: String
-        # @param Value: 值
-        # @type Value: String
-
-        attr_accessor :Key, :Value
-
-        def initialize(key=nil, value=nil)
-          @Key = key
-          @Value = value
-        end
-
-        def deserialize(params)
-          @Key = params['Key']
-          @Value = params['Value']
         end
       end
 
@@ -679,6 +392,73 @@ module TencentCloud
           @WanStatus = params['WanStatus']
           @ClusterStatus = params['ClusterStatus']
           @ServerlessStatus = params['ServerlessStatus']
+        end
+      end
+
+      # CreateApiKey请求参数结构体
+      class CreateApiKeyRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: 环境 ID，用于标识该密钥归属的云开发环境，不同环境之间的数据相互隔离
+        # @type EnvId: String
+        # @param KeyType: 密钥类型。可选值：api_key（服务端调用使用的 API 密钥，具有完整权限，请勿暴露在客户端）、publish_key（客户端使用的公开密钥，权限受限，可安全用于前端或移动端）。
+        # @type KeyType: String
+        # @param KeyName: 密钥的自定义名称，用于在管理列表中标识和区分不同的密钥，建议填写能体现用途或归属的描述性名称，例如：server-prod、mobile-test
+        # @type KeyName: String
+        # @param ExpireIn: 密钥的有效期，单位为秒，最短不得低于 7200 秒。超过有效期后密钥将自动失效。不设置或设置为 0 则表示永不过期，建议根据安全需求合理设置有效期
+        # @type ExpireIn: Integer
+
+        attr_accessor :EnvId, :KeyType, :KeyName, :ExpireIn
+
+        def initialize(envid=nil, keytype=nil, keyname=nil, expirein=nil)
+          @EnvId = envid
+          @KeyType = keytype
+          @KeyName = keyname
+          @ExpireIn = expirein
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @KeyType = params['KeyType']
+          @KeyName = params['KeyName']
+          @ExpireIn = params['ExpireIn']
+        end
+      end
+
+      # CreateApiKey返回参数结构体
+      class CreateApiKeyResponse < TencentCloud::Common::AbstractModel
+        # @param KeyId: API Key 的唯一标识符，由系统基于 JWT Access Token Hash 自动生成。后续对该 API Key 进行查询、修改名称或删除操作时，均需使用该值作为定位参数
+        # @type KeyId: String
+        # @param Name: API Key 的名称，即创建时传入的 KeyName 参数值。对于 publish_key 类型，该值固定为 publish_key
+        # @type Name: String
+        # @param ApiKey: API Key 的令牌值（JWT 格式），用于服务端接口调用时的身份认证。出于安全考虑，仅在创建时返回一次完整明文；后续通过列表查询接口获取时，api_key 类型将进行脱敏处理；publish_key 类型始终返回完整明文。请在创建后妥善保存
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApiKey: String
+        # @param ExpireAt: API Key 的过期时间。对于 api_key 类型：若创建时未指定有效期，则该字段不返回，表示永不过期；若指定了有效期，则返回具体的过期时间。对于 publish_key 类型：始终返回，固定为 2099 年
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExpireAt: String
+        # @param CreateAt: API Key 的创建时间。对于 api_key 类型：为实际创建该 Key 时的时间。对于 publish_key 类型：若环境下已存在 publish_key，则返回首次创建的时间而非本次调用时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateAt: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :KeyId, :Name, :ApiKey, :ExpireAt, :CreateAt, :RequestId
+
+        def initialize(keyid=nil, name=nil, apikey=nil, expireat=nil, createat=nil, requestid=nil)
+          @KeyId = keyid
+          @Name = name
+          @ApiKey = apikey
+          @ExpireAt = expireat
+          @CreateAt = createat
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @KeyId = params['KeyId']
+          @Name = params['Name']
+          @ApiKey = params['ApiKey']
+          @ExpireAt = params['ExpireAt']
+          @CreateAt = params['CreateAt']
+          @RequestId = params['RequestId']
         end
       end
 
@@ -835,99 +615,6 @@ module TencentCloud
         end
       end
 
-      # CreateCloudBaseGWAPI请求参数结构体
-      class CreateCloudBaseGWAPIRequest < TencentCloud::Common::AbstractModel
-        # @param ServiceId: Service ID
-        # @type ServiceId: String
-        # @param Path: API Path
-        # @type Path: String
-        # @param Type: API类型（1表示云函数，2表示容器）
-        # @type Type: Integer
-        # @param Name: API Name
-        # @type Name: String
-        # @param APIId: APIId，如果非空，表示修改绑定Path
-        # @type APIId: String
-        # @param Custom: 自定义值通用字段（当Type为容器时必填）
-        # @type Custom: String
-        # @param AuthSwitch: 认证开关 1为开启 2为关闭
-        # @type AuthSwitch: Integer
-        # @param EnableRegion: 是否开启多地域
-        # @type EnableRegion: Boolean
-        # @param EnableUnion: 是否启用统一域名
-        # @type EnableUnion: Boolean
-        # @param Domain: 域名
-        # @type Domain: String
-        # @param AccessTypes: 访问类型："OA", "PUBLIC", "MINIAPP", "VPC" （不传默认PUBLIC+MINIAPP+VPC）
-        # @type AccessTypes: Array
-        # @param IsShortPath: 是否开启路径透传，默认true表示短路径，即不开启路径透传(已弃用)
-        # @type IsShortPath: Boolean
-        # @param PathTransmission: 路径透传，默认0关闭，1开启，2关闭
-        # @type PathTransmission: Integer
-        # @param EnableCheckAcrossDomain: 跨域校验，默认0开启，1开启，2关闭
-        # @type EnableCheckAcrossDomain: Integer
-        # @param StaticFileDirectory: 静态托管资源目录
-        # @type StaticFileDirectory: String
-
-        attr_accessor :ServiceId, :Path, :Type, :Name, :APIId, :Custom, :AuthSwitch, :EnableRegion, :EnableUnion, :Domain, :AccessTypes, :IsShortPath, :PathTransmission, :EnableCheckAcrossDomain, :StaticFileDirectory
-
-        def initialize(serviceid=nil, path=nil, type=nil, name=nil, apiid=nil, custom=nil, authswitch=nil, enableregion=nil, enableunion=nil, domain=nil, accesstypes=nil, isshortpath=nil, pathtransmission=nil, enablecheckacrossdomain=nil, staticfiledirectory=nil)
-          @ServiceId = serviceid
-          @Path = path
-          @Type = type
-          @Name = name
-          @APIId = apiid
-          @Custom = custom
-          @AuthSwitch = authswitch
-          @EnableRegion = enableregion
-          @EnableUnion = enableunion
-          @Domain = domain
-          @AccessTypes = accesstypes
-          @IsShortPath = isshortpath
-          @PathTransmission = pathtransmission
-          @EnableCheckAcrossDomain = enablecheckacrossdomain
-          @StaticFileDirectory = staticfiledirectory
-        end
-
-        def deserialize(params)
-          @ServiceId = params['ServiceId']
-          @Path = params['Path']
-          @Type = params['Type']
-          @Name = params['Name']
-          @APIId = params['APIId']
-          @Custom = params['Custom']
-          @AuthSwitch = params['AuthSwitch']
-          @EnableRegion = params['EnableRegion']
-          @EnableUnion = params['EnableUnion']
-          @Domain = params['Domain']
-          @AccessTypes = params['AccessTypes']
-          @IsShortPath = params['IsShortPath']
-          @PathTransmission = params['PathTransmission']
-          @EnableCheckAcrossDomain = params['EnableCheckAcrossDomain']
-          @StaticFileDirectory = params['StaticFileDirectory']
-        end
-      end
-
-      # CreateCloudBaseGWAPI返回参数结构体
-      class CreateCloudBaseGWAPIResponse < TencentCloud::Common::AbstractModel
-        # @param APIId: API ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type APIId: String
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :APIId, :RequestId
-
-        def initialize(apiid=nil, requestid=nil)
-          @APIId = apiid
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @APIId = params['APIId']
-          @RequestId = params['RequestId']
-        end
-      end
-
       # CreateEnv请求参数结构体
       class CreateEnvRequest < TencentCloud::Common::AbstractModel
         # @param Alias: 环境别名。
@@ -1049,6 +736,45 @@ module TencentCloud
 
         def deserialize(params)
           @EnvId = params['EnvId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateHTTPServiceRoute请求参数结构体
+      class CreateHTTPServiceRouteRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: 环境ID
+        # @type EnvId: String
+        # @param Domain: 域名路由信息
+        # @type Domain: :class:`Tencentcloud::Tcb.v20180608.models.HTTPServiceDomainParam`
+
+        attr_accessor :EnvId, :Domain
+
+        def initialize(envid=nil, domain=nil)
+          @EnvId = envid
+          @Domain = domain
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          unless params['Domain'].nil?
+            @Domain = HTTPServiceDomainParam.new
+            @Domain.deserialize(params['Domain'])
+          end
+        end
+      end
+
+      # CreateHTTPServiceRoute返回参数结构体
+      class CreateHTTPServiceRouteResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -1197,17 +923,24 @@ module TencentCloud
         # @type EnvId: String
         # @param EnableUnion: 是否启用统一域名
         # @type EnableUnion: Boolean
+        # @param ExternalStorage: 外部存储源。
+        # @type ExternalStorage: :class:`Tencentcloud::Tcb.v20180608.models.ExternalStorage`
 
-        attr_accessor :EnvId, :EnableUnion
+        attr_accessor :EnvId, :EnableUnion, :ExternalStorage
 
-        def initialize(envid=nil, enableunion=nil)
+        def initialize(envid=nil, enableunion=nil, externalstorage=nil)
           @EnvId = envid
           @EnableUnion = enableunion
+          @ExternalStorage = externalstorage
         end
 
         def deserialize(params)
           @EnvId = params['EnvId']
           @EnableUnion = params['EnableUnion']
+          unless params['ExternalStorage'].nil?
+            @ExternalStorage = ExternalStorage.new
+            @ExternalStorage.deserialize(params['ExternalStorage'])
+          end
         end
       end
 
@@ -1380,6 +1113,99 @@ module TencentCloud
         end
       end
 
+      # CreateVmInstance请求参数结构体
+      class CreateVmInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: 环境ID
+        # @type EnvId: String
+        # @param Type: 服务器类型：
+        # LightHouse = 轻量云服务器
+        # CVM = 云服务器
+        # @type Type: String
+        # @param LightHouseBundleId: 轻量云服务器套餐ID。 当Type=LightHouse时必传
+        # @type LightHouseBundleId: String
+        # @param LightHouseBlueprintId: 轻量云服务器镜像ID。当Type=LightHouse时必传
+        # @type LightHouseBlueprintId: String
+        # @param InstanceName: 服务器别名
+        # @type InstanceName: String
+        # @param LoginConfiguration: 登录方式
+        # @type LoginConfiguration: :class:`Tencentcloud::Tcb.v20180608.models.VMLoginConfiguration`
+
+        attr_accessor :EnvId, :Type, :LightHouseBundleId, :LightHouseBlueprintId, :InstanceName, :LoginConfiguration
+
+        def initialize(envid=nil, type=nil, lighthousebundleid=nil, lighthouseblueprintid=nil, instancename=nil, loginconfiguration=nil)
+          @EnvId = envid
+          @Type = type
+          @LightHouseBundleId = lighthousebundleid
+          @LightHouseBlueprintId = lighthouseblueprintid
+          @InstanceName = instancename
+          @LoginConfiguration = loginconfiguration
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @Type = params['Type']
+          @LightHouseBundleId = params['LightHouseBundleId']
+          @LightHouseBlueprintId = params['LightHouseBlueprintId']
+          @InstanceName = params['InstanceName']
+          unless params['LoginConfiguration'].nil?
+            @LoginConfiguration = VMLoginConfiguration.new
+            @LoginConfiguration.deserialize(params['LoginConfiguration'])
+          end
+        end
+      end
+
+      # CreateVmInstance返回参数结构体
+      class CreateVmInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 安全网关自定义日志配置
+      class CustomLogConfig < TencentCloud::Common::AbstractModel
+        # @param NeedReqBodyLog: 是否需要请求体
+        # @type NeedReqBodyLog: Boolean
+        # @param NeedReqHeaderLog: 是否需要请求头
+        # @type NeedReqHeaderLog: Boolean
+        # @param NeedRspBodyLog: 是否需要回包体
+        # @type NeedRspBodyLog: Boolean
+        # @param NeedRspHeaderLog: 是否需要回包头部信息
+        # @type NeedRspHeaderLog: Boolean
+        # @param LogSetId: cls set信息
+        # @type LogSetId: String
+        # @param LogTopicId: cls topicId
+        # @type LogTopicId: String
+
+        attr_accessor :NeedReqBodyLog, :NeedReqHeaderLog, :NeedRspBodyLog, :NeedRspHeaderLog, :LogSetId, :LogTopicId
+
+        def initialize(needreqbodylog=nil, needreqheaderlog=nil, needrspbodylog=nil, needrspheaderlog=nil, logsetid=nil, logtopicid=nil)
+          @NeedReqBodyLog = needreqbodylog
+          @NeedReqHeaderLog = needreqheaderlog
+          @NeedRspBodyLog = needrspbodylog
+          @NeedRspHeaderLog = needrspheaderlog
+          @LogSetId = logsetid
+          @LogTopicId = logtopicid
+        end
+
+        def deserialize(params)
+          @NeedReqBodyLog = params['NeedReqBodyLog']
+          @NeedReqHeaderLog = params['NeedReqHeaderLog']
+          @NeedRspBodyLog = params['NeedRspBodyLog']
+          @NeedRspHeaderLog = params['NeedRspHeaderLog']
+          @LogSetId = params['LogSetId']
+          @LogTopicId = params['LogTopicId']
+        end
+      end
+
       # 数据库资源信息
       class DatabasesInfo < TencentCloud::Common::AbstractModel
         # @param InstanceId: 数据库唯一标识
@@ -1437,6 +1263,42 @@ module TencentCloud
         end
       end
 
+      # DeleteApiKey请求参数结构体
+      class DeleteApiKeyRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: 环境 ID，用于标识该密钥归属的云开发环境，不同环境之间的数据相互隔离
+        # @type EnvId: String
+        # @param KeyId: 密钥的唯一标识符，用于精确定位指定的 API 密钥。可通过查询密钥列表接口获取
+        # @type KeyId: String
+
+        attr_accessor :EnvId, :KeyId
+
+        def initialize(envid=nil, keyid=nil)
+          @EnvId = envid
+          @KeyId = keyid
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @KeyId = params['KeyId']
+        end
+      end
+
+      # DeleteApiKey返回参数结构体
+      class DeleteApiKeyResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteAuthDomain请求参数结构体
       class DeleteAuthDomainRequest < TencentCloud::Common::AbstractModel
         # @param EnvId: 开发者的环境ID
@@ -1477,102 +1339,42 @@ module TencentCloud
         end
       end
 
-      # DeleteCloudBaseGWAPI请求参数结构体
-      class DeleteCloudBaseGWAPIRequest < TencentCloud::Common::AbstractModel
-        # @param ServiceId: 服务ID
-        # @type ServiceId: String
-        # @param Path: API Path
-        # @type Path: String
-        # @param APIId: API ID
-        # @type APIId: String
-        # @param Type: API类型
-        # @type Type: Integer
-        # @param Name: API Name
-        # @type Name: String
-        # @param Custom: 自定义值字段（Type为2时，传递容器服务名表示需要删除JNSGW）
-        # @type Custom: String
+      # DeleteHTTPServiceRoute请求参数结构体
+      class DeleteHTTPServiceRouteRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: 环境ID
+        # @type EnvId: String
         # @param Domain: 域名
         # @type Domain: String
+        # @param Paths: 路径列表。为空则表示删除此域名和所有路由
+        # @type Paths: Array
 
-        attr_accessor :ServiceId, :Path, :APIId, :Type, :Name, :Custom, :Domain
+        attr_accessor :EnvId, :Domain, :Paths
 
-        def initialize(serviceid=nil, path=nil, apiid=nil, type=nil, name=nil, custom=nil, domain=nil)
-          @ServiceId = serviceid
-          @Path = path
-          @APIId = apiid
-          @Type = type
-          @Name = name
-          @Custom = custom
+        def initialize(envid=nil, domain=nil, paths=nil)
+          @EnvId = envid
           @Domain = domain
+          @Paths = paths
         end
 
         def deserialize(params)
-          @ServiceId = params['ServiceId']
-          @Path = params['Path']
-          @APIId = params['APIId']
-          @Type = params['Type']
-          @Name = params['Name']
-          @Custom = params['Custom']
+          @EnvId = params['EnvId']
           @Domain = params['Domain']
+          @Paths = params['Paths']
         end
       end
 
-      # DeleteCloudBaseGWAPI返回参数结构体
-      class DeleteCloudBaseGWAPIResponse < TencentCloud::Common::AbstractModel
-        # @param Count: 最终删除API个数
-        # @type Count: Integer
+      # DeleteHTTPServiceRoute返回参数结构体
+      class DeleteHTTPServiceRouteResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Count, :RequestId
+        attr_accessor :RequestId
 
-        def initialize(count=nil, requestid=nil)
-          @Count = count
+        def initialize(requestid=nil)
           @RequestId = requestid
         end
 
         def deserialize(params)
-          @Count = params['Count']
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # DeleteCloudBaseGWDomain请求参数结构体
-      class DeleteCloudBaseGWDomainRequest < TencentCloud::Common::AbstractModel
-        # @param ServiceId: 服务ID
-        # @type ServiceId: String
-        # @param Domain: 服务域名
-        # @type Domain: String
-
-        attr_accessor :ServiceId, :Domain
-
-        def initialize(serviceid=nil, domain=nil)
-          @ServiceId = serviceid
-          @Domain = domain
-        end
-
-        def deserialize(params)
-          @ServiceId = params['ServiceId']
-          @Domain = params['Domain']
-        end
-      end
-
-      # DeleteCloudBaseGWDomain返回参数结构体
-      class DeleteCloudBaseGWDomainResponse < TencentCloud::Common::AbstractModel
-        # @param Count: 删除个数
-        # @type Count: Integer
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Count, :RequestId
-
-        def initialize(count=nil, requestid=nil)
-          @Count = count
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @Count = params['Count']
           @RequestId = params['RequestId']
         end
       end
@@ -1755,6 +1557,65 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeApiKeyList请求参数结构体
+      class DescribeApiKeyListRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: 环境 ID，用于标识该密钥归属的云开发环境，不同环境之间的数据相互隔离
+        # @type EnvId: String
+        # @param PageNumber: 分页查询的页码，从 1 开始。与 PageSize 配合使用，不传则默认返回第 1 页
+        # @type PageNumber: Integer
+        # @param PageSize: 分页查询每页返回的记录条数。与 PageNumber 配合使用，不传则使用系统默认值
+        # @type PageSize: Integer
+        # @param KeyType: 密钥类型过滤条件。可选值：api_key（服务端调用使用的 API 密钥，具有完整权限）、publish_key（客户端使用的公开密钥，权限受限）密钥类型过滤条件。不传默认值为api_key
+        # @type KeyType: String
+
+        attr_accessor :EnvId, :PageNumber, :PageSize, :KeyType
+
+        def initialize(envid=nil, pagenumber=nil, pagesize=nil, keytype=nil)
+          @EnvId = envid
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @KeyType = keytype
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          @KeyType = params['KeyType']
+        end
+      end
+
+      # DescribeApiKeyList返回参数结构体
+      class DescribeApiKeyListResponse < TencentCloud::Common::AbstractModel
+        # @param Data: API Key列表
+        # @type Data: Array
+        # @param Total: 总数
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :Total, :RequestId
+
+        def initialize(data=nil, total=nil, requestid=nil)
+          @Data = data
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              apikeytoken_tmp = ApiKeyToken.new
+              apikeytoken_tmp.deserialize(i)
+              @Data << apikeytoken_tmp
+            end
+          end
+          @Total = params['Total']
           @RequestId = params['RequestId']
         end
       end
@@ -2073,193 +1934,6 @@ module TencentCloud
             end
           end
           @OutDate = params['OutDate']
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # DescribeCloudBaseGWAPI请求参数结构体
-      class DescribeCloudBaseGWAPIRequest < TencentCloud::Common::AbstractModel
-        # @param ServiceId: 服务ID
-        # @type ServiceId: String
-        # @param Domain: API域名
-        # @type Domain: String
-        # @param Path: API Path
-        # @type Path: String
-        # @param APIId: API ID
-        # @type APIId: String
-        # @param Type: API类型，1为云函数，2为容器
-        # @type Type: Integer
-        # @param Name: API名，Type为1时为云函数名，Type为2时为容器服务名
-        # @type Name: String
-        # @param Offset: 查询的分页参数，用于设置查询的偏移位置，0表示从头开始
-        # @type Offset: Integer
-        # @param Limit: 查询的分页参数，用于表示每次查询的最大返回数据量
-        # @type Limit: Integer
-        # @param EnableRegion: 是否启用多地域
-        # @type EnableRegion: Boolean
-        # @param EnableUnion: 是否使用统一域名
-        # @type EnableUnion: Boolean
-
-        attr_accessor :ServiceId, :Domain, :Path, :APIId, :Type, :Name, :Offset, :Limit, :EnableRegion, :EnableUnion
-
-        def initialize(serviceid=nil, domain=nil, path=nil, apiid=nil, type=nil, name=nil, offset=nil, limit=nil, enableregion=nil, enableunion=nil)
-          @ServiceId = serviceid
-          @Domain = domain
-          @Path = path
-          @APIId = apiid
-          @Type = type
-          @Name = name
-          @Offset = offset
-          @Limit = limit
-          @EnableRegion = enableregion
-          @EnableUnion = enableunion
-        end
-
-        def deserialize(params)
-          @ServiceId = params['ServiceId']
-          @Domain = params['Domain']
-          @Path = params['Path']
-          @APIId = params['APIId']
-          @Type = params['Type']
-          @Name = params['Name']
-          @Offset = params['Offset']
-          @Limit = params['Limit']
-          @EnableRegion = params['EnableRegion']
-          @EnableUnion = params['EnableUnion']
-        end
-      end
-
-      # DescribeCloudBaseGWAPI返回参数结构体
-      class DescribeCloudBaseGWAPIResponse < TencentCloud::Common::AbstractModel
-        # @param APISet: API列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type APISet: Array
-        # @param EnableService: 是否开启http调用
-        # @type EnableService: Boolean
-        # @param Total: 查询结果的数据总量
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Total: Integer
-        # @param Offset: 查询的分页参数
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Offset: Integer
-        # @param Limit: 查询的分页参数
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Limit: Integer
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :APISet, :EnableService, :Total, :Offset, :Limit, :RequestId
-
-        def initialize(apiset=nil, enableservice=nil, total=nil, offset=nil, limit=nil, requestid=nil)
-          @APISet = apiset
-          @EnableService = enableservice
-          @Total = total
-          @Offset = offset
-          @Limit = limit
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['APISet'].nil?
-            @APISet = []
-            params['APISet'].each do |i|
-              cloudbasegwapi_tmp = CloudBaseGWAPI.new
-              cloudbasegwapi_tmp.deserialize(i)
-              @APISet << cloudbasegwapi_tmp
-            end
-          end
-          @EnableService = params['EnableService']
-          @Total = params['Total']
-          @Offset = params['Offset']
-          @Limit = params['Limit']
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # DescribeCloudBaseGWService请求参数结构体
-      class DescribeCloudBaseGWServiceRequest < TencentCloud::Common::AbstractModel
-        # @param ServiceId: 服务ID
-        # @type ServiceId: String
-        # @param Domain: 服务域名
-        # @type Domain: String
-        # @param EnableRegion: 是否启用多地域
-        # @type EnableRegion: Boolean
-        # @param EnableUnion: 是否启用统一域名
-        # @type EnableUnion: Boolean
-
-        attr_accessor :ServiceId, :Domain, :EnableRegion, :EnableUnion
-
-        def initialize(serviceid=nil, domain=nil, enableregion=nil, enableunion=nil)
-          @ServiceId = serviceid
-          @Domain = domain
-          @EnableRegion = enableregion
-          @EnableUnion = enableunion
-        end
-
-        def deserialize(params)
-          @ServiceId = params['ServiceId']
-          @Domain = params['Domain']
-          @EnableRegion = params['EnableRegion']
-          @EnableUnion = params['EnableUnion']
-        end
-      end
-
-      # DescribeCloudBaseGWService返回参数结构体
-      class DescribeCloudBaseGWServiceResponse < TencentCloud::Common::AbstractModel
-        # @param ServiceSet: 服务列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ServiceSet: Array
-        # @param EnableService: 是否开启服务
-        # @type EnableService: Boolean
-        # @param DefaultDomain: 默认域名信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type DefaultDomain: String
-        # @param EnableUnion: 是否开启CDN迁移
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type EnableUnion: Boolean
-        # @param EnableCheckAcrossDomain: 是否开启跨域校验，默认开启 true
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type EnableCheckAcrossDomain: Boolean
-        # @param CustomRoutingRules: 自定义路由规则
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type CustomRoutingRules: String
-        # @param AccessFlag: 默认域名绑定类型，1绑定TCB-CDN，2绑定tcbingres（不经过cdn）
-        # @type AccessFlag: Integer
-        # @param OriginDomain: 云接入源站域名
-        # @type OriginDomain: String
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :ServiceSet, :EnableService, :DefaultDomain, :EnableUnion, :EnableCheckAcrossDomain, :CustomRoutingRules, :AccessFlag, :OriginDomain, :RequestId
-
-        def initialize(serviceset=nil, enableservice=nil, defaultdomain=nil, enableunion=nil, enablecheckacrossdomain=nil, customroutingrules=nil, accessflag=nil, origindomain=nil, requestid=nil)
-          @ServiceSet = serviceset
-          @EnableService = enableservice
-          @DefaultDomain = defaultdomain
-          @EnableUnion = enableunion
-          @EnableCheckAcrossDomain = enablecheckacrossdomain
-          @CustomRoutingRules = customroutingrules
-          @AccessFlag = accessflag
-          @OriginDomain = origindomain
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['ServiceSet'].nil?
-            @ServiceSet = []
-            params['ServiceSet'].each do |i|
-              cloudbasegwservice_tmp = CloudBaseGWService.new
-              cloudbasegwservice_tmp.deserialize(i)
-              @ServiceSet << cloudbasegwservice_tmp
-            end
-          end
-          @EnableService = params['EnableService']
-          @DefaultDomain = params['DefaultDomain']
-          @EnableUnion = params['EnableUnion']
-          @EnableCheckAcrossDomain = params['EnableCheckAcrossDomain']
-          @CustomRoutingRules = params['CustomRoutingRules']
-          @AccessFlag = params['AccessFlag']
-          @OriginDomain = params['OriginDomain']
           @RequestId = params['RequestId']
         end
       end
@@ -2939,6 +2613,135 @@ module TencentCloud
             end
           end
           @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeGatewayVersions请求参数结构体
+      class DescribeGatewayVersionsRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: 环境id
+        # @type EnvId: String
+        # @param GatewayId: 网关id
+        # @type GatewayId: String
+        # @param VersionName: 版本名
+        # @type VersionName: String
+
+        attr_accessor :EnvId, :GatewayId, :VersionName
+
+        def initialize(envid=nil, gatewayid=nil, versionname=nil)
+          @EnvId = envid
+          @GatewayId = gatewayid
+          @VersionName = versionname
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @GatewayId = params['GatewayId']
+          @VersionName = params['VersionName']
+        end
+      end
+
+      # DescribeGatewayVersions返回参数结构体
+      class DescribeGatewayVersionsResponse < TencentCloud::Common::AbstractModel
+        # @param GatewayId: 网关id
+        # @type GatewayId: String
+        # @param TotalCount: 版本总数
+        # @type TotalCount: Integer
+        # @param GatewayVersionItems: 版本信息详情
+        # @type GatewayVersionItems: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :GatewayId, :TotalCount, :GatewayVersionItems, :RequestId
+
+        def initialize(gatewayid=nil, totalcount=nil, gatewayversionitems=nil, requestid=nil)
+          @GatewayId = gatewayid
+          @TotalCount = totalcount
+          @GatewayVersionItems = gatewayversionitems
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @TotalCount = params['TotalCount']
+          unless params['GatewayVersionItems'].nil?
+            @GatewayVersionItems = []
+            params['GatewayVersionItems'].each do |i|
+              gatewayversionitem_tmp = GatewayVersionItem.new
+              gatewayversionitem_tmp.deserialize(i)
+              @GatewayVersionItems << gatewayversionitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeHTTPServiceRoute请求参数结构体
+      class DescribeHTTPServiceRouteRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: 环境ID
+        # @type EnvId: String
+        # @param Filters: 过滤条件。Key的含义参考对应字段，Value精确匹配。可过滤: Domain、Path、DomainType、UpstreamResourceType。可过滤的Values单条不超过100
+        # @type Filters: Array
+        # @param Offset: 分页偏移量。默认 0
+        # @type Offset: Integer
+        # @param Limit: 分页限制。默认20，最大值1000
+        # @type Limit: Integer
+
+        attr_accessor :EnvId, :Filters, :Offset, :Limit
+
+        def initialize(envid=nil, filters=nil, offset=nil, limit=nil)
+          @EnvId = envid
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeHTTPServiceRoute返回参数结构体
+      class DescribeHTTPServiceRouteResponse < TencentCloud::Common::AbstractModel
+        # @param Domains: 域名路由信息列表
+        # @type Domains: Array
+        # @param OriginDomain: 自定义接入的源站域名（HTTPService接入层域名）
+        # @type OriginDomain: String
+        # @param TotalCount: 域名总数，分页查询使用总数判断是否已经拉取到所有数据
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Domains, :OriginDomain, :TotalCount, :RequestId
+
+        def initialize(domains=nil, origindomain=nil, totalcount=nil, requestid=nil)
+          @Domains = domains
+          @OriginDomain = origindomain
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Domains'].nil?
+            @Domains = []
+            params['Domains'].each do |i|
+              httpservicedomain_tmp = HTTPServiceDomain.new
+              httpservicedomain_tmp.deserialize(i)
+              @Domains << httpservicedomain_tmp
+            end
+          end
+          @OriginDomain = params['OriginDomain']
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -4155,6 +3958,61 @@ module TencentCloud
         end
       end
 
+      # 外部存储。
+      # 标识该存储介质，并非由云开发CloudBase创建，而是绑定的其他存储介质。
+      # 目前仅支持 [腾讯云-对象存储](https://cloud.tencent.com/document/product/436)。
+      class ExternalStorage < TencentCloud::Common::AbstractModel
+        # @param BucketName: 桶名。
+        # 当 Provider=cos 时，表示腾讯云对象存储桶。
+        # @type BucketName: String
+        # @param Region: Bucket所属地域。
+        # 当 Provider=cos 时，表示腾讯云对象存储桶的所属地域。
+        # @type Region: String
+        # @param BasePath: 基础路径。
+        # 绑定之后，用户访问云存储内的文件，后台会自动以BasePath作为前缀，拼接到所访问的文件中。
+        # 例如：
+        #   BasePath=my-cloudbase-path ， 当用户访问云存储内的 /tencentcloud.png 时，实际访问的完整路径是：/my-cloudbase-path/tencentcloud.png
+        # @type BasePath: String
+        # @param Enabled: 是否启用外部存储
+        # @type Enabled: Boolean
+
+        attr_accessor :BucketName, :Region, :BasePath, :Enabled
+
+        def initialize(bucketname=nil, region=nil, basepath=nil, enabled=nil)
+          @BucketName = bucketname
+          @Region = region
+          @BasePath = basepath
+          @Enabled = enabled
+        end
+
+        def deserialize(params)
+          @BucketName = params['BucketName']
+          @Region = params['Region']
+          @BasePath = params['BasePath']
+          @Enabled = params['Enabled']
+        end
+      end
+
+      # 描述键值对过滤器，用于条件过滤查询。例如过滤ID、名称、状态等
+      class Filter < TencentCloud::Common::AbstractModel
+        # @param Name: 需要过滤的字段。过滤条件数量限制为10。
+        # @type Name: String
+        # @param Values: 字段的过滤值。
+        # @type Values: Array
+
+        attr_accessor :Name, :Values
+
+        def initialize(name=nil, values=nil)
+          @Name = name
+          @Values = values
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Values = params['Values']
+        end
+      end
+
       # 函数的信息
       class FunctionInfo < TencentCloud::Common::AbstractModel
         # @param Namespace: 命名空间
@@ -4173,6 +4031,61 @@ module TencentCloud
         def deserialize(params)
           @Namespace = params['Namespace']
           @Region = params['Region']
+        end
+      end
+
+      # 网关版本详情
+      class GatewayVersionItem < TencentCloud::Common::AbstractModel
+        # @param VersionName: 版本名
+        # @type VersionName: String
+        # @param Weight: 版本流量权重
+        # @type Weight: Integer
+        # @param Status: 创建状态
+        # @type Status: String
+        # @param CreatedTime: 创建时间
+        # @type CreatedTime: String
+        # @param UpdatedTime: 更新时间
+        # @type UpdatedTime: String
+        # @param BuildId: 构建ID
+        # @type BuildId: Integer
+        # @param Remark: 备注
+        # @type Remark: String
+        # @param Priority: 优先级
+        # @type Priority: Integer
+        # @param IsDefault: 是否默认版本
+        # @type IsDefault: Boolean
+        # @param CustomConfig: 网关版本自定义配置
+        # @type CustomConfig: :class:`Tencentcloud::Tcb.v20180608.models.WxGatewayCustomConfig`
+
+        attr_accessor :VersionName, :Weight, :Status, :CreatedTime, :UpdatedTime, :BuildId, :Remark, :Priority, :IsDefault, :CustomConfig
+
+        def initialize(versionname=nil, weight=nil, status=nil, createdtime=nil, updatedtime=nil, buildid=nil, remark=nil, priority=nil, isdefault=nil, customconfig=nil)
+          @VersionName = versionname
+          @Weight = weight
+          @Status = status
+          @CreatedTime = createdtime
+          @UpdatedTime = updatedtime
+          @BuildId = buildid
+          @Remark = remark
+          @Priority = priority
+          @IsDefault = isdefault
+          @CustomConfig = customconfig
+        end
+
+        def deserialize(params)
+          @VersionName = params['VersionName']
+          @Weight = params['Weight']
+          @Status = params['Status']
+          @CreatedTime = params['CreatedTime']
+          @UpdatedTime = params['UpdatedTime']
+          @BuildId = params['BuildId']
+          @Remark = params['Remark']
+          @Priority = params['Priority']
+          @IsDefault = params['IsDefault']
+          unless params['CustomConfig'].nil?
+            @CustomConfig = WxGatewayCustomConfig.new
+            @CustomConfig.deserialize(params['CustomConfig'])
+          end
         end
       end
 
@@ -4222,6 +4135,299 @@ module TencentCloud
             end
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 查询HTTP访问服务输出的域名信息，每个域名内包含所有路由信息
+      class HTTPServiceDomain < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param DomainType: 域名类型。 HTTPSERVICE: HTTP访问服务，CBR: 云托管服务，ANYSERVICE: 任意服务，AI_AGENT: AI agent，VM: 主机，INTEGRATION_CALLBACK: 集成回调
+        # @type DomainType: String
+        # @param AccessType: 绑定类型。默认DIRECT。DIRECT: 直连到HTTP访问服务， CDN: 接入云开发CDN，CUSTOM: 自定义接入类型（其他CDN或者WAF）
+        # @type AccessType: String
+        # @param CertId: 证书ID。当前账户下SSL平台的证书ID
+        # @type CertId: String
+        # @param Protocol: 协议类型。默认HTTP_AND_HTTPS。HTTP_AND_HTTPS: 同时开启http和https，HTTP_TO_HTTPS: http重定向成https，HTTPS_TO_HTTP: https重定向成http。如果未配置证书无法访问https或者进行重定向
+        # @type Protocol: String
+        # @param Cname: 配置DNS解析的CNAME。根据AccessType返回不同的CNAME值。
+        # @type Cname: String
+        # @param IsDefault: 是否是默认域名
+        # @type IsDefault: Boolean
+        # @param Enable: 域名开启状态
+        # @type Enable: Boolean
+        # @param Status: 状态。PROCESSING、FAIL，SUCCESS。
+        # @type Status: String
+        # @param DNSStatus: DNS解析状态。OK： 解析正常，INVALID：解析不正确，域名未解析到当前Cname域名。
+        # @type DNSStatus: String
+        # @param Routes: HTTP访问服务路由信息
+        # @type Routes: Array
+        # @param CreateTime: 域名创建时间
+        # @type CreateTime: String
+        # @param UpdateTime: 域名更新时间
+        # @type UpdateTime: String
+
+        attr_accessor :Domain, :DomainType, :AccessType, :CertId, :Protocol, :Cname, :IsDefault, :Enable, :Status, :DNSStatus, :Routes, :CreateTime, :UpdateTime
+
+        def initialize(domain=nil, domaintype=nil, accesstype=nil, certid=nil, protocol=nil, cname=nil, isdefault=nil, enable=nil, status=nil, dnsstatus=nil, routes=nil, createtime=nil, updatetime=nil)
+          @Domain = domain
+          @DomainType = domaintype
+          @AccessType = accesstype
+          @CertId = certid
+          @Protocol = protocol
+          @Cname = cname
+          @IsDefault = isdefault
+          @Enable = enable
+          @Status = status
+          @DNSStatus = dnsstatus
+          @Routes = routes
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @DomainType = params['DomainType']
+          @AccessType = params['AccessType']
+          @CertId = params['CertId']
+          @Protocol = params['Protocol']
+          @Cname = params['Cname']
+          @IsDefault = params['IsDefault']
+          @Enable = params['Enable']
+          @Status = params['Status']
+          @DNSStatus = params['DNSStatus']
+          unless params['Routes'].nil?
+            @Routes = []
+            params['Routes'].each do |i|
+              httpserviceroute_tmp = HTTPServiceRoute.new
+              httpserviceroute_tmp.deserialize(i)
+              @Routes << httpserviceroute_tmp
+            end
+          end
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # 创建或修改HTTP访问服务输入的域名信息，修改HTTP访问服务域名时对应字段不传参数表示不需要修改。
+      class HTTPServiceDomainParam < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名。全局唯一。如果域名在其他环境下占用或者腾讯云CDN占用，可能会导致创建失败
+        # @type Domain: String
+        # @param AccessType: 绑定类型。默认DIRECT。DIRECT: 直连到HTTP访问服务， CDN: 接入云开发CDN，CUSTOM: 自定义接入类型（其他CDN或者WAF）
+        # @type AccessType: String
+        # @param CertId: 证书ID。当前账户下SSL平台的证书ID
+        # @type CertId: String
+        # @param Protocol: 协议类型。默认HTTP_AND_HTTPS。HTTP_AND_HTTPS: 同时开启http和https，HTTP_TO_HTTPS: http重定向成https，HTTPS_TO_HTTP: https重定向成http。如果未配置证书无法访问https或者进行重定向
+        # @type Protocol: String
+        # @param CustomCname: 自定义CNAME。对应AccessType: Custom
+        # @type CustomCname: String
+        # @param Enable: 域名开启状态，不传默认开启
+        # @type Enable: Boolean
+        # @param Routes: 创建/修改的HTTP访问服务路由列表。如果不传，仅创建或修改域名信息。列表最大支持传入20个
+        # @type Routes: Array
+
+        attr_accessor :Domain, :AccessType, :CertId, :Protocol, :CustomCname, :Enable, :Routes
+
+        def initialize(domain=nil, accesstype=nil, certid=nil, protocol=nil, customcname=nil, enable=nil, routes=nil)
+          @Domain = domain
+          @AccessType = accesstype
+          @CertId = certid
+          @Protocol = protocol
+          @CustomCname = customcname
+          @Enable = enable
+          @Routes = routes
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @AccessType = params['AccessType']
+          @CertId = params['CertId']
+          @Protocol = params['Protocol']
+          @CustomCname = params['CustomCname']
+          @Enable = params['Enable']
+          unless params['Routes'].nil?
+            @Routes = []
+            params['Routes'].each do |i|
+              httpservicerouteparam_tmp = HTTPServiceRouteParam.new
+              httpservicerouteparam_tmp.deserialize(i)
+              @Routes << httpservicerouteparam_tmp
+            end
+          end
+        end
+      end
+
+      # HTTP访问服务路径重写配置
+      class HTTPServicePathRewrite < TencentCloud::Common::AbstractModel
+        # @param Prefix: 路径前缀重写。StaticStorePrefix、Prefix只能填一个
+        # @type Prefix: String
+
+        attr_accessor :Prefix
+
+        def initialize(prefix=nil)
+          @Prefix = prefix
+        end
+
+        def deserialize(params)
+          @Prefix = params['Prefix']
+        end
+      end
+
+      # http访问服务客户端限频
+      class HTTPServiceQPSPerClient < TencentCloud::Common::AbstractModel
+        # @param LimitBy: 客户端维度限频标识。限制当前资源被单个客户端调用的频率，客户端标识支持 用户ID（UserID） 或 客户端 IP（ClientIP）。UserID 包括 云开发用户 ID 或 微信 openid，如果请求无 UserID 信息，则不会限制。
+        # @type LimitBy: String
+        # @param LimitValue: 限制QPS值，每秒请求次数
+        # @type LimitValue: Integer
+
+        attr_accessor :LimitBy, :LimitValue
+
+        def initialize(limitby=nil, limitvalue=nil)
+          @LimitBy = limitby
+          @LimitValue = limitvalue
+        end
+
+        def deserialize(params)
+          @LimitBy = params['LimitBy']
+          @LimitValue = params['LimitValue']
+        end
+      end
+
+      # 查询HTTP访问服务输出路由信息
+      class HTTPServiceRoute < TencentCloud::Common::AbstractModel
+        # @param Path: 路径
+        # @type Path: String
+        # @param PathRewrite: 路径重写
+        # @type PathRewrite: :class:`Tencentcloud::Tcb.v20180608.models.HTTPServicePathRewrite`
+        # @param UpstreamResourceType: 上游服务类型。SCF: 云函数，CBR: 云托管，STATIC_STORE: 静态托管，WEB_SCF: WEB云函数，LH: Lighthouse
+        # @type UpstreamResourceType: String
+        # @param UpstreamResourceName: 上游服务名
+        # @type UpstreamResourceName: String
+        # @param EnableSafeDomain: 是否开启安全域名
+        # @type EnableSafeDomain: Boolean
+        # @param EnableAuth: 是否开启身份认证
+        # @type EnableAuth: Boolean
+        # @param EnablePathTransmission: 是否开启路径透传
+        # @type EnablePathTransmission: Boolean
+        # @param QPSPolicy: QPS限频策略
+        # @type QPSPolicy: :class:`Tencentcloud::Tcb.v20180608.models.HTTPServiceRouteQPSPolicy`
+        # @param Enable: 是否开启路由
+        # @type Enable: Boolean
+        # @param CreateTime: 路由创建时间
+        # @type CreateTime: String
+        # @param UpdateTime: 路由更新时间
+        # @type UpdateTime: String
+
+        attr_accessor :Path, :PathRewrite, :UpstreamResourceType, :UpstreamResourceName, :EnableSafeDomain, :EnableAuth, :EnablePathTransmission, :QPSPolicy, :Enable, :CreateTime, :UpdateTime
+
+        def initialize(path=nil, pathrewrite=nil, upstreamresourcetype=nil, upstreamresourcename=nil, enablesafedomain=nil, enableauth=nil, enablepathtransmission=nil, qpspolicy=nil, enable=nil, createtime=nil, updatetime=nil)
+          @Path = path
+          @PathRewrite = pathrewrite
+          @UpstreamResourceType = upstreamresourcetype
+          @UpstreamResourceName = upstreamresourcename
+          @EnableSafeDomain = enablesafedomain
+          @EnableAuth = enableauth
+          @EnablePathTransmission = enablepathtransmission
+          @QPSPolicy = qpspolicy
+          @Enable = enable
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @Path = params['Path']
+          unless params['PathRewrite'].nil?
+            @PathRewrite = HTTPServicePathRewrite.new
+            @PathRewrite.deserialize(params['PathRewrite'])
+          end
+          @UpstreamResourceType = params['UpstreamResourceType']
+          @UpstreamResourceName = params['UpstreamResourceName']
+          @EnableSafeDomain = params['EnableSafeDomain']
+          @EnableAuth = params['EnableAuth']
+          @EnablePathTransmission = params['EnablePathTransmission']
+          unless params['QPSPolicy'].nil?
+            @QPSPolicy = HTTPServiceRouteQPSPolicy.new
+            @QPSPolicy.deserialize(params['QPSPolicy'])
+          end
+          @Enable = params['Enable']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # 创建或修改HTTP访问服务输入的路由信息，修改HTTP访问服务路由信息时对应字段不传参数表示不用修改。
+      class HTTPServiceRouteParam < TencentCloud::Common::AbstractModel
+        # @param Path: 路径
+        # @type Path: String
+        # @param UpstreamResourceType: 上游服务类型。创建时必填，修改时可选填。SCF: 云函数，CBR: 云托管，STATIC_STORE: 静态托管，WEB_SCF: WEB云函数，LH: Lighthouse
+        # @type UpstreamResourceType: String
+        # @param UpstreamResourceName: 上游服务名。创建时必填，修改时可选填
+        # @type UpstreamResourceName: String
+        # @param PathRewrite: 路径重写
+        # @type PathRewrite: :class:`Tencentcloud::Tcb.v20180608.models.HTTPServicePathRewrite`
+        # @param EnableSafeDomain: 是否开启安全域名。默认开启
+        # @type EnableSafeDomain: Boolean
+        # @param EnableAuth: 是否开启身份认证。默认关闭
+        # @type EnableAuth: Boolean
+        # @param EnablePathTransmission: 是否开启路径透传。默认关闭
+        # @type EnablePathTransmission: Boolean
+        # @param QPSPolicy: QPS限频策略
+        # @type QPSPolicy: :class:`Tencentcloud::Tcb.v20180608.models.HTTPServiceRouteQPSPolicy`
+        # @param Enable: 是否开启路由
+        # @type Enable: Boolean
+
+        attr_accessor :Path, :UpstreamResourceType, :UpstreamResourceName, :PathRewrite, :EnableSafeDomain, :EnableAuth, :EnablePathTransmission, :QPSPolicy, :Enable
+
+        def initialize(path=nil, upstreamresourcetype=nil, upstreamresourcename=nil, pathrewrite=nil, enablesafedomain=nil, enableauth=nil, enablepathtransmission=nil, qpspolicy=nil, enable=nil)
+          @Path = path
+          @UpstreamResourceType = upstreamresourcetype
+          @UpstreamResourceName = upstreamresourcename
+          @PathRewrite = pathrewrite
+          @EnableSafeDomain = enablesafedomain
+          @EnableAuth = enableauth
+          @EnablePathTransmission = enablepathtransmission
+          @QPSPolicy = qpspolicy
+          @Enable = enable
+        end
+
+        def deserialize(params)
+          @Path = params['Path']
+          @UpstreamResourceType = params['UpstreamResourceType']
+          @UpstreamResourceName = params['UpstreamResourceName']
+          unless params['PathRewrite'].nil?
+            @PathRewrite = HTTPServicePathRewrite.new
+            @PathRewrite.deserialize(params['PathRewrite'])
+          end
+          @EnableSafeDomain = params['EnableSafeDomain']
+          @EnableAuth = params['EnableAuth']
+          @EnablePathTransmission = params['EnablePathTransmission']
+          unless params['QPSPolicy'].nil?
+            @QPSPolicy = HTTPServiceRouteQPSPolicy.new
+            @QPSPolicy.deserialize(params['QPSPolicy'])
+          end
+          @Enable = params['Enable']
+        end
+      end
+
+      # 云开发路由限频策略
+      class HTTPServiceRouteQPSPolicy < TencentCloud::Common::AbstractModel
+        # @param QPSTotal: QPS值，每秒请求次数
+        # @type QPSTotal: Integer
+        # @param QPSPerClient: 客户端限频配置
+        # @type QPSPerClient: :class:`Tencentcloud::Tcb.v20180608.models.HTTPServiceQPSPerClient`
+
+        attr_accessor :QPSTotal, :QPSPerClient
+
+        def initialize(qpstotal=nil, qpsperclient=nil)
+          @QPSTotal = qpstotal
+          @QPSPerClient = qpsperclient
+        end
+
+        def deserialize(params)
+          @QPSTotal = params['QPSTotal']
+          unless params['QPSPerClient'].nil?
+            @QPSPerClient = HTTPServiceQPSPerClient.new
+            @QPSPerClient.deserialize(params['QPSPerClient'])
+          end
         end
       end
 
@@ -4825,53 +5031,6 @@ module TencentCloud
         end
       end
 
-      # ModifyCloudBaseGWAPI请求参数结构体
-      class ModifyCloudBaseGWAPIRequest < TencentCloud::Common::AbstractModel
-        # @param ServiceId: Service ID
-        # @type ServiceId: String
-        # @param APIId: API ID
-        # @type APIId: String
-        # @param Options: 选项列表，key取值：domain, path。
-        # @type Options: Array
-
-        attr_accessor :ServiceId, :APIId, :Options
-
-        def initialize(serviceid=nil, apiid=nil, options=nil)
-          @ServiceId = serviceid
-          @APIId = apiid
-          @Options = options
-        end
-
-        def deserialize(params)
-          @ServiceId = params['ServiceId']
-          @APIId = params['APIId']
-          unless params['Options'].nil?
-            @Options = []
-            params['Options'].each do |i|
-              cloudbaseoption_tmp = CloudBaseOption.new
-              cloudbaseoption_tmp.deserialize(i)
-              @Options << cloudbaseoption_tmp
-            end
-          end
-        end
-      end
-
-      # ModifyCloudBaseGWAPI返回参数结构体
-      class ModifyCloudBaseGWAPIResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :RequestId
-
-        def initialize(requestid=nil)
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @RequestId = params['RequestId']
-        end
-      end
-
       # ModifyClsTopic请求参数结构体
       class ModifyClsTopicRequest < TencentCloud::Common::AbstractModel
         # @param EnvId: 环境ID
@@ -5015,6 +5174,45 @@ module TencentCloud
 
       # ModifyEnv返回参数结构体
       class ModifyEnvResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyHTTPServiceRoute请求参数结构体
+      class ModifyHTTPServiceRouteRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: 环境ID
+        # @type EnvId: String
+        # @param Domain: 域名路由信息
+        # @type Domain: :class:`Tencentcloud::Tcb.v20180608.models.HTTPServiceDomainParam`
+
+        attr_accessor :EnvId, :Domain
+
+        def initialize(envid=nil, domain=nil)
+          @EnvId = envid
+          @Domain = domain
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          unless params['Domain'].nil?
+            @Domain = HTTPServiceDomainParam.new
+            @Domain.deserialize(params['Domain'])
+          end
+        end
+      end
+
+      # ModifyHTTPServiceRoute返回参数结构体
+      class ModifyHTTPServiceRouteResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -6490,6 +6688,34 @@ module TencentCloud
         end
       end
 
+      # 云服务器登录方式
+      class VMLoginConfiguration < TencentCloud::Common::AbstractModel
+        # @param LoginType: 登录方式。扫码登录时指定为 SCAN_LOGIN
+        # @type LoginType: String
+        # @param AutoGeneratePassword: 是否自动生成密码
+        # @type AutoGeneratePassword: String
+        # @param Password: 指定密码登录
+        # @type Password: String
+        # @param KeyIds: 绑定密钥ID
+        # @type KeyIds: Array
+
+        attr_accessor :LoginType, :AutoGeneratePassword, :Password, :KeyIds
+
+        def initialize(logintype=nil, autogeneratepassword=nil, password=nil, keyids=nil)
+          @LoginType = logintype
+          @AutoGeneratePassword = autogeneratepassword
+          @Password = password
+          @KeyIds = keyids
+        end
+
+        def deserialize(params)
+          @LoginType = params['LoginType']
+          @AutoGeneratePassword = params['AutoGeneratePassword']
+          @Password = params['Password']
+          @KeyIds = params['KeyIds']
+        end
+      end
+
       # 虚拟主机价格
       class VMPrice < TencentCloud::Common::AbstractModel
         # @param Currency: 价格货币单位。取值范围CNY:人民币。USD:美元。
@@ -6643,6 +6869,44 @@ module TencentCloud
           @InstanceId = params['InstanceId']
           @Status = params['Status']
           @Region = params['Region']
+        end
+      end
+
+      # 安全网关自定义配置
+      class WxGatewayCustomConfig < TencentCloud::Common::AbstractModel
+        # @param IsOpenXRealIp: 是否开启x-real-ip
+        # @type IsOpenXRealIp: Boolean
+        # @param BanConfig: 封禁配置
+        # @type BanConfig: :class:`Tencentcloud::Tcb.v20180608.models.BanConfig`
+        # @param SourceIpType: 获取源ip方式，PPV1(Proxy Protocol V1)、PPV2(Proxy Protocol V2)、TOA(tcp option address)
+        # @type SourceIpType: String
+        # @param LogConfig: 日志信息
+        # @type LogConfig: :class:`Tencentcloud::Tcb.v20180608.models.CustomLogConfig`
+        # @param IsAcceptHttpOne: 是否开启http1.0
+        # @type IsAcceptHttpOne: Boolean
+
+        attr_accessor :IsOpenXRealIp, :BanConfig, :SourceIpType, :LogConfig, :IsAcceptHttpOne
+
+        def initialize(isopenxrealip=nil, banconfig=nil, sourceiptype=nil, logconfig=nil, isaccepthttpone=nil)
+          @IsOpenXRealIp = isopenxrealip
+          @BanConfig = banconfig
+          @SourceIpType = sourceiptype
+          @LogConfig = logconfig
+          @IsAcceptHttpOne = isaccepthttpone
+        end
+
+        def deserialize(params)
+          @IsOpenXRealIp = params['IsOpenXRealIp']
+          unless params['BanConfig'].nil?
+            @BanConfig = BanConfig.new
+            @BanConfig.deserialize(params['BanConfig'])
+          end
+          @SourceIpType = params['SourceIpType']
+          unless params['LogConfig'].nil?
+            @LogConfig = CustomLogConfig.new
+            @LogConfig.deserialize(params['LogConfig'])
+          end
+          @IsAcceptHttpOne = params['IsAcceptHttpOne']
         end
       end
 

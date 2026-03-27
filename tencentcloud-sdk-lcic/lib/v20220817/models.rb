@@ -496,19 +496,23 @@ module TencentCloud
         # @type RoomIds: Array
         # @param ExpireSeconds: <p>token过期时间，单位秒。如果传0则表示不过期</p>
         # @type ExpireSeconds: Integer
+        # @param UserId: <p>用户ID</p>
+        # @type UserId: String
 
-        attr_accessor :SdkAppId, :RoomIds, :ExpireSeconds
+        attr_accessor :SdkAppId, :RoomIds, :ExpireSeconds, :UserId
 
-        def initialize(sdkappid=nil, roomids=nil, expireseconds=nil)
+        def initialize(sdkappid=nil, roomids=nil, expireseconds=nil, userid=nil)
           @SdkAppId = sdkappid
           @RoomIds = roomids
           @ExpireSeconds = expireseconds
+          @UserId = userid
         end
 
         def deserialize(params)
           @SdkAppId = params['SdkAppId']
           @RoomIds = params['RoomIds']
           @ExpireSeconds = params['ExpireSeconds']
+          @UserId = params['UserId']
         end
       end
 
@@ -518,14 +522,17 @@ module TencentCloud
         # @type Results: Array
         # @param Total: <p>房间ID。</p>
         # @type Total: Integer
+        # @param UserId: <p>用户ID</p>
+        # @type UserId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Results, :Total, :RequestId
+        attr_accessor :Results, :Total, :UserId, :RequestId
 
-        def initialize(results=nil, total=nil, requestid=nil)
+        def initialize(results=nil, total=nil, userid=nil, requestid=nil)
           @Results = results
           @Total = total
+          @UserId = userid
           @RequestId = requestid
         end
 
@@ -539,6 +546,7 @@ module TencentCloud
             end
           end
           @Total = params['Total']
+          @UserId = params['UserId']
           @RequestId = params['RequestId']
         end
       end

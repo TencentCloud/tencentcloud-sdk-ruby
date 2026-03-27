@@ -81,35 +81,39 @@ module TencentCloud
       class Account < TencentCloud::Common::AbstractModel
         # @param AccountName: 数据库账号名
         # @type AccountName: String
+        # @param Host: 主机
+        # @type Host: String
         # @param Description: 数据库账号描述
         # @type Description: String
         # @param CreateTime: 创建时间
         # @type CreateTime: String
         # @param UpdateTime: 更新时间
         # @type UpdateTime: String
-        # @param Host: 主机
-        # @type Host: String
         # @param MaxUserConnections: 用户最大连接数
         # @type MaxUserConnections: Integer
+        # @param PasswordRotation: 是否开启密码轮转(0:关闭;1:开启)
+        # @type PasswordRotation: Integer
 
-        attr_accessor :AccountName, :Description, :CreateTime, :UpdateTime, :Host, :MaxUserConnections
+        attr_accessor :AccountName, :Host, :Description, :CreateTime, :UpdateTime, :MaxUserConnections, :PasswordRotation
 
-        def initialize(accountname=nil, description=nil, createtime=nil, updatetime=nil, host=nil, maxuserconnections=nil)
+        def initialize(accountname=nil, host=nil, description=nil, createtime=nil, updatetime=nil, maxuserconnections=nil, passwordrotation=nil)
           @AccountName = accountname
+          @Host = host
           @Description = description
           @CreateTime = createtime
           @UpdateTime = updatetime
-          @Host = host
           @MaxUserConnections = maxuserconnections
+          @PasswordRotation = passwordrotation
         end
 
         def deserialize(params)
           @AccountName = params['AccountName']
+          @Host = params['Host']
           @Description = params['Description']
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
-          @Host = params['Host']
           @MaxUserConnections = params['MaxUserConnections']
+          @PasswordRotation = params['PasswordRotation']
         end
       end
 
@@ -9855,7 +9859,8 @@ module TencentCloud
         # <li> ASC：升序排序 </li>
         # <li> DESC：降序排序 </li>
         # @type OrderByType: String
-        # @param Filters: 搜索条件，若存在多个Filter时，Filter间的关系为逻辑与（AND）关系。
+        # @param Filters: 搜索条件，若存在多个 Filter 时，Filter 间的关系为逻辑与（AND）关系。
+        # 说明：此参数当前仅支持 Status 和 ProxyGroupId 两种过滤条件。
         # @type Filters: Array
 
         attr_accessor :ClusterId, :Limit, :Offset, :OrderBy, :OrderByType, :Filters
@@ -16454,33 +16459,37 @@ module TencentCloud
         end
       end
 
-      # x08新创建的账号
+      # 新建账号
       class NewAccount < TencentCloud::Common::AbstractModel
         # @param AccountName: 账户名，包含字母数字_,以字母开头，字母或数字结尾，长度1-30
         # @type AccountName: String
-        # @param AccountPassword: 密码，密码长度范围为8到64个字符
-        # @type AccountPassword: String
         # @param Host: 主机(%或ipv4地址)
         # @type Host: String
+        # @param AccountPassword: 密码，密码长度范围为8到64个字符
+        # @type AccountPassword: String
+        # @param PasswordRotation: 是否开启密码轮转(0:关闭;1:开启)
+        # @type PasswordRotation: Integer
         # @param Description: 描述
         # @type Description: String
         # @param MaxUserConnections: 用户最大连接数，不能大于10240
         # @type MaxUserConnections: Integer
 
-        attr_accessor :AccountName, :AccountPassword, :Host, :Description, :MaxUserConnections
+        attr_accessor :AccountName, :Host, :AccountPassword, :PasswordRotation, :Description, :MaxUserConnections
 
-        def initialize(accountname=nil, accountpassword=nil, host=nil, description=nil, maxuserconnections=nil)
+        def initialize(accountname=nil, host=nil, accountpassword=nil, passwordrotation=nil, description=nil, maxuserconnections=nil)
           @AccountName = accountname
-          @AccountPassword = accountpassword
           @Host = host
+          @AccountPassword = accountpassword
+          @PasswordRotation = passwordrotation
           @Description = description
           @MaxUserConnections = maxuserconnections
         end
 
         def deserialize(params)
           @AccountName = params['AccountName']
-          @AccountPassword = params['AccountPassword']
           @Host = params['Host']
+          @AccountPassword = params['AccountPassword']
+          @PasswordRotation = params['PasswordRotation']
           @Description = params['Description']
           @MaxUserConnections = params['MaxUserConnections']
         end
@@ -21027,6 +21036,8 @@ module TencentCloud
         # @param UpgradeType: 升级类型：upgradeImmediate，upgradeInMaintain
         # @type UpgradeType: String
         # @param DeviceType: 实例机器类型
+        # 1. common，通用型。
+        # 2. exclusive，独享型。
         # @type DeviceType: String
         # @param StorageLimit: 该参数已废弃
         # @type StorageLimit: Integer

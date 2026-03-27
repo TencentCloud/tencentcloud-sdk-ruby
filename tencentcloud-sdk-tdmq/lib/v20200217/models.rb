@@ -2183,22 +2183,31 @@ module TencentCloud
 
       # CreateRocketMQRole请求参数结构体
       class CreateRocketMQRoleRequest < TencentCloud::Common::AbstractModel
-        # @param RoleName: 角色名称，不支持中字以及除了短线和下划线外的特殊字符且长度必须大于0且小等于32。
+        # @param RoleName: <p>角色名称，不支持中字以及除了短线和下划线外的特殊字符且长度必须大于0且小等于32。</p>
         # @type RoleName: String
-        # @param ClusterId: 必填字段，集群Id
+        # @param ClusterId: <p>必填字段，集群Id</p>
         # @type ClusterId: String
-        # @param Remark: 备注说明，长度必须大等于0且小等于128。
+        # @param Remark: <p>备注说明，长度必须大等于0且小等于128。</p>
         # @type Remark: String
-        # @param PermType: 角色授权类型（集群：Cluster; 主题或消费组：TopicAndGroup）
+        # @param PermType: <p>角色授权类型（集群：Cluster; 主题或消费组：TopicAndGroup）</p>
         # @type PermType: String
+        # @param RoleGenerateMode: <p>AK、SK的生成方式，AUTO：后端自动生成，MANUAL：用户手动输入</p>
+        # @type RoleGenerateMode: String
+        # @param AccessKey: <p>选择MANUAL模式下，需要手动输入AK值</p>
+        # @type AccessKey: String
+        # @param SecretKey: <p>选择MANUAL模式下，需要手动输入SK值</p>
+        # @type SecretKey: String
 
-        attr_accessor :RoleName, :ClusterId, :Remark, :PermType
+        attr_accessor :RoleName, :ClusterId, :Remark, :PermType, :RoleGenerateMode, :AccessKey, :SecretKey
 
-        def initialize(rolename=nil, clusterid=nil, remark=nil, permtype=nil)
+        def initialize(rolename=nil, clusterid=nil, remark=nil, permtype=nil, rolegeneratemode=nil, accesskey=nil, secretkey=nil)
           @RoleName = rolename
           @ClusterId = clusterid
           @Remark = remark
           @PermType = permtype
+          @RoleGenerateMode = rolegeneratemode
+          @AccessKey = accesskey
+          @SecretKey = secretkey
         end
 
         def deserialize(params)
@@ -2206,16 +2215,19 @@ module TencentCloud
           @ClusterId = params['ClusterId']
           @Remark = params['Remark']
           @PermType = params['PermType']
+          @RoleGenerateMode = params['RoleGenerateMode']
+          @AccessKey = params['AccessKey']
+          @SecretKey = params['SecretKey']
         end
       end
 
       # CreateRocketMQRole返回参数结构体
       class CreateRocketMQRoleResponse < TencentCloud::Common::AbstractModel
-        # @param RoleName: 角色名称
+        # @param RoleName: <p>角色名称</p>
         # @type RoleName: String
-        # @param Token: 角色token
+        # @param Token: <p>角色token</p>
         # @type Token: String
-        # @param Remark: 备注说明
+        # @param Remark: <p>备注说明</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Remark: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -9840,26 +9852,25 @@ module TencentCloud
 
       # ModifyRocketMQInstanceSpec请求参数结构体
       class ModifyRocketMQInstanceSpecRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 专享实例ID
+        # @param InstanceId: <p>专享实例ID</p>
         # @type InstanceId: String
-        # @param Specification: 实例规格，
-        # rocket-vip-basic-1 基础型
-        # rocket-vip-basic-2 标准型
-        # rocket-vip-basic-3 高阶Ⅰ型
-        # rocket-vip-basic-4 高阶Ⅱ型
+        # @param Specification: <p>实例规格，<br>rocket-vip-basic-1 基础型<br>rocket-vip-basic-2 标准型<br>rocket-vip-basic-3 高阶Ⅰ型<br>rocket-vip-basic-4 高阶Ⅱ型</p>
         # @type Specification: String
-        # @param NodeCount: 节点数量
+        # @param NodeCount: <p>节点数量</p>
         # @type NodeCount: Integer
-        # @param StorageSize: 存储空间，GB为单位
+        # @param StorageSize: <p>存储空间，GB为单位</p>
         # @type StorageSize: Integer
+        # @param ZoneIds: <p>部署可用区列表</p>
+        # @type ZoneIds: Array
 
-        attr_accessor :InstanceId, :Specification, :NodeCount, :StorageSize
+        attr_accessor :InstanceId, :Specification, :NodeCount, :StorageSize, :ZoneIds
 
-        def initialize(instanceid=nil, specification=nil, nodecount=nil, storagesize=nil)
+        def initialize(instanceid=nil, specification=nil, nodecount=nil, storagesize=nil, zoneids=nil)
           @InstanceId = instanceid
           @Specification = specification
           @NodeCount = nodecount
           @StorageSize = storagesize
+          @ZoneIds = zoneids
         end
 
         def deserialize(params)
@@ -9867,12 +9878,13 @@ module TencentCloud
           @Specification = params['Specification']
           @NodeCount = params['NodeCount']
           @StorageSize = params['StorageSize']
+          @ZoneIds = params['ZoneIds']
         end
       end
 
       # ModifyRocketMQInstanceSpec返回参数结构体
       class ModifyRocketMQInstanceSpecResponse < TencentCloud::Common::AbstractModel
-        # @param OrderId: 订单号
+        # @param OrderId: <p>订单号</p>
         # @type OrderId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -14339,20 +14351,20 @@ module TencentCloud
         # @type GroupId: String
         # @param MsgId: 消息id
         # @type MsgId: String
-        # @param ClientId: 客户端ID
-        # @type ClientId: String
         # @param TopicName: 主题名称
         # @type TopicName: String
+        # @param ClientId: 客户端 ID，不指定该参数时消息将被发送到对应消费组内任意客户端
+        # @type ClientId: String
 
-        attr_accessor :ClusterId, :NamespaceId, :GroupId, :MsgId, :ClientId, :TopicName
+        attr_accessor :ClusterId, :NamespaceId, :GroupId, :MsgId, :TopicName, :ClientId
 
-        def initialize(clusterid=nil, namespaceid=nil, groupid=nil, msgid=nil, clientid=nil, topicname=nil)
+        def initialize(clusterid=nil, namespaceid=nil, groupid=nil, msgid=nil, topicname=nil, clientid=nil)
           @ClusterId = clusterid
           @NamespaceId = namespaceid
           @GroupId = groupid
           @MsgId = msgid
-          @ClientId = clientid
           @TopicName = topicname
+          @ClientId = clientid
         end
 
         def deserialize(params)
@@ -14360,8 +14372,8 @@ module TencentCloud
           @NamespaceId = params['NamespaceId']
           @GroupId = params['GroupId']
           @MsgId = params['MsgId']
-          @ClientId = params['ClientId']
           @TopicName = params['TopicName']
+          @ClientId = params['ClientId']
         end
       end
 

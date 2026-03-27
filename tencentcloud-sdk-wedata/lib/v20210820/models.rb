@@ -7070,10 +7070,13 @@ module TencentCloud
         # @param MetaFrom: Catalog来源
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MetaFrom: String
+        # @param EngineOwner: 引擎侧责任人
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EngineOwner: String
 
-        attr_accessor :AssetId, :DatasourceName, :DatabaseName, :TableName, :TableNameCn, :TableNameEn, :Description, :HeatValue, :LabelNames, :InCharge, :MetaCrawlType, :ProjectId, :LifeTime, :IsPartitionTable, :TableRecordFieldSet, :TablePropertyScore, :MsType, :StorageSize, :AssetLevel, :AssetStatus, :BizCatalogIds, :BizCatalogNames, :DatasourceId, :DatabaseId, :CreateTime, :TableId, :OperateOption, :Schema, :Environment, :IsView, :TechnologyType, :ProjectName, :ProjectDisplayName, :ClusterId, :StorageSizeWithUnit, :CollectDatasourceList, :ClusterName, :DataSourceCategory, :CollectId, :Urn, :AssetName, :AssetRunningStatus, :TaskTypeId, :ExecuteTime, :AssetLog, :AssetType, :JobName, :ExpireTime, :LevelRank, :LevelName, :AssetCode, :OwnerAccount, :ModifyTime, :LastAccessTime, :OwnerByEngine, :DataLayerUuid, :DataLayerName, :ColumnCount, :SearchHitColumns, :LabelTagList, :Aliases, :IsDeployed, :Tags, :ModelType, :FullName, :Namespace, :MetaFrom
+        attr_accessor :AssetId, :DatasourceName, :DatabaseName, :TableName, :TableNameCn, :TableNameEn, :Description, :HeatValue, :LabelNames, :InCharge, :MetaCrawlType, :ProjectId, :LifeTime, :IsPartitionTable, :TableRecordFieldSet, :TablePropertyScore, :MsType, :StorageSize, :AssetLevel, :AssetStatus, :BizCatalogIds, :BizCatalogNames, :DatasourceId, :DatabaseId, :CreateTime, :TableId, :OperateOption, :Schema, :Environment, :IsView, :TechnologyType, :ProjectName, :ProjectDisplayName, :ClusterId, :StorageSizeWithUnit, :CollectDatasourceList, :ClusterName, :DataSourceCategory, :CollectId, :Urn, :AssetName, :AssetRunningStatus, :TaskTypeId, :ExecuteTime, :AssetLog, :AssetType, :JobName, :ExpireTime, :LevelRank, :LevelName, :AssetCode, :OwnerAccount, :ModifyTime, :LastAccessTime, :OwnerByEngine, :DataLayerUuid, :DataLayerName, :ColumnCount, :SearchHitColumns, :LabelTagList, :Aliases, :IsDeployed, :Tags, :ModelType, :FullName, :Namespace, :MetaFrom, :EngineOwner
 
-        def initialize(assetid=nil, datasourcename=nil, databasename=nil, tablename=nil, tablenamecn=nil, tablenameen=nil, description=nil, heatvalue=nil, labelnames=nil, incharge=nil, metacrawltype=nil, projectid=nil, lifetime=nil, ispartitiontable=nil, tablerecordfieldset=nil, tablepropertyscore=nil, mstype=nil, storagesize=nil, assetlevel=nil, assetstatus=nil, bizcatalogids=nil, bizcatalognames=nil, datasourceid=nil, databaseid=nil, createtime=nil, tableid=nil, operateoption=nil, schema=nil, environment=nil, isview=nil, technologytype=nil, projectname=nil, projectdisplayname=nil, clusterid=nil, storagesizewithunit=nil, collectdatasourcelist=nil, clustername=nil, datasourcecategory=nil, collectid=nil, urn=nil, assetname=nil, assetrunningstatus=nil, tasktypeid=nil, executetime=nil, assetlog=nil, assettype=nil, jobname=nil, expiretime=nil, levelrank=nil, levelname=nil, assetcode=nil, owneraccount=nil, modifytime=nil, lastaccesstime=nil, ownerbyengine=nil, datalayeruuid=nil, datalayername=nil, columncount=nil, searchhitcolumns=nil, labeltaglist=nil, aliases=nil, isdeployed=nil, tags=nil, modeltype=nil, fullname=nil, namespace=nil, metafrom=nil)
+        def initialize(assetid=nil, datasourcename=nil, databasename=nil, tablename=nil, tablenamecn=nil, tablenameen=nil, description=nil, heatvalue=nil, labelnames=nil, incharge=nil, metacrawltype=nil, projectid=nil, lifetime=nil, ispartitiontable=nil, tablerecordfieldset=nil, tablepropertyscore=nil, mstype=nil, storagesize=nil, assetlevel=nil, assetstatus=nil, bizcatalogids=nil, bizcatalognames=nil, datasourceid=nil, databaseid=nil, createtime=nil, tableid=nil, operateoption=nil, schema=nil, environment=nil, isview=nil, technologytype=nil, projectname=nil, projectdisplayname=nil, clusterid=nil, storagesizewithunit=nil, collectdatasourcelist=nil, clustername=nil, datasourcecategory=nil, collectid=nil, urn=nil, assetname=nil, assetrunningstatus=nil, tasktypeid=nil, executetime=nil, assetlog=nil, assettype=nil, jobname=nil, expiretime=nil, levelrank=nil, levelname=nil, assetcode=nil, owneraccount=nil, modifytime=nil, lastaccesstime=nil, ownerbyengine=nil, datalayeruuid=nil, datalayername=nil, columncount=nil, searchhitcolumns=nil, labeltaglist=nil, aliases=nil, isdeployed=nil, tags=nil, modeltype=nil, fullname=nil, namespace=nil, metafrom=nil, engineowner=nil)
           @AssetId = assetid
           @DatasourceName = datasourcename
           @DatabaseName = databasename
@@ -7141,6 +7144,7 @@ module TencentCloud
           @FullName = fullname
           @Namespace = namespace
           @MetaFrom = metafrom
+          @EngineOwner = engineowner
         end
 
         def deserialize(params)
@@ -7259,6 +7263,7 @@ module TencentCloud
           @FullName = params['FullName']
           @Namespace = params['Namespace']
           @MetaFrom = params['MetaFrom']
+          @EngineOwner = params['EngineOwner']
         end
       end
 
@@ -43158,12 +43163,11 @@ module TencentCloud
         # @type TriggerScope: String
         # @param DataTimeList: 运行数据时间列表
         # @type DataTimeList: Array
-        # @param WorkflowId: 工作流ID
+        # @param WorkflowId: 手动工作流ID
         # @type WorkflowId: String
         # @param Remark: 备注
         # @type Remark: String
-        # @param TaskIds: 需要运行的任务列表
-        # TriggerScope=ENTIRE_WORKFLOW 时无需传此参数，TriggerScope=SPECIFIED_TASK此参数必传
+        # @param TaskIds: 需要运行的手动工作流任务列表TriggerScope=ENTIRE_WORKFLOW 时无需传此参数，TriggerScope=SPECIFIED_TASK此参数必传
         # @type TaskIds: Array
         # @param SchedulerResourceGroup: 用户提交运行时指定的调度资源组，未指定时使用任务配置的调度资源组
         # @type SchedulerResourceGroup: String

@@ -801,6 +801,42 @@ module TencentCloud
         end
       end
 
+      # CloseLog请求参数结构体
+      class CloseLogRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>实例ID</p>
+        # @type InstanceId: String
+        # @param LogType: <p>日志类型</p>
+        # @type LogType: String
+
+        attr_accessor :InstanceId, :LogType
+
+        def initialize(instanceid=nil, logtype=nil)
+          @InstanceId = instanceid
+          @LogType = logtype
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @LogType = params['LogType']
+        end
+      end
+
+      # CloseLog返回参数结构体
+      class CloseLogResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CloseSSL请求参数结构体
       class CloseSSLRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID。请登录[Redis控制台](https://console.cloud.tencent.com/redis)在实例列表复制实例 ID。
@@ -854,6 +890,65 @@ module TencentCloud
         def deserialize(params)
           @Cmd = params['Cmd']
           @Took = params['Took']
+        end
+      end
+
+      # CreateExportTask请求参数结构体
+      class CreateExportTaskRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>指定实例 ID。例如：crs-xjhsdj****。请登录<a href="https://console.cloud.tencent.com/redis">Redis控制台</a>在实例列表复制实例 ID。</p>
+        # @type InstanceId: String
+        # @param LogType: <p>日志类型。</p><p>枚举值：</p><ul><li>auditLog： 审计日志。</li></ul>
+        # @type LogType: String
+        # @param StartTime: <p>日志检索的起始时间。</p><p>参数格式：YYYY-MM-DD HH:mm:ss，例如 2026-03-06 00:00:00。返回结果中仅包含该时间点及之后的日志。</p>
+        # @type StartTime: String
+        # @param EndTime: <p>日志检索的结束时间。</p><p>参数格式：YYYY-MM-DD HH:mm:ss，例如 2026-03-06 23:59:59。返回结果中仅包含该时间点及之前的日志。</p>
+        # @type EndTime: String
+        # @param LogFilter: <p>设置日志筛选字段，过滤并下载符合条件的日志。</p>
+        # @type LogFilter: Array
+        # @param ColumnFilter: <p>自定义下载的日志字段，多个字段以逗号分隔，例如 &quot;timestamp,operation,user&quot;。指定后仅下载所选字段的数据。不传该参数时，默认下载所有字段。</p>
+        # @type ColumnFilter: Array
+
+        attr_accessor :InstanceId, :LogType, :StartTime, :EndTime, :LogFilter, :ColumnFilter
+
+        def initialize(instanceid=nil, logtype=nil, starttime=nil, endtime=nil, logfilter=nil, columnfilter=nil)
+          @InstanceId = instanceid
+          @LogType = logtype
+          @StartTime = starttime
+          @EndTime = endtime
+          @LogFilter = logfilter
+          @ColumnFilter = columnfilter
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @LogType = params['LogType']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          unless params['LogFilter'].nil?
+            @LogFilter = []
+            params['LogFilter'].each do |i|
+              logfilter_tmp = LogFilter.new
+              logfilter_tmp.deserialize(i)
+              @LogFilter << logfilter_tmp
+            end
+          end
+          @ColumnFilter = params['ColumnFilter']
+        end
+      end
+
+      # CreateExportTask返回参数结构体
+      class CreateExportTaskResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 
@@ -1286,6 +1381,46 @@ module TencentCloud
         end
       end
 
+      # DeleteExportTask请求参数结构体
+      class DeleteExportTaskRequest < TencentCloud::Common::AbstractModel
+        # @param LogType: <p>指定删除的日志类型。</p><p>枚举值：</p><ul><li>auditLog： 审计日志。</li></ul>
+        # @type LogType: String
+        # @param FileName: <p>指定删除日志的文件名。</p>
+        # @type FileName: String
+        # @param InstanceId: <p>指定实例 ID。例如：crs-xjhsdj****。请登录<a href="https://console.cloud.tencent.com/redis">Redis控制台</a>在实例列表复制实例 ID。</p>
+        # @type InstanceId: String
+
+        attr_accessor :LogType, :FileName, :InstanceId
+
+        def initialize(logtype=nil, filename=nil, instanceid=nil)
+          @LogType = logtype
+          @FileName = filename
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @LogType = params['LogType']
+          @FileName = params['FileName']
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DeleteExportTask返回参数结构体
+      class DeleteExportTaskResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteInstanceAccount请求参数结构体
       class DeleteInstanceAccountRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID，请登录[Redis控制台](https://console.cloud.tencent.com/redis)在实例列表复制实例 ID。
@@ -1401,6 +1536,43 @@ module TencentCloud
         def deserialize(params)
           @TaskId = params['TaskId']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 投递信息
+      class DeliverSummary < TencentCloud::Common::AbstractModel
+        # @param DeliverType: <p>投递类型，store（存储类），mq（消息通道）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeliverType: String
+        # @param DeliverSubType: <p>投递子类型：cls，ckafka。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeliverSubType: String
+        # @param DeliverConsumer: <p>投递订阅者</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeliverConsumer: String
+        # @param DeliverConsumerName: <p>投递订阅者名称</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeliverConsumerName: String
+        # @param DeliverError: <p>投递</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeliverError: String
+
+        attr_accessor :DeliverType, :DeliverSubType, :DeliverConsumer, :DeliverConsumerName, :DeliverError
+
+        def initialize(delivertype=nil, deliversubtype=nil, deliverconsumer=nil, deliverconsumername=nil, delivererror=nil)
+          @DeliverType = delivertype
+          @DeliverSubType = deliversubtype
+          @DeliverConsumer = deliverconsumer
+          @DeliverConsumerName = deliverconsumername
+          @DeliverError = delivererror
+        end
+
+        def deserialize(params)
+          @DeliverType = params['DeliverType']
+          @DeliverSubType = params['DeliverSubType']
+          @DeliverConsumer = params['DeliverConsumer']
+          @DeliverConsumerName = params['DeliverConsumerName']
+          @DeliverError = params['DeliverError']
         end
       end
 
@@ -1906,6 +2078,65 @@ module TencentCloud
           end
           @VIP = params['VIP']
           @VPort = params['VPort']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeExportTasks请求参数结构体
+      class DescribeExportTasksRequest < TencentCloud::Common::AbstractModel
+        # @param LogType: <p>日志类型。</p><p>枚举值：</p><ul><li>auditLog： 审计日志。</li></ul>
+        # @type LogType: String
+        # @param Limit: <p>每页输出的任务列表大小。</p><ul><li>默认值：20。</li><li>取值范围：[1,100]。</li></ul>
+        # @type Limit: Integer
+        # @param Offset: <p>分页偏移量。</p><ul><li>默认值：0。</li><li>取值：Limit 整数倍。计算公式：offset=limit*(页码-1)。</li></ul>
+        # @type Offset: Integer
+        # @param InstanceId: <p>指定查询的实例 ID。请登录<a href="https://console.cloud.tencent.com/redis">Redis 控制台</a>在实例列表复制实例 ID。</p>
+        # @type InstanceId: String
+
+        attr_accessor :LogType, :Limit, :Offset, :InstanceId
+
+        def initialize(logtype=nil, limit=nil, offset=nil, instanceid=nil)
+          @LogType = logtype
+          @Limit = limit
+          @Offset = offset
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @LogType = params['LogType']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeExportTasks返回参数结构体
+      class DescribeExportTasksResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: <p>查询日志记录的总数目。</p>
+        # @type TotalCount: Integer
+        # @param Items: <p>日志文件属性信息，包含：文件名、文件大小、下载地址等。</p>
+        # @type Items: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Items, :RequestId
+
+        def initialize(totalcount=nil, items=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Items = items
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              exportfile_tmp = ExportFile.new
+              exportfile_tmp.deserialize(i)
+              @Items << exportfile_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -3431,6 +3662,167 @@ module TencentCloud
         end
       end
 
+      # DescribeLogInstanceList请求参数结构体
+      class DescribeLogInstanceListRequest < TencentCloud::Common::AbstractModel
+        # @param LogType: <p>日志类型。</p><p>枚举值：</p><ul><li>auditLog： 审计日志。</li></ul>
+        # @type LogType: String
+        # @param Limit: <p>每页输出的任务列表大小。</p><ul><li>取值范围：[1,100]。</li><li>默认值：20。</li></ul>
+        # @type Limit: Integer
+        # @param Offset: <p>分页偏移量。默认为0。取值为 Limit 整数倍。计算公式：offset=limit*(页码-1)。</p>
+        # @type Offset: Integer
+        # @param Filters: <p>设置日志筛选字段，过滤并返回符合条件的日志。</p>
+        # @type Filters: Array
+        # @param LogSubType: <p>日志子类型。</p><p>枚举值：</p><ul><li>write： 写日志。</li><li>read： 读日志。</li><li>all： 读写日志。</li></ul>
+        # @type LogSubType: String
+        # @param LogSwitch: <p>日志开关。不传查询所有日志实例。</p><ul><li>on：开启。</li><li>off：关闭。</li></ul>
+        # @type LogSwitch: String
+
+        attr_accessor :LogType, :Limit, :Offset, :Filters, :LogSubType, :LogSwitch
+
+        def initialize(logtype=nil, limit=nil, offset=nil, filters=nil, logsubtype=nil, logswitch=nil)
+          @LogType = logtype
+          @Limit = limit
+          @Offset = offset
+          @Filters = filters
+          @LogSubType = logsubtype
+          @LogSwitch = logswitch
+        end
+
+        def deserialize(params)
+          @LogType = params['LogType']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @LogSubType = params['LogSubType']
+          @LogSwitch = params['LogSwitch']
+        end
+      end
+
+      # DescribeLogInstanceList返回参数结构体
+      class DescribeLogInstanceListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: <p>查询到的日志的数量。</p>
+        # @type TotalCount: Integer
+        # @param Items: <p>日志平台实例信息。</p>
+        # @type Items: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Items, :RequestId
+
+        def initialize(totalcount=nil, items=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Items = items
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              loginstance_tmp = LogInstance.new
+              loginstance_tmp.deserialize(i)
+              @Items << loginstance_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeLogs请求参数结构体
+      class DescribeLogsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>指定实例 ID。例如：crs-xjhsdj****。请登录<a href="https://console.cloud.tencent.com/redis">Redis控制台</a>在实例列表复制实例 ID。</p>
+        # @type InstanceId: String
+        # @param StartTime: <p>日志检索的起始时间。</p><p>参数格式：YYYY-MM-DD HH:mm:ss，例如 2026-03-06 00:00:00。返回结果中仅包含该时间点及之后的日志。</p>
+        # @type StartTime: String
+        # @param EndTime: <p>日志检索的结束时间。</p><p>参数格式：YYYY-MM-DD HH:mm:ss，例如 2026-03-06 23:59:59。返回结果中仅包含该时间点及之前的日志。</p>
+        # @type EndTime: String
+        # @param LogType: <p>日志类型。</p><p>枚举值：</p><ul><li>auditLog： 审计日志。</li></ul>
+        # @type LogType: String
+        # @param LogFilter: <p>过滤条件</p>
+        # @type LogFilter: Array
+        # @param Limit: <p>每页返回的日志列表大小。</p><ul><li>默认值：20。</li><li>取值范围：[1,100]。</li></ul>
+        # @type Limit: Integer
+        # @param Offset: <p>分页的起始偏移量。</p><ul><li>默认：0。</li><li>取值：Limit 整数倍。计算公式：offset=limit*(页码-1)。</li></ul>
+        # @type Offset: Integer
+        # @param Order: <p>日志排序方式，默认值为 DESC。取值如下：</p><ul><li>ASC：按时间升序排列，最早的日志在前。</li><li>DESC：按时间降序排列，最新的日志在前。</li></ul>
+        # @type Order: String
+        # @param OrderBy: <p>排序字段，指定按哪个字段对日志进行排序。</p>
+        # @type OrderBy: String
+
+        attr_accessor :InstanceId, :StartTime, :EndTime, :LogType, :LogFilter, :Limit, :Offset, :Order, :OrderBy
+
+        def initialize(instanceid=nil, starttime=nil, endtime=nil, logtype=nil, logfilter=nil, limit=nil, offset=nil, order=nil, orderby=nil)
+          @InstanceId = instanceid
+          @StartTime = starttime
+          @EndTime = endtime
+          @LogType = logtype
+          @LogFilter = logfilter
+          @Limit = limit
+          @Offset = offset
+          @Order = order
+          @OrderBy = orderby
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @LogType = params['LogType']
+          unless params['LogFilter'].nil?
+            @LogFilter = []
+            params['LogFilter'].each do |i|
+              logfilter_tmp = LogFilter.new
+              logfilter_tmp.deserialize(i)
+              @LogFilter << logfilter_tmp
+            end
+          end
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @Order = params['Order']
+          @OrderBy = params['OrderBy']
+        end
+      end
+
+      # DescribeLogs返回参数结构体
+      class DescribeLogsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: <p>查询的日志总数量。</p>
+        # @type TotalCount: Integer
+        # @param Items: <p>日志详情。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Items: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Items, :RequestId
+
+        def initialize(totalcount=nil, items=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Items = items
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              logresult_tmp = LogResult.new
+              logresult_tmp.deserialize(i)
+              @Items << logresult_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeMaintenanceWindow请求参数结构体
       class DescribeMaintenanceWindowRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 指定实例 ID。例如：crs-xjhsdj****。请登录[Redis控制台](https://console.cloud.tencent.com/redis)在实例列表复制实例 ID。
@@ -4753,6 +5145,87 @@ module TencentCloud
         end
       end
 
+      # 导出文件
+      class ExportFile < TencentCloud::Common::AbstractModel
+        # @param FileName: <p>文件名。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileName: String
+        # @param Status: <p>状态值。</p><p>枚举值：</p><ul><li>creating： 文件创建中。</li><li>success： 文件已生成。</li><li>failed： 文件生成失败。</li><li>deleted： 文件已删除。</li></ul>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+        # @param FileSize: <p>文件大小，单位：byte。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileSize: Integer
+        # @param CreateTime: <p>文件创建时间。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param DownloadUrl: <p>文件下载地址。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DownloadUrl: String
+        # @param ErrMsg: <p>导出文件的错误信息。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrMsg: String
+        # @param Progress: <p>导出文件的进度。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Progress: Integer
+        # @param FinishTime: <p>导出文件的完成时间。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FinishTime: String
+        # @param AsyncRequestId: <p>异步请求 ID。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AsyncRequestId: Integer
+
+        attr_accessor :FileName, :Status, :FileSize, :CreateTime, :DownloadUrl, :ErrMsg, :Progress, :FinishTime, :AsyncRequestId
+
+        def initialize(filename=nil, status=nil, filesize=nil, createtime=nil, downloadurl=nil, errmsg=nil, progress=nil, finishtime=nil, asyncrequestid=nil)
+          @FileName = filename
+          @Status = status
+          @FileSize = filesize
+          @CreateTime = createtime
+          @DownloadUrl = downloadurl
+          @ErrMsg = errmsg
+          @Progress = progress
+          @FinishTime = finishtime
+          @AsyncRequestId = asyncrequestid
+        end
+
+        def deserialize(params)
+          @FileName = params['FileName']
+          @Status = params['Status']
+          @FileSize = params['FileSize']
+          @CreateTime = params['CreateTime']
+          @DownloadUrl = params['DownloadUrl']
+          @ErrMsg = params['ErrMsg']
+          @Progress = params['Progress']
+          @FinishTime = params['FinishTime']
+          @AsyncRequestId = params['AsyncRequestId']
+        end
+      end
+
+      # 业务侧实例过滤参数
+      class Filter < TencentCloud::Common::AbstractModel
+        # @param Name: <p>过滤字段。</p><p>枚举值：</p><ul><li>InstanceId： 实例 ID。</li><li>InstanceName： 实例名称。</li><li>TagKey： 标签键。</li><li>InstanceTags： 实例标签键值，标签key值&amp;标签value值。</li></ul>
+        # @type Name: String
+        # @param Values: <p>过滤字段的值。</p>
+        # @type Values: Array
+        # @param ExactMatch: <p>精确匹配开关。</p><ul><li>false：关闭。</li><li>true：开启。</li></ul>
+        # @type ExactMatch: Boolean
+
+        attr_accessor :Name, :Values, :ExactMatch
+
+        def initialize(name=nil, values=nil, exactmatch=nil)
+          @Name = name
+          @Values = values
+          @ExactMatch = exactmatch
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Values = params['Values']
+          @ExactMatch = params['ExactMatch']
+        end
+      end
+
       # 复制组信息
       class Groups < TencentCloud::Common::AbstractModel
         # @param AppId: 用户 APPID。APPID是与账号ID有唯一对应关系的应用 ID，部分腾讯云产品会使用此 APPID。
@@ -4894,49 +5367,27 @@ module TencentCloud
 
       # InquiryPriceCreateInstance请求参数结构体
       class InquiryPriceCreateInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param TypeId: 实例类型。
-        # - 2：Redis 2.8 内存版（标准架构）。
-        # - 6：Redis 4.0 内存版（标准架构）。
-        # - 7：Redis 4.0 内存版（集群架构）。
-        # - 8：Redis 5.0 内存版（标准架构）。
-        # - 9：Redis 5.0 内存版（集群架构）。
-        # - 15：Redis 6.2 内存版（标准架构）。
-        # - 16：Redis 6.2 内存版（集群架构）。
-        # - 17：Redis 7.0 内存版（标准架构）。
-        # - 18：Redis 7.0 内存版（集群架构）。
-        # - 200:Memcached 1.6 内存版（集群架构）。
+        # @param TypeId: <p>实例类型。- 2：Redis 2.8 内存版（标准架构）。- 6：Redis 4.0 内存版（标准架构）。- 7：Redis 4.0 内存版（集群架构）。- 8：Redis 5.0 内存版（标准架构）。- 9：Redis 5.0 内存版（集群架构）。- 15：Redis 6.2 内存版（标准架构）。- 16：Redis 6.2 内存版（集群架构）。- 17：Redis 7.0 内存版（标准架构）。- 18：Redis 7.0 内存版（集群架构）。- 200:Memcached 1.6 内存版（集群架构）。</p>
         # @type TypeId: Integer
-        # @param MemSize: 内存容量，单位为MB， 数值需为1024的整数倍，具体规格以 [查询产品售卖规格](https://cloud.tencent.com/document/api/239/30600) 返回的规格为准。
-        # TypeId为标准架构时，MemSize是实例总内存容量；TypeId为集群架构时，MemSize是单分片内存容量。
+        # @param MemSize: <p>内存容量，单位为MB， 数值需为1024的整数倍，具体规格以 <a href="https://cloud.tencent.com/document/api/239/30600">查询产品售卖规格</a> 返回的规格为准。TypeId为标准架构时，MemSize是实例总内存容量；TypeId为集群架构时，MemSize是单分片内存容量。</p>
         # @type MemSize: Integer
-        # @param GoodsNum: 实例数量，单次购买实例数量以 [查询产品售卖规格](https://cloud.tencent.com/document/api/239/30600) 返回的规格为准。
+        # @param GoodsNum: <p>实例数量，单次购买实例数量以 <a href="https://cloud.tencent.com/document/api/239/30600">查询产品售卖规格</a> 返回的规格为准。</p>
         # @type GoodsNum: Integer
-        # @param Period: 购买时长，在创建包年包月实例的时候需要填写，按量计费实例填1即可，单位：月，取值范围 [1,2,3,4,5,6,7,8,9,10,11,12,24,36]。
+        # @param Period: <p>购买时长，在创建包年包月实例的时候需要填写，按量计费实例填1即可，单位：月，取值范围 [1,2,3,4,5,6,7,8,9,10,11,12,24,36]。</p>
         # @type Period: Integer
-        # @param BillingMode: 付费方式。
-        # - 0：按量计费。
-        # - 1：包年包月。
+        # @param BillingMode: <p>付费方式。- 0：按量计费。- 1：包年包月。</p>
         # @type BillingMode: Integer
-        # @param ZoneId: 实例所属的可用区 ID，可参考[地域和可用区](https://cloud.tencent.com/document/product/239/4106)  。
-        # **说明**：请在 **ZoneId** 与 **ZoneName** 中至少指定一个参数。
+        # @param ZoneId: <p>实例所属的可用区 ID，可参考<a href="https://cloud.tencent.com/document/product/239/4106">地域和可用区</a>  。<strong>说明</strong>：请在 <strong>ZoneId</strong> 与 <strong>ZoneName</strong> 中至少指定一个参数。</p>
         # @type ZoneId: Integer
-        # @param RedisShardNum: 实例分片数量。
-        # - 标准架构需要配置分片数量为1。
-        # - 集群架构分片数量支持设置为1、3、5、8、12、16、24、32、40、48、64、80、96、128。
+        # @param RedisShardNum: <p>实例分片数量。- 标准架构需要配置分片数量为1。- 集群架构分片数量支持设置为1、3、5、8、12、16、24、32、40、48、64、80、96、128。</p>
         # @type RedisShardNum: Integer
-        # @param RedisReplicasNum: 实例副本数量。取值范围为：1、2、3、4、5。
+        # @param RedisReplicasNum: <p>实例副本数量。取值范围为：1、2、3、4、5。</p>
         # @type RedisReplicasNum: Integer
-        # @param ReplicasReadonly: 是否支持副本只读。Redis2.8标准架构、CKV标准架构无需填写。
-        # - true：无需支持副本只读。
-        # - false：需支持。
+        # @param ReplicasReadonly: <p>是否支持副本只读。Redis2.8标准架构、CKV标准架构无需填写。- true：无需支持副本只读。- false：需支持。</p>
         # @type ReplicasReadonly: Boolean
-        # @param ZoneName: 实例所属的可用区名称，可参考[地域和可用区](https://cloud.tencent.com/document/product/239/4106)  。
-        # **说明**：请在 **ZoneId** 与 **ZoneName** 中至少指定一个参数。
+        # @param ZoneName: <p>实例所属的可用区名称，可参考<a href="https://cloud.tencent.com/document/product/239/4106">地域和可用区</a>  。<strong>说明</strong>：请在 <strong>ZoneId</strong> 与 <strong>ZoneName</strong> 中至少指定一个参数。</p>
         # @type ZoneName: String
-        # @param ProductVersion: 部署方式。
-        # - local：本地盘版，默认为 local。
-        # - cloud：云盘版。
-        # - cdc：独享集群版。
+        # @param ProductVersion: <p>部署方式。- local：本地盘版，默认为 local。- cloud：云盘版。- cdc：独享集群版。</p>
         # @type ProductVersion: String
 
         attr_accessor :TypeId, :MemSize, :GoodsNum, :Period, :BillingMode, :ZoneId, :RedisShardNum, :RedisReplicasNum, :ReplicasReadonly, :ZoneName, :ProductVersion
@@ -4972,25 +5423,28 @@ module TencentCloud
 
       # InquiryPriceCreateInstance返回参数结构体
       class InquiryPriceCreateInstanceResponse < TencentCloud::Common::AbstractModel
-        # @param Price: 价格
+        # @param Price: <p>折扣后价格</p>
         # @type Price: Float
-        # @param HighPrecisionPrice: 高精度价格
+        # @param HighPrecisionPrice: <p>高精度折扣后价格</p>
         # @type HighPrecisionPrice: Float
-        # @param Currency: 币种
+        # @param OriginalPrice: <p>原价</p>
+        # @type OriginalPrice: Float
+        # @param HighPrecisionOriginalPrice: <p>高精度原价</p>
+        # @type HighPrecisionOriginalPrice: Float
+        # @param Currency: <p>币种</p>
         # @type Currency: String
-        # @param AmountUnit: 价格金额单位
-
-        # - pent: 分
-        # - microPent: 微分
+        # @param AmountUnit: <p>价格金额单位</p><ul><li>pent: 分</li><li>microPent: 微分</li></ul>
         # @type AmountUnit: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Price, :HighPrecisionPrice, :Currency, :AmountUnit, :RequestId
+        attr_accessor :Price, :HighPrecisionPrice, :OriginalPrice, :HighPrecisionOriginalPrice, :Currency, :AmountUnit, :RequestId
 
-        def initialize(price=nil, highprecisionprice=nil, currency=nil, amountunit=nil, requestid=nil)
+        def initialize(price=nil, highprecisionprice=nil, originalprice=nil, highprecisionoriginalprice=nil, currency=nil, amountunit=nil, requestid=nil)
           @Price = price
           @HighPrecisionPrice = highprecisionprice
+          @OriginalPrice = originalprice
+          @HighPrecisionOriginalPrice = highprecisionoriginalprice
           @Currency = currency
           @AmountUnit = amountunit
           @RequestId = requestid
@@ -4999,6 +5453,8 @@ module TencentCloud
         def deserialize(params)
           @Price = params['Price']
           @HighPrecisionPrice = params['HighPrecisionPrice']
+          @OriginalPrice = params['OriginalPrice']
+          @HighPrecisionOriginalPrice = params['HighPrecisionOriginalPrice']
           @Currency = params['Currency']
           @AmountUnit = params['AmountUnit']
           @RequestId = params['RequestId']
@@ -5007,11 +5463,9 @@ module TencentCloud
 
       # InquiryPriceRenewInstance请求参数结构体
       class InquiryPriceRenewInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param Period: 包年包月实例的购买时长。
-        # - 单位：月。
-        # - 取值范围 [1,2,3,4,5,6,7,8,9,10,11,12,24,36]。
+        # @param Period: <p>包年包月实例的购买时长。- 单位：月。- 取值范围 [1,2,3,4,5,6,7,8,9,10,11,12,24,36]。</p>
         # @type Period: Integer
-        # @param InstanceId: 指定实例 ID。例如：crs-xjhsdj****。请登录 [Redis 控制台](https://console.cloud.tencent.com/redis)在实例列表复制包年包月实例 ID。
+        # @param InstanceId: <p>指定实例 ID。例如：crs-xjhsdj****。请登录 <a href="https://console.cloud.tencent.com/redis">Redis 控制台</a>在实例列表复制包年包月实例 ID。</p>
         # @type InstanceId: String
 
         attr_accessor :Period, :InstanceId
@@ -5029,25 +5483,28 @@ module TencentCloud
 
       # InquiryPriceRenewInstance返回参数结构体
       class InquiryPriceRenewInstanceResponse < TencentCloud::Common::AbstractModel
-        # @param Price: 价格
+        # @param Price: <p>折扣后价格</p>
         # @type Price: Float
-        # @param HighPrecisionPrice: 高精度价格
+        # @param HighPrecisionPrice: <p>高精度折扣后价格</p>
         # @type HighPrecisionPrice: Float
-        # @param Currency: 币种
+        # @param OriginalPrice: <p>原价</p>
+        # @type OriginalPrice: Float
+        # @param HighPrecisionOriginalPrice: <p>高精度原价</p>
+        # @type HighPrecisionOriginalPrice: Float
+        # @param Currency: <p>币种</p>
         # @type Currency: String
-        # @param AmountUnit: 价格金额单位
-
-        # - pent: 分
-        # - microPent: 微分
+        # @param AmountUnit: <p>价格金额单位</p><ul><li>pent: 分</li><li>microPent: 微分</li></ul>
         # @type AmountUnit: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Price, :HighPrecisionPrice, :Currency, :AmountUnit, :RequestId
+        attr_accessor :Price, :HighPrecisionPrice, :OriginalPrice, :HighPrecisionOriginalPrice, :Currency, :AmountUnit, :RequestId
 
-        def initialize(price=nil, highprecisionprice=nil, currency=nil, amountunit=nil, requestid=nil)
+        def initialize(price=nil, highprecisionprice=nil, originalprice=nil, highprecisionoriginalprice=nil, currency=nil, amountunit=nil, requestid=nil)
           @Price = price
           @HighPrecisionPrice = highprecisionprice
+          @OriginalPrice = originalprice
+          @HighPrecisionOriginalPrice = highprecisionoriginalprice
           @Currency = currency
           @AmountUnit = amountunit
           @RequestId = requestid
@@ -5056,6 +5513,8 @@ module TencentCloud
         def deserialize(params)
           @Price = params['Price']
           @HighPrecisionPrice = params['HighPrecisionPrice']
+          @OriginalPrice = params['OriginalPrice']
+          @HighPrecisionOriginalPrice = params['HighPrecisionOriginalPrice']
           @Currency = params['Currency']
           @AmountUnit = params['AmountUnit']
           @RequestId = params['RequestId']
@@ -5064,15 +5523,13 @@ module TencentCloud
 
       # InquiryPriceUpgradeInstance请求参数结构体
       class InquiryPriceUpgradeInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID，请登录[Redis控制台](https://console.cloud.tencent.com/redis/instance/list)在实例列表复制实例 ID。
+        # @param InstanceId: <p>实例 ID，请登录<a href="https://console.cloud.tencent.com/redis/instance/list">Redis控制台</a>在实例列表复制实例 ID。</p>
         # @type InstanceId: String
-        # @param MemSize: 分片大小，单位：MB。
+        # @param MemSize: <p>分片大小，单位：MB。</p>
         # @type MemSize: Integer
-        # @param RedisShardNum: 分片数量。
-        # - 实例为标准架构，RedisShardNum 默认为1。
-        # - Redis 2.8主从版、CKV主从版和 Redis 2.8单机版不需要填写。
+        # @param RedisShardNum: <p>分片数量。- 实例为标准架构，RedisShardNum 默认为1。- Redis 2.8主从版、CKV主从版和 Redis 2.8单机版不需要填写。</p>
         # @type RedisShardNum: Integer
-        # @param RedisReplicasNum: 副本数量，Redis2.8主从版、CKV主从版和Redis2.8单机版不需要填写。
+        # @param RedisReplicasNum: <p>副本数量，Redis2.8主从版、CKV主从版和Redis2.8单机版不需要填写。</p>
         # @type RedisReplicasNum: Integer
 
         attr_accessor :InstanceId, :MemSize, :RedisShardNum, :RedisReplicasNum
@@ -5094,25 +5551,28 @@ module TencentCloud
 
       # InquiryPriceUpgradeInstance返回参数结构体
       class InquiryPriceUpgradeInstanceResponse < TencentCloud::Common::AbstractModel
-        # @param Price: 价格
+        # @param Price: <p>折扣后价格</p>
         # @type Price: Float
-        # @param HighPrecisionPrice: 高精度价格
+        # @param HighPrecisionPrice: <p>高精度折扣后价格</p>
         # @type HighPrecisionPrice: Float
-        # @param Currency: 币种
+        # @param OriginalPrice: <p>原价</p>
+        # @type OriginalPrice: Float
+        # @param HighPrecisionOriginalPrice: <p>高精度原价</p>
+        # @type HighPrecisionOriginalPrice: Float
+        # @param Currency: <p>币种</p>
         # @type Currency: String
-        # @param AmountUnit: 价格金额单位
-
-        # - pent: 分
-        # - microPent: 微分
+        # @param AmountUnit: <p>价格金额单位</p><ul><li>pent: 分</li><li>microPent: 微分</li></ul>
         # @type AmountUnit: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Price, :HighPrecisionPrice, :Currency, :AmountUnit, :RequestId
+        attr_accessor :Price, :HighPrecisionPrice, :OriginalPrice, :HighPrecisionOriginalPrice, :Currency, :AmountUnit, :RequestId
 
-        def initialize(price=nil, highprecisionprice=nil, currency=nil, amountunit=nil, requestid=nil)
+        def initialize(price=nil, highprecisionprice=nil, originalprice=nil, highprecisionoriginalprice=nil, currency=nil, amountunit=nil, requestid=nil)
           @Price = price
           @HighPrecisionPrice = highprecisionprice
+          @OriginalPrice = originalprice
+          @HighPrecisionOriginalPrice = highprecisionoriginalprice
           @Currency = currency
           @AmountUnit = amountunit
           @RequestId = requestid
@@ -5121,6 +5581,8 @@ module TencentCloud
         def deserialize(params)
           @Price = params['Price']
           @HighPrecisionPrice = params['HighPrecisionPrice']
+          @OriginalPrice = params['OriginalPrice']
+          @HighPrecisionOriginalPrice = params['HighPrecisionOriginalPrice']
           @Currency = params['Currency']
           @AmountUnit = params['AmountUnit']
           @RequestId = params['RequestId']
@@ -5310,6 +5772,69 @@ module TencentCloud
         end
       end
 
+      # 实例信息
+      class InstanceInfo < TencentCloud::Common::AbstractModel
+        # @param InstanceName: <p>实例名称</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceName: String
+        # @param ProjectId: <p>项目ID</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProjectId: Integer
+        # @param Status: <p>实例状态</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+        # @param SubStatus: <p>流程中的实例返回的子状态。</p><p>枚举值：</p><ul><li>0： 磁盘只读，</li></ul>
+        # @type SubStatus: Integer
+        # @param Region: <p>地域</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Region: String
+        # @param Zone: <p>区</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Zone: String
+        # @param DegradeStrategy: <p>降级策略，单位：毫秒，实例P99达到降级策略后，审计数据自动丢弃，优先保障业务的可用性,默认值：500毫秒，范围值：300-1000毫秒</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DegradeStrategy: Integer
+        # @param InstanceTags: <p>标签信息</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceTags: Array
+        # @param Type: <p>架构版本</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: Integer
+
+        attr_accessor :InstanceName, :ProjectId, :Status, :SubStatus, :Region, :Zone, :DegradeStrategy, :InstanceTags, :Type
+
+        def initialize(instancename=nil, projectid=nil, status=nil, substatus=nil, region=nil, zone=nil, degradestrategy=nil, instancetags=nil, type=nil)
+          @InstanceName = instancename
+          @ProjectId = projectid
+          @Status = status
+          @SubStatus = substatus
+          @Region = region
+          @Zone = zone
+          @DegradeStrategy = degradestrategy
+          @InstanceTags = instancetags
+          @Type = type
+        end
+
+        def deserialize(params)
+          @InstanceName = params['InstanceName']
+          @ProjectId = params['ProjectId']
+          @Status = params['Status']
+          @SubStatus = params['SubStatus']
+          @Region = params['Region']
+          @Zone = params['Zone']
+          @DegradeStrategy = params['DegradeStrategy']
+          unless params['InstanceTags'].nil?
+            @InstanceTags = []
+            params['InstanceTags'].each do |i|
+              instancetaginfo_tmp = InstanceTagInfo.new
+              instancetaginfo_tmp.deserialize(i)
+              @InstanceTags << instancetaginfo_tmp
+            end
+          end
+          @Type = params['Type']
+        end
+      end
+
       # 实例整型参数描述
       class InstanceIntegerParam < TencentCloud::Common::AbstractModel
         # @param ParamName: 参数名
@@ -5494,24 +6019,26 @@ module TencentCloud
 
       # 代理慢查询详情
       class InstanceProxySlowlogDetail < TencentCloud::Common::AbstractModel
-        # @param Duration: 慢查询耗时时长。单位：毫秒。
+        # @param Duration: <p>慢查询耗时时长。单位：毫秒。</p>
         # @type Duration: Integer
-        # @param Client: 客户端地址。
+        # @param Client: <p>客户端地址。</p>
         # @type Client: String
-        # @param Command: 慢查询的命令。
+        # @param Command: <p>慢查询的命令。</p>
         # @type Command: String
-        # @param CommandLine: 慢查询详细命令行信息。
+        # @param CommandLine: <p>慢查询详细命令行信息。</p>
         # @type CommandLine: String
-        # @param ExecuteTime: 执行时间。
+        # @param ExecuteTime: <p>执行时间。</p>
         # @type ExecuteTime: String
-        # @param RecvClientEnd: 收客户端请求时长(ms)
+        # @param RecvClientEnd: <p>收客户端请求时长(ms)</p>
         # @type RecvClientEnd: Integer
-        # @param SendClientEnd: 发送客户端请求时长(ms)
+        # @param SendClientEnd: <p>发送客户端请求时长(ms)</p>
         # @type SendClientEnd: Integer
+        # @param Node: <p>Proxy节点ID。</p>
+        # @type Node: String
 
-        attr_accessor :Duration, :Client, :Command, :CommandLine, :ExecuteTime, :RecvClientEnd, :SendClientEnd
+        attr_accessor :Duration, :Client, :Command, :CommandLine, :ExecuteTime, :RecvClientEnd, :SendClientEnd, :Node
 
-        def initialize(duration=nil, client=nil, command=nil, commandline=nil, executetime=nil, recvclientend=nil, sendclientend=nil)
+        def initialize(duration=nil, client=nil, command=nil, commandline=nil, executetime=nil, recvclientend=nil, sendclientend=nil, node=nil)
           @Duration = duration
           @Client = client
           @Command = command
@@ -5519,6 +6046,7 @@ module TencentCloud
           @ExecuteTime = executetime
           @RecvClientEnd = recvclientend
           @SendClientEnd = sendclientend
+          @Node = node
         end
 
         def deserialize(params)
@@ -5529,6 +6057,7 @@ module TencentCloud
           @ExecuteTime = params['ExecuteTime']
           @RecvClientEnd = params['RecvClientEnd']
           @SendClientEnd = params['SendClientEnd']
+          @Node = params['Node']
         end
       end
 
@@ -6139,6 +6668,157 @@ module TencentCloud
           @LogsetId = params['LogsetId']
           @TopicId = params['TopicId']
           @LogRegion = params['LogRegion']
+        end
+      end
+
+      # 日志过滤条件
+      class LogFilter < TencentCloud::Common::AbstractModel
+        # @param Type: <p>过滤条件名称。</p><p>枚举值：</p><ul><li>Timestamp： 创建时间（格式：2006-01-02 15:04:05.000）</li><li>UserName： 用户名</li><li>CacheCode： 缓存代码，后端redis节点</li><li>ClientAddr： 客户端地址</li><li>CommandDetail： 命令详情</li><li>CommandLatency： 命令延迟（毫秒）</li><li>CommandType： 命令类型</li><li>DBId： 数据库ID</li><li>ErrMsg： 错误信息</li></ul>
+        # @type Type: String
+        # @param Compare: <p>过滤条件匹配类型。</p><p>枚举值：</p><ul><li>INC： 包含，多个值之前是||的关系</li><li>EXC： 不包含，多个值之前是||的关系</li><li>EQS： 等于，多个值之前是||的关系</li><li>NEQ： 不等于，多个值之前是&amp;&amp;的关系</li><li>RA： 范围</li></ul>
+        # @type Compare: String
+        # @param Value: <p>过滤条件匹配值。当Compare=RA时，例如：[&quot;1-100&quot;,&quot;200-300&quot;]。</p>
+        # @type Value: Array
+
+        attr_accessor :Type, :Compare, :Value
+
+        def initialize(type=nil, compare=nil, value=nil)
+          @Type = type
+          @Compare = compare
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Compare = params['Compare']
+          @Value = params['Value']
+        end
+      end
+
+      # 实例
+      class LogInstance < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>实例ID</p>
+        # @type InstanceId: String
+        # @param Status: <p>日志状态，create：创建中；normal：开启；close：关闭中。</p>
+        # @type Status: String
+        # @param EnableQuery: <p>是否可以切换日志查询-取值：yes-可以，no-不可以。该参数主要为控制存量日志迁移到日志平台做查询使用，只有为yes状态才可以调用查询日志接口。</p>
+        # @type EnableQuery: String
+        # @param CreateAt: <p>开启时间</p>
+        # @type CreateAt: String
+        # @param HighLogExpireDay: <p>高频存储天数</p>
+        # @type HighLogExpireDay: Integer
+        # @param LowLogExpireDay: <p>低频存储天数</p>
+        # @type LowLogExpireDay: Integer
+        # @param LogExpireDay: <p>总存储时长</p>
+        # @type LogExpireDay: Integer
+        # @param HighStorage: <p>高频存储量，单位：MB</p>
+        # @type HighStorage: Float
+        # @param LowStorage: <p>低频存储量，单位：MB</p>
+        # @type LowStorage: Float
+        # @param LogStorage: <p>总存储量</p>
+        # @type LogStorage: Float
+        # @param Deliver: <p>是否开启投递：ON，OFF</p>
+        # @type Deliver: String
+        # @param DeliverSummary: <p>日志投递信息</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeliverSummary: Array
+        # @param InstanceInfo: <p>业务侧实例相关信息，根据业务不同，返回相关信息不同。</p>
+        # @type InstanceInfo: :class:`Tencentcloud::Redis.v20180412.models.InstanceInfo`
+        # @param LogSubType: <p>审计子类型</p>
+        # @type LogSubType: String
+
+        attr_accessor :InstanceId, :Status, :EnableQuery, :CreateAt, :HighLogExpireDay, :LowLogExpireDay, :LogExpireDay, :HighStorage, :LowStorage, :LogStorage, :Deliver, :DeliverSummary, :InstanceInfo, :LogSubType
+
+        def initialize(instanceid=nil, status=nil, enablequery=nil, createat=nil, highlogexpireday=nil, lowlogexpireday=nil, logexpireday=nil, highstorage=nil, lowstorage=nil, logstorage=nil, deliver=nil, deliversummary=nil, instanceinfo=nil, logsubtype=nil)
+          @InstanceId = instanceid
+          @Status = status
+          @EnableQuery = enablequery
+          @CreateAt = createat
+          @HighLogExpireDay = highlogexpireday
+          @LowLogExpireDay = lowlogexpireday
+          @LogExpireDay = logexpireday
+          @HighStorage = highstorage
+          @LowStorage = lowstorage
+          @LogStorage = logstorage
+          @Deliver = deliver
+          @DeliverSummary = deliversummary
+          @InstanceInfo = instanceinfo
+          @LogSubType = logsubtype
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Status = params['Status']
+          @EnableQuery = params['EnableQuery']
+          @CreateAt = params['CreateAt']
+          @HighLogExpireDay = params['HighLogExpireDay']
+          @LowLogExpireDay = params['LowLogExpireDay']
+          @LogExpireDay = params['LogExpireDay']
+          @HighStorage = params['HighStorage']
+          @LowStorage = params['LowStorage']
+          @LogStorage = params['LogStorage']
+          @Deliver = params['Deliver']
+          unless params['DeliverSummary'].nil?
+            @DeliverSummary = []
+            params['DeliverSummary'].each do |i|
+              deliversummary_tmp = DeliverSummary.new
+              deliversummary_tmp.deserialize(i)
+              @DeliverSummary << deliversummary_tmp
+            end
+          end
+          unless params['InstanceInfo'].nil?
+            @InstanceInfo = InstanceInfo.new
+            @InstanceInfo.deserialize(params['InstanceInfo'])
+          end
+          @LogSubType = params['LogSubType']
+        end
+      end
+
+      # 日志结果
+      class LogResult < TencentCloud::Common::AbstractModel
+        # @param DBId: <p>数据库ID</p>
+        # @type DBId: Integer
+        # @param CommandLatency: <p>命令延迟（毫秒）</p>
+        # @type CommandLatency: Integer
+        # @param Timestamp: <p>创建时间（格式：2006-01-02 15:04:05.000）</p>
+        # @type Timestamp: String
+        # @param ClientAddr: <p>客户端地址</p>
+        # @type ClientAddr: String
+        # @param UserName: <p>用户名</p>
+        # @type UserName: String
+        # @param CommandType: <p>命令类型</p>
+        # @type CommandType: String
+        # @param CacheCode: <p>缓存代码，后端redis节点</p>
+        # @type CacheCode: String
+        # @param CommandDetail: <p>命令详情</p>
+        # @type CommandDetail: String
+        # @param ErrMsg: <p>错误信息</p>
+        # @type ErrMsg: String
+
+        attr_accessor :DBId, :CommandLatency, :Timestamp, :ClientAddr, :UserName, :CommandType, :CacheCode, :CommandDetail, :ErrMsg
+
+        def initialize(dbid=nil, commandlatency=nil, timestamp=nil, clientaddr=nil, username=nil, commandtype=nil, cachecode=nil, commanddetail=nil, errmsg=nil)
+          @DBId = dbid
+          @CommandLatency = commandlatency
+          @Timestamp = timestamp
+          @ClientAddr = clientaddr
+          @UserName = username
+          @CommandType = commandtype
+          @CacheCode = cachecode
+          @CommandDetail = commanddetail
+          @ErrMsg = errmsg
+        end
+
+        def deserialize(params)
+          @DBId = params['DBId']
+          @CommandLatency = params['CommandLatency']
+          @Timestamp = params['Timestamp']
+          @ClientAddr = params['ClientAddr']
+          @UserName = params['UserName']
+          @CommandType = params['CommandType']
+          @CacheCode = params['CacheCode']
+          @CommandDetail = params['CommandDetail']
+          @ErrMsg = params['ErrMsg']
         end
       end
 
@@ -6972,6 +7652,58 @@ module TencentCloud
         end
       end
 
+      # ModifyLog请求参数结构体
+      class ModifyLogRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>指定实例 ID。例如：crs-xjhsdj****。请登录<a href="https://console.cloud.tencent.com/redis">Redis控制台</a>在实例列表复制实例 ID。</p>
+        # @type InstanceId: String
+        # @param LogType: <p>日志类型。</p><p>枚举值：</p><ul><li>auditLog： 审计日志</li></ul>
+        # @type LogType: String
+        # @param LogSubType: <p>日志子类型。</p><p>枚举值：</p><ul><li>write： 写命令</li><li>read： 读命令</li><li>all： 全部命令</li></ul>
+        # @type LogSubType: String
+        # @param LogExpireDay: <p>日志过期时间，单位：天。</p><p>枚举值：</p><ul><li>7：  7 天</li><li>30： 30 天</li></ul>
+        # @type LogExpireDay: Integer
+        # @param HighLogExpireDay: <p>高频日志过期时间，单位：天。</p><p>枚举值：</p><ul><li>7： 7 天</li></ul><p>默认值： 7</p>
+        # @type HighLogExpireDay: Integer
+        # @param DegradeStrategy: <p>降级策略，单位：毫秒，实例P99达到降级策略后，审计数据自动丢弃，优先保障业务的可用性，默认值：500毫秒。</p><p>取值范围：[300, 1000]</p>
+        # @type DegradeStrategy: Integer
+
+        attr_accessor :InstanceId, :LogType, :LogSubType, :LogExpireDay, :HighLogExpireDay, :DegradeStrategy
+
+        def initialize(instanceid=nil, logtype=nil, logsubtype=nil, logexpireday=nil, highlogexpireday=nil, degradestrategy=nil)
+          @InstanceId = instanceid
+          @LogType = logtype
+          @LogSubType = logsubtype
+          @LogExpireDay = logexpireday
+          @HighLogExpireDay = highlogexpireday
+          @DegradeStrategy = degradestrategy
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @LogType = params['LogType']
+          @LogSubType = params['LogSubType']
+          @LogExpireDay = params['LogExpireDay']
+          @HighLogExpireDay = params['HighLogExpireDay']
+          @DegradeStrategy = params['DegradeStrategy']
+        end
+      end
+
+      # ModifyLog返回参数结构体
+      class ModifyLogResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyMaintenanceWindow请求参数结构体
       class ModifyMaintenanceWindowRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID，请登录[Redis控制台](https://console.cloud.tencent.com/redis/instance/list)在实例列表复制实例 ID。
@@ -7181,6 +7913,58 @@ module TencentCloud
 
       # ModifyReplicationGroup返回参数结构体
       class ModifyReplicationGroupResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # OpenLog请求参数结构体
+      class OpenLogRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>指定实例 ID。例如：crs-xjhsdj****。请登录<a href="https://console.cloud.tencent.com/redis">Redis控制台</a>在实例列表复制实例 ID。</p>
+        # @type InstanceId: String
+        # @param LogType: <p>日志类型。</p><p>枚举值：</p><ul><li>auditLog： 审计日志。</li></ul>
+        # @type LogType: String
+        # @param LogSubType: <p>日志子类型。</p><p>枚举值：</p><ul><li>write： 写命令。</li><li>read： 读命令。</li><li>all： 读写命令。</li></ul>
+        # @type LogSubType: String
+        # @param LogExpireDay: <p>日志有效期, 单位：天。</p><p>枚举值：</p><ul><li>7：  7 天</li><li>30： 30 天</li></ul><p>默认值：7</p>
+        # @type LogExpireDay: Integer
+        # @param HighLogExpireDay: <p>高频日志有效期, 单位：天。</p><p>枚举值：</p><ul><li>7： 7天</li></ul><p>默认值：7</p>
+        # @type HighLogExpireDay: Integer
+        # @param DegradeStrategy: <p>日志降级策略阈值。当实例 P99 延迟达到该阈值后，系统将自动丢弃审计日志数据，以优先保障业务可用性。</p><ul><li>单位：毫秒。</li><li>默认值：500。</li><li>取值范围：[300, 1000]。</li></ul>
+        # @type DegradeStrategy: Integer
+
+        attr_accessor :InstanceId, :LogType, :LogSubType, :LogExpireDay, :HighLogExpireDay, :DegradeStrategy
+
+        def initialize(instanceid=nil, logtype=nil, logsubtype=nil, logexpireday=nil, highlogexpireday=nil, degradestrategy=nil)
+          @InstanceId = instanceid
+          @LogType = logtype
+          @LogSubType = logsubtype
+          @LogExpireDay = logexpireday
+          @HighLogExpireDay = highlogexpireday
+          @DegradeStrategy = degradestrategy
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @LogType = params['LogType']
+          @LogSubType = params['LogSubType']
+          @LogExpireDay = params['LogExpireDay']
+          @HighLogExpireDay = params['HighLogExpireDay']
+          @DegradeStrategy = params['DegradeStrategy']
+        end
+      end
+
+      # OpenLog返回参数结构体
+      class OpenLogResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

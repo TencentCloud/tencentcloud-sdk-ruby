@@ -82,6 +82,34 @@ module TencentCloud
         end
       end
 
+      # 服务调用信息
+      class CallInfo < TencentCloud::Common::AbstractModel
+        # @param ServiceId: 服务ID
+        # @type ServiceId: String
+        # @param PublicEndpoint: 服务调用地址
+        # @type PublicEndpoint: String
+        # @param ApiKey: 服务调用的API_KEY
+        # @type ApiKey: String
+        # @param VpcEndpoint: 内网调用地址
+        # @type VpcEndpoint: String
+
+        attr_accessor :ServiceId, :PublicEndpoint, :ApiKey, :VpcEndpoint
+
+        def initialize(serviceid=nil, publicendpoint=nil, apikey=nil, vpcendpoint=nil)
+          @ServiceId = serviceid
+          @PublicEndpoint = publicendpoint
+          @ApiKey = apikey
+          @VpcEndpoint = vpcendpoint
+        end
+
+        def deserialize(params)
+          @ServiceId = params['ServiceId']
+          @PublicEndpoint = params['PublicEndpoint']
+          @ApiKey = params['ApiKey']
+          @VpcEndpoint = params['VpcEndpoint']
+        end
+      end
+
       # 算力详情
       class ComputeDetail < TencentCloud::Common::AbstractModel
         # @param BundleType: 算力套餐ID
@@ -364,6 +392,38 @@ module TencentCloud
 
         def deserialize(params)
           @PromptId = params['PromptId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteService请求参数结构体
+      class DeleteServiceRequest < TencentCloud::Common::AbstractModel
+        # @param ServiceId: 服务ID
+        # @type ServiceId: String
+
+        attr_accessor :ServiceId
+
+        def initialize(serviceid=nil)
+          @ServiceId = serviceid
+        end
+
+        def deserialize(params)
+          @ServiceId = params['ServiceId']
+        end
+      end
+
+      # DeleteService返回参数结构体
+      class DeleteServiceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -954,6 +1014,57 @@ module TencentCloud
               loginsetting_tmp = LoginSetting.new
               loginsetting_tmp.deserialize(i)
               @LoginSettings << loginsetting_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeServicesCallInfo请求参数结构体
+      class DescribeServicesCallInfoRequest < TencentCloud::Common::AbstractModel
+        # @param ServiceIds: 推理服务ID列表
+        # @type ServiceIds: Array
+        # @param Limit: 分页大小
+        # @type Limit: Integer
+        # @param Offset: 偏移量
+        # @type Offset: Integer
+
+        attr_accessor :ServiceIds, :Limit, :Offset
+
+        def initialize(serviceids=nil, limit=nil, offset=nil)
+          @ServiceIds = serviceids
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @ServiceIds = params['ServiceIds']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeServicesCallInfo返回参数结构体
+      class DescribeServicesCallInfoResponse < TencentCloud::Common::AbstractModel
+        # @param CallInfoSet: 调用信息
+        # @type CallInfoSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CallInfoSet, :RequestId
+
+        def initialize(callinfoset=nil, requestid=nil)
+          @CallInfoSet = callinfoset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['CallInfoSet'].nil?
+            @CallInfoSet = []
+            params['CallInfoSet'].each do |i|
+              callinfo_tmp = CallInfo.new
+              callinfo_tmp.deserialize(i)
+              @CallInfoSet << callinfo_tmp
             end
           end
           @RequestId = params['RequestId']
