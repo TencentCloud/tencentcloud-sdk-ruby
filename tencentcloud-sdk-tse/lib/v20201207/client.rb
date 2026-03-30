@@ -533,6 +533,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建或编辑云原生网关跨域配置
+
+        # @param request: Request instance for CreateOrModifyCloudNativeAPIGatewayCORS.
+        # @type request: :class:`Tencentcloud::tse::V20201207::CreateOrModifyCloudNativeAPIGatewayCORSRequest`
+        # @rtype: :class:`Tencentcloud::tse::V20201207::CreateOrModifyCloudNativeAPIGatewayCORSResponse`
+        def CreateOrModifyCloudNativeAPIGatewayCORS(request)
+          body = send_request('CreateOrModifyCloudNativeAPIGatewayCORS', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateOrModifyCloudNativeAPIGatewayCORSResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建或编辑云原生网关访问控制
 
         # @param request: Request instance for CreateOrModifyCloudNativeAPIGatewayIPRestriction.
@@ -639,6 +663,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteCloudNativeAPIGatewayResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除云原生网关跨域插件
+
+        # @param request: Request instance for DeleteCloudNativeAPIGatewayCORS.
+        # @type request: :class:`Tencentcloud::tse::V20201207::DeleteCloudNativeAPIGatewayCORSRequest`
+        # @rtype: :class:`Tencentcloud::tse::V20201207::DeleteCloudNativeAPIGatewayCORSResponse`
+        def DeleteCloudNativeAPIGatewayCORS(request)
+          body = send_request('DeleteCloudNativeAPIGatewayCORS', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteCloudNativeAPIGatewayCORSResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1239,6 +1287,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeCloudNativeAPIGatewayResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询云原生网关跨域配置
+
+        # @param request: Request instance for DescribeCloudNativeAPIGatewayCORS.
+        # @type request: :class:`Tencentcloud::tse::V20201207::DescribeCloudNativeAPIGatewayCORSRequest`
+        # @rtype: :class:`Tencentcloud::tse::V20201207::DescribeCloudNativeAPIGatewayCORSResponse`
+        def DescribeCloudNativeAPIGatewayCORS(request)
+          body = send_request('DescribeCloudNativeAPIGatewayCORS', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCloudNativeAPIGatewayCORSResponse.new
             model.deserialize(response['Response'])
             model
           else

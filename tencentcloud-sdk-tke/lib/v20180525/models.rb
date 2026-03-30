@@ -1759,8 +1759,29 @@ module TencentCloud
         # @param ClusterId: 集群Id
         # @type ClusterId: String
         # @param ClusterState: 集群状态
+        # 运行中：Running
+        # 集群等级中：ClusterLevelUpgrading
+        # 集群升级中：Upgrading
+        # 集群控制面扩容中：MasterScaling
+        # 托管集群修改参数中：RuntimeUpgrading
+        # 节点升级中：NodeUpgrading
+        # 集群删除中：Deleting
+        # 集群创建中：Creating
+        # 集群已隔离：Isolated
+        # 集群升级暂停：Pause
+        # 集群执行隔离：ResourceIsolate
+        # 集群隔离：ResourceIsolated
+        # 集群执行冲正：ResourceReverse
+        # 集群冲正：ResourceReversal
+        # 集群执行销毁：ResourceDestroy
+        # 集群销毁：ResourceDestroyed
+        # 集群变配交易中：ClusterLevelTrading
         # @type ClusterState: String
         # @param ClusterInstanceState: 集群下机器实例的状态
+        # 节点全部正常：AllNormal
+        # 节点全部异常：
+        # AllAbnormal
+        # 节点部分异常：PartialAbnormal
         # @type ClusterInstanceState: String
         # @param ClusterBMonitor: 集群是否开启监控
         # @type ClusterBMonitor: Boolean

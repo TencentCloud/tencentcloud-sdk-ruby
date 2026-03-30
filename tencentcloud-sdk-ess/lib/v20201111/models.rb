@@ -11316,6 +11316,7 @@ module TencentCloud
         # 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
         # @param Limit: 指定分页每页返回的数据条数，单页最大支持 20。
+        # 如果没有传递， 则为默认值20。
         # @type Limit: Integer
         # @param Agent: 代理企业和员工的信息。
         # 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。

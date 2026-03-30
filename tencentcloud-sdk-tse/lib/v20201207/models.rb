@@ -3188,6 +3188,78 @@ module TencentCloud
         end
       end
 
+      # CreateOrModifyCloudNativeAPIGatewayCORS请求参数结构体
+      class CreateOrModifyCloudNativeAPIGatewayCORSRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: 网关ID
+        # @type GatewayId: String
+        # @param SourceType: 跨域插件绑定的资源类型：route|service
+        # @type SourceType: String
+        # @param SourceId: 路由或服务的id
+        # @type SourceId: String
+        # @param Enabled: 是否启用插件
+        # @type Enabled: Boolean
+        # @param Origins: 跨域 Access-Control-Allow-Origin
+        # @type Origins: Array
+        # @param Headers: 跨域 Access-Control-Allow-Headers header
+        # @type Headers: Array
+        # @param Methods: 跨域 Access-Control-Allow-Methods
+        # @type Methods: Array
+        # @param ExposedHeaders: 跨域 Access-Control-Expose-Headers
+        # @type ExposedHeaders: Array
+        # @param MaxAge: preflight 请求缓存时间
+        # @type MaxAge: Integer
+        # @param Credentials: 跨域 Access-Control-Allow-Credentials
+        # @type Credentials: Boolean
+        # @param PreFlightContinue: 是否把OPTIONS请求透传后端
+        # @type PreFlightContinue: Boolean
+
+        attr_accessor :GatewayId, :SourceType, :SourceId, :Enabled, :Origins, :Headers, :Methods, :ExposedHeaders, :MaxAge, :Credentials, :PreFlightContinue
+
+        def initialize(gatewayid=nil, sourcetype=nil, sourceid=nil, enabled=nil, origins=nil, headers=nil, methods=nil, exposedheaders=nil, maxage=nil, credentials=nil, preflightcontinue=nil)
+          @GatewayId = gatewayid
+          @SourceType = sourcetype
+          @SourceId = sourceid
+          @Enabled = enabled
+          @Origins = origins
+          @Headers = headers
+          @Methods = methods
+          @ExposedHeaders = exposedheaders
+          @MaxAge = maxage
+          @Credentials = credentials
+          @PreFlightContinue = preflightcontinue
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @SourceType = params['SourceType']
+          @SourceId = params['SourceId']
+          @Enabled = params['Enabled']
+          @Origins = params['Origins']
+          @Headers = params['Headers']
+          @Methods = params['Methods']
+          @ExposedHeaders = params['ExposedHeaders']
+          @MaxAge = params['MaxAge']
+          @Credentials = params['Credentials']
+          @PreFlightContinue = params['PreFlightContinue']
+        end
+      end
+
+      # CreateOrModifyCloudNativeAPIGatewayCORS返回参数结构体
+      class CreateOrModifyCloudNativeAPIGatewayCORSResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateOrModifyCloudNativeAPIGatewayIPRestriction请求参数结构体
       class CreateOrModifyCloudNativeAPIGatewayIPRestrictionRequest < TencentCloud::Common::AbstractModel
         # @param GatewayId: 网关ID
@@ -3391,6 +3463,46 @@ module TencentCloud
 
         def deserialize(params)
           @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteCloudNativeAPIGatewayCORS请求参数结构体
+      class DeleteCloudNativeAPIGatewayCORSRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: 网关ID
+        # @type GatewayId: String
+        # @param SourceType: 跨域插件绑定的资源类型：route|service
+        # @type SourceType: String
+        # @param SourceId: 路由或服务的id
+        # @type SourceId: String
+
+        attr_accessor :GatewayId, :SourceType, :SourceId
+
+        def initialize(gatewayid=nil, sourcetype=nil, sourceid=nil)
+          @GatewayId = gatewayid
+          @SourceType = sourcetype
+          @SourceId = sourceid
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @SourceType = params['SourceType']
+          @SourceId = params['SourceId']
+        end
+      end
+
+      # DeleteCloudNativeAPIGatewayCORS返回参数结构体
+      class DeleteCloudNativeAPIGatewayCORSResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -4602,6 +4714,54 @@ module TencentCloud
         end
       end
 
+      # DescribeCloudNativeAPIGatewayCORS请求参数结构体
+      class DescribeCloudNativeAPIGatewayCORSRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: 网关ID
+        # @type GatewayId: String
+        # @param SourceType: 跨域插件绑定的资源类型：route|service
+        # @type SourceType: String
+        # @param SourceId: 路由或服务的id
+        # @type SourceId: String
+
+        attr_accessor :GatewayId, :SourceType, :SourceId
+
+        def initialize(gatewayid=nil, sourcetype=nil, sourceid=nil)
+          @GatewayId = gatewayid
+          @SourceType = sourcetype
+          @SourceId = sourceid
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @SourceType = params['SourceType']
+          @SourceId = params['SourceId']
+        end
+      end
+
+      # DescribeCloudNativeAPIGatewayCORS返回参数结构体
+      class DescribeCloudNativeAPIGatewayCORSResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 出参
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Tse.v20201207.models.DescribeKongCORSResult`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = DescribeKongCORSResult.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeCloudNativeAPIGatewayCanaryRules请求参数结构体
       class DescribeCloudNativeAPIGatewayCanaryRulesRequest < TencentCloud::Common::AbstractModel
         # @param GatewayId: 网关ID
@@ -5147,10 +5307,12 @@ module TencentCloud
         # @type AvailableUpgradeVersions: Array
         # @param AvailableUpgrade: 是否提示可升级
         # @type AvailableUpgrade: Boolean
+        # @param AvailableRollbackVersion: 可回退的版本
+        # @type AvailableRollbackVersion: String
 
-        attr_accessor :GatewayId, :Status, :Name, :Type, :GatewayVersion, :NodeConfig, :VpcConfig, :Description, :CreateTime, :Tags, :EnableCls, :TradeType, :FeatureVersion, :InternetMaxBandwidthOut, :AutoRenewFlag, :CurDeadline, :IsolateTime, :EnableInternet, :EngineRegion, :IngressClassName, :InternetPayMode, :GatewayMinorVersion, :InstancePort, :LoadBalancerType, :PublicIpAddresses, :DeleteProtect, :AvailableVersions, :AvailableUpgradeVersions, :AvailableUpgrade
+        attr_accessor :GatewayId, :Status, :Name, :Type, :GatewayVersion, :NodeConfig, :VpcConfig, :Description, :CreateTime, :Tags, :EnableCls, :TradeType, :FeatureVersion, :InternetMaxBandwidthOut, :AutoRenewFlag, :CurDeadline, :IsolateTime, :EnableInternet, :EngineRegion, :IngressClassName, :InternetPayMode, :GatewayMinorVersion, :InstancePort, :LoadBalancerType, :PublicIpAddresses, :DeleteProtect, :AvailableVersions, :AvailableUpgradeVersions, :AvailableUpgrade, :AvailableRollbackVersion
 
-        def initialize(gatewayid=nil, status=nil, name=nil, type=nil, gatewayversion=nil, nodeconfig=nil, vpcconfig=nil, description=nil, createtime=nil, tags=nil, enablecls=nil, tradetype=nil, featureversion=nil, internetmaxbandwidthout=nil, autorenewflag=nil, curdeadline=nil, isolatetime=nil, enableinternet=nil, engineregion=nil, ingressclassname=nil, internetpaymode=nil, gatewayminorversion=nil, instanceport=nil, loadbalancertype=nil, publicipaddresses=nil, deleteprotect=nil, availableversions=nil, availableupgradeversions=nil, availableupgrade=nil)
+        def initialize(gatewayid=nil, status=nil, name=nil, type=nil, gatewayversion=nil, nodeconfig=nil, vpcconfig=nil, description=nil, createtime=nil, tags=nil, enablecls=nil, tradetype=nil, featureversion=nil, internetmaxbandwidthout=nil, autorenewflag=nil, curdeadline=nil, isolatetime=nil, enableinternet=nil, engineregion=nil, ingressclassname=nil, internetpaymode=nil, gatewayminorversion=nil, instanceport=nil, loadbalancertype=nil, publicipaddresses=nil, deleteprotect=nil, availableversions=nil, availableupgradeversions=nil, availableupgrade=nil, availablerollbackversion=nil)
           @GatewayId = gatewayid
           @Status = status
           @Name = name
@@ -5180,6 +5342,7 @@ module TencentCloud
           @AvailableVersions = availableversions
           @AvailableUpgradeVersions = availableupgradeversions
           @AvailableUpgrade = availableupgrade
+          @AvailableRollbackVersion = availablerollbackversion
         end
 
         def deserialize(params)
@@ -5228,6 +5391,7 @@ module TencentCloud
           @AvailableVersions = params['AvailableVersions']
           @AvailableUpgradeVersions = params['AvailableUpgradeVersions']
           @AvailableUpgrade = params['AvailableUpgrade']
+          @AvailableRollbackVersion = params['AvailableRollbackVersion']
         end
       end
 
@@ -6857,6 +7021,58 @@ module TencentCloud
             end
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 查询跨域配置出参
+      class DescribeKongCORSResult < TencentCloud::Common::AbstractModel
+        # @param SourceType: 资源类型
+        # @type SourceType: String
+        # @param SourceId: 资源id
+        # @type SourceId: String
+        # @param Enabled: 是否启用
+        # @type Enabled: Boolean
+        # @param Origins: 跨域 Origins
+        # @type Origins: Array
+        # @param Headers: 跨域 Headers
+        # @type Headers: Array
+        # @param Methods: 跨域 Methods
+        # @type Methods: Array
+        # @param ExposedHeaders: 跨域 ExposedHeaders
+        # @type ExposedHeaders: Array
+        # @param MaxAge: 跨域OPTIONS请求缓存时间
+        # @type MaxAge: Integer
+        # @param Credentials: 跨域请求是否允许携带身份信息
+        # @type Credentials: Boolean
+        # @param PreFlightContinue: 跨域请求是否透传后端
+        # @type PreFlightContinue: Boolean
+
+        attr_accessor :SourceType, :SourceId, :Enabled, :Origins, :Headers, :Methods, :ExposedHeaders, :MaxAge, :Credentials, :PreFlightContinue
+
+        def initialize(sourcetype=nil, sourceid=nil, enabled=nil, origins=nil, headers=nil, methods=nil, exposedheaders=nil, maxage=nil, credentials=nil, preflightcontinue=nil)
+          @SourceType = sourcetype
+          @SourceId = sourceid
+          @Enabled = enabled
+          @Origins = origins
+          @Headers = headers
+          @Methods = methods
+          @ExposedHeaders = exposedheaders
+          @MaxAge = maxage
+          @Credentials = credentials
+          @PreFlightContinue = preflightcontinue
+        end
+
+        def deserialize(params)
+          @SourceType = params['SourceType']
+          @SourceId = params['SourceId']
+          @Enabled = params['Enabled']
+          @Origins = params['Origins']
+          @Headers = params['Headers']
+          @Methods = params['Methods']
+          @ExposedHeaders = params['ExposedHeaders']
+          @MaxAge = params['MaxAge']
+          @Credentials = params['Credentials']
+          @PreFlightContinue = params['PreFlightContinue']
         end
       end
 

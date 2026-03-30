@@ -793,16 +793,45 @@ module TencentCloud
 
       # DescribeLicenseList返回参数结构体
       class DescribeLicenseListResponse < TencentCloud::Common::AbstractModel
+        # @param Count: 临期license数量
+        # @type Count: Integer
+        # @param Overview: 正式license总览统计数据
+        # @type Overview: :class:`Tencentcloud::Vcube.v20220410.models.Overview`
+        # @param LicenseList: 临期license列表
+        # @type LicenseList: Array
+        # @param TrialOverview: 测试license总览统计数据
+        # @type TrialOverview: :class:`Tencentcloud::Vcube.v20220410.models.Overview`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :Count, :Overview, :LicenseList, :TrialOverview, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(count=nil, overview=nil, licenselist=nil, trialoverview=nil, requestid=nil)
+          @Count = count
+          @Overview = overview
+          @LicenseList = licenselist
+          @TrialOverview = trialoverview
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @Count = params['Count']
+          unless params['Overview'].nil?
+            @Overview = Overview.new
+            @Overview.deserialize(params['Overview'])
+          end
+          unless params['LicenseList'].nil?
+            @LicenseList = []
+            params['LicenseList'].each do |i|
+              overviewlicense_tmp = OverviewLicense.new
+              overviewlicense_tmp.deserialize(i)
+              @LicenseList << overviewlicense_tmp
+            end
+          end
+          unless params['TrialOverview'].nil?
+            @TrialOverview = Overview.new
+            @TrialOverview.deserialize(params['TrialOverview'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -2023,6 +2052,141 @@ module TencentCloud
 
         def deserialize(params)
           @Id = params['Id']
+        end
+      end
+
+      # 总览统计数据
+      class Overview < TencentCloud::Common::AbstractModel
+        # @param Expired: 过期license数量
+        # @type Expired: Integer
+        # @param Valid: 有效license数量
+        # @type Valid: Integer
+        # @param Near: 临期license数量
+        # @type Near: Integer
+
+        attr_accessor :Expired, :Valid, :Near
+
+        def initialize(expired=nil, valid=nil, near=nil)
+          @Expired = expired
+          @Valid = valid
+          @Near = near
+        end
+
+        def deserialize(params)
+          @Expired = params['Expired']
+          @Valid = params['Valid']
+          @Near = params['Near']
+        end
+      end
+
+      # 应用包名信息
+      class OverviewAppInfo < TencentCloud::Common::AbstractModel
+        # @param Id: 应用Id
+        # @type Id: Integer
+        # @param AppName: 应用名称
+        # @type AppName: String
+        # @param BundleId: Ios 包名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BundleId: String
+        # @param PackageName: Andorid 包名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PackageName: String
+        # @param MacBundleId: Mac 进程名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MacBundleId: String
+        # @param WinProcessName: windows 进程名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WinProcessName: String
+        # @param DomainList: 域名列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DomainList: Array
+
+        attr_accessor :Id, :AppName, :BundleId, :PackageName, :MacBundleId, :WinProcessName, :DomainList
+
+        def initialize(id=nil, appname=nil, bundleid=nil, packagename=nil, macbundleid=nil, winprocessname=nil, domainlist=nil)
+          @Id = id
+          @AppName = appname
+          @BundleId = bundleid
+          @PackageName = packagename
+          @MacBundleId = macbundleid
+          @WinProcessName = winprocessname
+          @DomainList = domainlist
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @AppName = params['AppName']
+          @BundleId = params['BundleId']
+          @PackageName = params['PackageName']
+          @MacBundleId = params['MacBundleId']
+          @WinProcessName = params['WinProcessName']
+          @DomainList = params['DomainList']
+        end
+      end
+
+      # 视立方应用license
+      class OverviewLicense < TencentCloud::Common::AbstractModel
+        # @param Application: 所属应用
+        # @type Application: :class:`Tencentcloud::Vcube.v20220410.models.OverviewAppInfo`
+        # @param StartTime: license生效时间
+        # @type StartTime: String
+        # @param EndTime: license失效时间
+        # @type EndTime: String
+        # @param FeatureId: license对应的功能Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FeatureId: Integer
+        # @param LicenseType: license是测试：test还是正式：formal
+        # @type LicenseType: String
+        # @param LicenseId: license索引
+        # @type LicenseId: Integer
+        # @param Name: license名称
+        # @type Name: String
+        # @param RestTime: 返回还有多少秒过期，过期返回负值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RestTime: Integer
+        # @param CreatedAt: 创建时间
+        # @type CreatedAt: String
+        # @param UpdatedAt: 更新时间
+        # @type UpdatedAt: String
+        # @param Plan: 优图套餐名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Plan: String
+        # @param Type: licenseType
+        # @type Type: String
+
+        attr_accessor :Application, :StartTime, :EndTime, :FeatureId, :LicenseType, :LicenseId, :Name, :RestTime, :CreatedAt, :UpdatedAt, :Plan, :Type
+
+        def initialize(application=nil, starttime=nil, endtime=nil, featureid=nil, licensetype=nil, licenseid=nil, name=nil, resttime=nil, createdat=nil, updatedat=nil, plan=nil, type=nil)
+          @Application = application
+          @StartTime = starttime
+          @EndTime = endtime
+          @FeatureId = featureid
+          @LicenseType = licensetype
+          @LicenseId = licenseid
+          @Name = name
+          @RestTime = resttime
+          @CreatedAt = createdat
+          @UpdatedAt = updatedat
+          @Plan = plan
+          @Type = type
+        end
+
+        def deserialize(params)
+          unless params['Application'].nil?
+            @Application = OverviewAppInfo.new
+            @Application.deserialize(params['Application'])
+          end
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @FeatureId = params['FeatureId']
+          @LicenseType = params['LicenseType']
+          @LicenseId = params['LicenseId']
+          @Name = params['Name']
+          @RestTime = params['RestTime']
+          @CreatedAt = params['CreatedAt']
+          @UpdatedAt = params['UpdatedAt']
+          @Plan = params['Plan']
+          @Type = params['Type']
         end
       end
 

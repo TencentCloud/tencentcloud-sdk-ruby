@@ -3802,6 +3802,7 @@ module TencentCloud
         end
 
         # 批量获取日志URL。
+        # 日志数据打包存在一定延迟，24小时候数据包趋于完整。
 
         # @param request: Request instance for DescribeLogDownloadList.
         # @type request: :class:`Tencentcloud::live::V20180801::DescribeLogDownloadListRequest`

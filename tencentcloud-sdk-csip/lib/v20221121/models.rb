@@ -105,6 +105,27 @@ module TencentCloud
         end
       end
 
+      # 常规密钥凭据（出参专用），用于查询详情接口的响应。Value字段返回打码后的值，不暴露明文
+      class AccessCredentialOutput < TencentCloud::Common::AbstractModel
+        # @param Key: 凭据键名（原文），如SecretId、SecretKey、Token等
+        # @type Key: String
+        # @param Value: 凭据键值（打码后）
+        # 补充说明：保留前3后4位，中间用***替代；长度不足7位时全部替换为***
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
+        end
+      end
+
       # 访问密钥告警记录
       class AccessKeyAlarm < TencentCloud::Common::AbstractModel
         # @param Name: 告警名称
@@ -3484,6 +3505,30 @@ module TencentCloud
         end
       end
 
+      # 生效机器范围，用于指定凭证在哪些机器上生效
+      class CredentialEffectScope < TencentCloud::Common::AbstractModel
+        # @param Exclude: 是否排除模式
+        # 枚举值：
+        # 0：包含模式（仅Instances中的机器生效），此时Instances必填
+        # 1：排除模式（Instances中的机器不生效，其余机器生效），此时Instances可选（空列表表示全部机器生效）
+        # @type Exclude: Integer
+        # @param Instances: 机器实例ID列表。Exclude为0时必填，表示仅这些机器可访问凭证；Exclude为1时可选，表示这些机器不可访问凭证（空列表表示全部机器生效）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Instances: Array
+
+        attr_accessor :Exclude, :Instances
+
+        def initialize(exclude=nil, instances=nil)
+          @Exclude = exclude
+          @Instances = instances
+        end
+
+        def deserialize(params)
+          @Exclude = params['Exclude']
+          @Instances = params['Instances']
+        end
+      end
+
       # 风险中心风险概览统计数据
       class CsipRiskCenterStatistics < TencentCloud::Common::AbstractModel
         # @param PortTotal: 端口风险总数
@@ -6361,6 +6406,152 @@ module TencentCloud
               @HighBaseLineRiskList << highbaselineriskitem_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeKeySandboxCredentialList请求参数结构体
+      class DescribeKeySandboxCredentialListRequest < TencentCloud::Common::AbstractModel
+        # @param Filter: 过滤条件列表，支持的过滤条件如下：
+        # CredentialName - 凭证名称（模糊匹配）
+        # CredentialType - 凭证类型（精确匹配），取值：access、sts
+        # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
+        # @param MemberId: 集团账号的成员id
+        # @type MemberId: Array
+
+        attr_accessor :Filter, :MemberId
+
+        def initialize(filter=nil, memberid=nil)
+          @Filter = filter
+          @MemberId = memberid
+        end
+
+        def deserialize(params)
+          unless params['Filter'].nil?
+            @Filter = Filter.new
+            @Filter.deserialize(params['Filter'])
+          end
+          @MemberId = params['MemberId']
+        end
+      end
+
+      # DescribeKeySandboxCredentialList返回参数结构体
+      class DescribeKeySandboxCredentialListResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 凭证数据列表
+        # @type Data: Array
+        # @param TotalCount: 总数量
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :TotalCount, :RequestId
+
+        def initialize(data=nil, totalcount=nil, requestid=nil)
+          @Data = data
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              keysandboxcredential_tmp = KeySandboxCredential.new
+              keysandboxcredential_tmp.deserialize(i)
+              @Data << keysandboxcredential_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeKeySandboxCredential请求参数结构体
+      class DescribeKeySandboxCredentialRequest < TencentCloud::Common::AbstractModel
+        # @param CredentialId: 凭证ID
+        # @type CredentialId: String
+        # @param MemberId: 集团账号的成员id
+        # @type MemberId: Array
+
+        attr_accessor :CredentialId, :MemberId
+
+        def initialize(credentialid=nil, memberid=nil)
+          @CredentialId = credentialid
+          @MemberId = memberid
+        end
+
+        def deserialize(params)
+          @CredentialId = params['CredentialId']
+          @MemberId = params['MemberId']
+        end
+      end
+
+      # DescribeKeySandboxCredential返回参数结构体
+      class DescribeKeySandboxCredentialResponse < TencentCloud::Common::AbstractModel
+        # @param CredentialId: 凭证ID
+        # @type CredentialId: String
+        # @param CredentialName: 凭证名称
+        # @type CredentialName: String
+        # @param CredentialType: 凭证类型
+        # 枚举值：
+        # access：常规密钥
+        # sts：STS临时密钥
+        # @type CredentialType: String
+        # @param CredentialEffectScope: 生效机器范围
+        # @type CredentialEffectScope: :class:`Tencentcloud::Csip.v20221121.models.CredentialEffectScope`
+        # @param Access: 常规密钥凭据数据（打码后），CredentialType为access时返回
+        # 补充说明：Key为原文，Value为打码后的值（保留前3后4位，中间用***替代）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Access: Array
+        # @param STS: STS凭据数据（打码后），CredentialType为sts时返回
+        # 补充说明：System为原文，SecretID和SecretKey为打码后的值（保留前3后4位，中间用***替代）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type STS: :class:`Tencentcloud::Csip.v20221121.models.STSCredentialOutput`
+        # @param CreateTime: 创建时间
+        # 参数格式：YYYY-MM-DDTHH:mm:ssZ（ISO8601格式）
+        # @type CreateTime: String
+        # @param UpdateTime: 更新时间
+        # 参数格式：YYYY-MM-DDTHH:mm:ssZ（ISO8601格式）
+        # @type UpdateTime: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CredentialId, :CredentialName, :CredentialType, :CredentialEffectScope, :Access, :STS, :CreateTime, :UpdateTime, :RequestId
+
+        def initialize(credentialid=nil, credentialname=nil, credentialtype=nil, credentialeffectscope=nil, access=nil, sts=nil, createtime=nil, updatetime=nil, requestid=nil)
+          @CredentialId = credentialid
+          @CredentialName = credentialname
+          @CredentialType = credentialtype
+          @CredentialEffectScope = credentialeffectscope
+          @Access = access
+          @STS = sts
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @CredentialId = params['CredentialId']
+          @CredentialName = params['CredentialName']
+          @CredentialType = params['CredentialType']
+          unless params['CredentialEffectScope'].nil?
+            @CredentialEffectScope = CredentialEffectScope.new
+            @CredentialEffectScope.deserialize(params['CredentialEffectScope'])
+          end
+          unless params['Access'].nil?
+            @Access = []
+            params['Access'].each do |i|
+              accesscredentialoutput_tmp = AccessCredentialOutput.new
+              accesscredentialoutput_tmp.deserialize(i)
+              @Access << accesscredentialoutput_tmp
+            end
+          end
+          unless params['STS'].nil?
+            @STS = STSCredentialOutput.new
+            @STS.deserialize(params['STS'])
+          end
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
           @RequestId = params['RequestId']
         end
       end
@@ -10441,6 +10632,50 @@ module TencentCloud
         end
       end
 
+      # 凭证数据结构，用于列表查询和详情查询的响应
+      class KeySandboxCredential < TencentCloud::Common::AbstractModel
+        # @param CredentialId: 凭证ID
+        # @type CredentialId: String
+        # @param CredentialName: 凭证名称
+        # @type CredentialName: String
+        # @param CredentialType: 凭证类型
+        # 枚举值：
+        # access：常规密钥（Key/Value键值对）
+        # sts：STS临时密钥凭据
+        # @type CredentialType: String
+        # @param CredentialEffectScope: 生效机器范围
+        # @type CredentialEffectScope: :class:`Tencentcloud::Csip.v20221121.models.CredentialEffectScope`
+        # @param CreateTime: 创建时间
+        # 参数格式：YYYY-MM-DDTHH:mm:ssZ（ISO8601格式）
+        # @type CreateTime: String
+        # @param UpdateTime: 更新时间
+        # 参数格式：YYYY-MM-DDTHH:mm:ssZ（ISO8601格式）
+        # @type UpdateTime: String
+
+        attr_accessor :CredentialId, :CredentialName, :CredentialType, :CredentialEffectScope, :CreateTime, :UpdateTime
+
+        def initialize(credentialid=nil, credentialname=nil, credentialtype=nil, credentialeffectscope=nil, createtime=nil, updatetime=nil)
+          @CredentialId = credentialid
+          @CredentialName = credentialname
+          @CredentialType = credentialtype
+          @CredentialEffectScope = credentialeffectscope
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @CredentialId = params['CredentialId']
+          @CredentialName = params['CredentialName']
+          @CredentialType = params['CredentialType']
+          unless params['CredentialEffectScope'].nil?
+            @CredentialEffectScope = CredentialEffectScope.new
+            @CredentialEffectScope.deserialize(params['CredentialEffectScope'])
+          end
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
       # KeyValue对
       class KeyValue < TencentCloud::Common::AbstractModel
         # @param Key: 字段
@@ -11730,6 +11965,32 @@ module TencentCloud
           end
           @ContainerName = params['ContainerName']
           @ContainerID = params['ContainerID']
+        end
+      end
+
+      # STS临时密钥凭据（出参专用），用于查询详情接口的响应。SecretID和SecretKey字段返回打码后的值，System返回原文
+      class STSCredentialOutput < TencentCloud::Common::AbstractModel
+        # @param System: 凭据提供商标识（原文），如tencentCam、aws、aliyun等
+        # @type System: String
+        # @param SecretID: SecretID（打码后）
+        # 补充说明：保留前3后4位，中间用***替代；长度不足7位时全部替换为***
+        # @type SecretID: String
+        # @param SecretKey: SecretKey（打码后）
+        # 补充说明：保留前3后4位，中间用***替代；长度不足7位时全部替换为***
+        # @type SecretKey: String
+
+        attr_accessor :System, :SecretID, :SecretKey
+
+        def initialize(system=nil, secretid=nil, secretkey=nil)
+          @System = system
+          @SecretID = secretid
+          @SecretKey = secretkey
+        end
+
+        def deserialize(params)
+          @System = params['System']
+          @SecretID = params['SecretID']
+          @SecretKey = params['SecretKey']
         end
       end
 

@@ -668,6 +668,42 @@ module TencentCloud
         end
       end
 
+      # CloseLog请求参数结构体
+      class CloseLogRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>实例ID</p>
+        # @type InstanceId: String
+        # @param LogType: <p>日志类型</p>
+        # @type LogType: String
+
+        attr_accessor :InstanceId, :LogType
+
+        def initialize(instanceid=nil, logtype=nil)
+          @InstanceId = instanceid
+          @LogType = logtype
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @LogType = params['LogType']
+        end
+      end
+
+      # CloseLog返回参数结构体
+      class CloseLogResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CompleteExpansion请求参数结构体
       class CompleteExpansionRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID，形如mssql-j8kv137v
@@ -1661,6 +1697,65 @@ module TencentCloud
 
         def deserialize(params)
           @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateExportTask请求参数结构体
+      class CreateExportTaskRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>实例ID</p>
+        # @type InstanceId: String
+        # @param LogType: <p>日志类型：auditLog,slowLog,errLog</p>
+        # @type LogType: String
+        # @param StartTime: <p>要检索日志的起始时间</p>
+        # @type StartTime: String
+        # @param EndTime: <p>要检索日志的结束时间</p>
+        # @type EndTime: String
+        # @param LogFilter: <p>过滤条件[type, Compare, Value]</p>
+        # @type LogFilter: Array
+        # @param ColumnFilter: <p>过滤列</p>
+        # @type ColumnFilter: Array
+
+        attr_accessor :InstanceId, :LogType, :StartTime, :EndTime, :LogFilter, :ColumnFilter
+
+        def initialize(instanceid=nil, logtype=nil, starttime=nil, endtime=nil, logfilter=nil, columnfilter=nil)
+          @InstanceId = instanceid
+          @LogType = logtype
+          @StartTime = starttime
+          @EndTime = endtime
+          @LogFilter = logfilter
+          @ColumnFilter = columnfilter
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @LogType = params['LogType']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          unless params['LogFilter'].nil?
+            @LogFilter = []
+            params['LogFilter'].each do |i|
+              logfilter_tmp = LogFilter.new
+              logfilter_tmp.deserialize(i)
+              @LogFilter << logfilter_tmp
+            end
+          end
+          @ColumnFilter = params['ColumnFilter']
+        end
+      end
+
+      # CreateExportTask返回参数结构体
+      class CreateExportTaskResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -2999,6 +3094,46 @@ module TencentCloud
         end
       end
 
+      # DeleteExportTask请求参数结构体
+      class DeleteExportTaskRequest < TencentCloud::Common::AbstractModel
+        # @param LogType: <p>日志类型：auditLog,slowLog,errLog</p>
+        # @type LogType: String
+        # @param FileName: <p>文件名称</p>
+        # @type FileName: String
+        # @param InstanceId: <p>实例ID</p>
+        # @type InstanceId: String
+
+        attr_accessor :LogType, :FileName, :InstanceId
+
+        def initialize(logtype=nil, filename=nil, instanceid=nil)
+          @LogType = logtype
+          @FileName = filename
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @LogType = params['LogType']
+          @FileName = params['FileName']
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DeleteExportTask返回参数结构体
+      class DeleteExportTaskResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteIncrementalMigration请求参数结构体
       class DeleteIncrementalMigrationRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 目标实例ID
@@ -3147,6 +3282,43 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 投递信息
+      class DeliverSummary < TencentCloud::Common::AbstractModel
+        # @param DeliverType: 投递类型，store（存储类），mq（消息通道）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeliverType: String
+        # @param DeliverSubType: 投递子类型：cls，ckafka。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeliverSubType: String
+        # @param DeliverConsumer: 投递订阅者
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeliverConsumer: String
+        # @param DeliverConsumerName: 投递订阅者名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeliverConsumerName: String
+        # @param DeliverError: 投递
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeliverError: String
+
+        attr_accessor :DeliverType, :DeliverSubType, :DeliverConsumer, :DeliverConsumerName, :DeliverError
+
+        def initialize(delivertype=nil, deliversubtype=nil, deliverconsumer=nil, deliverconsumername=nil, delivererror=nil)
+          @DeliverType = delivertype
+          @DeliverSubType = deliversubtype
+          @DeliverConsumer = deliverconsumer
+          @DeliverConsumerName = deliverconsumername
+          @DeliverError = delivererror
+        end
+
+        def deserialize(params)
+          @DeliverType = params['DeliverType']
+          @DeliverSubType = params['DeliverSubType']
+          @DeliverConsumer = params['DeliverConsumer']
+          @DeliverConsumerName = params['DeliverConsumerName']
+          @DeliverError = params['DeliverError']
         end
       end
 
@@ -5048,6 +5220,65 @@ module TencentCloud
         end
       end
 
+      # DescribeExportTasks请求参数结构体
+      class DescribeExportTasksRequest < TencentCloud::Common::AbstractModel
+        # @param LogType: <p>日志类型：auditLog,slowLog,errLog</p>
+        # @type LogType: String
+        # @param Limit: <p>单页条数限制，取值1-100，默认100</p>
+        # @type Limit: Integer
+        # @param Offset: <p>偏移量，大于0</p>
+        # @type Offset: Integer
+        # @param InstanceId: <p>实例ID</p>
+        # @type InstanceId: String
+
+        attr_accessor :LogType, :Limit, :Offset, :InstanceId
+
+        def initialize(logtype=nil, limit=nil, offset=nil, instanceid=nil)
+          @LogType = logtype
+          @Limit = limit
+          @Offset = offset
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @LogType = params['LogType']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeExportTasks返回参数结构体
+      class DescribeExportTasksResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: <p>总数目</p>
+        # @type TotalCount: Integer
+        # @param Items: <p>导出文件</p>
+        # @type Items: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Items, :RequestId
+
+        def initialize(totalcount=nil, items=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Items = items
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              exportfile_tmp = ExportFile.new
+              exportfile_tmp.deserialize(i)
+              @Items << exportfile_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeFlowStatus请求参数结构体
       class DescribeFlowStatusRequest < TencentCloud::Common::AbstractModel
         # @param FlowId: 流程ID
@@ -5642,6 +5873,163 @@ module TencentCloud
 
         def deserialize(params)
           @Parameter = params['Parameter']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeLogInstanceList请求参数结构体
+      class DescribeLogInstanceListRequest < TencentCloud::Common::AbstractModel
+        # @param LogType: <p>日志类型：auditLog,slowLog,errorLog</p>
+        # @type LogType: String
+        # @param Limit: <p>单页条数限制，取值[0, 100)</p>
+        # @type Limit: Integer
+        # @param Offset: <p>偏移量，大于0</p>
+        # @type Offset: Integer
+        # @param Filters: <p>业务侧实例过滤参数</p>
+        # @type Filters: Array
+        # @param LogSwitch: <p>日志开关,不传查询所有日志实例： on-开启，off-未开启。</p>
+        # @type LogSwitch: String
+
+        attr_accessor :LogType, :Limit, :Offset, :Filters, :LogSwitch
+
+        def initialize(logtype=nil, limit=nil, offset=nil, filters=nil, logswitch=nil)
+          @LogType = logtype
+          @Limit = limit
+          @Offset = offset
+          @Filters = filters
+          @LogSwitch = logswitch
+        end
+
+        def deserialize(params)
+          @LogType = params['LogType']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @LogSwitch = params['LogSwitch']
+        end
+      end
+
+      # DescribeLogInstanceList返回参数结构体
+      class DescribeLogInstanceListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: <p>实例数量</p>
+        # @type TotalCount: Integer
+        # @param Items: <p>日志平台实例信息</p>
+        # @type Items: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Items, :RequestId
+
+        def initialize(totalcount=nil, items=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Items = items
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              loginstance_tmp = LogInstance.new
+              loginstance_tmp.deserialize(i)
+              @Items << loginstance_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeLogs请求参数结构体
+      class DescribeLogsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>实例ID</p>
+        # @type InstanceId: String
+        # @param StartTime: <p>要检索日志的起始时间</p>
+        # @type StartTime: String
+        # @param EndTime: <p>要检索日志的结束时间</p>
+        # @type EndTime: String
+        # @param LogType: <p>日志类型</p>
+        # @type LogType: String
+        # @param LogFilter: <p>过滤条件[type, Compare, Value]</p>
+        # @type LogFilter: Array
+        # @param Limit: <p>单页条数限制，取值1-100，默认100</p>
+        # @type Limit: Integer
+        # @param Offset: <p>偏移量，大于0</p>
+        # @type Offset: Integer
+        # @param Order: <p>排序，可选：ASC，DESC</p>
+        # @type Order: String
+        # @param OrderBy: <p>排序条件，根据业务字段不同，可选排序字段不一样</p>
+        # @type OrderBy: String
+
+        attr_accessor :InstanceId, :StartTime, :EndTime, :LogType, :LogFilter, :Limit, :Offset, :Order, :OrderBy
+
+        def initialize(instanceid=nil, starttime=nil, endtime=nil, logtype=nil, logfilter=nil, limit=nil, offset=nil, order=nil, orderby=nil)
+          @InstanceId = instanceid
+          @StartTime = starttime
+          @EndTime = endtime
+          @LogType = logtype
+          @LogFilter = logfilter
+          @Limit = limit
+          @Offset = offset
+          @Order = order
+          @OrderBy = orderby
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @LogType = params['LogType']
+          unless params['LogFilter'].nil?
+            @LogFilter = []
+            params['LogFilter'].each do |i|
+              logfilter_tmp = LogFilter.new
+              logfilter_tmp.deserialize(i)
+              @LogFilter << logfilter_tmp
+            end
+          end
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @Order = params['Order']
+          @OrderBy = params['OrderBy']
+        end
+      end
+
+      # DescribeLogs返回参数结构体
+      class DescribeLogsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: <p>日志总数</p>
+        # @type TotalCount: Integer
+        # @param Items: <p>日志详情，根据产品的不同返回的字段有差异</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Items: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Items, :RequestId
+
+        def initialize(totalcount=nil, items=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Items = items
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              logresult_tmp = LogResult.new
+              logresult_tmp.deserialize(i)
+              @Items << logresult_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -7447,6 +7835,63 @@ module TencentCloud
         end
       end
 
+      # 导出文件
+      class ExportFile < TencentCloud::Common::AbstractModel
+        # @param FileName: <p>文件名</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileName: String
+        # @param Status: <p>状态</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+        # @param FileSize: <p>文件大小</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileSize: Integer
+        # @param CreateTime: <p>创建时间</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param DownloadUrl: <p>下载地址</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DownloadUrl: String
+        # @param ErrMsg: <p>错误信息</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrMsg: String
+        # @param Progress: <p>进度</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Progress: Integer
+        # @param FinishTime: <p>完成时间</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FinishTime: String
+        # @param AsyncRequestId: <p>req</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AsyncRequestId: Integer
+
+        attr_accessor :FileName, :Status, :FileSize, :CreateTime, :DownloadUrl, :ErrMsg, :Progress, :FinishTime, :AsyncRequestId
+
+        def initialize(filename=nil, status=nil, filesize=nil, createtime=nil, downloadurl=nil, errmsg=nil, progress=nil, finishtime=nil, asyncrequestid=nil)
+          @FileName = filename
+          @Status = status
+          @FileSize = filesize
+          @CreateTime = createtime
+          @DownloadUrl = downloadurl
+          @ErrMsg = errmsg
+          @Progress = progress
+          @FinishTime = finishtime
+          @AsyncRequestId = asyncrequestid
+        end
+
+        def deserialize(params)
+          @FileName = params['FileName']
+          @Status = params['Status']
+          @FileSize = params['FileSize']
+          @CreateTime = params['CreateTime']
+          @DownloadUrl = params['DownloadUrl']
+          @ErrMsg = params['ErrMsg']
+          @Progress = params['Progress']
+          @FinishTime = params['FinishTime']
+          @AsyncRequestId = params['AsyncRequestId']
+        end
+      end
+
       # 允许动作信息
       class FileAction < TencentCloud::Common::AbstractModel
         # @param AllAction: 支持的所有操作，值包括：view(查看列表) remark(修改备注)，deploy(部署)，delete(删除文件)
@@ -7464,6 +7909,45 @@ module TencentCloud
         def deserialize(params)
           @AllAction = params['AllAction']
           @AllowedAction = params['AllowedAction']
+        end
+      end
+
+      # 业务侧实例过滤参数
+      class Filter < TencentCloud::Common::AbstractModel
+        # @param Name: 1. 项目 ProjectId
+        #     - true = 精确查找
+        #     - false = 模糊匹配
+        # 2. 标签键 TagKey
+        #     - true = 精确查找
+        #     - false = 模糊匹配
+        # 3. 标签 Tag
+        #     - true = 精确查找
+        #     - false = 模糊匹配
+        # 4. 实例名称 InstanceName
+        #     - true = 精确查找
+        #     - false = 模糊匹配
+        # 5. 实例ID InstanceId
+        #     - true = 精确查找
+        #     - false = 模糊匹配
+
+        # @type Name: String
+        # @param Values: 值
+        # @type Values: Array
+        # @param ExactMatch: 开关
+        # @type ExactMatch: Boolean
+
+        attr_accessor :Name, :Values, :ExactMatch
+
+        def initialize(name=nil, values=nil, exactmatch=nil)
+          @Name = name
+          @Values = values
+          @ExactMatch = exactmatch
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Values = params['Values']
+          @ExactMatch = params['ExactMatch']
         end
       end
 
@@ -7681,6 +8165,129 @@ module TencentCloud
         end
       end
 
+      # 实例信息
+      class InstanceInfo < TencentCloud::Common::AbstractModel
+        # @param InstanceName: <p>实例名称</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceName: String
+        # @param InstanceId: <p>实例ID</p>
+        # @type InstanceId: String
+        # @param ProjectId: <p>项目ID</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProjectId: Integer
+        # @param TagList: <p>实例标签</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagList: Array
+        # @param Status: <p>实例状态</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+        # @param Vip: <p>test</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Vip: String
+        # @param Vport: <p>test</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Vport: Integer
+        # @param Architecture: <p>test</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Architecture: String
+        # @param ROFlag: <p>test</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ROFlag: String
+        # @param HAFlag: <p>test</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HAFlag: String
+        # @param InstanceType: <p>test</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceType: String
+        # @param Type: <p>test</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param AuditLogStatus: <p>审计日志状态 ON, OFF, ERROR</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AuditLogStatus: String
+        # @param AuditLogHosts: <p>审计日志上报地址</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AuditLogHosts: Array
+        # @param AuditLogStatusMessage: <p>审计日志状态信息</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AuditLogStatusMessage: String
+        # @param Version: <p>版本号</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Version: String
+        # @param VersionName: <p>版本名</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VersionName: String
+        # @param RegionId: <p>地域id</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RegionId: Integer
+        # @param ZoneId: <p>区id</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ZoneId: Integer
+        # @param Region: <p>地域</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Region: String
+        # @param Zone: <p>区</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Zone: String
+
+        attr_accessor :InstanceName, :InstanceId, :ProjectId, :TagList, :Status, :Vip, :Vport, :Architecture, :ROFlag, :HAFlag, :InstanceType, :Type, :AuditLogStatus, :AuditLogHosts, :AuditLogStatusMessage, :Version, :VersionName, :RegionId, :ZoneId, :Region, :Zone
+
+        def initialize(instancename=nil, instanceid=nil, projectid=nil, taglist=nil, status=nil, vip=nil, vport=nil, architecture=nil, roflag=nil, haflag=nil, instancetype=nil, type=nil, auditlogstatus=nil, auditloghosts=nil, auditlogstatusmessage=nil, version=nil, versionname=nil, regionid=nil, zoneid=nil, region=nil, zone=nil)
+          @InstanceName = instancename
+          @InstanceId = instanceid
+          @ProjectId = projectid
+          @TagList = taglist
+          @Status = status
+          @Vip = vip
+          @Vport = vport
+          @Architecture = architecture
+          @ROFlag = roflag
+          @HAFlag = haflag
+          @InstanceType = instancetype
+          @Type = type
+          @AuditLogStatus = auditlogstatus
+          @AuditLogHosts = auditloghosts
+          @AuditLogStatusMessage = auditlogstatusmessage
+          @Version = version
+          @VersionName = versionname
+          @RegionId = regionid
+          @ZoneId = zoneid
+          @Region = region
+          @Zone = zone
+        end
+
+        def deserialize(params)
+          @InstanceName = params['InstanceName']
+          @InstanceId = params['InstanceId']
+          @ProjectId = params['ProjectId']
+          unless params['TagList'].nil?
+            @TagList = []
+            params['TagList'].each do |i|
+              taglist_tmp = TagList.new
+              taglist_tmp.deserialize(i)
+              @TagList << taglist_tmp
+            end
+          end
+          @Status = params['Status']
+          @Vip = params['Vip']
+          @Vport = params['Vport']
+          @Architecture = params['Architecture']
+          @ROFlag = params['ROFlag']
+          @HAFlag = params['HAFlag']
+          @InstanceType = params['InstanceType']
+          @Type = params['Type']
+          @AuditLogStatus = params['AuditLogStatus']
+          @AuditLogHosts = params['AuditLogHosts']
+          @AuditLogStatusMessage = params['AuditLogStatusMessage']
+          @Version = params['Version']
+          @VersionName = params['VersionName']
+          @RegionId = params['RegionId']
+          @ZoneId = params['ZoneId']
+          @Region = params['Region']
+          @Zone = params['Zone']
+        end
+      end
+
       # 实例续费状态信息
       class InstanceRenewInfo < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID，形如mssql-j8kv137v
@@ -7818,6 +8425,313 @@ module TencentCloud
         def deserialize(params)
           @InstanceId = params['InstanceId']
           @FlowId = params['FlowId']
+        end
+      end
+
+      # 日志过滤条件
+      class LogFilter < TencentCloud::Common::AbstractModel
+        # @param Type: 过滤条件名称。
+
+        # 如：sql - SQL命令详情
+
+        # host – 客户端 IP；
+        # user – 数据库账户；
+        # dbName – 数据库名称；
+        # sqlType - SQL类型；
+        # errCode - 错误码
+
+        # execTime - 执行时间
+        # lockWaitTime - 锁等待时间
+        # ioWaitTime - IO等待时间
+        # trxLivingTime - 事务执行时间
+        # cpuTime- Cpu时间
+
+        # threadId - 线程ID
+        # trxId - 事务ID
+        # checkRows - 扫描行数
+        # affectRows - 影响行数
+        # sentRows - 返回行数
+        # @type Type: String
+        # @param Compare: 过滤条件匹配类型。支持：
+        # INC – 包含；     （多个值之前是||的关系）
+        # EXC – 不包含； （多个值之前是&&的关系）
+        # EQS – 等于；     （多个值之前是||的关系）
+        # NEQ – 不等于；（多个值之前是&&的关系）
+
+        # RA – 范围；
+        # @type Compare: String
+        # @param Value: 过滤条件匹配值。当Compare=RG时，例：["1-100","200-300"]
+        # @type Value: Array
+
+        attr_accessor :Type, :Compare, :Value
+
+        def initialize(type=nil, compare=nil, value=nil)
+          @Type = type
+          @Compare = compare
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Compare = params['Compare']
+          @Value = params['Value']
+        end
+      end
+
+      # 日志实例
+      class LogInstance < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param Status: 日志状态，create：创建中；normal：开启；close：关闭中。
+        # @type Status: String
+        # @param EnableQuery: 是否可以切换日志查询-取值：yes-可以，no-不可以。该参数主要为控制存量日志迁移到日志平台做查询使用，只有为yes状态才可以调用查询日志接口。
+        # @type EnableQuery: String
+        # @param CreateAt: 开启时间
+        # @type CreateAt: String
+        # @param HighLogExpireDay: 高频存储天数
+        # @type HighLogExpireDay: Integer
+        # @param LowLogExpireDay: 低频存储天数
+        # @type LowLogExpireDay: Integer
+        # @param LogExpireDay: 总存储时长
+        # @type LogExpireDay: Integer
+        # @param HighStorage: 高频存储量，单位：MB
+        # @type HighStorage: Float
+        # @param LowStorage: 低频存储量，单位：MB
+        # @type LowStorage: Float
+        # @param LogStorage: 总存储量
+        # @type LogStorage: Float
+        # @param Deliver: 是否开启投递：ON，OFF
+        # @type Deliver: String
+        # @param DeliverSummary: 日志投递信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeliverSummary: Array
+        # @param InstanceInfo: 业务侧实例相关信息，根据业务不同，返回相关信息不同。
+        # @type InstanceInfo: :class:`Tencentcloud::Sqlserver.v20180328.models.InstanceInfo`
+
+        attr_accessor :InstanceId, :Status, :EnableQuery, :CreateAt, :HighLogExpireDay, :LowLogExpireDay, :LogExpireDay, :HighStorage, :LowStorage, :LogStorage, :Deliver, :DeliverSummary, :InstanceInfo
+
+        def initialize(instanceid=nil, status=nil, enablequery=nil, createat=nil, highlogexpireday=nil, lowlogexpireday=nil, logexpireday=nil, highstorage=nil, lowstorage=nil, logstorage=nil, deliver=nil, deliversummary=nil, instanceinfo=nil)
+          @InstanceId = instanceid
+          @Status = status
+          @EnableQuery = enablequery
+          @CreateAt = createat
+          @HighLogExpireDay = highlogexpireday
+          @LowLogExpireDay = lowlogexpireday
+          @LogExpireDay = logexpireday
+          @HighStorage = highstorage
+          @LowStorage = lowstorage
+          @LogStorage = logstorage
+          @Deliver = deliver
+          @DeliverSummary = deliversummary
+          @InstanceInfo = instanceinfo
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Status = params['Status']
+          @EnableQuery = params['EnableQuery']
+          @CreateAt = params['CreateAt']
+          @HighLogExpireDay = params['HighLogExpireDay']
+          @LowLogExpireDay = params['LowLogExpireDay']
+          @LogExpireDay = params['LogExpireDay']
+          @HighStorage = params['HighStorage']
+          @LowStorage = params['LowStorage']
+          @LogStorage = params['LogStorage']
+          @Deliver = params['Deliver']
+          unless params['DeliverSummary'].nil?
+            @DeliverSummary = []
+            params['DeliverSummary'].each do |i|
+              deliversummary_tmp = DeliverSummary.new
+              deliversummary_tmp.deserialize(i)
+              @DeliverSummary << deliversummary_tmp
+            end
+          end
+          unless params['InstanceInfo'].nil?
+            @InstanceInfo = InstanceInfo.new
+            @InstanceInfo.deserialize(params['InstanceInfo'])
+          end
+        end
+      end
+
+      # 日志结果
+      class LogResult < TencentCloud::Common::AbstractModel
+        # @param Timestamp: 时间戳
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Timestamp: Integer
+        # @param Category: 错误类别
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Category: String
+        # @param ClientAppName: 客户端应用程序名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClientAppName: String
+        # @param ClientHostName: 客户端主机名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClientHostName: String
+        # @param CpuTime: CPU 时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CpuTime: Integer
+        # @param DatabaseId: 数据库 ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DatabaseId: Integer
+        # @param DatabaseName: 数据库名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DatabaseName: String
+        # @param Duration: 执行时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Duration: Integer
+        # @param ErrorNumber: 错误编号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorNumber: Integer
+        # @param IsIntercepted: 是否被拦截
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsIntercepted: String
+        # @param LastRowCount: 最后行计数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LastRowCount: Integer
+        # @param LogicalReads: 逻辑读取
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogicalReads: Integer
+        # @param Message: 消息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Message: String
+        # @param ObjectId: 对象 ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ObjectId: Integer
+        # @param ObjectName: 对象名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ObjectName: String
+        # @param ObjectType: 对象类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ObjectType: String
+        # @param OutputParameters: 输出参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OutputParameters: String
+        # @param ParameterizedPlanHandle: 参数化计划句柄
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ParameterizedPlanHandle: String
+        # @param PhysicalReads: 物理读取
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PhysicalReads: Integer
+        # @param Result: 结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: String
+        # @param RowCount: 行计数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RowCount: Integer
+        # @param ServerPrincipalName: 服务器主体名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServerPrincipalName: String
+        # @param SessionServerPrincipalName: 会话服务器主体名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SessionServerPrincipalName: String
+        # @param Severity: 严重性
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Severity: Integer
+        # @param SourceDatabaseId: 源数据库 ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SourceDatabaseId: Integer
+        # @param SqlText: SQL 文本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SqlText: String
+        # @param State: 状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type State: Integer
+        # @param Statement: 语句
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Statement: String
+        # @param SystemThreadId: 系统线程 ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SystemThreadId: Integer
+        # @param TransactionId: 事务 ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TransactionId: Integer
+        # @param UserDefined: 用户定义
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserDefined: String
+        # @param UserName: 用户名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserName: String
+        # @param Writes: 写入
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Writes: Integer
+        # @param Destination: 目标
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Destination: String
+
+        attr_accessor :Timestamp, :Category, :ClientAppName, :ClientHostName, :CpuTime, :DatabaseId, :DatabaseName, :Duration, :ErrorNumber, :IsIntercepted, :LastRowCount, :LogicalReads, :Message, :ObjectId, :ObjectName, :ObjectType, :OutputParameters, :ParameterizedPlanHandle, :PhysicalReads, :Result, :RowCount, :ServerPrincipalName, :SessionServerPrincipalName, :Severity, :SourceDatabaseId, :SqlText, :State, :Statement, :SystemThreadId, :TransactionId, :UserDefined, :UserName, :Writes, :Destination
+
+        def initialize(timestamp=nil, category=nil, clientappname=nil, clienthostname=nil, cputime=nil, databaseid=nil, databasename=nil, duration=nil, errornumber=nil, isintercepted=nil, lastrowcount=nil, logicalreads=nil, message=nil, objectid=nil, objectname=nil, objecttype=nil, outputparameters=nil, parameterizedplanhandle=nil, physicalreads=nil, result=nil, rowcount=nil, serverprincipalname=nil, sessionserverprincipalname=nil, severity=nil, sourcedatabaseid=nil, sqltext=nil, state=nil, statement=nil, systemthreadid=nil, transactionid=nil, userdefined=nil, username=nil, writes=nil, destination=nil)
+          @Timestamp = timestamp
+          @Category = category
+          @ClientAppName = clientappname
+          @ClientHostName = clienthostname
+          @CpuTime = cputime
+          @DatabaseId = databaseid
+          @DatabaseName = databasename
+          @Duration = duration
+          @ErrorNumber = errornumber
+          @IsIntercepted = isintercepted
+          @LastRowCount = lastrowcount
+          @LogicalReads = logicalreads
+          @Message = message
+          @ObjectId = objectid
+          @ObjectName = objectname
+          @ObjectType = objecttype
+          @OutputParameters = outputparameters
+          @ParameterizedPlanHandle = parameterizedplanhandle
+          @PhysicalReads = physicalreads
+          @Result = result
+          @RowCount = rowcount
+          @ServerPrincipalName = serverprincipalname
+          @SessionServerPrincipalName = sessionserverprincipalname
+          @Severity = severity
+          @SourceDatabaseId = sourcedatabaseid
+          @SqlText = sqltext
+          @State = state
+          @Statement = statement
+          @SystemThreadId = systemthreadid
+          @TransactionId = transactionid
+          @UserDefined = userdefined
+          @UserName = username
+          @Writes = writes
+          @Destination = destination
+        end
+
+        def deserialize(params)
+          @Timestamp = params['Timestamp']
+          @Category = params['Category']
+          @ClientAppName = params['ClientAppName']
+          @ClientHostName = params['ClientHostName']
+          @CpuTime = params['CpuTime']
+          @DatabaseId = params['DatabaseId']
+          @DatabaseName = params['DatabaseName']
+          @Duration = params['Duration']
+          @ErrorNumber = params['ErrorNumber']
+          @IsIntercepted = params['IsIntercepted']
+          @LastRowCount = params['LastRowCount']
+          @LogicalReads = params['LogicalReads']
+          @Message = params['Message']
+          @ObjectId = params['ObjectId']
+          @ObjectName = params['ObjectName']
+          @ObjectType = params['ObjectType']
+          @OutputParameters = params['OutputParameters']
+          @ParameterizedPlanHandle = params['ParameterizedPlanHandle']
+          @PhysicalReads = params['PhysicalReads']
+          @Result = params['Result']
+          @RowCount = params['RowCount']
+          @ServerPrincipalName = params['ServerPrincipalName']
+          @SessionServerPrincipalName = params['SessionServerPrincipalName']
+          @Severity = params['Severity']
+          @SourceDatabaseId = params['SourceDatabaseId']
+          @SqlText = params['SqlText']
+          @State = params['State']
+          @Statement = params['Statement']
+          @SystemThreadId = params['SystemThreadId']
+          @TransactionId = params['TransactionId']
+          @UserDefined = params['UserDefined']
+          @UserName = params['UserName']
+          @Writes = params['Writes']
+          @Destination = params['Destination']
         end
       end
 
@@ -9460,6 +10374,50 @@ module TencentCloud
         end
       end
 
+      # ModifyLog请求参数结构体
+      class ModifyLogRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>实例ID，例如：mssql-xjhsdj****。</p>
+        # @type InstanceId: String
+        # @param LogType: <p>日志类型。</p><p>枚举值：</p><ul><li>auditLog： 审计日志。</li></ul>
+        # @type LogType: String
+        # @param LogExpireDay: <p>日志有效期, 单位：天。</p><p>枚举值：</p><ul><li>7： 7天</li><li>30： 30天</li><li>90： 90天</li><li>180： 180天</li><li>365： 365天</li><li>1095： 1095天</li><li>1825： 1825天</li></ul>
+        # @type LogExpireDay: Integer
+        # @param HighLogExpireDay: <p>高频日志有效期, 单位：天。</p><p>枚举值：</p><ul><li>7： 7天</li></ul>
+        # @type HighLogExpireDay: Integer
+
+        attr_accessor :InstanceId, :LogType, :LogExpireDay, :HighLogExpireDay
+
+        def initialize(instanceid=nil, logtype=nil, logexpireday=nil, highlogexpireday=nil)
+          @InstanceId = instanceid
+          @LogType = logtype
+          @LogExpireDay = logexpireday
+          @HighLogExpireDay = highlogexpireday
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @LogType = params['LogType']
+          @LogExpireDay = params['LogExpireDay']
+          @HighLogExpireDay = params['HighLogExpireDay']
+        end
+      end
+
+      # ModifyLog返回参数结构体
+      class ModifyLogResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyMaintenanceSpan请求参数结构体
       class ModifyMaintenanceSpanRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID，形如mssql-k8voqdlz
@@ -9838,6 +10796,50 @@ module TencentCloud
               @InterInstanceFlowSet << interinstanceflow_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # OpenLog请求参数结构体
+      class OpenLogRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>实例ID，例如：mssql-xjhsdj****。</p>
+        # @type InstanceId: String
+        # @param LogType: <p>日志类型。</p><p>枚举值：</p><ul><li>auditLog： 审计日志</li></ul>
+        # @type LogType: String
+        # @param LogExpireDay: <p>日志有效期, 单位：天。</p><p>枚举值：</p><ul><li>7：  7 天</li><li>30： 30 天</li></ul><p>默认值：7</p>
+        # @type LogExpireDay: Integer
+        # @param HighLogExpireDay: <p>高频日志有效期, 单位：天。</p><p>枚举值：</p><ul><li>7： 7天</li></ul><p>默认值：7</p>
+        # @type HighLogExpireDay: Integer
+
+        attr_accessor :InstanceId, :LogType, :LogExpireDay, :HighLogExpireDay
+
+        def initialize(instanceid=nil, logtype=nil, logexpireday=nil, highlogexpireday=nil)
+          @InstanceId = instanceid
+          @LogType = logtype
+          @LogExpireDay = logexpireday
+          @HighLogExpireDay = highlogexpireday
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @LogType = params['LogType']
+          @LogExpireDay = params['LogExpireDay']
+          @HighLogExpireDay = params['HighLogExpireDay']
+        end
+      end
+
+      # OpenLog返回参数结构体
+      class OpenLogResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -11739,6 +12741,26 @@ module TencentCloud
           @QuoteUin = params['QuoteUin']
           @CMKId = params['CMKId']
           @CMKRegion = params['CMKRegion']
+        end
+      end
+
+      # 实例标签Tag
+      class TagList < TencentCloud::Common::AbstractModel
+        # @param TagKey: key
+        # @type TagKey: String
+        # @param TagValue: value
+        # @type TagValue: String
+
+        attr_accessor :TagKey, :TagValue
+
+        def initialize(tagkey=nil, tagvalue=nil)
+          @TagKey = tagkey
+          @TagValue = tagvalue
+        end
+
+        def deserialize(params)
+          @TagKey = params['TagKey']
+          @TagValue = params['TagValue']
         end
       end
 

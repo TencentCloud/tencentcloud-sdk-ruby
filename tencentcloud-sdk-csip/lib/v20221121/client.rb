@@ -941,6 +941,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询凭证详情，返回凭证元数据和打码后的凭据数据。access类型返回Access数组（Key原文、Value打码），sts类型返回STS对象（System原文、SecretID和SecretKey打码）
+
+        # @param request: Request instance for DescribeKeySandboxCredential.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeKeySandboxCredentialRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeKeySandboxCredentialResponse`
+        def DescribeKeySandboxCredential(request)
+          body = send_request('DescribeKeySandboxCredential', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeKeySandboxCredentialResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询凭证列表
+
+        # @param request: Request instance for DescribeKeySandboxCredentialList.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeKeySandboxCredentialListRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeKeySandboxCredentialListResponse`
+        def DescribeKeySandboxCredentialList(request)
+          body = send_request('DescribeKeySandboxCredentialList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeKeySandboxCredentialListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询clb监听器列表
 
         # @param request: Request instance for DescribeListenerList.

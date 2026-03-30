@@ -981,6 +981,8 @@ module TencentCloud
         extend Gem::Deprecate
         deprecate :ResourceId, :none, 2026, 3
         deprecate :ResourceId=, :none, 2026, 3
+        deprecate :HttpsUpstreamPort, :none, 2026, 3
+        deprecate :HttpsUpstreamPort=, :none, 2026, 3
         deprecate :IsGray, :none, 2026, 3
         deprecate :IsGray=, :none, 2026, 3
         deprecate :GrayAreas, :none, 2026, 3
@@ -1283,6 +1285,22 @@ module TencentCloud
           @RepLog = params['RepLog']
           @RspLog = params['RspLog']
           @FullReqLog = params['FullReqLog']
+        end
+      end
+
+      # guard content
+      class ApiGuardContent < TencentCloud::Common::AbstractModel
+        # @param Prompt: prompt
+        # @type Prompt: String
+
+        attr_accessor :Prompt
+
+        def initialize(prompt=nil)
+          @Prompt = prompt
+        end
+
+        def deserialize(params)
+          @Prompt = params['Prompt']
         end
       end
 
@@ -3317,6 +3335,34 @@ module TencentCloud
         end
       end
 
+      # ClawRiskItem
+      class ClawRiskItem < TencentCloud::Common::AbstractModel
+        # @param RiskType: 风险类别
+        # @type RiskType: String
+        # @param RuleId: 规则id
+        # @type RuleId: String
+        # @param RuleName: 规则名称
+        # @type RuleName: String
+        # @param Score: 分数
+        # @type Score: Float
+
+        attr_accessor :RiskType, :RuleId, :RuleName, :Score
+
+        def initialize(risktype=nil, ruleid=nil, rulename=nil, score=nil)
+          @RiskType = risktype
+          @RuleId = ruleid
+          @RuleName = rulename
+          @Score = score
+        end
+
+        def deserialize(params)
+          @RiskType = params['RiskType']
+          @RuleId = params['RuleId']
+          @RuleName = params['RuleName']
+          @Score = params['Score']
+        end
+      end
+
       # 负载均衡型WAF域名详情
       class ClbDomainsInfo < TencentCloud::Common::AbstractModel
         # @param Domain: 域名
@@ -5201,7 +5247,7 @@ module TencentCloud
 
       # DeleteIpAccessControl请求参数结构体
       class DeleteIpAccessControlRequest < TencentCloud::Common::AbstractModel
-        # @param Domain: 域名
+        # @param Domain: 域名，当操作对象为全局规则时，Domain参数应填写为"global"
         # @type Domain: String
         # @param Items: 删除的ip数组
         # @type Items: Array
@@ -5209,7 +5255,7 @@ module TencentCloud
         # @type IsId: Boolean
         # @param DeleteAll: 是否删除对应的域名下的所有黑/白IP名单，true表示全部删除，false表示只删除指定ip名单
         # @type DeleteAll: Boolean
-        # @param SourceType: 是否为多域名黑白名单
+        # @param SourceType: 用于按数据来源删除黑白名单记录，非必填，默认为custom。 custom（自定义），用户在控制台手动添加的黑白名单规则 cc（CC 防护	），由 CC 防护模块自动添加的 IP 黑白名单 bot（Bot 防护），由 Bot 防护模块自动添加的 IP 黑白名单 batch（批量域名防护），批量域名维度添加的黑白名单规则
         # @type SourceType: String
         # @param ActionType: IP黑白名单类型，40为IP白名单，42为IP黑名单
         # @type ActionType: Integer
@@ -5261,13 +5307,13 @@ module TencentCloud
 
       # DeleteIpAccessControlV2请求参数结构体
       class DeleteIpAccessControlV2Request < TencentCloud::Common::AbstractModel
-        # @param Domain: 域名
+        # @param Domain: 域名，当操作对象为全局规则时，Domain参数应填写为"global"
         # @type Domain: String
         # @param RuleIds: 规则ID列表，支持批量删除，在DeleteAll参数为true的时候可以不传
         # @type RuleIds: Array
         # @param DeleteAll: 是否删除对应的域名下的所有黑/白IP名单，true表示全部删除，false表示只删除指定IP名单，批量防护不支持
         # @type DeleteAll: Boolean
-        # @param SourceType: batch表示为批量防护的IP黑白名单
+        # @param SourceType: 用于按数据来源删除黑白名单记录，非必填，默认为custom。 custom（自定义），用户在控制台手动添加的黑白名单规则 cc（CC 防护	），由 CC 防护模块自动添加的 IP 黑白名单 bot（Bot 防护），由 Bot 防护模块自动添加的 IP 黑白名单 batch（批量域名防护），批量域名维度添加的黑白名单规则
         # @type SourceType: String
         # @param ActionType: IP黑白名单类型，40为IP白名单，42为IP黑名单，在DeleteAll为true的时候必传此参数
         # @type ActionType: Integer
@@ -8616,7 +8662,7 @@ module TencentCloud
 
       # DescribeIpAccessControl请求参数结构体
       class DescribeIpAccessControlRequest < TencentCloud::Common::AbstractModel
-        # @param Domain: 域名
+        # @param Domain: 域名，当操作对象为全局规则时，Domain参数应填写为"global"
         # @type Domain: String
         # @param Count: 计数标识
         # @type Count: Integer
@@ -8634,7 +8680,7 @@ module TencentCloud
         # @type OffSet: Integer
         # @param Limit: 每页返回的数量，默认为20
         # @type Limit: Integer
-        # @param Source: 来源
+        # @param Source: 用于按数据来源过滤黑白名单记录，非必填（默认为空字符串，表示不过滤/查询全部）。 "" (空字符串)	，不按来源过滤，返回所有记录（默认值） custom（自定义），用户在控制台手动添加的黑白名单规则 cc（CC 防护	），由 CC 防护模块自动添加的 IP 黑白名单 bot（Bot 防护），由 Bot 防护模块自动添加的 IP 黑白名单 batch（批量域名防护），批量域名维度添加的黑白名单规则 batch-group（防护对象组），防护对象组维度添加的黑白名单规则
         # @type Source: String
         # @param Sort: 排序参数
         # @type Sort: String
@@ -8816,6 +8862,69 @@ module TencentCloud
         def deserialize(params)
           unless params['Data'].nil?
             @Data = IpHitItemsData.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeLLMContentSecCheck请求参数结构体
+      class DescribeLLMContentSecCheckRequest < TencentCloud::Common::AbstractModel
+        # @param ServiceId:  服务id,使用哪一套防护策略，就需要传哪一套服务id，模型会检测该服务id下的所有规则
+        # @type ServiceId: String
+        # @param Content: 要审核的内容
+        # @type Content: String
+        # @param Type: 流量类型，是入向流量还是出向流量，入向：1，出向：2；入向和出向必填
+        # @type Type: Integer
+        # @param InstanceId: 实例id，必传
+        # @type InstanceId: String
+        # @param ChatId: 对话的id
+        # @type ChatId: String
+        # @param UserId: 标识用户的id，限速使用，不填，则限速会不生效
+        # @type UserId: String
+        # @param TokenUsage: token使用量，不填，会采用默认的token计算方法，计算的是模型的消耗，因为该值时在出向方向上添加，即Type=2
+        # @type TokenUsage: Integer
+
+        attr_accessor :ServiceId, :Content, :Type, :InstanceId, :ChatId, :UserId, :TokenUsage
+
+        def initialize(serviceid=nil, content=nil, type=nil, instanceid=nil, chatid=nil, userid=nil, tokenusage=nil)
+          @ServiceId = serviceid
+          @Content = content
+          @Type = type
+          @InstanceId = instanceid
+          @ChatId = chatid
+          @UserId = userid
+          @TokenUsage = tokenusage
+        end
+
+        def deserialize(params)
+          @ServiceId = params['ServiceId']
+          @Content = params['Content']
+          @Type = params['Type']
+          @InstanceId = params['InstanceId']
+          @ChatId = params['ChatId']
+          @UserId = params['UserId']
+          @TokenUsage = params['TokenUsage']
+        end
+      end
+
+      # DescribeLLMContentSecCheck返回参数结构体
+      class DescribeLLMContentSecCheckResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 检测结果
+        # @type Data: :class:`Tencentcloud::Waf.v20180125.models.LLMDetectResult`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = LLMDetectResult.new
             @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
@@ -9607,6 +9716,60 @@ module TencentCloud
               tigamainclassmode_tmp.deserialize(i)
               @Modes << tigamainclassmode_tmp
             end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeQClawContentSecCheck请求参数结构体
+      class DescribeQClawContentSecCheckRequest < TencentCloud::Common::AbstractModel
+        # @param ServiceId:  服务id,使用哪一套防护策略，就需要传哪一套服务id，模型会检测该服务id下的所有规则
+        # @type ServiceId: String
+        # @param Content: 要审核的内容
+        # @type Content: :class:`Tencentcloud::Waf.v20180125.models.ApiGuardContent`
+        # @param UserId: 标识用户的id，限速使用，不填，则限速会不生效
+        # @type UserId: String
+        # @param SessionId: 会话id
+        # @type SessionId: String
+
+        attr_accessor :ServiceId, :Content, :UserId, :SessionId
+
+        def initialize(serviceid=nil, content=nil, userid=nil, sessionid=nil)
+          @ServiceId = serviceid
+          @Content = content
+          @UserId = userid
+          @SessionId = sessionid
+        end
+
+        def deserialize(params)
+          @ServiceId = params['ServiceId']
+          unless params['Content'].nil?
+            @Content = ApiGuardContent.new
+            @Content.deserialize(params['Content'])
+          end
+          @UserId = params['UserId']
+          @SessionId = params['SessionId']
+        end
+      end
+
+      # DescribeQClawContentSecCheck返回参数结构体
+      class DescribeQClawContentSecCheckResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 检测结果
+        # @type Data: :class:`Tencentcloud::Waf.v20180125.models.LLMRisks`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = LLMRisks.new
+            @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
         end
@@ -12820,7 +12983,7 @@ module TencentCloud
         # @param Domain: 具体域名如：test.qcloudwaf.com
         # 全局域名为：global
         # @type Domain: String
-        # @param SourceType: 是否为批量防护IP黑白名单，当为批量防护IP黑白名单时，取值为batch，否则为空
+        # @param SourceType: 用于按数据来源导入黑白名单记录，必填。 custom（自定义），用户在控制台手动添加的黑白名单规则 cc（CC 防护	），由 CC 防护模块自动添加的 IP 黑白名单 bot（Bot 防护），由 Bot 防护模块自动添加的 IP 黑白名单 batch（批量域名防护），批量域名维度添加的黑白名单规则
         # @type SourceType: String
         # @param InstanceId: 实例Id
         # @type InstanceId: String
@@ -13672,6 +13835,87 @@ module TencentCloud
         end
       end
 
+      # 大模型安全检测敏感词库命中信息结构体
+      class KeyWordInfo < TencentCloud::Common::AbstractModel
+        # @param Id: 命中的词库id
+        # @type Id: String
+        # @param Name: 命中的词库名称
+        # @type Name: String
+
+        attr_accessor :Id, :Name
+
+        def initialize(id=nil, name=nil)
+          @Id = id
+          @Name = name
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Name = params['Name']
+        end
+      end
+
+      # 大模型安全检测综合结果
+      class LLMDetectResult < TencentCloud::Common::AbstractModel
+        # @param SensitiveResult:  仅输出侧：涉敏信息
+        # @type SensitiveResult: Array
+        # @param KeyWordsResult:  输入输出均检测：关键词库命中信息
+        # @type KeyWordsResult: Array
+        # @param DataCategoryResult: 输入输出均检测：数据分类分级结果
+        # @type DataCategoryResult: Array
+        # @param PromptInjectionResult:  仅输入侧检出：prompt检测的结果
+        # @type PromptInjectionResult: :class:`Tencentcloud::Waf.v20180125.models.PromptDetectResult`
+        # @param RuleId: 命中的规则ID
+        # @type RuleId: String
+        # @param RuleName: 命中的规则名称
+        # @type RuleName: String
+        # @param Action: 规则动作
+        # @type Action: String
+        # @param Payload: 攻击payload
+        # @type Payload: String
+
+        attr_accessor :SensitiveResult, :KeyWordsResult, :DataCategoryResult, :PromptInjectionResult, :RuleId, :RuleName, :Action, :Payload
+
+        def initialize(sensitiveresult=nil, keywordsresult=nil, datacategoryresult=nil, promptinjectionresult=nil, ruleid=nil, rulename=nil, action=nil, payload=nil)
+          @SensitiveResult = sensitiveresult
+          @KeyWordsResult = keywordsresult
+          @DataCategoryResult = datacategoryresult
+          @PromptInjectionResult = promptinjectionresult
+          @RuleId = ruleid
+          @RuleName = rulename
+          @Action = action
+          @Payload = payload
+        end
+
+        def deserialize(params)
+          unless params['SensitiveResult'].nil?
+            @SensitiveResult = []
+            params['SensitiveResult'].each do |i|
+              llmsensitivevaluelevel_tmp = LLMSensitiveValueLevel.new
+              llmsensitivevaluelevel_tmp.deserialize(i)
+              @SensitiveResult << llmsensitivevaluelevel_tmp
+            end
+          end
+          unless params['KeyWordsResult'].nil?
+            @KeyWordsResult = []
+            params['KeyWordsResult'].each do |i|
+              keywordinfo_tmp = KeyWordInfo.new
+              keywordinfo_tmp.deserialize(i)
+              @KeyWordsResult << keywordinfo_tmp
+            end
+          end
+          @DataCategoryResult = params['DataCategoryResult']
+          unless params['PromptInjectionResult'].nil?
+            @PromptInjectionResult = PromptDetectResult.new
+            @PromptInjectionResult.deserialize(params['PromptInjectionResult'])
+          end
+          @RuleId = params['RuleId']
+          @RuleName = params['RuleName']
+          @Action = params['Action']
+          @Payload = params['Payload']
+        end
+      end
+
       # 有效预付费大模型安全包信息
       class LLMMonPkg < TencentCloud::Common::AbstractModel
         # @param ResourceIds: 资源id
@@ -13754,6 +13998,49 @@ module TencentCloud
           @BeginTime = params['BeginTime']
           @EndTime = params['EndTime']
           @InquireKey = params['InquireKey']
+        end
+      end
+
+      # LLMRisks
+      class LLMRisks < TencentCloud::Common::AbstractModel
+        # @param Risks: 分数
+        # @type Risks: Array
+
+        attr_accessor :Risks
+
+        def initialize(risks=nil)
+          @Risks = risks
+        end
+
+        def deserialize(params)
+          unless params['Risks'].nil?
+            @Risks = []
+            params['Risks'].each do |i|
+              clawriskitem_tmp = ClawRiskItem.new
+              clawriskitem_tmp.deserialize(i)
+              @Risks << clawriskitem_tmp
+            end
+          end
+        end
+      end
+
+      # 涉敏信息结果结构体
+      class LLMSensitiveValueLevel < TencentCloud::Common::AbstractModel
+        # @param Label: 敏感数据标签，如政治、色情
+        # @type Label: String
+        # @param Level: 敏感数据等级，250,300，400分别代表超严格、严格、标准等级
+        # @type Level: Integer
+
+        attr_accessor :Label, :Level
+
+        def initialize(label=nil, level=nil)
+          @Label = label
+          @Level = level
+        end
+
+        def deserialize(params)
+          @Label = params['Label']
+          @Level = params['Level']
         end
       end
 
@@ -18317,6 +18604,26 @@ module TencentCloud
         def deserialize(params)
           @Name = params['Name']
           @Value = params['Value']
+        end
+      end
+
+      # prompt注入检测结果结构体
+      class PromptDetectResult < TencentCloud::Common::AbstractModel
+        # @param Result: 检测结果
+        # @type Result: String
+        # @param Confidence: 置信度
+        # @type Confidence: Integer
+
+        attr_accessor :Result, :Confidence
+
+        def initialize(result=nil, confidence=nil)
+          @Result = result
+          @Confidence = confidence
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @Confidence = params['Confidence']
         end
       end
 

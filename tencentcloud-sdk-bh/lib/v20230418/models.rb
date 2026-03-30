@@ -854,15 +854,18 @@ module TencentCloud
         # @type Device: :class:`Tencentcloud::Bh.v20230418.models.Device`
         # @param Account: 资产账号
         # @type Account: String
-        # @param LastChangeStatus: 上次改密结果。0-未改密  1-改密成功 2-改密失败
+        # @param LastChangeStatus: 上次改密结果。0-未改密  1-改密成功 2-改密失败,3-改密中，4-改密超时
         # @type LastChangeStatus: Integer
+        # @param TaskStatus: 改密任务状态，0-待执行，1-执行完成，2-执行失败，3-执行中，4-执行超时
+        # @type TaskStatus: Integer
 
-        attr_accessor :Device, :Account, :LastChangeStatus
+        attr_accessor :Device, :Account, :LastChangeStatus, :TaskStatus
 
-        def initialize(device=nil, account=nil, lastchangestatus=nil)
+        def initialize(device=nil, account=nil, lastchangestatus=nil, taskstatus=nil)
           @Device = device
           @Account = account
           @LastChangeStatus = lastchangestatus
+          @TaskStatus = taskstatus
         end
 
         def deserialize(params)
@@ -872,6 +875,7 @@ module TencentCloud
           end
           @Account = params['Account']
           @LastChangeStatus = params['LastChangeStatus']
+          @TaskStatus = params['TaskStatus']
         end
       end
 
@@ -921,10 +925,12 @@ module TencentCloud
         # @type NextTime: String
         # @param LastTime: 上次执行时间
         # @type LastTime: String
+        # @param Status: 改密任务状态，0-待执行，1-执行完成，2-执行失败，3-执行中，4-执行超时
+        # @type Status: Integer
 
-        attr_accessor :Id, :OperationId, :TaskName, :Department, :ChangeMethod, :RunAccount, :AuthGenerationStrategy, :PasswordLength, :SmallLetter, :BigLetter, :Digit, :Symbol, :CompleteNotify, :NotifyEmails, :FilePassword, :AccountSet, :DeviceSet, :Type, :Period, :FirstTime, :NextTime, :LastTime
+        attr_accessor :Id, :OperationId, :TaskName, :Department, :ChangeMethod, :RunAccount, :AuthGenerationStrategy, :PasswordLength, :SmallLetter, :BigLetter, :Digit, :Symbol, :CompleteNotify, :NotifyEmails, :FilePassword, :AccountSet, :DeviceSet, :Type, :Period, :FirstTime, :NextTime, :LastTime, :Status
 
-        def initialize(id=nil, operationid=nil, taskname=nil, department=nil, changemethod=nil, runaccount=nil, authgenerationstrategy=nil, passwordlength=nil, smallletter=nil, bigletter=nil, digit=nil, symbol=nil, completenotify=nil, notifyemails=nil, filepassword=nil, accountset=nil, deviceset=nil, type=nil, period=nil, firsttime=nil, nexttime=nil, lasttime=nil)
+        def initialize(id=nil, operationid=nil, taskname=nil, department=nil, changemethod=nil, runaccount=nil, authgenerationstrategy=nil, passwordlength=nil, smallletter=nil, bigletter=nil, digit=nil, symbol=nil, completenotify=nil, notifyemails=nil, filepassword=nil, accountset=nil, deviceset=nil, type=nil, period=nil, firsttime=nil, nexttime=nil, lasttime=nil, status=nil)
           @Id = id
           @OperationId = operationid
           @TaskName = taskname
@@ -947,6 +953,7 @@ module TencentCloud
           @FirstTime = firsttime
           @NextTime = nexttime
           @LastTime = lasttime
+          @Status = status
         end
 
         def deserialize(params)
@@ -982,6 +989,7 @@ module TencentCloud
           @FirstTime = params['FirstTime']
           @NextTime = params['NextTime']
           @LastTime = params['LastTime']
+          @Status = params['Status']
         end
       end
 
@@ -6885,10 +6893,14 @@ module TencentCloud
         # @type TimeSpan: Integer
         # @param PayMode: 计费模式 0后付费，1预付费
         # @type PayMode: Integer
+        # @param BillingRegion: 计费侧地域
+        # @type BillingRegion: String
+        # @param BillingZone: 计费侧可用区
+        # @type BillingZone: String
 
-        attr_accessor :ResourceId, :ApCode, :SvArgs, :VpcId, :Nodes, :RenewFlag, :ExpireTime, :Status, :ResourceName, :Pid, :CreateTime, :ProductCode, :SubProductCode, :Zone, :Expired, :Deployed, :VpcName, :VpcCidrBlock, :SubnetId, :SubnetName, :CidrBlock, :PublicIpSet, :PrivateIpSet, :ModuleSet, :UsedNodes, :ExtendPoints, :PackageBandwidth, :PackageNode, :LogDeliveryArgs, :ClbSet, :DomainCount, :UsedDomainCount, :Trial, :LogDelivery, :CdcClusterId, :DeployModel, :IntranetAccess, :IntranetPrivateIpSet, :IntranetVpcId, :IntranetSubnetId, :IntranetVpcCidr, :DomainName, :ShareClb, :OpenClbId, :LbVipIsp, :TUICmdPort, :TUIDirectPort, :WebAccess, :ClientAccess, :ExternalAccess, :IOAResource, :PackageIOAUserCount, :PackageIOABandwidth, :IOAResourceId, :ResourceEdition, :TimeUnit, :TimeSpan, :PayMode
+        attr_accessor :ResourceId, :ApCode, :SvArgs, :VpcId, :Nodes, :RenewFlag, :ExpireTime, :Status, :ResourceName, :Pid, :CreateTime, :ProductCode, :SubProductCode, :Zone, :Expired, :Deployed, :VpcName, :VpcCidrBlock, :SubnetId, :SubnetName, :CidrBlock, :PublicIpSet, :PrivateIpSet, :ModuleSet, :UsedNodes, :ExtendPoints, :PackageBandwidth, :PackageNode, :LogDeliveryArgs, :ClbSet, :DomainCount, :UsedDomainCount, :Trial, :LogDelivery, :CdcClusterId, :DeployModel, :IntranetAccess, :IntranetPrivateIpSet, :IntranetVpcId, :IntranetSubnetId, :IntranetVpcCidr, :DomainName, :ShareClb, :OpenClbId, :LbVipIsp, :TUICmdPort, :TUIDirectPort, :WebAccess, :ClientAccess, :ExternalAccess, :IOAResource, :PackageIOAUserCount, :PackageIOABandwidth, :IOAResourceId, :ResourceEdition, :TimeUnit, :TimeSpan, :PayMode, :BillingRegion, :BillingZone
 
-        def initialize(resourceid=nil, apcode=nil, svargs=nil, vpcid=nil, nodes=nil, renewflag=nil, expiretime=nil, status=nil, resourcename=nil, pid=nil, createtime=nil, productcode=nil, subproductcode=nil, zone=nil, expired=nil, deployed=nil, vpcname=nil, vpccidrblock=nil, subnetid=nil, subnetname=nil, cidrblock=nil, publicipset=nil, privateipset=nil, moduleset=nil, usednodes=nil, extendpoints=nil, packagebandwidth=nil, packagenode=nil, logdeliveryargs=nil, clbset=nil, domaincount=nil, useddomaincount=nil, trial=nil, logdelivery=nil, cdcclusterid=nil, deploymodel=nil, intranetaccess=nil, intranetprivateipset=nil, intranetvpcid=nil, intranetsubnetid=nil, intranetvpccidr=nil, domainname=nil, shareclb=nil, openclbid=nil, lbvipisp=nil, tuicmdport=nil, tuidirectport=nil, webaccess=nil, clientaccess=nil, externalaccess=nil, ioaresource=nil, packageioausercount=nil, packageioabandwidth=nil, ioaresourceid=nil, resourceedition=nil, timeunit=nil, timespan=nil, paymode=nil)
+        def initialize(resourceid=nil, apcode=nil, svargs=nil, vpcid=nil, nodes=nil, renewflag=nil, expiretime=nil, status=nil, resourcename=nil, pid=nil, createtime=nil, productcode=nil, subproductcode=nil, zone=nil, expired=nil, deployed=nil, vpcname=nil, vpccidrblock=nil, subnetid=nil, subnetname=nil, cidrblock=nil, publicipset=nil, privateipset=nil, moduleset=nil, usednodes=nil, extendpoints=nil, packagebandwidth=nil, packagenode=nil, logdeliveryargs=nil, clbset=nil, domaincount=nil, useddomaincount=nil, trial=nil, logdelivery=nil, cdcclusterid=nil, deploymodel=nil, intranetaccess=nil, intranetprivateipset=nil, intranetvpcid=nil, intranetsubnetid=nil, intranetvpccidr=nil, domainname=nil, shareclb=nil, openclbid=nil, lbvipisp=nil, tuicmdport=nil, tuidirectport=nil, webaccess=nil, clientaccess=nil, externalaccess=nil, ioaresource=nil, packageioausercount=nil, packageioabandwidth=nil, ioaresourceid=nil, resourceedition=nil, timeunit=nil, timespan=nil, paymode=nil, billingregion=nil, billingzone=nil)
           @ResourceId = resourceid
           @ApCode = apcode
           @SvArgs = svargs
@@ -6947,6 +6959,8 @@ module TencentCloud
           @TimeUnit = timeunit
           @TimeSpan = timespan
           @PayMode = paymode
+          @BillingRegion = billingregion
+          @BillingZone = billingzone
         end
 
         def deserialize(params)
@@ -7015,6 +7029,8 @@ module TencentCloud
           @TimeUnit = params['TimeUnit']
           @TimeSpan = params['TimeSpan']
           @PayMode = params['PayMode']
+          @BillingRegion = params['BillingRegion']
+          @BillingZone = params['BillingZone']
         end
       end
 

@@ -342,26 +342,28 @@ module TencentCloud
 
       # 沙箱自定义配置
       class CustomConfiguration < TencentCloud::Common::AbstractModel
-        # @param Image: 镜像地址
+        # @param Image: <p>镜像地址</p>
         # @type Image: String
-        # @param ImageRegistryType: 镜像仓库类型：`enterprise`、`personal`。
+        # @param ImageRegistryType: <p>镜像仓库类型：<code>enterprise</code>、<code>personal</code>。</p>
         # @type ImageRegistryType: String
-        # @param Command: 启动命令
+        # @param Command: <p>启动命令</p>
         # @type Command: Array
-        # @param Args: 启动参数
+        # @param Args: <p>启动参数</p>
         # @type Args: Array
-        # @param Env: 环境变量
+        # @param Env: <p>环境变量</p>
         # @type Env: Array
-        # @param Ports: 端口配置
+        # @param Ports: <p>端口配置</p>
         # @type Ports: Array
-        # @param Resources: 资源配置
+        # @param Resources: <p>资源配置</p>
         # @type Resources: :class:`Tencentcloud::Ags.v20250920.models.ResourceConfiguration`
-        # @param Probe: 探针配置
+        # @param Probe: <p>探针配置</p>
         # @type Probe: :class:`Tencentcloud::Ags.v20250920.models.ProbeConfiguration`
+        # @param DNSConfig: <p>沙箱 DNS 配置</p>
+        # @type DNSConfig: :class:`Tencentcloud::Ags.v20250920.models.DNSConfig`
 
-        attr_accessor :Image, :ImageRegistryType, :Command, :Args, :Env, :Ports, :Resources, :Probe
+        attr_accessor :Image, :ImageRegistryType, :Command, :Args, :Env, :Ports, :Resources, :Probe, :DNSConfig
 
-        def initialize(image=nil, imageregistrytype=nil, command=nil, args=nil, env=nil, ports=nil, resources=nil, probe=nil)
+        def initialize(image=nil, imageregistrytype=nil, command=nil, args=nil, env=nil, ports=nil, resources=nil, probe=nil, dnsconfig=nil)
           @Image = image
           @ImageRegistryType = imageregistrytype
           @Command = command
@@ -370,6 +372,7 @@ module TencentCloud
           @Ports = ports
           @Resources = resources
           @Probe = probe
+          @DNSConfig = dnsconfig
         end
 
         def deserialize(params)
@@ -401,33 +404,39 @@ module TencentCloud
             @Probe = ProbeConfiguration.new
             @Probe.deserialize(params['Probe'])
           end
+          unless params['DNSConfig'].nil?
+            @DNSConfig = DNSConfig.new
+            @DNSConfig.deserialize(params['DNSConfig'])
+          end
         end
       end
 
       # 沙箱自定义配置详细信息
       class CustomConfigurationDetail < TencentCloud::Common::AbstractModel
-        # @param Image: 镜像地址
+        # @param Image: <p>镜像地址</p>
         # @type Image: String
-        # @param ImageRegistryType: 镜像仓库类型：`TCR`、`CCR`。
+        # @param ImageRegistryType: <p>镜像仓库类型：<code>TCR</code>、<code>CCR</code>。</p>
         # @type ImageRegistryType: String
-        # @param ImageDigest: 镜像 Digest
+        # @param ImageDigest: <p>镜像 Digest</p>
         # @type ImageDigest: String
-        # @param Command: 启动命令
+        # @param Command: <p>启动命令</p>
         # @type Command: Array
-        # @param Args: 启动参数
+        # @param Args: <p>启动参数</p>
         # @type Args: Array
-        # @param Env: 环境变量
+        # @param Env: <p>环境变量</p>
         # @type Env: Array
-        # @param Ports: 端口配置
+        # @param Ports: <p>端口配置</p>
         # @type Ports: Array
-        # @param Resources: 资源配置
+        # @param Resources: <p>资源配置</p>
         # @type Resources: :class:`Tencentcloud::Ags.v20250920.models.ResourceConfiguration`
-        # @param Probe: 探针配置
+        # @param Probe: <p>探针配置</p>
         # @type Probe: :class:`Tencentcloud::Ags.v20250920.models.ProbeConfiguration`
+        # @param DNSConfig: <p>沙箱 DNS 配置</p>
+        # @type DNSConfig: :class:`Tencentcloud::Ags.v20250920.models.DNSConfig`
 
-        attr_accessor :Image, :ImageRegistryType, :ImageDigest, :Command, :Args, :Env, :Ports, :Resources, :Probe
+        attr_accessor :Image, :ImageRegistryType, :ImageDigest, :Command, :Args, :Env, :Ports, :Resources, :Probe, :DNSConfig
 
-        def initialize(image=nil, imageregistrytype=nil, imagedigest=nil, command=nil, args=nil, env=nil, ports=nil, resources=nil, probe=nil)
+        def initialize(image=nil, imageregistrytype=nil, imagedigest=nil, command=nil, args=nil, env=nil, ports=nil, resources=nil, probe=nil, dnsconfig=nil)
           @Image = image
           @ImageRegistryType = imageregistrytype
           @ImageDigest = imagedigest
@@ -437,6 +446,7 @@ module TencentCloud
           @Ports = ports
           @Resources = resources
           @Probe = probe
+          @DNSConfig = dnsconfig
         end
 
         def deserialize(params)
@@ -469,6 +479,34 @@ module TencentCloud
             @Probe = ProbeConfiguration.new
             @Probe.deserialize(params['Probe'])
           end
+          unless params['DNSConfig'].nil?
+            @DNSConfig = DNSConfig.new
+            @DNSConfig.deserialize(params['DNSConfig'])
+          end
+        end
+      end
+
+      # 沙箱自定义 dns 配置
+      class DNSConfig < TencentCloud::Common::AbstractModel
+        # @param Servers: <p>DNS 服务器地址</p><p>参数格式：需要有效 IP 地址</p><p>默认值：10.0.0.1</p>
+        # @type Servers: Array
+        # @param Searches: <p>搜索域(对应 resolv.conf 的 search 指令)</p>
+        # @type Searches: Array
+        # @param Options: <p>配置项(对应  resolv.conf 选项)</p>
+        # @type Options: Array
+
+        attr_accessor :Servers, :Searches, :Options
+
+        def initialize(servers=nil, searches=nil, options=nil)
+          @Servers = servers
+          @Searches = searches
+          @Options = options
+        end
+
+        def deserialize(params)
+          @Servers = params['Servers']
+          @Searches = params['Searches']
+          @Options = params['Options']
         end
       end
 

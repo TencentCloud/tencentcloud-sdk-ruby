@@ -256,40 +256,34 @@ module TencentCloud
 
       # 转自适应码流信息
       class AdaptiveDynamicStreamingInfoItem < TencentCloud::Common::AbstractModel
-        # @param Definition: 转自适应码流规格。
+        # @param Definition: <p>转自适应码流规格。</p>
         # @type Definition: Integer
-        # @param Package: 打包格式，取值范围：
-        # <li>HLS；</li>
-        # <li>DASH。</li>
+        # @param Package: <p>打包格式，取值范围：</p><li>HLS；</li><li>DASH。</li>
         # @type Package: String
-        # @param DrmType: 加密类型。
+        # @param DrmType: <p>加密类型。</p>
         # @type DrmType: String
-        # @param Url: 播放地址。
+        # @param Url: <p>播放地址。</p>
         # @type Url: String
-        # @param Size: 媒体文件大小，单位：字节。
-        # <li>当媒体文件为 HLS 时，大小是 m3u8 和 ts 文件大小的总和；</li>
-        # <li>当媒体文件为 DASH 时，大小是 mpd 和分片文件大小的总和；</li>
-        # <li><font color=red>注意</font>：在 2022-01-10T16:00:00Z 前处理生成的自适应码流文件此字段为0。</li>
+        # @param Size: <p>媒体文件大小，单位：字节。</p><li>当媒体文件为 HLS 时，大小是 m3u8 和 ts 文件大小的总和；</li><li>当媒体文件为 DASH 时，大小是 mpd 和分片文件大小的总和；</li><li><font color="red">注意</font>：在 2022-01-10T16:00:00Z 前处理生成的自适应码流文件此字段为0。</li>
         # @type Size: Integer
-        # @param DigitalWatermarkType: 数字水印类型。可选值：
-        # <li>Trace 表示经过溯源水印处理；</li>
-        # <li>CopyRight 表示经过版权水印处理；</li>
-        # <li>None 表示没有经过数字水印处理。</li>
+        # @param DigitalWatermarkType: <p>数字水印类型。可选值：</p><li>Trace 表示经过溯源水印处理；</li><li>CopyRight 表示经过版权水印处理；</li><li>None 表示没有经过数字水印处理。</li>
         # @type DigitalWatermarkType: String
-        # @param SubStreamSet: 子流信息列表。
+        # @param SubStreamSet: <p>子流信息列表。</p>
         # @type SubStreamSet: Array
-        # @param CopyRightWatermarkText: 版权信息。
+        # @param CopyRightWatermarkText: <p>版权信息。</p>
         # @type CopyRightWatermarkText: String
-        # @param BlindWatermarkDefinition: 数字水印模板id。
+        # @param BlindWatermarkDefinition: <p>数字水印模板id。</p>
         # @type BlindWatermarkDefinition: Integer
-        # @param SubtitleSet: 字幕信息列表。
+        # @param SubtitleSet: <p>字幕信息列表。</p>
         # @type SubtitleSet: Array
-        # @param DefaultSubtitleId: 默认字幕的唯一标识。
+        # @param DefaultSubtitleId: <p>默认字幕的唯一标识。</p>
         # @type DefaultSubtitleId: String
+        # @param DrmEncryptType: <p>DRM加密方法。</p>
+        # @type DrmEncryptType: String
 
-        attr_accessor :Definition, :Package, :DrmType, :Url, :Size, :DigitalWatermarkType, :SubStreamSet, :CopyRightWatermarkText, :BlindWatermarkDefinition, :SubtitleSet, :DefaultSubtitleId
+        attr_accessor :Definition, :Package, :DrmType, :Url, :Size, :DigitalWatermarkType, :SubStreamSet, :CopyRightWatermarkText, :BlindWatermarkDefinition, :SubtitleSet, :DefaultSubtitleId, :DrmEncryptType
 
-        def initialize(definition=nil, package=nil, drmtype=nil, url=nil, size=nil, digitalwatermarktype=nil, substreamset=nil, copyrightwatermarktext=nil, blindwatermarkdefinition=nil, subtitleset=nil, defaultsubtitleid=nil)
+        def initialize(definition=nil, package=nil, drmtype=nil, url=nil, size=nil, digitalwatermarktype=nil, substreamset=nil, copyrightwatermarktext=nil, blindwatermarkdefinition=nil, subtitleset=nil, defaultsubtitleid=nil, drmencrypttype=nil)
           @Definition = definition
           @Package = package
           @DrmType = drmtype
@@ -301,6 +295,7 @@ module TencentCloud
           @BlindWatermarkDefinition = blindwatermarkdefinition
           @SubtitleSet = subtitleset
           @DefaultSubtitleId = defaultsubtitleid
+          @DrmEncryptType = drmencrypttype
         end
 
         def deserialize(params)
@@ -329,6 +324,7 @@ module TencentCloud
             end
           end
           @DefaultSubtitleId = params['DefaultSubtitleId']
+          @DrmEncryptType = params['DrmEncryptType']
         end
       end
 
@@ -386,50 +382,38 @@ module TencentCloud
 
       # 转自适应码流模板详情
       class AdaptiveDynamicStreamingTemplate < TencentCloud::Common::AbstractModel
-        # @param Definition: 转自适应码流模板唯一标识。
+        # @param Definition: <p>转自适应码流模板唯一标识。</p>
         # @type Definition: Integer
-        # @param Type: 模板类型，取值范围：
-        # <li>Preset：系统预置模板；</li>
-        # <li>Custom：用户自定义模板。</li>
+        # @param Type: <p>模板类型，取值范围：</p><li>Preset：系统预置模板；</li><li>Custom：用户自定义模板。</li>
         # @type Type: String
-        # @param Name: 转自适应码流模板名称。
+        # @param Name: <p>转自适应码流模板名称。</p>
         # @type Name: String
-        # @param Comment: 转自适应码流模板描述信息。
+        # @param Comment: <p>转自适应码流模板描述信息。</p>
         # @type Comment: String
-        # @param Format: 自适应转码格式，取值范围：
-        # <li>HLS。</li>
+        # @param Format: <p>自适应转码格式，取值范围：</p><li>HLS。</li>
         # @type Format: String
-        # @param DrmType: DRM 类型，取值范围：
-        # <li>SimpleAES</li>
-        # <li>Widevine</li>
-        # <li>FairPlay</li>
-        # 如果取值为空字符串，代表不对视频做 DRM 保护。
+        # @param DrmType: <p>DRM 类型，取值范围：</p><li>SimpleAES</li><li>Widevine</li><li>FairPlay</li><li>Widevine+FairPlay</li>如果取值为空字符串，代表不对视频做 DRM 保护。
         # @type DrmType: String
-        # @param DrmKeyProvider: DRM 的密钥提供商，取值范围：
-        # <li>SDMC：华曦达；</li>
-        # <li>VOD：云点播。</li>
-        # 默认值为 VOD 。
+        # @param DrmKeyProvider: <p>DRM 的密钥提供商，取值范围：</p><li>SDMC：华曦达；</li><li>VOD：云点播。</li>默认值为 VOD 。<p>华曦达服务后续逐步下线，请使用VOD DRM加密服务。</p>
         # @type DrmKeyProvider: String
-        # @param StreamInfos: 自适应转码输入流参数信息，最多输入10路流。
+        # @param DrmEncryptType: <p>DRM的加密类型，取值范围：{&quot;cbcs&quot;, &quot;cenc&quot;}</p>
+        # @type DrmEncryptType: String
+        # @param StreamInfos: <p>自适应转码输入流参数信息，最多输入10路流。</p>
         # @type StreamInfos: Array
-        # @param DisableHigherVideoBitrate: 是否禁止视频低码率转高码率，取值范围：
-        # <li>0：否，</li>
-        # <li>1：是。</li>
+        # @param DisableHigherVideoBitrate: <p>是否禁止视频低码率转高码率，取值范围：</p><li>0：否，</li><li>1：是。</li>
         # @type DisableHigherVideoBitrate: Integer
-        # @param DisableHigherVideoResolution: 是否禁止视频分辨率转高分辨率，取值范围：
-        # <li>0：否，</li>
-        # <li>1：是。</li>
+        # @param DisableHigherVideoResolution: <p>是否禁止视频分辨率转高分辨率，取值范围：</p><li>0：否，</li><li>1：是。</li>
         # @type DisableHigherVideoResolution: Integer
-        # @param CreateTime: 模板创建时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @param CreateTime: <p>模板创建时间，使用 <a href="https://cloud.tencent.com/document/product/266/11732#I">ISO 日期格式</a>。</p>
         # @type CreateTime: String
-        # @param UpdateTime: 模板最后修改时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @param UpdateTime: <p>模板最后修改时间，使用 <a href="https://cloud.tencent.com/document/product/266/11732#I">ISO 日期格式</a>。</p>
         # @type UpdateTime: String
-        # @param SegmentType: 切片类型，仅当 Format 为 HLS 时有效。
+        # @param SegmentType: <p>切片类型，仅当 Format 为 HLS 时有效。</p>
         # @type SegmentType: String
 
-        attr_accessor :Definition, :Type, :Name, :Comment, :Format, :DrmType, :DrmKeyProvider, :StreamInfos, :DisableHigherVideoBitrate, :DisableHigherVideoResolution, :CreateTime, :UpdateTime, :SegmentType
+        attr_accessor :Definition, :Type, :Name, :Comment, :Format, :DrmType, :DrmKeyProvider, :DrmEncryptType, :StreamInfos, :DisableHigherVideoBitrate, :DisableHigherVideoResolution, :CreateTime, :UpdateTime, :SegmentType
 
-        def initialize(definition=nil, type=nil, name=nil, comment=nil, format=nil, drmtype=nil, drmkeyprovider=nil, streaminfos=nil, disablehighervideobitrate=nil, disablehighervideoresolution=nil, createtime=nil, updatetime=nil, segmenttype=nil)
+        def initialize(definition=nil, type=nil, name=nil, comment=nil, format=nil, drmtype=nil, drmkeyprovider=nil, drmencrypttype=nil, streaminfos=nil, disablehighervideobitrate=nil, disablehighervideoresolution=nil, createtime=nil, updatetime=nil, segmenttype=nil)
           @Definition = definition
           @Type = type
           @Name = name
@@ -437,6 +421,7 @@ module TencentCloud
           @Format = format
           @DrmType = drmtype
           @DrmKeyProvider = drmkeyprovider
+          @DrmEncryptType = drmencrypttype
           @StreamInfos = streaminfos
           @DisableHigherVideoBitrate = disablehighervideobitrate
           @DisableHigherVideoResolution = disablehighervideoresolution
@@ -453,6 +438,7 @@ module TencentCloud
           @Format = params['Format']
           @DrmType = params['DrmType']
           @DrmKeyProvider = params['DrmKeyProvider']
+          @DrmEncryptType = params['DrmEncryptType']
           unless params['StreamInfos'].nil?
             @StreamInfos = []
             params['StreamInfos'].each do |i|
@@ -7485,55 +7471,39 @@ module TencentCloud
 
       # CreateAdaptiveDynamicStreamingTemplate请求参数结构体
       class CreateAdaptiveDynamicStreamingTemplateRequest < TencentCloud::Common::AbstractModel
-        # @param Format: 自适应转码格式，取值范围：
-        # <li>HLS；</li>
-        # <li>MPEG-DASH。</li>
+        # @param Format: <p>自适应转码格式，取值范围：</p><li>HLS；</li><li>MPEG-DASH。</li>
         # @type Format: String
-        # @param StreamInfos: 自适应转码输出子流参数信息，最多输出10路子流。
-        # 注意：各个子流的帧率必须保持一致；如果不一致，采用第一个子流的帧率作为输出帧率。
+        # @param StreamInfos: <p>自适应转码输出子流参数信息，最多输出10路子流。<br>注意：各个子流的帧率必须保持一致；如果不一致，采用第一个子流的帧率作为输出帧率。</p>
         # @type StreamInfos: Array
-        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
+        # @param SubAppId: <p><b>点播<a href="/document/product/266/14574">应用</a> ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b></p>
         # @type SubAppId: Integer
-        # @param Name: 模板名称，长度限制：64 个字符。
+        # @param Name: <p>模板名称，长度限制：64 个字符。</p>
         # @type Name: String
-        # @param DrmType: DRM 方案类型，取值范围：
-        # <li>SimpleAES</li>
-        # <li>Widevine</li>
-        # <li>FairPlay</li>
-        # 默认值为空字符串，如果取值为空字符串，代表不对视频做 DRM 保护。
+        # @param DrmType: <p>DRM 方案类型，取值范围：</p><li>SimpleAES</li><li>Widevine</li><li>FairPlay</li><li>Widevine+FairPlay</li>默认值为空字符串，如果取值为空字符串，代表不对视频做 DRM 保护。
         # @type DrmType: String
-        # @param DrmKeyProvider: DRM 的密钥提供商，取值范围：
-        # <li>SDMC：华曦达；</li>
-        # <li>VOD：云点播。</li>
-        # 默认为 VOD 。
+        # @param DrmKeyProvider: <p>DRM 的密钥提供商，取值范围：</p><li>SDMC：华曦达；</li><li>VOD：云点播。</li>默认为 VOD 。<p>华曦达服务后续逐步下线，请使用VOD DRM加密服务。</p>
         # @type DrmKeyProvider: String
-        # @param DisableHigherVideoBitrate: 是否禁止视频低码率转高码率，取值范围：
-        # <li>0：否，</li>
-        # <li>1：是。</li>
-        # 默认为否。
+        # @param DrmEncryptType: <p>加密方式，可选值：<br>cbcs：Widevine，FairPlay，WideVine+FairPlay支持；<br>cenc：Widevine支持；   </p><p>若不填<br>FairPlay 默认cbcs;<br>Widevine 默认cenc;<br>WideVine+FairPlay默认cbcs;</p>
+        # @type DrmEncryptType: String
+        # @param DisableHigherVideoBitrate: <p>是否禁止视频低码率转高码率，取值范围：</p><li>0：否，</li><li>1：是。</li>默认为否。
         # @type DisableHigherVideoBitrate: Integer
-        # @param DisableHigherVideoResolution: 是否禁止视频分辨率转高分辨率，取值范围：
-        # <li>0：否，</li>
-        # <li>1：是。</li>
-        # 默认为否。
+        # @param DisableHigherVideoResolution: <p>是否禁止视频分辨率转高分辨率，取值范围：</p><li>0：否，</li><li>1：是。</li>默认为否。
         # @type DisableHigherVideoResolution: Integer
-        # @param Comment: 模板描述信息，长度限制：256 个字符。
+        # @param Comment: <p>模板描述信息，长度限制：256 个字符。</p>
         # @type Comment: String
-        # @param SegmentType: 切片类型，当 Format 为 HLS 时有效，可选值：
-        # <li>ts：ts 切片；</li>
-        # <li>fmp4：fmp4 切片。</li>
-        # 默认值：ts。
+        # @param SegmentType: <p>切片类型，当 Format 为 HLS 时有效，可选值：</p><li>ts：ts 切片；</li><li>fmp4：fmp4 切片。</li>默认值：ts。
         # @type SegmentType: String
 
-        attr_accessor :Format, :StreamInfos, :SubAppId, :Name, :DrmType, :DrmKeyProvider, :DisableHigherVideoBitrate, :DisableHigherVideoResolution, :Comment, :SegmentType
+        attr_accessor :Format, :StreamInfos, :SubAppId, :Name, :DrmType, :DrmKeyProvider, :DrmEncryptType, :DisableHigherVideoBitrate, :DisableHigherVideoResolution, :Comment, :SegmentType
 
-        def initialize(format=nil, streaminfos=nil, subappid=nil, name=nil, drmtype=nil, drmkeyprovider=nil, disablehighervideobitrate=nil, disablehighervideoresolution=nil, comment=nil, segmenttype=nil)
+        def initialize(format=nil, streaminfos=nil, subappid=nil, name=nil, drmtype=nil, drmkeyprovider=nil, drmencrypttype=nil, disablehighervideobitrate=nil, disablehighervideoresolution=nil, comment=nil, segmenttype=nil)
           @Format = format
           @StreamInfos = streaminfos
           @SubAppId = subappid
           @Name = name
           @DrmType = drmtype
           @DrmKeyProvider = drmkeyprovider
+          @DrmEncryptType = drmencrypttype
           @DisableHigherVideoBitrate = disablehighervideobitrate
           @DisableHigherVideoResolution = disablehighervideoresolution
           @Comment = comment
@@ -7554,6 +7524,7 @@ module TencentCloud
           @Name = params['Name']
           @DrmType = params['DrmType']
           @DrmKeyProvider = params['DrmKeyProvider']
+          @DrmEncryptType = params['DrmEncryptType']
           @DisableHigherVideoBitrate = params['DisableHigherVideoBitrate']
           @DisableHigherVideoResolution = params['DisableHigherVideoResolution']
           @Comment = params['Comment']
@@ -7563,7 +7534,7 @@ module TencentCloud
 
       # CreateAdaptiveDynamicStreamingTemplate返回参数结构体
       class CreateAdaptiveDynamicStreamingTemplateResponse < TencentCloud::Common::AbstractModel
-        # @param Definition: 自适应转码模板唯一标识。
+        # @param Definition: <p>自适应转码模板唯一标识。</p>
         # @type Definition: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -13413,7 +13384,7 @@ module TencentCloud
 
       # DescribeDrmKeyProviderInfo请求参数结构体
       class DescribeDrmKeyProviderInfoRequest < TencentCloud::Common::AbstractModel
-        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
+        # @param SubAppId: <p><b>点播<a href="/document/product/266/14574">应用</a> ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b></p>
         # @type SubAppId: Integer
 
         attr_accessor :SubAppId
@@ -13429,7 +13400,7 @@ module TencentCloud
 
       # DescribeDrmKeyProviderInfo返回参数结构体
       class DescribeDrmKeyProviderInfoResponse < TencentCloud::Common::AbstractModel
-        # @param SDMCInfo: 华曦达（SDMC）相关的 DRM 密钥提供商信息。
+        # @param SDMCInfo: <p>华曦达（SDMC）相关的 DRM 密钥提供商信息。</p><p>华曦达服务后续逐步下线，请使用VOD DRM加密服务。</p>
         # @type SDMCInfo: :class:`Tencentcloud::Vod.v20180717.models.SDMCDrmKeyProviderInfo`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -31697,9 +31668,9 @@ module TencentCloud
 
       # SetDrmKeyProviderInfo请求参数结构体
       class SetDrmKeyProviderInfoRequest < TencentCloud::Common::AbstractModel
-        # @param SDMCInfo: 华曦达（SDMC）相关的 DRM 密钥提供商信息。
+        # @param SDMCInfo: <p>华曦达（SDMC）相关的 DRM 密钥提供商信息。</p><p>华曦达服务后续逐步下线，请使用VOD DRM加密服务。</p>
         # @type SDMCInfo: :class:`Tencentcloud::Vod.v20180717.models.SDMCDrmKeyProviderInfo`
-        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
+        # @param SubAppId: <p><b>点播<a href="/document/product/266/14574">应用</a> ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b></p>
         # @type SubAppId: Integer
 
         attr_accessor :SDMCInfo, :SubAppId

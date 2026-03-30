@@ -3353,14 +3353,17 @@ module TencentCloud
         # @type HostIds: Array
         # @param HostId: 实例所属的专用宿主机ID，仅用于出参。
         # @type HostId: String
+        # @param RackId: 实例所属的实例资源池机架ID，仅用于出参。
+        # @type RackId: String
 
-        attr_accessor :Zone, :ProjectId, :HostIds, :HostId
+        attr_accessor :Zone, :ProjectId, :HostIds, :HostId, :RackId
 
-        def initialize(zone=nil, projectid=nil, hostids=nil, hostid=nil)
+        def initialize(zone=nil, projectid=nil, hostids=nil, hostid=nil, rackid=nil)
           @Zone = zone
           @ProjectId = projectid
           @HostIds = hostids
           @HostId = hostid
+          @RackId = rackid
         end
 
         def deserialize(params)
@@ -3368,6 +3371,7 @@ module TencentCloud
           @ProjectId = params['ProjectId']
           @HostIds = params['HostIds']
           @HostId = params['HostId']
+          @RackId = params['RackId']
         end
       end
 

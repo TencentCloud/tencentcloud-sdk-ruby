@@ -125,6 +125,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 关闭日志
+
+        # @param request: Request instance for CloseLog.
+        # @type request: :class:`Tencentcloud::sqlserver::V20180328::CloseLogRequest`
+        # @rtype: :class:`Tencentcloud::sqlserver::V20180328::CloseLogResponse`
+        def CloseLog(request)
+          body = send_request('CloseLog', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CloseLogResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（CompleteExpansion）在实例发起扩容后，实例状态处于“升级待切换”时，可立即完成实例升级切换操作，无需等待可维护时间窗。本接口需要在实例低峰时调用，在完全切换成功前，存在部分库不可访问的风险。
 
         # @param request: Request instance for CompleteExpansion.
@@ -413,6 +437,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建日志下载任务
+
+        # @param request: Request instance for CreateExportTask.
+        # @type request: :class:`Tencentcloud::sqlserver::V20180328::CreateExportTaskRequest`
+        # @rtype: :class:`Tencentcloud::sqlserver::V20180328::CreateExportTaskResponse`
+        def CreateExportTask(request)
+          body = send_request('CreateExportTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateExportTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（CreateIncrementalMigration）用于创建增量备份导入任务。
 
         # @param request: Request instance for CreateIncrementalMigration.
@@ -639,6 +687,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteDBInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除日志下载任务
+
+        # @param request: Request instance for DeleteExportTask.
+        # @type request: :class:`Tencentcloud::sqlserver::V20180328::DeleteExportTaskRequest`
+        # @rtype: :class:`Tencentcloud::sqlserver::V20180328::DeleteExportTaskResponse`
+        def DeleteExportTask(request)
+          body = send_request('DeleteExportTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteExportTaskResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1421,6 +1493,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询日志下载任务
+
+        # @param request: Request instance for DescribeExportTasks.
+        # @type request: :class:`Tencentcloud::sqlserver::V20180328::DescribeExportTasksRequest`
+        # @rtype: :class:`Tencentcloud::sqlserver::V20180328::DescribeExportTasksResponse`
+        def DescribeExportTasks(request)
+          body = send_request('DescribeExportTasks', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeExportTasksResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口(DescribeFlowStatus)用于查询流程状态。
 
         # @param request: Request instance for DescribeFlowStatus.
@@ -1623,6 +1719,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeInstanceTradeParameterResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 日志实例列表查询
+
+        # @param request: Request instance for DescribeLogInstanceList.
+        # @type request: :class:`Tencentcloud::sqlserver::V20180328::DescribeLogInstanceListRequest`
+        # @rtype: :class:`Tencentcloud::sqlserver::V20180328::DescribeLogInstanceListResponse`
+        def DescribeLogInstanceList(request)
+          body = send_request('DescribeLogInstanceList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeLogInstanceListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询日志
+
+        # @param request: Request instance for DescribeLogs.
+        # @type request: :class:`Tencentcloud::sqlserver::V20180328::DescribeLogsRequest`
+        # @rtype: :class:`Tencentcloud::sqlserver::V20180328::DescribeLogsResponse`
+        def DescribeLogs(request)
+          body = send_request('DescribeLogs', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeLogsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2959,6 +3103,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改日志
+
+        # @param request: Request instance for ModifyLog.
+        # @type request: :class:`Tencentcloud::sqlserver::V20180328::ModifyLogRequest`
+        # @rtype: :class:`Tencentcloud::sqlserver::V20180328::ModifyLogResponse`
+        def ModifyLog(request)
+          body = send_request('ModifyLog', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyLogResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（ModifyMaintenanceSpan）用于修改实例的可维护时间窗
 
         # @param request: Request instance for ModifyMaintenanceSpan.
@@ -3113,6 +3281,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = OpenInterCommunicationResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 开启审计日志
+
+        # @param request: Request instance for OpenLog.
+        # @type request: :class:`Tencentcloud::sqlserver::V20180328::OpenLogRequest`
+        # @rtype: :class:`Tencentcloud::sqlserver::V20180328::OpenLogResponse`
+        def OpenLog(request)
+          body = send_request('OpenLog', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = OpenLogResponse.new
             model.deserialize(response['Response'])
             model
           else

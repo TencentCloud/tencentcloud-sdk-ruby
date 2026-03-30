@@ -7816,44 +7816,40 @@ module TencentCloud
 
       # 信息区证件内容
       class PassportRecognizeInfos < TencentCloud::Common::AbstractModel
-        # @param Type: 证件类型（护照信息页识别结果）
+        # @param Type: <p>证件类型（护照信息页识别结果）</p>
         # @type Type: String
-        # @param IssuingCountry: 发行国家（护照信息页识别结果）
+        # @param IssuingCountry: <p>发行国家（护照信息页识别结果）</p>
         # @type IssuingCountry: String
-        # @param PassportID: 护照号码（护照信息页识别结果）
+        # @param PassportID: <p>护照号码（护照信息页识别结果）</p>
         # @type PassportID: String
-        # @param Surname: 姓（护照信息页识别结果）
+        # @param Surname: <p>姓（护照信息页识别结果）</p>
         # @type Surname: String
-        # @param GivenName: 名（护照信息页识别结果）
+        # @param GivenName: <p>名（护照信息页识别结果）</p>
         # @type GivenName: String
-        # @param Name: 姓名（护照信息页识别结果）
+        # @param Name: <p>姓名（护照信息页识别结果）</p>
         # @type Name: String
-        # @param Nationality: 国籍信息（护照信息页识别结果）
+        # @param Nationality: <p>国籍信息（护照信息页识别结果）</p>
         # @type Nationality: String
-        # @param DateOfBirth: 出生日期（护照信息页识别结果）
+        # @param DateOfBirth: <p>出生日期（护照信息页识别结果）</p>
         # @type DateOfBirth: String
-        # @param Sex: 性别（护照信息页识别结果）
+        # @param Sex: <p>性别（护照信息页识别结果）</p>
         # @type Sex: String
-        # @param DateOfIssuance: 发行日期（护照信息页识别结果）
+        # @param DateOfIssuance: <p>发行日期（护照信息页识别结果）</p>
         # @type DateOfIssuance: String
-        # @param DateOfExpiration: 截止日期（护照信息页识别结果）
+        # @param DateOfExpiration: <p>截止日期（护照信息页识别结果）</p>
         # @type DateOfExpiration: String
-        # @param Signature: 持证人签名（护照信息页识别结果）
-
-        # 仅中国大陆护照支持返回此字段，港澳台及境外护照不支持
+        # @param Signature: <p>持证人签名（护照信息页识别结果）</p><p>仅中国大陆护照支持返回此字段，港澳台及境外护照不支持</p>
         # @type Signature: String
-        # @param IssuePlace: 签发地点（护照信息页识别结果）
-
-        # 仅中国大陆护照支持返回此字段，港澳台及境外护照不支持
+        # @param IssuePlace: <p>签发地点（护照信息页识别结果）</p><p>仅中国大陆护照支持返回此字段，港澳台及境外护照不支持</p>
         # @type IssuePlace: String
-        # @param IssuingAuthority: 签发机关（护照信息页识别结果）
-
-        # 仅中国大陆护照支持返回此字段，港澳台及境外护照不支持
+        # @param IssuingAuthority: <p>签发机关（护照信息页识别结果）</p><p>仅中国大陆护照支持返回此字段，港澳台及境外护照不支持</p>
         # @type IssuingAuthority: String
+        # @param BirthPlace: <p>出生地（护照信息页识别结果）</p>
+        # @type BirthPlace: String
 
-        attr_accessor :Type, :IssuingCountry, :PassportID, :Surname, :GivenName, :Name, :Nationality, :DateOfBirth, :Sex, :DateOfIssuance, :DateOfExpiration, :Signature, :IssuePlace, :IssuingAuthority
+        attr_accessor :Type, :IssuingCountry, :PassportID, :Surname, :GivenName, :Name, :Nationality, :DateOfBirth, :Sex, :DateOfIssuance, :DateOfExpiration, :Signature, :IssuePlace, :IssuingAuthority, :BirthPlace
 
-        def initialize(type=nil, issuingcountry=nil, passportid=nil, surname=nil, givenname=nil, name=nil, nationality=nil, dateofbirth=nil, sex=nil, dateofissuance=nil, dateofexpiration=nil, signature=nil, issueplace=nil, issuingauthority=nil)
+        def initialize(type=nil, issuingcountry=nil, passportid=nil, surname=nil, givenname=nil, name=nil, nationality=nil, dateofbirth=nil, sex=nil, dateofissuance=nil, dateofexpiration=nil, signature=nil, issueplace=nil, issuingauthority=nil, birthplace=nil)
           @Type = type
           @IssuingCountry = issuingcountry
           @PassportID = passportid
@@ -7868,6 +7864,7 @@ module TencentCloud
           @Signature = signature
           @IssuePlace = issueplace
           @IssuingAuthority = issuingauthority
+          @BirthPlace = birthplace
         end
 
         def deserialize(params)
@@ -7885,6 +7882,7 @@ module TencentCloud
           @Signature = params['Signature']
           @IssuePlace = params['IssuePlace']
           @IssuingAuthority = params['IssuingAuthority']
+          @BirthPlace = params['BirthPlace']
         end
       end
 
@@ -12384,26 +12382,27 @@ module TencentCloud
 
       # 文字识别结果
       class TextDetection < TencentCloud::Common::AbstractModel
-        # @param DetectedText: 识别出的文本行内容
+        # @param DetectedText: <p>识别出的文本行内容</p>
         # @type DetectedText: String
-        # @param Confidence: 置信度 0 ~100
+        # @param Confidence: <p>置信度 0 ~100</p>
         # @type Confidence: Integer
-        # @param Polygon: 文本行坐标，以四个顶点坐标表示
+        # @param Polygon: <p>文本行坐标，以四个顶点坐标表示</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Polygon: Array
-        # @param AdvancedInfo: 此字段为扩展字段。
-        # GeneralBasicOcr接口返回段落信息Parag，包含ParagNo。
+        # @param AdvancedInfo: <p>此字段为扩展字段。<br>GeneralBasicOcr接口返回段落信息Parag，包含ParagNo。</p>
         # @type AdvancedInfo: String
-        # @param ItemPolygon: 文本行在旋转纠正之后的图像中的像素坐标，表示为（左上角x, 左上角y，宽width，高height）
+        # @param ItemPolygon: <p>文本行在旋转纠正之后的图像中的像素坐标，表示为（左上角x, 左上角y，宽width，高height）</p>
         # @type ItemPolygon: :class:`Tencentcloud::Ocr.v20181119.models.ItemCoord`
-        # @param Words: 识别出来的单字信息包括单字（包括单字Character和单字置信度confidence）， 支持识别的接口：GeneralBasicOCR、GeneralAccurateOCR
+        # @param Words: <p>识别出来的单字信息包括单字（包括单字Character和单字置信度confidence）， 支持识别的接口：GeneralBasicOCR、GeneralAccurateOCR</p>
         # @type Words: Array
-        # @param WordCoordPoint: 单字在原图中的四点坐标， 支持识别的接口：GeneralBasicOCR、GeneralAccurateOCR
+        # @param WordCoordPoint: <p>单字在原图中的四点坐标， 支持识别的接口：GeneralBasicOCR、GeneralAccurateOCR</p>
         # @type WordCoordPoint: Array
+        # @param Language: <p>语种信息。zh:中文; en:英文; th:泰语; id:印尼语; ja:日语; ko:韩语; es:西班牙语; fr:法语; de:德语; pt:葡萄牙语; vi:越南语; ms:马来语; ru:俄语; it:意大利语; nl:荷兰语; sv:瑞典语; fi:芬兰语; no:挪威语; hu:匈牙利语; ar:阿拉伯语; hi:印地语</p>
+        # @type Language: String
 
-        attr_accessor :DetectedText, :Confidence, :Polygon, :AdvancedInfo, :ItemPolygon, :Words, :WordCoordPoint
+        attr_accessor :DetectedText, :Confidence, :Polygon, :AdvancedInfo, :ItemPolygon, :Words, :WordCoordPoint, :Language
 
-        def initialize(detectedtext=nil, confidence=nil, polygon=nil, advancedinfo=nil, itempolygon=nil, words=nil, wordcoordpoint=nil)
+        def initialize(detectedtext=nil, confidence=nil, polygon=nil, advancedinfo=nil, itempolygon=nil, words=nil, wordcoordpoint=nil, language=nil)
           @DetectedText = detectedtext
           @Confidence = confidence
           @Polygon = polygon
@@ -12411,6 +12410,7 @@ module TencentCloud
           @ItemPolygon = itempolygon
           @Words = words
           @WordCoordPoint = wordcoordpoint
+          @Language = language
         end
 
         def deserialize(params)
@@ -12445,6 +12445,7 @@ module TencentCloud
               @WordCoordPoint << detectedwordcoordpoint_tmp
             end
           end
+          @Language = params['Language']
         end
       end
 
@@ -15233,9 +15234,9 @@ module TencentCloud
         # @type IsLrNameConsistent: Boolean
         # @param IsIdNumConsistent: <p>注册登记证件号码是否一致<br>仅StatusCode为0时返回，企业名称与统一社会信用代码均未查得时，固定返回false</p>
         # @type IsIdNumConsistent: Boolean
-        # @param OperatingStatus: <p>经营状态</p><p>枚举值：</p><ul><li>1： 开业（在营）</li><li>2： 迁出</li><li>3： 注销</li><li>4： 吊销</li><li>5： 撤销</li><li>6： 停业</li><li>0： 其他</li><li>-10002： 企业信息不正确，无法查询</li></ul>
+        # @param OperatingStatus: <p>经营状态</p><p>枚举值：</p><ul><li>1： 开业（在营）</li><li>2： 迁出</li><li>3： 注销</li><li>4： 吊销</li><li>5： 撤销</li><li>6： 停业</li><li>7： 撤销登记</li><li>0： 其他</li><li>/： 无法查询</li></ul>
         # @type OperatingStatus: String
-        # @param OperatingPeriod: <p>营业期限：一般包括营业开始时间和结束时间</p><p>参数格式：yyyy-MM-dd/yyyy-MM-dd</p><p>无固定期限的格式为：yyyy-MM-dd/<br>部分企业历史数据可能为空，将返回：/<br>企业信息不正确，无法查询，将返回：-10002</p>
+        # @param OperatingPeriod: <p>营业期限：一般包括营业开始时间和结束时间</p><p>参数格式：yyyy-MM-dd/yyyy-MM-dd</p><p>无固定期限的格式为：yyyy-MM-dd/<br>部分企业历史数据可能为空，将返回：/<br>无法查询，将返回：/</p>
         # @type OperatingPeriod: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

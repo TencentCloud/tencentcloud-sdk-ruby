@@ -463,9 +463,9 @@ module TencentCloud
 
       # DescribeTaskDetail请求参数结构体
       class DescribeTaskDetailRequest < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务ID，创建任务后返回的TaskId字段
+        # @param TaskId: <p>任务ID，创建任务后返回的TaskId字段</p>
         # @type TaskId: String
-        # @param ShowAllSegments: 是否展示所有分片，默认只展示命中规则的分片
+        # @param ShowAllSegments: <p>是否展示所有分片，默认只展示命中规则的分片</p>
         # @type ShowAllSegments: Boolean
 
         attr_accessor :TaskId, :ShowAllSegments
@@ -483,62 +483,56 @@ module TencentCloud
 
       # DescribeTaskDetail返回参数结构体
       class DescribeTaskDetailResponse < TencentCloud::Common::AbstractModel
-        # @param TaskId: 该字段用于返回创建视频审核任务后返回的任务ID（在Results参数中），用于标识需要查询任务详情的审核任务。
+        # @param TaskId: <p>该字段用于返回创建视频审核任务后返回的任务ID（在Results参数中），用于标识需要查询任务详情的审核任务。</p>
         # @type TaskId: String
-        # @param DataId: 该字段用于返回调用视频审核接口时传入的数据ID参数，方便数据的辨别和管理。
+        # @param DataId: <p>该字段用于返回调用视频审核接口时传入的数据ID参数，方便数据的辨别和管理。</p>
         # @type DataId: String
-        # @param BizType: 该字段用于返回调用视频审核接口时传入的BizType参数，方便数据的辨别和管理。
+        # @param BizType: <p>该字段用于返回调用视频审核接口时传入的BizType参数，方便数据的辨别和管理。</p>
         # @type BizType: String
-        # @param Name: 该字段用于返回调用视频审核接口时传入的TaskInput参数中的任务名称，方便任务的识别与管理。
+        # @param Name: <p>该字段用于返回调用视频审核接口时传入的TaskInput参数中的任务名称，方便任务的识别与管理。</p>
         # @type Name: String
-        # @param Status: 该字段用于返回所查询内容的任务状态。
-        # <br>取值：**FINISH**（任务已完成）、**PENDING** （任务等待中）、**RUNNING** （任务进行中）、**ERROR** （任务出错）、**CANCELLED** （任务已取消）。
+        # @param Status: <p>该字段用于返回所查询内容的任务状态。<br><br>取值：<strong>FINISH</strong>（任务已完成）、<strong>PENDING</strong> （任务等待中）、<strong>RUNNING</strong> （任务进行中）、<strong>ERROR</strong> （任务出错）、<strong>CANCELLED</strong> （任务已取消）。</p>
         # @type Status: String
-        # @param Type: 该字段用于返回调用视频审核接口时输入的视频审核类型，取值为：**VIDEO**（点播视频）、**LIVE_VIDEO**（直播视频）和**VIDEO_AIGC**（AI生成检测），默认值为VIDEO。
+        # @param Type: <p>该字段用于返回调用视频审核接口时输入的视频审核类型，取值为：<strong>VIDEO</strong>（点播视频）、<strong>LIVE_VIDEO</strong>（直播视频）和<strong>VIDEO_AIGC</strong>（AI生成检测），默认值为VIDEO。</p>
         # @type Type: String
-        # @param Suggestion: 该字段用于返回基于恶意标签的后续操作建议。当您获取到判定结果后，返回值表示系统推荐的后续操作；建议您按照业务所需，对不同违规类型与建议值进行处理。<br>返回值：**Block**：建议屏蔽，**Review** ：建议人工复审，**Pass**：建议通过
+        # @param Suggestion: <p>该字段用于返回基于恶意标签的后续操作建议。当您获取到判定结果后，返回值表示系统推荐的后续操作；建议您按照业务所需，对不同违规类型与建议值进行处理。<br>返回值：<strong>Block</strong>：建议屏蔽，<strong>Review</strong> ：建议人工复审，<strong>Pass</strong>：建议通过</p>
         # @type Suggestion: String
-        # @param Labels: 该字段用于返回检测结果所对应的恶意标签。<br>返回值：**Porn**：色情，**Abuse**：谩骂，**Ad**：广告，**Custom**：自定义违规；以及其他令人反感、不安全或不适宜的内容类型。
+        # @param Labels: <p>该字段用于返回检测结果所对应的恶意标签。<br>返回值：<strong>Porn</strong>：色情，<strong>Abuse</strong>：谩骂，<strong>Ad</strong>：广告，<strong>Custom</strong>：自定义违规；以及其他令人反感、不安全或不适宜的内容类型。</p>
         # @type Labels: Array
-        # @param MediaInfo: 该字段用于返回输入媒体文件的详细信息，包括编解码格式、分片时长等信息。详细内容敬请参考MediaInfo数据结构的描述。
+        # @param MediaInfo: <p>该字段用于返回输入媒体文件的详细信息，包括编解码格式、分片时长等信息。详细内容敬请参考MediaInfo数据结构的描述。</p>
         # @type MediaInfo: :class:`Tencentcloud::Vm.v20210922.models.MediaInfo`
-        # @param InputInfo: 该字段用于返回审核服务的媒体内容信息，主要包括传入文件类型和访问地址。
+        # @param InputInfo: <p>该字段用于返回审核服务的媒体内容信息，主要包括传入文件类型和访问地址。</p>
         # @type InputInfo: :class:`Tencentcloud::Vm.v20210922.models.InputInfo`
-        # @param CreatedAt: 该字段用于返回被查询任务创建的时间，格式采用 ISO 8601标准。
+        # @param CreatedAt: <p>该字段用于返回被查询任务创建的时间，格式采用 ISO 8601标准。</p>
         # @type CreatedAt: String
-        # @param UpdatedAt: 该字段用于返回被查询任务最后更新时间，格式采用 ISO 8601标准。
+        # @param UpdatedAt: <p>该字段用于返回被查询任务最后更新时间，格式采用 ISO 8601标准。</p>
         # @type UpdatedAt: String
-        # @param TryInSeconds: 在秒后重试
+        # @param TryInSeconds: <p>在秒后重试</p>
         # @type TryInSeconds: Integer
-        # @param ImageSegments: 该字段用于返回视频中截帧审核的结果，详细返回内容敬请参考ImageSegments数据结构的描述。
+        # @param ImageSegments: <p>该字段用于返回视频中截帧审核的结果，详细返回内容敬请参考ImageSegments数据结构的描述。</p>
         # @type ImageSegments: Array
-        # @param AudioSegments: 该字段用于返回视频中音频审核的结果，详细返回内容敬请参考AudioSegments数据结构的描述。
+        # @param AudioSegments: <p>该字段用于返回视频中音频审核的结果，详细返回内容敬请参考AudioSegments数据结构的描述。</p>
         # @type AudioSegments: Array
-        # @param ErrorType: 当任务状态为Error时，返回对应错误的类型，取值：
-        # **DECODE_ERROR**: 解码失败。（输入资源中可能包含无法解码的视频）
-        # **URL_ERROR**：下载地址验证失败。
-        # **TIMEOUT_ERROR**：处理超时。
-        # **CALLBACK_ERRORR**：回调错误。
-        # **MODERATION_ERROR**：审核失败。
-        # **URL_NOT_SUPPORTED**：源文件太大或没有图片音频帧
-        # 任务状态非Error时默认返回为空。
+        # @param ErrorType: <p>当任务状态为Error时，返回对应错误的类型，取值：<br><strong>DECODE_ERROR</strong>: 解码失败。（输入资源中可能包含无法解码的视频）<br><strong>URL_ERROR</strong>：下载地址验证失败。<br><strong>TIMEOUT_ERROR</strong>：处理超时。<br><strong>CALLBACK_ERRORR</strong>：回调错误。<br><strong>MODERATION_ERROR</strong>：审核失败。<br><strong>URL_NOT_SUPPORTED</strong>：源文件太大或没有图片音频帧<br>任务状态非Error时默认返回为空。</p>
         # @type ErrorType: String
-        # @param ErrorDescription: 当任务状态为Error时，该字段用于返回对应错误的详细描述，任务状态非Error时默认返回为空。
+        # @param ErrorDescription: <p>当任务状态为Error时，该字段用于返回对应错误的详细描述，任务状态非Error时默认返回为空。</p>
         # @type ErrorDescription: String
-        # @param Label: 该字段用于返回检测结果所对应的标签。如果未命中恶意，返回Normal，如果命中恶意，则返回Labels中优先级最高的标签
+        # @param Label: <p>该字段用于返回检测结果所对应的标签。如果未命中恶意，返回Normal，如果命中恶意，则返回Labels中优先级最高的标签</p>
         # @type Label: String
-        # @param AudioText: 该字段用于返回音频文件识别出的对应文本内容，最大支持**前1000个字符**。
+        # @param AudioText: <p>该字段用于返回音频文件识别出的对应文本内容，最大支持<strong>前1000个字符</strong>。</p>
         # @type AudioText: String
-        # @param Asrs: 该字段用于返回音频文件识别出的对应文本内容。
+        # @param Asrs: <p>该字段用于返回音频文件识别出的对应文本内容。</p>
         # @type Asrs: Array
-        # @param SegmentCosUrlList: 该字段用于返回检测结果明细数据相关的cos url
+        # @param SegmentCosUrlList: <p>该字段用于返回检测结果明细数据相关的cos url</p>
         # @type SegmentCosUrlList: :class:`Tencentcloud::Vm.v20210922.models.SegmentCosUrlList`
+        # @param VideoSegments: <p>该字段用于返回视频中视频切片审核的结果</p>
+        # @type VideoSegments: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TaskId, :DataId, :BizType, :Name, :Status, :Type, :Suggestion, :Labels, :MediaInfo, :InputInfo, :CreatedAt, :UpdatedAt, :TryInSeconds, :ImageSegments, :AudioSegments, :ErrorType, :ErrorDescription, :Label, :AudioText, :Asrs, :SegmentCosUrlList, :RequestId
+        attr_accessor :TaskId, :DataId, :BizType, :Name, :Status, :Type, :Suggestion, :Labels, :MediaInfo, :InputInfo, :CreatedAt, :UpdatedAt, :TryInSeconds, :ImageSegments, :AudioSegments, :ErrorType, :ErrorDescription, :Label, :AudioText, :Asrs, :SegmentCosUrlList, :VideoSegments, :RequestId
 
-        def initialize(taskid=nil, dataid=nil, biztype=nil, name=nil, status=nil, type=nil, suggestion=nil, labels=nil, mediainfo=nil, inputinfo=nil, createdat=nil, updatedat=nil, tryinseconds=nil, imagesegments=nil, audiosegments=nil, errortype=nil, errordescription=nil, label=nil, audiotext=nil, asrs=nil, segmentcosurllist=nil, requestid=nil)
+        def initialize(taskid=nil, dataid=nil, biztype=nil, name=nil, status=nil, type=nil, suggestion=nil, labels=nil, mediainfo=nil, inputinfo=nil, createdat=nil, updatedat=nil, tryinseconds=nil, imagesegments=nil, audiosegments=nil, errortype=nil, errordescription=nil, label=nil, audiotext=nil, asrs=nil, segmentcosurllist=nil, videosegments=nil, requestid=nil)
           @TaskId = taskid
           @DataId = dataid
           @BizType = biztype
@@ -560,6 +554,7 @@ module TencentCloud
           @AudioText = audiotext
           @Asrs = asrs
           @SegmentCosUrlList = segmentcosurllist
+          @VideoSegments = videosegments
           @RequestId = requestid
         end
 
@@ -621,6 +616,14 @@ module TencentCloud
           unless params['SegmentCosUrlList'].nil?
             @SegmentCosUrlList = SegmentCosUrlList.new
             @SegmentCosUrlList.deserialize(params['SegmentCosUrlList'])
+          end
+          unless params['VideoSegments'].nil?
+            @VideoSegments = []
+            params['VideoSegments'].each do |i|
+              videosegment_tmp = VideoSegment.new
+              videosegment_tmp.deserialize(i)
+              @VideoSegments << videosegment_tmp
+            end
           end
           @RequestId = params['RequestId']
         end
@@ -986,26 +989,34 @@ module TencentCloud
 
       # 输入信息详情
       class InputInfo < TencentCloud::Common::AbstractModel
-        # @param Type: 传入的类型可选：URL，COS
+        # @param Type: <p>传入的类型可选：URL，COS</p>
         # @type Type: String
-        # @param Url: Url地址
+        # @param Url: <p>Url地址</p>
         # @type Url: String
-        # @param BucketInfo: 桶信息。当输入当时COS时，该字段不为空
+        # @param BucketInfo: <p>桶信息。当输入当时COS时，该字段不为空</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BucketInfo: String
+        # @param ImageUrlList: <p>大模型审核可选输入图片列表</p>
+        # @type ImageUrlList: Array
+        # @param TextContent: <p>大模型审核场景下，base64编码的审核要求内容</p>
+        # @type TextContent: String
 
-        attr_accessor :Type, :Url, :BucketInfo
+        attr_accessor :Type, :Url, :BucketInfo, :ImageUrlList, :TextContent
 
-        def initialize(type=nil, url=nil, bucketinfo=nil)
+        def initialize(type=nil, url=nil, bucketinfo=nil, imageurllist=nil, textcontent=nil)
           @Type = type
           @Url = url
           @BucketInfo = bucketinfo
+          @ImageUrlList = imageurllist
+          @TextContent = textcontent
         end
 
         def deserialize(params)
           @Type = params['Type']
           @Url = params['Url']
           @BucketInfo = params['BucketInfo']
+          @ImageUrlList = params['ImageUrlList']
+          @TextContent = params['TextContent']
         end
       end
 
@@ -1250,21 +1261,25 @@ module TencentCloud
 
       # 数据存储信息
       class StorageInfo < TencentCloud::Common::AbstractModel
-        # @param Type: 类型 可选：
-        # URL 资源链接类型
-        # COS 腾讯云对象存储类型
+        # @param Type: <p>类型 可选：<br>URL 资源链接类型<br>COS 腾讯云对象存储类型</p>
         # @type Type: String
-        # @param Url: 资源链接
+        # @param Url: <p>资源链接</p>
         # @type Url: String
-        # @param BucketInfo: 腾讯云存储桶信息
+        # @param BucketInfo: <p>腾讯云存储桶信息</p>
         # @type BucketInfo: :class:`Tencentcloud::Vm.v20210922.models.BucketInfo`
+        # @param ImageUrlList: <p>大模型审核场景下，送审的图片列表</p>
+        # @type ImageUrlList: Array
+        # @param TextContent: <p>大模型审核场景下，base64编码的审核要求内容</p>
+        # @type TextContent: String
 
-        attr_accessor :Type, :Url, :BucketInfo
+        attr_accessor :Type, :Url, :BucketInfo, :ImageUrlList, :TextContent
 
-        def initialize(type=nil, url=nil, bucketinfo=nil)
+        def initialize(type=nil, url=nil, bucketinfo=nil, imageurllist=nil, textcontent=nil)
           @Type = type
           @Url = url
           @BucketInfo = bucketinfo
+          @ImageUrlList = imageurllist
+          @TextContent = textcontent
         end
 
         def deserialize(params)
@@ -1274,6 +1289,8 @@ module TencentCloud
             @BucketInfo = BucketInfo.new
             @BucketInfo.deserialize(params['BucketInfo'])
           end
+          @ImageUrlList = params['ImageUrlList']
+          @TextContent = params['TextContent']
         end
       end
 
@@ -1621,6 +1638,112 @@ module TencentCloud
           @GroupSize = params['GroupSize']
           @ReceiverId = params['ReceiverId']
           @SendTime = params['SendTime']
+        end
+      end
+
+      # 大模型原子能力审核明细
+      class VideoLLMDetail < TencentCloud::Common::AbstractModel
+        # @param LabelName: <p>命中的标签名</p>
+        # @type LabelName: String
+        # @param Reason: <p>命中标签的原因</p>
+        # @type Reason: String
+        # @param TargetText: <p>命中的文本内容</p>
+        # @type TargetText: Array
+        # @param Suggestion: <p>违规建议</p>
+        # @type Suggestion: String
+
+        attr_accessor :LabelName, :Reason, :TargetText, :Suggestion
+
+        def initialize(labelname=nil, reason=nil, targettext=nil, suggestion=nil)
+          @LabelName = labelname
+          @Reason = reason
+          @TargetText = targettext
+          @Suggestion = suggestion
+        end
+
+        def deserialize(params)
+          @LabelName = params['LabelName']
+          @Reason = params['Reason']
+          @TargetText = params['TargetText']
+          @Suggestion = params['Suggestion']
+        end
+      end
+
+      # 单个视频切片审核结果
+      class VideoSegment < TencentCloud::Common::AbstractModel
+        # @param Result: <p>视频切片审核结果</p>
+        # @type Result: :class:`Tencentcloud::Vm.v20210922.models.VideoSegmentResult`
+        # @param OffsetTime: <p>视频切片的起始时间偏移</p>
+        # @type OffsetTime: String
+        # @param CreatedAt: <p>切片保存时间</p>
+        # @type CreatedAt: String
+
+        attr_accessor :Result, :OffsetTime, :CreatedAt
+
+        def initialize(result=nil, offsettime=nil, createdat=nil)
+          @Result = result
+          @OffsetTime = offsettime
+          @CreatedAt = createdat
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = VideoSegmentResult.new
+            @Result.deserialize(params['Result'])
+          end
+          @OffsetTime = params['OffsetTime']
+          @CreatedAt = params['CreatedAt']
+        end
+      end
+
+      # 单个视频切片审核详情
+      class VideoSegmentResult < TencentCloud::Common::AbstractModel
+        # @param HitFlag: <p>违规标志 0 未命中 1 命中</p>
+        # @type HitFlag: Integer
+        # @param Suggestion: <p>审核建议，可选值： Pass 通过， Review 建议人审， Block 确认违规</p>
+        # @type Suggestion: String
+        # @param Text: <p>Asr文本内容</p>
+        # @type Text: String
+        # @param Detail: <p>审核结果</p>
+        # @type Detail: Array
+        # @param VideoUrl: <p>视频切片存储URL</p>
+        # @type VideoUrl: String
+        # @param AudioUrl: <p>音频切片存储URL</p>
+        # @type AudioUrl: String
+        # @param Duration: <p>切片时长</p>
+        # @type Duration: String
+        # @param RequestId: <p>切片请求ID</p>
+        # @type RequestId: String
+
+        attr_accessor :HitFlag, :Suggestion, :Text, :Detail, :VideoUrl, :AudioUrl, :Duration, :RequestId
+
+        def initialize(hitflag=nil, suggestion=nil, text=nil, detail=nil, videourl=nil, audiourl=nil, duration=nil, requestid=nil)
+          @HitFlag = hitflag
+          @Suggestion = suggestion
+          @Text = text
+          @Detail = detail
+          @VideoUrl = videourl
+          @AudioUrl = audiourl
+          @Duration = duration
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @HitFlag = params['HitFlag']
+          @Suggestion = params['Suggestion']
+          @Text = params['Text']
+          unless params['Detail'].nil?
+            @Detail = []
+            params['Detail'].each do |i|
+              videollmdetail_tmp = VideoLLMDetail.new
+              videollmdetail_tmp.deserialize(i)
+              @Detail << videollmdetail_tmp
+            end
+          end
+          @VideoUrl = params['VideoUrl']
+          @AudioUrl = params['AudioUrl']
+          @Duration = params['Duration']
+          @RequestId = params['RequestId']
         end
       end
 

@@ -13997,17 +13997,21 @@ module TencentCloud
         # @type StopPolicy: String
         # @param ThreadCount: 线程数
         # @type ThreadCount: Integer
+        # @param GraceDownTime: 安全停止超时时间，单位秒
+        # @type GraceDownTime: Integer
 
-        attr_accessor :StopPolicy, :ThreadCount
+        attr_accessor :StopPolicy, :ThreadCount, :GraceDownTime
 
-        def initialize(stoppolicy=nil, threadcount=nil)
+        def initialize(stoppolicy=nil, threadcount=nil, gracedowntime=nil)
           @StopPolicy = stoppolicy
           @ThreadCount = threadcount
+          @GraceDownTime = gracedowntime
         end
 
         def deserialize(params)
           @StopPolicy = params['StopPolicy']
           @ThreadCount = params['ThreadCount']
+          @GraceDownTime = params['GraceDownTime']
         end
       end
 

@@ -1203,6 +1203,78 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口(DescribeResourcePoolPackInstances)用于查询指定实例资源池内已创建的实例列表及其物理拓扑信息。
+
+        # @param request: Request instance for DescribeResourcePoolPackInstances.
+        # @type request: :class:`Tencentcloud::cvm::V20170312::DescribeResourcePoolPackInstancesRequest`
+        # @rtype: :class:`Tencentcloud::cvm::V20170312::DescribeResourcePoolPackInstancesResponse`
+        def DescribeResourcePoolPackInstances(request)
+          body = send_request('DescribeResourcePoolPackInstances', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeResourcePoolPackInstancesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口(DescribeResourcePoolPackTypeConfigs)用于查询当前地域/可用区支持创建实例资源池的整机/半整机规格列表。
+
+        # @param request: Request instance for DescribeResourcePoolPackTypeConfigs.
+        # @type request: :class:`Tencentcloud::cvm::V20170312::DescribeResourcePoolPackTypeConfigsRequest`
+        # @rtype: :class:`Tencentcloud::cvm::V20170312::DescribeResourcePoolPackTypeConfigsResponse`
+        def DescribeResourcePoolPackTypeConfigs(request)
+          body = send_request('DescribeResourcePoolPackTypeConfigs', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeResourcePoolPackTypeConfigsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口(DescribeResourcePoolPacks)用于查询用户已创建的实例资源池列表，包括资源池基本信息、剩余容量、底层物理拓扑信息等。
+
+        # @param request: Request instance for DescribeResourcePoolPacks.
+        # @type request: :class:`Tencentcloud::cvm::V20170312::DescribeResourcePoolPacksRequest`
+        # @rtype: :class:`Tencentcloud::cvm::V20170312::DescribeResourcePoolPacksResponse`
+        def DescribeResourcePoolPacks(request)
+          body = send_request('DescribeResourcePoolPacks', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeResourcePoolPacksResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口 (DescribeTaskInfo) 用于查询云服务器维修任务列表及详细信息。
 
         # - 可以根据实例ID、实例名称或任务状态等信息来查询维修任务列表。过滤信息详情可参考入参说明。
@@ -1468,6 +1540,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ImportKeyPairResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口(InquirePricePurchaseResourcePoolPacks)用于查询创建实例资源池的价格。
+
+        # @param request: Request instance for InquirePricePurchaseResourcePoolPacks.
+        # @type request: :class:`Tencentcloud::cvm::V20170312::InquirePricePurchaseResourcePoolPacksRequest`
+        # @rtype: :class:`Tencentcloud::cvm::V20170312::InquirePricePurchaseResourcePoolPacksResponse`
+        def InquirePricePurchaseResourcePoolPacks(request)
+          body = send_request('InquirePricePurchaseResourcePoolPacks', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = InquirePricePurchaseResourcePoolPacksResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2153,6 +2249,33 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口(PurchaseResourcePoolPacks)用于创建一个或多个实例资源池，每个资源池绑定一个整机或半整机规格的物理资源容量。
+
+        # * 实例资源池为剩余容量按量付费模式，购买前请确保账户余额充足。
+        # * 本接口为异步接口，创建请求发送成功后会返回DedicatedResourcePackIds，此时创建任务并未完成。
+
+        # @param request: Request instance for PurchaseResourcePoolPacks.
+        # @type request: :class:`Tencentcloud::cvm::V20170312::PurchaseResourcePoolPacksRequest`
+        # @rtype: :class:`Tencentcloud::cvm::V20170312::PurchaseResourcePoolPacksResponse`
+        def PurchaseResourcePoolPacks(request)
+          body = send_request('PurchaseResourcePoolPacks', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = PurchaseResourcePoolPacksResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口 (RebootInstances) 用于重启实例。
 
         # * 只有状态为`RUNNING`的实例才可以进行此操作。
@@ -2602,6 +2725,35 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = TerminateInstancesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口(TerminateResourcePoolPacks)用于销毁指定的实例资源池。
+
+        # * 销毁资源池不会销毁池内已创建的实例。
+        # * 池内实例会从专属资源池解绑，转移至公共资源池，继续按原生命周期运行。
+        # * 转移后无法再查询底层物理拓扑信息。
+        # * 释放底层物理资源并删除资源池记录。
+
+        # @param request: Request instance for TerminateResourcePoolPacks.
+        # @type request: :class:`Tencentcloud::cvm::V20170312::TerminateResourcePoolPacksRequest`
+        # @rtype: :class:`Tencentcloud::cvm::V20170312::TerminateResourcePoolPacksResponse`
+        def TerminateResourcePoolPacks(request)
+          body = send_request('TerminateResourcePoolPacks', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = TerminateResourcePoolPacksResponse.new
             model.deserialize(response['Response'])
             model
           else

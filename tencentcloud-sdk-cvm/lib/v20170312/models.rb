@@ -3298,6 +3298,178 @@ module TencentCloud
         end
       end
 
+      # DescribeResourcePoolPackInstances请求参数结构体
+      class DescribeResourcePoolPackInstancesRequest < TencentCloud::Common::AbstractModel
+        # @param DedicatedResourcePackIds: 实例资源池ID列表。形如：rpp-39kj2fsb。每次请求的实例的上限为100。
+        # @type DedicatedResourcePackIds: Array
+
+        attr_accessor :DedicatedResourcePackIds
+
+        def initialize(dedicatedresourcepackids=nil)
+          @DedicatedResourcePackIds = dedicatedresourcepackids
+        end
+
+        def deserialize(params)
+          @DedicatedResourcePackIds = params['DedicatedResourcePackIds']
+        end
+      end
+
+      # DescribeResourcePoolPackInstances返回参数结构体
+      class DescribeResourcePoolPackInstancesResponse < TencentCloud::Common::AbstractModel
+        # @param DedicatedResourcePackInstanceSet: 实例资源池内已创建的实例详情列表。
+        # @type DedicatedResourcePackInstanceSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DedicatedResourcePackInstanceSet, :RequestId
+
+        def initialize(dedicatedresourcepackinstanceset=nil, requestid=nil)
+          @DedicatedResourcePackInstanceSet = dedicatedresourcepackinstanceset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['DedicatedResourcePackInstanceSet'].nil?
+            @DedicatedResourcePackInstanceSet = []
+            params['DedicatedResourcePackInstanceSet'].each do |i|
+              resourcepoolpackinstance_tmp = ResourcePoolPackInstance.new
+              resourcepoolpackinstance_tmp.deserialize(i)
+              @DedicatedResourcePackInstanceSet << resourcepoolpackinstance_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeResourcePoolPackTypeConfigs请求参数结构体
+      class DescribeResourcePoolPackTypeConfigsRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: <li><strong>zone</strong></li>
+        # <p style="padding-left: 30px;">按照【<strong>可用区</strong>】进行过滤。形如：ap-guangzhou-6。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：是</p><p style="padding-left: 30px;">可选项：<a href="https://cloud.tencent.com/document/product/213/6091">可用区列表</a></p>
+        # <li><strong>instance-family</strong></li>
+        # <p style="padding-left: 30px;">按照【<strong>实例族</strong>】进行过滤。形如：SA9。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p>
+        # <li><strong>instance-type</strong></li>
+        # <p style="padding-left: 30px;">按照【<strong>实例规格</strong>】进行过滤。形如：SA9.96XLARGE1152。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p>
+        # 每次请求的`Filters`的上限为10。
+        # @type Filters: Array
+
+        attr_accessor :Filters
+
+        def initialize(filters=nil)
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeResourcePoolPackTypeConfigs返回参数结构体
+      class DescribeResourcePoolPackTypeConfigsResponse < TencentCloud::Common::AbstractModel
+        # @param InstanceTypeConfigSet: 支持实例资源池的机型规格列表。
+        # @type InstanceTypeConfigSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InstanceTypeConfigSet, :RequestId
+
+        def initialize(instancetypeconfigset=nil, requestid=nil)
+          @InstanceTypeConfigSet = instancetypeconfigset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['InstanceTypeConfigSet'].nil?
+            @InstanceTypeConfigSet = []
+            params['InstanceTypeConfigSet'].each do |i|
+              instancetypeconfig_tmp = InstanceTypeConfig.new
+              instancetypeconfig_tmp.deserialize(i)
+              @InstanceTypeConfigSet << instancetypeconfig_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeResourcePoolPacks请求参数结构体
+      class DescribeResourcePoolPacksRequest < TencentCloud::Common::AbstractModel
+        # @param MaxResults: 返回数量，默认值为10，最小值为10，最大值为100。
+        # @type MaxResults: Integer
+        # @param NextToken: 分页标记，用于获取下一页数据。
+        # @type NextToken: String
+        # @param Filters: <li><strong>dedicated-resource-pack-id</strong></li>
+        # <p style="padding-left: 30px;">按照【<strong>实例资源池ID</strong>】进行过滤。形如：rpp-rn99mzt2。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p>
+        # <li><strong>zone</strong></li>
+        # <p style="padding-left: 30px;">按照【<strong>可用区</strong>】进行过滤。形如：ap-guangzhou-6。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p><p style="padding-left: 30px;">可选项：<a href="https://cloud.tencent.com/document/product/213/6091">可用区列表</a></p>
+        # <li><strong>instance-family</strong></li>
+        # <p style="padding-left: 30px;">按照【<strong>实例类型</strong>】进行过滤。形如：SA9。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p>
+        # <li><strong>instance-type</strong></li>
+        # <p style="padding-left: 30px;">按照【<strong>实例规格</strong>】进行过滤。形如：SA9.96XLARGE1152。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p>
+        # <li><strong>status</strong></li>
+        # <p style="padding-left: 30px;">按照【<strong>实例资源池状态</strong>】进行过滤。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p><p style="padding-left: 30px;">可选项：CREATING (创建中) | ACTIVE (运行中) | RETIRED (已过期)</p>
+        # 每次请求的`Filters`的上限为10。
+        # @type Filters: Array
+
+        attr_accessor :MaxResults, :NextToken, :Filters
+
+        def initialize(maxresults=nil, nexttoken=nil, filters=nil)
+          @MaxResults = maxresults
+          @NextToken = nexttoken
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @MaxResults = params['MaxResults']
+          @NextToken = params['NextToken']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeResourcePoolPacks返回参数结构体
+      class DescribeResourcePoolPacksResponse < TencentCloud::Common::AbstractModel
+        # @param DedicatedResourcePackSet: 符合条件的实例资源池列表。
+        # @type DedicatedResourcePackSet: Array
+        # @param NextToken: 下一页数据的标记，用于分页查询。值为空时表示已到最后一页。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NextToken: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DedicatedResourcePackSet, :NextToken, :RequestId
+
+        def initialize(dedicatedresourcepackset=nil, nexttoken=nil, requestid=nil)
+          @DedicatedResourcePackSet = dedicatedresourcepackset
+          @NextToken = nexttoken
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['DedicatedResourcePackSet'].nil?
+            @DedicatedResourcePackSet = []
+            params['DedicatedResourcePackSet'].each do |i|
+              resourcepoolpack_tmp = ResourcePoolPack.new
+              resourcepoolpack_tmp.deserialize(i)
+              @DedicatedResourcePackSet << resourcepoolpack_tmp
+            end
+          end
+          @NextToken = params['NextToken']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeTaskInfo请求参数结构体
       class DescribeTaskInfoRequest < TencentCloud::Common::AbstractModel
         # @param Limit: 返回数量，最大值为100。关于`Limit`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/15688)中的相关小节。
@@ -4577,6 +4749,57 @@ module TencentCloud
 
         def deserialize(params)
           @KeyId = params['KeyId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # InquirePricePurchaseResourcePoolPacks请求参数结构体
+      class InquirePricePurchaseResourcePoolPacksRequest < TencentCloud::Common::AbstractModel
+        # @param Zone: 实例资源池预扣包所在可用区。形如：ap-guangzhou-6。可通过[DescribeZones](https://cloud.tencent.com/document/product/213/15707)接口获取可用区列表。
+        # @type Zone: String
+        # @param InstanceType: 实例资源池的规格，仅支持整机/半整机规格。形如：SA9.96XLARGE1152。
+        # @type InstanceType: String
+        # @param InstanceCount: 实例资源池的数量。1个数量代表1个半整机/整机资源池。
+        # @type InstanceCount: Integer
+        # @param Period: 实例资源池的时长，单位：月。取值范围：1-60。
+        # @type Period: Integer
+
+        attr_accessor :Zone, :InstanceType, :InstanceCount, :Period
+
+        def initialize(zone=nil, instancetype=nil, instancecount=nil, period=nil)
+          @Zone = zone
+          @InstanceType = instancetype
+          @InstanceCount = instancecount
+          @Period = period
+        end
+
+        def deserialize(params)
+          @Zone = params['Zone']
+          @InstanceType = params['InstanceType']
+          @InstanceCount = params['InstanceCount']
+          @Period = params['Period']
+        end
+      end
+
+      # InquirePricePurchaseResourcePoolPacks返回参数结构体
+      class InquirePricePurchaseResourcePoolPacksResponse < TencentCloud::Common::AbstractModel
+        # @param Price: 实例资源池价格信息。
+        # @type Price: :class:`Tencentcloud::Cvm.v20170312.models.ItemPrice`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Price, :RequestId
+
+        def initialize(price=nil, requestid=nil)
+          @Price = price
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Price'].nil?
+            @Price = ItemPrice.new
+            @Price.deserialize(params['Price'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -7085,14 +7308,17 @@ module TencentCloud
         # @type HostIds: Array
         # @param HostId: 实例所属的专用宿主机ID，仅用于出参。
         # @type HostId: String
+        # @param RackId: 实例所属的实例资源池机架ID，仅用于出参。
+        # @type RackId: String
 
-        attr_accessor :Zone, :ProjectId, :HostIds, :HostId
+        attr_accessor :Zone, :ProjectId, :HostIds, :HostId, :RackId
 
-        def initialize(zone=nil, projectid=nil, hostids=nil, hostid=nil)
+        def initialize(zone=nil, projectid=nil, hostids=nil, hostid=nil, rackid=nil)
           @Zone = zone
           @ProjectId = projectid
           @HostIds = hostids
           @HostId = hostid
+          @RackId = rackid
         end
 
         def deserialize(params)
@@ -7100,6 +7326,7 @@ module TencentCloud
           @ProjectId = params['ProjectId']
           @HostIds = params['HostIds']
           @HostId = params['HostId']
+          @RackId = params['RackId']
         end
       end
 
@@ -7229,6 +7456,84 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # PurchaseResourcePoolPacks请求参数结构体
+      class PurchaseResourcePoolPacksRequest < TencentCloud::Common::AbstractModel
+        # @param Zone: 实例资源池预扣包所在可用区。形如：ap-guangzhou-6。可通过[DescribeZones](https://cloud.tencent.com/document/product/213/15707)接口获取可用区列表。
+        # @type Zone: String
+        # @param InstanceType: 实例资源池预扣包的规格，仅支持半整机/整机规格。形如：SA9.96XLARGE1152（SA9半整机）。
+        # @type InstanceType: String
+        # @param InstanceCount: 实例资源池预扣包的数量。1个数量代表1个半整机/整机资源池。取值范围：1-100。
+        # @type InstanceCount: Integer
+        # @param Period: 实例资源池预扣包的时长，单位：月。取值范围：1-60。
+        # @type Period: Integer
+        # @param ResourcePoolPackType: 实例资源池类型。取值范围：
+        # <li>EXCLUSIVE：独享（默认值）</li>
+        # <li>SHARED：共享</li>
+        # 注意：第一期仅支持EXCLUSIVE类型。
+        # @type ResourcePoolPackType: String
+        # @param AutoPlacement: 自动放置开关，默认开启（true）。
+        # <li>开启：在不指定实例资源池创建实例时，系统会在开启了该能力的实例资源池里寻找合适的池子创建实例。</li>
+        # <li>关闭：在不指定实例资源池创建实例时，系统不会在该池子里创建实例，只有在指定实例资源池创建实例时，指定了该池子的ID，才允许在池子内创建实例。</li>
+        # @type AutoPlacement: Boolean
+        # @param DedicatedResourcePoolPackName: 实例资源池的名称。长度限制：1-60个字符，支持中文、英文、数字、连接线"-"、下划线"_"。
+        # @type DedicatedResourcePoolPackName: String
+        # @param RenewFlag: 自动续费标识。取值范围：
+        # <li>NOTIFY_AND_AUTO_RENEW：通知过期且自动续费</li>
+        # <li>NOTIFY_AND_MANUAL_RENEW：通知过期不自动续费（默认值）</li>
+        # <li>DISABLE_NOTIFY_AND_MANUAL_RENEW：不通知过期不自动续费</li>
+        # @type RenewFlag: String
+        # @param DryRun: 试运行，用于校验请求参数是否正确。默认为false。
+        # <li>true：发送检查请求，不会创建实例资源池。检查项包括是否填写了必需参数，请求格式，业务限制等。如果检查不通过，则返回对应错误码；如果检查通过，则返回RequestId。</li>
+        # <li>false（默认值）：发送正常请求，通过检查后直接创建实例资源池。</li>
+        # @type DryRun: Boolean
+
+        attr_accessor :Zone, :InstanceType, :InstanceCount, :Period, :ResourcePoolPackType, :AutoPlacement, :DedicatedResourcePoolPackName, :RenewFlag, :DryRun
+
+        def initialize(zone=nil, instancetype=nil, instancecount=nil, period=nil, resourcepoolpacktype=nil, autoplacement=nil, dedicatedresourcepoolpackname=nil, renewflag=nil, dryrun=nil)
+          @Zone = zone
+          @InstanceType = instancetype
+          @InstanceCount = instancecount
+          @Period = period
+          @ResourcePoolPackType = resourcepoolpacktype
+          @AutoPlacement = autoplacement
+          @DedicatedResourcePoolPackName = dedicatedresourcepoolpackname
+          @RenewFlag = renewflag
+          @DryRun = dryrun
+        end
+
+        def deserialize(params)
+          @Zone = params['Zone']
+          @InstanceType = params['InstanceType']
+          @InstanceCount = params['InstanceCount']
+          @Period = params['Period']
+          @ResourcePoolPackType = params['ResourcePoolPackType']
+          @AutoPlacement = params['AutoPlacement']
+          @DedicatedResourcePoolPackName = params['DedicatedResourcePoolPackName']
+          @RenewFlag = params['RenewFlag']
+          @DryRun = params['DryRun']
+        end
+      end
+
+      # PurchaseResourcePoolPacks返回参数结构体
+      class PurchaseResourcePoolPacksResponse < TencentCloud::Common::AbstractModel
+        # @param DedicatedResourcePackIdSet: 创建的实例资源池ID列表。形如：rpp-39kj2fsb。
+        # @type DedicatedResourcePackIdSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DedicatedResourcePackIdSet, :RequestId
+
+        def initialize(dedicatedresourcepackidset=nil, requestid=nil)
+          @DedicatedResourcePackIdSet = dedicatedresourcepackidset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @DedicatedResourcePackIdSet = params['DedicatedResourcePackIdSet']
           @RequestId = params['RequestId']
         end
       end
@@ -7939,6 +8244,156 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 实例资源池容量
+      class ResourceCount < TencentCloud::Common::AbstractModel
+        # @param Cpu: vCPU核数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Cpu: Integer
+        # @param Memory: 内存大小，单位：GB。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Memory: Integer
+        # @param Gpu: GPU数量。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Gpu: Integer
+        # @param Disk: 本地盘大小，单位：GB。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Disk: Integer
+
+        attr_accessor :Cpu, :Memory, :Gpu, :Disk
+
+        def initialize(cpu=nil, memory=nil, gpu=nil, disk=nil)
+          @Cpu = cpu
+          @Memory = memory
+          @Gpu = gpu
+          @Disk = disk
+        end
+
+        def deserialize(params)
+          @Cpu = params['Cpu']
+          @Memory = params['Memory']
+          @Gpu = params['Gpu']
+          @Disk = params['Disk']
+        end
+      end
+
+      # 实例资源池
+      class ResourcePoolPack < TencentCloud::Common::AbstractModel
+        # @param DedicatedResourcePackId: 实例资源池ID。形如：rpp-rn99mzt2。
+        # @type DedicatedResourcePackId: String
+        # @param DedicatedResourcePackName: 实例资源池的名称。
+        # @type DedicatedResourcePackName: String
+        # @param Zone: 实例资源池预扣包所在可用区。形如：ap-guangzhou-6。
+        # 返回项：<a href="https://cloud.tencent.com/document/product/213/6091">可用区列表</a>
+        # @type Zone: String
+        # @param InstanceType: 实例资源池预扣包的规格，仅支持半整机/整机规格。形如：SA9.96XLARGE1152（SA9半整机）。
+        # @type InstanceType: String
+        # @param InstanceFamily: 实例资源池预扣包的实例类型。形如：SA9。
+        # @type InstanceFamily: String
+        # @param ResourcePoolPackType: 实例资源池类型。
+        # 返回项：EXCLUSIVE (独享) | SHARED (共享)。
+        # @type ResourcePoolPackType: String
+        # @param Status: 实例资源池状态。
+        # 返回项：CREATING (创建中) | ACTIVE (运行中) | FAILED (创建失败) | RETIRED (已过期)。
+        # @type Status: String
+        # @param TotalCapacity: 实例资源池总容量。
+        # @type TotalCapacity: :class:`Tencentcloud::Cvm.v20170312.models.ResourceCount`
+        # @param AvailableCapacity: 实例资源池剩余容量。
+        # @type AvailableCapacity: :class:`Tencentcloud::Cvm.v20170312.models.ResourceCount`
+        # @param HostIp: 底层物理机IP（已加密）。
+        # @type HostIp: String
+        # @param RackId: 机架ID（已加密）。
+        # @type RackId: String
+        # @param SwitchId: 交换机ID（已加密）。
+        # @type SwitchId: String
+        # @param AutoPlacement: 自动放置开关状态。开启则在不指定实例资源池创建实例时，系统会在开启了该能力的实例资源池里寻找合适的池子创建实例。关闭则在不指定实例资源池创建实例时，系统不会在该池子里创建实例，只有在指定实例资源池创建实例时，指定了该池子的ID，才允许在池子内创建实例。
+        # @type AutoPlacement: Boolean
+        # @param RenewFlag: 自动续费标识。
+        # 返回项：NOTIFY_AND_AUTO_RENEW (通知且自动续费) | NOTIFY_AND_MANUAL_RENEW (通知不自动续费) | DISABLE_NOTIFY_AND_MANUAL_RENEW (不通知不自动续费)。
+        # @type RenewFlag: String
+        # @param StartTime: 实例资源池预扣包创建时间。按照`ISO8601`标准表示，并且使用`UTC`时间。格式为：`YYYY-MM-DDThh:mm:ssZ`。
+        # @type StartTime: String
+        # @param EndTime: 实例资源池到期时间。按照`ISO8601`标准表示，并且使用`UTC`时间。格式为：`YYYY-MM-DDThh:mm:ssZ`。
+        # @type EndTime: String
+
+        attr_accessor :DedicatedResourcePackId, :DedicatedResourcePackName, :Zone, :InstanceType, :InstanceFamily, :ResourcePoolPackType, :Status, :TotalCapacity, :AvailableCapacity, :HostIp, :RackId, :SwitchId, :AutoPlacement, :RenewFlag, :StartTime, :EndTime
+
+        def initialize(dedicatedresourcepackid=nil, dedicatedresourcepackname=nil, zone=nil, instancetype=nil, instancefamily=nil, resourcepoolpacktype=nil, status=nil, totalcapacity=nil, availablecapacity=nil, hostip=nil, rackid=nil, switchid=nil, autoplacement=nil, renewflag=nil, starttime=nil, endtime=nil)
+          @DedicatedResourcePackId = dedicatedresourcepackid
+          @DedicatedResourcePackName = dedicatedresourcepackname
+          @Zone = zone
+          @InstanceType = instancetype
+          @InstanceFamily = instancefamily
+          @ResourcePoolPackType = resourcepoolpacktype
+          @Status = status
+          @TotalCapacity = totalcapacity
+          @AvailableCapacity = availablecapacity
+          @HostIp = hostip
+          @RackId = rackid
+          @SwitchId = switchid
+          @AutoPlacement = autoplacement
+          @RenewFlag = renewflag
+          @StartTime = starttime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @DedicatedResourcePackId = params['DedicatedResourcePackId']
+          @DedicatedResourcePackName = params['DedicatedResourcePackName']
+          @Zone = params['Zone']
+          @InstanceType = params['InstanceType']
+          @InstanceFamily = params['InstanceFamily']
+          @ResourcePoolPackType = params['ResourcePoolPackType']
+          @Status = params['Status']
+          unless params['TotalCapacity'].nil?
+            @TotalCapacity = ResourceCount.new
+            @TotalCapacity.deserialize(params['TotalCapacity'])
+          end
+          unless params['AvailableCapacity'].nil?
+            @AvailableCapacity = ResourceCount.new
+            @AvailableCapacity.deserialize(params['AvailableCapacity'])
+          end
+          @HostIp = params['HostIp']
+          @RackId = params['RackId']
+          @SwitchId = params['SwitchId']
+          @AutoPlacement = params['AutoPlacement']
+          @RenewFlag = params['RenewFlag']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+        end
+      end
+
+      # 描述实例资源池内已创建实例的信息
+      class ResourcePoolPackInstance < TencentCloud::Common::AbstractModel
+        # @param DedicatedResourcePackId: 实例资源池ID。形如：rpp-fb7bzcyt。
+        # @type DedicatedResourcePackId: String
+        # @param InstanceIdSet: 实例资源池内的实例ID列表。形如：["ins-5u8lxsum"]。
+        # @type InstanceIdSet: Array
+        # @param InstanceFamily: 实例族。形如：SA9。
+        # @type InstanceFamily: String
+        # @param InstanceType: 实例规格。形如：SA9.96XLARGE1152。
+        # @type InstanceType: String
+        # @param Zone: 可用区。形如：ap-guangzhou-6。
+        # @type Zone: String
+
+        attr_accessor :DedicatedResourcePackId, :InstanceIdSet, :InstanceFamily, :InstanceType, :Zone
+
+        def initialize(dedicatedresourcepackid=nil, instanceidset=nil, instancefamily=nil, instancetype=nil, zone=nil)
+          @DedicatedResourcePackId = dedicatedresourcepackid
+          @InstanceIdSet = instanceidset
+          @InstanceFamily = instancefamily
+          @InstanceType = instancetype
+          @Zone = zone
+        end
+
+        def deserialize(params)
+          @DedicatedResourcePackId = params['DedicatedResourcePackId']
+          @InstanceIdSet = params['InstanceIdSet']
+          @InstanceFamily = params['InstanceFamily']
+          @InstanceType = params['InstanceType']
+          @Zone = params['Zone']
         end
       end
 
@@ -8656,6 +9111,38 @@ module TencentCloud
 
       # TerminateInstances返回参数结构体
       class TerminateInstancesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # TerminateResourcePoolPacks请求参数结构体
+      class TerminateResourcePoolPacksRequest < TencentCloud::Common::AbstractModel
+        # @param DedicatedResourcePackIds: 实例资源池ID列表，支持批量销毁。形如：rpp-6rk3550n。每次请求的实例的上限为100。
+        # @type DedicatedResourcePackIds: Array
+
+        attr_accessor :DedicatedResourcePackIds
+
+        def initialize(dedicatedresourcepackids=nil)
+          @DedicatedResourcePackIds = dedicatedresourcepackids
+        end
+
+        def deserialize(params)
+          @DedicatedResourcePackIds = params['DedicatedResourcePackIds']
+        end
+      end
+
+      # TerminateResourcePoolPacks返回参数结构体
+      class TerminateResourcePoolPacksResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

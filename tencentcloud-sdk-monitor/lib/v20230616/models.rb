@@ -179,6 +179,155 @@ module TencentCloud
         end
       end
 
+      # 告警中的Label
+      class AlarmLable < TencentCloud::Common::AbstractModel
+        # @param Name: label name
+        # @type Name: String
+        # @param Value: label value
+        # @type Value: String
+
+        attr_accessor :Name, :Value
+
+        def initialize(name=nil, value=nil)
+          @Name = name
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Value = params['Value']
+        end
+      end
+
+      # 单个告警通知历史
+      class AlarmNotifyHistory < TencentCloud::Common::AbstractModel
+        # @param NotifyId: 通知的唯一ID
+        # @type NotifyId: String
+        # @param PolicyId: 告警策略ID
+        # @type PolicyId: String
+        # @param SessionId: 告警周期iD
+        # @type SessionId: String
+        # @param NotifyTime: 通知时间 unix秒级时间戳
+        # @type NotifyTime: Integer
+        # @param TriggerTime: 触发时间 unix秒级时间戳
+        # @type TriggerTime: Integer
+        # @param TriggerLevel: 告警级别 None 非分级告警级别; Note 提示级别; Warn 严重级别; Serious 紧急级别
+        # @type TriggerLevel: String
+        # @param AlarmContent: 告警内容
+        # @type AlarmContent: String
+        # @param AlarmObject: 告警对象
+        # @type AlarmObject: String
+        # @param ChannelSet: 本次告警通知涉及到的渠道合集
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChannelSet: Array
+        # @param ChannelsReceivers: 渠道的接收人信息
+        # @type ChannelsReceivers: Array
+        # @param PolicyName: 告警策略名称
+        # @type PolicyName: String
+        # @param PromeInstanceID: Prometheus实例ID, 仅当 MT_PROME 时有效
+        # @type PromeInstanceID: String
+        # @param PromeInstanceRegion: Prometheus实例所在的地域, 仅当 MT_PROME 时有效
+        # @type PromeInstanceRegion: String
+        # @param Notices: 通知模板相关的配置信息
+        # @type Notices: Array
+        # @param TriggerStatus: 告警触发状态  Trigger 告警状态触发; Recovery 告警状态恢复
+        # @type TriggerStatus: String
+        # @param PromeConsoleURL: 与当前Prometheus通知历史相关控制台页面地址，仅当 MR_PROME 时有效
+        # @type PromeConsoleURL: String
+        # @param Labels: 告警的lable
+        # @type Labels: Array
+
+        attr_accessor :NotifyId, :PolicyId, :SessionId, :NotifyTime, :TriggerTime, :TriggerLevel, :AlarmContent, :AlarmObject, :ChannelSet, :ChannelsReceivers, :PolicyName, :PromeInstanceID, :PromeInstanceRegion, :Notices, :TriggerStatus, :PromeConsoleURL, :Labels
+
+        def initialize(notifyid=nil, policyid=nil, sessionid=nil, notifytime=nil, triggertime=nil, triggerlevel=nil, alarmcontent=nil, alarmobject=nil, channelset=nil, channelsreceivers=nil, policyname=nil, promeinstanceid=nil, promeinstanceregion=nil, notices=nil, triggerstatus=nil, promeconsoleurl=nil, labels=nil)
+          @NotifyId = notifyid
+          @PolicyId = policyid
+          @SessionId = sessionid
+          @NotifyTime = notifytime
+          @TriggerTime = triggertime
+          @TriggerLevel = triggerlevel
+          @AlarmContent = alarmcontent
+          @AlarmObject = alarmobject
+          @ChannelSet = channelset
+          @ChannelsReceivers = channelsreceivers
+          @PolicyName = policyname
+          @PromeInstanceID = promeinstanceid
+          @PromeInstanceRegion = promeinstanceregion
+          @Notices = notices
+          @TriggerStatus = triggerstatus
+          @PromeConsoleURL = promeconsoleurl
+          @Labels = labels
+        end
+
+        def deserialize(params)
+          @NotifyId = params['NotifyId']
+          @PolicyId = params['PolicyId']
+          @SessionId = params['SessionId']
+          @NotifyTime = params['NotifyTime']
+          @TriggerTime = params['TriggerTime']
+          @TriggerLevel = params['TriggerLevel']
+          @AlarmContent = params['AlarmContent']
+          @AlarmObject = params['AlarmObject']
+          @ChannelSet = params['ChannelSet']
+          unless params['ChannelsReceivers'].nil?
+            @ChannelsReceivers = []
+            params['ChannelsReceivers'].each do |i|
+              channelsreceivers_tmp = ChannelsReceivers.new
+              channelsreceivers_tmp.deserialize(i)
+              @ChannelsReceivers << channelsreceivers_tmp
+            end
+          end
+          @PolicyName = params['PolicyName']
+          @PromeInstanceID = params['PromeInstanceID']
+          @PromeInstanceRegion = params['PromeInstanceRegion']
+          unless params['Notices'].nil?
+            @Notices = []
+            params['Notices'].each do |i|
+              notifyrelatednotice_tmp = NotifyRelatedNotice.new
+              notifyrelatednotice_tmp.deserialize(i)
+              @Notices << notifyrelatednotice_tmp
+            end
+          end
+          @TriggerStatus = params['TriggerStatus']
+          @PromeConsoleURL = params['PromeConsoleURL']
+          unless params['Labels'].nil?
+            @Labels = []
+            params['Labels'].each do |i|
+              alarmlable_tmp = AlarmLable.new
+              alarmlable_tmp.deserialize(i)
+              @Labels << alarmlable_tmp
+            end
+          end
+        end
+      end
+
+      # 接受人详情信息
+      class ChannelsReceivers < TencentCloud::Common::AbstractModel
+        # @param ChannelName: 通知渠道名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChannelName: String
+        # @param Receivers: 接收者
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Receivers: Array
+        # @param SendStatus: 发送结果,0-无效,1-成功,2-失败,3-无需发送
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SendStatus: String
+
+        attr_accessor :ChannelName, :Receivers, :SendStatus
+
+        def initialize(channelname=nil, receivers=nil, sendstatus=nil)
+          @ChannelName = channelname
+          @Receivers = receivers
+          @SendStatus = sendstatus
+        end
+
+        def deserialize(params)
+          @ChannelName = params['ChannelName']
+          @Receivers = params['Receivers']
+          @SendStatus = params['SendStatus']
+        end
+      end
+
       # CreateNoticeContentTmpl请求参数结构体
       class CreateNoticeContentTmplRequest < TencentCloud::Common::AbstractModel
         # @param TmplName: 模板名称
@@ -452,16 +601,34 @@ module TencentCloud
 
       # DescribeAlarmNotifyHistories返回参数结构体
       class DescribeAlarmNotifyHistoriesResponse < TencentCloud::Common::AbstractModel
+        # @param AlarmNotifyHistoryList: 告警历史
+        # @type AlarmNotifyHistoryList: Array
+        # @param PageResult: 分页情况
+        # @type PageResult: :class:`Tencentcloud::Monitor.v20230616.models.PageByNoResult`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :AlarmNotifyHistoryList, :PageResult, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(alarmnotifyhistorylist=nil, pageresult=nil, requestid=nil)
+          @AlarmNotifyHistoryList = alarmnotifyhistorylist
+          @PageResult = pageresult
           @RequestId = requestid
         end
 
         def deserialize(params)
+          unless params['AlarmNotifyHistoryList'].nil?
+            @AlarmNotifyHistoryList = []
+            params['AlarmNotifyHistoryList'].each do |i|
+              alarmnotifyhistory_tmp = AlarmNotifyHistory.new
+              alarmnotifyhistory_tmp.deserialize(i)
+              @AlarmNotifyHistoryList << alarmnotifyhistory_tmp
+            end
+          end
+          unless params['PageResult'].nil?
+            @PageResult = PageByNoResult.new
+            @PageResult.deserialize(params['PageResult'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -913,6 +1080,26 @@ module TencentCloud
         end
       end
 
+      # 通知历史中关联的通知模板信息
+      class NotifyRelatedNotice < TencentCloud::Common::AbstractModel
+        # @param NoticeId: 通知模板ID
+        # @type NoticeId: String
+        # @param NoticeName: 通知模板的名称
+        # @type NoticeName: String
+
+        attr_accessor :NoticeId, :NoticeName
+
+        def initialize(noticeid=nil, noticename=nil)
+          @NoticeId = noticeid
+          @NoticeName = noticename
+        end
+
+        def deserialize(params)
+          @NoticeId = params['NoticeId']
+          @NoticeName = params['NoticeName']
+        end
+      end
+
       # 分页请求参数
       class PageByNoParams < TencentCloud::Common::AbstractModel
         # @param PerPage: 每个分页的数量是多少
@@ -932,6 +1119,45 @@ module TencentCloud
         def deserialize(params)
           @PerPage = params['PerPage']
           @PageNo = params['PageNo']
+        end
+      end
+
+      # 分页结果参数
+      class PageByNoResult < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总共有多少数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param TotalPage: 总共有多少个分页
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalPage: Integer
+        # @param CurrentPageNo: 当前的分页号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CurrentPageNo: Integer
+        # @param IsEnd: 【已弃用】是否遍历到末尾
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsEnd: Boolean
+        # @param End: 是否遍历到末尾
+        # @type End: Boolean
+
+        attr_accessor :TotalCount, :TotalPage, :CurrentPageNo, :IsEnd, :End
+        extend Gem::Deprecate
+        deprecate :IsEnd, :none, 2026, 3
+        deprecate :IsEnd=, :none, 2026, 3
+
+        def initialize(totalcount=nil, totalpage=nil, currentpageno=nil, isend=nil, _end=nil)
+          @TotalCount = totalcount
+          @TotalPage = totalpage
+          @CurrentPageNo = currentpageno
+          @IsEnd = isend
+          @End = _end
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          @TotalPage = params['TotalPage']
+          @CurrentPageNo = params['CurrentPageNo']
+          @IsEnd = params['IsEnd']
+          @End = params['End']
         end
       end
 

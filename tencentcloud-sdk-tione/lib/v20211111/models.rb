@@ -4607,12 +4607,32 @@ module TencentCloud
 
       # DescribeSubAccountLinuxUserInfos请求参数结构体
       class DescribeSubAccountLinuxUserInfosRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 分页偏移量（0 表示全量）
+        # @type Offset: Integer
+        # @param Limit: 每页数量（0 表示全量）
+        # @type Limit: Integer
+        # @param Filters: 过滤条件
+        # @type Filters: Array
 
+        attr_accessor :Offset, :Limit, :Filters
 
-        def initialize()
+        def initialize(offset=nil, limit=nil, filters=nil)
+          @Offset = offset
+          @Limit = limit
+          @Filters = filters
         end
 
         def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
         end
       end
 
@@ -4620,13 +4640,16 @@ module TencentCloud
       class DescribeSubAccountLinuxUserInfosResponse < TencentCloud::Common::AbstractModel
         # @param SubAccountList: 子账号信息列表
         # @type SubAccountList: Array
+        # @param TotalCount: 总数（配合分页使用）
+        # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :SubAccountList, :RequestId
+        attr_accessor :SubAccountList, :TotalCount, :RequestId
 
-        def initialize(subaccountlist=nil, requestid=nil)
+        def initialize(subaccountlist=nil, totalcount=nil, requestid=nil)
           @SubAccountList = subaccountlist
+          @TotalCount = totalcount
           @RequestId = requestid
         end
 
@@ -4639,6 +4662,7 @@ module TencentCloud
               @SubAccountList << subaccountinfo_tmp
             end
           end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -10198,16 +10222,22 @@ module TencentCloud
         # @type LinuxGid: Integer
         # @param LinuxUserName: 子账号在Linux下的用户名
         # @type LinuxUserName: String
+        # @param EnableRootLogin: 是否开启 root 登录
+        # @type EnableRootLogin: Boolean
+        # @param UpdateTime: 更新时间
+        # @type UpdateTime: String
 
-        attr_accessor :Uin, :SubUin, :SubUinName, :LinuxUid, :LinuxGid, :LinuxUserName
+        attr_accessor :Uin, :SubUin, :SubUinName, :LinuxUid, :LinuxGid, :LinuxUserName, :EnableRootLogin, :UpdateTime
 
-        def initialize(uin=nil, subuin=nil, subuinname=nil, linuxuid=nil, linuxgid=nil, linuxusername=nil)
+        def initialize(uin=nil, subuin=nil, subuinname=nil, linuxuid=nil, linuxgid=nil, linuxusername=nil, enablerootlogin=nil, updatetime=nil)
           @Uin = uin
           @SubUin = subuin
           @SubUinName = subuinname
           @LinuxUid = linuxuid
           @LinuxGid = linuxgid
           @LinuxUserName = linuxusername
+          @EnableRootLogin = enablerootlogin
+          @UpdateTime = updatetime
         end
 
         def deserialize(params)
@@ -10217,6 +10247,8 @@ module TencentCloud
           @LinuxUid = params['LinuxUid']
           @LinuxGid = params['LinuxGid']
           @LinuxUserName = params['LinuxUserName']
+          @EnableRootLogin = params['EnableRootLogin']
+          @UpdateTime = params['UpdateTime']
         end
       end
 

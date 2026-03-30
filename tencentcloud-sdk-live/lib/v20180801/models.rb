@@ -4447,23 +4447,21 @@ module TencentCloud
 
       # CreateRecordTask请求参数结构体
       class CreateRecordTaskRequest < TencentCloud::Common::AbstractModel
-        # @param StreamName: 流名称。
+        # @param StreamName: <p>流名称。</p>
         # @type StreamName: String
-        # @param DomainName: 推流域名。
+        # @param DomainName: <p>推流域名。</p>
         # @type DomainName: String
-        # @param AppName: 推流路径。
+        # @param AppName: <p>推流路径。</p>
         # @type AppName: String
-        # @param EndTime: 录制任务结束时间，Unix时间戳。设置时间必须大于StartTime及当前时间，且小于当前时间+7天。
+        # @param EndTime: <p>录制任务结束时间，Unix时间戳。设置时间必须大于StartTime及当前时间，且小于当前时间+7天。</p>
         # @type EndTime: Integer
-        # @param StartTime: 录制任务开始时间，Unix时间戳。如果不填表示立即启动录制。EndTime - StartTime不能超过24小时。
+        # @param StartTime: <p>录制任务开始时间，Unix时间戳。如果不填表示立即启动录制。EndTime - StartTime不能超过24小时。</p>
         # @type StartTime: Integer
-        # @param StreamType: 推流类型，默认0。取值：
-        # 0-直播推流。
-        # 1-合成流，即 A+B=C 类型混流。
+        # @param StreamType: <p>推流类型，默认0。取值：<br>0-直播推流。<br>1-合成流，即 A+B=C 类型混流。</p>
         # @type StreamType: Integer
-        # @param TemplateId: 录制模板ID，CreateLiveRecordTemplate 返回值。如果不填或者传入错误ID，则默认录制HLS格式、永久存储。
+        # @param TemplateId: <p>录制模板ID，CreateLiveRecordTemplate 返回值。如果不填或者传入错误ID，则默认录制 HLS 格式、永久存储至 VOD 主应用下。<br>示例值：0。</p>
         # @type TemplateId: Integer
-        # @param Extension: 扩展字段，暂无定义。默认为空。
+        # @param Extension: <p>扩展字段，暂无定义。默认为空。</p>
         # @type Extension: String
 
         attr_accessor :StreamName, :DomainName, :AppName, :EndTime, :StartTime, :StreamType, :TemplateId, :Extension
@@ -4493,7 +4491,7 @@ module TencentCloud
 
       # CreateRecordTask返回参数结构体
       class CreateRecordTaskResponse < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务ID，全局唯一标识录制任务。返回TaskId字段说明录制任务创建成功。
+        # @param TaskId: <p>任务ID，全局唯一标识录制任务。返回TaskId字段说明录制任务创建成功。</p>
         # @type TaskId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

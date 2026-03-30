@@ -2513,15 +2513,15 @@ module TencentCloud
 
       # 私有网络配置。
       class VPCOption < TencentCloud::Common::AbstractModel
-        # @param VPCId: 私有网络ID（VPCId和VPCCIDRBlock必选其一。若使用VPCId，则使用现用私有网络；若使用VPCCIDRBlock，则创建新的私有网络）
+        # @param VPCId: <p>私有网络ID（VPCId和VPCCIDRBlock必选其一。若使用VPCId，则使用现用私有网络；若使用VPCCIDRBlock，则创建新的私有网络）</p>
         # @type VPCId: String
-        # @param SubnetId: 子网ID（SubnetId和SubnetZone&SubnetCIDRBlock必选其一。若使用SubnetId，则使用现用子网；若使用SubnetZone&SubnetCIDRBlock，则创建新的子网）
+        # @param SubnetId: <p>子网ID（SubnetId和SubnetZone&amp;SubnetCIDRBlock必选其一。若使用SubnetId，则使用现用子网；若使用SubnetZone&amp;SubnetCIDRBlock，则创建新的子网）</p>
         # @type SubnetId: String
-        # @param SubnetZone: 子网可用区。
+        # @param SubnetZone: <p>子网可用区。</p>
         # @type SubnetZone: String
-        # @param VPCCIDRBlock: 私有网络CIDR。
+        # @param VPCCIDRBlock: <p>私有网络CIDR。</p>
         # @type VPCCIDRBlock: String
-        # @param SubnetCIDRBlock: 子网CIDR。
+        # @param SubnetCIDRBlock: <p>子网CIDR。</p>
         # @type SubnetCIDRBlock: String
 
         attr_accessor :VPCId, :SubnetId, :SubnetZone, :VPCCIDRBlock, :SubnetCIDRBlock

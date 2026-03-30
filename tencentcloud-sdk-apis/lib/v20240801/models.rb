@@ -792,10 +792,14 @@ module TencentCloud
         # @type PluginConfigs: Array
         # @param Timeout: 超时配置，秒
         # @type Timeout: Integer
+        # @param PromptModerateStatus: 是否开启提示词安全检测
+        # @type PromptModerateStatus: Boolean
+        # @param PromptModerateConfig: 提示词安全检测配置
+        # @type PromptModerateConfig: :class:`Tencentcloud::Apis.v20240801.models.PromptModerateConfigDTO`
 
-        attr_accessor :InstanceID, :Name, :Description, :PubPath, :TargetModels, :PathMatchType, :InvokeLimitConfigStatus, :InvokeLimitConfig, :TokenLimitStatus, :TokenLimitConfig, :TmsStatus, :TmsConfig, :IpWhiteStatus, :IpWhiteList, :IpBlackList, :PluginConfigs, :Timeout
+        attr_accessor :InstanceID, :Name, :Description, :PubPath, :TargetModels, :PathMatchType, :InvokeLimitConfigStatus, :InvokeLimitConfig, :TokenLimitStatus, :TokenLimitConfig, :TmsStatus, :TmsConfig, :IpWhiteStatus, :IpWhiteList, :IpBlackList, :PluginConfigs, :Timeout, :PromptModerateStatus, :PromptModerateConfig
 
-        def initialize(instanceid=nil, name=nil, description=nil, pubpath=nil, targetmodels=nil, pathmatchtype=nil, invokelimitconfigstatus=nil, invokelimitconfig=nil, tokenlimitstatus=nil, tokenlimitconfig=nil, tmsstatus=nil, tmsconfig=nil, ipwhitestatus=nil, ipwhitelist=nil, ipblacklist=nil, pluginconfigs=nil, timeout=nil)
+        def initialize(instanceid=nil, name=nil, description=nil, pubpath=nil, targetmodels=nil, pathmatchtype=nil, invokelimitconfigstatus=nil, invokelimitconfig=nil, tokenlimitstatus=nil, tokenlimitconfig=nil, tmsstatus=nil, tmsconfig=nil, ipwhitestatus=nil, ipwhitelist=nil, ipblacklist=nil, pluginconfigs=nil, timeout=nil, promptmoderatestatus=nil, promptmoderateconfig=nil)
           @InstanceID = instanceid
           @Name = name
           @Description = description
@@ -813,6 +817,8 @@ module TencentCloud
           @IpBlackList = ipblacklist
           @PluginConfigs = pluginconfigs
           @Timeout = timeout
+          @PromptModerateStatus = promptmoderatestatus
+          @PromptModerateConfig = promptmoderateconfig
         end
 
         def deserialize(params)
@@ -856,6 +862,11 @@ module TencentCloud
             end
           end
           @Timeout = params['Timeout']
+          @PromptModerateStatus = params['PromptModerateStatus']
+          unless params['PromptModerateConfig'].nil?
+            @PromptModerateConfig = PromptModerateConfigDTO.new
+            @PromptModerateConfig.deserialize(params['PromptModerateConfig'])
+          end
         end
       end
 
@@ -2316,10 +2327,16 @@ module TencentCloud
         # @type RelateAgentAppNum: Integer
         # @param Url: 请求路径
         # @type Url: String
+        # @param PromptModerateStatus: 是否开启提示词安全检测
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PromptModerateStatus: Boolean
+        # @param PromptModerateConfig: 提示词安全检测配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PromptModerateConfig: :class:`Tencentcloud::Apis.v20240801.models.PromptModerateConfigDTO`
 
-        attr_accessor :AppID, :Uin, :InstanceID, :ID, :Name, :Description, :PubPath, :PathMatchType, :TargetModels, :ModelNames, :InvokeLimitConfigStatus, :InvokeLimitConfig, :CreateTime, :LastUpdateTime, :TokenLimitStatus, :TokenLimitConfig, :TmsStatus, :TmsConfig, :IpWhiteStatus, :IpWhiteList, :IpBlackStatus, :IpBlackList, :PluginConfigs, :Timeout, :Status, :RelateAgentAppNum, :Url
+        attr_accessor :AppID, :Uin, :InstanceID, :ID, :Name, :Description, :PubPath, :PathMatchType, :TargetModels, :ModelNames, :InvokeLimitConfigStatus, :InvokeLimitConfig, :CreateTime, :LastUpdateTime, :TokenLimitStatus, :TokenLimitConfig, :TmsStatus, :TmsConfig, :IpWhiteStatus, :IpWhiteList, :IpBlackStatus, :IpBlackList, :PluginConfigs, :Timeout, :Status, :RelateAgentAppNum, :Url, :PromptModerateStatus, :PromptModerateConfig
 
-        def initialize(appid=nil, uin=nil, instanceid=nil, id=nil, name=nil, description=nil, pubpath=nil, pathmatchtype=nil, targetmodels=nil, modelnames=nil, invokelimitconfigstatus=nil, invokelimitconfig=nil, createtime=nil, lastupdatetime=nil, tokenlimitstatus=nil, tokenlimitconfig=nil, tmsstatus=nil, tmsconfig=nil, ipwhitestatus=nil, ipwhitelist=nil, ipblackstatus=nil, ipblacklist=nil, pluginconfigs=nil, timeout=nil, status=nil, relateagentappnum=nil, url=nil)
+        def initialize(appid=nil, uin=nil, instanceid=nil, id=nil, name=nil, description=nil, pubpath=nil, pathmatchtype=nil, targetmodels=nil, modelnames=nil, invokelimitconfigstatus=nil, invokelimitconfig=nil, createtime=nil, lastupdatetime=nil, tokenlimitstatus=nil, tokenlimitconfig=nil, tmsstatus=nil, tmsconfig=nil, ipwhitestatus=nil, ipwhitelist=nil, ipblackstatus=nil, ipblacklist=nil, pluginconfigs=nil, timeout=nil, status=nil, relateagentappnum=nil, url=nil, promptmoderatestatus=nil, promptmoderateconfig=nil)
           @AppID = appid
           @Uin = uin
           @InstanceID = instanceid
@@ -2347,6 +2364,8 @@ module TencentCloud
           @Status = status
           @RelateAgentAppNum = relateagentappnum
           @Url = url
+          @PromptModerateStatus = promptmoderatestatus
+          @PromptModerateConfig = promptmoderateconfig
         end
 
         def deserialize(params)
@@ -2400,6 +2419,11 @@ module TencentCloud
           @Status = params['Status']
           @RelateAgentAppNum = params['RelateAgentAppNum']
           @Url = params['Url']
+          @PromptModerateStatus = params['PromptModerateStatus']
+          unless params['PromptModerateConfig'].nil?
+            @PromptModerateConfig = PromptModerateConfigDTO.new
+            @PromptModerateConfig.deserialize(params['PromptModerateConfig'])
+          end
         end
       end
 
@@ -3440,10 +3464,14 @@ module TencentCloud
         # @type PluginConfigs: Array
         # @param Timeout: 超时配置，秒
         # @type Timeout: Integer
+        # @param PromptModerateStatus: 是否开启提示词安全检测配置
+        # @type PromptModerateStatus: Boolean
+        # @param PromptModerateConfig: 提示词安全检测配置
+        # @type PromptModerateConfig: :class:`Tencentcloud::Apis.v20240801.models.PromptModerateConfigDTO`
 
-        attr_accessor :InstanceID, :ID, :Name, :Description, :TargetModels, :InvokeLimitConfigStatus, :InvokeLimitConfig, :TokenLimitStatus, :TokenLimitConfig, :TmsStatus, :TmsConfig, :IpWhiteStatus, :IpWhiteList, :IpBlackStatus, :IpBlackList, :PluginConfigs, :Timeout
+        attr_accessor :InstanceID, :ID, :Name, :Description, :TargetModels, :InvokeLimitConfigStatus, :InvokeLimitConfig, :TokenLimitStatus, :TokenLimitConfig, :TmsStatus, :TmsConfig, :IpWhiteStatus, :IpWhiteList, :IpBlackStatus, :IpBlackList, :PluginConfigs, :Timeout, :PromptModerateStatus, :PromptModerateConfig
 
-        def initialize(instanceid=nil, id=nil, name=nil, description=nil, targetmodels=nil, invokelimitconfigstatus=nil, invokelimitconfig=nil, tokenlimitstatus=nil, tokenlimitconfig=nil, tmsstatus=nil, tmsconfig=nil, ipwhitestatus=nil, ipwhitelist=nil, ipblackstatus=nil, ipblacklist=nil, pluginconfigs=nil, timeout=nil)
+        def initialize(instanceid=nil, id=nil, name=nil, description=nil, targetmodels=nil, invokelimitconfigstatus=nil, invokelimitconfig=nil, tokenlimitstatus=nil, tokenlimitconfig=nil, tmsstatus=nil, tmsconfig=nil, ipwhitestatus=nil, ipwhitelist=nil, ipblackstatus=nil, ipblacklist=nil, pluginconfigs=nil, timeout=nil, promptmoderatestatus=nil, promptmoderateconfig=nil)
           @InstanceID = instanceid
           @ID = id
           @Name = name
@@ -3461,6 +3489,8 @@ module TencentCloud
           @IpBlackList = ipblacklist
           @PluginConfigs = pluginconfigs
           @Timeout = timeout
+          @PromptModerateStatus = promptmoderatestatus
+          @PromptModerateConfig = promptmoderateconfig
         end
 
         def deserialize(params)
@@ -3504,6 +3534,11 @@ module TencentCloud
             end
           end
           @Timeout = params['Timeout']
+          @PromptModerateStatus = params['PromptModerateStatus']
+          unless params['PromptModerateConfig'].nil?
+            @PromptModerateConfig = PromptModerateConfigDTO.new
+            @PromptModerateConfig.deserialize(params['PromptModerateConfig'])
+          end
         end
       end
 
@@ -3598,6 +3633,28 @@ module TencentCloud
         def deserialize(params)
           @Field = params['Field']
           @Value = params['Value']
+        end
+      end
+
+      # 提示词安全配置
+      class PromptModerateConfigDTO < TencentCloud::Common::AbstractModel
+        # @param Action: 执行动作
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Action: String
+        # @param InterceptMessage: 响应拦截内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InterceptMessage: String
+
+        attr_accessor :Action, :InterceptMessage
+
+        def initialize(action=nil, interceptmessage=nil)
+          @Action = action
+          @InterceptMessage = interceptmessage
+        end
+
+        def deserialize(params)
+          @Action = params['Action']
+          @InterceptMessage = params['InterceptMessage']
         end
       end
 

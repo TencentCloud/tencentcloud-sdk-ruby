@@ -1809,15 +1809,19 @@ module TencentCloud
         # @param Email: 邮箱
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Email: String
+        # @param UserTag: 0: 普通用户 1: entraId用户
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserTag: Integer
 
-        attr_accessor :UserId, :UserName, :DisplayName, :PhoneNum, :Email
+        attr_accessor :UserId, :UserName, :DisplayName, :PhoneNum, :Email, :UserTag
 
-        def initialize(userid=nil, username=nil, displayname=nil, phonenum=nil, email=nil)
+        def initialize(userid=nil, username=nil, displayname=nil, phonenum=nil, email=nil, usertag=nil)
           @UserId = userid
           @UserName = username
           @DisplayName = displayname
           @PhoneNum = phonenum
           @Email = email
+          @UserTag = usertag
         end
 
         def deserialize(params)
@@ -1826,6 +1830,7 @@ module TencentCloud
           @DisplayName = params['DisplayName']
           @PhoneNum = params['PhoneNum']
           @Email = params['Email']
+          @UserTag = params['UserTag']
         end
       end
 
@@ -31937,10 +31942,13 @@ module TencentCloud
         # @param Status: 用户状态 0:历史 1:正常 2:已删除
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
+        # @param UserTag: 0: 普通用户 1: entraId用户
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserTag: Integer
 
-        attr_accessor :Roles, :UserName, :UserId, :CreateTime, :Creator, :DisplayName, :IsProjectAdmin, :PhoneNum, :Email, :OwnerUin, :AppId, :IsProjectOwner, :CreateTimestamp, :Status
+        attr_accessor :Roles, :UserName, :UserId, :CreateTime, :Creator, :DisplayName, :IsProjectAdmin, :PhoneNum, :Email, :OwnerUin, :AppId, :IsProjectOwner, :CreateTimestamp, :Status, :UserTag
 
-        def initialize(roles=nil, username=nil, userid=nil, createtime=nil, creator=nil, displayname=nil, isprojectadmin=nil, phonenum=nil, email=nil, owneruin=nil, appid=nil, isprojectowner=nil, createtimestamp=nil, status=nil)
+        def initialize(roles=nil, username=nil, userid=nil, createtime=nil, creator=nil, displayname=nil, isprojectadmin=nil, phonenum=nil, email=nil, owneruin=nil, appid=nil, isprojectowner=nil, createtimestamp=nil, status=nil, usertag=nil)
           @Roles = roles
           @UserName = username
           @UserId = userid
@@ -31955,6 +31963,7 @@ module TencentCloud
           @IsProjectOwner = isprojectowner
           @CreateTimestamp = createtimestamp
           @Status = status
+          @UserTag = usertag
         end
 
         def deserialize(params)
@@ -31979,6 +31988,7 @@ module TencentCloud
           @IsProjectOwner = params['IsProjectOwner']
           @CreateTimestamp = params['CreateTimestamp']
           @Status = params['Status']
+          @UserTag = params['UserTag']
         end
       end
 
