@@ -3980,6 +3980,66 @@ module TencentCloud
         end
       end
 
+      # DescribeAKAnalysisDetail请求参数结构体
+      class DescribeAKAnalysisDetailRequest < TencentCloud::Common::AbstractModel
+        # @param ID: 告警记录ID
+        # @type ID: Integer
+        # @param MemberId: 集团账号的成员id
+        # @type MemberId: Array
+
+        attr_accessor :ID, :MemberId
+
+        def initialize(id=nil, memberid=nil)
+          @ID = id
+          @MemberId = memberid
+        end
+
+        def deserialize(params)
+          @ID = params['ID']
+          @MemberId = params['MemberId']
+        end
+      end
+
+      # DescribeAKAnalysisDetail返回参数结构体
+      class DescribeAKAnalysisDetailResponse < TencentCloud::Common::AbstractModel
+        # @param AIStatus: 告警AI分析状态 -1 分析失败 0 未分析 1 分析中 2 分析成功，真实告警 3 分析成功，可疑告警
+        # @type AIStatus: Integer
+        # @param AITaskID: AI分析任务ID
+        # @type AITaskID: String
+        # @param AIResult: 告警AI分析结果，base64格式，避免数据被拦截
+        # @type AIResult: String
+        # @param Feedback: 反馈建议
+        # @type Feedback: String
+        # @param FeedbackResult: 反馈状态  0表示没有反馈，1表示认可，2表示不认可
+        # @type FeedbackResult: Integer
+        # @param FailedReason: 失败原因
+        # @type FailedReason: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AIStatus, :AITaskID, :AIResult, :Feedback, :FeedbackResult, :FailedReason, :RequestId
+
+        def initialize(aistatus=nil, aitaskid=nil, airesult=nil, feedback=nil, feedbackresult=nil, failedreason=nil, requestid=nil)
+          @AIStatus = aistatus
+          @AITaskID = aitaskid
+          @AIResult = airesult
+          @Feedback = feedback
+          @FeedbackResult = feedbackresult
+          @FailedReason = failedreason
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @AIStatus = params['AIStatus']
+          @AITaskID = params['AITaskID']
+          @AIResult = params['AIResult']
+          @Feedback = params['Feedback']
+          @FeedbackResult = params['FeedbackResult']
+          @FailedReason = params['FailedReason']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeAbnormalCallRecord请求参数结构体
       class DescribeAbnormalCallRecordRequest < TencentCloud::Common::AbstractModel
         # @param AlarmRuleID: 告警规则ID

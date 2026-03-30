@@ -1066,6 +1066,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口 (ModifyDomainOwner) 用于域名过户。
+
+        # @param request: Request instance for ModifyDomainOwner.
+        # @type request: :class:`Tencentcloud::domain::V20180808::ModifyDomainOwnerRequest`
+        # @rtype: :class:`Tencentcloud::domain::V20180808::ModifyDomainOwnerResponse`
+        def ModifyDomainOwner(request)
+          body = send_request('ModifyDomainOwner', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyDomainOwnerResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口 ( ModifyDomainOwnerBatch) 用于域名批量账号间转移 。
 
         # @param request: Request instance for ModifyDomainOwnerBatch.

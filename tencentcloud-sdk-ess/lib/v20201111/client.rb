@@ -766,6 +766,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 此接口（CreateDraftContractByPromptsTask）用于创建智能合同起草任务。
+
+        # @param request: Request instance for CreateDraftContractByPromptsTask.
+        # @type request: :class:`Tencentcloud::ess::V20201111::CreateDraftContractByPromptsTaskRequest`
+        # @rtype: :class:`Tencentcloud::ess::V20201111::CreateDraftContractByPromptsTaskResponse`
+        def CreateDraftContractByPromptsTask(request)
+          body = send_request('CreateDraftContractByPromptsTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateDraftContractByPromptsTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 此接口（CreateDynamicFlowApprover）接口主要用于补充动态签署方2.0合同的签署方信息，包括但不限于名字、手机号和签署区域等信息。
 
 
@@ -3091,6 +3115,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeContractReviewWebUrlResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 此接口（DescribeDraftContractByPromptsTask）用于查询智能合同起草任务状态。
+
+        # @param request: Request instance for DescribeDraftContractByPromptsTask.
+        # @type request: :class:`Tencentcloud::ess::V20201111::DescribeDraftContractByPromptsTaskRequest`
+        # @rtype: :class:`Tencentcloud::ess::V20201111::DescribeDraftContractByPromptsTaskResponse`
+        def DescribeDraftContractByPromptsTask(request)
+          body = send_request('DescribeDraftContractByPromptsTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDraftContractByPromptsTaskResponse.new
             model.deserialize(response['Response'])
             model
           else

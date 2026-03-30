@@ -3435,6 +3435,62 @@ module TencentCloud
         end
       end
 
+      # CreateDraftContractByPromptsTask请求参数结构体
+      class CreateDraftContractByPromptsTaskRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: 执行本接口操作的员工信息。 注: 在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param Requirement: 起草要求
+        # @type Requirement: String
+        # @param ReferenceTemplateId: 参考模板文件资源id（PDF/Word格式）
+        # @type ReferenceTemplateId: String
+        # @param RequirementFileIds: 相关规定文件资源id列表（PDF/Word格式）
+        # @type RequirementFileIds: Array
+        # @param ContractLanguage: 起草合同的语言要求（zh，en）默认zh
+        # @type ContractLanguage: String
+
+        attr_accessor :Operator, :Requirement, :ReferenceTemplateId, :RequirementFileIds, :ContractLanguage
+
+        def initialize(operator=nil, requirement=nil, referencetemplateid=nil, requirementfileids=nil, contractlanguage=nil)
+          @Operator = operator
+          @Requirement = requirement
+          @ReferenceTemplateId = referencetemplateid
+          @RequirementFileIds = requirementfileids
+          @ContractLanguage = contractlanguage
+        end
+
+        def deserialize(params)
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          @Requirement = params['Requirement']
+          @ReferenceTemplateId = params['ReferenceTemplateId']
+          @RequirementFileIds = params['RequirementFileIds']
+          @ContractLanguage = params['ContractLanguage']
+        end
+      end
+
+      # CreateDraftContractByPromptsTask返回参数结构体
+      class CreateDraftContractByPromptsTaskResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 起草任务id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateDynamicFlowApprover请求参数结构体
       class CreateDynamicFlowApproverRequest < TencentCloud::Common::AbstractModel
         # @param Operator: 执行本接口操作的员工信息。使用此接口时，必须填写userId。支持填入集团子公司经办人 userId 代发合同。注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
@@ -10205,6 +10261,61 @@ module TencentCloud
         def deserialize(params)
           @WebUrl = params['WebUrl']
           @Status = params['Status']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDraftContractByPromptsTask请求参数结构体
+      class DescribeDraftContractByPromptsTaskRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: 执行本接口操作的员工信息。 注: 在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param TaskId: 任务id
+        # @type TaskId: String
+
+        attr_accessor :Operator, :TaskId
+
+        def initialize(operator=nil, taskid=nil)
+          @Operator = operator
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # DescribeDraftContractByPromptsTask返回参数结构体
+      class DescribeDraftContractByPromptsTaskResponse < TencentCloud::Common::AbstractModel
+        # @param Status: 任务状态，枚举，0 已创建，1 执行中，2 成功，3 失败
+        # @type Status: Integer
+        # @param Message: 任务错误信息，仅在失败时返回
+        # @type Message: String
+        # @param ContractName: 生成的合同名称
+        # @type ContractName: String
+        # @param ResourceId: 生成的合同文件资源id
+        # @type ResourceId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :Message, :ContractName, :ResourceId, :RequestId
+
+        def initialize(status=nil, message=nil, contractname=nil, resourceid=nil, requestid=nil)
+          @Status = status
+          @Message = message
+          @ContractName = contractname
+          @ResourceId = resourceid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @Message = params['Message']
+          @ContractName = params['ContractName']
+          @ResourceId = params['ResourceId']
           @RequestId = params['RequestId']
         end
       end

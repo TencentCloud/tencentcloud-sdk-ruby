@@ -77,6 +77,78 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询AI工作台SRE数字分身任务列表
+
+        # @param request: Request instance for DescribeAIWorkbenchSREDigitalTwinTaskList.
+        # @type request: :class:`Tencentcloud::monitor::V20230616::DescribeAIWorkbenchSREDigitalTwinTaskListRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20230616::DescribeAIWorkbenchSREDigitalTwinTaskListResponse`
+        def DescribeAIWorkbenchSREDigitalTwinTaskList(request)
+          body = send_request('DescribeAIWorkbenchSREDigitalTwinTaskList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAIWorkbenchSREDigitalTwinTaskListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询AI工作台SRE数字分身工作日志详细信息
+
+        # @param request: Request instance for DescribeAIWorkbenchSREDigitalTwinWorkLogDetail.
+        # @type request: :class:`Tencentcloud::monitor::V20230616::DescribeAIWorkbenchSREDigitalTwinWorkLogDetailRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20230616::DescribeAIWorkbenchSREDigitalTwinWorkLogDetailResponse`
+        def DescribeAIWorkbenchSREDigitalTwinWorkLogDetail(request)
+          body = send_request('DescribeAIWorkbenchSREDigitalTwinWorkLogDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAIWorkbenchSREDigitalTwinWorkLogDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询AI工作台SRE数字分身任务工作日志列表
+
+        # @param request: Request instance for DescribeAIWorkbenchSREDigitalTwinWorkLogList.
+        # @type request: :class:`Tencentcloud::monitor::V20230616::DescribeAIWorkbenchSREDigitalTwinWorkLogListRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20230616::DescribeAIWorkbenchSREDigitalTwinWorkLogListResponse`
+        def DescribeAIWorkbenchSREDigitalTwinWorkLogList(request)
+          body = send_request('DescribeAIWorkbenchSREDigitalTwinWorkLogList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAIWorkbenchSREDigitalTwinWorkLogListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 按需查询告警的通知历史
 
         # @param request: Request instance for DescribeAlarmNotifyHistories.
@@ -135,6 +207,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyNoticeContentTmplResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 触发数字分身任务请求
+
+        # @param request: Request instance for TriggerAIWorkbenchSREDigitalTwinTask.
+        # @type request: :class:`Tencentcloud::monitor::V20230616::TriggerAIWorkbenchSREDigitalTwinTaskRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20230616::TriggerAIWorkbenchSREDigitalTwinTaskResponse`
+        def TriggerAIWorkbenchSREDigitalTwinTask(request)
+          body = send_request('TriggerAIWorkbenchSREDigitalTwinTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = TriggerAIWorkbenchSREDigitalTwinTaskResponse.new
             model.deserialize(response['Response'])
             model
           else

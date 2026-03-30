@@ -885,6 +885,26 @@ module TencentCloud
         end
       end
 
+      # metadata 项
+      class MetadataVar < TencentCloud::Common::AbstractModel
+        # @param Name: <p>沙箱元数据名</p>
+        # @type Name: String
+        # @param Value: <p>沙箱元数据值</p>
+        # @type Value: String
+
+        attr_accessor :Name, :Value
+
+        def initialize(name=nil, value=nil)
+          @Name = name
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Value = params['Value']
+        end
+      end
+
       # 沙箱实例存储挂载配置可选项，用于覆盖沙箱工具的存储配置的部分选项，并提供子路径挂载配置。
       class MountOption < TencentCloud::Common::AbstractModel
         # @param Name: 指定沙箱工具中的存储配置名称
@@ -938,7 +958,7 @@ module TencentCloud
 
       # PauseSandboxInstance请求参数结构体
       class PauseSandboxInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 沙箱实例ID
+        # @param InstanceId: <p>沙箱实例ID</p>
         # @type InstanceId: String
 
         attr_accessor :InstanceId
@@ -1107,10 +1127,14 @@ module TencentCloud
         # @type MountOptions: Array
         # @param CustomConfiguration: <p>沙箱实例自定义配置</p>
         # @type CustomConfiguration: :class:`Tencentcloud::Ags.v20250920.models.CustomConfigurationDetail`
+        # @param NetworkMode: <p>网络模式</p><p>枚举值：</p><ul><li>PUBLIC： 公网访问</li><li>SANDBOX： 无网络</li><li>INTERNAL_SERVICE： 腾讯云内部公共服务</li></ul><p>可以覆盖工具级别的网络配置。但如果一个工具本身就不支持 VPC 网络，那么即便在实例设置里选了 VPC 模式，也是无效的</p>
+        # @type NetworkMode: String
+        # @param Metadata: <p>沙箱实例元数据</p>
+        # @type Metadata: Array
 
-        attr_accessor :InstanceId, :ToolId, :ToolName, :Status, :TimeoutSeconds, :ExpiresAt, :StopReason, :CreateTime, :UpdateTime, :MountOptions, :CustomConfiguration
+        attr_accessor :InstanceId, :ToolId, :ToolName, :Status, :TimeoutSeconds, :ExpiresAt, :StopReason, :CreateTime, :UpdateTime, :MountOptions, :CustomConfiguration, :NetworkMode, :Metadata
 
-        def initialize(instanceid=nil, toolid=nil, toolname=nil, status=nil, timeoutseconds=nil, expiresat=nil, stopreason=nil, createtime=nil, updatetime=nil, mountoptions=nil, customconfiguration=nil)
+        def initialize(instanceid=nil, toolid=nil, toolname=nil, status=nil, timeoutseconds=nil, expiresat=nil, stopreason=nil, createtime=nil, updatetime=nil, mountoptions=nil, customconfiguration=nil, networkmode=nil, metadata=nil)
           @InstanceId = instanceid
           @ToolId = toolid
           @ToolName = toolname
@@ -1122,6 +1146,8 @@ module TencentCloud
           @UpdateTime = updatetime
           @MountOptions = mountoptions
           @CustomConfiguration = customconfiguration
+          @NetworkMode = networkmode
+          @Metadata = metadata
         end
 
         def deserialize(params)
@@ -1145,6 +1171,15 @@ module TencentCloud
           unless params['CustomConfiguration'].nil?
             @CustomConfiguration = CustomConfigurationDetail.new
             @CustomConfiguration.deserialize(params['CustomConfiguration'])
+          end
+          @NetworkMode = params['NetworkMode']
+          unless params['Metadata'].nil?
+            @Metadata = []
+            params['Metadata'].each do |i|
+              metadatavar_tmp = MetadataVar.new
+              metadatavar_tmp.deserialize(i)
+              @Metadata << metadatavar_tmp
+            end
           end
         end
       end
@@ -1246,28 +1281,34 @@ module TencentCloud
 
       # StartSandboxInstance请求参数结构体
       class StartSandboxInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param ToolId: 沙箱工具 ID，与 ToolName 至少有一个要填
+        # @param ToolId: <p>沙箱工具 ID，与 ToolName 至少有一个要填</p>
         # @type ToolId: String
-        # @param ToolName: 沙箱工具名称，与 ToolId 至少有一个要填
+        # @param ToolName: <p>沙箱工具名称，与 ToolId 至少有一个要填</p>
         # @type ToolName: String
-        # @param Timeout: 超时时间，超过这个时间就自动回收实例。支持格式：5m、300s、1h 等，默认 5m。最小 30s，最大 24h
+        # @param Timeout: <p>超时时间，超过这个时间就自动回收实例。支持格式：5m、300s、1h 等，默认 5m。最小 30s，最大 24h</p>
         # @type Timeout: String
-        # @param ClientToken: 幂等性 Token，长度不超过 64 字符
+        # @param ClientToken: <p>幂等性 Token，长度不超过 64 字符</p>
         # @type ClientToken: String
-        # @param MountOptions: 沙箱实例存储挂载配置
+        # @param MountOptions: <p>沙箱实例存储挂载配置</p>
         # @type MountOptions: Array
-        # @param CustomConfiguration: 沙箱实例自定义配置
+        # @param CustomConfiguration: <p>沙箱实例自定义配置</p>
         # @type CustomConfiguration: :class:`Tencentcloud::Ags.v20250920.models.CustomConfiguration`
+        # @param AuthMode: <p>沙箱访问认证模式</p><p>枚举值：</p><ul><li>DEFAULT： 跟随系统策略</li><li>TOKEN： Token认证</li><li>NONE： 免认证 </li></ul><p>默认值：DEFAULT</p>
+        # @type AuthMode: String
+        # @param Metadata: <p>沙箱元数据</p>
+        # @type Metadata: Array
 
-        attr_accessor :ToolId, :ToolName, :Timeout, :ClientToken, :MountOptions, :CustomConfiguration
+        attr_accessor :ToolId, :ToolName, :Timeout, :ClientToken, :MountOptions, :CustomConfiguration, :AuthMode, :Metadata
 
-        def initialize(toolid=nil, toolname=nil, timeout=nil, clienttoken=nil, mountoptions=nil, customconfiguration=nil)
+        def initialize(toolid=nil, toolname=nil, timeout=nil, clienttoken=nil, mountoptions=nil, customconfiguration=nil, authmode=nil, metadata=nil)
           @ToolId = toolid
           @ToolName = toolname
           @Timeout = timeout
           @ClientToken = clienttoken
           @MountOptions = mountoptions
           @CustomConfiguration = customconfiguration
+          @AuthMode = authmode
+          @Metadata = metadata
         end
 
         def deserialize(params)
@@ -1287,12 +1328,21 @@ module TencentCloud
             @CustomConfiguration = CustomConfiguration.new
             @CustomConfiguration.deserialize(params['CustomConfiguration'])
           end
+          @AuthMode = params['AuthMode']
+          unless params['Metadata'].nil?
+            @Metadata = []
+            params['Metadata'].each do |i|
+              metadatavar_tmp = MetadataVar.new
+              metadatavar_tmp.deserialize(i)
+              @Metadata << metadatavar_tmp
+            end
+          end
         end
       end
 
       # StartSandboxInstance返回参数结构体
       class StartSandboxInstanceResponse < TencentCloud::Common::AbstractModel
-        # @param Instance: 创建的沙箱实例完整信息
+        # @param Instance: <p>创建的沙箱实例完整信息</p>
         # @type Instance: :class:`Tencentcloud::Ags.v20250920.models.SandboxInstance`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1431,21 +1481,32 @@ module TencentCloud
 
       # UpdateSandboxInstance请求参数结构体
       class UpdateSandboxInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 沙箱实例ID
+        # @param InstanceId: <p>沙箱实例ID</p>
         # @type InstanceId: String
-        # @param Timeout: 新的超时时间（从设置时开始重新计算超时），支持格式：5m、300s、1h等。最小30s，最大24h。如果不指定则保持原有超时设置
+        # @param Timeout: <p>新的超时时间（从设置时开始重新计算超时），支持格式：5m、300s、1h等。最小30s，最大24h。如果不指定则保持原有超时设置</p>
         # @type Timeout: String
+        # @param Metadata: <p>沙箱实例元数据</p>
+        # @type Metadata: Array
 
-        attr_accessor :InstanceId, :Timeout
+        attr_accessor :InstanceId, :Timeout, :Metadata
 
-        def initialize(instanceid=nil, timeout=nil)
+        def initialize(instanceid=nil, timeout=nil, metadata=nil)
           @InstanceId = instanceid
           @Timeout = timeout
+          @Metadata = metadata
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
           @Timeout = params['Timeout']
+          unless params['Metadata'].nil?
+            @Metadata = []
+            params['Metadata'].each do |i|
+              metadatavar_tmp = MetadataVar.new
+              metadatavar_tmp.deserialize(i)
+              @Metadata << metadatavar_tmp
+            end
+          end
         end
       end
 

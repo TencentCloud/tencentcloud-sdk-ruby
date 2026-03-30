@@ -3471,6 +3471,55 @@ module TencentCloud
         end
       end
 
+      # ModifyDomainOwner请求参数结构体
+      class ModifyDomainOwnerRequest < TencentCloud::Common::AbstractModel
+        # @param DomainId: 域名ID
+        # @type DomainId: String
+        # @param NewOwnerUin: 新用户UIN
+        # @type NewOwnerUin: String
+        # @param NewOwnerAppId: 新用户APPID
+        # @type NewOwnerAppId: String
+        # @param TransferDns: 是否同时转移对应的 DNS 解析域名，默认false
+        # @type TransferDns: Boolean
+
+        attr_accessor :DomainId, :NewOwnerUin, :NewOwnerAppId, :TransferDns
+
+        def initialize(domainid=nil, newowneruin=nil, newownerappid=nil, transferdns=nil)
+          @DomainId = domainid
+          @NewOwnerUin = newowneruin
+          @NewOwnerAppId = newownerappid
+          @TransferDns = transferdns
+        end
+
+        def deserialize(params)
+          @DomainId = params['DomainId']
+          @NewOwnerUin = params['NewOwnerUin']
+          @NewOwnerAppId = params['NewOwnerAppId']
+          @TransferDns = params['TransferDns']
+        end
+      end
+
+      # ModifyDomainOwner返回参数结构体
+      class ModifyDomainOwnerResponse < TencentCloud::Common::AbstractModel
+        # @param TransferDnsResult: null: 未转移对应的 DNS 解析域名，false: 转移对应的 DNS 解析域名失败，true: 转移对应的 DNS 解析域名成功
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TransferDnsResult: Boolean
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TransferDnsResult, :RequestId
+
+        def initialize(transferdnsresult=nil, requestid=nil)
+          @TransferDnsResult = transferdnsresult
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TransferDnsResult = params['TransferDnsResult']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyIntlCustomDnsHost请求参数结构体
       class ModifyIntlCustomDnsHostRequest < TencentCloud::Common::AbstractModel
         # @param DomainId: 域名ID

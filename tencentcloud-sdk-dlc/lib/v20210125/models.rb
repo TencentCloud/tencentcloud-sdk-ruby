@@ -13046,10 +13046,12 @@ module TencentCloud
         # @type PodSize: Integer
         # @param PodNumbers: pod数量
         # @type PodNumbers: Integer
+        # @param SparkAppName: spark app名称
+        # @type SparkAppName: String
 
-        attr_accessor :Name, :Kind, :DataEngineName, :Arguments, :ProgramDependentFiles, :ProgramDependentJars, :ProgramDependentPython, :ProgramArchives, :DriverSize, :ExecutorSize, :ExecutorNumbers, :ProxyUser, :TimeoutInSecond, :SparkAppId, :SessionId, :State, :CreateTime, :AppInfo, :SparkUiUrl, :ExecutorMaxNumbers, :SessionType, :DataEngineId, :ResourceGroupId, :ResourceGroupName, :PodSize, :PodNumbers
+        attr_accessor :Name, :Kind, :DataEngineName, :Arguments, :ProgramDependentFiles, :ProgramDependentJars, :ProgramDependentPython, :ProgramArchives, :DriverSize, :ExecutorSize, :ExecutorNumbers, :ProxyUser, :TimeoutInSecond, :SparkAppId, :SessionId, :State, :CreateTime, :AppInfo, :SparkUiUrl, :ExecutorMaxNumbers, :SessionType, :DataEngineId, :ResourceGroupId, :ResourceGroupName, :PodSize, :PodNumbers, :SparkAppName
 
-        def initialize(name=nil, kind=nil, dataenginename=nil, arguments=nil, programdependentfiles=nil, programdependentjars=nil, programdependentpython=nil, programarchives=nil, driversize=nil, executorsize=nil, executornumbers=nil, proxyuser=nil, timeoutinsecond=nil, sparkappid=nil, sessionid=nil, state=nil, createtime=nil, appinfo=nil, sparkuiurl=nil, executormaxnumbers=nil, sessiontype=nil, dataengineid=nil, resourcegroupid=nil, resourcegroupname=nil, podsize=nil, podnumbers=nil)
+        def initialize(name=nil, kind=nil, dataenginename=nil, arguments=nil, programdependentfiles=nil, programdependentjars=nil, programdependentpython=nil, programarchives=nil, driversize=nil, executorsize=nil, executornumbers=nil, proxyuser=nil, timeoutinsecond=nil, sparkappid=nil, sessionid=nil, state=nil, createtime=nil, appinfo=nil, sparkuiurl=nil, executormaxnumbers=nil, sessiontype=nil, dataengineid=nil, resourcegroupid=nil, resourcegroupname=nil, podsize=nil, podnumbers=nil, sparkappname=nil)
           @Name = name
           @Kind = kind
           @DataEngineName = dataenginename
@@ -13076,6 +13078,7 @@ module TencentCloud
           @ResourceGroupName = resourcegroupname
           @PodSize = podsize
           @PodNumbers = podnumbers
+          @SparkAppName = sparkappname
         end
 
         def deserialize(params)
@@ -13119,6 +13122,7 @@ module TencentCloud
           @ResourceGroupName = params['ResourceGroupName']
           @PodSize = params['PodSize']
           @PodNumbers = params['PodNumbers']
+          @SparkAppName = params['SparkAppName']
         end
       end
 
@@ -13243,10 +13247,14 @@ module TencentCloud
         # @type ResourceGroupId: String
         # @param ResourceGroupName: 资源组名字
         # @type ResourceGroupName: String
+        # @param KernelId: Kernel id
+        # @type KernelId: String
+        # @param SparkAppName: spark app名称
+        # @type SparkAppName: String
 
-        attr_accessor :Kind, :SessionId, :ProxyUser, :State, :SparkAppId, :Name, :CreateTime, :DataEngineName, :LastRunningTime, :Creator, :SparkUiUrl, :SessionType, :DataEngineId, :ResourceGroupId, :ResourceGroupName
+        attr_accessor :Kind, :SessionId, :ProxyUser, :State, :SparkAppId, :Name, :CreateTime, :DataEngineName, :LastRunningTime, :Creator, :SparkUiUrl, :SessionType, :DataEngineId, :ResourceGroupId, :ResourceGroupName, :KernelId, :SparkAppName
 
-        def initialize(kind=nil, sessionid=nil, proxyuser=nil, state=nil, sparkappid=nil, name=nil, createtime=nil, dataenginename=nil, lastrunningtime=nil, creator=nil, sparkuiurl=nil, sessiontype=nil, dataengineid=nil, resourcegroupid=nil, resourcegroupname=nil)
+        def initialize(kind=nil, sessionid=nil, proxyuser=nil, state=nil, sparkappid=nil, name=nil, createtime=nil, dataenginename=nil, lastrunningtime=nil, creator=nil, sparkuiurl=nil, sessiontype=nil, dataengineid=nil, resourcegroupid=nil, resourcegroupname=nil, kernelid=nil, sparkappname=nil)
           @Kind = kind
           @SessionId = sessionid
           @ProxyUser = proxyuser
@@ -13262,6 +13270,8 @@ module TencentCloud
           @DataEngineId = dataengineid
           @ResourceGroupId = resourcegroupid
           @ResourceGroupName = resourcegroupname
+          @KernelId = kernelid
+          @SparkAppName = sparkappname
         end
 
         def deserialize(params)
@@ -13280,6 +13290,8 @@ module TencentCloud
           @DataEngineId = params['DataEngineId']
           @ResourceGroupId = params['ResourceGroupId']
           @ResourceGroupName = params['ResourceGroupName']
+          @KernelId = params['KernelId']
+          @SparkAppName = params['SparkAppName']
         end
       end
 

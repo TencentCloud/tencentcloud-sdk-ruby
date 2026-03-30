@@ -17,6 +17,23 @@
 module TencentCloud
   module Cls
     module V20201016
+      # DataSight访问控制规则
+      class AccessControlRule < TencentCloud::Common::AbstractModel
+        # @param AccessMode: 访问方式：public - 公网，internal - 内网
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccessMode: String
+
+        attr_accessor :AccessMode
+
+        def initialize(accessmode=nil)
+          @AccessMode = accessmode
+        end
+
+        def deserialize(params)
+          @AccessMode = params['AccessMode']
+        end
+      end
+
       # AddMachineGroupInfo请求参数结构体
       class AddMachineGroupInfoRequest < TencentCloud::Common::AbstractModel
         # @param GroupId: 机器组Id
@@ -863,6 +880,28 @@ module TencentCloud
         end
       end
 
+      # DataSight内网匿名登录账号信息
+      class AnonymousLoginInfo < TencentCloud::Common::AbstractModel
+        # @param SecretId: <p>匿名登录账号secretId</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SecretId: String
+        # @param SecretKey: <p>匿名登录账号secretKey</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SecretKey: String
+
+        attr_accessor :SecretId, :SecretKey
+
+        def initialize(secretid=nil, secretkey=nil)
+          @SecretId = secretid
+          @SecretKey = secretkey
+        end
+
+        def deserialize(params)
+          @SecretId = params['SecretId']
+          @SecretKey = params['SecretKey']
+        end
+      end
+
       # ApplyConfigToMachineGroup请求参数结构体
       class ApplyConfigToMachineGroupRequest < TencentCloud::Common::AbstractModel
         # @param ConfigId: 采集配置ID
@@ -927,6 +966,31 @@ module TencentCloud
         def deserialize(params)
           @Type = params['Type']
           @Keys = params['Keys']
+        end
+      end
+
+      # dataSight 第三方验证登录角色配置信息
+      class AuthRoleInfo < TencentCloud::Common::AbstractModel
+        # @param RoleName: <p>Auth角色名称</p>
+        # @type RoleName: String
+        # @param SecretId: <p>Auth角色对应权限SecretId</p>
+        # @type SecretId: String
+        # @param SecretKey: <p>Auth角色对应权限SecretKey</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SecretKey: String
+
+        attr_accessor :RoleName, :SecretId, :SecretKey
+
+        def initialize(rolename=nil, secretid=nil, secretkey=nil)
+          @RoleName = rolename
+          @SecretId = secretid
+          @SecretKey = secretkey
+        end
+
+        def deserialize(params)
+          @RoleName = params['RoleName']
+          @SecretId = params['SecretId']
+          @SecretKey = params['SecretKey']
         end
       end
 
@@ -1684,6 +1748,162 @@ module TencentCloud
           @UserDefineRule = params['UserDefineRule']
           @AdvancedConfig = params['AdvancedConfig']
           @InputType = params['InputType']
+        end
+      end
+
+      # DataSight控制台实例
+      class Console < TencentCloud::Common::AbstractModel
+        # @param ConsoleId: <p>DataSight控制台Id</p>
+        # @type ConsoleId: String
+        # @param AccessMode: <p>访问方式：public-公网，internal-内网</p>
+        # @type AccessMode: Array
+        # @param LoginMode: <p>登录方式：0-账号密码鉴权，1-匿名登录，2-第三方认证登录</p>
+        # @type LoginMode: Integer
+        # @param DomainPrefix: <p>自定义域名前缀</p>
+        # @type DomainPrefix: String
+        # @param Accounts: <p>用户账号信息</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Accounts: Array
+        # @param IntranetType: <p>内网类型，默认为0</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IntranetType: Integer
+        # @param IntranetRegion: <p>内网地域</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IntranetRegion: String
+        # @param VpcId: <p>内网私有网络VpcId</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcId: String
+        # @param SubnetId: <p>内网子网SubnetId</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubnetId: String
+        # @param AnonymousLogin: <p>匿名登录账号信息</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AnonymousLogin: :class:`Tencentcloud::Cls.v20201016.models.AnonymousLoginInfo`
+        # @param AuthRoles: <p>auth用户角色信息</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AuthRoles: Array
+        # @param Tags: <p>绑定的标签信息</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
+        # @param HideParams: <p>自定义隐藏参数</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HideParams: Array
+        # @param AccessControlRules: <p>访问控制规则</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccessControlRules: Array
+        # @param Remarks: <p>备注</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Remarks: String
+        # @param Menus: <p>自定义显示菜单</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Menus: Array
+
+        attr_accessor :ConsoleId, :AccessMode, :LoginMode, :DomainPrefix, :Accounts, :IntranetType, :IntranetRegion, :VpcId, :SubnetId, :AnonymousLogin, :AuthRoles, :Tags, :HideParams, :AccessControlRules, :Remarks, :Menus
+
+        def initialize(consoleid=nil, accessmode=nil, loginmode=nil, domainprefix=nil, accounts=nil, intranettype=nil, intranetregion=nil, vpcid=nil, subnetid=nil, anonymouslogin=nil, authroles=nil, tags=nil, hideparams=nil, accesscontrolrules=nil, remarks=nil, menus=nil)
+          @ConsoleId = consoleid
+          @AccessMode = accessmode
+          @LoginMode = loginmode
+          @DomainPrefix = domainprefix
+          @Accounts = accounts
+          @IntranetType = intranettype
+          @IntranetRegion = intranetregion
+          @VpcId = vpcid
+          @SubnetId = subnetid
+          @AnonymousLogin = anonymouslogin
+          @AuthRoles = authroles
+          @Tags = tags
+          @HideParams = hideparams
+          @AccessControlRules = accesscontrolrules
+          @Remarks = remarks
+          @Menus = menus
+        end
+
+        def deserialize(params)
+          @ConsoleId = params['ConsoleId']
+          @AccessMode = params['AccessMode']
+          @LoginMode = params['LoginMode']
+          @DomainPrefix = params['DomainPrefix']
+          unless params['Accounts'].nil?
+            @Accounts = []
+            params['Accounts'].each do |i|
+              consoleaccount_tmp = ConsoleAccount.new
+              consoleaccount_tmp.deserialize(i)
+              @Accounts << consoleaccount_tmp
+            end
+          end
+          @IntranetType = params['IntranetType']
+          @IntranetRegion = params['IntranetRegion']
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+          unless params['AnonymousLogin'].nil?
+            @AnonymousLogin = AnonymousLoginInfo.new
+            @AnonymousLogin.deserialize(params['AnonymousLogin'])
+          end
+          unless params['AuthRoles'].nil?
+            @AuthRoles = []
+            params['AuthRoles'].each do |i|
+              authroleinfo_tmp = AuthRoleInfo.new
+              authroleinfo_tmp.deserialize(i)
+              @AuthRoles << authroleinfo_tmp
+            end
+          end
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+          @HideParams = params['HideParams']
+          unless params['AccessControlRules'].nil?
+            @AccessControlRules = []
+            params['AccessControlRules'].each do |i|
+              accesscontrolrule_tmp = AccessControlRule.new
+              accesscontrolrule_tmp.deserialize(i)
+              @AccessControlRules << accesscontrolrule_tmp
+            end
+          end
+          @Remarks = params['Remarks']
+          @Menus = params['Menus']
+        end
+      end
+
+      # DataSight控制台用户账号信息
+      class ConsoleAccount < TencentCloud::Common::AbstractModel
+        # @param UserName: <p>用户名</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserName: String
+        # @param Password: <p>用户密码</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Password: String
+        # @param SecretId: <p>腾讯云账号SecretId</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SecretId: String
+        # @param SecretKey: <p>腾讯云账号SecretKey</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SecretKey: String
+        # @param Email: <p>电子邮箱，用于发送验证码</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Email: String
+
+        attr_accessor :UserName, :Password, :SecretId, :SecretKey, :Email
+
+        def initialize(username=nil, password=nil, secretid=nil, secretkey=nil, email=nil)
+          @UserName = username
+          @Password = password
+          @SecretId = secretid
+          @SecretKey = secretkey
+          @Email = email
+        end
+
+        def deserialize(params)
+          @UserName = params['UserName']
+          @Password = params['Password']
+          @SecretId = params['SecretId']
+          @SecretKey = params['SecretKey']
+          @Email = params['Email']
         end
       end
 
@@ -3006,6 +3226,129 @@ module TencentCloud
 
         def deserialize(params)
           @ConfigId = params['ConfigId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateConsole请求参数结构体
+      class CreateConsoleRequest < TencentCloud::Common::AbstractModel
+        # @param AccessMode: <p>访问方式：public - 公网，internal - 内网</p>
+        # @type AccessMode: Array
+        # @param LoginMode: <p>登录方式：0 - 账号密码鉴权，1 - 匿名登陆，2 - 第三方认证登录</p>
+        # @type LoginMode: Integer
+        # @param DomainPrefix: <p>自定义域名前缀</p>
+        # @type DomainPrefix: String
+        # @param Accounts: <p>用户账号信息</p><p>“账号密码鉴权“登录方式必传</p>
+        # @type Accounts: Array
+        # @param AnonymousLogin: <p>匿名登录账号信息</p><p>“匿名登录”登录方式必传</p>
+        # @type AnonymousLogin: :class:`Tencentcloud::Cls.v20201016.models.AnonymousLoginInfo`
+        # @param IntranetType: <p>内网类型，默认为0</p>
+        # @type IntranetType: Integer
+        # @param IntranetRegion: <p>内网地域</p>
+        # @type IntranetRegion: String
+        # @param VpcId: <p>内网私有网络VpcId</p>
+        # @type VpcId: String
+        # @param SubnetId: <p>内网子网SubnetId</p>
+        # @type SubnetId: String
+        # @param AuthRoles: <p>Auth角色信息</p><p>“第三方认证登录”登录方式必传</p>
+        # @type AuthRoles: Array
+        # @param Tags: <p>标签描述列表，通过指定该参数可以同时绑定标签到相应的日志主题。最大支持10个标签键值对，同一个资源只能绑定到同一个标签键下。</p>
+        # @type Tags: Array
+        # @param HideParams: <p>自定义隐藏参数</p>
+        # @type HideParams: Array
+        # @param AccessControlRules: <p>访问控制规则</p><p>“第三方认证登录”登录方式必传 AccessMode: internal &amp;&amp; Action: ACCEPT 规则</p>
+        # @type AccessControlRules: Array
+        # @param Remarks: <p>备注</p>
+        # @type Remarks: String
+        # @param Menus: <p>自定义显示菜单</p>
+        # @type Menus: Array
+
+        attr_accessor :AccessMode, :LoginMode, :DomainPrefix, :Accounts, :AnonymousLogin, :IntranetType, :IntranetRegion, :VpcId, :SubnetId, :AuthRoles, :Tags, :HideParams, :AccessControlRules, :Remarks, :Menus
+
+        def initialize(accessmode=nil, loginmode=nil, domainprefix=nil, accounts=nil, anonymouslogin=nil, intranettype=nil, intranetregion=nil, vpcid=nil, subnetid=nil, authroles=nil, tags=nil, hideparams=nil, accesscontrolrules=nil, remarks=nil, menus=nil)
+          @AccessMode = accessmode
+          @LoginMode = loginmode
+          @DomainPrefix = domainprefix
+          @Accounts = accounts
+          @AnonymousLogin = anonymouslogin
+          @IntranetType = intranettype
+          @IntranetRegion = intranetregion
+          @VpcId = vpcid
+          @SubnetId = subnetid
+          @AuthRoles = authroles
+          @Tags = tags
+          @HideParams = hideparams
+          @AccessControlRules = accesscontrolrules
+          @Remarks = remarks
+          @Menus = menus
+        end
+
+        def deserialize(params)
+          @AccessMode = params['AccessMode']
+          @LoginMode = params['LoginMode']
+          @DomainPrefix = params['DomainPrefix']
+          unless params['Accounts'].nil?
+            @Accounts = []
+            params['Accounts'].each do |i|
+              consoleaccount_tmp = ConsoleAccount.new
+              consoleaccount_tmp.deserialize(i)
+              @Accounts << consoleaccount_tmp
+            end
+          end
+          unless params['AnonymousLogin'].nil?
+            @AnonymousLogin = AnonymousLoginInfo.new
+            @AnonymousLogin.deserialize(params['AnonymousLogin'])
+          end
+          @IntranetType = params['IntranetType']
+          @IntranetRegion = params['IntranetRegion']
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+          unless params['AuthRoles'].nil?
+            @AuthRoles = []
+            params['AuthRoles'].each do |i|
+              authroleinfo_tmp = AuthRoleInfo.new
+              authroleinfo_tmp.deserialize(i)
+              @AuthRoles << authroleinfo_tmp
+            end
+          end
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+          @HideParams = params['HideParams']
+          unless params['AccessControlRules'].nil?
+            @AccessControlRules = []
+            params['AccessControlRules'].each do |i|
+              accesscontrolrule_tmp = AccessControlRule.new
+              accesscontrolrule_tmp.deserialize(i)
+              @AccessControlRules << accesscontrolrule_tmp
+            end
+          end
+          @Remarks = params['Remarks']
+          @Menus = params['Menus']
+        end
+      end
+
+      # CreateConsole返回参数结构体
+      class CreateConsoleResponse < TencentCloud::Common::AbstractModel
+        # @param ConsoleId: <p>DataSight控制台Id</p>
+        # @type ConsoleId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ConsoleId, :RequestId
+
+        def initialize(consoleid=nil, requestid=nil)
+          @ConsoleId = consoleid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ConsoleId = params['ConsoleId']
           @RequestId = params['RequestId']
         end
       end
@@ -5854,6 +6197,38 @@ module TencentCloud
         end
       end
 
+      # DeleteConsole请求参数结构体
+      class DeleteConsoleRequest < TencentCloud::Common::AbstractModel
+        # @param ConsoleId: <p>DataSight控制台Id</p>
+        # @type ConsoleId: String
+
+        attr_accessor :ConsoleId
+
+        def initialize(consoleid=nil)
+          @ConsoleId = consoleid
+        end
+
+        def deserialize(params)
+          @ConsoleId = params['ConsoleId']
+        end
+      end
+
+      # DeleteConsole返回参数结构体
+      class DeleteConsoleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteConsoleSharing请求参数结构体
       class DeleteConsoleSharingRequest < TencentCloud::Common::AbstractModel
         # @param SharingId: 免密分享Id。
@@ -7533,6 +7908,68 @@ module TencentCloud
               @ConsoleSharingInfos << consolesharinginfo_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeConsoles请求参数结构体
+      class DescribeConsolesRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: <p>分页的偏移量，默认值为0。</p>
+        # @type Offset: Integer
+        # @param Limit: <p>分页单页限制数目，默认值为100，最大值100。</p>
+        # @type Limit: Integer
+        # @param Filters: <li> DomainPrefix按照【域名前缀】进行过滤。类型：String必选：否</li><li> ConsoleId按照【DataSight实例ID】进行过滤。类型：String必选：否</li><li> tagKey按照【标签键】进行过滤。类型：String必选：否</li><li> tag:tagKey按照【标签键值对】进行过滤。tagKey使用具体的标签键进行替换，例如tag:exampleKey。类型：String必选：否</li>
+        # @type Filters: Array
+
+        attr_accessor :Offset, :Limit, :Filters
+
+        def initialize(offset=nil, limit=nil, filters=nil)
+          @Offset = offset
+          @Limit = limit
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeConsoles返回参数结构体
+      class DescribeConsolesResponse < TencentCloud::Common::AbstractModel
+        # @param Consoles: <p>DataSight控制台实例列表</p>
+        # @type Consoles: Array
+        # @param TotalCount: <p>实例总数</p>
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Consoles, :TotalCount, :RequestId
+
+        def initialize(consoles=nil, totalcount=nil, requestid=nil)
+          @Consoles = consoles
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Consoles'].nil?
+            @Consoles = []
+            params['Consoles'].each do |i|
+              console_tmp = Console.new
+              console_tmp.deserialize(i)
+              @Consoles << console_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -13941,6 +14378,122 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyConsole请求参数结构体
+      class ModifyConsoleRequest < TencentCloud::Common::AbstractModel
+        # @param ConsoleId: <p>DataSight控制台ConsoleId</p>
+        # @type ConsoleId: String
+        # @param AccessMode: <p>访问方式：public - 公网，internal - 内网</p>
+        # @type AccessMode: Array
+        # @param LoginMode: <p>登录方式：0 - 账号密码鉴权，1 - 匿名登陆，2 - 第三方认证登录</p>
+        # @type LoginMode: Integer
+        # @param DomainPrefix: <p>自定义域名前缀</p>
+        # @type DomainPrefix: String
+        # @param Accounts: <p>用户账号信息</p><p>“账号密码鉴权“登录方式必传</p>
+        # @type Accounts: Array
+        # @param AnonymousLogin: <p>匿名登录账号信息</p><p>“匿名登录”登录方式必传</p>
+        # @type AnonymousLogin: :class:`Tencentcloud::Cls.v20201016.models.AnonymousLoginInfo`
+        # @param IntranetType: <p>内网类型，默认为0</p>
+        # @type IntranetType: Integer
+        # @param IntranetRegion: <p>内网地域</p>
+        # @type IntranetRegion: String
+        # @param VpcId: <p>内网私有网络VpcId</p>
+        # @type VpcId: String
+        # @param SubnetId: <p>内网子网SubnetId</p>
+        # @type SubnetId: String
+        # @param AuthRoles: <p>Auth用户角色信息</p><p>“第三方认证登录”登录方式必传</p>
+        # @type AuthRoles: Array
+        # @param HideParams: <p>自定义隐藏参数</p>
+        # @type HideParams: Array
+        # @param AccessControlRules: <p>访问控制规则</p><p>“第三方认证登录”登录方式必传 AccessMode: internal &amp;&amp; Action: ACCEPT 规则</p>
+        # @type AccessControlRules: Array
+        # @param Remarks: <p>备注</p>
+        # @type Remarks: String
+        # @param Menus: <p>自定义显示菜单</p>
+        # @type Menus: Array
+
+        attr_accessor :ConsoleId, :AccessMode, :LoginMode, :DomainPrefix, :Accounts, :AnonymousLogin, :IntranetType, :IntranetRegion, :VpcId, :SubnetId, :AuthRoles, :HideParams, :AccessControlRules, :Remarks, :Menus
+
+        def initialize(consoleid=nil, accessmode=nil, loginmode=nil, domainprefix=nil, accounts=nil, anonymouslogin=nil, intranettype=nil, intranetregion=nil, vpcid=nil, subnetid=nil, authroles=nil, hideparams=nil, accesscontrolrules=nil, remarks=nil, menus=nil)
+          @ConsoleId = consoleid
+          @AccessMode = accessmode
+          @LoginMode = loginmode
+          @DomainPrefix = domainprefix
+          @Accounts = accounts
+          @AnonymousLogin = anonymouslogin
+          @IntranetType = intranettype
+          @IntranetRegion = intranetregion
+          @VpcId = vpcid
+          @SubnetId = subnetid
+          @AuthRoles = authroles
+          @HideParams = hideparams
+          @AccessControlRules = accesscontrolrules
+          @Remarks = remarks
+          @Menus = menus
+        end
+
+        def deserialize(params)
+          @ConsoleId = params['ConsoleId']
+          @AccessMode = params['AccessMode']
+          @LoginMode = params['LoginMode']
+          @DomainPrefix = params['DomainPrefix']
+          unless params['Accounts'].nil?
+            @Accounts = []
+            params['Accounts'].each do |i|
+              consoleaccount_tmp = ConsoleAccount.new
+              consoleaccount_tmp.deserialize(i)
+              @Accounts << consoleaccount_tmp
+            end
+          end
+          unless params['AnonymousLogin'].nil?
+            @AnonymousLogin = AnonymousLoginInfo.new
+            @AnonymousLogin.deserialize(params['AnonymousLogin'])
+          end
+          @IntranetType = params['IntranetType']
+          @IntranetRegion = params['IntranetRegion']
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+          unless params['AuthRoles'].nil?
+            @AuthRoles = []
+            params['AuthRoles'].each do |i|
+              authroleinfo_tmp = AuthRoleInfo.new
+              authroleinfo_tmp.deserialize(i)
+              @AuthRoles << authroleinfo_tmp
+            end
+          end
+          @HideParams = params['HideParams']
+          unless params['AccessControlRules'].nil?
+            @AccessControlRules = []
+            params['AccessControlRules'].each do |i|
+              accesscontrolrule_tmp = AccessControlRule.new
+              accesscontrolrule_tmp.deserialize(i)
+              @AccessControlRules << accesscontrolrule_tmp
+            end
+          end
+          @Remarks = params['Remarks']
+          @Menus = params['Menus']
+        end
+      end
+
+      # ModifyConsole返回参数结构体
+      class ModifyConsoleResponse < TencentCloud::Common::AbstractModel
+        # @param ConsoleId: <p>DataSight控制台Id</p>
+        # @type ConsoleId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ConsoleId, :RequestId
+
+        def initialize(consoleid=nil, requestid=nil)
+          @ConsoleId = consoleid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ConsoleId = params['ConsoleId']
           @RequestId = params['RequestId']
         end
       end

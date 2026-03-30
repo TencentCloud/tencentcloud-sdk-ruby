@@ -471,34 +471,33 @@ module TencentCloud
 
       # 自适应转码流参数模板
       class AdaptiveStreamTemplate < TencentCloud::Common::AbstractModel
-        # @param Video: 视频参数信息。
+        # @param Video: <p>视频参数信息。</p>
         # @type Video: :class:`Tencentcloud::Vod.v20180717.models.VideoTemplateInfo`
-        # @param Audio: 音频参数信息。
+        # @param Audio: <p>音频参数信息。</p>
         # @type Audio: :class:`Tencentcloud::Vod.v20180717.models.AudioTemplateInfo`
-        # @param RemoveAudio: 是否移除音频流，取值范围：
-        # <li>0：否，</li>
-        # <li>1：是。</li>
+        # @param RemoveAudio: <p>是否移除音频流，取值范围：</p><li>0：否，</li><li>1：是。</li>
         # @type RemoveAudio: Integer
-        # @param RemoveVideo: 是否移除视频流，取值范围：
-        # <li>0：否，</li>
-        # <li>1：是。</li>
+        # @param RemoveVideo: <p>是否移除视频流，取值范围：</p><li>0：否，</li><li>1：是。</li>
         # @type RemoveVideo: Integer
-        # @param TEHDConfig: 极速高清转码参数。
+        # @param TEHDConfig: <p>极速高清转码参数。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TEHDConfig: :class:`Tencentcloud::Vod.v20180717.models.TEHDConfig`
-        # @param EnhanceConfig: 音视频增强配置。
+        # @param EnhanceConfig: <p>音视频增强配置。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnhanceConfig: :class:`Tencentcloud::Vod.v20180717.models.EnhanceConfig`
+        # @param StdExtInfo: <p>扩展参数。</p>
+        # @type StdExtInfo: String
 
-        attr_accessor :Video, :Audio, :RemoveAudio, :RemoveVideo, :TEHDConfig, :EnhanceConfig
+        attr_accessor :Video, :Audio, :RemoveAudio, :RemoveVideo, :TEHDConfig, :EnhanceConfig, :StdExtInfo
 
-        def initialize(video=nil, audio=nil, removeaudio=nil, removevideo=nil, tehdconfig=nil, enhanceconfig=nil)
+        def initialize(video=nil, audio=nil, removeaudio=nil, removevideo=nil, tehdconfig=nil, enhanceconfig=nil, stdextinfo=nil)
           @Video = video
           @Audio = audio
           @RemoveAudio = removeaudio
           @RemoveVideo = removevideo
           @TEHDConfig = tehdconfig
           @EnhanceConfig = enhanceconfig
+          @StdExtInfo = stdextinfo
         end
 
         def deserialize(params)
@@ -520,6 +519,7 @@ module TencentCloud
             @EnhanceConfig = EnhanceConfig.new
             @EnhanceConfig.deserialize(params['EnhanceConfig'])
           end
+          @StdExtInfo = params['StdExtInfo']
         end
       end
 
@@ -4170,7 +4170,7 @@ module TencentCloud
 
       # AIGC 生图任务的输出媒体文件配置。
       class AigcImageOutputConfig < TencentCloud::Common::AbstractModel
-        # @param StorageMode: <p>存储模式。取值有： <li>Permanent：永久存储，生成的图片文件将存储到云点播，可在事件通知中获取到 FileId；</li> <li>Temporary：临时存储，生成的图片文件不会存储到云点播，可在事件通知中获取到临时访问的 URL；</li><br>默认值：Temporary</p>
+        # @param StorageMode: <p>存储模式</p><p>枚举值：</p><ul><li>Temporary： 临时存储，生成的视频文件不会存储到云点播，可在事件通知中获取到临时访问的 URL，有效期 7 天</li><li>Permanent： 永久存储，生成的视频文件将存储到云点播，可在事件通知中获取到 FileId</li></ul><p>默认值：Temporary</p>
         # @type StorageMode: String
         # @param MediaName: <p>输出文件名，最长 64 个字符。缺省由系统指定生成文件名。</p>
         # @type MediaName: String
@@ -4494,7 +4494,7 @@ module TencentCloud
 
       # AIGC 生视频任务的输出媒体文件配置。
       class AigcVideoOutputConfig < TencentCloud::Common::AbstractModel
-        # @param StorageMode: <p>存储模式。取值有： <li>Permanent：永久存储，生成的视频文件将存储到云点播，可在事件通知中获取到 FileId；</li> <li>Temporary：临时存储，生成的视频文件不会存储到云点播，可在事件通知中获取到临时访问的 URL；</li><br>默认值：Temporary</p>
+        # @param StorageMode: <p>存储模式</p><p>枚举值：</p><ul><li>Temporary： 临时存储，生成的视频文件不会存储到云点播，可在事件通知中获取到临时访问的 URL，有效期 7 天</li><li>Permanent： 永久存储，生成的视频文件将存储到云点播，可在事件通知中获取到 FileId</li></ul><p>默认值：Temporary</p>
         # @type StorageMode: String
         # @param MediaName: <p>输出媒体文件名，最长 64 个字符。缺省由系统指定生成文件名。</p>
         # @type MediaName: String
@@ -10533,41 +10533,34 @@ module TencentCloud
 
       # CreateTranscodeTemplate请求参数结构体
       class CreateTranscodeTemplateRequest < TencentCloud::Common::AbstractModel
-        # @param Container: 封装格式，可选值：mp4、flv、hls、mp3、flac、ogg、m4a、wav。其中，mp3、flac、ogg、m4a、wav 为纯音频文件。
+        # @param Container: <p>封装格式，可选值：mp4、flv、hls、mp3、flac、ogg、m4a、wav。其中，mp3、flac、ogg、m4a、wav 为纯音频文件。</p>
         # @type Container: String
-        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
+        # @param SubAppId: <p><b>点播<a href="/document/product/266/14574">应用</a> ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b></p>
         # @type SubAppId: Integer
-        # @param Name: 转码模板名称，长度限制：64 个字符。
+        # @param Name: <p>转码模板名称，长度限制：64 个字符。</p>
         # @type Name: String
-        # @param Comment: 模板描述信息，长度限制：256 个字符。
+        # @param Comment: <p>模板描述信息，长度限制：256 个字符。</p>
         # @type Comment: String
-        # @param RemoveVideo: 是否去除视频数据，可选值：
-        # <li>0：保留</li>
-        # <li>1：去除</li>
-        # 默认值：0。
+        # @param RemoveVideo: <p>是否去除视频数据，可选值：</p><li>0：保留</li><li>1：去除</li>默认值：0。
         # @type RemoveVideo: Integer
-        # @param RemoveAudio: 是否去除音频数据，可选值：
-        # <li>0：保留</li>
-        # <li>1：去除</li>
-        # 默认值：0。
+        # @param RemoveAudio: <p>是否去除音频数据，可选值：</p><li>0：保留</li><li>1：去除</li>默认值：0。
         # @type RemoveAudio: Integer
-        # @param VideoTemplate: 视频流配置参数，当 RemoveVideo 为 0，该字段必填。
+        # @param VideoTemplate: <p>视频流配置参数，当 RemoveVideo 为 0，该字段必填。</p>
         # @type VideoTemplate: :class:`Tencentcloud::Vod.v20180717.models.VideoTemplateInfo`
-        # @param AudioTemplate: 音频流配置参数，当 RemoveAudio 为 0，该字段必填。
+        # @param AudioTemplate: <p>音频流配置参数，当 RemoveAudio 为 0，该字段必填。</p>
         # @type AudioTemplate: :class:`Tencentcloud::Vod.v20180717.models.AudioTemplateInfo`
-        # @param TEHDConfig: 极速高清转码参数。
+        # @param TEHDConfig: <p>极速高清转码参数。</p>
         # @type TEHDConfig: :class:`Tencentcloud::Vod.v20180717.models.TEHDConfig`
-        # @param EnhanceConfig: 音视频增强配置。
+        # @param EnhanceConfig: <p>音视频增强配置。</p>
         # @type EnhanceConfig: :class:`Tencentcloud::Vod.v20180717.models.EnhanceConfig`
-        # @param SegmentType: 切片类型，当 Container 为 hls 时有效，可选值：
-        # <li>ts：ts 切片；</li>
-        # <li>fmp4：fmp4 切片。</li>
-        # 默认值：ts。
+        # @param SegmentType: <p>切片类型，当 Container 为 hls 时有效，可选值：</p><li>ts：ts 切片；</li><li>fmp4：fmp4 切片。</li>默认值：ts。
         # @type SegmentType: String
+        # @param StdExtInfo: <p>扩展参数。</p>
+        # @type StdExtInfo: String
 
-        attr_accessor :Container, :SubAppId, :Name, :Comment, :RemoveVideo, :RemoveAudio, :VideoTemplate, :AudioTemplate, :TEHDConfig, :EnhanceConfig, :SegmentType
+        attr_accessor :Container, :SubAppId, :Name, :Comment, :RemoveVideo, :RemoveAudio, :VideoTemplate, :AudioTemplate, :TEHDConfig, :EnhanceConfig, :SegmentType, :StdExtInfo
 
-        def initialize(container=nil, subappid=nil, name=nil, comment=nil, removevideo=nil, removeaudio=nil, videotemplate=nil, audiotemplate=nil, tehdconfig=nil, enhanceconfig=nil, segmenttype=nil)
+        def initialize(container=nil, subappid=nil, name=nil, comment=nil, removevideo=nil, removeaudio=nil, videotemplate=nil, audiotemplate=nil, tehdconfig=nil, enhanceconfig=nil, segmenttype=nil, stdextinfo=nil)
           @Container = container
           @SubAppId = subappid
           @Name = name
@@ -10579,6 +10572,7 @@ module TencentCloud
           @TEHDConfig = tehdconfig
           @EnhanceConfig = enhanceconfig
           @SegmentType = segmenttype
+          @StdExtInfo = stdextinfo
         end
 
         def deserialize(params)
@@ -10605,12 +10599,13 @@ module TencentCloud
             @EnhanceConfig.deserialize(params['EnhanceConfig'])
           end
           @SegmentType = params['SegmentType']
+          @StdExtInfo = params['StdExtInfo']
         end
       end
 
       # CreateTranscodeTemplate返回参数结构体
       class CreateTranscodeTemplateResponse < TencentCloud::Common::AbstractModel
-        # @param Definition: 转码模板唯一标识。
+        # @param Definition: <p>转码模板唯一标识。</p>
         # @type Definition: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -24879,40 +24874,36 @@ module TencentCloud
 
       # ModifyTranscodeTemplate请求参数结构体
       class ModifyTranscodeTemplateRequest < TencentCloud::Common::AbstractModel
-        # @param Definition: 转码模板唯一标识。
+        # @param Definition: <p>转码模板唯一标识。</p>
         # @type Definition: Integer
-        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
+        # @param SubAppId: <p><b>点播<a href="/document/product/266/14574">应用</a> ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b></p>
         # @type SubAppId: Integer
-        # @param Container: 封装格式，可选值：mp4、flv、hls、mp3、flac、ogg、m4a、wav。其中，mp3、flac、ogg、m4a、wav 为纯音频文件。
+        # @param Container: <p>封装格式，可选值：mp4、flv、hls、mp3、flac、ogg、m4a、wav。其中，mp3、flac、ogg、m4a、wav 为纯音频文件。</p>
         # @type Container: String
-        # @param Name: 转码模板名称，长度限制：64 个字符。
+        # @param Name: <p>转码模板名称，长度限制：64 个字符。</p>
         # @type Name: String
-        # @param Comment: 模板描述信息，长度限制：256 个字符。
+        # @param Comment: <p>模板描述信息，长度限制：256 个字符。</p>
         # @type Comment: String
-        # @param RemoveVideo: 是否去除视频数据，可选值：
-        # <li>0：保留</li>
-        # <li>1：去除</li>
+        # @param RemoveVideo: <p>是否去除视频数据，可选值：</p><li>0：保留</li><li>1：去除</li>
         # @type RemoveVideo: Integer
-        # @param RemoveAudio: 是否去除音频数据，可选值：
-        # <li>0：保留</li>
-        # <li>1：去除</li>
+        # @param RemoveAudio: <p>是否去除音频数据，可选值：</p><li>0：保留</li><li>1：去除</li>
         # @type RemoveAudio: Integer
-        # @param VideoTemplate: 视频流配置参数。
+        # @param VideoTemplate: <p>视频流配置参数。</p>
         # @type VideoTemplate: :class:`Tencentcloud::Vod.v20180717.models.VideoTemplateInfoForUpdate`
-        # @param AudioTemplate: 音频流配置参数。
+        # @param AudioTemplate: <p>音频流配置参数。</p>
         # @type AudioTemplate: :class:`Tencentcloud::Vod.v20180717.models.AudioTemplateInfoForUpdate`
-        # @param TEHDConfig: 极速高清转码参数。
+        # @param TEHDConfig: <p>极速高清转码参数。</p>
         # @type TEHDConfig: :class:`Tencentcloud::Vod.v20180717.models.TEHDConfigForUpdate`
-        # @param EnhanceConfig: 音视频增强配置。
+        # @param EnhanceConfig: <p>音视频增强配置。</p>
         # @type EnhanceConfig: :class:`Tencentcloud::Vod.v20180717.models.EnhanceConfigForUpdate`
-        # @param SegmentType: 切片类型，当 Container 为 hls 时有效，可选值：
-        # <li>ts：ts 切片；</li>
-        # <li>fmp4：fmp4 切片。</li>
+        # @param SegmentType: <p>切片类型，当 Container 为 hls 时有效，可选值：</p><li>ts：ts 切片；</li><li>fmp4：fmp4 切片。</li>
         # @type SegmentType: String
+        # @param StdExtInfo: <p>扩展参数。</p>
+        # @type StdExtInfo: String
 
-        attr_accessor :Definition, :SubAppId, :Container, :Name, :Comment, :RemoveVideo, :RemoveAudio, :VideoTemplate, :AudioTemplate, :TEHDConfig, :EnhanceConfig, :SegmentType
+        attr_accessor :Definition, :SubAppId, :Container, :Name, :Comment, :RemoveVideo, :RemoveAudio, :VideoTemplate, :AudioTemplate, :TEHDConfig, :EnhanceConfig, :SegmentType, :StdExtInfo
 
-        def initialize(definition=nil, subappid=nil, container=nil, name=nil, comment=nil, removevideo=nil, removeaudio=nil, videotemplate=nil, audiotemplate=nil, tehdconfig=nil, enhanceconfig=nil, segmenttype=nil)
+        def initialize(definition=nil, subappid=nil, container=nil, name=nil, comment=nil, removevideo=nil, removeaudio=nil, videotemplate=nil, audiotemplate=nil, tehdconfig=nil, enhanceconfig=nil, segmenttype=nil, stdextinfo=nil)
           @Definition = definition
           @SubAppId = subappid
           @Container = container
@@ -24925,6 +24916,7 @@ module TencentCloud
           @TEHDConfig = tehdconfig
           @EnhanceConfig = enhanceconfig
           @SegmentType = segmenttype
+          @StdExtInfo = stdextinfo
         end
 
         def deserialize(params)
@@ -24952,6 +24944,7 @@ module TencentCloud
             @EnhanceConfig.deserialize(params['EnhanceConfig'])
           end
           @SegmentType = params['SegmentType']
+          @StdExtInfo = params['StdExtInfo']
         end
       end
 
@@ -30890,7 +30883,7 @@ module TencentCloud
 
       # AIGC 场景化生图任务的输出媒体文件配置。
       class SceneAigcImageOutputConfig < TencentCloud::Common::AbstractModel
-        # @param StorageMode: <p>存储模式。取值有： <li>Permanent：永久存储，生成的图片文件将存储到云点播，可在事件通知中获取到 FileId；</li> <li>Temporary：临时存储，生成的图片文件不会存储到云点播，可在事件通知中获取到临时访问的 URL；</li><br>默认值：Temporary</p>
+        # @param StorageMode: <p>存储模式</p><p>枚举值：</p><ul><li>Temporary： 临时存储，生成的视频文件不会存储到云点播，可在事件通知中获取到临时访问的 URL，有效期 7 天</li><li>Permanent： 永久存储，生成的视频文件将存储到云点播，可在事件通知中获取到 FileId</li></ul><p>默认值：Temporary</p>
         # @type StorageMode: String
         # @param MediaName: <p>输出文件名，最长 64 个字符。缺省由系统指定生成文件名。</p>
         # @type MediaName: String
@@ -33628,50 +33621,44 @@ module TencentCloud
 
       # 转码模板详情
       class TranscodeTemplate < TencentCloud::Common::AbstractModel
-        # @param Definition: 转码模板唯一标识。
+        # @param Definition: <p>转码模板唯一标识。</p>
         # @type Definition: String
-        # @param Container: 封装格式，取值：mp4、flv、hls、mp3、flac、ogg。
+        # @param Container: <p>封装格式，取值：mp4、flv、hls、mp3、flac、ogg。</p>
         # @type Container: String
-        # @param Name: 转码模板名称。
+        # @param Name: <p>转码模板名称。</p>
         # @type Name: String
-        # @param Comment: 模板描述信息。
+        # @param Comment: <p>模板描述信息。</p>
         # @type Comment: String
-        # @param Type: 模板类型，取值：
-        # <li>Preset：系统预置模板；</li>
-        # <li>Custom：用户自定义模板。</li>
+        # @param Type: <p>模板类型，取值：</p><li>Preset：系统预置模板；</li><li>Custom：用户自定义模板。</li>
         # @type Type: String
-        # @param RemoveVideo: 是否去除视频数据，取值：
-        # <li>0：保留；</li>
-        # <li>1：去除。</li>
+        # @param RemoveVideo: <p>是否去除视频数据，取值：</p><li>0：保留；</li><li>1：去除。</li>
         # @type RemoveVideo: Integer
-        # @param RemoveAudio: 是否去除音频数据，取值：
-        # <li>0：保留；</li>
-        # <li>1：去除。</li>
+        # @param RemoveAudio: <p>是否去除音频数据，取值：</p><li>0：保留；</li><li>1：去除。</li>
         # @type RemoveAudio: Integer
-        # @param VideoTemplate: 视频流配置参数，仅当 RemoveVideo 为 0，该字段有效。
+        # @param VideoTemplate: <p>视频流配置参数，仅当 RemoveVideo 为 0，该字段有效。</p>
         # @type VideoTemplate: :class:`Tencentcloud::Vod.v20180717.models.VideoTemplateInfo`
-        # @param AudioTemplate: 音频流配置参数，仅当 RemoveAudio 为 0，该字段有效 。
+        # @param AudioTemplate: <p>音频流配置参数，仅当 RemoveAudio 为 0，该字段有效 。</p>
         # @type AudioTemplate: :class:`Tencentcloud::Vod.v20180717.models.AudioTemplateInfo`
-        # @param TEHDConfig: 极速高清转码参数。
+        # @param TEHDConfig: <p>极速高清转码参数。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TEHDConfig: :class:`Tencentcloud::Vod.v20180717.models.TEHDConfig`
-        # @param EnhanceConfig: 音视频增强配置。
+        # @param EnhanceConfig: <p>音视频增强配置。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnhanceConfig: :class:`Tencentcloud::Vod.v20180717.models.EnhanceConfig`
-        # @param ContainerType: 封装格式过滤条件，可选值：
-        # <li>Video：视频格式，可以同时包含视频流和音频流的封装格式；</li>
-        # <li>PureAudio：纯音频格式，只能包含音频流的封装格式板。</li>
+        # @param ContainerType: <p>封装格式过滤条件，可选值：</p><li>Video：视频格式，可以同时包含视频流和音频流的封装格式；</li><li>PureAudio：纯音频格式，只能包含音频流的封装格式板。</li>
         # @type ContainerType: String
-        # @param CreateTime: 模板创建时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @param CreateTime: <p>模板创建时间，使用 <a href="https://cloud.tencent.com/document/product/266/11732#I">ISO 日期格式</a>。</p>
         # @type CreateTime: String
-        # @param UpdateTime: 模板最后修改时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @param UpdateTime: <p>模板最后修改时间，使用 <a href="https://cloud.tencent.com/document/product/266/11732#I">ISO 日期格式</a>。</p>
         # @type UpdateTime: String
-        # @param SegmentType: 切片类型，仅当 Container 为 hls 时有效。
+        # @param SegmentType: <p>切片类型，仅当 Container 为 hls 时有效。</p>
         # @type SegmentType: String
+        # @param StdExtInfo: <p>扩展参数。</p>
+        # @type StdExtInfo: String
 
-        attr_accessor :Definition, :Container, :Name, :Comment, :Type, :RemoveVideo, :RemoveAudio, :VideoTemplate, :AudioTemplate, :TEHDConfig, :EnhanceConfig, :ContainerType, :CreateTime, :UpdateTime, :SegmentType
+        attr_accessor :Definition, :Container, :Name, :Comment, :Type, :RemoveVideo, :RemoveAudio, :VideoTemplate, :AudioTemplate, :TEHDConfig, :EnhanceConfig, :ContainerType, :CreateTime, :UpdateTime, :SegmentType, :StdExtInfo
 
-        def initialize(definition=nil, container=nil, name=nil, comment=nil, type=nil, removevideo=nil, removeaudio=nil, videotemplate=nil, audiotemplate=nil, tehdconfig=nil, enhanceconfig=nil, containertype=nil, createtime=nil, updatetime=nil, segmenttype=nil)
+        def initialize(definition=nil, container=nil, name=nil, comment=nil, type=nil, removevideo=nil, removeaudio=nil, videotemplate=nil, audiotemplate=nil, tehdconfig=nil, enhanceconfig=nil, containertype=nil, createtime=nil, updatetime=nil, segmenttype=nil, stdextinfo=nil)
           @Definition = definition
           @Container = container
           @Name = name
@@ -33687,6 +33674,7 @@ module TencentCloud
           @CreateTime = createtime
           @UpdateTime = updatetime
           @SegmentType = segmenttype
+          @StdExtInfo = stdextinfo
         end
 
         def deserialize(params)
@@ -33717,6 +33705,7 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
           @SegmentType = params['SegmentType']
+          @StdExtInfo = params['StdExtInfo']
         end
       end
 
@@ -34439,71 +34428,40 @@ module TencentCloud
 
       # 视频流配置参数
       class VideoTemplateInfo < TencentCloud::Common::AbstractModel
-        # @param Codec: 视频流的编码格式，可选值：
-        # <li>libx264：H.264 编码；</li>
-        # <li>libx265：H.265 编码；</li>
-        # <li>av1：AOMedia Video 1 编码；</li>
-        # <li>H.266：H.266 编码。</li>
-        # <font color=red>注意：</font>
-        # <li> av1，H.266 编码容器目前只支持 mp4 ；</li>
-        # <li> H.266 目前只支持恒定 CRF 码率控制方式。 </li>
+        # @param Codec: <p>视频流的编码格式，可选值：</p><li>libx264：H.264 编码；</li><li>libx265：H.265 编码；</li><li>av1：AOMedia Video 1 编码；</li><li>H.266：H.266 编码。</li><font color="red">注意：</font><li> av1，H.266 编码容器目前只支持 mp4 ；</li><li> H.266 目前只支持恒定 CRF 码率控制方式。 </li>
         # @type Codec: String
-        # @param Fps: 视频帧率，取值范围：[0, 100]，单位：Hz。
-        # 当取值为 0，表示帧率和原始视频保持一致。
+        # @param Fps: <p>视频帧率，取值范围：[0, 100]，单位：Hz。<br>当取值为 0，表示帧率和原始视频保持一致。</p>
         # @type Fps: Integer
-        # @param Bitrate: 视频流的码率，取值范围：0 和 [128, 100000]，单位：kbps。
-        # 当取值为 0，表示由云点播自动设置码率。
+        # @param Bitrate: <p>视频流的码率，取值范围：0 和 [128, 100000]，单位：kbps。<br>当取值为 0，表示由云点播自动设置码率。</p>
         # @type Bitrate: Integer
-        # @param ResolutionAdaptive: 分辨率自适应，可选值：
-        # <li>open：开启，此时，Width 代表视频的长边，Height 表示视频的短边；</li>
-        # <li>close：关闭，此时，Width 代表视频的宽度，Height 表示视频的高度。</li>
-        # 默认值：open。
+        # @param ResolutionAdaptive: <p>分辨率自适应，可选值：</p><li>open：开启，此时，Width 代表视频的长边，Height 表示视频的短边；</li><li>close：关闭，此时，Width 代表视频的宽度，Height 表示视频的高度。</li>默认值：open。
         # @type ResolutionAdaptive: String
-        # @param Width: 视频流宽度（或长边）的最大值，取值范围：0 和 [128, 8192]，单位：px。
-        # <li>当 Width、Height 均为 0，则分辨率同源；</li>
-        # <li>当 Width 为 0，Height 非 0，则 Width 按比例缩放；</li>
-        # <li>当 Width 非 0，Height 为 0，则 Height 按比例缩放；</li>
-        # <li>当 Width、Height 均非 0，则分辨率按用户指定。</li>
-        # 默认值：0。
+        # @param Width: <p>视频流宽度（或长边）的最大值，取值范围：0 和 [128, 8192]，单位：px。</p><li>当 Width、Height 均为 0，则分辨率同源；</li><li>当 Width 为 0，Height 非 0，则 Width 按比例缩放；</li><li>当 Width 非 0，Height 为 0，则 Height 按比例缩放；</li><li>当 Width、Height 均非 0，则分辨率按用户指定。</li>默认值：0。
         # @type Width: Integer
-        # @param Height: 视频流高度（或短边）的最大值，取值范围：0 和 [128, 8192]，单位：px。
-        # <li>当 Width、Height 均为 0，则分辨率同源；</li>
-        # <li>当 Width 为 0，Height 非 0，则 Width 按比例缩放；</li>
-        # <li>当 Width 非 0，Height 为 0，则 Height 按比例缩放；</li>
-        # <li>当 Width、Height 均非 0，则分辨率按用户指定。</li>
-        # 默认值：0。
+        # @param Height: <p>视频流高度（或短边）的最大值，取值范围：0 和 [128, 8192]，单位：px。</p><li>当 Width、Height 均为 0，则分辨率同源；</li><li>当 Width 为 0，Height 非 0，则 Width 按比例缩放；</li><li>当 Width 非 0，Height 为 0，则 Height 按比例缩放；</li><li>当 Width、Height 均非 0，则分辨率按用户指定。</li>默认值：0。
         # @type Height: Integer
-        # @param FillType: 填充方式，当视频流配置宽高参数与原始视频的宽高比不一致时，对转码的处理方式，即为“填充”。可选填充方式：
-        # <li> stretch：拉伸，对每一帧进行拉伸，填满整个画面，可能导致转码后的视频被“压扁“或者“拉长“；</li>
-        # <li>black：留黑，保持视频宽高比不变，边缘剩余部分使用黑色填充。</li>
-        # <li>white：留白，保持视频宽高比不变，边缘剩余部分使用白色填充。</li>
-        # <li>gauss：高斯模糊，保持视频宽高比不变，边缘剩余部分使用高斯模糊填充。</li>
-        # 默认值：black 。
+        # @param FillType: <p>填充方式，当视频流配置宽高参数与原始视频的宽高比不一致时，对转码的处理方式，即为“填充”。可选填充方式：</p><li> stretch：拉伸，对每一帧进行拉伸，填满整个画面，可能导致转码后的视频被“压扁“或者“拉长“；</li><li>black：留黑，保持视频宽高比不变，边缘剩余部分使用黑色填充。</li><li>white：留白，保持视频宽高比不变，边缘剩余部分使用白色填充。</li><li>gauss：高斯模糊，保持视频宽高比不变，边缘剩余部分使用高斯模糊填充。</li>默认值：black 。
         # @type FillType: String
-        # @param Vcrf: 视频恒定码率控制因子，取值范围为[1, 51]。
-
-        # <font color=red>注意：</font>
-        # <li>如果指定该参数，将使用 CRF 的码率控制方式做转码（视频码率将不再生效）；</li>
-        # <li>当指定视频流编码格式为 H.266 时，该字段必填，推荐值为 28；</li>
-        # <li>如果没有特殊需求，不建议指定该参数。</li>
+        # @param Vcrf: <p>视频恒定码率控制因子，取值范围为[1, 51]。</p><p><font color="red">注意：</font></p><li>如果指定该参数，将使用 CRF 的码率控制方式做转码（视频码率将不再生效）；</li><li>当指定视频流编码格式为 H.266 时，该字段必填，推荐值为 28；</li><li>如果没有特殊需求，不建议指定该参数。</li>
         # @type Vcrf: Integer
-        # @param Gop: 关键帧 I 帧之间的间隔，取值范围：0 和 [1, 100000]，单位：帧数。
-        # 当填 0 或不填时，系统将自动设置 gop 长度。
+        # @param Gop: <p>关键帧 I 帧之间的间隔，取值范围：0 和 [1, 100000]，单位：帧数。<br>当填 0 或不填时，系统将自动设置 gop 长度。</p>
         # @type Gop: Integer
-        # @param PreserveHDRSwitch: 当原始视频为 HDR（High Dynamic Range）时，转码输出是否依然保持 HDR。取值范围：
-        # <li>ON: 如果原始文件是 HDR，则转码输出保持 HDR；否则转码输出为 SDR （Standard Dynamic Range）。</li>
-        # <li>OFF: 无论原始文件是 HDR 还是 SDR，转码输出均为 SDR。</li>
-        # 默认值：OFF。
+        # @param GopUnit: <p>Gop数值单位。</p><p>枚举值：</p><ul><li>frame： 表示帧数。</li><li>second： 表示秒数。</li></ul><p>默认值：frame</p>
+        # @type GopUnit: String
+        # @param PreserveHDRSwitch: <p>当原始视频为 HDR（High Dynamic Range）时，转码输出是否依然保持 HDR。取值范围：</p><li>ON: 如果原始文件是 HDR，则转码输出保持 HDR；否则转码输出为 SDR （Standard Dynamic Range）。</li><li>OFF: 无论原始文件是 HDR 还是 SDR，转码输出均为 SDR。</li>默认值：OFF。
         # @type PreserveHDRSwitch: String
-        # @param CodecTag: 编码标签，仅当视频流的编码格式为 H.265 编码时有效，可选值：
-        # <li>hvc1 表示 hvc1 标签；</li>
-        # <li>hev1 表示 hev1 标签。 </li>
-        # 默认值：hvc1。
+        # @param CodecTag: <p>编码标签，仅当视频流的编码格式为 H.265 编码时有效，可选值：</p><li>hvc1 表示 hvc1 标签；</li><li>hev1 表示 hev1 标签。 </li>默认值：hvc1。
         # @type CodecTag: String
+        # @param Mode: <p>码率控制模式。</p><p>枚举值：</p><ul><li>VBR： Variable Bit Rate，动态比特率，根据视频画面的复杂度动态调整输出的码率，使得画面质量更高，适用于存储场景和对画面质量要求较高的应用。</li><li>ABR： Average Bit Rate，平均比特率，尽量保持输出视频的平均码率稳定，但允许短期内的码率波动，适用于需要在保持一定画质的情况下尽量减少整体码率的场景。</li><li>CBR： Constant Bit Rate，恒定比特率，指视频编码时输出的码率保持恒定不变，不考虑画面复杂度的变化，适用于对网络带宽要求较为严格的场景，如直播等。</li><li>VCRF： 恒定质量因子，通过设定一个质量因子来控制视频质量，实现视频的恒定质量编码，码率会根据内容的复杂度自动调整，适用于希望保持一定画质的场景。</li></ul><p>默认值：VBR</p>
+        # @type Mode: String
+        # @param Bframes: <p>参考帧之间的B帧数，默认为自动。</p><p>取值范围：[0, 16]</p>
+        # @type Bframes: Integer
+        # @param HlsTime: <p>分片平均时长。0或不填表示自动，将根据视频的 GOP 等特征自动选择合适的分片时长。</p><p>取值范围：[0, 10]</p><p>单位：秒</p><p>只支持转码模板，暂不支持自适应码流模板。</p>
+        # @type HlsTime: Integer
 
-        attr_accessor :Codec, :Fps, :Bitrate, :ResolutionAdaptive, :Width, :Height, :FillType, :Vcrf, :Gop, :PreserveHDRSwitch, :CodecTag
+        attr_accessor :Codec, :Fps, :Bitrate, :ResolutionAdaptive, :Width, :Height, :FillType, :Vcrf, :Gop, :GopUnit, :PreserveHDRSwitch, :CodecTag, :Mode, :Bframes, :HlsTime
 
-        def initialize(codec=nil, fps=nil, bitrate=nil, resolutionadaptive=nil, width=nil, height=nil, filltype=nil, vcrf=nil, gop=nil, preservehdrswitch=nil, codectag=nil)
+        def initialize(codec=nil, fps=nil, bitrate=nil, resolutionadaptive=nil, width=nil, height=nil, filltype=nil, vcrf=nil, gop=nil, gopunit=nil, preservehdrswitch=nil, codectag=nil, mode=nil, bframes=nil, hlstime=nil)
           @Codec = codec
           @Fps = fps
           @Bitrate = bitrate
@@ -34513,8 +34471,12 @@ module TencentCloud
           @FillType = filltype
           @Vcrf = vcrf
           @Gop = gop
+          @GopUnit = gopunit
           @PreserveHDRSwitch = preservehdrswitch
           @CodecTag = codectag
+          @Mode = mode
+          @Bframes = bframes
+          @HlsTime = hlstime
         end
 
         def deserialize(params)
@@ -34527,8 +34489,12 @@ module TencentCloud
           @FillType = params['FillType']
           @Vcrf = params['Vcrf']
           @Gop = params['Gop']
+          @GopUnit = params['GopUnit']
           @PreserveHDRSwitch = params['PreserveHDRSwitch']
           @CodecTag = params['CodecTag']
+          @Mode = params['Mode']
+          @Bframes = params['Bframes']
+          @HlsTime = params['HlsTime']
         end
       end
 
@@ -34556,10 +34522,18 @@ module TencentCloud
         # @type PreserveHDRSwitch: String
         # @param CodecTag: <p>编码标签，仅当视频流的编码格式为 H.265 编码时有效，可选值：</p><li>hvc1 表示 hvc1 标签；</li><li>hev1 表示 hev1 标签。 </li>默认值：hvc1。
         # @type CodecTag: String
+        # @param GopUnit: <p>Gop数值单位。</p><p>枚举值：</p><ul><li>frame： 表示帧数。</li><li>second： 表示秒数。</li></ul><p>默认值：frame</p>
+        # @type GopUnit: String
+        # @param Mode: <p>码率控制模式。</p><p>枚举值：</p><ul><li>VBR： Variable Bit Rate，动态比特率，根据视频画面的复杂度动态调整输出的码率，使得画面质量更高，适用于存储场景和对画面质量要求较高的应用。</li><li>ABR： Average Bit Rate，平均比特率，尽量保持输出视频的平均码率稳定，但允许短期内的码率波动，适用于需要在保持一定画质的情况下尽量减少整体码率的场景。</li><li>CBR： Constant Bit Rate，恒定比特率，指视频编码时输出的码率保持恒定不变，不考虑画面复杂度的变化，适用于对网络带宽要求较为严格的场景，如直播等。</li><li>VCRF： Constant Rate Factor，恒定质量因子，通过设定一个质量因子来控制视频质量，实现视频的恒定质量编码，码率会根据内容的复杂度自动调整，适用于希望保持一定画质的场景。</li></ul><p>默认值：VBR</p>
+        # @type Mode: String
+        # @param Bframes: <p>最大连续B帧数，默认为自动， -1 表示修改为自动值。</p><p>取值范围：[-1, 16]</p>
+        # @type Bframes: Integer
+        # @param HlsTime: <p>分片平均时长。0或不填表示自动，将根据视频的 GOP 等特征自动选择合适的分片时长。</p><p>取值范围：[0, 10]</p><p>单位：秒</p><p>只支持转码模板，暂不支持自适应码流模板。</p>
+        # @type HlsTime: Integer
 
-        attr_accessor :Codec, :Fps, :Bitrate, :ResolutionAdaptive, :Width, :Height, :FillType, :Vcrf, :Gop, :PreserveHDRSwitch, :CodecTag
+        attr_accessor :Codec, :Fps, :Bitrate, :ResolutionAdaptive, :Width, :Height, :FillType, :Vcrf, :Gop, :PreserveHDRSwitch, :CodecTag, :GopUnit, :Mode, :Bframes, :HlsTime
 
-        def initialize(codec=nil, fps=nil, bitrate=nil, resolutionadaptive=nil, width=nil, height=nil, filltype=nil, vcrf=nil, gop=nil, preservehdrswitch=nil, codectag=nil)
+        def initialize(codec=nil, fps=nil, bitrate=nil, resolutionadaptive=nil, width=nil, height=nil, filltype=nil, vcrf=nil, gop=nil, preservehdrswitch=nil, codectag=nil, gopunit=nil, mode=nil, bframes=nil, hlstime=nil)
           @Codec = codec
           @Fps = fps
           @Bitrate = bitrate
@@ -34571,6 +34545,10 @@ module TencentCloud
           @Gop = gop
           @PreserveHDRSwitch = preservehdrswitch
           @CodecTag = codectag
+          @GopUnit = gopunit
+          @Mode = mode
+          @Bframes = bframes
+          @HlsTime = hlstime
         end
 
         def deserialize(params)
@@ -34585,6 +34563,10 @@ module TencentCloud
           @Gop = params['Gop']
           @PreserveHDRSwitch = params['PreserveHDRSwitch']
           @CodecTag = params['CodecTag']
+          @GopUnit = params['GopUnit']
+          @Mode = params['Mode']
+          @Bframes = params['Bframes']
+          @HlsTime = params['HlsTime']
         end
       end
 

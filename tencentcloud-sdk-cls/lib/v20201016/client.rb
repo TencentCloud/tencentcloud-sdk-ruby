@@ -348,6 +348,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口用于创建DataSight控制台
+
+        # @param request: Request instance for CreateConsole.
+        # @type request: :class:`Tencentcloud::cls::V20201016::CreateConsoleRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::CreateConsoleResponse`
+        def CreateConsole(request)
+          body = send_request('CreateConsole', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateConsoleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建控制台分享
 
         # @param request: Request instance for CreateConsoleSharing.
@@ -1132,6 +1156,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteConfigFromMachineGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口用于删除DataSight控制台
+
+        # @param request: Request instance for DeleteConsole.
+        # @type request: :class:`Tencentcloud::cls::V20201016::DeleteConsoleRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::DeleteConsoleResponse`
+        def DeleteConsole(request)
+          body = send_request('DeleteConsole', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteConsoleResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1996,6 +2044,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeConsoleSharingListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询DataSight控制台实例列表
+
+        # @param request: Request instance for DescribeConsoles.
+        # @type request: :class:`Tencentcloud::cls::V20201016::DescribeConsolesRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::DescribeConsolesResponse`
+        def DescribeConsoles(request)
+          body = send_request('DescribeConsoles', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeConsolesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -3293,6 +3365,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyConfigExtraResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口用于编辑DataSight控制台
+
+        # @param request: Request instance for ModifyConsole.
+        # @type request: :class:`Tencentcloud::cls::V20201016::ModifyConsoleRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::ModifyConsoleResponse`
+        def ModifyConsole(request)
+          body = send_request('ModifyConsole', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyConsoleResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -17,6 +17,168 @@
 module TencentCloud
   module Monitor
     module V20230616
+      # AI工作台SRE数字分身任务
+      class AIWorkbenchSREDigitalTwinTask < TencentCloud::Common::AbstractModel
+        # @param Name: 任务名称
+        # @type Name: String
+        # @param TaskType: 任务类型
+        # @type TaskType: String
+        # @param TaskConfig: 任务配置
+        # @type TaskConfig: String
+        # @param ID: 唯一标识
+        # @type ID: Integer
+        # @param CreatedAt: 创建时间
+        # @type CreatedAt: String
+        # @param TwinID: 所属数字分身ID
+        # @type TwinID: Integer
+
+        attr_accessor :Name, :TaskType, :TaskConfig, :ID, :CreatedAt, :TwinID
+
+        def initialize(name=nil, tasktype=nil, taskconfig=nil, id=nil, createdat=nil, twinid=nil)
+          @Name = name
+          @TaskType = tasktype
+          @TaskConfig = taskconfig
+          @ID = id
+          @CreatedAt = createdat
+          @TwinID = twinid
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @TaskType = params['TaskType']
+          @TaskConfig = params['TaskConfig']
+          @ID = params['ID']
+          @CreatedAt = params['CreatedAt']
+          @TwinID = params['TwinID']
+        end
+      end
+
+      # AI工作台SRE数字分身任务列表
+      class AIWorkbenchSREDigitalTwinTaskList < TencentCloud::Common::AbstractModel
+        # @param Tasks: 任务列表
+        # @type Tasks: Array
+        # @param Total: 任务总数
+        # @type Total: Integer
+
+        attr_accessor :Tasks, :Total
+
+        def initialize(tasks=nil, total=nil)
+          @Tasks = tasks
+          @Total = total
+        end
+
+        def deserialize(params)
+          unless params['Tasks'].nil?
+            @Tasks = []
+            params['Tasks'].each do |i|
+              aiworkbenchsredigitaltwintask_tmp = AIWorkbenchSREDigitalTwinTask.new
+              aiworkbenchsredigitaltwintask_tmp.deserialize(i)
+              @Tasks << aiworkbenchsredigitaltwintask_tmp
+            end
+          end
+          @Total = params['Total']
+        end
+      end
+
+      # AI工作台SRE数字分身工作日志
+      class AIWorkbenchSREDigitalTwinWorkLog < TencentCloud::Common::AbstractModel
+        # @param ID: 唯一标识符
+        # @type ID: Integer
+        # @param CreatedAt: 创建时间
+        # @type CreatedAt: String
+        # @param TwinID: 所属数字分身ID
+        # @type TwinID: Integer
+        # @param TaskID: 所属数字分身任务ID
+        # @type TaskID: Integer
+        # @param StartTime: 分析时间
+        # @type StartTime: String
+        # @param Status: 分析状态
+        # @type Status: String
+        # @param Result: 分析结果摘要
+        # @type Result: String
+        # @param TaskName: 所属任务名称
+        # @type TaskName: String
+        # @param TaskType: 所属任务类型
+        # @type TaskType: String
+
+        attr_accessor :ID, :CreatedAt, :TwinID, :TaskID, :StartTime, :Status, :Result, :TaskName, :TaskType
+
+        def initialize(id=nil, createdat=nil, twinid=nil, taskid=nil, starttime=nil, status=nil, result=nil, taskname=nil, tasktype=nil)
+          @ID = id
+          @CreatedAt = createdat
+          @TwinID = twinid
+          @TaskID = taskid
+          @StartTime = starttime
+          @Status = status
+          @Result = result
+          @TaskName = taskname
+          @TaskType = tasktype
+        end
+
+        def deserialize(params)
+          @ID = params['ID']
+          @CreatedAt = params['CreatedAt']
+          @TwinID = params['TwinID']
+          @TaskID = params['TaskID']
+          @StartTime = params['StartTime']
+          @Status = params['Status']
+          @Result = params['Result']
+          @TaskName = params['TaskName']
+          @TaskType = params['TaskType']
+        end
+      end
+
+      # AI工作台SRE数字分身工作日志详细信息
+      class AIWorkbenchSREDigitalTwinWorkLogDetail < TencentCloud::Common::AbstractModel
+        # @param Content: 工作日志详细内容
+        # @type Content: String
+        # @param TaskType: 工作日志任务类型
+        # @type TaskType: String
+        # @param DialogID: 工作日志相关对话ID
+        # @type DialogID: Integer
+
+        attr_accessor :Content, :TaskType, :DialogID
+
+        def initialize(content=nil, tasktype=nil, dialogid=nil)
+          @Content = content
+          @TaskType = tasktype
+          @DialogID = dialogid
+        end
+
+        def deserialize(params)
+          @Content = params['Content']
+          @TaskType = params['TaskType']
+          @DialogID = params['DialogID']
+        end
+      end
+
+      # AI工作台SRE数字分身工作日志列表
+      class AIWorkbenchSREDigitalTwinWorkLogList < TencentCloud::Common::AbstractModel
+        # @param WorkLogs: 工作日志列表
+        # @type WorkLogs: Array
+        # @param Total: 总数
+        # @type Total: Integer
+
+        attr_accessor :WorkLogs, :Total
+
+        def initialize(worklogs=nil, total=nil)
+          @WorkLogs = worklogs
+          @Total = total
+        end
+
+        def deserialize(params)
+          unless params['WorkLogs'].nil?
+            @WorkLogs = []
+            params['WorkLogs'].each do |i|
+              aiworkbenchsredigitaltwinworklog_tmp = AIWorkbenchSREDigitalTwinWorkLog.new
+              aiworkbenchsredigitaltwinworklog_tmp.deserialize(i)
+              @WorkLogs << aiworkbenchsredigitaltwinworklog_tmp
+            end
+          end
+          @Total = params['Total']
+        end
+      end
+
       # CreateNoticeContentTmpl请求参数结构体
       class CreateNoticeContentTmplRequest < TencentCloud::Common::AbstractModel
         # @param TmplName: 模板名称
@@ -96,6 +258,151 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAIWorkbenchSREDigitalTwinTaskList请求参数结构体
+      class DescribeAIWorkbenchSREDigitalTwinTaskListRequest < TencentCloud::Common::AbstractModel
+        # @param TwinID: 数字分身ID
+        # @type TwinID: Integer
+        # @param Offset: 偏移量
+        # @type Offset: Integer
+        # @param Limit: 数量限制
+        # @type Limit: Integer
+
+        attr_accessor :TwinID, :Offset, :Limit
+
+        def initialize(twinid=nil, offset=nil, limit=nil)
+          @TwinID = twinid
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @TwinID = params['TwinID']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeAIWorkbenchSREDigitalTwinTaskList返回参数结构体
+      class DescribeAIWorkbenchSREDigitalTwinTaskListResponse < TencentCloud::Common::AbstractModel
+        # @param JSONStrPaths: Json序列化路径
+        # @type JSONStrPaths: Array
+        # @param Data: 数字分身任务列表
+        # @type Data: :class:`Tencentcloud::Monitor.v20230616.models.AIWorkbenchSREDigitalTwinTaskList`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :JSONStrPaths, :Data, :RequestId
+
+        def initialize(jsonstrpaths=nil, data=nil, requestid=nil)
+          @JSONStrPaths = jsonstrpaths
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @JSONStrPaths = params['JSONStrPaths']
+          unless params['Data'].nil?
+            @Data = AIWorkbenchSREDigitalTwinTaskList.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAIWorkbenchSREDigitalTwinWorkLogDetail请求参数结构体
+      class DescribeAIWorkbenchSREDigitalTwinWorkLogDetailRequest < TencentCloud::Common::AbstractModel
+        # @param WorkLogID: 工作日志ID
+        # @type WorkLogID: Integer
+
+        attr_accessor :WorkLogID
+
+        def initialize(worklogid=nil)
+          @WorkLogID = worklogid
+        end
+
+        def deserialize(params)
+          @WorkLogID = params['WorkLogID']
+        end
+      end
+
+      # DescribeAIWorkbenchSREDigitalTwinWorkLogDetail返回参数结构体
+      class DescribeAIWorkbenchSREDigitalTwinWorkLogDetailResponse < TencentCloud::Common::AbstractModel
+        # @param JSONStrPaths: Json序列化路径
+        # @type JSONStrPaths: Array
+        # @param Data: 数字分身详细信息
+        # @type Data: :class:`Tencentcloud::Monitor.v20230616.models.AIWorkbenchSREDigitalTwinWorkLogDetail`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :JSONStrPaths, :Data, :RequestId
+
+        def initialize(jsonstrpaths=nil, data=nil, requestid=nil)
+          @JSONStrPaths = jsonstrpaths
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @JSONStrPaths = params['JSONStrPaths']
+          unless params['Data'].nil?
+            @Data = AIWorkbenchSREDigitalTwinWorkLogDetail.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAIWorkbenchSREDigitalTwinWorkLogList请求参数结构体
+      class DescribeAIWorkbenchSREDigitalTwinWorkLogListRequest < TencentCloud::Common::AbstractModel
+        # @param TwinID: 数字分身ID
+        # @type TwinID: Integer
+        # @param Offset: 分页偏移量
+        # @type Offset: Integer
+        # @param Limit: 分页限制条数
+        # @type Limit: Integer
+
+        attr_accessor :TwinID, :Offset, :Limit
+
+        def initialize(twinid=nil, offset=nil, limit=nil)
+          @TwinID = twinid
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @TwinID = params['TwinID']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeAIWorkbenchSREDigitalTwinWorkLogList返回参数结构体
+      class DescribeAIWorkbenchSREDigitalTwinWorkLogListResponse < TencentCloud::Common::AbstractModel
+        # @param JSONStrPaths: Json序列化路径
+        # @type JSONStrPaths: Array
+        # @param Data: 数字分身工作日志列表
+        # @type Data: :class:`Tencentcloud::Monitor.v20230616.models.AIWorkbenchSREDigitalTwinWorkLogList`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :JSONStrPaths, :Data, :RequestId
+
+        def initialize(jsonstrpaths=nil, data=nil, requestid=nil)
+          @JSONStrPaths = jsonstrpaths
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @JSONStrPaths = params['JSONStrPaths']
+          unless params['Data'].nil?
+            @Data = AIWorkbenchSREDigitalTwinWorkLogList.new
+            @Data.deserialize(params['Data'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -873,6 +1180,65 @@ module TencentCloud
             @Template = TeamsRobotNoticeTmpl.new
             @Template.deserialize(params['Template'])
           end
+        end
+      end
+
+      # TriggerAIWorkbenchSREDigitalTwinTask请求参数结构体
+      class TriggerAIWorkbenchSREDigitalTwinTaskRequest < TencentCloud::Common::AbstractModel
+        # @param TaskID: 数字分身任务ID
+        # @type TaskID: Integer
+
+        attr_accessor :TaskID
+
+        def initialize(taskid=nil)
+          @TaskID = taskid
+        end
+
+        def deserialize(params)
+          @TaskID = params['TaskID']
+        end
+      end
+
+      # TriggerAIWorkbenchSREDigitalTwinTask返回参数结构体
+      class TriggerAIWorkbenchSREDigitalTwinTaskResponse < TencentCloud::Common::AbstractModel
+        # @param JSONStrPaths: Json序列化路径
+        # @type JSONStrPaths: Array
+        # @param Data: 数字分身任务信息
+        # @type Data: :class:`Tencentcloud::Monitor.v20230616.models.TriggerDigitalTwinTaskResp`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :JSONStrPaths, :Data, :RequestId
+
+        def initialize(jsonstrpaths=nil, data=nil, requestid=nil)
+          @JSONStrPaths = jsonstrpaths
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @JSONStrPaths = params['JSONStrPaths']
+          unless params['Data'].nil?
+            @Data = TriggerDigitalTwinTaskResp.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 触发数字分身任务响应
+      class TriggerDigitalTwinTaskResp < TencentCloud::Common::AbstractModel
+        # @param TaskID: 数字分身任务ID
+        # @type TaskID: Integer
+
+        attr_accessor :TaskID
+
+        def initialize(taskid=nil)
+          @TaskID = taskid
+        end
+
+        def deserialize(params)
+          @TaskID = params['TaskID']
         end
       end
 
