@@ -5465,7 +5465,7 @@ module TencentCloud
         # @type Uid: String
         # @param Name: 用户名，用户名规则：1. 长度1-64字符 2. 只能包含大小写英文字母、数字和符号 . _ - 3. 只能以字母或数字开头 4. 不能重复，不传该字段或传空字符不修改
         # @type Name: String
-        # @param Type: 用户类型：0-内部用户、1-外部用户，默认0（内部用户），不传该字段或传空字符串不修改
+        # @param Type: 用户类型：internalUser-内部用户、externalUser-外部用户，不传该字段或传空字符串不修改。
         # @type Type: String
         # @param Password: 密码，传入Uid时密码可不传。密码规则：1. 长度8-32字符（推荐12位以上） 2. 不能以特殊字符开头 3. 至少包含以下四项中的三项：小写字母a-z、大写字母A-Z、数字0-9、特殊字符()!@#$%^&*\|?><_-，不传该字段或传空字符串不修改
         # @type Password: String
@@ -6439,8 +6439,8 @@ module TencentCloud
 
         attr_accessor :EnvId, :CdnDomain, :Bucket, :Regoin, :Status, :Region
         extend Gem::Deprecate
-        deprecate :Regoin, :none, 2026, 3
-        deprecate :Regoin=, :none, 2026, 3
+        deprecate :Regoin, :none, 2026, 4
+        deprecate :Regoin=, :none, 2026, 4
 
         def initialize(envid=nil, cdndomain=nil, bucket=nil, regoin=nil, status=nil, region=nil)
           @EnvId = envid

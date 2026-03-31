@@ -258,8 +258,8 @@ module TencentCloud
 
         attr_accessor :Commands, :StorageMounts, :EnvVars, :Docker, :OutputRedirect, :JobType, :TaskType
         extend Gem::Deprecate
-        deprecate :JobType, :none, 2026, 3
-        deprecate :JobType=, :none, 2026, 3
+        deprecate :JobType, :none, 2026, 4
+        deprecate :JobType=, :none, 2026, 4
 
         def initialize(commands=nil, storagemounts=nil, envvars=nil, docker=nil, outputredirect=nil, jobtype=nil, tasktype=nil)
           @Commands = commands
@@ -2828,9 +2828,9 @@ module TencentCloud
 
       # 输出重定向配置
       class OutputRedirect < TencentCloud::Common::AbstractModel
-        # @param Driver: 输出driver类型
+        # @param Driver: <p>输出driver类型</p><p>枚举值：</p><ul><li>local： 宿主机本地目录</li><li>cos： 远端cos存储</li></ul><p>默认值：local</p>
         # @type Driver: String
-        # @param Options: 重定向配置参数
+        # @param Options: <p>重定向配置参数</p><p>日志重定向路径，用于指定任务日志的输出目标。取值格式与 Driver 类型关联：<br>当 Driver 为 local 时，格式为本地文件路径，如 stdout=/tmp/train_out.log；<br>当 Driver 为 cos 时，格式为 COS 存储桶路径，如 stdout=cos://test-123456.cos.ap-shanghai.myqcloud.com/test/.</p>
         # @type Options: Array
 
         attr_accessor :Driver, :Options

@@ -13951,15 +13951,19 @@ module TencentCloud
       class GetMostSuitableImageCacheRequest < TencentCloud::Common::AbstractModel
         # @param Images: 容器镜像列表
         # @type Images: Array
+        # @param Snapshotter: 容器镜像制作snapshotter
+        # @type Snapshotter: String
 
-        attr_accessor :Images
+        attr_accessor :Images, :Snapshotter
 
-        def initialize(images=nil)
+        def initialize(images=nil, snapshotter=nil)
           @Images = images
+          @Snapshotter = snapshotter
         end
 
         def deserialize(params)
           @Images = params['Images']
+          @Snapshotter = params['Snapshotter']
         end
       end
 
@@ -14291,10 +14295,14 @@ module TencentCloud
         # @type ImageRegistryCredentials: Array
         # @param Tags: 腾讯云标签
         # @type Tags: Array
+        # @param ImageCacheType: 镜像缓存类型
+        # @type ImageCacheType: String
+        # @param Snapshotter: 镜像缓存所属snapshotter类型
+        # @type Snapshotter: String
 
-        attr_accessor :ImageCacheId, :ImageCacheName, :ImageCacheSize, :Images, :CreationTime, :ExpireDateTime, :Events, :LastMatchedTime, :SnapshotId, :Status, :RetentionDays, :ImageRegistryCredentials, :Tags
+        attr_accessor :ImageCacheId, :ImageCacheName, :ImageCacheSize, :Images, :CreationTime, :ExpireDateTime, :Events, :LastMatchedTime, :SnapshotId, :Status, :RetentionDays, :ImageRegistryCredentials, :Tags, :ImageCacheType, :Snapshotter
 
-        def initialize(imagecacheid=nil, imagecachename=nil, imagecachesize=nil, images=nil, creationtime=nil, expiredatetime=nil, events=nil, lastmatchedtime=nil, snapshotid=nil, status=nil, retentiondays=nil, imageregistrycredentials=nil, tags=nil)
+        def initialize(imagecacheid=nil, imagecachename=nil, imagecachesize=nil, images=nil, creationtime=nil, expiredatetime=nil, events=nil, lastmatchedtime=nil, snapshotid=nil, status=nil, retentiondays=nil, imageregistrycredentials=nil, tags=nil, imagecachetype=nil, snapshotter=nil)
           @ImageCacheId = imagecacheid
           @ImageCacheName = imagecachename
           @ImageCacheSize = imagecachesize
@@ -14308,6 +14316,8 @@ module TencentCloud
           @RetentionDays = retentiondays
           @ImageRegistryCredentials = imageregistrycredentials
           @Tags = tags
+          @ImageCacheType = imagecachetype
+          @Snapshotter = snapshotter
         end
 
         def deserialize(params)
@@ -14345,6 +14355,8 @@ module TencentCloud
               @Tags << tag_tmp
             end
           end
+          @ImageCacheType = params['ImageCacheType']
+          @Snapshotter = params['Snapshotter']
         end
       end
 

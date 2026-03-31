@@ -2818,8 +2818,8 @@ module TencentCloud
 
         attr_accessor :SegmentSet, :SubtitlePath, :OutputStorage
         extend Gem::Deprecate
-        deprecate :OutputStorage, :none, 2026, 3
-        deprecate :OutputStorage=, :none, 2026, 3
+        deprecate :OutputStorage, :none, 2026, 4
+        deprecate :OutputStorage=, :none, 2026, 4
 
         def initialize(segmentset=nil, subtitlepath=nil, outputstorage=nil)
           @SegmentSet = segmentset
@@ -8758,8 +8758,8 @@ module TencentCloud
 
         attr_accessor :OutputName, :Description, :Protocol, :OutputRegion, :OutputType, :OutputKind, :SRTSettings, :RTMPSettings, :RTPSettings, :AllowIpList, :MaxConcurrent, :SecurityGroupIds, :Zones, :RISTSettings, :PidSelector, :StreamSelector
         extend Gem::Deprecate
-        deprecate :PidSelector, :none, 2026, 3
-        deprecate :PidSelector=, :none, 2026, 3
+        deprecate :PidSelector, :none, 2026, 4
+        deprecate :PidSelector=, :none, 2026, 4
 
         def initialize(outputname=nil, description=nil, protocol=nil, outputregion=nil, outputtype=nil, outputkind=nil, srtsettings=nil, rtmpsettings=nil, rtpsettings=nil, allowiplist=nil, maxconcurrent=nil, securitygroupids=nil, zones=nil, ristsettings=nil, pidselector=nil, streamselector=nil)
           @OutputName = outputname
@@ -12783,8 +12783,8 @@ module TencentCloud
 
         attr_accessor :OutputId, :OutputName, :OutputType, :OutputKind, :Description, :Protocol, :OutputAddressList, :OutputRegion, :SRTSettings, :RTPSettings, :RTMPSettings, :RTMPPullSettings, :AllowIpList, :RTSPPullSettings, :HLSPullSettings, :MaxConcurrent, :SecurityGroupIds, :Zones, :RISTSettings, :PidSelector, :StreamUrls, :StreamSelector
         extend Gem::Deprecate
-        deprecate :PidSelector, :none, 2026, 3
-        deprecate :PidSelector=, :none, 2026, 3
+        deprecate :PidSelector, :none, 2026, 4
+        deprecate :PidSelector=, :none, 2026, 4
 
         def initialize(outputid=nil, outputname=nil, outputtype=nil, outputkind=nil, description=nil, protocol=nil, outputaddresslist=nil, outputregion=nil, srtsettings=nil, rtpsettings=nil, rtmpsettings=nil, rtmppullsettings=nil, allowiplist=nil, rtsppullsettings=nil, hlspullsettings=nil, maxconcurrent=nil, securitygroupids=nil, zones=nil, ristsettings=nil, pidselector=nil, streamurls=nil, streamselector=nil)
           @OutputId = outputid
@@ -14907,9 +14907,9 @@ module TencentCloud
       class DescribeUsageDataRequest < TencentCloud::Common::AbstractModel
         # @param StartTime: <p>起始日期。使用 ISO 日期格式。</p>
         # @type StartTime: String
-        # @param EndTime: <p>结束日期，需大于等于起始日期。使用 <a href="https://cloud.tencent.com/document/product/266/11732#iso-.E6.97.A5.E6.9C.9F.E6.A0.BC.E5.BC.8F">ISO 日期格式</a>。</p>
+        # @param EndTime: <p>结束日期，需大于等于起始日期。使用<a href="https://cloud.tencent.com/document/product/862/37710#52">ISO 日期格式</a>。</p><p>参数格式：2019-07-16T06:21:28Z</p>
         # @type EndTime: String
-        # @param Types: <p>查询媒体处理任务类型，默认查询转码。</p><li>Transcode：转码</li><li>Enhance：增强</li><li>AIAnalysis：智能分析</li><li>AIRecognition：智能识别</li><li>AIReview：内容审核</li><li>Snapshot：截图</li><li>AnimatedGraphics：转动图</li><li>AiQualityControl：质检</li><li>Evaluation：视频评测</li><li>ImageProcess: 图片处理</li><li>AddBlindWatermark: 添加基础版权数字水印</li><li>AddNagraWatermark: 添加NAGRA数字水印</li><li>ExtractBlindWatermark: 提取基础版权数字水印</li><li>AIGC: AIGCVideo</li>
+        # @param Types: <p>查询媒体处理任务类型，默认查询转码。</p><li>Transcode：转码</li><li>Enhance：增强</li><li>AIAnalysis：智能分析</li><li>AIRecognition：智能识别</li><li>AIReview：内容审核</li><li>Snapshot：截图</li><li>AnimatedGraphics：转动图</li><li>AiQualityControl：质检</li><li>Evaluation：视频评测</li><li>ImageProcess: 图片处理</li><li>AddBlindWatermark: 添加基础版权数字水印</li><li>AddNagraWatermark: 添加NAGRA数字水印</li><li>ExtractBlindWatermark: 提取基础版权数字水印</li><li>AIGCVideo: AIGC视频生成</li><li>AIGCImage: AIGC图片生成</li>
         # @type Types: Array
         # @param ProcessRegions: <p>媒体处理园区，默认返回 ap-guangzhou 园区。</p><li>ap-guangzhou：广州</li><li>ap-hongkong：中国香港</li><li>ap-taipei：中国台北</li><li>ap-singapore：新加坡</li><li>ap-mumbai：印度</li><li>ap-jakarta：雅加达</li><li>ap-seoul：首尔</li><li>ap-bangkok：泰国</li><li>ap-tokyo：日本</li><li>na-siliconvalley：美国硅谷</li><li>na-ashburn：弗吉尼亚</li><li>na-toronto：多伦多</li><li>sa-saopaulo：圣保罗</li><li>eu-frankfurt：法兰克福</li><li>eu-moscow：俄罗斯</li><li>aws：AWS</li>
         # @type ProcessRegions: Array
@@ -16043,8 +16043,8 @@ module TencentCloud
 
         attr_accessor :TaskType, :EvaluationTypeSet, :EvaluationRangeType, :ContrastInfoSet, :ContrastMediaSet, :ContrastTemplateSet, :StartTime, :EndTime, :StartFrameIndex, :EndFrameIndex, :ResolutionAlignmentMode, :BitrateSet, :VCRFSet
         extend Gem::Deprecate
-        deprecate :ContrastInfoSet, :none, 2026, 3
-        deprecate :ContrastInfoSet=, :none, 2026, 3
+        deprecate :ContrastInfoSet, :none, 2026, 4
+        deprecate :ContrastInfoSet=, :none, 2026, 4
 
         def initialize(tasktype=nil, evaluationtypeset=nil, evaluationrangetype=nil, contrastinfoset=nil, contrastmediaset=nil, contrasttemplateset=nil, starttime=nil, endtime=nil, startframeindex=nil, endframeindex=nil, resolutionalignmentmode=nil, bitrateset=nil, vcrfset=nil)
           @TaskType = tasktype
@@ -18635,10 +18635,10 @@ module TencentCloud
 
         attr_accessor :QualityControlResults, :DiagnoseResults, :QualityControlResultSet, :DiagnoseResultSet
         extend Gem::Deprecate
-        deprecate :QualityControlResults, :none, 2026, 3
-        deprecate :QualityControlResults=, :none, 2026, 3
-        deprecate :DiagnoseResults, :none, 2026, 3
-        deprecate :DiagnoseResults=, :none, 2026, 3
+        deprecate :QualityControlResults, :none, 2026, 4
+        deprecate :QualityControlResults=, :none, 2026, 4
+        deprecate :DiagnoseResults, :none, 2026, 4
+        deprecate :DiagnoseResults=, :none, 2026, 4
 
         def initialize(qualitycontrolresults=nil, diagnoseresults=nil, qualitycontrolresultset=nil, diagnoseresultset=nil)
           @QualityControlResults = qualitycontrolresults
@@ -21836,8 +21836,8 @@ module TencentCloud
 
         attr_accessor :OutputId, :OutputName, :Description, :Protocol, :OutputKind, :SRTSettings, :RTPSettings, :RTMPSettings, :AllowIpList, :MaxConcurrent, :SecurityGroupIds, :Zones, :RISTSettings, :OutputType, :PidSelector, :StreamSelector
         extend Gem::Deprecate
-        deprecate :PidSelector, :none, 2026, 3
-        deprecate :PidSelector=, :none, 2026, 3
+        deprecate :PidSelector, :none, 2026, 4
+        deprecate :PidSelector=, :none, 2026, 4
 
         def initialize(outputid=nil, outputname=nil, description=nil, protocol=nil, outputkind=nil, srtsettings=nil, rtpsettings=nil, rtmpsettings=nil, allowiplist=nil, maxconcurrent=nil, securitygroupids=nil, zones=nil, ristsettings=nil, outputtype=nil, pidselector=nil, streamselector=nil)
           @OutputId = outputid

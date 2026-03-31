@@ -1999,8 +1999,8 @@ module TencentCloud
 
         attr_accessor :GroupQuota, :CurrentNum, :CvmInHostGroupQuota, :CvmInSwGroupQuota, :CvmInRackGroupQuota, :CvmInSwitchGroupQuota, :RequestId
         extend Gem::Deprecate
-        deprecate :CvmInSwGroupQuota, :none, 2026, 3
-        deprecate :CvmInSwGroupQuota=, :none, 2026, 3
+        deprecate :CvmInSwGroupQuota, :none, 2026, 4
+        deprecate :CvmInSwGroupQuota=, :none, 2026, 4
 
         def initialize(groupquota=nil, currentnum=nil, cvminhostgroupquota=nil, cvminswgroupquota=nil, cvminrackgroupquota=nil, cvminswitchgroupquota=nil, requestid=nil)
           @GroupQuota = groupquota
@@ -3922,8 +3922,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :Password, :Username, :ForceStop, :StopType
         extend Gem::Deprecate
-        deprecate :ForceStop, :none, 2026, 3
-        deprecate :ForceStop=, :none, 2026, 3
+        deprecate :ForceStop, :none, 2026, 4
+        deprecate :ForceStop=, :none, 2026, 4
 
         def initialize(instanceid=nil, password=nil, username=nil, forcestop=nil, stoptype=nil)
           @InstanceId = instanceid
@@ -7308,16 +7308,22 @@ module TencentCloud
         # @type HostIds: Array
         # @param HostId: 实例所属的专用宿主机ID，仅用于出参。
         # @type HostId: String
+        # @param DedicatedResourcePackTenancy: 专有资源预扣策略。取值范围：<li>ResourcePool：使用实例资源池进行资源预扣</li>
+        # @type DedicatedResourcePackTenancy: String
+        # @param DedicatedResourcePackIds: 专有预扣资源ID列表。形如：rpp-7eumgm3l。通过指定专有预扣资源创建实例时，必须同时指定匹配的DedicatedResourcePackTenancy。
+        # @type DedicatedResourcePackIds: Array
         # @param RackId: 实例所属的实例资源池机架ID，仅用于出参。
         # @type RackId: String
 
-        attr_accessor :Zone, :ProjectId, :HostIds, :HostId, :RackId
+        attr_accessor :Zone, :ProjectId, :HostIds, :HostId, :DedicatedResourcePackTenancy, :DedicatedResourcePackIds, :RackId
 
-        def initialize(zone=nil, projectid=nil, hostids=nil, hostid=nil, rackid=nil)
+        def initialize(zone=nil, projectid=nil, hostids=nil, hostid=nil, dedicatedresourcepacktenancy=nil, dedicatedresourcepackids=nil, rackid=nil)
           @Zone = zone
           @ProjectId = projectid
           @HostIds = hostids
           @HostId = hostid
+          @DedicatedResourcePackTenancy = dedicatedresourcepacktenancy
+          @DedicatedResourcePackIds = dedicatedresourcepackids
           @RackId = rackid
         end
 
@@ -7326,6 +7332,8 @@ module TencentCloud
           @ProjectId = params['ProjectId']
           @HostIds = params['HostIds']
           @HostId = params['HostId']
+          @DedicatedResourcePackTenancy = params['DedicatedResourcePackTenancy']
+          @DedicatedResourcePackIds = params['DedicatedResourcePackIds']
           @RackId = params['RackId']
         end
       end
@@ -7549,8 +7557,8 @@ module TencentCloud
 
         attr_accessor :InstanceIds, :ForceReboot, :StopType
         extend Gem::Deprecate
-        deprecate :ForceReboot, :none, 2026, 3
-        deprecate :ForceReboot=, :none, 2026, 3
+        deprecate :ForceReboot, :none, 2026, 4
+        deprecate :ForceReboot=, :none, 2026, 4
 
         def initialize(instanceids=nil, forcereboot=nil, stoptype=nil)
           @InstanceIds = instanceids
@@ -8818,8 +8826,8 @@ module TencentCloud
 
         attr_accessor :InstanceIds, :ForceStop, :StopType, :StoppedMode
         extend Gem::Deprecate
-        deprecate :ForceStop, :none, 2026, 3
-        deprecate :ForceStop=, :none, 2026, 3
+        deprecate :ForceStop, :none, 2026, 4
+        deprecate :ForceStop=, :none, 2026, 4
 
         def initialize(instanceids=nil, forcestop=nil, stoptype=nil, stoppedmode=nil)
           @InstanceIds = instanceids

@@ -245,7 +245,7 @@ module TencentCloud
 
       # CreateDBSBackup请求参数结构体
       class CreateDBSBackupRequest < TencentCloud::Common::AbstractModel
-        # @param BackupMethod: <p>备份方式：physical、snapshot 这个值和DescribeDBSBackupPolicy接口返回的backupMethod保持一致</p>枚举值：<ul><li> physical： 物理备份</li><li> snapshot： 快照备份</li></ul>
+        # @param BackupMethod: <p>备份方式：physical、snapshot 这个值和DescribeDBSBackupPolicy接口返回的backupMethod保持一致</p><p>枚举值：</p><ul><li>physical： 物理备份</li><li>snapshot： 快照备份</li></ul>
         # @type BackupMethod: String
         # @param BackupType: <p>备份类型：暂时只支持full</p>
         # @type BackupType: String
@@ -476,7 +476,7 @@ module TencentCloud
 
       # DescribeDBSAvailableRecoveryTime请求参数结构体
       class DescribeDBSAvailableRecoveryTimeRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: <p>db实例ID</p>
+        # @param InstanceId: <p>实例ID</p>
         # @type InstanceId: String
         # @param BackupSetId: <p>备份集ID,值来自 DescribeDBSBackupSets 接口返回</p>
         # @type BackupSetId: Integer
@@ -985,9 +985,9 @@ module TencentCloud
 
       # ModifyDBSBackupPolicy请求参数结构体
       class ModifyDBSBackupPolicyRequest < TencentCloud::Common::AbstractModel
-        # @param BackupPolicy: 备份策略
+        # @param BackupPolicy: <p>备份策略</p>
         # @type BackupPolicy: :class:`Tencentcloud::Tdmysql.v20211122.models.BackupPolicyModelInput`
-        # @param InstanceId: 实例ID
+        # @param InstanceId: <p>实例ID</p>
         # @type InstanceId: String
 
         attr_accessor :BackupPolicy, :InstanceId
@@ -1008,9 +1008,9 @@ module TencentCloud
 
       # ModifyDBSBackupPolicy返回参数结构体
       class ModifyDBSBackupPolicyResponse < TencentCloud::Common::AbstractModel
-        # @param IsSuccess: 是否成功
+        # @param IsSuccess: <p>是否成功</p>
         # @type IsSuccess: Boolean
-        # @param Msg: 消息
+        # @param Msg: <p>消息</p>
         # @type Msg: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

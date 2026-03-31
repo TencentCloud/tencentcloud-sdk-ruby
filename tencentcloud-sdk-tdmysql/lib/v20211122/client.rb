@@ -53,7 +53,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建实例备份集
+        # 创建实例手工备份  CreateDBSBackup
 
         # @param request: Request instance for CreateDBSBackup.
         # @type request: :class:`Tencentcloud::tdmysql::V20211122::CreateDBSBackupRequest`
@@ -77,7 +77,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 删除实例备份集
+        # 删除实例手工备份 DeleteDBSBackupSets
 
         # @param request: Request instance for DeleteDBSBackupSets.
         # @type request: :class:`Tencentcloud::tdmysql::V20211122::DeleteDBSBackupSetsRequest`
@@ -125,7 +125,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 可恢复时间查询
+        # 获取可恢复时间 DescribeDBSAvailableRecoveryTime
 
         # @param request: Request instance for DescribeDBSAvailableRecoveryTime.
         # @type request: :class:`Tencentcloud::tdmysql::V20211122::DescribeDBSAvailableRecoveryTimeRequest`
@@ -149,7 +149,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询实例克隆列表
+        # 查询实例克隆列表 DescribeDBSCloneInstances
 
         # @param request: Request instance for DescribeDBSCloneInstances.
         # @type request: :class:`Tencentcloud::tdmysql::V20211122::DescribeDBSCloneInstancesRequest`
@@ -365,7 +365,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 修改实例备份策略
+        # 修改实例备份策略 ModifyDBSBackupPolicy
 
         # @param request: Request instance for ModifyDBSBackupPolicy.
         # @type request: :class:`Tencentcloud::tdmysql::V20211122::ModifyDBSBackupPolicyRequest`
@@ -389,7 +389,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 修改备份集备注
+        # 修改实例备份备注 ModifyDBSBackupSetComment
 
         # @param request: Request instance for ModifyDBSBackupSetComment.
         # @type request: :class:`Tencentcloud::tdmysql::V20211122::ModifyDBSBackupSetCommentRequest`

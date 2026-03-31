@@ -10234,13 +10234,10 @@ module TencentCloud
       # filter过滤条件
       class Filters < TencentCloud::Common::AbstractModel
         # @param Name: 实例ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Values: 实例ID内容
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Values: Array
         # @param ExactMatch: 模糊匹配
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExactMatch: String
 
         attr_accessor :Name, :Values, :ExactMatch

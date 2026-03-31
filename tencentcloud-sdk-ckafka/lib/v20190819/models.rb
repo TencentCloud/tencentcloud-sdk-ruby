@@ -1761,8 +1761,8 @@ module TencentCloud
 
         attr_accessor :TaskName, :TaskType, :SourceResource, :TargetResource, :TransformParam, :PrivateLinkParam, :SchemaId, :TransformsParam, :TaskId, :Tags, :Description
         extend Gem::Deprecate
-        deprecate :PrivateLinkParam, :none, 2026, 3
-        deprecate :PrivateLinkParam=, :none, 2026, 3
+        deprecate :PrivateLinkParam, :none, 2026, 4
+        deprecate :PrivateLinkParam=, :none, 2026, 4
 
         def initialize(taskname=nil, tasktype=nil, sourceresource=nil, targetresource=nil, transformparam=nil, privatelinkparam=nil, schemaid=nil, transformsparam=nil, taskid=nil, tags=nil, description=nil)
           @TaskName = taskname
@@ -2150,8 +2150,8 @@ module TencentCloud
 
         attr_accessor :ReturnCode, :ReturnMessage, :Data, :DeleteRouteTimestamp
         extend Gem::Deprecate
-        deprecate :DeleteRouteTimestamp, :none, 2026, 3
-        deprecate :DeleteRouteTimestamp=, :none, 2026, 3
+        deprecate :DeleteRouteTimestamp, :none, 2026, 4
+        deprecate :DeleteRouteTimestamp=, :none, 2026, 4
 
         def initialize(returncode=nil, returnmessage=nil, data=nil, deleteroutetimestamp=nil)
           @ReturnCode = returncode
@@ -2255,11 +2255,11 @@ module TencentCloud
         # @type MsgRetentionTime: Integer
         # @param ClusterId: <p>创建实例时可以选择集群Id, 该入参表示集群Id。不指定实例所在集群则不传入该参数</p>
         # @type ClusterId: Integer
-        # @param KafkaVersion: <p>实例版本。目前支持当前支持"2.4.1", "2.4.2","2.8.1", "3.2.3"，默认取值"2.4.1"。"2.4.1" 与 "2.4.2" 属于同一个版本，传任意一个均可。</p>
+        # @param KafkaVersion: <p>实例版本。目前支持当前支持&quot;2.4.1&quot;, &quot;2.4.2&quot;,&quot;2.8.1&quot;, &quot;3.2.3&quot;，默认取值&quot;2.4.1&quot;。&quot;2.4.1&quot; 与 &quot;2.4.2&quot; 属于同一个版本，传任意一个均可。</p>
         # @type KafkaVersion: String
-        # @param SpecificationsType: <p>实例类型。"standard"：标准版，"profession"：专业版。  (标准版仅国际站支持，国内站目前支持专业版)</p>
+        # @param SpecificationsType: <p>实例类型。&quot;standard&quot;：标准版，&quot;profession&quot;：专业版。  (标准版仅国际站支持，国内站目前支持专业版)</p>
         # @type SpecificationsType: String
-        # @param DiskType: <p>专业版实例磁盘类型，标准版实例不需要填写。"CLOUD_SSD"：SSD云硬盘；"CLOUD_BASIC"：高性能云硬盘。不传默认值为 "CLOUD_BASIC"</p>
+        # @param DiskType: <p>专业版实例磁盘类型，标准版实例不需要填写。&quot;CLOUD_SSD&quot;：SSD云硬盘；&quot;CLOUD_BASIC&quot;：高性能云硬盘。不传默认值为 &quot;CLOUD_BASIC&quot;</p>
         # @type DiskType: String
         # @param BandWidth: <p>实例内网峰值带宽，默认值为40。单位 MB/s。标准版需传入当前实例规格所对应的峰值带宽。注意如果创建的实例为专业版实例，峰值带宽，分区数等参数配置需要满足专业版的计费规格，可以通过以下链接查看计费规格：https://cloud.tencent.com/document/product/597/11745</p>
         # @type BandWidth: Integer
@@ -2277,7 +2277,7 @@ module TencentCloud
         # @type ZoneIds: Array
         # @param InstanceNum: <p>购买实例数量。非必填，默认值为 1。当传入该参数时，会创建多个 instanceName 加后缀区分的实例</p>
         # @type InstanceNum: Integer
-        # @param PublicNetworkMonthly: <p>公网带宽大小，单位 Mbps。默认是没有加上免费 3Mbps 带宽。例如总共需要 3Mbps 公网带宽，此处传 0；总共需要 6Mbps 公网带宽，此处传 3。需要保证传入参数为 3 的整数倍</p>
+        # @param PublicNetworkMonthly: <p>公网带宽大小，单位 Mbps。</p><p>单位：Mbps</p>
         # @type PublicNetworkMonthly: Integer
         # @param Tags: <p>标签</p>
         # @type Tags: Array
@@ -2424,7 +2424,7 @@ module TencentCloud
         # @type VpcId: String
         # @param SubnetId: <p>vpc子网id,当vipType为3时必填</p>
         # @type SubnetId: String
-        # @param AccessType: <p>访问类型：0-plaintext；1-sasl_plaintext；3-sasl_ssl; 4-sasl_scram_sha_256; 5-sasl_scram_sha_512  默认为0vipType=3,支持 0,1,3,4,5vipType=7,支持0,1,3vipType=1,支持1,3</p>
+        # @param AccessType: <p>访问类型：0-plaintext；1-sasl_plaintext；3-sasl_ssl; 4-sasl_scram_sha_256; 5-sasl_scram_sha_512  默认为0<br>vipType=3,支持 0,1,3,4,5<br>vipType=7,支持0,1,3<br>vipType=1,支持1,3</p>
         # @type AccessType: Integer
         # @param AuthFlag: <p>是否需要权限管理,该字段已废弃</p>
         # @type AuthFlag: Integer
@@ -2438,10 +2438,12 @@ module TencentCloud
         # @type Note: String
         # @param SecurityGroupIds: <p>关联安全组有序列表</p>
         # @type SecurityGroupIds: Array
+        # @param IpWhitelist: <p>公网路由IP白名单预设配置</p><p>入参限制：vipType=1</p>
+        # @type IpWhitelist: Array
 
-        attr_accessor :InstanceId, :VipType, :VpcId, :SubnetId, :AccessType, :AuthFlag, :CallerAppid, :PublicNetwork, :Ip, :Note, :SecurityGroupIds
+        attr_accessor :InstanceId, :VipType, :VpcId, :SubnetId, :AccessType, :AuthFlag, :CallerAppid, :PublicNetwork, :Ip, :Note, :SecurityGroupIds, :IpWhitelist
 
-        def initialize(instanceid=nil, viptype=nil, vpcid=nil, subnetid=nil, accesstype=nil, authflag=nil, callerappid=nil, publicnetwork=nil, ip=nil, note=nil, securitygroupids=nil)
+        def initialize(instanceid=nil, viptype=nil, vpcid=nil, subnetid=nil, accesstype=nil, authflag=nil, callerappid=nil, publicnetwork=nil, ip=nil, note=nil, securitygroupids=nil, ipwhitelist=nil)
           @InstanceId = instanceid
           @VipType = viptype
           @VpcId = vpcid
@@ -2453,6 +2455,7 @@ module TencentCloud
           @Ip = ip
           @Note = note
           @SecurityGroupIds = securitygroupids
+          @IpWhitelist = ipwhitelist
         end
 
         def deserialize(params)
@@ -2467,6 +2470,14 @@ module TencentCloud
           @Ip = params['Ip']
           @Note = params['Note']
           @SecurityGroupIds = params['SecurityGroupIds']
+          unless params['IpWhitelist'].nil?
+            @IpWhitelist = []
+            params['IpWhitelist'].each do |i|
+              ipwhitelistdto_tmp = IpWhitelistDTO.new
+              ipwhitelistdto_tmp.deserialize(i)
+              @IpWhitelist << ipwhitelistdto_tmp
+            end
+          end
         end
       end
 
@@ -5318,8 +5329,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :SearchWord, :Status, :Offset, :Limit, :TagKey, :Filters, :InstanceIds, :InstanceIdList, :TagList
         extend Gem::Deprecate
-        deprecate :InstanceIds, :none, 2026, 3
-        deprecate :InstanceIds=, :none, 2026, 3
+        deprecate :InstanceIds, :none, 2026, 4
+        deprecate :InstanceIds=, :none, 2026, 4
 
         def initialize(instanceid=nil, searchword=nil, status=nil, offset=nil, limit=nil, tagkey=nil, filters=nil, instanceids=nil, instanceidlist=nil, taglist=nil)
           @InstanceId = instanceid
@@ -5404,8 +5415,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :SearchWord, :Status, :Offset, :Limit, :TagKey, :VpcId
         extend Gem::Deprecate
-        deprecate :TagKey, :none, 2026, 3
-        deprecate :TagKey=, :none, 2026, 3
+        deprecate :TagKey, :none, 2026, 4
+        deprecate :TagKey=, :none, 2026, 4
 
         def initialize(instanceid=nil, searchword=nil, status=nil, offset=nil, limit=nil, tagkey=nil, vpcid=nil)
           @InstanceId = instanceid
@@ -7882,7 +7893,7 @@ module TencentCloud
         # @type Vip: String
         # @param Vport: <p>虚拟端口</p>
         # @type Vport: String
-        # @param Status: <p>实例的状态。0: 创建中，1: 运行中，2: 删除中,  3: 已删除,  5: 隔离中,  7: 升级中,  -1: 创建失败 </p>
+        # @param Status: <p>实例的状态。0: 创建中，1: 运行中，2: 删除中,  3: 已删除,  5: 隔离中,  7: 升级中,  -1: 创建失败</p>
         # @type Status: Integer
         # @param Bandwidth: <p>实例带宽，单位：Mbps</p>
         # @type Bandwidth: Integer
@@ -7924,7 +7935,7 @@ module TencentCloud
         # @type MaxGroupNum: Integer
         # @param Cvm: <p>售卖类型,0:标准版,1:专业版</p>
         # @type Cvm: Integer
-        # @param InstanceType: <p>实例类型  枚举列表: profession  :专业版  <br />standards2  :标准版premium   :高级版serverless  :serverless版</p>
+        # @param InstanceType: <p>实例类型  枚举列表:<br>profession  :专业版<br>standards2  :标准版<br>premium   :高级版<br>serverless  :serverless版</p>
         # @type InstanceType: String
         # @param Features: <p>表示该实例支持的特性。FEATURE_SUBNET_ACL:表示acl策略支持设置子网。</p>
         # @type Features: Array
@@ -7948,11 +7959,11 @@ module TencentCloud
         # @type MaxMessageByte: Integer
         # @param InstanceChargeType: <p>实例计费类型  POSTPAID_BY_HOUR 按小时付费; PREPAID 包年包月</p>
         # @type InstanceChargeType: String
-        # @param ElasticBandwidthSwitch: <p>是否开启弹性带宽白名单 <br />1:已开启弹性带宽白名单;0:未开启弹性带宽白名单;</p>
+        # @param ElasticBandwidthSwitch: <p>是否开启弹性带宽白名单<br>1:已开启弹性带宽白名单;<br>0:未开启弹性带宽白名单;</p>
         # @type ElasticBandwidthSwitch: Integer
-        # @param ElasticBandwidthOpenStatus: <p>弹性带宽开通状态1:未开启弹性带宽;16: 开启弹性带宽中;32:开启弹性带宽成功;33:关闭弹性带宽中;34:关闭弹性带宽成功;64:开启弹性带宽失败;65:关闭弹性带宽失败;</p>
+        # @param ElasticBandwidthOpenStatus: <p>弹性带宽开通状态<br>1:未开启弹性带宽;<br>16: 开启弹性带宽中;<br>32:开启弹性带宽成功;<br>33:关闭弹性带宽中;<br>34:关闭弹性带宽成功;<br>64:开启弹性带宽失败;<br>65:关闭弹性带宽失败;</p>
         # @type ElasticBandwidthOpenStatus: Integer
-        # @param ClusterType: <p>集群类型<br />CLOUD_IDC IDC集群CLOUD_CVM_SHARE CVM共享集群CLOUD_CVM_YUNTI 云梯CVM集群CLOUD_CVM    CVM集群CLOUD_CDC CDC集群CLOUD_EKS_TSE EKS集群</p>
+        # @param ClusterType: <p>集群类型<br>CLOUD_IDC IDC集群<br>CLOUD_CVM_SHARE CVM共享集群<br>CLOUD_CVM_YUNTI 云梯CVM集群<br>CLOUD_CVM    CVM集群<br>CLOUD_CDC CDC集群<br>CLOUD_EKS_TSE EKS集群</p>
         # @type ClusterType: String
         # @param FreePartitionNumber: <p>免费分区数量</p>
         # @type FreePartitionNumber: Integer
@@ -7964,9 +7975,9 @@ module TencentCloud
         # @type UncleanLeaderElectionEnable: Integer
         # @param DeleteProtectionEnable: <p>实例删除保护开关: 1 开启 0 关闭</p>
         # @type DeleteProtectionEnable: Integer
-        # @param RetentionBytes: <p>实例级别消息保留大小</p>单位：bytes<br>默认值：-1
+        # @param RetentionBytes: <p>实例级别消息保留大小</p><p>单位：bytes</p><p>默认值：-1</p>
         # @type RetentionBytes: Integer
-        # @param TransactionalIdExpirationMs: <p>事务ID最大空闲时间，超时未提交的事务将被标记为过期</p>单位：ms
+        # @param TransactionalIdExpirationMs: <p>事务ID最大空闲时间，超时未提交的事务将被标记为过期</p><p>单位：ms</p>
         # @type TransactionalIdExpirationMs: Integer
 
         attr_accessor :InstanceId, :InstanceName, :VipList, :Vip, :Vport, :Status, :Bandwidth, :DiskSize, :ZoneId, :VpcId, :SubnetId, :Healthy, :HealthyMessage, :CreateTime, :MsgRetentionTime, :Config, :RemainderPartitions, :RemainderTopics, :CreatedPartitions, :CreatedTopics, :Tags, :ExpireTime, :ZoneIds, :Version, :MaxGroupNum, :Cvm, :InstanceType, :Features, :RetentionTimeConfig, :MaxConnection, :PublicNetwork, :DeleteRouteTimestamp, :RemainingPartitions, :RemainingTopics, :DynamicDiskConfig, :SystemMaintenanceTime, :MaxMessageByte, :InstanceChargeType, :ElasticBandwidthSwitch, :ElasticBandwidthOpenStatus, :ClusterType, :FreePartitionNumber, :ElasticFloatBandwidth, :CustomCertId, :UncleanLeaderElectionEnable, :DeleteProtectionEnable, :RetentionBytes, :TransactionalIdExpirationMs
@@ -8169,7 +8180,7 @@ module TencentCloud
         # @type Vport: String
         # @param VipList: <p>虚拟IP列表</p>
         # @type VipList: Array
-        # @param Status: <p>实例的状态。0: 创建中，1: 运行中，2: 删除中,  3: 已删除,  5: 隔离中,  7: 升级中,  -1: 创建失败 </p>
+        # @param Status: <p>实例的状态。0: 创建中，1: 运行中，2: 删除中,  3: 已删除,  5: 隔离中,  7: 升级中,  -1: 创建失败</p>
         # @type Status: Integer
         # @param Bandwidth: <p>实例带宽，单位Mbps</p>
         # @type Bandwidth: Integer
@@ -8223,7 +8234,7 @@ module TencentCloud
         # @type ClusterType: String
         # @param Features: <p>实例功能列表</p>
         # @type Features: Array
-        # @param RetentionBytes: <p>实例级别消息保留大小</p>单位：byte<br>默认值：-1<br><p>实例级别消息保留大小</p>
+        # @param RetentionBytes: <p>实例级别消息保留大小</p><p>单位：byte</p><p>默认值：-1</p><p>实例级别消息保留大小</p>
         # @type RetentionBytes: Integer
 
         attr_accessor :InstanceId, :InstanceName, :Vip, :Vport, :VipList, :Status, :Bandwidth, :DiskSize, :ZoneId, :VpcId, :SubnetId, :RenewFlag, :Healthy, :HealthyMessage, :CreateTime, :ExpireTime, :IsInternal, :TopicNum, :Tags, :Version, :ZoneIds, :Cvm, :InstanceType, :DiskType, :MaxTopicNumber, :MaxPartitionNumber, :RebalanceTime, :PartitionNumber, :PublicNetworkChargeType, :PublicNetwork, :ClusterType, :Features, :RetentionBytes
@@ -8518,13 +8529,33 @@ module TencentCloud
         end
       end
 
+      # 实例公网路由IP白名单列表对象
+      class IpWhitelistDTO < TencentCloud::Common::AbstractModel
+        # @param CidrBlock: <p>放通IP或网段</p>
+        # @type CidrBlock: String
+        # @param PolicyDescription: <p>描述</p>
+        # @type PolicyDescription: String
+
+        attr_accessor :CidrBlock, :PolicyDescription
+
+        def initialize(cidrblock=nil, policydescription=nil)
+          @CidrBlock = cidrblock
+          @PolicyDescription = policydescription
+        end
+
+        def deserialize(params)
+          @CidrBlock = params['CidrBlock']
+          @PolicyDescription = params['PolicyDescription']
+        end
+      end
+
       # 操作型结果返回值
       class JgwOperateResponse < TencentCloud::Common::AbstractModel
-        # @param ReturnCode: 返回的code，0为正常，非0为错误
+        # @param ReturnCode: <p>返回的code，0为正常，非0为错误</p>
         # @type ReturnCode: String
-        # @param ReturnMessage: 成功消息
+        # @param ReturnMessage: <p>成功消息</p>
         # @type ReturnMessage: String
-        # @param Data: 操作型返回的Data数据,可能有flowId等
+        # @param Data: <p>操作型返回的Data数据,可能有flowId等</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: :class:`Tencentcloud::Ckafka.v20190819.models.OperateResponseData`
 
@@ -9380,8 +9411,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :MsgRetentionTime, :InstanceName, :Config, :DynamicRetentionConfig, :RebalanceTime, :PublicNetwork, :DynamicDiskConfig, :MaxMessageByte, :UncleanLeaderElectionEnable, :DeleteProtectionEnable, :RetentionBytes, :AdminSecurity, :TransactionalIdExpirationMs
         extend Gem::Deprecate
-        deprecate :DynamicDiskConfig, :none, 2026, 3
-        deprecate :DynamicDiskConfig=, :none, 2026, 3
+        deprecate :DynamicDiskConfig, :none, 2026, 4
+        deprecate :DynamicDiskConfig=, :none, 2026, 4
 
         def initialize(instanceid=nil, msgretentiontime=nil, instancename=nil, config=nil, dynamicretentionconfig=nil, rebalancetime=nil, publicnetwork=nil, dynamicdiskconfig=nil, maxmessagebyte=nil, uncleanleaderelectionenable=nil, deleteprotectionenable=nil, retentionbytes=nil, adminsecurity=nil, transactionalidexpirationms=nil)
           @InstanceId = instanceid
@@ -12621,8 +12652,8 @@ module TencentCloud
 
         attr_accessor :ZoneId, :IsInternalApp, :AppId, :Flag, :ZoneName, :ZoneStatus, :Exflag, :SoldOut, :SalesInfo, :ExtraFlag
         extend Gem::Deprecate
-        deprecate :Exflag, :none, 2026, 3
-        deprecate :Exflag=, :none, 2026, 3
+        deprecate :Exflag, :none, 2026, 4
+        deprecate :Exflag=, :none, 2026, 4
 
         def initialize(zoneid=nil, isinternalapp=nil, appid=nil, flag=nil, zonename=nil, zonestatus=nil, exflag=nil, soldout=nil, salesinfo=nil, extraflag=nil)
           @ZoneId = zoneid

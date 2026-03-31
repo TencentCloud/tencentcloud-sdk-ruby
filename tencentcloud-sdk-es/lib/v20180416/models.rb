@@ -5644,10 +5644,13 @@ module TencentCloud
         # @type DeployMode: Integer
         # @param MultiZoneInfo: 多可用区部署时可用区的详细信息
         # @type MultiZoneInfo: Array
+        # @param UserDnsIp: 客户自定义dns配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserDnsIp: String
 
-        attr_accessor :InstanceId, :InstanceName, :Region, :Zone, :AppId, :Uin, :VpcId, :SubnetId, :Status, :ChargeType, :ChargePeriod, :RenewFlag, :NodeType, :NodeNum, :DiskType, :DiskSize, :LogstashVersion, :LicenseType, :CreateTime, :UpdateTime, :Deadline, :Nodes, :BindedESInstanceId, :YMLConfig, :ExtendedFiles, :OperationDuration, :CpuNum, :TagList, :MemSize, :DeployMode, :MultiZoneInfo
+        attr_accessor :InstanceId, :InstanceName, :Region, :Zone, :AppId, :Uin, :VpcId, :SubnetId, :Status, :ChargeType, :ChargePeriod, :RenewFlag, :NodeType, :NodeNum, :DiskType, :DiskSize, :LogstashVersion, :LicenseType, :CreateTime, :UpdateTime, :Deadline, :Nodes, :BindedESInstanceId, :YMLConfig, :ExtendedFiles, :OperationDuration, :CpuNum, :TagList, :MemSize, :DeployMode, :MultiZoneInfo, :UserDnsIp
 
-        def initialize(instanceid=nil, instancename=nil, region=nil, zone=nil, appid=nil, uin=nil, vpcid=nil, subnetid=nil, status=nil, chargetype=nil, chargeperiod=nil, renewflag=nil, nodetype=nil, nodenum=nil, disktype=nil, disksize=nil, logstashversion=nil, licensetype=nil, createtime=nil, updatetime=nil, deadline=nil, nodes=nil, bindedesinstanceid=nil, ymlconfig=nil, extendedfiles=nil, operationduration=nil, cpunum=nil, taglist=nil, memsize=nil, deploymode=nil, multizoneinfo=nil)
+        def initialize(instanceid=nil, instancename=nil, region=nil, zone=nil, appid=nil, uin=nil, vpcid=nil, subnetid=nil, status=nil, chargetype=nil, chargeperiod=nil, renewflag=nil, nodetype=nil, nodenum=nil, disktype=nil, disksize=nil, logstashversion=nil, licensetype=nil, createtime=nil, updatetime=nil, deadline=nil, nodes=nil, bindedesinstanceid=nil, ymlconfig=nil, extendedfiles=nil, operationduration=nil, cpunum=nil, taglist=nil, memsize=nil, deploymode=nil, multizoneinfo=nil, userdnsip=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @Region = region
@@ -5679,6 +5682,7 @@ module TencentCloud
           @MemSize = memsize
           @DeployMode = deploymode
           @MultiZoneInfo = multizoneinfo
+          @UserDnsIp = userdnsip
         end
 
         def deserialize(params)
@@ -5744,6 +5748,7 @@ module TencentCloud
               @MultiZoneInfo << zonedetail_tmp
             end
           end
+          @UserDnsIp = params['UserDnsIp']
         end
       end
 
@@ -8418,6 +8423,8 @@ module TencentCloud
         # @type NodeNum: Integer
         # @param YMLConfig: 实例YML配置
         # @type YMLConfig: String
+        # @param UserDnsIp: 客户自定义dns配置
+        # @type UserDnsIp: String
         # @param BindedES: 实例绑定的ES集群信息
         # @type BindedES: :class:`Tencentcloud::Es.v20180416.models.LogstashBindedES`
         # @param InstanceName: 实例名称
@@ -8433,12 +8440,13 @@ module TencentCloud
         # @param MultiZoneInfo: 多可用区部署
         # @type MultiZoneInfo: Array
 
-        attr_accessor :InstanceId, :NodeNum, :YMLConfig, :BindedES, :InstanceName, :ExtendedFiles, :NodeType, :DiskSize, :OperationDuration, :MultiZoneInfo
+        attr_accessor :InstanceId, :NodeNum, :YMLConfig, :UserDnsIp, :BindedES, :InstanceName, :ExtendedFiles, :NodeType, :DiskSize, :OperationDuration, :MultiZoneInfo
 
-        def initialize(instanceid=nil, nodenum=nil, ymlconfig=nil, bindedes=nil, instancename=nil, extendedfiles=nil, nodetype=nil, disksize=nil, operationduration=nil, multizoneinfo=nil)
+        def initialize(instanceid=nil, nodenum=nil, ymlconfig=nil, userdnsip=nil, bindedes=nil, instancename=nil, extendedfiles=nil, nodetype=nil, disksize=nil, operationduration=nil, multizoneinfo=nil)
           @InstanceId = instanceid
           @NodeNum = nodenum
           @YMLConfig = ymlconfig
+          @UserDnsIp = userdnsip
           @BindedES = bindedes
           @InstanceName = instancename
           @ExtendedFiles = extendedfiles
@@ -8452,6 +8460,7 @@ module TencentCloud
           @InstanceId = params['InstanceId']
           @NodeNum = params['NodeNum']
           @YMLConfig = params['YMLConfig']
+          @UserDnsIp = params['UserDnsIp']
           unless params['BindedES'].nil?
             @BindedES = LogstashBindedES.new
             @BindedES.deserialize(params['BindedES'])

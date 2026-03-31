@@ -319,8 +319,8 @@ module TencentCloud
 
         attr_accessor :ReqTime, :Seq, :IdCard, :Idcard, :Name, :Sim, :IsNeedCharge, :ChargeType, :ErrorCode, :ErrorMessage
         extend Gem::Deprecate
-        deprecate :Idcard, :none, 2026, 3
-        deprecate :Idcard=, :none, 2026, 3
+        deprecate :Idcard, :none, 2026, 4
+        deprecate :Idcard=, :none, 2026, 4
 
         def initialize(reqtime=nil, seq=nil, idcard=nil, name=nil, sim=nil, isneedcharge=nil, chargetype=nil, errorcode=nil, errormessage=nil)
           @ReqTime = reqtime
@@ -3079,8 +3079,8 @@ module TencentCloud
 
         attr_accessor :IntentionVerifyVideo, :AsrResult, :ErrorCode, :ErrorMessage, :IntentionVerifyBestFrame, :AsrResultSimilarity, :IntentionVerifyAudio
         extend Gem::Deprecate
-        deprecate :AsrResultSimilarity, :none, 2026, 3
-        deprecate :AsrResultSimilarity=, :none, 2026, 3
+        deprecate :AsrResultSimilarity, :none, 2026, 4
+        deprecate :AsrResultSimilarity=, :none, 2026, 4
 
         def initialize(intentionverifyvideo=nil, asrresult=nil, errorcode=nil, errormessage=nil, intentionverifybestframe=nil, asrresultsimilarity=nil, intentionverifyaudio=nil)
           @IntentionVerifyVideo = intentionverifyvideo
@@ -3414,10 +3414,9 @@ module TencentCloud
 
       # MobileStatus请求参数结构体
       class MobileStatusRequest < TencentCloud::Common::AbstractModel
-        # @param Mobile: 手机号码。
+        # @param Mobile: <p>手机号码。</p>
         # @type Mobile: String
-        # @param Encryption: 敏感数据加密信息。
-        # - 对传入信息（手机号）有加密需求的用户可使用此参数，详情请点击左侧链接。
+        # @param Encryption: <p>敏感数据加密信息。</p><ul><li>对传入信息（手机号）有加密需求的用户可使用此参数，详情请点击左侧链接。</li></ul>
         # @type Encryption: :class:`Tencentcloud::Faceid.v20180301.models.Encryption`
 
         attr_accessor :Mobile, :Encryption
@@ -3438,25 +3437,11 @@ module TencentCloud
 
       # MobileStatus返回参数结构体
       class MobileStatusResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 认证结果码，收费情况如下。
-        # - 收费结果码：
-        # 0：成功。
-
-        # - 不收费结果码：
-        # -1：未查询到结果。
-        # -2：手机号格式不正确。
-        # -3：验证中心服务繁忙。
-        # -4：认证次数超过当日限制，请次日重试。
+        # @param Result: <p>认证结果码，收费情况如下。</p><ul><li><p>收费结果码：<br>0：成功。</p></li><li><p>不收费结果码：<br>-1：未查询到结果。<br>-2：手机号格式不正确。<br>-3：验证中心服务繁忙。<br>-4：认证次数超过当日限制，请次日重试。</p></li></ul>
         # @type Result: String
-        # @param Description: 业务结果描述。
+        # @param Description: <p>业务结果描述。</p>
         # @type Description: String
-        # @param StatusCode: 状态码。
-        # - 取值范围：
-        # 0：正常。
-        # 1：停机。
-        # 2：销号。
-        # 4：不在网。
-        # 99：未知状态。
+        # @param StatusCode: <p>状态码。- 取值范围：0：正常。1：停机。2：销号。4：不在网。5：在网但不可用 。99：未知状态。</p>
         # @type StatusCode: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

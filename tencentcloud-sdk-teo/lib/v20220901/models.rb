@@ -2394,8 +2394,8 @@ module TencentCloud
 
         attr_accessor :Switch, :CacheTime, :IgnoreCacheControl
         extend Gem::Deprecate
-        deprecate :IgnoreCacheControl, :none, 2026, 3
-        deprecate :IgnoreCacheControl=, :none, 2026, 3
+        deprecate :IgnoreCacheControl, :none, 2026, 4
+        deprecate :IgnoreCacheControl=, :none, 2026, 4
 
         def initialize(switch=nil, cachetime=nil, ignorecachecontrol=nil)
           @Switch = switch
@@ -4471,8 +4471,8 @@ module TencentCloud
 
         attr_accessor :ZoneId, :ProxyName, :Area, :Ipv6, :StaticIp, :AccelerateMainland, :DDosProtectionConfig
         extend Gem::Deprecate
-        deprecate :DDosProtectionConfig, :none, 2026, 3
-        deprecate :DDosProtectionConfig=, :none, 2026, 3
+        deprecate :DDosProtectionConfig, :none, 2026, 4
+        deprecate :DDosProtectionConfig=, :none, 2026, 4
 
         def initialize(zoneid=nil, proxyname=nil, area=nil, ipv6=nil, staticip=nil, acceleratemainland=nil, ddosprotectionconfig=nil)
           @ZoneId = zoneid
@@ -5053,8 +5053,8 @@ module TencentCloud
 
         attr_accessor :ZoneId, :Targets, :Mode, :EncodeUrl, :Headers, :PrefetchMediaSegments
         extend Gem::Deprecate
-        deprecate :EncodeUrl, :none, 2026, 3
-        deprecate :EncodeUrl=, :none, 2026, 3
+        deprecate :EncodeUrl, :none, 2026, 4
+        deprecate :EncodeUrl=, :none, 2026, 4
 
         def initialize(zoneid=nil, targets=nil, mode=nil, encodeurl=nil, headers=nil, prefetchmediasegments=nil)
           @ZoneId = zoneid
@@ -5138,8 +5138,8 @@ module TencentCloud
 
         attr_accessor :ZoneId, :Type, :Method, :Targets, :EncodeUrl, :CacheTag
         extend Gem::Deprecate
-        deprecate :EncodeUrl, :none, 2026, 3
-        deprecate :EncodeUrl=, :none, 2026, 3
+        deprecate :EncodeUrl, :none, 2026, 4
+        deprecate :EncodeUrl=, :none, 2026, 4
 
         def initialize(zoneid=nil, type=nil, method=nil, targets=nil, encodeurl=nil, cachetag=nil)
           @ZoneId = zoneid
@@ -5750,10 +5750,10 @@ module TencentCloud
 
         attr_accessor :Type, :ZoneName, :Area, :PlanId, :AliasZoneName, :Tags, :AllowDuplicates, :JumpStart
         extend Gem::Deprecate
-        deprecate :AllowDuplicates, :none, 2026, 3
-        deprecate :AllowDuplicates=, :none, 2026, 3
-        deprecate :JumpStart, :none, 2026, 3
-        deprecate :JumpStart=, :none, 2026, 3
+        deprecate :AllowDuplicates, :none, 2026, 4
+        deprecate :AllowDuplicates=, :none, 2026, 4
+        deprecate :JumpStart, :none, 2026, 4
+        deprecate :JumpStart=, :none, 2026, 4
 
         def initialize(type=nil, zonename=nil, area=nil, planid=nil, aliaszonename=nil, tags=nil, allowduplicates=nil, jumpstart=nil)
           @Type = type
@@ -11059,8 +11059,8 @@ module TencentCloud
 
         attr_accessor :StartTime, :EndTime, :MetricNames, :ZoneIds, :ProxyIds, :Interval, :Filters, :Area
         extend Gem::Deprecate
-        deprecate :Area, :none, 2026, 3
-        deprecate :Area=, :none, 2026, 3
+        deprecate :Area, :none, 2026, 4
+        deprecate :Area=, :none, 2026, 4
 
         def initialize(starttime=nil, endtime=nil, metricnames=nil, zoneids=nil, proxyids=nil, interval=nil, filters=nil, area=nil)
           @StartTime = starttime
@@ -14888,8 +14888,8 @@ module TencentCloud
 
         attr_accessor :ZoneId, :ProxyId, :ProxyName, :Area, :Cname, :Ips, :Status, :Ipv6, :StaticIp, :AccelerateMainland, :DDosProtectionConfig, :L4ProxyRuleCount, :UpdateTime
         extend Gem::Deprecate
-        deprecate :DDosProtectionConfig, :none, 2026, 3
-        deprecate :DDosProtectionConfig=, :none, 2026, 3
+        deprecate :DDosProtectionConfig, :none, 2026, 4
+        deprecate :DDosProtectionConfig=, :none, 2026, 4
 
         def initialize(zoneid=nil, proxyid=nil, proxyname=nil, area=nil, cname=nil, ips=nil, status=nil, ipv6=nil, staticip=nil, acceleratemainland=nil, ddosprotectionconfig=nil, l4proxyrulecount=nil, updatetime=nil)
           @ZoneId = zoneid
@@ -16383,8 +16383,8 @@ module TencentCloud
 
         attr_accessor :ZoneId, :Hosts, :Mode, :ServerCertInfo, :ApplyType, :ClientCertInfo, :UpstreamCertInfo
         extend Gem::Deprecate
-        deprecate :ApplyType, :none, 2026, 3
-        deprecate :ApplyType=, :none, 2026, 3
+        deprecate :ApplyType, :none, 2026, 4
+        deprecate :ApplyType=, :none, 2026, 4
 
         def initialize(zoneid=nil, hosts=nil, mode=nil, servercertinfo=nil, applytype=nil, clientcertinfo=nil, upstreamcertinfo=nil)
           @ZoneId = zoneid
@@ -18859,12 +18859,12 @@ module TencentCloud
 
         attr_accessor :OriginType, :Origin, :BackupOrigin, :OriginGroupName, :BackOriginGroupName, :PrivateAccess, :PrivateParameters, :HostHeader, :VodeoSubAppId, :VodeoDistributionRange, :VodeoBucketId, :VodOriginScope, :VodBucketId
         extend Gem::Deprecate
-        deprecate :VodeoSubAppId, :none, 2026, 3
-        deprecate :VodeoSubAppId=, :none, 2026, 3
-        deprecate :VodeoDistributionRange, :none, 2026, 3
-        deprecate :VodeoDistributionRange=, :none, 2026, 3
-        deprecate :VodeoBucketId, :none, 2026, 3
-        deprecate :VodeoBucketId=, :none, 2026, 3
+        deprecate :VodeoSubAppId, :none, 2026, 4
+        deprecate :VodeoSubAppId=, :none, 2026, 4
+        deprecate :VodeoDistributionRange, :none, 2026, 4
+        deprecate :VodeoDistributionRange=, :none, 2026, 4
+        deprecate :VodeoBucketId, :none, 2026, 4
+        deprecate :VodeoBucketId=, :none, 2026, 4
 
         def initialize(origintype=nil, origin=nil, backuporigin=nil, origingroupname=nil, backorigingroupname=nil, privateaccess=nil, privateparameters=nil, hostheader=nil, vodeosubappid=nil, vodeodistributionrange=nil, vodeobucketid=nil, vodoriginscope=nil, vodbucketid=nil)
           @OriginType = origintype
@@ -19179,12 +19179,12 @@ module TencentCloud
 
         attr_accessor :OriginType, :Origin, :BackupOrigin, :PrivateAccess, :PrivateParameters, :HostHeader, :VodeoSubAppId, :VodeoDistributionRange, :VodeoBucketId, :VodOriginScope, :VodBucketId
         extend Gem::Deprecate
-        deprecate :VodeoSubAppId, :none, 2026, 3
-        deprecate :VodeoSubAppId=, :none, 2026, 3
-        deprecate :VodeoDistributionRange, :none, 2026, 3
-        deprecate :VodeoDistributionRange=, :none, 2026, 3
-        deprecate :VodeoBucketId, :none, 2026, 3
-        deprecate :VodeoBucketId=, :none, 2026, 3
+        deprecate :VodeoSubAppId, :none, 2026, 4
+        deprecate :VodeoSubAppId=, :none, 2026, 4
+        deprecate :VodeoDistributionRange, :none, 2026, 4
+        deprecate :VodeoDistributionRange=, :none, 2026, 4
+        deprecate :VodeoBucketId, :none, 2026, 4
+        deprecate :VodeoBucketId=, :none, 2026, 4
 
         def initialize(origintype=nil, origin=nil, backuporigin=nil, privateaccess=nil, privateparameters=nil, hostheader=nil, vodeosubappid=nil, vodeodistributionrange=nil, vodeobucketid=nil, vodoriginscope=nil, vodbucketid=nil)
           @OriginType = origintype
@@ -20913,8 +20913,8 @@ module TencentCloud
 
         attr_accessor :Operator, :Target, :Values, :IgnoreCase, :Name, :IgnoreNameCase
         extend Gem::Deprecate
-        deprecate :IgnoreNameCase, :none, 2026, 3
-        deprecate :IgnoreNameCase=, :none, 2026, 3
+        deprecate :IgnoreNameCase, :none, 2026, 4
+        deprecate :IgnoreNameCase=, :none, 2026, 4
 
         def initialize(operator=nil, target=nil, values=nil, ignorecase=nil, name=nil, ignorenamecase=nil)
           @Operator = operator

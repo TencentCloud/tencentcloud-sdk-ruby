@@ -629,12 +629,12 @@ module TencentCloud
 
         attr_accessor :AddressTemplateId, :AddressTemplateName, :From, :To, :Description, :UpdatedTime
         extend Gem::Deprecate
-        deprecate :AddressTemplateName, :none, 2026, 3
-        deprecate :AddressTemplateName=, :none, 2026, 3
-        deprecate :From, :none, 2026, 3
-        deprecate :From=, :none, 2026, 3
-        deprecate :To, :none, 2026, 3
-        deprecate :To=, :none, 2026, 3
+        deprecate :AddressTemplateName, :none, 2026, 4
+        deprecate :AddressTemplateName=, :none, 2026, 4
+        deprecate :From, :none, 2026, 4
+        deprecate :From=, :none, 2026, 4
+        deprecate :To, :none, 2026, 4
+        deprecate :To=, :none, 2026, 4
 
         def initialize(addresstemplateid=nil, addresstemplatename=nil, from=nil, to=nil, description=nil, updatedtime=nil)
           @AddressTemplateId = addresstemplateid
@@ -809,8 +809,8 @@ module TencentCloud
 
         attr_accessor :AddressCount, :InternetServiceProvider, :InternetChargeType, :IPChargeType, :InternetMaxBandwidthOut, :AddressChargePrepaid, :AddressType, :AnycastZone, :VipCluster, :ApplicableForCLB, :Tags, :BandwidthPackageId, :AddressName, :DedicatedClusterId, :IsDedicatedAddressPool, :Egress, :AntiDDoSPackageId, :ClientToken
         extend Gem::Deprecate
-        deprecate :ApplicableForCLB, :none, 2026, 3
-        deprecate :ApplicableForCLB=, :none, 2026, 3
+        deprecate :ApplicableForCLB, :none, 2026, 4
+        deprecate :ApplicableForCLB=, :none, 2026, 4
 
         def initialize(addresscount=nil, internetserviceprovider=nil, internetchargetype=nil, ipchargetype=nil, internetmaxbandwidthout=nil, addresschargeprepaid=nil, addresstype=nil, anycastzone=nil, vipcluster=nil, applicableforclb=nil, tags=nil, bandwidthpackageid=nil, addressname=nil, dedicatedclusterid=nil, isdedicatedaddresspool=nil, egress=nil, antiddospackageid=nil, clienttoken=nil)
           @AddressCount = addresscount
@@ -3541,8 +3541,8 @@ module TencentCloud
 
         attr_accessor :ConfilctId, :DestinationItem, :ConflictId
         extend Gem::Deprecate
-        deprecate :ConfilctId, :none, 2026, 3
-        deprecate :ConfilctId=, :none, 2026, 3
+        deprecate :ConfilctId, :none, 2026, 4
+        deprecate :ConfilctId=, :none, 2026, 4
 
         def initialize(confilctid=nil, destinationitem=nil, conflictid=nil)
           @ConfilctId = confilctid
@@ -5116,8 +5116,8 @@ module TencentCloud
 
         attr_accessor :NatGatewayName, :VpcId, :InternetMaxBandwidthOut, :MaxConcurrentConnection, :AddressCount, :PublicIpAddresses, :Zone, :Tags, :SubnetId, :StockPublicIpAddressesBandwidthOut, :PublicIpAddressesBandwidthOut, :PublicIpFromSameZone, :NatProductVersion, :DeletionProtectionEnabled, :ExclusiveType
         extend Gem::Deprecate
-        deprecate :SubnetId, :none, 2026, 3
-        deprecate :SubnetId=, :none, 2026, 3
+        deprecate :SubnetId, :none, 2026, 4
+        deprecate :SubnetId=, :none, 2026, 4
 
         def initialize(natgatewayname=nil, vpcid=nil, internetmaxbandwidthout=nil, maxconcurrentconnection=nil, addresscount=nil, publicipaddresses=nil, zone=nil, tags=nil, subnetid=nil, stockpublicipaddressesbandwidthout=nil, publicipaddressesbandwidthout=nil, publicipfromsamezone=nil, natproductversion=nil, deletionprotectionenabled=nil, exclusivetype=nil)
           @NatGatewayName = natgatewayname
@@ -6858,8 +6858,8 @@ module TencentCloud
 
         attr_accessor :VpcId, :EndPointServiceName, :AutoAcceptFlag, :ServiceInstanceId, :IsPassService, :ServiceType, :Tags, :IpAddressType
         extend Gem::Deprecate
-        deprecate :IsPassService, :none, 2026, 3
-        deprecate :IsPassService=, :none, 2026, 3
+        deprecate :IsPassService, :none, 2026, 4
+        deprecate :IsPassService=, :none, 2026, 4
 
         def initialize(vpcid=nil, endpointservicename=nil, autoacceptflag=nil, serviceinstanceid=nil, ispassservice=nil, servicetype=nil, tags=nil, ipaddresstype=nil)
           @VpcId = vpcid
@@ -16758,8 +16758,8 @@ module TencentCloud
 
         attr_accessor :VpcEndpointServiceUserSet, :VpcEndPointServiceUserSet, :TotalCount, :RequestId
         extend Gem::Deprecate
-        deprecate :VpcEndpointServiceUserSet, :none, 2026, 3
-        deprecate :VpcEndpointServiceUserSet=, :none, 2026, 3
+        deprecate :VpcEndpointServiceUserSet, :none, 2026, 4
+        deprecate :VpcEndpointServiceUserSet=, :none, 2026, 4
 
         def initialize(vpcendpointserviceuserset=nil, totalcount=nil, requestid=nil)
           @VpcEndPointServiceUserSet = vpcendpointserviceuserset
@@ -19689,11 +19689,11 @@ module TencentCloud
         # @type Business: String
         # @param HaVipAssociationSet: `HAVIP`的飘移范围。
         # @type HaVipAssociationSet: Array
-        # @param CheckAssociate: 是否开启`HAVIP`的飘移范围校验。
+        # @param CheckAssociate: 是否开启`HAVIP`的漂移范围校验。
         # @type CheckAssociate: Boolean
         # @param CdcId: CDC实例ID。
         # @type CdcId: String
-        # @param FlushedTime: HAVIP 刷新时间。该参数只作为出参数。以下场景会触发 FlushTime 被刷新：1）子机发出免费 ARP 触发 HAVIP 漂移；2）手动HAVIP解绑网卡; 没有更新时默认值：0000-00-00 00:00:00
+        # @param FlushedTime: HAVIP 刷新时间。该参数只作为出参数。以下场景会触发FlushedTime 被刷新：1）子机发出免费 ARP 触发 HAVIP 漂移；2）手动HAVIP解绑网卡; 没有更新时默认值：0000-00-00 00:00:00
         # @type FlushedTime: String
         # @param TagSet: 标签键值对。
         # @type TagSet: Array
@@ -20066,8 +20066,8 @@ module TencentCloud
 
         attr_accessor :EncryptAlgorithm, :IntegrityAlgorith, :IPSECSaLifetimeSeconds, :PfsDhGroup, :IPSECSaLifetimeTraffic, :IntegrityAlgorithm
         extend Gem::Deprecate
-        deprecate :IntegrityAlgorith, :none, 2026, 3
-        deprecate :IntegrityAlgorith=, :none, 2026, 3
+        deprecate :IntegrityAlgorith, :none, 2026, 4
+        deprecate :IntegrityAlgorith=, :none, 2026, 4
 
         def initialize(encryptalgorithm=nil, integrityalgorith=nil, ipsecsalifetimeseconds=nil, pfsdhgroup=nil, ipsecsalifetimetraffic=nil, integrityalgorithm=nil)
           @EncryptAlgorithm = encryptalgorithm
@@ -21478,10 +21478,10 @@ module TencentCloud
 
         attr_accessor :AddressIds, :InternetMaxBandwidthOut, :StartTime, :EndTime
         extend Gem::Deprecate
-        deprecate :StartTime, :none, 2026, 3
-        deprecate :StartTime=, :none, 2026, 3
-        deprecate :EndTime, :none, 2026, 3
-        deprecate :EndTime=, :none, 2026, 3
+        deprecate :StartTime, :none, 2026, 4
+        deprecate :StartTime=, :none, 2026, 4
+        deprecate :EndTime, :none, 2026, 4
+        deprecate :EndTime=, :none, 2026, 4
 
         def initialize(addressids=nil, internetmaxbandwidthout=nil, starttime=nil, endtime=nil)
           @AddressIds = addressids
@@ -29490,10 +29490,14 @@ module TencentCloud
         # @type SubnetId: String
         # @param TargetInfo: 流量镜接收目标资源信息，当接收目标为ENI和CLB时返回。
         # @type TargetInfo: Array
+        # @param IngressFilterRules: 流量镜像入站过滤规则。
+        # @type IngressFilterRules: Array
+        # @param EgressFilterRules: 流量镜像出站过滤规则。
+        # @type EgressFilterRules: Array
 
-        attr_accessor :VpcId, :TrafficMirrorId, :TrafficMirrorName, :TrafficMirrorDescribe, :State, :Direction, :CollectorSrcs, :NatId, :CollectorNormalFilters, :CollectorTarget, :CreateTime, :Type, :SubnetId, :TargetInfo
+        attr_accessor :VpcId, :TrafficMirrorId, :TrafficMirrorName, :TrafficMirrorDescribe, :State, :Direction, :CollectorSrcs, :NatId, :CollectorNormalFilters, :CollectorTarget, :CreateTime, :Type, :SubnetId, :TargetInfo, :IngressFilterRules, :EgressFilterRules
 
-        def initialize(vpcid=nil, trafficmirrorid=nil, trafficmirrorname=nil, trafficmirrordescribe=nil, state=nil, direction=nil, collectorsrcs=nil, natid=nil, collectornormalfilters=nil, collectortarget=nil, createtime=nil, type=nil, subnetid=nil, targetinfo=nil)
+        def initialize(vpcid=nil, trafficmirrorid=nil, trafficmirrorname=nil, trafficmirrordescribe=nil, state=nil, direction=nil, collectorsrcs=nil, natid=nil, collectornormalfilters=nil, collectortarget=nil, createtime=nil, type=nil, subnetid=nil, targetinfo=nil, ingressfilterrules=nil, egressfilterrules=nil)
           @VpcId = vpcid
           @TrafficMirrorId = trafficmirrorid
           @TrafficMirrorName = trafficmirrorname
@@ -29508,6 +29512,8 @@ module TencentCloud
           @Type = type
           @SubnetId = subnetid
           @TargetInfo = targetinfo
+          @IngressFilterRules = ingressfilterrules
+          @EgressFilterRules = egressfilterrules
         end
 
         def deserialize(params)
@@ -29542,6 +29548,22 @@ module TencentCloud
               @TargetInfo << trafficmirrortargetresourceinfo_tmp
             end
           end
+          unless params['IngressFilterRules'].nil?
+            @IngressFilterRules = []
+            params['IngressFilterRules'].each do |i|
+              trafficmirrorfilter_tmp = TrafficMirrorFilter.new
+              trafficmirrorfilter_tmp.deserialize(i)
+              @IngressFilterRules << trafficmirrorfilter_tmp
+            end
+          end
+          unless params['EgressFilterRules'].nil?
+            @EgressFilterRules = []
+            params['EgressFilterRules'].each do |i|
+              trafficmirrorfilter_tmp = TrafficMirrorFilter.new
+              trafficmirrorfilter_tmp.deserialize(i)
+              @EgressFilterRules << trafficmirrorfilter_tmp
+            end
+          end
         end
       end
 
@@ -29557,15 +29579,30 @@ module TencentCloud
         # @type SrcPort: String
         # @param DstPort: 过滤规则的目的端口，默认值1-65535
         # @type DstPort: String
+        # @param TrafficMirrorFilterRuleId: 流量镜像过滤规则唯一ID。
+        # @type TrafficMirrorFilterRuleId: String
+        # @param Priority: 流量镜像过滤规则优先级。
+        # @type Priority: Integer
+        # @param Action: 流量镜像过滤规则策略，支持类型："ACCEPT", "DROP"。
+        # @type Action: String
+        # @param Description: 流量镜像过滤规则描述。
+        # @type Description: String
+        # @param CreatedTime: 创建时间。
+        # @type CreatedTime: String
 
-        attr_accessor :SrcNet, :DstNet, :Protocol, :SrcPort, :DstPort
+        attr_accessor :SrcNet, :DstNet, :Protocol, :SrcPort, :DstPort, :TrafficMirrorFilterRuleId, :Priority, :Action, :Description, :CreatedTime
 
-        def initialize(srcnet=nil, dstnet=nil, protocol=nil, srcport=nil, dstport=nil)
+        def initialize(srcnet=nil, dstnet=nil, protocol=nil, srcport=nil, dstport=nil, trafficmirrorfilterruleid=nil, priority=nil, action=nil, description=nil, createdtime=nil)
           @SrcNet = srcnet
           @DstNet = dstnet
           @Protocol = protocol
           @SrcPort = srcport
           @DstPort = dstport
+          @TrafficMirrorFilterRuleId = trafficmirrorfilterruleid
+          @Priority = priority
+          @Action = action
+          @Description = description
+          @CreatedTime = createdtime
         end
 
         def deserialize(params)
@@ -29574,6 +29611,11 @@ module TencentCloud
           @Protocol = params['Protocol']
           @SrcPort = params['SrcPort']
           @DstPort = params['DstPort']
+          @TrafficMirrorFilterRuleId = params['TrafficMirrorFilterRuleId']
+          @Priority = params['Priority']
+          @Action = params['Action']
+          @Description = params['Description']
+          @CreatedTime = params['CreatedTime']
         end
       end
 

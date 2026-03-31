@@ -143,17 +143,13 @@ module TencentCloud
 
       # CreateAsrVocab请求参数结构体
       class CreateAsrVocabRequest < TencentCloud::Common::AbstractModel
-        # @param Name: 热词表名称，长度在1-255之间
+        # @param Name: <p>热词表名称，长度在1-255之间, 注意: 仅允许中英文、数字、下划线、中英文标点、空格、横线</p>
         # @type Name: String
-        # @param Description: 热词表描述，长度在0-1000之间
+        # @param Description: <p>热词表描述，长度在0-1000之间</p>
         # @type Description: String
-        # @param WordWeights: 词权重数组，包含全部的热词和对应的权重。每个热词的长度不大于10个汉字或30个英文字符，权重为[1,11]之间整数或者100，数组长度不大于1000
-        # 注意:
-        # - 热词权重设置为11时，当前热词将升级为超级热词，建议仅将重要且必须生效的热词设置到11，设置过多权重为11的热词将影响整体字准率。
-        # - 热词权重设置为100时，当前热词开启热词增强同音替换功能（仅支持8k_zh,16k_zh），举例：热词配置“蜜制|100”时，与“蜜制”同拼音（mizhi）的“秘制”的识别结果会被强制替换成“蜜制”。因此建议客户根据自己的实际情况开启该功能。建议仅将重要且必须生效的热词设置到100，设置过多权重为100的热词将影响整体字准率。
+        # @param WordWeights: <p>词权重数组，包含全部的热词和对应的权重。每个热词的长度不大于10个汉字或30个英文字符，权重为[1,11]之间整数或者100，数组长度不大于1000<br>注意: </p><ul><li>热词权重设置为11时，当前热词将升级为超级热词，建议仅将重要且必须生效的热词设置到11，设置过多权重为11的热词将影响整体字准率。</li><li>热词权重设置为100时，当前热词开启热词增强同音替换功能（仅支持8k_zh,16k_zh），举例：热词配置“蜜制|100”时，与“蜜制”同拼音（mizhi）的“秘制”的识别结果会被强制替换成“蜜制”。因此建议客户根据自己的实际情况开启该功能。建议仅将重要且必须生效的热词设置到100，设置过多权重为100的热词将影响整体字准率。</li></ul>
         # @type WordWeights: Array
-        # @param WordWeightStr: 词权重文件（纯文本文件）的二进制base64编码，以行分隔，每行的格式为word|weight，即以英文符号|为分割，左边为词，右边为权重，如：你好|5。
-        # 当用户传此参数（参数长度大于0），即以此参数解析词权重，WordWeights会被忽略
+        # @param WordWeightStr: <p>词权重文件（纯文本文件）的二进制base64编码，以行分隔，每行的格式为word|weight，即以英文符号|为分割，左边为词，右边为权重，如：你好|5。<br>当用户传此参数（参数长度大于0），即以此参数解析词权重，WordWeights会被忽略</p>
         # @type WordWeightStr: String
 
         attr_accessor :Name, :Description, :WordWeights, :WordWeightStr
@@ -182,7 +178,7 @@ module TencentCloud
 
       # CreateAsrVocab返回参数结构体
       class CreateAsrVocabResponse < TencentCloud::Common::AbstractModel
-        # @param VocabId: 词表ID，可用于获取词表信息
+        # @param VocabId: <p>词表ID，可用于获取词表信息</p>
         # @type VocabId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -304,8 +300,8 @@ module TencentCloud
 
         attr_accessor :ModelName, :TextUrl, :ModelType, :TagInfos
         extend Gem::Deprecate
-        deprecate :TagInfos, :none, 2026, 3
-        deprecate :TagInfos=, :none, 2026, 3
+        deprecate :TagInfos, :none, 2026, 4
+        deprecate :TagInfos=, :none, 2026, 4
 
         def initialize(modelname=nil, texturl=nil, modeltype=nil, taginfos=nil)
           @ModelName = modelname
@@ -397,8 +393,8 @@ module TencentCloud
 
         attr_accessor :EngineModelType, :ChannelNum, :ResTextFormat, :SourceType, :Data, :DataLen, :Url, :CallbackUrl, :SpeakerDiarization, :SpeakerNumber, :HotwordId, :ReinforceHotword, :CustomizationId, :EmotionRecognition, :EmotionalEnergy, :ConvertNumMode, :FilterDirty, :FilterPunc, :FilterModal, :SentenceMaxLength, :Extra, :HotwordList, :KeyWordLibIdList, :ReplaceTextId, :SpeakerRoles
         extend Gem::Deprecate
-        deprecate :ReinforceHotword, :none, 2026, 3
-        deprecate :ReinforceHotword=, :none, 2026, 3
+        deprecate :ReinforceHotword, :none, 2026, 4
+        deprecate :ReinforceHotword=, :none, 2026, 4
 
         def initialize(enginemodeltype=nil, channelnum=nil, restextformat=nil, sourcetype=nil, data=nil, datalen=nil, url=nil, callbackurl=nil, speakerdiarization=nil, speakernumber=nil, hotwordid=nil, reinforcehotword=nil, customizationid=nil, emotionrecognition=nil, emotionalenergy=nil, convertnummode=nil, filterdirty=nil, filterpunc=nil, filtermodal=nil, sentencemaxlength=nil, extra=nil, hotwordlist=nil, keywordlibidlist=nil, replacetextid=nil, speakerroles=nil)
           @EngineModelType = enginemodeltype
@@ -796,8 +792,8 @@ module TencentCloud
 
         attr_accessor :TagInfos, :Offset, :Limit
         extend Gem::Deprecate
-        deprecate :TagInfos, :none, 2026, 3
-        deprecate :TagInfos=, :none, 2026, 3
+        deprecate :TagInfos, :none, 2026, 4
+        deprecate :TagInfos=, :none, 2026, 4
 
         def initialize(taginfos=nil, offset=nil, limit=nil)
           @TagInfos = taginfos
@@ -921,8 +917,8 @@ module TencentCloud
 
         attr_accessor :TagInfos, :Limit, :Offset
         extend Gem::Deprecate
-        deprecate :TagInfos, :none, 2026, 3
-        deprecate :TagInfos=, :none, 2026, 3
+        deprecate :TagInfos, :none, 2026, 4
+        deprecate :TagInfos=, :none, 2026, 4
 
         def initialize(taginfos=nil, limit=nil, offset=nil)
           @TagInfos = taginfos
@@ -1222,8 +1218,8 @@ module TencentCloud
 
         attr_accessor :ModelName, :DictName, :ModelId, :ModelType, :ServiceType, :ModelState, :AtUpdated, :TagInfos
         extend Gem::Deprecate
-        deprecate :TagInfos, :none, 2026, 3
-        deprecate :TagInfos=, :none, 2026, 3
+        deprecate :TagInfos, :none, 2026, 4
+        deprecate :TagInfos=, :none, 2026, 4
 
         def initialize(modelname=nil, dictname=nil, modelid=nil, modeltype=nil, servicetype=nil, modelstate=nil, atupdated=nil, taginfos=nil)
           @ModelName = modelname
@@ -1512,14 +1508,14 @@ module TencentCloud
 
         attr_accessor :EngSerViceType, :SourceType, :VoiceFormat, :ProjectId, :SubServiceType, :Url, :UsrAudioKey, :Data, :DataLen, :WordInfo, :FilterDirty, :FilterModal, :FilterPunc, :ConvertNumMode, :HotwordId, :CustomizationId, :ReinforceHotword, :HotwordList, :InputSampleRate, :ReplaceTextId
         extend Gem::Deprecate
-        deprecate :ProjectId, :none, 2026, 3
-        deprecate :ProjectId=, :none, 2026, 3
-        deprecate :SubServiceType, :none, 2026, 3
-        deprecate :SubServiceType=, :none, 2026, 3
-        deprecate :UsrAudioKey, :none, 2026, 3
-        deprecate :UsrAudioKey=, :none, 2026, 3
-        deprecate :ReinforceHotword, :none, 2026, 3
-        deprecate :ReinforceHotword=, :none, 2026, 3
+        deprecate :ProjectId, :none, 2026, 4
+        deprecate :ProjectId=, :none, 2026, 4
+        deprecate :SubServiceType, :none, 2026, 4
+        deprecate :SubServiceType=, :none, 2026, 4
+        deprecate :UsrAudioKey, :none, 2026, 4
+        deprecate :UsrAudioKey=, :none, 2026, 4
+        deprecate :ReinforceHotword, :none, 2026, 4
+        deprecate :ReinforceHotword=, :none, 2026, 4
 
         def initialize(engservicetype=nil, sourcetype=nil, voiceformat=nil, projectid=nil, subservicetype=nil, url=nil, usraudiokey=nil, data=nil, datalen=nil, wordinfo=nil, filterdirty=nil, filtermodal=nil, filterpunc=nil, convertnummode=nil, hotwordid=nil, customizationid=nil, reinforcehotword=nil, hotwordlist=nil, inputsamplerate=nil, replacetextid=nil)
           @EngSerViceType = engservicetype

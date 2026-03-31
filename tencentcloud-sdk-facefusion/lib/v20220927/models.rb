@@ -79,13 +79,13 @@ module TencentCloud
 
       # 人脸信息
       class FaceInfo < TencentCloud::Common::AbstractModel
-        # @param X: 人脸框的横坐标
+        # @param X: <p>人脸框的横坐标</p>
         # @type X: Integer
-        # @param Y: 人脸框的纵坐标
+        # @param Y: <p>人脸框的纵坐标</p>
         # @type Y: Integer
-        # @param Width: 人脸框的宽度
+        # @param Width: <p>人脸框的宽度。<br>单位：px</p>
         # @type Width: Integer
-        # @param Height: 人脸框的高度
+        # @param Height: <p>人脸框的高度。<br>单位：px</p>
         # @type Height: Integer
 
         attr_accessor :X, :Y, :Width, :Height
