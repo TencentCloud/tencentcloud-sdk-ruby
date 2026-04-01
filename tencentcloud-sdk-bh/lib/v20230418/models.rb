@@ -74,10 +74,10 @@ module TencentCloud
 
         attr_accessor :Account, :LoginAccount, :LoginPassword, :DeviceId, :InstanceId, :Password, :PrivateKey, :PrivateKeyPassword, :Exe, :Drivers, :Width, :Height, :IntranetAccess, :AutoManageAccessCredential
         extend Gem::Deprecate
-        deprecate :LoginAccount, :none, 2026, 3
-        deprecate :LoginAccount=, :none, 2026, 3
-        deprecate :LoginPassword, :none, 2026, 3
-        deprecate :LoginPassword=, :none, 2026, 3
+        deprecate :LoginAccount, :none, 2026, 4
+        deprecate :LoginAccount=, :none, 2026, 4
+        deprecate :LoginPassword, :none, 2026, 4
+        deprecate :LoginPassword=, :none, 2026, 4
 
         def initialize(account=nil, loginaccount=nil, loginpassword=nil, deviceid=nil, instanceid=nil, password=nil, privatekey=nil, privatekeypassword=nil, exe=nil, drivers=nil, width=nil, height=nil, intranetaccess=nil, automanageaccesscredential=nil)
           @Account = account
@@ -5477,21 +5477,21 @@ module TencentCloud
         # @type AllowAnyAccount: Boolean
         # @param Id: 访问权限ID
         # @type Id: Integer
-        # @param AllowClipFileUp: 是否开启剪贴板文件上行
+        # @param AllowClipFileUp: 是否开启剪贴板文件上行，不传时默认为false
         # @type AllowClipFileUp: Boolean
-        # @param AllowClipFileDown: 是否开启剪贴板文件下行
+        # @param AllowClipFileDown: 是否开启剪贴板文件下行，不传时默认为false
         # @type AllowClipFileDown: Boolean
-        # @param AllowClipTextUp: 是否开启剪贴板文本（含图片）上行
+        # @param AllowClipTextUp: 是否开启剪贴板文本（含图片）上行，不传时默认为false
         # @type AllowClipTextUp: Boolean
-        # @param AllowClipTextDown: 是否开启剪贴板文本（含图片）下行
+        # @param AllowClipTextDown: 是否开启剪贴板文本（含图片）下行，不传时默认为false
         # @type AllowClipTextDown: Boolean
-        # @param AllowFileUp: 是否开启文件传输上传
+        # @param AllowFileUp: 是否开启文件传输上传，不传时默认为false
         # @type AllowFileUp: Boolean
-        # @param MaxFileUpSize: 文件传输上传大小限制（预留参数，目前暂未使用）
+        # @param MaxFileUpSize: 文件传输上传大小限制（预留参数，目前暂未使用），不传时默认为0
         # @type MaxFileUpSize: Integer
-        # @param AllowFileDown: 是否开启文件传输下载
+        # @param AllowFileDown: 是否开启文件传输下载，不传时默认为false
         # @type AllowFileDown: Boolean
-        # @param MaxFileDownSize: 文件传输下载大小限制（预留参数，目前暂未使用）
+        # @param MaxFileDownSize: 文件传输下载大小限制（预留参数，目前暂未使用），不传时默认为0
         # @type MaxFileDownSize: Integer
         # @param UserIdSet: 关联的用户ID
         # @type UserIdSet: Array
@@ -5499,25 +5499,25 @@ module TencentCloud
         # @type UserGroupIdSet: Array
         # @param DeviceIdSet: 关联的资产ID
         # @type DeviceIdSet: Array
-        # @param AppAssetIdSet: 关联的应用资产ID集合
+        # @param AppAssetIdSet: 关联的应用资产ID集合，不传时表示不选择任何应用资产
         # @type AppAssetIdSet: Array
-        # @param DeviceGroupIdSet: 关联的资产组ID
+        # @param DeviceGroupIdSet: 关联的资产组ID，不传时表示不选择任何资产组
         # @type DeviceGroupIdSet: Array
-        # @param AccountSet: 关联的账号
+        # @param AccountSet: 关联的资产账号，不传时表示不选择任何资产账号
         # @type AccountSet: Array
-        # @param CmdTemplateIdSet: 关联的高危命令模板ID
+        # @param CmdTemplateIdSet: 关联的高危命令模板ID，不传时表示不选择任何模板
         # @type CmdTemplateIdSet: Array
-        # @param ACTemplateIdSet: 关联高危DB模板ID
+        # @param ACTemplateIdSet: 关联高危DB模板ID，不传时表示不选择任何模板
         # @type ACTemplateIdSet: Array
-        # @param AllowDiskFileUp: 是否开启 RDP 磁盘映射文件上传
+        # @param AllowDiskFileUp: 是否开启 RDP 磁盘映射文件上传，不传时默认为false
         # @type AllowDiskFileUp: Boolean
-        # @param AllowDiskFileDown: 是否开启 RDP 磁盘映射文件下载
+        # @param AllowDiskFileDown: 是否开启 RDP 磁盘映射文件下载，不传时默认为false
         # @type AllowDiskFileDown: Boolean
-        # @param AllowShellFileUp: 是否开启rz sz文件上传
+        # @param AllowShellFileUp: 是否开启rz sz文件上传，不传时默认为false
         # @type AllowShellFileUp: Boolean
-        # @param AllowShellFileDown: 是否开启rz sz文件下载
+        # @param AllowShellFileDown: 是否开启rz sz文件下载，不传时默认为false
         # @type AllowShellFileDown: Boolean
-        # @param AllowFileDel: 是否开启 SFTP 文件删除
+        # @param AllowFileDel: 是否开启 SFTP 文件删除，不传时默认为false
         # @type AllowFileDel: Boolean
         # @param ValidateFrom: 访问权限生效时间，如:"2021-09-22T00:00:00+00:00"
         # 生效、失效时间不填则访问权限长期有效
@@ -5527,11 +5527,11 @@ module TencentCloud
         # @type ValidateTo: String
         # @param DepartmentId: 权限所属部门的ID，如：1.2.3
         # @type DepartmentId: String
-        # @param AllowAccessCredential: 是否允许使用访问串
+        # @param AllowAccessCredential: 是否允许使用访问串，不传时默认为true
         # @type AllowAccessCredential: Boolean
-        # @param AllowKeyboardLogger: 是否允许键盘记录
+        # @param AllowKeyboardLogger: 是否允许键盘记录，不传时默认为false
         # @type AllowKeyboardLogger: Boolean
-        # @param MaxAccessCredentialDuration: 访问串有效期最大时长，秒数，允许使用访问串时需大于0且必须为86400整数倍
+        # @param MaxAccessCredentialDuration: 访问串有效期最大时长，秒数，允许使用访问串时需大于0且必须为86400整数倍，不传时默认为9999天对应的秒数
         # @type MaxAccessCredentialDuration: Integer
 
         attr_accessor :Name, :AllowDiskRedirect, :AllowAnyAccount, :Id, :AllowClipFileUp, :AllowClipFileDown, :AllowClipTextUp, :AllowClipTextDown, :AllowFileUp, :MaxFileUpSize, :AllowFileDown, :MaxFileDownSize, :UserIdSet, :UserGroupIdSet, :DeviceIdSet, :AppAssetIdSet, :DeviceGroupIdSet, :AccountSet, :CmdTemplateIdSet, :ACTemplateIdSet, :AllowDiskFileUp, :AllowDiskFileDown, :AllowShellFileUp, :AllowShellFileDown, :AllowFileDel, :ValidateFrom, :ValidateTo, :DepartmentId, :AllowAccessCredential, :AllowKeyboardLogger, :MaxAccessCredentialDuration
@@ -6237,8 +6237,8 @@ module TencentCloud
 
         attr_accessor :ResourceId, :Status, :ResourceEdition, :ResourceNode, :AutoRenewFlag, :PackageBandwidth, :PackageNode, :LogDelivery
         extend Gem::Deprecate
-        deprecate :Status, :none, 2026, 3
-        deprecate :Status=, :none, 2026, 3
+        deprecate :Status, :none, 2026, 4
+        deprecate :Status=, :none, 2026, 4
 
         def initialize(resourceid=nil, status=nil, resourceedition=nil, resourcenode=nil, autorenewflag=nil, packagebandwidth=nil, packagenode=nil, logdelivery=nil)
           @ResourceId = resourceid
@@ -8449,8 +8449,8 @@ module TencentCloud
 
         attr_accessor :Id, :InstanceId, :Name, :ApCode, :PublicIp, :PrivateIp, :Status, :Reason, :ExitCode, :StartTime, :EndTime, :StdOut, :StdErr, :DeviceName, :Account
         extend Gem::Deprecate
-        deprecate :Name, :none, 2026, 3
-        deprecate :Name=, :none, 2026, 3
+        deprecate :Name, :none, 2026, 4
+        deprecate :Name=, :none, 2026, 4
 
         def initialize(id=nil, instanceid=nil, name=nil, apcode=nil, publicip=nil, privateip=nil, status=nil, reason=nil, exitcode=nil, starttime=nil, endtime=nil, stdout=nil, stderr=nil, devicename=nil, account=nil)
           @Id = id

@@ -6616,7 +6616,7 @@ module TencentCloud
         # @type State: String
         # @param Direction: 流量镜像采集方向，支持EGRESS/INGRESS/ALL（vpc），ALL（公网IP）。
         # @type Direction: String
-        # @param CollectorSrcs: 流量镜像的采集对象。
+        # @param CollectorSrcs: 流量镜像的采集对象 (最多支持20个采集对象)。
         # @type CollectorSrcs: Array
         # @param NatId: 流量镜像过滤的natgw实例。
         # @type NatId: String
@@ -6630,10 +6630,14 @@ module TencentCloud
         # @type Type: String
         # @param Tags: 指定绑定的标签列表，例如：[{"Key": "city", "Value": "shanghai"}]。
         # @type Tags: Array
+        # @param IngressFilterRules: 流量镜像入站过滤规则。
+        # @type IngressFilterRules: Array
+        # @param EgressFilterRules: 流量镜像出站过滤规则。
+        # @type EgressFilterRules: Array
 
-        attr_accessor :VpcId, :TrafficMirrorName, :TrafficMirrorDescribe, :State, :Direction, :CollectorSrcs, :NatId, :CollectorNormalFilters, :CollectorTarget, :SubnetId, :Type, :Tags
+        attr_accessor :VpcId, :TrafficMirrorName, :TrafficMirrorDescribe, :State, :Direction, :CollectorSrcs, :NatId, :CollectorNormalFilters, :CollectorTarget, :SubnetId, :Type, :Tags, :IngressFilterRules, :EgressFilterRules
 
-        def initialize(vpcid=nil, trafficmirrorname=nil, trafficmirrordescribe=nil, state=nil, direction=nil, collectorsrcs=nil, natid=nil, collectornormalfilters=nil, collectortarget=nil, subnetid=nil, type=nil, tags=nil)
+        def initialize(vpcid=nil, trafficmirrorname=nil, trafficmirrordescribe=nil, state=nil, direction=nil, collectorsrcs=nil, natid=nil, collectornormalfilters=nil, collectortarget=nil, subnetid=nil, type=nil, tags=nil, ingressfilterrules=nil, egressfilterrules=nil)
           @VpcId = vpcid
           @TrafficMirrorName = trafficmirrorname
           @TrafficMirrorDescribe = trafficmirrordescribe
@@ -6646,6 +6650,8 @@ module TencentCloud
           @SubnetId = subnetid
           @Type = type
           @Tags = tags
+          @IngressFilterRules = ingressfilterrules
+          @EgressFilterRules = egressfilterrules
         end
 
         def deserialize(params)
@@ -6676,6 +6682,22 @@ module TencentCloud
               tag_tmp = Tag.new
               tag_tmp.deserialize(i)
               @Tags << tag_tmp
+            end
+          end
+          unless params['IngressFilterRules'].nil?
+            @IngressFilterRules = []
+            params['IngressFilterRules'].each do |i|
+              trafficmirrorfilter_tmp = TrafficMirrorFilter.new
+              trafficmirrorfilter_tmp.deserialize(i)
+              @IngressFilterRules << trafficmirrorfilter_tmp
+            end
+          end
+          unless params['EgressFilterRules'].nil?
+            @EgressFilterRules = []
+            params['EgressFilterRules'].each do |i|
+              trafficmirrorfilter_tmp = TrafficMirrorFilter.new
+              trafficmirrorfilter_tmp.deserialize(i)
+              @EgressFilterRules << trafficmirrorfilter_tmp
             end
           end
         end
@@ -16312,13 +16334,16 @@ module TencentCloud
       class DescribeTrafficMirrorsResponse < TencentCloud::Common::AbstractModel
         # @param TrafficMirrorSet: 流量镜像实例信息
         # @type TrafficMirrorSet: Array
+        # @param TotalCount: 符合条件的对象数
+        # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TrafficMirrorSet, :RequestId
+        attr_accessor :TrafficMirrorSet, :TotalCount, :RequestId
 
-        def initialize(trafficmirrorset=nil, requestid=nil)
+        def initialize(trafficmirrorset=nil, totalcount=nil, requestid=nil)
           @TrafficMirrorSet = trafficmirrorset
+          @TotalCount = totalcount
           @RequestId = requestid
         end
 
@@ -16331,6 +16356,7 @@ module TencentCloud
               @TrafficMirrorSet << trafficmirror_tmp
             end
           end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -26222,7 +26248,7 @@ module TencentCloud
 
       # RemoveBandwidthPackageResources请求参数结构体
       class RemoveBandwidthPackageResourcesRequest < TencentCloud::Common::AbstractModel
-        # @param ResourceIds: 资源唯一ID，当前支持EIP资源和LB资源，形如'eip-xxxx', 'lb-xxxx'。EIP资源列表可通过[DescribeAddresses](https://cloud.tencent.com/document/product/215/16702)接口获取，LB资源列表可通过[DescribeLoadBalancers](https://cloud.tencent.com/document/api/214/30685)接口获取。
+        # @param ResourceIds: 资源唯一ID，当前支持EIP资源和LB资源，形如'eip-xxxx', 'lb-xxxx'。<li>EIP资源列表：可通过[DescribeAddresses](https://cloud.tencent.com/document/product/215/16702)接口获取。高防EIP、Anycast EIP、精品BGP EIP默认不支持从共享带宽包中移除，其中高防EIP和精品BGP IP可以迁移到其他同线路类型的共享带宽包中。</li><li>LB资源列表：可通过[DescribeLoadBalancers](https://cloud.tencent.com/document/api/214/30685)接口获取。</li>
         # @type ResourceIds: Array
         # @param BandwidthPackageId: 带宽包唯一标识ID，形如'bwp-xxxx'，可以使用[DescribeBandwidthPackages](https://cloud.tencent.com/document/product/215/19209)接口查询BandwidthPackageId。
         # @type BandwidthPackageId: String
@@ -27314,13 +27340,19 @@ module TencentCloud
         # @type NatId: String
         # @param CollectorNormalFilters: 流量镜像需要过滤的五元组规则
         # @type CollectorNormalFilters: Array
+        # @param IngressFilterRules: 流量镜像入站过滤规则。
+        # @type IngressFilterRules: Array
+        # @param EgressFilterRules: 流量镜像出站过滤规则。
+        # @type EgressFilterRules: Array
 
-        attr_accessor :TrafficMirrorId, :NatId, :CollectorNormalFilters
+        attr_accessor :TrafficMirrorId, :NatId, :CollectorNormalFilters, :IngressFilterRules, :EgressFilterRules
 
-        def initialize(trafficmirrorid=nil, natid=nil, collectornormalfilters=nil)
+        def initialize(trafficmirrorid=nil, natid=nil, collectornormalfilters=nil, ingressfilterrules=nil, egressfilterrules=nil)
           @TrafficMirrorId = trafficmirrorid
           @NatId = natid
           @CollectorNormalFilters = collectornormalfilters
+          @IngressFilterRules = ingressfilterrules
+          @EgressFilterRules = egressfilterrules
         end
 
         def deserialize(params)
@@ -27332,6 +27364,22 @@ module TencentCloud
               trafficmirrorfilter_tmp = TrafficMirrorFilter.new
               trafficmirrorfilter_tmp.deserialize(i)
               @CollectorNormalFilters << trafficmirrorfilter_tmp
+            end
+          end
+          unless params['IngressFilterRules'].nil?
+            @IngressFilterRules = []
+            params['IngressFilterRules'].each do |i|
+              trafficmirrorfilter_tmp = TrafficMirrorFilter.new
+              trafficmirrorfilter_tmp.deserialize(i)
+              @IngressFilterRules << trafficmirrorfilter_tmp
+            end
+          end
+          unless params['EgressFilterRules'].nil?
+            @EgressFilterRules = []
+            params['EgressFilterRules'].each do |i|
+              trafficmirrorfilter_tmp = TrafficMirrorFilter.new
+              trafficmirrorfilter_tmp.deserialize(i)
+              @EgressFilterRules << trafficmirrorfilter_tmp
             end
           end
         end
@@ -30205,15 +30253,21 @@ module TencentCloud
         # @type NatId: String
         # @param CollectorNormalFilters: 流量镜像需要过滤的五元组规则
         # @type CollectorNormalFilters: Array
+        # @param IngressFilterRules: 流量镜像入站过滤规则。
+        # @type IngressFilterRules: Array
+        # @param EgressFilterRules: 流量镜像出站过滤规则。
+        # @type EgressFilterRules: Array
 
-        attr_accessor :TrafficMirrorId, :Direction, :CollectorSrcs, :NatId, :CollectorNormalFilters
+        attr_accessor :TrafficMirrorId, :Direction, :CollectorSrcs, :NatId, :CollectorNormalFilters, :IngressFilterRules, :EgressFilterRules
 
-        def initialize(trafficmirrorid=nil, direction=nil, collectorsrcs=nil, natid=nil, collectornormalfilters=nil)
+        def initialize(trafficmirrorid=nil, direction=nil, collectorsrcs=nil, natid=nil, collectornormalfilters=nil, ingressfilterrules=nil, egressfilterrules=nil)
           @TrafficMirrorId = trafficmirrorid
           @Direction = direction
           @CollectorSrcs = collectorsrcs
           @NatId = natid
           @CollectorNormalFilters = collectornormalfilters
+          @IngressFilterRules = ingressfilterrules
+          @EgressFilterRules = egressfilterrules
         end
 
         def deserialize(params)
@@ -30227,6 +30281,22 @@ module TencentCloud
               trafficmirrorfilter_tmp = TrafficMirrorFilter.new
               trafficmirrorfilter_tmp.deserialize(i)
               @CollectorNormalFilters << trafficmirrorfilter_tmp
+            end
+          end
+          unless params['IngressFilterRules'].nil?
+            @IngressFilterRules = []
+            params['IngressFilterRules'].each do |i|
+              trafficmirrorfilter_tmp = TrafficMirrorFilter.new
+              trafficmirrorfilter_tmp.deserialize(i)
+              @IngressFilterRules << trafficmirrorfilter_tmp
+            end
+          end
+          unless params['EgressFilterRules'].nil?
+            @EgressFilterRules = []
+            params['EgressFilterRules'].each do |i|
+              trafficmirrorfilter_tmp = TrafficMirrorFilter.new
+              trafficmirrorfilter_tmp.deserialize(i)
+              @EgressFilterRules << trafficmirrorfilter_tmp
             end
           end
         end
@@ -30252,7 +30322,15 @@ module TencentCloud
       class UpdateTrafficMirrorDirectionRequest < TencentCloud::Common::AbstractModel
         # @param TrafficMirrorId: 流量镜像实例ID
         # @type TrafficMirrorId: String
-        # @param Direction: 流量镜像采集方向
+        # @param Direction: 流量镜像采集方向。取值范围：
+
+        # - EGRESS - 出方向采集
+
+        # - INGRESS - 入方向采集
+
+        # - ALL - 出入双向采集
+
+        # - NO-DIRECTION - 不区分采集方向（新模式）。切换为该模式后将不再支持按方向采集，需通过 CreateTrafficMirrorFilterRules 接口创建带方向的过滤规则，过滤规则支持设置优先级和单独编辑。
         # @type Direction: String
 
         attr_accessor :TrafficMirrorId, :Direction

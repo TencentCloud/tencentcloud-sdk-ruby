@@ -6637,21 +6637,25 @@ module TencentCloud
 
       # ModifyDisasterRecoverGroupAttribute请求参数结构体
       class ModifyDisasterRecoverGroupAttributeRequest < TencentCloud::Common::AbstractModel
-        # @param DisasterRecoverGroupId: 分散置放群组ID，可使用[DescribeDisasterRecoverGroups](https://cloud.tencent.com/document/api/213/17810)接口获取。
+        # @param DisasterRecoverGroupId: <p>分散置放群组ID，可使用<a href="https://cloud.tencent.com/document/api/213/17810">DescribeDisasterRecoverGroups</a>接口获取。</p>
         # @type DisasterRecoverGroupId: String
-        # @param Name: 分散置放群组名称，长度1-60个字符，支持中、英文。
+        # @param Name: <p>分散置放群组名称，长度1-60个字符，支持中、英文。</p>
         # @type Name: String
+        # @param Affinity: <p>分散置放群组的亲和度，在置放群组的实例会按该亲和度分布，亲和度的取值范围是：1-10。</p><p>取值范围：[1, 10]</p><p>调整只能从小调到大，不能从大调到小</p>
+        # @type Affinity: Integer
 
-        attr_accessor :DisasterRecoverGroupId, :Name
+        attr_accessor :DisasterRecoverGroupId, :Name, :Affinity
 
-        def initialize(disasterrecovergroupid=nil, name=nil)
+        def initialize(disasterrecovergroupid=nil, name=nil, affinity=nil)
           @DisasterRecoverGroupId = disasterrecovergroupid
           @Name = name
+          @Affinity = affinity
         end
 
         def deserialize(params)
           @DisasterRecoverGroupId = params['DisasterRecoverGroupId']
           @Name = params['Name']
+          @Affinity = params['Affinity']
         end
       end
 

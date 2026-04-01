@@ -2224,8 +2224,8 @@ module TencentCloud
 
         attr_accessor :Name, :SegmentSet, :RecognitionSegmentSet
         extend Gem::Deprecate
-        deprecate :SegmentSet, :none, 2026, 3
-        deprecate :SegmentSet=, :none, 2026, 3
+        deprecate :SegmentSet, :none, 2026, 4
+        deprecate :SegmentSet=, :none, 2026, 4
 
         def initialize(name=nil, segmentset=nil, recognitionsegmentset=nil)
           @Name = name
@@ -5153,8 +5153,8 @@ module TencentCloud
 
         attr_accessor :Switch, :SubtitleFormats, :SubtitleFormat, :SrcLanguage, :SubtitleName
         extend Gem::Deprecate
-        deprecate :SubtitleFormat, :none, 2026, 3
-        deprecate :SubtitleFormat=, :none, 2026, 3
+        deprecate :SubtitleFormat, :none, 2026, 4
+        deprecate :SubtitleFormat=, :none, 2026, 4
 
         def initialize(switch=nil, subtitleformats=nil, subtitleformat=nil, srclanguage=nil, subtitlename=nil)
           @Switch = switch
@@ -5197,8 +5197,8 @@ module TencentCloud
 
         attr_accessor :Switch, :SubtitleFormatsOperation, :SubtitleFormat, :SrcLanguage, :SubtitleName
         extend Gem::Deprecate
-        deprecate :SubtitleFormat, :none, 2026, 3
-        deprecate :SubtitleFormat=, :none, 2026, 3
+        deprecate :SubtitleFormat, :none, 2026, 4
+        deprecate :SubtitleFormat=, :none, 2026, 4
 
         def initialize(switch=nil, subtitleformatsoperation=nil, subtitleformat=nil, srclanguage=nil, subtitlename=nil)
           @Switch = switch
@@ -8158,7 +8158,7 @@ module TencentCloud
         # @type SubAppId: Integer
         # @param SubjectName: <p>主体名称。</p>
         # @type SubjectName: String
-        # @param SubjectImages: <p>主体图片，至少上传 1 张主体图片。</p><ul><li>注1：支持传入图片 Base64 编码或图片URL（确保可访问）；</li><li>注2：最多支持输入 3 张图；</li><li>注3：图片支持 png、jpeg、jpg、webp格式；</li><li>注4：图片比例需要小于 1:4 或者 4:1 ；</li><li>注5：图片大小不超过 50 MB；</li></ul>
+        # @param SubjectImages: <p>主体图片，至少上传 1 张主体图片。* 注1：支持传入图片URL（确保可访问）；* 注2：最多支持输入 3 张图；* 注3：图片支持 png、jpeg、jpg、webp格式；* 注4：图片比例需要小于 1:4 或者 4:1 ；* 注5：图片大小不超过 50 MB；</p>
         # @type SubjectImages: Array
         # @param SubjectVideos: <p>视频参考支持上传 1 个主体视频</p><ul><li>注1：仅参考生viduq2-pro模型支持使用视频主体</li><li>注2：最多支持上传 1个5秒 的视频</li><li>注3：视频支持 mp4、avi、mov格式</li><li>注4：视频像素不能小于 128*128，且比例需要小于1:4或者4:1，且大小不超过100M。</li></ul>
         # @type SubjectVideos: Array
@@ -9494,8 +9494,8 @@ module TencentCloud
 
         attr_accessor :Name, :SubAppId, :Comment, :MediaProcessTask, :AiContentReviewTask, :AiAnalysisTask, :AiRecognitionTaskSet, :AiRecognitionTask, :ReviewAudioVideoTask
         extend Gem::Deprecate
-        deprecate :AiRecognitionTask, :none, 2026, 3
-        deprecate :AiRecognitionTask=, :none, 2026, 3
+        deprecate :AiRecognitionTask, :none, 2026, 4
+        deprecate :AiRecognitionTask=, :none, 2026, 4
 
         def initialize(name=nil, subappid=nil, comment=nil, mediaprocesstask=nil, aicontentreviewtask=nil, aianalysistask=nil, airecognitiontaskset=nil, airecognitiontask=nil, reviewaudiovideotask=nil)
           @Name = name
@@ -13315,8 +13315,8 @@ module TencentCloud
 
         attr_accessor :DomainName, :Domain, :Scheme, :PlayKey, :RequestId
         extend Gem::Deprecate
-        deprecate :DomainName, :none, 2026, 3
-        deprecate :DomainName=, :none, 2026, 3
+        deprecate :DomainName, :none, 2026, 4
+        deprecate :DomainName=, :none, 2026, 4
 
         def initialize(domainname=nil, domain=nil, scheme=nil, playkey=nil, requestid=nil)
           @DomainName = domainname
@@ -14016,13 +14016,13 @@ module TencentCloud
 
       # DescribeLLMComprehendTemplates请求参数结构体
       class DescribeLLMComprehendTemplatesRequest < TencentCloud::Common::AbstractModel
-        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
+        # @param SubAppId: <p><b>点播<a href="/document/product/266/14574">应用</a> ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b></p>
         # @type SubAppId: Integer
-        # @param Definitions: 大模型解析模板唯一标识过滤条件，数组长度最大值：100。
+        # @param Definitions: <p>大模型解析模板唯一标识过滤条件，数组长度最大值：100。</p>
         # @type Definitions: Array
-        # @param Offset: 分页偏移量，默认值：0。
+        # @param Offset: <p>分页偏移量，默认值：0。</p>
         # @type Offset: Integer
-        # @param Limit: 返回记录条数，默认值：10，最大值：100。
+        # @param Limit: <p>返回记录条数，默认值：10，最大值：100。</p>
         # @type Limit: Integer
 
         attr_accessor :SubAppId, :Definitions, :Offset, :Limit
@@ -14044,9 +14044,9 @@ module TencentCloud
 
       # DescribeLLMComprehendTemplates返回参数结构体
       class DescribeLLMComprehendTemplatesResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 符合过滤条件的记录总数。
+        # @param TotalCount: <p>符合过滤条件的记录总数。</p>
         # @type TotalCount: Integer
-        # @param LLMComprehendTemplateSet: 图片异步处理模板详情列表。
+        # @param LLMComprehendTemplateSet: <p>大模型解析模板详情列表。</p>
         # @type LLMComprehendTemplateSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -14919,8 +14919,8 @@ module TencentCloud
 
         attr_accessor :SubAppId, :RoundPlayIds, :Status, :CreateTime, :UpdateTime, :ScrollToken, :Offset, :Limit
         extend Gem::Deprecate
-        deprecate :Offset, :none, 2026, 3
-        deprecate :Offset=, :none, 2026, 3
+        deprecate :Offset, :none, 2026, 4
+        deprecate :Offset=, :none, 2026, 4
 
         def initialize(subappid=nil, roundplayids=nil, status=nil, createtime=nil, updatetime=nil, scrolltoken=nil, offset=nil, limit=nil)
           @SubAppId = subappid
@@ -14964,8 +14964,8 @@ module TencentCloud
 
         attr_accessor :TotalCount, :RoundPlaySet, :ScrollToken, :RequestId
         extend Gem::Deprecate
-        deprecate :TotalCount, :none, 2026, 3
-        deprecate :TotalCount=, :none, 2026, 3
+        deprecate :TotalCount, :none, 2026, 4
+        deprecate :TotalCount=, :none, 2026, 4
 
         def initialize(totalcount=nil, roundplayset=nil, scrolltoken=nil, requestid=nil)
           @TotalCount = totalcount
@@ -17887,8 +17887,8 @@ module TencentCloud
 
         attr_accessor :Uv, :Uid
         extend Gem::Deprecate
-        deprecate :Uid, :none, 2026, 3
-        deprecate :Uid=, :none, 2026, 3
+        deprecate :Uid, :none, 2026, 4
+        deprecate :Uid=, :none, 2026, 4
 
         def initialize(uv=nil, uid=nil)
           @Uv = uv
@@ -19416,8 +19416,8 @@ module TencentCloud
 
         attr_accessor :SubAppId, :FileId, :Definition, :ImportTasks
         extend Gem::Deprecate
-        deprecate :ImportTasks, :none, 2026, 3
-        deprecate :ImportTasks=, :none, 2026, 3
+        deprecate :ImportTasks, :none, 2026, 4
+        deprecate :ImportTasks=, :none, 2026, 4
 
         def initialize(subappid=nil, fileid=nil, definition=nil, importtasks=nil)
           @SubAppId = subappid
@@ -19654,15 +19654,15 @@ module TencentCloud
 
       # 大模型解析人脸识别配置
       class LLMComprehendFaceRecognition < TencentCloud::Common::AbstractModel
-        # @param Switch: 
+        # @param Switch: <p>人脸识别任务开关</p><p>枚举值：</p><ul><li>ON： 开启智能人脸识别任务</li><li>OFF： 关闭智能人脸识别任务</li></ul><p>默认值：OFF</p>
         # @type Switch: String
-        # @param Score: 
+        # @param Score: <p>人脸识别过滤分数，当识别结果达到该分数以上，返回识别结果</p><p>取值范围：[0, 100]</p><p>默认值：95</p>
         # @type Score: Float
-        # @param DefaultLibraryLabelSet: 
+        # @param DefaultLibraryLabelSet: <p>默认人物过滤标签，指定需要返回的默认人物的标签。如果未填或者为空，则全部默认人物结果都返回。</p><p>枚举值：</p><ul><li>entertainment： 娱乐明星</li><li>sport： 体育明星</li><li>politician： 政治人物</li></ul>
         # @type DefaultLibraryLabelSet: Array
-        # @param UserDefineLibraryLabelSet: 
+        # @param UserDefineLibraryLabelSet: <p>用户自定义人物过滤标签，指定需要返回的用户自定义人物的标签。如果未填或者为空，则全部自定义人物结果都返回。 </p><p>入参限制：标签个数最多 100 个，每个标签长度最多 16 个字符。</p>
         # @type UserDefineLibraryLabelSet: Array
-        # @param FaceLibrary: 
+        # @param FaceLibrary: <p>人物库选择</p><p>枚举值：</p><ul><li>Default： 使用默认人物库</li><li>UserDefine： 使用用户自定义人物库</li><li>All： 同时使用默认人物库和用户自定义人物库</li></ul><p>默认值：All</p>
         # @type FaceLibrary: String
 
         attr_accessor :Switch, :Score, :DefaultLibraryLabelSet, :UserDefineLibraryLabelSet, :FaceLibrary
@@ -19686,15 +19686,15 @@ module TencentCloud
 
       # 大模型解析人脸识别配置
       class LLMComprehendFaceRecognitionForUpdate < TencentCloud::Common::AbstractModel
-        # @param Switch: 
+        # @param Switch: <p>人脸识别任务开关</p><p>枚举值：</p><ul><li>ON： 开启智能人脸识别任务</li><li>OFF： 关闭智能人脸识别任务</li></ul><p>默认值：OFF</p>
         # @type Switch: String
-        # @param Score: 
+        # @param Score: <p>人脸识别过滤分数，当识别结果达到该分数以上，返回识别结果</p><p>取值范围：[0, 100]</p>
         # @type Score: Float
-        # @param DefaultLibraryLabelSet: 
+        # @param DefaultLibraryLabelSet: <p>默认人物过滤标签，指定需要返回的默认人物的标签。如果未填或者为空，则全部默认人物结果都返回。</p><p>枚举值：</p><ul><li>entertainment： 娱乐明星</li><li>sport： 体育明星</li><li>politician： 政治人物</li></ul>
         # @type DefaultLibraryLabelSet: Array
-        # @param UserDefineLibraryLabelSet: 
+        # @param UserDefineLibraryLabelSet: <p>用户自定义人物过滤标签，指定需要返回的用户自定义人物的标签。如果未填或者为空，则全部自定义人物结果都返回。 </p><p>入参限制：标签个数最多 100 个，每个标签长度最多 16 个字符。</p>
         # @type UserDefineLibraryLabelSet: Array
-        # @param FaceLibrary: 
+        # @param FaceLibrary: <p>人物库选择</p><p>枚举值：</p><ul><li>Default： 使用默认人物库</li><li>UserDefine： 使用用户自定义人物库</li><li>All： 同时使用默认人物库和用户自定义人物库</li></ul><p>默认值：All</p>
         # @type FaceLibrary: String
 
         attr_accessor :Switch, :Score, :DefaultLibraryLabelSet, :UserDefineLibraryLabelSet, :FaceLibrary
@@ -19762,34 +19762,35 @@ module TencentCloud
 
       # 大模型解析模板详情。
       class LLMComprehendTemplateItem < TencentCloud::Common::AbstractModel
-        # @param Definition: 图片异步处理模板唯一标识。
+        # @param Definition: <p>图片异步处理模板唯一标识。</p>
         # @type Definition: Integer
-        # @param Name: 图片异步处理模板名称。
+        # @param Name: <p>图片异步处理模板名称。</p>
         # @type Name: String
-        # @param Comment: 图片异步处理模板描述信息。
+        # @param Comment: <p>图片异步处理模板描述信息。</p>
         # @type Comment: String
-        # @param Level: 解析级别，可选值为：
-        # - Audio: 音频级解析
-        # - Video: 视频级解析
+        # @param Level: <p>解析级别，可选值为：</p><ul><li>Audio: 音频级解析</li><li>Video: 视频级解析</li></ul>
         # @type Level: String
-        # @param Summary: 分段摘要解析配置
+        # @param Summary: <p>分段摘要解析配置</p>
         # @type Summary: :class:`Tencentcloud::Vod.v20180717.models.LLMComprehendSummary`
-        # @param Asr: 文本转录解析配置
+        # @param Asr: <p>文本转录解析配置</p>
         # @type Asr: :class:`Tencentcloud::Vod.v20180717.models.LLMComprehendAsr`
-        # @param CreateTime: 模板创建时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @param FaceRecognition: <p>人脸识别解析配置</p>
+        # @type FaceRecognition: :class:`Tencentcloud::Vod.v20180717.models.LLMComprehendFaceRecognition`
+        # @param CreateTime: <p>模板创建时间，使用 <a href="https://cloud.tencent.com/document/product/266/11732#I">ISO 日期格式</a>。</p>
         # @type CreateTime: String
-        # @param UpdateTime: 模板最后修改时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @param UpdateTime: <p>模板最后修改时间，使用 <a href="https://cloud.tencent.com/document/product/266/11732#I">ISO 日期格式</a>。</p>
         # @type UpdateTime: String
 
-        attr_accessor :Definition, :Name, :Comment, :Level, :Summary, :Asr, :CreateTime, :UpdateTime
+        attr_accessor :Definition, :Name, :Comment, :Level, :Summary, :Asr, :FaceRecognition, :CreateTime, :UpdateTime
 
-        def initialize(definition=nil, name=nil, comment=nil, level=nil, summary=nil, asr=nil, createtime=nil, updatetime=nil)
+        def initialize(definition=nil, name=nil, comment=nil, level=nil, summary=nil, asr=nil, facerecognition=nil, createtime=nil, updatetime=nil)
           @Definition = definition
           @Name = name
           @Comment = comment
           @Level = level
           @Summary = summary
           @Asr = asr
+          @FaceRecognition = facerecognition
           @CreateTime = createtime
           @UpdateTime = updatetime
         end
@@ -19806,6 +19807,10 @@ module TencentCloud
           unless params['Asr'].nil?
             @Asr = LLMComprehendAsr.new
             @Asr.deserialize(params['Asr'])
+          end
+          unless params['FaceRecognition'].nil?
+            @FaceRecognition = LLMComprehendFaceRecognition.new
+            @FaceRecognition.deserialize(params['FaceRecognition'])
           end
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
@@ -21059,8 +21064,8 @@ module TencentCloud
 
         attr_accessor :StartTimeOffset, :EndTimeOffset, :Confidence, :Suggestion, :Name, :Label, :Url, :AreaCoordSet, :PicUrlExpireTimeStamp, :PicUrlExpireTime
         extend Gem::Deprecate
-        deprecate :PicUrlExpireTimeStamp, :none, 2026, 3
-        deprecate :PicUrlExpireTimeStamp=, :none, 2026, 3
+        deprecate :PicUrlExpireTimeStamp, :none, 2026, 4
+        deprecate :PicUrlExpireTimeStamp=, :none, 2026, 4
 
         def initialize(starttimeoffset=nil, endtimeoffset=nil, confidence=nil, suggestion=nil, name=nil, label=nil, url=nil, areacoordset=nil, picurlexpiretimestamp=nil, picurlexpiretime=nil)
           @StartTimeOffset = starttimeoffset
@@ -21114,8 +21119,8 @@ module TencentCloud
 
         attr_accessor :StartTimeOffset, :EndTimeOffset, :Confidence, :Label, :Suggestion, :Url, :PicUrlExpireTimeStamp, :PicUrlExpireTime
         extend Gem::Deprecate
-        deprecate :PicUrlExpireTimeStamp, :none, 2026, 3
-        deprecate :PicUrlExpireTimeStamp=, :none, 2026, 3
+        deprecate :PicUrlExpireTimeStamp, :none, 2026, 4
+        deprecate :PicUrlExpireTimeStamp=, :none, 2026, 4
 
         def initialize(starttimeoffset=nil, endtimeoffset=nil, confidence=nil, label=nil, suggestion=nil, url=nil, picurlexpiretimestamp=nil, picurlexpiretime=nil)
           @StartTimeOffset = starttimeoffset
@@ -22724,8 +22729,8 @@ module TencentCloud
 
         attr_accessor :Duration, :Transitions, :MediaTransitions
         extend Gem::Deprecate
-        deprecate :Transitions, :none, 2026, 3
-        deprecate :Transitions=, :none, 2026, 3
+        deprecate :Transitions, :none, 2026, 4
+        deprecate :Transitions=, :none, 2026, 4
 
         def initialize(duration=nil, transitions=nil, mediatransitions=nil)
           @Duration = duration
@@ -26359,10 +26364,10 @@ module TencentCloud
 
         attr_accessor :TaskId, :Status, :ErrCode, :Message, :FileId, :FileName, :FileUrl, :MetaData, :MediaProcessResultSet, :AiContentReviewResultSet, :AiAnalysisResultSet, :AiRecognitionResultSet, :TasksPriority, :TasksNotifyMode, :SessionContext, :SessionId, :Operator, :OperationType
         extend Gem::Deprecate
-        deprecate :ErrCode, :none, 2026, 3
-        deprecate :ErrCode=, :none, 2026, 3
-        deprecate :Message, :none, 2026, 3
-        deprecate :Message=, :none, 2026, 3
+        deprecate :ErrCode, :none, 2026, 4
+        deprecate :ErrCode=, :none, 2026, 4
+        deprecate :Message, :none, 2026, 4
+        deprecate :Message=, :none, 2026, 4
 
         def initialize(taskid=nil, status=nil, errcode=nil, message=nil, fileid=nil, filename=nil, fileurl=nil, metadata=nil, mediaprocessresultset=nil, aicontentreviewresultset=nil, aianalysisresultset=nil, airecognitionresultset=nil, taskspriority=nil, tasksnotifymode=nil, sessioncontext=nil, sessionid=nil, operator=nil, operationtype=nil)
           @TaskId = taskid
@@ -26476,8 +26481,8 @@ module TencentCloud
 
         attr_accessor :Name, :Type, :Comment, :MediaProcessTask, :AiContentReviewTask, :AiAnalysisTask, :AiRecognitionTaskSet, :AiRecognitionTask, :MiniProgramPublishTask, :ReviewAudioVideoTask, :CreateTime, :UpdateTime
         extend Gem::Deprecate
-        deprecate :AiRecognitionTask, :none, 2026, 3
-        deprecate :AiRecognitionTask=, :none, 2026, 3
+        deprecate :AiRecognitionTask, :none, 2026, 4
+        deprecate :AiRecognitionTask=, :none, 2026, 4
 
         def initialize(name=nil, type=nil, comment=nil, mediaprocesstask=nil, aicontentreviewtask=nil, aianalysistask=nil, airecognitiontaskset=nil, airecognitiontask=nil, miniprogrampublishtask=nil, reviewaudiovideotask=nil, createtime=nil, updatetime=nil)
           @Name = name
@@ -27378,8 +27383,8 @@ module TencentCloud
 
         attr_accessor :ProductType, :StartTime, :ExpireTime, :ProductInstanceId, :LastConsumeDate, :BindStatus, :ProductInstanceResourceSet, :ResourceSet, :ProductInstanceStatus, :RefundStatus, :RenewStatus
         extend Gem::Deprecate
-        deprecate :ProductInstanceResourceSet, :none, 2026, 3
-        deprecate :ProductInstanceResourceSet=, :none, 2026, 3
+        deprecate :ProductInstanceResourceSet, :none, 2026, 4
+        deprecate :ProductInstanceResourceSet=, :none, 2026, 4
 
         def initialize(producttype=nil, starttime=nil, expiretime=nil, productinstanceid=nil, lastconsumedate=nil, bindstatus=nil, productinstanceresourceset=nil, resourceset=nil, productinstancestatus=nil, refundstatus=nil, renewstatus=nil)
           @ProductType = producttype
@@ -29667,8 +29672,8 @@ module TencentCloud
 
         attr_accessor :FileId, :SubAppId, :SessionId, :SessionContext, :TasksPriority, :TasksNotifyMode
         extend Gem::Deprecate
-        deprecate :TasksNotifyMode, :none, 2026, 3
-        deprecate :TasksNotifyMode=, :none, 2026, 3
+        deprecate :TasksNotifyMode, :none, 2026, 4
+        deprecate :TasksNotifyMode=, :none, 2026, 4
 
         def initialize(fileid=nil, subappid=nil, sessionid=nil, sessioncontext=nil, taskspriority=nil, tasksnotifymode=nil)
           @FileId = fileid
@@ -29819,8 +29824,8 @@ module TencentCloud
 
         attr_accessor :Name, :SubAppId, :Comment, :MediaProcessTask, :AiContentReviewTask, :AiAnalysisTask, :AiRecognitionTaskSet, :AiRecognitionTask, :ReviewAudioVideoTask
         extend Gem::Deprecate
-        deprecate :AiRecognitionTask, :none, 2026, 3
-        deprecate :AiRecognitionTask=, :none, 2026, 3
+        deprecate :AiRecognitionTask, :none, 2026, 4
+        deprecate :AiRecognitionTask=, :none, 2026, 4
 
         def initialize(name=nil, subappid=nil, comment=nil, mediaprocesstask=nil, aicontentreviewtask=nil, aianalysistask=nil, airecognitiontaskset=nil, airecognitiontask=nil, reviewaudiovideotask=nil)
           @Name = name
@@ -29997,10 +30002,10 @@ module TencentCloud
 
         attr_accessor :FileId, :OriginalStorageClass, :TargetStorageClass, :RestoreTier, :RestoreDay, :Status, :Message
         extend Gem::Deprecate
-        deprecate :Status, :none, 2026, 3
-        deprecate :Status=, :none, 2026, 3
-        deprecate :Message, :none, 2026, 3
-        deprecate :Message=, :none, 2026, 3
+        deprecate :Status, :none, 2026, 4
+        deprecate :Status=, :none, 2026, 4
+        deprecate :Message, :none, 2026, 4
+        deprecate :Message=, :none, 2026, 4
 
         def initialize(fileid=nil, originalstorageclass=nil, targetstorageclass=nil, restoretier=nil, restoreday=nil, status=nil, message=nil)
           @FileId = fileid
@@ -30360,8 +30365,8 @@ module TencentCloud
 
         attr_accessor :ReviewResultSet, :MediaReviewResult, :RequestId
         extend Gem::Deprecate
-        deprecate :ReviewResultSet, :none, 2026, 3
-        deprecate :ReviewResultSet=, :none, 2026, 3
+        deprecate :ReviewResultSet, :none, 2026, 4
+        deprecate :ReviewResultSet=, :none, 2026, 4
 
         def initialize(reviewresultset=nil, mediareviewresult=nil, requestid=nil)
           @ReviewResultSet = reviewresultset
@@ -31827,8 +31832,8 @@ module TencentCloud
 
         attr_accessor :Url, :SubAppId, :StartTimeOffset, :EndTimeOffset, :IsPersistence, :ExpireTime, :Procedure, :ClassId, :SourceContext, :SessionContext, :Precision, :OutputMediaType, :ExtInfo
         extend Gem::Deprecate
-        deprecate :Precision, :none, 2026, 3
-        deprecate :Precision=, :none, 2026, 3
+        deprecate :Precision, :none, 2026, 4
+        deprecate :Precision=, :none, 2026, 4
 
         def initialize(url=nil, subappid=nil, starttimeoffset=nil, endtimeoffset=nil, ispersistence=nil, expiretime=nil, procedure=nil, classid=nil, sourcecontext=nil, sessioncontext=nil, precision=nil, outputmediatype=nil, extinfo=nil)
           @Url = url
@@ -32745,8 +32750,8 @@ module TencentCloud
 
         attr_accessor :Width, :Height, :CycleConfig
         extend Gem::Deprecate
-        deprecate :CycleConfig, :none, 2026, 3
-        deprecate :CycleConfig=, :none, 2026, 3
+        deprecate :CycleConfig, :none, 2026, 4
+        deprecate :CycleConfig=, :none, 2026, 4
 
         def initialize(width=nil, height=nil, cycleconfig=nil)
           @Width = width
@@ -33407,8 +33412,8 @@ module TencentCloud
 
         attr_accessor :Switch, :Definition
         extend Gem::Deprecate
-        deprecate :Definition, :none, 2026, 3
-        deprecate :Definition=, :none, 2026, 3
+        deprecate :Definition, :none, 2026, 4
+        deprecate :Definition=, :none, 2026, 4
 
         def initialize(switch=nil, definition=nil)
           @Switch = switch

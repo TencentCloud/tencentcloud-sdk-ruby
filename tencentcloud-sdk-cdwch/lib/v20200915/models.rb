@@ -594,8 +594,8 @@ module TencentCloud
 
         attr_accessor :Zone, :HaFlag, :UserVPCId, :UserSubnetId, :ProductVersion, :ChargeProperties, :InstanceName, :DataSpec, :Tags, :ClsLogSetId, :CosBucketName, :MountDiskType, :HAZk, :CommonSpec, :TagItems, :SecondaryZoneInfo, :CkDefaultUserPwd
         extend Gem::Deprecate
-        deprecate :Tags, :none, 2026, 2
-        deprecate :Tags=, :none, 2026, 2
+        deprecate :Tags, :none, 2026, 4
+        deprecate :Tags=, :none, 2026, 4
 
         def initialize(zone=nil, haflag=nil, uservpcid=nil, usersubnetid=nil, productversion=nil, chargeproperties=nil, instancename=nil, dataspec=nil, tags=nil, clslogsetid=nil, cosbucketname=nil, mountdisktype=nil, hazk=nil, commonspec=nil, tagitems=nil, secondaryzoneinfo=nil, ckdefaultuserpwd=nil)
           @Zone = zone
@@ -1452,9 +1452,9 @@ module TencentCloud
 
       # DescribeInstance请求参数结构体
       class DescribeInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 集群实例ID
+        # @param InstanceId: <p>集群实例ID</p>
         # @type InstanceId: String
-        # @param IsOpenApi: 是否是open api查询
+        # @param IsOpenApi: <p>是否是open api查询</p>
         # @type IsOpenApi: Boolean
 
         attr_accessor :InstanceId, :IsOpenApi
@@ -1472,7 +1472,7 @@ module TencentCloud
 
       # DescribeInstance返回参数结构体
       class DescribeInstanceResponse < TencentCloud::Common::AbstractModel
-        # @param InstanceInfo: 实例描述信息
+        # @param InstanceInfo: <p>实例描述信息</p>
         # @type InstanceInfo: :class:`Tencentcloud::Cdwch.v20200915.models.InstanceInfo`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1926,32 +1926,36 @@ module TencentCloud
 
       # 集群配置信息
       class InstanceConfigInfo < TencentCloud::Common::AbstractModel
-        # @param ConfKey: 配置项名称
+        # @param ConfKey: <p>配置项名称</p>
         # @type ConfKey: String
-        # @param ConfValue: 配置项内容
+        # @param ConfValue: <p>配置项内容</p>
         # @type ConfValue: String
-        # @param DefaultValue: 默认值
+        # @param DefaultValue: <p>默认值</p>
         # @type DefaultValue: String
-        # @param NeedRestart: 是否需要重启
+        # @param NeedRestart: <p>是否需要重启</p>
         # @type NeedRestart: Boolean
-        # @param Editable: 是否可编辑
+        # @param Editable: <p>是否可编辑</p>
         # @type Editable: Boolean
-        # @param ConfDesc: 配置项解释
+        # @param ConfDesc: <p>配置项解释</p>
         # @type ConfDesc: String
-        # @param FileName: 文件名称
+        # @param FileName: <p>文件名称</p>
         # @type FileName: String
-        # @param ModifyRuleType: 规则名称类型
+        # @param ModifyRuleType: <p>规则名称类型</p>
         # @type ModifyRuleType: String
-        # @param ModifyRuleValue: 规则名称内容
+        # @param ModifyRuleValue: <p>规则名称内容</p>
         # @type ModifyRuleValue: String
-        # @param Uin: 修改人的uin
+        # @param Uin: <p>修改人的uin</p>
         # @type Uin: String
-        # @param ModifyTime: 修改时间
+        # @param ModifyTime: <p>修改时间</p>
         # @type ModifyTime: String
+        # @param ValueRange: <p>取值范围</p>
+        # @type ValueRange: String
+        # @param AbnormalParam: <p>标记异常</p>
+        # @type AbnormalParam: String
 
-        attr_accessor :ConfKey, :ConfValue, :DefaultValue, :NeedRestart, :Editable, :ConfDesc, :FileName, :ModifyRuleType, :ModifyRuleValue, :Uin, :ModifyTime
+        attr_accessor :ConfKey, :ConfValue, :DefaultValue, :NeedRestart, :Editable, :ConfDesc, :FileName, :ModifyRuleType, :ModifyRuleValue, :Uin, :ModifyTime, :ValueRange, :AbnormalParam
 
-        def initialize(confkey=nil, confvalue=nil, defaultvalue=nil, needrestart=nil, editable=nil, confdesc=nil, filename=nil, modifyruletype=nil, modifyrulevalue=nil, uin=nil, modifytime=nil)
+        def initialize(confkey=nil, confvalue=nil, defaultvalue=nil, needrestart=nil, editable=nil, confdesc=nil, filename=nil, modifyruletype=nil, modifyrulevalue=nil, uin=nil, modifytime=nil, valuerange=nil, abnormalparam=nil)
           @ConfKey = confkey
           @ConfValue = confvalue
           @DefaultValue = defaultvalue
@@ -1963,6 +1967,8 @@ module TencentCloud
           @ModifyRuleValue = modifyrulevalue
           @Uin = uin
           @ModifyTime = modifytime
+          @ValueRange = valuerange
+          @AbnormalParam = abnormalparam
         end
 
         def deserialize(params)
@@ -1977,26 +1983,40 @@ module TencentCloud
           @ModifyRuleValue = params['ModifyRuleValue']
           @Uin = params['Uin']
           @ModifyTime = params['ModifyTime']
+          @ValueRange = params['ValueRange']
+          @AbnormalParam = params['AbnormalParam']
         end
       end
 
       # KV配置
       class InstanceConfigItem < TencentCloud::Common::AbstractModel
-        # @param ConfKey: key
+        # @param ConfKey: <p>key</p>
         # @type ConfKey: String
-        # @param ConfValue: value
+        # @param ConfValue: <p>value</p>
         # @type ConfValue: String
+        # @param ModifyType: <p>add/delete/update</p>
+        # @type ModifyType: String
+        # @param NeedRestart: <p>是否需要重启</p>
+        # @type NeedRestart: Boolean
+        # @param OriginalConfValue: <p>修改前的值</p>
+        # @type OriginalConfValue: String
 
-        attr_accessor :ConfKey, :ConfValue
+        attr_accessor :ConfKey, :ConfValue, :ModifyType, :NeedRestart, :OriginalConfValue
 
-        def initialize(confkey=nil, confvalue=nil)
+        def initialize(confkey=nil, confvalue=nil, modifytype=nil, needrestart=nil, originalconfvalue=nil)
           @ConfKey = confkey
           @ConfValue = confvalue
+          @ModifyType = modifytype
+          @NeedRestart = needrestart
+          @OriginalConfValue = originalconfvalue
         end
 
         def deserialize(params)
           @ConfKey = params['ConfKey']
           @ConfValue = params['ConfValue']
+          @ModifyType = params['ModifyType']
+          @NeedRestart = params['NeedRestart']
+          @OriginalConfValue = params['OriginalConfValue']
         end
       end
 
@@ -2018,125 +2038,124 @@ module TencentCloud
 
       # 实例描述信息
       class InstanceInfo < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 集群实例ID, "cdw-xxxx" 字符串类型
+        # @param InstanceId: <p>集群实例ID, &quot;cdw-xxxx&quot; 字符串类型</p>
         # @type InstanceId: String
-        # @param InstanceName: 集群实例名称
+        # @param InstanceName: <p>集群实例名称</p>
         # @type InstanceName: String
-        # @param Status: 状态,
-        # Init 创建中; Serving 运行中；
-        # Deleted已销毁；Deleting 销毁中；
-        # Modify 集群变更中；
+        # @param Status: <p>状态,<br>Init 创建中; Serving 运行中；<br>Deleted已销毁；Deleting 销毁中；<br>Modify 集群变更中；</p>
         # @type Status: String
-        # @param Version: 版本
+        # @param Version: <p>版本</p>
         # @type Version: String
-        # @param Region: 地域, ap-guangzhou
+        # @param Region: <p>地域, ap-guangzhou</p>
         # @type Region: String
-        # @param Zone: 可用区， ap-guangzhou-3
+        # @param Zone: <p>可用区， ap-guangzhou-3</p>
         # @type Zone: String
-        # @param VpcId: 私有网络名称
+        # @param VpcId: <p>私有网络名称</p>
         # @type VpcId: String
-        # @param SubnetId: 子网名称
+        # @param SubnetId: <p>子网名称</p>
         # @type SubnetId: String
-        # @param PayMode: 付费类型，"hour", "prepay"
+        # @param PayMode: <p>付费类型，&quot;hour&quot;, &quot;prepay&quot;</p>
         # @type PayMode: String
-        # @param CreateTime: 创建时间
+        # @param CreateTime: <p>创建时间</p>
         # @type CreateTime: String
-        # @param ExpireTime: 过期时间
+        # @param ExpireTime: <p>过期时间</p>
         # @type ExpireTime: String
-        # @param MasterSummary: 数据节点描述信息
+        # @param MasterSummary: <p>数据节点描述信息</p>
         # @type MasterSummary: :class:`Tencentcloud::Cdwch.v20200915.models.NodesSummary`
-        # @param CommonSummary: zookeeper节点描述信息
+        # @param CommonSummary: <p>zookeeper节点描述信息</p>
         # @type CommonSummary: :class:`Tencentcloud::Cdwch.v20200915.models.NodesSummary`
-        # @param HA: 高可用,"true" "false"
+        # @param HA: <p>高可用,&quot;true&quot; &quot;false&quot;</p>
         # @type HA: String
-        # @param AccessInfo: 访问地址，例如 "10.0.0.1:9000"
+        # @param AccessInfo: <p>访问地址，例如 &quot;10.0.0.1:9000&quot;</p>
         # @type AccessInfo: String
-        # @param Id: 记录ID，数值型
+        # @param Id: <p>记录ID，数值型</p>
         # @type Id: Integer
-        # @param RegionId: regionId, 表示地域
+        # @param RegionId: <p>regionId, 表示地域</p>
         # @type RegionId: Integer
-        # @param ZoneDesc: 可用区说明，例如 "广州二区"
+        # @param ZoneDesc: <p>可用区说明，例如 &quot;广州二区&quot;</p>
         # @type ZoneDesc: String
-        # @param FlowMsg: 错误流程说明信息
+        # @param FlowMsg: <p>错误流程说明信息</p>
         # @type FlowMsg: String
-        # @param StatusDesc: 状态描述，例如“运行中”等
+        # @param StatusDesc: <p>状态描述，例如“运行中”等</p>
         # @type StatusDesc: String
-        # @param RenewFlag: 自动续费标记
+        # @param RenewFlag: <p>自动续费标记</p>
         # @type RenewFlag: Boolean
-        # @param Tags: 标签列表
+        # @param Tags: <p>标签列表</p>
         # @type Tags: Array
-        # @param Monitor: 监控信息
+        # @param Monitor: <p>监控信息</p>
         # @type Monitor: String
-        # @param HasClsTopic: 是否开通日志
+        # @param HasClsTopic: <p>是否开通日志</p>
         # @type HasClsTopic: Boolean
-        # @param ClsTopicId: 日志主题ID
+        # @param ClsTopicId: <p>日志主题ID</p>
         # @type ClsTopicId: String
-        # @param ClsLogSetId: 日志集ID
+        # @param ClsLogSetId: <p>日志集ID</p>
         # @type ClsLogSetId: String
-        # @param EnableXMLConfig: 是否支持xml配置管理
+        # @param EnableXMLConfig: <p>是否支持xml配置管理</p>
         # @type EnableXMLConfig: Integer
-        # @param RegionDesc: 区域
+        # @param RegionDesc: <p>区域</p>
         # @type RegionDesc: String
-        # @param Eip: 弹性网卡地址
+        # @param Eip: <p>弹性网卡地址</p>
         # @type Eip: String
-        # @param CosMoveFactor: 冷热分层系数
+        # @param CosMoveFactor: <p>冷热分层系数</p>
         # @type CosMoveFactor: Integer
-        # @param Kind: external/local/yunti
+        # @param Kind: <p>external/local/yunti</p>
         # @type Kind: String
-        # @param IsElastic: 是否弹性ck
+        # @param IsElastic: <p>是否弹性ck</p>
         # @type IsElastic: Boolean
-        # @param InstanceStateInfo: 集群详细状态
+        # @param InstanceStateInfo: <p>集群详细状态</p>
         # @type InstanceStateInfo: :class:`Tencentcloud::Cdwch.v20200915.models.InstanceStateInfo`
-        # @param HAZk: ZK高可用
+        # @param HAZk: <p>ZK高可用</p>
         # @type HAZk: Boolean
-        # @param MountDiskType: 挂载盘,默认0:没有类型；1:裸盘;2:lvm
+        # @param MountDiskType: <p>挂载盘,默认0:没有类型；1:裸盘;2:lvm</p>
         # @type MountDiskType: Integer
-        # @param CHProxyVip: chproxy连接ip
+        # @param CHProxyVip: <p>chproxy连接ip</p>
         # @type CHProxyVip: String
-        # @param CosBucketName: cos buket的名字
+        # @param CosBucketName: <p>cos buket的名字</p>
         # @type CosBucketName: String
-        # @param CanAttachCbs: 是否可以挂载云盘
+        # @param CanAttachCbs: <p>是否可以挂载云盘</p>
         # @type CanAttachCbs: Boolean
-        # @param CanAttachCbsLvm: 是否可以挂载云盘阵列
+        # @param CanAttachCbsLvm: <p>是否可以挂载云盘阵列</p>
         # @type CanAttachCbsLvm: Boolean
-        # @param CanAttachCos: 是否可以挂载cos
+        # @param CanAttachCos: <p>是否可以挂载cos</p>
         # @type CanAttachCos: Boolean
-        # @param Components: 服务信息
+        # @param Components: <p>服务信息</p>
         # @type Components: Array
-        # @param UpgradeVersions: 可升级的内核版本
+        # @param UpgradeVersions: <p>可升级的内核版本</p>
         # @type UpgradeVersions: String
-        # @param EsIndexId: ex-index
+        # @param EsIndexId: <p>ex-index</p>
         # @type EsIndexId: String
-        # @param EsIndexUsername: username
+        # @param EsIndexUsername: <p>username</p>
         # @type EsIndexUsername: String
-        # @param EsIndexPassword: password
+        # @param EsIndexPassword: <p>password</p>
         # @type EsIndexPassword: String
-        # @param HasEsIndex: true
+        # @param HasEsIndex: <p>true</p>
         # @type HasEsIndex: Boolean
-        # @param IsSecondaryZone: true
+        # @param IsSecondaryZone: <p>true</p>
         # @type IsSecondaryZone: Boolean
-        # @param SecondaryZoneInfo: desc
+        # @param SecondaryZoneInfo: <p>desc</p>
         # @type SecondaryZoneInfo: String
-        # @param ClickHouseKeeper: 是否clickhouse-keeper
+        # @param ClickHouseKeeper: <p>是否clickhouse-keeper</p>
         # @type ClickHouseKeeper: Boolean
-        # @param Details: 实例扩展信息
+        # @param Details: <p>实例扩展信息</p>
         # @type Details: :class:`Tencentcloud::Cdwch.v20200915.models.InstanceDetail`
-        # @param IsWhiteSGs: 安全组白名单
+        # @param IsWhiteSGs: <p>安全组白名单</p>
         # @type IsWhiteSGs: Boolean
-        # @param BindSGs: 绑定的安全组
+        # @param BindSGs: <p>绑定的安全组</p>
         # @type BindSGs: Array
-        # @param HasPublicCloudClb: 是否开启公网clb
+        # @param HasPublicCloudClb: <p>是否开启公网clb</p>
         # @type HasPublicCloudClb: Boolean
-        # @param UpgradeZkVersions: 可升级的zk版本
+        # @param UpgradeZkVersions: <p>可升级的zk版本</p>
         # @type UpgradeZkVersions: String
-        # @param ShowRip: 是否显示rip
+        # @param ShowRip: <p>是否显示rip</p>
         # @type ShowRip: String
-        # @param InstanceType: 实例类型：标准型 standard，无keeper节点类型noKeeper；
+        # @param InstanceType: <p>实例类型：标准型 standard，无keeper节点类型noKeeper；</p>
         # @type InstanceType: String
+        # @param EnableConfigKeyValue: <p>keyvalue视图</p>
+        # @type EnableConfigKeyValue: String
 
-        attr_accessor :InstanceId, :InstanceName, :Status, :Version, :Region, :Zone, :VpcId, :SubnetId, :PayMode, :CreateTime, :ExpireTime, :MasterSummary, :CommonSummary, :HA, :AccessInfo, :Id, :RegionId, :ZoneDesc, :FlowMsg, :StatusDesc, :RenewFlag, :Tags, :Monitor, :HasClsTopic, :ClsTopicId, :ClsLogSetId, :EnableXMLConfig, :RegionDesc, :Eip, :CosMoveFactor, :Kind, :IsElastic, :InstanceStateInfo, :HAZk, :MountDiskType, :CHProxyVip, :CosBucketName, :CanAttachCbs, :CanAttachCbsLvm, :CanAttachCos, :Components, :UpgradeVersions, :EsIndexId, :EsIndexUsername, :EsIndexPassword, :HasEsIndex, :IsSecondaryZone, :SecondaryZoneInfo, :ClickHouseKeeper, :Details, :IsWhiteSGs, :BindSGs, :HasPublicCloudClb, :UpgradeZkVersions, :ShowRip, :InstanceType
+        attr_accessor :InstanceId, :InstanceName, :Status, :Version, :Region, :Zone, :VpcId, :SubnetId, :PayMode, :CreateTime, :ExpireTime, :MasterSummary, :CommonSummary, :HA, :AccessInfo, :Id, :RegionId, :ZoneDesc, :FlowMsg, :StatusDesc, :RenewFlag, :Tags, :Monitor, :HasClsTopic, :ClsTopicId, :ClsLogSetId, :EnableXMLConfig, :RegionDesc, :Eip, :CosMoveFactor, :Kind, :IsElastic, :InstanceStateInfo, :HAZk, :MountDiskType, :CHProxyVip, :CosBucketName, :CanAttachCbs, :CanAttachCbsLvm, :CanAttachCos, :Components, :UpgradeVersions, :EsIndexId, :EsIndexUsername, :EsIndexPassword, :HasEsIndex, :IsSecondaryZone, :SecondaryZoneInfo, :ClickHouseKeeper, :Details, :IsWhiteSGs, :BindSGs, :HasPublicCloudClb, :UpgradeZkVersions, :ShowRip, :InstanceType, :EnableConfigKeyValue
 
-        def initialize(instanceid=nil, instancename=nil, status=nil, version=nil, region=nil, zone=nil, vpcid=nil, subnetid=nil, paymode=nil, createtime=nil, expiretime=nil, mastersummary=nil, commonsummary=nil, ha=nil, accessinfo=nil, id=nil, regionid=nil, zonedesc=nil, flowmsg=nil, statusdesc=nil, renewflag=nil, tags=nil, monitor=nil, hasclstopic=nil, clstopicid=nil, clslogsetid=nil, enablexmlconfig=nil, regiondesc=nil, eip=nil, cosmovefactor=nil, kind=nil, iselastic=nil, instancestateinfo=nil, hazk=nil, mountdisktype=nil, chproxyvip=nil, cosbucketname=nil, canattachcbs=nil, canattachcbslvm=nil, canattachcos=nil, components=nil, upgradeversions=nil, esindexid=nil, esindexusername=nil, esindexpassword=nil, hasesindex=nil, issecondaryzone=nil, secondaryzoneinfo=nil, clickhousekeeper=nil, details=nil, iswhitesgs=nil, bindsgs=nil, haspubliccloudclb=nil, upgradezkversions=nil, showrip=nil, instancetype=nil)
+        def initialize(instanceid=nil, instancename=nil, status=nil, version=nil, region=nil, zone=nil, vpcid=nil, subnetid=nil, paymode=nil, createtime=nil, expiretime=nil, mastersummary=nil, commonsummary=nil, ha=nil, accessinfo=nil, id=nil, regionid=nil, zonedesc=nil, flowmsg=nil, statusdesc=nil, renewflag=nil, tags=nil, monitor=nil, hasclstopic=nil, clstopicid=nil, clslogsetid=nil, enablexmlconfig=nil, regiondesc=nil, eip=nil, cosmovefactor=nil, kind=nil, iselastic=nil, instancestateinfo=nil, hazk=nil, mountdisktype=nil, chproxyvip=nil, cosbucketname=nil, canattachcbs=nil, canattachcbslvm=nil, canattachcos=nil, components=nil, upgradeversions=nil, esindexid=nil, esindexusername=nil, esindexpassword=nil, hasesindex=nil, issecondaryzone=nil, secondaryzoneinfo=nil, clickhousekeeper=nil, details=nil, iswhitesgs=nil, bindsgs=nil, haspubliccloudclb=nil, upgradezkversions=nil, showrip=nil, instancetype=nil, enableconfigkeyvalue=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @Status = status
@@ -2193,6 +2212,7 @@ module TencentCloud
           @UpgradeZkVersions = upgradezkversions
           @ShowRip = showrip
           @InstanceType = instancetype
+          @EnableConfigKeyValue = enableconfigkeyvalue
         end
 
         def deserialize(params)
@@ -2278,6 +2298,7 @@ module TencentCloud
           @UpgradeZkVersions = params['UpgradeZkVersions']
           @ShowRip = params['ShowRip']
           @InstanceType = params['InstanceType']
+          @EnableConfigKeyValue = params['EnableConfigKeyValue']
         end
       end
 
@@ -2366,28 +2387,32 @@ module TencentCloud
 
       # 集群状态抽象后的结构体
       class InstanceStateInfo < TencentCloud::Common::AbstractModel
-        # @param InstanceState: 集群状态，例如：Serving
+        # @param InstanceState: <p>集群状态，例如：Serving</p>
         # @type InstanceState: String
-        # @param FlowCreateTime: 集群操作创建时间
+        # @param FlowCreateTime: <p>集群操作创建时间</p>
         # @type FlowCreateTime: String
-        # @param FlowName: 集群操作名称
+        # @param FlowName: <p>集群操作名称</p>
         # @type FlowName: String
-        # @param FlowProgress: 集群操作进度
+        # @param FlowProgress: <p>集群操作进度</p>
         # @type FlowProgress: Integer
-        # @param InstanceStateDesc: 集群状态描述，例如：运行中
+        # @param InstanceStateDesc: <p>集群状态描述，例如：运行中</p>
         # @type InstanceStateDesc: String
-        # @param FlowMsg: 集群流程错误信息，例如：“创建失败，资源不足”
+        # @param FlowMsg: <p>集群流程错误信息，例如：“创建失败，资源不足”</p>
         # @type FlowMsg: String
-        # @param ProcessName: 当前步骤的名称，例如：”购买资源中“
+        # @param ProcessName: <p>当前步骤的名称，例如：”购买资源中“</p>
         # @type ProcessName: String
-        # @param RequestId: 请求id
+        # @param RequestId: <p>请求id</p>
         # @type RequestId: String
-        # @param ProcessSubName: 流程的二级名称
+        # @param ProcessSubName: <p>流程的二级名称</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProcessSubName: String
+        # @param RequestID: <p>请求ID</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RequestID: String
 
-        attr_accessor :InstanceState, :FlowCreateTime, :FlowName, :FlowProgress, :InstanceStateDesc, :FlowMsg, :ProcessName, :RequestId, :ProcessSubName
+        attr_accessor :InstanceState, :FlowCreateTime, :FlowName, :FlowProgress, :InstanceStateDesc, :FlowMsg, :ProcessName, :RequestId, :ProcessSubName, :RequestID
 
-        def initialize(instancestate=nil, flowcreatetime=nil, flowname=nil, flowprogress=nil, instancestatedesc=nil, flowmsg=nil, processname=nil, requestid=nil, processsubname=nil)
+        def initialize(instancestate=nil, flowcreatetime=nil, flowname=nil, flowprogress=nil, instancestatedesc=nil, flowmsg=nil, processname=nil, requestid=nil, processsubname=nil, requestid=nil)
           @InstanceState = instancestate
           @FlowCreateTime = flowcreatetime
           @FlowName = flowname
@@ -2397,6 +2422,7 @@ module TencentCloud
           @ProcessName = processname
           @RequestId = requestid
           @ProcessSubName = processsubname
+          @RequestID = requestid
         end
 
         def deserialize(params)
@@ -2409,6 +2435,7 @@ module TencentCloud
           @ProcessName = params['ProcessName']
           @RequestId = params['RequestId']
           @ProcessSubName = params['ProcessSubName']
+          @RequestID = params['RequestID']
         end
       end
 

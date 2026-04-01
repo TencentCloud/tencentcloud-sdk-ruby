@@ -2137,25 +2137,25 @@ module TencentCloud
 
       # 服务基本信息
       class ServerBaseInfo < TencentCloud::Common::AbstractModel
-        # @param ServerName: 服务名
+        # @param ServerName: <p>服务名</p>
         # @type ServerName: String
-        # @param DefaultDomainName: 默认服务域名
+        # @param DefaultDomainName: <p>默认服务域名</p>
         # @type DefaultDomainName: String
-        # @param CustomDomainName: 自定义域名
+        # @param CustomDomainName: <p>自定义域名</p>
         # @type CustomDomainName: String
-        # @param Status: 服务状态：running/deploying/deploy_failed
+        # @param Status: <p>服务状态：creating/create_failed/freezing/freeze_fail/froze/unfreezing/unfreeze_fail/normal/deleting/delete_failed/abnormal</p><p>枚举值：</p><ul><li>creating： 创建中</li><li>create_failed： 创建失败</li><li>freezing： 冻结中</li><li>freeze_fail： 冻结失败</li><li>froze： 已冻结</li><li>unfreezing： 解冻中</li><li>unfreeze_fail： 解冻失败</li><li>normal： 正常</li><li>deleting： 删除中</li><li>delete_failed： 删除失败</li><li>abnormal： 服务异常</li></ul>
         # @type Status: String
-        # @param UpdateTime: 更新时间
+        # @param UpdateTime: <p>更新时间</p>
         # @type UpdateTime: String
-        # @param AccessTypes: 公网访问类型
+        # @param AccessTypes: <p>公网访问类型</p>
         # @type AccessTypes: Array
-        # @param CustomDomainNames: 展示自定义域名
+        # @param CustomDomainNames: <p>展示自定义域名</p>
         # @type CustomDomainNames: Array
-        # @param ServerType: 服务类型: function 云函数2.0；container 容器服务
+        # @param ServerType: <p>服务类型: function 云函数2.0；container 容器服务</p>
         # @type ServerType: String
-        # @param TrafficType: 流量类型，目前只有 FLOW
+        # @param TrafficType: <p>流量类型，目前只有 FLOW</p>
         # @type TrafficType: String
-        # @param CreateTime: 创建时间
+        # @param CreateTime: <p>创建时间</p>
         # @type CreateTime: String
 
         attr_accessor :ServerName, :DefaultDomainName, :CustomDomainName, :Status, :UpdateTime, :AccessTypes, :CustomDomainNames, :ServerType, :TrafficType, :CreateTime

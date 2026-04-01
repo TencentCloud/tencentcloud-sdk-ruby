@@ -2595,10 +2595,14 @@ module TencentCloud
         # @type CreateTime: String
         # @param UpdateTime: 规则最近更新时间
         # @type UpdateTime: String
+        # @param DestValueType: 目的值的类型，与TargetType或DestType所代表的目的类型含义有所不同，如目的类型是template,但template分ip模板和域名模板，故需通过DestValueType进一步区分
+        # @type DestValueType: String
+        # @param RulePartition: 规则分区，1最前分区，2中间分区，3最后分区
+        # @type RulePartition: Integer
 
-        attr_accessor :SourceContent, :TargetContent, :Protocol, :Port, :RuleAction, :Description, :Count, :OrderIndex, :SourceType, :TargetType, :Uuid, :Invalid, :IsRegion, :CountryCode, :CityCode, :CountryName, :CityName, :CloudCode, :IsCloud, :Enable, :Direction, :InstanceName, :InternalUuid, :Status, :BetaList, :Scope, :ScopeDesc, :InternetBorderUuid, :ParamTemplateName, :ParamTemplateId, :SourceName, :TargetName, :LastHitTime, :CountryKey, :CityKey, :CreateTime, :UpdateTime
+        attr_accessor :SourceContent, :TargetContent, :Protocol, :Port, :RuleAction, :Description, :Count, :OrderIndex, :SourceType, :TargetType, :Uuid, :Invalid, :IsRegion, :CountryCode, :CityCode, :CountryName, :CityName, :CloudCode, :IsCloud, :Enable, :Direction, :InstanceName, :InternalUuid, :Status, :BetaList, :Scope, :ScopeDesc, :InternetBorderUuid, :ParamTemplateName, :ParamTemplateId, :SourceName, :TargetName, :LastHitTime, :CountryKey, :CityKey, :CreateTime, :UpdateTime, :DestValueType, :RulePartition
 
-        def initialize(sourcecontent=nil, targetcontent=nil, protocol=nil, port=nil, ruleaction=nil, description=nil, count=nil, orderindex=nil, sourcetype=nil, targettype=nil, uuid=nil, invalid=nil, isregion=nil, countrycode=nil, citycode=nil, countryname=nil, cityname=nil, cloudcode=nil, iscloud=nil, enable=nil, direction=nil, instancename=nil, internaluuid=nil, status=nil, betalist=nil, scope=nil, scopedesc=nil, internetborderuuid=nil, paramtemplatename=nil, paramtemplateid=nil, sourcename=nil, targetname=nil, lasthittime=nil, countrykey=nil, citykey=nil, createtime=nil, updatetime=nil)
+        def initialize(sourcecontent=nil, targetcontent=nil, protocol=nil, port=nil, ruleaction=nil, description=nil, count=nil, orderindex=nil, sourcetype=nil, targettype=nil, uuid=nil, invalid=nil, isregion=nil, countrycode=nil, citycode=nil, countryname=nil, cityname=nil, cloudcode=nil, iscloud=nil, enable=nil, direction=nil, instancename=nil, internaluuid=nil, status=nil, betalist=nil, scope=nil, scopedesc=nil, internetborderuuid=nil, paramtemplatename=nil, paramtemplateid=nil, sourcename=nil, targetname=nil, lasthittime=nil, countrykey=nil, citykey=nil, createtime=nil, updatetime=nil, destvaluetype=nil, rulepartition=nil)
           @SourceContent = sourcecontent
           @TargetContent = targetcontent
           @Protocol = protocol
@@ -2636,6 +2640,8 @@ module TencentCloud
           @CityKey = citykey
           @CreateTime = createtime
           @UpdateTime = updatetime
+          @DestValueType = destvaluetype
+          @RulePartition = rulepartition
         end
 
         def deserialize(params)
@@ -2683,6 +2689,8 @@ module TencentCloud
           @CityKey = params['CityKey']
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
+          @DestValueType = params['DestValueType']
+          @RulePartition = params['RulePartition']
         end
       end
 
@@ -11399,10 +11407,14 @@ module TencentCloud
         # @type CreateTime: String
         # @param UpdateTime: 规则最近更新时间
         # @type UpdateTime: String
+        # @param DestValueType: 目的值的类型，与TargetType或DestType所代表的目的类型含义有所不同，如目的类型是template,但template分ip模板和域名模板，故需通过DestValueType进一步区分
+        # @type DestValueType: String
+        # @param RulePartition: 规则分区，1最前分区，2中间分区，3最后分区，增删改查规则时无需传入此参数
+        # @type RulePartition: Integer
 
-        attr_accessor :SourceContent, :SourceType, :DestContent, :DestType, :Protocol, :RuleAction, :Port, :Description, :OrderIndex, :Enable, :EdgeId, :Uuid, :DetectedTimes, :EdgeName, :InternalUuid, :Deleted, :FwGroupId, :FwGroupName, :BetaList, :ParamTemplateId, :ParamTemplateName, :TargetName, :SourceName, :IpVersion, :Invalid, :CreateTime, :UpdateTime
+        attr_accessor :SourceContent, :SourceType, :DestContent, :DestType, :Protocol, :RuleAction, :Port, :Description, :OrderIndex, :Enable, :EdgeId, :Uuid, :DetectedTimes, :EdgeName, :InternalUuid, :Deleted, :FwGroupId, :FwGroupName, :BetaList, :ParamTemplateId, :ParamTemplateName, :TargetName, :SourceName, :IpVersion, :Invalid, :CreateTime, :UpdateTime, :DestValueType, :RulePartition
 
-        def initialize(sourcecontent=nil, sourcetype=nil, destcontent=nil, desttype=nil, protocol=nil, ruleaction=nil, port=nil, description=nil, orderindex=nil, enable=nil, edgeid=nil, uuid=nil, detectedtimes=nil, edgename=nil, internaluuid=nil, deleted=nil, fwgroupid=nil, fwgroupname=nil, betalist=nil, paramtemplateid=nil, paramtemplatename=nil, targetname=nil, sourcename=nil, ipversion=nil, invalid=nil, createtime=nil, updatetime=nil)
+        def initialize(sourcecontent=nil, sourcetype=nil, destcontent=nil, desttype=nil, protocol=nil, ruleaction=nil, port=nil, description=nil, orderindex=nil, enable=nil, edgeid=nil, uuid=nil, detectedtimes=nil, edgename=nil, internaluuid=nil, deleted=nil, fwgroupid=nil, fwgroupname=nil, betalist=nil, paramtemplateid=nil, paramtemplatename=nil, targetname=nil, sourcename=nil, ipversion=nil, invalid=nil, createtime=nil, updatetime=nil, destvaluetype=nil, rulepartition=nil)
           @SourceContent = sourcecontent
           @SourceType = sourcetype
           @DestContent = destcontent
@@ -11430,6 +11442,8 @@ module TencentCloud
           @Invalid = invalid
           @CreateTime = createtime
           @UpdateTime = updatetime
+          @DestValueType = destvaluetype
+          @RulePartition = rulepartition
         end
 
         def deserialize(params)
@@ -11467,6 +11481,8 @@ module TencentCloud
           @Invalid = params['Invalid']
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
+          @DestValueType = params['DestValueType']
+          @RulePartition = params['RulePartition']
         end
       end
 

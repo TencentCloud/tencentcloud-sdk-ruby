@@ -3898,6 +3898,9 @@ module TencentCloud
         # @type SearchWord: String
 
         attr_accessor :InstanceId, :ResourceType, :ResourceName, :Offset, :Limit, :SearchWord
+        extend Gem::Deprecate
+        deprecate :SearchWord, :none, 2026, 4
+        deprecate :SearchWord=, :none, 2026, 4
 
         def initialize(instanceid=nil, resourcetype=nil, resourcename=nil, offset=nil, limit=nil, searchword=nil)
           @InstanceId = instanceid

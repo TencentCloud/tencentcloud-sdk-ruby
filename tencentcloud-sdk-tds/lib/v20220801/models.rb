@@ -337,7 +337,7 @@ module TencentCloud
 
       # DescribeFraudPremium请求参数结构体
       class DescribeFraudPremiumRequest < TencentCloud::Common::AbstractModel
-        # @param DeviceToken: 客户端通过SDK获取的设备Token
+        # @param DeviceToken: <p>客户端通过SDK获取的设备Token</p>
         # @type DeviceToken: String
 
         attr_accessor :DeviceToken
@@ -353,36 +353,40 @@ module TencentCloud
 
       # DescribeFraudPremium返回参数结构体
       class DescribeFraudPremiumResponse < TencentCloud::Common::AbstractModel
-        # @param AppVersion: App版本信息
+        # @param AppVersion: <p>App版本信息</p>
         # @type AppVersion: String
-        # @param Brand: 品牌
+        # @param Brand: <p>品牌</p>
         # @type Brand: String
-        # @param ClientIp: 客户端IP
+        # @param ClientIp: <p>客户端IP</p>
         # @type ClientIp: String
-        # @param Model: 机型
+        # @param Model: <p>机型</p>
         # @type Model: String
-        # @param NetworkType: 网络类型
+        # @param NetworkType: <p>网络类型</p>
         # @type NetworkType: String
-        # @param PackageName: 应用包名
+        # @param PackageName: <p>应用包名</p>
         # @type PackageName: String
-        # @param Platform: 平台（2-Android，3-iOS，4-H5，5-微信小程序）
+        # @param Platform: <p>平台（2-Android，3-iOS，4-H5，5-微信小程序）</p>
         # @type Platform: String
-        # @param SystemVersion: 系统版本
+        # @param SystemVersion: <p>系统版本</p>
         # @type SystemVersion: String
-        # @param SdkBuildNo: SDK版本号
+        # @param SdkBuildNo: <p>SDK版本号</p>
         # @type SdkBuildNo: String
-        # @param RiskInfos: 实时风险信息
+        # @param RiskInfos: <p>实时风险信息</p>
         # @type RiskInfos: Array
-        # @param HistRiskInfos: 离线风险信息
+        # @param HistRiskInfos: <p>离线风险信息</p>
         # @type HistRiskInfos: Array
-        # @param Openid: 设备匿名标识
+        # @param Openid: <p>设备匿名标识</p>
         # @type Openid: String
+        # @param RiskCheckTimestamp: <p>检测时间戳（毫秒）</p>
+        # @type RiskCheckTimestamp: String
+        # @param ExtraInfos: <p>额外信息</p>
+        # @type ExtraInfos: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :AppVersion, :Brand, :ClientIp, :Model, :NetworkType, :PackageName, :Platform, :SystemVersion, :SdkBuildNo, :RiskInfos, :HistRiskInfos, :Openid, :RequestId
+        attr_accessor :AppVersion, :Brand, :ClientIp, :Model, :NetworkType, :PackageName, :Platform, :SystemVersion, :SdkBuildNo, :RiskInfos, :HistRiskInfos, :Openid, :RiskCheckTimestamp, :ExtraInfos, :RequestId
 
-        def initialize(appversion=nil, brand=nil, clientip=nil, model=nil, networktype=nil, packagename=nil, platform=nil, systemversion=nil, sdkbuildno=nil, riskinfos=nil, histriskinfos=nil, openid=nil, requestid=nil)
+        def initialize(appversion=nil, brand=nil, clientip=nil, model=nil, networktype=nil, packagename=nil, platform=nil, systemversion=nil, sdkbuildno=nil, riskinfos=nil, histriskinfos=nil, openid=nil, riskchecktimestamp=nil, extrainfos=nil, requestid=nil)
           @AppVersion = appversion
           @Brand = brand
           @ClientIp = clientip
@@ -395,6 +399,8 @@ module TencentCloud
           @RiskInfos = riskinfos
           @HistRiskInfos = histriskinfos
           @Openid = openid
+          @RiskCheckTimestamp = riskchecktimestamp
+          @ExtraInfos = extrainfos
           @RequestId = requestid
         end
 
@@ -425,6 +431,15 @@ module TencentCloud
             end
           end
           @Openid = params['Openid']
+          @RiskCheckTimestamp = params['RiskCheckTimestamp']
+          unless params['ExtraInfos'].nil?
+            @ExtraInfos = []
+            params['ExtraInfos'].each do |i|
+              extrainfo_tmp = ExtraInfo.new
+              extrainfo_tmp.deserialize(i)
+              @ExtraInfos << extrainfo_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end

@@ -2846,6 +2846,46 @@ module TencentCloud
         end
       end
 
+      # ScaleNodePool请求参数结构体
+      class ScaleNodePoolRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: <p>集群 ID</p>
+        # @type ClusterId: String
+        # @param NodePoolId: <p>节点池 ID</p>
+        # @type NodePoolId: String
+        # @param Replicas: <p>期望节点数</p>
+        # @type Replicas: Integer
+
+        attr_accessor :ClusterId, :NodePoolId, :Replicas
+
+        def initialize(clusterid=nil, nodepoolid=nil, replicas=nil)
+          @ClusterId = clusterid
+          @NodePoolId = nodepoolid
+          @Replicas = replicas
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @NodePoolId = params['NodePoolId']
+          @Replicas = params['Replicas']
+        end
+      end
+
+      # ScaleNodePool返回参数结构体
+      class ScaleNodePoolResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # SetMachineLogin请求参数结构体
       class SetMachineLoginRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群 ID
