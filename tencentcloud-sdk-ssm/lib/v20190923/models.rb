@@ -19,50 +19,40 @@ module TencentCloud
     module V20190923
       # CreateProductSecret请求参数结构体
       class CreateProductSecretRequest < TencentCloud::Common::AbstractModel
-        # @param SecretName: 凭据名称，同一region内不可重复，最长128字节，使用字母、数字或者 - _ 的组合，第一个字符必须为字母或者数字。
+        # @param SecretName: <p>凭据名称，同一region内不可重复，最长128字节，使用字母、数字或者 - _ 的组合，第一个字符必须为字母或者数字。</p>
         # @type SecretName: String
-        # @param UserNamePrefix: 用户账号名前缀，由用户自行指定，长度限定在8个字符以内，
-        # 可选字符集包括：
-        # 数字字符：[0, 9]，
-        # 小写字符：[a, z]，
-        # 大写字符：[A, Z]，
-        # 特殊字符(全英文符号)：下划线(_)，
-        # 前缀必须以大写或小写字母开头。
+        # @param UserNamePrefix: <p>用户账号名前缀，由用户自行指定，长度限定在8个字符以内，<br>可选字符集包括：<br>数字字符：[0, 9]，<br>小写字符：[a, z]，<br>大写字符：[A, Z]，<br>特殊字符(全英文符号)：下划线(_)，<br>前缀必须以大写或小写字母开头。</p>
         # @type UserNamePrefix: String
-        # @param ProductName: 凭据所绑定的云产品名称，如Mysql，可以通过DescribeSupportedProducts接口获取所支持的云产品名称。
+        # @param ProductName: <p>凭据所绑定的云产品名称，如Mysql，可以通过DescribeSupportedProducts接口获取所支持的云产品名称。</p>
         # @type ProductName: String
-        # @param InstanceID: 云产品实例ID。
+        # @param InstanceID: <p>云产品实例ID。</p>
         # @type InstanceID: String
-        # @param Domains: 账号的域名，IP形式，支持填入%。
+        # @param Domains: <p>账号的域名，IP形式，支持填入%。</p>
         # @type Domains: Array
-        # @param PrivilegesList: 将凭据与云产品实例绑定时，需要授予的权限列表。
+        # @param PrivilegesList: <p>将凭据与云产品实例绑定时，需要授予的权限列表。</p>
         # @type PrivilegesList: Array
-        # @param Description: 描述信息，用于详细描述用途等，最大支持2048字节。
+        # @param Description: <p>描述信息，用于详细描述用途等，最大支持2048字节。</p>
         # @type Description: String
-        # @param KmsKeyId: 指定对凭据进行加密的KMS CMK。
-        # 如果为空则表示使用Secrets Manager为您默认创建的CMK进行加密。
-        # 您也可以指定在同region 下自行创建的KMS CMK进行加密。
+        # @param KmsKeyId: <p>指定对凭据进行加密的KMS CMK。<br>如果为空则表示使用Secrets Manager为您默认创建的CMK进行加密。<br>您也可以指定在同region 下自行创建的KMS CMK进行加密。</p>
         # @type KmsKeyId: String
-        # @param Tags: 标签列表。
+        # @param Tags: <p>标签列表。</p>
         # @type Tags: Array
-        # @param RotationBeginTime: 用户自定义的开始轮转时间，格式：2006-01-02 15:04:05。
-        # 当EnableRotation为True时，此参数必填。
+        # @param RotationBeginTime: <p>用户自定义的开始轮转时间，格式：2006-01-02 15:04:05。<br>当EnableRotation为True时，此参数必填。</p>
         # @type RotationBeginTime: String
-        # @param EnableRotation: 是否开启轮转
-        # True -- 开启
-        # False -- 不开启
-        # 如果不指定，默认为False。
+        # @param EnableRotation: <p>是否开启轮转<br>True -- 开启<br>False -- 不开启<br>如果不指定，默认为False。</p>
         # @type EnableRotation: Boolean
-        # @param RotationFrequency: 轮转周期，以天为单位，默认为1天。
+        # @param RotationFrequency: <p>轮转周期，以天为单位，默认为1天。</p>
         # @type RotationFrequency: Integer
-        # @param KmsHsmClusterId: KMS的独享集群的ID。当KmsKeyId为空,并且用户的KMS存在有效的HsmClusterId时有效。
+        # @param KmsHsmClusterId: <p>KMS的独享集群的ID。当KmsKeyId为空,并且用户的KMS存在有效的HsmClusterId时有效。</p>
         # @type KmsHsmClusterId: String
-        # @param AccountRemark: 账户备注
+        # @param AccountRemark: <p>账户备注</p>
         # @type AccountRemark: String
+        # @param AccountType: <p>数据库账号类型，目前仅在创建sqlserver凭据场景会使用到，仅支持L3</p><p>枚举值：</p><ul><li>L3： 普通权限账号</li></ul>
+        # @type AccountType: String
 
-        attr_accessor :SecretName, :UserNamePrefix, :ProductName, :InstanceID, :Domains, :PrivilegesList, :Description, :KmsKeyId, :Tags, :RotationBeginTime, :EnableRotation, :RotationFrequency, :KmsHsmClusterId, :AccountRemark
+        attr_accessor :SecretName, :UserNamePrefix, :ProductName, :InstanceID, :Domains, :PrivilegesList, :Description, :KmsKeyId, :Tags, :RotationBeginTime, :EnableRotation, :RotationFrequency, :KmsHsmClusterId, :AccountRemark, :AccountType
 
-        def initialize(secretname=nil, usernameprefix=nil, productname=nil, instanceid=nil, domains=nil, privilegeslist=nil, description=nil, kmskeyid=nil, tags=nil, rotationbegintime=nil, enablerotation=nil, rotationfrequency=nil, kmshsmclusterid=nil, accountremark=nil)
+        def initialize(secretname=nil, usernameprefix=nil, productname=nil, instanceid=nil, domains=nil, privilegeslist=nil, description=nil, kmskeyid=nil, tags=nil, rotationbegintime=nil, enablerotation=nil, rotationfrequency=nil, kmshsmclusterid=nil, accountremark=nil, accounttype=nil)
           @SecretName = secretname
           @UserNamePrefix = usernameprefix
           @ProductName = productname
@@ -77,6 +67,7 @@ module TencentCloud
           @RotationFrequency = rotationfrequency
           @KmsHsmClusterId = kmshsmclusterid
           @AccountRemark = accountremark
+          @AccountType = accounttype
         end
 
         def deserialize(params)
@@ -108,18 +99,19 @@ module TencentCloud
           @RotationFrequency = params['RotationFrequency']
           @KmsHsmClusterId = params['KmsHsmClusterId']
           @AccountRemark = params['AccountRemark']
+          @AccountType = params['AccountType']
         end
       end
 
       # CreateProductSecret返回参数结构体
       class CreateProductSecretResponse < TencentCloud::Common::AbstractModel
-        # @param SecretName: 创建的凭据名称。
+        # @param SecretName: <p>创建的凭据名称。</p>
         # @type SecretName: String
-        # @param TagCode: 标签操作的返回码. 0: 成功；1: 内部错误；2: 业务处理错误。
+        # @param TagCode: <p>标签操作的返回码. 0: 成功；1: 内部错误；2: 业务处理错误。</p>
         # @type TagCode: Integer
-        # @param TagMsg: 标签操作的返回信息。
+        # @param TagMsg: <p>标签操作的返回信息。</p>
         # @type TagMsg: String
-        # @param FlowID: 创建云产品凭据异步任务ID号。
+        # @param FlowID: <p>创建云产品凭据异步任务ID号。</p>
         # @type FlowID: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

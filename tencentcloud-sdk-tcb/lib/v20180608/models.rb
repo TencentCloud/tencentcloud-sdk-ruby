@@ -615,6 +615,46 @@ module TencentCloud
         end
       end
 
+      # CreateCustomLoginKey请求参数结构体
+      class CreateCustomLoginKeyRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: 环境id
+        # @type EnvId: String
+
+        attr_accessor :EnvId
+
+        def initialize(envid=nil)
+          @EnvId = envid
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+        end
+      end
+
+      # CreateCustomLoginKey返回参数结构体
+      class CreateCustomLoginKeyResponse < TencentCloud::Common::AbstractModel
+        # @param PrivateKey: 自定义登录的 RSA 私钥（1024 位），PEM 编码格式（PKCS#1）。调用方需使用该私钥对包含用户身份信息的 JSON 数据进行 JWS 签名，生成 JWT Token 后传入自定义登录接口完成身份认证。出于安全考虑，系统仅存储公钥，私钥仅在创建时返回一次且无法恢复，请妥善保存。创建新密钥后，该环境下原有未设置过期时间的旧密钥将被自动标记为 2 小时后过期
+        # @type PrivateKey: String
+        # @param KeyID: 密钥对的唯一标识符（UUID 格式），由系统自动生成。在自定义登录时，需将该 KeyID 拼接到 ProviderToken 参数中（格式：{KeyID}/{algorithm}/{signedJWT}），服务端通过 KeyID 查找对应的公钥以验证签名
+        # @type KeyID: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PrivateKey, :KeyID, :RequestId
+
+        def initialize(privatekey=nil, keyid=nil, requestid=nil)
+          @PrivateKey = privatekey
+          @KeyID = keyid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @PrivateKey = params['PrivateKey']
+          @KeyID = params['KeyID']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateEnv请求参数结构体
       class CreateEnvRequest < TencentCloud::Common::AbstractModel
         # @param Alias: 环境别名。
@@ -3644,16 +3684,20 @@ module TencentCloud
 
       # 邮箱登录配置
       class EmailProviderConfig < TencentCloud::Common::AbstractModel
-        # @param SmtpConfig: smtp配置
+        # @param SmtpConfig: <p>smtp配置</p>
         # @type SmtpConfig: :class:`Tencentcloud::Tcb.v20180608.models.EmailSmtpConfig`
-        # @param On: 可选：TRUE，FALSE，如果On为TRUE，则表示采用默认代发。
+        # @param On: <p>可选：TRUE，FALSE，如果On为TRUE，则表示采用默认代发。</p>
         # @type On: String
+        # @param TemplateConfig: <p>邮件模板配置</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TemplateConfig: :class:`Tencentcloud::Tcb.v20180608.models.EmailTemplateConfig`
 
-        attr_accessor :SmtpConfig, :On
+        attr_accessor :SmtpConfig, :On, :TemplateConfig
 
-        def initialize(smtpconfig=nil, on=nil)
+        def initialize(smtpconfig=nil, on=nil, templateconfig=nil)
           @SmtpConfig = smtpconfig
           @On = on
+          @TemplateConfig = templateconfig
         end
 
         def deserialize(params)
@@ -3662,6 +3706,10 @@ module TencentCloud
             @SmtpConfig.deserialize(params['SmtpConfig'])
           end
           @On = params['On']
+          unless params['TemplateConfig'].nil?
+            @TemplateConfig = EmailTemplateConfig.new
+            @TemplateConfig.deserialize(params['TemplateConfig'])
+          end
         end
       end
 
@@ -3698,6 +3746,34 @@ module TencentCloud
           @AccountUsername = params['AccountUsername']
           @AccountPassword = params['AccountPassword']
           @SecurityMode = params['SecurityMode']
+        end
+      end
+
+      # 邮件模板配置
+      class EmailTemplateConfig < TencentCloud::Common::AbstractModel
+        # @param RegisterSignIn: <p>注册登录模板</p><p>入参限制：模板中必须包含{{.VerificationCode}}变量，用于邮件中验证码的展示，可选变量有{{.Usage}}、{{.ExpireMinutes}}、{{.Email}}。邮件模板中禁止包含 script、javascript、onclick、onload、iframe、link 标签及 CSS expression、CSS url() 等</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RegisterSignIn: :class:`Tencentcloud::Tcb.v20180608.models.LocalizedTemplate`
+        # @param DefaultTpl: <p>默认模板</p><p>入参限制：模板中必须包含{{.VerificationCode}}变量，用于邮件中验证码的展示，可选变量有{{.Usage}}、{{.ExpireMinutes}}、{{.Email}}。邮件模板中禁止包含 script、javascript、onclick、onload、iframe、link 标签及 CSS expression、CSS url() 等</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DefaultTpl: :class:`Tencentcloud::Tcb.v20180608.models.LocalizedTemplate`
+
+        attr_accessor :RegisterSignIn, :DefaultTpl
+
+        def initialize(registersignin=nil, defaulttpl=nil)
+          @RegisterSignIn = registersignin
+          @DefaultTpl = defaulttpl
+        end
+
+        def deserialize(params)
+          unless params['RegisterSignIn'].nil?
+            @RegisterSignIn = LocalizedTemplate.new
+            @RegisterSignIn.deserialize(params['RegisterSignIn'])
+          end
+          unless params['DefaultTpl'].nil?
+            @DefaultTpl = LocalizedTemplate.new
+            @DefaultTpl.deserialize(params['DefaultTpl'])
+          end
         end
       end
 
@@ -4162,14 +4238,16 @@ module TencentCloud
         # @type DNSStatus: String
         # @param Routes: HTTP访问服务路由信息
         # @type Routes: Array
+        # @param Extension: 扩展字段，内部包含headers处理等
+        # @type Extension: :class:`Tencentcloud::Tcb.v20180608.models.HTTPServiceExtension`
         # @param CreateTime: 域名创建时间
         # @type CreateTime: String
         # @param UpdateTime: 域名更新时间
         # @type UpdateTime: String
 
-        attr_accessor :Domain, :DomainType, :AccessType, :CertId, :Protocol, :Cname, :IsDefault, :Enable, :Status, :DNSStatus, :Routes, :CreateTime, :UpdateTime
+        attr_accessor :Domain, :DomainType, :AccessType, :CertId, :Protocol, :Cname, :IsDefault, :Enable, :Status, :DNSStatus, :Routes, :Extension, :CreateTime, :UpdateTime
 
-        def initialize(domain=nil, domaintype=nil, accesstype=nil, certid=nil, protocol=nil, cname=nil, isdefault=nil, enable=nil, status=nil, dnsstatus=nil, routes=nil, createtime=nil, updatetime=nil)
+        def initialize(domain=nil, domaintype=nil, accesstype=nil, certid=nil, protocol=nil, cname=nil, isdefault=nil, enable=nil, status=nil, dnsstatus=nil, routes=nil, extension=nil, createtime=nil, updatetime=nil)
           @Domain = domain
           @DomainType = domaintype
           @AccessType = accesstype
@@ -4181,6 +4259,7 @@ module TencentCloud
           @Status = status
           @DNSStatus = dnsstatus
           @Routes = routes
+          @Extension = extension
           @CreateTime = createtime
           @UpdateTime = updatetime
         end
@@ -4204,6 +4283,10 @@ module TencentCloud
               @Routes << httpserviceroute_tmp
             end
           end
+          unless params['Extension'].nil?
+            @Extension = HTTPServiceExtension.new
+            @Extension.deserialize(params['Extension'])
+          end
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
         end
@@ -4211,24 +4294,26 @@ module TencentCloud
 
       # 创建或修改HTTP访问服务输入的域名信息，修改HTTP访问服务域名时对应字段不传参数表示不需要修改。
       class HTTPServiceDomainParam < TencentCloud::Common::AbstractModel
-        # @param Domain: 域名。全局唯一。如果域名在其他环境下占用或者腾讯云CDN占用，可能会导致创建失败
+        # @param Domain: <p>域名。全局唯一。如果域名在其他环境下占用或者腾讯云CDN占用，可能会导致创建失败</p>
         # @type Domain: String
-        # @param AccessType: 绑定类型。默认DIRECT。DIRECT: 直连到HTTP访问服务， CDN: 接入云开发CDN，CUSTOM: 自定义接入类型（其他CDN或者WAF）
+        # @param AccessType: <p>绑定类型。默认DIRECT。DIRECT: 直连到HTTP访问服务， CDN: 接入云开发CDN，CUSTOM: 自定义接入类型（其他CDN或者WAF）</p>
         # @type AccessType: String
-        # @param CertId: 证书ID。当前账户下SSL平台的证书ID
+        # @param CertId: <p>证书ID。当前账户下SSL平台的证书ID</p>
         # @type CertId: String
-        # @param Protocol: 协议类型。默认HTTP_AND_HTTPS。HTTP_AND_HTTPS: 同时开启http和https，HTTP_TO_HTTPS: http重定向成https，HTTPS_TO_HTTP: https重定向成http。如果未配置证书无法访问https或者进行重定向
+        # @param Protocol: <p>协议类型。默认HTTP_AND_HTTPS。HTTP_AND_HTTPS: 同时开启http和https，HTTP_TO_HTTPS: http重定向成https，HTTPS_TO_HTTP: https重定向成http。如果未配置证书无法访问https或者进行重定向</p>
         # @type Protocol: String
-        # @param CustomCname: 自定义CNAME。对应AccessType: Custom
+        # @param CustomCname: <p>自定义CNAME。对应AccessType: Custom</p>
         # @type CustomCname: String
-        # @param Enable: 域名开启状态，不传默认开启
+        # @param Enable: <p>域名开启状态，不传默认开启</p>
         # @type Enable: Boolean
-        # @param Routes: 创建/修改的HTTP访问服务路由列表。如果不传，仅创建或修改域名信息。列表最大支持传入20个
+        # @param Routes: <p>创建/修改的HTTP访问服务路由列表。如果不传，仅创建或修改域名信息。列表最大支持传入20个</p>
         # @type Routes: Array
+        # @param Extension: <p>扩展字段，内部包含headers处理等</p>
+        # @type Extension: :class:`Tencentcloud::Tcb.v20180608.models.HTTPServiceExtension`
 
-        attr_accessor :Domain, :AccessType, :CertId, :Protocol, :CustomCname, :Enable, :Routes
+        attr_accessor :Domain, :AccessType, :CertId, :Protocol, :CustomCname, :Enable, :Routes, :Extension
 
-        def initialize(domain=nil, accesstype=nil, certid=nil, protocol=nil, customcname=nil, enable=nil, routes=nil)
+        def initialize(domain=nil, accesstype=nil, certid=nil, protocol=nil, customcname=nil, enable=nil, routes=nil, extension=nil)
           @Domain = domain
           @AccessType = accesstype
           @CertId = certid
@@ -4236,6 +4321,7 @@ module TencentCloud
           @CustomCname = customcname
           @Enable = enable
           @Routes = routes
+          @Extension = extension
         end
 
         def deserialize(params)
@@ -4253,6 +4339,95 @@ module TencentCloud
               @Routes << httpservicerouteparam_tmp
             end
           end
+          unless params['Extension'].nil?
+            @Extension = HTTPServiceExtension.new
+            @Extension.deserialize(params['Extension'])
+          end
+        end
+      end
+
+      # HTTP访问服务路由扩展字段
+      class HTTPServiceExtension < TencentCloud::Common::AbstractModel
+        # @param HeadersHandler: 添加请求头列表
+        # @type HeadersHandler: :class:`Tencentcloud::Tcb.v20180608.models.HTTPServiceHeadersHandler`
+
+        attr_accessor :HeadersHandler
+
+        def initialize(headershandler=nil)
+          @HeadersHandler = headershandler
+        end
+
+        def deserialize(params)
+          unless params['HeadersHandler'].nil?
+            @HeadersHandler = HTTPServiceHeadersHandler.new
+            @HeadersHandler.deserialize(params['HeadersHandler'])
+          end
+        end
+      end
+
+      # HTTP访问服务路由添加header
+      class HTTPServiceHeaderToAdd < TencentCloud::Common::AbstractModel
+        # @param Key: 添加头部的key
+        # @type Key: String
+        # @param Value: 添加头部的值
+        # @type Value: String
+        # @param Action: 添加头部的处理行为。默认：OVERWRITE_IF_EXISTS_OR_ADD。APPEND_IF_EXISTS_OR_ADD: 已存在时追加值，不存在时添加，ADD_IF_ABSENT:  仅在 header 不存在时添加，已存在时不做任何操作，OVERWRITE_IF_EXISTS_OR_ADD: 已存在时覆盖值，不存在时添加（默认值），OVERWRITE_IF_EXISTS: 仅在 header 已存在时覆盖值，不存在时不做任何操作
+        # @type Action: String
+
+        attr_accessor :Key, :Value, :Action
+
+        def initialize(key=nil, value=nil, action=nil)
+          @Key = key
+          @Value = value
+          @Action = action
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
+          @Action = params['Action']
+        end
+      end
+
+      # HTTP访问服务路由headers处理
+      class HTTPServiceHeadersHandler < TencentCloud::Common::AbstractModel
+        # @param RequestHeadersToAdd: 添加请求头列表
+        # @type RequestHeadersToAdd: Array
+        # @param RequestHeadersToRemove: 删除请求头列表
+        # @type RequestHeadersToRemove: Array
+        # @param ResponseHeadersToAdd: 添加返回头列表
+        # @type ResponseHeadersToAdd: Array
+        # @param ResponseHeadersToRemove: 删除返回头列表
+        # @type ResponseHeadersToRemove: Array
+
+        attr_accessor :RequestHeadersToAdd, :RequestHeadersToRemove, :ResponseHeadersToAdd, :ResponseHeadersToRemove
+
+        def initialize(requestheaderstoadd=nil, requestheaderstoremove=nil, responseheaderstoadd=nil, responseheaderstoremove=nil)
+          @RequestHeadersToAdd = requestheaderstoadd
+          @RequestHeadersToRemove = requestheaderstoremove
+          @ResponseHeadersToAdd = responseheaderstoadd
+          @ResponseHeadersToRemove = responseheaderstoremove
+        end
+
+        def deserialize(params)
+          unless params['RequestHeadersToAdd'].nil?
+            @RequestHeadersToAdd = []
+            params['RequestHeadersToAdd'].each do |i|
+              httpserviceheadertoadd_tmp = HTTPServiceHeaderToAdd.new
+              httpserviceheadertoadd_tmp.deserialize(i)
+              @RequestHeadersToAdd << httpserviceheadertoadd_tmp
+            end
+          end
+          @RequestHeadersToRemove = params['RequestHeadersToRemove']
+          unless params['ResponseHeadersToAdd'].nil?
+            @ResponseHeadersToAdd = []
+            params['ResponseHeadersToAdd'].each do |i|
+              httpserviceheadertoadd_tmp = HTTPServiceHeaderToAdd.new
+              httpserviceheadertoadd_tmp.deserialize(i)
+              @ResponseHeadersToAdd << httpserviceheadertoadd_tmp
+            end
+          end
+          @ResponseHeadersToRemove = params['ResponseHeadersToRemove']
         end
       end
 
@@ -4312,14 +4487,16 @@ module TencentCloud
         # @type QPSPolicy: :class:`Tencentcloud::Tcb.v20180608.models.HTTPServiceRouteQPSPolicy`
         # @param Enable: 是否开启路由
         # @type Enable: Boolean
+        # @param Extension: 扩展字段，内部包含headers处理等
+        # @type Extension: :class:`Tencentcloud::Tcb.v20180608.models.HTTPServiceExtension`
         # @param CreateTime: 路由创建时间
         # @type CreateTime: String
         # @param UpdateTime: 路由更新时间
         # @type UpdateTime: String
 
-        attr_accessor :Path, :PathRewrite, :UpstreamResourceType, :UpstreamResourceName, :EnableSafeDomain, :EnableAuth, :EnablePathTransmission, :QPSPolicy, :Enable, :CreateTime, :UpdateTime
+        attr_accessor :Path, :PathRewrite, :UpstreamResourceType, :UpstreamResourceName, :EnableSafeDomain, :EnableAuth, :EnablePathTransmission, :QPSPolicy, :Enable, :Extension, :CreateTime, :UpdateTime
 
-        def initialize(path=nil, pathrewrite=nil, upstreamresourcetype=nil, upstreamresourcename=nil, enablesafedomain=nil, enableauth=nil, enablepathtransmission=nil, qpspolicy=nil, enable=nil, createtime=nil, updatetime=nil)
+        def initialize(path=nil, pathrewrite=nil, upstreamresourcetype=nil, upstreamresourcename=nil, enablesafedomain=nil, enableauth=nil, enablepathtransmission=nil, qpspolicy=nil, enable=nil, extension=nil, createtime=nil, updatetime=nil)
           @Path = path
           @PathRewrite = pathrewrite
           @UpstreamResourceType = upstreamresourcetype
@@ -4329,6 +4506,7 @@ module TencentCloud
           @EnablePathTransmission = enablepathtransmission
           @QPSPolicy = qpspolicy
           @Enable = enable
+          @Extension = extension
           @CreateTime = createtime
           @UpdateTime = updatetime
         end
@@ -4349,6 +4527,10 @@ module TencentCloud
             @QPSPolicy.deserialize(params['QPSPolicy'])
           end
           @Enable = params['Enable']
+          unless params['Extension'].nil?
+            @Extension = HTTPServiceExtension.new
+            @Extension.deserialize(params['Extension'])
+          end
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
         end
@@ -4374,10 +4556,12 @@ module TencentCloud
         # @type QPSPolicy: :class:`Tencentcloud::Tcb.v20180608.models.HTTPServiceRouteQPSPolicy`
         # @param Enable: 是否开启路由
         # @type Enable: Boolean
+        # @param Extension: 扩展字段，内部包含headers处理等
+        # @type Extension: :class:`Tencentcloud::Tcb.v20180608.models.HTTPServiceExtension`
 
-        attr_accessor :Path, :UpstreamResourceType, :UpstreamResourceName, :PathRewrite, :EnableSafeDomain, :EnableAuth, :EnablePathTransmission, :QPSPolicy, :Enable
+        attr_accessor :Path, :UpstreamResourceType, :UpstreamResourceName, :PathRewrite, :EnableSafeDomain, :EnableAuth, :EnablePathTransmission, :QPSPolicy, :Enable, :Extension
 
-        def initialize(path=nil, upstreamresourcetype=nil, upstreamresourcename=nil, pathrewrite=nil, enablesafedomain=nil, enableauth=nil, enablepathtransmission=nil, qpspolicy=nil, enable=nil)
+        def initialize(path=nil, upstreamresourcetype=nil, upstreamresourcename=nil, pathrewrite=nil, enablesafedomain=nil, enableauth=nil, enablepathtransmission=nil, qpspolicy=nil, enable=nil, extension=nil)
           @Path = path
           @UpstreamResourceType = upstreamresourcetype
           @UpstreamResourceName = upstreamresourcename
@@ -4387,6 +4571,7 @@ module TencentCloud
           @EnablePathTransmission = enablepathtransmission
           @QPSPolicy = qpspolicy
           @Enable = enable
+          @Extension = extension
         end
 
         def deserialize(params)
@@ -4405,6 +4590,10 @@ module TencentCloud
             @QPSPolicy.deserialize(params['QPSPolicy'])
           end
           @Enable = params['Enable']
+          unless params['Extension'].nil?
+            @Extension = HTTPServiceExtension.new
+            @Extension.deserialize(params['Extension'])
+          end
         end
       end
 
@@ -4734,6 +4923,28 @@ module TencentCloud
               @Localized << messagelocalized_tmp
             end
           end
+        end
+      end
+
+      # 多语言模板
+      class LocalizedTemplate < TencentCloud::Common::AbstractModel
+        # @param ZhCN: <p>中文</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ZhCN: String
+        # @param EnUS: <p>英文</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnUS: String
+
+        attr_accessor :ZhCN, :EnUS
+
+        def initialize(zhcn=nil, enus=nil)
+          @ZhCN = zhcn
+          @EnUS = enus
+        end
+
+        def deserialize(params)
+          @ZhCN = params['ZhCN']
+          @EnUS = params['EnUS']
         end
       end
 

@@ -1095,6 +1095,118 @@ module TencentCloud
         end
       end
 
+      # ChatCompletions请求参数结构体
+      class ChatCompletionsRequest < TencentCloud::Common::AbstractModel
+        # @param Model: <p>功能名称</p><p>枚举值：</p><ul><li>text2sql： 智能生成检索分析语句</li><li>text2sql-reasoning： 智能生成检索分析语句-深度思考</li></ul>
+        # @type Model: String
+        # @param Messages: <p>聊天上下文信息。<br>说明：</p><ol><li>长度最多为 11 (5轮历史会话 + user新提问) ，按对话时间从旧到新在数组中排列。超出此长度会丢弃旧会话数据。</li><li>Message.Role 可选值：user、assistant。<br>user 和 assistant 需交替出现，以 user 提问开始，user 提问结束，Content 不能为空。Role 的顺序示例：[user assistant user assistant user ...]。</li></ol>
+        # @type Messages: Array
+        # @param Stream: <p>流式调用开关。<br>说明：</p><ol><li>未传值时默认为非流式调用（false）。</li><li>流式调用时以 SSE 协议增量返回结果（返回值取 Choices[n].Delta 中的值，需要拼接增量数据才能获得完整结果）。</li><li>非流式调用时：<br>调用方式与普通 HTTP 请求无异。<br>接口响应耗时较长，如需更低时延建议设置为 true。<br>只返回一次最终结果（返回值取 Choices[n].Message 中的值）。</li></ol><p>注意：</p><ol><li>通过 SDK 调用时，流式和非流式调用需用不同的方式获取返回值，具体参考 SDK 中的注释或示例（在各语言 SDK 代码仓库的 examples/hunyuan/v20230901/ 目录中）。</li><li>可能会出现部分内容已输出，但中间某一段响应中的 FinishReason 值为 sensitive，此时说明安全审核未通过。如果业务场景有实时文字上屏的需求，需要自行撤回已上屏的内容，并建议自定义替换为一条提示语，如 “这个问题我不方便回答，不如我们换个话题试试”，以保障终端体验。</li></ol>
+        # @type Stream: Boolean
+        # @param Metadata: <p>额外元数据信息。例如：[{&quot;Key&quot;:&quot;topic_id&quot;,&quot;Value&quot;:&quot;xxxxxxxx-xxxx&quot;},{&quot;Key&quot;:&quot;topic_region&quot;,&quot;Value&quot;:&quot;ap-guangzhou&quot;}]</p>
+        # @type Metadata: Array
+
+        attr_accessor :Model, :Messages, :Stream, :Metadata
+
+        def initialize(model=nil, messages=nil, stream=nil, metadata=nil)
+          @Model = model
+          @Messages = messages
+          @Stream = stream
+          @Metadata = metadata
+        end
+
+        def deserialize(params)
+          @Model = params['Model']
+          unless params['Messages'].nil?
+            @Messages = []
+            params['Messages'].each do |i|
+              message_tmp = Message.new
+              message_tmp.deserialize(i)
+              @Messages << message_tmp
+            end
+          end
+          @Stream = params['Stream']
+          unless params['Metadata'].nil?
+            @Metadata = []
+            params['Metadata'].each do |i|
+              metadataitem_tmp = MetadataItem.new
+              metadataitem_tmp.deserialize(i)
+              @Metadata << metadataitem_tmp
+            end
+          end
+        end
+      end
+
+      # ChatCompletions返回参数结构体
+      class ChatCompletionsResponse < TencentCloud::Common::AbstractModel
+        # @param Created: <p>Unix 时间戳，单位为秒。</p>
+        # @type Created: Integer
+        # @param Usage: <p>Token 统计信息。</p>
+        # @type Usage: :class:`Tencentcloud::Cls.v20201016.models.ChatUsage`
+        # @param Id: <p>本次请求的 Id。</p>
+        # @type Id: String
+        # @param Choices: <p>回复内容。</p>
+        # @type Choices: Array
+        # @param Model: <p>功能名称</p><p>枚举值：</p><ul><li>text2sql： 智能生成检索分析语句</li><li>text2sql-reasoning： 智能生成检索分析语句-深度思考</li></ul>
+        # @type Model: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。本接口为流式响应接口，当请求成功时，RequestId 会被放在 HTTP 响应的 Header "X-TC-RequestId" 中。
+        # @type RequestId: String
+
+        attr_accessor :Created, :Usage, :Id, :Choices, :Model, :RequestId
+
+        def initialize(created=nil, usage=nil, id=nil, choices=nil, model=nil, requestid=nil)
+          @Created = created
+          @Usage = usage
+          @Id = id
+          @Choices = choices
+          @Model = model
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Created = params['Created']
+          unless params['Usage'].nil?
+            @Usage = ChatUsage.new
+            @Usage.deserialize(params['Usage'])
+          end
+          @Id = params['Id']
+          unless params['Choices'].nil?
+            @Choices = []
+            params['Choices'].each do |i|
+              choice_tmp = Choice.new
+              choice_tmp.deserialize(i)
+              @Choices << choice_tmp
+            end
+          end
+          @Model = params['Model']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 消耗量
+      class ChatUsage < TencentCloud::Common::AbstractModel
+        # @param PromptTokens: 输入token数
+        # @type PromptTokens: Integer
+        # @param CompletionTokens: 输出token数
+        # @type CompletionTokens: Integer
+        # @param TotalTokens: 总token数
+        # @type TotalTokens: Integer
+
+        attr_accessor :PromptTokens, :CompletionTokens, :TotalTokens
+
+        def initialize(prompttokens=nil, completiontokens=nil, totaltokens=nil)
+          @PromptTokens = prompttokens
+          @CompletionTokens = completiontokens
+          @TotalTokens = totaltokens
+        end
+
+        def deserialize(params)
+          @PromptTokens = params['PromptTokens']
+          @CompletionTokens = params['CompletionTokens']
+          @TotalTokens = params['TotalTokens']
+        end
+      end
+
       # CheckFunction请求参数结构体
       class CheckFunctionRequest < TencentCloud::Common::AbstractModel
         # @param EtlContent: 加工语句。 当FuncType为2时，EtlContent必须使用[log_auto_output](https://cloud.tencent.com/document/product/614/70733#b3c58797-4825-4807-bef4-68106e25024f)
@@ -1232,6 +1344,40 @@ module TencentCloud
         def deserialize(params)
           @Status = params['Status']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 返回的回复, 支持多个
+      class Choice < TencentCloud::Common::AbstractModel
+        # @param FinishReason: <p>结束标志位，可能为 stop、 sensitive或者tool_calls。<br>stop 表示输出正常结束。<br>sensitive 表示安全审核未通过。<br>tool_calls 标识函数调用。</p><p>注意：<br>可能会出现部分内容已输出，但中间某一段响应中的 FinishReason 值为 sensitive，此时说明安全审核未通过。如果业务场景有实时文字上屏的需求，需要自行撤回已上屏的内容，并建议自定义替换为一条提示语，如 “这个问题我不方便回答，不如我们换个话题试试”，以保障终端体验。</p>
+        # @type FinishReason: String
+        # @param Delta: <p>增量返回值，流式调用时使用该字段。</p>
+        # @type Delta: :class:`Tencentcloud::Cls.v20201016.models.Delta`
+        # @param Message: <p>返回值，非流式调用时使用该字段。</p>
+        # @type Message: :class:`Tencentcloud::Cls.v20201016.models.Message`
+        # @param Index: <p>索引值，流式调用时使用该字段。</p>
+        # @type Index: Integer
+
+        attr_accessor :FinishReason, :Delta, :Message, :Index
+
+        def initialize(finishreason=nil, delta=nil, message=nil, index=nil)
+          @FinishReason = finishreason
+          @Delta = delta
+          @Message = message
+          @Index = index
+        end
+
+        def deserialize(params)
+          @FinishReason = params['FinishReason']
+          unless params['Delta'].nil?
+            @Delta = Delta.new
+            @Delta.deserialize(params['Delta'])
+          end
+          unless params['Message'].nil?
+            @Message = Message.new
+            @Message.deserialize(params['Message'])
+          end
+          @Index = params['Index']
         end
       end
 
@@ -7123,6 +7269,41 @@ module TencentCloud
           @Region = params['Region']
           @TopicId = params['TopicId']
           @Scope = params['Scope']
+        end
+      end
+
+      # 返回的内容
+      class Delta < TencentCloud::Common::AbstractModel
+        # @param Role: <p>角色</p><p>枚举值：</p><ul><li>user： 用户</li><li>assistant： AI助手</li></ul>
+        # @type Role: String
+        # @param Content: <p>内容详情</p>
+        # @type Content: String
+        # @param ReasoningContent: <p>思维链内容。<br>用于展示模型思考过程，仅深度思考模式可用。仅作为输出参数返回，在进行多轮对话时，无需传入输入参数中。</p>
+        # @type ReasoningContent: String
+        # @param ToolCalls: <p>模型生成的工具调用。仅支持输出参数返回。<br>对于每一次的输出值应该以Id为标识对Type、Name、Arguments字段进行合并。</p>
+        # @type ToolCalls: Array
+
+        attr_accessor :Role, :Content, :ReasoningContent, :ToolCalls
+
+        def initialize(role=nil, content=nil, reasoningcontent=nil, toolcalls=nil)
+          @Role = role
+          @Content = content
+          @ReasoningContent = reasoningcontent
+          @ToolCalls = toolcalls
+        end
+
+        def deserialize(params)
+          @Role = params['Role']
+          @Content = params['Content']
+          @ReasoningContent = params['ReasoningContent']
+          unless params['ToolCalls'].nil?
+            @ToolCalls = []
+            params['ToolCalls'].each do |i|
+              toolcall_tmp = ToolCall.new
+              toolcall_tmp.deserialize(i)
+              @ToolCalls << toolcall_tmp
+            end
+          end
         end
       end
 
@@ -13261,6 +13442,41 @@ module TencentCloud
         end
       end
 
+      # 会话内容
+      class Message < TencentCloud::Common::AbstractModel
+        # @param Role: <p>角色</p><p>枚举值：</p><ul><li>user： 用户</li><li>assistant： AI助手</li></ul>
+        # @type Role: String
+        # @param Content: <p>文本内容</p>
+        # @type Content: String
+        # @param ReasoningContent: <p>思维链内容。<br>用于展示模型思考过程，仅深度思考模式可用。仅作为输出参数返回，在进行多轮对话时，无需传入输入参数中。</p>
+        # @type ReasoningContent: String
+        # @param ToolCalls: <p>模型生成的工具调用。仅支持输出参数返回。</p>
+        # @type ToolCalls: Array
+
+        attr_accessor :Role, :Content, :ReasoningContent, :ToolCalls
+
+        def initialize(role=nil, content=nil, reasoningcontent=nil, toolcalls=nil)
+          @Role = role
+          @Content = content
+          @ReasoningContent = reasoningcontent
+          @ToolCalls = toolcalls
+        end
+
+        def deserialize(params)
+          @Role = params['Role']
+          @Content = params['Content']
+          @ReasoningContent = params['ReasoningContent']
+          unless params['ToolCalls'].nil?
+            @ToolCalls = []
+            params['ToolCalls'].each do |i|
+              toolcall_tmp = ToolCall.new
+              toolcall_tmp.deserialize(i)
+              @ToolCalls << toolcall_tmp
+            end
+          end
+        end
+      end
+
       # 元数据信息
       class MetaTagInfo < TencentCloud::Common::AbstractModel
         # @param Key: 元数据key
@@ -13307,6 +13523,26 @@ module TencentCloud
           @MetaFields = params['MetaFields']
           @EnableTag = params['EnableTag']
           @TagJsonTiled = params['TagJsonTiled']
+        end
+      end
+
+      # Metadata数组项
+      class MetadataItem < TencentCloud::Common::AbstractModel
+        # @param Key: <p>元数据标签键</p>
+        # @type Key: String
+        # @param Value: <p>元数据标签值</p>
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
         end
       end
 
@@ -18462,6 +18698,57 @@ module TencentCloud
         def deserialize(params)
           @Key = params['Key']
           @Value = params['Value']
+        end
+      end
+
+      # 模型生成的工具调用
+      class ToolCall < TencentCloud::Common::AbstractModel
+        # @param Id: <p>工具调用id</p>
+        # @type Id: String
+        # @param Type: <p>工具调用类型，当前只支持function</p>
+        # @type Type: String
+        # @param Function: <p>具体的function调用</p>
+        # @type Function: :class:`Tencentcloud::Cls.v20201016.models.ToolCallFunction`
+        # @param Index: <p>索引值</p>
+        # @type Index: Integer
+
+        attr_accessor :Id, :Type, :Function, :Index
+
+        def initialize(id=nil, type=nil, function=nil, index=nil)
+          @Id = id
+          @Type = type
+          @Function = function
+          @Index = index
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Type = params['Type']
+          unless params['Function'].nil?
+            @Function = ToolCallFunction.new
+            @Function.deserialize(params['Function'])
+          end
+          @Index = params['Index']
+        end
+      end
+
+      # 具体的Tool Call Function调用
+      class ToolCallFunction < TencentCloud::Common::AbstractModel
+        # @param Name: <p>Function名称</p>
+        # @type Name: String
+        # @param Arguments: <p>Function参数，一般为json字符串</p>
+        # @type Arguments: String
+
+        attr_accessor :Name, :Arguments
+
+        def initialize(name=nil, arguments=nil)
+          @Name = name
+          @Arguments = arguments
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Arguments = params['Arguments']
         end
       end
 

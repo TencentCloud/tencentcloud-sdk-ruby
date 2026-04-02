@@ -11023,6 +11023,93 @@ module TencentCloud
         end
       end
 
+      # DescribeSharedCNAME请求参数结构体
+      class DescribeSharedCNAMERequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 共享CNAME所属站点ID。
+        # @type ZoneId: String
+        # @param Filters: 过滤条件，Filters.Values的上限为20。详细的过滤条件如下：
+        # <li>shared-cname<br>   按照【<strong>共享CNAME</strong>】进行过滤。<br>   类型：String<br>   必选：否</li>
+        # <li>type<br>   按照【<strong>共享canme类型</strong>】进行过滤。<br>   类型：String<br>   必选：否</li>
+        # <li>description<br>   按照【<strong>描述</strong>】进行过滤。<br>   类型：String<br>   必选：否</li>
+        # @type Filters: Array
+        # @param Direction: 列表排序方式，取值有：
+        # <li>asc：升序排列；</li>
+        # <li>desc：降序排列。</li>默认值为asc。
+        # @type Direction: String
+        # @param Match: 匹配方式，取值有：
+        # <li>all：返回匹配所有查询条件的共享CNAME；</li>
+        # <li>any：返回匹配任意一个查询条件的共享CNAME。</li>默认值为all。
+        # @type Match: String
+        # @param Order: 排序依据，取值有：
+        # <li>create-time：创建时间；</li>
+        # <li>shared-cname：共享CNAME；</li>默认根据shared-cname属性排序。
+        # @type Order: String
+        # @param Offset: 分页查询偏移量，默认为 0。
+        # @type Offset: Integer
+        # @param Limit: 分页查询限制数目，默认值：20，上限：200。
+        # @type Limit: Integer
+
+        attr_accessor :ZoneId, :Filters, :Direction, :Match, :Order, :Offset, :Limit
+
+        def initialize(zoneid=nil, filters=nil, direction=nil, match=nil, order=nil, offset=nil, limit=nil)
+          @ZoneId = zoneid
+          @Filters = filters
+          @Direction = direction
+          @Match = match
+          @Order = order
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              advancedfilter_tmp = AdvancedFilter.new
+              advancedfilter_tmp.deserialize(i)
+              @Filters << advancedfilter_tmp
+            end
+          end
+          @Direction = params['Direction']
+          @Match = params['Match']
+          @Order = params['Order']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeSharedCNAME返回参数结构体
+      class DescribeSharedCNAMEResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 符合过滤条件的共享CNAME总数。
+        # @type TotalCount: Integer
+        # @param SharedCNAMEInfo: 共享CNAME列表明细。
+        # @type SharedCNAMEInfo: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :SharedCNAMEInfo, :RequestId
+
+        def initialize(totalcount=nil, sharedcnameinfo=nil, requestid=nil)
+          @TotalCount = totalcount
+          @SharedCNAMEInfo = sharedcnameinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['SharedCNAMEInfo'].nil?
+            @SharedCNAMEInfo = []
+            params['SharedCNAMEInfo'].each do |i|
+              sharedcnameinfo_tmp = SharedCNAMEInfo.new
+              sharedcnameinfo_tmp.deserialize(i)
+              @SharedCNAMEInfo << sharedcnameinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeTimingL4Data请求参数结构体
       class DescribeTimingL4DataRequest < TencentCloud::Common::AbstractModel
         # @param StartTime: 开始时间。
@@ -14243,6 +14330,51 @@ module TencentCloud
               @BotManagementActionOverrides << botmanagementactionoverrides_tmp
             end
           end
+        end
+      end
+
+      # IP SSL相关信息
+      class IPSSLConfig < TencentCloud::Common::AbstractModel
+        # @param AssociatedDomain: IP SSL关联的域名。如果Status值为 unbound 时，该字段为空值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AssociatedDomain: String
+        # @param Status: 关联状态， 取值如下：
+        # <li>bound：IP SSL配置已绑定</li>
+        # <li>binding：IP SSL配置绑定中</li>
+        # <li>unbinding：IP SSL配置解绑中</li>
+        # <li>unbound：IP SSL配置未绑定</li>
+        # @type Status: String
+
+        attr_accessor :AssociatedDomain, :Status
+
+        def initialize(associateddomain=nil, status=nil)
+          @AssociatedDomain = associateddomain
+          @Status = status
+        end
+
+        def deserialize(params)
+          @AssociatedDomain = params['AssociatedDomain']
+          @Status = params['Status']
+        end
+      end
+
+      # IP SSL 配置信息
+      class IPSSLSetting < TencentCloud::Common::AbstractModel
+        # @param Operation: 操作类型， 取值如下： <li>bind：绑定</li> <li>unbind：解绑</li>
+        # @type Operation: String
+        # @param AssociatedDomain: 要绑定的IP SSL的所属域名。
+        # @type AssociatedDomain: String
+
+        attr_accessor :Operation, :AssociatedDomain
+
+        def initialize(operation=nil, associateddomain=nil)
+          @Operation = operation
+          @AssociatedDomain = associateddomain
+        end
+
+        def deserialize(params)
+          @Operation = params['Operation']
+          @AssociatedDomain = params['AssociatedDomain']
         end
       end
 
@@ -17746,6 +17878,53 @@ module TencentCloud
         end
       end
 
+      # ModifySharedCNAME请求参数结构体
+      class ModifySharedCNAMERequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 共享 CNAME 所属站点 ID。
+        # @type ZoneId: String
+        # @param SharedCNAME: 共享 CNAME。
+        # @type SharedCNAME: String
+        # @param Description: 请输入调整后的描述。
+        # @type Description: String
+        # @param IPSSLSetting: 设置IP SSL 类型的共享CNAME 的 IP SSL 信息。
+        # @type IPSSLSetting: :class:`Tencentcloud::Teo.v20220901.models.IPSSLSetting`
+
+        attr_accessor :ZoneId, :SharedCNAME, :Description, :IPSSLSetting
+
+        def initialize(zoneid=nil, sharedcname=nil, description=nil, ipsslsetting=nil)
+          @ZoneId = zoneid
+          @SharedCNAME = sharedcname
+          @Description = description
+          @IPSSLSetting = ipsslsetting
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @SharedCNAME = params['SharedCNAME']
+          @Description = params['Description']
+          unless params['IPSSLSetting'].nil?
+            @IPSSLSetting = IPSSLSetting.new
+            @IPSSLSetting.deserialize(params['IPSSLSetting'])
+          end
+        end
+      end
+
+      # ModifySharedCNAME返回参数结构体
+      class ModifySharedCNAMEResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyWebSecurityTemplate请求参数结构体
       class ModifyWebSecurityTemplateRequest < TencentCloud::Common::AbstractModel
         # @param ZoneId: 站点 ID。需要传入目标策略模板在访问权限上归属的站点，可使用 DescribeWebSecurityTemplates 接口查询策略模板归属的站点。
@@ -20368,6 +20547,31 @@ module TencentCloud
         end
       end
 
+      # 引用/被引用的实例信息。
+      class ReferenceHolder < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点ID。
+        # @type ZoneId: String
+        # @param Type: 实例类型，取值如下：
+        # <li>acceleration-domain：加速域名；</li>
+        # @type Type: String
+        # @param Instance: 被引用/引用的实例信息。
+        # @type Instance: String
+
+        attr_accessor :ZoneId, :Type, :Instance
+
+        def initialize(zoneid=nil, type=nil, instance=nil)
+          @ZoneId = zoneid
+          @Type = type
+          @Instance = instance
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @Type = params['Type']
+          @Instance = params['Instance']
+        end
+      end
+
       # RefreshMultiPathGatewaySecretKey请求参数结构体
       class RefreshMultiPathGatewaySecretKeyRequest < TencentCloud::Common::AbstractModel
         # @param ZoneId: 站点 ID。
@@ -22152,6 +22356,54 @@ module TencentCloud
 
         def deserialize(params)
           @ContentIdentifier = params['ContentIdentifier']
+        end
+      end
+
+      # 共享CNAME明细
+      class SharedCNAMEInfo < TencentCloud::Common::AbstractModel
+        # @param Type: 共享CNAME类型：取值范围如下：
+        # <li>custom：由用户创建的自定义共享CNAME</li>
+        # <li>ip-ssl：IP SSL类型的共享CNAME</li>
+        # @type Type: String
+        # @param SharedCNAME: 共享CNAME名称。
+        # @type SharedCNAME: String
+        # @param Description: 描述。
+        # @type Description: String
+        # @param IPSSLConfig: 当type为ip-ssl时，展示该共享CNAME关联的 IP SSL 配置信息。
+        # @type IPSSLConfig: :class:`Tencentcloud::Teo.v20220901.models.IPSSLConfig`
+        # @param BindDomainCount: 共享CNAME绑定的加速域名数量。
+        # @type BindDomainCount: Integer
+        # @param AccelerationDomains: 加入该共享CNAME的加速域名列表。当加入的域名数量超过100个时，只返回前100个加速域名。
+        # @type AccelerationDomains: Array
+
+        attr_accessor :Type, :SharedCNAME, :Description, :IPSSLConfig, :BindDomainCount, :AccelerationDomains
+
+        def initialize(type=nil, sharedcname=nil, description=nil, ipsslconfig=nil, binddomaincount=nil, accelerationdomains=nil)
+          @Type = type
+          @SharedCNAME = sharedcname
+          @Description = description
+          @IPSSLConfig = ipsslconfig
+          @BindDomainCount = binddomaincount
+          @AccelerationDomains = accelerationdomains
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @SharedCNAME = params['SharedCNAME']
+          @Description = params['Description']
+          unless params['IPSSLConfig'].nil?
+            @IPSSLConfig = IPSSLConfig.new
+            @IPSSLConfig.deserialize(params['IPSSLConfig'])
+          end
+          @BindDomainCount = params['BindDomainCount']
+          unless params['AccelerationDomains'].nil?
+            @AccelerationDomains = []
+            params['AccelerationDomains'].each do |i|
+              referenceholder_tmp = ReferenceHolder.new
+              referenceholder_tmp.deserialize(i)
+              @AccelerationDomains << referenceholder_tmp
+            end
+          end
         end
       end
 

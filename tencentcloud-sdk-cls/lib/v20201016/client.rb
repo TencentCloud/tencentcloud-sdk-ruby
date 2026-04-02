@@ -101,6 +101,32 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 调用接口，发起一次对话请求。
+        # 本接口支持智能生成检索分析语句等日志服务AI功能。
+        # ⚠️注意：通过SSE流式调用此接口时，请务必设置请求域名（Endpoint）为 cls.ai.tencentcloudapi.com。
+
+        # @param request: Request instance for ChatCompletions.
+        # @type request: :class:`Tencentcloud::cls::V20201016::ChatCompletionsRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::ChatCompletionsResponse`
+        def ChatCompletions(request)
+          body = send_request('ChatCompletions', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ChatCompletionsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口用于数据加工DSL函数的语法校验。
 
         # @param request: Request instance for CheckFunction.

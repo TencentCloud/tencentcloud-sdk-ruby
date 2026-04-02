@@ -3118,6 +3118,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询共享CNAME列表，支持模糊搜索、分页、排序等。
+
+        # @param request: Request instance for DescribeSharedCNAME.
+        # @type request: :class:`Tencentcloud::teo::V20220901::DescribeSharedCNAMERequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::DescribeSharedCNAMEResponse`
+        def DescribeSharedCNAME(request)
+          body = send_request('DescribeSharedCNAME', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSharedCNAMEResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # <p>本接口（<code>DescribeTimingL4Data</code>）用于查询四层时序数据列表。</p>
 
         # @param request: Request instance for DescribeTimingL4Data.
@@ -4679,6 +4703,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifySecurityPolicyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 用于修改共享 CNAME。当前仅支持修改共享 CNAME 的描述和设置 IP SSL类型的共享CNAME关联IP SSL 域名，共享 CNAME 本身创建后不支持修改。该功能白名单内测中。
+
+        # @param request: Request instance for ModifySharedCNAME.
+        # @type request: :class:`Tencentcloud::teo::V20220901::ModifySharedCNAMERequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::ModifySharedCNAMEResponse`
+        def ModifySharedCNAME(request)
+          body = send_request('ModifySharedCNAME', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifySharedCNAMEResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -29,6 +29,30 @@ module TencentCloud
         end
 
 
+        # 创建全球加速实例
+
+        # @param request: Request instance for CreateGlobalAccelerator.
+        # @type request: :class:`Tencentcloud::ga2::V20250115::CreateGlobalAcceleratorRequest`
+        # @rtype: :class:`Tencentcloud::ga2::V20250115::CreateGlobalAcceleratorResponse`
+        def CreateGlobalAccelerator(request)
+          body = send_request('CreateGlobalAccelerator', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateGlobalAcceleratorResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询跨境账单
 
         # @param request: Request instance for DescribeCrossBorderSettlement.

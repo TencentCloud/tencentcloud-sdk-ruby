@@ -4204,14 +4204,11 @@ module TencentCloud
 
       # 场景化 AIGC 生图配置。
       class AigcImageSceneInfo < TencentCloud::Common::AbstractModel
-        # @param Type: AI生图场景类型，可选值：
-        # - change_clothes：AI换衣。
-        # - product_image：AI生商品图。
-        # - outpainting: AI扩图。
+        # @param Type: <p>AI生图场景类型，可选值：</p><ul><li>change_clothes：常规场景换衣。</li><li>change_clothes_under：特殊场景换衣。</li><li>change_clothes_top_wear：上半身换衣。</li><li>change_clothes_bottom_wear：下半身换衣。</li><li>change_clothes_full_wear：全身换衣。</li><li>product_image：AI生商品图。</li><li>outpainting: AI扩图。</li></ul>
         # @type Type: String
-        # @param ChangeClothesConfig: 当 Type 为 change_clothes 时有效，则该项为必填，表示AI 换衣生图配置参数。
+        # @param ChangeClothesConfig: <p>当 Type 下列类型时，则该项为必填，表示AI 换衣生图配置参数：</p><ul><li>change_clothes</li><li>change_clothes_under</li><li>change_clothes_full_wear</li><li>change_clothes_top_wear</li><li>change_clothes_bottom_wear</li></ul>
         # @type ChangeClothesConfig: :class:`Tencentcloud::Vod.v20180717.models.ChangeClothesConfig`
-        # @param ProductImageConfig: 当 Type 为 product_image 时有效，表示AI 生商品图配置参数。
+        # @param ProductImageConfig: <p>当 Type 为 product_image 时有效，表示AI 生商品图配置参数。</p>
         # @type ProductImageConfig: :class:`Tencentcloud::Vod.v20180717.models.ProductImageConfig`
 
         attr_accessor :Type, :ChangeClothesConfig, :ProductImageConfig
@@ -6181,9 +6178,9 @@ module TencentCloud
 
       # AI 换衣参数配置
       class ChangeClothesConfig < TencentCloud::Common::AbstractModel
-        # @param ClothesFileInfos: 输入需要更换的**衣物**图片列表。目前最大支持4张图片。
+        # @param ClothesFileInfos: <p>输入需要更换的<strong>衣物</strong>图片列表。各类型最大支持衣物数量：</p><ul><li>change_clothes：4 张图片；</li><li>change_clothes_under：1 张图片；</li><li>change_clothes_full_wear：1 张图片；</li><li>change_clothes_top_wear：1 张图片；</li><li>change_clothes_bottom_wear：1 张图片；</li></ul>
         # @type ClothesFileInfos: Array
-        # @param Prompt: AI换衣的提示词。
+        # @param Prompt: <p>AI换衣的提示词。<strong>仅Type为change_clothes有效。</strong></p>
         # @type Prompt: String
 
         attr_accessor :ClothesFileInfos, :Prompt
@@ -9351,10 +9348,16 @@ module TencentCloud
         # @type SubAppId: Integer
         # @param TemplateType: 需要创建的 MPS 模板的类型。取值：
         # <li>Transcode: 创建转码模板，目前仅支持创建增强模板。</li>
+        # <li>AIAnalysis: 创建智能分析模板。</li>
+        # <li>SmartSubtitle: 创建智能字幕模板。</li>
+        # <li>SmartErase: 创建智能擦除模板。</li>
         # @type TemplateType: String
         # @param MPSCreateTemplateParams: MPS 创建模板参数。该参数用于透传至媒体处理服务（MPS），从云点播侧创建用户自定义的 MPS 任务模板。
         # 目前仅支持通过此方式创建以下任务类型的模板：
         # 1. 音视频增强：仅支持填写“[创建转码模板](https://cloud.tencent.com/document/product/862/37605)”接口中的 Container 、Name、Comment、RemoveVideo、RemoveAudio、VideoTemplate、AudioTemplate 和 EnhanceConfig 几个参数。其中 EnhanceConfig 此处必填，且 Container 目前暂不支持 hls。
+        # 2. 智能分析：仅支持填写“[创建内容分析模板](https://cloud.tencent.com/document/api/862/40249)”接口中的Name、Comment、ClassificationConfigure、TagConfigure、CoverConfigure、FrameTagConfigure几个参数的内容。目前仅支持在模板中配置以上参数，其他参数无需填写，若包含其它参数，系统将自动忽略。
+        # 3. 智能字幕：仅支持填写“[创建智能字幕模板](https://cloud.tencent.com/document/api/862/117004)”接口中的Name、Comment、TranslateSwitch、VideoSrcLanguage、SubtitleFormat、SubtitleType、AsrHotWordsConfigure、TranslateDstLanguage、ProcessType几个参数的内容。目前仅支持在模板中配置以上参数，其他参数无需填写，若包含其它参数，系统将自动忽略。
+        # 4. 智能擦除：仅支持填写“[创建智能擦除模板](https://cloud.tencent.com/document/api/862/123735)”接口中的Name、Comment、EraseType、EraseSubtitleConfig、EraseWatermarkConfig、ErasePrivacyConfig几个参数的内容。目前仅支持在模板中配置以上参数，其他参数无需填写，若包含其它参数，系统将自动忽略。
 
         # 目前模板中仅支持配置以上参数，其他参数无需填写。若包含其它参数，系统将自动忽略。以上透传参数以JSON形式表示。
         # @type MPSCreateTemplateParams: String
@@ -11414,6 +11417,9 @@ module TencentCloud
         # @type SubAppId: Integer
         # @param TemplateType: 需要删除的 MPS 模板的类型。取值：
         # <li>Transcode: 删除转码模板。</li>
+        # <li>AIAnalysis: 创建智能分析模板。</li>
+        # <li>SmartSubtitle: 创建智能字幕模板。</li>
+        # <li>SmartErase: 创建智能擦除模板。</li>
         # @type TemplateType: String
         # @param Definition: MPS 任务模板唯一标识。
         # @type Definition: Integer
@@ -13540,7 +13546,7 @@ module TencentCloud
 
       # DescribeEventsState请求参数结构体
       class DescribeEventsStateRequest < TencentCloud::Common::AbstractModel
-        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
+        # @param SubAppId: <p><b>点播<a href="/document/product/266/14574">应用</a> ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b></p>
         # @type SubAppId: Integer
 
         attr_accessor :SubAppId
@@ -13556,7 +13562,7 @@ module TencentCloud
 
       # DescribeEventsState返回参数结构体
       class DescribeEventsStateResponse < TencentCloud::Common::AbstractModel
-        # @param CountOfEventsToPull: 待进行拉取的事件通知数，为近似值，约5秒延迟。
+        # @param CountOfEventsToPull: <p>待进行拉取的事件通知数，为近似值，约有3分钟延迟。</p><p><strong>注意：不建议使用此字段作为是否拉取事件通知的依据。</strong></p>
         # @type CountOfEventsToPull: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -14135,9 +14141,15 @@ module TencentCloud
         # @type SubAppId: Integer
         # @param TemplateType: MPS 模板类型。根据需要查询的 MPS 模板的类型对结果进行过滤。取值：
         # <li>Transcode: 查询转码模板列表。</li>
+        # <li>AIAnalysis: 创建智能分析模板。</li>
+        # <li>SmartSubtitle: 创建智能字幕模板。</li>
+        # <li>SmartErase: 创建智能擦除模板。</li>
         # @type TemplateType: String
         # @param MPSDescribeTemplateParams: MPS 查询模板参数。该参数用于透传至媒体处理服务（MPS），从云点播侧查询 MPS 任务模板列表。目前仅支持通过此方式查询以下任务类型的模板：
-        # 1. 音视频增强：仅支持填写“[获取转码模板列表](https://cloud.tencent.com/document/product/862/37593)”接口中的 Definitions、Offset 和 Limit 几个参数的内容。目前仅支持在模板中配置以上参数，其他参数无需填写，若包含其它参数，系统将自动忽略。
+        # 1. 音视频增强：仅支持填写“[获取转码模板列表](https://cloud.tencent.com/document/product/862/37593)”接口中的 Definitions、Type、Name、Offset 和 Limit 几个参数的内容。目前仅支持在模板中配置以上参数，其他参数无需填写，若包含其它参数，系统将自动忽略。
+        # 2. 智能分析：仅支持填写“[获取智能分析模板列表](https://cloud.tencent.com/document/product/862/40247)”接口中的 Definitions、Type、Name、Offset 和 Limit 几个参数的内容。目前仅支持在模板中配置以上参数，其他参数无需填写，若包含其它参数，系统将自动忽略。
+        # 3. 智能字幕：仅支持填写“[获取智能字幕模板列表](https://cloud.tencent.com/document/product/862/117002)”接口中的 Definitions、Type、Name、Offset 和 Limit 几个参数的内容。目前仅支持在模板中配置以上参数，其他参数无需填写，若包含其它参数，系统将自动忽略。
+        # 4. 智能擦除：仅支持填写“[获取智能擦除模板列表](https://cloud.tencent.com/document/product/862/123733)”接口中的 Definitions、Type、Name、Offset 和 Limit 几个参数的内容。目前仅支持在模板中配置以上参数，其他参数无需填写，若包含其它参数，系统将自动忽略。
         # @type MPSDescribeTemplateParams: String
 
         attr_accessor :SubAppId, :TemplateType, :MPSDescribeTemplateParams
@@ -14188,23 +14200,11 @@ module TencentCloud
 
       # DescribeMediaInfos请求参数结构体
       class DescribeMediaInfosRequest < TencentCloud::Common::AbstractModel
-        # @param FileIds: 媒体文件 ID 列表，N 从 0 开始取值，最大 19。
+        # @param FileIds: <p>媒体文件 ID 列表，N 从 0 开始取值，最大 19。</p>
         # @type FileIds: Array
-        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
+        # @param SubAppId: <p><b>点播<a href="/document/product/266/14574">应用</a> ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b></p>
         # @type SubAppId: Integer
-        # @param Filters: 指定所有媒体文件需要返回的信息，可同时指定多个信息，N 从 0 开始递增。如果未填写该字段，默认返回所有信息。选项有：
-        # <li>basicInfo（视频基础信息）。</li>
-        # <li>metaData（视频元信息）。</li>
-        # <li>transcodeInfo（视频转码结果信息）。</li>
-        # <li>animatedGraphicsInfo（视频转动图结果信息）。</li>
-        # <li>imageSpriteInfo（视频雪碧图信息）。</li>
-        # <li>snapshotByTimeOffsetInfo（视频指定时间点截图信息）。</li>
-        # <li>sampleSnapshotInfo（采样截图信息）。</li>
-        # <li>keyFrameDescInfo（打点信息）。</li>
-        # <li>adaptiveDynamicStreamingInfo（转自适应码流信息）。</li>
-        # <li>miniProgramReviewInfo（小程序审核信息）。</li>
-        # <li>subtitleInfo（字幕信息）。</li>
-        # <li>reviewInfo（审核信息）。</li>
+        # @param Filters: <p>指定所有媒体文件需要返回的信息，可同时指定多个信息，N 从 0 开始递增。如果未填写该字段，默认返回所有信息。选项有：</p><li>basicInfo（视频基础信息）。</li><li>metaData（视频元信息）。</li><li>transcodeInfo（视频转码结果信息）。</li><li>animatedGraphicsInfo（视频转动图结果信息）。</li><li>imageSpriteInfo（视频雪碧图信息）。</li><li>snapshotByTimeOffsetInfo（视频指定时间点截图信息）。</li><li>sampleSnapshotInfo（采样截图信息）。</li><li>keyFrameDescInfo（打点信息）。</li><li>adaptiveDynamicStreamingInfo（转自适应码流信息）。</li><li>miniProgramReviewInfo（小程序审核信息）。</li><li>subtitleInfo（字幕信息）。</li><li>reviewInfo（审核信息）。</li><li>mpsAiMediaInfo（mps智能媒资信息）。</li>
         # @type Filters: Array
 
         attr_accessor :FileIds, :SubAppId, :Filters
@@ -14224,9 +14224,9 @@ module TencentCloud
 
       # DescribeMediaInfos返回参数结构体
       class DescribeMediaInfosResponse < TencentCloud::Common::AbstractModel
-        # @param MediaInfoSet: 媒体文件信息列表。
+        # @param MediaInfoSet: <p>媒体文件信息列表。</p>
         # @type MediaInfoSet: Array
-        # @param NotExistFileIdSet: 不存在的文件 ID 列表。
+        # @param NotExistFileIdSet: <p>不存在的文件 ID 列表。</p>
         # @type NotExistFileIdSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -18007,6 +18007,76 @@ module TencentCloud
         end
       end
 
+      # 人脸识别的媒体信息
+      class FaceRecognitionInfo < TencentCloud::Common::AbstractModel
+        # @param FaceRecognitionTasks: <p>人脸识别任务列表</p>
+        # @type FaceRecognitionTasks: Array
+
+        attr_accessor :FaceRecognitionTasks
+
+        def initialize(facerecognitiontasks=nil)
+          @FaceRecognitionTasks = facerecognitiontasks
+        end
+
+        def deserialize(params)
+          unless params['FaceRecognitionTasks'].nil?
+            @FaceRecognitionTasks = []
+            params['FaceRecognitionTasks'].each do |i|
+              facerecognitiontask_tmp = FaceRecognitionTask.new
+              facerecognitiontask_tmp.deserialize(i)
+              @FaceRecognitionTasks << facerecognitiontask_tmp
+            end
+          end
+        end
+      end
+
+      # 人脸识别输出文件信息
+      class FaceRecognitionOutputFileInfo < TencentCloud::Common::AbstractModel
+        # @param FileType: <p>人脸识别输出文件类型</p><p>枚举值：</p><ul><li>Output： 任务生成的结果输出，文件对应人脸识别任务返回中的结果，以 JSON 格式生成文件。</li></ul>
+        # @type FileType: String
+        # @param Url: <p>人脸识别输出文件的URL</p>
+        # @type Url: String
+
+        attr_accessor :FileType, :Url
+
+        def initialize(filetype=nil, url=nil)
+          @FileType = filetype
+          @Url = url
+        end
+
+        def deserialize(params)
+          @FileType = params['FileType']
+          @Url = params['Url']
+        end
+      end
+
+      # 人脸识别任务
+      class FaceRecognitionTask < TencentCloud::Common::AbstractModel
+        # @param Definition: <p>人脸识别模板编号</p>
+        # @type Definition: Integer
+        # @param OutputFile: <p>输出文件信息</p>
+        # @type OutputFile: Array
+
+        attr_accessor :Definition, :OutputFile
+
+        def initialize(definition=nil, outputfile=nil)
+          @Definition = definition
+          @OutputFile = outputfile
+        end
+
+        def deserialize(params)
+          @Definition = params['Definition']
+          unless params['OutputFile'].nil?
+            @OutputFile = []
+            params['OutputFile'].each do |i|
+              facerecognitionoutputfileinfo_tmp = FaceRecognitionOutputFileInfo.new
+              facerecognitionoutputfileinfo_tmp.deserialize(i)
+              @OutputFile << facerecognitionoutputfileinfo_tmp
+            end
+          end
+        end
+      end
+
       # 快速媒体编辑操作的输入媒体类型
       class FastEditMediaFileInfo < TencentCloud::Common::AbstractModel
         # @param FileId: 媒体的 ID。
@@ -19616,6 +19686,22 @@ module TencentCloud
         end
       end
 
+      # 媒资智能知识库信息
+      class KnowledgeBasesInfo < TencentCloud::Common::AbstractModel
+        # @param Bases: <p>当前媒资当导入的知识库列表</p>
+        # @type Bases: Array
+
+        attr_accessor :Bases
+
+        def initialize(bases=nil)
+          @Bases = bases
+        end
+
+        def deserialize(params)
+          @Bases = params['Bases']
+        end
+      end
+
       # 大模型解析文本转录解析配置
       class LLMComprehendAsr < TencentCloud::Common::AbstractModel
         # @param Switch: 文本转录任务开关，可选值：
@@ -20748,11 +20834,11 @@ module TencentCloud
 
       # 点播文件音频流信息
       class MediaAudioStreamItem < TencentCloud::Common::AbstractModel
-        # @param Bitrate: 音频流的码率，单位：bps。
+        # @param Bitrate: <p>音频流的码率，单位：bps。</p>
         # @type Bitrate: Integer
-        # @param SamplingRate: 音频流的采样率，单位：hz。
+        # @param SamplingRate: <p>音频流的采样率，单位：hz。</p>
         # @type SamplingRate: Integer
-        # @param Codec: 音频流的编码格式，例如 aac。
+        # @param Codec: <p>音频流的编码格式，例如 aac。</p>
         # @type Codec: String
 
         attr_accessor :Bitrate, :SamplingRate, :Codec
@@ -21234,53 +21320,57 @@ module TencentCloud
 
       # 点播文件信息
       class MediaInfo < TencentCloud::Common::AbstractModel
-        # @param BasicInfo: 基础信息。包括视频名称、分类、播放地址、封面图片等。
+        # @param BasicInfo: <p>基础信息。包括视频名称、分类、播放地址、封面图片等。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BasicInfo: :class:`Tencentcloud::Vod.v20180717.models.MediaBasicInfo`
-        # @param MetaData: 元信息。包括大小、时长、视频流信息、音频流信息等。
+        # @param MetaData: <p>元信息。包括大小、时长、视频流信息、音频流信息等。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MetaData: :class:`Tencentcloud::Vod.v20180717.models.MediaMetaData`
-        # @param TranscodeInfo: 转码结果信息。包括该视频转码生成的各种码率的视频的地址、规格、码率、分辨率等。
+        # @param TranscodeInfo: <p>转码结果信息。包括该视频转码生成的各种码率的视频的地址、规格、码率、分辨率等。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TranscodeInfo: :class:`Tencentcloud::Vod.v20180717.models.MediaTranscodeInfo`
-        # @param AnimatedGraphicsInfo: 转动图结果信息。对视频转动图（如 gif）后，动图相关信息。
+        # @param AnimatedGraphicsInfo: <p>转动图结果信息。对视频转动图（如 gif）后，动图相关信息。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AnimatedGraphicsInfo: :class:`Tencentcloud::Vod.v20180717.models.MediaAnimatedGraphicsInfo`
-        # @param SampleSnapshotInfo: 采样截图信息。对视频采样截图后，相关截图信息。
+        # @param SampleSnapshotInfo: <p>采样截图信息。对视频采样截图后，相关截图信息。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SampleSnapshotInfo: :class:`Tencentcloud::Vod.v20180717.models.MediaSampleSnapshotInfo`
-        # @param ImageSpriteInfo: 雪碧图信息。对视频截取雪碧图之后，雪碧的相关信息。
+        # @param ImageSpriteInfo: <p>雪碧图信息。对视频截取雪碧图之后，雪碧的相关信息。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImageSpriteInfo: :class:`Tencentcloud::Vod.v20180717.models.MediaImageSpriteInfo`
-        # @param SnapshotByTimeOffsetInfo: 指定时间点截图信息。对视频依照指定时间点截图后，各个截图的信息。
+        # @param SnapshotByTimeOffsetInfo: <p>指定时间点截图信息。对视频依照指定时间点截图后，各个截图的信息。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SnapshotByTimeOffsetInfo: :class:`Tencentcloud::Vod.v20180717.models.MediaSnapshotByTimeOffsetInfo`
-        # @param KeyFrameDescInfo: 视频打点信息。对视频设置的各个打点信息。
+        # @param KeyFrameDescInfo: <p>视频打点信息。对视频设置的各个打点信息。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KeyFrameDescInfo: :class:`Tencentcloud::Vod.v20180717.models.MediaKeyFrameDescInfo`
-        # @param AdaptiveDynamicStreamingInfo: 转自适应码流信息。包括规格、加密类型、打包格式等相关信息。
+        # @param AdaptiveDynamicStreamingInfo: <p>转自适应码流信息。包括规格、加密类型、打包格式等相关信息。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AdaptiveDynamicStreamingInfo: :class:`Tencentcloud::Vod.v20180717.models.MediaAdaptiveDynamicStreamingInfo`
-        # @param MiniProgramReviewInfo: 小程序审核信息。
+        # @param MiniProgramReviewInfo: <p>小程序审核信息。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MiniProgramReviewInfo: :class:`Tencentcloud::Vod.v20180717.models.MediaMiniProgramReviewInfo`
-        # @param SubtitleInfo: 字幕信息。
+        # @param SubtitleInfo: <p>字幕信息。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubtitleInfo: :class:`Tencentcloud::Vod.v20180717.models.MediaSubtitleInfo`
-        # @param FileId: 媒体文件唯一标识 ID。
+        # @param FileId: <p>媒体文件唯一标识 ID。</p>
         # @type FileId: String
-        # @param ReviewInfo: 审核信息。
+        # @param ReviewInfo: <p>审核信息。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReviewInfo: :class:`Tencentcloud::Vod.v20180717.models.FileReviewInfo`
-        # @param MPSAiMediaInfo: MPS智能媒资信息
+        # @param MPSAiMediaInfo: <p>MPS智能媒资信息</p>
         # @type MPSAiMediaInfo: :class:`Tencentcloud::Vod.v20180717.models.MPSAiMediaInfo`
-        # @param ImageUnderstandingInfo: 图片理解信息。
+        # @param ImageUnderstandingInfo: <p>图片理解信息。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImageUnderstandingInfo: :class:`Tencentcloud::Vod.v20180717.models.ImageUnderstandingInfo`
+        # @param KnowledgeBasesInfo: <p>智能知识库信息。</p>
+        # @type KnowledgeBasesInfo: :class:`Tencentcloud::Vod.v20180717.models.KnowledgeBasesInfo`
+        # @param FaceRecognitionInfo: <p>人脸识别信息。</p>
+        # @type FaceRecognitionInfo: :class:`Tencentcloud::Vod.v20180717.models.FaceRecognitionInfo`
 
-        attr_accessor :BasicInfo, :MetaData, :TranscodeInfo, :AnimatedGraphicsInfo, :SampleSnapshotInfo, :ImageSpriteInfo, :SnapshotByTimeOffsetInfo, :KeyFrameDescInfo, :AdaptiveDynamicStreamingInfo, :MiniProgramReviewInfo, :SubtitleInfo, :FileId, :ReviewInfo, :MPSAiMediaInfo, :ImageUnderstandingInfo
+        attr_accessor :BasicInfo, :MetaData, :TranscodeInfo, :AnimatedGraphicsInfo, :SampleSnapshotInfo, :ImageSpriteInfo, :SnapshotByTimeOffsetInfo, :KeyFrameDescInfo, :AdaptiveDynamicStreamingInfo, :MiniProgramReviewInfo, :SubtitleInfo, :FileId, :ReviewInfo, :MPSAiMediaInfo, :ImageUnderstandingInfo, :KnowledgeBasesInfo, :FaceRecognitionInfo
 
-        def initialize(basicinfo=nil, metadata=nil, transcodeinfo=nil, animatedgraphicsinfo=nil, samplesnapshotinfo=nil, imagespriteinfo=nil, snapshotbytimeoffsetinfo=nil, keyframedescinfo=nil, adaptivedynamicstreaminginfo=nil, miniprogramreviewinfo=nil, subtitleinfo=nil, fileid=nil, reviewinfo=nil, mpsaimediainfo=nil, imageunderstandinginfo=nil)
+        def initialize(basicinfo=nil, metadata=nil, transcodeinfo=nil, animatedgraphicsinfo=nil, samplesnapshotinfo=nil, imagespriteinfo=nil, snapshotbytimeoffsetinfo=nil, keyframedescinfo=nil, adaptivedynamicstreaminginfo=nil, miniprogramreviewinfo=nil, subtitleinfo=nil, fileid=nil, reviewinfo=nil, mpsaimediainfo=nil, imageunderstandinginfo=nil, knowledgebasesinfo=nil, facerecognitioninfo=nil)
           @BasicInfo = basicinfo
           @MetaData = metadata
           @TranscodeInfo = transcodeinfo
@@ -21296,6 +21386,8 @@ module TencentCloud
           @ReviewInfo = reviewinfo
           @MPSAiMediaInfo = mpsaimediainfo
           @ImageUnderstandingInfo = imageunderstandinginfo
+          @KnowledgeBasesInfo = knowledgebasesinfo
+          @FaceRecognitionInfo = facerecognitioninfo
         end
 
         def deserialize(params)
@@ -21355,6 +21447,14 @@ module TencentCloud
           unless params['ImageUnderstandingInfo'].nil?
             @ImageUnderstandingInfo = ImageUnderstandingInfo.new
             @ImageUnderstandingInfo.deserialize(params['ImageUnderstandingInfo'])
+          end
+          unless params['KnowledgeBasesInfo'].nil?
+            @KnowledgeBasesInfo = KnowledgeBasesInfo.new
+            @KnowledgeBasesInfo.deserialize(params['KnowledgeBasesInfo'])
+          end
+          unless params['FaceRecognitionInfo'].nil?
+            @FaceRecognitionInfo = FaceRecognitionInfo.new
+            @FaceRecognitionInfo.deserialize(params['FaceRecognitionInfo'])
           end
         end
       end
@@ -23825,14 +23925,11 @@ module TencentCloud
 
       # ModifyMPSTemplate请求参数结构体
       class ModifyMPSTemplateRequest < TencentCloud::Common::AbstractModel
-        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。</b>
+        # @param SubAppId: <p><b>点播<a href="/document/product/266/14574">应用</a> ID。</b></p>
         # @type SubAppId: Integer
-        # @param TemplateType: 需要修改的 MPS 模板的类型。取值：
-        # <li>Transcode: 创建转码模板，目前仅支持修改增强参数。</li>
+        # @param TemplateType: <p>需要修改的 MPS 模板的类型。</p><p>枚举值：</p><ul><li>Transcode： 转码模板，目前仅支持修改增强参数</li><li>AIAnalysis： 智能分析模板</li><li>SmartSubtitle： 智能字幕模板</li><li>SmartErase： 智能擦除模板</li></ul>
         # @type TemplateType: String
-        # @param MPSModifyTemplateParams: MPS 修改模板参数。该参数用于透传至媒体处理服务（MPS），从云点播侧修改用户自定义的 MPS 任务模板。
-        #  目前仅支持通过此方式修改以下任务类型的模板：
-        # 1. 音视频增强：仅支持填写“[修改转码模板](https://cloud.tencent.com/document/api/862/37578)”接口中的 Name、Comment、RemoveVideo、RemoveAudio、VideoTemplate、AudioTemplate 和 EnhanceConfig 几个参数的内容。目前仅支持在模板中配置以上参数，其他参数无需填写，若包含其它参数，系统将自动忽略。
+        # @param MPSModifyTemplateParams: <p>MPS 修改模板参数。该参数用于透传至媒体处理服务（MPS），从云点播侧修改用户自定义的 MPS 任务模板。<br> 目前仅支持通过此方式修改以下任务类型的模板：</p><ol><li>音视频增强：仅支持填写“<a href="https://cloud.tencent.com/document/api/862/37578">修改转码模板</a>”接口中的 Name、Comment、RemoveVideo、RemoveAudio、VideoTemplate、AudioTemplate 和 EnhanceConfig 几个参数的内容。目前仅支持在模板中配置以上参数，其他参数无需填写，若包含其它参数，系统将自动忽略。</li><li>智能分析：仅支持填写“<a href="https://cloud.tencent.com/document/api/862/40246">修改内容分析模板</a>”接口中的Name、Comment、ClassificationConfigure、TagConfigure、CoverConfigure、FrameTagConfigure几个参数的内容。目前仅支持在模板中配置以上参数，其他参数无需填写，若包含其它参数，系统将自动忽略。</li><li>智能字幕：仅支持填写“<a href="https://cloud.tencent.com/document/api/862/117001">修改智能字幕模板</a>”接口中的Name、Comment、TranslateSwitch、VideoSrcLanguage、SubtitleFormat、SubtitleType、AsrHotWordsConfigure、TranslateDstLanguage、ProcessType几个参数的内容。目前仅支持在模板中配置以上参数，其他参数无需填写，若包含其它参数，系统将自动忽略。</li><li>智能擦除：仅支持填写“<a href="https://cloud.tencent.com/document/api/862/123732">修改智能擦除模板</a>”接口中的Name、Comment、EraseType、EraseSubtitleConfig、EraseWatermarkConfig、ErasePrivacyConfig几个参数的内容。目前仅支持在模板中配置以上参数，其他参数无需填写，若包含其它参数，系统将自动忽略。</li></ol>
         # @type MPSModifyTemplateParams: String
 
         attr_accessor :SubAppId, :TemplateType, :MPSModifyTemplateParams
@@ -27002,18 +27099,13 @@ module TencentCloud
 
       # ProcessMediaByMPS请求参数结构体
       class ProcessMediaByMPSRequest < TencentCloud::Common::AbstractModel
-        # @param FileId: 媒体文件 ID，即该文件在云点播上的全局唯一标识符，在上传成功后由云点播后台分配。可以在 [视频上传完成事件通知](/document/product/266/7830) 或 [云点播控制台](https://console.cloud.tencent.com/vod/media) 获取该字段。
+        # @param FileId: <p>媒体文件 ID，即该文件在云点播上的全局唯一标识符，在上传成功后由云点播后台分配。可以在 <a href="/document/product/266/7830">视频上传完成事件通知</a> 或 <a href="https://console.cloud.tencent.com/vod/media">云点播控制台</a> 获取该字段。</p>
         # @type FileId: String
-        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。</b>
+        # @param SubAppId: <p><b>点播<a href="/document/product/266/14574">应用</a> ID。</b></p>
         # @type SubAppId: Integer
-        # @param MPSProcessMediaParams: 该参数用于透传至媒体处理服务（MPS），以便从云点播侧发起 MPS 视频处理任务。
-        # 视频处理参数详情请参考：[MPS 发起媒体处理](https://cloud.tencent.com/document/api/862/37578)。
-        # 填写说明：
-        # 1. 目前仅需要配置 MPS “发起媒体处理”接口中任务配置相关的参数，如 AiAnalysisTask 与 MediaProcessTask，其他参数无需填写。若包含其它参数，系统将自动忽略；
-        # 2. 当前仅支持通过此方式发起智能擦除及音视频增强任务。若配置了其他任务类型的相关参数，系统将自动忽略这些参数；
-        # 3. 音视频增强任务目前不支持使用预置模板发起，可通过 [CreateMPSTemplate](https://cloud.tencent.com/document/product/266/122580) 接口创建自定义模板。
+        # @param MPSProcessMediaParams: <p>该参数用于透传至媒体处理服务（MPS），以便从云点播侧发起 MPS 视频处理任务。<br>视频处理参数详情请参考：<a href="https://cloud.tencent.com/document/api/862/37578">MPS 发起媒体处理</a>。<br>填写说明：</p><ol><li>目前仅需要配置 MPS “发起媒体处理”接口中任务配置相关的参数，如 AiAnalysisTask 与 MediaProcessTask，其他参数无需填写。若包含其它参数，系统将自动忽略；</li><li>当前仅支持通过此方式发起智能擦除及音视频增强任务。若配置了其他任务类型的相关参数，系统将自动忽略这些参数；</li><li>音视频增强任务目前不支持使用预置模板发起，可通过 <a href="https://cloud.tencent.com/document/product/266/122580">CreateMPSTemplate</a> 接口创建自定义模板。</li></ol>
         # @type MPSProcessMediaParams: String
-        # @param ExtInfo: 保留字段，特殊用途时使用。
+        # @param ExtInfo: <p>保留字段，特殊用途时使用。</p>
         # @type ExtInfo: String
 
         attr_accessor :FileId, :SubAppId, :MPSProcessMediaParams, :ExtInfo
@@ -27035,7 +27127,7 @@ module TencentCloud
 
       # ProcessMediaByMPS返回参数结构体
       class ProcessMediaByMPSResponse < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务 ID。
+        # @param TaskId: <p>任务 ID。</p>
         # @type TaskId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

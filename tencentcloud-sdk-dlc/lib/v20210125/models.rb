@@ -1897,8 +1897,8 @@ module TencentCloud
 
         attr_accessor :EngineType, :DataEngineName, :ClusterType, :Mode, :AutoResume, :MinClusters, :MaxClusters, :DefaultDataEngine, :CidrBlock, :Message, :Size, :PayMode, :TimeSpan, :TimeUnit, :AutoRenew, :Tags, :AutoSuspend, :CrontabResumeSuspend, :CrontabResumeSuspendStrategy, :EngineExecType, :MaxConcurrency, :TolerableQueueTime, :AutoSuspendTime, :ResourceType, :DataEngineConfigPairs, :ImageVersionName, :MainClusterName, :ElasticSwitch, :ElasticLimit, :SessionResourceTemplate, :AutoAuthorization, :EngineNetworkId, :EngineGeneration
         extend Gem::Deprecate
-        deprecate :DefaultDataEngine, :none, 2026, 3
-        deprecate :DefaultDataEngine=, :none, 2026, 3
+        deprecate :DefaultDataEngine, :none, 2026, 4
+        deprecate :DefaultDataEngine=, :none, 2026, 4
 
         def initialize(enginetype=nil, dataenginename=nil, clustertype=nil, mode=nil, autoresume=nil, minclusters=nil, maxclusters=nil, defaultdataengine=nil, cidrblock=nil, message=nil, size=nil, paymode=nil, timespan=nil, timeunit=nil, autorenew=nil, tags=nil, autosuspend=nil, crontabresumesuspend=nil, crontabresumesuspendstrategy=nil, engineexectype=nil, maxconcurrency=nil, tolerablequeuetime=nil, autosuspendtime=nil, resourcetype=nil, dataengineconfigpairs=nil, imageversionname=nil, mainclustername=nil, elasticswitch=nil, elasticlimit=nil, sessionresourcetemplate=nil, autoauthorization=nil, enginenetworkid=nil, enginegeneration=nil)
           @EngineType = enginetype
@@ -11295,20 +11295,24 @@ module TencentCloud
 
       # 筛选条件定义
       class Filter < TencentCloud::Common::AbstractModel
-        # @param Name: 属性名称, 若存在多个Filter时，Filter间的关系为逻辑或（OR）关系。
+        # @param Name: 筛选字段名，对应实体属性名（驼峰命名）
         # @type Name: String
-        # @param Values: 属性值, 若同一个Filter存在多个Values，同一Filter下Values间的关系为逻辑或（OR）关系。
+        # @param Operator: 筛选操作符：EQ/NE/GT/GE/LT/LE/LIKE/IN，默认EQ
+        # @type Operator: String
+        # @param Values: 筛选值列表，EQ/NE/GT/GE/LT/LE/LIKE取第一个值，IN使用完整列表
         # @type Values: Array
 
-        attr_accessor :Name, :Values
+        attr_accessor :Name, :Operator, :Values
 
-        def initialize(name=nil, values=nil)
+        def initialize(name=nil, operator=nil, values=nil)
           @Name = name
+          @Operator = operator
           @Values = values
         end
 
         def deserialize(params)
           @Name = params['Name']
+          @Operator = params['Operator']
           @Values = params['Values']
         end
       end
@@ -14446,8 +14450,8 @@ module TencentCloud
 
         attr_accessor :LifecycleEnable, :Expiration, :DropTable, :ExpiredField, :ExpiredFieldFormat
         extend Gem::Deprecate
-        deprecate :DropTable, :none, 2026, 3
-        deprecate :DropTable=, :none, 2026, 3
+        deprecate :DropTable, :none, 2026, 4
+        deprecate :DropTable=, :none, 2026, 4
 
         def initialize(lifecycleenable=nil, expiration=nil, droptable=nil, expiredfield=nil, expiredfieldformat=nil)
           @LifecycleEnable = lifecycleenable
@@ -15704,10 +15708,10 @@ module TencentCloud
 
         attr_accessor :DatabaseName, :TableName, :DatasourceConnectionName, :TableComment, :Type, :TableFormat, :UserAlias, :UserSubUin, :GovernPolicy, :DbGovernPolicyIsDisable, :SmartPolicy, :PrimaryKeys
         extend Gem::Deprecate
-        deprecate :GovernPolicy, :none, 2026, 3
-        deprecate :GovernPolicy=, :none, 2026, 3
-        deprecate :DbGovernPolicyIsDisable, :none, 2026, 3
-        deprecate :DbGovernPolicyIsDisable=, :none, 2026, 3
+        deprecate :GovernPolicy, :none, 2026, 4
+        deprecate :GovernPolicy=, :none, 2026, 4
+        deprecate :DbGovernPolicyIsDisable, :none, 2026, 4
+        deprecate :DbGovernPolicyIsDisable=, :none, 2026, 4
 
         def initialize(databasename=nil, tablename=nil, datasourceconnectionname=nil, tablecomment=nil, type=nil, tableformat=nil, useralias=nil, usersubuin=nil, governpolicy=nil, dbgovernpolicyisdisable=nil, smartpolicy=nil, primarykeys=nil)
           @DatabaseName = databasename
