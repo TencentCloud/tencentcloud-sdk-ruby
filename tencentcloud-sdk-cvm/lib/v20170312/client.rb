@@ -441,6 +441,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口 (DeleteInstancesDisasterRecoverGroups) 用于将云服务器实例从指定的置放群组中批量移除。
+
+        # @param request: Request instance for DeleteInstancesDisasterRecoverGroups.
+        # @type request: :class:`Tencentcloud::cvm::V20170312::DeleteInstancesDisasterRecoverGroupsRequest`
+        # @rtype: :class:`Tencentcloud::cvm::V20170312::DeleteInstancesDisasterRecoverGroupsResponse`
+        def DeleteInstancesDisasterRecoverGroups(request)
+          body = send_request('DeleteInstancesDisasterRecoverGroups', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteInstancesDisasterRecoverGroupsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口 (DeleteKeyPairs) 用于删除已在腾讯云托管的密钥对。
 
         # * 可以同时删除多个密钥对。

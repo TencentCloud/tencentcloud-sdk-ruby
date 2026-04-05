@@ -5638,7 +5638,7 @@ module TencentCloud
 
       # DeleteDataEngine请求参数结构体
       class DeleteDataEngineRequest < TencentCloud::Common::AbstractModel
-        # @param DataEngineNames: 删除虚拟集群的名称数组
+        # @param DataEngineNames: <p>删除虚拟集群的名称数组</p>
         # @type DataEngineNames: Array
 
         attr_accessor :DataEngineNames

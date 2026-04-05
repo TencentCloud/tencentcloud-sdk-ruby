@@ -3398,6 +3398,45 @@ module TencentCloud
         end
       end
 
+      # 组件被引用的实例信息，用于展示该组件与边缘函数等资源的绑定关系。当边缘函数需要访问组件（如 KV 命名空间）时，会建立引用关系，通过此结构体可查看引用的具体实例详情及所属站点信息。
+      class ComponentReference < TencentCloud::Common::AbstractModel
+        # @param ReferenceType: 引用的实例类型。取值有：
+        # <li>edge-function：边缘函数。</li>
+        # @type ReferenceType: String
+        # @param ReferenceId: 引用的实例 ID。根据 ReferenceType 的取值不同，返回对应的实例 ID：
+        # <li>当 ReferenceType 为 edge-function 时：返回边缘函数 ID，格式形如：ef-2vc5oe9mzqhm。</li>
+        # @type ReferenceId: String
+        # @param ReferenceName: 引用的实例名称。根据 ReferenceType 的取值不同，返回对应的实例名称：
+        # <li>当 ReferenceType 为 edge-function 时：返回边缘函数名称。</li>
+        # @type ReferenceName: String
+        # @param ZoneId: 站点 ID。引用该命名空间的实例所属的站点标识。
+        # @type ZoneId: String
+        # @param ZoneName: 站点名称。引用该命名空间的实例所属的站点名称。
+        # @type ZoneName: String
+        # @param AliasZoneName: 引用该命名空间的实例所属站点的别名。若未设置站点别名，则返回空字符串。
+        # @type AliasZoneName: String
+
+        attr_accessor :ReferenceType, :ReferenceId, :ReferenceName, :ZoneId, :ZoneName, :AliasZoneName
+
+        def initialize(referencetype=nil, referenceid=nil, referencename=nil, zoneid=nil, zonename=nil, aliaszonename=nil)
+          @ReferenceType = referencetype
+          @ReferenceId = referenceid
+          @ReferenceName = referencename
+          @ZoneId = zoneid
+          @ZoneName = zonename
+          @AliasZoneName = aliaszonename
+        end
+
+        def deserialize(params)
+          @ReferenceType = params['ReferenceType']
+          @ReferenceId = params['ReferenceId']
+          @ReferenceName = params['ReferenceName']
+          @ZoneId = params['ZoneId']
+          @ZoneName = params['ZoneName']
+          @AliasZoneName = params['AliasZoneName']
+        end
+      end
+
       # 智能压缩配置。
       class Compression < TencentCloud::Common::AbstractModel
         # @param Switch: 智能压缩配置开关，取值有：
@@ -4235,6 +4274,46 @@ module TencentCloud
 
         def deserialize(params)
           @RecordId = params['RecordId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateEdgeKVNamespace请求参数结构体
+      class CreateEdgeKVNamespaceRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param Namespace: 命名空间名称。输入内容有以下限制：支持输入 1-50 个字符，允许的字符为 a-z、A-Z、0-9、-，且 - 不能单独注册或连续使用，不能放在开头或结尾。在同站点下，名称需保证唯一。
+        # @type Namespace: String
+        # @param Remark: 命名空间描述。用于说明命名空间的用途或业务含义。最大支持 256 个字符。
+        # @type Remark: String
+
+        attr_accessor :ZoneId, :Namespace, :Remark
+
+        def initialize(zoneid=nil, namespace=nil, remark=nil)
+          @ZoneId = zoneid
+          @Namespace = namespace
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @Namespace = params['Namespace']
+          @Remark = params['Remark']
+        end
+      end
+
+      # CreateEdgeKVNamespace返回参数结构体
+      class CreateEdgeKVNamespaceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -5978,21 +6057,21 @@ module TencentCloud
         end
       end
 
-      # Web安全的自定义规则
+      # Web 防护功能下的自定义规则。
       class CustomRule < TencentCloud::Common::AbstractModel
         # @param Name: 自定义规则的名称。
         # @type Name: String
-        # @param Condition: 自定义规则的具体内容，需符合表达式语法，详细规范参见产品文档。
+        # @param Condition: 自定义规则的具体内容，需符合表达式语法，详细规范参见 [产品文档](https://cloud.tencent.com/document/product/1552/125343) 。
         # @type Condition: String
-        # @param Action: 自定义规则的执行动作。	SecurityAction 的 Name 取值支持：<li>Deny：拦截；</li><li>Monitor：观察；</li><li>ReturnCustomPage：使用指定页面拦截；</li><li>Redirect：重定向至 URL；</li><li>BlockIP：IP 封禁；</li><li>JSChallenge：JavaScript 挑战；</li><li>ManagedChallenge：托管挑战；</li><li>Allow：放行。</li>
+        # @param Action: 自定义规则的处置动作。SecurityAction.Name 取值范围如下：<ul><li>Deny：拦截；</li><li>Monitor：观察；</li><li>ReturnCustomPage：使用指定页面拦截；</li><li>Redirect：重定向至 URL；</li><li>BlockIP：IP 封禁；</li><li>JSChallenge：JavaScript 挑战；</li><li>ManagedChallenge：托管挑战；</li><li>Allow：放行。</li></ul>
         # @type Action: :class:`Tencentcloud::Teo.v20220901.models.SecurityAction`
-        # @param Enabled: 自定义规则是否开启。取值有：<li>on：开启</li><li>off：关闭</li>
+        # @param Enabled: 自定义规则是否开启。取值有：<ul><li>on：开启</li><li>off：关闭</li></ul>
         # @type Enabled: String
-        # @param Id: 自定义规则的 ID。<br>通过规则 ID 可支持不同的规则配置操作：<br> - 增加新规则：ID 为空或不指定 ID 参数；<br> - 修改已有规则：指定需要更新/修改的规则 ID；<br> - 删除已有规则：CustomRules 参数中，Rules 列表中未包含的已有规则将被删除。
+        # @param Id: 自定义规则的 ID。通过规则 ID 可支持不同的规则配置操作：<ul><li>增加新规则：ID 为空或不指定 ID 参数；</li><li>修改已有规则：指定需要更新/修改的规则 ID；</li><li>删除已有规则：CustomRules 参数中，Rules 列表中未包含的已有规则将被删除。</li></ul>
         # @type Id: String
-        # @param RuleType: 自定义规则的类型。取值有：<li>BasicAccessRule：基础访问管控；</li><li>PreciseMatchRule：精准匹配规则，默认；</li><li>ManagedAccessRule：专家定制规则，仅出参。</li><br/>默认为PreciseMatchRule。
+        # @param RuleType: 自定义规则的类型。取值有：<ul><li>BasicAccessRule：基础访问管控；</li><li>PreciseMatchRule：精准匹配规则；</li><li>ManagedAccessRule：专家定制规则，仅出参支持。</li></ul>说明：当未指定 RuleType 时，默认为 `PreciseMatchRule`。
         # @type RuleType: String
-        # @param Priority: 自定义规则的优先级，范围是 0 ~ 100，默认为 0，仅支持精准匹配规则（PreciseMatchRule）。
+        # @param Priority: 自定义规则的优先级，范围是 0 ~ 100，默认为 0，仅支持精准匹配规则（`PreciseMatchRule`）。
         # @type Priority: Integer
 
         attr_accessor :Name, :Condition, :Action, :Enabled, :Id, :RuleType, :Priority
@@ -6294,6 +6373,34 @@ module TencentCloud
 
         def deserialize(params)
           @IsFake = params['IsFake']
+        end
+      end
+
+      # 默认拦截动作配置。当安全规则命中并触发拦截处置动作时，若 SecurityAction 仅指定了 Name 为 Deny 且未指定 DenyActionParameters，则按功能模块维度匹配并使用此处定义的默认参数配置：
+      # <li>ManagedRules 托管规则默认拦截处置动作配置。</li>
+      # <li>OtherModules 除托管规则外的安全防护规则（自定义规则、速率限制 和 Bot 管理功能）默认拦截处置动作配置。</li>
+      class DefaultDenySecurityActionParameters < TencentCloud::Common::AbstractModel
+        # @param ManagedRules: 托管规则默认拦截处置动作配置。	DenyActionParameters 支持的配置参数：<li>ReturnCustomPage：是否使用自定义页面。</li><li>ResponseCode：自定义页面的状态码。</li><li>ErrorPageId：自定义页面的 PageId。</li>
+        # @type ManagedRules: :class:`Tencentcloud::Teo.v20220901.models.DenyActionParameters`
+        # @param OtherModules: 除托管规则外的安全防护规则（自定义规则、速率限制 和 Bot 管理功能）默认拦截处置动作配置。	DenyActionParameters 支持的配置参数：<li>ReturnCustomPage：是否使用自定义页面。</li><li>ResponseCode：自定义页面的状态码。</li><li>ErrorPageId：自定义页面的 PageId。</li>
+        # @type OtherModules: :class:`Tencentcloud::Teo.v20220901.models.DenyActionParameters`
+
+        attr_accessor :ManagedRules, :OtherModules
+
+        def initialize(managedrules=nil, othermodules=nil)
+          @ManagedRules = managedrules
+          @OtherModules = othermodules
+        end
+
+        def deserialize(params)
+          unless params['ManagedRules'].nil?
+            @ManagedRules = DenyActionParameters.new
+            @ManagedRules.deserialize(params['ManagedRules'])
+          end
+          unless params['OtherModules'].nil?
+            @OtherModules = DenyActionParameters.new
+            @OtherModules.deserialize(params['OtherModules'])
+          end
         end
       end
 
@@ -6599,6 +6706,42 @@ module TencentCloud
 
       # DeleteDnsRecords返回参数结构体
       class DeleteDnsRecordsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteEdgeKVNamespace请求参数结构体
+      class DeleteEdgeKVNamespaceRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param Namespace: 要删除的命名空间名称。
+        # @type Namespace: String
+
+        attr_accessor :ZoneId, :Namespace
+
+        def initialize(zoneid=nil, namespace=nil)
+          @ZoneId = zoneid
+          @Namespace = namespace
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @Namespace = params['Namespace']
+        end
+      end
+
+      # DeleteEdgeKVNamespace返回参数结构体
+      class DeleteEdgeKVNamespaceResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -8685,6 +8828,88 @@ module TencentCloud
         end
       end
 
+      # DescribeEdgeKVNamespaces请求参数结构体
+      class DescribeEdgeKVNamespacesRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param Offset: 分页查询偏移量。默认值：0。
+        # @type Offset: Integer
+        # @param Limit: 分页查询限制数目。默认值：20，最大值：1000。
+        # @type Limit: Integer
+        # @param SortBy: 排序依据，取值有：
+        # <li>created-on：创建时间；</li>
+        # <li>updated-on：更新时间。</li>
+        # 默认值为 created-on。
+        # @type SortBy: String
+        # @param SortOrder: 列表排序方式，取值有：
+        # <li>asc：升序排列；</li>
+        # <li>desc：降序排列。</li>
+        # 默认值为 desc。
+        # @type SortOrder: String
+        # @param Filters: 过滤条件，Filters.Values 的上限为 20。该参数不填写时，返回站点 ID 下全部 KV 命名空间。详细的过滤条件如下：
+        # <li>namespace：按照 KV 命名空间名称进行过滤，支持模糊查询；</li>
+        # <li>remark：按照命名空间描述进行过滤，支持模糊查询。</li>
+        # @type Filters: Array
+
+        attr_accessor :ZoneId, :Offset, :Limit, :SortBy, :SortOrder, :Filters
+
+        def initialize(zoneid=nil, offset=nil, limit=nil, sortby=nil, sortorder=nil, filters=nil)
+          @ZoneId = zoneid
+          @Offset = offset
+          @Limit = limit
+          @SortBy = sortby
+          @SortOrder = sortorder
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @SortBy = params['SortBy']
+          @SortOrder = params['SortOrder']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              advancedfilter_tmp = AdvancedFilter.new
+              advancedfilter_tmp.deserialize(i)
+              @Filters << advancedfilter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeEdgeKVNamespaces返回参数结构体
+      class DescribeEdgeKVNamespacesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 符合条件的命名空间总数。
+        # @type TotalCount: Integer
+        # @param KVNamespaces: KV 命名空间信息列表。若无符合条件的命名空间，则返回空数组。
+        # @type KVNamespaces: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :KVNamespaces, :RequestId
+
+        def initialize(totalcount=nil, kvnamespaces=nil, requestid=nil)
+          @TotalCount = totalcount
+          @KVNamespaces = kvnamespaces
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['KVNamespaces'].nil?
+            @KVNamespaces = []
+            params['KVNamespaces'].each do |i|
+              kvnamespace_tmp = KVNamespace.new
+              kvnamespace_tmp.deserialize(i)
+              @KVNamespaces << kvnamespace_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeEnvironments请求参数结构体
       class DescribeEnvironmentsRequest < TencentCloud::Common::AbstractModel
         # @param ZoneId: 站点 ID。
@@ -8726,6 +8951,78 @@ module TencentCloud
               envinfo_tmp = EnvInfo.new
               envinfo_tmp.deserialize(i)
               @EnvInfos << envinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeFunctionComponentBindings请求参数结构体
+      class DescribeFunctionComponentBindingsRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param FunctionId: 函数 ID。
+        # @type FunctionId: String
+        # @param Offset: 分页查询偏移量。默认值：0。
+        # @type Offset: Integer
+        # @param Limit: 分页查询限制数目。默认值：20，最大值：1000。
+        # @type Limit: Integer
+        # @param Filters: 过滤条件，Filters.Values 的上限为 20。详细的过滤条件如下：
+        # <li>name：按照绑定的变量名进行过滤，支持模糊查询；</li>
+        # <li>type：按照绑定类型进行过滤，不支持模糊查询。</li>
+        # @type Filters: Array
+
+        attr_accessor :ZoneId, :FunctionId, :Offset, :Limit, :Filters
+
+        def initialize(zoneid=nil, functionid=nil, offset=nil, limit=nil, filters=nil)
+          @ZoneId = zoneid
+          @FunctionId = functionid
+          @Offset = offset
+          @Limit = limit
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @FunctionId = params['FunctionId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              advancedfilter_tmp = AdvancedFilter.new
+              advancedfilter_tmp.deserialize(i)
+              @Filters << advancedfilter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeFunctionComponentBindings返回参数结构体
+      class DescribeFunctionComponentBindingsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 符合条件的函数绑定总数。
+        # @type TotalCount: Integer
+        # @param FunctionComponentBindings: 函数组件绑定列表。
+        # @type FunctionComponentBindings: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :FunctionComponentBindings, :RequestId
+
+        def initialize(totalcount=nil, functioncomponentbindings=nil, requestid=nil)
+          @TotalCount = totalcount
+          @FunctionComponentBindings = functioncomponentbindings
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['FunctionComponentBindings'].nil?
+            @FunctionComponentBindings = []
+            params['FunctionComponentBindings'].each do |i|
+              functioncomponentbinding_tmp = FunctionComponentBinding.new
+              functioncomponentbinding_tmp.deserialize(i)
+              @FunctionComponentBindings << functioncomponentbinding_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -12246,7 +12543,7 @@ module TencentCloud
 
       # 客户端设备配置
       class DeviceProfile < TencentCloud::Common::AbstractModel
-        # @param ClientType: 客户端设备类型。取值有：<li>iOS；</li><li>Android；</li><li>WebView。</li>
+        # @param ClientType: 客户端设备类型。取值有：<li>iOS；</li><li>Android；</li><li>WebView；</li><li>WeChatMiniProgram。</li>
         # @type ClientType: String
         # @param HighRiskMinScore: 判定请求为高风险的最低值，取值范围为 1～99。数值越大请求风险越高越接近 Bot 客户端发起的请求。默认值为 50，对应含义 51～100 为高风险。
         # @type HighRiskMinScore: Integer
@@ -12665,6 +12962,205 @@ module TencentCloud
           @Name = params['Name']
           @Type = params['Type']
           @CustomResponseId = params['CustomResponseId']
+        end
+      end
+
+      # EdgeKVDelete请求参数结构体
+      class EdgeKVDeleteRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param Namespace: 命名空间名称。
+        # @type Namespace: String
+        # @param Keys: 键名列表。数组长度上限为 20。每个键名不能为空，长度为 1-512 个字符，允许的字符为字母、数字、中划线和下划线。删除单个键时传入包含一个元素的数组。
+        # @type Keys: Array
+
+        attr_accessor :ZoneId, :Namespace, :Keys
+
+        def initialize(zoneid=nil, namespace=nil, keys=nil)
+          @ZoneId = zoneid
+          @Namespace = namespace
+          @Keys = keys
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @Namespace = params['Namespace']
+          @Keys = params['Keys']
+        end
+      end
+
+      # EdgeKVDelete返回参数结构体
+      class EdgeKVDeleteResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # EdgeKVGet请求参数结构体
+      class EdgeKVGetRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param Namespace: 命名空间名称。可通过 DescribeEdgeKVNamespaces 接口获取站点下的命名空间列表。
+        # @type Namespace: String
+        # @param Keys: 键名列表。数组长度上限为 20。每个键名不能为空，长度为 1-512 个字符，允许的字符为字母、数字、中划线和下划线。查询单个键时传入包含一个元素的数组。
+        # @type Keys: Array
+
+        attr_accessor :ZoneId, :Namespace, :Keys
+
+        def initialize(zoneid=nil, namespace=nil, keys=nil)
+          @ZoneId = zoneid
+          @Namespace = namespace
+          @Keys = keys
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @Namespace = params['Namespace']
+          @Keys = params['Keys']
+        end
+      end
+
+      # EdgeKVGet返回参数结构体
+      class EdgeKVGetResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 键值对数据列表。按入参 Keys 的顺序依次返回结果，若某键不存在，则对应项的 Value 字段返回空字符串。
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              keyvaluepair_tmp = KeyValuePair.new
+              keyvaluepair_tmp.deserialize(i)
+              @Data << keyvaluepair_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # EdgeKVList请求参数结构体
+      class EdgeKVListRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param Namespace: 命名空间名称。
+        # @type Namespace: String
+        # @param Prefix: 键名前缀过滤。只返回以指定前缀开头的键名，长度为 1-512 个字符。不填写表示返回所有键名；不允许传入空字符串。
+        # @type Prefix: String
+        # @param Cursor: 游标位置。标识当前查询的起始位置，用于遍历大量数据。首次查询时不填写，从头开始遍历；后续查询时填写上一次返回的 Cursor 值，从该位置继续向后遍历。
+        # @type Cursor: String
+        # @param Limit: 返回的键名数量。默认值：20，最大值：1000。
+        # @type Limit: Integer
+
+        attr_accessor :ZoneId, :Namespace, :Prefix, :Cursor, :Limit
+
+        def initialize(zoneid=nil, namespace=nil, prefix=nil, cursor=nil, limit=nil)
+          @ZoneId = zoneid
+          @Namespace = namespace
+          @Prefix = prefix
+          @Cursor = cursor
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @Namespace = params['Namespace']
+          @Prefix = params['Prefix']
+          @Cursor = params['Cursor']
+          @Limit = params['Limit']
+        end
+      end
+
+      # EdgeKVList返回参数结构体
+      class EdgeKVListResponse < TencentCloud::Common::AbstractModel
+        # @param Keys: 键名列表。
+        # @type Keys: Array
+        # @param Cursor: 游标位置。标识当前遍历的位置，用于获取下一批数据。将此值填入下次请求的 Cursor 参数中，可继续向后遍历。若为空字符串，表示已遍历完所有数据。
+        # @type Cursor: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Keys, :Cursor, :RequestId
+
+        def initialize(keys=nil, cursor=nil, requestid=nil)
+          @Keys = keys
+          @Cursor = cursor
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Keys = params['Keys']
+          @Cursor = params['Cursor']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # EdgeKVPut请求参数结构体
+      class EdgeKVPutRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param Namespace: 命名空间名称。
+        # @type Namespace: String
+        # @param Key: 键名，长度为 1-512 个字符，允许的字符为字母、数字、中划线和下划线。
+        # @type Key: String
+        # @param Value: 键值。不能为空，最大支持 1 MB。支持存储字符串数据。
+        # @type Value: String
+        # @param Expiration: 过期时间，绝对时间。表示从 1970 年 1 月 1 日（UTC/GMT 的午夜）开始所经过的秒数，不能小于当前时间。若 Expiration 和 ExpirationTTL 都填写，以 ExpirationTTL 为准。若 Expiration 和 ExpirationTTL 都不填写，则该键值对永不过期。
+        # @type Expiration: Integer
+        # @param ExpirationTTL: 过期时间，相对时间，单位为秒。表示数据将在指定秒数后过期，必须大于 0。若 Expiration 和 ExpirationTTL 都填写，以 ExpirationTTL 为准。若 Expiration 和 ExpirationTTL 都不填写，则该键值对永不过期。
+        # @type ExpirationTTL: Integer
+
+        attr_accessor :ZoneId, :Namespace, :Key, :Value, :Expiration, :ExpirationTTL
+
+        def initialize(zoneid=nil, namespace=nil, key=nil, value=nil, expiration=nil, expirationttl=nil)
+          @ZoneId = zoneid
+          @Namespace = namespace
+          @Key = key
+          @Value = value
+          @Expiration = expiration
+          @ExpirationTTL = expirationttl
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @Namespace = params['Namespace']
+          @Key = params['Key']
+          @Value = params['Value']
+          @Expiration = params['Expiration']
+          @ExpirationTTL = params['ExpirationTTL']
+        end
+      end
+
+      # EdgeKVPut返回参数结构体
+      class EdgeKVPutResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 
@@ -13508,6 +14004,38 @@ module TencentCloud
           @Domain = params['Domain']
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # 边缘函数组件绑定配置，用于建立边缘函数与组件（如 KV 命名空间）的关联关系。通过绑定配置，边缘函数代码可在运行时通过指定的变量名访问绑定的资源。
+      class FunctionComponentBinding < TencentCloud::Common::AbstractModel
+        # @param Type: 绑定的组件类型。取值有：
+        # <li>kv_namespace：KV 命名空间。</li>
+        # @type Type: String
+        # @param VariableName: 用于绑定的变量名。限制 1-50 个字符，允许的字符为字母、数字和下划线，其中数字不能在开头。在边缘函数代码中通过该变量名访问绑定的组件。根据 Type 的取值不同，使用方式如下：
+        # <li>当 Type 为 kv_namespace 时：在代码中可通过该变量名访问 KV 命名空间，例如设置为 "MY_KV" 时，可通过 MY_KV.get("key") 进行读写操作。</li>
+        # @type VariableName: String
+        # @param KVNamespaceParameters: KV 命名空间配置参数。用于指定绑定的 KV 命名空间详情。当 Type 为 kv_namespace 时，此字段必填。
+
+
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KVNamespaceParameters: :class:`Tencentcloud::Teo.v20220901.models.KVNamespaceParameters`
+
+        attr_accessor :Type, :VariableName, :KVNamespaceParameters
+
+        def initialize(type=nil, variablename=nil, kvnamespaceparameters=nil)
+          @Type = type
+          @VariableName = variablename
+          @KVNamespaceParameters = kvnamespaceparameters
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @VariableName = params['VariableName']
+          unless params['KVNamespaceParameters'].nil?
+            @KVNamespaceParameters = KVNamespaceParameters.new
+            @KVNamespaceParameters.deserialize(params['KVNamespaceParameters'])
+          end
         end
       end
 
@@ -14895,6 +15423,97 @@ module TencentCloud
           end
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # KV 命名空间信息，包含命名空间的基本属性、存储容量使用情况以及被引用关系。KV 命名空间是边缘函数存储键值对数据的容器，可在边缘函数中通过绑定方式进行读写操作。
+      class KVNamespace < TencentCloud::Common::AbstractModel
+        # @param Namespace: 命名空间名称。在同站点下具有唯一性。
+        # @type Namespace: String
+        # @param Remark: 命名空间描述。创建时填写的备注信息，用于说明命名空间的用途或业务含义。最大支持 256 个字符。
+        # @type Remark: String
+        # @param Capacity: KV 存储空间可用容量，单位为字节（Byte）。表示该命名空间可存储数据的最大容量上限，当前默认为 1 GB。
+        # @type Capacity: Integer
+        # @param CapacityUsed: KV 存储空间已用容量，单位为字节（Byte）。表示该命名空间当前已使用的存储空间大小。
+        # @type CapacityUsed: Integer
+        # @param References: 命名空间被引用实例的列表。展示当前命名空间被哪些边缘函数实例引用，以及引用的站点信息。若未被引用，则返回空数组。
+        # @type References: Array
+        # @param CreatedOn: 命名空间的创建时间，遵循 ISO 8601 标准，格式为 YYYY-MM-DDThh:mm:ssZ（UTC 时间）。
+        # @type CreatedOn: String
+        # @param ModifiedOn: 命名空间的最后修改时间，遵循 ISO 8601 标准，格式为 YYYY-MM-DDThh:mm:ssZ（UTC 时间）。
+        # @type ModifiedOn: String
+
+        attr_accessor :Namespace, :Remark, :Capacity, :CapacityUsed, :References, :CreatedOn, :ModifiedOn
+
+        def initialize(namespace=nil, remark=nil, capacity=nil, capacityused=nil, references=nil, createdon=nil, modifiedon=nil)
+          @Namespace = namespace
+          @Remark = remark
+          @Capacity = capacity
+          @CapacityUsed = capacityused
+          @References = references
+          @CreatedOn = createdon
+          @ModifiedOn = modifiedon
+        end
+
+        def deserialize(params)
+          @Namespace = params['Namespace']
+          @Remark = params['Remark']
+          @Capacity = params['Capacity']
+          @CapacityUsed = params['CapacityUsed']
+          unless params['References'].nil?
+            @References = []
+            params['References'].each do |i|
+              componentreference_tmp = ComponentReference.new
+              componentreference_tmp.deserialize(i)
+              @References << componentreference_tmp
+            end
+          end
+          @CreatedOn = params['CreatedOn']
+          @ModifiedOn = params['ModifiedOn']
+        end
+      end
+
+      # 边缘函数绑定 KV 命名空间时所需的详细配置参数，用于指定绑定的命名空间来源。通过此配置，边缘函数可操作指定站点下的 KV 命名空间。
+      class KVNamespaceParameters < TencentCloud::Common::AbstractModel
+        # @param ZoneId: KV 命名空间所属的站点 ID。指定要绑定的 KV 命名空间所在的站点，支持跨站点绑定。
+        # @type ZoneId: String
+        # @param Namespace: KV 命名空间名称。指定要绑定的具体命名空间，可通过 DescribeKVNamespace 接口获取站点下的命名空间列表。
+        # @type Namespace: String
+
+        attr_accessor :ZoneId, :Namespace
+
+        def initialize(zoneid=nil, namespace=nil)
+          @ZoneId = zoneid
+          @Namespace = namespace
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @Namespace = params['Namespace']
+        end
+      end
+
+      # KV 键值对数据，包含键名、键值和过期时间信息。
+      class KeyValuePair < TencentCloud::Common::AbstractModel
+        # @param Key: 键名。每个键名不能为空，长度为 1-512 个字符，允许的字符为字母、数字、中划线和下划线。
+        # @type Key: String
+        # @param Value: 键值。入参时不能为空，最大支持 1 MB。出参时若键不存在，则返回空字符串。
+        # @type Value: String
+        # @param Expiration: 过期时间，遵循 ISO 8601 标准，格式为 YYYY-MM-DDThh:mm:ssZ（UTC 时间）。出参时若为空字符串，表示该键值对永不过期。
+        # @type Expiration: String
+
+        attr_accessor :Key, :Value, :Expiration
+
+        def initialize(key=nil, value=nil, expiration=nil)
+          @Key = key
+          @Value = value
+          @Expiration = expiration
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
+          @Expiration = params['Expiration']
         end
       end
 
@@ -16306,6 +16925,101 @@ module TencentCloud
 
       # ModifyDnsRecordsStatus返回参数结构体
       class ModifyDnsRecordsStatusResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyEdgeKVNamespace请求参数结构体
+      class ModifyEdgeKVNamespaceRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param Namespace: 命名空间名称。
+        # @type Namespace: String
+        # @param Remark: 命名空间描述。用于说明命名空间的用途或业务含义。最大支持 256 个字符。
+        # @type Remark: String
+
+        attr_accessor :ZoneId, :Namespace, :Remark
+
+        def initialize(zoneid=nil, namespace=nil, remark=nil)
+          @ZoneId = zoneid
+          @Namespace = namespace
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @Namespace = params['Namespace']
+          @Remark = params['Remark']
+        end
+      end
+
+      # ModifyEdgeKVNamespace返回参数结构体
+      class ModifyEdgeKVNamespaceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyFunctionComponentBindings请求参数结构体
+      class ModifyFunctionComponentBindingsRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param FunctionId: 函数 ID。
+        # @type FunctionId: String
+        # @param Operation: 操作类型，取值有：
+        # <li>bind：绑定组件；</li>
+        # <li>bind-override：绑定组件。若绑定已存在则为重绑定行为，否则为绑定行为；</li>
+        # <li>unbind：解绑组件；</li>
+        # <li>rebind：重置绑定关系。清空所有现有绑定，并设置为传入的绑定列表。若传入空列表，则清空所有绑定。</li>
+        # @type Operation: String
+        # @param FunctionComponentBindings: 操作的函数组件绑定列表。当 Operation 为 rebind 且传入空列表时，表示清空所有绑定。
+        # @type FunctionComponentBindings: Array
+
+        attr_accessor :ZoneId, :FunctionId, :Operation, :FunctionComponentBindings
+
+        def initialize(zoneid=nil, functionid=nil, operation=nil, functioncomponentbindings=nil)
+          @ZoneId = zoneid
+          @FunctionId = functionid
+          @Operation = operation
+          @FunctionComponentBindings = functioncomponentbindings
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @FunctionId = params['FunctionId']
+          @Operation = params['Operation']
+          unless params['FunctionComponentBindings'].nil?
+            @FunctionComponentBindings = []
+            params['FunctionComponentBindings'].each do |i|
+              functioncomponentbinding_tmp = FunctionComponentBinding.new
+              functioncomponentbinding_tmp.deserialize(i)
+              @FunctionComponentBindings << functioncomponentbinding_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyFunctionComponentBindings返回参数结构体
+      class ModifyFunctionComponentBindingsResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -22115,10 +22829,12 @@ module TencentCloud
         # @type BotManagement: :class:`Tencentcloud::Teo.v20220901.models.BotManagement`
         # @param BotManagementLite: 基础 Bot 管理配置。
         # @type BotManagementLite: :class:`Tencentcloud::Teo.v20220901.models.BotManagementLite`
+        # @param DefaultDenySecurityActionParameters: 默认拦截动作配置。
+        # @type DefaultDenySecurityActionParameters: :class:`Tencentcloud::Teo.v20220901.models.DefaultDenySecurityActionParameters`
 
-        attr_accessor :CustomRules, :ManagedRules, :HttpDDoSProtection, :RateLimitingRules, :ExceptionRules, :BotManagement, :BotManagementLite
+        attr_accessor :CustomRules, :ManagedRules, :HttpDDoSProtection, :RateLimitingRules, :ExceptionRules, :BotManagement, :BotManagementLite, :DefaultDenySecurityActionParameters
 
-        def initialize(customrules=nil, managedrules=nil, httpddosprotection=nil, ratelimitingrules=nil, exceptionrules=nil, botmanagement=nil, botmanagementlite=nil)
+        def initialize(customrules=nil, managedrules=nil, httpddosprotection=nil, ratelimitingrules=nil, exceptionrules=nil, botmanagement=nil, botmanagementlite=nil, defaultdenysecurityactionparameters=nil)
           @CustomRules = customrules
           @ManagedRules = managedrules
           @HttpDDoSProtection = httpddosprotection
@@ -22126,6 +22842,7 @@ module TencentCloud
           @ExceptionRules = exceptionrules
           @BotManagement = botmanagement
           @BotManagementLite = botmanagementlite
+          @DefaultDenySecurityActionParameters = defaultdenysecurityactionparameters
         end
 
         def deserialize(params)
@@ -22156,6 +22873,10 @@ module TencentCloud
           unless params['BotManagementLite'].nil?
             @BotManagementLite = BotManagementLite.new
             @BotManagementLite.deserialize(params['BotManagementLite'])
+          end
+          unless params['DefaultDenySecurityActionParameters'].nil?
+            @DefaultDenySecurityActionParameters = DefaultDenySecurityActionParameters.new
+            @DefaultDenySecurityActionParameters.deserialize(params['DefaultDenySecurityActionParameters'])
           end
         end
       end

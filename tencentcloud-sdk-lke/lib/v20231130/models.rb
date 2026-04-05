@@ -1712,8 +1712,8 @@ module TencentCloud
 
         attr_accessor :AttrBizId, :AttrKey, :AttrName, :LabelNames, :IsUpdating, :Status, :StatusDesc, :LabelTotalCount
         extend Gem::Deprecate
-        deprecate :AttrKey, :none, 2026, 3
-        deprecate :AttrKey=, :none, 2026, 3
+        deprecate :AttrKey, :none, 2026, 4
+        deprecate :AttrKey=, :none, 2026, 4
 
         def initialize(attrbizid=nil, attrkey=nil, attrname=nil, labelnames=nil, isupdating=nil, status=nil, statusdesc=nil, labeltotalcount=nil)
           @AttrBizId = attrbizid
@@ -3119,8 +3119,8 @@ module TencentCloud
 
         attr_accessor :KnowledgeName, :KnowledgeDescription, :EmbeddingModel, :KnowledgeType
         extend Gem::Deprecate
-        deprecate :EmbeddingModel, :none, 2026, 3
-        deprecate :EmbeddingModel=, :none, 2026, 3
+        deprecate :EmbeddingModel, :none, 2026, 4
+        deprecate :EmbeddingModel=, :none, 2026, 4
 
         def initialize(knowledgename=nil, knowledgedescription=nil, embeddingmodel=nil, knowledgetype=nil)
           @KnowledgeName = knowledgename
@@ -4016,10 +4016,10 @@ module TencentCloud
 
         attr_accessor :UinAccount, :LoginUin, :LoginSubAccountUin, :SubBizType, :ModelName, :StartTime, :EndTime, :AppBizIds, :SubScenes, :AppType, :SpaceId, :StatStartTime, :StatEndTime
         extend Gem::Deprecate
-        deprecate :StartTime, :none, 2026, 3
-        deprecate :StartTime=, :none, 2026, 3
-        deprecate :EndTime, :none, 2026, 3
-        deprecate :EndTime=, :none, 2026, 3
+        deprecate :StartTime, :none, 2026, 4
+        deprecate :StartTime=, :none, 2026, 4
+        deprecate :EndTime, :none, 2026, 4
+        deprecate :EndTime=, :none, 2026, 4
 
         def initialize(uinaccount=nil, loginuin=nil, loginsubaccountuin=nil, subbiztype=nil, modelname=nil, starttime=nil, endtime=nil, appbizids=nil, subscenes=nil, apptype=nil, spaceid=nil, statstarttime=nil, statendtime=nil)
           @UinAccount = uinaccount
@@ -5222,10 +5222,10 @@ module TencentCloud
 
         attr_accessor :UinAccount, :SubBizType, :ModelName, :StartTime, :EndTime, :AppBizIds, :AppType, :SubScenes, :StatStartTime, :StatEndTime
         extend Gem::Deprecate
-        deprecate :StartTime, :none, 2026, 3
-        deprecate :StartTime=, :none, 2026, 3
-        deprecate :EndTime, :none, 2026, 3
-        deprecate :EndTime=, :none, 2026, 3
+        deprecate :StartTime, :none, 2026, 4
+        deprecate :StartTime=, :none, 2026, 4
+        deprecate :EndTime, :none, 2026, 4
+        deprecate :EndTime=, :none, 2026, 4
 
         def initialize(uinaccount=nil, subbiztype=nil, modelname=nil, starttime=nil, endtime=nil, appbizids=nil, apptype=nil, subscenes=nil, statstarttime=nil, statendtime=nil)
           @UinAccount = uinaccount
@@ -5334,10 +5334,10 @@ module TencentCloud
 
         attr_accessor :UinAccount, :LoginUin, :LoginSubAccountUin, :SubBizType, :ModelName, :StartTime, :EndTime, :AppBizIds, :SubScenes, :AppType, :SpaceId, :StatStartTime, :StatEndTime
         extend Gem::Deprecate
-        deprecate :StartTime, :none, 2026, 3
-        deprecate :StartTime=, :none, 2026, 3
-        deprecate :EndTime, :none, 2026, 3
-        deprecate :EndTime=, :none, 2026, 3
+        deprecate :StartTime, :none, 2026, 4
+        deprecate :StartTime=, :none, 2026, 4
+        deprecate :EndTime, :none, 2026, 4
+        deprecate :EndTime=, :none, 2026, 4
 
         def initialize(uinaccount=nil, loginuin=nil, loginsubaccountuin=nil, subbiztype=nil, modelname=nil, starttime=nil, endtime=nil, appbizids=nil, subscenes=nil, apptype=nil, spaceid=nil, statstarttime=nil, statendtime=nil)
           @UinAccount = uinaccount
@@ -6006,8 +6006,8 @@ module TencentCloud
 
         attr_accessor :DocBizId, :FileName, :FileType, :FileSize, :FileUrl, :DocId, :CreateTime
         extend Gem::Deprecate
-        deprecate :DocBizId, :none, 2026, 3
-        deprecate :DocBizId=, :none, 2026, 3
+        deprecate :DocBizId, :none, 2026, 4
+        deprecate :DocBizId=, :none, 2026, 4
 
         def initialize(docbizid=nil, filename=nil, filetype=nil, filesize=nil, fileurl=nil, docid=nil, createtime=nil)
           @DocBizId = docbizid
@@ -6689,8 +6689,8 @@ module TencentCloud
 
         attr_accessor :Type, :BotAppKey, :VisitorBizId, :VisitorLabels
         extend Gem::Deprecate
-        deprecate :VisitorLabels, :none, 2026, 3
-        deprecate :VisitorLabels=, :none, 2026, 3
+        deprecate :VisitorLabels, :none, 2026, 4
+        deprecate :VisitorLabels=, :none, 2026, 4
 
         def initialize(type=nil, botappkey=nil, visitorbizid=nil, visitorlabels=nil)
           @Type = type
@@ -7830,10 +7830,10 @@ module TencentCloud
 
         attr_accessor :KnowledgeName, :KnowledgeDescription, :EmbeddingModel, :QaExtractModel, :OwnerStaffId
         extend Gem::Deprecate
-        deprecate :EmbeddingModel, :none, 2026, 3
-        deprecate :EmbeddingModel=, :none, 2026, 3
-        deprecate :QaExtractModel, :none, 2026, 3
-        deprecate :QaExtractModel=, :none, 2026, 3
+        deprecate :EmbeddingModel, :none, 2026, 4
+        deprecate :EmbeddingModel=, :none, 2026, 4
+        deprecate :QaExtractModel, :none, 2026, 4
+        deprecate :QaExtractModel=, :none, 2026, 4
 
         def initialize(knowledgename=nil, knowledgedescription=nil, embeddingmodel=nil, qaextractmodel=nil, ownerstaffid=nil)
           @KnowledgeName = knowledgename
@@ -8114,8 +8114,8 @@ module TencentCloud
 
         attr_accessor :AppBizId, :BotBizId, :PageNumber, :PageSize, :ChannelType, :ChannelStatus
         extend Gem::Deprecate
-        deprecate :BotBizId, :none, 2026, 3
-        deprecate :BotBizId=, :none, 2026, 3
+        deprecate :BotBizId, :none, 2026, 4
+        deprecate :BotBizId=, :none, 2026, 4
 
         def initialize(appbizid=nil, botbizid=nil, pagenumber=nil, pagesize=nil, channeltype=nil, channelstatus=nil)
           @AppBizId = appbizid
@@ -10942,49 +10942,33 @@ module TencentCloud
 
       # 节点运行的基本信息
       class NodeRunBase < TencentCloud::Common::AbstractModel
-        # @param NodeRunId: 节点运行的ID
+        # @param NodeRunId: <p>节点运行的ID</p>
         # @type NodeRunId: String
-        # @param NodeId: 节点ID
+        # @param NodeId: <p>节点ID</p>
         # @type NodeId: String
-        # @param WorkflowRunId: 工作流运行实例的ID
+        # @param WorkflowRunId: <p>工作流运行实例的ID</p>
         # @type WorkflowRunId: String
-        # @param NodeName: 节点名称
+        # @param NodeName: <p>节点名称</p>
         # @type NodeName: String
-        # @param NodeType: 节点类型。
-        # 1： 开始节点
-        # 2：参数提取节点
-        # 3：大模型节点
-        # 4：知识问答节点
-        # 5：知识检索节点
-        # 6：标签提取节点
-        # 7：代码执行节点
-        # 8：工具节点
-        # 9：逻辑判断节点
-        # 10：回复节点
-        # 11：选项卡节点
-        # 12：循环节点
-        # 13：意图识别节点
-        # 14：工作流节点
-        # 15：插件节点
-        # 16：结束节点
-        # 17: 变量聚合节点数据
-        # 18: 批处理节点
-        # 19: 消息队列节点
+        # @param NodeType: <p>节点类型。<br>1： 开始节点<br>2：参数提取节点<br>3：大模型节点<br>4：知识问答节点<br>5：知识检索节点<br>6：标签提取节点<br>7：代码执行节点<br>8：工具节点<br>9：逻辑判断节点<br>10：回复节点<br>11：选项卡节点<br>12：循环节点<br>13：意图识别节点<br>14：工作流节点<br>15：插件节点<br>16：结束节点<br>17: 变量聚合节点数据<br>18: 批处理节点<br>19: 消息队列节点</p>
         # @type NodeType: Integer
-        # @param State: 运行状态。0: 初始状态；1: 运行中；2: 运行成功； 3: 运行失败； 4: 已取消
+        # @param State: <p>运行状态。0: 初始状态；1: 运行中；2: 运行成功； 3: 运行失败； 4: 已取消</p>
         # @type State: Integer
-        # @param FailCode: 错误码
+        # @param FailCode: <p>错误码</p>
         # @type FailCode: String
-        # @param FailMessage: 错误信息
+        # @param FailMessage: <p>错误信息</p>
         # @type FailMessage: String
-        # @param CostMilliseconds: 消耗时间（毫秒）
+        # @param CostMilliseconds: <p>消耗时间（毫秒）</p>
         # @type CostMilliseconds: Integer
-        # @param TotalTokens: 消耗的token总数
+        # @param TotalTokens: <p>消耗的token总数</p>
         # @type TotalTokens: Integer
+        # @param BranchIndexList: <p>分支下标列表</p><p>单位：无</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BranchIndexList: Array
 
-        attr_accessor :NodeRunId, :NodeId, :WorkflowRunId, :NodeName, :NodeType, :State, :FailCode, :FailMessage, :CostMilliseconds, :TotalTokens
+        attr_accessor :NodeRunId, :NodeId, :WorkflowRunId, :NodeName, :NodeType, :State, :FailCode, :FailMessage, :CostMilliseconds, :TotalTokens, :BranchIndexList
 
-        def initialize(noderunid=nil, nodeid=nil, workflowrunid=nil, nodename=nil, nodetype=nil, state=nil, failcode=nil, failmessage=nil, costmilliseconds=nil, totaltokens=nil)
+        def initialize(noderunid=nil, nodeid=nil, workflowrunid=nil, nodename=nil, nodetype=nil, state=nil, failcode=nil, failmessage=nil, costmilliseconds=nil, totaltokens=nil, branchindexlist=nil)
           @NodeRunId = noderunid
           @NodeId = nodeid
           @WorkflowRunId = workflowrunid
@@ -10995,6 +10979,7 @@ module TencentCloud
           @FailMessage = failmessage
           @CostMilliseconds = costmilliseconds
           @TotalTokens = totaltokens
+          @BranchIndexList = branchindexlist
         end
 
         def deserialize(params)
@@ -11008,6 +10993,7 @@ module TencentCloud
           @FailMessage = params['FailMessage']
           @CostMilliseconds = params['CostMilliseconds']
           @TotalTokens = params['TotalTokens']
+          @BranchIndexList = params['BranchIndexList']
         end
       end
 
@@ -14124,8 +14110,8 @@ module TencentCloud
 
         attr_accessor :RunEnv, :AppBizId, :WorkflowRunId, :WorkflowId, :Name, :Output, :State, :FailMessage, :TotalTokens, :CreateTime, :StartTime, :EndTime, :DialogJson, :Query, :MainModelName, :CustomVariables, :WorkflowGraph, :LatestMessage
         extend Gem::Deprecate
-        deprecate :DialogJson, :none, 2026, 3
-        deprecate :DialogJson=, :none, 2026, 3
+        deprecate :DialogJson, :none, 2026, 4
+        deprecate :DialogJson=, :none, 2026, 4
 
         def initialize(runenv=nil, appbizid=nil, workflowrunid=nil, workflowid=nil, name=nil, output=nil, state=nil, failmessage=nil, totaltokens=nil, createtime=nil, starttime=nil, endtime=nil, dialogjson=nil, query=nil, mainmodelname=nil, customvariables=nil, workflowgraph=nil, latestmessage=nil)
           @RunEnv = runenv
@@ -14182,37 +14168,37 @@ module TencentCloud
 
       # 工作流运行节点信息
       class WorkflowRunNodeInfo < TencentCloud::Common::AbstractModel
-        # @param NodeId: 节点ID
+        # @param NodeId: <p>节点ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NodeId: String
-        # @param NodeType: 节点类型
+        # @param NodeType: <p>节点类型</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NodeType: Integer
-        # @param NodeName: 节点名称
+        # @param NodeName: <p>节点名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NodeName: String
-        # @param Status: 状态
+        # @param Status: <p>状态</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
-        # @param Input: 输入
+        # @param Input: <p>输入</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Input: String
-        # @param Output: 输出
+        # @param Output: <p>输出</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Output: String
-        # @param TaskOutput: 任务输出
+        # @param TaskOutput: <p>任务输出</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskOutput: String
-        # @param FailMessage: 错误信息
+        # @param FailMessage: <p>错误信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FailMessage: String
-        # @param CostMilliSeconds: 花费时长
+        # @param CostMilliSeconds: <p>花费时长，单位为毫秒</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CostMilliSeconds: Integer
-        # @param StatisticInfos: 大模型输出信息
+        # @param StatisticInfos: <p>大模型输出信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StatisticInfos: Array
-        # @param FailCode: 错误代码
+        # @param FailCode: <p>错误代码</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FailCode: String
 

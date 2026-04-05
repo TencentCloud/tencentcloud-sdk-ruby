@@ -1288,22 +1288,6 @@ module TencentCloud
         end
       end
 
-      # guard content
-      class ApiGuardContent < TencentCloud::Common::AbstractModel
-        # @param Prompt: prompt
-        # @type Prompt: String
-
-        attr_accessor :Prompt
-
-        def initialize(prompt=nil)
-          @Prompt = prompt
-        end
-
-        def deserialize(params)
-          @Prompt = params['Prompt']
-        end
-      end
-
       # 带有请求方式的apiname结构体
       class ApiNameMethod < TencentCloud::Common::AbstractModel
         # @param ApiName: api名称
@@ -3332,34 +3316,6 @@ module TencentCloud
               @Clusters << cdccluster_tmp
             end
           end
-        end
-      end
-
-      # ClawRiskItem
-      class ClawRiskItem < TencentCloud::Common::AbstractModel
-        # @param RiskType: 风险类别
-        # @type RiskType: String
-        # @param RuleId: 规则id
-        # @type RuleId: String
-        # @param RuleName: 规则名称
-        # @type RuleName: String
-        # @param Score: 分数
-        # @type Score: Float
-
-        attr_accessor :RiskType, :RuleId, :RuleName, :Score
-
-        def initialize(risktype=nil, ruleid=nil, rulename=nil, score=nil)
-          @RiskType = risktype
-          @RuleId = ruleid
-          @RuleName = rulename
-          @Score = score
-        end
-
-        def deserialize(params)
-          @RiskType = params['RiskType']
-          @RuleId = params['RuleId']
-          @RuleName = params['RuleName']
-          @Score = params['Score']
         end
       end
 
@@ -9721,68 +9677,6 @@ module TencentCloud
         end
       end
 
-      # DescribeQClawContentSecCheck请求参数结构体
-      class DescribeQClawContentSecCheckRequest < TencentCloud::Common::AbstractModel
-        # @param ServiceId: <p>服务id,使用哪一套防护策略，就需要传哪一套服务id，模型会检测该服务id下的所有规则</p>
-        # @type ServiceId: String
-        # @param Content: <p>要审核的内容</p>
-        # @type Content: :class:`Tencentcloud::Waf.v20180125.models.ApiGuardContent`
-        # @param UserId: <p>标识用户的id，限速使用，不填，则限速会不生效</p>
-        # @type UserId: String
-        # @param SessionId: <p>会话id</p>
-        # @type SessionId: String
-        # @param ToolName: <p>工具名称</p>
-        # @type ToolName: String
-        # @param ToolArgs: <p>工具执行的参数</p>
-        # @type ToolArgs: String
-
-        attr_accessor :ServiceId, :Content, :UserId, :SessionId, :ToolName, :ToolArgs
-
-        def initialize(serviceid=nil, content=nil, userid=nil, sessionid=nil, toolname=nil, toolargs=nil)
-          @ServiceId = serviceid
-          @Content = content
-          @UserId = userid
-          @SessionId = sessionid
-          @ToolName = toolname
-          @ToolArgs = toolargs
-        end
-
-        def deserialize(params)
-          @ServiceId = params['ServiceId']
-          unless params['Content'].nil?
-            @Content = ApiGuardContent.new
-            @Content.deserialize(params['Content'])
-          end
-          @UserId = params['UserId']
-          @SessionId = params['SessionId']
-          @ToolName = params['ToolName']
-          @ToolArgs = params['ToolArgs']
-        end
-      end
-
-      # DescribeQClawContentSecCheck返回参数结构体
-      class DescribeQClawContentSecCheckResponse < TencentCloud::Common::AbstractModel
-        # @param Data: <p>检测结果</p>
-        # @type Data: :class:`Tencentcloud::Waf.v20180125.models.LLMRisks`
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Data, :RequestId
-
-        def initialize(data=nil, requestid=nil)
-          @Data = data
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['Data'].nil?
-            @Data = LLMRisks.new
-            @Data.deserialize(params['Data'])
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
       # DescribeRateLimitsV2请求参数结构体
       class DescribeRateLimitsV2Request < TencentCloud::Common::AbstractModel
         # @param Domain: 域名
@@ -14006,29 +13900,6 @@ module TencentCloud
           @BeginTime = params['BeginTime']
           @EndTime = params['EndTime']
           @InquireKey = params['InquireKey']
-        end
-      end
-
-      # LLMRisks
-      class LLMRisks < TencentCloud::Common::AbstractModel
-        # @param Risks: 分数
-        # @type Risks: Array
-
-        attr_accessor :Risks
-
-        def initialize(risks=nil)
-          @Risks = risks
-        end
-
-        def deserialize(params)
-          unless params['Risks'].nil?
-            @Risks = []
-            params['Risks'].each do |i|
-              clawriskitem_tmp = ClawRiskItem.new
-              clawriskitem_tmp.deserialize(i)
-              @Risks << clawriskitem_tmp
-            end
-          end
         end
       end
 

@@ -15066,6 +15066,62 @@ module TencentCloud
         end
       end
 
+      # DescribeVoices请求参数结构体
+      class DescribeVoicesRequest < TencentCloud::Common::AbstractModel
+        # @param VoiceType: <p>音色类别</p><p>枚举值：</p><ul><li>system： 系统音色</li></ul>
+        # @type VoiceType: String
+        # @param ExtParam: <p>扩展参数，json字符串</p><p>其他筛选条件voiceName String 音色名，模糊匹配labels Array of String 标签，匹配包含这些标签的音色</p>
+        # @type ExtParam: String
+
+        attr_accessor :VoiceType, :ExtParam
+
+        def initialize(voicetype=nil, extparam=nil)
+          @VoiceType = voicetype
+          @ExtParam = extparam
+        end
+
+        def deserialize(params)
+          @VoiceType = params['VoiceType']
+          @ExtParam = params['ExtParam']
+        end
+      end
+
+      # DescribeVoices返回参数结构体
+      class DescribeVoicesResponse < TencentCloud::Common::AbstractModel
+        # @param ErrorCode: <p>错误码，成功时返回0</p>
+        # @type ErrorCode: Integer
+        # @param Msg: <p>错误信息，成功时返回success</p>
+        # @type Msg: String
+        # @param Voices: <p>可用音色列表</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Voices: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrorCode, :Msg, :Voices, :RequestId
+
+        def initialize(errorcode=nil, msg=nil, voices=nil, requestid=nil)
+          @ErrorCode = errorcode
+          @Msg = msg
+          @Voices = voices
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrorCode = params['ErrorCode']
+          @Msg = params['Msg']
+          unless params['Voices'].nil?
+            @Voices = []
+            params['Voices'].each do |i|
+              voiceinfo_tmp = VoiceInfo.new
+              voiceinfo_tmp.deserialize(i)
+              @Voices << voiceinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeWatermarkTemplates请求参数结构体
       class DescribeWatermarkTemplatesRequest < TencentCloud::Common::AbstractModel
         # @param Definitions: 水印模板唯一标识过滤条件，数组长度限制：100。
@@ -31754,6 +31810,54 @@ module TencentCloud
           @ScenarioBased = params['ScenarioBased']
           @SceneType = params['SceneType']
           @CompressType = params['CompressType']
+        end
+      end
+
+      # 音色信息
+      class VoiceInfo < TencentCloud::Common::AbstractModel
+        # @param VoiceId: <p>音色ID</p>
+        # @type VoiceId: String
+        # @param Name: <p>音色名</p>
+        # @type Name: String
+        # @param Description: <p>音色描述信息</p>
+        # @type Description: String
+        # @param Category: <p>音色类别</p><p>枚举值：</p><ul><li>system： 系统音色</li></ul>
+        # @type Category: String
+        # @param Gender: <p>性别</p><p>枚举值：</p><ul><li>male： 男</li><li>famale： 女</li></ul>
+        # @type Gender: String
+        # @param Languages: <p>支持语种列表</p><p>如：en</p>
+        # @type Languages: Array
+        # @param AudioUrl: <p>试听音频URL</p>
+        # @type AudioUrl: String
+        # @param Labels: <p>标签列表</p><p>如：温柔</p>
+        # @type Labels: Array
+        # @param Scenes: <p>推荐场景</p><p>如：教育</p>
+        # @type Scenes: Array
+
+        attr_accessor :VoiceId, :Name, :Description, :Category, :Gender, :Languages, :AudioUrl, :Labels, :Scenes
+
+        def initialize(voiceid=nil, name=nil, description=nil, category=nil, gender=nil, languages=nil, audiourl=nil, labels=nil, scenes=nil)
+          @VoiceId = voiceid
+          @Name = name
+          @Description = description
+          @Category = category
+          @Gender = gender
+          @Languages = languages
+          @AudioUrl = audiourl
+          @Labels = labels
+          @Scenes = scenes
+        end
+
+        def deserialize(params)
+          @VoiceId = params['VoiceId']
+          @Name = params['Name']
+          @Description = params['Description']
+          @Category = params['Category']
+          @Gender = params['Gender']
+          @Languages = params['Languages']
+          @AudioUrl = params['AudioUrl']
+          @Labels = params['Labels']
+          @Scenes = params['Scenes']
         end
       end
 

@@ -173,6 +173,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询HPC集群列表。
+
+        # @param request: Request instance for DescribeHPCClusters.
+        # @type request: :class:`Tencentcloud::omics::V20221128::DescribeHPCClustersRequest`
+        # @rtype: :class:`Tencentcloud::omics::V20221128::DescribeHPCClustersResponse`
+        def DescribeHPCClusters(request)
+          body = send_request('DescribeHPCClusters', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeHPCClustersResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询HPC节点列表。
+
+        # @param request: Request instance for DescribeHPCNodes.
+        # @type request: :class:`Tencentcloud::omics::V20221128::DescribeHPCNodesRequest`
+        # @rtype: :class:`Tencentcloud::omics::V20221128::DescribeHPCNodesResponse`
+        def DescribeHPCNodes(request)
+          body = send_request('DescribeHPCNodes', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeHPCNodesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询任务批次列表。
 
         # @param request: Request instance for DescribeRunGroups.
@@ -399,6 +447,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyVolumeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 重启HPC节点
+
+        # @param request: Request instance for RebootHPCNodes.
+        # @type request: :class:`Tencentcloud::omics::V20221128::RebootHPCNodesRequest`
+        # @rtype: :class:`Tencentcloud::omics::V20221128::RebootHPCNodesResponse`
+        def RebootHPCNodes(request)
+          body = send_request('RebootHPCNodes', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RebootHPCNodesResponse.new
             model.deserialize(response['Response'])
             model
           else

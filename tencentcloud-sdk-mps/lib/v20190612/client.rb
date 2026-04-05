@@ -2609,6 +2609,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 同步接口。查询可用音色，支持通过类型、标签、语言等条件检索音色
+
+        # @param request: Request instance for DescribeVoices.
+        # @type request: :class:`Tencentcloud::mps::V20190612::DescribeVoicesRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::DescribeVoicesResponse`
+        def DescribeVoices(request)
+          body = send_request('DescribeVoices', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeVoicesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询用户自定义水印模板，支持根据条件，分页查询。
 
         # @param request: Request instance for DescribeWatermarkTemplates.

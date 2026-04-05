@@ -44,8 +44,8 @@ module TencentCloud
 
         attr_accessor :Type, :ApplicationVersionId, :Name, :Description, :Entrypoint, :CreateTime, :CreatorName, :CreatorId, :GitInfo, :GitSource, :CosSource
         extend Gem::Deprecate
-        deprecate :GitInfo, :none, 2026, 3
-        deprecate :GitInfo=, :none, 2026, 3
+        deprecate :GitInfo, :none, 2026, 4
+        deprecate :GitInfo=, :none, 2026, 4
 
         def initialize(type=nil, applicationversionid=nil, name=nil, description=nil, entrypoint=nil, createtime=nil, creatorname=nil, creatorid=nil, gitinfo=nil, gitsource=nil, cossource=nil)
           @Type = type
@@ -526,6 +526,154 @@ module TencentCloud
               @Environments << environment_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeHPCClusters请求参数结构体
+      class DescribeHPCClustersRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 返回数量，默认为20，最大值为100。
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Filters: 过滤器，支持过滤字段：
+        # - ClusterId：集群ID
+        # - Name：名称
+        # - Status：状态
+        # - ConfirmDeadlineLt: 交付确认截止日期小于给定值的集群，如2026-01-13T16:00:00+08:00
+        # @type Filters: Array
+
+        attr_accessor :Limit, :Offset, :Filters
+
+        def initialize(limit=nil, offset=nil, filters=nil)
+          @Limit = limit
+          @Offset = offset
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeHPCClusters返回参数结构体
+      class DescribeHPCClustersResponse < TencentCloud::Common::AbstractModel
+        # @param Clusters: HPC集群。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Clusters: Array
+        # @param TotalCount: 符合条件的数量。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Clusters, :TotalCount, :RequestId
+
+        def initialize(clusters=nil, totalcount=nil, requestid=nil)
+          @Clusters = clusters
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Clusters'].nil?
+            @Clusters = []
+            params['Clusters'].each do |i|
+              hpccluster_tmp = HPCCluster.new
+              hpccluster_tmp.deserialize(i)
+              @Clusters << hpccluster_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeHPCNodes请求参数结构体
+      class DescribeHPCNodesRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID。
+        # @type ClusterId: String
+        # @param Limit: 返回数量，默认为20，最大值为100。
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Filters: 过滤器，支持过滤字段：
+        # - ClusterId：集群ID
+        # - QueueId：队列ID
+        # - NodeId：节点ID
+        # - Name：名称
+        # - Role：角色
+        # - Type：类型
+        # - Zone：可用区
+        # - InstanceState：实例状态
+        # - InstanceType：实例机型
+        # - InstanceFamily：实例机型族
+        # - InstanceChargeType：实例计费类型
+        # - Tag：标签，Value格式为tagKey:tagValue
+        # @type Filters: Array
+
+        attr_accessor :ClusterId, :Limit, :Offset, :Filters
+
+        def initialize(clusterid=nil, limit=nil, offset=nil, filters=nil)
+          @ClusterId = clusterid
+          @Limit = limit
+          @Offset = offset
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeHPCNodes返回参数结构体
+      class DescribeHPCNodesResponse < TencentCloud::Common::AbstractModel
+        # @param Nodes: HPC节点。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Nodes: Array
+        # @param TotalCount: 符合条件的数量。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Nodes, :TotalCount, :RequestId
+
+        def initialize(nodes=nil, totalcount=nil, requestid=nil)
+          @Nodes = nodes
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Nodes'].nil?
+            @Nodes = []
+            params['Nodes'].each do |i|
+              hpcnode_tmp = HPCNode.new
+              hpcnode_tmp.deserialize(i)
+              @Nodes << hpcnode_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -1291,6 +1439,300 @@ module TencentCloud
         end
       end
 
+      # HPC集群
+      class HPCCluster < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param Name: 名称
+        # @type Name: String
+        # @param Description: 描述
+        # @type Description: String
+        # @param Status: 状态
+        # @type Status: String
+        # @param Scheduler: 调度器
+        # @type Scheduler: String
+        # @param VPCId: VPC ID
+        # @type VPCId: String
+        # @param NodeCount: 节点数量
+        # @type NodeCount: Integer
+        # @param Tags: 标签
+        # @type Tags: Array
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
+        # @param Type: 集群类型
+        # @type Type: String
+        # @param OsName: 系统名称
+        # @type OsName: String
+        # @param SchedulerVersion: 调度器版本
+        # @type SchedulerVersion: String
+        # @param VPCCIDRBlock: 集群VPC CIDR
+        # @type VPCCIDRBlock: String
+        # @param ConfirmDeadline: 集群确认交付截止日期
+        # @type ConfirmDeadline: String
+
+        attr_accessor :ClusterId, :Name, :Description, :Status, :Scheduler, :VPCId, :NodeCount, :Tags, :CreateTime, :Type, :OsName, :SchedulerVersion, :VPCCIDRBlock, :ConfirmDeadline
+
+        def initialize(clusterid=nil, name=nil, description=nil, status=nil, scheduler=nil, vpcid=nil, nodecount=nil, tags=nil, createtime=nil, type=nil, osname=nil, schedulerversion=nil, vpccidrblock=nil, confirmdeadline=nil)
+          @ClusterId = clusterid
+          @Name = name
+          @Description = description
+          @Status = status
+          @Scheduler = scheduler
+          @VPCId = vpcid
+          @NodeCount = nodecount
+          @Tags = tags
+          @CreateTime = createtime
+          @Type = type
+          @OsName = osname
+          @SchedulerVersion = schedulerversion
+          @VPCCIDRBlock = vpccidrblock
+          @ConfirmDeadline = confirmdeadline
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @Name = params['Name']
+          @Description = params['Description']
+          @Status = params['Status']
+          @Scheduler = params['Scheduler']
+          @VPCId = params['VPCId']
+          @NodeCount = params['NodeCount']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+          @CreateTime = params['CreateTime']
+          @Type = params['Type']
+          @OsName = params['OsName']
+          @SchedulerVersion = params['SchedulerVersion']
+          @VPCCIDRBlock = params['VPCCIDRBlock']
+          @ConfirmDeadline = params['ConfirmDeadline']
+        end
+      end
+
+      # HPC实例硬盘
+      class HPCDisk < TencentCloud::Common::AbstractModel
+        # @param DiskId: 硬盘ID。仅作为出参。
+        # @type DiskId: String
+        # @param Size: 硬盘大小
+        # @type Size: Integer
+        # @param Type: 类型
+        # @type Type: String
+
+        attr_accessor :DiskId, :Size, :Type
+
+        def initialize(diskid=nil, size=nil, type=nil)
+          @DiskId = diskid
+          @Size = size
+          @Type = type
+        end
+
+        def deserialize(params)
+          @DiskId = params['DiskId']
+          @Size = params['Size']
+          @Type = params['Type']
+        end
+      end
+
+      # HPC实例GPU
+      class HPCGPUInfo < TencentCloud::Common::AbstractModel
+        # @param GPUType: GPU类型
+        # @type GPUType: String
+        # @param GPUCount: GPU数量
+        # @type GPUCount: Float
+
+        attr_accessor :GPUType, :GPUCount
+
+        def initialize(gputype=nil, gpucount=nil)
+          @GPUType = gputype
+          @GPUCount = gpucount
+        end
+
+        def deserialize(params)
+          @GPUType = params['GPUType']
+          @GPUCount = params['GPUCount']
+        end
+      end
+
+      # HPC实例
+      class HPCInstance < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param Name: 名称
+        # @type Name: String
+        # @param CPU: CPU数量
+        # @type CPU: Integer
+        # @param Memory: 内存
+        # @type Memory: Integer
+        # @param State: 状态
+        # @type State: String
+        # @param Type: 类型
+        # @type Type: String
+        # @param ChargeType: 计费类型
+        # @type ChargeType: String
+        # @param OSName: 系统名称
+        # @type OSName: String
+        # @param SystemDisk: 系统盘
+        # @type SystemDisk: :class:`Tencentcloud::Omics.v20221128.models.HPCDisk`
+        # @param GPUInfo: GPU
+        # @type GPUInfo: :class:`Tencentcloud::Omics.v20221128.models.HPCGPUInfo`
+        # @param PrivateIPAddresses: 内网IP地址
+        # @type PrivateIPAddresses: Array
+        # @param PublicIPAddresses: 公网IP地址
+        # @type PublicIPAddresses: Array
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
+        # @param ExpireTime: 到期时间
+        # @type ExpireTime: String
+        # @param Uuid: Uuid
+        # @type Uuid: String
+        # @param InternetInfo: 节点网络信息
+        # @type InternetInfo: :class:`Tencentcloud::Omics.v20221128.models.HPCInternetInfo`
+
+        attr_accessor :InstanceId, :Name, :CPU, :Memory, :State, :Type, :ChargeType, :OSName, :SystemDisk, :GPUInfo, :PrivateIPAddresses, :PublicIPAddresses, :CreateTime, :ExpireTime, :Uuid, :InternetInfo
+
+        def initialize(instanceid=nil, name=nil, cpu=nil, memory=nil, state=nil, type=nil, chargetype=nil, osname=nil, systemdisk=nil, gpuinfo=nil, privateipaddresses=nil, publicipaddresses=nil, createtime=nil, expiretime=nil, uuid=nil, internetinfo=nil)
+          @InstanceId = instanceid
+          @Name = name
+          @CPU = cpu
+          @Memory = memory
+          @State = state
+          @Type = type
+          @ChargeType = chargetype
+          @OSName = osname
+          @SystemDisk = systemdisk
+          @GPUInfo = gpuinfo
+          @PrivateIPAddresses = privateipaddresses
+          @PublicIPAddresses = publicipaddresses
+          @CreateTime = createtime
+          @ExpireTime = expiretime
+          @Uuid = uuid
+          @InternetInfo = internetinfo
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Name = params['Name']
+          @CPU = params['CPU']
+          @Memory = params['Memory']
+          @State = params['State']
+          @Type = params['Type']
+          @ChargeType = params['ChargeType']
+          @OSName = params['OSName']
+          unless params['SystemDisk'].nil?
+            @SystemDisk = HPCDisk.new
+            @SystemDisk.deserialize(params['SystemDisk'])
+          end
+          unless params['GPUInfo'].nil?
+            @GPUInfo = HPCGPUInfo.new
+            @GPUInfo.deserialize(params['GPUInfo'])
+          end
+          @PrivateIPAddresses = params['PrivateIPAddresses']
+          @PublicIPAddresses = params['PublicIPAddresses']
+          @CreateTime = params['CreateTime']
+          @ExpireTime = params['ExpireTime']
+          @Uuid = params['Uuid']
+          unless params['InternetInfo'].nil?
+            @InternetInfo = HPCInternetInfo.new
+            @InternetInfo.deserialize(params['InternetInfo'])
+          end
+        end
+      end
+
+      # HPC节点网络信息
+      class HPCInternetInfo < TencentCloud::Common::AbstractModel
+        # @param InternetMaxBandwidthOut: <p>网络出口带宽，单位Mbps</p>
+        # @type InternetMaxBandwidthOut: Integer
+        # @param InternetChargeType: <p>网络收费类型</p><p>枚举值：</p><ul><li>BANDWIDTH_PREPAID： 预付费按带宽结算</li><li>TRAFFIC_POSTPAID_BY_HOUR： 流量按小时后付费</li><li>BANDWIDTH_POSTPAID_BY_HOUR： 带宽按小时后付费</li></ul>
+        # @type InternetChargeType: String
+
+        attr_accessor :InternetMaxBandwidthOut, :InternetChargeType
+
+        def initialize(internetmaxbandwidthout=nil, internetchargetype=nil)
+          @InternetMaxBandwidthOut = internetmaxbandwidthout
+          @InternetChargeType = internetchargetype
+        end
+
+        def deserialize(params)
+          @InternetMaxBandwidthOut = params['InternetMaxBandwidthOut']
+          @InternetChargeType = params['InternetChargeType']
+        end
+      end
+
+      # HPC节点
+      class HPCNode < TencentCloud::Common::AbstractModel
+        # @param NodeId: <p>节点ID</p>
+        # @type NodeId: String
+        # @param QueueId: <p>队列ID</p>
+        # @type QueueId: String
+        # @param ClusterId: <p>集群ID</p>
+        # @type ClusterId: String
+        # @param Role: <p>角色</p>
+        # @type Role: String
+        # @param Type: <p>类型</p>
+        # @type Type: String
+        # @param Zone: <p>可用区</p>
+        # @type Zone: String
+        # @param ImageId: <p>镜像ID</p>
+        # @type ImageId: String
+        # @param Instance: <p>实例信息</p>
+        # @type Instance: :class:`Tencentcloud::Omics.v20221128.models.HPCInstance`
+        # @param Tags: <p>标签</p>
+        # @type Tags: Array
+        # @param Name: <p>节点名称</p>
+        # @type Name: String
+        # @param QueueName: <p>队列名称</p>
+        # @type QueueName: String
+        # @param Status: <p>节点状态。取值范围：<br>IDLE 空闲<br>DOWN 节点下线<br>MIXED 节点部分使用<br>ALLOC  节点完全分配<br>DRAIN 排空，不接受新任务</p>
+        # @type Status: String
+
+        attr_accessor :NodeId, :QueueId, :ClusterId, :Role, :Type, :Zone, :ImageId, :Instance, :Tags, :Name, :QueueName, :Status
+
+        def initialize(nodeid=nil, queueid=nil, clusterid=nil, role=nil, type=nil, zone=nil, imageid=nil, instance=nil, tags=nil, name=nil, queuename=nil, status=nil)
+          @NodeId = nodeid
+          @QueueId = queueid
+          @ClusterId = clusterid
+          @Role = role
+          @Type = type
+          @Zone = zone
+          @ImageId = imageid
+          @Instance = instance
+          @Tags = tags
+          @Name = name
+          @QueueName = queuename
+          @Status = status
+        end
+
+        def deserialize(params)
+          @NodeId = params['NodeId']
+          @QueueId = params['QueueId']
+          @ClusterId = params['ClusterId']
+          @Role = params['Role']
+          @Type = params['Type']
+          @Zone = params['Zone']
+          @ImageId = params['ImageId']
+          unless params['Instance'].nil?
+            @Instance = HPCInstance.new
+            @Instance.deserialize(params['Instance'])
+          end
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+          @Name = params['Name']
+          @QueueName = params['QueueName']
+          @Status = params['Status']
+        end
+      end
+
       # ImportTableFile请求参数结构体
       class ImportTableFileRequest < TencentCloud::Common::AbstractModel
         # @param ProjectId: 表格关联的项目ID。
@@ -1481,6 +1923,46 @@ module TencentCloud
         end
       end
 
+      # RebootHPCNodes请求参数结构体
+      class RebootHPCNodesRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: <p>集群Id</p>
+        # @type ClusterId: String
+        # @param NodeIds: <p>节点Id，例如ins-d1fc42ss</p>
+        # @type NodeIds: Array
+        # @param StopType: <p>重启的关机类型。</p><p>枚举值：</p><ul><li>SOFT： 软关机</li><li>HARD： 硬关机</li><li>SOFT_FIRST： 优先软关机，失败再执行硬关机</li></ul><p>默认值：SOFT</p>
+        # @type StopType: String
+
+        attr_accessor :ClusterId, :NodeIds, :StopType
+
+        def initialize(clusterid=nil, nodeids=nil, stoptype=nil)
+          @ClusterId = clusterid
+          @NodeIds = nodeids
+          @StopType = stoptype
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @NodeIds = params['NodeIds']
+          @StopType = params['StopType']
+        end
+      end
+
+      # RebootHPCNodes返回参数结构体
+      class RebootHPCNodesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 云资源ID。
       class ResourceIds < TencentCloud::Common::AbstractModel
         # @param VPCId: 私有网络ID。
@@ -1656,8 +2138,8 @@ module TencentCloud
 
         attr_accessor :RunUuid, :ProjectId, :ApplicationId, :RunGroupId, :EnvironmentId, :UserDefinedId, :TableId, :TableRowUuid, :Status, :Input, :Option, :ExecutionTime, :Cache, :ErrorMessage, :CreateTime, :UpdateTime
         extend Gem::Deprecate
-        deprecate :Option, :none, 2026, 3
-        deprecate :Option=, :none, 2026, 3
+        deprecate :Option, :none, 2026, 4
+        deprecate :Option=, :none, 2026, 4
 
         def initialize(runuuid=nil, projectid=nil, applicationid=nil, rungroupid=nil, environmentid=nil, userdefinedid=nil, tableid=nil, tablerowuuid=nil, status=nil, input=nil, option=nil, executiontime=nil, cache=nil, errormessage=nil, createtime=nil, updatetime=nil)
           @RunUuid = runuuid
@@ -2471,6 +2953,26 @@ module TencentCloud
         def deserialize(params)
           @TableRowUuid = params['TableRowUuid']
           @Content = params['Content']
+        end
+      end
+
+      # 标签
+      class Tag < TencentCloud::Common::AbstractModel
+        # @param Key: 标签键
+        # @type Key: String
+        # @param Value: 标签值
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
         end
       end
 

@@ -1707,6 +1707,42 @@ module TencentCloud
         end
       end
 
+      # DeleteInstancesDisasterRecoverGroups请求参数结构体
+      class DeleteInstancesDisasterRecoverGroupsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceIds: 一个或多个待操作的实例ID。可通过[`DescribeInstances`](https://cloud.tencent.com/document/api/213/15728)接口返回值中的`InstanceId`获取。每次请求批量实例的上限为100。
+        # @type InstanceIds: Array
+        # @param DisasterRecoverGroupIds: 分散置放群组ID列表，可通过[DescribeDisasterRecoverGroups](https://cloud.tencent.com/document/api/213/17810)接口获取。
+        # @type DisasterRecoverGroupIds: Array
+
+        attr_accessor :InstanceIds, :DisasterRecoverGroupIds
+
+        def initialize(instanceids=nil, disasterrecovergroupids=nil)
+          @InstanceIds = instanceids
+          @DisasterRecoverGroupIds = disasterrecovergroupids
+        end
+
+        def deserialize(params)
+          @InstanceIds = params['InstanceIds']
+          @DisasterRecoverGroupIds = params['DisasterRecoverGroupIds']
+        end
+      end
+
+      # DeleteInstancesDisasterRecoverGroups返回参数结构体
+      class DeleteInstancesDisasterRecoverGroupsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteKeyPairs请求参数结构体
       class DeleteKeyPairsRequest < TencentCloud::Common::AbstractModel
         # @param KeyIds: 一个或多个待操作的密钥对ID。每次请求批量密钥对的上限为100。<br>可以通过以下方式获取可用的密钥ID：<br><li>通过登录[控制台](https://console.cloud.tencent.com/cvm/sshkey)查询密钥ID。</li><br><li>通过调用接口 [DescribeKeyPairs](https://cloud.tencent.com/document/api/213/15699) ，取返回信息中的 `KeyId` 获取密钥对ID。</li>
