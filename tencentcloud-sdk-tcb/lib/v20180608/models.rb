@@ -3638,50 +3638,6 @@ module TencentCloud
         end
       end
 
-      # EditAuthConfig请求参数结构体
-      class EditAuthConfigRequest < TencentCloud::Common::AbstractModel
-        # @param EnvId: 环境id
-        # @type EnvId: String
-        # @param PhoneNumberLogin: 手机号登录配置 "TRUE",  "FALSE", "LOGIN_ONLY"
-        # @type PhoneNumberLogin: String
-        # @param AnonymousLogin: 匿名登录配置 "TRUE",  "FALSE"
-        # @type AnonymousLogin: String
-        # @param UsernameLogin: 用户名密码登录配置 "TRUE",  "FALSE"
-        # @type UsernameLogin: String
-
-        attr_accessor :EnvId, :PhoneNumberLogin, :AnonymousLogin, :UsernameLogin
-
-        def initialize(envid=nil, phonenumberlogin=nil, anonymouslogin=nil, usernamelogin=nil)
-          @EnvId = envid
-          @PhoneNumberLogin = phonenumberlogin
-          @AnonymousLogin = anonymouslogin
-          @UsernameLogin = usernamelogin
-        end
-
-        def deserialize(params)
-          @EnvId = params['EnvId']
-          @PhoneNumberLogin = params['PhoneNumberLogin']
-          @AnonymousLogin = params['AnonymousLogin']
-          @UsernameLogin = params['UsernameLogin']
-        end
-      end
-
-      # EditAuthConfig返回参数结构体
-      class EditAuthConfigResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :RequestId
-
-        def initialize(requestid=nil)
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @RequestId = params['RequestId']
-        end
-      end
-
       # 邮箱登录配置
       class EmailProviderConfig < TencentCloud::Common::AbstractModel
         # @param SmtpConfig: <p>smtp配置</p>
@@ -6334,38 +6290,6 @@ module TencentCloud
           @Email = params['Email']
           @PhoneNumber = params['PhoneNumber']
           @Groups = params['Groups']
-        end
-      end
-
-      # ReinstateEnv请求参数结构体
-      class ReinstateEnvRequest < TencentCloud::Common::AbstractModel
-        # @param EnvId: 环境ID
-        # @type EnvId: String
-
-        attr_accessor :EnvId
-
-        def initialize(envid=nil)
-          @EnvId = envid
-        end
-
-        def deserialize(params)
-          @EnvId = params['EnvId']
-        end
-      end
-
-      # ReinstateEnv返回参数结构体
-      class ReinstateEnvResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :RequestId
-
-        def initialize(requestid=nil)
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @RequestId = params['RequestId']
         end
       end
 

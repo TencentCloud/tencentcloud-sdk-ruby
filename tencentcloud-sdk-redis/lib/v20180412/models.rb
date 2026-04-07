@@ -1023,109 +1023,59 @@ module TencentCloud
 
       # CreateInstances请求参数结构体
       class CreateInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param TypeId: 实例类型。
-        # - 2：Redis 2.8 内存版（标准架构）。
-        # - 3：CKV 3.2 内存版（标准架构）。
-        # - 4：CKV 3.2 内存版（集群架构）。
-        # - 6：Redis 4.0 内存版（标准架构）。
-        # - 7：Redis 4.0 内存版（集群架构）。
-        # - 8：Redis 5.0 内存版（标准架构）。
-        # - 9：Redis 5.0 内存版（集群架构）。
-        # - 15：Redis 6.2 内存版（标准架构）。
-        # - 16：Redis 6.2 内存版（集群架构）。
-        # - 17：Redis 7.0 内存版（标准架构）。
-        # - 18：Redis 7.0 内存版（集群架构）。
-        # - 200：Memcached 1.6 内存版（集群架构）。
-        # **说明**：CKV 版本当前有存量用户使用，暂时保留。
+        # @param TypeId: <p>实例类型。</p><ul><li>2：Redis 2.8 内存版（标准架构）。</li><li>3：CKV 3.2 内存版（标准架构）。</li><li>4：CKV 3.2 内存版（集群架构）。</li><li>6：Redis 4.0 内存版（标准架构）。</li><li>7：Redis 4.0 内存版（集群架构）。</li><li>8：Redis 5.0 内存版（标准架构）。</li><li>9：Redis 5.0 内存版（集群架构）。</li><li>15：Redis 6.2 内存版（标准架构）。</li><li>16：Redis 6.2 内存版（集群架构）。</li><li>17：Redis 7.0 内存版（标准架构）。</li><li>18：Redis 7.0 内存版（集群架构）。</li><li>200：Memcached 1.6 内存版（集群架构）。<br><strong>说明</strong>：CKV 版本当前有存量用户使用，暂时保留。</li></ul>
         # @type TypeId: Integer
-        # @param MemSize: 内存容量，单位为MB， 数值需为1024的整数倍。具体规格，请通过 [DescribeProductInfo](https://cloud.tencent.com/document/api/239/30600) 接口查询全地域的售卖规格。
-        # - **TypeId**为标准架构时，**MemSize**是实例总内存容量；
-        # - **TypeId**为集群架构时，**MemSize**是单分片内存容量。
+        # @param MemSize: <p>内存容量，单位为MB， 数值需为1024的整数倍。具体规格，请通过 <a href="https://cloud.tencent.com/document/api/239/30600">DescribeProductInfo</a> 接口查询全地域的售卖规格。</p><ul><li><strong>TypeId</strong>为标准架构时，<strong>MemSize</strong>是实例总内存容量；</li><li><strong>TypeId</strong>为集群架构时，<strong>MemSize</strong>是单分片内存容量。</li></ul>
         # @type MemSize: Integer
-        # @param GoodsNum: 实例数量，单次购买实例数量。具体信息，请通过 [DescribeProductInfo](https://cloud.tencent.com/document/api/239/30600) 接口查询全地域的售卖规格。
+        # @param GoodsNum: <p>实例数量，单次购买实例数量。具体信息，请通过 <a href="https://cloud.tencent.com/document/api/239/30600">DescribeProductInfo</a> 接口查询全地域的售卖规格。</p>
         # @type GoodsNum: Integer
-        # @param Period: 购买实例的时长。
-        # - 若 **BillingMode**为**1**，即计费方式为包年包月时，需设置该参数，指定所购买实例的时长。单位：月，取值范围 [1,2,3,4,5,6,7,8,9,10,11,12,24,36]。
-        # - 若 **BillingMode**为**0**，即计费方式为按量计费时，该参数配置为1。
+        # @param Period: <p>购买实例的时长。</p><ul><li>若 <strong>BillingMode</strong>为<strong>1</strong>，即计费方式为包年包月时，需设置该参数，指定所购买实例的时长。单位：月，取值范围 [1,2,3,4,5,6,7,8,9,10,11,12,24,36]。</li><li>若 <strong>BillingMode</strong>为<strong>0</strong>，即计费方式为按量计费时，该参数配置为1。</li></ul>
         # @type Period: Integer
-        # @param BillingMode: 计费方式。
-        # - 0：按量计费。
-        # - 1：包年包月。
+        # @param BillingMode: <p>计费方式。</p><ul><li>0：按量计费。</li><li>1：包年包月。</li></ul>
         # @type BillingMode: Integer
-        # @param ZoneId: 实例所属的可用区ID，可参考[地域和可用区](https://cloud.tencent.com/document/product/239/4106)  。
+        # @param ZoneId: <p>实例所属的可用区ID，可参考<a href="https://cloud.tencent.com/document/product/239/4106">地域和可用区</a>  。</p>
         # @type ZoneId: Integer
-        # @param Password: 访问实例的密码。
-        # - 当输入参数**NoAuth**为**true**时，指设置实例为免密码访问，Password可不用配置，否则Password为必填参数。
-        # - 当实例类型**TypeId**为Redis 2.8 内存版标准架构、Redis 4.0、5.0、6.2、7.0内存版标准架构或集群架构时，其密码复杂度要求为：8-64个字符，至少包含小写字母、大写字母、数字和字符()`~!@#$%^&*-+=_|{}[]:;<>,.?/ 中的2种，不能以"/"开头。
-        # - 当实例类型**TypeId**为CKV 3.2 内存版标准架构或集群架构时，其密码复杂度为：8-30个字符，必须包含字母和数字，且不包含其他字符。
+        # @param Password: <p>访问实例的密码。</p><ul><li>当输入参数<strong>NoAuth</strong>为<strong>true</strong>时，指设置实例为免密码访问，Password可不用配置，否则Password为必填参数。</li><li>当实例类型<strong>TypeId</strong>为Redis 2.8 内存版标准架构、Redis 4.0、5.0、6.2、7.0内存版标准架构或集群架构时，其密码复杂度要求为：8-64个字符，至少包含小写字母、大写字母、数字和字符()`~!@#$%^&amp;*-+=_|{}[]:;&lt;&gt;,.?/ 中的2种，不能以&quot;/&quot;开头。</li><li>当实例类型<strong>TypeId</strong>为CKV 3.2 内存版标准架构或集群架构时，其密码复杂度为：8-30个字符，必须包含字母和数字，且不包含其他字符。</li></ul>
         # @type Password: String
-        # @param VpcId: 私有网络ID。如果不配置该参数则默认选择基础网络。请登录 [私有网络](https://console.cloud.tencent.com/vpc)控制台查询具体的ID。
+        # @param VpcId: <p>私有网络ID。如果不配置该参数则默认选择基础网络。请登录 <a href="https://console.cloud.tencent.com/vpc">私有网络</a>控制台查询具体的ID。</p>
         # @type VpcId: String
-        # @param SubnetId: 私有网络VPC的子网。基础网络下， 该参数无需配置。请登录 [私有网络](https://console.cloud.tencent.com/vpc)控制台查询子网列表获取具体的 ID。
+        # @param SubnetId: <p>私有网络VPC的子网。基础网络下， 该参数无需配置。请登录 <a href="https://console.cloud.tencent.com/vpc">私有网络</a>控制台查询子网列表获取具体的 ID。</p>
         # @type SubnetId: String
-        # @param ProjectId: 项目 ID。请登录[Redis控制台](https://console.cloud.tencent.com/redis#/)，在右上角的账户信息菜单中，选择**项目管理**查询项目 ID。
+        # @param ProjectId: <p>项目 ID。请登录<a href="https://console.cloud.tencent.com/redis#/">Redis控制台</a>，在右上角的账户信息菜单中，选择<strong>项目管理</strong>查询项目 ID。</p>
         # @type ProjectId: Integer
-        # @param AutoRenew: 自动续费标识。
-        # - 0：默认状态（手动续费）。
-        # - 1：自动续费。
-        # - 2：到期不续费。
+        # @param AutoRenew: <p>自动续费标识。</p><ul><li>0：默认状态（手动续费）。</li><li>1：自动续费。</li><li>2：到期不续费。</li></ul>
         # @type AutoRenew: Integer
-        # @param SecurityGroupIdList: 安全组 ID 数组。
-        # - 安全组是一种虚拟防火墙，对云数据库实例的网络访问进行控制。创建实例时，建议绑定相应的安全组。
-        # - 请通过 [DescribeInstanceSecurityGroup](https://cloud.tencent.com/document/product/239/34447) 接口获取实例的安全组 ID。
+        # @param SecurityGroupIdList: <p>安全组 ID 数组。</p><ul><li>安全组是一种虚拟防火墙，对云数据库实例的网络访问进行控制。创建实例时，建议绑定相应的安全组。</li><li>请通过 <a href="https://cloud.tencent.com/document/product/239/34447">DescribeInstanceSecurityGroup</a> 接口获取实例的安全组 ID。</li></ul>
         # @type SecurityGroupIdList: Array
-        # @param VPort: 用户自定义的网络端口。默认为6379，范围为 [1024,65535]。
+        # @param VPort: <p>用户自定义的网络端口。默认为6379，范围为 [1024,65535]。</p>
         # @type VPort: Integer
-        # @param RedisShardNum: 实例分片数量。
-        # - 标准版实例无需配置该参数。
-        # - 集群版实例，分片数量范围为：[1、3、5、8、12、16、24、32、40、48、64、80、96、128]。
+        # @param RedisShardNum: <p>实例分片数量。</p><ul><li>标准版实例无需配置该参数。</li><li>集群版实例，分片数量范围为：[1、3、5、8、12、16、24、32、40、48、64、80、96、128]。</li></ul>
         # @type RedisShardNum: Integer
-        # @param RedisReplicasNum: 实例副本数量。
-        # - Redis 内存版 4.0、5.0、6.2、7.0 标准架构和集群架构支持副本数量范围为[1,5]。
-        # - Redis 2.8标准版、CKV标准版只支持1副本。
+        # @param RedisReplicasNum: <p>实例副本数量。</p><ul><li>Redis 内存版 4.0、5.0、6.2、7.0 标准架构和集群架构支持副本数量范围为[1,5]。</li><li>Redis 2.8标准版、CKV标准版只支持1副本。</li></ul>
         # @type RedisReplicasNum: Integer
-        # @param ReplicasReadonly: 标识实例是否需支持副本只读。
-        # - Redis 2.8 标准版、CKV标准版不支持副本只读。
-        # - 开启副本只读，实例将自动读写分离，写请求路由到主节点，读请求路由到副本节点。
-        # - 如需开启副本只读，建议副本数量大于等于2。
+        # @param ReplicasReadonly: <p>标识实例是否需支持副本只读。</p><ul><li>Redis 2.8 标准版、CKV标准版不支持副本只读。</li><li>开启副本只读，实例将自动读写分离，写请求路由到主节点，读请求路由到副本节点。</li><li>如需开启副本只读，建议副本数量大于等于2。</li></ul>
         # @type ReplicasReadonly: Boolean
-        # @param InstanceName: 实例名称。命名要求：仅支持长度小于60的中文、英文或者数字，短划线"-"、下划线"_"。
+        # @param InstanceName: <p>实例名称。命名要求：仅支持长度小于60的中文、英文或者数字，短划线&quot;-&quot;、下划线&quot;_&quot;。</p>
         # @type InstanceName: String
-        # @param NoAuth: 配置实例是否支持免密码访问。
-        # - true：免密访问实例。
-        # - false：非免密访问实例。默认为非免密方式，仅VPC网络的实例支持免密码访问。
+        # @param NoAuth: <p>配置实例是否支持免密码访问。</p><ul><li>true：免密访问实例。</li><li>false：非免密访问实例。默认为非免密方式，仅VPC网络的实例支持免密码访问。</li></ul>
         # @type NoAuth: Boolean
-        # @param NodeSet: 实例的节点信息，包含节点 ID、节点类型、节点可用区 ID等。具体信息，请参见[RedisNodeInfo ](https://cloud.tencent.com/document/product/239/20022)。
-        # 目前支持传入节点的类型（主节点或者副本节点），节点的可用区。单可用区部署不需要传递此参数。
+        # @param NodeSet: <p>实例的节点信息，包含节点 ID、节点类型、节点可用区 ID等。具体信息，请参见<a href="https://cloud.tencent.com/document/product/239/20022">RedisNodeInfo </a>。<br>目前支持传入节点的类型（主节点或者副本节点），节点的可用区。未指定该参数时，在支持多可用区部署的地域，系统将默认创建多可用区架构实例。</p>
         # @type NodeSet: Array
-        # @param ResourceTags: 给实例设定标签。
+        # @param ResourceTags: <p>给实例设定标签。</p>
         # @type ResourceTags: Array
-        # @param ZoneName: 指定实例所属的可用区名称。具体信息，请参见[地域和可用区](https://cloud.tencent.com/document/product/239/4106)  。
+        # @param ZoneName: <p>指定实例所属的可用区名称。具体信息，请参见<a href="https://cloud.tencent.com/document/product/239/4106">地域和可用区</a>  。</p>
         # @type ZoneName: String
-        # @param TemplateId: 指定实例相关的参数模板 ID。
-        # - 若不配置该参数，则系统会依据所选择的兼容版本及架构，自动适配对应的默认模板。
-        # - 请通过[DescribeParamTemplates](https://cloud.tencent.com/document/product/239/58750)接口，查询实例的参数模板列表，获取模板 ID 编号。
+        # @param TemplateId: <p>指定实例相关的参数模板 ID。</p><ul><li>若不配置该参数，则系统会依据所选择的兼容版本及架构，自动适配对应的默认模板。</li><li>请通过<a href="https://cloud.tencent.com/document/product/239/58750">DescribeParamTemplates</a>接口，查询实例的参数模板列表，获取模板 ID 编号。</li></ul>
         # @type TemplateId: String
-        # @param DryRun: 内部参数，标识创建实例是否需要检查。
-        # - false ：默认值。发送正常请求，通过检查后直接创建实例。
-        # - true：发送检查请求，不会创建实例。
+        # @param DryRun: <p>内部参数，标识创建实例是否需要检查。</p><ul><li>false ：默认值。发送正常请求，通过检查后直接创建实例。</li><li>true：发送检查请求，不会创建实例。</li></ul>
         # @type DryRun: Boolean
-        # @param ProductVersion: 指实例部署模式。
-        # - local：传统架构，默认为 local。
-        # - cdc：独享集群。
-        # - cloud：云原生，当前已暂停售卖。
+        # @param ProductVersion: <p>指实例部署模式。</p><ul><li>local：传统架构，默认为 local。</li><li>cdc：独享集群。</li><li>cloud：云原生，当前已暂停售卖。</li></ul>
         # @type ProductVersion: String
-        # @param RedisClusterId: 独享集群 ID。
-
-        # - 当 **ProductVersion** 设置为 **cdc** 时，该参数必须设置。
-        # - 请通过接口[ DescribeRedisClusters](https://cloud.tencent.com/document/product/239/109628) 获取集群 ID。
+        # @param RedisClusterId: <p>独享集群 ID。</p><ul><li>当 <strong>ProductVersion</strong> 设置为 <strong>cdc</strong> 时，该参数必须设置。</li><li>请通过接口<a href="https://cloud.tencent.com/document/product/239/109628"> DescribeRedisClusters</a> 获取集群 ID。</li></ul>
         # @type RedisClusterId: String
-        # @param AlarmPolicyList: 告警策略 ID 数组。
-
-        # - 请登录[腾讯云可观测平台-告警管理-策略管理](https://console.cloud.tencent.com/monitor/alarm/policy)获取告警策略 ID。
-        # - 若不配置该参数，则绑定默认告警策略。默认告警策略具体信息，请登录[腾讯云可观测平台-告警管理-策略管理](https://console.cloud.tencent.com/monitor/alarm/policy)查看。
+        # @param AlarmPolicyList: <p>告警策略 ID 数组。</p><ul><li>请登录<a href="https://console.cloud.tencent.com/monitor/alarm/policy">腾讯云可观测平台-告警管理-策略管理</a>获取告警策略 ID。</li><li>若不配置该参数，则绑定默认告警策略。默认告警策略具体信息，请登录<a href="https://console.cloud.tencent.com/monitor/alarm/policy">腾讯云可观测平台-告警管理-策略管理</a>查看。</li></ul>
         # @type AlarmPolicyList: Array
-        # @param EncryptPassword: 是否加密密码
+        # @param EncryptPassword: <p>是否加密密码</p>
         # @type EncryptPassword: Boolean
 
         attr_accessor :TypeId, :MemSize, :GoodsNum, :Period, :BillingMode, :ZoneId, :Password, :VpcId, :SubnetId, :ProjectId, :AutoRenew, :SecurityGroupIdList, :VPort, :RedisShardNum, :RedisReplicasNum, :ReplicasReadonly, :InstanceName, :NoAuth, :NodeSet, :ResourceTags, :ZoneName, :TemplateId, :DryRun, :ProductVersion, :RedisClusterId, :AlarmPolicyList, :EncryptPassword
@@ -1207,11 +1157,11 @@ module TencentCloud
 
       # CreateInstances返回参数结构体
       class CreateInstancesResponse < TencentCloud::Common::AbstractModel
-        # @param DealId: 交易的ID。
+        # @param DealId: <p>交易的ID。</p>
         # @type DealId: String
-        # @param InstanceIds: 实例ID。
+        # @param InstanceIds: <p>实例ID。</p>
         # @type InstanceIds: Array
-        # @param DealName: 订单号。
+        # @param DealName: <p>订单号。</p>
         # @type DealName: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5202,6 +5152,26 @@ module TencentCloud
         end
       end
 
+      # 转换失败的实例信息
+      class FailedInstance < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>失败实例ID</p>
+        # @type InstanceId: String
+        # @param Message: <p>失败信息</p>
+        # @type Message: String
+
+        attr_accessor :InstanceId, :Message
+
+        def initialize(instanceid=nil, message=nil)
+          @InstanceId = instanceid
+          @Message = message
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Message = params['Message']
+        end
+      end
+
       # 业务侧实例过滤参数
       class Filter < TencentCloud::Common::AbstractModel
         # @param Name: <p>过滤字段。</p><p>枚举值：</p><ul><li>InstanceId： 实例 ID。</li><li>InstanceName： 实例名称。</li><li>TagKey： 标签键。</li><li>InstanceTags： 实例标签键值，标签key值&amp;标签value值。</li></ul>
@@ -7302,6 +7272,57 @@ module TencentCloud
 
         def deserialize(params)
           @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyInstanceChargeType请求参数结构体
+      class ModifyInstanceChargeTypeRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceIds: <p>实例ID数组</p><p>入参限制：批量操作数组长度不超过20</p>
+        # @type InstanceIds: Array
+        # @param InstanceChargeType: <p>修改计费模式的操作类型</p><p>枚举值：</p><ul><li>PREPAID： 按量计费转包年包月</li><li>POSTPAID： 包年包月转按量计费</li></ul>
+        # @type InstanceChargeType: String
+        # @param Period: <p>购买时长，仅当InstanceChargeType=PREPAID时需要传</p><p>取值范围：[1, 36]</p><p>单位：月</p>
+        # @type Period: Integer
+
+        attr_accessor :InstanceIds, :InstanceChargeType, :Period
+
+        def initialize(instanceids=nil, instancechargetype=nil, period=nil)
+          @InstanceIds = instanceids
+          @InstanceChargeType = instancechargetype
+          @Period = period
+        end
+
+        def deserialize(params)
+          @InstanceIds = params['InstanceIds']
+          @InstanceChargeType = params['InstanceChargeType']
+          @Period = params['Period']
+        end
+      end
+
+      # ModifyInstanceChargeType返回参数结构体
+      class ModifyInstanceChargeTypeResponse < TencentCloud::Common::AbstractModel
+        # @param FailedInstanceIds: <p>修改失败的实例信息汇总</p>
+        # @type FailedInstanceIds: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FailedInstanceIds, :RequestId
+
+        def initialize(failedinstanceids=nil, requestid=nil)
+          @FailedInstanceIds = failedinstanceids
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['FailedInstanceIds'].nil?
+            @FailedInstanceIds = []
+            params['FailedInstanceIds'].each do |i|
+              failedinstance_tmp = FailedInstance.new
+              failedinstance_tmp.deserialize(i)
+              @FailedInstanceIds << failedinstance_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end

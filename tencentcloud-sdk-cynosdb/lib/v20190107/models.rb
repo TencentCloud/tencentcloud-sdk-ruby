@@ -304,50 +304,47 @@ module TencentCloud
 
       # AddInstances请求参数结构体
       class AddInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群ID
+        # @param ClusterId: <p>集群ID</p>
         # @type ClusterId: String
-        # @param Cpu: Cpu核数
+        # @param Cpu: <p>Cpu核数</p>
         # @type Cpu: Integer
-        # @param Memory: 内存，单位为GB
+        # @param Memory: <p>内存，单位为GB</p>
         # @type Memory: Integer
-        # @param ReadOnlyCount: 新增只读实例数，取值范围为(0,15]
+        # @param ReadOnlyCount: <p>新增只读实例数，取值范围为(0,15]</p>
         # @type ReadOnlyCount: Integer
-        # @param DeviceType: 实例机器类型，支持值如下：
-        # - common：表示通用型
-        # - exclusive：表示独享型
+        # @param DeviceType: <p>实例机器类型，支持值如下：</p><ul><li>common：表示通用型</li><li>exclusive：表示独享型</li></ul>
         # @type DeviceType: String
-        # @param InstanceGrpId: 实例组ID，在已有RO组中新增实例时使用，不传则新增RO组。当前版本不建议传输该值。
+        # @param InstanceGrpId: <p>实例组ID，在已有RO组中新增实例时使用，不传则新增RO组。当前版本不建议传输该值。</p>
         # @type InstanceGrpId: String
-        # @param VpcId: 所属VPC网络ID。
+        # @param VpcId: <p>所属VPC网络ID。</p>
         # @type VpcId: String
-        # @param SubnetId: 所属子网ID，如果设置了VpcId，则SubnetId必填。
+        # @param SubnetId: <p>所属子网ID，如果设置了VpcId，则SubnetId必填。</p>
         # @type SubnetId: String
-        # @param Port: 新增RO组时使用的Port，取值范围为[0,65535)
+        # @param Port: <p>新增RO组时使用的Port，取值范围为[0,65535)</p>
         # @type Port: Integer
-        # @param InstanceName: 实例名称，字符串长度范围为[0,64)，取值范围为大小写字母，0-9数字，'_','-','.'
+        # @param InstanceName: <p>实例名称，字符串长度范围为[0,64)，取值范围为大小写字母，0-9数字，&#39;_&#39;,&#39;-&#39;,&#39;.&#39;</p>
         # @type InstanceName: String
-        # @param AutoVoucher: 是否自动选择代金券 1是 0否 默认为0
+        # @param AutoVoucher: <p>是否自动选择代金券 1是 0否 默认为0</p>
         # @type AutoVoucher: Integer
-        # @param DbType: 数据库类型，取值范围:
-        # <li> MYSQL </li>
+        # @param DbType: <p>数据库类型，取值范围: </p><li> MYSQL </li>
         # @type DbType: String
-        # @param OrderSource: 订单来源，字符串长度范围为[0,64)
+        # @param OrderSource: <p>订单来源，字符串长度范围为[0,64)</p>
         # @type OrderSource: String
-        # @param DealMode: 交易模式 0-下单并支付 1-下单
+        # @param DealMode: <p>交易模式 0-下单并支付 1-下单</p>
         # @type DealMode: Integer
-        # @param ParamTemplateId: 参数模板ID
+        # @param ParamTemplateId: <p>参数模板ID</p>
         # @type ParamTemplateId: Integer
-        # @param InstanceParams: 参数列表，ParamTemplateId 传入时InstanceParams才有效
+        # @param InstanceParams: <p>参数列表，ParamTemplateId 传入时InstanceParams才有效</p>
         # @type InstanceParams: Array
-        # @param SecurityGroupIds: 安全组ID，新建只读实例时可以指定安全组。
+        # @param SecurityGroupIds: <p>安全组ID，新建只读实例时可以指定安全组。</p>
         # @type SecurityGroupIds: Array
-        # @param UpgradeProxy: proxy同步升级
+        # @param UpgradeProxy: <p>proxy同步升级</p>
         # @type UpgradeProxy: :class:`Tencentcloud::Cynosdb.v20190107.models.UpgradeProxy`
 
         attr_accessor :ClusterId, :Cpu, :Memory, :ReadOnlyCount, :DeviceType, :InstanceGrpId, :VpcId, :SubnetId, :Port, :InstanceName, :AutoVoucher, :DbType, :OrderSource, :DealMode, :ParamTemplateId, :InstanceParams, :SecurityGroupIds, :UpgradeProxy
         extend Gem::Deprecate
-        deprecate :InstanceGrpId, :none, 2026, 3
-        deprecate :InstanceGrpId=, :none, 2026, 3
+        deprecate :InstanceGrpId, :none, 2026, 4
+        deprecate :InstanceGrpId=, :none, 2026, 4
 
         def initialize(clusterid=nil, cpu=nil, memory=nil, readonlycount=nil, devicetype=nil, instancegrpid=nil, vpcid=nil, subnetid=nil, port=nil, instancename=nil, autovoucher=nil, dbtype=nil, ordersource=nil, dealmode=nil, paramtemplateid=nil, instanceparams=nil, securitygroupids=nil, upgradeproxy=nil)
           @ClusterId = clusterid
@@ -404,18 +401,21 @@ module TencentCloud
 
       # AddInstances返回参数结构体
       class AddInstancesResponse < TencentCloud::Common::AbstractModel
-        # @param TranId: 冻结流水，一次开通一个冻结流水。
+        # @param TranId: <p>冻结流水，一次开通一个冻结流水。</p>
         # @type TranId: String
-        # @param DealNames: 后付费订单号。
+        # @param DealNames: <p>付费的订单号。说明：建议您使用 <a href="https://cloud.tencent.com/document/product/1003/52131">DescribeResourcesByDealName</a> 接口查询订单关联实例。</p>
         # @type DealNames: Array
-        # @param ResourceIds: 发货资源id列表。
+        # @param ResourceIds: <p>发货资源id列表。</p>
         # @type ResourceIds: Array
-        # @param BigDealIds: 大订单号
+        # @param BigDealIds: <p>大订单号</p>
         # @type BigDealIds: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :TranId, :DealNames, :ResourceIds, :BigDealIds, :RequestId
+        extend Gem::Deprecate
+        deprecate :ResourceIds, :none, 2026, 4
+        deprecate :ResourceIds=, :none, 2026, 4
 
         def initialize(tranid=nil, dealnames=nil, resourceids=nil, bigdealids=nil, requestid=nil)
           @TranId = tranid
@@ -1424,10 +1424,10 @@ module TencentCloud
 
         attr_accessor :ID, :AppId, :ClusterId, :Region, :CreateTime, :DelayTime, :ErrMsg, :FlowId, :Input, :InstanceGrpId, :InstanceGroupId, :InstanceId, :ObjectId, :ObjectType, :Operator, :Output, :Status, :TaskType, :TriggerTaskId, :UpdateTime, :StartTime, :EndTime, :ClusterName, :InstanceName, :Process, :ModifyParamsData, :CreateClustersData, :RollbackData, :ModifyInstanceData, :ManualBackupData, :ModifyDbVersionData, :ClusterSlaveData, :SwitchClusterLogBin, :ModifyInstanceParamsData, :TaskMaintainInfo, :InstanceCLSDeliveryInfos, :TaskProgressInfo, :GdnTaskInfo, :VaultId, :VaultName
         extend Gem::Deprecate
-        deprecate :InstanceGrpId, :none, 2026, 3
-        deprecate :InstanceGrpId=, :none, 2026, 3
-        deprecate :ModifyParamsData, :none, 2026, 3
-        deprecate :ModifyParamsData=, :none, 2026, 3
+        deprecate :InstanceGrpId, :none, 2026, 4
+        deprecate :InstanceGrpId=, :none, 2026, 4
+        deprecate :ModifyParamsData, :none, 2026, 4
+        deprecate :ModifyParamsData=, :none, 2026, 4
 
         def initialize(id=nil, appid=nil, clusterid=nil, region=nil, createtime=nil, delaytime=nil, errmsg=nil, flowid=nil, input=nil, instancegrpid=nil, instancegroupid=nil, instanceid=nil, objectid=nil, objecttype=nil, operator=nil, output=nil, status=nil, tasktype=nil, triggertaskid=nil, updatetime=nil, starttime=nil, endtime=nil, clustername=nil, instancename=nil, process=nil, modifyparamsdata=nil, createclustersdata=nil, rollbackdata=nil, modifyinstancedata=nil, manualbackupdata=nil, modifydbversiondata=nil, clusterslavedata=nil, switchclusterlogbin=nil, modifyinstanceparamsdata=nil, taskmaintaininfo=nil, instanceclsdeliveryinfos=nil, taskprogressinfo=nil, gdntaskinfo=nil, vaultid=nil, vaultname=nil)
           @ID = id
@@ -2126,8 +2126,8 @@ module TencentCloud
 
         attr_accessor :InstanceGrpId, :InstanceGroupId, :InstanceId
         extend Gem::Deprecate
-        deprecate :InstanceGrpId, :none, 2026, 3
-        deprecate :InstanceGrpId=, :none, 2026, 3
+        deprecate :InstanceGrpId, :none, 2026, 4
+        deprecate :InstanceGrpId=, :none, 2026, 4
 
         def initialize(instancegrpid=nil, instancegroupid=nil, instanceid=nil)
           @InstanceGrpId = instancegrpid
@@ -2540,8 +2540,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :StartTime, :EndTime, :Order, :OrderBy, :Filter, :LogFilter, :ColumnFilter
         extend Gem::Deprecate
-        deprecate :Filter, :none, 2026, 3
-        deprecate :Filter=, :none, 2026, 3
+        deprecate :Filter, :none, 2026, 4
+        deprecate :Filter=, :none, 2026, 4
 
         def initialize(instanceid=nil, starttime=nil, endtime=nil, order=nil, orderby=nil, filter=nil, logfilter=nil, columnfilter=nil)
           @InstanceId = instanceid
@@ -6299,8 +6299,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :StartTime, :EndTime, :Order, :OrderBy, :Filter, :Limit, :Offset, :LogFilter
         extend Gem::Deprecate
-        deprecate :Filter, :none, 2026, 3
-        deprecate :Filter=, :none, 2026, 3
+        deprecate :Filter, :none, 2026, 4
+        deprecate :Filter=, :none, 2026, 4
 
         def initialize(instanceid=nil, starttime=nil, endtime=nil, order=nil, orderby=nil, filter=nil, limit=nil, offset=nil, logfilter=nil)
           @InstanceId = instanceid
@@ -7569,8 +7569,8 @@ module TencentCloud
 
         attr_accessor :TotalCount, :InstanceGrpInfoList, :InstanceGroupInfoList, :RequestId
         extend Gem::Deprecate
-        deprecate :InstanceGrpInfoList, :none, 2026, 3
-        deprecate :InstanceGrpInfoList=, :none, 2026, 3
+        deprecate :InstanceGrpInfoList, :none, 2026, 4
+        deprecate :InstanceGrpInfoList=, :none, 2026, 4
 
         def initialize(totalcount=nil, instancegrpinfolist=nil, instancegroupinfolist=nil, requestid=nil)
           @TotalCount = totalcount
@@ -7975,8 +7975,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :InstanceGroupId
         extend Gem::Deprecate
-        deprecate :InstanceId, :none, 2026, 3
-        deprecate :InstanceId=, :none, 2026, 3
+        deprecate :InstanceId, :none, 2026, 4
+        deprecate :InstanceId=, :none, 2026, 4
 
         def initialize(instanceid=nil, instancegroupid=nil)
           @InstanceId = instanceid
@@ -8357,6 +8357,63 @@ module TencentCloud
               slowqueriesitem_tmp = SlowQueriesItem.new
               slowqueriesitem_tmp.deserialize(i)
               @SlowQueries << slowqueriesitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeInstanceSpecsByOperationType请求参数结构体
+      class DescribeInstanceSpecsByOperationTypeRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param OperationType: 操作类型
+        # addROInstance：新增RO实例
+        # modifyInstance：变配
+        # @type OperationType: String
+        # @param InstanceId: 实例ID，查询变配规格时必传
+        # @type InstanceId: String
+        # @param DeviceType: 实例机器类型
+        # @type DeviceType: String
+
+        attr_accessor :ClusterId, :OperationType, :InstanceId, :DeviceType
+
+        def initialize(clusterid=nil, operationtype=nil, instanceid=nil, devicetype=nil)
+          @ClusterId = clusterid
+          @OperationType = operationtype
+          @InstanceId = instanceid
+          @DeviceType = devicetype
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @OperationType = params['OperationType']
+          @InstanceId = params['InstanceId']
+          @DeviceType = params['DeviceType']
+        end
+      end
+
+      # DescribeInstanceSpecsByOperationType返回参数结构体
+      class DescribeInstanceSpecsByOperationTypeResponse < TencentCloud::Common::AbstractModel
+        # @param InstanceSpecSet: 实例规格信息
+        # @type InstanceSpecSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InstanceSpecSet, :RequestId
+
+        def initialize(instancespecset=nil, requestid=nil)
+          @InstanceSpecSet = instancespecset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['InstanceSpecSet'].nil?
+            @InstanceSpecSet = []
+            params['InstanceSpecSet'].each do |i|
+              instancespec_tmp = InstanceSpec.new
+              instancespec_tmp.deserialize(i)
+              @InstanceSpecSet << instancespec_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -10779,17 +10836,21 @@ module TencentCloud
         # @type Zone: String
         # @param OssClusterId: 云架集群ID
         # @type OssClusterId: Integer
+        # @param StorageVersion: 存储架构类型。枚举值：1.0/2.0  默认值：1.0
+        # @type StorageVersion: String
 
-        attr_accessor :Zone, :OssClusterId
+        attr_accessor :Zone, :OssClusterId, :StorageVersion
 
-        def initialize(zone=nil, ossclusterid=nil)
+        def initialize(zone=nil, ossclusterid=nil, storageversion=nil)
           @Zone = zone
           @OssClusterId = ossclusterid
+          @StorageVersion = storageversion
         end
 
         def deserialize(params)
           @Zone = params['Zone']
           @OssClusterId = params['OssClusterId']
+          @StorageVersion = params['StorageVersion']
         end
       end
 
@@ -16187,8 +16248,8 @@ module TencentCloud
 
         attr_accessor :FlowId, :TaskId, :RequestId
         extend Gem::Deprecate
-        deprecate :FlowId, :none, 2026, 3
-        deprecate :FlowId=, :none, 2026, 3
+        deprecate :FlowId, :none, 2026, 4
+        deprecate :FlowId=, :none, 2026, 4
 
         def initialize(flowid=nil, taskid=nil, requestid=nil)
           @FlowId = flowid
@@ -16339,8 +16400,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :InstanceGrpId, :InstanceGroupId, :Vip, :Vport, :DbType, :OldIpReserveHours
         extend Gem::Deprecate
-        deprecate :InstanceGrpId, :none, 2026, 3
-        deprecate :InstanceGrpId=, :none, 2026, 3
+        deprecate :InstanceGrpId, :none, 2026, 4
+        deprecate :InstanceGrpId=, :none, 2026, 4
 
         def initialize(clusterid=nil, instancegrpid=nil, instancegroupid=nil, vip=nil, vport=nil, dbtype=nil, oldipreservehours=nil)
           @ClusterId = clusterid
@@ -16721,8 +16782,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :LogExpireDay, :HighLogExpireDay, :AuditRuleFilters, :RuleTemplateIds, :AuditAll
         extend Gem::Deprecate
-        deprecate :AuditRuleFilters, :none, 2026, 3
-        deprecate :AuditRuleFilters=, :none, 2026, 3
+        deprecate :AuditRuleFilters, :none, 2026, 4
+        deprecate :AuditRuleFilters=, :none, 2026, 4
 
         def initialize(instanceid=nil, logexpireday=nil, highlogexpireday=nil, auditrulefilters=nil, ruletemplateids=nil, auditall=nil)
           @InstanceId = instanceid
@@ -17033,8 +17094,8 @@ module TencentCloud
 
         attr_accessor :InstanceGrpId, :InstanceId, :InstanceGroupId
         extend Gem::Deprecate
-        deprecate :InstanceGrpId, :none, 2026, 3
-        deprecate :InstanceGrpId=, :none, 2026, 3
+        deprecate :InstanceGrpId, :none, 2026, 4
+        deprecate :InstanceGrpId=, :none, 2026, 4
 
         def initialize(instancegrpid=nil, instanceid=nil, instancegroupid=nil)
           @InstanceGrpId = instancegrpid
@@ -18120,8 +18181,8 @@ module TencentCloud
 
         attr_accessor :Values, :Names, :ExactMatch, :Name, :Operator
         extend Gem::Deprecate
-        deprecate :Operator, :none, 2026, 3
-        deprecate :Operator=, :none, 2026, 3
+        deprecate :Operator, :none, 2026, 4
+        deprecate :Operator=, :none, 2026, 4
 
         def initialize(values=nil, names=nil, exactmatch=nil, name=nil, operator=nil)
           @Values = values

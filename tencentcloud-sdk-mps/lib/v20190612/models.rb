@@ -188,6 +188,60 @@ module TencentCloud
         end
       end
 
+      # ActivateSSAI请求参数结构体
+      class ActivateSSAIRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # ActivateSSAI返回参数结构体
+      class ActivateSSAIResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ActivateStreamPackage请求参数结构体
+      class ActivateStreamPackageRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # ActivateStreamPackage返回参数结构体
+      class ActivateStreamPackageResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 编排原子任务
       class Activity < TencentCloud::Common::AbstractModel
         # @param ActivityType: 原子任务类型：
@@ -497,6 +551,63 @@ module TencentCloud
             @ActivityResItem = ActivityResItem.new
             @ActivityResItem.deserialize(params['ActivityResItem'])
           end
+        end
+      end
+
+      # AdBreakInfo。
+      class AdBreakInfo < TencentCloud::Common::AbstractModel
+        # @param SourceLocationId: SourceLocationId。
+        # @type SourceLocationId: String
+        # @param VodSourceName: VodSourceName。
+        # @type VodSourceName: String
+        # @param Offset: Offset。
+        # @type Offset: Integer
+        # @param MessageType: MessageType，分SpliceInsert和TimeSignal。
+        # @type MessageType: String
+        # @param TimeSignalConf: TimeSignalConf。
+        # @type TimeSignalConf: :class:`Tencentcloud::Mps.v20190612.models.TimeSignalInfo`
+        # @param SpliceInsertConf: SpliceInsertConf。
+        # @type SpliceInsertConf: :class:`Tencentcloud::Mps.v20190612.models.SpliceInsertInfo`
+        # @param Metadatas: Metadatas。
+        # @type Metadatas: Array
+        # @param SourceLocationName: SourceLocationName。
+        # @type SourceLocationName: String
+
+        attr_accessor :SourceLocationId, :VodSourceName, :Offset, :MessageType, :TimeSignalConf, :SpliceInsertConf, :Metadatas, :SourceLocationName
+
+        def initialize(sourcelocationid=nil, vodsourcename=nil, offset=nil, messagetype=nil, timesignalconf=nil, spliceinsertconf=nil, metadatas=nil, sourcelocationname=nil)
+          @SourceLocationId = sourcelocationid
+          @VodSourceName = vodsourcename
+          @Offset = offset
+          @MessageType = messagetype
+          @TimeSignalConf = timesignalconf
+          @SpliceInsertConf = spliceinsertconf
+          @Metadatas = metadatas
+          @SourceLocationName = sourcelocationname
+        end
+
+        def deserialize(params)
+          @SourceLocationId = params['SourceLocationId']
+          @VodSourceName = params['VodSourceName']
+          @Offset = params['Offset']
+          @MessageType = params['MessageType']
+          unless params['TimeSignalConf'].nil?
+            @TimeSignalConf = TimeSignalInfo.new
+            @TimeSignalConf.deserialize(params['TimeSignalConf'])
+          end
+          unless params['SpliceInsertConf'].nil?
+            @SpliceInsertConf = SpliceInsertInfo.new
+            @SpliceInsertConf.deserialize(params['SpliceInsertConf'])
+          end
+          unless params['Metadatas'].nil?
+            @Metadatas = []
+            params['Metadatas'].each do |i|
+              metadata_tmp = Metadata.new
+              metadata_tmp.deserialize(i)
+              @Metadatas << metadata_tmp
+            end
+          end
+          @SourceLocationName = params['SourceLocationName']
         end
       end
 
@@ -5086,6 +5197,26 @@ module TencentCloud
         end
       end
 
+      # Alias-value配置信息。
+      class AliasValueConf < TencentCloud::Common::AbstractModel
+        # @param Alias: Alias。
+        # @type Alias: String
+        # @param Value: Value。
+        # @type Value: String
+
+        attr_accessor :Alias, :Value
+
+        def initialize(_alias=nil, value=nil)
+          @Alias = _alias
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Alias = params['Alias']
+          @Value = params['Value']
+        end
+      end
+
       # 转动图任务类型。
       class AnimatedGraphicTaskInput < TencentCloud::Common::AbstractModel
         # @param Definition: 视频转动图模板 ID。
@@ -5432,6 +5563,77 @@ module TencentCloud
         def deserialize(params)
           @Switch = params['Switch']
           @LabelSet = params['LabelSet']
+        end
+      end
+
+      # 线性组装信息查询
+      class AssemblyUsageDetail < TencentCloud::Common::AbstractModel
+        # @param ChannelID: <p>频道id</p>
+        # @type ChannelID: String
+        # @param Date: <p>日期</p>
+        # @type Date: String
+        # @param StartTime: <p>查询开始时间</p>
+        # @type StartTime: String
+        # @param EndTime: <p>查询结束时间</p>
+        # @type EndTime: String
+        # @param Duration: <p>持续时间</p>
+        # @type Duration: Integer
+        # @param ChannelTier: <p>频道类型</p>
+        # @type ChannelTier: String
+        # @param ChannelName: <p>频道名称</p>
+        # @type ChannelName: String
+
+        attr_accessor :ChannelID, :Date, :StartTime, :EndTime, :Duration, :ChannelTier, :ChannelName
+
+        def initialize(channelid=nil, date=nil, starttime=nil, endtime=nil, duration=nil, channeltier=nil, channelname=nil)
+          @ChannelID = channelid
+          @Date = date
+          @StartTime = starttime
+          @EndTime = endtime
+          @Duration = duration
+          @ChannelTier = channeltier
+          @ChannelName = channelname
+        end
+
+        def deserialize(params)
+          @ChannelID = params['ChannelID']
+          @Date = params['Date']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Duration = params['Duration']
+          @ChannelTier = params['ChannelTier']
+          @ChannelName = params['ChannelName']
+        end
+      end
+
+      # 线性组装用量查询响应
+      class AssemblyUsageInfo < TencentCloud::Common::AbstractModel
+        # @param AssemblyUsageDetails: 频道线性组装用量明细
+        # @type AssemblyUsageDetails: Array
+        # @param SumBasicChannelDuration: Basic频道类型总时长
+        # @type SumBasicChannelDuration: Integer
+        # @param SumStandardChannelDuration: Standard频道类型总时长
+        # @type SumStandardChannelDuration: Integer
+
+        attr_accessor :AssemblyUsageDetails, :SumBasicChannelDuration, :SumStandardChannelDuration
+
+        def initialize(assemblyusagedetails=nil, sumbasicchannelduration=nil, sumstandardchannelduration=nil)
+          @AssemblyUsageDetails = assemblyusagedetails
+          @SumBasicChannelDuration = sumbasicchannelduration
+          @SumStandardChannelDuration = sumstandardchannelduration
+        end
+
+        def deserialize(params)
+          unless params['AssemblyUsageDetails'].nil?
+            @AssemblyUsageDetails = []
+            params['AssemblyUsageDetails'].each do |i|
+              assemblyusagedetail_tmp = AssemblyUsageDetail.new
+              assemblyusagedetail_tmp.deserialize(i)
+              @AssemblyUsageDetails << assemblyusagedetail_tmp
+            end
+          end
+          @SumBasicChannelDuration = params['SumBasicChannelDuration']
+          @SumStandardChannelDuration = params['SumStandardChannelDuration']
         end
       end
 
@@ -6317,6 +6519,40 @@ module TencentCloud
         end
       end
 
+      # 线性组装频道告警返回信息。
+      class ChannelAlertResp < TencentCloud::Common::AbstractModel
+        # @param ProgramAlertCounts: Program告警聚合信息。
+        # @type ProgramAlertCounts: Array
+        # @param ProgramAlertInfos: Program告警明细信息。
+        # @type ProgramAlertInfos: Array
+
+        attr_accessor :ProgramAlertCounts, :ProgramAlertInfos
+
+        def initialize(programalertcounts=nil, programalertinfos=nil)
+          @ProgramAlertCounts = programalertcounts
+          @ProgramAlertInfos = programalertinfos
+        end
+
+        def deserialize(params)
+          unless params['ProgramAlertCounts'].nil?
+            @ProgramAlertCounts = []
+            params['ProgramAlertCounts'].each do |i|
+              programalertcounts_tmp = ProgramAlertCounts.new
+              programalertcounts_tmp.deserialize(i)
+              @ProgramAlertCounts << programalertcounts_tmp
+            end
+          end
+          unless params['ProgramAlertInfos'].nil?
+            @ProgramAlertInfos = []
+            params['ProgramAlertInfos'].each do |i|
+              programalertinfos_tmp = ProgramAlertInfos.new
+              programalertinfos_tmp.deserialize(i)
+              @ProgramAlertInfos << programalertinfos_tmp
+            end
+          end
+        end
+      end
+
       # 智能分类任务控制参数
       class ClassificationConfigureInfo < TencentCloud::Common::AbstractModel
         # @param Switch: 智能分类任务开关，可选值：
@@ -6350,6 +6586,34 @@ module TencentCloud
 
         def deserialize(params)
           @Switch = params['Switch']
+        end
+      end
+
+      # 垫片配置。
+      class ClipRangeInfo < TencentCloud::Common::AbstractModel
+        # @param Type: vod类型有效，内容有效起始时间，可选Entire和SpecifyTimeRange。
+        # @type Type: String
+        # @param Offset: 偏移量,Type为SpecifyTimeRange时有效。
+        # @type Offset: Integer
+        # @param StartOffset: 开始偏移量,Type为SpecifyTimeRange时有效。
+        # @type StartOffset: Integer
+        # @param EndOffset: 结束偏移量,Type为SpecifyTimeRange时有效。
+        # @type EndOffset: Integer
+
+        attr_accessor :Type, :Offset, :StartOffset, :EndOffset
+
+        def initialize(type=nil, offset=nil, startoffset=nil, endoffset=nil)
+          @Type = type
+          @Offset = offset
+          @StartOffset = startoffset
+          @EndOffset = endoffset
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Offset = params['Offset']
+          @StartOffset = params['StartOffset']
+          @EndOffset = params['EndOffset']
         end
       end
 
@@ -7209,6 +7473,33 @@ module TencentCloud
           @Codec = params['Codec']
           @Fps = params['Fps']
           @Bitrate = params['Bitrate']
+        end
+      end
+
+      # 参数配置。
+      class ConfigAliasesInfo < TencentCloud::Common::AbstractModel
+        # @param ParamName: 参数名。
+        # @type ParamName: String
+        # @param AliasValueList: alias-value配置。
+        # @type AliasValueList: Array
+
+        attr_accessor :ParamName, :AliasValueList
+
+        def initialize(paramname=nil, aliasvaluelist=nil)
+          @ParamName = paramname
+          @AliasValueList = aliasvaluelist
+        end
+
+        def deserialize(params)
+          @ParamName = params['ParamName']
+          unless params['AliasValueList'].nil?
+            @AliasValueList = []
+            params['AliasValueList'].each do |i|
+              aliasvalueconf_tmp = AliasValueConf.new
+              aliasvalueconf_tmp.deserialize(i)
+              @AliasValueList << aliasvalueconf_tmp
+            end
+          end
         end
       end
 
@@ -9848,6 +10139,332 @@ module TencentCloud
         end
       end
 
+      # CreateStreamPackageLinearAssemblyChannel请求参数结构体
+      class CreateStreamPackageLinearAssemblyChannelRequest < TencentCloud::Common::AbstractModel
+        # @param Name: Channel名称。
+        # @type Name: String
+        # @param Tier: 定义channel的特性，Standard支持直播和点播源，Basic只支持点播源编排，可选值：Standard、Basic。
+        # @type Tier: String
+        # @param PlaybackMode: 频道中的source切换的模式，分Linear线性和Loop循环，Basic只支持Linear，Standard两种都支持。
+        # @type PlaybackMode: String
+        # @param TimeShiftEnable: 时移开启开关，只有Tier为Standard时有效。
+        # @type TimeShiftEnable: Boolean
+        # @param TimeShiftConf: 时移配置，时移开关开启时有效。
+        # @type TimeShiftConf: :class:`Tencentcloud::Mps.v20190612.models.TimeShiftInfo`
+        # @param SlateConf: 垫片配置，只有PlaybackMode为Linear时有效。
+        # @type SlateConf: :class:`Tencentcloud::Mps.v20190612.models.SlateInfo`
+        # @param Outputs: 输出配置。
+        # @type Outputs: Array
+
+        attr_accessor :Name, :Tier, :PlaybackMode, :TimeShiftEnable, :TimeShiftConf, :SlateConf, :Outputs
+
+        def initialize(name=nil, tier=nil, playbackmode=nil, timeshiftenable=nil, timeshiftconf=nil, slateconf=nil, outputs=nil)
+          @Name = name
+          @Tier = tier
+          @PlaybackMode = playbackmode
+          @TimeShiftEnable = timeshiftenable
+          @TimeShiftConf = timeshiftconf
+          @SlateConf = slateconf
+          @Outputs = outputs
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Tier = params['Tier']
+          @PlaybackMode = params['PlaybackMode']
+          @TimeShiftEnable = params['TimeShiftEnable']
+          unless params['TimeShiftConf'].nil?
+            @TimeShiftConf = TimeShiftInfo.new
+            @TimeShiftConf.deserialize(params['TimeShiftConf'])
+          end
+          unless params['SlateConf'].nil?
+            @SlateConf = SlateInfo.new
+            @SlateConf.deserialize(params['SlateConf'])
+          end
+          unless params['Outputs'].nil?
+            @Outputs = []
+            params['Outputs'].each do |i|
+              outputreq_tmp = OutputReq.new
+              outputreq_tmp.deserialize(i)
+              @Outputs << outputreq_tmp
+            end
+          end
+        end
+      end
+
+      # CreateStreamPackageLinearAssemblyChannel返回参数结构体
+      class CreateStreamPackageLinearAssemblyChannelResponse < TencentCloud::Common::AbstractModel
+        # @param Info: channel信息。
+        # @type Info: :class:`Tencentcloud::Mps.v20190612.models.LinearAssemblyChannelInfo`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Info, :RequestId
+
+        def initialize(info=nil, requestid=nil)
+          @Info = info
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Info'].nil?
+            @Info = LinearAssemblyChannelInfo.new
+            @Info.deserialize(params['Info'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateStreamPackageLinearAssemblyProgram请求参数结构体
+      class CreateStreamPackageLinearAssemblyProgramRequest < TencentCloud::Common::AbstractModel
+        # @param Name: Program名称。
+        # @type Name: String
+        # @param AttachedChannel: 绑定的channel。
+        # @type AttachedChannel: String
+        # @param SourceType: 编排的目标source的类型，分直播Live和点播VOD。Tier为Basic时只支持VOD，Tier为Standard时支持Live和VOD
+        # @type SourceType: String
+        # @param SourceLocationId: 关联的source location。
+        # @type SourceLocationId: String
+        # @param SourceName: 关联的直播or点播，source名称，location下全局唯一。
+        # @type SourceName: String
+        # @param PlaybackConf: PlaybackConf。
+        # @type PlaybackConf: :class:`Tencentcloud::Mps.v20190612.models.PlaybackInfoReq`
+        # @param AdBreaks: AdBreaks，只有source类型为Vod时有效。
+        # @type AdBreaks: Array
+
+        attr_accessor :Name, :AttachedChannel, :SourceType, :SourceLocationId, :SourceName, :PlaybackConf, :AdBreaks
+
+        def initialize(name=nil, attachedchannel=nil, sourcetype=nil, sourcelocationid=nil, sourcename=nil, playbackconf=nil, adbreaks=nil)
+          @Name = name
+          @AttachedChannel = attachedchannel
+          @SourceType = sourcetype
+          @SourceLocationId = sourcelocationid
+          @SourceName = sourcename
+          @PlaybackConf = playbackconf
+          @AdBreaks = adbreaks
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @AttachedChannel = params['AttachedChannel']
+          @SourceType = params['SourceType']
+          @SourceLocationId = params['SourceLocationId']
+          @SourceName = params['SourceName']
+          unless params['PlaybackConf'].nil?
+            @PlaybackConf = PlaybackInfoReq.new
+            @PlaybackConf.deserialize(params['PlaybackConf'])
+          end
+          unless params['AdBreaks'].nil?
+            @AdBreaks = []
+            params['AdBreaks'].each do |i|
+              adbreakinfo_tmp = AdBreakInfo.new
+              adbreakinfo_tmp.deserialize(i)
+              @AdBreaks << adbreakinfo_tmp
+            end
+          end
+        end
+      end
+
+      # CreateStreamPackageLinearAssemblyProgram返回参数结构体
+      class CreateStreamPackageLinearAssemblyProgramResponse < TencentCloud::Common::AbstractModel
+        # @param Info: channel信息。
+        # @type Info: :class:`Tencentcloud::Mps.v20190612.models.LinearAssemblyProgramInfo`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Info, :RequestId
+
+        def initialize(info=nil, requestid=nil)
+          @Info = info
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Info'].nil?
+            @Info = LinearAssemblyProgramInfo.new
+            @Info.deserialize(params['Info'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateStreamPackageSSAIChannel请求参数结构体
+      class CreateStreamPackageSSAIChannelRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 广告插入配置名称，全局唯一，不能与其他频道重复。
+        # @type Name: String
+        # @param ContentSource: 源流地址前缀
+        # @type ContentSource: String
+        # @param SSAIInfo: 广告插入配置
+        # @type SSAIInfo: :class:`Tencentcloud::Mps.v20190612.models.SSAIConf`
+
+        attr_accessor :Name, :ContentSource, :SSAIInfo
+
+        def initialize(name=nil, contentsource=nil, ssaiinfo=nil)
+          @Name = name
+          @ContentSource = contentsource
+          @SSAIInfo = ssaiinfo
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @ContentSource = params['ContentSource']
+          unless params['SSAIInfo'].nil?
+            @SSAIInfo = SSAIConf.new
+            @SSAIInfo.deserialize(params['SSAIInfo'])
+          end
+        end
+      end
+
+      # CreateStreamPackageSSAIChannel返回参数结构体
+      class CreateStreamPackageSSAIChannelResponse < TencentCloud::Common::AbstractModel
+        # @param Info: 创建的广告插入配置信息。
+        # @type Info: :class:`Tencentcloud::Mps.v20190612.models.SSAIChannelInfo`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Info, :RequestId
+
+        def initialize(info=nil, requestid=nil)
+          @Info = info
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Info'].nil?
+            @Info = SSAIChannelInfo.new
+            @Info.deserialize(params['Info'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateStreamPackageSourceLocation请求参数结构体
+      class CreateStreamPackageSourceLocationRequest < TencentCloud::Common::AbstractModel
+        # @param Name: SourceLocation名称。
+        # @type Name: String
+        # @param BaseUrl: 基准URL。
+        # @type BaseUrl: String
+        # @param SegmentDeliverEnable: 是否开启补片。
+        # @type SegmentDeliverEnable: Boolean
+        # @param SegmentDeliverConf: 补片配置。
+        # @type SegmentDeliverConf: :class:`Tencentcloud::Mps.v20190612.models.SegmentDeliverInfo`
+        # @param SegmentDeliverUsePackageEnable: 是否开启package分发分片，默认开启。
+        # @type SegmentDeliverUsePackageEnable: Boolean
+
+        attr_accessor :Name, :BaseUrl, :SegmentDeliverEnable, :SegmentDeliverConf, :SegmentDeliverUsePackageEnable
+
+        def initialize(name=nil, baseurl=nil, segmentdeliverenable=nil, segmentdeliverconf=nil, segmentdeliverusepackageenable=nil)
+          @Name = name
+          @BaseUrl = baseurl
+          @SegmentDeliverEnable = segmentdeliverenable
+          @SegmentDeliverConf = segmentdeliverconf
+          @SegmentDeliverUsePackageEnable = segmentdeliverusepackageenable
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @BaseUrl = params['BaseUrl']
+          @SegmentDeliverEnable = params['SegmentDeliverEnable']
+          unless params['SegmentDeliverConf'].nil?
+            @SegmentDeliverConf = SegmentDeliverInfo.new
+            @SegmentDeliverConf.deserialize(params['SegmentDeliverConf'])
+          end
+          @SegmentDeliverUsePackageEnable = params['SegmentDeliverUsePackageEnable']
+        end
+      end
+
+      # CreateStreamPackageSourceLocation返回参数结构体
+      class CreateStreamPackageSourceLocationResponse < TencentCloud::Common::AbstractModel
+        # @param Info: SourceLocation信息。
+        # @type Info: :class:`Tencentcloud::Mps.v20190612.models.SourceLocationInfo`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Info, :RequestId
+
+        def initialize(info=nil, requestid=nil)
+          @Info = info
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Info'].nil?
+            @Info = SourceLocationInfo.new
+            @Info.deserialize(params['Info'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateStreamPackageSource请求参数结构体
+      class CreateStreamPackageSourceRequest < TencentCloud::Common::AbstractModel
+        # @param AttachedLocation: 该source所属的location id，必填且唯一绑定一个location。
+        # @type AttachedLocation: String
+        # @param Name: Source名称，在location下面全局唯一。
+        # @type Name: String
+        # @param Type: 区分直播Live和点播VOD source类型，可选值：Live、VOD。
+        # @type Type: String
+        # @param PackageConfs: source具体配置。
+        # @type PackageConfs: Array
+        # @param SourceTags: sourcetag标签，ADS可以根据Source Tag信息，返回更精准的广告
+        # @type SourceTags: Array
+
+        attr_accessor :AttachedLocation, :Name, :Type, :PackageConfs, :SourceTags
+
+        def initialize(attachedlocation=nil, name=nil, type=nil, packageconfs=nil, sourcetags=nil)
+          @AttachedLocation = attachedlocation
+          @Name = name
+          @Type = type
+          @PackageConfs = packageconfs
+          @SourceTags = sourcetags
+        end
+
+        def deserialize(params)
+          @AttachedLocation = params['AttachedLocation']
+          @Name = params['Name']
+          @Type = params['Type']
+          unless params['PackageConfs'].nil?
+            @PackageConfs = []
+            params['PackageConfs'].each do |i|
+              sourcepackageconf_tmp = SourcePackageConf.new
+              sourcepackageconf_tmp.deserialize(i)
+              @PackageConfs << sourcepackageconf_tmp
+            end
+          end
+          unless params['SourceTags'].nil?
+            @SourceTags = []
+            params['SourceTags'].each do |i|
+              sourcetag_tmp = SourceTag.new
+              sourcetag_tmp.deserialize(i)
+              @SourceTags << sourcetag_tmp
+            end
+          end
+        end
+      end
+
+      # CreateStreamPackageSource返回参数结构体
+      class CreateStreamPackageSourceResponse < TencentCloud::Common::AbstractModel
+        # @param Info: Source信息。
+        # @type Info: :class:`Tencentcloud::Mps.v20190612.models.SourceInfo`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Info, :RequestId
+
+        def initialize(info=nil, requestid=nil)
+          @Info = info
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Info'].nil?
+            @Info = SourceInfo.new
+            @Info.deserialize(params['Info'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateSubtitleEmbedTemplate请求参数结构体
       class CreateSubtitleEmbedTemplateRequest < TencentCloud::Common::AbstractModel
         # @param Name: <p>字幕压制模板名称<br>长度限制：64 个字符。</p>
@@ -10320,6 +10937,34 @@ module TencentCloud
         def deserialize(params)
           @WorkflowId = params['WorkflowId']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # Type为DASH时manifest配置使用的字段。
+      class DashManifestInfo < TencentCloud::Common::AbstractModel
+        # @param Windows: 每个清单的总持续时间（以秒为单位）。[30, 3600]，类型：整数，默认值60。
+        # @type Windows: Integer
+        # @param MinBufferTime: 播放器在缓冲区中保持的最小缓存时间（以秒为单位）。[2, 60]，类型：整数，默认值30。
+        # @type MinBufferTime: Integer
+        # @param MinUpdatePeriod: 播放器在请求更新清单之前应等待的最短时间（以秒为单位）。[2, 60]，类型：整数，默认值2。
+        # @type MinUpdatePeriod: Integer
+        # @param SuggestedPresentationDelay: 播放器启播时距离最新直播时间点的时间，是一个回退量（以秒为单位）。[2, 60]，类型：整数，默认值10。
+        # @type SuggestedPresentationDelay: Integer
+
+        attr_accessor :Windows, :MinBufferTime, :MinUpdatePeriod, :SuggestedPresentationDelay
+
+        def initialize(windows=nil, minbuffertime=nil, minupdateperiod=nil, suggestedpresentationdelay=nil)
+          @Windows = windows
+          @MinBufferTime = minbuffertime
+          @MinUpdatePeriod = minupdateperiod
+          @SuggestedPresentationDelay = suggestedpresentationdelay
+        end
+
+        def deserialize(params)
+          @Windows = params['Windows']
+          @MinBufferTime = params['MinBufferTime']
+          @MinUpdatePeriod = params['MinUpdatePeriod']
+          @SuggestedPresentationDelay = params['SuggestedPresentationDelay']
         end
       end
 
@@ -10985,6 +11630,266 @@ module TencentCloud
 
       # DeleteStreamLinkSecurityGroup返回参数结构体
       class DeleteStreamLinkSecurityGroupResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteStreamPackageLinearAssemblyChannel请求参数结构体
+      class DeleteStreamPackageLinearAssemblyChannelRequest < TencentCloud::Common::AbstractModel
+        # @param Id: 频道id。
+        # @type Id: String
+
+        attr_accessor :Id
+
+        def initialize(id=nil)
+          @Id = id
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+        end
+      end
+
+      # DeleteStreamPackageLinearAssemblyChannel返回参数结构体
+      class DeleteStreamPackageLinearAssemblyChannelResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteStreamPackageLinearAssemblyChannels请求参数结构体
+      class DeleteStreamPackageLinearAssemblyChannelsRequest < TencentCloud::Common::AbstractModel
+        # @param Ids: 频道id列表。
+        # @type Ids: Array
+
+        attr_accessor :Ids
+
+        def initialize(ids=nil)
+          @Ids = ids
+        end
+
+        def deserialize(params)
+          @Ids = params['Ids']
+        end
+      end
+
+      # DeleteStreamPackageLinearAssemblyChannels返回参数结构体
+      class DeleteStreamPackageLinearAssemblyChannelsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteStreamPackageLinearAssemblyProgram请求参数结构体
+      class DeleteStreamPackageLinearAssemblyProgramRequest < TencentCloud::Common::AbstractModel
+        # @param Id: Program id。
+        # @type Id: String
+
+        attr_accessor :Id
+
+        def initialize(id=nil)
+          @Id = id
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+        end
+      end
+
+      # DeleteStreamPackageLinearAssemblyProgram返回参数结构体
+      class DeleteStreamPackageLinearAssemblyProgramResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteStreamPackageLinearAssemblyProgramsByChannel请求参数结构体
+      class DeleteStreamPackageLinearAssemblyProgramsByChannelRequest < TencentCloud::Common::AbstractModel
+        # @param ChannelID: <p>频道的ID</p>
+        # @type ChannelID: String
+        # @param IDs: <p>需要删除的Id数组</p>
+        # @type IDs: Array
+
+        attr_accessor :ChannelID, :IDs
+
+        def initialize(channelid=nil, ids=nil)
+          @ChannelID = channelid
+          @IDs = ids
+        end
+
+        def deserialize(params)
+          @ChannelID = params['ChannelID']
+          @IDs = params['IDs']
+        end
+      end
+
+      # DeleteStreamPackageLinearAssemblyProgramsByChannel返回参数结构体
+      class DeleteStreamPackageLinearAssemblyProgramsByChannelResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteStreamPackageLinearAssemblyPrograms请求参数结构体
+      class DeleteStreamPackageLinearAssemblyProgramsRequest < TencentCloud::Common::AbstractModel
+        # @param Ids: Program id列表。
+        # @type Ids: Array
+
+        attr_accessor :Ids
+
+        def initialize(ids=nil)
+          @Ids = ids
+        end
+
+        def deserialize(params)
+          @Ids = params['Ids']
+        end
+      end
+
+      # DeleteStreamPackageLinearAssemblyPrograms返回参数结构体
+      class DeleteStreamPackageLinearAssemblyProgramsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteStreamPackageSSAIChannel请求参数结构体
+      class DeleteStreamPackageSSAIChannelRequest < TencentCloud::Common::AbstractModel
+        # @param ID: 需要删除的广告插入配置ID。
+        # @type ID: String
+
+        attr_accessor :ID
+
+        def initialize(id=nil)
+          @ID = id
+        end
+
+        def deserialize(params)
+          @ID = params['ID']
+        end
+      end
+
+      # DeleteStreamPackageSSAIChannel返回参数结构体
+      class DeleteStreamPackageSSAIChannelResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteStreamPackageSourceLocation请求参数结构体
+      class DeleteStreamPackageSourceLocationRequest < TencentCloud::Common::AbstractModel
+        # @param Id: SourceLocation Id。
+        # @type Id: String
+
+        attr_accessor :Id
+
+        def initialize(id=nil)
+          @Id = id
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+        end
+      end
+
+      # DeleteStreamPackageSourceLocation返回参数结构体
+      class DeleteStreamPackageSourceLocationResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteStreamPackageSource请求参数结构体
+      class DeleteStreamPackageSourceRequest < TencentCloud::Common::AbstractModel
+        # @param Id: Source Id。
+        # @type Id: String
+
+        attr_accessor :Id
+
+        def initialize(id=nil)
+          @Id = id
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+        end
+      end
+
+      # DeleteStreamPackageSource返回参数结构体
+      class DeleteStreamPackageSourceResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -12680,6 +13585,41 @@ module TencentCloud
         end
       end
 
+      # DescribeMDPMPSUserInfo请求参数结构体
+      class DescribeMDPMPSUserInfoRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeMDPMPSUserInfo返回参数结构体
+      class DescribeMDPMPSUserInfoResponse < TencentCloud::Common::AbstractModel
+        # @param Status: 用户状态，取值为：
+        # <li> InvalidMpsUser：未开通mps；</li>
+        # <li>Normal：正常 ；</li>
+        # <li> Closed：下线；</li>
+        # <li> Arrearage：欠费停服</li>
+        # @type Status: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :RequestId
+
+        def initialize(status=nil, requestid=nil)
+          @Status = status
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeMediaMetaData请求参数结构体
       class DescribeMediaMetaDataRequest < TencentCloud::Common::AbstractModel
         # @param InputInfo: 需要获取元信息的文件输入信息。
@@ -13435,6 +14375,37 @@ module TencentCloud
 
         def deserialize(params)
           @Url = params['Url']
+        end
+      end
+
+      # DescribeSSAIActivateState请求参数结构体
+      class DescribeSSAIActivateStateRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeSSAIActivateState返回参数结构体
+      class DescribeSSAIActivateStateResponse < TencentCloud::Common::AbstractModel
+        # @param Status: SSAI开通状态，0表示正常开通，-1表示未开通
+        # @type Status: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :RequestId
+
+        def initialize(status=nil, requestid=nil)
+          @Status = status
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @RequestId = params['RequestId']
         end
       end
 
@@ -14501,6 +15472,843 @@ module TencentCloud
               @Infos << securitygroupinfo_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeStreamPackageActivateState请求参数结构体
+      class DescribeStreamPackageActivateStateRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeStreamPackageActivateState返回参数结构体
+      class DescribeStreamPackageActivateStateResponse < TencentCloud::Common::AbstractModel
+        # @param Status: 用户已激活为0，否则为非0。
+        # @type Status: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :RequestId
+
+        def initialize(status=nil, requestid=nil)
+          @Status = status
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeStreamPackageLinearAssemblyChannelAlerts请求参数结构体
+      class DescribeStreamPackageLinearAssemblyChannelAlertsRequest < TencentCloud::Common::AbstractModel
+        # @param ChannelId: 频道ID。
+        # @type ChannelId: String
+        # @param StartTime: 查询开始时间，Unix时间戳，支持最近七天的查询。
+        # @type StartTime: Integer
+        # @param EndTime: 查询结束时间，Unix时间戳，支持最近七天的查询。
+        # @type EndTime: Integer
+
+        attr_accessor :ChannelId, :StartTime, :EndTime
+
+        def initialize(channelid=nil, starttime=nil, endtime=nil)
+          @ChannelId = channelid
+          @StartTime = starttime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @ChannelId = params['ChannelId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+        end
+      end
+
+      # DescribeStreamPackageLinearAssemblyChannelAlerts返回参数结构体
+      class DescribeStreamPackageLinearAssemblyChannelAlertsResponse < TencentCloud::Common::AbstractModel
+        # @param Infos: 频道告警信息。
+        # @type Infos: :class:`Tencentcloud::Mps.v20190612.models.ChannelAlertResp`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Infos, :RequestId
+
+        def initialize(infos=nil, requestid=nil)
+          @Infos = infos
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Infos'].nil?
+            @Infos = ChannelAlertResp.new
+            @Infos.deserialize(params['Infos'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeStreamPackageLinearAssemblyChannel请求参数结构体
+      class DescribeStreamPackageLinearAssemblyChannelRequest < TencentCloud::Common::AbstractModel
+        # @param Id: 频道id。
+        # @type Id: String
+
+        attr_accessor :Id
+
+        def initialize(id=nil)
+          @Id = id
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+        end
+      end
+
+      # DescribeStreamPackageLinearAssemblyChannel返回参数结构体
+      class DescribeStreamPackageLinearAssemblyChannelResponse < TencentCloud::Common::AbstractModel
+        # @param Info: Channel信息。
+        # @type Info: :class:`Tencentcloud::Mps.v20190612.models.LinearAssemblyChannelInfo`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Info, :RequestId
+
+        def initialize(info=nil, requestid=nil)
+          @Info = info
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Info'].nil?
+            @Info = LinearAssemblyChannelInfo.new
+            @Info.deserialize(params['Info'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeStreamPackageLinearAssemblyChannels请求参数结构体
+      class DescribeStreamPackageLinearAssemblyChannelsRequest < TencentCloud::Common::AbstractModel
+        # @param PageNum: 页数，取值范围为[1, 1000]。
+        # @type PageNum: Integer
+        # @param PageSize: 每页大小，取值范围为[1, 1000]。
+        # @type PageSize: Integer
+
+        attr_accessor :PageNum, :PageSize
+
+        def initialize(pagenum=nil, pagesize=nil)
+          @PageNum = pagenum
+          @PageSize = pagesize
+        end
+
+        def deserialize(params)
+          @PageNum = params['PageNum']
+          @PageSize = params['PageSize']
+        end
+      end
+
+      # DescribeStreamPackageLinearAssemblyChannels返回参数结构体
+      class DescribeStreamPackageLinearAssemblyChannelsResponse < TencentCloud::Common::AbstractModel
+        # @param Infos: Channel列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Infos: Array
+        # @param PageNum: 页数。
+        # @type PageNum: Integer
+        # @param PageSize: 每页大小。
+        # @type PageSize: Integer
+        # @param TotalNum: 总数量。
+        # @type TotalNum: Integer
+        # @param TotalPage: 总页数。
+        # @type TotalPage: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Infos, :PageNum, :PageSize, :TotalNum, :TotalPage, :RequestId
+
+        def initialize(infos=nil, pagenum=nil, pagesize=nil, totalnum=nil, totalpage=nil, requestid=nil)
+          @Infos = infos
+          @PageNum = pagenum
+          @PageSize = pagesize
+          @TotalNum = totalnum
+          @TotalPage = totalpage
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Infos'].nil?
+            @Infos = []
+            params['Infos'].each do |i|
+              linearassemblychannelinfo_tmp = LinearAssemblyChannelInfo.new
+              linearassemblychannelinfo_tmp.deserialize(i)
+              @Infos << linearassemblychannelinfo_tmp
+            end
+          end
+          @PageNum = params['PageNum']
+          @PageSize = params['PageSize']
+          @TotalNum = params['TotalNum']
+          @TotalPage = params['TotalPage']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeStreamPackageLinearAssemblyProgram请求参数结构体
+      class DescribeStreamPackageLinearAssemblyProgramRequest < TencentCloud::Common::AbstractModel
+        # @param Id: program id。
+        # @type Id: String
+
+        attr_accessor :Id
+
+        def initialize(id=nil)
+          @Id = id
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+        end
+      end
+
+      # DescribeStreamPackageLinearAssemblyProgram返回参数结构体
+      class DescribeStreamPackageLinearAssemblyProgramResponse < TencentCloud::Common::AbstractModel
+        # @param Info: Program信息。
+        # @type Info: :class:`Tencentcloud::Mps.v20190612.models.LinearAssemblyProgramInfo`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Info, :RequestId
+
+        def initialize(info=nil, requestid=nil)
+          @Info = info
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Info'].nil?
+            @Info = LinearAssemblyProgramInfo.new
+            @Info.deserialize(params['Info'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeStreamPackageLinearAssemblyProgramSchedules请求参数结构体
+      class DescribeStreamPackageLinearAssemblyProgramSchedulesRequest < TencentCloud::Common::AbstractModel
+        # @param ChannelId: 查询某个Channel下面的所有Program。
+        # @type ChannelId: String
+        # @param TimeWindow: 窗口时长信息，单位秒。最大7776000s
+        # @type TimeWindow: Integer
+        # @param PageNum: 页数，取值范围为[1, 10000]。
+        # @type PageNum: Integer
+        # @param PageSize: 每页大小，取值范围为[1, 1000]。
+        # @type PageSize: Integer
+
+        attr_accessor :ChannelId, :TimeWindow, :PageNum, :PageSize
+
+        def initialize(channelid=nil, timewindow=nil, pagenum=nil, pagesize=nil)
+          @ChannelId = channelid
+          @TimeWindow = timewindow
+          @PageNum = pagenum
+          @PageSize = pagesize
+        end
+
+        def deserialize(params)
+          @ChannelId = params['ChannelId']
+          @TimeWindow = params['TimeWindow']
+          @PageNum = params['PageNum']
+          @PageSize = params['PageSize']
+        end
+      end
+
+      # DescribeStreamPackageLinearAssemblyProgramSchedules返回参数结构体
+      class DescribeStreamPackageLinearAssemblyProgramSchedulesResponse < TencentCloud::Common::AbstractModel
+        # @param Infos: Program的调度列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Infos: Array
+        # @param PageNum: 页数。
+        # @type PageNum: Integer
+        # @param PageSize: 每页大小。
+        # @type PageSize: Integer
+        # @param TotalNum: 总数量。
+        # @type TotalNum: Integer
+        # @param TotalPage: 总页数。
+        # @type TotalPage: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Infos, :PageNum, :PageSize, :TotalNum, :TotalPage, :RequestId
+
+        def initialize(infos=nil, pagenum=nil, pagesize=nil, totalnum=nil, totalpage=nil, requestid=nil)
+          @Infos = infos
+          @PageNum = pagenum
+          @PageSize = pagesize
+          @TotalNum = totalnum
+          @TotalPage = totalpage
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Infos'].nil?
+            @Infos = []
+            params['Infos'].each do |i|
+              linearassemblyprograminfo_tmp = LinearAssemblyProgramInfo.new
+              linearassemblyprograminfo_tmp.deserialize(i)
+              @Infos << linearassemblyprograminfo_tmp
+            end
+          end
+          @PageNum = params['PageNum']
+          @PageSize = params['PageSize']
+          @TotalNum = params['TotalNum']
+          @TotalPage = params['TotalPage']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeStreamPackageLinearAssemblyPrograms请求参数结构体
+      class DescribeStreamPackageLinearAssemblyProgramsRequest < TencentCloud::Common::AbstractModel
+        # @param PageNum: 页数，取值范围为[1, 1000]。
+        # @type PageNum: Integer
+        # @param PageSize: 每页大小，取值范围为[1, 10000]。
+        # @type PageSize: Integer
+        # @param ChannelId: 查询某个Channel下面的所有Program。
+        # @type ChannelId: String
+        # @param Name: 按Name过滤，模糊匹配
+        # @type Name: String
+
+        attr_accessor :PageNum, :PageSize, :ChannelId, :Name
+
+        def initialize(pagenum=nil, pagesize=nil, channelid=nil, name=nil)
+          @PageNum = pagenum
+          @PageSize = pagesize
+          @ChannelId = channelid
+          @Name = name
+        end
+
+        def deserialize(params)
+          @PageNum = params['PageNum']
+          @PageSize = params['PageSize']
+          @ChannelId = params['ChannelId']
+          @Name = params['Name']
+        end
+      end
+
+      # DescribeStreamPackageLinearAssemblyPrograms返回参数结构体
+      class DescribeStreamPackageLinearAssemblyProgramsResponse < TencentCloud::Common::AbstractModel
+        # @param Infos: Program列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Infos: Array
+        # @param PageNum: 页数。
+        # @type PageNum: Integer
+        # @param PageSize: 每页大小。
+        # @type PageSize: Integer
+        # @param TotalNum: 总数量。
+        # @type TotalNum: Integer
+        # @param TotalPage: 总页数。
+        # @type TotalPage: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Infos, :PageNum, :PageSize, :TotalNum, :TotalPage, :RequestId
+
+        def initialize(infos=nil, pagenum=nil, pagesize=nil, totalnum=nil, totalpage=nil, requestid=nil)
+          @Infos = infos
+          @PageNum = pagenum
+          @PageSize = pagesize
+          @TotalNum = totalnum
+          @TotalPage = totalpage
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Infos'].nil?
+            @Infos = []
+            params['Infos'].each do |i|
+              linearassemblyprograminfo_tmp = LinearAssemblyProgramInfo.new
+              linearassemblyprograminfo_tmp.deserialize(i)
+              @Infos << linearassemblyprograminfo_tmp
+            end
+          end
+          @PageNum = params['PageNum']
+          @PageSize = params['PageSize']
+          @TotalNum = params['TotalNum']
+          @TotalPage = params['TotalPage']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeStreamPackageLinearAssemblyUsage请求参数结构体
+      class DescribeStreamPackageLinearAssemblyUsageRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: 查询开始时间
+        # @type StartTime: String
+        # @param EndTime: 查询结束时间
+        # @type EndTime: String
+        # @param Dimension: 维度，可选值：summary对应false；detail 对应true
+        # @type Dimension: Boolean
+        # @param ChannelIds: 要查询的频道ID列表
+        # @type ChannelIds: Array
+        # @param ChannelTiers: 要查询的频道类型，可选Basic/Standard；若为空，默认查询所有类型
+        # @type ChannelTiers: Array
+
+        attr_accessor :StartTime, :EndTime, :Dimension, :ChannelIds, :ChannelTiers
+
+        def initialize(starttime=nil, endtime=nil, dimension=nil, channelids=nil, channeltiers=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @Dimension = dimension
+          @ChannelIds = channelids
+          @ChannelTiers = channeltiers
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Dimension = params['Dimension']
+          @ChannelIds = params['ChannelIds']
+          @ChannelTiers = params['ChannelTiers']
+        end
+      end
+
+      # DescribeStreamPackageLinearAssemblyUsage返回参数结构体
+      class DescribeStreamPackageLinearAssemblyUsageResponse < TencentCloud::Common::AbstractModel
+        # @param Info: 线性组装用量详情
+        # @type Info: :class:`Tencentcloud::Mps.v20190612.models.AssemblyUsageInfo`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Info, :RequestId
+
+        def initialize(info=nil, requestid=nil)
+          @Info = info
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Info'].nil?
+            @Info = AssemblyUsageInfo.new
+            @Info.deserialize(params['Info'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeStreamPackageSSAIChannel请求参数结构体
+      class DescribeStreamPackageSSAIChannelRequest < TencentCloud::Common::AbstractModel
+        # @param ID: 广告插入配置ID。
+        # @type ID: String
+
+        attr_accessor :ID
+
+        def initialize(id=nil)
+          @ID = id
+        end
+
+        def deserialize(params)
+          @ID = params['ID']
+        end
+      end
+
+      # DescribeStreamPackageSSAIChannel返回参数结构体
+      class DescribeStreamPackageSSAIChannelResponse < TencentCloud::Common::AbstractModel
+        # @param Info: 广告插入配置信息。
+        # @type Info: :class:`Tencentcloud::Mps.v20190612.models.SSAIChannelInfo`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Info, :RequestId
+
+        def initialize(info=nil, requestid=nil)
+          @Info = info
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Info'].nil?
+            @Info = SSAIChannelInfo.new
+            @Info.deserialize(params['Info'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeStreamPackageSSAIChannels请求参数结构体
+      class DescribeStreamPackageSSAIChannelsRequest < TencentCloud::Common::AbstractModel
+        # @param PageNum: 页码，默认1。
+        # @type PageNum: Integer
+        # @param PageSize: 每页大小，默认10。
+        # @type PageSize: Integer
+
+        attr_accessor :PageNum, :PageSize
+
+        def initialize(pagenum=nil, pagesize=nil)
+          @PageNum = pagenum
+          @PageSize = pagesize
+        end
+
+        def deserialize(params)
+          @PageNum = params['PageNum']
+          @PageSize = params['PageSize']
+        end
+      end
+
+      # DescribeStreamPackageSSAIChannels返回参数结构体
+      class DescribeStreamPackageSSAIChannelsResponse < TencentCloud::Common::AbstractModel
+        # @param Infos: 广告插入配置信息。
+        # @type Infos: Array
+        # @param PageNum: 页码。
+        # @type PageNum: Integer
+        # @param PageSize: 每页大小。
+        # @type PageSize: Integer
+        # @param TotalNum: 总条目数。
+        # @type TotalNum: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Infos, :PageNum, :PageSize, :TotalNum, :RequestId
+
+        def initialize(infos=nil, pagenum=nil, pagesize=nil, totalnum=nil, requestid=nil)
+          @Infos = infos
+          @PageNum = pagenum
+          @PageSize = pagesize
+          @TotalNum = totalnum
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Infos'].nil?
+            @Infos = []
+            params['Infos'].each do |i|
+              ssaichannelinfo_tmp = SSAIChannelInfo.new
+              ssaichannelinfo_tmp.deserialize(i)
+              @Infos << ssaichannelinfo_tmp
+            end
+          end
+          @PageNum = params['PageNum']
+          @PageSize = params['PageSize']
+          @TotalNum = params['TotalNum']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeStreamPackageSSAIUsage请求参数结构体
+      class DescribeStreamPackageSSAIUsageRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: 起始时间
+        # @type StartTime: String
+        # @param EndTime: 结束时间
+        # @type EndTime: String
+        # @param ChannelIds: 需要查询的channel_id
+        # @type ChannelIds: Array
+        # @param Types: 需要查询的广告类型。可选Pre-roll/Mid-roll/VOD；若为空，默认查询所有类型
+        # @type Types: Array
+        # @param Dimension: 维度，可选值：summary对应false；detail 对应true
+        # @type Dimension: Boolean
+
+        attr_accessor :StartTime, :EndTime, :ChannelIds, :Types, :Dimension
+
+        def initialize(starttime=nil, endtime=nil, channelids=nil, types=nil, dimension=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @ChannelIds = channelids
+          @Types = types
+          @Dimension = dimension
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @ChannelIds = params['ChannelIds']
+          @Types = params['Types']
+          @Dimension = params['Dimension']
+        end
+      end
+
+      # DescribeStreamPackageSSAIUsage返回参数结构体
+      class DescribeStreamPackageSSAIUsageResponse < TencentCloud::Common::AbstractModel
+        # @param Info: SSAI用量信息
+        # @type Info: :class:`Tencentcloud::Mps.v20190612.models.SSAIUsageInfo`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Info, :RequestId
+
+        def initialize(info=nil, requestid=nil)
+          @Info = info
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Info'].nil?
+            @Info = SSAIUsageInfo.new
+            @Info.deserialize(params['Info'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeStreamPackageSourceAlerts请求参数结构体
+      class DescribeStreamPackageSourceAlertsRequest < TencentCloud::Common::AbstractModel
+        # @param SourceId: Source ID。
+        # @type SourceId: String
+        # @param StartTime: 查询开始时间，Unix时间戳，支持最近七天的查询。
+        # @type StartTime: Integer
+        # @param EndTime: 查询结束时间，Unix时间戳，支持最近七天的查询。
+        # @type EndTime: Integer
+
+        attr_accessor :SourceId, :StartTime, :EndTime
+
+        def initialize(sourceid=nil, starttime=nil, endtime=nil)
+          @SourceId = sourceid
+          @StartTime = starttime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @SourceId = params['SourceId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+        end
+      end
+
+      # DescribeStreamPackageSourceAlerts返回参数结构体
+      class DescribeStreamPackageSourceAlertsResponse < TencentCloud::Common::AbstractModel
+        # @param Infos: Source告警信息。
+        # @type Infos: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Infos, :RequestId
+
+        def initialize(infos=nil, requestid=nil)
+          @Infos = infos
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Infos'].nil?
+            @Infos = []
+            params['Infos'].each do |i|
+              sourcealert_tmp = SourceAlert.new
+              sourcealert_tmp.deserialize(i)
+              @Infos << sourcealert_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeStreamPackageSourceLocation请求参数结构体
+      class DescribeStreamPackageSourceLocationRequest < TencentCloud::Common::AbstractModel
+        # @param Id: SourceLocation Id。
+        # @type Id: String
+
+        attr_accessor :Id
+
+        def initialize(id=nil)
+          @Id = id
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+        end
+      end
+
+      # DescribeStreamPackageSourceLocation返回参数结构体
+      class DescribeStreamPackageSourceLocationResponse < TencentCloud::Common::AbstractModel
+        # @param Info: SourceLocation信息。
+        # @type Info: :class:`Tencentcloud::Mps.v20190612.models.SourceLocationInfo`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Info, :RequestId
+
+        def initialize(info=nil, requestid=nil)
+          @Info = info
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Info'].nil?
+            @Info = SourceLocationInfo.new
+            @Info.deserialize(params['Info'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeStreamPackageSourceLocations请求参数结构体
+      class DescribeStreamPackageSourceLocationsRequest < TencentCloud::Common::AbstractModel
+        # @param PageNum: 页数，取值范围为[1, 1000]。
+        # @type PageNum: Integer
+        # @param PageSize: 每页大小，取值范围为[1, 1000]。
+        # @type PageSize: Integer
+
+        attr_accessor :PageNum, :PageSize
+
+        def initialize(pagenum=nil, pagesize=nil)
+          @PageNum = pagenum
+          @PageSize = pagesize
+        end
+
+        def deserialize(params)
+          @PageNum = params['PageNum']
+          @PageSize = params['PageSize']
+        end
+      end
+
+      # DescribeStreamPackageSourceLocations返回参数结构体
+      class DescribeStreamPackageSourceLocationsResponse < TencentCloud::Common::AbstractModel
+        # @param Infos: SourceLocation列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Infos: Array
+        # @param PageNum: 页数。
+        # @type PageNum: Integer
+        # @param PageSize: 每页大小。
+        # @type PageSize: Integer
+        # @param TotalNum: 总数量。
+        # @type TotalNum: Integer
+        # @param TotalPage: 总页数。
+        # @type TotalPage: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Infos, :PageNum, :PageSize, :TotalNum, :TotalPage, :RequestId
+
+        def initialize(infos=nil, pagenum=nil, pagesize=nil, totalnum=nil, totalpage=nil, requestid=nil)
+          @Infos = infos
+          @PageNum = pagenum
+          @PageSize = pagesize
+          @TotalNum = totalnum
+          @TotalPage = totalpage
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Infos'].nil?
+            @Infos = []
+            params['Infos'].each do |i|
+              sourcelocationinfo_tmp = SourceLocationInfo.new
+              sourcelocationinfo_tmp.deserialize(i)
+              @Infos << sourcelocationinfo_tmp
+            end
+          end
+          @PageNum = params['PageNum']
+          @PageSize = params['PageSize']
+          @TotalNum = params['TotalNum']
+          @TotalPage = params['TotalPage']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeStreamPackageSource请求参数结构体
+      class DescribeStreamPackageSourceRequest < TencentCloud::Common::AbstractModel
+        # @param Id: Source Id。
+        # @type Id: String
+
+        attr_accessor :Id
+
+        def initialize(id=nil)
+          @Id = id
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+        end
+      end
+
+      # DescribeStreamPackageSource返回参数结构体
+      class DescribeStreamPackageSourceResponse < TencentCloud::Common::AbstractModel
+        # @param Info: Source信息。
+        # @type Info: :class:`Tencentcloud::Mps.v20190612.models.SourceInfo`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Info, :RequestId
+
+        def initialize(info=nil, requestid=nil)
+          @Info = info
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Info'].nil?
+            @Info = SourceInfo.new
+            @Info.deserialize(params['Info'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeStreamPackageSources请求参数结构体
+      class DescribeStreamPackageSourcesRequest < TencentCloud::Common::AbstractModel
+        # @param PageNum: 页数，取值范围为[1, 1000]。
+        # @type PageNum: Integer
+        # @param PageSize: 每页大小，取值范围为[1, 1000]。
+        # @type PageSize: Integer
+        # @param LocationId: Location Id，查询该location下面所有source。
+        # @type LocationId: String
+        # @param Type: Source的类型，分直播Live和点播VOD。
+        # @type Type: String
+
+        attr_accessor :PageNum, :PageSize, :LocationId, :Type
+
+        def initialize(pagenum=nil, pagesize=nil, locationid=nil, type=nil)
+          @PageNum = pagenum
+          @PageSize = pagesize
+          @LocationId = locationid
+          @Type = type
+        end
+
+        def deserialize(params)
+          @PageNum = params['PageNum']
+          @PageSize = params['PageSize']
+          @LocationId = params['LocationId']
+          @Type = params['Type']
+        end
+      end
+
+      # DescribeStreamPackageSources返回参数结构体
+      class DescribeStreamPackageSourcesResponse < TencentCloud::Common::AbstractModel
+        # @param Infos: Source列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Infos: Array
+        # @param PageNum: 页数。
+        # @type PageNum: Integer
+        # @param PageSize: 每页大小。
+        # @type PageSize: Integer
+        # @param TotalNum: 总数量。
+        # @type TotalNum: Integer
+        # @param TotalPage: 总页数。
+        # @type TotalPage: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Infos, :PageNum, :PageSize, :TotalNum, :TotalPage, :RequestId
+
+        def initialize(infos=nil, pagenum=nil, pagesize=nil, totalnum=nil, totalpage=nil, requestid=nil)
+          @Infos = infos
+          @PageNum = pagenum
+          @PageSize = pagesize
+          @TotalNum = totalnum
+          @TotalPage = totalpage
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Infos'].nil?
+            @Infos = []
+            params['Infos'].each do |i|
+              sourceinfo_tmp = SourceInfo.new
+              sourceinfo_tmp.deserialize(i)
+              @Infos << sourceinfo_tmp
+            end
+          end
+          @PageNum = params['PageNum']
+          @PageSize = params['PageSize']
+          @TotalNum = params['TotalNum']
+          @TotalPage = params['TotalPage']
           @RequestId = params['RequestId']
         end
       end
@@ -18153,6 +19961,156 @@ module TencentCloud
         end
       end
 
+      # 线性组装频道信息。
+      class LinearAssemblyChannelInfo < TencentCloud::Common::AbstractModel
+        # @param Name: <p>线性组装频道名称。</p>
+        # @type Name: String
+        # @param Tier: <p>定义channel的特性，Standard支持直播和点播源，Basic只支持点播源编排。</p>
+        # @type Tier: String
+        # @param PlaybackMode: <p>频道中的source切换的模式，分Linear线性和Loop循环，直播只支持Linear。</p>
+        # @type PlaybackMode: String
+        # @param TimeShiftConf: <p>时移配置，vod有效。</p>
+        # @type TimeShiftConf: :class:`Tencentcloud::Mps.v20190612.models.TimeShiftInfo`
+        # @param SlateConf: <p>垫片配置。</p>
+        # @type SlateConf: :class:`Tencentcloud::Mps.v20190612.models.SlateInfo`
+        # @param Outputs: <p>output信息。</p>
+        # @type Outputs: Array
+        # @param AttachedPrograms: <p>该channel绑定的program列表。</p>
+        # @type AttachedPrograms: Array
+        # @param ProgramSchedules: <p>program信息。</p>
+        # @type ProgramSchedules: Array
+        # @param Id: <p>Id。</p>
+        # @type Id: String
+        # @param Region: <p>Region。</p>
+        # @type Region: String
+        # @param State: <p>State。</p>
+        # @type State: String
+        # @param TimeShiftEnable: <p>时移开启开关。</p>
+        # @type TimeShiftEnable: Boolean
+        # @param CreateTime: <p>channel创建时间，unix秒时间戳。</p>
+        # @type CreateTime: Integer
+
+        attr_accessor :Name, :Tier, :PlaybackMode, :TimeShiftConf, :SlateConf, :Outputs, :AttachedPrograms, :ProgramSchedules, :Id, :Region, :State, :TimeShiftEnable, :CreateTime
+
+        def initialize(name=nil, tier=nil, playbackmode=nil, timeshiftconf=nil, slateconf=nil, outputs=nil, attachedprograms=nil, programschedules=nil, id=nil, region=nil, state=nil, timeshiftenable=nil, createtime=nil)
+          @Name = name
+          @Tier = tier
+          @PlaybackMode = playbackmode
+          @TimeShiftConf = timeshiftconf
+          @SlateConf = slateconf
+          @Outputs = outputs
+          @AttachedPrograms = attachedprograms
+          @ProgramSchedules = programschedules
+          @Id = id
+          @Region = region
+          @State = state
+          @TimeShiftEnable = timeshiftenable
+          @CreateTime = createtime
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Tier = params['Tier']
+          @PlaybackMode = params['PlaybackMode']
+          unless params['TimeShiftConf'].nil?
+            @TimeShiftConf = TimeShiftInfo.new
+            @TimeShiftConf.deserialize(params['TimeShiftConf'])
+          end
+          unless params['SlateConf'].nil?
+            @SlateConf = SlateInfo.new
+            @SlateConf.deserialize(params['SlateConf'])
+          end
+          unless params['Outputs'].nil?
+            @Outputs = []
+            params['Outputs'].each do |i|
+              outputinfo_tmp = OutputInfo.new
+              outputinfo_tmp.deserialize(i)
+              @Outputs << outputinfo_tmp
+            end
+          end
+          @AttachedPrograms = params['AttachedPrograms']
+          unless params['ProgramSchedules'].nil?
+            @ProgramSchedules = []
+            params['ProgramSchedules'].each do |i|
+              programscheduleinfo_tmp = ProgramScheduleInfo.new
+              programscheduleinfo_tmp.deserialize(i)
+              @ProgramSchedules << programscheduleinfo_tmp
+            end
+          end
+          @Id = params['Id']
+          @Region = params['Region']
+          @State = params['State']
+          @TimeShiftEnable = params['TimeShiftEnable']
+          @CreateTime = params['CreateTime']
+        end
+      end
+
+      # 频道线性组装program信息。
+      class LinearAssemblyProgramInfo < TencentCloud::Common::AbstractModel
+        # @param Name: program名称。
+        # @type Name: String
+        # @param SourceType: 编排的目标source的类型，分直播和点播。
+        # @type SourceType: String
+        # @param SourceLocationId: 关联的source location id。
+        # @type SourceLocationId: String
+        # @param SourceId: SourceId，唯一标识一个source。
+        # @type SourceId: String
+        # @param SourceName: 关联的直播or点播，source名称，location下全局唯一。
+        # @type SourceName: String
+        # @param AttachedChannel: 绑定的channel。
+        # @type AttachedChannel: String
+        # @param PlaybackConf: 播放配置。
+        # @type PlaybackConf: :class:`Tencentcloud::Mps.v20190612.models.PlaybackInfo`
+        # @param AdBreaks: AdBreaks。
+        # @type AdBreaks: Array
+        # @param Id: Id。
+        # @type Id: String
+        # @param Region: Region。
+        # @type Region: String
+        # @param SourceLocationName: SourceLocation名称。
+        # @type SourceLocationName: String
+
+        attr_accessor :Name, :SourceType, :SourceLocationId, :SourceId, :SourceName, :AttachedChannel, :PlaybackConf, :AdBreaks, :Id, :Region, :SourceLocationName
+
+        def initialize(name=nil, sourcetype=nil, sourcelocationid=nil, sourceid=nil, sourcename=nil, attachedchannel=nil, playbackconf=nil, adbreaks=nil, id=nil, region=nil, sourcelocationname=nil)
+          @Name = name
+          @SourceType = sourcetype
+          @SourceLocationId = sourcelocationid
+          @SourceId = sourceid
+          @SourceName = sourcename
+          @AttachedChannel = attachedchannel
+          @PlaybackConf = playbackconf
+          @AdBreaks = adbreaks
+          @Id = id
+          @Region = region
+          @SourceLocationName = sourcelocationname
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @SourceType = params['SourceType']
+          @SourceLocationId = params['SourceLocationId']
+          @SourceId = params['SourceId']
+          @SourceName = params['SourceName']
+          @AttachedChannel = params['AttachedChannel']
+          unless params['PlaybackConf'].nil?
+            @PlaybackConf = PlaybackInfo.new
+            @PlaybackConf.deserialize(params['PlaybackConf'])
+          end
+          unless params['AdBreaks'].nil?
+            @AdBreaks = []
+            params['AdBreaks'].each do |i|
+              adbreakinfo_tmp = AdBreakInfo.new
+              adbreakinfo_tmp.deserialize(i)
+              @AdBreaks << adbreakinfo_tmp
+            end
+          end
+          @Id = params['Id']
+          @Region = params['Region']
+          @SourceLocationName = params['SourceLocationName']
+        end
+      end
+
       # 直播编排子任务输出
       class LiveActivityResItem < TencentCloud::Common::AbstractModel
         # @param LiveRecordTask: 直播录制任务输出
@@ -19693,6 +21651,26 @@ module TencentCloud
         end
       end
 
+      # 线性组装频道配置。
+      class ManifestInfo < TencentCloud::Common::AbstractModel
+        # @param Windows: 单位秒。
+        # @type Windows: Integer
+        # @param AdMarkupType: 打到output广告标签的格式，可选Date Range和Enhanced SCTE-35。
+        # @type AdMarkupType: String
+
+        attr_accessor :Windows, :AdMarkupType
+
+        def initialize(windows=nil, admarkuptype=nil)
+          @Windows = windows
+          @AdMarkupType = admarkuptype
+        end
+
+        def deserialize(params)
+          @Windows = params['Windows']
+          @AdMarkupType = params['AdMarkupType']
+        end
+      end
+
       # 智能分类结果
       class MediaAiAnalysisClassificationItem < TencentCloud::Common::AbstractModel
         # @param Classification: 智能分类的类别名称。
@@ -21099,6 +23077,26 @@ module TencentCloud
           @Codecs = params['Codecs']
           @FpsNumerator = params['FpsNumerator']
           @FpsDenominator = params['FpsDenominator']
+        end
+      end
+
+      # Metadata。
+      class Metadata < TencentCloud::Common::AbstractModel
+        # @param Key: Key。
+        # @type Key: String
+        # @param Value: Value。
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
         end
       end
 
@@ -22742,6 +24740,309 @@ module TencentCloud
         end
       end
 
+      # ModifyStreamPackageLinearAssemblyChannel请求参数结构体
+      class ModifyStreamPackageLinearAssemblyChannelRequest < TencentCloud::Common::AbstractModel
+        # @param Id: Channel Id。
+        # @type Id: String
+        # @param Name: 修改后的名称。
+        # @type Name: String
+        # @param Tier: 定义channel的特性，Standard支持直播和点播源，Basic只支持点播源编排。
+        # @type Tier: String
+        # @param PlaybackMode: 频道中的source切换的模式，分Linear线性和Loop循环，直播只支持Linear。
+        # @type PlaybackMode: String
+        # @param TimeShiftEnable: 时移开启开关。
+        # @type TimeShiftEnable: Boolean
+        # @param TimeShiftConf: 时移配置。
+        # @type TimeShiftConf: :class:`Tencentcloud::Mps.v20190612.models.TimeShiftInfo`
+        # @param SlateConf: 垫片配置。
+        # @type SlateConf: :class:`Tencentcloud::Mps.v20190612.models.SlateInfo`
+        # @param Outputs: 输出配置。
+        # @type Outputs: Array
+
+        attr_accessor :Id, :Name, :Tier, :PlaybackMode, :TimeShiftEnable, :TimeShiftConf, :SlateConf, :Outputs
+
+        def initialize(id=nil, name=nil, tier=nil, playbackmode=nil, timeshiftenable=nil, timeshiftconf=nil, slateconf=nil, outputs=nil)
+          @Id = id
+          @Name = name
+          @Tier = tier
+          @PlaybackMode = playbackmode
+          @TimeShiftEnable = timeshiftenable
+          @TimeShiftConf = timeshiftconf
+          @SlateConf = slateconf
+          @Outputs = outputs
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Name = params['Name']
+          @Tier = params['Tier']
+          @PlaybackMode = params['PlaybackMode']
+          @TimeShiftEnable = params['TimeShiftEnable']
+          unless params['TimeShiftConf'].nil?
+            @TimeShiftConf = TimeShiftInfo.new
+            @TimeShiftConf.deserialize(params['TimeShiftConf'])
+          end
+          unless params['SlateConf'].nil?
+            @SlateConf = SlateInfo.new
+            @SlateConf.deserialize(params['SlateConf'])
+          end
+          unless params['Outputs'].nil?
+            @Outputs = []
+            params['Outputs'].each do |i|
+              outputinfo_tmp = OutputInfo.new
+              outputinfo_tmp.deserialize(i)
+              @Outputs << outputinfo_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyStreamPackageLinearAssemblyChannel返回参数结构体
+      class ModifyStreamPackageLinearAssemblyChannelResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyStreamPackageLinearAssemblyProgram请求参数结构体
+      class ModifyStreamPackageLinearAssemblyProgramRequest < TencentCloud::Common::AbstractModel
+        # @param Id: Program Id。
+        # @type Id: String
+        # @param Name: 修改后的名称。
+        # @type Name: String
+        # @param SourceType: 编排的目标source的类型，分直播和点播。Tier为Basic时只支持VOD，Tier为Standard时支持Live和VOD
+        # @type SourceType: String
+        # @param SourceLocationId: 关联的source location。
+        # @type SourceLocationId: String
+        # @param SourceName: 关联的直播or点播，source名称，location下全局唯一。
+        # @type SourceName: String
+        # @param PlaybackConf: PlaybackConf。
+        # @type PlaybackConf: :class:`Tencentcloud::Mps.v20190612.models.PlaybackInfoReq`
+        # @param AdBreaks: AdBreaks。
+        # @type AdBreaks: Array
+
+        attr_accessor :Id, :Name, :SourceType, :SourceLocationId, :SourceName, :PlaybackConf, :AdBreaks
+
+        def initialize(id=nil, name=nil, sourcetype=nil, sourcelocationid=nil, sourcename=nil, playbackconf=nil, adbreaks=nil)
+          @Id = id
+          @Name = name
+          @SourceType = sourcetype
+          @SourceLocationId = sourcelocationid
+          @SourceName = sourcename
+          @PlaybackConf = playbackconf
+          @AdBreaks = adbreaks
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Name = params['Name']
+          @SourceType = params['SourceType']
+          @SourceLocationId = params['SourceLocationId']
+          @SourceName = params['SourceName']
+          unless params['PlaybackConf'].nil?
+            @PlaybackConf = PlaybackInfoReq.new
+            @PlaybackConf.deserialize(params['PlaybackConf'])
+          end
+          unless params['AdBreaks'].nil?
+            @AdBreaks = []
+            params['AdBreaks'].each do |i|
+              adbreakinfo_tmp = AdBreakInfo.new
+              adbreakinfo_tmp.deserialize(i)
+              @AdBreaks << adbreakinfo_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyStreamPackageLinearAssemblyProgram返回参数结构体
+      class ModifyStreamPackageLinearAssemblyProgramResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyStreamPackageSSAIChannel请求参数结构体
+      class ModifyStreamPackageSSAIChannelRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 广告插入配置名称，全局唯一，不能与其他频道重复。
+        # @type Name: String
+        # @param ContentSource: 通配广告源地址。
+        # @type ContentSource: String
+        # @param SSAIInfo: 广告插入配置信息。
+        # @type SSAIInfo: :class:`Tencentcloud::Mps.v20190612.models.SSAIConf`
+        # @param ID: 广告插入配置ID。
+        # @type ID: String
+
+        attr_accessor :Name, :ContentSource, :SSAIInfo, :ID
+
+        def initialize(name=nil, contentsource=nil, ssaiinfo=nil, id=nil)
+          @Name = name
+          @ContentSource = contentsource
+          @SSAIInfo = ssaiinfo
+          @ID = id
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @ContentSource = params['ContentSource']
+          unless params['SSAIInfo'].nil?
+            @SSAIInfo = SSAIConf.new
+            @SSAIInfo.deserialize(params['SSAIInfo'])
+          end
+          @ID = params['ID']
+        end
+      end
+
+      # ModifyStreamPackageSSAIChannel返回参数结构体
+      class ModifyStreamPackageSSAIChannelResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyStreamPackageSourceLocation请求参数结构体
+      class ModifyStreamPackageSourceLocationRequest < TencentCloud::Common::AbstractModel
+        # @param Id: SourceLocation Id。
+        # @type Id: String
+        # @param Name: 修改后的名称。
+        # @type Name: String
+        # @param BaseUrl: 基准URL。
+        # @type BaseUrl: String
+        # @param SegmentDeliverEnable: 是否开启补片。
+        # @type SegmentDeliverEnable: Boolean
+        # @param SegmentDeliverConf: 补片配置。
+        # @type SegmentDeliverConf: :class:`Tencentcloud::Mps.v20190612.models.SegmentDeliverInfo`
+        # @param SegmentDeliverUsePackageEnable: 是否开启package分发分片，默认开启。
+        # @type SegmentDeliverUsePackageEnable: Boolean
+
+        attr_accessor :Id, :Name, :BaseUrl, :SegmentDeliverEnable, :SegmentDeliverConf, :SegmentDeliverUsePackageEnable
+
+        def initialize(id=nil, name=nil, baseurl=nil, segmentdeliverenable=nil, segmentdeliverconf=nil, segmentdeliverusepackageenable=nil)
+          @Id = id
+          @Name = name
+          @BaseUrl = baseurl
+          @SegmentDeliverEnable = segmentdeliverenable
+          @SegmentDeliverConf = segmentdeliverconf
+          @SegmentDeliverUsePackageEnable = segmentdeliverusepackageenable
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Name = params['Name']
+          @BaseUrl = params['BaseUrl']
+          @SegmentDeliverEnable = params['SegmentDeliverEnable']
+          unless params['SegmentDeliverConf'].nil?
+            @SegmentDeliverConf = SegmentDeliverInfo.new
+            @SegmentDeliverConf.deserialize(params['SegmentDeliverConf'])
+          end
+          @SegmentDeliverUsePackageEnable = params['SegmentDeliverUsePackageEnable']
+        end
+      end
+
+      # ModifyStreamPackageSourceLocation返回参数结构体
+      class ModifyStreamPackageSourceLocationResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyStreamPackageSource请求参数结构体
+      class ModifyStreamPackageSourceRequest < TencentCloud::Common::AbstractModel
+        # @param Id: Source Id。
+        # @type Id: String
+        # @param Name: 修改后的名称。
+        # @type Name: String
+        # @param Type: 区分直播Live和点播VOD source类型。
+        # @type Type: String
+        # @param PackageConfs: source配置。
+        # @type PackageConfs: Array
+        # @param SourceTags: ADS可以根据Source Tag信息，返回更精准的广告。
+        # @type SourceTags: Array
+
+        attr_accessor :Id, :Name, :Type, :PackageConfs, :SourceTags
+
+        def initialize(id=nil, name=nil, type=nil, packageconfs=nil, sourcetags=nil)
+          @Id = id
+          @Name = name
+          @Type = type
+          @PackageConfs = packageconfs
+          @SourceTags = sourcetags
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Name = params['Name']
+          @Type = params['Type']
+          unless params['PackageConfs'].nil?
+            @PackageConfs = []
+            params['PackageConfs'].each do |i|
+              sourcepackageconf_tmp = SourcePackageConf.new
+              sourcepackageconf_tmp.deserialize(i)
+              @PackageConfs << sourcepackageconf_tmp
+            end
+          end
+          unless params['SourceTags'].nil?
+            @SourceTags = []
+            params['SourceTags'].each do |i|
+              sourcetag_tmp = SourceTag.new
+              sourcetag_tmp.deserialize(i)
+              @SourceTags << sourcetag_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyStreamPackageSource返回参数结构体
+      class ModifyStreamPackageSourceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifySubtitleEmbedTemplate请求参数结构体
       class ModifySubtitleEmbedTemplateRequest < TencentCloud::Common::AbstractModel
         # @param Definition: <p>字幕压制模板唯一标识</p>
@@ -23069,6 +25370,26 @@ module TencentCloud
         end
       end
 
+      # 自定义服务器信息。
+      class NameServer < TencentCloud::Common::AbstractModel
+        # @param Name: 名称。
+        # @type Name: String
+        # @param Url: 地址。
+        # @type Url: String
+
+        attr_accessor :Name, :Url
+
+        def initialize(name=nil, url=nil)
+          @Name = name
+          @Url = url
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Url = params['Url']
+        end
+      end
+
       # 输出文件名的`{number}`变量的规则。
       class NumberFormat < TencentCloud::Common::AbstractModel
         # @param InitialValue: `{number}`变量的起始值，默认为0。
@@ -23195,6 +25516,48 @@ module TencentCloud
         end
       end
 
+      # 线性组装output信息。
+      class OutputInfo < TencentCloud::Common::AbstractModel
+        # @param Type: HLS DASH。
+        # @type Type: String
+        # @param GroupName: output group名称，可以和source的group名称对应关联起来。
+        # @type GroupName: String
+        # @param ManifestName: channel program调度后输出的文件名。
+        # @type ManifestName: String
+        # @param ManifestConf: Type为HLS时manifest配置使用的字段。
+        # @type ManifestConf: :class:`Tencentcloud::Mps.v20190612.models.ManifestInfo`
+        # @param PlaybackURL: 播放地址。
+        # @type PlaybackURL: String
+        # @param DashManifestConf: Type为DASH时manifest配置使用的字段。
+        # @type DashManifestConf: :class:`Tencentcloud::Mps.v20190612.models.DashManifestInfo`
+
+        attr_accessor :Type, :GroupName, :ManifestName, :ManifestConf, :PlaybackURL, :DashManifestConf
+
+        def initialize(type=nil, groupname=nil, manifestname=nil, manifestconf=nil, playbackurl=nil, dashmanifestconf=nil)
+          @Type = type
+          @GroupName = groupname
+          @ManifestName = manifestname
+          @ManifestConf = manifestconf
+          @PlaybackURL = playbackurl
+          @DashManifestConf = dashmanifestconf
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @GroupName = params['GroupName']
+          @ManifestName = params['ManifestName']
+          unless params['ManifestConf'].nil?
+            @ManifestConf = ManifestInfo.new
+            @ManifestConf.deserialize(params['ManifestConf'])
+          end
+          @PlaybackURL = params['PlaybackURL']
+          unless params['DashManifestConf'].nil?
+            @DashManifestConf = DashManifestInfo.new
+            @DashManifestConf.deserialize(params['DashManifestConf'])
+          end
+        end
+      end
+
       # RIST输出的监听地址。
       class OutputRISTSourceAddressResp < TencentCloud::Common::AbstractModel
         # @param Ip: 监听IP。
@@ -23214,6 +25577,44 @@ module TencentCloud
         def deserialize(params)
           @Ip = params['Ip']
           @Port = params['Port']
+        end
+      end
+
+      # 线性组装output信息。
+      class OutputReq < TencentCloud::Common::AbstractModel
+        # @param Type: 输出类型，区分HLS DASH。
+        # @type Type: String
+        # @param GroupName: output group名称，可以和source的group名称对应关联起来。
+        # @type GroupName: String
+        # @param ManifestName: channel program调度后输出的文件名。
+        # @type ManifestName: String
+        # @param ManifestConf: Type为HLS时manifest配置使用的字段。
+        # @type ManifestConf: :class:`Tencentcloud::Mps.v20190612.models.ManifestInfo`
+        # @param DashManifestConf: Type为DASH时manifest配置使用的字段。
+        # @type DashManifestConf: :class:`Tencentcloud::Mps.v20190612.models.DashManifestInfo`
+
+        attr_accessor :Type, :GroupName, :ManifestName, :ManifestConf, :DashManifestConf
+
+        def initialize(type=nil, groupname=nil, manifestname=nil, manifestconf=nil, dashmanifestconf=nil)
+          @Type = type
+          @GroupName = groupname
+          @ManifestName = manifestname
+          @ManifestConf = manifestconf
+          @DashManifestConf = dashmanifestconf
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @GroupName = params['GroupName']
+          @ManifestName = params['ManifestName']
+          unless params['ManifestConf'].nil?
+            @ManifestConf = ManifestInfo.new
+            @ManifestConf.deserialize(params['ManifestConf'])
+          end
+          unless params['DashManifestConf'].nil?
+            @DashManifestConf = DashManifestInfo.new
+            @DashManifestConf.deserialize(params['DashManifestConf'])
+          end
         end
       end
 
@@ -23597,6 +25998,88 @@ module TencentCloud
         def deserialize(params)
           @AudioPID = params['AudioPID']
           @VideoPID = params['VideoPID']
+        end
+      end
+
+      # program播放配置。
+      class PlaybackInfo < TencentCloud::Common::AbstractModel
+        # @param Duration: <p>program持续时间，单位毫秒，直播有效。</p>
+        # @type Duration: Integer
+        # @param TransitionType: <p>program启动方式，直播只支持Absolute，点播还支持Relative。</p>
+        # @type TransitionType: String
+        # @param StartTime: <p>unix时间戳，Absolute场景下program的开始执行时间。</p>
+        # @type StartTime: Integer
+        # @param RelativePosition: <p>和所选program的插入顺序关系，分After和Before。</p>
+        # @type RelativePosition: String
+        # @param RelativeProgramId: <p>所选的插入参考program id。</p>
+        # @type RelativeProgramId: String
+        # @param ClipRangeConf: <p>垫片配置。</p>
+        # @type ClipRangeConf: :class:`Tencentcloud::Mps.v20190612.models.ClipRangeInfo`
+        # @param RelativeProgramName: <p>RelativeProgramName。</p>
+        # @type RelativeProgramName: String
+
+        attr_accessor :Duration, :TransitionType, :StartTime, :RelativePosition, :RelativeProgramId, :ClipRangeConf, :RelativeProgramName
+
+        def initialize(duration=nil, transitiontype=nil, starttime=nil, relativeposition=nil, relativeprogramid=nil, cliprangeconf=nil, relativeprogramname=nil)
+          @Duration = duration
+          @TransitionType = transitiontype
+          @StartTime = starttime
+          @RelativePosition = relativeposition
+          @RelativeProgramId = relativeprogramid
+          @ClipRangeConf = cliprangeconf
+          @RelativeProgramName = relativeprogramname
+        end
+
+        def deserialize(params)
+          @Duration = params['Duration']
+          @TransitionType = params['TransitionType']
+          @StartTime = params['StartTime']
+          @RelativePosition = params['RelativePosition']
+          @RelativeProgramId = params['RelativeProgramId']
+          unless params['ClipRangeConf'].nil?
+            @ClipRangeConf = ClipRangeInfo.new
+            @ClipRangeConf.deserialize(params['ClipRangeConf'])
+          end
+          @RelativeProgramName = params['RelativeProgramName']
+        end
+      end
+
+      # program播放配置请求。
+      class PlaybackInfoReq < TencentCloud::Common::AbstractModel
+        # @param TransitionType: program启动方式，直播只支持Absolute，点播还支持Relative。PlaybackMode类型为Linear的VOD支持Absolute和Relative。PlaybackMode类型为Loop的VOD只支持Relative
+        # @type TransitionType: String
+        # @param StartTime: unix时间戳，absolute场景下program的开始执行时间。最多大于当前90天（7776000）。
+        # @type StartTime: Integer
+        # @param Duration: program持续时间，单位毫秒，直播有效。支持600000-86400000。默认600000。
+        # @type Duration: Integer
+        # @param RelativePosition: 和所选program的插入顺序关系，分After和Before。
+        # @type RelativePosition: String
+        # @param RelativeProgramId: 所选的插入参考program id。
+        # @type RelativeProgramId: String
+        # @param ClipRangeConf: 垫片配置。
+        # @type ClipRangeConf: :class:`Tencentcloud::Mps.v20190612.models.ClipRangeInfo`
+
+        attr_accessor :TransitionType, :StartTime, :Duration, :RelativePosition, :RelativeProgramId, :ClipRangeConf
+
+        def initialize(transitiontype=nil, starttime=nil, duration=nil, relativeposition=nil, relativeprogramid=nil, cliprangeconf=nil)
+          @TransitionType = transitiontype
+          @StartTime = starttime
+          @Duration = duration
+          @RelativePosition = relativeposition
+          @RelativeProgramId = relativeprogramid
+          @ClipRangeConf = cliprangeconf
+        end
+
+        def deserialize(params)
+          @TransitionType = params['TransitionType']
+          @StartTime = params['StartTime']
+          @Duration = params['Duration']
+          @RelativePosition = params['RelativePosition']
+          @RelativeProgramId = params['RelativeProgramId']
+          unless params['ClipRangeConf'].nil?
+            @ClipRangeConf = ClipRangeInfo.new
+            @ClipRangeConf.deserialize(params['ClipRangeConf'])
+          end
         end
       end
 
@@ -24473,6 +26956,122 @@ module TencentCloud
         def deserialize(params)
           @TaskId = params['TaskId']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 线性组装Program聚合告警信息
+      class ProgramAlertCounts < TencentCloud::Common::AbstractModel
+        # @param ProgramId: <p>Program ID。</p>
+        # @type ProgramId: String
+        # @param ProgramName: <p>Program名称。</p>
+        # @type ProgramName: String
+        # @param Category: <p>告警分类。</p>
+        # @type Category: String
+        # @param Count: <p>出现次数</p>
+        # @type Count: Integer
+        # @param LastModifiedTime: <p>更新时间。</p>
+        # @type LastModifiedTime: Integer
+
+        attr_accessor :ProgramId, :ProgramName, :Category, :Count, :LastModifiedTime
+
+        def initialize(programid=nil, programname=nil, category=nil, count=nil, lastmodifiedtime=nil)
+          @ProgramId = programid
+          @ProgramName = programname
+          @Category = category
+          @Count = count
+          @LastModifiedTime = lastmodifiedtime
+        end
+
+        def deserialize(params)
+          @ProgramId = params['ProgramId']
+          @ProgramName = params['ProgramName']
+          @Category = params['Category']
+          @Count = params['Count']
+          @LastModifiedTime = params['LastModifiedTime']
+        end
+      end
+
+      # 线性组装program告警信息详情。
+      class ProgramAlertInfos < TencentCloud::Common::AbstractModel
+        # @param ChannelId: <p>频道ID。</p>
+        # @type ChannelId: String
+        # @param ChannelName: <p>频道名称。</p>
+        # @type ChannelName: String
+        # @param ProgramId: <p>ProgramName。</p>
+        # @type ProgramId: String
+        # @param ProgramName: <p>ProgramName。</p>
+        # @type ProgramName: String
+        # @param Code: <p>告警事件码。</p>
+        # @type Code: Integer
+        # @param Category: <p>告警分类。</p>
+        # @type Category: String
+        # @param Message: <p>告警消息。</p>
+        # @type Message: String
+        # @param LastModifiedTime: <p>更新时间。</p>
+        # @type LastModifiedTime: Integer
+
+        attr_accessor :ChannelId, :ChannelName, :ProgramId, :ProgramName, :Code, :Category, :Message, :LastModifiedTime
+
+        def initialize(channelid=nil, channelname=nil, programid=nil, programname=nil, code=nil, category=nil, message=nil, lastmodifiedtime=nil)
+          @ChannelId = channelid
+          @ChannelName = channelname
+          @ProgramId = programid
+          @ProgramName = programname
+          @Code = code
+          @Category = category
+          @Message = message
+          @LastModifiedTime = lastmodifiedtime
+        end
+
+        def deserialize(params)
+          @ChannelId = params['ChannelId']
+          @ChannelName = params['ChannelName']
+          @ProgramId = params['ProgramId']
+          @ProgramName = params['ProgramName']
+          @Code = params['Code']
+          @Category = params['Category']
+          @Message = params['Message']
+          @LastModifiedTime = params['LastModifiedTime']
+        end
+      end
+
+      # 该channel下面Program的调度信息。
+      class ProgramScheduleInfo < TencentCloud::Common::AbstractModel
+        # @param ProgramName: <p>program名称。</p>
+        # @type ProgramName: String
+        # @param ProgramId: <p>program id。</p>
+        # @type ProgramId: String
+        # @param SourceType: <p>source类型。</p>
+        # @type SourceType: String
+        # @param SourceId: <p>source id。</p>
+        # @type SourceId: String
+        # @param SourceLocationId: <p>source location的id。</p>
+        # @type SourceLocationId: String
+        # @param StartTime: <p>开始时间戳。</p>
+        # @type StartTime: Integer
+        # @param Duration: <p>持续时长。</p>
+        # @type Duration: String
+
+        attr_accessor :ProgramName, :ProgramId, :SourceType, :SourceId, :SourceLocationId, :StartTime, :Duration
+
+        def initialize(programname=nil, programid=nil, sourcetype=nil, sourceid=nil, sourcelocationid=nil, starttime=nil, duration=nil)
+          @ProgramName = programname
+          @ProgramId = programid
+          @SourceType = sourcetype
+          @SourceId = sourceid
+          @SourceLocationId = sourcelocationid
+          @StartTime = starttime
+          @Duration = duration
+        end
+
+        def deserialize(params)
+          @ProgramName = params['ProgramName']
+          @ProgramId = params['ProgramId']
+          @SourceType = params['SourceType']
+          @SourceId = params['SourceId']
+          @SourceLocationId = params['SourceLocationId']
+          @StartTime = params['StartTime']
+          @Duration = params['Duration']
         end
       end
 
@@ -26023,6 +28622,188 @@ module TencentCloud
         end
       end
 
+      # 广告插入频道配置信息。
+      class SSAIChannelInfo < TencentCloud::Common::AbstractModel
+        # @param ID: 频道ID，全局唯一标识。
+        # @type ID: String
+        # @param Name: 频道名称。
+        # @type Name: String
+        # @param ContentSource: 广告源信息。
+        # @type ContentSource: String
+        # @param PlaybackPrefix: 播放地址。
+        # @type PlaybackPrefix: String
+        # @param SSAIInfo: 广告插入SSAI配置信息。
+        # @type SSAIInfo: :class:`Tencentcloud::Mps.v20190612.models.SSAIConf`
+        # @param Region: 地域信息。
+        # @type Region: String
+        # @param SessionInitPrefix: 用于clickthrough地址
+        # @type SessionInitPrefix: String
+
+        attr_accessor :ID, :Name, :ContentSource, :PlaybackPrefix, :SSAIInfo, :Region, :SessionInitPrefix
+
+        def initialize(id=nil, name=nil, contentsource=nil, playbackprefix=nil, ssaiinfo=nil, region=nil, sessioninitprefix=nil)
+          @ID = id
+          @Name = name
+          @ContentSource = contentsource
+          @PlaybackPrefix = playbackprefix
+          @SSAIInfo = ssaiinfo
+          @Region = region
+          @SessionInitPrefix = sessioninitprefix
+        end
+
+        def deserialize(params)
+          @ID = params['ID']
+          @Name = params['Name']
+          @ContentSource = params['ContentSource']
+          @PlaybackPrefix = params['PlaybackPrefix']
+          unless params['SSAIInfo'].nil?
+            @SSAIInfo = SSAIConf.new
+            @SSAIInfo.deserialize(params['SSAIInfo'])
+          end
+          @Region = params['Region']
+          @SessionInitPrefix = params['SessionInitPrefix']
+        end
+      end
+
+      # SSAI广告插入配置。
+      class SSAIConf < TencentCloud::Common::AbstractModel
+        # @param AdsUrl: <p>广告决策服务器URL(ADS)。</p>
+        # @type AdsUrl: String
+        # @param ConfigAliases: <p>参数配置。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConfigAliases: Array
+        # @param AdMarkerPassthrough: <p>是否开启广告标记透传。</p>
+        # @type AdMarkerPassthrough: Boolean
+        # @param SCTE35AdType: <p>如何处理广告中的标记,可选值[1-2]：<br>1:所有SCTE-35类型标记全部处理-all（默认）<br>2:SCTE-35enhanced，解析部分类型。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SCTE35AdType: Integer
+        # @param SlateAd: <p>默认广告url。</p>
+        # @type SlateAd: String
+        # @param Threshold: <p>未填充的最大时长，单位：秒。</p>
+        # @type Threshold: Integer
+        # @param DashMPDLocation: <p>是否开启mpd location, true对应enable， false对应disable。</p>
+        # @type DashMPDLocation: Boolean
+        # @param AdTriggers: <p>被视作广告的标记类型，可选值[1-8]：</p><ol><li>Splice insert<br>2.Provider advertisement</li><li>Distributor advertisement</li><li>Provider placement opportunity</li><li>Distributor placement opportunity</li><li>Break</li><li>Provider overlay placement opportunity</li><li>Distributor overlay placement opportunity。</li></ol>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AdTriggers: Array
+        # @param DeliveryRestrictions: <p>被视作广告的分发限制类型，可选值[1-4]：<br>1:None<br>2:Restricted（默认） 3:Unrestricted<br>4.Both</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeliveryRestrictions: Integer
+        # @param SourceCDNPrefix: <p>源流CDN前缀，需要以http://或者https://开头。</p>
+        # @type SourceCDNPrefix: String
+        # @param AdCDNPrefix: <p>广告CDN前缀，需要以http://或者https://开头。</p>
+        # @type AdCDNPrefix: String
+        # @param PreRollAdsUrl: <p>预加载广告决策服务地址。</p>
+        # @type PreRollAdsUrl: String
+        # @param PreRollMaxAllowedDuration: <p>预加载广告最大允许时长，0-3600。</p>
+        # @type PreRollMaxAllowedDuration: Integer
+        # @param MultiRequest: <p>是否开启多次请求ADS,开启后将优先请求ADS，请求失败后再请求兜底广告</p>
+        # @type MultiRequest: Boolean
+
+        attr_accessor :AdsUrl, :ConfigAliases, :AdMarkerPassthrough, :SCTE35AdType, :SlateAd, :Threshold, :DashMPDLocation, :AdTriggers, :DeliveryRestrictions, :SourceCDNPrefix, :AdCDNPrefix, :PreRollAdsUrl, :PreRollMaxAllowedDuration, :MultiRequest
+
+        def initialize(adsurl=nil, configaliases=nil, admarkerpassthrough=nil, scte35adtype=nil, slatead=nil, threshold=nil, dashmpdlocation=nil, adtriggers=nil, deliveryrestrictions=nil, sourcecdnprefix=nil, adcdnprefix=nil, prerolladsurl=nil, prerollmaxallowedduration=nil, multirequest=nil)
+          @AdsUrl = adsurl
+          @ConfigAliases = configaliases
+          @AdMarkerPassthrough = admarkerpassthrough
+          @SCTE35AdType = scte35adtype
+          @SlateAd = slatead
+          @Threshold = threshold
+          @DashMPDLocation = dashmpdlocation
+          @AdTriggers = adtriggers
+          @DeliveryRestrictions = deliveryrestrictions
+          @SourceCDNPrefix = sourcecdnprefix
+          @AdCDNPrefix = adcdnprefix
+          @PreRollAdsUrl = prerolladsurl
+          @PreRollMaxAllowedDuration = prerollmaxallowedduration
+          @MultiRequest = multirequest
+        end
+
+        def deserialize(params)
+          @AdsUrl = params['AdsUrl']
+          unless params['ConfigAliases'].nil?
+            @ConfigAliases = []
+            params['ConfigAliases'].each do |i|
+              configaliasesinfo_tmp = ConfigAliasesInfo.new
+              configaliasesinfo_tmp.deserialize(i)
+              @ConfigAliases << configaliasesinfo_tmp
+            end
+          end
+          @AdMarkerPassthrough = params['AdMarkerPassthrough']
+          @SCTE35AdType = params['SCTE35AdType']
+          @SlateAd = params['SlateAd']
+          @Threshold = params['Threshold']
+          @DashMPDLocation = params['DashMPDLocation']
+          @AdTriggers = params['AdTriggers']
+          @DeliveryRestrictions = params['DeliveryRestrictions']
+          @SourceCDNPrefix = params['SourceCDNPrefix']
+          @AdCDNPrefix = params['AdCDNPrefix']
+          @PreRollAdsUrl = params['PreRollAdsUrl']
+          @PreRollMaxAllowedDuration = params['PreRollMaxAllowedDuration']
+          @MultiRequest = params['MultiRequest']
+        end
+      end
+
+      # SSAI用量信息
+      class SSAIUsageInfo < TencentCloud::Common::AbstractModel
+        # @param AdRequestSuccess: 广告请求成功次数
+        # @type AdRequestSuccess: Integer
+        # @param AdRequestFail: 广告请求失败次数
+        # @type AdRequestFail: Integer
+        # @param Impression: 曝光次数
+        # @type Impression: Integer
+        # @param MidFillRate: 中贴个性化广告填充率
+        # @type MidFillRate: Float
+        # @param AdMarkerTime: 中贴广告标记时间
+        # @type AdMarkerTime: Float
+        # @param ReplacedTime: 中贴个性化替换时间
+        # @type ReplacedTime: Float
+        # @param PreReplaceRate: 前贴广告替换率
+        # @type PreReplaceRate: Float
+        # @param PreReqNum: 前贴广告请求数
+        # @type PreReqNum: Integer
+        # @param PreReplacedNum: 前贴广告替换数
+        # @type PreReplacedNum: Integer
+        # @param UsageDetails: 各广告配置用量详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UsageDetails: Array
+
+        attr_accessor :AdRequestSuccess, :AdRequestFail, :Impression, :MidFillRate, :AdMarkerTime, :ReplacedTime, :PreReplaceRate, :PreReqNum, :PreReplacedNum, :UsageDetails
+
+        def initialize(adrequestsuccess=nil, adrequestfail=nil, impression=nil, midfillrate=nil, admarkertime=nil, replacedtime=nil, prereplacerate=nil, prereqnum=nil, prereplacednum=nil, usagedetails=nil)
+          @AdRequestSuccess = adrequestsuccess
+          @AdRequestFail = adrequestfail
+          @Impression = impression
+          @MidFillRate = midfillrate
+          @AdMarkerTime = admarkertime
+          @ReplacedTime = replacedtime
+          @PreReplaceRate = prereplacerate
+          @PreReqNum = prereqnum
+          @PreReplacedNum = prereplacednum
+          @UsageDetails = usagedetails
+        end
+
+        def deserialize(params)
+          @AdRequestSuccess = params['AdRequestSuccess']
+          @AdRequestFail = params['AdRequestFail']
+          @Impression = params['Impression']
+          @MidFillRate = params['MidFillRate']
+          @AdMarkerTime = params['AdMarkerTime']
+          @ReplacedTime = params['ReplacedTime']
+          @PreReplaceRate = params['PreReplaceRate']
+          @PreReqNum = params['PreReqNum']
+          @PreReplacedNum = params['PreReplacedNum']
+          unless params['UsageDetails'].nil?
+            @UsageDetails = []
+            params['UsageDetails'].each do |i|
+              usagedetail_tmp = UsageDetail.new
+              usagedetail_tmp.deserialize(i)
+              @UsageDetails << usagedetail_tmp
+            end
+          end
+        end
+      end
+
       # 对视频做采样截图任务输入参数类型。
       class SampleSnapshotTaskInput < TencentCloud::Common::AbstractModel
         # @param Definition: 采样截图模板 ID。
@@ -26722,6 +29503,33 @@ module TencentCloud
         end
       end
 
+      # SourceLocation垫片配置。
+      class SegmentDeliverInfo < TencentCloud::Common::AbstractModel
+        # @param DefaultSegmentUrl: 默认内容源地址。
+        # @type DefaultSegmentUrl: String
+        # @param NameServers: 自定义服务器地址。
+        # @type NameServers: Array
+
+        attr_accessor :DefaultSegmentUrl, :NameServers
+
+        def initialize(defaultsegmenturl=nil, nameservers=nil)
+          @DefaultSegmentUrl = defaultsegmenturl
+          @NameServers = nameservers
+        end
+
+        def deserialize(params)
+          @DefaultSegmentUrl = params['DefaultSegmentUrl']
+          unless params['NameServers'].nil?
+            @NameServers = []
+            params['NameServers'].each do |i|
+              nameserver_tmp = NameServer.new
+              nameserver_tmp.deserialize(i)
+              @NameServers << nameserver_tmp
+            end
+          end
+        end
+      end
+
       # 智能拆条片段。
       class SegmentRecognitionItem < TencentCloud::Common::AbstractModel
         # @param Confidence: 置信度。
@@ -26905,6 +29713,26 @@ module TencentCloud
           @Uri = params['Uri']
           @Key = params['Key']
           @Vector = params['Vector']
+        end
+      end
+
+      # 线性组装频道垫片配置。
+      class SlateInfo < TencentCloud::Common::AbstractModel
+        # @param SourceLocationId: source location的ID。
+        # @type SourceLocationId: String
+        # @param VodSourceName: 对应的vod垫片内容源名称。
+        # @type VodSourceName: String
+
+        attr_accessor :SourceLocationId, :VodSourceName
+
+        def initialize(sourcelocationid=nil, vodsourcename=nil)
+          @SourceLocationId = sourcelocationid
+          @VodSourceName = vodsourcename
+        end
+
+        def deserialize(params)
+          @SourceLocationId = params['SourceLocationId']
+          @VodSourceName = params['VodSourceName']
         end
       end
 
@@ -28094,6 +30922,206 @@ module TencentCloud
         end
       end
 
+      # 线性组装Location告警信息
+      class SourceAlert < TencentCloud::Common::AbstractModel
+        # @param SourceId: Source ID。
+        # @type SourceId: String
+        # @param SourceName: Source名称。
+        # @type SourceName: String
+        # @param Code: 告警事件码。
+        # @type Code: Integer
+        # @param Category: 告警分类。
+        # @type Category: String
+        # @param Message: 告警消息。
+        # @type Message: String
+        # @param LastModifiedTime: 更新时间。
+        # @type LastModifiedTime: Integer
+
+        attr_accessor :SourceId, :SourceName, :Code, :Category, :Message, :LastModifiedTime
+
+        def initialize(sourceid=nil, sourcename=nil, code=nil, category=nil, message=nil, lastmodifiedtime=nil)
+          @SourceId = sourceid
+          @SourceName = sourcename
+          @Code = code
+          @Category = category
+          @Message = message
+          @LastModifiedTime = lastmodifiedtime
+        end
+
+        def deserialize(params)
+          @SourceId = params['SourceId']
+          @SourceName = params['SourceName']
+          @Code = params['Code']
+          @Category = params['Category']
+          @Message = params['Message']
+          @LastModifiedTime = params['LastModifiedTime']
+        end
+      end
+
+      # 源信息。
+      class SourceInfo < TencentCloud::Common::AbstractModel
+        # @param Name: 名称。
+        # @type Name: String
+        # @param Type: source类型，区分直播Live和点播Vod。
+        # @type Type: String
+        # @param PackageConf: 源配置。
+        # @type PackageConf: Array
+        # @param Id: ID。
+        # @type Id: String
+        # @param CreateTime: 创建时间戳。
+        # @type CreateTime: Integer
+        # @param UpdateTime: 更新时间戳。
+        # @type UpdateTime: Integer
+        # @param Region: Region。
+        # @type Region: String
+        # @param SourceTags: 源标签
+        # @type SourceTags: Array
+
+        attr_accessor :Name, :Type, :PackageConf, :Id, :CreateTime, :UpdateTime, :Region, :SourceTags
+
+        def initialize(name=nil, type=nil, packageconf=nil, id=nil, createtime=nil, updatetime=nil, region=nil, sourcetags=nil)
+          @Name = name
+          @Type = type
+          @PackageConf = packageconf
+          @Id = id
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @Region = region
+          @SourceTags = sourcetags
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Type = params['Type']
+          unless params['PackageConf'].nil?
+            @PackageConf = []
+            params['PackageConf'].each do |i|
+              sourcepackageconf_tmp = SourcePackageConf.new
+              sourcepackageconf_tmp.deserialize(i)
+              @PackageConf << sourcepackageconf_tmp
+            end
+          end
+          @Id = params['Id']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @Region = params['Region']
+          unless params['SourceTags'].nil?
+            @SourceTags = []
+            params['SourceTags'].each do |i|
+              sourcetag_tmp = SourceTag.new
+              sourcetag_tmp.deserialize(i)
+              @SourceTags << sourcetag_tmp
+            end
+          end
+        end
+      end
+
+      # SourceLocation配置信息。
+      class SourceLocationInfo < TencentCloud::Common::AbstractModel
+        # @param Id: <p>ID，唯一标识。</p>
+        # @type Id: String
+        # @param Name: <p>SourceLocation名称。</p>
+        # @type Name: String
+        # @param Region: <p>地域。</p>
+        # @type Region: String
+        # @param BaseUrl: <p>BaseUrl信息。</p>
+        # @type BaseUrl: String
+        # @param SegmentDeliverEnable: <p>是否开启补片。</p>
+        # @type SegmentDeliverEnable: Boolean
+        # @param SegmentDeliverConf: <p>补片配置。</p>
+        # @type SegmentDeliverConf: :class:`Tencentcloud::Mps.v20190612.models.SegmentDeliverInfo`
+        # @param AttachedLiveSources: <p>绑定的直播source id列表。</p>
+        # @type AttachedLiveSources: Array
+        # @param AttachedVodSources: <p>绑定的点播source id列表。</p>
+        # @type AttachedVodSources: Array
+        # @param CreateTime: <p>source location创建时间，Unix时间戳。</p>
+        # @type CreateTime: Integer
+        # @param UpdateTime: <p>source location最近一次修改时间，Unix时间戳。</p>
+        # @type UpdateTime: Integer
+        # @param SegmentDeliverUsePackageEnable: <p>是否开启package分发分片，默认开启。</p>
+        # @type SegmentDeliverUsePackageEnable: Boolean
+
+        attr_accessor :Id, :Name, :Region, :BaseUrl, :SegmentDeliverEnable, :SegmentDeliverConf, :AttachedLiveSources, :AttachedVodSources, :CreateTime, :UpdateTime, :SegmentDeliverUsePackageEnable
+
+        def initialize(id=nil, name=nil, region=nil, baseurl=nil, segmentdeliverenable=nil, segmentdeliverconf=nil, attachedlivesources=nil, attachedvodsources=nil, createtime=nil, updatetime=nil, segmentdeliverusepackageenable=nil)
+          @Id = id
+          @Name = name
+          @Region = region
+          @BaseUrl = baseurl
+          @SegmentDeliverEnable = segmentdeliverenable
+          @SegmentDeliverConf = segmentdeliverconf
+          @AttachedLiveSources = attachedlivesources
+          @AttachedVodSources = attachedvodsources
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @SegmentDeliverUsePackageEnable = segmentdeliverusepackageenable
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Name = params['Name']
+          @Region = params['Region']
+          @BaseUrl = params['BaseUrl']
+          @SegmentDeliverEnable = params['SegmentDeliverEnable']
+          unless params['SegmentDeliverConf'].nil?
+            @SegmentDeliverConf = SegmentDeliverInfo.new
+            @SegmentDeliverConf.deserialize(params['SegmentDeliverConf'])
+          end
+          @AttachedLiveSources = params['AttachedLiveSources']
+          @AttachedVodSources = params['AttachedVodSources']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @SegmentDeliverUsePackageEnable = params['SegmentDeliverUsePackageEnable']
+        end
+      end
+
+      # 源文件信息。
+      class SourcePackageConf < TencentCloud::Common::AbstractModel
+        # @param GroupName: group名称，当channel为Linear模式并且选择了vod source的时候，该group 名称和channel output的输出组名称对应。
+        # @type GroupName: String
+        # @param Type: 类型，区分HLS和DASH，可选值：HLS、DASH。
+        # @type Type: String
+        # @param Path: 访问路径。
+        # @type Path: String
+
+        attr_accessor :GroupName, :Type, :Path
+
+        def initialize(groupname=nil, type=nil, path=nil)
+          @GroupName = groupname
+          @Type = type
+          @Path = path
+        end
+
+        def deserialize(params)
+          @GroupName = params['GroupName']
+          @Type = params['Type']
+          @Path = params['Path']
+        end
+      end
+
+      # type SourceTag struct {
+      # 	Key   string `json:"Key"`
+      # 	Value string `json:"Value"`
+      # }
+      class SourceTag < TencentCloud::Common::AbstractModel
+        # @param Key: sourcetag的key，支持1-50位的大写字母、数字、下划线、中划线
+        # @type Key: String
+        # @param Value: sourcetag的value，支持1-200位的字母、数字下划线、中划线、英文句号、百分号（%）
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
+        end
+      end
+
       # 指定规格任务统计数据。
       class SpecificationDataItem < TencentCloud::Common::AbstractModel
         # @param Specification: 任务规格。
@@ -28168,6 +31196,34 @@ module TencentCloud
         end
       end
 
+      # SpliceInsertInfo。
+      class SpliceInsertInfo < TencentCloud::Common::AbstractModel
+        # @param EventID: EventID。
+        # @type EventID: String
+        # @param AvailNum: AvailNum。
+        # @type AvailNum: String
+        # @param AvailExpected: AvailExpected。
+        # @type AvailExpected: String
+        # @param ProgramID: ProgramID。
+        # @type ProgramID: String
+
+        attr_accessor :EventID, :AvailNum, :AvailExpected, :ProgramID
+
+        def initialize(eventid=nil, availnum=nil, availexpected=nil, programid=nil)
+          @EventID = eventid
+          @AvailNum = availnum
+          @AvailExpected = availexpected
+          @ProgramID = programid
+        end
+
+        def deserialize(params)
+          @EventID = params['EventID']
+          @AvailNum = params['AvailNum']
+          @AvailExpected = params['AvailExpected']
+          @ProgramID = params['ProgramID']
+        end
+      end
+
       # StartStreamLinkFlow请求参数结构体
       class StartStreamLinkFlowRequest < TencentCloud::Common::AbstractModel
         # @param FlowId: 流Id。
@@ -28200,6 +31256,38 @@ module TencentCloud
         end
       end
 
+      # StartStreamPackageLinearAssemblyChannel请求参数结构体
+      class StartStreamPackageLinearAssemblyChannelRequest < TencentCloud::Common::AbstractModel
+        # @param Id: Channel ID。
+        # @type Id: String
+
+        attr_accessor :Id
+
+        def initialize(id=nil)
+          @Id = id
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+        end
+      end
+
+      # StartStreamPackageLinearAssemblyChannel返回参数结构体
+      class StartStreamPackageLinearAssemblyChannelResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # StopStreamLinkFlow请求参数结构体
       class StopStreamLinkFlowRequest < TencentCloud::Common::AbstractModel
         # @param FlowId: 流Id。
@@ -28218,6 +31306,38 @@ module TencentCloud
 
       # StopStreamLinkFlow返回参数结构体
       class StopStreamLinkFlowResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # StopStreamPackageLinearAssemblyChannel请求参数结构体
+      class StopStreamPackageLinearAssemblyChannelRequest < TencentCloud::Common::AbstractModel
+        # @param Id: Channel ID。
+        # @type Id: String
+
+        attr_accessor :Id
+
+        def initialize(id=nil)
+          @Id = id
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+        end
+      end
+
+      # StopStreamPackageLinearAssemblyChannel返回参数结构体
+      class StopStreamPackageLinearAssemblyChannelResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -30217,6 +33337,66 @@ module TencentCloud
         end
       end
 
+      # 线性组装频道时移配置信息。
+      class TimeShiftInfo < TencentCloud::Common::AbstractModel
+        # @param TimeWindows: 回看窗口，单位秒。
+        # @type TimeWindows: Integer
+
+        attr_accessor :TimeWindows
+
+        def initialize(timewindows=nil)
+          @TimeWindows = timewindows
+        end
+
+        def deserialize(params)
+          @TimeWindows = params['TimeWindows']
+        end
+      end
+
+      # TimeSignalInfo。
+      class TimeSignalInfo < TencentCloud::Common::AbstractModel
+        # @param EventID: EventID。
+        # @type EventID: String
+        # @param UPIDType: UPIDType。
+        # @type UPIDType: String
+        # @param UPID: UPID。
+        # @type UPID: String
+        # @param TypeID: TypeID。
+        # @type TypeID: String
+        # @param Num: Num。
+        # @type Num: String
+        # @param Expected: Expected。
+        # @type Expected: String
+        # @param SubsegmentNum: SubsegmentNum。
+        # @type SubsegmentNum: String
+        # @param SubsegmentsExpected: SubsegmentsExpected。
+        # @type SubsegmentsExpected: String
+
+        attr_accessor :EventID, :UPIDType, :UPID, :TypeID, :Num, :Expected, :SubsegmentNum, :SubsegmentsExpected
+
+        def initialize(eventid=nil, upidtype=nil, upid=nil, typeid=nil, num=nil, expected=nil, subsegmentnum=nil, subsegmentsexpected=nil)
+          @EventID = eventid
+          @UPIDType = upidtype
+          @UPID = upid
+          @TypeID = typeid
+          @Num = num
+          @Expected = expected
+          @SubsegmentNum = subsegmentnum
+          @SubsegmentsExpected = subsegmentsexpected
+        end
+
+        def deserialize(params)
+          @EventID = params['EventID']
+          @UPIDType = params['UPIDType']
+          @UPID = params['UPID']
+          @TypeID = params['TypeID']
+          @Num = params['Num']
+          @Expected = params['Expected']
+          @SubsegmentNum = params['SubsegmentNum']
+          @SubsegmentsExpected = params['SubsegmentsExpected']
+        end
+      end
+
       # 媒体质检的检测策略。
       class TimeSpotCheck < TencentCloud::Common::AbstractModel
         # @param CheckDuration: 每次循环检测的时长。取值范围（单位s）：
@@ -30813,6 +33993,134 @@ module TencentCloud
 
         def deserialize(params)
           @Url = params['Url']
+        end
+      end
+
+      # 广告配置及广告类型维度下的SSAI用量详情
+      class UsageDetail < TencentCloud::Common::AbstractModel
+        # @param UniqId: <p>广告配置uniq_id</p>
+        # @type UniqId: String
+        # @param ChannelId: <p>广告配置id</p>
+        # @type ChannelId: String
+        # @param ChannelName: <p>广告配置名称</p>
+        # @type ChannelName: String
+        # @param AdType: <p>广告类型</p>
+        # @type AdType: String
+        # @param AdRequestSuccess: <p>广告请求成功数</p>
+        # @type AdRequestSuccess: Integer
+        # @param AdRequestFail: <p>广告请求失败数</p>
+        # @type AdRequestFail: Integer
+        # @param Impression: <p>广告曝光数</p>
+        # @type Impression: Integer
+        # @param Start: <p>广告开始播放数</p>
+        # @type Start: Integer
+        # @param FirstQuarter: <p>广告播放到1/4处数</p>
+        # @type FirstQuarter: Integer
+        # @param Midpoint: <p>广告播放到1/2处数</p>
+        # @type Midpoint: Integer
+        # @param ThirdQuarter: <p>广告播放到3/4处数</p>
+        # @type ThirdQuarter: Integer
+        # @param Complete: <p>广告播放完成数</p>
+        # @type Complete: Integer
+        # @param AdMarkerTime: <p>中贴广告标记时间</p>
+        # @type AdMarkerTime: Float
+        # @param ReplacedTime: <p>中贴个性化替换时间</p>
+        # @type ReplacedTime: Float
+        # @param MidFillRate: <p>中贴个性化广告填充率</p>
+        # @type MidFillRate: Float
+        # @param PreReqNum: <p>前贴广告请求数</p>
+        # @type PreReqNum: Integer
+        # @param PreReplacedNum: <p>前贴广告替换数</p>
+        # @type PreReplacedNum: Integer
+        # @param PreReplaceRate: <p>前贴广告替换率</p>
+        # @type PreReplaceRate: Float
+        # @param ADMarkerFound: <p>在清单中发现了广告标记次数</p>
+        # @type ADMarkerFound: Integer
+        # @param MakeAdsRequest: <p>向ADS请求广告次数</p>
+        # @type MakeAdsRequest: Integer
+        # @param VASTResponse: <p>从ADS收到VAST返回次数</p>
+        # @type VASTResponse: Integer
+        # @param FilledAvail: <p>成功填充了广告次数</p>
+        # @type FilledAvail: Integer
+        # @param WarningNoAd: <p>执行广告替换时遇到问题次数</p>
+        # @type WarningNoAd: Integer
+        # @param ErrorAdsTimeout: <p>ADS返回超时次数</p>
+        # @type ErrorAdsTimeout: Integer
+        # @param EmptyVASTResponse: <p>ADS 返回了一个空的 VAST 响应次数</p>
+        # @type EmptyVASTResponse: Integer
+        # @param EmptyVMAPResponse: <p>ADS 返回了一个空的VMAP 响应次数</p>
+        # @type EmptyVMAPResponse: Integer
+        # @param Date: <p>日期</p>
+        # @type Date: String
+        # @param StartTime: <p>开始时间</p>
+        # @type StartTime: String
+        # @param EndTime: <p>结束时间</p>
+        # @type EndTime: String
+
+        attr_accessor :UniqId, :ChannelId, :ChannelName, :AdType, :AdRequestSuccess, :AdRequestFail, :Impression, :Start, :FirstQuarter, :Midpoint, :ThirdQuarter, :Complete, :AdMarkerTime, :ReplacedTime, :MidFillRate, :PreReqNum, :PreReplacedNum, :PreReplaceRate, :ADMarkerFound, :MakeAdsRequest, :VASTResponse, :FilledAvail, :WarningNoAd, :ErrorAdsTimeout, :EmptyVASTResponse, :EmptyVMAPResponse, :Date, :StartTime, :EndTime
+
+        def initialize(uniqid=nil, channelid=nil, channelname=nil, adtype=nil, adrequestsuccess=nil, adrequestfail=nil, impression=nil, start=nil, firstquarter=nil, midpoint=nil, thirdquarter=nil, complete=nil, admarkertime=nil, replacedtime=nil, midfillrate=nil, prereqnum=nil, prereplacednum=nil, prereplacerate=nil, admarkerfound=nil, makeadsrequest=nil, vastresponse=nil, filledavail=nil, warningnoad=nil, erroradstimeout=nil, emptyvastresponse=nil, emptyvmapresponse=nil, date=nil, starttime=nil, endtime=nil)
+          @UniqId = uniqid
+          @ChannelId = channelid
+          @ChannelName = channelname
+          @AdType = adtype
+          @AdRequestSuccess = adrequestsuccess
+          @AdRequestFail = adrequestfail
+          @Impression = impression
+          @Start = start
+          @FirstQuarter = firstquarter
+          @Midpoint = midpoint
+          @ThirdQuarter = thirdquarter
+          @Complete = complete
+          @AdMarkerTime = admarkertime
+          @ReplacedTime = replacedtime
+          @MidFillRate = midfillrate
+          @PreReqNum = prereqnum
+          @PreReplacedNum = prereplacednum
+          @PreReplaceRate = prereplacerate
+          @ADMarkerFound = admarkerfound
+          @MakeAdsRequest = makeadsrequest
+          @VASTResponse = vastresponse
+          @FilledAvail = filledavail
+          @WarningNoAd = warningnoad
+          @ErrorAdsTimeout = erroradstimeout
+          @EmptyVASTResponse = emptyvastresponse
+          @EmptyVMAPResponse = emptyvmapresponse
+          @Date = date
+          @StartTime = starttime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @UniqId = params['UniqId']
+          @ChannelId = params['ChannelId']
+          @ChannelName = params['ChannelName']
+          @AdType = params['AdType']
+          @AdRequestSuccess = params['AdRequestSuccess']
+          @AdRequestFail = params['AdRequestFail']
+          @Impression = params['Impression']
+          @Start = params['Start']
+          @FirstQuarter = params['FirstQuarter']
+          @Midpoint = params['Midpoint']
+          @ThirdQuarter = params['ThirdQuarter']
+          @Complete = params['Complete']
+          @AdMarkerTime = params['AdMarkerTime']
+          @ReplacedTime = params['ReplacedTime']
+          @MidFillRate = params['MidFillRate']
+          @PreReqNum = params['PreReqNum']
+          @PreReplacedNum = params['PreReplacedNum']
+          @PreReplaceRate = params['PreReplaceRate']
+          @ADMarkerFound = params['ADMarkerFound']
+          @MakeAdsRequest = params['MakeAdsRequest']
+          @VASTResponse = params['VASTResponse']
+          @FilledAvail = params['FilledAvail']
+          @WarningNoAd = params['WarningNoAd']
+          @ErrorAdsTimeout = params['ErrorAdsTimeout']
+          @EmptyVASTResponse = params['EmptyVASTResponse']
+          @EmptyVMAPResponse = params['EmptyVMAPResponse']
+          @Date = params['Date']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
         end
       end
 

@@ -975,33 +975,35 @@ module TencentCloud
 
       # 内容通知模板元素
       class NoticeContentTmplItem < TencentCloud::Common::AbstractModel
-        # @param QCloudYehe: 官网通知渠道配置
+        # @param QCloudYehe: <p>官网通知渠道配置</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QCloudYehe: Array
-        # @param WeWorkRobot: 企业微信机器人通知渠道配置
+        # @param WeWorkRobot: <p>企业微信机器人通知渠道配置</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WeWorkRobot: Array
-        # @param DingDingRobot: 钉钉机器人通知渠道配置
+        # @param DingDingRobot: <p>钉钉机器人通知渠道配置</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DingDingRobot: Array
-        # @param FeiShuRobot: 飞书机器人通知渠道配置
+        # @param FeiShuRobot: <p>飞书机器人通知渠道配置</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FeiShuRobot: Array
-        # @param Webhook: 自定义Webhook通知渠道配置
+        # @param Webhook: <p>自定义Webhook通知渠道配置</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Webhook: Array
-        # @param TeamsRobot: Teams机器人通知渠道配置
+        # @param TeamsRobot: <p>Teams机器人通知渠道配置</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TeamsRobot: Array
-        # @param PagerDutyRobot: PagerDutyRobot机器人通知渠道配置
+        # @param PagerDutyRobot: <p>PagerDutyRobot机器人通知渠道配置</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PagerDutyRobot: Array
-        # @param GoogleChatRobot: GoogleChat
+        # @param GoogleChatRobot: <p>GoogleChat</p>
         # @type GoogleChatRobot: Array
+        # @param SlackRobot: <p>Slack</p>
+        # @type SlackRobot: Array
 
-        attr_accessor :QCloudYehe, :WeWorkRobot, :DingDingRobot, :FeiShuRobot, :Webhook, :TeamsRobot, :PagerDutyRobot, :GoogleChatRobot
+        attr_accessor :QCloudYehe, :WeWorkRobot, :DingDingRobot, :FeiShuRobot, :Webhook, :TeamsRobot, :PagerDutyRobot, :GoogleChatRobot, :SlackRobot
 
-        def initialize(qcloudyehe=nil, weworkrobot=nil, dingdingrobot=nil, feishurobot=nil, webhook=nil, teamsrobot=nil, pagerdutyrobot=nil, googlechatrobot=nil)
+        def initialize(qcloudyehe=nil, weworkrobot=nil, dingdingrobot=nil, feishurobot=nil, webhook=nil, teamsrobot=nil, pagerdutyrobot=nil, googlechatrobot=nil, slackrobot=nil)
           @QCloudYehe = qcloudyehe
           @WeWorkRobot = weworkrobot
           @DingDingRobot = dingdingrobot
@@ -1010,6 +1012,7 @@ module TencentCloud
           @TeamsRobot = teamsrobot
           @PagerDutyRobot = pagerdutyrobot
           @GoogleChatRobot = googlechatrobot
+          @SlackRobot = slackrobot
         end
 
         def deserialize(params)
@@ -1077,6 +1080,14 @@ module TencentCloud
               @GoogleChatRobot << googlechatrobotnoticetmplmatcher_tmp
             end
           end
+          unless params['SlackRobot'].nil?
+            @SlackRobot = []
+            params['SlackRobot'].each do |i|
+              slackrobotnoticetmplmatcher_tmp = SlackRobotNoticeTmplMatcher.new
+              slackrobotnoticetmplmatcher_tmp.deserialize(i)
+              @SlackRobot << slackrobotnoticetmplmatcher_tmp
+            end
+          end
         end
       end
 
@@ -1141,8 +1152,8 @@ module TencentCloud
 
         attr_accessor :TotalCount, :TotalPage, :CurrentPageNo, :IsEnd, :End
         extend Gem::Deprecate
-        deprecate :IsEnd, :none, 2026, 3
-        deprecate :IsEnd=, :none, 2026, 3
+        deprecate :IsEnd, :none, 2026, 4
+        deprecate :IsEnd=, :none, 2026, 4
 
         def initialize(totalcount=nil, totalpage=nil, currentpageno=nil, isend=nil, _end=nil)
           @TotalCount = totalcount
@@ -1366,6 +1377,45 @@ module TencentCloud
           @AlarmObjectTmpl = params['AlarmObjectTmpl']
           @AlarmRegionTmpl = params['AlarmRegionTmpl']
           @AlarmTimeTmpl = params['AlarmTimeTmpl']
+        end
+      end
+
+      # 企业微信机器人内容模板配置
+      class SlackRobotNoticeTmpl < TencentCloud::Common::AbstractModel
+        # @param ContentTmpl: <p>内容模板</p>
+        # @type ContentTmpl: String
+
+        attr_accessor :ContentTmpl
+
+        def initialize(contenttmpl=nil)
+          @ContentTmpl = contenttmpl
+        end
+
+        def deserialize(params)
+          @ContentTmpl = params['ContentTmpl']
+        end
+      end
+
+      # 企业微信机器人通知模板的匹配器
+      class SlackRobotNoticeTmplMatcher < TencentCloud::Common::AbstractModel
+        # @param MatchingStatus: <p>匹配状态 Invalid;<br>Trigger 告警触发; Recovery 告警恢复</p>
+        # @type MatchingStatus: Array
+        # @param Template: <p>模板配置</p>
+        # @type Template: :class:`Tencentcloud::Monitor.v20230616.models.SlackRobotNoticeTmpl`
+
+        attr_accessor :MatchingStatus, :Template
+
+        def initialize(matchingstatus=nil, template=nil)
+          @MatchingStatus = matchingstatus
+          @Template = template
+        end
+
+        def deserialize(params)
+          @MatchingStatus = params['MatchingStatus']
+          unless params['Template'].nil?
+            @Template = SlackRobotNoticeTmpl.new
+            @Template.deserialize(params['Template'])
+          end
         end
       end
 

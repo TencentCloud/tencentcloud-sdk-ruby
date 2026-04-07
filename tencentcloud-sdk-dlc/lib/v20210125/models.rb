@@ -1418,34 +1418,36 @@ module TencentCloud
 
       # 数据表列信息。
       class Column < TencentCloud::Common::AbstractModel
-        # @param Name: 列名称，不区分大小写，最大支持25个字符。
+        # @param Name: <p>列名称，不区分大小写，最大支持25个字符。</p>
         # @type Name: String
-        # @param Type: string|tinyint|smallint|int|bigint|boolean|float|double|decimal|timestamp|date|binary|array|map|struct|uniontype
+        # @param Type: <p>string|tinyint|smallint|int|bigint|boolean|float|double|decimal|timestamp|date|binary|array|map|struct|uniontype</p>
         # @type Type: String
-        # @param Comment: 对该类的注释。
+        # @param Comment: <p>对该类的注释。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Comment: String
-        # @param Precision: 表示整个 numeric 的长度
+        # @param Precision: <p>表示整个 numeric 的长度</p>
         # @type Precision: Integer
-        # @param Scale: 表示小数部分的长度
+        # @param Scale: <p>表示小数部分的长度</p>
         # @type Scale: Integer
-        # @param Nullable: 是否为null
+        # @param Nullable: <p>是否为null</p>
         # @type Nullable: String
-        # @param Position: 字段位置，小的在前
+        # @param Position: <p>字段位置，小的在前</p>
         # @type Position: Integer
-        # @param CreateTime: 字段创建时间
+        # @param CreateTime: <p>字段创建时间</p><p>参数格式：YYYY-MM-DD hh:mm:ss</p>
         # @type CreateTime: String
-        # @param ModifiedTime: 字段修改时间
+        # @param ModifiedTime: <p>字段修改时间</p><p>参数格式：YYYY-MM-DD hh:mm:ss</p>
         # @type ModifiedTime: String
-        # @param IsPartition: 是否为分区字段
+        # @param IsPartition: <p>是否为分区字段</p>
         # @type IsPartition: Boolean
-        # @param DataMaskStrategyInfo: 数据脱敏策略信息
+        # @param DataMaskStrategyInfo: <p>数据脱敏策略信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataMaskStrategyInfo: :class:`Tencentcloud::Dlc.v20210125.models.DataMaskStrategyInfo`
+        # @param TypeText: <p>数据字段说明</p>
+        # @type TypeText: String
 
-        attr_accessor :Name, :Type, :Comment, :Precision, :Scale, :Nullable, :Position, :CreateTime, :ModifiedTime, :IsPartition, :DataMaskStrategyInfo
+        attr_accessor :Name, :Type, :Comment, :Precision, :Scale, :Nullable, :Position, :CreateTime, :ModifiedTime, :IsPartition, :DataMaskStrategyInfo, :TypeText
 
-        def initialize(name=nil, type=nil, comment=nil, precision=nil, scale=nil, nullable=nil, position=nil, createtime=nil, modifiedtime=nil, ispartition=nil, datamaskstrategyinfo=nil)
+        def initialize(name=nil, type=nil, comment=nil, precision=nil, scale=nil, nullable=nil, position=nil, createtime=nil, modifiedtime=nil, ispartition=nil, datamaskstrategyinfo=nil, typetext=nil)
           @Name = name
           @Type = type
           @Comment = comment
@@ -1457,6 +1459,7 @@ module TencentCloud
           @ModifiedTime = modifiedtime
           @IsPartition = ispartition
           @DataMaskStrategyInfo = datamaskstrategyinfo
+          @TypeText = typetext
         end
 
         def deserialize(params)
@@ -1474,6 +1477,7 @@ module TencentCloud
             @DataMaskStrategyInfo = DataMaskStrategyInfo.new
             @DataMaskStrategyInfo.deserialize(params['DataMaskStrategyInfo'])
           end
+          @TypeText = params['TypeText']
         end
       end
 

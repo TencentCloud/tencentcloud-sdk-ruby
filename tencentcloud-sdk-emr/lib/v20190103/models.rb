@@ -1126,10 +1126,10 @@ module TencentCloud
 
         attr_accessor :Id, :ClusterId, :Ftitle, :ClusterName, :RegionId, :ZoneId, :AppId, :Uin, :ProjectId, :VpcId, :SubnetId, :Status, :AddTime, :RunTime, :Config, :MasterIp, :EmrVersion, :ChargeType, :TradeVersion, :ResourceOrderId, :IsTradeCluster, :AlarmInfo, :IsWoodpeckerCluster, :MetaDb, :Tags, :HiveMetaDb, :ServiceClass, :AliasInfo, :ProductId, :Zone, :SceneName, :SceneServiceClass, :SceneEmrVersion, :DisplayName, :VpcName, :SubnetName, :ClusterExternalServiceInfo, :UniqVpcId, :UniqSubnetId, :TopologyInfoList, :IsMultiZoneCluster, :IsCvmReplace, :ClusterTitle, :ConfigDetail, :BindFileSystemNum, :ClusterRelationInfoList, :RedisId
         extend Gem::Deprecate
-        deprecate :Ftitle, :none, 2026, 3
-        deprecate :Ftitle=, :none, 2026, 3
-        deprecate :Config, :none, 2026, 3
-        deprecate :Config=, :none, 2026, 3
+        deprecate :Ftitle, :none, 2026, 4
+        deprecate :Ftitle=, :none, 2026, 4
+        deprecate :Config, :none, 2026, 4
+        deprecate :Config=, :none, 2026, 4
 
         def initialize(id=nil, clusterid=nil, ftitle=nil, clustername=nil, regionid=nil, zoneid=nil, appid=nil, uin=nil, projectid=nil, vpcid=nil, subnetid=nil, status=nil, addtime=nil, runtime=nil, config=nil, masterip=nil, emrversion=nil, chargetype=nil, tradeversion=nil, resourceorderid=nil, istradecluster=nil, alarminfo=nil, iswoodpeckercluster=nil, metadb=nil, tags=nil, hivemetadb=nil, serviceclass=nil, aliasinfo=nil, productid=nil, zone=nil, scenename=nil, sceneserviceclass=nil, sceneemrversion=nil, displayname=nil, vpcname=nil, subnetname=nil, clusterexternalserviceinfo=nil, uniqvpcid=nil, uniqsubnetid=nil, topologyinfolist=nil, ismultizonecluster=nil, iscvmreplace=nil, clustertitle=nil, configdetail=nil, bindfilesystemnum=nil, clusterrelationinfolist=nil, redisid=nil)
           @Id = id
@@ -1398,13 +1398,15 @@ module TencentCloud
 
       # 计算资源高级设置
       class ComputeResourceAdvanceParams < TencentCloud::Common::AbstractModel
-        # @param Labels: 节点Label数组
+        # @param Labels: <p>节点Label数组</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Labels: Array
-        # @param Taints: 节点污点
+        # @param Taints: <p>节点污点</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Taints: Array
-        # @param PreStartUserScript: base64 编码的用户脚本，在初始化节点之前执行
+        # @param PreStartUserScript: <p>base64 编码的用户脚本，在初始化节点之前执行</p>
         # @type PreStartUserScript: String
-        # @param UserScript: base64 编码的用户脚本, 此脚本会在 k8s 组件运行后执行, 需要用户保证脚本的可重入及重试逻辑, 脚本及其生成的日志文件可在节点的 /data/ccs_userscript/ 路径查看
+        # @param UserScript: <p>base64 编码的用户脚本, 此脚本会在 k8s 组件运行后执行, 需要用户保证脚本的可重入及重试逻辑, 脚本及其生成的日志文件可在节点的 /data/ccs_userscript/ 路径查看</p>
         # @type UserScript: String
 
         attr_accessor :Labels, :Taints, :PreStartUserScript, :UserScript
@@ -1830,81 +1832,64 @@ module TencentCloud
 
       # CreateCluster请求参数结构体
       class CreateClusterRequest < TencentCloud::Common::AbstractModel
-        # @param ProductVersion: EMR产品版本名称如EMR-V2.3.0 表示2.3.0版本的EMR， 当前支持产品版本名称查询：[产品版本名称](https://cloud.tencent.com/document/product/589/66338)
+        # @param ProductVersion: <p>EMR产品版本名称如EMR-V2.3.0 表示2.3.0版本的EMR， 当前支持产品版本名称查询：<a href="https://cloud.tencent.com/document/product/589/66338">产品版本名称</a></p>
         # @type ProductVersion: String
-        # @param EnableSupportHAFlag: 是否开启节点高可用。取值范围：
-        # <li>true：表示开启节点高可用。</li>
-        # <li>false：表示不开启节点高可用。</li>
+        # @param EnableSupportHAFlag: <p>是否开启节点高可用。取值范围：</p><li>true：表示开启节点高可用。</li><li>false：表示不开启节点高可用。</li>
         # @type EnableSupportHAFlag: Boolean
-        # @param InstanceName: 实例名称。
-        # <li>长度限制为6-36个字符。</li>
-        # <li>只允许包含中文、字母、数字、-、_。</li>
+        # @param InstanceName: <p>实例名称。</p><li>长度限制为6-36个字符。</li><li>只允许包含中文、字母、数字、-、_。</li>
         # @type InstanceName: String
-        # @param InstanceChargeType: 实例计费模式。取值范围：
-        # <li>PREPAID：预付费，即包年包月。</li>
-        # <li>POSTPAID_BY_HOUR：按小时后付费。</li>
+        # @param InstanceChargeType: <p>实例计费模式。取值范围：</p><li>PREPAID：预付费，即包年包月。</li><li>POSTPAID_BY_HOUR：按小时后付费。</li>
         # @type InstanceChargeType: String
-        # @param LoginSettings: 实例登录设置。通过该参数可以设置所购买节点的登录方式密码或者密钥。
-        # <li>设置密钥时，密码仅用于组件原生WebUI快捷入口登录。</li>
-        # <li>未设置密钥时，密码用于登录所购节点以及组件原生WebUI快捷入口登录。</li>
+        # @param LoginSettings: <p>实例登录设置。通过该参数可以设置所购买节点的登录方式密码或者密钥。</p><li>设置密钥时，密码仅用于组件原生WebUI快捷入口登录。</li><li>未设置密钥时，密码用于登录所购节点以及组件原生WebUI快捷入口登录。</li>
         # @type LoginSettings: :class:`Tencentcloud::Emr.v20190103.models.LoginSettings`
-        # @param SceneSoftwareConfig: 集群应用场景以及支持部署组件配置
+        # @param SceneSoftwareConfig: <p>集群应用场景以及支持部署组件配置</p>
         # @type SceneSoftwareConfig: :class:`Tencentcloud::Emr.v20190103.models.SceneSoftwareConfig`
-        # @param InstanceChargePrepaid: 即包年包月相关参数设置。通过该参数可以指定包年包月实例的购买时长、是否设置自动续费等属性。若指定实例的付费模式为预付费则该参数必传。
+        # @param InstanceChargePrepaid: <p>即包年包月相关参数设置。通过该参数可以指定包年包月实例的购买时长、是否设置自动续费等属性。若指定实例的付费模式为预付费则该参数必传。</p>
         # @type InstanceChargePrepaid: :class:`Tencentcloud::Emr.v20190103.models.InstanceChargePrepaid`
-        # @param SecurityGroupIds: 实例所属安全组的ID，形如sg-xxxxxxxx。该参数可以通过调用 [DescribeSecurityGroups](https://cloud.tencent.com/document/api/215/15808) 的返回值中的SecurityGroupId字段来获取。
+        # @param SecurityGroupIds: <p>实例所属安全组的ID，形如sg-xxxxxxxx。该参数可以通过调用 <a href="https://cloud.tencent.com/document/api/215/15808">DescribeSecurityGroups</a> 的返回值中的SecurityGroupId字段来获取。</p>
         # @type SecurityGroupIds: Array
-        # @param ScriptBootstrapActionConfig: [引导操作](https://cloud.tencent.com/document/product/589/35656)脚本设置。
+        # @param ScriptBootstrapActionConfig: <p><a href="https://cloud.tencent.com/document/product/589/35656">引导操作</a>脚本设置。</p>
         # @type ScriptBootstrapActionConfig: Array
-        # @param ClientToken: 唯一随机标识，时效性为5分钟，需要调用者指定 防止客户端重复创建资源，例如 a9a90aa6-****-****-****-fae360632808
+        # @param ClientToken: <p>唯一随机标识，时效性为5分钟，需要调用者指定 防止客户端重复创建资源，例如 a9a90aa6-<strong><strong>-</strong></strong>-****-fae360632808</p>
         # @type ClientToken: String
-        # @param NeedMasterWan: 是否开启集群Master节点公网。取值范围：
-        # <li>NEED_MASTER_WAN：表示开启集群Master节点公网。</li>
-        # <li>NOT_NEED_MASTER_WAN：表示不开启。</li>默认开启集群Master节点公网。
+        # @param NeedMasterWan: <p>是否开启集群Master节点公网。取值范围：</p><li>NEED_MASTER_WAN：表示开启集群Master节点公网。</li><li>NOT_NEED_MASTER_WAN：表示不开启。</li>默认开启集群Master节点公网。
         # @type NeedMasterWan: String
-        # @param EnableRemoteLoginFlag: 是否开启外网远程登录。（在SecurityGroupId不为空时，该参数无效）不填默认为不开启 取值范围：
-        # <li>true：表示开启</li>
-        # <li>false：表示不开启</li>
+        # @param EnableRemoteLoginFlag: <p>是否开启外网远程登录。（在SecurityGroupId不为空时，该参数无效）不填默认为不开启 取值范围：</p><li>true：表示开启</li><li>false：表示不开启</li>
         # @type EnableRemoteLoginFlag: Boolean
-        # @param EnableKerberosFlag: 是否开启Kerberos认证。默认不开启 取值范围：
-        # <li>true：表示开启</li>
-        # <li>false：表示不开启</li>
+        # @param EnableKerberosFlag: <p>是否开启Kerberos认证。默认不开启 取值范围：</p><li>true：表示开启</li><li>false：表示不开启</li>
         # @type EnableKerberosFlag: Boolean
-        # @param CustomConf: [自定义软件配置](https://cloud.tencent.com/document/product/589/35655?from_cn_redirect=1)
+        # @param CustomConf: <p><a href="https://cloud.tencent.com/document/product/589/35655?from_cn_redirect=1">自定义软件配置</a></p>
         # @type CustomConf: String
-        # @param Tags: 标签描述列表。通过指定该参数可以同时绑定标签到相应的实例。
+        # @param Tags: <p>标签描述列表。通过指定该参数可以同时绑定标签到相应的实例。</p>
         # @type Tags: Array
-        # @param DisasterRecoverGroupIds: 分散置放群组ID列表，当前只支持指定一个。
-        # 该参数可以通过调用 [DescribeDisasterRecoverGroups](https://cloud.tencent.com/document/product/213/17810)的返回值中的DisasterRecoverGroupId字段来获取。
+        # @param DisasterRecoverGroupIds: <p>分散置放群组ID列表，当前只支持指定一个。<br>该参数可以通过调用 <a href="https://cloud.tencent.com/document/product/213/17810">DescribeDisasterRecoverGroups</a>的返回值中的DisasterRecoverGroupId字段来获取。</p>
         # @type DisasterRecoverGroupIds: Array
-        # @param EnableCbsEncryptFlag: 是否开启集群维度CBS加密。默认不加密 取值范围：
-        # <li>true：表示加密</li>
-        # <li>false：表示不加密</li>
+        # @param EnableCbsEncryptFlag: <p>是否开启集群维度CBS加密。默认不加密 取值范围：</p><li>true：表示加密</li><li>false：表示不加密</li>
         # @type EnableCbsEncryptFlag: Boolean
-        # @param MetaDBInfo: MetaDB信息，当MetaType选择EMR_NEW_META时，MetaDataJdbcUrl MetaDataUser MetaDataPass UnifyMetaInstanceId不用填
-        # 当MetaType选择EMR_EXIT_META时，填写UnifyMetaInstanceId
-        # 当MetaType选择USER_CUSTOM_META时，填写MetaDataJdbcUrl MetaDataUser MetaDataPass
+        # @param MetaDBInfo: <p>MetaDB信息，当MetaType选择EMR_NEW_META时，MetaDataJdbcUrl MetaDataUser MetaDataPass UnifyMetaInstanceId不用填<br>当MetaType选择EMR_EXIT_META时，填写UnifyMetaInstanceId<br>当MetaType选择USER_CUSTOM_META时，填写MetaDataJdbcUrl MetaDataUser MetaDataPass</p>
         # @type MetaDBInfo: :class:`Tencentcloud::Emr.v20190103.models.CustomMetaDBInfo`
-        # @param DependService: 共享组件信息
+        # @param DependService: <p>共享组件信息</p>
         # @type DependService: Array
-        # @param ZoneResourceConfiguration: 节点资源的规格，有几个可用区，就填几个，按顺序第一个为主可用区，第二个为备可用区，第三个为仲裁可用区。如果没有开启跨AZ，则长度为1即可。
+        # @param ZoneResourceConfiguration: <p>节点资源的规格，有几个可用区，就填几个，按顺序第一个为主可用区，第二个为备可用区，第三个为仲裁可用区。如果没有开启跨AZ，则长度为1即可。</p>
         # @type ZoneResourceConfiguration: Array
-        # @param CosBucket: cos桶路径，创建StarRocks存算分离集群时用到
+        # @param CosBucket: <p>cos桶路径，创建StarRocks存算分离集群时用到</p>
         # @type CosBucket: String
-        # @param NodeMarks: 节点标识信息，目前只提供给tf平台使用
+        # @param NodeMarks: <p>节点标识信息，目前只提供给tf平台使用</p>
         # @type NodeMarks: Array
-        # @param LoadBalancerId: clb id
+        # @param LoadBalancerId: <p>clb id</p>
         # @type LoadBalancerId: String
-        # @param DefaultMetaVersion: 数据库版本：mysql8/tdsql8/mysql5
+        # @param DefaultMetaVersion: <p>数据库版本：mysql8/tdsql8/mysql5</p>
         # @type DefaultMetaVersion: String
-        # @param NeedCdbAudit: 是否开通数据库审计
+        # @param NeedCdbAudit: <p>是否开通数据库审计</p>
         # @type NeedCdbAudit: Integer
-        # @param SgIP: 安全指定来源ip
+        # @param SgIP: <p>安全指定来源ip</p>
         # @type SgIP: String
+        # @param PartitionNumber: <p>分区置放群组分区</p>
+        # @type PartitionNumber: Integer
 
-        attr_accessor :ProductVersion, :EnableSupportHAFlag, :InstanceName, :InstanceChargeType, :LoginSettings, :SceneSoftwareConfig, :InstanceChargePrepaid, :SecurityGroupIds, :ScriptBootstrapActionConfig, :ClientToken, :NeedMasterWan, :EnableRemoteLoginFlag, :EnableKerberosFlag, :CustomConf, :Tags, :DisasterRecoverGroupIds, :EnableCbsEncryptFlag, :MetaDBInfo, :DependService, :ZoneResourceConfiguration, :CosBucket, :NodeMarks, :LoadBalancerId, :DefaultMetaVersion, :NeedCdbAudit, :SgIP
+        attr_accessor :ProductVersion, :EnableSupportHAFlag, :InstanceName, :InstanceChargeType, :LoginSettings, :SceneSoftwareConfig, :InstanceChargePrepaid, :SecurityGroupIds, :ScriptBootstrapActionConfig, :ClientToken, :NeedMasterWan, :EnableRemoteLoginFlag, :EnableKerberosFlag, :CustomConf, :Tags, :DisasterRecoverGroupIds, :EnableCbsEncryptFlag, :MetaDBInfo, :DependService, :ZoneResourceConfiguration, :CosBucket, :NodeMarks, :LoadBalancerId, :DefaultMetaVersion, :NeedCdbAudit, :SgIP, :PartitionNumber
 
-        def initialize(productversion=nil, enablesupporthaflag=nil, instancename=nil, instancechargetype=nil, loginsettings=nil, scenesoftwareconfig=nil, instancechargeprepaid=nil, securitygroupids=nil, scriptbootstrapactionconfig=nil, clienttoken=nil, needmasterwan=nil, enableremoteloginflag=nil, enablekerberosflag=nil, customconf=nil, tags=nil, disasterrecovergroupids=nil, enablecbsencryptflag=nil, metadbinfo=nil, dependservice=nil, zoneresourceconfiguration=nil, cosbucket=nil, nodemarks=nil, loadbalancerid=nil, defaultmetaversion=nil, needcdbaudit=nil, sgip=nil)
+        def initialize(productversion=nil, enablesupporthaflag=nil, instancename=nil, instancechargetype=nil, loginsettings=nil, scenesoftwareconfig=nil, instancechargeprepaid=nil, securitygroupids=nil, scriptbootstrapactionconfig=nil, clienttoken=nil, needmasterwan=nil, enableremoteloginflag=nil, enablekerberosflag=nil, customconf=nil, tags=nil, disasterrecovergroupids=nil, enablecbsencryptflag=nil, metadbinfo=nil, dependservice=nil, zoneresourceconfiguration=nil, cosbucket=nil, nodemarks=nil, loadbalancerid=nil, defaultmetaversion=nil, needcdbaudit=nil, sgip=nil, partitionnumber=nil)
           @ProductVersion = productversion
           @EnableSupportHAFlag = enablesupporthaflag
           @InstanceName = instancename
@@ -1931,6 +1916,7 @@ module TencentCloud
           @DefaultMetaVersion = defaultmetaversion
           @NeedCdbAudit = needcdbaudit
           @SgIP = sgip
+          @PartitionNumber = partitionnumber
         end
 
         def deserialize(params)
@@ -2007,12 +1993,13 @@ module TencentCloud
           @DefaultMetaVersion = params['DefaultMetaVersion']
           @NeedCdbAudit = params['NeedCdbAudit']
           @SgIP = params['SgIP']
+          @PartitionNumber = params['PartitionNumber']
         end
       end
 
       # CreateCluster返回参数结构体
       class CreateClusterResponse < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: <p>实例ID</p>
         # @type InstanceId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2086,148 +2073,88 @@ module TencentCloud
 
       # CreateInstance请求参数结构体
       class CreateInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param ProductId: 产品ID，不同产品ID表示不同的EMR产品版本。取值范围：
-        # 51:表示STARROCKS-V1.4.0
-        # 54:表示STARROCKS-V2.0.0
-        # 27:表示KAFKA-V1.0.0
-        # 50:表示KAFKA-V2.0.0
-        # 16:表示EMR-V2.3.0
-        # 20:表示EMR-V2.5.0
-        # 30:表示EMR-V2.6.0
-        # 38:表示EMR-V2.7.0
-        # 25:表示EMR-V3.1.0
-        # 33:表示EMR-V3.2.1
-        # 34:表示EMR-V3.3.0
-        # 37:表示EMR-V3.4.0
-        # 44:表示EMR-V3.5.0
-        # 53:表示EMR-V3.6.0
-        # 58:表示EMR-3.6.1
-        # 59:表示EMR-serverless-1.0.0
-        # 60:表示EMR-TKE-1.1.0
-        # 61:表示SR-V2.1.0
-        # 62:表示SR-V2.1.0-SharedData
-        # 63:表示SR-V2.1.0.tlinux
-        # 64:表示统一元数据管理项目
-        # 65:表示EMR-TKE-AI-1.0.0
-        # 66:表示RSS-1.0.0
-        # 67:表示SR-V2.2.0
-        # 68:表示SR-V2.2.0.tlinux
-        # 69:表示EMR-AI-1.1.0
-        # 70:表示SR-V2.2.1
-        # 71:表示EMR-3.7.0
-        # 72:表示EMR-serverless-1.0.1
-        # 73:表示KAFKA-2.0.1
-        # 74:表示SR-V2.2.2
-        # 75:表示EMR-TKE-AI-1.1.0
-        # 76:表示EMR-V3.7.1
-        # 77:表示SERVERLESS-TCBASE-1.0.0
-        # 78:表示EMR-V3.6.2
-        # 79:表示STARROCKS-V2.2.2
-        # 80:表示EMR-AI-V1.1.1
+        # @param ProductId: <p>产品ID，不同产品ID表示不同的EMR产品版本。取值范围：<br>51:表示STARROCKS-V1.4.0<br>54:表示STARROCKS-V2.0.0<br>27:表示KAFKA-V1.0.0<br>50:表示KAFKA-V2.0.0<br>16:表示EMR-V2.3.0<br>20:表示EMR-V2.5.0<br>30:表示EMR-V2.6.0<br>38:表示EMR-V2.7.0<br>25:表示EMR-V3.1.0<br>33:表示EMR-V3.2.1<br>34:表示EMR-V3.3.0<br>37:表示EMR-V3.4.0<br>44:表示EMR-V3.5.0<br>53:表示EMR-V3.6.0<br>58:表示EMR-3.6.1<br>59:表示EMR-serverless-1.0.0<br>60:表示EMR-TKE-1.1.0<br>61:表示SR-V2.1.0<br>62:表示SR-V2.1.0-SharedData<br>63:表示SR-V2.1.0.tlinux<br>64:表示统一元数据管理项目<br>65:表示EMR-TKE-AI-1.0.0<br>66:表示RSS-1.0.0<br>67:表示SR-V2.2.0<br>68:表示SR-V2.2.0.tlinux<br>69:表示EMR-AI-1.1.0<br>70:表示SR-V2.2.1<br>71:表示EMR-3.7.0<br>72:表示EMR-serverless-1.0.1<br>73:表示KAFKA-2.0.1<br>74:表示SR-V2.2.2<br>75:表示EMR-TKE-AI-1.1.0<br>76:表示EMR-V3.7.1<br>77:表示SERVERLESS-TCBASE-1.0.0<br>78:表示EMR-V3.6.2<br>79:表示STARROCKS-V2.2.2<br>80:表示EMR-AI-V1.1.1</p>
         # @type ProductId: Integer
-        # @param Software: 部署的组件列表。不同的EMR产品ID（ProductId：具体含义参考入参ProductId字段）对应不同可选组件列表，不同产品版本可选组件列表查询：[组件版本](https://cloud.tencent.com/document/product/589/20279) ；
-        # 填写实例值：hive、flink。
+        # @param Software: <p>部署的组件列表。不同的EMR产品ID（ProductId：具体含义参考入参ProductId字段）对应不同可选组件列表，不同产品版本可选组件列表查询：<a href="https://cloud.tencent.com/document/product/589/20279">组件版本</a> ；<br>填写实例值：hive、flink。</p>
         # @type Software: Array
-        # @param SupportHA: 是否开启节点高可用。取值范围：
-        # <li>0：表示不开启节点高可用。</li>
-        # <li>1：表示开启节点高可用。</li>
+        # @param SupportHA: <p>是否开启节点高可用。取值范围：</p><li>0：表示不开启节点高可用。</li><li>1：表示开启节点高可用。</li>
         # @type SupportHA: Integer
-        # @param InstanceName: 实例名称。
-        # <li>长度限制为6-36个字符。</li>
-        # <li>只允许包含中文、字母、数字、-、_。</li>
+        # @param InstanceName: <p>实例名称。</p><li>长度限制为6-36个字符。</li><li>只允许包含中文、字母、数字、-、_。</li>
         # @type InstanceName: String
-        # @param PayMode: 实例计费模式。取值范围：
-        # <li>0：表示按量计费。</li>
-        # <li>1：表示包年包月。</li>
+        # @param PayMode: <p>实例计费模式。取值范围：</p><li>0：表示按量计费。</li><li>1：表示包年包月。</li>
         # @type PayMode: Integer
-        # @param TimeSpan: 购买实例的时长。结合TimeUnit一起使用。
-        # <li>TimeUnit为s时，该参数只能填写3600，表示按量计费实例。</li>
-        # <li>TimeUnit为m时，该参数填写的数字表示包年包月实例的购买时长，如1表示购买一个月</li>
+        # @param TimeSpan: <p>购买实例的时长。结合TimeUnit一起使用。</p><li>TimeUnit为s时，该参数只能填写3600，表示按量计费实例。</li><li>TimeUnit为m时，该参数填写的数字表示包年包月实例的购买时长，如1表示购买一个月</li>
         # @type TimeSpan: Integer
-        # @param TimeUnit: 购买实例的时间单位。取值范围：
-        # <li>s：表示秒。PayMode取值为0时，TimeUnit只能取值为s。</li>
-        # <li>m：表示月份。PayMode取值为1时，TimeUnit只能取值为m。</li>
+        # @param TimeUnit: <p>购买实例的时间单位。取值范围：</p><li>s：表示秒。PayMode取值为0时，TimeUnit只能取值为s。</li><li>m：表示月份。PayMode取值为1时，TimeUnit只能取值为m。</li>
         # @type TimeUnit: String
-        # @param LoginSettings: 实例登录设置。通过该参数可以设置所购买节点的登录方式密码或者密钥。
-        # <li>设置密钥时，密码仅用于组件原生WebUI快捷入口登录。</li>
-        # <li>未设置密钥时，密码用于登录所购节点以及组件原生WebUI快捷入口登录。</li>
+        # @param LoginSettings: <p>实例登录设置。通过该参数可以设置所购买节点的登录方式密码或者密钥。</p><li>设置密钥时，密码仅用于组件原生WebUI快捷入口登录。</li><li>未设置密钥时，密码用于登录所购节点以及组件原生WebUI快捷入口登录。</li>
         # @type LoginSettings: :class:`Tencentcloud::Emr.v20190103.models.LoginSettings`
-        # @param VPCSettings: 私有网络相关信息配置。通过该参数可以指定私有网络的ID，子网ID等信息。
+        # @param VPCSettings: <p>私有网络相关信息配置。通过该参数可以指定私有网络的ID，子网ID等信息。</p>
         # @type VPCSettings: :class:`Tencentcloud::Emr.v20190103.models.VPCSettings`
-        # @param ResourceSpec: 节点资源的规格。
+        # @param ResourceSpec: <p>节点资源的规格。</p>
         # @type ResourceSpec: :class:`Tencentcloud::Emr.v20190103.models.NewResourceSpec`
-        # @param COSSettings: 开启COS访问需要设置的参数。
+        # @param COSSettings: <p>开启COS访问需要设置的参数。</p>
         # @type COSSettings: :class:`Tencentcloud::Emr.v20190103.models.COSSettings`
-        # @param Placement: 实例所在的位置。通过该参数可以指定实例所属可用区，所属项目等属性。
+        # @param Placement: <p>实例所在的位置。通过该参数可以指定实例所属可用区，所属项目等属性。</p>
         # @type Placement: :class:`Tencentcloud::Emr.v20190103.models.Placement`
-        # @param SgId: 实例所属安全组的ID，形如sg-xxxxxxxx。该参数可以通过调用 [DescribeSecurityGroups](https://cloud.tencent.com/document/api/215/15808) 的返回值中的SecurityGroupId字段来获取。
+        # @param SgId: <p>实例所属安全组的ID，形如sg-xxxxxxxx。该参数可以通过调用 <a href="https://cloud.tencent.com/document/api/215/15808">DescribeSecurityGroups</a> 的返回值中的SecurityGroupId字段来获取。</p>
         # @type SgId: String
-        # @param PreExecutedFileSettings: [引导操作](https://cloud.tencent.com/document/product/589/35656)脚本设置。
+        # @param PreExecutedFileSettings: <p><a href="https://cloud.tencent.com/document/product/589/35656">引导操作</a>脚本设置。</p>
         # @type PreExecutedFileSettings: Array
-        # @param AutoRenew: 包年包月实例是否自动续费。取值范围：
-        # <li>0：表示不自动续费。</li>
-        # <li>1：表示自动续费。</li>
+        # @param AutoRenew: <p>包年包月实例是否自动续费。取值范围：</p><li>0：表示不自动续费。</li><li>1：表示自动续费。</li>
         # @type AutoRenew: Integer
-        # @param ClientToken: 唯一随机标识，时效5分钟，需要调用者指定 防止客户端重新创建资源，例如 a9a90aa6-****-****-****-fae36063280
+        # @param ClientToken: <p>唯一随机标识，时效5分钟，需要调用者指定 防止客户端重新创建资源，例如 a9a90aa6-<strong><strong>-</strong></strong>-****-fae36063280</p>
         # @type ClientToken: String
-        # @param NeedMasterWan: 是否开启集群Master节点公网。取值范围：
-        # <li>NEED_MASTER_WAN：表示开启集群Master节点公网。</li>
-        # <li>NOT_NEED_MASTER_WAN：表示不开启。</li>默认开启集群Master节点公网。
+        # @param NeedMasterWan: <p>是否开启集群Master节点公网。取值范围：</p><li>NEED_MASTER_WAN：表示开启集群Master节点公网。</li><li>NOT_NEED_MASTER_WAN：表示不开启。</li>默认开启集群Master节点公网。
         # @type NeedMasterWan: String
-        # @param RemoteLoginAtCreate: 是否需要开启外网远程登录，即22号端口。在SgId不为空时，该参数无效。
+        # @param RemoteLoginAtCreate: <p>是否需要开启外网远程登录，即22号端口。在SgId不为空时，该参数无效。</p>
         # @type RemoteLoginAtCreate: Integer
-        # @param CheckSecurity: 是否开启安全集群。0表示不开启，非0表示开启。
+        # @param CheckSecurity: <p>是否开启安全集群。0表示不开启，非0表示开启。</p>
         # @type CheckSecurity: Integer
-        # @param ExtendFsField: 访问外部文件系统。
+        # @param ExtendFsField: <p>访问外部文件系统。</p>
         # @type ExtendFsField: String
-        # @param Tags: 标签描述列表。通过指定该参数可以同时绑定标签到相应的实例。
+        # @param Tags: <p>标签描述列表。通过指定该参数可以同时绑定标签到相应的实例。</p>
         # @type Tags: Array
-        # @param DisasterRecoverGroupIds: 分散置放群组ID列表，当前只支持指定一个。
-        # 该参数可以通过调用 [DescribeSecurityGroups](https://cloud.tencent.com/document/product/213/15486 ) 的返回值中的SecurityGroupId字段来获取。
+        # @param DisasterRecoverGroupIds: <p>分散置放群组ID列表，当前只支持指定一个。<br>该参数可以通过调用 <a href="https://cloud.tencent.com/document/product/213/15486">DescribeSecurityGroups</a> 的返回值中的SecurityGroupId字段来获取。</p>
         # @type DisasterRecoverGroupIds: Array
-        # @param CbsEncrypt: 集群维度CBS加密盘，默认0表示不加密，1表示加密
+        # @param CbsEncrypt: <p>集群维度CBS加密盘，默认0表示不加密，1表示加密</p>
         # @type CbsEncrypt: Integer
-        # @param MetaType: hive共享元数据库类型。取值范围：
-        # <li>EMR_DEFAULT_META：表示集群默认创建</li>
-        # <li>EMR_EXIST_META：表示集群使用指定EMR-MetaDB。</li>
-        # <li>USER_CUSTOM_META：表示集群使用自定义MetaDB。</li>
+        # @param MetaType: <p>hive共享元数据库类型。取值范围：</p><li>EMR_DEFAULT_META：表示集群默认创建</li><li>EMR_EXIST_META：表示集群使用指定EMR-MetaDB。</li><li>USER_CUSTOM_META：表示集群使用自定义MetaDB。</li>
         # @type MetaType: String
-        # @param UnifyMetaInstanceId: EMR-MetaDB实例
+        # @param UnifyMetaInstanceId: <p>EMR-MetaDB实例</p>
         # @type UnifyMetaInstanceId: String
-        # @param MetaDBInfo: 自定义MetaDB信息
+        # @param MetaDBInfo: <p>自定义MetaDB信息</p>
         # @type MetaDBInfo: :class:`Tencentcloud::Emr.v20190103.models.CustomMetaInfo`
-        # @param ApplicationRole: 自定义应用角色。
+        # @param ApplicationRole: <p>自定义应用角色。</p>
         # @type ApplicationRole: String
-        # @param SceneName: 场景化取值：
-        # Hadoop-Kudu
-        # Hadoop-Zookeeper
-        # Hadoop-Presto
-        # Hadoop-Hbase
+        # @param SceneName: <p>场景化取值：<br>Hadoop-Kudu<br>Hadoop-Zookeeper<br>Hadoop-Presto<br>Hadoop-Hbase</p>
         # @type SceneName: String
-        # @param ExternalService: 共享组件信息
+        # @param ExternalService: <p>共享组件信息</p>
         # @type ExternalService: Array
-        # @param VersionID: 如果为0，则MultiZone、MultiDeployStrategy、MultiZoneSettings是disable的状态，如果为1，则废弃ResourceSpec，使用MultiZoneSettings。
+        # @param VersionID: <p>如果为0，则MultiZone、MultiDeployStrategy、MultiZoneSettings是disable的状态，如果为1，则废弃ResourceSpec，使用MultiZoneSettings。</p>
         # @type VersionID: Integer
-        # @param MultiZone: true表示开启跨AZ部署；仅为新建集群时的用户参数，后续不支持调整。
+        # @param MultiZone: <p>true表示开启跨AZ部署；仅为新建集群时的用户参数，后续不支持调整。</p>
         # @type MultiZone: Boolean
-        # @param MultiZoneSettings: 节点资源的规格，有几个可用区，就填几个，按顺序第一个为主可用区，第二个为备可用区，第三个为仲裁可用区。如果没有开启跨AZ，则长度为1即可。
+        # @param MultiZoneSettings: <p>节点资源的规格，有几个可用区，就填几个，按顺序第一个为主可用区，第二个为备可用区，第三个为仲裁可用区。如果没有开启跨AZ，则长度为1即可。</p>
         # @type MultiZoneSettings: Array
-        # @param CosBucket: cos桶路径，创建StarRocks存算分离集群时用到
+        # @param CosBucket: <p>cos桶路径，创建StarRocks存算分离集群时用到</p>
         # @type CosBucket: String
-        # @param NodeMarks: 节点标识信息，目前只提供给tf平台使用
+        # @param NodeMarks: <p>节点标识信息，目前只提供给tf平台使用</p>
         # @type NodeMarks: Array
-        # @param LoadBalancerId: CLB id
+        # @param LoadBalancerId: <p>CLB id</p>
         # @type LoadBalancerId: String
-        # @param DefaultMetaVersion: 数据库类型：mysql8/tdsql8
+        # @param DefaultMetaVersion: <p>数据库类型：mysql8/tdsql8</p>
         # @type DefaultMetaVersion: String
-        # @param NeedCdbAudit: 是否开通审计：0:不开通,1:开通
+        # @param NeedCdbAudit: <p>是否开通审计：0:不开通,1:开通</p>
         # @type NeedCdbAudit: Integer
-        # @param SgIP: 安全组指定来源ip
+        # @param SgIP: <p>安全组指定来源ip</p>
         # @type SgIP: String
+        # @param PartitionNumber: <p>分区置放群组分区</p>
+        # @type PartitionNumber: Integer
 
-        attr_accessor :ProductId, :Software, :SupportHA, :InstanceName, :PayMode, :TimeSpan, :TimeUnit, :LoginSettings, :VPCSettings, :ResourceSpec, :COSSettings, :Placement, :SgId, :PreExecutedFileSettings, :AutoRenew, :ClientToken, :NeedMasterWan, :RemoteLoginAtCreate, :CheckSecurity, :ExtendFsField, :Tags, :DisasterRecoverGroupIds, :CbsEncrypt, :MetaType, :UnifyMetaInstanceId, :MetaDBInfo, :ApplicationRole, :SceneName, :ExternalService, :VersionID, :MultiZone, :MultiZoneSettings, :CosBucket, :NodeMarks, :LoadBalancerId, :DefaultMetaVersion, :NeedCdbAudit, :SgIP
+        attr_accessor :ProductId, :Software, :SupportHA, :InstanceName, :PayMode, :TimeSpan, :TimeUnit, :LoginSettings, :VPCSettings, :ResourceSpec, :COSSettings, :Placement, :SgId, :PreExecutedFileSettings, :AutoRenew, :ClientToken, :NeedMasterWan, :RemoteLoginAtCreate, :CheckSecurity, :ExtendFsField, :Tags, :DisasterRecoverGroupIds, :CbsEncrypt, :MetaType, :UnifyMetaInstanceId, :MetaDBInfo, :ApplicationRole, :SceneName, :ExternalService, :VersionID, :MultiZone, :MultiZoneSettings, :CosBucket, :NodeMarks, :LoadBalancerId, :DefaultMetaVersion, :NeedCdbAudit, :SgIP, :PartitionNumber
 
-        def initialize(productid=nil, software=nil, supportha=nil, instancename=nil, paymode=nil, timespan=nil, timeunit=nil, loginsettings=nil, vpcsettings=nil, resourcespec=nil, cossettings=nil, placement=nil, sgid=nil, preexecutedfilesettings=nil, autorenew=nil, clienttoken=nil, needmasterwan=nil, remoteloginatcreate=nil, checksecurity=nil, extendfsfield=nil, tags=nil, disasterrecovergroupids=nil, cbsencrypt=nil, metatype=nil, unifymetainstanceid=nil, metadbinfo=nil, applicationrole=nil, scenename=nil, externalservice=nil, versionid=nil, multizone=nil, multizonesettings=nil, cosbucket=nil, nodemarks=nil, loadbalancerid=nil, defaultmetaversion=nil, needcdbaudit=nil, sgip=nil)
+        def initialize(productid=nil, software=nil, supportha=nil, instancename=nil, paymode=nil, timespan=nil, timeunit=nil, loginsettings=nil, vpcsettings=nil, resourcespec=nil, cossettings=nil, placement=nil, sgid=nil, preexecutedfilesettings=nil, autorenew=nil, clienttoken=nil, needmasterwan=nil, remoteloginatcreate=nil, checksecurity=nil, extendfsfield=nil, tags=nil, disasterrecovergroupids=nil, cbsencrypt=nil, metatype=nil, unifymetainstanceid=nil, metadbinfo=nil, applicationrole=nil, scenename=nil, externalservice=nil, versionid=nil, multizone=nil, multizonesettings=nil, cosbucket=nil, nodemarks=nil, loadbalancerid=nil, defaultmetaversion=nil, needcdbaudit=nil, sgip=nil, partitionnumber=nil)
           @ProductId = productid
           @Software = software
           @SupportHA = supportha
@@ -2266,6 +2193,7 @@ module TencentCloud
           @DefaultMetaVersion = defaultmetaversion
           @NeedCdbAudit = needcdbaudit
           @SgIP = sgip
+          @PartitionNumber = partitionnumber
         end
 
         def deserialize(params)
@@ -2360,12 +2288,13 @@ module TencentCloud
           @DefaultMetaVersion = params['DefaultMetaVersion']
           @NeedCdbAudit = params['NeedCdbAudit']
           @SgIP = params['SgIP']
+          @PartitionNumber = params['PartitionNumber']
         end
       end
 
       # CreateInstance返回参数结构体
       class CreateInstanceResponse < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: <p>实例ID</p>
         # @type InstanceId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -12159,73 +12088,40 @@ module TencentCloud
 
       # 资源详情
       class Resource < TencentCloud::Common::AbstractModel
-        # @param Spec: 节点规格描述，如CVM.SA2。
+        # @param Spec: <p>节点规格描述，如CVM.SA2。</p>
         # @type Spec: String
-        # @param StorageType: 取值范围:
-        # "LOCAL_SSD"   3     //本地SSD
-        # "CLOUD_SSD"   4     //云SSD
-        # "CLOUD_PREMIUM"  5  //高效云盘
-        # "CLOUD_HSSD"   6    //增强型SSD云硬盘
-        # "CLOUD_THROUGHPUT" 11//吞吐型云硬盘
-        # "CLOUD_TSSD"  12     //极速型SSD云硬盘
-        # "CLOUD_BSSD"    13   //通用型SSD云硬盘
-        # "CLOUD_BIGDATA" 14   //大数据型云硬盘
-        # "CLOUD_HIGHIO"  15   //高IO型云硬盘
-
-        # 该类型字段为无效字段，实际系统盘类型会根据数据盘类型和节点类型判断，如果节点支持所选的数据盘类型，系统盘类型会跟数据盘保持一致，建议使用CreateCluster接口
+        # @param StorageType: <p>取值范围:<br>&quot;LOCAL_SSD&quot;   3     //本地SSD<br>&quot;CLOUD_SSD&quot;   4     //云SSD<br>&quot;CLOUD_PREMIUM&quot;  5  //高效云盘<br>&quot;CLOUD_HSSD&quot;   6    //增强型SSD云硬盘<br>&quot;CLOUD_THROUGHPUT&quot; 11//吞吐型云硬盘<br>&quot;CLOUD_TSSD&quot;  12     //极速型SSD云硬盘<br>&quot;CLOUD_BSSD&quot;    13   //通用型SSD云硬盘<br>&quot;CLOUD_BIGDATA&quot; 14   //大数据型云硬盘<br>&quot;CLOUD_HIGHIO&quot;  15   //高IO型云硬盘 </p><p>该类型字段为无效字段，实际系统盘类型会根据数据盘类型和节点类型判断，如果节点支持所选的数据盘类型，系统盘类型会跟数据盘保持一致，建议使用CreateCluster接口</p>
         # @type StorageType: Integer
-        # @param DiskType: 数据盘类型 取值范围：
-
-        # CLOUD_SSD：表示云SSD。
-
-        # CLOUD_PREMIUM：表示高效云盘。
-
-        # CLOUD_BASIC：表示云硬盘。
-
-        # LOCAL_BASIC：表示本地盘。
-
-        # LOCAL_SSD：表示本地SSD。
-
-        # CLOUD_HSSD：表示增强型SSD云硬盘。
-
-        # CLOUD_THROUGHPUT：表示吞吐型云硬盘。
-
-        # CLOUD_TSSD：表示极速型SSD云硬盘。
-
-        # CLOUD_BIGDATA：表示大数据型云硬盘。
-
-        # CLOUD_HIGHIO：表示高IO型云硬盘。
-
-        # CLOUD_BSSD：表示通用型SSD云硬盘。
-
-        # REMOTE_SSD：表示远端SSD盘。
+        # @param DiskType: <p>数据盘类型 取值范围：</p><p>CLOUD_SSD：表示云SSD。</p><p>CLOUD_PREMIUM：表示高效云盘。</p><p>CLOUD_BASIC：表示云硬盘。</p><p>LOCAL_BASIC：表示本地盘。</p><p>LOCAL_SSD：表示本地SSD。</p><p>CLOUD_HSSD：表示增强型SSD云硬盘。</p><p>CLOUD_THROUGHPUT：表示吞吐型云硬盘。</p><p>CLOUD_TSSD：表示极速型SSD云硬盘。</p><p>CLOUD_BIGDATA：表示大数据型云硬盘。</p><p>CLOUD_HIGHIO：表示高IO型云硬盘。</p><p>CLOUD_BSSD：表示通用型SSD云硬盘。</p><p>REMOTE_SSD：表示远端SSD盘。</p>
         # @type DiskType: String
-        # @param MemSize: 内存容量,单位为M
+        # @param MemSize: <p>内存容量,单位为M</p>
         # @type MemSize: Integer
-        # @param Cpu: CPU核数
+        # @param Cpu: <p>CPU核数</p>
         # @type Cpu: Integer
-        # @param DiskSize: 数据盘容量
+        # @param DiskSize: <p>数据盘容量</p>
         # @type DiskSize: Integer
-        # @param RootSize: 系统盘容量
+        # @param RootSize: <p>系统盘容量</p>
         # @type RootSize: Integer
-        # @param MultiDisks: 云盘列表，当数据盘为一块云盘时，直接使用DiskType和DiskSize参数，超出部分使用MultiDisks
+        # @param MultiDisks: <p>云盘列表，当数据盘为一块云盘时，直接使用DiskType和DiskSize参数，超出部分使用MultiDisks</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MultiDisks: Array
-        # @param Tags: 需要绑定的标签列表
+        # @param Tags: <p>需要绑定的标签列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
-        # @param InstanceType: 规格类型，如S2.MEDIUM8
+        # @param InstanceType: <p>规格类型，如S2.MEDIUM8</p>
         # @type InstanceType: String
-        # @param LocalDiskNum: 本地盘数量，该字段已废弃
+        # @param LocalDiskNum: <p>本地盘数量，该字段已废弃</p>
         # @type LocalDiskNum: Integer
-        # @param DiskNum: 本地盘数量，如2
+        # @param DiskNum: <p>本地盘数量，如2</p>
         # @type DiskNum: Integer
-        # @param GpuDesc: GPU信息
+        # @param GpuDesc: <p>GPU信息</p>
         # @type GpuDesc: String
+        # @param PartitionNumber: <p>分区置放群组分区数</p>
+        # @type PartitionNumber: Integer
 
-        attr_accessor :Spec, :StorageType, :DiskType, :MemSize, :Cpu, :DiskSize, :RootSize, :MultiDisks, :Tags, :InstanceType, :LocalDiskNum, :DiskNum, :GpuDesc
+        attr_accessor :Spec, :StorageType, :DiskType, :MemSize, :Cpu, :DiskSize, :RootSize, :MultiDisks, :Tags, :InstanceType, :LocalDiskNum, :DiskNum, :GpuDesc, :PartitionNumber
 
-        def initialize(spec=nil, storagetype=nil, disktype=nil, memsize=nil, cpu=nil, disksize=nil, rootsize=nil, multidisks=nil, tags=nil, instancetype=nil, localdisknum=nil, disknum=nil, gpudesc=nil)
+        def initialize(spec=nil, storagetype=nil, disktype=nil, memsize=nil, cpu=nil, disksize=nil, rootsize=nil, multidisks=nil, tags=nil, instancetype=nil, localdisknum=nil, disknum=nil, gpudesc=nil, partitionnumber=nil)
           @Spec = spec
           @StorageType = storagetype
           @DiskType = disktype
@@ -12239,6 +12135,7 @@ module TencentCloud
           @LocalDiskNum = localdisknum
           @DiskNum = disknum
           @GpuDesc = gpudesc
+          @PartitionNumber = partitionnumber
         end
 
         def deserialize(params)
@@ -12269,6 +12166,7 @@ module TencentCloud
           @LocalDiskNum = params['LocalDiskNum']
           @DiskNum = params['DiskNum']
           @GpuDesc = params['GpuDesc']
+          @PartitionNumber = params['PartitionNumber']
         end
       end
 
@@ -12714,60 +12612,56 @@ module TencentCloud
 
       # ScaleOutCluster请求参数结构体
       class ScaleOutClusterRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceChargeType: 节点计费模式。取值范围：
-        # <li>PREPAID：预付费，即包年包月。</li>
-        # <li>POSTPAID_BY_HOUR：按小时后付费。</li>
-        # <li>SPOTPAID：竞价付费（仅支持TASK节点）。</li>
+        # @param InstanceChargeType: <p>节点计费模式。取值范围：</p><li>PREPAID：预付费，即包年包月。</li><li>POSTPAID_BY_HOUR：按小时后付费。</li><li>SPOTPAID：竞价付费（仅支持TASK节点）。</li>
         # @type InstanceChargeType: String
-        # @param InstanceId: 集群实例ID。
+        # @param InstanceId: <p>集群实例ID。</p>
         # @type InstanceId: String
-        # @param ScaleOutNodeConfig: 扩容节点类型以及数量
+        # @param ScaleOutNodeConfig: <p>扩容节点类型以及数量</p>
         # @type ScaleOutNodeConfig: :class:`Tencentcloud::Emr.v20190103.models.ScaleOutNodeConfig`
-        # @param ClientToken: 唯一随机标识，时效5分钟，需要调用者指定 防止客户端重新创建资源，例如 a9a90aa6-****-****-****-fae36063280
+        # @param ClientToken: <p>唯一随机标识，时效5分钟，需要调用者指定 防止客户端重新创建资源，例如 a9a90aa6-<strong><strong>-</strong></strong>-****-fae36063280</p>
         # @type ClientToken: String
-        # @param InstanceChargePrepaid: 即包年包月相关参数设置。通过该参数可以指定包年包月实例的购买时长、是否设置自动续费等属性。若指定实例的付费模式为预付费则该参数必传。
+        # @param InstanceChargePrepaid: <p>即包年包月相关参数设置。通过该参数可以指定包年包月实例的购买时长、是否设置自动续费等属性。若指定实例的付费模式为预付费则该参数必传。</p>
         # @type InstanceChargePrepaid: :class:`Tencentcloud::Emr.v20190103.models.InstanceChargePrepaid`
-        # @param ScriptBootstrapActionConfig: [引导操作](https://cloud.tencent.com/document/product/589/35656)脚本设置。
+        # @param ScriptBootstrapActionConfig: <p><a href="https://cloud.tencent.com/document/product/589/35656">引导操作</a>脚本设置。</p>
         # @type ScriptBootstrapActionConfig: Array
-        # @param SoftDeployInfo: 扩容部署服务，新增节点将默认继承当前节点类型中所部署服务，部署服务含默认可选服务，该参数仅支持可选服务填写，如：存量task节点已部署HDFS、YARN、impala；使用api扩容task节不部署impala时，部署服务仅填写HDFS、YARN。[组件名对应的映射关系表](https://cloud.tencent.com/document/product/589/98760)。
+        # @param SoftDeployInfo: <p>扩容部署服务，新增节点将默认继承当前节点类型中所部署服务，部署服务含默认可选服务，该参数仅支持可选服务填写，如：存量task节点已部署HDFS、YARN、impala；使用api扩容task节不部署impala时，部署服务仅填写HDFS、YARN。<a href="https://cloud.tencent.com/document/product/589/98760">组件名对应的映射关系表</a>。</p>
         # @type SoftDeployInfo: Array
-        # @param ServiceNodeInfo: 部署进程，默认部署扩容服务的全部进程，支持修改部署进程，如：当前task节点部署服务为：HDFS、YARN、impala，默认部署服务为：DataNode,NodeManager,ImpalaServer，若用户需修改部署进程信息，部署进程：	DataNode,NodeManager,ImpalaServerCoordinator或DataNode,NodeManager,ImpalaServerExecutor。[进程名对应的映射关系表](https://cloud.tencent.com/document/product/589/98760)。
+        # @param ServiceNodeInfo: <p>部署进程，默认部署扩容服务的全部进程，支持修改部署进程，如：当前task节点部署服务为：HDFS、YARN、impala，默认部署服务为：DataNode,NodeManager,ImpalaServer，若用户需修改部署进程信息，部署进程：    DataNode,NodeManager,ImpalaServerCoordinator或DataNode,NodeManager,ImpalaServerExecutor。<a href="https://cloud.tencent.com/document/product/589/98760">进程名对应的映射关系表</a>。</p>
         # @type ServiceNodeInfo: Array
-        # @param DisasterRecoverGroupIds: 分散置放群组ID列表，当前只支持指定一个。
-        # 该参数可以通过调用 [DescribeDisasterRecoverGroups](https://cloud.tencent.com/document/product/213/17810)的返回值中的DisasterRecoverGroupId字段来获取。
+        # @param DisasterRecoverGroupIds: <p>分散置放群组ID列表，当前只支持指定一个。<br>该参数可以通过调用 <a href="https://cloud.tencent.com/document/product/213/17810">DescribeDisasterRecoverGroups</a>的返回值中的DisasterRecoverGroupId字段来获取。</p>
         # @type DisasterRecoverGroupIds: Array
-        # @param Tags: 扩容节点绑定标签列表。
+        # @param Tags: <p>扩容节点绑定标签列表。</p>
         # @type Tags: Array
-        # @param HardwareSourceType: 扩容所选资源类型，可选范围为"HOST","POD","MNode"，HOST为普通的CVM资源，POD为TKE集群或EKS集群提供的资源,MNode为全托管资源类型
+        # @param HardwareSourceType: <p>扩容所选资源类型，可选范围为&quot;HOST&quot;,&quot;POD&quot;,&quot;MNode&quot;，HOST为普通的CVM资源，POD为TKE集群或EKS集群提供的资源,MNode为全托管资源类型</p>
         # @type HardwareSourceType: String
-        # @param PodSpecInfo: Pod相关资源信息
+        # @param PodSpecInfo: <p>Pod相关资源信息</p>
         # @type PodSpecInfo: :class:`Tencentcloud::Emr.v20190103.models.PodSpecInfo`
-        # @param ClickHouseClusterName: 使用clickhouse集群扩容时，选择的机器分组名称
+        # @param ClickHouseClusterName: <p>使用clickhouse集群扩容时，选择的机器分组名称</p>
         # @type ClickHouseClusterName: String
-        # @param ClickHouseClusterType: 使用clickhouse集群扩容时，选择的机器分组类型。new为新增，old为选择旧分组
+        # @param ClickHouseClusterType: <p>使用clickhouse集群扩容时，选择的机器分组类型。new为新增，old为选择旧分组</p>
         # @type ClickHouseClusterType: String
-        # @param YarnNodeLabel: 扩容指定 Yarn Node Label
+        # @param YarnNodeLabel: <p>扩容指定 Yarn Node Label</p>
         # @type YarnNodeLabel: String
-        # @param EnableStartServiceFlag: 扩容后是否启动服务，默认取值否
-        # <li>true：是</li>
-        # <li>false：否</li>
+        # @param EnableStartServiceFlag: <p>扩容后是否启动服务，默认取值否</p><li>true：是</li><li>false：否</li>
         # @type EnableStartServiceFlag: Boolean
-        # @param ResourceSpec: 规格设置
+        # @param ResourceSpec: <p>规格设置</p>
         # @type ResourceSpec: :class:`Tencentcloud::Emr.v20190103.models.NodeResourceSpec`
-        # @param Zone: 实例所属的可用区，例如ap-guangzhou-1。该参数也可以通过调用[DescribeZones](https://cloud.tencent.com/document/product/213/15707) 的返回值中的Zone字段来获取。
+        # @param Zone: <p>实例所属的可用区，例如ap-guangzhou-1。该参数也可以通过调用<a href="https://cloud.tencent.com/document/product/213/15707">DescribeZones</a> 的返回值中的Zone字段来获取。</p>
         # @type Zone: String
-        # @param SubnetId: 子网，默认是集群创建时的子网
+        # @param SubnetId: <p>子网，默认是集群创建时的子网</p>
         # @type SubnetId: String
-        # @param ScaleOutServiceConfGroupsInfo: 扩容指定配置组
+        # @param ScaleOutServiceConfGroupsInfo: <p>扩容指定配置组</p>
         # @type ScaleOutServiceConfGroupsInfo: Array
-        # @param NodeMarks: 节点标记信息，当前只提供给tf平台使用
+        # @param NodeMarks: <p>节点标记信息，当前只提供给tf平台使用</p>
         # @type NodeMarks: :class:`Tencentcloud::Emr.v20190103.models.NodeMark`
-        # @param WarehouseName: 扩容指定计算组名称
+        # @param WarehouseName: <p>扩容指定计算组名称</p>
         # @type WarehouseName: String
+        # @param PartitionNumber: <p>分区置放群组分区</p>
+        # @type PartitionNumber: Integer
 
-        attr_accessor :InstanceChargeType, :InstanceId, :ScaleOutNodeConfig, :ClientToken, :InstanceChargePrepaid, :ScriptBootstrapActionConfig, :SoftDeployInfo, :ServiceNodeInfo, :DisasterRecoverGroupIds, :Tags, :HardwareSourceType, :PodSpecInfo, :ClickHouseClusterName, :ClickHouseClusterType, :YarnNodeLabel, :EnableStartServiceFlag, :ResourceSpec, :Zone, :SubnetId, :ScaleOutServiceConfGroupsInfo, :NodeMarks, :WarehouseName
+        attr_accessor :InstanceChargeType, :InstanceId, :ScaleOutNodeConfig, :ClientToken, :InstanceChargePrepaid, :ScriptBootstrapActionConfig, :SoftDeployInfo, :ServiceNodeInfo, :DisasterRecoverGroupIds, :Tags, :HardwareSourceType, :PodSpecInfo, :ClickHouseClusterName, :ClickHouseClusterType, :YarnNodeLabel, :EnableStartServiceFlag, :ResourceSpec, :Zone, :SubnetId, :ScaleOutServiceConfGroupsInfo, :NodeMarks, :WarehouseName, :PartitionNumber
 
-        def initialize(instancechargetype=nil, instanceid=nil, scaleoutnodeconfig=nil, clienttoken=nil, instancechargeprepaid=nil, scriptbootstrapactionconfig=nil, softdeployinfo=nil, servicenodeinfo=nil, disasterrecovergroupids=nil, tags=nil, hardwaresourcetype=nil, podspecinfo=nil, clickhouseclustername=nil, clickhouseclustertype=nil, yarnnodelabel=nil, enablestartserviceflag=nil, resourcespec=nil, zone=nil, subnetid=nil, scaleoutserviceconfgroupsinfo=nil, nodemarks=nil, warehousename=nil)
+        def initialize(instancechargetype=nil, instanceid=nil, scaleoutnodeconfig=nil, clienttoken=nil, instancechargeprepaid=nil, scriptbootstrapactionconfig=nil, softdeployinfo=nil, servicenodeinfo=nil, disasterrecovergroupids=nil, tags=nil, hardwaresourcetype=nil, podspecinfo=nil, clickhouseclustername=nil, clickhouseclustertype=nil, yarnnodelabel=nil, enablestartserviceflag=nil, resourcespec=nil, zone=nil, subnetid=nil, scaleoutserviceconfgroupsinfo=nil, nodemarks=nil, warehousename=nil, partitionnumber=nil)
           @InstanceChargeType = instancechargetype
           @InstanceId = instanceid
           @ScaleOutNodeConfig = scaleoutnodeconfig
@@ -12790,6 +12684,7 @@ module TencentCloud
           @ScaleOutServiceConfGroupsInfo = scaleoutserviceconfgroupsinfo
           @NodeMarks = nodemarks
           @WarehouseName = warehousename
+          @PartitionNumber = partitionnumber
         end
 
         def deserialize(params)
@@ -12851,23 +12746,24 @@ module TencentCloud
             @NodeMarks.deserialize(params['NodeMarks'])
           end
           @WarehouseName = params['WarehouseName']
+          @PartitionNumber = params['PartitionNumber']
         end
       end
 
       # ScaleOutCluster返回参数结构体
       class ScaleOutClusterResponse < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID。
+        # @param InstanceId: <p>实例ID。</p>
         # @type InstanceId: String
-        # @param ClientToken: 客户端Token。
+        # @param ClientToken: <p>客户端Token。</p>
         # @type ClientToken: String
-        # @param FlowId: 扩容流程ID。
+        # @param FlowId: <p>扩容流程ID。</p>
         # @type FlowId: Integer
-        # @param TraceId: 查询流程状态，流程额外信息
+        # @param TraceId: <p>查询流程状态，流程额外信息</p>
         # @type TraceId: String
-        # @param DealNames: 订单号。
+        # @param DealNames: <p>订单号。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DealNames: Array
-        # @param BillId: 大订单号。
+        # @param BillId: <p>大订单号。</p>
         # @type BillId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -12897,83 +12793,74 @@ module TencentCloud
 
       # ScaleOutInstance请求参数结构体
       class ScaleOutInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param TimeUnit: 扩容的时间单位。取值范围：
-        # <li>s：表示秒。PayMode取值为0时，TimeUnit只能取值为s。</li>
-        # <li>m：表示月份。PayMode取值为1时，TimeUnit只能取值为m。</li>
+        # @param TimeUnit: <p>扩容的时间单位。取值范围：</p><li>s：表示秒。PayMode取值为0时，TimeUnit只能取值为s。</li><li>m：表示月份。PayMode取值为1时，TimeUnit只能取值为m。</li>
         # @type TimeUnit: String
-        # @param TimeSpan: 扩容的时长。结合TimeUnit一起使用。
-        # <li>TimeUnit为s时，该参数只能填写3600，表示按量计费实例。</li>
-        # <li>TimeUnit为m时，该参数填写的数字表示包年包月实例的购买时长，如1表示购买一个月</li>
+        # @param TimeSpan: <p>扩容的时长。结合TimeUnit一起使用。</p><li>TimeUnit为s时，该参数只能填写3600，表示按量计费实例。</li><li>TimeUnit为m时，该参数填写的数字表示包年包月实例的购买时长，如1表示购买一个月</li>
         # @type TimeSpan: Integer
-        # @param InstanceId: 实例ID。
+        # @param InstanceId: <p>实例ID。</p>
         # @type InstanceId: String
-        # @param PayMode: 实例计费模式。取值范围：
-        # <li>0：表示按量计费。</li>
-        # <li>1：表示包年包月。</li>
+        # @param PayMode: <p>实例计费模式。取值范围：</p><li>0：表示按量计费。</li><li>1：表示包年包月。</li>
         # @type PayMode: Integer
-        # @param ClientToken: 唯一随机标识，时效5分钟，需要调用者指定 防止客户端重新创建资源，例如 a9a90aa6-****-****-****-fae36063280
+        # @param ClientToken: <p>唯一随机标识，时效5分钟，需要调用者指定 防止客户端重新创建资源，例如 a9a90aa6-<strong><strong>-</strong></strong>-****-fae36063280</p>
         # @type ClientToken: String
-        # @param PreExecutedFileSettings: 引导操作脚本设置。
+        # @param PreExecutedFileSettings: <p>引导操作脚本设置。</p>
         # @type PreExecutedFileSettings: Array
-        # @param TaskCount: 扩容的Task节点数量。
+        # @param TaskCount: <p>扩容的Task节点数量。</p>
         # @type TaskCount: Integer
-        # @param CoreCount: 扩容的Core节点数量。
+        # @param CoreCount: <p>扩容的Core节点数量。</p>
         # @type CoreCount: Integer
-        # @param UnNecessaryNodeList: 扩容时不需要安装的进程。
+        # @param UnNecessaryNodeList: <p>扩容时不需要安装的进程。</p>
         # @type UnNecessaryNodeList: Array
-        # @param RouterCount: 扩容的Router节点数量。
+        # @param RouterCount: <p>扩容的Router节点数量。</p>
         # @type RouterCount: Integer
-        # @param SoftDeployInfo: 部署的服务。
-        # <li>SoftDeployInfo和ServiceNodeInfo是同组参数，和UnNecessaryNodeList参数互斥。</li>
-        # <li>建议使用SoftDeployInfo和ServiceNodeInfo组合。</li>
+        # @param SoftDeployInfo: <p>部署的服务。</p><li>SoftDeployInfo和ServiceNodeInfo是同组参数，和UnNecessaryNodeList参数互斥。</li><li>建议使用SoftDeployInfo和ServiceNodeInfo组合。</li>
         # @type SoftDeployInfo: Array
-        # @param ServiceNodeInfo: 启动的进程。
+        # @param ServiceNodeInfo: <p>启动的进程。</p>
         # @type ServiceNodeInfo: Array
-        # @param DisasterRecoverGroupIds: 分散置放群组ID列表，当前仅支持指定一个。
+        # @param DisasterRecoverGroupIds: <p>分散置放群组ID列表，当前仅支持指定一个。</p>
         # @type DisasterRecoverGroupIds: Array
-        # @param Tags: 扩容节点绑定标签列表。
+        # @param Tags: <p>扩容节点绑定标签列表。</p>
         # @type Tags: Array
-        # @param HardwareResourceType: 扩容所选资源类型，可选范围为"HOST","POD","MNode"，HOST为普通的CVM资源，POD为TKE集群或EKS集群提供的资源,MNode为全托管资源类型
+        # @param HardwareResourceType: <p>扩容所选资源类型，可选范围为&quot;HOST&quot;,&quot;POD&quot;,&quot;MNode&quot;，HOST为普通的CVM资源，POD为TKE集群或EKS集群提供的资源,MNode为全托管资源类型</p>
         # @type HardwareResourceType: String
-        # @param PodSpec: 使用Pod资源扩容时，指定的Pod规格以及来源等信息
+        # @param PodSpec: <p>使用Pod资源扩容时，指定的Pod规格以及来源等信息</p>
         # @type PodSpec: :class:`Tencentcloud::Emr.v20190103.models.PodSpec`
-        # @param ClickHouseClusterName: 使用clickhouse集群扩容时，选择的机器分组名称
+        # @param ClickHouseClusterName: <p>使用clickhouse集群扩容时，选择的机器分组名称</p>
         # @type ClickHouseClusterName: String
-        # @param ClickHouseClusterType: 使用clickhouse集群扩容时，选择的机器分组类型。new为新增，old为选择旧分组
+        # @param ClickHouseClusterType: <p>使用clickhouse集群扩容时，选择的机器分组类型。new为新增，old为选择旧分组</p>
         # @type ClickHouseClusterType: String
-        # @param YarnNodeLabel: 规则扩容指定 yarn node label
+        # @param YarnNodeLabel: <p>规则扩容指定 yarn node label</p>
         # @type YarnNodeLabel: String
-        # @param PodParameter: POD自定义权限和自定义参数
+        # @param PodParameter: <p>POD自定义权限和自定义参数</p>
         # @type PodParameter: :class:`Tencentcloud::Emr.v20190103.models.PodParameter`
-        # @param MasterCount: 扩容的Master节点的数量。
-        # 使用clickhouse集群扩容时，该参数不生效。
-        # 使用kafka集群扩容时，该参数不生效。
-        # 当HardwareResourceType=POD时，该参数不生效。
+        # @param MasterCount: <p>扩容的Master节点的数量。<br>使用clickhouse集群扩容时，该参数不生效。<br>使用kafka集群扩容时，该参数不生效。<br>当HardwareResourceType=POD时，该参数不生效。</p>
         # @type MasterCount: Integer
-        # @param StartServiceAfterScaleOut: 扩容后是否启动服务，true：启动，false：不启动
+        # @param StartServiceAfterScaleOut: <p>扩容后是否启动服务，true：启动，false：不启动</p>
         # @type StartServiceAfterScaleOut: String
-        # @param ZoneId: 可用区，默认是集群的主可用区
+        # @param ZoneId: <p>可用区，默认是集群的主可用区</p>
         # @type ZoneId: Integer
-        # @param SubnetId: 子网，默认是集群创建时的子网
+        # @param SubnetId: <p>子网，默认是集群创建时的子网</p>
         # @type SubnetId: String
-        # @param ScaleOutServiceConfAssign: 预设配置组
+        # @param ScaleOutServiceConfAssign: <p>预设配置组</p>
         # @type ScaleOutServiceConfAssign: String
-        # @param AutoRenew: 0表示关闭自动续费，1表示开启自动续费
+        # @param AutoRenew: <p>0表示关闭自动续费，1表示开启自动续费</p>
         # @type AutoRenew: Integer
-        # @param ResourceBaseType: 类型为ComputeResource和EMR以及默认，默认为EMR,类型为EMR时,InstanceId生效,类型为ComputeResource时,使用ComputeResourceId标识
+        # @param ResourceBaseType: <p>类型为ComputeResource和EMR以及默认，默认为EMR,类型为EMR时,InstanceId生效,类型为ComputeResource时,使用ComputeResourceId标识</p>
         # @type ResourceBaseType: String
-        # @param ComputeResourceId: 计算资源id
+        # @param ComputeResourceId: <p>计算资源id</p>
         # @type ComputeResourceId: String
-        # @param ComputeResourceAdvanceParams: 计算资源高级设置
+        # @param ComputeResourceAdvanceParams: <p>计算资源高级设置</p>
         # @type ComputeResourceAdvanceParams: :class:`Tencentcloud::Emr.v20190103.models.ComputeResourceAdvanceParams`
-        # @param NodeMarks: 节点标记信息，目前只提供tf平台使用
+        # @param NodeMarks: <p>节点标记信息，目前只提供tf平台使用</p>
         # @type NodeMarks: :class:`Tencentcloud::Emr.v20190103.models.NodeMark`
-        # @param WarehouseName: 扩容指定计算组
+        # @param WarehouseName: <p>扩容指定计算组</p>
         # @type WarehouseName: String
+        # @param PartitionNumber: <p>分区置放群组分区</p>
+        # @type PartitionNumber: Integer
 
-        attr_accessor :TimeUnit, :TimeSpan, :InstanceId, :PayMode, :ClientToken, :PreExecutedFileSettings, :TaskCount, :CoreCount, :UnNecessaryNodeList, :RouterCount, :SoftDeployInfo, :ServiceNodeInfo, :DisasterRecoverGroupIds, :Tags, :HardwareResourceType, :PodSpec, :ClickHouseClusterName, :ClickHouseClusterType, :YarnNodeLabel, :PodParameter, :MasterCount, :StartServiceAfterScaleOut, :ZoneId, :SubnetId, :ScaleOutServiceConfAssign, :AutoRenew, :ResourceBaseType, :ComputeResourceId, :ComputeResourceAdvanceParams, :NodeMarks, :WarehouseName
+        attr_accessor :TimeUnit, :TimeSpan, :InstanceId, :PayMode, :ClientToken, :PreExecutedFileSettings, :TaskCount, :CoreCount, :UnNecessaryNodeList, :RouterCount, :SoftDeployInfo, :ServiceNodeInfo, :DisasterRecoverGroupIds, :Tags, :HardwareResourceType, :PodSpec, :ClickHouseClusterName, :ClickHouseClusterType, :YarnNodeLabel, :PodParameter, :MasterCount, :StartServiceAfterScaleOut, :ZoneId, :SubnetId, :ScaleOutServiceConfAssign, :AutoRenew, :ResourceBaseType, :ComputeResourceId, :ComputeResourceAdvanceParams, :NodeMarks, :WarehouseName, :PartitionNumber
 
-        def initialize(timeunit=nil, timespan=nil, instanceid=nil, paymode=nil, clienttoken=nil, preexecutedfilesettings=nil, taskcount=nil, corecount=nil, unnecessarynodelist=nil, routercount=nil, softdeployinfo=nil, servicenodeinfo=nil, disasterrecovergroupids=nil, tags=nil, hardwareresourcetype=nil, podspec=nil, clickhouseclustername=nil, clickhouseclustertype=nil, yarnnodelabel=nil, podparameter=nil, mastercount=nil, startserviceafterscaleout=nil, zoneid=nil, subnetid=nil, scaleoutserviceconfassign=nil, autorenew=nil, resourcebasetype=nil, computeresourceid=nil, computeresourceadvanceparams=nil, nodemarks=nil, warehousename=nil)
+        def initialize(timeunit=nil, timespan=nil, instanceid=nil, paymode=nil, clienttoken=nil, preexecutedfilesettings=nil, taskcount=nil, corecount=nil, unnecessarynodelist=nil, routercount=nil, softdeployinfo=nil, servicenodeinfo=nil, disasterrecovergroupids=nil, tags=nil, hardwareresourcetype=nil, podspec=nil, clickhouseclustername=nil, clickhouseclustertype=nil, yarnnodelabel=nil, podparameter=nil, mastercount=nil, startserviceafterscaleout=nil, zoneid=nil, subnetid=nil, scaleoutserviceconfassign=nil, autorenew=nil, resourcebasetype=nil, computeresourceid=nil, computeresourceadvanceparams=nil, nodemarks=nil, warehousename=nil, partitionnumber=nil)
           @TimeUnit = timeunit
           @TimeSpan = timespan
           @InstanceId = instanceid
@@ -13005,6 +12892,7 @@ module TencentCloud
           @ComputeResourceAdvanceParams = computeresourceadvanceparams
           @NodeMarks = nodemarks
           @WarehouseName = warehousename
+          @PartitionNumber = partitionnumber
         end
 
         def deserialize(params)
@@ -13065,23 +12953,24 @@ module TencentCloud
             @NodeMarks.deserialize(params['NodeMarks'])
           end
           @WarehouseName = params['WarehouseName']
+          @PartitionNumber = params['PartitionNumber']
         end
       end
 
       # ScaleOutInstance返回参数结构体
       class ScaleOutInstanceResponse < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID。
+        # @param InstanceId: <p>实例ID。</p>
         # @type InstanceId: String
-        # @param DealNames: 订单号。
+        # @param DealNames: <p>订单号。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DealNames: Array
-        # @param ClientToken: 客户端Token。
+        # @param ClientToken: <p>客户端Token。</p>
         # @type ClientToken: String
-        # @param FlowId: 扩容流程ID。
+        # @param FlowId: <p>扩容流程ID。</p>
         # @type FlowId: Integer
-        # @param BillId: 大订单号。
+        # @param BillId: <p>大订单号。</p>
         # @type BillId: String
-        # @param TraceId: 扩容TraceId
+        # @param TraceId: <p>扩容TraceId</p>
         # @type TraceId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -13472,12 +13361,12 @@ module TencentCloud
 
         attr_accessor :DetectAlert, :DetetcFunctionKey, :DetetcFunctionValue, :DetetcTime, :DetectFunctionKey, :DetectFunctionValue, :DetectTime
         extend Gem::Deprecate
-        deprecate :DetetcFunctionKey, :none, 2026, 3
-        deprecate :DetetcFunctionKey=, :none, 2026, 3
-        deprecate :DetetcFunctionValue, :none, 2026, 3
-        deprecate :DetetcFunctionValue=, :none, 2026, 3
-        deprecate :DetetcTime, :none, 2026, 3
-        deprecate :DetetcTime=, :none, 2026, 3
+        deprecate :DetetcFunctionKey, :none, 2026, 4
+        deprecate :DetetcFunctionKey=, :none, 2026, 4
+        deprecate :DetetcFunctionValue, :none, 2026, 4
+        deprecate :DetetcFunctionValue=, :none, 2026, 4
+        deprecate :DetetcTime, :none, 2026, 4
+        deprecate :DetetcTime=, :none, 2026, 4
 
         def initialize(detectalert=nil, detetcfunctionkey=nil, detetcfunctionvalue=nil, detetctime=nil, detectfunctionkey=nil, detectfunctionvalue=nil, detecttime=nil)
           @DetectAlert = detectalert

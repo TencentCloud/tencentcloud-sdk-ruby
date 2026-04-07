@@ -3626,8 +3626,8 @@ module TencentCloud
 
         attr_accessor :Component, :Version, :FixedVersion, :Path, :Type, :Name
         extend Gem::Deprecate
-        deprecate :Component, :none, 2026, 3
-        deprecate :Component=, :none, 2026, 3
+        deprecate :Component, :none, 2026, 4
+        deprecate :Component=, :none, 2026, 4
 
         def initialize(component=nil, version=nil, fixedversion=nil, path=nil, type=nil, name=nil)
           @Component = component
@@ -4079,8 +4079,8 @@ module TencentCloud
 
         attr_accessor :All, :Images, :ScanType, :Id, :ExcludeIDs, :IsLatest, :ScanScope, :RegistryType, :Namespace, :ContainerRunning, :Timeout
         extend Gem::Deprecate
-        deprecate :All, :none, 2026, 3
-        deprecate :All=, :none, 2026, 3
+        deprecate :All, :none, 2026, 4
+        deprecate :All=, :none, 2026, 4
 
         def initialize(all=nil, images=nil, scantype=nil, id=nil, excludeids=nil, islatest=nil, scanscope=nil, registrytype=nil, namespace=nil, containerrunning=nil, timeout=nil)
           @All = all
@@ -4243,8 +4243,8 @@ module TencentCloud
 
         attr_accessor :Enable, :ScanTime, :ScanPeriod, :ScanVirus, :ScanRisk, :ScanVul, :All, :Images, :ContainerRunning, :ScanScope, :ScanEndTime, :ExcludeImages
         extend Gem::Deprecate
-        deprecate :All, :none, 2026, 3
-        deprecate :All=, :none, 2026, 3
+        deprecate :All, :none, 2026, 4
+        deprecate :All=, :none, 2026, 4
 
         def initialize(enable=nil, scantime=nil, scanperiod=nil, scanvirus=nil, scanrisk=nil, scanvul=nil, all=nil, images=nil, containerrunning=nil, scanscope=nil, scanendtime=nil, excludeimages=nil)
           @Enable = enable
@@ -4320,8 +4320,8 @@ module TencentCloud
 
         attr_accessor :All, :Images, :ScanVul, :ScanVirus, :ScanRisk, :Filters, :ExcludeImageIds, :ContainerRunning, :ScanScope, :Timeout, :IsOneClickScanningTask
         extend Gem::Deprecate
-        deprecate :All, :none, 2026, 3
-        deprecate :All=, :none, 2026, 3
+        deprecate :All, :none, 2026, 4
+        deprecate :All=, :none, 2026, 4
 
         def initialize(all=nil, images=nil, scanvul=nil, scanvirus=nil, scanrisk=nil, filters=nil, excludeimageids=nil, containerrunning=nil, scanscope=nil, timeout=nil, isoneclickscanningtask=nil)
           @All = all
@@ -9289,8 +9289,8 @@ module TencentCloud
 
         attr_accessor :ImageDigest, :ImageRepoAddress, :RegistryType, :ImageName, :ImageTag, :ScanTime, :ScanStatus, :VulCnt, :VirusCnt, :RiskCnt, :SentiveInfoCnt, :OsName, :ScanVirusError, :ScanVulError, :LayerInfo, :InstanceId, :InstanceName, :Namespace, :ScanRiskError, :ScanVirusProgress, :ScanVulProgress, :ScanRiskProgress, :ScanRemainTime, :CveStatus, :RiskStatus, :VirusStatus, :Progress, :IsAuthorized, :ImageSize, :ImageId, :RegistryRegion, :ImageCreateTime, :SensitiveInfoCnt, :Id, :Solution, :Reason, :RequestId
         extend Gem::Deprecate
-        deprecate :SentiveInfoCnt, :none, 2026, 3
-        deprecate :SentiveInfoCnt=, :none, 2026, 3
+        deprecate :SentiveInfoCnt, :none, 2026, 4
+        deprecate :SentiveInfoCnt=, :none, 2026, 4
 
         def initialize(imagedigest=nil, imagerepoaddress=nil, registrytype=nil, imagename=nil, imagetag=nil, scantime=nil, scanstatus=nil, vulcnt=nil, viruscnt=nil, riskcnt=nil, sentiveinfocnt=nil, osname=nil, scanviruserror=nil, scanvulerror=nil, layerinfo=nil, instanceid=nil, instancename=nil, namespace=nil, scanriskerror=nil, scanvirusprogress=nil, scanvulprogress=nil, scanriskprogress=nil, scanremaintime=nil, cvestatus=nil, riskstatus=nil, virusstatus=nil, progress=nil, isauthorized=nil, imagesize=nil, imageid=nil, registryregion=nil, imagecreatetime=nil, sensitiveinfocnt=nil, id=nil, solution=nil, reason=nil, requestid=nil)
           @ImageDigest = imagedigest
@@ -10456,8 +10456,8 @@ module TencentCloud
 
         attr_accessor :Enable, :ScanTime, :ScanPeriod, :ScanVirus, :ScanRisk, :ScanVul, :All, :Images, :ContainerRunning, :ScanScope, :ScanEndTime, :ExcludeImages, :LastScanTime, :ScanResult, :RequestId
         extend Gem::Deprecate
-        deprecate :All, :none, 2026, 3
-        deprecate :All=, :none, 2026, 3
+        deprecate :All, :none, 2026, 4
+        deprecate :All=, :none, 2026, 4
 
         def initialize(enable=nil, scantime=nil, scanperiod=nil, scanvirus=nil, scanrisk=nil, scanvul=nil, all=nil, images=nil, containerrunning=nil, scanscope=nil, scanendtime=nil, excludeimages=nil, lastscantime=nil, scanresult=nil, requestid=nil)
           @Enable = enable
@@ -14492,8 +14492,8 @@ module TencentCloud
 
         attr_accessor :Enable, :ScanTime, :ScanPeriod, :ScanType, :All, :Images, :Id, :Latest, :ScanEndTime, :RegistryType, :ContainerRunning, :ScanScope, :Namespace, :ExcludeImageAssetIds, :LastScanTime, :ScanResult, :RequestId
         extend Gem::Deprecate
-        deprecate :All, :none, 2026, 3
-        deprecate :All=, :none, 2026, 3
+        deprecate :All, :none, 2026, 4
+        deprecate :All=, :none, 2026, 4
 
         def initialize(enable=nil, scantime=nil, scanperiod=nil, scantype=nil, all=nil, images=nil, id=nil, latest=nil, scanendtime=nil, registrytype=nil, containerrunning=nil, scanscope=nil, namespace=nil, excludeimageassetids=nil, lastscantime=nil, scanresult=nil, requestid=nil)
           @Enable = enable
@@ -14827,25 +14827,15 @@ module TencentCloud
 
       # DescribeK8sApiAbnormalEventList请求参数结构体
       class DescribeK8sApiAbnormalEventListRequest < TencentCloud::Common::AbstractModel
-        # @param Filters: 过滤条件。
-        # <li>TimeRange - string -是否必填: 否 - 时间范围筛选 ["2022-03-31 16:55:00", "2022-03-31 17:00:00"]</li>
-        # <li>MatchRules - string  - 是否必填: 否 -命中规则筛选</li>
-        # <li>RiskLevel - string  - 是否必填: 否 -威胁等级筛选</li>
-        # <li>Status - string  - 是否必填: 否 -事件状态筛选</li>
-        # <li>MatchRuleType - string  - 是否必填: 否 -命中规则类型筛选</li>
-        # <li>ClusterRunningStatus - string  - 是否必填: 否 -集群运行状态</li>
-        # <li>ClusterName - string  - 是否必填: 否 -集群名称</li>
-        # <li>ClusterID - string  - 是否必填: 否 -集群ID</li>
+        # @param Filters: <p>过滤条件。</p><li>TimeRange - string -是否必填: 否 - 时间范围筛选 ["2022-03-31 16:55:00", "2022-03-31 17:00:00"]</li><li>MatchRules - string  - 是否必填: 否 -命中规则筛选</li><li>RiskLevel - string  - 是否必填: 否 -威胁等级筛选</li><li>Status - string  - 是否必填: 否 -事件状态筛选</li><li>MatchRuleType - string  - 是否必填: 否 -命中规则类型筛选</li><li>ClusterRunningStatus - string  - 是否必填: 否 -集群运行状态</li><li>ClusterName - string  - 是否必填: 否 -集群名称</li><li>ClusterID - string  - 是否必填: 否 -集群ID</li>
         # @type Filters: Array
-        # @param Limit: 需要返回的数量，默认为10，最大值为100
+        # @param Limit: <p>需要返回的数量，默认为10，最大值为100</p>
         # @type Limit: Integer
-        # @param Offset: 偏移量，默认为0。
+        # @param Offset: <p>偏移量，默认为0。</p>
         # @type Offset: Integer
-        # @param Order: 排序方式
+        # @param Order: <p>排序方式</p>
         # @type Order: String
-        # @param By: 排序字段
-        # LatestFoundTime: 最近生成时间
-        # AlarmCount: 告警数量
+        # @param By: <p>排序字段<br>LatestFoundTime: 最近生成时间<br>AlarmCount: 告警数量</p>
         # @type By: String
 
         attr_accessor :Filters, :Limit, :Offset, :Order, :By
@@ -14876,18 +14866,21 @@ module TencentCloud
 
       # DescribeK8sApiAbnormalEventList返回参数结构体
       class DescribeK8sApiAbnormalEventListResponse < TencentCloud::Common::AbstractModel
-        # @param List: 事件列表
+        # @param List: <p>事件列表</p>
         # @type List: Array
-        # @param TotalCount: 总数量
+        # @param TotalCount: <p>总数量</p>
         # @type TotalCount: Integer
+        # @param RuleTypeZhSet: <p>k8s告警类型和对应中文翻译</p>
+        # @type RuleTypeZhSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :List, :TotalCount, :RequestId
+        attr_accessor :List, :TotalCount, :RuleTypeZhSet, :RequestId
 
-        def initialize(list=nil, totalcount=nil, requestid=nil)
+        def initialize(list=nil, totalcount=nil, ruletypezhset=nil, requestid=nil)
           @List = list
           @TotalCount = totalcount
+          @RuleTypeZhSet = ruletypezhset
           @RequestId = requestid
         end
 
@@ -14901,6 +14894,14 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+          unless params['RuleTypeZhSet'].nil?
+            @RuleTypeZhSet = []
+            params['RuleTypeZhSet'].each do |i|
+              k8sapiruletypezhitem_tmp = K8SAPIRuleTypeZhItem.new
+              k8sapiruletypezhitem_tmp.deserialize(i)
+              @RuleTypeZhSet << k8sapiruletypezhitem_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -15135,7 +15136,7 @@ module TencentCloud
 
       # DescribeK8sApiAbnormalTendency请求参数结构体
       class DescribeK8sApiAbnormalTendencyRequest < TencentCloud::Common::AbstractModel
-        # @param TendencyPeriod: 趋势周期(默认为7天)
+        # @param TendencyPeriod: <p>趋势周期(默认为7天)</p>
         # @type TendencyPeriod: Integer
 
         attr_accessor :TendencyPeriod
@@ -15151,15 +15152,18 @@ module TencentCloud
 
       # DescribeK8sApiAbnormalTendency返回参数结构体
       class DescribeK8sApiAbnormalTendencyResponse < TencentCloud::Common::AbstractModel
-        # @param List: 趋势列表
+        # @param List: <p>趋势列表</p>
         # @type List: Array
+        # @param RuleTypeZhSet: <p>规则类型对应中文</p>
+        # @type RuleTypeZhSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :List, :RequestId
+        attr_accessor :List, :RuleTypeZhSet, :RequestId
 
-        def initialize(list=nil, requestid=nil)
+        def initialize(list=nil, ruletypezhset=nil, requestid=nil)
           @List = list
+          @RuleTypeZhSet = ruletypezhset
           @RequestId = requestid
         end
 
@@ -15170,6 +15174,14 @@ module TencentCloud
               k8sapiabnormaltendencyitem_tmp = K8sApiAbnormalTendencyItem.new
               k8sapiabnormaltendencyitem_tmp.deserialize(i)
               @List << k8sapiabnormaltendencyitem_tmp
+            end
+          end
+          unless params['RuleTypeZhSet'].nil?
+            @RuleTypeZhSet = []
+            params['RuleTypeZhSet'].each do |i|
+              k8sapiruletypezhitem_tmp = K8SAPIRuleTypeZhItem.new
+              k8sapiruletypezhitem_tmp.deserialize(i)
+              @RuleTypeZhSet << k8sapiruletypezhitem_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -23118,8 +23130,8 @@ module TencentCloud
 
         attr_accessor :ImageDigest, :ImageRepoAddress, :RegistryType, :ImageName, :ImageTag, :ImageSize, :ScanTime, :ScanStatus, :VulCnt, :VirusCnt, :RiskCnt, :SentiveInfoCnt, :IsTrustImage, :OsName, :ScanVirusError, :ScanVulError, :InstanceId, :InstanceName, :Namespace, :ScanRiskError, :ScanVirusProgress, :ScanVulProgress, :ScanRiskProgress, :ScanRemainTime, :CveStatus, :RiskStatus, :VirusStatus, :Progress, :IsAuthorized, :RegistryRegion, :Id, :ImageId, :ImageCreateTime, :IsLatestImage, :LowLevelVulCnt, :MediumLevelVulCnt, :HighLevelVulCnt, :CriticalLevelVulCnt, :ContainerCnt, :ComponentCnt, :IsRunning, :HasNeedFixVul, :SensitiveInfoCnt, :RecommendedFix, :Solution, :Reason
         extend Gem::Deprecate
-        deprecate :SentiveInfoCnt, :none, 2026, 3
-        deprecate :SentiveInfoCnt=, :none, 2026, 3
+        deprecate :SentiveInfoCnt, :none, 2026, 4
+        deprecate :SentiveInfoCnt=, :none, 2026, 4
 
         def initialize(imagedigest=nil, imagerepoaddress=nil, registrytype=nil, imagename=nil, imagetag=nil, imagesize=nil, scantime=nil, scanstatus=nil, vulcnt=nil, viruscnt=nil, riskcnt=nil, sentiveinfocnt=nil, istrustimage=nil, osname=nil, scanviruserror=nil, scanvulerror=nil, instanceid=nil, instancename=nil, namespace=nil, scanriskerror=nil, scanvirusprogress=nil, scanvulprogress=nil, scanriskprogress=nil, scanremaintime=nil, cvestatus=nil, riskstatus=nil, virusstatus=nil, progress=nil, isauthorized=nil, registryregion=nil, id=nil, imageid=nil, imagecreatetime=nil, islatestimage=nil, lowlevelvulcnt=nil, mediumlevelvulcnt=nil, highlevelvulcnt=nil, criticallevelvulcnt=nil, containercnt=nil, componentcnt=nil, isrunning=nil, hasneedfixvul=nil, sensitiveinfocnt=nil, recommendedfix=nil, solution=nil, reason=nil)
           @ImageDigest = imagedigest
@@ -24038,55 +24050,94 @@ module TencentCloud
         end
       end
 
+      # k8s告警类型和对应的告警数量
+      class K8SAPIRuleTypeCountItem < TencentCloud::Common::AbstractModel
+        # @param RuleType: <p>规则类型</p><p>枚举值：</p><ul><li>ABNORMAL_CREATE_POD： 可疑容器创建</li></ul>
+        # @type RuleType: String
+        # @param EventCount: <p>规则对应告警数量</p>
+        # @type EventCount: Integer
+
+        attr_accessor :RuleType, :EventCount
+
+        def initialize(ruletype=nil, eventcount=nil)
+          @RuleType = ruletype
+          @EventCount = eventcount
+        end
+
+        def deserialize(params)
+          @RuleType = params['RuleType']
+          @EventCount = params['EventCount']
+        end
+      end
+
+      # k8s告警类型和中文映射
+      class K8SAPIRuleTypeZhItem < TencentCloud::Common::AbstractModel
+        # @param RuleType: <p>规则类型</p><p>枚举值：</p><ul><li>&quot;rule_type&quot;: &quot;ABNORMAL_CREATE_POD&quot;,： 可疑容器创建</li></ul>
+        # @type RuleType: String
+        # @param RuleTypeZh: <p>规则类型对应中文</p>
+        # @type RuleTypeZh: String
+
+        attr_accessor :RuleType, :RuleTypeZh
+
+        def initialize(ruletype=nil, ruletypezh=nil)
+          @RuleType = ruletype
+          @RuleTypeZh = ruletypezh
+        end
+
+        def deserialize(params)
+          @RuleType = params['RuleType']
+          @RuleTypeZh = params['RuleTypeZh']
+        end
+      end
+
       # k8sApi异常事件详情
       class K8sApiAbnormalEventInfo < TencentCloud::Common::AbstractModel
-        # @param MatchRuleName: 命中规则名称
+        # @param MatchRuleName: <p>命中规则名称</p>
         # @type MatchRuleName: String
-        # @param MatchRuleType: 命中规则类型
+        # @param MatchRuleType: <p>命中规则类型</p>
         # @type MatchRuleType: String
-        # @param RiskLevel: 告警等级
+        # @param RiskLevel: <p>告警等级</p>
         # @type RiskLevel: String
-        # @param ClusterID: 集群ID
+        # @param ClusterID: <p>集群ID</p>
         # @type ClusterID: String
-        # @param ClusterName: 集群名称
+        # @param ClusterName: <p>集群名称</p>
         # @type ClusterName: String
-        # @param ClusterRunningStatus: 集群运行状态，CSR_RUNNING-运行中，CSR_EXCEPTION-异常，CSR_CREATING-创建中
+        # @param ClusterRunningStatus: <p>集群运行状态，CSR_RUNNING-运行中，CSR_EXCEPTION-异常，CSR_CREATING-创建中</p>
         # @type ClusterRunningStatus: String
-        # @param FirstCreateTime: 初次生成时间
+        # @param FirstCreateTime: <p>初次生成时间</p>
         # @type FirstCreateTime: String
-        # @param LastCreateTime: 最近一次生成时间
+        # @param LastCreateTime: <p>最近一次生成时间</p>
         # @type LastCreateTime: String
-        # @param AlarmCount: 告警数量
+        # @param AlarmCount: <p>告警数量</p>
         # @type AlarmCount: Integer
-        # @param Status: 状态
-        # "EVENT_UNDEAL":未处理
-        # "EVENT_DEALED": 已处理
-        # "EVENT_IGNORE": 忽略
-        # "EVENT_DEL": 删除
-        # "EVENT_ADD_WHITE": 加白
+        # @param Status: <p>状态<br>&quot;EVENT_UNDEAL&quot;:未处理<br>&quot;EVENT_DEALED&quot;: 已处理<br>&quot;EVENT_IGNORE&quot;: 忽略<br>&quot;EVENT_DEL&quot;: 删除<br>&quot;EVENT_ADD_WHITE&quot;: 加白</p>
         # @type Status: String
-        # @param ClusterMasterIP: 集群masterIP
+        # @param ClusterMasterIP: <p>集群masterIP</p>
         # @type ClusterMasterIP: String
-        # @param K8sVersion: k8s版本
+        # @param K8sVersion: <p>k8s版本</p>
         # @type K8sVersion: String
-        # @param RunningComponent: 运行时组件
+        # @param RunningComponent: <p>运行时组件</p>
         # @type RunningComponent: Array
-        # @param Desc: 描述
+        # @param Desc: <p>描述</p>
         # @type Desc: String
-        # @param Suggestion: 建议
+        # @param Suggestion: <p>建议</p>
         # @type Suggestion: String
-        # @param Info: 请求信息
+        # @param Info: <p>请求信息</p>
         # @type Info: String
-        # @param MatchRuleID: 规则ID
+        # @param MatchRuleID: <p>规则ID</p>
         # @type MatchRuleID: String
-        # @param HighLightFields: 高亮字段数组
+        # @param HighLightFields: <p>高亮字段数组</p>
         # @type HighLightFields: Array
-        # @param MatchRule: 命中规则
+        # @param MatchRule: <p>命中规则</p>
         # @type MatchRule: :class:`Tencentcloud::Tcss.v20201101.models.K8sApiAbnormalRuleScopeInfo`
+        # @param HighLightFieldsVal: <p>高亮字段对应的命中规则内容(JSON字符串, 如: {&quot;field1&quot;:&quot;value1&quot;,&quot;field2&quot;:&quot;value2&quot;})</p><p>参数格式：{&quot;field1&quot;:&quot;value1&quot;,&quot;field2&quot;:&quot;value2&quot;}</p>
+        # @type HighLightFieldsVal: String
+        # @param RuleTypeZH: <p>规则中文</p>
+        # @type RuleTypeZH: String
 
-        attr_accessor :MatchRuleName, :MatchRuleType, :RiskLevel, :ClusterID, :ClusterName, :ClusterRunningStatus, :FirstCreateTime, :LastCreateTime, :AlarmCount, :Status, :ClusterMasterIP, :K8sVersion, :RunningComponent, :Desc, :Suggestion, :Info, :MatchRuleID, :HighLightFields, :MatchRule
+        attr_accessor :MatchRuleName, :MatchRuleType, :RiskLevel, :ClusterID, :ClusterName, :ClusterRunningStatus, :FirstCreateTime, :LastCreateTime, :AlarmCount, :Status, :ClusterMasterIP, :K8sVersion, :RunningComponent, :Desc, :Suggestion, :Info, :MatchRuleID, :HighLightFields, :MatchRule, :HighLightFieldsVal, :RuleTypeZH
 
-        def initialize(matchrulename=nil, matchruletype=nil, risklevel=nil, clusterid=nil, clustername=nil, clusterrunningstatus=nil, firstcreatetime=nil, lastcreatetime=nil, alarmcount=nil, status=nil, clustermasterip=nil, k8sversion=nil, runningcomponent=nil, desc=nil, suggestion=nil, info=nil, matchruleid=nil, highlightfields=nil, matchrule=nil)
+        def initialize(matchrulename=nil, matchruletype=nil, risklevel=nil, clusterid=nil, clustername=nil, clusterrunningstatus=nil, firstcreatetime=nil, lastcreatetime=nil, alarmcount=nil, status=nil, clustermasterip=nil, k8sversion=nil, runningcomponent=nil, desc=nil, suggestion=nil, info=nil, matchruleid=nil, highlightfields=nil, matchrule=nil, highlightfieldsval=nil, ruletypezh=nil)
           @MatchRuleName = matchrulename
           @MatchRuleType = matchruletype
           @RiskLevel = risklevel
@@ -24106,6 +24157,8 @@ module TencentCloud
           @MatchRuleID = matchruleid
           @HighLightFields = highlightfields
           @MatchRule = matchrule
+          @HighLightFieldsVal = highlightfieldsval
+          @RuleTypeZH = ruletypezh
         end
 
         def deserialize(params)
@@ -24131,6 +24184,8 @@ module TencentCloud
             @MatchRule = K8sApiAbnormalRuleScopeInfo.new
             @MatchRule.deserialize(params['MatchRule'])
           end
+          @HighLightFieldsVal = params['HighLightFieldsVal']
+          @RuleTypeZH = params['RuleTypeZH']
         end
       end
 
@@ -24302,37 +24357,28 @@ module TencentCloud
 
       # k8s api 异常事件规则配置范围
       class K8sApiAbnormalRuleScopeInfo < TencentCloud::Common::AbstractModel
-        # @param Scope: 范围
-        # 系统事件:
-        # ANONYMOUS_ACCESS: 匿名访问
-        # ABNORMAL_UA_REQ: 异常UA请求
-        # ANONYMOUS_ABNORMAL_PERMISSION: 匿名用户权限异动
-        # GET_CREDENTIALS: 凭据信息获取
-        # MOUNT_SENSITIVE_PATH: 敏感路径挂载
-        # COMMAND_RUN: 命令执行
-        # PRIVILEGE_CONTAINER: 特权容器
-        # EXCEPTION_CRONTAB_TASK: 异常定时任务
-        # STATICS_POD: 静态pod创建
-        # ABNORMAL_CREATE_POD: 异常pod创建
-        # USER_DEFINED: 用户自定义
+        # @param Scope: <p>范围<br>系统事件:<br>ANONYMOUS_ACCESS: 匿名访问<br>ABNORMAL_UA_REQ: 异常UA请求<br>ANONYMOUS_ABNORMAL_PERMISSION: 匿名用户权限异动<br>GET_CREDENTIALS: 凭据信息获取<br>MOUNT_SENSITIVE_PATH: 敏感路径挂载<br>COMMAND_RUN: 命令执行<br>PRIVILEGE_CONTAINER: 特权容器<br>EXCEPTION_CRONTAB_TASK: 异常定时任务<br>STATICS_POD: 静态pod创建<br>ABNORMAL_CREATE_POD: 异常pod创建<br>USER_DEFINED: 用户自定义</p>
         # @type Scope: String
-        # @param Action: 动作(RULE_MODE_ALERT: 告警 RULE_MODE_RELEASE:放行)
+        # @param Action: <p>动作(RULE_MODE_ALERT: 告警 RULE_MODE_RELEASE:放行)</p>
         # @type Action: String
-        # @param RiskLevel: 威胁等级 HIGH:高级 MIDDLE: 中级 LOW:低级 NOTICE:提示
+        # @param RiskLevel: <p>威胁等级 HIGH:高级 MIDDLE: 中级 LOW:低级 NOTICE:提示</p>
         # @type RiskLevel: String
-        # @param Status: 开关状态(true:开 false:关) 适用于系统规则
+        # @param Status: <p>开关状态(true:开 false:关) 适用于系统规则</p>
         # @type Status: Boolean
-        # @param IsDelete: 是否被删除 适用于自定义规则入参
+        # @param IsDelete: <p>是否被删除 适用于自定义规则入参</p>
         # @type IsDelete: Boolean
+        # @param RuleTypeZH: <p>规则类型对应中文</p>
+        # @type RuleTypeZH: String
 
-        attr_accessor :Scope, :Action, :RiskLevel, :Status, :IsDelete
+        attr_accessor :Scope, :Action, :RiskLevel, :Status, :IsDelete, :RuleTypeZH
 
-        def initialize(scope=nil, action=nil, risklevel=nil, status=nil, isdelete=nil)
+        def initialize(scope=nil, action=nil, risklevel=nil, status=nil, isdelete=nil, ruletypezh=nil)
           @Scope = scope
           @Action = action
           @RiskLevel = risklevel
           @Status = status
           @IsDelete = isdelete
+          @RuleTypeZH = ruletypezh
         end
 
         def deserialize(params)
@@ -24341,39 +24387,42 @@ module TencentCloud
           @RiskLevel = params['RiskLevel']
           @Status = params['Status']
           @IsDelete = params['IsDelete']
+          @RuleTypeZH = params['RuleTypeZH']
         end
       end
 
       # k8sapi异常请求趋势Item
       class K8sApiAbnormalTendencyItem < TencentCloud::Common::AbstractModel
-        # @param Date: 日期
+        # @param Date: <p>日期</p>
         # @type Date: String
-        # @param ExceptionUARequestCount: 异常UA请求事件数
+        # @param ExceptionUARequestCount: <p>异常UA请求事件数</p>
         # @type ExceptionUARequestCount: Integer
-        # @param AnonymousUserRightCount: 匿名用户权限事件数
+        # @param AnonymousUserRightCount: <p>匿名用户权限事件数</p>
         # @type AnonymousUserRightCount: Integer
-        # @param CredentialInformationObtainCount: 凭据信息获取事件数
+        # @param CredentialInformationObtainCount: <p>凭据信息获取事件数</p>
         # @type CredentialInformationObtainCount: Integer
-        # @param SensitiveDataMountCount: 敏感数据挂载事件数
+        # @param SensitiveDataMountCount: <p>敏感数据挂载事件数</p>
         # @type SensitiveDataMountCount: Integer
-        # @param CmdExecCount: 命令执行事件数
+        # @param CmdExecCount: <p>命令执行事件数</p>
         # @type CmdExecCount: Integer
-        # @param AbnormalScheduledTaskCount: 异常定时任务事件数
+        # @param AbnormalScheduledTaskCount: <p>异常定时任务事件数</p>
         # @type AbnormalScheduledTaskCount: Integer
-        # @param StaticsPodCreateCount: 静态Pod创建数
+        # @param StaticsPodCreateCount: <p>静态Pod创建数</p>
         # @type StaticsPodCreateCount: Integer
-        # @param DoubtfulContainerCreateCount: 可疑容器创建数
+        # @param DoubtfulContainerCreateCount: <p>可疑容器创建数</p>
         # @type DoubtfulContainerCreateCount: Integer
-        # @param UserDefinedRuleCount: 自定义规则事件数
+        # @param UserDefinedRuleCount: <p>自定义规则事件数</p>
         # @type UserDefinedRuleCount: Integer
-        # @param AnonymousAccessCount: 匿名访问事件数
+        # @param AnonymousAccessCount: <p>匿名访问事件数</p>
         # @type AnonymousAccessCount: Integer
-        # @param PrivilegeContainerCount: 特权容器事件数
+        # @param PrivilegeContainerCount: <p>特权容器事件数</p>
         # @type PrivilegeContainerCount: Integer
+        # @param RuleTypeCountSet: <p>规则类型对应告警数量</p>
+        # @type RuleTypeCountSet: Array
 
-        attr_accessor :Date, :ExceptionUARequestCount, :AnonymousUserRightCount, :CredentialInformationObtainCount, :SensitiveDataMountCount, :CmdExecCount, :AbnormalScheduledTaskCount, :StaticsPodCreateCount, :DoubtfulContainerCreateCount, :UserDefinedRuleCount, :AnonymousAccessCount, :PrivilegeContainerCount
+        attr_accessor :Date, :ExceptionUARequestCount, :AnonymousUserRightCount, :CredentialInformationObtainCount, :SensitiveDataMountCount, :CmdExecCount, :AbnormalScheduledTaskCount, :StaticsPodCreateCount, :DoubtfulContainerCreateCount, :UserDefinedRuleCount, :AnonymousAccessCount, :PrivilegeContainerCount, :RuleTypeCountSet
 
-        def initialize(date=nil, exceptionuarequestcount=nil, anonymoususerrightcount=nil, credentialinformationobtaincount=nil, sensitivedatamountcount=nil, cmdexeccount=nil, abnormalscheduledtaskcount=nil, staticspodcreatecount=nil, doubtfulcontainercreatecount=nil, userdefinedrulecount=nil, anonymousaccesscount=nil, privilegecontainercount=nil)
+        def initialize(date=nil, exceptionuarequestcount=nil, anonymoususerrightcount=nil, credentialinformationobtaincount=nil, sensitivedatamountcount=nil, cmdexeccount=nil, abnormalscheduledtaskcount=nil, staticspodcreatecount=nil, doubtfulcontainercreatecount=nil, userdefinedrulecount=nil, anonymousaccesscount=nil, privilegecontainercount=nil, ruletypecountset=nil)
           @Date = date
           @ExceptionUARequestCount = exceptionuarequestcount
           @AnonymousUserRightCount = anonymoususerrightcount
@@ -24386,6 +24435,7 @@ module TencentCloud
           @UserDefinedRuleCount = userdefinedrulecount
           @AnonymousAccessCount = anonymousaccesscount
           @PrivilegeContainerCount = privilegecontainercount
+          @RuleTypeCountSet = ruletypecountset
         end
 
         def deserialize(params)
@@ -24401,6 +24451,14 @@ module TencentCloud
           @UserDefinedRuleCount = params['UserDefinedRuleCount']
           @AnonymousAccessCount = params['AnonymousAccessCount']
           @PrivilegeContainerCount = params['PrivilegeContainerCount']
+          unless params['RuleTypeCountSet'].nil?
+            @RuleTypeCountSet = []
+            params['RuleTypeCountSet'].each do |i|
+              k8sapiruletypecountitem_tmp = K8SAPIRuleTypeCountItem.new
+              k8sapiruletypecountitem_tmp.deserialize(i)
+              @RuleTypeCountSet << k8sapiruletypecountitem_tmp
+            end
+          end
         end
       end
 
@@ -29666,8 +29724,8 @@ module TencentCloud
 
         attr_accessor :ScanPeriod, :Enable, :ScanTime, :ScanType, :Images, :All, :Id, :Latest, :ContainerRunning, :ScanEndTime, :ScanScope, :RegistryType, :Namespace, :ExcludeImageAssetIds
         extend Gem::Deprecate
-        deprecate :All, :none, 2026, 3
-        deprecate :All=, :none, 2026, 3
+        deprecate :All, :none, 2026, 4
+        deprecate :All=, :none, 2026, 4
 
         def initialize(scanperiod=nil, enable=nil, scantime=nil, scantype=nil, images=nil, all=nil, id=nil, latest=nil, containerrunning=nil, scanendtime=nil, scanscope=nil, registrytype=nil, namespace=nil, excludeimageassetids=nil)
           @ScanPeriod = scanperiod

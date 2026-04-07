@@ -1354,30 +1354,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 修改登录配置
-
-        # @param request: Request instance for EditAuthConfig.
-        # @type request: :class:`Tencentcloud::tcb::V20180608::EditAuthConfigRequest`
-        # @rtype: :class:`Tencentcloud::tcb::V20180608::EditAuthConfigResponse`
-        def EditAuthConfig(request)
-          body = send_request('EditAuthConfig', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = EditAuthConfigResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 查询指定云开发环境下的身份认证源列表。返回该环境已配置的所有身份认证源信息，包括第三方登录（OAuth、OIDC、SAML）、微信小程序登录、自定义登录和邮箱登录等。返回结果包含认证源基本信息、关联应用、配置状态及启用情况。若自定义登录或邮箱登录的身份源尚未创建，接口会自动追加一个默认关闭状态的身份源记录。
 
         # @param request: Request instance for GetProviders.
@@ -1685,30 +1661,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyUserResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 针对已隔离的免费环境，可以通过本接口将其恢复访问。
-
-        # @param request: Request instance for ReinstateEnv.
-        # @type request: :class:`Tencentcloud::tcb::V20180608::ReinstateEnvRequest`
-        # @rtype: :class:`Tencentcloud::tcb::V20180608::ReinstateEnvResponse`
-        def ReinstateEnv(request)
-          body = send_request('ReinstateEnv', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = ReinstateEnvResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -4864,10 +4864,10 @@ module TencentCloud
 
         attr_accessor :Language, :AlternativeLanguage, :Model, :TranslationLanguage, :HotWordList, :VadSilenceTime, :VadLevel
         extend Gem::Deprecate
-        deprecate :Model, :none, 2026, 3
-        deprecate :Model=, :none, 2026, 3
-        deprecate :TranslationLanguage, :none, 2026, 3
-        deprecate :TranslationLanguage=, :none, 2026, 3
+        deprecate :Model, :none, 2026, 4
+        deprecate :Model=, :none, 2026, 4
+        deprecate :TranslationLanguage, :none, 2026, 4
+        deprecate :TranslationLanguage=, :none, 2026, 4
 
         def initialize(language=nil, alternativelanguage=nil, model=nil, translationlanguage=nil, hotwordlist=nil, vadsilencetime=nil, vadlevel=nil)
           @Language = language
@@ -6022,12 +6022,12 @@ module TencentCloud
 
         attr_accessor :SdkAppId, :RoomId, :RoomIdType, :UserId, :UserSig, :StreamUrl, :PrivateMapKey, :VideoEncodeParams, :AudioEncodeParams, :SourceUrl, :SeekSecond, :AutoPush, :RepeatNum, :MaxDuration, :Volume, :EnableProgress, :Tempo
         extend Gem::Deprecate
-        deprecate :VideoEncodeParams, :none, 2026, 3
-        deprecate :VideoEncodeParams=, :none, 2026, 3
-        deprecate :AudioEncodeParams, :none, 2026, 3
-        deprecate :AudioEncodeParams=, :none, 2026, 3
-        deprecate :SourceUrl, :none, 2026, 3
-        deprecate :SourceUrl=, :none, 2026, 3
+        deprecate :VideoEncodeParams, :none, 2026, 4
+        deprecate :VideoEncodeParams=, :none, 2026, 4
+        deprecate :AudioEncodeParams, :none, 2026, 4
+        deprecate :AudioEncodeParams=, :none, 2026, 4
+        deprecate :SourceUrl, :none, 2026, 4
+        deprecate :SourceUrl=, :none, 2026, 4
 
         def initialize(sdkappid=nil, roomid=nil, roomidtype=nil, userid=nil, usersig=nil, streamurl=nil, privatemapkey=nil, videoencodeparams=nil, audioencodeparams=nil, sourceurl=nil, seeksecond=nil, autopush=nil, repeatnum=nil, maxduration=nil, volume=nil, enableprogress=nil, tempo=nil)
           @SdkAppId = sdkappid
@@ -6743,8 +6743,8 @@ module TencentCloud
 
         attr_accessor :Text, :Voice, :SdkAppId, :AudioFormat, :APIKey, :Model, :Language
         extend Gem::Deprecate
-        deprecate :APIKey, :none, 2026, 3
-        deprecate :APIKey=, :none, 2026, 3
+        deprecate :APIKey, :none, 2026, 4
+        deprecate :APIKey=, :none, 2026, 4
 
         def initialize(text=nil, voice=nil, sdkappid=nil, audioformat=nil, apikey=nil, model=nil, language=nil)
           @Text = text
@@ -6820,8 +6820,8 @@ module TencentCloud
 
         attr_accessor :Text, :Voice, :SdkAppId, :AudioFormat, :APIKey, :Model, :Language
         extend Gem::Deprecate
-        deprecate :APIKey, :none, 2026, 3
-        deprecate :APIKey=, :none, 2026, 3
+        deprecate :APIKey, :none, 2026, 4
+        deprecate :APIKey=, :none, 2026, 4
 
         def initialize(text=nil, voice=nil, sdkappid=nil, audioformat=nil, apikey=nil, model=nil, language=nil)
           @Text = text
@@ -6965,10 +6965,10 @@ module TencentCloud
 
         attr_accessor :UserId, :UserSig, :IMAdminUserId, :IMAdminUserSig, :MaxIdleTime, :TranscriptionMode, :TargetUserId, :TargetUserIdList, :VoicePrint, :TurnDetection
         extend Gem::Deprecate
-        deprecate :IMAdminUserId, :none, 2026, 3
-        deprecate :IMAdminUserId=, :none, 2026, 3
-        deprecate :IMAdminUserSig, :none, 2026, 3
-        deprecate :IMAdminUserSig=, :none, 2026, 3
+        deprecate :IMAdminUserId, :none, 2026, 4
+        deprecate :IMAdminUserId=, :none, 2026, 4
+        deprecate :IMAdminUserSig, :none, 2026, 4
+        deprecate :IMAdminUserSig=, :none, 2026, 4
 
         def initialize(userid=nil, usersig=nil, imadminuserid=nil, imadminusersig=nil, maxidletime=nil, transcriptionmode=nil, targetuserid=nil, targetuseridlist=nil, voiceprint=nil, turndetection=nil)
           @UserId = userid
@@ -7597,8 +7597,8 @@ module TencentCloud
 
         attr_accessor :SdkAppId, :VoiceName, :PromptAudio, :APIKey, :PromptText, :Model, :Language
         extend Gem::Deprecate
-        deprecate :APIKey, :none, 2026, 3
-        deprecate :APIKey=, :none, 2026, 3
+        deprecate :APIKey, :none, 2026, 4
+        deprecate :APIKey=, :none, 2026, 4
 
         def initialize(sdkappid=nil, voicename=nil, promptaudio=nil, apikey=nil, prompttext=nil, model=nil, language=nil)
           @SdkAppId = sdkappid

@@ -849,6 +849,26 @@ module TencentCloud
         end
       end
 
+      # 调度器客户端连接配置参数
+      class ClientConnection < TencentCloud::Common::AbstractModel
+        # @param QPS: 客户端与服务器连接时每秒允许的最大查询数
+        # @type QPS: Float
+        # @param Burst: 客户端在短时间内超过QPS限制的突发请求数量
+        # @type Burst: Integer
+
+        attr_accessor :QPS, :Burst
+
+        def initialize(qps=nil, burst=nil)
+          @QPS = qps
+          @Burst = burst
+        end
+
+        def deserialize(params)
+          @QPS = params['QPS']
+          @Burst = params['Burst']
+        end
+      end
+
       # 集群信息结构体
       class Cluster < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
@@ -7473,6 +7493,76 @@ module TencentCloud
         end
       end
 
+      # DescribeClusterSchedulerPolicy请求参数结构体
+      class DescribeClusterSchedulerPolicyRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: <p>集群ID</p>
+        # @type ClusterId: String
+
+        attr_accessor :ClusterId
+
+        def initialize(clusterid=nil)
+          @ClusterId = clusterid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+        end
+      end
+
+      # DescribeClusterSchedulerPolicy返回参数结构体
+      class DescribeClusterSchedulerPolicyResponse < TencentCloud::Common::AbstractModel
+        # @param Policy: <p>调度策略json字符串</p>
+        # @type Policy: String
+        # @param SchedulerPolicyConfig: <p>SchedulerPolicy配置信息</p>
+        # @type SchedulerPolicyConfig: Array
+        # @param ClientConnection: <p>客户端连接</p>
+        # @type ClientConnection: :class:`Tencentcloud::Tke.v20180525.models.ClientConnection`
+        # @param Extenders: <p>扩展调度器</p>
+        # @type Extenders: Array
+        # @param HighPerformance: <p>高性能模式</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HighPerformance: Boolean
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Policy, :SchedulerPolicyConfig, :ClientConnection, :Extenders, :HighPerformance, :RequestId
+
+        def initialize(policy=nil, schedulerpolicyconfig=nil, clientconnection=nil, extenders=nil, highperformance=nil, requestid=nil)
+          @Policy = policy
+          @SchedulerPolicyConfig = schedulerpolicyconfig
+          @ClientConnection = clientconnection
+          @Extenders = extenders
+          @HighPerformance = highperformance
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Policy = params['Policy']
+          unless params['SchedulerPolicyConfig'].nil?
+            @SchedulerPolicyConfig = []
+            params['SchedulerPolicyConfig'].each do |i|
+              schedulerpolicyconfig_tmp = SchedulerPolicyConfig.new
+              schedulerpolicyconfig_tmp.deserialize(i)
+              @SchedulerPolicyConfig << schedulerpolicyconfig_tmp
+            end
+          end
+          unless params['ClientConnection'].nil?
+            @ClientConnection = ClientConnection.new
+            @ClientConnection.deserialize(params['ClientConnection'])
+          end
+          unless params['Extenders'].nil?
+            @Extenders = []
+            params['Extenders'].each do |i|
+              extenders_tmp = Extenders.new
+              extenders_tmp.deserialize(i)
+              @Extenders << extenders_tmp
+            end
+          end
+          @HighPerformance = params['HighPerformance']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeClusterSecurity请求参数结构体
       class DescribeClusterSecurityRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群 ID，请填写 查询集群列表 接口中返回的 clusterId 字段
@@ -13583,6 +13673,83 @@ module TencentCloud
         end
       end
 
+      # 扩展调度器(Extenders)客户端配置
+      class ExtenderClientConfig < TencentCloud::Common::AbstractModel
+        # @param Service: 访问extender服务url设置
+        # @type Service: :class:`Tencentcloud::Tke.v20180525.models.ServiceReference`
+
+        attr_accessor :Service
+
+        def initialize(service=nil)
+          @Service = service
+        end
+
+        def deserialize(params)
+          unless params['Service'].nil?
+            @Service = ServiceReference.new
+            @Service.deserialize(params['Service'])
+          end
+        end
+      end
+
+      # 扩展调度器(Extender)管理的扩展资源
+      class ExtenderManagedResource < TencentCloud::Common::AbstractModel
+        # @param Name: 自定义资源的名称
+        # @type Name: String
+
+        attr_accessor :Name
+
+        def initialize(name=nil)
+          @Name = name
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+        end
+      end
+
+      # 扩展调度器(Extenders)
+      class Extenders < TencentCloud::Common::AbstractModel
+        # @param FilterVerb: 过滤阶段接口
+        # @type FilterVerb: String
+        # @param PrioritizeVerb: 打分阶段扩展接口
+        # @type PrioritizeVerb: String
+        # @param Weight: 打分阶段节点分数的权重,取值范围限定(0,2】
+        # @type Weight: Integer
+        # @param ManagedResources: 扩展调度器(Extender)管理的扩展资源
+        # @type ManagedResources: Array
+        # @param ExtenderClientConfig: extender客户端配置
+        # @type ExtenderClientConfig: :class:`Tencentcloud::Tke.v20180525.models.ExtenderClientConfig`
+
+        attr_accessor :FilterVerb, :PrioritizeVerb, :Weight, :ManagedResources, :ExtenderClientConfig
+
+        def initialize(filterverb=nil, prioritizeverb=nil, weight=nil, managedresources=nil, extenderclientconfig=nil)
+          @FilterVerb = filterverb
+          @PrioritizeVerb = prioritizeverb
+          @Weight = weight
+          @ManagedResources = managedresources
+          @ExtenderClientConfig = extenderclientconfig
+        end
+
+        def deserialize(params)
+          @FilterVerb = params['FilterVerb']
+          @PrioritizeVerb = params['PrioritizeVerb']
+          @Weight = params['Weight']
+          unless params['ManagedResources'].nil?
+            @ManagedResources = []
+            params['ManagedResources'].each do |i|
+              extendermanagedresource_tmp = ExtenderManagedResource.new
+              extendermanagedresource_tmp.deserialize(i)
+              @ManagedResources << extendermanagedresource_tmp
+            end
+          end
+          unless params['ExtenderClientConfig'].nil?
+            @ExtenderClientConfig = ExtenderClientConfig.new
+            @ExtenderClientConfig.deserialize(params['ExtenderClientConfig'])
+          end
+        end
+      end
+
       # 创建集群时，选择安装的扩展组件的信息
       class ExtensionAddon < TencentCloud::Common::AbstractModel
         # @param AddonName: 扩展组件名称
@@ -16285,6 +16452,71 @@ module TencentCloud
         end
       end
 
+      # ModifyClusterSchedulerPolicy请求参数结构体
+      class ModifyClusterSchedulerPolicyRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param SchedulerPolicyConfig: SchedulerPolicy配置信息
+        # @type SchedulerPolicyConfig: Array
+        # @param ClientConnection: 客户端连接
+        # @type ClientConnection: :class:`Tencentcloud::Tke.v20180525.models.ClientConnection`
+        # @param Extenders: 扩展调度器
+        # @type Extenders: Array
+        # @param HighPerformance: 高性能模式
+        # @type HighPerformance: Boolean
+
+        attr_accessor :ClusterId, :SchedulerPolicyConfig, :ClientConnection, :Extenders, :HighPerformance
+
+        def initialize(clusterid=nil, schedulerpolicyconfig=nil, clientconnection=nil, extenders=nil, highperformance=nil)
+          @ClusterId = clusterid
+          @SchedulerPolicyConfig = schedulerpolicyconfig
+          @ClientConnection = clientconnection
+          @Extenders = extenders
+          @HighPerformance = highperformance
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          unless params['SchedulerPolicyConfig'].nil?
+            @SchedulerPolicyConfig = []
+            params['SchedulerPolicyConfig'].each do |i|
+              schedulerpolicyconfig_tmp = SchedulerPolicyConfig.new
+              schedulerpolicyconfig_tmp.deserialize(i)
+              @SchedulerPolicyConfig << schedulerpolicyconfig_tmp
+            end
+          end
+          unless params['ClientConnection'].nil?
+            @ClientConnection = ClientConnection.new
+            @ClientConnection.deserialize(params['ClientConnection'])
+          end
+          unless params['Extenders'].nil?
+            @Extenders = []
+            params['Extenders'].each do |i|
+              extenders_tmp = Extenders.new
+              extenders_tmp.deserialize(i)
+              @Extenders << extenders_tmp
+            end
+          end
+          @HighPerformance = params['HighPerformance']
+        end
+      end
+
+      # ModifyClusterSchedulerPolicy返回参数结构体
+      class ModifyClusterSchedulerPolicyResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyClusterTags请求参数结构体
       class ModifyClusterTagsRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
@@ -17855,6 +18087,40 @@ module TencentCloud
           @RoleType = params['RoleType']
           @IsCustom = params['IsCustom']
           @Namespace = params['Namespace']
+        end
+      end
+
+      # 管理调度插件(plugins)的启用和禁用
+      class PluginSet < TencentCloud::Common::AbstractModel
+        # @param Enabled: 指定需要额外启用的插件列表
+        # @type Enabled: Array
+        # @param Disabled: 指定需要禁用的默认插件列表
+        # @type Disabled: Array
+
+        attr_accessor :Enabled, :Disabled
+
+        def initialize(enabled=nil, disabled=nil)
+          @Enabled = enabled
+          @Disabled = disabled
+        end
+
+        def deserialize(params)
+          unless params['Enabled'].nil?
+            @Enabled = []
+            params['Enabled'].each do |i|
+              schedulerpolicypriority_tmp = SchedulerPolicyPriority.new
+              schedulerpolicypriority_tmp.deserialize(i)
+              @Enabled << schedulerpolicypriority_tmp
+            end
+          end
+          unless params['Disabled'].nil?
+            @Disabled = []
+            params['Disabled'].each do |i|
+              schedulerpolicypriority_tmp = SchedulerPolicyPriority.new
+              schedulerpolicypriority_tmp.deserialize(i)
+              @Disabled << schedulerpolicypriority_tmp
+            end
+          end
         end
       end
 
@@ -20571,6 +20837,84 @@ module TencentCloud
         end
       end
 
+      # 调度器plugin配置参数
+      class SchedulerPluginConfigs < TencentCloud::Common::AbstractModel
+        # @param Name: 配置的插件的名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Args: 初始化时传递给插件的参数，对{"apiVersion":"kubescheduler.config.k8s.io/v1beta3","kind":"NodeResourcesFitArgs","scoringStrategy":{"type":"LeastAllocated"}}base64后的结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Args: String
+
+        attr_accessor :Name, :Args
+
+        def initialize(name=nil, args=nil)
+          @Name = name
+          @Args = args
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Args = params['Args']
+        end
+      end
+
+      # SchedulerPolicy配置信息
+      class SchedulerPolicyConfig < TencentCloud::Common::AbstractModel
+        # @param SchedulerName: 调度器名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SchedulerName: String
+        # @param PluginConfigs: 调度器plugin配置参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PluginConfigs: Array
+        # @param PluginSet: 插件配置
+        # @type PluginSet: :class:`Tencentcloud::Tke.v20180525.models.PluginSet`
+
+        attr_accessor :SchedulerName, :PluginConfigs, :PluginSet
+
+        def initialize(schedulername=nil, pluginconfigs=nil, pluginset=nil)
+          @SchedulerName = schedulername
+          @PluginConfigs = pluginconfigs
+          @PluginSet = pluginset
+        end
+
+        def deserialize(params)
+          @SchedulerName = params['SchedulerName']
+          unless params['PluginConfigs'].nil?
+            @PluginConfigs = []
+            params['PluginConfigs'].each do |i|
+              schedulerpluginconfigs_tmp = SchedulerPluginConfigs.new
+              schedulerpluginconfigs_tmp.deserialize(i)
+              @PluginConfigs << schedulerpluginconfigs_tmp
+            end
+          end
+          unless params['PluginSet'].nil?
+            @PluginSet = PluginSet.new
+            @PluginSet.deserialize(params['PluginSet'])
+          end
+        end
+      end
+
+      # 调度策略权重
+      class SchedulerPolicyPriority < TencentCloud::Common::AbstractModel
+        # @param Name: 打分函数名称
+        # @type Name: String
+        # @param Weight: 权重
+        # @type Weight: Integer
+
+        attr_accessor :Name, :Weight
+
+        def initialize(name=nil, weight=nil)
+          @Name = name
+          @Weight = weight
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Weight = params['Weight']
+        end
+      end
+
       # cloudrun安全特性
       class SecurityContext < TencentCloud::Common::AbstractModel
         # @param Capabilities: 安全能力清单
@@ -20667,6 +21011,38 @@ module TencentCloud
           @Issuer = params['Issuer']
           @JWKSURI = params['JWKSURI']
           @AutoCreateDiscoveryAnonymousAuth = params['AutoCreateDiscoveryAnonymousAuth']
+        end
+      end
+
+      # 调度器访问自定义 Extender 服务 URL 的设置
+      class ServiceReference < TencentCloud::Common::AbstractModel
+        # @param Namespace: 命名空间
+        # @type Namespace: String
+        # @param Name: 服务名称
+        # @type Name: String
+        # @param Port: 服务端口
+        # @type Port: Integer
+        # @param Path: 服务路径
+        # @type Path: String
+        # @param Scheme: 服务协议
+        # @type Scheme: String
+
+        attr_accessor :Namespace, :Name, :Port, :Path, :Scheme
+
+        def initialize(namespace=nil, name=nil, port=nil, path=nil, scheme=nil)
+          @Namespace = namespace
+          @Name = name
+          @Port = port
+          @Path = path
+          @Scheme = scheme
+        end
+
+        def deserialize(params)
+          @Namespace = params['Namespace']
+          @Name = params['Name']
+          @Port = params['Port']
+          @Path = params['Path']
+          @Scheme = params['Scheme']
         end
       end
 

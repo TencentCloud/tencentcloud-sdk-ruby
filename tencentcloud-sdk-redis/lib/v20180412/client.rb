@@ -2215,6 +2215,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口用于变更实例的计费类型
+
+        # @param request: Request instance for ModifyInstanceChargeType.
+        # @type request: :class:`Tencentcloud::redis::V20180412::ModifyInstanceChargeTypeRequest`
+        # @rtype: :class:`Tencentcloud::redis::V20180412::ModifyInstanceChargeTypeResponse`
+        def ModifyInstanceChargeType(request)
+          body = send_request('ModifyInstanceChargeType', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyInstanceChargeTypeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（ModifyInstanceEvent）用于修改实例的运维事件的执行计划。
 
         # @param request: Request instance for ModifyInstanceEvent.

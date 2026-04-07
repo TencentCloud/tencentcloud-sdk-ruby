@@ -731,32 +731,30 @@ module TencentCloud
 
       # 数字人直播间话术信息。
       class AvatarScriptInfo < TencentCloud::Common::AbstractModel
-        # @param ScriptId: 数字人直播间话术 ID。
+        # @param ScriptId: <p>数字人直播间话术 ID。</p>
         # @type ScriptId: String
-        # @param Title: 话术标题。
+        # @param ProductId: <p>数字人直播间产品 ID。</p>
+        # @type ProductId: String
+        # @param Title: <p>话术标题。</p>
         # @type Title: String
-        # @param Content: 话术内容。
+        # @param Content: <p>话术内容。</p>
         # @type Content: String
-        # @param Status: 话术状态。
-        # PENDING --未生成。
-        # PROCESSING --生成中。
-        # READY --已生成。
+        # @param Status: <p>话术状态。PENDING --未生成。PROCESSING --生成中。READY --已生成。FAILED-失败</p><p>枚举值：</p><ul><li>FAILED： 失败</li></ul>
         # @type Status: String
-        # @param Duration: 时长。单位：毫秒。
+        # @param Duration: <p>时长。单位：毫秒。</p>
         # @type Duration: Integer
-        # @param Position: 话术位置。
+        # @param Position: <p>话术位置。</p>
         # @type Position: Integer
-        # @param CreateTime: 话术创建时间，UTC时间。
-        # 注意：UTC时间和北京时间相差八小时。
+        # @param CreateTime: <p>话术创建时间，UTC时间。<br>注意：UTC时间和北京时间相差八小时。</p>
         # @type CreateTime: String
-        # @param UpdateTime: 话术最后更新时间，UTC时间。
-        # 注意：UTC时间和北京时间相差八小时。
+        # @param UpdateTime: <p>话术最后更新时间，UTC时间。<br>注意：UTC时间和北京时间相差八小时。</p>
         # @type UpdateTime: String
 
-        attr_accessor :ScriptId, :Title, :Content, :Status, :Duration, :Position, :CreateTime, :UpdateTime
+        attr_accessor :ScriptId, :ProductId, :Title, :Content, :Status, :Duration, :Position, :CreateTime, :UpdateTime
 
-        def initialize(scriptid=nil, title=nil, content=nil, status=nil, duration=nil, position=nil, createtime=nil, updatetime=nil)
+        def initialize(scriptid=nil, productid=nil, title=nil, content=nil, status=nil, duration=nil, position=nil, createtime=nil, updatetime=nil)
           @ScriptId = scriptid
+          @ProductId = productid
           @Title = title
           @Content = content
           @Status = status
@@ -768,6 +766,7 @@ module TencentCloud
 
         def deserialize(params)
           @ScriptId = params['ScriptId']
+          @ProductId = params['ProductId']
           @Title = params['Title']
           @Content = params['Content']
           @Status = params['Status']

@@ -2069,6 +2069,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 根据操作类型查询实例规格
+
+        # @param request: Request instance for DescribeInstanceSpecsByOperationType.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::DescribeInstanceSpecsByOperationTypeRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::DescribeInstanceSpecsByOperationTypeResponse`
+        def DescribeInstanceSpecsByOperationType(request)
+          body = send_request('DescribeInstanceSpecsByOperationType', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeInstanceSpecsByOperationTypeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口(DescribeInstances)用于查询实例列表。
 
         # @param request: Request instance for DescribeInstances.

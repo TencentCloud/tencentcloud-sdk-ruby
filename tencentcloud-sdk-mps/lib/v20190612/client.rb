@@ -29,6 +29,54 @@ module TencentCloud
         end
 
 
+        # 开通SSAI
+
+        # @param request: Request instance for ActivateSSAI.
+        # @type request: :class:`Tencentcloud::mps::V20190612::ActivateSSAIRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::ActivateSSAIResponse`
+        def ActivateSSAI(request)
+          body = send_request('ActivateSSAI', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ActivateSSAIResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建媒体封装用户。
+
+        # @param request: Request instance for ActivateStreamPackage.
+        # @type request: :class:`Tencentcloud::mps::V20190612::ActivateStreamPackageRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::ActivateStreamPackageResponse`
+        def ActivateStreamPackage(request)
+          body = send_request('ActivateStreamPackage', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ActivateStreamPackageResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 批量删除媒体传输流。
 
         # @param request: Request instance for BatchDeleteStreamLinkFlow.
@@ -743,6 +791,126 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建媒体包装频道。
+
+        # @param request: Request instance for CreateStreamPackageLinearAssemblyChannel.
+        # @type request: :class:`Tencentcloud::mps::V20190612::CreateStreamPackageLinearAssemblyChannelRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::CreateStreamPackageLinearAssemblyChannelResponse`
+        def CreateStreamPackageLinearAssemblyChannel(request)
+          body = send_request('CreateStreamPackageLinearAssemblyChannel', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateStreamPackageLinearAssemblyChannelResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建线性组装Program。
+
+        # @param request: Request instance for CreateStreamPackageLinearAssemblyProgram.
+        # @type request: :class:`Tencentcloud::mps::V20190612::CreateStreamPackageLinearAssemblyProgramRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::CreateStreamPackageLinearAssemblyProgramResponse`
+        def CreateStreamPackageLinearAssemblyProgram(request)
+          body = send_request('CreateStreamPackageLinearAssemblyProgram', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateStreamPackageLinearAssemblyProgramResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建SSAI广告插入配置。
+
+        # @param request: Request instance for CreateStreamPackageSSAIChannel.
+        # @type request: :class:`Tencentcloud::mps::V20190612::CreateStreamPackageSSAIChannelRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::CreateStreamPackageSSAIChannelResponse`
+        def CreateStreamPackageSSAIChannel(request)
+          body = send_request('CreateStreamPackageSSAIChannel', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateStreamPackageSSAIChannelResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建媒体包装频道。
+
+        # @param request: Request instance for CreateStreamPackageSource.
+        # @type request: :class:`Tencentcloud::mps::V20190612::CreateStreamPackageSourceRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::CreateStreamPackageSourceResponse`
+        def CreateStreamPackageSource(request)
+          body = send_request('CreateStreamPackageSource', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateStreamPackageSourceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建媒体包装频道。
+
+        # @param request: Request instance for CreateStreamPackageSourceLocation.
+        # @type request: :class:`Tencentcloud::mps::V20190612::CreateStreamPackageSourceLocationRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::CreateStreamPackageSourceLocationResponse`
+        def CreateStreamPackageSourceLocation(request)
+          body = send_request('CreateStreamPackageSourceLocation', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateStreamPackageSourceLocationResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建自定义字幕压制模板
 
         # @param request: Request instance for CreateSubtitleEmbedTemplate.
@@ -1429,6 +1597,198 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除媒体包装Channel。
+
+        # @param request: Request instance for DeleteStreamPackageLinearAssemblyChannel.
+        # @type request: :class:`Tencentcloud::mps::V20190612::DeleteStreamPackageLinearAssemblyChannelRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::DeleteStreamPackageLinearAssemblyChannelResponse`
+        def DeleteStreamPackageLinearAssemblyChannel(request)
+          body = send_request('DeleteStreamPackageLinearAssemblyChannel', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteStreamPackageLinearAssemblyChannelResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 批量删除媒体包装Channel。
+
+        # @param request: Request instance for DeleteStreamPackageLinearAssemblyChannels.
+        # @type request: :class:`Tencentcloud::mps::V20190612::DeleteStreamPackageLinearAssemblyChannelsRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::DeleteStreamPackageLinearAssemblyChannelsResponse`
+        def DeleteStreamPackageLinearAssemblyChannels(request)
+          body = send_request('DeleteStreamPackageLinearAssemblyChannels', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteStreamPackageLinearAssemblyChannelsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除线性组装Program。
+
+        # @param request: Request instance for DeleteStreamPackageLinearAssemblyProgram.
+        # @type request: :class:`Tencentcloud::mps::V20190612::DeleteStreamPackageLinearAssemblyProgramRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::DeleteStreamPackageLinearAssemblyProgramResponse`
+        def DeleteStreamPackageLinearAssemblyProgram(request)
+          body = send_request('DeleteStreamPackageLinearAssemblyProgram', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteStreamPackageLinearAssemblyProgramResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 批量删除线性组装Program。
+
+        # @param request: Request instance for DeleteStreamPackageLinearAssemblyPrograms.
+        # @type request: :class:`Tencentcloud::mps::V20190612::DeleteStreamPackageLinearAssemblyProgramsRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::DeleteStreamPackageLinearAssemblyProgramsResponse`
+        def DeleteStreamPackageLinearAssemblyPrograms(request)
+          body = send_request('DeleteStreamPackageLinearAssemblyPrograms', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteStreamPackageLinearAssemblyProgramsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 批量删除同一Channel下的ID
+
+        # @param request: Request instance for DeleteStreamPackageLinearAssemblyProgramsByChannel.
+        # @type request: :class:`Tencentcloud::mps::V20190612::DeleteStreamPackageLinearAssemblyProgramsByChannelRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::DeleteStreamPackageLinearAssemblyProgramsByChannelResponse`
+        def DeleteStreamPackageLinearAssemblyProgramsByChannel(request)
+          body = send_request('DeleteStreamPackageLinearAssemblyProgramsByChannel', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteStreamPackageLinearAssemblyProgramsByChannelResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除广告插入配置。
+
+        # @param request: Request instance for DeleteStreamPackageSSAIChannel.
+        # @type request: :class:`Tencentcloud::mps::V20190612::DeleteStreamPackageSSAIChannelRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::DeleteStreamPackageSSAIChannelResponse`
+        def DeleteStreamPackageSSAIChannel(request)
+          body = send_request('DeleteStreamPackageSSAIChannel', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteStreamPackageSSAIChannelResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 批量删除媒体包装Source。
+
+        # @param request: Request instance for DeleteStreamPackageSource.
+        # @type request: :class:`Tencentcloud::mps::V20190612::DeleteStreamPackageSourceRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::DeleteStreamPackageSourceResponse`
+        def DeleteStreamPackageSource(request)
+          body = send_request('DeleteStreamPackageSource', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteStreamPackageSourceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除媒体包装SourceLocation。
+
+        # @param request: Request instance for DeleteStreamPackageSourceLocation.
+        # @type request: :class:`Tencentcloud::mps::V20190612::DeleteStreamPackageSourceLocationRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::DeleteStreamPackageSourceLocationResponse`
+        def DeleteStreamPackageSourceLocation(request)
+          body = send_request('DeleteStreamPackageSourceLocation', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteStreamPackageSourceLocationResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除用户自定义字幕压制模板。
 
         # @param request: Request instance for DeleteSubtitleEmbedTemplate.
@@ -1909,6 +2269,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询用户开通mps信息，是否开通/授权。
+
+        # @param request: Request instance for DescribeMDPMPSUserInfo.
+        # @type request: :class:`Tencentcloud::mps::V20190612::DescribeMDPMPSUserInfoRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::DescribeMDPMPSUserInfoResponse`
+        def DescribeMDPMPSUserInfo(request)
+          body = send_request('DescribeMDPMPSUserInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeMDPMPSUserInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取媒体的元信息，包括视频画面宽、高、编码格式、时长、帧率等。
 
         # @param request: Request instance for DescribeMediaMetaData.
@@ -1991,6 +2375,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeQualityControlTemplatesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询SSAI开通状态
+
+        # @param request: Request instance for DescribeSSAIActivateState.
+        # @type request: :class:`Tencentcloud::mps::V20190612::DescribeSSAIActivateStateRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::DescribeSSAIActivateStateResponse`
+        def DescribeSSAIActivateState(request)
+          body = send_request('DescribeSSAIActivateState', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSSAIActivateStateResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2423,6 +2831,390 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeStreamLinkSecurityGroupsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询媒体封装用户开通情况。
+
+        # @param request: Request instance for DescribeStreamPackageActivateState.
+        # @type request: :class:`Tencentcloud::mps::V20190612::DescribeStreamPackageActivateStateRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::DescribeStreamPackageActivateStateResponse`
+        def DescribeStreamPackageActivateState(request)
+          body = send_request('DescribeStreamPackageActivateState', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeStreamPackageActivateStateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询媒体包装线性组装频道信息。
+
+        # @param request: Request instance for DescribeStreamPackageLinearAssemblyChannel.
+        # @type request: :class:`Tencentcloud::mps::V20190612::DescribeStreamPackageLinearAssemblyChannelRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::DescribeStreamPackageLinearAssemblyChannelResponse`
+        def DescribeStreamPackageLinearAssemblyChannel(request)
+          body = send_request('DescribeStreamPackageLinearAssemblyChannel', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeStreamPackageLinearAssemblyChannelResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询线性组装频道告警信息。
+
+        # @param request: Request instance for DescribeStreamPackageLinearAssemblyChannelAlerts.
+        # @type request: :class:`Tencentcloud::mps::V20190612::DescribeStreamPackageLinearAssemblyChannelAlertsRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::DescribeStreamPackageLinearAssemblyChannelAlertsResponse`
+        def DescribeStreamPackageLinearAssemblyChannelAlerts(request)
+          body = send_request('DescribeStreamPackageLinearAssemblyChannelAlerts', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeStreamPackageLinearAssemblyChannelAlertsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询线性组装频道信息列表。
+
+        # @param request: Request instance for DescribeStreamPackageLinearAssemblyChannels.
+        # @type request: :class:`Tencentcloud::mps::V20190612::DescribeStreamPackageLinearAssemblyChannelsRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::DescribeStreamPackageLinearAssemblyChannelsResponse`
+        def DescribeStreamPackageLinearAssemblyChannels(request)
+          body = send_request('DescribeStreamPackageLinearAssemblyChannels', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeStreamPackageLinearAssemblyChannelsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询媒体包装Program信息。
+
+        # @param request: Request instance for DescribeStreamPackageLinearAssemblyProgram.
+        # @type request: :class:`Tencentcloud::mps::V20190612::DescribeStreamPackageLinearAssemblyProgramRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::DescribeStreamPackageLinearAssemblyProgramResponse`
+        def DescribeStreamPackageLinearAssemblyProgram(request)
+          body = send_request('DescribeStreamPackageLinearAssemblyProgram', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeStreamPackageLinearAssemblyProgramResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询Programe信息列表。
+
+        # @param request: Request instance for DescribeStreamPackageLinearAssemblyProgramSchedules.
+        # @type request: :class:`Tencentcloud::mps::V20190612::DescribeStreamPackageLinearAssemblyProgramSchedulesRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::DescribeStreamPackageLinearAssemblyProgramSchedulesResponse`
+        def DescribeStreamPackageLinearAssemblyProgramSchedules(request)
+          body = send_request('DescribeStreamPackageLinearAssemblyProgramSchedules', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeStreamPackageLinearAssemblyProgramSchedulesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询Programe信息列表。
+
+        # @param request: Request instance for DescribeStreamPackageLinearAssemblyPrograms.
+        # @type request: :class:`Tencentcloud::mps::V20190612::DescribeStreamPackageLinearAssemblyProgramsRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::DescribeStreamPackageLinearAssemblyProgramsResponse`
+        def DescribeStreamPackageLinearAssemblyPrograms(request)
+          body = send_request('DescribeStreamPackageLinearAssemblyPrograms', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeStreamPackageLinearAssemblyProgramsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 频道线性组装用量查询
+
+        # @param request: Request instance for DescribeStreamPackageLinearAssemblyUsage.
+        # @type request: :class:`Tencentcloud::mps::V20190612::DescribeStreamPackageLinearAssemblyUsageRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::DescribeStreamPackageLinearAssemblyUsageResponse`
+        def DescribeStreamPackageLinearAssemblyUsage(request)
+          body = send_request('DescribeStreamPackageLinearAssemblyUsage', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeStreamPackageLinearAssemblyUsageResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询广告插入配置。
+
+        # @param request: Request instance for DescribeStreamPackageSSAIChannel.
+        # @type request: :class:`Tencentcloud::mps::V20190612::DescribeStreamPackageSSAIChannelRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::DescribeStreamPackageSSAIChannelResponse`
+        def DescribeStreamPackageSSAIChannel(request)
+          body = send_request('DescribeStreamPackageSSAIChannel', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeStreamPackageSSAIChannelResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 批量查询广告插入配置。
+
+        # @param request: Request instance for DescribeStreamPackageSSAIChannels.
+        # @type request: :class:`Tencentcloud::mps::V20190612::DescribeStreamPackageSSAIChannelsRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::DescribeStreamPackageSSAIChannelsResponse`
+        def DescribeStreamPackageSSAIChannels(request)
+          body = send_request('DescribeStreamPackageSSAIChannels', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeStreamPackageSSAIChannelsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # SSAI广告替换用量查询
+
+        # @param request: Request instance for DescribeStreamPackageSSAIUsage.
+        # @type request: :class:`Tencentcloud::mps::V20190612::DescribeStreamPackageSSAIUsageRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::DescribeStreamPackageSSAIUsageResponse`
+        def DescribeStreamPackageSSAIUsage(request)
+          body = send_request('DescribeStreamPackageSSAIUsage', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeStreamPackageSSAIUsageResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询媒体包装Source信息。
+
+        # @param request: Request instance for DescribeStreamPackageSource.
+        # @type request: :class:`Tencentcloud::mps::V20190612::DescribeStreamPackageSourceRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::DescribeStreamPackageSourceResponse`
+        def DescribeStreamPackageSource(request)
+          body = send_request('DescribeStreamPackageSource', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeStreamPackageSourceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询线性组装Source告警信息。
+
+        # @param request: Request instance for DescribeStreamPackageSourceAlerts.
+        # @type request: :class:`Tencentcloud::mps::V20190612::DescribeStreamPackageSourceAlertsRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::DescribeStreamPackageSourceAlertsResponse`
+        def DescribeStreamPackageSourceAlerts(request)
+          body = send_request('DescribeStreamPackageSourceAlerts', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeStreamPackageSourceAlertsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询媒体包装SourceLocation信息。
+
+        # @param request: Request instance for DescribeStreamPackageSourceLocation.
+        # @type request: :class:`Tencentcloud::mps::V20190612::DescribeStreamPackageSourceLocationRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::DescribeStreamPackageSourceLocationResponse`
+        def DescribeStreamPackageSourceLocation(request)
+          body = send_request('DescribeStreamPackageSourceLocation', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeStreamPackageSourceLocationResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询SourceLocation信息列表。
+
+        # @param request: Request instance for DescribeStreamPackageSourceLocations.
+        # @type request: :class:`Tencentcloud::mps::V20190612::DescribeStreamPackageSourceLocationsRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::DescribeStreamPackageSourceLocationsResponse`
+        def DescribeStreamPackageSourceLocations(request)
+          body = send_request('DescribeStreamPackageSourceLocations', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeStreamPackageSourceLocationsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询Source信息列表。
+
+        # @param request: Request instance for DescribeStreamPackageSources.
+        # @type request: :class:`Tencentcloud::mps::V20190612::DescribeStreamPackageSourcesRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::DescribeStreamPackageSourcesResponse`
+        def DescribeStreamPackageSources(request)
+          body = send_request('DescribeStreamPackageSources', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeStreamPackageSourcesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -3463,6 +4255,126 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改媒体包装Source信息。
+
+        # @param request: Request instance for ModifyStreamPackageLinearAssemblyChannel.
+        # @type request: :class:`Tencentcloud::mps::V20190612::ModifyStreamPackageLinearAssemblyChannelRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::ModifyStreamPackageLinearAssemblyChannelResponse`
+        def ModifyStreamPackageLinearAssemblyChannel(request)
+          body = send_request('ModifyStreamPackageLinearAssemblyChannel', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyStreamPackageLinearAssemblyChannelResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改媒体包装Program信息。
+
+        # @param request: Request instance for ModifyStreamPackageLinearAssemblyProgram.
+        # @type request: :class:`Tencentcloud::mps::V20190612::ModifyStreamPackageLinearAssemblyProgramRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::ModifyStreamPackageLinearAssemblyProgramResponse`
+        def ModifyStreamPackageLinearAssemblyProgram(request)
+          body = send_request('ModifyStreamPackageLinearAssemblyProgram', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyStreamPackageLinearAssemblyProgramResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改广告插入配置。
+
+        # @param request: Request instance for ModifyStreamPackageSSAIChannel.
+        # @type request: :class:`Tencentcloud::mps::V20190612::ModifyStreamPackageSSAIChannelRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::ModifyStreamPackageSSAIChannelResponse`
+        def ModifyStreamPackageSSAIChannel(request)
+          body = send_request('ModifyStreamPackageSSAIChannel', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyStreamPackageSSAIChannelResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改媒体包装Source信息。
+
+        # @param request: Request instance for ModifyStreamPackageSource.
+        # @type request: :class:`Tencentcloud::mps::V20190612::ModifyStreamPackageSourceRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::ModifyStreamPackageSourceResponse`
+        def ModifyStreamPackageSource(request)
+          body = send_request('ModifyStreamPackageSource', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyStreamPackageSourceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改媒体包装SourceLocation信息。
+
+        # @param request: Request instance for ModifyStreamPackageSourceLocation.
+        # @type request: :class:`Tencentcloud::mps::V20190612::ModifyStreamPackageSourceLocationRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::ModifyStreamPackageSourceLocationResponse`
+        def ModifyStreamPackageSourceLocation(request)
+          body = send_request('ModifyStreamPackageSourceLocation', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyStreamPackageSourceLocationResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 修改用户自定义字幕压制模板。
 
         # @param request: Request instance for ModifySubtitleEmbedTemplate.
@@ -3800,6 +4712,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 启动媒体包装频道。
+
+        # @param request: Request instance for StartStreamPackageLinearAssemblyChannel.
+        # @type request: :class:`Tencentcloud::mps::V20190612::StartStreamPackageLinearAssemblyChannelRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::StartStreamPackageLinearAssemblyChannelResponse`
+        def StartStreamPackageLinearAssemblyChannel(request)
+          body = send_request('StartStreamPackageLinearAssemblyChannel', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = StartStreamPackageLinearAssemblyChannelResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 停止媒体传输流。
 
         # @param request: Request instance for StopStreamLinkFlow.
@@ -3810,6 +4746,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = StopStreamLinkFlowResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 停止线性组装频道。
+
+        # @param request: Request instance for StopStreamPackageLinearAssemblyChannel.
+        # @type request: :class:`Tencentcloud::mps::V20190612::StopStreamPackageLinearAssemblyChannelRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::StopStreamPackageLinearAssemblyChannelResponse`
+        def StopStreamPackageLinearAssemblyChannel(request)
+          body = send_request('StopStreamPackageLinearAssemblyChannel', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = StopStreamPackageLinearAssemblyChannelResponse.new
             model.deserialize(response['Response'])
             model
           else

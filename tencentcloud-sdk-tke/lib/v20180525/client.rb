@@ -2669,6 +2669,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询集群调度策略
+
+        # @param request: Request instance for DescribeClusterSchedulerPolicy.
+        # @type request: :class:`Tencentcloud::tke::V20180525::DescribeClusterSchedulerPolicyRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::DescribeClusterSchedulerPolicyResponse`
+        def DescribeClusterSchedulerPolicy(request)
+          body = send_request('DescribeClusterSchedulerPolicy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeClusterSchedulerPolicyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 集群的密钥信息
 
         # @param request: Request instance for DescribeClusterSecurity.
@@ -5439,6 +5463,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyClusterRuntimeConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改集群调度策略
+
+        # @param request: Request instance for ModifyClusterSchedulerPolicy.
+        # @type request: :class:`Tencentcloud::tke::V20180525::ModifyClusterSchedulerPolicyRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::ModifyClusterSchedulerPolicyResponse`
+        def ModifyClusterSchedulerPolicy(request)
+          body = send_request('ModifyClusterSchedulerPolicy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyClusterSchedulerPolicyResponse.new
             model.deserialize(response['Response'])
             model
           else
