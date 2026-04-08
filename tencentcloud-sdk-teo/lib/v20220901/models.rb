@@ -3140,7 +3140,8 @@ module TencentCloud
         # @type Type: String
         # @param AttesterSource: 认证方法。取值有：
         # <li>TC-RCE: 使用风险识别 RCE 进行认证；</li>
-        # <li>TC-CAPTCHA: 使用天御验证码进行认证。</li>
+        # <li>TC-CAPTCHA: 使用天御验证码进行认证；</li>
+        # <li>TC-EO-CAPTCHA: 使用 EdgeOne 人机校验进行认证。</li>
         # @type AttesterSource: String
         # @param AttesterDuration: 认证有效时间。默认为 60s，支持的单位有：
         # <li>s：秒，取值范围 60～43200；</li>
@@ -3153,10 +3154,13 @@ module TencentCloud
         # @param TCCaptchaOption: TC-CAPTCHA 认证的配置信息。
         # <li>当 AttesterSource 参数值为 TC-CAPTCHA 时，此字段必填。</li>
         # @type TCCaptchaOption: :class:`Tencentcloud::Teo.v20220901.models.TCCaptchaOption`
+        # @param TCEOCaptchaOption: TC-EO-CAPTCHA 认证的配置信息。
+        # <li>当 AttesterSource 参数值为 TC-EO-CAPTCHA 时，此字段必填。</li>
+        # @type TCEOCaptchaOption: :class:`Tencentcloud::Teo.v20220901.models.TCEOCaptchaOption`
 
-        attr_accessor :Id, :Name, :Type, :AttesterSource, :AttesterDuration, :TCRCEOption, :TCCaptchaOption
+        attr_accessor :Id, :Name, :Type, :AttesterSource, :AttesterDuration, :TCRCEOption, :TCCaptchaOption, :TCEOCaptchaOption
 
-        def initialize(id=nil, name=nil, type=nil, attestersource=nil, attesterduration=nil, tcrceoption=nil, tccaptchaoption=nil)
+        def initialize(id=nil, name=nil, type=nil, attestersource=nil, attesterduration=nil, tcrceoption=nil, tccaptchaoption=nil, tceocaptchaoption=nil)
           @Id = id
           @Name = name
           @Type = type
@@ -3164,6 +3168,7 @@ module TencentCloud
           @AttesterDuration = attesterduration
           @TCRCEOption = tcrceoption
           @TCCaptchaOption = tccaptchaoption
+          @TCEOCaptchaOption = tceocaptchaoption
         end
 
         def deserialize(params)
@@ -3179,6 +3184,10 @@ module TencentCloud
           unless params['TCCaptchaOption'].nil?
             @TCCaptchaOption = TCCaptchaOption.new
             @TCCaptchaOption.deserialize(params['TCCaptchaOption'])
+          end
+          unless params['TCEOCaptchaOption'].nil?
+            @TCEOCaptchaOption = TCEOCaptchaOption.new
+            @TCEOCaptchaOption.deserialize(params['TCEOCaptchaOption'])
           end
         end
       end
@@ -23585,6 +23594,22 @@ module TencentCloud
         def deserialize(params)
           @CaptchaAppId = params['CaptchaAppId']
           @AppSecretKey = params['AppSecretKey']
+        end
+      end
+
+      # EdgeOne 人机校验认证实例信息。
+      class TCEOCaptchaOption < TencentCloud::Common::AbstractModel
+        # @param CaptchaMode: EdgeOne 人机校验模式，取值有：<li> Invisible：无感验证；</li><li>Adaptive：自适应交互验证。</li>
+        # @type CaptchaMode: String
+
+        attr_accessor :CaptchaMode
+
+        def initialize(captchamode=nil)
+          @CaptchaMode = captchamode
+        end
+
+        def deserialize(params)
+          @CaptchaMode = params['CaptchaMode']
         end
       end
 

@@ -6704,11 +6704,11 @@ module TencentCloud
 
       # DescribeBackupListByVaultItem
       class DescribeBackupListByVaultItem < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群id
+        # @param ClusterId: <p>集群id</p>
         # @type ClusterId: String
-        # @param ClusterName: 集群name
+        # @param ClusterName: <p>集群name</p>
         # @type ClusterName: String
-        # @param BackupFileInfo: 备份信息
+        # @param BackupFileInfo: <p>备份信息</p>
         # @type BackupFileInfo: :class:`Tencentcloud::Cynosdb.v20190107.models.BackupFileInfo`
 
         attr_accessor :ClusterId, :ClusterName, :BackupFileInfo
@@ -7012,11 +7012,11 @@ module TencentCloud
 
       # binlog备份信息
       class DescribeBinlogListByVaultItem < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群ID
+        # @param ClusterId: <p>集群ID</p>
         # @type ClusterId: String
-        # @param ClusterName: 集群名称
+        # @param ClusterName: <p>集群名称</p>
         # @type ClusterName: String
-        # @param BinlogFileInfo: Binlog文件信息
+        # @param BinlogFileInfo: <p>Binlog文件信息</p>
         # @type BinlogFileInfo: :class:`Tencentcloud::Cynosdb.v20190107.models.BinlogItem`
 
         attr_accessor :ClusterId, :ClusterName, :BinlogFileInfo
@@ -10110,11 +10110,11 @@ module TencentCloud
 
       # redolog信息
       class DescribeRedoLogListByVaultItem < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群ID
+        # @param ClusterId: <p>集群ID</p>
         # @type ClusterId: String
-        # @param ClusterName: 集群名称
+        # @param ClusterName: <p>集群名称</p>
         # @type ClusterName: String
-        # @param RedoFileInfo: RedoLog文件信息
+        # @param RedoFileInfo: <p>RedoLog文件信息</p>
         # @type RedoFileInfo: :class:`Tencentcloud::Cynosdb.v20190107.models.RedoLogItem`
 
         attr_accessor :ClusterId, :ClusterName, :RedoFileInfo

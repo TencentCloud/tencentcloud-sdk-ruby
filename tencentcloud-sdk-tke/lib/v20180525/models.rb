@@ -13694,41 +13694,51 @@ module TencentCloud
 
       # 扩展调度器(Extender)管理的扩展资源
       class ExtenderManagedResource < TencentCloud::Common::AbstractModel
-        # @param Name: 自定义资源的名称
+        # @param Name: <p>自定义资源的名称</p>
         # @type Name: String
+        # @param IgnoredByScheduler: <p>调度器是否忽略该资源的默认处理</p>
+        # @type IgnoredByScheduler: Boolean
 
-        attr_accessor :Name
+        attr_accessor :Name, :IgnoredByScheduler
 
-        def initialize(name=nil)
+        def initialize(name=nil, ignoredbyscheduler=nil)
           @Name = name
+          @IgnoredByScheduler = ignoredbyscheduler
         end
 
         def deserialize(params)
           @Name = params['Name']
+          @IgnoredByScheduler = params['IgnoredByScheduler']
         end
       end
 
       # 扩展调度器(Extenders)
       class Extenders < TencentCloud::Common::AbstractModel
-        # @param FilterVerb: 过滤阶段接口
+        # @param FilterVerb: <p>过滤阶段接口</p>
         # @type FilterVerb: String
-        # @param PrioritizeVerb: 打分阶段扩展接口
+        # @param PrioritizeVerb: <p>打分阶段扩展接口</p>
         # @type PrioritizeVerb: String
-        # @param Weight: 打分阶段节点分数的权重,取值范围限定(0,2】
+        # @param Weight: <p>打分阶段节点分数的权重,取值范围限定(0,2】</p>
         # @type Weight: Integer
-        # @param ManagedResources: 扩展调度器(Extender)管理的扩展资源
+        # @param ManagedResources: <p>扩展调度器(Extender)管理的扩展资源</p>
         # @type ManagedResources: Array
-        # @param ExtenderClientConfig: extender客户端配置
+        # @param ExtenderClientConfig: <p>extender客户端配置</p>
         # @type ExtenderClientConfig: :class:`Tencentcloud::Tke.v20180525.models.ExtenderClientConfig`
+        # @param PreemptVerb: <p>抢占接口</p>
+        # @type PreemptVerb: String
+        # @param NodeCacheCapable: <p>节点缓存能力</p>
+        # @type NodeCacheCapable: Boolean
 
-        attr_accessor :FilterVerb, :PrioritizeVerb, :Weight, :ManagedResources, :ExtenderClientConfig
+        attr_accessor :FilterVerb, :PrioritizeVerb, :Weight, :ManagedResources, :ExtenderClientConfig, :PreemptVerb, :NodeCacheCapable
 
-        def initialize(filterverb=nil, prioritizeverb=nil, weight=nil, managedresources=nil, extenderclientconfig=nil)
+        def initialize(filterverb=nil, prioritizeverb=nil, weight=nil, managedresources=nil, extenderclientconfig=nil, preemptverb=nil, nodecachecapable=nil)
           @FilterVerb = filterverb
           @PrioritizeVerb = prioritizeverb
           @Weight = weight
           @ManagedResources = managedresources
           @ExtenderClientConfig = extenderclientconfig
+          @PreemptVerb = preemptverb
+          @NodeCacheCapable = nodecachecapable
         end
 
         def deserialize(params)
@@ -13747,6 +13757,8 @@ module TencentCloud
             @ExtenderClientConfig = ExtenderClientConfig.new
             @ExtenderClientConfig.deserialize(params['ExtenderClientConfig'])
           end
+          @PreemptVerb = params['PreemptVerb']
+          @NodeCacheCapable = params['NodeCacheCapable']
         end
       end
 

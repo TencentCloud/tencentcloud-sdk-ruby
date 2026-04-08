@@ -2031,6 +2031,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 批量修改记录
+
+        # @param request: Request instance for ModifyRecordBatchV3.
+        # @type request: :class:`Tencentcloud::dnspod::V20210323::ModifyRecordBatchV3Request`
+        # @rtype: :class:`Tencentcloud::dnspod::V20210323::ModifyRecordBatchV3Response`
+        def ModifyRecordBatchV3(request)
+          body = send_request('ModifyRecordBatchV3', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyRecordBatchV3Response.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 修改记录可选字段
 
         # @param request: Request instance for ModifyRecordFields.

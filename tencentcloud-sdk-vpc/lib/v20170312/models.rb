@@ -6604,6 +6604,86 @@ module TencentCloud
         end
       end
 
+      # CreateTrafficMirrorFilterRules请求参数结构体
+      class CreateTrafficMirrorFilterRulesRequest < TencentCloud::Common::AbstractModel
+        # @param TrafficMirrorId: 流量镜像实例唯一ID。
+        # @type TrafficMirrorId: String
+        # @param IngressFilterRules: 流量镜像入站过滤规则。
+        # @type IngressFilterRules: Array
+        # @param EgressFilterRules: 流量镜像出站过滤规则。
+        # @type EgressFilterRules: Array
+
+        attr_accessor :TrafficMirrorId, :IngressFilterRules, :EgressFilterRules
+
+        def initialize(trafficmirrorid=nil, ingressfilterrules=nil, egressfilterrules=nil)
+          @TrafficMirrorId = trafficmirrorid
+          @IngressFilterRules = ingressfilterrules
+          @EgressFilterRules = egressfilterrules
+        end
+
+        def deserialize(params)
+          @TrafficMirrorId = params['TrafficMirrorId']
+          unless params['IngressFilterRules'].nil?
+            @IngressFilterRules = []
+            params['IngressFilterRules'].each do |i|
+              trafficmirrorfilter_tmp = TrafficMirrorFilter.new
+              trafficmirrorfilter_tmp.deserialize(i)
+              @IngressFilterRules << trafficmirrorfilter_tmp
+            end
+          end
+          unless params['EgressFilterRules'].nil?
+            @EgressFilterRules = []
+            params['EgressFilterRules'].each do |i|
+              trafficmirrorfilter_tmp = TrafficMirrorFilter.new
+              trafficmirrorfilter_tmp.deserialize(i)
+              @EgressFilterRules << trafficmirrorfilter_tmp
+            end
+          end
+        end
+      end
+
+      # CreateTrafficMirrorFilterRules返回参数结构体
+      class CreateTrafficMirrorFilterRulesResponse < TencentCloud::Common::AbstractModel
+        # @param TrafficMirrorId: 流量镜像实例唯一ID。
+        # @type TrafficMirrorId: String
+        # @param IngressFilterRules: 流量镜像入站过滤规则。
+        # @type IngressFilterRules: Array
+        # @param EgressFilterRules: 流量镜像出站过滤规则。
+        # @type EgressFilterRules: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TrafficMirrorId, :IngressFilterRules, :EgressFilterRules, :RequestId
+
+        def initialize(trafficmirrorid=nil, ingressfilterrules=nil, egressfilterrules=nil, requestid=nil)
+          @TrafficMirrorId = trafficmirrorid
+          @IngressFilterRules = ingressfilterrules
+          @EgressFilterRules = egressfilterrules
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TrafficMirrorId = params['TrafficMirrorId']
+          unless params['IngressFilterRules'].nil?
+            @IngressFilterRules = []
+            params['IngressFilterRules'].each do |i|
+              trafficmirrorfilter_tmp = TrafficMirrorFilter.new
+              trafficmirrorfilter_tmp.deserialize(i)
+              @IngressFilterRules << trafficmirrorfilter_tmp
+            end
+          end
+          unless params['EgressFilterRules'].nil?
+            @EgressFilterRules = []
+            params['EgressFilterRules'].each do |i|
+              trafficmirrorfilter_tmp = TrafficMirrorFilter.new
+              trafficmirrorfilter_tmp.deserialize(i)
+              @EgressFilterRules << trafficmirrorfilter_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateTrafficMirror请求参数结构体
       class CreateTrafficMirrorRequest < TencentCloud::Common::AbstractModel
         # @param VpcId: VPC实例ID。
@@ -9531,6 +9611,46 @@ module TencentCloud
 
       # DeleteTemplateMember返回参数结构体
       class DeleteTemplateMemberResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteTrafficMirrorFilterRules请求参数结构体
+      class DeleteTrafficMirrorFilterRulesRequest < TencentCloud::Common::AbstractModel
+        # @param TrafficMirrorId: 流量镜像实例唯一ID。
+        # @type TrafficMirrorId: String
+        # @param IngressFilterRuleIds: 流量镜像入站过滤唯一ID列表。
+        # @type IngressFilterRuleIds: Array
+        # @param EgressFilterRuleIds: 流量镜像出站过滤唯一ID列表。
+        # @type EgressFilterRuleIds: Array
+
+        attr_accessor :TrafficMirrorId, :IngressFilterRuleIds, :EgressFilterRuleIds
+
+        def initialize(trafficmirrorid=nil, ingressfilterruleids=nil, egressfilterruleids=nil)
+          @TrafficMirrorId = trafficmirrorid
+          @IngressFilterRuleIds = ingressfilterruleids
+          @EgressFilterRuleIds = egressfilterruleids
+        end
+
+        def deserialize(params)
+          @TrafficMirrorId = params['TrafficMirrorId']
+          @IngressFilterRuleIds = params['IngressFilterRuleIds']
+          @EgressFilterRuleIds = params['EgressFilterRuleIds']
+        end
+      end
+
+      # DeleteTrafficMirrorFilterRules返回参数结构体
+      class DeleteTrafficMirrorFilterRulesResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -16295,6 +16415,94 @@ module TencentCloud
         end
       end
 
+      # DescribeTrafficMirrorFilterRules请求参数结构体
+      class DescribeTrafficMirrorFilterRulesRequest < TencentCloud::Common::AbstractModel
+        # @param TrafficMirrorId: 流量镜像唯一ID
+        # @type TrafficMirrorId: String
+        # @param TrafficMirrorFilterRuleIds: 流量镜像出站、入站过滤唯一ID列表。
+        # @type TrafficMirrorFilterRuleIds: Array
+        # @param Filters: <li>traffic-mirror-filter-rule-id - String - （过滤条件） 流量镜像过滤规则，形如：tmfi-qfhrb7yj。 </li>
+        # <li>action - String - （过滤条件）策略， 支持类型： ACCEPT， DROP。 </li>
+        # <li>description - String - （过滤条件）描述。 </li>
+        # <li>direction - String - （过滤条件）方向, 支持类型：INGRESS， EGRESS。</li>
+        # @type Filters: Array
+        # @param Offset: 偏移量。
+        # @type Offset: Integer
+        # @param Limit: 请求对象个数。
+        # @type Limit: Integer
+
+        attr_accessor :TrafficMirrorId, :TrafficMirrorFilterRuleIds, :Filters, :Offset, :Limit
+
+        def initialize(trafficmirrorid=nil, trafficmirrorfilterruleids=nil, filters=nil, offset=nil, limit=nil)
+          @TrafficMirrorId = trafficmirrorid
+          @TrafficMirrorFilterRuleIds = trafficmirrorfilterruleids
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @TrafficMirrorId = params['TrafficMirrorId']
+          @TrafficMirrorFilterRuleIds = params['TrafficMirrorFilterRuleIds']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeTrafficMirrorFilterRules返回参数结构体
+      class DescribeTrafficMirrorFilterRulesResponse < TencentCloud::Common::AbstractModel
+        # @param TrafficMirrorId: 流量镜像实例唯一ID。
+        # @type TrafficMirrorId: String
+        # @param IngressFilterRules: 流量镜像入站过滤规则。
+        # @type IngressFilterRules: Array
+        # @param EgressFilterRules: 流量镜像出站过滤规则。
+        # @type EgressFilterRules: Array
+        # @param TotalCount: 符合条件的实例数量。分页查询的时候，如果IngressFilterRules的长度加上IngressFilterRules的长度，小于limit的时候表示已经查询完毕。
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TrafficMirrorId, :IngressFilterRules, :EgressFilterRules, :TotalCount, :RequestId
+
+        def initialize(trafficmirrorid=nil, ingressfilterrules=nil, egressfilterrules=nil, totalcount=nil, requestid=nil)
+          @TrafficMirrorId = trafficmirrorid
+          @IngressFilterRules = ingressfilterrules
+          @EgressFilterRules = egressfilterrules
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TrafficMirrorId = params['TrafficMirrorId']
+          unless params['IngressFilterRules'].nil?
+            @IngressFilterRules = []
+            params['IngressFilterRules'].each do |i|
+              trafficmirrorfilter_tmp = TrafficMirrorFilter.new
+              trafficmirrorfilter_tmp.deserialize(i)
+              @IngressFilterRules << trafficmirrorfilter_tmp
+            end
+          end
+          unless params['EgressFilterRules'].nil?
+            @EgressFilterRules = []
+            params['EgressFilterRules'].each do |i|
+              trafficmirrorfilter_tmp = TrafficMirrorFilter.new
+              trafficmirrorfilter_tmp.deserialize(i)
+              @EgressFilterRules << trafficmirrorfilter_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeTrafficMirrors请求参数结构体
       class DescribeTrafficMirrorsRequest < TencentCloud::Common::AbstractModel
         # @param TrafficMirrorIds: 流量镜像实例ID集合
@@ -21493,13 +21701,13 @@ module TencentCloud
 
       # ModifyAddressesBandwidth请求参数结构体
       class ModifyAddressesBandwidthRequest < TencentCloud::Common::AbstractModel
-        # @param AddressIds: EIP唯一标识ID列表，形如'eip-xxxx'，可以使用[DescribeAddresses](https://cloud.tencent.com/document/product/215/16702)接口获取AddressId。
+        # @param AddressIds: <p>EIP唯一标识ID列表，形如&#39;eip-xxxx&#39;，可以使用<a href="https://cloud.tencent.com/document/product/215/16702">DescribeAddresses</a>接口获取AddressId。</p>
         # @type AddressIds: Array
-        # @param InternetMaxBandwidthOut: 调整带宽目标值，可调整的带宽上限值参考产品文档[带宽上限](https://cloud.tencent.com/document/product/1199/48333)。
+        # @param InternetMaxBandwidthOut: <p>调整带宽目标值，可调整的带宽上限值参考产品文档<a href="https://cloud.tencent.com/document/product/1199/48333">带宽上限</a>。</p>
         # @type InternetMaxBandwidthOut: Integer
-        # @param StartTime: 包月带宽起始时间(已废弃，输入无效)
+        # @param StartTime: <p>包月带宽起始时间(已废弃，输入无效)</p>
         # @type StartTime: String
-        # @param EndTime: 包月带宽结束时间(已废弃，输入无效)
+        # @param EndTime: <p>包月带宽结束时间(已废弃，输入无效)</p>
         # @type EndTime: String
 
         attr_accessor :AddressIds, :InternetMaxBandwidthOut, :StartTime, :EndTime
@@ -21526,7 +21734,7 @@ module TencentCloud
 
       # ModifyAddressesBandwidth返回参数结构体
       class ModifyAddressesBandwidthResponse < TencentCloud::Common::AbstractModel
-        # @param TaskId: 异步任务TaskId。可以使用[DescribeTaskResult](https://cloud.tencent.com/document/api/215/36271)接口查询任务状态。
+        # @param TaskId: <p>异步任务TaskId。可以使用<a href="https://cloud.tencent.com/document/api/215/36271">DescribeTaskResult</a>接口查询任务状态。</p>
         # @type TaskId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -23964,6 +24172,60 @@ module TencentCloud
 
       # ModifyTrafficMirrorAttribute返回参数结构体
       class ModifyTrafficMirrorAttributeResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyTrafficMirrorFilterRules请求参数结构体
+      class ModifyTrafficMirrorFilterRulesRequest < TencentCloud::Common::AbstractModel
+        # @param TrafficMirrorId: 流量镜像实例唯一ID。
+        # @type TrafficMirrorId: String
+        # @param IngressFilterRules: 流量镜像入站过滤规则。
+        # @type IngressFilterRules: Array
+        # @param EgressFilterRules: 流量镜像出站过滤规则。
+        # @type EgressFilterRules: Array
+
+        attr_accessor :TrafficMirrorId, :IngressFilterRules, :EgressFilterRules
+
+        def initialize(trafficmirrorid=nil, ingressfilterrules=nil, egressfilterrules=nil)
+          @TrafficMirrorId = trafficmirrorid
+          @IngressFilterRules = ingressfilterrules
+          @EgressFilterRules = egressfilterrules
+        end
+
+        def deserialize(params)
+          @TrafficMirrorId = params['TrafficMirrorId']
+          unless params['IngressFilterRules'].nil?
+            @IngressFilterRules = []
+            params['IngressFilterRules'].each do |i|
+              trafficmirrorfilter_tmp = TrafficMirrorFilter.new
+              trafficmirrorfilter_tmp.deserialize(i)
+              @IngressFilterRules << trafficmirrorfilter_tmp
+            end
+          end
+          unless params['EgressFilterRules'].nil?
+            @EgressFilterRules = []
+            params['EgressFilterRules'].each do |i|
+              trafficmirrorfilter_tmp = TrafficMirrorFilter.new
+              trafficmirrorfilter_tmp.deserialize(i)
+              @EgressFilterRules << trafficmirrorfilter_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyTrafficMirrorFilterRules返回参数结构体
+      class ModifyTrafficMirrorFilterRulesResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

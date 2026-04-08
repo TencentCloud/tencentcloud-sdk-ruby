@@ -6020,6 +6020,49 @@ module TencentCloud
         end
       end
 
+      # ModifyRecordBatchV3请求参数结构体
+      class ModifyRecordBatchV3Request < TencentCloud::Common::AbstractModel
+        # @param ModifyRecordList: 需要修改的记录列表
+        # @type ModifyRecordList: Array
+
+        attr_accessor :ModifyRecordList
+
+        def initialize(modifyrecordlist=nil)
+          @ModifyRecordList = modifyrecordlist
+        end
+
+        def deserialize(params)
+          unless params['ModifyRecordList'].nil?
+            @ModifyRecordList = []
+            params['ModifyRecordList'].each do |i|
+              modifyrecorditem_tmp = ModifyRecordItem.new
+              modifyrecorditem_tmp.deserialize(i)
+              @ModifyRecordList << modifyrecorditem_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyRecordBatchV3返回参数结构体
+      class ModifyRecordBatchV3Response < TencentCloud::Common::AbstractModel
+        # @param JobId: 批量任务ID
+        # @type JobId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :JobId, :RequestId
+
+        def initialize(jobid=nil, requestid=nil)
+          @JobId = jobid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyRecordFields请求参数结构体
       class ModifyRecordFieldsRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 域名
@@ -6120,6 +6163,58 @@ module TencentCloud
         def deserialize(params)
           @GroupId = params['GroupId']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 批量修改记录入参，指定修改的记录ID和记录内容
+      class ModifyRecordItem < TencentCloud::Common::AbstractModel
+        # @param RecordId: 记录 ID
+        # @type RecordId: Integer
+        # @param SubDomain: 主机记录
+        # @type SubDomain: String
+        # @param RecordType: 记录类型
+        # @type RecordType: String
+        # @param RecordLine: 记录线路
+        # @type RecordLine: String
+        # @param Value: 记录值
+        # @type Value: String
+        # @param Enabled: 解析记录状态 1：开启 0：暂停
+        # @type Enabled: String
+        # @param Remark: 备注信息
+        # @type Remark: String
+        # @param Weight: 权重
+        # @type Weight: Integer
+        # @param MX: MX优先级
+        # @type MX: Integer
+        # @param TTL: TTL缓存时间
+        # @type TTL: Integer
+
+        attr_accessor :RecordId, :SubDomain, :RecordType, :RecordLine, :Value, :Enabled, :Remark, :Weight, :MX, :TTL
+
+        def initialize(recordid=nil, subdomain=nil, recordtype=nil, recordline=nil, value=nil, enabled=nil, remark=nil, weight=nil, mx=nil, ttl=nil)
+          @RecordId = recordid
+          @SubDomain = subdomain
+          @RecordType = recordtype
+          @RecordLine = recordline
+          @Value = value
+          @Enabled = enabled
+          @Remark = remark
+          @Weight = weight
+          @MX = mx
+          @TTL = ttl
+        end
+
+        def deserialize(params)
+          @RecordId = params['RecordId']
+          @SubDomain = params['SubDomain']
+          @RecordType = params['RecordType']
+          @RecordLine = params['RecordLine']
+          @Value = params['Value']
+          @Enabled = params['Enabled']
+          @Remark = params['Remark']
+          @Weight = params['Weight']
+          @MX = params['MX']
+          @TTL = params['TTL']
         end
       end
 

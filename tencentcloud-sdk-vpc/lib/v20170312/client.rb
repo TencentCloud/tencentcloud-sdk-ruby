@@ -2200,6 +2200,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建流量镜像五元组过滤规则。
+
+        # @param request: Request instance for CreateTrafficMirrorFilterRules.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::CreateTrafficMirrorFilterRulesRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::CreateTrafficMirrorFilterRulesResponse`
+        def CreateTrafficMirrorFilterRules(request)
+          body = send_request('CreateTrafficMirrorFilterRules', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateTrafficMirrorFilterRulesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口 (CreateTrafficPackages) 用于创建共享流量包。
 
         # @param request: Request instance for CreateTrafficPackages.
@@ -3613,6 +3637,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteTrafficMirrorResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除流量镜像五元组过滤规则。
+
+        # @param request: Request instance for DeleteTrafficMirrorFilterRules.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::DeleteTrafficMirrorFilterRulesRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::DeleteTrafficMirrorFilterRulesResponse`
+        def DeleteTrafficMirrorFilterRules(request)
+          body = send_request('DeleteTrafficMirrorFilterRules', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteTrafficMirrorFilterRulesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -6326,6 +6374,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeTenantCcnsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询流量镜像五元组过滤规则。
+
+        # @param request: Request instance for DescribeTrafficMirrorFilterRules.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::DescribeTrafficMirrorFilterRulesRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::DescribeTrafficMirrorFilterRulesResponse`
+        def DescribeTrafficMirrorFilterRules(request)
+          body = send_request('DescribeTrafficMirrorFilterRules', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeTrafficMirrorFilterRulesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -9451,6 +9523,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyTrafficMirrorAttributeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改流量镜像五元组过滤规则。
+
+        # @param request: Request instance for ModifyTrafficMirrorFilterRules.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::ModifyTrafficMirrorFilterRulesRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::ModifyTrafficMirrorFilterRulesResponse`
+        def ModifyTrafficMirrorFilterRules(request)
+          body = send_request('ModifyTrafficMirrorFilterRules', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyTrafficMirrorFilterRulesResponse.new
             model.deserialize(response['Response'])
             model
           else

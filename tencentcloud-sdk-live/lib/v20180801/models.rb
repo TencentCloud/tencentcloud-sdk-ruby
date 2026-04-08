@@ -2935,27 +2935,28 @@ module TencentCloud
 
       # CreateLiveAvatarScript请求参数结构体
       class CreateLiveAvatarScriptRequest < TencentCloud::Common::AbstractModel
-        # @param Title: 话术标题。限制500字节。
+        # @param Title: <p>话术标题。限制500字节。</p>
         # @type Title: String
-        # @param Content: 话术内容。中文最大支持150个汉字（全角标点符号算一个汉字）；英文最大支持500个字母（半角标点符号算一个字母）。
+        # @param Content: <p>话术内容。中文最大支持150个汉字（全角标点符号算一个汉字）；英文最大支持500个字母（半角标点符号算一个字母）。</p>
         # @type Content: String
-        # @param RoomId: 话术所属的数字人直播间 ID。
+        # @param RoomId: <p>话术所属的数字人直播间 ID。</p>
         # @type RoomId: String
-        # @param SpecifyPosition: 话术插入时，可根据已有话术位置，指定新话术插入位置。
-        # 如已有三条话术100，200，300。
-        # 新话术可选择150插入到第一条和第二条中间。
+        # @param SpecifyPosition: <p>话术插入时，可根据已有话术位置，指定新话术插入位置。<br>如已有三条话术100，200，300。<br>新话术可选择150插入到第一条和第二条中间。</p>
         # @type SpecifyPosition: Integer
-        # @param Operator: 操作者。
+        # @param Operator: <p>操作者。</p>
         # @type Operator: String
+        # @param ProductId: <p>话术所属的数字人产品 ID。</p>
+        # @type ProductId: String
 
-        attr_accessor :Title, :Content, :RoomId, :SpecifyPosition, :Operator
+        attr_accessor :Title, :Content, :RoomId, :SpecifyPosition, :Operator, :ProductId
 
-        def initialize(title=nil, content=nil, roomid=nil, specifyposition=nil, operator=nil)
+        def initialize(title=nil, content=nil, roomid=nil, specifyposition=nil, operator=nil, productid=nil)
           @Title = title
           @Content = content
           @RoomId = roomid
           @SpecifyPosition = specifyposition
           @Operator = operator
+          @ProductId = productid
         end
 
         def deserialize(params)
@@ -2964,12 +2965,13 @@ module TencentCloud
           @RoomId = params['RoomId']
           @SpecifyPosition = params['SpecifyPosition']
           @Operator = params['Operator']
+          @ProductId = params['ProductId']
         end
       end
 
       # CreateLiveAvatarScript返回参数结构体
       class CreateLiveAvatarScriptResponse < TencentCloud::Common::AbstractModel
-        # @param ScriptId: 话术 ID。
+        # @param ScriptId: <p>话术 ID。</p>
         # @type ScriptId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -7242,22 +7244,25 @@ module TencentCloud
 
       # DescribeLiveAvatarScripts请求参数结构体
       class DescribeLiveAvatarScriptsRequest < TencentCloud::Common::AbstractModel
-        # @param RoomId: 数字人直播间 ID。
+        # @param RoomId: <p>数字人直播间 ID。</p>
         # @type RoomId: String
-        # @param ScriptId: 数字人直播间话术 ID。
+        # @param ScriptId: <p>数字人直播间话术 ID。</p>
         # @type ScriptId: String
-        # @param PageIndex: 分页查询的页数。
+        # @param PageIndex: <p>分页查询的页数。</p>
         # @type PageIndex: Integer
-        # @param PageSize: 分页查询的每页个数。
+        # @param PageSize: <p>分页查询的每页个数。</p>
         # @type PageSize: Integer
+        # @param ProductId: <p>数字人该话术所属的产品 ID。</p>
+        # @type ProductId: String
 
-        attr_accessor :RoomId, :ScriptId, :PageIndex, :PageSize
+        attr_accessor :RoomId, :ScriptId, :PageIndex, :PageSize, :ProductId
 
-        def initialize(roomid=nil, scriptid=nil, pageindex=nil, pagesize=nil)
+        def initialize(roomid=nil, scriptid=nil, pageindex=nil, pagesize=nil, productid=nil)
           @RoomId = roomid
           @ScriptId = scriptid
           @PageIndex = pageindex
           @PageSize = pagesize
+          @ProductId = productid
         end
 
         def deserialize(params)
@@ -7265,16 +7270,17 @@ module TencentCloud
           @ScriptId = params['ScriptId']
           @PageIndex = params['PageIndex']
           @PageSize = params['PageSize']
+          @ProductId = params['ProductId']
         end
       end
 
       # DescribeLiveAvatarScripts返回参数结构体
       class DescribeLiveAvatarScriptsResponse < TencentCloud::Common::AbstractModel
-        # @param InfoList: 数字人直播间话术信息列表。
+        # @param InfoList: <p>数字人直播间话术信息列表。</p>
         # @type InfoList: Array
-        # @param LimitCreateNum: 限制可创建的数字人直播间话术总条数。
+        # @param LimitCreateNum: <p>限制可创建的数字人直播间话术总条数。</p>
         # @type LimitCreateNum: Integer
-        # @param TotalNum: 当前数字人直播间话术总条数。
+        # @param TotalNum: <p>当前数字人直播间话术总条数。</p>
         # @type TotalNum: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -13137,38 +13143,34 @@ module TencentCloud
 
       # ModifyLiveAvatarRoom请求参数结构体
       class ModifyLiveAvatarRoomRequest < TencentCloud::Common::AbstractModel
-        # @param RoomId: 数字人直播间 ID。
+        # @param RoomId: <p>数字人直播间 ID。</p>
         # @type RoomId: String
-        # @param Name: 直播间名称。
+        # @param Name: <p>直播间名称。</p>
         # @type Name: String
-        # @param AvatarKey: 数字人形象KEY。
+        # @param AvatarKey: <p>数字人形象KEY。</p>
         # @type AvatarKey: String
-        # @param TimbreKey: 音色KEY。
+        # @param TimbreKey: <p>音色KEY。</p>
         # @type TimbreKey: String
-        # @param BackgroundUrl: 背景图片URL。
+        # @param BackgroundUrl: <p>背景图片URL。</p>
         # @type BackgroundUrl: String
-        # @param AnchorScale: 主播大小，默认1.00。
-        # 取值范围(0, 15.00]。
-        # 精度：使用小数点后两位。
+        # @param AnchorScale: <p>主播大小，默认1.00。<br>取值范围(0, 15.00]。<br>精度：使用小数点后两位。</p>
         # @type AnchorScale: Float
-        # @param AnchorVerticalPos: 主播纵向位置。默认-1贴底部。
-        # 左上角为原点，形象顶部离屏幕顶部的距离，最大不能使形象底部超出屏幕。
-        # 即该纵向位置最大为：数字人分辨率的高 - 形象高。
+        # @param AnchorVerticalPos: <p>主播纵向位置。默认-1贴底部。<br>左上角为原点，形象顶部离屏幕顶部的距离，最大不能使形象底部超出屏幕。<br>即该纵向位置最大为：数字人分辨率的高 - 形象高。</p>
         # @type AnchorVerticalPos: Integer
-        # @param AnchorHorizontalPos: 主播横向位置。默认-1居中。
-        # 左上角为原点，形象左侧离左侧屏幕的距离。最大值不可使形象右侧超出右侧屏幕。
-        # 即最大值为：数字人分辨率的宽 - 形象宽。
+        # @param AnchorHorizontalPos: <p>主播横向位置。默认-1居中。<br>左上角为原点，形象左侧离左侧屏幕的距离。最大值不可使形象右侧超出右侧屏幕。<br>即最大值为：数字人分辨率的宽 - 形象宽。</p>
         # @type AnchorHorizontalPos: Integer
-        # @param SpeechSpeed: 语速（1.0为正常语速，范围[0.6-2.5]，值为0.6时播报语速最慢，值为2.5时播报语速最快。
+        # @param SpeechSpeed: <p>语速（1.0为正常语速，范围[0.6-2.5]，值为0.6时播报语速最慢，值为2.5时播报语速最快。</p>
         # @type SpeechSpeed: Float
-        # @param SpeechVolume: 音量大小，范围[0，10]，对应音量大小。默认为5，代表正常音量，值越大音量越高。
+        # @param SpeechVolume: <p>音量大小，范围[0，10]，对应音量大小。默认为5，代表正常音量，值越大音量越高。</p>
         # @type SpeechVolume: Integer
-        # @param Operator: 操作者。
+        # @param Operator: <p>操作者。</p>
         # @type Operator: String
+        # @param RoomType: <p>房间类型。AIGC：AIGC形象房间；PRESET：预设形象房间</p><p>枚举值：</p><ul><li>AIGC： AIGC形象房间</li><li>PRESET： 预设形象房间</li></ul>
+        # @type RoomType: String
 
-        attr_accessor :RoomId, :Name, :AvatarKey, :TimbreKey, :BackgroundUrl, :AnchorScale, :AnchorVerticalPos, :AnchorHorizontalPos, :SpeechSpeed, :SpeechVolume, :Operator
+        attr_accessor :RoomId, :Name, :AvatarKey, :TimbreKey, :BackgroundUrl, :AnchorScale, :AnchorVerticalPos, :AnchorHorizontalPos, :SpeechSpeed, :SpeechVolume, :Operator, :RoomType
 
-        def initialize(roomid=nil, name=nil, avatarkey=nil, timbrekey=nil, backgroundurl=nil, anchorscale=nil, anchorverticalpos=nil, anchorhorizontalpos=nil, speechspeed=nil, speechvolume=nil, operator=nil)
+        def initialize(roomid=nil, name=nil, avatarkey=nil, timbrekey=nil, backgroundurl=nil, anchorscale=nil, anchorverticalpos=nil, anchorhorizontalpos=nil, speechspeed=nil, speechvolume=nil, operator=nil, roomtype=nil)
           @RoomId = roomid
           @Name = name
           @AvatarKey = avatarkey
@@ -13180,6 +13182,7 @@ module TencentCloud
           @SpeechSpeed = speechspeed
           @SpeechVolume = speechvolume
           @Operator = operator
+          @RoomType = roomtype
         end
 
         def deserialize(params)
@@ -13194,6 +13197,7 @@ module TencentCloud
           @SpeechSpeed = params['SpeechSpeed']
           @SpeechVolume = params['SpeechVolume']
           @Operator = params['Operator']
+          @RoomType = params['RoomType']
         end
       end
 
@@ -15983,22 +15987,25 @@ module TencentCloud
 
       # StartLiveAvatarRoom请求参数结构体
       class StartLiveAvatarRoomRequest < TencentCloud::Common::AbstractModel
-        # @param RoomId: 数字人直播间 ID。
+        # @param RoomId: <p>数字人直播间 ID。</p>
         # @type RoomId: String
-        # @param Comment: 目标地址描述。
+        # @param Comment: <p>目标地址描述。</p>
         # @type Comment: String
-        # @param ToUrl: 推流目标地址。
+        # @param ToUrl: <p>推流目标地址。</p>
         # @type ToUrl: String
-        # @param Operator: 操作者。
+        # @param Operator: <p>操作者。</p>
         # @type Operator: String
+        # @param RoomType: <p>房间类型。AIGC：AIGC形象房间；PRESET：预设形象房间</p><p>枚举值：</p><ul><li>AIGC： AIGC形象房间</li><li>PRESET： 预设形象房间</li></ul>
+        # @type RoomType: String
 
-        attr_accessor :RoomId, :Comment, :ToUrl, :Operator
+        attr_accessor :RoomId, :Comment, :ToUrl, :Operator, :RoomType
 
-        def initialize(roomid=nil, comment=nil, tourl=nil, operator=nil)
+        def initialize(roomid=nil, comment=nil, tourl=nil, operator=nil, roomtype=nil)
           @RoomId = roomid
           @Comment = comment
           @ToUrl = tourl
           @Operator = operator
+          @RoomType = roomtype
         end
 
         def deserialize(params)
@@ -16006,6 +16013,7 @@ module TencentCloud
           @Comment = params['Comment']
           @ToUrl = params['ToUrl']
           @Operator = params['Operator']
+          @RoomType = params['RoomType']
         end
       end
 

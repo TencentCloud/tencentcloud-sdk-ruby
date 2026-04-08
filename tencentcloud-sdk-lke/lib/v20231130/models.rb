@@ -679,24 +679,24 @@ module TencentCloud
 
       # Agent 的插件信息
       class AgentPluginInfo < TencentCloud::Common::AbstractModel
-        # @param PluginId: 插件id
+        # @param PluginId: <p>插件id</p>
         # @type PluginId: String
-        # @param Headers: 应用配置的插件header信息
+        # @param Headers: <p>应用配置的插件header信息</p>
         # @type Headers: Array
-        # @param Model: 插件调用LLM时使用的模型配置，一般用于指定知识库问答插件的生成模型
+        # @param Model: <p>插件调用LLM时使用的模型配置，一般用于指定知识库问答插件的生成模型</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Model: :class:`Tencentcloud::Lke.v20231130.models.AgentModelInfo`
-        # @param PluginInfoType: 插件信息类型; 0: 未指定类型; 1: 知识库问答插件
+        # @param PluginInfoType: <p>插件信息类型; 0: 未指定类型; 1: 知识库问答插件</p>
         # @type PluginInfoType: Integer
-        # @param KnowledgeQa: 知识库问答插件配置
+        # @param KnowledgeQa: <p>知识库问答插件配置</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KnowledgeQa: :class:`Tencentcloud::Lke.v20231130.models.AgentKnowledgeQAPlugin`
-        # @param EnableRoleAuth: 是否使用一键授权
+        # @param EnableRoleAuth: <p>是否使用一键授权</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnableRoleAuth: Boolean
-        # @param Query: 应用配置的插件query信息
+        # @param Query: <p>应用配置的插件query信息</p>
         # @type Query: Array
-        # @param McpType: MCP类型
+        # @param McpType: <p>MCP类型</p><p>枚举值：</p><ul><li>0： SSE 模式</li><li>1： Streamable Http 模式</li></ul>
         # @type McpType: Integer
 
         attr_accessor :PluginId, :Headers, :Model, :PluginInfoType, :KnowledgeQa, :EnableRoleAuth, :Query, :McpType
@@ -999,6 +999,30 @@ module TencentCloud
           @Title = params['Title']
           @KnowledgeName = params['KnowledgeName']
           @KnowledgeBizId = params['KnowledgeBizId']
+        end
+      end
+
+      # 智能体任务信息
+      class AgentTask < TencentCloud::Common::AbstractModel
+        # @param Index: <p>任务序号</p>
+        # @type Index: Integer
+        # @param Content: <p>任务内容</p>
+        # @type Content: String
+        # @param Status: <p>任务状态</p>
+        # @type Status: String
+
+        attr_accessor :Index, :Content, :Status
+
+        def initialize(index=nil, content=nil, status=nil)
+          @Index = index
+          @Content = content
+          @Status = status
+        end
+
+        def deserialize(params)
+          @Index = params['Index']
+          @Content = params['Content']
+          @Status = params['Status']
         end
       end
 
@@ -2448,62 +2472,59 @@ module TencentCloud
 
       # 对话记录内容详情
       class Content < TencentCloud::Common::AbstractModel
-        # @param Type: 消息内容类型
-        # text：文本
-        # image：图片
-        # file：文件
-        # option_cards：选项卡
-        # custom_params：用户自定义业务参数
-        # sandbox：云桌面
-        # custom_variables：自定义输入参数
-        # web_search: 网页搜索内容
-        # file_collection：文件收集信息
-        # widget：widget信息
-        # widget_action：用户端widget动作信息
+        # @param Type: <p>消息内容类型<br>text：文本<br>image：图片<br>file：文件<br>option_cards：选项卡<br>custom_params：用户自定义业务参数<br>sandbox：云桌面<br>custom_variables：自定义输入参数<br>web_search: 网页搜索内容<br>file_collection：文件收集信息<br>widget：widget信息<br>widget_action：用户端widget动作信息</p>
         # @type Type: String
-        # @param Text: 文本内容
+        # @param Text: <p>文本内容</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: String
-        # @param QuoteInfos: 引用信息
+        # @param QuoteInfos: <p>引用信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QuoteInfos: Array
-        # @param References: 参考文献信息
+        # @param References: <p>参考文献信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type References: Array
-        # @param Image: 图片信息
+        # @param Image: <p>图片信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Image: :class:`Tencentcloud::Lke.v20231130.models.ImageInfoContent`
-        # @param File: 文件信息
+        # @param File: <p>文件信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type File: :class:`Tencentcloud::Lke.v20231130.models.FileInfoContent`
-        # @param OptionCards: 选项卡信息
+        # @param OptionCards: <p>选项卡信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OptionCards: Array
-        # @param CustomParams: 用户自定义业务参数信息
+        # @param CustomParams: <p>用户自定义业务参数信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CustomParams: Array
-        # @param CustomVariables: 自定义变量
+        # @param CustomVariables: <p>自定义变量</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CustomVariables: Array
-        # @param Sandbox: 沙盒信息
+        # @param Sandbox: <p>沙盒信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Sandbox: :class:`Tencentcloud::Lke.v20231130.models.SandboxContent`
-        # @param WebSearch: 网页搜索内容
+        # @param WebSearch: <p>网页搜索内容</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WebSearch: :class:`Tencentcloud::Lke.v20231130.models.WebSearchContent`
-        # @param FileCollection: 文件收集信息
+        # @param FileCollection: <p>文件收集信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileCollection: :class:`Tencentcloud::Lke.v20231130.models.FileCollection`
-        # @param Widget: Widget信息
+        # @param Widget: <p>Widget信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Widget: :class:`Tencentcloud::Lke.v20231130.models.Widget`
-        # @param WidgetAction: Widget动作信息
+        # @param WidgetAction: <p>Widget动作信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WidgetAction: :class:`Tencentcloud::Lke.v20231130.models.WidgetAction`
+        # @param Tasks: <p>任务列表</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tasks: Array
+        # @param Questionnaire: <p>问卷信息</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Questionnaire: :class:`Tencentcloud::Lke.v20231130.models.Questionnaire`
+        # @param OptionMode: <p>选项卡模式</p>
+        # @type OptionMode: Integer
 
-        attr_accessor :Type, :Text, :QuoteInfos, :References, :Image, :File, :OptionCards, :CustomParams, :CustomVariables, :Sandbox, :WebSearch, :FileCollection, :Widget, :WidgetAction
+        attr_accessor :Type, :Text, :QuoteInfos, :References, :Image, :File, :OptionCards, :CustomParams, :CustomVariables, :Sandbox, :WebSearch, :FileCollection, :Widget, :WidgetAction, :Tasks, :Questionnaire, :OptionMode
 
-        def initialize(type=nil, text=nil, quoteinfos=nil, references=nil, image=nil, file=nil, optioncards=nil, customparams=nil, customvariables=nil, sandbox=nil, websearch=nil, filecollection=nil, widget=nil, widgetaction=nil)
+        def initialize(type=nil, text=nil, quoteinfos=nil, references=nil, image=nil, file=nil, optioncards=nil, customparams=nil, customvariables=nil, sandbox=nil, websearch=nil, filecollection=nil, widget=nil, widgetaction=nil, tasks=nil, questionnaire=nil, optionmode=nil)
           @Type = type
           @Text = text
           @QuoteInfos = quoteinfos
@@ -2518,6 +2539,9 @@ module TencentCloud
           @FileCollection = filecollection
           @Widget = widget
           @WidgetAction = widgetaction
+          @Tasks = tasks
+          @Questionnaire = questionnaire
+          @OptionMode = optionmode
         end
 
         def deserialize(params)
@@ -2570,6 +2594,19 @@ module TencentCloud
             @WidgetAction = WidgetAction.new
             @WidgetAction.deserialize(params['WidgetAction'])
           end
+          unless params['Tasks'].nil?
+            @Tasks = []
+            params['Tasks'].each do |i|
+              agenttask_tmp = AgentTask.new
+              agenttask_tmp.deserialize(i)
+              @Tasks << agenttask_tmp
+            end
+          end
+          unless params['Questionnaire'].nil?
+            @Questionnaire = Questionnaire.new
+            @Questionnaire.deserialize(params['Questionnaire'])
+          end
+          @OptionMode = params['OptionMode']
         end
       end
 
@@ -5982,27 +6019,27 @@ module TencentCloud
 
       # 文件信息内容
       class FileInfoContent < TencentCloud::Common::AbstractModel
-        # @param DocBizId: 实时文档解析接口返回的 DocBizId
+        # @param DocBizId: <p>实时文档解析接口返回的 DocBizId</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type DocBizId: Integer
-        # @param FileName: 文件名称
+        # @type DocBizId: String
+        # @param FileName: <p>文件名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileName: String
-        # @param FileType: 文件类型
+        # @param FileType: <p>文件类型</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileType: String
-        # @param FileSize: 文件大小
+        # @param FileSize: <p>文件大小，单位为Byte</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type FileSize: Integer
-        # @param FileUrl: 文件 URL
+        # @type FileSize: String
+        # @param FileUrl: <p>文件 URL</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileUrl: String
-        # @param DocId: 实时文档解析接口返回的 doc_id。
+        # @param DocId: <p>实时文档解析接口返回的 doc_id。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type DocId: Integer
-        # @param CreateTime: 文件创建时间
+        # @type DocId: String
+        # @param CreateTime: <p>文件创建时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type CreateTime: Integer
+        # @type CreateTime: String
 
         attr_accessor :DocBizId, :FileName, :FileType, :FileSize, :FileUrl, :DocId, :CreateTime
         extend Gem::Deprecate
@@ -11649,6 +11686,123 @@ module TencentCloud
           @ReferBizId = params['ReferBizId']
           @KnowledgeBizId = params['KnowledgeBizId']
           @KnowledgeName = params['KnowledgeName']
+        end
+      end
+
+      # 问题可选项
+      class QuestionOption < TencentCloud::Common::AbstractModel
+        # @param Label: <p>选项的标签</p>
+        # @type Label: String
+        # @param Description: <p>选项的描述</p>
+        # @type Description: String
+
+        attr_accessor :Label, :Description
+
+        def initialize(label=nil, description=nil)
+          @Label = label
+          @Description = description
+        end
+
+        def deserialize(params)
+          @Label = params['Label']
+          @Description = params['Description']
+        end
+      end
+
+      # 问卷信息
+      class Questionnaire < TencentCloud::Common::AbstractModel
+        # @param Title: <p>问卷的标题</p>
+        # @type Title: String
+        # @param Questions: <p>问卷的问题列表</p>
+        # @type Questions: Array
+        # @param Answers: <p>问卷的答案列表</p>
+        # @type Answers: Array
+
+        attr_accessor :Title, :Questions, :Answers
+
+        def initialize(title=nil, questions=nil, answers=nil)
+          @Title = title
+          @Questions = questions
+          @Answers = answers
+        end
+
+        def deserialize(params)
+          @Title = params['Title']
+          unless params['Questions'].nil?
+            @Questions = []
+            params['Questions'].each do |i|
+              questionnairequestion_tmp = QuestionnaireQuestion.new
+              questionnairequestion_tmp.deserialize(i)
+              @Questions << questionnairequestion_tmp
+            end
+          end
+          unless params['Answers'].nil?
+            @Answers = []
+            params['Answers'].each do |i|
+              questionnairequestionanswer_tmp = QuestionnaireQuestionAnswer.new
+              questionnairequestionanswer_tmp.deserialize(i)
+              @Answers << questionnairequestionanswer_tmp
+            end
+          end
+        end
+      end
+
+      # 问卷的问题
+      class QuestionnaireQuestion < TencentCloud::Common::AbstractModel
+        # @param Index: <p>问题的序号</p>
+        # @type Index: Integer
+        # @param Question: <p>问题的内容</p>
+        # @type Question: String
+        # @param Type: <p>问题类型</p>
+        # @type Type: Integer
+        # @param Required: <p>是否必选</p>
+        # @type Required: Boolean
+        # @param Options: <p>问题的选项</p>
+        # @type Options: Array
+
+        attr_accessor :Index, :Question, :Type, :Required, :Options
+
+        def initialize(index=nil, question=nil, type=nil, required=nil, options=nil)
+          @Index = index
+          @Question = question
+          @Type = type
+          @Required = required
+          @Options = options
+        end
+
+        def deserialize(params)
+          @Index = params['Index']
+          @Question = params['Question']
+          @Type = params['Type']
+          @Required = params['Required']
+          unless params['Options'].nil?
+            @Options = []
+            params['Options'].each do |i|
+              questionoption_tmp = QuestionOption.new
+              questionoption_tmp.deserialize(i)
+              @Options << questionoption_tmp
+            end
+          end
+        end
+      end
+
+      # 问卷问题的答案
+      class QuestionnaireQuestionAnswer < TencentCloud::Common::AbstractModel
+        # @param Question: <p>问题</p>
+        # @type Question: String
+        # @param SelectedLabels: <p>选中的答案标签</p>
+        # @type SelectedLabels: Array
+
+        attr_accessor :Question, :SelectedLabels
+
+        def initialize(question=nil, selectedlabels=nil)
+          @Question = question
+          @SelectedLabels = selectedlabels
+        end
+
+        def deserialize(params)
+          @Question = params['Question']
+          @SelectedLabels = params['SelectedLabels']
         end
       end
 
