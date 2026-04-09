@@ -2493,30 +2493,28 @@ module TencentCloud
 
       # ListAggregateCompliancePacks请求参数结构体
       class ListAggregateCompliancePacksRequest < TencentCloud::Common::AbstractModel
-        # @param Limit: 数量
+        # @param Limit: <p>数量</p>
         # @type Limit: Integer
-        # @param Offset: 偏移量
+        # @param Offset: <p>偏移量</p>
         # @type Offset: Integer
-        # @param AccountGroupId: 账号组ID
+        # @param AccountGroupId: <p>账号组ID</p>
         # @type AccountGroupId: String
-        # @param CompliancePackName: 合规包名称
+        # @param CompliancePackName: <p>合规包名称</p>
         # @type CompliancePackName: String
-        # @param RiskLevel: 风险等级
-        # 1：高风险。
-        # 2：中风险。
-        # 3：低风险。
+        # @param RiskLevel: <p>风险等级<br>1：高风险。<br>2：中风险。<br>3：低风险。</p>
         # @type RiskLevel: Array
-        # @param Status: 合规包状态 ACTIVE、NO_ACTIVE
+        # @param Status: <p>合规包状态 ACTIVE、NO_ACTIVE</p>
         # @type Status: String
-        # @param ComplianceResult: 评估状态合规： 'COMPLIANT'
-        # 不合规： 'NON_COMPLIANT'
+        # @param ComplianceResult: <p>评估状态合规： &#39;COMPLIANT&#39;<br>不合规： &#39;NON_COMPLIANT&#39;</p>
         # @type ComplianceResult: Array
-        # @param OrderType: 排序类型, 倒序：desc，顺序：asc
+        # @param OrderType: <p>排序类型, 倒序：desc，顺序：asc</p>
         # @type OrderType: String
+        # @param IncludeCompliancePackRuleResult: <p>包含合规包结果定义</p><p>枚举值：</p><ul><li>NO： 不包含</li></ul><p>默认值：空</p><p>此字段为新增，因此不传或者传了YES都会默认返回包含合规结果数据，其他枚举值后面视情况丰富</p>
+        # @type IncludeCompliancePackRuleResult: String
 
-        attr_accessor :Limit, :Offset, :AccountGroupId, :CompliancePackName, :RiskLevel, :Status, :ComplianceResult, :OrderType
+        attr_accessor :Limit, :Offset, :AccountGroupId, :CompliancePackName, :RiskLevel, :Status, :ComplianceResult, :OrderType, :IncludeCompliancePackRuleResult
 
-        def initialize(limit=nil, offset=nil, accountgroupid=nil, compliancepackname=nil, risklevel=nil, status=nil, complianceresult=nil, ordertype=nil)
+        def initialize(limit=nil, offset=nil, accountgroupid=nil, compliancepackname=nil, risklevel=nil, status=nil, complianceresult=nil, ordertype=nil, includecompliancepackruleresult=nil)
           @Limit = limit
           @Offset = offset
           @AccountGroupId = accountgroupid
@@ -2525,6 +2523,7 @@ module TencentCloud
           @Status = status
           @ComplianceResult = complianceresult
           @OrderType = ordertype
+          @IncludeCompliancePackRuleResult = includecompliancepackruleresult
         end
 
         def deserialize(params)
@@ -2536,14 +2535,15 @@ module TencentCloud
           @Status = params['Status']
           @ComplianceResult = params['ComplianceResult']
           @OrderType = params['OrderType']
+          @IncludeCompliancePackRuleResult = params['IncludeCompliancePackRuleResult']
         end
       end
 
       # ListAggregateCompliancePacks返回参数结构体
       class ListAggregateCompliancePacksResponse < TencentCloud::Common::AbstractModel
-        # @param Total: 总数
+        # @param Total: <p>总数</p>
         # @type Total: Integer
-        # @param Items: 详情
+        # @param Items: <p>详情</p>
         # @type Items: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

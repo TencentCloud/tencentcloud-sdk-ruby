@@ -1035,27 +1035,27 @@ module TencentCloud
 
       # CreateOrganizationMember请求参数结构体
       class CreateOrganizationMemberRequest < TencentCloud::Common::AbstractModel
-        # @param Name: 成员名称。最大长度为25个字符，支持英文字母、数字、汉字、符号+@、&._[]-:,
+        # @param Name: <p>成员名称。最大长度为25个字符，支持英文字母、数字、汉字、符号+@、&amp;._[]-:,</p>
         # @type Name: String
-        # @param PolicyType: 关系策略。取值：Financial
+        # @param PolicyType: <p>关系策略。取值：Financial</p>
         # @type PolicyType: String
-        # @param PermissionIds: 成员财务权限ID列表。取值：1-查看账单、2-查看余额、3-资金划拨（若需要开启资金划拨权限，请联系您的商务经理内部开通。）、4-合并出账、5-开票、6-优惠继承、7-代付费、8-成本分析、9-预算管理、10-信用额度设置（若需要开启信用额度设置权限，请联系您的商务经理内部开通。），1、2 默认必须
+        # @param PermissionIds: <p>成员财务权限ID列表。取值：1-查看账单、2-查看余额、3-资金划拨（若需要开启资金划拨权限，请联系您的商务经理内部开通。）、4-合并出账、5-开票、6-优惠继承、7-代付费、8-成本分析、9-预算管理、10-信用额度设置（若需要开启信用额度设置权限，请联系您的商务经理内部开通。），1、2 默认必须</p>
         # @type PermissionIds: Array
-        # @param NodeId: 成员所属部门的节点ID。可以通过[DescribeOrganizationNodes](https://cloud.tencent.com/document/product/850/82926)获取
+        # @param NodeId: <p>成员所属部门的节点ID。可以通过<a href="https://cloud.tencent.com/document/product/850/82926">DescribeOrganizationNodes</a>获取</p>
         # @type NodeId: Integer
-        # @param AccountName: 账号名称。最大长度为25个字符，支持英文字母、数字、汉字、符号+@、&._[]-:,
+        # @param AccountName: <p>账号名称。最大长度为25个字符，支持英文字母、数字、汉字、符号+@、&amp;._[]-:,</p>
         # @type AccountName: String
-        # @param Remark: 备注。
+        # @param Remark: <p>备注。</p>
         # @type Remark: String
-        # @param RecordId: 成员创建记录ID。创建异常重试时需要
+        # @param RecordId: <p>成员创建记录ID。创建异常重试时需要</p>
         # @type RecordId: Integer
-        # @param PayUin: 代付者Uin。成员代付费时需要
+        # @param PayUin: <p>代付者Uin。成员代付费时需要</p>
         # @type PayUin: String
-        # @param IdentityRoleID: 成员访问身份ID列表。可以调用ListOrganizationIdentity获取，1默认支持
+        # @param IdentityRoleID: <p>成员访问身份ID列表。可以调用ListOrganizationIdentity获取，1默认支持</p>
         # @type IdentityRoleID: Array
-        # @param AuthRelationId: 认证主体关系ID。给不同主体创建成员时需要，可以调用DescribeOrganizationAuthNode获取
+        # @param AuthRelationId: <p>认证主体关系ID。给不同主体创建成员时需要，可以调用DescribeOrganizationAuthNode获取</p>
         # @type AuthRelationId: Integer
-        # @param Tags: 成员标签列表。最大10个
+        # @param Tags: <p>成员标签列表。最大10个</p>
         # @type Tags: Array
 
         attr_accessor :Name, :PolicyType, :PermissionIds, :NodeId, :AccountName, :Remark, :RecordId, :PayUin, :IdentityRoleID, :AuthRelationId, :Tags
@@ -1098,7 +1098,7 @@ module TencentCloud
 
       # CreateOrganizationMember返回参数结构体
       class CreateOrganizationMemberResponse < TencentCloud::Common::AbstractModel
-        # @param Uin: 成员Uin。
+        # @param Uin: <p>成员Uin。</p>
         # @type Uin: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6871,8 +6871,8 @@ module TencentCloud
 
         attr_accessor :ProductResourceId, :ResourceGrantLast
         extend Gem::Deprecate
-        deprecate :ResourceGrantLast, :none, 2026, 3
-        deprecate :ResourceGrantLast=, :none, 2026, 3
+        deprecate :ResourceGrantLast, :none, 2026, 4
+        deprecate :ResourceGrantLast=, :none, 2026, 4
 
         def initialize(productresourceid=nil, resourcegrantlast=nil)
           @ProductResourceId = productresourceid
@@ -7706,8 +7706,8 @@ module TencentCloud
 
         attr_accessor :ResourceId, :ProductResourceId
         extend Gem::Deprecate
-        deprecate :ResourceId, :none, 2026, 3
-        deprecate :ResourceId=, :none, 2026, 3
+        deprecate :ResourceId, :none, 2026, 4
+        deprecate :ResourceId=, :none, 2026, 4
 
         def initialize(resourceid=nil, productresourceid=nil)
           @ResourceId = resourceid

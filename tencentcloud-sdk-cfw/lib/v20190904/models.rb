@@ -1606,6 +1606,53 @@ module TencentCloud
         end
       end
 
+      # CreateNatFwDnatRule请求参数结构体
+      class CreateNatFwDnatRuleRequest < TencentCloud::Common::AbstractModel
+        # @param Mode: 0：cfw新增模式，1：cfw接入模式。
+        # @type Mode: Integer
+        # @param CfwInstance: 防火墙实例id，该字段必须传递。
+        # @type CfwInstance: String
+        # @param DnatRules: 添加或删除操作的Dnat规则列表。
+        # @type DnatRules: Array
+
+        attr_accessor :Mode, :CfwInstance, :DnatRules
+
+        def initialize(mode=nil, cfwinstance=nil, dnatrules=nil)
+          @Mode = mode
+          @CfwInstance = cfwinstance
+          @DnatRules = dnatrules
+        end
+
+        def deserialize(params)
+          @Mode = params['Mode']
+          @CfwInstance = params['CfwInstance']
+          unless params['DnatRules'].nil?
+            @DnatRules = []
+            params['DnatRules'].each do |i|
+              cfwnatdnatrule_tmp = CfwNatDnatRule.new
+              cfwnatdnatrule_tmp.deserialize(i)
+              @DnatRules << cfwnatdnatrule_tmp
+            end
+          end
+        end
+      end
+
+      # CreateNatFwDnatRule返回参数结构体
+      class CreateNatFwDnatRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateNatFwInstance请求参数结构体
       class CreateNatFwInstanceRequest < TencentCloud::Common::AbstractModel
         # @param Name: 防火墙实例名称
@@ -2310,6 +2357,53 @@ module TencentCloud
 
       # DeleteBlockIgnoreRuleNew返回参数结构体
       class DeleteBlockIgnoreRuleNewResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteNatFwDnatRule请求参数结构体
+      class DeleteNatFwDnatRuleRequest < TencentCloud::Common::AbstractModel
+        # @param Mode: 0：cfw新增模式，1：cfw接入模式。
+        # @type Mode: Integer
+        # @param CfwInstance: 防火墙实例id，该字段必须传递。
+        # @type CfwInstance: String
+        # @param DnatRules: 添加或删除操作的Dnat规则列表。
+        # @type DnatRules: Array
+
+        attr_accessor :Mode, :CfwInstance, :DnatRules
+
+        def initialize(mode=nil, cfwinstance=nil, dnatrules=nil)
+          @Mode = mode
+          @CfwInstance = cfwinstance
+          @DnatRules = dnatrules
+        end
+
+        def deserialize(params)
+          @Mode = params['Mode']
+          @CfwInstance = params['CfwInstance']
+          unless params['DnatRules'].nil?
+            @DnatRules = []
+            params['DnatRules'].each do |i|
+              cfwnatdnatrule_tmp = CfwNatDnatRule.new
+              cfwnatdnatrule_tmp.deserialize(i)
+              @DnatRules << cfwnatdnatrule_tmp
+            end
+          end
+        end
+      end
+
+      # DeleteNatFwDnatRule返回参数结构体
+      class DeleteNatFwDnatRuleResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

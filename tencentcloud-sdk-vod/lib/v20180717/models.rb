@@ -330,28 +330,31 @@ module TencentCloud
 
       # 对视频转自适应码流的输入参数类型
       class AdaptiveDynamicStreamingTaskInput < TencentCloud::Common::AbstractModel
-        # @param Definition: 转自适应码流模板 ID。
+        # @param Definition: <p>转自适应码流模板 ID。</p>
         # @type Definition: Integer
-        # @param WatermarkSet: 水印列表，支持多张图片或文字水印，最大可支持 10 张。
+        # @param WatermarkSet: <p>水印列表，支持多张图片或文字水印，最大可支持 10 张。</p>
         # @type WatermarkSet: Array
-        # @param TraceWatermark: 溯源水印。
+        # @param TraceWatermark: <p>溯源水印。</p>
         # @type TraceWatermark: :class:`Tencentcloud::Vod.v20180717.models.TraceWatermarkInput`
-        # @param CopyRightWatermark: 版权水印。
+        # @param CopyRightWatermark: <p>版权水印。</p>
         # @type CopyRightWatermark: :class:`Tencentcloud::Vod.v20180717.models.CopyRightWatermarkInput`
-        # @param BlindWatermark: 数字水印。
+        # @param BlindWatermark: <p>数字水印。</p>
         # @type BlindWatermark: :class:`Tencentcloud::Vod.v20180717.models.BlindWatermarkInput`
-        # @param SubtitleSet: 字幕列表，元素为字幕 ID，支持多个字幕，最大可支持16个。
+        # @param SubtitleSet: <p>外挂字幕列表，元素为字幕 ID，支持多个字幕，最大可支持16个。</p>
         # @type SubtitleSet: Array
+        # @param SubtitleInfoSet: <p>字幕压制信息列表。最大可支持 2 个。</p>
+        # @type SubtitleInfoSet: Array
 
-        attr_accessor :Definition, :WatermarkSet, :TraceWatermark, :CopyRightWatermark, :BlindWatermark, :SubtitleSet
+        attr_accessor :Definition, :WatermarkSet, :TraceWatermark, :CopyRightWatermark, :BlindWatermark, :SubtitleSet, :SubtitleInfoSet
 
-        def initialize(definition=nil, watermarkset=nil, tracewatermark=nil, copyrightwatermark=nil, blindwatermark=nil, subtitleset=nil)
+        def initialize(definition=nil, watermarkset=nil, tracewatermark=nil, copyrightwatermark=nil, blindwatermark=nil, subtitleset=nil, subtitleinfoset=nil)
           @Definition = definition
           @WatermarkSet = watermarkset
           @TraceWatermark = tracewatermark
           @CopyRightWatermark = copyrightwatermark
           @BlindWatermark = blindwatermark
           @SubtitleSet = subtitleset
+          @SubtitleInfoSet = subtitleinfoset
         end
 
         def deserialize(params)
@@ -377,6 +380,14 @@ module TencentCloud
             @BlindWatermark.deserialize(params['BlindWatermark'])
           end
           @SubtitleSet = params['SubtitleSet']
+          unless params['SubtitleInfoSet'].nil?
+            @SubtitleInfoSet = []
+            params['SubtitleInfoSet'].each do |i|
+              subtitleinfoinput_tmp = SubtitleInfoInput.new
+              subtitleinfoinput_tmp.deserialize(i)
+              @SubtitleInfoSet << subtitleinfoinput_tmp
+            end
+          end
         end
       end
 
@@ -32755,6 +32766,94 @@ module TencentCloud
         end
       end
 
+      # 字幕压制输入信息
+      class SubtitleInfoInput < TencentCloud::Common::AbstractModel
+        # @param Id: <p>字幕 ID。</p>
+        # @type Id: String
+        # @param FontType: <p>字体类型。</p><p>枚举值：</p><ul><li>hei.ttf： 黑体</li><li>song.ttf： 宋体</li><li>kai.ttf（推荐）或 simkai.ttf： 楷体</li><li>msyh.ttf： 微软雅黑</li><li>msyhbd.ttf： 微软雅黑加粗</li><li>hkjgt.ttf： 华康金刚体</li><li>dhttx.ttf： 典黑体特细</li><li>xqgdzt.ttf： 喜鹊古字典体</li><li>qpcyt.ttf： 巧拼超圆体</li><li>arial.ttf： 仅支持英文</li><li>dinalternate.ttf： DIN Alternate Bold</li><li>helveticalt.ttf： Helvetica</li><li>helveticains.ttf： Helvetica Inserat</li><li>trajanpro.ttf： TrajanPro-Bold</li><li>korean.ttf： 韩语</li><li>japanese.ttf： 日语</li><li>thai.ttf： 泰语</li><li>roboto.ttf： Roboto</li><li>notosans.ttf： NotoSans</li><li>notosansthai.ttf： 泰语NotoSansThai</li><li>sarabun.ttf： 泰语Sarabun</li><li>kanit.ttf： 泰语Kanit</li><li>charmonman.ttf： 泰语Charmonman</li><li>notonaskharabic.ttf： 阿拉伯语NotoNaskhArabic</li><li>notosansdevanagari.ttf： 印度语NotoSansDevanagari</li><li>notosanstc.ttf： 粤语思源黑体NotoSansTC</li><li>notosanskr.ttf： 韩语NotoSansKR</li><li>gothica1.ttf： 韩语GothicA1</li><li>nanummyeongjo.ttf： 韩语NanumMyeongjo</li><li>notosansjp.ttf： 日语NotoSansJP</li><li>notoserifjp.ttf： 日语NotoSerifJP</li><li>shipporimincho.ttf： 日语ShipporiMincho</li></ul><p>默认值：hei.ttf 黑体</p>
+        # @type FontType: String
+        # @param FontSize: <p>字体大小，不指定则以字幕文件中为准。支持像素和百分比格式：</p><ul><li>像素：Npx，N范围：(0,4096]。</li><li>百分比：N%，N范围：(0,100]；例如，10%表示字幕字体大小=10%*源视频高度。不填且字幕文件中无设置时，默认源视频高度的5%。</li></ul>
+        # @type FontSize: String
+        # @param FontColor: <p>字体颜色，格式：0xRRGGBB。</p><p>默认值：0xFFFFFF（白色）。</p>
+        # @type FontColor: String
+        # @param FontAlpha: <p>文字透明度。取值范围：(0, 1]。</p><ul><li>0：完全透明；</li><li>1：完全不透明</li></ul><p>默认值：1</p>
+        # @type FontAlpha: Float
+        # @param YPos: <p>字幕y轴坐标位置，指定此参数会忽略字幕文件自带坐标；支持像素和百分比格式：</p><ul><li>像素：Npx，N范围：[0,4096]。</li><li>百分比：N%，N范围：[0,100]；例如10%表示字幕y坐标=10%<em>源视频高度。默认值：源视频高度</em>4%。<br>注意：坐标轴原点在源视频中轴线底部，字幕基准点在字幕中轴线底部，参考下图：<img src="https://ie-mps-1258344699.cos.ap-nanjing.tencentcos.cn/common/cloud/mps-demo/102_ai_subtitle/subtitle_style.png" alt="image"></li></ul>
+        # @type YPos: String
+        # @param BoardY: <p>字幕背景底板的y轴坐标位置；支持像素和百分比格式：</p><ul><li>像素：Npx，N范围：[0,4096]。</li><li>百分比：N%，N范围：[0,100]；例如10%表示字幕背景底板y坐标=10%*源视频高度。不传表示不开启字幕背景底板。<br>注意：坐标轴原点位于源视频的中轴线底部，字幕背景底板的基准点在其中轴线底部，参考下图：<img src="https://ie-mps-1258344699.cos.ap-nanjing.tencentcos.cn/common/cloud/mps-demo/102_ai_subtitle/subtitle_style.png" alt="image"></li></ul>
+        # @type BoardY: String
+        # @param BoardWidth: <p>底板的宽度，正整数。</p><ul><li>像素：Npx，N 取值范围：[0,4096]。</li><li>百分比：N%，N 取值范围：[0, 100]。开启底板且不填此值时，默认源视频宽像素的90%。</li></ul>
+        # @type BoardWidth: String
+        # @param BoardHeight: <p>底板的高度，正整数。</p><ul><li>像素：Npx，N 取值范围：[0,4096]。</li><li>百分比：N%，N 取值范围：[0, 100]。开启底板且不填此值时，默认为源视频高像素的15%。</li></ul>
+        # @type BoardHeight: String
+        # @param BoardColor: <p>底板颜色。格式：0xRRGGBB。</p><p>默认值：0x000000（黑色）。</p>
+        # @type BoardColor: String
+        # @param BoardAlpha: <p>字幕背景板透明度，取值范围：[0, 1]。</p><ul><li>0：完全透明；</li><li>1：完全不透明。</li></ul><p>默认值：0.8。</p>
+        # @type BoardAlpha: Float
+        # @param Alignment: <p>对齐方式。</p><p>枚举值：</p><ul><li>top： 顶部对齐，字幕顶部按位置固定，底部随行数变化。 </li><li>bottom： 底部对齐，字幕底部按位置固定，顶部随行数变化。 </li></ul><p>默认值：bottom</p>
+        # @type Alignment: String
+        # @param OutlineWidth: <p>描边宽度。浮点数。</p><ul><li>像素：Npx，N 取值范围： [0, 1000]。</li><li>百分比：N%，N 取值范围：[0, 100]。</li></ul><p>不填默认源视频高度的0.3%。</p>
+        # @type OutlineWidth: String
+        # @param OutlineColor: <p>描边颜色。格式：0xRRGGBB。</p><p>默认值：0x000000（黑色）。</p>
+        # @type OutlineColor: String
+        # @param OutlineAlpha: <p>描边透明度。(0，1] 正浮点数。</p><ul><li>0：完全透明；</li><li>1：完全不透明。</li></ul><p>默认值：1</p>
+        # @type OutlineAlpha: Float
+        # @param ShadowWidth: <p>阴影宽度。浮点数。</p><ul><li>像素：Npx，N 取值范围： [0, 1000]。</li><li>百分比：N%，N 取值范围：[0, 100]。不填默认无阴影。</li></ul>
+        # @type ShadowWidth: String
+        # @param ShadowColor: <p>阴影颜色。格式：0xRRGGBB。</p><p>默认值：0x000000（黑色），有设置阴影的情况下。</p>
+        # @type ShadowColor: String
+        # @param ShadowAlpha: <p>阴影透明度。(0，1] 正浮点数。</p><ul><li>0：完全透明；</li><li>1：完全不透明。</li></ul><p>默认值：1，完全不透明，有设置阴影的情况下。</p>
+        # @type ShadowAlpha: Float
+        # @param LineSpacing: <p>行间距。正整数。</p><ul><li>像素：Npx，N 取值范围： [0, 1000]。</li><li>百分比：N%，N 取值范围：[0, 100]。</li></ul><p>默认值：0</p>
+        # @type LineSpacing: String
+
+        attr_accessor :Id, :FontType, :FontSize, :FontColor, :FontAlpha, :YPos, :BoardY, :BoardWidth, :BoardHeight, :BoardColor, :BoardAlpha, :Alignment, :OutlineWidth, :OutlineColor, :OutlineAlpha, :ShadowWidth, :ShadowColor, :ShadowAlpha, :LineSpacing
+
+        def initialize(id=nil, fonttype=nil, fontsize=nil, fontcolor=nil, fontalpha=nil, ypos=nil, boardy=nil, boardwidth=nil, boardheight=nil, boardcolor=nil, boardalpha=nil, alignment=nil, outlinewidth=nil, outlinecolor=nil, outlinealpha=nil, shadowwidth=nil, shadowcolor=nil, shadowalpha=nil, linespacing=nil)
+          @Id = id
+          @FontType = fonttype
+          @FontSize = fontsize
+          @FontColor = fontcolor
+          @FontAlpha = fontalpha
+          @YPos = ypos
+          @BoardY = boardy
+          @BoardWidth = boardwidth
+          @BoardHeight = boardheight
+          @BoardColor = boardcolor
+          @BoardAlpha = boardalpha
+          @Alignment = alignment
+          @OutlineWidth = outlinewidth
+          @OutlineColor = outlinecolor
+          @OutlineAlpha = outlinealpha
+          @ShadowWidth = shadowwidth
+          @ShadowColor = shadowcolor
+          @ShadowAlpha = shadowalpha
+          @LineSpacing = linespacing
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @FontType = params['FontType']
+          @FontSize = params['FontSize']
+          @FontColor = params['FontColor']
+          @FontAlpha = params['FontAlpha']
+          @YPos = params['YPos']
+          @BoardY = params['BoardY']
+          @BoardWidth = params['BoardWidth']
+          @BoardHeight = params['BoardHeight']
+          @BoardColor = params['BoardColor']
+          @BoardAlpha = params['BoardAlpha']
+          @Alignment = params['Alignment']
+          @OutlineWidth = params['OutlineWidth']
+          @OutlineColor = params['OutlineColor']
+          @OutlineAlpha = params['OutlineAlpha']
+          @ShadowWidth = params['ShadowWidth']
+          @ShadowColor = params['ShadowColor']
+          @ShadowAlpha = params['ShadowAlpha']
+          @LineSpacing = params['LineSpacing']
+        end
+      end
+
       # 画面超分控制参数
       class SuperResolutionInfo < TencentCloud::Common::AbstractModel
         # @param Switch: 画面超分控制开关，可选值：
@@ -33617,34 +33716,30 @@ module TencentCloud
 
       # 转码任务输入参数类型
       class TranscodeTaskInput < TencentCloud::Common::AbstractModel
-        # @param Definition: 视频转码模板 ID。
+        # @param Definition: <p>视频转码模板 ID。</p>
         # @type Definition: Integer
-        # @param WatermarkSet: 水印列表，支持多张图片或文字水印，最大可支持 10 张。
+        # @param WatermarkSet: <p>水印列表，支持多张图片或文字水印，最大可支持 10 张。</p>
         # @type WatermarkSet: Array
-        # @param TraceWatermark: 溯源水印。
+        # @param TraceWatermark: <p>溯源水印。</p>
         # @type TraceWatermark: :class:`Tencentcloud::Vod.v20180717.models.TraceWatermarkInput`
-        # @param CopyRightWatermark: 版权水印。
+        # @param CopyRightWatermark: <p>版权水印。</p>
         # @type CopyRightWatermark: :class:`Tencentcloud::Vod.v20180717.models.CopyRightWatermarkInput`
-        # @param BlindWatermark: 数字水印。
+        # @param BlindWatermark: <p>数字水印。</p>
         # @type BlindWatermark: :class:`Tencentcloud::Vod.v20180717.models.BlindWatermarkInput`
-        # @param MosaicSet: 马赛克列表，最大可支持 10 张。
+        # @param MosaicSet: <p>马赛克列表，最大可支持 10 张。</p>
         # @type MosaicSet: Array
-        # @param HeadTailSet: 片头片尾列表，支持多片头片尾，最大可支持 10 个。
+        # @param HeadTailSet: <p>片头片尾列表，支持多片头片尾，最大可支持 10 个。</p>
         # @type HeadTailSet: Array
-        # @param StartTimeOffset: 转码后的视频的起始时间偏移，单位：秒。
-        # <li>不填或填0，表示转码后的视频从原始视频的起始位置开始；</li>
-        # <li>当数值大于0时（假设为 n），表示转码后的视频从原始视频的第 n 秒位置开始；</li>
-        # <li>当数值小于0时（假设为 -n），表示转码后的视频从原始视频结束 n 秒前的位置开始。</li>
+        # @param StartTimeOffset: <p>转码后的视频的起始时间偏移，单位：秒。</p><li>不填或填0，表示转码后的视频从原始视频的起始位置开始；</li><li>当数值大于0时（假设为 n），表示转码后的视频从原始视频的第 n 秒位置开始；</li><li>当数值小于0时（假设为 -n），表示转码后的视频从原始视频结束 n 秒前的位置开始。</li>
         # @type StartTimeOffset: Float
-        # @param EndTimeOffset: 转码后视频的终止时间偏移，单位：秒。
-        # <li>不填或填0，表示转码后的视频持续到原始视频的末尾终止；</li>
-        # <li>当数值大于0时（假设为 n），表示转码后的视频持续到原始视频第 n 秒时终止；</li>
-        # <li>当数值小于0时（假设为 -n），表示转码后的视频持续到原始视频结束 n 秒前终止。</li>
+        # @param EndTimeOffset: <p>转码后视频的终止时间偏移，单位：秒。</p><li>不填或填0，表示转码后的视频持续到原始视频的末尾终止；</li><li>当数值大于0时（假设为 n），表示转码后的视频持续到原始视频第 n 秒时终止；</li><li>当数值小于0时（假设为 -n），表示转码后的视频持续到原始视频结束 n 秒前终止。</li>
         # @type EndTimeOffset: Float
+        # @param SubtitleInfoSet: <p>字幕压制信息列表。最大可支持 2 个。</p>
+        # @type SubtitleInfoSet: Array
 
-        attr_accessor :Definition, :WatermarkSet, :TraceWatermark, :CopyRightWatermark, :BlindWatermark, :MosaicSet, :HeadTailSet, :StartTimeOffset, :EndTimeOffset
+        attr_accessor :Definition, :WatermarkSet, :TraceWatermark, :CopyRightWatermark, :BlindWatermark, :MosaicSet, :HeadTailSet, :StartTimeOffset, :EndTimeOffset, :SubtitleInfoSet
 
-        def initialize(definition=nil, watermarkset=nil, tracewatermark=nil, copyrightwatermark=nil, blindwatermark=nil, mosaicset=nil, headtailset=nil, starttimeoffset=nil, endtimeoffset=nil)
+        def initialize(definition=nil, watermarkset=nil, tracewatermark=nil, copyrightwatermark=nil, blindwatermark=nil, mosaicset=nil, headtailset=nil, starttimeoffset=nil, endtimeoffset=nil, subtitleinfoset=nil)
           @Definition = definition
           @WatermarkSet = watermarkset
           @TraceWatermark = tracewatermark
@@ -33654,6 +33749,7 @@ module TencentCloud
           @HeadTailSet = headtailset
           @StartTimeOffset = starttimeoffset
           @EndTimeOffset = endtimeoffset
+          @SubtitleInfoSet = subtitleinfoset
         end
 
         def deserialize(params)
@@ -33696,6 +33792,14 @@ module TencentCloud
           end
           @StartTimeOffset = params['StartTimeOffset']
           @EndTimeOffset = params['EndTimeOffset']
+          unless params['SubtitleInfoSet'].nil?
+            @SubtitleInfoSet = []
+            params['SubtitleInfoSet'].each do |i|
+              subtitleinfoinput_tmp = SubtitleInfoInput.new
+              subtitleinfoinput_tmp.deserialize(i)
+              @SubtitleInfoSet << subtitleinfoinput_tmp
+            end
+          end
         end
       end
 

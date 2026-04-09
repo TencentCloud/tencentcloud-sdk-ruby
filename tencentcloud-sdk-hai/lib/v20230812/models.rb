@@ -199,25 +199,28 @@ module TencentCloud
 
       # 容器信息
       class ContainerInfo < TencentCloud::Common::AbstractModel
-        # @param Image: 镜像相关信息
+        # @param Image: <p>镜像相关信息</p>
         # @type Image: :class:`Tencentcloud::Hai.v20230812.models.ImageInfo`
-        # @param Port: 服务监听端口
+        # @param Port: <p>服务监听端口</p>
         # @type Port: String
-        # @param Scripts: 启动命令
+        # @param Scripts: <p>启动命令</p>
         # @type Scripts: Array
-        # @param Envs: 环境变量列表
+        # @param Envs: <p>环境变量列表</p>
         # @type Envs: Array
-        # @param Storages: 存储挂载配置
+        # @param Storages: <p>存储挂载配置</p>
         # @type Storages: Array
+        # @param Probe: <p>探针信息</p>
+        # @type Probe: :class:`Tencentcloud::Hai.v20230812.models.ProbeInfo`
 
-        attr_accessor :Image, :Port, :Scripts, :Envs, :Storages
+        attr_accessor :Image, :Port, :Scripts, :Envs, :Storages, :Probe
 
-        def initialize(image=nil, port=nil, scripts=nil, envs=nil, storages=nil)
+        def initialize(image=nil, port=nil, scripts=nil, envs=nil, storages=nil, probe=nil)
           @Image = image
           @Port = port
           @Scripts = scripts
           @Envs = envs
           @Storages = storages
+          @Probe = probe
         end
 
         def deserialize(params)
@@ -242,6 +245,10 @@ module TencentCloud
               storageinfo_tmp.deserialize(i)
               @Storages << storageinfo_tmp
             end
+          end
+          unless params['Probe'].nil?
+            @Probe = ProbeInfo.new
+            @Probe.deserialize(params['Probe'])
           end
         end
       end
@@ -292,17 +299,17 @@ module TencentCloud
 
       # CreateInferServiceByTemplate请求参数结构体
       class CreateInferServiceByTemplateRequest < TencentCloud::Common::AbstractModel
-        # @param TemplateId: 模版ID
+        # @param TemplateId: <p>模版ID</p>
         # @type TemplateId: String
-        # @param ServiceName: 服务名称
+        # @param ServiceName: <p>服务名称</p>
         # @type ServiceName: String
-        # @param Replicas: 副本数
+        # @param Replicas: <p>副本数</p>
         # @type Replicas: Integer
-        # @param ServiceChargeType: 付费方式，POSTPAID_BY_HOUR按量后付费
+        # @param ServiceChargeType: <p>付费方式，POSTPAID_BY_HOUR按量后付费</p>
         # @type ServiceChargeType: String
-        # @param HyperParam: 描述了服务的超参数配置
+        # @param HyperParam: <p>描述了服务的超参数配置</p>
         # @type HyperParam: :class:`Tencentcloud::Hai.v20230812.models.HyperParam`
-        # @param NetworkSetting: 网络设置
+        # @param NetworkSetting: <p>网络设置</p>
         # @type NetworkSetting: :class:`Tencentcloud::Hai.v20230812.models.NetworkSetting`
 
         attr_accessor :TemplateId, :ServiceName, :Replicas, :ServiceChargeType, :HyperParam, :NetworkSetting
@@ -334,7 +341,7 @@ module TencentCloud
 
       # CreateInferServiceByTemplate返回参数结构体
       class CreateInferServiceByTemplateResponse < TencentCloud::Common::AbstractModel
-        # @param ServiceId: 服务ID
+        # @param ServiceId: <p>服务ID</p>
         # @type ServiceId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1185,6 +1192,26 @@ module TencentCloud
         end
       end
 
+      # http配置信息
+      class HttpConfig < TencentCloud::Common::AbstractModel
+        # @param Path: <p>指定健康检查的URL路径</p>
+        # @type Path: String
+        # @param Port: <p>指定健康检查的端口</p>
+        # @type Port: Integer
+
+        attr_accessor :Path, :Port
+
+        def initialize(path=nil, port=nil)
+          @Path = path
+          @Port = port
+        end
+
+        def deserialize(params)
+          @Path = params['Path']
+          @Port = params['Port']
+        end
+      end
+
       # 描述了服务的超参数配置
       class HyperParam < TencentCloud::Common::AbstractModel
         # @param HiCache: HiCache缓存
@@ -1782,6 +1809,78 @@ module TencentCloud
               itempricedetail_tmp.deserialize(i)
               @PriceDetailSet << itempricedetail_tmp
             end
+          end
+        end
+      end
+
+      # 探针配置信息
+      class ProbeConfig < TencentCloud::Common::AbstractModel
+        # @param HttpGet: <p>HTTP GET请求进行健康检查</p>
+        # @type HttpGet: :class:`Tencentcloud::Hai.v20230812.models.HttpConfig`
+        # @param InitialDelaySeconds: <p>容器启动后，等待多少秒开始第一次探测</p>
+        # @type InitialDelaySeconds: Integer
+        # @param PeriodSeconds: <p>每次执行探测的间隔时间（秒）</p>
+        # @type PeriodSeconds: Integer
+        # @param TimeoutSeconds: <p>每次探测等待响应的超时时间（秒）</p>
+        # @type TimeoutSeconds: Integer
+        # @param SuccessThreshold: <p>探测失败后，最小连续成功次数才被认为成功</p>
+        # @type SuccessThreshold: Integer
+        # @param FailureThreshold: <p>探测失败后，Kubernetes的重试次数</p>
+        # @type FailureThreshold: Integer
+
+        attr_accessor :HttpGet, :InitialDelaySeconds, :PeriodSeconds, :TimeoutSeconds, :SuccessThreshold, :FailureThreshold
+
+        def initialize(httpget=nil, initialdelayseconds=nil, periodseconds=nil, timeoutseconds=nil, successthreshold=nil, failurethreshold=nil)
+          @HttpGet = httpget
+          @InitialDelaySeconds = initialdelayseconds
+          @PeriodSeconds = periodseconds
+          @TimeoutSeconds = timeoutseconds
+          @SuccessThreshold = successthreshold
+          @FailureThreshold = failurethreshold
+        end
+
+        def deserialize(params)
+          unless params['HttpGet'].nil?
+            @HttpGet = HttpConfig.new
+            @HttpGet.deserialize(params['HttpGet'])
+          end
+          @InitialDelaySeconds = params['InitialDelaySeconds']
+          @PeriodSeconds = params['PeriodSeconds']
+          @TimeoutSeconds = params['TimeoutSeconds']
+          @SuccessThreshold = params['SuccessThreshold']
+          @FailureThreshold = params['FailureThreshold']
+        end
+      end
+
+      # 探针信息
+      class ProbeInfo < TencentCloud::Common::AbstractModel
+        # @param LivenessProbe: <p>存活探针</p>
+        # @type LivenessProbe: :class:`Tencentcloud::Hai.v20230812.models.ProbeConfig`
+        # @param ReadinessProbe: <p>就绪探针</p>
+        # @type ReadinessProbe: :class:`Tencentcloud::Hai.v20230812.models.ProbeConfig`
+        # @param StartupProbe: <p>启动探针</p>
+        # @type StartupProbe: :class:`Tencentcloud::Hai.v20230812.models.ProbeConfig`
+
+        attr_accessor :LivenessProbe, :ReadinessProbe, :StartupProbe
+
+        def initialize(livenessprobe=nil, readinessprobe=nil, startupprobe=nil)
+          @LivenessProbe = livenessprobe
+          @ReadinessProbe = readinessprobe
+          @StartupProbe = startupprobe
+        end
+
+        def deserialize(params)
+          unless params['LivenessProbe'].nil?
+            @LivenessProbe = ProbeConfig.new
+            @LivenessProbe.deserialize(params['LivenessProbe'])
+          end
+          unless params['ReadinessProbe'].nil?
+            @ReadinessProbe = ProbeConfig.new
+            @ReadinessProbe.deserialize(params['ReadinessProbe'])
+          end
+          unless params['StartupProbe'].nil?
+            @StartupProbe = ProbeConfig.new
+            @StartupProbe.deserialize(params['StartupProbe'])
           end
         end
       end

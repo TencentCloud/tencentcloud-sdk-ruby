@@ -10141,27 +10141,66 @@ module TencentCloud
 
       # ExportPrometheusReadOnlyDynamicAPI请求参数结构体
       class ExportPrometheusReadOnlyDynamicAPIRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: Prometheus 实例 ID
+        # @type InstanceId: String
+        # @param Method: HTTP 方法名 GET/POST/PUT/DELETE 等
+        # @type Method: String
+        # @param Path: HTTP 路径（包括 query string）
+        # @type Path: String
+        # @param RequestBody: HTTP 请求体，任何数据
+        # @type RequestBody: String
+        # @param Headers: HTTP 请求头
+        # @type Headers: Array
+        # @param SelfMonitor: 是否请求自监控数据。自监控仅支持 /api/v1/query 与 /api/v1/query_range 接口。
+        # @type SelfMonitor: Boolean
 
+        attr_accessor :InstanceId, :Method, :Path, :RequestBody, :Headers, :SelfMonitor
 
-        def initialize()
+        def initialize(instanceid=nil, method=nil, path=nil, requestbody=nil, headers=nil, selfmonitor=nil)
+          @InstanceId = instanceid
+          @Method = method
+          @Path = path
+          @RequestBody = requestbody
+          @Headers = headers
+          @SelfMonitor = selfmonitor
         end
 
         def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Method = params['Method']
+          @Path = params['Path']
+          @RequestBody = params['RequestBody']
+          unless params['Headers'].nil?
+            @Headers = []
+            params['Headers'].each do |i|
+              prometheusstringkeyvaluepair_tmp = PrometheusStringKeyValuePair.new
+              prometheusstringkeyvaluepair_tmp.deserialize(i)
+              @Headers << prometheusstringkeyvaluepair_tmp
+            end
+          end
+          @SelfMonitor = params['SelfMonitor']
         end
       end
 
       # ExportPrometheusReadOnlyDynamicAPI返回参数结构体
       class ExportPrometheusReadOnlyDynamicAPIResponse < TencentCloud::Common::AbstractModel
+        # @param HTTP: HTTP 响应数据
+        # @type HTTP: :class:`Tencentcloud::Monitor.v20180724.models.PrometheusDynamicAPIResponseHTTP`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :HTTP, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(http=nil, requestid=nil)
+          @HTTP = http
           @RequestId = requestid
         end
 
         def deserialize(params)
+          unless params['HTTP'].nil?
+            @HTTP = PrometheusDynamicAPIResponseHTTP.new
+            @HTTP.deserialize(params['HTTP'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -11826,14 +11865,14 @@ module TencentCloud
 
         attr_accessor :AlarmNotifyPeriod, :AlarmNotifyType, :EventID, :RuleID, :MetricName, :Description
         extend Gem::Deprecate
-        deprecate :AlarmNotifyPeriod, :none, 2026, 3
-        deprecate :AlarmNotifyPeriod=, :none, 2026, 3
-        deprecate :AlarmNotifyType, :none, 2026, 3
-        deprecate :AlarmNotifyType=, :none, 2026, 3
-        deprecate :EventID, :none, 2026, 3
-        deprecate :EventID=, :none, 2026, 3
-        deprecate :RuleID, :none, 2026, 3
-        deprecate :RuleID=, :none, 2026, 3
+        deprecate :AlarmNotifyPeriod, :none, 2026, 4
+        deprecate :AlarmNotifyPeriod=, :none, 2026, 4
+        deprecate :AlarmNotifyType, :none, 2026, 4
+        deprecate :AlarmNotifyType=, :none, 2026, 4
+        deprecate :EventID, :none, 2026, 4
+        deprecate :EventID=, :none, 2026, 4
+        deprecate :RuleID, :none, 2026, 4
+        deprecate :RuleID=, :none, 2026, 4
 
         def initialize(alarmnotifyperiod=nil, alarmnotifytype=nil, eventid=nil, ruleid=nil, metricname=nil, description=nil)
           @AlarmNotifyPeriod = alarmnotifyperiod
@@ -13473,6 +13512,26 @@ module TencentCloud
         end
       end
 
+      # Prometheus 内部动态 api 代理响应
+      class PrometheusDynamicAPIResponseHTTP < TencentCloud::Common::AbstractModel
+        # @param StatusCode: HTTP 状态码
+        # @type StatusCode: Integer
+        # @param ResponseBody: HTTP 响应体
+        # @type ResponseBody: String
+
+        attr_accessor :StatusCode, :ResponseBody
+
+        def initialize(statuscode=nil, responsebody=nil)
+          @StatusCode = statuscode
+          @ResponseBody = responsebody
+        end
+
+        def deserialize(params)
+          @StatusCode = params['StatusCode']
+          @ResponseBody = params['ResponseBody']
+        end
+      end
+
       # 实例的授权信息
       class PrometheusInstanceGrantInfo < TencentCloud::Common::AbstractModel
         # @param HasChargeOperation: 是否有计费操作权限(1=有，2=无)
@@ -14301,6 +14360,26 @@ module TencentCloud
         end
       end
 
+      # Prometheus 通用字符串类型 kv
+      class PrometheusStringKeyValuePair < TencentCloud::Common::AbstractModel
+        # @param Key: 键
+        # @type Key: String
+        # @param Value: 值
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
+        end
+      end
+
       # Prometheus 托管服务标签
       class PrometheusTag < TencentCloud::Common::AbstractModel
         # @param Key: 标签的健值
@@ -14793,10 +14872,10 @@ module TencentCloud
 
         attr_accessor :URL, :URLRelabelConfig, :BasicAuth, :MaxBlockSize, :Label, :Headers
         extend Gem::Deprecate
-        deprecate :MaxBlockSize, :none, 2026, 3
-        deprecate :MaxBlockSize=, :none, 2026, 3
-        deprecate :Label, :none, 2026, 3
-        deprecate :Label=, :none, 2026, 3
+        deprecate :MaxBlockSize, :none, 2026, 4
+        deprecate :MaxBlockSize=, :none, 2026, 4
+        deprecate :Label, :none, 2026, 4
+        deprecate :Label=, :none, 2026, 4
 
         def initialize(url=nil, urlrelabelconfig=nil, basicauth=nil, maxblocksize=nil, label=nil, headers=nil)
           @URL = url

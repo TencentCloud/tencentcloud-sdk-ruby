@@ -688,13 +688,13 @@ module TencentCloud
 
       # 查询-保护策略
       class DescribePolicy < TencentCloud::Common::AbstractModel
-        # @param TaskPolicyIdList: 保护策略ID列表
+        # @param TaskPolicyIdList: <p>保护策略ID列表</p>
         # @type TaskPolicyIdList: Array
-        # @param TaskPolicyStatus: 保护策略状态
+        # @param TaskPolicyStatus: <p>保护策略状态</p><p>枚举值：</p><ul><li>已触发： 表示已触发护栏策略</li><li>未触发： 表示未触发护栏策略</li><li>已恢复： 表示护栏策略已恢复</li></ul>
         # @type TaskPolicyStatus: String
-        # @param TaskPolicyRule: 策略规则
+        # @param TaskPolicyRule: <p>策略规则</p>
         # @type TaskPolicyRule: String
-        # @param TaskPolicyDealType: 护栏策略生效处理策略 1:顺序执行，2:暂停
+        # @param TaskPolicyDealType: <p>护栏策略生效处理策略 1:顺序执行，2:暂停</p>
         # @type TaskPolicyDealType: Integer
 
         attr_accessor :TaskPolicyIdList, :TaskPolicyStatus, :TaskPolicyRule, :TaskPolicyDealType
@@ -1207,16 +1207,19 @@ module TencentCloud
         # @type Issue: String
         # @param Record: 演练记录
         # @type Record: String
+        # @param IncludeRecordInReport: 
+        # @type IncludeRecordInReport: Integer
 
-        attr_accessor :TaskId, :Status, :IsExpect, :Summary, :Issue, :Record
+        attr_accessor :TaskId, :Status, :IsExpect, :Summary, :Issue, :Record, :IncludeRecordInReport
 
-        def initialize(taskid=nil, status=nil, isexpect=nil, summary=nil, issue=nil, record=nil)
+        def initialize(taskid=nil, status=nil, isexpect=nil, summary=nil, issue=nil, record=nil, includerecordinreport=nil)
           @TaskId = taskid
           @Status = status
           @IsExpect = isexpect
           @Summary = summary
           @Issue = issue
           @Record = record
+          @IncludeRecordInReport = includerecordinreport
         end
 
         def deserialize(params)
@@ -1226,6 +1229,7 @@ module TencentCloud
           @Summary = params['Summary']
           @Issue = params['Issue']
           @Record = params['Record']
+          @IncludeRecordInReport = params['IncludeRecordInReport']
         end
       end
 
@@ -1846,47 +1850,47 @@ module TencentCloud
 
       # 任务分组动作
       class TaskGroupAction < TencentCloud::Common::AbstractModel
-        # @param TaskGroupActionId: 任务分组动作ID
+        # @param TaskGroupActionId: <p>任务分组动作ID</p>
         # @type TaskGroupActionId: Integer
-        # @param TaskGroupInstances: 任务分组动作实例列表
+        # @param TaskGroupInstances: <p>任务分组动作实例列表</p>
         # @type TaskGroupInstances: Array
-        # @param ActionId: 动作ID
+        # @param ActionId: <p>动作ID</p>
         # @type ActionId: Integer
-        # @param TaskGroupActionOrder: 分组动作顺序
+        # @param TaskGroupActionOrder: <p>分组动作顺序</p>
         # @type TaskGroupActionOrder: Integer
-        # @param TaskGroupActionGeneralConfiguration: 分组动作通用配置
+        # @param TaskGroupActionGeneralConfiguration: <p>分组动作通用配置</p>
         # @type TaskGroupActionGeneralConfiguration: String
-        # @param TaskGroupActionCustomConfiguration: 分组动作自定义配置
+        # @param TaskGroupActionCustomConfiguration: <p>分组动作自定义配置</p>
         # @type TaskGroupActionCustomConfiguration: String
-        # @param TaskGroupActionStatus: 分组动作状态
+        # @param TaskGroupActionStatus: <p>分组动作状态</p><p>枚举值：</p><ul><li>2001： 未开始</li><li>2002： 待执行</li><li>2003： 执行中</li><li>2004： 执行结束</li></ul>
         # @type TaskGroupActionStatus: Integer
-        # @param TaskGroupActionCreateTime: 动作分组创建时间
+        # @param TaskGroupActionCreateTime: <p>动作分组创建时间</p>
         # @type TaskGroupActionCreateTime: String
-        # @param TaskGroupActionUpdateTime: 动作分组更新时间
+        # @param TaskGroupActionUpdateTime: <p>动作分组更新时间</p>
         # @type TaskGroupActionUpdateTime: String
-        # @param ActionTitle: 动作名称
+        # @param ActionTitle: <p>动作名称</p>
         # @type ActionTitle: String
-        # @param TaskGroupActionStatusType: 状态类型: 0 -- 无状态，1 -- 成功，2-- 失败，3--终止，4--跳过
+        # @param TaskGroupActionStatusType: <p>状态类型: 0 -- 无状态，1 -- 成功，2-- 失败，3--终止，4--跳过</p>
         # @type TaskGroupActionStatusType: Integer
-        # @param TaskGroupActionRandomId: RandomId
+        # @param TaskGroupActionRandomId: <p>RandomId</p>
         # @type TaskGroupActionRandomId: Integer
-        # @param TaskGroupActionRecoverId: RecoverId
+        # @param TaskGroupActionRecoverId: <p>RecoverId</p>
         # @type TaskGroupActionRecoverId: Integer
-        # @param TaskGroupActionExecuteId: ExecuteId
+        # @param TaskGroupActionExecuteId: <p>ExecuteId</p>
         # @type TaskGroupActionExecuteId: Integer
-        # @param ActionApiType: 调用api类型，0:tat, 1:云api
+        # @param ActionApiType: <p>调用api类型，0:tat, 1:云api</p>
         # @type ActionApiType: Integer
-        # @param ActionAttribute: 1:故障，2:恢复
+        # @param ActionAttribute: <p>1:故障，2:恢复</p>
         # @type ActionAttribute: Integer
-        # @param ActionType: 动作类型：平台、自定义
+        # @param ActionType: <p>动作类型：平台、自定义</p>
         # @type ActionType: String
-        # @param IsExecuteRedo: 是否可重试
+        # @param IsExecuteRedo: <p>是否可重试</p>
         # @type IsExecuteRedo: Boolean
-        # @param ActionRisk: 动作风险级别
+        # @param ActionRisk: <p>动作风险级别</p>
         # @type ActionRisk: String
-        # @param TaskGroupActionExecuteTime: 动作运行时间
+        # @param TaskGroupActionExecuteTime: <p>动作运行时间</p><p>单位：秒</p>
         # @type TaskGroupActionExecuteTime: Integer
-        # @param TaskGroupActionStartTime: 动作开始执行时间
+        # @param TaskGroupActionStartTime: <p>动作开始执行时间</p>
         # @type TaskGroupActionStartTime: String
 
         attr_accessor :TaskGroupActionId, :TaskGroupInstances, :ActionId, :TaskGroupActionOrder, :TaskGroupActionGeneralConfiguration, :TaskGroupActionCustomConfiguration, :TaskGroupActionStatus, :TaskGroupActionCreateTime, :TaskGroupActionUpdateTime, :ActionTitle, :TaskGroupActionStatusType, :TaskGroupActionRandomId, :TaskGroupActionRecoverId, :TaskGroupActionExecuteId, :ActionApiType, :ActionAttribute, :ActionType, :IsExecuteRedo, :ActionRisk, :TaskGroupActionExecuteTime, :TaskGroupActionStartTime
@@ -2055,34 +2059,34 @@ module TencentCloud
 
       # 任务分组动作实例
       class TaskGroupInstance < TencentCloud::Common::AbstractModel
-        # @param TaskGroupInstanceId: 实例ID
+        # @param TaskGroupInstanceId: <p>实例ID</p>
         # @type TaskGroupInstanceId: Integer
-        # @param TaskGroupInstanceObjectId: 实例ID
+        # @param TaskGroupInstanceObjectId: <p>实例ID</p>
         # @type TaskGroupInstanceObjectId: String
-        # @param TaskGroupInstanceStatus: 实例动作执行状态
+        # @param TaskGroupInstanceStatus: <p>实例动作执行状态</p><p>枚举值：</p><ul><li>3001： 未开始</li><li>3002： 执行中</li><li>3003： 执行结束</li><li>3004： 准备中</li></ul>
         # @type TaskGroupInstanceStatus: Integer
-        # @param TaskGroupInstanceCreateTime: 实例创建时间
+        # @param TaskGroupInstanceCreateTime: <p>实例创建时间</p>
         # @type TaskGroupInstanceCreateTime: String
-        # @param TaskGroupInstanceUpdateTime: 实例更新时间
+        # @param TaskGroupInstanceUpdateTime: <p>实例更新时间</p>
         # @type TaskGroupInstanceUpdateTime: String
-        # @param TaskGroupInstanceStatusType: 状态类型: 0 -- 无状态，1 -- 成功，2-- 失败，3--终止，4--跳过
+        # @param TaskGroupInstanceStatusType: <p>状态类型: 0 -- 无状态，1 -- 成功，2-- 失败，3--终止，4--跳过</p>
         # @type TaskGroupInstanceStatusType: Integer
-        # @param TaskGroupInstanceStartTime: 执行开始时间
+        # @param TaskGroupInstanceStartTime: <p>执行开始时间</p>
         # @type TaskGroupInstanceStartTime: String
-        # @param TaskGroupInstanceEndTime: 执行结束时间
+        # @param TaskGroupInstanceEndTime: <p>执行结束时间</p>
         # @type TaskGroupInstanceEndTime: String
-        # @param TaskGroupInstanceExecuteLog: 实例动作执行日志
+        # @param TaskGroupInstanceExecuteLog: <p>实例动作执行日志</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskGroupInstanceExecuteLog: String
-        # @param TaskGroupInstanceIsRedo: 实例是否可重试
+        # @param TaskGroupInstanceIsRedo: <p>实例是否可重试</p>
         # @type TaskGroupInstanceIsRedo: Boolean
-        # @param TaskGroupInstanceExecuteTime: 动作实例执行时间
+        # @param TaskGroupInstanceExecuteTime: <p>动作实例执行时间</p><p>单位：秒</p>
         # @type TaskGroupInstanceExecuteTime: Integer
 
         attr_accessor :TaskGroupInstanceId, :TaskGroupInstanceObjectId, :TaskGroupInstanceStatus, :TaskGroupInstanceCreateTime, :TaskGroupInstanceUpdateTime, :TaskGroupInstanceStatusType, :TaskGroupInstanceStartTime, :TaskGroupInstanceEndTime, :TaskGroupInstanceExecuteLog, :TaskGroupInstanceIsRedo, :TaskGroupInstanceExecuteTime
         extend Gem::Deprecate
-        deprecate :TaskGroupInstanceExecuteLog, :none, 2026, 1
-        deprecate :TaskGroupInstanceExecuteLog=, :none, 2026, 1
+        deprecate :TaskGroupInstanceExecuteLog, :none, 2026, 4
+        deprecate :TaskGroupInstanceExecuteLog=, :none, 2026, 4
 
         def initialize(taskgroupinstanceid=nil, taskgroupinstanceobjectid=nil, taskgroupinstancestatus=nil, taskgroupinstancecreatetime=nil, taskgroupinstanceupdatetime=nil, taskgroupinstancestatustype=nil, taskgroupinstancestarttime=nil, taskgroupinstanceendtime=nil, taskgroupinstanceexecutelog=nil, taskgroupinstanceisredo=nil, taskgroupinstanceexecutetime=nil)
           @TaskGroupInstanceId = taskgroupinstanceid
@@ -2115,11 +2119,11 @@ module TencentCloud
 
       # 机器选取规则
       class TaskGroupInstancesExecuteRules < TencentCloud::Common::AbstractModel
-        # @param TaskGroupInstancesExecuteMode: 实例选取模式
+        # @param TaskGroupInstancesExecuteMode: <p>实例选取模式</p><p>枚举值：</p><ul><li>1： 全部注入</li><li>2： 随机选取指定比例注入</li><li>3： 随机选取指定数量注入</li></ul>
         # @type TaskGroupInstancesExecuteMode: Integer
-        # @param TaskGroupInstancesExecutePercent: 按比例选取模式下选取比例
+        # @param TaskGroupInstancesExecutePercent: <p>按比例选取模式下选取比例</p>
         # @type TaskGroupInstancesExecutePercent: Integer
-        # @param TaskGroupInstancesExecuteNum: 按数量选取模式下选取数量
+        # @param TaskGroupInstancesExecuteNum: <p>按数量选取模式下选取数量</p>
         # @type TaskGroupInstancesExecuteNum: Integer
 
         attr_accessor :TaskGroupInstancesExecuteMode, :TaskGroupInstancesExecutePercent, :TaskGroupInstancesExecuteNum
@@ -2328,16 +2332,15 @@ module TencentCloud
 
       # 演练目标
       class TaskTarget < TencentCloud::Common::AbstractModel
-        # @param TargetId: 目标标签ID
+        # @param TargetId: <p>目标标签ID</p>
         # @type TargetId: Integer
-        # @param TargetDesc: 目标描述
+        # @param TargetDesc: <p>目标描述</p>
         # @type TargetDesc: String
-        # @param Type: 1:演练场景
-        # 2:演练目标
+        # @param Type: <p>1:演练场景<br>2:演练目标</p>
         # @type Type: Integer
-        # @param Source: 1:平台 2:用户个人
+        # @param Source: <p>1:平台 2:用户个人</p>
         # @type Source: Integer
-        # @param TargetStatus: 目标标签是否已被删除
+        # @param TargetStatus: <p>目标标签是否已被删除</p><p>枚举值：</p><ul><li>0： 未删除</li><li>1： 已删除</li></ul>
         # @type TargetStatus: Integer
 
         attr_accessor :TargetId, :TargetDesc, :Type, :Source, :TargetStatus

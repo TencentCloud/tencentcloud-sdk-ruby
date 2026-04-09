@@ -19,37 +19,39 @@ module TencentCloud
     module V20221121
       # Ai Agent 资产信息列表项
       class AIAgentAsset < TencentCloud::Common::AbstractModel
-        # @param ID: ID 标识
+        # @param ID: <p>ID 标识</p>
         # @type ID: String
-        # @param AgentName: agent 名称
+        # @param AgentName: <p>agent 名称</p>
         # @type AgentName: String
-        # @param AgentModel: agent 使用模型名称
+        # @param AgentModel: <p>agent 使用模型名称</p>
         # @type AgentModel: Array
-        # @param InstanceID: 实例 ID
+        # @param InstanceID: <p>实例 ID</p>
         # @type InstanceID: String
-        # @param MetadataRiskList: metadata 风险列表。有如下枚举值: 1. AK_TMP  2. USER_DATA
+        # @param InstanceName: <p>实例名称</p>
+        # @type InstanceName: String
+        # @param MetadataRiskList: <p>metadata 风险列表。有如下枚举值: 1. AK_TMP  2. USER_DATA</p>
         # @type MetadataRiskList: Array
-        # @param IdentityTimeFirst: 首次检出时间
+        # @param IdentityTimeFirst: <p>首次检出时间</p>
         # @type IdentityTimeFirst: String
-        # @param IdentityTimeLast: 最近检出时间
+        # @param IdentityTimeLast: <p>最近检出时间</p>
         # @type IdentityTimeLast: String
-        # @param IdentityMethod: 检出方式。有如下枚举值 1. FINGER 资产指纹方式检出 2. NETWORK 网络访问方式检出
+        # @param IdentityMethod: <p>检出方式。有如下枚举值 1. FINGER 资产指纹方式检出 2. NETWORK 网络访问方式检出</p>
         # @type IdentityMethod: String
-        # @param ExposureStatus: 暴露状态。有如下枚举值。1. EXPOSED；2.UNEXPOSED；
-        # 3. UNKNOWN;
+        # @param ExposureStatus: <p>暴露状态。有如下枚举值。1. EXPOSED；2.UNEXPOSED；</p><ol start="3"><li>UNKNOWN;</li></ol>
         # @type ExposureStatus: String
-        # @param MetadataRiskURL: metadata 有风险时对应路径
+        # @param MetadataRiskURL: <p>metadata 有风险时对应路径</p>
         # @type MetadataRiskURL: String
-        # @param SkillState: 无
+        # @param SkillState: <p>无</p>
         # @type SkillState: :class:`Tencentcloud::Csip.v20221121.models.SkillState`
 
-        attr_accessor :ID, :AgentName, :AgentModel, :InstanceID, :MetadataRiskList, :IdentityTimeFirst, :IdentityTimeLast, :IdentityMethod, :ExposureStatus, :MetadataRiskURL, :SkillState
+        attr_accessor :ID, :AgentName, :AgentModel, :InstanceID, :InstanceName, :MetadataRiskList, :IdentityTimeFirst, :IdentityTimeLast, :IdentityMethod, :ExposureStatus, :MetadataRiskURL, :SkillState
 
-        def initialize(id=nil, agentname=nil, agentmodel=nil, instanceid=nil, metadatarisklist=nil, identitytimefirst=nil, identitytimelast=nil, identitymethod=nil, exposurestatus=nil, metadatariskurl=nil, skillstate=nil)
+        def initialize(id=nil, agentname=nil, agentmodel=nil, instanceid=nil, instancename=nil, metadatarisklist=nil, identitytimefirst=nil, identitytimelast=nil, identitymethod=nil, exposurestatus=nil, metadatariskurl=nil, skillstate=nil)
           @ID = id
           @AgentName = agentname
           @AgentModel = agentmodel
           @InstanceID = instanceid
+          @InstanceName = instancename
           @MetadataRiskList = metadatarisklist
           @IdentityTimeFirst = identitytimefirst
           @IdentityTimeLast = identitytimelast
@@ -64,6 +66,7 @@ module TencentCloud
           @AgentName = params['AgentName']
           @AgentModel = params['AgentModel']
           @InstanceID = params['InstanceID']
+          @InstanceName = params['InstanceName']
           @MetadataRiskList = params['MetadataRiskList']
           @IdentityTimeFirst = params['IdentityTimeFirst']
           @IdentityTimeLast = params['IdentityTimeLast']

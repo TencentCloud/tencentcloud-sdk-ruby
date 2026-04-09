@@ -1232,17 +1232,21 @@ module TencentCloud
 
       # 智能分类任务输入类型
       class AiAnalysisTaskClassificationInput < TencentCloud::Common::AbstractModel
-        # @param Definition: 视频智能分类模板 ID。
+        # @param Definition: <p>视频智能分类模板 ID。</p>
         # @type Definition: Integer
+        # @param ExtendedParameter: <p>扩展参数。</p>
+        # @type ExtendedParameter: String
 
-        attr_accessor :Definition
+        attr_accessor :Definition, :ExtendedParameter
 
-        def initialize(definition=nil)
+        def initialize(definition=nil, extendedparameter=nil)
           @Definition = definition
+          @ExtendedParameter = extendedparameter
         end
 
         def deserialize(params)
           @Definition = params['Definition']
+          @ExtendedParameter = params['ExtendedParameter']
         end
       end
 
@@ -1314,17 +1318,21 @@ module TencentCloud
 
       # 智能分类任务输入类型
       class AiAnalysisTaskCoverInput < TencentCloud::Common::AbstractModel
-        # @param Definition: 视频智能封面模板 ID。
+        # @param Definition: <p>视频智能封面模板 ID。</p>
         # @type Definition: Integer
+        # @param ExtendedParameter: <p>扩展参数。</p>
+        # @type ExtendedParameter: String
 
-        attr_accessor :Definition
+        attr_accessor :Definition, :ExtendedParameter
 
-        def initialize(definition=nil)
+        def initialize(definition=nil, extendedparameter=nil)
           @Definition = definition
+          @ExtendedParameter = extendedparameter
         end
 
         def deserialize(params)
           @Definition = params['Definition']
+          @ExtendedParameter = params['ExtendedParameter']
         end
       end
 
@@ -1403,17 +1411,21 @@ module TencentCloud
 
       # 智能抠图任务输入类型
       class AiAnalysisTaskCutoutInput < TencentCloud::Common::AbstractModel
-        # @param Definition: 视频智能抠图模板 ID。
+        # @param Definition: <p>视频智能抠图模板 ID。</p>
         # @type Definition: Integer
+        # @param ExtendedParameter: <p>扩展参数。</p>
+        # @type ExtendedParameter: String
 
-        attr_accessor :Definition
+        attr_accessor :Definition, :ExtendedParameter
 
-        def initialize(definition=nil)
+        def initialize(definition=nil, extendedparameter=nil)
           @Definition = definition
+          @ExtendedParameter = extendedparameter
         end
 
         def deserialize(params)
           @Definition = params['Definition']
+          @ExtendedParameter = params['ExtendedParameter']
         end
       end
 
@@ -1493,17 +1505,21 @@ module TencentCloud
 
       # 智能擦除任务输入类型
       class AiAnalysisTaskDelLogoInput < TencentCloud::Common::AbstractModel
-        # @param Definition: 视频智能擦除模板 ID。
+        # @param Definition: <p>视频智能擦除模板 ID。</p>
         # @type Definition: Integer
+        # @param ExtendedParameter: <p>扩展参数。</p>
+        # @type ExtendedParameter: String
 
-        attr_accessor :Definition
+        attr_accessor :Definition, :ExtendedParameter
 
-        def initialize(definition=nil)
+        def initialize(definition=nil, extendedparameter=nil)
           @Definition = definition
+          @ExtendedParameter = extendedparameter
         end
 
         def deserialize(params)
           @Definition = params['Definition']
+          @ExtendedParameter = params['ExtendedParameter']
         end
       end
 
@@ -1597,17 +1613,21 @@ module TencentCloud
 
       # 智能分类任务输入类型
       class AiAnalysisTaskDescriptionInput < TencentCloud::Common::AbstractModel
-        # @param Definition: 视频智能描述模板 ID。
+        # @param Definition: <p>视频智能描述模板 ID。</p>
         # @type Definition: Integer
+        # @param ExtendedParameter: <p>扩展参数。</p>
+        # @type ExtendedParameter: String
 
-        attr_accessor :Definition
+        attr_accessor :Definition, :ExtendedParameter
 
-        def initialize(definition=nil)
+        def initialize(definition=nil, extendedparameter=nil)
           @Definition = definition
+          @ExtendedParameter = extendedparameter
         end
 
         def deserialize(params)
           @Definition = params['Definition']
+          @ExtendedParameter = params['ExtendedParameter']
         end
       end
 
@@ -1675,17 +1695,21 @@ module TencentCloud
 
       # 智能译制任务输入类型
       class AiAnalysisTaskDubbingInput < TencentCloud::Common::AbstractModel
-        # @param Definition: 视频译制模板 ID。
+        # @param Definition: <p>视频译制模板 ID。</p>
         # @type Definition: Integer
+        # @param ExtendedParameter: <p>扩展参数。</p>
+        # @type ExtendedParameter: String
 
-        attr_accessor :Definition
+        attr_accessor :Definition, :ExtendedParameter
 
-        def initialize(definition=nil)
+        def initialize(definition=nil, extendedparameter=nil)
           @Definition = definition
+          @ExtendedParameter = extendedparameter
         end
 
         def deserialize(params)
           @Definition = params['Definition']
+          @ExtendedParameter = params['ExtendedParameter']
         end
       end
 
@@ -1761,17 +1785,21 @@ module TencentCloud
 
       # 智能按帧标签任务输入类型
       class AiAnalysisTaskFrameTagInput < TencentCloud::Common::AbstractModel
-        # @param Definition: 视频智能按帧标签模板 ID。
+        # @param Definition: <p>视频智能按帧标签模板 ID。</p>
         # @type Definition: Integer
+        # @param ExtendedParameter: <p>扩展参数。</p>
+        # @type ExtendedParameter: String
 
-        attr_accessor :Definition
+        attr_accessor :Definition, :ExtendedParameter
 
-        def initialize(definition=nil)
+        def initialize(definition=nil, extendedparameter=nil)
           @Definition = definition
+          @ExtendedParameter = extendedparameter
         end
 
         def deserialize(params)
           @Definition = params['Definition']
+          @ExtendedParameter = params['ExtendedParameter']
         end
       end
 
@@ -1843,17 +1871,21 @@ module TencentCloud
 
       # 片头片尾任务输入类型
       class AiAnalysisTaskHeadTailInput < TencentCloud::Common::AbstractModel
-        # @param Definition: 片头片尾识别模板 ID。
+        # @param Definition: <p>片头片尾识别模板 ID。</p>
         # @type Definition: Integer
+        # @param ExtendedParameter: <p>扩展参数。</p>
+        # @type ExtendedParameter: String
 
-        attr_accessor :Definition
+        attr_accessor :Definition, :ExtendedParameter
 
-        def initialize(definition=nil)
+        def initialize(definition=nil, extendedparameter=nil)
           @Definition = definition
+          @ExtendedParameter = extendedparameter
         end
 
         def deserialize(params)
           @Definition = params['Definition']
+          @ExtendedParameter = params['ExtendedParameter']
         end
       end
 
@@ -1920,17 +1952,21 @@ module TencentCloud
 
       # 智能精彩片段任务输入类型
       class AiAnalysisTaskHighlightInput < TencentCloud::Common::AbstractModel
-        # @param Definition: 视频智能精彩片段模板 ID。
+        # @param Definition: <p>视频智能精彩片段模板 ID。</p>
         # @type Definition: Integer
+        # @param ExtendedParameter: <p>扩展参数。</p>
+        # @type ExtendedParameter: String
 
-        attr_accessor :Definition
+        attr_accessor :Definition, :ExtendedParameter
 
-        def initialize(definition=nil)
+        def initialize(definition=nil, extendedparameter=nil)
           @Definition = definition
+          @ExtendedParameter = extendedparameter
         end
 
         def deserialize(params)
           @Definition = params['Definition']
+          @ExtendedParameter = params['ExtendedParameter']
         end
       end
 
@@ -2006,18 +2042,22 @@ module TencentCloud
 
       # 智能横转竖任务输入类型
       class AiAnalysisTaskHorizontalToVerticalInput < TencentCloud::Common::AbstractModel
-        # @param Definition: 视频智能横转竖模板 ID
+        # @param Definition: <p>视频智能横转竖模板 ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Definition: Integer
+        # @param ExtendedParameter: <p>扩展参数。</p>
+        # @type ExtendedParameter: String
 
-        attr_accessor :Definition
+        attr_accessor :Definition, :ExtendedParameter
 
-        def initialize(definition=nil)
+        def initialize(definition=nil, extendedparameter=nil)
           @Definition = definition
+          @ExtendedParameter = extendedparameter
         end
 
         def deserialize(params)
           @Definition = params['Definition']
+          @ExtendedParameter = params['ExtendedParameter']
         end
       end
 
@@ -2122,17 +2162,21 @@ module TencentCloud
 
       # 智能成片任务输入类型
       class AiAnalysisTaskReelInput < TencentCloud::Common::AbstractModel
-        # @param Definition: 智能成片模板 ID。
+        # @param Definition: <p>智能成片模板 ID。</p>
         # @type Definition: Integer
+        # @param ExtendedParameter: <p>扩展参数。</p>
+        # @type ExtendedParameter: String
 
-        attr_accessor :Definition
+        attr_accessor :Definition, :ExtendedParameter
 
-        def initialize(definition=nil)
+        def initialize(definition=nil, extendedparameter=nil)
           @Definition = definition
+          @ExtendedParameter = extendedparameter
         end
 
         def deserialize(params)
           @Definition = params['Definition']
+          @ExtendedParameter = params['ExtendedParameter']
         end
       end
 
@@ -2232,17 +2276,21 @@ module TencentCloud
 
       # 拆条任务输入类型
       class AiAnalysisTaskSegmentInput < TencentCloud::Common::AbstractModel
-        # @param Definition: 拆条任务模板 ID。
+        # @param Definition: <p>拆条任务模板 ID。</p>
         # @type Definition: Integer
+        # @param ExtendedParameter: <p>扩展参数。</p>
+        # @type ExtendedParameter: String
 
-        attr_accessor :Definition
+        attr_accessor :Definition, :ExtendedParameter
 
-        def initialize(definition=nil)
+        def initialize(definition=nil, extendedparameter=nil)
           @Definition = definition
+          @ExtendedParameter = extendedparameter
         end
 
         def deserialize(params)
           @Definition = params['Definition']
+          @ExtendedParameter = params['ExtendedParameter']
         end
       end
 
@@ -2315,17 +2363,21 @@ module TencentCloud
 
       # 智能标签任务输入类型
       class AiAnalysisTaskTagInput < TencentCloud::Common::AbstractModel
-        # @param Definition: 视频智能标签模板 ID。
+        # @param Definition: <p>视频智能标签模板 ID。</p>
         # @type Definition: Integer
+        # @param ExtendedParameter: <p>扩展参数。</p>
+        # @type ExtendedParameter: String
 
-        attr_accessor :Definition
+        attr_accessor :Definition, :ExtendedParameter
 
-        def initialize(definition=nil)
+        def initialize(definition=nil, extendedparameter=nil)
           @Definition = definition
+          @ExtendedParameter = extendedparameter
         end
 
         def deserialize(params)
           @Definition = params['Definition']
+          @ExtendedParameter = params['ExtendedParameter']
         end
       end
 
@@ -2397,17 +2449,21 @@ module TencentCloud
 
       # 视频（音频）理解任务输入
       class AiAnalysisTaskVideoComprehensionInput < TencentCloud::Common::AbstractModel
-        # @param Definition: 视频（音频）理解模板ID
+        # @param Definition: <p>视频（音频）理解模板ID</p>
         # @type Definition: Integer
+        # @param ExtendedParameter: <p>扩展参数。</p>
+        # @type ExtendedParameter: String
 
-        attr_accessor :Definition
+        attr_accessor :Definition, :ExtendedParameter
 
-        def initialize(definition=nil)
+        def initialize(definition=nil, extendedparameter=nil)
           @Definition = definition
+          @ExtendedParameter = extendedparameter
         end
 
         def deserialize(params)
           @Definition = params['Definition']
+          @ExtendedParameter = params['ExtendedParameter']
         end
       end
 
@@ -2499,17 +2555,21 @@ module TencentCloud
 
       # 视频去重任务输入类型
       class AiAnalysisTaskVideoRemakeInput < TencentCloud::Common::AbstractModel
-        # @param Definition: 视频智能去重模板 ID
+        # @param Definition: <p>视频智能去重模板 ID</p>
         # @type Definition: Integer
+        # @param ExtendedParameter: <p>扩展参数。</p>
+        # @type ExtendedParameter: String
 
-        attr_accessor :Definition
+        attr_accessor :Definition, :ExtendedParameter
 
-        def initialize(definition=nil)
+        def initialize(definition=nil, extendedparameter=nil)
           @Definition = definition
+          @ExtendedParameter = extendedparameter
         end
 
         def deserialize(params)
           @Definition = params['Definition']
+          @ExtendedParameter = params['ExtendedParameter']
         end
       end
 
@@ -27316,26 +27376,29 @@ module TencentCloud
 
       # 媒体质检结果输出。
       class QualityControlData < TencentCloud::Common::AbstractModel
-        # @param NoAudio: 为true时表示视频无音频轨。
+        # @param NoAudio: <p>为true时表示视频无音频轨。</p>
         # @type NoAudio: Boolean
-        # @param NoVideo: 为true时表示视频无视频轨。
+        # @param NoVideo: <p>为true时表示视频无视频轨。</p>
         # @type NoVideo: Boolean
-        # @param QualityEvaluationScore: 视频无参考质量评分，百分制。
+        # @param QualityEvaluationScore: <p>视频无参考质量评分，百分制。</p>
         # @type QualityEvaluationScore: Integer
-        # @param QualityEvaluationMeanOpinionScore: 视频无参考质量评分，MOS分数。
+        # @param QualityEvaluationMeanOpinionScore: <p>视频无参考质量评分，MOS分数。</p>
         # @type QualityEvaluationMeanOpinionScore: Float
-        # @param QualityControlResultSet: 内容质检检出异常项。
+        # @param AestheticEvaluationScore: <p>视频美学评分，范围：[0,100]。</p>
+        # @type AestheticEvaluationScore: Integer
+        # @param QualityControlResultSet: <p>内容质检检出异常项。</p>
         # @type QualityControlResultSet: Array
-        # @param ContainerDiagnoseResultSet: 格式诊断检出异常项。
+        # @param ContainerDiagnoseResultSet: <p>格式诊断检出异常项。</p>
         # @type ContainerDiagnoseResultSet: Array
 
-        attr_accessor :NoAudio, :NoVideo, :QualityEvaluationScore, :QualityEvaluationMeanOpinionScore, :QualityControlResultSet, :ContainerDiagnoseResultSet
+        attr_accessor :NoAudio, :NoVideo, :QualityEvaluationScore, :QualityEvaluationMeanOpinionScore, :AestheticEvaluationScore, :QualityControlResultSet, :ContainerDiagnoseResultSet
 
-        def initialize(noaudio=nil, novideo=nil, qualityevaluationscore=nil, qualityevaluationmeanopinionscore=nil, qualitycontrolresultset=nil, containerdiagnoseresultset=nil)
+        def initialize(noaudio=nil, novideo=nil, qualityevaluationscore=nil, qualityevaluationmeanopinionscore=nil, aestheticevaluationscore=nil, qualitycontrolresultset=nil, containerdiagnoseresultset=nil)
           @NoAudio = noaudio
           @NoVideo = novideo
           @QualityEvaluationScore = qualityevaluationscore
           @QualityEvaluationMeanOpinionScore = qualityevaluationmeanopinionscore
+          @AestheticEvaluationScore = aestheticevaluationscore
           @QualityControlResultSet = qualitycontrolresultset
           @ContainerDiagnoseResultSet = containerdiagnoseresultset
         end
@@ -27345,6 +27408,7 @@ module TencentCloud
           @NoVideo = params['NoVideo']
           @QualityEvaluationScore = params['QualityEvaluationScore']
           @QualityEvaluationMeanOpinionScore = params['QualityEvaluationMeanOpinionScore']
+          @AestheticEvaluationScore = params['AestheticEvaluationScore']
           unless params['QualityControlResultSet'].nil?
             @QualityControlResultSet = []
             params['QualityControlResultSet'].each do |i|

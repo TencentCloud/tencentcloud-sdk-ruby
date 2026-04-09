@@ -658,27 +658,31 @@ module TencentCloud
 
       # 展示apm业务系统与其他云产品关联关系返回体
       class ApmAssociation < TencentCloud::Common::AbstractModel
-        # @param PeerId: 关联产品的实例ID
+        # @param PeerId: <p>关联产品的实例ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PeerId: String
-        # @param Status: 关联关系状态：1（启用）、2（不启用）、3（已失效）
+        # @param Status: <p>关联关系状态：1（启用）、2（不启用）、3（已失效）</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
-        # @param Topic: CKafka消息主题
+        # @param Topic: <p>CKafka消息主题</p>
         # @type Topic: String
+        # @param MetricTopic: <p>Ckafka消费主题</p><p>用于Kafka指标投递</p>
+        # @type MetricTopic: String
 
-        attr_accessor :PeerId, :Status, :Topic
+        attr_accessor :PeerId, :Status, :Topic, :MetricTopic
 
-        def initialize(peerid=nil, status=nil, topic=nil)
+        def initialize(peerid=nil, status=nil, topic=nil, metrictopic=nil)
           @PeerId = peerid
           @Status = status
           @Topic = topic
+          @MetricTopic = metrictopic
         end
 
         def deserialize(params)
           @PeerId = params['PeerId']
           @Status = params['Status']
           @Topic = params['Topic']
+          @MetricTopic = params['MetricTopic']
         end
       end
 
@@ -3571,25 +3575,28 @@ module TencentCloud
 
       # ModifyApmAssociation请求参数结构体
       class ModifyApmAssociationRequest < TencentCloud::Common::AbstractModel
-        # @param ProductName: 关联的产品名，当前只支持Prometheus、CKafka
+        # @param ProductName: <p>关联的产品名，当前只支持Prometheus、CKafka</p>
         # @type ProductName: String
-        # @param Status: 关联关系的状态：// 关联关系状态：1（启用）、2（不启用）
+        # @param Status: <p>关联关系的状态：// 关联关系状态：1（启用）、2（不启用）</p>
         # @type Status: Integer
-        # @param InstanceId: 业务系统ID
+        # @param InstanceId: <p>业务系统ID</p>
         # @type InstanceId: String
-        # @param PeerId: 关联的产品实例ID
+        # @param PeerId: <p>关联的产品实例ID</p>
         # @type PeerId: String
-        # @param Topic: CKafka消息主题
+        # @param Topic: <p>CKafka消息主题</p>
         # @type Topic: String
+        # @param MetricTopic: <p>Ckafka消息主题</p>
+        # @type MetricTopic: String
 
-        attr_accessor :ProductName, :Status, :InstanceId, :PeerId, :Topic
+        attr_accessor :ProductName, :Status, :InstanceId, :PeerId, :Topic, :MetricTopic
 
-        def initialize(productname=nil, status=nil, instanceid=nil, peerid=nil, topic=nil)
+        def initialize(productname=nil, status=nil, instanceid=nil, peerid=nil, topic=nil, metrictopic=nil)
           @ProductName = productname
           @Status = status
           @InstanceId = instanceid
           @PeerId = peerid
           @Topic = topic
+          @MetricTopic = metrictopic
         end
 
         def deserialize(params)
@@ -3598,6 +3605,7 @@ module TencentCloud
           @InstanceId = params['InstanceId']
           @PeerId = params['PeerId']
           @Topic = params['Topic']
+          @MetricTopic = params['MetricTopic']
         end
       end
 
