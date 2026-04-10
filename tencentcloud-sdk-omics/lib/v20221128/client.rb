@@ -149,6 +149,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询应用版本列表
+
+        # @param request: Request instance for DescribeApplicationVersions.
+        # @type request: :class:`Tencentcloud::omics::V20221128::DescribeApplicationVersionsRequest`
+        # @rtype: :class:`Tencentcloud::omics::V20221128::DescribeApplicationVersionsResponse`
+        def DescribeApplicationVersions(request)
+          body = send_request('DescribeApplicationVersions', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeApplicationVersionsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询项目应用列表
+
+        # @param request: Request instance for DescribeApplications.
+        # @type request: :class:`Tencentcloud::omics::V20221128::DescribeApplicationsRequest`
+        # @rtype: :class:`Tencentcloud::omics::V20221128::DescribeApplicationsResponse`
+        def DescribeApplications(request)
+          body = send_request('DescribeApplications', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeApplicationsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询环境列表。
 
         # @param request: Request instance for DescribeEnvironments.
@@ -207,6 +255,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeHPCNodesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询运行参数模板列表
+
+        # @param request: Request instance for DescribeInputTemplates.
+        # @type request: :class:`Tencentcloud::omics::V20221128::DescribeInputTemplatesRequest`
+        # @rtype: :class:`Tencentcloud::omics::V20221128::DescribeInputTemplatesResponse`
+        def DescribeInputTemplates(request)
+          body = send_request('DescribeInputTemplates', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeInputTemplatesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询项目列表
+
+        # @param request: Request instance for DescribeProjects.
+        # @type request: :class:`Tencentcloud::omics::V20221128::DescribeProjectsRequest`
+        # @rtype: :class:`Tencentcloud::omics::V20221128::DescribeProjectsResponse`
+        def DescribeProjects(request)
+          body = send_request('DescribeProjects', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeProjectsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -341,6 +437,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询运行参数模板内容
+
+        # @param request: Request instance for GetInputTemplateFile.
+        # @type request: :class:`Tencentcloud::omics::V20221128::GetInputTemplateFileRequest`
+        # @rtype: :class:`Tencentcloud::omics::V20221128::GetInputTemplateFileResponse`
+        def GetInputTemplateFile(request)
+          body = send_request('GetInputTemplateFile', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetInputTemplateFileResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询作业详情。
 
         # @param request: Request instance for GetRunCalls.
@@ -399,6 +519,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = GetRunStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 导入公共应用到项目
+
+        # @param request: Request instance for ImportCommonApplication.
+        # @type request: :class:`Tencentcloud::omics::V20221128::ImportCommonApplicationRequest`
+        # @rtype: :class:`Tencentcloud::omics::V20221128::ImportCommonApplicationResponse`
+        def ImportCommonApplication(request)
+          body = send_request('ImportCommonApplication', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ImportCommonApplicationResponse.new
             model.deserialize(response['Response'])
             model
           else
