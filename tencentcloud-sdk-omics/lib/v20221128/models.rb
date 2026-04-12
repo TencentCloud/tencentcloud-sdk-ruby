@@ -1037,6 +1037,59 @@ module TencentCloud
         end
       end
 
+      # DescribePublicApplications请求参数结构体
+      class DescribePublicApplicationsRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 返回数量，默认为20，最大值为100。
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+
+        attr_accessor :Limit, :Offset
+
+        def initialize(limit=nil, offset=nil)
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribePublicApplications返回参数结构体
+      class DescribePublicApplicationsResponse < TencentCloud::Common::AbstractModel
+        # @param Applications: 公共应用。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Applications: Array
+        # @param TotalCount: 符合条件的数量。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Applications, :TotalCount, :RequestId
+
+        def initialize(applications=nil, totalcount=nil, requestid=nil)
+          @Applications = applications
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Applications'].nil?
+            @Applications = []
+            params['Applications'].each do |i|
+              publicapplication_tmp = PublicApplication.new
+              publicapplication_tmp.deserialize(i)
+              @Applications << publicapplication_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeRunGroups请求参数结构体
       class DescribeRunGroupsRequest < TencentCloud::Common::AbstractModel
         # @param ProjectId: 项目ID。
@@ -2485,6 +2538,53 @@ module TencentCloud
         end
       end
 
+      # 公共应用。
+      class PublicApplication < TencentCloud::Common::AbstractModel
+        # @param ApplicationId: <p>应用ID。</p>
+        # @type ApplicationId: String
+        # @param Name: <p>名称。</p>
+        # @type Name: String
+        # @param Type: <p>类型。</p>
+        # @type Type: String
+        # @param AppGroupType: <p>应用标记</p><p>枚举值：</p><ul><li>SUB_APP： 子应用</li><li>APP_COLLECTION： 合集</li><li>STANDALONE_APP： 独立应用</li></ul>
+        # @type AppGroupType: String
+        # @param NextflowVersion: <p>Nextflow版本</p>
+        # @type NextflowVersion: Array
+        # @param AppTags: <p>应用分类</p>
+        # @type AppTags: Array
+        # @param AppId: <p>应用标识</p>
+        # @type AppId: String
+
+        attr_accessor :ApplicationId, :Name, :Type, :AppGroupType, :NextflowVersion, :AppTags, :AppId
+
+        def initialize(applicationid=nil, name=nil, type=nil, appgrouptype=nil, nextflowversion=nil, apptags=nil, appid=nil)
+          @ApplicationId = applicationid
+          @Name = name
+          @Type = type
+          @AppGroupType = appgrouptype
+          @NextflowVersion = nextflowversion
+          @AppTags = apptags
+          @AppId = appid
+        end
+
+        def deserialize(params)
+          @ApplicationId = params['ApplicationId']
+          @Name = params['Name']
+          @Type = params['Type']
+          @AppGroupType = params['AppGroupType']
+          @NextflowVersion = params['NextflowVersion']
+          unless params['AppTags'].nil?
+            @AppTags = []
+            params['AppTags'].each do |i|
+              toolrepotag_tmp = ToolRepoTag.new
+              toolrepotag_tmp.deserialize(i)
+              @AppTags << toolrepotag_tmp
+            end
+          end
+          @AppId = params['AppId']
+        end
+      end
+
       # RebootHPCNodes请求参数结构体
       class RebootHPCNodesRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: <p>集群Id</p>
@@ -3588,6 +3688,26 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 应用分类标签
+      class ToolRepoTag < TencentCloud::Common::AbstractModel
+        # @param TagId: <p>应用分类标签ID</p>
+        # @type TagId: String
+        # @param TagName: <p>应用分类标签名称</p>
+        # @type TagName: String
+
+        attr_accessor :TagId, :TagName
+
+        def initialize(tagid=nil, tagname=nil)
+          @TagId = tagid
+          @TagName = tagname
+        end
+
+        def deserialize(params)
+          @TagId = params['TagId']
+          @TagName = params['TagName']
         end
       end
 

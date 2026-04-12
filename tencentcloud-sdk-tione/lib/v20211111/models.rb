@@ -1492,61 +1492,62 @@ module TencentCloud
 
       # CreateTrainingTask请求参数结构体
       class CreateTrainingTaskRequest < TencentCloud::Common::AbstractModel
-        # @param Name: 训练任务名称，不超过60个字符，仅支持中英文、数字、下划线"_"、短横"-"，只能以中英文、数字开头
+        # @param Name: <p>训练任务名称，不超过60个字符，仅支持中英文、数字、下划线&quot;_&quot;、短横&quot;-&quot;，只能以中英文、数字开头</p>
         # @type Name: String
-        # @param ChargeType: 计费模式，eg：PREPAID 包年包月（资源组）;
-        # POSTPAID_BY_HOUR 按量计费
+        # @param ChargeType: <p>计费模式，eg：PREPAID 包年包月（资源组）;<br>POSTPAID_BY_HOUR 按量计费</p>
         # @type ChargeType: String
-        # @param ResourceConfigInfos: 资源配置，需填写对应算力规格ID和节点数量，算力规格ID查询接口为DescribeBillingSpecsPrice，eg：[{"Role":"WORKER", "InstanceType": "TI.S.MEDIUM.POST", "InstanceNum": 1}]
+        # @param ResourceConfigInfos: <p>资源配置，需填写对应算力规格ID和节点数量，算力规格ID查询接口为DescribeBillingSpecsPrice，eg：[{&quot;Role&quot;:&quot;WORKER&quot;, &quot;InstanceType&quot;: &quot;TI.S.MEDIUM.POST&quot;, &quot;InstanceNum&quot;: 1}]</p>
         # @type ResourceConfigInfos: Array
-        # @param FrameworkName: 训练框架名称，通过DescribeTrainingFrameworks接口查询，eg：SPARK、PYSPARK、TENSORFLOW、PYTORCH
+        # @param FrameworkName: <p>训练框架名称，通过DescribeTrainingFrameworks接口查询，eg：SPARK、PYSPARK、TENSORFLOW、PYTORCH</p>
         # @type FrameworkName: String
-        # @param FrameworkVersion: 训练框架版本，通过DescribeTrainingFrameworks接口查询，eg：1.15、1.9
+        # @param FrameworkVersion: <p>训练框架版本，通过DescribeTrainingFrameworks接口查询，eg：1.15、1.9</p>
         # @type FrameworkVersion: String
-        # @param FrameworkEnvironment: 训练框架环境，通过DescribeTrainingFrameworks接口查询，eg：tf1.15-py3.7-cpu、torch1.9-py3.8-cuda11.1-gpu
+        # @param FrameworkEnvironment: <p>训练框架环境，通过DescribeTrainingFrameworks接口查询，eg：tf1.15-py3.7-cpu、torch1.9-py3.8-cuda11.1-gpu</p>
         # @type FrameworkEnvironment: String
-        # @param ResourceGroupId: 预付费专用资源组ID，通过DescribeBillingResourceGroups接口查询
+        # @param ResourceGroupId: <p>预付费专用资源组ID，通过DescribeBillingResourceGroups接口查询</p>
         # @type ResourceGroupId: String
-        # @param Tags: 标签配置
+        # @param Tags: <p>标签配置</p>
         # @type Tags: Array
-        # @param ImageInfo: 自定义镜像信息
+        # @param ImageInfo: <p>自定义镜像信息</p>
         # @type ImageInfo: :class:`Tencentcloud::Tione.v20211111.models.ImageInfo`
-        # @param CodePackagePath: COS代码包路径
+        # @param CodePackagePath: <p>COS代码包路径</p>
         # @type CodePackagePath: :class:`Tencentcloud::Tione.v20211111.models.CosPathInfo`
-        # @param StartCmdInfo: 任务的启动命令，按任务训练模式输入，如遇特殊字符导致配置失败，可使用EncodedStartCmdInfo参数
+        # @param StartCmdInfo: <p>任务的启动命令，按任务训练模式输入，如遇特殊字符导致配置失败，可使用EncodedStartCmdInfo参数</p>
         # @type StartCmdInfo: :class:`Tencentcloud::Tione.v20211111.models.StartCmdInfo`
-        # @param TrainingMode: 训练模式，通过DescribeTrainingFrameworks接口查询，eg：PS_WORKER、DDP、MPI、HOROVOD
+        # @param TrainingMode: <p>训练模式，通过DescribeTrainingFrameworks接口查询，eg：PS_WORKER、DDP、MPI、HOROVOD</p>
         # @type TrainingMode: String
-        # @param DataConfigs: 数据配置，依赖DataSource字段，数量不超过10个
+        # @param DataConfigs: <p>数据配置，依赖DataSource字段，数量不超过10个</p>
         # @type DataConfigs: Array
-        # @param VpcId: VPC Id
+        # @param VpcId: <p>VPC Id</p>
         # @type VpcId: String
-        # @param SubnetId: 子网Id
+        # @param SubnetId: <p>子网Id</p>
         # @type SubnetId: String
-        # @param Output: COS训练输出路径
+        # @param Output: <p>COS训练输出路径</p>
         # @type Output: :class:`Tencentcloud::Tione.v20211111.models.CosPathInfo`
-        # @param LogConfig: CLS日志配置
+        # @param LogConfig: <p>CLS日志配置</p>
         # @type LogConfig: :class:`Tencentcloud::Tione.v20211111.models.LogConfig`
-        # @param TuningParameters: 调优参数，不超过2048个字符
+        # @param TuningParameters: <p>调优参数，不超过2048个字符</p>
         # @type TuningParameters: String
-        # @param LogEnable: 是否上报日志
+        # @param LogEnable: <p>是否上报日志</p>
         # @type LogEnable: Boolean
-        # @param Remark: 备注，不超过1024个字符
+        # @param Remark: <p>备注，不超过1024个字符</p>
         # @type Remark: String
-        # @param DataSource: 数据来源，eg：DATASET、COS、CFS、CFSTurbo、HDFS、GooseFSx
+        # @param DataSource: <p>数据来源，eg：DATASET、COS、CFS、CFSTurbo、HDFS、GooseFSx</p>
         # @type DataSource: String
-        # @param CallbackUrl: 回调地址，用于创建/启动/停止训练任务的异步回调。回调格式&内容详见：[[TI-ONE接口回调说明]](https://cloud.tencent.com/document/product/851/84292)
+        # @param CallbackUrl: <p>回调地址，用于创建/启动/停止训练任务的异步回调。回调格式&amp;内容详见：<a href="https://cloud.tencent.com/document/product/851/84292">[TI-ONE接口回调说明]</a></p>
         # @type CallbackUrl: String
-        # @param EncodedStartCmdInfo: 编码后的任务启动命令，与StartCmdInfo同时配置时，仅当前参数生效
+        # @param EncodedStartCmdInfo: <p>编码后的任务启动命令，与StartCmdInfo同时配置时，仅当前参数生效</p>
         # @type EncodedStartCmdInfo: :class:`Tencentcloud::Tione.v20211111.models.EncodedStartCmdInfo`
-        # @param CodeRepos: 代码仓库配置
+        # @param CodeRepos: <p>代码仓库配置</p>
         # @type CodeRepos: Array
-        # @param ExposeNetworkConfig: 网络暴露配置
+        # @param ExposeNetworkConfig: <p>网络暴露配置</p>
         # @type ExposeNetworkConfig: :class:`Tencentcloud::Tione.v20211111.models.ExposeNetworkConfig`
+        # @param Envs: <p>环境变量</p>
+        # @type Envs: Array
 
-        attr_accessor :Name, :ChargeType, :ResourceConfigInfos, :FrameworkName, :FrameworkVersion, :FrameworkEnvironment, :ResourceGroupId, :Tags, :ImageInfo, :CodePackagePath, :StartCmdInfo, :TrainingMode, :DataConfigs, :VpcId, :SubnetId, :Output, :LogConfig, :TuningParameters, :LogEnable, :Remark, :DataSource, :CallbackUrl, :EncodedStartCmdInfo, :CodeRepos, :ExposeNetworkConfig
+        attr_accessor :Name, :ChargeType, :ResourceConfigInfos, :FrameworkName, :FrameworkVersion, :FrameworkEnvironment, :ResourceGroupId, :Tags, :ImageInfo, :CodePackagePath, :StartCmdInfo, :TrainingMode, :DataConfigs, :VpcId, :SubnetId, :Output, :LogConfig, :TuningParameters, :LogEnable, :Remark, :DataSource, :CallbackUrl, :EncodedStartCmdInfo, :CodeRepos, :ExposeNetworkConfig, :Envs
 
-        def initialize(name=nil, chargetype=nil, resourceconfiginfos=nil, frameworkname=nil, frameworkversion=nil, frameworkenvironment=nil, resourcegroupid=nil, tags=nil, imageinfo=nil, codepackagepath=nil, startcmdinfo=nil, trainingmode=nil, dataconfigs=nil, vpcid=nil, subnetid=nil, output=nil, logconfig=nil, tuningparameters=nil, logenable=nil, remark=nil, datasource=nil, callbackurl=nil, encodedstartcmdinfo=nil, coderepos=nil, exposenetworkconfig=nil)
+        def initialize(name=nil, chargetype=nil, resourceconfiginfos=nil, frameworkname=nil, frameworkversion=nil, frameworkenvironment=nil, resourcegroupid=nil, tags=nil, imageinfo=nil, codepackagepath=nil, startcmdinfo=nil, trainingmode=nil, dataconfigs=nil, vpcid=nil, subnetid=nil, output=nil, logconfig=nil, tuningparameters=nil, logenable=nil, remark=nil, datasource=nil, callbackurl=nil, encodedstartcmdinfo=nil, coderepos=nil, exposenetworkconfig=nil, envs=nil)
           @Name = name
           @ChargeType = chargetype
           @ResourceConfigInfos = resourceconfiginfos
@@ -1572,6 +1573,7 @@ module TencentCloud
           @EncodedStartCmdInfo = encodedstartcmdinfo
           @CodeRepos = coderepos
           @ExposeNetworkConfig = exposenetworkconfig
+          @Envs = envs
         end
 
         def deserialize(params)
@@ -1649,12 +1651,20 @@ module TencentCloud
             @ExposeNetworkConfig = ExposeNetworkConfig.new
             @ExposeNetworkConfig.deserialize(params['ExposeNetworkConfig'])
           end
+          unless params['Envs'].nil?
+            @Envs = []
+            params['Envs'].each do |i|
+              envvar_tmp = EnvVar.new
+              envvar_tmp.deserialize(i)
+              @Envs << envvar_tmp
+            end
+          end
         end
       end
 
       # CreateTrainingTask返回参数结构体
       class CreateTrainingTaskResponse < TencentCloud::Common::AbstractModel
-        # @param Id: 训练任务ID
+        # @param Id: <p>训练任务ID</p>
         # @type Id: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1879,33 +1889,33 @@ module TencentCloud
 
       # 数据源信息
       class DataSourceInfo < TencentCloud::Common::AbstractModel
-        # @param Id: 数据源ID
+        # @param Id: <p>数据源ID</p>
         # @type Id: String
-        # @param Name: 数据源名称
+        # @param Name: <p>数据源名称</p>
         # @type Name: String
-        # @param Creator: 创建者uin
+        # @param Creator: <p>创建者uin</p>
         # @type Creator: String
-        # @param CreatorName: 创建者名称
+        # @param CreatorName: <p>创建者名称</p>
         # @type CreatorName: String
-        # @param Type: 数据源类型英文名
+        # @param Type: <p>数据源类型英文名</p>
         # @type Type: String
-        # @param Permission: 数据源权限，取值有RW RO
+        # @param Permission: <p>数据源权限，取值有RW RO</p>
         # @type Permission: String
-        # @param StorageId: 数据源所属存储实例ID
+        # @param StorageId: <p>数据源所属存储实例ID</p>
         # @type StorageId: String
-        # @param StorageName: 数据源所属存储实例名称
+        # @param StorageName: <p>数据源所属存储实例名称</p>
         # @type StorageName: String
-        # @param MountConfigure: 数据源挂载配置
+        # @param MountConfigure: <p>数据源挂载配置</p>
         # @type MountConfigure: :class:`Tencentcloud::Tione.v20211111.models.MountConfigureInfo`
-        # @param CreateTime: 创建时间, 格式为yyyy-mm-ddThh:mm:ssZ
+        # @param CreateTime: <p>创建时间, 格式为yyyy-mm-ddThh:mm:ssZ</p>
         # @type CreateTime: String
-        # @param UpdateTime: 更新时间, 格式为yyyy-mm-ddThh:mm:ssZ
+        # @param UpdateTime: <p>更新时间, 格式为yyyy-mm-ddThh:mm:ssZ</p>
         # @type UpdateTime: String
-        # @param LimitMount: 限制开关是否开启，只有开启时才有限制
+        # @param LimitMount: <p>限制开关是否开启，只有开启时才有限制</p>
         # @type LimitMount: Boolean
-        # @param Tags: 标签配置
+        # @param Tags: <p>标签配置</p>
         # @type Tags: Array
-        # @param ExtraConf: 额外配置,对应存储实例的额外配置
+        # @param ExtraConf: <p>额外配置,对应存储实例的额外配置</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExtraConf: :class:`Tencentcloud::Tione.v20211111.models.StorageExtraConf`
 
@@ -7213,15 +7223,15 @@ module TencentCloud
 
       # 挂载的实例列表
       class MountInstanceInfo < TencentCloud::Common::AbstractModel
-        # @param Type: 类型英文名
+        # @param Type: <p>类型英文名</p>
         # @type Type: String
-        # @param StorageId: 存储实例ID
+        # @param StorageId: <p>存储实例ID</p>
         # @type StorageId: String
-        # @param StorageName: 存储实例名称
+        # @param StorageName: <p>存储实例名称</p>
         # @type StorageName: String
-        # @param Status: 状态，0可挂载 1不可挂载(挂载限制)
+        # @param Status: <p>状态</p><p>枚举值：</p><ul><li>0： 可挂载（正常）</li><li>1： 不可挂载（挂载限制）</li><li>2： 不可挂载（存储配置关闭）</li></ul>
         # @type Status: Integer
-        # @param ExtraConf: 额外配置
+        # @param ExtraConf: <p>额外配置</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExtraConf: :class:`Tencentcloud::Tione.v20211111.models.StorageExtraConf`
 
@@ -7249,23 +7259,23 @@ module TencentCloud
 
       # 挂载限制
       class MountLimitInfo < TencentCloud::Common::AbstractModel
-        # @param Type: 数据源类型英文名
+        # @param Type: <p>数据源类型英文名</p>
         # @type Type: String
-        # @param StorageId: 数据源所属存储实例ID
+        # @param StorageId: <p>数据源所属存储实例ID</p>
         # @type StorageId: String
-        # @param StorageName: 数据源所属存储实例名称
+        # @param StorageName: <p>数据源所属存储实例名称</p>
         # @type StorageName: String
-        # @param LimitMount: 限制开关是否开启，只有开启时才有限制
+        # @param LimitMount: <p>限制开关是否开启，只有开启时才有限制</p>
         # @type LimitMount: Boolean
-        # @param Creator: 创建者uin
+        # @param Creator: <p>创建者uin</p>
         # @type Creator: String
-        # @param CreatorName: 创建者名称
+        # @param CreatorName: <p>创建者名称</p>
         # @type CreatorName: String
-        # @param CreateTime: 创建时间, 格式为yyyy-mm-ddThh:mm:ssZ
+        # @param CreateTime: <p>创建时间, 格式为yyyy-mm-ddThh:mm:ssZ</p>
         # @type CreateTime: String
-        # @param UpdateTime: 更新时间, 格式为yyyy-mm-ddThh:mm:ssZ
+        # @param UpdateTime: <p>更新时间, 格式为yyyy-mm-ddThh:mm:ssZ</p>
         # @type UpdateTime: String
-        # @param ExtraConf: 额外配置
+        # @param ExtraConf: <p>额外配置</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExtraConf: :class:`Tencentcloud::Tione.v20211111.models.StorageExtraConf`
 
@@ -10799,80 +10809,81 @@ module TencentCloud
 
       # 出参类型
       class TrainingTaskSetItem < TencentCloud::Common::AbstractModel
-        # @param Id: 训练任务ID
+        # @param Id: <p>训练任务ID</p>
         # @type Id: String
-        # @param Name: 训练任务名称
+        # @param Name: <p>训练任务名称</p>
         # @type Name: String
-        # @param FrameworkName: 框架名称
+        # @param FrameworkName: <p>框架名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FrameworkName: String
-        # @param FrameworkVersion: 训练框架版本
+        # @param FrameworkVersion: <p>训练框架版本</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FrameworkVersion: String
-        # @param FrameworkEnvironment: 框架运行环境
+        # @param FrameworkEnvironment: <p>框架运行环境</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FrameworkEnvironment: String
-        # @param ChargeType: 计费模式
+        # @param ChargeType: <p>计费模式</p>
         # @type ChargeType: String
-        # @param ChargeStatus: 计费状态，eg：BILLING计费中，ARREARS_STOP欠费停止，NOT_BILLING不在计费中
+        # @param ChargeStatus: <p>计费状态，eg：BILLING计费中，ARREARS_STOP欠费停止，NOT_BILLING不在计费中</p>
         # @type ChargeStatus: String
-        # @param ResourceGroupId: 预付费专用资源组
+        # @param ResourceGroupId: <p>预付费专用资源组</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceGroupId: String
-        # @param ResourceConfigInfos: 资源配置
+        # @param ResourceConfigInfos: <p>资源配置</p>
         # @type ResourceConfigInfos: Array
-        # @param TrainingMode: 训练模式eg：PS_WORKER、DDP、MPI、HOROVOD
+        # @param TrainingMode: <p>训练模式eg：PS_WORKER、DDP、MPI、HOROVOD</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TrainingMode: String
-        # @param Status: 任务状态，eg：SUBMITTING提交中、PENDING排队中、
-        # STARTING启动中、RUNNING运行中、STOPPING停止中、STOPPED已停止、FAILED异常、SUCCEED已完成
+        # @param Status: <p>任务状态，eg：SUBMITTING提交中、PENDING排队中、<br>STARTING启动中、RUNNING运行中、STOPPING停止中、STOPPED已停止、FAILED异常、SUCCEED已完成</p>
         # @type Status: String
-        # @param RuntimeInSeconds: 运行时长
+        # @param RuntimeInSeconds: <p>运行时长</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuntimeInSeconds: Integer
-        # @param CreateTime: 创建时间
+        # @param CreateTime: <p>创建时间</p>
         # @type CreateTime: String
-        # @param StartTime: 训练开始时间
+        # @param StartTime: <p>训练开始时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartTime: String
-        # @param EndTime: 训练结束时间
+        # @param EndTime: <p>训练结束时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTime: String
-        # @param Output: 训练输出
+        # @param Output: <p>训练输出</p>
         # @type Output: :class:`Tencentcloud::Tione.v20211111.models.CosPathInfo`
-        # @param FailureReason: 失败原因
+        # @param FailureReason: <p>失败原因</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FailureReason: String
-        # @param UpdateTime: 更新时间
+        # @param UpdateTime: <p>更新时间</p>
         # @type UpdateTime: String
-        # @param BillingInfo: 计费金额信息，eg：2.00元/小时 (按量计费)
+        # @param BillingInfo: <p>计费金额信息，eg：2.00元/小时 (按量计费)</p>
         # @type BillingInfo: String
-        # @param ResourceGroupName: 预付费专用资源组名称
+        # @param ResourceGroupName: <p>预付费专用资源组名称</p>
         # @type ResourceGroupName: String
-        # @param ImageInfo: 自定义镜像信息
+        # @param ImageInfo: <p>自定义镜像信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImageInfo: :class:`Tencentcloud::Tione.v20211111.models.ImageInfo`
-        # @param Message: 任务信息
+        # @param Message: <p>任务信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Message: String
-        # @param Tags: 标签配置
+        # @param Tags: <p>标签配置</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
-        # @param CallbackUrl: 回调地址
+        # @param CallbackUrl: <p>回调地址</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CallbackUrl: String
-        # @param SubUin: 任务subUin信息
+        # @param SubUin: <p>任务subUin信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubUin: String
-        # @param SubUinName: 任务创建者名称
+        # @param SubUinName: <p>任务创建者名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubUinName: String
-        # @param AppId: 任务AppId
+        # @param AppId: <p>任务AppId</p>
         # @type AppId: String
+        # @param Envs: <p>环境变量</p>
+        # @type Envs: Array
 
-        attr_accessor :Id, :Name, :FrameworkName, :FrameworkVersion, :FrameworkEnvironment, :ChargeType, :ChargeStatus, :ResourceGroupId, :ResourceConfigInfos, :TrainingMode, :Status, :RuntimeInSeconds, :CreateTime, :StartTime, :EndTime, :Output, :FailureReason, :UpdateTime, :BillingInfo, :ResourceGroupName, :ImageInfo, :Message, :Tags, :CallbackUrl, :SubUin, :SubUinName, :AppId
+        attr_accessor :Id, :Name, :FrameworkName, :FrameworkVersion, :FrameworkEnvironment, :ChargeType, :ChargeStatus, :ResourceGroupId, :ResourceConfigInfos, :TrainingMode, :Status, :RuntimeInSeconds, :CreateTime, :StartTime, :EndTime, :Output, :FailureReason, :UpdateTime, :BillingInfo, :ResourceGroupName, :ImageInfo, :Message, :Tags, :CallbackUrl, :SubUin, :SubUinName, :AppId, :Envs
 
-        def initialize(id=nil, name=nil, frameworkname=nil, frameworkversion=nil, frameworkenvironment=nil, chargetype=nil, chargestatus=nil, resourcegroupid=nil, resourceconfiginfos=nil, trainingmode=nil, status=nil, runtimeinseconds=nil, createtime=nil, starttime=nil, endtime=nil, output=nil, failurereason=nil, updatetime=nil, billinginfo=nil, resourcegroupname=nil, imageinfo=nil, message=nil, tags=nil, callbackurl=nil, subuin=nil, subuinname=nil, appid=nil)
+        def initialize(id=nil, name=nil, frameworkname=nil, frameworkversion=nil, frameworkenvironment=nil, chargetype=nil, chargestatus=nil, resourcegroupid=nil, resourceconfiginfos=nil, trainingmode=nil, status=nil, runtimeinseconds=nil, createtime=nil, starttime=nil, endtime=nil, output=nil, failurereason=nil, updatetime=nil, billinginfo=nil, resourcegroupname=nil, imageinfo=nil, message=nil, tags=nil, callbackurl=nil, subuin=nil, subuinname=nil, appid=nil, envs=nil)
           @Id = id
           @Name = name
           @FrameworkName = frameworkname
@@ -10900,6 +10911,7 @@ module TencentCloud
           @SubUin = subuin
           @SubUinName = subuinname
           @AppId = appid
+          @Envs = envs
         end
 
         def deserialize(params)
@@ -10950,6 +10962,14 @@ module TencentCloud
           @SubUin = params['SubUin']
           @SubUinName = params['SubUinName']
           @AppId = params['AppId']
+          unless params['Envs'].nil?
+            @Envs = []
+            params['Envs'].each do |i|
+              envvar_tmp = EnvVar.new
+              envvar_tmp.deserialize(i)
+              @Envs << envvar_tmp
+            end
+          end
         end
       end
 

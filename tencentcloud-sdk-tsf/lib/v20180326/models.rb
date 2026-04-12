@@ -296,88 +296,92 @@ module TencentCloud
 
       # API 明细
       class ApiDetailInfo < TencentCloud::Common::AbstractModel
-        # @param ApiId: API ID
+        # @param ApiId: <p>API ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApiId: String
-        # @param NamespaceId: 命名空间ID
+        # @param NamespaceId: <p>命名空间ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NamespaceId: String
-        # @param NamespaceName: 命名空间名称
+        # @param NamespaceName: <p>命名空间名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NamespaceName: String
-        # @param MicroserviceId: 服务ID
+        # @param MicroserviceId: <p>服务ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MicroserviceId: String
-        # @param MicroserviceName: 服务名称
+        # @param MicroserviceName: <p>服务名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MicroserviceName: String
-        # @param Path: API 请求路径
+        # @param Path: <p>API 请求路径</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Path: String
-        # @param PathMapping: Api 映射路径
+        # @param PathMapping: <p>Api 映射路径</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PathMapping: String
-        # @param Method: 请求方法
+        # @param Method: <p>请求方法</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Method: String
-        # @param GroupId: 所属分组ID
+        # @param GroupId: <p>所属分组ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupId: String
-        # @param UsableStatus: 是否禁用
+        # @param UsableStatus: <p>是否禁用</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UsableStatus: String
-        # @param ReleaseStatus: 发布状态
+        # @param ReleaseStatus: <p>发布状态</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReleaseStatus: String
-        # @param RateLimitStatus: 开启限流
+        # @param RateLimitStatus: <p>开启限流</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RateLimitStatus: String
-        # @param MockStatus: 是否开启mock
+        # @param MockStatus: <p>是否开启mock</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MockStatus: String
-        # @param CreatedTime: 创建时间
+        # @param CreatedTime: <p>创建时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreatedTime: String
-        # @param UpdatedTime: 更新时间
+        # @param UpdatedTime: <p>更新时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdatedTime: String
-        # @param ReleasedTime: 发布时间
+        # @param ReleasedTime: <p>发布时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReleasedTime: String
-        # @param GroupName: 所属分组名称
+        # @param GroupName: <p>所属分组名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupName: String
-        # @param Timeout: API 超时，单位毫秒
+        # @param Timeout: <p>API 超时，单位毫秒</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Timeout: Integer
-        # @param Host: Api所在服务host
+        # @param Host: <p>Api所在服务host</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Host: String
-        # @param ApiType: API类型。 ms ： 微服务API； external :外部服务Api
+        # @param ApiType: <p>API类型。 ms ： 微服务API； external :外部服务Api</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApiType: String
-        # @param Description: Api描述信息
+        # @param Description: <p>Api描述信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
-        # @param ApiMatchType: API路径匹配类型。normal：普通API；wildcard：通配API。
+        # @param ApiMatchType: <p>API路径匹配类型。normal：普通API；wildcard：通配API。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApiMatchType: String
-        # @param RpcExt: RPC 额外信息
+        # @param RpcExt: <p>RPC 额外信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RpcExt: String
-        # @param GatewayDeployGroupId: 部署组id
+        # @param GatewayDeployGroupId: <p>部署组id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GatewayDeployGroupId: String
-        # @param Md5: md5
+        # @param Md5: <p>md5</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Md5: String
-        # @param RpcType: RPC 类型
+        # @param RpcType: <p>RPC 类型</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RpcType: String
+        # @param PathMappingUnsupported: <p>是否禁用短路径访问开关</p>
+        # @type PathMappingUnsupported: Boolean
+        # @param PathMappingUnsupportedMsg: <p>禁用短路径访问开关原因</p>
+        # @type PathMappingUnsupportedMsg: String
 
-        attr_accessor :ApiId, :NamespaceId, :NamespaceName, :MicroserviceId, :MicroserviceName, :Path, :PathMapping, :Method, :GroupId, :UsableStatus, :ReleaseStatus, :RateLimitStatus, :MockStatus, :CreatedTime, :UpdatedTime, :ReleasedTime, :GroupName, :Timeout, :Host, :ApiType, :Description, :ApiMatchType, :RpcExt, :GatewayDeployGroupId, :Md5, :RpcType
+        attr_accessor :ApiId, :NamespaceId, :NamespaceName, :MicroserviceId, :MicroserviceName, :Path, :PathMapping, :Method, :GroupId, :UsableStatus, :ReleaseStatus, :RateLimitStatus, :MockStatus, :CreatedTime, :UpdatedTime, :ReleasedTime, :GroupName, :Timeout, :Host, :ApiType, :Description, :ApiMatchType, :RpcExt, :GatewayDeployGroupId, :Md5, :RpcType, :PathMappingUnsupported, :PathMappingUnsupportedMsg
 
-        def initialize(apiid=nil, namespaceid=nil, namespacename=nil, microserviceid=nil, microservicename=nil, path=nil, pathmapping=nil, method=nil, groupid=nil, usablestatus=nil, releasestatus=nil, ratelimitstatus=nil, mockstatus=nil, createdtime=nil, updatedtime=nil, releasedtime=nil, groupname=nil, timeout=nil, host=nil, apitype=nil, description=nil, apimatchtype=nil, rpcext=nil, gatewaydeploygroupid=nil, md5=nil, rpctype=nil)
+        def initialize(apiid=nil, namespaceid=nil, namespacename=nil, microserviceid=nil, microservicename=nil, path=nil, pathmapping=nil, method=nil, groupid=nil, usablestatus=nil, releasestatus=nil, ratelimitstatus=nil, mockstatus=nil, createdtime=nil, updatedtime=nil, releasedtime=nil, groupname=nil, timeout=nil, host=nil, apitype=nil, description=nil, apimatchtype=nil, rpcext=nil, gatewaydeploygroupid=nil, md5=nil, rpctype=nil, pathmappingunsupported=nil, pathmappingunsupportedmsg=nil)
           @ApiId = apiid
           @NamespaceId = namespaceid
           @NamespaceName = namespacename
@@ -404,6 +408,8 @@ module TencentCloud
           @GatewayDeployGroupId = gatewaydeploygroupid
           @Md5 = md5
           @RpcType = rpctype
+          @PathMappingUnsupported = pathmappingunsupported
+          @PathMappingUnsupportedMsg = pathmappingunsupportedmsg
         end
 
         def deserialize(params)
@@ -433,6 +439,8 @@ module TencentCloud
           @GatewayDeployGroupId = params['GatewayDeployGroupId']
           @Md5 = params['Md5']
           @RpcType = params['RpcType']
+          @PathMappingUnsupported = params['PathMappingUnsupported']
+          @PathMappingUnsupportedMsg = params['PathMappingUnsupportedMsg']
         end
       end
 
@@ -656,49 +664,51 @@ module TencentCloud
 
       # 微服务网关API限流规则
       class ApiRateLimitRule < TencentCloud::Common::AbstractModel
-        # @param RuleId: rule Id
+        # @param RuleId: <p>rule Id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleId: String
-        # @param ApiId: API ID
+        # @param ApiId: <p>API ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApiId: String
-        # @param RuleName: 限流名称
+        # @param RuleName: <p>限流名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleName: String
-        # @param MaxQps: 最大限流qps
+        # @param MaxQps: <p>最大限流qps</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxQps: Integer
-        # @param UsableStatus: 生效/禁用, enabled/disabled
+        # @param UsableStatus: <p>生效/禁用, enabled/disabled</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UsableStatus: String
-        # @param RuleContent: 规则内容
+        # @param RuleContent: <p>规则内容</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleContent: String
-        # @param TsfRuleId: Tsf Rule ID
+        # @param TsfRuleId: <p>Tsf Rule ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TsfRuleId: String
-        # @param Description: 描述
+        # @param Description: <p>描述</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
-        # @param CreatedTime: 创建时间
+        # @param CreatedTime: <p>创建时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreatedTime: String
-        # @param UpdatedTime: 更新时间
+        # @param UpdatedTime: <p>更新时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdatedTime: String
-        # @param Limit: 分页参数limit
+        # @param Limit: <p>分页参数limit</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Limit: Integer
-        # @param Offset: 分页参数offset
+        # @param Offset: <p>分页参数offset</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Offset: Integer
-        # @param AppId: AppId
+        # @param AppId: <p>AppId</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppId: String
+        # @param UsePathAndMethodFormat: <p>旧格式 method 与 path 分开，新格式 path-Method,如 /checkToken-GET，默认为新格式</p>
+        # @type UsePathAndMethodFormat: Boolean
 
-        attr_accessor :RuleId, :ApiId, :RuleName, :MaxQps, :UsableStatus, :RuleContent, :TsfRuleId, :Description, :CreatedTime, :UpdatedTime, :Limit, :Offset, :AppId
+        attr_accessor :RuleId, :ApiId, :RuleName, :MaxQps, :UsableStatus, :RuleContent, :TsfRuleId, :Description, :CreatedTime, :UpdatedTime, :Limit, :Offset, :AppId, :UsePathAndMethodFormat
 
-        def initialize(ruleid=nil, apiid=nil, rulename=nil, maxqps=nil, usablestatus=nil, rulecontent=nil, tsfruleid=nil, description=nil, createdtime=nil, updatedtime=nil, limit=nil, offset=nil, appid=nil)
+        def initialize(ruleid=nil, apiid=nil, rulename=nil, maxqps=nil, usablestatus=nil, rulecontent=nil, tsfruleid=nil, description=nil, createdtime=nil, updatedtime=nil, limit=nil, offset=nil, appid=nil, usepathandmethodformat=nil)
           @RuleId = ruleid
           @ApiId = apiid
           @RuleName = rulename
@@ -712,6 +722,7 @@ module TencentCloud
           @Limit = limit
           @Offset = offset
           @AppId = appid
+          @UsePathAndMethodFormat = usepathandmethodformat
         end
 
         def deserialize(params)
@@ -728,6 +739,7 @@ module TencentCloud
           @Limit = params['Limit']
           @Offset = params['Offset']
           @AppId = params['AppId']
+          @UsePathAndMethodFormat = params['UsePathAndMethodFormat']
         end
       end
 
@@ -16208,34 +16220,40 @@ module TencentCloud
 
       # 微服务
       class Microservice < TencentCloud::Common::AbstractModel
-        # @param MicroserviceId: 微服务ID
+        # @param MicroserviceId: <p>微服务ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MicroserviceId: String
-        # @param MicroserviceName: 微服务名称
+        # @param MicroserviceName: <p>微服务名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MicroserviceName: String
-        # @param MicroserviceDesc: 微服务描述
+        # @param MicroserviceDesc: <p>微服务描述</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MicroserviceDesc: String
-        # @param CreateTime: 创建时间
+        # @param CreateTime: <p>创建时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: Integer
-        # @param UpdateTime: 更新时间
+        # @param UpdateTime: <p>更新时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: Integer
-        # @param NamespaceId: 命名空间ID
+        # @param NamespaceId: <p>命名空间ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NamespaceId: String
-        # @param RunInstanceCount: 微服务的运行实例数目
+        # @param RunInstanceCount: <p>微服务的运行实例数目</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RunInstanceCount: Integer
-        # @param CriticalInstanceCount: 微服务的离线实例数目
+        # @param CriticalInstanceCount: <p>微服务的离线实例数目</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CriticalInstanceCount: Integer
+        # @param DeleteDisabled: <p>是否禁用删除按钮，true：是；false：否。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeleteDisabled: Boolean
+        # @param DeleteDisabledReason: <p>禁用删除原因。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeleteDisabledReason: String
 
-        attr_accessor :MicroserviceId, :MicroserviceName, :MicroserviceDesc, :CreateTime, :UpdateTime, :NamespaceId, :RunInstanceCount, :CriticalInstanceCount
+        attr_accessor :MicroserviceId, :MicroserviceName, :MicroserviceDesc, :CreateTime, :UpdateTime, :NamespaceId, :RunInstanceCount, :CriticalInstanceCount, :DeleteDisabled, :DeleteDisabledReason
 
-        def initialize(microserviceid=nil, microservicename=nil, microservicedesc=nil, createtime=nil, updatetime=nil, namespaceid=nil, runinstancecount=nil, criticalinstancecount=nil)
+        def initialize(microserviceid=nil, microservicename=nil, microservicedesc=nil, createtime=nil, updatetime=nil, namespaceid=nil, runinstancecount=nil, criticalinstancecount=nil, deletedisabled=nil, deletedisabledreason=nil)
           @MicroserviceId = microserviceid
           @MicroserviceName = microservicename
           @MicroserviceDesc = microservicedesc
@@ -16244,6 +16262,8 @@ module TencentCloud
           @NamespaceId = namespaceid
           @RunInstanceCount = runinstancecount
           @CriticalInstanceCount = criticalinstancecount
+          @DeleteDisabled = deletedisabled
+          @DeleteDisabledReason = deletedisabledreason
         end
 
         def deserialize(params)
@@ -16255,6 +16275,8 @@ module TencentCloud
           @NamespaceId = params['NamespaceId']
           @RunInstanceCount = params['RunInstanceCount']
           @CriticalInstanceCount = params['CriticalInstanceCount']
+          @DeleteDisabled = params['DeleteDisabled']
+          @DeleteDisabledReason = params['DeleteDisabledReason']
         end
       end
 
@@ -16644,33 +16666,31 @@ module TencentCloud
 
       # ModifyLaneRule请求参数结构体
       class ModifyLaneRuleRequest < TencentCloud::Common::AbstractModel
-        # @param RuleId: 灰度发布规则ID。该参数可以通过调用 [DescribeLaneRules](https://cloud.tencent.com/document/product/649/44505) 的返回值中的 RuleId 字段来获取或通过登录[控制台](https://console.cloud.tencent.com/tse/tsf-consul?tab=grayscale&subTab=lanerule)查看；也可以调用[CreateLaneRule](https://cloud.tencent.com/document/product/649/44507)创建新的灰度发布规则。
+        # @param RuleId: <p>灰度发布规则ID。该参数可以通过调用 <a href="https://cloud.tencent.com/document/product/649/44505">DescribeLaneRules</a> 的返回值中的 RuleId 字段来获取或通过登录<a href="https://console.cloud.tencent.com/tse/tsf-consul?tab=grayscale&amp;subTab=lanerule">控制台</a>查看；也可以调用<a href="https://cloud.tencent.com/document/product/649/44507">CreateLaneRule</a>创建新的灰度发布规则。</p>
         # @type RuleId: String
-        # @param RuleName: 灰度发布规则名称，最多支持60个字符，支持中英文字符。
+        # @param RuleName: <p>灰度发布规则名称，最多支持60个字符，支持中英文字符。</p>
         # @type RuleName: String
-        # @param Remark: 灰度发布规则备注，最多支持200个字符。
+        # @param Remark: <p>灰度发布规则备注，最多支持200个字符。</p>
         # @type Remark: String
-        # @param RuleTagList: 灰度发布规则标签列表。
+        # @param RuleTagList: <p>灰度发布规则标签列表。</p>
         # @type RuleTagList: Array
-        # @param RuleTagRelationship: 灰度发布规则标签关系。- RELEATION_AND：与- RELEATION_OR：或
-        # @type RuleTagRelationship: String
-        # @param LaneId: 泳道配置ID。该参数可以通过调用 [DescribeLanes](https://cloud.tencent.com/document/product/649/44504) 的返回值中的 LaneId 字段来获取或通过登录[控制台](https://console.cloud.tencent.com/tse/tsf-consul?tab=grayscale&subTab=lane)查看；也可以调用[CreateLane](https://cloud.tencent.com/document/product/649/44508)创建新的泳道配置。
+        # @param LaneId: <p>泳道配置ID。该参数可以通过调用 <a href="https://cloud.tencent.com/document/product/649/44504">DescribeLanes</a> 的返回值中的 LaneId 字段来获取或通过登录<a href="https://console.cloud.tencent.com/tse/tsf-consul?tab=grayscale&amp;subTab=lane">控制台</a>查看；也可以调用<a href="https://cloud.tencent.com/document/product/649/44508">CreateLane</a>创建新的泳道配置。</p>
         # @type LaneId: String
-        # @param Enable: 开启状态。
-        # - true：开启
-        # - false：关闭
+        # @param Enable: <p>开启状态。</p><ul><li>true：开启</li><li>false：关闭</li></ul>
         # @type Enable: Boolean
+        # @param RuleTagRelationship: <p>灰度发布规则标签关系。- RELEATION_AND：与- RELEATION_OR：或</p>
+        # @type RuleTagRelationship: String
 
-        attr_accessor :RuleId, :RuleName, :Remark, :RuleTagList, :RuleTagRelationship, :LaneId, :Enable
+        attr_accessor :RuleId, :RuleName, :Remark, :RuleTagList, :LaneId, :Enable, :RuleTagRelationship
 
-        def initialize(ruleid=nil, rulename=nil, remark=nil, ruletaglist=nil, ruletagrelationship=nil, laneid=nil, enable=nil)
+        def initialize(ruleid=nil, rulename=nil, remark=nil, ruletaglist=nil, laneid=nil, enable=nil, ruletagrelationship=nil)
           @RuleId = ruleid
           @RuleName = rulename
           @Remark = remark
           @RuleTagList = ruletaglist
-          @RuleTagRelationship = ruletagrelationship
           @LaneId = laneid
           @Enable = enable
+          @RuleTagRelationship = ruletagrelationship
         end
 
         def deserialize(params)
@@ -16685,17 +16705,15 @@ module TencentCloud
               @RuleTagList << laneruletag_tmp
             end
           end
-          @RuleTagRelationship = params['RuleTagRelationship']
           @LaneId = params['LaneId']
           @Enable = params['Enable']
+          @RuleTagRelationship = params['RuleTagRelationship']
         end
       end
 
       # ModifyLaneRule返回参数结构体
       class ModifyLaneRuleResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 修改结果。
-        # - true：成功
-        # - false：失败
+        # @param Result: <p>修改结果。</p><ul><li>true：成功</li><li>false：失败</li></ul>
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -19213,54 +19231,56 @@ module TencentCloud
 
       # 容器网络设置。
       class ServiceSetting < TencentCloud::Common::AbstractModel
-        # @param AccessType: 0:公网, 1:集群内访问, 2：NodePort, 3: VPC 内网访问
+        # @param AccessType: <p>0:公网, 1:集群内访问, 2：NodePort, 3: VPC 内网访问</p>
         # @type AccessType: Integer
-        # @param ProtocolPorts: 容器端口映射
+        # @param ProtocolPorts: <p>容器端口映射</p>
         # @type ProtocolPorts: Array
-        # @param SubnetId: 子网ID
+        # @param SubnetId: <p>子网ID</p>
         # @type SubnetId: String
-        # @param DisableService: 是否创建 k8s service，默认为 false
+        # @param DisableService: <p>是否创建 k8s service，默认为 false</p>
         # @type DisableService: Boolean
-        # @param HeadlessService: service 是否为 headless 类型
+        # @param HeadlessService: <p>service 是否为 headless 类型</p>
         # @type HeadlessService: Boolean
-        # @param AllowDeleteService: 当为 true 且 DisableService 也为 true 时，会删除之前创建的 service，请小心使用
+        # @param AllowDeleteService: <p>当为 true 且 DisableService 也为 true 时，会删除之前创建的 service，请小心使用</p>
         # @type AllowDeleteService: Boolean
-        # @param OpenSessionAffinity: 开启SessionAffinity，true为开启，false为不开启，默认为false
+        # @param OpenSessionAffinity: <p>开启SessionAffinity，true为开启，false为不开启，默认为false</p>
         # @type OpenSessionAffinity: Boolean
-        # @param SessionAffinityTimeoutSeconds: SessionAffinity会话时间，默认10800
+        # @param SessionAffinityTimeoutSeconds: <p>SessionAffinity会话时间，默认10800</p>
         # @type SessionAffinityTimeoutSeconds: Integer
-        # @param ServiceName: 服务名称
+        # @param ServiceName: <p>服务名称</p>
         # @type ServiceName: String
-        # @param ExternalTrafficStrategy: 外部流量策略
+        # @param ExternalTrafficStrategy: <p>外部流量策略</p>
         # @type ExternalTrafficStrategy: String
-        # @param ExternalTrafficPolicy: 外部流量策略
+        # @param ExternalTrafficPolicy: <p>外部流量策略</p>
         # @type ExternalTrafficPolicy: String
-        # @param LoadBalancerProvisioner: 负载均衡提供者
+        # @param LoadBalancerProvisioner: <p>负载均衡提供者</p>
         # @type LoadBalancerProvisioner: String
-        # @param LoadBalancingType: 负载均衡类型，Intranet表示内网，Internet表示外网
+        # @param LoadBalancingType: <p>负载均衡类型，Intranet表示内网，Internet表示外网</p>
         # @type LoadBalancingType: String
-        # @param ClusterIp: k8s负载均衡内网vip
+        # @param ClusterIp: <p>k8s负载均衡内网vip</p>
         # @type ClusterIp: String
-        # @param DisableServiceInt: 禁用服务Int记录
+        # @param DisableServiceInt: <p>禁用服务Int记录</p>
         # @type DisableServiceInt: Integer
-        # @param OpenSessionAffinityInt: 开启SessionAffinity Int记录
+        # @param OpenSessionAffinityInt: <p>开启SessionAffinity Int记录</p>
         # @type OpenSessionAffinityInt: Integer
-        # @param HeadlessServiceInt: 开启HeadlessService int记录
+        # @param HeadlessServiceInt: <p>开启HeadlessService int记录</p>
         # @type HeadlessServiceInt: Integer
-        # @param Name: 服务名称
+        # @param Name: <p>服务名称</p>
         # @type Name: String
-        # @param VpcId: VPC网络ID
+        # @param VpcId: <p>VPC网络ID</p>
         # @type VpcId: String
-        # @param LoadBalancingIp: 负载均衡VIP
+        # @param LoadBalancingIp: <p>负载均衡VIP</p>
         # @type LoadBalancingIp: String
-        # @param LoadBalancerId: 负载均衡id
+        # @param LoadBalancerId: <p>负载均衡id</p>
         # @type LoadBalancerId: String
-        # @param ExistingLoadBalancerId: 已存在的负载均衡id
+        # @param ExistingLoadBalancerId: <p>已存在的负载均衡id</p>
         # @type ExistingLoadBalancerId: String
+        # @param EnableGlobalService: <p>是否为全局服务（仅TCS环境使用）</p>
+        # @type EnableGlobalService: Boolean
 
-        attr_accessor :AccessType, :ProtocolPorts, :SubnetId, :DisableService, :HeadlessService, :AllowDeleteService, :OpenSessionAffinity, :SessionAffinityTimeoutSeconds, :ServiceName, :ExternalTrafficStrategy, :ExternalTrafficPolicy, :LoadBalancerProvisioner, :LoadBalancingType, :ClusterIp, :DisableServiceInt, :OpenSessionAffinityInt, :HeadlessServiceInt, :Name, :VpcId, :LoadBalancingIp, :LoadBalancerId, :ExistingLoadBalancerId
+        attr_accessor :AccessType, :ProtocolPorts, :SubnetId, :DisableService, :HeadlessService, :AllowDeleteService, :OpenSessionAffinity, :SessionAffinityTimeoutSeconds, :ServiceName, :ExternalTrafficStrategy, :ExternalTrafficPolicy, :LoadBalancerProvisioner, :LoadBalancingType, :ClusterIp, :DisableServiceInt, :OpenSessionAffinityInt, :HeadlessServiceInt, :Name, :VpcId, :LoadBalancingIp, :LoadBalancerId, :ExistingLoadBalancerId, :EnableGlobalService
 
-        def initialize(accesstype=nil, protocolports=nil, subnetid=nil, disableservice=nil, headlessservice=nil, allowdeleteservice=nil, opensessionaffinity=nil, sessionaffinitytimeoutseconds=nil, servicename=nil, externaltrafficstrategy=nil, externaltrafficpolicy=nil, loadbalancerprovisioner=nil, loadbalancingtype=nil, clusterip=nil, disableserviceint=nil, opensessionaffinityint=nil, headlessserviceint=nil, name=nil, vpcid=nil, loadbalancingip=nil, loadbalancerid=nil, existingloadbalancerid=nil)
+        def initialize(accesstype=nil, protocolports=nil, subnetid=nil, disableservice=nil, headlessservice=nil, allowdeleteservice=nil, opensessionaffinity=nil, sessionaffinitytimeoutseconds=nil, servicename=nil, externaltrafficstrategy=nil, externaltrafficpolicy=nil, loadbalancerprovisioner=nil, loadbalancingtype=nil, clusterip=nil, disableserviceint=nil, opensessionaffinityint=nil, headlessserviceint=nil, name=nil, vpcid=nil, loadbalancingip=nil, loadbalancerid=nil, existingloadbalancerid=nil, enableglobalservice=nil)
           @AccessType = accesstype
           @ProtocolPorts = protocolports
           @SubnetId = subnetid
@@ -19283,6 +19303,7 @@ module TencentCloud
           @LoadBalancingIp = loadbalancingip
           @LoadBalancerId = loadbalancerid
           @ExistingLoadBalancerId = existingloadbalancerid
+          @EnableGlobalService = enableglobalservice
         end
 
         def deserialize(params)
@@ -19315,6 +19336,7 @@ module TencentCloud
           @LoadBalancingIp = params['LoadBalancingIp']
           @LoadBalancerId = params['LoadBalancerId']
           @ExistingLoadBalancerId = params['ExistingLoadBalancerId']
+          @EnableGlobalService = params['EnableGlobalService']
         end
       end
 
@@ -19681,10 +19703,14 @@ module TencentCloud
         # @type AppMicroServiceType: String
         # @param K8sNamespaceName: k8s 命名空间名称
         # @type K8sNamespaceName: String
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
+        # @param UpdatedTime: 更新时间
+        # @type UpdatedTime: String
 
-        attr_accessor :GroupId, :GroupName, :ApplicationId, :ApplicationName, :ApplicationType, :ClusterId, :ClusterName, :ClusterType, :NamespaceId, :NamespaceName, :StartupParameters, :GroupResourceType, :AppMicroServiceType, :K8sNamespaceName
+        attr_accessor :GroupId, :GroupName, :ApplicationId, :ApplicationName, :ApplicationType, :ClusterId, :ClusterName, :ClusterType, :NamespaceId, :NamespaceName, :StartupParameters, :GroupResourceType, :AppMicroServiceType, :K8sNamespaceName, :CreateTime, :UpdatedTime
 
-        def initialize(groupid=nil, groupname=nil, applicationid=nil, applicationname=nil, applicationtype=nil, clusterid=nil, clustername=nil, clustertype=nil, namespaceid=nil, namespacename=nil, startupparameters=nil, groupresourcetype=nil, appmicroservicetype=nil, k8snamespacename=nil)
+        def initialize(groupid=nil, groupname=nil, applicationid=nil, applicationname=nil, applicationtype=nil, clusterid=nil, clustername=nil, clustertype=nil, namespaceid=nil, namespacename=nil, startupparameters=nil, groupresourcetype=nil, appmicroservicetype=nil, k8snamespacename=nil, createtime=nil, updatedtime=nil)
           @GroupId = groupid
           @GroupName = groupname
           @ApplicationId = applicationid
@@ -19699,6 +19725,8 @@ module TencentCloud
           @GroupResourceType = groupresourcetype
           @AppMicroServiceType = appmicroservicetype
           @K8sNamespaceName = k8snamespacename
+          @CreateTime = createtime
+          @UpdatedTime = updatedtime
         end
 
         def deserialize(params)
@@ -19716,6 +19744,8 @@ module TencentCloud
           @GroupResourceType = params['GroupResourceType']
           @AppMicroServiceType = params['AppMicroServiceType']
           @K8sNamespaceName = params['K8sNamespaceName']
+          @CreateTime = params['CreateTime']
+          @UpdatedTime = params['UpdatedTime']
         end
       end
 
@@ -21706,19 +21736,23 @@ module TencentCloud
         # @type UsableStatus: String
         # @param MaxQps: QPS值。开启限流规则时，必填
         # @type MaxQps: Integer
+        # @param UsePathAndMethodFormat: 旧格式 method 与 path 分开，新格式 path-<Method>,如 /checkToken-GET，默认为新格式
+        # @type UsePathAndMethodFormat: Boolean
 
-        attr_accessor :ApiIds, :UsableStatus, :MaxQps
+        attr_accessor :ApiIds, :UsableStatus, :MaxQps, :UsePathAndMethodFormat
 
-        def initialize(apiids=nil, usablestatus=nil, maxqps=nil)
+        def initialize(apiids=nil, usablestatus=nil, maxqps=nil, usepathandmethodformat=nil)
           @ApiIds = apiids
           @UsableStatus = usablestatus
           @MaxQps = maxqps
+          @UsePathAndMethodFormat = usepathandmethodformat
         end
 
         def deserialize(params)
           @ApiIds = params['ApiIds']
           @UsableStatus = params['UsableStatus']
           @MaxQps = params['MaxQps']
+          @UsePathAndMethodFormat = params['UsePathAndMethodFormat']
         end
       end
 

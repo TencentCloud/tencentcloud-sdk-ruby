@@ -782,24 +782,37 @@ module TencentCloud
 
       # DescribeLicenseList请求参数结构体
       class DescribeLicenseListRequest < TencentCloud::Common::AbstractModel
+        # @param PageNumber: <p>页码，从0开始</p>
+        # @type PageNumber: Integer
+        # @param PageSize: <p>每页数据量</p>
+        # @type PageSize: Integer
+        # @param Platform: <p>pc端还是mobile端</p>
+        # @type Platform: String
 
+        attr_accessor :PageNumber, :PageSize, :Platform
 
-        def initialize()
+        def initialize(pagenumber=nil, pagesize=nil, platform=nil)
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @Platform = platform
         end
 
         def deserialize(params)
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          @Platform = params['Platform']
         end
       end
 
       # DescribeLicenseList返回参数结构体
       class DescribeLicenseListResponse < TencentCloud::Common::AbstractModel
-        # @param Count: 临期license数量
+        # @param Count: <p>临期license数量</p>
         # @type Count: Integer
-        # @param Overview: 正式license总览统计数据
+        # @param Overview: <p>正式license总览统计数据</p>
         # @type Overview: :class:`Tencentcloud::Vcube.v20220410.models.Overview`
-        # @param LicenseList: 临期license列表
+        # @param LicenseList: <p>临期license列表</p>
         # @type LicenseList: Array
-        # @param TrialOverview: 测试license总览统计数据
+        # @param TrialOverview: <p>测试license总览统计数据</p>
         # @type TrialOverview: :class:`Tencentcloud::Vcube.v20220410.models.Overview`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

@@ -17,6 +17,37 @@
 module TencentCloud
   module Rum
     module V20210622
+      # BugLY比较结构体
+      class CompareCondition < TencentCloud::Common::AbstractModel
+        # @param AppVersion: App版本
+        # @type AppVersion: String
+        # @param Filters: 筛选条件
+        # @type Filters: :class:`Tencentcloud::Rum.v20210622.models.Filters`
+        # @param StartTime: 开始时间
+        # @type StartTime: Integer
+        # @param EndTime: 结束时间
+        # @type EndTime: Integer
+
+        attr_accessor :AppVersion, :Filters, :StartTime, :EndTime
+
+        def initialize(appversion=nil, filters=nil, starttime=nil, endtime=nil)
+          @AppVersion = appversion
+          @Filters = filters
+          @StartTime = starttime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @AppVersion = params['AppVersion']
+          unless params['Filters'].nil?
+            @Filters = Filters.new
+            @Filters.deserialize(params['Filters'])
+          end
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+        end
+      end
+
       # CreateReleaseFile请求参数结构体
       class CreateReleaseFileRequest < TencentCloud::Common::AbstractModel
         # @param ProjectID: 项目 id
@@ -616,6 +647,150 @@ module TencentCloud
 
         def deserialize(params)
           @Data = params['Data']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeApplicationExitReportDetail请求参数结构体
+      class DescribeApplicationExitReportDetailRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品Id
+        # @type ProductId: String
+        # @param ParamToken: 提供给前端使用，当填写本字段时，会覆盖 formlist 的值
+        # @type ParamToken: String
+        # @param ClientIdentify: 问题Id
+        # @type ClientIdentify: String
+        # @param StartEventTime: 开始时间
+        # @type StartEventTime: Integer
+        # @param EndEventTime: 结束时间
+        # @type EndEventTime: Integer
+        # @param ExtraData: 拓展数据
+        # @type ExtraData: String
+        # @param RequestHeader: 请求头
+        # @type RequestHeader: String
+
+        attr_accessor :ProductId, :ParamToken, :ClientIdentify, :StartEventTime, :EndEventTime, :ExtraData, :RequestHeader
+
+        def initialize(productid=nil, paramtoken=nil, clientidentify=nil, starteventtime=nil, endeventtime=nil, extradata=nil, requestheader=nil)
+          @ProductId = productid
+          @ParamToken = paramtoken
+          @ClientIdentify = clientidentify
+          @StartEventTime = starteventtime
+          @EndEventTime = endeventtime
+          @ExtraData = extradata
+          @RequestHeader = requestheader
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @ParamToken = params['ParamToken']
+          @ClientIdentify = params['ClientIdentify']
+          @StartEventTime = params['StartEventTime']
+          @EndEventTime = params['EndEventTime']
+          @ExtraData = params['ExtraData']
+          @RequestHeader = params['RequestHeader']
+        end
+      end
+
+      # DescribeApplicationExitReportDetail返回参数结构体
+      class DescribeApplicationExitReportDetailResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 返回值
+        # @type Data: String
+        # @param Code: 状态码
+        # @type Code: Integer
+        # @param Message: 消息
+        # @type Message: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :Code, :Message, :RequestId
+
+        def initialize(data=nil, code=nil, message=nil, requestid=nil)
+          @Data = data
+          @Code = code
+          @Message = message
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Data = params['Data']
+          @Code = params['Code']
+          @Message = params['Message']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeApplicationExitReportList请求参数结构体
+      class DescribeApplicationExitReportListRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品Id
+        # @type ProductId: String
+        # @param ParamToken: 提供给前端使用，当填写本字段时，会覆盖 formlist 的值
+        # @type ParamToken: String
+        # @param FormListString: 接口调试专用，当 token 为空时，以这里的 value 作为筛选表单信息
+        # @type FormListString: String
+        # @param PageNumber: 当前页码
+        # @type PageNumber: Integer
+        # @param PageSize: 每页展示最大数量
+        # @type PageSize: Integer
+        # @param SortField: 排序字段
+        # @type SortField: String
+        # @param SortType: 排序类型
+        # @type SortType: String
+        # @param ExtraData: 拓展数据
+        # @type ExtraData: String
+        # @param RequestHeader: 请求头
+        # @type RequestHeader: String
+
+        attr_accessor :ProductId, :ParamToken, :FormListString, :PageNumber, :PageSize, :SortField, :SortType, :ExtraData, :RequestHeader
+
+        def initialize(productid=nil, paramtoken=nil, formliststring=nil, pagenumber=nil, pagesize=nil, sortfield=nil, sorttype=nil, extradata=nil, requestheader=nil)
+          @ProductId = productid
+          @ParamToken = paramtoken
+          @FormListString = formliststring
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @SortField = sortfield
+          @SortType = sorttype
+          @ExtraData = extradata
+          @RequestHeader = requestheader
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @ParamToken = params['ParamToken']
+          @FormListString = params['FormListString']
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          @SortField = params['SortField']
+          @SortType = params['SortType']
+          @ExtraData = params['ExtraData']
+          @RequestHeader = params['RequestHeader']
+        end
+      end
+
+      # DescribeApplicationExitReportList返回参数结构体
+      class DescribeApplicationExitReportListResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 返回值
+        # @type Data: String
+        # @param Code: 状态码
+        # @type Code: Integer
+        # @param Message: 消息
+        # @type Message: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :Code, :Message, :RequestId
+
+        def initialize(data=nil, code=nil, message=nil, requestid=nil)
+          @Data = data
+          @Code = code
+          @Message = message
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Data = params['Data']
+          @Code = params['Code']
+          @Message = params['Message']
           @RequestId = params['RequestId']
         end
       end
@@ -4460,6 +4635,1134 @@ module TencentCloud
         end
       end
 
+      # DescribeExceptionDetail请求参数结构体
+      class DescribeExceptionDetailRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品Id
+        # @type ProductId: String
+        # @param ClientIdentify: 消息唯一标识
+        # @type ClientIdentify: String
+        # @param ClusterStackType: 集群堆栈类型
+        # @type ClusterStackType: Integer
+        # @param Feature: 特征
+        # @type Feature: String
+        # @param IssueType: 问题类型
+        # @type IssueType: Integer
+        # @param StartEventTime: 事件开始时间
+        # @type StartEventTime: Integer
+        # @param EndEventTime: 事件结束时间
+        # @type EndEventTime: Integer
+        # @param ExtraData: 拓展数据
+        # @type ExtraData: String
+        # @param RequestHeader: 请求头
+        # @type RequestHeader: String
+
+        attr_accessor :ProductId, :ClientIdentify, :ClusterStackType, :Feature, :IssueType, :StartEventTime, :EndEventTime, :ExtraData, :RequestHeader
+
+        def initialize(productid=nil, clientidentify=nil, clusterstacktype=nil, feature=nil, issuetype=nil, starteventtime=nil, endeventtime=nil, extradata=nil, requestheader=nil)
+          @ProductId = productid
+          @ClientIdentify = clientidentify
+          @ClusterStackType = clusterstacktype
+          @Feature = feature
+          @IssueType = issuetype
+          @StartEventTime = starteventtime
+          @EndEventTime = endeventtime
+          @ExtraData = extradata
+          @RequestHeader = requestheader
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @ClientIdentify = params['ClientIdentify']
+          @ClusterStackType = params['ClusterStackType']
+          @Feature = params['Feature']
+          @IssueType = params['IssueType']
+          @StartEventTime = params['StartEventTime']
+          @EndEventTime = params['EndEventTime']
+          @ExtraData = params['ExtraData']
+          @RequestHeader = params['RequestHeader']
+        end
+      end
+
+      # DescribeExceptionDetail返回参数结构体
+      class DescribeExceptionDetailResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 返回值
+        # @type Data: String
+        # @param Code: 状态码
+        # @type Code: Integer
+        # @param Message: 消息
+        # @type Message: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :Code, :Message, :RequestId
+
+        def initialize(data=nil, code=nil, message=nil, requestid=nil)
+          @Data = data
+          @Code = code
+          @Message = message
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Data = params['Data']
+          @Code = params['Code']
+          @Message = params['Message']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeExceptionReportList请求参数结构体
+      class DescribeExceptionReportListRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品Id
+        # @type ProductId: String
+        # @param FormListString: 接口调试专用，当 token 为空时，以这里的 value 作为筛选表单信息
+        # @type FormListString: String
+        # @param ParamToken: 提供给前端使用，当填写本字段时，会覆盖 form_list 的值
+        # @type ParamToken: String
+        # @param IssueType: 问题类型
+        # @type IssueType: Integer
+        # @param SortField: 排序字段
+        # @type SortField: String
+        # @param SortType: 排序方式
+        # @type SortType: String
+        # @param Feature: 特征
+        # @type Feature: String
+        # @param PageSize: 每页数目
+        # @type PageSize: Integer
+        # @param PageNumber: 页码
+        # @type PageNumber: Integer
+        # @param ExtraData: 拓展字段
+        # @type ExtraData: String
+        # @param RequestHeader: 请求头
+        # @type RequestHeader: String
+
+        attr_accessor :ProductId, :FormListString, :ParamToken, :IssueType, :SortField, :SortType, :Feature, :PageSize, :PageNumber, :ExtraData, :RequestHeader
+
+        def initialize(productid=nil, formliststring=nil, paramtoken=nil, issuetype=nil, sortfield=nil, sorttype=nil, feature=nil, pagesize=nil, pagenumber=nil, extradata=nil, requestheader=nil)
+          @ProductId = productid
+          @FormListString = formliststring
+          @ParamToken = paramtoken
+          @IssueType = issuetype
+          @SortField = sortfield
+          @SortType = sorttype
+          @Feature = feature
+          @PageSize = pagesize
+          @PageNumber = pagenumber
+          @ExtraData = extradata
+          @RequestHeader = requestheader
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @FormListString = params['FormListString']
+          @ParamToken = params['ParamToken']
+          @IssueType = params['IssueType']
+          @SortField = params['SortField']
+          @SortType = params['SortType']
+          @Feature = params['Feature']
+          @PageSize = params['PageSize']
+          @PageNumber = params['PageNumber']
+          @ExtraData = params['ExtraData']
+          @RequestHeader = params['RequestHeader']
+        end
+      end
+
+      # DescribeExceptionReportList返回参数结构体
+      class DescribeExceptionReportListResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 返回值
+        # @type Data: String
+        # @param Code: 状态码
+        # @type Code: Integer
+        # @param Message: 消息
+        # @type Message: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :Code, :Message, :RequestId
+
+        def initialize(data=nil, code=nil, message=nil, requestid=nil)
+          @Data = data
+          @Code = code
+          @Message = message
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Data = params['Data']
+          @Code = params['Code']
+          @Message = params['Message']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeFOOMMallocProblemDetail请求参数结构体
+      class DescribeFOOMMallocProblemDetailRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品Id
+        # @type ProductId: String
+        # @param ClientIdentify: 消息唯一标识
+        # @type ClientIdentify: String
+        # @param Feature: 特征
+        # @type Feature: String
+        # @param StartEventTime: 事件开始时间
+        # @type StartEventTime: Integer
+        # @param EndEventTime: 事件结束时间
+        # @type EndEventTime: Integer
+        # @param ExtraData: 拓展数据
+        # @type ExtraData: String
+        # @param RequestHeader: 请求头
+        # @type RequestHeader: String
+
+        attr_accessor :ProductId, :ClientIdentify, :Feature, :StartEventTime, :EndEventTime, :ExtraData, :RequestHeader
+
+        def initialize(productid=nil, clientidentify=nil, feature=nil, starteventtime=nil, endeventtime=nil, extradata=nil, requestheader=nil)
+          @ProductId = productid
+          @ClientIdentify = clientidentify
+          @Feature = feature
+          @StartEventTime = starteventtime
+          @EndEventTime = endeventtime
+          @ExtraData = extradata
+          @RequestHeader = requestheader
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @ClientIdentify = params['ClientIdentify']
+          @Feature = params['Feature']
+          @StartEventTime = params['StartEventTime']
+          @EndEventTime = params['EndEventTime']
+          @ExtraData = params['ExtraData']
+          @RequestHeader = params['RequestHeader']
+        end
+      end
+
+      # DescribeFOOMMallocProblemDetail返回参数结构体
+      class DescribeFOOMMallocProblemDetailResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 返回值
+        # @type Data: String
+        # @param Code: 状态码
+        # @type Code: Integer
+        # @param Message: 消息
+        # @type Message: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :Code, :Message, :RequestId
+
+        def initialize(data=nil, code=nil, message=nil, requestid=nil)
+          @Data = data
+          @Code = code
+          @Message = message
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Data = params['Data']
+          @Code = params['Code']
+          @Message = params['Message']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeFOOMMallocProblemList请求参数结构体
+      class DescribeFOOMMallocProblemListRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品Id
+        # @type ProductId: String
+        # @param ParamToken: 提供给前端使用，当填写本字段时，会覆盖 formlist 的值
+        # @type ParamToken: String
+        # @param FormListString: 接口调试专用，当 token 为空时，以这里的 value 作为筛选表单信息
+        # @type FormListString: String
+        # @param PageNumber: 当前页码
+        # @type PageNumber: Integer
+        # @param PageSize: 每页展示最大数量
+        # @type PageSize: Integer
+        # @param SortField: 排序字段
+        # @type SortField: String
+        # @param SortType: 排序类型
+        # @type SortType: String
+        # @param ExtraData: 拓展数据
+        # @type ExtraData: String
+        # @param RequestHeader: 请求头
+        # @type RequestHeader: String
+
+        attr_accessor :ProductId, :ParamToken, :FormListString, :PageNumber, :PageSize, :SortField, :SortType, :ExtraData, :RequestHeader
+
+        def initialize(productid=nil, paramtoken=nil, formliststring=nil, pagenumber=nil, pagesize=nil, sortfield=nil, sorttype=nil, extradata=nil, requestheader=nil)
+          @ProductId = productid
+          @ParamToken = paramtoken
+          @FormListString = formliststring
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @SortField = sortfield
+          @SortType = sorttype
+          @ExtraData = extradata
+          @RequestHeader = requestheader
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @ParamToken = params['ParamToken']
+          @FormListString = params['FormListString']
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          @SortField = params['SortField']
+          @SortType = params['SortType']
+          @ExtraData = params['ExtraData']
+          @RequestHeader = params['RequestHeader']
+        end
+      end
+
+      # DescribeFOOMMallocProblemList返回参数结构体
+      class DescribeFOOMMallocProblemListResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 返回值
+        # @type Data: String
+        # @param Message: 消息
+        # @type Message: String
+        # @param Code: 状态码
+        # @type Code: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :Message, :Code, :RequestId
+
+        def initialize(data=nil, message=nil, code=nil, requestid=nil)
+          @Data = data
+          @Message = message
+          @Code = code
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Data = params['Data']
+          @Message = params['Message']
+          @Code = params['Code']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeFOOMMallocReportList请求参数结构体
+      class DescribeFOOMMallocReportListRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品Id
+        # @type ProductId: String
+        # @param FormListString: 接口调试专用，当 token 为空时，以这里的 value 作为筛选表单信息
+        # @type FormListString: String
+        # @param ParamToken: 提供给前端使用，当填写本字段时，会覆盖 formlist 的值
+        # @type ParamToken: String
+        # @param Feature: 特征
+        # @type Feature: String
+        # @param PageNumber: 当前页码
+        # @type PageNumber: Integer
+        # @param PageSize: 每页展示最大数量
+        # @type PageSize: Integer
+        # @param SortField: 排序字段
+        # @type SortField: String
+        # @param SortType: 排序类型
+        # @type SortType: String
+        # @param ExtraData: 拓展数据
+        # @type ExtraData: String
+        # @param RequestHeader: 请求头
+        # @type RequestHeader: String
+
+        attr_accessor :ProductId, :FormListString, :ParamToken, :Feature, :PageNumber, :PageSize, :SortField, :SortType, :ExtraData, :RequestHeader
+
+        def initialize(productid=nil, formliststring=nil, paramtoken=nil, feature=nil, pagenumber=nil, pagesize=nil, sortfield=nil, sorttype=nil, extradata=nil, requestheader=nil)
+          @ProductId = productid
+          @FormListString = formliststring
+          @ParamToken = paramtoken
+          @Feature = feature
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @SortField = sortfield
+          @SortType = sorttype
+          @ExtraData = extradata
+          @RequestHeader = requestheader
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @FormListString = params['FormListString']
+          @ParamToken = params['ParamToken']
+          @Feature = params['Feature']
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          @SortField = params['SortField']
+          @SortType = params['SortType']
+          @ExtraData = params['ExtraData']
+          @RequestHeader = params['RequestHeader']
+        end
+      end
+
+      # DescribeFOOMMallocReportList返回参数结构体
+      class DescribeFOOMMallocReportListResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 返回值
+        # @type Data: String
+        # @param Message: 消息
+        # @type Message: String
+        # @param Code: 状态码
+        # @type Code: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :Message, :Code, :RequestId
+
+        def initialize(data=nil, message=nil, code=nil, requestid=nil)
+          @Data = data
+          @Message = message
+          @Code = code
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Data = params['Data']
+          @Message = params['Message']
+          @Code = params['Code']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeFOOMProblemDetail请求参数结构体
+      class DescribeFOOMProblemDetailRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品Id
+        # @type ProductId: String
+        # @param ClientIdentify: 消息唯一标识
+        # @type ClientIdentify: String
+        # @param Feature: 特征
+        # @type Feature: String
+        # @param StartEventTime: 事件开始时间
+        # @type StartEventTime: Integer
+        # @param EndEventTime: 事件结束时间
+        # @type EndEventTime: Integer
+        # @param ExtraData: 拓展数据
+        # @type ExtraData: String
+        # @param RequestHeader: 请求头
+        # @type RequestHeader: String
+
+        attr_accessor :ProductId, :ClientIdentify, :Feature, :StartEventTime, :EndEventTime, :ExtraData, :RequestHeader
+
+        def initialize(productid=nil, clientidentify=nil, feature=nil, starteventtime=nil, endeventtime=nil, extradata=nil, requestheader=nil)
+          @ProductId = productid
+          @ClientIdentify = clientidentify
+          @Feature = feature
+          @StartEventTime = starteventtime
+          @EndEventTime = endeventtime
+          @ExtraData = extradata
+          @RequestHeader = requestheader
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @ClientIdentify = params['ClientIdentify']
+          @Feature = params['Feature']
+          @StartEventTime = params['StartEventTime']
+          @EndEventTime = params['EndEventTime']
+          @ExtraData = params['ExtraData']
+          @RequestHeader = params['RequestHeader']
+        end
+      end
+
+      # DescribeFOOMProblemDetail返回参数结构体
+      class DescribeFOOMProblemDetailResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 返回值
+        # @type Data: String
+        # @param Code: 状态码
+        # @type Code: Integer
+        # @param Message: 消息
+        # @type Message: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :Code, :Message, :RequestId
+
+        def initialize(data=nil, code=nil, message=nil, requestid=nil)
+          @Data = data
+          @Code = code
+          @Message = message
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Data = params['Data']
+          @Code = params['Code']
+          @Message = params['Message']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeFOOMProblemList请求参数结构体
+      class DescribeFOOMProblemListRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品Id
+        # @type ProductId: String
+        # @param ParamToken: 提供给前端使用，当填写本字段时，会覆盖 formlist 的值
+        # @type ParamToken: String
+        # @param FormListString: 接口调试专用，当 token 为空时，以这里的 value 作为筛选表单信息
+        # @type FormListString: String
+        # @param PageNumber: 当前页码
+        # @type PageNumber: Integer
+        # @param PageSize: 每页展示最大数量
+        # @type PageSize: Integer
+        # @param SortField: 排序字段
+        # @type SortField: String
+        # @param SortType: 排序类型
+        # @type SortType: String
+        # @param ExtraData: 拓展数据
+        # @type ExtraData: String
+        # @param RequestHeader: 请求头
+        # @type RequestHeader: String
+
+        attr_accessor :ProductId, :ParamToken, :FormListString, :PageNumber, :PageSize, :SortField, :SortType, :ExtraData, :RequestHeader
+
+        def initialize(productid=nil, paramtoken=nil, formliststring=nil, pagenumber=nil, pagesize=nil, sortfield=nil, sorttype=nil, extradata=nil, requestheader=nil)
+          @ProductId = productid
+          @ParamToken = paramtoken
+          @FormListString = formliststring
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @SortField = sortfield
+          @SortType = sorttype
+          @ExtraData = extradata
+          @RequestHeader = requestheader
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @ParamToken = params['ParamToken']
+          @FormListString = params['FormListString']
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          @SortField = params['SortField']
+          @SortType = params['SortType']
+          @ExtraData = params['ExtraData']
+          @RequestHeader = params['RequestHeader']
+        end
+      end
+
+      # DescribeFOOMProblemList返回参数结构体
+      class DescribeFOOMProblemListResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 返回值
+        # @type Data: String
+        # @param Message: 消息
+        # @type Message: String
+        # @param Code: 状态码
+        # @type Code: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :Message, :Code, :RequestId
+
+        def initialize(data=nil, message=nil, code=nil, requestid=nil)
+          @Data = data
+          @Message = message
+          @Code = code
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Data = params['Data']
+          @Message = params['Message']
+          @Code = params['Code']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeFOOMReportList请求参数结构体
+      class DescribeFOOMReportListRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品Id
+        # @type ProductId: String
+        # @param FormListString: 接口调试专用，当 token 为空时，以这里的 value 作为筛选表单信息
+        # @type FormListString: String
+        # @param ParamToken: 提供给前端使用，当填写本字段时，会覆盖 formlist 的值
+        # @type ParamToken: String
+        # @param Feature: 特征
+        # @type Feature: String
+        # @param PageNumber: 当前页码
+        # @type PageNumber: Integer
+        # @param PageSize: 每页展示最大数量
+        # @type PageSize: Integer
+        # @param SortField: 排序字段
+        # @type SortField: String
+        # @param SortType: 排序类型
+        # @type SortType: String
+        # @param ExtraData: 拓展数据
+        # @type ExtraData: String
+        # @param RequestHeader: 请求头
+        # @type RequestHeader: String
+
+        attr_accessor :ProductId, :FormListString, :ParamToken, :Feature, :PageNumber, :PageSize, :SortField, :SortType, :ExtraData, :RequestHeader
+
+        def initialize(productid=nil, formliststring=nil, paramtoken=nil, feature=nil, pagenumber=nil, pagesize=nil, sortfield=nil, sorttype=nil, extradata=nil, requestheader=nil)
+          @ProductId = productid
+          @FormListString = formliststring
+          @ParamToken = paramtoken
+          @Feature = feature
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @SortField = sortfield
+          @SortType = sorttype
+          @ExtraData = extradata
+          @RequestHeader = requestheader
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @FormListString = params['FormListString']
+          @ParamToken = params['ParamToken']
+          @Feature = params['Feature']
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          @SortField = params['SortField']
+          @SortType = params['SortType']
+          @ExtraData = params['ExtraData']
+          @RequestHeader = params['RequestHeader']
+        end
+      end
+
+      # DescribeFOOMReportList返回参数结构体
+      class DescribeFOOMReportListResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 返回值
+        # @type Data: String
+        # @param Message: 消息
+        # @type Message: String
+        # @param Code: 状态码
+        # @type Code: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :Message, :Code, :RequestId
+
+        def initialize(data=nil, message=nil, code=nil, requestid=nil)
+          @Data = data
+          @Message = message
+          @Code = code
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Data = params['Data']
+          @Message = params['Message']
+          @Code = params['Code']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeIssuesDistribution请求参数结构体
+      class DescribeIssuesDistributionRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品Id
+        # @type ProductId: String
+        # @param FormListString: 接口调试专用，当 token 为空时，以这里的 value 作为筛选表单信息
+        # @type FormListString: String
+        # @param DimType: 分布维度是自定义维度时，填‘user_custom’
+        # @type DimType: String
+        # @param Dimension: 维度，e.g. os_version, app_version, model等
+        # @type Dimension: String
+        # @param Intervals: 数字类型字段的区间范围
+        # @type Intervals: Array
+        # @param ParamToken: 提供给前端使用，当填写本字段时，会覆盖 form_list 的值
+        # @type ParamToken: String
+        # @param IssueId: 问题Id
+        # @type IssueId: String
+        # @param IssueType: 问题类型
+        # @type IssueType: Integer
+        # @param ParamLimit: 限制返回的个数，默认返回所有值
+        # @type ParamLimit: Integer
+        # @param MapKey: 键
+        # @type MapKey: String
+        # @param MapName: 名称
+        # @type MapName: String
+        # @param MetricType: 指标类型
+        # @type MetricType: Integer
+        # @param PageSize: 每页数目
+        # @type PageSize: Integer
+        # @param PageNumber: 页码
+        # @type PageNumber: Integer
+        # @param UserCustomKey: 用户自定义维度key
+        # @type UserCustomKey: String
+        # @param ExtraData: 拓展字段
+        # @type ExtraData: String
+        # @param RequestHeader: 请求头
+        # @type RequestHeader: String
+
+        attr_accessor :ProductId, :FormListString, :DimType, :Dimension, :Intervals, :ParamToken, :IssueId, :IssueType, :ParamLimit, :MapKey, :MapName, :MetricType, :PageSize, :PageNumber, :UserCustomKey, :ExtraData, :RequestHeader
+
+        def initialize(productid=nil, formliststring=nil, dimtype=nil, dimension=nil, intervals=nil, paramtoken=nil, issueid=nil, issuetype=nil, paramlimit=nil, mapkey=nil, mapname=nil, metrictype=nil, pagesize=nil, pagenumber=nil, usercustomkey=nil, extradata=nil, requestheader=nil)
+          @ProductId = productid
+          @FormListString = formliststring
+          @DimType = dimtype
+          @Dimension = dimension
+          @Intervals = intervals
+          @ParamToken = paramtoken
+          @IssueId = issueid
+          @IssueType = issuetype
+          @ParamLimit = paramlimit
+          @MapKey = mapkey
+          @MapName = mapname
+          @MetricType = metrictype
+          @PageSize = pagesize
+          @PageNumber = pagenumber
+          @UserCustomKey = usercustomkey
+          @ExtraData = extradata
+          @RequestHeader = requestheader
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @FormListString = params['FormListString']
+          @DimType = params['DimType']
+          @Dimension = params['Dimension']
+          @Intervals = params['Intervals']
+          @ParamToken = params['ParamToken']
+          @IssueId = params['IssueId']
+          @IssueType = params['IssueType']
+          @ParamLimit = params['ParamLimit']
+          @MapKey = params['MapKey']
+          @MapName = params['MapName']
+          @MetricType = params['MetricType']
+          @PageSize = params['PageSize']
+          @PageNumber = params['PageNumber']
+          @UserCustomKey = params['UserCustomKey']
+          @ExtraData = params['ExtraData']
+          @RequestHeader = params['RequestHeader']
+        end
+      end
+
+      # DescribeIssuesDistribution返回参数结构体
+      class DescribeIssuesDistributionResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 返回值
+        # @type Data: String
+        # @param Code: 状态码
+        # @type Code: Integer
+        # @param Message: 消息
+        # @type Message: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :Code, :Message, :RequestId
+
+        def initialize(data=nil, code=nil, message=nil, requestid=nil)
+          @Data = data
+          @Code = code
+          @Message = message
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Data = params['Data']
+          @Code = params['Code']
+          @Message = params['Message']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeIssuesList请求参数结构体
+      class DescribeIssuesListRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品Id
+        # @type ProductId: String
+        # @param FormList: 接口调试专用，当 token 为空时，以这里的 value 作为筛选表单信息
+        # @type FormList: String
+        # @param FormListA: 接口调试专用，对比模式下条件A，当 token 为空时，以这里的 value 作为筛选表单信息
+        # @type FormListA: String
+        # @param FormListB: 接口调试专用，对比模式下条件B，当 token 为空时，以这里的 value 作为筛选表单信息
+        # @type FormListB: String
+        # @param ParamToken: 提供给前端使用，当填写本字段时，会覆盖 form_list 的值
+        # @type ParamToken: String
+        # @param IssueType: 问题类型
+        # @type IssueType: Integer
+        # @param SortField: 排序字段
+        # @type SortField: String
+        # @param SortType: 排序方式
+        # @type SortType: String
+        # @param PageSize: 每页数目
+        # @type PageSize: Integer
+        # @param PageNumber: 页码
+        # @type PageNumber: Integer
+        # @param SortABRatio: 问题对比列表模式下，用于标识是按照sort_field字段的A值排序还是B值还是ratio值
+        # @type SortABRatio: String
+        # @param Compare: 模式：false:问题列表模式，true:对比列表模式
+        # @type Compare: Boolean
+        # @param CompareStatus: 对比状态 0:所有 1:新增 2：遗留 3:已解决
+        # @type CompareStatus: Integer
+        # @param ExtraData: 拓展字段
+        # @type ExtraData: String
+        # @param RequestHeader: 请求头
+        # @type RequestHeader: String
+
+        attr_accessor :ProductId, :FormList, :FormListA, :FormListB, :ParamToken, :IssueType, :SortField, :SortType, :PageSize, :PageNumber, :SortABRatio, :Compare, :CompareStatus, :ExtraData, :RequestHeader
+
+        def initialize(productid=nil, formlist=nil, formlista=nil, formlistb=nil, paramtoken=nil, issuetype=nil, sortfield=nil, sorttype=nil, pagesize=nil, pagenumber=nil, sortabratio=nil, compare=nil, comparestatus=nil, extradata=nil, requestheader=nil)
+          @ProductId = productid
+          @FormList = formlist
+          @FormListA = formlista
+          @FormListB = formlistb
+          @ParamToken = paramtoken
+          @IssueType = issuetype
+          @SortField = sortfield
+          @SortType = sorttype
+          @PageSize = pagesize
+          @PageNumber = pagenumber
+          @SortABRatio = sortabratio
+          @Compare = compare
+          @CompareStatus = comparestatus
+          @ExtraData = extradata
+          @RequestHeader = requestheader
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @FormList = params['FormList']
+          @FormListA = params['FormListA']
+          @FormListB = params['FormListB']
+          @ParamToken = params['ParamToken']
+          @IssueType = params['IssueType']
+          @SortField = params['SortField']
+          @SortType = params['SortType']
+          @PageSize = params['PageSize']
+          @PageNumber = params['PageNumber']
+          @SortABRatio = params['SortABRatio']
+          @Compare = params['Compare']
+          @CompareStatus = params['CompareStatus']
+          @ExtraData = params['ExtraData']
+          @RequestHeader = params['RequestHeader']
+        end
+      end
+
+      # DescribeIssuesList返回参数结构体
+      class DescribeIssuesListResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 返回值
+        # @type Data: String
+        # @param Code: 状态码
+        # @type Code: Integer
+        # @param Message: 消息
+        # @type Message: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :Code, :Message, :RequestId
+
+        def initialize(data=nil, code=nil, message=nil, requestid=nil)
+          @Data = data
+          @Code = code
+          @Message = message
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Data = params['Data']
+          @Code = params['Code']
+          @Message = params['Message']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeIssuesStatisticsTrend请求参数结构体
+      class DescribeIssuesStatisticsTrendRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品Id
+        # @type ProductId: String
+        # @param ParamToken: 提供给前端使用，当填写本字段时，会覆盖 form_list 的值
+        # @type ParamToken: String
+        # @param FormList: 接口调试专用，当 token 为空时，以这里的 value 作为筛选表单信息
+        # @type FormList: String
+        # @param IssueId: 问题Id
+        # @type IssueId: String
+        # @param IssueType: 问题类型
+        # @type IssueType: Integer
+        # @param TimeWindow: 时间窗口
+        # @type TimeWindow: Integer
+        # @param TotalSize: 累计值
+        # @type TotalSize: Boolean
+        # @param Stat: 无
+        # @type Stat: Integer
+        # @param MetricType: 指标类型
+        # @type MetricType: Integer
+        # @param ExtraData: 拓展字段
+        # @type ExtraData: String
+        # @param RequestHeader: 请求头
+        # @type RequestHeader: String
+        # @param TrendStat: 无
+        # @type TrendStat: Integer
+
+        attr_accessor :ProductId, :ParamToken, :FormList, :IssueId, :IssueType, :TimeWindow, :TotalSize, :Stat, :MetricType, :ExtraData, :RequestHeader, :TrendStat
+
+        def initialize(productid=nil, paramtoken=nil, formlist=nil, issueid=nil, issuetype=nil, timewindow=nil, totalsize=nil, stat=nil, metrictype=nil, extradata=nil, requestheader=nil, trendstat=nil)
+          @ProductId = productid
+          @ParamToken = paramtoken
+          @FormList = formlist
+          @IssueId = issueid
+          @IssueType = issuetype
+          @TimeWindow = timewindow
+          @TotalSize = totalsize
+          @Stat = stat
+          @MetricType = metrictype
+          @ExtraData = extradata
+          @RequestHeader = requestheader
+          @TrendStat = trendstat
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @ParamToken = params['ParamToken']
+          @FormList = params['FormList']
+          @IssueId = params['IssueId']
+          @IssueType = params['IssueType']
+          @TimeWindow = params['TimeWindow']
+          @TotalSize = params['TotalSize']
+          @Stat = params['Stat']
+          @MetricType = params['MetricType']
+          @ExtraData = params['ExtraData']
+          @RequestHeader = params['RequestHeader']
+          @TrendStat = params['TrendStat']
+        end
+      end
+
+      # DescribeIssuesStatisticsTrend返回参数结构体
+      class DescribeIssuesStatisticsTrendResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 返回值
+        # @type Data: String
+        # @param Code: 状态码
+        # @type Code: Integer
+        # @param Message: 消息
+        # @type Message: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :Code, :Message, :RequestId
+
+        def initialize(data=nil, code=nil, message=nil, requestid=nil)
+          @Data = data
+          @Code = code
+          @Message = message
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Data = params['Data']
+          @Code = params['Code']
+          @Message = params['Message']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeLagANRProblemAccountDetail请求参数结构体
+      class DescribeLagANRProblemAccountDetailRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品Id
+        # @type ProductId: String
+        # @param ClientIdentify: 消息唯一标识
+        # @type ClientIdentify: String
+        # @param Feature: 特征
+        # @type Feature: String
+        # @param StartEventTime: 事件开始时间
+        # @type StartEventTime: Integer
+        # @param EndEventTime: 事件结束时间
+        # @type EndEventTime: Integer
+        # @param ExtraData: 拓展数据
+        # @type ExtraData: String
+        # @param RequestHeader: 请求头
+        # @type RequestHeader: String
+
+        attr_accessor :ProductId, :ClientIdentify, :Feature, :StartEventTime, :EndEventTime, :ExtraData, :RequestHeader
+
+        def initialize(productid=nil, clientidentify=nil, feature=nil, starteventtime=nil, endeventtime=nil, extradata=nil, requestheader=nil)
+          @ProductId = productid
+          @ClientIdentify = clientidentify
+          @Feature = feature
+          @StartEventTime = starteventtime
+          @EndEventTime = endeventtime
+          @ExtraData = extradata
+          @RequestHeader = requestheader
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @ClientIdentify = params['ClientIdentify']
+          @Feature = params['Feature']
+          @StartEventTime = params['StartEventTime']
+          @EndEventTime = params['EndEventTime']
+          @ExtraData = params['ExtraData']
+          @RequestHeader = params['RequestHeader']
+        end
+      end
+
+      # DescribeLagANRProblemAccountDetail返回参数结构体
+      class DescribeLagANRProblemAccountDetailResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 返回值
+        # @type Data: String
+        # @param Code: 状态码
+        # @type Code: Integer
+        # @param Message: 消息
+        # @type Message: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :Code, :Message, :RequestId
+
+        def initialize(data=nil, code=nil, message=nil, requestid=nil)
+          @Data = data
+          @Code = code
+          @Message = message
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Data = params['Data']
+          @Code = params['Code']
+          @Message = params['Message']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeLagANRProblemFeatureAccounts请求参数结构体
+      class DescribeLagANRProblemFeatureAccountsRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品Id
+        # @type ProductId: String
+        # @param FormListString: 接口调试专用，当 token 为空时，以这里的 value 作为筛选表单信息
+        # @type FormListString: String
+        # @param ParamToken: 提供给前端使用，当填写本字段时，会覆盖 formlist 的值
+        # @type ParamToken: String
+        # @param Feature: 问题特征
+        # @type Feature: String
+        # @param SortField: 排序字段
+        # @type SortField: String
+        # @param SortType: 排序类型
+        # @type SortType: String
+        # @param PageNumber: 当前页码
+        # @type PageNumber: Integer
+        # @param PageSize: 每页展示最大数量
+        # @type PageSize: Integer
+        # @param ExtraData: 拓展数据
+        # @type ExtraData: String
+        # @param RequestHeader: 请求头
+        # @type RequestHeader: String
+
+        attr_accessor :ProductId, :FormListString, :ParamToken, :Feature, :SortField, :SortType, :PageNumber, :PageSize, :ExtraData, :RequestHeader
+
+        def initialize(productid=nil, formliststring=nil, paramtoken=nil, feature=nil, sortfield=nil, sorttype=nil, pagenumber=nil, pagesize=nil, extradata=nil, requestheader=nil)
+          @ProductId = productid
+          @FormListString = formliststring
+          @ParamToken = paramtoken
+          @Feature = feature
+          @SortField = sortfield
+          @SortType = sorttype
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @ExtraData = extradata
+          @RequestHeader = requestheader
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @FormListString = params['FormListString']
+          @ParamToken = params['ParamToken']
+          @Feature = params['Feature']
+          @SortField = params['SortField']
+          @SortType = params['SortType']
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          @ExtraData = params['ExtraData']
+          @RequestHeader = params['RequestHeader']
+        end
+      end
+
+      # DescribeLagANRProblemFeatureAccounts返回参数结构体
+      class DescribeLagANRProblemFeatureAccountsResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 返回值
+        # @type Data: String
+        # @param Message: 消息
+        # @type Message: String
+        # @param Code: 状态码
+        # @type Code: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :Message, :Code, :RequestId
+
+        def initialize(data=nil, message=nil, code=nil, requestid=nil)
+          @Data = data
+          @Message = message
+          @Code = code
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Data = params['Data']
+          @Message = params['Message']
+          @Code = params['Code']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeLagANRProblemList请求参数结构体
+      class DescribeLagANRProblemListRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品Id
+        # @type ProductId: String
+        # @param ParamToken: 提供给前端使用，当填写本字段时，会覆盖 formlist 的值
+        # @type ParamToken: String
+        # @param FormListString: 接口调试专用，当 token 为空时，以这里的 value 作为筛选表单信息
+        # @type FormListString: String
+        # @param PageNumber: 当前页码
+        # @type PageNumber: Integer
+        # @param PageSize: 每页展示最大数量
+        # @type PageSize: Integer
+        # @param SortField: 排序字段
+        # @type SortField: String
+        # @param SortType: 排序类型
+        # @type SortType: String
+        # @param ExtraData: 拓展数据
+        # @type ExtraData: String
+        # @param RequestHeader: 请求头
+        # @type RequestHeader: String
+
+        attr_accessor :ProductId, :ParamToken, :FormListString, :PageNumber, :PageSize, :SortField, :SortType, :ExtraData, :RequestHeader
+
+        def initialize(productid=nil, paramtoken=nil, formliststring=nil, pagenumber=nil, pagesize=nil, sortfield=nil, sorttype=nil, extradata=nil, requestheader=nil)
+          @ProductId = productid
+          @ParamToken = paramtoken
+          @FormListString = formliststring
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @SortField = sortfield
+          @SortType = sorttype
+          @ExtraData = extradata
+          @RequestHeader = requestheader
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @ParamToken = params['ParamToken']
+          @FormListString = params['FormListString']
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          @SortField = params['SortField']
+          @SortType = params['SortType']
+          @ExtraData = params['ExtraData']
+          @RequestHeader = params['RequestHeader']
+        end
+      end
+
+      # DescribeLagANRProblemList返回参数结构体
+      class DescribeLagANRProblemListResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 返回值
+        # @type Data: String
+        # @param Message: 消息
+        # @type Message: String
+        # @param Code: 状态码
+        # @type Code: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :Message, :Code, :RequestId
+
+        def initialize(data=nil, message=nil, code=nil, requestid=nil)
+          @Data = data
+          @Message = message
+          @Code = code
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Data = params['Data']
+          @Message = params['Message']
+          @Code = params['Code']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeProjectLimits请求参数结构体
       class DescribeProjectLimitsRequest < TencentCloud::Common::AbstractModel
         # @param ProjectID: 项目ID
@@ -4516,8 +5819,8 @@ module TencentCloud
 
         attr_accessor :Limit, :Offset, :Filters, :IsDemo
         extend Gem::Deprecate
-        deprecate :IsDemo, :none, 2026, 3
-        deprecate :IsDemo=, :none, 2026, 3
+        deprecate :IsDemo, :none, 2026, 4
+        deprecate :IsDemo=, :none, 2026, 4
 
         def initialize(limit=nil, offset=nil, filters=nil, isdemo=nil)
           @Limit = limit
@@ -5033,8 +6336,8 @@ module TencentCloud
 
         attr_accessor :EndTime, :StartTime, :ID, :IsDemo, :IDList
         extend Gem::Deprecate
-        deprecate :IsDemo, :none, 2026, 3
-        deprecate :IsDemo=, :none, 2026, 3
+        deprecate :IsDemo, :none, 2026, 4
+        deprecate :IsDemo=, :none, 2026, 4
 
         def initialize(endtime=nil, starttime=nil, id=nil, isdemo=nil, idlist=nil)
           @EndTime = endtime
@@ -5225,12 +6528,12 @@ module TencentCloud
 
         attr_accessor :ChargeStatuses, :ChargeTypes, :Limit, :Offset, :AreaIds, :InstanceStatuses, :InstanceIds, :Filters, :IsDemo
         extend Gem::Deprecate
-        deprecate :InstanceStatuses, :none, 2026, 3
-        deprecate :InstanceStatuses=, :none, 2026, 3
-        deprecate :InstanceIds, :none, 2026, 3
-        deprecate :InstanceIds=, :none, 2026, 3
-        deprecate :IsDemo, :none, 2026, 3
-        deprecate :IsDemo=, :none, 2026, 3
+        deprecate :InstanceStatuses, :none, 2026, 4
+        deprecate :InstanceStatuses=, :none, 2026, 4
+        deprecate :InstanceIds, :none, 2026, 4
+        deprecate :InstanceIds=, :none, 2026, 4
+        deprecate :IsDemo, :none, 2026, 4
+        deprecate :IsDemo=, :none, 2026, 4
 
         def initialize(chargestatuses=nil, chargetypes=nil, limit=nil, offset=nil, areaids=nil, instancestatuses=nil, instanceids=nil, filters=nil, isdemo=nil)
           @ChargeStatuses = chargestatuses
@@ -5291,6 +6594,148 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeToken请求参数结构体
+      class DescribeTokenRequest < TencentCloud::Common::AbstractModel
+        # @param FormListString: 筛选条件
+        # @type FormListString: String
+        # @param FormListAString: 仅对比模式下填写，筛选条件A
+        # @type FormListAString: String
+        # @param FormListBString: 仅对比模式下填写，筛选条件B
+        # @type FormListBString: String
+        # @param RequestHeader: 请求头
+        # @type RequestHeader: String
+        # @param ExtraData: 拓展字段
+        # @type ExtraData: String
+
+        attr_accessor :FormListString, :FormListAString, :FormListBString, :RequestHeader, :ExtraData
+
+        def initialize(formliststring=nil, formlistastring=nil, formlistbstring=nil, requestheader=nil, extradata=nil)
+          @FormListString = formliststring
+          @FormListAString = formlistastring
+          @FormListBString = formlistbstring
+          @RequestHeader = requestheader
+          @ExtraData = extradata
+        end
+
+        def deserialize(params)
+          @FormListString = params['FormListString']
+          @FormListAString = params['FormListAString']
+          @FormListBString = params['FormListBString']
+          @RequestHeader = params['RequestHeader']
+          @ExtraData = params['ExtraData']
+        end
+      end
+
+      # DescribeToken返回参数结构体
+      class DescribeTokenResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 返回值
+        # @type Data: String
+        # @param Code: 状态码
+        # @type Code: Integer
+        # @param Message: 消息
+        # @type Message: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :Code, :Message, :RequestId
+
+        def initialize(data=nil, code=nil, message=nil, requestid=nil)
+          @Data = data
+          @Code = code
+          @Message = message
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Data = params['Data']
+          @Code = params['Code']
+          @Message = params['Message']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeTopIssues请求参数结构体
+      class DescribeTopIssuesRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品Id
+        # @type ProductId: String
+        # @param Compare: 需要对比的查询条件，没有则不填
+        # @type Compare: :class:`Tencentcloud::Rum.v20210622.models.CompareCondition`
+        # @param Condition: 查询条件
+        # @type Condition: :class:`Tencentcloud::Rum.v20210622.models.CompareCondition`
+        # @param IssueType: 问题类型
+        # @type IssueType: Integer
+        # @param SortField: 排序字段
+        # @type SortField: String
+        # @param SortType: 排序方式
+        # @type SortType: String
+        # @param TopNum: topN
+        # @type TopNum: Integer
+        # @param ExtraData: 拓展字段
+        # @type ExtraData: String
+        # @param RequestHeader: 请求头
+        # @type RequestHeader: String
+
+        attr_accessor :ProductId, :Compare, :Condition, :IssueType, :SortField, :SortType, :TopNum, :ExtraData, :RequestHeader
+
+        def initialize(productid=nil, compare=nil, condition=nil, issuetype=nil, sortfield=nil, sorttype=nil, topnum=nil, extradata=nil, requestheader=nil)
+          @ProductId = productid
+          @Compare = compare
+          @Condition = condition
+          @IssueType = issuetype
+          @SortField = sortfield
+          @SortType = sorttype
+          @TopNum = topnum
+          @ExtraData = extradata
+          @RequestHeader = requestheader
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          unless params['Compare'].nil?
+            @Compare = CompareCondition.new
+            @Compare.deserialize(params['Compare'])
+          end
+          unless params['Condition'].nil?
+            @Condition = CompareCondition.new
+            @Condition.deserialize(params['Condition'])
+          end
+          @IssueType = params['IssueType']
+          @SortField = params['SortField']
+          @SortType = params['SortType']
+          @TopNum = params['TopNum']
+          @ExtraData = params['ExtraData']
+          @RequestHeader = params['RequestHeader']
+        end
+      end
+
+      # DescribeTopIssues返回参数结构体
+      class DescribeTopIssuesResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 返回值
+        # @type Data: String
+        # @param Code: 状态码
+        # @type Code: Integer
+        # @param Message: 消息
+        # @type Message: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :Code, :Message, :RequestId
+
+        def initialize(data=nil, code=nil, message=nil, requestid=nil)
+          @Data = data
+          @Code = code
+          @Message = message
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Data = params['Data']
+          @Code = params['Code']
+          @Message = params['Message']
           @RequestId = params['RequestId']
         end
       end
@@ -5413,6 +6858,42 @@ module TencentCloud
         def deserialize(params)
           @Values = params['Values']
           @Name = params['Name']
+        end
+      end
+
+      # BugLY筛选结构体
+      class Filters < TencentCloud::Common::AbstractModel
+        # @param IsReversed: 是否反转
+        # @type IsReversed: Boolean
+        # @param Key: 键
+        # @type Key: String
+        # @param Name: 名称
+        # @type Name: String
+        # @param Operator: 运算符
+        # @type Operator: String
+        # @param Type: 类型
+        # @type Type: Integer
+        # @param Values: 值
+        # @type Values: Array
+
+        attr_accessor :IsReversed, :Key, :Name, :Operator, :Type, :Values
+
+        def initialize(isreversed=nil, key=nil, name=nil, operator=nil, type=nil, values=nil)
+          @IsReversed = isreversed
+          @Key = key
+          @Name = name
+          @Operator = operator
+          @Type = type
+          @Values = values
+        end
+
+        def deserialize(params)
+          @IsReversed = params['IsReversed']
+          @Key = params['Key']
+          @Name = params['Name']
+          @Operator = params['Operator']
+          @Type = params['Type']
+          @Values = params['Values']
         end
       end
 
