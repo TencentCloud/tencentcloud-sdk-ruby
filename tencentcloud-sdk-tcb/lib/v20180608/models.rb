@@ -3990,6 +3990,64 @@ module TencentCloud
         end
       end
 
+      # ExecutePGSql请求参数结构体
+      class ExecutePGSqlRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: <p>云开发环境ID</p>
+        # @type EnvId: String
+        # @param Sql: <p>要执行的SQL语句</p>
+        # @type Sql: String
+        # @param Role: <p>指定 role 执行 SQL</p>
+        # @type Role: String
+
+        attr_accessor :EnvId, :Sql, :Role
+
+        def initialize(envid=nil, sql=nil, role=nil)
+          @EnvId = envid
+          @Sql = sql
+          @Role = role
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @Sql = params['Sql']
+          @Role = params['Role']
+        end
+      end
+
+      # ExecutePGSql返回参数结构体
+      class ExecutePGSqlResponse < TencentCloud::Common::AbstractModel
+        # @param AffectedRows: <p>影响行数</p>
+        # @type AffectedRows: Integer
+        # @param Columns: <p>字段名列表</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Columns: Array
+        # @param Rows: <p>数据行。每一行数据都是一个JSON串，将JSON进行反序列化将得到了每列的值。值可能是 null 或者 字符串，如果是 null 说明该列的值为 &lt;null&gt;，如果是字符串则为该列的值的字符串表示形式。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Rows: Array
+        # @param ExecutionTimeMs: <p>SQL执行耗时</p><p>单位：毫秒</p>
+        # @type ExecutionTimeMs: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AffectedRows, :Columns, :Rows, :ExecutionTimeMs, :RequestId
+
+        def initialize(affectedrows=nil, columns=nil, rows=nil, executiontimems=nil, requestid=nil)
+          @AffectedRows = affectedrows
+          @Columns = columns
+          @Rows = rows
+          @ExecutionTimeMs = executiontimems
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @AffectedRows = params['AffectedRows']
+          @Columns = params['Columns']
+          @Rows = params['Rows']
+          @ExecutionTimeMs = params['ExecutionTimeMs']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 外部存储。
       # 标识该存储介质，并非由云开发CloudBase创建，而是绑定的其他存储介质。
       # 目前仅支持 [腾讯云-对象存储](https://cloud.tencent.com/document/product/436)。

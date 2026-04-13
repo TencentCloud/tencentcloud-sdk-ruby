@@ -7163,13 +7163,13 @@ module TencentCloud
 
       # ModifyInstancesVpcAttribute请求参数结构体
       class ModifyInstancesVpcAttributeRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceIds: 待操作的实例ID数组。可通过 [DescribeInstances](https://cloud.tencent.com/document/api/213/15728) 接口返回值中的`InstanceId`获取。
+        # @param InstanceIds: <p>待操作的实例ID数组。可通过 <a href="https://cloud.tencent.com/document/api/213/15728">DescribeInstances</a> 接口返回值中的<code>InstanceId</code>获取。</p>
         # @type InstanceIds: Array
-        # @param VirtualPrivateCloud: 私有网络相关信息配置，通过该参数指定私有网络的ID，子网ID，私有网络ip等信息。<br><li>当指定私有网络ID和子网ID（子网必须在实例所在的可用区）与指定实例所在私有网络不一致时，会将实例迁移至指定的私有网络的子网下。</li><li>可通过`PrivateIpAddresses`指定私有网络子网IP，若需指定则所有已指定的实例均需要指定子网IP，此时`InstanceIds`与`PrivateIpAddresses`一一对应。</li><li>不指定`PrivateIpAddresses`时随机分配私有网络子网IP。</li>
+        # @param VirtualPrivateCloud: <p>私有网络相关信息配置，通过该参数指定私有网络的ID，子网ID，私有网络ip等信息。<br><li>当指定私有网络ID和子网ID（子网必须在实例所在的可用区）与指定实例所在私有网络不一致时，会将实例迁移至指定的私有网络的子网下。</li><li>可通过<code>PrivateIpAddresses</code>指定私有网络子网IP，若需指定则所有已指定的实例均需要指定子网IP，此时<code>InstanceIds</code>与<code>PrivateIpAddresses</code>一一对应。</li><li>不指定<code>PrivateIpAddresses</code>时随机分配私有网络子网IP。</li></p>
         # @type VirtualPrivateCloud: :class:`Tencentcloud::Cvm.v20170312.models.VirtualPrivateCloud`
-        # @param ForceStop: 是否对运行中的实例选择强制关机。默认为true。
+        # @param ForceStop: <p>是否对运行中的实例选择强制关机。默认为true。</p>
         # @type ForceStop: Boolean
-        # @param ReserveHostName: 是否保留主机名。默认为false。
+        # @param ReserveHostName: <p>是否保留主机名。</p><p>默认值：true</p>
         # @type ReserveHostName: Boolean
 
         attr_accessor :InstanceIds, :VirtualPrivateCloud, :ForceStop, :ReserveHostName

@@ -906,7 +906,7 @@ module TencentCloud
 
       # 沙箱工具日志采集相关配置
       class LogConfiguration < TencentCloud::Common::AbstractModel
-        # @param CLSConfig: 日志推送CLS的配置。
+        # @param CLSConfig: <p>日志推送CLS的配置。</p>
         # @type CLSConfig: :class:`Tencentcloud::Ags.v20250920.models.CLSConfig`
 
         attr_accessor :CLSConfig

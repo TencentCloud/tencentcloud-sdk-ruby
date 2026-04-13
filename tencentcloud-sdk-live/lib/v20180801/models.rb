@@ -14520,32 +14520,30 @@ module TencentCloud
 
       # 直播垫片模板。
       class PadTemplate < TencentCloud::Common::AbstractModel
-        # @param TemplateId: 模板id。
+        # @param TemplateId: <p>模板id。</p>
         # @type TemplateId: Integer
-        # @param TemplateName: 模板名称。
+        # @param TemplateName: <p>模板名称。</p>
         # @type TemplateName: String
-        # @param Url: 垫片内容。
+        # @param Url: <p>垫片内容。</p>
         # @type Url: String
-        # @param CreateTime: 模板创建时间。
+        # @param CreateTime: <p>模板创建时间。</p>
         # @type CreateTime: String
-        # @param UpdateTime: 模板修改时间。
+        # @param UpdateTime: <p>模板修改时间。</p>
         # @type UpdateTime: String
-        # @param Description: 模板描述。
+        # @param Description: <p>模板描述。</p>
         # @type Description: String
-        # @param WaitDuration: 断流等待时间。
-        # 取值范围：0-30000。
-        # 单位：ms。
+        # @param WaitDuration: <p>断流等待时间。<br>取值范围：0-30000。<br>单位：ms。</p>
         # @type WaitDuration: Integer
-        # @param MaxDuration: 最大垫片时长。
-        # 取值范围：0 - 正无穷。
-        # 单位：ms。
+        # @param MaxDuration: <p>最大垫片时长。<br>取值范围：0 - 正无穷。<br>单位：ms。</p>
         # @type MaxDuration: Integer
-        # @param Type: 垫片内容类型： 1：图片，2：视频。 默认值：1。
+        # @param Type: <p>垫片内容类型： 1：图片，2：视频。 默认值：1。</p>
         # @type Type: Integer
+        # @param TriggerCondition: <p>断流垫片触发条件</p><p>枚举值：</p><ul><li>0： 主动及异常断流</li><li>1： 异常断流</li></ul><p>默认值：0</p>
+        # @type TriggerCondition: Integer
 
-        attr_accessor :TemplateId, :TemplateName, :Url, :CreateTime, :UpdateTime, :Description, :WaitDuration, :MaxDuration, :Type
+        attr_accessor :TemplateId, :TemplateName, :Url, :CreateTime, :UpdateTime, :Description, :WaitDuration, :MaxDuration, :Type, :TriggerCondition
 
-        def initialize(templateid=nil, templatename=nil, url=nil, createtime=nil, updatetime=nil, description=nil, waitduration=nil, maxduration=nil, type=nil)
+        def initialize(templateid=nil, templatename=nil, url=nil, createtime=nil, updatetime=nil, description=nil, waitduration=nil, maxduration=nil, type=nil, triggercondition=nil)
           @TemplateId = templateid
           @TemplateName = templatename
           @Url = url
@@ -14555,6 +14553,7 @@ module TencentCloud
           @WaitDuration = waitduration
           @MaxDuration = maxduration
           @Type = type
+          @TriggerCondition = triggercondition
         end
 
         def deserialize(params)
@@ -14567,6 +14566,7 @@ module TencentCloud
           @WaitDuration = params['WaitDuration']
           @MaxDuration = params['MaxDuration']
           @Type = params['Type']
+          @TriggerCondition = params['TriggerCondition']
         end
       end
 

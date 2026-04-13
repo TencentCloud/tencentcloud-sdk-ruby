@@ -77,6 +77,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 新增告警监控规则
+
+        # @param request: Request instance for AddAlarmPolicy.
+        # @type request: :class:`Tencentcloud::config::V20220802::AddAlarmPolicyRequest`
+        # @rtype: :class:`Tencentcloud::config::V20220802::AddAlarmPolicyResponse`
+        def AddAlarmPolicy(request)
+          body = send_request('AddAlarmPolicy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AddAlarmPolicyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 新建合规包
 
         # @param request: Request instance for AddCompliancePack.
@@ -279,6 +303,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteAggregateConfigRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除告警规则
+
+        # @param request: Request instance for DeleteAlarmPolicy.
+        # @type request: :class:`Tencentcloud::config::V20220802::DeleteAlarmPolicyRequest`
+        # @rtype: :class:`Tencentcloud::config::V20220802::DeleteAlarmPolicyResponse`
+        def DeleteAlarmPolicy(request)
+          body = send_request('DeleteAlarmPolicy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteAlarmPolicyResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -821,6 +869,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 告警规则列表
+
+        # @param request: Request instance for ListAlarmPolicy.
+        # @type request: :class:`Tencentcloud::config::V20220802::ListAlarmPolicyRequest`
+        # @rtype: :class:`Tencentcloud::config::V20220802::ListAlarmPolicyResponse`
+        def ListAlarmPolicy(request)
+          body = send_request('ListAlarmPolicy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ListAlarmPolicyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取合规包列表
 
         # @param request: Request instance for ListCompliancePacks.
@@ -1287,6 +1359,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = UpdateAggregateConfigRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 更新告警规则
+
+        # @param request: Request instance for UpdateAlarmPolicy.
+        # @type request: :class:`Tencentcloud::config::V20220802::UpdateAlarmPolicyRequest`
+        # @rtype: :class:`Tencentcloud::config::V20220802::UpdateAlarmPolicyResponse`
+        def UpdateAlarmPolicy(request)
+          body = send_request('UpdateAlarmPolicy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateAlarmPolicyResponse.new
             model.deserialize(response['Response'])
             model
           else

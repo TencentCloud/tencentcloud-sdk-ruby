@@ -1667,6 +1667,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口(RestoreDBInstance)用于回档数据库实例到指定时间点。
+
+        # @param request: Request instance for RestoreDBInstance.
+        # @type request: :class:`Tencentcloud::mongodb::V20190725::RestoreDBInstanceRequest`
+        # @rtype: :class:`Tencentcloud::mongodb::V20190725::RestoreDBInstanceResponse`
+        def RestoreDBInstance(request)
+          body = send_request('RestoreDBInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RestoreDBInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（SetAccountUserPrivilege）用于设置实例的账号权限。
 
         # @param request: Request instance for SetAccountUserPrivilege.

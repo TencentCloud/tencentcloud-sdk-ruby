@@ -1039,30 +1039,38 @@ module TencentCloud
 
       # DescribePublicApplications请求参数结构体
       class DescribePublicApplicationsRequest < TencentCloud::Common::AbstractModel
-        # @param Limit: 返回数量，默认为20，最大值为100。
+        # @param Limit: <p>返回数量，默认为20，最大值为100。</p>
         # @type Limit: Integer
-        # @param Offset: 偏移量，默认为0。
+        # @param Offset: <p>偏移量，默认为0。</p>
         # @type Offset: Integer
+        # @param ParentAppId: <p>父应用ID</p>
+        # @type ParentAppId: String
+        # @param AppType: <p>应用类型</p><p>枚举值：</p><ul><li>WDL： WDL</li><li>NEXTFLOW： NEXTFLOW</li></ul>
+        # @type AppType: String
 
-        attr_accessor :Limit, :Offset
+        attr_accessor :Limit, :Offset, :ParentAppId, :AppType
 
-        def initialize(limit=nil, offset=nil)
+        def initialize(limit=nil, offset=nil, parentappid=nil, apptype=nil)
           @Limit = limit
           @Offset = offset
+          @ParentAppId = parentappid
+          @AppType = apptype
         end
 
         def deserialize(params)
           @Limit = params['Limit']
           @Offset = params['Offset']
+          @ParentAppId = params['ParentAppId']
+          @AppType = params['AppType']
         end
       end
 
       # DescribePublicApplications返回参数结构体
       class DescribePublicApplicationsResponse < TencentCloud::Common::AbstractModel
-        # @param Applications: 公共应用。
+        # @param Applications: <p>公共应用。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Applications: Array
-        # @param TotalCount: 符合条件的数量。
+        # @param TotalCount: <p>符合条件的数量。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。

@@ -1216,33 +1216,33 @@ module TencentCloud
 
       # CreateRecord请求参数结构体
       class CreateRecordRequest < TencentCloud::Common::AbstractModel
-        # @param Domain: 域名
+        # @param Domain: <p>域名</p>
         # @type Domain: String
-        # @param RecordType: 记录类型，可通过接口DescribeRecordType获得，大写英文，比如：A 。
+        # @param RecordType: <p>记录类型，可通过接口DescribeRecordType获得，大写英文，比如：A 。</p>
         # @type RecordType: String
-        # @param RecordLine: 记录线路，可以通过接口DescribeRecordLineList查看当前域名允许的线路信息，中文，比如：默认。
+        # @param RecordLine: <p>记录线路，可以通过接口DescribeRecordLineList查看当前域名允许的线路信息，中文，比如：默认。</p>
         # @type RecordLine: String
-        # @param Value: 记录值，如 IP : 200.200.200.200， CNAME : cname.dnspod.com.， MX : mail.dnspod.com.。
+        # @param Value: <p>记录值，如 IP : 200.200.200.200， CNAME : cname.dnspod.com.， MX : mail.dnspod.com.。</p>
         # @type Value: String
-        # @param DomainId: 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。
+        # @param DomainId: <p>域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。</p>
         # @type DomainId: Integer
-        # @param SubDomain: 主机记录，如 www，如果不传，默认为 @。
+        # @param SubDomain: <p>主机记录，如 www，如果不传，默认为 @。</p>
         # @type SubDomain: String
-        # @param RecordLineId: 线路的 ID，可以通过接口DescribeRecordLineList查看当前域名允许的线路信息，英文字符串，比如：10=1。参数RecordLineId优先级高于RecordLine，如果同时传递二者，优先使用RecordLineId参数。
+        # @param RecordLineId: <p>线路的 ID，可以通过接口DescribeRecordLineList查看当前域名允许的线路信息，英文字符串，比如：10=1。参数RecordLineId优先级高于RecordLine，如果同时传递二者，优先使用RecordLineId参数。</p>
         # @type RecordLineId: String
-        # @param MX: MX 优先级，当记录类型是 MX、HTTPS、SVCB 时必填，范围1-65535。
+        # @param MX: <p>MX 优先级，当记录类型是 MX、HTTPS、SVCB 时必填，范围0-65535。</p><p>取值范围：[0, 65535]</p>
         # @type MX: Integer
-        # @param TTL: TTL，范围1-604800，不同套餐域名最小值不同。
+        # @param TTL: <p>TTL，范围1-604800，不同套餐域名最小值不同。</p>
         # @type TTL: Integer
-        # @param Weight: 权重信息，0到100的整数。0 表示关闭，不传该参数，表示不设置权重信息。
+        # @param Weight: <p>权重信息，0到100的整数。0 表示关闭，不传该参数，表示不设置权重信息。</p>
         # @type Weight: Integer
-        # @param Status: 记录初始状态，取值范围为 ENABLE 和 DISABLE 。默认为 ENABLE ，如果传入 DISABLE，解析不会生效，也不会验证负载均衡的限制。
+        # @param Status: <p>记录初始状态，取值范围为 ENABLE 和 DISABLE 。默认为 ENABLE ，如果传入 DISABLE，解析不会生效，也不会验证负载均衡的限制。</p>
         # @type Status: String
-        # @param Remark: 备注
+        # @param Remark: <p>备注</p>
         # @type Remark: String
-        # @param DnssecConflictMode: 开启DNSSEC时，强制添加CNAME/URL记录
+        # @param DnssecConflictMode: <p>开启DNSSEC时，强制添加CNAME/URL记录</p>
         # @type DnssecConflictMode: String
-        # @param GroupId: 记录分组 Id。可以通过接口 DescribeRecordGroupList 接口 GroupId 字段获取。
+        # @param GroupId: <p>记录分组 Id。可以通过接口 DescribeRecordGroupList 接口 GroupId 字段获取。</p><p>取值参考：<a href="https://cloud.tencent.com/document/api/1427/83225">DescribeRecordGroupList</a></p>
         # @type GroupId: Integer
 
         attr_accessor :Domain, :RecordType, :RecordLine, :Value, :DomainId, :SubDomain, :RecordLineId, :MX, :TTL, :Weight, :Status, :Remark, :DnssecConflictMode, :GroupId
@@ -1284,7 +1284,7 @@ module TencentCloud
 
       # CreateRecord返回参数结构体
       class CreateRecordResponse < TencentCloud::Common::AbstractModel
-        # @param RecordId: 记录ID
+        # @param RecordId: <p>记录ID</p>
         # @type RecordId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5959,15 +5959,15 @@ module TencentCloud
 
       # ModifyRecordBatch请求参数结构体
       class ModifyRecordBatchRequest < TencentCloud::Common::AbstractModel
-        # @param RecordIdList: 记录ID数组。可以通过接口DescribeRecordList查到所有的解析记录列表以及对应的RecordId。单次最多修改5000条记录。
+        # @param RecordIdList: <p>记录ID数组。可以通过接口DescribeRecordList查到所有的解析记录列表以及对应的RecordId。单次最多修改5000条记录。</p><p>取值参考：<a href="https://cloud.tencent.com/document/api/1427/56166">DescribeRecordList</a></p>
         # @type RecordIdList: Array
-        # @param Change: 要修改的字段，可选值为 [“sub_domain”、”record_type”、”area”、”value”、”mx”、”ttl”、”status”] 中的某一个。
+        # @param Change: <p>要修改的字段，可选值为 [“sub_domain”、”record_type”、”area”、”value”、”mx”、”ttl”、”status”] 中的某一个。</p>
         # @type Change: String
-        # @param ChangeTo: 修改为，具体依赖 change 字段，必填参数。
+        # @param ChangeTo: <p>修改为，具体依赖 change 字段，必填参数。</p>
         # @type ChangeTo: String
-        # @param Value: 要修改到的记录值，仅当 change 字段为 “record_type” 时为必填参数。
+        # @param Value: <p>要修改到的记录值，仅当 change 字段为 “record_type” 时为必填参数。</p>
         # @type Value: String
-        # @param MX: MX 优先级，当记录类型是 MX、HTTPS、SVCB 时必填，范围1-65535。
+        # @param MX: <p>MX 优先级，当记录类型是 MX、HTTPS、SVCB 时必填，范围0-65535。</p>
         # @type MX: String
 
         attr_accessor :RecordIdList, :Change, :ChangeTo, :Value, :MX
@@ -5991,9 +5991,9 @@ module TencentCloud
 
       # ModifyRecordBatch返回参数结构体
       class ModifyRecordBatchResponse < TencentCloud::Common::AbstractModel
-        # @param JobId: 批量任务ID
+        # @param JobId: <p>批量任务ID</p>
         # @type JobId: Integer
-        # @param DetailList: 见ModifyRecordBatchDetail
+        # @param DetailList: <p>见ModifyRecordBatchDetail</p>
         # @type DetailList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6264,33 +6264,33 @@ module TencentCloud
 
       # ModifyRecord请求参数结构体
       class ModifyRecordRequest < TencentCloud::Common::AbstractModel
-        # @param Domain: 域名
+        # @param Domain: <p>域名</p>
         # @type Domain: String
-        # @param RecordType: 记录类型，可通过接口DescribeRecordType获得，大写英文，比如：A 。
+        # @param RecordType: <p>记录类型，可通过接口DescribeRecordType获得，大写英文，比如：A 。</p>
         # @type RecordType: String
-        # @param RecordLine: 记录线路，可以通过接口DescribeRecordLineList查看当前域名允许的线路信息。比如：默认。
+        # @param RecordLine: <p>记录线路，可以通过接口DescribeRecordLineList查看当前域名允许的线路信息。比如：默认。</p>
         # @type RecordLine: String
-        # @param Value: 记录值，如 IP : 200.200.200.200， CNAME : cname.dnspod.com.， MX : mail.dnspod.com.。
+        # @param Value: <p>记录值，如 IP : 200.200.200.200， CNAME : cname.dnspod.com.， MX : mail.dnspod.com.。</p>
         # @type Value: String
-        # @param RecordId: 记录 ID 。可以通过接口DescribeRecordList查到所有的解析记录列表以及对应的RecordId
+        # @param RecordId: <p>记录 ID 。可以通过接口DescribeRecordList查到所有的解析记录列表以及对应的RecordId</p>
         # @type RecordId: Integer
-        # @param DomainId: 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。可以通过接口DescribeDomainList查到所有的Domain以及DomainId
+        # @param DomainId: <p>域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。可以通过接口DescribeDomainList查到所有的Domain以及DomainId</p>
         # @type DomainId: Integer
-        # @param SubDomain: 主机记录，如 www，如果不传，默认为 @。
+        # @param SubDomain: <p>主机记录，如 www，如果不传，默认为 @。</p>
         # @type SubDomain: String
-        # @param RecordLineId: 线路的 ID，可以通过接口DescribeRecordLineList查看当前域名允许的线路信息，比如：10=1。参数RecordLineId优先级高于RecordLine，如果同时传递二者，优先使用RecordLineId参数。
+        # @param RecordLineId: <p>线路的 ID，可以通过接口DescribeRecordLineList查看当前域名允许的线路信息，比如：10=1。参数RecordLineId优先级高于RecordLine，如果同时传递二者，优先使用RecordLineId参数。</p>
         # @type RecordLineId: String
-        # @param MX: MX 优先级，当记录类型是 MX、HTTPS、SVCB 时必填，范围1-65535。
+        # @param MX: <p>MX 优先级，当记录类型是 MX、HTTPS、SVCB 时必填，范围0-65535。</p><p>取值范围：[0, 65535]</p>
         # @type MX: Integer
-        # @param TTL: TTL，范围1-604800，不同等级域名最小值不同。
+        # @param TTL: <p>TTL，范围1-604800，不同等级域名最小值不同。</p>
         # @type TTL: Integer
-        # @param Weight: 权重信息，0到100的整数。0 表示关闭，不传该参数，表示不设置权重信息。
+        # @param Weight: <p>权重信息，0到100的整数。0 表示关闭，不传该参数，表示不设置权重信息。</p>
         # @type Weight: Integer
-        # @param Status: 记录初始状态，取值范围为 ENABLE 和 DISABLE 。默认为 ENABLE ，如果传入 DISABLE，解析不会生效，也不会验证负载均衡的限制。
+        # @param Status: <p>记录初始状态，取值范围为 ENABLE 和 DISABLE 。默认为 ENABLE ，如果传入 DISABLE，解析不会生效，也不会验证负载均衡的限制。</p>
         # @type Status: String
-        # @param Remark: 记录的备注信息。传空删除备注。
+        # @param Remark: <p>记录的备注信息。传空删除备注。</p>
         # @type Remark: String
-        # @param DnssecConflictMode: 开启DNSSEC时，强制将其它记录修改为CNAME/URL记录
+        # @param DnssecConflictMode: <p>开启DNSSEC时，强制将其它记录修改为CNAME/URL记录</p>
         # @type DnssecConflictMode: String
 
         attr_accessor :Domain, :RecordType, :RecordLine, :Value, :RecordId, :DomainId, :SubDomain, :RecordLineId, :MX, :TTL, :Weight, :Status, :Remark, :DnssecConflictMode
@@ -6332,7 +6332,7 @@ module TencentCloud
 
       # ModifyRecord返回参数结构体
       class ModifyRecordResponse < TencentCloud::Common::AbstractModel
-        # @param RecordId: 记录ID
+        # @param RecordId: <p>记录ID</p>
         # @type RecordId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

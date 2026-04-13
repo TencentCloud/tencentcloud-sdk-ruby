@@ -5302,8 +5302,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :Memory, :Volume, :OplogSize, :NodeNum, :ReplicateSetNum, :InMaintenance, :MongosMemory, :AddNodeList, :RemoveNodeList
         extend Gem::Deprecate
-        deprecate :OplogSize, :none, 2026, 3
-        deprecate :OplogSize=, :none, 2026, 3
+        deprecate :OplogSize, :none, 2026, 4
+        deprecate :OplogSize=, :none, 2026, 4
 
         def initialize(instanceid=nil, memory=nil, volume=nil, oplogsize=nil, nodenum=nil, replicatesetnum=nil, inmaintenance=nil, mongosmemory=nil, addnodelist=nil, removenodelist=nil)
           @InstanceId = instanceid
@@ -6077,6 +6077,104 @@ module TencentCloud
         def deserialize(params)
           @FlowId = params['FlowId']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 待回档collection
+      class RestoreCollection < TencentCloud::Common::AbstractModel
+        # @param OldCollection: 待回档的原collection
+        # @type OldCollection: String
+        # @param NewCollection: 回档后的collection
+        # @type NewCollection: String
+
+        attr_accessor :OldCollection, :NewCollection
+
+        def initialize(oldcollection=nil, newcollection=nil)
+          @OldCollection = oldcollection
+          @NewCollection = newcollection
+        end
+
+        def deserialize(params)
+          @OldCollection = params['OldCollection']
+          @NewCollection = params['NewCollection']
+        end
+      end
+
+      # RestoreDBInstance请求参数结构体
+      class RestoreDBInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>实例 ID。请登录 <a href="https://console.cloud.tencent.com/mongodb/instance">MongoDB 控制台</a>在实例列表复制实例 ID。</p>
+        # @type InstanceId: String
+        # @param RestoreTime: <p>指定回档的目标时间点。该时间必须处于实例的备份保留期内。</p><p>参数格式：YYYY-MM-DD hh:mm:ss</p>
+        # @type RestoreTime: String
+        # @param Databases: <p>回档的库表信息。</p>
+        # @type Databases: Array
+
+        attr_accessor :InstanceId, :RestoreTime, :Databases
+
+        def initialize(instanceid=nil, restoretime=nil, databases=nil)
+          @InstanceId = instanceid
+          @RestoreTime = restoretime
+          @Databases = databases
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @RestoreTime = params['RestoreTime']
+          unless params['Databases'].nil?
+            @Databases = []
+            params['Databases'].each do |i|
+              restoredatabases_tmp = RestoreDatabases.new
+              restoredatabases_tmp.deserialize(i)
+              @Databases << restoredatabases_tmp
+            end
+          end
+        end
+      end
+
+      # RestoreDBInstance返回参数结构体
+      class RestoreDBInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: <p>回档任务流程 ID。</p>
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :RequestId
+
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 库表回档到新实例，库表信息
+      class RestoreDatabases < TencentCloud::Common::AbstractModel
+        # @param Db: DB名称。
+        # @type Db: String
+        # @param Collections: 待回档的集合信息。
+        # @type Collections: Array
+
+        attr_accessor :Db, :Collections
+
+        def initialize(db=nil, collections=nil)
+          @Db = db
+          @Collections = collections
+        end
+
+        def deserialize(params)
+          @Db = params['Db']
+          unless params['Collections'].nil?
+            @Collections = []
+            params['Collections'].each do |i|
+              restorecollection_tmp = RestoreCollection.new
+              restorecollection_tmp.deserialize(i)
+              @Collections << restorecollection_tmp
+            end
+          end
         end
       end
 

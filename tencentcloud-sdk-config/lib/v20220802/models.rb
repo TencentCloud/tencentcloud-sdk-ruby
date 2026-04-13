@@ -176,6 +176,71 @@ module TencentCloud
         end
       end
 
+      # AddAlarmPolicy请求参数结构体
+      class AddAlarmPolicyRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 告警策略名
+        # @type Name: String
+        # @param EventScope: 事件范围  1：当前账号  2：多账号
+        # @type EventScope: Array
+        # @param RiskLevel: 风险等级 1：高风险  2：中风险 3：低风险
+        # @type RiskLevel: Array
+        # @param NoticeTime: 通知时间段
+        # @type NoticeTime: String
+        # @param NotificationMechanism: 通知机制
+        # @type NotificationMechanism: String
+        # @param Status: 状态 1：启用 2：停用
+        # @type Status: Integer
+        # @param NoticePeriod: 通知周期
+        # @type NoticePeriod: Array
+        # @param Description: 策略描述
+        # @type Description: String
+
+        attr_accessor :Name, :EventScope, :RiskLevel, :NoticeTime, :NotificationMechanism, :Status, :NoticePeriod, :Description
+
+        def initialize(name=nil, eventscope=nil, risklevel=nil, noticetime=nil, notificationmechanism=nil, status=nil, noticeperiod=nil, description=nil)
+          @Name = name
+          @EventScope = eventscope
+          @RiskLevel = risklevel
+          @NoticeTime = noticetime
+          @NotificationMechanism = notificationmechanism
+          @Status = status
+          @NoticePeriod = noticeperiod
+          @Description = description
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @EventScope = params['EventScope']
+          @RiskLevel = params['RiskLevel']
+          @NoticeTime = params['NoticeTime']
+          @NotificationMechanism = params['NotificationMechanism']
+          @Status = params['Status']
+          @NoticePeriod = params['NoticePeriod']
+          @Description = params['Description']
+        end
+      end
+
+      # AddAlarmPolicy返回参数结构体
+      class AddAlarmPolicyResponse < TencentCloud::Common::AbstractModel
+        # @param AlarmPolicyId: 告警策略唯一id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AlarmPolicyId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AlarmPolicyId, :RequestId
+
+        def initialize(alarmpolicyid=nil, requestid=nil)
+          @AlarmPolicyId = alarmpolicyid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @AlarmPolicyId = params['AlarmPolicyId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # AddCompliancePack请求参数结构体
       class AddCompliancePackRequest < TencentCloud::Common::AbstractModel
         # @param ConfigRules: <p>合规包规则</p>
@@ -233,31 +298,27 @@ module TencentCloud
 
       # AddConfigRule请求参数结构体
       class AddConfigRuleRequest < TencentCloud::Common::AbstractModel
-        # @param Identifier: 规则模板标识，预设规则模板为Identifier, 自定义规则为云函数arn（region:functionName）
+        # @param Identifier: <p>规则模板标识，预设规则模板为Identifier, 自定义规则为云函数arn（region:functionName）</p>
         # @type Identifier: String
-        # @param IdentifierType: 规则模板类型，SYSTEM, CUSTOMIZE
+        # @param IdentifierType: <p>规则模板类型，SYSTEM, CUSTOMIZE</p>
         # @type IdentifierType: String
-        # @param RuleName: 规则名称
+        # @param RuleName: <p>规则名称</p>
         # @type RuleName: String
-        # @param ResourceType: 规则支持的资源
+        # @param ResourceType: <p>规则支持的资源</p>
         # @type ResourceType: Array
-        # @param TriggerType: 触发类型，最多支持两种
+        # @param TriggerType: <p>触发类型，最多支持两种</p>
         # @type TriggerType: Array
-        # @param RiskLevel: 风险等级
-        # 1：高风险。
-        # 2：中风险。
-        # 3：低风险。
+        # @param RiskLevel: <p>风险等级<br>1：高风险。<br>2：中风险。<br>3：低风险。</p>
         # @type RiskLevel: Integer
-        # @param InputParameter: 入参
+        # @param InputParameter: <p>入参</p>
         # @type InputParameter: Array
-        # @param Description: 规则描述。长度范围0~1024字符
+        # @param Description: <p>规则描述。长度范围0~1024字符</p>
         # @type Description: String
-        # @param RegionsScope: 规则评估地域范围，规则仅对指定地域中的资源生效。
-        # 支持的地域范围config:ListResourceRegions返回的地域
+        # @param RegionsScope: <p>规则评估地域范围，规则仅对指定地域中的资源生效。<br>支持的地域范围config:ListResourceRegions返回的地域</p>
         # @type RegionsScope: Array
-        # @param TagsScope: 规则评估标签范围，规则仅对绑定指定标签的资源生效。
+        # @param TagsScope: <p>规则评估标签范围，规则仅对绑定指定标签的资源生效。</p>
         # @type TagsScope: Array
-        # @param ExcludeResourceIdsScope: 规则对指定资源ID无效，即不对该资源执行评估。
+        # @param ExcludeResourceIdsScope: <p>规则对指定资源ID无效，即不对该资源执行评估。</p>
         # @type ExcludeResourceIdsScope: Array
 
         attr_accessor :Identifier, :IdentifierType, :RuleName, :ResourceType, :TriggerType, :RiskLevel, :InputParameter, :Description, :RegionsScope, :TagsScope, :ExcludeResourceIdsScope
@@ -314,16 +375,20 @@ module TencentCloud
 
       # AddConfigRule返回参数结构体
       class AddConfigRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RuleId: <p>规则ID</p>
+        # @type RuleId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :RuleId, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(ruleid=nil, requestid=nil)
+          @RuleId = ruleid
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @RuleId = params['RuleId']
           @RequestId = params['RequestId']
         end
       end
@@ -542,6 +607,59 @@ module TencentCloud
         def deserialize(params)
           @MemberUin = params['MemberUin']
           @MemberName = params['MemberName']
+        end
+      end
+
+      # 告警策略列表单个记录结构体
+      class AlarmPolicyRsp < TencentCloud::Common::AbstractModel
+        # @param AlarmPolicyId: 告警策略唯一标识id
+        # @type AlarmPolicyId: Integer
+        # @param Name: 策略名称
+        # @type Name: String
+        # @param Type: 事件类型
+        # @type Type: Integer
+        # @param EventScope: 1：当前账号  2：多账号
+        # @type EventScope: Array
+        # @param RiskLevel: 1：高风险  2：中风险 3：低风险
+        # @type RiskLevel: Array
+        # @param NoticePeriod: 通知周期，1-7数字分别代表周一至周日
+        # @type NoticePeriod: Array
+        # @param NoticeTime: 通知时间段
+        # @type NoticeTime: String
+        # @param NotificationMechanism: 通知机制
+        # @type NotificationMechanism: String
+        # @param Status: 策略状态 1：启动  2：停止
+        # @type Status: Integer
+        # @param Description: 策略描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+
+        attr_accessor :AlarmPolicyId, :Name, :Type, :EventScope, :RiskLevel, :NoticePeriod, :NoticeTime, :NotificationMechanism, :Status, :Description
+
+        def initialize(alarmpolicyid=nil, name=nil, type=nil, eventscope=nil, risklevel=nil, noticeperiod=nil, noticetime=nil, notificationmechanism=nil, status=nil, description=nil)
+          @AlarmPolicyId = alarmpolicyid
+          @Name = name
+          @Type = type
+          @EventScope = eventscope
+          @RiskLevel = risklevel
+          @NoticePeriod = noticeperiod
+          @NoticeTime = noticetime
+          @NotificationMechanism = notificationmechanism
+          @Status = status
+          @Description = description
+        end
+
+        def deserialize(params)
+          @AlarmPolicyId = params['AlarmPolicyId']
+          @Name = params['Name']
+          @Type = params['Type']
+          @EventScope = params['EventScope']
+          @RiskLevel = params['RiskLevel']
+          @NoticePeriod = params['NoticePeriod']
+          @NoticeTime = params['NoticeTime']
+          @NotificationMechanism = params['NotificationMechanism']
+          @Status = params['Status']
+          @Description = params['Description']
         end
       end
 
@@ -1356,6 +1474,38 @@ module TencentCloud
 
       # DeleteAggregateConfigRule返回参数结构体
       class DeleteAggregateConfigRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteAlarmPolicy请求参数结构体
+      class DeleteAlarmPolicyRequest < TencentCloud::Common::AbstractModel
+        # @param AlarmPolicyId: 告警策略id
+        # @type AlarmPolicyId: Integer
+
+        attr_accessor :AlarmPolicyId
+
+        def initialize(alarmpolicyid=nil)
+          @AlarmPolicyId = alarmpolicyid
+        end
+
+        def deserialize(params)
+          @AlarmPolicyId = params['AlarmPolicyId']
+        end
+      end
+
+      # DeleteAlarmPolicy返回参数结构体
+      class DeleteAlarmPolicyResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -2857,6 +3007,53 @@ module TencentCloud
         end
       end
 
+      # ListAlarmPolicy请求参数结构体
+      class ListAlarmPolicyRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 页码
+        # @type Offset: Integer
+
+        attr_accessor :Offset
+
+        def initialize(offset=nil)
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+        end
+      end
+
+      # ListAlarmPolicy返回参数结构体
+      class ListAlarmPolicyResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 返回记录的数量
+        # @type Total: Integer
+        # @param AlarmPolicyList: 告警策略返回值
+        # @type AlarmPolicyList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :AlarmPolicyList, :RequestId
+
+        def initialize(total=nil, alarmpolicylist=nil, requestid=nil)
+          @Total = total
+          @AlarmPolicyList = alarmpolicylist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['AlarmPolicyList'].nil?
+            @AlarmPolicyList = []
+            params['AlarmPolicyList'].each do |i|
+              alarmpolicyrsp_tmp = AlarmPolicyRsp.new
+              alarmpolicyrsp_tmp.deserialize(i)
+              @AlarmPolicyList << alarmpolicyrsp_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ListCompliancePacks请求参数结构体
       class ListCompliancePacksRequest < TencentCloud::Common::AbstractModel
         # @param Limit: 数量
@@ -4250,6 +4447,70 @@ module TencentCloud
 
       # UpdateAggregateConfigRule返回参数结构体
       class UpdateAggregateConfigRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateAlarmPolicy请求参数结构体
+      class UpdateAlarmPolicyRequest < TencentCloud::Common::AbstractModel
+        # @param AlarmPolicyId: 告警策略id
+        # @type AlarmPolicyId: Integer
+        # @param Name: 告警策略名
+        # @type Name: String
+        # @param EventScope: 事件范围  1：当前账号  2：多账号
+        # @type EventScope: Array
+        # @param RiskLevel: 风险等级 1：高风险  2：中风险 3：低风险
+        # @type RiskLevel: Array
+        # @param NoticeTime: 通知时间段
+        # @type NoticeTime: String
+        # @param NotificationMechanism: 通知机制
+        # @type NotificationMechanism: String
+        # @param Status: 状态 1：启用 2：停用
+        # @type Status: Integer
+        # @param NoticePeriod: 通知周期,1-7数字分别代表周一到周日
+        # @type NoticePeriod: Array
+        # @param Description: 策略描述
+        # @type Description: String
+
+        attr_accessor :AlarmPolicyId, :Name, :EventScope, :RiskLevel, :NoticeTime, :NotificationMechanism, :Status, :NoticePeriod, :Description
+
+        def initialize(alarmpolicyid=nil, name=nil, eventscope=nil, risklevel=nil, noticetime=nil, notificationmechanism=nil, status=nil, noticeperiod=nil, description=nil)
+          @AlarmPolicyId = alarmpolicyid
+          @Name = name
+          @EventScope = eventscope
+          @RiskLevel = risklevel
+          @NoticeTime = noticetime
+          @NotificationMechanism = notificationmechanism
+          @Status = status
+          @NoticePeriod = noticeperiod
+          @Description = description
+        end
+
+        def deserialize(params)
+          @AlarmPolicyId = params['AlarmPolicyId']
+          @Name = params['Name']
+          @EventScope = params['EventScope']
+          @RiskLevel = params['RiskLevel']
+          @NoticeTime = params['NoticeTime']
+          @NotificationMechanism = params['NotificationMechanism']
+          @Status = params['Status']
+          @NoticePeriod = params['NoticePeriod']
+          @Description = params['Description']
+        end
+      end
+
+      # UpdateAlarmPolicy返回参数结构体
+      class UpdateAlarmPolicyResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

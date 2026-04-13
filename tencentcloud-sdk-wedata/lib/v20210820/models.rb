@@ -3323,8 +3323,8 @@ module TencentCloud
 
         attr_accessor :ProjectId, :AlarmRegularName, :TaskId, :Id, :TaskType, :MonitorType
         extend Gem::Deprecate
-        deprecate :TaskId, :none, 2026, 3
-        deprecate :TaskId=, :none, 2026, 3
+        deprecate :TaskId, :none, 2026, 4
+        deprecate :TaskId=, :none, 2026, 4
 
         def initialize(projectid=nil, alarmregularname=nil, taskid=nil, id=nil, tasktype=nil, monitortype=nil)
           @ProjectId = projectid
@@ -11788,12 +11788,12 @@ module TencentCloud
 
         attr_accessor :ProjectId, :Category, :PageNumber, :PageSize, :EventName, :EventType, :EventSubType, :EventBroadcastType, :Status, :CreationTimeStart, :CreationTimeEnd, :EventTriggeredTimeStart, :EventTriggeredTimeEnd, :LogTimeStart, :LogTimeEnd, :Dimension, :TimeToLive, :SortItem, :SortType, :ConsumeCount
         extend Gem::Deprecate
-        deprecate :EventType, :none, 2026, 3
-        deprecate :EventType=, :none, 2026, 3
-        deprecate :EventBroadcastType, :none, 2026, 3
-        deprecate :EventBroadcastType=, :none, 2026, 3
-        deprecate :Status, :none, 2026, 3
-        deprecate :Status=, :none, 2026, 3
+        deprecate :EventType, :none, 2026, 4
+        deprecate :EventType=, :none, 2026, 4
+        deprecate :EventBroadcastType, :none, 2026, 4
+        deprecate :EventBroadcastType=, :none, 2026, 4
+        deprecate :Status, :none, 2026, 4
+        deprecate :Status=, :none, 2026, 4
 
         def initialize(projectid=nil, category=nil, pagenumber=nil, pagesize=nil, eventname=nil, eventtype=nil, eventsubtype=nil, eventbroadcasttype=nil, status=nil, creationtimestart=nil, creationtimeend=nil, eventtriggeredtimestart=nil, eventtriggeredtimeend=nil, logtimestart=nil, logtimeend=nil, dimension=nil, timetolive=nil, sortitem=nil, sorttype=nil, consumecount=nil)
           @ProjectId = projectid
@@ -20014,8 +20014,8 @@ module TencentCloud
 
         attr_accessor :DimType, :Count, :QualityDim
         extend Gem::Deprecate
-        deprecate :DimType, :none, 2026, 3
-        deprecate :DimType=, :none, 2026, 3
+        deprecate :DimType, :none, 2026, 4
+        deprecate :DimType=, :none, 2026, 4
 
         def initialize(dimtype=nil, count=nil, qualitydim=nil)
           @DimType = dimtype
@@ -21400,34 +21400,37 @@ module TencentCloud
 
       # 监听者任务信息
       class EventListenerTaskInfo < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务id
+        # @param TaskId: <p>任务id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskId: String
-        # @param TaskName: 任务名称
+        # @param TaskName: <p>任务名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskName: String
-        # @param WorkflowId: 工作流id
+        # @param WorkflowId: <p>工作流id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WorkflowId: String
-        # @param WorkflowName: 工作流名称
+        # @param WorkflowName: <p>工作流名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WorkflowName: String
-        # @param TaskTypeId: 任务类型id
+        # @param TaskTypeId: <p>任务类型id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskTypeId: Integer
-        # @param TaskType: 任务类型名称
+        # @param TaskType: <p>任务类型名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskType: String
-        # @param ProjectId: 项目id
+        # @param ProjectId: <p>项目id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProjectId: String
-        # @param CycleType: 任务周期类型
+        # @param CycleType: <p>任务周期类型</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CycleType: String
+        # @param EventName: <p>事件名称</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EventName: String
 
-        attr_accessor :TaskId, :TaskName, :WorkflowId, :WorkflowName, :TaskTypeId, :TaskType, :ProjectId, :CycleType
+        attr_accessor :TaskId, :TaskName, :WorkflowId, :WorkflowName, :TaskTypeId, :TaskType, :ProjectId, :CycleType, :EventName
 
-        def initialize(taskid=nil, taskname=nil, workflowid=nil, workflowname=nil, tasktypeid=nil, tasktype=nil, projectid=nil, cycletype=nil)
+        def initialize(taskid=nil, taskname=nil, workflowid=nil, workflowname=nil, tasktypeid=nil, tasktype=nil, projectid=nil, cycletype=nil, eventname=nil)
           @TaskId = taskid
           @TaskName = taskname
           @WorkflowId = workflowid
@@ -21436,6 +21439,7 @@ module TencentCloud
           @TaskType = tasktype
           @ProjectId = projectid
           @CycleType = cycletype
+          @EventName = eventname
         end
 
         def deserialize(params)
@@ -21447,6 +21451,7 @@ module TencentCloud
           @TaskType = params['TaskType']
           @ProjectId = params['ProjectId']
           @CycleType = params['CycleType']
+          @EventName = params['EventName']
         end
       end
 
@@ -29655,8 +29660,8 @@ module TencentCloud
 
         attr_accessor :ProjectId, :TaskId, :DelayTime, :StartupTime, :SelfDepend, :StartTime, :EndTime, :TaskAction, :CycleType, :CycleStep, :CrontabExpression, :ExecutionStartTime, :ExecutionEndTime, :TaskName, :RetryWait, :TryLimit, :Retriable, :RunPriority, :TaskExt, :ResourceGroup, :YarnQueue, :BrokerIp, :InCharge, :Notes, :TaskParamInfos, :SourceServer, :TargetServer, :DependencyWorkflow, :DependencyConfigDTOs, :ExecutionTTL, :ScriptChange, :InChargeIds
         extend Gem::Deprecate
-        deprecate :InCharge, :none, 2026, 3
-        deprecate :InCharge=, :none, 2026, 3
+        deprecate :InCharge, :none, 2026, 4
+        deprecate :InCharge=, :none, 2026, 4
 
         def initialize(projectid=nil, taskid=nil, delaytime=nil, startuptime=nil, selfdepend=nil, starttime=nil, endtime=nil, taskaction=nil, cycletype=nil, cyclestep=nil, crontabexpression=nil, executionstarttime=nil, executionendtime=nil, taskname=nil, retrywait=nil, trylimit=nil, retriable=nil, runpriority=nil, taskext=nil, resourcegroup=nil, yarnqueue=nil, brokerip=nil, incharge=nil, notes=nil, taskparaminfos=nil, sourceserver=nil, targetserver=nil, dependencyworkflow=nil, dependencyconfigdtos=nil, executionttl=nil, scriptchange=nil, inchargeids=nil)
           @ProjectId = projectid
@@ -32427,12 +32432,12 @@ module TencentCloud
 
         attr_accessor :ProjectId, :Name, :EventSubType, :TimeToLive, :TimeUnit, :Owner, :Description, :EventType, :EventBroadcastType, :DimensionFormat, :ValidConsumeCount
         extend Gem::Deprecate
-        deprecate :EventType, :none, 2026, 3
-        deprecate :EventType=, :none, 2026, 3
-        deprecate :EventBroadcastType, :none, 2026, 3
-        deprecate :EventBroadcastType=, :none, 2026, 3
-        deprecate :DimensionFormat, :none, 2026, 3
-        deprecate :DimensionFormat=, :none, 2026, 3
+        deprecate :EventType, :none, 2026, 4
+        deprecate :EventType=, :none, 2026, 4
+        deprecate :EventBroadcastType, :none, 2026, 4
+        deprecate :EventBroadcastType=, :none, 2026, 4
+        deprecate :DimensionFormat, :none, 2026, 4
+        deprecate :DimensionFormat=, :none, 2026, 4
 
         def initialize(projectid=nil, name=nil, eventsubtype=nil, timetolive=nil, timeunit=nil, owner=nil, description=nil, eventtype=nil, eventbroadcasttype=nil, dimensionformat=nil, validconsumecount=nil)
           @ProjectId = projectid

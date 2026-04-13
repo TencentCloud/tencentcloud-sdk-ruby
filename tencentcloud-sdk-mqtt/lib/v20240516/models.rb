@@ -2284,7 +2284,7 @@ module TencentCloud
 
       # DescribeInstance请求参数结构体
       class DescribeInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 腾讯云MQTT实例ID，从 [DescribeInstanceList](https://cloud.tencent.com/document/api/1778/111029)接口或控制台获得。
+        # @param InstanceId: <p>腾讯云MQTT实例ID，从 <a href="https://cloud.tencent.com/document/api/1778/111029">DescribeInstanceList</a>接口或控制台获得。</p>
         # @type InstanceId: String
 
         attr_accessor :InstanceId
@@ -2300,87 +2300,87 @@ module TencentCloud
 
       # DescribeInstance返回参数结构体
       class DescribeInstanceResponse < TencentCloud::Common::AbstractModel
-        # @param InstanceType: 实例类型
-        # BASIC 基础版
-        # PRO  专业版
-        # PLATINUM 铂金版
+        # @param InstanceType: <p>实例类型<br>BASIC 基础版<br>PRO  专业版<br>PLATINUM 铂金版</p>
         # @type InstanceType: String
-        # @param InstanceId: 实例ID
+        # @param InstanceId: <p>实例ID</p>
         # @type InstanceId: String
-        # @param InstanceName: 实例名称
+        # @param InstanceName: <p>实例名称</p>
         # @type InstanceName: String
-        # @param TopicNum: 主题数量
+        # @param TopicNum: <p>主题数量</p>
         # @type TopicNum: Integer
-        # @param TopicNumLimit: 实例最大主题数量
+        # @param TopicNumLimit: <p>实例最大主题数量</p>
         # @type TopicNumLimit: Integer
-        # @param TpsLimit: TPS限流值
+        # @param TpsLimit: <p>TPS限流值</p>
         # @type TpsLimit: Integer
-        # @param CreatedTime: 创建时间，秒为单位
+        # @param CreatedTime: <p>创建时间，秒为单位</p>
         # @type CreatedTime: Integer
-        # @param Remark: 备注信息
+        # @param Remark: <p>备注信息</p>
         # @type Remark: String
-        # @param InstanceStatus: 实例状态， RUNNING, 运行中 MAINTAINING，维护中 ABNORMAL，异常 OVERDUE，欠费 DESTROYED，已删除 CREATING，创建中 MODIFYING，变配中 CREATE_FAILURE，创建失败 MODIFY_FAILURE，变配失败 DELETING，删除中
+        # @param InstanceStatus: <p>实例状态， RUNNING, 运行中 MAINTAINING，维护中 ABNORMAL，异常 OVERDUE，欠费 DESTROYED，已删除 CREATING，创建中 MODIFYING，变配中 CREATE_FAILURE，创建失败 MODIFY_FAILURE，变配失败 DELETING，删除中</p>
         # @type InstanceStatus: String
-        # @param SkuCode: 实例规格
+        # @param SkuCode: <p>实例规格</p>
         # @type SkuCode: String
-        # @param MaxSubscriptionPerClient: 单客户端最大订阅数
+        # @param MaxSubscriptionPerClient: <p>单客户端最大订阅数</p>
         # @type MaxSubscriptionPerClient: Integer
-        # @param AuthorizationPolicyLimit: 授权规则条数
+        # @param AuthorizationPolicyLimit: <p>授权规则条数</p>
         # @type AuthorizationPolicyLimit: Integer
-        # @param ClientNumLimit: 客户端数量上限
+        # @param ClientNumLimit: <p>客户端数量上限</p>
         # @type ClientNumLimit: Integer
-        # @param DeviceCertificateProvisionType: 客户端证书注册方式：
-        # JITP：自动注册
-        # API：通过API手动注册
+        # @param DeviceCertificateProvisionType: <p>客户端证书注册方式：<br>JITP：自动注册<br>API：通过API手动注册</p>
         # @type DeviceCertificateProvisionType: String
-        # @param AutomaticActivation: 自动注册设备证书时是否自动激活
+        # @param AutomaticActivation: <p>自动注册设备证书时是否自动激活</p>
         # @type AutomaticActivation: Boolean
-        # @param RenewFlag: 是否自动续费。仅包年包月集群生效。 1:自动续费 0:非自动续费
+        # @param RenewFlag: <p>是否自动续费。仅包年包月集群生效。 1:自动续费 0:非自动续费</p>
         # @type RenewFlag: Integer
-        # @param PayMode: 计费模式， POSTPAID，按量计费 PREPAID，包年包月
+        # @param PayMode: <p>计费模式， POSTPAID，按量计费 PREPAID，包年包月</p>
         # @type PayMode: String
-        # @param ExpiryTime: 到期时间，毫秒级时间戳
+        # @param ExpiryTime: <p>到期时间，毫秒级时间戳</p>
         # @type ExpiryTime: Integer
-        # @param DestroyTime: 预销毁时间，毫秒级时间戳
+        # @param DestroyTime: <p>预销毁时间，毫秒级时间戳</p>
         # @type DestroyTime: Integer
-        # @param X509Mode: TLS,单向认证    mTLS,双向认证    BYOC;一机一证
+        # @param X509Mode: <p>TLS,单向认证    mTLS,双向认证    BYOC;一机一证</p>
         # @type X509Mode: String
-        # @param MaxCaNum: 最大Ca配额
+        # @param MaxCaNum: <p>最大Ca配额</p>
         # @type MaxCaNum: Integer
-        # @param RegistrationCode: 证书注册码
+        # @param RegistrationCode: <p>证书注册码</p>
         # @type RegistrationCode: String
-        # @param MaxSubscription: 集群最大订阅数
+        # @param MaxSubscription: <p>集群最大订阅数</p>
         # @type MaxSubscription: Integer
-        # @param AuthorizationPolicy: 授权策略开关
+        # @param AuthorizationPolicy: <p>授权策略开关</p>
         # @type AuthorizationPolicy: Boolean
-        # @param SharedSubscriptionGroupLimit: 共享订阅组数最大限制
+        # @param SharedSubscriptionGroupLimit: <p>共享订阅组数最大限制</p>
         # @type SharedSubscriptionGroupLimit: Integer
-        # @param MaxTopicFilterPerSharedSubscriptionGroup: 单个共享订阅组TopicFilter数限制
+        # @param MaxTopicFilterPerSharedSubscriptionGroup: <p>单个共享订阅组TopicFilter数限制</p>
         # @type MaxTopicFilterPerSharedSubscriptionGroup: Integer
-        # @param AutoSubscriptionPolicyLimit: 自动订阅规则条数限制
+        # @param AutoSubscriptionPolicyLimit: <p>自动订阅规则条数限制</p>
         # @type AutoSubscriptionPolicyLimit: Integer
-        # @param MaxTopicFilterPerAutoSubscriptionPolicy: 单条自动订阅规则TopicFilter数限制
+        # @param MaxTopicFilterPerAutoSubscriptionPolicy: <p>单条自动订阅规则TopicFilter数限制</p>
         # @type MaxTopicFilterPerAutoSubscriptionPolicy: Integer
-        # @param UseDefaultServerCert: 是否使用默认的服务端证书
+        # @param UseDefaultServerCert: <p>是否使用默认的服务端证书</p>
         # @type UseDefaultServerCert: Boolean
-        # @param TrustedCaLimit: 服务端CA最大数量
+        # @param TrustedCaLimit: <p>服务端CA最大数量</p>
         # @type TrustedCaLimit: Integer
-        # @param ServerCertLimit: 服务端证书最大数量
+        # @param ServerCertLimit: <p>服务端证书最大数量</p>
         # @type ServerCertLimit: Integer
-        # @param TopicPrefixSlashLimit: topic前缀最大层级
+        # @param TopicPrefixSlashLimit: <p>topic前缀最大层级</p>
         # @type TopicPrefixSlashLimit: Integer
-        # @param MessageRate: 单客户端发送消息限速，单位 条/秒
+        # @param MessageRate: <p>单客户端发送消息限速，单位 条/秒</p>
         # @type MessageRate: Integer
-        # @param TransportLayerSecurity: 服务端tls支持的协议，使用“,”分割。例如：TLSv1.3,TLSv1.2,TLSv1.1,TLSv1
+        # @param TransportLayerSecurity: <p>服务端tls支持的协议，使用“,”分割。例如：TLSv1.3,TLSv1.2,TLSv1.1,TLSv1</p>
         # @type TransportLayerSecurity: String
-        # @param MessageEnrichmentRuleLimit: 消息属性增强规则配额
+        # @param MessageEnrichmentRuleLimit: <p>消息属性增强规则配额</p>
         # @type MessageEnrichmentRuleLimit: Integer
+        # @param BlockRuleLimit: <p>封禁规则最大数量</p>
+        # @type BlockRuleLimit: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :InstanceType, :InstanceId, :InstanceName, :TopicNum, :TopicNumLimit, :TpsLimit, :CreatedTime, :Remark, :InstanceStatus, :SkuCode, :MaxSubscriptionPerClient, :AuthorizationPolicyLimit, :ClientNumLimit, :DeviceCertificateProvisionType, :AutomaticActivation, :RenewFlag, :PayMode, :ExpiryTime, :DestroyTime, :X509Mode, :MaxCaNum, :RegistrationCode, :MaxSubscription, :AuthorizationPolicy, :SharedSubscriptionGroupLimit, :MaxTopicFilterPerSharedSubscriptionGroup, :AutoSubscriptionPolicyLimit, :MaxTopicFilterPerAutoSubscriptionPolicy, :UseDefaultServerCert, :TrustedCaLimit, :ServerCertLimit, :TopicPrefixSlashLimit, :MessageRate, :TransportLayerSecurity, :MessageEnrichmentRuleLimit, :RequestId
+        attr_accessor :InstanceType, :InstanceId, :InstanceName, :TopicNum, :TopicNumLimit, :TpsLimit, :CreatedTime, :Remark, :InstanceStatus, :SkuCode, :MaxSubscriptionPerClient, :AuthorizationPolicyLimit, :ClientNumLimit, :DeviceCertificateProvisionType, :AutomaticActivation, :RenewFlag, :PayMode, :ExpiryTime, :DestroyTime, :X509Mode, :MaxCaNum, :RegistrationCode, :MaxSubscription, :AuthorizationPolicy, :SharedSubscriptionGroupLimit, :MaxTopicFilterPerSharedSubscriptionGroup, :AutoSubscriptionPolicyLimit, :MaxTopicFilterPerAutoSubscriptionPolicy, :UseDefaultServerCert, :TrustedCaLimit, :ServerCertLimit, :TopicPrefixSlashLimit, :MessageRate, :TransportLayerSecurity, :MessageEnrichmentRuleLimit, :BlockRuleLimit, :RequestId
+        extend Gem::Deprecate
+        deprecate :MaxTopicFilterPerSharedSubscriptionGroup, :none, 2026, 4
+        deprecate :MaxTopicFilterPerSharedSubscriptionGroup=, :none, 2026, 4
 
-        def initialize(instancetype=nil, instanceid=nil, instancename=nil, topicnum=nil, topicnumlimit=nil, tpslimit=nil, createdtime=nil, remark=nil, instancestatus=nil, skucode=nil, maxsubscriptionperclient=nil, authorizationpolicylimit=nil, clientnumlimit=nil, devicecertificateprovisiontype=nil, automaticactivation=nil, renewflag=nil, paymode=nil, expirytime=nil, destroytime=nil, x509mode=nil, maxcanum=nil, registrationcode=nil, maxsubscription=nil, authorizationpolicy=nil, sharedsubscriptiongrouplimit=nil, maxtopicfilterpersharedsubscriptiongroup=nil, autosubscriptionpolicylimit=nil, maxtopicfilterperautosubscriptionpolicy=nil, usedefaultservercert=nil, trustedcalimit=nil, servercertlimit=nil, topicprefixslashlimit=nil, messagerate=nil, transportlayersecurity=nil, messageenrichmentrulelimit=nil, requestid=nil)
+        def initialize(instancetype=nil, instanceid=nil, instancename=nil, topicnum=nil, topicnumlimit=nil, tpslimit=nil, createdtime=nil, remark=nil, instancestatus=nil, skucode=nil, maxsubscriptionperclient=nil, authorizationpolicylimit=nil, clientnumlimit=nil, devicecertificateprovisiontype=nil, automaticactivation=nil, renewflag=nil, paymode=nil, expirytime=nil, destroytime=nil, x509mode=nil, maxcanum=nil, registrationcode=nil, maxsubscription=nil, authorizationpolicy=nil, sharedsubscriptiongrouplimit=nil, maxtopicfilterpersharedsubscriptiongroup=nil, autosubscriptionpolicylimit=nil, maxtopicfilterperautosubscriptionpolicy=nil, usedefaultservercert=nil, trustedcalimit=nil, servercertlimit=nil, topicprefixslashlimit=nil, messagerate=nil, transportlayersecurity=nil, messageenrichmentrulelimit=nil, blockrulelimit=nil, requestid=nil)
           @InstanceType = instancetype
           @InstanceId = instanceid
           @InstanceName = instancename
@@ -2416,6 +2416,7 @@ module TencentCloud
           @MessageRate = messagerate
           @TransportLayerSecurity = transportlayersecurity
           @MessageEnrichmentRuleLimit = messageenrichmentrulelimit
+          @BlockRuleLimit = blockrulelimit
           @RequestId = requestid
         end
 
@@ -2455,6 +2456,7 @@ module TencentCloud
           @MessageRate = params['MessageRate']
           @TransportLayerSecurity = params['TransportLayerSecurity']
           @MessageEnrichmentRuleLimit = params['MessageEnrichmentRuleLimit']
+          @BlockRuleLimit = params['BlockRuleLimit']
           @RequestId = params['RequestId']
         end
       end
@@ -3635,12 +3637,12 @@ module TencentCloud
 
         attr_accessor :MsgId, :Tags, :Keys, :ProducerAddr, :ProduceTime, :DeadLetterResendTimes, :DeadLetterResendSuccessTimes, :SubTopic, :Qos
         extend Gem::Deprecate
-        deprecate :DeadLetterResendTimes, :none, 2026, 3
-        deprecate :DeadLetterResendTimes=, :none, 2026, 3
-        deprecate :DeadLetterResendSuccessTimes, :none, 2026, 3
-        deprecate :DeadLetterResendSuccessTimes=, :none, 2026, 3
-        deprecate :SubTopic, :none, 2026, 3
-        deprecate :SubTopic=, :none, 2026, 3
+        deprecate :DeadLetterResendTimes, :none, 2026, 4
+        deprecate :DeadLetterResendTimes=, :none, 2026, 4
+        deprecate :DeadLetterResendSuccessTimes, :none, 2026, 4
+        deprecate :DeadLetterResendSuccessTimes=, :none, 2026, 4
+        deprecate :SubTopic, :none, 2026, 4
+        deprecate :SubTopic=, :none, 2026, 4
 
         def initialize(msgid=nil, tags=nil, keys=nil, produceraddr=nil, producetime=nil, deadletterresendtimes=nil, deadletterresendsuccesstimes=nil, subtopic=nil, qos=nil)
           @MsgId = msgid
@@ -4172,10 +4174,10 @@ module TencentCloud
 
         attr_accessor :InstanceId, :Name, :Remark, :SkuCode, :DeviceCertificateProvisionType, :AutomaticActivation, :AuthorizationPolicy, :UseDefaultServerCert, :X509Mode, :MessageRate
         extend Gem::Deprecate
-        deprecate :DeviceCertificateProvisionType, :none, 2026, 3
-        deprecate :DeviceCertificateProvisionType=, :none, 2026, 3
-        deprecate :AutomaticActivation, :none, 2026, 3
-        deprecate :AutomaticActivation=, :none, 2026, 3
+        deprecate :DeviceCertificateProvisionType, :none, 2026, 4
+        deprecate :DeviceCertificateProvisionType=, :none, 2026, 4
+        deprecate :AutomaticActivation, :none, 2026, 4
+        deprecate :AutomaticActivation=, :none, 2026, 4
 
         def initialize(instanceid=nil, name=nil, remark=nil, skucode=nil, devicecertificateprovisiontype=nil, automaticactivation=nil, authorizationpolicy=nil, usedefaultservercert=nil, x509mode=nil, messagerate=nil)
           @InstanceId = instanceid
@@ -4301,8 +4303,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :Algorithm, :From, :Secret, :PublicKey, :Status, :Remark, :Text
         extend Gem::Deprecate
-        deprecate :Text, :none, 2026, 3
-        deprecate :Text=, :none, 2026, 3
+        deprecate :Text, :none, 2026, 4
+        deprecate :Text=, :none, 2026, 4
 
         def initialize(instanceid=nil, algorithm=nil, from=nil, secret=nil, publickey=nil, status=nil, remark=nil, text=nil)
           @InstanceId = instanceid

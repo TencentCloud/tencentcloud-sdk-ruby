@@ -437,6 +437,76 @@ module TencentCloud
         end
       end
 
+      # CreateMigrationTask请求参数结构体
+      class CreateMigrationTaskRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 腾讯云 RocketMQ 实例 ID，从 [DescribeFusionInstanceList](https://cloud.tencent.com/document/api/1493/106745) 接口或控制台获得。
+        # @type InstanceId: String
+        # @param Type: 0 - 未指定（存量）
+        # 1 - 元数据导入
+        # @type Type: Integer
+        # @param Topics: 待导入的消费组列表
+        # @type Topics: Array
+        # @param Groups: 待导入的消费组列表
+        # @type Groups: Array
+        # @param Roles: 待导入的角色列表
+        # @type Roles: Array
+
+        attr_accessor :InstanceId, :Type, :Topics, :Groups, :Roles
+
+        def initialize(instanceid=nil, type=nil, topics=nil, groups=nil, roles=nil)
+          @InstanceId = instanceid
+          @Type = type
+          @Topics = topics
+          @Groups = groups
+          @Roles = roles
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Type = params['Type']
+          unless params['Topics'].nil?
+            @Topics = []
+            params['Topics'].each do |i|
+              topicitem_tmp = TopicItem.new
+              topicitem_tmp.deserialize(i)
+              @Topics << topicitem_tmp
+            end
+          end
+          unless params['Groups'].nil?
+            @Groups = []
+            params['Groups'].each do |i|
+              consumegroupitem_tmp = ConsumeGroupItem.new
+              consumegroupitem_tmp.deserialize(i)
+              @Groups << consumegroupitem_tmp
+            end
+          end
+          unless params['Roles'].nil?
+            @Roles = []
+            params['Roles'].each do |i|
+              roleitem_tmp = RoleItem.new
+              roleitem_tmp.deserialize(i)
+              @Roles << roleitem_tmp
+            end
+          end
+        end
+      end
+
+      # CreateMigrationTask返回参数结构体
+      class CreateMigrationTaskResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateRole请求参数结构体
       class CreateRoleRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 腾讯云 RocketMQ 实例 ID，从 [DescribeFusionInstanceList](https://cloud.tencent.com/document/api/1493/106745) 接口或控制台获得。
