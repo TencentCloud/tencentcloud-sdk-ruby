@@ -441,6 +441,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 提交Vidu图生视频任务接口
+
+        # @param request: Request instance for SubmitImageToVideoViduJob.
+        # @type request: :class:`Tencentcloud::vclm::V20240523::SubmitImageToVideoViduJobRequest`
+        # @rtype: :class:`Tencentcloud::vclm::V20240523::SubmitImageToVideoViduJobResponse`
+        def SubmitImageToVideoViduJob(request)
+          body = send_request('SubmitImageToVideoViduJob', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SubmitImageToVideoViduJobResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 用于提交图片唱演任务。
         # 支持提交音频和图片生成唱演视频，满足社交娱乐、互动营销等场景的需求。
 

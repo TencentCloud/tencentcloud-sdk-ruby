@@ -8085,6 +8085,46 @@ module TencentCloud
         end
       end
 
+      # UpdateIPWhitelist请求参数结构体
+      class UpdateIPWhitelistRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 空间ID
+        # @type ZoneId: String
+        # @param IpWhitelist: ip白名单（上限100个）
+        # @type IpWhitelist: Array
+
+        attr_accessor :ZoneId, :IpWhitelist
+
+        def initialize(zoneid=nil, ipwhitelist=nil)
+          @ZoneId = zoneid
+          @IpWhitelist = ipwhitelist
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @IpWhitelist = params['IpWhitelist']
+        end
+      end
+
+      # UpdateIPWhitelist返回参数结构体
+      class UpdateIPWhitelistResponse < TencentCloud::Common::AbstractModel
+        # @param Success: 成功返回
+        # @type Success: Boolean
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Success, :RequestId
+
+        def initialize(success=nil, requestid=nil)
+          @Success = success
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Success = params['Success']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # UpdateOrganizationIdentity请求参数结构体
       class UpdateOrganizationIdentityRequest < TencentCloud::Common::AbstractModel
         # @param IdentityId: 身份ID。可以通过[ListOrganizationIdentity](https://cloud.tencent.com/document/product/850/82934)获取

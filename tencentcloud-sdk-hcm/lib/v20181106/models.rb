@@ -48,8 +48,8 @@ module TencentCloud
 
         attr_accessor :SessionId, :Image, :HcmAppid, :Url, :SupportHorizontalImage, :RejectNonArithmeticImage, :IsAsync, :EnableDispRelatedVertical, :EnableDispMidresult, :EnablePdfRecognize, :PdfPageIndex, :LaTex, :RejectVagueArithmetic
         extend Gem::Deprecate
-        deprecate :IsAsync, :none, 2025, 11
-        deprecate :IsAsync=, :none, 2025, 11
+        deprecate :IsAsync, :none, 2026, 4
+        deprecate :IsAsync=, :none, 2026, 4
 
         def initialize(sessionid=nil, image=nil, hcmappid=nil, url=nil, supporthorizontalimage=nil, rejectnonarithmeticimage=nil, isasync=nil, enabledisprelatedvertical=nil, enabledispmidresult=nil, enablepdfrecognize=nil, pdfpageindex=nil, latex=nil, rejectvaguearithmetic=nil)
           @SessionId = sessionid
@@ -98,8 +98,8 @@ module TencentCloud
 
         attr_accessor :SessionId, :Items, :TaskId, :RequestId
         extend Gem::Deprecate
-        deprecate :TaskId, :none, 2025, 11
-        deprecate :TaskId=, :none, 2025, 11
+        deprecate :TaskId, :none, 2026, 4
+        deprecate :TaskId=, :none, 2026, 4
 
         def initialize(sessionid=nil, items=nil, taskid=nil, requestid=nil)
           @SessionId = sessionid
@@ -176,13 +176,13 @@ module TencentCloud
 
       # 目标算式在图片上的坐标信息
       class ItemCoord < TencentCloud::Common::AbstractModel
-        # @param Height: 算式高度
+        # @param Height: <p>算式高度（单位：px）</p>
         # @type Height: Integer
-        # @param Width: 算式宽度
+        # @param Width: <p>算式宽度（单位：px）</p>
         # @type Width: Integer
-        # @param X: 算式图的左上角横坐标
+        # @param X: <p>算式图的左上角横坐标</p>
         # @type X: Integer
-        # @param Y: 算式图的左上角纵坐标
+        # @param Y: <p>算式图的左上角纵坐标</p>
         # @type Y: Integer
 
         attr_accessor :Height, :Width, :X, :Y

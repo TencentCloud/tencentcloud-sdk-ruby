@@ -3380,11 +3380,11 @@ module TencentCloud
       class CreateConsoleRequest < TencentCloud::Common::AbstractModel
         # @param AccessMode: <p>访问方式：public - 公网，internal - 内网</p>
         # @type AccessMode: Array
-        # @param LoginMode: <p>登录方式：0 - 账号密码鉴权，1 - 匿名登陆，2 - 第三方认证登录</p>
+        # @param LoginMode: <p>登录方式</p><p>枚举值：</p><ul><li>0： 账号密码鉴权</li><li>1： 匿名登录</li><li>2： 第三方认证登录</li></ul>
         # @type LoginMode: Integer
         # @param DomainPrefix: <p>自定义域名前缀</p>
         # @type DomainPrefix: String
-        # @param Accounts: <p>用户账号信息</p><p>“账号密码鉴权“登录方式必传</p>
+        # @param Accounts: <p>用户账号信息</p><p>“账号密码鉴权”登录方式必传</p>
         # @type Accounts: Array
         # @param AnonymousLogin: <p>匿名登录账号信息</p><p>“匿名登录”登录方式必传</p>
         # @type AnonymousLogin: :class:`Tencentcloud::Cls.v20201016.models.AnonymousLoginInfo`
@@ -14582,11 +14582,11 @@ module TencentCloud
         # @type ConsoleId: String
         # @param AccessMode: <p>访问方式：public - 公网，internal - 内网</p>
         # @type AccessMode: Array
-        # @param LoginMode: <p>登录方式：0 - 账号密码鉴权，1 - 匿名登陆，2 - 第三方认证登录</p>
+        # @param LoginMode: <p>登录方式</p><p>枚举值：</p><ul><li>0： 账号密码鉴权</li><li>1： 匿名登录</li><li>2： 第三方认证登录</li></ul>
         # @type LoginMode: Integer
         # @param DomainPrefix: <p>自定义域名前缀</p>
         # @type DomainPrefix: String
-        # @param Accounts: <p>用户账号信息</p><p>“账号密码鉴权“登录方式必传</p>
+        # @param Accounts: <p>用户账号信息</p><p>“账号密码鉴权”登录方式必传</p>
         # @type Accounts: Array
         # @param AnonymousLogin: <p>匿名登录账号信息</p><p>“匿名登录”登录方式必传</p>
         # @type AnonymousLogin: :class:`Tencentcloud::Cls.v20201016.models.AnonymousLoginInfo`

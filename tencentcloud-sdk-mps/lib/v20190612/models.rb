@@ -9495,6 +9495,68 @@ module TencentCloud
         end
       end
 
+      # CreateProject请求参数结构体
+      class CreateProjectRequest < TencentCloud::Common::AbstractModel
+        # @param ProjectName: <p>项目名称</p>
+        # @type ProjectName: String
+        # @param TermBase: <p>项目术语表</p>
+        # @type TermBase: Array
+        # @param Description: <p>项目描述</p>
+        # @type Description: String
+        # @param Speakers: <p>角色列表</p>
+        # @type Speakers: Array
+
+        attr_accessor :ProjectName, :TermBase, :Description, :Speakers
+
+        def initialize(projectname=nil, termbase=nil, description=nil, speakers=nil)
+          @ProjectName = projectname
+          @TermBase = termbase
+          @Description = description
+          @Speakers = speakers
+        end
+
+        def deserialize(params)
+          @ProjectName = params['ProjectName']
+          unless params['TermBase'].nil?
+            @TermBase = []
+            params['TermBase'].each do |i|
+              termbase_tmp = TermBase.new
+              termbase_tmp.deserialize(i)
+              @TermBase << termbase_tmp
+            end
+          end
+          @Description = params['Description']
+          unless params['Speakers'].nil?
+            @Speakers = []
+            params['Speakers'].each do |i|
+              speakers_tmp = Speakers.new
+              speakers_tmp.deserialize(i)
+              @Speakers << speakers_tmp
+            end
+          end
+        end
+      end
+
+      # CreateProject返回参数结构体
+      class CreateProjectResponse < TencentCloud::Common::AbstractModel
+        # @param ProjectId: <p>项目id</p>
+        # @type ProjectId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ProjectId, :RequestId
+
+        def initialize(projectid=nil, requestid=nil)
+          @ProjectId = projectid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateQualityControlTemplate请求参数结构体
       class CreateQualityControlTemplateRequest < TencentCloud::Common::AbstractModel
         # @param Name: 媒体质检模板名称，长度限制：64 个字符。
@@ -11365,6 +11427,38 @@ module TencentCloud
 
       # DeleteProcessImageTemplate返回参数结构体
       class DeleteProcessImageTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteProject请求参数结构体
+      class DeleteProjectRequest < TencentCloud::Common::AbstractModel
+        # @param ProjectId: <p>项目id</p>
+        # @type ProjectId: String
+
+        attr_accessor :ProjectId
+
+        def initialize(projectid=nil)
+          @ProjectId = projectid
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+        end
+      end
+
+      # DeleteProject返回参数结构体
+      class DeleteProjectResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -27306,6 +27400,60 @@ module TencentCloud
         end
       end
 
+      # 剧集项目信息
+      class Project < TencentCloud::Common::AbstractModel
+        # @param ProjectId: <p>项目id</p>
+        # @type ProjectId: String
+        # @param ProjectName: <p>项目名称</p>
+        # @type ProjectName: String
+        # @param Description: <p>项目描述</p>
+        # @type Description: String
+        # @param TermBase: <p>项目术语库</p>
+        # @type TermBase: Array
+        # @param Speakers: <p>角色列表</p>
+        # @type Speakers: Array
+        # @param CreatedAt: <p>创建时间（Unix 时间戳）</p>
+        # @type CreatedAt: Integer
+        # @param UpdatedAt: <p>更新时间（Unix 时间戳）</p>
+        # @type UpdatedAt: Integer
+
+        attr_accessor :ProjectId, :ProjectName, :Description, :TermBase, :Speakers, :CreatedAt, :UpdatedAt
+
+        def initialize(projectid=nil, projectname=nil, description=nil, termbase=nil, speakers=nil, createdat=nil, updatedat=nil)
+          @ProjectId = projectid
+          @ProjectName = projectname
+          @Description = description
+          @TermBase = termbase
+          @Speakers = speakers
+          @CreatedAt = createdat
+          @UpdatedAt = updatedat
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @ProjectName = params['ProjectName']
+          @Description = params['Description']
+          unless params['TermBase'].nil?
+            @TermBase = []
+            params['TermBase'].each do |i|
+              termbase_tmp = TermBase.new
+              termbase_tmp.deserialize(i)
+              @TermBase << termbase_tmp
+            end
+          end
+          unless params['Speakers'].nil?
+            @Speakers = []
+            params['Speakers'].each do |i|
+              speakers_tmp = Speakers.new
+              speakers_tmp.deserialize(i)
+              @Speakers << speakers_tmp
+            end
+          end
+          @CreatedAt = params['CreatedAt']
+          @UpdatedAt = params['UpdatedAt']
+        end
+      end
+
       # 纯字幕翻译结果
       class PureSubtitleTransResult < TencentCloud::Common::AbstractModel
         # @param Status: 任务状态（有以下三种）：
@@ -27708,6 +27856,65 @@ module TencentCloud
             @Strategy = QualityControlStrategy.new
             @Strategy.deserialize(params['Strategy'])
           end
+        end
+      end
+
+      # QueryProject请求参数结构体
+      class QueryProjectRequest < TencentCloud::Common::AbstractModel
+        # @param ProjectId: <p>项目id</p>
+        # @type ProjectId: String
+        # @param ProjectName: <p>项目名称</p>
+        # @type ProjectName: String
+        # @param Page: <p>页码，从 1 开始，默认 1</p>
+        # @type Page: Integer
+        # @param PageSize: <p>每页数量，默认 20</p>
+        # @type PageSize: Integer
+
+        attr_accessor :ProjectId, :ProjectName, :Page, :PageSize
+
+        def initialize(projectid=nil, projectname=nil, page=nil, pagesize=nil)
+          @ProjectId = projectid
+          @ProjectName = projectname
+          @Page = page
+          @PageSize = pagesize
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @ProjectName = params['ProjectName']
+          @Page = params['Page']
+          @PageSize = params['PageSize']
+        end
+      end
+
+      # QueryProject返回参数结构体
+      class QueryProjectResponse < TencentCloud::Common::AbstractModel
+        # @param Total: <p>符合条件的总数量</p>
+        # @type Total: Integer
+        # @param Data: <p>项目数据</p>
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :Data, :RequestId
+
+        def initialize(total=nil, data=nil, requestid=nil)
+          @Total = total
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              project_tmp = Project.new
+              project_tmp.deserialize(i)
+              @Data << project_tmp
+            end
+          end
+          @RequestId = params['RequestId']
         end
       end
 
@@ -31199,6 +31406,49 @@ module TencentCloud
         end
       end
 
+      # 角色列表
+      class Speakers < TencentCloud::Common::AbstractModel
+        # @param SpeakerId: <p>角色唯一标识</p>
+        # @type SpeakerId: String
+        # @param VoiceId: <p>绑定的音色 ID</p>
+        # @type VoiceId: String
+        # @param Gender: <p>性别：male / female，默认 male</p>
+        # @type Gender: String
+        # @param AgeGroup: <p>年龄段：child / teenager / youth / middle_aged/ senior，默认 youth</p>
+        # @type AgeGroup: String
+        # @param Description: <p>角色描述</p>
+        # @type Description: String
+        # @param NameTerms: <p>角色人名术语表</p>
+        # @type NameTerms: Array
+
+        attr_accessor :SpeakerId, :VoiceId, :Gender, :AgeGroup, :Description, :NameTerms
+
+        def initialize(speakerid=nil, voiceid=nil, gender=nil, agegroup=nil, description=nil, nameterms=nil)
+          @SpeakerId = speakerid
+          @VoiceId = voiceid
+          @Gender = gender
+          @AgeGroup = agegroup
+          @Description = description
+          @NameTerms = nameterms
+        end
+
+        def deserialize(params)
+          @SpeakerId = params['SpeakerId']
+          @VoiceId = params['VoiceId']
+          @Gender = params['Gender']
+          @AgeGroup = params['AgeGroup']
+          @Description = params['Description']
+          unless params['NameTerms'].nil?
+            @NameTerms = []
+            params['NameTerms'].each do |i|
+              termbase_tmp = TermBase.new
+              termbase_tmp.deserialize(i)
+              @NameTerms << termbase_tmp
+            end
+          end
+        end
+      end
+
       # 指定规格任务统计数据。
       class SpecificationDataItem < TencentCloud::Common::AbstractModel
         # @param Specification: 任务规格。
@@ -32719,6 +32969,26 @@ module TencentCloud
         end
       end
 
+      # 术语表
+      class TermBase < TencentCloud::Common::AbstractModel
+        # @param Src: <p>术语原语言</p>
+        # @type Src: String
+        # @param Dst: <p>术语目标语言</p>
+        # @type Dst: String
+
+        attr_accessor :Src, :Dst
+
+        def initialize(src=nil, dst=nil)
+          @Src = src
+          @Dst = dst
+        end
+
+        def deserialize(params)
+          @Src = params['Src']
+          @Dst = params['Dst']
+        end
+      end
+
       # 涉敏任务控制参数
       class TerrorismConfigureInfo < TencentCloud::Common::AbstractModel
         # @param ImgReviewInfo: 画面涉敏任务控制参数。
@@ -33867,6 +34137,68 @@ module TencentCloud
           @InOutId = params['InOutId']
           @InOutType = params['InOutType']
           @FlowRegion = params['FlowRegion']
+        end
+      end
+
+      # UpdateProject请求参数结构体
+      class UpdateProjectRequest < TencentCloud::Common::AbstractModel
+        # @param ProjectId: <p>项目id</p>
+        # @type ProjectId: String
+        # @param ProjectName: <p>项目名称</p>
+        # @type ProjectName: String
+        # @param TermBase: <p>项目术语表</p>
+        # @type TermBase: Array
+        # @param Description: <p>项目描述</p>
+        # @type Description: String
+        # @param Speakers: <p>角色列表</p>
+        # @type Speakers: Array
+
+        attr_accessor :ProjectId, :ProjectName, :TermBase, :Description, :Speakers
+
+        def initialize(projectid=nil, projectname=nil, termbase=nil, description=nil, speakers=nil)
+          @ProjectId = projectid
+          @ProjectName = projectname
+          @TermBase = termbase
+          @Description = description
+          @Speakers = speakers
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @ProjectName = params['ProjectName']
+          unless params['TermBase'].nil?
+            @TermBase = []
+            params['TermBase'].each do |i|
+              termbase_tmp = TermBase.new
+              termbase_tmp.deserialize(i)
+              @TermBase << termbase_tmp
+            end
+          end
+          @Description = params['Description']
+          unless params['Speakers'].nil?
+            @Speakers = []
+            params['Speakers'].each do |i|
+              speakers_tmp = Speakers.new
+              speakers_tmp.deserialize(i)
+              @Speakers << speakers_tmp
+            end
+          end
+        end
+      end
+
+      # UpdateProject返回参数结构体
+      class UpdateProjectResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 

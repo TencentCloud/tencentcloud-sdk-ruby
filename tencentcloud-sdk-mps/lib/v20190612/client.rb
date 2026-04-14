@@ -513,6 +513,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 剧集项目创建
+
+        # @param request: Request instance for CreateProject.
+        # @type request: :class:`Tencentcloud::mps::V20190612::CreateProjectRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::CreateProjectResponse`
+        def CreateProject(request)
+          body = send_request('CreateProject', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateProjectResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建媒体质检模板，数量上限：50。
 
         # @param request: Request instance for CreateQualityControlTemplate.
@@ -1343,6 +1367,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteProcessImageTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 剧集项目删除接口
+
+        # @param request: Request instance for DeleteProject.
+        # @type request: :class:`Tencentcloud::mps::V20190612::DeleteProjectRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::DeleteProjectResponse`
+        def DeleteProject(request)
+          body = send_request('DeleteProject', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteProjectResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -4616,6 +4664,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 剧集项目查询
+
+        # @param request: Request instance for QueryProject.
+        # @type request: :class:`Tencentcloud::mps::V20190612::QueryProjectRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::QueryProjectResponse`
+        def QueryProject(request)
+          body = send_request('QueryProject', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = QueryProjectResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 同步接口，返回语音识别结果
 
         # @param request: Request instance for RecognizeAudio.
@@ -4818,6 +4890,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = TextTranslationResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 剧集项目更新
+
+        # @param request: Request instance for UpdateProject.
+        # @type request: :class:`Tencentcloud::mps::V20190612::UpdateProjectRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::UpdateProjectResponse`
+        def UpdateProject(request)
+          body = send_request('UpdateProject', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateProjectResponse.new
             model.deserialize(response['Response'])
             model
           else

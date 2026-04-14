@@ -2133,6 +2133,79 @@ module TencentCloud
         end
       end
 
+      # CreateRocketMQMigrationTask请求参数结构体
+      class CreateRocketMQMigrationTaskRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: <p>集群ID</p>
+        # @type ClusterId: String
+        # @param Type: <p>任务类型：<br>0，集群迁移<br>1，导入到指定命名空间</p>
+        # @type Type: Integer
+        # @param Topics: <p>待导入的主题列表</p>
+        # @type Topics: Array
+        # @param Groups: <p>待导入的消费组列表</p>
+        # @type Groups: Array
+        # @param Roles: <p>待导入的角色列表</p>
+        # @type Roles: Array
+        # @param Namespace: <p>指定导入的命名空间</p>
+        # @type Namespace: String
+
+        attr_accessor :ClusterId, :Type, :Topics, :Groups, :Roles, :Namespace
+
+        def initialize(clusterid=nil, type=nil, topics=nil, groups=nil, roles=nil, namespace=nil)
+          @ClusterId = clusterid
+          @Type = type
+          @Topics = topics
+          @Groups = groups
+          @Roles = roles
+          @Namespace = namespace
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @Type = params['Type']
+          unless params['Topics'].nil?
+            @Topics = []
+            params['Topics'].each do |i|
+              rocketmqtopicconfig_tmp = RocketMQTopicConfig.new
+              rocketmqtopicconfig_tmp.deserialize(i)
+              @Topics << rocketmqtopicconfig_tmp
+            end
+          end
+          unless params['Groups'].nil?
+            @Groups = []
+            params['Groups'].each do |i|
+              rocketmqgroupconfig_tmp = RocketMQGroupConfig.new
+              rocketmqgroupconfig_tmp.deserialize(i)
+              @Groups << rocketmqgroupconfig_tmp
+            end
+          end
+          unless params['Roles'].nil?
+            @Roles = []
+            params['Roles'].each do |i|
+              rocketmqroleconfig_tmp = RocketMQRoleConfig.new
+              rocketmqroleconfig_tmp.deserialize(i)
+              @Roles << rocketmqroleconfig_tmp
+            end
+          end
+          @Namespace = params['Namespace']
+        end
+      end
+
+      # CreateRocketMQMigrationTask返回参数结构体
+      class CreateRocketMQMigrationTaskResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateRocketMQNamespace请求参数结构体
       class CreateRocketMQNamespaceRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
@@ -6615,8 +6688,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :EnvironmentId, :TopicName, :MsgId, :PulsarMsgId, :QueryDlqMsg, :QueryDeadLetterMessage, :Offset, :Limit, :FilterTrackGroup
         extend Gem::Deprecate
-        deprecate :QueryDlqMsg, :none, 2026, 3
-        deprecate :QueryDlqMsg=, :none, 2026, 3
+        deprecate :QueryDlqMsg, :none, 2026, 4
+        deprecate :QueryDlqMsg=, :none, 2026, 4
 
         def initialize(clusterid=nil, environmentid=nil, topicname=nil, msgid=nil, pulsarmsgid=nil, querydlqmsg=nil, querydeadlettermessage=nil, offset=nil, limit=nil, filtertrackgroup=nil)
           @ClusterId = clusterid
@@ -6721,8 +6794,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :EnvironmentId, :TopicName, :MsgId, :GroupName, :QueryDLQMsg, :QueryDeadLetterMessage
         extend Gem::Deprecate
-        deprecate :QueryDLQMsg, :none, 2026, 3
-        deprecate :QueryDLQMsg=, :none, 2026, 3
+        deprecate :QueryDLQMsg, :none, 2026, 4
+        deprecate :QueryDLQMsg=, :none, 2026, 4
 
         def initialize(clusterid=nil, environmentid=nil, topicname=nil, msgid=nil, groupname=nil, querydlqmsg=nil, querydeadlettermessage=nil)
           @ClusterId = clusterid
@@ -7441,8 +7514,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :EnvironmentId, :TopicName, :StartTime, :EndTime, :MsgId, :MsgKey, :Offset, :Limit, :TaskRequestId, :QueryDlqMsg, :NumOfLatestMsg, :Tag, :QueryDeadLetterMessage
         extend Gem::Deprecate
-        deprecate :QueryDlqMsg, :none, 2026, 3
-        deprecate :QueryDlqMsg=, :none, 2026, 3
+        deprecate :QueryDlqMsg, :none, 2026, 4
+        deprecate :QueryDlqMsg=, :none, 2026, 4
 
         def initialize(clusterid=nil, environmentid=nil, topicname=nil, starttime=nil, endtime=nil, msgid=nil, msgkey=nil, offset=nil, limit=nil, taskrequestid=nil, querydlqmsg=nil, numoflatestmsg=nil, tag=nil, querydeadlettermessage=nil)
           @ClusterId = clusterid
@@ -12273,8 +12346,8 @@ module TencentCloud
 
         attr_accessor :MaxTpsPerNamespace, :MaxNamespaceNum, :UsedNamespaceNum, :MaxTopicNum, :UsedTopicNum, :MaxGroupNum, :UsedGroupNum, :MaxRetentionTime, :MaxLatencyTime, :MaxQueuesPerTopic, :TopicDistribution, :MaxRoleNum, :MaxTpsLimit
         extend Gem::Deprecate
-        deprecate :MaxTpsPerNamespace, :none, 2026, 3
-        deprecate :MaxTpsPerNamespace=, :none, 2026, 3
+        deprecate :MaxTpsPerNamespace, :none, 2026, 4
+        deprecate :MaxTpsPerNamespace=, :none, 2026, 4
 
         def initialize(maxtpspernamespace=nil, maxnamespacenum=nil, usednamespacenum=nil, maxtopicnum=nil, usedtopicnum=nil, maxgroupnum=nil, usedgroupnum=nil, maxretentiontime=nil, maxlatencytime=nil, maxqueuespertopic=nil, topicdistribution=nil, maxrolenum=nil, maxtpslimit=nil)
           @MaxTpsPerNamespace = maxtpspernamespace
@@ -12680,10 +12753,10 @@ module TencentCloud
 
         attr_accessor :Name, :ConsumerNum, :TPS, :TotalAccumulative, :ConsumptionMode, :ReadEnabled, :RetryPartitionNum, :CreateTime, :UpdateTime, :ClientProtocol, :Remark, :ConsumerType, :BroadcastEnabled, :GroupType, :RetryMaxTimes, :InstanceId, :Namespace, :SubscribeTopicNum, :TagList
         extend Gem::Deprecate
-        deprecate :TPS, :none, 2026, 3
-        deprecate :TPS=, :none, 2026, 3
-        deprecate :TotalAccumulative, :none, 2026, 3
-        deprecate :TotalAccumulative=, :none, 2026, 3
+        deprecate :TPS, :none, 2026, 4
+        deprecate :TPS=, :none, 2026, 4
+        deprecate :TotalAccumulative, :none, 2026, 4
+        deprecate :TotalAccumulative=, :none, 2026, 4
 
         def initialize(name=nil, consumernum=nil, tps=nil, totalaccumulative=nil, consumptionmode=nil, readenabled=nil, retrypartitionnum=nil, createtime=nil, updatetime=nil, clientprotocol=nil, remark=nil, consumertype=nil, broadcastenabled=nil, grouptype=nil, retrymaxtimes=nil, instanceid=nil, namespace=nil, subscribetopicnum=nil, taglist=nil)
           @Name = name
@@ -13041,6 +13114,53 @@ module TencentCloud
           @PublicEndpoint = params['PublicEndpoint']
           @VpcEndpoint = params['VpcEndpoint']
           @InternalEndpoint = params['InternalEndpoint']
+        end
+      end
+
+      # RocketMQ角色配置信息
+      class RocketMQRoleConfig < TencentCloud::Common::AbstractModel
+        # @param RoleName: 角色名，对应SecretKey
+        # @type RoleName: String
+        # @param RoleToken: accessKey
+        # @type RoleToken: String
+        # @param EnvironmentId: 命名空间
+        # @type EnvironmentId: String
+        # @param Permissions: 角色权限
+        # @type Permissions: Array
+        # @param Remark: 备注
+        # @type Remark: String
+        # @param PermType: 权限类型，默认按集群授权（Cluster：集群级别；TopicAndGroup：主题&消费组级别）
+        # @type PermType: String
+        # @param DetailedRolePerms: Topic和Group维度权限配置
+        # @type DetailedRolePerms: Array
+
+        attr_accessor :RoleName, :RoleToken, :EnvironmentId, :Permissions, :Remark, :PermType, :DetailedRolePerms
+
+        def initialize(rolename=nil, roletoken=nil, environmentid=nil, permissions=nil, remark=nil, permtype=nil, detailedroleperms=nil)
+          @RoleName = rolename
+          @RoleToken = roletoken
+          @EnvironmentId = environmentid
+          @Permissions = permissions
+          @Remark = remark
+          @PermType = permtype
+          @DetailedRolePerms = detailedroleperms
+        end
+
+        def deserialize(params)
+          @RoleName = params['RoleName']
+          @RoleToken = params['RoleToken']
+          @EnvironmentId = params['EnvironmentId']
+          @Permissions = params['Permissions']
+          @Remark = params['Remark']
+          @PermType = params['PermType']
+          unless params['DetailedRolePerms'].nil?
+            @DetailedRolePerms = []
+            params['DetailedRolePerms'].each do |i|
+              detailedroleperm_tmp = DetailedRolePerm.new
+              detailedroleperm_tmp.deserialize(i)
+              @DetailedRolePerms << detailedroleperm_tmp
+            end
+          end
         end
       end
 

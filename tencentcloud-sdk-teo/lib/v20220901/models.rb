@@ -3502,9 +3502,7 @@ module TencentCloud
         # @type VersionNumber: String
         # @param GroupId: 配置组 ID。
         # @type GroupId: String
-        # @param GroupType: 配置组类型。取值有：
-        # <li>l7_acceleration ：七层加速配置组。</li>
-        # <li>edge_functions ：边缘函数配置组。</li>
+        # @param GroupType: 配置组类型，可选项如下：<li>l7_acceleration: 七层加速配置组；</li><li>edge_functions: 边缘函数配置组；</li><li>web_security: Web 防护配置组。</li>
         # @type GroupType: String
         # @param Description: 版本描述。
         # @type Description: String

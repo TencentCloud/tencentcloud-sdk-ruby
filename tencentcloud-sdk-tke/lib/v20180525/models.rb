@@ -115,10 +115,14 @@ module TencentCloud
         # @type ImageId: String
         # @param NodeType: 直接添加为原生节点
         # @type NodeType: String
+        # @param Tags: 云标签列表
+        # @type Tags: Array
+        # @param RenewFlag: 自动续费标识，NOTIFY_AND_AUTO_RENEW（通知过期且自动续费）、NOTIFY_AND_MANUAL_RENEW（通知过期不自动续费）
+        # @type RenewFlag: String
 
-        attr_accessor :ClusterId, :InstanceIds, :InstanceAdvancedSettings, :EnhancedService, :LoginSettings, :HostName, :SecurityGroupIds, :NodePool, :SkipValidateOptions, :InstanceAdvancedSettingsOverrides, :ImageId, :NodeType
+        attr_accessor :ClusterId, :InstanceIds, :InstanceAdvancedSettings, :EnhancedService, :LoginSettings, :HostName, :SecurityGroupIds, :NodePool, :SkipValidateOptions, :InstanceAdvancedSettingsOverrides, :ImageId, :NodeType, :Tags, :RenewFlag
 
-        def initialize(clusterid=nil, instanceids=nil, instanceadvancedsettings=nil, enhancedservice=nil, loginsettings=nil, hostname=nil, securitygroupids=nil, nodepool=nil, skipvalidateoptions=nil, instanceadvancedsettingsoverrides=nil, imageid=nil, nodetype=nil)
+        def initialize(clusterid=nil, instanceids=nil, instanceadvancedsettings=nil, enhancedservice=nil, loginsettings=nil, hostname=nil, securitygroupids=nil, nodepool=nil, skipvalidateoptions=nil, instanceadvancedsettingsoverrides=nil, imageid=nil, nodetype=nil, tags=nil, renewflag=nil)
           @ClusterId = clusterid
           @InstanceIds = instanceids
           @InstanceAdvancedSettings = instanceadvancedsettings
@@ -131,6 +135,8 @@ module TencentCloud
           @InstanceAdvancedSettingsOverrides = instanceadvancedsettingsoverrides
           @ImageId = imageid
           @NodeType = nodetype
+          @Tags = tags
+          @RenewFlag = renewflag
         end
 
         def deserialize(params)
@@ -165,6 +171,15 @@ module TencentCloud
           end
           @ImageId = params['ImageId']
           @NodeType = params['NodeType']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+          @RenewFlag = params['RenewFlag']
         end
       end
 
@@ -871,63 +886,65 @@ module TencentCloud
 
       # 集群信息结构体
       class Cluster < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群ID
+        # @param ClusterId: <p>集群ID</p>
         # @type ClusterId: String
-        # @param ClusterName: 集群名称
+        # @param ClusterName: <p>集群名称</p>
         # @type ClusterName: String
-        # @param ClusterDescription: 集群描述
+        # @param ClusterDescription: <p>集群描述</p>
         # @type ClusterDescription: String
-        # @param ClusterVersion: 集群版本（默认值为1.10.5）
+        # @param ClusterVersion: <p>集群版本（默认值为1.10.5）</p>
         # @type ClusterVersion: String
-        # @param ClusterOs: 集群系统。centos7.2x86_64 或者 ubuntu16.04.1 LTSx86_64，默认取值为ubuntu16.04.1 LTSx86_64
+        # @param ClusterOs: <p>集群系统。centos7.2x86_64 或者 ubuntu16.04.1 LTSx86_64，默认取值为ubuntu16.04.1 LTSx86_64</p>
         # @type ClusterOs: String
-        # @param ClusterType: 集群类型，托管集群：MANAGED_CLUSTER，独立集群：INDEPENDENT_CLUSTER。
+        # @param ClusterType: <p>集群类型，托管集群：MANAGED_CLUSTER，独立集群：INDEPENDENT_CLUSTER。</p>
         # @type ClusterType: String
-        # @param ClusterNetworkSettings: 集群网络相关参数
+        # @param ClusterNetworkSettings: <p>集群网络相关参数</p>
         # @type ClusterNetworkSettings: :class:`Tencentcloud::Tke.v20180525.models.ClusterNetworkSettings`
-        # @param ClusterNodeNum: 集群当前node数量
+        # @param ClusterNodeNum: <p>集群当前node数量</p>
         # @type ClusterNodeNum: Integer
-        # @param ProjectId: 集群所属的项目ID
+        # @param ProjectId: <p>集群所属的项目ID</p>
         # @type ProjectId: Integer
-        # @param TagSpecification: 标签描述列表。
+        # @param TagSpecification: <p>标签描述列表。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagSpecification: Array
-        # @param ClusterStatus: 集群状态 (Trading 集群开通中,Creating 创建中,Running 运行中,Deleting 删除中,Idling 闲置中,Recovering 唤醒中,Scaling 规模调整中,Upgrading 升级中,WaittingForConnect 等待注册,Trading 集群开通中,Isolated 欠费隔离中,Pause 集群升级暂停,NodeUpgrading 节点升级中,RuntimeUpgrading 节点运行时升级中,MasterScaling Master扩缩容中,ClusterLevelUpgrading 调整规格中,ResourceIsolate 隔离中,ResourceIsolated 已隔离,ResourceReverse 冲正中,Abnormal 异常)
+        # @param ClusterStatus: <p>集群状态 (Trading 集群开通中,Creating 创建中,Running 运行中,Deleting 删除中,Idling 闲置中,Recovering 唤醒中,Scaling 规模调整中,Upgrading 升级中,WaittingForConnect 等待注册,Trading 集群开通中,Isolated 欠费隔离中,Pause 集群升级暂停,NodeUpgrading 节点升级中,RuntimeUpgrading 节点运行时升级中,MasterScaling Master扩缩容中,ClusterLevelUpgrading 调整规格中,ResourceIsolate 隔离中,ResourceIsolated 已隔离,ResourceReverse 冲正中,Abnormal 异常)</p>
         # @type ClusterStatus: String
-        # @param Property: 集群属性(包括集群不同属性的MAP，属性字段包括NodeNameType (lan-ip模式和hostname 模式，默认无lan-ip模式))
+        # @param Property: <p>集群属性(包括集群不同属性的MAP，属性字段包括NodeNameType (lan-ip模式和hostname 模式，默认无lan-ip模式))</p>
         # @type Property: String
-        # @param ClusterMaterNodeNum: 集群当前master数量
+        # @param ClusterMaterNodeNum: <p>集群当前master数量</p>
         # @type ClusterMaterNodeNum: Integer
-        # @param ImageId: 集群使用镜像id
+        # @param ImageId: <p>集群使用镜像id</p>
         # @type ImageId: String
-        # @param OsCustomizeType: OsCustomizeType 系统定制类型
+        # @param OsCustomizeType: <p>OsCustomizeType 系统定制类型</p>
         # @type OsCustomizeType: String
-        # @param ContainerRuntime: 集群运行环境docker或container
+        # @param ContainerRuntime: <p>集群运行环境docker或container</p>
         # @type ContainerRuntime: String
-        # @param CreatedTime: 创建时间
+        # @param CreatedTime: <p>创建时间</p>
         # @type CreatedTime: String
-        # @param DeletionProtection: 集群删除保护开关，打开：true，关闭：false
+        # @param DeletionProtection: <p>集群删除保护开关，打开：true，关闭：false</p>
         # @type DeletionProtection: Boolean
-        # @param EnableExternalNode: 集群是否开启第三方节点支持，开启：true，关闭：false
+        # @param EnableExternalNode: <p>集群是否开启第三方节点支持，开启：true，关闭：false</p>
         # @type EnableExternalNode: Boolean
-        # @param ClusterLevel: 集群等级，针对托管集群生效
+        # @param ClusterLevel: <p>集群等级，针对托管集群生效</p>
         # @type ClusterLevel: String
-        # @param AutoUpgradeClusterLevel: 自动变配集群等级，针对托管集群生效。开启：true，关闭：false
+        # @param AutoUpgradeClusterLevel: <p>自动变配集群等级，针对托管集群生效。开启：true，关闭：false</p>
         # @type AutoUpgradeClusterLevel: Boolean
-        # @param QGPUShareEnable: 是否开启QGPU共享，开启：true，关闭：false
+        # @param QGPUShareEnable: <p>是否开启QGPU共享，开启：true，关闭：false</p>
         # @type QGPUShareEnable: Boolean
-        # @param RuntimeVersion: 运行时版本
+        # @param RuntimeVersion: <p>运行时版本</p>
         # @type RuntimeVersion: String
-        # @param ClusterEtcdNodeNum: 集群当前etcd数量
+        # @param ClusterEtcdNodeNum: <p>集群当前etcd数量</p>
         # @type ClusterEtcdNodeNum: Integer
-        # @param CdcId: 本地专用集群Id
+        # @param CdcId: <p>本地专用集群Id</p>
         # @type CdcId: String
-        # @param IsHighAvailability: 集群是否启用高可用模式。用于指导跨可用区资源打散等高可用策略的执行
+        # @param IsHighAvailability: <p>集群是否启用高可用模式。用于指导跨可用区资源打散等高可用策略的执行</p>
         # @type IsHighAvailability: Boolean
+        # @param SecurityModeConfig: <p>开启后会下发Gatekeeper和网络策略</p>
+        # @type SecurityModeConfig: :class:`Tencentcloud::Tke.v20180525.models.SecurityModeConfig`
 
-        attr_accessor :ClusterId, :ClusterName, :ClusterDescription, :ClusterVersion, :ClusterOs, :ClusterType, :ClusterNetworkSettings, :ClusterNodeNum, :ProjectId, :TagSpecification, :ClusterStatus, :Property, :ClusterMaterNodeNum, :ImageId, :OsCustomizeType, :ContainerRuntime, :CreatedTime, :DeletionProtection, :EnableExternalNode, :ClusterLevel, :AutoUpgradeClusterLevel, :QGPUShareEnable, :RuntimeVersion, :ClusterEtcdNodeNum, :CdcId, :IsHighAvailability
+        attr_accessor :ClusterId, :ClusterName, :ClusterDescription, :ClusterVersion, :ClusterOs, :ClusterType, :ClusterNetworkSettings, :ClusterNodeNum, :ProjectId, :TagSpecification, :ClusterStatus, :Property, :ClusterMaterNodeNum, :ImageId, :OsCustomizeType, :ContainerRuntime, :CreatedTime, :DeletionProtection, :EnableExternalNode, :ClusterLevel, :AutoUpgradeClusterLevel, :QGPUShareEnable, :RuntimeVersion, :ClusterEtcdNodeNum, :CdcId, :IsHighAvailability, :SecurityModeConfig
 
-        def initialize(clusterid=nil, clustername=nil, clusterdescription=nil, clusterversion=nil, clusteros=nil, clustertype=nil, clusternetworksettings=nil, clusternodenum=nil, projectid=nil, tagspecification=nil, clusterstatus=nil, property=nil, clustermaternodenum=nil, imageid=nil, oscustomizetype=nil, containerruntime=nil, createdtime=nil, deletionprotection=nil, enableexternalnode=nil, clusterlevel=nil, autoupgradeclusterlevel=nil, qgpushareenable=nil, runtimeversion=nil, clusteretcdnodenum=nil, cdcid=nil, ishighavailability=nil)
+        def initialize(clusterid=nil, clustername=nil, clusterdescription=nil, clusterversion=nil, clusteros=nil, clustertype=nil, clusternetworksettings=nil, clusternodenum=nil, projectid=nil, tagspecification=nil, clusterstatus=nil, property=nil, clustermaternodenum=nil, imageid=nil, oscustomizetype=nil, containerruntime=nil, createdtime=nil, deletionprotection=nil, enableexternalnode=nil, clusterlevel=nil, autoupgradeclusterlevel=nil, qgpushareenable=nil, runtimeversion=nil, clusteretcdnodenum=nil, cdcid=nil, ishighavailability=nil, securitymodeconfig=nil)
           @ClusterId = clusterid
           @ClusterName = clustername
           @ClusterDescription = clusterdescription
@@ -954,6 +971,7 @@ module TencentCloud
           @ClusterEtcdNodeNum = clusteretcdnodenum
           @CdcId = cdcid
           @IsHighAvailability = ishighavailability
+          @SecurityModeConfig = securitymodeconfig
         end
 
         def deserialize(params)
@@ -993,68 +1011,65 @@ module TencentCloud
           @ClusterEtcdNodeNum = params['ClusterEtcdNodeNum']
           @CdcId = params['CdcId']
           @IsHighAvailability = params['IsHighAvailability']
+          unless params['SecurityModeConfig'].nil?
+            @SecurityModeConfig = SecurityModeConfig.new
+            @SecurityModeConfig.deserialize(params['SecurityModeConfig'])
+          end
         end
       end
 
       # 集群高级配置
       class ClusterAdvancedSettings < TencentCloud::Common::AbstractModel
-        # @param AsEnabled: 是否启用集群节点自动扩缩容(创建集群流程不支持开启此功能)
+        # @param AsEnabled: <p>是否启用集群节点自动扩缩容(创建集群流程不支持开启此功能)</p>
         # @type AsEnabled: Boolean
-        # @param AuditEnabled: 是否开启审计开关
+        # @param AuditEnabled: <p>是否开启审计开关</p>
         # @type AuditEnabled: Boolean
-        # @param AuditLogTopicId: 审计日志上传到的topic
+        # @param AuditLogTopicId: <p>审计日志上传到的topic</p>
         # @type AuditLogTopicId: String
-        # @param AuditLogsetId: 审计日志上传到的logset日志集
+        # @param AuditLogsetId: <p>审计日志上传到的logset日志集</p>
         # @type AuditLogsetId: String
-        # @param BasePodNumber: 自定义模式下的基础pod数量
+        # @param BasePodNumber: <p>自定义模式下的基础pod数量</p>
         # @type BasePodNumber: Integer
-        # @param CiliumMode: 启用 CiliumMode 的模式，空值表示不启用，“clusterIP” 表示启用 Cilium 支持 ClusterIP
+        # @param CiliumMode: <p>启用 CiliumMode 的模式，空值表示不启用，“clusterIP” 表示启用 Cilium 支持 ClusterIP</p>
         # @type CiliumMode: String
-        # @param ContainerRuntime: 集群使用的runtime类型，包括"docker"和"containerd"两种类型，默认为"docker"
+        # @param ContainerRuntime: <p>集群使用的runtime类型，包括&quot;docker&quot;和&quot;containerd&quot;两种类型，默认为&quot;docker&quot;</p>
         # @type ContainerRuntime: String
-        # @param DataPlaneV2: 是否启用 DataPlaneV2（cilium替代kube-proxy）
+        # @param DataPlaneV2: <p>是否启用 DataPlaneV2（cilium替代kube-proxy）</p>
         # @type DataPlaneV2: Boolean
-        # @param DeletionProtection: 是否启用集群删除保护
+        # @param DeletionProtection: <p>是否启用集群删除保护</p>
         # @type DeletionProtection: Boolean
-        # @param EnableCustomizedPodCIDR: 是否开节点podCIDR大小的自定义模式
+        # @param EnableCustomizedPodCIDR: <p>是否开节点podCIDR大小的自定义模式</p>
         # @type EnableCustomizedPodCIDR: Boolean
-        # @param EtcdOverrideConfigs: 元数据拆分存储Etcd配置
+        # @param EtcdOverrideConfigs: <p>元数据拆分存储Etcd配置</p>
         # @type EtcdOverrideConfigs: Array
-        # @param ExtraArgs: 集群自定义参数
+        # @param ExtraArgs: <p>集群自定义参数</p>
         # @type ExtraArgs: :class:`Tencentcloud::Tke.v20180525.models.ClusterExtraArgs`
-        # @param IPVS: 是否启用IPVS
+        # @param IPVS: <p>是否启用IPVS</p>
         # @type IPVS: Boolean
-        # @param IsDualStack: 集群VPC-CNI模式下是否是双栈集群，默认false，表明非双栈集群。
+        # @param IsDualStack: <p>集群VPC-CNI模式下是否是双栈集群，默认false，表明非双栈集群。</p>
         # @type IsDualStack: Boolean
-        # @param IsNonStaticIpMode: 集群VPC-CNI模式是否为非固定IP，默认: FALSE 固定IP。
+        # @param IsNonStaticIpMode: <p>集群VPC-CNI模式是否为非固定IP，默认: FALSE 固定IP。</p>
         # @type IsNonStaticIpMode: Boolean
-        # @param KubeProxyMode: 集群的网络代理模型，目前tke集群支持的网络代理模式有三种：iptables,ipvs,ipvs-bpf，此参数仅在使用ipvs-bpf模式时使用，三种网络模式的参数设置关系如下：
-        # iptables模式：IPVS和KubeProxyMode都不设置
-        # ipvs模式: 设置IPVS为true, KubeProxyMode不设置
-        # ipvs-bpf模式: 设置KubeProxyMode为kube-proxy-bpf
-        # 使用ipvs-bpf的网络模式需要满足以下条件：
-        # 1. 集群版本必须为1.14及以上；
-        # 2. 系统镜像必须是: Tencent Linux 2.4；
+        # @param KubeProxyMode: <p>集群的网络代理模型，目前tke集群支持的网络代理模式有三种：iptables,ipvs,ipvs-bpf，此参数仅在使用ipvs-bpf模式时使用，三种网络模式的参数设置关系如下：<br>iptables模式：IPVS和KubeProxyMode都不设置<br>ipvs模式: 设置IPVS为true, KubeProxyMode不设置<br>ipvs-bpf模式: 设置KubeProxyMode为kube-proxy-bpf<br>使用ipvs-bpf的网络模式需要满足以下条件：</p><ol><li>集群版本必须为1.14及以上；</li><li>系统镜像必须是: Tencent Linux 2.4；</li></ol>
         # @type KubeProxyMode: String
-        # @param NetworkType: 集群网络类型，默认为GR。
-        # - GR: 全局路由
-        # - VPC-CNI: VPC-CNI模式
-        # - CiliumOverlay: CiliumOverlay模式
+        # @param NetworkType: <p>集群网络类型，默认为GR。</p><ul><li>GR: 全局路由</li><li>VPC-CNI: VPC-CNI模式</li><li>CiliumOverlay: CiliumOverlay模式</li></ul>
         # @type NetworkType: String
-        # @param NodeNameType: 集群中节点NodeName类型（包括 hostname,lan-ip两种形式，默认为lan-ip。如果开启了hostname模式，创建节点时需要设置HostName参数，并且InstanceName需要和HostName一致）
+        # @param NodeNameType: <p>集群中节点NodeName类型（包括 hostname,lan-ip两种形式，默认为lan-ip。如果开启了hostname模式，创建节点时需要设置HostName参数，并且InstanceName需要和HostName一致）</p>
         # @type NodeNameType: String
-        # @param QGPUShareEnable: 是否开启QGPU共享
+        # @param QGPUShareEnable: <p>是否开启QGPU共享</p>
         # @type QGPUShareEnable: Boolean
-        # @param RuntimeVersion: 运行时版本
+        # @param RuntimeVersion: <p>运行时版本</p>
         # @type RuntimeVersion: String
-        # @param VpcCniType: 区分共享网卡多IP模式和独立网卡模式，共享网卡多 IP 模式填写"tke-route-eni"，独立网卡模式填写"tke-direct-eni"，默认为共享网卡模式
+        # @param VpcCniType: <p>区分共享网卡多IP模式和独立网卡模式，共享网卡多 IP 模式填写&quot;tke-route-eni&quot;，独立网卡模式填写&quot;tke-direct-eni&quot;，默认为共享网卡模式</p>
         # @type VpcCniType: String
-        # @param IsHighAvailability: 集群是否启用高可用模式。用于指导跨可用区资源打散等高可用策略的执行，默认为true
+        # @param IsHighAvailability: <p>集群是否启用高可用模式。用于指导跨可用区资源打散等高可用策略的执行，默认为true</p>
         # @type IsHighAvailability: Boolean
+        # @param SecurityModeConfig: <p>集群安全模式配置</p>
+        # @type SecurityModeConfig: :class:`Tencentcloud::Tke.v20180525.models.SecurityModeConfig`
 
-        attr_accessor :AsEnabled, :AuditEnabled, :AuditLogTopicId, :AuditLogsetId, :BasePodNumber, :CiliumMode, :ContainerRuntime, :DataPlaneV2, :DeletionProtection, :EnableCustomizedPodCIDR, :EtcdOverrideConfigs, :ExtraArgs, :IPVS, :IsDualStack, :IsNonStaticIpMode, :KubeProxyMode, :NetworkType, :NodeNameType, :QGPUShareEnable, :RuntimeVersion, :VpcCniType, :IsHighAvailability
+        attr_accessor :AsEnabled, :AuditEnabled, :AuditLogTopicId, :AuditLogsetId, :BasePodNumber, :CiliumMode, :ContainerRuntime, :DataPlaneV2, :DeletionProtection, :EnableCustomizedPodCIDR, :EtcdOverrideConfigs, :ExtraArgs, :IPVS, :IsDualStack, :IsNonStaticIpMode, :KubeProxyMode, :NetworkType, :NodeNameType, :QGPUShareEnable, :RuntimeVersion, :VpcCniType, :IsHighAvailability, :SecurityModeConfig
 
-        def initialize(asenabled=nil, auditenabled=nil, auditlogtopicid=nil, auditlogsetid=nil, basepodnumber=nil, ciliummode=nil, containerruntime=nil, dataplanev2=nil, deletionprotection=nil, enablecustomizedpodcidr=nil, etcdoverrideconfigs=nil, extraargs=nil, ipvs=nil, isdualstack=nil, isnonstaticipmode=nil, kubeproxymode=nil, networktype=nil, nodenametype=nil, qgpushareenable=nil, runtimeversion=nil, vpccnitype=nil, ishighavailability=nil)
+        def initialize(asenabled=nil, auditenabled=nil, auditlogtopicid=nil, auditlogsetid=nil, basepodnumber=nil, ciliummode=nil, containerruntime=nil, dataplanev2=nil, deletionprotection=nil, enablecustomizedpodcidr=nil, etcdoverrideconfigs=nil, extraargs=nil, ipvs=nil, isdualstack=nil, isnonstaticipmode=nil, kubeproxymode=nil, networktype=nil, nodenametype=nil, qgpushareenable=nil, runtimeversion=nil, vpccnitype=nil, ishighavailability=nil, securitymodeconfig=nil)
           @AsEnabled = asenabled
           @AuditEnabled = auditenabled
           @AuditLogTopicId = auditlogtopicid
@@ -1077,6 +1092,7 @@ module TencentCloud
           @RuntimeVersion = runtimeversion
           @VpcCniType = vpccnitype
           @IsHighAvailability = ishighavailability
+          @SecurityModeConfig = securitymodeconfig
         end
 
         def deserialize(params)
@@ -1112,6 +1128,10 @@ module TencentCloud
           @RuntimeVersion = params['RuntimeVersion']
           @VpcCniType = params['VpcCniType']
           @IsHighAvailability = params['IsHighAvailability']
+          unless params['SecurityModeConfig'].nil?
+            @SecurityModeConfig = SecurityModeConfig.new
+            @SecurityModeConfig.deserialize(params['SecurityModeConfig'])
+          end
         end
       end
 
@@ -1429,16 +1449,16 @@ module TencentCloud
         end
       end
 
-      # 开启第三方节点池支持配置信息
+      # 开启注册节点池支持配置信息
       class ClusterExternalConfig < TencentCloud::Common::AbstractModel
-        # @param NetworkType: 集群网络插件类型，支持：Flannel、CiliumBGP、CiliumVXLan
+        # @param NetworkType: 容器网络类型，支持：HostNetwork、CiliumBGP
         # @type NetworkType: String
         # @param SubnetId: 子网ID
         # @type SubnetId: String
-        # @param ClusterCIDR: Pod CIDR
+        # @param ClusterCIDR: 集群CIDR，网络模式HostNetwork 时无需填写
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterCIDR: String
-        # @param Enabled: 是否开启第三方节点池支持
+        # @param Enabled: 【已废弃】是否开启专线连接能力
         # @type Enabled: Boolean
 
         attr_accessor :NetworkType, :SubnetId, :ClusterCIDR, :Enabled
@@ -3453,15 +3473,15 @@ module TencentCloud
         # @type ContainerRuntime: String
         # @param RuntimeVersion: 运行时版本
         # @type RuntimeVersion: String
-        # @param Labels: 第三方节点label
+        # @param Labels: 注册节点标签
         # @type Labels: Array
-        # @param Taints: 第三方节点taint
+        # @param Taints: 注册节点污点
         # @type Taints: Array
-        # @param InstanceAdvancedSettings: 第三方节点高级设置
+        # @param InstanceAdvancedSettings: 注册节点高级设置
         # @type InstanceAdvancedSettings: :class:`Tencentcloud::Tke.v20180525.models.InstanceAdvancedSettings`
         # @param DeletionProtection: 删除保护开关
         # @type DeletionProtection: Boolean
-        # @param NodeType: 节点类型
+        # @param NodeType: 节点类型，支持 CPU、GPU
         # @type NodeType: String
 
         attr_accessor :ClusterId, :Name, :ContainerRuntime, :RuntimeVersion, :Labels, :Taints, :InstanceAdvancedSettings, :DeletionProtection, :NodeType
@@ -5123,9 +5143,9 @@ module TencentCloud
       class DeleteExternalNodePoolRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
         # @type ClusterId: String
-        # @param NodePoolIds: 第三方节点池ID列表
+        # @param NodePoolIds: 注册节点池ID列表
         # @type NodePoolIds: Array
-        # @param Force: 是否强制删除，在第三方节点上有pod的情况下，如果选择非强制删除，则删除会失败
+        # @param Force: 是否强制删除，在注册节点上有pod的情况下，如果选择非强制删除，则删除会失败
         # @type Force: Boolean
 
         attr_accessor :ClusterId, :NodePoolIds, :Force
@@ -5163,9 +5183,9 @@ module TencentCloud
       class DeleteExternalNodeRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
         # @type ClusterId: String
-        # @param Names: 第三方节点列表
+        # @param Names: 注册节点列表
         # @type Names: Array
-        # @param Force: 是否强制删除：如果第三方节点上有运行中Pod，则非强制删除状态下不会进行删除
+        # @param Force: 是否强制删除：如果注册节点上有运行中Pod，则非强制删除状态下不会进行删除
         # @type Force: Boolean
 
         attr_accessor :ClusterId, :Names, :Force
@@ -8807,7 +8827,7 @@ module TencentCloud
         # @param TotalCount: 节点池总数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
-        # @param NodePoolSet: 第三方节点池列表
+        # @param NodePoolSet: 注册节点池列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NodePoolSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -8896,7 +8916,7 @@ module TencentCloud
       class DescribeExternalNodeScriptRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
         # @type ClusterId: String
-        # @param NodePoolId: 节点池ID
+        # @param NodePoolId: 注册节点池ID
         # @type NodePoolId: String
         # @param Interface: 网卡名
         # @type Interface: String
@@ -8954,7 +8974,7 @@ module TencentCloud
 
       # DescribeExternalNodeSupportConfig请求参数结构体
       class DescribeExternalNodeSupportConfigRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群Id
+        # @param ClusterId: 集群Id，可通过查看集群的基本信息->基础信息页获取
         # @type ClusterId: String
 
         attr_accessor :ClusterId
@@ -8972,17 +8992,17 @@ module TencentCloud
       class DescribeExternalNodeSupportConfigResponse < TencentCloud::Common::AbstractModel
         # @param ClusterCIDR: 用于分配集群容器和服务 IP 的 CIDR，不得与 VPC CIDR 冲突，也不得与同 VPC 内其他集群 CIDR 冲突。且网段范围必须在内网网段内，例如:10.1.0.0/14, 192.168.0.1/18,172.16.0.0/16。
         # @type ClusterCIDR: String
-        # @param NetworkType: 集群网络插件类型，支持：CiliumBGP、CiliumVXLan
+        # @param NetworkType: 集群网络插件类型，支持：CiliumOverlay、HostNetwork
         # @type NetworkType: String
         # @param SubnetId: 子网ID
         # @type SubnetId: String
-        # @param Enabled: 是否开启第三方节点专线连接支持
+        # @param Enabled: 是否开启注册节点专线连接支持
         # @type Enabled: Boolean
         # @param AS: 节点所属交换机的BGP AS 号
         # @type AS: String
         # @param SwitchIP: 节点所属交换机的交换机 IP
         # @type SwitchIP: String
-        # @param Status: 开启第三方节点池状态
+        # @param Status: 开启注册节点池状态，支持 Initializing、InitFailed、Enabled、Disabled
         # @type Status: String
         # @param FailedReason: 如果开启失败原因
         # @type FailedReason: String
@@ -8990,10 +9010,10 @@ module TencentCloud
         # @type Master: String
         # @param Proxy: 镜像仓库代理地址
         # @type Proxy: String
-        # @param Progress: 用于记录开启第三方节点的过程进行到哪一步了
+        # @param Progress: 开启注册节点能力的进度
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Progress: Array
-        # @param EnabledPublicConnect: 是否开启第三方节点公网连接支持
+        # @param EnabledPublicConnect: 是否开启注册节点公网连接支持
         # @type EnabledPublicConnect: Boolean
         # @param PublicConnectUrl: 注册节点公网版公网连接地址
         # @type PublicConnectUrl: String
@@ -13304,7 +13324,7 @@ module TencentCloud
       class EnableExternalNodeSupportRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群Id
         # @type ClusterId: String
-        # @param ClusterExternalConfig: 开启第三方节点池支持配置信息
+        # @param ClusterExternalConfig: 开启注册节点池支持配置信息
         # @type ClusterExternalConfig: :class:`Tencentcloud::Tke.v20180525.models.ClusterExternalConfig`
 
         attr_accessor :ClusterId, :ClusterExternalConfig
@@ -13782,26 +13802,26 @@ module TencentCloud
         end
       end
 
-      # 第三方节点
+      # 注册节点
       class ExternalNode < TencentCloud::Common::AbstractModel
-        # @param Name: 第三方节点名称
+        # @param Name: <p>注册节点名称</p>
         # @type Name: String
-        # @param NodePoolId: 第三方节点所属节点池
+        # @param NodePoolId: <p>注册节点所属节点池</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NodePoolId: String
-        # @param IP: 第三方IP地址
+        # @param IP: <p>注册节点IP地址</p>
         # @type IP: String
-        # @param Location: 第三方地域
+        # @param Location: <p>注册节点地域</p>
         # @type Location: String
-        # @param Status: 第三方节点状态
+        # @param Status: <p>注册节点状态</p><p>枚举值：</p><ul><li>Running： 运行中</li><li>Failed： 异常状态</li><li>Terminating： 删除中</li><li>Draining： 驱逐中</li></ul>
         # @type Status: String
-        # @param CreatedTime: 创建时间
+        # @param CreatedTime: <p>创建时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreatedTime: String
-        # @param Reason: 异常原因
+        # @param Reason: <p>异常原因</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Reason: String
-        # @param Unschedulable: 是否封锁。true表示已封锁，false表示未封锁
+        # @param Unschedulable: <p>是否封锁。true表示已封锁，false表示未封锁</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Unschedulable: Boolean
 
@@ -13830,11 +13850,11 @@ module TencentCloud
         end
       end
 
-      # 第三方节点池信息
+      # 注册节点池信息
       class ExternalNodePool < TencentCloud::Common::AbstractModel
-        # @param NodePoolId: 第三方节点池ID
+        # @param NodePoolId: 注册节点池ID
         # @type NodePoolId: String
-        # @param Name: 第三方节点池名称
+        # @param Name: 注册节点池名称
         # @type Name: String
         # @param LifeState: 节点池生命周期
         # @type LifeState: String
@@ -13842,24 +13862,26 @@ module TencentCloud
         # @type ClusterCIDR: String
         # @param NetworkType: 集群网络插件类型
         # @type NetworkType: String
-        # @param RuntimeConfig: 第三方节点Runtime配置
+        # @param RuntimeConfig: 注册节点运行时配置
         # @type RuntimeConfig: :class:`Tencentcloud::Tke.v20180525.models.RuntimeConfig`
-        # @param Labels: 第三方节点label
+        # @param Labels: 注册节点标签
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Labels: Array
-        # @param Taints: 第三方节点taint
+        # @param Taints: 注册节点污点
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Taints: Array
-        # @param InstanceAdvancedSettings: 第三方节点高级设置
+        # @param InstanceAdvancedSettings: 注册节点高级设置
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceAdvancedSettings: :class:`Tencentcloud::Tke.v20180525.models.InstanceAdvancedSettings`
         # @param DeletionProtection: 删除保护开关
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeletionProtection: Boolean
+        # @param NodeType: 注册节点类型
+        # @type NodeType: String
 
-        attr_accessor :NodePoolId, :Name, :LifeState, :ClusterCIDR, :NetworkType, :RuntimeConfig, :Labels, :Taints, :InstanceAdvancedSettings, :DeletionProtection
+        attr_accessor :NodePoolId, :Name, :LifeState, :ClusterCIDR, :NetworkType, :RuntimeConfig, :Labels, :Taints, :InstanceAdvancedSettings, :DeletionProtection, :NodeType
 
-        def initialize(nodepoolid=nil, name=nil, lifestate=nil, clustercidr=nil, networktype=nil, runtimeconfig=nil, labels=nil, taints=nil, instanceadvancedsettings=nil, deletionprotection=nil)
+        def initialize(nodepoolid=nil, name=nil, lifestate=nil, clustercidr=nil, networktype=nil, runtimeconfig=nil, labels=nil, taints=nil, instanceadvancedsettings=nil, deletionprotection=nil, nodetype=nil)
           @NodePoolId = nodepoolid
           @Name = name
           @LifeState = lifestate
@@ -13870,6 +13892,7 @@ module TencentCloud
           @Taints = taints
           @InstanceAdvancedSettings = instanceadvancedsettings
           @DeletionProtection = deletionprotection
+          @NodeType = nodetype
         end
 
         def deserialize(params)
@@ -13903,6 +13926,7 @@ module TencentCloud
             @InstanceAdvancedSettings.deserialize(params['InstanceAdvancedSettings'])
           end
           @DeletionProtection = params['DeletionProtection']
+          @NodeType = params['NodeType']
         end
       end
 
@@ -15856,28 +15880,30 @@ module TencentCloud
 
       # ModifyClusterAttribute请求参数结构体
       class ModifyClusterAttributeRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群ID
+        # @param ClusterId: <p>集群ID</p><p>取值参考：<a href="https://cloud.tencent.com/document/api/457/31862">DescribeClusters</a></p>
         # @type ClusterId: String
-        # @param ProjectId: 集群所属项目
+        # @param ProjectId: <p>集群所属项目</p>
         # @type ProjectId: Integer
-        # @param ClusterName: 集群名称,字符长度50
+        # @param ClusterName: <p>集群名称,字符长度50</p>
         # @type ClusterName: String
-        # @param ClusterDesc: 集群描述
+        # @param ClusterDesc: <p>集群描述</p>
         # @type ClusterDesc: String
-        # @param ClusterLevel: 集群等级，等级类型：L20、L50、L100、L200、L500、L1000、L3000、L5000
+        # @param ClusterLevel: <p>集群等级，等级类型：L20、L50、L100、L200、L500、L1000、L3000、L5000</p>
         # @type ClusterLevel: String
-        # @param AutoUpgradeClusterLevel: 自动变配集群等级
+        # @param AutoUpgradeClusterLevel: <p>自动变配集群等级</p>
         # @type AutoUpgradeClusterLevel: :class:`Tencentcloud::Tke.v20180525.models.AutoUpgradeClusterLevel`
-        # @param QGPUShareEnable: 是否开启QGPU共享
+        # @param QGPUShareEnable: <p>是否开启QGPU共享</p>
         # @type QGPUShareEnable: Boolean
-        # @param ClusterProperty: 集群属性
+        # @param ClusterProperty: <p>集群属性</p>
         # @type ClusterProperty: :class:`Tencentcloud::Tke.v20180525.models.ClusterProperty`
-        # @param IsHighAvailability: 集群是否启用高可用模式。用于指导跨可用区资源打散等高可用策略的执行
+        # @param IsHighAvailability: <p>集群是否启用高可用模式。用于指导跨可用区资源打散等高可用策略的执行</p>
         # @type IsHighAvailability: Boolean
+        # @param SecurityModeConfig: <p>集群安全模式配置</p>
+        # @type SecurityModeConfig: :class:`Tencentcloud::Tke.v20180525.models.SecurityModeConfig`
 
-        attr_accessor :ClusterId, :ProjectId, :ClusterName, :ClusterDesc, :ClusterLevel, :AutoUpgradeClusterLevel, :QGPUShareEnable, :ClusterProperty, :IsHighAvailability
+        attr_accessor :ClusterId, :ProjectId, :ClusterName, :ClusterDesc, :ClusterLevel, :AutoUpgradeClusterLevel, :QGPUShareEnable, :ClusterProperty, :IsHighAvailability, :SecurityModeConfig
 
-        def initialize(clusterid=nil, projectid=nil, clustername=nil, clusterdesc=nil, clusterlevel=nil, autoupgradeclusterlevel=nil, qgpushareenable=nil, clusterproperty=nil, ishighavailability=nil)
+        def initialize(clusterid=nil, projectid=nil, clustername=nil, clusterdesc=nil, clusterlevel=nil, autoupgradeclusterlevel=nil, qgpushareenable=nil, clusterproperty=nil, ishighavailability=nil, securitymodeconfig=nil)
           @ClusterId = clusterid
           @ProjectId = projectid
           @ClusterName = clustername
@@ -15887,6 +15913,7 @@ module TencentCloud
           @QGPUShareEnable = qgpushareenable
           @ClusterProperty = clusterproperty
           @IsHighAvailability = ishighavailability
+          @SecurityModeConfig = securitymodeconfig
         end
 
         def deserialize(params)
@@ -15905,33 +15932,39 @@ module TencentCloud
             @ClusterProperty.deserialize(params['ClusterProperty'])
           end
           @IsHighAvailability = params['IsHighAvailability']
+          unless params['SecurityModeConfig'].nil?
+            @SecurityModeConfig = SecurityModeConfig.new
+            @SecurityModeConfig.deserialize(params['SecurityModeConfig'])
+          end
         end
       end
 
       # ModifyClusterAttribute返回参数结构体
       class ModifyClusterAttributeResponse < TencentCloud::Common::AbstractModel
-        # @param ProjectId: 集群所属项目
+        # @param ProjectId: <p>集群所属项目</p>
         # @type ProjectId: Integer
-        # @param ClusterName: 集群名称
+        # @param ClusterName: <p>集群名称</p>
         # @type ClusterName: String
-        # @param ClusterDesc: 集群描述
+        # @param ClusterDesc: <p>集群描述</p>
         # @type ClusterDesc: String
-        # @param ClusterLevel: 集群等级
+        # @param ClusterLevel: <p>集群等级</p>
         # @type ClusterLevel: String
-        # @param AutoUpgradeClusterLevel: 自动变配集群等级
+        # @param AutoUpgradeClusterLevel: <p>自动变配集群等级</p>
         # @type AutoUpgradeClusterLevel: :class:`Tencentcloud::Tke.v20180525.models.AutoUpgradeClusterLevel`
-        # @param QGPUShareEnable: 是否开启QGPU共享
+        # @param QGPUShareEnable: <p>是否开启QGPU共享</p>
         # @type QGPUShareEnable: Boolean
-        # @param ClusterProperty: 集群属性
+        # @param ClusterProperty: <p>集群属性</p>
         # @type ClusterProperty: :class:`Tencentcloud::Tke.v20180525.models.ClusterProperty`
-        # @param IsHighAvailability: 集群是否启用高可用模式。用于指导跨可用区资源打散等高可用策略的执行
+        # @param IsHighAvailability: <p>集群是否启用高可用模式。用于指导跨可用区资源打散等高可用策略的执行</p>
         # @type IsHighAvailability: Boolean
+        # @param SecurityModeConfig: <p>集群安全模式配置</p>
+        # @type SecurityModeConfig: :class:`Tencentcloud::Tke.v20180525.models.SecurityModeConfig`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ProjectId, :ClusterName, :ClusterDesc, :ClusterLevel, :AutoUpgradeClusterLevel, :QGPUShareEnable, :ClusterProperty, :IsHighAvailability, :RequestId
+        attr_accessor :ProjectId, :ClusterName, :ClusterDesc, :ClusterLevel, :AutoUpgradeClusterLevel, :QGPUShareEnable, :ClusterProperty, :IsHighAvailability, :SecurityModeConfig, :RequestId
 
-        def initialize(projectid=nil, clustername=nil, clusterdesc=nil, clusterlevel=nil, autoupgradeclusterlevel=nil, qgpushareenable=nil, clusterproperty=nil, ishighavailability=nil, requestid=nil)
+        def initialize(projectid=nil, clustername=nil, clusterdesc=nil, clusterlevel=nil, autoupgradeclusterlevel=nil, qgpushareenable=nil, clusterproperty=nil, ishighavailability=nil, securitymodeconfig=nil, requestid=nil)
           @ProjectId = projectid
           @ClusterName = clustername
           @ClusterDesc = clusterdesc
@@ -15940,6 +15973,7 @@ module TencentCloud
           @QGPUShareEnable = qgpushareenable
           @ClusterProperty = clusterproperty
           @IsHighAvailability = ishighavailability
+          @SecurityModeConfig = securitymodeconfig
           @RequestId = requestid
         end
 
@@ -15958,6 +15992,10 @@ module TencentCloud
             @ClusterProperty.deserialize(params['ClusterProperty'])
           end
           @IsHighAvailability = params['IsHighAvailability']
+          unless params['SecurityModeConfig'].nil?
+            @SecurityModeConfig = SecurityModeConfig.new
+            @SecurityModeConfig.deserialize(params['SecurityModeConfig'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -16667,9 +16705,9 @@ module TencentCloud
         # @type NodePoolId: String
         # @param Name: 节点池名称
         # @type Name: String
-        # @param Labels: 第三方节点label
+        # @param Labels: 注册节点标签
         # @type Labels: Array
-        # @param Taints: 第三方节点taint
+        # @param Taints: 注册节点污点
         # @type Taints: Array
         # @param DeletionProtection: 删除保护开关
         # @type DeletionProtection: Boolean
@@ -20947,6 +20985,37 @@ module TencentCloud
         end
       end
 
+      # 集群安全模式相关参数
+      class SecurityModeConfig < TencentCloud::Common::AbstractModel
+        # @param Enabled: <p>安全模式开关（true 开启 / false 关闭）</p>
+        # @type Enabled: Boolean
+        # @param Namespaces: <p>灰度 namespace 列表</p>
+        # @type Namespaces: Array
+        # @param Labels: <p>灰度 Pod label</p>
+        # @type Labels: Array
+
+        attr_accessor :Enabled, :Namespaces, :Labels
+
+        def initialize(enabled=nil, namespaces=nil, labels=nil)
+          @Enabled = enabled
+          @Namespaces = namespaces
+          @Labels = labels
+        end
+
+        def deserialize(params)
+          @Enabled = params['Enabled']
+          @Namespaces = params['Namespaces']
+          unless params['Labels'].nil?
+            @Labels = []
+            params['Labels'].each do |i|
+              label_tmp = Label.new
+              label_tmp.deserialize(i)
+              @Labels << label_tmp
+            end
+          end
+        end
+      end
+
       # 发布序列步骤
       class SequenceFlow < TencentCloud::Common::AbstractModel
         # @param Tags: 发布序列步骤标签
@@ -21116,22 +21185,27 @@ module TencentCloud
         # @param Name: 名称
         # @type Name: String
         # @param StartAt: 开始时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartAt: String
         # @param EndAt: 结束时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndAt: String
         # @param Status: 当前状态
         # @type Status: String
         # @param Message: 执行信息
         # @type Message: String
+        # @param Detail: 错误详情
+        # @type Detail: String
 
-        attr_accessor :Name, :StartAt, :EndAt, :Status, :Message
+        attr_accessor :Name, :StartAt, :EndAt, :Status, :Message, :Detail
 
-        def initialize(name=nil, startat=nil, endat=nil, status=nil, message=nil)
+        def initialize(name=nil, startat=nil, endat=nil, status=nil, message=nil, detail=nil)
           @Name = name
           @StartAt = startat
           @EndAt = endat
           @Status = status
           @Message = message
+          @Detail = detail
         end
 
         def deserialize(params)
@@ -21140,6 +21214,7 @@ module TencentCloud
           @EndAt = params['EndAt']
           @Status = params['Status']
           @Message = params['Message']
+          @Detail = params['Detail']
         end
       end
 
@@ -22354,14 +22429,16 @@ module TencentCloud
         # @type ResetParam: :class:`Tencentcloud::Tke.v20180525.models.UpgradeNodeResetParam`
         # @param SkipPreCheck: 是否忽略节点升级前检查，默认值 false
         # @type SkipPreCheck: Boolean
-        # @param MaxNotReadyPercent: 最大可容忍的不可用Pod比例
+        # @param MaxNotReadyPercent: 最大可容忍的不可用Pod比例，如果设置 0 表示不做校验
         # @type MaxNotReadyPercent: Float
         # @param UpgradeRunTime: 是否升级节点运行时，默认false不升级
         # @type UpgradeRunTime: Boolean
+        # @param Concurrent: 支持多个节点并行升级，默认值为 1，最大并行数为15
+        # @type Concurrent: Integer
 
-        attr_accessor :ClusterId, :Operation, :UpgradeType, :InstanceIds, :ResetParam, :SkipPreCheck, :MaxNotReadyPercent, :UpgradeRunTime
+        attr_accessor :ClusterId, :Operation, :UpgradeType, :InstanceIds, :ResetParam, :SkipPreCheck, :MaxNotReadyPercent, :UpgradeRunTime, :Concurrent
 
-        def initialize(clusterid=nil, operation=nil, upgradetype=nil, instanceids=nil, resetparam=nil, skipprecheck=nil, maxnotreadypercent=nil, upgraderuntime=nil)
+        def initialize(clusterid=nil, operation=nil, upgradetype=nil, instanceids=nil, resetparam=nil, skipprecheck=nil, maxnotreadypercent=nil, upgraderuntime=nil, concurrent=nil)
           @ClusterId = clusterid
           @Operation = operation
           @UpgradeType = upgradetype
@@ -22370,6 +22447,7 @@ module TencentCloud
           @SkipPreCheck = skipprecheck
           @MaxNotReadyPercent = maxnotreadypercent
           @UpgradeRunTime = upgraderuntime
+          @Concurrent = concurrent
         end
 
         def deserialize(params)
@@ -22384,6 +22462,7 @@ module TencentCloud
           @SkipPreCheck = params['SkipPreCheck']
           @MaxNotReadyPercent = params['MaxNotReadyPercent']
           @UpgradeRunTime = params['UpgradeRunTime']
+          @Concurrent = params['Concurrent']
         end
       end
 

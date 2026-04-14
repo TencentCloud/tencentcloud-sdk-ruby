@@ -2396,21 +2396,32 @@ module TencentCloud
 
       # UpdateServiceConfigs请求参数结构体
       class UpdateServiceConfigsRequest < TencentCloud::Common::AbstractModel
-        # @param ServiceId: 服务ID
+        # @param ServiceId: <p>服务ID</p>
         # @type ServiceId: String
-        # @param TargetReplicas: 期望副本数
+        # @param TargetReplicas: <p>期望副本数</p>
         # @type TargetReplicas: Integer
+        # @param DeploymentConfigs: <p>启动参数、环境变量等参数</p>
+        # @type DeploymentConfigs: Array
 
-        attr_accessor :ServiceId, :TargetReplicas
+        attr_accessor :ServiceId, :TargetReplicas, :DeploymentConfigs
 
-        def initialize(serviceid=nil, targetreplicas=nil)
+        def initialize(serviceid=nil, targetreplicas=nil, deploymentconfigs=nil)
           @ServiceId = serviceid
           @TargetReplicas = targetreplicas
+          @DeploymentConfigs = deploymentconfigs
         end
 
         def deserialize(params)
           @ServiceId = params['ServiceId']
           @TargetReplicas = params['TargetReplicas']
+          unless params['DeploymentConfigs'].nil?
+            @DeploymentConfigs = []
+            params['DeploymentConfigs'].each do |i|
+              deploymentconfig_tmp = DeploymentConfig.new
+              deploymentconfig_tmp.deserialize(i)
+              @DeploymentConfigs << deploymentconfig_tmp
+            end
+          end
         end
       end
 

@@ -178,27 +178,30 @@ module TencentCloud
 
       # AddAlarmPolicy请求参数结构体
       class AddAlarmPolicyRequest < TencentCloud::Common::AbstractModel
-        # @param Name: 告警策略名
+        # @param Name: <p>告警策略名</p>
         # @type Name: String
-        # @param EventScope: 事件范围  1：当前账号  2：多账号
+        # @param Type: <p>事件类型 1：资源不合规事件</p>
+        # @type Type: Integer
+        # @param EventScope: <p>事件范围  1：当前账号  2：多账号</p>
         # @type EventScope: Array
-        # @param RiskLevel: 风险等级 1：高风险  2：中风险 3：低风险
+        # @param RiskLevel: <p>风险等级 1：高风险  2：中风险 3：低风险</p>
         # @type RiskLevel: Array
-        # @param NoticeTime: 通知时间段
+        # @param NoticeTime: <p>通知时间段</p>
         # @type NoticeTime: String
-        # @param NotificationMechanism: 通知机制
+        # @param NotificationMechanism: <p>通知机制</p>
         # @type NotificationMechanism: String
-        # @param Status: 状态 1：启用 2：停用
+        # @param Status: <p>状态 1：启用 2：停用</p>
         # @type Status: Integer
-        # @param NoticePeriod: 通知周期
+        # @param NoticePeriod: <p>通知周期</p>
         # @type NoticePeriod: Array
-        # @param Description: 策略描述
+        # @param Description: <p>策略描述</p>
         # @type Description: String
 
-        attr_accessor :Name, :EventScope, :RiskLevel, :NoticeTime, :NotificationMechanism, :Status, :NoticePeriod, :Description
+        attr_accessor :Name, :Type, :EventScope, :RiskLevel, :NoticeTime, :NotificationMechanism, :Status, :NoticePeriod, :Description
 
-        def initialize(name=nil, eventscope=nil, risklevel=nil, noticetime=nil, notificationmechanism=nil, status=nil, noticeperiod=nil, description=nil)
+        def initialize(name=nil, type=nil, eventscope=nil, risklevel=nil, noticetime=nil, notificationmechanism=nil, status=nil, noticeperiod=nil, description=nil)
           @Name = name
+          @Type = type
           @EventScope = eventscope
           @RiskLevel = risklevel
           @NoticeTime = noticetime
@@ -210,6 +213,7 @@ module TencentCloud
 
         def deserialize(params)
           @Name = params['Name']
+          @Type = params['Type']
           @EventScope = params['EventScope']
           @RiskLevel = params['RiskLevel']
           @NoticeTime = params['NoticeTime']
@@ -222,7 +226,7 @@ module TencentCloud
 
       # AddAlarmPolicy返回参数结构体
       class AddAlarmPolicyResponse < TencentCloud::Common::AbstractModel
-        # @param AlarmPolicyId: 告警策略唯一id
+        # @param AlarmPolicyId: <p>告警策略唯一id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AlarmPolicyId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。

@@ -701,7 +701,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建第三方节点池
+        # 创建注册节点池
 
         # @param request: Request instance for CreateExternalNodePool.
         # @type request: :class:`Tencentcloud::tke::V20180525::CreateExternalNodePoolRequest`
@@ -1493,7 +1493,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 删除第三方节点
+        # 删除注册节点
 
         # @param request: Request instance for DeleteExternalNode.
         # @type request: :class:`Tencentcloud::tke::V20180525::DeleteExternalNodeRequest`
@@ -1517,7 +1517,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 删除第三方节点池
+        # 删除注册节点池
 
         # @param request: Request instance for DeleteExternalNodePool.
         # @type request: :class:`Tencentcloud::tke::V20180525::DeleteExternalNodePoolRequest`
@@ -3221,7 +3221,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查看第三方节点列表
+        # 查看注册节点列表
 
         # @param request: Request instance for DescribeExternalNode.
         # @type request: :class:`Tencentcloud::tke::V20180525::DescribeExternalNodeRequest`
@@ -3245,7 +3245,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查看第三方节点池列表
+        # 查看注册节点池列表
 
         # @param request: Request instance for DescribeExternalNodePools.
         # @type request: :class:`Tencentcloud::tke::V20180525::DescribeExternalNodePoolsRequest`
@@ -3269,7 +3269,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取第三方节点添加脚本
+        # 获取注册节点初始化脚本
 
         # @param request: Request instance for DescribeExternalNodeScript.
         # @type request: :class:`Tencentcloud::tke::V20180525::DescribeExternalNodeScriptRequest`
@@ -3293,7 +3293,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查看开启第三方节点池配置信息
+        # 查看开启注册节点池配置信息
 
         # @param request: Request instance for DescribeExternalNodeSupportConfig.
         # @type request: :class:`Tencentcloud::tke::V20180525::DescribeExternalNodeSupportConfigRequest`
@@ -4709,7 +4709,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 驱逐第三方节点
+        # 驱逐注册节点
 
         # @param request: Request instance for DrainExternalNode.
         # @type request: :class:`Tencentcloud::tke::V20180525::DrainExternalNodeRequest`
@@ -4877,7 +4877,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 开启第三方节点池支持
+        # 开启注册节点池支持
 
         # @param request: Request instance for EnableExternalNodeSupport.
         # @type request: :class:`Tencentcloud::tke::V20180525::EnableExternalNodeSupportRequest`
@@ -5549,7 +5549,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 修改第三方节点池
+        # 修改注册节点池
 
         # @param request: Request instance for ModifyExternalNodePool.
         # @type request: :class:`Tencentcloud::tke::V20180525::ModifyExternalNodePoolRequest`

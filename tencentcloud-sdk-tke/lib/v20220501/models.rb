@@ -629,15 +629,18 @@ module TencentCloud
         # @type Filters: Array
         # @param SortBy: 排序信息
         # @type SortBy: :class:`Tencentcloud::Tke.v20220501.models.SortBy`
+        # @param NeedTags: 是否返回节点云标签
+        # @type NeedTags: Boolean
 
-        attr_accessor :ClusterId, :Offset, :Limit, :Filters, :SortBy
+        attr_accessor :ClusterId, :Offset, :Limit, :Filters, :SortBy, :NeedTags
 
-        def initialize(clusterid=nil, offset=nil, limit=nil, filters=nil, sortby=nil)
+        def initialize(clusterid=nil, offset=nil, limit=nil, filters=nil, sortby=nil, needtags=nil)
           @ClusterId = clusterid
           @Offset = offset
           @Limit = limit
           @Filters = filters
           @SortBy = sortby
+          @NeedTags = needtags
         end
 
         def deserialize(params)
@@ -656,6 +659,7 @@ module TencentCloud
             @SortBy = SortBy.new
             @SortBy.deserialize(params['SortBy'])
           end
+          @NeedTags = params['NeedTags']
         end
       end
 
@@ -2318,10 +2322,13 @@ module TencentCloud
         # - eks-f8mvyaep 表示这个实例是一个 CXM 的实例
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
+        # @param Tags: 原生节点云标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
 
-        attr_accessor :MachineName, :MachineState, :Zone, :InstanceChargeType, :CreatedAt, :LoginStatus, :IsProtectedFromScaleIn, :DisplayName, :CPU, :GPU, :RenewFlag, :PayMode, :Memory, :SystemDisk, :InternetAccessible, :InstanceFamily, :LanIp, :InstanceType, :ExpiredTime, :WanIp, :KeyIds, :GPUParams, :DataDisks, :SecurityGroupIDs, :VpcId, :SubnetId, :OsImage, :MachineType, :InstanceId
+        attr_accessor :MachineName, :MachineState, :Zone, :InstanceChargeType, :CreatedAt, :LoginStatus, :IsProtectedFromScaleIn, :DisplayName, :CPU, :GPU, :RenewFlag, :PayMode, :Memory, :SystemDisk, :InternetAccessible, :InstanceFamily, :LanIp, :InstanceType, :ExpiredTime, :WanIp, :KeyIds, :GPUParams, :DataDisks, :SecurityGroupIDs, :VpcId, :SubnetId, :OsImage, :MachineType, :InstanceId, :Tags
 
-        def initialize(machinename=nil, machinestate=nil, zone=nil, instancechargetype=nil, createdat=nil, loginstatus=nil, isprotectedfromscalein=nil, displayname=nil, cpu=nil, gpu=nil, renewflag=nil, paymode=nil, memory=nil, systemdisk=nil, internetaccessible=nil, instancefamily=nil, lanip=nil, instancetype=nil, expiredtime=nil, wanip=nil, keyids=nil, gpuparams=nil, datadisks=nil, securitygroupids=nil, vpcid=nil, subnetid=nil, osimage=nil, machinetype=nil, instanceid=nil)
+        def initialize(machinename=nil, machinestate=nil, zone=nil, instancechargetype=nil, createdat=nil, loginstatus=nil, isprotectedfromscalein=nil, displayname=nil, cpu=nil, gpu=nil, renewflag=nil, paymode=nil, memory=nil, systemdisk=nil, internetaccessible=nil, instancefamily=nil, lanip=nil, instancetype=nil, expiredtime=nil, wanip=nil, keyids=nil, gpuparams=nil, datadisks=nil, securitygroupids=nil, vpcid=nil, subnetid=nil, osimage=nil, machinetype=nil, instanceid=nil, tags=nil)
           @MachineName = machinename
           @MachineState = machinestate
           @Zone = zone
@@ -2351,6 +2358,7 @@ module TencentCloud
           @OsImage = osimage
           @MachineType = machinetype
           @InstanceId = instanceid
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -2399,6 +2407,14 @@ module TencentCloud
           @OsImage = params['OsImage']
           @MachineType = params['MachineType']
           @InstanceId = params['InstanceId']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 
@@ -2742,12 +2758,16 @@ module TencentCloud
         # @param AutoscalingGroupId: 自动伸缩组ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AutoscalingGroupId: String
+        # @param Tags: 普通节点云标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
 
-        attr_accessor :InstanceAdvancedSettings, :AutoscalingGroupId
+        attr_accessor :InstanceAdvancedSettings, :AutoscalingGroupId, :Tags
 
-        def initialize(instanceadvancedsettings=nil, autoscalinggroupid=nil)
+        def initialize(instanceadvancedsettings=nil, autoscalinggroupid=nil, tags=nil)
           @InstanceAdvancedSettings = instanceadvancedsettings
           @AutoscalingGroupId = autoscalinggroupid
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -2756,6 +2776,14 @@ module TencentCloud
             @InstanceAdvancedSettings.deserialize(params['InstanceAdvancedSettings'])
           end
           @AutoscalingGroupId = params['AutoscalingGroupId']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 
@@ -3069,10 +3097,16 @@ module TencentCloud
         # @param InstanceAttribute: 实例属性
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceAttribute: String
+        # @param NodeName: 节点名称
+        # @type NodeName: String
+        # @param Duration: 包销时长
+        # @type Duration: String
+        # @param ResourceId: 预付费资源ID
+        # @type ResourceId: String
 
-        attr_accessor :Name, :AutoRenewFlag, :ResourceType, :CPU, :UsedCPU, :Memory, :UsedMemory, :Zone, :VpcId, :SubnetId, :ActiveAt, :ExpireAt, :MaxCPUScheduledPod, :InstanceAttribute
+        attr_accessor :Name, :AutoRenewFlag, :ResourceType, :CPU, :UsedCPU, :Memory, :UsedMemory, :Zone, :VpcId, :SubnetId, :ActiveAt, :ExpireAt, :MaxCPUScheduledPod, :InstanceAttribute, :NodeName, :Duration, :ResourceId
 
-        def initialize(name=nil, autorenewflag=nil, resourcetype=nil, cpu=nil, usedcpu=nil, memory=nil, usedmemory=nil, zone=nil, vpcid=nil, subnetid=nil, activeat=nil, expireat=nil, maxcpuscheduledpod=nil, instanceattribute=nil)
+        def initialize(name=nil, autorenewflag=nil, resourcetype=nil, cpu=nil, usedcpu=nil, memory=nil, usedmemory=nil, zone=nil, vpcid=nil, subnetid=nil, activeat=nil, expireat=nil, maxcpuscheduledpod=nil, instanceattribute=nil, nodename=nil, duration=nil, resourceid=nil)
           @Name = name
           @AutoRenewFlag = autorenewflag
           @ResourceType = resourcetype
@@ -3087,6 +3121,9 @@ module TencentCloud
           @ExpireAt = expireat
           @MaxCPUScheduledPod = maxcpuscheduledpod
           @InstanceAttribute = instanceattribute
+          @NodeName = nodename
+          @Duration = duration
+          @ResourceId = resourceid
         end
 
         def deserialize(params)
@@ -3104,6 +3141,9 @@ module TencentCloud
           @ExpireAt = params['ExpireAt']
           @MaxCPUScheduledPod = params['MaxCPUScheduledPod']
           @InstanceAttribute = params['InstanceAttribute']
+          @NodeName = params['NodeName']
+          @Duration = params['Duration']
+          @ResourceId = params['ResourceId']
         end
       end
 
