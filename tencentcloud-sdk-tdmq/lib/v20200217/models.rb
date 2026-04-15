@@ -1505,34 +1505,30 @@ module TencentCloud
 
       # CreateProCluster请求参数结构体
       class CreateProClusterRequest < TencentCloud::Common::AbstractModel
-        # @param ZoneIds: 多可用区部署选择三个可用区，示例[200002,200003,200004]
-
-        # 单可用区部署选择一个可用区，示例[200002]
+        # @param ZoneIds: <p>多可用区部署选择三个可用区，示例[200002,200003,200004]<br>单可用区部署选择一个可用区，示例[200002]</p><p>当选择PULSAR.P2.MINI1 时只支持两个可用区，其他支持三个可用区</p>
         # @type ZoneIds: Array
-        # @param ProductName: 集群规格代号
-        # 参考 [专业集群规格](https://cloud.tencent.com/document/product/1179/83705)
+        # @param ProductName: <p>集群规格代号<br>参考 <a href="https://cloud.tencent.com/document/product/1179/83705">专业集群规格</a></p>
         # @type ProductName: String
-        # @param AutoRenewFlag: 1: true，开启自动按月续费
-
-        # 0: false，关闭自动按月续费
+        # @param AutoRenewFlag: <p>1: true，开启自动按月续费</p><p>0: false，关闭自动按月续费</p>
         # @type AutoRenewFlag: Integer
-        # @param TimeSpan: 购买时长，取值范围：1～50
+        # @param TimeSpan: <p>购买时长，取值范围：1～50</p>
         # @type TimeSpan: Integer
-        # @param ClusterName: 集群名称，不支持中字以及除了短线和下划线外的特殊字符且不超过64个字符。
+        # @param ClusterName: <p>集群名称不能为空，支持数字、字母、中文以及符号 “-_=:.”，长度不超过64个字符</p>
         # @type ClusterName: String
-        # @param AutoVoucher: 是否自动选择代金券 1是 0否 默认为0
+        # @param AutoVoucher: <p>是否自动选择代金券 1是 0否 默认为0</p>
         # @type AutoVoucher: Integer
-        # @param StorageSize: 存储规格
-        # 参考 [专业集群规格](https://cloud.tencent.com/document/product/1179/83705)
+        # @param StorageSize: <p>存储规格<br>参考 <a href="https://cloud.tencent.com/document/product/1179/83705">专业集群规格</a></p>
         # @type StorageSize: Integer
-        # @param Vpc: vpc网络标签
+        # @param Vpc: <p>vpc网络标签</p>
         # @type Vpc: :class:`Tencentcloud::Tdmq.v20200217.models.VpcInfo`
-        # @param Tags: 集群的标签列表(已废弃)
+        # @param Tags: <p>集群的标签列表(已废弃)</p>
         # @type Tags: Array
+        # @param InstanceVersion: <p>集群版本信息</p>
+        # @type InstanceVersion: String
 
-        attr_accessor :ZoneIds, :ProductName, :AutoRenewFlag, :TimeSpan, :ClusterName, :AutoVoucher, :StorageSize, :Vpc, :Tags
+        attr_accessor :ZoneIds, :ProductName, :AutoRenewFlag, :TimeSpan, :ClusterName, :AutoVoucher, :StorageSize, :Vpc, :Tags, :InstanceVersion
 
-        def initialize(zoneids=nil, productname=nil, autorenewflag=nil, timespan=nil, clustername=nil, autovoucher=nil, storagesize=nil, vpc=nil, tags=nil)
+        def initialize(zoneids=nil, productname=nil, autorenewflag=nil, timespan=nil, clustername=nil, autovoucher=nil, storagesize=nil, vpc=nil, tags=nil, instanceversion=nil)
           @ZoneIds = zoneids
           @ProductName = productname
           @AutoRenewFlag = autorenewflag
@@ -1542,6 +1538,7 @@ module TencentCloud
           @StorageSize = storagesize
           @Vpc = vpc
           @Tags = tags
+          @InstanceVersion = instanceversion
         end
 
         def deserialize(params)
@@ -1564,18 +1561,19 @@ module TencentCloud
               @Tags << tag_tmp
             end
           end
+          @InstanceVersion = params['InstanceVersion']
         end
       end
 
       # CreateProCluster返回参数结构体
       class CreateProClusterResponse < TencentCloud::Common::AbstractModel
-        # @param DealName: 子订单号
+        # @param DealName: <p>子订单号</p>
         # @type DealName: String
-        # @param BigDealId: 订单号
+        # @param BigDealId: <p>订单号</p>
         # @type BigDealId: String
-        # @param ClusterId: 集群Id
+        # @param ClusterId: <p>集群Id</p>
         # @type ClusterId: String
-        # @param ClusterName: 集群名称
+        # @param ClusterName: <p>集群名称</p>
         # @type ClusterName: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -13504,28 +13502,37 @@ module TencentCloud
 
       # 角色实例
       class Role < TencentCloud::Common::AbstractModel
-        # @param RoleName: 角色名称。
+        # @param RoleName: <p>角色名称。</p>
         # @type RoleName: String
-        # @param Token: 角色token值。
+        # @param Token: <p>角色token值。</p>
         # @type Token: String
-        # @param Remark: 备注说明。
+        # @param Remark: <p>备注说明。</p>
         # @type Remark: String
-        # @param CreateTime: 创建时间。
+        # @param CreateTime: <p>创建时间。</p>
         # @type CreateTime: String
-        # @param UpdateTime: 更新时间。
+        # @param UpdateTime: <p>更新时间。</p>
         # @type UpdateTime: String
-        # @param PermType: 授权类型（Cluster：集群；TopicAndGroup：主题或消费组）
+        # @param PermType: <p>授权类型（Cluster：集群；TopicAndGroup：主题或消费组）</p>
         # @type PermType: String
+        # @param TokenType: <p>角色类型</p><p>枚举值：</p><ul><li>Temporary： 轮转密钥</li><li>Permanent： 永久密钥</li></ul>
+        # @type TokenType: String
+        # @param SecretName: <p>SSM 唯一 ID</p>
+        # @type SecretName: String
+        # @param RotateFreq: <p>轮转周期</p><p>单位：天</p>
+        # @type RotateFreq: Integer
 
-        attr_accessor :RoleName, :Token, :Remark, :CreateTime, :UpdateTime, :PermType
+        attr_accessor :RoleName, :Token, :Remark, :CreateTime, :UpdateTime, :PermType, :TokenType, :SecretName, :RotateFreq
 
-        def initialize(rolename=nil, token=nil, remark=nil, createtime=nil, updatetime=nil, permtype=nil)
+        def initialize(rolename=nil, token=nil, remark=nil, createtime=nil, updatetime=nil, permtype=nil, tokentype=nil, secretname=nil, rotatefreq=nil)
           @RoleName = rolename
           @Token = token
           @Remark = remark
           @CreateTime = createtime
           @UpdateTime = updatetime
           @PermType = permtype
+          @TokenType = tokentype
+          @SecretName = secretname
+          @RotateFreq = rotatefreq
         end
 
         def deserialize(params)
@@ -13535,6 +13542,9 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
           @PermType = params['PermType']
+          @TokenType = params['TokenType']
+          @SecretName = params['SecretName']
+          @RotateFreq = params['RotateFreq']
         end
       end
 

@@ -173,6 +173,78 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 用于查询视频特效任务。
+
+        # @param request: Request instance for DescribeImageToVideoJob.
+        # @type request: :class:`Tencentcloud::vclm::V20240523::DescribeImageToVideoJobRequest`
+        # @rtype: :class:`Tencentcloud::vclm::V20240523::DescribeImageToVideoJobResponse`
+        def DescribeImageToVideoJob(request)
+          body = send_request('DescribeImageToVideoJob', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeImageToVideoJobResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询Vidu图生视频任务接口
+
+        # @param request: Request instance for DescribeImageToVideoViduJob.
+        # @type request: :class:`Tencentcloud::vclm::V20240523::DescribeImageToVideoViduJobRequest`
+        # @rtype: :class:`Tencentcloud::vclm::V20240523::DescribeImageToVideoViduJobResponse`
+        def DescribeImageToVideoViduJob(request)
+          body = send_request('DescribeImageToVideoViduJob', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeImageToVideoViduJobResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询Kling动作控制任务
+
+        # @param request: Request instance for DescribeMotionControlKlingJob.
+        # @type request: :class:`Tencentcloud::vclm::V20240523::DescribeMotionControlKlingJobRequest`
+        # @rtype: :class:`Tencentcloud::vclm::V20240523::DescribeMotionControlKlingJobResponse`
+        def DescribeMotionControlKlingJob(request)
+          body = send_request('DescribeMotionControlKlingJob', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeMotionControlKlingJobResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 用于查询图片唱演任务。
         # 支持提交音频和图片生成唱演视频，满足社交娱乐、互动营销等场景的需求。
 
@@ -184,6 +256,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribePortraitSingJobResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询Vidu参考生视频任务接口
+
+        # @param request: Request instance for DescribeReferenceToVideoViduJob.
+        # @type request: :class:`Tencentcloud::vclm::V20240523::DescribeReferenceToVideoViduJobRequest`
+        # @rtype: :class:`Tencentcloud::vclm::V20240523::DescribeReferenceToVideoViduJobResponse`
+        def DescribeReferenceToVideoViduJob(request)
+          body = send_request('DescribeReferenceToVideoViduJob', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeReferenceToVideoViduJobResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -222,6 +318,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 用于查询文生视频任务。
+
+        # @param request: Request instance for DescribeTextToVideoJob.
+        # @type request: :class:`Tencentcloud::vclm::V20240523::DescribeTextToVideoJobRequest`
+        # @rtype: :class:`Tencentcloud::vclm::V20240523::DescribeTextToVideoJobResponse`
+        def DescribeTextToVideoJob(request)
+          body = send_request('DescribeTextToVideoJob', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeTextToVideoJobResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询Vidu文生视频任务接口
+
+        # @param request: Request instance for DescribeTextToVideoViduJob.
+        # @type request: :class:`Tencentcloud::vclm::V20240523::DescribeTextToVideoViduJobRequest`
+        # @rtype: :class:`Tencentcloud::vclm::V20240523::DescribeTextToVideoViduJobResponse`
+        def DescribeTextToVideoViduJob(request)
+          body = send_request('DescribeTextToVideoViduJob', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeTextToVideoViduJobResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 用于提交视频编辑任务，支持上传视频、文本及图片素材开展编辑操作，涵盖风格迁移、元素替换、内容增减等核心能力。
 
         # @param request: Request instance for DescribeVideoEditJob.
@@ -232,6 +376,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeVideoEditJobResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询Kling多模态编辑任务
+
+        # @param request: Request instance for DescribeVideoEditKlingJob.
+        # @type request: :class:`Tencentcloud::vclm::V20240523::DescribeVideoEditKlingJobRequest`
+        # @rtype: :class:`Tencentcloud::vclm::V20240523::DescribeVideoEditKlingJobResponse`
+        def DescribeVideoEditKlingJob(request)
+          body = send_request('DescribeVideoEditKlingJob', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeVideoEditKlingJobResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询视频延长任务
+
+        # @param request: Request instance for DescribeVideoExtendKlingJob.
+        # @type request: :class:`Tencentcloud::vclm::V20240523::DescribeVideoExtendKlingJobRequest`
+        # @rtype: :class:`Tencentcloud::vclm::V20240523::DescribeVideoExtendKlingJobResponse`
+        def DescribeVideoExtendKlingJob(request)
+          body = send_request('DescribeVideoExtendKlingJob', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeVideoExtendKlingJobResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -441,6 +633,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 提交视频特效任务接口
+
+        # @param request: Request instance for SubmitImageToVideoJob.
+        # @type request: :class:`Tencentcloud::vclm::V20240523::SubmitImageToVideoJobRequest`
+        # @rtype: :class:`Tencentcloud::vclm::V20240523::SubmitImageToVideoJobResponse`
+        def SubmitImageToVideoJob(request)
+          body = send_request('SubmitImageToVideoJob', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SubmitImageToVideoJobResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 提交Vidu图生视频任务接口
 
         # @param request: Request instance for SubmitImageToVideoViduJob.
@@ -451,6 +667,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = SubmitImageToVideoViduJobResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 提交动作控制(Kling)任务并发
+
+        # @param request: Request instance for SubmitMotionControlKlingJob.
+        # @type request: :class:`Tencentcloud::vclm::V20240523::SubmitMotionControlKlingJobRequest`
+        # @rtype: :class:`Tencentcloud::vclm::V20240523::SubmitMotionControlKlingJobResponse`
+        def SubmitMotionControlKlingJob(request)
+          body = send_request('SubmitMotionControlKlingJob', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SubmitMotionControlKlingJobResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -490,6 +730,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 提交Vidu参考生视频任务接口
+
+        # @param request: Request instance for SubmitReferenceToVideoViduJob.
+        # @type request: :class:`Tencentcloud::vclm::V20240523::SubmitReferenceToVideoViduJobRequest`
+        # @rtype: :class:`Tencentcloud::vclm::V20240523::SubmitReferenceToVideoViduJobResponse`
+        def SubmitReferenceToVideoViduJob(request)
+          body = send_request('SubmitReferenceToVideoViduJob', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SubmitReferenceToVideoViduJobResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 提交视频特效任务接口
 
         # @param request: Request instance for SubmitTemplateToVideoJob.
@@ -514,6 +778,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 通过提交对视频内容的描述文本生成一个短视频。文生视频为异步处理任务，成功提交任务后返回任务的JobId。
+
+        # @param request: Request instance for SubmitTextToVideoJob.
+        # @type request: :class:`Tencentcloud::vclm::V20240523::SubmitTextToVideoJobRequest`
+        # @rtype: :class:`Tencentcloud::vclm::V20240523::SubmitTextToVideoJobResponse`
+        def SubmitTextToVideoJob(request)
+          body = send_request('SubmitTextToVideoJob', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SubmitTextToVideoJobResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 提交Vidu文生视频任务接口
+
+        # @param request: Request instance for SubmitTextToVideoViduJob.
+        # @type request: :class:`Tencentcloud::vclm::V20240523::SubmitTextToVideoViduJobRequest`
+        # @rtype: :class:`Tencentcloud::vclm::V20240523::SubmitTextToVideoViduJobResponse`
+        def SubmitTextToVideoViduJob(request)
+          body = send_request('SubmitTextToVideoViduJob', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SubmitTextToVideoViduJobResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 用于提交视频编辑任务，支持上传视频、文本及图片素材开展编辑操作，涵盖风格迁移、元素替换、内容增减等核心能力。
 
         # @param request: Request instance for SubmitVideoEditJob.
@@ -524,6 +836,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = SubmitVideoEditJobResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 提交Kling多模态编辑任务
+
+        # @param request: Request instance for SubmitVideoEditKlingJob.
+        # @type request: :class:`Tencentcloud::vclm::V20240523::SubmitVideoEditKlingJobRequest`
+        # @rtype: :class:`Tencentcloud::vclm::V20240523::SubmitVideoEditKlingJobResponse`
+        def SubmitVideoEditKlingJob(request)
+          body = send_request('SubmitVideoEditKlingJob', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SubmitVideoEditKlingJobResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 用于提交视频延长任务接口。
+
+        # @param request: Request instance for SubmitVideoExtendKlingJob.
+        # @type request: :class:`Tencentcloud::vclm::V20240523::SubmitVideoExtendKlingJobRequest`
+        # @rtype: :class:`Tencentcloud::vclm::V20240523::SubmitVideoExtendKlingJobResponse`
+        def SubmitVideoExtendKlingJob(request)
+          body = send_request('SubmitVideoExtendKlingJob', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SubmitVideoExtendKlingJobResponse.new
             model.deserialize(response['Response'])
             model
           else

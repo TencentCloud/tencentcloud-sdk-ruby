@@ -2294,6 +2294,50 @@ module TencentCloud
         end
       end
 
+      # StartVersionInstance请求参数结构体
+      class StartVersionInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: 环境Id
+        # @type EnvId: String
+        # @param ServerName: 服务名
+        # @type ServerName: String
+        # @param VersionName: 版本名
+        # @type VersionName: String
+
+        attr_accessor :EnvId, :ServerName, :VersionName
+
+        def initialize(envid=nil, servername=nil, versionname=nil)
+          @EnvId = envid
+          @ServerName = servername
+          @VersionName = versionname
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @ServerName = params['ServerName']
+          @VersionName = params['VersionName']
+        end
+      end
+
+      # StartVersionInstance返回参数结构体
+      class StartVersionInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param InstanceName: pod名
+        # @type InstanceName: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InstanceName, :RequestId
+
+        def initialize(instancename=nil, requestid=nil)
+          @InstanceName = instancename
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @InstanceName = params['InstanceName']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 静态CDN资源信息
       class StaticStorageInfo < TencentCloud::Common::AbstractModel
         # @param StaticDomain: 静态CDN域名
@@ -2323,6 +2367,46 @@ module TencentCloud
           @Status = params['Status']
           @Region = params['Region']
           @Bucket = params['Bucket']
+        end
+      end
+
+      # StopVersionInstance请求参数结构体
+      class StopVersionInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: 环境Id
+        # @type EnvId: String
+        # @param ServerName: 服务名
+        # @type ServerName: String
+        # @param InstanceName: 实例名
+        # @type InstanceName: String
+
+        attr_accessor :EnvId, :ServerName, :InstanceName
+
+        def initialize(envid=nil, servername=nil, instancename=nil)
+          @EnvId = envid
+          @ServerName = servername
+          @InstanceName = instancename
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @ServerName = params['ServerName']
+          @InstanceName = params['InstanceName']
+        end
+      end
+
+      # StopVersionInstance返回参数结构体
+      class StopVersionInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 

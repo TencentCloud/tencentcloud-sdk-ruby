@@ -628,24 +628,26 @@ module TencentCloud
 
       # 新增录像上云模板返回数据
       class AddRecordBackupTemplateData < TencentCloud::Common::AbstractModel
-        # @param TemplateId: 模板ID
+        # @param TemplateId: <p>模板ID</p>
         # @type TemplateId: String
-        # @param TemplateName: 模板名称
+        # @param TemplateName: <p>模板名称</p>
         # @type TemplateName: String
-        # @param TimeSections: 上云时间段（按周进行设置，支持一天设置多个时间段，每个时间段不小于10分钟）
+        # @param TimeSections: <p>上云时间段（按周进行设置，支持一天设置多个时间段，每个时间段不小于10分钟）</p>
         # @type TimeSections: Array
-        # @param DevTimeSections: 录像时间段（按周进行设置，支持一天设置多个时间段，每个时间段不小于10分钟）
+        # @param DevTimeSections: <p>录像时间段（按周进行设置，支持一天设置多个时间段，每个时间段不小于10分钟）</p>
         # @type DevTimeSections: Array
-        # @param Scale: 上云倍速（支持1，2，4倍速）
+        # @param Scale: <p>上云倍速（支持1，2，4倍速）</p>
         # @type Scale: Integer
-        # @param CreateAt: 创建时间
+        # @param CreateAt: <p>创建时间</p>
         # @type CreateAt: String
-        # @param UpdateAt: 更新时间
+        # @param UpdateAt: <p>更新时间</p>
         # @type UpdateAt: String
+        # @param DayOffset: <p>周期偏移量，默认1，表示拉取昨天的设备录像，0表示取去今天的设备录像，3表示拉取前天的设备录像</p><p>默认值：1</p>
+        # @type DayOffset: Integer
 
-        attr_accessor :TemplateId, :TemplateName, :TimeSections, :DevTimeSections, :Scale, :CreateAt, :UpdateAt
+        attr_accessor :TemplateId, :TemplateName, :TimeSections, :DevTimeSections, :Scale, :CreateAt, :UpdateAt, :DayOffset
 
-        def initialize(templateid=nil, templatename=nil, timesections=nil, devtimesections=nil, scale=nil, createat=nil, updateat=nil)
+        def initialize(templateid=nil, templatename=nil, timesections=nil, devtimesections=nil, scale=nil, createat=nil, updateat=nil, dayoffset=nil)
           @TemplateId = templateid
           @TemplateName = templatename
           @TimeSections = timesections
@@ -653,6 +655,7 @@ module TencentCloud
           @Scale = scale
           @CreateAt = createat
           @UpdateAt = updateat
+          @DayOffset = dayoffset
         end
 
         def deserialize(params)
@@ -677,27 +680,31 @@ module TencentCloud
           @Scale = params['Scale']
           @CreateAt = params['CreateAt']
           @UpdateAt = params['UpdateAt']
+          @DayOffset = params['DayOffset']
         end
       end
 
       # AddRecordBackupTemplate请求参数结构体
       class AddRecordBackupTemplateRequest < TencentCloud::Common::AbstractModel
-        # @param TemplateName: 模板名称（仅支持中文、英文、数字、_、-，长度不超过32个字符，模板名称全局唯一，不能为空，不能重复）
+        # @param TemplateName: <p>模板名称（仅支持中文、英文、数字、_、-，长度不超过32个字符，模板名称全局唯一，不能为空，不能重复）</p>
         # @type TemplateName: String
-        # @param TimeSections: 上云时间段（按周进行设置，支持一天设置多个时间段，每个时间段不小于10分钟）
+        # @param TimeSections: <p>上云时间段（按周进行设置，支持一天设置多个时间段，每个时间段不小于10分钟）</p>
         # @type TimeSections: Array
-        # @param DevTimeSections: 录像时间段（按周进行设置，支持一天设置多个时间段，每个时间段不小于10分钟）
+        # @param DevTimeSections: <p>录像时间段（按周进行设置，支持一天设置多个时间段，每个时间段不小于10分钟）</p>
         # @type DevTimeSections: Array
-        # @param Scale: 上云倍速（支持1，2，4倍速）
+        # @param Scale: <p>上云倍速（支持1，2，4倍速）</p>
         # @type Scale: Integer
+        # @param DayOffset: <p>周期偏移量，默认1，表示拉取昨天的设备录像，0表示取去今天的设备录像，3表示拉取前天的设备录像</p><p>取值范围：[0, 90]</p><p>默认值：1</p>
+        # @type DayOffset: Integer
 
-        attr_accessor :TemplateName, :TimeSections, :DevTimeSections, :Scale
+        attr_accessor :TemplateName, :TimeSections, :DevTimeSections, :Scale, :DayOffset
 
-        def initialize(templatename=nil, timesections=nil, devtimesections=nil, scale=nil)
+        def initialize(templatename=nil, timesections=nil, devtimesections=nil, scale=nil, dayoffset=nil)
           @TemplateName = templatename
           @TimeSections = timesections
           @DevTimeSections = devtimesections
           @Scale = scale
+          @DayOffset = dayoffset
         end
 
         def deserialize(params)
@@ -719,12 +726,13 @@ module TencentCloud
             end
           end
           @Scale = params['Scale']
+          @DayOffset = params['DayOffset']
         end
       end
 
       # AddRecordBackupTemplate返回参数结构体
       class AddRecordBackupTemplateResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 返回数据
+        # @param Data: <p>返回数据</p>
         # @type Data: :class:`Tencentcloud::Iss.v20230517.models.AddRecordBackupTemplateData`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3568,24 +3576,26 @@ module TencentCloud
 
       # 查询录像上云模板返回数据
       class DescribeRecordBackupTemplateData < TencentCloud::Common::AbstractModel
-        # @param TemplateId: 模板ID
+        # @param TemplateId: <p>模板ID</p>
         # @type TemplateId: String
-        # @param TemplateName: 模板名称
+        # @param TemplateName: <p>模板名称</p>
         # @type TemplateName: String
-        # @param TimeSections: 上云时间段（按周进行设置，支持一天设置多个时间段，每个时间段不小于10分钟）
+        # @param TimeSections: <p>上云时间段（按周进行设置，支持一天设置多个时间段，每个时间段不小于10分钟）</p>
         # @type TimeSections: Array
-        # @param DevTimeSections: 录像时间段（按周进行设置，支持一天设置多个时间段，每个时间段不小于10分钟）
+        # @param DevTimeSections: <p>录像时间段（按周进行设置，支持一天设置多个时间段，每个时间段不小于10分钟）</p>
         # @type DevTimeSections: Array
-        # @param Scale: 上云倍速（支持1，2，4倍速）
+        # @param Scale: <p>上云倍速（支持1，2，4倍速）</p>
         # @type Scale: Integer
-        # @param CreateAt: 创建时间
+        # @param CreateAt: <p>创建时间</p>
         # @type CreateAt: String
-        # @param UpdateAt: 更新时间
+        # @param UpdateAt: <p>更新时间</p>
         # @type UpdateAt: String
+        # @param DayOffset: <p>周期偏移量，默认1，表示拉取昨天的设备录像，0表示取去今天的设备录像，3表示拉取前天的设备录像</p>
+        # @type DayOffset: Integer
 
-        attr_accessor :TemplateId, :TemplateName, :TimeSections, :DevTimeSections, :Scale, :CreateAt, :UpdateAt
+        attr_accessor :TemplateId, :TemplateName, :TimeSections, :DevTimeSections, :Scale, :CreateAt, :UpdateAt, :DayOffset
 
-        def initialize(templateid=nil, templatename=nil, timesections=nil, devtimesections=nil, scale=nil, createat=nil, updateat=nil)
+        def initialize(templateid=nil, templatename=nil, timesections=nil, devtimesections=nil, scale=nil, createat=nil, updateat=nil, dayoffset=nil)
           @TemplateId = templateid
           @TemplateName = templatename
           @TimeSections = timesections
@@ -3593,6 +3603,7 @@ module TencentCloud
           @Scale = scale
           @CreateAt = createat
           @UpdateAt = updateat
+          @DayOffset = dayoffset
         end
 
         def deserialize(params)
@@ -3617,6 +3628,7 @@ module TencentCloud
           @Scale = params['Scale']
           @CreateAt = params['CreateAt']
           @UpdateAt = params['UpdateAt']
+          @DayOffset = params['DayOffset']
         end
       end
 
@@ -5445,24 +5457,26 @@ module TencentCloud
 
       # 查询录像上云模板列表返回数据
       class ListRecordBackupTemplatesData < TencentCloud::Common::AbstractModel
-        # @param TemplateId: 模板ID
+        # @param TemplateId: <p>模板ID</p>
         # @type TemplateId: String
-        # @param TemplateName: 模板名称
+        # @param TemplateName: <p>模板名称</p>
         # @type TemplateName: String
-        # @param TimeSections: 上云时间段（按周进行设置，支持一天设置多个时间段，每个时间段不小于10分钟）
+        # @param TimeSections: <p>上云时间段（按周进行设置，支持一天设置多个时间段，每个时间段不小于10分钟）</p>
         # @type TimeSections: Array
-        # @param DevTimeSections: 录像时间段（按周进行设置，支持一天设置多个时间段，每个时间段不小于10分钟）
+        # @param DevTimeSections: <p>录像时间段（按周进行设置，支持一天设置多个时间段，每个时间段不小于10分钟）</p>
         # @type DevTimeSections: Array
-        # @param Scale: 上云倍速（支持1，2，4倍速）
+        # @param Scale: <p>上云倍速（支持1，2，4倍速）</p>
         # @type Scale: Integer
-        # @param CreateAt: 创建时间
+        # @param CreateAt: <p>创建时间</p>
         # @type CreateAt: String
-        # @param UpdateAt: 更新时间
+        # @param UpdateAt: <p>更新时间</p>
         # @type UpdateAt: String
+        # @param DayOffset: <p>周期偏移量，默认1，表示拉去昨天的，0表示拉去今天的，3表示拉去前天的</p>
+        # @type DayOffset: Integer
 
-        attr_accessor :TemplateId, :TemplateName, :TimeSections, :DevTimeSections, :Scale, :CreateAt, :UpdateAt
+        attr_accessor :TemplateId, :TemplateName, :TimeSections, :DevTimeSections, :Scale, :CreateAt, :UpdateAt, :DayOffset
 
-        def initialize(templateid=nil, templatename=nil, timesections=nil, devtimesections=nil, scale=nil, createat=nil, updateat=nil)
+        def initialize(templateid=nil, templatename=nil, timesections=nil, devtimesections=nil, scale=nil, createat=nil, updateat=nil, dayoffset=nil)
           @TemplateId = templateid
           @TemplateName = templatename
           @TimeSections = timesections
@@ -5470,6 +5484,7 @@ module TencentCloud
           @Scale = scale
           @CreateAt = createat
           @UpdateAt = updateat
+          @DayOffset = dayoffset
         end
 
         def deserialize(params)
@@ -5494,6 +5509,7 @@ module TencentCloud
           @Scale = params['Scale']
           @CreateAt = params['CreateAt']
           @UpdateAt = params['UpdateAt']
+          @DayOffset = params['DayOffset']
         end
       end
 
@@ -7656,24 +7672,26 @@ module TencentCloud
 
       # 修改录像上云模板返回数据
       class UpdateRecordBackupTemplateData < TencentCloud::Common::AbstractModel
-        # @param TemplateId: 模板ID
+        # @param TemplateId: <p>模板ID</p>
         # @type TemplateId: String
-        # @param TemplateName: 模板名称
+        # @param TemplateName: <p>模板名称</p>
         # @type TemplateName: String
-        # @param TimeSections: 上云时间段（按周进行设置，支持一天设置多个时间段，每个时间段不小于10分钟）
+        # @param TimeSections: <p>上云时间段（按周进行设置，支持一天设置多个时间段，每个时间段不小于10分钟）</p>
         # @type TimeSections: Array
-        # @param DevTimeSections: 录像时间段（按周进行设置，支持一天设置多个时间段，每个时间段不小于10分钟）
+        # @param DevTimeSections: <p>录像时间段（按周进行设置，支持一天设置多个时间段，每个时间段不小于10分钟）</p>
         # @type DevTimeSections: Array
-        # @param Scale: 上云倍速（支持1，2，4倍速）
+        # @param Scale: <p>上云倍速（支持1，2，4倍速）</p>
         # @type Scale: Integer
-        # @param CreateAt: 创建时间
+        # @param CreateAt: <p>创建时间</p>
         # @type CreateAt: String
-        # @param UpdateAt: 更新时间
+        # @param UpdateAt: <p>更新时间</p>
         # @type UpdateAt: String
+        # @param DayOffset: <p>周期偏移量，默认1，表示拉取昨天的设备录像，0表示取去今天的设备录像，3表示拉取前天的设备录像</p>
+        # @type DayOffset: Integer
 
-        attr_accessor :TemplateId, :TemplateName, :TimeSections, :DevTimeSections, :Scale, :CreateAt, :UpdateAt
+        attr_accessor :TemplateId, :TemplateName, :TimeSections, :DevTimeSections, :Scale, :CreateAt, :UpdateAt, :DayOffset
 
-        def initialize(templateid=nil, templatename=nil, timesections=nil, devtimesections=nil, scale=nil, createat=nil, updateat=nil)
+        def initialize(templateid=nil, templatename=nil, timesections=nil, devtimesections=nil, scale=nil, createat=nil, updateat=nil, dayoffset=nil)
           @TemplateId = templateid
           @TemplateName = templatename
           @TimeSections = timesections
@@ -7681,6 +7699,7 @@ module TencentCloud
           @Scale = scale
           @CreateAt = createat
           @UpdateAt = updateat
+          @DayOffset = dayoffset
         end
 
         def deserialize(params)
@@ -7705,6 +7724,7 @@ module TencentCloud
           @Scale = params['Scale']
           @CreateAt = params['CreateAt']
           @UpdateAt = params['UpdateAt']
+          @DayOffset = params['DayOffset']
         end
       end
 

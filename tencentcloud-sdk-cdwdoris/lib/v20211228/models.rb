@@ -160,10 +160,12 @@ module TencentCloud
         # @type Encryption: String
         # @param EncryptionEnabled: 是否开通加密存储：0-未开通，1-已开通
         # @type EncryptionEnabled: Boolean
+        # @param ScheduleId: 任务调度id
+        # @type ScheduleId: Integer
 
-        attr_accessor :JobId, :Snapshot, :BackUpSize, :BackUpSingleSize, :BackUpTime, :ExpireTime, :JobStatus, :BackupType, :BackupTimeType, :DorisSourceInfo, :JobStatusNum, :BackupCosInfo, :IsUserDefineBucket, :ErrorReason, :SnapshotRemainPolicy, :IsolationCount, :EnableSecurityLock, :GracePeriod, :GraceStartTime, :IsWithinGracePeriod, :UseManagedBucket, :InstanceId, :InstanceName, :InstanceStatus, :InstanceStatusDesc, :DataRemoteRegion, :BucketEncryption, :Encryption, :EncryptionEnabled
+        attr_accessor :JobId, :Snapshot, :BackUpSize, :BackUpSingleSize, :BackUpTime, :ExpireTime, :JobStatus, :BackupType, :BackupTimeType, :DorisSourceInfo, :JobStatusNum, :BackupCosInfo, :IsUserDefineBucket, :ErrorReason, :SnapshotRemainPolicy, :IsolationCount, :EnableSecurityLock, :GracePeriod, :GraceStartTime, :IsWithinGracePeriod, :UseManagedBucket, :InstanceId, :InstanceName, :InstanceStatus, :InstanceStatusDesc, :DataRemoteRegion, :BucketEncryption, :Encryption, :EncryptionEnabled, :ScheduleId
 
-        def initialize(jobid=nil, snapshot=nil, backupsize=nil, backupsinglesize=nil, backuptime=nil, expiretime=nil, jobstatus=nil, backuptype=nil, backuptimetype=nil, dorissourceinfo=nil, jobstatusnum=nil, backupcosinfo=nil, isuserdefinebucket=nil, errorreason=nil, snapshotremainpolicy=nil, isolationcount=nil, enablesecuritylock=nil, graceperiod=nil, gracestarttime=nil, iswithingraceperiod=nil, usemanagedbucket=nil, instanceid=nil, instancename=nil, instancestatus=nil, instancestatusdesc=nil, dataremoteregion=nil, bucketencryption=nil, encryption=nil, encryptionenabled=nil)
+        def initialize(jobid=nil, snapshot=nil, backupsize=nil, backupsinglesize=nil, backuptime=nil, expiretime=nil, jobstatus=nil, backuptype=nil, backuptimetype=nil, dorissourceinfo=nil, jobstatusnum=nil, backupcosinfo=nil, isuserdefinebucket=nil, errorreason=nil, snapshotremainpolicy=nil, isolationcount=nil, enablesecuritylock=nil, graceperiod=nil, gracestarttime=nil, iswithingraceperiod=nil, usemanagedbucket=nil, instanceid=nil, instancename=nil, instancestatus=nil, instancestatusdesc=nil, dataremoteregion=nil, bucketencryption=nil, encryption=nil, encryptionenabled=nil, scheduleid=nil)
           @JobId = jobid
           @Snapshot = snapshot
           @BackUpSize = backupsize
@@ -193,6 +195,7 @@ module TencentCloud
           @BucketEncryption = bucketencryption
           @Encryption = encryption
           @EncryptionEnabled = encryptionenabled
+          @ScheduleId = scheduleid
         end
 
         def deserialize(params)
@@ -237,6 +240,7 @@ module TencentCloud
           end
           @Encryption = params['Encryption']
           @EncryptionEnabled = params['EncryptionEnabled']
+          @ScheduleId = params['ScheduleId']
         end
       end
 
@@ -604,8 +608,8 @@ module TencentCloud
 
         attr_accessor :ComputeGroupId, :FileName, :FileConf, :KeyConf, :OriParam, :NeedRestart, :FilePath, :FileKeyValues, :FileKeyValuesNew
         extend Gem::Deprecate
-        deprecate :FileKeyValues, :none, 2026, 2
-        deprecate :FileKeyValues=, :none, 2026, 2
+        deprecate :FileKeyValues, :none, 2026, 4
+        deprecate :FileKeyValues=, :none, 2026, 4
 
         def initialize(computegroupid=nil, filename=nil, fileconf=nil, keyconf=nil, oriparam=nil, needrestart=nil, filepath=nil, filekeyvalues=nil, filekeyvaluesnew=nil)
           @ComputeGroupId = computegroupid
@@ -855,20 +859,20 @@ module TencentCloud
 
         attr_accessor :InstanceId, :OperationType, :ScheduleId, :WeekDays, :ExecuteHour, :BackUpTables, :BackupType, :DorisSourceInfo, :BackupTimeType, :RestoreType, :AuthType, :CosSourceInfo, :ScheduleName, :ScheduleInfo, :UpdateStatus, :CosBucket, :SnapshotRemainPolicy, :DataRemoteRegion, :BucketType, :EnableSecurityLock, :GracePeriod
         extend Gem::Deprecate
-        deprecate :WeekDays, :none, 2026, 2
-        deprecate :WeekDays=, :none, 2026, 2
-        deprecate :ExecuteHour, :none, 2026, 2
-        deprecate :ExecuteHour=, :none, 2026, 2
-        deprecate :BackupType, :none, 2026, 2
-        deprecate :BackupType=, :none, 2026, 2
-        deprecate :DorisSourceInfo, :none, 2026, 2
-        deprecate :DorisSourceInfo=, :none, 2026, 2
-        deprecate :RestoreType, :none, 2026, 2
-        deprecate :RestoreType=, :none, 2026, 2
-        deprecate :AuthType, :none, 2026, 2
-        deprecate :AuthType=, :none, 2026, 2
-        deprecate :CosSourceInfo, :none, 2026, 2
-        deprecate :CosSourceInfo=, :none, 2026, 2
+        deprecate :WeekDays, :none, 2026, 4
+        deprecate :WeekDays=, :none, 2026, 4
+        deprecate :ExecuteHour, :none, 2026, 4
+        deprecate :ExecuteHour=, :none, 2026, 4
+        deprecate :BackupType, :none, 2026, 4
+        deprecate :BackupType=, :none, 2026, 4
+        deprecate :DorisSourceInfo, :none, 2026, 4
+        deprecate :DorisSourceInfo=, :none, 2026, 4
+        deprecate :RestoreType, :none, 2026, 4
+        deprecate :RestoreType=, :none, 2026, 4
+        deprecate :AuthType, :none, 2026, 4
+        deprecate :AuthType=, :none, 2026, 4
+        deprecate :CosSourceInfo, :none, 2026, 4
+        deprecate :CosSourceInfo=, :none, 2026, 4
 
         def initialize(instanceid=nil, operationtype=nil, scheduleid=nil, weekdays=nil, executehour=nil, backuptables=nil, backuptype=nil, dorissourceinfo=nil, backuptimetype=nil, restoretype=nil, authtype=nil, cossourceinfo=nil, schedulename=nil, scheduleinfo=nil, updatestatus=nil, cosbucket=nil, snapshotremainpolicy=nil, dataremoteregion=nil, buckettype=nil, enablesecuritylock=nil, graceperiod=nil)
           @InstanceId = instanceid
@@ -1054,10 +1058,10 @@ module TencentCloud
 
         attr_accessor :Zone, :FeSpec, :BeSpec, :HaFlag, :UserVPCId, :UserSubnetId, :ProductVersion, :ChargeProperties, :InstanceName, :DorisUserPwd, :Tags, :HaType, :CaseSensitive, :EnableMultiZones, :UserMultiZoneInfos, :UserMultiZoneInfoArr, :IsSSC, :SSCCU, :CacheDiskSize, :CacheDataDiskSize
         extend Gem::Deprecate
-        deprecate :UserMultiZoneInfos, :none, 2026, 2
-        deprecate :UserMultiZoneInfos=, :none, 2026, 2
-        deprecate :CacheDiskSize, :none, 2026, 2
-        deprecate :CacheDiskSize=, :none, 2026, 2
+        deprecate :UserMultiZoneInfos, :none, 2026, 4
+        deprecate :UserMultiZoneInfos=, :none, 2026, 4
+        deprecate :CacheDiskSize, :none, 2026, 4
+        deprecate :CacheDiskSize=, :none, 2026, 4
 
         def initialize(zone=nil, fespec=nil, bespec=nil, haflag=nil, uservpcid=nil, usersubnetid=nil, productversion=nil, chargeproperties=nil, instancename=nil, dorisuserpwd=nil, tags=nil, hatype=nil, casesensitive=nil, enablemultizones=nil, usermultizoneinfos=nil, usermultizoneinfoarr=nil, isssc=nil, ssccu=nil, cachedisksize=nil, cachedatadisksize=nil)
           @Zone = zone
@@ -1415,15 +1419,18 @@ module TencentCloud
         # @type FrontEndRules: Array
         # @param AvailableWhiteListNames: 返回可用的白名单名称
         # @type AvailableWhiteListNames: Array
+        # @param IsolationDays: 隔离天数
+        # @type IsolationDays: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Items, :FrontEndRules, :AvailableWhiteListNames, :RequestId
+        attr_accessor :Items, :FrontEndRules, :AvailableWhiteListNames, :IsolationDays, :RequestId
 
-        def initialize(items=nil, frontendrules=nil, availablewhitelistnames=nil, requestid=nil)
+        def initialize(items=nil, frontendrules=nil, availablewhitelistnames=nil, isolationdays=nil, requestid=nil)
           @Items = items
           @FrontEndRules = frontendrules
           @AvailableWhiteListNames = availablewhitelistnames
+          @IsolationDays = isolationdays
           @RequestId = requestid
         end
 
@@ -1445,6 +1452,7 @@ module TencentCloud
             end
           end
           @AvailableWhiteListNames = params['AvailableWhiteListNames']
+          @IsolationDays = params['IsolationDays']
           @RequestId = params['RequestId']
         end
       end
@@ -1603,17 +1611,21 @@ module TencentCloud
         # @type ApplicationType: Integer
         # @param EncryptionFilters: 0-未加密；1-已加密
         # @type EncryptionFilters: Array
+        # @param ScheduleId: 调度任务id过滤
+        # @type ScheduleId: Integer
 
-        attr_accessor :ApplicationType, :EncryptionFilters
+        attr_accessor :ApplicationType, :EncryptionFilters, :ScheduleId
 
-        def initialize(applicationtype=nil, encryptionfilters=nil)
+        def initialize(applicationtype=nil, encryptionfilters=nil, scheduleid=nil)
           @ApplicationType = applicationtype
           @EncryptionFilters = encryptionfilters
+          @ScheduleId = scheduleid
         end
 
         def deserialize(params)
           @ApplicationType = params['ApplicationType']
           @EncryptionFilters = params['EncryptionFilters']
+          @ScheduleId = params['ScheduleId']
         end
       end
 
@@ -1888,17 +1900,20 @@ module TencentCloud
         # @type HasCN: Boolean
         # @param ExistingJarConfList: 实例已经存在的jar包列表
         # @type ExistingJarConfList: Array
+        # @param IPDBFileSizeLimit: ipdb的文件大小 byte
+        # @type IPDBFileSizeLimit: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ClusterConfList, :BuildVersion, :ErrorMsg, :HasCN, :ExistingJarConfList, :RequestId
+        attr_accessor :ClusterConfList, :BuildVersion, :ErrorMsg, :HasCN, :ExistingJarConfList, :IPDBFileSizeLimit, :RequestId
 
-        def initialize(clusterconflist=nil, buildversion=nil, errormsg=nil, hascn=nil, existingjarconflist=nil, requestid=nil)
+        def initialize(clusterconflist=nil, buildversion=nil, errormsg=nil, hascn=nil, existingjarconflist=nil, ipdbfilesizelimit=nil, requestid=nil)
           @ClusterConfList = clusterconflist
           @BuildVersion = buildversion
           @ErrorMsg = errormsg
           @HasCN = hascn
           @ExistingJarConfList = existingjarconflist
+          @IPDBFileSizeLimit = ipdbfilesizelimit
           @RequestId = requestid
         end
 
@@ -1922,6 +1937,7 @@ module TencentCloud
               @ExistingJarConfList << clusterconfigsinfofromemr_tmp
             end
           end
+          @IPDBFileSizeLimit = params['IPDBFileSizeLimit']
           @RequestId = params['RequestId']
         end
       end
@@ -2696,8 +2712,8 @@ module TencentCloud
 
         attr_accessor :InstanceID, :Input
         extend Gem::Deprecate
-        deprecate :InstanceID, :none, 2026, 2
-        deprecate :InstanceID=, :none, 2026, 2
+        deprecate :InstanceID, :none, 2026, 4
+        deprecate :InstanceID=, :none, 2026, 4
 
         def initialize(instanceid=nil, input=nil)
           @InstanceID = instanceid
@@ -3348,7 +3364,7 @@ module TencentCloud
 
       # DescribeWorkloadGroup请求参数结构体
       class DescribeWorkloadGroupRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 集群id
+        # @param InstanceId: <p>集群id</p>
         # @type InstanceId: String
 
         attr_accessor :InstanceId
@@ -3364,21 +3380,24 @@ module TencentCloud
 
       # DescribeWorkloadGroup返回参数结构体
       class DescribeWorkloadGroupResponse < TencentCloud::Common::AbstractModel
-        # @param WorkloadGroups: 资源组信息
+        # @param WorkloadGroups: <p>资源组信息</p>
         # @type WorkloadGroups: Array
-        # @param Status: 是否开启资源组：开启-open、关闭-close
+        # @param Status: <p>是否开启资源组：开启-open、关闭-close</p>
         # @type Status: String
-        # @param ErrorMsg: 错误信息
+        # @param ErrorMsg: <p>错误信息</p>
         # @type ErrorMsg: String
+        # @param MonitorStatus: <p>是否开启监控，0：未开启，1：开启</p>
+        # @type MonitorStatus: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :WorkloadGroups, :Status, :ErrorMsg, :RequestId
+        attr_accessor :WorkloadGroups, :Status, :ErrorMsg, :MonitorStatus, :RequestId
 
-        def initialize(workloadgroups=nil, status=nil, errormsg=nil, requestid=nil)
+        def initialize(workloadgroups=nil, status=nil, errormsg=nil, monitorstatus=nil, requestid=nil)
           @WorkloadGroups = workloadgroups
           @Status = status
           @ErrorMsg = errormsg
+          @MonitorStatus = monitorstatus
           @RequestId = requestid
         end
 
@@ -3393,6 +3412,7 @@ module TencentCloud
           end
           @Status = params['Status']
           @ErrorMsg = params['ErrorMsg']
+          @MonitorStatus = params['MonitorStatus']
           @RequestId = params['RequestId']
         end
       end
@@ -3694,13 +3714,17 @@ module TencentCloud
         # @type SlaveInstances: Array
         # @param SyncerIp: ccr服务部署节点ip
         # @type SyncerIp: String
+        # @param EnableSqlConv: 是否支持sql convertor
+        # @type EnableSqlConv: Integer
+        # @param TimeZone: 集群时区，默认+08:00
+        # @type TimeZone: String
 
-        attr_accessor :InstanceId, :InstanceName, :Status, :Version, :Region, :Zone, :VpcId, :SubnetId, :PayMode, :CreateTime, :ExpireTime, :MasterSummary, :CoreSummary, :HA, :HaType, :AccessInfo, :Id, :RegionId, :ZoneDesc, :FlowMsg, :StatusDesc, :RenewFlag, :Tags, :Monitor, :HasClsTopic, :ClsTopicId, :ClsLogSetId, :EnableXMLConfig, :RegionDesc, :Eip, :CosMoveFactor, :Kind, :CosBucketName, :CanAttachCbs, :BuildVersion, :Components, :IfExistCatalog, :Characteristic, :RestartTimeout, :GraceShutdownWaitSeconds, :CaseSensitive, :IsWhiteSGs, :BindSGs, :EnableMultiZones, :UserNetworkInfos, :EnableCoolDown, :CoolDownBucket, :Details, :EnableDlc, :AccountType, :MonitorMode, :CNSummary, :ComputeGroupCount, :CosStorageSize, :IsMasterNonVM, :CosPkgCapacity, :UseManagedBucket, :InstanceType, :MasterInstance, :SlaveInstances, :SyncerIp
+        attr_accessor :InstanceId, :InstanceName, :Status, :Version, :Region, :Zone, :VpcId, :SubnetId, :PayMode, :CreateTime, :ExpireTime, :MasterSummary, :CoreSummary, :HA, :HaType, :AccessInfo, :Id, :RegionId, :ZoneDesc, :FlowMsg, :StatusDesc, :RenewFlag, :Tags, :Monitor, :HasClsTopic, :ClsTopicId, :ClsLogSetId, :EnableXMLConfig, :RegionDesc, :Eip, :CosMoveFactor, :Kind, :CosBucketName, :CanAttachCbs, :BuildVersion, :Components, :IfExistCatalog, :Characteristic, :RestartTimeout, :GraceShutdownWaitSeconds, :CaseSensitive, :IsWhiteSGs, :BindSGs, :EnableMultiZones, :UserNetworkInfos, :EnableCoolDown, :CoolDownBucket, :Details, :EnableDlc, :AccountType, :MonitorMode, :CNSummary, :ComputeGroupCount, :CosStorageSize, :IsMasterNonVM, :CosPkgCapacity, :UseManagedBucket, :InstanceType, :MasterInstance, :SlaveInstances, :SyncerIp, :EnableSqlConv, :TimeZone
         extend Gem::Deprecate
-        deprecate :IfExistCatalog, :none, 2026, 2
-        deprecate :IfExistCatalog=, :none, 2026, 2
+        deprecate :IfExistCatalog, :none, 2026, 4
+        deprecate :IfExistCatalog=, :none, 2026, 4
 
-        def initialize(instanceid=nil, instancename=nil, status=nil, version=nil, region=nil, zone=nil, vpcid=nil, subnetid=nil, paymode=nil, createtime=nil, expiretime=nil, mastersummary=nil, coresummary=nil, ha=nil, hatype=nil, accessinfo=nil, id=nil, regionid=nil, zonedesc=nil, flowmsg=nil, statusdesc=nil, renewflag=nil, tags=nil, monitor=nil, hasclstopic=nil, clstopicid=nil, clslogsetid=nil, enablexmlconfig=nil, regiondesc=nil, eip=nil, cosmovefactor=nil, kind=nil, cosbucketname=nil, canattachcbs=nil, buildversion=nil, components=nil, ifexistcatalog=nil, characteristic=nil, restarttimeout=nil, graceshutdownwaitseconds=nil, casesensitive=nil, iswhitesgs=nil, bindsgs=nil, enablemultizones=nil, usernetworkinfos=nil, enablecooldown=nil, cooldownbucket=nil, details=nil, enabledlc=nil, accounttype=nil, monitormode=nil, cnsummary=nil, computegroupcount=nil, cosstoragesize=nil, ismasternonvm=nil, cospkgcapacity=nil, usemanagedbucket=nil, instancetype=nil, masterinstance=nil, slaveinstances=nil, syncerip=nil)
+        def initialize(instanceid=nil, instancename=nil, status=nil, version=nil, region=nil, zone=nil, vpcid=nil, subnetid=nil, paymode=nil, createtime=nil, expiretime=nil, mastersummary=nil, coresummary=nil, ha=nil, hatype=nil, accessinfo=nil, id=nil, regionid=nil, zonedesc=nil, flowmsg=nil, statusdesc=nil, renewflag=nil, tags=nil, monitor=nil, hasclstopic=nil, clstopicid=nil, clslogsetid=nil, enablexmlconfig=nil, regiondesc=nil, eip=nil, cosmovefactor=nil, kind=nil, cosbucketname=nil, canattachcbs=nil, buildversion=nil, components=nil, ifexistcatalog=nil, characteristic=nil, restarttimeout=nil, graceshutdownwaitseconds=nil, casesensitive=nil, iswhitesgs=nil, bindsgs=nil, enablemultizones=nil, usernetworkinfos=nil, enablecooldown=nil, cooldownbucket=nil, details=nil, enabledlc=nil, accounttype=nil, monitormode=nil, cnsummary=nil, computegroupcount=nil, cosstoragesize=nil, ismasternonvm=nil, cospkgcapacity=nil, usemanagedbucket=nil, instancetype=nil, masterinstance=nil, slaveinstances=nil, syncerip=nil, enablesqlconv=nil, timezone=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @Status = status
@@ -3762,6 +3786,8 @@ module TencentCloud
           @MasterInstance = masterinstance
           @SlaveInstances = slaveinstances
           @SyncerIp = syncerip
+          @EnableSqlConv = enablesqlconv
+          @TimeZone = timezone
         end
 
         def deserialize(params)
@@ -3845,6 +3871,8 @@ module TencentCloud
           @MasterInstance = params['MasterInstance']
           @SlaveInstances = params['SlaveInstances']
           @SyncerIp = params['SyncerIp']
+          @EnableSqlConv = params['EnableSqlConv']
+          @TimeZone = params['TimeZone']
         end
       end
 
@@ -4890,18 +4918,18 @@ module TencentCloud
 
         attr_accessor :InstanceId, :BackUpJobId, :ReplicationNum, :ReserveSourceConfig, :RecoverType, :CosSourceInfo, :ScheduleType, :NextTime, :ScheduleName, :OperationType, :RecoverScope, :RecoverDatabase, :ReserveStoragePolicy
         extend Gem::Deprecate
-        deprecate :RecoverType, :none, 2026, 2
-        deprecate :RecoverType=, :none, 2026, 2
-        deprecate :CosSourceInfo, :none, 2026, 2
-        deprecate :CosSourceInfo=, :none, 2026, 2
-        deprecate :ScheduleType, :none, 2026, 2
-        deprecate :ScheduleType=, :none, 2026, 2
-        deprecate :NextTime, :none, 2026, 2
-        deprecate :NextTime=, :none, 2026, 2
-        deprecate :ScheduleName, :none, 2026, 2
-        deprecate :ScheduleName=, :none, 2026, 2
-        deprecate :OperationType, :none, 2026, 2
-        deprecate :OperationType=, :none, 2026, 2
+        deprecate :RecoverType, :none, 2026, 4
+        deprecate :RecoverType=, :none, 2026, 4
+        deprecate :CosSourceInfo, :none, 2026, 4
+        deprecate :CosSourceInfo=, :none, 2026, 4
+        deprecate :ScheduleType, :none, 2026, 4
+        deprecate :ScheduleType=, :none, 2026, 4
+        deprecate :NextTime, :none, 2026, 4
+        deprecate :NextTime=, :none, 2026, 4
+        deprecate :ScheduleName, :none, 2026, 4
+        deprecate :ScheduleName=, :none, 2026, 4
+        deprecate :OperationType, :none, 2026, 4
+        deprecate :OperationType=, :none, 2026, 4
 
         def initialize(instanceid=nil, backupjobid=nil, replicationnum=nil, reservesourceconfig=nil, recovertype=nil, cossourceinfo=nil, scheduletype=nil, nexttime=nil, schedulename=nil, operationtype=nil, recoverscope=nil, recoverdatabase=nil, reservestoragepolicy=nil)
           @InstanceId = instanceid
@@ -5725,19 +5753,26 @@ module TencentCloud
         # @type RemainDays: Integer
         # @param RemainLatestNum: 保留最新快照的数量
         # @type RemainLatestNum: Integer
+        # @param RemainDaysUnit: 天数单位
+        # 0：天
+        # 1：季度
+        # 2：年
+        # @type RemainDaysUnit: Integer
 
-        attr_accessor :Type, :RemainDays, :RemainLatestNum
+        attr_accessor :Type, :RemainDays, :RemainLatestNum, :RemainDaysUnit
 
-        def initialize(type=nil, remaindays=nil, remainlatestnum=nil)
+        def initialize(type=nil, remaindays=nil, remainlatestnum=nil, remaindaysunit=nil)
           @Type = type
           @RemainDays = remaindays
           @RemainLatestNum = remainlatestnum
+          @RemainDaysUnit = remaindaysunit
         end
 
         def deserialize(params)
           @Type = params['Type']
           @RemainDays = params['RemainDays']
           @RemainLatestNum = params['RemainLatestNum']
+          @RemainDaysUnit = params['RemainDaysUnit']
         end
       end
 

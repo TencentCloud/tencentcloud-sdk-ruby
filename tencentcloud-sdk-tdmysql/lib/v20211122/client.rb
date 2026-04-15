@@ -125,6 +125,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询实例归档日志列表 DescribeDBSArchiveLogs
+
+        # @param request: Request instance for DescribeDBSArchiveLogs.
+        # @type request: :class:`Tencentcloud::tdmysql::V20211122::DescribeDBSArchiveLogsRequest`
+        # @rtype: :class:`Tencentcloud::tdmysql::V20211122::DescribeDBSArchiveLogsResponse`
+        def DescribeDBSArchiveLogs(request)
+          body = send_request('DescribeDBSArchiveLogs', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDBSArchiveLogsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取可恢复时间 DescribeDBSAvailableRecoveryTime
 
         # @param request: Request instance for DescribeDBSAvailableRecoveryTime.

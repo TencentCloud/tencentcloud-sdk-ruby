@@ -721,39 +721,39 @@ module TencentCloud
 
       # ConfigureSyncJob请求参数结构体
       class ConfigureSyncJobRequest < TencentCloud::Common::AbstractModel
-        # @param JobId: 同步实例id（即标识一个同步作业），形如sync-werwfs23，可通过[DescribeSyncJobs](https://cloud.tencent.com/document/product/571/82103)接口获取。
+        # @param JobId: <p>同步实例id（即标识一个同步作业），形如sync-werwfs23，可通过<a href="https://cloud.tencent.com/document/product/571/82103">DescribeSyncJobs</a>接口获取。</p>
         # @type JobId: String
-        # @param SrcAccessType: 源端接入类型，cdb(云数据库)、cvm(云服务器自建)、vpc(私有网络)、extranet(外网)、vpncloud(vpn接入)、dcg(专线接入)、ccn(云联网)、intranet(自研上云),注意具体可选值依赖当前链路
+        # @param SrcAccessType: <p>源端接入类型，cdb(云数据库)、cvm(云服务器自建)、vpc(私有网络)、extranet(外网)、vpncloud(vpn接入)、dcg(专线接入)、ccn(云联网)、intranet(自研上云),注意具体可选值依赖当前链路</p>
         # @type SrcAccessType: String
-        # @param DstAccessType: 目标端接入类型，cdb(云数据库)、cvm(云服务器自建)、vpc(私有网络)、extranet(外网)、vpncloud(vpn接入)、dcg(专线接入)、ccn(云联网)、intranet(自研上云)、ckafka(CKafka实例),注意具体可选值依赖当前链路
+        # @param DstAccessType: <p>目标端接入类型，cdb(云数据库)、cvm(云服务器自建)、vpc(私有网络)、extranet(外网)、vpncloud(vpn接入)、dcg(专线接入)、ccn(云联网)、intranet(自研上云)、ckafka(CKafka实例),注意具体可选值依赖当前链路</p>
         # @type DstAccessType: String
-        # @param Objects: 同步库表对象信息
+        # @param Objects: <p>同步库表对象信息</p>
         # @type Objects: :class:`Tencentcloud::Dts.v20211206.models.Objects`
-        # @param JobName: 同步任务名称
+        # @param JobName: <p>同步任务名称</p>
         # @type JobName: String
-        # @param JobMode: 枚举值是 liteMode 和 fullMode ，分别对应精简模式或正常模式
+        # @param JobMode: <p>配置任务模式，默认值为fullMode</p><p>枚举值：</p><ul><li>fullMode： 正常模式</li></ul>
         # @type JobMode: String
-        # @param RunMode: 运行模式，取值如：Immediate(表示立即运行，默认为此项值)、Timed(表示定时运行)
+        # @param RunMode: <p>运行模式，取值如：Immediate(表示立即运行，默认为此项值)、Timed(表示定时运行)</p>
         # @type RunMode: String
-        # @param ExpectRunTime: 期待启动时间，当RunMode取值为Timed时，此值必填，形如："2006-01-02 15:04:05"
+        # @param ExpectRunTime: <p>期待启动时间，当RunMode取值为Timed时，此值必填，形如：&quot;2006-01-02 15:04:05&quot;</p>
         # @type ExpectRunTime: String
-        # @param SrcConnectType: 源端tdsql连接方式：proxy-通过tdsql proxy主机访问各个set节点，注意只有在自研上云的网络环境下才能通过这种方式连接，SrcInfos中只需要提供proxy主机信息。set-直连set节点，如选择直连set方式，需要正确填写proxy主机信息及所有set节点信息。源端是tdsqlmysql类型必填。
+        # @param SrcConnectType: <p>源端tdsql连接方式：proxy-通过tdsql proxy主机访问各个set节点，注意只有在自研上云的网络环境下才能通过这种方式连接，SrcInfos中只需要提供proxy主机信息。set-直连set节点，如选择直连set方式，需要正确填写proxy主机信息及所有set节点信息。源端是tdsqlmysql类型必填。</p>
         # @type SrcConnectType: String
-        # @param SrcInfo: 源端信息，单机版类型数据库配置使用，且SrcNodeType传single。例如mysql、percona、mariadb等。
+        # @param SrcInfo: <p>源端信息，单机版类型数据库配置使用，且SrcNodeType传single。例如mysql、percona、mariadb等。</p>
         # @type SrcInfo: :class:`Tencentcloud::Dts.v20211206.models.Endpoint`
-        # @param SrcInfos: 源端信息，分布式类型数据库配置使用，且SrcNodeType传cluster。例如分布式数据库tdsqlmysql等，mongodb使用此参数透传。
+        # @param SrcInfos: <p>源端信息，分布式类型数据库配置使用，且SrcNodeType传cluster。例如分布式数据库tdsqlmysql等，mongodb使用此参数透传。</p>
         # @type SrcInfos: :class:`Tencentcloud::Dts.v20211206.models.SyncDBEndpointInfos`
-        # @param SrcNodeType: 枚举值：cluster、single。源库为单节点数据库使用single，多节点使用cluster
+        # @param SrcNodeType: <p>枚举值：cluster、single。源库为单节点数据库使用single，多节点使用cluster</p>
         # @type SrcNodeType: String
-        # @param DstInfo: 目标端信息，单机版类型数据库配置使用，且SrcNodeType传single。例如mysql、percona、mariadb等。
+        # @param DstInfo: <p>目标端信息，单机版类型数据库配置使用，且SrcNodeType传single。例如mysql、percona、mariadb等。</p>
         # @type DstInfo: :class:`Tencentcloud::Dts.v20211206.models.Endpoint`
-        # @param DstInfos: 目标端信息，分布式类型数据库配置使用，且SrcNodeType传cluster。例如分布式数据库tdsqlmysql等，mongodb使用此参数透传。
+        # @param DstInfos: <p>目标端信息，分布式类型数据库配置使用，且SrcNodeType传cluster。例如分布式数据库tdsqlmysql等，mongodb使用此参数透传。</p>
         # @type DstInfos: :class:`Tencentcloud::Dts.v20211206.models.SyncDBEndpointInfos`
-        # @param DstNodeType: 枚举值：cluster、single。目标库为单节点数据库使用single，多节点使用cluster
+        # @param DstNodeType: <p>枚举值：cluster、single。目标库为单节点数据库使用single，多节点使用cluster</p>
         # @type DstNodeType: String
-        # @param Options: 同步任务选项；该字段下的RateLimitOption暂时无法生效、如果需要修改限速、可通过ModifySyncRateLimit接口完成限速
+        # @param Options: <p>同步任务选项；该字段下的RateLimitOption暂时无法生效、如果需要修改限速、可通过ModifySyncRateLimit接口完成限速</p>
         # @type Options: :class:`Tencentcloud::Dts.v20211206.models.Options`
-        # @param AutoRetryTimeRangeMinutes: 自动重试的时间段、可设置5至720分钟、0表示不重试
+        # @param AutoRetryTimeRangeMinutes: <p>自动重试的时间段、可设置5至720分钟、0表示不重试</p>
         # @type AutoRetryTimeRangeMinutes: Integer
 
         attr_accessor :JobId, :SrcAccessType, :DstAccessType, :Objects, :JobName, :JobMode, :RunMode, :ExpectRunTime, :SrcConnectType, :SrcInfo, :SrcInfos, :SrcNodeType, :DstInfo, :DstInfos, :DstNodeType, :Options, :AutoRetryTimeRangeMinutes
@@ -5687,18 +5687,15 @@ module TencentCloud
         # @type Databases: Array
         # @param AdvancedObjects: 高级对象类型，如function、procedure。注意：如果要迁移同步高级对象，此配置中应该包含对应的高级对象类型。当需要同步高级对象时，初始化类型必须包含结构初始化类型，即任务的Options.InitType字段值为Structure或Full
         # @type AdvancedObjects: Array
-        # @param OnlineDDL: OnlineDDL类型，冗余字段不做配置用途
-        # @type OnlineDDL: :class:`Tencentcloud::Dts.v20211206.models.OnlineDDL`
         # @param DatabasesOpFilter: 库/表/视图级 DML/DDL 白名单
         # @type DatabasesOpFilter: Array
 
-        attr_accessor :Mode, :Databases, :AdvancedObjects, :OnlineDDL, :DatabasesOpFilter
+        attr_accessor :Mode, :Databases, :AdvancedObjects, :DatabasesOpFilter
 
-        def initialize(mode=nil, databases=nil, advancedobjects=nil, onlineddl=nil, databasesopfilter=nil)
+        def initialize(mode=nil, databases=nil, advancedobjects=nil, databasesopfilter=nil)
           @Mode = mode
           @Databases = databases
           @AdvancedObjects = advancedobjects
-          @OnlineDDL = onlineddl
           @DatabasesOpFilter = databasesopfilter
         end
 
@@ -5713,10 +5710,6 @@ module TencentCloud
             end
           end
           @AdvancedObjects = params['AdvancedObjects']
-          unless params['OnlineDDL'].nil?
-            @OnlineDDL = OnlineDDL.new
-            @OnlineDDL.deserialize(params['OnlineDDL'])
-          end
           unless params['DatabasesOpFilter'].nil?
             @DatabasesOpFilter = []
             params['DatabasesOpFilter'].each do |i|
@@ -5745,22 +5738,6 @@ module TencentCloud
         def deserialize(params)
           @PartitionNo = params['PartitionNo']
           @Offset = params['Offset']
-        end
-      end
-
-      # OnlineDDL类型
-      class OnlineDDL < TencentCloud::Common::AbstractModel
-        # @param Status: 状态，ON-启用，OFF-不启用。
-        # @type Status: String
-
-        attr_accessor :Status
-
-        def initialize(status=nil)
-          @Status = status
-        end
-
-        def deserialize(params)
-          @Status = params['Status']
         end
       end
 
@@ -5793,33 +5770,33 @@ module TencentCloud
 
       # 数据同步中的选项
       class Options < TencentCloud::Common::AbstractModel
-        # @param InitType: 同步初始化选项，Data(全量数据初始化)、Structure(结构初始化)、Full(全量数据且结构初始化，默认)、None(仅增量)；mongodb链路只支持全量数据初始化或仅增量。
+        # @param InitType: <p>同步初始化选项，Data(全量数据初始化)、Structure(结构初始化)、Full(全量数据且结构初始化，默认)、None(仅增量)；mongodb链路只支持全量数据初始化或仅增量。</p>
         # @type InitType: String
-        # @param DealOfExistSameTable: 同名表的处理，ReportErrorAfterCheck(前置校验并报错，默认)、ExecuteAfterIgnore(忽略并继续执行)
+        # @param DealOfExistSameTable: <p>同名表的处理，ReportErrorAfterCheck(前置校验并报错，默认)、ExecuteAfterIgnore(忽略并继续执行)</p>
         # @type DealOfExistSameTable: String
-        # @param ConflictHandleType: 冲突处理选项，ReportError(报错，默认为该值)、Ignore(忽略)、Cover(覆盖)、ConditionCover(条件覆盖)
+        # @param ConflictHandleType: <p>冲突处理选项，ReportError(报错，默认为该值)、Ignore(忽略)、Cover(覆盖)、ConditionCover(条件覆盖)</p>
         # @type ConflictHandleType: String
-        # @param AddAdditionalColumn: 是否添加附加列
+        # @param AddAdditionalColumn: <p>是否添加附加列</p>
         # @type AddAdditionalColumn: Boolean
-        # @param OpTypes: 所要同步的DML和DDL的选项，Insert(插入操作)、Update(更新操作)、Delete(删除操作)、DDL(结构同步)， PartialDDL(自定义,和DdlOptions一起配合使用)。注意，这里至少需要包含DML中的一种。
+        # @param OpTypes: <p>所要同步的DML和DDL的选项，Insert(插入操作)、Update(更新操作)、Delete(删除操作)、DDL(结构同步)， PartialDDL(自定义,和DdlOptions一起配合使用)。注意，这里至少需要包含DML中的一种。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OpTypes: Array
-        # @param ConflictHandleOption: 冲突处理的详细选项，如条件覆盖中的条件行和条件操作
+        # @param ConflictHandleOption: <p>冲突处理的详细选项，如条件覆盖中的条件行和条件操作</p>
         # @type ConflictHandleOption: :class:`Tencentcloud::Dts.v20211206.models.ConflictHandleOption`
-        # @param DdlOptions: DDL同步选项，具体描述要同步哪些DDL
+        # @param DdlOptions: <p>DDL同步选项，具体描述要同步哪些DDL</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DdlOptions: Array
-        # @param KafkaOption: kafka同步选项
+        # @param KafkaOption: <p>kafka同步选项</p>
         # @type KafkaOption: :class:`Tencentcloud::Dts.v20211206.models.KafkaOption`
-        # @param RateLimitOption: 任务限速信息
+        # @param RateLimitOption: <p>任务限速信息</p>
         # @type RateLimitOption: :class:`Tencentcloud::Dts.v20211206.models.RateLimitOption`
-        # @param AutoRetryTimeRangeMinutes: 自动重试的时间窗口设置
+        # @param AutoRetryTimeRangeMinutes: <p>自动重试的时间窗口设置</p>
         # @type AutoRetryTimeRangeMinutes: Integer
-        # @param StartPosition: 同步到kafka链路指定位点。目前只支持时间格式：2023-12-20T19:24:23+08:00。如果没有指定位点，为空。
+        # @param StartPosition: <p>同步到kafka链路指定位点。目前只支持时间格式：2023-12-20T19:24:23+08:00。如果没有指定位点，为空。</p>
         # @type StartPosition: String
-        # @param FilterBeginCommit: 同步到kafka链路是否过滤掉begin和commit消息。目前仅mysql2kafka链路支持
+        # @param FilterBeginCommit: <p>同步到kafka链路是否过滤掉begin和commit消息。目前仅mysql2kafka链路支持</p>
         # @type FilterBeginCommit: Boolean
-        # @param FilterCheckpoint: 同步到kafka链路是否过滤掉checkpoint消息。目前仅mysql2kafka链路支持
+        # @param FilterCheckpoint: <p>同步到kafka链路是否过滤掉checkpoint消息。目前仅mysql2kafka链路支持</p>
         # @type FilterCheckpoint: Boolean
 
         attr_accessor :InitType, :DealOfExistSameTable, :ConflictHandleType, :AddAdditionalColumn, :OpTypes, :ConflictHandleOption, :DdlOptions, :KafkaOption, :RateLimitOption, :AutoRetryTimeRangeMinutes, :StartPosition, :FilterBeginCommit, :FilterCheckpoint

@@ -4185,10 +4185,12 @@ module TencentCloud
         # @type InputComplianceCheck: String
         # @param OutputComplianceCheck: <p>是否开启输出内容的合规性检查。取值有： <li>Enabled：开启；</li> <li>Disabled：关闭；</li></p>
         # @type OutputComplianceCheck: String
+        # @param OutputImageCount: <p>生成图片张数。*<em>仅ModelName为Kling时有效，可选值 1-9 *</em>。</p>
+        # @type OutputImageCount: Integer
 
-        attr_accessor :StorageMode, :MediaName, :ClassId, :ExpireTime, :Resolution, :AspectRatio, :PersonGeneration, :InputComplianceCheck, :OutputComplianceCheck
+        attr_accessor :StorageMode, :MediaName, :ClassId, :ExpireTime, :Resolution, :AspectRatio, :PersonGeneration, :InputComplianceCheck, :OutputComplianceCheck, :OutputImageCount
 
-        def initialize(storagemode=nil, medianame=nil, classid=nil, expiretime=nil, resolution=nil, aspectratio=nil, persongeneration=nil, inputcompliancecheck=nil, outputcompliancecheck=nil)
+        def initialize(storagemode=nil, medianame=nil, classid=nil, expiretime=nil, resolution=nil, aspectratio=nil, persongeneration=nil, inputcompliancecheck=nil, outputcompliancecheck=nil, outputimagecount=nil)
           @StorageMode = storagemode
           @MediaName = medianame
           @ClassId = classid
@@ -4198,6 +4200,7 @@ module TencentCloud
           @PersonGeneration = persongeneration
           @InputComplianceCheck = inputcompliancecheck
           @OutputComplianceCheck = outputcompliancecheck
+          @OutputImageCount = outputimagecount
         end
 
         def deserialize(params)
@@ -4210,6 +4213,7 @@ module TencentCloud
           @PersonGeneration = params['PersonGeneration']
           @InputComplianceCheck = params['InputComplianceCheck']
           @OutputComplianceCheck = params['OutputComplianceCheck']
+          @OutputImageCount = params['OutputImageCount']
         end
       end
 
@@ -4522,10 +4526,12 @@ module TencentCloud
         # @type FrameInterpolate: String
         # @param LogoAdd: <p>是否开启图标水印。取值有： <li>Enabled：开启；</li> <li>Disabled：关闭；</li><br>目前支持的模型有 Vidu，其他模型暂不支持。</p>
         # @type LogoAdd: String
+        # @param EnableBGM: <p>是否为生成的视频添加背景音乐。</p><p>枚举值：</p><ul><li>Enabled： 系统将从预设 BGM 库中自动挑选合适的音乐并添加。</li><li>Disabled： 不添加BGM。</li></ul><p>默认值：Disabled</p>
+        # @type EnableBGM: String
 
-        attr_accessor :StorageMode, :MediaName, :ClassId, :ExpireTime, :Duration, :Resolution, :AspectRatio, :AudioGeneration, :PersonGeneration, :InputComplianceCheck, :OutputComplianceCheck, :EnhanceSwitch, :OffPeak, :FrameInterpolate, :LogoAdd
+        attr_accessor :StorageMode, :MediaName, :ClassId, :ExpireTime, :Duration, :Resolution, :AspectRatio, :AudioGeneration, :PersonGeneration, :InputComplianceCheck, :OutputComplianceCheck, :EnhanceSwitch, :OffPeak, :FrameInterpolate, :LogoAdd, :EnableBGM
 
-        def initialize(storagemode=nil, medianame=nil, classid=nil, expiretime=nil, duration=nil, resolution=nil, aspectratio=nil, audiogeneration=nil, persongeneration=nil, inputcompliancecheck=nil, outputcompliancecheck=nil, enhanceswitch=nil, offpeak=nil, frameinterpolate=nil, logoadd=nil)
+        def initialize(storagemode=nil, medianame=nil, classid=nil, expiretime=nil, duration=nil, resolution=nil, aspectratio=nil, audiogeneration=nil, persongeneration=nil, inputcompliancecheck=nil, outputcompliancecheck=nil, enhanceswitch=nil, offpeak=nil, frameinterpolate=nil, logoadd=nil, enablebgm=nil)
           @StorageMode = storagemode
           @MediaName = medianame
           @ClassId = classid
@@ -4541,6 +4547,7 @@ module TencentCloud
           @OffPeak = offpeak
           @FrameInterpolate = frameinterpolate
           @LogoAdd = logoadd
+          @EnableBGM = enablebgm
         end
 
         def deserialize(params)
@@ -4559,6 +4566,7 @@ module TencentCloud
           @OffPeak = params['OffPeak']
           @FrameInterpolate = params['FrameInterpolate']
           @LogoAdd = params['LogoAdd']
+          @EnableBGM = params['EnableBGM']
         end
       end
 

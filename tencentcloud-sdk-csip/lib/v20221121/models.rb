@@ -11729,10 +11729,12 @@ module TencentCloud
         # @type RiskRuleId: String
         # @param CheckStatus: 风险验证状态
         # @type CheckStatus: String
+        # @param AppID: 
+        # @type AppID: Integer
 
-        attr_accessor :CreateTime, :UpdateTime, :RiskStatus, :RiskContent, :Provider, :ProviderName, :CloudAccountId, :CloudAccountName, :InstanceId, :InstanceName, :RiskId, :RiskRuleId, :CheckStatus
+        attr_accessor :CreateTime, :UpdateTime, :RiskStatus, :RiskContent, :Provider, :ProviderName, :CloudAccountId, :CloudAccountName, :InstanceId, :InstanceName, :RiskId, :RiskRuleId, :CheckStatus, :AppID
 
-        def initialize(createtime=nil, updatetime=nil, riskstatus=nil, riskcontent=nil, provider=nil, providername=nil, cloudaccountid=nil, cloudaccountname=nil, instanceid=nil, instancename=nil, riskid=nil, riskruleid=nil, checkstatus=nil)
+        def initialize(createtime=nil, updatetime=nil, riskstatus=nil, riskcontent=nil, provider=nil, providername=nil, cloudaccountid=nil, cloudaccountname=nil, instanceid=nil, instancename=nil, riskid=nil, riskruleid=nil, checkstatus=nil, appid=nil)
           @CreateTime = createtime
           @UpdateTime = updatetime
           @RiskStatus = riskstatus
@@ -11746,6 +11748,7 @@ module TencentCloud
           @RiskId = riskid
           @RiskRuleId = riskruleid
           @CheckStatus = checkstatus
+          @AppID = appid
         end
 
         def deserialize(params)
@@ -11762,6 +11765,7 @@ module TencentCloud
           @RiskId = params['RiskId']
           @RiskRuleId = params['RiskRuleId']
           @CheckStatus = params['CheckStatus']
+          @AppID = params['AppID']
         end
       end
 

@@ -8891,6 +8891,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（ModifyNatGatewayAdvancedAttribute）用于修改NAT网关的高级属性。
+
+        # @param request: Request instance for ModifyNatGatewayAdvancedAttribute.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::ModifyNatGatewayAdvancedAttributeRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::ModifyNatGatewayAdvancedAttributeResponse`
+        def ModifyNatGatewayAdvancedAttribute(request)
+          body = send_request('ModifyNatGatewayAdvancedAttribute', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyNatGatewayAdvancedAttributeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（ModifyNatGatewayAttribute）用于修改NAT网关的属性。
 
         # @param request: Request instance for ModifyNatGatewayAttribute.

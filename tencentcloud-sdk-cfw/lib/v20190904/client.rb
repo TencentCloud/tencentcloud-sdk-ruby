@@ -1351,6 +1351,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # DescribeNDRAssetIdentificationList - 获取NDR资产识别结果列表
+
+        # @param request: Request instance for DescribeNDRAssetIdentificationList.
+        # @type request: :class:`Tencentcloud::cfw::V20190904::DescribeNDRAssetIdentificationListRequest`
+        # @rtype: :class:`Tencentcloud::cfw::V20190904::DescribeNDRAssetIdentificationListResponse`
+        def DescribeNDRAssetIdentificationList(request)
+          body = send_request('DescribeNDRAssetIdentificationList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeNDRAssetIdentificationListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询NAT访问控制列表
 
         # @param request: Request instance for DescribeNatAcRule.

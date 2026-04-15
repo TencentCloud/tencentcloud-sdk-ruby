@@ -3319,25 +3319,25 @@ module TencentCloud
         # @type Order: String
         # @param By: 排序列：EndTime结束时间，StartTime开始时间，MatchTimes命中次数
         # @type By: String
+        # @param ShowType: blocklist 封禁列表
+        # whitelist 白名单列表
+        # @type ShowType: String
         # @param SearchValue: 搜索参数，json格式字符串，空则传"{}"，域名：domain，危险等级：level，放通原因：ignore_reason，安全事件来源：rule_source，地理位置：address，模糊搜索：common
         # @type SearchValue: String
         # @param RuleType: 规则类型：1封禁，2放通
         # @type RuleType: Integer
-        # @param ShowType: blocklist 封禁列表
-        # whitelist 白名单列表
-        # @type ShowType: String
 
-        attr_accessor :Limit, :Offset, :Direction, :Order, :By, :SearchValue, :RuleType, :ShowType
+        attr_accessor :Limit, :Offset, :Direction, :Order, :By, :ShowType, :SearchValue, :RuleType
 
-        def initialize(limit=nil, offset=nil, direction=nil, order=nil, by=nil, searchvalue=nil, ruletype=nil, showtype=nil)
+        def initialize(limit=nil, offset=nil, direction=nil, order=nil, by=nil, showtype=nil, searchvalue=nil, ruletype=nil)
           @Limit = limit
           @Offset = offset
           @Direction = direction
           @Order = order
           @By = by
+          @ShowType = showtype
           @SearchValue = searchvalue
           @RuleType = ruletype
-          @ShowType = showtype
         end
 
         def deserialize(params)
@@ -3346,9 +3346,9 @@ module TencentCloud
           @Direction = params['Direction']
           @Order = params['Order']
           @By = params['By']
+          @ShowType = params['ShowType']
           @SearchValue = params['SearchValue']
           @RuleType = params['RuleType']
-          @ShowType = params['ShowType']
         end
       end
 
@@ -4637,6 +4637,164 @@ module TencentCloud
           @ReturnCode = params['ReturnCode']
           @ReturnMsg = params['ReturnMsg']
           @AppProtocolList = params['AppProtocolList']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeNDRAssetIdentificationList请求参数结构体
+      class DescribeNDRAssetIdentificationListRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 每页条数
+        # @type Limit: Integer
+        # @param Offset: 偏移量
+        # @type Offset: Integer
+        # @param Order: 排序方式，asc正序 desc倒序
+        # @type Order: String
+        # @param By: 排序字段
+        # @type By: String
+        # @param Filters: 查询过滤条件，多个条件之间为AND的关系
+        # @type Filters: Array
+
+        attr_accessor :Limit, :Offset, :Order, :By, :Filters
+
+        def initialize(limit=nil, offset=nil, order=nil, by=nil, filters=nil)
+          @Limit = limit
+          @Offset = offset
+          @Order = order
+          @By = by
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @Order = params['Order']
+          @By = params['By']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              operatorfilter_tmp = OperatorFilter.new
+              operatorfilter_tmp.deserialize(i)
+              @Filters << operatorfilter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeNDRAssetIdentificationList返回参数结构体
+      class DescribeNDRAssetIdentificationListResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 符合查询条件的总条数
+        # @type Total: Integer
+        # @param Data: 查询结果列表
+        # @type Data: Array
+        # @param AssetCategoryStats: 服务类型统计结果
+        # @type AssetCategoryStats: Array
+        # @param RegionOptions: 地域可选项
+        # @type RegionOptions: Array
+        # @param IpVersionOptions: IP版本可选项
+        # @type IpVersionOptions: Array
+        # @param IpTypeOptions: IP类型可选项
+        # @type IpTypeOptions: Array
+        # @param AssetCategoryOptions: 服务类型可选项
+        # @type AssetCategoryOptions: Array
+        # @param IdentificationSourceOptions: 识别来源可选项
+        # @type IdentificationSourceOptions: Array
+        # @param ProtocolOptions: 协议可选项
+        # @type ProtocolOptions: Array
+        # @param InstanceTypeOptions: 实例类型可选项
+        # @type InstanceTypeOptions: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :Data, :AssetCategoryStats, :RegionOptions, :IpVersionOptions, :IpTypeOptions, :AssetCategoryOptions, :IdentificationSourceOptions, :ProtocolOptions, :InstanceTypeOptions, :RequestId
+
+        def initialize(total=nil, data=nil, assetcategorystats=nil, regionoptions=nil, ipversionoptions=nil, iptypeoptions=nil, assetcategoryoptions=nil, identificationsourceoptions=nil, protocoloptions=nil, instancetypeoptions=nil, requestid=nil)
+          @Total = total
+          @Data = data
+          @AssetCategoryStats = assetcategorystats
+          @RegionOptions = regionoptions
+          @IpVersionOptions = ipversionoptions
+          @IpTypeOptions = iptypeoptions
+          @AssetCategoryOptions = assetcategoryoptions
+          @IdentificationSourceOptions = identificationsourceoptions
+          @ProtocolOptions = protocoloptions
+          @InstanceTypeOptions = instancetypeoptions
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              ndrassetserviceinfo_tmp = NDRAssetServiceInfo.new
+              ndrassetserviceinfo_tmp.deserialize(i)
+              @Data << ndrassetserviceinfo_tmp
+            end
+          end
+          unless params['AssetCategoryStats'].nil?
+            @AssetCategoryStats = []
+            params['AssetCategoryStats'].each do |i|
+              ndrassetcategorystats_tmp = NDRAssetCategoryStats.new
+              ndrassetcategorystats_tmp.deserialize(i)
+              @AssetCategoryStats << ndrassetcategorystats_tmp
+            end
+          end
+          unless params['RegionOptions'].nil?
+            @RegionOptions = []
+            params['RegionOptions'].each do |i|
+              fieldoption_tmp = FieldOption.new
+              fieldoption_tmp.deserialize(i)
+              @RegionOptions << fieldoption_tmp
+            end
+          end
+          unless params['IpVersionOptions'].nil?
+            @IpVersionOptions = []
+            params['IpVersionOptions'].each do |i|
+              fieldoption_tmp = FieldOption.new
+              fieldoption_tmp.deserialize(i)
+              @IpVersionOptions << fieldoption_tmp
+            end
+          end
+          unless params['IpTypeOptions'].nil?
+            @IpTypeOptions = []
+            params['IpTypeOptions'].each do |i|
+              fieldoption_tmp = FieldOption.new
+              fieldoption_tmp.deserialize(i)
+              @IpTypeOptions << fieldoption_tmp
+            end
+          end
+          unless params['AssetCategoryOptions'].nil?
+            @AssetCategoryOptions = []
+            params['AssetCategoryOptions'].each do |i|
+              fieldoption_tmp = FieldOption.new
+              fieldoption_tmp.deserialize(i)
+              @AssetCategoryOptions << fieldoption_tmp
+            end
+          end
+          unless params['IdentificationSourceOptions'].nil?
+            @IdentificationSourceOptions = []
+            params['IdentificationSourceOptions'].each do |i|
+              fieldoption_tmp = FieldOption.new
+              fieldoption_tmp.deserialize(i)
+              @IdentificationSourceOptions << fieldoption_tmp
+            end
+          end
+          unless params['ProtocolOptions'].nil?
+            @ProtocolOptions = []
+            params['ProtocolOptions'].each do |i|
+              fieldoption_tmp = FieldOption.new
+              fieldoption_tmp.deserialize(i)
+              @ProtocolOptions << fieldoption_tmp
+            end
+          end
+          unless params['InstanceTypeOptions'].nil?
+            @InstanceTypeOptions = []
+            params['InstanceTypeOptions'].each do |i|
+              fieldoption_tmp = FieldOption.new
+              fieldoption_tmp.deserialize(i)
+              @InstanceTypeOptions << fieldoption_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -6519,6 +6677,26 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 字段可选项枚举值
+      class FieldOption < TencentCloud::Common::AbstractModel
+        # @param Text: 字段展示值
+        # @type Text: String
+        # @param Value: 字段存储值
+        # @type Value: String
+
+        attr_accessor :Text, :Value
+
+        def initialize(text=nil, value=nil)
+          @Text = text
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Text = params['Text']
+          @Value = params['Value']
         end
       end
 
@@ -8827,6 +9005,148 @@ module TencentCloud
         end
       end
 
+      # NDR资产识别服务类型统计结果
+      class NDRAssetCategoryStats < TencentCloud::Common::AbstractModel
+        # @param Name: 服务类型
+        # @type Name: String
+        # @param Services: 服务统计结果
+        # @type Services: Array
+
+        attr_accessor :Name, :Services
+
+        def initialize(name=nil, services=nil)
+          @Name = name
+          @Services = services
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          unless params['Services'].nil?
+            @Services = []
+            params['Services'].each do |i|
+              ndrassetservicestats_tmp = NDRAssetServiceStats.new
+              ndrassetservicestats_tmp.deserialize(i)
+              @Services << ndrassetservicestats_tmp
+            end
+          end
+        end
+      end
+
+      # NDR资产识别信息
+      class NDRAssetServiceInfo < TencentCloud::Common::AbstractModel
+        # @param AssetId: 资产ID
+        # @type AssetId: String
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param InstanceName: 实例名称
+        # @type InstanceName: String
+        # @param InstanceType: 实例类型
+        # @type InstanceType: String
+        # @param Region: 地域
+        # @type Region: String
+        # @param VpcId: 私有网络ID
+        # @type VpcId: String
+        # @param VpcName: 私有网络名称
+        # @type VpcName: String
+        # @param Ip: 服务IP
+        # @type Ip: String
+        # @param Port: 服务端口
+        # @type Port: Integer
+        # @param IpVersion: IP版本
+        # "0": IPv4
+        # "1": IPv6
+        # @type IpVersion: String
+        # @param IpType: IP类型
+        # "0": 公网IP
+        # "1": EIP
+        # "-1": 内网IP
+        # @type IpType: String
+        # @param AssetService: 服务名称
+        # @type AssetService: String
+        # @param AssetVersion: 服务版本
+        # @type AssetVersion: String
+        # @param AssetCategory: 服务类型
+        # @type AssetCategory: String
+        # @param Protocol: 协议
+        # @type Protocol: String
+        # @param IdentificationSource: 识别来源
+        # "0": 流量识别
+        # "1": 云资产实例
+        # @type IdentificationSource: String
+        # @param FirstIdentificationTime: 首次识别时间
+        # @type FirstIdentificationTime: String
+        # @param LatestIdentificationTime: 最近识别时间
+        # @type LatestIdentificationTime: String
+        # @param ServerAddr: 服务地址
+        # @type ServerAddr: String
+
+        attr_accessor :AssetId, :InstanceId, :InstanceName, :InstanceType, :Region, :VpcId, :VpcName, :Ip, :Port, :IpVersion, :IpType, :AssetService, :AssetVersion, :AssetCategory, :Protocol, :IdentificationSource, :FirstIdentificationTime, :LatestIdentificationTime, :ServerAddr
+
+        def initialize(assetid=nil, instanceid=nil, instancename=nil, instancetype=nil, region=nil, vpcid=nil, vpcname=nil, ip=nil, port=nil, ipversion=nil, iptype=nil, assetservice=nil, assetversion=nil, assetcategory=nil, protocol=nil, identificationsource=nil, firstidentificationtime=nil, latestidentificationtime=nil, serveraddr=nil)
+          @AssetId = assetid
+          @InstanceId = instanceid
+          @InstanceName = instancename
+          @InstanceType = instancetype
+          @Region = region
+          @VpcId = vpcid
+          @VpcName = vpcname
+          @Ip = ip
+          @Port = port
+          @IpVersion = ipversion
+          @IpType = iptype
+          @AssetService = assetservice
+          @AssetVersion = assetversion
+          @AssetCategory = assetcategory
+          @Protocol = protocol
+          @IdentificationSource = identificationsource
+          @FirstIdentificationTime = firstidentificationtime
+          @LatestIdentificationTime = latestidentificationtime
+          @ServerAddr = serveraddr
+        end
+
+        def deserialize(params)
+          @AssetId = params['AssetId']
+          @InstanceId = params['InstanceId']
+          @InstanceName = params['InstanceName']
+          @InstanceType = params['InstanceType']
+          @Region = params['Region']
+          @VpcId = params['VpcId']
+          @VpcName = params['VpcName']
+          @Ip = params['Ip']
+          @Port = params['Port']
+          @IpVersion = params['IpVersion']
+          @IpType = params['IpType']
+          @AssetService = params['AssetService']
+          @AssetVersion = params['AssetVersion']
+          @AssetCategory = params['AssetCategory']
+          @Protocol = params['Protocol']
+          @IdentificationSource = params['IdentificationSource']
+          @FirstIdentificationTime = params['FirstIdentificationTime']
+          @LatestIdentificationTime = params['LatestIdentificationTime']
+          @ServerAddr = params['ServerAddr']
+        end
+      end
+
+      # NDR资产服务统计结果
+      class NDRAssetServiceStats < TencentCloud::Common::AbstractModel
+        # @param Name: 服务名称
+        # @type Name: String
+        # @param Count: 服务计数
+        # @type Count: Integer
+
+        attr_accessor :Name, :Count
+
+        def initialize(name=nil, count=nil)
+          @Name = name
+          @Count = count
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Count = params['Count']
+        end
+      end
+
       # Nat防火墙弹性公网ip列表
       class NatFwEipsInfo < TencentCloud::Common::AbstractModel
         # @param Eip: 弹性公网ip
@@ -9199,6 +9519,42 @@ module TencentCloud
           @VpcList = params['VpcList']
           @Eips = params['Eips']
           @AddCount = params['AddCount']
+        end
+      end
+
+      # 查询过滤条件
+      class OperatorFilter < TencentCloud::Common::AbstractModel
+        # @param Name: 过滤字段
+        # @type Name: String
+        # @param Values: 匹配的值
+        # @type Values: Array
+        # @param OperatorType: 操作类型：
+        # 1：等于 field = value
+        # 2：大于 field > value
+        # 3：小于 field < value
+        # 4：大于等于 field >= value
+        # 5：小于等于 field <= value
+        # 6：不等于 field <> value
+        # 7：IN field IN (value1, value2...)
+        # 8：NOT IN field NOT IN (value1, value2...)
+        # 9：模糊匹配 field LIKE value
+        # 13：非模糊匹配 field NOT LIKE value
+        # 14：按位与 field & value = value
+        # 15：between and field between value1 and value2
+        # @type OperatorType: Integer
+
+        attr_accessor :Name, :Values, :OperatorType
+
+        def initialize(name=nil, values=nil, operatortype=nil)
+          @Name = name
+          @Values = values
+          @OperatorType = operatortype
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Values = params['Values']
+          @OperatorType = params['OperatorType']
         end
       end
 

@@ -3013,25 +3013,29 @@ module TencentCloud
 
       # ListAlarmPolicy请求参数结构体
       class ListAlarmPolicyRequest < TencentCloud::Common::AbstractModel
-        # @param Offset: 页码
+        # @param Offset: <p>页码</p>
         # @type Offset: Integer
+        # @param Limit: <p>每页展示数量</p>
+        # @type Limit: Integer
 
-        attr_accessor :Offset
+        attr_accessor :Offset, :Limit
 
-        def initialize(offset=nil)
+        def initialize(offset=nil, limit=nil)
           @Offset = offset
+          @Limit = limit
         end
 
         def deserialize(params)
           @Offset = params['Offset']
+          @Limit = params['Limit']
         end
       end
 
       # ListAlarmPolicy返回参数结构体
       class ListAlarmPolicyResponse < TencentCloud::Common::AbstractModel
-        # @param Total: 返回记录的数量
+        # @param Total: <p>返回记录的数量</p>
         # @type Total: Integer
-        # @param AlarmPolicyList: 告警策略返回值
+        # @param AlarmPolicyList: <p>告警策略返回值</p>
         # @type AlarmPolicyList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

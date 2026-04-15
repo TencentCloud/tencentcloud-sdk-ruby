@@ -49,6 +49,68 @@ module TencentCloud
         end
       end
 
+      # 归档日志对象
+      class ArchiveLogModel < TencentCloud::Common::AbstractModel
+        # @param ArchiveLogId: 归档日志ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ArchiveLogId: Integer
+        # @param BackupDuration: 备份耗时
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BackupDuration: Integer
+        # @param BackupStatus: 备份集状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BackupStatus: String
+        # @param EndTime: 备份结束时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndTime: String
+        # @param ErrorMessage: 错误信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorMessage: String
+        # @param ExpiredTime: 过期时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExpiredTime: String
+        # @param FileName: 备份文件名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileName: String
+        # @param FileSize: 备份集文件大小，单位Byte
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileSize: Integer
+        # @param InstanceId: 实例ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
+        # @param StartTime: 备份开始时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StartTime: String
+
+        attr_accessor :ArchiveLogId, :BackupDuration, :BackupStatus, :EndTime, :ErrorMessage, :ExpiredTime, :FileName, :FileSize, :InstanceId, :StartTime
+
+        def initialize(archivelogid=nil, backupduration=nil, backupstatus=nil, endtime=nil, errormessage=nil, expiredtime=nil, filename=nil, filesize=nil, instanceid=nil, starttime=nil)
+          @ArchiveLogId = archivelogid
+          @BackupDuration = backupduration
+          @BackupStatus = backupstatus
+          @EndTime = endtime
+          @ErrorMessage = errormessage
+          @ExpiredTime = expiredtime
+          @FileName = filename
+          @FileSize = filesize
+          @InstanceId = instanceid
+          @StartTime = starttime
+        end
+
+        def deserialize(params)
+          @ArchiveLogId = params['ArchiveLogId']
+          @BackupDuration = params['BackupDuration']
+          @BackupStatus = params['BackupStatus']
+          @EndTime = params['EndTime']
+          @ErrorMessage = params['ErrorMessage']
+          @ExpiredTime = params['ExpiredTime']
+          @FileName = params['FileName']
+          @FileSize = params['FileSize']
+          @InstanceId = params['InstanceId']
+          @StartTime = params['StartTime']
+        end
+      end
+
       # 修改备份策略对象
       class BackupPolicyModelInput < TencentCloud::Common::AbstractModel
         # @param BackupEndTime: <p>备份结束时间</p>
@@ -470,6 +532,86 @@ module TencentCloud
               @Params << paramdesc_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDBSArchiveLogs请求参数结构体
+      class DescribeDBSArchiveLogsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>实例ID</p>
+        # @type InstanceId: String
+        # @param ArchiveLogId: <p>日志记录ID</p>
+        # @type ArchiveLogId: Integer
+        # @param EndTime: <p>结束时间</p>
+        # @type EndTime: String
+        # @param FilterStatus: <p>备份状态：pending,running,success,failed</p>
+        # @type FilterStatus: String
+        # @param Limit: <p>条数限制</p>
+        # @type Limit: Integer
+        # @param Offset: <p>偏移量</p>
+        # @type Offset: Integer
+        # @param OrderBy: <p>排序字段，枚举：StartTime,EndTime,ExpiredTime,FileSize,BackupDuration</p>
+        # @type OrderBy: String
+        # @param OrderType: <p>排序方式：ASC：顺序, DESC：倒序</p>
+        # @type OrderType: String
+        # @param StartTime: <p>开始时间</p>
+        # @type StartTime: String
+
+        attr_accessor :InstanceId, :ArchiveLogId, :EndTime, :FilterStatus, :Limit, :Offset, :OrderBy, :OrderType, :StartTime
+
+        def initialize(instanceid=nil, archivelogid=nil, endtime=nil, filterstatus=nil, limit=nil, offset=nil, orderby=nil, ordertype=nil, starttime=nil)
+          @InstanceId = instanceid
+          @ArchiveLogId = archivelogid
+          @EndTime = endtime
+          @FilterStatus = filterstatus
+          @Limit = limit
+          @Offset = offset
+          @OrderBy = orderby
+          @OrderType = ordertype
+          @StartTime = starttime
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @ArchiveLogId = params['ArchiveLogId']
+          @EndTime = params['EndTime']
+          @FilterStatus = params['FilterStatus']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @OrderBy = params['OrderBy']
+          @OrderType = params['OrderType']
+          @StartTime = params['StartTime']
+        end
+      end
+
+      # DescribeDBSArchiveLogs返回参数结构体
+      class DescribeDBSArchiveLogsResponse < TencentCloud::Common::AbstractModel
+        # @param Items: <p>归档日志列表</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Items: Array
+        # @param TotalCount: <p>总数</p>
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Items, :TotalCount, :RequestId
+
+        def initialize(items=nil, totalcount=nil, requestid=nil)
+          @Items = items
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              archivelogmodel_tmp = ArchiveLogModel.new
+              archivelogmodel_tmp.deserialize(i)
+              @Items << archivelogmodel_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end

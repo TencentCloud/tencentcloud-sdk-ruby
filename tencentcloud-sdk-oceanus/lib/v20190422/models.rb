@@ -160,161 +160,166 @@ module TencentCloud
 
       # 描述用户创建的集群信息
       class Cluster < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群 ID
+        # @param ClusterId: <p>集群 ID</p>
         # @type ClusterId: String
-        # @param Name: 集群名称
+        # @param Name: <p>集群名称</p>
         # @type Name: String
-        # @param Region: 地域
+        # @param Region: <p>地域</p>
         # @type Region: String
-        # @param AppId: 用户 AppID
+        # @param AppId: <p>用户 AppID</p>
         # @type AppId: Integer
-        # @param OwnerUin: 主账号 UIN
+        # @param OwnerUin: <p>主账号 UIN</p>
         # @type OwnerUin: String
-        # @param CreatorUin: 创建者 UIN
+        # @param CreatorUin: <p>创建者 UIN</p>
         # @type CreatorUin: String
-        # @param Status: 集群状态, 1 未初始化,3 初始化中，2 运行中
+        # @param Status: <p>集群状态, 1 未初始化,3 初始化中，2 运行中</p>
         # @type Status: Integer
-        # @param Remark: 描述
+        # @param Remark: <p>描述</p>
         # @type Remark: String
-        # @param CreateTime: 集群创建时间
+        # @param CreateTime: <p>集群创建时间</p>
         # @type CreateTime: String
-        # @param UpdateTime: 最后一次操作集群的时间
+        # @param UpdateTime: <p>最后一次操作集群的时间</p>
         # @type UpdateTime: String
-        # @param CuNum: CU 数量
+        # @param CuNum: <p>CU 数量</p>
         # @type CuNum: Integer
-        # @param CuMem: CU 内存规格
+        # @param CuMem: <p>CU 内存规格</p>
         # @type CuMem: Integer
-        # @param Zone: 可用区
+        # @param Zone: <p>可用区</p>
         # @type Zone: String
-        # @param StatusDesc: 状态描述
+        # @param StatusDesc: <p>状态描述</p>
         # @type StatusDesc: String
-        # @param CCNs: 网络
+        # @param CCNs: <p>网络</p>
         # @type CCNs: Array
-        # @param NetEnvironmentType: 网络
+        # @param NetEnvironmentType: <p>网络</p>
         # @type NetEnvironmentType: Integer
-        # @param FreeCuNum: 空闲 CU
+        # @param FreeCuNum: <p>空闲 CU</p>
         # @type FreeCuNum: Integer
-        # @param Tags: 集群绑定的标签
+        # @param Tags: <p>集群绑定的标签</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
-        # @param IsolatedTime: 集群隔离时间; 没隔离时间，则为 -
+        # @param IsolatedTime: <p>集群隔离时间; 没隔离时间，则为 -</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsolatedTime: String
-        # @param ExpireTime: 集群过期时间; 没过期概念，则为 -
+        # @param ExpireTime: <p>集群过期时间; 没过期概念，则为 -</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExpireTime: String
-        # @param SecondsUntilExpiry: 距离过期还有多少秒; 没过期概念，则为 -
+        # @param SecondsUntilExpiry: <p>距离过期还有多少秒; 没过期概念，则为 -</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecondsUntilExpiry: String
-        # @param AutoRenewFlag: 自动续费标记，0 表示默认状态 (用户未设置，即初始状态，用户开通了预付费不停服特权会进行自动续费)， 1 表示自动续费，2表示明确不自动续费(用户设置)
+        # @param AutoRenewFlag: <p>自动续费标记，0 表示默认状态 (用户未设置，即初始状态，用户开通了预付费不停服特权会进行自动续费)， 1 表示自动续费，2表示明确不自动续费(用户设置)</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AutoRenewFlag: Integer
-        # @param DefaultCOSBucket: 集群的默认 COS 存储桶
+        # @param DefaultCOSBucket: <p>集群的默认 COS 存储桶</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DefaultCOSBucket: String
-        # @param CLSLogSet: 集群的CLS 日志集 LogSet
+        # @param CLSLogSet: <p>集群的CLS 日志集 LogSet</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CLSLogSet: String
-        # @param CLSTopicId: 集群的CLS 日志主题 TopicId
+        # @param CLSTopicId: <p>集群的CLS 日志主题 TopicId</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CLSTopicId: String
-        # @param CLSLogName: 集群的CLS 日志集  名字
+        # @param CLSLogName: <p>集群的CLS 日志集  名字</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CLSLogName: String
-        # @param CLSTopicName: 集群的CLS 日志主题  名字
+        # @param CLSTopicName: <p>集群的CLS 日志主题  名字</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CLSTopicName: String
-        # @param Version: 集群的版本信息
+        # @param Version: <p>集群的版本信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Version: :class:`Tencentcloud::Oceanus.v20190422.models.ClusterVersion`
-        # @param FreeCu: 细粒度资源下的空闲CU
+        # @param FreeCu: <p>细粒度资源下的空闲CU</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FreeCu: Float
-        # @param DefaultLogCollectConf: 集群的默认日志采集配置
+        # @param DefaultLogCollectConf: <p>集群的默认日志采集配置</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DefaultLogCollectConf: String
-        # @param CustomizedDNSEnabled: 取值：0-没有设置，1-已设置，2-不允许设置
+        # @param CustomizedDNSEnabled: <p>取值：0-没有设置，1-已设置，2-不允许设置</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CustomizedDNSEnabled: Integer
-        # @param Correlations: 空间信息
+        # @param Correlations: <p>空间信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Correlations: Array
-        # @param RunningCu: 运行CU
+        # @param RunningCu: <p>运行CU</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RunningCu: Float
-        # @param PayMode: 0 后付费,1 预付费
+        # @param PayMode: <p>0 后付费,1 预付费</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PayMode: Integer
-        # @param IsNeedManageNode: 前端区分 集群是否需要2CU逻辑 因为历史集群 变配不需要, default 1  新集群都需要
+        # @param IsNeedManageNode: <p>前端区分 集群是否需要2CU逻辑 因为历史集群 变配不需要, default 1  新集群都需要</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsNeedManageNode: Integer
-        # @param ClusterSessions: session集群信息
+        # @param ClusterSessions: <p>session集群信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterSessions: Array
-        # @param ArchGeneration: V3版本 = 2
+        # @param ArchGeneration: <p>V3版本 = 2</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ArchGeneration: Integer
-        # @param ClusterType: 0:TKE, 1:EKS
+        # @param ClusterType: <p>0:TKE, 1:EKS</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterType: Integer
-        # @param Orders: 订单信息
+        # @param Orders: <p>订单信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Orders: Array
-        # @param SqlGateways: Gateway信息
+        # @param SqlGateways: <p>Gateway信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SqlGateways: Array
-        # @param WebUIType: 0 公网访问 // 1 内网访问
+        # @param WebUIType: <p>0 公网访问 // 1 内网访问</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WebUIType: Integer
-        # @param Type: 2 独享集群
+        # @param Type: <p>2 独享集群</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: Integer
-        # @param SubEks: 子eks集群
+        # @param SubEks: <p>子eks集群</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubEks: :class:`Tencentcloud::Oceanus.v20190422.models.SubEks`
-        # @param AgentSerialId: 上级集群
+        # @param AgentSerialId: <p>上级集群</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AgentSerialId: String
-        # @param ResourceType: 资源类型
+        # @param ResourceType: <p>资源类型</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceType: Integer
-        # @param BillingResourceMode: 集群类型
+        # @param BillingResourceMode: <p>集群类型</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BillingResourceMode: String
-        # @param MemRatio: Cu比例
+        # @param MemRatio: <p>Cu比例</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MemRatio: Integer
-        # @param CrossTenantEniMode: 是否开启跨租户弹性网卡
+        # @param CrossTenantEniMode: <p>是否开启跨租户弹性网卡</p>
         # @type CrossTenantEniMode: Integer
-        # @param TotalCpu: 总的CPU
+        # @param TotalCpu: <p>总的CPU</p>
         # @type TotalCpu: Float
-        # @param TotalMem: 总的内存
+        # @param TotalMem: <p>总的内存</p>
         # @type TotalMem: Float
-        # @param RunningCpu: 运行的CPU
+        # @param RunningCpu: <p>运行的CPU</p>
         # @type RunningCpu: Float
-        # @param RunningMem: 运行的内存
+        # @param RunningMem: <p>运行的内存</p>
         # @type RunningMem: Float
-        # @param Setats: setats集群
+        # @param Setats: <p>setats集群</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Setats: :class:`Tencentcloud::Oceanus.v20190422.models.Setats`
-        # @param Yarns: []
+        # @param Yarns: <p>[]</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Yarns: Array
-        # @param DeploymentMode: 0 单可用区 1多可用区
+        # @param DeploymentMode: <p>0 单可用区 1多可用区</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeploymentMode: Integer
-        # @param SlaveZones: 备可用区
+        # @param SlaveZones: <p>备可用区</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SlaveZones: Array
-        # @param LogCOSBucket: 集群的日志cos存储
+        # @param LogCOSBucket: <p>集群的日志cos存储</p>
         # @type LogCOSBucket: String
-        # @param CdcId: Cdc集群Id
+        # @param CdcId: <p>Cdc集群Id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CdcId: String
+        # @param ClusterProcessMsg: <p>集群进度</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterProcessMsg: String
+        # @param MaxCuPerJob: <p>单作业最大可配置 CU 数</p>
+        # @type MaxCuPerJob: Integer
 
-        attr_accessor :ClusterId, :Name, :Region, :AppId, :OwnerUin, :CreatorUin, :Status, :Remark, :CreateTime, :UpdateTime, :CuNum, :CuMem, :Zone, :StatusDesc, :CCNs, :NetEnvironmentType, :FreeCuNum, :Tags, :IsolatedTime, :ExpireTime, :SecondsUntilExpiry, :AutoRenewFlag, :DefaultCOSBucket, :CLSLogSet, :CLSTopicId, :CLSLogName, :CLSTopicName, :Version, :FreeCu, :DefaultLogCollectConf, :CustomizedDNSEnabled, :Correlations, :RunningCu, :PayMode, :IsNeedManageNode, :ClusterSessions, :ArchGeneration, :ClusterType, :Orders, :SqlGateways, :WebUIType, :Type, :SubEks, :AgentSerialId, :ResourceType, :BillingResourceMode, :MemRatio, :CrossTenantEniMode, :TotalCpu, :TotalMem, :RunningCpu, :RunningMem, :Setats, :Yarns, :DeploymentMode, :SlaveZones, :LogCOSBucket, :CdcId
+        attr_accessor :ClusterId, :Name, :Region, :AppId, :OwnerUin, :CreatorUin, :Status, :Remark, :CreateTime, :UpdateTime, :CuNum, :CuMem, :Zone, :StatusDesc, :CCNs, :NetEnvironmentType, :FreeCuNum, :Tags, :IsolatedTime, :ExpireTime, :SecondsUntilExpiry, :AutoRenewFlag, :DefaultCOSBucket, :CLSLogSet, :CLSTopicId, :CLSLogName, :CLSTopicName, :Version, :FreeCu, :DefaultLogCollectConf, :CustomizedDNSEnabled, :Correlations, :RunningCu, :PayMode, :IsNeedManageNode, :ClusterSessions, :ArchGeneration, :ClusterType, :Orders, :SqlGateways, :WebUIType, :Type, :SubEks, :AgentSerialId, :ResourceType, :BillingResourceMode, :MemRatio, :CrossTenantEniMode, :TotalCpu, :TotalMem, :RunningCpu, :RunningMem, :Setats, :Yarns, :DeploymentMode, :SlaveZones, :LogCOSBucket, :CdcId, :ClusterProcessMsg, :MaxCuPerJob
 
-        def initialize(clusterid=nil, name=nil, region=nil, appid=nil, owneruin=nil, creatoruin=nil, status=nil, remark=nil, createtime=nil, updatetime=nil, cunum=nil, cumem=nil, zone=nil, statusdesc=nil, ccns=nil, netenvironmenttype=nil, freecunum=nil, tags=nil, isolatedtime=nil, expiretime=nil, secondsuntilexpiry=nil, autorenewflag=nil, defaultcosbucket=nil, clslogset=nil, clstopicid=nil, clslogname=nil, clstopicname=nil, version=nil, freecu=nil, defaultlogcollectconf=nil, customizeddnsenabled=nil, correlations=nil, runningcu=nil, paymode=nil, isneedmanagenode=nil, clustersessions=nil, archgeneration=nil, clustertype=nil, orders=nil, sqlgateways=nil, webuitype=nil, type=nil, subeks=nil, agentserialid=nil, resourcetype=nil, billingresourcemode=nil, memratio=nil, crosstenantenimode=nil, totalcpu=nil, totalmem=nil, runningcpu=nil, runningmem=nil, setats=nil, yarns=nil, deploymentmode=nil, slavezones=nil, logcosbucket=nil, cdcid=nil)
+        def initialize(clusterid=nil, name=nil, region=nil, appid=nil, owneruin=nil, creatoruin=nil, status=nil, remark=nil, createtime=nil, updatetime=nil, cunum=nil, cumem=nil, zone=nil, statusdesc=nil, ccns=nil, netenvironmenttype=nil, freecunum=nil, tags=nil, isolatedtime=nil, expiretime=nil, secondsuntilexpiry=nil, autorenewflag=nil, defaultcosbucket=nil, clslogset=nil, clstopicid=nil, clslogname=nil, clstopicname=nil, version=nil, freecu=nil, defaultlogcollectconf=nil, customizeddnsenabled=nil, correlations=nil, runningcu=nil, paymode=nil, isneedmanagenode=nil, clustersessions=nil, archgeneration=nil, clustertype=nil, orders=nil, sqlgateways=nil, webuitype=nil, type=nil, subeks=nil, agentserialid=nil, resourcetype=nil, billingresourcemode=nil, memratio=nil, crosstenantenimode=nil, totalcpu=nil, totalmem=nil, runningcpu=nil, runningmem=nil, setats=nil, yarns=nil, deploymentmode=nil, slavezones=nil, logcosbucket=nil, cdcid=nil, clusterprocessmsg=nil, maxcuperjob=nil)
           @ClusterId = clusterid
           @Name = name
           @Region = region
@@ -373,6 +378,8 @@ module TencentCloud
           @SlaveZones = slavezones
           @LogCOSBucket = logcosbucket
           @CdcId = cdcid
+          @ClusterProcessMsg = clusterprocessmsg
+          @MaxCuPerJob = maxcuperjob
         end
 
         def deserialize(params)
@@ -499,6 +506,8 @@ module TencentCloud
           end
           @LogCOSBucket = params['LogCOSBucket']
           @CdcId = params['CdcId']
+          @ClusterProcessMsg = params['ClusterProcessMsg']
+          @MaxCuPerJob = params['MaxCuPerJob']
         end
       end
 
@@ -2771,9 +2780,9 @@ module TencentCloud
 
       # DescribeTreeJobs请求参数结构体
       class DescribeTreeJobsRequest < TencentCloud::Common::AbstractModel
-        # @param Filters: 筛选条件字段，使用了筛选字段后不支持分页，最多返回2000条记录
+        # @param Filters: <p>筛选条件字段，使用了筛选字段后不支持分页，最多返回2000条记录</p>
         # @type Filters: Array
-        # @param WorkSpaceId: 工作空间 Serialid
+        # @param WorkSpaceId: <p>工作空间 Serialid</p>
         # @type WorkSpaceId: String
 
         attr_accessor :Filters, :WorkSpaceId
@@ -2798,19 +2807,19 @@ module TencentCloud
 
       # DescribeTreeJobs返回参数结构体
       class DescribeTreeJobsResponse < TencentCloud::Common::AbstractModel
-        # @param ParentId: 父节点ID
+        # @param ParentId: <p>父节点ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParentId: String
-        # @param Id: 当前文件夹ID
+        # @param Id: <p>当前文件夹ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: String
-        # @param Name: 当前文件夹名
+        # @param Name: <p>当前文件夹名</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
-        # @param JobSet: 当前文件夹下的作业列表
+        # @param JobSet: <p>当前文件夹下的作业列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JobSet: Array
-        # @param Children: 迭代子目录
+        # @param Children: <p>迭代子目录</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Children: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -5403,10 +5412,12 @@ module TencentCloud
         # @type SetatsUiUrl: String
         # @param ImageVersion: <p>setats镜像版本</p>
         # @type ImageVersion: String
+        # @param WebUIType: <p>类型：0 公网，1 内网</p><p>枚举值：</p><ul><li>0： 公网</li><li>1： 内网</li></ul><p>默认值：0</p>
+        # @type WebUIType: Integer
 
-        attr_accessor :SetatsSerialId, :Status, :Warehouse, :MasterInfo, :WorkerInfo, :Tags, :AutoRenewFlag, :ExpireTime, :SecondsUntilExpiry, :CreateTime, :ManagerUrl, :IsolatedTime, :OwnerClusterGroupSerialId, :Type, :SetatsUiUrl, :ImageVersion
+        attr_accessor :SetatsSerialId, :Status, :Warehouse, :MasterInfo, :WorkerInfo, :Tags, :AutoRenewFlag, :ExpireTime, :SecondsUntilExpiry, :CreateTime, :ManagerUrl, :IsolatedTime, :OwnerClusterGroupSerialId, :Type, :SetatsUiUrl, :ImageVersion, :WebUIType
 
-        def initialize(setatsserialid=nil, status=nil, warehouse=nil, masterinfo=nil, workerinfo=nil, tags=nil, autorenewflag=nil, expiretime=nil, secondsuntilexpiry=nil, createtime=nil, managerurl=nil, isolatedtime=nil, ownerclustergroupserialid=nil, type=nil, setatsuiurl=nil, imageversion=nil)
+        def initialize(setatsserialid=nil, status=nil, warehouse=nil, masterinfo=nil, workerinfo=nil, tags=nil, autorenewflag=nil, expiretime=nil, secondsuntilexpiry=nil, createtime=nil, managerurl=nil, isolatedtime=nil, ownerclustergroupserialid=nil, type=nil, setatsuiurl=nil, imageversion=nil, webuitype=nil)
           @SetatsSerialId = setatsserialid
           @Status = status
           @Warehouse = warehouse
@@ -5423,6 +5434,7 @@ module TencentCloud
           @Type = type
           @SetatsUiUrl = setatsuiurl
           @ImageVersion = imageversion
+          @WebUIType = webuitype
         end
 
         def deserialize(params)
@@ -5458,6 +5470,7 @@ module TencentCloud
           @Type = params['Type']
           @SetatsUiUrl = params['SetatsUiUrl']
           @ImageVersion = params['ImageVersion']
+          @WebUIType = params['WebUIType']
         end
       end
 

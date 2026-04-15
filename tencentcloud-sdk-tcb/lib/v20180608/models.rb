@@ -3825,61 +3825,55 @@ module TencentCloud
 
       # 环境信息
       class EnvInfo < TencentCloud::Common::AbstractModel
-        # @param EnvId: 账户下该环境唯一标识
+        # @param EnvId: <p>账户下该环境唯一标识</p>
         # @type EnvId: String
-        # @param Source: 环境来源。包含以下取值：
-        # <li>miniapp：微信小程序</li>
-        # <li>qcloud ：腾讯云</li>
+        # @param Source: <p>环境来源。包含以下取值：</p><li>miniapp：微信小程序</li><li>qcloud ：腾讯云</li>
         # @type Source: String
-        # @param Alias: 环境别名，要以a-z开头，不能包含 a-zA-z0-9- 以外的字符
+        # @param Alias: <p>环境别名，要以a-z开头，不能包含 a-zA-z0-9- 以外的字符</p>
         # @type Alias: String
-        # @param CreateTime: 创建时间
+        # @param CreateTime: <p>创建时间</p>
         # @type CreateTime: String
-        # @param UpdateTime: 最后修改时间
+        # @param UpdateTime: <p>最后修改时间</p>
         # @type UpdateTime: String
-        # @param Status: 环境状态。包含以下取值：
-        # <li>NORMAL：正常可用</li>
-        # <li>UNAVAILABLE：服务不可用，可能是尚未初始化或者初始化过程中</li>
+        # @param Status: <p>环境状态。包含以下取值：</p><li>NORMAL：正常可用</li><li>UNAVAILABLE：服务不可用，可能是尚未初始化或者初始化过程中</li>
         # @type Status: String
-        # @param Databases: 数据库列表
+        # @param Databases: <p>数据库列表</p>
         # @type Databases: Array
-        # @param Storages: 存储列表
+        # @param Storages: <p>存储列表</p>
         # @type Storages: Array
-        # @param Functions: 函数列表
+        # @param Functions: <p>函数列表</p>
         # @type Functions: Array
-        # @param PackageId: tcb产品套餐ID，参考DescribePackages接口的返回值。
+        # @param PackageId: <p>tcb产品套餐ID，参考DescribePackages接口的返回值。</p>
         # @type PackageId: String
-        # @param PackageName: 套餐中文名称，参考DescribePackages接口的返回值。
+        # @param PackageName: <p>套餐中文名称，参考DescribePackages接口的返回值。</p>
         # @type PackageName: String
-        # @param LogServices: 云日志服务列表
+        # @param LogServices: <p>云日志服务列表</p>
         # @type LogServices: Array
-        # @param StaticStorages: 静态资源信息
+        # @param StaticStorages: <p>静态资源信息</p>
         # @type StaticStorages: Array
-        # @param IsAutoDegrade: 是否到期自动降为免费版
+        # @param IsAutoDegrade: <p>是否到期自动降为免费版</p>
         # @type IsAutoDegrade: Boolean
-        # @param EnvChannel: 环境渠道
+        # @param EnvChannel: <p>环境渠道</p>
         # @type EnvChannel: String
-        # @param PayMode: 支付方式。包含以下取值：
-        # <li> prepayment：预付费</li>
-        # <li> postpaid：后付费</li>
+        # @param PayMode: <p>支付方式。包含以下取值：</p><li> prepayment：预付费</li><li> postpaid：后付费</li>
         # @type PayMode: String
-        # @param IsDefault: 是否为默认环境
+        # @param IsDefault: <p>是否为默认环境</p>
         # @type IsDefault: Boolean
-        # @param Region: 环境所属地域
+        # @param Region: <p>环境所属地域</p>
         # @type Region: String
-        # @param Tags: 环境标签列表
+        # @param Tags: <p>环境标签列表</p>
         # @type Tags: Array
-        # @param CustomLogServices: 自定义日志服务
+        # @param CustomLogServices: <p>自定义日志服务</p>
         # @type CustomLogServices: Array
-        # @param EnvType: 环境类型：baas, run, hoting, weda
+        # @param EnvType: <p>环境类型：baas, run, hoting, weda</p>
         # @type EnvType: String
-        # @param IsDauPackage: 是否是dau新套餐
+        # @param IsDauPackage: <p>是否是dau新套餐</p>
         # @type IsDauPackage: Boolean
-        # @param PackageType: 套餐类型:空\baas\tcbr
+        # @param PackageType: <p>套餐类型:空\baas\tcbr</p>
         # @type PackageType: String
-        # @param ArchitectureType: 架构类型
+        # @param ArchitectureType: <p>架构类型</p>
         # @type ArchitectureType: String
-        # @param Recycle: 回收标志，默认为空
+        # @param Recycle: <p>回收标志，默认为空</p>
         # @type Recycle: String
 
         attr_accessor :EnvId, :Source, :Alias, :CreateTime, :UpdateTime, :Status, :Databases, :Storages, :Functions, :PackageId, :PackageName, :LogServices, :StaticStorages, :IsAutoDegrade, :EnvChannel, :PayMode, :IsDefault, :Region, :Tags, :CustomLogServices, :EnvType, :IsDauPackage, :PackageType, :ArchitectureType, :Recycle
@@ -6579,25 +6573,31 @@ module TencentCloud
 
       # 静态CDN资源信息
       class StaticStorageInfo < TencentCloud::Common::AbstractModel
-        # @param StaticDomain: 静态CDN域名
+        # @param StaticDomain: <p>静态CDN域名</p>
         # @type StaticDomain: String
-        # @param DefaultDirName: 静态CDN默认文件夹，当前为根目录
+        # @param DefaultDirName: <p>静态CDN默认文件夹，当前为根目录</p>
         # @type DefaultDirName: String
-        # @param Status: 资源状态(process/online/offline/init)
+        # @param Status: <p>资源状态(process/online/offline/init)</p>
         # @type Status: String
-        # @param Region: cos所属区域
+        # @param Region: <p>cos所属区域</p>
         # @type Region: String
-        # @param Bucket: bucket信息
+        # @param Bucket: <p>bucket信息</p>
         # @type Bucket: String
+        # @param AccessExpire: <p>到期时间（秒级时间戳）</p>
+        # @type AccessExpire: Integer
+        # @param ExternalStorage: <p>外部存储。</p>
+        # @type ExternalStorage: :class:`Tencentcloud::Tcb.v20180608.models.ExternalStorage`
 
-        attr_accessor :StaticDomain, :DefaultDirName, :Status, :Region, :Bucket
+        attr_accessor :StaticDomain, :DefaultDirName, :Status, :Region, :Bucket, :AccessExpire, :ExternalStorage
 
-        def initialize(staticdomain=nil, defaultdirname=nil, status=nil, region=nil, bucket=nil)
+        def initialize(staticdomain=nil, defaultdirname=nil, status=nil, region=nil, bucket=nil, accessexpire=nil, externalstorage=nil)
           @StaticDomain = staticdomain
           @DefaultDirName = defaultdirname
           @Status = status
           @Region = region
           @Bucket = bucket
+          @AccessExpire = accessexpire
+          @ExternalStorage = externalstorage
         end
 
         def deserialize(params)
@@ -6606,6 +6606,11 @@ module TencentCloud
           @Status = params['Status']
           @Region = params['Region']
           @Bucket = params['Bucket']
+          @AccessExpire = params['AccessExpire']
+          unless params['ExternalStorage'].nil?
+            @ExternalStorage = ExternalStorage.new
+            @ExternalStorage.deserialize(params['ExternalStorage'])
+          end
         end
       end
 
@@ -6656,23 +6661,25 @@ module TencentCloud
 
       # StorageInfo 资源信息
       class StorageInfo < TencentCloud::Common::AbstractModel
-        # @param Region: 资源所属地域。
-        # 当前支持ap-shanghai
+        # @param Region: <p>资源所属地域。<br>当前支持ap-shanghai</p>
         # @type Region: String
-        # @param Bucket: 桶名，存储资源的唯一标识
+        # @param Bucket: <p>桶名，存储资源的唯一标识</p>
         # @type Bucket: String
-        # @param CdnDomain: cdn 域名
+        # @param CdnDomain: <p>cdn 域名</p>
         # @type CdnDomain: String
-        # @param AppId: 资源所属用户的腾讯云appId
+        # @param AppId: <p>资源所属用户的腾讯云appId</p>
         # @type AppId: String
+        # @param ExternalStorage: <p>外部存储介质相关信息。</p>
+        # @type ExternalStorage: :class:`Tencentcloud::Tcb.v20180608.models.ExternalStorage`
 
-        attr_accessor :Region, :Bucket, :CdnDomain, :AppId
+        attr_accessor :Region, :Bucket, :CdnDomain, :AppId, :ExternalStorage
 
-        def initialize(region=nil, bucket=nil, cdndomain=nil, appid=nil)
+        def initialize(region=nil, bucket=nil, cdndomain=nil, appid=nil, externalstorage=nil)
           @Region = region
           @Bucket = bucket
           @CdnDomain = cdndomain
           @AppId = appid
+          @ExternalStorage = externalstorage
         end
 
         def deserialize(params)
@@ -6680,6 +6687,10 @@ module TencentCloud
           @Bucket = params['Bucket']
           @CdnDomain = params['CdnDomain']
           @AppId = params['AppId']
+          unless params['ExternalStorage'].nil?
+            @ExternalStorage = ExternalStorage.new
+            @ExternalStorage.deserialize(params['ExternalStorage'])
+          end
         end
       end
 

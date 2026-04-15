@@ -2999,6 +2999,110 @@ module TencentCloud
         end
       end
 
+      # DescribeBootScript请求参数结构体
+      class DescribeBootScriptRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: EMR实例序列号
+        # @type InstanceId: String
+        # @param BootType: 引导脚本类型，resourceAfter,clusterAfter,clusterBefore不填时表示全部时机
+        # @type BootType: String
+
+        attr_accessor :InstanceId, :BootType
+
+        def initialize(instanceid=nil, boottype=nil)
+          @InstanceId = instanceid
+          @BootType = boottype
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @BootType = params['BootType']
+        end
+      end
+
+      # DescribeBootScript返回参数结构体
+      class DescribeBootScriptResponse < TencentCloud::Common::AbstractModel
+        # @param Detail: 引导脚本详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Detail: :class:`Tencentcloud::Emr.v20190103.models.DescribeBootScriptRsp`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Detail, :RequestId
+
+        def initialize(detail=nil, requestid=nil)
+          @Detail = detail
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Detail'].nil?
+            @Detail = DescribeBootScriptRsp.new
+            @Detail.deserialize(params['Detail'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 引导脚本回包
+      class DescribeBootScriptRsp < TencentCloud::Common::AbstractModel
+        # @param ResourceAfter: 资源初始化结束自定义脚本文件
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceAfter: Array
+        # @param ClusterBefore: 集群启动前自定义脚本文件
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterBefore: Array
+        # @param ClusterAfter: 集群启动后自定义脚本文件
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterAfter: Array
+        # @param ServiceBefore: 服务下线前自定义脚本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceBefore: Array
+
+        attr_accessor :ResourceAfter, :ClusterBefore, :ClusterAfter, :ServiceBefore
+
+        def initialize(resourceafter=nil, clusterbefore=nil, clusterafter=nil, servicebefore=nil)
+          @ResourceAfter = resourceafter
+          @ClusterBefore = clusterbefore
+          @ClusterAfter = clusterafter
+          @ServiceBefore = servicebefore
+        end
+
+        def deserialize(params)
+          unless params['ResourceAfter'].nil?
+            @ResourceAfter = []
+            params['ResourceAfter'].each do |i|
+              preexecutefilesetting_tmp = PreExecuteFileSetting.new
+              preexecutefilesetting_tmp.deserialize(i)
+              @ResourceAfter << preexecutefilesetting_tmp
+            end
+          end
+          unless params['ClusterBefore'].nil?
+            @ClusterBefore = []
+            params['ClusterBefore'].each do |i|
+              preexecutefilesetting_tmp = PreExecuteFileSetting.new
+              preexecutefilesetting_tmp.deserialize(i)
+              @ClusterBefore << preexecutefilesetting_tmp
+            end
+          end
+          unless params['ClusterAfter'].nil?
+            @ClusterAfter = []
+            params['ClusterAfter'].each do |i|
+              preexecutefilesetting_tmp = PreExecuteFileSetting.new
+              preexecutefilesetting_tmp.deserialize(i)
+              @ClusterAfter << preexecutefilesetting_tmp
+            end
+          end
+          unless params['ServiceBefore'].nil?
+            @ServiceBefore = []
+            params['ServiceBefore'].each do |i|
+              preexecutefilesetting_tmp = PreExecuteFileSetting.new
+              preexecutefilesetting_tmp.deserialize(i)
+              @ServiceBefore << preexecutefilesetting_tmp
+            end
+          end
+        end
+      end
+
       # DescribeClusterFlowStatusDetail请求参数结构体
       class DescribeClusterFlowStatusDetailRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: EMR实例ID
@@ -8733,6 +8837,53 @@ module TencentCloud
         end
       end
 
+      # ModifyBootScript请求参数结构体
+      class ModifyBootScriptRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: EMR实例Id
+        # @type InstanceId: String
+        # @param BootType: 引导脚本类型,resourceAfter,clusterAfter,clusterBefore
+        # @type BootType: String
+        # @param PreExecutedFileSettings: 引导脚本的具体变更，如为空表示WhenRun时机无引导脚本
+        # @type PreExecutedFileSettings: Array
+
+        attr_accessor :InstanceId, :BootType, :PreExecutedFileSettings
+
+        def initialize(instanceid=nil, boottype=nil, preexecutedfilesettings=nil)
+          @InstanceId = instanceid
+          @BootType = boottype
+          @PreExecutedFileSettings = preexecutedfilesettings
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @BootType = params['BootType']
+          unless params['PreExecutedFileSettings'].nil?
+            @PreExecutedFileSettings = []
+            params['PreExecutedFileSettings'].each do |i|
+              preexecutefilesetting_tmp = PreExecuteFileSetting.new
+              preexecutefilesetting_tmp.deserialize(i)
+              @PreExecutedFileSettings << preexecutefilesetting_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyBootScript返回参数结构体
+      class ModifyBootScriptResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyGlobalConfig请求参数结构体
       class ModifyGlobalConfigRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: emr集群的英文id
@@ -11562,6 +11713,70 @@ module TencentCloud
             @HostVolume = HostVolumeContext.new
             @HostVolume.deserialize(params['HostVolume'])
           end
+        end
+      end
+
+      # 预执行脚本配置
+      class PreExecuteFileSetting < TencentCloud::Common::AbstractModel
+        # @param Path: 脚本在COS上路径
+        # @type Path: String
+        # @param Args: 执行脚本参数
+        # @type Args: String
+        # @param Bucket: COS的Bucket名称
+        # @type Bucket: String
+        # @param Region: COS的Region名称
+        # @type Region: String
+        # @param Domain: COS的Domain数据
+        # @type Domain: String
+        # @param RunOrder: 执行顺序
+        # @type RunOrder: Integer
+        # @param WhenRun: resourceAfter 或 clusterAfter
+        # @type WhenRun: String
+        # @param CosFileName: 脚本文件名
+        # @type CosFileName: String
+        # @param CosFileURI: 脚本的cos地址
+        # @type CosFileURI: String
+        # @param CosSecretId: cos的SecretId
+        # @type CosSecretId: String
+        # @param CosSecretKey: Cos的SecretKey
+        # @type CosSecretKey: String
+        # @param AppId: cos的appid
+        # @type AppId: String
+        # @param Remark: 备注
+        # @type Remark: String
+
+        attr_accessor :Path, :Args, :Bucket, :Region, :Domain, :RunOrder, :WhenRun, :CosFileName, :CosFileURI, :CosSecretId, :CosSecretKey, :AppId, :Remark
+
+        def initialize(path=nil, args=nil, bucket=nil, region=nil, domain=nil, runorder=nil, whenrun=nil, cosfilename=nil, cosfileuri=nil, cossecretid=nil, cossecretkey=nil, appid=nil, remark=nil)
+          @Path = path
+          @Args = args
+          @Bucket = bucket
+          @Region = region
+          @Domain = domain
+          @RunOrder = runorder
+          @WhenRun = whenrun
+          @CosFileName = cosfilename
+          @CosFileURI = cosfileuri
+          @CosSecretId = cossecretid
+          @CosSecretKey = cossecretkey
+          @AppId = appid
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @Path = params['Path']
+          @Args = params['Args']
+          @Bucket = params['Bucket']
+          @Region = params['Region']
+          @Domain = params['Domain']
+          @RunOrder = params['RunOrder']
+          @WhenRun = params['WhenRun']
+          @CosFileName = params['CosFileName']
+          @CosFileURI = params['CosFileURI']
+          @CosSecretId = params['CosSecretId']
+          @CosSecretKey = params['CosSecretKey']
+          @AppId = params['AppId']
+          @Remark = params['Remark']
         end
       end
 

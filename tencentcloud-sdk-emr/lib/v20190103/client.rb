@@ -464,6 +464,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取引导脚本
+
+        # @param request: Request instance for DescribeBootScript.
+        # @type request: :class:`Tencentcloud::emr::V20190103::DescribeBootScriptRequest`
+        # @rtype: :class:`Tencentcloud::emr::V20190103::DescribeBootScriptResponse`
+        def DescribeBootScript(request)
+          body = send_request('DescribeBootScript', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBootScriptResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询EMR任务运行详情状态
 
         # @param request: Request instance for DescribeClusterFlowStatusDetail.
@@ -1580,6 +1604,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyAutoScaleStrategyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改引导脚本
+
+        # @param request: Request instance for ModifyBootScript.
+        # @type request: :class:`Tencentcloud::emr::V20190103::ModifyBootScriptRequest`
+        # @rtype: :class:`Tencentcloud::emr::V20190103::ModifyBootScriptResponse`
+        def ModifyBootScript(request)
+          body = send_request('ModifyBootScript', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyBootScriptResponse.new
             model.deserialize(response['Response'])
             model
           else
