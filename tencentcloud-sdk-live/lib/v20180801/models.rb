@@ -2014,6 +2014,38 @@ module TencentCloud
         end
       end
 
+      # CloseSourceStream请求参数结构体
+      class CloseSourceStreamRequest < TencentCloud::Common::AbstractModel
+        # @param DomainName: 播放域名。
+        # @type DomainName: String
+
+        attr_accessor :DomainName
+
+        def initialize(domainname=nil)
+          @DomainName = domainname
+        end
+
+        def deserialize(params)
+          @DomainName = params['DomainName']
+        end
+      end
+
+      # CloseSourceStream返回参数结构体
+      class CloseSourceStreamResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 云端特效信息。
       class CloudEffectInfo < TencentCloud::Common::AbstractModel
         # @param Id: 云端特效 ID。
@@ -10128,6 +10160,40 @@ module TencentCloud
         end
       end
 
+      # DescribeOriginStreamInfo请求参数结构体
+      class DescribeOriginStreamInfoRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeOriginStreamInfo返回参数结构体
+      class DescribeOriginStreamInfoResponse < TencentCloud::Common::AbstractModel
+        # @param CacheFormatRule: 缓存格式规则。
+        # 0：默认格式。
+        # 1：云直播源站格式。
+        # 当 OriginStreamPlayType 为 customization 时候生效。
+        # @type CacheFormatRule: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CacheFormatRule, :RequestId
+
+        def initialize(cacheformatrule=nil, requestid=nil)
+          @CacheFormatRule = cacheformatrule
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @CacheFormatRule = params['CacheFormatRule']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribePlayErrorCodeDetailInfoList请求参数结构体
       class DescribePlayErrorCodeDetailInfoListRequest < TencentCloud::Common::AbstractModel
         # @param StartTime: 起始时间，
@@ -14342,6 +14408,33 @@ module TencentCloud
 
       # ModifyLiveTranscodeTemplate返回参数结构体
       class ModifyLiveTranscodeTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyOriginStreamInfo请求参数结构体
+      class ModifyOriginStreamInfoRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # ModifyOriginStreamInfo返回参数结构体
+      class ModifyOriginStreamInfoResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

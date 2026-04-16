@@ -29,6 +29,30 @@ module TencentCloud
         end
 
 
+        # 异步语音合成
+
+        # @param request: Request instance for AsyncTextToSpeech.
+        # @type request: :class:`Tencentcloud::trtc::V20190722::AsyncTextToSpeechRequest`
+        # @rtype: :class:`Tencentcloud::trtc::V20190722::AsyncTextToSpeechResponse`
+        def AsyncTextToSpeech(request)
+          body = send_request('AsyncTextToSpeech', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AsyncTextToSpeechResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 提供服务端控制机器人的功能
 
         # @param request: Request instance for ControlAIConversation.
@@ -423,6 +447,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeAITranscriptionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询异步语音合成状态
+
+        # @param request: Request instance for DescribeAsyncTextToSpeech.
+        # @type request: :class:`Tencentcloud::trtc::V20190722::DescribeAsyncTextToSpeechRequest`
+        # @rtype: :class:`Tencentcloud::trtc::V20190722::DescribeAsyncTextToSpeechResponse`
+        def DescribeAsyncTextToSpeech(request)
+          body = send_request('DescribeAsyncTextToSpeech', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAsyncTextToSpeechResponse.new
             model.deserialize(response['Response'])
             model
           else

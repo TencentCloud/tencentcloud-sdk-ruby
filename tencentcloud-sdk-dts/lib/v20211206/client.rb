@@ -490,6 +490,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口用于查询一致性校验任务中，不一致数据块的详情信息
+
+        # @param request: Request instance for DescribeCompareDiffItems.
+        # @type request: :class:`Tencentcloud::dts::V20211206::DescribeCompareDiffItemsRequest`
+        # @rtype: :class:`Tencentcloud::dts::V20211206::DescribeCompareDiffItemsResponse`
+        def DescribeCompareDiffItems(request)
+          body = send_request('DescribeCompareDiffItems', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCompareDiffItemsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询一致性校验任务详情
 
         # @param request: Request instance for DescribeCompareReport.
@@ -794,6 +818,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeSubscribeReturnableResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口用于查询一致性校验任务中，不一致数据块的详情信息
+
+        # @param request: Request instance for DescribeSyncCompareDiffItems.
+        # @type request: :class:`Tencentcloud::dts::V20211206::DescribeSyncCompareDiffItemsRequest`
+        # @rtype: :class:`Tencentcloud::dts::V20211206::DescribeSyncCompareDiffItemsResponse`
+        def DescribeSyncCompareDiffItems(request)
+          body = send_request('DescribeSyncCompareDiffItems', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSyncCompareDiffItemsResponse.new
             model.deserialize(response['Response'])
             model
           else

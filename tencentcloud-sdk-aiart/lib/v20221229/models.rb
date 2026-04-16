@@ -557,16 +557,16 @@ module TencentCloud
 
       # 输入框
       class LogoRect < TencentCloud::Common::AbstractModel
-        # @param X: 左上角X坐标
+        # @param X: <p>左上角X坐标</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type X: Integer
-        # @param Y: 左上角Y坐标
+        # @param Y: <p>左上角Y坐标</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Y: Integer
-        # @param Width: 方框宽度
+        # @param Width: <p>方框宽度<br>单位为 px</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Width: Integer
-        # @param Height: 方框高度
+        # @param Height: <p>方框高度<br>单位为 px</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Height: Integer
 

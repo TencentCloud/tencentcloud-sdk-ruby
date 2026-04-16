@@ -567,8 +567,8 @@ module TencentCloud
 
         attr_accessor :Name, :Description, :VpcId, :SubnetId, :Zone, :Type, :Tag, :GooseFSxBuildElements, :SecurityGroupId, :ClusterPort
         extend Gem::Deprecate
-        deprecate :Type, :none, 2026, 3
-        deprecate :Type=, :none, 2026, 3
+        deprecate :Type, :none, 2026, 4
+        deprecate :Type=, :none, 2026, 4
 
         def initialize(name=nil, description=nil, vpcid=nil, subnetid=nil, zone=nil, type=nil, tag=nil, goosefsxbuildelements=nil, securitygroupid=nil, clusterport=nil)
           @Name = name
@@ -685,9 +685,9 @@ module TencentCloud
 
       # CreateLoadTask请求参数结构体
       class CreateLoadTaskRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群 ID
+        # @param ClusterId: <p>集群 ID</p>
         # @type ClusterId: String
-        # @param LoadTaskCreationAttrs: 创建预热任务参数
+        # @param LoadTaskCreationAttrs: <p>创建预热任务参数</p>
         # @type LoadTaskCreationAttrs: :class:`Tencentcloud::Goosefs.v20220519.models.LoadTaskCreationAttrs`
 
         attr_accessor :ClusterId, :LoadTaskCreationAttrs
@@ -708,7 +708,7 @@ module TencentCloud
 
       # CreateLoadTask返回参数结构体
       class CreateLoadTaskResponse < TencentCloud::Common::AbstractModel
-        # @param TaskId: 预热任务 ID
+        # @param TaskId: <p>预热任务 ID</p>
         # @type TaskId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1693,8 +1693,8 @@ module TencentCloud
 
         attr_accessor :Model, :Capacity, :MappedBucketList
         extend Gem::Deprecate
-        deprecate :MappedBucketList, :none, 2026, 3
-        deprecate :MappedBucketList=, :none, 2026, 3
+        deprecate :MappedBucketList, :none, 2026, 4
+        deprecate :MappedBucketList=, :none, 2026, 4
 
         def initialize(model=nil, capacity=nil, mappedbucketlist=nil)
           @Model = model

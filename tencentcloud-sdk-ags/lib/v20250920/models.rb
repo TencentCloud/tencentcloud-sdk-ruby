@@ -912,11 +912,14 @@ module TencentCloud
       class LogConfiguration < TencentCloud::Common::AbstractModel
         # @param CLSConfig: <p>日志推送CLS的配置。</p>
         # @type CLSConfig: :class:`Tencentcloud::Ags.v20250920.models.CLSConfig`
+        # @param LogSources: <p>日志源配置</p>
+        # @type LogSources: :class:`Tencentcloud::Ags.v20250920.models.LogSources`
 
-        attr_accessor :CLSConfig
+        attr_accessor :CLSConfig, :LogSources
 
-        def initialize(clsconfig=nil)
+        def initialize(clsconfig=nil, logsources=nil)
           @CLSConfig = clsconfig
+          @LogSources = logsources
         end
 
         def deserialize(params)
@@ -924,6 +927,27 @@ module TencentCloud
             @CLSConfig = CLSConfig.new
             @CLSConfig.deserialize(params['CLSConfig'])
           end
+          unless params['LogSources'].nil?
+            @LogSources = LogSources.new
+            @LogSources.deserialize(params['LogSources'])
+          end
+        end
+      end
+
+      # 日志源配置
+      class LogSources < TencentCloud::Common::AbstractModel
+        # @param Files: <p>需要采集的日志文件路径，必须是 /logs/ 目录下的文件，不支持子目录，最大支持 10 个文件。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Files: Array
+
+        attr_accessor :Files
+
+        def initialize(files=nil)
+          @Files = files
+        end
+
+        def deserialize(params)
+          @Files = params['Files']
         end
       end
 

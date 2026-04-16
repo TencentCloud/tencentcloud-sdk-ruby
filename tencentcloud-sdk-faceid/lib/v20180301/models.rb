@@ -19,14 +19,7 @@ module TencentCloud
     module V20180301
       # 疑似攻击风险详情
       class AttackRiskDetail < TencentCloud::Common::AbstractModel
-        # @param Type: 疑似的攻击痕迹类型
-        # SuspectedSpoofingAttack：翻拍攻击
-        # SuspectedSynthesisImage：疑似合成图片
-        # SuspectedSynthesisVideo：疑似合成视频
-        # SuspectedeAnomalyAttack：人脸特征疑似非真人
-        # SuspectedAdversarialAttack：疑似对抗样本攻击
-        # SuspectedBlackIndustry：疑似黑产批量模版攻击
-        # SuspectedWatermark：疑似存在水印
+        # @param Type: <p>疑似的攻击痕迹类型SuspectedSpoofingAttack：翻拍攻击SuspectedSynthesisImage：疑似合成图片SuspectedSynthesisVideo：疑似合成视频SuspectedAnomalyAttack：人脸特征疑似非真人SuspectedAdversarialAttack：疑似对抗样本攻击SuspectedBlackIndustry：疑似黑产批量模板攻击SuspectedWatermark：疑似存在水印</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
 
@@ -748,7 +741,7 @@ module TencentCloud
         # @type AttackRiskLevel: String
         # @param AttackRiskDetailList: <p>检测到的疑似攻击痕迹列表，仅当AttackRiskLevel为High或Mid时返回。</p><ul><li>说明：未检测到攻击痕迹时，返回空数组。</li><li>此出参仅作为结果判断的参考，实际应用仍建议使用AttackRiskLevel的结果。</li></ul>
         # @type AttackRiskDetailList: Array
-        # @param ExtraInfo: <p>返回额外信息（包括命中模版的详细信息）。</p>
+        # @param ExtraInfo: <p>返回额外信息（包括命中模板的详细信息）。</p>
         # @type ExtraInfo: :class:`Tencentcloud::Faceid.v20180301.models.ExtraInfo`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1152,7 +1145,7 @@ module TencentCloud
         # @param LivenessDetail: <p>本次流程进行的活体一比一流水。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LivenessDetail: Array
-        # @param LivenessInfoTag: <p>描述当前请求活体阶段被拒绝的详细原因，该参数仅限PLUS版本核身服务返回。</p><ul><li>详情如下：<br>  01-用户全程闭眼<br>  02-用户未完成指定动作<br>  03-疑似翻拍攻击<br>  04-疑似合成攻击<br>  05-疑似黑产模版<br>  06-疑似存在水印<br>  07-反光校验未通过<br>  08-疑似中途换人<br>  09-人脸质量过差<br>  10-距离校验不通过<br>  11-疑似对抗样本攻击<br>  12-嘴巴区域疑似存在攻击痕迹<br>  13-眼睛区域疑似存在攻击痕迹<br>  14-眼睛或嘴巴被遮挡</li></ul>
+        # @param LivenessInfoTag: <p>描述当前请求活体阶段被拒绝的详细原因，该参数仅限PLUS版本核身服务返回。- 详情如下：    01-用户全程闭眼    02-用户未完成指定动作    03-疑似翻拍攻击    04-疑似合成攻击    05-疑似黑产模板    06-疑似存在水印    07-反光校验未通过    08-疑似中途换人    09-人脸质量过差    10-距离校验不通过    11-疑似对抗样本攻击    12-嘴巴区域疑似存在攻击痕迹    13-眼睛区域疑似存在攻击痕迹    14-眼睛或嘴巴被遮挡</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LivenessInfoTag: Array
         # @param Mobile: <p>手机号码。</p>
@@ -3920,9 +3913,9 @@ module TencentCloud
         end
       end
 
-      # 模版检索详细信息
+      # 模板检索详细信息
       class RetrievalLivenessExtraInfo < TencentCloud::Common::AbstractModel
-        # @param HitGroup: <p>命中的模版类型，其中Common-公共库；Auto-自动聚类库；Owner-自建模版库</p>
+        # @param HitGroup: <p>命中的模板类型，其中Common-公共库；Auto-自动聚类库；Owner-自建模板库</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HitGroup: String
         # @param SimilarityScore: <p>请求图像与命中攻击模板的相似度，相似度取值范围[0,2]，取值越小表示命中攻击模板的概率越高。默认阈值为0.6，当SimilarityScore≥0.6时判断为正常，SimilarityScore&lt;0.6是判断为攻击。</p>

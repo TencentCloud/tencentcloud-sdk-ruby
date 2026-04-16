@@ -196,6 +196,34 @@ module TencentCloud
         end
       end
 
+      # 字幕对齐
+      class AlignmentItem < TencentCloud::Common::AbstractModel
+        # @param TimeBeginMs: 字幕对应的时间起点
+        # @type TimeBeginMs: Integer
+        # @param TimeEndMs: 字幕对应的时间尾点
+        # @type TimeEndMs: Integer
+        # @param TextBegin: 字幕对应的文本索引起点
+        # @type TextBegin: Integer
+        # @param TextEnd: 字幕对应的文本索引尾点
+        # @type TextEnd: Integer
+
+        attr_accessor :TimeBeginMs, :TimeEndMs, :TextBegin, :TextEnd
+
+        def initialize(timebeginms=nil, timeendms=nil, textbegin=nil, textend=nil)
+          @TimeBeginMs = timebeginms
+          @TimeEndMs = timeendms
+          @TextBegin = textbegin
+          @TextEnd = textend
+        end
+
+        def deserialize(params)
+          @TimeBeginMs = params['TimeBeginMs']
+          @TimeEndMs = params['TimeEndMs']
+          @TextBegin = params['TextBegin']
+          @TextEnd = params['TextEnd']
+        end
+      end
+
       # 背景音设置，将在通话中添加环境音效，使体验更加逼真。目前支持以下选项：
       # coffee_shops: 咖啡店氛围，背景中有人聊天。
       # busy_office: 客服中心
@@ -293,6 +321,83 @@ module TencentCloud
         end
       end
 
+      # AsyncTextToSpeech请求参数结构体
+      class AsyncTextToSpeechRequest < TencentCloud::Common::AbstractModel
+        # @param Text: 需要转语音的文字内容，最大允许50000字符，注意 1汉字=2字符
+        # @type Text: String
+        # @param Voice: 文本转语音的声音配置
+        # @type Voice: :class:`Tencentcloud::Trtc.v20190722.models.Voice`
+        # @param SdkAppId: TRTC的SdkAppId
+        # @type SdkAppId: Integer
+        # @param AudioFormat: 文本转语音的输出音频的格式
+        # @type AudioFormat: :class:`Tencentcloud::Trtc.v20190722.models.AudioFormat`
+        # @param Model: TTS的模型，当前固定为：flow_01_turbo
+        # @type Model: String
+        # @param PronunciationDict: 多音字/生僻字发音纠正词典条目。指定特定词语在本次请求中使用的发音。
+        # @type PronunciationDict: Array
+        # @param AlignmentMode: 默认为0，0表示不生成字幕，1表示生成字幕
+        # @type AlignmentMode: Integer
+        # @param LanguageCode: 需要合成的语言（ISO 639-1），默认自动识别，支持的语言如下：  zh（中文） en（英文） yue（粤语） ja（日语） ko（韩语） ar（阿拉伯语） id（印尼语） th（泰语）
+        # @type LanguageCode: String
+
+        attr_accessor :Text, :Voice, :SdkAppId, :AudioFormat, :Model, :PronunciationDict, :AlignmentMode, :LanguageCode
+
+        def initialize(text=nil, voice=nil, sdkappid=nil, audioformat=nil, model=nil, pronunciationdict=nil, alignmentmode=nil, languagecode=nil)
+          @Text = text
+          @Voice = voice
+          @SdkAppId = sdkappid
+          @AudioFormat = audioformat
+          @Model = model
+          @PronunciationDict = pronunciationdict
+          @AlignmentMode = alignmentmode
+          @LanguageCode = languagecode
+        end
+
+        def deserialize(params)
+          @Text = params['Text']
+          unless params['Voice'].nil?
+            @Voice = Voice.new
+            @Voice.deserialize(params['Voice'])
+          end
+          @SdkAppId = params['SdkAppId']
+          unless params['AudioFormat'].nil?
+            @AudioFormat = AudioFormat.new
+            @AudioFormat.deserialize(params['AudioFormat'])
+          end
+          @Model = params['Model']
+          unless params['PronunciationDict'].nil?
+            @PronunciationDict = []
+            params['PronunciationDict'].each do |i|
+              pronunciationdict_tmp = PronunciationDict.new
+              pronunciationdict_tmp.deserialize(i)
+              @PronunciationDict << pronunciationdict_tmp
+            end
+          end
+          @AlignmentMode = params['AlignmentMode']
+          @LanguageCode = params['LanguageCode']
+        end
+      end
+
+      # AsyncTextToSpeech返回参数结构体
+      class AsyncTextToSpeechResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务ID
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 音频编码参数。
       class AudioEncode < TencentCloud::Common::AbstractModel
         # @param SampleRate: 输出流音频采样率。取值为[48000, 44100, 32000, 24000, 16000, 8000]，单位是Hz。
@@ -360,6 +465,9 @@ module TencentCloud
         # - TextToSpeech 非流式接口
 
         #  支持 pcm,wav,mp3,  默认: pcm
+
+        # - AsyncTextToSpeech
+        # 支持pcm,mp3, 默认：mp3
         # @type Format: String
         # @param SampleRate: 生成的音频采样率，默认24000
         # 可选
@@ -1491,6 +1599,54 @@ module TencentCloud
           @Status = params['Status']
           @TaskId = params['TaskId']
           @SessionId = params['SessionId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAsyncTextToSpeech请求参数结构体
+      class DescribeAsyncTextToSpeechRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务ID
+        # @type TaskId: String
+
+        attr_accessor :TaskId
+
+        def initialize(taskid=nil)
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # DescribeAsyncTextToSpeech返回参数结构体
+      class DescribeAsyncTextToSpeechResponse < TencentCloud::Common::AbstractModel
+        # @param Status: 任务状态
+        # - Processing，处理中
+        # - Success，任务成功
+        # - Failed，任务失败
+        # - Expired，任务过期
+        # @type Status: String
+        # @param AudioDownloadUrl: 音频下载url
+        # @type AudioDownloadUrl: String
+        # @param SubtitleDownloadUrl: 字幕下载url
+        # @type SubtitleDownloadUrl: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :AudioDownloadUrl, :SubtitleDownloadUrl, :RequestId
+
+        def initialize(status=nil, audiodownloadurl=nil, subtitledownloadurl=nil, requestid=nil)
+          @Status = status
+          @AudioDownloadUrl = audiodownloadurl
+          @SubtitleDownloadUrl = subtitledownloadurl
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @AudioDownloadUrl = params['AudioDownloadUrl']
+          @SubtitleDownloadUrl = params['SubtitleDownloadUrl']
           @RequestId = params['RequestId']
         end
       end
@@ -4730,6 +4886,26 @@ module TencentCloud
         end
       end
 
+      # 多音字/生僻字发音纠正词典条目。指定特定词语在本次请求中使用的发音。
+      class PronunciationDict < TencentCloud::Common::AbstractModel
+        # @param Word: 需要纠正发音的词语，前后空格自动去除。同一请求中若有重复词语，以最后一条为准。
+        # @type Word: String
+        # @param Pronunciation: 目标发音，支持以下格式：<br>① 带声调数字的拼音（1=阴平，2=阳平，3=上声，4=去声，5=轻声），如 yin2 hang2；<br>② 拼音连写（无空格），如 yin2hang2；<br>③ 文字+拼音混写，如 银hang2；<br>④ 直接文本替换，会将原始文本替换为目标文本
+        # @type Pronunciation: String
+
+        attr_accessor :Word, :Pronunciation
+
+        def initialize(word=nil, pronunciation=nil)
+          @Word = word
+          @Pronunciation = pronunciation
+        end
+
+        def deserialize(params)
+          @Word = params['Word']
+          @Pronunciation = params['Pronunciation']
+        end
+      end
+
       # 第三方CDN转推参数
       class PublishCdnParams < TencentCloud::Common::AbstractModel
         # @param BizId: 腾讯云直播BizId。
@@ -6744,13 +6920,17 @@ module TencentCloud
         # - id（印尼语）
         # - th（泰语）
         # @type Language: String
+        # @param PronunciationDict: 多音字/生僻字发音纠正词典条目。指定特定词语在本次请求中使用的发音。
+        # @type PronunciationDict: Array
+        # @param AlignmentMode: 默认为0，0表示不生成字幕，1表示生成字幕
+        # @type AlignmentMode: Integer
 
-        attr_accessor :Text, :Voice, :SdkAppId, :AudioFormat, :APIKey, :Model, :Language
+        attr_accessor :Text, :Voice, :SdkAppId, :AudioFormat, :APIKey, :Model, :Language, :PronunciationDict, :AlignmentMode
         extend Gem::Deprecate
         deprecate :APIKey, :none, 2026, 4
         deprecate :APIKey=, :none, 2026, 4
 
-        def initialize(text=nil, voice=nil, sdkappid=nil, audioformat=nil, apikey=nil, model=nil, language=nil)
+        def initialize(text=nil, voice=nil, sdkappid=nil, audioformat=nil, apikey=nil, model=nil, language=nil, pronunciationdict=nil, alignmentmode=nil)
           @Text = text
           @Voice = voice
           @SdkAppId = sdkappid
@@ -6758,6 +6938,8 @@ module TencentCloud
           @APIKey = apikey
           @Model = model
           @Language = language
+          @PronunciationDict = pronunciationdict
+          @AlignmentMode = alignmentmode
         end
 
         def deserialize(params)
@@ -6774,6 +6956,15 @@ module TencentCloud
           @APIKey = params['APIKey']
           @Model = params['Model']
           @Language = params['Language']
+          unless params['PronunciationDict'].nil?
+            @PronunciationDict = []
+            params['PronunciationDict'].each do |i|
+              pronunciationdict_tmp = PronunciationDict.new
+              pronunciationdict_tmp.deserialize(i)
+              @PronunciationDict << pronunciationdict_tmp
+            end
+          end
+          @AlignmentMode = params['AlignmentMode']
         end
       end
 
@@ -6781,18 +6972,29 @@ module TencentCloud
       class TextToSpeechResponse < TencentCloud::Common::AbstractModel
         # @param Audio: Base64编码的音频数据
         # @type Audio: String
+        # @param Alignments: 字幕对齐数据
+        # @type Alignments: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Audio, :RequestId
+        attr_accessor :Audio, :Alignments, :RequestId
 
-        def initialize(audio=nil, requestid=nil)
+        def initialize(audio=nil, alignments=nil, requestid=nil)
           @Audio = audio
+          @Alignments = alignments
           @RequestId = requestid
         end
 
         def deserialize(params)
           @Audio = params['Audio']
+          unless params['Alignments'].nil?
+            @Alignments = []
+            params['Alignments'].each do |i|
+              alignmentitem_tmp = AlignmentItem.new
+              alignmentitem_tmp.deserialize(i)
+              @Alignments << alignmentitem_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -6821,13 +7023,17 @@ module TencentCloud
         # - id（印尼语）
         # - th（泰语）
         # @type Language: String
+        # @param PronunciationDict: 多音字/生僻字发音纠正词典条目。指定特定词语在本次请求中使用的发音。
+        # @type PronunciationDict: Array
+        # @param AlignmentMode: 默认为0，0表示不生成字幕，1表示生成字幕
+        # @type AlignmentMode: Integer
 
-        attr_accessor :Text, :Voice, :SdkAppId, :AudioFormat, :APIKey, :Model, :Language
+        attr_accessor :Text, :Voice, :SdkAppId, :AudioFormat, :APIKey, :Model, :Language, :PronunciationDict, :AlignmentMode
         extend Gem::Deprecate
         deprecate :APIKey, :none, 2026, 4
         deprecate :APIKey=, :none, 2026, 4
 
-        def initialize(text=nil, voice=nil, sdkappid=nil, audioformat=nil, apikey=nil, model=nil, language=nil)
+        def initialize(text=nil, voice=nil, sdkappid=nil, audioformat=nil, apikey=nil, model=nil, language=nil, pronunciationdict=nil, alignmentmode=nil)
           @Text = text
           @Voice = voice
           @SdkAppId = sdkappid
@@ -6835,6 +7041,8 @@ module TencentCloud
           @APIKey = apikey
           @Model = model
           @Language = language
+          @PronunciationDict = pronunciationdict
+          @AlignmentMode = alignmentmode
         end
 
         def deserialize(params)
@@ -6851,6 +7059,15 @@ module TencentCloud
           @APIKey = params['APIKey']
           @Model = params['Model']
           @Language = params['Language']
+          unless params['PronunciationDict'].nil?
+            @PronunciationDict = []
+            params['PronunciationDict'].each do |i|
+              pronunciationdict_tmp = PronunciationDict.new
+              pronunciationdict_tmp.deserialize(i)
+              @PronunciationDict << pronunciationdict_tmp
+            end
+          end
+          @AlignmentMode = params['AlignmentMode']
         end
       end
 

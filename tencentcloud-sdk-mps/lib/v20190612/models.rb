@@ -13000,6 +13000,60 @@ module TencentCloud
         end
       end
 
+      # DescribeDesignTask请求参数结构体
+      class DescribeDesignTaskRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>任务id</p>
+        # @type TaskId: String
+
+        attr_accessor :TaskId
+
+        def initialize(taskid=nil)
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # DescribeDesignTask返回参数结构体
+      class DescribeDesignTaskResponse < TencentCloud::Common::AbstractModel
+        # @param ErrorCode: <p>错误码，成功时返回0</p>
+        # @type ErrorCode: Integer
+        # @param Msg: <p>错误信息，成功时返回success</p>
+        # @type Msg: String
+        # @param Status: <p>任务状态</p><p>枚举值：</p><ul><li>success： 成功</li><li>fail： 失败</li><li>processing： 处理中</li></ul>
+        # @type Status: String
+        # @param VoiceId: <p>音色id</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VoiceId: String
+        # @param ExtInfo: <p>扩展信息</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExtInfo: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrorCode, :Msg, :Status, :VoiceId, :ExtInfo, :RequestId
+
+        def initialize(errorcode=nil, msg=nil, status=nil, voiceid=nil, extinfo=nil, requestid=nil)
+          @ErrorCode = errorcode
+          @Msg = msg
+          @Status = status
+          @VoiceId = voiceid
+          @ExtInfo = extinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrorCode = params['ErrorCode']
+          @Msg = params['Msg']
+          @Status = params['Status']
+          @VoiceId = params['VoiceId']
+          @ExtInfo = params['ExtInfo']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 查询Event的配置信息。
       class DescribeEvent < TencentCloud::Common::AbstractModel
         # @param EventName: Event的名称。
@@ -17294,6 +17348,54 @@ module TencentCloud
               @WorkflowInfoSet << workflowinfo_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DesignVoiceAsync请求参数结构体
+      class DesignVoiceAsyncRequest < TencentCloud::Common::AbstractModel
+        # @param Prompt: <p>音色描述</p>
+        # @type Prompt: String
+        # @param ExtParam: <p>扩展参数，json字符串</p>
+        # @type ExtParam: String
+
+        attr_accessor :Prompt, :ExtParam
+
+        def initialize(prompt=nil, extparam=nil)
+          @Prompt = prompt
+          @ExtParam = extparam
+        end
+
+        def deserialize(params)
+          @Prompt = params['Prompt']
+          @ExtParam = params['ExtParam']
+        end
+      end
+
+      # DesignVoiceAsync返回参数结构体
+      class DesignVoiceAsyncResponse < TencentCloud::Common::AbstractModel
+        # @param ErrorCode: <p>错误码，成功时返回0</p>
+        # @type ErrorCode: Integer
+        # @param Msg: <p>错误信息，成功时返回success</p>
+        # @type Msg: String
+        # @param TaskId: <p>任务id，查询任务时使用</p>
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrorCode, :Msg, :TaskId, :RequestId
+
+        def initialize(errorcode=nil, msg=nil, taskid=nil, requestid=nil)
+          @ErrorCode = errorcode
+          @Msg = msg
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrorCode = params['ErrorCode']
+          @Msg = params['Msg']
+          @TaskId = params['TaskId']
           @RequestId = params['RequestId']
         end
       end

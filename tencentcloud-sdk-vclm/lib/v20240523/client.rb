@@ -53,6 +53,78 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 提交视频特效任务接口
+
+        # @param request: Request instance for CreateAigcElement.
+        # @type request: :class:`Tencentcloud::vclm::V20240523::CreateAigcElementRequest`
+        # @rtype: :class:`Tencentcloud::vclm::V20240523::CreateAigcElementResponse`
+        def CreateAigcElement(request)
+          body = send_request('CreateAigcElement', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateAigcElementResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除主体库
+
+        # @param request: Request instance for DeleteAigcElement.
+        # @type request: :class:`Tencentcloud::vclm::V20240523::DeleteAigcElementRequest`
+        # @rtype: :class:`Tencentcloud::vclm::V20240523::DeleteAigcElementResponse`
+        def DeleteAigcElement(request)
+          body = send_request('DeleteAigcElement', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteAigcElementResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 提交视频特效任务接口
+
+        # @param request: Request instance for DescribeAigcElement.
+        # @type request: :class:`Tencentcloud::vclm::V20240523::DescribeAigcElementRequest`
+        # @rtype: :class:`Tencentcloud::vclm::V20240523::DescribeAigcElementResponse`
+        def DescribeAigcElement(request)
+          body = send_request('DescribeAigcElement', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAigcElementResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询生视频任务
 
         # @param request: Request instance for DescribeAigcVideoJob.

@@ -271,6 +271,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 用于关闭回源客户源站功能
+
+        # @param request: Request instance for CloseSourceStream.
+        # @type request: :class:`Tencentcloud::live::V20180801::CloseSourceStreamRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::CloseSourceStreamResponse`
+        def CloseSourceStream(request)
+          body = send_request('CloseSourceStream', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CloseSourceStreamResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 该接口用来复制导播台配置
 
         # @param request: Request instance for CopyCaster.
@@ -3850,6 +3874,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取直播源站配置信息，支持直播原站格式。
+
+        # @param request: Request instance for DescribeOriginStreamInfo.
+        # @type request: :class:`Tencentcloud::live::V20180801::DescribeOriginStreamInfoRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::DescribeOriginStreamInfoResponse`
+        def DescribeOriginStreamInfo(request)
+          body = send_request('DescribeOriginStreamInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeOriginStreamInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 该接口为监控数据接口，数据采集及统计方式与计费数据不同，仅供运营分析使用，不能用于计费对账参考。
         # 查询下行播放错误码信息，某段时间内1分钟粒度的各http错误码出现的次数，包括4xx，5xx。
 
@@ -5018,6 +5066,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyLiveTranscodeTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 变更直播源站配置，支持直播原站格式。
+
+        # @param request: Request instance for ModifyOriginStreamInfo.
+        # @type request: :class:`Tencentcloud::live::V20180801::ModifyOriginStreamInfoRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::ModifyOriginStreamInfoResponse`
+        def ModifyOriginStreamInfo(request)
+          body = send_request('ModifyOriginStreamInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyOriginStreamInfoResponse.new
             model.deserialize(response['Response'])
             model
           else

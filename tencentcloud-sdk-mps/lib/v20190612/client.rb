@@ -2221,6 +2221,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询配音相关任务（异步）结果
+
+        # @param request: Request instance for DescribeDesignTask.
+        # @type request: :class:`Tencentcloud::mps::V20190612::DescribeDesignTaskRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::DescribeDesignTaskResponse`
+        def DescribeDesignTask(request)
+          body = send_request('DescribeDesignTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDesignTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 根据安全组反差关联的Flow信息。
 
         # @param request: Request instance for DescribeGroupAttachFlowsById.
@@ -3531,6 +3555,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeWorkflowsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 音色设计，根据prompt生成音色ID
+
+        # @param request: Request instance for DesignVoiceAsync.
+        # @type request: :class:`Tencentcloud::mps::V20190612::DesignVoiceAsyncRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::DesignVoiceAsyncResponse`
+        def DesignVoiceAsync(request)
+          body = send_request('DesignVoiceAsync', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DesignVoiceAsyncResponse.new
             model.deserialize(response['Response'])
             model
           else

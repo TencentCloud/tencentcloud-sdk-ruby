@@ -160,6 +160,229 @@ module TencentCloud
         end
       end
 
+      # CreateAigcElement请求参数结构体
+      class CreateAigcElementRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 
+        # @type Name: String
+        # @param Description: 
+        # @type Description: String
+        # @param ReferenceType: 
+        # @type ReferenceType: String
+        # @param ElementImageList: 
+        # @type ElementImageList: :class:`Tencentcloud::Vclm.v20240523.models.ElementImageList`
+        # @param VideoList: 
+        # @type VideoList: Array
+        # @param Provider: 
+        # @type Provider: Array
+        # @param TagList: 
+        # @type TagList: Array
+
+        attr_accessor :Name, :Description, :ReferenceType, :ElementImageList, :VideoList, :Provider, :TagList
+
+        def initialize(name=nil, description=nil, referencetype=nil, elementimagelist=nil, videolist=nil, provider=nil, taglist=nil)
+          @Name = name
+          @Description = description
+          @ReferenceType = referencetype
+          @ElementImageList = elementimagelist
+          @VideoList = videolist
+          @Provider = provider
+          @TagList = taglist
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Description = params['Description']
+          @ReferenceType = params['ReferenceType']
+          unless params['ElementImageList'].nil?
+            @ElementImageList = ElementImageList.new
+            @ElementImageList.deserialize(params['ElementImageList'])
+          end
+          @VideoList = params['VideoList']
+          @Provider = params['Provider']
+          unless params['TagList'].nil?
+            @TagList = []
+            params['TagList'].each do |i|
+              taglist_tmp = TagList.new
+              taglist_tmp.deserialize(i)
+              @TagList << taglist_tmp
+            end
+          end
+        end
+      end
+
+      # CreateAigcElement返回参数结构体
+      class CreateAigcElementResponse < TencentCloud::Common::AbstractModel
+        # @param JobId: <p>任务ID。</p>
+        # @type JobId: String
+        # @param ElementId: 
+        # @type ElementId: String
+        # @param Status: 
+        # @type Status: String
+        # @param Provider: 
+        # @type Provider: Array
+        # @param CreatedAt: 
+        # @type CreatedAt: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :JobId, :ElementId, :Status, :Provider, :CreatedAt, :RequestId
+
+        def initialize(jobid=nil, elementid=nil, status=nil, provider=nil, createdat=nil, requestid=nil)
+          @JobId = jobid
+          @ElementId = elementid
+          @Status = status
+          @Provider = provider
+          @CreatedAt = createdat
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+          @ElementId = params['ElementId']
+          @Status = params['Status']
+          @Provider = params['Provider']
+          @CreatedAt = params['CreatedAt']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteAigcElement请求参数结构体
+      class DeleteAigcElementRequest < TencentCloud::Common::AbstractModel
+        # @param ElementId: 
+        # @type ElementId: String
+
+        attr_accessor :ElementId
+
+        def initialize(elementid=nil)
+          @ElementId = elementid
+        end
+
+        def deserialize(params)
+          @ElementId = params['ElementId']
+        end
+      end
+
+      # DeleteAigcElement返回参数结构体
+      class DeleteAigcElementResponse < TencentCloud::Common::AbstractModel
+        # @param ElementId: 
+        # @type ElementId: String
+        # @param Deleted: 
+        # @type Deleted: Boolean
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ElementId, :Deleted, :RequestId
+
+        def initialize(elementid=nil, deleted=nil, requestid=nil)
+          @ElementId = elementid
+          @Deleted = deleted
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ElementId = params['ElementId']
+          @Deleted = params['Deleted']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAigcElement请求参数结构体
+      class DescribeAigcElementRequest < TencentCloud::Common::AbstractModel
+        # @param ElementId: 
+        # @type ElementId: String
+
+        attr_accessor :ElementId
+
+        def initialize(elementid=nil)
+          @ElementId = elementid
+        end
+
+        def deserialize(params)
+          @ElementId = params['ElementId']
+        end
+      end
+
+      # DescribeAigcElement返回参数结构体
+      class DescribeAigcElementResponse < TencentCloud::Common::AbstractModel
+        # @param Name: <p>主体名称</p>
+        # @type Name: String
+        # @param ElementId: <p>主体id</p>
+        # @type ElementId: String
+        # @param Description: <p>主体描述</p>
+        # @type Description: String
+        # @param ReferenceType: <p>主体参考方式</p><p>枚举值：</p><ul><li>video_refer： 视频角色主体</li><li>image_refer： 多图主体</li></ul>
+        # @type ReferenceType: String
+        # @param Status: <p>任务状态</p><p>枚举值：</p><ul><li>pending： 执行中</li><li>failed： 任务失败</li><li>succeed： 任务成功</li></ul>
+        # @type Status: String
+        # @param Provider: <p>厂商列表</p>
+        # @type Provider: Array
+        # @param ElementImageList: <p>主体参考图，可通过多张图片设定主体及其细节</p>
+        # @type ElementImageList: :class:`Tencentcloud::Vclm.v20240523.models.ElementImageList`
+        # @param VideoList: <p>主体参考视频，可通过视频设定主体及其细节</p>
+        # @type VideoList: Array
+        # @param TagList: <p>为主体配置标签，一个主体可以配置多个标签</p>
+        # @type TagList: Array
+        # @param ProviderDetails: <p>厂商聚合字段</p>
+        # @type ProviderDetails: Array
+        # @param CreatedAt: <p>创建时间</p>
+        # @type CreatedAt: String
+        # @param UpdatedAt: <p>更新时间</p>
+        # @type UpdatedAt: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Name, :ElementId, :Description, :ReferenceType, :Status, :Provider, :ElementImageList, :VideoList, :TagList, :ProviderDetails, :CreatedAt, :UpdatedAt, :RequestId
+
+        def initialize(name=nil, elementid=nil, description=nil, referencetype=nil, status=nil, provider=nil, elementimagelist=nil, videolist=nil, taglist=nil, providerdetails=nil, createdat=nil, updatedat=nil, requestid=nil)
+          @Name = name
+          @ElementId = elementid
+          @Description = description
+          @ReferenceType = referencetype
+          @Status = status
+          @Provider = provider
+          @ElementImageList = elementimagelist
+          @VideoList = videolist
+          @TagList = taglist
+          @ProviderDetails = providerdetails
+          @CreatedAt = createdat
+          @UpdatedAt = updatedat
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @ElementId = params['ElementId']
+          @Description = params['Description']
+          @ReferenceType = params['ReferenceType']
+          @Status = params['Status']
+          @Provider = params['Provider']
+          unless params['ElementImageList'].nil?
+            @ElementImageList = ElementImageList.new
+            @ElementImageList.deserialize(params['ElementImageList'])
+          end
+          @VideoList = params['VideoList']
+          unless params['TagList'].nil?
+            @TagList = []
+            params['TagList'].each do |i|
+              taglist_tmp = TagList.new
+              taglist_tmp.deserialize(i)
+              @TagList << taglist_tmp
+            end
+          end
+          unless params['ProviderDetails'].nil?
+            @ProviderDetails = []
+            params['ProviderDetails'].each do |i|
+              providerdetail_tmp = ProviderDetail.new
+              providerdetail_tmp.deserialize(i)
+              @ProviderDetails << providerdetail_tmp
+            end
+          end
+          @CreatedAt = params['CreatedAt']
+          @UpdatedAt = params['UpdatedAt']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeAigcVideoJob请求参数结构体
       class DescribeAigcVideoJobRequest < TencentCloud::Common::AbstractModel
         # @param JobId: 任务ID。
@@ -1232,6 +1455,33 @@ module TencentCloud
         end
       end
 
+      # 主体正面图 参考图列表
+      class ElementImageList < TencentCloud::Common::AbstractModel
+        # @param ReferImages: <p>主体参考图</p>
+        # @type ReferImages: Array
+        # @param FrontalImage: <p>主体主图</p>
+        # @type FrontalImage: String
+
+        attr_accessor :ReferImages, :FrontalImage
+
+        def initialize(referimages=nil, frontalimage=nil)
+          @ReferImages = referimages
+          @FrontalImage = frontalimage
+        end
+
+        def deserialize(params)
+          unless params['ReferImages'].nil?
+            @ReferImages = []
+            params['ReferImages'].each do |i|
+              referimageitem_tmp = ReferImageItem.new
+              referimageitem_tmp.deserialize(i)
+              @ReferImages << referimageitem_tmp
+            end
+          end
+          @FrontalImage = params['FrontalImage']
+        end
+      end
+
       # 扩展字段。
       class ExtraParam < TencentCloud::Common::AbstractModel
         # @param UserDesignatedUrl: <p>预签名的上传url，支持把视频直接传到客户指定的地址。</p>
@@ -1489,6 +1739,46 @@ module TencentCloud
           @Index = params['Index']
           @Prompt = params['Prompt']
           @Duration = params['Duration']
+        end
+      end
+
+      # ProviderDetail
+      class ProviderDetail < TencentCloud::Common::AbstractModel
+        # @param Provider: <p>供应商详情</p>
+        # @type Provider: String
+        # @param Status: <p>状态</p>
+        # @type Status: String
+        # @param ErrorMessage: <p>错误信息</p>
+        # @type ErrorMessage: String
+
+        attr_accessor :Provider, :Status, :ErrorMessage
+
+        def initialize(provider=nil, status=nil, errormessage=nil)
+          @Provider = provider
+          @Status = status
+          @ErrorMessage = errormessage
+        end
+
+        def deserialize(params)
+          @Provider = params['Provider']
+          @Status = params['Status']
+          @ErrorMessage = params['ErrorMessage']
+        end
+      end
+
+      # 生成视频时所引用的音色
+      class ReferImageItem < TencentCloud::Common::AbstractModel
+        # @param ImageUrl: <p>图片地址</p>
+        # @type ImageUrl: String
+
+        attr_accessor :ImageUrl
+
+        def initialize(imageurl=nil)
+          @ImageUrl = imageurl
+        end
+
+        def deserialize(params)
+          @ImageUrl = params['ImageUrl']
         end
       end
 
@@ -3188,6 +3478,22 @@ module TencentCloud
         def deserialize(params)
           @JobId = params['JobId']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 生成视频时所引用的音色
+      class TagList < TencentCloud::Common::AbstractModel
+        # @param TagId: <p>tag标签</p>
+        # @type TagId: String
+
+        attr_accessor :TagId
+
+        def initialize(tagid=nil)
+          @TagId = tagid
+        end
+
+        def deserialize(params)
+          @TagId = params['TagId']
         end
       end
 

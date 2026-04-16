@@ -2140,6 +2140,82 @@ module TencentCloud
         end
       end
 
+      # DescribeCompareDiffItems请求参数结构体
+      class DescribeCompareDiffItemsRequest < TencentCloud::Common::AbstractModel
+        # @param JobId: 迁移任务 Id
+        # @type JobId: String
+        # @param CompareTaskId: 校验任务 Id
+        # @type CompareTaskId: String
+        # @param DBName: 数据库名
+        # @type DBName: String
+        # @param SchemaName: schema名
+        # @type SchemaName: String
+        # @param TableName: 数据表名
+        # @type TableName: String
+        # @param ChunkId: 数据分块号
+        # @type ChunkId: Integer
+        # @param Limit: 分页条件，查询结果返回条数
+        # @type Limit: Integer
+        # @param Offset: 分页条件，查询的起始位置
+        # @type Offset: Integer
+
+        attr_accessor :JobId, :CompareTaskId, :DBName, :SchemaName, :TableName, :ChunkId, :Limit, :Offset
+
+        def initialize(jobid=nil, comparetaskid=nil, dbname=nil, schemaname=nil, tablename=nil, chunkid=nil, limit=nil, offset=nil)
+          @JobId = jobid
+          @CompareTaskId = comparetaskid
+          @DBName = dbname
+          @SchemaName = schemaname
+          @TableName = tablename
+          @ChunkId = chunkid
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+          @CompareTaskId = params['CompareTaskId']
+          @DBName = params['DBName']
+          @SchemaName = params['SchemaName']
+          @TableName = params['TableName']
+          @ChunkId = params['ChunkId']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeCompareDiffItems返回参数结构体
+      class DescribeCompareDiffItemsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 查询结果的数量
+        # @type TotalCount: Integer
+        # @param Items: 查询结果详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Items: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Items, :RequestId
+
+        def initialize(totalcount=nil, items=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Items = items
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              diffchunkitem_tmp = DiffChunkItem.new
+              diffchunkitem_tmp.deserialize(i)
+              @Items << diffchunkitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeCompareReport请求参数结构体
       class DescribeCompareReportRequest < TencentCloud::Common::AbstractModel
         # @param JobId: 迁移任务 Id，可通过[DescribeMigrationJobs](https://cloud.tencent.com/document/product/571/82084)接口获取。
@@ -2643,37 +2719,37 @@ module TencentCloud
 
       # DescribeMigrationJobs请求参数结构体
       class DescribeMigrationJobsRequest < TencentCloud::Common::AbstractModel
-        # @param JobId: 数据迁移任务ID，如：dts-amm1jw5q
+        # @param JobId: <p>数据迁移任务ID，如：dts-amm1jw5q</p>
         # @type JobId: String
-        # @param JobName: 数据迁移任务名称
+        # @param JobName: <p>数据迁移任务名称</p>
         # @type JobName: String
-        # @param Status: 数据迁移任务状态，可取值包括：created(创建完成)、checking(校验中)、checkPass(校验通过)、checkNotPass(校验不通过)、readyRun(准备运行)、running(任务运行中)、readyComplete(准备完成)、success(任务成功)、failed(任务失败)、stopping(中止中)、completing(完成中)
+        # @param Status: <p>数据迁移任务状态，可取值包括：created(创建完成)、checking(校验中)、checkPass(校验通过)、checkNotPass(校验不通过)、readyRun(准备运行)、running(任务运行中)、readyComplete(准备完成)、success(任务成功)、failed(任务失败)、stopping(中止中)、completing(完成中)</p>
         # @type Status: Array
-        # @param SrcInstanceId: 源实例ID，格式如：cdb-c1nl9rpv
+        # @param SrcInstanceId: <p>源实例ID，格式如：cdb-c1nl9rpv</p>
         # @type SrcInstanceId: String
-        # @param SrcRegion: 源实例地域，如：ap-guangzhou
+        # @param SrcRegion: <p>源实例地域，如：ap-guangzhou</p>
         # @type SrcRegion: String
-        # @param SrcDatabaseType: 源实例数据库类型，如：sqlserver,mysql,mongodb,redis,tendis,keewidb,clickhouse,cynosdbmysql,percona,tdsqlpercona,mariadb,tdsqlmysql,postgresql
+        # @param SrcDatabaseType: <p>源实例数据库类型，如：sqlserver,mysql,mongodb,redis,tendis,keewidb,clickhouse,cynosdbmysql,percona,tdsqlpercona,mariadb,tdsqlmysql,postgresql</p>
         # @type SrcDatabaseType: Array
-        # @param SrcAccessType: 源实例接入类型，值包括：extranet(外网)、vpncloud(云vpn接入的实例)、dcg(专线接入的实例)、ccn(云联网接入的实例)、cdb(云上cdb实例)、cvm(cvm自建实例)
+        # @param SrcAccessType: <p>源实例接入类型，值包括：extranet(外网)、vpncloud(云vpn接入的实例)、dcg(专线接入的实例)、ccn(云联网接入的实例)、cdb(云上cdb实例)、cvm(cvm自建实例)</p>
         # @type SrcAccessType: Array
-        # @param DstInstanceId: 目标实例ID，格式如：cdb-c1nl9rpv
+        # @param DstInstanceId: <p>目标实例ID，格式如：cdb-c1nl9rpv</p>
         # @type DstInstanceId: String
-        # @param DstRegion: 目标实例地域，如：ap-guangzhou
+        # @param DstRegion: <p>目标实例地域，如：ap-guangzhou</p>
         # @type DstRegion: String
-        # @param DstDatabaseType: 目标源实例数据库类型，如：sqlserver,mysql,mongodb,redis,tendis,keewidb,clickhouse,cynosdbmysql,percona,tdsqlpercona,mariadb,tdsqlmysql,postgresql
+        # @param DstDatabaseType: <p>目标源实例数据库类型，如：sqlserver,mysql,mongodb,redis,tendis,keewidb,clickhouse,cynosdbmysql,percona,tdsqlpercona,mariadb,tdsqlmysql,postgresql</p>
         # @type DstDatabaseType: Array
-        # @param DstAccessType: 目标实例接入类型，值包括：extranet(外网)、vpncloud(云vpn接入的实例)、dcg(专线接入的实例)、ccn(云联网接入的实例)、cdb(云上cdb实例)、cvm(cvm自建实例)
+        # @param DstAccessType: <p>目标实例接入类型，值包括：extranet(外网)、vpncloud(云vpn接入的实例)、dcg(专线接入的实例)、ccn(云联网接入的实例)、cdb(云上cdb实例)、cvm(cvm自建实例)</p>
         # @type DstAccessType: Array
-        # @param RunMode: 任务运行模式，值包括：immediate(立即运行)，timed(定时运行)
+        # @param RunMode: <p>任务运行模式，值包括：immediate(立即运行)，timed(定时运行)</p>
         # @type RunMode: String
-        # @param OrderSeq: 排序方式，可能取值为asc、desc，默认按照创建时间倒序
+        # @param OrderSeq: <p>排序方式，可能取值为asc、desc，默认按照创建时间倒序</p>
         # @type OrderSeq: String
-        # @param Limit: 返回实例数量，默认20，有效区间[1,100]
+        # @param Limit: <p>返回实例数量，默认20，有效区间[1,100]</p>
         # @type Limit: Integer
-        # @param Offset: 偏移量，默认为0
+        # @param Offset: <p>偏移量，默认为0</p>
         # @type Offset: Integer
-        # @param TagFilters: 标签过滤
+        # @param TagFilters: <p>标签过滤</p>
         # @type TagFilters: Array
 
         attr_accessor :JobId, :JobName, :Status, :SrcInstanceId, :SrcRegion, :SrcDatabaseType, :SrcAccessType, :DstInstanceId, :DstRegion, :DstDatabaseType, :DstAccessType, :RunMode, :OrderSeq, :Limit, :Offset, :TagFilters
@@ -2726,9 +2802,9 @@ module TencentCloud
 
       # DescribeMigrationJobs返回参数结构体
       class DescribeMigrationJobsResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 迁移任务数量
+        # @param TotalCount: <p>迁移任务数量</p>
         # @type TotalCount: Integer
-        # @param JobList: 迁移任务列表
+        # @param JobList: <p>迁移任务列表</p>
         # @type JobList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3279,6 +3355,82 @@ module TencentCloud
         end
       end
 
+      # DescribeSyncCompareDiffItems请求参数结构体
+      class DescribeSyncCompareDiffItemsRequest < TencentCloud::Common::AbstractModel
+        # @param JobId: 迁移任务 Id
+        # @type JobId: String
+        # @param CompareTaskId: 校验任务 Id
+        # @type CompareTaskId: String
+        # @param DBName: 数据库名
+        # @type DBName: String
+        # @param SchemaName: schema名
+        # @type SchemaName: String
+        # @param TableName: 数据表名
+        # @type TableName: String
+        # @param ChunkId: 数据分块号
+        # @type ChunkId: Integer
+        # @param Limit: 分页条件，查询结果返回条数
+        # @type Limit: Integer
+        # @param Offset: 分页条件，查询的起始位置
+        # @type Offset: Integer
+
+        attr_accessor :JobId, :CompareTaskId, :DBName, :SchemaName, :TableName, :ChunkId, :Limit, :Offset
+
+        def initialize(jobid=nil, comparetaskid=nil, dbname=nil, schemaname=nil, tablename=nil, chunkid=nil, limit=nil, offset=nil)
+          @JobId = jobid
+          @CompareTaskId = comparetaskid
+          @DBName = dbname
+          @SchemaName = schemaname
+          @TableName = tablename
+          @ChunkId = chunkid
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+          @CompareTaskId = params['CompareTaskId']
+          @DBName = params['DBName']
+          @SchemaName = params['SchemaName']
+          @TableName = params['TableName']
+          @ChunkId = params['ChunkId']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeSyncCompareDiffItems返回参数结构体
+      class DescribeSyncCompareDiffItemsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 查询结果的数量
+        # @type TotalCount: Integer
+        # @param Items: 查询结果详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Items: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Items, :RequestId
+
+        def initialize(totalcount=nil, items=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Items = items
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              diffchunkitem_tmp = DiffChunkItem.new
+              diffchunkitem_tmp.deserialize(i)
+              @Items << diffchunkitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeSyncCompareReport请求参数结构体
       class DescribeSyncCompareReportRequest < TencentCloud::Common::AbstractModel
         # @param JobId: 任务 Id
@@ -3678,6 +3830,67 @@ module TencentCloud
           @ErrorLog = params['ErrorLog']
           @HelpDoc = params['HelpDoc']
           @SkipInfo = params['SkipInfo']
+        end
+      end
+
+      # 数据块内不一致数据的详情信息
+      class DiffChunkItem < TencentCloud::Common::AbstractModel
+        # @param DBName: 数据库名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DBName: String
+        # @param SchemaName: schema名
+        # @type SchemaName: String
+        # @param TableName: 数据表名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableName: String
+        # @param ChunkId: 分块号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChunkId: Integer
+        # @param Identifier: 数据标识符，比如主键信息等
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Identifier: String
+        # @param DiffType: 不一致类型，可能的取值为：data - 两边数据不一致；srcLack - 源缺失；dstLack - 目标缺失
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiffType: String
+        # @param SchemaInfo: 表结构信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SchemaInfo: Array
+        # @param SrcItem: 源端数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SrcItem: Array
+        # @param DstItem: 目标端数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DstItem: Array
+        # @param FinishedAt: 完成时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FinishedAt: String
+
+        attr_accessor :DBName, :SchemaName, :TableName, :ChunkId, :Identifier, :DiffType, :SchemaInfo, :SrcItem, :DstItem, :FinishedAt
+
+        def initialize(dbname=nil, schemaname=nil, tablename=nil, chunkid=nil, identifier=nil, difftype=nil, schemainfo=nil, srcitem=nil, dstitem=nil, finishedat=nil)
+          @DBName = dbname
+          @SchemaName = schemaname
+          @TableName = tablename
+          @ChunkId = chunkid
+          @Identifier = identifier
+          @DiffType = difftype
+          @SchemaInfo = schemainfo
+          @SrcItem = srcitem
+          @DstItem = dstitem
+          @FinishedAt = finishedat
+        end
+
+        def deserialize(params)
+          @DBName = params['DBName']
+          @SchemaName = params['SchemaName']
+          @TableName = params['TableName']
+          @ChunkId = params['ChunkId']
+          @Identifier = params['Identifier']
+          @DiffType = params['DiffType']
+          @SchemaInfo = params['SchemaInfo']
+          @SrcItem = params['SrcItem']
+          @DstItem = params['DstItem']
+          @FinishedAt = params['FinishedAt']
         end
       end
 
@@ -4790,23 +5003,22 @@ module TencentCloud
 
       # 迁移选项，描述任务如何执行迁移等一系列配置信息
       class MigrateOption < TencentCloud::Common::AbstractModel
-        # @param DatabaseTable: 迁移对象选项，需要告知迁移服务迁移哪些库表对象
+        # @param DatabaseTable: <p>迁移对象选项，需要告知迁移服务迁移哪些库表对象</p>
         # @type DatabaseTable: :class:`Tencentcloud::Dts.v20211206.models.DatabaseTableObject`
-        # @param MigrateType: 迁移类型，full(全量迁移)，structure(结构迁移)，fullAndIncrement(全量加增量迁移)， 默认为fullAndIncrement;注意redis,keewidb产品只支持fullAndIncrement类型。
+        # @param MigrateType: <p>迁移类型，full(全量迁移)，structure(结构迁移)，fullAndIncrement(全量加增量迁移)， 默认为fullAndIncrement;注意redis,keewidb产品只支持fullAndIncrement类型。</p>
         # @type MigrateType: String
-        # @param Consistency: 数据一致性校验选项， 默认为不开启一致性校验
+        # @param Consistency: <p>数据一致性校验选项， 默认为不开启一致性校验</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Consistency: :class:`Tencentcloud::Dts.v20211206.models.ConsistencyOption`
-        # @param IsMigrateAccount: 是否迁移账号，true(迁移账号)，false(不迁移账号)
+        # @param IsMigrateAccount: <p>是否迁移账号，true(迁移账号)，false(不迁移账号)</p>
         # @type IsMigrateAccount: Boolean
-        # @param IsOverrideRoot: 是否用源库Root账户覆盖目标库，值包括：false-不覆盖，true-覆盖，选择库表或者结构迁移时应该为false，注意只对旧版迁移有效
+        # @param IsOverrideRoot: <p>是否用源库Root账户覆盖目标库，值包括：false-不覆盖，true-覆盖，选择库表或者结构迁移时应该为false，注意只对旧版迁移有效</p>
         # @type IsOverrideRoot: Boolean
-        # @param IsDstReadOnly: 是否在迁移时设置目标库只读(仅对mysql有效)，true(设置只读)、false(不设置只读，默认此值)
+        # @param IsDstReadOnly: <p>是否在迁移时设置目标库只读(仅对mysql有效)，true(设置只读)、false(不设置只读，默认此值)</p>
         # @type IsDstReadOnly: Boolean
-        # @param ExtraAttr: 其他附加信息，对于特定库可设置额外参数，Redis可定义如下的参数:
-        # ["DstWriteMode":normal, 	目标库写入模式,可取值clearData(清空目标实例数据)、overwrite(以覆盖写的方式执行任务)、normal(要求目标端为空，否则校验不通过) ，不显示指定默认以覆盖写的方式执行任务	"IsDstReadOnly":true, 	是否在迁移时设置目标库只读,true(设置只读)、false(不设置只读) 	"ClientOutputBufferHardLimit":512, 	从机缓冲区的硬性容量限制(MB) 	"ClientOutputBufferSoftLimit":512, 	从机缓冲区的软性容量限制(MB) 	"ClientOutputBufferPersistTime":60, 从机缓冲区的软性限制持续时间(秒) 	"ReplBacklogSize":512, 	环形缓冲区容量限制(MB) 	"ReplTimeout":120，		复制超时时间(秒) 	"IsExpireKey":"true",过期key自动淘汰]
+        # @param ExtraAttr: <p>其他附加信息，对于特定库可设置额外参数，Redis可定义如下的参数:<br>[&quot;DstWriteMode&quot;:normal,     目标库写入模式,可取值clearData(清空目标实例数据)、overwrite(以覆盖写的方式执行任务)、normal(要求目标端为空，否则校验不通过) ，不显示指定默认以覆盖写的方式执行任务    &quot;IsDstReadOnly&quot;:true,     是否在迁移时设置目标库只读,true(设置只读)、false(不设置只读)     &quot;ClientOutputBufferHardLimit&quot;:512,     从机缓冲区的硬性容量限制(MB)     &quot;ClientOutputBufferSoftLimit&quot;:512,     从机缓冲区的软性容量限制(MB)     &quot;ClientOutputBufferPersistTime&quot;:60, 从机缓冲区的软性限制持续时间(秒)     &quot;ReplBacklogSize&quot;:512,     环形缓冲区容量限制(MB)     &quot;ReplTimeout&quot;:120，        复制超时时间(秒)     &quot;IsExpireKey&quot;:&quot;true&quot;,过期key自动淘汰]</p>
         # @type ExtraAttr: Array
-        # @param MigrateWay: pgsql迁移分类：logical(逻辑迁移)、physical(物理迁移)
+        # @param MigrateWay: <p>pgsql迁移分类：logical(逻辑迁移)、physical(物理迁移)</p>
         # @type MigrateWay: String
 
         attr_accessor :DatabaseTable, :MigrateType, :Consistency, :IsMigrateAccount, :IsOverrideRoot, :IsDstReadOnly, :ExtraAttr, :MigrateWay
