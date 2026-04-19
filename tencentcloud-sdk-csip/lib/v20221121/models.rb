@@ -11703,33 +11703,33 @@ module TencentCloud
 
       # 风险详情
       class RiskDetailItem < TencentCloud::Common::AbstractModel
-        # @param CreateTime: 首次发现时间
+        # @param CreateTime: <p>首次发现时间</p>
         # @type CreateTime: String
-        # @param UpdateTime: 更新时间
+        # @param UpdateTime: <p>更新时间</p>
         # @type UpdateTime: String
-        # @param RiskStatus: 风险状态
+        # @param RiskStatus: <p>风险状态</p>
         # @type RiskStatus: Integer
-        # @param RiskContent: 风险内容
+        # @param RiskContent: <p>风险内容</p>
         # @type RiskContent: String
-        # @param Provider: 云厂商
+        # @param Provider: <p>云厂商</p>
         # @type Provider: String
-        # @param ProviderName: 云厂商名称
+        # @param ProviderName: <p>云厂商名称</p>
         # @type ProviderName: String
-        # @param CloudAccountId: 云账号
+        # @param CloudAccountId: <p>云账号</p>
         # @type CloudAccountId: String
-        # @param CloudAccountName: 云账号名称
+        # @param CloudAccountName: <p>云账号名称</p>
         # @type CloudAccountName: String
-        # @param InstanceId: 实例ID
+        # @param InstanceId: <p>实例ID</p>
         # @type InstanceId: String
-        # @param InstanceName: 实例名称
+        # @param InstanceName: <p>实例名称</p>
         # @type InstanceName: String
-        # @param RiskId: 风险ID
+        # @param RiskId: <p>风险ID</p>
         # @type RiskId: Integer
-        # @param RiskRuleId: 风险规则ID
+        # @param RiskRuleId: <p>风险规则ID</p>
         # @type RiskRuleId: String
-        # @param CheckStatus: 风险验证状态
+        # @param CheckStatus: <p>风险验证状态</p>
         # @type CheckStatus: String
-        # @param AppID: 
+        # @param AppID: <p>用户AppID</p>
         # @type AppID: Integer
 
         attr_accessor :CreateTime, :UpdateTime, :RiskStatus, :RiskContent, :Provider, :ProviderName, :CloudAccountId, :CloudAccountName, :InstanceId, :InstanceName, :RiskId, :RiskRuleId, :CheckStatus, :AppID

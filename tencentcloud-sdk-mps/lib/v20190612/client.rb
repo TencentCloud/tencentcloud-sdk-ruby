@@ -2221,7 +2221,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询配音相关任务（异步）结果
+        # 查询音色设计任务（异步）结果
 
         # @param request: Request instance for DescribeDesignTask.
         # @type request: :class:`Tencentcloud::mps::V20190612::DescribeDesignTaskRequest`

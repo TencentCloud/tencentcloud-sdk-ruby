@@ -16826,6 +16826,46 @@ module TencentCloud
         end
       end
 
+      # ModifyLogConfig请求参数结构体
+      class ModifyLogConfigRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param LogConfig: 日志采集配置的json表达
+        # @type LogConfig: String
+        # @param ClusterType: 当前集群类型支持tke（标准集群）、eks（serverless集群）
+        # @type ClusterType: String
+
+        attr_accessor :ClusterId, :LogConfig, :ClusterType
+
+        def initialize(clusterid=nil, logconfig=nil, clustertype=nil)
+          @ClusterId = clusterid
+          @LogConfig = logconfig
+          @ClusterType = clustertype
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @LogConfig = params['LogConfig']
+          @ClusterType = params['ClusterType']
+        end
+      end
+
+      # ModifyLogConfig返回参数结构体
+      class ModifyLogConfigResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyMasterComponent请求参数结构体
       class ModifyMasterComponentRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID

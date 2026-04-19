@@ -29053,8 +29053,10 @@ module TencentCloud
 
       # SSAI广告插入配置。
       class SSAIConf < TencentCloud::Common::AbstractModel
-        # @param AdsUrl: <p>广告决策服务器URL(ADS)。</p>
+        # @param AdsUrl: <p>广告决策服务器URL(ADS)。注意：填了AdsUrl会自动代替覆盖AdsUrls[0]</p>
         # @type AdsUrl: String
+        # @param AdsUrls: <p>广告决策服务器URL数组(ADS)</p>
+        # @type AdsUrls: Array
         # @param ConfigAliases: <p>参数配置。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConfigAliases: Array
@@ -29079,17 +29081,20 @@ module TencentCloud
         # @type SourceCDNPrefix: String
         # @param AdCDNPrefix: <p>广告CDN前缀，需要以http://或者https://开头。</p>
         # @type AdCDNPrefix: String
-        # @param PreRollAdsUrl: <p>预加载广告决策服务地址。</p>
+        # @param PreRollAdsUrl: <p>预加载广告决策服务地址。注意：填了PreRollAdsUrl会自动代替覆盖PreRollAdsUrls[0]</p>
         # @type PreRollAdsUrl: String
+        # @param PreRollAdsUrls: <p>预加载广告决策服务地址数组</p>
+        # @type PreRollAdsUrls: Array
         # @param PreRollMaxAllowedDuration: <p>预加载广告最大允许时长，0-3600。</p>
         # @type PreRollMaxAllowedDuration: Integer
         # @param MultiRequest: <p>是否开启多次请求ADS,开启后将优先请求ADS，请求失败后再请求兜底广告</p>
         # @type MultiRequest: Boolean
 
-        attr_accessor :AdsUrl, :ConfigAliases, :AdMarkerPassthrough, :SCTE35AdType, :SlateAd, :Threshold, :DashMPDLocation, :AdTriggers, :DeliveryRestrictions, :SourceCDNPrefix, :AdCDNPrefix, :PreRollAdsUrl, :PreRollMaxAllowedDuration, :MultiRequest
+        attr_accessor :AdsUrl, :AdsUrls, :ConfigAliases, :AdMarkerPassthrough, :SCTE35AdType, :SlateAd, :Threshold, :DashMPDLocation, :AdTriggers, :DeliveryRestrictions, :SourceCDNPrefix, :AdCDNPrefix, :PreRollAdsUrl, :PreRollAdsUrls, :PreRollMaxAllowedDuration, :MultiRequest
 
-        def initialize(adsurl=nil, configaliases=nil, admarkerpassthrough=nil, scte35adtype=nil, slatead=nil, threshold=nil, dashmpdlocation=nil, adtriggers=nil, deliveryrestrictions=nil, sourcecdnprefix=nil, adcdnprefix=nil, prerolladsurl=nil, prerollmaxallowedduration=nil, multirequest=nil)
+        def initialize(adsurl=nil, adsurls=nil, configaliases=nil, admarkerpassthrough=nil, scte35adtype=nil, slatead=nil, threshold=nil, dashmpdlocation=nil, adtriggers=nil, deliveryrestrictions=nil, sourcecdnprefix=nil, adcdnprefix=nil, prerolladsurl=nil, prerolladsurls=nil, prerollmaxallowedduration=nil, multirequest=nil)
           @AdsUrl = adsurl
+          @AdsUrls = adsurls
           @ConfigAliases = configaliases
           @AdMarkerPassthrough = admarkerpassthrough
           @SCTE35AdType = scte35adtype
@@ -29101,12 +29106,14 @@ module TencentCloud
           @SourceCDNPrefix = sourcecdnprefix
           @AdCDNPrefix = adcdnprefix
           @PreRollAdsUrl = prerolladsurl
+          @PreRollAdsUrls = prerolladsurls
           @PreRollMaxAllowedDuration = prerollmaxallowedduration
           @MultiRequest = multirequest
         end
 
         def deserialize(params)
           @AdsUrl = params['AdsUrl']
+          @AdsUrls = params['AdsUrls']
           unless params['ConfigAliases'].nil?
             @ConfigAliases = []
             params['ConfigAliases'].each do |i|
@@ -29125,6 +29132,7 @@ module TencentCloud
           @SourceCDNPrefix = params['SourceCDNPrefix']
           @AdCDNPrefix = params['AdCDNPrefix']
           @PreRollAdsUrl = params['PreRollAdsUrl']
+          @PreRollAdsUrls = params['PreRollAdsUrls']
           @PreRollMaxAllowedDuration = params['PreRollMaxAllowedDuration']
           @MultiRequest = params['MultiRequest']
         end

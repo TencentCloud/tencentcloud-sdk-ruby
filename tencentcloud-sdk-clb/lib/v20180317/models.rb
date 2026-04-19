@@ -4590,9 +4590,9 @@ module TencentCloud
 
       # 过滤器条件
       class Filter < TencentCloud::Common::AbstractModel
-        # @param Name: 过滤器的名称
+        # @param Name: <p>过滤器的名称</p>
         # @type Name: String
-        # @param Values: 过滤器的值数组
+        # @param Values: <p>过滤器的值数组</p>
         # @type Values: Array
 
         attr_accessor :Name, :Values

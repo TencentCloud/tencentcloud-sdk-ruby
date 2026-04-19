@@ -1886,10 +1886,12 @@ module TencentCloud
         # @type SgIP: String
         # @param PartitionNumber: <p>分区置放群组分区</p>
         # @type PartitionNumber: Integer
+        # @param WebUiVersion: <p>服务ui地址</p><p>枚举值：</p><ul><li>0： 服务ui地址，只返回1条服务ui地址</li><li>1： 服务ui地址，如果服务含有多个ui地址将全部返回，例如impala的Impalad、StateStore、Catalogd</li></ul><p>默认值：0</p>
+        # @type WebUiVersion: Integer
 
-        attr_accessor :ProductVersion, :EnableSupportHAFlag, :InstanceName, :InstanceChargeType, :LoginSettings, :SceneSoftwareConfig, :InstanceChargePrepaid, :SecurityGroupIds, :ScriptBootstrapActionConfig, :ClientToken, :NeedMasterWan, :EnableRemoteLoginFlag, :EnableKerberosFlag, :CustomConf, :Tags, :DisasterRecoverGroupIds, :EnableCbsEncryptFlag, :MetaDBInfo, :DependService, :ZoneResourceConfiguration, :CosBucket, :NodeMarks, :LoadBalancerId, :DefaultMetaVersion, :NeedCdbAudit, :SgIP, :PartitionNumber
+        attr_accessor :ProductVersion, :EnableSupportHAFlag, :InstanceName, :InstanceChargeType, :LoginSettings, :SceneSoftwareConfig, :InstanceChargePrepaid, :SecurityGroupIds, :ScriptBootstrapActionConfig, :ClientToken, :NeedMasterWan, :EnableRemoteLoginFlag, :EnableKerberosFlag, :CustomConf, :Tags, :DisasterRecoverGroupIds, :EnableCbsEncryptFlag, :MetaDBInfo, :DependService, :ZoneResourceConfiguration, :CosBucket, :NodeMarks, :LoadBalancerId, :DefaultMetaVersion, :NeedCdbAudit, :SgIP, :PartitionNumber, :WebUiVersion
 
-        def initialize(productversion=nil, enablesupporthaflag=nil, instancename=nil, instancechargetype=nil, loginsettings=nil, scenesoftwareconfig=nil, instancechargeprepaid=nil, securitygroupids=nil, scriptbootstrapactionconfig=nil, clienttoken=nil, needmasterwan=nil, enableremoteloginflag=nil, enablekerberosflag=nil, customconf=nil, tags=nil, disasterrecovergroupids=nil, enablecbsencryptflag=nil, metadbinfo=nil, dependservice=nil, zoneresourceconfiguration=nil, cosbucket=nil, nodemarks=nil, loadbalancerid=nil, defaultmetaversion=nil, needcdbaudit=nil, sgip=nil, partitionnumber=nil)
+        def initialize(productversion=nil, enablesupporthaflag=nil, instancename=nil, instancechargetype=nil, loginsettings=nil, scenesoftwareconfig=nil, instancechargeprepaid=nil, securitygroupids=nil, scriptbootstrapactionconfig=nil, clienttoken=nil, needmasterwan=nil, enableremoteloginflag=nil, enablekerberosflag=nil, customconf=nil, tags=nil, disasterrecovergroupids=nil, enablecbsencryptflag=nil, metadbinfo=nil, dependservice=nil, zoneresourceconfiguration=nil, cosbucket=nil, nodemarks=nil, loadbalancerid=nil, defaultmetaversion=nil, needcdbaudit=nil, sgip=nil, partitionnumber=nil, webuiversion=nil)
           @ProductVersion = productversion
           @EnableSupportHAFlag = enablesupporthaflag
           @InstanceName = instancename
@@ -1917,6 +1919,7 @@ module TencentCloud
           @NeedCdbAudit = needcdbaudit
           @SgIP = sgip
           @PartitionNumber = partitionnumber
+          @WebUiVersion = webuiversion
         end
 
         def deserialize(params)
@@ -1994,6 +1997,7 @@ module TencentCloud
           @NeedCdbAudit = params['NeedCdbAudit']
           @SgIP = params['SgIP']
           @PartitionNumber = params['PartitionNumber']
+          @WebUiVersion = params['WebUiVersion']
         end
       end
 
@@ -2151,10 +2155,12 @@ module TencentCloud
         # @type SgIP: String
         # @param PartitionNumber: <p>分区置放群组分区</p>
         # @type PartitionNumber: Integer
+        # @param WebUiVersion: <p>服务ui地址</p><p>枚举值：</p><ul><li>0： 服务ui地址，只返回1条服务ui地址</li><li>1： 服务ui地址，如果服务含有多个ui地址将全部返回，例如impala的Impalad、StateStore、Catalogd</li></ul><p>默认值：0</p>
+        # @type WebUiVersion: Integer
 
-        attr_accessor :ProductId, :Software, :SupportHA, :InstanceName, :PayMode, :TimeSpan, :TimeUnit, :LoginSettings, :VPCSettings, :ResourceSpec, :COSSettings, :Placement, :SgId, :PreExecutedFileSettings, :AutoRenew, :ClientToken, :NeedMasterWan, :RemoteLoginAtCreate, :CheckSecurity, :ExtendFsField, :Tags, :DisasterRecoverGroupIds, :CbsEncrypt, :MetaType, :UnifyMetaInstanceId, :MetaDBInfo, :ApplicationRole, :SceneName, :ExternalService, :VersionID, :MultiZone, :MultiZoneSettings, :CosBucket, :NodeMarks, :LoadBalancerId, :DefaultMetaVersion, :NeedCdbAudit, :SgIP, :PartitionNumber
+        attr_accessor :ProductId, :Software, :SupportHA, :InstanceName, :PayMode, :TimeSpan, :TimeUnit, :LoginSettings, :VPCSettings, :ResourceSpec, :COSSettings, :Placement, :SgId, :PreExecutedFileSettings, :AutoRenew, :ClientToken, :NeedMasterWan, :RemoteLoginAtCreate, :CheckSecurity, :ExtendFsField, :Tags, :DisasterRecoverGroupIds, :CbsEncrypt, :MetaType, :UnifyMetaInstanceId, :MetaDBInfo, :ApplicationRole, :SceneName, :ExternalService, :VersionID, :MultiZone, :MultiZoneSettings, :CosBucket, :NodeMarks, :LoadBalancerId, :DefaultMetaVersion, :NeedCdbAudit, :SgIP, :PartitionNumber, :WebUiVersion
 
-        def initialize(productid=nil, software=nil, supportha=nil, instancename=nil, paymode=nil, timespan=nil, timeunit=nil, loginsettings=nil, vpcsettings=nil, resourcespec=nil, cossettings=nil, placement=nil, sgid=nil, preexecutedfilesettings=nil, autorenew=nil, clienttoken=nil, needmasterwan=nil, remoteloginatcreate=nil, checksecurity=nil, extendfsfield=nil, tags=nil, disasterrecovergroupids=nil, cbsencrypt=nil, metatype=nil, unifymetainstanceid=nil, metadbinfo=nil, applicationrole=nil, scenename=nil, externalservice=nil, versionid=nil, multizone=nil, multizonesettings=nil, cosbucket=nil, nodemarks=nil, loadbalancerid=nil, defaultmetaversion=nil, needcdbaudit=nil, sgip=nil, partitionnumber=nil)
+        def initialize(productid=nil, software=nil, supportha=nil, instancename=nil, paymode=nil, timespan=nil, timeunit=nil, loginsettings=nil, vpcsettings=nil, resourcespec=nil, cossettings=nil, placement=nil, sgid=nil, preexecutedfilesettings=nil, autorenew=nil, clienttoken=nil, needmasterwan=nil, remoteloginatcreate=nil, checksecurity=nil, extendfsfield=nil, tags=nil, disasterrecovergroupids=nil, cbsencrypt=nil, metatype=nil, unifymetainstanceid=nil, metadbinfo=nil, applicationrole=nil, scenename=nil, externalservice=nil, versionid=nil, multizone=nil, multizonesettings=nil, cosbucket=nil, nodemarks=nil, loadbalancerid=nil, defaultmetaversion=nil, needcdbaudit=nil, sgip=nil, partitionnumber=nil, webuiversion=nil)
           @ProductId = productid
           @Software = software
           @SupportHA = supportha
@@ -2194,6 +2200,7 @@ module TencentCloud
           @NeedCdbAudit = needcdbaudit
           @SgIP = sgip
           @PartitionNumber = partitionnumber
+          @WebUiVersion = webuiversion
         end
 
         def deserialize(params)
@@ -2289,6 +2296,7 @@ module TencentCloud
           @NeedCdbAudit = params['NeedCdbAudit']
           @SgIP = params['SgIP']
           @PartitionNumber = params['PartitionNumber']
+          @WebUiVersion = params['WebUiVersion']
         end
       end
 

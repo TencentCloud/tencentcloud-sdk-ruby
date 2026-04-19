@@ -2690,52 +2690,40 @@ module TencentCloud
 
       # 表示检测项所影响的资产的信息。
       class ComplianceAffectedAsset < TencentCloud::Common::AbstractModel
-        # @param CustomerAssetId: 为客户分配的唯一的资产项的ID。
+        # @param CustomerAssetId: <p>为客户分配的唯一的资产项的ID。</p>
         # @type CustomerAssetId: Integer
-        # @param AssetName: 资产项的名称。
+        # @param AssetName: <p>资产项的名称。</p>
         # @type AssetName: String
-        # @param AssetType: 资产项的类型
+        # @param AssetType: <p>资产项的类型</p>
         # @type AssetType: String
-        # @param CheckStatus: 检测状态
-
-        # CHECK_INIT, 待检测
-
-        # CHECK_RUNNING, 检测中
-
-        # CHECK_FINISHED, 检测完成
-
-        # CHECK_FAILED, 检测失败
+        # @param CheckStatus: <p>检测状态</p><p>CHECK_INIT, 待检测</p><p>CHECK_RUNNING, 检测中</p><p>CHECK_FINISHED, 检测完成</p><p>CHECK_FAILED, 检测失败</p>
         # @type CheckStatus: String
-        # @param NodeName: 节点名称。
+        # @param NodeName: <p>节点名称。</p>
         # @type NodeName: String
-        # @param LastCheckTime: 上次检测的时间，格式为”YYYY-MM-DD HH:m::SS“。
-
-        # 如果没有检测过，此处为”0000-00-00 00:00:00“。
+        # @param LastCheckTime: <p>上次检测的时间，格式为”YYYY-MM-DD HH:m::SS“。</p><p>如果没有检测过，此处为”0000-00-00 00:00:00“。</p>
         # @type LastCheckTime: String
-        # @param CheckResult: 检测结果。取值为：
-
-        # RESULT_FAILED: 未通过
-
-        # RESULT_PASSED: 通过
+        # @param CheckResult: <p>检测结果。取值为：</p><p>RESULT_FAILED: 未通过</p><p>RESULT_PASSED: 通过</p>
         # @type CheckResult: String
-        # @param HostIP: 主机IP
+        # @param HostIP: <p>主机IP</p>
         # @type HostIP: String
-        # @param ImageTag: 镜像的tag
+        # @param ImageTag: <p>镜像的tag</p>
         # @type ImageTag: String
-        # @param VerifyInfo: 检查项验证信息
+        # @param VerifyInfo: <p>检查项验证信息</p>
         # @type VerifyInfo: String
-        # @param InstanceId: 主机实例id
+        # @param InstanceId: <p>主机实例id</p>
         # @type InstanceId: String
-        # @param ImageRegistryInfo: 镜像仓库信息
+        # @param ImageRegistryInfo: <p>镜像仓库信息</p>
         # @type ImageRegistryInfo: :class:`Tencentcloud::Tcss.v20201101.models.ImageRegistryInfo`
-        # @param ClusterID: 集群id
+        # @param ClusterID: <p>集群id</p>
         # @type ClusterID: String
-        # @param ClusterName: 集群名称
+        # @param ClusterName: <p>集群名称</p>
         # @type ClusterName: String
+        # @param AssetUniqueID: <p>资产唯一ID</p><p>默认值：-</p>
+        # @type AssetUniqueID: String
 
-        attr_accessor :CustomerAssetId, :AssetName, :AssetType, :CheckStatus, :NodeName, :LastCheckTime, :CheckResult, :HostIP, :ImageTag, :VerifyInfo, :InstanceId, :ImageRegistryInfo, :ClusterID, :ClusterName
+        attr_accessor :CustomerAssetId, :AssetName, :AssetType, :CheckStatus, :NodeName, :LastCheckTime, :CheckResult, :HostIP, :ImageTag, :VerifyInfo, :InstanceId, :ImageRegistryInfo, :ClusterID, :ClusterName, :AssetUniqueID
 
-        def initialize(customerassetid=nil, assetname=nil, assettype=nil, checkstatus=nil, nodename=nil, lastchecktime=nil, checkresult=nil, hostip=nil, imagetag=nil, verifyinfo=nil, instanceid=nil, imageregistryinfo=nil, clusterid=nil, clustername=nil)
+        def initialize(customerassetid=nil, assetname=nil, assettype=nil, checkstatus=nil, nodename=nil, lastchecktime=nil, checkresult=nil, hostip=nil, imagetag=nil, verifyinfo=nil, instanceid=nil, imageregistryinfo=nil, clusterid=nil, clustername=nil, assetuniqueid=nil)
           @CustomerAssetId = customerassetid
           @AssetName = assetname
           @AssetType = assettype
@@ -2750,6 +2738,7 @@ module TencentCloud
           @ImageRegistryInfo = imageregistryinfo
           @ClusterID = clusterid
           @ClusterName = clustername
+          @AssetUniqueID = assetuniqueid
         end
 
         def deserialize(params)
@@ -2770,6 +2759,7 @@ module TencentCloud
           end
           @ClusterID = params['ClusterID']
           @ClusterName = params['ClusterName']
+          @AssetUniqueID = params['AssetUniqueID']
         end
       end
 
@@ -2849,50 +2839,42 @@ module TencentCloud
 
       # 表示一项资产的信息。
       class ComplianceAssetInfo < TencentCloud::Common::AbstractModel
-        # @param CustomerAssetId: 客户资产的ID。
+        # @param CustomerAssetId: <p>客户资产的ID。</p>
         # @type CustomerAssetId: Integer
-        # @param AssetType: 资产类别。
+        # @param AssetType: <p>资产类别。</p>
         # @type AssetType: String
-        # @param AssetName: 资产的名称。
+        # @param AssetName: <p>资产的名称。</p>
         # @type AssetName: String
-        # @param ImageTag: 当资产为镜像时，这个字段为镜像Tag。
+        # @param ImageTag: <p>当资产为镜像时，这个字段为镜像Tag。</p>
         # @type ImageTag: String
-        # @param HostIP: 资产所在的主机IP。
+        # @param HostIP: <p>资产所在的主机IP。</p>
         # @type HostIP: String
-        # @param NodeName: 资产所属的节点的名称
+        # @param NodeName: <p>资产所属的节点的名称</p>
         # @type NodeName: String
-        # @param CheckStatus: 检测状态
-
-        # CHECK_INIT, 待检测
-
-        # CHECK_RUNNING, 检测中
-
-        # CHECK_FINISHED, 检测完成
-
-        # CHECK_FAILED, 检测失败
+        # @param CheckStatus: <p>检测状态</p><p>CHECK_INIT, 待检测</p><p>CHECK_RUNNING, 检测中</p><p>CHECK_FINISHED, 检测完成</p><p>CHECK_FAILED, 检测失败</p>
         # @type CheckStatus: String
-        # @param PassedPolicyItemCount: 此类资产通过的检测项的数目。
+        # @param PassedPolicyItemCount: <p>此类资产通过的检测项的数目。</p>
         # @type PassedPolicyItemCount: Integer
-        # @param FailedPolicyItemCount: 此类资产未通过的检测的数目。
+        # @param FailedPolicyItemCount: <p>此类资产未通过的检测的数目。</p>
         # @type FailedPolicyItemCount: Integer
-        # @param LastCheckTime: 上次检测的时间。
+        # @param LastCheckTime: <p>上次检测的时间。</p>
         # @type LastCheckTime: String
-        # @param CheckResult: 检测结果：
-        # RESULT_FAILED: 未通过。
-        # RESULT_PASSED: 通过。
+        # @param CheckResult: <p>检测结果：<br>RESULT_FAILED: 未通过。<br>RESULT_PASSED: 通过。</p>
         # @type CheckResult: String
-        # @param InstanceId: 主机节点的实例id
+        # @param InstanceId: <p>主机节点的实例id</p>
         # @type InstanceId: String
-        # @param ImageRegistryInfo: 镜像仓库信息
+        # @param ImageRegistryInfo: <p>镜像仓库信息</p>
         # @type ImageRegistryInfo: :class:`Tencentcloud::Tcss.v20201101.models.ImageRegistryInfo`
-        # @param ClusterID: 集群id
+        # @param ClusterID: <p>集群id</p>
         # @type ClusterID: String
-        # @param ClusterName: 集群名称
+        # @param ClusterName: <p>集群名称</p>
         # @type ClusterName: String
+        # @param AssetUniqueID: <p>资产唯一ID</p><p>默认值：-</p>
+        # @type AssetUniqueID: String
 
-        attr_accessor :CustomerAssetId, :AssetType, :AssetName, :ImageTag, :HostIP, :NodeName, :CheckStatus, :PassedPolicyItemCount, :FailedPolicyItemCount, :LastCheckTime, :CheckResult, :InstanceId, :ImageRegistryInfo, :ClusterID, :ClusterName
+        attr_accessor :CustomerAssetId, :AssetType, :AssetName, :ImageTag, :HostIP, :NodeName, :CheckStatus, :PassedPolicyItemCount, :FailedPolicyItemCount, :LastCheckTime, :CheckResult, :InstanceId, :ImageRegistryInfo, :ClusterID, :ClusterName, :AssetUniqueID
 
-        def initialize(customerassetid=nil, assettype=nil, assetname=nil, imagetag=nil, hostip=nil, nodename=nil, checkstatus=nil, passedpolicyitemcount=nil, failedpolicyitemcount=nil, lastchecktime=nil, checkresult=nil, instanceid=nil, imageregistryinfo=nil, clusterid=nil, clustername=nil)
+        def initialize(customerassetid=nil, assettype=nil, assetname=nil, imagetag=nil, hostip=nil, nodename=nil, checkstatus=nil, passedpolicyitemcount=nil, failedpolicyitemcount=nil, lastchecktime=nil, checkresult=nil, instanceid=nil, imageregistryinfo=nil, clusterid=nil, clustername=nil, assetuniqueid=nil)
           @CustomerAssetId = customerassetid
           @AssetType = assettype
           @AssetName = assetname
@@ -2908,6 +2890,7 @@ module TencentCloud
           @ImageRegistryInfo = imageregistryinfo
           @ClusterID = clusterid
           @ClusterName = clustername
+          @AssetUniqueID = assetuniqueid
         end
 
         def deserialize(params)
@@ -2929,6 +2912,7 @@ module TencentCloud
           end
           @ClusterID = params['ClusterID']
           @ClusterName = params['ClusterName']
+          @AssetUniqueID = params['AssetUniqueID']
         end
       end
 

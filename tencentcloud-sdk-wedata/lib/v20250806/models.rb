@@ -1693,66 +1693,7 @@ module TencentCloud
         # @type ProjectId: String
         # @param Name: 数据源名称
         # @type Name: String
-        # @param Type: 数据源类型:枚举值
-
-        # - MYSQL
-        # - TENCENT_MYSQL
-        # - POSTGRE
-        # - ORACLE
-        # - SQLSERVER
-        # - FTP
-        # - HIVE
-        # - HUDI
-        # - HDFS
-        # - ICEBERG
-        # - KAFKA
-        # - DTS_KAFKA
-        # - HBASE
-        # - SPARK
-        # - TBASE
-        # - DB2
-        # - DM
-        # - GAUSSDB
-        # - GBASE
-        # - IMPALA
-        # - ES
-        # - TENCENT_ES
-        # - GREENPLUM
-        # - SAP_HANA
-        # - SFTP
-        # - OCEANBASE
-        # - CLICKHOUSE
-        # - KUDU
-        # - VERTICA
-        # - REDIS
-        # - COS
-        # - DLC
-        # - DORIS
-        # - CKAFKA
-        # - S3_DATAINSIGHT
-        # - TDSQL
-        # - TDSQL_MYSQL
-        # - MONGODB
-        # - TENCENT_MONGODB
-        # - REST_API
-        # - TiDB
-        # - StarRocks
-        # - Trino
-        # - Kyuubi
-        # - TCHOUSE_X
-        # - TCHOUSE_P
-        # - TCHOUSE_C
-        # - TCHOUSE_D
-        # - INFLUXDB
-        # - BIG_QUERY
-        # - SSH
-        # - BLOB
-        # - TDSQL_POSTGRE
-        # - GDB
-        # - TDENGINE
-        # - TDSQLC
-        # - FileSystem
-        # - TCLake
+        # @param Type: 数据源类型:枚举值- MYSQL- TENCENT_MYSQL- POSTGRE- ORACLE- SQLSERVER- FTP- HIVE- HUDI- HDFS- ICEBERG- KAFKA- DTS_KAFKA- HBASE- SPARK- TBASE- DB2- DM- GAUSSDB- GBASE- IMPALA- ES- TENCENT_ES- GREENPLUM- SAP_HANA- SFTP- OCEANBASE- CLICKHOUSE- KUDU- VERTICA- REDIS- COS- DLC- DORIS- CKAFKA- S3_DATAINSIGHT- TDSQL- TDSQL_MYSQL- MONGODB- TENCENT_MONGODB- REST_API- TiDB- StarRocks- Trino- Kyuubi- TCHOUSE_X- TCHOUSE_P- TCHOUSE_C- TCHOUSE_D- INFLUXDB- BIG_QUERY- SSH- BLOB- TDSQL_POSTGRE- GDB- TDENGINE- TDSQLC- FileSystem- TCLake- TDSQL_BOUNDLESS
         # @type Type: String
         # @param ProdConProperties: 数据源的配置信息，以JSON KV存储，根据每个数据源类型不同，而KV存储信息不同
 
@@ -2958,108 +2899,87 @@ module TencentCloud
 
       # 创建任务调度配置信息
       class CreateTaskSchedulerConfiguration < TencentCloud::Common::AbstractModel
-        # @param CycleType: 周期类型：默认为 DAY_CYCLE
-
-        # 支持的类型为
-
-        # * ONEOFF_CYCLE: 一次性
-        # * YEAR_CYCLE: 年
-        # * MONTH_CYCLE: 月
-        # * WEEK_CYCLE: 周
-        # * DAY_CYCLE: 天
-        # * HOUR_CYCLE: 小时
-        # * MINUTE_CYCLE: 分钟
-        # * CRONTAB_CYCLE: crontab表达式类型
+        # @param CycleType: <p>周期类型：默认为 DAY_CYCLE</p><p>支持的类型为 </p><ul><li>ONEOFF_CYCLE: 一次性</li><li>YEAR_CYCLE: 年</li><li>MONTH_CYCLE: 月</li><li>WEEK_CYCLE: 周</li><li>DAY_CYCLE: 天</li><li>HOUR_CYCLE: 小时</li><li>MINUTE_CYCLE: 分钟</li><li>CRONTAB_CYCLE: crontab表达式类型</li></ul>
         # @type CycleType: String
-        # @param ScheduleTimeZone: 时区，默认为 UTC+8
+        # @param ScheduleTimeZone: <p>时区，默认为 UTC+8</p>
         # @type ScheduleTimeZone: String
-        # @param CrontabExpression: Cron表达式，默认为 0 0 0 * * ? *
+        # @param CrontabExpression: <p>Cron表达式，默认为 0 0 0 * * ? *</p>
         # @type CrontabExpression: String
-        # @param StartTime: 生效日期，默认为当前日期的 00:00:00
+        # @param StartTime: <p>生效日期，默认为当前日期的 00:00:00</p>
         # @type StartTime: String
-        # @param EndTime: 结束日期，默认为 2099-12-31 23:59:59
+        # @param EndTime: <p>结束日期，默认为 2099-12-31 23:59:59</p>
         # @type EndTime: String
-        # @param ExecutionStartTime: 执行时间 左闭区间，默认 00:00
+        # @param ExecutionStartTime: <p>执行时间 左闭区间，默认 00:00</p>
         # @type ExecutionStartTime: String
-        # @param ExecutionEndTime: 执行时间 右闭区间，默认 23:59
+        # @param ExecutionEndTime: <p>执行时间 右闭区间，默认 23:59</p>
         # @type ExecutionEndTime: String
-        # @param CalendarOpen: 日历调度 取值为 0 和 1， 1为打开，0为关闭，默认为0
+        # @param CalendarOpen: <p>日历调度 取值为 0 和 1， 1为打开，0为关闭，默认为0</p>
         # @type CalendarOpen: String
-        # @param CalendarId: 日历调度 日历 ID
+        # @param CalendarId: <p>日历调度 日历 ID</p>
         # @type CalendarId: String
-        # @param SelfDepend: 自依赖, 默认值 serial, 取值为：parallel(并行), serial(串行), orderly(有序)
+        # @param SelfDepend: <p>自依赖, 默认值 serial, 取值为：parallel(并行), serial(串行), orderly(有序)</p>
         # @type SelfDepend: String
-        # @param UpstreamDependencyConfigList: 上游依赖数组
+        # @param UpstreamDependencyConfigList: <p>上游依赖数组</p>
         # @type UpstreamDependencyConfigList: Array
-        # @param EventListenerList: 事件数组
+        # @param EventListenerList: <p>事件数组</p>
         # @type EventListenerList: Array
-        # @param AllowRedoType: 重跑&补录配置, 默认为 ALL; , ALL 运行成功或失败后皆可重跑或补录, FAILURE 运行成功后不可重跑或补录，运行失败后可重跑或补录, NONE 运行成功或失败后皆不可重跑或补录;
+        # @param AllowRedoType: <p>重跑&amp;补录配置, 默认为 ALL; , ALL 运行成功或失败后皆可重跑或补录, FAILURE 运行成功后不可重跑或补录，运行失败后可重跑或补录, NONE 运行成功或失败后皆不可重跑或补录;</p>
         # @type AllowRedoType: String
-        # @param ParamTaskOutList: 输出参数数组
+        # @param ParamTaskOutList: <p>输出参数数组</p>
         # @type ParamTaskOutList: Array
-        # @param ParamTaskInList: 输入参数数组
+        # @param ParamTaskInList: <p>输入参数数组</p>
         # @type ParamTaskInList: Array
-        # @param TaskOutputRegistryList: 产出登记
+        # @param TaskOutputRegistryList: <p>产出登记</p>
         # @type TaskOutputRegistryList: Array
-        # @param InitStrategy: **实例生成策略**
-        # * T_PLUS_0: T+0生成,默认策略
-        # * T_PLUS_1: T+1生成
+        # @param InitStrategy: <p><strong>实例生成策略</strong></p><ul><li>T_PLUS_0: T+0生成,默认策略</li><li>T_PLUS_1: T+1生成</li></ul>
         # @type InitStrategy: String
-        # @param ScheduleRunType: 调度类型: 0 正常调度 1 空跑调度，默认为 0
+        # @param ScheduleRunType: <p>调度类型: 0 正常调度 1 空跑调度，默认为 0</p>
         # @type ScheduleRunType: String
-        # @param RunPriority: 任务调度优先级 运行优先级 4高 5中 6低 , 默认:6
+        # @param RunPriority: <p>任务调度优先级 运行优先级 4高 5中 6低 , 默认:6</p>
         # @type RunPriority: String
-        # @param RetryWait: 重试策略 重试等待时间,单位分钟: 默认: 5
+        # @param RetryWait: <p>重试策略 重试等待时间,单位分钟: 默认: 5</p>
         # @type RetryWait: String
-        # @param MaxRetryAttempts: 重试策略 最大尝试次数, 默认: 4
+        # @param MaxRetryAttempts: <p>重试策略 最大尝试次数, 默认: 4</p>
         # @type MaxRetryAttempts: String
-        # @param ExecutionTTL: 超时处理策略 运行耗时超时（单位：分钟）默认为 -1
+        # @param ExecutionTTL: <p>超时处理策略 运行耗时超时（单位：分钟）默认为 -1</p>
         # @type ExecutionTTL: String
-        # @param WaitExecutionTotalTTL: 超时处理策略 等待总时长耗时超时（单位：分钟）默认为 -1
+        # @param WaitExecutionTotalTTL: <p>超时处理策略 等待总时长耗时超时（单位：分钟）默认为 -1</p>
         # @type WaitExecutionTotalTTL: String
-        # @param ScheduleType: 调度类型: 0 正常调度 1 空跑调度，默认为 0
+        # @param ScheduleType: <p>调度类型: 0 正常调度 1 空跑调度，默认为 0</p>
         # @type ScheduleType: Integer
-        # @param RunPriorityType: 任务调度优先级 运行优先级 4高 5中 6低 , 默认:6
+        # @param RunPriorityType: <p>任务调度优先级 运行优先级 4高 5中 6低 , 默认:6</p>
         # @type RunPriorityType: Integer
-        # @param RetryWaitMinute: 重试策略 重试等待时间,单位分钟: 默认: 5
+        # @param RetryWaitMinute: <p>重试策略 重试等待时间,单位分钟: 默认: 5</p>
         # @type RetryWaitMinute: Integer
-        # @param MaxRetryNumber: 重试策略 最大尝试次数, 默认: 4
+        # @param MaxRetryNumber: <p>重试策略 最大尝试次数, 默认: 4</p>
         # @type MaxRetryNumber: Integer
-        # @param ExecutionTTLMinute: 超时处理策略 运行耗时超时（单位：分钟）默认为 -1
+        # @param ExecutionTTLMinute: <p>超时处理策略 运行耗时超时（单位：分钟）默认为 -1</p>
         # @type ExecutionTTLMinute: Integer
-        # @param WaitExecutionTotalTTLMinute: 超时处理策略 等待总时长耗时超时（单位：分钟）默认为 -1
+        # @param WaitExecutionTotalTTLMinute: <p>超时处理策略 等待总时长耗时超时（单位：分钟）默认为 -1</p>
         # @type WaitExecutionTotalTTLMinute: Integer
-        # @param DependencyTriggerPolicy: - 任务依赖运行条件，默认为ALL_SUCCESS，暂时只支持工作流调度项目下配置
-        # - ALL_SUCCESS： 全部成功：所有上游依赖任务都达到终态时，进行依赖判断，如果上游全部都成功，则依赖判断成功，否则如果上游有一个跳过运行，则标记为跳过运行，其余情况标记为上游失败
-        # - ALL_FAILED：全部失败：所有上游依赖任务都达到终态时，进行依赖判断，如果上游状态都是失败或者上游失败，则依赖判断成功，否则就标记为跳过运行
-        # - ALL_DONE：全部完成：所有上游依赖任务都达到终态时，进行依赖判断，直接是依赖判断成功
-        # - ALL_DONE_AT_LEAST_ONE_SUCCESS：上游全部完成至少一个成功: 所有上游依赖任务都达到终态时，进行依赖判断，至少有一个成功，则依赖判断成功，否则就是跳过运行
-        # - ALL_SKIPPED：上游全部都跳过: 所有上游依赖任务都达到终态时，进行依赖判断，所有的上游都是跳过状态才算依赖判断成功，否则当前节点就是跳过运行
-        # - ONE_FAILED：至少一个失败: 上游只要有一个失败了，就进行依赖判断，且依赖判断成功，如果上游全部完成但是没有失败，则跳过运行
-        # - ONE_SUCCESS：至少一个成功：上游只要有一个成功，就进行依赖判断，且依赖判断成功，如果上游全部完成但是没有成功，则跳过运行
-        # - ONE_DONE：至少一个完成：上游只要有一个完成了，就进行依赖判断，且依赖判断成功，否则还是等待上游
-        # - NONE_FAILED：上游全部完成，没有失败: 所有上游依赖任务都达到终态时，进行依赖判断，如果上游都是成功或者跳过运行，则依赖判断成功，否则标记为上游失败
-        # - ALL_DONE_NONE_FAILED_AT_LEAST_ONE_SUCCESS：上游全部完成，没有失败，至少有一个成功: 所有上游依赖任务都达到终态时，进行依赖判断，上游没有一个失败且至少有一个成功的情况下，依赖判断成功，否则就是跳过运行
-        # - NONE_SKIPPED：上游全部完成，没有跳过运行: 所有上游依赖任务都达到终态时，进行依赖判断, 如果上游状态全部都是成功、失败、上游失败状态，则依赖判断成功，否则为跳过运行
-        # - ALL_DONE_AT_LEAST_ONE_FAILED：上游全部完成至少一个失败: 所有上游依赖任务都达到终态时，进行依赖判断，至少有一个失败，则依赖判断成功，否则就是跳过运行
+        # @param DependencyTriggerPolicy: <ul><li>任务依赖运行条件，默认为ALL_SUCCESS，暂时只支持工作流调度项目下配置</li><li>ALL_SUCCESS： 全部成功：所有上游依赖任务都达到终态时，进行依赖判断，如果上游全部都成功，则依赖判断成功，否则如果上游有一个跳过运行，则标记为跳过运行，其余情况标记为上游失败</li><li>ALL_FAILED：全部失败：所有上游依赖任务都达到终态时，进行依赖判断，如果上游状态都是失败或者上游失败，则依赖判断成功，否则就标记为跳过运行</li><li>ALL_DONE：全部完成：所有上游依赖任务都达到终态时，进行依赖判断，直接是依赖判断成功</li><li>ALL_DONE_AT_LEAST_ONE_SUCCESS：上游全部完成至少一个成功: 所有上游依赖任务都达到终态时，进行依赖判断，至少有一个成功，则依赖判断成功，否则就是跳过运行</li><li>ALL_SKIPPED：上游全部都跳过: 所有上游依赖任务都达到终态时，进行依赖判断，所有的上游都是跳过状态才算依赖判断成功，否则当前节点就是跳过运行</li><li>ONE_FAILED：至少一个失败: 上游只要有一个失败了，就进行依赖判断，且依赖判断成功，如果上游全部完成但是没有失败，则跳过运行</li><li>ONE_SUCCESS：至少一个成功：上游只要有一个成功，就进行依赖判断，且依赖判断成功，如果上游全部完成但是没有成功，则跳过运行</li><li>ONE_DONE：至少一个完成：上游只要有一个完成了，就进行依赖判断，且依赖判断成功，否则还是等待上游</li><li>NONE_FAILED：上游全部完成，没有失败: 所有上游依赖任务都达到终态时，进行依赖判断，如果上游都是成功或者跳过运行，则依赖判断成功，否则标记为上游失败</li><li>ALL_DONE_NONE_FAILED_AT_LEAST_ONE_SUCCESS：上游全部完成，没有失败，至少有一个成功: 所有上游依赖任务都达到终态时，进行依赖判断，上游没有一个失败且至少有一个成功的情况下，依赖判断成功，否则就是跳过运行</li><li>NONE_SKIPPED：上游全部完成，没有跳过运行: 所有上游依赖任务都达到终态时，进行依赖判断, 如果上游状态全部都是成功、失败、上游失败状态，则依赖判断成功，否则为跳过运行</li><li>ALL_DONE_AT_LEAST_ONE_FAILED：上游全部完成至少一个失败: 所有上游依赖任务都达到终态时，进行依赖判断，至少有一个失败，则依赖判断成功，否则就是跳过运行</li></ul>
         # @type DependencyTriggerPolicy: String
+        # @param AllowDownstreamDependency: <p>是否允许下游依赖 1允许 0不允许</p><p>取值范围：[0, 1]</p><p>默认值：1</p>
+        # @type AllowDownstreamDependency: Integer
 
-        attr_accessor :CycleType, :ScheduleTimeZone, :CrontabExpression, :StartTime, :EndTime, :ExecutionStartTime, :ExecutionEndTime, :CalendarOpen, :CalendarId, :SelfDepend, :UpstreamDependencyConfigList, :EventListenerList, :AllowRedoType, :ParamTaskOutList, :ParamTaskInList, :TaskOutputRegistryList, :InitStrategy, :ScheduleRunType, :RunPriority, :RetryWait, :MaxRetryAttempts, :ExecutionTTL, :WaitExecutionTotalTTL, :ScheduleType, :RunPriorityType, :RetryWaitMinute, :MaxRetryNumber, :ExecutionTTLMinute, :WaitExecutionTotalTTLMinute, :DependencyTriggerPolicy
+        attr_accessor :CycleType, :ScheduleTimeZone, :CrontabExpression, :StartTime, :EndTime, :ExecutionStartTime, :ExecutionEndTime, :CalendarOpen, :CalendarId, :SelfDepend, :UpstreamDependencyConfigList, :EventListenerList, :AllowRedoType, :ParamTaskOutList, :ParamTaskInList, :TaskOutputRegistryList, :InitStrategy, :ScheduleRunType, :RunPriority, :RetryWait, :MaxRetryAttempts, :ExecutionTTL, :WaitExecutionTotalTTL, :ScheduleType, :RunPriorityType, :RetryWaitMinute, :MaxRetryNumber, :ExecutionTTLMinute, :WaitExecutionTotalTTLMinute, :DependencyTriggerPolicy, :AllowDownstreamDependency
         extend Gem::Deprecate
-        deprecate :ScheduleRunType, :none, 2026, 3
-        deprecate :ScheduleRunType=, :none, 2026, 3
-        deprecate :RunPriority, :none, 2026, 3
-        deprecate :RunPriority=, :none, 2026, 3
-        deprecate :RetryWait, :none, 2026, 3
-        deprecate :RetryWait=, :none, 2026, 3
-        deprecate :MaxRetryAttempts, :none, 2026, 3
-        deprecate :MaxRetryAttempts=, :none, 2026, 3
-        deprecate :ExecutionTTL, :none, 2026, 3
-        deprecate :ExecutionTTL=, :none, 2026, 3
-        deprecate :WaitExecutionTotalTTL, :none, 2026, 3
-        deprecate :WaitExecutionTotalTTL=, :none, 2026, 3
+        deprecate :ScheduleRunType, :none, 2026, 4
+        deprecate :ScheduleRunType=, :none, 2026, 4
+        deprecate :RunPriority, :none, 2026, 4
+        deprecate :RunPriority=, :none, 2026, 4
+        deprecate :RetryWait, :none, 2026, 4
+        deprecate :RetryWait=, :none, 2026, 4
+        deprecate :MaxRetryAttempts, :none, 2026, 4
+        deprecate :MaxRetryAttempts=, :none, 2026, 4
+        deprecate :ExecutionTTL, :none, 2026, 4
+        deprecate :ExecutionTTL=, :none, 2026, 4
+        deprecate :WaitExecutionTotalTTL, :none, 2026, 4
+        deprecate :WaitExecutionTotalTTL=, :none, 2026, 4
+        deprecate :AllowDownstreamDependency, :none, 2026, 4
+        deprecate :AllowDownstreamDependency=, :none, 2026, 4
 
-        def initialize(cycletype=nil, scheduletimezone=nil, crontabexpression=nil, starttime=nil, endtime=nil, executionstarttime=nil, executionendtime=nil, calendaropen=nil, calendarid=nil, selfdepend=nil, upstreamdependencyconfiglist=nil, eventlistenerlist=nil, allowredotype=nil, paramtaskoutlist=nil, paramtaskinlist=nil, taskoutputregistrylist=nil, initstrategy=nil, scheduleruntype=nil, runpriority=nil, retrywait=nil, maxretryattempts=nil, executionttl=nil, waitexecutiontotalttl=nil, scheduletype=nil, runprioritytype=nil, retrywaitminute=nil, maxretrynumber=nil, executionttlminute=nil, waitexecutiontotalttlminute=nil, dependencytriggerpolicy=nil)
+        def initialize(cycletype=nil, scheduletimezone=nil, crontabexpression=nil, starttime=nil, endtime=nil, executionstarttime=nil, executionendtime=nil, calendaropen=nil, calendarid=nil, selfdepend=nil, upstreamdependencyconfiglist=nil, eventlistenerlist=nil, allowredotype=nil, paramtaskoutlist=nil, paramtaskinlist=nil, taskoutputregistrylist=nil, initstrategy=nil, scheduleruntype=nil, runpriority=nil, retrywait=nil, maxretryattempts=nil, executionttl=nil, waitexecutiontotalttl=nil, scheduletype=nil, runprioritytype=nil, retrywaitminute=nil, maxretrynumber=nil, executionttlminute=nil, waitexecutiontotalttlminute=nil, dependencytriggerpolicy=nil, allowdownstreamdependency=nil)
           @CycleType = cycletype
           @ScheduleTimeZone = scheduletimezone
           @CrontabExpression = crontabexpression
@@ -3090,6 +3010,7 @@ module TencentCloud
           @ExecutionTTLMinute = executionttlminute
           @WaitExecutionTotalTTLMinute = waitexecutiontotalttlminute
           @DependencyTriggerPolicy = dependencytriggerpolicy
+          @AllowDownstreamDependency = allowdownstreamdependency
         end
 
         def deserialize(params)
@@ -3158,6 +3079,7 @@ module TencentCloud
           @ExecutionTTLMinute = params['ExecutionTTLMinute']
           @WaitExecutionTotalTTLMinute = params['WaitExecutionTotalTTLMinute']
           @DependencyTriggerPolicy = params['DependencyTriggerPolicy']
+          @AllowDownstreamDependency = params['AllowDownstreamDependency']
         end
       end
 
@@ -3348,44 +3270,34 @@ module TencentCloud
 
       # 创建任务调度配置信息
       class CreateTriggerTaskSchedulerConfiguration < TencentCloud::Common::AbstractModel
-        # @param UpstreamDependencyConfigList: 上游依赖的任务数组
+        # @param UpstreamDependencyConfigList: <p>上游依赖的任务数组</p>
         # @type UpstreamDependencyConfigList: Array
-        # @param RunPriorityType: 任务调度优先级 运行优先级 4高 5中 6低 , 默认:6
+        # @param RunPriorityType: <p>任务调度优先级 运行优先级 4高 5中 6低 , 默认:6</p>
         # @type RunPriorityType: Integer
-        # @param RetryWaitMinute: 重试策略 重试等待时间,单位分钟: 默认: 5
+        # @param RetryWaitMinute: <p>重试策略 重试等待时间,单位分钟: 默认: 5</p>
         # @type RetryWaitMinute: Integer
-        # @param MaxRetryNumber: 重试策略 最大尝试次数, 默认: 4
+        # @param MaxRetryNumber: <p>重试策略 最大尝试次数, 默认: 4</p>
         # @type MaxRetryNumber: Integer
-        # @param ExecutionTTLMinute: 超时处理策略 运行耗时超时（单位：分钟）默认为 -1
+        # @param ExecutionTTLMinute: <p>超时处理策略 运行耗时超时（单位：分钟）默认为 -1</p>
         # @type ExecutionTTLMinute: Integer
-        # @param WaitExecutionTotalTTLMinute: 超时处理策略 等待总时长耗时超时（单位：分钟）默认为 -1
+        # @param WaitExecutionTotalTTLMinute: <p>超时处理策略 等待总时长耗时超时（单位：分钟）默认为 -1</p>
         # @type WaitExecutionTotalTTLMinute: Integer
-        # @param AllowRedoType: 重跑&补录配置, 默认为 ALL; , ALL 运行成功或失败后皆可重跑或补录, FAILURE 运行成功后不可重跑或补录，运行失败后可重跑或补录, NONE 运行成功或失败后皆不可重跑或补录;
+        # @param AllowRedoType: <p>重跑&amp;补录配置, 默认为 ALL; , ALL 运行成功或失败后皆可重跑或补录, FAILURE 运行成功后不可重跑或补录，运行失败后可重跑或补录, NONE 运行成功或失败后皆不可重跑或补录;</p>
         # @type AllowRedoType: String
-        # @param ParamTaskOutList: 输出参数数组
+        # @param ParamTaskOutList: <p>输出参数数组</p>
         # @type ParamTaskOutList: Array
-        # @param ParamTaskInList: 输入参数数组
+        # @param ParamTaskInList: <p>输入参数数组</p>
         # @type ParamTaskInList: Array
-        # @param TaskOutputRegistryList: 产出登记
+        # @param TaskOutputRegistryList: <p>产出登记</p>
         # @type TaskOutputRegistryList: Array
-        # @param DependencyTriggerPolicy: - 任务依赖运行条件，默认为ALL_SUCCESS，暂时只支持工作流调度项目下配置
-        # - ALL_SUCCESS： 全部成功：所有上游依赖任务都达到终态时，进行依赖判断，如果上游全部都成功，则依赖判断成功，否则如果上游有一个跳过运行，则标记为跳过运行，其余情况标记为上游失败
-        # - ALL_FAILED：全部失败：所有上游依赖任务都达到终态时，进行依赖判断，如果上游状态都是失败或者上游失败，则依赖判断成功，否则就标记为跳过运行
-        # - ALL_DONE：全部完成：所有上游依赖任务都达到终态时，进行依赖判断，直接是依赖判断成功
-        # - ALL_DONE_AT_LEAST_ONE_SUCCESS：上游全部完成至少一个成功: 所有上游依赖任务都达到终态时，进行依赖判断，至少有一个成功，则依赖判断成功，否则就是跳过运行
-        # - ALL_SKIPPED：上游全部都跳过: 所有上游依赖任务都达到终态时，进行依赖判断，所有的上游都是跳过状态才算依赖判断成功，否则当前节点就是跳过运行
-        # - ONE_FAILED：至少一个失败: 上游只要有一个失败了，就进行依赖判断，且依赖判断成功，如果上游全部完成但是没有失败，则跳过运行
-        # - ONE_SUCCESS：至少一个成功：上游只要有一个成功，就进行依赖判断，且依赖判断成功，如果上游全部完成但是没有成功，则跳过运行
-        # - ONE_DONE：至少一个完成：上游只要有一个完成了，就进行依赖判断，且依赖判断成功，否则还是等待上游
-        # - NONE_FAILED：上游全部完成，没有失败: 所有上游依赖任务都达到终态时，进行依赖判断，如果上游都是成功或者跳过运行，则依赖判断成功，否则标记为上游失败
-        # - ALL_DONE_NONE_FAILED_AT_LEAST_ONE_SUCCESS：上游全部完成，没有失败，至少有一个成功: 所有上游依赖任务都达到终态时，进行依赖判断，上游没有一个失败且至少有一个成功的情况下，依赖判断成功，否则就是跳过运行
-        # - NONE_SKIPPED：上游全部完成，没有跳过运行: 所有上游依赖任务都达到终态时，进行依赖判断, 如果上游状态全部都是成功、失败、上游失败状态，则依赖判断成功，否则为跳过运行
-        # - ALL_DONE_AT_LEAST_ONE_FAILED：上游全部完成至少一个失败: 所有上游依赖任务都达到终态时，进行依赖判断，至少有一个失败，则依赖判断成功，否则就是跳过运行
+        # @param DependencyTriggerPolicy: <ul><li>任务依赖运行条件，默认为ALL_SUCCESS，暂时只支持工作流调度项目下配置</li><li>ALL_SUCCESS： 全部成功：所有上游依赖任务都达到终态时，进行依赖判断，如果上游全部都成功，则依赖判断成功，否则如果上游有一个跳过运行，则标记为跳过运行，其余情况标记为上游失败</li><li>ALL_FAILED：全部失败：所有上游依赖任务都达到终态时，进行依赖判断，如果上游状态都是失败或者上游失败，则依赖判断成功，否则就标记为跳过运行</li><li>ALL_DONE：全部完成：所有上游依赖任务都达到终态时，进行依赖判断，直接是依赖判断成功</li><li>ALL_DONE_AT_LEAST_ONE_SUCCESS：上游全部完成至少一个成功: 所有上游依赖任务都达到终态时，进行依赖判断，至少有一个成功，则依赖判断成功，否则就是跳过运行</li><li>ALL_SKIPPED：上游全部都跳过: 所有上游依赖任务都达到终态时，进行依赖判断，所有的上游都是跳过状态才算依赖判断成功，否则当前节点就是跳过运行</li><li>ONE_FAILED：至少一个失败: 上游只要有一个失败了，就进行依赖判断，且依赖判断成功，如果上游全部完成但是没有失败，则跳过运行</li><li>ONE_SUCCESS：至少一个成功：上游只要有一个成功，就进行依赖判断，且依赖判断成功，如果上游全部完成但是没有成功，则跳过运行</li><li>ONE_DONE：至少一个完成：上游只要有一个完成了，就进行依赖判断，且依赖判断成功，否则还是等待上游</li><li>NONE_FAILED：上游全部完成，没有失败: 所有上游依赖任务都达到终态时，进行依赖判断，如果上游都是成功或者跳过运行，则依赖判断成功，否则标记为上游失败</li><li>ALL_DONE_NONE_FAILED_AT_LEAST_ONE_SUCCESS：上游全部完成，没有失败，至少有一个成功: 所有上游依赖任务都达到终态时，进行依赖判断，上游没有一个失败且至少有一个成功的情况下，依赖判断成功，否则就是跳过运行</li><li>NONE_SKIPPED：上游全部完成，没有跳过运行: 所有上游依赖任务都达到终态时，进行依赖判断, 如果上游状态全部都是成功、失败、上游失败状态，则依赖判断成功，否则为跳过运行</li><li>ALL_DONE_AT_LEAST_ONE_FAILED：上游全部完成至少一个失败: 所有上游依赖任务都达到终态时，进行依赖判断，至少有一个失败，则依赖判断成功，否则就是跳过运行</li></ul>
         # @type DependencyTriggerPolicy: String
+        # @param AllowDownstreamDependency: <p>是否允许下游依赖 1允许 0不允许</p><p>取值范围：[0, 1]</p><p>默认值：1</p>
+        # @type AllowDownstreamDependency: Integer
 
-        attr_accessor :UpstreamDependencyConfigList, :RunPriorityType, :RetryWaitMinute, :MaxRetryNumber, :ExecutionTTLMinute, :WaitExecutionTotalTTLMinute, :AllowRedoType, :ParamTaskOutList, :ParamTaskInList, :TaskOutputRegistryList, :DependencyTriggerPolicy
+        attr_accessor :UpstreamDependencyConfigList, :RunPriorityType, :RetryWaitMinute, :MaxRetryNumber, :ExecutionTTLMinute, :WaitExecutionTotalTTLMinute, :AllowRedoType, :ParamTaskOutList, :ParamTaskInList, :TaskOutputRegistryList, :DependencyTriggerPolicy, :AllowDownstreamDependency
 
-        def initialize(upstreamdependencyconfiglist=nil, runprioritytype=nil, retrywaitminute=nil, maxretrynumber=nil, executionttlminute=nil, waitexecutiontotalttlminute=nil, allowredotype=nil, paramtaskoutlist=nil, paramtaskinlist=nil, taskoutputregistrylist=nil, dependencytriggerpolicy=nil)
+        def initialize(upstreamdependencyconfiglist=nil, runprioritytype=nil, retrywaitminute=nil, maxretrynumber=nil, executionttlminute=nil, waitexecutiontotalttlminute=nil, allowredotype=nil, paramtaskoutlist=nil, paramtaskinlist=nil, taskoutputregistrylist=nil, dependencytriggerpolicy=nil, allowdownstreamdependency=nil)
           @UpstreamDependencyConfigList = upstreamdependencyconfiglist
           @RunPriorityType = runprioritytype
           @RetryWaitMinute = retrywaitminute
@@ -3397,6 +3309,7 @@ module TencentCloud
           @ParamTaskInList = paramtaskinlist
           @TaskOutputRegistryList = taskoutputregistrylist
           @DependencyTriggerPolicy = dependencytriggerpolicy
+          @AllowDownstreamDependency = allowdownstreamdependency
         end
 
         def deserialize(params)
@@ -3439,6 +3352,7 @@ module TencentCloud
             end
           end
           @DependencyTriggerPolicy = params['DependencyTriggerPolicy']
+          @AllowDownstreamDependency = params['AllowDownstreamDependency']
         end
       end
 
@@ -12842,6 +12756,221 @@ module TencentCloud
         end
       end
 
+      # 查询任务运行列表返回参数
+      class ListTriggerTaskRunBrief < TencentCloud::Common::AbstractModel
+        # @param ExecutionId: 任务运行ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExecutionId: String
+        # @param WorkflowId: 工作流ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WorkflowId: String
+        # @param WorkflowExecutionId: 工作流运行ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WorkflowExecutionId: String
+        # @param TaskId: 任务ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskId: String
+        # @param TriggerType: 触发类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TriggerType: String
+        # @param WaitTime: 等待时长，单位秒
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WaitTime: String
+        # @param ExecuteUserUin: 运行账号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExecuteUserUin: String
+        # @param ScheduleTime: 计划调度时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScheduleTime: String
+        # @param ExecutionStartTime: 运行开始时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExecutionStartTime: String
+        # @param ExecutionEndTime: 运行结束时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExecutionEndTime: String
+        # @param ExecutionTime: 运行时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExecutionTime: String
+        # @param RetryTimes: 系统自动重试次数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RetryTimes: Integer
+        # @param ErrorCodeStr: 错误码描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorCodeStr: String
+        # @param TaskName: 任务名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskName: String
+        # @param WorkflowName: 工作流名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WorkflowName: String
+        # @param RerunTimes: 用户手动重跑次数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RerunTimes: Integer
+        # @param TaskExecutionState: 任务运行状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskExecutionState: String
+        # @param IsLatestExecution: 是否是最新一次运行
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsLatestExecution: Boolean
+
+        attr_accessor :ExecutionId, :WorkflowId, :WorkflowExecutionId, :TaskId, :TriggerType, :WaitTime, :ExecuteUserUin, :ScheduleTime, :ExecutionStartTime, :ExecutionEndTime, :ExecutionTime, :RetryTimes, :ErrorCodeStr, :TaskName, :WorkflowName, :RerunTimes, :TaskExecutionState, :IsLatestExecution
+
+        def initialize(executionid=nil, workflowid=nil, workflowexecutionid=nil, taskid=nil, triggertype=nil, waittime=nil, executeuseruin=nil, scheduletime=nil, executionstarttime=nil, executionendtime=nil, executiontime=nil, retrytimes=nil, errorcodestr=nil, taskname=nil, workflowname=nil, reruntimes=nil, taskexecutionstate=nil, islatestexecution=nil)
+          @ExecutionId = executionid
+          @WorkflowId = workflowid
+          @WorkflowExecutionId = workflowexecutionid
+          @TaskId = taskid
+          @TriggerType = triggertype
+          @WaitTime = waittime
+          @ExecuteUserUin = executeuseruin
+          @ScheduleTime = scheduletime
+          @ExecutionStartTime = executionstarttime
+          @ExecutionEndTime = executionendtime
+          @ExecutionTime = executiontime
+          @RetryTimes = retrytimes
+          @ErrorCodeStr = errorcodestr
+          @TaskName = taskname
+          @WorkflowName = workflowname
+          @RerunTimes = reruntimes
+          @TaskExecutionState = taskexecutionstate
+          @IsLatestExecution = islatestexecution
+        end
+
+        def deserialize(params)
+          @ExecutionId = params['ExecutionId']
+          @WorkflowId = params['WorkflowId']
+          @WorkflowExecutionId = params['WorkflowExecutionId']
+          @TaskId = params['TaskId']
+          @TriggerType = params['TriggerType']
+          @WaitTime = params['WaitTime']
+          @ExecuteUserUin = params['ExecuteUserUin']
+          @ScheduleTime = params['ScheduleTime']
+          @ExecutionStartTime = params['ExecutionStartTime']
+          @ExecutionEndTime = params['ExecutionEndTime']
+          @ExecutionTime = params['ExecutionTime']
+          @RetryTimes = params['RetryTimes']
+          @ErrorCodeStr = params['ErrorCodeStr']
+          @TaskName = params['TaskName']
+          @WorkflowName = params['WorkflowName']
+          @RerunTimes = params['RerunTimes']
+          @TaskExecutionState = params['TaskExecutionState']
+          @IsLatestExecution = params['IsLatestExecution']
+        end
+      end
+
+      # 查询工作流结果
+      class ListTriggerTaskRunResult < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总记录数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param TotalPageNumber: 页数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalPageNumber: Integer
+        # @param PageNumber: 页码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PageNumber: Integer
+        # @param PageSize: 页大小
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PageSize: Integer
+        # @param Items: 任务运行信息集合
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Items: Array
+
+        attr_accessor :TotalCount, :TotalPageNumber, :PageNumber, :PageSize, :Items
+
+        def initialize(totalcount=nil, totalpagenumber=nil, pagenumber=nil, pagesize=nil, items=nil)
+          @TotalCount = totalcount
+          @TotalPageNumber = totalpagenumber
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @Items = items
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          @TotalPageNumber = params['TotalPageNumber']
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              listtriggertaskrunbrief_tmp = ListTriggerTaskRunBrief.new
+              listtriggertaskrunbrief_tmp.deserialize(i)
+              @Items << listtriggertaskrunbrief_tmp
+            end
+          end
+        end
+      end
+
+      # ListTriggerTaskRuns请求参数结构体
+      class ListTriggerTaskRunsRequest < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 项目ID
+        # @type ProjectId: String
+        # @param Filters: 过滤参数，任务名称或ID查询: Keyword，工作流ID查询: WorkflowId，文件夹查询: FolderId，负责人查询: InChargeUin，工作流执行ID: WorkflowExecutionId，任务执行ID: ExecutionId，任务ID: TaskId，计划调度时间区间: ScheduleTimeGreaterEqual / ScheduleTimeLessEqual
+        # @type Filters: Array
+        # @param OrderFields: 排序字段，排序字段名称	如下开始时间：CreateTime，结束时间：EndTime，计划调度时间：ScheduleTime
+        # @type OrderFields: Array
+        # @param PageNumber: 页码
+        # @type PageNumber: Integer
+        # @param PageSize: 页大小
+        # @type PageSize: Integer
+
+        attr_accessor :ProjectId, :Filters, :OrderFields, :PageNumber, :PageSize
+
+        def initialize(projectid=nil, filters=nil, orderfields=nil, pagenumber=nil, pagesize=nil)
+          @ProjectId = projectid
+          @Filters = filters
+          @OrderFields = orderfields
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          unless params['OrderFields'].nil?
+            @OrderFields = []
+            params['OrderFields'].each do |i|
+              orderfield_tmp = OrderField.new
+              orderfield_tmp.deserialize(i)
+              @OrderFields << orderfield_tmp
+            end
+          end
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+        end
+      end
+
+      # ListTriggerTaskRuns返回参数结构体
+      class ListTriggerTaskRunsResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 任务运行查询结果
+        # @type Data: :class:`Tencentcloud::Wedata.v20250806.models.ListTriggerTaskRunResult`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = ListTriggerTaskRunResult.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 查询任务版本分页列表
       class ListTriggerTaskVersions < TencentCloud::Common::AbstractModel
         # @param Items: 记录列表
@@ -18105,10 +18234,12 @@ module TencentCloud
       class RevokeDataSourceAuthorizationRequest < TencentCloud::Common::AbstractModel
         # @param DataSourceId: 数据源id
         # @type DataSourceId: String
-        # @param RevokeProjectId: 回收的项目id，与UserUin参数只能填一个
+        # @param RevokeProjectId: 回收的项目id，与RevokeUser参数只能选填一个，或者都不传当RevokeProjectId与RevokeUser都不传时，表示回收当前数据源所有权限（数据源为项目共享时，不回收当前数据源创建项目下所有用户对该数据源的权限，当数据源为个人和项目管理员共享时，不回收当前数据源创建项目下数据源创建用户和管理员的权限）
         # @type RevokeProjectId: String
         # @param RevokeUser: 回收项目下用户列表，格式为：项目id_用户id
-        # 与RevokeProjectId参数只能填一个
+        # 与RevokeProjectId参数只能选填一个，或者都不传
+        # 当RevokeProjectId与RevokeUser都不传时，表示回收当前数据源所有权限（
+        # 数据源为项目共享时，不回收当前数据源创建项目下所有用户对该数据源的权限，当数据源为个人和项目管理员共享时，不回收当前数据源创建项目下数据源创建用户和管理员的权限）
 
         # @type RevokeUser: String
 
@@ -20382,147 +20513,127 @@ module TencentCloud
 
       # 任务调度配置信息
       class TaskSchedulerConfiguration < TencentCloud::Common::AbstractModel
-        # @param CycleType: 周期类型：支持的类型为
-
-        # ONEOFF_CYCLE: 一次性
-        # YEAR_CYCLE: 年
-        # MONTH_CYCLE: 月
-        # WEEK_CYCLE: 周
-        # DAY_CYCLE: 天
-        # HOUR_CYCLE: 小时
-        # MINUTE_CYCLE: 分钟
-        # CRONTAB_CYCLE: crontab表达式类型
+        # @param CycleType: <p>周期类型：支持的类型为</p><p>ONEOFF_CYCLE: 一次性<br>YEAR_CYCLE: 年<br>MONTH_CYCLE: 月<br>WEEK_CYCLE: 周<br>DAY_CYCLE: 天<br>HOUR_CYCLE: 小时<br>MINUTE_CYCLE: 分钟<br>CRONTAB_CYCLE: crontab表达式类型</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CycleType: String
-        # @param ScheduleTimeZone: 时区
+        # @param ScheduleTimeZone: <p>时区</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScheduleTimeZone: String
-        # @param CrontabExpression: 0 2 3 1,L,2 * ?
+        # @param CrontabExpression: <p>0 2 3 1,L,2 * ?</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CrontabExpression: String
-        # @param StartTime: 生效日期
+        # @param StartTime: <p>生效日期</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartTime: String
-        # @param EndTime: 结束日期
+        # @param EndTime: <p>结束日期</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTime: String
-        # @param ExecutionStartTime: 执行时间 左闭区间
+        # @param ExecutionStartTime: <p>执行时间 左闭区间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExecutionStartTime: String
-        # @param ExecutionEndTime: 执行时间 右闭区间
+        # @param ExecutionEndTime: <p>执行时间 右闭区间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExecutionEndTime: String
-        # @param CalendarOpen: 日历调度 取值为 0 和 1， 1为打开，0为关闭，默认为0
+        # @param CalendarOpen: <p>日历调度 取值为 0 和 1， 1为打开，0为关闭，默认为0</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CalendarOpen: String
-        # @param CalendarId: 日历调度 日历 ID
+        # @param CalendarId: <p>日历调度 日历 ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CalendarId: String
-        # @param CalendarName: 日历调度 日历名称, 需要从 DescribeScheduleCalendarPageList 中获取
+        # @param CalendarName: <p>日历调度 日历名称, 需要从 DescribeScheduleCalendarPageList 中获取</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CalendarName: String
-        # @param SelfDepend: 自依赖, 默认值 serial, 取值为：parallel(并行), serial(串行), orderly(有序)
+        # @param SelfDepend: <p>自依赖, 默认值 serial, 取值为：parallel(并行), serial(串行), orderly(有序)</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SelfDepend: String
-        # @param UpstreamDependencyConfigList: 上游依赖数组
+        # @param UpstreamDependencyConfigList: <p>上游依赖数组</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpstreamDependencyConfigList: Array
-        # @param DownstreamDependencyConfigList: 下游依赖数组
+        # @param DownstreamDependencyConfigList: <p>下游依赖数组</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DownstreamDependencyConfigList: Array
-        # @param EventListenerList: 事件数组
+        # @param EventListenerList: <p>事件数组</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EventListenerList: Array
-        # @param AllowRedoType: 重跑&补录配置, 默认为 ALL; , ALL 运行成功或失败后皆可重跑或补录, FAILURE 运行成功后不可重跑或补录，运行失败后可重跑或补录, NONE 运行成功或失败后皆不可重跑或补录;
+        # @param AllowRedoType: <p>重跑&amp;补录配置, 默认为 ALL; , ALL 运行成功或失败后皆可重跑或补录, FAILURE 运行成功后不可重跑或补录，运行失败后可重跑或补录, NONE 运行成功或失败后皆不可重跑或补录;</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AllowRedoType: String
-        # @param ParamTaskOutList: 输出参数数组
+        # @param ParamTaskOutList: <p>输出参数数组</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParamTaskOutList: Array
-        # @param ParamTaskInList: 输入参数数组
+        # @param ParamTaskInList: <p>输入参数数组</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParamTaskInList: Array
-        # @param TaskOutputRegistryList: 产出登记
+        # @param TaskOutputRegistryList: <p>产出登记</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskOutputRegistryList: Array
-        # @param InitStrategy: **实例生成策略**
-        # * T_PLUS_0: T+0生成,默认策略
-        # * T_PLUS_1: T+1生成
+        # @param InitStrategy: <p><strong>实例生成策略</strong></p><ul><li>T_PLUS_0: T+0生成,默认策略</li><li>T_PLUS_1: T+1生成</li></ul>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InitStrategy: String
-        # @param ScheduleRunType: 调度类型: 0 正常调度 1 空跑调度，默认为 0
+        # @param ScheduleRunType: <p>调度类型: 0 正常调度 1 空跑调度，默认为 0</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScheduleRunType: Integer
-        # @param DownStreamDependencyConfigList: （废弃，建议使用 DownstreamDependencyConfigList）下游依赖数组
+        # @param DownStreamDependencyConfigList: <p>（废弃，建议使用 DownstreamDependencyConfigList）下游依赖数组</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DownStreamDependencyConfigList: Array
-        # @param RunPriority: 任务调度优先级 运行优先级 4高 5中 6低 , 默认:6
+        # @param RunPriority: <p>任务调度优先级 运行优先级 4高 5中 6低 , 默认:6</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RunPriority: Integer
-        # @param RetryWait: 重试策略 重试等待时间,单位分钟: 默认: 5
+        # @param RetryWait: <p>重试策略 重试等待时间,单位分钟: 默认: 5</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RetryWait: Integer
-        # @param MaxRetryAttempts: 重试策略 最大尝试次数, 默认: 4
+        # @param MaxRetryAttempts: <p>重试策略 最大尝试次数, 默认: 4</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxRetryAttempts: Integer
-        # @param ExecutionTTL: 超时处理策略 运行耗时超时（单位：分钟）默认为 -1
+        # @param ExecutionTTL: <p>超时处理策略 运行耗时超时（单位：分钟）默认为 -1</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExecutionTTL: Integer
-        # @param WaitExecutionTotalTTL: 超时处理策略 等待总时长耗时超时（单位：分钟）默认为 -1
+        # @param WaitExecutionTotalTTL: <p>超时处理策略 等待总时长耗时超时（单位：分钟）默认为 -1</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WaitExecutionTotalTTL: String
-        # @param ScheduleType: 调度类型: 0 正常调度 1 空跑调度，默认为 0
+        # @param ScheduleType: <p>调度类型: 0 正常调度 1 空跑调度，默认为 0</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScheduleType: Integer
-        # @param RunPriorityType: 任务调度优先级 运行优先级 4高 5中 6低 , 默认:6
+        # @param RunPriorityType: <p>任务调度优先级 运行优先级 4高 5中 6低 , 默认:6</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RunPriorityType: Integer
-        # @param RetryWaitMinute: 重试策略 重试等待时间,单位分钟: 默认: 5
+        # @param RetryWaitMinute: <p>重试策略 重试等待时间,单位分钟: 默认: 5</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RetryWaitMinute: Integer
-        # @param MaxRetryNumber: 重试策略 最大尝试次数, 默认: 4
+        # @param MaxRetryNumber: <p>重试策略 最大尝试次数, 默认: 4</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxRetryNumber: Integer
-        # @param ExecutionTTLMinute: 超时处理策略 运行耗时超时（单位：分钟）默认为 -1
+        # @param ExecutionTTLMinute: <p>超时处理策略 运行耗时超时（单位：分钟）默认为 -1</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExecutionTTLMinute: Integer
-        # @param WaitExecutionTotalTTLMinute: 超时处理策略 等待总时长耗时超时（单位：分钟）默认为 -1
+        # @param WaitExecutionTotalTTLMinute: <p>超时处理策略 等待总时长耗时超时（单位：分钟）默认为 -1</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WaitExecutionTotalTTLMinute: Integer
-        # @param DependencyTriggerPolicy: - 任务依赖运行条件，默认为ALL_SUCCESS，暂时只支持工作流调度项目下配置
-        # - ALL_SUCCESS： 全部成功：所有上游依赖任务都达到终态时，进行依赖判断，如果上游全部都成功，则依赖判断成功，否则如果上游有一个跳过运行，则标记为跳过运行，其余情况标记为上游失败
-        # - ALL_FAILED：全部失败：所有上游依赖任务都达到终态时，进行依赖判断，如果上游状态都是失败或者上游失败，则依赖判断成功，否则就标记为跳过运行
-        # - ALL_DONE：全部完成：所有上游依赖任务都达到终态时，进行依赖判断，直接是依赖判断成功
-        # - ALL_DONE_AT_LEAST_ONE_SUCCESS：上游全部完成至少一个成功: 所有上游依赖任务都达到终态时，进行依赖判断，至少有一个成功，则依赖判断成功，否则就是跳过运行
-        # - ALL_SKIPPED：上游全部都跳过: 所有上游依赖任务都达到终态时，进行依赖判断，所有的上游都是跳过状态才算依赖判断成功，否则当前节点就是跳过运行
-        # - ONE_FAILED：至少一个失败: 上游只要有一个失败了，就进行依赖判断，且依赖判断成功，如果上游全部完成但是没有失败，则跳过运行
-        # - ONE_SUCCESS：至少一个成功：上游只要有一个成功，就进行依赖判断，且依赖判断成功，如果上游全部完成但是没有成功，则跳过运行
-        # - ONE_DONE：至少一个完成：上游只要有一个完成了，就进行依赖判断，且依赖判断成功，否则还是等待上游
-        # - NONE_FAILED：上游全部完成，没有失败: 所有上游依赖任务都达到终态时，进行依赖判断，如果上游都是成功或者跳过运行，则依赖判断成功，否则标记为上游失败
-        # - ALL_DONE_NONE_FAILED_AT_LEAST_ONE_SUCCESS：上游全部完成，没有失败，至少有一个成功: 所有上游依赖任务都达到终态时，进行依赖判断，上游没有一个失败且至少有一个成功的情况下，依赖判断成功，否则就是跳过运行
-        # - NONE_SKIPPED：上游全部完成，没有跳过运行: 所有上游依赖任务都达到终态时，进行依赖判断, 如果上游状态全部都是成功、失败、上游失败状态，则依赖判断成功，否则为跳过运行
-        # - ALL_DONE_AT_LEAST_ONE_FAILED：上游全部完成至少一个失败: 所有上游依赖任务都达到终态时，进行依赖判断，至少有一个失败，则依赖判断成功，否则就是跳过运行
+        # @param DependencyTriggerPolicy: <ul><li>任务依赖运行条件，默认为ALL_SUCCESS，暂时只支持工作流调度项目下配置</li><li>ALL_SUCCESS： 全部成功：所有上游依赖任务都达到终态时，进行依赖判断，如果上游全部都成功，则依赖判断成功，否则如果上游有一个跳过运行，则标记为跳过运行，其余情况标记为上游失败</li><li>ALL_FAILED：全部失败：所有上游依赖任务都达到终态时，进行依赖判断，如果上游状态都是失败或者上游失败，则依赖判断成功，否则就标记为跳过运行</li><li>ALL_DONE：全部完成：所有上游依赖任务都达到终态时，进行依赖判断，直接是依赖判断成功</li><li>ALL_DONE_AT_LEAST_ONE_SUCCESS：上游全部完成至少一个成功: 所有上游依赖任务都达到终态时，进行依赖判断，至少有一个成功，则依赖判断成功，否则就是跳过运行</li><li>ALL_SKIPPED：上游全部都跳过: 所有上游依赖任务都达到终态时，进行依赖判断，所有的上游都是跳过状态才算依赖判断成功，否则当前节点就是跳过运行</li><li>ONE_FAILED：至少一个失败: 上游只要有一个失败了，就进行依赖判断，且依赖判断成功，如果上游全部完成但是没有失败，则跳过运行</li><li>ONE_SUCCESS：至少一个成功：上游只要有一个成功，就进行依赖判断，且依赖判断成功，如果上游全部完成但是没有成功，则跳过运行</li><li>ONE_DONE：至少一个完成：上游只要有一个完成了，就进行依赖判断，且依赖判断成功，否则还是等待上游</li><li>NONE_FAILED：上游全部完成，没有失败: 所有上游依赖任务都达到终态时，进行依赖判断，如果上游都是成功或者跳过运行，则依赖判断成功，否则标记为上游失败</li><li>ALL_DONE_NONE_FAILED_AT_LEAST_ONE_SUCCESS：上游全部完成，没有失败，至少有一个成功: 所有上游依赖任务都达到终态时，进行依赖判断，上游没有一个失败且至少有一个成功的情况下，依赖判断成功，否则就是跳过运行</li><li>NONE_SKIPPED：上游全部完成，没有跳过运行: 所有上游依赖任务都达到终态时，进行依赖判断, 如果上游状态全部都是成功、失败、上游失败状态，则依赖判断成功，否则为跳过运行</li><li>ALL_DONE_AT_LEAST_ONE_FAILED：上游全部完成至少一个失败: 所有上游依赖任务都达到终态时，进行依赖判断，至少有一个失败，则依赖判断成功，否则就是跳过运行</li></ul>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DependencyTriggerPolicy: String
+        # @param AllowDownstreamDependency: <p>是否允许下游依赖 1允许 0不允许</p><p>取值范围：[0, 1]</p><p>默认值：1</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AllowDownstreamDependency: Integer
 
-        attr_accessor :CycleType, :ScheduleTimeZone, :CrontabExpression, :StartTime, :EndTime, :ExecutionStartTime, :ExecutionEndTime, :CalendarOpen, :CalendarId, :CalendarName, :SelfDepend, :UpstreamDependencyConfigList, :DownstreamDependencyConfigList, :EventListenerList, :AllowRedoType, :ParamTaskOutList, :ParamTaskInList, :TaskOutputRegistryList, :InitStrategy, :ScheduleRunType, :DownStreamDependencyConfigList, :RunPriority, :RetryWait, :MaxRetryAttempts, :ExecutionTTL, :WaitExecutionTotalTTL, :ScheduleType, :RunPriorityType, :RetryWaitMinute, :MaxRetryNumber, :ExecutionTTLMinute, :WaitExecutionTotalTTLMinute, :DependencyTriggerPolicy
+        attr_accessor :CycleType, :ScheduleTimeZone, :CrontabExpression, :StartTime, :EndTime, :ExecutionStartTime, :ExecutionEndTime, :CalendarOpen, :CalendarId, :CalendarName, :SelfDepend, :UpstreamDependencyConfigList, :DownstreamDependencyConfigList, :EventListenerList, :AllowRedoType, :ParamTaskOutList, :ParamTaskInList, :TaskOutputRegistryList, :InitStrategy, :ScheduleRunType, :DownStreamDependencyConfigList, :RunPriority, :RetryWait, :MaxRetryAttempts, :ExecutionTTL, :WaitExecutionTotalTTL, :ScheduleType, :RunPriorityType, :RetryWaitMinute, :MaxRetryNumber, :ExecutionTTLMinute, :WaitExecutionTotalTTLMinute, :DependencyTriggerPolicy, :AllowDownstreamDependency
         extend Gem::Deprecate
-        deprecate :ScheduleRunType, :none, 2026, 3
-        deprecate :ScheduleRunType=, :none, 2026, 3
-        deprecate :DownStreamDependencyConfigList, :none, 2026, 3
-        deprecate :DownStreamDependencyConfigList=, :none, 2026, 3
-        deprecate :RunPriority, :none, 2026, 3
-        deprecate :RunPriority=, :none, 2026, 3
-        deprecate :RetryWait, :none, 2026, 3
-        deprecate :RetryWait=, :none, 2026, 3
-        deprecate :MaxRetryAttempts, :none, 2026, 3
-        deprecate :MaxRetryAttempts=, :none, 2026, 3
-        deprecate :ExecutionTTL, :none, 2026, 3
-        deprecate :ExecutionTTL=, :none, 2026, 3
-        deprecate :WaitExecutionTotalTTL, :none, 2026, 3
-        deprecate :WaitExecutionTotalTTL=, :none, 2026, 3
+        deprecate :ScheduleRunType, :none, 2026, 4
+        deprecate :ScheduleRunType=, :none, 2026, 4
+        deprecate :DownStreamDependencyConfigList, :none, 2026, 4
+        deprecate :DownStreamDependencyConfigList=, :none, 2026, 4
+        deprecate :RunPriority, :none, 2026, 4
+        deprecate :RunPriority=, :none, 2026, 4
+        deprecate :RetryWait, :none, 2026, 4
+        deprecate :RetryWait=, :none, 2026, 4
+        deprecate :MaxRetryAttempts, :none, 2026, 4
+        deprecate :MaxRetryAttempts=, :none, 2026, 4
+        deprecate :ExecutionTTL, :none, 2026, 4
+        deprecate :ExecutionTTL=, :none, 2026, 4
+        deprecate :WaitExecutionTotalTTL, :none, 2026, 4
+        deprecate :WaitExecutionTotalTTL=, :none, 2026, 4
 
-        def initialize(cycletype=nil, scheduletimezone=nil, crontabexpression=nil, starttime=nil, endtime=nil, executionstarttime=nil, executionendtime=nil, calendaropen=nil, calendarid=nil, calendarname=nil, selfdepend=nil, upstreamdependencyconfiglist=nil, downstreamdependencyconfiglist=nil, eventlistenerlist=nil, allowredotype=nil, paramtaskoutlist=nil, paramtaskinlist=nil, taskoutputregistrylist=nil, initstrategy=nil, scheduleruntype=nil, runpriority=nil, retrywait=nil, maxretryattempts=nil, executionttl=nil, waitexecutiontotalttl=nil, scheduletype=nil, runprioritytype=nil, retrywaitminute=nil, maxretrynumber=nil, executionttlminute=nil, waitexecutiontotalttlminute=nil, dependencytriggerpolicy=nil)
+        def initialize(cycletype=nil, scheduletimezone=nil, crontabexpression=nil, starttime=nil, endtime=nil, executionstarttime=nil, executionendtime=nil, calendaropen=nil, calendarid=nil, calendarname=nil, selfdepend=nil, upstreamdependencyconfiglist=nil, downstreamdependencyconfiglist=nil, eventlistenerlist=nil, allowredotype=nil, paramtaskoutlist=nil, paramtaskinlist=nil, taskoutputregistrylist=nil, initstrategy=nil, scheduleruntype=nil, runpriority=nil, retrywait=nil, maxretryattempts=nil, executionttl=nil, waitexecutiontotalttl=nil, scheduletype=nil, runprioritytype=nil, retrywaitminute=nil, maxretrynumber=nil, executionttlminute=nil, waitexecutiontotalttlminute=nil, dependencytriggerpolicy=nil, allowdownstreamdependency=nil)
           @CycleType = cycletype
           @ScheduleTimeZone = scheduletimezone
           @CrontabExpression = crontabexpression
@@ -20555,6 +20666,7 @@ module TencentCloud
           @ExecutionTTLMinute = executionttlminute
           @WaitExecutionTotalTTLMinute = waitexecutiontotalttlminute
           @DependencyTriggerPolicy = dependencytriggerpolicy
+          @AllowDownstreamDependency = allowdownstreamdependency
         end
 
         def deserialize(params)
@@ -20632,6 +20744,7 @@ module TencentCloud
           @ExecutionTTLMinute = params['ExecutionTTLMinute']
           @WaitExecutionTotalTTLMinute = params['WaitExecutionTotalTTLMinute']
           @DependencyTriggerPolicy = params['DependencyTriggerPolicy']
+          @AllowDownstreamDependency = params['AllowDownstreamDependency']
         end
       end
 
@@ -21741,55 +21854,46 @@ module TencentCloud
 
       # 任务调度配置信息
       class TriggerTaskSchedulerConfiguration < TencentCloud::Common::AbstractModel
-        # @param UpstreamDependencyConfigList: 上游依赖数组
+        # @param UpstreamDependencyConfigList: <p>上游依赖数组</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpstreamDependencyConfigList: Array
-        # @param RunPriorityType: 任务调度优先级 运行优先级 4高 5中 6低 , 默认:6
+        # @param RunPriorityType: <p>任务调度优先级 运行优先级 4高 5中 6低 , 默认:6</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RunPriorityType: Integer
-        # @param RetryWaitMinute: 重试策略 重试等待时间,单位分钟: 默认: 5
+        # @param RetryWaitMinute: <p>重试策略 重试等待时间,单位分钟: 默认: 5</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RetryWaitMinute: Integer
-        # @param MaxRetryNumber: 重试策略 最大尝试次数, 默认: 4
+        # @param MaxRetryNumber: <p>重试策略 最大尝试次数, 默认: 4</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxRetryNumber: Integer
-        # @param ExecutionTTLMinute: 超时处理策略 运行耗时超时（单位：分钟）默认为 -1
+        # @param ExecutionTTLMinute: <p>超时处理策略 运行耗时超时（单位：分钟）默认为 -1</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExecutionTTLMinute: Integer
-        # @param WaitExecutionTotalTTLMinute: 超时处理策略 等待总时长耗时超时（单位：分钟）默认为 -1
+        # @param WaitExecutionTotalTTLMinute: <p>超时处理策略 等待总时长耗时超时（单位：分钟）默认为 -1</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WaitExecutionTotalTTLMinute: Integer
-        # @param AllowRedoType: 重跑&补录配置, 默认为 ALL; , ALL 运行成功或失败后皆可重跑或补录, FAILURE 运行成功后不可重跑或补录，运行失败后可重跑或补录, NONE 运行成功或失败后皆不可重跑或补录;
+        # @param AllowRedoType: <p>重跑&amp;补录配置, 默认为 ALL; , ALL 运行成功或失败后皆可重跑或补录, FAILURE 运行成功后不可重跑或补录，运行失败后可重跑或补录, NONE 运行成功或失败后皆不可重跑或补录;</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AllowRedoType: String
-        # @param ParamTaskOutList: 输出参数数组
+        # @param ParamTaskOutList: <p>输出参数数组</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParamTaskOutList: Array
-        # @param ParamTaskInList: 输入参数数组
+        # @param ParamTaskInList: <p>输入参数数组</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParamTaskInList: Array
-        # @param TaskOutputRegistryList: 产出登记
+        # @param TaskOutputRegistryList: <p>产出登记</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskOutputRegistryList: Array
-        # @param DependencyTriggerPolicy: - 任务依赖运行条件，默认为ALL_SUCCESS，暂时只支持工作流调度项目下配置
-        # - ALL_SUCCESS： 全部成功：所有上游依赖任务都达到终态时，进行依赖判断，如果上游全部都成功，则依赖判断成功，否则如果上游有一个跳过运行，则标记为跳过运行，其余情况标记为上游失败
-        # - ALL_FAILED：全部失败：所有上游依赖任务都达到终态时，进行依赖判断，如果上游状态都是失败或者上游失败，则依赖判断成功，否则就标记为跳过运行
-        # - ALL_DONE：全部完成：所有上游依赖任务都达到终态时，进行依赖判断，直接是依赖判断成功
-        # - ALL_DONE_AT_LEAST_ONE_SUCCESS：上游全部完成至少一个成功: 所有上游依赖任务都达到终态时，进行依赖判断，至少有一个成功，则依赖判断成功，否则就是跳过运行
-        # - ALL_SKIPPED：上游全部都跳过: 所有上游依赖任务都达到终态时，进行依赖判断，所有的上游都是跳过状态才算依赖判断成功，否则当前节点就是跳过运行
-        # - ONE_FAILED：至少一个失败: 上游只要有一个失败了，就进行依赖判断，且依赖判断成功，如果上游全部完成但是没有失败，则跳过运行
-        # - ONE_SUCCESS：至少一个成功：上游只要有一个成功，就进行依赖判断，且依赖判断成功，如果上游全部完成但是没有成功，则跳过运行
-        # - ONE_DONE：至少一个完成：上游只要有一个完成了，就进行依赖判断，且依赖判断成功，否则还是等待上游
-        # - NONE_FAILED：上游全部完成，没有失败: 所有上游依赖任务都达到终态时，进行依赖判断，如果上游都是成功或者跳过运行，则依赖判断成功，否则标记为上游失败
-        # - ALL_DONE_NONE_FAILED_AT_LEAST_ONE_SUCCESS：上游全部完成，没有失败，至少有一个成功: 所有上游依赖任务都达到终态时，进行依赖判断，上游没有一个失败且至少有一个成功的情况下，依赖判断成功，否则就是跳过运行
-        # - NONE_SKIPPED：上游全部完成，没有跳过运行: 所有上游依赖任务都达到终态时，进行依赖判断, 如果上游状态全部都是成功、失败、上游失败状态，则依赖判断成功，否则为跳过运行
-        # - ALL_DONE_AT_LEAST_ONE_FAILED：上游全部完成至少一个失败: 所有上游依赖任务都达到终态时，进行依赖判断，至少有一个失败，则依赖判断成功，否则就是跳过运行
+        # @param DependencyTriggerPolicy: <ul><li>任务依赖运行条件，默认为ALL_SUCCESS，暂时只支持工作流调度项目下配置</li><li>ALL_SUCCESS： 全部成功：所有上游依赖任务都达到终态时，进行依赖判断，如果上游全部都成功，则依赖判断成功，否则如果上游有一个跳过运行，则标记为跳过运行，其余情况标记为上游失败</li><li>ALL_FAILED：全部失败：所有上游依赖任务都达到终态时，进行依赖判断，如果上游状态都是失败或者上游失败，则依赖判断成功，否则就标记为跳过运行</li><li>ALL_DONE：全部完成：所有上游依赖任务都达到终态时，进行依赖判断，直接是依赖判断成功</li><li>ALL_DONE_AT_LEAST_ONE_SUCCESS：上游全部完成至少一个成功: 所有上游依赖任务都达到终态时，进行依赖判断，至少有一个成功，则依赖判断成功，否则就是跳过运行</li><li>ALL_SKIPPED：上游全部都跳过: 所有上游依赖任务都达到终态时，进行依赖判断，所有的上游都是跳过状态才算依赖判断成功，否则当前节点就是跳过运行</li><li>ONE_FAILED：至少一个失败: 上游只要有一个失败了，就进行依赖判断，且依赖判断成功，如果上游全部完成但是没有失败，则跳过运行</li><li>ONE_SUCCESS：至少一个成功：上游只要有一个成功，就进行依赖判断，且依赖判断成功，如果上游全部完成但是没有成功，则跳过运行</li><li>ONE_DONE：至少一个完成：上游只要有一个完成了，就进行依赖判断，且依赖判断成功，否则还是等待上游</li><li>NONE_FAILED：上游全部完成，没有失败: 所有上游依赖任务都达到终态时，进行依赖判断，如果上游都是成功或者跳过运行，则依赖判断成功，否则标记为上游失败</li><li>ALL_DONE_NONE_FAILED_AT_LEAST_ONE_SUCCESS：上游全部完成，没有失败，至少有一个成功: 所有上游依赖任务都达到终态时，进行依赖判断，上游没有一个失败且至少有一个成功的情况下，依赖判断成功，否则就是跳过运行</li><li>NONE_SKIPPED：上游全部完成，没有跳过运行: 所有上游依赖任务都达到终态时，进行依赖判断, 如果上游状态全部都是成功、失败、上游失败状态，则依赖判断成功，否则为跳过运行</li><li>ALL_DONE_AT_LEAST_ONE_FAILED：上游全部完成至少一个失败: 所有上游依赖任务都达到终态时，进行依赖判断，至少有一个失败，则依赖判断成功，否则就是跳过运行</li></ul>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DependencyTriggerPolicy: String
+        # @param AllowDownstreamDependency: <p>是否允许下游依赖 1允许 0不允许</p><p>取值范围：[0, 1]</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AllowDownstreamDependency: Integer
 
-        attr_accessor :UpstreamDependencyConfigList, :RunPriorityType, :RetryWaitMinute, :MaxRetryNumber, :ExecutionTTLMinute, :WaitExecutionTotalTTLMinute, :AllowRedoType, :ParamTaskOutList, :ParamTaskInList, :TaskOutputRegistryList, :DependencyTriggerPolicy
+        attr_accessor :UpstreamDependencyConfigList, :RunPriorityType, :RetryWaitMinute, :MaxRetryNumber, :ExecutionTTLMinute, :WaitExecutionTotalTTLMinute, :AllowRedoType, :ParamTaskOutList, :ParamTaskInList, :TaskOutputRegistryList, :DependencyTriggerPolicy, :AllowDownstreamDependency
 
-        def initialize(upstreamdependencyconfiglist=nil, runprioritytype=nil, retrywaitminute=nil, maxretrynumber=nil, executionttlminute=nil, waitexecutiontotalttlminute=nil, allowredotype=nil, paramtaskoutlist=nil, paramtaskinlist=nil, taskoutputregistrylist=nil, dependencytriggerpolicy=nil)
+        def initialize(upstreamdependencyconfiglist=nil, runprioritytype=nil, retrywaitminute=nil, maxretrynumber=nil, executionttlminute=nil, waitexecutiontotalttlminute=nil, allowredotype=nil, paramtaskoutlist=nil, paramtaskinlist=nil, taskoutputregistrylist=nil, dependencytriggerpolicy=nil, allowdownstreamdependency=nil)
           @UpstreamDependencyConfigList = upstreamdependencyconfiglist
           @RunPriorityType = runprioritytype
           @RetryWaitMinute = retrywaitminute
@@ -21801,6 +21905,7 @@ module TencentCloud
           @ParamTaskInList = paramtaskinlist
           @TaskOutputRegistryList = taskoutputregistrylist
           @DependencyTriggerPolicy = dependencytriggerpolicy
+          @AllowDownstreamDependency = allowdownstreamdependency
         end
 
         def deserialize(params)
@@ -21843,6 +21948,7 @@ module TencentCloud
             end
           end
           @DependencyTriggerPolicy = params['DependencyTriggerPolicy']
+          @AllowDownstreamDependency = params['AllowDownstreamDependency']
         end
       end
 

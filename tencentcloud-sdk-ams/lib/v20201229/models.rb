@@ -221,8 +221,8 @@ module TencentCloud
 
         attr_accessor :Label, :Score, :StartTime, :EndTime, :SubLabelCode, :SubLabel, :Suggestion
         extend Gem::Deprecate
-        deprecate :SubLabelCode, :none, 2025, 12
-        deprecate :SubLabelCode=, :none, 2025, 12
+        deprecate :SubLabelCode, :none, 2026, 4
+        deprecate :SubLabelCode=, :none, 2026, 4
 
         def initialize(label=nil, score=nil, starttime=nil, endtime=nil, sublabelcode=nil, sublabel=nil, suggestion=nil)
           @Label = label
@@ -886,20 +886,26 @@ module TencentCloud
 
       # 输入信息详情
       class InputInfo < TencentCloud::Common::AbstractModel
-        # @param Type: 该字段表示文件访问类型，取值为**URL**（资源链接）和**COS** (腾讯云对象存储)。
+        # @param Type: <p>该字段表示文件访问类型，取值为<strong>URL</strong>（资源链接）和<strong>COS</strong> (腾讯云对象存储)。</p>
         # @type Type: String
-        # @param Url: 该字段表示文件访问的链接地址，格式为标准URL格式。<br> 备注：当Type为URL时此字段不为空。
+        # @param Url: <p>该字段表示文件访问的链接地址，格式为标准URL格式。<br> 备注：当Type为URL时此字段不为空。</p>
         # @type Url: String
-        # @param BucketInfo: 该字段表示文件访问的腾讯云存储桶信息。<br> 备注：当Type为COS时此字段不为空。
+        # @param BucketInfo: <p>该字段表示文件访问的腾讯云存储桶信息。<br> 备注：当Type为COS时此字段不为空。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BucketInfo: :class:`Tencentcloud::Ams.v20201229.models.BucketInfo`
+        # @param ImageUrlList: <p>大模型审核可选输入图片列表</p>
+        # @type ImageUrlList: Array
+        # @param TextContent: <p>大模型审核场景下，base64编码的审核要求内容</p>
+        # @type TextContent: String
 
-        attr_accessor :Type, :Url, :BucketInfo
+        attr_accessor :Type, :Url, :BucketInfo, :ImageUrlList, :TextContent
 
-        def initialize(type=nil, url=nil, bucketinfo=nil)
+        def initialize(type=nil, url=nil, bucketinfo=nil, imageurllist=nil, textcontent=nil)
           @Type = type
           @Url = url
           @BucketInfo = bucketinfo
+          @ImageUrlList = imageurllist
+          @TextContent = textcontent
         end
 
         def deserialize(params)
@@ -909,6 +915,8 @@ module TencentCloud
             @BucketInfo = BucketInfo.new
             @BucketInfo.deserialize(params['BucketInfo'])
           end
+          @ImageUrlList = params['ImageUrlList']
+          @TextContent = params['TextContent']
         end
       end
 

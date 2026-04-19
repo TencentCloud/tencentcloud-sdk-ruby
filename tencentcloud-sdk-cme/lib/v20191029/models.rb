@@ -19,24 +19,25 @@ module TencentCloud
     module V20191029
       # 制作云用户账号信息。
       class AccountInfo < TencentCloud::Common::AbstractModel
-        # @param UserId: 用户 Id。
+        # @param UserId: <p>用户 Id。</p>
         # @type UserId: String
-        # @param Phone: 用户手机号码。
+        # @param Phone: <p>用户手机号码。</p>
         # @type Phone: String
-        # @param Nick: 用户昵称。
+        # @param Nick: <p>用户昵称。</p>
         # @type Nick: String
-        # @param Status: 账号状态，取值：
-        # <li>Normal：有效；</li>
-        # <li>Stopped：无效。</li>
+        # @param Status: <p>账号状态，取值：</p><li>Normal：有效；</li><li>Stopped：无效。</li>
         # @type Status: String
+        # @param CreateTime: <p>账户的创建时间。</p><p>参数格式：使用 ISO 日期格式。</p>
+        # @type CreateTime: String
 
-        attr_accessor :UserId, :Phone, :Nick, :Status
+        attr_accessor :UserId, :Phone, :Nick, :Status, :CreateTime
 
-        def initialize(userid=nil, phone=nil, nick=nil, status=nil)
+        def initialize(userid=nil, phone=nil, nick=nil, status=nil, createtime=nil)
           @UserId = userid
           @Phone = phone
           @Nick = nick
           @Status = status
+          @CreateTime = createtime
         end
 
         def deserialize(params)
@@ -44,6 +45,7 @@ module TencentCloud
           @Phone = params['Phone']
           @Nick = params['Nick']
           @Status = params['Status']
+          @CreateTime = params['CreateTime']
         end
       end
 
@@ -682,8 +684,8 @@ module TencentCloud
 
         attr_accessor :Platform, :Name, :Owner, :Category, :Mode, :AspectRatio, :Description, :SwitcherProjectInput, :LiveStreamClipProjectInput, :VideoEditProjectInput, :VideoSegmentationProjectInput, :StreamConnectProjectInput, :RecordReplayProjectInput, :MediaCastProjectInput
         extend Gem::Deprecate
-        deprecate :AspectRatio, :none, 2026, 3
-        deprecate :AspectRatio=, :none, 2026, 3
+        deprecate :AspectRatio, :none, 2026, 4
+        deprecate :AspectRatio=, :none, 2026, 4
 
         def initialize(platform=nil, name=nil, owner=nil, category=nil, mode=nil, aspectratio=nil, description=nil, switcherprojectinput=nil, livestreamclipprojectinput=nil, videoeditprojectinput=nil, videosegmentationprojectinput=nil, streamconnectprojectinput=nil, recordreplayprojectinput=nil, mediacastprojectinput=nil)
           @Platform = platform
@@ -2616,8 +2618,8 @@ module TencentCloud
 
         attr_accessor :MediaKey, :Definition, :StorageId
         extend Gem::Deprecate
-        deprecate :Definition, :none, 2026, 3
-        deprecate :Definition=, :none, 2026, 3
+        deprecate :Definition, :none, 2026, 4
+        deprecate :Definition=, :none, 2026, 4
 
         def initialize(mediakey=nil, definition=nil, storageid=nil)
           @MediaKey = mediakey
@@ -3587,8 +3589,8 @@ module TencentCloud
 
         attr_accessor :MaterialId, :MaterialType, :Owner, :Name, :CreateTime, :UpdateTime, :ClassPath, :PresetTagSet, :TagSet, :PreviewUrl, :TagInfoSet
         extend Gem::Deprecate
-        deprecate :TagInfoSet, :none, 2026, 3
-        deprecate :TagInfoSet=, :none, 2026, 3
+        deprecate :TagInfoSet, :none, 2026, 4
+        deprecate :TagInfoSet=, :none, 2026, 4
 
         def initialize(materialid=nil, materialtype=nil, owner=nil, name=nil, createtime=nil, updatetime=nil, classpath=nil, presettagset=nil, tagset=nil, previewurl=nil, taginfoset=nil)
           @MaterialId = materialid
@@ -5653,8 +5655,8 @@ module TencentCloud
 
         attr_accessor :FileId, :MaterialId, :Operator, :OperationType, :Owner, :ClassPath, :TaskId, :SourceContext
         extend Gem::Deprecate
-        deprecate :Operator, :none, 2026, 3
-        deprecate :Operator=, :none, 2026, 3
+        deprecate :Operator, :none, 2026, 4
+        deprecate :Operator=, :none, 2026, 4
 
         def initialize(fileid=nil, materialid=nil, operator=nil, operationtype=nil, owner=nil, classpath=nil, taskid=nil, sourcecontext=nil)
           @FileId = fileid
