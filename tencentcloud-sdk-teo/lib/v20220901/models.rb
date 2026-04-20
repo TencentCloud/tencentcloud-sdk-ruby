@@ -17936,8 +17936,8 @@ module TencentCloud
         # <li>当 OriginType = IPDomain 时，该参数请填写 IPV4、IPV6 地址或域名；</li>
         # <li>当 OriginType = COS 时，该参数请填写 COS 桶的访问域名；</li>
         # <li>当 OriginType = AWSS3，该参数请填写 S3 桶的访问域名；</li>
-        # <li>当 OriginType = OriginGroup 时，该参数请填写源站组 ID；</li>
-        # <li>当 OriginType = LoadBalance 时，该参数请填写负载均衡实例 ID，该功能当前仅白名单开放。</li>
+        # <li>当 OriginType = OriginGroup 时，该参数请填写源站组 ID；当为出参的时候，如果引用了其它站点的源站组，格式为{源站组 ID}@{ZoneID}。例如：og-testorigin@zone-38moq1z10wwwy；</li>
+        # <li>当 OriginType = LoadBalance 时，该参数请填写负载均衡实例 ID，该功能当前仅白名单开放；当为出参的时候，如果引用了其它站点的负载均衡，格式为{负载均衡 ID}@{ZoneID}。例如：lb-2rxpamcyqfzg@zone-38moq1z10wwwy。</li>
         # @type Origin: String
         # @param OriginProtocol: 回源协议配置。当 OriginType 取值为 IPDomain、OriginGroup、LoadBalance 时该参数必填。取值有：
         # <li>http：使用 HTTP 协议；</li>
@@ -21856,6 +21856,7 @@ module TencentCloud
         # <li>ClientIPCountry：回源时携带客户端 IP 所属地域信息；</li>
         # <li>UpstreamFollowRedirect：回源跟随重定向参数配置；</li>
         # <li>UpstreamRequest：回源请求参数；</li>
+        # <li>Shield：源站卸载配置；</li>
         # <li>TLSConfig：SSL/TLS 安全；</li>
         # <li>ModifyOrigin：修改源站；</li>
         # <li>HTTPUpstreamTimeout：七层回源超时配置；</li>
@@ -21947,6 +21948,9 @@ module TencentCloud
         # @param UpstreamRequestParameters: 回源请求参数配置参数，当 Name 取值为 UpstreamRequest 时，该参数必填。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpstreamRequestParameters: :class:`Tencentcloud::Teo.v20220901.models.UpstreamRequestParameters`
+        # @param ShieldParameters: 源站卸载配置参数，当 Name 取值为 Shield 时，该参数必填。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ShieldParameters: :class:`Tencentcloud::Teo.v20220901.models.ShieldParameters`
         # @param TLSConfigParameters: SSL/TLS 安全配置参数，当 Name 取值为 TLSConfig 时，该参数必填。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TLSConfigParameters: :class:`Tencentcloud::Teo.v20220901.models.TLSConfigParameters`
@@ -21982,9 +21986,9 @@ module TencentCloud
         # @param OriginAuthenticationParameters: 回源鉴权配置参数，当 Name 取值为 OriginAuthentication 时，该参数必填。该参数为白名单功能，如有需要，请联系腾讯云工程师处理。
         # @type OriginAuthenticationParameters: :class:`Tencentcloud::Teo.v20220901.models.OriginAuthenticationParameters`
 
-        attr_accessor :Name, :CacheParameters, :CacheKeyParameters, :CachePrefreshParameters, :AccessURLRedirectParameters, :UpstreamURLRewriteParameters, :QUICParameters, :WebSocketParameters, :AuthenticationParameters, :MaxAgeParameters, :StatusCodeCacheParameters, :OfflineCacheParameters, :SmartRoutingParameters, :RangeOriginPullParameters, :UpstreamHTTP2Parameters, :HostHeaderParameters, :ForceRedirectHTTPSParameters, :OriginPullProtocolParameters, :CompressionParameters, :HSTSParameters, :ClientIPHeaderParameters, :OCSPStaplingParameters, :HTTP2Parameters, :PostMaxSizeParameters, :ClientIPCountryParameters, :UpstreamFollowRedirectParameters, :UpstreamRequestParameters, :TLSConfigParameters, :ModifyOriginParameters, :HTTPUpstreamTimeoutParameters, :HttpResponseParameters, :ErrorPageParameters, :ModifyResponseHeaderParameters, :ModifyRequestHeaderParameters, :ResponseSpeedLimitParameters, :SetContentIdentifierParameters, :VaryParameters, :ContentCompressionParameters, :OriginAuthenticationParameters
+        attr_accessor :Name, :CacheParameters, :CacheKeyParameters, :CachePrefreshParameters, :AccessURLRedirectParameters, :UpstreamURLRewriteParameters, :QUICParameters, :WebSocketParameters, :AuthenticationParameters, :MaxAgeParameters, :StatusCodeCacheParameters, :OfflineCacheParameters, :SmartRoutingParameters, :RangeOriginPullParameters, :UpstreamHTTP2Parameters, :HostHeaderParameters, :ForceRedirectHTTPSParameters, :OriginPullProtocolParameters, :CompressionParameters, :HSTSParameters, :ClientIPHeaderParameters, :OCSPStaplingParameters, :HTTP2Parameters, :PostMaxSizeParameters, :ClientIPCountryParameters, :UpstreamFollowRedirectParameters, :UpstreamRequestParameters, :ShieldParameters, :TLSConfigParameters, :ModifyOriginParameters, :HTTPUpstreamTimeoutParameters, :HttpResponseParameters, :ErrorPageParameters, :ModifyResponseHeaderParameters, :ModifyRequestHeaderParameters, :ResponseSpeedLimitParameters, :SetContentIdentifierParameters, :VaryParameters, :ContentCompressionParameters, :OriginAuthenticationParameters
 
-        def initialize(name=nil, cacheparameters=nil, cachekeyparameters=nil, cacheprefreshparameters=nil, accessurlredirectparameters=nil, upstreamurlrewriteparameters=nil, quicparameters=nil, websocketparameters=nil, authenticationparameters=nil, maxageparameters=nil, statuscodecacheparameters=nil, offlinecacheparameters=nil, smartroutingparameters=nil, rangeoriginpullparameters=nil, upstreamhttp2parameters=nil, hostheaderparameters=nil, forceredirecthttpsparameters=nil, originpullprotocolparameters=nil, compressionparameters=nil, hstsparameters=nil, clientipheaderparameters=nil, ocspstaplingparameters=nil, http2parameters=nil, postmaxsizeparameters=nil, clientipcountryparameters=nil, upstreamfollowredirectparameters=nil, upstreamrequestparameters=nil, tlsconfigparameters=nil, modifyoriginparameters=nil, httpupstreamtimeoutparameters=nil, httpresponseparameters=nil, errorpageparameters=nil, modifyresponseheaderparameters=nil, modifyrequestheaderparameters=nil, responsespeedlimitparameters=nil, setcontentidentifierparameters=nil, varyparameters=nil, contentcompressionparameters=nil, originauthenticationparameters=nil)
+        def initialize(name=nil, cacheparameters=nil, cachekeyparameters=nil, cacheprefreshparameters=nil, accessurlredirectparameters=nil, upstreamurlrewriteparameters=nil, quicparameters=nil, websocketparameters=nil, authenticationparameters=nil, maxageparameters=nil, statuscodecacheparameters=nil, offlinecacheparameters=nil, smartroutingparameters=nil, rangeoriginpullparameters=nil, upstreamhttp2parameters=nil, hostheaderparameters=nil, forceredirecthttpsparameters=nil, originpullprotocolparameters=nil, compressionparameters=nil, hstsparameters=nil, clientipheaderparameters=nil, ocspstaplingparameters=nil, http2parameters=nil, postmaxsizeparameters=nil, clientipcountryparameters=nil, upstreamfollowredirectparameters=nil, upstreamrequestparameters=nil, shieldparameters=nil, tlsconfigparameters=nil, modifyoriginparameters=nil, httpupstreamtimeoutparameters=nil, httpresponseparameters=nil, errorpageparameters=nil, modifyresponseheaderparameters=nil, modifyrequestheaderparameters=nil, responsespeedlimitparameters=nil, setcontentidentifierparameters=nil, varyparameters=nil, contentcompressionparameters=nil, originauthenticationparameters=nil)
           @Name = name
           @CacheParameters = cacheparameters
           @CacheKeyParameters = cachekeyparameters
@@ -22012,6 +22016,7 @@ module TencentCloud
           @ClientIPCountryParameters = clientipcountryparameters
           @UpstreamFollowRedirectParameters = upstreamfollowredirectparameters
           @UpstreamRequestParameters = upstreamrequestparameters
+          @ShieldParameters = shieldparameters
           @TLSConfigParameters = tlsconfigparameters
           @ModifyOriginParameters = modifyoriginparameters
           @HTTPUpstreamTimeoutParameters = httpupstreamtimeoutparameters
@@ -22131,6 +22136,10 @@ module TencentCloud
           unless params['UpstreamRequestParameters'].nil?
             @UpstreamRequestParameters = UpstreamRequestParameters.new
             @UpstreamRequestParameters.deserialize(params['UpstreamRequestParameters'])
+          end
+          unless params['ShieldParameters'].nil?
+            @ShieldParameters = ShieldParameters.new
+            @ShieldParameters.deserialize(params['ShieldParameters'])
           end
           unless params['TLSConfigParameters'].nil?
             @TLSConfigParameters = TLSConfigParameters.new
@@ -23099,6 +23108,22 @@ module TencentCloud
               @AccelerationDomains << referenceholder_tmp
             end
           end
+        end
+      end
+
+      # 源站卸载配置参数。
+      class ShieldParameters < TencentCloud::Common::AbstractModel
+        # @param ShieldSpaceId: 源站卸载空间 ID。
+        # @type ShieldSpaceId: String
+
+        attr_accessor :ShieldSpaceId
+
+        def initialize(shieldspaceid=nil)
+          @ShieldSpaceId = shieldspaceid
+        end
+
+        def deserialize(params)
+          @ShieldSpaceId = params['ShieldSpaceId']
         end
       end
 

@@ -126,34 +126,48 @@ module TencentCloud
 
       # 智能体实例
       class AgentInstance < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 智能体实例ID
+        # @param InstanceId: <p>智能体实例ID</p>
         # @type InstanceId: String
-        # @param InstanceName: 智能体实例名称
+        # @param InstanceName: <p>智能体实例名称</p>
         # @type InstanceName: String
-        # @param AgentId: 智能体ID
+        # @param AgentId: <p>智能体ID</p>
         # @type AgentId: String
-        # @param AgentName: 智能体名称
+        # @param AgentName: <p>智能体名称</p>
         # @type AgentName: String
-        # @param AgentInternalName: 智能体类型
+        # @param AgentInternalName: <p>智能体类型</p>
         # @type AgentInternalName: String
-        # @param AgentType: 智能体服务模式
+        # @param AgentType: <p>智能体服务模式</p>
         # @type AgentType: String
-        # @param AgentVersion: 智能体版本
+        # @param AgentVersion: <p>智能体版本</p>
         # @type AgentVersion: String
-        # @param Status: 智能体实例状态
+        # @param Status: <p>智能体实例状态</p>
         # @type Status: String
-        # @param Parameters: 智能体实例参数列表
+        # @param Parameters: <p>智能体实例参数列表</p>
         # @type Parameters: Array
-        # @param CreateTime: 创建时间
+        # @param CreateTime: <p>创建时间</p>
         # @type CreateTime: String
-        # @param UpdateTime: 修改时间
+        # @param UpdateTime: <p>修改时间</p>
         # @type UpdateTime: String
-        # @param Tags: 资源绑定Tag列表
+        # @param Tags: <p>资源绑定Tag列表</p>
         # @type Tags: Array
+        # @param DeployPlace: <p>部署位置,intranet-共享版，userVpc-专享版</p>
+        # @type DeployPlace: String
+        # @param PolicyIds: <p>关联的告警策略ID。</p>
+        # @type PolicyIds: Array
+        # @param ClawConfig: <p>无</p>
+        # @type ClawConfig: :class:`Tencentcloud::Tdai.v20250717.models.ClawConfigInfo`
+        # @param InstanceType: <p>无</p>
+        # @type InstanceType: String
+        # @param AllowedActions: <p>无</p>
+        # @type AllowedActions: Array
+        # @param LastActiveTime: <p>无</p>
+        # @type LastActiveTime: String
+        # @param Description: <p>无</p>
+        # @type Description: String
 
-        attr_accessor :InstanceId, :InstanceName, :AgentId, :AgentName, :AgentInternalName, :AgentType, :AgentVersion, :Status, :Parameters, :CreateTime, :UpdateTime, :Tags
+        attr_accessor :InstanceId, :InstanceName, :AgentId, :AgentName, :AgentInternalName, :AgentType, :AgentVersion, :Status, :Parameters, :CreateTime, :UpdateTime, :Tags, :DeployPlace, :PolicyIds, :ClawConfig, :InstanceType, :AllowedActions, :LastActiveTime, :Description
 
-        def initialize(instanceid=nil, instancename=nil, agentid=nil, agentname=nil, agentinternalname=nil, agenttype=nil, agentversion=nil, status=nil, parameters=nil, createtime=nil, updatetime=nil, tags=nil)
+        def initialize(instanceid=nil, instancename=nil, agentid=nil, agentname=nil, agentinternalname=nil, agenttype=nil, agentversion=nil, status=nil, parameters=nil, createtime=nil, updatetime=nil, tags=nil, deployplace=nil, policyids=nil, clawconfig=nil, instancetype=nil, allowedactions=nil, lastactivetime=nil, description=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @AgentId = agentid
@@ -166,6 +180,13 @@ module TencentCloud
           @CreateTime = createtime
           @UpdateTime = updatetime
           @Tags = tags
+          @DeployPlace = deployplace
+          @PolicyIds = policyids
+          @ClawConfig = clawconfig
+          @InstanceType = instancetype
+          @AllowedActions = allowedactions
+          @LastActiveTime = lastactivetime
+          @Description = description
         end
 
         def deserialize(params)
@@ -195,6 +216,16 @@ module TencentCloud
               @Tags << tagitem_tmp
             end
           end
+          @DeployPlace = params['DeployPlace']
+          @PolicyIds = params['PolicyIds']
+          unless params['ClawConfig'].nil?
+            @ClawConfig = ClawConfigInfo.new
+            @ClawConfig.deserialize(params['ClawConfig'])
+          end
+          @InstanceType = params['InstanceType']
+          @AllowedActions = params['AllowedActions']
+          @LastActiveTime = params['LastActiveTime']
+          @Description = params['Description']
         end
       end
 
@@ -282,6 +313,57 @@ module TencentCloud
         end
       end
 
+      # databaseClaw实例配置信息
+      class ClawConfigInfo < TencentCloud::Common::AbstractModel
+        # @param TemplateId: <p>无</p>
+        # @type TemplateId: Integer
+        # @param DbTypes: <p>无</p>
+        # @type DbTypes: Array
+        # @param Deploy: <p>无</p>
+        # @type Deploy: :class:`Tencentcloud::Tdai.v20250717.models.ClawDeployInfo`
+
+        attr_accessor :TemplateId, :DbTypes, :Deploy
+
+        def initialize(templateid=nil, dbtypes=nil, deploy=nil)
+          @TemplateId = templateid
+          @DbTypes = dbtypes
+          @Deploy = deploy
+        end
+
+        def deserialize(params)
+          @TemplateId = params['TemplateId']
+          @DbTypes = params['DbTypes']
+          unless params['Deploy'].nil?
+            @Deploy = ClawDeployInfo.new
+            @Deploy.deserialize(params['Deploy'])
+          end
+        end
+      end
+
+      # databaseClaw实例部署详情
+      class ClawDeployInfo < TencentCloud::Common::AbstractModel
+        # @param UserVpcId: <p>无</p>
+        # @type UserVpcId: String
+        # @param UserSubnetId: <p>无</p>
+        # @type UserSubnetId: String
+        # @param UserVpcRegion: <p>无</p>
+        # @type UserVpcRegion: String
+
+        attr_accessor :UserVpcId, :UserSubnetId, :UserVpcRegion
+
+        def initialize(uservpcid=nil, usersubnetid=nil, uservpcregion=nil)
+          @UserVpcId = uservpcid
+          @UserSubnetId = usersubnetid
+          @UserVpcRegion = uservpcregion
+        end
+
+        def deserialize(params)
+          @UserVpcId = params['UserVpcId']
+          @UserSubnetId = params['UserSubnetId']
+          @UserVpcRegion = params['UserVpcRegion']
+        end
+      end
+
       # 仓库信息
       class CodeRepo < TencentCloud::Common::AbstractModel
         # @param RepoUrl: 代码仓库地址
@@ -362,15 +444,30 @@ module TencentCloud
         # @type Parameters: Array
         # @param Tags: <p>资源的标签信息</p>
         # @type Tags: Array
+        # @param InstanceType: <p>无</p>
+        # @type InstanceType: String
+        # @param TemplateId: <p>无</p>
+        # @type TemplateId: Integer
+        # @param Skills: <p>无</p>
+        # @type Skills: Array
+        # @param SoulId: <p>无</p>
+        # @type SoulId: Integer
+        # @param Description: <p>无</p>
+        # @type Description: String
 
-        attr_accessor :AgentId, :AgentVersion, :InstanceName, :Parameters, :Tags
+        attr_accessor :AgentId, :AgentVersion, :InstanceName, :Parameters, :Tags, :InstanceType, :TemplateId, :Skills, :SoulId, :Description
 
-        def initialize(agentid=nil, agentversion=nil, instancename=nil, parameters=nil, tags=nil)
+        def initialize(agentid=nil, agentversion=nil, instancename=nil, parameters=nil, tags=nil, instancetype=nil, templateid=nil, skills=nil, soulid=nil, description=nil)
           @AgentId = agentid
           @AgentVersion = agentversion
           @InstanceName = instancename
           @Parameters = parameters
           @Tags = tags
+          @InstanceType = instancetype
+          @TemplateId = templateid
+          @Skills = skills
+          @SoulId = soulid
+          @Description = description
         end
 
         def deserialize(params)
@@ -393,6 +490,11 @@ module TencentCloud
               @Tags << tagitem_tmp
             end
           end
+          @InstanceType = params['InstanceType']
+          @TemplateId = params['TemplateId']
+          @Skills = params['Skills']
+          @SoulId = params['SoulId']
+          @Description = params['Description']
         end
       end
 
@@ -692,24 +794,26 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 列表查询数量
         # @type Limit: Integer
-        # @param InstanceId: 实例ID，为空时查询所有，如果填写则会根据InstanceId筛选
+        # @param InstanceId: <p>实例ID，为空时查询所有，如果填写则会根据InstanceId筛选</p>
         # @type InstanceId: String
-        # @param InstanceName: 实例名，为空时查询所有，如果填写则会根据InstanceName筛选
+        # @param InstanceName: <p>实例名，为空时查询所有，如果填写则会根据InstanceName筛选</p>
         # @type InstanceName: String
-        # @param AgentId: 智能体ID，为空时查询所有，如果填写则会根据AgentId筛选
+        # @param AgentId: <p>智能体ID，为空时查询所有，如果填写则会根据AgentId筛选</p>
         # @type AgentId: String
-        # @param AgentName: 智能体名称，为空时查询所有，如果填写则会根据AgentName筛选
+        # @param AgentName: <p>智能体名称，为空时查询所有，如果填写则会根据AgentName筛选</p>
         # @type AgentName: String
-        # @param AgentInternalName: 智能体类型，为空时查询所有，如果填写则会根据AgentName筛选
+        # @param AgentInternalName: <p>智能体类型，为空时查询所有，如果填写则会根据AgentName筛选</p>
         # @type AgentInternalName: String
-        # @param Status: 智能体实例状态，为空时查询所有，如果填写则会根据Status筛选
+        # @param Status: <p>智能体实例状态，为空时查询所有，如果填写则会根据Status筛选</p>
         # @type Status: String
-        # @param TagFilter: 标签过滤信息
+        # @param TagFilter: <p>标签过滤信息</p>
         # @type TagFilter: Array
+        # @param InstanceType: <p>实例类型</p>
+        # @type InstanceType: String
 
-        attr_accessor :Offset, :Limit, :InstanceId, :InstanceName, :AgentId, :AgentName, :AgentInternalName, :Status, :TagFilter
+        attr_accessor :Offset, :Limit, :InstanceId, :InstanceName, :AgentId, :AgentName, :AgentInternalName, :Status, :TagFilter, :InstanceType
 
-        def initialize(offset=nil, limit=nil, instanceid=nil, instancename=nil, agentid=nil, agentname=nil, agentinternalname=nil, status=nil, tagfilter=nil)
+        def initialize(offset=nil, limit=nil, instanceid=nil, instancename=nil, agentid=nil, agentname=nil, agentinternalname=nil, status=nil, tagfilter=nil, instancetype=nil)
           @Offset = offset
           @Limit = limit
           @InstanceId = instanceid
@@ -719,6 +823,7 @@ module TencentCloud
           @AgentInternalName = agentinternalname
           @Status = status
           @TagFilter = tagfilter
+          @InstanceType = instancetype
         end
 
         def deserialize(params)
@@ -738,6 +843,7 @@ module TencentCloud
               @TagFilter << tagfilter_tmp
             end
           end
+          @InstanceType = params['InstanceType']
         end
       end
 
@@ -745,16 +851,19 @@ module TencentCloud
       class DescribeAgentInstancesResponse < TencentCloud::Common::AbstractModel
         # @param TotalCount: 查询结果总数量
         # @type TotalCount: Integer
-        # @param Items: 智能体实例列表
+        # @param Items: <p>智能体实例列表</p>
         # @type Items: Array
+        # @param StatusCounts: <p>无</p>
+        # @type StatusCounts: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TotalCount, :Items, :RequestId
+        attr_accessor :TotalCount, :Items, :StatusCounts, :RequestId
 
-        def initialize(totalcount=nil, items=nil, requestid=nil)
+        def initialize(totalcount=nil, items=nil, statuscounts=nil, requestid=nil)
           @TotalCount = totalcount
           @Items = items
+          @StatusCounts = statuscounts
           @RequestId = requestid
         end
 
@@ -766,6 +875,14 @@ module TencentCloud
               agentinstance_tmp = AgentInstance.new
               agentinstance_tmp.deserialize(i)
               @Items << agentinstance_tmp
+            end
+          end
+          unless params['StatusCounts'].nil?
+            @StatusCounts = []
+            params['StatusCounts'].each do |i|
+              statusitem_tmp = StatusItem.new
+              statusitem_tmp.deserialize(i)
+              @StatusCounts << statusitem_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1392,6 +1509,26 @@ module TencentCloud
         def deserialize(params)
           @TaskId = params['TaskId']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 实例状态描述
+      class StatusItem < TencentCloud::Common::AbstractModel
+        # @param Status: <p>无</p>
+        # @type Status: String
+        # @param Count: <p>无</p>
+        # @type Count: Integer
+
+        attr_accessor :Status, :Count
+
+        def initialize(status=nil, count=nil)
+          @Status = status
+          @Count = count
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @Count = params['Count']
         end
       end
 

@@ -5187,15 +5187,13 @@ module TencentCloud
 
       # HmtResidentPermitOCR请求参数结构体
       class HmtResidentPermitOCRRequest < TencentCloud::Common::AbstractModel
-        # @param ImageBase64: 图片的 Base64 值。支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。支持的图片大小：所下载图片经Base64编码后不超过 10M。图片下载时间不超过 3 秒。图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
+        # @param ImageBase64: <p>图片的 Base64 值。支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。支持的图片大小：所下载图片经Base64编码后不超过 10M。图片下载时间不超过 3 秒。图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。</p>
         # @type ImageBase64: String
-        # @param ImageUrl: 图片的 Url 地址。支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。支持的图片大小：所下载图片经 Base64 编码后不超过 10M。图片下载时间不超过 3 秒。图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。非腾讯云存储的 Url 速度和稳定性可能受一定影响。
+        # @param ImageUrl: <p>图片的 Url 地址。支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。支持的图片大小：所下载图片经 Base64 编码后不超过 10M。图片下载时间不超过 3 秒。图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。非腾讯云存储的 Url 速度和稳定性可能受一定影响。</p>
         # @type ImageUrl: String
-        # @param CardSide: FRONT：有照片的一面（人像面），
-        # BACK：无照片的一面（国徽面），
-        # 该参数如果不填或填错，将为您自动判断正反面。
+        # @param CardSide: <p>FRONT：有照片的一面（人像面），<br>BACK：无照片的一面（国徽面），<br>该参数如果不填或填错，将为您自动判断正反面。</p>
         # @type CardSide: String
-        # @param CropPortrait: 是否返回头像和位置坐标
+        # @param CropPortrait: <p>是否返回头像和位置坐标</p>
         # @type CropPortrait: Boolean
 
         attr_accessor :ImageBase64, :ImageUrl, :CardSide, :CropPortrait
@@ -5217,28 +5215,27 @@ module TencentCloud
 
       # HmtResidentPermitOCR返回参数结构体
       class HmtResidentPermitOCRResponse < TencentCloud::Common::AbstractModel
-        # @param Name: 证件姓名
+        # @param Name: <p>证件姓名</p>
         # @type Name: String
-        # @param Sex: 性别
+        # @param Sex: <p>性别</p>
         # @type Sex: String
-        # @param Birth: 出生日期
+        # @param Birth: <p>出生日期</p>
         # @type Birth: String
-        # @param Address: 地址
+        # @param Address: <p>地址</p>
         # @type Address: String
-        # @param IdCardNo: 身份证号
+        # @param IdCardNo: <p>身份证号</p>
         # @type IdCardNo: String
-        # @param CardType: 0-正面
-        # 1-反面
+        # @param CardType: <p>0-正面<br>1-反面</p>
         # @type CardType: Integer
-        # @param ValidDate: 证件有效期限
+        # @param ValidDate: <p>证件有效期限</p>
         # @type ValidDate: String
-        # @param Authority: 签发机关
+        # @param Authority: <p>签发机关</p>
         # @type Authority: String
-        # @param VisaNum: 签发次数
+        # @param VisaNum: <p>签发次数</p>
         # @type VisaNum: String
-        # @param PassNo: 通行证号码
+        # @param PassNo: <p>通行证号码</p>
         # @type PassNo: String
-        # @param PortraitImageInfo: 头像和坐标信息
+        # @param PortraitImageInfo: <p>头像和坐标信息</p>
         # @type PortraitImageInfo: :class:`Tencentcloud::Ocr.v20181119.models.PortraitImageInfo`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6751,16 +6748,13 @@ module TencentCloud
 
       # MainlandPermitOCR请求参数结构体
       class MainlandPermitOCRRequest < TencentCloud::Common::AbstractModel
-        # @param ImageBase64: 图片的 Base64 值。支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。支持的图片大小：所下载图片经Base64编码后不超过 10M。图片下载时间不超过 3 秒。图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
+        # @param ImageBase64: <p>图片的 Base64 值。支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。支持的图片大小：所下载图片经Base64编码后不超过 10M。图片下载时间不超过 3 秒。图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。</p>
         # @type ImageBase64: String
-        # @param ImageUrl: 图片的 Url 地址。支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。支持的图片大小：所下载图片经 Base64 编码后不超过 10M。图片下载时间不超过 3 秒。图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。非腾讯云存储的 Url 速度和稳定性可能受一定影响。
+        # @param ImageUrl: <p>图片的 Url 地址。支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。支持的图片大小：所下载图片经 Base64 编码后不超过 10M。图片下载时间不超过 3 秒。图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。非腾讯云存储的 Url 速度和稳定性可能受一定影响。</p>
         # @type ImageUrl: String
-        # @param RetProfile: 是否返回头像。默认不返回。
+        # @param RetProfile: <p>是否返回头像。默认不返回。</p>
         # @type RetProfile: Boolean
-        # @param CardSide: 图片正反面
-        # FRONT：正面
-        # BACK：反面 （仅支持来往内地通行证反面识别，不支持港澳台通行证反面识别）
-        # 默认为FRONT
+        # @param CardSide: <p>图片正反面<br>FRONT：正面<br>BACK：反面 （仅支持来往内地通行证反面识别，不支持港澳台通行证反面识别）<br>默认为FRONT</p>
         # @type CardSide: String
 
         attr_accessor :ImageBase64, :ImageUrl, :RetProfile, :CardSide
@@ -6782,31 +6776,31 @@ module TencentCloud
 
       # MainlandPermitOCR返回参数结构体
       class MainlandPermitOCRResponse < TencentCloud::Common::AbstractModel
-        # @param Name: 中文姓名
+        # @param Name: <p>中文姓名</p>
         # @type Name: String
-        # @param EnglishName: 英文姓名
+        # @param EnglishName: <p>英文姓名</p>
         # @type EnglishName: String
-        # @param Sex: 性别
+        # @param Sex: <p>性别</p>
         # @type Sex: String
-        # @param Birthday: 出生日期
+        # @param Birthday: <p>出生日期</p>
         # @type Birthday: String
-        # @param IssueAuthority: 签发机关
+        # @param IssueAuthority: <p>签发机关</p>
         # @type IssueAuthority: String
-        # @param ValidDate: 有效期限
+        # @param ValidDate: <p>有效期限</p>
         # @type ValidDate: String
-        # @param Number: 证件号
+        # @param Number: <p>证件号</p>
         # @type Number: String
-        # @param IssueAddress: 签发地点
+        # @param IssueAddress: <p>签发地点</p>
         # @type IssueAddress: String
-        # @param IssueNumber: 签发次数
+        # @param IssueNumber: <p>签发次数</p>
         # @type IssueNumber: String
-        # @param Type: 证件类别， 如：台湾居民来往大陆通行证、港澳居民来往内地通行证、往来港澳通行证。
+        # @param Type: <p>证件类别， 如：台湾居民来往大陆通行证、港澳居民来往内地通行证、往来港澳通行证。</p>
         # @type Type: String
-        # @param Profile: RetProfile为True时返回头像字段， Base64编码
+        # @param Profile: <p>RetProfile为True时返回头像字段， Base64编码</p>
         # @type Profile: String
-        # @param Nationality: 国籍
+        # @param Nationality: <p>国籍</p>
         # @type Nationality: String
-        # @param MainlandTravelPermitBackInfos: 背面字段信息
+        # @param MainlandTravelPermitBackInfos: <p>背面字段信息</p>
         # @type MainlandTravelPermitBackInfos: :class:`Tencentcloud::Ocr.v20181119.models.MainlandTravelPermitBackInfos`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

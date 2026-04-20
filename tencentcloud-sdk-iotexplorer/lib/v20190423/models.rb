@@ -100,8 +100,8 @@ module TencentCloud
 
         attr_accessor :PkgType, :MiniProgramAppId, :DeviceList
         extend Gem::Deprecate
-        deprecate :MiniProgramAppId, :none, 2026, 3
-        deprecate :MiniProgramAppId=, :none, 2026, 3
+        deprecate :MiniProgramAppId, :none, 2026, 4
+        deprecate :MiniProgramAppId=, :none, 2026, 4
 
         def initialize(pkgtype=nil, miniprogramappid=nil, devicelist=nil)
           @PkgType = pkgtype
@@ -136,8 +136,8 @@ module TencentCloud
 
         attr_accessor :DeviceList, :FailureList, :SuccessList, :RequestId
         extend Gem::Deprecate
-        deprecate :DeviceList, :none, 2026, 3
-        deprecate :DeviceList=, :none, 2026, 3
+        deprecate :DeviceList, :none, 2026, 4
+        deprecate :DeviceList=, :none, 2026, 4
 
         def initialize(devicelist=nil, failurelist=nil, successlist=nil, requestid=nil)
           @DeviceList = devicelist
@@ -7427,8 +7427,8 @@ module TencentCloud
 
         attr_accessor :ModelId, :Sn, :ErrCode, :ErrMessage, :ExpireTime
         extend Gem::Deprecate
-        deprecate :ModelId, :none, 2026, 3
-        deprecate :ModelId=, :none, 2026, 3
+        deprecate :ModelId, :none, 2026, 4
+        deprecate :ModelId=, :none, 2026, 4
 
         def initialize(modelid=nil, sn=nil, errcode=nil, errmessage=nil, expiretime=nil)
           @ModelId = modelid
@@ -9146,8 +9146,8 @@ module TencentCloud
 
         attr_accessor :MiniProgramAppId, :DeviceList
         extend Gem::Deprecate
-        deprecate :MiniProgramAppId, :none, 2026, 3
-        deprecate :MiniProgramAppId=, :none, 2026, 3
+        deprecate :MiniProgramAppId, :none, 2026, 4
+        deprecate :MiniProgramAppId=, :none, 2026, 4
 
         def initialize(miniprogramappid=nil, devicelist=nil)
           @MiniProgramAppId = miniprogramappid
@@ -13488,8 +13488,8 @@ module TencentCloud
 
         attr_accessor :ModelId, :Sn, :ExpireTime, :PkgType
         extend Gem::Deprecate
-        deprecate :ModelId, :none, 2026, 3
-        deprecate :ModelId=, :none, 2026, 3
+        deprecate :ModelId, :none, 2026, 4
+        deprecate :ModelId=, :none, 2026, 4
 
         def initialize(modelid=nil, sn=nil, expiretime=nil, pkgtype=nil)
           @ModelId = modelid
@@ -13519,10 +13519,10 @@ module TencentCloud
 
         attr_accessor :Sn, :ModelId, :ActiveNum
         extend Gem::Deprecate
-        deprecate :ModelId, :none, 2026, 3
-        deprecate :ModelId=, :none, 2026, 3
-        deprecate :ActiveNum, :none, 2026, 3
-        deprecate :ActiveNum=, :none, 2026, 3
+        deprecate :ModelId, :none, 2026, 4
+        deprecate :ModelId=, :none, 2026, 4
+        deprecate :ActiveNum, :none, 2026, 4
+        deprecate :ActiveNum=, :none, 2026, 4
 
         def initialize(sn=nil, modelid=nil, activenum=nil)
           @Sn = sn
@@ -13604,8 +13604,8 @@ module TencentCloud
 
         attr_accessor :Uin, :AppId, :InstanceId, :BotId, :Name, :Description, :TargetLanguage, :STTConfig, :LLMConfig, :TTSConfig, :AgentConfig, :ProductList, :CreateTime, :UpdateTime, :BoundProducts, :CustomTools, :WebhookTools, :BotType, :RAGConfig
         extend Gem::Deprecate
-        deprecate :ProductList, :none, 2026, 3
-        deprecate :ProductList=, :none, 2026, 3
+        deprecate :ProductList, :none, 2026, 4
+        deprecate :ProductList=, :none, 2026, 4
 
         def initialize(uin=nil, appid=nil, instanceid=nil, botid=nil, name=nil, description=nil, targetlanguage=nil, sttconfig=nil, llmconfig=nil, ttsconfig=nil, agentconfig=nil, productlist=nil, createtime=nil, updatetime=nil, boundproducts=nil, customtools=nil, webhooktools=nil, bottype=nil, ragconfig=nil)
           @Uin = uin

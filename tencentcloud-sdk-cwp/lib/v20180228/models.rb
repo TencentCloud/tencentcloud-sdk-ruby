@@ -4423,8 +4423,8 @@ module TencentCloud
 
         attr_accessor :Id, :Uuid, :Name, :Level, :Rule, :Decription, :Operator, :IsGlobal, :Status, :CreateTime, :ModifyTime, :Hostip, :Uuids, :White, :DealOldEvents, :Description
         extend Gem::Deprecate
-        deprecate :Decription, :none, 2026, 3
-        deprecate :Decription=, :none, 2026, 3
+        deprecate :Decription, :none, 2026, 4
+        deprecate :Decription=, :none, 2026, 4
 
         def initialize(id=nil, uuid=nil, name=nil, level=nil, rule=nil, decription=nil, operator=nil, isglobal=nil, status=nil, createtime=nil, modifytime=nil, hostip=nil, uuids=nil, white=nil, dealoldevents=nil, description=nil)
           @Id = id
@@ -17293,16 +17293,16 @@ module TencentCloud
 
         attr_accessor :MachineCnt, :TencentCloudMachineCnt, :AliCloudMachineCnt, :BaiduCloudMachineCnt, :IDCMachineCnt, :OtherCloudMachineCnt, :ProtectMachineCnt, :BaseMachineCnt, :SpecialtyMachineCnt, :FlagshipMachineCnt, :RiskMachineCnt, :CompareYesterdayRiskMachineCnt, :CompareYesterdayNotProtectMachineCnt, :CompareYesterdayDeadlineMachineCnt, :DeadlineMachineCnt, :NotProtectMachineCnt, :LHGeneralDiscountCnt, :CompareYesterdayMachineCnt, :MachineDestroyAfterOfflineHours, :CloudFrom, :RequestId
         extend Gem::Deprecate
-        deprecate :TencentCloudMachineCnt, :none, 2026, 3
-        deprecate :TencentCloudMachineCnt=, :none, 2026, 3
-        deprecate :AliCloudMachineCnt, :none, 2026, 3
-        deprecate :AliCloudMachineCnt=, :none, 2026, 3
-        deprecate :BaiduCloudMachineCnt, :none, 2026, 3
-        deprecate :BaiduCloudMachineCnt=, :none, 2026, 3
-        deprecate :IDCMachineCnt, :none, 2026, 3
-        deprecate :IDCMachineCnt=, :none, 2026, 3
-        deprecate :OtherCloudMachineCnt, :none, 2026, 3
-        deprecate :OtherCloudMachineCnt=, :none, 2026, 3
+        deprecate :TencentCloudMachineCnt, :none, 2026, 4
+        deprecate :TencentCloudMachineCnt=, :none, 2026, 4
+        deprecate :AliCloudMachineCnt, :none, 2026, 4
+        deprecate :AliCloudMachineCnt=, :none, 2026, 4
+        deprecate :BaiduCloudMachineCnt, :none, 2026, 4
+        deprecate :BaiduCloudMachineCnt=, :none, 2026, 4
+        deprecate :IDCMachineCnt, :none, 2026, 4
+        deprecate :IDCMachineCnt=, :none, 2026, 4
+        deprecate :OtherCloudMachineCnt, :none, 2026, 4
+        deprecate :OtherCloudMachineCnt=, :none, 2026, 4
 
         def initialize(machinecnt=nil, tencentcloudmachinecnt=nil, alicloudmachinecnt=nil, baiducloudmachinecnt=nil, idcmachinecnt=nil, othercloudmachinecnt=nil, protectmachinecnt=nil, basemachinecnt=nil, specialtymachinecnt=nil, flagshipmachinecnt=nil, riskmachinecnt=nil, compareyesterdayriskmachinecnt=nil, compareyesterdaynotprotectmachinecnt=nil, compareyesterdaydeadlinemachinecnt=nil, deadlinemachinecnt=nil, notprotectmachinecnt=nil, lhgeneraldiscountcnt=nil, compareyesterdaymachinecnt=nil, machinedestroyafterofflinehours=nil, cloudfrom=nil, requestid=nil)
           @MachineCnt = machinecnt
@@ -28682,10 +28682,10 @@ module TencentCloud
 
         attr_accessor :Filters, :Fileds, :Fields, :Where
         extend Gem::Deprecate
-        deprecate :Fileds, :none, 2026, 3
-        deprecate :Fileds=, :none, 2026, 3
-        deprecate :Fields, :none, 2026, 3
-        deprecate :Fields=, :none, 2026, 3
+        deprecate :Fileds, :none, 2026, 4
+        deprecate :Fileds=, :none, 2026, 4
+        deprecate :Fields, :none, 2026, 4
+        deprecate :Fields=, :none, 2026, 4
 
         def initialize(filters=nil, fileds=nil, fields=nil, where=nil)
           @Filters = filters

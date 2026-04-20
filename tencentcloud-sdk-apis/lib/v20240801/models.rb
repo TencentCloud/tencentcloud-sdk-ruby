@@ -758,48 +758,52 @@ module TencentCloud
 
       # CreateModelService请求参数结构体
       class CreateModelServiceRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceID: 实例
+        # @param InstanceID: <p>实例</p>
         # @type InstanceID: String
-        # @param Name: 模型服务名称
+        # @param Name: <p>模型服务名称</p>
         # @type Name: String
-        # @param Description: 描述
+        # @param Description: <p>描述</p>
         # @type Description: String
-        # @param PubPath: 访问路径
+        # @param PubPath: <p>访问路径</p>
         # @type PubPath: String
-        # @param TargetModels: 模型ID列表
+        # @param TargetModels: <p>模型ID列表</p>
         # @type TargetModels: Array
-        # @param PathMatchType: 路径匹配类型: prefix 前缀匹配(不送默认); absolute 绝对匹配; regex正则匹配;
+        # @param PathMatchType: <p>路径匹配类型: prefix 前缀匹配(不送默认); absolute 绝对匹配; regex正则匹配;</p>
         # @type PathMatchType: String
-        # @param InvokeLimitConfigStatus: 是否开启限流
+        # @param InvokeLimitConfigStatus: <p>是否开启限流</p>
         # @type InvokeLimitConfigStatus: Boolean
-        # @param InvokeLimitConfig: 限流配置
+        # @param InvokeLimitConfig: <p>限流配置</p>
         # @type InvokeLimitConfig: :class:`Tencentcloud::Apis.v20240801.models.InvokeLimitConfigDTO`
-        # @param TokenLimitStatus: 是否开启token控制
+        # @param TokenLimitStatus: <p>是否开启token控制</p>
         # @type TokenLimitStatus: Boolean
-        # @param TokenLimitConfig: token控制
+        # @param TokenLimitConfig: <p>token控制</p>
         # @type TokenLimitConfig: :class:`Tencentcloud::Apis.v20240801.models.TokenLimitConfigDTO`
-        # @param TmsStatus: 是否开启内容安全
+        # @param TmsStatus: <p>是否开启内容安全</p>
         # @type TmsStatus: Boolean
-        # @param TmsConfig: 内容安全配置
+        # @param TmsConfig: <p>内容安全配置</p>
         # @type TmsConfig: :class:`Tencentcloud::Apis.v20240801.models.TmsConfigDTO`
-        # @param IpWhiteStatus: 是否开启IP白名单
+        # @param IpWhiteStatus: <p>是否开启IP白名单</p>
         # @type IpWhiteStatus: Boolean
-        # @param IpWhiteList: IP白名单
+        # @param IpWhiteList: <p>IP白名单</p>
         # @type IpWhiteList: Array
-        # @param IpBlackList: IP黑名单
+        # @param IpBlackList: <p>IP黑名单</p>
         # @type IpBlackList: Array
-        # @param PluginConfigs: 插件配置
+        # @param PluginConfigs: <p>插件配置</p>
         # @type PluginConfigs: Array
-        # @param Timeout: 超时配置，秒
+        # @param Timeout: <p>超时配置，秒</p>
         # @type Timeout: Integer
-        # @param PromptModerateStatus: 是否开启提示词安全检测
+        # @param PromptModerateStatus: <p>是否开启提示词安全检测</p>
         # @type PromptModerateStatus: Boolean
-        # @param PromptModerateConfig: 提示词安全检测配置
+        # @param PromptModerateConfig: <p>提示词安全检测配置</p>
         # @type PromptModerateConfig: :class:`Tencentcloud::Apis.v20240801.models.PromptModerateConfigDTO`
+        # @param SensitiveDataCheckStatus: <p>是否开启敏感数据检测</p>
+        # @type SensitiveDataCheckStatus: Boolean
+        # @param SensitiveDataCheckConfig: <p>敏感数据检测配置</p>
+        # @type SensitiveDataCheckConfig: :class:`Tencentcloud::Apis.v20240801.models.SensitiveDataCheckConfigDTO`
 
-        attr_accessor :InstanceID, :Name, :Description, :PubPath, :TargetModels, :PathMatchType, :InvokeLimitConfigStatus, :InvokeLimitConfig, :TokenLimitStatus, :TokenLimitConfig, :TmsStatus, :TmsConfig, :IpWhiteStatus, :IpWhiteList, :IpBlackList, :PluginConfigs, :Timeout, :PromptModerateStatus, :PromptModerateConfig
+        attr_accessor :InstanceID, :Name, :Description, :PubPath, :TargetModels, :PathMatchType, :InvokeLimitConfigStatus, :InvokeLimitConfig, :TokenLimitStatus, :TokenLimitConfig, :TmsStatus, :TmsConfig, :IpWhiteStatus, :IpWhiteList, :IpBlackList, :PluginConfigs, :Timeout, :PromptModerateStatus, :PromptModerateConfig, :SensitiveDataCheckStatus, :SensitiveDataCheckConfig
 
-        def initialize(instanceid=nil, name=nil, description=nil, pubpath=nil, targetmodels=nil, pathmatchtype=nil, invokelimitconfigstatus=nil, invokelimitconfig=nil, tokenlimitstatus=nil, tokenlimitconfig=nil, tmsstatus=nil, tmsconfig=nil, ipwhitestatus=nil, ipwhitelist=nil, ipblacklist=nil, pluginconfigs=nil, timeout=nil, promptmoderatestatus=nil, promptmoderateconfig=nil)
+        def initialize(instanceid=nil, name=nil, description=nil, pubpath=nil, targetmodels=nil, pathmatchtype=nil, invokelimitconfigstatus=nil, invokelimitconfig=nil, tokenlimitstatus=nil, tokenlimitconfig=nil, tmsstatus=nil, tmsconfig=nil, ipwhitestatus=nil, ipwhitelist=nil, ipblacklist=nil, pluginconfigs=nil, timeout=nil, promptmoderatestatus=nil, promptmoderateconfig=nil, sensitivedatacheckstatus=nil, sensitivedatacheckconfig=nil)
           @InstanceID = instanceid
           @Name = name
           @Description = description
@@ -819,6 +823,8 @@ module TencentCloud
           @Timeout = timeout
           @PromptModerateStatus = promptmoderatestatus
           @PromptModerateConfig = promptmoderateconfig
+          @SensitiveDataCheckStatus = sensitivedatacheckstatus
+          @SensitiveDataCheckConfig = sensitivedatacheckconfig
         end
 
         def deserialize(params)
@@ -867,12 +873,17 @@ module TencentCloud
             @PromptModerateConfig = PromptModerateConfigDTO.new
             @PromptModerateConfig.deserialize(params['PromptModerateConfig'])
           end
+          @SensitiveDataCheckStatus = params['SensitiveDataCheckStatus']
+          unless params['SensitiveDataCheckConfig'].nil?
+            @SensitiveDataCheckConfig = SensitiveDataCheckConfigDTO.new
+            @SensitiveDataCheckConfig.deserialize(params['SensitiveDataCheckConfig'])
+          end
         end
       end
 
       # CreateModelService返回参数结构体
       class CreateModelServiceResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 结果集
+        # @param Data: <p>结果集</p>
         # @type Data: :class:`Tencentcloud::Apis.v20240801.models.ResultIDVO`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2268,75 +2279,81 @@ module TencentCloud
 
       # 查询模型服务详情的响应
       class DescribeModelServiceResponseVO < TencentCloud::Common::AbstractModel
-        # @param AppID: 腾讯云AppID
+        # @param AppID: <p>腾讯云AppID</p>
         # @type AppID: Integer
-        # @param Uin: 腾讯云Uin
+        # @param Uin: <p>腾讯云Uin</p>
         # @type Uin: String
-        # @param InstanceID: 实例ID
+        # @param InstanceID: <p>实例ID</p>
         # @type InstanceID: String
-        # @param ID: 模型ID
+        # @param ID: <p>模型ID</p>
         # @type ID: String
-        # @param Name: 模型名称
+        # @param Name: <p>模型名称</p>
         # @type Name: String
-        # @param Description: 描述
+        # @param Description: <p>描述</p>
         # @type Description: String
-        # @param PubPath: 访问路径
+        # @param PubPath: <p>访问路径</p>
         # @type PubPath: String
-        # @param PathMatchType: 路径匹配方式：absolute，prefix，regex
+        # @param PathMatchType: <p>路径匹配方式：absolute，prefix，regex</p>
         # @type PathMatchType: String
-        # @param TargetModels: 目标模型列表
+        # @param TargetModels: <p>目标模型列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TargetModels: Array
-        # @param ModelNames: 模板模型的名称列表
+        # @param ModelNames: <p>模板模型的名称列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModelNames: Array
-        # @param InvokeLimitConfigStatus: 是否开启限流
+        # @param InvokeLimitConfigStatus: <p>是否开启限流</p>
         # @type InvokeLimitConfigStatus: Boolean
-        # @param InvokeLimitConfig: 限流配置
+        # @param InvokeLimitConfig: <p>限流配置</p>
         # @type InvokeLimitConfig: :class:`Tencentcloud::Apis.v20240801.models.InvokeLimitConfigDTO`
-        # @param CreateTime: 创建时间
+        # @param CreateTime: <p>创建时间</p>
         # @type CreateTime: String
-        # @param LastUpdateTime: 最后修改时间
+        # @param LastUpdateTime: <p>最后修改时间</p>
         # @type LastUpdateTime: String
-        # @param TokenLimitStatus: 是否开启token控制
+        # @param TokenLimitStatus: <p>是否开启token控制</p>
         # @type TokenLimitStatus: Boolean
-        # @param TokenLimitConfig: token控制
+        # @param TokenLimitConfig: <p>token控制</p>
         # @type TokenLimitConfig: :class:`Tencentcloud::Apis.v20240801.models.TokenLimitConfigDTO`
-        # @param TmsStatus: 是否开启tms配置
+        # @param TmsStatus: <p>是否开启tms配置</p>
         # @type TmsStatus: Boolean
-        # @param TmsConfig: tms配置
+        # @param TmsConfig: <p>tms配置</p>
         # @type TmsConfig: :class:`Tencentcloud::Apis.v20240801.models.TmsConfigDTO`
-        # @param IpWhiteStatus: 是否开启IP白名单
+        # @param IpWhiteStatus: <p>是否开启IP白名单</p>
         # @type IpWhiteStatus: Boolean
-        # @param IpWhiteList: IP白名单列表
+        # @param IpWhiteList: <p>IP白名单列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IpWhiteList: Array
-        # @param IpBlackStatus: 是否开启IP黑名单
+        # @param IpBlackStatus: <p>是否开启IP黑名单</p>
         # @type IpBlackStatus: Boolean
-        # @param IpBlackList: IP黑名单列表
+        # @param IpBlackList: <p>IP黑名单列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IpBlackList: Array
-        # @param PluginConfigs: 插件配置
+        # @param PluginConfigs: <p>插件配置</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PluginConfigs: Array
-        # @param Timeout: 超时配置，单位秒
+        # @param Timeout: <p>超时配置，单位秒</p>
         # @type Timeout: Integer
-        # @param Status: 状态：normal，disabled
+        # @param Status: <p>状态：normal，disabled</p>
         # @type Status: String
-        # @param RelateAgentAppNum: 关联应用数
+        # @param RelateAgentAppNum: <p>关联应用数</p>
         # @type RelateAgentAppNum: Integer
-        # @param Url: 请求路径
+        # @param Url: <p>请求路径</p>
         # @type Url: String
-        # @param PromptModerateStatus: 是否开启提示词安全检测
+        # @param PromptModerateStatus: <p>是否开启提示词安全检测</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PromptModerateStatus: Boolean
-        # @param PromptModerateConfig: 提示词安全检测配置
+        # @param PromptModerateConfig: <p>提示词安全检测配置</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PromptModerateConfig: :class:`Tencentcloud::Apis.v20240801.models.PromptModerateConfigDTO`
+        # @param SensitiveDataCheckStatus: <p>是否开启敏感数据检测</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SensitiveDataCheckStatus: Boolean
+        # @param SensitiveDataCheckConfig: <p>敏感数据检测配置</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SensitiveDataCheckConfig: :class:`Tencentcloud::Apis.v20240801.models.SensitiveDataCheckConfigDTO`
 
-        attr_accessor :AppID, :Uin, :InstanceID, :ID, :Name, :Description, :PubPath, :PathMatchType, :TargetModels, :ModelNames, :InvokeLimitConfigStatus, :InvokeLimitConfig, :CreateTime, :LastUpdateTime, :TokenLimitStatus, :TokenLimitConfig, :TmsStatus, :TmsConfig, :IpWhiteStatus, :IpWhiteList, :IpBlackStatus, :IpBlackList, :PluginConfigs, :Timeout, :Status, :RelateAgentAppNum, :Url, :PromptModerateStatus, :PromptModerateConfig
+        attr_accessor :AppID, :Uin, :InstanceID, :ID, :Name, :Description, :PubPath, :PathMatchType, :TargetModels, :ModelNames, :InvokeLimitConfigStatus, :InvokeLimitConfig, :CreateTime, :LastUpdateTime, :TokenLimitStatus, :TokenLimitConfig, :TmsStatus, :TmsConfig, :IpWhiteStatus, :IpWhiteList, :IpBlackStatus, :IpBlackList, :PluginConfigs, :Timeout, :Status, :RelateAgentAppNum, :Url, :PromptModerateStatus, :PromptModerateConfig, :SensitiveDataCheckStatus, :SensitiveDataCheckConfig
 
-        def initialize(appid=nil, uin=nil, instanceid=nil, id=nil, name=nil, description=nil, pubpath=nil, pathmatchtype=nil, targetmodels=nil, modelnames=nil, invokelimitconfigstatus=nil, invokelimitconfig=nil, createtime=nil, lastupdatetime=nil, tokenlimitstatus=nil, tokenlimitconfig=nil, tmsstatus=nil, tmsconfig=nil, ipwhitestatus=nil, ipwhitelist=nil, ipblackstatus=nil, ipblacklist=nil, pluginconfigs=nil, timeout=nil, status=nil, relateagentappnum=nil, url=nil, promptmoderatestatus=nil, promptmoderateconfig=nil)
+        def initialize(appid=nil, uin=nil, instanceid=nil, id=nil, name=nil, description=nil, pubpath=nil, pathmatchtype=nil, targetmodels=nil, modelnames=nil, invokelimitconfigstatus=nil, invokelimitconfig=nil, createtime=nil, lastupdatetime=nil, tokenlimitstatus=nil, tokenlimitconfig=nil, tmsstatus=nil, tmsconfig=nil, ipwhitestatus=nil, ipwhitelist=nil, ipblackstatus=nil, ipblacklist=nil, pluginconfigs=nil, timeout=nil, status=nil, relateagentappnum=nil, url=nil, promptmoderatestatus=nil, promptmoderateconfig=nil, sensitivedatacheckstatus=nil, sensitivedatacheckconfig=nil)
           @AppID = appid
           @Uin = uin
           @InstanceID = instanceid
@@ -2366,6 +2383,8 @@ module TencentCloud
           @Url = url
           @PromptModerateStatus = promptmoderatestatus
           @PromptModerateConfig = promptmoderateconfig
+          @SensitiveDataCheckStatus = sensitivedatacheckstatus
+          @SensitiveDataCheckConfig = sensitivedatacheckconfig
         end
 
         def deserialize(params)
@@ -2423,6 +2442,11 @@ module TencentCloud
           unless params['PromptModerateConfig'].nil?
             @PromptModerateConfig = PromptModerateConfigDTO.new
             @PromptModerateConfig.deserialize(params['PromptModerateConfig'])
+          end
+          @SensitiveDataCheckStatus = params['SensitiveDataCheckStatus']
+          unless params['SensitiveDataCheckConfig'].nil?
+            @SensitiveDataCheckConfig = SensitiveDataCheckConfigDTO.new
+            @SensitiveDataCheckConfig.deserialize(params['SensitiveDataCheckConfig'])
           end
         end
       end
@@ -3430,48 +3454,52 @@ module TencentCloud
 
       # ModifyModelService请求参数结构体
       class ModifyModelServiceRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceID: 实例
+        # @param InstanceID: <p>实例</p>
         # @type InstanceID: String
-        # @param ID: 模型服务ID
+        # @param ID: <p>模型服务ID</p>
         # @type ID: String
-        # @param Name: 模型服务名称
+        # @param Name: <p>模型服务名称</p>
         # @type Name: String
-        # @param Description: 描述
+        # @param Description: <p>描述</p>
         # @type Description: String
-        # @param TargetModels: 模板模型列表
+        # @param TargetModels: <p>模板模型列表</p>
         # @type TargetModels: Array
-        # @param InvokeLimitConfigStatus: 是否开启限流
+        # @param InvokeLimitConfigStatus: <p>是否开启限流</p>
         # @type InvokeLimitConfigStatus: Boolean
-        # @param InvokeLimitConfig: 限流配置
+        # @param InvokeLimitConfig: <p>限流配置</p>
         # @type InvokeLimitConfig: :class:`Tencentcloud::Apis.v20240801.models.InvokeLimitConfigDTO`
-        # @param TokenLimitStatus: 是否开启token控制
+        # @param TokenLimitStatus: <p>是否开启token控制</p>
         # @type TokenLimitStatus: Boolean
-        # @param TokenLimitConfig: token控制
+        # @param TokenLimitConfig: <p>token控制</p>
         # @type TokenLimitConfig: :class:`Tencentcloud::Apis.v20240801.models.TokenLimitConfigDTO`
-        # @param TmsStatus: 是否开启内容安全
+        # @param TmsStatus: <p>是否开启内容安全</p>
         # @type TmsStatus: Boolean
-        # @param TmsConfig: 内容安全配置
+        # @param TmsConfig: <p>内容安全配置</p>
         # @type TmsConfig: :class:`Tencentcloud::Apis.v20240801.models.TmsConfigDTO`
-        # @param IpWhiteStatus: 是否开启IP白名单
+        # @param IpWhiteStatus: <p>是否开启IP白名单</p>
         # @type IpWhiteStatus: Boolean
-        # @param IpWhiteList: IP白名单
+        # @param IpWhiteList: <p>IP白名单</p>
         # @type IpWhiteList: Array
-        # @param IpBlackStatus: 是否开启IP黑名单
+        # @param IpBlackStatus: <p>是否开启IP黑名单</p>
         # @type IpBlackStatus: Boolean
-        # @param IpBlackList: IP黑名单
+        # @param IpBlackList: <p>IP黑名单</p>
         # @type IpBlackList: Array
-        # @param PluginConfigs: 插件配置
+        # @param PluginConfigs: <p>插件配置</p>
         # @type PluginConfigs: Array
-        # @param Timeout: 超时配置，秒
+        # @param Timeout: <p>超时配置，秒</p>
         # @type Timeout: Integer
-        # @param PromptModerateStatus: 是否开启提示词安全检测配置
+        # @param PromptModerateStatus: <p>是否开启提示词安全检测配置</p>
         # @type PromptModerateStatus: Boolean
-        # @param PromptModerateConfig: 提示词安全检测配置
+        # @param PromptModerateConfig: <p>提示词安全检测配置</p>
         # @type PromptModerateConfig: :class:`Tencentcloud::Apis.v20240801.models.PromptModerateConfigDTO`
+        # @param SensitiveDataCheckStatus: <p>是否开启敏感数据检测</p>
+        # @type SensitiveDataCheckStatus: Boolean
+        # @param SensitiveDataCheckConfig: <p>敏感数据检测配置</p>
+        # @type SensitiveDataCheckConfig: :class:`Tencentcloud::Apis.v20240801.models.SensitiveDataCheckConfigDTO`
 
-        attr_accessor :InstanceID, :ID, :Name, :Description, :TargetModels, :InvokeLimitConfigStatus, :InvokeLimitConfig, :TokenLimitStatus, :TokenLimitConfig, :TmsStatus, :TmsConfig, :IpWhiteStatus, :IpWhiteList, :IpBlackStatus, :IpBlackList, :PluginConfigs, :Timeout, :PromptModerateStatus, :PromptModerateConfig
+        attr_accessor :InstanceID, :ID, :Name, :Description, :TargetModels, :InvokeLimitConfigStatus, :InvokeLimitConfig, :TokenLimitStatus, :TokenLimitConfig, :TmsStatus, :TmsConfig, :IpWhiteStatus, :IpWhiteList, :IpBlackStatus, :IpBlackList, :PluginConfigs, :Timeout, :PromptModerateStatus, :PromptModerateConfig, :SensitiveDataCheckStatus, :SensitiveDataCheckConfig
 
-        def initialize(instanceid=nil, id=nil, name=nil, description=nil, targetmodels=nil, invokelimitconfigstatus=nil, invokelimitconfig=nil, tokenlimitstatus=nil, tokenlimitconfig=nil, tmsstatus=nil, tmsconfig=nil, ipwhitestatus=nil, ipwhitelist=nil, ipblackstatus=nil, ipblacklist=nil, pluginconfigs=nil, timeout=nil, promptmoderatestatus=nil, promptmoderateconfig=nil)
+        def initialize(instanceid=nil, id=nil, name=nil, description=nil, targetmodels=nil, invokelimitconfigstatus=nil, invokelimitconfig=nil, tokenlimitstatus=nil, tokenlimitconfig=nil, tmsstatus=nil, tmsconfig=nil, ipwhitestatus=nil, ipwhitelist=nil, ipblackstatus=nil, ipblacklist=nil, pluginconfigs=nil, timeout=nil, promptmoderatestatus=nil, promptmoderateconfig=nil, sensitivedatacheckstatus=nil, sensitivedatacheckconfig=nil)
           @InstanceID = instanceid
           @ID = id
           @Name = name
@@ -3491,6 +3519,8 @@ module TencentCloud
           @Timeout = timeout
           @PromptModerateStatus = promptmoderatestatus
           @PromptModerateConfig = promptmoderateconfig
+          @SensitiveDataCheckStatus = sensitivedatacheckstatus
+          @SensitiveDataCheckConfig = sensitivedatacheckconfig
         end
 
         def deserialize(params)
@@ -3539,12 +3569,17 @@ module TencentCloud
             @PromptModerateConfig = PromptModerateConfigDTO.new
             @PromptModerateConfig.deserialize(params['PromptModerateConfig'])
           end
+          @SensitiveDataCheckStatus = params['SensitiveDataCheckStatus']
+          unless params['SensitiveDataCheckConfig'].nil?
+            @SensitiveDataCheckConfig = SensitiveDataCheckConfigDTO.new
+            @SensitiveDataCheckConfig.deserialize(params['SensitiveDataCheckConfig'])
+          end
         end
       end
 
       # ModifyModelService返回参数结构体
       class ModifyModelServiceResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 结果集
+        # @param Data: <p>结果集</p>
         # @type Data: :class:`Tencentcloud::Apis.v20240801.models.ResultIDVO`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3689,6 +3724,33 @@ module TencentCloud
 
         def deserialize(params)
           @IDs = params['IDs']
+        end
+      end
+
+      # 敏感数据检测配置
+      class SensitiveDataCheckConfigDTO < TencentCloud::Common::AbstractModel
+        # @param Action: <p>执行动作</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Action: String
+        # @param InterceptMessage: <p>响应拦截内容</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InterceptMessage: String
+        # @param CheckItems: <p>检测项</p><p>枚举值：</p><ul><li>birthday： 生日</li><li>email： 邮箱</li><li>identity_number： 身份证</li><li>phone_number： 电话号码</li><li>secret： 秘钥</li><li>password： 密码</li><li>private_key： 私钥</li></ul>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CheckItems: Array
+
+        attr_accessor :Action, :InterceptMessage, :CheckItems
+
+        def initialize(action=nil, interceptmessage=nil, checkitems=nil)
+          @Action = action
+          @InterceptMessage = interceptmessage
+          @CheckItems = checkitems
+        end
+
+        def deserialize(params)
+          @Action = params['Action']
+          @InterceptMessage = params['InterceptMessage']
+          @CheckItems = params['CheckItems']
         end
       end
 

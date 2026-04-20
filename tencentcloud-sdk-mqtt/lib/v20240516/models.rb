@@ -2800,6 +2800,53 @@ module TencentCloud
         end
       end
 
+      # DescribeSharedSubscriptionGroups请求参数结构体
+      class DescribeSharedSubscriptionGroupsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 腾讯云MQTT实例ID，从 [DescribeInstanceList](https://cloud.tencent.com/document/api/1778/111029)接口或控制台获得。
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeSharedSubscriptionGroups返回参数结构体
+      class DescribeSharedSubscriptionGroupsResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 集群下共享订阅组列表
+        # @type Data: Array
+        # @param TotalCount: 	查询总数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :TotalCount, :RequestId
+
+        def initialize(data=nil, totalcount=nil, requestid=nil)
+          @Data = data
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              sharedgroup_tmp = SharedGroup.new
+              sharedgroup_tmp.deserialize(i)
+              @Data << sharedgroup_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeSharedSubscriptionLag请求参数结构体
       class DescribeSharedSubscriptionLagRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 集群id
@@ -4841,6 +4888,48 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 共享订阅组
+      class SharedGroup < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 腾讯云MQTT实例ID
+        # @type InstanceId: String
+        # @param SharedName: 共享订阅组名
+        # @type SharedName: String
+        # @param LbStrategy: 共享组消费负载均衡策略 1.RANDOM 2.HASH_PARTITION
+        # @type LbStrategy: Integer
+        # @param ExpiryInterval: HASH_PARTITION 策略下生效，表示Client掉线或新Client上线加入共享订阅组消费的延迟时间。
+        # 范围：0～600秒
+        # @type ExpiryInterval: Integer
+        # @param Remark: 备注，长度不超过128个字符。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Remark: String
+        # @param CreateTime: 创建时间，毫秒级时间戳 。
+        # @type CreateTime: Integer
+        # @param UpdateTime: 上次更新时间，毫秒级时间戳 。
+        # @type UpdateTime: Integer
+
+        attr_accessor :InstanceId, :SharedName, :LbStrategy, :ExpiryInterval, :Remark, :CreateTime, :UpdateTime
+
+        def initialize(instanceid=nil, sharedname=nil, lbstrategy=nil, expiryinterval=nil, remark=nil, createtime=nil, updatetime=nil)
+          @InstanceId = instanceid
+          @SharedName = sharedname
+          @LbStrategy = lbstrategy
+          @ExpiryInterval = expiryinterval
+          @Remark = remark
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @SharedName = params['SharedName']
+          @LbStrategy = params['LbStrategy']
+          @ExpiryInterval = params['ExpiryInterval']
+          @Remark = params['Remark']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
         end
       end
 

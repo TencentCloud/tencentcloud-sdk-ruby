@@ -245,7 +245,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建Datahub连接源
+        # 创建连接器连接
 
         # @param request: Request instance for CreateConnectResource.
         # @type request: :class:`Tencentcloud::ckafka::V20190819::CreateConnectResourceRequest`
@@ -293,7 +293,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建DIP转储任务
+        # 创建连接器任务
 
         # @param request: Request instance for CreateDatahubTask.
         # @type request: :class:`Tencentcloud::ckafka::V20190819::CreateDatahubTaskRequest`
@@ -605,7 +605,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 删除Datahub连接源
+        # 删除连接器连接
 
         # @param request: Request instance for DeleteConnectResource.
         # @type request: :class:`Tencentcloud::ckafka::V20190819::DeleteConnectResourceRequest`
@@ -629,7 +629,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 删除Dip任务
+        # 删除连接器任务
 
         # @param request: Request instance for DeleteDatahubTask.
         # @type request: :class:`Tencentcloud::ckafka::V20190819::DeleteDatahubTaskRequest`
@@ -917,6 +917,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询实例公网IP白名单列表接口
+
+        # @param request: Request instance for DescribeAccessPolicy.
+        # @type request: :class:`Tencentcloud::ckafka::V20190819::DescribeAccessPolicyRequest`
+        # @rtype: :class:`Tencentcloud::ckafka::V20190819::DescribeAccessPolicyResponse`
+        def DescribeAccessPolicy(request)
+          body = send_request('DescribeAccessPolicy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAccessPolicyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询ACL规则列表
 
         # @param request: Request instance for DescribeAclRule.
@@ -989,7 +1013,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询Datahub连接源
+        # 查询连接器连接详情
 
         # @param request: Request instance for DescribeConnectResource.
         # @type request: :class:`Tencentcloud::ckafka::V20190819::DescribeConnectResourceRequest`
@@ -1013,7 +1037,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询Datahub连接源列表
+        # 查询连接器连接列表
 
         # @param request: Request instance for DescribeConnectResources.
         # @type request: :class:`Tencentcloud::ckafka::V20190819::DescribeConnectResourcesRequest`
@@ -1109,7 +1133,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询Datahub任务信息
+        # 查询连接器任务详情
 
         # @param request: Request instance for DescribeDatahubTask.
         # @type request: :class:`Tencentcloud::ckafka::V20190819::DescribeDatahubTaskRequest`
@@ -1133,7 +1157,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询Datahub任务列表
+        # 查询连接器任务列表
 
         # @param request: Request instance for DescribeDatahubTasks.
         # @type request: :class:`Tencentcloud::ckafka::V20190819::DescribeDatahubTasksRequest`
@@ -1878,6 +1902,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改实例公网IP白名单列表接口
+
+        # @param request: Request instance for ModifyAccessPolicy.
+        # @type request: :class:`Tencentcloud::ckafka::V20190819::ModifyAccessPolicyRequest`
+        # @rtype: :class:`Tencentcloud::ckafka::V20190819::ModifyAccessPolicyResponse`
+        def ModifyAccessPolicy(request)
+          body = send_request('ModifyAccessPolicy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyAccessPolicyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 修改ACL策略，目前只支持预设规则的是否应用到新增topic这一项的修改
 
         # @param request: Request instance for ModifyAclRule.
@@ -1902,7 +1950,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 编辑Datahub连接源
+        # 编辑连接器连接
 
         # @param request: Request instance for ModifyConnectResource.
         # @type request: :class:`Tencentcloud::ckafka::V20190819::ModifyConnectResourceRequest`
@@ -1926,7 +1974,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 修改Datahub任务
+        # 修改连接器任务
 
         # @param request: Request instance for ModifyDatahubTask.
         # @type request: :class:`Tencentcloud::ckafka::V20190819::ModifyDatahubTaskRequest`
@@ -2118,7 +2166,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 暂停Dip任务
+        # 暂停连接器任务
 
         # @param request: Request instance for PauseDatahubTask.
         # @type request: :class:`Tencentcloud::ckafka::V20190819::PauseDatahubTaskRequest`
@@ -2166,7 +2214,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # Datahub任务异常时，重启Datahub任务
+        # 连接器任务异常时，重启连接器任务
 
         # @param request: Request instance for RestartDatahubTask.
         # @type request: :class:`Tencentcloud::ckafka::V20190819::RestartDatahubTaskRequest`
@@ -2190,7 +2238,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 恢复Dip任务
+        # 恢复连接器任务
 
         # @param request: Request instance for ResumeDatahubTask.
         # @type request: :class:`Tencentcloud::ckafka::V20190819::ResumeDatahubTaskRequest`

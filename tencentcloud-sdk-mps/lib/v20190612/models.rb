@@ -10338,24 +10338,26 @@ module TencentCloud
 
       # CreateStreamPackageLinearAssemblyProgram请求参数结构体
       class CreateStreamPackageLinearAssemblyProgramRequest < TencentCloud::Common::AbstractModel
-        # @param Name: Program名称。
+        # @param Name: <p>Program名称。</p>
         # @type Name: String
-        # @param AttachedChannel: 绑定的channel。
+        # @param AttachedChannel: <p>绑定的channel。</p>
         # @type AttachedChannel: String
-        # @param SourceType: 编排的目标source的类型，分直播Live和点播VOD。Tier为Basic时只支持VOD，Tier为Standard时支持Live和VOD
+        # @param SourceType: <p>编排的目标source的类型，分直播Live和点播VOD。Tier为Basic时只支持VOD，Tier为Standard时支持Live和VOD</p>
         # @type SourceType: String
-        # @param SourceLocationId: 关联的source location。
+        # @param SourceLocationId: <p>关联的source location。</p>
         # @type SourceLocationId: String
-        # @param SourceName: 关联的直播or点播，source名称，location下全局唯一。
+        # @param SourceName: <p>关联的直播or点播，source名称，location下全局唯一。</p>
         # @type SourceName: String
-        # @param PlaybackConf: PlaybackConf。
+        # @param PlaybackConf: <p>PlaybackConf。</p>
         # @type PlaybackConf: :class:`Tencentcloud::Mps.v20190612.models.PlaybackInfoReq`
-        # @param AdBreaks: AdBreaks，只有source类型为Vod时有效。
+        # @param AdBreaks: <p>AdBreaks，只有source类型为Vod时有效。</p>
         # @type AdBreaks: Array
+        # @param VodAcquisitionMethod: <p>VOD获取方式，支持PreCaching和DynamicUpdating，默认PreCaching，仅Linear频道支持</p>
+        # @type VodAcquisitionMethod: String
 
-        attr_accessor :Name, :AttachedChannel, :SourceType, :SourceLocationId, :SourceName, :PlaybackConf, :AdBreaks
+        attr_accessor :Name, :AttachedChannel, :SourceType, :SourceLocationId, :SourceName, :PlaybackConf, :AdBreaks, :VodAcquisitionMethod
 
-        def initialize(name=nil, attachedchannel=nil, sourcetype=nil, sourcelocationid=nil, sourcename=nil, playbackconf=nil, adbreaks=nil)
+        def initialize(name=nil, attachedchannel=nil, sourcetype=nil, sourcelocationid=nil, sourcename=nil, playbackconf=nil, adbreaks=nil, vodacquisitionmethod=nil)
           @Name = name
           @AttachedChannel = attachedchannel
           @SourceType = sourcetype
@@ -10363,6 +10365,7 @@ module TencentCloud
           @SourceName = sourcename
           @PlaybackConf = playbackconf
           @AdBreaks = adbreaks
+          @VodAcquisitionMethod = vodacquisitionmethod
         end
 
         def deserialize(params)
@@ -10383,12 +10386,13 @@ module TencentCloud
               @AdBreaks << adbreakinfo_tmp
             end
           end
+          @VodAcquisitionMethod = params['VodAcquisitionMethod']
         end
       end
 
       # CreateStreamPackageLinearAssemblyProgram返回参数结构体
       class CreateStreamPackageLinearAssemblyProgramResponse < TencentCloud::Common::AbstractModel
-        # @param Info: channel信息。
+        # @param Info: <p>channel信息。</p>
         # @type Info: :class:`Tencentcloud::Mps.v20190612.models.LinearAssemblyProgramInfo`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -20316,32 +20320,34 @@ module TencentCloud
 
       # 频道线性组装program信息。
       class LinearAssemblyProgramInfo < TencentCloud::Common::AbstractModel
-        # @param Name: program名称。
+        # @param Name: <p>program名称。</p>
         # @type Name: String
-        # @param SourceType: 编排的目标source的类型，分直播和点播。
+        # @param SourceType: <p>编排的目标source的类型，分直播和点播。</p>
         # @type SourceType: String
-        # @param SourceLocationId: 关联的source location id。
+        # @param SourceLocationId: <p>关联的source location id。</p>
         # @type SourceLocationId: String
-        # @param SourceId: SourceId，唯一标识一个source。
+        # @param SourceId: <p>SourceId，唯一标识一个source。</p>
         # @type SourceId: String
-        # @param SourceName: 关联的直播or点播，source名称，location下全局唯一。
+        # @param SourceName: <p>关联的直播or点播，source名称，location下全局唯一。</p>
         # @type SourceName: String
-        # @param AttachedChannel: 绑定的channel。
+        # @param AttachedChannel: <p>绑定的channel。</p>
         # @type AttachedChannel: String
-        # @param PlaybackConf: 播放配置。
+        # @param PlaybackConf: <p>播放配置。</p>
         # @type PlaybackConf: :class:`Tencentcloud::Mps.v20190612.models.PlaybackInfo`
-        # @param AdBreaks: AdBreaks。
+        # @param AdBreaks: <p>AdBreaks。</p>
         # @type AdBreaks: Array
-        # @param Id: Id。
+        # @param Id: <p>Id。</p>
         # @type Id: String
-        # @param Region: Region。
+        # @param Region: <p>Region。</p>
         # @type Region: String
-        # @param SourceLocationName: SourceLocation名称。
+        # @param SourceLocationName: <p>SourceLocation名称。</p>
         # @type SourceLocationName: String
+        # @param VodAcquisitionMethod: <p>VOD获取方式，支持PreCaching和DynamicUpdating，默认PreCaching，仅Linear频道支持</p>
+        # @type VodAcquisitionMethod: String
 
-        attr_accessor :Name, :SourceType, :SourceLocationId, :SourceId, :SourceName, :AttachedChannel, :PlaybackConf, :AdBreaks, :Id, :Region, :SourceLocationName
+        attr_accessor :Name, :SourceType, :SourceLocationId, :SourceId, :SourceName, :AttachedChannel, :PlaybackConf, :AdBreaks, :Id, :Region, :SourceLocationName, :VodAcquisitionMethod
 
-        def initialize(name=nil, sourcetype=nil, sourcelocationid=nil, sourceid=nil, sourcename=nil, attachedchannel=nil, playbackconf=nil, adbreaks=nil, id=nil, region=nil, sourcelocationname=nil)
+        def initialize(name=nil, sourcetype=nil, sourcelocationid=nil, sourceid=nil, sourcename=nil, attachedchannel=nil, playbackconf=nil, adbreaks=nil, id=nil, region=nil, sourcelocationname=nil, vodacquisitionmethod=nil)
           @Name = name
           @SourceType = sourcetype
           @SourceLocationId = sourcelocationid
@@ -20353,6 +20359,7 @@ module TencentCloud
           @Id = id
           @Region = region
           @SourceLocationName = sourcelocationname
+          @VodAcquisitionMethod = vodacquisitionmethod
         end
 
         def deserialize(params)
@@ -20377,6 +20384,7 @@ module TencentCloud
           @Id = params['Id']
           @Region = params['Region']
           @SourceLocationName = params['SourceLocationName']
+          @VodAcquisitionMethod = params['VodAcquisitionMethod']
         end
       end
 
@@ -25084,24 +25092,26 @@ module TencentCloud
 
       # ModifyStreamPackageLinearAssemblyProgram请求参数结构体
       class ModifyStreamPackageLinearAssemblyProgramRequest < TencentCloud::Common::AbstractModel
-        # @param Id: Program Id。
+        # @param Id: <p>Program Id。</p>
         # @type Id: String
-        # @param Name: 修改后的名称。
+        # @param Name: <p>修改后的名称。</p>
         # @type Name: String
-        # @param SourceType: 编排的目标source的类型，分直播和点播。Tier为Basic时只支持VOD，Tier为Standard时支持Live和VOD
+        # @param SourceType: <p>编排的目标source的类型，分直播和点播。Tier为Basic时只支持VOD，Tier为Standard时支持Live和VOD</p>
         # @type SourceType: String
-        # @param SourceLocationId: 关联的source location。
+        # @param SourceLocationId: <p>关联的source location。</p>
         # @type SourceLocationId: String
-        # @param SourceName: 关联的直播or点播，source名称，location下全局唯一。
+        # @param SourceName: <p>关联的直播or点播，source名称，location下全局唯一。</p>
         # @type SourceName: String
-        # @param PlaybackConf: PlaybackConf。
+        # @param PlaybackConf: <p>PlaybackConf。</p>
         # @type PlaybackConf: :class:`Tencentcloud::Mps.v20190612.models.PlaybackInfoReq`
-        # @param AdBreaks: AdBreaks。
+        # @param AdBreaks: <p>AdBreaks。</p>
         # @type AdBreaks: Array
+        # @param VodAcquisitionMethod: <p>VOD获取方式，支持PreCaching和DynamicUpdating，默认PreCaching，仅Linear频道支持</p>
+        # @type VodAcquisitionMethod: String
 
-        attr_accessor :Id, :Name, :SourceType, :SourceLocationId, :SourceName, :PlaybackConf, :AdBreaks
+        attr_accessor :Id, :Name, :SourceType, :SourceLocationId, :SourceName, :PlaybackConf, :AdBreaks, :VodAcquisitionMethod
 
-        def initialize(id=nil, name=nil, sourcetype=nil, sourcelocationid=nil, sourcename=nil, playbackconf=nil, adbreaks=nil)
+        def initialize(id=nil, name=nil, sourcetype=nil, sourcelocationid=nil, sourcename=nil, playbackconf=nil, adbreaks=nil, vodacquisitionmethod=nil)
           @Id = id
           @Name = name
           @SourceType = sourcetype
@@ -25109,6 +25119,7 @@ module TencentCloud
           @SourceName = sourcename
           @PlaybackConf = playbackconf
           @AdBreaks = adbreaks
+          @VodAcquisitionMethod = vodacquisitionmethod
         end
 
         def deserialize(params)
@@ -25129,6 +25140,7 @@ module TencentCloud
               @AdBreaks << adbreakinfo_tmp
             end
           end
+          @VodAcquisitionMethod = params['VodAcquisitionMethod']
         end
       end
 

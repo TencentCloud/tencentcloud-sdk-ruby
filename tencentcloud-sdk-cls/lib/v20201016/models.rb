@@ -9378,9 +9378,7 @@ module TencentCloud
 
       # DescribeKafkaConsumer请求参数结构体
       class DescribeKafkaConsumerRequest < TencentCloud::Common::AbstractModel
-        # @param FromTopicId: 日志主题Id。
-        # - 通过 [获取日志主题列表](https://cloud.tencent.com/document/product/614/56454) 获取日志主题Id。
-        # - 通过 [创建日志主题](https://cloud.tencent.com/document/product/614/56456) 获取日志主题Id。
+        # @param FromTopicId: <p>日志主题Id。</p><ul><li>通过 <a href="https://cloud.tencent.com/document/product/614/56454">获取日志主题列表</a> 获取日志主题Id。</li><li>通过 <a href="https://cloud.tencent.com/document/product/614/56456">创建日志主题</a> 获取日志主题Id。</li></ul>
         # @type FromTopicId: String
 
         attr_accessor :FromTopicId
@@ -9396,24 +9394,30 @@ module TencentCloud
 
       # DescribeKafkaConsumer返回参数结构体
       class DescribeKafkaConsumerResponse < TencentCloud::Common::AbstractModel
-        # @param Status: Kafka协议消费是否打开
+        # @param Status: <p>Kafka协议消费是否打开</p>
         # @type Status: Boolean
-        # @param TopicID: KafkaConsumer 消费时使用的Topic参数
+        # @param TopicID: <p>KafkaConsumer 消费时使用的Topic参数</p>
         # @type TopicID: String
-        # @param Compression: 压缩方式[0:NONE；2:SNAPPY；3:LZ4]
+        # @param Compression: <p>压缩方式[0:NONE；2:SNAPPY；3:LZ4]</p>
         # @type Compression: Integer
-        # @param ConsumerContent: kafka协议消费数据格式
+        # @param ConsumerContent: <p>kafka协议消费数据格式</p>
         # @type ConsumerContent: :class:`Tencentcloud::Cls.v20201016.models.KafkaConsumerContent`
+        # @param HasServicesLog: <p>是否开启投递服务日志。1：关闭，2：开启。</p>
+        # @type HasServicesLog: Integer
+        # @param ScopeType: <p>消费范围类型，0:最新，1:历史+最新</p>
+        # @type ScopeType: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Status, :TopicID, :Compression, :ConsumerContent, :RequestId
+        attr_accessor :Status, :TopicID, :Compression, :ConsumerContent, :HasServicesLog, :ScopeType, :RequestId
 
-        def initialize(status=nil, topicid=nil, compression=nil, consumercontent=nil, requestid=nil)
+        def initialize(status=nil, topicid=nil, compression=nil, consumercontent=nil, hasserviceslog=nil, scopetype=nil, requestid=nil)
           @Status = status
           @TopicID = topicid
           @Compression = compression
           @ConsumerContent = consumercontent
+          @HasServicesLog = hasserviceslog
+          @ScopeType = scopetype
           @RequestId = requestid
         end
 
@@ -9425,6 +9429,8 @@ module TencentCloud
             @ConsumerContent = KafkaConsumerContent.new
             @ConsumerContent.deserialize(params['ConsumerContent'])
           end
+          @HasServicesLog = params['HasServicesLog']
+          @ScopeType = params['ScopeType']
           @RequestId = params['RequestId']
         end
       end
@@ -15460,21 +15466,25 @@ module TencentCloud
 
       # ModifyKafkaConsumer请求参数结构体
       class ModifyKafkaConsumerRequest < TencentCloud::Common::AbstractModel
-        # @param FromTopicId: 日志主题Id。
-        # - 通过 [获取日志主题列表](https://cloud.tencent.com/document/product/614/56454) 获取日志主题Id。
-        # - 通过 [创建日志主题](https://cloud.tencent.com/document/product/614/56456) 获取日志主题Id。
+        # @param FromTopicId: <p>日志主题Id。</p><ul><li>通过 <a href="https://cloud.tencent.com/document/product/614/56454">获取日志主题列表</a> 获取日志主题Id。</li><li>通过 <a href="https://cloud.tencent.com/document/product/614/56456">创建日志主题</a> 获取日志主题Id。</li></ul>
         # @type FromTopicId: String
-        # @param Compression: 压缩方式。0：不压缩；2：使用Snappy压缩；3：使用LZ4压缩
+        # @param Compression: <p>压缩方式。0：不压缩；2：使用Snappy压缩；3：使用LZ4压缩</p>
         # @type Compression: Integer
-        # @param ConsumerContent: kafka协议消费数据格式
+        # @param ConsumerContent: <p>kafka协议消费数据格式</p>
         # @type ConsumerContent: :class:`Tencentcloud::Cls.v20201016.models.KafkaConsumerContent`
+        # @param HasServicesLog: <p>是否开启投递服务日志。1：关闭，2：开启。</p>
+        # @type HasServicesLog: Integer
+        # @param ScopeType: <p>消费范围类型，0:最新，1:历史+最新</p>
+        # @type ScopeType: Integer
 
-        attr_accessor :FromTopicId, :Compression, :ConsumerContent
+        attr_accessor :FromTopicId, :Compression, :ConsumerContent, :HasServicesLog, :ScopeType
 
-        def initialize(fromtopicid=nil, compression=nil, consumercontent=nil)
+        def initialize(fromtopicid=nil, compression=nil, consumercontent=nil, hasserviceslog=nil, scopetype=nil)
           @FromTopicId = fromtopicid
           @Compression = compression
           @ConsumerContent = consumercontent
+          @HasServicesLog = hasserviceslog
+          @ScopeType = scopetype
         end
 
         def deserialize(params)
@@ -15484,6 +15494,8 @@ module TencentCloud
             @ConsumerContent = KafkaConsumerContent.new
             @ConsumerContent.deserialize(params['ConsumerContent'])
           end
+          @HasServicesLog = params['HasServicesLog']
+          @ScopeType = params['ScopeType']
         end
       end
 
@@ -17089,21 +17101,25 @@ module TencentCloud
 
       # OpenKafkaConsumer请求参数结构体
       class OpenKafkaConsumerRequest < TencentCloud::Common::AbstractModel
-        # @param FromTopicId: 日志主题Id。
-        # - 通过 [获取日志主题列表](https://cloud.tencent.com/document/product/614/56454) 获取日志主题Id。
-        # - 通过 [创建日志主题](https://cloud.tencent.com/document/product/614/56456) 获取日志主题Id。
+        # @param FromTopicId: <p>日志主题Id。</p><ul><li>通过 <a href="https://cloud.tencent.com/document/product/614/56454">获取日志主题列表</a> 获取日志主题Id。</li><li>通过 <a href="https://cloud.tencent.com/document/product/614/56456">创建日志主题</a> 获取日志主题Id。</li></ul>
         # @type FromTopicId: String
-        # @param Compression: 压缩方式[0:NONE；2:SNAPPY；3:LZ4]，默认：0
+        # @param Compression: <p>压缩方式[0:NONE；2:SNAPPY；3:LZ4]，默认：0</p>
         # @type Compression: Integer
-        # @param ConsumerContent: kafka协议消费数据格式
+        # @param ConsumerContent: <p>kafka协议消费数据格式</p>
         # @type ConsumerContent: :class:`Tencentcloud::Cls.v20201016.models.KafkaConsumerContent`
+        # @param HasServicesLog: <p>是否开启投递服务日志。1：关闭，2：开启。 默认值：2</p>
+        # @type HasServicesLog: Integer
+        # @param ScopeType: <p>消费范围类型，0:最新；1:历史+最新；默认值:0</p>
+        # @type ScopeType: Integer
 
-        attr_accessor :FromTopicId, :Compression, :ConsumerContent
+        attr_accessor :FromTopicId, :Compression, :ConsumerContent, :HasServicesLog, :ScopeType
 
-        def initialize(fromtopicid=nil, compression=nil, consumercontent=nil)
+        def initialize(fromtopicid=nil, compression=nil, consumercontent=nil, hasserviceslog=nil, scopetype=nil)
           @FromTopicId = fromtopicid
           @Compression = compression
           @ConsumerContent = consumercontent
+          @HasServicesLog = hasserviceslog
+          @ScopeType = scopetype
         end
 
         def deserialize(params)
@@ -17113,12 +17129,14 @@ module TencentCloud
             @ConsumerContent = KafkaConsumerContent.new
             @ConsumerContent.deserialize(params['ConsumerContent'])
           end
+          @HasServicesLog = params['HasServicesLog']
+          @ScopeType = params['ScopeType']
         end
       end
 
       # OpenKafkaConsumer返回参数结构体
       class OpenKafkaConsumerResponse < TencentCloud::Common::AbstractModel
-        # @param TopicID: KafkaConsumer 消费时使用的Topic参数
+        # @param TopicID: <p>KafkaConsumer 消费时使用的Topic参数</p>
         # @type TopicID: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

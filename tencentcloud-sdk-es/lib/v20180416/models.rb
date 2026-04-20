@@ -66,30 +66,33 @@ module TencentCloud
 
       # 后备索引元数据字段
       class BackingIndexMetaField < TencentCloud::Common::AbstractModel
-        # @param IndexName: 后备索引名
+        # @param IndexName: <p>后备索引名</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IndexName: String
-        # @param IndexStatus: 后备索引状态
+        # @param IndexStatus: <p>后备索引状态</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IndexStatus: String
-        # @param IndexStorage: 后备索引存储大小
+        # @param IndexStorage: <p>后备索引存储大小</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IndexStorage: Integer
-        # @param IndexPhrase: 后备索引当前生命周期
+        # @param IndexPhrase: <p>后备索引当前生命周期</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IndexPhrase: String
-        # @param IndexCreateTime: 后备索引创建时间
+        # @param IndexCreateTime: <p>后备索引创建时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IndexCreateTime: String
+        # @param IndexUuid: <p>索引Uuid</p>
+        # @type IndexUuid: String
 
-        attr_accessor :IndexName, :IndexStatus, :IndexStorage, :IndexPhrase, :IndexCreateTime
+        attr_accessor :IndexName, :IndexStatus, :IndexStorage, :IndexPhrase, :IndexCreateTime, :IndexUuid
 
-        def initialize(indexname=nil, indexstatus=nil, indexstorage=nil, indexphrase=nil, indexcreatetime=nil)
+        def initialize(indexname=nil, indexstatus=nil, indexstorage=nil, indexphrase=nil, indexcreatetime=nil, indexuuid=nil)
           @IndexName = indexname
           @IndexStatus = indexstatus
           @IndexStorage = indexstorage
           @IndexPhrase = indexphrase
           @IndexCreateTime = indexcreatetime
+          @IndexUuid = indexuuid
         end
 
         def deserialize(params)
@@ -98,6 +101,7 @@ module TencentCloud
           @IndexStorage = params['IndexStorage']
           @IndexPhrase = params['IndexPhrase']
           @IndexCreateTime = params['IndexCreateTime']
+          @IndexUuid = params['IndexUuid']
         end
       end
 
@@ -4410,31 +4414,37 @@ module TencentCloud
 
       # 索引自治字段
       class IndexOptionsField < TencentCloud::Common::AbstractModel
-        # @param ExpireMaxAge: 过期时间
+        # @param ExpireMaxAge: <p>过期时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExpireMaxAge: String
-        # @param ExpireMaxSize: 过期大小
+        # @param ExpireMaxSize: <p>过期大小</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExpireMaxSize: String
-        # @param RolloverMaxAge: 滚动周期
+        # @param RolloverMaxAge: <p>滚动周期</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RolloverMaxAge: String
-        # @param RolloverDynamic: 是否开启动态滚动
+        # @param RolloverDynamic: <p>是否开启动态滚动</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RolloverDynamic: String
-        # @param ShardNumDynamic: 是否开启动态分片
+        # @param ShardNumDynamic: <p>是否开启动态分片</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ShardNumDynamic: String
-        # @param TimestampField: 时间分区字段
+        # @param TimestampField: <p>时间分区字段</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimestampField: String
-        # @param WriteMode: 写入模式
+        # @param WriteMode: <p>写入模式</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WriteMode: String
+        # @param FullOffloadedEnable: <p>是否开启完全卸载</p><p>枚举值：</p><ul><li>true： 开启完全卸载</li><li>false： 关闭完全卸载</li></ul>
+        # @type FullOffloadedEnable: String
+        # @param FullOffloadedMaxAge: <p>完全卸载生命周期</p>
+        # @type FullOffloadedMaxAge: String
+        # @param FullOffloadedRetrieveMaxAge: <p>完全卸载后备索引取回后生命周期</p>
+        # @type FullOffloadedRetrieveMaxAge: String
 
-        attr_accessor :ExpireMaxAge, :ExpireMaxSize, :RolloverMaxAge, :RolloverDynamic, :ShardNumDynamic, :TimestampField, :WriteMode
+        attr_accessor :ExpireMaxAge, :ExpireMaxSize, :RolloverMaxAge, :RolloverDynamic, :ShardNumDynamic, :TimestampField, :WriteMode, :FullOffloadedEnable, :FullOffloadedMaxAge, :FullOffloadedRetrieveMaxAge
 
-        def initialize(expiremaxage=nil, expiremaxsize=nil, rollovermaxage=nil, rolloverdynamic=nil, shardnumdynamic=nil, timestampfield=nil, writemode=nil)
+        def initialize(expiremaxage=nil, expiremaxsize=nil, rollovermaxage=nil, rolloverdynamic=nil, shardnumdynamic=nil, timestampfield=nil, writemode=nil, fulloffloadedenable=nil, fulloffloadedmaxage=nil, fulloffloadedretrievemaxage=nil)
           @ExpireMaxAge = expiremaxage
           @ExpireMaxSize = expiremaxsize
           @RolloverMaxAge = rollovermaxage
@@ -4442,6 +4452,9 @@ module TencentCloud
           @ShardNumDynamic = shardnumdynamic
           @TimestampField = timestampfield
           @WriteMode = writemode
+          @FullOffloadedEnable = fulloffloadedenable
+          @FullOffloadedMaxAge = fulloffloadedmaxage
+          @FullOffloadedRetrieveMaxAge = fulloffloadedretrievemaxage
         end
 
         def deserialize(params)
@@ -4452,6 +4465,9 @@ module TencentCloud
           @ShardNumDynamic = params['ShardNumDynamic']
           @TimestampField = params['TimestampField']
           @WriteMode = params['WriteMode']
+          @FullOffloadedEnable = params['FullOffloadedEnable']
+          @FullOffloadedMaxAge = params['FullOffloadedMaxAge']
+          @FullOffloadedRetrieveMaxAge = params['FullOffloadedRetrieveMaxAge']
         end
       end
 
@@ -7973,24 +7989,30 @@ module TencentCloud
 
       # UpdateIndex请求参数结构体
       class UpdateIndexRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: ES集群ID
+        # @param InstanceId: <p>ES集群ID</p>
         # @type InstanceId: String
-        # @param IndexType: 更新的索引类型。auto：自治索引；normal：普通索引
+        # @param IndexType: <p>更新的索引类型。auto：自治索引；normal：普通索引</p>
         # @type IndexType: String
-        # @param IndexName: 更新的索引名
+        # @param IndexName: <p>更新的索引名</p>
         # @type IndexName: String
-        # @param UpdateMetaJson: 更新的索引元数据JSON，如mappings、settings
+        # @param UpdateMetaJson: <p>更新的索引元数据JSON，如mappings、settings</p>
         # @type UpdateMetaJson: String
-        # @param Username: 集群访问用户名
+        # @param Username: <p>集群访问用户名</p>
         # @type Username: String
-        # @param Password: 集群访问密码
+        # @param Password: <p>集群访问密码</p>
         # @type Password: String
-        # @param RolloverBackingIndex: 是否滚动后备索引
+        # @param RolloverBackingIndex: <p>是否滚动后备索引</p>
         # @type RolloverBackingIndex: Boolean
+        # @param MountIndex: <p>是否为取回完全卸载索引</p>
+        # @type MountIndex: Boolean
+        # @param IndexUuid: <p>索引Uuid</p>
+        # @type IndexUuid: String
+        # @param BackingIndexName: <p>后备索引名</p>
+        # @type BackingIndexName: String
 
-        attr_accessor :InstanceId, :IndexType, :IndexName, :UpdateMetaJson, :Username, :Password, :RolloverBackingIndex
+        attr_accessor :InstanceId, :IndexType, :IndexName, :UpdateMetaJson, :Username, :Password, :RolloverBackingIndex, :MountIndex, :IndexUuid, :BackingIndexName
 
-        def initialize(instanceid=nil, indextype=nil, indexname=nil, updatemetajson=nil, username=nil, password=nil, rolloverbackingindex=nil)
+        def initialize(instanceid=nil, indextype=nil, indexname=nil, updatemetajson=nil, username=nil, password=nil, rolloverbackingindex=nil, mountindex=nil, indexuuid=nil, backingindexname=nil)
           @InstanceId = instanceid
           @IndexType = indextype
           @IndexName = indexname
@@ -7998,6 +8020,9 @@ module TencentCloud
           @Username = username
           @Password = password
           @RolloverBackingIndex = rolloverbackingindex
+          @MountIndex = mountindex
+          @IndexUuid = indexuuid
+          @BackingIndexName = backingindexname
         end
 
         def deserialize(params)
@@ -8008,6 +8033,9 @@ module TencentCloud
           @Username = params['Username']
           @Password = params['Password']
           @RolloverBackingIndex = params['RolloverBackingIndex']
+          @MountIndex = params['MountIndex']
+          @IndexUuid = params['IndexUuid']
+          @BackingIndexName = params['BackingIndexName']
         end
       end
 

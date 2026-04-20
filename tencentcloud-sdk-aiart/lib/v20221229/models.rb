@@ -854,13 +854,13 @@ module TencentCloud
 
       # 人脸框坐标
       class Rect < TencentCloud::Common::AbstractModel
-        # @param X: 人脸框左上角横坐标。
+        # @param X: <p>人脸框左上角横坐标。</p>
         # @type X: Integer
-        # @param Y: 人脸框左上角纵坐标。
+        # @param Y: <p>人脸框左上角纵坐标。</p>
         # @type Y: Integer
-        # @param Width: 人脸框宽度。
+        # @param Width: <p>人脸框宽度。<br>单位：px</p>
         # @type Width: Integer
-        # @param Height: 人脸框高度。
+        # @param Height: <p>人脸框高度。<br>单位：px</p>
         # @type Height: Integer
 
         attr_accessor :X, :Y, :Width, :Height

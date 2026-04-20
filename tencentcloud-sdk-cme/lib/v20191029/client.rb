@@ -203,6 +203,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除平台归属的账户。
+
+        # @param request: Request instance for DeleteAccount.
+        # @type request: :class:`Tencentcloud::cme::V20191029::DeleteAccountRequest`
+        # @rtype: :class:`Tencentcloud::cme::V20191029::DeleteAccountResponse`
+        def DeleteAccount(request)
+          body = send_request('DeleteAccount', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteAccountResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除分类信息，删除时检验下述限制：
         # <li>分类路径必须存在；</li>
         # <li>分类下没有绑定素材。</li>
@@ -822,6 +846,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = FlattenListMediaResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 禁用账号。
+
+        # @param request: Request instance for ForbidAccount.
+        # @type request: :class:`Tencentcloud::cme::V20191029::ForbidAccountRequest`
+        # @rtype: :class:`Tencentcloud::cme::V20191029::ForbidAccountResponse`
+        def ForbidAccount(request)
+          body = send_request('ForbidAccount', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ForbidAccountResponse.new
             model.deserialize(response['Response'])
             model
           else

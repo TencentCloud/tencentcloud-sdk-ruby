@@ -4570,6 +4570,58 @@ module TencentCloud
         end
       end
 
+      # AIGC 视频转绘任务的输出媒体文件配置。
+      class AigcVideoRedrawOutputConfig < TencentCloud::Common::AbstractModel
+        # @param StorageMode: <p>存储模式。取值有： <li>Permanent：永久存储，生成的视频文件将存储到云点播，可在事件通知中获取到 FileId；</li> <li>Temporary：临时存储，生成的视频文件不会存储到云点播，可在事件通知中获取到临时访问的 URL；</li>默认值：Temporary</p>
+        # @type StorageMode: String
+        # @param MediaName: <p>输出媒体文件名，最长 64 个字符。缺省由系统指定生成文件名。</p>
+        # @type MediaName: String
+        # @param ClassId: <p>分类ID，用于对媒体进行分类管理，可通过 <a href="/document/product/266/7812">创建分类</a> 接口，创建分类，获得分类 ID。<li>默认值：0，表示其他分类。</li></p>
+        # @type ClassId: Integer
+        # @param ExpireTime: <p>输出文件的过期时间，超过该时间文件将被删除，默认为永久不过期，格式按照 ISO 8601标准表示，详见 <a href="https://cloud.tencent.com/document/product/266/11732#I">ISO 日期格式说明</a>。</p><p>参数格式：2025-12-28T00:35:00Z</p>
+        # @type ExpireTime: String
+
+        attr_accessor :StorageMode, :MediaName, :ClassId, :ExpireTime
+
+        def initialize(storagemode=nil, medianame=nil, classid=nil, expiretime=nil)
+          @StorageMode = storagemode
+          @MediaName = medianame
+          @ClassId = classid
+          @ExpireTime = expiretime
+        end
+
+        def deserialize(params)
+          @StorageMode = params['StorageMode']
+          @MediaName = params['MediaName']
+          @ClassId = params['ClassId']
+          @ExpireTime = params['ExpireTime']
+        end
+      end
+
+      # AIGC 视频转绘任务输入文件信息。
+      class AigcVideoRedrawTaskInputFileInfo < TencentCloud::Common::AbstractModel
+        # @param Type: <p>输入的视频文件类型。取值有： <li>File：点播媒体文件；</li> <li>Url：可访问的 Url；</li></p>
+        # @type Type: String
+        # @param FileId: <p>媒体文件 ID，即该文件在云点播上的全局唯一标识符，在上传成功后由云点播后台分配。可以在 <a href="/document/product/266/7830">视频上传完成事件通知</a> 或 <a href="https://console.cloud.tencent.com/vod/media">云点播控制台</a> 获取该字段。当 Type 取值为 File 时，本参数有效。说明：1. 推荐使用小于10M的图片；2. 图片格式的取值为：jpeg，jpg, png。</p>
+        # @type FileId: String
+        # @param Url: <p>可访问的文件 URL。当 Type 取值为 Url 时，本参数有效。说明：1. 推荐使用小于10M的图片；2. 图片格式的取值为：jpeg，jpg, png。</p>
+        # @type Url: String
+
+        attr_accessor :Type, :FileId, :Url
+
+        def initialize(type=nil, fileid=nil, url=nil)
+          @Type = type
+          @FileId = fileid
+          @Url = url
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @FileId = params['FileId']
+          @Url = params['Url']
+        end
+      end
+
       # 场景化 AIGC 生图配置。
       class AigcVideoSceneInfo < TencentCloud::Common::AbstractModel
         # @param Type: AI生视频场景类型，可选值：
@@ -8307,6 +8359,72 @@ module TencentCloud
           end
           @SessionId = params['SessionId']
           @SessionContext = params['SessionContext']
+        end
+      end
+
+      # CreateAigcVideoRedrawTask请求参数结构体
+      class CreateAigcVideoRedrawTaskRequest < TencentCloud::Common::AbstractModel
+        # @param SubAppId: <p><b>点播<a href="https://cloud.tencent.com/document/product/266/14574">应用</a> ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b></p>
+        # @type SubAppId: Integer
+        # @param FileInfo: <p>AIGC 视频转绘任务的输入视频的文件信息。</p>
+        # @type FileInfo: :class:`Tencentcloud::Vod.v20180717.models.AigcVideoRedrawTaskInputFileInfo`
+        # @param OutputConfig: <p>AIGC 视频转绘任务的输出媒体文件配置。</p>
+        # @type OutputConfig: :class:`Tencentcloud::Vod.v20180717.models.AigcVideoRedrawOutputConfig`
+        # @param SessionId: <p>用于去重的识别码，如果三天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长 50 个字符，不带或者带空字符串表示不做去重。</p>
+        # @type SessionId: String
+        # @param SessionContext: <p>来源上下文，用于透传用户请求信息，音画质重生完成回调将返回该字段值，最长 1000 个字符。</p>
+        # @type SessionContext: String
+        # @param TasksPriority: <p>任务的优先级，数值越大优先级越高，取值范围是 -10 到 10，不填代表 0。</p>
+        # @type TasksPriority: Integer
+        # @param ExtInfo: <p>保留字段，特殊用途时使用。</p>
+        # @type ExtInfo: String
+
+        attr_accessor :SubAppId, :FileInfo, :OutputConfig, :SessionId, :SessionContext, :TasksPriority, :ExtInfo
+
+        def initialize(subappid=nil, fileinfo=nil, outputconfig=nil, sessionid=nil, sessioncontext=nil, taskspriority=nil, extinfo=nil)
+          @SubAppId = subappid
+          @FileInfo = fileinfo
+          @OutputConfig = outputconfig
+          @SessionId = sessionid
+          @SessionContext = sessioncontext
+          @TasksPriority = taskspriority
+          @ExtInfo = extinfo
+        end
+
+        def deserialize(params)
+          @SubAppId = params['SubAppId']
+          unless params['FileInfo'].nil?
+            @FileInfo = AigcVideoRedrawTaskInputFileInfo.new
+            @FileInfo.deserialize(params['FileInfo'])
+          end
+          unless params['OutputConfig'].nil?
+            @OutputConfig = AigcVideoRedrawOutputConfig.new
+            @OutputConfig.deserialize(params['OutputConfig'])
+          end
+          @SessionId = params['SessionId']
+          @SessionContext = params['SessionContext']
+          @TasksPriority = params['TasksPriority']
+          @ExtInfo = params['ExtInfo']
+        end
+      end
+
+      # CreateAigcVideoRedrawTask返回参数结构体
+      class CreateAigcVideoRedrawTaskResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>任务 ID。</p>
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
         end
       end
 

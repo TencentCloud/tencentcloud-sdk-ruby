@@ -904,6 +904,46 @@ module TencentCloud
         end
       end
 
+      # DeleteAccount请求参数结构体
+      class DeleteAccountRequest < TencentCloud::Common::AbstractModel
+        # @param Platform: <p>平台 Id，指定访问的平台。关于平台概念，请参见文档 <a href="https://cloud.tencent.com/document/product/1156/43767">平台</a>。</p>
+        # @type Platform: String
+        # @param UserId: <p>用户标识 。</p>
+        # @type UserId: String
+        # @param Operator: <p>操作者。如不填，默认为 <code>cmeid_system</code>，表示平台管理员操作，可以操作任意账户。如果指定操作者，则操作者必须为账户所有者。</p>
+        # @type Operator: String
+
+        attr_accessor :Platform, :UserId, :Operator
+
+        def initialize(platform=nil, userid=nil, operator=nil)
+          @Platform = platform
+          @UserId = userid
+          @Operator = operator
+        end
+
+        def deserialize(params)
+          @Platform = params['Platform']
+          @UserId = params['UserId']
+          @Operator = params['Operator']
+        end
+      end
+
+      # DeleteAccount返回参数结构体
+      class DeleteAccountResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteClass请求参数结构体
       class DeleteClassRequest < TencentCloud::Common::AbstractModel
         # @param Platform: 平台名称，指定访问的平台。
@@ -2700,6 +2740,46 @@ module TencentCloud
               @MaterialInfoSet << materialinfo_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ForbidAccount请求参数结构体
+      class ForbidAccountRequest < TencentCloud::Common::AbstractModel
+        # @param Platform: <p>平台 Id，指定访问的平台。关于平台概念，请参见文档 <a href="https://cloud.tencent.com/document/product/1156/43767">平台</a>。</p>
+        # @type Platform: String
+        # @param UserId: <p>用户标识 。</p>
+        # @type UserId: String
+        # @param Operator: <p>操作者。如不填，默认为 <code>cmeid_system</code>，表示平台管理员操作，可以操作任意账户。如果指定操作者，则操作者必须为账户所有者。</p>
+        # @type Operator: String
+
+        attr_accessor :Platform, :UserId, :Operator
+
+        def initialize(platform=nil, userid=nil, operator=nil)
+          @Platform = platform
+          @UserId = userid
+          @Operator = operator
+        end
+
+        def deserialize(params)
+          @Platform = params['Platform']
+          @UserId = params['UserId']
+          @Operator = params['Operator']
+        end
+      end
+
+      # ForbidAccount返回参数结构体
+      class ForbidAccountResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end

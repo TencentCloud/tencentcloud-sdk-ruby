@@ -253,37 +253,40 @@ module TencentCloud
 
       # CreateApplicationAndBindLicense请求参数结构体
       class CreateApplicationAndBindLicenseRequest < TencentCloud::Common::AbstractModel
-        # @param AppName: 应用名
+        # @param AppName: <p>应用名</p>
         # @type AppName: String
-        # @param BundleId: 应用ID
+        # @param BundleId: <p>应用ID</p>
         # @type BundleId: String
-        # @param PackageName: 包名
+        # @param PackageName: <p>包名</p>
         # @type PackageName: String
-        # @param ResourceIds: 资源包ID
+        # @param BundleName: <p>鸿蒙包包名</p>
+        # @type BundleName: String
+        # @param ResourceIds: <p>资源包ID</p>
         # @type ResourceIds: Array
-        # @param CompanyPermit: 营业执照
+        # @param CompanyPermit: <p>营业执照</p>
         # @type CompanyPermit: String
-        # @param CompanyType: 公司类型
+        # @param CompanyType: <p>公司类型</p>
         # @type CompanyType: String
-        # @param CompanyName: 公司名称
+        # @param CompanyName: <p>公司名称</p>
         # @type CompanyName: String
-        # @param XMagicResourceIds: 优图资源id列表
+        # @param XMagicResourceIds: <p>优图资源id列表</p>
         # @type XMagicResourceIds: Array
-        # @param MacBundleId: Mac 进程名
+        # @param MacBundleId: <p>Mac 进程名</p>
         # @type MacBundleId: String
-        # @param WinProcessName: Windows 进程名
+        # @param WinProcessName: <p>Windows 进程名</p>
         # @type WinProcessName: String
-        # @param DomainList: 要开通的域名列表
+        # @param DomainList: <p>要开通的域名列表</p>
         # @type DomainList: Array
-        # @param Platform: 要开通的端，web/mobile/pc
+        # @param Platform: <p>要开通的端，web/mobile/pc</p>
         # @type Platform: String
 
-        attr_accessor :AppName, :BundleId, :PackageName, :ResourceIds, :CompanyPermit, :CompanyType, :CompanyName, :XMagicResourceIds, :MacBundleId, :WinProcessName, :DomainList, :Platform
+        attr_accessor :AppName, :BundleId, :PackageName, :BundleName, :ResourceIds, :CompanyPermit, :CompanyType, :CompanyName, :XMagicResourceIds, :MacBundleId, :WinProcessName, :DomainList, :Platform
 
-        def initialize(appname=nil, bundleid=nil, packagename=nil, resourceids=nil, companypermit=nil, companytype=nil, companyname=nil, xmagicresourceids=nil, macbundleid=nil, winprocessname=nil, domainlist=nil, platform=nil)
+        def initialize(appname=nil, bundleid=nil, packagename=nil, bundlename=nil, resourceids=nil, companypermit=nil, companytype=nil, companyname=nil, xmagicresourceids=nil, macbundleid=nil, winprocessname=nil, domainlist=nil, platform=nil)
           @AppName = appname
           @BundleId = bundleid
           @PackageName = packagename
+          @BundleName = bundlename
           @ResourceIds = resourceids
           @CompanyPermit = companypermit
           @CompanyType = companytype
@@ -299,6 +302,7 @@ module TencentCloud
           @AppName = params['AppName']
           @BundleId = params['BundleId']
           @PackageName = params['PackageName']
+          @BundleName = params['BundleName']
           @ResourceIds = params['ResourceIds']
           @CompanyPermit = params['CompanyPermit']
           @CompanyType = params['CompanyType']
@@ -501,39 +505,42 @@ module TencentCloud
 
       # CreateTrialApplicationAndLicense请求参数结构体
       class CreateTrialApplicationAndLicenseRequest < TencentCloud::Common::AbstractModel
-        # @param AppName: 应用名
+        # @param AppName: <p>应用名</p>
         # @type AppName: String
-        # @param BundleId: 应用ID
+        # @param BundleId: <p>应用ID</p>
         # @type BundleId: String
-        # @param PackageName: 包名
+        # @param PackageName: <p>包名</p>
         # @type PackageName: String
-        # @param FeatureIds: 功能 id 数组
+        # @param BundleName: <p>鸿蒙包包名</p>
+        # @type BundleName: String
+        # @param FeatureIds: <p>功能 id 数组</p>
         # @type FeatureIds: Array
-        # @param XMagic: 是否要开通优图功能
+        # @param XMagic: <p>是否要开通优图功能</p>
         # @type XMagic: Boolean
-        # @param CompanyPermit: 营业执照
+        # @param CompanyPermit: <p>营业执照</p>
         # @type CompanyPermit: String
-        # @param CompanyType: 公司类型
+        # @param CompanyType: <p>公司类型</p>
         # @type CompanyType: String
-        # @param CompanyName: 公司名称
+        # @param CompanyName: <p>公司名称</p>
         # @type CompanyName: String
-        # @param PlanList: 要开通的测试功能名称，基础套餐只能有一个
+        # @param PlanList: <p>要开通的测试功能名称，基础套餐只能有一个</p>
         # @type PlanList: Array
-        # @param MacBundleId: Mac 进程名
+        # @param MacBundleId: <p>Mac 进程名</p>
         # @type MacBundleId: String
-        # @param WinProcessName: Windows 进程名
+        # @param WinProcessName: <p>Windows 进程名</p>
         # @type WinProcessName: String
-        # @param Platform: 要创建到哪个平台，web、mobile、pc，默认mobile
+        # @param Platform: <p>要创建到哪个平台，web、mobile、pc，默认mobile</p>
         # @type Platform: String
-        # @param DomainList: 授权域名列表
+        # @param DomainList: <p>授权域名列表</p>
         # @type DomainList: Array
 
-        attr_accessor :AppName, :BundleId, :PackageName, :FeatureIds, :XMagic, :CompanyPermit, :CompanyType, :CompanyName, :PlanList, :MacBundleId, :WinProcessName, :Platform, :DomainList
+        attr_accessor :AppName, :BundleId, :PackageName, :BundleName, :FeatureIds, :XMagic, :CompanyPermit, :CompanyType, :CompanyName, :PlanList, :MacBundleId, :WinProcessName, :Platform, :DomainList
 
-        def initialize(appname=nil, bundleid=nil, packagename=nil, featureids=nil, xmagic=nil, companypermit=nil, companytype=nil, companyname=nil, planlist=nil, macbundleid=nil, winprocessname=nil, platform=nil, domainlist=nil)
+        def initialize(appname=nil, bundleid=nil, packagename=nil, bundlename=nil, featureids=nil, xmagic=nil, companypermit=nil, companytype=nil, companyname=nil, planlist=nil, macbundleid=nil, winprocessname=nil, platform=nil, domainlist=nil)
           @AppName = appname
           @BundleId = bundleid
           @PackageName = packagename
+          @BundleName = bundlename
           @FeatureIds = featureids
           @XMagic = xmagic
           @CompanyPermit = companypermit
@@ -550,6 +557,7 @@ module TencentCloud
           @AppName = params['AppName']
           @BundleId = params['BundleId']
           @PackageName = params['PackageName']
+          @BundleName = params['BundleName']
           @FeatureIds = params['FeatureIds']
           @XMagic = params['XMagic']
           @CompanyPermit = params['CompanyPermit']

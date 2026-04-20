@@ -37815,36 +37815,42 @@ module TencentCloud
 
       # 角色对象
       class SystemRole < TencentCloud::Common::AbstractModel
-        # @param RoleId: 角色id
+        # @param RoleId: <p>角色id</p>
         # @type RoleId: String
-        # @param Name: 角色名称
+        # @param Name: <p>角色名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
-        # @param NameCn: 角色昵称
+        # @param NameCn: <p>角色昵称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NameCn: String
-        # @param Description: 描述
+        # @param Description: <p>描述</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
-        # @param Privileges: 角色权限
+        # @param Privileges: <p>角色权限</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Privileges: Array
-        # @param MethodPaths: 方法路径
+        # @param MethodPaths: <p>方法路径</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MethodPaths: Array
-        # @param RoleType: 角色类型, 分为System,Tenant,Project,Commercial
+        # @param RoleType: <p>角色类型, 分为System,Tenant,Project,Commercial</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RoleType: String
-        # @param SystemInit: 是否系统默认
+        # @param SystemInit: <p>是否系统默认</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SystemInit: Boolean
-        # @param Params: 自定义参数
+        # @param Params: <p>自定义参数</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Params: String
+        # @param CreateTimeStr: <p>创建时间</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTimeStr: String
+        # @param Creator: <p>创建人</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Creator: String
 
-        attr_accessor :RoleId, :Name, :NameCn, :Description, :Privileges, :MethodPaths, :RoleType, :SystemInit, :Params
+        attr_accessor :RoleId, :Name, :NameCn, :Description, :Privileges, :MethodPaths, :RoleType, :SystemInit, :Params, :CreateTimeStr, :Creator
 
-        def initialize(roleid=nil, name=nil, namecn=nil, description=nil, privileges=nil, methodpaths=nil, roletype=nil, systeminit=nil, params=nil)
+        def initialize(roleid=nil, name=nil, namecn=nil, description=nil, privileges=nil, methodpaths=nil, roletype=nil, systeminit=nil, params=nil, createtimestr=nil, creator=nil)
           @RoleId = roleid
           @Name = name
           @NameCn = namecn
@@ -37854,6 +37860,8 @@ module TencentCloud
           @RoleType = roletype
           @SystemInit = systeminit
           @Params = params
+          @CreateTimeStr = createtimestr
+          @Creator = creator
         end
 
         def deserialize(params)
@@ -37873,6 +37881,8 @@ module TencentCloud
           @RoleType = params['RoleType']
           @SystemInit = params['SystemInit']
           @Params = params['Params']
+          @CreateTimeStr = params['CreateTimeStr']
+          @Creator = params['Creator']
         end
       end
 

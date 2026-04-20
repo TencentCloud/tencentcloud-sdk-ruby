@@ -31143,52 +31143,54 @@ module TencentCloud
 
       # VPN网关对象。
       class VpnGateway < TencentCloud::Common::AbstractModel
-        # @param VpnGatewayId: 网关实例ID。
+        # @param VpnGatewayId: <p>网关实例ID。</p>
         # @type VpnGatewayId: String
-        # @param VpcId: VPC实例ID。
+        # @param VpcId: <p>VPC实例ID。</p>
         # @type VpcId: String
-        # @param VpnGatewayName: 网关实例名称。
+        # @param VpnGatewayName: <p>网关实例名称。</p>
         # @type VpnGatewayName: String
-        # @param Type: 网关实例类型：'IPSEC', 'SSL','CCN','SSL_CCN'。
+        # @param Type: <p>网关实例类型</p><p>枚举值：</p><ul><li>IPSEC： IPSEC VPC类型VPN</li><li>SSL： SSL VPC类型VPN</li><li>CCN： IPSEC CCN类型VPN</li><li>SSL_CCN： SSL CCN类型VPN</li></ul><p>默认值：IPSEC</p>
         # @type Type: String
-        # @param State: 网关实例状态， 'PENDING'：生产中，'PENDING_ERROR'：生产失败，'DELETING'：删除中，'DELETING_ERROR'：删除失败，'AVAILABLE'：运行中。
+        # @param State: <p>网关实例状态。</p><p>枚举值：</p><ul><li>PENDING： 生产中</li><li>PENDING_ERROR： 生产失败</li><li>DELETING： 删除中</li><li>DELETING_ERROR： 生产失败</li><li>AVAILABLE： 运行中</li></ul>
         # @type State: String
-        # @param PublicIpAddress: 网关公网IP。
+        # @param PublicIpAddress: <p>网关公网IP。</p>
         # @type PublicIpAddress: String
-        # @param RenewFlag: 网关续费类型：'NOTIFY_AND_MANUAL_RENEW'：手动续费，'NOTIFY_AND_AUTO_RENEW'：自动续费，'NOT_NOTIFY_AND_NOT_RENEW'：到期不续费。
+        # @param RenewFlag: <p>网关续费类型：&#39;NOTIFY_AND_MANUAL_RENEW&#39;：手动续费，&#39;NOTIFY_AND_AUTO_RENEW&#39;：自动续费，&#39;NOT_NOTIFY_AND_NOT_RENEW&#39;：到期不续费。</p>
         # @type RenewFlag: String
-        # @param InstanceChargeType: 网关付费类型：POSTPAID_BY_HOUR：按量计费，PREPAID：包年包月预付费。
+        # @param InstanceChargeType: <p>网关付费类型：POSTPAID_BY_HOUR：按量计费，PREPAID：包年包月预付费。</p>
         # @type InstanceChargeType: String
-        # @param InternetMaxBandwidthOut: 网关出带宽，单位：Mbps。
+        # @param InternetMaxBandwidthOut: <p>网关出带宽</p><p>单位：Mbps</p>
         # @type InternetMaxBandwidthOut: Integer
-        # @param CreatedTime: 创建时间。
+        # @param CreatedTime: <p>创建时间。</p>
         # @type CreatedTime: String
-        # @param ExpiredTime: 预付费网关过期时间。
+        # @param ExpiredTime: <p>预付费网关过期时间。</p>
         # @type ExpiredTime: String
-        # @param IsAddressBlocked: 公网IP是否被封堵。
+        # @param IsAddressBlocked: <p>公网IP是否被封堵。</p>
         # @type IsAddressBlocked: Boolean
-        # @param NewPurchasePlan: 计费模式变更，PREPAID_TO_POSTPAID：包年包月预付费到期转按小时后付费。
+        # @param NewPurchasePlan: <p>计费模式变更，PREPAID_TO_POSTPAID：包年包月预付费到期转按小时后付费。</p>
         # @type NewPurchasePlan: String
-        # @param RestrictState: 网关计费状态，PROTECTIVELY_ISOLATED：被安全隔离的实例，NORMAL：正常。
+        # @param RestrictState: <p>网关计费状态，PROTECTIVELY_ISOLATED：被安全隔离的实例，NORMAL：正常。</p>
         # @type RestrictState: String
-        # @param Zone: 可用区，如：ap-guangzhou-2。
+        # @param Zone: <p>可用区，如：ap-guangzhou-2。</p>
         # @type Zone: String
-        # @param VpnGatewayQuotaSet: 网关带宽配额信息。
+        # @param VpnGatewayQuotaSet: <p>网关带宽配额信息。</p>
         # @type VpnGatewayQuotaSet: Array
-        # @param Version: 网关实例版本信息。
+        # @param Version: <p>网关实例版本信息。</p>
         # @type Version: String
-        # @param NetworkInstanceId: Type值为CCN时，该值表示云联网实例ID。
+        # @param NetworkInstanceId: <p>Type值为CCN/SSL_CCN时，该值表示云联网实例ID。</p>
         # @type NetworkInstanceId: String
-        # @param CdcId: CDC 实例ID。
+        # @param CdcId: <p>CDC 实例ID。</p>
         # @type CdcId: String
-        # @param MaxConnection: SSL-VPN 客户端连接数。
+        # @param MaxConnection: <p>SSL-VPN 客户端连接数。</p>
         # @type MaxConnection: Integer
-        # @param BgpAsn: Bgp ASN
+        # @param BgpAsn: <p>Bgp ASN</p>
         # @type BgpAsn: Integer
+        # @param TagSet: <p>标签列表</p>
+        # @type TagSet: Array
 
-        attr_accessor :VpnGatewayId, :VpcId, :VpnGatewayName, :Type, :State, :PublicIpAddress, :RenewFlag, :InstanceChargeType, :InternetMaxBandwidthOut, :CreatedTime, :ExpiredTime, :IsAddressBlocked, :NewPurchasePlan, :RestrictState, :Zone, :VpnGatewayQuotaSet, :Version, :NetworkInstanceId, :CdcId, :MaxConnection, :BgpAsn
+        attr_accessor :VpnGatewayId, :VpcId, :VpnGatewayName, :Type, :State, :PublicIpAddress, :RenewFlag, :InstanceChargeType, :InternetMaxBandwidthOut, :CreatedTime, :ExpiredTime, :IsAddressBlocked, :NewPurchasePlan, :RestrictState, :Zone, :VpnGatewayQuotaSet, :Version, :NetworkInstanceId, :CdcId, :MaxConnection, :BgpAsn, :TagSet
 
-        def initialize(vpngatewayid=nil, vpcid=nil, vpngatewayname=nil, type=nil, state=nil, publicipaddress=nil, renewflag=nil, instancechargetype=nil, internetmaxbandwidthout=nil, createdtime=nil, expiredtime=nil, isaddressblocked=nil, newpurchaseplan=nil, restrictstate=nil, zone=nil, vpngatewayquotaset=nil, version=nil, networkinstanceid=nil, cdcid=nil, maxconnection=nil, bgpasn=nil)
+        def initialize(vpngatewayid=nil, vpcid=nil, vpngatewayname=nil, type=nil, state=nil, publicipaddress=nil, renewflag=nil, instancechargetype=nil, internetmaxbandwidthout=nil, createdtime=nil, expiredtime=nil, isaddressblocked=nil, newpurchaseplan=nil, restrictstate=nil, zone=nil, vpngatewayquotaset=nil, version=nil, networkinstanceid=nil, cdcid=nil, maxconnection=nil, bgpasn=nil, tagset=nil)
           @VpnGatewayId = vpngatewayid
           @VpcId = vpcid
           @VpnGatewayName = vpngatewayname
@@ -31210,6 +31212,7 @@ module TencentCloud
           @CdcId = cdcid
           @MaxConnection = maxconnection
           @BgpAsn = bgpasn
+          @TagSet = tagset
         end
 
         def deserialize(params)
@@ -31241,6 +31244,14 @@ module TencentCloud
           @CdcId = params['CdcId']
           @MaxConnection = params['MaxConnection']
           @BgpAsn = params['BgpAsn']
+          unless params['TagSet'].nil?
+            @TagSet = []
+            params['TagSet'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @TagSet << tag_tmp
+            end
+          end
         end
       end
 
