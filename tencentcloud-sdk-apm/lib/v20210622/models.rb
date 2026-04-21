@@ -2485,31 +2485,21 @@ module TencentCloud
 
       # DescribeGeneralOTSpanList请求参数结构体
       class DescribeGeneralOTSpanListRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 业务系统 ID
+        # @param InstanceId: <p>业务系统 ID</p>
         # @type InstanceId: String
-        # @param StartTime: Span 查询开始时间戳（单位：秒）
+        # @param StartTime: <p>Span 查询开始时间戳（单位：秒）</p>
         # @type StartTime: Integer
-        # @param EndTime: Span 查询结束时间戳（单位：秒）
+        # @param EndTime: <p>Span 查询结束时间戳（单位：秒）</p>
         # @type EndTime: Integer
-        # @param Filters: 通用过滤参数
+        # @param Filters: <p>通用过滤参数 支持的过滤key如service.name</p>
         # @type Filters: Array
-        # @param OrderBy: 排序
-        # 现支持的 Key 有：
-
-        # - startTime(开始时间)
-        # - endTime(结束时间)
-        # - duration(响应时间)
-
-        # 现支持的 Value 有：
-
-        # - desc(降序排序)
-        # - asc(升序排序)
+        # @param OrderBy: <p>排序<br>现支持的 Key 有：</p><ul><li>startTime(开始时间)</li><li>endTime(结束时间)</li><li>duration(响应时间)</li></ul><p>现支持的 Value 有：</p><ul><li>desc(降序排序)</li><li>asc(升序排序)</li></ul>
         # @type OrderBy: :class:`Tencentcloud::Apm.v20210622.models.OrderBy`
-        # @param BusinessName: 业务自身服务名，控制台用户请填写taw
+        # @param BusinessName: <p>业务自身服务名，控制台用户请填写taw</p>
         # @type BusinessName: String
-        # @param Limit: 单页项目个数，默认为10000，合法取值范围为0～10000
+        # @param Limit: <p>单页项目个数，默认为10000，合法取值范围为0～10000</p>
         # @type Limit: Integer
-        # @param Offset: 分页
+        # @param Offset: <p>分页</p>
         # @type Offset: Integer
 
         attr_accessor :InstanceId, :StartTime, :EndTime, :Filters, :OrderBy, :BusinessName, :Limit, :Offset
@@ -2549,12 +2539,9 @@ module TencentCloud
 
       # DescribeGeneralOTSpanList返回参数结构体
       class DescribeGeneralOTSpanListResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 总数量
+        # @param TotalCount: <p>总数量</p>
         # @type TotalCount: Integer
-        # @param Spans: Spans字段中包含了链路数据的全部内容，由于数据经过了压缩，需要对结果进行如下三步转换，以还原始的文本。
-        # 1. 将Spans字段中的文本进行 Base64 解码，得到经过压缩后字节数组。
-        # 2. 使用 gzip 对压缩后的字节数组进行解压，得到压缩前的字节数组。
-        # 3. 使用 UTF-8 字符集，将压缩前的字节数组转换为文本。
+        # @param Spans: <p>Spans字段中包含了链路数据的全部内容，由于数据经过了压缩，需要对结果进行如下三步转换，以还原始的文本。</p><ol><li>将Spans字段中的文本进行 Base64 解码，得到经过压缩后字节数组。</li><li>使用 gzip 对压缩后的字节数组进行解压，得到压缩前的字节数组。</li><li>使用 UTF-8 字符集，将压缩前的字节数组转换为文本。</li></ol>
         # @type Spans: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2576,31 +2563,21 @@ module TencentCloud
 
       # DescribeGeneralSpanList请求参数结构体
       class DescribeGeneralSpanListRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 业务系统 ID
+        # @param InstanceId: <p>业务系统 ID</p>
         # @type InstanceId: String
-        # @param StartTime: Span 查询开始时间戳（单位：秒）
+        # @param StartTime: <p>Span 查询开始时间戳（单位：秒）</p>
         # @type StartTime: Integer
-        # @param EndTime: Span 查询结束时间戳（单位：秒）
+        # @param EndTime: <p>Span 查询结束时间戳（单位：秒）</p>
         # @type EndTime: Integer
-        # @param Filters: 通用过滤参数
+        # @param Filters: <p>通用过滤参数 支持的过滤key如service.name</p>
         # @type Filters: Array
-        # @param OrderBy: 排序
-        # 现支持的 Key 有：
-
-        # - startTime(开始时间)
-        # - endTime(结束时间)
-        # - duration(响应时间)
-
-        # 现支持的 Value 有：
-
-        # - desc(降序排序)
-        # - asc(升序排序)
+        # @param OrderBy: <p>排序<br>现支持的 Key 有：</p><ul><li>startTime(开始时间)</li><li>endTime(结束时间)</li><li>duration(响应时间)</li></ul><p>现支持的 Value 有：</p><ul><li>desc(降序排序)</li><li>asc(升序排序)</li></ul>
         # @type OrderBy: :class:`Tencentcloud::Apm.v20210622.models.OrderBy`
-        # @param BusinessName: 业务自身服务名，控制台用户请填写taw
+        # @param BusinessName: <p>业务自身服务名，控制台用户请填写taw</p>
         # @type BusinessName: String
-        # @param Limit: 单页项目个数，默认为1000，合法取值范围为1～1000
+        # @param Limit: <p>单页项目个数，默认为1000，合法取值范围为1～1000</p>
         # @type Limit: Integer
-        # @param Offset: 分页
+        # @param Offset: <p>分页</p>
         # @type Offset: Integer
 
         attr_accessor :InstanceId, :StartTime, :EndTime, :Filters, :OrderBy, :BusinessName, :Limit, :Offset
@@ -2640,9 +2617,9 @@ module TencentCloud
 
       # DescribeGeneralSpanList返回参数结构体
       class DescribeGeneralSpanListResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 总数量
+        # @param TotalCount: <p>总数量</p>
         # @type TotalCount: Integer
-        # @param Spans: Span 分页列表
+        # @param Spans: <p>Span 分页列表</p>
         # @type Spans: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3184,11 +3161,11 @@ module TencentCloud
 
       # 查询过滤参数
       class Filter < TencentCloud::Common::AbstractModel
-        # @param Type: 过滤方式（=, !=, in）
+        # @param Type: <p>过滤方式（=, !=, in）</p>
         # @type Type: String
-        # @param Key: 过滤维度名
+        # @param Key: <p>过滤维度名</p><p>详情参考实际接口字段描述</p>
         # @type Key: String
-        # @param Value: 过滤值，in过滤方式用逗号分割多个值
+        # @param Value: <p>过滤值，in过滤方式用逗号分割多个值</p>
         # @type Value: String
 
         attr_accessor :Type, :Key, :Value

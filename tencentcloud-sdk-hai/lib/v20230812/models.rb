@@ -1233,17 +1233,25 @@ module TencentCloud
 
       # 镜像相关配置
       class ImageInfo < TencentCloud::Common::AbstractModel
-        # @param ImageRegistryUrl: tcr仓库地址
+        # @param ImageRegistryUrl: <p>tcr仓库地址</p>
         # @type ImageRegistryUrl: String
+        # @param ImageRegistryUsername: <p>仓库用户名</p>
+        # @type ImageRegistryUsername: String
+        # @param ImageRegistryPassword: <p>仓库密码</p>
+        # @type ImageRegistryPassword: String
 
-        attr_accessor :ImageRegistryUrl
+        attr_accessor :ImageRegistryUrl, :ImageRegistryUsername, :ImageRegistryPassword
 
-        def initialize(imageregistryurl=nil)
+        def initialize(imageregistryurl=nil, imageregistryusername=nil, imageregistrypassword=nil)
           @ImageRegistryUrl = imageregistryurl
+          @ImageRegistryUsername = imageregistryusername
+          @ImageRegistryPassword = imageregistrypassword
         end
 
         def deserialize(params)
           @ImageRegistryUrl = params['ImageRegistryUrl']
+          @ImageRegistryUsername = params['ImageRegistryUsername']
+          @ImageRegistryPassword = params['ImageRegistryPassword']
         end
       end
 

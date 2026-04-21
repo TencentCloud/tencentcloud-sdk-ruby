@@ -1206,6 +1206,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 请求集群实例
+
+        # @param request: Request instance for RequestInstances.
+        # @type request: :class:`Tencentcloud::es::V20180416::RequestInstancesRequest`
+        # @rtype: :class:`Tencentcloud::es::V20180416::RequestInstancesResponse`
+        def RequestInstances(request)
+          body = send_request('RequestInstances', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RequestInstancesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # GET请求集群实例
+
+        # @param request: Request instance for RequestInstancesByGet.
+        # @type request: :class:`Tencentcloud::es::V20180416::RequestInstancesByGetRequest`
+        # @rtype: :class:`Tencentcloud::es::V20180416::RequestInstancesByGetResponse`
+        def RequestInstancesByGet(request)
+          body = send_request('RequestInstancesByGet', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RequestInstancesByGetResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 重启ES集群实例(用于系统版本更新等操作)
 
         # @param request: Request instance for RestartInstance.

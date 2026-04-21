@@ -162,24 +162,26 @@ module TencentCloud
 
       # CreateAigcElement请求参数结构体
       class CreateAigcElementRequest < TencentCloud::Common::AbstractModel
-        # @param Name: 
+        # @param Name: <p>主体名称<br>不能超过20个字符</p>
         # @type Name: String
-        # @param Description: 
+        # @param Description: <p>主体描述</p><p>不能超过100个字符</p>
         # @type Description: String
-        # @param ReferenceType: 
+        # @param ReferenceType: <p>主体参考方式</p><p>枚举值：<br>video_refer<br>image_refer<br>video_refer: 视频角色主体，此时将参考element_video_list定义主体外表<br>image_refer: 多图主体，此时将参考element_image_list定义主体外表</p>
         # @type ReferenceType: String
-        # @param ElementImageList: 
+        # @param ElementImageList: <p>主体参考图，可通过多张图片设定主体及其细节</p><p>包括正面参考图和其他角度或特写参考图，其中：至少包括1张正面参考图，由frontal_image参数定义；需包括1～3张其他参考图，需与正面参考图有差异，由image_url参数定义<br>支持传入图片Base64编码或图片URL（确保可访问）</p><p>图片格式支持.jpg / .jpeg / .png。图片文件大小不能超过10MB，图片宽高尺寸不小于300px，图片宽高比要在1:2.5 ~ 2.5:1之间</p><p>reference_type参数值为 image_refer 时，当前参数必填</p>
         # @type ElementImageList: :class:`Tencentcloud::Vclm.v20240523.models.ElementImageList`
-        # @param VideoList: 
+        # @param VideoList: <p>主体参考视频，可通过视频设定主体及其细节</p><p>可上传有声视频，有声视频包含人声则触发音色定制（定制+入音色库+与主体绑定）</p><p>暂时仅支持通过视频定制写实风格的人形形象</p><p>参考视频时当前参数必填，参考图片时当前参数无效</p><p>用key:value承载。视频格式仅支持MP4/MOV。仅支持时长介于3s～8s之间、宽高比例需为16:9或9:16的1080P视频。至多仅支持上传1段视频，视频大小不超过200MB。video_url参数值不得为空</p>
         # @type VideoList: Array
-        # @param Provider: 
+        # @param Provider: <p>厂商</p>
         # @type Provider: Array
-        # @param TagList: 
+        # @param TagList: <p>为主体配置标签，一个主体可以配置多个标签</p><p>用key:value承载。tag的ID与名称：o_101 热梗, o_102 人物, o_103 动物, o_104 道具, o_105 服饰, o_106 场景, o_107 特效, o_108 其他</p>
         # @type TagList: Array
+        # @param ElementVoiceId: <p>主体音色ID，可绑定音色库中已有音色</p><p>当前参数为空时，当前主体不绑定音色<br>为多图主体绑定音色时，仅支持人物形象主体或类人形象主体</p>
+        # @type ElementVoiceId: String
 
-        attr_accessor :Name, :Description, :ReferenceType, :ElementImageList, :VideoList, :Provider, :TagList
+        attr_accessor :Name, :Description, :ReferenceType, :ElementImageList, :VideoList, :Provider, :TagList, :ElementVoiceId
 
-        def initialize(name=nil, description=nil, referencetype=nil, elementimagelist=nil, videolist=nil, provider=nil, taglist=nil)
+        def initialize(name=nil, description=nil, referencetype=nil, elementimagelist=nil, videolist=nil, provider=nil, taglist=nil, elementvoiceid=nil)
           @Name = name
           @Description = description
           @ReferenceType = referencetype
@@ -187,6 +189,7 @@ module TencentCloud
           @VideoList = videolist
           @Provider = provider
           @TagList = taglist
+          @ElementVoiceId = elementvoiceid
         end
 
         def deserialize(params)
@@ -207,6 +210,7 @@ module TencentCloud
               @TagList << taglist_tmp
             end
           end
+          @ElementVoiceId = params['ElementVoiceId']
         end
       end
 
@@ -214,13 +218,13 @@ module TencentCloud
       class CreateAigcElementResponse < TencentCloud::Common::AbstractModel
         # @param JobId: <p>任务ID。</p>
         # @type JobId: String
-        # @param ElementId: 
+        # @param ElementId: <p>主体Id</p>
         # @type ElementId: String
-        # @param Status: 
+        # @param Status: <p>任务状态</p><p>默认值：任务状态</p>
         # @type Status: String
-        # @param Provider: 
+        # @param Provider: <p>厂商</p>
         # @type Provider: Array
-        # @param CreatedAt: 
+        # @param CreatedAt: <p>任务创建时间</p>
         # @type CreatedAt: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -288,7 +292,7 @@ module TencentCloud
 
       # DescribeAigcElement请求参数结构体
       class DescribeAigcElementRequest < TencentCloud::Common::AbstractModel
-        # @param ElementId: 
+        # @param ElementId: <p>主体Id</p>
         # @type ElementId: String
 
         attr_accessor :ElementId
@@ -328,12 +332,14 @@ module TencentCloud
         # @type CreatedAt: String
         # @param UpdatedAt: <p>更新时间</p>
         # @type UpdatedAt: String
+        # @param ElementVoiceId: <p>音色Id</p>
+        # @type ElementVoiceId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Name, :ElementId, :Description, :ReferenceType, :Status, :Provider, :ElementImageList, :VideoList, :TagList, :ProviderDetails, :CreatedAt, :UpdatedAt, :RequestId
+        attr_accessor :Name, :ElementId, :Description, :ReferenceType, :Status, :Provider, :ElementImageList, :VideoList, :TagList, :ProviderDetails, :CreatedAt, :UpdatedAt, :ElementVoiceId, :RequestId
 
-        def initialize(name=nil, elementid=nil, description=nil, referencetype=nil, status=nil, provider=nil, elementimagelist=nil, videolist=nil, taglist=nil, providerdetails=nil, createdat=nil, updatedat=nil, requestid=nil)
+        def initialize(name=nil, elementid=nil, description=nil, referencetype=nil, status=nil, provider=nil, elementimagelist=nil, videolist=nil, taglist=nil, providerdetails=nil, createdat=nil, updatedat=nil, elementvoiceid=nil, requestid=nil)
           @Name = name
           @ElementId = elementid
           @Description = description
@@ -346,6 +352,7 @@ module TencentCloud
           @ProviderDetails = providerdetails
           @CreatedAt = createdat
           @UpdatedAt = updatedat
+          @ElementVoiceId = elementvoiceid
           @RequestId = requestid
         end
 
@@ -379,6 +386,7 @@ module TencentCloud
           end
           @CreatedAt = params['CreatedAt']
           @UpdatedAt = params['UpdatedAt']
+          @ElementVoiceId = params['ElementVoiceId']
           @RequestId = params['RequestId']
         end
       end
@@ -638,15 +646,19 @@ module TencentCloud
       class DescribeImageToVideoJobRequest < TencentCloud::Common::AbstractModel
         # @param JobId: <p>任务ID。</p>
         # @type JobId: String
+        # @param ExternalTaskId: 
+        # @type ExternalTaskId: String
 
-        attr_accessor :JobId
+        attr_accessor :JobId, :ExternalTaskId
 
-        def initialize(jobid=nil)
+        def initialize(jobid=nil, externaltaskid=nil)
           @JobId = jobid
+          @ExternalTaskId = externaltaskid
         end
 
         def deserialize(params)
           @JobId = params['JobId']
+          @ExternalTaskId = params['ExternalTaskId']
         end
       end
 
@@ -666,12 +678,14 @@ module TencentCloud
         # @type Duration: String
         # @param FinalUnitDeduction: <p>任务最终扣减积分数值</p>
         # @type FinalUnitDeduction: String
+        # @param ExternalTaskId: 
+        # @type ExternalTaskId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Status, :ErrorCode, :ErrorMessage, :ResultVideoUrl, :VideoId, :Duration, :FinalUnitDeduction, :RequestId
+        attr_accessor :Status, :ErrorCode, :ErrorMessage, :ResultVideoUrl, :VideoId, :Duration, :FinalUnitDeduction, :ExternalTaskId, :RequestId
 
-        def initialize(status=nil, errorcode=nil, errormessage=nil, resultvideourl=nil, videoid=nil, duration=nil, finalunitdeduction=nil, requestid=nil)
+        def initialize(status=nil, errorcode=nil, errormessage=nil, resultvideourl=nil, videoid=nil, duration=nil, finalunitdeduction=nil, externaltaskid=nil, requestid=nil)
           @Status = status
           @ErrorCode = errorcode
           @ErrorMessage = errormessage
@@ -679,6 +693,7 @@ module TencentCloud
           @VideoId = videoid
           @Duration = duration
           @FinalUnitDeduction = finalunitdeduction
+          @ExternalTaskId = externaltaskid
           @RequestId = requestid
         end
 
@@ -690,6 +705,7 @@ module TencentCloud
           @VideoId = params['VideoId']
           @Duration = params['Duration']
           @FinalUnitDeduction = params['FinalUnitDeduction']
+          @ExternalTaskId = params['ExternalTaskId']
           @RequestId = params['RequestId']
         end
       end
@@ -754,15 +770,19 @@ module TencentCloud
       class DescribeMotionControlKlingJobRequest < TencentCloud::Common::AbstractModel
         # @param JobId: <p>任务ID</p>
         # @type JobId: String
+        # @param ExternalTaskId: 
+        # @type ExternalTaskId: String
 
-        attr_accessor :JobId
+        attr_accessor :JobId, :ExternalTaskId
 
-        def initialize(jobid=nil)
+        def initialize(jobid=nil, externaltaskid=nil)
           @JobId = jobid
+          @ExternalTaskId = externaltaskid
         end
 
         def deserialize(params)
           @JobId = params['JobId']
+          @ExternalTaskId = params['ExternalTaskId']
         end
       end
 
@@ -978,15 +998,19 @@ module TencentCloud
       class DescribeTextToVideoJobRequest < TencentCloud::Common::AbstractModel
         # @param JobId: <p>任务ID。</p>
         # @type JobId: String
+        # @param ExternalTaskId: 
+        # @type ExternalTaskId: String
 
-        attr_accessor :JobId
+        attr_accessor :JobId, :ExternalTaskId
 
-        def initialize(jobid=nil)
+        def initialize(jobid=nil, externaltaskid=nil)
           @JobId = jobid
+          @ExternalTaskId = externaltaskid
         end
 
         def deserialize(params)
           @JobId = params['JobId']
+          @ExternalTaskId = params['ExternalTaskId']
         end
       end
 
@@ -1006,12 +1030,14 @@ module TencentCloud
         # @type Duration: String
         # @param FinalUnitDeduction: <p>任务最终扣减积分数值</p>
         # @type FinalUnitDeduction: String
+        # @param ExternalTaskId: 
+        # @type ExternalTaskId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Status, :ErrorCode, :ErrorMessage, :ResultVideoUrl, :VideoId, :Duration, :FinalUnitDeduction, :RequestId
+        attr_accessor :Status, :ErrorCode, :ErrorMessage, :ResultVideoUrl, :VideoId, :Duration, :FinalUnitDeduction, :ExternalTaskId, :RequestId
 
-        def initialize(status=nil, errorcode=nil, errormessage=nil, resultvideourl=nil, videoid=nil, duration=nil, finalunitdeduction=nil, requestid=nil)
+        def initialize(status=nil, errorcode=nil, errormessage=nil, resultvideourl=nil, videoid=nil, duration=nil, finalunitdeduction=nil, externaltaskid=nil, requestid=nil)
           @Status = status
           @ErrorCode = errorcode
           @ErrorMessage = errormessage
@@ -1019,6 +1045,7 @@ module TencentCloud
           @VideoId = videoid
           @Duration = duration
           @FinalUnitDeduction = finalunitdeduction
+          @ExternalTaskId = externaltaskid
           @RequestId = requestid
         end
 
@@ -1030,6 +1057,7 @@ module TencentCloud
           @VideoId = params['VideoId']
           @Duration = params['Duration']
           @FinalUnitDeduction = params['FinalUnitDeduction']
+          @ExternalTaskId = params['ExternalTaskId']
           @RequestId = params['RequestId']
         end
       end
@@ -1142,15 +1170,19 @@ module TencentCloud
       class DescribeVideoEditKlingJobRequest < TencentCloud::Common::AbstractModel
         # @param JobId: <p>任务ID</p>
         # @type JobId: String
+        # @param ExternalTaskId: 
+        # @type ExternalTaskId: String
 
-        attr_accessor :JobId
+        attr_accessor :JobId, :ExternalTaskId
 
-        def initialize(jobid=nil)
+        def initialize(jobid=nil, externaltaskid=nil)
           @JobId = jobid
+          @ExternalTaskId = externaltaskid
         end
 
         def deserialize(params)
           @JobId = params['JobId']
+          @ExternalTaskId = params['ExternalTaskId']
         end
       end
 
@@ -1202,15 +1234,19 @@ module TencentCloud
       class DescribeVideoExtendKlingJobRequest < TencentCloud::Common::AbstractModel
         # @param JobId: <p>任务ID。</p>
         # @type JobId: String
+        # @param ExternalTaskId: 
+        # @type ExternalTaskId: String
 
-        attr_accessor :JobId
+        attr_accessor :JobId, :ExternalTaskId
 
-        def initialize(jobid=nil)
+        def initialize(jobid=nil, externaltaskid=nil)
           @JobId = jobid
+          @ExternalTaskId = externaltaskid
         end
 
         def deserialize(params)
           @JobId = params['JobId']
+          @ExternalTaskId = params['ExternalTaskId']
         end
       end
 
@@ -2246,10 +2282,12 @@ module TencentCloud
         # @type CallbackUrl: String
         # @param VoiceList: <p>生成视频时所引用的音色的列表</p><p>一次视频生成任务至多引用2个音色<br>当VoiceList参数不为空且Prompt参数中引用音色ID时，视频生成任务按“有指定音色”计量计费<br>VoiceId参数值通过音色定制接口返回，也可使用系统预置音色，详见音色定制相关API；非对口型API的VoiceId<br>ElementList参数与VoiceList参数互斥，不能共存<br>v3模型不支持指定音色<br>用key:value承载，如下：<br>&quot;VoiceList&quot;:[<br>  {&quot;VoiceId&quot;:&quot;VoiceId_1&quot;},<br>  {&quot;VoiceId&quot;:&quot;VoiceId_2&quot;}<br>]</p>
         # @type VoiceList: Array
+        # @param ExternalTaskId: 
+        # @type ExternalTaskId: String
 
-        attr_accessor :Model, :Image, :ImageTail, :Prompt, :NegativePrompt, :Duration, :Mode, :CfgScale, :Sound, :LogoAdd, :LogoParam, :MultiShot, :ShotType, :MultiPrompt, :ElementList, :StaticMask, :DynamicMasks, :CameraControl, :CallbackUrl, :VoiceList
+        attr_accessor :Model, :Image, :ImageTail, :Prompt, :NegativePrompt, :Duration, :Mode, :CfgScale, :Sound, :LogoAdd, :LogoParam, :MultiShot, :ShotType, :MultiPrompt, :ElementList, :StaticMask, :DynamicMasks, :CameraControl, :CallbackUrl, :VoiceList, :ExternalTaskId
 
-        def initialize(model=nil, image=nil, imagetail=nil, prompt=nil, negativeprompt=nil, duration=nil, mode=nil, cfgscale=nil, sound=nil, logoadd=nil, logoparam=nil, multishot=nil, shottype=nil, multiprompt=nil, elementlist=nil, staticmask=nil, dynamicmasks=nil, cameracontrol=nil, callbackurl=nil, voicelist=nil)
+        def initialize(model=nil, image=nil, imagetail=nil, prompt=nil, negativeprompt=nil, duration=nil, mode=nil, cfgscale=nil, sound=nil, logoadd=nil, logoparam=nil, multishot=nil, shottype=nil, multiprompt=nil, elementlist=nil, staticmask=nil, dynamicmasks=nil, cameracontrol=nil, callbackurl=nil, voicelist=nil, externaltaskid=nil)
           @Model = model
           @Image = image
           @ImageTail = imagetail
@@ -2270,6 +2308,7 @@ module TencentCloud
           @CameraControl = cameracontrol
           @CallbackUrl = callbackurl
           @VoiceList = voicelist
+          @ExternalTaskId = externaltaskid
         end
 
         def deserialize(params)
@@ -2333,6 +2372,7 @@ module TencentCloud
               @VoiceList << voice_tmp
             end
           end
+          @ExternalTaskId = params['ExternalTaskId']
         end
       end
 
@@ -2340,18 +2380,22 @@ module TencentCloud
       class SubmitImageToVideoJobResponse < TencentCloud::Common::AbstractModel
         # @param JobId: <p>任务ID。</p>
         # @type JobId: String
+        # @param ExternalTaskId: 
+        # @type ExternalTaskId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :JobId, :RequestId
+        attr_accessor :JobId, :ExternalTaskId, :RequestId
 
-        def initialize(jobid=nil, requestid=nil)
+        def initialize(jobid=nil, externaltaskid=nil, requestid=nil)
           @JobId = jobid
+          @ExternalTaskId = externaltaskid
           @RequestId = requestid
         end
 
         def deserialize(params)
           @JobId = params['JobId']
+          @ExternalTaskId = params['ExternalTaskId']
           @RequestId = params['RequestId']
         end
       end
@@ -2465,6 +2509,8 @@ module TencentCloud
         # @type Model: String
         # @param Prompt: <p>文本提示词，可包含正向描述和负向描述</p><p>可将提示词模板化来满足不同的视频生成需求</p><p>不能超过2500个字</p>
         # @type Prompt: String
+        # @param ExternalTaskId: 
+        # @type ExternalTaskId: String
         # @param Image: <p>参考图像，生成视频中的人物、背景等元素均以参考图为准  视频内容需满足以下要求：  人物比例尽量与参考动作比例一致，尽量避免全身动作驱动半身人物进行生成  人物需要露出清晰的上半身或全身的肢体及头部，避免遮挡  画面中人物避免存在极端朝向，比如倒立、平卧等。人物占画面比例不得太低  支持真实/风格化的角色（包括人物/类人动物/部分纯动物/部分类人肢体比例的角色）通过  包含支持传入图片Base64编码或图片URL（确保可访问）。</p>
         # @type Image: String
         # @param Video: <p>参考视频的获取链接。生成视频中的人物动作与参考视频一致。  视频内容需满足以下要求：  人物需要漏出清晰的上半身或全身的全部肢体及头部，避免遮挡  建议上传1人动作视频，2人及以上会取画面占比最大的人物动作进行生成  推荐使用真人动作，部分风格化的人物/类人肢体比例可以通过  动作视频一镜到底，角色始终出现在画面中，避免切镜、运镜等。否则会被截取  动作避免过快，相对平稳的动作生成效果更佳  视频文件支持.mp4/.mov，文件大小不超过100MB，仅支持长宽的边长均位于340px~3850px之间，上述校验不通过会返回错误码等信息  视频时长下限不短于3秒，时长上限与人物朝向参考（character_orientation）有关：  当人物朝向与视频中人物一致时，视频时长最长可达30秒；  当人物朝向与图片中人物一致时，视频时长最长可达10秒；  如果您的动作难度比较高、速度比较快，有一定概率生成不足上传视频时长的结果，因为模型只能提取有效动作时长进行生成，最短提取出3s可用连续动作即可生成。请注意，因此消耗的积分将无法退还，建议适当调整动作难度与速度  系统会校验视频内容，如有问题会返回错误码等信息。</p>
@@ -2484,11 +2530,12 @@ module TencentCloud
         # @param LogoParam: <p>默认在生成视频的右下角添加“ AI 生成”字样，如需替换为其他的标识图片，需前往 控制台 申请开启显示标识自主完成。</p>
         # @type LogoParam: :class:`Tencentcloud::Vclm.v20240523.models.LogoParam`
 
-        attr_accessor :Model, :Prompt, :Image, :Video, :Mode, :KeepOriginalSound, :CharacterOrientation, :ElementList, :CallbackUrl, :LogoAdd, :LogoParam
+        attr_accessor :Model, :Prompt, :ExternalTaskId, :Image, :Video, :Mode, :KeepOriginalSound, :CharacterOrientation, :ElementList, :CallbackUrl, :LogoAdd, :LogoParam
 
-        def initialize(model=nil, prompt=nil, image=nil, video=nil, mode=nil, keeporiginalsound=nil, characterorientation=nil, elementlist=nil, callbackurl=nil, logoadd=nil, logoparam=nil)
+        def initialize(model=nil, prompt=nil, externaltaskid=nil, image=nil, video=nil, mode=nil, keeporiginalsound=nil, characterorientation=nil, elementlist=nil, callbackurl=nil, logoadd=nil, logoparam=nil)
           @Model = model
           @Prompt = prompt
+          @ExternalTaskId = externaltaskid
           @Image = image
           @Video = video
           @Mode = mode
@@ -2503,6 +2550,7 @@ module TencentCloud
         def deserialize(params)
           @Model = params['Model']
           @Prompt = params['Prompt']
+          @ExternalTaskId = params['ExternalTaskId']
           @Image = params['Image']
           @Video = params['Video']
           @Mode = params['Mode']
@@ -2529,18 +2577,22 @@ module TencentCloud
       class SubmitMotionControlKlingJobResponse < TencentCloud::Common::AbstractModel
         # @param JobId: <p>任务ID</p>
         # @type JobId: String
+        # @param ExternalTaskId: 
+        # @type ExternalTaskId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :JobId, :RequestId
+        attr_accessor :JobId, :ExternalTaskId, :RequestId
 
-        def initialize(jobid=nil, requestid=nil)
+        def initialize(jobid=nil, externaltaskid=nil, requestid=nil)
           @JobId = jobid
+          @ExternalTaskId = externaltaskid
           @RequestId = requestid
         end
 
         def deserialize(params)
           @JobId = params['JobId']
+          @ExternalTaskId = params['ExternalTaskId']
           @RequestId = params['RequestId']
         end
       end
@@ -2817,13 +2869,13 @@ module TencentCloud
       class SubmitTextToVideoJobRequest < TencentCloud::Common::AbstractModel
         # @param Prompt: <p>正向文本提示词。不能超过2500个字符</p>
         # @type Prompt: String
-        # @param Model: <p>模型名称。<br>v1.6：Kling-V1-6<br>v2.0：Kling-V2-Master<br>v2.5：Kling-V2-5-Turbo<br>v2.6：Kling-V2-6<br>v3.0：kling-v3</p>
+        # @param Model: <p>模型名称。<br>v1.0：Kling-V1<br>v1.5：Kling-V1-5<br>v1.6：Kling-V1-6<br>v2.0：Kling-V2-Master<br>v2.1m：Kling-V2-1-master<br>v2.5：Kling-V2-5-Turbo<br>v2.6：Kling-V2-6<br>v3.0：kling-v3</p>
         # @type Model: String
         # @param NegativePrompt: <p>负向文本提示词。不能超过2500个字符</p>
         # @type NegativePrompt: String
-        # @param Duration: <p>生成视频时长，单位s。默认值为5。<br>枚举值：3，4，5，6，7，8，9，10，11，12，13，14，15</p><p>不同模型支持时长不同</p><ul><li>模型v1.6、v2.0、v2.5、v2.6：支持5、10</li><li>模型v3.0：支持3～15s</li></ul>
+        # @param Duration: <p>生成视频时长，单位s。默认值为5。<br>枚举值：3，4，5，6，7，8，9，10，11，12，13，14，15不同模型支持时长不同<br>●模型v1.0、v1.6、v2.0、v2.1m、v2.5、v2.6：支持5、10<br>●模型v3.0：支持3～15s</p>
         # @type Duration: String
-        # @param Mode: <p>生成视频的模式；</p><p>枚举值：std，pro</p><ul><li>其中std：标准模式（标准），基础模式，性价比高</li><li>其中pro：专家模式（高品质），高表现模式，生成视频质量更佳</li></ul><p>不同模型版本、视频模式支持范围不同</p><ul><li>v1.6：std、pro。</li><li>v2.0、v3.0：模型无需配置。</li><li>v2.5：首尾帧情况下支持pro。</li><li>v2.6：仅支持pro，选择v2.6模型时，默认自动生成高品质pro视频。</li></ul>
+        # @param Mode: <p>生成视频的模式；<br>枚举值：std，pro<br>●其中std：标准模式（标准），基础模式，性价比高<br>●其中pro：专家模式（高品质），高表现模式，生成视频质量更佳<br>不同模型版本、视频模式支持范围不同</p><p>●v1.6：std、pro。<br>●v1.0、v1.5：pro<br>●v2.0、v2.1m、v3.0：模型无需配置。<br>●v2.5：首尾帧情况下支持pro。<br>●v2.6：仅支持pro，选择v2.6模型时，默认自动生成高品质pro视频。</p>
         # @type Mode: String
         # @param CfgScale: <p>生成视频的自由度；值越大，模型自由度越小，与用户输入的提示词相关性越强。<br>取值范围：[0, 1]<br>v2.0、v2.5、v2.6 模型不支持当前参数<br>默认值：0.5。</p>
         # @type CfgScale: Float
@@ -2845,10 +2897,12 @@ module TencentCloud
         # @type CameraControl: :class:`Tencentcloud::Vclm.v20240523.models.CameraControl`
         # @param CallbackUrl: <p>本次任务结果回调通知地址，如果配置，服务端会在任务状态发生变更时主动通知</p>
         # @type CallbackUrl: String
+        # @param ExternalTaskId: 
+        # @type ExternalTaskId: String
 
-        attr_accessor :Prompt, :Model, :NegativePrompt, :Duration, :Mode, :CfgScale, :AspectRatio, :Sound, :LogoAdd, :LogoParam, :MultiShot, :ShotType, :MultiPrompt, :CameraControl, :CallbackUrl
+        attr_accessor :Prompt, :Model, :NegativePrompt, :Duration, :Mode, :CfgScale, :AspectRatio, :Sound, :LogoAdd, :LogoParam, :MultiShot, :ShotType, :MultiPrompt, :CameraControl, :CallbackUrl, :ExternalTaskId
 
-        def initialize(prompt=nil, model=nil, negativeprompt=nil, duration=nil, mode=nil, cfgscale=nil, aspectratio=nil, sound=nil, logoadd=nil, logoparam=nil, multishot=nil, shottype=nil, multiprompt=nil, cameracontrol=nil, callbackurl=nil)
+        def initialize(prompt=nil, model=nil, negativeprompt=nil, duration=nil, mode=nil, cfgscale=nil, aspectratio=nil, sound=nil, logoadd=nil, logoparam=nil, multishot=nil, shottype=nil, multiprompt=nil, cameracontrol=nil, callbackurl=nil, externaltaskid=nil)
           @Prompt = prompt
           @Model = model
           @NegativePrompt = negativeprompt
@@ -2864,6 +2918,7 @@ module TencentCloud
           @MultiPrompt = multiprompt
           @CameraControl = cameracontrol
           @CallbackUrl = callbackurl
+          @ExternalTaskId = externaltaskid
         end
 
         def deserialize(params)
@@ -2895,6 +2950,7 @@ module TencentCloud
             @CameraControl.deserialize(params['CameraControl'])
           end
           @CallbackUrl = params['CallbackUrl']
+          @ExternalTaskId = params['ExternalTaskId']
         end
       end
 
@@ -2902,18 +2958,22 @@ module TencentCloud
       class SubmitTextToVideoJobResponse < TencentCloud::Common::AbstractModel
         # @param JobId: <p>任务ID。</p>
         # @type JobId: String
+        # @param ExternalTaskId: 
+        # @type ExternalTaskId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :JobId, :RequestId
+        attr_accessor :JobId, :ExternalTaskId, :RequestId
 
-        def initialize(jobid=nil, requestid=nil)
+        def initialize(jobid=nil, externaltaskid=nil, requestid=nil)
           @JobId = jobid
+          @ExternalTaskId = externaltaskid
           @RequestId = requestid
         end
 
         def deserialize(params)
           @JobId = params['JobId']
+          @ExternalTaskId = params['ExternalTaskId']
           @RequestId = params['RequestId']
         end
       end
@@ -3098,6 +3158,8 @@ module TencentCloud
         # @type Prompt: String
         # @param Model: <p>模型名称，支持kling-video-o1，kling-v3-omni。默认kling-video-o1。</p>
         # @type Model: String
+        # @param ExternalTaskId: 
+        # @type ExternalTaskId: String
         # @param ImageList: <p>参考图列表</p><p>包括主体、场景、风格等参考图片，也可作为首帧或尾帧生成视频；当作为首帧或尾帧生成视频时：</p><p>通过type参数来定义图片是否为首尾帧：first_frame为首帧，end_frame为尾帧</p><p>暂时不支持仅尾帧，即有尾帧图时必须有首帧图</p><p>首帧或首尾帧生视频时，不能使用视频编辑功能</p><p>用key:value承载，如下：</p><p>&quot;ImageInfo&quot;:[<br>    {<br>      &quot;ImageUrl&quot;:&quot;https://cos.ap-guangzhou.myqcloud.com/test.png&quot;,<br>    &quot;Type&quot;:&quot;first_frame&quot;<br>  },<br>  {<br>      &quot;ImageUrl&quot;:&quot;https://cos.ap-guangzhou.myqcloud.com/test.png&quot;,<br>    &quot;Type&quot;:&quot;end_frame&quot;<br>  }<br>]<br>支持传入图片URL（确保可访问）</p><p>图片格式支持.jpg / .jpeg / .png</p><p>图片文件大小不能超过10MB，图片宽高尺寸不小于300px，不大于8000px，图片宽高比要在1:2.5 ~ 2.5:1之间</p><p>有参考视频时，参考图片数量不得超过4；无参考视频时，参考图片数量不得超过7</p><p>数组中超过2张图片时，不支持设置尾帧</p>
         # @type ImageList: Array
         # @param AspectRatio: <p>生成视频的画面纵横比（宽:高）</p><p>枚举值：16:9, 9:16, 1:1</p><p>未使用首帧参考或视频编辑功能时，当前参数必填</p>
@@ -3125,11 +3187,12 @@ module TencentCloud
         # @param Sound: <p>是否开启声音</p>
         # @type Sound: String
 
-        attr_accessor :Prompt, :Model, :ImageList, :AspectRatio, :Duration, :LogoAdd, :LogoParam, :Mode, :VideoList, :MultiShot, :ShotType, :MultiPrompt, :ElementList, :CallbackUrl, :Sound
+        attr_accessor :Prompt, :Model, :ExternalTaskId, :ImageList, :AspectRatio, :Duration, :LogoAdd, :LogoParam, :Mode, :VideoList, :MultiShot, :ShotType, :MultiPrompt, :ElementList, :CallbackUrl, :Sound
 
-        def initialize(prompt=nil, model=nil, imagelist=nil, aspectratio=nil, duration=nil, logoadd=nil, logoparam=nil, mode=nil, videolist=nil, multishot=nil, shottype=nil, multiprompt=nil, elementlist=nil, callbackurl=nil, sound=nil)
+        def initialize(prompt=nil, model=nil, externaltaskid=nil, imagelist=nil, aspectratio=nil, duration=nil, logoadd=nil, logoparam=nil, mode=nil, videolist=nil, multishot=nil, shottype=nil, multiprompt=nil, elementlist=nil, callbackurl=nil, sound=nil)
           @Prompt = prompt
           @Model = model
+          @ExternalTaskId = externaltaskid
           @ImageList = imagelist
           @AspectRatio = aspectratio
           @Duration = duration
@@ -3148,6 +3211,7 @@ module TencentCloud
         def deserialize(params)
           @Prompt = params['Prompt']
           @Model = params['Model']
+          @ExternalTaskId = params['ExternalTaskId']
           unless params['ImageList'].nil?
             @ImageList = []
             params['ImageList'].each do |i|
@@ -3199,18 +3263,22 @@ module TencentCloud
       class SubmitVideoEditKlingJobResponse < TencentCloud::Common::AbstractModel
         # @param JobId: <p>任务ID</p>
         # @type JobId: String
+        # @param ExternalTaskId: 
+        # @type ExternalTaskId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :JobId, :RequestId
+        attr_accessor :JobId, :ExternalTaskId, :RequestId
 
-        def initialize(jobid=nil, requestid=nil)
+        def initialize(jobid=nil, externaltaskid=nil, requestid=nil)
           @JobId = jobid
+          @ExternalTaskId = externaltaskid
           @RequestId = requestid
         end
 
         def deserialize(params)
           @JobId = params['JobId']
+          @ExternalTaskId = params['ExternalTaskId']
           @RequestId = params['RequestId']
         end
       end
@@ -3223,6 +3291,8 @@ module TencentCloud
         # @type Prompt: String
         # @param NegativePrompt: <p>负向文本提示词  不能超过2500个字符</p>
         # @type NegativePrompt: String
+        # @param ExternalTaskId: 
+        # @type ExternalTaskId: String
         # @param CfgScale: <p>提示词参考强度  取值范围：[0,1]，数值越大参考强度越大</p>
         # @type CfgScale: Float
         # @param CallbackUrl: <p>本次任务结果回调通知地址，如果配置，服务端会在任务状态发生变更时主动通知</p>
@@ -3232,12 +3302,13 @@ module TencentCloud
         # @param LogoParam: <p>标识内容设置。<br>默认在生成视频的右下角添加“ AI 生成”或“视频由 AI 生成”字样，如需替换为其他的标识图片，需前往   <a href="https://console.cloud.tencent.com/vtc/setting">控制台</a>  申请开启显式标识自主完成。</p>
         # @type LogoParam: :class:`Tencentcloud::Vclm.v20240523.models.LogoParam`
 
-        attr_accessor :VideoId, :Prompt, :NegativePrompt, :CfgScale, :CallbackUrl, :LogoAdd, :LogoParam
+        attr_accessor :VideoId, :Prompt, :NegativePrompt, :ExternalTaskId, :CfgScale, :CallbackUrl, :LogoAdd, :LogoParam
 
-        def initialize(videoid=nil, prompt=nil, negativeprompt=nil, cfgscale=nil, callbackurl=nil, logoadd=nil, logoparam=nil)
+        def initialize(videoid=nil, prompt=nil, negativeprompt=nil, externaltaskid=nil, cfgscale=nil, callbackurl=nil, logoadd=nil, logoparam=nil)
           @VideoId = videoid
           @Prompt = prompt
           @NegativePrompt = negativeprompt
+          @ExternalTaskId = externaltaskid
           @CfgScale = cfgscale
           @CallbackUrl = callbackurl
           @LogoAdd = logoadd
@@ -3248,6 +3319,7 @@ module TencentCloud
           @VideoId = params['VideoId']
           @Prompt = params['Prompt']
           @NegativePrompt = params['NegativePrompt']
+          @ExternalTaskId = params['ExternalTaskId']
           @CfgScale = params['CfgScale']
           @CallbackUrl = params['CallbackUrl']
           @LogoAdd = params['LogoAdd']
@@ -3262,18 +3334,22 @@ module TencentCloud
       class SubmitVideoExtendKlingJobResponse < TencentCloud::Common::AbstractModel
         # @param JobId: <p>任务ID。</p>
         # @type JobId: String
+        # @param ExternalTaskId: 
+        # @type ExternalTaskId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :JobId, :RequestId
+        attr_accessor :JobId, :ExternalTaskId, :RequestId
 
-        def initialize(jobid=nil, requestid=nil)
+        def initialize(jobid=nil, externaltaskid=nil, requestid=nil)
           @JobId = jobid
+          @ExternalTaskId = externaltaskid
           @RequestId = requestid
         end
 
         def deserialize(params)
           @JobId = params['JobId']
+          @ExternalTaskId = params['ExternalTaskId']
           @RequestId = params['RequestId']
         end
       end

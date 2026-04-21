@@ -934,6 +934,89 @@ module TencentCloud
         end
       end
 
+      # CreateUserGroupMember请求参数结构体
+      class CreateUserGroupMemberRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # CreateUserGroupMember返回参数结构体
+      class CreateUserGroupMemberResponse < TencentCloud::Common::AbstractModel
+        # @param ErrorInfo: 自定义错误信息对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorInfo: :class:`Tencentcloud::Bi.v20220105.models.ErrorInfo`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrorInfo, :RequestId
+
+        def initialize(errorinfo=nil, requestid=nil)
+          @ErrorInfo = errorinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ErrorInfo'].nil?
+            @ErrorInfo = ErrorInfo.new
+            @ErrorInfo.deserialize(params['ErrorInfo'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateUserGroup请求参数结构体
+      class CreateUserGroupRequest < TencentCloud::Common::AbstractModel
+        # @param GroupName: 用户组名称
+        # @type GroupName: String
+        # @param Location: 位置
+        # @type Location: Integer
+        # @param ParentId: 父用户组id
+        # @type ParentId: Integer
+
+        attr_accessor :GroupName, :Location, :ParentId
+
+        def initialize(groupname=nil, location=nil, parentid=nil)
+          @GroupName = groupname
+          @Location = location
+          @ParentId = parentid
+        end
+
+        def deserialize(params)
+          @GroupName = params['GroupName']
+          @Location = params['Location']
+          @ParentId = params['ParentId']
+        end
+      end
+
+      # CreateUserGroup返回参数结构体
+      class CreateUserGroupResponse < TencentCloud::Common::AbstractModel
+        # @param ErrorInfo: 自定义错误信息对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorInfo: :class:`Tencentcloud::Bi.v20220105.models.ErrorInfo`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrorInfo, :RequestId
+
+        def initialize(errorinfo=nil, requestid=nil)
+          @ErrorInfo = errorinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ErrorInfo'].nil?
+            @ErrorInfo = ErrorInfo.new
+            @ErrorInfo.deserialize(params['ErrorInfo'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateUserRoleProject请求参数结构体
       class CreateUserRoleProjectRequest < TencentCloud::Common::AbstractModel
         # @param ProjectId: 项目ID
@@ -947,8 +1030,8 @@ module TencentCloud
 
         attr_accessor :ProjectId, :RoleIdList, :UserList, :UserInfoList
         extend Gem::Deprecate
-        deprecate :UserList, :none, 2026, 3
-        deprecate :UserList=, :none, 2026, 3
+        deprecate :UserList, :none, 2026, 4
+        deprecate :UserList=, :none, 2026, 4
 
         def initialize(projectid=nil, roleidlist=nil, userlist=nil, userinfolist=nil)
           @ProjectId = projectid
@@ -1034,8 +1117,8 @@ module TencentCloud
 
         attr_accessor :RoleIdList, :UserList, :UserInfoList, :UserGroups
         extend Gem::Deprecate
-        deprecate :UserList, :none, 2026, 3
-        deprecate :UserList=, :none, 2026, 3
+        deprecate :UserList, :none, 2026, 4
+        deprecate :UserList=, :none, 2026, 4
 
         def initialize(roleidlist=nil, userlist=nil, userinfolist=nil, usergroups=nil)
           @RoleIdList = roleidlist
@@ -1515,6 +1598,90 @@ module TencentCloud
           @Extra = params['Extra']
           @Data = params['Data']
           @Msg = params['Msg']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteUserGroupMember请求参数结构体
+      class DeleteUserGroupMemberRequest < TencentCloud::Common::AbstractModel
+        # @param GroupId: 用户组id
+        # @type GroupId: Integer
+        # @param UserIdList: 用户id集合
+        # @type UserIdList: Array
+
+        attr_accessor :GroupId, :UserIdList
+
+        def initialize(groupid=nil, useridlist=nil)
+          @GroupId = groupid
+          @UserIdList = useridlist
+        end
+
+        def deserialize(params)
+          @GroupId = params['GroupId']
+          @UserIdList = params['UserIdList']
+        end
+      end
+
+      # DeleteUserGroupMember返回参数结构体
+      class DeleteUserGroupMemberResponse < TencentCloud::Common::AbstractModel
+        # @param ErrorInfo: 自定义错误信息对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorInfo: :class:`Tencentcloud::Bi.v20220105.models.ErrorInfo`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrorInfo, :RequestId
+
+        def initialize(errorinfo=nil, requestid=nil)
+          @ErrorInfo = errorinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ErrorInfo'].nil?
+            @ErrorInfo = ErrorInfo.new
+            @ErrorInfo.deserialize(params['ErrorInfo'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteUserGroup请求参数结构体
+      class DeleteUserGroupRequest < TencentCloud::Common::AbstractModel
+        # @param Id: 用户组id
+        # @type Id: Integer
+
+        attr_accessor :Id
+
+        def initialize(id=nil)
+          @Id = id
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+        end
+      end
+
+      # DeleteUserGroup返回参数结构体
+      class DeleteUserGroupResponse < TencentCloud::Common::AbstractModel
+        # @param ErrorInfo: 自定义错误信息对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorInfo: :class:`Tencentcloud::Bi.v20220105.models.ErrorInfo`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrorInfo, :RequestId
+
+        def initialize(errorinfo=nil, requestid=nil)
+          @ErrorInfo = errorinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ErrorInfo'].nil?
+            @ErrorInfo = ErrorInfo.new
+            @ErrorInfo.deserialize(params['ErrorInfo'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -2160,6 +2327,339 @@ module TencentCloud
           unless params['Data'].nil?
             @Data = ProjectListData.new
             @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeResourceUserGroupPageList请求参数结构体
+      class DescribeResourceUserGroupPageListRequest < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 项目Id
+        # @type ProjectId: Integer
+        # @param PageId: 页面Id
+        # @type PageId: Integer
+        # @param ResourceType: 资源类型
+        # @type ResourceType: String
+        # @param AllPage: 是否分页
+        # @type AllPage: Integer
+        # @param Keyword: 模糊搜索关键字
+        # @type Keyword: String
+        # @param PageNo: 页码
+        # @type PageNo: Integer
+        # @param PageSize: 每页条数
+        # @type PageSize: Integer
+        # @param TagValueList: 标签过滤条件
+        # @type TagValueList: Array
+        # @param ModuleCollection: 角色
+        # @type ModuleCollection: String
+        # @param ResourceValue: 是否授权
+        # @type ResourceValue: String
+        # @param ResourceName: 权限类型
+        # @type ResourceName: String
+        # @param ParentId: 父id
+        # @type ParentId: Integer
+        # @param EntityId: 资源id
+        # @type EntityId: Integer
+
+        attr_accessor :ProjectId, :PageId, :ResourceType, :AllPage, :Keyword, :PageNo, :PageSize, :TagValueList, :ModuleCollection, :ResourceValue, :ResourceName, :ParentId, :EntityId
+
+        def initialize(projectid=nil, pageid=nil, resourcetype=nil, allpage=nil, keyword=nil, pageno=nil, pagesize=nil, tagvaluelist=nil, modulecollection=nil, resourcevalue=nil, resourcename=nil, parentid=nil, entityid=nil)
+          @ProjectId = projectid
+          @PageId = pageid
+          @ResourceType = resourcetype
+          @AllPage = allpage
+          @Keyword = keyword
+          @PageNo = pageno
+          @PageSize = pagesize
+          @TagValueList = tagvaluelist
+          @ModuleCollection = modulecollection
+          @ResourceValue = resourcevalue
+          @ResourceName = resourcename
+          @ParentId = parentid
+          @EntityId = entityid
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @PageId = params['PageId']
+          @ResourceType = params['ResourceType']
+          @AllPage = params['AllPage']
+          @Keyword = params['Keyword']
+          @PageNo = params['PageNo']
+          @PageSize = params['PageSize']
+          unless params['TagValueList'].nil?
+            @TagValueList = []
+            params['TagValueList'].each do |i|
+              resourcetagvalue_tmp = ResourceTagValue.new
+              resourcetagvalue_tmp.deserialize(i)
+              @TagValueList << resourcetagvalue_tmp
+            end
+          end
+          @ModuleCollection = params['ModuleCollection']
+          @ResourceValue = params['ResourceValue']
+          @ResourceName = params['ResourceName']
+          @ParentId = params['ParentId']
+          @EntityId = params['EntityId']
+        end
+      end
+
+      # DescribeResourceUserGroupPageList返回参数结构体
+      class DescribeResourceUserGroupPageListResponse < TencentCloud::Common::AbstractModel
+        # @param ErrorInfo: 自定义错误信息对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorInfo: :class:`Tencentcloud::Bi.v20220105.models.ErrorInfo`
+        # @param Extra: 扩展
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Extra: String
+        # @param Msg: 消息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Msg: String
+        # @param Data: 数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Bi.v20220105.models.UserGroupPageTreeVO`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrorInfo, :Extra, :Msg, :Data, :RequestId
+
+        def initialize(errorinfo=nil, extra=nil, msg=nil, data=nil, requestid=nil)
+          @ErrorInfo = errorinfo
+          @Extra = extra
+          @Msg = msg
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ErrorInfo'].nil?
+            @ErrorInfo = ErrorInfo.new
+            @ErrorInfo.deserialize(params['ErrorInfo'])
+          end
+          @Extra = params['Extra']
+          @Msg = params['Msg']
+          unless params['Data'].nil?
+            @Data = UserGroupPageTreeVO.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeUserGroupInfo请求参数结构体
+      class DescribeUserGroupInfoRequest < TencentCloud::Common::AbstractModel
+        # @param Id: 用户组id
+        # @type Id: Integer
+
+        attr_accessor :Id
+
+        def initialize(id=nil)
+          @Id = id
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+        end
+      end
+
+      # DescribeUserGroupInfo返回参数结构体
+      class DescribeUserGroupInfoResponse < TencentCloud::Common::AbstractModel
+        # @param ErrorInfo: 自定义错误信息对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorInfo: :class:`Tencentcloud::Bi.v20220105.models.ErrorInfo`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrorInfo, :RequestId
+
+        def initialize(errorinfo=nil, requestid=nil)
+          @ErrorInfo = errorinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ErrorInfo'].nil?
+            @ErrorInfo = ErrorInfo.new
+            @ErrorInfo.deserialize(params['ErrorInfo'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeUserGroupMemberList请求参数结构体
+      class DescribeUserGroupMemberListRequest < TencentCloud::Common::AbstractModel
+        # @param GroupIds: 用户组id集合
+        # @type GroupIds: Array
+        # @param CreatedOnOrder: asc正序,desc倒序
+        # @type CreatedOnOrder: String
+        # @param Keyword: 搜索关键字
+        # @type Keyword: String
+        # @param PageSize: 分页大小
+        # @type PageSize: Integer
+        # @param PageNo: 分页页码
+        # @type PageNo: Integer
+        # @param AllPage: 是否需要分页
+        # @type AllPage: Boolean
+
+        attr_accessor :GroupIds, :CreatedOnOrder, :Keyword, :PageSize, :PageNo, :AllPage
+
+        def initialize(groupids=nil, createdonorder=nil, keyword=nil, pagesize=nil, pageno=nil, allpage=nil)
+          @GroupIds = groupids
+          @CreatedOnOrder = createdonorder
+          @Keyword = keyword
+          @PageSize = pagesize
+          @PageNo = pageno
+          @AllPage = allpage
+        end
+
+        def deserialize(params)
+          @GroupIds = params['GroupIds']
+          @CreatedOnOrder = params['CreatedOnOrder']
+          @Keyword = params['Keyword']
+          @PageSize = params['PageSize']
+          @PageNo = params['PageNo']
+          @AllPage = params['AllPage']
+        end
+      end
+
+      # DescribeUserGroupMemberList返回参数结构体
+      class DescribeUserGroupMemberListResponse < TencentCloud::Common::AbstractModel
+        # @param ErrorInfo: 自定义错误信息对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorInfo: :class:`Tencentcloud::Bi.v20220105.models.ErrorInfo`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrorInfo, :RequestId
+
+        def initialize(errorinfo=nil, requestid=nil)
+          @ErrorInfo = errorinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ErrorInfo'].nil?
+            @ErrorInfo = ErrorInfo.new
+            @ErrorInfo.deserialize(params['ErrorInfo'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeUserGroupTreeList请求参数结构体
+      class DescribeUserGroupTreeListRequest < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 项目Id
+        # @type ProjectId: Integer
+        # @param AllPage: 是否分页
+        # @type AllPage: Integer
+        # @param PageNo: 页码
+        # @type PageNo: Integer
+        # @param PageSize: 每页条数
+        # @type PageSize: Integer
+        # @param TagValueList: 标签过滤条件
+        # @type TagValueList: Array
+        # @param Nodes: 节点集合
+        # @type Nodes: Array
+        # @param GroupIds: 用户组id集合
+        # @type GroupIds: Array
+        # @param QueryNextNode: 查询下一个code
+        # @type QueryNextNode: Boolean
+        # @param ParentIds: 父id集合
+        # @type ParentIds: Array
+        # @param QueryAllNode: 是否查询所有节点
+        # @type QueryAllNode: Boolean
+        # @param FilterGroupIds: 过滤组id集合
+        # @type FilterGroupIds: Array
+        # @param Keyword: 模糊搜索关键字
+        # @type Keyword: String
+
+        attr_accessor :ProjectId, :AllPage, :PageNo, :PageSize, :TagValueList, :Nodes, :GroupIds, :QueryNextNode, :ParentIds, :QueryAllNode, :FilterGroupIds, :Keyword
+
+        def initialize(projectid=nil, allpage=nil, pageno=nil, pagesize=nil, tagvaluelist=nil, nodes=nil, groupids=nil, querynextnode=nil, parentids=nil, queryallnode=nil, filtergroupids=nil, keyword=nil)
+          @ProjectId = projectid
+          @AllPage = allpage
+          @PageNo = pageno
+          @PageSize = pagesize
+          @TagValueList = tagvaluelist
+          @Nodes = nodes
+          @GroupIds = groupids
+          @QueryNextNode = querynextnode
+          @ParentIds = parentids
+          @QueryAllNode = queryallnode
+          @FilterGroupIds = filtergroupids
+          @Keyword = keyword
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @AllPage = params['AllPage']
+          @PageNo = params['PageNo']
+          @PageSize = params['PageSize']
+          unless params['TagValueList'].nil?
+            @TagValueList = []
+            params['TagValueList'].each do |i|
+              resourcetagvalue_tmp = ResourceTagValue.new
+              resourcetagvalue_tmp.deserialize(i)
+              @TagValueList << resourcetagvalue_tmp
+            end
+          end
+          unless params['Nodes'].nil?
+            @Nodes = []
+            params['Nodes'].each do |i|
+              usergrouptreenodedto_tmp = UserGroupTreeNodeDTO.new
+              usergrouptreenodedto_tmp.deserialize(i)
+              @Nodes << usergrouptreenodedto_tmp
+            end
+          end
+          @GroupIds = params['GroupIds']
+          @QueryNextNode = params['QueryNextNode']
+          @ParentIds = params['ParentIds']
+          @QueryAllNode = params['QueryAllNode']
+          @FilterGroupIds = params['FilterGroupIds']
+          @Keyword = params['Keyword']
+        end
+      end
+
+      # DescribeUserGroupTreeList返回参数结构体
+      class DescribeUserGroupTreeListResponse < TencentCloud::Common::AbstractModel
+        # @param ErrorInfo: 自定义错误信息对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorInfo: :class:`Tencentcloud::Bi.v20220105.models.ErrorInfo`
+        # @param Extra: 扩展
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Extra: String
+        # @param Msg: 消息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Msg: String
+        # @param Data: 数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrorInfo, :Extra, :Msg, :Data, :RequestId
+
+        def initialize(errorinfo=nil, extra=nil, msg=nil, data=nil, requestid=nil)
+          @ErrorInfo = errorinfo
+          @Extra = extra
+          @Msg = msg
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ErrorInfo'].nil?
+            @ErrorInfo = ErrorInfo.new
+            @ErrorInfo.deserialize(params['ErrorInfo'])
+          end
+          @Extra = params['Extra']
+          @Msg = params['Msg']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              usergrouptreevo_tmp = UserGroupTreeVO.new
+              usergrouptreevo_tmp.deserialize(i)
+              @Data << usergrouptreevo_tmp
+            end
           end
           @RequestId = params['RequestId']
         end
@@ -3093,6 +3593,300 @@ module TencentCloud
         end
       end
 
+      # ModifyResourceUserGroup请求参数结构体
+      class ModifyResourceUserGroupRequest < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 项目Id
+        # @type ProjectId: Integer
+        # @param UserGroupIds: 用户组id集合
+        # @type UserGroupIds: Array
+        # @param Resource: 操作的资源权限
+        # @type Resource: :class:`Tencentcloud::Bi.v20220105.models.ResourceListDTO`
+        # @param ResourceType: 资源类型
+        # @type ResourceType: String
+        # @param QueryChildren: 是否查询所有孩子节点
+        # @type QueryChildren: Boolean
+
+        attr_accessor :ProjectId, :UserGroupIds, :Resource, :ResourceType, :QueryChildren
+
+        def initialize(projectid=nil, usergroupids=nil, resource=nil, resourcetype=nil, querychildren=nil)
+          @ProjectId = projectid
+          @UserGroupIds = usergroupids
+          @Resource = resource
+          @ResourceType = resourcetype
+          @QueryChildren = querychildren
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @UserGroupIds = params['UserGroupIds']
+          unless params['Resource'].nil?
+            @Resource = ResourceListDTO.new
+            @Resource.deserialize(params['Resource'])
+          end
+          @ResourceType = params['ResourceType']
+          @QueryChildren = params['QueryChildren']
+        end
+      end
+
+      # ModifyResourceUserGroupResource请求参数结构体
+      class ModifyResourceUserGroupResourceRequest < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 项目Id
+        # @type ProjectId: Integer
+        # @param UserGroupId: 用户id
+        # @type UserGroupId: Integer
+        # @param Resource: 资源
+        # @type Resource: :class:`Tencentcloud::Bi.v20220105.models.UserResourceDTO`
+        # @param EntityIds: 实体类
+        # @type EntityIds: Array
+        # @param ResourceType: 资源类型
+        # @type ResourceType: String
+
+        attr_accessor :ProjectId, :UserGroupId, :Resource, :EntityIds, :ResourceType
+
+        def initialize(projectid=nil, usergroupid=nil, resource=nil, entityids=nil, resourcetype=nil)
+          @ProjectId = projectid
+          @UserGroupId = usergroupid
+          @Resource = resource
+          @EntityIds = entityids
+          @ResourceType = resourcetype
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @UserGroupId = params['UserGroupId']
+          unless params['Resource'].nil?
+            @Resource = UserResourceDTO.new
+            @Resource.deserialize(params['Resource'])
+          end
+          @EntityIds = params['EntityIds']
+          @ResourceType = params['ResourceType']
+        end
+      end
+
+      # ModifyResourceUserGroupResource返回参数结构体
+      class ModifyResourceUserGroupResourceResponse < TencentCloud::Common::AbstractModel
+        # @param ErrorInfo: 自定义错误信息对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorInfo: :class:`Tencentcloud::Bi.v20220105.models.ErrorInfo`
+        # @param Extra: 扩展
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Extra: String
+        # @param Msg: 消息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Msg: String
+        # @param Data: 数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrorInfo, :Extra, :Msg, :Data, :RequestId
+
+        def initialize(errorinfo=nil, extra=nil, msg=nil, data=nil, requestid=nil)
+          @ErrorInfo = errorinfo
+          @Extra = extra
+          @Msg = msg
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ErrorInfo'].nil?
+            @ErrorInfo = ErrorInfo.new
+            @ErrorInfo.deserialize(params['ErrorInfo'])
+          end
+          @Extra = params['Extra']
+          @Msg = params['Msg']
+          @Data = params['Data']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyResourceUserGroup返回参数结构体
+      class ModifyResourceUserGroupResponse < TencentCloud::Common::AbstractModel
+        # @param ErrorInfo: 自定义错误信息对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorInfo: :class:`Tencentcloud::Bi.v20220105.models.ErrorInfo`
+        # @param Extra: 扩展
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Extra: String
+        # @param Msg: 消息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Msg: String
+        # @param Data: 数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrorInfo, :Extra, :Msg, :Data, :RequestId
+
+        def initialize(errorinfo=nil, extra=nil, msg=nil, data=nil, requestid=nil)
+          @ErrorInfo = errorinfo
+          @Extra = extra
+          @Msg = msg
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ErrorInfo'].nil?
+            @ErrorInfo = ErrorInfo.new
+            @ErrorInfo.deserialize(params['ErrorInfo'])
+          end
+          @Extra = params['Extra']
+          @Msg = params['Msg']
+          @Data = params['Data']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyUserDetailInfo请求参数结构体
+      class ModifyUserDetailInfoRequest < TencentCloud::Common::AbstractModel
+        # @param UserId: 用户ID
+        # @type UserId: String
+        # @param RoleIdList: 角色ID 列表
+        # @type RoleIdList: Array
+        # @param Email: 邮箱
+        # @type Email: String
+        # @param UserName: 用户名
+        # @type UserName: String
+        # @param PhoneNumber: 手机号
+        # @type PhoneNumber: String
+        # @param AreaCode: 手机区号
+        # @type AreaCode: String
+        # @param AppUserId: 企业微信应用用户id
+        # @type AppUserId: String
+        # @param LoginSecurityStatus: 是否开启手机验证码登录（0 关闭，1 开启）
+        # @type LoginSecurityStatus: Integer
+        # @param ResetPassWordTip: 是否开启密码过期提醒（0 关闭，1 开启
+        # @type ResetPassWordTip: Integer
+        # @param ForceResetPassWord: 强制修改密码（0 关闭，1 开启）
+        # @type ForceResetPassWord: Integer
+        # @param PasswordExpired: 密码过期提醒时间，30、60、90（默认）、180天
+        # @type PasswordExpired: Integer
+        # @param UserGroupIdList: 用户组id
+        # @type UserGroupIdList: Array
+
+        attr_accessor :UserId, :RoleIdList, :Email, :UserName, :PhoneNumber, :AreaCode, :AppUserId, :LoginSecurityStatus, :ResetPassWordTip, :ForceResetPassWord, :PasswordExpired, :UserGroupIdList
+
+        def initialize(userid=nil, roleidlist=nil, email=nil, username=nil, phonenumber=nil, areacode=nil, appuserid=nil, loginsecuritystatus=nil, resetpasswordtip=nil, forceresetpassword=nil, passwordexpired=nil, usergroupidlist=nil)
+          @UserId = userid
+          @RoleIdList = roleidlist
+          @Email = email
+          @UserName = username
+          @PhoneNumber = phonenumber
+          @AreaCode = areacode
+          @AppUserId = appuserid
+          @LoginSecurityStatus = loginsecuritystatus
+          @ResetPassWordTip = resetpasswordtip
+          @ForceResetPassWord = forceresetpassword
+          @PasswordExpired = passwordexpired
+          @UserGroupIdList = usergroupidlist
+        end
+
+        def deserialize(params)
+          @UserId = params['UserId']
+          @RoleIdList = params['RoleIdList']
+          @Email = params['Email']
+          @UserName = params['UserName']
+          @PhoneNumber = params['PhoneNumber']
+          @AreaCode = params['AreaCode']
+          @AppUserId = params['AppUserId']
+          @LoginSecurityStatus = params['LoginSecurityStatus']
+          @ResetPassWordTip = params['ResetPassWordTip']
+          @ForceResetPassWord = params['ForceResetPassWord']
+          @PasswordExpired = params['PasswordExpired']
+          @UserGroupIdList = params['UserGroupIdList']
+        end
+      end
+
+      # ModifyUserDetailInfo返回参数结构体
+      class ModifyUserDetailInfoResponse < TencentCloud::Common::AbstractModel
+        # @param ErrorInfo: 自定义错误信息对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorInfo: :class:`Tencentcloud::Bi.v20220105.models.ErrorInfo`
+        # @param Extra: 扩展
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Extra: String
+        # @param Msg: 消息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Msg: String
+        # @param Data: 数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrorInfo, :Extra, :Msg, :Data, :RequestId
+
+        def initialize(errorinfo=nil, extra=nil, msg=nil, data=nil, requestid=nil)
+          @ErrorInfo = errorinfo
+          @Extra = extra
+          @Msg = msg
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ErrorInfo'].nil?
+            @ErrorInfo = ErrorInfo.new
+            @ErrorInfo.deserialize(params['ErrorInfo'])
+          end
+          @Extra = params['Extra']
+          @Msg = params['Msg']
+          @Data = params['Data']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyUserGroup请求参数结构体
+      class ModifyUserGroupRequest < TencentCloud::Common::AbstractModel
+        # @param UpdateList: 用户组更新list
+        # @type UpdateList: Array
+
+        attr_accessor :UpdateList
+
+        def initialize(updatelist=nil)
+          @UpdateList = updatelist
+        end
+
+        def deserialize(params)
+          unless params['UpdateList'].nil?
+            @UpdateList = []
+            params['UpdateList'].each do |i|
+              usergroupupdatedto_tmp = UserGroupUpdateDTO.new
+              usergroupupdatedto_tmp.deserialize(i)
+              @UpdateList << usergroupupdatedto_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyUserGroup返回参数结构体
+      class ModifyUserGroupResponse < TencentCloud::Common::AbstractModel
+        # @param ErrorInfo: 自定义错误信息对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorInfo: :class:`Tencentcloud::Bi.v20220105.models.ErrorInfo`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrorInfo, :RequestId
+
+        def initialize(errorinfo=nil, requestid=nil)
+          @ErrorInfo = errorinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ErrorInfo'].nil?
+            @ErrorInfo = ErrorInfo.new
+            @ErrorInfo.deserialize(params['ErrorInfo'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyUserRoleProject请求参数结构体
       class ModifyUserRoleProjectRequest < TencentCloud::Common::AbstractModel
         # @param ProjectId: 项目ID
@@ -3657,6 +4451,88 @@ module TencentCloud
         end
       end
 
+      # QueryUserGroupMember请求参数结构体
+      class QueryUserGroupMemberRequest < TencentCloud::Common::AbstractModel
+        # @param GroupIds: 用户组id集合
+        # @type GroupIds: Array
+        # @param Keyword: 搜索关键字
+        # @type Keyword: String
+        # @param PageSize: 分页大小
+        # @type PageSize: Integer
+        # @param PageNo: 分页页码
+        # @type PageNo: Integer
+        # @param AllPage: 是否需要分页
+        # @type AllPage: Boolean
+        # @param Nodes: 用户组节点信息
+        # @type Nodes: Array
+        # @param TagValueList: 标签值
+        # @type TagValueList: Array
+        # @param FilterGroupIds: 需要过滤的用户组
+        # @type FilterGroupIds: Array
+
+        attr_accessor :GroupIds, :Keyword, :PageSize, :PageNo, :AllPage, :Nodes, :TagValueList, :FilterGroupIds
+
+        def initialize(groupids=nil, keyword=nil, pagesize=nil, pageno=nil, allpage=nil, nodes=nil, tagvaluelist=nil, filtergroupids=nil)
+          @GroupIds = groupids
+          @Keyword = keyword
+          @PageSize = pagesize
+          @PageNo = pageno
+          @AllPage = allpage
+          @Nodes = nodes
+          @TagValueList = tagvaluelist
+          @FilterGroupIds = filtergroupids
+        end
+
+        def deserialize(params)
+          @GroupIds = params['GroupIds']
+          @Keyword = params['Keyword']
+          @PageSize = params['PageSize']
+          @PageNo = params['PageNo']
+          @AllPage = params['AllPage']
+          unless params['Nodes'].nil?
+            @Nodes = []
+            params['Nodes'].each do |i|
+              usergrouptreenodedto_tmp = UserGroupTreeNodeDTO.new
+              usergrouptreenodedto_tmp.deserialize(i)
+              @Nodes << usergrouptreenodedto_tmp
+            end
+          end
+          unless params['TagValueList'].nil?
+            @TagValueList = []
+            params['TagValueList'].each do |i|
+              resourcetagvalue_tmp = ResourceTagValue.new
+              resourcetagvalue_tmp.deserialize(i)
+              @TagValueList << resourcetagvalue_tmp
+            end
+          end
+          @FilterGroupIds = params['FilterGroupIds']
+        end
+      end
+
+      # QueryUserGroupMember返回参数结构体
+      class QueryUserGroupMemberResponse < TencentCloud::Common::AbstractModel
+        # @param ErrorInfo: 自定义错误信息对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorInfo: :class:`Tencentcloud::Bi.v20220105.models.ErrorInfo`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrorInfo, :RequestId
+
+        def initialize(errorinfo=nil, requestid=nil)
+          @ErrorInfo = errorinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ErrorInfo'].nil?
+            @ErrorInfo = ErrorInfo.new
+            @ErrorInfo.deserialize(params['ErrorInfo'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 行列权限内容
       class RankInfo < TencentCloud::Common::AbstractModel
         # @param Type: 1
@@ -3708,6 +4584,128 @@ module TencentCloud
               @RowColumnConfigList << rowcolumnconfig_tmp
             end
           end
+        end
+      end
+
+      # 资源权限信息
+      class ResourceDTO < TencentCloud::Common::AbstractModel
+        # @param ResourceName: 资源名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceName: String
+        # @param ResourceValue: 是否启用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceValue: Boolean
+        # @param CanChange: 能否变更
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CanChange: Boolean
+        # @param Tips: 提示
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tips: String
+
+        attr_accessor :ResourceName, :ResourceValue, :CanChange, :Tips
+
+        def initialize(resourcename=nil, resourcevalue=nil, canchange=nil, tips=nil)
+          @ResourceName = resourcename
+          @ResourceValue = resourcevalue
+          @CanChange = canchange
+          @Tips = tips
+        end
+
+        def deserialize(params)
+          @ResourceName = params['ResourceName']
+          @ResourceValue = params['ResourceValue']
+          @CanChange = params['CanChange']
+          @Tips = params['Tips']
+        end
+      end
+
+      # 资源
+      class ResourceItem < TencentCloud::Common::AbstractModel
+        # @param ResourceName: 资源名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceName: String
+        # @param ResourceValue: 资源值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceValue: Boolean
+        # @param CanChange: 是否可变更
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CanChange: Boolean
+        # @param Tips: 提示信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tips: String
+
+        attr_accessor :ResourceName, :ResourceValue, :CanChange, :Tips
+
+        def initialize(resourcename=nil, resourcevalue=nil, canchange=nil, tips=nil)
+          @ResourceName = resourcename
+          @ResourceValue = resourcevalue
+          @CanChange = canchange
+          @Tips = tips
+        end
+
+        def deserialize(params)
+          @ResourceName = params['ResourceName']
+          @ResourceValue = params['ResourceValue']
+          @CanChange = params['CanChange']
+          @Tips = params['Tips']
+        end
+      end
+
+      # 操作的资源权限
+      class ResourceListDTO < TencentCloud::Common::AbstractModel
+        # @param EntityId: 资源id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EntityId: Integer
+        # @param NodeType: 资源类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NodeType: Integer
+        # @param ResourceList: 资源权限
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceList: Array
+
+        attr_accessor :EntityId, :NodeType, :ResourceList
+
+        def initialize(entityid=nil, nodetype=nil, resourcelist=nil)
+          @EntityId = entityid
+          @NodeType = nodetype
+          @ResourceList = resourcelist
+        end
+
+        def deserialize(params)
+          @EntityId = params['EntityId']
+          @NodeType = params['NodeType']
+          unless params['ResourceList'].nil?
+            @ResourceList = []
+            params['ResourceList'].each do |i|
+              resourceitem_tmp = ResourceItem.new
+              resourceitem_tmp.deserialize(i)
+              @ResourceList << resourceitem_tmp
+            end
+          end
+        end
+      end
+
+      # 资源权限标签过滤参数
+      class ResourceTagValue < TencentCloud::Common::AbstractModel
+        # @param Id: 标签id
+        # @type Id: Integer
+        # @param Name: 标签名称
+        # @type Name: String
+        # @param Values: 标签值列表
+        # @type Values: Array
+
+        attr_accessor :Id, :Name, :Values
+
+        def initialize(id=nil, name=nil, values=nil)
+          @Id = id
+          @Name = name
+          @Values = values
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Name = params['Name']
+          @Values = params['Values']
         end
       end
 
@@ -3927,6 +4925,195 @@ module TencentCloud
         end
       end
 
+      # 用户组权限树
+      class UserGroupPageTreeVO < TencentCloud::Common::AbstractModel
+        # @param List: 列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type List: Array
+        # @param Total: 总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Total: Integer
+        # @param TotalPages: 页数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalPages: Integer
+
+        attr_accessor :List, :Total, :TotalPages
+
+        def initialize(list=nil, total=nil, totalpages=nil)
+          @List = list
+          @Total = total
+          @TotalPages = totalpages
+        end
+
+        def deserialize(params)
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              usergrouptreevo_tmp = UserGroupTreeVO.new
+              usergrouptreevo_tmp.deserialize(i)
+              @List << usergrouptreevo_tmp
+            end
+          end
+          @Total = params['Total']
+          @TotalPages = params['TotalPages']
+        end
+      end
+
+      # 用户组数节点
+      class UserGroupTreeNodeDTO < TencentCloud::Common::AbstractModel
+        # @param GroupId: 用户组id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupId: Integer
+        # @param QueryChildNodes: 是否查询子节点
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QueryChildNodes: Boolean
+
+        attr_accessor :GroupId, :QueryChildNodes
+
+        def initialize(groupid=nil, querychildnodes=nil)
+          @GroupId = groupid
+          @QueryChildNodes = querychildnodes
+        end
+
+        def deserialize(params)
+          @GroupId = params['GroupId']
+          @QueryChildNodes = params['QueryChildNodes']
+        end
+      end
+
+      # 用户组权限树
+      class UserGroupTreeVO < TencentCloud::Common::AbstractModel
+        # @param Id: 当前实体ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: Integer
+        # @param GroupName: 用户组名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupName: String
+        # @param ParentId: 父id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ParentId: Integer
+        # @param ParentName: 父节点名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ParentName: String
+        # @param IsDefault: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsDefault: Integer
+        # @param AdminUserId: 管理员账号id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AdminUserId: String
+        # @param UserList: 用户集合
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserList: Array
+        # @param Description: 描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param Location: 排序
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Location: Integer
+        # @param Children: 孩子节点
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Children: Array
+        # @param HasChildren: 是否有孩子节点
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HasChildren: Boolean
+        # @param ResourceList: 资源集合
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceList: Array
+
+        attr_accessor :Id, :GroupName, :ParentId, :ParentName, :IsDefault, :AdminUserId, :UserList, :Description, :Location, :Children, :HasChildren, :ResourceList
+
+        def initialize(id=nil, groupname=nil, parentid=nil, parentname=nil, isdefault=nil, adminuserid=nil, userlist=nil, description=nil, location=nil, children=nil, haschildren=nil, resourcelist=nil)
+          @Id = id
+          @GroupName = groupname
+          @ParentId = parentid
+          @ParentName = parentname
+          @IsDefault = isdefault
+          @AdminUserId = adminuserid
+          @UserList = userlist
+          @Description = description
+          @Location = location
+          @Children = children
+          @HasChildren = haschildren
+          @ResourceList = resourcelist
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @GroupName = params['GroupName']
+          @ParentId = params['ParentId']
+          @ParentName = params['ParentName']
+          @IsDefault = params['IsDefault']
+          @AdminUserId = params['AdminUserId']
+          unless params['UserList'].nil?
+            @UserList = []
+            params['UserList'].each do |i|
+              uservo_tmp = UserVO.new
+              uservo_tmp.deserialize(i)
+              @UserList << uservo_tmp
+            end
+          end
+          @Description = params['Description']
+          @Location = params['Location']
+          unless params['Children'].nil?
+            @Children = []
+            params['Children'].each do |i|
+              usergrouptreevo_tmp = UserGroupTreeVO.new
+              usergrouptreevo_tmp.deserialize(i)
+              @Children << usergrouptreevo_tmp
+            end
+          end
+          @HasChildren = params['HasChildren']
+          unless params['ResourceList'].nil?
+            @ResourceList = []
+            params['ResourceList'].each do |i|
+              resourcedto_tmp = ResourceDTO.new
+              resourcedto_tmp.deserialize(i)
+              @ResourceList << resourcedto_tmp
+            end
+          end
+        end
+      end
+
+      # 用户组更新入参
+      class UserGroupUpdateDTO < TencentCloud::Common::AbstractModel
+        # @param AdminUserId: 组管理员
+        # @type AdminUserId: String
+        # @param Description: 描述
+        # @type Description: String
+        # @param GroupName: 用户组名称
+        # @type GroupName: String
+        # @param Location: 排序位置
+        # @type Location: Integer
+        # @param ParentId: 父节点id
+        # @type ParentId: Integer
+        # @param Id: 用户组id
+        # @type Id: Integer
+        # @param ParentName: 父节点名称
+        # @type ParentName: String
+
+        attr_accessor :AdminUserId, :Description, :GroupName, :Location, :ParentId, :Id, :ParentName
+
+        def initialize(adminuserid=nil, description=nil, groupname=nil, location=nil, parentid=nil, id=nil, parentname=nil)
+          @AdminUserId = adminuserid
+          @Description = description
+          @GroupName = groupname
+          @Location = location
+          @ParentId = parentid
+          @Id = id
+          @ParentName = parentname
+        end
+
+        def deserialize(params)
+          @AdminUserId = params['AdminUserId']
+          @Description = params['Description']
+          @GroupName = params['GroupName']
+          @Location = params['Location']
+          @ParentId = params['ParentId']
+          @Id = params['Id']
+          @ParentName = params['ParentName']
+        end
+      end
+
       # 用户ID和用户名
       class UserIdAndUserName < TencentCloud::Common::AbstractModel
         # @param UserId: 用户ID
@@ -4101,6 +5288,45 @@ module TencentCloud
           @AreaCode = params['AreaCode']
           @AppUserId = params['AppUserId']
           @AppUserName = params['AppUserName']
+        end
+      end
+
+      # 用户资源入参
+      class UserResourceDTO < TencentCloud::Common::AbstractModel
+        # @param CorpId: 企业id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CorpId: String
+        # @param UserId: 用户id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserId: String
+        # @param UserName: 用户名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserName: String
+        # @param ResourceList: 资源列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceList: Array
+
+        attr_accessor :CorpId, :UserId, :UserName, :ResourceList
+
+        def initialize(corpid=nil, userid=nil, username=nil, resourcelist=nil)
+          @CorpId = corpid
+          @UserId = userid
+          @UserName = username
+          @ResourceList = resourcelist
+        end
+
+        def deserialize(params)
+          @CorpId = params['CorpId']
+          @UserId = params['UserId']
+          @UserName = params['UserName']
+          unless params['ResourceList'].nil?
+            @ResourceList = []
+            params['ResourceList'].each do |i|
+              resourceitem_tmp = ResourceItem.new
+              resourceitem_tmp.deserialize(i)
+              @ResourceList << resourceitem_tmp
+            end
+          end
         end
       end
 
@@ -4319,6 +5545,28 @@ module TencentCloud
               @UserGroupList << usergroupdto_tmp
             end
           end
+        end
+      end
+
+      # 基础用户信息
+      class UserVO < TencentCloud::Common::AbstractModel
+        # @param UserId: u1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserId: String
+        # @param UserName: zhang
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserName: String
+
+        attr_accessor :UserId, :UserName
+
+        def initialize(userid=nil, username=nil)
+          @UserId = userid
+          @UserName = username
+        end
+
+        def deserialize(params)
+          @UserId = params['UserId']
+          @UserName = params['UserName']
         end
       end
 

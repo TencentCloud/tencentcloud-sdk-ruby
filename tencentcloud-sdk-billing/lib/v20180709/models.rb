@@ -1672,9 +1672,9 @@ module TencentCloud
 
       # 成本分析交易类型复杂类型
       class AnalyseActionTypeDetail < TencentCloud::Common::AbstractModel
-        # @param ActionType: 交易类型code
+        # @param ActionType: <p>交易类型code</p><p>枚举值：</p><ul><li>prepay_purchase： 包年包月新购</li><li>prepay_renew： 包年包月续费</li><li>prepay_modify： 包年包月配置变更</li><li>prepay_return： 包年包月退款</li><li>postpay_deduct_h： 按量计费小时结</li><li>postpay_deduct_d： 按量计费日结</li><li>postpay_deduct_m： 按量计费月结</li><li>offline_deduct： 线下项目扣费</li><li>online_deduct： 线下产品扣费</li><li>recon_deduct： 调账扣费</li><li>recon_increase： 调账补偿</li><li>postpay_deduct_s： 竞价实例小时结</li><li>recon_increase_f： 线下项目调账补偿</li><li>pre_to_post： 包年包月转按量</li><li>svp_hour_pay： 节省计划小时费用</li><li>recon_guarantee： 保底扣款</li><li>billVirtualId： 月度计费精度差异</li></ul>
         # @type ActionType: String
-        # @param ActionTypeName: 交易类型Name
+        # @param ActionTypeName: <p>交易类型Name</p>
         # @type ActionTypeName: String
 
         attr_accessor :ActionType, :ActionTypeName
@@ -1995,9 +1995,9 @@ module TencentCloud
 
       # 成本分析支付方式复杂类型
       class AnalysePayModeDetail < TencentCloud::Common::AbstractModel
-        # @param PayMode: 计费模式code
+        # @param PayMode: <p>计费模式code</p><p>枚举值：</p><ul><li>prePay： 包年包月</li><li>postPay： 按量计费</li></ul>
         # @type PayMode: String
-        # @param PayModeName: 计费模式Name
+        # @param PayModeName: <p>计费模式Name</p>
         # @type PayModeName: String
 
         attr_accessor :PayMode, :PayModeName
@@ -3251,43 +3251,43 @@ module TencentCloud
 
       # 预算管理自定义费用范围参数
       class BudgetConditionsForm < TencentCloud::Common::AbstractModel
-        # @param Business: 产品
+        # @param Business: <p>产品</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Business: Array
-        # @param PayMode: 计费模式
+        # @param PayMode: <p>计费模式</p><p>枚举值：</p><ul><li>prePay： 包年包月</li><li>postPay： 按量计费</li></ul>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PayMode: Array
-        # @param ProductCodes: 子产品
+        # @param ProductCodes: <p>子产品</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProductCodes: Array
-        # @param ComponentCodes: 组件编码
+        # @param ComponentCodes: <p>组件编码</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ComponentCodes: Array
-        # @param ZoneIds: 地域
+        # @param ZoneIds: <p>地域</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ZoneIds: Array
-        # @param RegionIds: 可用区
+        # @param RegionIds: <p>可用区</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegionIds: Array
-        # @param ProjectIds: 项目
+        # @param ProjectIds: <p>项目</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProjectIds: Array
-        # @param ActionTypes: 交易类型
+        # @param ActionTypes: <p>交易类型</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ActionTypes: Array
-        # @param ConsumptionTypes: 消耗类型
+        # @param ConsumptionTypes: <p>消耗类型</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConsumptionTypes: Array
-        # @param Tags: 标签
+        # @param Tags: <p>标签</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
-        # @param PayerUins:  末级分账单元
+        # @param PayerUins: <p>末级分账单元</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PayerUins: Array
-        # @param OwnerUins: 主用户Uin
+        # @param OwnerUins: <p>主用户Uin</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OwnerUins: Array
-        # @param TreeNodeUniqKeys:  末级分账单元唯一键
+        # @param TreeNodeUniqKeys: <p>末级分账单元唯一键</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TreeNodeUniqKeys: Array
 
@@ -4074,43 +4074,43 @@ module TencentCloud
 
       # 账单筛选条件对象
       class Conditions < TencentCloud::Common::AbstractModel
-        # @param TimeRange: 只支持6和12两个值
+        # @param TimeRange: <p>只支持6个月和12个月两个值</p>
         # @type TimeRange: Integer
-        # @param BusinessCode: 产品名称代码
+        # @param BusinessCode: <p>产品名称代码</p>
         # @type BusinessCode: String
-        # @param ProjectId: 项目ID
+        # @param ProjectId: <p>项目ID</p>
         # @type ProjectId: Integer
-        # @param RegionId: 地域ID
+        # @param RegionId: <p>地域ID</p>
         # @type RegionId: Integer
-        # @param PayMode: 付费模式，可选prePay和postPay
+        # @param PayMode: <p>付费模式，可选prePay和postPay</p>
         # @type PayMode: String
-        # @param ResourceKeyword: 资源关键字
+        # @param ResourceKeyword: <p>资源关键字</p>
         # @type ResourceKeyword: String
-        # @param BusinessCodes: 产品名称代码
+        # @param BusinessCodes: <p>产品名称代码</p>
         # @type BusinessCodes: Array
-        # @param ProductCodes: 子产品名称代码
+        # @param ProductCodes: <p>子产品名称代码</p>
         # @type ProductCodes: Array
-        # @param RegionIds: 地域ID
+        # @param RegionIds: <p>地域ID</p>
         # @type RegionIds: Array
-        # @param ProjectIds: 项目ID
+        # @param ProjectIds: <p>项目ID</p>
         # @type ProjectIds: Array
-        # @param PayModes: 付费模式，可选prePay和postPay
+        # @param PayModes: <p>付费模式，可选prePay和postPay</p>
         # @type PayModes: Array
-        # @param ActionTypes: 交易类型
+        # @param ActionTypes: <p>交易类型</p>
         # @type ActionTypes: Array
-        # @param HideFreeCost: 是否隐藏0元流水
+        # @param HideFreeCost: <p>是否隐藏0元流水</p>
         # @type HideFreeCost: Integer
-        # @param OrderByCost: 排序规则，可选desc和asc
+        # @param OrderByCost: <p>排序规则，可选desc和asc</p>
         # @type OrderByCost: String
-        # @param BillIds: 交易ID
+        # @param BillIds: <p>交易ID</p>
         # @type BillIds: Array
-        # @param ComponentCodes: 组件编码
+        # @param ComponentCodes: <p>组件编码</p>
         # @type ComponentCodes: Array
-        # @param FileIds: 文件ID
+        # @param FileIds: <p>文件ID</p>
         # @type FileIds: Array
-        # @param FileTypes: 文件类型
+        # @param FileTypes: <p>文件类型</p>
         # @type FileTypes: Array
-        # @param Status: 状态
+        # @param Status: <p>状态</p>
         # @type Status: Array
 
         attr_accessor :TimeRange, :BusinessCode, :ProjectId, :RegionId, :PayMode, :ResourceKeyword, :BusinessCodes, :ProductCodes, :RegionIds, :ProjectIds, :PayModes, :ActionTypes, :HideFreeCost, :OrderByCost, :BillIds, :ComponentCodes, :FileIds, :FileTypes, :Status
@@ -4799,9 +4799,9 @@ module TencentCloud
 
       # CreateAllocationRule请求参数结构体
       class CreateAllocationRuleRequest < TencentCloud::Common::AbstractModel
-        # @param RuleList: 公摊规则列表
+        # @param RuleList: <p>公摊规则列表</p>
         # @type RuleList: :class:`Tencentcloud::Billing.v20180709.models.AllocationRulesSummary`
-        # @param Month: 月份，不传默认当前月
+        # @param Month: <p>月份，不传默认当前月</p>
         # @type Month: String
 
         attr_accessor :RuleList, :Month
@@ -4822,7 +4822,7 @@ module TencentCloud
 
       # CreateAllocationRule返回参数结构体
       class CreateAllocationRuleResponse < TencentCloud::Common::AbstractModel
-        # @param Id: 新增公摊规则ID
+        # @param Id: <p>新增公摊规则ID</p>
         # @type Id: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4874,11 +4874,11 @@ module TencentCloud
 
       # CreateAllocationUnit请求参数结构体
       class CreateAllocationUnitRequest < TencentCloud::Common::AbstractModel
-        # @param ParentId: 新增分账单元父节点ID
+        # @param ParentId: <p>新增分账单元父节点ID</p>
         # @type ParentId: Integer
-        # @param Name: 新增分账单元名称
+        # @param Name: <p>新增分账单元名称</p>
         # @type Name: String
-        # @param Month: 月份，不传默认当前月
+        # @param Month: <p>月份，不传默认当前月</p>
         # @type Month: String
 
         attr_accessor :ParentId, :Name, :Month
@@ -4898,9 +4898,9 @@ module TencentCloud
 
       # CreateAllocationUnit返回参数结构体
       class CreateAllocationUnitResponse < TencentCloud::Common::AbstractModel
-        # @param Id: 新增分账单元ID
+        # @param Id: <p>新增分账单元ID</p>
         # @type Id: Integer
-        # @param TreeNodeUniqKey: 分账单元唯一标识
+        # @param TreeNodeUniqKey: <p>分账单元唯一标识</p>
         # @type TreeNodeUniqKey: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5032,11 +5032,11 @@ module TencentCloud
 
       # CreateGatherRule请求参数结构体
       class CreateGatherRuleRequest < TencentCloud::Common::AbstractModel
-        # @param Id: 规则所属分账单元ID
+        # @param Id: <p>规则所属分账单元ID</p>
         # @type Id: Integer
-        # @param RuleList: 归集规则详情
+        # @param RuleList: <p>归集规则详情</p>
         # @type RuleList: :class:`Tencentcloud::Billing.v20180709.models.GatherRuleSummary`
-        # @param Month: 月份，不传默认当前月
+        # @param Month: <p>月份，不传默认当前月</p>
         # @type Month: String
 
         attr_accessor :Id, :RuleList, :Month
@@ -5059,7 +5059,7 @@ module TencentCloud
 
       # CreateGatherRule返回参数结构体
       class CreateGatherRuleResponse < TencentCloud::Common::AbstractModel
-        # @param Id: 归集规则ID
+        # @param Id: <p>归集规则ID</p>
         # @type Id: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5384,9 +5384,9 @@ module TencentCloud
 
       # DeleteAllocationRule请求参数结构体
       class DeleteAllocationRuleRequest < TencentCloud::Common::AbstractModel
-        # @param RuleId: 所删除公摊规则ID
+        # @param RuleId: <p>所删除公摊规则ID</p>
         # @type RuleId: Integer
-        # @param Month: 月份，不传默认当前月
+        # @param Month: <p>月份，不传默认当前月</p>
         # @type Month: String
 
         attr_accessor :RuleId, :Month
@@ -5452,9 +5452,9 @@ module TencentCloud
 
       # DeleteAllocationUnit请求参数结构体
       class DeleteAllocationUnitRequest < TencentCloud::Common::AbstractModel
-        # @param Id: 所删除分账单元ID
+        # @param Id: <p>所删除分账单元ID</p>
         # @type Id: Integer
-        # @param Month: 月份，不传默认当前月
+        # @param Month: <p>月份，不传默认当前月</p>
         # @type Month: String
 
         attr_accessor :Id, :Month
@@ -5532,9 +5532,9 @@ module TencentCloud
 
       # DeleteGatherRule请求参数结构体
       class DeleteGatherRuleRequest < TencentCloud::Common::AbstractModel
-        # @param RuleId: 所删除归集规则ID
+        # @param RuleId: <p>所删除归集规则ID</p>
         # @type RuleId: Integer
-        # @param Month: 月份，不传默认当前月
+        # @param Month: <p>月份，不传默认当前月</p>
         # @type Month: String
 
         attr_accessor :RuleId, :Month
@@ -5672,7 +5672,7 @@ module TencentCloud
 
       # DescribeAllocateConditions请求参数结构体
       class DescribeAllocateConditionsRequest < TencentCloud::Common::AbstractModel
-        # @param Month: 账单月份，格式为2024-02，不传默认当前月
+        # @param Month: <p>账单月份，格式为2024-02，不传默认当前月</p>
         # @type Month: String
 
         attr_accessor :Month
@@ -5688,27 +5688,27 @@ module TencentCloud
 
       # DescribeAllocateConditions返回参数结构体
       class DescribeAllocateConditionsResponse < TencentCloud::Common::AbstractModel
-        # @param Business: 产品筛选列表
+        # @param Business: <p>产品筛选列表</p>
         # @type Business: Array
-        # @param Product: 子产品筛选列表
+        # @param Product: <p>子产品筛选列表</p>
         # @type Product: Array
-        # @param Item: 组件名称筛选列表
+        # @param Item: <p>组件名称筛选列表</p>
         # @type Item: Array
-        # @param Region: 地域筛选列表
+        # @param Region: <p>地域筛选列表</p>
         # @type Region: Array
-        # @param InstanceType: 实例类型筛选列表
+        # @param InstanceType: <p>实例类型筛选列表</p>
         # @type InstanceType: Array
-        # @param PayMode: 计费模式筛选列表
+        # @param PayMode: <p>计费模式筛选列表</p>
         # @type PayMode: Array
-        # @param Project: 项目筛选列表
+        # @param Project: <p>项目筛选列表</p>
         # @type Project: Array
-        # @param Tag: 标签筛选列表
+        # @param Tag: <p>标签筛选列表</p>
         # @type Tag: Array
-        # @param OwnerUin: 使用者 UIN 筛选列表
+        # @param OwnerUin: <p>使用者 UIN 筛选列表</p>
         # @type OwnerUin: Array
-        # @param OperateUin: 操作者 UIN 筛选列表
+        # @param OperateUin: <p>操作者 UIN 筛选列表</p>
         # @type OperateUin: Array
-        # @param ActionType: 交易类型筛选列表
+        # @param ActionType: <p>交易类型筛选列表</p>
         # @type ActionType: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5825,41 +5825,41 @@ module TencentCloud
 
       # DescribeAllocationBillConditions请求参数结构体
       class DescribeAllocationBillConditionsRequest < TencentCloud::Common::AbstractModel
-        # @param Month: 账单月份，格式为2024-02，不传默认当前月
+        # @param Month: <p>账单月份，格式为2024-02，不传默认当前月</p>
         # @type Month: String
-        # @param TreeNodeUniqKeys: 分账单元唯一标识，用作筛选
+        # @param TreeNodeUniqKeys: <p>分账单元唯一标识，用作筛选</p>
         # @type TreeNodeUniqKeys: Array
-        # @param BillDates: 日期
+        # @param BillDates: <p>日期</p>
         # @type BillDates: Array
-        # @param BusinessCodes: 产品编码
+        # @param BusinessCodes: <p>产品编码</p>
         # @type BusinessCodes: Array
-        # @param OwnerUins: 使用者UIN
+        # @param OwnerUins: <p>使用者UIN</p>
         # @type OwnerUins: Array
-        # @param OperateUins: 操作者UIN
+        # @param OperateUins: <p>操作者UIN</p>
         # @type OperateUins: Array
-        # @param PayModes: 计费模式编码
+        # @param PayModes: <p>计费模式编码</p>
         # @type PayModes: Array
-        # @param ActionTypes: 交易类型编码
+        # @param ActionTypes: <p>交易类型编码</p>
         # @type ActionTypes: Array
-        # @param ProductCodes: 子产品编码
+        # @param ProductCodes: <p>子产品编码</p>
         # @type ProductCodes: Array
-        # @param RegionIds: 地域ID
+        # @param RegionIds: <p>地域ID</p>
         # @type RegionIds: Array
-        # @param ZoneIds: 可用区ID
+        # @param ZoneIds: <p>可用区ID</p>
         # @type ZoneIds: Array
-        # @param InstanceTypes: 实例类型编码
+        # @param InstanceTypes: <p>实例类型编码</p>
         # @type InstanceTypes: Array
-        # @param Tag: 标签
+        # @param Tag: <p>标签</p>
         # @type Tag: Array
-        # @param ComponentCodes: 组件类型编码
+        # @param ComponentCodes: <p>组件类型编码</p>
         # @type ComponentCodes: Array
-        # @param ItemCodes: 组件名称编码
+        # @param ItemCodes: <p>组件名称编码</p>
         # @type ItemCodes: Array
-        # @param SearchKey: 模糊搜索条件
+        # @param SearchKey: <p>模糊搜索条件</p>
         # @type SearchKey: String
-        # @param ProjectIds: 项目id
+        # @param ProjectIds: <p>项目id</p>
         # @type ProjectIds: Array
-        # @param AllocationType: 费用归集类型
+        # @param AllocationType: <p>费用归集类型</p><p>枚举值：</p><ul><li>0： 分摊</li><li>1： 归集</li><li>-1： 未分配</li></ul>
         # @type AllocationType: Array
 
         attr_accessor :Month, :TreeNodeUniqKeys, :BillDates, :BusinessCodes, :OwnerUins, :OperateUins, :PayModes, :ActionTypes, :ProductCodes, :RegionIds, :ZoneIds, :InstanceTypes, :Tag, :ComponentCodes, :ItemCodes, :SearchKey, :ProjectIds, :AllocationType
@@ -5909,37 +5909,37 @@ module TencentCloud
 
       # DescribeAllocationBillConditions返回参数结构体
       class DescribeAllocationBillConditionsResponse < TencentCloud::Common::AbstractModel
-        # @param Business: 产品筛选列表
+        # @param Business: <p>产品筛选列表</p>
         # @type Business: Array
-        # @param Product: 子产品筛选列表
+        # @param Product: <p>子产品筛选列表</p>
         # @type Product: Array
-        # @param Item: 组件名称筛选列表
+        # @param Item: <p>组件名称筛选列表</p>
         # @type Item: Array
-        # @param Region: 地域筛选列表
+        # @param Region: <p>地域筛选列表</p>
         # @type Region: Array
-        # @param InstanceType: 实例类型筛选列表
+        # @param InstanceType: <p>实例类型筛选列表</p>
         # @type InstanceType: Array
-        # @param PayMode: 计费模式筛选列表
+        # @param PayMode: <p>计费模式筛选列表</p>
         # @type PayMode: Array
-        # @param Project: 项目筛选列表
+        # @param Project: <p>项目筛选列表</p>
         # @type Project: Array
-        # @param Tag: 标签筛选列表
+        # @param Tag: <p>标签筛选列表</p>
         # @type Tag: Array
-        # @param OwnerUin: 使用者 UIN 筛选列表
+        # @param OwnerUin: <p>使用者 UIN 筛选列表</p>
         # @type OwnerUin: Array
-        # @param OperateUin: 操作者 UIN 筛选列表
+        # @param OperateUin: <p>操作者 UIN 筛选列表</p>
         # @type OperateUin: Array
-        # @param BillDay: 日期筛选列表
+        # @param BillDay: <p>日期筛选列表</p>
         # @type BillDay: Array
-        # @param ActionType: 交易类型筛选列表
+        # @param ActionType: <p>交易类型筛选列表</p>
         # @type ActionType: Array
-        # @param Component: 组件类型筛选列表
+        # @param Component: <p>组件类型筛选列表</p>
         # @type Component: Array
-        # @param Zone: 可用区筛选列表
+        # @param Zone: <p>可用区筛选列表</p>
         # @type Zone: Array
-        # @param AllocationTreeNode: 分账单元筛选列表
+        # @param AllocationTreeNode: <p>分账单元筛选列表</p>
         # @type AllocationTreeNode: Array
-        # @param TagKey: 分账标签键
+        # @param TagKey: <p>分账标签键</p>
         # @type TagKey: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6094,55 +6094,45 @@ module TencentCloud
 
       # DescribeAllocationBillDetail请求参数结构体
       class DescribeAllocationBillDetailRequest < TencentCloud::Common::AbstractModel
-        # @param Limit: 数量，最大值为1000
+        # @param Limit: <p>数量，最大值为1000</p>
         # @type Limit: Integer
-        # @param Offset: 分页偏移量，Offset=0表示第一页，如果Limit=100，则Offset=100表示第二页，Offset=200表示第三页，以此类推
+        # @param Offset: <p>分页偏移量，Offset=0表示第一页，如果Limit=100，则Offset=100表示第二页，Offset=200表示第三页，以此类推</p>
         # @type Offset: Integer
-        # @param Month: 账单月份，格式为2024-02，不传默认当前月
+        # @param Month: <p>账单月份，格式为2024-02，不传默认当前月</p>
         # @type Month: String
-        # @param TreeNodeUniqKeys: 分账单元唯一标识，用作筛选
+        # @param TreeNodeUniqKeys: <p>分账单元唯一标识，用作筛选</p>
         # @type TreeNodeUniqKeys: Array
-        # @param Sort: 排序字段，枚举值如下：
-        # RiTimeSpan - 预留实例抵扣时长
-        # ExtendPayAmount1 - 预留实例抵扣组件原价
-        # RealCost - 折后总价
-        # CashPayAmount - 现金金额
-        # VoucherPayAmount - 代金券金额
-        # IncentivePayAmount - 赠送金金额
-        # TransferPayAmount -分成金金额
-        # Cost - 组件原价
+        # @param Sort: <p>排序字段，枚举值如下：<br>RiTimeSpan - 预留实例抵扣时长<br>ExtendPayAmount1 - 预留实例抵扣组件原价<br>RealCost - 折后总价<br>CashPayAmount - 现金金额<br>VoucherPayAmount - 代金券金额<br>IncentivePayAmount - 赠送金金额<br>TransferPayAmount -分成金金额<br>Cost - 组件原价</p>
         # @type Sort: String
-        # @param SortType: 排序类型，枚举值如下：
-        # asc - 升序
-        # desc - 降序
+        # @param SortType: <p>排序类型，枚举值如下：<br>asc - 升序<br>desc - 降序</p>
         # @type SortType: String
-        # @param BusinessCodes: 产品编码，用作筛选
+        # @param BusinessCodes: <p>产品编码，用作筛选</p>
         # @type BusinessCodes: Array
-        # @param OwnerUins: 使用者UIN，用作筛选
+        # @param OwnerUins: <p>使用者UIN，用作筛选</p>
         # @type OwnerUins: Array
-        # @param OperateUins: 操作者UIN，用作筛选
+        # @param OperateUins: <p>操作者UIN，用作筛选</p>
         # @type OperateUins: Array
-        # @param PayModes: 计费模式编码，用作筛选
+        # @param PayModes: <p>计费模式编码，用作筛选</p>
         # @type PayModes: Array
-        # @param ActionTypes: 交易类型编码，用作筛选
+        # @param ActionTypes: <p>交易类型编码，用作筛选</p>
         # @type ActionTypes: Array
-        # @param ProductCodes: 子产品编码，用作筛选
+        # @param ProductCodes: <p>子产品编码，用作筛选</p>
         # @type ProductCodes: Array
-        # @param RegionIds: 地域ID，用作筛选
+        # @param RegionIds: <p>地域ID，用作筛选</p>
         # @type RegionIds: Array
-        # @param ZoneIds: 可用区ID，用作筛选
+        # @param ZoneIds: <p>可用区ID，用作筛选</p>
         # @type ZoneIds: Array
-        # @param InstanceTypes: 实例类型编码，用作筛选
+        # @param InstanceTypes: <p>实例类型编码，用作筛选</p>
         # @type InstanceTypes: Array
-        # @param Tag: 标签，用作筛选
+        # @param Tag: <p>标签，用作筛选</p>
         # @type Tag: Array
-        # @param ComponentCodes: 组件类型编码，用作筛选
+        # @param ComponentCodes: <p>组件类型编码，用作筛选</p>
         # @type ComponentCodes: Array
-        # @param ItemCodes: 组件名称编码，用作筛选
+        # @param ItemCodes: <p>组件名称编码，用作筛选</p>
         # @type ItemCodes: Array
-        # @param SearchKey: 模糊搜索：支持标签、资源id、资源别名
+        # @param SearchKey: <p>模糊搜索：支持标签、资源id、资源别名</p>
         # @type SearchKey: String
-        # @param ProjectIds: 项目ID，用作筛选
+        # @param ProjectIds: <p>项目ID，用作筛选</p>
         # @type ProjectIds: Array
 
         attr_accessor :Limit, :Offset, :Month, :TreeNodeUniqKeys, :Sort, :SortType, :BusinessCodes, :OwnerUins, :OperateUins, :PayModes, :ActionTypes, :ProductCodes, :RegionIds, :ZoneIds, :InstanceTypes, :Tag, :ComponentCodes, :ItemCodes, :SearchKey, :ProjectIds
@@ -6196,11 +6186,11 @@ module TencentCloud
 
       # DescribeAllocationBillDetail返回参数结构体
       class DescribeAllocationBillDetailResponse < TencentCloud::Common::AbstractModel
-        # @param RecordNum: 总条数
+        # @param RecordNum: <p>总条数</p>
         # @type RecordNum: Integer
-        # @param Total: 分账账单概览金额汇总
+        # @param Total: <p>分账账单概览金额汇总</p>
         # @type Total: :class:`Tencentcloud::Billing.v20180709.models.AllocationOverviewTotal`
-        # @param Detail: 分账账单明细
+        # @param Detail: <p>分账账单明细</p>
         # @type Detail: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6234,7 +6224,7 @@ module TencentCloud
 
       # DescribeAllocationMonthOverview请求参数结构体
       class DescribeAllocationMonthOverviewRequest < TencentCloud::Common::AbstractModel
-        # @param Month: 账单月份，格式为2024-02，不传默认当前月
+        # @param Month: <p>账单月份，格式为2024-02，不传默认当前月</p>
         # @type Month: String
 
         attr_accessor :Month
@@ -6250,9 +6240,9 @@ module TencentCloud
 
       # DescribeAllocationMonthOverview返回参数结构体
       class DescribeAllocationMonthOverviewResponse < TencentCloud::Common::AbstractModel
-        # @param Detail: 分账账单月概览详情
+        # @param Detail: <p>分账账单月概览详情</p>
         # @type Detail: Array
-        # @param Total: 分账账单概览金额汇总
+        # @param Total: <p>分账账单概览金额汇总</p>
         # @type Total: :class:`Tencentcloud::Billing.v20180709.models.AllocationOverviewTotal`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6284,41 +6274,21 @@ module TencentCloud
 
       # DescribeAllocationOverview请求参数结构体
       class DescribeAllocationOverviewRequest < TencentCloud::Common::AbstractModel
-        # @param Limit: 数量，最大值为1000
+        # @param Limit: <p>数量，最大值为1000</p>
         # @type Limit: Integer
-        # @param Offset: 分页偏移量，Offset=0表示第一页，如果Limit=100，则Offset=100表示第二页，Offset=200表示第三页，以此类推
+        # @param Offset: <p>分页偏移量，Offset=0表示第一页，如果Limit=100，则Offset=100表示第二页，Offset=200表示第三页，以此类推</p>
         # @type Offset: Integer
-        # @param Month: 账单月份，格式为2024-02，不传默认当前月
+        # @param Month: <p>账单月份，格式为2024-02，不传默认当前月</p>
         # @type Month: String
-        # @param PeriodType: 统计周期，枚举值如下
-        # month - 月
-        # day - 日
+        # @param PeriodType: <p>统计周期，枚举值如下<br>month - 月<br>day - 日</p>
         # @type PeriodType: String
-        # @param TreeNodeUniqKeys: 分账单元唯一标识，用作筛选
+        # @param TreeNodeUniqKeys: <p>分账单元唯一标识，用作筛选</p>
         # @type TreeNodeUniqKeys: Array
-        # @param Sort: 排序字段，枚举值如下：
-        # GatherCashPayAmount - 归集费用(现金)
-        # GatherVoucherPayAmount- 归集费用(优惠券)
-        # GatherIncentivePayAmount -  归集费用(赠送金)
-        # GatherTransferPayAmount - 归集费用(分成金)
-        # AllocateCashPayAmount - 分摊费用(现金)
-        # AllocateVoucherPayAmount - 分摊费用(优惠券)
-        # AllocateIncentivePayAmount - 分摊费用(赠送金)
-        # AllocateTransferPayAmount - 分摊费用(分成金)
-        # TotalCashPayAmount - 合计费用(现金)
-        # TotalVoucherPayAmount - 合计费用(优惠券)
-        # TotalIncentivePayAmount - 合计费用(赠送金)
-        # TotalTransferPayAmount - 合计费用(分成金)
-        # GatherRealCost - 归集费用(折后总额)
-        # AllocateRealCost - 分摊费用(折后总额)
-        # RealTotalCost - 合计费用(折后总额)
-        # Ratio  - 占比(折后总额)
+        # @param Sort: <p>排序字段，枚举值如下：<br>GatherCashPayAmount - 归集费用(现金)<br>GatherVoucherPayAmount- 归集费用(优惠券)<br>GatherIncentivePayAmount -  归集费用(赠送金)<br>GatherTransferPayAmount - 归集费用(分成金)<br>AllocateCashPayAmount - 分摊费用(现金)<br>AllocateVoucherPayAmount - 分摊费用(优惠券)<br>AllocateIncentivePayAmount - 分摊费用(赠送金)<br>AllocateTransferPayAmount - 分摊费用(分成金)<br>TotalCashPayAmount - 合计费用(现金)<br>TotalVoucherPayAmount - 合计费用(优惠券)<br>TotalIncentivePayAmount - 合计费用(赠送金)<br>TotalTransferPayAmount - 合计费用(分成金)<br>GatherRealCost - 归集费用(折后总额)<br>AllocateRealCost - 分摊费用(折后总额)<br>RealTotalCost - 合计费用(折后总额)<br>Ratio  - 占比(折后总额)</p>
         # @type Sort: String
-        # @param SortType: 排序类型，枚举值如下：
-        # asc - 升序
-        # desc - 降序
+        # @param SortType: <p>排序类型，枚举值如下：<br>asc - 升序<br>desc - 降序</p>
         # @type SortType: String
-        # @param BillDates: 日期，用作筛选
+        # @param BillDates: <p>日期，用作筛选</p>
         # @type BillDates: Array
 
         attr_accessor :Limit, :Offset, :Month, :PeriodType, :TreeNodeUniqKeys, :Sort, :SortType, :BillDates
@@ -6348,11 +6318,11 @@ module TencentCloud
 
       # DescribeAllocationOverview返回参数结构体
       class DescribeAllocationOverviewResponse < TencentCloud::Common::AbstractModel
-        # @param RecordNum: 总条数
+        # @param RecordNum: <p>总条数</p>
         # @type RecordNum: Integer
-        # @param Total: 分账账单概览金额汇总
+        # @param Total: <p>分账账单概览金额汇总</p>
         # @type Total: :class:`Tencentcloud::Billing.v20180709.models.AllocationOverviewTotal`
-        # @param Detail: 分账概览明细
+        # @param Detail: <p>分账概览明细</p>
         # @type Detail: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6386,9 +6356,9 @@ module TencentCloud
 
       # DescribeAllocationRuleDetail请求参数结构体
       class DescribeAllocationRuleDetailRequest < TencentCloud::Common::AbstractModel
-        # @param RuleId: 所查询公摊规则ID
+        # @param RuleId: <p>所查询公摊规则ID</p>
         # @type RuleId: Integer
-        # @param Month: 月份，不传默认当前月
+        # @param Month: <p>月份，不传默认当前月</p>
         # @type Month: String
 
         attr_accessor :RuleId, :Month
@@ -6406,20 +6376,17 @@ module TencentCloud
 
       # DescribeAllocationRuleDetail返回参数结构体
       class DescribeAllocationRuleDetailResponse < TencentCloud::Common::AbstractModel
-        # @param Id: 公摊规则ID
+        # @param Id: <p>公摊规则ID</p>
         # @type Id: Integer
-        # @param Uin: 公摊规则所属UIN
+        # @param Uin: <p>公摊规则所属UIN</p>
         # @type Uin: String
-        # @param Name: 公摊规则名称
+        # @param Name: <p>公摊规则名称</p>
         # @type Name: String
-        # @param Type: 公摊策略类型，枚举值如下：
-        # 1 - 自定义分摊占比
-        # 2 - 等比分摊
-        # 3 - 按占比分摊
+        # @param Type: <p>公摊策略类型，枚举值如下：<br>1 - 自定义分摊占比<br>2 - 等比分摊<br>3 - 按占比分摊</p>
         # @type Type: Integer
-        # @param RuleDetail: 公摊规则表达式
+        # @param RuleDetail: <p>公摊规则表达式</p>
         # @type RuleDetail: :class:`Tencentcloud::Billing.v20180709.models.AllocationRuleExpression`
-        # @param RatioDetail: 公摊比例表达式，Type为1和2时返回
+        # @param RatioDetail: <p>公摊比例表达式，Type为1和2时返回</p>
         # @type RatioDetail: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6459,19 +6426,15 @@ module TencentCloud
 
       # DescribeAllocationRuleSummary请求参数结构体
       class DescribeAllocationRuleSummaryRequest < TencentCloud::Common::AbstractModel
-        # @param Limit: 每次获取数据量，最大值1000
+        # @param Limit: <p>每次获取数据量，最大值1000</p>
         # @type Limit: Integer
-        # @param Offset: 分页偏移量
+        # @param Offset: <p>分页偏移量</p>
         # @type Offset: Integer
-        # @param Month: 月份，不传默认当前月
+        # @param Month: <p>月份，不传默认当前月</p>
         # @type Month: String
-        # @param Type: 公摊策略类型，用于筛选。
-        # 枚举值如下：
-        # 1 - 自定义分摊占比
-        # 2 - 等比分摊
-        # 3 - 按占比分摊
+        # @param Type: <p>公摊策略类型，用于筛选。<br>枚举值如下：<br>1 - 自定义分摊占比<br>2 - 等比分摊<br>3 - 按占比分摊</p>
         # @type Type: Integer
-        # @param Name: 公摊规则名称或分账单元名称，用于模糊筛选。
+        # @param Name: <p>公摊规则名称或分账单元名称，用于模糊筛选。</p>
         # @type Name: String
 
         attr_accessor :Limit, :Offset, :Month, :Type, :Name
@@ -6495,9 +6458,9 @@ module TencentCloud
 
       # DescribeAllocationRuleSummary返回参数结构体
       class DescribeAllocationRuleSummaryResponse < TencentCloud::Common::AbstractModel
-        # @param RuleList: 公摊规则表达式
+        # @param RuleList: <p>公摊规则表达式</p>
         # @type RuleList: Array
-        # @param Total: 规则总数
+        # @param Total: <p>规则总数</p>
         # @type Total: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6526,47 +6489,25 @@ module TencentCloud
 
       # DescribeAllocationSummaryByBusiness请求参数结构体
       class DescribeAllocationSummaryByBusinessRequest < TencentCloud::Common::AbstractModel
-        # @param Limit: 数量，最大值为1000
+        # @param Limit: <p>数量，最大值为1000</p>
         # @type Limit: Integer
-        # @param Offset: 分页偏移量，Offset=0表示第一页，如果Limit=100，则Offset=100表示第二页，Offset=200表示第三页，以此类推
+        # @param Offset: <p>分页偏移量，Offset=0表示第一页，如果Limit=100，则Offset=100表示第二页，Offset=200表示第三页，以此类推</p>
         # @type Offset: Integer
-        # @param Month: 账单月份，格式为2024-02，不传默认当前月
+        # @param Month: <p>账单月份，格式为2024-02，不传默认当前月</p>
         # @type Month: String
-        # @param PeriodType: 统计周期，枚举值如下
-        # month - 月
-        # day - 日
+        # @param PeriodType: <p>统计周期，枚举值如下<br>month - 月<br>day - 日</p>
         # @type PeriodType: String
-        # @param TreeNodeUniqKeys: 分账单元唯一标识，用作筛选
+        # @param TreeNodeUniqKeys: <p>分账单元唯一标识，用作筛选</p>
         # @type TreeNodeUniqKeys: Array
-        # @param SortType: 排序类型，枚举值如下：
-        # asc - 升序
-        # desc - 降序
+        # @param SortType: <p>排序类型，枚举值如下：<br>asc - 升序<br>desc - 降序</p>
         # @type SortType: String
-        # @param Sort: 排序字段，枚举值如下：
-        # GatherCashPayAmount - 归集费用(现金)
-        # GatherVoucherPayAmount- 归集费用(优惠券)
-        # GatherIncentivePayAmount - 归集费用(赠送金)
-        # GatherTransferPayAmount - 归集费用(分成金)
-        # AllocateCashPayAmount - 分摊费用(现金)
-        # AllocateVoucherPayAmount - 分摊费用(优惠券)
-        # AllocateIncentivePayAmount - 分摊费用(赠送金)
-        # AllocateTransferPayAmount - 分摊费用(分成金)
-        # TotalCashPayAmount - 合计费用(现金)
-        # TotalVoucherPayAmount - 合计费用(优惠券)
-        # TotalIncentivePayAmount - 合计费用(赠送金)
-        # TotalTransferPayAmount - 合计费用(分成金)
-        # GatherRealCost - 归集费用(折后总额)
-        # AllocateRealCost - 分摊费用(折后总额)
-        # RealTotalCost - 合计费用(折后总额)
-        # BusinessCode - 产品代码
-        # Ratio - 占比(折后总额)
-        # Trend - 环比(折后总额)
+        # @param Sort: <p>排序字段，枚举值如下：<br>GatherCashPayAmount - 归集费用(现金)<br>GatherVoucherPayAmount- 归集费用(优惠券)<br>GatherIncentivePayAmount - 归集费用(赠送金)<br>GatherTransferPayAmount - 归集费用(分成金)<br>AllocateCashPayAmount - 分摊费用(现金)<br>AllocateVoucherPayAmount - 分摊费用(优惠券)<br>AllocateIncentivePayAmount - 分摊费用(赠送金)<br>AllocateTransferPayAmount - 分摊费用(分成金)<br>TotalCashPayAmount - 合计费用(现金)<br>TotalVoucherPayAmount - 合计费用(优惠券)<br>TotalIncentivePayAmount - 合计费用(赠送金)<br>TotalTransferPayAmount - 合计费用(分成金)<br>GatherRealCost - 归集费用(折后总额)<br>AllocateRealCost - 分摊费用(折后总额)<br>RealTotalCost - 合计费用(折后总额)<br>BusinessCode - 产品代码<br>Ratio - 占比(折后总额)<br>Trend - 环比(折后总额)</p>
         # @type Sort: String
-        # @param BillDates: 日期，用作筛选，PeriodType=day时可传
+        # @param BillDates: <p>日期，用作筛选，PeriodType=day时可传</p>
         # @type BillDates: Array
-        # @param BusinessCodes: 产品编码，用作筛选
+        # @param BusinessCodes: <p>产品编码，用作筛选</p>
         # @type BusinessCodes: Array
-        # @param SearchKey: 模糊搜索条件
+        # @param SearchKey: <p>模糊搜索条件</p>
         # @type SearchKey: String
 
         attr_accessor :Limit, :Offset, :Month, :PeriodType, :TreeNodeUniqKeys, :SortType, :Sort, :BillDates, :BusinessCodes, :SearchKey
@@ -6603,11 +6544,11 @@ module TencentCloud
 
       # DescribeAllocationSummaryByBusiness返回参数结构体
       class DescribeAllocationSummaryByBusinessResponse < TencentCloud::Common::AbstractModel
-        # @param RecordNum: 总条数
+        # @param RecordNum: <p>总条数</p>
         # @type RecordNum: Integer
-        # @param Total: 分账账单概览金额汇总
+        # @param Total: <p>分账账单概览金额汇总</p>
         # @type Total: :class:`Tencentcloud::Billing.v20180709.models.AllocationOverviewTotal`
-        # @param Detail: 分账账单按产品汇总明细
+        # @param Detail: <p>分账账单按产品汇总明细</p>
         # @type Detail: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6641,66 +6582,51 @@ module TencentCloud
 
       # DescribeAllocationSummaryByItem请求参数结构体
       class DescribeAllocationSummaryByItemRequest < TencentCloud::Common::AbstractModel
-        # @param Limit: 数量，最大值为1000
+        # @param Limit: <p>数量，最大值为1000</p>
         # @type Limit: Integer
-        # @param Offset: 分页偏移量，Offset=0表示第一页，如果Limit=100，则Offset=100表示第二页，Offset=200表示第三页，以此类推
+        # @param Offset: <p>分页偏移量，Offset=0表示第一页，如果Limit=100，则Offset=100表示第二页，Offset=200表示第三页，以此类推</p>
         # @type Offset: Integer
-        # @param Month: 账单月份，格式为2024-02，不传默认当前月
+        # @param Month: <p>账单月份，格式为2024-02，不传默认当前月</p>
         # @type Month: String
-        # @param PeriodType: 统计周期，枚举值如下
-        # month - 月
-        # day - 日
+        # @param PeriodType: <p>统计周期，枚举值如下<br>month - 月<br>day - 日</p>
         # @type PeriodType: String
-        # @param TreeNodeUniqKeys: 分账单元唯一标识，用作筛选
+        # @param TreeNodeUniqKeys: <p>分账单元唯一标识，用作筛选</p>
         # @type TreeNodeUniqKeys: Array
-        # @param Sort: 排序字段，枚举值如下：
-        # RiTimeSpan - 预留实例抵扣时长
-        # ExtendPayAmount1 - 预留实例抵扣组件原价
-        # RealCost - 折后总价
-        # CashPayAmount - 现金金额
-        # VoucherPayAmount - 代金券金额
-        # IncentivePayAmount - 赠送金金额
-        # TransferPayAmount -分成金金额
-        # Cost - 组件原价
+        # @param Sort: <p>排序字段，枚举值如下：<br>RiTimeSpan - 预留实例抵扣时长<br>ExtendPayAmount1 - 预留实例抵扣组件原价<br>RealCost - 折后总价<br>CashPayAmount - 现金金额<br>VoucherPayAmount - 代金券金额<br>IncentivePayAmount - 赠送金金额<br>TransferPayAmount -分成金金额<br>Cost - 组件原价</p>
         # @type Sort: String
-        # @param SortType: 排序类型，枚举值如下：
-        # asc - 升序
-        # desc - 降序
+        # @param SortType: <p>排序类型，枚举值如下：<br>asc - 升序<br>desc - 降序</p>
         # @type SortType: String
-        # @param BillDates: 日期，用作筛选
+        # @param BillDates: <p>日期，用作筛选</p>
         # @type BillDates: Array
-        # @param BusinessCodes: 产品编码，用作筛选
+        # @param BusinessCodes: <p>产品编码，用作筛选</p>
         # @type BusinessCodes: Array
-        # @param OwnerUins: 使用者UIN，用作筛选
+        # @param OwnerUins: <p>使用者UIN，用作筛选</p>
         # @type OwnerUins: Array
-        # @param OperateUins: 操作者UIN，用作筛选
+        # @param OperateUins: <p>操作者UIN，用作筛选</p>
         # @type OperateUins: Array
-        # @param PayModes: 计费模式编码，用作筛选
+        # @param PayModes: <p>计费模式编码，用作筛选</p>
         # @type PayModes: Array
-        # @param ActionTypes: 交易类型编码，用作筛选
+        # @param ActionTypes: <p>交易类型编码，用作筛选</p>
         # @type ActionTypes: Array
-        # @param ProductCodes: 子产品编码，用作筛选
+        # @param ProductCodes: <p>子产品编码，用作筛选</p>
         # @type ProductCodes: Array
-        # @param RegionIds: 地域ID，用作筛选
+        # @param RegionIds: <p>地域ID，用作筛选</p>
         # @type RegionIds: Array
-        # @param ZoneIds: 可用区ID，用作筛选
+        # @param ZoneIds: <p>可用区ID，用作筛选</p>
         # @type ZoneIds: Array
-        # @param InstanceTypes: 实例类型编码，用作筛选
+        # @param InstanceTypes: <p>实例类型编码，用作筛选</p>
         # @type InstanceTypes: Array
-        # @param Tag: 标签，用作筛选
+        # @param Tag: <p>标签，用作筛选</p>
         # @type Tag: Array
-        # @param ComponentCodes: 组件类型编码，用作筛选
+        # @param ComponentCodes: <p>组件类型编码，用作筛选</p>
         # @type ComponentCodes: Array
-        # @param ItemCodes: 组件名称编码，用作筛选
+        # @param ItemCodes: <p>组件名称编码，用作筛选</p>
         # @type ItemCodes: Array
-        # @param SearchKey: 模糊搜索：支持标签、资源id、资源别名
+        # @param SearchKey: <p>模糊搜索：支持标签、资源id、资源别名</p>
         # @type SearchKey: String
-        # @param ProjectIds: 项目ID，用作筛选
+        # @param ProjectIds: <p>项目ID，用作筛选</p>
         # @type ProjectIds: Array
-        # @param AllocationType: 费用归集类型，枚举值如下：
-        # 0 - 分摊
-        # 1 - 归集
-        # -1 - 未分配
+        # @param AllocationType: <p>费用归集类型，枚举值如下：<br>0 - 分摊<br>1 - 归集<br>-1 - 未分配</p>
         # @type AllocationType: Array
 
         attr_accessor :Limit, :Offset, :Month, :PeriodType, :TreeNodeUniqKeys, :Sort, :SortType, :BillDates, :BusinessCodes, :OwnerUins, :OperateUins, :PayModes, :ActionTypes, :ProductCodes, :RegionIds, :ZoneIds, :InstanceTypes, :Tag, :ComponentCodes, :ItemCodes, :SearchKey, :ProjectIds, :AllocationType
@@ -6760,11 +6686,11 @@ module TencentCloud
 
       # DescribeAllocationSummaryByItem返回参数结构体
       class DescribeAllocationSummaryByItemResponse < TencentCloud::Common::AbstractModel
-        # @param RecordNum: 总条数
+        # @param RecordNum: <p>总条数</p>
         # @type RecordNum: Integer
-        # @param Total: 分账账单概览金额汇总
+        # @param Total: <p>分账账单概览金额汇总</p>
         # @type Total: :class:`Tencentcloud::Billing.v20180709.models.AllocationOverviewTotal`
-        # @param Detail: 分账账单按组件汇总明细
+        # @param Detail: <p>分账账单按组件汇总明细</p>
         # @type Detail: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6798,62 +6724,47 @@ module TencentCloud
 
       # DescribeAllocationSummaryByResource请求参数结构体
       class DescribeAllocationSummaryByResourceRequest < TencentCloud::Common::AbstractModel
-        # @param Limit: 数量，最大值为1000
+        # @param Limit: <p>数量，最大值为1000</p>
         # @type Limit: Integer
-        # @param Offset: 分页偏移量，Offset=0表示第一页，如果Limit=100，则Offset=100表示第二页，Offset=200表示第三页，以此类推
+        # @param Offset: <p>分页偏移量，Offset=0表示第一页，如果Limit=100，则Offset=100表示第二页，Offset=200表示第三页，以此类推</p>
         # @type Offset: Integer
-        # @param Month: 账单月份，格式为2024-02，不传默认当前月
+        # @param Month: <p>账单月份，格式为2024-02，不传默认当前月</p>
         # @type Month: String
-        # @param PeriodType: 统计周期，枚举值如下
-        # month - 月
-        # day - 日
+        # @param PeriodType: <p>统计周期，枚举值如下<br>month - 月<br>day - 日</p>
         # @type PeriodType: String
-        # @param TreeNodeUniqKeys: 分账单元唯一标识，用作筛选
+        # @param TreeNodeUniqKeys: <p>分账单元唯一标识，用作筛选</p>
         # @type TreeNodeUniqKeys: Array
-        # @param Sort: 排序字段，枚举值如下：
-        # RiTimeSpan - 预留实例抵扣时长
-        # ExtendPayAmount1 - 预留实例抵扣组件原价
-        # RealCost - 折后总价
-        # CashPayAmount - 现金金额
-        # VoucherPayAmount - 代金券金额
-        # IncentivePayAmount - 赠送金金额
-        # TransferPayAmount -分成金金额
-        # Cost - 组件原价
+        # @param Sort: <p>排序字段，枚举值如下：<br>RiTimeSpan - 预留实例抵扣时长<br>ExtendPayAmount1 - 预留实例抵扣组件原价<br>RealCost - 折后总价<br>CashPayAmount - 现金金额<br>VoucherPayAmount - 代金券金额<br>IncentivePayAmount - 赠送金金额<br>TransferPayAmount -分成金金额<br>Cost - 组件原价</p>
         # @type Sort: String
-        # @param SortType: 排序类型，枚举值如下：
-        # asc - 升序
-        # desc - 降序
+        # @param SortType: <p>排序类型，枚举值如下：<br>asc - 升序<br>desc - 降序</p>
         # @type SortType: String
-        # @param BillDates: 日期，用作筛选
+        # @param BillDates: <p>日期，用作筛选</p>
         # @type BillDates: Array
-        # @param BusinessCodes: 产品编码，用作筛选
+        # @param BusinessCodes: <p>产品编码，用作筛选</p>
         # @type BusinessCodes: Array
-        # @param OwnerUins: 使用者UIN，用作筛选
+        # @param OwnerUins: <p>使用者UIN，用作筛选</p>
         # @type OwnerUins: Array
-        # @param OperateUins: 操作者UIN，用作筛选
+        # @param OperateUins: <p>操作者UIN，用作筛选</p>
         # @type OperateUins: Array
-        # @param PayModes: 计费模式编码，用作筛选
+        # @param PayModes: <p>计费模式编码，用作筛选</p>
         # @type PayModes: Array
-        # @param ActionTypes: 交易类型编码，用作筛选
+        # @param ActionTypes: <p>交易类型编码，用作筛选</p>
         # @type ActionTypes: Array
-        # @param ProductCodes: 子产品编码，用作筛选
+        # @param ProductCodes: <p>子产品编码，用作筛选</p>
         # @type ProductCodes: Array
-        # @param RegionIds: 地域ID，用作筛选
+        # @param RegionIds: <p>地域ID，用作筛选</p>
         # @type RegionIds: Array
-        # @param ZoneIds: 可用区ID，用作筛选
+        # @param ZoneIds: <p>可用区ID，用作筛选</p>
         # @type ZoneIds: Array
-        # @param InstanceTypes: 实例类型编码，用作筛选
+        # @param InstanceTypes: <p>实例类型编码，用作筛选</p>
         # @type InstanceTypes: Array
-        # @param Tag: 标签，用作筛选
+        # @param Tag: <p>标签，用作筛选</p>
         # @type Tag: Array
-        # @param SearchKey: 模糊搜索：支持标签、资源id、资源别名
+        # @param SearchKey: <p>模糊搜索：支持标签、资源id、资源别名</p>
         # @type SearchKey: String
-        # @param ProjectIds: 项目ID，用作筛选
+        # @param ProjectIds: <p>项目ID，用作筛选</p>
         # @type ProjectIds: Array
-        # @param AllocationType: 费用归集类型，枚举值如下：
-        # 0 - 分摊
-        # 1 - 归集
-        # -1 -  未分配
+        # @param AllocationType: <p>费用归集类型，枚举值如下：<br>0 - 分摊<br>1 - 归集<br>-1 -  未分配</p>
         # @type AllocationType: Array
 
         attr_accessor :Limit, :Offset, :Month, :PeriodType, :TreeNodeUniqKeys, :Sort, :SortType, :BillDates, :BusinessCodes, :OwnerUins, :OperateUins, :PayModes, :ActionTypes, :ProductCodes, :RegionIds, :ZoneIds, :InstanceTypes, :Tag, :SearchKey, :ProjectIds, :AllocationType
@@ -6909,11 +6820,11 @@ module TencentCloud
 
       # DescribeAllocationSummaryByResource返回参数结构体
       class DescribeAllocationSummaryByResourceResponse < TencentCloud::Common::AbstractModel
-        # @param RecordNum: 总条数
+        # @param RecordNum: <p>总条数</p>
         # @type RecordNum: Integer
-        # @param Total: 分账账单概览金额汇总
+        # @param Total: <p>分账账单概览金额汇总</p>
         # @type Total: :class:`Tencentcloud::Billing.v20180709.models.AllocationOverviewTotal`
-        # @param Detail: 分账账单按资源汇总明细
+        # @param Detail: <p>分账账单按资源汇总明细</p>
         # @type Detail: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6947,7 +6858,7 @@ module TencentCloud
 
       # DescribeAllocationTree请求参数结构体
       class DescribeAllocationTreeRequest < TencentCloud::Common::AbstractModel
-        # @param Month: 月份，不传默认当前月
+        # @param Month: <p>月份，不传默认当前月</p>
         # @type Month: String
 
         attr_accessor :Month
@@ -6963,13 +6874,13 @@ module TencentCloud
 
       # DescribeAllocationTree返回参数结构体
       class DescribeAllocationTreeResponse < TencentCloud::Common::AbstractModel
-        # @param Id: 分账单元ID
+        # @param Id: <p>分账单元ID</p>
         # @type Id: Integer
-        # @param Name: 分账单元名称
+        # @param Name: <p>分账单元名称</p>
         # @type Name: String
-        # @param TreeNodeUniqKey: 分账单元唯一标识
+        # @param TreeNodeUniqKey: <p>分账单元唯一标识</p>
         # @type TreeNodeUniqKey: String
-        # @param Children: 子树
+        # @param Children: <p>子树</p>
         # @type Children: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -7002,11 +6913,11 @@ module TencentCloud
 
       # DescribeAllocationTrendByMonth请求参数结构体
       class DescribeAllocationTrendByMonthRequest < TencentCloud::Common::AbstractModel
-        # @param Month: 账单月份，格式为2024-02，不传默认当前月
+        # @param Month: <p>账单月份，格式为2024-02，不传默认当前月</p>
         # @type Month: String
-        # @param TreeNodeUniqKey: 分账单元唯一标识
+        # @param TreeNodeUniqKey: <p>分账单元唯一标识</p>
         # @type TreeNodeUniqKey: String
-        # @param BusinessCode: 产品编码，用作筛选
+        # @param BusinessCode: <p>产品编码，用作筛选</p>
         # @type BusinessCode: String
 
         attr_accessor :Month, :TreeNodeUniqKey, :BusinessCode
@@ -7026,11 +6937,11 @@ module TencentCloud
 
       # DescribeAllocationTrendByMonth返回参数结构体
       class DescribeAllocationTrendByMonthResponse < TencentCloud::Common::AbstractModel
-        # @param Current: 当月费用信息
+        # @param Current: <p>当月费用信息</p>
         # @type Current: :class:`Tencentcloud::Billing.v20180709.models.AllocationBillTrendDetail`
-        # @param Previous: 之前月份费用信息
+        # @param Previous: <p>之前月份费用信息</p>
         # @type Previous: Array
-        # @param Stat: 费用统计信息
+        # @param Stat: <p>费用统计信息</p>
         # @type Stat: :class:`Tencentcloud::Billing.v20180709.models.AllocationStat`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -7067,9 +6978,9 @@ module TencentCloud
 
       # DescribeAllocationUnitDetail请求参数结构体
       class DescribeAllocationUnitDetailRequest < TencentCloud::Common::AbstractModel
-        # @param Id: 所查询分账单元Id
+        # @param Id: <p>所查询分账单元Id</p>
         # @type Id: Integer
-        # @param Month: 月份，不传默认当前月
+        # @param Month: <p>月份，不传默认当前月</p>
         # @type Month: String
 
         attr_accessor :Id, :Month
@@ -7087,23 +6998,23 @@ module TencentCloud
 
       # DescribeAllocationUnitDetail返回参数结构体
       class DescribeAllocationUnitDetailResponse < TencentCloud::Common::AbstractModel
-        # @param Id: 分账单元ID
+        # @param Id: <p>分账单元ID</p>
         # @type Id: Integer
-        # @param Uin: 分账单元所属UIN
+        # @param Uin: <p>分账单元所属UIN</p>
         # @type Uin: String
-        # @param Name: 分账单元名称
+        # @param Name: <p>分账单元名称</p>
         # @type Name: String
-        # @param ParentId: 分账单元父节点ID
+        # @param ParentId: <p>分账单元父节点ID</p>
         # @type ParentId: Integer
-        # @param SourceName: 源组织名称
+        # @param SourceName: <p>源组织名称</p>
         # @type SourceName: String
-        # @param SourceId: 源组织ID
+        # @param SourceId: <p>源组织ID</p>
         # @type SourceId: String
-        # @param Remark: 备注说明
+        # @param Remark: <p>备注说明</p>
         # @type Remark: String
-        # @param TreeNodeUniqKey: 分账单元标识
+        # @param TreeNodeUniqKey: <p>分账单元标识</p>
         # @type TreeNodeUniqKey: String
-        # @param RuleId: 若分账单元设置归集规则，返回归集规则ID，若无分账规则，则不返回
+        # @param RuleId: <p>若分账单元设置归集规则，返回归集规则ID，若无分账规则，则不返回</p>
         # @type RuleId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -9532,52 +9443,43 @@ module TencentCloud
 
       # DescribeGatherResource请求参数结构体
       class DescribeGatherResourceRequest < TencentCloud::Common::AbstractModel
-        # @param Limit: 数量，最大值为1000
+        # @param Limit: <p>数量，最大值为1000</p>
         # @type Limit: Integer
-        # @param Offset: 分页偏移量，Offset=0表示第一页，如果Limit=100，则Offset=100表示第二页，Offset=200表示第三页，以此类推
+        # @param Offset: <p>分页偏移量，Offset=0表示第一页，如果Limit=100，则Offset=100表示第二页，Offset=200表示第三页，以此类推</p>
         # @type Offset: Integer
-        # @param Month: 账单月份，格式为2024-02，不传默认当前月
+        # @param Month: <p>账单月份，格式为2024-02，不传默认当前月</p>
         # @type Month: String
-        # @param TreeNodeUniqKey: 分账单元唯一标识，用作筛选
+        # @param TreeNodeUniqKey: <p>分账单元唯一标识，用作筛选</p>
         # @type TreeNodeUniqKey: String
-        # @param GatherType: 资源目录类别，枚举值如下：
-        # all - 全部
-        # none - 未归集
+        # @param GatherType: <p>资源目录类别，枚举值如下：<br>all - 全部<br>none - 未归集</p>
         # @type GatherType: String
-        # @param Sort: 排序字段，枚举值如下：
-        # realCost  - 折后总价
-        # cashPayAmount - 现金金额
-        # voucherPayAmount - 代金券金额
-        # incentivePayAmount  - 赠送金金额
-        # transferPayAmount -分成金金额
+        # @param Sort: <p>排序字段，枚举值如下：<br>realCost  - 折后总价<br>cashPayAmount - 现金金额<br>voucherPayAmount - 代金券金额<br>incentivePayAmount  - 赠送金金额<br>transferPayAmount -分成金金额</p>
         # @type Sort: String
-        # @param SortType: 排序类型，枚举值如下：
-        # asc - 升序
-        # desc - 降序
+        # @param SortType: <p>排序类型，枚举值如下：<br>asc - 升序<br>desc - 降序</p>
         # @type SortType: String
-        # @param BusinessCodes: 产品编码，用作筛选
+        # @param BusinessCodes: <p>产品编码，用作筛选</p>
         # @type BusinessCodes: Array
-        # @param ProductCodes: 子产品编码，用作筛选
+        # @param ProductCodes: <p>子产品编码，用作筛选</p>
         # @type ProductCodes: Array
-        # @param ItemCodes: 组件名称编码，用作筛选
+        # @param ItemCodes: <p>组件名称编码，用作筛选</p>
         # @type ItemCodes: Array
-        # @param RegionIds: 地域ID，用作筛选
+        # @param RegionIds: <p>地域ID，用作筛选</p>
         # @type RegionIds: Array
-        # @param InstanceTypes: 实例类型编码，用作筛选
+        # @param InstanceTypes: <p>实例类型编码，用作筛选</p>
         # @type InstanceTypes: Array
-        # @param PayModes: 计费模式编码，用作筛选
+        # @param PayModes: <p>计费模式编码，用作筛选</p>
         # @type PayModes: Array
-        # @param OperateUins: 操作者UIN，用作筛选
+        # @param OperateUins: <p>操作者UIN，用作筛选</p>
         # @type OperateUins: Array
-        # @param OwnerUins: 使用者UIN，用作筛选
+        # @param OwnerUins: <p>使用者UIN，用作筛选</p>
         # @type OwnerUins: Array
-        # @param SearchKey: 模糊搜索：支持标签、资源id、资源别名
+        # @param SearchKey: <p>模糊搜索：支持标签、资源id、资源别名</p>
         # @type SearchKey: String
-        # @param Tag: 标签，用作筛选
+        # @param Tag: <p>标签，用作筛选</p>
         # @type Tag: Array
-        # @param ProjectIds: 项目ID，用作筛选
+        # @param ProjectIds: <p>项目ID，用作筛选</p>
         # @type ProjectIds: Array
-        # @param ActionTypes: 交易类型编码，用作筛选
+        # @param ActionTypes: <p>交易类型编码，用作筛选</p>
         # @type ActionTypes: Array
 
         attr_accessor :Limit, :Offset, :Month, :TreeNodeUniqKey, :GatherType, :Sort, :SortType, :BusinessCodes, :ProductCodes, :ItemCodes, :RegionIds, :InstanceTypes, :PayModes, :OperateUins, :OwnerUins, :SearchKey, :Tag, :ProjectIds, :ActionTypes
@@ -9629,12 +9531,12 @@ module TencentCloud
 
       # DescribeGatherResource返回参数结构体
       class DescribeGatherResourceResponse < TencentCloud::Common::AbstractModel
-        # @param RecordNum: 总条数
+        # @param RecordNum: <p>总条数</p>
         # @type RecordNum: Integer
-        # @param GatherResourceSummary: 资源归集汇总
+        # @param GatherResourceSummary: <p>资源归集汇总</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GatherResourceSummary: Array
-        # @param LastUpdateTime: 数据更新时间
+        # @param LastUpdateTime: <p>数据更新时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LastUpdateTime: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -9666,9 +9568,9 @@ module TencentCloud
 
       # DescribeGatherRuleDetail请求参数结构体
       class DescribeGatherRuleDetailRequest < TencentCloud::Common::AbstractModel
-        # @param Id: 所查询归集规则ID
+        # @param Id: <p>所查询归集规则ID</p>
         # @type Id: Integer
-        # @param Month: 月份，不传默认当前月
+        # @param Month: <p>月份，不传默认当前月</p>
         # @type Month: String
 
         attr_accessor :Id, :Month
@@ -9686,13 +9588,13 @@ module TencentCloud
 
       # DescribeGatherRuleDetail返回参数结构体
       class DescribeGatherRuleDetailResponse < TencentCloud::Common::AbstractModel
-        # @param Id: 归集规则ID
+        # @param Id: <p>归集规则ID</p>
         # @type Id: Integer
-        # @param Uin: 归集规则所属UIN
+        # @param Uin: <p>归集规则所属UIN</p>
         # @type Uin: String
-        # @param UpdateTime: 归集规则最后更新时间
+        # @param UpdateTime: <p>归集规则最后更新时间</p>
         # @type UpdateTime: String
-        # @param RuleDetail: 归集规则详情
+        # @param RuleDetail: <p>归集规则详情</p>
         # @type RuleDetail: :class:`Tencentcloud::Billing.v20180709.models.AllocationRuleExpression`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -10575,17 +10477,17 @@ module TencentCloud
 
       # ModifyAllocationRule请求参数结构体
       class ModifyAllocationRuleRequest < TencentCloud::Common::AbstractModel
-        # @param RuleId: 所编辑公摊规则ID
+        # @param RuleId: <p>所编辑公摊规则ID</p>
         # @type RuleId: Integer
-        # @param Name: 编辑后公摊规则名称
+        # @param Name: <p>编辑后公摊规则名称</p>
         # @type Name: String
-        # @param Type: 公摊策略类型，枚举值如下： 1 - 自定义分摊占比 2 - 等比分摊 3 - 按占比分摊
+        # @param Type: <p>公摊策略类型，枚举值如下： 1 - 自定义分摊占比 2 - 等比分摊 3 - 按占比分摊</p>
         # @type Type: Integer
-        # @param RuleDetail: 编辑后公摊规则表达式
+        # @param RuleDetail: <p>编辑后公摊规则表达式</p>
         # @type RuleDetail: :class:`Tencentcloud::Billing.v20180709.models.AllocationRuleExpression`
-        # @param RatioDetail: 编辑后公摊比例表达式
+        # @param RatioDetail: <p>编辑后公摊比例表达式</p>
         # @type RatioDetail: Array
-        # @param Month: 月份，不传默认当前月
+        # @param Month: <p>月份，不传默认当前月</p>
         # @type Month: String
 
         attr_accessor :RuleId, :Name, :Type, :RuleDetail, :RatioDetail, :Month
@@ -10637,17 +10539,17 @@ module TencentCloud
 
       # ModifyAllocationUnit请求参数结构体
       class ModifyAllocationUnitRequest < TencentCloud::Common::AbstractModel
-        # @param Id: 所修改分账单元ID
+        # @param Id: <p>所修改分账单元ID</p>
         # @type Id: Integer
-        # @param Name: 修改后分账单元名称
+        # @param Name: <p>修改后分账单元名称</p>
         # @type Name: String
-        # @param SourceName: 修改后分账单元源组织名称
+        # @param SourceName: <p>修改后分账单元源组织名称</p>
         # @type SourceName: String
-        # @param SourceId: 修改后分账单元源组织ID
+        # @param SourceId: <p>修改后分账单元源组织ID</p>
         # @type SourceId: String
-        # @param Remark: 分账单元备注说明
+        # @param Remark: <p>分账单元备注说明</p>
         # @type Remark: String
-        # @param Month: 月份，不传默认当前月
+        # @param Month: <p>月份，不传默认当前月</p>
         # @type Month: String
 
         attr_accessor :Id, :Name, :SourceName, :SourceId, :Remark, :Month
@@ -10804,11 +10706,11 @@ module TencentCloud
 
       # ModifyGatherRule请求参数结构体
       class ModifyGatherRuleRequest < TencentCloud::Common::AbstractModel
-        # @param Id: 所编辑归集规则ID
+        # @param Id: <p>所编辑归集规则ID</p>
         # @type Id: Integer
-        # @param RuleDetail: 所编辑分账规则详情
+        # @param RuleDetail: <p>所编辑分账规则详情</p>
         # @type RuleDetail: :class:`Tencentcloud::Billing.v20180709.models.AllocationRuleExpression`
-        # @param Month: 月份，不传默认当前月
+        # @param Month: <p>月份，不传默认当前月</p>
         # @type Month: String
 
         attr_accessor :Id, :RuleDetail, :Month

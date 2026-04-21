@@ -1599,28 +1599,31 @@ module TencentCloud
 
       # DeleteIndex请求参数结构体
       class DeleteIndexRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: ES集群ID
+        # @param InstanceId: <p>ES集群ID</p>
         # @type InstanceId: String
-        # @param IndexType: 删除的索引类型。auto：自治索引；normal：普通索引
+        # @param IndexType: <p>删除的索引类型。auto：自治索引；normal：普通索引</p>
         # @type IndexType: String
-        # @param IndexName: 删除的索引名
+        # @param IndexName: <p>删除的索引名</p>
         # @type IndexName: String
-        # @param Username: 集群访问用户名
+        # @param Username: <p>集群访问用户名</p>
         # @type Username: String
-        # @param Password: 集群访问密码
+        # @param Password: <p>集群访问密码</p>
         # @type Password: String
-        # @param BackingIndexName: 后备索引名
+        # @param BackingIndexName: <p>后备索引名</p>
         # @type BackingIndexName: String
+        # @param IndexPhrase: <p>索引生命阶段</p>
+        # @type IndexPhrase: String
 
-        attr_accessor :InstanceId, :IndexType, :IndexName, :Username, :Password, :BackingIndexName
+        attr_accessor :InstanceId, :IndexType, :IndexName, :Username, :Password, :BackingIndexName, :IndexPhrase
 
-        def initialize(instanceid=nil, indextype=nil, indexname=nil, username=nil, password=nil, backingindexname=nil)
+        def initialize(instanceid=nil, indextype=nil, indexname=nil, username=nil, password=nil, backingindexname=nil, indexphrase=nil)
           @InstanceId = instanceid
           @IndexType = indextype
           @IndexName = indexname
           @Username = username
           @Password = password
           @BackingIndexName = backingindexname
+          @IndexPhrase = indexphrase
         end
 
         def deserialize(params)
@@ -1630,6 +1633,7 @@ module TencentCloud
           @Username = params['Username']
           @Password = params['Password']
           @BackingIndexName = params['BackingIndexName']
+          @IndexPhrase = params['IndexPhrase']
         end
       end
 
@@ -6771,6 +6775,60 @@ module TencentCloud
               @IpTraceLogList << iptracelogentry_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # RequestInstancesByGet请求参数结构体
+      class RequestInstancesByGetRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # RequestInstancesByGet返回参数结构体
+      class RequestInstancesByGetResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # RequestInstances请求参数结构体
+      class RequestInstancesRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # RequestInstances返回参数结构体
+      class RequestInstancesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end

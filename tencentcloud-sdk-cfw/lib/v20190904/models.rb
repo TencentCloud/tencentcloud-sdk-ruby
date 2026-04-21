@@ -838,53 +838,52 @@ module TencentCloud
 
       # 集群模式防火墙开关数据详情
       class ClusterSwitchDetail < TencentCloud::Common::AbstractModel
-        # @param InsObj: 实例对象可以是ccnid类型:ccn-ad21xuds形式;nat网关类型:nat-da12daxd形式;ip类型:1.1.1.1形式等
+        # @param InsObj: <p>实例对象可以是ccnid类型:ccn-ad21xuds形式;nat网关类型:nat-da12daxd形式;ip类型:1.1.1.1形式等</p>
         # @type InsObj: String
-        # @param ObjName: 实例对象名称
+        # @param ObjName: <p>实例对象名称</p>
         # @type ObjName: String
-        # @param FwType: 防火墙类型，ew：vpc间防火墙；nat：nat防火墙；border：互联网边界防火墙
+        # @param FwType: <p>防火墙类型，ew：vpc间防火墙；nat：nat防火墙；border：互联网边界防火墙</p>
         # @type FwType: String
-        # @param AssetType: 资产类型，ccn：ccn实例类型；nat：nat网关类型
+        # @param AssetType: <p>资产类型，ccn：ccn实例类型；nat：nat网关类型</p>
         # @type AssetType: String
-        # @param Region: 地域
+        # @param Region: <p>地域</p>
         # @type Region: String
-        # @param Status: 开关状态
-        # 0 : 关闭
-        # 1 : 开启
-        # 2 : 开启中
-        # 3 : 关闭中
-        # 4 : 异常
+        # @param Status: <p>开关状态<br>0 : 关闭<br>1 : 开启<br>2 : 开启中<br>3 : 关闭中<br>4 : 异常</p>
         # @type Status: Integer
-        # @param SwitchMode: 开关接入模式，1：自动接入；2，手动接入，0：未选择
+        # @param SwitchMode: <p>开关接入模式，1：自动接入；2，手动接入，0：未选择</p>
         # @type SwitchMode: Integer
-        # @param NonCluster: 实例对象是否处于非集群接入场景（主备模式）
+        # @param NonCluster: <p>实例对象是否处于非集群接入场景（主备模式）</p>
         # @type NonCluster: Integer
-        # @param IpVersion: ip版本，0：ipv4；1：ipv6
+        # @param IpVersion: <p>ip版本，0：ipv4；1：ipv6</p>
         # @type IpVersion: Integer
-        # @param AttachIns: 关联实例
+        # @param AttachIns: <p>关联实例</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AttachIns: Array
-        # @param Endpoints: 引流私有网络端点信息
+        # @param Endpoints: <p>引流私有网络端点信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Endpoints: Array
-        # @param Idpsaction: 入侵防护模式,0:观察;1:拦截;2:严格;3:关闭
+        # @param Idpsaction: <p>入侵防护模式,0:观察;1:拦截;2:严格;3:关闭</p>
         # @type Idpsaction: Integer
-        # @param TransEnable: //透明模式开关,0:未开启,1:已开启
+        # @param TransEnable: <p>//透明模式开关,0:未开启,1:已开启</p>
         # @type TransEnable: Integer
-        # @param Enable: 开关状态 0关闭 1开启
+        # @param Enable: <p>开关状态 0关闭 1开启</p>
         # @type Enable: Integer
-        # @param RoutingMode: 路由模式：0：多路由表，1：策略路由
+        # @param RoutingMode: <p>路由模式：0：多路由表，1：策略路由</p>
         # @type RoutingMode: Integer
-        # @param IsPeer: 是否跨租户开关 1是 0不是
+        # @param IsPeer: <p>是否跨租户开关 1是 0不是</p>
         # @type IsPeer: Integer
-        # @param PeerAppid: 跨租户appid
+        # @param PeerAppid: <p>跨租户appid</p>
         # @type PeerAppid: String
-        # @param PeerStatus: 跨租户操作状态 1不允许操作 0可以
+        # @param PeerStatus: <p>跨租户操作状态 1不允许操作 0可以</p>
         # @type PeerStatus: Integer
+        # @param Bypass: <p>Bypass状态</p>
+        # @type Bypass: Integer
+        # @param Progress: <p>防火墙开关操作时的进度状态：</p><p>// 开启 — 自动模式（3步）<br>&quot;AUTO_OPEN_ORCHESTRATING&quot; // 步骤1: 预编排策略路由<br>&quot;AUTO_OPEN_CREATING_RESOURCES&quot; // 步骤2: 创建引流网络和资源<br>&quot;AUTO_OPEN_PUSHING_ROUTES&quot; // 步骤3: 创建策略路由</p><p>// 开启 — 手动模式（1步）<br>&quot;MANUAL_OPEN_CREATING_RESOURCES&quot; // 步骤1: 创建引流网络和资源</p><p>// 关闭 — 自动模式（2步）<br>&quot;AUTO_CLOSE_DELETING_ROUTES&quot; // 步骤1: 删除策略路由<br>&quot;AUTO_CLOSE_DELETING_RESOURCES&quot; // 步骤2: 删除引流网络和资源<br>// 关闭 — 手动模式（1步）<br>&quot;MANUAL_CLOSE_DELETING_RESOURCES&quot; // 步骤1: 删除引流网络和资源</p><p>// 修改 — 自动模式（3步）<br>&quot;AUTO_MODIFY_ORCHESTRATING&quot; // 步骤1: 预编排策略路由<br>&quot;AUTO_MODIFY_DELETING_ROUTES&quot; // 步骤2: 删除旧策略路由<br>&quot;AUTO_MODIFY_PUSHING_ROUTES&quot; // 步骤3: 创建新策略路由</p><p>// 修改 — 手动模式（1步，仅 VPC 防火墙存在手动模式修改）<br>&quot;MANUAL_MODIFY_UPDATING_RESOURCES&quot; // 步骤1: 更新引流网络和资源</p>
+        # @type Progress: String
 
-        attr_accessor :InsObj, :ObjName, :FwType, :AssetType, :Region, :Status, :SwitchMode, :NonCluster, :IpVersion, :AttachIns, :Endpoints, :Idpsaction, :TransEnable, :Enable, :RoutingMode, :IsPeer, :PeerAppid, :PeerStatus
+        attr_accessor :InsObj, :ObjName, :FwType, :AssetType, :Region, :Status, :SwitchMode, :NonCluster, :IpVersion, :AttachIns, :Endpoints, :Idpsaction, :TransEnable, :Enable, :RoutingMode, :IsPeer, :PeerAppid, :PeerStatus, :Bypass, :Progress
 
-        def initialize(insobj=nil, objname=nil, fwtype=nil, assettype=nil, region=nil, status=nil, switchmode=nil, noncluster=nil, ipversion=nil, attachins=nil, endpoints=nil, idpsaction=nil, transenable=nil, enable=nil, routingmode=nil, ispeer=nil, peerappid=nil, peerstatus=nil)
+        def initialize(insobj=nil, objname=nil, fwtype=nil, assettype=nil, region=nil, status=nil, switchmode=nil, noncluster=nil, ipversion=nil, attachins=nil, endpoints=nil, idpsaction=nil, transenable=nil, enable=nil, routingmode=nil, ispeer=nil, peerappid=nil, peerstatus=nil, bypass=nil, progress=nil)
           @InsObj = insobj
           @ObjName = objname
           @FwType = fwtype
@@ -903,6 +902,8 @@ module TencentCloud
           @IsPeer = ispeer
           @PeerAppid = peerappid
           @PeerStatus = peerstatus
+          @Bypass = bypass
+          @Progress = progress
         end
 
         def deserialize(params)
@@ -938,6 +939,8 @@ module TencentCloud
           @IsPeer = params['IsPeer']
           @PeerAppid = params['PeerAppid']
           @PeerStatus = params['PeerStatus']
+          @Bypass = params['Bypass']
+          @Progress = params['Progress']
         end
       end
 
@@ -3799,14 +3802,17 @@ module TencentCloud
         # @param Data: 防火墙开关列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: Array
+        # @param FailData: 开关开启失败列表
+        # @type FailData: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Total, :Data, :RequestId
+        attr_accessor :Total, :Data, :FailData, :RequestId
 
-        def initialize(total=nil, data=nil, requestid=nil)
+        def initialize(total=nil, data=nil, faildata=nil, requestid=nil)
           @Total = total
           @Data = data
+          @FailData = faildata
           @RequestId = requestid
         end
 
@@ -3818,6 +3824,14 @@ module TencentCloud
               clusterswitchdetail_tmp = ClusterSwitchDetail.new
               clusterswitchdetail_tmp.deserialize(i)
               @Data << clusterswitchdetail_tmp
+            end
+          end
+          unless params['FailData'].nil?
+            @FailData = []
+            params['FailData'].each do |i|
+              switchfailinfo_tmp = SwitchFailInfo.new
+              switchfailinfo_tmp.deserialize(i)
+              @FailData << switchfailinfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -5023,15 +5037,18 @@ module TencentCloud
 
       # DescribeNatFwInstance返回参数结构体
       class DescribeNatFwInstanceResponse < TencentCloud::Common::AbstractModel
-        # @param NatinsLst: 实例数组
+        # @param NatinsLst: <p>实例数组</p>
         # @type NatinsLst: Array
+        # @param NatClusterLst: <p>nat ccn集群防火墙列表</p>
+        # @type NatClusterLst: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :NatinsLst, :RequestId
+        attr_accessor :NatinsLst, :NatClusterLst, :RequestId
 
-        def initialize(natinslst=nil, requestid=nil)
+        def initialize(natinslst=nil, natclusterlst=nil, requestid=nil)
           @NatinsLst = natinslst
+          @NatClusterLst = natclusterlst
           @RequestId = requestid
         end
 
@@ -5042,6 +5059,14 @@ module TencentCloud
               natfwinstance_tmp = NatFwInstance.new
               natfwinstance_tmp.deserialize(i)
               @NatinsLst << natfwinstance_tmp
+            end
+          end
+          unless params['NatClusterLst'].nil?
+            @NatClusterLst = []
+            params['NatClusterLst'].each do |i|
+              natclusterinfo_tmp = NatClusterInfo.new
+              natclusterinfo_tmp.deserialize(i)
+              @NatClusterLst << natclusterinfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -9147,6 +9172,26 @@ module TencentCloud
         end
       end
 
+      # NAT集群模式开关信息
+      class NatClusterInfo < TencentCloud::Common::AbstractModel
+        # @param NatInsId: <p>nat网关ID</p>
+        # @type NatInsId: String
+        # @param NatInsName: <p>nat网关名称</p>
+        # @type NatInsName: String
+
+        attr_accessor :NatInsId, :NatInsName
+
+        def initialize(natinsid=nil, natinsname=nil)
+          @NatInsId = natinsid
+          @NatInsName = natinsname
+        end
+
+        def deserialize(params)
+          @NatInsId = params['NatInsId']
+          @NatInsName = params['NatInsName']
+        end
+      end
+
       # Nat防火墙弹性公网ip列表
       class NatFwEipsInfo < TencentCloud::Common::AbstractModel
         # @param Eip: 弹性公网ip
@@ -11023,6 +11068,30 @@ module TencentCloud
           @ErrMsg = params['ErrMsg']
           @ErrKey = params['ErrKey']
           @InsertTime = params['InsertTime']
+        end
+      end
+
+      # 开关开启错误码数据
+      class SwitchFailInfo < TencentCloud::Common::AbstractModel
+        # @param Id: 自增唯一ID
+        # @type Id: Integer
+        # @param Name: 开关名称
+        # @type Name: String
+        # @param Status: 防火墙开关变动状态，小于0
+        # @type Status: Integer
+
+        attr_accessor :Id, :Name, :Status
+
+        def initialize(id=nil, name=nil, status=nil)
+          @Id = id
+          @Name = name
+          @Status = status
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Name = params['Name']
+          @Status = params['Status']
         end
       end
 

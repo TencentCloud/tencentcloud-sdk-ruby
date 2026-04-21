@@ -386,28 +386,30 @@ module TencentCloud
 
       # 创建敏捷上云入参
       class CreateCasInput < TencentCloud::Common::AbstractModel
-        # @param Name: 敏捷上云名称
+        # @param Name: <p>敏捷上云名称</p>
         # @type Name: String
-        # @param IdcAddress: 需要接入敏捷上云的IDC的地址
+        # @param IdcAddress: <p>需要接入敏捷上云的IDC的地址</p>
         # @type IdcAddress: String
-        # @param IdcType: 需要接入敏捷上云的IDC的互联网服务提供商类型
+        # @param IdcType: <p>需要接入敏捷上云的IDC的互联网服务提供商类型</p>
         # @type IdcType: String
-        # @param Bandwidth: 敏捷上云的带宽，单位为MB
+        # @param Bandwidth: <p>敏捷上云的带宽，单位为MB</p>
         # @type Bandwidth: Integer
-        # @param Telephone: 联系电话
+        # @param Telephone: <p>联系电话</p>
         # @type Telephone: String
-        # @param Remarks: 备注信息
+        # @param Remarks: <p>备注信息</p>
         # @type Remarks: String
-        # @param ArRegion: 接入地域
+        # @param ArRegion: <p>接入地域</p>
         # @type ArRegion: String
-        # @param IdcPointType: IDC侧类型，默认为OTHER。枚举值：CLOUD-云，ISP-运营商，OTHER-第三方
+        # @param IdcPointType: <p>IDC侧类型，默认为OTHER。枚举值：CLOUD-云，ISP-运营商，OTHER-第三方</p>
         # @type IdcPointType: String
-        # @param BIapLinkProtected: 运营商链路是否有保护
+        # @param BIapLinkProtected: <p>运营商链路是否有保护</p>
         # @type BIapLinkProtected: Boolean
+        # @param ServiceType: <p>服务类型，SHARE-共享型，EXCLUSIVE-独占型</p>
+        # @type ServiceType: String
 
-        attr_accessor :Name, :IdcAddress, :IdcType, :Bandwidth, :Telephone, :Remarks, :ArRegion, :IdcPointType, :BIapLinkProtected
+        attr_accessor :Name, :IdcAddress, :IdcType, :Bandwidth, :Telephone, :Remarks, :ArRegion, :IdcPointType, :BIapLinkProtected, :ServiceType
 
-        def initialize(name=nil, idcaddress=nil, idctype=nil, bandwidth=nil, telephone=nil, remarks=nil, arregion=nil, idcpointtype=nil, biaplinkprotected=nil)
+        def initialize(name=nil, idcaddress=nil, idctype=nil, bandwidth=nil, telephone=nil, remarks=nil, arregion=nil, idcpointtype=nil, biaplinkprotected=nil, servicetype=nil)
           @Name = name
           @IdcAddress = idcaddress
           @IdcType = idctype
@@ -417,6 +419,7 @@ module TencentCloud
           @ArRegion = arregion
           @IdcPointType = idcpointtype
           @BIapLinkProtected = biaplinkprotected
+          @ServiceType = servicetype
         end
 
         def deserialize(params)
@@ -429,6 +432,7 @@ module TencentCloud
           @ArRegion = params['ArRegion']
           @IdcPointType = params['IdcPointType']
           @BIapLinkProtected = params['BIapLinkProtected']
+          @ServiceType = params['ServiceType']
         end
       end
 

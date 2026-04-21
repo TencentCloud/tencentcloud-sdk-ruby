@@ -17,55 +17,108 @@
 module TencentCloud
   module Ams
     module V20201229
+      # aigc片段审核结果
+      class AIGCRecognitionResult < TencentCloud::Common::AbstractModel
+        # @param Label: <p>一级标签名</p>
+        # @type Label: String
+        # @param LabelCode: <p>一级标签码</p>
+        # @type LabelCode: String
+        # @param Score: <p>分数</p>
+        # @type Score: Integer
+        # @param StartTime: <p>该vad片段在原始音频片段中的起始时间偏移</p>
+        # @type StartTime: Float
+        # @param EndTime: <p>该vad片段在原始音频片段中的结束时间偏移</p>
+        # @type EndTime: Float
+        # @param Suggestion: <p>建议值</p>
+        # @type Suggestion: String
+        # @param SubLabel: <p>二级标签名</p>
+        # @type SubLabel: String
+        # @param SubLabelCode: <p>二级标签码</p>
+        # @type SubLabelCode: String
+        # @param SubTag: <p>三级标签名</p>
+        # @type SubTag: String
+        # @param SubTagCode: <p>三级标签码</p>
+        # @type SubTagCode: String
+
+        attr_accessor :Label, :LabelCode, :Score, :StartTime, :EndTime, :Suggestion, :SubLabel, :SubLabelCode, :SubTag, :SubTagCode
+
+        def initialize(label=nil, labelcode=nil, score=nil, starttime=nil, endtime=nil, suggestion=nil, sublabel=nil, sublabelcode=nil, subtag=nil, subtagcode=nil)
+          @Label = label
+          @LabelCode = labelcode
+          @Score = score
+          @StartTime = starttime
+          @EndTime = endtime
+          @Suggestion = suggestion
+          @SubLabel = sublabel
+          @SubLabelCode = sublabelcode
+          @SubTag = subtag
+          @SubTagCode = subtagcode
+        end
+
+        def deserialize(params)
+          @Label = params['Label']
+          @LabelCode = params['LabelCode']
+          @Score = params['Score']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Suggestion = params['Suggestion']
+          @SubLabel = params['SubLabel']
+          @SubLabelCode = params['SubLabelCode']
+          @SubTag = params['SubTag']
+          @SubTagCode = params['SubTagCode']
+        end
+      end
+
       # 音频审核输出参数
       class AudioResult < TencentCloud::Common::AbstractModel
-        # @param HitFlag: 该字段用于返回审核内容是否命中审核模型；取值：0（**未命中**）、1（**命中**）。
+        # @param HitFlag: <p>该字段用于返回审核内容是否命中审核模型；取值：0（<strong>未命中</strong>）、1（<strong>命中</strong>）。</p>
         # @type HitFlag: Integer
-        # @param Label: 该字段用于返回检测结果所对应的恶意标签。<br>返回值：**Normal**：正常，**Porn**：色情，**Abuse**：谩骂，**Ad**：广告，**Custom**：自定义违规；以及其他令人反感、不安全或不适宜的内容类型。
+        # @param Label: <p>该字段用于返回检测结果所对应的恶意标签。<br>返回值：<strong>Normal</strong>：正常，<strong>Porn</strong>：色情，<strong>Abuse</strong>：谩骂，<strong>Ad</strong>：广告，<strong>Custom</strong>：自定义违规；以及其他令人反感、不安全或不适宜的内容类型。</p>
         # @type Label: String
-        # @param Suggestion: 该字段用于返回后续操作建议。当您获取到判定结果后，返回值表示具体的后续建议操作。<br>
-        # 返回值：**Block**：建议屏蔽，**Review** ：建议人工复审，**Pass**：建议通过
+        # @param Suggestion: <p>该字段用于返回后续操作建议。当您获取到判定结果后，返回值表示具体的后续建议操作。<br><br>返回值：<strong>Block</strong>：建议屏蔽，<strong>Review</strong> ：建议人工复审，<strong>Pass</strong>：建议通过</p>
         # @type Suggestion: String
-        # @param Score: 该字段用于返回当前标签下的置信度，取值范围：0（**置信度最低**）-100（**置信度最高** ），越高代表文本越有可能属于当前返回的标签；如：*色情 99*，则表明该文本非常有可能属于色情内容。
+        # @param Score: <p>该字段用于返回当前标签下的置信度，取值范围：0（<strong>置信度最低</strong>）-100（<strong>置信度最高</strong> ），越高代表文本越有可能属于当前返回的标签；如：<em>色情 99</em>，则表明该文本非常有可能属于色情内容。</p>
         # @type Score: Integer
-        # @param Text: 该字段用于返回音频文件经ASR识别后的文本信息。最长可识别**5小时**的音频文件，若超出时长限制，接口将会报错。
+        # @param Text: <p>该字段用于返回音频文件经ASR识别后的文本信息。最长可识别<strong>5小时</strong>的音频文件，若超出时长限制，接口将会报错。</p>
         # @type Text: String
-        # @param Url: 该字段用于返回审核结果的访问链接（URL）。<br>备注：链接默认有效期为12小时。如果您需要更长时效的链接，请使用[COS预签名](https://cloud.tencent.com/document/product/1265/104001)功能更新签名时效。
+        # @param Url: <p>该字段用于返回审核结果的访问链接（URL）。<br>备注：链接默认有效期为12小时。如果您需要更长时效的链接，请使用<a href="https://cloud.tencent.com/document/product/1265/104001">COS预签名</a>功能更新签名时效。</p>
         # @type Url: String
-        # @param Duration: 该字段用于返回音频文件的时长，单位为毫秒。
+        # @param Duration: <p>该字段用于返回音频文件的时长，单位为毫秒。</p>
         # @type Duration: String
-        # @param Extra: 该字段用于返回额外附加信息，不同客户或Biztype下返回信息不同。
+        # @param Extra: <p>该字段用于返回额外附加信息，不同客户或Biztype下返回信息不同。</p>
         # @type Extra: String
-        # @param TextResults: 该字段用于返回音频文件经ASR识别后产生的文本的详细审核结果。具体结果内容请参见AudioResultDetailLanguageResult数据结构的细节描述。
+        # @param TextResults: <p>该字段用于返回音频文件经ASR识别后产生的文本的详细审核结果。具体结果内容请参见AudioResultDetailLanguageResult数据结构的细节描述。</p>
         # @type TextResults: Array
-        # @param MoanResults: 该字段用于返回音频文件呻吟检测的详细审核结果。具体结果内容请参见AudioResultDetailMoanResult数据结构的细节描述。
+        # @param MoanResults: <p>该字段用于返回音频文件呻吟检测的详细审核结果。具体结果内容请参见AudioResultDetailMoanResult数据结构的细节描述。</p>
         # @type MoanResults: Array
-        # @param LanguageResults: 该字段用于返回音频小语种检测的详细审核结果。具体结果内容请参见AudioResultDetailLanguageResult数据结构的细节描述。
+        # @param LanguageResults: <p>该字段用于返回音频小语种检测的详细审核结果。具体结果内容请参见AudioResultDetailLanguageResult数据结构的细节描述。</p>
         # @type LanguageResults: Array
-        # @param SubLabel: 该字段用于返回当前标签（Lable）下的二级标签。
+        # @param SubLabel: <p>该字段用于返回当前标签（Lable）下的二级标签。</p>
         # @type SubLabel: String
-        # @param RecognitionResults: 识别类标签结果信息列表
+        # @param RecognitionResults: <p>识别类标签结果信息列表</p>
         # @type RecognitionResults: Array
-        # @param SpeakerResults: 说话人结果
+        # @param SpeakerResults: <p>说话人结果</p>
         # @type SpeakerResults: Array
-        # @param LabelResults: 歌曲识别结果
+        # @param LabelResults: <p>歌曲识别结果</p>
         # @type LabelResults: Array
-        # @param TravelResults: 出行结果
+        # @param TravelResults: <p>出行结果</p>
         # @type TravelResults: Array
-        # @param SubTag: 三级标签
+        # @param SubTag: <p>三级标签</p>
         # @type SubTag: String
-        # @param SubTagCode: 三级标签码
+        # @param SubTagCode: <p>三级标签码</p>
         # @type SubTagCode: String
-        # @param HitType: 审核检测类型
+        # @param HitType: <p>审核检测类型</p>
         # @type HitType: String
-        # @param Sentences: ASR句子的起止时间
+        # @param Sentences: <p>ASR句子的起止时间</p>
         # @type Sentences: Array
-        # @param RequestId: 切片请求ID
+        # @param RequestId: <p>切片请求ID</p>
         # @type RequestId: String
+        # @param AIGCRecognitionResults: <p>AIGC音频片段审核结果</p>
+        # @type AIGCRecognitionResults: Array
 
-        attr_accessor :HitFlag, :Label, :Suggestion, :Score, :Text, :Url, :Duration, :Extra, :TextResults, :MoanResults, :LanguageResults, :SubLabel, :RecognitionResults, :SpeakerResults, :LabelResults, :TravelResults, :SubTag, :SubTagCode, :HitType, :Sentences, :RequestId
+        attr_accessor :HitFlag, :Label, :Suggestion, :Score, :Text, :Url, :Duration, :Extra, :TextResults, :MoanResults, :LanguageResults, :SubLabel, :RecognitionResults, :SpeakerResults, :LabelResults, :TravelResults, :SubTag, :SubTagCode, :HitType, :Sentences, :RequestId, :AIGCRecognitionResults
 
-        def initialize(hitflag=nil, label=nil, suggestion=nil, score=nil, text=nil, url=nil, duration=nil, extra=nil, textresults=nil, moanresults=nil, languageresults=nil, sublabel=nil, recognitionresults=nil, speakerresults=nil, labelresults=nil, travelresults=nil, subtag=nil, subtagcode=nil, hittype=nil, sentences=nil, requestid=nil)
+        def initialize(hitflag=nil, label=nil, suggestion=nil, score=nil, text=nil, url=nil, duration=nil, extra=nil, textresults=nil, moanresults=nil, languageresults=nil, sublabel=nil, recognitionresults=nil, speakerresults=nil, labelresults=nil, travelresults=nil, subtag=nil, subtagcode=nil, hittype=nil, sentences=nil, requestid=nil, aigcrecognitionresults=nil)
           @HitFlag = hitflag
           @Label = label
           @Suggestion = suggestion
@@ -87,6 +140,7 @@ module TencentCloud
           @HitType = hittype
           @Sentences = sentences
           @RequestId = requestid
+          @AIGCRecognitionResults = aigcrecognitionresults
         end
 
         def deserialize(params)
@@ -167,6 +221,14 @@ module TencentCloud
             end
           end
           @RequestId = params['RequestId']
+          unless params['AIGCRecognitionResults'].nil?
+            @AIGCRecognitionResults = []
+            params['AIGCRecognitionResults'].each do |i|
+              aigcrecognitionresult_tmp = AIGCRecognitionResult.new
+              aigcrecognitionresult_tmp.deserialize(i)
+              @AIGCRecognitionResults << aigcrecognitionresult_tmp
+            end
+          end
         end
       end
 

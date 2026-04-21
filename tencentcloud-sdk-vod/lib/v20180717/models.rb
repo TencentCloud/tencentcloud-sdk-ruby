@@ -10460,9 +10460,9 @@ module TencentCloud
 
       # CreateStorageRegion请求参数结构体
       class CreateStorageRegionRequest < TencentCloud::Common::AbstractModel
-        # @param StorageRegion: 待开通的存储地域，必须是系统支持的地域。
+        # @param StorageRegion: <p>待开通的存储地域，必须是系统支持的地域。</p><p>取值参考：<a href="https://cloud.tencent.com/document/product/266/9760">已支持地域列表</a></p>
         # @type StorageRegion: String
-        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
+        # @param SubAppId: <p><b>点播<a href="/document/product/266/14574">应用</a> ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b></p>
         # @type SubAppId: Integer
 
         attr_accessor :StorageRegion, :SubAppId
@@ -10496,20 +10496,17 @@ module TencentCloud
 
       # CreateSubAppId请求参数结构体
       class CreateSubAppIdRequest < TencentCloud::Common::AbstractModel
-        # @param Name: 应用名称，长度限制：40个字符。
+        # @param Name: <p>应用名称，长度限制：40个字符。</p>
         # @type Name: String
-        # @param Description: 应用简介，长度限制： 300个字符。不填则应用简介默认为空。
+        # @param Description: <p>应用简介，长度限制： 300个字符。不填则应用简介默认为空。</p>
         # @type Description: String
-        # @param Type: 应用类型， 取值有：<li>AllInOne：一体化；</li><li>Professional：专业版。</li>默认值为 AllInOne。
+        # @param Type: <p>应用类型， 取值有：<li>AllInOne：一体化；</li><li>Professional：专业版。</li>默认值为 AllInOne。</p>
         # @type Type: String
-        # @param Mode: 此应用的模式，可选值为：
-        # - fileid：仅FileID模式
-        # - fileid+path：FileID & Path模式
-        # 留空时默认选择仅FileID模式
+        # @param Mode: <p>此应用的模式，可选值为：</p><ul><li>fileid：仅FileID模式</li><li>fileid+path：FileID &amp; Path模式<br>留空时默认选择仅FileID模式</li></ul>
         # @type Mode: String
-        # @param StorageRegion: 存储地域
+        # @param StorageRegion: <p>Mode是仅fileid时，用于设置默认存储地域，可选。<br>Mode是fileid+path时，用于指定存储地域，必填。</p><p>取值参考：<a href="https://cloud.tencent.com/document/product/266/9760">已支持地域列表</a></p>
         # @type StorageRegion: String
-        # @param Tags: 此应用需要绑定的tag
+        # @param Tags: <p>此应用需要绑定的tag</p>
         # @type Tags: Array
 
         attr_accessor :Name, :Description, :Type, :Mode, :StorageRegion, :Tags
@@ -10542,7 +10539,7 @@ module TencentCloud
 
       # CreateSubAppId返回参数结构体
       class CreateSubAppIdResponse < TencentCloud::Common::AbstractModel
-        # @param SubAppId: 新创建的应用 ID。
+        # @param SubAppId: <p>新创建的应用 ID。</p>
         # @type SubAppId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

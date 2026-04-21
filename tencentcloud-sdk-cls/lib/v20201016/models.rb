@@ -17023,15 +17023,19 @@ module TencentCloud
       class OpenClawServiceRequest < TencentCloud::Common::AbstractModel
         # @param Tag: <p>标签类型</p><p>枚举值：</p><ul><li>OpenClaw： OpenClaw类型</li><li>ClawPro： ClawPro类型</li></ul>
         # @type Tag: String
+        # @param EnableTrace: <p>是否创建 trace 主题，默认为 false</p><p>枚举值：</p><ul><li>true： 创建trace 主题</li><li>false： 不创建trace 主题</li></ul>
+        # @type EnableTrace: Boolean
 
-        attr_accessor :Tag
+        attr_accessor :Tag, :EnableTrace
 
-        def initialize(tag=nil)
+        def initialize(tag=nil, enabletrace=nil)
           @Tag = tag
+          @EnableTrace = enabletrace
         end
 
         def deserialize(params)
           @Tag = params['Tag']
+          @EnableTrace = params['EnableTrace']
         end
       end
 
@@ -17061,12 +17065,16 @@ module TencentCloud
         # @type SessionLogConfigId: String
         # @param SessionLogConfigName: <p>采集配置名称。会话日志</p>
         # @type SessionLogConfigName: String
+        # @param TraceTopicId: <p>trace 主题 ID</p>
+        # @type TraceTopicId: String
+        # @param TraceTopicName: <p>trace 主题名称</p>
+        # @type TraceTopicName: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :LogsetId, :LogsetName, :TopicId, :TopicName, :MetricTopicId, :MetricTopicName, :MachineGroupId, :MachineGroupName, :AppLogConfigId, :AppLogConfigName, :SessionLogConfigId, :SessionLogConfigName, :RequestId
+        attr_accessor :LogsetId, :LogsetName, :TopicId, :TopicName, :MetricTopicId, :MetricTopicName, :MachineGroupId, :MachineGroupName, :AppLogConfigId, :AppLogConfigName, :SessionLogConfigId, :SessionLogConfigName, :TraceTopicId, :TraceTopicName, :RequestId
 
-        def initialize(logsetid=nil, logsetname=nil, topicid=nil, topicname=nil, metrictopicid=nil, metrictopicname=nil, machinegroupid=nil, machinegroupname=nil, applogconfigid=nil, applogconfigname=nil, sessionlogconfigid=nil, sessionlogconfigname=nil, requestid=nil)
+        def initialize(logsetid=nil, logsetname=nil, topicid=nil, topicname=nil, metrictopicid=nil, metrictopicname=nil, machinegroupid=nil, machinegroupname=nil, applogconfigid=nil, applogconfigname=nil, sessionlogconfigid=nil, sessionlogconfigname=nil, tracetopicid=nil, tracetopicname=nil, requestid=nil)
           @LogsetId = logsetid
           @LogsetName = logsetname
           @TopicId = topicid
@@ -17079,6 +17087,8 @@ module TencentCloud
           @AppLogConfigName = applogconfigname
           @SessionLogConfigId = sessionlogconfigid
           @SessionLogConfigName = sessionlogconfigname
+          @TraceTopicId = tracetopicid
+          @TraceTopicName = tracetopicname
           @RequestId = requestid
         end
 
@@ -17095,6 +17105,8 @@ module TencentCloud
           @AppLogConfigName = params['AppLogConfigName']
           @SessionLogConfigId = params['SessionLogConfigId']
           @SessionLogConfigName = params['SessionLogConfigName']
+          @TraceTopicId = params['TraceTopicId']
+          @TraceTopicName = params['TraceTopicName']
           @RequestId = params['RequestId']
         end
       end
