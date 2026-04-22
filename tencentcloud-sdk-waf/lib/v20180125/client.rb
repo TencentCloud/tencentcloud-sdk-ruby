@@ -125,6 +125,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 批量新增自定义规则接口
+
+        # @param request: Request instance for AddBatchCustomRule.
+        # @type request: :class:`Tencentcloud::waf::V20180125::AddBatchCustomRuleRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::AddBatchCustomRuleResponse`
+        def AddBatchCustomRule(request)
+          body = send_request('AddBatchCustomRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AddBatchCustomRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 增加批量精准白名单规则
+
+        # @param request: Request instance for AddBatchCustomWhiteRule.
+        # @type request: :class:`Tencentcloud::waf::V20180125::AddBatchCustomWhiteRuleRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::AddBatchCustomWhiteRuleResponse`
+        def AddBatchCustomWhiteRule(request)
+          body = send_request('AddBatchCustomWhiteRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AddBatchCustomWhiteRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 添加一键bypass能力支持,直接添加APPID
 
         # @param request: Request instance for AddBypassAllRule.
@@ -509,6 +557,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 新建防护对象组
+
+        # @param request: Request instance for CreateProtectGroup.
+        # @type request: :class:`Tencentcloud::waf::V20180125::CreateProtectGroupRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::CreateProtectGroupResponse`
+        def CreateProtectGroup(request)
+          body = send_request('CreateProtectGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateProtectGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建限流规则
 
         # @param request: Request instance for CreateRateLimitV2.
@@ -639,6 +711,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteAttackWhiteRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # [自定义规则]-批量删除接口
+
+        # @param request: Request instance for DeleteBatchCustomRule.
+        # @type request: :class:`Tencentcloud::waf::V20180125::DeleteBatchCustomRuleRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::DeleteBatchCustomRuleResponse`
+        def DeleteBatchCustomRule(request)
+          body = send_request('DeleteBatchCustomRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteBatchCustomRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除批量精准白名单规则
+
+        # @param request: Request instance for DeleteBatchCustomWhiteRule.
+        # @type request: :class:`Tencentcloud::waf::V20180125::DeleteBatchCustomWhiteRuleRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::DeleteBatchCustomWhiteRuleResponse`
+        def DeleteBatchCustomWhiteRule(request)
+          body = send_request('DeleteBatchCustomWhiteRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteBatchCustomWhiteRuleResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -927,6 +1047,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteOwaspWhiteRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除防护对象组
+
+        # @param request: Request instance for DeleteProtectGroup.
+        # @type request: :class:`Tencentcloud::waf::V20180125::DeleteProtectGroupRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::DeleteProtectGroupResponse`
+        def DeleteProtectGroup(request)
+          body = send_request('DeleteProtectGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteProtectGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 解除防护对象组中的域名绑定
+
+        # @param request: Request instance for DeleteProtectGroupDomain.
+        # @type request: :class:`Tencentcloud::waf::V20180125::DeleteProtectGroupDomainRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::DeleteProtectGroupDomainResponse`
+        def DeleteProtectGroupDomain(request)
+          body = send_request('DeleteProtectGroupDomain', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteProtectGroupDomainResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1407,6 +1575,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeAutoDenyIPResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 批量自定义规则列表接口
+
+        # @param request: Request instance for DescribeBatchCustomRuleList.
+        # @type request: :class:`Tencentcloud::waf::V20180125::DescribeBatchCustomRuleListRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::DescribeBatchCustomRuleListResponse`
+        def DescribeBatchCustomRuleList(request)
+          body = send_request('DescribeBatchCustomRuleList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBatchCustomRuleListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取批量精准白名单的规则列表
+
+        # @param request: Request instance for DescribeBatchCustomWhiteRules.
+        # @type request: :class:`Tencentcloud::waf::V20180125::DescribeBatchCustomWhiteRulesRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::DescribeBatchCustomWhiteRulesResponse`
+        def DescribeBatchCustomWhiteRules(request)
+          body = send_request('DescribeBatchCustomWhiteRules', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBatchCustomWhiteRulesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2415,6 +2631,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribePostCLSFlowsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取防护对象组详情
+
+        # @param request: Request instance for DescribeProtectGroup.
+        # @type request: :class:`Tencentcloud::waf::V20180125::DescribeProtectGroupRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::DescribeProtectGroupResponse`
+        def DescribeProtectGroup(request)
+          body = send_request('DescribeProtectGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeProtectGroupResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -3463,6 +3703,102 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 批量编辑自定义规则接口
+
+        # @param request: Request instance for ModifyBatchCustomRule.
+        # @type request: :class:`Tencentcloud::waf::V20180125::ModifyBatchCustomRuleRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::ModifyBatchCustomRuleResponse`
+        def ModifyBatchCustomRule(request)
+          body = send_request('ModifyBatchCustomRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyBatchCustomRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 批量自定义规则开关接口
+
+        # @param request: Request instance for ModifyBatchCustomRuleStatus.
+        # @type request: :class:`Tencentcloud::waf::V20180125::ModifyBatchCustomRuleStatusRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::ModifyBatchCustomRuleStatusResponse`
+        def ModifyBatchCustomRuleStatus(request)
+          body = send_request('ModifyBatchCustomRuleStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyBatchCustomRuleStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改批量精准白名单规则
+
+        # @param request: Request instance for ModifyBatchCustomWhiteRule.
+        # @type request: :class:`Tencentcloud::waf::V20180125::ModifyBatchCustomWhiteRuleRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::ModifyBatchCustomWhiteRuleResponse`
+        def ModifyBatchCustomWhiteRule(request)
+          body = send_request('ModifyBatchCustomWhiteRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyBatchCustomWhiteRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 更新批量精准白名单规则
+
+        # @param request: Request instance for ModifyBatchCustomWhiteRuleStatus.
+        # @type request: :class:`Tencentcloud::waf::V20180125::ModifyBatchCustomWhiteRuleStatusRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::ModifyBatchCustomWhiteRuleStatusResponse`
+        def ModifyBatchCustomWhiteRuleStatus(request)
+          body = send_request('ModifyBatchCustomWhiteRuleStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyBatchCustomWhiteRuleStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 批量IP黑白名单新增接口
 
         # @param request: Request instance for ModifyBatchIpAccessControl.
@@ -4218,6 +4554,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyOwaspWhiteRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 编辑防护对象组
+
+        # @param request: Request instance for ModifyProtectGroup.
+        # @type request: :class:`Tencentcloud::waf::V20180125::ModifyProtectGroupRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::ModifyProtectGroupResponse`
+        def ModifyProtectGroup(request)
+          body = send_request('ModifyProtectGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyProtectGroupResponse.new
             model.deserialize(response['Response'])
             model
           else

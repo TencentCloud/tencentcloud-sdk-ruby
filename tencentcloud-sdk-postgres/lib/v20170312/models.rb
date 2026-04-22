@@ -1197,8 +1197,8 @@ module TencentCloud
 
         attr_accessor :Zone, :MasterDBInstanceId, :SpecCode, :Storage, :InstanceCount, :Period, :VpcId, :SubnetId, :InstanceChargeType, :AutoVoucher, :VoucherIds, :AutoRenewFlag, :ProjectId, :ActivityId, :ReadOnlyGroupId, :TagList, :SecurityGroupIds, :NeedSupportIpv6, :Name, :DBVersion, :DedicatedClusterId, :DeletionProtection
         extend Gem::Deprecate
-        deprecate :DBVersion, :none, 2026, 3
-        deprecate :DBVersion=, :none, 2026, 3
+        deprecate :DBVersion, :none, 2026, 4
+        deprecate :DBVersion=, :none, 2026, 4
 
         def initialize(zone=nil, masterdbinstanceid=nil, speccode=nil, storage=nil, instancecount=nil, period=nil, vpcid=nil, subnetid=nil, instancechargetype=nil, autovoucher=nil, voucherids=nil, autorenewflag=nil, projectid=nil, activityid=nil, readonlygroupid=nil, taglist=nil, securitygroupids=nil, needsupportipv6=nil, name=nil, dbversion=nil, dedicatedclusterid=nil, deletionprotection=nil)
           @Zone = zone
@@ -2938,24 +2938,26 @@ module TencentCloud
 
       # DescribeDBErrlogs请求参数结构体
       class DescribeDBErrlogsRequest < TencentCloud::Common::AbstractModel
-        # @param DBInstanceId: 实例ID。	可通过[DescribeDBInstances](https://cloud.tencent.com/document/api/409/16773)接口获取
+        # @param DBInstanceId: <p>实例ID。    可通过<a href="https://cloud.tencent.com/document/api/409/16773">DescribeDBInstances</a>接口获取</p>
         # @type DBInstanceId: String
-        # @param StartTime: 查询起始时间，形如2018-01-01 00:00:00。日志保留时间默认为7天，起始时间不能超出保留时间范围。
+        # @param StartTime: <p>查询起始时间，形如2018-01-01 00:00:00。日志保留时间默认为7天，起始时间不能超出保留时间范围。</p>
         # @type StartTime: String
-        # @param EndTime: 查询结束时间，形如2018-01-01 00:00:00。
+        # @param EndTime: <p>查询结束时间，形如2018-01-01 00:00:00。</p>
         # @type EndTime: String
-        # @param DatabaseName: 数据库名字。
+        # @param DatabaseName: <p>数据库名字。</p>
         # @type DatabaseName: String
-        # @param SearchKeys: 搜索关键字。
+        # @param SearchKeys: <p>搜索关键字。</p>
         # @type SearchKeys: Array
-        # @param Limit: 每页显示数量，取值范围为1-100。默认值为50。
+        # @param Limit: <p>每页显示数量，取值范围为1-100。默认值为50。</p>
         # @type Limit: Integer
-        # @param Offset: 数据偏移量，从0开始。默认值为0。
+        # @param Offset: <p>数据偏移量，从0开始。默认值为0。</p>
         # @type Offset: Integer
+        # @param LogFilters: <p>日志过滤条件。格式为  [{Type: &quot;ApplicationName&quot;, Compare: &quot;INC&quot;, Value: [&quot;123&quot;]}]。</p>
+        # @type LogFilters: Array
 
-        attr_accessor :DBInstanceId, :StartTime, :EndTime, :DatabaseName, :SearchKeys, :Limit, :Offset
+        attr_accessor :DBInstanceId, :StartTime, :EndTime, :DatabaseName, :SearchKeys, :Limit, :Offset, :LogFilters
 
-        def initialize(dbinstanceid=nil, starttime=nil, endtime=nil, databasename=nil, searchkeys=nil, limit=nil, offset=nil)
+        def initialize(dbinstanceid=nil, starttime=nil, endtime=nil, databasename=nil, searchkeys=nil, limit=nil, offset=nil, logfilters=nil)
           @DBInstanceId = dbinstanceid
           @StartTime = starttime
           @EndTime = endtime
@@ -2963,6 +2965,7 @@ module TencentCloud
           @SearchKeys = searchkeys
           @Limit = limit
           @Offset = offset
+          @LogFilters = logfilters
         end
 
         def deserialize(params)
@@ -2973,14 +2976,22 @@ module TencentCloud
           @SearchKeys = params['SearchKeys']
           @Limit = params['Limit']
           @Offset = params['Offset']
+          unless params['LogFilters'].nil?
+            @LogFilters = []
+            params['LogFilters'].each do |i|
+              logfilter_tmp = LogFilter.new
+              logfilter_tmp.deserialize(i)
+              @LogFilters << logfilter_tmp
+            end
+          end
         end
       end
 
       # DescribeDBErrlogs返回参数结构体
       class DescribeDBErrlogsResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 查询到的日志数量，最大值为10000条。
+        # @param TotalCount: <p>查询到的日志数量，最大值为10000条。</p>
         # @type TotalCount: Integer
-        # @param Details: 错误日志详细信息集合。
+        # @param Details: <p>错误日志详细信息集合。</p>
         # @type Details: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4692,22 +4703,50 @@ module TencentCloud
 
       # 错误日志详情
       class ErrLogDetail < TencentCloud::Common::AbstractModel
-        # @param UserName: 用户名
+        # @param UserName: <p>用户名</p>
         # @type UserName: String
-        # @param Database: 数据库名字
+        # @param Database: <p>数据库名字</p>
         # @type Database: String
-        # @param ErrTime: 错误发生时间
+        # @param ErrTime: <p>错误发生时间</p>
         # @type ErrTime: String
-        # @param ErrMsg: 错误消息
+        # @param ErrMsg: <p>错误消息</p>
         # @type ErrMsg: String
+        # @param ProcessId: <p>进程ID</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProcessId: Integer
+        # @param ClientAddr: <p>客户端地址</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClientAddr: String
+        # @param SessionId: <p>会话ID</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SessionId: String
+        # @param SessionStartTime: <p>会话开始时间</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SessionStartTime: String
+        # @param VirtualTransactionId: <p>虚拟事务ID</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VirtualTransactionId: String
+        # @param SqlStateCode: <p>SQLSTATE错误码</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SqlStateCode: String
+        # @param ApplicationName: <p>客户端应用名称</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApplicationName: String
 
-        attr_accessor :UserName, :Database, :ErrTime, :ErrMsg
+        attr_accessor :UserName, :Database, :ErrTime, :ErrMsg, :ProcessId, :ClientAddr, :SessionId, :SessionStartTime, :VirtualTransactionId, :SqlStateCode, :ApplicationName
 
-        def initialize(username=nil, database=nil, errtime=nil, errmsg=nil)
+        def initialize(username=nil, database=nil, errtime=nil, errmsg=nil, processid=nil, clientaddr=nil, sessionid=nil, sessionstarttime=nil, virtualtransactionid=nil, sqlstatecode=nil, applicationname=nil)
           @UserName = username
           @Database = database
           @ErrTime = errtime
           @ErrMsg = errmsg
+          @ProcessId = processid
+          @ClientAddr = clientaddr
+          @SessionId = sessionid
+          @SessionStartTime = sessionstarttime
+          @VirtualTransactionId = virtualtransactionid
+          @SqlStateCode = sqlstatecode
+          @ApplicationName = applicationname
         end
 
         def deserialize(params)
@@ -4715,6 +4754,13 @@ module TencentCloud
           @Database = params['Database']
           @ErrTime = params['ErrTime']
           @ErrMsg = params['ErrMsg']
+          @ProcessId = params['ProcessId']
+          @ClientAddr = params['ClientAddr']
+          @SessionId = params['SessionId']
+          @SessionStartTime = params['SessionStartTime']
+          @VirtualTransactionId = params['VirtualTransactionId']
+          @SqlStateCode = params['SqlStateCode']
+          @ApplicationName = params['ApplicationName']
         end
       end
 
@@ -4960,8 +5006,8 @@ module TencentCloud
 
         attr_accessor :Storage, :Memory, :DBInstanceId, :InstanceChargeType, :Cpu
         extend Gem::Deprecate
-        deprecate :InstanceChargeType, :none, 2026, 3
-        deprecate :InstanceChargeType=, :none, 2026, 3
+        deprecate :InstanceChargeType, :none, 2026, 4
+        deprecate :InstanceChargeType=, :none, 2026, 4
 
         def initialize(storage=nil, memory=nil, dbinstanceid=nil, instancechargetype=nil, cpu=nil)
           @Storage = storage
@@ -5125,6 +5171,30 @@ module TencentCloud
           @StartTime = params['StartTime']
           @FinishTime = params['FinishTime']
           @ExpireTime = params['ExpireTime']
+        end
+      end
+
+      # 日志过滤条件
+      class LogFilter < TencentCloud::Common::AbstractModel
+        # @param Type: <p>过滤条件名称。</p><p>如：sql - SQL命令详情</p><p>host – 客户端 IP；<br>user – 数据库账户。</p>
+        # @type Type: String
+        # @param Compare: <p>过滤条件匹配类型。支持：<br>INC – 包含；     （多个值之间是||的关系）<br>EXC – 不包含； （多个值之间是&amp;&amp;的关系）<br>EQS – 等于；     （多个值之间是||的关系）<br>NEQ – 不等于；（多个值之间是&amp;&amp;的关系）<br>RG – 范围；</p>
+        # @type Compare: String
+        # @param Value: <p>过滤条件匹配值。当Compare=RG时，例：[&quot;1-100&quot;,&quot;200-300&quot;]</p>
+        # @type Value: Array
+
+        attr_accessor :Type, :Compare, :Value
+
+        def initialize(type=nil, compare=nil, value=nil)
+          @Type = type
+          @Compare = compare
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Compare = params['Compare']
+          @Value = params['Value']
         end
       end
 
@@ -6674,28 +6744,48 @@ module TencentCloud
 
       # 慢SQL查询接口返回 慢SQL列表详情
       class RawSlowQuery < TencentCloud::Common::AbstractModel
-        # @param RawQuery: 慢SQL 语句
+        # @param RawQuery: <p>慢SQL 语句</p>
         # @type RawQuery: String
-        # @param DatabaseName: 慢SQL 查询的数据库
+        # @param DatabaseName: <p>慢SQL 查询的数据库</p>
         # @type DatabaseName: String
-        # @param Duration: 慢SQL执行 耗时
+        # @param Duration: <p>慢SQL执行 耗时</p>
         # @type Duration: Float
-        # @param ClientAddr: 执行慢SQL的客户端
+        # @param ClientAddr: <p>执行慢SQL的客户端</p>
         # @type ClientAddr: String
-        # @param UserName: 执行慢SQL的用户名
+        # @param UserName: <p>执行慢SQL的用户名</p>
         # @type UserName: String
-        # @param SessionStartTime: 慢SQL执行的开始时间
+        # @param SessionStartTime: <p>慢SQL执行的开始时间</p>
         # @type SessionStartTime: String
+        # @param ProcessId: <p>执行慢SQL的进程ID</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProcessId: Integer
+        # @param SessionId: <p>执行慢SQL的会话ID</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SessionId: String
+        # @param VirtualTransactionId: <p>执行慢SQL的事务ID</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VirtualTransactionId: String
+        # @param SqlStateCode: <p>执行慢SQL的状态码</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SqlStateCode: String
+        # @param ApplicationName: <p>执行慢SQL的客户端名称</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApplicationName: String
 
-        attr_accessor :RawQuery, :DatabaseName, :Duration, :ClientAddr, :UserName, :SessionStartTime
+        attr_accessor :RawQuery, :DatabaseName, :Duration, :ClientAddr, :UserName, :SessionStartTime, :ProcessId, :SessionId, :VirtualTransactionId, :SqlStateCode, :ApplicationName
 
-        def initialize(rawquery=nil, databasename=nil, duration=nil, clientaddr=nil, username=nil, sessionstarttime=nil)
+        def initialize(rawquery=nil, databasename=nil, duration=nil, clientaddr=nil, username=nil, sessionstarttime=nil, processid=nil, sessionid=nil, virtualtransactionid=nil, sqlstatecode=nil, applicationname=nil)
           @RawQuery = rawquery
           @DatabaseName = databasename
           @Duration = duration
           @ClientAddr = clientaddr
           @UserName = username
           @SessionStartTime = sessionstarttime
+          @ProcessId = processid
+          @SessionId = sessionid
+          @VirtualTransactionId = virtualtransactionid
+          @SqlStateCode = sqlstatecode
+          @ApplicationName = applicationname
         end
 
         def deserialize(params)
@@ -6705,6 +6795,11 @@ module TencentCloud
           @ClientAddr = params['ClientAddr']
           @UserName = params['UserName']
           @SessionStartTime = params['SessionStartTime']
+          @ProcessId = params['ProcessId']
+          @SessionId = params['SessionId']
+          @VirtualTransactionId = params['VirtualTransactionId']
+          @SqlStateCode = params['SqlStateCode']
+          @ApplicationName = params['ApplicationName']
         end
       end
 

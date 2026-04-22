@@ -4342,6 +4342,46 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 此接口（OperateFlowRemarks）用于对企业合同备注进行管理操作，支持新增，创建和删除。
+
+
+        # 用户可以通过接口对合同备注进行管理，支持对创建后的备注进行搜索关联的合同流程。
+
+        # ![image](https://qcloudimg.tencent-cloud.cn/raw/cac8af24804ab4f7455be2d5b39a43e5.png)
+
+        # 注：
+
+        # 对合同备注进行操作前，操作人需要获取对应权限：合同操作 - 设置合同类型及备注。
+
+        # ![image](https://qcloudimg.tencent-cloud.cn/raw/ce4f0ca867ab5020f4fdfecc39050f0f.png)
+
+
+        # 没有对应权限的用户，并且不属于超管、法人，该合同的参与方（包含签署方与发起方），将无法对对应合同的备注进行编辑，如果备注内容包含敏感信息，将会对其进行打码显示。
+
+        # ![image](https://qcloudimg.tencent-cloud.cn/raw/e5ef298c41f999b656f6b620c8b3d888.png)
+
+        # @param request: Request instance for OperateFlowRemarks.
+        # @type request: :class:`Tencentcloud::ess::V20201111::OperateFlowRemarksRequest`
+        # @rtype: :class:`Tencentcloud::ess::V20201111::OperateFlowRemarksResponse`
+        def OperateFlowRemarks(request)
+          body = send_request('OperateFlowRemarks', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = OperateFlowRemarksResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 修改印章状态（停用、启用）
 
         # @param request: Request instance for OperateSeals.

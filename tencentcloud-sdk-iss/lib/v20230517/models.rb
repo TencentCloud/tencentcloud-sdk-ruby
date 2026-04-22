@@ -694,7 +694,7 @@ module TencentCloud
         # @type DevTimeSections: Array
         # @param Scale: <p>上云倍速（支持1，2，4倍速）</p>
         # @type Scale: Integer
-        # @param DayOffset: <p>周期偏移量，默认1，表示拉取昨天的设备录像，0表示取去今天的设备录像，3表示拉取前天的设备录像</p><p>取值范围：[0, 90]</p><p>默认值：1</p>
+        # @param DayOffset: <p>周期偏移量，默认1，表示拉取昨天的设备录像，0表示拉取今天的设备录像，3表示拉取前天的设备录像</p><p>取值范围：[0, 90]</p><p>默认值：1</p>
         # @type DayOffset: Integer
 
         attr_accessor :TemplateName, :TimeSections, :DevTimeSections, :Scale, :DayOffset

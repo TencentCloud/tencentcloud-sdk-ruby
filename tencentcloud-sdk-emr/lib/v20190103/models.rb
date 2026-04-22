@@ -867,35 +867,45 @@ module TencentCloud
 
       # 容器集群Pod请求资源信息
       class CloudResource < TencentCloud::Common::AbstractModel
-        # @param ComponentName: 组件角色名
+        # @param ComponentName: <p>组件角色名</p>
         # @type ComponentName: String
-        # @param PodNumber: pod请求数量
+        # @param PodNumber: <p>pod请求数量</p>
         # @type PodNumber: Integer
-        # @param LimitCpu: Cpu请求数量最大值
+        # @param LimitCpu: <p>Cpu请求数量最大值</p>
         # @type LimitCpu: Integer
-        # @param LimitMemory: 内存请求数量最大值
+        # @param LimitMemory: <p>内存请求数量最大值</p>
         # @type LimitMemory: Integer
-        # @param Service: 服务名称，如HIVE
+        # @param Service: <p>服务名称，如HIVE</p>
         # @type Service: String
-        # @param VolumeDir: 数据卷目录设置
+        # @param VolumeDir: <p>数据卷目录设置</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VolumeDir: :class:`Tencentcloud::Emr.v20190103.models.VolumeSetting`
-        # @param ExternalAccess: 组件外部访问设置
+        # @param ExternalAccess: <p>组件外部访问设置</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExternalAccess: :class:`Tencentcloud::Emr.v20190103.models.ExternalAccess`
-        # @param Affinity: 节点亲和性设置
+        # @param Affinity: <p>节点亲和性设置</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Affinity: :class:`Tencentcloud::Emr.v20190103.models.NodeAffinity`
-        # @param Disks: 所选数据盘信息
+        # @param Disks: <p>所选数据盘信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Disks: Array
-        # @param Tolerations: 容忍
+        # @param Tolerations: <p>容忍</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tolerations: Array
+        # @param PodAffinity: <p>pod亲和性</p>
+        # @type PodAffinity: :class:`Tencentcloud::Emr.v20190103.models.PodAffinitySpec`
+        # @param PodAntiAffinity: <p>pod反亲和性</p>
+        # @type PodAntiAffinity: :class:`Tencentcloud::Emr.v20190103.models.PodAffinitySpec`
+        # @param TopologySpreadConstraints: <p>拓扑分布约束</p>
+        # @type TopologySpreadConstraints: Array
+        # @param PodLabels: <p>pod标签</p>
+        # @type PodLabels: Array
+        # @param EnableDefaultRayCluster: <p>是否创建默认raycluster</p>
+        # @type EnableDefaultRayCluster: Boolean
 
-        attr_accessor :ComponentName, :PodNumber, :LimitCpu, :LimitMemory, :Service, :VolumeDir, :ExternalAccess, :Affinity, :Disks, :Tolerations
+        attr_accessor :ComponentName, :PodNumber, :LimitCpu, :LimitMemory, :Service, :VolumeDir, :ExternalAccess, :Affinity, :Disks, :Tolerations, :PodAffinity, :PodAntiAffinity, :TopologySpreadConstraints, :PodLabels, :EnableDefaultRayCluster
 
-        def initialize(componentname=nil, podnumber=nil, limitcpu=nil, limitmemory=nil, service=nil, volumedir=nil, externalaccess=nil, affinity=nil, disks=nil, tolerations=nil)
+        def initialize(componentname=nil, podnumber=nil, limitcpu=nil, limitmemory=nil, service=nil, volumedir=nil, externalaccess=nil, affinity=nil, disks=nil, tolerations=nil, podaffinity=nil, podantiaffinity=nil, topologyspreadconstraints=nil, podlabels=nil, enabledefaultraycluster=nil)
           @ComponentName = componentname
           @PodNumber = podnumber
           @LimitCpu = limitcpu
@@ -906,6 +916,11 @@ module TencentCloud
           @Affinity = affinity
           @Disks = disks
           @Tolerations = tolerations
+          @PodAffinity = podaffinity
+          @PodAntiAffinity = podantiaffinity
+          @TopologySpreadConstraints = topologyspreadconstraints
+          @PodLabels = podlabels
+          @EnableDefaultRayCluster = enabledefaultraycluster
         end
 
         def deserialize(params)
@@ -942,6 +957,31 @@ module TencentCloud
               @Tolerations << toleration_tmp
             end
           end
+          unless params['PodAffinity'].nil?
+            @PodAffinity = PodAffinitySpec.new
+            @PodAffinity.deserialize(params['PodAffinity'])
+          end
+          unless params['PodAntiAffinity'].nil?
+            @PodAntiAffinity = PodAffinitySpec.new
+            @PodAntiAffinity.deserialize(params['PodAntiAffinity'])
+          end
+          unless params['TopologySpreadConstraints'].nil?
+            @TopologySpreadConstraints = []
+            params['TopologySpreadConstraints'].each do |i|
+              topologyspreadconstraint_tmp = TopologySpreadConstraint.new
+              topologyspreadconstraint_tmp.deserialize(i)
+              @TopologySpreadConstraints << topologyspreadconstraint_tmp
+            end
+          end
+          unless params['PodLabels'].nil?
+            @PodLabels = []
+            params['PodLabels'].each do |i|
+              stringmap_tmp = StringMap.new
+              stringmap_tmp.deserialize(i)
+              @PodLabels << stringmap_tmp
+            end
+          end
+          @EnableDefaultRayCluster = params['EnableDefaultRayCluster']
         end
       end
 
@@ -1396,6 +1436,26 @@ module TencentCloud
         end
       end
 
+      # 角色的部署信息
+      class ComponentDeployInfo < TencentCloud::Common::AbstractModel
+        # @param ComponentName: 角色名称
+        # @type ComponentName: String
+        # @param DeployHostUuidList: 待安装的节点uuid列表
+        # @type DeployHostUuidList: Array
+
+        attr_accessor :ComponentName, :DeployHostUuidList
+
+        def initialize(componentname=nil, deployhostuuidlist=nil)
+          @ComponentName = componentname
+          @DeployHostUuidList = deployhostuuidlist
+        end
+
+        def deserialize(params)
+          @ComponentName = params['ComponentName']
+          @DeployHostUuidList = params['DeployHostUuidList']
+        end
+      end
+
       # 计算资源高级设置
       class ComputeResourceAdvanceParams < TencentCloud::Common::AbstractModel
         # @param Labels: <p>节点Label数组</p>
@@ -1408,14 +1468,17 @@ module TencentCloud
         # @type PreStartUserScript: String
         # @param UserScript: <p>base64 编码的用户脚本, 此脚本会在 k8s 组件运行后执行, 需要用户保证脚本的可重入及重试逻辑, 脚本及其生成的日志文件可在节点的 /data/ccs_userscript/ 路径查看</p>
         # @type UserScript: String
+        # @param TkeClusterNodePool: <p>节点组Id</p>
+        # @type TkeClusterNodePool: String
 
-        attr_accessor :Labels, :Taints, :PreStartUserScript, :UserScript
+        attr_accessor :Labels, :Taints, :PreStartUserScript, :UserScript, :TkeClusterNodePool
 
-        def initialize(labels=nil, taints=nil, prestartuserscript=nil, userscript=nil)
+        def initialize(labels=nil, taints=nil, prestartuserscript=nil, userscript=nil, tkeclusternodepool=nil)
           @Labels = labels
           @Taints = taints
           @PreStartUserScript = prestartuserscript
           @UserScript = userscript
+          @TkeClusterNodePool = tkeclusternodepool
         end
 
         def deserialize(params)
@@ -1437,6 +1500,7 @@ module TencentCloud
           end
           @PreStartUserScript = params['PreStartUserScript']
           @UserScript = params['UserScript']
+          @TkeClusterNodePool = params['TkeClusterNodePool']
         end
       end
 
@@ -1645,6 +1709,22 @@ module TencentCloud
         end
       end
 
+      # 容器额外配置
+      class ContainerExtraConf < TencentCloud::Common::AbstractModel
+        # @param JobAccessProxyType: <p>计算作业代理访问类型，如Spark作业和RayCluster UI；不填写默认使用Internal</p><p>枚举值：</p><ul><li>Internal： 使用内网LB代理访问</li><li>Public： 使用公网LB代理访问</li><li>None： 不创建LB代理访问</li></ul>
+        # @type JobAccessProxyType: String
+
+        attr_accessor :JobAccessProxyType
+
+        def initialize(jobaccessproxytype=nil)
+          @JobAccessProxyType = jobaccessproxytype
+        end
+
+        def deserialize(params)
+          @JobAccessProxyType = params['JobAccessProxyType']
+        end
+      end
+
       # ConvertPreToPostCluster请求参数结构体
       class ConvertPreToPostClusterRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 集群实例ID。
@@ -1683,59 +1763,50 @@ module TencentCloud
 
       # CreateCloudInstance请求参数结构体
       class CreateCloudInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceName: 实例名称。
-        # <li>长度限制为6-36个字符。</li>
-        # <li>只允许包含中文、字母、数字、-、_。</li>
+        # @param InstanceName: <p>实例名称。</p><li>长度限制为6-36个字符。</li><li>只允许包含中文、字母、数字、-、_。</li>
         # @type InstanceName: String
-        # @param ClusterClass: 容器集群类型，取值范围
-        # <li>EMR容器集群实例: EMR-TKE</li>
+        # @param ClusterClass: <p>容器集群类型，取值范围</p><li>EMR容器集群实例: EMR-TKE</li>
         # @type ClusterClass: String
-        # @param Software: 部署的组件列表，不同的EMR产品ID（ProductId：具体含义参考入参ProductId字段）对应不同可选组件列表，不同产品版本可选组件列表查询：[组件版本](https://cloud.tencent.com/document/product/589/20279) ；
+        # @param Software: <p>部署的组件列表，不同的EMR产品ID（ProductId：具体含义参考入参ProductId字段）对应不同可选组件列表，不同产品版本可选组件列表查询：<a href="https://cloud.tencent.com/document/product/589/20279">组件版本</a> ；</p>
         # @type Software: Array
-        # @param PlatFormType: 容器平台类型，取值范围
-        # <li>EMR容器集群实例: tke</li>
+        # @param PlatFormType: <p>容器平台类型，取值范围</p><li>EMR容器集群实例: tke</li>
         # @type PlatFormType: String
-        # @param CosBucket: cos存储桶
+        # @param CosBucket: <p>cos存储桶</p>
         # @type CosBucket: String
-        # @param EksClusterId: 容器集群id
+        # @param EksClusterId: <p>容器集群id</p>
         # @type EksClusterId: String
-        # @param ProductId: 产品Id，不同产品ID表示不同的EMR产品版本。取值范围：
-        # <li>60:表示EMR-TKE-V1.1.0</li>
-        # <li>55:表示EMR-TKE-V1.0.1</li>
-        # <li>52:表示EMR-TKE-V1.0.0</li>
+        # @param ProductId: <p>产品Id，不同产品ID表示不同的EMR产品版本。取值范围：</p><li>60:表示EMR-TKE-V1.1.0</li><li>55:表示EMR-TKE-V1.0.1</li><li>52:表示EMR-TKE-V1.0.0</li>
         # @type ProductId: Integer
-        # @param ClientToken: 客户端token，唯一随机标识，时效5分钟，需要调用者指定 防止客户端重新创建资源，小于等于64个字符，例如 a9a90aa6fae36063280
-        # 示例值：a9a90aa6fae36063280
+        # @param ClientToken: <p>客户端token，唯一随机标识，时效5分钟，需要调用者指定 防止客户端重新创建资源，小于等于64个字符，例如 a9a90aa6fae36063280<br>示例值：a9a90aa6fae36063280</p>
         # @type ClientToken: String
-        # @param VPCSettings: 私有网络相关信息配置。通过该参数可以指定私有网络的ID，子网ID等信息。
+        # @param VPCSettings: <p>私有网络相关信息配置。通过该参数可以指定私有网络的ID，子网ID等信息。</p>
         # @type VPCSettings: :class:`Tencentcloud::Emr.v20190103.models.VPCSettings`
-        # @param CloudResources: 所有组件角色及其对应的Pod资源请求信息
+        # @param CloudResources: <p>所有组件角色及其对应的Pod资源请求信息</p>
         # @type CloudResources: Array
-        # @param SgId: 安全组Id，为空默认创建新的安全组
+        # @param SgId: <p>安全组Id，为空默认创建新的安全组</p>
         # @type SgId: String
-        # @param MetaDBInfo: 元数据库信息
-        # MetaDB信息，当MetaType选择EMR_NEW_META时，MetaDataJdbcUrl MetaDataUser MetaDataPass UnifyMetaInstanceId不用填
-        # 当MetaType选择EMR_EXIT_META时，填写UnifyMetaInstanceId
-        # 当MetaType选择USER_CUSTOM_META时，填写MetaDataJdbcUrl MetaDataUser MetaDataPass
+        # @param MetaDBInfo: <p>元数据库信息<br>MetaDB信息，当MetaType选择EMR_NEW_META时，MetaDataJdbcUrl MetaDataUser MetaDataPass UnifyMetaInstanceId不用填<br>当MetaType选择EMR_EXIT_META时，填写UnifyMetaInstanceId<br>当MetaType选择USER_CUSTOM_META时，填写MetaDataJdbcUrl MetaDataUser MetaDataPass</p>
         # @type MetaDBInfo: :class:`Tencentcloud::Emr.v20190103.models.CustomMetaDBInfo`
-        # @param Tags: 标签信息
+        # @param Tags: <p>标签信息</p>
         # @type Tags: Array
-        # @param LoginSettings: 登录密码，LoginSettings中的Password字段
+        # @param LoginSettings: <p>登录密码，LoginSettings中的Password字段</p>
         # @type LoginSettings: :class:`Tencentcloud::Emr.v20190103.models.LoginSettings`
-        # @param ExternalService: 共享服务信息
+        # @param ExternalService: <p>共享服务信息</p>
         # @type ExternalService: Array
-        # @param ZoneId: 可用区id
+        # @param ZoneId: <p>可用区id</p>
         # @type ZoneId: Integer
-        # @param DefaultMetaVersion: 数据库版本
+        # @param DefaultMetaVersion: <p>数据库版本</p>
         # @type DefaultMetaVersion: String
-        # @param NeedCdbAudit: 是否开通审计
+        # @param NeedCdbAudit: <p>是否开通审计</p>
         # @type NeedCdbAudit: Integer
-        # @param SgIP: 安全组来源IP
+        # @param SgIP: <p>安全组来源IP</p>
         # @type SgIP: String
+        # @param ContainerExtraConf: <p>额外容器相关配置</p>
+        # @type ContainerExtraConf: :class:`Tencentcloud::Emr.v20190103.models.ContainerExtraConf`
 
-        attr_accessor :InstanceName, :ClusterClass, :Software, :PlatFormType, :CosBucket, :EksClusterId, :ProductId, :ClientToken, :VPCSettings, :CloudResources, :SgId, :MetaDBInfo, :Tags, :LoginSettings, :ExternalService, :ZoneId, :DefaultMetaVersion, :NeedCdbAudit, :SgIP
+        attr_accessor :InstanceName, :ClusterClass, :Software, :PlatFormType, :CosBucket, :EksClusterId, :ProductId, :ClientToken, :VPCSettings, :CloudResources, :SgId, :MetaDBInfo, :Tags, :LoginSettings, :ExternalService, :ZoneId, :DefaultMetaVersion, :NeedCdbAudit, :SgIP, :ContainerExtraConf
 
-        def initialize(instancename=nil, clusterclass=nil, software=nil, platformtype=nil, cosbucket=nil, eksclusterid=nil, productid=nil, clienttoken=nil, vpcsettings=nil, cloudresources=nil, sgid=nil, metadbinfo=nil, tags=nil, loginsettings=nil, externalservice=nil, zoneid=nil, defaultmetaversion=nil, needcdbaudit=nil, sgip=nil)
+        def initialize(instancename=nil, clusterclass=nil, software=nil, platformtype=nil, cosbucket=nil, eksclusterid=nil, productid=nil, clienttoken=nil, vpcsettings=nil, cloudresources=nil, sgid=nil, metadbinfo=nil, tags=nil, loginsettings=nil, externalservice=nil, zoneid=nil, defaultmetaversion=nil, needcdbaudit=nil, sgip=nil, containerextraconf=nil)
           @InstanceName = instancename
           @ClusterClass = clusterclass
           @Software = software
@@ -1755,6 +1826,7 @@ module TencentCloud
           @DefaultMetaVersion = defaultmetaversion
           @NeedCdbAudit = needcdbaudit
           @SgIP = sgip
+          @ContainerExtraConf = containerextraconf
         end
 
         def deserialize(params)
@@ -1807,12 +1879,16 @@ module TencentCloud
           @DefaultMetaVersion = params['DefaultMetaVersion']
           @NeedCdbAudit = params['NeedCdbAudit']
           @SgIP = params['SgIP']
+          unless params['ContainerExtraConf'].nil?
+            @ContainerExtraConf = ContainerExtraConf.new
+            @ContainerExtraConf.deserialize(params['ContainerExtraConf'])
+          end
         end
       end
 
       # CreateCloudInstance返回参数结构体
       class CreateCloudInstanceResponse < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: <p>实例ID</p>
         # @type InstanceId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -8196,6 +8272,129 @@ module TencentCloud
         end
       end
 
+      # InstallSoftware请求参数结构体
+      class InstallSoftwareRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>集群实例号</p>
+        # @type InstanceId: String
+        # @param SoftInfo: <p>组件版本号，例如presto-0.161，可根据InstallSoftWareInfo查看当前集群可安装的组件</p>
+        # @type SoftInfo: Array
+        # @param CdbAutoRenew: <p>如果需要购买CDB，如果是包年包月集群，是否为这个cdb自动续费，默认AUTO_RENEW,如不自动续费新增的CDB，则填入NOT_AUTO_RENEW</p>
+        # @type CdbAutoRenew: String
+        # @param MetaType: <p>hive共享元数据库类型。取值范围：</p><li>EMR_NEW_META：表示集群默认创建</li><li>EMR_EXIT_METE：表示集群使用指定EMR-MetaDB。</li><li>USER_CUSTOM_META：表示集群使用自定义MetaDB。</li>
+        # @type MetaType: String
+        # @param UnifyMetaInstanceId: <p>EMR-MetaDB实例</p>
+        # @type UnifyMetaInstanceId: String
+        # @param MetaDBInfo: <p>自定义MetaDB信息</p>
+        # @type MetaDBInfo: :class:`Tencentcloud::Emr.v20190103.models.CustomMetaInfo`
+        # @param ExternalService: <p>共用组件信息</p>
+        # @type ExternalService: Array
+        # @param Tags: <p>标签信息</p>
+        # @type Tags: Array
+        # @param CloudResources: <p>角色的Pod规格信息</p>
+        # @type CloudResources: Array
+        # @param ServiceDeployInfoList: <p>自定义部署信息</p>
+        # @type ServiceDeployInfoList: Array
+        # @param DefaultMetaVersion: <p>数据库版本</p>
+        # @type DefaultMetaVersion: String
+        # @param NeedCdbAudit: <p>是否开通审计</p>
+        # @type NeedCdbAudit: Integer
+        # @param ContainerExtraConf: <p>额外容器相关配置</p>
+        # @type ContainerExtraConf: :class:`Tencentcloud::Emr.v20190103.models.ContainerExtraConf`
+
+        attr_accessor :InstanceId, :SoftInfo, :CdbAutoRenew, :MetaType, :UnifyMetaInstanceId, :MetaDBInfo, :ExternalService, :Tags, :CloudResources, :ServiceDeployInfoList, :DefaultMetaVersion, :NeedCdbAudit, :ContainerExtraConf
+
+        def initialize(instanceid=nil, softinfo=nil, cdbautorenew=nil, metatype=nil, unifymetainstanceid=nil, metadbinfo=nil, externalservice=nil, tags=nil, cloudresources=nil, servicedeployinfolist=nil, defaultmetaversion=nil, needcdbaudit=nil, containerextraconf=nil)
+          @InstanceId = instanceid
+          @SoftInfo = softinfo
+          @CdbAutoRenew = cdbautorenew
+          @MetaType = metatype
+          @UnifyMetaInstanceId = unifymetainstanceid
+          @MetaDBInfo = metadbinfo
+          @ExternalService = externalservice
+          @Tags = tags
+          @CloudResources = cloudresources
+          @ServiceDeployInfoList = servicedeployinfolist
+          @DefaultMetaVersion = defaultmetaversion
+          @NeedCdbAudit = needcdbaudit
+          @ContainerExtraConf = containerextraconf
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @SoftInfo = params['SoftInfo']
+          @CdbAutoRenew = params['CdbAutoRenew']
+          @MetaType = params['MetaType']
+          @UnifyMetaInstanceId = params['UnifyMetaInstanceId']
+          unless params['MetaDBInfo'].nil?
+            @MetaDBInfo = CustomMetaInfo.new
+            @MetaDBInfo.deserialize(params['MetaDBInfo'])
+          end
+          unless params['ExternalService'].nil?
+            @ExternalService = []
+            params['ExternalService'].each do |i|
+              externalservice_tmp = ExternalService.new
+              externalservice_tmp.deserialize(i)
+              @ExternalService << externalservice_tmp
+            end
+          end
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+          unless params['CloudResources'].nil?
+            @CloudResources = []
+            params['CloudResources'].each do |i|
+              cloudresource_tmp = CloudResource.new
+              cloudresource_tmp.deserialize(i)
+              @CloudResources << cloudresource_tmp
+            end
+          end
+          unless params['ServiceDeployInfoList'].nil?
+            @ServiceDeployInfoList = []
+            params['ServiceDeployInfoList'].each do |i|
+              servicedeployinfo_tmp = ServiceDeployInfo.new
+              servicedeployinfo_tmp.deserialize(i)
+              @ServiceDeployInfoList << servicedeployinfo_tmp
+            end
+          end
+          @DefaultMetaVersion = params['DefaultMetaVersion']
+          @NeedCdbAudit = params['NeedCdbAudit']
+          unless params['ContainerExtraConf'].nil?
+            @ContainerExtraConf = ContainerExtraConf.new
+            @ContainerExtraConf.deserialize(params['ContainerExtraConf'])
+          end
+        end
+      end
+
+      # InstallSoftware返回参数结构体
+      class InstallSoftwareResponse < TencentCloud::Common::AbstractModel
+        # @param ErrorMessages: <p>校验错误信息</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorMessages: Array
+        # @param FlowId: <p>流程id</p>
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrorMessages, :FlowId, :RequestId
+
+        def initialize(errormessages=nil, flowid=nil, requestid=nil)
+          @ErrorMessages = errormessages
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrorMessages = params['ErrorMessages']
+          @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 实例预付费参数，只有在付费类型为PREPAID时生效。
       class InstanceChargePrepaid < TencentCloud::Common::AbstractModel
         # @param Period: 包年包月时间，默认为1，单位：月。
@@ -8473,6 +8672,64 @@ module TencentCloud
           @ExecutionStatement = params['ExecutionStatement']
           @StatementID = params['StatementID']
           @User = params['User']
+        end
+      end
+
+      # 标签选择器
+      class LabelSelector < TencentCloud::Common::AbstractModel
+        # @param MatchLabels: <p>标签精确匹配条件</p>
+        # @type MatchLabels: Array
+        # @param MatchExpressions: <p>标签表达式匹配条件</p>
+        # @type MatchExpressions: Array
+
+        attr_accessor :MatchLabels, :MatchExpressions
+
+        def initialize(matchlabels=nil, matchexpressions=nil)
+          @MatchLabels = matchlabels
+          @MatchExpressions = matchexpressions
+        end
+
+        def deserialize(params)
+          unless params['MatchLabels'].nil?
+            @MatchLabels = []
+            params['MatchLabels'].each do |i|
+              stringmap_tmp = StringMap.new
+              stringmap_tmp.deserialize(i)
+              @MatchLabels << stringmap_tmp
+            end
+          end
+          unless params['MatchExpressions'].nil?
+            @MatchExpressions = []
+            params['MatchExpressions'].each do |i|
+              labelselectorrequirement_tmp = LabelSelectorRequirement.new
+              labelselectorrequirement_tmp.deserialize(i)
+              @MatchExpressions << labelselectorrequirement_tmp
+            end
+          end
+        end
+      end
+
+      # 标签选择器匹配表达式
+      class LabelSelectorRequirement < TencentCloud::Common::AbstractModel
+        # @param Key: <p>键</p>
+        # @type Key: String
+        # @param Operator: <p>匹配操作</p>
+        # @type Operator: String
+        # @param Values: <p>值</p>
+        # @type Values: Array
+
+        attr_accessor :Key, :Operator, :Values
+
+        def initialize(key=nil, operator=nil, values=nil)
+          @Key = key
+          @Operator = operator
+          @Values = values
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Operator = params['Operator']
+          @Values = params['Values']
         end
       end
 
@@ -11183,6 +11440,74 @@ module TencentCloud
         end
       end
 
+      # Pod亲和性
+      class PodAffinitySpec < TencentCloud::Common::AbstractModel
+        # @param RequiredDuringSchedulingIgnoredDuringExecution: <p>调度硬关联规则</p>
+        # @type RequiredDuringSchedulingIgnoredDuringExecution: Array
+        # @param PreferredDuringSchedulingIgnoredDuringExecution: <p>调度软关联规则</p>
+        # @type PreferredDuringSchedulingIgnoredDuringExecution: Array
+
+        attr_accessor :RequiredDuringSchedulingIgnoredDuringExecution, :PreferredDuringSchedulingIgnoredDuringExecution
+
+        def initialize(requiredduringschedulingignoredduringexecution=nil, preferredduringschedulingignoredduringexecution=nil)
+          @RequiredDuringSchedulingIgnoredDuringExecution = requiredduringschedulingignoredduringexecution
+          @PreferredDuringSchedulingIgnoredDuringExecution = preferredduringschedulingignoredduringexecution
+        end
+
+        def deserialize(params)
+          unless params['RequiredDuringSchedulingIgnoredDuringExecution'].nil?
+            @RequiredDuringSchedulingIgnoredDuringExecution = []
+            params['RequiredDuringSchedulingIgnoredDuringExecution'].each do |i|
+              podaffinityterm_tmp = PodAffinityTerm.new
+              podaffinityterm_tmp.deserialize(i)
+              @RequiredDuringSchedulingIgnoredDuringExecution << podaffinityterm_tmp
+            end
+          end
+          unless params['PreferredDuringSchedulingIgnoredDuringExecution'].nil?
+            @PreferredDuringSchedulingIgnoredDuringExecution = []
+            params['PreferredDuringSchedulingIgnoredDuringExecution'].each do |i|
+              weightedpodaffinityterm_tmp = WeightedPodAffinityTerm.new
+              weightedpodaffinityterm_tmp.deserialize(i)
+              @PreferredDuringSchedulingIgnoredDuringExecution << weightedpodaffinityterm_tmp
+            end
+          end
+        end
+      end
+
+      # Pod亲和性项
+      class PodAffinityTerm < TencentCloud::Common::AbstractModel
+        # @param LabelSelector: <p>标签选择器</p>
+        # @type LabelSelector: :class:`Tencentcloud::Emr.v20190103.models.LabelSelector`
+        # @param Namespaces: <p>命名空间列表</p>
+        # @type Namespaces: Array
+        # @param TopologyKey: <p>拓扑域键</p>
+        # @type TopologyKey: String
+        # @param NamespaceSelector: <p>命名空间选择器</p>
+        # @type NamespaceSelector: :class:`Tencentcloud::Emr.v20190103.models.LabelSelector`
+
+        attr_accessor :LabelSelector, :Namespaces, :TopologyKey, :NamespaceSelector
+
+        def initialize(labelselector=nil, namespaces=nil, topologykey=nil, namespaceselector=nil)
+          @LabelSelector = labelselector
+          @Namespaces = namespaces
+          @TopologyKey = topologykey
+          @NamespaceSelector = namespaceselector
+        end
+
+        def deserialize(params)
+          unless params['LabelSelector'].nil?
+            @LabelSelector = LabelSelector.new
+            @LabelSelector.deserialize(params['LabelSelector'])
+          end
+          @Namespaces = params['Namespaces']
+          @TopologyKey = params['TopologyKey']
+          unless params['NamespaceSelector'].nil?
+            @NamespaceSelector = LabelSelector.new
+            @NamespaceSelector.deserialize(params['NamespaceSelector'])
+          end
+        end
+      end
+
       # POD自定义权限和自定义参数
       class PodNewParameter < TencentCloud::Common::AbstractModel
         # @param InstanceId: TKE或EKS集群ID
@@ -13446,6 +13771,33 @@ module TencentCloud
         end
       end
 
+      # 服务的部署信息
+      class ServiceDeployInfo < TencentCloud::Common::AbstractModel
+        # @param ServiceName: 服务名称
+        # @type ServiceName: String
+        # @param ComponentDeployInfoList: 角色的部署信息列表
+        # @type ComponentDeployInfoList: Array
+
+        attr_accessor :ServiceName, :ComponentDeployInfoList
+
+        def initialize(servicename=nil, componentdeployinfolist=nil)
+          @ServiceName = servicename
+          @ComponentDeployInfoList = componentdeployinfolist
+        end
+
+        def deserialize(params)
+          @ServiceName = params['ServiceName']
+          unless params['ComponentDeployInfoList'].nil?
+            @ComponentDeployInfoList = []
+            params['ComponentDeployInfoList'].each do |i|
+              componentdeployinfo_tmp = ComponentDeployInfo.new
+              componentdeployinfo_tmp.deserialize(i)
+              @ComponentDeployInfoList << componentdeployinfo_tmp
+            end
+          end
+        end
+      end
+
       # 服务进程信息
       class ServiceNodeDetailInfo < TencentCloud::Common::AbstractModel
         # @param Ip: 进程所在节点IP
@@ -14200,6 +14552,26 @@ module TencentCloud
         end
       end
 
+      # 通用字符串map
+      class StringMap < TencentCloud::Common::AbstractModel
+        # @param Key: <p>键</p>
+        # @type Key: String
+        # @param Value: <p>值</p>
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
+        end
+      end
+
       # 子网信息
       class SubnetInfo < TencentCloud::Common::AbstractModel
         # @param SubnetName: 子网信息（名字）
@@ -14444,22 +14816,25 @@ module TencentCloud
 
       # TerminateInstance请求参数结构体
       class TerminateInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID。
+        # @param InstanceId: <p>实例ID。</p>
         # @type InstanceId: String
-        # @param ResourceIds: 销毁节点ID。该参数为预留参数，用户无需配置。
+        # @param ResourceIds: <p>销毁节点ID。该参数为预留参数，用户无需配置。</p>
         # @type ResourceIds: Array
-        # @param ResourceBaseType: 类型为ComputeResource和EMR以及默认，默认为EMR,类型为EMR时,InstanceId生效,类型为ComputeResource时,使用ComputeResourceId标识
+        # @param ResourceBaseType: <p>类型为ComputeResource和EMR以及默认，默认为EMR,类型为EMR时,InstanceId生效,类型为ComputeResource时,使用ComputeResourceId标识</p>
         # @type ResourceBaseType: String
-        # @param ComputeResourceId: 计算资源ID
+        # @param ComputeResourceId: <p>计算资源ID</p>
         # @type ComputeResourceId: String
+        # @param RetainTkeCluster: <p>保留计算资源关联的TKE集群</p>
+        # @type RetainTkeCluster: Boolean
 
-        attr_accessor :InstanceId, :ResourceIds, :ResourceBaseType, :ComputeResourceId
+        attr_accessor :InstanceId, :ResourceIds, :ResourceBaseType, :ComputeResourceId, :RetainTkeCluster
 
-        def initialize(instanceid=nil, resourceids=nil, resourcebasetype=nil, computeresourceid=nil)
+        def initialize(instanceid=nil, resourceids=nil, resourcebasetype=nil, computeresourceid=nil, retaintkecluster=nil)
           @InstanceId = instanceid
           @ResourceIds = resourceids
           @ResourceBaseType = resourcebasetype
           @ComputeResourceId = computeresourceid
+          @RetainTkeCluster = retaintkecluster
         end
 
         def deserialize(params)
@@ -14467,6 +14842,7 @@ module TencentCloud
           @ResourceIds = params['ResourceIds']
           @ResourceBaseType = params['ResourceBaseType']
           @ComputeResourceId = params['ComputeResourceId']
+          @RetainTkeCluster = params['RetainTkeCluster']
         end
       end
 
@@ -14776,6 +15152,53 @@ module TencentCloud
               @NodeInfoList << shortnodeinfo_tmp
             end
           end
+        end
+      end
+
+      # 调度拓扑分布
+      class TopologySpreadConstraint < TencentCloud::Common::AbstractModel
+        # @param MaxSkew: <p>最大偏差值</p>
+        # @type MaxSkew: Integer
+        # @param TopologyKey: <p>拓扑域键</p>
+        # @type TopologyKey: String
+        # @param WhenUnsatisfiable: <p>不满足约束时的处理策略</p>
+        # @type WhenUnsatisfiable: String
+        # @param LabelSelector: <p>标签选择器</p>
+        # @type LabelSelector: :class:`Tencentcloud::Emr.v20190103.models.LabelSelector`
+        # @param MinDomains: <p>最小拓扑域数量</p>
+        # @type MinDomains: Integer
+        # @param NodeAffinityPolicy: <p>节点亲和性策略</p>
+        # @type NodeAffinityPolicy: String
+        # @param NodeTaintsPolicy: <p>节点污点策略</p>
+        # @type NodeTaintsPolicy: String
+        # @param MatchLabelKeys: <p>匹配标签键列表</p>
+        # @type MatchLabelKeys: Array
+
+        attr_accessor :MaxSkew, :TopologyKey, :WhenUnsatisfiable, :LabelSelector, :MinDomains, :NodeAffinityPolicy, :NodeTaintsPolicy, :MatchLabelKeys
+
+        def initialize(maxskew=nil, topologykey=nil, whenunsatisfiable=nil, labelselector=nil, mindomains=nil, nodeaffinitypolicy=nil, nodetaintspolicy=nil, matchlabelkeys=nil)
+          @MaxSkew = maxskew
+          @TopologyKey = topologykey
+          @WhenUnsatisfiable = whenunsatisfiable
+          @LabelSelector = labelselector
+          @MinDomains = mindomains
+          @NodeAffinityPolicy = nodeaffinitypolicy
+          @NodeTaintsPolicy = nodetaintspolicy
+          @MatchLabelKeys = matchlabelkeys
+        end
+
+        def deserialize(params)
+          @MaxSkew = params['MaxSkew']
+          @TopologyKey = params['TopologyKey']
+          @WhenUnsatisfiable = params['WhenUnsatisfiable']
+          unless params['LabelSelector'].nil?
+            @LabelSelector = LabelSelector.new
+            @LabelSelector.deserialize(params['LabelSelector'])
+          end
+          @MinDomains = params['MinDomains']
+          @NodeAffinityPolicy = params['NodeAffinityPolicy']
+          @NodeTaintsPolicy = params['NodeTaintsPolicy']
+          @MatchLabelKeys = params['MatchLabelKeys']
         end
       end
 
@@ -15116,6 +15539,29 @@ module TencentCloud
         def deserialize(params)
           @ExecuteAtTimeOfDay = params['ExecuteAtTimeOfDay']
           @DaysOfWeek = params['DaysOfWeek']
+        end
+      end
+
+      # 加权pod亲和性项
+      class WeightedPodAffinityTerm < TencentCloud::Common::AbstractModel
+        # @param Weight: <p>权重</p>
+        # @type Weight: Integer
+        # @param PodAffinityTerm: <p>pod亲和性条件</p>
+        # @type PodAffinityTerm: :class:`Tencentcloud::Emr.v20190103.models.PodAffinityTerm`
+
+        attr_accessor :Weight, :PodAffinityTerm
+
+        def initialize(weight=nil, podaffinityterm=nil)
+          @Weight = weight
+          @PodAffinityTerm = podaffinityterm
+        end
+
+        def deserialize(params)
+          @Weight = params['Weight']
+          unless params['PodAffinityTerm'].nil?
+            @PodAffinityTerm = PodAffinityTerm.new
+            @PodAffinityTerm.deserialize(params['PodAffinityTerm'])
+          end
         end
       end
 

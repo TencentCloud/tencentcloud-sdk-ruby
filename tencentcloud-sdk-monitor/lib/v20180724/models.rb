@@ -352,51 +352,53 @@ module TencentCloud
 
       # 告警通知模板详情
       class AlarmNotice < TencentCloud::Common::AbstractModel
-        # @param Id: 告警通知模板 ID
+        # @param Id: <p>告警通知模板 ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: String
-        # @param Name: 告警通知模板名称
+        # @param Name: <p>告警通知模板名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
-        # @param UpdatedAt: 上次修改时间
+        # @param UpdatedAt: <p>上次修改时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdatedAt: String
-        # @param UpdatedBy: 上次修改人
+        # @param UpdatedBy: <p>上次修改人</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdatedBy: String
-        # @param NoticeType: 告警通知类型 ALARM=未恢复通知 OK=已恢复通知 ALL=全部通知
+        # @param NoticeType: <p>告警通知类型 ALARM=未恢复通知 OK=已恢复通知 ALL=全部通知</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NoticeType: String
-        # @param UserNotices: 用户通知列表
+        # @param UserNotices: <p>用户通知列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserNotices: Array
-        # @param URLNotices: 回调通知列表
+        # @param URLNotices: <p>回调通知列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type URLNotices: Array
-        # @param IsPreset: 是否是系统预设通知模板 0=否 1=是
+        # @param IsPreset: <p>是否是系统预设通知模板 0=否 1=是</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsPreset: Integer
-        # @param NoticeLanguage: 通知语言 zh-CN=中文 en-US=英文
+        # @param NoticeLanguage: <p>通知语言 zh-CN=中文 en-US=英文</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NoticeLanguage: String
-        # @param PolicyIds: 告警通知模板绑定的告警策略ID列表
+        # @param PolicyIds: <p>告警通知模板绑定的告警策略ID列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PolicyIds: Array
-        # @param AMPConsumerId: 后台 amp consumer id
+        # @param AMPConsumerId: <p>后台 amp consumer id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AMPConsumerId: String
-        # @param CLSNotices: 推送cls渠道
+        # @param CLSNotices: <p>推送cls渠道</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CLSNotices: Array
-        # @param Tags: 通知模板绑定的标签
+        # @param Tags: <p>通知模板绑定的标签</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
-        # @param IsLoginFree: 是否免登录，0-否，1-是
+        # @param IsLoginFree: <p>是否免登录，0-否，1-是</p>
         # @type IsLoginFree: Integer
+        # @param TimeZoneName: <p>IANA 时区名</p>
+        # @type TimeZoneName: String
 
-        attr_accessor :Id, :Name, :UpdatedAt, :UpdatedBy, :NoticeType, :UserNotices, :URLNotices, :IsPreset, :NoticeLanguage, :PolicyIds, :AMPConsumerId, :CLSNotices, :Tags, :IsLoginFree
+        attr_accessor :Id, :Name, :UpdatedAt, :UpdatedBy, :NoticeType, :UserNotices, :URLNotices, :IsPreset, :NoticeLanguage, :PolicyIds, :AMPConsumerId, :CLSNotices, :Tags, :IsLoginFree, :TimeZoneName
 
-        def initialize(id=nil, name=nil, updatedat=nil, updatedby=nil, noticetype=nil, usernotices=nil, urlnotices=nil, ispreset=nil, noticelanguage=nil, policyids=nil, ampconsumerid=nil, clsnotices=nil, tags=nil, isloginfree=nil)
+        def initialize(id=nil, name=nil, updatedat=nil, updatedby=nil, noticetype=nil, usernotices=nil, urlnotices=nil, ispreset=nil, noticelanguage=nil, policyids=nil, ampconsumerid=nil, clsnotices=nil, tags=nil, isloginfree=nil, timezonename=nil)
           @Id = id
           @Name = name
           @UpdatedAt = updatedat
@@ -411,6 +413,7 @@ module TencentCloud
           @CLSNotices = clsnotices
           @Tags = tags
           @IsLoginFree = isloginfree
+          @TimeZoneName = timezonename
         end
 
         def deserialize(params)
@@ -456,6 +459,7 @@ module TencentCloud
             end
           end
           @IsLoginFree = params['IsLoginFree']
+          @TimeZoneName = params['TimeZoneName']
         end
       end
 
@@ -1544,28 +1548,30 @@ module TencentCloud
 
       # CreateAlarmNotice请求参数结构体
       class CreateAlarmNoticeRequest < TencentCloud::Common::AbstractModel
-        # @param Module: 模块名，这里填“monitor”
+        # @param Module: <p>模块名，这里填“monitor”</p>
         # @type Module: String
-        # @param Name: 通知模板名称 60字符以内
+        # @param Name: <p>通知模板名称 60字符以内</p>
         # @type Name: String
-        # @param NoticeType: 通知类型 ALARM=未恢复通知 OK=已恢复通知 ALL=都通知
+        # @param NoticeType: <p>通知类型 ALARM=未恢复通知 OK=已恢复通知 ALL=都通知</p>
         # @type NoticeType: String
-        # @param NoticeLanguage: 通知语言 zh-CN=中文 en-US=英文
+        # @param NoticeLanguage: <p>通知语言 zh-CN=中文 en-US=英文</p>
         # @type NoticeLanguage: String
-        # @param UserNotices: 用户通知 最多5个
+        # @param UserNotices: <p>用户通知 最多5个</p>
         # @type UserNotices: Array
-        # @param URLNotices: 回调通知 最多6个
+        # @param URLNotices: <p>回调通知 最多6个</p>
         # @type URLNotices: Array
-        # @param CLSNotices: 推送CLS日志服务的操作 最多1个
+        # @param CLSNotices: <p>推送CLS日志服务的操作 最多1个</p>
         # @type CLSNotices: Array
-        # @param Tags: 模板绑定的标签
+        # @param Tags: <p>模板绑定的标签</p>
         # @type Tags: Array
-        # @param IsLoginFree: 是否免登录，0-否，1-是
+        # @param IsLoginFree: <p>是否免登录，0-否，1-是</p>
         # @type IsLoginFree: Integer
+        # @param TimeZoneName: <p>IANA 时区名</p>
+        # @type TimeZoneName: String
 
-        attr_accessor :Module, :Name, :NoticeType, :NoticeLanguage, :UserNotices, :URLNotices, :CLSNotices, :Tags, :IsLoginFree
+        attr_accessor :Module, :Name, :NoticeType, :NoticeLanguage, :UserNotices, :URLNotices, :CLSNotices, :Tags, :IsLoginFree, :TimeZoneName
 
-        def initialize(_module=nil, name=nil, noticetype=nil, noticelanguage=nil, usernotices=nil, urlnotices=nil, clsnotices=nil, tags=nil, isloginfree=nil)
+        def initialize(_module=nil, name=nil, noticetype=nil, noticelanguage=nil, usernotices=nil, urlnotices=nil, clsnotices=nil, tags=nil, isloginfree=nil, timezonename=nil)
           @Module = _module
           @Name = name
           @NoticeType = noticetype
@@ -1575,6 +1581,7 @@ module TencentCloud
           @CLSNotices = clsnotices
           @Tags = tags
           @IsLoginFree = isloginfree
+          @TimeZoneName = timezonename
         end
 
         def deserialize(params)
@@ -1615,12 +1622,13 @@ module TencentCloud
             end
           end
           @IsLoginFree = params['IsLoginFree']
+          @TimeZoneName = params['TimeZoneName']
         end
       end
 
       # CreateAlarmNotice返回参数结构体
       class CreateAlarmNoticeResponse < TencentCloud::Common::AbstractModel
-        # @param NoticeId: 告警通知模板ID
+        # @param NoticeId: <p>告警通知模板ID</p>
         # @type NoticeId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -11396,30 +11404,32 @@ module TencentCloud
 
       # ModifyAlarmNotice请求参数结构体
       class ModifyAlarmNoticeRequest < TencentCloud::Common::AbstractModel
-        # @param Module: 模块名，这里填“monitor”
+        # @param Module: <p>模块名，这里填“monitor”</p>
         # @type Module: String
-        # @param Name: 告警通知规则名称 60字符以内
+        # @param Name: <p>告警通知规则名称 60字符以内</p>
         # @type Name: String
-        # @param NoticeType: 通知类型 ALARM=未恢复通知 OK=已恢复通知 ALL=都通知
+        # @param NoticeType: <p>通知类型 ALARM=未恢复通知 OK=已恢复通知 ALL=都通知</p>
         # @type NoticeType: String
-        # @param NoticeLanguage: 通知语言 zh-CN=中文 en-US=英文
+        # @param NoticeLanguage: <p>通知语言 zh-CN=中文 en-US=英文</p>
         # @type NoticeLanguage: String
-        # @param NoticeId: 告警通知模板 ID
+        # @param NoticeId: <p>告警通知模板 ID</p>
         # @type NoticeId: String
-        # @param UserNotices: 用户通知 最多5个
+        # @param UserNotices: <p>用户通知 最多5个</p>
         # @type UserNotices: Array
-        # @param URLNotices: 回调通知 最多6个
+        # @param URLNotices: <p>回调通知 最多6个</p>
         # @type URLNotices: Array
-        # @param CLSNotices: 告警通知推送到CLS服务 最多1个
+        # @param CLSNotices: <p>告警通知推送到CLS服务 最多1个</p>
         # @type CLSNotices: Array
-        # @param PolicyIds: 告警通知模板绑定的告警策略ID列表
+        # @param PolicyIds: <p>告警通知模板绑定的告警策略ID列表</p>
         # @type PolicyIds: Array
-        # @param IsLoginFree: 是否免登录，0-否，1-是
+        # @param IsLoginFree: <p>是否免登录，0-否，1-是</p>
         # @type IsLoginFree: Integer
+        # @param TimeZoneName: <p>IANA 时区名</p>
+        # @type TimeZoneName: String
 
-        attr_accessor :Module, :Name, :NoticeType, :NoticeLanguage, :NoticeId, :UserNotices, :URLNotices, :CLSNotices, :PolicyIds, :IsLoginFree
+        attr_accessor :Module, :Name, :NoticeType, :NoticeLanguage, :NoticeId, :UserNotices, :URLNotices, :CLSNotices, :PolicyIds, :IsLoginFree, :TimeZoneName
 
-        def initialize(_module=nil, name=nil, noticetype=nil, noticelanguage=nil, noticeid=nil, usernotices=nil, urlnotices=nil, clsnotices=nil, policyids=nil, isloginfree=nil)
+        def initialize(_module=nil, name=nil, noticetype=nil, noticelanguage=nil, noticeid=nil, usernotices=nil, urlnotices=nil, clsnotices=nil, policyids=nil, isloginfree=nil, timezonename=nil)
           @Module = _module
           @Name = name
           @NoticeType = noticetype
@@ -11430,6 +11440,7 @@ module TencentCloud
           @CLSNotices = clsnotices
           @PolicyIds = policyids
           @IsLoginFree = isloginfree
+          @TimeZoneName = timezonename
         end
 
         def deserialize(params)
@@ -11464,6 +11475,7 @@ module TencentCloud
           end
           @PolicyIds = params['PolicyIds']
           @IsLoginFree = params['IsLoginFree']
+          @TimeZoneName = params['TimeZoneName']
         end
       end
 

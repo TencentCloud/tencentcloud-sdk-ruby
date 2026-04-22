@@ -10641,19 +10641,13 @@ module TencentCloud
 
       # DescribeFlowInfo请求参数结构体
       class DescribeFlowInfoRequest < TencentCloud::Common::AbstractModel
-        # @param Operator: 执行本接口操作的员工信息。 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
+        # @param Operator: <p>执行本接口操作的员工信息。 注: <code>在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。</code></p>
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
-        # @param FlowIds: 需要查询的流程ID列表，最多可传入100个ID。
-        # 如果要查询合同组的信息，则不需要传入此参数，只需传入 FlowGroupId 参数即可。
-
-
-        # 可登录腾讯电子签控制台，在 "合同"->"合同中心" 中查看某个合同的FlowId(在页面中展示为合同ID)。
-
-        # [点击查看FlowId在控制台中的位置](https://qcloudimg.tencent-cloud.cn/raw/0a83015166cfe1cb043d14f9ec4bd75e.png)
+        # @param FlowIds: <p>需要查询的流程ID列表，最多可传入100个ID。<br>如果要查询合同组的信息，则不需要传入此参数，只需传入 FlowGroupId 参数即可。</p><p>可登录腾讯电子签控制台，在 &quot;合同&quot;-&gt;&quot;合同中心&quot; 中查看某个合同的FlowId(在页面中展示为合同ID)。</p><p><a href="https://qcloudimg.tencent-cloud.cn/raw/0a83015166cfe1cb043d14f9ec4bd75e.png">点击查看FlowId在控制台中的位置</a></p>
         # @type FlowIds: Array
-        # @param Agent: 代理企业和员工的信息。 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
+        # @param Agent: <p>代理企业和员工的信息。 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。</p>
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
-        # @param FlowGroupId: 需要查询的流程组ID，如果传入此参数，则会忽略 FlowIds 参数。该合同组由<a href="https://qian.tencent.com/developers/companyApis/startFlows/CreateFlowGroupByFiles" target="_blank">通过多文件创建合同组签署流程</a>等接口创建。
+        # @param FlowGroupId: <p>需要查询的流程组ID，如果传入此参数，则会忽略 FlowIds 参数。该合同组由<a href="https://qian.tencent.com/developers/companyApis/startFlows/CreateFlowGroupByFiles" target="_blank">通过多文件创建合同组签署流程</a>等接口创建。</p>
         # @type FlowGroupId: String
 
         attr_accessor :Operator, :FlowIds, :Agent, :FlowGroupId
@@ -10681,22 +10675,24 @@ module TencentCloud
 
       # DescribeFlowInfo返回参数结构体
       class DescribeFlowInfoResponse < TencentCloud::Common::AbstractModel
-        # @param FlowDetailInfos: 合同流程的详细信息。
-        # 如果查询的是合同组信息，则返回的是组内所有子合同流程的详细信息。
+        # @param FlowDetailInfos: <p>合同流程的详细信息。<br>如果查询的是合同组信息，则返回的是组内所有子合同流程的详细信息。</p>
         # @type FlowDetailInfos: Array
-        # @param FlowGroupId: 合同组ID，只有在查询合同组信息时才会返回。
+        # @param FlowGroupId: <p>合同组ID，只有在查询合同组信息时才会返回。</p>
         # @type FlowGroupId: String
-        # @param FlowGroupName: 合同组名称，只有在查询合同组信息时才会返回。
+        # @param FlowGroupName: <p>合同组名称，只有在查询合同组信息时才会返回。</p>
         # @type FlowGroupName: String
+        # @param FlowGroupRemarks: <p>合同组合同备注列表</p>
+        # @type FlowGroupRemarks: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :FlowDetailInfos, :FlowGroupId, :FlowGroupName, :RequestId
+        attr_accessor :FlowDetailInfos, :FlowGroupId, :FlowGroupName, :FlowGroupRemarks, :RequestId
 
-        def initialize(flowdetailinfos=nil, flowgroupid=nil, flowgroupname=nil, requestid=nil)
+        def initialize(flowdetailinfos=nil, flowgroupid=nil, flowgroupname=nil, flowgroupremarks=nil, requestid=nil)
           @FlowDetailInfos = flowdetailinfos
           @FlowGroupId = flowgroupid
           @FlowGroupName = flowgroupname
+          @FlowGroupRemarks = flowgroupremarks
           @RequestId = requestid
         end
 
@@ -10711,6 +10707,7 @@ module TencentCloud
           end
           @FlowGroupId = params['FlowGroupId']
           @FlowGroupName = params['FlowGroupName']
+          @FlowGroupRemarks = params['FlowGroupRemarks']
           @RequestId = params['RequestId']
         end
       end
@@ -13552,52 +13549,36 @@ module TencentCloud
 
       # 此结构体(FlowDetailInfo)描述的是合同(流程)的详细信息
       class FlowDetailInfo < TencentCloud::Common::AbstractModel
-        # @param FlowId: 合同流程ID，为32位字符串。
+        # @param FlowId: <p>合同流程ID，为32位字符串。</p>
         # @type FlowId: String
-        # @param FlowName: 合同流程的名称（可自定义此名称），长度不能超过200，只能由中文、字母、数字和下划线组成。
+        # @param FlowName: <p>合同流程的名称（可自定义此名称），长度不能超过200，只能由中文、字母、数字和下划线组成。</p>
         # @type FlowName: String
-        # @param FlowType: 合同流程的类别分类（如销售合同/入职合同等）。
-        # 该字段将被废弃，不建议使用。
+        # @param FlowType: <p>合同流程的类别分类（如销售合同/入职合同等）。<br>该字段将被废弃，不建议使用。</p>
         # @type FlowType: String
-        # @param FlowStatus: 合同流程当前的签署状态, 会存在下列的状态值
-        # <ul>
-        # <li> **0** : 未开启流程(合同中不存在填写环节)</li>
-        # <li> **1** : 待签署</li>
-        #  <li> **2** : 部分签署</li>
-        #  <li> **3** : 已拒签</li>
-        #  <li> **4** : 已签署</li>
-        # <li> **5** : 已过期</li>
-        #  <li> **6** : 已撤销</li>
-        # <li> **7** : 未开启流程(合同中存在填写环节)</li>
-        #  <li> **8** : 等待填写</li>
-        #  <li> **9** : 部分填写</li>
-        #  <li> **10** : 已拒填</li>
-        # <li> **16** : 已失效（可能因为参与方修改姓名等原因）</li>
-        #  <li> **21** : 已解除</li></ul>
+        # @param FlowStatus: <p>合同流程当前的签署状态, 会存在下列的状态值 </p><ul><li> **0** : 未开启流程(合同中不存在填写环节)</li> <li> **1** : 待签署</li> <li> **2** : 部分签署</li> <li> **3** : 已拒签</li> <li> **4** : 已签署</li> <li> **5** : 已过期</li> <li> **6** : 已撤销</li> <li> **7** : 未开启流程(合同中存在填写环节)</li> <li> **8** : 等待填写</li> <li> **9** : 部分填写</li> <li> **10** : 已拒填</li> <li> **16** : 已失效（可能因为参与方修改姓名等原因）</li> <li> **21** : 已解除</li></ul>
         # @type FlowStatus: Integer
-        # @param FlowMessage: 当合同流程状态为已拒签（即 FlowStatus=3）或已撤销（即 FlowStatus=6）时，此字段 FlowMessage 为拒签或撤销原因。
+        # @param FlowMessage: <p>当合同流程状态为已拒签（即 FlowStatus=3）或已撤销（即 FlowStatus=6）时，此字段 FlowMessage 为拒签或撤销原因。</p>
         # @type FlowMessage: String
-        # @param FlowDescription: 合同流程描述信息。
+        # @param FlowDescription: <p>合同流程描述信息。</p>
         # @type FlowDescription: String
-        # @param CreatedOn: 合同流程的创建时间戳，格式为Unix标准时间戳（秒）。
+        # @param CreatedOn: <p>合同流程的创建时间戳，格式为Unix标准时间戳（秒）。</p>
         # @type CreatedOn: Integer
-        # @param FlowApproverInfos: 合同流程的签署方数组
+        # @param FlowApproverInfos: <p>合同流程的签署方数组</p>
         # @type FlowApproverInfos: Array
-        # @param CcInfos: 合同流程的关注方信息数组
+        # @param CcInfos: <p>合同流程的关注方信息数组</p>
         # @type CcInfos: Array
-        # @param Creator: 合同流程发起方的员工编号, 即员工在腾讯电子签平台的唯一身份标识。
+        # @param Creator: <p>合同流程发起方的员工编号, 即员工在腾讯电子签平台的唯一身份标识。</p>
         # @type Creator: String
-        # @param UserFlowType: 用户合同的自定义分类。
-
-        # 自定义合同类型的位置，在下图所示地方:
-        # ![image](https://qcloudimg.tencent-cloud.cn/raw/00d72934c31bd49115a566e4e1a4530d.png)
+        # @param UserFlowType: <p>用户合同的自定义分类。</p><p>自定义合同类型的位置，在下图所示地方:<br><img src="https://qcloudimg.tencent-cloud.cn/raw/00d72934c31bd49115a566e4e1a4530d.png" alt="image"></p>
         # @type UserFlowType: :class:`Tencentcloud::Ess.v20201111.models.UserFlowType`
-        # @param TemplateId: 发起模板时,使用的模板Id
+        # @param TemplateId: <p>发起模板时,使用的模板Id</p>
         # @type TemplateId: String
+        # @param FlowRemarks: <p>合同备注列表</p>
+        # @type FlowRemarks: Array
 
-        attr_accessor :FlowId, :FlowName, :FlowType, :FlowStatus, :FlowMessage, :FlowDescription, :CreatedOn, :FlowApproverInfos, :CcInfos, :Creator, :UserFlowType, :TemplateId
+        attr_accessor :FlowId, :FlowName, :FlowType, :FlowStatus, :FlowMessage, :FlowDescription, :CreatedOn, :FlowApproverInfos, :CcInfos, :Creator, :UserFlowType, :TemplateId, :FlowRemarks
 
-        def initialize(flowid=nil, flowname=nil, flowtype=nil, flowstatus=nil, flowmessage=nil, flowdescription=nil, createdon=nil, flowapproverinfos=nil, ccinfos=nil, creator=nil, userflowtype=nil, templateid=nil)
+        def initialize(flowid=nil, flowname=nil, flowtype=nil, flowstatus=nil, flowmessage=nil, flowdescription=nil, createdon=nil, flowapproverinfos=nil, ccinfos=nil, creator=nil, userflowtype=nil, templateid=nil, flowremarks=nil)
           @FlowId = flowid
           @FlowName = flowname
           @FlowType = flowtype
@@ -13610,6 +13591,7 @@ module TencentCloud
           @Creator = creator
           @UserFlowType = userflowtype
           @TemplateId = templateid
+          @FlowRemarks = flowremarks
         end
 
         def deserialize(params)
@@ -13642,6 +13624,7 @@ module TencentCloud
             @UserFlowType.deserialize(params['UserFlowType'])
           end
           @TemplateId = params['TemplateId']
+          @FlowRemarks = params['FlowRemarks']
         end
       end
 
@@ -13912,6 +13895,26 @@ module TencentCloud
 
         def deserialize(params)
           @NoRelease = params['NoRelease']
+        end
+      end
+
+      # 合同备注
+      class FlowRemarkItem < TencentCloud::Common::AbstractModel
+        # @param RemarkId: <p>合同备注下标，对应最多5个备注位</p><p>取值范围：[0, 4]</p>
+        # @type RemarkId: Integer
+        # @param RemarkValue: <p>合同备注内容，不超过 50 个字符，DELETE 时无需传入</p>
+        # @type RemarkValue: String
+
+        attr_accessor :RemarkId, :RemarkValue
+
+        def initialize(remarkid=nil, remarkvalue=nil)
+          @RemarkId = remarkid
+          @RemarkValue = remarkvalue
+        end
+
+        def deserialize(params)
+          @RemarkId = params['RemarkId']
+          @RemarkValue = params['RemarkValue']
         end
       end
 
@@ -15859,6 +15862,71 @@ module TencentCloud
           @SubSealType = params['SubSealType']
           @SubSealName = params['SubSealName']
           @SealDescription = params['SealDescription']
+        end
+      end
+
+      # OperateFlowRemarks请求参数结构体
+      class OperateFlowRemarksRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: <p>执行本接口操作的员工信息。<br>注: <code>在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。</code></p>
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param OperateType: <p>操作类型，可取值如下:</p><ul><li>DELETE:  删除</li><li>ENABLE: 启用</li><li>DISABLE: 停用</li><li>COPY: 复制新建</li></ul>
+        # @type OperateType: String
+        # @param FlowId: <p>对应的合同流程id</p><p>目标合同为合同组时此参数不填</p>
+        # @type FlowId: String
+        # @param Agent: <p>代理企业和员工的信息。<br>在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。</p>
+        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
+        # @param FlowGroupId: <p>对应合同组id</p><p>目标合同为单份合同时此参数不填</p>
+        # @type FlowGroupId: String
+        # @param FlowItem: <p>合同备注信息。</p><p>入参限制：当OperateType为UPDATE和DELETE时，通过该结构体进行对应备注操作，合同备注数量范围为 1 - 5个。</p>
+        # @type FlowItem: :class:`Tencentcloud::Ess.v20201111.models.FlowRemarkItem`
+        # @param FlowItems: <p>合同备注列表。</p><p>入参限制：当OperateType为CREATE时，通过该参数进行全量的合同备注创建。</p>
+        # @type FlowItems: Array
+
+        attr_accessor :Operator, :OperateType, :FlowId, :Agent, :FlowGroupId, :FlowItem, :FlowItems
+
+        def initialize(operator=nil, operatetype=nil, flowid=nil, agent=nil, flowgroupid=nil, flowitem=nil, flowitems=nil)
+          @Operator = operator
+          @OperateType = operatetype
+          @FlowId = flowid
+          @Agent = agent
+          @FlowGroupId = flowgroupid
+          @FlowItem = flowitem
+          @FlowItems = flowitems
+        end
+
+        def deserialize(params)
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          @OperateType = params['OperateType']
+          @FlowId = params['FlowId']
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+          @FlowGroupId = params['FlowGroupId']
+          unless params['FlowItem'].nil?
+            @FlowItem = FlowRemarkItem.new
+            @FlowItem.deserialize(params['FlowItem'])
+          end
+          @FlowItems = params['FlowItems']
+        end
+      end
+
+      # OperateFlowRemarks返回参数结构体
+      class OperateFlowRemarksResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 

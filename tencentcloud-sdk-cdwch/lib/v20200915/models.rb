@@ -1952,10 +1952,12 @@ module TencentCloud
         # @type ValueRange: String
         # @param AbnormalParam: <p>标记异常</p>
         # @type AbnormalParam: String
+        # @param ConfigEffective: <p>是否生效</p>
+        # @type ConfigEffective: String
 
-        attr_accessor :ConfKey, :ConfValue, :DefaultValue, :NeedRestart, :Editable, :ConfDesc, :FileName, :ModifyRuleType, :ModifyRuleValue, :Uin, :ModifyTime, :ValueRange, :AbnormalParam
+        attr_accessor :ConfKey, :ConfValue, :DefaultValue, :NeedRestart, :Editable, :ConfDesc, :FileName, :ModifyRuleType, :ModifyRuleValue, :Uin, :ModifyTime, :ValueRange, :AbnormalParam, :ConfigEffective
 
-        def initialize(confkey=nil, confvalue=nil, defaultvalue=nil, needrestart=nil, editable=nil, confdesc=nil, filename=nil, modifyruletype=nil, modifyrulevalue=nil, uin=nil, modifytime=nil, valuerange=nil, abnormalparam=nil)
+        def initialize(confkey=nil, confvalue=nil, defaultvalue=nil, needrestart=nil, editable=nil, confdesc=nil, filename=nil, modifyruletype=nil, modifyrulevalue=nil, uin=nil, modifytime=nil, valuerange=nil, abnormalparam=nil, configeffective=nil)
           @ConfKey = confkey
           @ConfValue = confvalue
           @DefaultValue = defaultvalue
@@ -1969,6 +1971,7 @@ module TencentCloud
           @ModifyTime = modifytime
           @ValueRange = valuerange
           @AbnormalParam = abnormalparam
+          @ConfigEffective = configeffective
         end
 
         def deserialize(params)
@@ -1985,6 +1988,7 @@ module TencentCloud
           @ModifyTime = params['ModifyTime']
           @ValueRange = params['ValueRange']
           @AbnormalParam = params['AbnormalParam']
+          @ConfigEffective = params['ConfigEffective']
         end
       end
 

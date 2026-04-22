@@ -224,13 +224,17 @@ module TencentCloud
 
       # 人脸框信息
       class FaceRect < TencentCloud::Common::AbstractModel
-        # @param Y: 人脸框左上角纵坐标。
+        # @param Y: <p>人脸框左上角纵坐标。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Y: Integer
-        # @param X: 人脸框左上角横坐标。
+        # @param X: <p>人脸框左上角横坐标。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type X: Integer
-        # @param Width: 人脸框宽度。
+        # @param Width: <p>人脸框宽度。<br>单位：px</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Width: Integer
-        # @param Height: 人脸框高度。
+        # @param Height: <p>人脸框高度。<br>单位：px</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Height: Integer
 
         attr_accessor :Y, :X, :Width, :Height

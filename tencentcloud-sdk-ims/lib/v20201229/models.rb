@@ -39,10 +39,14 @@ module TencentCloud
         # @type Device: :class:`Tencentcloud::Ims.v20201229.models.Device`
         # @param Type: <p>服务类型，可为空，默认为 IMAGE。</p><p>枚举值：</p><ul><li>IMAGE： 一般图片异步检测</li><li>IMAGE_LLM： 大模型图片异步检测</li></ul>
         # @type Type: String
+        # @param FileUrlList: <p>该字段表示待审核的图片资源链接，最多支持传入4张图片</p>
+        # @type FileUrlList: Array
+        # @param TextContent: <p>待审核的文本内容，需为UTF-8编码并以Base64格式传入，字数限制5000字内。</p>
+        # @type TextContent: String
 
-        attr_accessor :CallbackUrl, :BizType, :DataId, :FileContent, :FileUrl, :Interval, :MaxFrames, :User, :Device, :Type
+        attr_accessor :CallbackUrl, :BizType, :DataId, :FileContent, :FileUrl, :Interval, :MaxFrames, :User, :Device, :Type, :FileUrlList, :TextContent
 
-        def initialize(callbackurl=nil, biztype=nil, dataid=nil, filecontent=nil, fileurl=nil, interval=nil, maxframes=nil, user=nil, device=nil, type=nil)
+        def initialize(callbackurl=nil, biztype=nil, dataid=nil, filecontent=nil, fileurl=nil, interval=nil, maxframes=nil, user=nil, device=nil, type=nil, fileurllist=nil, textcontent=nil)
           @CallbackUrl = callbackurl
           @BizType = biztype
           @DataId = dataid
@@ -53,6 +57,8 @@ module TencentCloud
           @User = user
           @Device = device
           @Type = type
+          @FileUrlList = fileurllist
+          @TextContent = textcontent
         end
 
         def deserialize(params)
@@ -72,6 +78,8 @@ module TencentCloud
             @Device.deserialize(params['Device'])
           end
           @Type = params['Type']
+          @FileUrlList = params['FileUrlList']
+          @TextContent = params['TextContent']
         end
       end
 

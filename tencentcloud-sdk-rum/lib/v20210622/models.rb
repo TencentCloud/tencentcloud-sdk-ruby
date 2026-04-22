@@ -653,19 +653,19 @@ module TencentCloud
 
       # DescribeApplicationExitReportDetail请求参数结构体
       class DescribeApplicationExitReportDetailRequest < TencentCloud::Common::AbstractModel
-        # @param ProductId: 产品Id
+        # @param ProductId: <p>产品Id</p>
         # @type ProductId: String
-        # @param ParamToken: 提供给前端使用，当填写本字段时，会覆盖 formlist 的值
+        # @param ParamToken: <p>提供给前端使用，当填写本字段时，会覆盖 formlist 的值</p>
         # @type ParamToken: String
-        # @param ClientIdentify: 问题Id
+        # @param ClientIdentify: <p>问题Id</p>
         # @type ClientIdentify: String
-        # @param StartEventTime: 开始时间
+        # @param StartEventTime: <p>开始时间</p>
         # @type StartEventTime: Integer
-        # @param EndEventTime: 结束时间
+        # @param EndEventTime: <p>结束时间</p>
         # @type EndEventTime: Integer
-        # @param ExtraData: 拓展数据
+        # @param ExtraData: <p>拓展数据</p>
         # @type ExtraData: String
-        # @param RequestHeader: 请求头
+        # @param RequestHeader: <p>请求头</p>
         # @type RequestHeader: String
 
         attr_accessor :ProductId, :ParamToken, :ClientIdentify, :StartEventTime, :EndEventTime, :ExtraData, :RequestHeader
@@ -693,11 +693,11 @@ module TencentCloud
 
       # DescribeApplicationExitReportDetail返回参数结构体
       class DescribeApplicationExitReportDetailResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 返回值
+        # @param Data: <p>返回值</p>
         # @type Data: String
-        # @param Code: 状态码
+        # @param Code: <p>状态码</p>
         # @type Code: Integer
-        # @param Message: 消息
+        # @param Message: <p>消息</p>
         # @type Message: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -721,23 +721,23 @@ module TencentCloud
 
       # DescribeApplicationExitReportList请求参数结构体
       class DescribeApplicationExitReportListRequest < TencentCloud::Common::AbstractModel
-        # @param ProductId: 产品Id
+        # @param ProductId: <p>产品Id</p>
         # @type ProductId: String
-        # @param ParamToken: 提供给前端使用，当填写本字段时，会覆盖 formlist 的值
+        # @param ParamToken: <p>提供给前端使用，当填写本字段时，会覆盖 formlist 的值</p>
         # @type ParamToken: String
-        # @param FormListString: 接口调试专用，当 token 为空时，以这里的 value 作为筛选表单信息
+        # @param FormListString: <p>接口调试专用，当 token 为空时，以这里的 value 作为筛选表单信息</p>
         # @type FormListString: String
-        # @param PageNumber: 当前页码
+        # @param PageNumber: <p>当前页码</p>
         # @type PageNumber: Integer
-        # @param PageSize: 每页展示最大数量
+        # @param PageSize: <p>每页展示最大数量</p>
         # @type PageSize: Integer
-        # @param SortField: 排序字段
+        # @param SortField: <p>排序字段</p>
         # @type SortField: String
-        # @param SortType: 排序类型
+        # @param SortType: <p>排序类型</p>
         # @type SortType: String
-        # @param ExtraData: 拓展数据
+        # @param ExtraData: <p>拓展数据</p>
         # @type ExtraData: String
-        # @param RequestHeader: 请求头
+        # @param RequestHeader: <p>请求头</p>
         # @type RequestHeader: String
 
         attr_accessor :ProductId, :ParamToken, :FormListString, :PageNumber, :PageSize, :SortField, :SortType, :ExtraData, :RequestHeader
@@ -769,11 +769,11 @@ module TencentCloud
 
       # DescribeApplicationExitReportList返回参数结构体
       class DescribeApplicationExitReportListResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 返回值
+        # @param Data: <p>返回值</p>
         # @type Data: String
-        # @param Code: 状态码
+        # @param Code: <p>状态码</p>
         # @type Code: Integer
-        # @param Message: 消息
+        # @param Message: <p>消息</p>
         # @type Message: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4637,23 +4637,23 @@ module TencentCloud
 
       # DescribeExceptionDetail请求参数结构体
       class DescribeExceptionDetailRequest < TencentCloud::Common::AbstractModel
-        # @param ProductId: 产品Id
+        # @param ProductId: <p>产品Id</p>
         # @type ProductId: String
-        # @param ClientIdentify: 消息唯一标识
+        # @param ClientIdentify: <p>消息唯一标识</p>
         # @type ClientIdentify: String
-        # @param ClusterStackType: 集群堆栈类型
+        # @param ClusterStackType: <p>集群堆栈类型</p>
         # @type ClusterStackType: Integer
-        # @param Feature: 特征
+        # @param Feature: <p>特征</p>
         # @type Feature: String
-        # @param IssueType: 问题类型
+        # @param IssueType: <p>问题类型</p>
         # @type IssueType: Integer
-        # @param StartEventTime: 事件开始时间
+        # @param StartEventTime: <p>事件开始时间</p>
         # @type StartEventTime: Integer
-        # @param EndEventTime: 事件结束时间
+        # @param EndEventTime: <p>事件结束时间</p>
         # @type EndEventTime: Integer
-        # @param ExtraData: 拓展数据
+        # @param ExtraData: <p>拓展数据</p>
         # @type ExtraData: String
-        # @param RequestHeader: 请求头
+        # @param RequestHeader: <p>请求头</p>
         # @type RequestHeader: String
 
         attr_accessor :ProductId, :ClientIdentify, :ClusterStackType, :Feature, :IssueType, :StartEventTime, :EndEventTime, :ExtraData, :RequestHeader
@@ -4685,11 +4685,11 @@ module TencentCloud
 
       # DescribeExceptionDetail返回参数结构体
       class DescribeExceptionDetailResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 返回值
+        # @param Data: <p>返回值</p>
         # @type Data: String
-        # @param Code: 状态码
+        # @param Code: <p>状态码</p>
         # @type Code: Integer
-        # @param Message: 消息
+        # @param Message: <p>消息</p>
         # @type Message: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4713,27 +4713,27 @@ module TencentCloud
 
       # DescribeExceptionReportList请求参数结构体
       class DescribeExceptionReportListRequest < TencentCloud::Common::AbstractModel
-        # @param ProductId: 产品Id
+        # @param ProductId: <p>产品Id</p>
         # @type ProductId: String
-        # @param FormListString: 接口调试专用，当 token 为空时，以这里的 value 作为筛选表单信息
+        # @param FormListString: <p>接口调试专用，当 token 为空时，以这里的 value 作为筛选表单信息</p>
         # @type FormListString: String
-        # @param ParamToken: 提供给前端使用，当填写本字段时，会覆盖 form_list 的值
+        # @param ParamToken: <p>提供给前端使用，当填写本字段时，会覆盖 form_list 的值</p>
         # @type ParamToken: String
-        # @param IssueType: 问题类型
+        # @param IssueType: <p>问题类型</p>
         # @type IssueType: Integer
-        # @param SortField: 排序字段
+        # @param SortField: <p>排序字段</p>
         # @type SortField: String
-        # @param SortType: 排序方式
+        # @param SortType: <p>排序方式</p>
         # @type SortType: String
-        # @param Feature: 特征
+        # @param Feature: <p>特征</p>
         # @type Feature: String
-        # @param PageSize: 每页数目
+        # @param PageSize: <p>每页数目</p>
         # @type PageSize: Integer
-        # @param PageNumber: 页码
+        # @param PageNumber: <p>页码</p>
         # @type PageNumber: Integer
-        # @param ExtraData: 拓展字段
+        # @param ExtraData: <p>拓展字段</p>
         # @type ExtraData: String
-        # @param RequestHeader: 请求头
+        # @param RequestHeader: <p>请求头</p>
         # @type RequestHeader: String
 
         attr_accessor :ProductId, :FormListString, :ParamToken, :IssueType, :SortField, :SortType, :Feature, :PageSize, :PageNumber, :ExtraData, :RequestHeader
@@ -4769,11 +4769,11 @@ module TencentCloud
 
       # DescribeExceptionReportList返回参数结构体
       class DescribeExceptionReportListResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 返回值
+        # @param Data: <p>返回值</p>
         # @type Data: String
-        # @param Code: 状态码
+        # @param Code: <p>状态码</p>
         # @type Code: Integer
-        # @param Message: 消息
+        # @param Message: <p>消息</p>
         # @type Message: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4797,19 +4797,19 @@ module TencentCloud
 
       # DescribeFOOMMallocProblemDetail请求参数结构体
       class DescribeFOOMMallocProblemDetailRequest < TencentCloud::Common::AbstractModel
-        # @param ProductId: 产品Id
+        # @param ProductId: <p>产品Id</p>
         # @type ProductId: String
-        # @param ClientIdentify: 消息唯一标识
+        # @param ClientIdentify: <p>消息唯一标识</p>
         # @type ClientIdentify: String
-        # @param Feature: 特征
+        # @param Feature: <p>特征</p>
         # @type Feature: String
-        # @param StartEventTime: 事件开始时间
+        # @param StartEventTime: <p>事件开始时间</p>
         # @type StartEventTime: Integer
-        # @param EndEventTime: 事件结束时间
+        # @param EndEventTime: <p>事件结束时间</p>
         # @type EndEventTime: Integer
-        # @param ExtraData: 拓展数据
+        # @param ExtraData: <p>拓展数据</p>
         # @type ExtraData: String
-        # @param RequestHeader: 请求头
+        # @param RequestHeader: <p>请求头</p>
         # @type RequestHeader: String
 
         attr_accessor :ProductId, :ClientIdentify, :Feature, :StartEventTime, :EndEventTime, :ExtraData, :RequestHeader
@@ -4837,11 +4837,11 @@ module TencentCloud
 
       # DescribeFOOMMallocProblemDetail返回参数结构体
       class DescribeFOOMMallocProblemDetailResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 返回值
+        # @param Data: <p>返回值</p>
         # @type Data: String
-        # @param Code: 状态码
+        # @param Code: <p>状态码</p>
         # @type Code: Integer
-        # @param Message: 消息
+        # @param Message: <p>消息</p>
         # @type Message: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4865,23 +4865,23 @@ module TencentCloud
 
       # DescribeFOOMMallocProblemList请求参数结构体
       class DescribeFOOMMallocProblemListRequest < TencentCloud::Common::AbstractModel
-        # @param ProductId: 产品Id
+        # @param ProductId: <p>产品Id</p>
         # @type ProductId: String
-        # @param ParamToken: 提供给前端使用，当填写本字段时，会覆盖 formlist 的值
+        # @param ParamToken: <p>提供给前端使用，当填写本字段时，会覆盖 formlist 的值</p>
         # @type ParamToken: String
-        # @param FormListString: 接口调试专用，当 token 为空时，以这里的 value 作为筛选表单信息
+        # @param FormListString: <p>接口调试专用，当 token 为空时，以这里的 value 作为筛选表单信息</p>
         # @type FormListString: String
-        # @param PageNumber: 当前页码
+        # @param PageNumber: <p>当前页码</p>
         # @type PageNumber: Integer
-        # @param PageSize: 每页展示最大数量
+        # @param PageSize: <p>每页展示最大数量</p>
         # @type PageSize: Integer
-        # @param SortField: 排序字段
+        # @param SortField: <p>排序字段</p>
         # @type SortField: String
-        # @param SortType: 排序类型
+        # @param SortType: <p>排序类型</p>
         # @type SortType: String
-        # @param ExtraData: 拓展数据
+        # @param ExtraData: <p>拓展数据</p>
         # @type ExtraData: String
-        # @param RequestHeader: 请求头
+        # @param RequestHeader: <p>请求头</p>
         # @type RequestHeader: String
 
         attr_accessor :ProductId, :ParamToken, :FormListString, :PageNumber, :PageSize, :SortField, :SortType, :ExtraData, :RequestHeader
@@ -4913,11 +4913,11 @@ module TencentCloud
 
       # DescribeFOOMMallocProblemList返回参数结构体
       class DescribeFOOMMallocProblemListResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 返回值
+        # @param Data: <p>返回值</p>
         # @type Data: String
-        # @param Message: 消息
+        # @param Message: <p>消息</p>
         # @type Message: String
-        # @param Code: 状态码
+        # @param Code: <p>状态码</p>
         # @type Code: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4941,25 +4941,25 @@ module TencentCloud
 
       # DescribeFOOMMallocReportList请求参数结构体
       class DescribeFOOMMallocReportListRequest < TencentCloud::Common::AbstractModel
-        # @param ProductId: 产品Id
+        # @param ProductId: <p>产品Id</p>
         # @type ProductId: String
-        # @param FormListString: 接口调试专用，当 token 为空时，以这里的 value 作为筛选表单信息
+        # @param FormListString: <p>接口调试专用，当 token 为空时，以这里的 value 作为筛选表单信息</p>
         # @type FormListString: String
-        # @param ParamToken: 提供给前端使用，当填写本字段时，会覆盖 formlist 的值
+        # @param ParamToken: <p>提供给前端使用，当填写本字段时，会覆盖 formlist 的值</p>
         # @type ParamToken: String
-        # @param Feature: 特征
+        # @param Feature: <p>特征</p>
         # @type Feature: String
-        # @param PageNumber: 当前页码
+        # @param PageNumber: <p>当前页码</p>
         # @type PageNumber: Integer
-        # @param PageSize: 每页展示最大数量
+        # @param PageSize: <p>每页展示最大数量</p>
         # @type PageSize: Integer
-        # @param SortField: 排序字段
+        # @param SortField: <p>排序字段</p>
         # @type SortField: String
-        # @param SortType: 排序类型
+        # @param SortType: <p>排序类型</p>
         # @type SortType: String
-        # @param ExtraData: 拓展数据
+        # @param ExtraData: <p>拓展数据</p>
         # @type ExtraData: String
-        # @param RequestHeader: 请求头
+        # @param RequestHeader: <p>请求头</p>
         # @type RequestHeader: String
 
         attr_accessor :ProductId, :FormListString, :ParamToken, :Feature, :PageNumber, :PageSize, :SortField, :SortType, :ExtraData, :RequestHeader
@@ -4993,11 +4993,11 @@ module TencentCloud
 
       # DescribeFOOMMallocReportList返回参数结构体
       class DescribeFOOMMallocReportListResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 返回值
+        # @param Data: <p>返回值</p>
         # @type Data: String
-        # @param Message: 消息
+        # @param Message: <p>消息</p>
         # @type Message: String
-        # @param Code: 状态码
+        # @param Code: <p>状态码</p>
         # @type Code: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5021,19 +5021,19 @@ module TencentCloud
 
       # DescribeFOOMProblemDetail请求参数结构体
       class DescribeFOOMProblemDetailRequest < TencentCloud::Common::AbstractModel
-        # @param ProductId: 产品Id
+        # @param ProductId: <p>产品Id</p>
         # @type ProductId: String
-        # @param ClientIdentify: 消息唯一标识
+        # @param ClientIdentify: <p>消息唯一标识</p>
         # @type ClientIdentify: String
-        # @param Feature: 特征
+        # @param Feature: <p>特征</p>
         # @type Feature: String
-        # @param StartEventTime: 事件开始时间
+        # @param StartEventTime: <p>事件开始时间</p>
         # @type StartEventTime: Integer
-        # @param EndEventTime: 事件结束时间
+        # @param EndEventTime: <p>事件结束时间</p>
         # @type EndEventTime: Integer
-        # @param ExtraData: 拓展数据
+        # @param ExtraData: <p>拓展数据</p>
         # @type ExtraData: String
-        # @param RequestHeader: 请求头
+        # @param RequestHeader: <p>请求头</p>
         # @type RequestHeader: String
 
         attr_accessor :ProductId, :ClientIdentify, :Feature, :StartEventTime, :EndEventTime, :ExtraData, :RequestHeader
@@ -5061,11 +5061,11 @@ module TencentCloud
 
       # DescribeFOOMProblemDetail返回参数结构体
       class DescribeFOOMProblemDetailResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 返回值
+        # @param Data: <p>返回值</p>
         # @type Data: String
-        # @param Code: 状态码
+        # @param Code: <p>状态码</p>
         # @type Code: Integer
-        # @param Message: 消息
+        # @param Message: <p>消息</p>
         # @type Message: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5089,23 +5089,23 @@ module TencentCloud
 
       # DescribeFOOMProblemList请求参数结构体
       class DescribeFOOMProblemListRequest < TencentCloud::Common::AbstractModel
-        # @param ProductId: 产品Id
+        # @param ProductId: <p>产品Id</p>
         # @type ProductId: String
-        # @param ParamToken: 提供给前端使用，当填写本字段时，会覆盖 formlist 的值
+        # @param ParamToken: <p>提供给前端使用，当填写本字段时，会覆盖 formlist 的值</p>
         # @type ParamToken: String
-        # @param FormListString: 接口调试专用，当 token 为空时，以这里的 value 作为筛选表单信息
+        # @param FormListString: <p>接口调试专用，当 token 为空时，以这里的 value 作为筛选表单信息</p>
         # @type FormListString: String
-        # @param PageNumber: 当前页码
+        # @param PageNumber: <p>当前页码</p>
         # @type PageNumber: Integer
-        # @param PageSize: 每页展示最大数量
+        # @param PageSize: <p>每页展示最大数量</p>
         # @type PageSize: Integer
-        # @param SortField: 排序字段
+        # @param SortField: <p>排序字段</p>
         # @type SortField: String
-        # @param SortType: 排序类型
+        # @param SortType: <p>排序类型</p>
         # @type SortType: String
-        # @param ExtraData: 拓展数据
+        # @param ExtraData: <p>拓展数据</p>
         # @type ExtraData: String
-        # @param RequestHeader: 请求头
+        # @param RequestHeader: <p>请求头</p>
         # @type RequestHeader: String
 
         attr_accessor :ProductId, :ParamToken, :FormListString, :PageNumber, :PageSize, :SortField, :SortType, :ExtraData, :RequestHeader
@@ -5137,11 +5137,11 @@ module TencentCloud
 
       # DescribeFOOMProblemList返回参数结构体
       class DescribeFOOMProblemListResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 返回值
+        # @param Data: <p>返回值</p>
         # @type Data: String
-        # @param Message: 消息
+        # @param Message: <p>消息</p>
         # @type Message: String
-        # @param Code: 状态码
+        # @param Code: <p>状态码</p>
         # @type Code: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5165,25 +5165,25 @@ module TencentCloud
 
       # DescribeFOOMReportList请求参数结构体
       class DescribeFOOMReportListRequest < TencentCloud::Common::AbstractModel
-        # @param ProductId: 产品Id
+        # @param ProductId: <p>产品Id</p>
         # @type ProductId: String
-        # @param FormListString: 接口调试专用，当 token 为空时，以这里的 value 作为筛选表单信息
+        # @param FormListString: <p>接口调试专用，当 token 为空时，以这里的 value 作为筛选表单信息</p>
         # @type FormListString: String
-        # @param ParamToken: 提供给前端使用，当填写本字段时，会覆盖 formlist 的值
+        # @param ParamToken: <p>提供给前端使用，当填写本字段时，会覆盖 formlist 的值</p>
         # @type ParamToken: String
-        # @param Feature: 特征
+        # @param Feature: <p>特征</p>
         # @type Feature: String
-        # @param PageNumber: 当前页码
+        # @param PageNumber: <p>当前页码</p>
         # @type PageNumber: Integer
-        # @param PageSize: 每页展示最大数量
+        # @param PageSize: <p>每页展示最大数量</p>
         # @type PageSize: Integer
-        # @param SortField: 排序字段
+        # @param SortField: <p>排序字段</p>
         # @type SortField: String
-        # @param SortType: 排序类型
+        # @param SortType: <p>排序类型</p>
         # @type SortType: String
-        # @param ExtraData: 拓展数据
+        # @param ExtraData: <p>拓展数据</p>
         # @type ExtraData: String
-        # @param RequestHeader: 请求头
+        # @param RequestHeader: <p>请求头</p>
         # @type RequestHeader: String
 
         attr_accessor :ProductId, :FormListString, :ParamToken, :Feature, :PageNumber, :PageSize, :SortField, :SortType, :ExtraData, :RequestHeader
@@ -5217,11 +5217,11 @@ module TencentCloud
 
       # DescribeFOOMReportList返回参数结构体
       class DescribeFOOMReportListResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 返回值
+        # @param Data: <p>返回值</p>
         # @type Data: String
-        # @param Message: 消息
+        # @param Message: <p>消息</p>
         # @type Message: String
-        # @param Code: 状态码
+        # @param Code: <p>状态码</p>
         # @type Code: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5245,39 +5245,39 @@ module TencentCloud
 
       # DescribeIssuesDistribution请求参数结构体
       class DescribeIssuesDistributionRequest < TencentCloud::Common::AbstractModel
-        # @param ProductId: 产品Id
+        # @param ProductId: <p>产品Id</p>
         # @type ProductId: String
-        # @param FormListString: 接口调试专用，当 token 为空时，以这里的 value 作为筛选表单信息
+        # @param FormListString: <p>接口调试专用，当 token 为空时，以这里的 value 作为筛选表单信息</p>
         # @type FormListString: String
-        # @param DimType: 分布维度是自定义维度时，填‘user_custom’
+        # @param DimType: <p>分布维度是自定义维度时，填‘user_custom’</p>
         # @type DimType: String
-        # @param Dimension: 维度，e.g. os_version, app_version, model等
+        # @param Dimension: <p>维度，e.g. os_version, app_version, model等</p>
         # @type Dimension: String
-        # @param Intervals: 数字类型字段的区间范围
+        # @param Intervals: <p>数字类型字段的区间范围</p>
         # @type Intervals: Array
-        # @param ParamToken: 提供给前端使用，当填写本字段时，会覆盖 form_list 的值
+        # @param ParamToken: <p>提供给前端使用，当填写本字段时，会覆盖 form_list 的值</p>
         # @type ParamToken: String
-        # @param IssueId: 问题Id
+        # @param IssueId: <p>问题Id</p>
         # @type IssueId: String
-        # @param IssueType: 问题类型
+        # @param IssueType: <p>问题类型</p>
         # @type IssueType: Integer
-        # @param ParamLimit: 限制返回的个数，默认返回所有值
+        # @param ParamLimit: <p>限制返回的个数，默认返回所有值</p>
         # @type ParamLimit: Integer
-        # @param MapKey: 键
+        # @param MapKey: <p>键</p>
         # @type MapKey: String
-        # @param MapName: 名称
+        # @param MapName: <p>名称</p>
         # @type MapName: String
-        # @param MetricType: 指标类型
+        # @param MetricType: <p>指标类型</p>
         # @type MetricType: Integer
-        # @param PageSize: 每页数目
+        # @param PageSize: <p>每页数目</p>
         # @type PageSize: Integer
-        # @param PageNumber: 页码
+        # @param PageNumber: <p>页码</p>
         # @type PageNumber: Integer
-        # @param UserCustomKey: 用户自定义维度key
+        # @param UserCustomKey: <p>用户自定义维度key</p>
         # @type UserCustomKey: String
-        # @param ExtraData: 拓展字段
+        # @param ExtraData: <p>拓展字段</p>
         # @type ExtraData: String
-        # @param RequestHeader: 请求头
+        # @param RequestHeader: <p>请求头</p>
         # @type RequestHeader: String
 
         attr_accessor :ProductId, :FormListString, :DimType, :Dimension, :Intervals, :ParamToken, :IssueId, :IssueType, :ParamLimit, :MapKey, :MapName, :MetricType, :PageSize, :PageNumber, :UserCustomKey, :ExtraData, :RequestHeader
@@ -5325,11 +5325,11 @@ module TencentCloud
 
       # DescribeIssuesDistribution返回参数结构体
       class DescribeIssuesDistributionResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 返回值
+        # @param Data: <p>返回值</p>
         # @type Data: String
-        # @param Code: 状态码
+        # @param Code: <p>状态码</p>
         # @type Code: Integer
-        # @param Message: 消息
+        # @param Message: <p>消息</p>
         # @type Message: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5353,35 +5353,35 @@ module TencentCloud
 
       # DescribeIssuesList请求参数结构体
       class DescribeIssuesListRequest < TencentCloud::Common::AbstractModel
-        # @param ProductId: 产品Id
+        # @param ProductId: <p>产品Id</p>
         # @type ProductId: String
-        # @param FormList: 接口调试专用，当 token 为空时，以这里的 value 作为筛选表单信息
+        # @param FormList: <p>接口调试专用，当 token 为空时，以这里的 value 作为筛选表单信息</p>
         # @type FormList: String
-        # @param FormListA: 接口调试专用，对比模式下条件A，当 token 为空时，以这里的 value 作为筛选表单信息
+        # @param FormListA: <p>接口调试专用，对比模式下条件A，当 token 为空时，以这里的 value 作为筛选表单信息</p>
         # @type FormListA: String
-        # @param FormListB: 接口调试专用，对比模式下条件B，当 token 为空时，以这里的 value 作为筛选表单信息
+        # @param FormListB: <p>接口调试专用，对比模式下条件B，当 token 为空时，以这里的 value 作为筛选表单信息</p>
         # @type FormListB: String
-        # @param ParamToken: 提供给前端使用，当填写本字段时，会覆盖 form_list 的值
+        # @param ParamToken: <p>提供给前端使用，当填写本字段时，会覆盖 form_list 的值</p>
         # @type ParamToken: String
-        # @param IssueType: 问题类型
+        # @param IssueType: <p>问题类型</p>
         # @type IssueType: Integer
-        # @param SortField: 排序字段
+        # @param SortField: <p>排序字段</p>
         # @type SortField: String
-        # @param SortType: 排序方式
+        # @param SortType: <p>排序方式</p>
         # @type SortType: String
-        # @param PageSize: 每页数目
+        # @param PageSize: <p>每页数目</p>
         # @type PageSize: Integer
-        # @param PageNumber: 页码
+        # @param PageNumber: <p>页码</p>
         # @type PageNumber: Integer
-        # @param SortABRatio: 问题对比列表模式下，用于标识是按照sort_field字段的A值排序还是B值还是ratio值
+        # @param SortABRatio: <p>问题对比列表模式下，用于标识是按照sort_field字段的A值排序还是B值还是ratio值</p>
         # @type SortABRatio: String
-        # @param Compare: 模式：false:问题列表模式，true:对比列表模式
+        # @param Compare: <p>模式：false:问题列表模式，true:对比列表模式</p>
         # @type Compare: Boolean
-        # @param CompareStatus: 对比状态 0:所有 1:新增 2：遗留 3:已解决
+        # @param CompareStatus: <p>对比状态 0:所有 1:新增 2：遗留 3:已解决</p>
         # @type CompareStatus: Integer
-        # @param ExtraData: 拓展字段
+        # @param ExtraData: <p>拓展字段</p>
         # @type ExtraData: String
-        # @param RequestHeader: 请求头
+        # @param RequestHeader: <p>请求头</p>
         # @type RequestHeader: String
 
         attr_accessor :ProductId, :FormList, :FormListA, :FormListB, :ParamToken, :IssueType, :SortField, :SortType, :PageSize, :PageNumber, :SortABRatio, :Compare, :CompareStatus, :ExtraData, :RequestHeader
@@ -5425,11 +5425,11 @@ module TencentCloud
 
       # DescribeIssuesList返回参数结构体
       class DescribeIssuesListResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 返回值
+        # @param Data: <p>返回值</p>
         # @type Data: String
-        # @param Code: 状态码
+        # @param Code: <p>状态码</p>
         # @type Code: Integer
-        # @param Message: 消息
+        # @param Message: <p>消息</p>
         # @type Message: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5541,19 +5541,19 @@ module TencentCloud
 
       # DescribeLagANRProblemAccountDetail请求参数结构体
       class DescribeLagANRProblemAccountDetailRequest < TencentCloud::Common::AbstractModel
-        # @param ProductId: 产品Id
+        # @param ProductId: <p>产品Id</p>
         # @type ProductId: String
-        # @param ClientIdentify: 消息唯一标识
+        # @param ClientIdentify: <p>消息唯一标识</p>
         # @type ClientIdentify: String
-        # @param Feature: 特征
+        # @param Feature: <p>特征</p>
         # @type Feature: String
-        # @param StartEventTime: 事件开始时间
+        # @param StartEventTime: <p>事件开始时间</p>
         # @type StartEventTime: Integer
-        # @param EndEventTime: 事件结束时间
+        # @param EndEventTime: <p>事件结束时间</p>
         # @type EndEventTime: Integer
-        # @param ExtraData: 拓展数据
+        # @param ExtraData: <p>拓展数据</p>
         # @type ExtraData: String
-        # @param RequestHeader: 请求头
+        # @param RequestHeader: <p>请求头</p>
         # @type RequestHeader: String
 
         attr_accessor :ProductId, :ClientIdentify, :Feature, :StartEventTime, :EndEventTime, :ExtraData, :RequestHeader
@@ -5581,11 +5581,11 @@ module TencentCloud
 
       # DescribeLagANRProblemAccountDetail返回参数结构体
       class DescribeLagANRProblemAccountDetailResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 返回值
+        # @param Data: <p>返回值</p>
         # @type Data: String
-        # @param Code: 状态码
+        # @param Code: <p>状态码</p>
         # @type Code: Integer
-        # @param Message: 消息
+        # @param Message: <p>消息</p>
         # @type Message: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5609,25 +5609,25 @@ module TencentCloud
 
       # DescribeLagANRProblemFeatureAccounts请求参数结构体
       class DescribeLagANRProblemFeatureAccountsRequest < TencentCloud::Common::AbstractModel
-        # @param ProductId: 产品Id
+        # @param ProductId: <p>产品Id</p>
         # @type ProductId: String
-        # @param FormListString: 接口调试专用，当 token 为空时，以这里的 value 作为筛选表单信息
+        # @param FormListString: <p>接口调试专用，当 token 为空时，以这里的 value 作为筛选表单信息</p>
         # @type FormListString: String
-        # @param ParamToken: 提供给前端使用，当填写本字段时，会覆盖 formlist 的值
+        # @param ParamToken: <p>提供给前端使用，当填写本字段时，会覆盖 formlist 的值</p>
         # @type ParamToken: String
-        # @param Feature: 问题特征
+        # @param Feature: <p>问题特征</p>
         # @type Feature: String
-        # @param SortField: 排序字段
+        # @param SortField: <p>排序字段</p>
         # @type SortField: String
-        # @param SortType: 排序类型
+        # @param SortType: <p>排序类型</p>
         # @type SortType: String
-        # @param PageNumber: 当前页码
+        # @param PageNumber: <p>当前页码</p>
         # @type PageNumber: Integer
-        # @param PageSize: 每页展示最大数量
+        # @param PageSize: <p>每页展示最大数量</p>
         # @type PageSize: Integer
-        # @param ExtraData: 拓展数据
+        # @param ExtraData: <p>拓展数据</p>
         # @type ExtraData: String
-        # @param RequestHeader: 请求头
+        # @param RequestHeader: <p>请求头</p>
         # @type RequestHeader: String
 
         attr_accessor :ProductId, :FormListString, :ParamToken, :Feature, :SortField, :SortType, :PageNumber, :PageSize, :ExtraData, :RequestHeader
@@ -5661,11 +5661,11 @@ module TencentCloud
 
       # DescribeLagANRProblemFeatureAccounts返回参数结构体
       class DescribeLagANRProblemFeatureAccountsResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 返回值
+        # @param Data: <p>返回值</p>
         # @type Data: String
-        # @param Message: 消息
+        # @param Message: <p>消息</p>
         # @type Message: String
-        # @param Code: 状态码
+        # @param Code: <p>状态码</p>
         # @type Code: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5689,23 +5689,23 @@ module TencentCloud
 
       # DescribeLagANRProblemList请求参数结构体
       class DescribeLagANRProblemListRequest < TencentCloud::Common::AbstractModel
-        # @param ProductId: 产品Id
+        # @param ProductId: <p>产品Id</p>
         # @type ProductId: String
-        # @param ParamToken: 提供给前端使用，当填写本字段时，会覆盖 formlist 的值
+        # @param ParamToken: <p>提供给前端使用，当填写本字段时，会覆盖 formlist 的值</p>
         # @type ParamToken: String
-        # @param FormListString: 接口调试专用，当 token 为空时，以这里的 value 作为筛选表单信息
+        # @param FormListString: <p>接口调试专用，当 token 为空时，以这里的 value 作为筛选表单信息</p>
         # @type FormListString: String
-        # @param PageNumber: 当前页码
+        # @param PageNumber: <p>当前页码</p>
         # @type PageNumber: Integer
-        # @param PageSize: 每页展示最大数量
+        # @param PageSize: <p>每页展示最大数量</p>
         # @type PageSize: Integer
-        # @param SortField: 排序字段
+        # @param SortField: <p>排序字段</p>
         # @type SortField: String
-        # @param SortType: 排序类型
+        # @param SortType: <p>排序类型</p>
         # @type SortType: String
-        # @param ExtraData: 拓展数据
+        # @param ExtraData: <p>拓展数据</p>
         # @type ExtraData: String
-        # @param RequestHeader: 请求头
+        # @param RequestHeader: <p>请求头</p>
         # @type RequestHeader: String
 
         attr_accessor :ProductId, :ParamToken, :FormListString, :PageNumber, :PageSize, :SortField, :SortType, :ExtraData, :RequestHeader
@@ -5737,11 +5737,11 @@ module TencentCloud
 
       # DescribeLagANRProblemList返回参数结构体
       class DescribeLagANRProblemListResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 返回值
+        # @param Data: <p>返回值</p>
         # @type Data: String
-        # @param Message: 消息
+        # @param Message: <p>消息</p>
         # @type Message: String
-        # @param Code: 状态码
+        # @param Code: <p>状态码</p>
         # @type Code: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6600,15 +6600,15 @@ module TencentCloud
 
       # DescribeToken请求参数结构体
       class DescribeTokenRequest < TencentCloud::Common::AbstractModel
-        # @param FormListString: 筛选条件
+        # @param FormListString: <p>筛选条件</p>
         # @type FormListString: String
-        # @param FormListAString: 仅对比模式下填写，筛选条件A
+        # @param FormListAString: <p>仅对比模式下填写，筛选条件A</p>
         # @type FormListAString: String
-        # @param FormListBString: 仅对比模式下填写，筛选条件B
+        # @param FormListBString: <p>仅对比模式下填写，筛选条件B</p>
         # @type FormListBString: String
-        # @param RequestHeader: 请求头
+        # @param RequestHeader: <p>请求头</p>
         # @type RequestHeader: String
-        # @param ExtraData: 拓展字段
+        # @param ExtraData: <p>拓展字段</p>
         # @type ExtraData: String
 
         attr_accessor :FormListString, :FormListAString, :FormListBString, :RequestHeader, :ExtraData
@@ -6632,11 +6632,11 @@ module TencentCloud
 
       # DescribeToken返回参数结构体
       class DescribeTokenResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 返回值
+        # @param Data: <p>返回值</p>
         # @type Data: String
-        # @param Code: 状态码
+        # @param Code: <p>状态码</p>
         # @type Code: Integer
-        # @param Message: 消息
+        # @param Message: <p>消息</p>
         # @type Message: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6660,23 +6660,23 @@ module TencentCloud
 
       # DescribeTopIssues请求参数结构体
       class DescribeTopIssuesRequest < TencentCloud::Common::AbstractModel
-        # @param ProductId: 产品Id
+        # @param ProductId: <p>产品Id</p>
         # @type ProductId: String
-        # @param Compare: 需要对比的查询条件，没有则不填
+        # @param Compare: <p>需要对比的查询条件，没有则不填</p>
         # @type Compare: :class:`Tencentcloud::Rum.v20210622.models.CompareCondition`
-        # @param Condition: 查询条件
+        # @param Condition: <p>查询条件</p>
         # @type Condition: :class:`Tencentcloud::Rum.v20210622.models.CompareCondition`
-        # @param IssueType: 问题类型
+        # @param IssueType: <p>问题类型</p>
         # @type IssueType: Integer
-        # @param SortField: 排序字段
+        # @param SortField: <p>排序字段</p>
         # @type SortField: String
-        # @param SortType: 排序方式
+        # @param SortType: <p>排序方式</p>
         # @type SortType: String
-        # @param TopNum: topN
+        # @param TopNum: <p>topN</p>
         # @type TopNum: Integer
-        # @param ExtraData: 拓展字段
+        # @param ExtraData: <p>拓展字段</p>
         # @type ExtraData: String
-        # @param RequestHeader: 请求头
+        # @param RequestHeader: <p>请求头</p>
         # @type RequestHeader: String
 
         attr_accessor :ProductId, :Compare, :Condition, :IssueType, :SortField, :SortType, :TopNum, :ExtraData, :RequestHeader
@@ -6714,11 +6714,11 @@ module TencentCloud
 
       # DescribeTopIssues返回参数结构体
       class DescribeTopIssuesResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 返回值
+        # @param Data: <p>返回值</p>
         # @type Data: String
-        # @param Code: 状态码
+        # @param Code: <p>状态码</p>
         # @type Code: Integer
-        # @param Message: 消息
+        # @param Message: <p>消息</p>
         # @type Message: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

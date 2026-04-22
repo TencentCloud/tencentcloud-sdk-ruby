@@ -1400,7 +1400,7 @@ module TencentCloud
       class DescribeDLPFileDetectResultRequest < TencentCloud::Common::AbstractModel
         # @param DomainInstanceId: 管理域实例ID，用于CAM管理域权限分配。若企业未进行管理域的划分，可直接传入根域"1"，此时表示针对当前企业的全部设备和账号进行接口CRUD，具体CRUD的影响范围限制于相应接口的入参。
         # @type DomainInstanceId: String
-        # @param QueryID: 查询ID，即提交送检任务接口（CreateDLPFileDetectionTask）返回的任务ID（DLPFileDetectionTaskID）
+        # @param QueryID: <p>查询ID，即提交送检任务接口（CreateDLPFileDetectionTask）返回的任务ID（DLPFileDetectionTaskID）</p>
         # @type QueryID: String
 
         attr_accessor :DomainInstanceId, :QueryID
@@ -1418,7 +1418,7 @@ module TencentCloud
 
       # DescribeDLPFileDetectResult返回参数结构体
       class DescribeDLPFileDetectResultResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 文件鉴定任务结果数据。详情查看具体数据结构
+        # @param Data: <p>文件鉴定任务结果数据。详情查看具体数据结构</p>
         # @type Data: :class:`Tencentcloud::Ioa.v20220601.models.DescribeDLPFileDetectResultData`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

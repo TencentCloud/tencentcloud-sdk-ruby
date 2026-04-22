@@ -556,6 +556,186 @@ module TencentCloud
         end
       end
 
+      # AddBatchCustomRule请求参数结构体
+      class AddBatchCustomRuleRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 规则名称
+        # @type Name: String
+        # @param ExpireTime: 如果没有设置JobDateTime字段则用此字段，0表示永久生效，其它表示定时生效的截止时间（单位为秒）
+        # @type ExpireTime: Integer
+        # @param SortId: 优先级
+        # @type SortId: Integer
+        # @param ActionType: 动作类型，1代表阻断，2代表人机识别，3代表观察，4代表重定向
+        # @type ActionType: Integer
+        # @param Redirect: 重定向地址
+        # @type Redirect: String
+        # @param Bypass: 加白模块
+        # @type Bypass: String
+        # @param Remark: 备注
+        # @type Remark: String
+        # @param EventId: 事件Id
+        # @type EventId: String
+        # @param Domains: 域名列表
+        # @type Domains: Array
+        # @param Strategies: 策略详情列表
+        # @type Strategies: Array
+        # @param JobType: 规则执行的方式，TimedJob为定时执行，CronJob为周期执行
+        # @type JobType: String
+        # @param JobDateTime: 定时任务配置
+        # @type JobDateTime: :class:`Tencentcloud::Waf.v20180125.models.JobDateTime`
+        # @param LogicalOp: 匹配条件的逻辑关系，支持and、or，分别表示多个逻辑匹配条件是与、或的关系
+        # @type LogicalOp: String
+        # @param PageId: 页面ID
+        # @type PageId: String
+        # @param ActionRatio: 动作灰度比例
+        # @type ActionRatio: Integer
+
+        attr_accessor :Name, :ExpireTime, :SortId, :ActionType, :Redirect, :Bypass, :Remark, :EventId, :Domains, :Strategies, :JobType, :JobDateTime, :LogicalOp, :PageId, :ActionRatio
+
+        def initialize(name=nil, expiretime=nil, sortid=nil, actiontype=nil, redirect=nil, bypass=nil, remark=nil, eventid=nil, domains=nil, strategies=nil, jobtype=nil, jobdatetime=nil, logicalop=nil, pageid=nil, actionratio=nil)
+          @Name = name
+          @ExpireTime = expiretime
+          @SortId = sortid
+          @ActionType = actiontype
+          @Redirect = redirect
+          @Bypass = bypass
+          @Remark = remark
+          @EventId = eventid
+          @Domains = domains
+          @Strategies = strategies
+          @JobType = jobtype
+          @JobDateTime = jobdatetime
+          @LogicalOp = logicalop
+          @PageId = pageid
+          @ActionRatio = actionratio
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @ExpireTime = params['ExpireTime']
+          @SortId = params['SortId']
+          @ActionType = params['ActionType']
+          @Redirect = params['Redirect']
+          @Bypass = params['Bypass']
+          @Remark = params['Remark']
+          @EventId = params['EventId']
+          @Domains = params['Domains']
+          unless params['Strategies'].nil?
+            @Strategies = []
+            params['Strategies'].each do |i|
+              strategy_tmp = Strategy.new
+              strategy_tmp.deserialize(i)
+              @Strategies << strategy_tmp
+            end
+          end
+          @JobType = params['JobType']
+          unless params['JobDateTime'].nil?
+            @JobDateTime = JobDateTime.new
+            @JobDateTime.deserialize(params['JobDateTime'])
+          end
+          @LogicalOp = params['LogicalOp']
+          @PageId = params['PageId']
+          @ActionRatio = params['ActionRatio']
+        end
+      end
+
+      # AddBatchCustomRule返回参数结构体
+      class AddBatchCustomRuleResponse < TencentCloud::Common::AbstractModel
+        # @param Res: 操作成功
+        # @type Res: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Res, :RequestId
+
+        def initialize(res=nil, requestid=nil)
+          @Res = res
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Res = params['Res']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # AddBatchCustomWhiteRule请求参数结构体
+      class AddBatchCustomWhiteRuleRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 规则名称
+        # @type Name: String
+        # @param SortId: 优先级
+        # @type SortId: Integer
+        # @param Strategies: 策略详情
+        # @type Strategies: Array
+        # @param Bypass: 加白的模块，owasp：Web防护-规则引擎、ai：Web防护-AI引擎、ip_auto_deny：IP封禁、geoip：访问控制-地域封禁、acl：访问控制-自定义规则、cc：CC防护、antileakage：信息防泄漏防护、bwip：IP黑白名单、botrpc：BOT防护、api：API安全、applet：小程序防护
+        # @type Bypass: Array
+        # @param JobType: 规则执行的方式，TimedJob为定时执行，CronJob为周期执行
+        # @type JobType: String
+        # @param JobDateTime: 定时任务配置
+        # @type JobDateTime: :class:`Tencentcloud::Waf.v20180125.models.JobDateTime`
+        # @param Domains: 域名列表，如果绑定的是批量域名，和GroupIds参数二选一
+        # @type Domains: Array
+        # @param GroupIds: 防护对象组ID列表，如果绑定的是防护对象组，和Domains参数二选一
+        # @type GroupIds: Array
+        # @param LogicalOp: 匹配条件的逻辑关系，支持and、or，分别表示多个逻辑匹配条件是与、或的关系
+        # @type LogicalOp: String
+
+        attr_accessor :Name, :SortId, :Strategies, :Bypass, :JobType, :JobDateTime, :Domains, :GroupIds, :LogicalOp
+
+        def initialize(name=nil, sortid=nil, strategies=nil, bypass=nil, jobtype=nil, jobdatetime=nil, domains=nil, groupids=nil, logicalop=nil)
+          @Name = name
+          @SortId = sortid
+          @Strategies = strategies
+          @Bypass = bypass
+          @JobType = jobtype
+          @JobDateTime = jobdatetime
+          @Domains = domains
+          @GroupIds = groupids
+          @LogicalOp = logicalop
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @SortId = params['SortId']
+          unless params['Strategies'].nil?
+            @Strategies = []
+            params['Strategies'].each do |i|
+              strategy_tmp = Strategy.new
+              strategy_tmp.deserialize(i)
+              @Strategies << strategy_tmp
+            end
+          end
+          @Bypass = params['Bypass']
+          @JobType = params['JobType']
+          unless params['JobDateTime'].nil?
+            @JobDateTime = JobDateTime.new
+            @JobDateTime.deserialize(params['JobDateTime'])
+          end
+          @Domains = params['Domains']
+          @GroupIds = params['GroupIds']
+          @LogicalOp = params['LogicalOp']
+        end
+      end
+
+      # AddBatchCustomWhiteRule返回参数结构体
+      class AddBatchCustomWhiteRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RuleId: 添加成功的规则ID
+        # @type RuleId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RuleId, :RequestId
+
+        def initialize(ruleid=nil, requestid=nil)
+          @RuleId = ruleid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RuleId = params['RuleId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # AddBypassAllRule请求参数结构体
       class AddBypassAllRuleRequest < TencentCloud::Common::AbstractModel
 
@@ -1949,6 +2129,225 @@ module TencentCloud
           @TimeThreshold = params['TimeThreshold']
           @DenyTimeThreshold = params['DenyTimeThreshold']
           @LastUpdateTime = params['LastUpdateTime']
+        end
+      end
+
+      # 批量自定义规则列表信息数据
+      class BatchCustomRuleListData < TencentCloud::Common::AbstractModel
+        # @param List: 规则列表
+        # @type List: Array
+        # @param Total: 列表总数
+        # @type Total: Integer
+
+        attr_accessor :List, :Total
+
+        def initialize(list=nil, total=nil)
+          @List = list
+          @Total = total
+        end
+
+        def deserialize(params)
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              batchcustomrulelistitem_tmp = BatchCustomRuleListItem.new
+              batchcustomrulelistitem_tmp.deserialize(i)
+              @List << batchcustomrulelistitem_tmp
+            end
+          end
+          @Total = params['Total']
+        end
+      end
+
+      # 批量自定义规则列表信息Item
+      class BatchCustomRuleListItem < TencentCloud::Common::AbstractModel
+        # @param Id: 规则Id
+        # @type Id: Integer
+        # @param ActionType: 动作类型，1代表阻断，2代表人机识别，3代表观察，4代表重定向，5代表JS校验
+        # @type ActionType: Integer
+        # @param Bypass: 加白模块
+        # @type Bypass: String
+        # @param ExpireTime: 有效期
+        # @type ExpireTime: Integer
+        # @param Name: 规则名称
+        # @type Name: String
+        # @param Redirect: 重定向地址
+        # @type Redirect: String
+        # @param SortId: 优先级
+        # @type SortId: Integer
+        # @param Status: 开关状态
+        # @type Status: Integer
+        # @param Domains: 域名列表
+        # @type Domains: Array
+        # @param Remark: 备注
+        # @type Remark: String
+        # @param Strategies: 策略列表
+        # @type Strategies: Array
+        # @param EventId: 事件Id
+        # @type EventId: String
+        # @param ValidStatus: 生效状态
+        # @type ValidStatus: Integer
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
+        # @param UpdateTime: 更新时间
+        # @type UpdateTime: String
+        # @param JobType: 规则执行的方式，TimedJob为定时执行，CronJob为周期执行
+        # @type JobType: String
+        # @param JobDateTime: 定时任务配置
+        # @type JobDateTime: :class:`Tencentcloud::Waf.v20180125.models.JobDateTime`
+        # @param CronType: 周期任务粒度
+        # @type CronType: String
+        # @param Label: 标签
+        # @type Label: String
+        # @param PageId: 页面ID
+        # @type PageId: String
+        # @param LogicalOp: 匹配条件的逻辑关系，支持and、or，分别表示多个逻辑匹配条件是与、或的关系
+        # @type LogicalOp: String
+        # @param ActionRatio: 动作灰度的比例
+        # @type ActionRatio: Integer
+
+        attr_accessor :Id, :ActionType, :Bypass, :ExpireTime, :Name, :Redirect, :SortId, :Status, :Domains, :Remark, :Strategies, :EventId, :ValidStatus, :CreateTime, :UpdateTime, :JobType, :JobDateTime, :CronType, :Label, :PageId, :LogicalOp, :ActionRatio
+
+        def initialize(id=nil, actiontype=nil, bypass=nil, expiretime=nil, name=nil, redirect=nil, sortid=nil, status=nil, domains=nil, remark=nil, strategies=nil, eventid=nil, validstatus=nil, createtime=nil, updatetime=nil, jobtype=nil, jobdatetime=nil, crontype=nil, label=nil, pageid=nil, logicalop=nil, actionratio=nil)
+          @Id = id
+          @ActionType = actiontype
+          @Bypass = bypass
+          @ExpireTime = expiretime
+          @Name = name
+          @Redirect = redirect
+          @SortId = sortid
+          @Status = status
+          @Domains = domains
+          @Remark = remark
+          @Strategies = strategies
+          @EventId = eventid
+          @ValidStatus = validstatus
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @JobType = jobtype
+          @JobDateTime = jobdatetime
+          @CronType = crontype
+          @Label = label
+          @PageId = pageid
+          @LogicalOp = logicalop
+          @ActionRatio = actionratio
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @ActionType = params['ActionType']
+          @Bypass = params['Bypass']
+          @ExpireTime = params['ExpireTime']
+          @Name = params['Name']
+          @Redirect = params['Redirect']
+          @SortId = params['SortId']
+          @Status = params['Status']
+          @Domains = params['Domains']
+          @Remark = params['Remark']
+          unless params['Strategies'].nil?
+            @Strategies = []
+            params['Strategies'].each do |i|
+              strategy_tmp = Strategy.new
+              strategy_tmp.deserialize(i)
+              @Strategies << strategy_tmp
+            end
+          end
+          @EventId = params['EventId']
+          @ValidStatus = params['ValidStatus']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @JobType = params['JobType']
+          unless params['JobDateTime'].nil?
+            @JobDateTime = JobDateTime.new
+            @JobDateTime.deserialize(params['JobDateTime'])
+          end
+          @CronType = params['CronType']
+          @Label = params['Label']
+          @PageId = params['PageId']
+          @LogicalOp = params['LogicalOp']
+          @ActionRatio = params['ActionRatio']
+        end
+      end
+
+      # 批量精准白名单规则详情
+      class BatchCustomWhiteRule < TencentCloud::Common::AbstractModel
+        # @param ID: 规则ID
+        # @type ID: Integer
+        # @param Name: 规则名
+        # @type Name: String
+        # @param SortId: 优先级
+        # @type SortId: Integer
+        # @param Strategies: 策略详情
+        # @type Strategies: Array
+        # @param Bypass: 加白的模块，owasp：Web防护-规则引擎、ai：Web防护-AI引擎、ip_auto_deny：IP封禁、geoip：访问控制-地域封禁、acl：访问控制-自定义规则、cc：CC防护、antileakage：信息防泄漏防护、bwip：IP黑白名单、botrpc：BOT防护、api：API安全、applet：小程序防护
+        # @type Bypass: Array
+        # @param JobType: 规则执行的方式，TimedJob为定时执行，CronJob为周期执行
+        # @type JobType: String
+        # @param JobDateTime: 定时任务配置
+        # @type JobDateTime: :class:`Tencentcloud::Waf.v20180125.models.JobDateTime`
+        # @param CronType: 周期任务的类型
+        # @type CronType: String
+        # @param Domains: 域名列表，如果绑定的是批量域名
+        # @type Domains: Array
+        # @param GroupIds: 防护对象组ID列表，如果绑定的是防护对象组
+        # @type GroupIds: Array
+        # @param ValidStatus: 生效状态，1：生效中、0：未生效
+        # @type ValidStatus: Integer
+        # @param CreateTime: 规则创建时间
+        # @type CreateTime: String
+        # @param UpdateTime: 规则更新时间
+        # @type UpdateTime: String
+        # @param Status: 规则开关状态，1：开启、0：关闭
+        # @type Status: Integer
+        # @param LogicalOp: 匹配条件的逻辑关系，支持and、or，分别表示多个逻辑匹配条件是与、或的关系
+        # @type LogicalOp: String
+
+        attr_accessor :ID, :Name, :SortId, :Strategies, :Bypass, :JobType, :JobDateTime, :CronType, :Domains, :GroupIds, :ValidStatus, :CreateTime, :UpdateTime, :Status, :LogicalOp
+
+        def initialize(id=nil, name=nil, sortid=nil, strategies=nil, bypass=nil, jobtype=nil, jobdatetime=nil, crontype=nil, domains=nil, groupids=nil, validstatus=nil, createtime=nil, updatetime=nil, status=nil, logicalop=nil)
+          @ID = id
+          @Name = name
+          @SortId = sortid
+          @Strategies = strategies
+          @Bypass = bypass
+          @JobType = jobtype
+          @JobDateTime = jobdatetime
+          @CronType = crontype
+          @Domains = domains
+          @GroupIds = groupids
+          @ValidStatus = validstatus
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @Status = status
+          @LogicalOp = logicalop
+        end
+
+        def deserialize(params)
+          @ID = params['ID']
+          @Name = params['Name']
+          @SortId = params['SortId']
+          unless params['Strategies'].nil?
+            @Strategies = []
+            params['Strategies'].each do |i|
+              strategy_tmp = Strategy.new
+              strategy_tmp.deserialize(i)
+              @Strategies << strategy_tmp
+            end
+          end
+          @Bypass = params['Bypass']
+          @JobType = params['JobType']
+          unless params['JobDateTime'].nil?
+            @JobDateTime = JobDateTime.new
+            @JobDateTime.deserialize(params['JobDateTime'])
+          end
+          @CronType = params['CronType']
+          @Domains = params['Domains']
+          @GroupIds = params['GroupIds']
+          @ValidStatus = params['ValidStatus']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @Status = params['Status']
+          @LogicalOp = params['LogicalOp']
         end
       end
 
@@ -4403,6 +4802,50 @@ module TencentCloud
         end
       end
 
+      # CreateProtectGroup请求参数结构体
+      class CreateProtectGroupRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 防护对象组名称
+        # @type Name: String
+        # @param Domains: 防护对象组的应用范围
+        # @type Domains: Array
+        # @param Remark: 防护对象组备注
+        # @type Remark: String
+
+        attr_accessor :Name, :Domains, :Remark
+
+        def initialize(name=nil, domains=nil, remark=nil)
+          @Name = name
+          @Domains = domains
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Domains = params['Domains']
+          @Remark = params['Remark']
+        end
+      end
+
+      # CreateProtectGroup返回参数结构体
+      class CreateProtectGroupResponse < TencentCloud::Common::AbstractModel
+        # @param GroupId: 防护对象组的ID
+        # @type GroupId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :GroupId, :RequestId
+
+        def initialize(groupid=nil, requestid=nil)
+          @GroupId = groupid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @GroupId = params['GroupId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateRateLimitV2请求参数结构体
       class CreateRateLimitV2Request < TencentCloud::Common::AbstractModel
         # @param Domain: 域名
@@ -4850,6 +5293,94 @@ module TencentCloud
 
         def deserialize(params)
           @FailIds = params['FailIds']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteBatchCustomRule请求参数结构体
+      class DeleteBatchCustomRuleRequest < TencentCloud::Common::AbstractModel
+        # @param DataType: 数据类型
+        # "custom-rule"-自定义规则、"custom-white-rule"-精准白名单
+        # @type DataType: String
+        # @param IsDeleteAll: 0-指定Id删除、1-删除全部（除部分排除的Id）
+        # @type IsDeleteAll: Integer
+        # @param Ids: 具体Ids 由IsDeleteAll而定
+        # @type Ids: Array
+        # @param Filters: 筛选条件
+        # @type Filters: Array
+
+        attr_accessor :DataType, :IsDeleteAll, :Ids, :Filters
+
+        def initialize(datatype=nil, isdeleteall=nil, ids=nil, filters=nil)
+          @DataType = datatype
+          @IsDeleteAll = isdeleteall
+          @Ids = ids
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @DataType = params['DataType']
+          @IsDeleteAll = params['IsDeleteAll']
+          @Ids = params['Ids']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filtersitemnew_tmp = FiltersItemNew.new
+              filtersitemnew_tmp.deserialize(i)
+              @Filters << filtersitemnew_tmp
+            end
+          end
+        end
+      end
+
+      # DeleteBatchCustomRule返回参数结构体
+      class DeleteBatchCustomRuleResponse < TencentCloud::Common::AbstractModel
+        # @param Res: 操作成功
+        # @type Res: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Res, :RequestId
+
+        def initialize(res=nil, requestid=nil)
+          @Res = res
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Res = params['Res']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteBatchCustomWhiteRule请求参数结构体
+      class DeleteBatchCustomWhiteRuleRequest < TencentCloud::Common::AbstractModel
+        # @param Ids: 要删除的规则ID列表
+        # @type Ids: Array
+
+        attr_accessor :Ids
+
+        def initialize(ids=nil)
+          @Ids = ids
+        end
+
+        def deserialize(params)
+          @Ids = params['Ids']
+        end
+      end
+
+      # DeleteBatchCustomWhiteRule返回参数结构体
+      class DeleteBatchCustomWhiteRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -5371,6 +5902,74 @@ module TencentCloud
 
       # DeleteOwaspWhiteRule返回参数结构体
       class DeleteOwaspWhiteRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteProtectGroupDomain请求参数结构体
+      class DeleteProtectGroupDomainRequest < TencentCloud::Common::AbstractModel
+        # @param GroupId: 防护对象组ID
+        # @type GroupId: Integer
+        # @param Domain: 解除绑定的域名
+        # @type Domain: String
+
+        attr_accessor :GroupId, :Domain
+
+        def initialize(groupid=nil, domain=nil)
+          @GroupId = groupid
+          @Domain = domain
+        end
+
+        def deserialize(params)
+          @GroupId = params['GroupId']
+          @Domain = params['Domain']
+        end
+      end
+
+      # DeleteProtectGroupDomain返回参数结构体
+      class DeleteProtectGroupDomainResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteProtectGroup请求参数结构体
+      class DeleteProtectGroupRequest < TencentCloud::Common::AbstractModel
+        # @param GroupIds: 防护对象组ID列表，支持批量删除
+        # @type GroupIds: Array
+
+        attr_accessor :GroupIds
+
+        def initialize(groupids=nil)
+          @GroupIds = groupids
+        end
+
+        def deserialize(params)
+          @GroupIds = params['GroupIds']
+        end
+      end
+
+      # DeleteProtectGroup返回参数结构体
+      class DeleteProtectGroupResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -6848,6 +7447,144 @@ module TencentCloud
             @Data = IpHitItemsData.new
             @Data.deserialize(params['Data'])
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeBatchCustomRuleList请求参数结构体
+      class DescribeBatchCustomRuleListRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 偏移量
+        # @type Offset: Integer
+        # @param Limit: 页尺寸
+        # @type Limit: Integer
+        # @param By: 排序字段
+        # "update_time"-更新时间、"expire_time"-过期时间、"sort_id"-优先级、"id"-规则Id、"create_time"-创建时间
+        # @type By: String
+        # @param Order: 排序类型
+        # desc-降序、asc-升序
+        # @type Order: String
+        # @param DataType: 数据类型 "custom-rule"-自定义规则、"custom-white-rule"-精准白名单
+        # @type DataType: String
+        # @param Filters: 筛选列表
+        # @type Filters: Array
+
+        attr_accessor :Offset, :Limit, :By, :Order, :DataType, :Filters
+
+        def initialize(offset=nil, limit=nil, by=nil, order=nil, datatype=nil, filters=nil)
+          @Offset = offset
+          @Limit = limit
+          @By = by
+          @Order = order
+          @DataType = datatype
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @By = params['By']
+          @Order = params['Order']
+          @DataType = params['DataType']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filtersitemnew_tmp = FiltersItemNew.new
+              filtersitemnew_tmp.deserialize(i)
+              @Filters << filtersitemnew_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeBatchCustomRuleList返回参数结构体
+      class DescribeBatchCustomRuleListResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 操作成功
+        # @type Data: :class:`Tencentcloud::Waf.v20180125.models.BatchCustomRuleListData`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = BatchCustomRuleListData.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeBatchCustomWhiteRules请求参数结构体
+      class DescribeBatchCustomWhiteRulesRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 偏移量，默认为0
+        # @type Offset: Integer
+        # @param Limit: 页尺寸，默认为10
+        # @type Limit: Integer
+        # @param By: 排序字段"modify_time"-更新时间、"sort_id"-优先级、"id"-规则Id、"create_time"-创建时间，默认为update_time
+        # @type By: String
+        # @param Order: 排序类型desc-降序、asc-升序，默认为desc
+        # @type Order: String
+        # @param Filters: 筛选列表，支持按照 ID：规则RuleId、Domain：生效的域名、Name：规则名称来筛选、ValidStatus：生效状态、Status：开关状态、TimerType：生效方式
+        # @type Filters: Array
+
+        attr_accessor :Offset, :Limit, :By, :Order, :Filters
+
+        def initialize(offset=nil, limit=nil, by=nil, order=nil, filters=nil)
+          @Offset = offset
+          @Limit = limit
+          @By = by
+          @Order = order
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @By = params['By']
+          @Order = params['Order']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filtersitemnew_tmp = FiltersItemNew.new
+              filtersitemnew_tmp.deserialize(i)
+              @Filters << filtersitemnew_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeBatchCustomWhiteRules返回参数结构体
+      class DescribeBatchCustomWhiteRulesResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 批量规则列表
+        # @type Data: Array
+        # @param Total: 总数
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :Total, :RequestId
+
+        def initialize(data=nil, total=nil, requestid=nil)
+          @Data = data
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              batchcustomwhiterule_tmp = BatchCustomWhiteRule.new
+              batchcustomwhiterule_tmp.deserialize(i)
+              @Data << batchcustomwhiterule_tmp
+            end
+          end
+          @Total = params['Total']
           @RequestId = params['RequestId']
         end
       end
@@ -9626,6 +10363,76 @@ module TencentCloud
               @PostCLSFlows << postclsflowinfo_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeProtectGroup请求参数结构体
+      class DescribeProtectGroupRequest < TencentCloud::Common::AbstractModel
+        # @param Filter: 查询防护对象的查询条件，如果为空则获取所有的防护对象组，支持按照 Name：对象组名称、Domain：绑定的域名、InstanceID：实例ID、ID：对象组ID、InstanceName：实例名称
+        # @type Filter: Array
+        # @param OffSet: 偏移量，默认为0
+        # @type OffSet: Integer
+        # @param Limit: 页尺寸，默认为10
+        # @type Limit: Integer
+        # @param By: 排序字段，支持按照 "update_time"-更新时间、"create_time"-创建时间
+        # @type By: String
+        # @param Order: 排序类型desc-降序、asc-升序
+        # @type Order: String
+
+        attr_accessor :Filter, :OffSet, :Limit, :By, :Order
+
+        def initialize(filter=nil, offset=nil, limit=nil, by=nil, order=nil)
+          @Filter = filter
+          @OffSet = offset
+          @Limit = limit
+          @By = by
+          @Order = order
+        end
+
+        def deserialize(params)
+          unless params['Filter'].nil?
+            @Filter = []
+            params['Filter'].each do |i|
+              filtersitemnew_tmp = FiltersItemNew.new
+              filtersitemnew_tmp.deserialize(i)
+              @Filter << filtersitemnew_tmp
+            end
+          end
+          @OffSet = params['OffSet']
+          @Limit = params['Limit']
+          @By = params['By']
+          @Order = params['Order']
+        end
+      end
+
+      # DescribeProtectGroup返回参数结构体
+      class DescribeProtectGroupResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 防护对象组的详情
+        # @type Data: Array
+        # @param Total: 对象组的总数
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :Total, :RequestId
+
+        def initialize(data=nil, total=nil, requestid=nil)
+          @Data = data
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              protectgroupinfo_tmp = ProtectGroupInfo.new
+              protectgroupinfo_tmp.deserialize(i)
+              @Data << protectgroupinfo_tmp
+            end
+          end
+          @Total = params['Total']
           @RequestId = params['RequestId']
         end
       end
@@ -13144,6 +13951,26 @@ module TencentCloud
         end
       end
 
+      # 实例对象的简略结构，只包含实例ID和实例名
+      class InstanceBriefInfo < TencentCloud::Common::AbstractModel
+        # @param ID: 实例ID
+        # @type ID: String
+        # @param Name: 实例名
+        # @type Name: String
+
+        attr_accessor :ID, :Name
+
+        def initialize(id=nil, name=nil)
+          @ID = id
+          @Name = name
+        end
+
+        def deserialize(params)
+          @ID = params['ID']
+          @Name = params['Name']
+        end
+      end
+
       # 一个实例的详细信息
       class InstanceInfo < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例唯一ID
@@ -15353,6 +16180,273 @@ module TencentCloud
         end
       end
 
+      # ModifyBatchCustomRule请求参数结构体
+      class ModifyBatchCustomRuleRequest < TencentCloud::Common::AbstractModel
+        # @param Id: 批量规则Id
+        # @type Id: Integer
+        # @param Name: 规则名称
+        # @type Name: String
+        # @param ExpireTime: 如果没有设置JobDateTime字段则用此字段，0表示永久生效，其它表示定时生效的截止时间（单位为秒）
+        # @type ExpireTime: Integer
+        # @param SortId: 优先级
+        # @type SortId: Integer
+        # @param ActionType: 动作类型，1代表阻断，2代表人机识别，3代表观察，4代表重定向，5代表JS校验
+        # @type ActionType: Integer
+        # @param Redirect: 重定向地址
+        # @type Redirect: String
+        # @param Remark: 备注
+        # @type Remark: String
+        # @param EventId: 事件Id
+        # @type EventId: String
+        # @param Strategies: 策略详情列表
+        # @type Strategies: Array
+        # @param Bypass: 加白模块
+        # @type Bypass: String
+        # @param Domains: 域名列表
+        # @type Domains: Array
+        # @param JobType: 规则执行的方式，TimedJob为定时执行，CronJob为周期执行
+        # @type JobType: String
+        # @param JobDateTime: 定时任务配置
+        # @type JobDateTime: :class:`Tencentcloud::Waf.v20180125.models.JobDateTime`
+        # @param GroupIds: 防护对象组ID列表
+        # @type GroupIds: Array
+        # @param LogicalOp: 匹配条件的逻辑关系，支持and、or，分别表示多个逻辑匹配条件是与、或的关系
+        # @type LogicalOp: String
+        # @param PageId: 页面ID
+        # @type PageId: String
+        # @param ActionRatio: 动作灰度的比例，1-100，默认是100
+        # @type ActionRatio: Integer
+
+        attr_accessor :Id, :Name, :ExpireTime, :SortId, :ActionType, :Redirect, :Remark, :EventId, :Strategies, :Bypass, :Domains, :JobType, :JobDateTime, :GroupIds, :LogicalOp, :PageId, :ActionRatio
+        extend Gem::Deprecate
+        deprecate :Bypass, :none, 2026, 4
+        deprecate :Bypass=, :none, 2026, 4
+
+        def initialize(id=nil, name=nil, expiretime=nil, sortid=nil, actiontype=nil, redirect=nil, remark=nil, eventid=nil, strategies=nil, bypass=nil, domains=nil, jobtype=nil, jobdatetime=nil, groupids=nil, logicalop=nil, pageid=nil, actionratio=nil)
+          @Id = id
+          @Name = name
+          @ExpireTime = expiretime
+          @SortId = sortid
+          @ActionType = actiontype
+          @Redirect = redirect
+          @Remark = remark
+          @EventId = eventid
+          @Strategies = strategies
+          @Bypass = bypass
+          @Domains = domains
+          @JobType = jobtype
+          @JobDateTime = jobdatetime
+          @GroupIds = groupids
+          @LogicalOp = logicalop
+          @PageId = pageid
+          @ActionRatio = actionratio
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Name = params['Name']
+          @ExpireTime = params['ExpireTime']
+          @SortId = params['SortId']
+          @ActionType = params['ActionType']
+          @Redirect = params['Redirect']
+          @Remark = params['Remark']
+          @EventId = params['EventId']
+          unless params['Strategies'].nil?
+            @Strategies = []
+            params['Strategies'].each do |i|
+              strategy_tmp = Strategy.new
+              strategy_tmp.deserialize(i)
+              @Strategies << strategy_tmp
+            end
+          end
+          @Bypass = params['Bypass']
+          @Domains = params['Domains']
+          @JobType = params['JobType']
+          unless params['JobDateTime'].nil?
+            @JobDateTime = JobDateTime.new
+            @JobDateTime.deserialize(params['JobDateTime'])
+          end
+          @GroupIds = params['GroupIds']
+          @LogicalOp = params['LogicalOp']
+          @PageId = params['PageId']
+          @ActionRatio = params['ActionRatio']
+        end
+      end
+
+      # ModifyBatchCustomRule返回参数结构体
+      class ModifyBatchCustomRuleResponse < TencentCloud::Common::AbstractModel
+        # @param Res: 操作成功
+        # @type Res: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Res, :RequestId
+
+        def initialize(res=nil, requestid=nil)
+          @Res = res
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Res = params['Res']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyBatchCustomRuleStatus请求参数结构体
+      class ModifyBatchCustomRuleStatusRequest < TencentCloud::Common::AbstractModel
+        # @param Id: 批量Id
+        # @type Id: Integer
+        # @param Status: 开关状态 0-关、1-开
+        # @type Status: Integer
+
+        attr_accessor :Id, :Status
+
+        def initialize(id=nil, status=nil)
+          @Id = id
+          @Status = status
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Status = params['Status']
+        end
+      end
+
+      # ModifyBatchCustomRuleStatus返回参数结构体
+      class ModifyBatchCustomRuleStatusResponse < TencentCloud::Common::AbstractModel
+        # @param Res: 操作成功
+        # @type Res: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Res, :RequestId
+
+        def initialize(res=nil, requestid=nil)
+          @Res = res
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Res = params['Res']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyBatchCustomWhiteRule请求参数结构体
+      class ModifyBatchCustomWhiteRuleRequest < TencentCloud::Common::AbstractModel
+        # @param ID: 规则ID
+        # @type ID: Integer
+        # @param Name: 规则名称
+        # @type Name: String
+        # @param SortId: 优先级
+        # @type SortId: Integer
+        # @param Strategies: 策略详情
+        # @type Strategies: Array
+        # @param Bypass: 加白的模块，owasp：Web防护-规则引擎、ai：Web防护-AI引擎、ip_auto_deny：IP封禁、geoip：访问控制-地域封禁、acl：访问控制-自定义规则、cc：CC防护、antileakage：信息防泄漏防护、bwip：IP黑白名单、botrpc：BOT防护、api：API安全、applet：小程序防护
+        # @type Bypass: Array
+        # @param JobType: 规则执行的方式，TimedJob为定时执行，CronJob为周期执行
+        # @type JobType: String
+        # @param JobDateTime: 定时任务配置
+        # @type JobDateTime: :class:`Tencentcloud::Waf.v20180125.models.JobDateTime`
+        # @param Domains: 域名列表，如果绑定的是批量域名
+        # @type Domains: Array
+        # @param GroupIds: 防护对象组ID列表，如果绑定的是防护对象组
+        # @type GroupIds: Array
+        # @param LogicalOp: 匹配条件的逻辑关系，支持and、or，分别表示多个逻辑匹配条件是与、或的关系
+        # @type LogicalOp: String
+
+        attr_accessor :ID, :Name, :SortId, :Strategies, :Bypass, :JobType, :JobDateTime, :Domains, :GroupIds, :LogicalOp
+
+        def initialize(id=nil, name=nil, sortid=nil, strategies=nil, bypass=nil, jobtype=nil, jobdatetime=nil, domains=nil, groupids=nil, logicalop=nil)
+          @ID = id
+          @Name = name
+          @SortId = sortid
+          @Strategies = strategies
+          @Bypass = bypass
+          @JobType = jobtype
+          @JobDateTime = jobdatetime
+          @Domains = domains
+          @GroupIds = groupids
+          @LogicalOp = logicalop
+        end
+
+        def deserialize(params)
+          @ID = params['ID']
+          @Name = params['Name']
+          @SortId = params['SortId']
+          unless params['Strategies'].nil?
+            @Strategies = []
+            params['Strategies'].each do |i|
+              strategy_tmp = Strategy.new
+              strategy_tmp.deserialize(i)
+              @Strategies << strategy_tmp
+            end
+          end
+          @Bypass = params['Bypass']
+          @JobType = params['JobType']
+          unless params['JobDateTime'].nil?
+            @JobDateTime = JobDateTime.new
+            @JobDateTime.deserialize(params['JobDateTime'])
+          end
+          @Domains = params['Domains']
+          @GroupIds = params['GroupIds']
+          @LogicalOp = params['LogicalOp']
+        end
+      end
+
+      # ModifyBatchCustomWhiteRule返回参数结构体
+      class ModifyBatchCustomWhiteRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyBatchCustomWhiteRuleStatus请求参数结构体
+      class ModifyBatchCustomWhiteRuleStatusRequest < TencentCloud::Common::AbstractModel
+        # @param Ids: 要更新的规则ID列表
+        # @type Ids: Array
+        # @param Status: 开关，1：开启、0：关闭
+        # @type Status: Integer
+
+        attr_accessor :Ids, :Status
+
+        def initialize(ids=nil, status=nil)
+          @Ids = ids
+          @Status = status
+        end
+
+        def deserialize(params)
+          @Ids = params['Ids']
+          @Status = params['Status']
+        end
+      end
+
+      # ModifyBatchCustomWhiteRuleStatus返回参数结构体
+      class ModifyBatchCustomWhiteRuleStatusResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyBatchIpAccessControl请求参数结构体
       class ModifyBatchIpAccessControlRequest < TencentCloud::Common::AbstractModel
         # @param RuleId: 编辑的批量规则ID
@@ -17117,6 +18211,54 @@ module TencentCloud
         end
       end
 
+      # ModifyProtectGroup请求参数结构体
+      class ModifyProtectGroupRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 防护对象组名称
+        # @type Name: String
+        # @param GroupId: 防护对象组ID
+        # @type GroupId: Integer
+        # @param Remark: 防护对象组备注
+        # @type Remark: String
+        # @param Domains: 防护对象组的应用范围
+        # @type Domains: Array
+
+        attr_accessor :Name, :GroupId, :Remark, :Domains
+
+        def initialize(name=nil, groupid=nil, remark=nil, domains=nil)
+          @Name = name
+          @GroupId = groupid
+          @Remark = remark
+          @Domains = domains
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @GroupId = params['GroupId']
+          @Remark = params['Remark']
+          @Domains = params['Domains']
+        end
+      end
+
+      # ModifyProtectGroup返回参数结构体
+      class ModifyProtectGroupResponse < TencentCloud::Common::AbstractModel
+        # @param GroupId: 防护对象组的ID
+        # @type GroupId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :GroupId, :RequestId
+
+        def initialize(groupid=nil, requestid=nil)
+          @GroupId = groupid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @GroupId = params['GroupId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyProtectionLevel请求参数结构体
       class ModifyProtectionLevelRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 客户域名
@@ -18503,6 +19645,80 @@ module TencentCloud
         def deserialize(params)
           @Result = params['Result']
           @Confidence = params['Confidence']
+        end
+      end
+
+      # 防护对象组的域名详情
+      class ProtectGroupDomainInfo < TencentCloud::Common::AbstractModel
+        # @param Domain: 防护对象组中绑定的域名
+        # @type Domain: String
+        # @param Instances: 防护对象组中绑定的域名对应所属的实例信息，一个域名可能存在多个实例中
+        # @type Instances: Array
+
+        attr_accessor :Domain, :Instances
+
+        def initialize(domain=nil, instances=nil)
+          @Domain = domain
+          @Instances = instances
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          unless params['Instances'].nil?
+            @Instances = []
+            params['Instances'].each do |i|
+              instancebriefinfo_tmp = InstanceBriefInfo.new
+              instancebriefinfo_tmp.deserialize(i)
+              @Instances << instancebriefinfo_tmp
+            end
+          end
+        end
+      end
+
+      # 防护对象组对象详情
+      class ProtectGroupInfo < TencentCloud::Common::AbstractModel
+        # @param ID: 防护对象组ID
+        # @type ID: Integer
+        # @param Name: 防护对象组名称
+        # @type Name: String
+        # @param Remark: 防护对象组备注
+        # @type Remark: String
+        # @param Domains: 防护对象组中绑定的域名详情
+        # @type Domains: Array
+        # @param RuleNum: 关联的批量规则数
+        # @type RuleNum: Integer
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
+        # @param UpdateTime: 更新时间
+        # @type UpdateTime: String
+
+        attr_accessor :ID, :Name, :Remark, :Domains, :RuleNum, :CreateTime, :UpdateTime
+
+        def initialize(id=nil, name=nil, remark=nil, domains=nil, rulenum=nil, createtime=nil, updatetime=nil)
+          @ID = id
+          @Name = name
+          @Remark = remark
+          @Domains = domains
+          @RuleNum = rulenum
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @ID = params['ID']
+          @Name = params['Name']
+          @Remark = params['Remark']
+          unless params['Domains'].nil?
+            @Domains = []
+            params['Domains'].each do |i|
+              protectgroupdomaininfo_tmp = ProtectGroupDomainInfo.new
+              protectgroupdomaininfo_tmp.deserialize(i)
+              @Domains << protectgroupdomaininfo_tmp
+            end
+          end
+          @RuleNum = params['RuleNum']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
         end
       end
 
