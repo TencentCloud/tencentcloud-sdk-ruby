@@ -3375,6 +3375,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询异步语音合成任务结果
+
+        # @param request: Request instance for DescribeTextToSpeechAsyncTask.
+        # @type request: :class:`Tencentcloud::mps::V20190612::DescribeTextToSpeechAsyncTaskRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::DescribeTextToSpeechAsyncTaskResponse`
+        def DescribeTextToSpeechAsyncTask(request)
+          body = send_request('DescribeTextToSpeechAsyncTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeTextToSpeechAsyncTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 根据转码模板唯一标识，获取转码模板详情列表。返回结果包含符合条件的所有用户自定义模板及[系统预置转码模板](https://cloud.tencent.com/document/product/266/33476#.E9.A2.84.E7.BD.AE.E8.BD.AC.E7.A0.81.E6.A8.A1.E6.9D.BF)。
 
         # @param request: Request instance for DescribeTranscodeTemplates.
@@ -4914,6 +4938,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = SyncDubbingResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 异步语音合成接口，支持长文本转语音
+
+        # @param request: Request instance for TextToSpeechAsync.
+        # @type request: :class:`Tencentcloud::mps::V20190612::TextToSpeechAsyncRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::TextToSpeechAsyncResponse`
+        def TextToSpeechAsync(request)
+          body = send_request('TextToSpeechAsync', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = TextToSpeechAsyncResponse.new
             model.deserialize(response['Response'])
             model
           else

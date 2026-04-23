@@ -932,6 +932,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 新建查询视图
+
+        # @param request: Request instance for CreateSearchView.
+        # @type request: :class:`Tencentcloud::cls::V20201016::CreateSearchViewRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::CreateSearchViewResponse`
+        def CreateSearchView(request)
+          body = send_request('CreateSearchView', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateSearchViewResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 新建投递到COS的任务，【！！！注意】使用此接口，需要检查是否配置了投递COS的角色和权限。如果没有配置，请参考文档投递权限查看和配置https://cloud.tencent.com/document/product/614/71623。
 
         # @param request: Request instance for CreateShipper.
@@ -1710,6 +1734,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteScheduledSqlResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除查询视图
+
+        # @param request: Request instance for DeleteSearchView.
+        # @type request: :class:`Tencentcloud::cls::V20201016::DeleteSearchViewRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::DeleteSearchViewResponse`
+        def DeleteSearchView(request)
+          body = send_request('DeleteSearchView', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteSearchViewResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2973,6 +3021,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取查询视图列表
+
+        # @param request: Request instance for DescribeSearchViews.
+        # @type request: :class:`Tencentcloud::cls::V20201016::DescribeSearchViewsRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::DescribeSearchViewsResponse`
+        def DescribeSearchViews(request)
+          body = send_request('DescribeSearchViews', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSearchViewsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取投递任务列表
 
         # @param request: Request instance for DescribeShipperTasks.
@@ -3920,6 +3992,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyScheduledSqlResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改查询视图
+
+        # @param request: Request instance for ModifySearchView.
+        # @type request: :class:`Tencentcloud::cls::V20201016::ModifySearchViewRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::ModifySearchViewResponse`
+        def ModifySearchView(request)
+          body = send_request('ModifySearchView', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifySearchViewResponse.new
             model.deserialize(response['Response'])
             model
           else

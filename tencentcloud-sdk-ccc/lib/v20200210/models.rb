@@ -528,6 +528,69 @@ module TencentCloud
         end
       end
 
+      # 工作时间配置
+      class AvailableTimeConfig < TencentCloud::Common::AbstractModel
+        # @param DayType: <p>日期类型，默认为每天</p><p>枚举值：</p><ul><li>EveryDay： 每天</li><li>BusinessDay： 法定工作日</li><li>Holiday： 法定休息日</li><li>Custom： 自定义</li></ul>
+        # @type DayType: String
+        # @param DaysOfWeek: <p>仅在 DayType 为 Custom 时生效，指定适用的星期几</p><p>枚举值：</p><ul><li>Monday： 星期一</li><li>Tuesday： 星期二</li><li>Wednesday： 星期三</li><li>Thursday： 星期四</li><li>Friday： 星期五</li><li>Saturday： 星期六</li><li>Sunday： 星期日</li></ul>
+        # @type DaysOfWeek: Array
+        # @param TimeRanges: <p>该日期类型下的时间段列表</p>
+        # @type TimeRanges: Array
+
+        attr_accessor :DayType, :DaysOfWeek, :TimeRanges
+
+        def initialize(daytype=nil, daysofweek=nil, timeranges=nil)
+          @DayType = daytype
+          @DaysOfWeek = daysofweek
+          @TimeRanges = timeranges
+        end
+
+        def deserialize(params)
+          @DayType = params['DayType']
+          @DaysOfWeek = params['DaysOfWeek']
+          unless params['TimeRanges'].nil?
+            @TimeRanges = []
+            params['TimeRanges'].each do |i|
+              timerange_tmp = TimeRange.new
+              timerange_tmp.deserialize(i)
+              @TimeRanges << timerange_tmp
+            end
+          end
+        end
+      end
+
+      # basic 鉴权
+      class BasicAuth < TencentCloud::Common::AbstractModel
+        # @param BasicToken: 
+        # @type BasicToken: String
+
+        attr_accessor :BasicToken
+
+        def initialize(basictoken=nil)
+          @BasicToken = basictoken
+        end
+
+        def deserialize(params)
+          @BasicToken = params['BasicToken']
+        end
+      end
+
+      # Bearer 鉴权
+      class BearerAuth < TencentCloud::Common::AbstractModel
+        # @param BearerToken: 
+        # @type BearerToken: String
+
+        attr_accessor :BearerToken
+
+        def initialize(bearertoken=nil)
+          @BearerToken = bearertoken
+        end
+
+        def deserialize(params)
+          @BearerToken = params['BearerToken']
+        end
+      end
+
       # BindNumberCallInInterface请求参数结构体
       class BindNumberCallInInterfaceRequest < TencentCloud::Common::AbstractModel
         # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
@@ -1682,44 +1745,52 @@ module TencentCloud
 
       # CreateAutoCalloutTask请求参数结构体
       class CreateAutoCalloutTaskRequest < TencentCloud::Common::AbstractModel
-        # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
+        # @param SdkAppId: <p>应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc</p>
         # @type SdkAppId: Integer
-        # @param NotBefore: 任务起始时间戳，Unix 秒级时间戳
+        # @param NotBefore: <p>任务起始时间戳，Unix 秒级时间戳</p>
         # @type NotBefore: Integer
-        # @param Callees: 被叫号码列表
+        # @param Callees: <p>被叫号码列表</p>
         # @type Callees: Array
-        # @param Callers: 主叫号码列表
+        # @param Callers: <p>主叫号码列表</p>
         # @type Callers: Array
-        # @param IvrId: 呼叫使用的 IVR Id，不填时需要填写 AIAgentId
+        # @param IvrId: <p>呼叫使用的 IVR Id，不填时需要填写 AIAgentId</p>
         # @type IvrId: Integer
-        # @param Name: 任务名
+        # @param Name: <p>任务名</p>
         # @type Name: String
-        # @param Description: 任务描述
+        # @param Description: <p>任务描述</p>
         # @type Description: String
-        # @param NotAfter: 任务停止时间戳，Unix 秒级时间戳
+        # @param NotAfter: <p>任务停止时间戳，Unix 秒级时间戳</p>
         # @type NotAfter: Integer
-        # @param Tries: 最大尝试次数，1-3 次
+        # @param Tries: <p>最大尝试次数，1-3 次</p>
         # @type Tries: Integer
-        # @param Variables: 自定义变量（仅高级版支持），CalleeAttributes 字段中使用相同变量会覆盖此处
+        # @param Variables: <p>自定义变量（仅高级版支持），CalleeAttributes 字段中使用相同变量会覆盖此处</p>
         # @type Variables: Array
-        # @param UUI: 用户自定义数据，CalleeAttributes 字段中使用 UUI 会覆盖此处
+        # @param UUI: <p>用户自定义数据，CalleeAttributes 字段中使用 UUI 会覆盖此处</p>
         # @type UUI: String
-        # @param CalleeAttributes: 被叫属性
+        # @param CalleeAttributes: <p>被叫属性</p>
         # @type CalleeAttributes: Array
-        # @param TimeZone: IANA 时区名称，参考 https://datatracker.ietf.org/doc/html/draft-ietf-netmod-iana-timezones
+        # @param TimeZone: <p>IANA 时区名称，参考 https://datatracker.ietf.org/doc/html/draft-ietf-netmod-iana-timezones</p>
         # @type TimeZone: String
-        # @param AvailableTime: 可用时间段
+        # @param AvailableTime: <p>可用时间段</p>
         # @type AvailableTime: Array
-        # @param AIAgentId: 智能体 ID，不填写时需要填写 IvrId
+        # @param AIAgentId: <p>智能体 ID，不填写时需要填写 IvrId</p>
         # @type AIAgentId: Integer
-        # @param RetryInterval: 任务失败重试时间间隔，重试间隔 600秒～86400 秒
+        # @param RetryInterval: <p>任务失败重试时间间隔，重试间隔 600秒～86400 秒</p>
         # @type RetryInterval: Integer
-        # @param MaxRingTimeoutSecond: 最大振铃时长，达到时长阈值自动挂断。 仅自携号码支持当前参数
+        # @param MaxRingTimeoutSecond: <p>最大振铃时长，达到时长阈值自动挂断。 仅自携号码支持当前参数</p>
         # @type MaxRingTimeoutSecond: Integer
+        # @param RetryHangupTypes: <p>根据限定的挂断原因(可选挂断状态码:202,203,204,205,206,207,208,210,212,213,215,216,217,218,219,221,222,234)进行重试，只对使用AIAgentID的任务有效，挂断状态码说明</p><p><a href="https://cloud.tencent.com/document/product/679/123938">详见</a></p>
+        # @type RetryHangupTypes: Array
+        # @param RetryTags: <p>根据限定的话后标签进行重试，只对使用对话模型的AIAgentID任务有效，标签信息可在智能体配置中查询</p>
+        # @type RetryTags: Array
+        # @param AvailableWorkTimeConfig: <p>生效的工作时间配置。建议使用此字段代替AvailableTime 字段，当同时使用时，优先生效AvailableTime。</p>
+        # @type AvailableWorkTimeConfig: Array
+        # @param TriggerStrategy: <p>触发策略</p>
+        # @type TriggerStrategy: Array
 
-        attr_accessor :SdkAppId, :NotBefore, :Callees, :Callers, :IvrId, :Name, :Description, :NotAfter, :Tries, :Variables, :UUI, :CalleeAttributes, :TimeZone, :AvailableTime, :AIAgentId, :RetryInterval, :MaxRingTimeoutSecond
+        attr_accessor :SdkAppId, :NotBefore, :Callees, :Callers, :IvrId, :Name, :Description, :NotAfter, :Tries, :Variables, :UUI, :CalleeAttributes, :TimeZone, :AvailableTime, :AIAgentId, :RetryInterval, :MaxRingTimeoutSecond, :RetryHangupTypes, :RetryTags, :AvailableWorkTimeConfig, :TriggerStrategy
 
-        def initialize(sdkappid=nil, notbefore=nil, callees=nil, callers=nil, ivrid=nil, name=nil, description=nil, notafter=nil, tries=nil, variables=nil, uui=nil, calleeattributes=nil, timezone=nil, availabletime=nil, aiagentid=nil, retryinterval=nil, maxringtimeoutsecond=nil)
+        def initialize(sdkappid=nil, notbefore=nil, callees=nil, callers=nil, ivrid=nil, name=nil, description=nil, notafter=nil, tries=nil, variables=nil, uui=nil, calleeattributes=nil, timezone=nil, availabletime=nil, aiagentid=nil, retryinterval=nil, maxringtimeoutsecond=nil, retryhanguptypes=nil, retrytags=nil, availableworktimeconfig=nil, triggerstrategy=nil)
           @SdkAppId = sdkappid
           @NotBefore = notbefore
           @Callees = callees
@@ -1737,6 +1808,10 @@ module TencentCloud
           @AIAgentId = aiagentid
           @RetryInterval = retryinterval
           @MaxRingTimeoutSecond = maxringtimeoutsecond
+          @RetryHangupTypes = retryhanguptypes
+          @RetryTags = retrytags
+          @AvailableWorkTimeConfig = availableworktimeconfig
+          @TriggerStrategy = triggerstrategy
         end
 
         def deserialize(params)
@@ -1778,12 +1853,37 @@ module TencentCloud
           @AIAgentId = params['AIAgentId']
           @RetryInterval = params['RetryInterval']
           @MaxRingTimeoutSecond = params['MaxRingTimeoutSecond']
+          @RetryHangupTypes = params['RetryHangupTypes']
+          unless params['RetryTags'].nil?
+            @RetryTags = []
+            params['RetryTags'].each do |i|
+              retrytagitem_tmp = RetryTagItem.new
+              retrytagitem_tmp.deserialize(i)
+              @RetryTags << retrytagitem_tmp
+            end
+          end
+          unless params['AvailableWorkTimeConfig'].nil?
+            @AvailableWorkTimeConfig = []
+            params['AvailableWorkTimeConfig'].each do |i|
+              availabletimeconfig_tmp = AvailableTimeConfig.new
+              availabletimeconfig_tmp.deserialize(i)
+              @AvailableWorkTimeConfig << availabletimeconfig_tmp
+            end
+          end
+          unless params['TriggerStrategy'].nil?
+            @TriggerStrategy = []
+            params['TriggerStrategy'].each do |i|
+              triggerstrategyitem_tmp = TriggerStrategyItem.new
+              triggerstrategyitem_tmp.deserialize(i)
+              @TriggerStrategy << triggerstrategyitem_tmp
+            end
+          end
         end
       end
 
       # CreateAutoCalloutTask返回参数结构体
       class CreateAutoCalloutTaskResponse < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务Id
+        # @param TaskId: <p>任务Id</p>
         # @type TaskId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5361,6 +5461,135 @@ module TencentCloud
         end
       end
 
+      # http header 参数
+      class HeaderParams < TencentCloud::Common::AbstractModel
+        # @param Key: 
+        # @type Key: String
+        # @param Value: 
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
+        end
+      end
+
+      # http 回调包体参数
+      class HttpCallbackConfig < TencentCloud::Common::AbstractModel
+        # @param Url: <p>http 标准 url</p>
+        # @type Url: String
+        # @param HeaderParams: <p>http header 参数</p>
+        # @type HeaderParams: Array
+        # @param Params: <p>http 请求包参数</p>
+        # @type Params: Array
+        # @param Returns: <p>对端输出值，由对端 url 返回的 json 包里包含该字段就行</p>
+        # @type Returns: Array
+        # @param Async: <p>是否异步</p>
+        # @type Async: Boolean
+        # @param AuthType: <p>是否鉴权</p><p>枚举值：</p><ul><li>0： 不开启鉴权</li><li>1： 启用鉴权</li></ul>
+        # @type AuthType: Integer
+        # @param BasicAuth: <p>basic token 鉴权</p>
+        # @type BasicAuth: :class:`Tencentcloud::Ccc.v20200210.models.BasicAuth`
+        # @param BearerAuth: <p>bearer token 鉴权</p>
+        # @type BearerAuth: :class:`Tencentcloud::Ccc.v20200210.models.BearerAuth`
+        # @param CustomAuth: <p>自定义鉴权</p>
+        # @type CustomAuth: :class:`Tencentcloud::Ccc.v20200210.models.HttpParams`
+        # @param Oauth2Auth: <p>oauth2 鉴权</p>
+        # @type Oauth2Auth: :class:`Tencentcloud::Ccc.v20200210.models.OauthConfig`
+
+        attr_accessor :Url, :HeaderParams, :Params, :Returns, :Async, :AuthType, :BasicAuth, :BearerAuth, :CustomAuth, :Oauth2Auth
+
+        def initialize(url=nil, headerparams=nil, params=nil, returns=nil, async=nil, authtype=nil, basicauth=nil, bearerauth=nil, customauth=nil, oauth2auth=nil)
+          @Url = url
+          @HeaderParams = headerparams
+          @Params = params
+          @Returns = returns
+          @Async = async
+          @AuthType = authtype
+          @BasicAuth = basicauth
+          @BearerAuth = bearerauth
+          @CustomAuth = customauth
+          @Oauth2Auth = oauth2auth
+        end
+
+        def deserialize(params)
+          @Url = params['Url']
+          unless params['HeaderParams'].nil?
+            @HeaderParams = []
+            params['HeaderParams'].each do |i|
+              headerparams_tmp = HeaderParams.new
+              headerparams_tmp.deserialize(i)
+              @HeaderParams << headerparams_tmp
+            end
+          end
+          unless params['Params'].nil?
+            @Params = []
+            params['Params'].each do |i|
+              httpparams_tmp = HttpParams.new
+              httpparams_tmp.deserialize(i)
+              @Params << httpparams_tmp
+            end
+          end
+          unless params['Returns'].nil?
+            @Returns = []
+            params['Returns'].each do |i|
+              returnkey_tmp = ReturnKey.new
+              returnkey_tmp.deserialize(i)
+              @Returns << returnkey_tmp
+            end
+          end
+          @Async = params['Async']
+          @AuthType = params['AuthType']
+          unless params['BasicAuth'].nil?
+            @BasicAuth = BasicAuth.new
+            @BasicAuth.deserialize(params['BasicAuth'])
+          end
+          unless params['BearerAuth'].nil?
+            @BearerAuth = BearerAuth.new
+            @BearerAuth.deserialize(params['BearerAuth'])
+          end
+          unless params['CustomAuth'].nil?
+            @CustomAuth = HttpParams.new
+            @CustomAuth.deserialize(params['CustomAuth'])
+          end
+          unless params['Oauth2Auth'].nil?
+            @Oauth2Auth = OauthConfig.new
+            @Oauth2Auth.deserialize(params['Oauth2Auth'])
+          end
+        end
+      end
+
+      # http 请求包体
+      class HttpParams < TencentCloud::Common::AbstractModel
+        # @param Key: 
+        # @type Key: String
+        # @param Value: 
+        # @type Value: String
+        # @param ValueType: 
+        # @type ValueType: String
+
+        attr_accessor :Key, :Value, :ValueType
+
+        def initialize(key=nil, value=nil, valuetype=nil)
+          @Key = key
+          @Value = value
+          @ValueType = valuetype
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
+          @ValueType = params['ValueType']
+        end
+      end
+
       # 文本会话服务记录信息
       class IMCdrInfo < TencentCloud::Common::AbstractModel
         # @param Id: 服务记录ID
@@ -5878,6 +6107,30 @@ module TencentCloud
         end
       end
 
+      # Oauth2鉴权
+      class OauthConfig < TencentCloud::Common::AbstractModel
+        # @param TokenURL: 
+        # @type TokenURL: String
+        # @param ClientId: 
+        # @type ClientId: String
+        # @param ClientSecret: 
+        # @type ClientSecret: String
+
+        attr_accessor :TokenURL, :ClientId, :ClientSecret
+
+        def initialize(tokenurl=nil, clientid=nil, clientsecret=nil)
+          @TokenURL = tokenurl
+          @ClientId = clientid
+          @ClientSecret = clientsecret
+        end
+
+        def deserialize(params)
+          @TokenURL = params['TokenURL']
+          @ClientId = params['ClientId']
+          @ClientSecret = params['ClientSecret']
+        end
+      end
+
       # 用户自带号码审批明细数据类型
       class OwnNumberApplyDetailItem < TencentCloud::Common::AbstractModel
         # @param CallType: 号码类型：0-呼入|1-呼出|2-呼入呼出
@@ -6387,6 +6640,42 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 自动外呼限定重呼标签
+      class RetryTagItem < TencentCloud::Common::AbstractModel
+        # @param TagName: <p>标签名称</p>
+        # @type TagName: String
+        # @param TagValue: <p>标签值</p>
+        # @type TagValue: String
+
+        attr_accessor :TagName, :TagValue
+
+        def initialize(tagname=nil, tagvalue=nil)
+          @TagName = tagname
+          @TagValue = tagvalue
+        end
+
+        def deserialize(params)
+          @TagName = params['TagName']
+          @TagValue = params['TagValue']
+        end
+      end
+
+      # http return key
+      class ReturnKey < TencentCloud::Common::AbstractModel
+        # @param Key: 
+        # @type Key: String
+
+        attr_accessor :Key
+
+        def initialize(key=nil)
+          @Key = key
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
         end
       end
 
@@ -7532,6 +7821,44 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 触发策略数组，每个策略里包含接口调用信息，挂断类型，通话标签，触发模式
+      class TriggerStrategyItem < TencentCloud::Common::AbstractModel
+        # @param InterfaceConfig: <p>http 接口相关参数</p>
+        # @type InterfaceConfig: :class:`Tencentcloud::Ccc.v20200210.models.HttpCallbackConfig`
+        # @param HangupTypes: <p>挂断类型</p>
+        # @type HangupTypes: Array
+        # @param CallTags: <p>通话标签</p>
+        # @type CallTags: Array
+        # @param TriggerMode: <p>触发模式</p><p>枚举值：</p><ul><li>ONCE_PER_NUMBER： 每个号码仅第一次命中条件时触发</li><li>ALWAYS_ON_MATCH： 每次命中条件均触发</li></ul>
+        # @type TriggerMode: String
+
+        attr_accessor :InterfaceConfig, :HangupTypes, :CallTags, :TriggerMode
+
+        def initialize(interfaceconfig=nil, hanguptypes=nil, calltags=nil, triggermode=nil)
+          @InterfaceConfig = interfaceconfig
+          @HangupTypes = hanguptypes
+          @CallTags = calltags
+          @TriggerMode = triggermode
+        end
+
+        def deserialize(params)
+          unless params['InterfaceConfig'].nil?
+            @InterfaceConfig = HttpCallbackConfig.new
+            @InterfaceConfig.deserialize(params['InterfaceConfig'])
+          end
+          @HangupTypes = params['HangupTypes']
+          unless params['CallTags'].nil?
+            @CallTags = []
+            params['CallTags'].each do |i|
+              retrytagitem_tmp = RetryTagItem.new
+              retrytagitem_tmp.deserialize(i)
+              @CallTags << retrytagitem_tmp
+            end
+          end
+          @TriggerMode = params['TriggerMode']
         end
       end
 

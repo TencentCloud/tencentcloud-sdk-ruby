@@ -584,6 +584,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询资源组关联的工作空间列表
+
+        # @param request: Request instance for DescribeBillingResourceGroupAttachedWorkspaces.
+        # @type request: :class:`Tencentcloud::tione::V20211111::DescribeBillingResourceGroupAttachedWorkspacesRequest`
+        # @rtype: :class:`Tencentcloud::tione::V20211111::DescribeBillingResourceGroupAttachedWorkspacesResponse`
+        def DescribeBillingResourceGroupAttachedWorkspaces(request)
+          body = send_request('DescribeBillingResourceGroupAttachedWorkspaces', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBillingResourceGroupAttachedWorkspacesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询资源组列表
 
         # @param request: Request instance for DescribeBillingResourceGroups.

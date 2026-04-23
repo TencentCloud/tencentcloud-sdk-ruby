@@ -5075,6 +5075,73 @@ module TencentCloud
         end
       end
 
+      # CreateSearchView请求参数结构体
+      class CreateSearchViewRequest < TencentCloud::Common::AbstractModel
+        # @param LogsetId: <p>日志集id</p><p>标记视图所属该日志集，用于查询日志集下的查询视图配置</p>
+        # @type LogsetId: String
+        # @param LogsetRegion: <p>日志集所属地域</p><p>参数格式：ap-guangzhou</p>
+        # @type LogsetRegion: String
+        # @param ViewName: <p>视图名称</p><p>入参限制：最大支持255字符，不能包含&quot;|&quot;字符。</p>
+        # @type ViewName: String
+        # @param ViewType: <p>视图类型</p><p>枚举值：</p><ul><li>log： 日志主题</li><li>metric： 指标主题</li></ul><p>Topics字段中配置的主题信息应该与ViewType类型匹配</p>
+        # @type ViewType: String
+        # @param Topics: <p>视图主题配置信息</p><p>Topics字段中配置的主题信息应该与ViewType类型匹配</p>
+        # @type Topics: Array
+        # @param Description: <p>配置描述信息</p>
+        # @type Description: String
+        # @param ViewIdPrefix: <p>自定义视图id前缀</p><p>参数格式：<code>^[a-z0-9][a-z0-9_-]{1,61}[a-z0-9]$</code></p><p>配置成功之后ViewId格式: ${ViewIdPrefix}-view</p>
+        # @type ViewIdPrefix: String
+
+        attr_accessor :LogsetId, :LogsetRegion, :ViewName, :ViewType, :Topics, :Description, :ViewIdPrefix
+
+        def initialize(logsetid=nil, logsetregion=nil, viewname=nil, viewtype=nil, topics=nil, description=nil, viewidprefix=nil)
+          @LogsetId = logsetid
+          @LogsetRegion = logsetregion
+          @ViewName = viewname
+          @ViewType = viewtype
+          @Topics = topics
+          @Description = description
+          @ViewIdPrefix = viewidprefix
+        end
+
+        def deserialize(params)
+          @LogsetId = params['LogsetId']
+          @LogsetRegion = params['LogsetRegion']
+          @ViewName = params['ViewName']
+          @ViewType = params['ViewType']
+          unless params['Topics'].nil?
+            @Topics = []
+            params['Topics'].each do |i|
+              viewsearchtopic_tmp = ViewSearchTopic.new
+              viewsearchtopic_tmp.deserialize(i)
+              @Topics << viewsearchtopic_tmp
+            end
+          end
+          @Description = params['Description']
+          @ViewIdPrefix = params['ViewIdPrefix']
+        end
+      end
+
+      # CreateSearchView返回参数结构体
+      class CreateSearchViewResponse < TencentCloud::Common::AbstractModel
+        # @param ViewId: <p>视图ID</p>
+        # @type ViewId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ViewId, :RequestId
+
+        def initialize(viewid=nil, requestid=nil)
+          @ViewId = viewid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ViewId = params['ViewId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateShipper请求参数结构体
       class CreateShipperRequest < TencentCloud::Common::AbstractModel
         # @param TopicId: <p>创建的投递规则所属的日志主题Id。</p><ul><li>通过<a href="https://cloud.tencent.com/document/product/614/56454">获取日志主题列表</a>获取日志主题Id。</li></ul>
@@ -7089,6 +7156,38 @@ module TencentCloud
 
       # DeleteScheduledSql返回参数结构体
       class DeleteScheduledSqlResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteSearchView请求参数结构体
+      class DeleteSearchViewRequest < TencentCloud::Common::AbstractModel
+        # @param ViewId: <p>视图ID</p>
+        # @type ViewId: String
+
+        attr_accessor :ViewId
+
+        def initialize(viewid=nil)
+          @ViewId = viewid
+        end
+
+        def deserialize(params)
+          @ViewId = params['ViewId']
+        end
+      end
+
+      # DeleteSearchView返回参数结构体
+      class DeleteSearchViewResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -10550,6 +10649,68 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeSearchViews请求参数结构体
+      class DescribeSearchViewsRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: <ul><li>viewId 按照【视图ID】进行过滤。 类型：String 必选：否  </li><li>viewName 按照【视图名称】进行过滤。 类型：String 必选：否  </li><li>logsetId 按照【日志集ID】进行过滤。 类型：String 必选：否<br>每次请求的Filters的上限为10，Filter.Values的上限为10。</li></ul>
+        # @type Filters: Array
+        # @param Offset: <p>分页的偏移量，默认值为0。</p>
+        # @type Offset: Integer
+        # @param Limit: <p>分页单页限制数目，默认值为20，最大值100。</p>
+        # @type Limit: Integer
+
+        attr_accessor :Filters, :Offset, :Limit
+
+        def initialize(filters=nil, offset=nil, limit=nil)
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeSearchViews返回参数结构体
+      class DescribeSearchViewsResponse < TencentCloud::Common::AbstractModel
+        # @param Infos: <p>Splunk投递任务信息列表</p>
+        # @type Infos: Array
+        # @param Total: <p>符合条件的任务总数。</p>
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Infos, :Total, :RequestId
+
+        def initialize(infos=nil, total=nil, requestid=nil)
+          @Infos = infos
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Infos'].nil?
+            @Infos = []
+            params['Infos'].each do |i|
+              searchviewinfo_tmp = SearchViewInfo.new
+              searchviewinfo_tmp.deserialize(i)
+              @Infos << searchviewinfo_tmp
+            end
+          end
+          @Total = params['Total']
           @RequestId = params['RequestId']
         end
       end
@@ -16090,6 +16251,61 @@ module TencentCloud
         end
       end
 
+      # ModifySearchView请求参数结构体
+      class ModifySearchViewRequest < TencentCloud::Common::AbstractModel
+        # @param ViewId: <p>视图ID</p>
+        # @type ViewId: String
+        # @param ViewName: <p>视图名称</p><p>参数格式：<code>^[a-z0-9][a-z0-9_-]{1,61}[a-z0-9]$</code></p>
+        # @type ViewName: String
+        # @param ViewType: <p>视图类型</p><p>枚举值：</p><ul><li>log： 日志主题</li><li>metric： 指标主题</li></ul>
+        # @type ViewType: String
+        # @param Topics: <p>视图主题配置信息</p>
+        # @type Topics: Array
+        # @param Description: <p>配置描述信息</p>
+        # @type Description: String
+
+        attr_accessor :ViewId, :ViewName, :ViewType, :Topics, :Description
+
+        def initialize(viewid=nil, viewname=nil, viewtype=nil, topics=nil, description=nil)
+          @ViewId = viewid
+          @ViewName = viewname
+          @ViewType = viewtype
+          @Topics = topics
+          @Description = description
+        end
+
+        def deserialize(params)
+          @ViewId = params['ViewId']
+          @ViewName = params['ViewName']
+          @ViewType = params['ViewType']
+          unless params['Topics'].nil?
+            @Topics = []
+            params['Topics'].each do |i|
+              viewsearchtopic_tmp = ViewSearchTopic.new
+              viewsearchtopic_tmp.deserialize(i)
+              @Topics << viewsearchtopic_tmp
+            end
+          end
+          @Description = params['Description']
+        end
+      end
+
+      # ModifySearchView返回参数结构体
+      class ModifySearchViewResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyShipper请求参数结构体
       class ModifyShipperRequest < TencentCloud::Common::AbstractModel
         # @param ShipperId: <p>投递规则Id。</p><ul><li>通过 <a href="https://cloud.tencent.com/document/product/614/58745">获取投递任务列表</a>获取ShipperId。</li></ul>
@@ -18317,6 +18533,61 @@ module TencentCloud
         end
       end
 
+      # 检索视图信息
+      class SearchViewInfo < TencentCloud::Common::AbstractModel
+        # @param ViewId: <p>视图ID</p>
+        # @type ViewId: String
+        # @param ViewName: <p>视图名称</p>
+        # @type ViewName: String
+        # @param ViewType: <p>视图类型</p><p>枚举值：</p><ul><li>log： 日志主题</li><li>metric： 指标主题</li></ul>
+        # @type ViewType: String
+        # @param LogsetId: <p>日志集id</p><p>视图所属日志集</p>
+        # @type LogsetId: String
+        # @param LogsetRegion: <p>日志集所属地域</p><p>参数格式：ap-guangzhou</p>
+        # @type LogsetRegion: String
+        # @param Topics: <p>视图日志主题信息</p>
+        # @type Topics: Array
+        # @param Description: <p>视图描述</p>
+        # @type Description: String
+        # @param CreateTime: <p>创建时间</p><p>单位：秒级别时间戳</p>
+        # @type CreateTime: Integer
+        # @param UpdateTime: <p>更新时间</p><p>单位：秒级别时间戳</p>
+        # @type UpdateTime: Integer
+
+        attr_accessor :ViewId, :ViewName, :ViewType, :LogsetId, :LogsetRegion, :Topics, :Description, :CreateTime, :UpdateTime
+
+        def initialize(viewid=nil, viewname=nil, viewtype=nil, logsetid=nil, logsetregion=nil, topics=nil, description=nil, createtime=nil, updatetime=nil)
+          @ViewId = viewid
+          @ViewName = viewname
+          @ViewType = viewtype
+          @LogsetId = logsetid
+          @LogsetRegion = logsetregion
+          @Topics = topics
+          @Description = description
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @ViewId = params['ViewId']
+          @ViewName = params['ViewName']
+          @ViewType = params['ViewType']
+          @LogsetId = params['LogsetId']
+          @LogsetRegion = params['LogsetRegion']
+          unless params['Topics'].nil?
+            @Topics = []
+            params['Topics'].each do |i|
+              viewsearchtopic_tmp = ViewSearchTopic.new
+              viewsearchtopic_tmp.deserialize(i)
+              @Topics << viewsearchtopic_tmp
+            end
+          end
+          @Description = params['Description']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
       # SendConsumerHeartbeat请求参数结构体
       class SendConsumerHeartbeatRequest < TencentCloud::Common::AbstractModel
         # @param ConsumerGroup: 上报心跳的消费组标识
@@ -19158,6 +19429,30 @@ module TencentCloud
               @ChildNode << keyvalueinfo_tmp
             end
           end
+        end
+      end
+
+      # 视图检索日志主题配置
+      class ViewSearchTopic < TencentCloud::Common::AbstractModel
+        # @param Region: <p>日志集与日志主题所属地域</p><p>参数格式：ap-guangzhou</p>
+        # @type Region: String
+        # @param LogsetId: <p>日志集id</p>
+        # @type LogsetId: String
+        # @param TopicId: <p>日志主题id</p>
+        # @type TopicId: String
+
+        attr_accessor :Region, :LogsetId, :TopicId
+
+        def initialize(region=nil, logsetid=nil, topicid=nil)
+          @Region = region
+          @LogsetId = logsetid
+          @TopicId = topicid
+        end
+
+        def deserialize(params)
+          @Region = params['Region']
+          @LogsetId = params['LogsetId']
+          @TopicId = params['TopicId']
         end
       end
 

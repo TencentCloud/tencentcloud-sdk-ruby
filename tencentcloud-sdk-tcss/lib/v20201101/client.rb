@@ -423,6 +423,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 增加或修改恶意外连的白名单
+
+        # @param request: Request instance for AddOrModifyMaliciousConnectionWhiteList.
+        # @type request: :class:`Tencentcloud::tcss::V20201101::AddOrModifyMaliciousConnectionWhiteListRequest`
+        # @rtype: :class:`Tencentcloud::tcss::V20201101::AddOrModifyMaliciousConnectionWhiteListResponse`
+        def AddOrModifyMaliciousConnectionWhiteList(request)
+          body = send_request('AddOrModifyMaliciousConnectionWhiteList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AddOrModifyMaliciousConnectionWhiteListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 新增或修改木马白名单规则
+
+        # @param request: Request instance for AddOrModifyVirusWhiteListRule.
+        # @type request: :class:`Tencentcloud::tcss::V20201101::AddOrModifyVirusWhiteListRuleRequest`
+        # @rtype: :class:`Tencentcloud::tcss::V20201101::AddOrModifyVirusWhiteListRuleResponse`
+        def AddOrModifyVirusWhiteListRule(request)
+          body = send_request('AddOrModifyVirusWhiteListRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AddOrModifyVirusWhiteListRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 功能已下线待三合一重构
 
         # 容器网络创建检查Yaml网络策略任务
@@ -1866,6 +1914,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteSearchTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除木马白名单规则
+
+        # @param request: Request instance for DeleteVirusWhiteListRule.
+        # @type request: :class:`Tencentcloud::tcss::V20201101::DeleteVirusWhiteListRuleRequest`
+        # @rtype: :class:`Tencentcloud::tcss::V20201101::DeleteVirusWhiteListRuleResponse`
+        def DeleteVirusWhiteListRule(request)
+          body = send_request('DeleteVirusWhiteListRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteVirusWhiteListRuleResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -6390,6 +6462,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 运行时查询文件查杀实时监控设置信息
+
+        # @param request: Request instance for DescribeVirusMonitorConfig.
+        # @type request: :class:`Tencentcloud::tcss::V20201101::DescribeVirusMonitorConfigRequest`
+        # @rtype: :class:`Tencentcloud::tcss::V20201101::DescribeVirusMonitorConfigResponse`
+        def DescribeVirusMonitorConfig(request)
+          body = send_request('DescribeVirusMonitorConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeVirusMonitorConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 运行时查询文件查杀实时监控设置
 
         # @param request: Request instance for DescribeVirusMonitorSetting.
@@ -6424,6 +6520,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeVirusSampleDownloadUrlResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 运行时查询文件查杀新设置
+
+        # @param request: Request instance for DescribeVirusScanConfig.
+        # @type request: :class:`Tencentcloud::tcss::V20201101::DescribeVirusScanConfigRequest`
+        # @rtype: :class:`Tencentcloud::tcss::V20201101::DescribeVirusScanConfigResponse`
+        def DescribeVirusScanConfig(request)
+          body = send_request('DescribeVirusScanConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeVirusScanConfigResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -6544,6 +6664,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeVirusTaskListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询木马白名单规则列表
+
+        # @param request: Request instance for DescribeVirusWhiteListRules.
+        # @type request: :class:`Tencentcloud::tcss::V20201101::DescribeVirusWhiteListRulesRequest`
+        # @rtype: :class:`Tencentcloud::tcss::V20201101::DescribeVirusWhiteListRulesResponse`
+        def DescribeVirusWhiteListRules(request)
+          body = send_request('DescribeVirusWhiteListRules', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeVirusWhiteListRulesResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -14856,38 +14856,42 @@ module TencentCloud
 
       # 多写配置
       class RemoteWrite < TencentCloud::Common::AbstractModel
-        # @param URL: 多写url
+        # @param URL: <p>多写url</p>
         # @type URL: String
-        # @param URLRelabelConfig: RelabelConfig
+        # @param URLRelabelConfig: <p>RelabelConfig</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type URLRelabelConfig: String
-        # @param BasicAuth: 鉴权
+        # @param BasicAuth: <p>鉴权</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BasicAuth: :class:`Tencentcloud::Monitor.v20180724.models.BasicAuth`
-        # @param MaxBlockSize: 最大block
+        # @param MaxBlockSize: <p>最大block</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxBlockSize: String
-        # @param Label: Label
+        # @param Label: <p>Label</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Label: String
-        # @param Headers: HTTP 额外添加的头
+        # @param Headers: <p>HTTP 额外添加的头</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Headers: Array
+        # @param RemoteWriteType: <p>数据多写类型:<br>1- 只多写采集指标<br>2- 只多写预聚合指标<br>3- 同时多写采集和预聚合指标</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RemoteWriteType: Integer
 
-        attr_accessor :URL, :URLRelabelConfig, :BasicAuth, :MaxBlockSize, :Label, :Headers
+        attr_accessor :URL, :URLRelabelConfig, :BasicAuth, :MaxBlockSize, :Label, :Headers, :RemoteWriteType
         extend Gem::Deprecate
         deprecate :MaxBlockSize, :none, 2026, 4
         deprecate :MaxBlockSize=, :none, 2026, 4
         deprecate :Label, :none, 2026, 4
         deprecate :Label=, :none, 2026, 4
 
-        def initialize(url=nil, urlrelabelconfig=nil, basicauth=nil, maxblocksize=nil, label=nil, headers=nil)
+        def initialize(url=nil, urlrelabelconfig=nil, basicauth=nil, maxblocksize=nil, label=nil, headers=nil, remotewritetype=nil)
           @URL = url
           @URLRelabelConfig = urlrelabelconfig
           @BasicAuth = basicauth
           @MaxBlockSize = maxblocksize
           @Label = label
           @Headers = headers
+          @RemoteWriteType = remotewritetype
         end
 
         def deserialize(params)
@@ -14907,6 +14911,7 @@ module TencentCloud
               @Headers << remotewriteheader_tmp
             end
           end
+          @RemoteWriteType = params['RemoteWriteType']
         end
       end
 

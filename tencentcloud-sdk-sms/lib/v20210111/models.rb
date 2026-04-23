@@ -819,6 +819,38 @@ module TencentCloud
         end
       end
 
+      # 批量发送中每个手机号的发送信息。
+      class MultiSmsInfo < TencentCloud::Common::AbstractModel
+        # @param PhoneNumber: <p>下发手机号码，采用 E.164 标准，格式为+[国家或地区码][手机号]，单次请求最多支持200个手机号且要求全为国际/港澳台手机号。 例如：+60198890000， 其中前面有一个+号 ，60为国家码，198890000为手机号。</p>
+        # @type PhoneNumber: String
+        # @param TemplateId: <p>模板 ID，必须填写已审核通过的模板 ID。模板 ID 可前往 <a href="https://console.cloud.tencent.com/smsv2/isms-template">国际/港澳台短信</a> 的正文模板管理查看，仅支持使用国际/港澳台短信模板。</p>
+        # @type TemplateId: String
+        # @param TemplateParamSet: <p>模板参数，若无模板参数，则设置为空。<blockquote class="rno-document-tips rno-document-tips-notice">    <div class="rno-document-tips-body">        <i class="rno-document-tip-icon"></i>        <div class="rno-document-tip-title">注意</div>        <div class="rno-document-tip-desc"><p>模板参数的个数需要与 TemplateId 对应模板的变量个数保持一致。</p></div>    </div></blockquote></p>
+        # @type TemplateParamSet: Array
+        # @param SenderId: <p>国际/港澳台短信 Sender ID。可参考 <a href="https://cloud.tencent.com/document/product/382/102831">Sender ID 说明</a>。注：国际/港澳台短信已申请独立 SenderId 需要填写该字段，默认使用公共 SenderId，无需填写该字段。</p>
+        # @type SenderId: String
+        # @param SessionContext: <p>用户的 session 内容，可以携带用户侧 ID 等上下文信息，server 会原样返回。注意长度需小于512字节。</p>
+        # @type SessionContext: String
+
+        attr_accessor :PhoneNumber, :TemplateId, :TemplateParamSet, :SenderId, :SessionContext
+
+        def initialize(phonenumber=nil, templateid=nil, templateparamset=nil, senderid=nil, sessioncontext=nil)
+          @PhoneNumber = phonenumber
+          @TemplateId = templateid
+          @TemplateParamSet = templateparamset
+          @SenderId = senderid
+          @SessionContext = sessioncontext
+        end
+
+        def deserialize(params)
+          @PhoneNumber = params['PhoneNumber']
+          @TemplateId = params['TemplateId']
+          @TemplateParamSet = params['TemplateParamSet']
+          @SenderId = params['SenderId']
+          @SessionContext = params['SessionContext']
+        end
+      end
+
       # 号码信息。
       class PhoneNumberInfo < TencentCloud::Common::AbstractModel
         # @param Code: 号码信息查询错误码，查询成功返回 "Ok"。
@@ -1232,6 +1264,100 @@ module TencentCloud
         def deserialize(params)
           @Code = params['Code']
           @Message = params['Message']
+        end
+      end
+
+      # SendMultiGlobalSms请求参数结构体
+      class SendMultiGlobalSmsRequest < TencentCloud::Common::AbstractModel
+        # @param SmsSdkAppId: <p>短信 SdkAppId，在 <a href="https://console.cloud.tencent.com/smsv2/app-manage">短信控制台</a>  添加应用后生成的实际 SdkAppId。</p>
+        # @type SmsSdkAppId: String
+        # @param MultiSmsInfoSet: <p>批量发送信息列表，单次请求最多支持200个号码且要求全为国际/港澳台号码。每个元素包含一个手机号码及其对应的模板、模板参数等信息。</p>
+        # @type MultiSmsInfoSet: Array
+
+        attr_accessor :SmsSdkAppId, :MultiSmsInfoSet
+
+        def initialize(smssdkappid=nil, multismsinfoset=nil)
+          @SmsSdkAppId = smssdkappid
+          @MultiSmsInfoSet = multismsinfoset
+        end
+
+        def deserialize(params)
+          @SmsSdkAppId = params['SmsSdkAppId']
+          unless params['MultiSmsInfoSet'].nil?
+            @MultiSmsInfoSet = []
+            params['MultiSmsInfoSet'].each do |i|
+              multismsinfo_tmp = MultiSmsInfo.new
+              multismsinfo_tmp.deserialize(i)
+              @MultiSmsInfoSet << multismsinfo_tmp
+            end
+          end
+        end
+      end
+
+      # SendMultiGlobalSms返回参数结构体
+      class SendMultiGlobalSmsResponse < TencentCloud::Common::AbstractModel
+        # @param SendMultiStatusSet: <p>短信批量发送状态。</p>
+        # @type SendMultiStatusSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SendMultiStatusSet, :RequestId
+
+        def initialize(sendmultistatusset=nil, requestid=nil)
+          @SendMultiStatusSet = sendmultistatusset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['SendMultiStatusSet'].nil?
+            @SendMultiStatusSet = []
+            params['SendMultiStatusSet'].each do |i|
+              sendmultistatus_tmp = SendMultiStatus.new
+              sendmultistatus_tmp.deserialize(i)
+              @SendMultiStatusSet << sendmultistatus_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 发送短信状态
+      class SendMultiStatus < TencentCloud::Common::AbstractModel
+        # @param SerialNo: <p>发送流水号。</p>
+        # @type SerialNo: String
+        # @param PhoneNumber: <p>手机号码，E.164标准，+[国家或地区码][手机号] ，示例如：+60198890000， 其中前面有一个+号 ，60为国家码，198890000为手机号。</p>
+        # @type PhoneNumber: String
+        # @param Fee: <p>计费条数，计费规则请查询 <a href="https://cloud.tencent.com/document/product/382/36135">计费策略</a>。</p>
+        # @type Fee: Integer
+        # @param SessionContext: <p>用户 session 内容。</p>
+        # @type SessionContext: String
+        # @param Code: <p>短信请求错误码，具体含义请参考 <a href="https://cloud.tencent.com/document/product/382/59177#.E7.9F.AD.E4.BF.A1-API-3.0-.E5.8F.91.E9.80.81.E9.94.99.E8.AF.AF.E7.A0.81">错误码</a>，发送成功返回 &quot;Ok&quot;。</p>
+        # @type Code: String
+        # @param Message: <p>短信请求错误码描述。</p>
+        # @type Message: String
+        # @param IsoCode: <p>国家码或地区码，例如 US、MY 等，对于未识别出国家码或者地区码，默认返回 DEF，具体支持列表请参考 <a href="https://cloud.tencent.com/document/product/382/18051">国际/港澳台短信价格总览</a>。</p>
+        # @type IsoCode: String
+
+        attr_accessor :SerialNo, :PhoneNumber, :Fee, :SessionContext, :Code, :Message, :IsoCode
+
+        def initialize(serialno=nil, phonenumber=nil, fee=nil, sessioncontext=nil, code=nil, message=nil, isocode=nil)
+          @SerialNo = serialno
+          @PhoneNumber = phonenumber
+          @Fee = fee
+          @SessionContext = sessioncontext
+          @Code = code
+          @Message = message
+          @IsoCode = isocode
+        end
+
+        def deserialize(params)
+          @SerialNo = params['SerialNo']
+          @PhoneNumber = params['PhoneNumber']
+          @Fee = params['Fee']
+          @SessionContext = params['SessionContext']
+          @Code = params['Code']
+          @Message = params['Message']
+          @IsoCode = params['IsoCode']
         end
       end
 

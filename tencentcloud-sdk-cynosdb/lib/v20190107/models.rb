@@ -4864,89 +4864,82 @@ module TencentCloud
 
       # 实例详情
       class CynosdbInstanceDetail < TencentCloud::Common::AbstractModel
-        # @param Uin: 用户Uin
+        # @param Uin: <p>用户Uin</p>
         # @type Uin: String
-        # @param AppId: 用户AppId
+        # @param AppId: <p>用户AppId</p>
         # @type AppId: Integer
-        # @param ClusterId: 集群ID
+        # @param ClusterId: <p>集群ID</p>
         # @type ClusterId: String
-        # @param ClusterName: 集群名称
+        # @param ClusterName: <p>集群名称</p>
         # @type ClusterName: String
-        # @param InstanceId: 实例ID
+        # @param InstanceId: <p>实例ID</p>
         # @type InstanceId: String
-        # @param InstanceName: 实例名称
+        # @param InstanceName: <p>实例名称</p>
         # @type InstanceName: String
-        # @param ProjectId: 项目ID
+        # @param ProjectId: <p>项目ID</p>
         # @type ProjectId: Integer
-        # @param Region: 地域
+        # @param Region: <p>地域</p>
         # @type Region: String
-        # @param Zone: 可用区
+        # @param Zone: <p>可用区</p>
         # @type Zone: String
-        # @param Status: 实例状态
-        # creating：创建中
-        # running：运行中
-        # isolating：隔离中
-        # isolated：已隔离
-        # activating：恢复中
-        # offlining：下线中
-        # offlined：已下线
+        # @param Status: <p>实例状态<br>creating：创建中<br>running：运行中<br>isolating：隔离中<br>isolated：已隔离<br>activating：恢复中<br>offlining：下线中<br>offlined：已下线</p>
         # @type Status: String
-        # @param StatusDesc: 实例状态中文描述
+        # @param StatusDesc: <p>实例状态中文描述</p>
         # @type StatusDesc: String
-        # @param ServerlessStatus: serverless实例状态, 可能值：
-        # resume
-        # pause
+        # @param ServerlessStatus: <p>serverless实例状态, 可能值：<br>resume<br>pause</p>
         # @type ServerlessStatus: String
-        # @param DbType: 数据库类型
+        # @param DbType: <p>数据库类型</p>
         # @type DbType: String
-        # @param DbVersion: 数据库版本
+        # @param DbVersion: <p>数据库版本</p>
         # @type DbVersion: String
-        # @param Cpu: Cpu，单位：核
+        # @param Cpu: <p>Cpu，单位：核</p>
         # @type Cpu: Integer
-        # @param Memory: 内存，单位：GB
+        # @param Memory: <p>内存，单位：GB</p>
         # @type Memory: Integer
-        # @param Storage: 存储量，单位：GB
+        # @param Storage: <p>存储量，单位：GB</p>
         # @type Storage: Integer
-        # @param InstanceType: 实例类型
+        # @param InstanceType: <p>实例类型</p>
         # @type InstanceType: String
-        # @param InstanceRole: 实例当前角色
+        # @param InstanceRole: <p>实例当前角色</p>
         # @type InstanceRole: String
-        # @param UpdateTime: 更新时间
+        # @param UpdateTime: <p>更新时间</p>
         # @type UpdateTime: String
-        # @param CreateTime: 创建时间
+        # @param CreateTime: <p>创建时间</p>
         # @type CreateTime: String
-        # @param PayMode: 付费模式
+        # @param PayMode: <p>付费模式</p>
         # @type PayMode: Integer
-        # @param PeriodEndTime: 实例过期时间
+        # @param PeriodEndTime: <p>实例过期时间</p>
         # @type PeriodEndTime: String
-        # @param NetType: 网络类型
+        # @param NetType: <p>网络类型</p>
         # @type NetType: Integer
-        # @param VpcId: VPC网络ID
+        # @param VpcId: <p>VPC网络ID</p>
         # @type VpcId: String
-        # @param SubnetId: 子网ID
+        # @param SubnetId: <p>子网ID</p>
         # @type SubnetId: String
-        # @param Vip: 实例内网IP
+        # @param Vip: <p>实例内网IP</p>
         # @type Vip: String
-        # @param Vport: 实例内网端口
+        # @param Vport: <p>实例内网端口</p>
         # @type Vport: Integer
-        # @param WanDomain: 实例外网域名
+        # @param WanDomain: <p>实例外网域名</p>
         # @type WanDomain: String
-        # @param Charset: 字符集
+        # @param Charset: <p>字符集</p>
         # @type Charset: String
-        # @param CynosVersion: Cynos内核版本
+        # @param CynosVersion: <p>Cynos内核版本</p>
         # @type CynosVersion: String
-        # @param RenewFlag: 续费标志
+        # @param RenewFlag: <p>续费标志</p>
         # @type RenewFlag: Integer
-        # @param MinCpu: serverless实例cpu下限
+        # @param MinCpu: <p>serverless实例cpu下限</p>
         # @type MinCpu: Float
-        # @param MaxCpu: serverless实例cpu上限
+        # @param MaxCpu: <p>serverless实例cpu上限</p>
         # @type MaxCpu: Float
-        # @param DbMode: Db类型:<li>NORMAL</li><li>SERVERLESS</li>
+        # @param DbMode: <p>Db类型:<li>NORMAL</li><li>SERVERLESS</li></p>
         # @type DbMode: String
+        # @param MasterZone: <p>集群的读写实例所在可用区</p>
+        # @type MasterZone: String
 
-        attr_accessor :Uin, :AppId, :ClusterId, :ClusterName, :InstanceId, :InstanceName, :ProjectId, :Region, :Zone, :Status, :StatusDesc, :ServerlessStatus, :DbType, :DbVersion, :Cpu, :Memory, :Storage, :InstanceType, :InstanceRole, :UpdateTime, :CreateTime, :PayMode, :PeriodEndTime, :NetType, :VpcId, :SubnetId, :Vip, :Vport, :WanDomain, :Charset, :CynosVersion, :RenewFlag, :MinCpu, :MaxCpu, :DbMode
+        attr_accessor :Uin, :AppId, :ClusterId, :ClusterName, :InstanceId, :InstanceName, :ProjectId, :Region, :Zone, :Status, :StatusDesc, :ServerlessStatus, :DbType, :DbVersion, :Cpu, :Memory, :Storage, :InstanceType, :InstanceRole, :UpdateTime, :CreateTime, :PayMode, :PeriodEndTime, :NetType, :VpcId, :SubnetId, :Vip, :Vport, :WanDomain, :Charset, :CynosVersion, :RenewFlag, :MinCpu, :MaxCpu, :DbMode, :MasterZone
 
-        def initialize(uin=nil, appid=nil, clusterid=nil, clustername=nil, instanceid=nil, instancename=nil, projectid=nil, region=nil, zone=nil, status=nil, statusdesc=nil, serverlessstatus=nil, dbtype=nil, dbversion=nil, cpu=nil, memory=nil, storage=nil, instancetype=nil, instancerole=nil, updatetime=nil, createtime=nil, paymode=nil, periodendtime=nil, nettype=nil, vpcid=nil, subnetid=nil, vip=nil, vport=nil, wandomain=nil, charset=nil, cynosversion=nil, renewflag=nil, mincpu=nil, maxcpu=nil, dbmode=nil)
+        def initialize(uin=nil, appid=nil, clusterid=nil, clustername=nil, instanceid=nil, instancename=nil, projectid=nil, region=nil, zone=nil, status=nil, statusdesc=nil, serverlessstatus=nil, dbtype=nil, dbversion=nil, cpu=nil, memory=nil, storage=nil, instancetype=nil, instancerole=nil, updatetime=nil, createtime=nil, paymode=nil, periodendtime=nil, nettype=nil, vpcid=nil, subnetid=nil, vip=nil, vport=nil, wandomain=nil, charset=nil, cynosversion=nil, renewflag=nil, mincpu=nil, maxcpu=nil, dbmode=nil, masterzone=nil)
           @Uin = uin
           @AppId = appid
           @ClusterId = clusterid
@@ -4982,6 +4975,7 @@ module TencentCloud
           @MinCpu = mincpu
           @MaxCpu = maxcpu
           @DbMode = dbmode
+          @MasterZone = masterzone
         end
 
         def deserialize(params)
@@ -5020,6 +5014,7 @@ module TencentCloud
           @MinCpu = params['MinCpu']
           @MaxCpu = params['MaxCpu']
           @DbMode = params['DbMode']
+          @MasterZone = params['MasterZone']
         end
       end
 
@@ -15069,18 +15064,17 @@ module TencentCloud
 
       # ModifyDBInstanceSecurityGroups请求参数结构体
       class ModifyDBInstanceSecurityGroupsRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 网络组id(cynosdbmysql-grp-前缀开头)或集群id（例如 cynosdbmysql-xxxxxxxx前缀）,当通过实例IP地址三元组（UniqVpcId、Vip、Vport）配置安全组时，该字段必须设置为集群ID（例如 cynosdbmysql-xxxxxxxx前缀）。
+        # @param InstanceId: <p>网络组id(cynosdbmysql-grp-前缀开头)或集群id（例如 cynosdbmysql-xxxxxxxx前缀）,当通过实例IP地址三元组（UniqVpcId、Vip、Vport）配置安全组时，该字段必须设置为集群ID（例如 cynosdbmysql-xxxxxxxx前缀）。</p>
         # @type InstanceId: String
-        # @param SecurityGroupIds: 要修改的安全组ID列表，一个或者多个安全组ID组成的数组。
-        # 注意：该入参会全量替换存量已有集合，非增量更新。修改需传入预期的全量集合。
+        # @param SecurityGroupIds: <p>要修改的安全组ID列表，一个或者多个安全组ID组成的数组。<br>注意：该入参会全量替换存量已有集合，非增量更新。修改需传入预期的全量集合。</p>
         # @type SecurityGroupIds: Array
-        # @param Zone: 可用区
+        # @param Zone: <p>可用区</p>
         # @type Zone: String
-        # @param UniqVpcId: 实例所属VPC网络ID,（UniqVpcId、Vip 和 Vport 三个参数需同时指定，用于唯一标识网络实例）
+        # @param UniqVpcId: <p>实例所属VPC网络ID,（UniqVpcId、Vip 和 Vport 三个参数需同时指定，用于唯一标识网络实例）</p>
         # @type UniqVpcId: String
-        # @param Vip: 实例IP地址,实例IP地址三元组UniqVpcId、Vip 和 Vport) 三个参数需同时指定，用于唯一标识网络实实例
+        # @param Vip: <p>实例IP地址,实例IP地址三元组UniqVpcId、Vip 和 Vport) 三个参数需同时指定，用于唯一标识网络实实例</p>
         # @type Vip: String
-        # @param Vport: 实例端口,实例IP地址三元组UniqVpcId、Vip 和 Vport) 三个参数需同时指定，用于唯一标识网络实实例
+        # @param Vport: <p>实例端口,实例IP地址三元组UniqVpcId、Vip 和 Vport) 三个参数需同时指定，用于唯一标识网络实实例</p>
         # @type Vport: Integer
 
         attr_accessor :InstanceId, :SecurityGroupIds, :Zone, :UniqVpcId, :Vip, :Vport

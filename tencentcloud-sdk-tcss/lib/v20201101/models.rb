@@ -1601,6 +1601,108 @@ module TencentCloud
         end
       end
 
+      # AddOrModifyMaliciousConnectionWhiteList请求参数结构体
+      class AddOrModifyMaliciousConnectionWhiteListRequest < TencentCloud::Common::AbstractModel
+        # @param RequestType: 枚举
+        # IP: IP
+        # 域名：DOMAIN
+        # @type RequestType: String
+        # @param WhiteDomainList: 白名单域名
+        # @type WhiteDomainList: Array
+        # @param WhiteIPList: 白名单IP
+        # @type WhiteIPList: Array
+        # @param Remark: 备注
+        # @type Remark: String
+        # @param ID: 白名单记录id，只有修改时需要
+        # @type ID: Integer
+
+        attr_accessor :RequestType, :WhiteDomainList, :WhiteIPList, :Remark, :ID
+
+        def initialize(requesttype=nil, whitedomainlist=nil, whiteiplist=nil, remark=nil, id=nil)
+          @RequestType = requesttype
+          @WhiteDomainList = whitedomainlist
+          @WhiteIPList = whiteiplist
+          @Remark = remark
+          @ID = id
+        end
+
+        def deserialize(params)
+          @RequestType = params['RequestType']
+          @WhiteDomainList = params['WhiteDomainList']
+          @WhiteIPList = params['WhiteIPList']
+          @Remark = params['Remark']
+          @ID = params['ID']
+        end
+      end
+
+      # AddOrModifyMaliciousConnectionWhiteList返回参数结构体
+      class AddOrModifyMaliciousConnectionWhiteListResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # AddOrModifyVirusWhiteListRule请求参数结构体
+      class AddOrModifyVirusWhiteListRuleRequest < TencentCloud::Common::AbstractModel
+        # @param Md5List: <p>MD5列表</p>
+        # @type Md5List: Array
+        # @param Scope: <p>生效范围：1=全部镜像，0=自选镜像</p>
+        # @type Scope: Integer
+        # @param Id: <p>规则ID，有值为修改，无值为新增</p>
+        # @type Id: Integer
+        # @param ImageIds: <p>镜像ID列表，最大1000个。Scope为0（自选镜像）时必填</p>
+        # @type ImageIds: Array
+        # @param Remark: <p>规则备注，最大256字符</p>
+        # @type Remark: String
+        # @param EventId: <p>事件id</p>
+        # @type EventId: Integer
+
+        attr_accessor :Md5List, :Scope, :Id, :ImageIds, :Remark, :EventId
+
+        def initialize(md5list=nil, scope=nil, id=nil, imageids=nil, remark=nil, eventid=nil)
+          @Md5List = md5list
+          @Scope = scope
+          @Id = id
+          @ImageIds = imageids
+          @Remark = remark
+          @EventId = eventid
+        end
+
+        def deserialize(params)
+          @Md5List = params['Md5List']
+          @Scope = params['Scope']
+          @Id = params['Id']
+          @ImageIds = params['ImageIds']
+          @Remark = params['Remark']
+          @EventId = params['EventId']
+        end
+      end
+
+      # AddOrModifyVirusWhiteListRule返回参数结构体
+      class AddOrModifyVirusWhiteListRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 受影响的节点类型结构体
       class AffectedNodeItem < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
@@ -6906,6 +7008,38 @@ module TencentCloud
 
       # DeleteSearchTemplate返回参数结构体
       class DeleteSearchTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteVirusWhiteListRule请求参数结构体
+      class DeleteVirusWhiteListRuleRequest < TencentCloud::Common::AbstractModel
+        # @param RuleIdSet: 规则ID列表
+        # @type RuleIdSet: Array
+
+        attr_accessor :RuleIdSet
+
+        def initialize(ruleidset=nil)
+          @RuleIdSet = ruleidset
+        end
+
+        def deserialize(params)
+          @RuleIdSet = params['RuleIdSet']
+        end
+      end
+
+      # DeleteVirusWhiteListRule返回参数结构体
+      class DeleteVirusWhiteListRuleResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -19933,6 +20067,53 @@ module TencentCloud
         end
       end
 
+      # DescribeVirusMonitorConfig请求参数结构体
+      class DescribeVirusMonitorConfigRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeVirusMonitorConfig返回参数结构体
+      class DescribeVirusMonitorConfigResponse < TencentCloud::Common::AbstractModel
+        # @param EnableScan: 是否开启实时监控
+        # @type EnableScan: Boolean
+        # @param IsIncludePath: true:包含路径 false:排除路径
+        # @type IsIncludePath: Boolean
+        # @param ScanPath: 自选排除或扫描的地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScanPath: Array
+        # @param ScanPathMode: 扫描路径模式：
+        # SCAN_PATH_ALL：全部路径
+        # SCAN_PATH_DEFAULT：默认路径
+        # SCAN_PATH_USER_DEFINE：用户自定义路径
+        # @type ScanPathMode: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :EnableScan, :IsIncludePath, :ScanPath, :ScanPathMode, :RequestId
+
+        def initialize(enablescan=nil, isincludepath=nil, scanpath=nil, scanpathmode=nil, requestid=nil)
+          @EnableScan = enablescan
+          @IsIncludePath = isincludepath
+          @ScanPath = scanpath
+          @ScanPathMode = scanpathmode
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @EnableScan = params['EnableScan']
+          @IsIncludePath = params['IsIncludePath']
+          @ScanPath = params['ScanPath']
+          @ScanPathMode = params['ScanPathMode']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeVirusMonitorSetting请求参数结构体
       class DescribeVirusMonitorSettingRequest < TencentCloud::Common::AbstractModel
 
@@ -20015,6 +20196,81 @@ module TencentCloud
 
         def deserialize(params)
           @FileUrl = params['FileUrl']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeVirusScanConfig请求参数结构体
+      class DescribeVirusScanConfigRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeVirusScanConfig返回参数结构体
+      class DescribeVirusScanConfigResponse < TencentCloud::Common::AbstractModel
+        # @param EnableScan: 是否开启定期扫描
+        # @type EnableScan: Boolean
+        # @param Cycle: 检测周期每隔多少天
+        # @type Cycle: Integer
+        # @param BeginScanAt: 扫描开始时间
+        # @type BeginScanAt: String
+        # @param Timeout: 超时时长，单位小时
+        # @type Timeout: Integer
+        # @param ScanRangeType: SCAN_NODE:扫描节点
+        # SCAN_CONTAINER:扫描容器
+        # @type ScanRangeType: String
+        # @param ScanIDs: 自选扫描范围的容器id或者节点id
+        # @type ScanIDs: Array
+        # @param ScanPath: 自选排除或扫描的地址
+        # @type ScanPath: Array
+        # @param ScanPathMode: 扫描路径模式：
+        # SCAN_PATH_ALL：全部路径
+        # SCAN_PATH_DEFAULT：默认路径
+        # SCAN_PATH_USER_DEFINE：用户自定义路径
+        # @type ScanPathMode: String
+        # @param IsIncludePath: true:包含路径
+        # false:排除路径
+        # @type IsIncludePath: Boolean
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :EnableScan, :Cycle, :BeginScanAt, :Timeout, :ScanRangeType, :ScanIDs, :ScanPath, :ScanPathMode, :IsIncludePath, :RequestId
+
+        def initialize(enablescan=nil, cycle=nil, beginscanat=nil, timeout=nil, scanrangetype=nil, scanids=nil, scanpath=nil, scanpathmode=nil, isincludepath=nil, requestid=nil)
+          @EnableScan = enablescan
+          @Cycle = cycle
+          @BeginScanAt = beginscanat
+          @Timeout = timeout
+          @ScanRangeType = scanrangetype
+          @ScanIDs = scanids
+          @ScanPath = scanpath
+          @ScanPathMode = scanpathmode
+          @IsIncludePath = isincludepath
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @EnableScan = params['EnableScan']
+          @Cycle = params['Cycle']
+          @BeginScanAt = params['BeginScanAt']
+          @Timeout = params['Timeout']
+          @ScanRangeType = params['ScanRangeType']
+          unless params['ScanIDs'].nil?
+            @ScanIDs = []
+            params['ScanIDs'].each do |i|
+              scanrangeinfo_tmp = ScanRangeInfo.new
+              scanrangeinfo_tmp.deserialize(i)
+              @ScanIDs << scanrangeinfo_tmp
+            end
+          end
+          @ScanPath = params['ScanPath']
+          @ScanPathMode = params['ScanPathMode']
+          @IsIncludePath = params['IsIncludePath']
           @RequestId = params['RequestId']
         end
       end
@@ -20347,6 +20603,76 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeVirusWhiteListRules请求参数结构体
+      class DescribeVirusWhiteListRulesRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: <p>分页大小，默认为10</p>
+        # @type Limit: Integer
+        # @param Offset: <p>分页偏移量，默认为0</p>
+        # @type Offset: Integer
+        # @param Order: <p>排序方向，ASC/DESC，默认DESC</p>
+        # @type Order: String
+        # @param By: <p>排序字段，支持 InsertTime/UpdateTime</p>
+        # @type By: String
+        # @param Filters: <p>过滤</p>
+        # @type Filters: Array
+
+        attr_accessor :Limit, :Offset, :Order, :By, :Filters
+
+        def initialize(limit=nil, offset=nil, order=nil, by=nil, filters=nil)
+          @Limit = limit
+          @Offset = offset
+          @Order = order
+          @By = by
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @Order = params['Order']
+          @By = params['By']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              runtimefilters_tmp = RunTimeFilters.new
+              runtimefilters_tmp.deserialize(i)
+              @Filters << runtimefilters_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeVirusWhiteListRules返回参数结构体
+      class DescribeVirusWhiteListRulesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: <p>总数</p>
+        # @type TotalCount: Integer
+        # @param List: <p>白名单规则列表</p>
+        # @type List: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :List, :RequestId
+
+        def initialize(totalcount=nil, list=nil, requestid=nil)
+          @TotalCount = totalcount
+          @List = list
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              viruswhitelistruleinfo_tmp = VirusWhiteListRuleInfo.new
+              viruswhitelistruleinfo_tmp.deserialize(i)
+              @List << viruswhitelistruleinfo_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -22459,60 +22785,62 @@ module TencentCloud
 
       # 容器安全主机列表
       class HostInfo < TencentCloud::Common::AbstractModel
-        # @param HostID: 主机id
+        # @param HostID: <p>主机id</p>
         # @type HostID: String
-        # @param HostIP: 主机ip即内网ip
+        # @param HostIP: <p>主机ip即内网ip</p>
         # @type HostIP: String
-        # @param HostName: 主机名称
+        # @param HostName: <p>主机名称</p>
         # @type HostName: String
-        # @param Group: 业务组
+        # @param Group: <p>业务组</p>
         # @type Group: String
-        # @param DockerVersion: docker 版本
+        # @param DockerVersion: <p>docker 版本</p>
         # @type DockerVersion: String
-        # @param DockerFileSystemDriver: docker 文件系统类型
+        # @param DockerFileSystemDriver: <p>docker 文件系统类型</p>
         # @type DockerFileSystemDriver: String
-        # @param ImageCnt: 镜像个数
+        # @param ImageCnt: <p>镜像个数</p>
         # @type ImageCnt: Integer
-        # @param ContainerCnt: 容器个数
+        # @param ContainerCnt: <p>容器个数</p>
         # @type ContainerCnt: Integer
-        # @param Status: agent运行状态
+        # @param Status: <p>agent运行状态</p>
         # @type Status: String
-        # @param IsContainerd: 是否是Containerd
+        # @param IsContainerd: <p>是否是Containerd</p>
         # @type IsContainerd: Boolean
-        # @param MachineType: 主机来源：["CVM", "ECM", "LH", "BM"]  中的之一为腾讯云服务器；["Other"]之一非腾讯云服务器；
+        # @param MachineType: <p>主机来源：[&quot;CVM&quot;, &quot;ECM&quot;, &quot;LH&quot;, &quot;BM&quot;]  中的之一为腾讯云服务器；[&quot;Other&quot;]之一非腾讯云服务器；</p>
         # @type MachineType: String
-        # @param PublicIp: 外网ip
+        # @param PublicIp: <p>外网ip</p>
         # @type PublicIp: String
-        # @param Uuid: 主机uuid
+        # @param Uuid: <p>主机uuid</p>
         # @type Uuid: String
-        # @param InstanceID: 主机实例ID
+        # @param InstanceID: <p>主机实例ID</p>
         # @type InstanceID: String
-        # @param RegionID: 地域ID
+        # @param RegionID: <p>地域ID</p>
         # @type RegionID: Integer
-        # @param Project: 所属项目
+        # @param Project: <p>所属项目</p>
         # @type Project: :class:`Tencentcloud::Tcss.v20201101.models.ProjectInfo`
-        # @param Tags: 标签
+        # @param Tags: <p>标签</p>
         # @type Tags: Array
-        # @param ClusterID: 集群id
+        # @param ClusterID: <p>集群id</p>
         # @type ClusterID: String
-        # @param ClusterName: 集群名称
+        # @param ClusterName: <p>集群名称</p>
         # @type ClusterName: String
-        # @param ClusterAccessedStatus: 集群接入状态
+        # @param ClusterAccessedStatus: <p>集群接入状态</p>
         # @type ClusterAccessedStatus: String
-        # @param ChargeCoresCnt: 计费核数
+        # @param ClusterAccessedSubStatus: <p>集群接入子状态</p><p>枚举值：</p><ul><li>AccessedSubNone： 无</li><li>AccessedSubUninstallException： 卸载异常</li><li>AccessedSubTimeout： 接入超时</li><li>AccessedSubUninstallTimeout： 卸载超时</li><li>AccessedSubResourceException： 集群组件检查异常-Deployment/DaemonSet等异常</li><li>AccessedSubCAMPermissionDenied： CAM权限不够</li></ul>
+        # @type ClusterAccessedSubStatus: String
+        # @param ClusterAccessedErrorReason: <p>失败具体原因描述</p>
+        # @type ClusterAccessedErrorReason: String
+        # @param ChargeCoresCnt: <p>计费核数</p>
         # @type ChargeCoresCnt: Integer
-        # @param DefendStatus: 防护状态:
-        # 已防护: Defended
-        # 未防护: UnDefended
+        # @param DefendStatus: <p>防护状态:<br>已防护: Defended<br>未防护: UnDefended</p>
         # @type DefendStatus: String
-        # @param CoresCnt: 核数
+        # @param CoresCnt: <p>核数</p>
         # @type CoresCnt: Integer
-        # @param LastOnlineTime: 最近在线时间
+        # @param LastOnlineTime: <p>最近在线时间</p>
         # @type LastOnlineTime: String
 
-        attr_accessor :HostID, :HostIP, :HostName, :Group, :DockerVersion, :DockerFileSystemDriver, :ImageCnt, :ContainerCnt, :Status, :IsContainerd, :MachineType, :PublicIp, :Uuid, :InstanceID, :RegionID, :Project, :Tags, :ClusterID, :ClusterName, :ClusterAccessedStatus, :ChargeCoresCnt, :DefendStatus, :CoresCnt, :LastOnlineTime
+        attr_accessor :HostID, :HostIP, :HostName, :Group, :DockerVersion, :DockerFileSystemDriver, :ImageCnt, :ContainerCnt, :Status, :IsContainerd, :MachineType, :PublicIp, :Uuid, :InstanceID, :RegionID, :Project, :Tags, :ClusterID, :ClusterName, :ClusterAccessedStatus, :ClusterAccessedSubStatus, :ClusterAccessedErrorReason, :ChargeCoresCnt, :DefendStatus, :CoresCnt, :LastOnlineTime
 
-        def initialize(hostid=nil, hostip=nil, hostname=nil, group=nil, dockerversion=nil, dockerfilesystemdriver=nil, imagecnt=nil, containercnt=nil, status=nil, iscontainerd=nil, machinetype=nil, publicip=nil, uuid=nil, instanceid=nil, regionid=nil, project=nil, tags=nil, clusterid=nil, clustername=nil, clusteraccessedstatus=nil, chargecorescnt=nil, defendstatus=nil, corescnt=nil, lastonlinetime=nil)
+        def initialize(hostid=nil, hostip=nil, hostname=nil, group=nil, dockerversion=nil, dockerfilesystemdriver=nil, imagecnt=nil, containercnt=nil, status=nil, iscontainerd=nil, machinetype=nil, publicip=nil, uuid=nil, instanceid=nil, regionid=nil, project=nil, tags=nil, clusterid=nil, clustername=nil, clusteraccessedstatus=nil, clusteraccessedsubstatus=nil, clusteraccessederrorreason=nil, chargecorescnt=nil, defendstatus=nil, corescnt=nil, lastonlinetime=nil)
           @HostID = hostid
           @HostIP = hostip
           @HostName = hostname
@@ -22533,6 +22861,8 @@ module TencentCloud
           @ClusterID = clusterid
           @ClusterName = clustername
           @ClusterAccessedStatus = clusteraccessedstatus
+          @ClusterAccessedSubStatus = clusteraccessedsubstatus
+          @ClusterAccessedErrorReason = clusteraccessederrorreason
           @ChargeCoresCnt = chargecorescnt
           @DefendStatus = defendstatus
           @CoresCnt = corescnt
@@ -22570,6 +22900,8 @@ module TencentCloud
           @ClusterID = params['ClusterID']
           @ClusterName = params['ClusterName']
           @ClusterAccessedStatus = params['ClusterAccessedStatus']
+          @ClusterAccessedSubStatus = params['ClusterAccessedSubStatus']
+          @ClusterAccessedErrorReason = params['ClusterAccessedErrorReason']
           @ChargeCoresCnt = params['ChargeCoresCnt']
           @DefendStatus = params['DefendStatus']
           @CoresCnt = params['CoresCnt']
@@ -28521,6 +28853,33 @@ module TencentCloud
         end
       end
 
+      # 扫描范围信息
+      class ScanRangeInfo < TencentCloud::Common::AbstractModel
+        # @param IsAll: true:选择全部；
+        # false:部分选择
+        # @type IsAll: Boolean
+        # @param RangeType: SCAN_NORMAL:普通节点；
+        # SCAN_SUPER:超级节点
+        # SCAN_CONTAINER:容器
+        # @type RangeType: String
+        # @param IDs: 选择的ID
+        # @type IDs: Array
+
+        attr_accessor :IsAll, :RangeType, :IDs
+
+        def initialize(isall=nil, rangetype=nil, ids=nil)
+          @IsAll = isall
+          @RangeType = rangetype
+          @IDs = ids
+        end
+
+        def deserialize(params)
+          @IsAll = params['IsAll']
+          @RangeType = params['RangeType']
+          @IDs = params['IDs']
+        end
+      end
+
       # 快速搜索模板
       class SearchTemplate < TencentCloud::Common::AbstractModel
         # @param Name: 检索名称
@@ -29069,48 +29428,50 @@ module TencentCloud
 
       # 超级节点信息
       class SuperNodeListItem < TencentCloud::Common::AbstractModel
-        # @param NodeID: 超级节点ID
+        # @param NodeID: <p>超级节点ID</p>
         # @type NodeID: String
-        # @param NodeName: 超级节点名称
+        # @param NodeName: <p>超级节点名称</p>
         # @type NodeName: String
-        # @param ClusterName: 所属集群名
+        # @param ClusterName: <p>所属集群名</p>
         # @type ClusterName: String
-        # @param ClusterID: 所属集群ID
+        # @param ClusterID: <p>所属集群ID</p>
         # @type ClusterID: String
-        # @param Status: 节点状态:Running,Ready,Notready,Initializing,Failed,Error
+        # @param Status: <p>节点状态:Running,Ready,Notready,Initializing,Failed,Error</p>
         # @type Status: String
-        # @param SubNetID: 子网ID
+        # @param SubNetID: <p>子网ID</p>
         # @type SubNetID: String
-        # @param SubNetName: 子网名称
+        # @param SubNetName: <p>子网名称</p>
         # @type SubNetName: String
-        # @param SubNetCidr: 子网网段
+        # @param SubNetCidr: <p>子网网段</p>
         # @type SubNetCidr: String
-        # @param ZoneID: 可用区ID
+        # @param ZoneID: <p>可用区ID</p>
         # @type ZoneID: String
-        # @param Zone: 可用区
+        # @param Zone: <p>可用区</p>
         # @type Zone: String
-        # @param CreateTime: 创建时间
+        # @param CreateTime: <p>创建时间</p>
         # @type CreateTime: String
-        # @param RelatePodCount: 关联pod数
+        # @param RelatePodCount: <p>关联pod数</p>
         # @type RelatePodCount: Integer
-        # @param RelateContainerCount: 关联容器数
+        # @param RelateContainerCount: <p>关联容器数</p>
         # @type RelateContainerCount: Integer
-        # @param AgentStatus: agent安装状态UNINSTALL:未安装;INSTALLED:已安装;INSTALLING:安装中;
+        # @param AgentStatus: <p>agent安装状态UNINSTALL:未安装;INSTALLED:已安装;INSTALLING:安装中;</p>
         # @type AgentStatus: String
-        # @param NodeUniqueID: 节点唯一id
+        # @param NodeUniqueID: <p>节点唯一id</p>
         # @type NodeUniqueID: String
-        # @param ClusterAccessedStatus: 集群接入状态
+        # @param ClusterAccessedStatus: <p>集群接入状态</p>
         # @type ClusterAccessedStatus: String
-        # @param ChargeCoresCnt: 计费核数
+        # @param ChargeCoresCnt: <p>计费核数</p>
         # @type ChargeCoresCnt: Integer
-        # @param DefendStatus: 防护状态:
-        # 已防护: Defended
-        # 未防护: UnDefended
+        # @param DefendStatus: <p>防护状态:<br>已防护: Defended<br>未防护: UnDefended</p>
         # @type DefendStatus: String
+        # @param ClusterAccessedSubStatus: <p>集群接入子状态</p><p>枚举值：</p><ul><li>AccessedSubNone： 无</li><li>AccessedSubUninstallException： 卸载异常</li><li>AccessedSubTimeout： 接入超时</li><li>AccessedSubUninstallTimeout： 卸载超时</li><li>AccessedSubResourceException： 集群组件检查异常-Deployment/DaemonSet等异常</li><li>AccessedSubCAMPermissionDenied： CAM权限不够</li></ul>
+        # @type ClusterAccessedSubStatus: String
+        # @param ClusterAccessedErrorReason: <p>失败具体原因描述</p>
+        # @type ClusterAccessedErrorReason: String
 
-        attr_accessor :NodeID, :NodeName, :ClusterName, :ClusterID, :Status, :SubNetID, :SubNetName, :SubNetCidr, :ZoneID, :Zone, :CreateTime, :RelatePodCount, :RelateContainerCount, :AgentStatus, :NodeUniqueID, :ClusterAccessedStatus, :ChargeCoresCnt, :DefendStatus
+        attr_accessor :NodeID, :NodeName, :ClusterName, :ClusterID, :Status, :SubNetID, :SubNetName, :SubNetCidr, :ZoneID, :Zone, :CreateTime, :RelatePodCount, :RelateContainerCount, :AgentStatus, :NodeUniqueID, :ClusterAccessedStatus, :ChargeCoresCnt, :DefendStatus, :ClusterAccessedSubStatus, :ClusterAccessedErrorReason
 
-        def initialize(nodeid=nil, nodename=nil, clustername=nil, clusterid=nil, status=nil, subnetid=nil, subnetname=nil, subnetcidr=nil, zoneid=nil, zone=nil, createtime=nil, relatepodcount=nil, relatecontainercount=nil, agentstatus=nil, nodeuniqueid=nil, clusteraccessedstatus=nil, chargecorescnt=nil, defendstatus=nil)
+        def initialize(nodeid=nil, nodename=nil, clustername=nil, clusterid=nil, status=nil, subnetid=nil, subnetname=nil, subnetcidr=nil, zoneid=nil, zone=nil, createtime=nil, relatepodcount=nil, relatecontainercount=nil, agentstatus=nil, nodeuniqueid=nil, clusteraccessedstatus=nil, chargecorescnt=nil, defendstatus=nil, clusteraccessedsubstatus=nil, clusteraccessederrorreason=nil)
           @NodeID = nodeid
           @NodeName = nodename
           @ClusterName = clustername
@@ -29129,6 +29490,8 @@ module TencentCloud
           @ClusterAccessedStatus = clusteraccessedstatus
           @ChargeCoresCnt = chargecorescnt
           @DefendStatus = defendstatus
+          @ClusterAccessedSubStatus = clusteraccessedsubstatus
+          @ClusterAccessedErrorReason = clusteraccessederrorreason
         end
 
         def deserialize(params)
@@ -29150,6 +29513,8 @@ module TencentCloud
           @ClusterAccessedStatus = params['ClusterAccessedStatus']
           @ChargeCoresCnt = params['ChargeCoresCnt']
           @DefendStatus = params['DefendStatus']
+          @ClusterAccessedSubStatus = params['ClusterAccessedSubStatus']
+          @ClusterAccessedErrorReason = params['ClusterAccessedErrorReason']
         end
       end
 
@@ -30277,6 +30642,54 @@ module TencentCloud
           @RiskContainerCount = params['RiskContainerCount']
           @EventCount = params['EventCount']
           @IsolateEventCount = params['IsolateEventCount']
+        end
+      end
+
+      # VirusWhiteListRuleInfo
+      class VirusWhiteListRuleInfo < TencentCloud::Common::AbstractModel
+        # @param Id: <p>白名单id</p>
+        # @type Id: Integer
+        # @param Md5List: <p>md5加白内容</p>
+        # @type Md5List: Array
+        # @param ImageIds: <p>镜像id</p>
+        # @type ImageIds: Array
+        # @param Scope: <p>范围</p>
+        # @type Scope: Integer
+        # @param ImageCount: <p>镜像数</p>
+        # @type ImageCount: Integer
+        # @param Md5Count: <p>md5数</p>
+        # @type Md5Count: Integer
+        # @param Remark: <p>标记</p>
+        # @type Remark: String
+        # @param InsertTime: <p>插入时间</p>
+        # @type InsertTime: String
+        # @param UpdateTime: <p>更新时间</p>
+        # @type UpdateTime: String
+
+        attr_accessor :Id, :Md5List, :ImageIds, :Scope, :ImageCount, :Md5Count, :Remark, :InsertTime, :UpdateTime
+
+        def initialize(id=nil, md5list=nil, imageids=nil, scope=nil, imagecount=nil, md5count=nil, remark=nil, inserttime=nil, updatetime=nil)
+          @Id = id
+          @Md5List = md5list
+          @ImageIds = imageids
+          @Scope = scope
+          @ImageCount = imagecount
+          @Md5Count = md5count
+          @Remark = remark
+          @InsertTime = inserttime
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Md5List = params['Md5List']
+          @ImageIds = params['ImageIds']
+          @Scope = params['Scope']
+          @ImageCount = params['ImageCount']
+          @Md5Count = params['Md5Count']
+          @Remark = params['Remark']
+          @InsertTime = params['InsertTime']
+          @UpdateTime = params['UpdateTime']
         end
       end
 

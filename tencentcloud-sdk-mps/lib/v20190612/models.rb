@@ -5097,29 +5097,25 @@ module TencentCloud
 
       # 用于AIGC创作图片时用到的扩展参数信息。
       class AigcImageExtraParam < TencentCloud::Common::AbstractModel
-        # @param AspectRatio: 指定所生成视频的宽高比。
-
-        # 不同模型支持的宽高比:
-        # 1. GEM支持：1:1、3:2、2:3、3:4、4:3、4:5、5:4、9:16、16:9 和 21:9。
-
-        # 注：具体模型的宽高比参数，可查看相应模型官网获取更完整描述。
+        # @param AspectRatio: <p>指定所生成视频的宽高比。</p><p>不同模型支持的宽高比:</p><ol><li>GEM支持：1:1、3:2、2:3、3:4、4:3、4:5、5:4、9:16、16:9 和 21:9。</li></ol><p>注：具体模型的宽高比参数，可查看相应模型官网获取更完整描述。</p>
         # @type AspectRatio: String
-        # @param Resolution: 指定图片输出分辨率。
-
-        # 支持该参数的模型：
-        # 支持选择: 720P, 1080P, 2K, 4K。
+        # @param Resolution: <p>指定图片输出分辨率。</p><p>支持该参数的模型：<br>支持选择: 720P, 1080P, 2K, 4K。</p>
         # @type Resolution: String
+        # @param LogoAdd: <p>是否添加图标水印。默认不加。1-添加，0-不添加。</p><p>取值范围：[0, 1]</p><p>默认值：0</p>
+        # @type LogoAdd: Integer
 
-        attr_accessor :AspectRatio, :Resolution
+        attr_accessor :AspectRatio, :Resolution, :LogoAdd
 
-        def initialize(aspectratio=nil, resolution=nil)
+        def initialize(aspectratio=nil, resolution=nil, logoadd=nil)
           @AspectRatio = aspectratio
           @Resolution = resolution
+          @LogoAdd = logoadd
         end
 
         def deserialize(params)
           @AspectRatio = params['AspectRatio']
           @Resolution = params['Resolution']
+          @LogoAdd = params['LogoAdd']
         end
       end
 
@@ -8192,9 +8188,9 @@ module TencentCloud
 
       # CreateAigcVideoTask请求参数结构体
       class CreateAigcVideoTaskRequest < TencentCloud::Common::AbstractModel
-        # @param ModelName: <p>模型名称。<br>当前支持的模型列表:<br>Hunyuan,<br>Hailuo，<br>Kling，<br>Vidu，<br>OS，<br>GV。</p>
+        # @param ModelName: <p>模型名称。<br>当前支持的模型列表:<br>Hunyuan,<br>Hailuo，<br>Kling，<br>Vidu，<br>OS，<br>GV，<br>PixVerse。</p>
         # @type ModelName: String
-        # @param ModelVersion: <p>指定模型特定版本号。默认使用系统当前所支持的模型稳定版本。</p><ol><li>Hailuo， 可选[02、2.3]。</li><li>Kling，可选[2.0、2.1、2.5、O1、2.6、3.0、3.0-Omni]。</li><li>Vidu,可选[q2、q2-pro、q2-turbo、q3-pro、q3-turbo]。</li><li>GV, 可选[3.1]。</li><li>OS，可选[2.0]。</li></ol>
+        # @param ModelVersion: <p>指定模型特定版本号。默认使用系统当前所支持的模型稳定版本。</p><ol><li>Hailuo， 可选[02、2.3、2.3-fast]。</li><li>Kling，可选[1.6、2.0、2.1、2.5、O1、2.6、3.0、3.0-Omni]。</li><li>Vidu,可选[q2、q2-pro、q2-turbo、q3-pro、q3-turbo、q3、q3-mix]。</li><li>GV, 可选[3.1、3.1-fast]。</li><li>OS，可选[2.0]。</li><li>PixVerse，可选[v5.6、v6、c1]</li></ol>
         # @type ModelVersion: String
         # @param SceneType: <p>指定场景生视频。<br>注意：仅部分模型支持指定场景。</p><ol><li>Kling支持动作控制，motion_control。</li><li>Mingmou支持横转竖，land2port。</li><li>Vidu支持特效模板，template_effect。</li></ol>
         # @type SceneType: String
@@ -16799,6 +16795,62 @@ module TencentCloud
           end
           @ScrollToken = params['ScrollToken']
           @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeTextToSpeechAsyncTask请求参数结构体
+      class DescribeTextToSpeechAsyncTaskRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>任务ID</p>
+        # @type TaskId: String
+
+        attr_accessor :TaskId
+
+        def initialize(taskid=nil)
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # DescribeTextToSpeechAsyncTask返回参数结构体
+      class DescribeTextToSpeechAsyncTaskResponse < TencentCloud::Common::AbstractModel
+        # @param ErrorCode: <p>错误码，成功时返回0</p>
+        # @type ErrorCode: Integer
+        # @param Msg: <p>错误信息，成功时返回success</p>
+        # @type Msg: String
+        # @param Status: <p>任务状态</p><p>枚举值：</p><ul><li>success： 成功</li><li>fail： 失败</li><li>processing： 处理中</li></ul>
+        # @type Status: String
+        # @param AudioUrl: <p>合成音频url</p>
+        # @type AudioUrl: String
+        # @param VoiceId: <p>使用的音色ID</p>
+        # @type VoiceId: String
+        # @param ExtInfo: <p>扩展信息</p>
+        # @type ExtInfo: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrorCode, :Msg, :Status, :AudioUrl, :VoiceId, :ExtInfo, :RequestId
+
+        def initialize(errorcode=nil, msg=nil, status=nil, audiourl=nil, voiceid=nil, extinfo=nil, requestid=nil)
+          @ErrorCode = errorcode
+          @Msg = msg
+          @Status = status
+          @AudioUrl = audiourl
+          @VoiceId = voiceid
+          @ExtInfo = extinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrorCode = params['ErrorCode']
+          @Msg = params['Msg']
+          @Status = params['Status']
+          @AudioUrl = params['AudioUrl']
+          @VoiceId = params['VoiceId']
+          @ExtInfo = params['ExtInfo']
           @RequestId = params['RequestId']
         end
       end
@@ -29022,28 +29074,34 @@ module TencentCloud
 
       # 广告插入频道配置信息。
       class SSAIChannelInfo < TencentCloud::Common::AbstractModel
-        # @param ID: 频道ID，全局唯一标识。
+        # @param ID: <p>频道ID，全局唯一标识。</p>
         # @type ID: String
-        # @param Name: 频道名称。
+        # @param Name: <p>频道名称。</p>
         # @type Name: String
-        # @param ContentSource: 广告源信息。
+        # @param ContentSource: <p>广告源信息。</p>
         # @type ContentSource: String
-        # @param PlaybackPrefix: 播放地址。
+        # @param PlaybackPrefix: <p>播放地址。兼容旧版本参数，推荐使用HlsPlaybackPrefix或DashPlaybackPrefix</p>
         # @type PlaybackPrefix: String
-        # @param SSAIInfo: 广告插入SSAI配置信息。
+        # @param HlsPlaybackPrefix: <p>hls播放地址</p>
+        # @type HlsPlaybackPrefix: String
+        # @param DashPlaybackPrefix: <p>dash播放地址</p>
+        # @type DashPlaybackPrefix: String
+        # @param SSAIInfo: <p>广告插入SSAI配置信息。</p>
         # @type SSAIInfo: :class:`Tencentcloud::Mps.v20190612.models.SSAIConf`
-        # @param Region: 地域信息。
+        # @param Region: <p>地域信息。</p>
         # @type Region: String
-        # @param SessionInitPrefix: 用于clickthrough地址
+        # @param SessionInitPrefix: <p>用于clickthrough地址</p>
         # @type SessionInitPrefix: String
 
-        attr_accessor :ID, :Name, :ContentSource, :PlaybackPrefix, :SSAIInfo, :Region, :SessionInitPrefix
+        attr_accessor :ID, :Name, :ContentSource, :PlaybackPrefix, :HlsPlaybackPrefix, :DashPlaybackPrefix, :SSAIInfo, :Region, :SessionInitPrefix
 
-        def initialize(id=nil, name=nil, contentsource=nil, playbackprefix=nil, ssaiinfo=nil, region=nil, sessioninitprefix=nil)
+        def initialize(id=nil, name=nil, contentsource=nil, playbackprefix=nil, hlsplaybackprefix=nil, dashplaybackprefix=nil, ssaiinfo=nil, region=nil, sessioninitprefix=nil)
           @ID = id
           @Name = name
           @ContentSource = contentsource
           @PlaybackPrefix = playbackprefix
+          @HlsPlaybackPrefix = hlsplaybackprefix
+          @DashPlaybackPrefix = dashplaybackprefix
           @SSAIInfo = ssaiinfo
           @Region = region
           @SessionInitPrefix = sessioninitprefix
@@ -29054,6 +29112,8 @@ module TencentCloud
           @Name = params['Name']
           @ContentSource = params['ContentSource']
           @PlaybackPrefix = params['PlaybackPrefix']
+          @HlsPlaybackPrefix = params['HlsPlaybackPrefix']
+          @DashPlaybackPrefix = params['DashPlaybackPrefix']
           unless params['SSAIInfo'].nil?
             @SSAIInfo = SSAIConf.new
             @SSAIInfo.deserialize(params['SSAIInfo'])
@@ -29101,10 +29161,18 @@ module TencentCloud
         # @type PreRollMaxAllowedDuration: Integer
         # @param MultiRequest: <p>是否开启多次请求ADS,开启后将优先请求ADS，请求失败后再请求兜底广告</p>
         # @type MultiRequest: Boolean
+        # @param DashOriginManifestType: <p>dash周期类型：SinglePeriod 或 MultiPeriod，默认 MultiPeriod</p>
+        # @type DashOriginManifestType: String
+        # @param SlateOnEmptyVast: <p>Empty VAST时是否播放Slate，默认开启(true)</p>
+        # @type SlateOnEmptyVast: Boolean
+        # @param SCTEMarkerDuration: <p>SCTE marker duration，默认180，范围0-3600</p>
+        # @type SCTEMarkerDuration: Integer
+        # @param SecurityGroupId: <p>安全组Id</p>
+        # @type SecurityGroupId: String
 
-        attr_accessor :AdsUrl, :AdsUrls, :ConfigAliases, :AdMarkerPassthrough, :SCTE35AdType, :SlateAd, :Threshold, :DashMPDLocation, :AdTriggers, :DeliveryRestrictions, :SourceCDNPrefix, :AdCDNPrefix, :PreRollAdsUrl, :PreRollAdsUrls, :PreRollMaxAllowedDuration, :MultiRequest
+        attr_accessor :AdsUrl, :AdsUrls, :ConfigAliases, :AdMarkerPassthrough, :SCTE35AdType, :SlateAd, :Threshold, :DashMPDLocation, :AdTriggers, :DeliveryRestrictions, :SourceCDNPrefix, :AdCDNPrefix, :PreRollAdsUrl, :PreRollAdsUrls, :PreRollMaxAllowedDuration, :MultiRequest, :DashOriginManifestType, :SlateOnEmptyVast, :SCTEMarkerDuration, :SecurityGroupId
 
-        def initialize(adsurl=nil, adsurls=nil, configaliases=nil, admarkerpassthrough=nil, scte35adtype=nil, slatead=nil, threshold=nil, dashmpdlocation=nil, adtriggers=nil, deliveryrestrictions=nil, sourcecdnprefix=nil, adcdnprefix=nil, prerolladsurl=nil, prerolladsurls=nil, prerollmaxallowedduration=nil, multirequest=nil)
+        def initialize(adsurl=nil, adsurls=nil, configaliases=nil, admarkerpassthrough=nil, scte35adtype=nil, slatead=nil, threshold=nil, dashmpdlocation=nil, adtriggers=nil, deliveryrestrictions=nil, sourcecdnprefix=nil, adcdnprefix=nil, prerolladsurl=nil, prerolladsurls=nil, prerollmaxallowedduration=nil, multirequest=nil, dashoriginmanifesttype=nil, slateonemptyvast=nil, sctemarkerduration=nil, securitygroupid=nil)
           @AdsUrl = adsurl
           @AdsUrls = adsurls
           @ConfigAliases = configaliases
@@ -29121,6 +29189,10 @@ module TencentCloud
           @PreRollAdsUrls = prerolladsurls
           @PreRollMaxAllowedDuration = prerollmaxallowedduration
           @MultiRequest = multirequest
+          @DashOriginManifestType = dashoriginmanifesttype
+          @SlateOnEmptyVast = slateonemptyvast
+          @SCTEMarkerDuration = sctemarkerduration
+          @SecurityGroupId = securitygroupid
         end
 
         def deserialize(params)
@@ -29147,6 +29219,10 @@ module TencentCloud
           @PreRollAdsUrls = params['PreRollAdsUrls']
           @PreRollMaxAllowedDuration = params['PreRollMaxAllowedDuration']
           @MultiRequest = params['MultiRequest']
+          @DashOriginManifestType = params['DashOriginManifestType']
+          @SlateOnEmptyVast = params['SlateOnEmptyVast']
+          @SCTEMarkerDuration = params['SCTEMarkerDuration']
+          @SecurityGroupId = params['SecurityGroupId']
         end
       end
 
@@ -33296,6 +33372,62 @@ module TencentCloud
           @Switch = params['Switch']
           @BlockConfidence = params['BlockConfidence']
           @ReviewConfidence = params['ReviewConfidence']
+        end
+      end
+
+      # TextToSpeechAsync请求参数结构体
+      class TextToSpeechAsyncRequest < TencentCloud::Common::AbstractModel
+        # @param Text: <p>语音合成文本</p>
+        # @type Text: String
+        # @param VoiceId: <p>音色ID</p>
+        # @type VoiceId: String
+        # @param TextLang: <p>文本语言，默认中文</p>
+        # @type TextLang: String
+        # @param ExtParam: <p>扩展参数，json字符串</p><p>synExt Object 语音合成扩展参数<br>  duration Float 合成音频时长，单位秒，示例：5.2<br>  sampleRate Integer 合成音频采样率，默认16000，支持[8000,16000,22050,32000,44100]<br>  pitch Integer 音调，默认0原音色输出，取值[-12, 12]</p><p>transExt Object 翻译扩展参数<br>  transInfo Object<br>   transDst String 目标语言，如en<br>  transRequirement String 翻译要求</p>
+        # @type ExtParam: String
+
+        attr_accessor :Text, :VoiceId, :TextLang, :ExtParam
+
+        def initialize(text=nil, voiceid=nil, textlang=nil, extparam=nil)
+          @Text = text
+          @VoiceId = voiceid
+          @TextLang = textlang
+          @ExtParam = extparam
+        end
+
+        def deserialize(params)
+          @Text = params['Text']
+          @VoiceId = params['VoiceId']
+          @TextLang = params['TextLang']
+          @ExtParam = params['ExtParam']
+        end
+      end
+
+      # TextToSpeechAsync返回参数结构体
+      class TextToSpeechAsyncResponse < TencentCloud::Common::AbstractModel
+        # @param ErrorCode: <p>错误码，成功时返回0</p>
+        # @type ErrorCode: Integer
+        # @param Msg: <p>错误信息，成功时返回success</p>
+        # @type Msg: String
+        # @param TaskId: <p>任务ID，使用该ID查询结果</p>
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrorCode, :Msg, :TaskId, :RequestId
+
+        def initialize(errorcode=nil, msg=nil, taskid=nil, requestid=nil)
+          @ErrorCode = errorcode
+          @Msg = msg
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrorCode = params['ErrorCode']
+          @Msg = params['Msg']
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
         end
       end
 

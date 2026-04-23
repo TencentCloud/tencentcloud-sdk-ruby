@@ -301,15 +301,27 @@ module TencentCloud
         # @type AlternativeLanguage: Array
         # @param VadLevel: vad的远场人声抑制能力（不会对asr识别效果造成影响），范围为[0, 3]，默认为0。推荐设置为2，有较好的远场人声抑制能力。
         # @type VadLevel: Integer
+        # @param FilterDirty: 是否过滤脏词（目前仅支持填写基础语言引擎和标准语言引擎），范围为[0, 2]，默认值为 0。
+        # 0：不过滤脏词；1：过滤脏词；2：将脏词替换为 " * "。
+        # @type FilterDirty: Integer
+        # @param FilterModal: 是否过滤语气词（目前仅支持填写基础语言引擎和标准语言引擎），范围为[0, 2]，默认值为 0。
+        # 0：不过滤语气词；1：部分过滤；2：严格过滤。
+        # @type FilterModal: Integer
+        # @param FilterPunc: 是否过滤句末的句号（目前仅支持填写基础语言引擎和标准语言引擎），范围为[0, 1]，默认值为 0。
+        # 0：不过滤句末的句号；1：过滤句末的句号。
+        # @type FilterPunc: Integer
 
-        attr_accessor :Lang, :VadSilenceTime, :HotWordList, :AlternativeLanguage, :VadLevel
+        attr_accessor :Lang, :VadSilenceTime, :HotWordList, :AlternativeLanguage, :VadLevel, :FilterDirty, :FilterModal, :FilterPunc
 
-        def initialize(lang=nil, vadsilencetime=nil, hotwordlist=nil, alternativelanguage=nil, vadlevel=nil)
+        def initialize(lang=nil, vadsilencetime=nil, hotwordlist=nil, alternativelanguage=nil, vadlevel=nil, filterdirty=nil, filtermodal=nil, filterpunc=nil)
           @Lang = lang
           @VadSilenceTime = vadsilencetime
           @HotWordList = hotwordlist
           @AlternativeLanguage = alternativelanguage
           @VadLevel = vadlevel
+          @FilterDirty = filterdirty
+          @FilterModal = filtermodal
+          @FilterPunc = filterpunc
         end
 
         def deserialize(params)
@@ -318,6 +330,9 @@ module TencentCloud
           @HotWordList = params['HotWordList']
           @AlternativeLanguage = params['AlternativeLanguage']
           @VadLevel = params['VadLevel']
+          @FilterDirty = params['FilterDirty']
+          @FilterModal = params['FilterModal']
+          @FilterPunc = params['FilterPunc']
         end
       end
 

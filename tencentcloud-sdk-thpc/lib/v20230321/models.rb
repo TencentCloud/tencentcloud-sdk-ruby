@@ -2277,34 +2277,36 @@ module TencentCloud
 
       # 作业概览信息
       class JobView < TencentCloud::Common::AbstractModel
-        # @param JobId: 作业ID
+        # @param JobId: <p>作业ID</p>
         # @type JobId: String
-        # @param JobName: 作业名称
+        # @param JobName: <p>作业名称</p>
         # @type JobName: String
-        # @param JobDescription: 作业描述
+        # @param JobDescription: <p>作业描述</p>
         # @type JobDescription: String
-        # @param Priority: 作业优先级
+        # @param Creator: <p>作业创建者</p>
+        # @type Creator: String
+        # @param Priority: <p>作业优先级</p>
         # @type Priority: Integer
-        # @param JobState: 作业状态，包括CREATED, QUEING, STARTNG, RUNING, TERMINATING, TERMINATED, SUCCESS,
-        # FAILED
+        # @param JobState: <p>作业状态，包括CREATED, QUEING, STARTNG, RUNING, TERMINATING, TERMINATED, SUCCESS,<br>FAILED</p>
         # @type JobState: String
-        # @param ClusterId: 作业所属集群ID
+        # @param ClusterId: <p>作业所属集群ID</p>
         # @type ClusterId: String
-        # @param QueueName: 作业所属队列名称
+        # @param QueueName: <p>作业所属队列名称</p>
         # @type QueueName: String
-        # @param OccupyResources: 完成作业任务所需资源
+        # @param OccupyResources: <p>完成作业任务所需资源</p>
         # @type OccupyResources: String
-        # @param CreateTime: 作业任务创建时间
+        # @param CreateTime: <p>作业任务创建时间</p>
         # @type CreateTime: String
-        # @param EndTime: 作业任务结束时间
+        # @param EndTime: <p>作业任务结束时间</p>
         # @type EndTime: String
 
-        attr_accessor :JobId, :JobName, :JobDescription, :Priority, :JobState, :ClusterId, :QueueName, :OccupyResources, :CreateTime, :EndTime
+        attr_accessor :JobId, :JobName, :JobDescription, :Creator, :Priority, :JobState, :ClusterId, :QueueName, :OccupyResources, :CreateTime, :EndTime
 
-        def initialize(jobid=nil, jobname=nil, jobdescription=nil, priority=nil, jobstate=nil, clusterid=nil, queuename=nil, occupyresources=nil, createtime=nil, endtime=nil)
+        def initialize(jobid=nil, jobname=nil, jobdescription=nil, creator=nil, priority=nil, jobstate=nil, clusterid=nil, queuename=nil, occupyresources=nil, createtime=nil, endtime=nil)
           @JobId = jobid
           @JobName = jobname
           @JobDescription = jobdescription
+          @Creator = creator
           @Priority = priority
           @JobState = jobstate
           @ClusterId = clusterid
@@ -2318,6 +2320,7 @@ module TencentCloud
           @JobId = params['JobId']
           @JobName = params['JobName']
           @JobDescription = params['JobDescription']
+          @Creator = params['Creator']
           @Priority = params['Priority']
           @JobState = params['JobState']
           @ClusterId = params['ClusterId']
