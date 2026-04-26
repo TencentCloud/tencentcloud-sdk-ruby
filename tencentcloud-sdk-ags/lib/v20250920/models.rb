@@ -51,7 +51,7 @@ module TencentCloud
 
       # AcquireSandboxInstanceToken请求参数结构体
       class AcquireSandboxInstanceTokenRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 沙箱实例ID，生成的访问Token将仅可用于访问此沙箱实例
+        # @param InstanceId: <p>沙箱实例ID，生成的访问Token将仅可用于访问此沙箱实例</p>
         # @type InstanceId: String
 
         attr_accessor :InstanceId
@@ -67,24 +67,28 @@ module TencentCloud
 
       # AcquireSandboxInstanceToken返回参数结构体
       class AcquireSandboxInstanceTokenResponse < TencentCloud::Common::AbstractModel
-        # @param Token: 访问Token
+        # @param Token: <p>访问Token</p>
         # @type Token: String
-        # @param ExpiresAt: 过期时间
+        # @param ExpiresAt: <p>过期时间</p>
         # @type ExpiresAt: String
+        # @param TrafficToken: <p>非管控面（envd）的访问Token</p>
+        # @type TrafficToken: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Token, :ExpiresAt, :RequestId
+        attr_accessor :Token, :ExpiresAt, :TrafficToken, :RequestId
 
-        def initialize(token=nil, expiresat=nil, requestid=nil)
+        def initialize(token=nil, expiresat=nil, traffictoken=nil, requestid=nil)
           @Token = token
           @ExpiresAt = expiresat
+          @TrafficToken = traffictoken
           @RequestId = requestid
         end
 
         def deserialize(params)
           @Token = params['Token']
           @ExpiresAt = params['ExpiresAt']
+          @TrafficToken = params['TrafficToken']
           @RequestId = params['RequestId']
         end
       end
@@ -1199,10 +1203,12 @@ module TencentCloud
         # @type NetworkMode: String
         # @param Metadata: <p>沙箱实例元数据</p>
         # @type Metadata: Array
+        # @param AuthMode: <p>沙箱访问认证模式</p><p>枚举值：</p><ul><li>DEFAULT： 默认，即 TOKEN 认证</li><li>TOKEN： Token认证，即所有端口访问都需携带TOKEN</li><li>NONE： 免认证，即所有端口访问无需携带TOKEN</li><li>PUBLIC： 公开模式，即ENVD管理端口（49983）访问需携带TOKEN，其他端口无需携带TOKEN</li></ul><p>默认值：DEFAULT</p>
+        # @type AuthMode: String
 
-        attr_accessor :InstanceId, :ToolId, :ToolName, :Status, :Persistent, :TimeoutSeconds, :ExpiresAt, :StopReason, :CreateTime, :UpdateTime, :MountOptions, :CustomConfiguration, :NetworkMode, :Metadata
+        attr_accessor :InstanceId, :ToolId, :ToolName, :Status, :Persistent, :TimeoutSeconds, :ExpiresAt, :StopReason, :CreateTime, :UpdateTime, :MountOptions, :CustomConfiguration, :NetworkMode, :Metadata, :AuthMode
 
-        def initialize(instanceid=nil, toolid=nil, toolname=nil, status=nil, persistent=nil, timeoutseconds=nil, expiresat=nil, stopreason=nil, createtime=nil, updatetime=nil, mountoptions=nil, customconfiguration=nil, networkmode=nil, metadata=nil)
+        def initialize(instanceid=nil, toolid=nil, toolname=nil, status=nil, persistent=nil, timeoutseconds=nil, expiresat=nil, stopreason=nil, createtime=nil, updatetime=nil, mountoptions=nil, customconfiguration=nil, networkmode=nil, metadata=nil, authmode=nil)
           @InstanceId = instanceid
           @ToolId = toolid
           @ToolName = toolname
@@ -1217,6 +1223,7 @@ module TencentCloud
           @CustomConfiguration = customconfiguration
           @NetworkMode = networkmode
           @Metadata = metadata
+          @AuthMode = authmode
         end
 
         def deserialize(params)
@@ -1251,6 +1258,7 @@ module TencentCloud
               @Metadata << metadatavar_tmp
             end
           end
+          @AuthMode = params['AuthMode']
         end
       end
 
@@ -1367,7 +1375,7 @@ module TencentCloud
         # @type MountOptions: Array
         # @param CustomConfiguration: <p>沙箱实例自定义配置</p>
         # @type CustomConfiguration: :class:`Tencentcloud::Ags.v20250920.models.CustomConfiguration`
-        # @param AuthMode: <p>沙箱访问认证模式</p><p>枚举值：</p><ul><li>DEFAULT： 跟随系统策略</li><li>TOKEN： Token认证</li><li>NONE： 免认证 </li></ul><p>默认值：DEFAULT</p>
+        # @param AuthMode: <p>沙箱访问认证模式</p><p>枚举值：</p><ul><li>DEFAULT： 默认，即 TOKEN 认证</li><li>TOKEN： Token认证，即所有端口访问都需携带TOKEN</li><li>NONE： 免认证，即所有端口访问无需携带TOKEN</li><li>PUBLIC： 公开模式，即ENVD管理端口（49983）访问需携带TOKEN，其他端口无需携带TOKEN</li></ul><p>默认值：DEFAULT</p>
         # @type AuthMode: String
         # @param Metadata: <p>沙箱元数据</p>
         # @type Metadata: Array

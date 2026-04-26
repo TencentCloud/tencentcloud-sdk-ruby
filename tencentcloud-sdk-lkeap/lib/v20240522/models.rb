@@ -434,35 +434,33 @@ module TencentCloud
 
       # 创建智能文档解析任务的配置信息
       class CreateReconstructDocumentFlowConfig < TencentCloud::Common::AbstractModel
-        # @param TableResultType: Markdown文件中表格返回的形式
-        # 0，表格以MD形式返回
-        # 1，表格以HTML形式返回
-        # 默认为0
+        # @param TableResultType: <p>Markdown文件中表格返回的形式<br>0，表格以MD形式返回<br>1，表格以HTML形式返回<br>默认为0</p>
         # @type TableResultType: String
-        # @param ResultType: 智能文档解析返回结果的格式
-        # 0：只返回全文MD；
-        # 1：只返回每一页的OCR原始Json；
-        # 2：只返回每一页的MD，
-        # 3：返回全文MD + 每一页的OCR原始Json；
-        # 4：返回全文MD + 每一页的MD
-        # 5: 返回全文md，每一页ocr原始json，每一页md
-        # 默认值为0
+        # @param ResultType: <p>智能文档解析返回结果的格式<br>0：只返回全文MD；<br>1：只返回每一页的OCR原始Json；<br>2：只返回每一页的MD，<br>3：返回全文MD + 每一页的OCR原始Json；<br>4：返回全文MD + 每一页的MD<br>5: 返回全文md，每一页ocr原始json，每一页md<br>默认值为0</p>
         # @type ResultType: String
-        # @param IgnoreFailedPage: 是否忽略失败页，返回已成功的页数据。默认为true。
+        # @param IgnoreFailedPage: <p>是否忽略失败页，返回已成功的页数据。默认为true。</p>
         # @type IgnoreFailedPage: Boolean
+        # @param ReturnPageFormat: <p>Markdown文件中是否包含页码信息</p>
+        # @type ReturnPageFormat: Boolean
+        # @param PageFormat: <p>自定义输出页码样式,{{p}}为页码占位符，开启ReturnPageFormat生效。未填默认样式:<page_num>page {{p}}</page_num></p>
+        # @type PageFormat: String
 
-        attr_accessor :TableResultType, :ResultType, :IgnoreFailedPage
+        attr_accessor :TableResultType, :ResultType, :IgnoreFailedPage, :ReturnPageFormat, :PageFormat
 
-        def initialize(tableresulttype=nil, resulttype=nil, ignorefailedpage=nil)
+        def initialize(tableresulttype=nil, resulttype=nil, ignorefailedpage=nil, returnpageformat=nil, pageformat=nil)
           @TableResultType = tableresulttype
           @ResultType = resulttype
           @IgnoreFailedPage = ignorefailedpage
+          @ReturnPageFormat = returnpageformat
+          @PageFormat = pageformat
         end
 
         def deserialize(params)
           @TableResultType = params['TableResultType']
           @ResultType = params['ResultType']
           @IgnoreFailedPage = params['IgnoreFailedPage']
+          @ReturnPageFormat = params['ReturnPageFormat']
+          @PageFormat = params['PageFormat']
         end
       end
 
@@ -539,49 +537,33 @@ module TencentCloud
 
       # 创建智能文档拆分任务的配置信息
       class CreateSplitDocumentFlowConfig < TencentCloud::Common::AbstractModel
-        # @param TableResultType: Markdown文件中表格返回的形式
-        # 0，表格以MD形式返回
-        # 1，表格以HTML形式返回
-        # 默认为
+        # @param TableResultType: <p>Markdown文件中表格返回的形式<br>0，表格以MD形式返回<br>1，表格以HTML形式返回<br>默认为</p>
         # @type TableResultType: String
-        # @param ResultType: 智能文档解析返回结果的格式
-        # 0：只返回全文MD；
-        # 1：只返回每一页的OCR原始Json；
-        # 2：只返回每一页的MD；
-        # 3：返回全文MD + 每一页的OCR原始Json；
-        # 4：返回全文MD + 每一页的MD；
-        # 5：返回全文md，每一页ocr原始json，每一页md。
-
+        # @param ResultType: <p>智能文档解析返回结果的格式<br>0：只返回全文MD；<br>1：只返回每一页的OCR原始Json；<br>2：只返回每一页的MD；<br>3：返回全文MD + 每一页的OCR原始Json；<br>4：返回全文MD + 每一页的MD；<br>5：返回全文md，每一页ocr原始json，每一页md。</p>
         # @type ResultType: String
-        # @param EnableMllm: 是否开启mllm
+        # @param EnableMllm: <p>是否开启mllm</p>
         # @type EnableMllm: Boolean
-        # @param MaxChunkSize: 最大分片长度
+        # @param MaxChunkSize: <p>最大分片长度</p>
         # @type MaxChunkSize: Integer
-        # @param IgnoreFailedPage: 是否忽略返回失败页码
+        # @param IgnoreFailedPage: <p>是否忽略返回失败页码</p>
         # @type IgnoreFailedPage: Boolean
-        # @param SplitResultType: 智能文档解析返回结果的格式
-        # 0：只返回全文MD；
-        # 1：只返回每一页的OCR原始Json；
-        # 2：只返回每一页的MD；
-        # 3：返回全文MD + 每一页的OCR原始Json；
-        # 4：返回全文MD + 每一页的MD；
-        # 5：返回全文md，每一页ocr原始json，每一页md。
-
+        # @param SplitResultType: <p>智能文档解析返回结果的格式<br>0：只返回全文MD；<br>1：只返回每一页的OCR原始Json；<br>2：只返回每一页的MD；<br>3：返回全文MD + 每一页的OCR原始Json；<br>4：返回全文MD + 每一页的MD；<br>5：返回全文md，每一页ocr原始json，每一页md。</p>
         # @type SplitResultType: String
-        # @param SplitTableResultType: Markdown文件中表格返回的形式
-        # 0，表格以MD形式返回
-        # 1，表格以HTML形式返回
-        # 默认为
+        # @param SplitTableResultType: <p>Markdown文件中表格返回的形式<br>0，表格以MD形式返回<br>1，表格以HTML形式返回<br>默认为</p>
         # @type SplitTableResultType: String
+        # @param ReturnPageFormat: <p>Markdown文件中是否包含页码信息</p>
+        # @type ReturnPageFormat: Boolean
+        # @param PageFormat: <p>自定义输出页码样式,{{p}}为页码占位符，开启ReturnPageFormat生效。未填默认样式:<page_num>page {{p}}</page_num></p>
+        # @type PageFormat: String
 
-        attr_accessor :TableResultType, :ResultType, :EnableMllm, :MaxChunkSize, :IgnoreFailedPage, :SplitResultType, :SplitTableResultType
+        attr_accessor :TableResultType, :ResultType, :EnableMllm, :MaxChunkSize, :IgnoreFailedPage, :SplitResultType, :SplitTableResultType, :ReturnPageFormat, :PageFormat
         extend Gem::Deprecate
         deprecate :TableResultType, :none, 2026, 4
         deprecate :TableResultType=, :none, 2026, 4
         deprecate :ResultType, :none, 2026, 4
         deprecate :ResultType=, :none, 2026, 4
 
-        def initialize(tableresulttype=nil, resulttype=nil, enablemllm=nil, maxchunksize=nil, ignorefailedpage=nil, splitresulttype=nil, splittableresulttype=nil)
+        def initialize(tableresulttype=nil, resulttype=nil, enablemllm=nil, maxchunksize=nil, ignorefailedpage=nil, splitresulttype=nil, splittableresulttype=nil, returnpageformat=nil, pageformat=nil)
           @TableResultType = tableresulttype
           @ResultType = resulttype
           @EnableMllm = enablemllm
@@ -589,6 +571,8 @@ module TencentCloud
           @IgnoreFailedPage = ignorefailedpage
           @SplitResultType = splitresulttype
           @SplitTableResultType = splittableresulttype
+          @ReturnPageFormat = returnpageformat
+          @PageFormat = pageformat
         end
 
         def deserialize(params)
@@ -599,6 +583,8 @@ module TencentCloud
           @IgnoreFailedPage = params['IgnoreFailedPage']
           @SplitResultType = params['SplitResultType']
           @SplitTableResultType = params['SplitTableResultType']
+          @ReturnPageFormat = params['ReturnPageFormat']
+          @PageFormat = params['PageFormat']
         end
       end
 

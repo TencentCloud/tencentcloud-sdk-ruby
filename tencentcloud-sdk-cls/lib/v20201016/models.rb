@@ -5077,31 +5077,31 @@ module TencentCloud
 
       # CreateSearchView请求参数结构体
       class CreateSearchViewRequest < TencentCloud::Common::AbstractModel
-        # @param LogsetId: <p>日志集id</p><p>标记视图所属该日志集，用于查询日志集下的查询视图配置</p>
+        # @param LogsetId: <p>日志集id</p><p>查询视图所属的日志集，仅用于管理查询视图，查询视图中包含的主题可与该日志集无关</p>
         # @type LogsetId: String
         # @param LogsetRegion: <p>日志集所属地域</p><p>参数格式：ap-guangzhou</p>
         # @type LogsetRegion: String
         # @param ViewName: <p>视图名称</p><p>入参限制：最大支持255字符，不能包含&quot;|&quot;字符。</p>
         # @type ViewName: String
-        # @param ViewType: <p>视图类型</p><p>枚举值：</p><ul><li>log： 日志主题</li><li>metric： 指标主题</li></ul><p>Topics字段中配置的主题信息应该与ViewType类型匹配</p>
+        # @param ViewType: <p>视图类型</p><p>枚举值：</p><ul><li>log： 日志主题</li><li>metric： 指标主题</li></ul><p>Topics字段中配置的主题类型应该与ViewType类型匹配</p>
         # @type ViewType: String
-        # @param Topics: <p>视图主题配置信息</p><p>Topics字段中配置的主题信息应该与ViewType类型匹配</p>
+        # @param Topics: <p>查询视图中包含的主题，最大可包含10个主题</p><p>Topics字段中配置的主题信息应该与ViewType类型匹配</p>
         # @type Topics: Array
-        # @param Description: <p>配置描述信息</p>
-        # @type Description: String
-        # @param ViewIdPrefix: <p>自定义视图id前缀</p><p>参数格式：<code>^[a-z0-9][a-z0-9_-]{1,61}[a-z0-9]$</code></p><p>配置成功之后ViewId格式: ${ViewIdPrefix}-view</p>
+        # @param ViewIdPrefix: <p>自定义查询视图id前缀</p><p>参数格式：<code>^[a-z0-9][a-z0-9_-]{1,61}[a-z0-9]$</code></p><p>创建成功的查询视图 ViewId 格式为 ${ViewIdPrefix}-view</p>
         # @type ViewIdPrefix: String
+        # @param Description: <p>描述信息</p>
+        # @type Description: String
 
-        attr_accessor :LogsetId, :LogsetRegion, :ViewName, :ViewType, :Topics, :Description, :ViewIdPrefix
+        attr_accessor :LogsetId, :LogsetRegion, :ViewName, :ViewType, :Topics, :ViewIdPrefix, :Description
 
-        def initialize(logsetid=nil, logsetregion=nil, viewname=nil, viewtype=nil, topics=nil, description=nil, viewidprefix=nil)
+        def initialize(logsetid=nil, logsetregion=nil, viewname=nil, viewtype=nil, topics=nil, viewidprefix=nil, description=nil)
           @LogsetId = logsetid
           @LogsetRegion = logsetregion
           @ViewName = viewname
           @ViewType = viewtype
           @Topics = topics
-          @Description = description
           @ViewIdPrefix = viewidprefix
+          @Description = description
         end
 
         def deserialize(params)
@@ -5117,8 +5117,8 @@ module TencentCloud
               @Topics << viewsearchtopic_tmp
             end
           end
-          @Description = params['Description']
           @ViewIdPrefix = params['ViewIdPrefix']
+          @Description = params['Description']
         end
       end
 
@@ -10686,7 +10686,7 @@ module TencentCloud
 
       # DescribeSearchViews返回参数结构体
       class DescribeSearchViewsResponse < TencentCloud::Common::AbstractModel
-        # @param Infos: <p>Splunk投递任务信息列表</p>
+        # @param Infos: <p>查询视图详细信息</p>
         # @type Infos: Array
         # @param Total: <p>符合条件的任务总数。</p>
         # @type Total: Integer
@@ -16257,11 +16257,11 @@ module TencentCloud
         # @type ViewId: String
         # @param ViewName: <p>视图名称</p><p>参数格式：<code>^[a-z0-9][a-z0-9_-]{1,61}[a-z0-9]$</code></p>
         # @type ViewName: String
-        # @param ViewType: <p>视图类型</p><p>枚举值：</p><ul><li>log： 日志主题</li><li>metric： 指标主题</li></ul>
+        # @param ViewType: <p>视图类型</p><p>枚举值：</p><ul><li>log： 日志主题</li><li>metric： 指标主题</li></ul><p>Topics字段中配置的主题信息应该与ViewType类型匹配</p>
         # @type ViewType: String
-        # @param Topics: <p>视图主题配置信息</p>
+        # @param Topics: <p>查询视图中包含的主题，最大可包含10个主题</p>
         # @type Topics: Array
-        # @param Description: <p>配置描述信息</p>
+        # @param Description: <p>描述信息</p>
         # @type Description: String
 
         attr_accessor :ViewId, :ViewName, :ViewType, :Topics, :Description
@@ -18533,7 +18533,7 @@ module TencentCloud
         end
       end
 
-      # 检索视图信息
+      # 查询视图信息
       class SearchViewInfo < TencentCloud::Common::AbstractModel
         # @param ViewId: <p>视图ID</p>
         # @type ViewId: String
@@ -19432,9 +19432,9 @@ module TencentCloud
         end
       end
 
-      # 视图检索日志主题配置
+      # 查询视图主题配置
       class ViewSearchTopic < TencentCloud::Common::AbstractModel
-        # @param Region: <p>日志集与日志主题所属地域</p><p>参数格式：ap-guangzhou</p>
+        # @param Region: <p>日志集与主题所属地域</p><p>参数格式：ap-guangzhou</p><p>同一查询视图内，包含的各个主题需为相同地域</p>
         # @type Region: String
         # @param LogsetId: <p>日志集id</p>
         # @type LogsetId: String

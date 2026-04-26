@@ -2239,48 +2239,54 @@ module TencentCloud
 
       # GetServiceStatus返回参数结构体
       class GetServiceStatusResponse < TencentCloud::Common::AbstractModel
-        # @param ServiceEnabled: KMS服务是否开通， true 表示已开通
+        # @param ServiceEnabled: <p>KMS服务是否开通， true 表示已开通</p>
         # @type ServiceEnabled: Boolean
-        # @param InvalidType: 服务不可用类型： 0-未购买，1-正常， 2-欠费停服， 3-资源释放
+        # @param InvalidType: <p>服务不可用类型： 0-未购买，1-正常， 2-欠费停服， 3-资源释放</p>
         # @type InvalidType: Integer
-        # @param UserLevel: 0-普通版，1-旗舰版
+        # @param UserLevel: <p>0-普通版，1-旗舰版</p>
         # @type UserLevel: Integer
-        # @param ProExpireTime: 旗舰版到期时间（Epoch Unix Timestamp）。
+        # @param ProExpireTime: <p>旗舰版到期时间（Epoch Unix Timestamp）。</p>
         # @type ProExpireTime: Integer
-        # @param ProRenewFlag: 旗舰版是否自动续费：0-不自动续费，1-自动续费
+        # @param ProRenewFlag: <p>旗舰版是否自动续费：0-不自动续费，1-自动续费</p>
         # @type ProRenewFlag: Integer
-        # @param ProResourceId: 旗舰版购买记录的唯一性标识。如果未开通旗舰版，则返回值为空
+        # @param ProResourceId: <p>旗舰版购买记录的唯一性标识。如果未开通旗舰版，则返回值为空</p>
         # @type ProResourceId: String
-        # @param ExclusiveVSMEnabled: 是否开通 KMS 托管版
+        # @param ExclusiveVSMEnabled: <p>是否开通 KMS 托管版</p>
         # @type ExclusiveVSMEnabled: Boolean
-        # @param ExclusiveHSMEnabled: 是否开通 KMS 独享版
+        # @param ExclusiveHSMEnabled: <p>是否开通 KMS 独享版</p>
         # @type ExclusiveHSMEnabled: Boolean
-        # @param SubscriptionInfo: KMS 订阅信息。
+        # @param SubscriptionInfo: <p>KMS 订阅信息。</p>
         # @type SubscriptionInfo: String
-        # @param CmkUserCount: 返回KMS用户密钥使用数量
+        # @param CmkUserCount: <p>返回KMS用户密钥使用数量</p>
         # @type CmkUserCount: Integer
-        # @param CmkLimit: 返回KMS用户密钥规格数量
+        # @param CmkLimit: <p>返回KMS用户密钥规格数量</p>
         # @type CmkLimit: Integer
-        # @param ExclusiveHSMList: 返回独享集群组
+        # @param ExclusiveHSMList: <p>返回独享集群组</p>
         # @type ExclusiveHSMList: Array
-        # @param IsAllowedDataKeyHosted: 是否支持数据密钥托管。1:支持，0:不支持。
+        # @param IsAllowedDataKeyHosted: <p>是否支持数据密钥托管。1:支持，0:不支持。</p>
         # @type IsAllowedDataKeyHosted: Boolean
-        # @param DataKeyLimit: IsAllowedDataKeyHosted为1时有效，数据密钥的购买额度
+        # @param DataKeyLimit: <p>IsAllowedDataKeyHosted为1时有效，数据密钥的购买额度</p>
         # @type DataKeyLimit: Integer
-        # @param FreeDataKeyLimit: IsAllowedDataKeyHosted为1时有效，数据密钥免费额度。
+        # @param FreeDataKeyLimit: <p>IsAllowedDataKeyHosted为1时有效，数据密钥免费额度。</p>
         # @type FreeDataKeyLimit: Integer
-        # @param DataKeyUsedCount: IsAllowedDataKeyHosted为1时有效，已使用的数据密钥数量。
+        # @param DataKeyUsedCount: <p>IsAllowedDataKeyHosted为1时有效，已使用的数据密钥数量。</p>
         # @type DataKeyUsedCount: Integer
-        # @param SyncTaskList: 同步任务的目标地域信息
+        # @param SyncTaskList: <p>同步任务的目标地域信息</p>
         # @type SyncTaskList: Array
-        # @param IsAllowedSync: 是否支持同步任务。true:支持，false:不支持。
+        # @param IsAllowedSync: <p>是否支持同步任务。true:支持，false:不支持。</p>
         # @type IsAllowedSync: Boolean
+        # @param QpsLimit: <p>地域下的QPS</p>
+        # @type QpsLimit: Integer
+        # @param QpsTotalLimit: <p>总的QPS值</p>
+        # @type QpsTotalLimit: Integer
+        # @param RegionsQps: <p>地域下的QPS</p>
+        # @type RegionsQps: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ServiceEnabled, :InvalidType, :UserLevel, :ProExpireTime, :ProRenewFlag, :ProResourceId, :ExclusiveVSMEnabled, :ExclusiveHSMEnabled, :SubscriptionInfo, :CmkUserCount, :CmkLimit, :ExclusiveHSMList, :IsAllowedDataKeyHosted, :DataKeyLimit, :FreeDataKeyLimit, :DataKeyUsedCount, :SyncTaskList, :IsAllowedSync, :RequestId
+        attr_accessor :ServiceEnabled, :InvalidType, :UserLevel, :ProExpireTime, :ProRenewFlag, :ProResourceId, :ExclusiveVSMEnabled, :ExclusiveHSMEnabled, :SubscriptionInfo, :CmkUserCount, :CmkLimit, :ExclusiveHSMList, :IsAllowedDataKeyHosted, :DataKeyLimit, :FreeDataKeyLimit, :DataKeyUsedCount, :SyncTaskList, :IsAllowedSync, :QpsLimit, :QpsTotalLimit, :RegionsQps, :RequestId
 
-        def initialize(serviceenabled=nil, invalidtype=nil, userlevel=nil, proexpiretime=nil, prorenewflag=nil, proresourceid=nil, exclusivevsmenabled=nil, exclusivehsmenabled=nil, subscriptioninfo=nil, cmkusercount=nil, cmklimit=nil, exclusivehsmlist=nil, isalloweddatakeyhosted=nil, datakeylimit=nil, freedatakeylimit=nil, datakeyusedcount=nil, synctasklist=nil, isallowedsync=nil, requestid=nil)
+        def initialize(serviceenabled=nil, invalidtype=nil, userlevel=nil, proexpiretime=nil, prorenewflag=nil, proresourceid=nil, exclusivevsmenabled=nil, exclusivehsmenabled=nil, subscriptioninfo=nil, cmkusercount=nil, cmklimit=nil, exclusivehsmlist=nil, isalloweddatakeyhosted=nil, datakeylimit=nil, freedatakeylimit=nil, datakeyusedcount=nil, synctasklist=nil, isallowedsync=nil, qpslimit=nil, qpstotallimit=nil, regionsqps=nil, requestid=nil)
           @ServiceEnabled = serviceenabled
           @InvalidType = invalidtype
           @UserLevel = userlevel
@@ -2299,6 +2305,9 @@ module TencentCloud
           @DataKeyUsedCount = datakeyusedcount
           @SyncTaskList = synctasklist
           @IsAllowedSync = isallowedsync
+          @QpsLimit = qpslimit
+          @QpsTotalLimit = qpstotallimit
+          @RegionsQps = regionsqps
           @RequestId = requestid
         end
 
@@ -2335,6 +2344,16 @@ module TencentCloud
             end
           end
           @IsAllowedSync = params['IsAllowedSync']
+          @QpsLimit = params['QpsLimit']
+          @QpsTotalLimit = params['QpsTotalLimit']
+          unless params['RegionsQps'].nil?
+            @RegionsQps = []
+            params['RegionsQps'].each do |i|
+              regionqps_tmp = RegionQps.new
+              regionqps_tmp.deserialize(i)
+              @RegionsQps << regionqps_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -3284,6 +3303,26 @@ module TencentCloud
           @SourceKeyId = params['SourceKeyId']
           @ReEncrypted = params['ReEncrypted']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 地域的QPS扩展包
+      class RegionQps < TencentCloud::Common::AbstractModel
+        # @param Region: <p>地域</p>
+        # @type Region: String
+        # @param Qps: <p>qps的大小</p>
+        # @type Qps: Integer
+
+        attr_accessor :Region, :Qps
+
+        def initialize(region=nil, qps=nil)
+          @Region = region
+          @Qps = qps
+        end
+
+        def deserialize(params)
+          @Region = params['Region']
+          @Qps = params['Qps']
         end
       end
 

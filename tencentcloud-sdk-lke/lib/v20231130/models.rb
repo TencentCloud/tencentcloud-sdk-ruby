@@ -10709,19 +10709,23 @@ module TencentCloud
 
 
         # @type RejectedBizId: String
+        # @param EnableScope: 拒答生效域: 1-不生效；2-仅开发域生效；3-仅发布域生效；4-开发域和发布域均生效
+        # @type EnableScope: Integer
 
-        attr_accessor :BotBizId, :Question, :RejectedBizId
+        attr_accessor :BotBizId, :Question, :RejectedBizId, :EnableScope
 
-        def initialize(botbizid=nil, question=nil, rejectedbizid=nil)
+        def initialize(botbizid=nil, question=nil, rejectedbizid=nil, enablescope=nil)
           @BotBizId = botbizid
           @Question = question
           @RejectedBizId = rejectedbizid
+          @EnableScope = enablescope
         end
 
         def deserialize(params)
           @BotBizId = params['BotBizId']
           @Question = params['Question']
           @RejectedBizId = params['RejectedBizId']
+          @EnableScope = params['EnableScope']
         end
       end
 
@@ -13529,31 +13533,31 @@ module TencentCloud
 
       # 不满意回复
       class UnsatisfiedReply < TencentCloud::Common::AbstractModel
-        # @param ReplyBizId: 不满意回复ID
+        # @param ReplyBizId: <p>不满意回复ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReplyBizId: String
-        # @param RecordBizId: 消息记录ID
+        # @param RecordBizId: <p>消息记录ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RecordBizId: String
-        # @param Question: 用户问题
+        # @param Question: <p>用户问题</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Question: String
-        # @param Answer: 问题回复
+        # @param Answer: <p>问题回复</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Answer: String
-        # @param Reasons: 错误类型
+        # @param Reasons: <p>错误类型</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Reasons: Array
-        # @param Status: 处理状态，0：待处理，1：已拒答，2：已忽略，3：已纠错
+        # @param Status: <p>处理状态，0：待处理，1：已拒答，2：已忽略，3：已纠错</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
-        # @param CreateTime: 创建时间，秒级时间戳
+        # @param CreateTime: <p>创建时间，秒级时间戳</p>
         # @type CreateTime: String
-        # @param UpdateTime: 更新时间,秒级时间戳
+        # @param UpdateTime: <p>更新时间,秒级时间戳</p>
         # @type UpdateTime: String
-        # @param Operator: 操作人
+        # @param Operator: <p>操作人</p>
         # @type Operator: String
-        # @param FeedbackContent: 自定义反馈
+        # @param FeedbackContent: <p>自定义反馈</p>
         # @type FeedbackContent: String
 
         attr_accessor :ReplyBizId, :RecordBizId, :Question, :Answer, :Reasons, :Status, :CreateTime, :UpdateTime, :Operator, :FeedbackContent

@@ -3294,10 +3294,12 @@ module TencentCloud
         # @type DependencyTriggerPolicy: String
         # @param AllowDownstreamDependency: <p>是否允许下游依赖 1允许 0不允许</p><p>取值范围：[0, 1]</p><p>默认值：1</p>
         # @type AllowDownstreamDependency: Integer
+        # @param ScheduleType: <p>调度类型: 0 正常调度 1 空跑调度</p><p>枚举值：</p><ul><li>0： 正常调度</li><li>1： 空跑调度</li></ul><p>默认值：0</p>
+        # @type ScheduleType: Integer
 
-        attr_accessor :UpstreamDependencyConfigList, :RunPriorityType, :RetryWaitMinute, :MaxRetryNumber, :ExecutionTTLMinute, :WaitExecutionTotalTTLMinute, :AllowRedoType, :ParamTaskOutList, :ParamTaskInList, :TaskOutputRegistryList, :DependencyTriggerPolicy, :AllowDownstreamDependency
+        attr_accessor :UpstreamDependencyConfigList, :RunPriorityType, :RetryWaitMinute, :MaxRetryNumber, :ExecutionTTLMinute, :WaitExecutionTotalTTLMinute, :AllowRedoType, :ParamTaskOutList, :ParamTaskInList, :TaskOutputRegistryList, :DependencyTriggerPolicy, :AllowDownstreamDependency, :ScheduleType
 
-        def initialize(upstreamdependencyconfiglist=nil, runprioritytype=nil, retrywaitminute=nil, maxretrynumber=nil, executionttlminute=nil, waitexecutiontotalttlminute=nil, allowredotype=nil, paramtaskoutlist=nil, paramtaskinlist=nil, taskoutputregistrylist=nil, dependencytriggerpolicy=nil, allowdownstreamdependency=nil)
+        def initialize(upstreamdependencyconfiglist=nil, runprioritytype=nil, retrywaitminute=nil, maxretrynumber=nil, executionttlminute=nil, waitexecutiontotalttlminute=nil, allowredotype=nil, paramtaskoutlist=nil, paramtaskinlist=nil, taskoutputregistrylist=nil, dependencytriggerpolicy=nil, allowdownstreamdependency=nil, scheduletype=nil)
           @UpstreamDependencyConfigList = upstreamdependencyconfiglist
           @RunPriorityType = runprioritytype
           @RetryWaitMinute = retrywaitminute
@@ -3310,6 +3312,7 @@ module TencentCloud
           @TaskOutputRegistryList = taskoutputregistrylist
           @DependencyTriggerPolicy = dependencytriggerpolicy
           @AllowDownstreamDependency = allowdownstreamdependency
+          @ScheduleType = scheduletype
         end
 
         def deserialize(params)
@@ -3353,6 +3356,7 @@ module TencentCloud
           end
           @DependencyTriggerPolicy = params['DependencyTriggerPolicy']
           @AllowDownstreamDependency = params['AllowDownstreamDependency']
+          @ScheduleType = params['ScheduleType']
         end
       end
 
@@ -8089,26 +8093,30 @@ module TencentCloud
 
       # 参数传递-引用参数
       class InTaskParameter < TencentCloud::Common::AbstractModel
-        # @param ParamKey: 参数名
+        # @param ParamKey: <p>参数名</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParamKey: String
-        # @param ParamDesc: 参数描述：格式为 项目标识.任务名称.参数名；例：project_wedata_1.sh_250820_104107.pp_out
+        # @param ParamDesc: <p>参数描述：格式为 项目标识.任务名称.参数名；例：project_wedata_1.sh_250820_104107.pp_out</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParamDesc: String
-        # @param FromTaskId: 父任务ID
+        # @param FromTaskId: <p>父任务ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FromTaskId: String
-        # @param FromParamKey: 父任务参数key
+        # @param FromParamKey: <p>父任务参数key</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FromParamKey: String
+        # @param Type: <p>任务输入类型，默认使用TASK</p><p>枚举值：</p><ul><li>TASK： 来源为父任务</li><li>CONSTANT： 常量值，目前仅for-each节点支持</li></ul>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
 
-        attr_accessor :ParamKey, :ParamDesc, :FromTaskId, :FromParamKey
+        attr_accessor :ParamKey, :ParamDesc, :FromTaskId, :FromParamKey, :Type
 
-        def initialize(paramkey=nil, paramdesc=nil, fromtaskid=nil, fromparamkey=nil)
+        def initialize(paramkey=nil, paramdesc=nil, fromtaskid=nil, fromparamkey=nil, type=nil)
           @ParamKey = paramkey
           @ParamDesc = paramdesc
           @FromTaskId = fromtaskid
           @FromParamKey = fromparamkey
+          @Type = type
         end
 
         def deserialize(params)
@@ -8116,6 +8124,7 @@ module TencentCloud
           @ParamDesc = params['ParamDesc']
           @FromTaskId = params['FromTaskId']
           @FromParamKey = params['FromParamKey']
+          @Type = params['Type']
         end
       end
 
@@ -21890,10 +21899,13 @@ module TencentCloud
         # @param AllowDownstreamDependency: <p>是否允许下游依赖 1允许 0不允许</p><p>取值范围：[0, 1]</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AllowDownstreamDependency: Integer
+        # @param ScheduleType: <p>调度类型: 0 正常调度 1 空跑调度</p><p>枚举值：</p><ul><li>0： 正常调度</li><li>1： 空跑调度</li></ul><p>默认值：0</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScheduleType: Integer
 
-        attr_accessor :UpstreamDependencyConfigList, :RunPriorityType, :RetryWaitMinute, :MaxRetryNumber, :ExecutionTTLMinute, :WaitExecutionTotalTTLMinute, :AllowRedoType, :ParamTaskOutList, :ParamTaskInList, :TaskOutputRegistryList, :DependencyTriggerPolicy, :AllowDownstreamDependency
+        attr_accessor :UpstreamDependencyConfigList, :RunPriorityType, :RetryWaitMinute, :MaxRetryNumber, :ExecutionTTLMinute, :WaitExecutionTotalTTLMinute, :AllowRedoType, :ParamTaskOutList, :ParamTaskInList, :TaskOutputRegistryList, :DependencyTriggerPolicy, :AllowDownstreamDependency, :ScheduleType
 
-        def initialize(upstreamdependencyconfiglist=nil, runprioritytype=nil, retrywaitminute=nil, maxretrynumber=nil, executionttlminute=nil, waitexecutiontotalttlminute=nil, allowredotype=nil, paramtaskoutlist=nil, paramtaskinlist=nil, taskoutputregistrylist=nil, dependencytriggerpolicy=nil, allowdownstreamdependency=nil)
+        def initialize(upstreamdependencyconfiglist=nil, runprioritytype=nil, retrywaitminute=nil, maxretrynumber=nil, executionttlminute=nil, waitexecutiontotalttlminute=nil, allowredotype=nil, paramtaskoutlist=nil, paramtaskinlist=nil, taskoutputregistrylist=nil, dependencytriggerpolicy=nil, allowdownstreamdependency=nil, scheduletype=nil)
           @UpstreamDependencyConfigList = upstreamdependencyconfiglist
           @RunPriorityType = runprioritytype
           @RetryWaitMinute = retrywaitminute
@@ -21906,6 +21918,7 @@ module TencentCloud
           @TaskOutputRegistryList = taskoutputregistrylist
           @DependencyTriggerPolicy = dependencytriggerpolicy
           @AllowDownstreamDependency = allowdownstreamdependency
+          @ScheduleType = scheduletype
         end
 
         def deserialize(params)
@@ -21949,6 +21962,7 @@ module TencentCloud
           end
           @DependencyTriggerPolicy = params['DependencyTriggerPolicy']
           @AllowDownstreamDependency = params['AllowDownstreamDependency']
+          @ScheduleType = params['ScheduleType']
         end
       end
 

@@ -690,10 +690,13 @@ module TencentCloud
         # @type TemplateInfo: Array
         # @param TrxId:  事务ID
         # @type TrxId: Integer
+        # @param ClientPort: 端口
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClientPort: Integer
 
-        attr_accessor :AffectRows, :ErrCode, :SqlType, :PolicyName, :DBName, :Sql, :Host, :User, :ExecTime, :Timestamp, :SentRows, :ThreadId, :CheckRows, :CpuTime, :IoWaitTime, :LockWaitTime, :NsTime, :TrxLivingTime, :TemplateInfo, :TrxId
+        attr_accessor :AffectRows, :ErrCode, :SqlType, :PolicyName, :DBName, :Sql, :Host, :User, :ExecTime, :Timestamp, :SentRows, :ThreadId, :CheckRows, :CpuTime, :IoWaitTime, :LockWaitTime, :NsTime, :TrxLivingTime, :TemplateInfo, :TrxId, :ClientPort
 
-        def initialize(affectrows=nil, errcode=nil, sqltype=nil, policyname=nil, dbname=nil, sql=nil, host=nil, user=nil, exectime=nil, timestamp=nil, sentrows=nil, threadid=nil, checkrows=nil, cputime=nil, iowaittime=nil, lockwaittime=nil, nstime=nil, trxlivingtime=nil, templateinfo=nil, trxid=nil)
+        def initialize(affectrows=nil, errcode=nil, sqltype=nil, policyname=nil, dbname=nil, sql=nil, host=nil, user=nil, exectime=nil, timestamp=nil, sentrows=nil, threadid=nil, checkrows=nil, cputime=nil, iowaittime=nil, lockwaittime=nil, nstime=nil, trxlivingtime=nil, templateinfo=nil, trxid=nil, clientport=nil)
           @AffectRows = affectrows
           @ErrCode = errcode
           @SqlType = sqltype
@@ -714,6 +717,7 @@ module TencentCloud
           @TrxLivingTime = trxlivingtime
           @TemplateInfo = templateinfo
           @TrxId = trxid
+          @ClientPort = clientport
         end
 
         def deserialize(params)
@@ -744,6 +748,7 @@ module TencentCloud
             end
           end
           @TrxId = params['TrxId']
+          @ClientPort = params['ClientPort']
         end
       end
 
