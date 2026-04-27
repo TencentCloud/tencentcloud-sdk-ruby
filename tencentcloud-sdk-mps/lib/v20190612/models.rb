@@ -5275,33 +5275,29 @@ module TencentCloud
 
       # 转动图任务类型。
       class AnimatedGraphicTaskInput < TencentCloud::Common::AbstractModel
-        # @param Definition: 视频转动图模板 ID。
+        # @param Definition: <p>视频转动图模板 ID。</p>
         # @type Definition: Integer
-        # @param StartTimeOffset: 动图在视频中的开始时间，单位为秒。
+        # @param StartTimeOffset: <p>动图在视频中的开始时间，单位为秒。</p>
         # @type StartTimeOffset: Float
-        # @param EndTimeOffset: 动图在视频中的结束时间，单位为秒。
+        # @param EndTimeOffset: <p>动图在视频中的结束时间，单位为秒。</p>
         # @type EndTimeOffset: Float
-        # @param OutputStorage: 转动图后文件的目标存储，不填则继承上层的 OutputStorage 值。
+        # @param OutputStorage: <p>转动图后文件的目标存储，不填则继承上层的 OutputStorage 值。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OutputStorage: :class:`Tencentcloud::Mps.v20190612.models.TaskOutputStorage`
-        # @param OutputObjectPath: 转动图后文件的输出路径，可以为相对路径或者绝对路径。
-        # 若需定义输出路径，路径需以`.{format}`结尾。变量名请参考 [文件名变量说明](https://cloud.tencent.com/document/product/862/37039)。
-        # 相对路径示例：
-        # <li>文件名_{变量名}.{format}</li>
-        # <li>文件名.{format}</li>
-        # 绝对路径示例：
-        # <li>/自定义路径/文件名_{变量名}.{format}</li>
-        # 如果不填，则默认为相对路径：`{inputName}_animatedGraphic_{definition}.{format}`。
+        # @param OutputObjectPath: <p>转动图后文件的输出路径，可以为相对路径或者绝对路径。<br>若需定义输出路径，路径需以<code>.{format}</code>结尾。变量名请参考 <a href="https://cloud.tencent.com/document/product/862/37039">文件名变量说明</a>。<br>相对路径示例：</p><li>文件名_{变量名}.{format}</li><li>文件名.{format}</li>绝对路径示例：<li>/自定义路径/文件名_{变量名}.{format}</li>如果不填，则默认为相对路径：<code>{inputName}_animatedGraphic_{definition}.{format}</code>。
         # @type OutputObjectPath: String
+        # @param ExtInfo: <p>扩展参数。</p>
+        # @type ExtInfo: String
 
-        attr_accessor :Definition, :StartTimeOffset, :EndTimeOffset, :OutputStorage, :OutputObjectPath
+        attr_accessor :Definition, :StartTimeOffset, :EndTimeOffset, :OutputStorage, :OutputObjectPath, :ExtInfo
 
-        def initialize(definition=nil, starttimeoffset=nil, endtimeoffset=nil, outputstorage=nil, outputobjectpath=nil)
+        def initialize(definition=nil, starttimeoffset=nil, endtimeoffset=nil, outputstorage=nil, outputobjectpath=nil, extinfo=nil)
           @Definition = definition
           @StartTimeOffset = starttimeoffset
           @EndTimeOffset = endtimeoffset
           @OutputStorage = outputstorage
           @OutputObjectPath = outputobjectpath
+          @ExtInfo = extinfo
         end
 
         def deserialize(params)
@@ -5313,6 +5309,7 @@ module TencentCloud
             @OutputStorage.deserialize(params['OutputStorage'])
           end
           @OutputObjectPath = params['OutputObjectPath']
+          @ExtInfo = params['ExtInfo']
         end
       end
 
@@ -9872,10 +9869,14 @@ module TencentCloud
         # @type SelectingSubtitleAreasConfig: :class:`Tencentcloud::Mps.v20190612.models.SelectingSubtitleAreasConfig`
         # @param SubtitleEmbedId: <p>压制模板id，只有ProcessType为0或2（任务类型为ASR或OCR）时才允许填写。开启多个翻译语言时，不允许填写。</p>
         # @type SubtitleEmbedId: Integer
+        # @param SpeakerMode: <p>说话人识别开关，可选值：<br>0：表示不开启说话人识别；<br>1：表示开启说话人识别；<br>默认不开启说话人识别。</p>
+        # @type SpeakerMode: Integer
+        # @param SpeakerLabel: <p>说话人识别输出到字幕文件，可选值：<br>0：表示不输出到字幕文件；<br>1：表示输出到vtt字幕文件<br>注意：使用此参数SpeakerMode的值不能为0；<br>默认不输出到字幕文件。</p>
+        # @type SpeakerLabel: Integer
 
-        attr_accessor :Name, :VideoSrcLanguage, :SubtitleType, :Comment, :SubtitleFormat, :AsrHotWordsConfigure, :TranslateSwitch, :TranslateDstLanguage, :ProcessType, :SelectingSubtitleAreasConfig, :SubtitleEmbedId
+        attr_accessor :Name, :VideoSrcLanguage, :SubtitleType, :Comment, :SubtitleFormat, :AsrHotWordsConfigure, :TranslateSwitch, :TranslateDstLanguage, :ProcessType, :SelectingSubtitleAreasConfig, :SubtitleEmbedId, :SpeakerMode, :SpeakerLabel
 
-        def initialize(name=nil, videosrclanguage=nil, subtitletype=nil, comment=nil, subtitleformat=nil, asrhotwordsconfigure=nil, translateswitch=nil, translatedstlanguage=nil, processtype=nil, selectingsubtitleareasconfig=nil, subtitleembedid=nil)
+        def initialize(name=nil, videosrclanguage=nil, subtitletype=nil, comment=nil, subtitleformat=nil, asrhotwordsconfigure=nil, translateswitch=nil, translatedstlanguage=nil, processtype=nil, selectingsubtitleareasconfig=nil, subtitleembedid=nil, speakermode=nil, speakerlabel=nil)
           @Name = name
           @VideoSrcLanguage = videosrclanguage
           @SubtitleType = subtitletype
@@ -9887,6 +9888,8 @@ module TencentCloud
           @ProcessType = processtype
           @SelectingSubtitleAreasConfig = selectingsubtitleareasconfig
           @SubtitleEmbedId = subtitleembedid
+          @SpeakerMode = speakermode
+          @SpeakerLabel = speakerlabel
         end
 
         def deserialize(params)
@@ -9907,6 +9910,8 @@ module TencentCloud
             @SelectingSubtitleAreasConfig.deserialize(params['SelectingSubtitleAreasConfig'])
           end
           @SubtitleEmbedId = params['SubtitleEmbedId']
+          @SpeakerMode = params['SpeakerMode']
+          @SpeakerLabel = params['SpeakerLabel']
         end
       end
 
@@ -19945,34 +19950,30 @@ module TencentCloud
 
       # 对视频截雪碧图任务输入参数类型
       class ImageSpriteTaskInput < TencentCloud::Common::AbstractModel
-        # @param Definition: 雪碧图模板 ID。
+        # @param Definition: <p>雪碧图模板 ID。</p>
         # @type Definition: Integer
-        # @param OutputStorage: 截取雪碧图后文件的目标存储，不填则继承上层的 OutputStorage 值。
+        # @param OutputStorage: <p>截取雪碧图后文件的目标存储，不填则继承上层的 OutputStorage 值。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OutputStorage: :class:`Tencentcloud::Mps.v20190612.models.TaskOutputStorage`
-        # @param OutputObjectPath: 截取雪碧图后，雪碧图图片文件的输出路径，可以为相对路径或者绝对路径。
-        # 若需定义输出路径，路径需以`.{format}`结尾。变量名请参考 [文件名变量说明](https://cloud.tencent.com/document/product/862/37039)。
-        # 相对路径示例：
-        # <li>文件名_{变量名}.{format}</li>
-        # <li>文件名.{format}</li>
-        # 绝对路径示例：
-        # <li>/自定义路径/文件名_{变量名}.{format}</li>
-        # 如果不填，则默认为相对路径：`{inputName}_imageSprite_{definition}_{number}.{format}`。
+        # @param OutputObjectPath: <p>截取雪碧图后，雪碧图图片文件的输出路径，可以为相对路径或者绝对路径。<br>若需定义输出路径，路径需以<code>.{format}</code>结尾。变量名请参考 <a href="https://cloud.tencent.com/document/product/862/37039">文件名变量说明</a>。<br>相对路径示例：</p><li>文件名_{变量名}.{format}</li><li>文件名.{format}</li>绝对路径示例：<li>/自定义路径/文件名_{变量名}.{format}</li>如果不填，则默认为相对路径：<code>{inputName}_imageSprite_{definition}_{number}.{format}</code>。
         # @type OutputObjectPath: String
-        # @param WebVttObjectName: 截取雪碧图后，Web VTT 文件的输出路径，只能为相对路径。如果不填，则默认为相对路径：`{inputName}_imageSprite_{definition}.{format}`。
+        # @param WebVttObjectName: <p>截取雪碧图后，Web VTT 文件的输出路径，只能为相对路径。如果不填，则默认为相对路径：<code>{inputName}_imageSprite_{definition}.{format}</code>。</p>
         # @type WebVttObjectName: String
-        # @param ObjectNumberFormat: 截取雪碧图后输出路径中的`{number}`变量的规则。
+        # @param ObjectNumberFormat: <p>截取雪碧图后输出路径中的<code>{number}</code>变量的规则。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ObjectNumberFormat: :class:`Tencentcloud::Mps.v20190612.models.NumberFormat`
+        # @param ExtInfo: <p>扩展参数。</p>
+        # @type ExtInfo: String
 
-        attr_accessor :Definition, :OutputStorage, :OutputObjectPath, :WebVttObjectName, :ObjectNumberFormat
+        attr_accessor :Definition, :OutputStorage, :OutputObjectPath, :WebVttObjectName, :ObjectNumberFormat, :ExtInfo
 
-        def initialize(definition=nil, outputstorage=nil, outputobjectpath=nil, webvttobjectname=nil, objectnumberformat=nil)
+        def initialize(definition=nil, outputstorage=nil, outputobjectpath=nil, webvttobjectname=nil, objectnumberformat=nil, extinfo=nil)
           @Definition = definition
           @OutputStorage = outputstorage
           @OutputObjectPath = outputobjectpath
           @WebVttObjectName = webvttobjectname
           @ObjectNumberFormat = objectnumberformat
+          @ExtInfo = extinfo
         end
 
         def deserialize(params)
@@ -19987,6 +19988,7 @@ module TencentCloud
             @ObjectNumberFormat = NumberFormat.new
             @ObjectNumberFormat.deserialize(params['ObjectNumberFormat'])
           end
+          @ExtInfo = params['ExtInfo']
         end
       end
 
@@ -24727,10 +24729,14 @@ module TencentCloud
         # @type SelectingSubtitleAreasConfig: :class:`Tencentcloud::Mps.v20190612.models.SelectingSubtitleAreasConfig`
         # @param SubtitleEmbedId: <p>压制模板id，只有ProcessType为0或2（任务类型为ASR或OCR）时才允许填写。开启多个翻译语言时，不允许填写。</p>
         # @type SubtitleEmbedId: Integer
+        # @param SpeakerMode: <p>说话人识别开关，可选值：<br>0：表示不开启说话人识别；<br>1：表示开启说话人识别。</p>
+        # @type SpeakerMode: Integer
+        # @param SpeakerLabel: <p>说话人识别输出到字幕文件，可选值：<br>0：表示不输出到字幕文件；<br>1：表示输出到vtt字幕文件<br>注意：使用此参数SpeakerMode的值不能为0。</p>
+        # @type SpeakerLabel: Integer
 
-        attr_accessor :Definition, :TranslateSwitch, :Name, :Comment, :VideoSrcLanguage, :SubtitleFormat, :SubtitleType, :AsrHotWordsConfigure, :TranslateDstLanguage, :ProcessType, :SelectingSubtitleAreasConfig, :SubtitleEmbedId
+        attr_accessor :Definition, :TranslateSwitch, :Name, :Comment, :VideoSrcLanguage, :SubtitleFormat, :SubtitleType, :AsrHotWordsConfigure, :TranslateDstLanguage, :ProcessType, :SelectingSubtitleAreasConfig, :SubtitleEmbedId, :SpeakerMode, :SpeakerLabel
 
-        def initialize(definition=nil, translateswitch=nil, name=nil, comment=nil, videosrclanguage=nil, subtitleformat=nil, subtitletype=nil, asrhotwordsconfigure=nil, translatedstlanguage=nil, processtype=nil, selectingsubtitleareasconfig=nil, subtitleembedid=nil)
+        def initialize(definition=nil, translateswitch=nil, name=nil, comment=nil, videosrclanguage=nil, subtitleformat=nil, subtitletype=nil, asrhotwordsconfigure=nil, translatedstlanguage=nil, processtype=nil, selectingsubtitleareasconfig=nil, subtitleembedid=nil, speakermode=nil, speakerlabel=nil)
           @Definition = definition
           @TranslateSwitch = translateswitch
           @Name = name
@@ -24743,6 +24749,8 @@ module TencentCloud
           @ProcessType = processtype
           @SelectingSubtitleAreasConfig = selectingsubtitleareasconfig
           @SubtitleEmbedId = subtitleembedid
+          @SpeakerMode = speakermode
+          @SpeakerLabel = speakerlabel
         end
 
         def deserialize(params)
@@ -24764,6 +24772,8 @@ module TencentCloud
             @SelectingSubtitleAreasConfig.deserialize(params['SelectingSubtitleAreasConfig'])
           end
           @SubtitleEmbedId = params['SubtitleEmbedId']
+          @SpeakerMode = params['SpeakerMode']
+          @SpeakerLabel = params['SpeakerLabel']
         end
       end
 
@@ -28279,10 +28289,14 @@ module TencentCloud
         # @type SelectingSubtitleAreasConfig: :class:`Tencentcloud::Mps.v20190612.models.SelectingSubtitleAreasConfig`
         # @param SubtitleEmbedId: <p>压制模板id，只有ProcessType为0或2（任务类型为ASR或OCR）时才允许填写</p>
         # @type SubtitleEmbedId: Integer
+        # @param SpeakerMode: <p>说话人识别模式，可选值：<br>0：表示不开启说话人识别；<br>1：表示开启说话人识别；<br>默认值：0</p>
+        # @type SpeakerMode: Integer
+        # @param SpeakerLabel: <p>说话人识别输出到字幕文件，可选值：<br>0：表示不输出到字幕文件；<br>1：表示输出到vtt字幕文件<br>注意：使用此参数SpeakerMode的值不能为0；<br>默认值：0</p>
+        # @type SpeakerLabel: Integer
 
-        attr_accessor :SubtitleType, :VideoSrcLanguage, :SubtitleFormat, :TranslateSwitch, :TranslateDstLanguage, :AsrHotWordsConfigure, :ExtInfo, :ProcessType, :SelectingSubtitleAreasConfig, :SubtitleEmbedId
+        attr_accessor :SubtitleType, :VideoSrcLanguage, :SubtitleFormat, :TranslateSwitch, :TranslateDstLanguage, :AsrHotWordsConfigure, :ExtInfo, :ProcessType, :SelectingSubtitleAreasConfig, :SubtitleEmbedId, :SpeakerMode, :SpeakerLabel
 
-        def initialize(subtitletype=nil, videosrclanguage=nil, subtitleformat=nil, translateswitch=nil, translatedstlanguage=nil, asrhotwordsconfigure=nil, extinfo=nil, processtype=nil, selectingsubtitleareasconfig=nil, subtitleembedid=nil)
+        def initialize(subtitletype=nil, videosrclanguage=nil, subtitleformat=nil, translateswitch=nil, translatedstlanguage=nil, asrhotwordsconfigure=nil, extinfo=nil, processtype=nil, selectingsubtitleareasconfig=nil, subtitleembedid=nil, speakermode=nil, speakerlabel=nil)
           @SubtitleType = subtitletype
           @VideoSrcLanguage = videosrclanguage
           @SubtitleFormat = subtitleformat
@@ -28293,6 +28307,8 @@ module TencentCloud
           @ProcessType = processtype
           @SelectingSubtitleAreasConfig = selectingsubtitleareasconfig
           @SubtitleEmbedId = subtitleembedid
+          @SpeakerMode = speakermode
+          @SpeakerLabel = speakerlabel
         end
 
         def deserialize(params)
@@ -28312,6 +28328,8 @@ module TencentCloud
             @SelectingSubtitleAreasConfig.deserialize(params['SelectingSubtitleAreasConfig'])
           end
           @SubtitleEmbedId = params['SubtitleEmbedId']
+          @SpeakerMode = params['SpeakerMode']
+          @SpeakerLabel = params['SpeakerLabel']
         end
       end
 
@@ -29288,34 +29306,30 @@ module TencentCloud
 
       # 对视频做采样截图任务输入参数类型。
       class SampleSnapshotTaskInput < TencentCloud::Common::AbstractModel
-        # @param Definition: 采样截图模板 ID。
+        # @param Definition: <p>采样截图模板 ID。</p>
         # @type Definition: Integer
-        # @param WatermarkSet: 水印列表，支持多张图片或文字水印，最大可支持 10 张。
+        # @param WatermarkSet: <p>水印列表，支持多张图片或文字水印，最大可支持 10 张。</p>
         # @type WatermarkSet: Array
-        # @param OutputStorage: 采样截图后文件的目标存储，不填则继承上层的 OutputStorage 值。
+        # @param OutputStorage: <p>采样截图后文件的目标存储，不填则继承上层的 OutputStorage 值。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OutputStorage: :class:`Tencentcloud::Mps.v20190612.models.TaskOutputStorage`
-        # @param OutputObjectPath: 采样截图后图片文件的输出路径，可以为相对路径或者绝对路径。
-        # 若需定义输出路径，路径需以`.{format}`结尾。变量名请参考 [文件名变量说明](https://cloud.tencent.com/document/product/862/37039)。
-        # 相对路径示例：
-        # <li>文件名_{变量名}.{format}</li>
-        # <li>文件名.{format}</li>
-        # 绝对路径示例：
-        # <li>/自定义路径/文件名_{变量名}.{format}</li>
-        # 如果不填，则默认为相对路径：`{inputName}_sampleSnapshot_{definition}_{number}.{format}`。
+        # @param OutputObjectPath: <p>采样截图后图片文件的输出路径，可以为相对路径或者绝对路径。<br>若需定义输出路径，路径需以<code>.{format}</code>结尾。变量名请参考 <a href="https://cloud.tencent.com/document/product/862/37039">文件名变量说明</a>。<br>相对路径示例：</p><li>文件名_{变量名}.{format}</li><li>文件名.{format}</li>绝对路径示例：<li>/自定义路径/文件名_{变量名}.{format}</li>如果不填，则默认为相对路径：<code>{inputName}_sampleSnapshot_{definition}_{number}.{format}</code>。
         # @type OutputObjectPath: String
-        # @param ObjectNumberFormat: 采样截图后输出路径中的`{number}`变量的规则。
+        # @param ObjectNumberFormat: <p>采样截图后输出路径中的<code>{number}</code>变量的规则。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ObjectNumberFormat: :class:`Tencentcloud::Mps.v20190612.models.NumberFormat`
+        # @param ExtInfo: <p>扩展参数。</p>
+        # @type ExtInfo: String
 
-        attr_accessor :Definition, :WatermarkSet, :OutputStorage, :OutputObjectPath, :ObjectNumberFormat
+        attr_accessor :Definition, :WatermarkSet, :OutputStorage, :OutputObjectPath, :ObjectNumberFormat, :ExtInfo
 
-        def initialize(definition=nil, watermarkset=nil, outputstorage=nil, outputobjectpath=nil, objectnumberformat=nil)
+        def initialize(definition=nil, watermarkset=nil, outputstorage=nil, outputobjectpath=nil, objectnumberformat=nil, extinfo=nil)
           @Definition = definition
           @WatermarkSet = watermarkset
           @OutputStorage = outputstorage
           @OutputObjectPath = outputobjectpath
           @ObjectNumberFormat = objectnumberformat
+          @ExtInfo = extinfo
         end
 
         def deserialize(params)
@@ -29337,6 +29351,7 @@ module TencentCloud
             @ObjectNumberFormat = NumberFormat.new
             @ObjectNumberFormat.deserialize(params['ObjectNumberFormat'])
           end
+          @ExtInfo = params['ExtInfo']
         end
       end
 
@@ -30783,18 +30798,20 @@ module TencentCloud
 
       # 智能字幕翻译的输入。
       class SmartSubtitleTaskResultInput < TencentCloud::Common::AbstractModel
-        # @param Definition: 智能字幕模板 ID。
+        # @param Definition: <p>智能字幕模板 ID。</p>
         # @type Definition: Integer
-        # @param RawParameter: 智能字幕自定义参数，当 Definition 填 0 时有效。
-        # 该参数用于高度定制场景，建议您优先使用 Definition 指定智能字幕参数。
+        # @param RawParameter: <p>智能字幕自定义参数，当 Definition 填 0 时有效。<br>该参数用于高度定制场景，建议您优先使用 Definition 指定智能字幕参数。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RawParameter: :class:`Tencentcloud::Mps.v20190612.models.RawSmartSubtitleParameter`
+        # @param UserExtPara: <p>扩展参数。</p>
+        # @type UserExtPara: String
 
-        attr_accessor :Definition, :RawParameter
+        attr_accessor :Definition, :RawParameter, :UserExtPara
 
-        def initialize(definition=nil, rawparameter=nil)
+        def initialize(definition=nil, rawparameter=nil, userextpara=nil)
           @Definition = definition
           @RawParameter = rawparameter
+          @UserExtPara = userextpara
         end
 
         def deserialize(params)
@@ -30803,6 +30820,7 @@ module TencentCloud
             @RawParameter = RawSmartSubtitleParameter.new
             @RawParameter.deserialize(params['RawParameter'])
           end
+          @UserExtPara = params['UserExtPara']
         end
       end
 
@@ -30999,120 +31017,58 @@ module TencentCloud
 
       # 智能字幕模板详情
       class SmartSubtitleTemplateItem < TencentCloud::Common::AbstractModel
-        # @param Definition: 智能字幕模板唯一标识
+        # @param Definition: <p>智能字幕模板唯一标识</p>
         # @type Definition: Integer
-        # @param Name: 智能字幕模板名称
+        # @param Name: <p>智能字幕模板名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
-        # @param Comment: 智能字幕模板描述信息
+        # @param Comment: <p>智能字幕模板描述信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Comment: String
-        # @param Type: 模板类型，取值范围：
-        # * Preset：系统预置模板；
-        # * Custom：用户自定义模板。
+        # @param Type: <p>模板类型，取值范围：</p><ul><li>Preset：系统预置模板；</li><li>Custom：用户自定义模板。</li></ul>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
-        # @param AsrHotWordsConfigure: ASR热词库参数
+        # @param AsrHotWordsConfigure: <p>ASR热词库参数</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AsrHotWordsConfigure: :class:`Tencentcloud::Mps.v20190612.models.AsrHotWordsConfigure`
-        # @param AsrHotWordsLibraryName: 模板关联热词库名称
+        # @param AsrHotWordsLibraryName: <p>模板关联热词库名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AsrHotWordsLibraryName: String
-        # @param VideoSrcLanguage: 智能字幕视频源语言列表：
-
-        # `zh`：简体中文
-        # `yue`：中文粵语
-        # `zh-PY`：中英粤
-        # `zh_medical`：中文医疗
-        # `zh_dialect`：中文方言
-        # `prime_zh`：中英方言
-        # `zh_en`：中英
-        # `en`：英语
-        # `ja`：日语
-        # `ko`：韩语
-        # `fr`：法语
-        # `es`：西班牙语
-        # `it`：意大利语
-        # `de`：德语
-        # `tr`：土耳其语
-        # `ru`：俄语
-        # `pt`：葡萄牙语（巴西）
-        # `pt-PT`：葡萄牙语（葡萄牙）
-        # `vi`：越南语
-        # `id`：印度尼西亚语
-        # `ms`：马来语
-        # `th`：泰语
-        # `ar`：阿拉伯语
-        # `hi`：印地语
-        # `fil`：菲律宾语
-        # `auto`：自动识别（仅在纯字幕翻译中支持）
+        # @param VideoSrcLanguage: <p>智能字幕视频源语言列表：</p><p><code>zh</code>：简体中文<br><code>yue</code>：中文粵语<br><code>zh-PY</code>：中英粤<br><code>zh_medical</code>：中文医疗<br><code>zh_dialect</code>：中文方言<br><code>prime_zh</code>：中英方言<br><code>zh_en</code>：中英<br><code>en</code>：英语<br><code>ja</code>：日语<br><code>ko</code>：韩语<br><code>fr</code>：法语<br><code>es</code>：西班牙语<br><code>it</code>：意大利语<br><code>de</code>：德语<br><code>tr</code>：土耳其语<br><code>ru</code>：俄语<br><code>pt</code>：葡萄牙语（巴西）<br><code>pt-PT</code>：葡萄牙语（葡萄牙）<br><code>vi</code>：越南语<br><code>id</code>：印度尼西亚语<br><code>ms</code>：马来语<br><code>th</code>：泰语<br><code>ar</code>：阿拉伯语<br><code>hi</code>：印地语<br><code>fil</code>：菲律宾语<br><code>auto</code>：自动识别（仅在纯字幕翻译中支持）</p>
         # @type VideoSrcLanguage: String
-        # @param SubtitleFormat: 智能字幕文件格式
-        # - vtt: WebVTT 格式
-        # - srt: SRT格式
-        # - original：与源字幕文件一致（用于纯字幕翻译模板）
-        # - 不填或填空：不生成字幕文件
+        # @param SubtitleFormat: <p>智能字幕文件格式</p><ul><li>vtt: WebVTT 格式</li><li>srt: SRT格式</li><li>original：与源字幕文件一致（用于纯字幕翻译模板）</li><li>不填或填空：不生成字幕文件</li></ul>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubtitleFormat: String
-        # @param SubtitleType: 智能字幕字幕语言类型
-        # 0: 源语言
-        # 1: 翻译语言
-        # 2: 源语言+翻译语言
-        # 当TranslateSwitch为OFF时仅支持取0
-        # 当TranslateSwitch为ON时仅支持取1或2
+        # @param SubtitleType: <p>智能字幕字幕语言类型<br>0: 源语言<br>1: 翻译语言<br>2: 源语言+翻译语言<br>当TranslateSwitch为OFF时仅支持取0<br>当TranslateSwitch为ON时仅支持取1或2</p>
         # @type SubtitleType: Integer
-        # @param TranslateSwitch: 字幕翻译开关
-        # ON: 开启翻译
-        # OFF: 关闭翻译
+        # @param TranslateSwitch: <p>字幕翻译开关<br>ON: 开启翻译<br>OFF: 关闭翻译</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TranslateSwitch: String
-        # @param TranslateDstLanguage: 字幕翻译目标语言
-        # 当TranslateSwitch为ON的时候生效
-        # `zh`：简体中文
-        # `zh-TW`：繁体中文
-        # `en`：英语
-        # `ja`：日语
-        # `ko`：韩语
-        # `fr`：法语
-        # `es`：西班牙语
-        # `it`：意大利语
-        # `de`：德语
-        # `tr`：土耳其语
-        # `ru`：俄语
-        # `pt`：葡萄牙语（巴西）
-        # `pt-PT`：葡萄牙语（葡萄牙）
-        # `vi`：越南语
-        # `id`：印度尼西亚语
-        # `ms`：马来语
-        # `th`：泰语
-        # `ar`：阿拉伯语
-        # `hi`：印地语
-        # `fil`：菲律宾语
-
-
-        # **注意**：多语言方式，则使用 `/` 分割，如：`en/ja`，表示英语和日语。
-
+        # @param TranslateDstLanguage: <p>字幕翻译目标语言<br>当TranslateSwitch为ON的时候生效<br><code>zh</code>：简体中文<br><code>zh-TW</code>：繁体中文<br><code>en</code>：英语<br><code>ja</code>：日语<br><code>ko</code>：韩语<br><code>fr</code>：法语<br><code>es</code>：西班牙语<br><code>it</code>：意大利语<br><code>de</code>：德语<br><code>tr</code>：土耳其语<br><code>ru</code>：俄语<br><code>pt</code>：葡萄牙语（巴西）<br><code>pt-PT</code>：葡萄牙语（葡萄牙）<br><code>vi</code>：越南语<br><code>id</code>：印度尼西亚语<br><code>ms</code>：马来语<br><code>th</code>：泰语<br><code>ar</code>：阿拉伯语<br><code>hi</code>：印地语<br><code>fil</code>：菲律宾语</p><p><strong>注意</strong>：多语言方式，则使用 <code>/</code> 分割，如：<code>en/ja</code>，表示英语和日语。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TranslateDstLanguage: String
-        # @param CreateTime: 模板创建时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
+        # @param CreateTime: <p>模板创建时间，使用 <a href="https://cloud.tencent.com/document/product/862/37710#52">ISO 日期格式</a>。</p>
         # @type CreateTime: String
-        # @param UpdateTime: 模板最后修改时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
+        # @param UpdateTime: <p>模板最后修改时间，使用 <a href="https://cloud.tencent.com/document/product/862/37710#52">ISO 日期格式</a>。</p>
         # @type UpdateTime: String
-        # @param AliasName: 智能字幕预设模板别名
+        # @param AliasName: <p>智能字幕预设模板别名</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AliasName: String
-        # @param ProcessType: 字幕处理类型：
-        # - 0：ASR识别字幕
-        # - 1：纯字幕翻译
-        # - 2:  OCR识别字幕
+        # @param ProcessType: <p>字幕处理类型：</p><ul><li>0：ASR识别字幕</li><li>1：纯字幕翻译</li><li>2:  OCR识别字幕</li></ul>
         # @type ProcessType: Integer
-        # @param SelectingSubtitleAreasConfig: 字幕OCR提取框选区域配置信息
+        # @param SelectingSubtitleAreasConfig: <p>字幕OCR提取框选区域配置信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SelectingSubtitleAreasConfig: :class:`Tencentcloud::Mps.v20190612.models.SelectingSubtitleAreasConfig`
+        # @param SubtitleEmbedId: <p>字幕压制模板id</p>
+        # @type SubtitleEmbedId: Integer
+        # @param SpeakerMode: <p>说话人识别模式，可选值：<br>0：表示不开启说话人识别；<br>1：表示开启说话人识别；<br>默认值：0</p>
+        # @type SpeakerMode: Integer
+        # @param SpeakerLabel: <p>说话人识别输出到字幕文件，可选值：<br>0：表示不输出到字幕文件；<br>1：表示输出到vtt字幕文件<br>注意：使用此参数SpeakerMode的值不能为0；<br>默认值：0</p>
+        # @type SpeakerLabel: Integer
 
-        attr_accessor :Definition, :Name, :Comment, :Type, :AsrHotWordsConfigure, :AsrHotWordsLibraryName, :VideoSrcLanguage, :SubtitleFormat, :SubtitleType, :TranslateSwitch, :TranslateDstLanguage, :CreateTime, :UpdateTime, :AliasName, :ProcessType, :SelectingSubtitleAreasConfig
+        attr_accessor :Definition, :Name, :Comment, :Type, :AsrHotWordsConfigure, :AsrHotWordsLibraryName, :VideoSrcLanguage, :SubtitleFormat, :SubtitleType, :TranslateSwitch, :TranslateDstLanguage, :CreateTime, :UpdateTime, :AliasName, :ProcessType, :SelectingSubtitleAreasConfig, :SubtitleEmbedId, :SpeakerMode, :SpeakerLabel
 
-        def initialize(definition=nil, name=nil, comment=nil, type=nil, asrhotwordsconfigure=nil, asrhotwordslibraryname=nil, videosrclanguage=nil, subtitleformat=nil, subtitletype=nil, translateswitch=nil, translatedstlanguage=nil, createtime=nil, updatetime=nil, aliasname=nil, processtype=nil, selectingsubtitleareasconfig=nil)
+        def initialize(definition=nil, name=nil, comment=nil, type=nil, asrhotwordsconfigure=nil, asrhotwordslibraryname=nil, videosrclanguage=nil, subtitleformat=nil, subtitletype=nil, translateswitch=nil, translatedstlanguage=nil, createtime=nil, updatetime=nil, aliasname=nil, processtype=nil, selectingsubtitleareasconfig=nil, subtitleembedid=nil, speakermode=nil, speakerlabel=nil)
           @Definition = definition
           @Name = name
           @Comment = comment
@@ -31129,6 +31085,9 @@ module TencentCloud
           @AliasName = aliasname
           @ProcessType = processtype
           @SelectingSubtitleAreasConfig = selectingsubtitleareasconfig
+          @SubtitleEmbedId = subtitleembedid
+          @SpeakerMode = speakermode
+          @SpeakerLabel = speakerlabel
         end
 
         def deserialize(params)
@@ -31154,6 +31113,9 @@ module TencentCloud
             @SelectingSubtitleAreasConfig = SelectingSubtitleAreasConfig.new
             @SelectingSubtitleAreasConfig.deserialize(params['SelectingSubtitleAreasConfig'])
           end
+          @SubtitleEmbedId = params['SubtitleEmbedId']
+          @SpeakerMode = params['SpeakerMode']
+          @SpeakerLabel = params['SpeakerLabel']
         end
       end
 
@@ -31266,35 +31228,28 @@ module TencentCloud
 
       # 对视频按指定时间点截图任务输入参数类型
       class SnapshotByTimeOffsetTaskInput < TencentCloud::Common::AbstractModel
-        # @param Definition: 指定时间点截图模板 ID。
+        # @param Definition: <p>指定时间点截图模板 ID。</p>
         # @type Definition: Integer
-        # @param ExtTimeOffsetSet: 截图时间点列表，时间点支持 s、% 两种格式：
-        # <li>当字符串以 s 结尾，表示时间点单位为秒，如 3.5s 表示时间点为第3.5秒；</li>
-        # <li>当字符串以 % 结尾，表示时间点为视频时长的百分比大小，如10%表示时间点为视频前第10%的时间。</li>
+        # @param ExtTimeOffsetSet: <p>截图时间点列表，时间点支持 s、% 两种格式：</p><li>当字符串以 s 结尾，表示时间点单位为秒，如 3.5s 表示时间点为第3.5秒；</li><li>当字符串以 % 结尾，表示时间点为视频时长的百分比大小，如10%表示时间点为视频前第10%的时间。</li>
         # @type ExtTimeOffsetSet: Array
-        # @param TimeOffsetSet: 截图时间点列表，单位为<font color=red>秒</font>。此参数已不再建议使用，建议您使用 ExtTimeOffsetSet 参数。
+        # @param TimeOffsetSet: <p>截图时间点列表，单位为<font color="red">秒</font>。此参数已不再建议使用，建议您使用 ExtTimeOffsetSet 参数。</p>
         # @type TimeOffsetSet: Array
-        # @param WatermarkSet: 水印列表，支持多张图片或文字水印，最大可支持 10 张。
+        # @param WatermarkSet: <p>水印列表，支持多张图片或文字水印，最大可支持 10 张。</p>
         # @type WatermarkSet: Array
-        # @param OutputStorage: 时间点截图后文件的目标存储，不填则继承上层的 OutputStorage 值。
+        # @param OutputStorage: <p>时间点截图后文件的目标存储，不填则继承上层的 OutputStorage 值。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OutputStorage: :class:`Tencentcloud::Mps.v20190612.models.TaskOutputStorage`
-        # @param OutputObjectPath: 时间点截图后图片文件的输出路径，可以为相对路径或者绝对路径。
-        # 若需定义输出路径，路径需以`.{format}`结尾。变量名请参考 [文件名变量说明](https://cloud.tencent.com/document/product/862/37039)。
-        # 相对路径示例：
-        # <li>文件名_{变量名}.{format}</li>
-        # <li>文件名.{format}</li>
-        # 绝对路径示例：
-        # <li>/自定义路径/文件名_{变量名}.{format}</li>
-        # 如果不填，则默认为相对路径：`{inputName}_snapshotByTimeOffset_{definition}_{number}.{format}`。
+        # @param OutputObjectPath: <p>时间点截图后图片文件的输出路径，可以为相对路径或者绝对路径。<br>若需定义输出路径，路径需以<code>.{format}</code>结尾。变量名请参考 <a href="https://cloud.tencent.com/document/product/862/37039">文件名变量说明</a>。<br>相对路径示例：</p><li>文件名_{变量名}.{format}</li><li>文件名.{format}</li>绝对路径示例：<li>/自定义路径/文件名_{变量名}.{format}</li>如果不填，则默认为相对路径：<code>{inputName}_snapshotByTimeOffset_{definition}_{number}.{format}</code>。
         # @type OutputObjectPath: String
-        # @param ObjectNumberFormat: 时间点截图后输出路径中的`{number}`变量的规则。
+        # @param ObjectNumberFormat: <p>时间点截图后输出路径中的<code>{number}</code>变量的规则。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ObjectNumberFormat: :class:`Tencentcloud::Mps.v20190612.models.NumberFormat`
+        # @param ExtInfo: <p>扩展参数。</p>
+        # @type ExtInfo: String
 
-        attr_accessor :Definition, :ExtTimeOffsetSet, :TimeOffsetSet, :WatermarkSet, :OutputStorage, :OutputObjectPath, :ObjectNumberFormat
+        attr_accessor :Definition, :ExtTimeOffsetSet, :TimeOffsetSet, :WatermarkSet, :OutputStorage, :OutputObjectPath, :ObjectNumberFormat, :ExtInfo
 
-        def initialize(definition=nil, exttimeoffsetset=nil, timeoffsetset=nil, watermarkset=nil, outputstorage=nil, outputobjectpath=nil, objectnumberformat=nil)
+        def initialize(definition=nil, exttimeoffsetset=nil, timeoffsetset=nil, watermarkset=nil, outputstorage=nil, outputobjectpath=nil, objectnumberformat=nil, extinfo=nil)
           @Definition = definition
           @ExtTimeOffsetSet = exttimeoffsetset
           @TimeOffsetSet = timeoffsetset
@@ -31302,6 +31257,7 @@ module TencentCloud
           @OutputStorage = outputstorage
           @OutputObjectPath = outputobjectpath
           @ObjectNumberFormat = objectnumberformat
+          @ExtInfo = extinfo
         end
 
         def deserialize(params)
@@ -31325,6 +31281,7 @@ module TencentCloud
             @ObjectNumberFormat = NumberFormat.new
             @ObjectNumberFormat.deserialize(params['ObjectNumberFormat'])
           end
+          @ExtInfo = params['ExtInfo']
         end
       end
 

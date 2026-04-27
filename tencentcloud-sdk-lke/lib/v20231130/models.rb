@@ -3205,19 +3205,19 @@ module TencentCloud
 
       # CreateVar请求参数结构体
       class CreateVarRequest < TencentCloud::Common::AbstractModel
-        # @param AppBizId: 应用ID
+        # @param AppBizId: <p>应用ID，获取方法参看如何获取   <a href="https://cloud.tencent.com/document/product/1759/109469#4eecb8c1-6ce4-45f5-8fa2-b269449d8efa">BotBizId</a>。</p>
         # @type AppBizId: String
-        # @param VarName: 变量名称，不允许重复，最大支持50个字符
+        # @param VarName: <p>变量名称，不允许重复，最大支持50个字符，英文字母开头，支持英文数字与下划线”_”。</p>
         # @type VarName: String
-        # @param VarDesc: 变量描述，最大支持120个字符
+        # @param VarDesc: <p>变量描述，最大支持120个字符</p>
         # @type VarDesc: String
-        # @param VarType: 变量类型定义，支持类型如下：(STRING,INT,FLOAT,BOOL,OBJECT,ARRAY_STRING,ARRAY_INT,ARRAY_FLOAT,ARRAY_BOOL,ARRAY_OBJECT,FILE,DOCUMENT,IMAGE,AUDIO);传输过程是json字符串，标签中仅支持"STRING"类型使用
+        # @param VarType: <p>变量类型定义，支持类型如下：(STRING,INT,FLOAT,BOOL,OBJECT,ARRAY_STRING,ARRAY_INT,ARRAY_FLOAT,ARRAY_BOOL,ARRAY_OBJECT,FILE,DOCUMENT,IMAGE,AUDIO);传输过程是json字符串，标签中仅支持&quot;STRING&quot;类型使用</p>
         # @type VarType: String
-        # @param VarDefaultValue: 自定义变量默认值
+        # @param VarDefaultValue: <p>自定义变量默认值，<code>VarDefaultValue</code>xa0默认为空</p>
         # @type VarDefaultValue: String
-        # @param VarDefaultFileName: 自定义变量文件默认名称
+        # @param VarDefaultFileName: <p>自定义变量文件默认名称，<code>VarDefaultFileName</code>默认为空</p>
         # @type VarDefaultFileName: String
-        # @param VarModuleType: 参数类型
+        # @param VarModuleType: <p>变量模块类型</p><p>枚举值：</p><ul><li>0： API参数</li><li>1： 环境参数</li><li>2： 应用参数</li><li>3： 系统参数</li></ul>
         # @type VarModuleType: Integer
 
         attr_accessor :AppBizId, :VarName, :VarDesc, :VarType, :VarDefaultValue, :VarDefaultFileName, :VarModuleType
@@ -3245,7 +3245,7 @@ module TencentCloud
 
       # CreateVar返回参数结构体
       class CreateVarResponse < TencentCloud::Common::AbstractModel
-        # @param VarId: 变量ID
+        # @param VarId: <p>变量ID</p>
         # @type VarId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3742,11 +3742,11 @@ module TencentCloud
 
       # DeleteVar请求参数结构体
       class DeleteVarRequest < TencentCloud::Common::AbstractModel
-        # @param AppBizId: 应用ID
+        # @param AppBizId: <p>应用ID，获取方法参看如何获取   <a href="https://cloud.tencent.com/document/product/1759/109469#4eecb8c1-6ce4-45f5-8fa2-b269449d8efa">BotBizId</a>。</p>
         # @type AppBizId: String
-        # @param VarId: 变量ID
+        # @param VarId: <p>变量 ID，可通过 CreateVar；DescribeVar；DescribeVarList 接口返回结果中获取。DeleteVar</p>
         # @type VarId: String
-        # @param VarModuleType: 参数类型
+        # @param VarModuleType: <p>变量模块类型</p><p>枚举值：</p><ul><li>0： API参数</li><li>1： 环境参数</li><li>2： 应用参数</li><li>3： 系统参数</li></ul><p>默认值：0</p>
         # @type VarModuleType: Integer
 
         attr_accessor :AppBizId, :VarId, :VarModuleType
@@ -4982,9 +4982,9 @@ module TencentCloud
         # @type LoginUin: String
         # @param LoginSubAccountUin: 登录用户子账号(集成商模式必填)
         # @type LoginSubAccountUin: String
-        # @param UinAccount: uin列表
+        # @param UinAccount: 子账号标识列表，支持批量查询多个子账号。不填时查询主账号下所有子账号的汇总数据
         # @type UinAccount: Array
-        # @param SubBizType: 子业务类型
+        # @param SubBizType: 子业务类型，用于筛选不同业务场景的调用统计
         # @type SubBizType: String
         # @param ModelName: 模型标识
         # @type ModelName: String
@@ -4994,14 +4994,19 @@ module TencentCloud
         # @type EndTime: String
         # @param AppBizIds: 应用id列表
         # @type AppBizIds: Array
-        # @param SpaceId: 空间id
+        # @param SpaceId: 空间ID，用于限定查询范围。不填时查询所有空间的数据
         # @type SpaceId: String
-        # @param StatStartTime: 开始时间戳, 单位为秒
+        # @param StatStartTime: 开始时间。Unix 时间戳，单位是秒，默认为空。
         # @type StatStartTime: Integer
-        # @param StatEndTime: 结束时间戳, 单位为秒
+        # @param StatEndTime: 结束时间。Unix 时间戳，单位是秒，默认为空。
         # @type StatEndTime: Integer
 
         attr_accessor :LoginUin, :LoginSubAccountUin, :UinAccount, :SubBizType, :ModelName, :StartTime, :EndTime, :AppBizIds, :SpaceId, :StatStartTime, :StatEndTime
+        extend Gem::Deprecate
+        deprecate :StartTime, :none, 2026, 4
+        deprecate :StartTime=, :none, 2026, 4
+        deprecate :EndTime, :none, 2026, 4
+        deprecate :EndTime=, :none, 2026, 4
 
         def initialize(loginuin=nil, loginsubaccountuin=nil, uinaccount=nil, subbiztype=nil, modelname=nil, starttime=nil, endtime=nil, appbizids=nil, spaceid=nil, statstarttime=nil, statendtime=nil)
           @LoginUin = loginuin
@@ -5150,13 +5155,13 @@ module TencentCloud
 
       # DescribeStorageCredential请求参数结构体
       class DescribeStorageCredentialRequest < TencentCloud::Common::AbstractModel
-        # @param BotBizId: 应用ID，参数非必填不代表不需要填写，下面不同的参数组合会获取到不同的权限，具体请参考 https://cloud.tencent.com/document/product/1759/116238
+        # @param BotBizId: <p>应用ID，参数非必填不代表不需要填写，下面不同的参数组合会获取到不同的权限，具体请参考 https://cloud.tencent.com/document/product/1759/116238</p>
         # @type BotBizId: String
-        # @param FileType: 文件类型,正常的文件名类型后缀，支持 docx、doc、pdf、txt、md、wps、pages、html、mhtml、epub、xml、json、log、xlsx、xls、csv、tsv、numbers、pptx、ppt、ppsx、ppsm、key、png、jpg、jpeg、gif、bmp、tiff、webp、heif、heic、jp2、eps、icns、im、pcx、ppm、xbm、xmind
+        # @param FileType: <p>文件类型,正常的文件名类型后缀，支持 docx、doc、pdf、txt、md、wps、pages、html、mhtml、epub、xml、json、log、xlsx、xls、csv、tsv、numbers、pptx、ppt、ppsx、ppsm、key、png、jpg、jpeg、gif、bmp、tiff、webp、heif、heic、jp2、eps、icns、im、pcx、ppm、xbm、xmind</p>
         # @type FileType: String
-        # @param IsPublic: IsPublic用于上传文件或图片时选择场景，当上传对话端图片时IsPublic为true，上传文件（包括文档库文件/图片等和对话端文件）时IsPublic为false
+        # @param IsPublic: <p>IsPublic用于上传文件或图片时选择场景，当上传对话端图片时IsPublic为true，上传文件（包括文档库文件/图片等和对话端文件）时IsPublic为false</p>
         # @type IsPublic: Boolean
-        # @param TypeKey: 存储类型: offline:离线文件，realtime:实时文件；为空默认为offline
+        # @param TypeKey: <p>存储类型: offline:离线文件，realtime:实时文件；为空默认为offline</p>
         # @type TypeKey: String
 
         attr_accessor :BotBizId, :FileType, :IsPublic, :TypeKey
@@ -5178,29 +5183,29 @@ module TencentCloud
 
       # DescribeStorageCredential返回参数结构体
       class DescribeStorageCredentialResponse < TencentCloud::Common::AbstractModel
-        # @param Credentials: 密钥信息
+        # @param Credentials: <p>密钥信息</p>
         # @type Credentials: :class:`Tencentcloud::Lke.v20231130.models.Credentials`
-        # @param ExpiredTime: 失效时间
+        # @param ExpiredTime: <p>失效时间，为 Unix 时间戳</p><p>单位：秒</p>
         # @type ExpiredTime: Integer
-        # @param StartTime: 开始时间
+        # @param StartTime: <p>开始时间，为 Unix 时间戳</p><p>单位：秒</p>
         # @type StartTime: Integer
-        # @param Bucket: 对象存储桶
+        # @param Bucket: <p>对象存储桶</p>
         # @type Bucket: String
-        # @param Region: 对象存储可用区
+        # @param Region: <p>对象存储可用区</p>
         # @type Region: String
-        # @param FilePath: 文件存储目录
+        # @param FilePath: <p>文件存储目录</p>
         # @type FilePath: String
-        # @param Type: 存储类型
+        # @param Type: <p>存储类型</p>
         # @type Type: String
-        # @param CorpUin: 企业主账号
+        # @param CorpUin: <p>企业主账号</p>
         # @type CorpUin: String
-        # @param ImagePath: 图片存储目录
+        # @param ImagePath: <p>图片存储目录</p>
         # @type ImagePath: String
-        # @param UploadPath: 上传存储路径，到具体文件
+        # @param UploadPath: <p>上传存储路径，到具体文件</p>
         # @type UploadPath: String
-        # @param UploadUrl: 文件上传地址，使用put请求上传文件到该地址
+        # @param UploadUrl: <p>文件上传地址，使用put请求上传文件到该地址</p>
         # @type UploadUrl: String
-        # @param FileUrl: 文件的预签名地址，支持下载
+        # @param FileUrl: <p>文件的预签名地址，支持下载</p>
         # @type FileUrl: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6689,21 +6694,21 @@ module TencentCloud
 
       # GetVarList请求参数结构体
       class GetVarListRequest < TencentCloud::Common::AbstractModel
-        # @param AppBizId: 应用ID
+        # @param AppBizId: <p>应用ID，获取方法参看如何获取   <a href="https://cloud.tencent.com/document/product/1759/109469#4eecb8c1-6ce4-45f5-8fa2-b269449d8efa">BotBizId</a>。</p>
         # @type AppBizId: String
-        # @param VarIds: 变量ID数组
+        # @param VarIds: <p>变量ID数组</p>
         # @type VarIds: Array
-        # @param Keyword: 按变量名称关键词搜索
+        # @param Keyword: <p>按变量名称关键词搜索</p>
         # @type Keyword: String
-        # @param Offset: 起始偏移量（默认0）
+        # @param Offset: <p>起始偏移量（默认0），取值范围 &gt; 0</p>
         # @type Offset: Integer
-        # @param Limit: 限定数量（默认15）
+        # @param Limit: <p>限定数量（默认15），取值范围 1-200</p>
         # @type Limit: Integer
-        # @param VarType: 按变量类型过滤，默认查询所有类型(STRING,INT,FLOAT,BOOL,OBJECT,ARRAY_STRING,ARRAY_INT,ARRAY_FLOAT,ARRAY_BOOL,ARRAY_OBJECT,FILE,DOCUMENT,IMAGE,AUDIO)
+        # @param VarType: <p>按变量类型过滤，默认查询所有类型(STRING,INT,FLOAT,BOOL,OBJECT,ARRAY_STRING,ARRAY_INT,ARRAY_FLOAT,ARRAY_BOOL,ARRAY_OBJECT,FILE,DOCUMENT,IMAGE,AUDIO)</p>
         # @type VarType: String
-        # @param NeedInternalVar: 是否需要内部变量(默认false)
+        # @param NeedInternalVar: <p>是否需要内部变量, 在结果中包含平台预置的“内置自定义变量” (默认false)。</p><ul><li>当&nbsp;<code>NeedInternalVar = true</code>&nbsp;且&nbsp;<code>VarModuleType</code>&nbsp;为&nbsp;<code>AllVar</code>&nbsp;或&nbsp;<code>ApiVar</code>&nbsp;时，返回列表会在用户变量之前拼入内置变量，并同样支持&nbsp;<code>Keyword</code>&nbsp;<code>VarType</code>&nbsp;<code>VarIds</code>&nbsp;过滤。</li><li>其他<code>VarModuleType</code>下，该开关不生效。</li></ul>
         # @type NeedInternalVar: Boolean
-        # @param VarModuleType: 变量类型
+        # @param VarModuleType: <p>变量模块类型</p><p>枚举值：</p><ul><li>0： API参数</li><li>1： 环境参数</li><li>2： 应用参数</li><li>3： 系统参数</li></ul><p>默认值：0</p>
         # @type VarModuleType: Integer
 
         attr_accessor :AppBizId, :VarIds, :Keyword, :Offset, :Limit, :VarType, :NeedInternalVar, :VarModuleType
@@ -6733,9 +6738,9 @@ module TencentCloud
 
       # GetVarList返回参数结构体
       class GetVarListResponse < TencentCloud::Common::AbstractModel
-        # @param Total: 变量总数
+        # @param Total: <p>变量总数</p>
         # @type Total: Integer
-        # @param List: 变量信息列表
+        # @param List: <p>变量信息列表</p>
         # @type List: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -8542,36 +8547,34 @@ module TencentCloud
 
       # ListDoc请求参数结构体
       class ListDocRequest < TencentCloud::Common::AbstractModel
-        # @param BotBizId: 应用ID, 获取方式参看 [BotBizId](https://cloud.tencent.com/document/product/1759/109469#4eecb8c1-6ce4-45f5-8fa2-b269449d8efa)。
-        # 查询知识库下文档时，该参数填入知识库ID。
+        # @param BotBizId: <p>应用ID, 获取方式参看 <a href="https://cloud.tencent.com/document/product/1759/109469#4eecb8c1-6ce4-45f5-8fa2-b269449d8efa">BotBizId</a>。<br>查询知识库下文档时，该参数填入知识库ID。</p>
         # @type BotBizId: String
-        # @param PageNumber: 页码(必须大于0)
+        # @param PageNumber: <p>页码(必须大于0)</p>
         # @type PageNumber: Integer
-        # @param PageSize: 每页数量(取值范围1-200)
+        # @param PageSize: <p>每页数量(取值范围1-200)</p>
         # @type PageSize: Integer
-        # @param Query: 查询内容
-
-        # 输入特定标识 lke:system:untagged  将查询所有未关联标签的文档
+        # @param Query: <p>查询内容</p><p>输入特定标识 lke:system:untagged  将查询所有未关联标签的文档</p>
         # @type Query: String
-        # @param Status: 文档状态： 1-未生成 2-生成中 3-生成成功 4-生成失败 5-删除中 6-删除成功  7-审核中  8-审核失败 9-审核成功  10,12-导入成功  13-学习中  14-学习失败  15-更新中  16-更新失败  17-解析中  18-解析失败  19-导入失败   20-已过期 21-超量失效 22-超量失效恢复
+        # @param Status: <p>文档状态： 1-未生成 2-生成中 3-生成成功 4-生成失败 5-删除中 6-删除成功  7-审核中  8-审核失败 9-审核成功  10,12-导入成功  13-学习中  14-学习失败  15-更新中  16-更新失败  17-解析中  18-解析失败  19-导入失败   20-已过期 21-超量失效 22-超量失效恢复</p>
         # @type Status: Array
-        # @param QueryType: 查询类型 filename 文档、 attribute 标签
+        # @param QueryType: <p>查询类型 filename 文档、 attribute 标签</p>
         # @type QueryType: String
-        # @param CateBizId: 分类ID, 可以通过调用ListDocCate接口,查看其返回结果获取
+        # @param CateBizId: <p>分类ID, 可以通过调用ListDocCate接口,查看其返回结果获取</p>
         # @type CateBizId: String
-        # @param FileTypes: 文件类型分类筛选
+        # @param FileTypes: <p>文件类型分类筛选</p>
         # @type FileTypes: Array
-        # @param FilterFlag: 文档列表筛选标识位
+        # @param FilterFlag: <p>文档列表筛选标识位</p>
         # @type FilterFlag: Array
-        # @param ShowCurrCate: 是否只展示当前分类的数据 0不是，1是
+        # @param ShowCurrCate: <p>是否只展示当前分类的数据 0不是，1是</p>
         # @type ShowCurrCate: Integer
-        # @param EnableScope: 文档生效域；不检索默认为0。检索枚举值如下：
-        # 1-不生效；2-仅开发域生效；3-仅发布域生效；4-开发域和发布域均生效
+        # @param EnableScope: <p>文档生效域；不检索默认为0。检索枚举值如下：<br>1-不生效；2-仅开发域生效；3-仅发布域生效；4-开发域和发布域均生效</p>
         # @type EnableScope: Integer
+        # @param UpdateTime: <p>文档更新时间范围</p>
+        # @type UpdateTime: :class:`Tencentcloud::Lke.v20231130.models.TimeRange`
 
-        attr_accessor :BotBizId, :PageNumber, :PageSize, :Query, :Status, :QueryType, :CateBizId, :FileTypes, :FilterFlag, :ShowCurrCate, :EnableScope
+        attr_accessor :BotBizId, :PageNumber, :PageSize, :Query, :Status, :QueryType, :CateBizId, :FileTypes, :FilterFlag, :ShowCurrCate, :EnableScope, :UpdateTime
 
-        def initialize(botbizid=nil, pagenumber=nil, pagesize=nil, query=nil, status=nil, querytype=nil, catebizid=nil, filetypes=nil, filterflag=nil, showcurrcate=nil, enablescope=nil)
+        def initialize(botbizid=nil, pagenumber=nil, pagesize=nil, query=nil, status=nil, querytype=nil, catebizid=nil, filetypes=nil, filterflag=nil, showcurrcate=nil, enablescope=nil, updatetime=nil)
           @BotBizId = botbizid
           @PageNumber = pagenumber
           @PageSize = pagesize
@@ -8583,6 +8586,7 @@ module TencentCloud
           @FilterFlag = filterflag
           @ShowCurrCate = showcurrcate
           @EnableScope = enablescope
+          @UpdateTime = updatetime
         end
 
         def deserialize(params)
@@ -8604,14 +8608,18 @@ module TencentCloud
           end
           @ShowCurrCate = params['ShowCurrCate']
           @EnableScope = params['EnableScope']
+          unless params['UpdateTime'].nil?
+            @UpdateTime = TimeRange.new
+            @UpdateTime.deserialize(params['UpdateTime'])
+          end
         end
       end
 
       # ListDoc返回参数结构体
       class ListDocResponse < TencentCloud::Common::AbstractModel
-        # @param Total: 文档数量
+        # @param Total: <p>文档数量</p>
         # @type Total: String
-        # @param List: 文档列表
+        # @param List: <p>文档列表</p>
         # @type List: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -8763,46 +8771,42 @@ module TencentCloud
 
       # ListQA请求参数结构体
       class ListQARequest < TencentCloud::Common::AbstractModel
-        # @param BotBizId: 应用ID
-        # 若要操作共享知识库，传KnowledgeBizId
+        # @param BotBizId: <p>应用ID<br>若要操作共享知识库，传KnowledgeBizId</p>
         # @type BotBizId: String
-        # @param PageNumber: 页码（取值范围>0）
+        # @param PageNumber: <p>页码（取值范围&gt;0）</p>
         # @type PageNumber: Integer
-        # @param PageSize: 每页大小(取值范围1-200)
+        # @param PageSize: <p>每页大小(取值范围1-200)</p>
         # @type PageSize: Integer
-        # @param Query: 查询问题
-
-        # 输入特定标识 lke:system:untagged  将查询所有未关联标签的问答
+        # @param Query: <p>查询问题</p><p>输入特定标识 lke:system:untagged  将查询所有未关联标签的问答</p>
         # @type Query: String
-        # @param AcceptStatus: 校验状态(1未校验2采纳3不采纳)
-        # 如果不填默认值为空数组，表示不筛选，返回所有状态
+        # @param AcceptStatus: <p>校验状态(1未校验2采纳3不采纳)<br>如果不填默认值为空数组，表示不筛选，返回所有状态</p>
         # @type AcceptStatus: Array
-        # @param ReleaseStatus: 发布状态(2,4导入成功 7审核中 8审核失败 9人工申述中 11人工申述失败 12已过期 13超量失效 14超量失效恢复)
-        # 如果不填默认值为空数组，表示不筛选返回所有状态
+        # @param ReleaseStatus: <p>发布状态(2,4导入成功 7审核中 8审核失败 9人工申述中 11人工申述失败 12已过期 13超量失效 14超量失效恢复)<br>如果不填默认值为空数组，表示不筛选返回所有状态</p>
         # @type ReleaseStatus: Array
-        # @param DocBizId: 文档ID
+        # @param DocBizId: <p>文档ID</p>
         # @type DocBizId: String
-        # @param Source: 来源(1 文档生成 2 批量导入 3 手动添加)
-        # 不填默认值为0，表示不过滤，返回所有状态
+        # @param Source: <p>来源(1 文档生成 2 批量导入 3 手动添加)<br>不填默认值为0，表示不过滤，返回所有状态</p>
         # @type Source: Integer
-        # @param QueryAnswer: 查询答案
+        # @param QueryAnswer: <p>查询答案</p>
         # @type QueryAnswer: String
-        # @param CateBizId: 分类ID
+        # @param CateBizId: <p>分类ID</p>
         # @type CateBizId: String
-        # @param QaBizIds: QA业务ID列表
+        # @param QaBizIds: <p>QA业务ID列表</p>
         # @type QaBizIds: Array
-        # @param QueryType: 查询类型 filename 名称、 attribute 标签
-        # 如果不填默认值为"filename"
+        # @param QueryType: <p>查询类型 filename 名称、 attribute 标签<br>如果不填默认值为&quot;filename&quot;</p>
         # @type QueryType: String
-        # @param ShowCurrCate: 是否只展示当前分类的数据 0不是，1是
+        # @param ShowCurrCate: <p>是否只展示当前分类的数据 0不是，1是</p>
         # @type ShowCurrCate: Integer
-        # @param EnableScope: 问答生效域检索，不检索不传。枚举值如下：
-        # 1-不生效；2-仅开发域生效；3-仅发布域生效；4-开发域和发布域均生效。
+        # @param EnableScope: <p>问答生效域检索，不检索不传。枚举值如下：<br>1-不生效；2-仅开发域生效；3-仅发布域生效；4-开发域和发布域均生效。</p>
         # @type EnableScope: Integer
+        # @param CreateTime: <p>问答创建时间范围</p>
+        # @type CreateTime: :class:`Tencentcloud::Lke.v20231130.models.TimeRange`
+        # @param UpdateTime: <p>问答更新时间范围</p>
+        # @type UpdateTime: :class:`Tencentcloud::Lke.v20231130.models.TimeRange`
 
-        attr_accessor :BotBizId, :PageNumber, :PageSize, :Query, :AcceptStatus, :ReleaseStatus, :DocBizId, :Source, :QueryAnswer, :CateBizId, :QaBizIds, :QueryType, :ShowCurrCate, :EnableScope
+        attr_accessor :BotBizId, :PageNumber, :PageSize, :Query, :AcceptStatus, :ReleaseStatus, :DocBizId, :Source, :QueryAnswer, :CateBizId, :QaBizIds, :QueryType, :ShowCurrCate, :EnableScope, :CreateTime, :UpdateTime
 
-        def initialize(botbizid=nil, pagenumber=nil, pagesize=nil, query=nil, acceptstatus=nil, releasestatus=nil, docbizid=nil, source=nil, queryanswer=nil, catebizid=nil, qabizids=nil, querytype=nil, showcurrcate=nil, enablescope=nil)
+        def initialize(botbizid=nil, pagenumber=nil, pagesize=nil, query=nil, acceptstatus=nil, releasestatus=nil, docbizid=nil, source=nil, queryanswer=nil, catebizid=nil, qabizids=nil, querytype=nil, showcurrcate=nil, enablescope=nil, createtime=nil, updatetime=nil)
           @BotBizId = botbizid
           @PageNumber = pagenumber
           @PageSize = pagesize
@@ -8817,6 +8821,8 @@ module TencentCloud
           @QueryType = querytype
           @ShowCurrCate = showcurrcate
           @EnableScope = enablescope
+          @CreateTime = createtime
+          @UpdateTime = updatetime
         end
 
         def deserialize(params)
@@ -8834,22 +8840,30 @@ module TencentCloud
           @QueryType = params['QueryType']
           @ShowCurrCate = params['ShowCurrCate']
           @EnableScope = params['EnableScope']
+          unless params['CreateTime'].nil?
+            @CreateTime = TimeRange.new
+            @CreateTime.deserialize(params['CreateTime'])
+          end
+          unless params['UpdateTime'].nil?
+            @UpdateTime = TimeRange.new
+            @UpdateTime.deserialize(params['UpdateTime'])
+          end
         end
       end
 
       # ListQA返回参数结构体
       class ListQAResponse < TencentCloud::Common::AbstractModel
-        # @param Total: 问答数量
+        # @param Total: <p>问答数量</p>
         # @type Total: String
-        # @param WaitVerifyTotal: 待校验问答数量
+        # @param WaitVerifyTotal: <p>待校验问答数量</p>
         # @type WaitVerifyTotal: String
-        # @param NotAcceptedTotal: 未采纳问答数量
+        # @param NotAcceptedTotal: <p>未采纳问答数量</p>
         # @type NotAcceptedTotal: String
-        # @param AcceptedTotal: 已采纳问答数量
+        # @param AcceptedTotal: <p>已采纳问答数量</p>
         # @type AcceptedTotal: String
-        # @param PageNumber: 页码
+        # @param PageNumber: <p>页码</p>
         # @type PageNumber: Integer
-        # @param List: 问答详情
+        # @param List: <p>问答详情</p>
         # @type List: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -11672,37 +11686,40 @@ module TencentCloud
 
       # QA查询参数
       class QAQuery < TencentCloud::Common::AbstractModel
-        # @param PageNumber: 页码 从1开始
+        # @param PageNumber: <p>页码 从1开始</p>
         # @type PageNumber: Integer
-        # @param PageSize: 页大小 默认15 最大100
+        # @param PageSize: <p>页大小 默认15 最大100</p>
         # @type PageSize: Integer
-        # @param BotBizId: 应用ID
+        # @param BotBizId: <p>应用ID</p>
         # @type BotBizId: String
-        # @param Query: 查询内容
+        # @param Query: <p>查询内容</p>
         # @type Query: String
-        # @param CateBizId: 分类ID
+        # @param CateBizId: <p>分类ID</p>
         # @type CateBizId: String
-        # @param AcceptStatus: 校验状态的枚举值
+        # @param AcceptStatus: <p>校验状态的枚举值</p>
         # @type AcceptStatus: Array
-        # @param ReleaseStatus: 发布状态的枚举值
+        # @param ReleaseStatus: <p>发布状态的枚举值</p>
         # @type ReleaseStatus: Array
-        # @param DocBizId: 文档ID
+        # @param DocBizId: <p>文档ID</p>
         # @type DocBizId: String
-        # @param QaBizId: QAID
+        # @param QaBizId: <p>QAID</p>
         # @type QaBizId: String
-        # @param Source: 来源
+        # @param Source: <p>来源</p>
         # @type Source: Integer
-        # @param QueryAnswer: 查询答案
+        # @param QueryAnswer: <p>查询答案</p>
         # @type QueryAnswer: String
-        # @param QueryType: 查询类型 filename 名称、 attribute 标签
+        # @param QueryType: <p>查询类型 filename 名称、 attribute 标签</p>
         # @type QueryType: String
-        # @param EnableScope: 问答生效域检索，不检索不传。枚举值如下：
-        # 1-不生效；2-仅开发域生效；3-仅发布域生效；4-开发域和发布域均生效。
+        # @param EnableScope: <p>问答生效域检索，不检索不传。枚举值如下：<br>1-不生效；2-仅开发域生效；3-仅发布域生效；4-开发域和发布域均生效。</p>
         # @type EnableScope: Integer
+        # @param CreateTime: <p>创建时间范围</p>
+        # @type CreateTime: :class:`Tencentcloud::Lke.v20231130.models.TimeRange`
+        # @param UpdateTime: <p>更新时间范围</p>
+        # @type UpdateTime: :class:`Tencentcloud::Lke.v20231130.models.TimeRange`
 
-        attr_accessor :PageNumber, :PageSize, :BotBizId, :Query, :CateBizId, :AcceptStatus, :ReleaseStatus, :DocBizId, :QaBizId, :Source, :QueryAnswer, :QueryType, :EnableScope
+        attr_accessor :PageNumber, :PageSize, :BotBizId, :Query, :CateBizId, :AcceptStatus, :ReleaseStatus, :DocBizId, :QaBizId, :Source, :QueryAnswer, :QueryType, :EnableScope, :CreateTime, :UpdateTime
 
-        def initialize(pagenumber=nil, pagesize=nil, botbizid=nil, query=nil, catebizid=nil, acceptstatus=nil, releasestatus=nil, docbizid=nil, qabizid=nil, source=nil, queryanswer=nil, querytype=nil, enablescope=nil)
+        def initialize(pagenumber=nil, pagesize=nil, botbizid=nil, query=nil, catebizid=nil, acceptstatus=nil, releasestatus=nil, docbizid=nil, qabizid=nil, source=nil, queryanswer=nil, querytype=nil, enablescope=nil, createtime=nil, updatetime=nil)
           @PageNumber = pagenumber
           @PageSize = pagesize
           @BotBizId = botbizid
@@ -11716,6 +11733,8 @@ module TencentCloud
           @QueryAnswer = queryanswer
           @QueryType = querytype
           @EnableScope = enablescope
+          @CreateTime = createtime
+          @UpdateTime = updatetime
         end
 
         def deserialize(params)
@@ -11732,6 +11751,14 @@ module TencentCloud
           @QueryAnswer = params['QueryAnswer']
           @QueryType = params['QueryType']
           @EnableScope = params['EnableScope']
+          unless params['CreateTime'].nil?
+            @CreateTime = TimeRange.new
+            @CreateTime.deserialize(params['CreateTime'])
+          end
+          unless params['UpdateTime'].nil?
+            @UpdateTime = TimeRange.new
+            @UpdateTime.deserialize(params['UpdateTime'])
+          end
         end
       end
 
@@ -13414,6 +13441,26 @@ module TencentCloud
 
         def deserialize(params)
           @CosPath = params['CosPath']
+        end
+      end
+
+      # 时间范围
+      class TimeRange < TencentCloud::Common::AbstractModel
+        # @param Start: <p>开始时间</p><p>参数格式：YYYY-MM-DDThh:mm:ssZ</p>
+        # @type Start: String
+        # @param End: <p>结束时间</p><p>参数格式：YYYY-MM-DDThh:mm:ssZ</p>
+        # @type End: String
+
+        attr_accessor :Start, :End
+
+        def initialize(start=nil, _end=nil)
+          @Start = start
+          @End = _end
+        end
+
+        def deserialize(params)
+          @Start = params['Start']
+          @End = params['End']
         end
       end
 

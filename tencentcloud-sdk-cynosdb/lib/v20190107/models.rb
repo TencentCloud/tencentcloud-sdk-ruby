@@ -971,42 +971,44 @@ module TencentCloud
 
       # 备份文件信息
       class BackupFileInfo < TencentCloud::Common::AbstractModel
-        # @param SnapshotId: 快照文件ID，已废弃，请使用BackupId
+        # @param SnapshotId: <p>快照文件ID，已废弃，请使用BackupId</p>
         # @type SnapshotId: Integer
-        # @param FileName: 备份文件名
+        # @param FileName: <p>备份文件名</p>
         # @type FileName: String
-        # @param FileSize: 备份文件大小
+        # @param FileSize: <p>备份文件大小</p>
         # @type FileSize: Integer
-        # @param StartTime: 备份开始时间
+        # @param StartTime: <p>备份开始时间</p>
         # @type StartTime: String
-        # @param FinishTime: 备份完成时间
+        # @param FinishTime: <p>备份完成时间</p>
         # @type FinishTime: String
-        # @param BackupType: 备份类型：snapshot，快照备份；logic，逻辑备份
+        # @param BackupType: <p>备份类型：snapshot，快照备份；logic，逻辑备份</p>
         # @type BackupType: String
-        # @param BackupMethod: 备份方式：auto，自动备份；manual，手动备份
+        # @param BackupMethod: <p>备份方式：auto，自动备份；manual，手动备份</p>
         # @type BackupMethod: String
-        # @param BackupStatus: 备份文件状态：success：备份成功；fail：备份失败；creating：备份文件创建中；deleting：备份文件删除中
+        # @param BackupStatus: <p>备份文件状态：success：备份成功；fail：备份失败；creating：备份文件创建中；deleting：备份文件删除中</p>
         # @type BackupStatus: String
-        # @param SnapshotTime: 备份文件时间
+        # @param SnapshotTime: <p>备份文件时间</p>
         # @type SnapshotTime: String
-        # @param BackupId: 备份ID
+        # @param BackupId: <p>备份ID</p>
         # @type BackupId: Integer
-        # @param SnapShotType: 快照类型，可选值：full，全量；increment，增量
+        # @param SnapShotType: <p>快照类型，可选值：full，全量；increment，增量</p>
         # @type SnapShotType: String
-        # @param BackupName: 备份文件备注
+        # @param BackupName: <p>备份文件备注</p>
         # @type BackupName: String
-        # @param CopyStatus: 投递状态
+        # @param CopyStatus: <p>投递状态</p>
         # @type CopyStatus: String
-        # @param EncryptKeyId: 秘钥id
+        # @param EncryptKeyId: <p>秘钥id</p>
         # @type EncryptKeyId: String
-        # @param EncryptRegion: 秘钥地域
+        # @param EncryptRegion: <p>秘钥地域</p>
         # @type EncryptRegion: String
-        # @param VaultInfos: 保险箱信息
+        # @param VaultInfos: <p>保险箱信息</p>
         # @type VaultInfos: Array
+        # @param BackupPeriodStrategy: <p>备份周期策略</p>
+        # @type BackupPeriodStrategy: String
 
-        attr_accessor :SnapshotId, :FileName, :FileSize, :StartTime, :FinishTime, :BackupType, :BackupMethod, :BackupStatus, :SnapshotTime, :BackupId, :SnapShotType, :BackupName, :CopyStatus, :EncryptKeyId, :EncryptRegion, :VaultInfos
+        attr_accessor :SnapshotId, :FileName, :FileSize, :StartTime, :FinishTime, :BackupType, :BackupMethod, :BackupStatus, :SnapshotTime, :BackupId, :SnapShotType, :BackupName, :CopyStatus, :EncryptKeyId, :EncryptRegion, :VaultInfos, :BackupPeriodStrategy
 
-        def initialize(snapshotid=nil, filename=nil, filesize=nil, starttime=nil, finishtime=nil, backuptype=nil, backupmethod=nil, backupstatus=nil, snapshottime=nil, backupid=nil, snapshottype=nil, backupname=nil, copystatus=nil, encryptkeyid=nil, encryptregion=nil, vaultinfos=nil)
+        def initialize(snapshotid=nil, filename=nil, filesize=nil, starttime=nil, finishtime=nil, backuptype=nil, backupmethod=nil, backupstatus=nil, snapshottime=nil, backupid=nil, snapshottype=nil, backupname=nil, copystatus=nil, encryptkeyid=nil, encryptregion=nil, vaultinfos=nil, backupperiodstrategy=nil)
           @SnapshotId = snapshotid
           @FileName = filename
           @FileSize = filesize
@@ -1023,6 +1025,7 @@ module TencentCloud
           @EncryptKeyId = encryptkeyid
           @EncryptRegion = encryptregion
           @VaultInfos = vaultinfos
+          @BackupPeriodStrategy = backupperiodstrategy
         end
 
         def deserialize(params)
@@ -1049,6 +1052,7 @@ module TencentCloud
               @VaultInfos << vaultinfo_tmp
             end
           end
+          @BackupPeriodStrategy = params['BackupPeriodStrategy']
         end
       end
 
@@ -5925,14 +5929,17 @@ module TencentCloud
         # @type DeliverConsumer: String
         # @param DeliverConsumerName: 投递者名称
         # @type DeliverConsumerName: String
+        # @param DeliverError: 投递异常错误
+        # @type DeliverError: String
 
-        attr_accessor :DeliverType, :DeliverSubType, :DeliverConsumer, :DeliverConsumerName
+        attr_accessor :DeliverType, :DeliverSubType, :DeliverConsumer, :DeliverConsumerName, :DeliverError
 
-        def initialize(delivertype=nil, deliversubtype=nil, deliverconsumer=nil, deliverconsumername=nil)
+        def initialize(delivertype=nil, deliversubtype=nil, deliverconsumer=nil, deliverconsumername=nil, delivererror=nil)
           @DeliverType = delivertype
           @DeliverSubType = deliversubtype
           @DeliverConsumer = deliverconsumer
           @DeliverConsumerName = deliverconsumername
+          @DeliverError = delivererror
         end
 
         def deserialize(params)
@@ -5940,6 +5947,7 @@ module TencentCloud
           @DeliverSubType = params['DeliverSubType']
           @DeliverConsumer = params['DeliverConsumer']
           @DeliverConsumerName = params['DeliverConsumerName']
+          @DeliverError = params['DeliverError']
         end
       end
 
@@ -6485,7 +6493,7 @@ module TencentCloud
 
       # DescribeBackupConfig请求参数结构体
       class DescribeBackupConfigRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群ID
+        # @param ClusterId: <p>集群ID</p>
         # @type ClusterId: String
 
         attr_accessor :ClusterId
@@ -6501,29 +6509,31 @@ module TencentCloud
 
       # DescribeBackupConfig返回参数结构体
       class DescribeBackupConfigResponse < TencentCloud::Common::AbstractModel
-        # @param BackupTimeBeg: 表示全备开始时间，[0-24*3600]， 如0:00, 1:00, 2:00 分别为 0，3600， 7200
+        # @param BackupTimeBeg: <p>表示全备开始时间，[0-24*3600]， 如0:00, 1:00, 2:00 分别为 0，3600， 7200</p>
         # @type BackupTimeBeg: Integer
-        # @param BackupTimeEnd: 表示全备开始时间，[0-24*3600]， 如0:00, 1:00, 2:00 分别为 0，3600， 7200
+        # @param BackupTimeEnd: <p>表示全备开始时间，[0-24*3600]， 如0:00, 1:00, 2:00 分别为 0，3600， 7200</p>
         # @type BackupTimeEnd: Integer
-        # @param ReserveDuration: 表示保留备份时长, 单位秒，超过该时间将被清理, 七天表示为3600*24*7=604800
+        # @param ReserveDuration: <p>表示保留备份时长, 单位秒，超过该时间将被清理, 七天表示为3600<em>24</em>7=604800</p>
         # @type ReserveDuration: Integer
-        # @param BackupFreq: 备份频率，长度为7的数组，分别对应周一到周日的备份方式，full-全量备份，increment-增量备份
+        # @param BackupFreq: <p>备份频率，长度为7的数组，分别对应周一到周日的备份方式，full-全量备份，increment-增量备份</p>
         # @type BackupFreq: Array
-        # @param BackupType: 备份方式，logic-逻辑备份，snapshot-快照备份
+        # @param BackupType: <p>备份方式，logic-逻辑备份，snapshot-快照备份</p>
         # @type BackupType: String
-        # @param LogicCrossRegionsConfigUpdateTime: 跨地域逻辑备份配置修改时间
+        # @param LogicCrossRegionsConfigUpdateTime: <p>跨地域逻辑备份配置修改时间</p>
         # @type LogicCrossRegionsConfigUpdateTime: String
-        # @param LogicBackupConfig: 自动逻辑备份配置
+        # @param LogicBackupConfig: <p>自动逻辑备份配置</p>
         # @type LogicBackupConfig: :class:`Tencentcloud::Cynosdb.v20190107.models.LogicBackupConfigInfo`
-        # @param SnapshotSecondaryBackupConfig: 二级快照备份配置信息
+        # @param SnapshotSecondaryBackupConfig: <p>二级快照备份配置信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SnapshotSecondaryBackupConfig: :class:`Tencentcloud::Cynosdb.v20190107.models.BackupConfigInfo`
+        # @param SparseBackupConfig: <p>稀疏备份配置</p>
+        # @type SparseBackupConfig: :class:`Tencentcloud::Cynosdb.v20190107.models.SparseBackupConfigRsp`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :BackupTimeBeg, :BackupTimeEnd, :ReserveDuration, :BackupFreq, :BackupType, :LogicCrossRegionsConfigUpdateTime, :LogicBackupConfig, :SnapshotSecondaryBackupConfig, :RequestId
+        attr_accessor :BackupTimeBeg, :BackupTimeEnd, :ReserveDuration, :BackupFreq, :BackupType, :LogicCrossRegionsConfigUpdateTime, :LogicBackupConfig, :SnapshotSecondaryBackupConfig, :SparseBackupConfig, :RequestId
 
-        def initialize(backuptimebeg=nil, backuptimeend=nil, reserveduration=nil, backupfreq=nil, backuptype=nil, logiccrossregionsconfigupdatetime=nil, logicbackupconfig=nil, snapshotsecondarybackupconfig=nil, requestid=nil)
+        def initialize(backuptimebeg=nil, backuptimeend=nil, reserveduration=nil, backupfreq=nil, backuptype=nil, logiccrossregionsconfigupdatetime=nil, logicbackupconfig=nil, snapshotsecondarybackupconfig=nil, sparsebackupconfig=nil, requestid=nil)
           @BackupTimeBeg = backuptimebeg
           @BackupTimeEnd = backuptimeend
           @ReserveDuration = reserveduration
@@ -6532,6 +6542,7 @@ module TencentCloud
           @LogicCrossRegionsConfigUpdateTime = logiccrossregionsconfigupdatetime
           @LogicBackupConfig = logicbackupconfig
           @SnapshotSecondaryBackupConfig = snapshotsecondarybackupconfig
+          @SparseBackupConfig = sparsebackupconfig
           @RequestId = requestid
         end
 
@@ -6549,6 +6560,10 @@ module TencentCloud
           unless params['SnapshotSecondaryBackupConfig'].nil?
             @SnapshotSecondaryBackupConfig = BackupConfigInfo.new
             @SnapshotSecondaryBackupConfig.deserialize(params['SnapshotSecondaryBackupConfig'])
+          end
+          unless params['SparseBackupConfig'].nil?
+            @SparseBackupConfig = SparseBackupConfigRsp.new
+            @SparseBackupConfig.deserialize(params['SparseBackupConfig'])
           end
           @RequestId = params['RequestId']
         end
@@ -14310,28 +14325,30 @@ module TencentCloud
 
       # ModifyBackupConfig请求参数结构体
       class ModifyBackupConfigRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群ID
+        # @param ClusterId: <p>集群ID</p>
         # @type ClusterId: String
-        # @param BackupTimeBeg: 表示全备开始时间，[0-24*3600]， 如0:00, 1:00, 2:00 分别为 0，3600， 7200
+        # @param BackupTimeBeg: <p>表示全备开始时间，[0-24*3600]， 如0:00, 1:00, 2:00 分别为 0，3600， 7200</p>
         # @type BackupTimeBeg: Integer
-        # @param BackupTimeEnd: 表示全备结束时间，[0-24*3600]， 如0:00, 1:00, 2:00 分别为 0，3600， 7200
+        # @param BackupTimeEnd: <p>表示全备结束时间，[0-24*3600]， 如0:00, 1:00, 2:00 分别为 0，3600， 7200</p>
         # @type BackupTimeEnd: Integer
-        # @param ReserveDuration: 表示保留备份时长, 单位秒，超过该时间将被清理, 七天表示为3600*24*7=604800，最大为158112000
+        # @param ReserveDuration: <p>表示保留备份时长, 单位秒，超过该时间将被清理, 七天表示为3600<em>24</em>7=604800，最大为158112000</p>
         # @type ReserveDuration: Integer
-        # @param BackupFreq: 该参数目前不支持修改，无需填写。备份频率，长度为7的数组，分别对应周一到周日的备份方式，full-全量备份，increment-增量备份
+        # @param BackupFreq: <p>该参数目前不支持修改，无需填写。备份频率，长度为7的数组，分别对应周一到周日的备份方式，full-全量备份，increment-增量备份</p>
         # @type BackupFreq: Array
-        # @param BackupType: 该参数目前不支持修改，无需填写。
+        # @param BackupType: <p>该参数目前不支持修改，无需填写。</p>
         # @type BackupType: String
-        # @param LogicBackupConfig: 逻辑备份配置
+        # @param LogicBackupConfig: <p>逻辑备份配置</p>
         # @type LogicBackupConfig: :class:`Tencentcloud::Cynosdb.v20190107.models.LogicBackupConfigInfo`
-        # @param DeleteAutoLogicBackup: 是否删除自动逻辑备份
+        # @param DeleteAutoLogicBackup: <p>是否删除自动逻辑备份</p>
         # @type DeleteAutoLogicBackup: Boolean
-        # @param SnapshotSecondaryBackupConfig: 二级快照备份参数
+        # @param SnapshotSecondaryBackupConfig: <p>二级快照备份参数</p>
         # @type SnapshotSecondaryBackupConfig: :class:`Tencentcloud::Cynosdb.v20190107.models.SnapshotBackupConfig`
+        # @param SparseBackupConfig: <p>稀疏备份配置</p>
+        # @type SparseBackupConfig: :class:`Tencentcloud::Cynosdb.v20190107.models.SparseBackupConfig`
 
-        attr_accessor :ClusterId, :BackupTimeBeg, :BackupTimeEnd, :ReserveDuration, :BackupFreq, :BackupType, :LogicBackupConfig, :DeleteAutoLogicBackup, :SnapshotSecondaryBackupConfig
+        attr_accessor :ClusterId, :BackupTimeBeg, :BackupTimeEnd, :ReserveDuration, :BackupFreq, :BackupType, :LogicBackupConfig, :DeleteAutoLogicBackup, :SnapshotSecondaryBackupConfig, :SparseBackupConfig
 
-        def initialize(clusterid=nil, backuptimebeg=nil, backuptimeend=nil, reserveduration=nil, backupfreq=nil, backuptype=nil, logicbackupconfig=nil, deleteautologicbackup=nil, snapshotsecondarybackupconfig=nil)
+        def initialize(clusterid=nil, backuptimebeg=nil, backuptimeend=nil, reserveduration=nil, backupfreq=nil, backuptype=nil, logicbackupconfig=nil, deleteautologicbackup=nil, snapshotsecondarybackupconfig=nil, sparsebackupconfig=nil)
           @ClusterId = clusterid
           @BackupTimeBeg = backuptimebeg
           @BackupTimeEnd = backuptimeend
@@ -14341,6 +14358,7 @@ module TencentCloud
           @LogicBackupConfig = logicbackupconfig
           @DeleteAutoLogicBackup = deleteautologicbackup
           @SnapshotSecondaryBackupConfig = snapshotsecondarybackupconfig
+          @SparseBackupConfig = sparsebackupconfig
         end
 
         def deserialize(params)
@@ -14358,6 +14376,10 @@ module TencentCloud
           unless params['SnapshotSecondaryBackupConfig'].nil?
             @SnapshotSecondaryBackupConfig = SnapshotBackupConfig.new
             @SnapshotSecondaryBackupConfig.deserialize(params['SnapshotSecondaryBackupConfig'])
+          end
+          unless params['SparseBackupConfig'].nil?
+            @SparseBackupConfig = SparseBackupConfig.new
+            @SparseBackupConfig.deserialize(params['SparseBackupConfig'])
           end
         end
       end
@@ -16459,6 +16481,26 @@ module TencentCloud
         def deserialize(params)
           @IsDisable = params['IsDisable']
           @ModuleName = params['ModuleName']
+        end
+      end
+
+      # 月份日期信息
+      class MonthDay < TencentCloud::Common::AbstractModel
+        # @param Month: 月份信息
+        # @type Month: Integer
+        # @param Day: 日期信息
+        # @type Day: Integer
+
+        attr_accessor :Month, :Day
+
+        def initialize(month=nil, day=nil)
+          @Month = month
+          @Day = day
+        end
+
+        def deserialize(params)
+          @Month = params['Month']
+          @Day = params['Day']
         end
       end
 
@@ -20432,6 +20474,128 @@ module TencentCloud
               createbackupvaultitem_tmp = CreateBackupVaultItem.new
               createbackupvaultitem_tmp.deserialize(i)
               @AutoCopyVaults << createbackupvaultitem_tmp
+            end
+          end
+        end
+      end
+
+      # 稀疏备份配置
+      class SparseBackupConfig < TencentCloud::Common::AbstractModel
+        # @param SparseBackupSwitch: 稀疏备份开关：ON/OFF
+        # @type SparseBackupSwitch: String
+        # @param SparseBackupConfigInfos: 稀疏备份策略列表（1-3条）
+        # @type SparseBackupConfigInfos: Array
+
+        attr_accessor :SparseBackupSwitch, :SparseBackupConfigInfos
+
+        def initialize(sparsebackupswitch=nil, sparsebackupconfiginfos=nil)
+          @SparseBackupSwitch = sparsebackupswitch
+          @SparseBackupConfigInfos = sparsebackupconfiginfos
+        end
+
+        def deserialize(params)
+          @SparseBackupSwitch = params['SparseBackupSwitch']
+          unless params['SparseBackupConfigInfos'].nil?
+            @SparseBackupConfigInfos = []
+            params['SparseBackupConfigInfos'].each do |i|
+              sparsebackupconfiginfo_tmp = SparseBackupConfigInfo.new
+              sparsebackupconfiginfo_tmp.deserialize(i)
+              @SparseBackupConfigInfos << sparsebackupconfiginfo_tmp
+            end
+          end
+        end
+      end
+
+      # 稀疏备份策略配置信息
+      class SparseBackupConfigInfo < TencentCloud::Common::AbstractModel
+        # @param OpType: 操作类型:add,modify,remove
+        # @type OpType: String
+        # @param ConfigId: 配置 ID
+        # @type ConfigId: String
+        # @param SparsePeriodConfig: 周期策略类型：weekly/monthly/yearly
+        # @type SparsePeriodConfig: String
+        # @param SparsePeriodTime: 周期时间配置
+        # @type SparsePeriodTime: :class:`Tencentcloud::Cynosdb.v20190107.models.SparsePeriodTime`
+        # @param SparseBackupSaveDays: 保留天数（7-7320天，最长20年）
+        # @type SparseBackupSaveDays: Integer
+
+        attr_accessor :OpType, :ConfigId, :SparsePeriodConfig, :SparsePeriodTime, :SparseBackupSaveDays
+
+        def initialize(optype=nil, configid=nil, sparseperiodconfig=nil, sparseperiodtime=nil, sparsebackupsavedays=nil)
+          @OpType = optype
+          @ConfigId = configid
+          @SparsePeriodConfig = sparseperiodconfig
+          @SparsePeriodTime = sparseperiodtime
+          @SparseBackupSaveDays = sparsebackupsavedays
+        end
+
+        def deserialize(params)
+          @OpType = params['OpType']
+          @ConfigId = params['ConfigId']
+          @SparsePeriodConfig = params['SparsePeriodConfig']
+          unless params['SparsePeriodTime'].nil?
+            @SparsePeriodTime = SparsePeriodTime.new
+            @SparsePeriodTime.deserialize(params['SparsePeriodTime'])
+          end
+          @SparseBackupSaveDays = params['SparseBackupSaveDays']
+        end
+      end
+
+      # 稀疏备份配置
+      class SparseBackupConfigRsp < TencentCloud::Common::AbstractModel
+        # @param SparseBackupSwitch: 稀疏备份开关：ON/OFF
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SparseBackupSwitch: String
+        # @param SparseBackupConfigInfos: 稀疏备份策略列表（1-3条）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SparseBackupConfigInfos: Array
+
+        attr_accessor :SparseBackupSwitch, :SparseBackupConfigInfos
+
+        def initialize(sparsebackupswitch=nil, sparsebackupconfiginfos=nil)
+          @SparseBackupSwitch = sparsebackupswitch
+          @SparseBackupConfigInfos = sparsebackupconfiginfos
+        end
+
+        def deserialize(params)
+          @SparseBackupSwitch = params['SparseBackupSwitch']
+          unless params['SparseBackupConfigInfos'].nil?
+            @SparseBackupConfigInfos = []
+            params['SparseBackupConfigInfos'].each do |i|
+              sparsebackupconfiginfo_tmp = SparseBackupConfigInfo.new
+              sparsebackupconfiginfo_tmp.deserialize(i)
+              @SparseBackupConfigInfos << sparsebackupconfiginfo_tmp
+            end
+          end
+        end
+      end
+
+      # 稀疏备份周期信息
+      class SparsePeriodTime < TencentCloud::Common::AbstractModel
+        # @param WeekDays: 按周：星期几列表，1-7，1=周一，7=周日（仅 weekly 周期使用，最多7个）
+        # @type WeekDays: Array
+        # @param Days: 按月：日期列表，1-31（仅 monthly 周期使用，最多7个）
+        # @type Days: Array
+        # @param MonthDays: 按年：月日组合列表（仅 yearly 周期使用，最多7个）
+        # @type MonthDays: Array
+
+        attr_accessor :WeekDays, :Days, :MonthDays
+
+        def initialize(weekdays=nil, days=nil, monthdays=nil)
+          @WeekDays = weekdays
+          @Days = days
+          @MonthDays = monthdays
+        end
+
+        def deserialize(params)
+          @WeekDays = params['WeekDays']
+          @Days = params['Days']
+          unless params['MonthDays'].nil?
+            @MonthDays = []
+            params['MonthDays'].each do |i|
+              monthday_tmp = MonthDay.new
+              monthday_tmp.deserialize(i)
+              @MonthDays << monthday_tmp
             end
           end
         end

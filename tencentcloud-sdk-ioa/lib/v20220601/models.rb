@@ -2481,6 +2481,8 @@ module TencentCloud
 
       # DescribeLocalAccounts请求参数结构体
       class DescribeLocalAccountsRequest < TencentCloud::Common::AbstractModel
+        # @param DomainInstanceId: 管理域实例ID，用于CAM管理域权限分配。若企业未进行管理域的划分，可直接传入根域"1"，此时表示针对当前企业的全部设备和账号进行接口CRUD，具体CRUD的影响范围限制于相应接口的入参。
+        # @type DomainInstanceId: String
         # @param Condition: 查询条件：过滤或排序
         # 1、UserName，string类型，姓名
         # 是否必填：否
@@ -2494,21 +2496,27 @@ module TencentCloud
         # 是否必填：否
         # 过滤支持：是，支持eq、like、ilike
         # 排序支持：否
+        # 4、Email，string类型，邮箱
+        # 是否必填：否
+        # 过滤支持：是，支持eq、like、ilike
+        # 排序支持：否
         # @type Condition: :class:`Tencentcloud::Ioa.v20220601.models.Condition`
         # @param AccountGroupId: 获取账号的分组ID，不传默认获取全网根账号组
         # @type AccountGroupId: Integer
         # @param ShowFlag: 是否仅展示当前目录下用户 1： 递归显示 2：仅显示当前目录下用户
         # @type ShowFlag: Integer
 
-        attr_accessor :Condition, :AccountGroupId, :ShowFlag
+        attr_accessor :DomainInstanceId, :Condition, :AccountGroupId, :ShowFlag
 
-        def initialize(condition=nil, accountgroupid=nil, showflag=nil)
+        def initialize(domaininstanceid=nil, condition=nil, accountgroupid=nil, showflag=nil)
+          @DomainInstanceId = domaininstanceid
           @Condition = condition
           @AccountGroupId = accountgroupid
           @ShowFlag = showflag
         end
 
         def deserialize(params)
+          @DomainInstanceId = params['DomainInstanceId']
           unless params['Condition'].nil?
             @Condition = Condition.new
             @Condition.deserialize(params['Condition'])
@@ -2908,107 +2916,107 @@ module TencentCloud
 
       # 业务响应数据
       class DeviceDetail < TencentCloud::Common::AbstractModel
-        # @param Id: 设备ID
+        # @param Id: <p>设备ID</p>
         # @type Id: Integer
-        # @param Mid: 设备唯一标识码，在ioa中每个设备有唯一标识码
+        # @param Mid: <p>设备唯一标识码，在ioa中每个设备有唯一标识码</p>
         # @type Mid: String
-        # @param Name: 终端名（设备名）
+        # @param Name: <p>终端名（设备名）</p>
         # @type Name: String
-        # @param GroupId: 设备所在分组ID
+        # @param GroupId: <p>设备所在分组ID</p>
         # @type GroupId: Integer
-        # @param OsType: OS平台，0：Windows 、1： Linux、 2：macOS 、4： Android、 5: iOS。默认是0
+        # @param OsType: <p>OS平台，0：Windows 、1： Linux、 2：macOS 、4： Android、 5: iOS。默认是0</p>
         # @type OsType: Integer
-        # @param Ip: 设备IP地址（出口IP）
+        # @param Ip: <p>设备IP地址（出口IP）</p>
         # @type Ip: String
-        # @param OnlineStatus: 在线状态，2：在线、0或者1:离线
+        # @param OnlineStatus: <p>在线状态，2：在线、0或者1:离线</p>
         # @type OnlineStatus: Integer
-        # @param Version: 客户端版本号-大整数
+        # @param Version: <p>客户端版本号-大整数</p>
         # @type Version: String
-        # @param StrVersion: 客户端版本号-点分字符串
+        # @param StrVersion: <p>客户端版本号-点分字符串</p>
         # @type StrVersion: String
-        # @param Itime: 首次在线时间
+        # @param Itime: <p>首次在线时间</p>
         # @type Itime: String
-        # @param ConnActiveTime: 最后一次在线时间
+        # @param ConnActiveTime: <p>最后一次在线时间</p>
         # @type ConnActiveTime: String
-        # @param Locked: 设备是否加锁 ，1：锁定 0或者2：未锁定。
+        # @param Locked: <p>设备是否加锁 ，1：锁定 0或者2：未锁定。</p>
         # @type Locked: Integer
-        # @param LocalIpList: 设备本地IP列表, 包括IP
+        # @param LocalIpList: <p>设备本地IP列表, 包括IP</p>
         # @type LocalIpList: String
-        # @param HostId: 宿主机id（需要宿主机也安装iOA才能显示）
+        # @param HostId: <p>宿主机id（需要宿主机也安装iOA才能显示）</p>
         # @type HostId: Integer
-        # @param GroupName: 设备所属分组名
+        # @param GroupName: <p>设备所属分组名</p>
         # @type GroupName: String
-        # @param GroupNamePath: 设备所属分组路径
+        # @param GroupNamePath: <p>设备所属分组路径</p>
         # @type GroupNamePath: String
-        # @param CriticalVulListCount: 未修复高危漏洞数(只支持32位)
+        # @param CriticalVulListCount: <p>未修复高危漏洞数(只支持32位)</p>
         # @type CriticalVulListCount: Integer
-        # @param Os: 操作系统名称
+        # @param Os: <p>操作系统名称</p>
         # @type Os: String
-        # @param OsBits: 操作系统位数
+        # @param OsBits: <p>操作系统位数</p>
         # @type OsBits: Integer
-        # @param OsVersion: 操作系统版本
+        # @param OsVersion: <p>操作系统版本</p>
         # @type OsVersion: String
-        # @param OsLanguage: 操作系统语言
+        # @param OsLanguage: <p>操作系统语言</p>
         # @type OsLanguage: String
-        # @param OsInstallDate: 操作系统安装时间
+        # @param OsInstallDate: <p>操作系统安装时间</p>
         # @type OsInstallDate: String
-        # @param ComputerName: 设备名，和Name相同
+        # @param ComputerName: <p>设备名，和Name相同</p>
         # @type ComputerName: String
-        # @param DomainName: 登录域名
+        # @param DomainName: <p>登录域名</p>
         # @type DomainName: String
-        # @param MacAddr: MAC地址
+        # @param MacAddr: <p>MAC地址</p>
         # @type MacAddr: String
-        # @param VulCount: 漏洞数
+        # @param VulCount: <p>漏洞数</p>
         # @type VulCount: Integer
-        # @param RiskCount: 病毒风险数
+        # @param RiskCount: <p>病毒风险数</p>
         # @type RiskCount: Integer
-        # @param VirusVer: 病毒库版本
+        # @param VirusVer: <p>病毒库版本</p>
         # @type VirusVer: String
-        # @param VulVersion: 漏洞库版本
+        # @param VulVersion: <p>漏洞库版本</p>
         # @type VulVersion: String
-        # @param SysRepVersion: 系统修复引擎版本
+        # @param SysRepVersion: <p>系统修复引擎版本</p>
         # @type SysRepVersion: String
-        # @param VulCriticalList: 高危补丁列表
+        # @param VulCriticalList: <p>高危补丁列表</p>
         # @type VulCriticalList: Array
-        # @param Tags: 标签
+        # @param Tags: <p>标签</p>
         # @type Tags: String
-        # @param UserName: 终端用户名
+        # @param UserName: <p>终端用户名</p>
         # @type UserName: String
-        # @param FirewallStatus: 防火墙状态，不等于0表示开启
+        # @param FirewallStatus: <p>防火墙状态，不等于0表示开启</p>
         # @type FirewallStatus: Integer
-        # @param SerialNum: SN序列号
+        # @param SerialNum: <p>SN序列号</p>
         # @type SerialNum: String
-        # @param DeviceStrategyVer: 设备管控策略版本
+        # @param DeviceStrategyVer: <p>设备管控策略版本</p>
         # @type DeviceStrategyVer: String
-        # @param NGNStrategyVer: NGN策略版本
+        # @param NGNStrategyVer: <p>NGN策略版本</p>
         # @type NGNStrategyVer: String
-        # @param IOAUserName: 最近登录账户的账号(账号系统用户账号)
+        # @param IOAUserName: <p>最近登录账户的账号(账号系统用户账号)</p>
         # @type IOAUserName: String
-        # @param DeviceNewStrategyVer: 设备管控新策略
+        # @param DeviceNewStrategyVer: <p>设备管控新策略</p>
         # @type DeviceNewStrategyVer: String
-        # @param NGNNewStrategyVer: NGN策略新版本
+        # @param NGNNewStrategyVer: <p>NGN策略新版本</p>
         # @type NGNNewStrategyVer: String
-        # @param HostName: 宿主机名称（需要宿主机也安装iOA才能显示）
+        # @param HostName: <p>宿主机名称（需要宿主机也安装iOA才能显示）</p>
         # @type HostName: String
-        # @param BaseBoardSn: 主板序列号
+        # @param BaseBoardSn: <p>主板序列号</p>
         # @type BaseBoardSn: String
-        # @param AccountUsers: 绑定账户名称
+        # @param AccountUsers: <p>绑定账户名称</p>
         # @type AccountUsers: String
-        # @param IdentityStrategyVer: 身份策略版本
+        # @param IdentityStrategyVer: <p>身份策略版本</p>
         # @type IdentityStrategyVer: String
-        # @param IdentityNewStrategyVer: 身份策略新版本
+        # @param IdentityNewStrategyVer: <p>身份策略新版本</p>
         # @type IdentityNewStrategyVer: String
-        # @param AccountGroupName: 最近登录账号部门
+        # @param AccountGroupName: <p>最近登录账号部门</p>
         # @type AccountGroupName: String
-        # @param AccountName: 最近登录账户的姓名(账号系统用户姓名)
+        # @param AccountName: <p>最近登录账户的姓名(账号系统用户姓名)</p>
         # @type AccountName: String
-        # @param AccountGroupId: 账号组id
+        # @param AccountGroupId: <p>账号组id</p>
         # @type AccountGroupId: Integer
-        # @param ScreenRecordingPermission: 是否开启录屏权限，仅macOS， 0： 未开启 、1： 开启
+        # @param ScreenRecordingPermission: <p>是否开启录屏权限，仅macOS， 0： 未开启 、1： 开启</p>
         # @type ScreenRecordingPermission: Integer
-        # @param DiskAccessPermission: 是否开启磁盘访问权限，仅macOS， 0： 未开启、 1： 开启
+        # @param DiskAccessPermission: <p>是否开启磁盘访问权限，仅macOS， 0： 未开启、 1： 开启</p>
         # @type DiskAccessPermission: Integer
-        # @param RemarkName: 终端备注名
+        # @param RemarkName: <p>终端备注名</p>
         # @type RemarkName: String
 
         attr_accessor :Id, :Mid, :Name, :GroupId, :OsType, :Ip, :OnlineStatus, :Version, :StrVersion, :Itime, :ConnActiveTime, :Locked, :LocalIpList, :HostId, :GroupName, :GroupNamePath, :CriticalVulListCount, :Os, :OsBits, :OsVersion, :OsLanguage, :OsInstallDate, :ComputerName, :DomainName, :MacAddr, :VulCount, :RiskCount, :VirusVer, :VulVersion, :SysRepVersion, :VulCriticalList, :Tags, :UserName, :FirewallStatus, :SerialNum, :DeviceStrategyVer, :NGNStrategyVer, :IOAUserName, :DeviceNewStrategyVer, :NGNNewStrategyVer, :HostName, :BaseBoardSn, :AccountUsers, :IdentityStrategyVer, :IdentityNewStrategyVer, :AccountGroupName, :AccountName, :AccountGroupId, :ScreenRecordingPermission, :DiskAccessPermission, :RemarkName

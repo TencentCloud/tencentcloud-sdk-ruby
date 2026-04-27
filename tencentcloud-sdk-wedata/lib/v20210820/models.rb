@@ -7994,15 +7994,19 @@ module TencentCloud
         # @param Rows: 记录
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Rows: Array
+        # @param SnapshotId: 分页快照id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SnapshotId: String
 
-        attr_accessor :PageNumber, :PageSize, :TotalCount, :TotalPageNumber, :Rows
+        attr_accessor :PageNumber, :PageSize, :TotalCount, :TotalPageNumber, :Rows, :SnapshotId
 
-        def initialize(pagenumber=nil, pagesize=nil, totalcount=nil, totalpagenumber=nil, rows=nil)
+        def initialize(pagenumber=nil, pagesize=nil, totalcount=nil, totalpagenumber=nil, rows=nil, snapshotid=nil)
           @PageNumber = pagenumber
           @PageSize = pagesize
           @TotalCount = totalcount
           @TotalPageNumber = totalpagenumber
           @Rows = rows
+          @SnapshotId = snapshotid
         end
 
         def deserialize(params)
@@ -8018,6 +8022,7 @@ module TencentCloud
               @Rows << databaserealviewvo_tmp
             end
           end
+          @SnapshotId = params['SnapshotId']
         end
       end
 

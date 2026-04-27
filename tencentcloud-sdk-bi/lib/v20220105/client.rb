@@ -77,6 +77,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建ApiKey
+
+        # @param request: Request instance for CreateAuthApiKey.
+        # @type request: :class:`Tencentcloud::bi::V20220105::CreateAuthApiKeyRequest`
+        # @rtype: :class:`Tencentcloud::bi::V20220105::CreateAuthApiKeyResponse`
+        def CreateAuthApiKey(request)
+          body = send_request('CreateAuthApiKey', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateAuthApiKeyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建数据源
 
         # @param request: Request instance for CreateDatasource.
@@ -293,6 +317,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除ApiKey
+
+        # @param request: Request instance for DeleteAuthApiKey.
+        # @type request: :class:`Tencentcloud::bi::V20220105::DeleteAuthApiKeyRequest`
+        # @rtype: :class:`Tencentcloud::bi::V20220105::DeleteAuthApiKeyResponse`
+        def DeleteAuthApiKey(request)
+          body = send_request('DeleteAuthApiKey', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteAuthApiKeyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除数据源
 
         # @param request: Request instance for DeleteDatasource.
@@ -423,6 +471,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteUserRoleProjectResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # ApiKey信息
+
+        # @param request: Request instance for DescribeAuthApiKeyInfo.
+        # @type request: :class:`Tencentcloud::bi::V20220105::DescribeAuthApiKeyInfoRequest`
+        # @rtype: :class:`Tencentcloud::bi::V20220105::DescribeAuthApiKeyInfoResponse`
+        def DescribeAuthApiKeyInfo(request)
+          body = send_request('DescribeAuthApiKeyInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAuthApiKeyInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # ApiKey列表
+
+        # @param request: Request instance for DescribeAuthApiKeyList.
+        # @type request: :class:`Tencentcloud::bi::V20220105::DescribeAuthApiKeyListRequest`
+        # @rtype: :class:`Tencentcloud::bi::V20220105::DescribeAuthApiKeyListResponse`
+        def DescribeAuthApiKeyList(request)
+          body = send_request('DescribeAuthApiKeyList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAuthApiKeyListResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -783,6 +879,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ExportScreenPageResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 更新ApiKey
+
+        # @param request: Request instance for ModifyAuthApiKey.
+        # @type request: :class:`Tencentcloud::bi::V20220105::ModifyAuthApiKeyRequest`
+        # @rtype: :class:`Tencentcloud::bi::V20220105::ModifyAuthApiKeyResponse`
+        def ModifyAuthApiKey(request)
+          body = send_request('ModifyAuthApiKey', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyAuthApiKeyResponse.new
             model.deserialize(response['Response'])
             model
           else

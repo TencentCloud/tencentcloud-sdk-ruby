@@ -3295,6 +3295,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 大模型安全代答生成接口。当用户输入或模型输出命中内容安全风险检测规则时，调用本接口由大模型实时生成安全合规的替代回答。
+
+        # @param request: Request instance for GenerateLLMSecAnswer.
+        # @type request: :class:`Tencentcloud::waf::V20180125::GenerateLLMSecAnswerRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::GenerateLLMSecAnswerResponse`
+        def GenerateLLMSecAnswer(request)
+          body = send_request('GenerateLLMSecAnswer', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GenerateLLMSecAnswerResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询下载攻击日志任务记录列表
 
         # @param request: Request instance for GetAttackDownloadRecords.

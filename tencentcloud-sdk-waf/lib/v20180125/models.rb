@@ -9563,47 +9563,51 @@ module TencentCloud
 
       # DescribeLLMContentSecCheck请求参数结构体
       class DescribeLLMContentSecCheckRequest < TencentCloud::Common::AbstractModel
-        # @param ServiceId:  服务id,使用哪一套防护策略，就需要传哪一套服务id，模型会检测该服务id下的所有规则
+        # @param ServiceId: <p>服务id,使用哪一套防护策略，就需要传哪一套服务id，模型会检测该服务id下的所有规则</p>
         # @type ServiceId: String
-        # @param Content: 要审核的内容
-        # @type Content: String
-        # @param Type: 流量类型，是入向流量还是出向流量，入向：1，出向：2；入向和出向必填
+        # @param Type: <p>流量类型，是入向流量还是出向流量，入向：1，出向：2；入向和出向必填</p>
         # @type Type: Integer
-        # @param InstanceId: 实例id，必传
+        # @param InstanceId: <p>实例id，必传</p>
         # @type InstanceId: String
-        # @param ChatId: 对话的id
+        # @param Content: <p>要审核的内容</p>
+        # @type Content: String
+        # @param ChatId: <p>对话的id</p>
         # @type ChatId: String
-        # @param UserId: 标识用户的id，限速使用，不填，则限速会不生效
+        # @param UserId: <p>标识用户的id，限速使用，不填，则限速会不生效</p>
         # @type UserId: String
-        # @param TokenUsage: token使用量，不填，会采用默认的token计算方法，计算的是模型的消耗，因为该值时在出向方向上添加，即Type=2
+        # @param TokenUsage: <p>token使用量，不填，会采用默认的token计算方法，计算的是模型的消耗，因为该值时在出向方向上添加，即Type=2</p>
         # @type TokenUsage: Integer
+        # @param ImageEncode: <p>图片base64编码后的数据,body大小最大支持10M</p>
+        # @type ImageEncode: String
 
-        attr_accessor :ServiceId, :Content, :Type, :InstanceId, :ChatId, :UserId, :TokenUsage
+        attr_accessor :ServiceId, :Type, :InstanceId, :Content, :ChatId, :UserId, :TokenUsage, :ImageEncode
 
-        def initialize(serviceid=nil, content=nil, type=nil, instanceid=nil, chatid=nil, userid=nil, tokenusage=nil)
+        def initialize(serviceid=nil, type=nil, instanceid=nil, content=nil, chatid=nil, userid=nil, tokenusage=nil, imageencode=nil)
           @ServiceId = serviceid
-          @Content = content
           @Type = type
           @InstanceId = instanceid
+          @Content = content
           @ChatId = chatid
           @UserId = userid
           @TokenUsage = tokenusage
+          @ImageEncode = imageencode
         end
 
         def deserialize(params)
           @ServiceId = params['ServiceId']
-          @Content = params['Content']
           @Type = params['Type']
           @InstanceId = params['InstanceId']
+          @Content = params['Content']
           @ChatId = params['ChatId']
           @UserId = params['UserId']
           @TokenUsage = params['TokenUsage']
+          @ImageEncode = params['ImageEncode']
         end
       end
 
       # DescribeLLMContentSecCheck返回参数结构体
       class DescribeLLMContentSecCheckResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 检测结果
+        # @param Data: <p>检测结果</p>
         # @type Data: :class:`Tencentcloud::Waf.v20180125.models.LLMDetectResult`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -12916,6 +12920,45 @@ module TencentCloud
         end
       end
 
+      # GenerateLLMSecAnswer请求参数结构体
+      class GenerateLLMSecAnswerRequest < TencentCloud::Common::AbstractModel
+        # @param Message: <p>消息结构体内容</p>
+        # @type Message: :class:`Tencentcloud::Waf.v20180125.models.SSEClientMessage`
+        # @param MsgID: <p>消息id，传入 要回答的MsgID ，用于匹配自定义回答模板，最终可得到优化的代答结果</p>
+        # @type MsgID: String
+
+        attr_accessor :Message, :MsgID
+
+        def initialize(message=nil, msgid=nil)
+          @Message = message
+          @MsgID = msgid
+        end
+
+        def deserialize(params)
+          unless params['Message'].nil?
+            @Message = SSEClientMessage.new
+            @Message.deserialize(params['Message'])
+          end
+          @MsgID = params['MsgID']
+        end
+      end
+
+      # GenerateLLMSecAnswer返回参数结构体
+      class GenerateLLMSecAnswerResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。本接口为流式响应接口，当请求成功时，RequestId 会被放在 HTTP 响应的 Header "X-TC-RequestId" 中。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # GetAttackDownloadRecords请求参数结构体
       class GetAttackDownloadRecordsRequest < TencentCloud::Common::AbstractModel
 
@@ -13682,6 +13725,26 @@ module TencentCloud
           @InquireNum = params['InquireNum']
           @UsedNum = params['UsedNum']
           @RenewFlag = params['RenewFlag']
+        end
+      end
+
+      # llm要检测的图片的检测结果
+      class ImageResult < TencentCloud::Common::AbstractModel
+        # @param Category: <p>命中类别标识</p>
+        # @type Category: String
+        # @param CategoryName: <p>类别的名称</p>
+        # @type CategoryName: String
+
+        attr_accessor :Category, :CategoryName
+
+        def initialize(category=nil, categoryname=nil)
+          @Category = category
+          @CategoryName = categoryname
+        end
+
+        def deserialize(params)
+          @Category = params['Category']
+          @CategoryName = params['CategoryName']
         end
       end
 
@@ -14602,10 +14665,12 @@ module TencentCloud
         # @type Action: String
         # @param Payload: <p>攻击payload</p>
         # @type Payload: String
+        # @param ImageResult: <p>图片检测结果</p>
+        # @type ImageResult: Array
 
-        attr_accessor :SensitiveResult, :KeyWordsResult, :DataCategoryResult, :PromptInjectionResult, :RuleId, :RuleName, :Action, :Payload
+        attr_accessor :SensitiveResult, :KeyWordsResult, :DataCategoryResult, :PromptInjectionResult, :RuleId, :RuleName, :Action, :Payload, :ImageResult
 
-        def initialize(sensitiveresult=nil, keywordsresult=nil, datacategoryresult=nil, promptinjectionresult=nil, ruleid=nil, rulename=nil, action=nil, payload=nil)
+        def initialize(sensitiveresult=nil, keywordsresult=nil, datacategoryresult=nil, promptinjectionresult=nil, ruleid=nil, rulename=nil, action=nil, payload=nil, imageresult=nil)
           @SensitiveResult = sensitiveresult
           @KeyWordsResult = keywordsresult
           @DataCategoryResult = datacategoryresult
@@ -14614,6 +14679,7 @@ module TencentCloud
           @RuleName = rulename
           @Action = action
           @Payload = payload
+          @ImageResult = imageresult
         end
 
         def deserialize(params)
@@ -14642,6 +14708,14 @@ module TencentCloud
           @RuleName = params['RuleName']
           @Action = params['Action']
           @Payload = params['Payload']
+          unless params['ImageResult'].nil?
+            @ImageResult = []
+            params['ImageResult'].each do |i|
+              imageresult_tmp = ImageResult.new
+              imageresult_tmp.deserialize(i)
+              @ImageResult << imageresult_tmp
+            end
+          end
         end
       end
 
@@ -20144,6 +20218,30 @@ module TencentCloud
           @RuleTypeStatus = params['RuleTypeStatus']
           @ActiveRuleCount = params['ActiveRuleCount']
           @TotalRuleCount = params['TotalRuleCount']
+        end
+      end
+
+      # 对话消息结构体
+      class SSEClientMessage < TencentCloud::Common::AbstractModel
+        # @param Role: <p>对话角色，填user</p>
+        # @type Role: String
+        # @param Content: <p>prompt内容</p>
+        # @type Content: String
+        # @param ContentType: <p>检测类型，0是文本内容代答，目前只支持0，可以不传，默认值是0</p><p>枚举值：</p><ul><li>0： 文件内容代答</li></ul>
+        # @type ContentType: Integer
+
+        attr_accessor :Role, :Content, :ContentType
+
+        def initialize(role=nil, content=nil, contenttype=nil)
+          @Role = role
+          @Content = content
+          @ContentType = contenttype
+        end
+
+        def deserialize(params)
+          @Role = params['Role']
+          @Content = params['Content']
+          @ContentType = params['ContentType']
         end
       end
 

@@ -2763,12 +2763,17 @@ module TencentCloud
 
       # DescribeBillingResourceGroupAttachedWorkspaces请求参数结构体
       class DescribeBillingResourceGroupAttachedWorkspacesRequest < TencentCloud::Common::AbstractModel
+        # @param TiProjectId: <p>TI工作空间ID</p><p>仅用于“工作空间”白名单功能。如需使用，请联系TI管理员开通白名单。</p>
+        # @type TiProjectId: String
 
+        attr_accessor :TiProjectId
 
-        def initialize()
+        def initialize(tiprojectid=nil)
+          @TiProjectId = tiprojectid
         end
 
         def deserialize(params)
+          @TiProjectId = params['TiProjectId']
         end
       end
 
@@ -2792,6 +2797,8 @@ module TencentCloud
       class DescribeBillingResourceGroupRequest < TencentCloud::Common::AbstractModel
         # @param ResourceGroupId: 资源组id, 取值为创建资源组接口(CreateBillingResourceGroup)响应中的ResourceGroupId
         # @type ResourceGroupId: String
+        # @param TiProjectId: <p>TI工作空间ID</p><p>仅用于“工作空间”白名单功能。如需使用，请联系TI管理员开通白名单。</p>
+        # @type TiProjectId: String
         # @param Filters: 过滤条件
         # 注意:
         # 1. Filter.Name 只支持以下枚举值:
@@ -2811,10 +2818,11 @@ module TencentCloud
         # @param OrderField: 排序字段; 枚举值: CreateTime (创建时间) ｜ ExpireTime (到期时间)；默认CreateTime
         # @type OrderField: String
 
-        attr_accessor :ResourceGroupId, :Filters, :Offset, :Limit, :Order, :OrderField
+        attr_accessor :ResourceGroupId, :TiProjectId, :Filters, :Offset, :Limit, :Order, :OrderField
 
-        def initialize(resourcegroupid=nil, filters=nil, offset=nil, limit=nil, order=nil, orderfield=nil)
+        def initialize(resourcegroupid=nil, tiprojectid=nil, filters=nil, offset=nil, limit=nil, order=nil, orderfield=nil)
           @ResourceGroupId = resourcegroupid
+          @TiProjectId = tiprojectid
           @Filters = filters
           @Offset = offset
           @Limit = limit
@@ -2824,6 +2832,7 @@ module TencentCloud
 
         def deserialize(params)
           @ResourceGroupId = params['ResourceGroupId']
+          @TiProjectId = params['TiProjectId']
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
@@ -2878,6 +2887,8 @@ module TencentCloud
 
       # DescribeBillingResourceGroups请求参数结构体
       class DescribeBillingResourceGroupsRequest < TencentCloud::Common::AbstractModel
+        # @param TiProjectId: <p>TI工作空间ID</p><p>仅用于“工作空间”白名单功能。如需使用，请联系TI管理员开通白名单。</p>
+        # @type TiProjectId: String
         # @param Filters: Filter.Name: 枚举值: ResourceGroupId (资源组id列表)                    ResourceGroupName (资源组名称列表)                    AvailableNodeCount（资源组中可用节点数量） Filter.Values: 长度为1且Filter.Fuzzy=true时，支持模糊查询; 不为1时，精确查询每次请求的Filters的上限为5，Filter.Values的上限为100
         # @type Filters: Array
         # @param TagFilters: 标签过滤
@@ -2893,9 +2904,10 @@ module TencentCloud
         # 默认为false
         # @type DontShowInstanceSet: Boolean
 
-        attr_accessor :Filters, :TagFilters, :Offset, :Limit, :SearchWord, :DontShowInstanceSet
+        attr_accessor :TiProjectId, :Filters, :TagFilters, :Offset, :Limit, :SearchWord, :DontShowInstanceSet
 
-        def initialize(filters=nil, tagfilters=nil, offset=nil, limit=nil, searchword=nil, dontshowinstanceset=nil)
+        def initialize(tiprojectid=nil, filters=nil, tagfilters=nil, offset=nil, limit=nil, searchword=nil, dontshowinstanceset=nil)
+          @TiProjectId = tiprojectid
           @Filters = filters
           @TagFilters = tagfilters
           @Offset = offset
@@ -2905,6 +2917,7 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @TiProjectId = params['TiProjectId']
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
@@ -2966,17 +2979,21 @@ module TencentCloud
         # @type ResourceGroupId: String
         # @param ResourceInstanceId: 资源组节点id
         # @type ResourceInstanceId: String
+        # @param TiProjectId: <p>TI工作空间ID</p><p>仅用于“工作空间”白名单功能。如需使用，请联系TI管理员开通白名单。</p>
+        # @type TiProjectId: String
 
-        attr_accessor :ResourceGroupId, :ResourceInstanceId
+        attr_accessor :ResourceGroupId, :ResourceInstanceId, :TiProjectId
 
-        def initialize(resourcegroupid=nil, resourceinstanceid=nil)
+        def initialize(resourcegroupid=nil, resourceinstanceid=nil, tiprojectid=nil)
           @ResourceGroupId = resourcegroupid
           @ResourceInstanceId = resourceinstanceid
+          @TiProjectId = tiprojectid
         end
 
         def deserialize(params)
           @ResourceGroupId = params['ResourceGroupId']
           @ResourceInstanceId = params['ResourceInstanceId']
+          @TiProjectId = params['TiProjectId']
         end
       end
 
@@ -3161,16 +3178,20 @@ module TencentCloud
 
       # DescribeDataSource请求参数结构体
       class DescribeDataSourceRequest < TencentCloud::Common::AbstractModel
+        # @param TiProjectId: <p>TI工作空间ID</p><p>仅用于“工作空间”白名单功能。如需使用，请联系TI管理员开通白名单。</p>
+        # @type TiProjectId: String
         # @param Id: 数据源id
         # @type Id: String
 
-        attr_accessor :Id
+        attr_accessor :TiProjectId, :Id
 
-        def initialize(id=nil)
+        def initialize(tiprojectid=nil, id=nil)
+          @TiProjectId = tiprojectid
           @Id = id
         end
 
         def deserialize(params)
+          @TiProjectId = params['TiProjectId']
           @Id = params['Id']
         end
       end
@@ -3955,28 +3976,30 @@ module TencentCloud
 
       # DescribeModelServiceGroups请求参数结构体
       class DescribeModelServiceGroupsRequest < TencentCloud::Common::AbstractModel
-        # @param Offset: 偏移量，默认为0
+        # @param TiProjectId: <p>TI工作空间ID</p><p>仅用于“工作空间”白名单功能。如需使用，请联系TI管理员开通白名单。</p>
+        # @type TiProjectId: String
+        # @param Offset: <p>偏移量，默认为0</p>
         # @type Offset: Integer
-        # @param Limit: 返回数量，默认为20，最大值为100
+        # @param Limit: <p>返回数量，默认为20，最大值为100</p>
         # @type Limit: Integer
-        # @param Order: 输出列表的排列顺序。取值范围：ASC：升序排列 DESC：降序排列
+        # @param Order: <p>输出列表的排列顺序。取值范围：ASC：升序排列 DESC：降序排列</p>
         # @type Order: String
-        # @param OrderField: 排序的依据字段， 取值范围 "CreateTime" "UpdateTime"
+        # @param OrderField: <p>排序的依据字段， 取值范围 &quot;CreateTime&quot; &quot;UpdateTime&quot;</p>
         # @type OrderField: String
-        # @param Filters: 分页参数，支持的分页过滤Name包括：
-        # ["ClusterId", "ServiceId", "ServiceGroupName", "ServiceGroupId","Status","CreatedBy","ModelVersionId"]
+        # @param Filters: <p>分页参数，支持的分页过滤Name包括：<br>[&quot;ClusterId&quot;, &quot;ServiceId&quot;, &quot;ServiceGroupName&quot;, &quot;ServiceGroupId&quot;,&quot;Status&quot;,&quot;CreatedBy&quot;,&quot;ModelVersionId&quot;]</p>
         # @type Filters: Array
-        # @param TagFilters: 标签过滤参数
+        # @param TagFilters: <p>标签过滤参数</p>
         # @type TagFilters: Array
-        # @param ServiceCategory: 服务分类
+        # @param ServiceCategory: <p>服务分类</p>
         # @type ServiceCategory: String
 
-        attr_accessor :Offset, :Limit, :Order, :OrderField, :Filters, :TagFilters, :ServiceCategory
+        attr_accessor :TiProjectId, :Offset, :Limit, :Order, :OrderField, :Filters, :TagFilters, :ServiceCategory
         extend Gem::Deprecate
         deprecate :ServiceCategory, :none, 2026, 4
         deprecate :ServiceCategory=, :none, 2026, 4
 
-        def initialize(offset=nil, limit=nil, order=nil, orderfield=nil, filters=nil, tagfilters=nil, servicecategory=nil)
+        def initialize(tiprojectid=nil, offset=nil, limit=nil, order=nil, orderfield=nil, filters=nil, tagfilters=nil, servicecategory=nil)
+          @TiProjectId = tiprojectid
           @Offset = offset
           @Limit = limit
           @Order = order
@@ -3987,6 +4010,7 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @TiProjectId = params['TiProjectId']
           @Offset = params['Offset']
           @Limit = params['Limit']
           @Order = params['Order']
@@ -4013,20 +4037,23 @@ module TencentCloud
 
       # DescribeModelServiceGroups返回参数结构体
       class DescribeModelServiceGroupsResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 推理服务组数量。
+        # @param TotalCount: <p>推理服务组数量。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
-        # @param ServiceGroups: 服务组信息
+        # @param ServiceGroups: <p>服务组信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceGroups: Array
+        # @param GlobalTotalCount: <p>当前uin和region下全量服务组数量</p>
+        # @type GlobalTotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TotalCount, :ServiceGroups, :RequestId
+        attr_accessor :TotalCount, :ServiceGroups, :GlobalTotalCount, :RequestId
 
-        def initialize(totalcount=nil, servicegroups=nil, requestid=nil)
+        def initialize(totalcount=nil, servicegroups=nil, globaltotalcount=nil, requestid=nil)
           @TotalCount = totalcount
           @ServiceGroups = servicegroups
+          @GlobalTotalCount = globaltotalcount
           @RequestId = requestid
         end
 
@@ -4040,6 +4067,7 @@ module TencentCloud
               @ServiceGroups << servicegroup_tmp
             end
           end
+          @GlobalTotalCount = params['GlobalTotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -4315,15 +4343,19 @@ module TencentCloud
       class DescribeNotebookRequest < TencentCloud::Common::AbstractModel
         # @param Id: notebook id
         # @type Id: String
+        # @param TiProjectId: <p>TI工作空间ID</p><p>仅用于“工作空间”白名单功能。如需使用，请联系TI管理员开通白名单。</p>
+        # @type TiProjectId: String
 
-        attr_accessor :Id
+        attr_accessor :Id, :TiProjectId
 
-        def initialize(id=nil)
+        def initialize(id=nil, tiprojectid=nil)
           @Id = id
+          @TiProjectId = tiprojectid
         end
 
         def deserialize(params)
           @Id = params['Id']
+          @TiProjectId = params['TiProjectId']
         end
       end
 
@@ -4352,6 +4384,8 @@ module TencentCloud
 
       # DescribeNotebooks请求参数结构体
       class DescribeNotebooksRequest < TencentCloud::Common::AbstractModel
+        # @param TiProjectId: <p>TI工作空间ID</p><p>仅用于“工作空间”白名单功能。如需使用，请联系TI管理员开通白名单。</p>
+        # @type TiProjectId: String
         # @param Offset: 偏移量，默认为0
         # @type Offset: Integer
         # @param Limit: 每页返回的实例数，默认为10
@@ -4376,9 +4410,10 @@ module TencentCloud
         # @param TagFilters: 标签过滤器，eg：[{ "TagKey": "TagKeyA", "TagValue": ["TagValueA"] }]
         # @type TagFilters: Array
 
-        attr_accessor :Offset, :Limit, :Order, :OrderField, :Filters, :TagFilters
+        attr_accessor :TiProjectId, :Offset, :Limit, :Order, :OrderField, :Filters, :TagFilters
 
-        def initialize(offset=nil, limit=nil, order=nil, orderfield=nil, filters=nil, tagfilters=nil)
+        def initialize(tiprojectid=nil, offset=nil, limit=nil, order=nil, orderfield=nil, filters=nil, tagfilters=nil)
+          @TiProjectId = tiprojectid
           @Offset = offset
           @Limit = limit
           @Order = order
@@ -4388,6 +4423,7 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @TiProjectId = params['TiProjectId']
           @Offset = params['Offset']
           @Limit = params['Limit']
           @Order = params['Order']
@@ -4751,15 +4787,19 @@ module TencentCloud
       class DescribeTrainingTaskPodsRequest < TencentCloud::Common::AbstractModel
         # @param Id: 训练任务ID
         # @type Id: String
+        # @param TiProjectId: <p>TI工作空间ID</p><p>仅用于“工作空间”白名单功能。如需使用，请联系TI管理员开通白名单。</p>
+        # @type TiProjectId: String
 
-        attr_accessor :Id
+        attr_accessor :Id, :TiProjectId
 
-        def initialize(id=nil)
+        def initialize(id=nil, tiprojectid=nil)
           @Id = id
+          @TiProjectId = tiprojectid
         end
 
         def deserialize(params)
           @Id = params['Id']
+          @TiProjectId = params['TiProjectId']
         end
       end
 
@@ -4802,18 +4842,22 @@ module TencentCloud
       class DescribeTrainingTaskRequest < TencentCloud::Common::AbstractModel
         # @param Id: 训练任务ID
         # @type Id: String
+        # @param TiProjectId: <p>TI工作空间ID</p><p>仅用于“工作空间”白名单功能。如需使用，请联系TI管理员开通白名单。</p>
+        # @type TiProjectId: String
         # @param InstanceId: 训练任务实例ID
         # @type InstanceId: String
 
-        attr_accessor :Id, :InstanceId
+        attr_accessor :Id, :TiProjectId, :InstanceId
 
-        def initialize(id=nil, instanceid=nil)
+        def initialize(id=nil, tiprojectid=nil, instanceid=nil)
           @Id = id
+          @TiProjectId = tiprojectid
           @InstanceId = instanceid
         end
 
         def deserialize(params)
           @Id = params['Id']
+          @TiProjectId = params['TiProjectId']
           @InstanceId = params['InstanceId']
         end
       end
@@ -4843,6 +4887,8 @@ module TencentCloud
 
       # DescribeTrainingTasks请求参数结构体
       class DescribeTrainingTasksRequest < TencentCloud::Common::AbstractModel
+        # @param TiProjectId: <p>TI工作空间ID</p><p>仅用于“工作空间”白名单功能。如需使用，请联系TI管理员开通白名单。</p>
+        # @type TiProjectId: String
         # @param Filters: 过滤器，eg：[{ "Name": "Id", "Values": ["train-23091792777383936"] }]
 
         # 取值范围：
@@ -4865,9 +4911,10 @@ module TencentCloud
         # @param OrderField: 排序的依据字段， 取值范围 "CreateTime" 、"UpdateTime"、"StartTime"，默认为UpdateTime
         # @type OrderField: String
 
-        attr_accessor :Filters, :TagFilters, :Offset, :Limit, :Order, :OrderField
+        attr_accessor :TiProjectId, :Filters, :TagFilters, :Offset, :Limit, :Order, :OrderField
 
-        def initialize(filters=nil, tagfilters=nil, offset=nil, limit=nil, order=nil, orderfield=nil)
+        def initialize(tiprojectid=nil, filters=nil, tagfilters=nil, offset=nil, limit=nil, order=nil, orderfield=nil)
+          @TiProjectId = tiprojectid
           @Filters = filters
           @TagFilters = tagfilters
           @Offset = offset
@@ -4877,6 +4924,7 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @TiProjectId = params['TiProjectId']
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
@@ -7300,133 +7348,130 @@ module TencentCloud
 
       # 类型NotebookDetail
       class NotebookDetail < TencentCloud::Common::AbstractModel
-        # @param Id: notebook  ID
+        # @param Id: <p>notebook  ID</p>
         # @type Id: String
-        # @param Name: notebook 名称
+        # @param Name: <p>notebook 名称</p>
         # @type Name: String
-        # @param LifecycleScriptId: 生命周期脚本
+        # @param LifecycleScriptId: <p>生命周期脚本</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LifecycleScriptId: String
-        # @param PodName: Pod-Name
+        # @param PodName: <p>Pod-Name</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PodName: String
-        # @param UpdateTime: Update-Time
+        # @param UpdateTime: <p>Update-Time</p>
         # @type UpdateTime: String
-        # @param DirectInternetAccess: 是否访问公网
+        # @param DirectInternetAccess: <p>是否访问公网</p>
         # @type DirectInternetAccess: Boolean
-        # @param ResourceGroupId: 预付费专用资源组
+        # @param ResourceGroupId: <p>预付费专用资源组</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceGroupId: String
-        # @param Tags: 标签配置
+        # @param Tags: <p>标签配置</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
-        # @param AutoStopping: 是否自动停止
+        # @param AutoStopping: <p>是否自动停止</p>
         # @type AutoStopping: Boolean
-        # @param AdditionalCodeRepoIds: 其他GIT存储库，最多3个，单个
-        # 长度不超过512字符
+        # @param AdditionalCodeRepoIds: <p>其他GIT存储库，最多3个，单个<br>长度不超过512字符</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AdditionalCodeRepoIds: Array
-        # @param AutomaticStopTime: 自动停止时间，单位小时
+        # @param AutomaticStopTime: <p>自动停止时间，单位小时</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AutomaticStopTime: Integer
-        # @param ResourceConf: 资源配置
+        # @param ResourceConf: <p>资源配置</p>
         # @type ResourceConf: :class:`Tencentcloud::Tione.v20211111.models.ResourceConf`
-        # @param DefaultCodeRepoId: 默认GIT存储库，长度不超过512字符
+        # @param DefaultCodeRepoId: <p>默认GIT存储库，长度不超过512字符</p>
         # @type DefaultCodeRepoId: String
-        # @param EndTime: 训练输出
+        # @param EndTime: <p>训练输出</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTime: String
-        # @param LogEnable: 是否上报日志
+        # @param LogEnable: <p>是否上报日志</p>
         # @type LogEnable: Boolean
-        # @param LogConfig: 日志配置
+        # @param LogConfig: <p>日志配置</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogConfig: :class:`Tencentcloud::Tione.v20211111.models.LogConfig`
-        # @param VpcId: VPC ID
+        # @param VpcId: <p>VPC ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcId: String
-        # @param SubnetId: 子网ID
+        # @param SubnetId: <p>子网ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubnetId: String
-        # @param Status: 任务状态
+        # @param Status: <p>任务状态</p>
         # @type Status: String
-        # @param RuntimeInSeconds: 运行时长
+        # @param RuntimeInSeconds: <p>运行时长</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuntimeInSeconds: Integer
-        # @param CreateTime: 创建时间
+        # @param CreateTime: <p>创建时间</p>
         # @type CreateTime: String
-        # @param StartTime: 训练开始时间
+        # @param StartTime: <p>训练开始时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartTime: String
-        # @param ChargeStatus: 计费状态，eg：BILLING计费中，ARREARS_STOP欠费停止，NOT_BILLING不在计费中
+        # @param ChargeStatus: <p>计费状态，eg：BILLING计费中，ARREARS_STOP欠费停止，NOT_BILLING不在计费中</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ChargeStatus: String
-        # @param RootAccess: 是否ROOT权限
+        # @param RootAccess: <p>是否ROOT权限</p>
         # @type RootAccess: Boolean
-        # @param BillingInfos: 计贺金额信息，eg:2.00元/小时
+        # @param BillingInfos: <p>计贺金额信息，eg:2.00元/小时</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BillingInfos: Array
-        # @param VolumeSizeInGB: 存储卷大小 （单位时GB，最小10GB，必须是10G的倍数）
+        # @param VolumeSizeInGB: <p>存储卷大小 （单位时GB，最小10GB，必须是10G的倍数）</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VolumeSizeInGB: Integer
-        # @param FailureReason: 失败原因
+        # @param FailureReason: <p>失败原因</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FailureReason: String
-        # @param ChargeType: 计算资源付费模式 (- PREPAID：预付费，即包年包月 - POSTPAID_BY_HOUR：按小时后付费)
+        # @param ChargeType: <p>计算资源付费模式 (- PREPAID：预付费，即包年包月 - POSTPAID_BY_HOUR：按小时后付费)</p>
         # @type ChargeType: String
-        # @param InstanceTypeAlias: 后付费资源规格说明
+        # @param InstanceTypeAlias: <p>后付费资源规格说明</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceTypeAlias: String
-        # @param ResourceGroupName: 预付费资源组名称
+        # @param ResourceGroupName: <p>预付费资源组名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceGroupName: String
-        # @param VolumeSourceType: 存储的类型。取值包含：
-        #     FREE:        预付费的免费存储
-        #     CLOUD_PREMIUM： 高性能云硬盘
-        #     CLOUD_SSD： SSD云硬盘
-        #     CFS:     CFS存储，包含NFS和turbo
+        # @param VolumeSourceType: <p>存储的类型。取值包含：<br>    FREE:        预付费的免费存储<br>    CLOUD_PREMIUM： 高性能云硬盘<br>    CLOUD_SSD： SSD云硬盘<br>    CFS:     CFS存储，包含NFS和turbo</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VolumeSourceType: String
-        # @param VolumeSourceCFS: CFS存储的配置
+        # @param VolumeSourceCFS: <p>CFS存储的配置</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VolumeSourceCFS: :class:`Tencentcloud::Tione.v20211111.models.CFSConfig`
-        # @param DataConfigs: 数据配置
+        # @param DataConfigs: <p>数据配置</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataConfigs: Array
-        # @param Message: notebook 信息
+        # @param Message: <p>notebook 信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Message: String
-        # @param DataSource: 数据源来源，eg：WeData_HDFS
+        # @param DataSource: <p>数据源来源，eg：WeData_HDFS</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataSource: String
-        # @param ImageInfo: 镜像信息
+        # @param ImageInfo: <p>镜像信息</p>
         # @type ImageInfo: :class:`Tencentcloud::Tione.v20211111.models.ImageInfo`
-        # @param ImageType: 镜像类型
+        # @param ImageType: <p>镜像类型</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImageType: String
-        # @param SSHConfig: SSH配置
+        # @param SSHConfig: <p>SSH配置</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SSHConfig: :class:`Tencentcloud::Tione.v20211111.models.SSHConfig`
-        # @param VolumeSourceGooseFS: GooseFS存储配置
+        # @param VolumeSourceGooseFS: <p>GooseFS存储配置</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VolumeSourceGooseFS: :class:`Tencentcloud::Tione.v20211111.models.GooseFS`
-        # @param SubUin: 子用户ID
+        # @param SubUin: <p>子用户ID</p>
         # @type SubUin: String
-        # @param ResourceGroupInstanceId: 调度节点ID
+        # @param ResourceGroupInstanceId: <p>调度节点ID</p>
         # @type ResourceGroupInstanceId: String
-        # @param SubUinName: 子用户名称
+        # @param SubUinName: <p>子用户名称</p>
         # @type SubUinName: String
-        # @param JobCreateTime: 任务实例创建时间
+        # @param JobCreateTime: <p>任务实例创建时间</p>
         # @type JobCreateTime: String
-        # @param AppId: Appid
+        # @param AppId: <p>Appid</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppId: String
-        # @param Description: 描述
+        # @param Description: <p>描述</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
+        # @param LatestOperatorInfo: <p>最后操作者信息</p>
+        # @type LatestOperatorInfo: :class:`Tencentcloud::Tione.v20211111.models.OperatorInfo`
 
-        attr_accessor :Id, :Name, :LifecycleScriptId, :PodName, :UpdateTime, :DirectInternetAccess, :ResourceGroupId, :Tags, :AutoStopping, :AdditionalCodeRepoIds, :AutomaticStopTime, :ResourceConf, :DefaultCodeRepoId, :EndTime, :LogEnable, :LogConfig, :VpcId, :SubnetId, :Status, :RuntimeInSeconds, :CreateTime, :StartTime, :ChargeStatus, :RootAccess, :BillingInfos, :VolumeSizeInGB, :FailureReason, :ChargeType, :InstanceTypeAlias, :ResourceGroupName, :VolumeSourceType, :VolumeSourceCFS, :DataConfigs, :Message, :DataSource, :ImageInfo, :ImageType, :SSHConfig, :VolumeSourceGooseFS, :SubUin, :ResourceGroupInstanceId, :SubUinName, :JobCreateTime, :AppId, :Description
+        attr_accessor :Id, :Name, :LifecycleScriptId, :PodName, :UpdateTime, :DirectInternetAccess, :ResourceGroupId, :Tags, :AutoStopping, :AdditionalCodeRepoIds, :AutomaticStopTime, :ResourceConf, :DefaultCodeRepoId, :EndTime, :LogEnable, :LogConfig, :VpcId, :SubnetId, :Status, :RuntimeInSeconds, :CreateTime, :StartTime, :ChargeStatus, :RootAccess, :BillingInfos, :VolumeSizeInGB, :FailureReason, :ChargeType, :InstanceTypeAlias, :ResourceGroupName, :VolumeSourceType, :VolumeSourceCFS, :DataConfigs, :Message, :DataSource, :ImageInfo, :ImageType, :SSHConfig, :VolumeSourceGooseFS, :SubUin, :ResourceGroupInstanceId, :SubUinName, :JobCreateTime, :AppId, :Description, :LatestOperatorInfo
 
-        def initialize(id=nil, name=nil, lifecyclescriptid=nil, podname=nil, updatetime=nil, directinternetaccess=nil, resourcegroupid=nil, tags=nil, autostopping=nil, additionalcoderepoids=nil, automaticstoptime=nil, resourceconf=nil, defaultcoderepoid=nil, endtime=nil, logenable=nil, logconfig=nil, vpcid=nil, subnetid=nil, status=nil, runtimeinseconds=nil, createtime=nil, starttime=nil, chargestatus=nil, rootaccess=nil, billinginfos=nil, volumesizeingb=nil, failurereason=nil, chargetype=nil, instancetypealias=nil, resourcegroupname=nil, volumesourcetype=nil, volumesourcecfs=nil, dataconfigs=nil, message=nil, datasource=nil, imageinfo=nil, imagetype=nil, sshconfig=nil, volumesourcegoosefs=nil, subuin=nil, resourcegroupinstanceid=nil, subuinname=nil, jobcreatetime=nil, appid=nil, description=nil)
+        def initialize(id=nil, name=nil, lifecyclescriptid=nil, podname=nil, updatetime=nil, directinternetaccess=nil, resourcegroupid=nil, tags=nil, autostopping=nil, additionalcoderepoids=nil, automaticstoptime=nil, resourceconf=nil, defaultcoderepoid=nil, endtime=nil, logenable=nil, logconfig=nil, vpcid=nil, subnetid=nil, status=nil, runtimeinseconds=nil, createtime=nil, starttime=nil, chargestatus=nil, rootaccess=nil, billinginfos=nil, volumesizeingb=nil, failurereason=nil, chargetype=nil, instancetypealias=nil, resourcegroupname=nil, volumesourcetype=nil, volumesourcecfs=nil, dataconfigs=nil, message=nil, datasource=nil, imageinfo=nil, imagetype=nil, sshconfig=nil, volumesourcegoosefs=nil, subuin=nil, resourcegroupinstanceid=nil, subuinname=nil, jobcreatetime=nil, appid=nil, description=nil, latestoperatorinfo=nil)
           @Id = id
           @Name = name
           @LifecycleScriptId = lifecyclescriptid
@@ -7472,6 +7517,7 @@ module TencentCloud
           @JobCreateTime = jobcreatetime
           @AppId = appid
           @Description = description
+          @LatestOperatorInfo = latestoperatorinfo
         end
 
         def deserialize(params)
@@ -7552,105 +7598,107 @@ module TencentCloud
           @JobCreateTime = params['JobCreateTime']
           @AppId = params['AppId']
           @Description = params['Description']
+          unless params['LatestOperatorInfo'].nil?
+            @LatestOperatorInfo = OperatorInfo.new
+            @LatestOperatorInfo.deserialize(params['LatestOperatorInfo'])
+          end
         end
       end
 
       # Notebook列表元素
       class NotebookSetItem < TencentCloud::Common::AbstractModel
-        # @param Id: notebook ID
+        # @param Id: <p>notebook ID</p>
         # @type Id: String
-        # @param Name: notebook 名称
+        # @param Name: <p>notebook 名称</p>
         # @type Name: String
-        # @param ChargeType: 计费模式
+        # @param ChargeType: <p>计费模式</p>
         # @type ChargeType: String
-        # @param ResourceConf: 资源配置
+        # @param ResourceConf: <p>资源配置</p>
         # @type ResourceConf: :class:`Tencentcloud::Tione.v20211111.models.ResourceConf`
-        # @param ResourceGroupId: 预付费资源组
+        # @param ResourceGroupId: <p>预付费资源组</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceGroupId: String
-        # @param VolumeSizeInGB: 存储卷大小
+        # @param VolumeSizeInGB: <p>存储卷大小</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VolumeSizeInGB: Integer
-        # @param BillingInfos: 计费金额信息，eg：2.00元/小时 (for后付费)
+        # @param BillingInfos: <p>计费金额信息，eg：2.00元/小时 (for后付费)</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BillingInfos: Array
-        # @param Tags: 标签配置
+        # @param Tags: <p>标签配置</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
-        # @param CreateTime: 创建时间
+        # @param CreateTime: <p>创建时间</p>
         # @type CreateTime: String
-        # @param StartTime: 启动时间
+        # @param StartTime: <p>启动时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartTime: String
-        # @param UpdateTime: 更新时间
+        # @param UpdateTime: <p>更新时间</p>
         # @type UpdateTime: String
-        # @param RuntimeInSeconds: 运行时间
+        # @param RuntimeInSeconds: <p>运行时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuntimeInSeconds: Integer
-        # @param ChargeStatus: 计费状态
+        # @param ChargeStatus: <p>计费状态</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ChargeStatus: String
-        # @param Status: 状态
+        # @param Status: <p>状态</p>
         # @type Status: String
-        # @param FailureReason: 错误原因
+        # @param FailureReason: <p>错误原因</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FailureReason: String
-        # @param EndTime: 结束时间
+        # @param EndTime: <p>结束时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTime: String
-        # @param PodName: Pod名称
+        # @param PodName: <p>Pod名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PodName: String
-        # @param InstanceTypeAlias: 后付费资源规格名称
+        # @param InstanceTypeAlias: <p>后付费资源规格名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceTypeAlias: String
-        # @param ResourceGroupName: 预付费资源组名称
+        # @param ResourceGroupName: <p>预付费资源组名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceGroupName: String
-        # @param AutoStopping: 是否自动终止
+        # @param AutoStopping: <p>是否自动终止</p>
         # @type AutoStopping: Boolean
-        # @param AutomaticStopTime: 自动停止时间
+        # @param AutomaticStopTime: <p>自动停止时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AutomaticStopTime: Integer
-        # @param VolumeSourceType: 存储的类型。取值包含：
-        #     FREE:        预付费的免费存储
-        #     CLOUD_PREMIUM： 高性能云硬盘
-        #     CLOUD_SSD： SSD云硬盘
-        #     CFS:     CFS存储，包含NFS和turbo
+        # @param VolumeSourceType: <p>存储的类型。取值包含：<br>    FREE:        预付费的免费存储<br>    CLOUD_PREMIUM： 高性能云硬盘<br>    CLOUD_SSD： SSD云硬盘<br>    CFS:     CFS存储，包含NFS和turbo</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VolumeSourceType: String
-        # @param VolumeSourceCFS: CFS存储的配置
+        # @param VolumeSourceCFS: <p>CFS存储的配置</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VolumeSourceCFS: :class:`Tencentcloud::Tione.v20211111.models.CFSConfig`
-        # @param Message: notebook 信息
+        # @param Message: <p>notebook 信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Message: String
-        # @param UserTypes: notebook用户类型
+        # @param UserTypes: <p>notebook用户类型</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserTypes: Array
-        # @param SSHConfig: SSH配置
+        # @param SSHConfig: <p>SSH配置</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SSHConfig: :class:`Tencentcloud::Tione.v20211111.models.SSHConfig`
-        # @param VolumeSourceGooseFS: GooseFS存储配置
+        # @param VolumeSourceGooseFS: <p>GooseFS存储配置</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VolumeSourceGooseFS: :class:`Tencentcloud::Tione.v20211111.models.GooseFS`
-        # @param SubUin: 子用户ID
+        # @param SubUin: <p>子用户ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubUin: String
-        # @param SubUinName: 子用户名称
+        # @param SubUinName: <p>子用户名称</p>
         # @type SubUinName: String
-        # @param AppId: AppId
+        # @param AppId: <p>AppId</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppId: String
-        # @param ExposePortConfig: 容器服务暴露端口配置
+        # @param ExposePortConfig: <p>容器服务暴露端口配置</p>
         # @type ExposePortConfig: :class:`Tencentcloud::Tione.v20211111.models.ExposePortConfig`
-        # @param Description: 描述
+        # @param Description: <p>描述</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
+        # @param LatestOperatorInfo: <p>操作者信息</p>
+        # @type LatestOperatorInfo: :class:`Tencentcloud::Tione.v20211111.models.OperatorInfo`
 
-        attr_accessor :Id, :Name, :ChargeType, :ResourceConf, :ResourceGroupId, :VolumeSizeInGB, :BillingInfos, :Tags, :CreateTime, :StartTime, :UpdateTime, :RuntimeInSeconds, :ChargeStatus, :Status, :FailureReason, :EndTime, :PodName, :InstanceTypeAlias, :ResourceGroupName, :AutoStopping, :AutomaticStopTime, :VolumeSourceType, :VolumeSourceCFS, :Message, :UserTypes, :SSHConfig, :VolumeSourceGooseFS, :SubUin, :SubUinName, :AppId, :ExposePortConfig, :Description
+        attr_accessor :Id, :Name, :ChargeType, :ResourceConf, :ResourceGroupId, :VolumeSizeInGB, :BillingInfos, :Tags, :CreateTime, :StartTime, :UpdateTime, :RuntimeInSeconds, :ChargeStatus, :Status, :FailureReason, :EndTime, :PodName, :InstanceTypeAlias, :ResourceGroupName, :AutoStopping, :AutomaticStopTime, :VolumeSourceType, :VolumeSourceCFS, :Message, :UserTypes, :SSHConfig, :VolumeSourceGooseFS, :SubUin, :SubUinName, :AppId, :ExposePortConfig, :Description, :LatestOperatorInfo
 
-        def initialize(id=nil, name=nil, chargetype=nil, resourceconf=nil, resourcegroupid=nil, volumesizeingb=nil, billinginfos=nil, tags=nil, createtime=nil, starttime=nil, updatetime=nil, runtimeinseconds=nil, chargestatus=nil, status=nil, failurereason=nil, endtime=nil, podname=nil, instancetypealias=nil, resourcegroupname=nil, autostopping=nil, automaticstoptime=nil, volumesourcetype=nil, volumesourcecfs=nil, message=nil, usertypes=nil, sshconfig=nil, volumesourcegoosefs=nil, subuin=nil, subuinname=nil, appid=nil, exposeportconfig=nil, description=nil)
+        def initialize(id=nil, name=nil, chargetype=nil, resourceconf=nil, resourcegroupid=nil, volumesizeingb=nil, billinginfos=nil, tags=nil, createtime=nil, starttime=nil, updatetime=nil, runtimeinseconds=nil, chargestatus=nil, status=nil, failurereason=nil, endtime=nil, podname=nil, instancetypealias=nil, resourcegroupname=nil, autostopping=nil, automaticstoptime=nil, volumesourcetype=nil, volumesourcecfs=nil, message=nil, usertypes=nil, sshconfig=nil, volumesourcegoosefs=nil, subuin=nil, subuinname=nil, appid=nil, exposeportconfig=nil, description=nil, latestoperatorinfo=nil)
           @Id = id
           @Name = name
           @ChargeType = chargetype
@@ -7683,6 +7731,7 @@ module TencentCloud
           @AppId = appid
           @ExposePortConfig = exposeportconfig
           @Description = description
+          @LatestOperatorInfo = latestoperatorinfo
         end
 
         def deserialize(params)
@@ -7740,6 +7789,10 @@ module TencentCloud
             @ExposePortConfig.deserialize(params['ExposePortConfig'])
           end
           @Description = params['Description']
+          unless params['LatestOperatorInfo'].nil?
+            @LatestOperatorInfo = OperatorInfo.new
+            @LatestOperatorInfo.deserialize(params['LatestOperatorInfo'])
+          end
         end
       end
 
@@ -8763,16 +8816,16 @@ module TencentCloud
 
       # 资源组节点运行任务信息
       class ResourceInstanceRunningJobInfo < TencentCloud::Common::AbstractModel
-        # @param PodName: pod名称
+        # @param PodName: <p>pod名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PodName: String
-        # @param TaskType: 任务类型
+        # @param TaskType: <p>任务类型</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskType: String
-        # @param TaskId: 任务id
+        # @param TaskId: <p>任务id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskId: String
-        # @param TaskName: 任务自定义名称
+        # @param TaskName: <p>任务自定义名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskName: String
 

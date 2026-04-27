@@ -9912,17 +9912,17 @@ module TencentCloud
 
       # ListLineage请求参数结构体
       class ListLineageRequest < TencentCloud::Common::AbstractModel
-        # @param ResourceUniqueId: 实体唯一ID
+        # @param ResourceUniqueId: <p>实体唯一ID</p>
         # @type ResourceUniqueId: String
-        # @param ResourceType: 实体类型 TABLE|METRIC|MODEL|SERVICE|COLUMN
+        # @param ResourceType: <p>实体类型 TABLE|METRIC|MODEL|SERVICE|COLUMN</p>
         # @type ResourceType: String
-        # @param Direction: 血缘方向 INPUT｜OUTPUT
+        # @param Direction: <p>血缘方向 INPUT｜OUTPUT</p>
         # @type Direction: String
-        # @param PageNumber: 页码
+        # @param PageNumber: <p>页码</p>
         # @type PageNumber: Integer
-        # @param PageSize: 分页大小
+        # @param PageSize: <p>分页大小</p>
         # @type PageSize: Integer
-        # @param Platform: 来源：WEDATA|THIRD 默认WEDATA
+        # @param Platform: <p>来源：WEDATA|THIRD 默认WEDATA</p>
         # @type Platform: String
 
         attr_accessor :ResourceUniqueId, :ResourceType, :Direction, :PageNumber, :PageSize, :Platform
@@ -9948,7 +9948,7 @@ module TencentCloud
 
       # ListLineage返回参数结构体
       class ListLineageResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 分页数据
+        # @param Data: <p>分页数据</p>
         # @type Data: :class:`Tencentcloud::Wedata.v20250806.models.ListLineagePage`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -10516,15 +10516,15 @@ module TencentCloud
 
       # ListProcessLineage请求参数结构体
       class ListProcessLineageRequest < TencentCloud::Common::AbstractModel
-        # @param ProcessId: 任务唯一ID
+        # @param ProcessId: <p>任务唯一ID</p>
         # @type ProcessId: String
-        # @param ProcessType: 任务类型    //调度任务     SCHEDULE_TASK,     //集成任务     INTEGRATION_TASK,     //第三方上报     THIRD_REPORT,     //数据建模     TABLE_MODEL,     //模型创建指标     MODEL_METRIC,     //原子指标创建衍生指标     METRIC_METRIC,     //数据服务     DATA_SERVICE
+        # @param ProcessType: <p>任务类型    //调度任务     SCHEDULE_TASK,     //集成任务     INTEGRATION_TASK,     //第三方上报     THIRD_REPORT,     //数据建模     TABLE_MODEL,     //模型创建指标     MODEL_METRIC,     //原子指标创建衍生指标     METRIC_METRIC,     //数据服务     DATA_SERVICE</p>
         # @type ProcessType: String
-        # @param PageNumber: 页码
+        # @param PageNumber: <p>页码</p>
         # @type PageNumber: Integer
-        # @param PageSize: 分页大小
+        # @param PageSize: <p>分页大小</p>
         # @type PageSize: Integer
-        # @param Platform: 来源：WEDATA|THIRD 默认WEDATA
+        # @param Platform: <p>来源：WEDATA|THIRD 默认WEDATA</p>
         # @type Platform: String
 
         attr_accessor :ProcessId, :ProcessType, :PageNumber, :PageSize, :Platform
@@ -10548,7 +10548,7 @@ module TencentCloud
 
       # ListProcessLineage返回参数结构体
       class ListProcessLineageResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 分页数据
+        # @param Data: <p>分页数据</p>
         # @type Data: :class:`Tencentcloud::Wedata.v20250806.models.ListProcessLineagePage`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

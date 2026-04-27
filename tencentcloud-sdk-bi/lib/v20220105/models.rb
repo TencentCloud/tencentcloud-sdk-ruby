@@ -17,6 +17,92 @@
 module TencentCloud
   module Bi
     module V20220105
+      # 创建ApiKey接口出参
+      class ApiKeyAuthApplyVO < TencentCloud::Common::AbstractModel
+        # @param Id: <p>id</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: Integer
+        # @param CorpId: <p>企业id</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CorpId: String
+        # @param ApiKey: <p>apiKey</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApiKey: String
+        # @param DefaultUser: <p>默认用户</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DefaultUser: String
+        # @param CreatedUser: <p>创建人</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreatedUser: String
+        # @param CreatedAt: <p>创建时间</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreatedAt: String
+        # @param UpdatedUser: <p>更新人</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdatedUser: String
+        # @param UpdatedAt: <p>更新时间</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdatedAt: String
+
+        attr_accessor :Id, :CorpId, :ApiKey, :DefaultUser, :CreatedUser, :CreatedAt, :UpdatedUser, :UpdatedAt
+
+        def initialize(id=nil, corpid=nil, apikey=nil, defaultuser=nil, createduser=nil, createdat=nil, updateduser=nil, updatedat=nil)
+          @Id = id
+          @CorpId = corpid
+          @ApiKey = apikey
+          @DefaultUser = defaultuser
+          @CreatedUser = createduser
+          @CreatedAt = createdat
+          @UpdatedUser = updateduser
+          @UpdatedAt = updatedat
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @CorpId = params['CorpId']
+          @ApiKey = params['ApiKey']
+          @DefaultUser = params['DefaultUser']
+          @CreatedUser = params['CreatedUser']
+          @CreatedAt = params['CreatedAt']
+          @UpdatedUser = params['UpdatedUser']
+          @UpdatedAt = params['UpdatedAt']
+        end
+      end
+
+      # ApiKey列表
+      class ApiKeyAuthApplyVOList < TencentCloud::Common::AbstractModel
+        # @param Total: <p>总数</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Total: Integer
+        # @param TotalPages: <p>页数</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalPages: Integer
+        # @param List: <p>列表数据</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type List: Array
+
+        attr_accessor :Total, :TotalPages, :List
+
+        def initialize(total=nil, totalpages=nil, list=nil)
+          @Total = total
+          @TotalPages = totalpages
+          @List = list
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          @TotalPages = params['TotalPages']
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              apikeyauthapplyvo_tmp = ApiKeyAuthApplyVO.new
+              apikeyauthapplyvo_tmp.deserialize(i)
+              @List << apikeyauthapplyvo_tmp
+            end
+          end
+        end
+      end
+
       # ApplyEmbedInterval请求参数结构体
       class ApplyEmbedIntervalRequest < TencentCloud::Common::AbstractModel
         # @param ProjectId: 分享项目id
@@ -277,6 +363,64 @@ module TencentCloud
           end
           @Total = params['Total']
           @TotalPages = params['TotalPages']
+        end
+      end
+
+      # CreateAuthApiKey请求参数结构体
+      class CreateAuthApiKeyRequest < TencentCloud::Common::AbstractModel
+        # @param DefaultUser: <p>默认用户</p>
+        # @type DefaultUser: String
+
+        attr_accessor :DefaultUser
+
+        def initialize(defaultuser=nil)
+          @DefaultUser = defaultuser
+        end
+
+        def deserialize(params)
+          @DefaultUser = params['DefaultUser']
+        end
+      end
+
+      # CreateAuthApiKey返回参数结构体
+      class CreateAuthApiKeyResponse < TencentCloud::Common::AbstractModel
+        # @param ErrorInfo: 自定义错误信息对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorInfo: :class:`Tencentcloud::Bi.v20220105.models.ErrorInfo`
+        # @param Extra: <p>&quot;&quot;</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Extra: String
+        # @param Msg: <p>&quot;success&quot;</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Msg: String
+        # @param Data: <p>数据</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Bi.v20220105.models.ApiKeyAuthApplyVO`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrorInfo, :Extra, :Msg, :Data, :RequestId
+
+        def initialize(errorinfo=nil, extra=nil, msg=nil, data=nil, requestid=nil)
+          @ErrorInfo = errorinfo
+          @Extra = extra
+          @Msg = msg
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ErrorInfo'].nil?
+            @ErrorInfo = ErrorInfo.new
+            @ErrorInfo.deserialize(params['ErrorInfo'])
+          end
+          @Extra = params['Extra']
+          @Msg = params['Msg']
+          unless params['Data'].nil?
+            @Data = ApiKeyAuthApplyVO.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
         end
       end
 
@@ -1480,6 +1624,61 @@ module TencentCloud
         end
       end
 
+      # DeleteAuthApiKey请求参数结构体
+      class DeleteAuthApiKeyRequest < TencentCloud::Common::AbstractModel
+        # @param ApiKey: <p>ApiKey</p>
+        # @type ApiKey: String
+
+        attr_accessor :ApiKey
+
+        def initialize(apikey=nil)
+          @ApiKey = apikey
+        end
+
+        def deserialize(params)
+          @ApiKey = params['ApiKey']
+        end
+      end
+
+      # DeleteAuthApiKey返回参数结构体
+      class DeleteAuthApiKeyResponse < TencentCloud::Common::AbstractModel
+        # @param ErrorInfo: 自定义错误信息对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorInfo: :class:`Tencentcloud::Bi.v20220105.models.ErrorInfo`
+        # @param Extra: <p>&quot;&quot;</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Extra: String
+        # @param Msg: <p>&quot;success&quot;</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Msg: String
+        # @param Data: <p>数据</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrorInfo, :Extra, :Msg, :Data, :RequestId
+
+        def initialize(errorinfo=nil, extra=nil, msg=nil, data=nil, requestid=nil)
+          @ErrorInfo = errorinfo
+          @Extra = extra
+          @Msg = msg
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ErrorInfo'].nil?
+            @ErrorInfo = ErrorInfo.new
+            @ErrorInfo.deserialize(params['ErrorInfo'])
+          end
+          @Extra = params['Extra']
+          @Msg = params['Msg']
+          @Data = params['Data']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteDatasource请求参数结构体
       class DeleteDatasourceRequest < TencentCloud::Common::AbstractModel
         # @param Id: 数据源id
@@ -1796,6 +1995,134 @@ module TencentCloud
           @Extra = params['Extra']
           @Data = params['Data']
           @Msg = params['Msg']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAuthApiKeyInfo请求参数结构体
+      class DescribeAuthApiKeyInfoRequest < TencentCloud::Common::AbstractModel
+        # @param ApiKey: <p>ApiKey</p>
+        # @type ApiKey: String
+
+        attr_accessor :ApiKey
+
+        def initialize(apikey=nil)
+          @ApiKey = apikey
+        end
+
+        def deserialize(params)
+          @ApiKey = params['ApiKey']
+        end
+      end
+
+      # DescribeAuthApiKeyInfo返回参数结构体
+      class DescribeAuthApiKeyInfoResponse < TencentCloud::Common::AbstractModel
+        # @param ErrorInfo: 自定义错误信息对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorInfo: :class:`Tencentcloud::Bi.v20220105.models.ErrorInfo`
+        # @param Extra: <p>&quot;&quot;</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Extra: String
+        # @param Msg: <p>&quot;success&quot;</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Msg: String
+        # @param Data: <p>数据</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Bi.v20220105.models.ApiKeyAuthApplyVO`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrorInfo, :Extra, :Msg, :Data, :RequestId
+
+        def initialize(errorinfo=nil, extra=nil, msg=nil, data=nil, requestid=nil)
+          @ErrorInfo = errorinfo
+          @Extra = extra
+          @Msg = msg
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ErrorInfo'].nil?
+            @ErrorInfo = ErrorInfo.new
+            @ErrorInfo.deserialize(params['ErrorInfo'])
+          end
+          @Extra = params['Extra']
+          @Msg = params['Msg']
+          unless params['Data'].nil?
+            @Data = ApiKeyAuthApplyVO.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAuthApiKeyList请求参数结构体
+      class DescribeAuthApiKeyListRequest < TencentCloud::Common::AbstractModel
+        # @param AllPage: <p>全部</p><p>默认值：false</p>
+        # @type AllPage: Boolean
+        # @param PageNo: <p>页码</p><p>默认值：0</p>
+        # @type PageNo: Integer
+        # @param PageSize: <p>分页大小</p><p>默认值：10</p>
+        # @type PageSize: Integer
+        # @param Keyword: <p>关键字过滤</p>
+        # @type Keyword: String
+
+        attr_accessor :AllPage, :PageNo, :PageSize, :Keyword
+
+        def initialize(allpage=nil, pageno=nil, pagesize=nil, keyword=nil)
+          @AllPage = allpage
+          @PageNo = pageno
+          @PageSize = pagesize
+          @Keyword = keyword
+        end
+
+        def deserialize(params)
+          @AllPage = params['AllPage']
+          @PageNo = params['PageNo']
+          @PageSize = params['PageSize']
+          @Keyword = params['Keyword']
+        end
+      end
+
+      # DescribeAuthApiKeyList返回参数结构体
+      class DescribeAuthApiKeyListResponse < TencentCloud::Common::AbstractModel
+        # @param ErrorInfo: 自定义错误信息对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorInfo: :class:`Tencentcloud::Bi.v20220105.models.ErrorInfo`
+        # @param Extra: <p>{}</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Extra: String
+        # @param Msg: <p>信息</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Msg: String
+        # @param Data: <p>数据</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Bi.v20220105.models.ApiKeyAuthApplyVOList`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrorInfo, :Extra, :Msg, :Data, :RequestId
+
+        def initialize(errorinfo=nil, extra=nil, msg=nil, data=nil, requestid=nil)
+          @ErrorInfo = errorinfo
+          @Extra = extra
+          @Msg = msg
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ErrorInfo'].nil?
+            @ErrorInfo = ErrorInfo.new
+            @ErrorInfo.deserialize(params['ErrorInfo'])
+          end
+          @Extra = params['Extra']
+          @Msg = params['Msg']
+          unless params['Data'].nil?
+            @Data = ApiKeyAuthApplyVOList.new
+            @Data.deserialize(params['Data'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -3194,6 +3521,68 @@ module TencentCloud
           @ProjectId = params['ProjectId']
           @TranId = params['TranId']
           @TranStatus = params['TranStatus']
+        end
+      end
+
+      # ModifyAuthApiKey请求参数结构体
+      class ModifyAuthApiKeyRequest < TencentCloud::Common::AbstractModel
+        # @param ApiKey: <p>ApiKey</p>
+        # @type ApiKey: String
+        # @param DefaultUser: <p>默认用户</p>
+        # @type DefaultUser: String
+
+        attr_accessor :ApiKey, :DefaultUser
+
+        def initialize(apikey=nil, defaultuser=nil)
+          @ApiKey = apikey
+          @DefaultUser = defaultuser
+        end
+
+        def deserialize(params)
+          @ApiKey = params['ApiKey']
+          @DefaultUser = params['DefaultUser']
+        end
+      end
+
+      # ModifyAuthApiKey返回参数结构体
+      class ModifyAuthApiKeyResponse < TencentCloud::Common::AbstractModel
+        # @param ErrorInfo: 自定义错误信息对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorInfo: :class:`Tencentcloud::Bi.v20220105.models.ErrorInfo`
+        # @param Extra: <p>&quot;&quot;</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Extra: String
+        # @param Msg: <p>&quot;success&quot;</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Msg: String
+        # @param Data: <p>数据</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Bi.v20220105.models.ApiKeyAuthApplyVO`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrorInfo, :Extra, :Msg, :Data, :RequestId
+
+        def initialize(errorinfo=nil, extra=nil, msg=nil, data=nil, requestid=nil)
+          @ErrorInfo = errorinfo
+          @Extra = extra
+          @Msg = msg
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ErrorInfo'].nil?
+            @ErrorInfo = ErrorInfo.new
+            @ErrorInfo.deserialize(params['ErrorInfo'])
+          end
+          @Extra = params['Extra']
+          @Msg = params['Msg']
+          unless params['Data'].nil?
+            @Data = ApiKeyAuthApplyVO.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
         end
       end
 

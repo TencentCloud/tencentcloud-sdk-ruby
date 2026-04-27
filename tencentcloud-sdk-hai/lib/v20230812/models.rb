@@ -1629,21 +1629,21 @@ module TencentCloud
 
       # 模型详情
       class ModelDetail < TencentCloud::Common::AbstractModel
-        # @param ModelName: 模型名称
+        # @param ModelName: <p>模型名称</p>
         # @type ModelName: String
-        # @param ModelId: 模型ID
+        # @param ModelId: <p>模型ID</p>
         # @type ModelId: String
-        # @param Description: 应用描述
+        # @param Description: <p>应用描述</p>
         # @type Description: String
-        # @param CommunityUrl: 官方社区链接
+        # @param CommunityUrl: <p>官方社区链接</p>
         # @type CommunityUrl: String
-        # @param GuideUrl: 最佳实践链接
+        # @param GuideUrl: <p>最佳实践链接</p>
         # @type GuideUrl: String
-        # @param ModelState: 模型状态
+        # @param ModelState: <p>模型状态</p>
         # @type ModelState: String
-        # @param Tags: 应用对应的标签，如机器学习
+        # @param Tags: <p>应用对应的标签，如机器学习</p>
         # @type Tags: Array
-        # @param ConfigEnvironment: 配置环境
+        # @param ConfigEnvironment: <p>配置环境</p>
         # @type ConfigEnvironment: String
 
         attr_accessor :ModelName, :ModelId, :Description, :CommunityUrl, :GuideUrl, :ModelState, :Tags, :ConfigEnvironment

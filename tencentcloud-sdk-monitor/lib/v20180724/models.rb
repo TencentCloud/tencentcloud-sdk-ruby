@@ -1321,6 +1321,58 @@ module TencentCloud
         end
       end
 
+      # CheckAddressByPrometheus请求参数结构体
+      class CheckAddressByPrometheusRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>实例id</p>
+        # @type InstanceId: String
+        # @param Target: <p>探测地址</p>
+        # @type Target: String
+        # @param ProbeProtocol: <p>探测方式。tcp或http，默认是tcp</p>
+        # @type ProbeProtocol: String
+
+        attr_accessor :InstanceId, :Target, :ProbeProtocol
+
+        def initialize(instanceid=nil, target=nil, probeprotocol=nil)
+          @InstanceId = instanceid
+          @Target = target
+          @ProbeProtocol = probeprotocol
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Target = params['Target']
+          @ProbeProtocol = params['ProbeProtocol']
+        end
+      end
+
+      # CheckAddressByPrometheus返回参数结构体
+      class CheckAddressByPrometheusResponse < TencentCloud::Common::AbstractModel
+        # @param Target: <p>实际探测的地址</p>
+        # @type Target: String
+        # @param Success: <p>探测是否成功</p>
+        # @type Success: Boolean
+        # @param Message: <p>探测失败时返回错误信息</p>
+        # @type Message: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Target, :Success, :Message, :RequestId
+
+        def initialize(target=nil, success=nil, message=nil, requestid=nil)
+          @Target = target
+          @Success = success
+          @Message = message
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Target = params['Target']
+          @Success = params['Success']
+          @Message = params['Message']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CleanGrafanaInstance请求参数结构体
       class CleanGrafanaInstanceRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: Grafana 实例 ID，例如：grafana-abcdefgh

@@ -3263,38 +3263,31 @@ module TencentCloud
 
       # CreateLivePadTemplate请求参数结构体
       class CreateLivePadTemplateRequest < TencentCloud::Common::AbstractModel
-        # @param TemplateName: 模板名称。
-        # 长度上限：255字节。
-        # 仅支持中文、英文、数字、_、-。
+        # @param TemplateName: <p>模板名称。<br>长度上限：255字节。<br>仅支持中文、英文、数字、_、-。</p>
         # @type TemplateName: String
-        # @param Url: 垫片内容。
+        # @param Url: <p>垫片内容。</p>
         # @type Url: String
-        # @param Description: 描述信息。
-        # 长度上限：1024字节。
-        # 仅支持中文、英文、数字、_、-。
+        # @param Description: <p>描述信息。<br>长度上限：1024字节。<br>仅支持中文、英文、数字、_、-。</p>
         # @type Description: String
-        # @param WaitDuration: 断流等待时间。
-        # 取值范围：0-30000。
-        # 单位：ms。
+        # @param WaitDuration: <p>断流等待时间。<br>取值范围：0-30000。<br>单位：ms。</p>
         # @type WaitDuration: Integer
-        # @param MaxDuration: 最大垫片时长。
-        # 取值范围：0 - 正无穷。
-        # 单位：ms。
+        # @param MaxDuration: <p>最大垫片时长。<br>取值范围：0 - 正无穷。<br>单位：ms。</p>
         # @type MaxDuration: Integer
-        # @param Type: 垫片内容类型：
-        # 1：图片，2：视频。
-        # 默认值：1。
+        # @param Type: <p>垫片内容类型：<br>1：图片，2：视频。<br>默认值：1。</p>
         # @type Type: Integer
+        # @param TriggerCondition: <p>断流垫片触发条件</p><p>枚举值：</p><ul><li>0： 主动及异常断流</li><li>1： 异常断流</li></ul><p>默认值：0</p>
+        # @type TriggerCondition: Integer
 
-        attr_accessor :TemplateName, :Url, :Description, :WaitDuration, :MaxDuration, :Type
+        attr_accessor :TemplateName, :Url, :Description, :WaitDuration, :MaxDuration, :Type, :TriggerCondition
 
-        def initialize(templatename=nil, url=nil, description=nil, waitduration=nil, maxduration=nil, type=nil)
+        def initialize(templatename=nil, url=nil, description=nil, waitduration=nil, maxduration=nil, type=nil, triggercondition=nil)
           @TemplateName = templatename
           @Url = url
           @Description = description
           @WaitDuration = waitduration
           @MaxDuration = maxduration
           @Type = type
+          @TriggerCondition = triggercondition
         end
 
         def deserialize(params)
@@ -3304,12 +3297,13 @@ module TencentCloud
           @WaitDuration = params['WaitDuration']
           @MaxDuration = params['MaxDuration']
           @Type = params['Type']
+          @TriggerCondition = params['TriggerCondition']
         end
       end
 
       # CreateLivePadTemplate返回参数结构体
       class CreateLivePadTemplateResponse < TencentCloud::Common::AbstractModel
-        # @param TemplateId: 模板Id。
+        # @param TemplateId: <p>模板Id。</p>
         # @type TemplateId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -13547,32 +13541,26 @@ module TencentCloud
 
       # ModifyLivePadTemplate请求参数结构体
       class ModifyLivePadTemplateRequest < TencentCloud::Common::AbstractModel
-        # @param TemplateId: 模板id。
+        # @param TemplateId: <p>模板id。</p>
         # @type TemplateId: Integer
-        # @param Url: 垫片内容。
+        # @param Url: <p>垫片内容。</p>
         # @type Url: String
-        # @param WaitDuration: 断流等待时间。
-        # 取值范围：0-30000。
-        # 单位：ms。
+        # @param WaitDuration: <p>断流等待时间。<br>取值范围：0-30000。<br>单位：ms。</p>
         # @type WaitDuration: Integer
-        # @param MaxDuration: 最大垫片时长。
-        # 取值范围：0 - 正无穷。
-        # 单位：ms。
+        # @param MaxDuration: <p>最大垫片时长。<br>取值范围：0 - 正无穷。<br>单位：ms。</p>
         # @type MaxDuration: Integer
-        # @param TemplateName: 模板名称。
-        # 长度上限：255字节。
-        # 仅支持中文、英文、数字、_、-。
+        # @param TemplateName: <p>模板名称。<br>长度上限：255字节。<br>仅支持中文、英文、数字、_、-。</p>
         # @type TemplateName: String
-        # @param Description: 描述信息。
-        # 长度上限：1024字节。
-        # 仅支持中文、英文、数字、_、-。
+        # @param Description: <p>描述信息。<br>长度上限：1024字节。<br>仅支持中文、英文、数字、_、-。</p>
         # @type Description: String
-        # @param Type: 垫片内容类型： 1：图片，2：视频。 默认值：1。
+        # @param Type: <p>垫片内容类型： 1：图片，2：视频。 默认值：1。</p>
         # @type Type: Integer
+        # @param TriggerCondition: <p>断流垫片触发条件</p><p>枚举值：</p><ul><li>0： 主动及异常断流</li><li>1： 异常断流</li></ul><p>默认值：0</p>
+        # @type TriggerCondition: Integer
 
-        attr_accessor :TemplateId, :Url, :WaitDuration, :MaxDuration, :TemplateName, :Description, :Type
+        attr_accessor :TemplateId, :Url, :WaitDuration, :MaxDuration, :TemplateName, :Description, :Type, :TriggerCondition
 
-        def initialize(templateid=nil, url=nil, waitduration=nil, maxduration=nil, templatename=nil, description=nil, type=nil)
+        def initialize(templateid=nil, url=nil, waitduration=nil, maxduration=nil, templatename=nil, description=nil, type=nil, triggercondition=nil)
           @TemplateId = templateid
           @Url = url
           @WaitDuration = waitduration
@@ -13580,6 +13568,7 @@ module TencentCloud
           @TemplateName = templatename
           @Description = description
           @Type = type
+          @TriggerCondition = triggercondition
         end
 
         def deserialize(params)
@@ -13590,6 +13579,7 @@ module TencentCloud
           @TemplateName = params['TemplateName']
           @Description = params['Description']
           @Type = params['Type']
+          @TriggerCondition = params['TriggerCondition']
         end
       end
 

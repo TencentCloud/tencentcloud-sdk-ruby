@@ -70,8 +70,8 @@ module TencentCloud
 
         attr_accessor :AutoScalingGroupId, :ActivityId, :ActivityType, :StatusCode, :StatusMessage, :Cause, :Description, :StartTime, :EndTime, :CreatedTime, :ActivityRelatedInstanceSet, :StatusMessageSimplified, :LifecycleActionResultSet, :DetailedStatusMessageSet, :InvocationResultSet, :RelatedInstanceSet
         extend Gem::Deprecate
-        deprecate :ActivityRelatedInstanceSet, :none, 2026, 3
-        deprecate :ActivityRelatedInstanceSet=, :none, 2026, 3
+        deprecate :ActivityRelatedInstanceSet, :none, 2026, 4
+        deprecate :ActivityRelatedInstanceSet=, :none, 2026, 4
 
         def initialize(autoscalinggroupid=nil, activityid=nil, activitytype=nil, statuscode=nil, statusmessage=nil, cause=nil, description=nil, starttime=nil, endtime=nil, createdtime=nil, activityrelatedinstanceset=nil, statusmessagesimplified=nil, lifecycleactionresultset=nil, detailedstatusmessageset=nil, invocationresultset=nil, relatedinstanceset=nil)
           @AutoScalingGroupId = autoscalinggroupid
@@ -2737,8 +2737,8 @@ module TencentCloud
 
         attr_accessor :SecurityService, :MonitorService, :AutomationService, :AutomationToolsService
         extend Gem::Deprecate
-        deprecate :AutomationService, :none, 2026, 3
-        deprecate :AutomationService=, :none, 2026, 3
+        deprecate :AutomationService, :none, 2026, 4
+        deprecate :AutomationService=, :none, 2026, 4
 
         def initialize(securityservice=nil, monitorservice=nil, automationservice=nil, automationtoolsservice=nil)
           @SecurityService = securityservice
@@ -5372,27 +5372,19 @@ module TencentCloud
 
       # 服务设置
       class ServiceSettings < TencentCloud::Common::AbstractModel
-        # @param ReplaceMonitorUnhealthy: 开启监控不健康替换服务。若开启则对于云监控标记为不健康的实例，弹性伸缩服务会进行替换。若不指定该参数，则默认为 False。
+        # @param ReplaceMonitorUnhealthy: <p>开启监控不健康替换服务。若开启则对于云监控标记为不健康的实例，弹性伸缩服务会进行替换。若不指定该参数，则默认为 False。</p>
         # @type ReplaceMonitorUnhealthy: Boolean
-        # @param ScalingMode: 取值范围：
-        # CLASSIC_SCALING：经典方式，使用创建、销毁实例来实现扩缩容；
-        # WAKE_UP_STOPPED_SCALING：扩容优先开机。扩容时优先对已关机的实例执行开机操作，若开机后实例数仍低于期望实例数，则创建实例，缩容仍采用销毁实例的方式。用户可以使用StopAutoScalingInstances接口来关闭伸缩组内的实例。监控告警触发的扩容仍将创建实例
-        # 默认取值：CLASSIC_SCALING
+        # @param ScalingMode: <p>取值范围：<br>CLASSIC_SCALING：经典方式，使用创建、销毁实例来实现扩缩容；<br>WAKE_UP_STOPPED_SCALING：扩容优先开机。扩容时优先对已关机的实例执行开机操作，若开机后实例数仍低于期望实例数，则创建实例，缩容仍采用销毁实例的方式。用户可以使用StopAutoScalingInstances接口来关闭伸缩组内的实例。监控告警触发的扩容仍将创建实例<br>默认取值：CLASSIC_SCALING</p>
         # @type ScalingMode: String
-        # @param ReplaceLoadBalancerUnhealthy: 开启负载均衡不健康替换服务。若开启则对于负载均衡健康检查判断不健康的实例，弹性伸缩服务会进行替换。若不指定该参数，则默认为 False。
+        # @param ReplaceLoadBalancerUnhealthy: <p>开启负载均衡不健康替换服务。若开启则对于负载均衡健康检查判断不健康的实例，弹性伸缩服务会进行替换。若不指定该参数，则默认为 False。</p>
         # @type ReplaceLoadBalancerUnhealthy: Boolean
-        # @param ReplaceMode: 不健康替换服务的替换模式。取值范围：
-        # RECREATE：重建实例替代原有不健康实例；
-        # RESET：对原有不健康实例进行重装系统操作，可保持数据盘、内网IP、实例id等信息不发生变化，实例登录设置、主机名、增强服务和 UserData 与当前启动配置保持一致。
-        # 默认取值：RECREATE
+        # @param ReplaceMode: <p>不健康替换服务的替换模式。取值范围：<br>RECREATE：重建实例替代原有不健康实例；<br>RESET：对原有不健康实例进行重装系统操作，可保持数据盘、内网IP、实例id等信息不发生变化，实例登录设置、主机名、增强服务和 UserData 与当前启动配置保持一致。<br>默认取值：RECREATE</p>
         # @type ReplaceMode: String
-        # @param AutoUpdateInstanceTags: 自动更新实例标签。默认取值为 False，配置后如伸缩组标签发生更新，会同步更新（同步更新仅支持新增、修改标签，暂不支持删除标签）伸缩组内运行中状态实例的标签，同步更新非立即生效，存在一定延迟。
+        # @param AutoUpdateInstanceTags: <p>自动更新实例标签。默认取值为 False，配置后如伸缩组标签发生更新，会同步更新（同步更新仅支持新增、修改标签，暂不支持删除标签）伸缩组内运行中状态实例的标签，同步更新非立即生效，存在一定延迟。</p>
         # @type AutoUpdateInstanceTags: Boolean
-        # @param DesiredCapacitySyncWithMaxMinSize: 期望实例数同步最大最小值。默认值为 False。该参数仅对修改伸缩组接口未传入期望数的场景生效。
-        # <li>True: 修改最大值或最小值时，如与当前期望数存在冲突，则同步调整期望数。例如修改时传入最小值 2，当前期望数为 1，则同步调整期望数为 2。</li>
-        # <li>False: 修改最大值或最小值时，如与当前期望数存在冲突，报错提示不允许修改。</li>
+        # @param DesiredCapacitySyncWithMaxMinSize: <p>期望实例数同步最大最小值。默认值为 False。该参数仅对修改伸缩组接口未传入期望数的场景生效。</p><li>True: 修改最大值或最小值时，如与当前期望数存在冲突，则同步调整期望数。例如修改时传入最小值 2，当前期望数为 1，则同步调整期望数为 2。</li><li>False: 修改最大值或最小值时，如与当前期望数存在冲突，报错提示不允许修改。</li>
         # @type DesiredCapacitySyncWithMaxMinSize: Boolean
-        # @param PriorityScaleInUnhealthy: 优先缩容不健康实例。若开启，缩容时会优先选择不健康实例。默认值为 False。
+        # @param PriorityScaleInUnhealthy: <p>优先缩容不健康实例。若开启，缩容时会优先选择不健康实例。默认值为 False。</p>
         # @type PriorityScaleInUnhealthy: Boolean
 
         attr_accessor :ReplaceMonitorUnhealthy, :ScalingMode, :ReplaceLoadBalancerUnhealthy, :ReplaceMode, :AutoUpdateInstanceTags, :DesiredCapacitySyncWithMaxMinSize, :PriorityScaleInUnhealthy

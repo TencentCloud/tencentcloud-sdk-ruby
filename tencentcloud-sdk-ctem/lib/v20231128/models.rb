@@ -707,26 +707,30 @@ module TencentCloud
 
       # CreateSubDomain请求参数结构体
       class CreateSubDomainRequest < TencentCloud::Common::AbstractModel
-        # @param CustomerId: 企业Id
+        # @param CustomerId: <p>企业Id</p>
         # @type CustomerId: Integer
-        # @param SubDomain: 子域名
+        # @param SubDomain: <p>子域名</p>
         # @type SubDomain: String
-        # @param Ip: Ip
+        # @param Ip: <p>Ip</p>
         # @type Ip: String
-        # @param Country: 国家
+        # @param Country: <p>国家</p>
         # @type Country: String
-        # @param Province: 省
+        # @param Province: <p>省</p>
         # @type Province: String
-        # @param City: 城市
+        # @param City: <p>城市</p>
         # @type City: String
-        # @param Isp: Isp
+        # @param Isp: <p>Isp</p>
         # @type Isp: String
-        # @param EnterpriseUid: 子公司
+        # @param EnterpriseUid: <p>子公司</p>
         # @type EnterpriseUid: String
+        # @param DnsType: <p>DNS解析类型。A、AAAA、CNAME等</p>
+        # @type DnsType: String
+        # @param DnsValue: <p>DNS解析值。域名或者ip</p>
+        # @type DnsValue: String
 
-        attr_accessor :CustomerId, :SubDomain, :Ip, :Country, :Province, :City, :Isp, :EnterpriseUid
+        attr_accessor :CustomerId, :SubDomain, :Ip, :Country, :Province, :City, :Isp, :EnterpriseUid, :DnsType, :DnsValue
 
-        def initialize(customerid=nil, subdomain=nil, ip=nil, country=nil, province=nil, city=nil, isp=nil, enterpriseuid=nil)
+        def initialize(customerid=nil, subdomain=nil, ip=nil, country=nil, province=nil, city=nil, isp=nil, enterpriseuid=nil, dnstype=nil, dnsvalue=nil)
           @CustomerId = customerid
           @SubDomain = subdomain
           @Ip = ip
@@ -735,6 +739,8 @@ module TencentCloud
           @City = city
           @Isp = isp
           @EnterpriseUid = enterpriseuid
+          @DnsType = dnstype
+          @DnsValue = dnsvalue
         end
 
         def deserialize(params)
@@ -746,12 +752,14 @@ module TencentCloud
           @City = params['City']
           @Isp = params['Isp']
           @EnterpriseUid = params['EnterpriseUid']
+          @DnsType = params['DnsType']
+          @DnsValue = params['DnsValue']
         end
       end
 
       # CreateSubDomain返回参数结构体
       class CreateSubDomainResponse < TencentCloud::Common::AbstractModel
-        # @param Id: Id
+        # @param Id: <p>Id</p>
         # @type Id: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5824,40 +5832,44 @@ module TencentCloud
 
       # 子域名详情
       class DisplaySubDomain < TencentCloud::Common::AbstractModel
-        # @param Id: 主键ID
+        # @param Id: <p>主键ID</p>
         # @type Id: Integer
-        # @param SubDomain: 子域名
+        # @param SubDomain: <p>子域名</p>
         # @type SubDomain: String
-        # @param Ip: Ip
+        # @param Ip: <p>Ip</p>
         # @type Ip: String
-        # @param Country: 国家
+        # @param Country: <p>国家</p>
         # @type Country: String
-        # @param Province: 省份
+        # @param Province: <p>省份</p>
         # @type Province: String
-        # @param City: 城市
+        # @param City: <p>城市</p>
         # @type City: String
-        # @param Isp: 互联网服务提供商
+        # @param Isp: <p>互联网服务提供商</p>
         # @type Isp: String
-        # @param DisplayToolCommon: 公共字段
+        # @param DisplayToolCommon: <p>公共字段</p>
         # @type DisplayToolCommon: :class:`Tencentcloud::Ctem.v20231128.models.DisplayToolCommon`
-        # @param IsCloudAsset: 是否为云资产：0-非云资产 1-是云资产
+        # @param IsCloudAsset: <p>是否为云资产：0-非云资产 1-是云资产</p>
         # @type IsCloudAsset: Integer
-        # @param CloudAssetStatus: 云资产是否下线：-1-已下线 0-正常
+        # @param CloudAssetStatus: <p>云资产是否下线：-1-已下线 0-正常</p>
         # @type CloudAssetStatus: Integer
-        # @param AvailabilityRate: 可用率（百分比）
+        # @param AvailabilityRate: <p>可用率（百分比）</p>
         # @type AvailabilityRate: Integer
-        # @param AvailabilityState: 可用状态 1:异常 0:正常
+        # @param AvailabilityState: <p>可用状态 1:异常 0:正常</p>
         # @type AvailabilityState: Integer
-        # @param AnalysisState: 域名解析状态 1:异常 0:正常
+        # @param AnalysisState: <p>域名解析状态 1:异常 0:正常</p>
         # @type AnalysisState: Integer
-        # @param AverageDelay: 平均时延：单位ms
+        # @param AverageDelay: <p>平均时延：单位ms</p>
         # @type AverageDelay: Integer
-        # @param LossRate: 丢包率（百分比）
+        # @param LossRate: <p>丢包率（百分比）</p>
         # @type LossRate: Integer
+        # @param DnsType: <p>DNS解析类型</p><p>A、AAAA、MX、CNAME、NX</p>
+        # @type DnsType: String
+        # @param DnsValue: <p>DNS解析值</p>
+        # @type DnsValue: String
 
-        attr_accessor :Id, :SubDomain, :Ip, :Country, :Province, :City, :Isp, :DisplayToolCommon, :IsCloudAsset, :CloudAssetStatus, :AvailabilityRate, :AvailabilityState, :AnalysisState, :AverageDelay, :LossRate
+        attr_accessor :Id, :SubDomain, :Ip, :Country, :Province, :City, :Isp, :DisplayToolCommon, :IsCloudAsset, :CloudAssetStatus, :AvailabilityRate, :AvailabilityState, :AnalysisState, :AverageDelay, :LossRate, :DnsType, :DnsValue
 
-        def initialize(id=nil, subdomain=nil, ip=nil, country=nil, province=nil, city=nil, isp=nil, displaytoolcommon=nil, iscloudasset=nil, cloudassetstatus=nil, availabilityrate=nil, availabilitystate=nil, analysisstate=nil, averagedelay=nil, lossrate=nil)
+        def initialize(id=nil, subdomain=nil, ip=nil, country=nil, province=nil, city=nil, isp=nil, displaytoolcommon=nil, iscloudasset=nil, cloudassetstatus=nil, availabilityrate=nil, availabilitystate=nil, analysisstate=nil, averagedelay=nil, lossrate=nil, dnstype=nil, dnsvalue=nil)
           @Id = id
           @SubDomain = subdomain
           @Ip = ip
@@ -5873,6 +5885,8 @@ module TencentCloud
           @AnalysisState = analysisstate
           @AverageDelay = averagedelay
           @LossRate = lossrate
+          @DnsType = dnstype
+          @DnsValue = dnsvalue
         end
 
         def deserialize(params)
@@ -5894,6 +5908,8 @@ module TencentCloud
           @AnalysisState = params['AnalysisState']
           @AverageDelay = params['AverageDelay']
           @LossRate = params['LossRate']
+          @DnsType = params['DnsType']
+          @DnsValue = params['DnsValue']
         end
       end
 
