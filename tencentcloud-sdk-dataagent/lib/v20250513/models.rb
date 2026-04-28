@@ -508,10 +508,12 @@ module TencentCloud
         # @type DocumentSummary: String
         # @param WebUrl: <p>网页地址</p>
         # @type WebUrl: String
+        # @param Capabilities: <p>文件能力标识列表</p>
+        # @type Capabilities: Array
 
-        attr_accessor :FileName, :FileSize, :Type, :FileId, :Status, :CreateUser, :CreateTime, :ChunkConfig, :Source, :FileUrl, :IsShowCase, :DocumentSummary, :WebUrl
+        attr_accessor :FileName, :FileSize, :Type, :FileId, :Status, :CreateUser, :CreateTime, :ChunkConfig, :Source, :FileUrl, :IsShowCase, :DocumentSummary, :WebUrl, :Capabilities
 
-        def initialize(filename=nil, filesize=nil, type=nil, fileid=nil, status=nil, createuser=nil, createtime=nil, chunkconfig=nil, source=nil, fileurl=nil, isshowcase=nil, documentsummary=nil, weburl=nil)
+        def initialize(filename=nil, filesize=nil, type=nil, fileid=nil, status=nil, createuser=nil, createtime=nil, chunkconfig=nil, source=nil, fileurl=nil, isshowcase=nil, documentsummary=nil, weburl=nil, capabilities=nil)
           @FileName = filename
           @FileSize = filesize
           @Type = type
@@ -525,6 +527,7 @@ module TencentCloud
           @IsShowCase = isshowcase
           @DocumentSummary = documentsummary
           @WebUrl = weburl
+          @Capabilities = capabilities
         end
 
         def deserialize(params)
@@ -544,6 +547,7 @@ module TencentCloud
           @IsShowCase = params['IsShowCase']
           @DocumentSummary = params['DocumentSummary']
           @WebUrl = params['WebUrl']
+          @Capabilities = params['Capabilities']
         end
       end
 
@@ -796,24 +800,26 @@ module TencentCloud
 
       # 知识库信息
       class KnowledgeBase < TencentCloud::Common::AbstractModel
-        # @param KnowledgeBaseId: 知识库id
+        # @param KnowledgeBaseId: <p>知识库id</p>
         # @type KnowledgeBaseId: String
-        # @param KnowledgeBaseName: 知识库名称
+        # @param KnowledgeBaseName: <p>知识库名称</p>
         # @type KnowledgeBaseName: String
-        # @param KnowledgeBaseDesc: 知识库描述
+        # @param KnowledgeBaseDesc: <p>知识库描述</p>
         # @type KnowledgeBaseDesc: String
-        # @param Creator: 创建者subuin
+        # @param Creator: <p>创建者subuin</p>
         # @type Creator: String
-        # @param CreateTime: 创建时间
+        # @param CreateTime: <p>创建时间</p>
         # @type CreateTime: String
-        # @param FileNum: 文件数量
+        # @param FileNum: <p>文件数量</p>
         # @type FileNum: Integer
-        # @param DatasourceIds: 知识库关联的数据库列表，目前是只绑定一个数据源，数组预留拓展
+        # @param DatasourceIds: <p>知识库关联的数据库列表，目前是只绑定一个数据源，数组预留拓展</p>
         # @type DatasourceIds: Array
+        # @param Config: <p>知识库任务配置</p>
+        # @type Config: :class:`Tencentcloud::Dataagent.v20250513.models.KnowledgeTaskConfig`
 
-        attr_accessor :KnowledgeBaseId, :KnowledgeBaseName, :KnowledgeBaseDesc, :Creator, :CreateTime, :FileNum, :DatasourceIds
+        attr_accessor :KnowledgeBaseId, :KnowledgeBaseName, :KnowledgeBaseDesc, :Creator, :CreateTime, :FileNum, :DatasourceIds, :Config
 
-        def initialize(knowledgebaseid=nil, knowledgebasename=nil, knowledgebasedesc=nil, creator=nil, createtime=nil, filenum=nil, datasourceids=nil)
+        def initialize(knowledgebaseid=nil, knowledgebasename=nil, knowledgebasedesc=nil, creator=nil, createtime=nil, filenum=nil, datasourceids=nil, config=nil)
           @KnowledgeBaseId = knowledgebaseid
           @KnowledgeBaseName = knowledgebasename
           @KnowledgeBaseDesc = knowledgebasedesc
@@ -821,6 +827,7 @@ module TencentCloud
           @CreateTime = createtime
           @FileNum = filenum
           @DatasourceIds = datasourceids
+          @Config = config
         end
 
         def deserialize(params)
@@ -831,32 +838,38 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @FileNum = params['FileNum']
           @DatasourceIds = params['DatasourceIds']
+          unless params['Config'].nil?
+            @Config = KnowledgeTaskConfig.new
+            @Config.deserialize(params['Config'])
+          end
         end
       end
 
       # 任务配置
       class KnowledgeTaskConfig < TencentCloud::Common::AbstractModel
-        # @param ChunkType: 切片类型  0:自定义切片，1：智能切片
+        # @param ChunkType: <p>切片类型  0:自定义切片，1：智能切片</p>
         # @type ChunkType: Integer
-        # @param MaxChunkSize: /智能切片：最小值 1000，默认 4800 自定义切片：正整数即可,默认值 1000
+        # @param MaxChunkSize: <p>/智能切片：最小值 1000，默认 4800 自定义切片：正整数即可,默认值 1000</p>
         # @type MaxChunkSize: Integer
-        # @param Delimiters:  切片分隔符,自定义切片使用：默认值为：["\n\n", "\n", "。", "！", "？", "，", ""]
+        # @param Delimiters: <p>切片分隔符,自定义切片使用：默认值为：[&quot;\n\n&quot;, &quot;\n&quot;, &quot;。&quot;, &quot;！&quot;, &quot;？&quot;, &quot;，&quot;, &quot;&quot;]</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Delimiters: Array
-        # @param ChunkOverlap: 自定义切片使用:默认0 可重叠字符长度
+        # @param ChunkOverlap: <p>自定义切片使用:默认0 可重叠字符长度</p>
         # @type ChunkOverlap: Integer
-        # @param Columns: 表格类文档解析
+        # @param Columns: <p>表格类文档解析</p>
         # @type Columns: Array
-        # @param Indexes: 带检索的索引列表
+        # @param Indexes: <p>带检索的索引列表</p>
         # @type Indexes: Array
-        # @param GenDocSummary: 0：不生成文档摘要，1：生成文档概要。默认0，当取1时，GenParaSummary必须也为1
+        # @param GenDocSummary: <p>0：不生成文档摘要，1：生成文档概要。默认0，当取1时，GenParaSummary必须也为1</p>
         # @type GenDocSummary: Integer
-        # @param GenParaSummary: 0：不生成段落摘要，1：生成段落概要。默认0
+        # @param GenParaSummary: <p>0：不生成段落摘要，1：生成段落概要。默认0</p>
         # @type GenParaSummary: Integer
+        # @param EnableImageUnderstanding: <p>0：不开启图片理解，1：开启图片理解。默认1</p><p>取值范围：[1, 10000]</p><p>默认值：1</p>
+        # @type EnableImageUnderstanding: Integer
 
-        attr_accessor :ChunkType, :MaxChunkSize, :Delimiters, :ChunkOverlap, :Columns, :Indexes, :GenDocSummary, :GenParaSummary
+        attr_accessor :ChunkType, :MaxChunkSize, :Delimiters, :ChunkOverlap, :Columns, :Indexes, :GenDocSummary, :GenParaSummary, :EnableImageUnderstanding
 
-        def initialize(chunktype=nil, maxchunksize=nil, delimiters=nil, chunkoverlap=nil, columns=nil, indexes=nil, gendocsummary=nil, genparasummary=nil)
+        def initialize(chunktype=nil, maxchunksize=nil, delimiters=nil, chunkoverlap=nil, columns=nil, indexes=nil, gendocsummary=nil, genparasummary=nil, enableimageunderstanding=nil)
           @ChunkType = chunktype
           @MaxChunkSize = maxchunksize
           @Delimiters = delimiters
@@ -865,6 +878,7 @@ module TencentCloud
           @Indexes = indexes
           @GenDocSummary = gendocsummary
           @GenParaSummary = genparasummary
+          @EnableImageUnderstanding = enableimageunderstanding
         end
 
         def deserialize(params)
@@ -883,6 +897,7 @@ module TencentCloud
           @Indexes = params['Indexes']
           @GenDocSummary = params['GenDocSummary']
           @GenParaSummary = params['GenParaSummary']
+          @EnableImageUnderstanding = params['EnableImageUnderstanding']
         end
       end
 
@@ -980,24 +995,26 @@ module TencentCloud
 
       # ModifyKnowledgeBase请求参数结构体
       class ModifyKnowledgeBaseRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例id
+        # @param InstanceId: <p>实例id</p>
         # @type InstanceId: String
-        # @param OperateType: 操作类型：Create，Update，Delete
+        # @param OperateType: <p>操作类型：Create，Update，Delete</p>
         # @type OperateType: String
-        # @param KnowledgeBaseId: 知识库id，update和delete时必填
+        # @param KnowledgeBaseId: <p>知识库id，update和delete时必填</p>
         # @type KnowledgeBaseId: String
-        # @param KnowledgeBaseName: 知识库名称，create和update时必填。只允许字母、数字、汉字、下划线
+        # @param KnowledgeBaseName: <p>知识库名称，create和update时必填。只允许字母、数字、汉字、下划线</p>
         # @type KnowledgeBaseName: String
-        # @param KnowledgeBaseDesc: 知识库描述，create和update时必填
+        # @param KnowledgeBaseDesc: <p>知识库描述，create和update时必填</p>
         # @type KnowledgeBaseDesc: String
-        # @param UseScope: 1仅自己使用，2指定用户，0全员
+        # @param UseScope: <p>1仅自己使用，2指定用户，0全员</p>
         # @type UseScope: Integer
-        # @param AuthorityUins: 可使用用户列表
+        # @param AuthorityUins: <p>可使用用户列表</p>
         # @type AuthorityUins: Array
+        # @param Config: <p>知识库任务配置</p>
+        # @type Config: :class:`Tencentcloud::Dataagent.v20250513.models.KnowledgeTaskConfig`
 
-        attr_accessor :InstanceId, :OperateType, :KnowledgeBaseId, :KnowledgeBaseName, :KnowledgeBaseDesc, :UseScope, :AuthorityUins
+        attr_accessor :InstanceId, :OperateType, :KnowledgeBaseId, :KnowledgeBaseName, :KnowledgeBaseDesc, :UseScope, :AuthorityUins, :Config
 
-        def initialize(instanceid=nil, operatetype=nil, knowledgebaseid=nil, knowledgebasename=nil, knowledgebasedesc=nil, usescope=nil, authorityuins=nil)
+        def initialize(instanceid=nil, operatetype=nil, knowledgebaseid=nil, knowledgebasename=nil, knowledgebasedesc=nil, usescope=nil, authorityuins=nil, config=nil)
           @InstanceId = instanceid
           @OperateType = operatetype
           @KnowledgeBaseId = knowledgebaseid
@@ -1005,6 +1022,7 @@ module TencentCloud
           @KnowledgeBaseDesc = knowledgebasedesc
           @UseScope = usescope
           @AuthorityUins = authorityuins
+          @Config = config
         end
 
         def deserialize(params)
@@ -1015,12 +1033,16 @@ module TencentCloud
           @KnowledgeBaseDesc = params['KnowledgeBaseDesc']
           @UseScope = params['UseScope']
           @AuthorityUins = params['AuthorityUins']
+          unless params['Config'].nil?
+            @Config = KnowledgeTaskConfig.new
+            @Config.deserialize(params['Config'])
+          end
         end
       end
 
       # ModifyKnowledgeBase返回参数结构体
       class ModifyKnowledgeBaseResponse < TencentCloud::Common::AbstractModel
-        # @param KnowledgeBaseId: 知识库id
+        # @param KnowledgeBaseId: <p>知识库id</p>
         # @type KnowledgeBaseId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1332,30 +1354,32 @@ module TencentCloud
 
       # 场景
       class Scene < TencentCloud::Common::AbstractModel
-        # @param SceneId: 场景ID
+        # @param SceneId: <p>场景ID</p>
         # @type SceneId: String
-        # @param SceneName: 场景名称
+        # @param SceneName: <p>场景名称</p>
         # @type SceneName: String
-        # @param Skills: 技能列表，包含：rag（知识检索）、data_analytics（数据分析）、data_prediction（数据预测）
+        # @param Skills: <p>技能列表，包含：rag（知识检索）、data_analytics（数据分析）、data_prediction（数据预测）</p>
         # @type Skills: Array
-        # @param Prompt: 提示词文本
+        # @param Prompt: <p>提示词文本</p>
         # @type Prompt: String
-        # @param Description: 描述
+        # @param Description: <p>描述</p>
         # @type Description: String
-        # @param SearchConfig: 检索配置
+        # @param SearchConfig: <p>检索配置</p>
         # @type SearchConfig: :class:`Tencentcloud::Dataagent.v20250513.models.SearchConfig`
-        # @param ExampleQAList: 示例问答列表
+        # @param ExampleQAList: <p>示例问答列表</p>
         # @type ExampleQAList: Array
-        # @param CreateTime: 记录的创建时间
+        # @param CreateTime: <p>记录的创建时间</p>
         # @type CreateTime: String
-        # @param UpdateTime: 记录的最后更新时间
+        # @param UpdateTime: <p>记录的最后更新时间</p>
         # @type UpdateTime: String
-        # @param CreatorUin: 创建者Uin
+        # @param CreatorUin: <p>创建者Uin</p>
         # @type CreatorUin: String
+        # @param Knowledge: <p>知识</p>
+        # @type Knowledge: String
 
-        attr_accessor :SceneId, :SceneName, :Skills, :Prompt, :Description, :SearchConfig, :ExampleQAList, :CreateTime, :UpdateTime, :CreatorUin
+        attr_accessor :SceneId, :SceneName, :Skills, :Prompt, :Description, :SearchConfig, :ExampleQAList, :CreateTime, :UpdateTime, :CreatorUin, :Knowledge
 
-        def initialize(sceneid=nil, scenename=nil, skills=nil, prompt=nil, description=nil, searchconfig=nil, exampleqalist=nil, createtime=nil, updatetime=nil, creatoruin=nil)
+        def initialize(sceneid=nil, scenename=nil, skills=nil, prompt=nil, description=nil, searchconfig=nil, exampleqalist=nil, createtime=nil, updatetime=nil, creatoruin=nil, knowledge=nil)
           @SceneId = sceneid
           @SceneName = scenename
           @Skills = skills
@@ -1366,6 +1390,7 @@ module TencentCloud
           @CreateTime = createtime
           @UpdateTime = updatetime
           @CreatorUin = creatoruin
+          @Knowledge = knowledge
         end
 
         def deserialize(params)
@@ -1389,6 +1414,7 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
           @CreatorUin = params['CreatorUin']
+          @Knowledge = params['Knowledge']
         end
       end
 

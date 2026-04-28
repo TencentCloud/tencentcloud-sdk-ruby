@@ -800,10 +800,20 @@ module TencentCloud
         # @type SensitiveDataCheckStatus: Boolean
         # @param SensitiveDataCheckConfig: <p>敏感数据检测配置</p>
         # @type SensitiveDataCheckConfig: :class:`Tencentcloud::Apis.v20240801.models.SensitiveDataCheckConfigDTO`
+        # @param TargetSelect: <p>负载方式</p><p>枚举值：</p><ul><li>random： 随机</li><li>consistentHash： 会话保持</li></ul>
+        # @type TargetSelect: String
+        # @param FindHostKeyMethod: <p>会话判断方式</p><p>枚举值：</p><ul><li>fromClientIP： 客户端IP</li><li>fromHeader： 通过header值</li><li>autoDetect： 自动探测</li></ul>
+        # @type FindHostKeyMethod: String
+        # @param HostKeyHeaderName: <p>会话判定方式为fromHeader时会话的header名称</p>
+        # @type HostKeyHeaderName: String
+        # @param FallbackStatus: <p>是否启用Fallback模型</p>
+        # @type FallbackStatus: Boolean
+        # @param FallbackModels: <p>Fallback模型配置</p>
+        # @type FallbackModels: Array
 
-        attr_accessor :InstanceID, :Name, :Description, :PubPath, :TargetModels, :PathMatchType, :InvokeLimitConfigStatus, :InvokeLimitConfig, :TokenLimitStatus, :TokenLimitConfig, :TmsStatus, :TmsConfig, :IpWhiteStatus, :IpWhiteList, :IpBlackList, :PluginConfigs, :Timeout, :PromptModerateStatus, :PromptModerateConfig, :SensitiveDataCheckStatus, :SensitiveDataCheckConfig
+        attr_accessor :InstanceID, :Name, :Description, :PubPath, :TargetModels, :PathMatchType, :InvokeLimitConfigStatus, :InvokeLimitConfig, :TokenLimitStatus, :TokenLimitConfig, :TmsStatus, :TmsConfig, :IpWhiteStatus, :IpWhiteList, :IpBlackList, :PluginConfigs, :Timeout, :PromptModerateStatus, :PromptModerateConfig, :SensitiveDataCheckStatus, :SensitiveDataCheckConfig, :TargetSelect, :FindHostKeyMethod, :HostKeyHeaderName, :FallbackStatus, :FallbackModels
 
-        def initialize(instanceid=nil, name=nil, description=nil, pubpath=nil, targetmodels=nil, pathmatchtype=nil, invokelimitconfigstatus=nil, invokelimitconfig=nil, tokenlimitstatus=nil, tokenlimitconfig=nil, tmsstatus=nil, tmsconfig=nil, ipwhitestatus=nil, ipwhitelist=nil, ipblacklist=nil, pluginconfigs=nil, timeout=nil, promptmoderatestatus=nil, promptmoderateconfig=nil, sensitivedatacheckstatus=nil, sensitivedatacheckconfig=nil)
+        def initialize(instanceid=nil, name=nil, description=nil, pubpath=nil, targetmodels=nil, pathmatchtype=nil, invokelimitconfigstatus=nil, invokelimitconfig=nil, tokenlimitstatus=nil, tokenlimitconfig=nil, tmsstatus=nil, tmsconfig=nil, ipwhitestatus=nil, ipwhitelist=nil, ipblacklist=nil, pluginconfigs=nil, timeout=nil, promptmoderatestatus=nil, promptmoderateconfig=nil, sensitivedatacheckstatus=nil, sensitivedatacheckconfig=nil, targetselect=nil, findhostkeymethod=nil, hostkeyheadername=nil, fallbackstatus=nil, fallbackmodels=nil)
           @InstanceID = instanceid
           @Name = name
           @Description = description
@@ -825,6 +835,11 @@ module TencentCloud
           @PromptModerateConfig = promptmoderateconfig
           @SensitiveDataCheckStatus = sensitivedatacheckstatus
           @SensitiveDataCheckConfig = sensitivedatacheckconfig
+          @TargetSelect = targetselect
+          @FindHostKeyMethod = findhostkeymethod
+          @HostKeyHeaderName = hostkeyheadername
+          @FallbackStatus = fallbackstatus
+          @FallbackModels = fallbackmodels
         end
 
         def deserialize(params)
@@ -877,6 +892,18 @@ module TencentCloud
           unless params['SensitiveDataCheckConfig'].nil?
             @SensitiveDataCheckConfig = SensitiveDataCheckConfigDTO.new
             @SensitiveDataCheckConfig.deserialize(params['SensitiveDataCheckConfig'])
+          end
+          @TargetSelect = params['TargetSelect']
+          @FindHostKeyMethod = params['FindHostKeyMethod']
+          @HostKeyHeaderName = params['HostKeyHeaderName']
+          @FallbackStatus = params['FallbackStatus']
+          unless params['FallbackModels'].nil?
+            @FallbackModels = []
+            params['FallbackModels'].each do |i|
+              targetmodeldto_tmp = TargetModelDTO.new
+              targetmodeldto_tmp.deserialize(i)
+              @FallbackModels << targetmodeldto_tmp
+            end
           end
         end
       end
@@ -2350,10 +2377,25 @@ module TencentCloud
         # @param SensitiveDataCheckConfig: <p>敏感数据检测配置</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SensitiveDataCheckConfig: :class:`Tencentcloud::Apis.v20240801.models.SensitiveDataCheckConfigDTO`
+        # @param TargetSelect: <p>负载方式</p><p>枚举值：</p><ul><li>random： 随机</li><li>consistentHash： 会话保持</li></ul>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TargetSelect: String
+        # @param FindHostKeyMethod: <p>会话判断方式</p><p>枚举值：</p><ul><li>fromClientIP： 从客户端IP判断</li><li>fromHeader： 从请求header判断</li><li>autoDetect： 自动探测</li></ul>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FindHostKeyMethod: String
+        # @param HostKeyHeaderName: <p>会话判断header名称</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HostKeyHeaderName: String
+        # @param FallbackStatus: <p>是否开启备份模型</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FallbackStatus: Boolean
+        # @param FallbackModels: <p>备份模型</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FallbackModels: Array
 
-        attr_accessor :AppID, :Uin, :InstanceID, :ID, :Name, :Description, :PubPath, :PathMatchType, :TargetModels, :ModelNames, :InvokeLimitConfigStatus, :InvokeLimitConfig, :CreateTime, :LastUpdateTime, :TokenLimitStatus, :TokenLimitConfig, :TmsStatus, :TmsConfig, :IpWhiteStatus, :IpWhiteList, :IpBlackStatus, :IpBlackList, :PluginConfigs, :Timeout, :Status, :RelateAgentAppNum, :Url, :PromptModerateStatus, :PromptModerateConfig, :SensitiveDataCheckStatus, :SensitiveDataCheckConfig
+        attr_accessor :AppID, :Uin, :InstanceID, :ID, :Name, :Description, :PubPath, :PathMatchType, :TargetModels, :ModelNames, :InvokeLimitConfigStatus, :InvokeLimitConfig, :CreateTime, :LastUpdateTime, :TokenLimitStatus, :TokenLimitConfig, :TmsStatus, :TmsConfig, :IpWhiteStatus, :IpWhiteList, :IpBlackStatus, :IpBlackList, :PluginConfigs, :Timeout, :Status, :RelateAgentAppNum, :Url, :PromptModerateStatus, :PromptModerateConfig, :SensitiveDataCheckStatus, :SensitiveDataCheckConfig, :TargetSelect, :FindHostKeyMethod, :HostKeyHeaderName, :FallbackStatus, :FallbackModels
 
-        def initialize(appid=nil, uin=nil, instanceid=nil, id=nil, name=nil, description=nil, pubpath=nil, pathmatchtype=nil, targetmodels=nil, modelnames=nil, invokelimitconfigstatus=nil, invokelimitconfig=nil, createtime=nil, lastupdatetime=nil, tokenlimitstatus=nil, tokenlimitconfig=nil, tmsstatus=nil, tmsconfig=nil, ipwhitestatus=nil, ipwhitelist=nil, ipblackstatus=nil, ipblacklist=nil, pluginconfigs=nil, timeout=nil, status=nil, relateagentappnum=nil, url=nil, promptmoderatestatus=nil, promptmoderateconfig=nil, sensitivedatacheckstatus=nil, sensitivedatacheckconfig=nil)
+        def initialize(appid=nil, uin=nil, instanceid=nil, id=nil, name=nil, description=nil, pubpath=nil, pathmatchtype=nil, targetmodels=nil, modelnames=nil, invokelimitconfigstatus=nil, invokelimitconfig=nil, createtime=nil, lastupdatetime=nil, tokenlimitstatus=nil, tokenlimitconfig=nil, tmsstatus=nil, tmsconfig=nil, ipwhitestatus=nil, ipwhitelist=nil, ipblackstatus=nil, ipblacklist=nil, pluginconfigs=nil, timeout=nil, status=nil, relateagentappnum=nil, url=nil, promptmoderatestatus=nil, promptmoderateconfig=nil, sensitivedatacheckstatus=nil, sensitivedatacheckconfig=nil, targetselect=nil, findhostkeymethod=nil, hostkeyheadername=nil, fallbackstatus=nil, fallbackmodels=nil)
           @AppID = appid
           @Uin = uin
           @InstanceID = instanceid
@@ -2385,6 +2427,11 @@ module TencentCloud
           @PromptModerateConfig = promptmoderateconfig
           @SensitiveDataCheckStatus = sensitivedatacheckstatus
           @SensitiveDataCheckConfig = sensitivedatacheckconfig
+          @TargetSelect = targetselect
+          @FindHostKeyMethod = findhostkeymethod
+          @HostKeyHeaderName = hostkeyheadername
+          @FallbackStatus = fallbackstatus
+          @FallbackModels = fallbackmodels
         end
 
         def deserialize(params)
@@ -2447,6 +2494,18 @@ module TencentCloud
           unless params['SensitiveDataCheckConfig'].nil?
             @SensitiveDataCheckConfig = SensitiveDataCheckConfigDTO.new
             @SensitiveDataCheckConfig.deserialize(params['SensitiveDataCheckConfig'])
+          end
+          @TargetSelect = params['TargetSelect']
+          @FindHostKeyMethod = params['FindHostKeyMethod']
+          @HostKeyHeaderName = params['HostKeyHeaderName']
+          @FallbackStatus = params['FallbackStatus']
+          unless params['FallbackModels'].nil?
+            @FallbackModels = []
+            params['FallbackModels'].each do |i|
+              targetmodeldto_tmp = TargetModelDTO.new
+              targetmodeldto_tmp.deserialize(i)
+              @FallbackModels << targetmodeldto_tmp
+            end
           end
         end
       end
@@ -3496,10 +3555,20 @@ module TencentCloud
         # @type SensitiveDataCheckStatus: Boolean
         # @param SensitiveDataCheckConfig: <p>敏感数据检测配置</p>
         # @type SensitiveDataCheckConfig: :class:`Tencentcloud::Apis.v20240801.models.SensitiveDataCheckConfigDTO`
+        # @param TargetSelect: <p>负载方式</p><p>枚举值：</p><ul><li>random： 随机</li><li>consistentHash： 会话保持</li></ul>
+        # @type TargetSelect: String
+        # @param FindHostKeyMethod: <p>会话判断方式</p><p>枚举值：</p><ul><li>fromClientIP： 从客户端IP判断</li><li>fromHeader： 从请求header判断</li><li>autoDetect： 自动探测</li></ul>
+        # @type FindHostKeyMethod: String
+        # @param HostKeyHeaderName: <p>会话判断header名称</p>
+        # @type HostKeyHeaderName: String
+        # @param FallbackStatus: <p>是否开启备份模型</p>
+        # @type FallbackStatus: Boolean
+        # @param FallbackModels: <p>备份模型</p>
+        # @type FallbackModels: Array
 
-        attr_accessor :InstanceID, :ID, :Name, :Description, :TargetModels, :InvokeLimitConfigStatus, :InvokeLimitConfig, :TokenLimitStatus, :TokenLimitConfig, :TmsStatus, :TmsConfig, :IpWhiteStatus, :IpWhiteList, :IpBlackStatus, :IpBlackList, :PluginConfigs, :Timeout, :PromptModerateStatus, :PromptModerateConfig, :SensitiveDataCheckStatus, :SensitiveDataCheckConfig
+        attr_accessor :InstanceID, :ID, :Name, :Description, :TargetModels, :InvokeLimitConfigStatus, :InvokeLimitConfig, :TokenLimitStatus, :TokenLimitConfig, :TmsStatus, :TmsConfig, :IpWhiteStatus, :IpWhiteList, :IpBlackStatus, :IpBlackList, :PluginConfigs, :Timeout, :PromptModerateStatus, :PromptModerateConfig, :SensitiveDataCheckStatus, :SensitiveDataCheckConfig, :TargetSelect, :FindHostKeyMethod, :HostKeyHeaderName, :FallbackStatus, :FallbackModels
 
-        def initialize(instanceid=nil, id=nil, name=nil, description=nil, targetmodels=nil, invokelimitconfigstatus=nil, invokelimitconfig=nil, tokenlimitstatus=nil, tokenlimitconfig=nil, tmsstatus=nil, tmsconfig=nil, ipwhitestatus=nil, ipwhitelist=nil, ipblackstatus=nil, ipblacklist=nil, pluginconfigs=nil, timeout=nil, promptmoderatestatus=nil, promptmoderateconfig=nil, sensitivedatacheckstatus=nil, sensitivedatacheckconfig=nil)
+        def initialize(instanceid=nil, id=nil, name=nil, description=nil, targetmodels=nil, invokelimitconfigstatus=nil, invokelimitconfig=nil, tokenlimitstatus=nil, tokenlimitconfig=nil, tmsstatus=nil, tmsconfig=nil, ipwhitestatus=nil, ipwhitelist=nil, ipblackstatus=nil, ipblacklist=nil, pluginconfigs=nil, timeout=nil, promptmoderatestatus=nil, promptmoderateconfig=nil, sensitivedatacheckstatus=nil, sensitivedatacheckconfig=nil, targetselect=nil, findhostkeymethod=nil, hostkeyheadername=nil, fallbackstatus=nil, fallbackmodels=nil)
           @InstanceID = instanceid
           @ID = id
           @Name = name
@@ -3521,6 +3590,11 @@ module TencentCloud
           @PromptModerateConfig = promptmoderateconfig
           @SensitiveDataCheckStatus = sensitivedatacheckstatus
           @SensitiveDataCheckConfig = sensitivedatacheckconfig
+          @TargetSelect = targetselect
+          @FindHostKeyMethod = findhostkeymethod
+          @HostKeyHeaderName = hostkeyheadername
+          @FallbackStatus = fallbackstatus
+          @FallbackModels = fallbackmodels
         end
 
         def deserialize(params)
@@ -3573,6 +3647,18 @@ module TencentCloud
           unless params['SensitiveDataCheckConfig'].nil?
             @SensitiveDataCheckConfig = SensitiveDataCheckConfigDTO.new
             @SensitiveDataCheckConfig.deserialize(params['SensitiveDataCheckConfig'])
+          end
+          @TargetSelect = params['TargetSelect']
+          @FindHostKeyMethod = params['FindHostKeyMethod']
+          @HostKeyHeaderName = params['HostKeyHeaderName']
+          @FallbackStatus = params['FallbackStatus']
+          unless params['FallbackModels'].nil?
+            @FallbackModels = []
+            params['FallbackModels'].each do |i|
+              targetmodeldto_tmp = TargetModelDTO.new
+              targetmodeldto_tmp.deserialize(i)
+              @FallbackModels << targetmodeldto_tmp
+            end
           end
         end
       end

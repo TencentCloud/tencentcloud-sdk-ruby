@@ -1870,6 +1870,36 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # ModifyChcNetworkMode接口用于切换CHC物理服务器的网络模式，适用于客户使用自建pxe环境装机，调用此接口切换部署网络和业务网络。**调用此接口会影响到业务网络，请明确使用方法后再调用**。
+        # - 切换部署网络：传入参数NetworkMode=DEPLOY。只有当CHC服务器状态为“可生产”或“已生产”，并且配置了部署网络才可以切换，否则API直接报错。
+        # - 切换业务网络：传入参数NetworkMode=BUSINESS。只有当CHC服务器状态为“已生产”时才可以切换，否则API直接报错。
+
+        # 切换网络模式是一个异步操作，可以通过DescribeChcHosts轮询查询设备的NetworkMode和操作状态来判断是否切换成功
+        # - 切换部署网络：chc物理服务器如下参数值为以下值是判断切换成功：NetworkMode=DEPLOY，LatestOperation=SwitchChcDeployNetwork, LatestOperationState=SUCCESS。
+        # - 切换业务网络：chc物理服务器如下参数值为以下值是判断切换成功：NetworkMode=BUSINESS，LatestOperation=SwitchChcBusinessNetwork, LatestOperationState=SUCCESS。
+
+        # @param request: Request instance for ModifyChcNetworkMode.
+        # @type request: :class:`Tencentcloud::cvm::V20170312::ModifyChcNetworkModeRequest`
+        # @rtype: :class:`Tencentcloud::cvm::V20170312::ModifyChcNetworkModeResponse`
+        def ModifyChcNetworkMode(request)
+          body = send_request('ModifyChcNetworkMode', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyChcNetworkModeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口 (ModifyDisasterRecoverGroupAttribute)用于修改[分散置放群组](https://cloud.tencent.com/document/product/213/15486)属性。
 
         # @param request: Request instance for ModifyDisasterRecoverGroupAttribute.

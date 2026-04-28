@@ -8987,7 +8987,7 @@ module TencentCloud
 
       # DescribeAssetImageDetail请求参数结构体
       class DescribeAssetImageDetailRequest < TencentCloud::Common::AbstractModel
-        # @param ImageID: 镜像id
+        # @param ImageID: <p>镜像id</p>
         # @type ImageID: String
 
         attr_accessor :ImageID
@@ -9003,76 +9003,78 @@ module TencentCloud
 
       # DescribeAssetImageDetail返回参数结构体
       class DescribeAssetImageDetailResponse < TencentCloud::Common::AbstractModel
-        # @param ImageID: 镜像ID
+        # @param ImageID: <p>镜像ID</p>
         # @type ImageID: String
-        # @param ImageName: 镜像名称
+        # @param ImageName: <p>镜像名称</p>
         # @type ImageName: String
-        # @param ImageDigest: 镜像摘要
+        # @param ImageDigest: <p>镜像摘要</p>
         # @type ImageDigest: String
-        # @param CreateTime: 创建时间
+        # @param CreateTime: <p>创建时间</p>
         # @type CreateTime: String
-        # @param Size: 镜像大小
+        # @param Size: <p>镜像大小</p>
         # @type Size: Integer
-        # @param HostCnt: 关联主机个数(包含普通节点数和超级节点数)
+        # @param HostCnt: <p>关联主机个数(包含普通节点数和超级节点数)</p>
         # @type HostCnt: Integer
-        # @param ContainerCnt: 关联容器个数
+        # @param ContainerCnt: <p>关联容器个数</p>
         # @type ContainerCnt: Integer
-        # @param SuperNodeCnt: 超级节点数
+        # @param SuperNodeCnt: <p>超级节点数</p>
         # @type SuperNodeCnt: Integer
-        # @param ScanTime: 最近扫描时间
+        # @param ScanTime: <p>最近扫描时间</p>
         # @type ScanTime: String
-        # @param VulCnt: 漏洞个数
+        # @param VulCnt: <p>漏洞个数</p>
         # @type VulCnt: Integer
-        # @param RiskCnt: 风险行为数
+        # @param RiskCnt: <p>风险行为数</p>
         # @type RiskCnt: Integer
-        # @param SensitiveInfoCnt: 敏感信息数
+        # @param SensitiveInfoCnt: <p>敏感信息数</p>
         # @type SensitiveInfoCnt: Integer
-        # @param IsTrustImage: 是否信任镜像
+        # @param IsTrustImage: <p>是否信任镜像</p>
         # @type IsTrustImage: Boolean
-        # @param OsName: 镜像系统
+        # @param OsName: <p>镜像系统</p>
         # @type OsName: String
-        # @param AgentError: agent镜像扫描错误
+        # @param AgentError: <p>agent镜像扫描错误</p>
         # @type AgentError: String
-        # @param ScanError: 后端镜像扫描错误
+        # @param ScanError: <p>后端镜像扫描错误</p>
         # @type ScanError: String
-        # @param Architecture: 系统架构
+        # @param Architecture: <p>系统架构</p>
         # @type Architecture: String
-        # @param Author: 作者
+        # @param Author: <p>作者</p>
         # @type Author: String
-        # @param BuildHistory: 构建历史
+        # @param BuildHistory: <p>构建历史</p>
         # @type BuildHistory: String
-        # @param ScanVirusProgress: 木马扫描进度
+        # @param ScanVirusProgress: <p>木马扫描进度</p>
         # @type ScanVirusProgress: Integer
-        # @param ScanVulProgress: 漏洞扫进度
+        # @param ScanVulProgress: <p>漏洞扫进度</p>
         # @type ScanVulProgress: Integer
-        # @param ScanRiskProgress: 敏感信息扫描进度
+        # @param ScanRiskProgress: <p>敏感信息扫描进度</p>
         # @type ScanRiskProgress: Integer
-        # @param ScanVirusError: 木马扫描错误
+        # @param ScanVirusError: <p>木马扫描错误</p>
         # @type ScanVirusError: String
-        # @param ScanVulError: 漏洞扫描错误
+        # @param ScanVulError: <p>漏洞扫描错误</p>
         # @type ScanVulError: String
-        # @param ScanRiskError: 敏感信息错误
+        # @param ScanRiskError: <p>敏感信息错误</p>
         # @type ScanRiskError: String
-        # @param ScanStatus: 镜像扫描状态
+        # @param ScanStatus: <p>镜像扫描状态</p>
         # @type ScanStatus: String
-        # @param VirusCnt: 木马病毒数
+        # @param VirusCnt: <p>木马病毒数</p>
         # @type VirusCnt: Integer
-        # @param Status: 镜像扫描状态
+        # @param Status: <p>镜像扫描状态</p>
         # @type Status: Integer
-        # @param RemainScanTime: 剩余扫描时间
+        # @param RemainScanTime: <p>剩余扫描时间</p>
         # @type RemainScanTime: Integer
-        # @param IsAuthorized: 授权为：1，未授权为：0
+        # @param IsAuthorized: <p>授权为：1，未授权为：0</p>
         # @type IsAuthorized: Integer
-        # @param Solution: 解决方案
+        # @param Solution: <p>解决方案</p>
         # @type Solution: String
-        # @param Reason: 原因
+        # @param Reason: <p>原因</p>
         # @type Reason: String
+        # @param RepoDigests: <p>仓库Digests</p>
+        # @type RepoDigests: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ImageID, :ImageName, :ImageDigest, :CreateTime, :Size, :HostCnt, :ContainerCnt, :SuperNodeCnt, :ScanTime, :VulCnt, :RiskCnt, :SensitiveInfoCnt, :IsTrustImage, :OsName, :AgentError, :ScanError, :Architecture, :Author, :BuildHistory, :ScanVirusProgress, :ScanVulProgress, :ScanRiskProgress, :ScanVirusError, :ScanVulError, :ScanRiskError, :ScanStatus, :VirusCnt, :Status, :RemainScanTime, :IsAuthorized, :Solution, :Reason, :RequestId
+        attr_accessor :ImageID, :ImageName, :ImageDigest, :CreateTime, :Size, :HostCnt, :ContainerCnt, :SuperNodeCnt, :ScanTime, :VulCnt, :RiskCnt, :SensitiveInfoCnt, :IsTrustImage, :OsName, :AgentError, :ScanError, :Architecture, :Author, :BuildHistory, :ScanVirusProgress, :ScanVulProgress, :ScanRiskProgress, :ScanVirusError, :ScanVulError, :ScanRiskError, :ScanStatus, :VirusCnt, :Status, :RemainScanTime, :IsAuthorized, :Solution, :Reason, :RepoDigests, :RequestId
 
-        def initialize(imageid=nil, imagename=nil, imagedigest=nil, createtime=nil, size=nil, hostcnt=nil, containercnt=nil, supernodecnt=nil, scantime=nil, vulcnt=nil, riskcnt=nil, sensitiveinfocnt=nil, istrustimage=nil, osname=nil, agenterror=nil, scanerror=nil, architecture=nil, author=nil, buildhistory=nil, scanvirusprogress=nil, scanvulprogress=nil, scanriskprogress=nil, scanviruserror=nil, scanvulerror=nil, scanriskerror=nil, scanstatus=nil, viruscnt=nil, status=nil, remainscantime=nil, isauthorized=nil, solution=nil, reason=nil, requestid=nil)
+        def initialize(imageid=nil, imagename=nil, imagedigest=nil, createtime=nil, size=nil, hostcnt=nil, containercnt=nil, supernodecnt=nil, scantime=nil, vulcnt=nil, riskcnt=nil, sensitiveinfocnt=nil, istrustimage=nil, osname=nil, agenterror=nil, scanerror=nil, architecture=nil, author=nil, buildhistory=nil, scanvirusprogress=nil, scanvulprogress=nil, scanriskprogress=nil, scanviruserror=nil, scanvulerror=nil, scanriskerror=nil, scanstatus=nil, viruscnt=nil, status=nil, remainscantime=nil, isauthorized=nil, solution=nil, reason=nil, repodigests=nil, requestid=nil)
           @ImageID = imageid
           @ImageName = imagename
           @ImageDigest = imagedigest
@@ -9105,6 +9107,7 @@ module TencentCloud
           @IsAuthorized = isauthorized
           @Solution = solution
           @Reason = reason
+          @RepoDigests = repodigests
           @RequestId = requestid
         end
 
@@ -9141,6 +9144,7 @@ module TencentCloud
           @IsAuthorized = params['IsAuthorized']
           @Solution = params['Solution']
           @Reason = params['Reason']
+          @RepoDigests = params['RepoDigests']
           @RequestId = params['RequestId']
         end
       end

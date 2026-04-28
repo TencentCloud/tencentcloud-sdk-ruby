@@ -46,6 +46,140 @@ module TencentCloud
         end
       end
 
+      # 描述标注任务详细信息
+      class AnnotationTaskInfo < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>标注任务id</p>
+        # @type TaskId: String
+        # @param TaskName: <p>标注任务名称</p>
+        # @type TaskName: String
+        # @param DatasetId: <p>数据集id</p>
+        # @type DatasetId: String
+        # @param DatasetName: <p>数据集名称</p>
+        # @type DatasetName: String
+        # @param SceneName: <p>标注场景名称</p>
+        # @type SceneName: String
+        # @param LabelValueList: <p>标注任务的label信息数组</p>
+        # @type LabelValueList: Array
+        # @param CamTagList: <p>tag详情数组</p>
+        # @type CamTagList: Array
+        # @param Status: <p>任务状态</p>
+        # @type Status: Integer
+        # @param AbnormalMsg: <p>创建任务失败原因说明</p>
+        # @type AbnormalMsg: String
+        # @param IsSubmitting: <p>标注任务是否正在提交</p>
+        # @type IsSubmitting: Boolean
+        # @param TaskNote: <p>任务详情描述</p>
+        # @type TaskNote: String
+        # @param DataSetVersion: <p>数据集版本</p>
+        # @type DataSetVersion: String
+        # @param NumAnnotated: <p>已经标注的图片数量</p>
+        # @type NumAnnotated: Integer
+        # @param NumTotal: <p>标注的总图片数量</p>
+        # @type NumTotal: Integer
+        # @param CreateTime: <p>创建任务的时间戳</p>
+        # @type CreateTime: Integer
+        # @param OcrToolType: <p>Ocr Tool Type</p>
+        # @type OcrToolType: Integer
+        # @param OcrTextAttributeAnnotateEnable: <p>Ocr Text Attribute Annotate Enable</p>
+        # @type OcrTextAttributeAnnotateEnable: Boolean
+        # @param ExportFormat: <p>导出格式</p>
+        # @type ExportFormat: String
+        # @param SubmittingErrorMsg: <p>提交错误说明</p>
+        # @type SubmittingErrorMsg: String
+        # @param OcrAnnotationContentType: <p>ocr任务类型：1-识别。2-智能结构化</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OcrAnnotationContentType: Integer
+        # @param EnableAuxiliaryAnnotation: <p>OCR任务：是否启用辅助标注</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnableAuxiliaryAnnotation: Boolean
+        # @param DatasetCreator: <p>数据集创建者UIN</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DatasetCreator: String
+        # @param Creator: <p>任务创建者UIN</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Creator: String
+        # @param DatasetCreatorName: <p>数据集创建者名称</p>
+        # @type DatasetCreatorName: String
+        # @param CreatorName: <p>任务创建者名称</p>
+        # @type CreatorName: String
+        # @param TaskStatus: <p>标注任务状态枚举</p><p>枚举值：</p><ul><li>CREATING： 创建中</li><li>CREATE_SUCCESS： 创建成功，可标注</li><li>CREATE_FAILED： 创建失败</li><li>SUBMITTING： 提交中</li><li>SUBMIT_SUCCESS： 提交成功，需重启才可标注</li><li>SUBMIT_FAILED： 提交失败</li><li>ABNORMAL： 数据版本异常，需删除重建（大模型场景）</li></ul>
+        # @type TaskStatus: String
+
+        attr_accessor :TaskId, :TaskName, :DatasetId, :DatasetName, :SceneName, :LabelValueList, :CamTagList, :Status, :AbnormalMsg, :IsSubmitting, :TaskNote, :DataSetVersion, :NumAnnotated, :NumTotal, :CreateTime, :OcrToolType, :OcrTextAttributeAnnotateEnable, :ExportFormat, :SubmittingErrorMsg, :OcrAnnotationContentType, :EnableAuxiliaryAnnotation, :DatasetCreator, :Creator, :DatasetCreatorName, :CreatorName, :TaskStatus
+
+        def initialize(taskid=nil, taskname=nil, datasetid=nil, datasetname=nil, scenename=nil, labelvaluelist=nil, camtaglist=nil, status=nil, abnormalmsg=nil, issubmitting=nil, tasknote=nil, datasetversion=nil, numannotated=nil, numtotal=nil, createtime=nil, ocrtooltype=nil, ocrtextattributeannotateenable=nil, exportformat=nil, submittingerrormsg=nil, ocrannotationcontenttype=nil, enableauxiliaryannotation=nil, datasetcreator=nil, creator=nil, datasetcreatorname=nil, creatorname=nil, taskstatus=nil)
+          @TaskId = taskid
+          @TaskName = taskname
+          @DatasetId = datasetid
+          @DatasetName = datasetname
+          @SceneName = scenename
+          @LabelValueList = labelvaluelist
+          @CamTagList = camtaglist
+          @Status = status
+          @AbnormalMsg = abnormalmsg
+          @IsSubmitting = issubmitting
+          @TaskNote = tasknote
+          @DataSetVersion = datasetversion
+          @NumAnnotated = numannotated
+          @NumTotal = numtotal
+          @CreateTime = createtime
+          @OcrToolType = ocrtooltype
+          @OcrTextAttributeAnnotateEnable = ocrtextattributeannotateenable
+          @ExportFormat = exportformat
+          @SubmittingErrorMsg = submittingerrormsg
+          @OcrAnnotationContentType = ocrannotationcontenttype
+          @EnableAuxiliaryAnnotation = enableauxiliaryannotation
+          @DatasetCreator = datasetcreator
+          @Creator = creator
+          @DatasetCreatorName = datasetcreatorname
+          @CreatorName = creatorname
+          @TaskStatus = taskstatus
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @TaskName = params['TaskName']
+          @DatasetId = params['DatasetId']
+          @DatasetName = params['DatasetName']
+          @SceneName = params['SceneName']
+          unless params['LabelValueList'].nil?
+            @LabelValueList = []
+            params['LabelValueList'].each do |i|
+              labelvalue_tmp = LabelValue.new
+              labelvalue_tmp.deserialize(i)
+              @LabelValueList << labelvalue_tmp
+            end
+          end
+          unless params['CamTagList'].nil?
+            @CamTagList = []
+            params['CamTagList'].each do |i|
+              camtag_tmp = CamTag.new
+              camtag_tmp.deserialize(i)
+              @CamTagList << camtag_tmp
+            end
+          end
+          @Status = params['Status']
+          @AbnormalMsg = params['AbnormalMsg']
+          @IsSubmitting = params['IsSubmitting']
+          @TaskNote = params['TaskNote']
+          @DataSetVersion = params['DataSetVersion']
+          @NumAnnotated = params['NumAnnotated']
+          @NumTotal = params['NumTotal']
+          @CreateTime = params['CreateTime']
+          @OcrToolType = params['OcrToolType']
+          @OcrTextAttributeAnnotateEnable = params['OcrTextAttributeAnnotateEnable']
+          @ExportFormat = params['ExportFormat']
+          @SubmittingErrorMsg = params['SubmittingErrorMsg']
+          @OcrAnnotationContentType = params['OcrAnnotationContentType']
+          @EnableAuxiliaryAnnotation = params['EnableAuxiliaryAnnotation']
+          @DatasetCreator = params['DatasetCreator']
+          @Creator = params['Creator']
+          @DatasetCreatorName = params['DatasetCreatorName']
+          @CreatorName = params['CreatorName']
+          @TaskStatus = params['TaskStatus']
+        end
+      end
+
       # 镜像属性
       class Attribute < TencentCloud::Common::AbstractModel
         # @param Type: 为‘List’时属性值取Values 否则取Value
@@ -230,6 +364,26 @@ module TencentCloud
         def deserialize(params)
           @Id = params['Id']
           @Path = params['Path']
+        end
+      end
+
+      # cam详细信息
+      class CamTag < TencentCloud::Common::AbstractModel
+        # @param Key: tag键值
+        # @type Key: String
+        # @param Value: tag值
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
         end
       end
 
@@ -1467,6 +1621,8 @@ module TencentCloud
         # @type ChargeType: String
         # @param ResourceConfigInfos: <p>资源配置，需填写对应算力规格ID和节点数量，算力规格ID查询接口为DescribeBillingSpecsPrice，eg：[{&quot;Role&quot;:&quot;WORKER&quot;, &quot;InstanceType&quot;: &quot;TI.S.MEDIUM.POST&quot;, &quot;InstanceNum&quot;: 1}]</p>
         # @type ResourceConfigInfos: Array
+        # @param TiProjectId: <p>TI工作空间ID</p><p>仅用于“工作空间”白名单功能。如需使用，请联系TI管理员开通白名单。</p>
+        # @type TiProjectId: String
         # @param FrameworkName: <p>训练框架名称，通过DescribeTrainingFrameworks接口查询，eg：SPARK、PYSPARK、TENSORFLOW、PYTORCH</p>
         # @type FrameworkName: String
         # @param FrameworkVersion: <p>训练框架版本，通过DescribeTrainingFrameworks接口查询，eg：1.15、1.9</p>
@@ -1514,12 +1670,13 @@ module TencentCloud
         # @param Envs: <p>环境变量</p>
         # @type Envs: Array
 
-        attr_accessor :Name, :ChargeType, :ResourceConfigInfos, :FrameworkName, :FrameworkVersion, :FrameworkEnvironment, :ResourceGroupId, :Tags, :ImageInfo, :CodePackagePath, :StartCmdInfo, :TrainingMode, :DataConfigs, :VpcId, :SubnetId, :Output, :LogConfig, :TuningParameters, :LogEnable, :Remark, :DataSource, :CallbackUrl, :EncodedStartCmdInfo, :CodeRepos, :ExposeNetworkConfig, :Envs
+        attr_accessor :Name, :ChargeType, :ResourceConfigInfos, :TiProjectId, :FrameworkName, :FrameworkVersion, :FrameworkEnvironment, :ResourceGroupId, :Tags, :ImageInfo, :CodePackagePath, :StartCmdInfo, :TrainingMode, :DataConfigs, :VpcId, :SubnetId, :Output, :LogConfig, :TuningParameters, :LogEnable, :Remark, :DataSource, :CallbackUrl, :EncodedStartCmdInfo, :CodeRepos, :ExposeNetworkConfig, :Envs
 
-        def initialize(name=nil, chargetype=nil, resourceconfiginfos=nil, frameworkname=nil, frameworkversion=nil, frameworkenvironment=nil, resourcegroupid=nil, tags=nil, imageinfo=nil, codepackagepath=nil, startcmdinfo=nil, trainingmode=nil, dataconfigs=nil, vpcid=nil, subnetid=nil, output=nil, logconfig=nil, tuningparameters=nil, logenable=nil, remark=nil, datasource=nil, callbackurl=nil, encodedstartcmdinfo=nil, coderepos=nil, exposenetworkconfig=nil, envs=nil)
+        def initialize(name=nil, chargetype=nil, resourceconfiginfos=nil, tiprojectid=nil, frameworkname=nil, frameworkversion=nil, frameworkenvironment=nil, resourcegroupid=nil, tags=nil, imageinfo=nil, codepackagepath=nil, startcmdinfo=nil, trainingmode=nil, dataconfigs=nil, vpcid=nil, subnetid=nil, output=nil, logconfig=nil, tuningparameters=nil, logenable=nil, remark=nil, datasource=nil, callbackurl=nil, encodedstartcmdinfo=nil, coderepos=nil, exposenetworkconfig=nil, envs=nil)
           @Name = name
           @ChargeType = chargetype
           @ResourceConfigInfos = resourceconfiginfos
+          @TiProjectId = tiprojectid
           @FrameworkName = frameworkname
           @FrameworkVersion = frameworkversion
           @FrameworkEnvironment = frameworkenvironment
@@ -1556,6 +1713,7 @@ module TencentCloud
               @ResourceConfigInfos << resourceconfiginfo_tmp
             end
           end
+          @TiProjectId = params['TiProjectId']
           @FrameworkName = params['FrameworkName']
           @FrameworkVersion = params['FrameworkVersion']
           @FrameworkEnvironment = params['FrameworkEnvironment']
@@ -2733,15 +2891,19 @@ module TencentCloud
       class DeleteTrainingTaskRequest < TencentCloud::Common::AbstractModel
         # @param Id: 训练任务ID
         # @type Id: String
+        # @param TiProjectId: <p>TI工作空间ID</p><p>仅用于“工作空间”白名单功能。如需使用，请联系TI管理员开通白名单。</p>
+        # @type TiProjectId: String
 
-        attr_accessor :Id
+        attr_accessor :Id, :TiProjectId
 
-        def initialize(id=nil)
+        def initialize(id=nil, tiprojectid=nil)
           @Id = id
+          @TiProjectId = tiprojectid
         end
 
         def deserialize(params)
           @Id = params['Id']
+          @TiProjectId = params['TiProjectId']
         end
       end
 
@@ -2757,6 +2919,88 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAnnotatedTaskList请求参数结构体
+      class DescribeAnnotatedTaskListRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 偏移量，默认为0
+        # @type Offset: Integer
+        # @param Limit: 页面大小，默认为10
+        # @type Limit: Integer
+        # @param Filters: 过滤条件数组，支持数据集ID，标注场景、任务状态、数据集名称、人物名称的过滤，后面两个支持模糊查询
+        # @type Filters: Array
+        # @param TagFilters: 标签过滤条件
+        # @type TagFilters: Array
+        # @param Order: 排序方向：Asc Desc
+        # @type Order: String
+        # @param OrderField: 排序字段
+        # @type OrderField: String
+
+        attr_accessor :Offset, :Limit, :Filters, :TagFilters, :Order, :OrderField
+
+        def initialize(offset=nil, limit=nil, filters=nil, tagfilters=nil, order=nil, orderfield=nil)
+          @Offset = offset
+          @Limit = limit
+          @Filters = filters
+          @TagFilters = tagfilters
+          @Order = order
+          @OrderField = orderfield
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          unless params['TagFilters'].nil?
+            @TagFilters = []
+            params['TagFilters'].each do |i|
+              tagfilter_tmp = TagFilter.new
+              tagfilter_tmp.deserialize(i)
+              @TagFilters << tagfilter_tmp
+            end
+          end
+          @Order = params['Order']
+          @OrderField = params['OrderField']
+        end
+      end
+
+      # DescribeAnnotatedTaskList返回参数结构体
+      class DescribeAnnotatedTaskListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 任务列表总数量
+        # @type TotalCount: Integer
+        # @param TaskList: 标注任务详情列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :TaskList, :RequestId
+
+        def initialize(totalcount=nil, tasklist=nil, requestid=nil)
+          @TotalCount = totalcount
+          @TaskList = tasklist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['TaskList'].nil?
+            @TaskList = []
+            params['TaskList'].each do |i|
+              annotationtaskinfo_tmp = AnnotationTaskInfo.new
+              annotationtaskinfo_tmp.deserialize(i)
+              @TaskList << annotationtaskinfo_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -4979,6 +5223,80 @@ module TencentCloud
         end
       end
 
+      # DescribeWorkspaces请求参数结构体
+      class DescribeWorkspacesRequest < TencentCloud::Common::AbstractModel
+        # @param TiProjectId: <p>TI工作空间ID</p><p>仅用于“工作空间”白名单功能。如需使用，请联系TI管理员开通白名单。</p>
+        # @type TiProjectId: String
+        # @param Filters: <p>过滤条件</p>
+        # @type Filters: Array
+        # @param Offset: <p>偏移量</p>
+        # @type Offset: Integer
+        # @param Limit: <p>数量</p>
+        # @type Limit: Integer
+        # @param OrderField: <p>排序字段</p>
+        # @type OrderField: String
+        # @param Order: <p>排序方式</p>
+        # @type Order: String
+
+        attr_accessor :TiProjectId, :Filters, :Offset, :Limit, :OrderField, :Order
+
+        def initialize(tiprojectid=nil, filters=nil, offset=nil, limit=nil, orderfield=nil, order=nil)
+          @TiProjectId = tiprojectid
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+          @OrderField = orderfield
+          @Order = order
+        end
+
+        def deserialize(params)
+          @TiProjectId = params['TiProjectId']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @OrderField = params['OrderField']
+          @Order = params['Order']
+        end
+      end
+
+      # DescribeWorkspaces返回参数结构体
+      class DescribeWorkspacesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: <p>总数</p>
+        # @type TotalCount: Integer
+        # @param Workspaces: <p>工作空间列表</p>
+        # @type Workspaces: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Workspaces, :RequestId
+
+        def initialize(totalcount=nil, workspaces=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Workspaces = workspaces
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Workspaces'].nil?
+            @Workspaces = []
+            params['Workspaces'].each do |i|
+              workspace_tmp = Workspace.new
+              workspace_tmp.deserialize(i)
+              @Workspaces << workspace_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 设备对应的镜像信息
       class DeviceImageInfo < TencentCloud::Common::AbstractModel
         # @param DeviceType: 设备类型, 支持GPU等
@@ -5948,6 +6266,26 @@ module TencentCloud
               @PrivateLinkInfosV2 << privatelinkinfo_tmp
             end
           end
+        end
+      end
+
+      # 描述label详细信息
+      class LabelValue < TencentCloud::Common::AbstractModel
+        # @param LabelName: 标签名称
+        # @type LabelName: String
+        # @param LabelColor: 标签的颜色
+        # @type LabelColor: String
+
+        attr_accessor :LabelName, :LabelColor
+
+        def initialize(labelname=nil, labelcolor=nil)
+          @LabelName = labelname
+          @LabelColor = labelcolor
+        end
+
+        def deserialize(params)
+          @LabelName = params['LabelName']
+          @LabelColor = params['LabelColor']
         end
       end
 
@@ -8468,16 +8806,20 @@ module TencentCloud
 
       # PushTrainingMetrics请求参数结构体
       class PushTrainingMetricsRequest < TencentCloud::Common::AbstractModel
+        # @param TiProjectId: <p>TI工作空间ID</p><p>仅用于“工作空间”白名单功能。如需使用，请联系TI管理员开通白名单。</p>
+        # @type TiProjectId: String
         # @param Data: 指标数据
         # @type Data: Array
 
-        attr_accessor :Data
+        attr_accessor :TiProjectId, :Data
 
-        def initialize(data=nil)
+        def initialize(tiprojectid=nil, data=nil)
+          @TiProjectId = tiprojectid
           @Data = data
         end
 
         def deserialize(params)
+          @TiProjectId = params['TiProjectId']
           unless params['Data'].nil?
             @Data = []
             params['Data'].each do |i|
@@ -8726,6 +9068,34 @@ module TencentCloud
               @TagSet << tag_tmp
             end
           end
+        end
+      end
+
+      # 工作空间绑定的资源组信息
+      class ResourceGroupInWorkspace < TencentCloud::Common::AbstractModel
+        # @param ResourceGroupId: <p>资源组ID</p>
+        # @type ResourceGroupId: String
+        # @param ResourceGroupName: <p>资源组名称</p>
+        # @type ResourceGroupName: String
+        # @param Region: <p>地域</p>
+        # @type Region: String
+        # @param Occupied: <p>是否有运行中的任务/服务占用</p>
+        # @type Occupied: Boolean
+
+        attr_accessor :ResourceGroupId, :ResourceGroupName, :Region, :Occupied
+
+        def initialize(resourcegroupid=nil, resourcegroupname=nil, region=nil, occupied=nil)
+          @ResourceGroupId = resourcegroupid
+          @ResourceGroupName = resourcegroupname
+          @Region = region
+          @Occupied = occupied
+        end
+
+        def deserialize(params)
+          @ResourceGroupId = params['ResourceGroupId']
+          @ResourceGroupName = params['ResourceGroupName']
+          @Region = params['Region']
+          @Occupied = params['Occupied']
         end
       end
 
@@ -10046,15 +10416,19 @@ module TencentCloud
       class StartTrainingTaskRequest < TencentCloud::Common::AbstractModel
         # @param Id: 训练任务ID
         # @type Id: String
+        # @param TiProjectId: <p>TI工作空间ID</p><p>仅用于“工作空间”白名单功能。如需使用，请联系TI管理员开通白名单。</p>
+        # @type TiProjectId: String
 
-        attr_accessor :Id
+        attr_accessor :Id, :TiProjectId
 
-        def initialize(id=nil)
+        def initialize(id=nil, tiprojectid=nil)
           @Id = id
+          @TiProjectId = tiprojectid
         end
 
         def deserialize(params)
           @Id = params['Id']
+          @TiProjectId = params['TiProjectId']
         end
       end
 
@@ -10194,15 +10568,19 @@ module TencentCloud
       class StopTrainingTaskRequest < TencentCloud::Common::AbstractModel
         # @param Id: 训练任务ID
         # @type Id: String
+        # @param TiProjectId: <p>TI工作空间ID</p><p>仅用于“工作空间”白名单功能。如需使用，请联系TI管理员开通白名单。</p>
+        # @type TiProjectId: String
 
-        attr_accessor :Id
+        attr_accessor :Id, :TiProjectId
 
-        def initialize(id=nil)
+        def initialize(id=nil, tiprojectid=nil)
           @Id = id
+          @TiProjectId = tiprojectid
         end
 
         def deserialize(params)
           @Id = params['Id']
+          @TiProjectId = params['TiProjectId']
         end
       end
 
@@ -11289,6 +11667,53 @@ module TencentCloud
             end
           end
           @Reason = params['Reason']
+        end
+      end
+
+      # 工作空间
+      class Workspace < TencentCloud::Common::AbstractModel
+        # @param TiProjectId: <p>项目ID</p>
+        # @type TiProjectId: String
+        # @param Name: <p>名称</p>
+        # @type Name: String
+        # @param Description: <p>描述</p>
+        # @type Description: String
+        # @param CreateTime: <p>创建时间</p>
+        # @type CreateTime: String
+        # @param ResourceGroups: <p>绑定的资源组信息</p>
+        # @type ResourceGroups: Array
+        # @param ActionType: <p>当前用户对此空间拥有的权限</p>
+        # @type ActionType: Array
+        # @param Status: <p>工作空间状态</p>
+        # @type Status: String
+
+        attr_accessor :TiProjectId, :Name, :Description, :CreateTime, :ResourceGroups, :ActionType, :Status
+
+        def initialize(tiprojectid=nil, name=nil, description=nil, createtime=nil, resourcegroups=nil, actiontype=nil, status=nil)
+          @TiProjectId = tiprojectid
+          @Name = name
+          @Description = description
+          @CreateTime = createtime
+          @ResourceGroups = resourcegroups
+          @ActionType = actiontype
+          @Status = status
+        end
+
+        def deserialize(params)
+          @TiProjectId = params['TiProjectId']
+          @Name = params['Name']
+          @Description = params['Description']
+          @CreateTime = params['CreateTime']
+          unless params['ResourceGroups'].nil?
+            @ResourceGroups = []
+            params['ResourceGroups'].each do |i|
+              resourcegroupinworkspace_tmp = ResourceGroupInWorkspace.new
+              resourcegroupinworkspace_tmp.deserialize(i)
+              @ResourceGroups << resourcegroupinworkspace_tmp
+            end
+          end
+          @ActionType = params['ActionType']
+          @Status = params['Status']
         end
       end
 

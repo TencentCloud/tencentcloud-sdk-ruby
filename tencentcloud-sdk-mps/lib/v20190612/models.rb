@@ -29181,7 +29181,7 @@ module TencentCloud
         # @type MultiRequest: Boolean
         # @param DashOriginManifestType: <p>dash周期类型：SinglePeriod 或 MultiPeriod，默认 MultiPeriod</p>
         # @type DashOriginManifestType: String
-        # @param SlateOnEmptyVast: <p>Empty VAST时是否播放Slate，默认开启(true)</p>
+        # @param SlateOnEmptyVast: <p>广告为空时是否插入Slate，默认开启(true)</p>
         # @type SlateOnEmptyVast: Boolean
         # @param SCTEMarkerDuration: <p>SCTE marker duration，默认180，范围0-3600</p>
         # @type SCTEMarkerDuration: Integer

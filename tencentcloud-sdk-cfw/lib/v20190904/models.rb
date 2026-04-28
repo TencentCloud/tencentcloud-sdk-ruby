@@ -396,30 +396,32 @@ module TencentCloud
 
       # 企业安全组关联实例信息
       class AssociatedInstanceInfo < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: <p>实例ID</p>
         # @type InstanceId: String
-        # @param InstanceName: 实例名称
+        # @param InstanceName: <p>实例名称</p>
         # @type InstanceName: String
-        # @param Type: 实例类型，3是cvm实例,4是clb实例,5是eni实例,6是云数据库
+        # @param Type: <p>实例类型，3是cvm实例,4是clb实例,5是eni实例,6是云数据库</p>
         # @type Type: Integer
-        # @param VpcId: 私有网络ID
+        # @param VpcId: <p>私有网络ID</p>
         # @type VpcId: String
-        # @param VpcName: 私有网络名称
+        # @param VpcName: <p>私有网络名称</p>
         # @type VpcName: String
-        # @param PublicIp: 公网IP
+        # @param PublicIp: <p>公网IP</p>
         # @type PublicIp: String
-        # @param Ip: 内网IP
+        # @param Ip: <p>内网IP</p>
         # @type Ip: String
-        # @param SecurityGroupCount: 关联安全组数量
+        # @param SecurityGroupCount: <p>关联安全组数量</p>
         # @type SecurityGroupCount: Integer
-        # @param SecurityGroupRuleCount: 关联安全组规则数量
+        # @param SecurityGroupRuleCount: <p>关联安全组规则数量</p>
         # @type SecurityGroupRuleCount: Integer
-        # @param CdbId: 关联数据库代理Id
+        # @param CdbId: <p>关联数据库代理Id</p>
         # @type CdbId: String
+        # @param TkeClusterId: <p>容器服务集群ID</p>
+        # @type TkeClusterId: String
 
-        attr_accessor :InstanceId, :InstanceName, :Type, :VpcId, :VpcName, :PublicIp, :Ip, :SecurityGroupCount, :SecurityGroupRuleCount, :CdbId
+        attr_accessor :InstanceId, :InstanceName, :Type, :VpcId, :VpcName, :PublicIp, :Ip, :SecurityGroupCount, :SecurityGroupRuleCount, :CdbId, :TkeClusterId
 
-        def initialize(instanceid=nil, instancename=nil, type=nil, vpcid=nil, vpcname=nil, publicip=nil, ip=nil, securitygroupcount=nil, securitygrouprulecount=nil, cdbid=nil)
+        def initialize(instanceid=nil, instancename=nil, type=nil, vpcid=nil, vpcname=nil, publicip=nil, ip=nil, securitygroupcount=nil, securitygrouprulecount=nil, cdbid=nil, tkeclusterid=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @Type = type
@@ -430,6 +432,7 @@ module TencentCloud
           @SecurityGroupCount = securitygroupcount
           @SecurityGroupRuleCount = securitygrouprulecount
           @CdbId = cdbid
+          @TkeClusterId = tkeclusterid
         end
 
         def deserialize(params)
@@ -443,6 +446,7 @@ module TencentCloud
           @SecurityGroupCount = params['SecurityGroupCount']
           @SecurityGroupRuleCount = params['SecurityGroupRuleCount']
           @CdbId = params['CdbId']
+          @TkeClusterId = params['TkeClusterId']
         end
       end
 

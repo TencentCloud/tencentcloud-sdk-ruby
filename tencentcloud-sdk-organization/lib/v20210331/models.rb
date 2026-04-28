@@ -3913,6 +3913,42 @@ module TencentCloud
         end
       end
 
+      # GetIPWhitelist请求参数结构体
+      class GetIPWhitelistRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 空间ID
+        # @type ZoneId: String
+
+        attr_accessor :ZoneId
+
+        def initialize(zoneid=nil)
+          @ZoneId = zoneid
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+        end
+      end
+
+      # GetIPWhitelist返回参数结构体
+      class GetIPWhitelistResponse < TencentCloud::Common::AbstractModel
+        # @param IpWhitelist: ip白名单
+        # @type IpWhitelist: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :IpWhitelist, :RequestId
+
+        def initialize(ipwhitelist=nil, requestid=nil)
+          @IpWhitelist = ipwhitelist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @IpWhitelist = params['IpWhitelist']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # GetProvisioningTaskStatus请求参数结构体
       class GetProvisioningTaskStatusRequest < TencentCloud::Common::AbstractModel
         # @param ZoneId: 空间ID。

@@ -1236,8 +1236,6 @@ module TencentCloud
 
       # CreateInstances请求参数结构体
       class CreateInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param Zone: <p>实例所属主可用区， 如：ap-guangzhou-3；若需要支持多可用区，在DBNodeSet.N字段中进行添加主可用区和备可用区信息；<br>可用区信息可以通过调用 <a href="https://cloud.tencent.com/document/api/409/16769">DescribeZones</a> 接口的返回值中的Zone字段来获取。</p>
-        # @type Zone: String
         # @param SpecCode: <p>售卖规格码。该参数可以通过调用<a href="https://cloud.tencent.com/document/api/409/89019">DescribeClasses</a>的返回值中的SpecCode字段来获取。</p>
         # @type SpecCode: String
         # @param Storage: <p>实例磁盘容量大小，单位：GB。该参数的设置步长为10。</p>
@@ -1252,6 +1250,8 @@ module TencentCloud
         # @type AdminName: String
         # @param AdminPassword: <p>实例根账号用户名对应的密码，长度8 ~ 32位，推荐使用12位以上的密码;不能以&quot; / &quot;开头;<br>必须包含以下四项，字符种类:</p><li>小写字母： [a ~ z]</li><li>大写字母：[A ～ Z]</li><li>数字：0 - 9</li><li>特殊字符：()`~!@#$%^&amp;*-+=_|{}[]:;'&lt;&gt;,.?/</li>
         # @type AdminPassword: String
+        # @param Zone: <p>实例所属主可用区， 如：ap-guangzhou-3；若需要支持多可用区，在DBNodeSet.N字段中进行添加主可用区和备可用区信息；<br>可用区信息可以通过调用 <a href="https://cloud.tencent.com/document/api/409/16769">DescribeZones</a> 接口的返回值中的Zone字段来获取。</p>
+        # @type Zone: String
         # @param DBMajorVersion: <p>PostgreSQL大版本号（该参数当前必传），版本信息可从<a href="https://cloud.tencent.com/document/api/409/89018">DescribeDBVersions</a>获取。目前支持10，11，12，13，14，15这几个大版本，详情见<a href="https://cloud.tencent.com/document/product/409/67018">内核版本概述</a>。<br>输入该参数时，会基于此大版本号创建对应的最新小版本的最新内核版本号实例。</p>
         # @type DBMajorVersion: String
         # @param DBVersion: <p>PostgreSQL社区大版本+小版本号。<br>一般场景不推荐传入该参数。如需指定，只能传当前大版本号下最新小版本号。</p>
@@ -1303,10 +1303,9 @@ module TencentCloud
         # @param StorageType: <p>实例存储类型，可选值：PHYSICAL_LOCAL_SSD：物理机本地ssd硬盘 CLOUD_PREMIUM：高性能云硬盘 CLOUD_SSD：ssd云硬盘 CLOUD_HSSD：增强型ssd云硬盘</p>
         # @type StorageType: String
 
-        attr_accessor :Zone, :SpecCode, :Storage, :InstanceCount, :Period, :Charset, :AdminName, :AdminPassword, :DBMajorVersion, :DBVersion, :DBKernelVersion, :InstanceChargeType, :VpcId, :SubnetId, :DBNodeSet, :AutoRenewFlag, :AutoVoucher, :VoucherIds, :ProjectId, :ActivityId, :Name, :TagList, :SecurityGroupIds, :NeedSupportTDE, :KMSKeyId, :KMSRegion, :KMSClusterId, :DBEngine, :DBEngineConfig, :SyncMode, :NeedSupportIpv6, :DeletionProtection, :StorageType
+        attr_accessor :SpecCode, :Storage, :InstanceCount, :Period, :Charset, :AdminName, :AdminPassword, :Zone, :DBMajorVersion, :DBVersion, :DBKernelVersion, :InstanceChargeType, :VpcId, :SubnetId, :DBNodeSet, :AutoRenewFlag, :AutoVoucher, :VoucherIds, :ProjectId, :ActivityId, :Name, :TagList, :SecurityGroupIds, :NeedSupportTDE, :KMSKeyId, :KMSRegion, :KMSClusterId, :DBEngine, :DBEngineConfig, :SyncMode, :NeedSupportIpv6, :DeletionProtection, :StorageType
 
-        def initialize(zone=nil, speccode=nil, storage=nil, instancecount=nil, period=nil, charset=nil, adminname=nil, adminpassword=nil, dbmajorversion=nil, dbversion=nil, dbkernelversion=nil, instancechargetype=nil, vpcid=nil, subnetid=nil, dbnodeset=nil, autorenewflag=nil, autovoucher=nil, voucherids=nil, projectid=nil, activityid=nil, name=nil, taglist=nil, securitygroupids=nil, needsupporttde=nil, kmskeyid=nil, kmsregion=nil, kmsclusterid=nil, dbengine=nil, dbengineconfig=nil, syncmode=nil, needsupportipv6=nil, deletionprotection=nil, storagetype=nil)
-          @Zone = zone
+        def initialize(speccode=nil, storage=nil, instancecount=nil, period=nil, charset=nil, adminname=nil, adminpassword=nil, zone=nil, dbmajorversion=nil, dbversion=nil, dbkernelversion=nil, instancechargetype=nil, vpcid=nil, subnetid=nil, dbnodeset=nil, autorenewflag=nil, autovoucher=nil, voucherids=nil, projectid=nil, activityid=nil, name=nil, taglist=nil, securitygroupids=nil, needsupporttde=nil, kmskeyid=nil, kmsregion=nil, kmsclusterid=nil, dbengine=nil, dbengineconfig=nil, syncmode=nil, needsupportipv6=nil, deletionprotection=nil, storagetype=nil)
           @SpecCode = speccode
           @Storage = storage
           @InstanceCount = instancecount
@@ -1314,6 +1313,7 @@ module TencentCloud
           @Charset = charset
           @AdminName = adminname
           @AdminPassword = adminpassword
+          @Zone = zone
           @DBMajorVersion = dbmajorversion
           @DBVersion = dbversion
           @DBKernelVersion = dbkernelversion
@@ -1342,7 +1342,6 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @Zone = params['Zone']
           @SpecCode = params['SpecCode']
           @Storage = params['Storage']
           @InstanceCount = params['InstanceCount']
@@ -1350,6 +1349,7 @@ module TencentCloud
           @Charset = params['Charset']
           @AdminName = params['AdminName']
           @AdminPassword = params['AdminPassword']
+          @Zone = params['Zone']
           @DBMajorVersion = params['DBMajorVersion']
           @DBVersion = params['DBVersion']
           @DBKernelVersion = params['DBKernelVersion']
@@ -5141,7 +5141,7 @@ module TencentCloud
 
       # DestroyDBInstance请求参数结构体
       class DestroyDBInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param DBInstanceId: 待下线实例ID
+        # @param DBInstanceId: <p>待下线实例ID</p>
         # @type DBInstanceId: String
 
         attr_accessor :DBInstanceId
@@ -5204,18 +5204,13 @@ module TencentCloud
 
       # DisIsolateDBInstances请求参数结构体
       class DisIsolateDBInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param DBInstanceIdSet: 实例ID列表。可通过[DescribeDBInstances](https://cloud.tencent.com/document/api/409/16773)接口获取。支持同时解隔离多个实例。
+        # @param DBInstanceIdSet: <p>实例ID列表。可通过<a href="https://cloud.tencent.com/document/api/409/16773">DescribeDBInstances</a>接口获取。支持同时解隔离多个实例。</p>
         # @type DBInstanceIdSet: Array
-        # @param Period: 购买时长，单位：月。
-        # <li>预付费：支持1,2,3,4,5,6,7,8,9,10,11,12,24,36</li>
-        # <li>后付费：该参数不生效</li>
+        # @param Period: <p>购买时长，单位：月。</p><li>预付费：支持1,2,3,4,5,6,7,8,9,10,11,12,24,36</li><li>后付费：该参数不生效</li>
         # @type Period: Integer
-        # @param AutoVoucher: 是否使用代金券：
-        # <li>true：使用</li>
-        # <li>false：不使用</li>
-        # 默认值：false
+        # @param AutoVoucher: <p>是否使用代金券：</p><li>true：使用</li><li>false：不使用</li>默认值：false
         # @type AutoVoucher: Boolean
-        # @param VoucherIds: 代金券id列表。
+        # @param VoucherIds: <p>代金券id列表。</p>
         # @type VoucherIds: Array
 
         attr_accessor :DBInstanceIdSet, :Period, :AutoVoucher, :VoucherIds
@@ -5666,7 +5661,7 @@ module TencentCloud
 
       # IsolateDBInstances请求参数结构体
       class IsolateDBInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param DBInstanceIdSet: 实例ID集合。可通过[DescribeDBInstances](https://cloud.tencent.com/document/api/409/16773)接口获取。注意：不推荐同时隔离多个实例。建议每次操作仅传入单个实例ID。
+        # @param DBInstanceIdSet: <p>实例ID集合。可通过<a href="https://cloud.tencent.com/document/api/409/16773">DescribeDBInstances</a>接口获取。注意：不推荐同时隔离多个实例。建议每次操作仅传入单个实例ID。</p>
         # @type DBInstanceIdSet: Array
 
         attr_accessor :DBInstanceIdSet

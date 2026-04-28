@@ -527,26 +527,28 @@ module TencentCloud
 
       # CreateInstance请求参数结构体
       class CreateInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param RegistryName: 企业版实例名称
+        # @param RegistryName: <p>企业版实例名称</p>
         # @type RegistryName: String
-        # @param RegistryType: 企业版实例类型（basic 基础版；standard 标准版；premium 高级版）
+        # @param RegistryType: <p>企业版实例类型（basic 基础版；standard 标准版；premium 高级版）</p>
         # @type RegistryType: String
-        # @param TagSpecification: 云标签描述
+        # @param TagSpecification: <p>云标签描述</p>
         # @type TagSpecification: :class:`Tencentcloud::Tcr.v20190924.models.TagSpecification`
-        # @param RegistryChargeType: 实例计费类型，0表示按量计费，1表示预付费，默认为按量计费
+        # @param RegistryChargeType: <p>实例计费类型，0表示按量计费，1表示预付费，默认为按量计费</p>
         # @type RegistryChargeType: Integer
-        # @param RegistryChargePrepaid: 预付费自动续费标识和购买时长
+        # @param RegistryChargePrepaid: <p>预付费自动续费标识和购买时长</p>
         # @type RegistryChargePrepaid: :class:`Tencentcloud::Tcr.v20190924.models.RegistryChargePrepaid`
-        # @param SyncTag: 是否同步TCR云标签至生成的COS Bucket
+        # @param SyncTag: <p>是否同步TCR云标签至生成的COS Bucket</p>
         # @type SyncTag: Boolean
-        # @param EnableCosMAZ: 是否开启Cos桶多AZ特性
+        # @param EnableCosMAZ: <p>是否开启Cos桶多AZ特性</p>
         # @type EnableCosMAZ: Boolean
-        # @param DeletionProtection: 是否开启实例删除保护
+        # @param DeletionProtection: <p>是否开启实例删除保护</p>
         # @type DeletionProtection: Boolean
+        # @param EnableCosVersioning: <p>是否开启cos桶多版本控制</p>
+        # @type EnableCosVersioning: Boolean
 
-        attr_accessor :RegistryName, :RegistryType, :TagSpecification, :RegistryChargeType, :RegistryChargePrepaid, :SyncTag, :EnableCosMAZ, :DeletionProtection
+        attr_accessor :RegistryName, :RegistryType, :TagSpecification, :RegistryChargeType, :RegistryChargePrepaid, :SyncTag, :EnableCosMAZ, :DeletionProtection, :EnableCosVersioning
 
-        def initialize(registryname=nil, registrytype=nil, tagspecification=nil, registrychargetype=nil, registrychargeprepaid=nil, synctag=nil, enablecosmaz=nil, deletionprotection=nil)
+        def initialize(registryname=nil, registrytype=nil, tagspecification=nil, registrychargetype=nil, registrychargeprepaid=nil, synctag=nil, enablecosmaz=nil, deletionprotection=nil, enablecosversioning=nil)
           @RegistryName = registryname
           @RegistryType = registrytype
           @TagSpecification = tagspecification
@@ -555,6 +557,7 @@ module TencentCloud
           @SyncTag = synctag
           @EnableCosMAZ = enablecosmaz
           @DeletionProtection = deletionprotection
+          @EnableCosVersioning = enablecosversioning
         end
 
         def deserialize(params)
@@ -572,12 +575,13 @@ module TencentCloud
           @SyncTag = params['SyncTag']
           @EnableCosMAZ = params['EnableCosMAZ']
           @DeletionProtection = params['DeletionProtection']
+          @EnableCosVersioning = params['EnableCosVersioning']
         end
       end
 
       # CreateInstance返回参数结构体
       class CreateInstanceResponse < TencentCloud::Common::AbstractModel
-        # @param RegistryId: 企业版实例Id
+        # @param RegistryId: <p>企业版实例Id</p>
         # @type RegistryId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6107,10 +6111,14 @@ module TencentCloud
         # @param AIFeature: <p>是否支持AI特性</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AIFeature: Boolean
+        # @param EnableCosMAZ: <p>cos桶是否开启多AZ特性</p>
+        # @type EnableCosMAZ: Boolean
+        # @param EnableCosVersioning: <p>cos桶是否开启版本控制</p>
+        # @type EnableCosVersioning: Boolean
 
-        attr_accessor :RegistryId, :RegistryName, :RegistryType, :Status, :PublicDomain, :CreatedAt, :RegionName, :RegionId, :EnableAnonymous, :TokenValidTime, :InternalEndpoint, :TagSpecification, :ExpiredAt, :PayMod, :RenewFlag, :DeletionProtection, :AIFeature
+        attr_accessor :RegistryId, :RegistryName, :RegistryType, :Status, :PublicDomain, :CreatedAt, :RegionName, :RegionId, :EnableAnonymous, :TokenValidTime, :InternalEndpoint, :TagSpecification, :ExpiredAt, :PayMod, :RenewFlag, :DeletionProtection, :AIFeature, :EnableCosMAZ, :EnableCosVersioning
 
-        def initialize(registryid=nil, registryname=nil, registrytype=nil, status=nil, publicdomain=nil, createdat=nil, regionname=nil, regionid=nil, enableanonymous=nil, tokenvalidtime=nil, internalendpoint=nil, tagspecification=nil, expiredat=nil, paymod=nil, renewflag=nil, deletionprotection=nil, aifeature=nil)
+        def initialize(registryid=nil, registryname=nil, registrytype=nil, status=nil, publicdomain=nil, createdat=nil, regionname=nil, regionid=nil, enableanonymous=nil, tokenvalidtime=nil, internalendpoint=nil, tagspecification=nil, expiredat=nil, paymod=nil, renewflag=nil, deletionprotection=nil, aifeature=nil, enablecosmaz=nil, enablecosversioning=nil)
           @RegistryId = registryid
           @RegistryName = registryname
           @RegistryType = registrytype
@@ -6128,6 +6136,8 @@ module TencentCloud
           @RenewFlag = renewflag
           @DeletionProtection = deletionprotection
           @AIFeature = aifeature
+          @EnableCosMAZ = enablecosmaz
+          @EnableCosVersioning = enablecosversioning
         end
 
         def deserialize(params)
@@ -6151,6 +6161,8 @@ module TencentCloud
           @RenewFlag = params['RenewFlag']
           @DeletionProtection = params['DeletionProtection']
           @AIFeature = params['AIFeature']
+          @EnableCosMAZ = params['EnableCosMAZ']
+          @EnableCosVersioning = params['EnableCosVersioning']
         end
       end
 

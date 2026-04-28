@@ -1635,87 +1635,6 @@ module TencentCloud
         end
       end
 
-      # CropEnhanceImageOCR请求参数结构体
-      class CropEnhanceImageOCRRequest < TencentCloud::Common::AbstractModel
-        # @param ImageBase64: <p>图片/PDF的 Base64 值。要求Base64不超过10M，分辨率建议600*800以上，支持PNG、JPG、JPEG、BMP、PDF格式。图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。</p>
-        # @type ImageBase64: String
-        # @param ImageUrl: <p>图片/PDF的 Url 地址。要求图片经Base64编码后不超过10M，分辨率建议600*800以上，支持PNG、JPG、JPEG、BMP、PDF格式。图片下载时间不超过 3 秒。图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。非腾讯云存储的 Url 速度和稳定性可能受一定影响。</p>
-        # @type ImageUrl: String
-        # @param PdfPageNumber: <p>需要识别的PDF页面的对应页码，仅支持PDF单页识别，默认值为1。</p>
-        # @type PdfPageNumber: Integer
-        # @param Crop: <p>0表示关闭切边<br>1表示开启切边，默认为1</p>
-        # @type Crop: Integer
-        # @param Deskew: <p>0表示关闭弯曲矫正<br>1表示开启弯曲矫正，默认为1</p>
-        # @type Deskew: Integer
-        # @param OnlyPosition: <p>0表示返回处理后的图和坐标，默认为0<br>1表示只返回坐标，不返回图片</p>
-        # @type OnlyPosition: Integer
-        # @param EnhanceType: <p>默认-1</p><ul><li>-1 不处理增强</li><li>1 增亮</li><li>2 增强并锐化</li><li>3 黑白</li><li>4 灰度</li><li>5 去阴影增强</li><li>6 点阵图</li></ul>
-        # @type EnhanceType: Integer
-        # @param AdjustOrientation: <p>0表示不矫正图像方向，默认为0  1表示矫正图像方向</p>
-        # @type AdjustOrientation: Integer
-
-        attr_accessor :ImageBase64, :ImageUrl, :PdfPageNumber, :Crop, :Deskew, :OnlyPosition, :EnhanceType, :AdjustOrientation
-
-        def initialize(imagebase64=nil, imageurl=nil, pdfpagenumber=nil, crop=nil, deskew=nil, onlyposition=nil, enhancetype=nil, adjustorientation=nil)
-          @ImageBase64 = imagebase64
-          @ImageUrl = imageurl
-          @PdfPageNumber = pdfpagenumber
-          @Crop = crop
-          @Deskew = deskew
-          @OnlyPosition = onlyposition
-          @EnhanceType = enhancetype
-          @AdjustOrientation = adjustorientation
-        end
-
-        def deserialize(params)
-          @ImageBase64 = params['ImageBase64']
-          @ImageUrl = params['ImageUrl']
-          @PdfPageNumber = params['PdfPageNumber']
-          @Crop = params['Crop']
-          @Deskew = params['Deskew']
-          @OnlyPosition = params['OnlyPosition']
-          @EnhanceType = params['EnhanceType']
-          @AdjustOrientation = params['AdjustOrientation']
-        end
-      end
-
-      # CropEnhanceImageOCR返回参数结构体
-      class CropEnhanceImageOCRResponse < TencentCloud::Common::AbstractModel
-        # @param CroppedWidth: <p>处理后图的宽</p>
-        # @type CroppedWidth: Integer
-        # @param CroppedHeight: <p>处理后图的高</p>
-        # @type CroppedHeight: Integer
-        # @param CroppedImage: <p>图像处理后的jpg图片，base64格式</p>
-        # @type CroppedImage: String
-        # @param Position: <p>切图区域的4个角点坐标, 是个长度为8的数组<br>[0,1,2,3,4,5,6,7]</p><p>(0,1) 左上角坐标<br>(2,3) 右上角坐标<br>(4,5) 右下角坐标<br>(6,7) 左下角坐标</p>
-        # @type Position: Array
-        # @param Angle: <p>图像角度，AdjustOrientation =1时生效, 返回值如下  -1: 失败  0、90、180、270</p>
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Angle: Integer
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :CroppedWidth, :CroppedHeight, :CroppedImage, :Position, :Angle, :RequestId
-
-        def initialize(croppedwidth=nil, croppedheight=nil, croppedimage=nil, position=nil, angle=nil, requestid=nil)
-          @CroppedWidth = croppedwidth
-          @CroppedHeight = croppedheight
-          @CroppedImage = croppedimage
-          @Position = position
-          @Angle = angle
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @CroppedWidth = params['CroppedWidth']
-          @CroppedHeight = params['CroppedHeight']
-          @CroppedImage = params['CroppedImage']
-          @Position = params['Position']
-          @Angle = params['Angle']
-          @RequestId = params['RequestId']
-        end
-      end
-
       # 海关进/出口货物报关单
       class CustomsDeclaration < TencentCloud::Common::AbstractModel
         # @param Title: 发票名称
@@ -3218,70 +3137,6 @@ module TencentCloud
         end
       end
 
-      # EraseHandwrittenImageOCR请求参数结构体
-      class EraseHandwrittenImageOCRRequest < TencentCloud::Common::AbstractModel
-        # @param ImageBase64: 图片/PDF的 Base64 值。要求Base64不超过10M，分辨率建议600*800以上，支持PNG、JPG、JPEG、BMP、PDF格式。图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
-        # @type ImageBase64: String
-        # @param ImageUrl: 图片/PDF的 Url 地址。要求图片经Base64编码后不超过10M，分辨率建议600*800以上，支持PNG、JPG、JPEG、BMP、PDF格式。图片下载时间不超过 3 秒。图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。非腾讯云存储的 Url 速度和稳定性可能受一定影响。
-        # @type ImageUrl: String
-        # @param PdfPageNumber: 需要识别的PDF页面的对应页码，仅支持PDF单页识别，默认值为1。
-        # @type PdfPageNumber: Integer
-        # @param Crop: 0表示关闭切边，默认为0
-        # 1表示开启切边
-        # @type Crop: Integer
-        # @param Deskew: 0表示关闭弯曲矫正，默认为0
-        # 1表示开启弯曲矫正
-        # @type Deskew: Integer
-        # @param Sharpen: 0表示关闭增强锐化，默认为0
-        # 1表示开启增强锐化
-        # @type Sharpen: Integer
-        # @param Grayscale: 0表示返回黑白图像
-        # 1表示返回彩色图像，默认为1
-        # @type Grayscale: Integer
-
-        attr_accessor :ImageBase64, :ImageUrl, :PdfPageNumber, :Crop, :Deskew, :Sharpen, :Grayscale
-
-        def initialize(imagebase64=nil, imageurl=nil, pdfpagenumber=nil, crop=nil, deskew=nil, sharpen=nil, grayscale=nil)
-          @ImageBase64 = imagebase64
-          @ImageUrl = imageurl
-          @PdfPageNumber = pdfpagenumber
-          @Crop = crop
-          @Deskew = deskew
-          @Sharpen = sharpen
-          @Grayscale = grayscale
-        end
-
-        def deserialize(params)
-          @ImageBase64 = params['ImageBase64']
-          @ImageUrl = params['ImageUrl']
-          @PdfPageNumber = params['PdfPageNumber']
-          @Crop = params['Crop']
-          @Deskew = params['Deskew']
-          @Sharpen = params['Sharpen']
-          @Grayscale = params['Grayscale']
-        end
-      end
-
-      # EraseHandwrittenImageOCR返回参数结构体
-      class EraseHandwrittenImageOCRResponse < TencentCloud::Common::AbstractModel
-        # @param Image: 图像处理后的jpg图片，base64格式
-        # @type Image: String
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Image, :RequestId
-
-        def initialize(image=nil, requestid=nil)
-          @Image = image
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @Image = params['Image']
-          @RequestId = params['RequestId']
-        end
-      end
-
       # EstateCertOCR请求参数结构体
       class EstateCertOCRRequest < TencentCloud::Common::AbstractModel
         # @param ImageBase64: 图片的 Base64 值。支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。支持的图片大小：所下载图片经Base64编码后不超过 10M。图片下载时间不超过 3 秒。图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
@@ -4415,10 +4270,12 @@ module TencentCloud
         # @type EnableDetectText: Boolean
         # @param ConfigID: <p>配置ID支持： OCR -- 通用场景 MulOCR--多语种场景，默认值为OCR</p>
         # @type ConfigID: String
+        # @param WordsType: <p>需要识别的文字类型，默认识别全部类型的文字。 0：自动识别全部类型文字 1：仅识别手写体文字 2：仅识别印刷体文字</p><p>当config id=OCR 且 iswords 是false 时 才生效</p>
+        # @type WordsType: String
 
-        attr_accessor :ImageBase64, :ImageUrl, :IsWords, :EnableDetectSplit, :IsPdf, :PdfPageNumber, :EnableDetectText, :ConfigID
+        attr_accessor :ImageBase64, :ImageUrl, :IsWords, :EnableDetectSplit, :IsPdf, :PdfPageNumber, :EnableDetectText, :ConfigID, :WordsType
 
-        def initialize(imagebase64=nil, imageurl=nil, iswords=nil, enabledetectsplit=nil, ispdf=nil, pdfpagenumber=nil, enabledetecttext=nil, configid=nil)
+        def initialize(imagebase64=nil, imageurl=nil, iswords=nil, enabledetectsplit=nil, ispdf=nil, pdfpagenumber=nil, enabledetecttext=nil, configid=nil, wordstype=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
           @IsWords = iswords
@@ -4427,6 +4284,7 @@ module TencentCloud
           @PdfPageNumber = pdfpagenumber
           @EnableDetectText = enabledetecttext
           @ConfigID = configid
+          @WordsType = wordstype
         end
 
         def deserialize(params)
@@ -4438,6 +4296,7 @@ module TencentCloud
           @PdfPageNumber = params['PdfPageNumber']
           @EnableDetectText = params['EnableDetectText']
           @ConfigID = params['ConfigID']
+          @WordsType = params['WordsType']
         end
       end
 

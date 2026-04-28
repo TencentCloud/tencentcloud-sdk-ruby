@@ -6671,6 +6671,42 @@ module TencentCloud
         end
       end
 
+      # ModifyChcNetworkMode请求参数结构体
+      class ModifyChcNetworkModeRequest < TencentCloud::Common::AbstractModel
+        # @param ChcIds: <p>CHC物理服务器id列表，如[&quot;chc-1a2b3c4d&quot;]</p>
+        # @type ChcIds: Array
+        # @param NetworkMode: <p>所要切换的网络模式</p><p>枚举值：</p><ul><li>DEPLOY： 部署网络模式</li><li>BUSINESS： 业务网络模式</li></ul>
+        # @type NetworkMode: String
+
+        attr_accessor :ChcIds, :NetworkMode
+
+        def initialize(chcids=nil, networkmode=nil)
+          @ChcIds = chcids
+          @NetworkMode = networkmode
+        end
+
+        def deserialize(params)
+          @ChcIds = params['ChcIds']
+          @NetworkMode = params['NetworkMode']
+        end
+      end
+
+      # ModifyChcNetworkMode返回参数结构体
+      class ModifyChcNetworkModeResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyDisasterRecoverGroupAttribute请求参数结构体
       class ModifyDisasterRecoverGroupAttributeRequest < TencentCloud::Common::AbstractModel
         # @param DisasterRecoverGroupId: <p>分散置放群组ID，可使用<a href="https://cloud.tencent.com/document/api/213/17810">DescribeDisasterRecoverGroups</a>接口获取。</p>

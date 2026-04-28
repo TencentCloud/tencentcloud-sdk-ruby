@@ -9299,9 +9299,9 @@ module TencentCloud
 
       # DescribeLibraDBInstanceDetail请求参数结构体
       class DescribeLibraDBInstanceDetailRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群ID
+        # @param ClusterId: <p>集群ID</p>
         # @type ClusterId: String
-        # @param InstanceId: 只读分析引擎实例 ID
+        # @param InstanceId: <p>只读分析引擎实例 ID</p>
         # @type InstanceId: String
 
         attr_accessor :ClusterId, :InstanceId
@@ -9319,109 +9319,112 @@ module TencentCloud
 
       # DescribeLibraDBInstanceDetail返回参数结构体
       class DescribeLibraDBInstanceDetailResponse < TencentCloud::Common::AbstractModel
-        # @param Uin: 主账号
+        # @param Uin: <p>主账号</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Uin: String
-        # @param AppId: 账号唯一ID
+        # @param AppId: <p>账号唯一ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppId: Integer
-        # @param ClusterId: 集群ID
+        # @param ClusterId: <p>集群ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterId: String
-        # @param ClusterName: 集群名称
+        # @param ClusterName: <p>集群名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterName: String
-        # @param InstanceId: 实例ID
+        # @param InstanceId: <p>实例ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
-        # @param InstanceName: 实例名称
+        # @param InstanceName: <p>实例名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceName: String
-        # @param ProjectId: 项目ID
+        # @param ProjectId: <p>项目ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProjectId: Integer
-        # @param Region: 地域
+        # @param Region: <p>地域</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Region: String
-        # @param Zone: 可用区
+        # @param Zone: <p>可用区</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Zone: String
-        # @param Status: 实例状态
+        # @param Status: <p>实例状态</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
-        # @param StatusDesc: 状态描述
+        # @param StatusDesc: <p>状态描述</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StatusDesc: String
-        # @param LibraDBVersion: Libra分析引擎版本
+        # @param LibraDBVersion: <p>Libra分析引擎版本</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LibraDBVersion: String
-        # @param Cpu: cpu核数
+        # @param Cpu: <p>cpu核数</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Cpu: Integer
-        # @param Memory: 内存大小
+        # @param Memory: <p>内存大小</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Memory: Integer
-        # @param Storage: 存储大小
+        # @param Storage: <p>存储大小</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Storage: Integer
-        # @param StorageType: 存储类型
+        # @param StorageType: <p>存储类型</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StorageType: String
-        # @param InstanceType: 实例类型
+        # @param InstanceType: <p>实例类型</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceType: String
-        # @param InstanceRole: 实例角色
+        # @param InstanceRole: <p>实例角色</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceRole: String
-        # @param UpdateTime: 更新时间
+        # @param UpdateTime: <p>更新时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
-        # @param CreateTime: 创建时间
+        # @param CreateTime: <p>创建时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
-        # @param PayMode: 售卖方式
+        # @param PayMode: <p>售卖方式</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PayMode: Integer
-        # @param PeriodStartTime: 售卖开始时间
+        # @param PeriodStartTime: <p>售卖开始时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PeriodStartTime: String
-        # @param PeriodEndTime: 售卖结束时间
+        # @param PeriodEndTime: <p>售卖结束时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PeriodEndTime: String
-        # @param RenewFlag: 续费标识
+        # @param RenewFlag: <p>续费标识</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RenewFlag: Integer
-        # @param NetType: 网络类型
+        # @param NetType: <p>网络类型</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NetType: Integer
-        # @param VpcId: 私有网络ID
+        # @param VpcId: <p>私有网络ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcId: String
-        # @param SubnetId: 子网ID
+        # @param SubnetId: <p>子网ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubnetId: String
-        # @param Vip: 虚拟IP
+        # @param Vip: <p>虚拟IP</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Vip: String
-        # @param Vport: 端口
+        # @param Vport: <p>端口</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Vport: Integer
-        # @param InstanceNetInfo: 实例网络信息
+        # @param InstanceNetInfo: <p>实例网络信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceNetInfo: :class:`Tencentcloud::Cynosdb.v20190107.models.InstanceNetInfo`
-        # @param ResourceTags: 实例标签信息
+        # @param ResourceTags: <p>实例标签信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceTags: Array
-        # @param NodeInfo: 实例节点信息
+        # @param NodeInfo: <p>实例节点信息</p>
         # @type NodeInfo: Array
-        # @param NodeCount: 实例节点个数
+        # @param NodeCount: <p>实例节点个数</p>
         # @type NodeCount: Integer
+        # @param AnalysisUpgradeVersionInfo: <p>分析实例升级版本之后信息</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AnalysisUpgradeVersionInfo: :class:`Tencentcloud::Cynosdb.v20190107.models.UpgradeAnalysisInstanceVersionInfo`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Uin, :AppId, :ClusterId, :ClusterName, :InstanceId, :InstanceName, :ProjectId, :Region, :Zone, :Status, :StatusDesc, :LibraDBVersion, :Cpu, :Memory, :Storage, :StorageType, :InstanceType, :InstanceRole, :UpdateTime, :CreateTime, :PayMode, :PeriodStartTime, :PeriodEndTime, :RenewFlag, :NetType, :VpcId, :SubnetId, :Vip, :Vport, :InstanceNetInfo, :ResourceTags, :NodeInfo, :NodeCount, :RequestId
+        attr_accessor :Uin, :AppId, :ClusterId, :ClusterName, :InstanceId, :InstanceName, :ProjectId, :Region, :Zone, :Status, :StatusDesc, :LibraDBVersion, :Cpu, :Memory, :Storage, :StorageType, :InstanceType, :InstanceRole, :UpdateTime, :CreateTime, :PayMode, :PeriodStartTime, :PeriodEndTime, :RenewFlag, :NetType, :VpcId, :SubnetId, :Vip, :Vport, :InstanceNetInfo, :ResourceTags, :NodeInfo, :NodeCount, :AnalysisUpgradeVersionInfo, :RequestId
 
-        def initialize(uin=nil, appid=nil, clusterid=nil, clustername=nil, instanceid=nil, instancename=nil, projectid=nil, region=nil, zone=nil, status=nil, statusdesc=nil, libradbversion=nil, cpu=nil, memory=nil, storage=nil, storagetype=nil, instancetype=nil, instancerole=nil, updatetime=nil, createtime=nil, paymode=nil, periodstarttime=nil, periodendtime=nil, renewflag=nil, nettype=nil, vpcid=nil, subnetid=nil, vip=nil, vport=nil, instancenetinfo=nil, resourcetags=nil, nodeinfo=nil, nodecount=nil, requestid=nil)
+        def initialize(uin=nil, appid=nil, clusterid=nil, clustername=nil, instanceid=nil, instancename=nil, projectid=nil, region=nil, zone=nil, status=nil, statusdesc=nil, libradbversion=nil, cpu=nil, memory=nil, storage=nil, storagetype=nil, instancetype=nil, instancerole=nil, updatetime=nil, createtime=nil, paymode=nil, periodstarttime=nil, periodendtime=nil, renewflag=nil, nettype=nil, vpcid=nil, subnetid=nil, vip=nil, vport=nil, instancenetinfo=nil, resourcetags=nil, nodeinfo=nil, nodecount=nil, analysisupgradeversioninfo=nil, requestid=nil)
           @Uin = uin
           @AppId = appid
           @ClusterId = clusterid
@@ -9455,6 +9458,7 @@ module TencentCloud
           @ResourceTags = resourcetags
           @NodeInfo = nodeinfo
           @NodeCount = nodecount
+          @AnalysisUpgradeVersionInfo = analysisupgradeversioninfo
           @RequestId = requestid
         end
 
@@ -9509,6 +9513,10 @@ module TencentCloud
             end
           end
           @NodeCount = params['NodeCount']
+          unless params['AnalysisUpgradeVersionInfo'].nil?
+            @AnalysisUpgradeVersionInfo = UpgradeAnalysisInstanceVersionInfo.new
+            @AnalysisUpgradeVersionInfo.deserialize(params['AnalysisUpgradeVersionInfo'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -13169,68 +13177,71 @@ module TencentCloud
 
       # libra集群详情
       class LibraDBClusterDetail < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群id
+        # @param ClusterId: <p>集群id</p>
         # @type ClusterId: String
-        # @param ClusterName: 集群名称
+        # @param ClusterName: <p>集群名称</p>
         # @type ClusterName: String
-        # @param Region: 地域
+        # @param Region: <p>地域</p>
         # @type Region: String
-        # @param Status: 状态
+        # @param Status: <p>状态</p>
         # @type Status: String
-        # @param StatusDesc: 状态描述
+        # @param StatusDesc: <p>状态描述</p>
         # @type StatusDesc: String
-        # @param Storage: 存储大小
+        # @param Storage: <p>存储大小</p>
         # @type Storage: Integer
-        # @param VpcName: VPC名称
+        # @param VpcName: <p>VPC名称</p>
         # @type VpcName: String
-        # @param VpcId: vpc唯一id
+        # @param VpcId: <p>vpc唯一id</p>
         # @type VpcId: String
-        # @param SubnetName: 子网名称
+        # @param SubnetName: <p>子网名称</p>
         # @type SubnetName: String
-        # @param SubnetId: 子网ID
+        # @param SubnetId: <p>子网ID</p>
         # @type SubnetId: String
-        # @param CreateTime: 创建时间
+        # @param CreateTime: <p>创建时间</p>
         # @type CreateTime: String
-        # @param DbVersion: 数据库版本
+        # @param DbVersion: <p>数据库版本</p>
         # @type DbVersion: String
-        # @param UsedStorage: 使用容量
+        # @param UsedStorage: <p>使用容量</p>
         # @type UsedStorage: Integer
-        # @param Vip: vip地址
+        # @param Vip: <p>vip地址</p>
         # @type Vip: String
-        # @param Vport: vport端口
+        # @param Vport: <p>vport端口</p>
         # @type Vport: Integer
-        # @param RoAddr: 集群只读实例的vip地址和vport端口
+        # @param RoAddr: <p>集群只读实例的vip地址和vport端口</p>
         # @type RoAddr: Array
-        # @param CynosVersion: cynos版本
+        # @param CynosVersion: <p>cynos版本</p>
         # @type CynosVersion: String
-        # @param IsFreeze: 是否冻结
+        # @param IsFreeze: <p>是否冻结</p>
         # @type IsFreeze: String
-        # @param Tasks: 任务列表
+        # @param Tasks: <p>任务列表</p>
         # @type Tasks: Array
-        # @param MasterZone: 主可用区
+        # @param MasterZone: <p>主可用区</p>
         # @type MasterZone: String
-        # @param InstanceSet: 实例集合
+        # @param InstanceSet: <p>实例集合</p>
         # @type InstanceSet: Array
-        # @param PayMode: 付费模式
+        # @param PayMode: <p>付费模式</p>
         # @type PayMode: Integer
-        # @param PeriodEndTime: 到期时间
+        # @param PeriodEndTime: <p>到期时间</p>
         # @type PeriodEndTime: String
-        # @param ProjectID: 项目id
+        # @param ProjectID: <p>项目id</p>
         # @type ProjectID: Integer
-        # @param RenewFlag: 自动续费标识
+        # @param RenewFlag: <p>自动续费标识</p>
         # @type RenewFlag: Integer
-        # @param CynosVersionTag: 版本标签
+        # @param CynosVersionTag: <p>版本标签</p>
         # @type CynosVersionTag: String
-        # @param NoSupportAddRo: 不支持添加ro yes-不支持添加ro， no/null/"" 支持添加ro
+        # @param NoSupportAddRo: <p>不支持添加ro yes-不支持添加ro， no/null/&quot;&quot; 支持添加ro</p>
         # @type NoSupportAddRo: String
-        # @param Zone: 可用区
+        # @param Zone: <p>可用区</p>
         # @type Zone: String
-        # @param PhysicalZone: 物理可用区
+        # @param PhysicalZone: <p>物理可用区</p>
         # @type PhysicalZone: String
+        # @param AnalysisUpgradeVersionInfo: <p>版本升级灰度信息</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AnalysisUpgradeVersionInfo: :class:`Tencentcloud::Cynosdb.v20190107.models.UpgradeAnalysisInstanceVersionInfo`
 
-        attr_accessor :ClusterId, :ClusterName, :Region, :Status, :StatusDesc, :Storage, :VpcName, :VpcId, :SubnetName, :SubnetId, :CreateTime, :DbVersion, :UsedStorage, :Vip, :Vport, :RoAddr, :CynosVersion, :IsFreeze, :Tasks, :MasterZone, :InstanceSet, :PayMode, :PeriodEndTime, :ProjectID, :RenewFlag, :CynosVersionTag, :NoSupportAddRo, :Zone, :PhysicalZone
+        attr_accessor :ClusterId, :ClusterName, :Region, :Status, :StatusDesc, :Storage, :VpcName, :VpcId, :SubnetName, :SubnetId, :CreateTime, :DbVersion, :UsedStorage, :Vip, :Vport, :RoAddr, :CynosVersion, :IsFreeze, :Tasks, :MasterZone, :InstanceSet, :PayMode, :PeriodEndTime, :ProjectID, :RenewFlag, :CynosVersionTag, :NoSupportAddRo, :Zone, :PhysicalZone, :AnalysisUpgradeVersionInfo
 
-        def initialize(clusterid=nil, clustername=nil, region=nil, status=nil, statusdesc=nil, storage=nil, vpcname=nil, vpcid=nil, subnetname=nil, subnetid=nil, createtime=nil, dbversion=nil, usedstorage=nil, vip=nil, vport=nil, roaddr=nil, cynosversion=nil, isfreeze=nil, tasks=nil, masterzone=nil, instanceset=nil, paymode=nil, periodendtime=nil, projectid=nil, renewflag=nil, cynosversiontag=nil, nosupportaddro=nil, zone=nil, physicalzone=nil)
+        def initialize(clusterid=nil, clustername=nil, region=nil, status=nil, statusdesc=nil, storage=nil, vpcname=nil, vpcid=nil, subnetname=nil, subnetid=nil, createtime=nil, dbversion=nil, usedstorage=nil, vip=nil, vport=nil, roaddr=nil, cynosversion=nil, isfreeze=nil, tasks=nil, masterzone=nil, instanceset=nil, paymode=nil, periodendtime=nil, projectid=nil, renewflag=nil, cynosversiontag=nil, nosupportaddro=nil, zone=nil, physicalzone=nil, analysisupgradeversioninfo=nil)
           @ClusterId = clusterid
           @ClusterName = clustername
           @Region = region
@@ -13260,6 +13271,7 @@ module TencentCloud
           @NoSupportAddRo = nosupportaddro
           @Zone = zone
           @PhysicalZone = physicalzone
+          @AnalysisUpgradeVersionInfo = analysisupgradeversioninfo
         end
 
         def deserialize(params)
@@ -13313,6 +13325,10 @@ module TencentCloud
           @NoSupportAddRo = params['NoSupportAddRo']
           @Zone = params['Zone']
           @PhysicalZone = params['PhysicalZone']
+          unless params['AnalysisUpgradeVersionInfo'].nil?
+            @AnalysisUpgradeVersionInfo = UpgradeAnalysisInstanceVersionInfo.new
+            @AnalysisUpgradeVersionInfo.deserialize(params['AnalysisUpgradeVersionInfo'])
+          end
         end
       end
 
@@ -21201,6 +21217,34 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 分析实例版本升级，升级之后用于灰度的连接信息
+      class UpgradeAnalysisInstanceVersionInfo < TencentCloud::Common::AbstractModel
+        # @param Vip: <p>ip</p>
+        # @type Vip: String
+        # @param Vport: <p>端口</p>
+        # @type Vport: Integer
+        # @param EngineVersion: <p>版本</p>
+        # @type EngineVersion: String
+        # @param ExpiredTime: <p>到期时间</p>
+        # @type ExpiredTime: Integer
+
+        attr_accessor :Vip, :Vport, :EngineVersion, :ExpiredTime
+
+        def initialize(vip=nil, vport=nil, engineversion=nil, expiredtime=nil)
+          @Vip = vip
+          @Vport = vport
+          @EngineVersion = engineversion
+          @ExpiredTime = expiredtime
+        end
+
+        def deserialize(params)
+          @Vip = params['Vip']
+          @Vport = params['Vport']
+          @EngineVersion = params['EngineVersion']
+          @ExpiredTime = params['ExpiredTime']
         end
       end
 

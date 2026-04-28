@@ -7389,64 +7389,64 @@ module TencentCloud
 
       # Serverless索引空间信息
       class ServerlessSpace < TencentCloud::Common::AbstractModel
-        # @param SpaceId: Serverless索引空间ID
+        # @param SpaceId: <p>Serverless索引空间ID</p>
         # @type SpaceId: String
-        # @param SpaceName: Serverless索引空间名
+        # @param SpaceName: <p>Serverless索引空间名</p>
         # @type SpaceName: String
-        # @param Status: Serverless索引空间状态，0正常，-1已删除
+        # @param Status: <p>Serverless索引空间状态</p><p>枚举值：</p><ul><li>0： 创建中</li><li>1： 正常</li><li>2： 流程中</li><li>-3： 已删除</li><li>-4： 隔离中</li></ul>
         # @type Status: Integer
-        # @param CreateTime: 创建日期
+        # @param CreateTime: <p>创建日期</p>
         # @type CreateTime: String
-        # @param IndexCount: 空间内索引数量
+        # @param IndexCount: <p>空间内索引数量</p>
         # @type IndexCount: Integer
-        # @param KibanaUrl: kibana公网uri
+        # @param KibanaUrl: <p>kibana公网uri</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KibanaUrl: String
-        # @param KibanaPrivateUrl: kibana内网url
+        # @param KibanaPrivateUrl: <p>kibana内网url</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KibanaPrivateUrl: String
-        # @param IndexAccessUrl: 空间内网访问地址
+        # @param IndexAccessUrl: <p>空间内网访问地址</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IndexAccessUrl: String
-        # @param KibanaPublicAcl: 空间白名单
+        # @param KibanaPublicAcl: <p>空间白名单</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KibanaPublicAcl: :class:`Tencentcloud::Es.v20180416.models.EsAcl`
-        # @param KibanaEmbedUrl: 空间检索分析域名
+        # @param KibanaEmbedUrl: <p>空间检索分析域名</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KibanaEmbedUrl: String
-        # @param DiDataList: 数据联路
+        # @param DiDataList: <p>数据联路</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiDataList: :class:`Tencentcloud::Es.v20180416.models.DiData`
-        # @param VpcInfo: 空间vpc信息
+        # @param VpcInfo: <p>空间vpc信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcInfo: Array
-        # @param Region: 地域
+        # @param Region: <p>地域</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Region: String
-        # @param Zone: 可用区
+        # @param Zone: <p>可用区</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Zone: String
-        # @param EnableKibanaPublicAccess: kibana公网开关，0关闭，1开启
+        # @param EnableKibanaPublicAccess: <p>kibana公网开关，0关闭，1开启</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnableKibanaPublicAccess: Integer
-        # @param EnableKibanaPrivateAccess: kibana内网开关，0关闭，1开启
+        # @param EnableKibanaPrivateAccess: <p>kibana内网开关，0关闭，1开启</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnableKibanaPrivateAccess: Integer
-        # @param AppId: 空间所属appid
+        # @param AppId: <p>空间所属appid</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppId: Integer
-        # @param KibanaLanguage: //默认en， 可选zh-CN
+        # @param KibanaLanguage: <p>//默认en， 可选zh-CN</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KibanaLanguage: String
-        # @param ClusterType: 0
+        # @param ClusterType: <p>0</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterType: Integer
-        # @param TagList: 空间标签信息
+        # @param TagList: <p>空间标签信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagList: Array
-        # @param EnableMcpAccess: 是否开启mcp服务
+        # @param EnableMcpAccess: <p>是否开启mcp服务</p>
         # @type EnableMcpAccess: Integer
-        # @param McpAccess: mcp的访问地址
+        # @param McpAccess: <p>mcp的访问地址</p>
         # @type McpAccess: String
 
         attr_accessor :SpaceId, :SpaceName, :Status, :CreateTime, :IndexCount, :KibanaUrl, :KibanaPrivateUrl, :IndexAccessUrl, :KibanaPublicAcl, :KibanaEmbedUrl, :DiDataList, :VpcInfo, :Region, :Zone, :EnableKibanaPublicAccess, :EnableKibanaPrivateAccess, :AppId, :KibanaLanguage, :ClusterType, :TagList, :EnableMcpAccess, :McpAccess

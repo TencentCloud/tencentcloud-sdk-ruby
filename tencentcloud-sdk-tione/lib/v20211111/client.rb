@@ -560,6 +560,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（DescribeAnnotatedTaskList）用于查询用户标注任务详细信息列表；支持各种过滤条件；
+
+        # @param request: Request instance for DescribeAnnotatedTaskList.
+        # @type request: :class:`Tencentcloud::tione::V20211111::DescribeAnnotatedTaskListRequest`
+        # @rtype: :class:`Tencentcloud::tione::V20211111::DescribeAnnotatedTaskListResponse`
+        def DescribeAnnotatedTaskList(request)
+          body = send_request('DescribeAnnotatedTaskList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAnnotatedTaskListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询资源组节点列表
 
         # @param request: Request instance for DescribeBillingResourceGroup.
@@ -1364,6 +1388,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeTrainingTasksResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询工作空间列表
+
+        # @param request: Request instance for DescribeWorkspaces.
+        # @type request: :class:`Tencentcloud::tione::V20211111::DescribeWorkspacesRequest`
+        # @rtype: :class:`Tencentcloud::tione::V20211111::DescribeWorkspacesResponse`
+        def DescribeWorkspaces(request)
+          body = send_request('DescribeWorkspaces', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeWorkspacesResponse.new
             model.deserialize(response['Response'])
             model
           else

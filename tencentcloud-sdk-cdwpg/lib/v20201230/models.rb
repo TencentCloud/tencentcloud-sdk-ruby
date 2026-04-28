@@ -269,8 +269,8 @@ module TencentCloud
 
         attr_accessor :InstanceName, :Zone, :UserVPCId, :UserSubnetId, :ChargeProperties, :AdminPassword, :Resources, :Tags, :ProductVersion, :TagItems
         extend Gem::Deprecate
-        deprecate :Tags, :none, 2026, 2
-        deprecate :Tags=, :none, 2026, 2
+        deprecate :Tags, :none, 2026, 4
+        deprecate :Tags=, :none, 2026, 4
 
         def initialize(instancename=nil, zone=nil, uservpcid=nil, usersubnetid=nil, chargeproperties=nil, adminpassword=nil, resources=nil, tags=nil, productversion=nil, tagitems=nil)
           @InstanceName = instancename
