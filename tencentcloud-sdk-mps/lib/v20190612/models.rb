@@ -17158,20 +17158,52 @@ module TencentCloud
 
       # DescribeVoices请求参数结构体
       class DescribeVoicesRequest < TencentCloud::Common::AbstractModel
-        # @param VoiceType: <p>音色类别</p><p>枚举值：</p><ul><li>system： 系统音色</li></ul>
+        # @param VoiceId: <p>音色ID</p>
+        # @type VoiceId: String
+        # @param VoiceType: <p>音色类别</p><p>枚举值：</p><ul><li>system： 系统音色</li><li>clone： 克隆音色</li><li>design： 设计音色</li><li>all： 所有音色（默认）</li></ul>
         # @type VoiceType: String
+        # @param VoiceName: <p>音色名</p>
+        # @type VoiceName: String
+        # @param Description: <p>音色描述</p>
+        # @type Description: String
+        # @param Gender: <p>性别</p><p>枚举值：</p><ul><li>male： 男</li><li>female： 女</li><li>unknown： 未知</li></ul>
+        # @type Gender: String
+        # @param Age: <p>年龄</p><p>枚举值：</p><ul><li>child： 儿童</li><li>teenager： 少年</li><li>youth： 青年</li><li>middle_aged： 中年</li><li>senior： 老年</li><li>unknown： 未知</li></ul>
+        # @type Age: String
+        # @param Languages: <p>语言</p>
+        # @type Languages: Array
+        # @param Labels: <p>标签</p>
+        # @type Labels: Array
+        # @param Scenes: <p>场景</p>
+        # @type Scenes: Array
         # @param ExtParam: <p>扩展参数，json字符串</p><p>其他筛选条件voiceName String 音色名，模糊匹配labels Array of String 标签，匹配包含这些标签的音色</p>
         # @type ExtParam: String
 
-        attr_accessor :VoiceType, :ExtParam
+        attr_accessor :VoiceId, :VoiceType, :VoiceName, :Description, :Gender, :Age, :Languages, :Labels, :Scenes, :ExtParam
 
-        def initialize(voicetype=nil, extparam=nil)
+        def initialize(voiceid=nil, voicetype=nil, voicename=nil, description=nil, gender=nil, age=nil, languages=nil, labels=nil, scenes=nil, extparam=nil)
+          @VoiceId = voiceid
           @VoiceType = voicetype
+          @VoiceName = voicename
+          @Description = description
+          @Gender = gender
+          @Age = age
+          @Languages = languages
+          @Labels = labels
+          @Scenes = scenes
           @ExtParam = extparam
         end
 
         def deserialize(params)
+          @VoiceId = params['VoiceId']
           @VoiceType = params['VoiceType']
+          @VoiceName = params['VoiceName']
+          @Description = params['Description']
+          @Gender = params['Gender']
+          @Age = params['Age']
+          @Languages = params['Languages']
+          @Labels = params['Labels']
+          @Scenes = params['Scenes']
           @ExtParam = params['ExtParam']
         end
       end
@@ -17417,18 +17449,25 @@ module TencentCloud
       class DesignVoiceAsyncRequest < TencentCloud::Common::AbstractModel
         # @param Prompt: <p>音色描述</p>
         # @type Prompt: String
+        # @param VoiceProfile: <p>音色属性</p>
+        # @type VoiceProfile: :class:`Tencentcloud::Mps.v20190612.models.VoiceProfile`
         # @param ExtParam: <p>扩展参数，json字符串</p>
         # @type ExtParam: String
 
-        attr_accessor :Prompt, :ExtParam
+        attr_accessor :Prompt, :VoiceProfile, :ExtParam
 
-        def initialize(prompt=nil, extparam=nil)
+        def initialize(prompt=nil, voiceprofile=nil, extparam=nil)
           @Prompt = prompt
+          @VoiceProfile = voiceprofile
           @ExtParam = extparam
         end
 
         def deserialize(params)
           @Prompt = params['Prompt']
+          unless params['VoiceProfile'].nil?
+            @VoiceProfile = VoiceProfile.new
+            @VoiceProfile.deserialize(params['VoiceProfile'])
+          end
           @ExtParam = params['ExtParam']
         end
       end
@@ -32674,21 +32713,27 @@ module TencentCloud
         # @type AudioUrl: String
         # @param AudioLang: <p>克隆音频语言，默认中文。<br>当前支持语言同TextLang</p>
         # @type AudioLang: String
+        # @param VoiceProfile: <p>音色属性</p>
+        # @type VoiceProfile: :class:`Tencentcloud::Mps.v20190612.models.VoiceProfile`
         # @param Output: <p>输出相关参数</p><p>可以指定输出形式等</p>
         # @type Output: :class:`Tencentcloud::Mps.v20190612.models.SyncDubbingOutputOption`
+        # @param ResourceId: <p>资源ID，需要保证对应资源是开启状态。默认为账号主资源ID。</p>
+        # @type ResourceId: String
         # @param ExtParam: <p>扩展参数，json字符串</p><p>synExt    Object    语音合成扩展参数<br>    -duration    Float    合成音频时长，单位秒，示例：5.2<br>    -sampleRate    Integer    合成音频采样率，默认16000，支持[8000,16000,22050,32000,44100]<br>    -pitch    Integer    音调，默认0原音色输出，取值[-12, 12]<br>cloneExt    Object    音色克隆扩展参数<br>    -timeRanges    Float[][]    指定克隆音频时间范围，默认[[0, 20]]，示例[[5.2, 10], [45, 59.8]]</p>
         # @type ExtParam: String
 
-        attr_accessor :Text, :TextLang, :VoiceId, :AudioData, :AudioUrl, :AudioLang, :Output, :ExtParam
+        attr_accessor :Text, :TextLang, :VoiceId, :AudioData, :AudioUrl, :AudioLang, :VoiceProfile, :Output, :ResourceId, :ExtParam
 
-        def initialize(text=nil, textlang=nil, voiceid=nil, audiodata=nil, audiourl=nil, audiolang=nil, output=nil, extparam=nil)
+        def initialize(text=nil, textlang=nil, voiceid=nil, audiodata=nil, audiourl=nil, audiolang=nil, voiceprofile=nil, output=nil, resourceid=nil, extparam=nil)
           @Text = text
           @TextLang = textlang
           @VoiceId = voiceid
           @AudioData = audiodata
           @AudioUrl = audiourl
           @AudioLang = audiolang
+          @VoiceProfile = voiceprofile
           @Output = output
+          @ResourceId = resourceid
           @ExtParam = extparam
         end
 
@@ -32699,10 +32744,15 @@ module TencentCloud
           @AudioData = params['AudioData']
           @AudioUrl = params['AudioUrl']
           @AudioLang = params['AudioLang']
+          unless params['VoiceProfile'].nil?
+            @VoiceProfile = VoiceProfile.new
+            @VoiceProfile.deserialize(params['VoiceProfile'])
+          end
           unless params['Output'].nil?
             @Output = SyncDubbingOutputOption.new
             @Output.deserialize(params['Output'])
           end
+          @ResourceId = params['ResourceId']
           @ExtParam = params['ExtParam']
         end
       end
@@ -35376,6 +35426,8 @@ module TencentCloud
         # @type Category: String
         # @param Gender: <p>性别</p><p>枚举值：</p><ul><li>male： 男</li><li>famale： 女</li></ul>
         # @type Gender: String
+        # @param Age: <p>年龄</p><p>枚举值：</p><ul><li>child： 儿童</li><li>teenager： 少年</li><li>youth： 青年</li><li>middle_aged： 中年</li><li>senior： 老年</li><li>unknown： 未知</li></ul>
+        # @type Age: String
         # @param Languages: <p>支持语种列表</p><p>如：en</p>
         # @type Languages: Array
         # @param AudioUrl: <p>试听音频URL</p>
@@ -35385,14 +35437,15 @@ module TencentCloud
         # @param Scenes: <p>推荐场景</p><p>如：教育</p>
         # @type Scenes: Array
 
-        attr_accessor :VoiceId, :Name, :Description, :Category, :Gender, :Languages, :AudioUrl, :Labels, :Scenes
+        attr_accessor :VoiceId, :Name, :Description, :Category, :Gender, :Age, :Languages, :AudioUrl, :Labels, :Scenes
 
-        def initialize(voiceid=nil, name=nil, description=nil, category=nil, gender=nil, languages=nil, audiourl=nil, labels=nil, scenes=nil)
+        def initialize(voiceid=nil, name=nil, description=nil, category=nil, gender=nil, age=nil, languages=nil, audiourl=nil, labels=nil, scenes=nil)
           @VoiceId = voiceid
           @Name = name
           @Description = description
           @Category = category
           @Gender = gender
+          @Age = age
           @Languages = languages
           @AudioUrl = audiourl
           @Labels = labels
@@ -35405,8 +35458,45 @@ module TencentCloud
           @Description = params['Description']
           @Category = params['Category']
           @Gender = params['Gender']
+          @Age = params['Age']
           @Languages = params['Languages']
           @AudioUrl = params['AudioUrl']
+          @Labels = params['Labels']
+          @Scenes = params['Scenes']
+        end
+      end
+
+      # 音色属性
+      class VoiceProfile < TencentCloud::Common::AbstractModel
+        # @param Name: <p>音色名</p>
+        # @type Name: String
+        # @param Description: <p>音色描述</p>
+        # @type Description: String
+        # @param Gender: <p>性别</p><p>枚举值：</p><ul><li>male： 男性</li><li>female： 女性</li><li>unknown： 未知</li></ul>
+        # @type Gender: String
+        # @param Age: <p>年龄</p><p>枚举值：</p><ul><li>child： 儿童</li><li>teenager： 少年</li><li>youth： 青年</li><li>middle_aged： 中年</li><li>senior： 老年</li><li>unknown： 未知</li></ul>
+        # @type Age: String
+        # @param Labels: <p>标签</p>
+        # @type Labels: Array
+        # @param Scenes: <p>使用场景</p>
+        # @type Scenes: Array
+
+        attr_accessor :Name, :Description, :Gender, :Age, :Labels, :Scenes
+
+        def initialize(name=nil, description=nil, gender=nil, age=nil, labels=nil, scenes=nil)
+          @Name = name
+          @Description = description
+          @Gender = gender
+          @Age = age
+          @Labels = labels
+          @Scenes = scenes
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Description = params['Description']
+          @Gender = params['Gender']
+          @Age = params['Age']
           @Labels = params['Labels']
           @Scenes = params['Scenes']
         end

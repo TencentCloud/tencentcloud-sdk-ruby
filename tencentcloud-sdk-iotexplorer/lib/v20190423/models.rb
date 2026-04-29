@@ -9823,10 +9823,16 @@ module TencentCloud
         # @type VectorSearchRadius: Float
         # @param VectorSearchTopK: 指定向量搜索最相似的 Top K；仅当SearchMode为2时支持自定义设置，默认为100
         # @type VectorSearchTopK: Integer
+        # @param Order: 搜索结果的排序方式，可选值：
 
-        attr_accessor :ProductId, :DeviceName, :Query, :SummaryLang, :ChannelId, :EnableSummary, :StartTimeMs, :EndTimeMs, :TimeZone, :SearchMode, :Limit, :VectorSearchRadius, :VectorSearchTopK
+        # - `CORRELATION`：按相关性（默认）
+        # - `TIME_ASC`：按时间升序
+        # - `TIME_DESC`：按时间降序
+        # @type Order: String
 
-        def initialize(productid=nil, devicename=nil, query=nil, summarylang=nil, channelid=nil, enablesummary=nil, starttimems=nil, endtimems=nil, timezone=nil, searchmode=nil, limit=nil, vectorsearchradius=nil, vectorsearchtopk=nil)
+        attr_accessor :ProductId, :DeviceName, :Query, :SummaryLang, :ChannelId, :EnableSummary, :StartTimeMs, :EndTimeMs, :TimeZone, :SearchMode, :Limit, :VectorSearchRadius, :VectorSearchTopK, :Order
+
+        def initialize(productid=nil, devicename=nil, query=nil, summarylang=nil, channelid=nil, enablesummary=nil, starttimems=nil, endtimems=nil, timezone=nil, searchmode=nil, limit=nil, vectorsearchradius=nil, vectorsearchtopk=nil, order=nil)
           @ProductId = productid
           @DeviceName = devicename
           @Query = query
@@ -9840,6 +9846,7 @@ module TencentCloud
           @Limit = limit
           @VectorSearchRadius = vectorsearchradius
           @VectorSearchTopK = vectorsearchtopk
+          @Order = order
         end
 
         def deserialize(params)
@@ -9856,6 +9863,7 @@ module TencentCloud
           @Limit = params['Limit']
           @VectorSearchRadius = params['VectorSearchRadius']
           @VectorSearchTopK = params['VectorSearchTopK']
+          @Order = params['Order']
         end
       end
 
@@ -10298,17 +10306,20 @@ module TencentCloud
         # 1. 单位为毫秒（ms）
         # 2. 时间区间必须控制在某一个自然天内，不支持跨天
         # @type EndTimeMs: Integer
-        # @param KeywordsMaxNum: 返回的关键字最大数量，默认为5；最大不能超过10
+        # @param KeywordsMaxNum: 返回的关键词的最大数量，默认为5；最大不能超过10
         # @type KeywordsMaxNum: Integer
+        # @param KeywordsLang: 返回的关键词的语言类型，支持的类型有：en-US、zh-CN
+        # @type KeywordsLang: String
 
-        attr_accessor :ProductId, :DeviceName, :StartTimeMs, :EndTimeMs, :KeywordsMaxNum
+        attr_accessor :ProductId, :DeviceName, :StartTimeMs, :EndTimeMs, :KeywordsMaxNum, :KeywordsLang
 
-        def initialize(productid=nil, devicename=nil, starttimems=nil, endtimems=nil, keywordsmaxnum=nil)
+        def initialize(productid=nil, devicename=nil, starttimems=nil, endtimems=nil, keywordsmaxnum=nil, keywordslang=nil)
           @ProductId = productid
           @DeviceName = devicename
           @StartTimeMs = starttimems
           @EndTimeMs = endtimems
           @KeywordsMaxNum = keywordsmaxnum
+          @KeywordsLang = keywordslang
         end
 
         def deserialize(params)
@@ -10317,12 +10328,13 @@ module TencentCloud
           @StartTimeMs = params['StartTimeMs']
           @EndTimeMs = params['EndTimeMs']
           @KeywordsMaxNum = params['KeywordsMaxNum']
+          @KeywordsLang = params['KeywordsLang']
         end
       end
 
       # InvokeVideosKeywordsAnalyzer返回参数结构体
       class InvokeVideosKeywordsAnalyzerResponse < TencentCloud::Common::AbstractModel
-        # @param Keywords: 基于搜索结果的总结
+        # @param Keywords: 根据视频内容生成的关键词
         # @type Keywords: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

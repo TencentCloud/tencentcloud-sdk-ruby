@@ -5183,7 +5183,7 @@ module TencentCloud
         # @param EncodeUrl: 若有编码转换，仅清除编码转换后匹配的资源。
         # 若内容含有非 ASCII 字符集的字符，请开启此开关进行编码转换（编码规则遵循 RFC3986）。
         # @type EncodeUrl: Boolean
-        # @param CacheTag: 节点缓存清除类型取值为 purge_cache_tag 时附带的信息。
+        # @param CacheTag: 节点缓存清除类型取值为 purge_cache_tag 时，该参数必填，入参值为域名。
         # @type CacheTag: :class:`Tencentcloud::Teo.v20220901.models.CacheTag`
 
         attr_accessor :ZoneId, :Type, :Method, :Targets, :EncodeUrl, :CacheTag
@@ -6168,9 +6168,9 @@ module TencentCloud
         # @type AttackType: String
         # @param AttackStatus: 攻击状态。
         # @type AttackStatus: Integer
-        # @param AttackMaxBandWidth: 攻击最大带宽。
+        # @param AttackMaxBandWidth: 攻击最大带宽，单位为 bps。
         # @type AttackMaxBandWidth: Integer
-        # @param AttackPacketMaxRate: 攻击包速率峰值。
+        # @param AttackPacketMaxRate: 攻击包速率峰值，单位为 pps。
         # @type AttackPacketMaxRate: Integer
         # @param AttackStartTime: 攻击开始时间，单位为s。
         # @type AttackStartTime: Integer

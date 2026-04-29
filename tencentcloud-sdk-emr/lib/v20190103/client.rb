@@ -198,6 +198,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建容器EMR-TKE集群DynamicInstance
+
+        # @param request: Request instance for CreateDynamicInstance.
+        # @type request: :class:`Tencentcloud::emr::V20190103::CreateDynamicInstanceRequest`
+        # @rtype: :class:`Tencentcloud::emr::V20190103::CreateDynamicInstanceResponse`
+        def CreateDynamicInstance(request)
+          body = send_request('CreateDynamicInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateDynamicInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 用户管理-批量创建用户组
 
         # @param request: Request instance for CreateGroupsSTD.
@@ -570,6 +594,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeDAGInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 描述容器EMR-TKE集群DynamicInstance列表
+
+        # @param request: Request instance for DescribeDynamicInstanceList.
+        # @type request: :class:`Tencentcloud::emr::V20190103::DescribeDynamicInstanceListRequest`
+        # @rtype: :class:`Tencentcloud::emr::V20190103::DescribeDynamicInstanceListResponse`
+        def DescribeDynamicInstanceList(request)
+          body = send_request('DescribeDynamicInstanceList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDynamicInstanceListResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1666,6 +1714,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 更新容器EMR-TKE集群DynamicInstance
+
+        # @param request: Request instance for ModifyDynamicInstance.
+        # @type request: :class:`Tencentcloud::emr::V20190103::ModifyDynamicInstanceRequest`
+        # @rtype: :class:`Tencentcloud::emr::V20190103::ModifyDynamicInstanceResponse`
+        def ModifyDynamicInstance(request)
+          body = send_request('ModifyDynamicInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyDynamicInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 修改YARN资源调度的全局配置
 
         # @param request: Request instance for ModifyGlobalConfig.
@@ -2260,6 +2332,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = TerminateClusterNodesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 销毁容器EMR-TKE集群DynamicInstance
+
+        # @param request: Request instance for TerminateDynamicInstances.
+        # @type request: :class:`Tencentcloud::emr::V20190103::TerminateDynamicInstancesRequest`
+        # @rtype: :class:`Tencentcloud::emr::V20190103::TerminateDynamicInstancesResponse`
+        def TerminateDynamicInstances(request)
+          body = send_request('TerminateDynamicInstances', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = TerminateDynamicInstancesResponse.new
             model.deserialize(response['Response'])
             model
           else

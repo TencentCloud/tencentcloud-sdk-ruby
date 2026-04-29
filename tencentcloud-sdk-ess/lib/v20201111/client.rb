@@ -2969,6 +2969,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 此接口（DescribeContractReviewChecklist）用于获取已有的合同风险审查清单详情。
+
+        # @param request: Request instance for DescribeContractReviewChecklist.
+        # @type request: :class:`Tencentcloud::ess::V20201111::DescribeContractReviewChecklistRequest`
+        # @rtype: :class:`Tencentcloud::ess::V20201111::DescribeContractReviewChecklistResponse`
+        def DescribeContractReviewChecklist(request)
+          body = send_request('DescribeContractReviewChecklist', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeContractReviewChecklistResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 此接口（DescribeContractReviewChecklistWebUrl）用来创建查看审查要点清单web页面链接（此web页面可以通过iframe方式嵌入到贵方系统的网页中）。
 
         # 适用场景：根据合同内容识别出合同的风险信息。审查结果由AI生成，仅供参考。请结合相关法律法规和公司制度要求综合判断。
@@ -4083,6 +4107,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = GetTaskResultApiResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 此接口（ImportRiskIdentificationChecklist）用于创建或更新合同审查清单。
+
+        # @param request: Request instance for ImportContractReviewChecklist.
+        # @type request: :class:`Tencentcloud::ess::V20201111::ImportContractReviewChecklistRequest`
+        # @rtype: :class:`Tencentcloud::ess::V20201111::ImportContractReviewChecklistResponse`
+        def ImportContractReviewChecklist(request)
+          body = send_request('ImportContractReviewChecklist', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ImportContractReviewChecklistResponse.new
             model.deserialize(response['Response'])
             model
           else

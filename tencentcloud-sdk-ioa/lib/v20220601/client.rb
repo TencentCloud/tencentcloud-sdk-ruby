@@ -29,6 +29,30 @@ module TencentCloud
         end
 
 
+        # 创建业务资源，会对一些必填参数进行校验和参数合法性校验，创建业务资源时，先调用下校验相同业务资源接口，看资源是不是有冲突。创建时也会做校验，但没有返回对应的异常信息，私有化调用path为：capi/GatewayResource/CreateBusinessResource
+
+        # @param request: Request instance for CreateBusinessResource.
+        # @type request: :class:`Tencentcloud::ioa::V20220601::CreateBusinessResourceRequest`
+        # @rtype: :class:`Tencentcloud::ioa::V20220601::CreateBusinessResourceResponse`
+        def CreateBusinessResource(request)
+          body = send_request('CreateBusinessResource', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateBusinessResourceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建文件鉴定任务，私有化调用path为：capi/DlpOpenApi/CreateDLPFileDetectTask
 
         # @param request: Request instance for CreateDLPFileDetectTask.
@@ -231,6 +255,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeAggrSoftDeviceListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取业务资源列表,支持分页，如果分页信息不传递会有默认分页，支持排序，不传排序字段，按业务资源创建时间排序,私有化调用path为：capi/GatewayResource/DescribeBusinessResources
+
+        # @param request: Request instance for DescribeBusinessResources.
+        # @type request: :class:`Tencentcloud::ioa::V20220601::DescribeBusinessResourcesRequest`
+        # @rtype: :class:`Tencentcloud::ioa::V20220601::DescribeBusinessResourcesResponse`
+        def DescribeBusinessResources(request)
+          body = send_request('DescribeBusinessResources', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBusinessResourcesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -485,6 +533,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 列表账户组直接关联的资源，私有化调用path为：capi/Assets/DescribeDirectAccountGroupResources
+
+        # @param request: Request instance for DescribeDirectAccountGroupResources.
+        # @type request: :class:`Tencentcloud::ioa::V20220601::DescribeDirectAccountGroupResourcesRequest`
+        # @rtype: :class:`Tencentcloud::ioa::V20220601::DescribeDirectAccountGroupResourcesResponse`
+        def DescribeDirectAccountGroupResources(request)
+          body = send_request('DescribeDirectAccountGroupResources', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDirectAccountGroupResourcesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取账号列表，支持分页，模糊搜索，私有化调用path为：/capi/Assets/Account/DescribeLocalAccounts
 
         # @param request: Request instance for DescribeLocalAccounts.
@@ -495,6 +567,78 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeLocalAccountsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 列表账户组直接关联的资源，私有化调用path为：capi/NGN/DescribeResourceGrantedAccounts
+
+        # @param request: Request instance for DescribeResourceGrantedAccountGroups.
+        # @type request: :class:`Tencentcloud::ioa::V20220601::DescribeResourceGrantedAccountGroupsRequest`
+        # @rtype: :class:`Tencentcloud::ioa::V20220601::DescribeResourceGrantedAccountGroupsResponse`
+        def DescribeResourceGrantedAccountGroups(request)
+          body = send_request('DescribeResourceGrantedAccountGroups', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeResourceGrantedAccountGroupsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 列表账户组直接关联的资源，私有化调用path为：capi/NGN/DescribeResourceGrantedAccounts
+
+        # @param request: Request instance for DescribeResourceGrantedAccounts.
+        # @type request: :class:`Tencentcloud::ioa::V20220601::DescribeResourceGrantedAccountsRequest`
+        # @rtype: :class:`Tencentcloud::ioa::V20220601::DescribeResourceGrantedAccountsResponse`
+        def DescribeResourceGrantedAccounts(request)
+          body = send_request('DescribeResourceGrantedAccounts', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeResourceGrantedAccountsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 列表账户组直接关联的资源，私有化调用path为：capi/NGN/DescribeResourceGrantedVirtualGroups
+
+        # @param request: Request instance for DescribeResourceGrantedVirtualGroups.
+        # @type request: :class:`Tencentcloud::ioa::V20220601::DescribeResourceGrantedVirtualGroupsRequest`
+        # @rtype: :class:`Tencentcloud::ioa::V20220601::DescribeResourceGrantedVirtualGroupsResponse`
+        def DescribeResourceGrantedVirtualGroups(request)
+          body = send_request('DescribeResourceGrantedVirtualGroups', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeResourceGrantedVirtualGroupsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -639,6 +783,102 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ExportSoftwareInformationListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 添加资源授权到账号组
+
+        # @param request: Request instance for GrantResourcesByAccountGroups.
+        # @type request: :class:`Tencentcloud::ioa::V20220601::GrantResourcesByAccountGroupsRequest`
+        # @rtype: :class:`Tencentcloud::ioa::V20220601::GrantResourcesByAccountGroupsResponse`
+        def GrantResourcesByAccountGroups(request)
+          body = send_request('GrantResourcesByAccountGroups', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GrantResourcesByAccountGroupsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 添加资源授权到账号组
+
+        # @param request: Request instance for GrantResourcesByAccounts.
+        # @type request: :class:`Tencentcloud::ioa::V20220601::GrantResourcesByAccountsRequest`
+        # @rtype: :class:`Tencentcloud::ioa::V20220601::GrantResourcesByAccountsResponse`
+        def GrantResourcesByAccounts(request)
+          body = send_request('GrantResourcesByAccounts', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GrantResourcesByAccountsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 添加资源授权到账号组
+
+        # @param request: Request instance for GrantResourcesByVirtualGroups.
+        # @type request: :class:`Tencentcloud::ioa::V20220601::GrantResourcesByVirtualGroupsRequest`
+        # @rtype: :class:`Tencentcloud::ioa::V20220601::GrantResourcesByVirtualGroupsResponse`
+        def GrantResourcesByVirtualGroups(request)
+          body = send_request('GrantResourcesByVirtualGroups', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GrantResourcesByVirtualGroupsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 给接入设备加黑加白,私有化调用path为：capi/NGN/ModifyDeviceTrustStatus
+
+        # @param request: Request instance for ModifyDeviceTrustStatus.
+        # @type request: :class:`Tencentcloud::ioa::V20220601::ModifyDeviceTrustStatusRequest`
+        # @rtype: :class:`Tencentcloud::ioa::V20220601::ModifyDeviceTrustStatusResponse`
+        def ModifyDeviceTrustStatus(request)
+          body = send_request('ModifyDeviceTrustStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyDeviceTrustStatusResponse.new
             model.deserialize(response['Response'])
             model
           else

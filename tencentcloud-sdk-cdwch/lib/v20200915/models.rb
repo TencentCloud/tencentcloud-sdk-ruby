@@ -1077,26 +1077,15 @@ module TencentCloud
 
       # DescribeCkSqlApis请求参数结构体
       class DescribeCkSqlApisRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例id
+        # @param InstanceId: <p>实例id</p>
         # @type InstanceId: String
-        # @param ApiType: api接口名称,GetClusters:获取集群cluster列表
-        # GetSystemUsers:获取系统用户列表
-        # CheckNodeCluster: 检查节点是否隶属一个cluster
-        # GetClusterDatabases: 获取一个cluster下的数据库列表
-        # GetClusterTables: 获取一个cluster下的数据库表列表
-        # GetPrivilegeUsers: 获取授权的用户列表
-        # GET_USER_CLUSTER_PRIVILEGES:获取用户cluster下的权限
-        # GetUserClusterNewPrivileges:获取用户cluster下的权限 (新版）
-        # RevokeClusterUser:解绑cluster用户
-        # DeleteSystemUser:删除系统用户 —— 必须所有cluster先解绑
-        # GetUserOptionMessages:获取用户配置备注信息
-        # GET_USER_CONFIGS:获取用户配置列表  QUOTA、PROFILE、POLICY
+        # @param ApiType: <p>api接口名称,GetClusters:获取集群cluster列表<br>GetSystemUsers:获取系统用户列表<br>CheckNodeCluster: 检查节点是否隶属一个cluster<br>GetClusterDatabases: 获取一个cluster下的数据库列表<br>GetClusterTables: 获取一个cluster下的数据库表列表<br>GetPrivilegeUsers: 获取授权的用户列表<br>GET_USER_CLUSTER_PRIVILEGES:获取用户cluster下的权限<br>GetUserClusterNewPrivileges:获取用户cluster下的权限 (新版）<br>RevokeClusterUser:解绑cluster用户<br>DeleteSystemUser:删除系统用户 —— 必须所有cluster先解绑<br>GetUserOptionMessages:获取用户配置备注信息<br>GET_USER_CONFIGS:获取用户配置列表  QUOTA、PROFILE、POLICY</p>
         # @type ApiType: String
-        # @param Cluster: 集群名称，当ApiType取值为GET_SYSTEM_USERS，GET_PRIVILEGE_USERS，GET_CLUSTER_DATABASES，GET_CLUSTER_TABLES 时，此参数必填
+        # @param Cluster: <p>clickhouse逻辑集群名称，可通过连接集群执行 <code>SHOW CLUSTERS</code> 查询获得。当 ApiType 取值为 GET_SYSTEM_USERS、GET_PRIVILEGE_USERS、GET_CLUSTER_DATABASES或GET_CLUSTER_TABLES 时，本参数必填。</p>
         # @type Cluster: String
-        # @param UserName: 用户名称，api与user相关的必填
+        # @param UserName: <p>用户名称，api与user相关的必填</p>
         # @type UserName: String
-        # @param UserType: 账户的类型
+        # @param UserType: <p>账户的类型</p>
         # @type UserType: String
 
         attr_accessor :InstanceId, :ApiType, :Cluster, :UserName, :UserType
@@ -1120,7 +1109,7 @@ module TencentCloud
 
       # DescribeCkSqlApis返回参数结构体
       class DescribeCkSqlApisResponse < TencentCloud::Common::AbstractModel
-        # @param ReturnData: 返回的查询数据，大部分情况是list，也可能是bool
+        # @param ReturnData: <p>返回的查询数据，大部分情况是list，也可能是bool</p>
         # @type ReturnData: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2615,17 +2604,17 @@ module TencentCloud
 
       # ModifyUserNewPrivilege请求参数结构体
       class ModifyUserNewPrivilegeRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例id
+        # @param InstanceId: <p>实例id</p>
         # @type InstanceId: String
-        # @param Cluster: cluster名称
+        # @param Cluster: <p>clickhouse逻辑集群名称，可通过连接集群执行 <code>SHOW CLUSTERS</code> 查询获得</p>
         # @type Cluster: String
-        # @param UserName: 用户名
+        # @param UserName: <p>用户名</p>
         # @type UserName: String
-        # @param AllDatabase: 是否所有数据库表
+        # @param AllDatabase: <p>是否所有数据库表</p>
         # @type AllDatabase: Boolean
-        # @param GlobalPrivileges: 全局权限
+        # @param GlobalPrivileges: <p>全局权限</p>
         # @type GlobalPrivileges: Array
-        # @param DatabasePrivilegeList: 数据库表权限
+        # @param DatabasePrivilegeList: <p>数据库表权限</p>
         # @type DatabasePrivilegeList: Array
 
         attr_accessor :InstanceId, :Cluster, :UserName, :AllDatabase, :GlobalPrivileges, :DatabasePrivilegeList

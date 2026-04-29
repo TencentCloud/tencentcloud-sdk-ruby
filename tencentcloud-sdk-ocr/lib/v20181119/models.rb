@@ -1635,6 +1635,46 @@ module TencentCloud
         end
       end
 
+      # 坐标数组
+      class CoordList < TencentCloud::Common::AbstractModel
+        # @param TopLeft: <p>左上角坐标。</p>
+        # @type TopLeft: :class:`Tencentcloud::Ocr.v20181119.models.Coord`
+        # @param TopRight: <p>右上角坐标。</p>
+        # @type TopRight: :class:`Tencentcloud::Ocr.v20181119.models.Coord`
+        # @param BottomLeft: <p>左下角坐标。</p>
+        # @type BottomLeft: :class:`Tencentcloud::Ocr.v20181119.models.Coord`
+        # @param BottomRight: <p>右下角坐标。</p>
+        # @type BottomRight: :class:`Tencentcloud::Ocr.v20181119.models.Coord`
+
+        attr_accessor :TopLeft, :TopRight, :BottomLeft, :BottomRight
+
+        def initialize(topleft=nil, topright=nil, bottomleft=nil, bottomright=nil)
+          @TopLeft = topleft
+          @TopRight = topright
+          @BottomLeft = bottomleft
+          @BottomRight = bottomright
+        end
+
+        def deserialize(params)
+          unless params['TopLeft'].nil?
+            @TopLeft = Coord.new
+            @TopLeft.deserialize(params['TopLeft'])
+          end
+          unless params['TopRight'].nil?
+            @TopRight = Coord.new
+            @TopRight.deserialize(params['TopRight'])
+          end
+          unless params['BottomLeft'].nil?
+            @BottomLeft = Coord.new
+            @BottomLeft.deserialize(params['BottomLeft'])
+          end
+          unless params['BottomRight'].nil?
+            @BottomRight = Coord.new
+            @BottomRight.deserialize(params['BottomRight'])
+          end
+        end
+      end
+
       # 海关进/出口货物报关单
       class CustomsDeclaration < TencentCloud::Common::AbstractModel
         # @param Title: 发票名称
@@ -3645,6 +3685,52 @@ module TencentCloud
           end
           @TokenNum = params['TokenNum']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 用于展示抽取出的信息
+      class FieldsInfo < TencentCloud::Common::AbstractModel
+        # @param KeyName: <p>用户自定义的提取字段名。</p>
+        # @type KeyName: String
+        # @param KeyPrompt: <p>用户自定义的提取字段名的提示词。</p>
+        # @type KeyPrompt: String
+        # @param KeyValue: <p>出参字段对应的值。</p><p>注意：此字段可能返回 null，表示取不到有效值。</p>
+        # @type KeyValue: String
+        # @param KeyType: <p>出参类型。</p><p>注：与入参对应同个值。</p>
+        # @type KeyType: Integer
+        # @param Polygon: <p>文本行坐标，以四个顶点坐标表示。</p><p>注：仅当入参EnableCoord不为null时生效，默认是false。</p>
+        # @type Polygon: :class:`Tencentcloud::Ocr.v20181119.models.CoordList`
+        # @param SubItems: <p>嵌套FieldsInfo结构，仅当KeyType=1时有效。</p>
+        # @type SubItems: Array
+
+        attr_accessor :KeyName, :KeyPrompt, :KeyValue, :KeyType, :Polygon, :SubItems
+
+        def initialize(keyname=nil, keyprompt=nil, keyvalue=nil, keytype=nil, polygon=nil, subitems=nil)
+          @KeyName = keyname
+          @KeyPrompt = keyprompt
+          @KeyValue = keyvalue
+          @KeyType = keytype
+          @Polygon = polygon
+          @SubItems = subitems
+        end
+
+        def deserialize(params)
+          @KeyName = params['KeyName']
+          @KeyPrompt = params['KeyPrompt']
+          @KeyValue = params['KeyValue']
+          @KeyType = params['KeyType']
+          unless params['Polygon'].nil?
+            @Polygon = CoordList.new
+            @Polygon.deserialize(params['Polygon'])
+          end
+          unless params['SubItems'].nil?
+            @SubItems = []
+            params['SubItems'].each do |i|
+              subitemgroup_tmp = SubItemGroup.new
+              subitemgroup_tmp.deserialize(i)
+              @SubItems << subitemgroup_tmp
+            end
+          end
         end
       end
 
@@ -6204,6 +6290,48 @@ module TencentCloud
               iteminfo_tmp = ItemInfo.new
               iteminfo_tmp.deserialize(i)
               @Lines << iteminfo_tmp
+            end
+          end
+        end
+      end
+
+      # 用于展示结构化提取出的结果与输入给模型的提示词和模型的输出
+      class ListInfo < TencentCloud::Common::AbstractModel
+        # @param QueryInfo: <p>推理任务的完整提示词。注：仅当QueryType=1/2/3时有效，否则返回为null。</p>
+        # @type QueryInfo: String
+        # @param Answer: <p>根据QueryType对应任务的返回内容。注：仅当QueryType=1/2/3时有效，其他情况为null。</p>
+        # @type Answer: String
+        # @param ExtractFields: <p>结构化提取结果。注：仅当QueryType=4时有效，否则返回null。</p>
+        # @type ExtractFields: Array
+        # @param TextDetections: <p>检测到的文本信息，包括内容、坐标以及旋转纠正后的坐标等，具体内容请参见 TextDetection。注：仅当QueryType=0时TextDetections不为空，否则返回null。</p>
+        # @type TextDetections: Array
+
+        attr_accessor :QueryInfo, :Answer, :ExtractFields, :TextDetections
+
+        def initialize(queryinfo=nil, answer=nil, extractfields=nil, textdetections=nil)
+          @QueryInfo = queryinfo
+          @Answer = answer
+          @ExtractFields = extractfields
+          @TextDetections = textdetections
+        end
+
+        def deserialize(params)
+          @QueryInfo = params['QueryInfo']
+          @Answer = params['Answer']
+          unless params['ExtractFields'].nil?
+            @ExtractFields = []
+            params['ExtractFields'].each do |i|
+              fieldsinfo_tmp = FieldsInfo.new
+              fieldsinfo_tmp.deserialize(i)
+              @ExtractFields << fieldsinfo_tmp
+            end
+          end
+          unless params['TextDetections'].nil?
+            @TextDetections = []
+            params['TextDetections'].each do |i|
+              textdetection_tmp = TextDetection.new
+              textdetection_tmp.deserialize(i)
+              @TextDetections << textdetection_tmp
             end
           end
         end
@@ -8910,6 +9038,88 @@ module TencentCloud
         end
       end
 
+      # RecognizeAgent请求参数结构体
+      class RecognizeAgentRequest < TencentCloud::Common::AbstractModel
+        # @param ImageUrl: <p>图片/PDF的 Url 地址。要求图片经Base64编码后不超过10M，分辨率建议600*800以上，支持PNG、JPG、JPEG、BMP格式。图片下载时间不超过 3 秒。图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。非腾讯云存储的 Url 速度和稳定性可能受一定影响。</p>
+        # @type ImageUrl: String
+        # @param ImageBase64: <p>图片/PDF的 Base64 值。要求图片经Base64编码后不超过 10M，分辨率建议600*800以上，支持PNG、JPG、JPEG、BMP格式。图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。</p>
+        # @type ImageBase64: String
+        # @param PdfPageNumber: <p>需识别的PDF页码。仅支持PDF单页识别，当上传文件为PDF时有效。</p><p>默认值：1</p>
+        # @type PdfPageNumber: Integer
+        # @param SelectModel: <p>模型选择。</p><p>枚举值：</p><ul><li>0： 推理模型。</li><li>1： 识别、推理模型。</li></ul><p>默认值：0</p>
+        # @type SelectModel: Integer
+        # @param QueryType: <p>任务类型。</p><p>枚举值：</p><ul><li><p>0： 全文识别。识别且输出全文内容。</p></li><li><p>1： 判断。判断输入图的内容是否为Query中的内容，返回结果为是或否。如Query:&quot;增值税发票&quot;，该任务类型下，将判断输入图是否为增值税发票，返回&quot;是&quot;或&quot;否&quot;。</p></li><li><p>2： 分类。判断输入图属于Query中具体哪个分类项。如Query:[&quot;营业执照&quot;,&quot;合同&quot;,&quot;票据&quot;]，在该任务类型下，将判断输入图是否属于&quot;营业执照&quot;、&quot;合同&quot;、&quot;票据&quot;，返回&quot;营业执照&quot;/&quot;合同&quot;/&quot;票据&quot;或&quot;均不符合&quot;。</p></li><li><p>3： 总结提炼。总结输入图与Query相关的内容。如Query:&quot;工作经历&quot;，在该任务类型下，将输出输入图中和&quot;工作经历&quot;相关的内容，或&quot;无相关内容&quot;。</p></li><li><p>4： 信息提取。按照自定义字段提取Key-Value，且支持多层级提取，详见入参SchemaItems说明。入参可参考下面的接口示例QueryType=4场景</p></li></ul><p>默认值：0</p>
+        # @type QueryType: Integer
+        # @param SchemaItems: <p>自定义提取字段的结构，详见SchemaList结构。仅当QueryType=4时生效。</p><p>注：.N表示数组型参数。</p>
+        # @type SchemaItems: Array
+        # @param Query: <p>推理任务的提示词。与QueryType搭配使用，具体说明见QueryType描述。1）仅当QueryType=1/2/3时生效，且QueryType=1/3时，长度必须为1；2）QueryType=2，Query长度必须符合2≤x≤5。</p><p>注：.N表示数组型参数。</p>
+        # @type Query: Array
+        # @param EnableCoord: <p>是否需要返回坐标。</p><p>默认值：false</p><p>注：仅对QueryType=4时生效，且坐标位置为 Response.ExtractFields.Polygon。</p>
+        # @type EnableCoord: Boolean
+
+        attr_accessor :ImageUrl, :ImageBase64, :PdfPageNumber, :SelectModel, :QueryType, :SchemaItems, :Query, :EnableCoord
+
+        def initialize(imageurl=nil, imagebase64=nil, pdfpagenumber=nil, selectmodel=nil, querytype=nil, schemaitems=nil, query=nil, enablecoord=nil)
+          @ImageUrl = imageurl
+          @ImageBase64 = imagebase64
+          @PdfPageNumber = pdfpagenumber
+          @SelectModel = selectmodel
+          @QueryType = querytype
+          @SchemaItems = schemaitems
+          @Query = query
+          @EnableCoord = enablecoord
+        end
+
+        def deserialize(params)
+          @ImageUrl = params['ImageUrl']
+          @ImageBase64 = params['ImageBase64']
+          @PdfPageNumber = params['PdfPageNumber']
+          @SelectModel = params['SelectModel']
+          @QueryType = params['QueryType']
+          unless params['SchemaItems'].nil?
+            @SchemaItems = []
+            params['SchemaItems'].each do |i|
+              schemalist_tmp = SchemaList.new
+              schemalist_tmp.deserialize(i)
+              @SchemaItems << schemalist_tmp
+            end
+          end
+          @Query = params['Query']
+          @EnableCoord = params['EnableCoord']
+        end
+      end
+
+      # RecognizeAgent返回参数结构体
+      class RecognizeAgentResponse < TencentCloud::Common::AbstractModel
+        # @param Response: <p>返回内容。详见ListInfo。</p>
+        # @type Response: Array
+        # @param Angle: <p>图片旋转角度(角度制)，文本的水平方向为 0；顺时针为正，逆时针为负。</p>
+        # @type Angle: Float
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Response, :Angle, :RequestId
+
+        def initialize(response=nil, angle=nil, requestid=nil)
+          @Response = response
+          @Angle = angle
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Response'].nil?
+            @Response = []
+            params['Response'].each do |i|
+              listinfo_tmp = ListInfo.new
+              listinfo_tmp.deserialize(i)
+              @Response << listinfo_tmp
+            end
+          end
+          @Angle = params['Angle']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # RecognizeContainerOCR请求参数结构体
       class RecognizeContainerOCRRequest < TencentCloud::Common::AbstractModel
         # @param ImageBase64: 图片的 Base64 值。支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。支持的图片大小：所下载图片经Base64编码后不超过 10M。图片下载时间不超过 3 秒。图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
@@ -10727,6 +10937,72 @@ module TencentCloud
         end
       end
 
+      # 用于风险提示和表示不同场景下的风险程度
+      class SceneWarnInfo < TencentCloud::Common::AbstractModel
+        # @param IsWarn: <p>是否存在该提示</p>
+        # @type IsWarn: Boolean
+        # @param RiskConfidence: <p>风险程度（0-1）</p>
+        # @type RiskConfidence: Float
+        # @param Polygon: <p>提示位置四点坐标，仅部分提示类型支持返回提示位置坐标</p>
+        # @type Polygon: Array
+
+        attr_accessor :IsWarn, :RiskConfidence, :Polygon
+
+        def initialize(iswarn=nil, riskconfidence=nil, polygon=nil)
+          @IsWarn = iswarn
+          @RiskConfidence = riskconfidence
+          @Polygon = polygon
+        end
+
+        def deserialize(params)
+          @IsWarn = params['IsWarn']
+          @RiskConfidence = params['RiskConfidence']
+          unless params['Polygon'].nil?
+            @Polygon = []
+            params['Polygon'].each do |i|
+              polygon_tmp = Polygon.new
+              polygon_tmp.deserialize(i)
+              @Polygon << polygon_tmp
+            end
+          end
+        end
+      end
+
+      # 描述用户提供的出参结构的模板
+      class SchemaList < TencentCloud::Common::AbstractModel
+        # @param KeyName: <p>自定义需提取的字段名称。注：若需提取多个字段，可定义多个KeyName。</p>
+        # @type KeyName: String
+        # @param KeyType: <p>字段类型。</p><p>枚举值：</p><ul><li>0： 表示KeyName为简单字段（如姓名、性别等）。</li><li>1： 表示KeyName为数组对象（如工作经历、教育经历列表）。</li></ul>
+        # @type KeyType: Integer
+        # @param KeyPrompt: <p>补充提取字段的描述。</p>
+        # @type KeyPrompt: String
+        # @param SubItems: <p>嵌套SchemaList结构，最多支持嵌套三层。注：仅当KeyType=1时生效。</p>
+        # @type SubItems: Array
+
+        attr_accessor :KeyName, :KeyType, :KeyPrompt, :SubItems
+
+        def initialize(keyname=nil, keytype=nil, keyprompt=nil, subitems=nil)
+          @KeyName = keyname
+          @KeyType = keytype
+          @KeyPrompt = keyprompt
+          @SubItems = subitems
+        end
+
+        def deserialize(params)
+          @KeyName = params['KeyName']
+          @KeyType = params['KeyType']
+          @KeyPrompt = params['KeyPrompt']
+          unless params['SubItems'].nil?
+            @SubItems = []
+            params['SubItems'].each do |i|
+              schemalist_tmp = SchemaList.new
+              schemalist_tmp.deserialize(i)
+              @SubItems << schemalist_tmp
+            end
+          end
+        end
+      end
+
       # 印章信息
       class SealInfo < TencentCloud::Common::AbstractModel
         # @param SealBody: 印章主体内容
@@ -11501,6 +11777,29 @@ module TencentCloud
             @ItemCoord.deserialize(params['ItemCoord'])
           end
           @Row = params['Row']
+        end
+      end
+
+      # 用于分层展示抽取出的信息
+      class SubItemGroup < TencentCloud::Common::AbstractModel
+        # @param Groups: <p>子结构嵌套FieldsInfo结构</p>
+        # @type Groups: Array
+
+        attr_accessor :Groups
+
+        def initialize(groups=nil)
+          @Groups = groups
+        end
+
+        def deserialize(params)
+          unless params['Groups'].nil?
+            @Groups = []
+            params['Groups'].each do |i|
+              fieldsinfo_tmp = FieldsInfo.new
+              fieldsinfo_tmp.deserialize(i)
+              @Groups << fieldsinfo_tmp
+            end
+          end
         end
       end
 
@@ -15445,6 +15744,85 @@ module TencentCloud
             @RailwayTicketInfo.deserialize(params['RailwayTicketInfo'])
           end
           @InvoiceTitle = params['InvoiceTitle']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # VerifyScenePhoto请求参数结构体
+      class VerifyScenePhotoRequest < TencentCloud::Common::AbstractModel
+        # @param Scene: <p>场景类型参数，如果场景无法细分请选用该大类的第一个子类，目前支持以下类型：<br><strong>经营场所照</strong><br>0101 门头照<br>0102 店内照<br>0103 流动经营照</p>
+        # @type Scene: String
+        # @param ImageUrl: <p>图片的 Url 地址。要求图片经Base64编码后不超过 10M。</p>
+        # @type ImageUrl: String
+        # @param ImageBase64: <p>图片的 Base64 值。要求图片经Base64编码后不超过 10M。</p>
+        # @type ImageBase64: String
+
+        attr_accessor :Scene, :ImageUrl, :ImageBase64
+
+        def initialize(scene=nil, imageurl=nil, imagebase64=nil)
+          @Scene = scene
+          @ImageUrl = imageurl
+          @ImageBase64 = imagebase64
+        end
+
+        def deserialize(params)
+          @Scene = params['Scene']
+          @ImageUrl = params['ImageUrl']
+          @ImageBase64 = params['ImageBase64']
+        end
+      end
+
+      # VerifyScenePhoto返回参数结构体
+      class VerifyScenePhotoResponse < TencentCloud::Common::AbstractModel
+        # @param Tamper: <p>区域篡改提示</p>
+        # @type Tamper: :class:`Tencentcloud::Ocr.v20181119.models.SceneWarnInfo`
+        # @param Synthesis: <p>AIGC合成提示</p>
+        # @type Synthesis: :class:`Tencentcloud::Ocr.v20181119.models.SceneWarnInfo`
+        # @param RemakeScreen: <p>屏幕翻拍提示</p>
+        # @type RemakeScreen: :class:`Tencentcloud::Ocr.v20181119.models.SceneWarnInfo`
+        # @param Screenshot: <p>截图提示</p>
+        # @type Screenshot: :class:`Tencentcloud::Ocr.v20181119.models.SceneWarnInfo`
+        # @param TextWatermark: <p>文字水印提示</p>
+        # @type TextWatermark: :class:`Tencentcloud::Ocr.v20181119.models.SceneWarnInfo`
+        # @param WatermarkContent: <p>水印内容，当未检测到文字水印时不返回，返回多组水印时以 | 分隔。</p>
+        # @type WatermarkContent: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Tamper, :Synthesis, :RemakeScreen, :Screenshot, :TextWatermark, :WatermarkContent, :RequestId
+
+        def initialize(tamper=nil, synthesis=nil, remakescreen=nil, screenshot=nil, textwatermark=nil, watermarkcontent=nil, requestid=nil)
+          @Tamper = tamper
+          @Synthesis = synthesis
+          @RemakeScreen = remakescreen
+          @Screenshot = screenshot
+          @TextWatermark = textwatermark
+          @WatermarkContent = watermarkcontent
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Tamper'].nil?
+            @Tamper = SceneWarnInfo.new
+            @Tamper.deserialize(params['Tamper'])
+          end
+          unless params['Synthesis'].nil?
+            @Synthesis = SceneWarnInfo.new
+            @Synthesis.deserialize(params['Synthesis'])
+          end
+          unless params['RemakeScreen'].nil?
+            @RemakeScreen = SceneWarnInfo.new
+            @RemakeScreen.deserialize(params['RemakeScreen'])
+          end
+          unless params['Screenshot'].nil?
+            @Screenshot = SceneWarnInfo.new
+            @Screenshot.deserialize(params['Screenshot'])
+          end
+          unless params['TextWatermark'].nil?
+            @TextWatermark = SceneWarnInfo.new
+            @TextWatermark.deserialize(params['TextWatermark'])
+          end
+          @WatermarkContent = params['WatermarkContent']
           @RequestId = params['RequestId']
         end
       end

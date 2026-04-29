@@ -707,6 +707,102 @@ module TencentCloud
         end
       end
 
+      # cbs 存储卷
+      class CBSVolume < TencentCloud::Common::AbstractModel
+        # @param VolumeName: 存储卷名称
+        # @type VolumeName: String
+        # @param DiskType:  cbs 盘类型
+        # @type DiskType: String
+        # @param DiskSize: cbs 大小（GB）
+        # @type DiskSize: Integer
+        # @param DiskCount: cbs 数量
+        # @type DiskCount: Integer
+
+        attr_accessor :VolumeName, :DiskType, :DiskSize, :DiskCount
+
+        def initialize(volumename=nil, disktype=nil, disksize=nil, diskcount=nil)
+          @VolumeName = volumename
+          @DiskType = disktype
+          @DiskSize = disksize
+          @DiskCount = diskcount
+        end
+
+        def deserialize(params)
+          @VolumeName = params['VolumeName']
+          @DiskType = params['DiskType']
+          @DiskSize = params['DiskSize']
+          @DiskCount = params['DiskCount']
+        end
+      end
+
+      # cfs trubo 存储卷
+      class CFSTurboVolume < TencentCloud::Common::AbstractModel
+        # @param VolumeName: <p>存储卷名称</p>
+        # @type VolumeName: String
+        # @param FileSystemId: <p>文件系统 id</p>
+        # @type FileSystemId: String
+        # @param FSId: <p>CFSId</p>
+        # @type FSId: String
+        # @param Host: <p>挂载点 ip</p>
+        # @type Host: String
+        # @param SubPath: <p>cfs子目录</p>
+        # @type SubPath: String
+        # @param RootDir: <p>lustre挂载根目录，默认为/cfs</p>
+        # @type RootDir: String
+
+        attr_accessor :VolumeName, :FileSystemId, :FSId, :Host, :SubPath, :RootDir
+
+        def initialize(volumename=nil, filesystemid=nil, fsid=nil, host=nil, subpath=nil, rootdir=nil)
+          @VolumeName = volumename
+          @FileSystemId = filesystemid
+          @FSId = fsid
+          @Host = host
+          @SubPath = subpath
+          @RootDir = rootdir
+        end
+
+        def deserialize(params)
+          @VolumeName = params['VolumeName']
+          @FileSystemId = params['FileSystemId']
+          @FSId = params['FSId']
+          @Host = params['Host']
+          @SubPath = params['SubPath']
+          @RootDir = params['RootDir']
+        end
+      end
+
+      # cfs 存储卷
+      class CFSVolume < TencentCloud::Common::AbstractModel
+        # @param VolumeName: 存储卷名称
+        # @type VolumeName: String
+        # @param FileSystemId: 文件系统 id
+        # @type FileSystemId: String
+        # @param FSId: CFSId
+        # @type FSId: String
+        # @param Host: 挂载点 ip
+        # @type Host: String
+        # @param SubPath: cfs子目录
+        # @type SubPath: String
+
+        attr_accessor :VolumeName, :FileSystemId, :FSId, :Host, :SubPath
+
+        def initialize(volumename=nil, filesystemid=nil, fsid=nil, host=nil, subpath=nil)
+          @VolumeName = volumename
+          @FileSystemId = filesystemid
+          @FSId = fsid
+          @Host = host
+          @SubPath = subpath
+        end
+
+        def deserialize(params)
+          @VolumeName = params['VolumeName']
+          @FileSystemId = params['FileSystemId']
+          @FSId = params['FSId']
+          @Host = params['Host']
+          @SubPath = params['SubPath']
+        end
+      end
+
       # 容器集群Pod服务CLB设置
       class CLBSetting < TencentCloud::Common::AbstractModel
         # @param CLBType: CLB类型，PUBLIC_IP表示支持公网CLB和INTERNAL_IP表示支持内网CLB字段
@@ -752,6 +848,38 @@ module TencentCloud
           @CosSecretId = params['CosSecretId']
           @CosSecretKey = params['CosSecretKey']
           @LogOnCosPath = params['LogOnCosPath']
+        end
+      end
+
+      # cos 存储卷
+      class COSVolume < TencentCloud::Common::AbstractModel
+        # @param VolumeName: 存储卷名称
+        # @type VolumeName: String
+        # @param Secret: 密钥名称
+        # @type Secret: String
+        # @param Region: cos桶所在地域
+        # @type Region: String
+        # @param Bucket: 存储桶名称
+        # @type Bucket: String
+        # @param SubPath: cos 子目录
+        # @type SubPath: String
+
+        attr_accessor :VolumeName, :Secret, :Region, :Bucket, :SubPath
+
+        def initialize(volumename=nil, secret=nil, region=nil, bucket=nil, subpath=nil)
+          @VolumeName = volumename
+          @Secret = secret
+          @Region = region
+          @Bucket = bucket
+          @SubPath = subpath
+        end
+
+        def deserialize(params)
+          @VolumeName = params['VolumeName']
+          @Secret = params['Secret']
+          @Region = params['Region']
+          @Bucket = params['Bucket']
+          @SubPath = params['SubPath']
         end
       end
 
@@ -2097,6 +2225,61 @@ module TencentCloud
         end
       end
 
+      # CreateDynamicInstance请求参数结构体
+      class CreateDynamicInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>EMR集群id</p>
+        # @type InstanceId: String
+        # @param ServiceName: <p>支持DynamicInstance的服务名称</p>
+        # @type ServiceName: String
+        # @param DynamicInstanceType: <p>DynamicInstance类型</p><p>枚举值：</p><ul><li>RayCluster： RayCluster类型</li></ul>
+        # @type DynamicInstanceType: String
+        # @param DynamicInstanceForm: <p>表单创建信息</p>
+        # @type DynamicInstanceForm: :class:`Tencentcloud::Emr.v20190103.models.DynamicInstanceForm`
+        # @param DynamicInstanceYaml: <p>yaml创建信息</p>
+        # @type DynamicInstanceYaml: String
+
+        attr_accessor :InstanceId, :ServiceName, :DynamicInstanceType, :DynamicInstanceForm, :DynamicInstanceYaml
+
+        def initialize(instanceid=nil, servicename=nil, dynamicinstancetype=nil, dynamicinstanceform=nil, dynamicinstanceyaml=nil)
+          @InstanceId = instanceid
+          @ServiceName = servicename
+          @DynamicInstanceType = dynamicinstancetype
+          @DynamicInstanceForm = dynamicinstanceform
+          @DynamicInstanceYaml = dynamicinstanceyaml
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @ServiceName = params['ServiceName']
+          @DynamicInstanceType = params['DynamicInstanceType']
+          unless params['DynamicInstanceForm'].nil?
+            @DynamicInstanceForm = DynamicInstanceForm.new
+            @DynamicInstanceForm.deserialize(params['DynamicInstanceForm'])
+          end
+          @DynamicInstanceYaml = params['DynamicInstanceYaml']
+        end
+      end
+
+      # CreateDynamicInstance返回参数结构体
+      class CreateDynamicInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: <p>异步流程id</p>
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :RequestId
+
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateGroupsSTD请求参数结构体
       class CreateGroupsSTDRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 集群名称
@@ -2486,6 +2669,38 @@ module TencentCloud
         def deserialize(params)
           @InstanceId = params['InstanceId']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 自定义镜像信息
+      class CustomImage < TencentCloud::Common::AbstractModel
+        # @param ImageSourceType: 镜像来源。支持企业版镜像（tcr）、个人版镜像（ccrPersonal）、个人版共有镜像（ccrAllPersonal)
+        # @type ImageSourceType: String
+        # @param ImageInfo: 镜像信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImageInfo: :class:`Tencentcloud::Emr.v20190103.models.ImageInfo`
+        # @param ImagePullSecret: 镜像获取密钥
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImagePullSecret: :class:`Tencentcloud::Emr.v20190103.models.ImagePullSecret`
+
+        attr_accessor :ImageSourceType, :ImageInfo, :ImagePullSecret
+
+        def initialize(imagesourcetype=nil, imageinfo=nil, imagepullsecret=nil)
+          @ImageSourceType = imagesourcetype
+          @ImageInfo = imageinfo
+          @ImagePullSecret = imagepullsecret
+        end
+
+        def deserialize(params)
+          @ImageSourceType = params['ImageSourceType']
+          unless params['ImageInfo'].nil?
+            @ImageInfo = ImageInfo.new
+            @ImageInfo.deserialize(params['ImageInfo'])
+          end
+          unless params['ImagePullSecret'].nil?
+            @ImagePullSecret = ImagePullSecret.new
+            @ImagePullSecret.deserialize(params['ImagePullSecret'])
+          end
         end
       end
 
@@ -3521,6 +3736,49 @@ module TencentCloud
               daginfo_tmp = DAGInfo.new
               daginfo_tmp.deserialize(i)
               @DAGInfoList << daginfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDynamicInstanceList请求参数结构体
+      class DescribeDynamicInstanceListRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: emr 集群 id
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeDynamicInstanceList返回参数结构体
+      class DescribeDynamicInstanceListResponse < TencentCloud::Common::AbstractModel
+        # @param DynamicInstanceList: RayCluster 集群列表
+        # @type DynamicInstanceList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DynamicInstanceList, :RequestId
+
+        def initialize(dynamicinstancelist=nil, requestid=nil)
+          @DynamicInstanceList = dynamicinstancelist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['DynamicInstanceList'].nil?
+            @DynamicInstanceList = []
+            params['DynamicInstanceList'].each do |i|
+              raycluster_tmp = RayCluster.new
+              raycluster_tmp.deserialize(i)
+              @DynamicInstanceList << raycluster_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -6503,6 +6761,307 @@ module TencentCloud
         end
       end
 
+      # 创建DynamicInstance提交的表单数据
+      class DynamicInstanceForm < TencentCloud::Common::AbstractModel
+        # @param DynamicInstanceName: <p>DynamicInstance名，长度限制1-64字符，只能包含小写字母</p>
+        # @type DynamicInstanceName: String
+        # @param Namespace: <p>命名空间</p>
+        # @type Namespace: String
+        # @param SupportHA: <p>是否支持高可用</p>
+        # @type SupportHA: Boolean
+        # @param CustomImage: <p>自定义镜像信息</p>
+        # @type CustomImage: :class:`Tencentcloud::Emr.v20190103.models.CustomImage`
+        # @param DynamicInstanceGroups: <p>资源组配置</p>
+        # @type DynamicInstanceGroups: Array
+        # @param SupportPV: <p>是否支持存储配置</p>
+        # @type SupportPV: Boolean
+        # @param CBSVolumes: <p>cbs存储卷列表</p>
+        # @type CBSVolumes: Array
+        # @param CFSVolumes: <p>cfs存储卷列表，只包含cfs，不包含cfs turbo</p>
+        # @type CFSVolumes: Array
+        # @param COSVolumes: <p>cos存储卷列表</p>
+        # @type COSVolumes: Array
+        # @param VolumeMounts: <p>挂载卷列表</p>
+        # @type VolumeMounts: Array
+        # @param Labels: <p>pod标签</p>
+        # @type Labels: Array
+        # @param Tolerations: <p>Tolerations定义</p>
+        # @type Tolerations: Array
+        # @param Envs: <p>环境变量</p>
+        # @type Envs: Array
+        # @param DependServices: <p>依赖外部组件</p>
+        # @type DependServices: Array
+        # @param SupportToken: <p>是否开启token鉴权</p>
+        # @type SupportToken: Boolean
+        # @param CFSTurboVolumes: <p>cfs trubo挂载列表，不包含标准版cfs</p>
+        # @type CFSTurboVolumes: Array
+
+        attr_accessor :DynamicInstanceName, :Namespace, :SupportHA, :CustomImage, :DynamicInstanceGroups, :SupportPV, :CBSVolumes, :CFSVolumes, :COSVolumes, :VolumeMounts, :Labels, :Tolerations, :Envs, :DependServices, :SupportToken, :CFSTurboVolumes
+
+        def initialize(dynamicinstancename=nil, namespace=nil, supportha=nil, customimage=nil, dynamicinstancegroups=nil, supportpv=nil, cbsvolumes=nil, cfsvolumes=nil, cosvolumes=nil, volumemounts=nil, labels=nil, tolerations=nil, envs=nil, dependservices=nil, supporttoken=nil, cfsturbovolumes=nil)
+          @DynamicInstanceName = dynamicinstancename
+          @Namespace = namespace
+          @SupportHA = supportha
+          @CustomImage = customimage
+          @DynamicInstanceGroups = dynamicinstancegroups
+          @SupportPV = supportpv
+          @CBSVolumes = cbsvolumes
+          @CFSVolumes = cfsvolumes
+          @COSVolumes = cosvolumes
+          @VolumeMounts = volumemounts
+          @Labels = labels
+          @Tolerations = tolerations
+          @Envs = envs
+          @DependServices = dependservices
+          @SupportToken = supporttoken
+          @CFSTurboVolumes = cfsturbovolumes
+        end
+
+        def deserialize(params)
+          @DynamicInstanceName = params['DynamicInstanceName']
+          @Namespace = params['Namespace']
+          @SupportHA = params['SupportHA']
+          unless params['CustomImage'].nil?
+            @CustomImage = CustomImage.new
+            @CustomImage.deserialize(params['CustomImage'])
+          end
+          unless params['DynamicInstanceGroups'].nil?
+            @DynamicInstanceGroups = []
+            params['DynamicInstanceGroups'].each do |i|
+              dynamicinstancegroup_tmp = DynamicInstanceGroup.new
+              dynamicinstancegroup_tmp.deserialize(i)
+              @DynamicInstanceGroups << dynamicinstancegroup_tmp
+            end
+          end
+          @SupportPV = params['SupportPV']
+          unless params['CBSVolumes'].nil?
+            @CBSVolumes = []
+            params['CBSVolumes'].each do |i|
+              cbsvolume_tmp = CBSVolume.new
+              cbsvolume_tmp.deserialize(i)
+              @CBSVolumes << cbsvolume_tmp
+            end
+          end
+          unless params['CFSVolumes'].nil?
+            @CFSVolumes = []
+            params['CFSVolumes'].each do |i|
+              cfsvolume_tmp = CFSVolume.new
+              cfsvolume_tmp.deserialize(i)
+              @CFSVolumes << cfsvolume_tmp
+            end
+          end
+          unless params['COSVolumes'].nil?
+            @COSVolumes = []
+            params['COSVolumes'].each do |i|
+              cosvolume_tmp = COSVolume.new
+              cosvolume_tmp.deserialize(i)
+              @COSVolumes << cosvolume_tmp
+            end
+          end
+          unless params['VolumeMounts'].nil?
+            @VolumeMounts = []
+            params['VolumeMounts'].each do |i|
+              volumemount_tmp = VolumeMount.new
+              volumemount_tmp.deserialize(i)
+              @VolumeMounts << volumemount_tmp
+            end
+          end
+          unless params['Labels'].nil?
+            @Labels = []
+            params['Labels'].each do |i|
+              tkelabel_tmp = TkeLabel.new
+              tkelabel_tmp.deserialize(i)
+              @Labels << tkelabel_tmp
+            end
+          end
+          unless params['Tolerations'].nil?
+            @Tolerations = []
+            params['Tolerations'].each do |i|
+              toleration_tmp = Toleration.new
+              toleration_tmp.deserialize(i)
+              @Tolerations << toleration_tmp
+            end
+          end
+          unless params['Envs'].nil?
+            @Envs = []
+            params['Envs'].each do |i|
+              namevalue_tmp = NameValue.new
+              namevalue_tmp.deserialize(i)
+              @Envs << namevalue_tmp
+            end
+          end
+          unless params['DependServices'].nil?
+            @DependServices = []
+            params['DependServices'].each do |i|
+              dependservice_tmp = DependService.new
+              dependservice_tmp.deserialize(i)
+              @DependServices << dependservice_tmp
+            end
+          end
+          @SupportToken = params['SupportToken']
+          unless params['CFSTurboVolumes'].nil?
+            @CFSTurboVolumes = []
+            params['CFSTurboVolumes'].each do |i|
+              cfsturbovolume_tmp = CFSTurboVolume.new
+              cfsturbovolume_tmp.deserialize(i)
+              @CFSTurboVolumes << cfsturbovolume_tmp
+            end
+          end
+        end
+      end
+
+      # 创建DynamicInstance提交的表单数据中的group部分
+      class DynamicInstanceGroup < TencentCloud::Common::AbstractModel
+        # @param GroupType: <p>资源组类型</p>
+        # @type GroupType: String
+        # @param GroupName: <p>资源组名称</p>
+        # @type GroupName: String
+        # @param PodCpu: <p>pod cpu核数</p>
+        # @type PodCpu: Integer
+        # @param PodMem: <p>pod mem大小（GB）</p>
+        # @type PodMem: Integer
+        # @param PodGpuType: <p>pod gpu类型</p>
+        # @type PodGpuType: String
+        # @param PodGpu: <p>pod gpu块数</p>
+        # @type PodGpu: Integer
+        # @param PodNum: <p>pod个数</p>
+        # @type PodNum: Integer
+        # @param MinPodNum: <p>pod弹性最小个数</p>
+        # @type MinPodNum: Integer
+        # @param MaxPodNum: <p>pod弹性最大个数，当MaxPodNum &gt; MinPodNum时，默认表示开启弹性扩缩容，将在范围内扩缩容</p>
+        # @type MaxPodNum: Integer
+        # @param SupportPV: <p>是否支持存储配置</p>
+        # @type SupportPV: Boolean
+        # @param CBSVolumes: <p>cbs存储卷列表</p>
+        # @type CBSVolumes: Array
+        # @param CFSVolumes: <p>cfs存储卷列表</p>
+        # @type CFSVolumes: Array
+        # @param COSVolumes: <p>cos存储卷列表</p>
+        # @type COSVolumes: Array
+        # @param VolumeMounts: <p>挂载卷列表</p>
+        # @type VolumeMounts: Array
+        # @param Labels: <p>pod标签</p>
+        # @type Labels: Array
+        # @param Tolerations: <p>Tolerations定义</p>
+        # @type Tolerations: Array
+        # @param Envs: <p>环境变量</p>
+        # @type Envs: Array
+        # @param SchedulingPolicy: <p>节点调度策略</p>
+        # @type SchedulingPolicy: String
+        # @param ResourceLabel: <p>资源标签</p>
+        # @type ResourceLabel: String
+        # @param PodGpuResourceKey: <p>GPU资源厂商key</p>
+        # @type PodGpuResourceKey: String
+        # @param CFSTurboVolumes: <p>CFS Turbo 挂载列表</p>
+        # @type CFSTurboVolumes: Array
+
+        attr_accessor :GroupType, :GroupName, :PodCpu, :PodMem, :PodGpuType, :PodGpu, :PodNum, :MinPodNum, :MaxPodNum, :SupportPV, :CBSVolumes, :CFSVolumes, :COSVolumes, :VolumeMounts, :Labels, :Tolerations, :Envs, :SchedulingPolicy, :ResourceLabel, :PodGpuResourceKey, :CFSTurboVolumes
+
+        def initialize(grouptype=nil, groupname=nil, podcpu=nil, podmem=nil, podgputype=nil, podgpu=nil, podnum=nil, minpodnum=nil, maxpodnum=nil, supportpv=nil, cbsvolumes=nil, cfsvolumes=nil, cosvolumes=nil, volumemounts=nil, labels=nil, tolerations=nil, envs=nil, schedulingpolicy=nil, resourcelabel=nil, podgpuresourcekey=nil, cfsturbovolumes=nil)
+          @GroupType = grouptype
+          @GroupName = groupname
+          @PodCpu = podcpu
+          @PodMem = podmem
+          @PodGpuType = podgputype
+          @PodGpu = podgpu
+          @PodNum = podnum
+          @MinPodNum = minpodnum
+          @MaxPodNum = maxpodnum
+          @SupportPV = supportpv
+          @CBSVolumes = cbsvolumes
+          @CFSVolumes = cfsvolumes
+          @COSVolumes = cosvolumes
+          @VolumeMounts = volumemounts
+          @Labels = labels
+          @Tolerations = tolerations
+          @Envs = envs
+          @SchedulingPolicy = schedulingpolicy
+          @ResourceLabel = resourcelabel
+          @PodGpuResourceKey = podgpuresourcekey
+          @CFSTurboVolumes = cfsturbovolumes
+        end
+
+        def deserialize(params)
+          @GroupType = params['GroupType']
+          @GroupName = params['GroupName']
+          @PodCpu = params['PodCpu']
+          @PodMem = params['PodMem']
+          @PodGpuType = params['PodGpuType']
+          @PodGpu = params['PodGpu']
+          @PodNum = params['PodNum']
+          @MinPodNum = params['MinPodNum']
+          @MaxPodNum = params['MaxPodNum']
+          @SupportPV = params['SupportPV']
+          unless params['CBSVolumes'].nil?
+            @CBSVolumes = []
+            params['CBSVolumes'].each do |i|
+              cbsvolume_tmp = CBSVolume.new
+              cbsvolume_tmp.deserialize(i)
+              @CBSVolumes << cbsvolume_tmp
+            end
+          end
+          unless params['CFSVolumes'].nil?
+            @CFSVolumes = []
+            params['CFSVolumes'].each do |i|
+              cfsvolume_tmp = CFSVolume.new
+              cfsvolume_tmp.deserialize(i)
+              @CFSVolumes << cfsvolume_tmp
+            end
+          end
+          unless params['COSVolumes'].nil?
+            @COSVolumes = []
+            params['COSVolumes'].each do |i|
+              cosvolume_tmp = COSVolume.new
+              cosvolume_tmp.deserialize(i)
+              @COSVolumes << cosvolume_tmp
+            end
+          end
+          unless params['VolumeMounts'].nil?
+            @VolumeMounts = []
+            params['VolumeMounts'].each do |i|
+              volumemount_tmp = VolumeMount.new
+              volumemount_tmp.deserialize(i)
+              @VolumeMounts << volumemount_tmp
+            end
+          end
+          unless params['Labels'].nil?
+            @Labels = []
+            params['Labels'].each do |i|
+              tkelabel_tmp = TkeLabel.new
+              tkelabel_tmp.deserialize(i)
+              @Labels << tkelabel_tmp
+            end
+          end
+          unless params['Tolerations'].nil?
+            @Tolerations = []
+            params['Tolerations'].each do |i|
+              toleration_tmp = Toleration.new
+              toleration_tmp.deserialize(i)
+              @Tolerations << toleration_tmp
+            end
+          end
+          unless params['Envs'].nil?
+            @Envs = []
+            params['Envs'].each do |i|
+              namevalue_tmp = NameValue.new
+              namevalue_tmp.deserialize(i)
+              @Envs << namevalue_tmp
+            end
+          end
+          @SchedulingPolicy = params['SchedulingPolicy']
+          @ResourceLabel = params['ResourceLabel']
+          @PodGpuResourceKey = params['PodGpuResourceKey']
+          unless params['CFSTurboVolumes'].nil?
+            @CFSTurboVolumes = []
+            params['CFSTurboVolumes'].each do |i|
+              cfsturbovolume_tmp = CFSTurboVolume.new
+              cfsturbovolume_tmp.deserialize(i)
+              @CFSTurboVolumes << cfsturbovolume_tmp
+            end
+          end
+        end
+      end
+
       # POD浮动规格
       class DynamicPodSpec < TencentCloud::Common::AbstractModel
         # @param RequestCpu: 需求最小cpu核数
@@ -7415,6 +7974,71 @@ module TencentCloud
 
         def deserialize(params)
           @VolumePath = params['VolumePath']
+        end
+      end
+
+      # 镜像信息
+      class ImageInfo < TencentCloud::Common::AbstractModel
+        # @param Region: 镜像所属地域
+        # @type Region: String
+        # @param RegistryId: tcr实例Id
+        # @type RegistryId: String
+        # @param DomainName: 域名
+        # @type DomainName: String
+        # @param NamespaceName: 命名空间
+        # @type NamespaceName: String
+        # @param RepositoryName: 镜像仓库名称
+        # @type RepositoryName: String
+        # @param ImageVersion: 镜像版本
+        # @type ImageVersion: String
+        # @param ImagePullPolicy: 镜像拉取策略
+        # @type ImagePullPolicy: String
+        # @param Image: 镜像地址
+        # @type Image: String
+
+        attr_accessor :Region, :RegistryId, :DomainName, :NamespaceName, :RepositoryName, :ImageVersion, :ImagePullPolicy, :Image
+
+        def initialize(region=nil, registryid=nil, domainname=nil, namespacename=nil, repositoryname=nil, imageversion=nil, imagepullpolicy=nil, image=nil)
+          @Region = region
+          @RegistryId = registryid
+          @DomainName = domainname
+          @NamespaceName = namespacename
+          @RepositoryName = repositoryname
+          @ImageVersion = imageversion
+          @ImagePullPolicy = imagepullpolicy
+          @Image = image
+        end
+
+        def deserialize(params)
+          @Region = params['Region']
+          @RegistryId = params['RegistryId']
+          @DomainName = params['DomainName']
+          @NamespaceName = params['NamespaceName']
+          @RepositoryName = params['RepositoryName']
+          @ImageVersion = params['ImageVersion']
+          @ImagePullPolicy = params['ImagePullPolicy']
+          @Image = params['Image']
+        end
+      end
+
+      # 镜像获取密钥
+      class ImagePullSecret < TencentCloud::Common::AbstractModel
+        # @param SourceNamespace: 源密钥所在命名空间
+        # @type SourceNamespace: String
+        # @param SecretNames: 密钥名称列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SecretNames: Array
+
+        attr_accessor :SourceNamespace, :SecretNames
+
+        def initialize(sourcenamespace=nil, secretnames=nil)
+          @SourceNamespace = sourcenamespace
+          @SecretNames = secretnames
+        end
+
+        def deserialize(params)
+          @SourceNamespace = params['SourceNamespace']
+          @SecretNames = params['SecretNames']
         end
       end
 
@@ -9149,6 +9773,202 @@ module TencentCloud
         end
       end
 
+      # 更新DynamicInstance提交的表单数据
+      class ModifyDynamicInstanceForm < TencentCloud::Common::AbstractModel
+        # @param ModifyScope: <p>更新作用域：<br>1：添加workerGroup（DynamicInstance级别）<br>2：更新存储配置（DynamicInstance级别）<br>3：更新标签配置（DynamicInstance级别）<br>4：更新高级配置（DynamicInstance级别）<br>5：更新PodCpu、PodMem（DynamicInstance-group级别）<br>6：更新PodNum、MinPodNum、MaxPodNum（DynamicInstance-group级别）<br>7：更新存储配置（DynamicInstance-group级别）<br>8：更新标签配置（DynamicInstance-group级别）</p>
+        # @type ModifyScope: Integer
+        # @param AddDynamicInstanceGroup: <p>添加的workerGroup信息</p>
+        # @type AddDynamicInstanceGroup: :class:`Tencentcloud::Emr.v20190103.models.DynamicInstanceGroup`
+        # @param SupportPV: <p>是否支持存储配置</p>
+        # @type SupportPV: Boolean
+        # @param CBSVolumes: <p>cbs存储卷列表</p>
+        # @type CBSVolumes: Array
+        # @param CFSVolumes: <p>cfs存储卷列表，不包含cfs turbo列表</p>
+        # @type CFSVolumes: Array
+        # @param COSVolumes: <p>cos存储卷列表</p>
+        # @type COSVolumes: Array
+        # @param VolumeMounts: <p>挂载卷列表</p>
+        # @type VolumeMounts: Array
+        # @param Labels: <p>pod标签</p>
+        # @type Labels: Array
+        # @param Tolerations: <p>Tolerations定义</p>
+        # @type Tolerations: Array
+        # @param Envs: <p>环境变量</p>
+        # @type Envs: Array
+        # @param DependServices: <p>依赖外部组件</p>
+        # @type DependServices: Array
+        # @param SupportNewToken: <p>是否生成新token鉴权</p>
+        # @type SupportNewToken: Boolean
+        # @param ModifyDynamicInstanceGroup: <p>DynamicInstance-group级别的更新信息</p>
+        # @type ModifyDynamicInstanceGroup: :class:`Tencentcloud::Emr.v20190103.models.DynamicInstanceGroup`
+        # @param CFSTurboVolumes: <p>cfs turbo挂载列表，不包含标准版</p>
+        # @type CFSTurboVolumes: Array
+
+        attr_accessor :ModifyScope, :AddDynamicInstanceGroup, :SupportPV, :CBSVolumes, :CFSVolumes, :COSVolumes, :VolumeMounts, :Labels, :Tolerations, :Envs, :DependServices, :SupportNewToken, :ModifyDynamicInstanceGroup, :CFSTurboVolumes
+
+        def initialize(modifyscope=nil, adddynamicinstancegroup=nil, supportpv=nil, cbsvolumes=nil, cfsvolumes=nil, cosvolumes=nil, volumemounts=nil, labels=nil, tolerations=nil, envs=nil, dependservices=nil, supportnewtoken=nil, modifydynamicinstancegroup=nil, cfsturbovolumes=nil)
+          @ModifyScope = modifyscope
+          @AddDynamicInstanceGroup = adddynamicinstancegroup
+          @SupportPV = supportpv
+          @CBSVolumes = cbsvolumes
+          @CFSVolumes = cfsvolumes
+          @COSVolumes = cosvolumes
+          @VolumeMounts = volumemounts
+          @Labels = labels
+          @Tolerations = tolerations
+          @Envs = envs
+          @DependServices = dependservices
+          @SupportNewToken = supportnewtoken
+          @ModifyDynamicInstanceGroup = modifydynamicinstancegroup
+          @CFSTurboVolumes = cfsturbovolumes
+        end
+
+        def deserialize(params)
+          @ModifyScope = params['ModifyScope']
+          unless params['AddDynamicInstanceGroup'].nil?
+            @AddDynamicInstanceGroup = DynamicInstanceGroup.new
+            @AddDynamicInstanceGroup.deserialize(params['AddDynamicInstanceGroup'])
+          end
+          @SupportPV = params['SupportPV']
+          unless params['CBSVolumes'].nil?
+            @CBSVolumes = []
+            params['CBSVolumes'].each do |i|
+              cbsvolume_tmp = CBSVolume.new
+              cbsvolume_tmp.deserialize(i)
+              @CBSVolumes << cbsvolume_tmp
+            end
+          end
+          unless params['CFSVolumes'].nil?
+            @CFSVolumes = []
+            params['CFSVolumes'].each do |i|
+              cfsvolume_tmp = CFSVolume.new
+              cfsvolume_tmp.deserialize(i)
+              @CFSVolumes << cfsvolume_tmp
+            end
+          end
+          unless params['COSVolumes'].nil?
+            @COSVolumes = []
+            params['COSVolumes'].each do |i|
+              cosvolume_tmp = COSVolume.new
+              cosvolume_tmp.deserialize(i)
+              @COSVolumes << cosvolume_tmp
+            end
+          end
+          unless params['VolumeMounts'].nil?
+            @VolumeMounts = []
+            params['VolumeMounts'].each do |i|
+              volumemount_tmp = VolumeMount.new
+              volumemount_tmp.deserialize(i)
+              @VolumeMounts << volumemount_tmp
+            end
+          end
+          unless params['Labels'].nil?
+            @Labels = []
+            params['Labels'].each do |i|
+              tkelabel_tmp = TkeLabel.new
+              tkelabel_tmp.deserialize(i)
+              @Labels << tkelabel_tmp
+            end
+          end
+          unless params['Tolerations'].nil?
+            @Tolerations = []
+            params['Tolerations'].each do |i|
+              toleration_tmp = Toleration.new
+              toleration_tmp.deserialize(i)
+              @Tolerations << toleration_tmp
+            end
+          end
+          unless params['Envs'].nil?
+            @Envs = []
+            params['Envs'].each do |i|
+              namevalue_tmp = NameValue.new
+              namevalue_tmp.deserialize(i)
+              @Envs << namevalue_tmp
+            end
+          end
+          unless params['DependServices'].nil?
+            @DependServices = []
+            params['DependServices'].each do |i|
+              dependservice_tmp = DependService.new
+              dependservice_tmp.deserialize(i)
+              @DependServices << dependservice_tmp
+            end
+          end
+          @SupportNewToken = params['SupportNewToken']
+          unless params['ModifyDynamicInstanceGroup'].nil?
+            @ModifyDynamicInstanceGroup = DynamicInstanceGroup.new
+            @ModifyDynamicInstanceGroup.deserialize(params['ModifyDynamicInstanceGroup'])
+          end
+          unless params['CFSTurboVolumes'].nil?
+            @CFSTurboVolumes = []
+            params['CFSTurboVolumes'].each do |i|
+              cfsturbovolume_tmp = CFSTurboVolume.new
+              cfsturbovolume_tmp.deserialize(i)
+              @CFSTurboVolumes << cfsturbovolume_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyDynamicInstance请求参数结构体
+      class ModifyDynamicInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>EMR集群id</p>
+        # @type InstanceId: String
+        # @param ServiceName: <p>支持DynamicInstance的服务名称</p>
+        # @type ServiceName: String
+        # @param DynamicInstanceType: <p>DynamicInstance类型</p><p>枚举值：</p><ul><li>RayCluster： RayCluster类型</li></ul>
+        # @type DynamicInstanceType: String
+        # @param DynamicInstanceId: <p>DynamicInstance的id</p>
+        # @type DynamicInstanceId: Integer
+        # @param DynamicInstanceForm: <p>更新表单配置（每个更新域都传递最新的内容，要完整）</p>
+        # @type DynamicInstanceForm: :class:`Tencentcloud::Emr.v20190103.models.ModifyDynamicInstanceForm`
+        # @param DynamicInstanceYaml: <p>更新YAML配置</p>
+        # @type DynamicInstanceYaml: String
+
+        attr_accessor :InstanceId, :ServiceName, :DynamicInstanceType, :DynamicInstanceId, :DynamicInstanceForm, :DynamicInstanceYaml
+
+        def initialize(instanceid=nil, servicename=nil, dynamicinstancetype=nil, dynamicinstanceid=nil, dynamicinstanceform=nil, dynamicinstanceyaml=nil)
+          @InstanceId = instanceid
+          @ServiceName = servicename
+          @DynamicInstanceType = dynamicinstancetype
+          @DynamicInstanceId = dynamicinstanceid
+          @DynamicInstanceForm = dynamicinstanceform
+          @DynamicInstanceYaml = dynamicinstanceyaml
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @ServiceName = params['ServiceName']
+          @DynamicInstanceType = params['DynamicInstanceType']
+          @DynamicInstanceId = params['DynamicInstanceId']
+          unless params['DynamicInstanceForm'].nil?
+            @DynamicInstanceForm = ModifyDynamicInstanceForm.new
+            @DynamicInstanceForm.deserialize(params['DynamicInstanceForm'])
+          end
+          @DynamicInstanceYaml = params['DynamicInstanceYaml']
+        end
+      end
+
+      # ModifyDynamicInstance返回参数结构体
+      class ModifyDynamicInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: <p>异步流程id</p>
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :RequestId
+
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyGlobalConfig请求参数结构体
       class ModifyGlobalConfigRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: emr集群的英文id
@@ -10163,6 +10983,26 @@ module TencentCloud
             @ResourceSpec = NewResourceSpec.new
             @ResourceSpec.deserialize(params['ResourceSpec'])
           end
+        end
+      end
+
+      # NameValue 键值
+      class NameValue < TencentCloud::Common::AbstractModel
+        # @param Name: name
+        # @type Name: String
+        # @param Value: value
+        # @type Value: String
+
+        attr_accessor :Name, :Value
+
+        def initialize(name=nil, value=nil)
+          @Name = name
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Value = params['Value']
         end
       end
 
@@ -12382,6 +13222,46 @@ module TencentCloud
           @RemainingQuota = params['RemainingQuota']
           @TotalQuota = params['TotalQuota']
           @Zone = params['Zone']
+        end
+      end
+
+      # RayCluster
+      class RayCluster < TencentCloud::Common::AbstractModel
+        # @param RayClusterName: <p>RayCluster 集群名</p>
+        # @type RayClusterName: String
+        # @param RayClusterId: <p>RayCluster 集群 id</p>
+        # @type RayClusterId: Integer
+        # @param PodCount: <p>pod 数量</p>
+        # @type PodCount: Integer
+        # @param CreateTime: <p>集群创建时间</p>
+        # @type CreateTime: String
+        # @param RedisCount: <p>redis 实例数量</p>
+        # @type RedisCount: Integer
+        # @param SubmitType: <p>创建类型</p><p>枚举值：</p><ul><li>1： 表单创建</li><li>2： yaml创建</li></ul>
+        # @type SubmitType: Integer
+        # @param DashboardUrl: <p>head访问地址,也是dashboard地址</p>
+        # @type DashboardUrl: String
+
+        attr_accessor :RayClusterName, :RayClusterId, :PodCount, :CreateTime, :RedisCount, :SubmitType, :DashboardUrl
+
+        def initialize(rayclustername=nil, rayclusterid=nil, podcount=nil, createtime=nil, rediscount=nil, submittype=nil, dashboardurl=nil)
+          @RayClusterName = rayclustername
+          @RayClusterId = rayclusterid
+          @PodCount = podcount
+          @CreateTime = createtime
+          @RedisCount = rediscount
+          @SubmitType = submittype
+          @DashboardUrl = dashboardurl
+        end
+
+        def deserialize(params)
+          @RayClusterName = params['RayClusterName']
+          @RayClusterId = params['RayClusterId']
+          @PodCount = params['PodCount']
+          @CreateTime = params['CreateTime']
+          @RedisCount = params['RedisCount']
+          @SubmitType = params['SubmitType']
+          @DashboardUrl = params['DashboardUrl']
         end
       end
 
@@ -14814,6 +15694,50 @@ module TencentCloud
         end
       end
 
+      # TerminateDynamicInstances请求参数结构体
+      class TerminateDynamicInstancesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>EMR集群id</p>
+        # @type InstanceId: String
+        # @param DynamicInstanceType: <p>DynamicInstance类型</p><p>枚举值：</p><ul><li>RayCluster： RayCluster类型</li></ul>
+        # @type DynamicInstanceType: String
+        # @param DynamicInstanceIds: <p>yaml创建信息</p>
+        # @type DynamicInstanceIds: Array
+
+        attr_accessor :InstanceId, :DynamicInstanceType, :DynamicInstanceIds
+
+        def initialize(instanceid=nil, dynamicinstancetype=nil, dynamicinstanceids=nil)
+          @InstanceId = instanceid
+          @DynamicInstanceType = dynamicinstancetype
+          @DynamicInstanceIds = dynamicinstanceids
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @DynamicInstanceType = params['DynamicInstanceType']
+          @DynamicInstanceIds = params['DynamicInstanceIds']
+        end
+      end
+
+      # TerminateDynamicInstances返回参数结构体
+      class TerminateDynamicInstancesResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: <p>异步流程id</p>
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :RequestId
+
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # TerminateInstance请求参数结构体
       class TerminateInstanceRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: <p>实例ID。</p>
@@ -15491,6 +16415,38 @@ module TencentCloud
         def deserialize(params)
           @VpcId = params['VpcId']
           @SubnetId = params['SubnetId']
+        end
+      end
+
+      # 挂载卷
+      class VolumeMount < TencentCloud::Common::AbstractModel
+        # @param MountName: 挂载卷名称
+        # @type MountName: String
+        # @param MountPath: 挂载路径
+        # @type MountPath: String
+        # @param SubPathMode: 挂载类型
+        # @type SubPathMode: String
+        # @param SubPath: 子路径
+        # @type SubPath: String
+        # @param MountMode: 挂载模式，仅支持ReadWrite和OnlyRead
+        # @type MountMode: String
+
+        attr_accessor :MountName, :MountPath, :SubPathMode, :SubPath, :MountMode
+
+        def initialize(mountname=nil, mountpath=nil, subpathmode=nil, subpath=nil, mountmode=nil)
+          @MountName = mountname
+          @MountPath = mountpath
+          @SubPathMode = subpathmode
+          @SubPath = subpath
+          @MountMode = mountmode
+        end
+
+        def deserialize(params)
+          @MountName = params['MountName']
+          @MountPath = params['MountPath']
+          @SubPathMode = params['SubPathMode']
+          @SubPath = params['SubPath']
+          @MountMode = params['MountMode']
         end
       end
 

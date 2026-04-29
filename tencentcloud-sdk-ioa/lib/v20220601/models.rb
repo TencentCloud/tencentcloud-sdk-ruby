@@ -292,6 +292,91 @@ module TencentCloud
         end
       end
 
+      # 创建业务资源响应的数据
+      class CreateBusinessResourceData < TencentCloud::Common::AbstractModel
+        # @param ServiceId: 创建成功的业务资源数据id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceId: Integer
+
+        attr_accessor :ServiceId
+
+        def initialize(serviceid=nil)
+          @ServiceId = serviceid
+        end
+
+        def deserialize(params)
+          @ServiceId = params['ServiceId']
+        end
+      end
+
+      # CreateBusinessResource请求参数结构体
+      class CreateBusinessResourceRequest < TencentCloud::Common::AbstractModel
+        # @param AreaId: 业务资源所在的模块id，没有资源模块先创建资源模块(只支持32位)
+        # @type AreaId: Integer
+        # @param Protocol: 业务资源协议类型, 1:UDP, 2:TCP, 3:所有协议(只支持32位)
+        # @type Protocol: Integer
+        # @param ServiceName: 业务资源名称，同一个资源模块下面不可重复
+        # @type ServiceName: String
+        # @param ServiceType: 业务资源类型:ip,domain,ip_section，对应ip、域名、ip段
+        # @type ServiceType: String
+        # @param ServicePort: 业务资源端口 all,1-65535
+        # @type ServicePort: String
+        # @param Levels: 业务资源优先级 1-65535(只支持32位)
+        # @type Levels: Integer
+        # @param ServiceAddress: 业务资源地址(ip、域名、ip段)
+        # @type ServiceAddress: String
+        # @param DirectConn: 是否走代理,该参数不传，默认为0, 2：内外网直连，1：内网直连， 0：不启用代理配置(只支持32位)
+        # @type DirectConn: Integer
+
+        attr_accessor :AreaId, :Protocol, :ServiceName, :ServiceType, :ServicePort, :Levels, :ServiceAddress, :DirectConn
+
+        def initialize(areaid=nil, protocol=nil, servicename=nil, servicetype=nil, serviceport=nil, levels=nil, serviceaddress=nil, directconn=nil)
+          @AreaId = areaid
+          @Protocol = protocol
+          @ServiceName = servicename
+          @ServiceType = servicetype
+          @ServicePort = serviceport
+          @Levels = levels
+          @ServiceAddress = serviceaddress
+          @DirectConn = directconn
+        end
+
+        def deserialize(params)
+          @AreaId = params['AreaId']
+          @Protocol = params['Protocol']
+          @ServiceName = params['ServiceName']
+          @ServiceType = params['ServiceType']
+          @ServicePort = params['ServicePort']
+          @Levels = params['Levels']
+          @ServiceAddress = params['ServiceAddress']
+          @DirectConn = params['DirectConn']
+        end
+      end
+
+      # CreateBusinessResource返回参数结构体
+      class CreateBusinessResourceResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 创建业务资源响应的数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Ioa.v20220601.models.CreateBusinessResourceData`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = CreateBusinessResourceData.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 文件鉴定任务分页数据
       class CreateDLPFileDetectTaskData < TencentCloud::Common::AbstractModel
         # @param TaskRequestId: 任务请求唯一Id
@@ -813,6 +898,107 @@ module TencentCloud
         end
       end
 
+      # 数据集
+      class DescribeAccountResourcesData < TencentCloud::Common::AbstractModel
+        # @param Items: 资源对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Items: Array
+
+        attr_accessor :Items
+
+        def initialize(items=nil)
+          @Items = items
+        end
+
+        def deserialize(params)
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              describeaccountresourcesitems_tmp = DescribeAccountResourcesItems.new
+              describeaccountresourcesitems_tmp.deserialize(i)
+              @Items << describeaccountresourcesitems_tmp
+            end
+          end
+        end
+      end
+
+      # 资源对象
+      class DescribeAccountResourcesItems < TencentCloud::Common::AbstractModel
+        # @param AreaId: 资源组id(只支持32位)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AreaId: Integer
+        # @param Description: 描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param ResourceType: 资源类型(只支持32位)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceType: Integer
+        # @param ResourceId: 资源id(只支持32位)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceId: Integer
+        # @param FromSourceId: 一般同id字段相同(只支持32位)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FromSourceId: Integer
+        # @param IsInherited: 是否继承过来的资源
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsInherited: Boolean
+        # @param ExpireTime: 资源过期时间(只支持32位)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExpireTime: Integer
+        # @param NamePath: 账户组的namepath
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NamePath: String
+        # @param AccessType: 访问类型:0-NGN 1-web(只支持32位)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccessType: Integer
+        # @param ResourceName: 资源名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceName: String
+        # @param IsInheritedSwitch: 继承开关状态(只支持32位)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsInheritedSwitch: Integer
+        # @param Id: 关系id(只支持32位)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: Integer
+        # @param AreaName: 资源名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AreaName: String
+
+        attr_accessor :AreaId, :Description, :ResourceType, :ResourceId, :FromSourceId, :IsInherited, :ExpireTime, :NamePath, :AccessType, :ResourceName, :IsInheritedSwitch, :Id, :AreaName
+
+        def initialize(areaid=nil, description=nil, resourcetype=nil, resourceid=nil, fromsourceid=nil, isinherited=nil, expiretime=nil, namepath=nil, accesstype=nil, resourcename=nil, isinheritedswitch=nil, id=nil, areaname=nil)
+          @AreaId = areaid
+          @Description = description
+          @ResourceType = resourcetype
+          @ResourceId = resourceid
+          @FromSourceId = fromsourceid
+          @IsInherited = isinherited
+          @ExpireTime = expiretime
+          @NamePath = namepath
+          @AccessType = accesstype
+          @ResourceName = resourcename
+          @IsInheritedSwitch = isinheritedswitch
+          @Id = id
+          @AreaName = areaname
+        end
+
+        def deserialize(params)
+          @AreaId = params['AreaId']
+          @Description = params['Description']
+          @ResourceType = params['ResourceType']
+          @ResourceId = params['ResourceId']
+          @FromSourceId = params['FromSourceId']
+          @IsInherited = params['IsInherited']
+          @ExpireTime = params['ExpireTime']
+          @NamePath = params['NamePath']
+          @AccessType = params['AccessType']
+          @ResourceName = params['ResourceName']
+          @IsInheritedSwitch = params['IsInheritedSwitch']
+          @Id = params['Id']
+          @AreaName = params['AreaName']
+        end
+      end
+
       # 业务响应数据
       class DescribeAggrSoftCategorySoftListData < TencentCloud::Common::AbstractModel
         # @param Page: 分页公共对象
@@ -1122,6 +1308,332 @@ module TencentCloud
         def deserialize(params)
           unless params['Data'].nil?
             @Data = DescribeAggrSoftDeviceListData.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 业务资源列表数据对象集合
+      class DescribeBusinessResourceData < TencentCloud::Common::AbstractModel
+        # @param ServiceId: <p>业务资源id(只支持32位)</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceId: Integer
+        # @param ServiceName: <p>业务资源名称</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceName: String
+        # @param ServiceType: <p>资源类型:ip,domain,ip_section，对应ip，域名，ip段</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceType: String
+        # @param ServiceAddress: <p>业务资源地址</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceAddress: String
+        # @param ServicePort: <p>业务资源端口 all,1-65535</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServicePort: String
+        # @param CreateTime: <p>业务资源创建时间</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param UpdateTime: <p>业务资源最后修改时间</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+        # @param Remark: <p>说明字段</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Remark: String
+        # @param AreaId: <p>资源模块ID(只支持32位)</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AreaId: Integer
+        # @param SmartGateIds: <p>零信任网关id(只支持32位)</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SmartGateIds: Array
+        # @param Protocol: <p>业务资源协议类型,3：所有,2：UDP，1：TCP(只支持32位)</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Protocol: Integer
+        # @param Levels: <p>业务资源等级(只支持32位)</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Levels: Integer
+        # @param SmartGateNames: <p>零信任网关名称</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SmartGateNames: String
+        # @param DirectConn: <p>网关连通性(只支持32位)</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DirectConn: Integer
+        # @param DetectState: <p>网关连通性状态(只支持32位)</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DetectState: Integer
+        # @param DetectInfo: <p>网关连通性信息</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DetectInfo: String
+        # @param DetectTime: <p>网关连通性创建时间</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DetectTime: String
+        # @param ConnectorGroupId: <p>绑定的连接器组Id</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConnectorGroupId: String
+        # @param ConnectorGroupName: <p>绑定的连接器组的名称</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConnectorGroupName: String
+        # @param ReachableTime: <p>资源连通性可达最后的检测时间</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReachableTime: String
+        # @param ReachableState: <p>资源连通性可达状态,0：未检测，1：未连通，2：已连通</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReachableState: Integer
+        # @param AccessType: <p>访问类型:0-NGN 1-web(只支持32位)</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccessType: Integer
+        # @param BackendScheme: <p>web资源-后端协议</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BackendScheme: String
+        # @param BackendPath: <p>web资源-后端路径</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BackendPath: String
+        # @param FrontScheme: <p>web资源-前端协议</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FrontScheme: String
+        # @param FrontHost: <p>web资源-前端host</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FrontHost: String
+        # @param FrontPort: <p>web资源-前端host(只支持32位)</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FrontPort: Integer
+        # @param FrontPath: <p>web资源-前端路径 默认&quot;/&quot;</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FrontPath: String
+        # @param DisableFront: <p>web资源-是否禁用外网访问：0-可通过外网访问 1-不能通过外网访问(只支持32位)</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DisableFront: Integer
+        # @param CustomDomain: <p>web资源-租户自定义域名</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CustomDomain: String
+        # @param CustomHost: <p>web资源-自定义host</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CustomHost: String
+        # @param CnameStatus: <p>web资源-Cname状态(只支持32位)</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CnameStatus: Integer
+        # @param CertificateId: <p>web资源-关联证书ID(只支持32位)</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CertificateId: Integer
+        # @param WebGwResourceType: <p>web资源类型：0-应用 1-API(只支持32位)</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WebGwResourceType: Integer
+        # @param APISecretId: <p>web资源-如果选择API类型资源，则需要配置密钥(只支持32位)</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type APISecretId: Integer
+        # @param AreaName: <p>所属资源组名称</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AreaName: String
+        # @param SSLCertId: <p>web资源-前端协议是HTTPS类型，需要配置证书</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SSLCertId: String
+        # @param EnableDependentAddr: <p>web资源-是否启用依赖地址：0-不启用 1-启用(只支持32位)</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnableDependentAddr: Integer
+        # @param DependentAddr: <p>web资源-依赖地址的后端服务器地址</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DependentAddr: String
+        # @param WebGwNoAuth: <p>web免鉴权：1-鉴权 2-免鉴权</p>
+        # @type WebGwNoAuth: Integer
+        # @param ConnectorGroupType: <p>通道类型</p><p>枚举值：</p><ul><li>vpc： vpc类型</li><li>native： 专线类型</li></ul><p>默认值：native</p>
+        # @type ConnectorGroupType: String
+        # @param DomainSuffix: <p>域名后缀</p>
+        # @type DomainSuffix: String
+
+        attr_accessor :ServiceId, :ServiceName, :ServiceType, :ServiceAddress, :ServicePort, :CreateTime, :UpdateTime, :Remark, :AreaId, :SmartGateIds, :Protocol, :Levels, :SmartGateNames, :DirectConn, :DetectState, :DetectInfo, :DetectTime, :ConnectorGroupId, :ConnectorGroupName, :ReachableTime, :ReachableState, :AccessType, :BackendScheme, :BackendPath, :FrontScheme, :FrontHost, :FrontPort, :FrontPath, :DisableFront, :CustomDomain, :CustomHost, :CnameStatus, :CertificateId, :WebGwResourceType, :APISecretId, :AreaName, :SSLCertId, :EnableDependentAddr, :DependentAddr, :WebGwNoAuth, :ConnectorGroupType, :DomainSuffix
+
+        def initialize(serviceid=nil, servicename=nil, servicetype=nil, serviceaddress=nil, serviceport=nil, createtime=nil, updatetime=nil, remark=nil, areaid=nil, smartgateids=nil, protocol=nil, levels=nil, smartgatenames=nil, directconn=nil, detectstate=nil, detectinfo=nil, detecttime=nil, connectorgroupid=nil, connectorgroupname=nil, reachabletime=nil, reachablestate=nil, accesstype=nil, backendscheme=nil, backendpath=nil, frontscheme=nil, fronthost=nil, frontport=nil, frontpath=nil, disablefront=nil, customdomain=nil, customhost=nil, cnamestatus=nil, certificateid=nil, webgwresourcetype=nil, apisecretid=nil, areaname=nil, sslcertid=nil, enabledependentaddr=nil, dependentaddr=nil, webgwnoauth=nil, connectorgrouptype=nil, domainsuffix=nil)
+          @ServiceId = serviceid
+          @ServiceName = servicename
+          @ServiceType = servicetype
+          @ServiceAddress = serviceaddress
+          @ServicePort = serviceport
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @Remark = remark
+          @AreaId = areaid
+          @SmartGateIds = smartgateids
+          @Protocol = protocol
+          @Levels = levels
+          @SmartGateNames = smartgatenames
+          @DirectConn = directconn
+          @DetectState = detectstate
+          @DetectInfo = detectinfo
+          @DetectTime = detecttime
+          @ConnectorGroupId = connectorgroupid
+          @ConnectorGroupName = connectorgroupname
+          @ReachableTime = reachabletime
+          @ReachableState = reachablestate
+          @AccessType = accesstype
+          @BackendScheme = backendscheme
+          @BackendPath = backendpath
+          @FrontScheme = frontscheme
+          @FrontHost = fronthost
+          @FrontPort = frontport
+          @FrontPath = frontpath
+          @DisableFront = disablefront
+          @CustomDomain = customdomain
+          @CustomHost = customhost
+          @CnameStatus = cnamestatus
+          @CertificateId = certificateid
+          @WebGwResourceType = webgwresourcetype
+          @APISecretId = apisecretid
+          @AreaName = areaname
+          @SSLCertId = sslcertid
+          @EnableDependentAddr = enabledependentaddr
+          @DependentAddr = dependentaddr
+          @WebGwNoAuth = webgwnoauth
+          @ConnectorGroupType = connectorgrouptype
+          @DomainSuffix = domainsuffix
+        end
+
+        def deserialize(params)
+          @ServiceId = params['ServiceId']
+          @ServiceName = params['ServiceName']
+          @ServiceType = params['ServiceType']
+          @ServiceAddress = params['ServiceAddress']
+          @ServicePort = params['ServicePort']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @Remark = params['Remark']
+          @AreaId = params['AreaId']
+          @SmartGateIds = params['SmartGateIds']
+          @Protocol = params['Protocol']
+          @Levels = params['Levels']
+          @SmartGateNames = params['SmartGateNames']
+          @DirectConn = params['DirectConn']
+          @DetectState = params['DetectState']
+          @DetectInfo = params['DetectInfo']
+          @DetectTime = params['DetectTime']
+          @ConnectorGroupId = params['ConnectorGroupId']
+          @ConnectorGroupName = params['ConnectorGroupName']
+          @ReachableTime = params['ReachableTime']
+          @ReachableState = params['ReachableState']
+          @AccessType = params['AccessType']
+          @BackendScheme = params['BackendScheme']
+          @BackendPath = params['BackendPath']
+          @FrontScheme = params['FrontScheme']
+          @FrontHost = params['FrontHost']
+          @FrontPort = params['FrontPort']
+          @FrontPath = params['FrontPath']
+          @DisableFront = params['DisableFront']
+          @CustomDomain = params['CustomDomain']
+          @CustomHost = params['CustomHost']
+          @CnameStatus = params['CnameStatus']
+          @CertificateId = params['CertificateId']
+          @WebGwResourceType = params['WebGwResourceType']
+          @APISecretId = params['APISecretId']
+          @AreaName = params['AreaName']
+          @SSLCertId = params['SSLCertId']
+          @EnableDependentAddr = params['EnableDependentAddr']
+          @DependentAddr = params['DependentAddr']
+          @WebGwNoAuth = params['WebGwNoAuth']
+          @ConnectorGroupType = params['ConnectorGroupType']
+          @DomainSuffix = params['DomainSuffix']
+        end
+      end
+
+      # 业务资源分页返回对象
+      class DescribeBusinessResourcePageRsp < TencentCloud::Common::AbstractModel
+        # @param Items: 业务资源列表数据对象集合
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Items: Array
+        # @param Page: 分页公共对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Page: :class:`Tencentcloud::Ioa.v20220601.models.Paging`
+
+        attr_accessor :Items, :Page
+
+        def initialize(items=nil, page=nil)
+          @Items = items
+          @Page = page
+        end
+
+        def deserialize(params)
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              describebusinessresourcedata_tmp = DescribeBusinessResourceData.new
+              describebusinessresourcedata_tmp.deserialize(i)
+              @Items << describebusinessresourcedata_tmp
+            end
+          end
+          unless params['Page'].nil?
+            @Page = Paging.new
+            @Page.deserialize(params['Page'])
+          end
+        end
+      end
+
+      # DescribeBusinessResources请求参数结构体
+      class DescribeBusinessResourcesRequest < TencentCloud::Common::AbstractModel
+        # @param AreaId: 资源模块Id
+        # @type AreaId: Integer
+        # @param ServiceName: 搜索的业务资源名称
+        # @type ServiceName: String
+        # @param StartTime: 获取业务资源列表的开始时间，时间格式：2006-01-02
+        # @type StartTime: String
+        # @param Keywords: 搜索关键字
+        # @type Keywords: String
+        # @param EndTime: 获取业务资源列表的结束时间，时间格式：2006-01-02
+        # @type EndTime: String
+        # @param Condition: 滤条件、分页参数。分页内容不传，默认获取第1页，10条数据
+        # 排序条件
+        # <li>CreateTime - string - 是否必填：否 - 排序支持：是 - 按业务资源创建时间排序。</li>
+        # <li>Levels - int - 是否必填：否 - 排序支持：是 - 按业务资源优先级排序。</li>
+        # <li>ReachableState - int - 是否必填：否 - 排序支持：是 - 按业务资源连通性排序(私有化版本不支持)。</li>
+        # @type Condition: :class:`Tencentcloud::Ioa.v20220601.models.Condition`
+        # @param AccessType: 资源类型
+        # @type AccessType: String
+        # @param FrontAddr: web资源前端地址
+        # @type FrontAddr: String
+
+        attr_accessor :AreaId, :ServiceName, :StartTime, :Keywords, :EndTime, :Condition, :AccessType, :FrontAddr
+
+        def initialize(areaid=nil, servicename=nil, starttime=nil, keywords=nil, endtime=nil, condition=nil, accesstype=nil, frontaddr=nil)
+          @AreaId = areaid
+          @ServiceName = servicename
+          @StartTime = starttime
+          @Keywords = keywords
+          @EndTime = endtime
+          @Condition = condition
+          @AccessType = accesstype
+          @FrontAddr = frontaddr
+        end
+
+        def deserialize(params)
+          @AreaId = params['AreaId']
+          @ServiceName = params['ServiceName']
+          @StartTime = params['StartTime']
+          @Keywords = params['Keywords']
+          @EndTime = params['EndTime']
+          unless params['Condition'].nil?
+            @Condition = Condition.new
+            @Condition.deserialize(params['Condition'])
+          end
+          @AccessType = params['AccessType']
+          @FrontAddr = params['FrontAddr']
+        end
+      end
+
+      # DescribeBusinessResources返回参数结构体
+      class DescribeBusinessResourcesResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 业务资源分页返回对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Ioa.v20220601.models.DescribeBusinessResourcePageRsp`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = DescribeBusinessResourcePageRsp.new
             @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
@@ -2334,6 +2846,46 @@ module TencentCloud
         end
       end
 
+      # DescribeDirectAccountGroupResources请求参数结构体
+      class DescribeDirectAccountGroupResourcesRequest < TencentCloud::Common::AbstractModel
+        # @param AccountGroupId: 账户组Id(只支持32位)
+        # @type AccountGroupId: Integer
+
+        attr_accessor :AccountGroupId
+
+        def initialize(accountgroupid=nil)
+          @AccountGroupId = accountgroupid
+        end
+
+        def deserialize(params)
+          @AccountGroupId = params['AccountGroupId']
+        end
+      end
+
+      # DescribeDirectAccountGroupResources返回参数结构体
+      class DescribeDirectAccountGroupResourcesResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 查询的数据集合
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Ioa.v20220601.models.DescribeAccountResourcesData`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = DescribeAccountResourcesData.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 所属组
       class DescribeLocalAccountAccountGroupsData < TencentCloud::Common::AbstractModel
         # @param AccountGroupId: 组Id(只支持32位)
@@ -2543,6 +3095,201 @@ module TencentCloud
         def deserialize(params)
           unless params['Data'].nil?
             @Data = DescribeLocalAccountsPage.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeResourceGrantedAccountsData
+      class DescribeResourceGrantedAccountGroupsData < TencentCloud::Common::AbstractModel
+        # @param Items: 
+        # @type Items: Array
+
+        attr_accessor :Items
+
+        def initialize(items=nil)
+          @Items = items
+        end
+
+        def deserialize(params)
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              grantedaccountgroupitem_tmp = GrantedAccountGroupItem.new
+              grantedaccountgroupitem_tmp.deserialize(i)
+              @Items << grantedaccountgroupitem_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeResourceGrantedAccountGroups请求参数结构体
+      class DescribeResourceGrantedAccountGroupsRequest < TencentCloud::Common::AbstractModel
+        # @param ResourceId: 资源或资源组Id;
+        # @type ResourceId: Integer
+
+        attr_accessor :ResourceId
+
+        def initialize(resourceid=nil)
+          @ResourceId = resourceid
+        end
+
+        def deserialize(params)
+          @ResourceId = params['ResourceId']
+        end
+      end
+
+      # DescribeResourceGrantedAccountGroups返回参数结构体
+      class DescribeResourceGrantedAccountGroupsResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 查询的数据集合
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Ioa.v20220601.models.DescribeResourceGrantedAccountGroupsData`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = DescribeResourceGrantedAccountGroupsData.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeResourceGrantedAccountsData
+      class DescribeResourceGrantedAccountsData < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总数
+        # @type TotalCount: Integer
+        # @param Items: 
+        # @type Items: Array
+
+        attr_accessor :TotalCount, :Items
+
+        def initialize(totalcount=nil, items=nil)
+          @TotalCount = totalcount
+          @Items = items
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              grantedaccountitem_tmp = GrantedAccountItem.new
+              grantedaccountitem_tmp.deserialize(i)
+              @Items << grantedaccountitem_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeResourceGrantedAccounts请求参数结构体
+      class DescribeResourceGrantedAccountsRequest < TencentCloud::Common::AbstractModel
+        # @param ResourceId: 账户组Id(只支持32位)
+        # @type ResourceId: Integer
+
+        attr_accessor :ResourceId
+
+        def initialize(resourceid=nil)
+          @ResourceId = resourceid
+        end
+
+        def deserialize(params)
+          @ResourceId = params['ResourceId']
+        end
+      end
+
+      # DescribeResourceGrantedAccounts返回参数结构体
+      class DescribeResourceGrantedAccountsResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 查询的数据集合
+        # @type Data: :class:`Tencentcloud::Ioa.v20220601.models.DescribeResourceGrantedAccountsData`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = DescribeResourceGrantedAccountsData.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeResourceGrantedAccountsData
+      class DescribeResourceGrantedVirtualGroupsData < TencentCloud::Common::AbstractModel
+        # @param Items: 
+        # @type Items: Array
+
+        attr_accessor :Items
+
+        def initialize(items=nil)
+          @Items = items
+        end
+
+        def deserialize(params)
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              grantedvirtualgroupitem_tmp = GrantedVirtualGroupItem.new
+              grantedvirtualgroupitem_tmp.deserialize(i)
+              @Items << grantedvirtualgroupitem_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeResourceGrantedVirtualGroups请求参数结构体
+      class DescribeResourceGrantedVirtualGroupsRequest < TencentCloud::Common::AbstractModel
+        # @param ResourceId: 资源ID
+        # @type ResourceId: Integer
+        # @param ResourceType: 资源类型
+        # @type ResourceType: Integer
+
+        attr_accessor :ResourceId, :ResourceType
+
+        def initialize(resourceid=nil, resourcetype=nil)
+          @ResourceId = resourceid
+          @ResourceType = resourcetype
+        end
+
+        def deserialize(params)
+          @ResourceId = params['ResourceId']
+          @ResourceType = params['ResourceType']
+        end
+      end
+
+      # DescribeResourceGrantedVirtualGroups返回参数结构体
+      class DescribeResourceGrantedVirtualGroupsResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 查询的数据集合
+        # @type Data: :class:`Tencentcloud::Ioa.v20220601.models.DescribeResourceGrantedVirtualGroupsData`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = DescribeResourceGrantedVirtualGroupsData.new
             @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
@@ -3673,6 +4420,395 @@ module TencentCloud
           @ImportEnable = params['ImportEnable']
           @ImportType = params['ImportType']
           @MiniIamId = params['MiniIamId']
+        end
+      end
+
+      # 授权操作
+      class GrantResourceOperationByAccountGroups < TencentCloud::Common::AbstractModel
+        # @param OperationType: 操作类型: 1-增加授权 2-删除授权;
+        # @type OperationType: Integer
+        # @param ResourceId: 资源或资源组Id
+        # @type ResourceId: Integer
+        # @param ResourceType: 资源类型 ,1:资源 2:资源组
+        # @type ResourceType: Integer
+        # @param ExpireTime: 过期时间,时间戳(秒)
+        # @type ExpireTime: Integer
+        # @param AccountGroupId: 分组id
+        # @type AccountGroupId: Integer
+
+        attr_accessor :OperationType, :ResourceId, :ResourceType, :ExpireTime, :AccountGroupId
+
+        def initialize(operationtype=nil, resourceid=nil, resourcetype=nil, expiretime=nil, accountgroupid=nil)
+          @OperationType = operationtype
+          @ResourceId = resourceid
+          @ResourceType = resourcetype
+          @ExpireTime = expiretime
+          @AccountGroupId = accountgroupid
+        end
+
+        def deserialize(params)
+          @OperationType = params['OperationType']
+          @ResourceId = params['ResourceId']
+          @ResourceType = params['ResourceType']
+          @ExpireTime = params['ExpireTime']
+          @AccountGroupId = params['AccountGroupId']
+        end
+      end
+
+      # 授权操作
+      class GrantResourceOperationByAccounts < TencentCloud::Common::AbstractModel
+        # @param OperationType: 操作类型: 1-增加授权 2-删除授权;
+        # @type OperationType: Integer
+        # @param ResourceId: 资源或资源组Id
+        # @type ResourceId: Integer
+        # @param ResourceType: 资源类型 ,1:资源 2:资源组
+        # @type ResourceType: Integer
+        # @param ExpireTime: 过期时间,时间戳(秒)
+        # @type ExpireTime: Integer
+        # @param AccountUserId: 账号userid
+        # @type AccountUserId: String
+        # @param MenuId: 账号目录ID
+        # @type MenuId: Integer
+
+        attr_accessor :OperationType, :ResourceId, :ResourceType, :ExpireTime, :AccountUserId, :MenuId
+
+        def initialize(operationtype=nil, resourceid=nil, resourcetype=nil, expiretime=nil, accountuserid=nil, menuid=nil)
+          @OperationType = operationtype
+          @ResourceId = resourceid
+          @ResourceType = resourcetype
+          @ExpireTime = expiretime
+          @AccountUserId = accountuserid
+          @MenuId = menuid
+        end
+
+        def deserialize(params)
+          @OperationType = params['OperationType']
+          @ResourceId = params['ResourceId']
+          @ResourceType = params['ResourceType']
+          @ExpireTime = params['ExpireTime']
+          @AccountUserId = params['AccountUserId']
+          @MenuId = params['MenuId']
+        end
+      end
+
+      # 授权操作
+      class GrantResourceOperationByVirtualGroups < TencentCloud::Common::AbstractModel
+        # @param OperationType: 操作类型: 1-增加授权 2-删除授权;
+        # @type OperationType: Integer
+        # @param ResourceId: 资源或资源组Id
+        # @type ResourceId: Integer
+        # @param ResourceType: 资源类型 ,1:资源 2:资源组
+        # @type ResourceType: Integer
+        # @param ExpireTime: 过期时间,时间戳(秒)
+        # @type ExpireTime: Integer
+        # @param VirtualAccountGroupId: 分组id
+        # @type VirtualAccountGroupId: Integer
+
+        attr_accessor :OperationType, :ResourceId, :ResourceType, :ExpireTime, :VirtualAccountGroupId
+
+        def initialize(operationtype=nil, resourceid=nil, resourcetype=nil, expiretime=nil, virtualaccountgroupid=nil)
+          @OperationType = operationtype
+          @ResourceId = resourceid
+          @ResourceType = resourcetype
+          @ExpireTime = expiretime
+          @VirtualAccountGroupId = virtualaccountgroupid
+        end
+
+        def deserialize(params)
+          @OperationType = params['OperationType']
+          @ResourceId = params['ResourceId']
+          @ResourceType = params['ResourceType']
+          @ExpireTime = params['ExpireTime']
+          @VirtualAccountGroupId = params['VirtualAccountGroupId']
+        end
+      end
+
+      # GrantResourcesByAccountGroups请求参数结构体
+      class GrantResourcesByAccountGroupsRequest < TencentCloud::Common::AbstractModel
+        # @param Operations: 
+        # @type Operations: Array
+
+        attr_accessor :Operations
+
+        def initialize(operations=nil)
+          @Operations = operations
+        end
+
+        def deserialize(params)
+          unless params['Operations'].nil?
+            @Operations = []
+            params['Operations'].each do |i|
+              grantresourceoperationbyaccountgroups_tmp = GrantResourceOperationByAccountGroups.new
+              grantresourceoperationbyaccountgroups_tmp.deserialize(i)
+              @Operations << grantresourceoperationbyaccountgroups_tmp
+            end
+          end
+        end
+      end
+
+      # GrantResourcesByAccountGroups返回参数结构体
+      class GrantResourcesByAccountGroupsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GrantResourcesByAccounts请求参数结构体
+      class GrantResourcesByAccountsRequest < TencentCloud::Common::AbstractModel
+        # @param Operations: 
+        # @type Operations: Array
+
+        attr_accessor :Operations
+
+        def initialize(operations=nil)
+          @Operations = operations
+        end
+
+        def deserialize(params)
+          unless params['Operations'].nil?
+            @Operations = []
+            params['Operations'].each do |i|
+              grantresourceoperationbyaccounts_tmp = GrantResourceOperationByAccounts.new
+              grantresourceoperationbyaccounts_tmp.deserialize(i)
+              @Operations << grantresourceoperationbyaccounts_tmp
+            end
+          end
+        end
+      end
+
+      # GrantResourcesByAccounts返回参数结构体
+      class GrantResourcesByAccountsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GrantResourcesByVirtualGroups请求参数结构体
+      class GrantResourcesByVirtualGroupsRequest < TencentCloud::Common::AbstractModel
+        # @param Operations: 
+        # @type Operations: Array
+
+        attr_accessor :Operations
+
+        def initialize(operations=nil)
+          @Operations = operations
+        end
+
+        def deserialize(params)
+          unless params['Operations'].nil?
+            @Operations = []
+            params['Operations'].each do |i|
+              grantresourceoperationbyvirtualgroups_tmp = GrantResourceOperationByVirtualGroups.new
+              grantresourceoperationbyvirtualgroups_tmp.deserialize(i)
+              @Operations << grantresourceoperationbyvirtualgroups_tmp
+            end
+          end
+        end
+      end
+
+      # GrantResourcesByVirtualGroups返回参数结构体
+      class GrantResourcesByVirtualGroupsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GrantedAccountItem
+      class GrantedAccountGroupItem < TencentCloud::Common::AbstractModel
+        # @param AccountGroupId: 账户组Id
+        # @type AccountGroupId: Integer
+        # @param Name: 分组名称
+        # @type Name: String
+        # @param IdPathArray: 所属分组Id
+        # @type IdPathArray: Array
+        # @param NamePathArray: 所属分组NamePathArray
+        # @type NamePathArray: Array
+        # @param AccountCount: 目录id
+        # @type AccountCount: Integer
+        # @param ExpireTime: 过期时间
+        # @type ExpireTime: Integer
+        # @param RelationId: 关联id
+        # @type RelationId: Integer
+
+        attr_accessor :AccountGroupId, :Name, :IdPathArray, :NamePathArray, :AccountCount, :ExpireTime, :RelationId
+
+        def initialize(accountgroupid=nil, name=nil, idpatharray=nil, namepatharray=nil, accountcount=nil, expiretime=nil, relationid=nil)
+          @AccountGroupId = accountgroupid
+          @Name = name
+          @IdPathArray = idpatharray
+          @NamePathArray = namepatharray
+          @AccountCount = accountcount
+          @ExpireTime = expiretime
+          @RelationId = relationid
+        end
+
+        def deserialize(params)
+          @AccountGroupId = params['AccountGroupId']
+          @Name = params['Name']
+          @IdPathArray = params['IdPathArray']
+          @NamePathArray = params['NamePathArray']
+          @AccountCount = params['AccountCount']
+          @ExpireTime = params['ExpireTime']
+          @RelationId = params['RelationId']
+        end
+      end
+
+      # GrantedAccountItem
+      class GrantedAccountItem < TencentCloud::Common::AbstractModel
+        # @param AccountId: 账户Id
+        # @type AccountId: Integer
+        # @param UserId: 用户UserId
+        # @type UserId: String
+        # @param UserName: 用户名称
+        # @type UserName: String
+        # @param GroupId: 所属分组Id
+        # @type GroupId: Integer
+        # @param GroupIdPathArray: 分组路劲GroupIdPathArray
+        # @type GroupIdPathArray: Array
+        # @param GroupNamePathArray: 所属分组NamePathArray
+        # @type GroupNamePathArray: Array
+        # @param MenuId: 目录id
+        # @type MenuId: Integer
+        # @param ExpireTime: 过期时间
+        # @type ExpireTime: Integer
+        # @param RelationId: 关联id
+        # @type RelationId: Integer
+
+        attr_accessor :AccountId, :UserId, :UserName, :GroupId, :GroupIdPathArray, :GroupNamePathArray, :MenuId, :ExpireTime, :RelationId
+
+        def initialize(accountid=nil, userid=nil, username=nil, groupid=nil, groupidpatharray=nil, groupnamepatharray=nil, menuid=nil, expiretime=nil, relationid=nil)
+          @AccountId = accountid
+          @UserId = userid
+          @UserName = username
+          @GroupId = groupid
+          @GroupIdPathArray = groupidpatharray
+          @GroupNamePathArray = groupnamepatharray
+          @MenuId = menuid
+          @ExpireTime = expiretime
+          @RelationId = relationid
+        end
+
+        def deserialize(params)
+          @AccountId = params['AccountId']
+          @UserId = params['UserId']
+          @UserName = params['UserName']
+          @GroupId = params['GroupId']
+          @GroupIdPathArray = params['GroupIdPathArray']
+          @GroupNamePathArray = params['GroupNamePathArray']
+          @MenuId = params['MenuId']
+          @ExpireTime = params['ExpireTime']
+          @RelationId = params['RelationId']
+        end
+      end
+
+      # GrantedAccountItem
+      class GrantedVirtualGroupItem < TencentCloud::Common::AbstractModel
+        # @param VirtualGroupId: 账户组Id
+        # @type VirtualGroupId: Integer
+        # @param Name: 分组名称
+        # @type Name: String
+        # @param Description: 描述信息
+        # @type Description: String
+        # @param AccountCount: 目录id
+        # @type AccountCount: Integer
+        # @param ExpireTime: 过期时间
+        # @type ExpireTime: Integer
+        # @param RelationId: 关联id
+        # @type RelationId: Integer
+
+        attr_accessor :VirtualGroupId, :Name, :Description, :AccountCount, :ExpireTime, :RelationId
+
+        def initialize(virtualgroupid=nil, name=nil, description=nil, accountcount=nil, expiretime=nil, relationid=nil)
+          @VirtualGroupId = virtualgroupid
+          @Name = name
+          @Description = description
+          @AccountCount = accountcount
+          @ExpireTime = expiretime
+          @RelationId = relationid
+        end
+
+        def deserialize(params)
+          @VirtualGroupId = params['VirtualGroupId']
+          @Name = params['Name']
+          @Description = params['Description']
+          @AccountCount = params['AccountCount']
+          @ExpireTime = params['ExpireTime']
+          @RelationId = params['RelationId']
+        end
+      end
+
+      # ModifyDeviceTrustStatus请求参数结构体
+      class ModifyDeviceTrustStatusRequest < TencentCloud::Common::AbstractModel
+        # @param Status: <p>设备状态，1表示拉黑，0表示加白</p>
+        # @type Status: Integer
+        # @param DeviceIDList: <p>设备MID列表</p>
+        # @type DeviceIDList: Array
+        # @param BlackStatusDeadline: <p>设备拉黑有效期，UnixTime, 单位是 ms,0表示永久有效，默认值是0</p>
+        # @type BlackStatusDeadline: Integer
+        # @param IdList: <p>DescribeAccuserList返回的Id 列表</p>
+        # @type IdList: Array
+        # @param UpdateFlags: <p>默认值：0，根据id更新，1根据DeviceIDList</p>
+        # @type UpdateFlags: Integer
+
+        attr_accessor :Status, :DeviceIDList, :BlackStatusDeadline, :IdList, :UpdateFlags
+
+        def initialize(status=nil, deviceidlist=nil, blackstatusdeadline=nil, idlist=nil, updateflags=nil)
+          @Status = status
+          @DeviceIDList = deviceidlist
+          @BlackStatusDeadline = blackstatusdeadline
+          @IdList = idlist
+          @UpdateFlags = updateflags
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @DeviceIDList = params['DeviceIDList']
+          @BlackStatusDeadline = params['BlackStatusDeadline']
+          @IdList = params['IdList']
+          @UpdateFlags = params['UpdateFlags']
+        end
+      end
+
+      # ModifyDeviceTrustStatus返回参数结构体
+      class ModifyDeviceTrustStatusResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 

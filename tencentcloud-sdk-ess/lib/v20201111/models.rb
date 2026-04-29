@@ -1206,6 +1206,85 @@ module TencentCloud
         end
       end
 
+      # 合同审查清单大类
+      class ChecklistCategory < TencentCloud::Common::AbstractModel
+        # @param Name: <p>合同风险审查清单分组名称，每个分组下可以包含多个检查点</p>
+        # @type Name: String
+        # @param Points: <p>合同风险审查清单检查点列表，每个检查点定义了一个具体的风险项</p>
+        # @type Points: Array
+
+        attr_accessor :Name, :Points
+
+        def initialize(name=nil, points=nil)
+          @Name = name
+          @Points = points
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          unless params['Points'].nil?
+            @Points = []
+            params['Points'].each do |i|
+              checklistpoint_tmp = ChecklistPoint.new
+              checklistpoint_tmp.deserialize(i)
+              @Points << checklistpoint_tmp
+            end
+          end
+        end
+      end
+
+      # 合同审查清单检查点
+      class ChecklistPoint < TencentCloud::Common::AbstractModel
+        # @param Summary: <p>合同风险审查清单检查点名称</p>
+        # @type Summary: String
+        # @param Explanation: <p>合同风险审查清单检查点详细描述，说明具体风险信息</p>
+        # @type Explanation: String
+        # @param RiskLevel: <p>合同风险审查清单检查点对应的风险等级，一般分为 高风险、中风险、一般风险</p>
+        # @type RiskLevel: String
+        # @param Id: <p>合同风险审查清单检查点ID，创建清单时无需填写</p>
+        # @type Id: String
+        # @param IsIndispensable: <p>合同风险审查清单检查点是否不可缺失，若为true，相关条款未出现在内容中，视作风险</p>
+        # @type IsIndispensable: Boolean
+        # @param IsConsistentWithReferenceItem: <p>合同风险审查清单检查点是否要求和参考条款一致</p>
+        # @type IsConsistentWithReferenceItem: Boolean
+        # @param ReferenceItem: <p>合同风险审查清单检查点参考条款，用于辅助审查</p>
+        # @type ReferenceItem: String
+        # @param Suggestion: <p>合同风险审查清单检查点固定修改建议，优先级高于AiSuggestion</p>
+        # @type Suggestion: String
+        # @param AiSuggestion: <p>合同风险审查清单检查点AI修改建议提示，会参考该配置生成对应的修改建议</p>
+        # @type AiSuggestion: String
+        # @param RiskPresentation: <p>合同风险审查清单检查点表现标签，用于自定义不同的风险类型</p>
+        # @type RiskPresentation: Array
+
+        attr_accessor :Summary, :Explanation, :RiskLevel, :Id, :IsIndispensable, :IsConsistentWithReferenceItem, :ReferenceItem, :Suggestion, :AiSuggestion, :RiskPresentation
+
+        def initialize(summary=nil, explanation=nil, risklevel=nil, id=nil, isindispensable=nil, isconsistentwithreferenceitem=nil, referenceitem=nil, suggestion=nil, aisuggestion=nil, riskpresentation=nil)
+          @Summary = summary
+          @Explanation = explanation
+          @RiskLevel = risklevel
+          @Id = id
+          @IsIndispensable = isindispensable
+          @IsConsistentWithReferenceItem = isconsistentwithreferenceitem
+          @ReferenceItem = referenceitem
+          @Suggestion = suggestion
+          @AiSuggestion = aisuggestion
+          @RiskPresentation = riskpresentation
+        end
+
+        def deserialize(params)
+          @Summary = params['Summary']
+          @Explanation = params['Explanation']
+          @RiskLevel = params['RiskLevel']
+          @Id = params['Id']
+          @IsIndispensable = params['IsIndispensable']
+          @IsConsistentWithReferenceItem = params['IsConsistentWithReferenceItem']
+          @ReferenceItem = params['ReferenceItem']
+          @Suggestion = params['Suggestion']
+          @AiSuggestion = params['AiSuggestion']
+          @RiskPresentation = params['RiskPresentation']
+        end
+      end
+
       # 合同对比差异结果详情。
       class ComparisonDetail < TencentCloud::Common::AbstractModel
         # @param ComparisonPointId: 合同对比差异点唯一ID。
@@ -9578,6 +9657,75 @@ module TencentCloud
         end
       end
 
+      # DescribeContractReviewChecklist请求参数结构体
+      class DescribeContractReviewChecklistRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: <p>执行本接口操作的员工信息。<br>注: <code>在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。</code></p>
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param ChecklistId: <p>需要获取的合同风险审查清单ID</p>
+        # @type ChecklistId: String
+        # @param Agent: <p>代理企业和员工的信息。<br>在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。</p>
+        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
+
+        attr_accessor :Operator, :ChecklistId, :Agent
+
+        def initialize(operator=nil, checklistid=nil, agent=nil)
+          @Operator = operator
+          @ChecklistId = checklistid
+          @Agent = agent
+        end
+
+        def deserialize(params)
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          @ChecklistId = params['ChecklistId']
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+        end
+      end
+
+      # DescribeContractReviewChecklist返回参数结构体
+      class DescribeContractReviewChecklistResponse < TencentCloud::Common::AbstractModel
+        # @param ChecklistId: <p>获取的合同风险审查清单ID</p>
+        # @type ChecklistId: String
+        # @param Name: <p>获取的合同风险审查清单名称</p>
+        # @type Name: String
+        # @param Enabled: <p>获取的合同风险审查清单是否启用</p>
+        # @type Enabled: Boolean
+        # @param Categories: <p>获取的合同风险审查清单审查点列表</p>
+        # @type Categories: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ChecklistId, :Name, :Enabled, :Categories, :RequestId
+
+        def initialize(checklistid=nil, name=nil, enabled=nil, categories=nil, requestid=nil)
+          @ChecklistId = checklistid
+          @Name = name
+          @Enabled = enabled
+          @Categories = categories
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ChecklistId = params['ChecklistId']
+          @Name = params['Name']
+          @Enabled = params['Enabled']
+          unless params['Categories'].nil?
+            @Categories = []
+            params['Categories'].each do |i|
+              checklistcategory_tmp = ChecklistCategory.new
+              checklistcategory_tmp.deserialize(i)
+              @Categories << checklistcategory_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeContractReviewChecklistWebUrl请求参数结构体
       class DescribeContractReviewChecklistWebUrlRequest < TencentCloud::Common::AbstractModel
         # @param Operator: 执行本接口操作的员工信息。使用此接口时，必须填写userId。
@@ -14824,6 +14972,75 @@ module TencentCloud
           @OriEntName = params['OriEntName']
           @OpStateCode = params['OpStateCode']
           @SearchDate = params['SearchDate']
+        end
+      end
+
+      # ImportContractReviewChecklist请求参数结构体
+      class ImportContractReviewChecklistRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: <p>执行本接口操作的员工信息。<br>注: <code>在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。</code></p>
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param Name: <p>导入的合同审查清单名称</p>
+        # @type Name: String
+        # @param Categories: <p>导入的合同审查清单审查点列表</p>
+        # @type Categories: Array
+        # @param Agent: <p>代理企业和员工的信息。<br>在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。</p>
+        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
+        # @param ChecklistID: <p>如果传值，则更新对应的合同审查清单，否则创建新的合同审查清单</p>
+        # @type ChecklistID: String
+        # @param Enabled: <p>设置为true则启动清单，否则禁用清单</p>
+        # @type Enabled: Boolean
+
+        attr_accessor :Operator, :Name, :Categories, :Agent, :ChecklistID, :Enabled
+
+        def initialize(operator=nil, name=nil, categories=nil, agent=nil, checklistid=nil, enabled=nil)
+          @Operator = operator
+          @Name = name
+          @Categories = categories
+          @Agent = agent
+          @ChecklistID = checklistid
+          @Enabled = enabled
+        end
+
+        def deserialize(params)
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          @Name = params['Name']
+          unless params['Categories'].nil?
+            @Categories = []
+            params['Categories'].each do |i|
+              checklistcategory_tmp = ChecklistCategory.new
+              checklistcategory_tmp.deserialize(i)
+              @Categories << checklistcategory_tmp
+            end
+          end
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+          @ChecklistID = params['ChecklistID']
+          @Enabled = params['Enabled']
+        end
+      end
+
+      # ImportContractReviewChecklist返回参数结构体
+      class ImportContractReviewChecklistResponse < TencentCloud::Common::AbstractModel
+        # @param ChecklistId: <p>导入成功的合同审查清单ID</p>
+        # @type ChecklistId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ChecklistId, :RequestId
+
+        def initialize(checklistid=nil, requestid=nil)
+          @ChecklistId = checklistid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ChecklistId = params['ChecklistId']
+          @RequestId = params['RequestId']
         end
       end
 
