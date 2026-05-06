@@ -659,9 +659,9 @@ module TencentCloud
 
       # 订单价格详情
       class DealGoodsPriceNewElem < TencentCloud::Common::AbstractModel
-        # @param RealTotalCost: 实付金额（单位：分）
+        # @param RealTotalCost: <p>实付金额</p><p>单位：分</p><p>该金额与控制台展示金额一致，为订单实付价 - 代金券之后的结果</p>
         # @type RealTotalCost: Integer
-        # @param OriginalTotalCost: 原始金额（不含折扣，单位：分）
+        # @param OriginalTotalCost: <p>原始金额（不含折扣）</p><p>单位：分</p>
         # @type OriginalTotalCost: Integer
 
         attr_accessor :RealTotalCost, :OriginalTotalCost

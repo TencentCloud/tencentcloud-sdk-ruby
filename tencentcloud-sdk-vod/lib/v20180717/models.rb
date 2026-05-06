@@ -2235,8 +2235,8 @@ module TencentCloud
 
         attr_accessor :Name, :SegmentSet, :RecognitionSegmentSet
         extend Gem::Deprecate
-        deprecate :SegmentSet, :none, 2026, 4
-        deprecate :SegmentSet=, :none, 2026, 4
+        deprecate :SegmentSet, :none, 2026, 5
+        deprecate :SegmentSet=, :none, 2026, 5
 
         def initialize(name=nil, segmentset=nil, recognitionsegmentset=nil)
           @Name = name
@@ -4325,10 +4325,12 @@ module TencentCloud
         # @type OutputConfig: :class:`Tencentcloud::Vod.v20180717.models.AigcImageOutputConfig`
         # @param Seed: <p>模型随机种子。</p>
         # @type Seed: Integer
+        # @param SceneType: <p>场景类型。取值如下：<li>当 ModelName 为 Hunyuan 时：   3d_panorama 表示全景图；</li><li>其他 ModelName 暂不支持。</li></p>
+        # @type SceneType: String
 
-        attr_accessor :ModelName, :ModelVersion, :FileInfos, :Prompt, :NegativePrompt, :EnhancePrompt, :GenerationMode, :OutputConfig, :Seed
+        attr_accessor :ModelName, :ModelVersion, :FileInfos, :Prompt, :NegativePrompt, :EnhancePrompt, :GenerationMode, :OutputConfig, :Seed, :SceneType
 
-        def initialize(modelname=nil, modelversion=nil, fileinfos=nil, prompt=nil, negativeprompt=nil, enhanceprompt=nil, generationmode=nil, outputconfig=nil, seed=nil)
+        def initialize(modelname=nil, modelversion=nil, fileinfos=nil, prompt=nil, negativeprompt=nil, enhanceprompt=nil, generationmode=nil, outputconfig=nil, seed=nil, scenetype=nil)
           @ModelName = modelname
           @ModelVersion = modelversion
           @FileInfos = fileinfos
@@ -4338,6 +4340,7 @@ module TencentCloud
           @GenerationMode = generationmode
           @OutputConfig = outputconfig
           @Seed = seed
+          @SceneType = scenetype
         end
 
         def deserialize(params)
@@ -4360,6 +4363,7 @@ module TencentCloud
             @OutputConfig.deserialize(params['OutputConfig'])
           end
           @Seed = params['Seed']
+          @SceneType = params['SceneType']
         end
       end
 
@@ -5044,35 +5048,40 @@ module TencentCloud
 
       # AIGC 生视频任务的输出文件信息。
       class AigcVideoTaskOutputFileInfo < TencentCloud::Common::AbstractModel
-        # @param StorageMode: 存储模式。取值有： <li>Permanent：永久存储；</li> <li>Temporary：临时存储；</li>
-        # 默认值：Temporary
+        # @param StorageMode: <p>存储模式。取值有： <li>Permanent：永久存储；</li> <li>Temporary：临时存储；</li><br>默认值：Temporary</p>
         # @type StorageMode: String
-        # @param MediaName: 输出文件名，最长 64 个字符。缺省由系统指定生成文件名。当 StorageMode 为 Permanent 时有效。
+        # @param MediaName: <p>输出文件名，最长 64 个字符。缺省由系统指定生成文件名。当 StorageMode 为 Permanent 时有效。</p>
         # @type MediaName: String
-        # @param ClassId: 分类ID，用于对媒体进行分类管理，可通过 [创建分类](/document/product/266/7812) 接口，创建分类，获得分类 ID。当 StorageMode 为 Permanent 时有效。
+        # @param ClassId: <p>分类ID，用于对媒体进行分类管理，可通过 <a href="/document/product/266/7812">创建分类</a> 接口，创建分类，获得分类 ID。当 StorageMode 为 Permanent 时有效。</p>
         # @type ClassId: Integer
-        # @param ExpireTime: 输出文件的过期时间，超过该时间文件将被删除，默认为永久不过期，格式按照 ISO 8601标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @param ExpireTime: <p>输出文件的过期时间，超过该时间文件将被删除，默认为永久不过期，格式按照 ISO 8601标准表示，详见 <a href="https://cloud.tencent.com/document/product/266/11732#I">ISO 日期格式说明</a>。</p>
         # @type ExpireTime: String
-        # @param FileType: 文件类型，例如 mp4、flv 等。
+        # @param FileType: <p>文件类型，例如 mp4、flv 等。</p>
         # @type FileType: String
-        # @param FileUrl: 媒体文件播放地址。
+        # @param FileUrl: <p>媒体文件播放地址。</p>
         # @type FileUrl: String
-        # @param FileId: 媒体文件 ID。当 StorageMode 为 Permanent 时有效。
+        # @param FileContent: <p>文件内容。当 UsageType 为 position_info 时有返回值。</p>
+        # @type FileContent: String
+        # @param FileId: <p>媒体文件 ID。当 StorageMode 为 Permanent 时有效。</p>
         # @type FileId: String
-        # @param MetaData: 输出视频的元信息。当 StorageMode 为 Permanent 时有效。
+        # @param MetaData: <p>输出视频的元信息。当 StorageMode 为 Permanent 时有效。</p>
         # @type MetaData: :class:`Tencentcloud::Vod.v20180717.models.MediaMetaData`
+        # @param UsageType: <p>文件的用途类型。</p><p>枚举值：</p><ul><li>scene_url： 3D 场景文件，FileUrl 字段有返回值。</li><li>point_url： 点云文件，FileUrl 字段有返回值。</li><li>mesh_url： 原始网格模型文，FileUrl 字段有返回值。</li><li>mesh_simplified_url： 简化后的网格模型文件，FileUrl 字段有返回值。</li><li>position_info： 场景空间位置信息，FileContent 字段有返回值。</li><li>image_url： 生成的图片，FileUrl 字段有返回值。</li></ul>
+        # @type UsageType: String
 
-        attr_accessor :StorageMode, :MediaName, :ClassId, :ExpireTime, :FileType, :FileUrl, :FileId, :MetaData
+        attr_accessor :StorageMode, :MediaName, :ClassId, :ExpireTime, :FileType, :FileUrl, :FileContent, :FileId, :MetaData, :UsageType
 
-        def initialize(storagemode=nil, medianame=nil, classid=nil, expiretime=nil, filetype=nil, fileurl=nil, fileid=nil, metadata=nil)
+        def initialize(storagemode=nil, medianame=nil, classid=nil, expiretime=nil, filetype=nil, fileurl=nil, filecontent=nil, fileid=nil, metadata=nil, usagetype=nil)
           @StorageMode = storagemode
           @MediaName = medianame
           @ClassId = classid
           @ExpireTime = expiretime
           @FileType = filetype
           @FileUrl = fileurl
+          @FileContent = filecontent
           @FileId = fileid
           @MetaData = metadata
+          @UsageType = usagetype
         end
 
         def deserialize(params)
@@ -5082,11 +5091,13 @@ module TencentCloud
           @ExpireTime = params['ExpireTime']
           @FileType = params['FileType']
           @FileUrl = params['FileUrl']
+          @FileContent = params['FileContent']
           @FileId = params['FileId']
           unless params['MetaData'].nil?
             @MetaData = MediaMetaData.new
             @MetaData.deserialize(params['MetaData'])
           end
+          @UsageType = params['UsageType']
         end
       end
 
@@ -5389,8 +5400,8 @@ module TencentCloud
 
         attr_accessor :Switch, :SubtitleFormats, :SubtitleFormat, :SrcLanguage, :SubtitleName
         extend Gem::Deprecate
-        deprecate :SubtitleFormat, :none, 2026, 4
-        deprecate :SubtitleFormat=, :none, 2026, 4
+        deprecate :SubtitleFormat, :none, 2026, 5
+        deprecate :SubtitleFormat=, :none, 2026, 5
 
         def initialize(switch=nil, subtitleformats=nil, subtitleformat=nil, srclanguage=nil, subtitlename=nil)
           @Switch = switch
@@ -5433,8 +5444,8 @@ module TencentCloud
 
         attr_accessor :Switch, :SubtitleFormatsOperation, :SubtitleFormat, :SrcLanguage, :SubtitleName
         extend Gem::Deprecate
-        deprecate :SubtitleFormat, :none, 2026, 4
-        deprecate :SubtitleFormat=, :none, 2026, 4
+        deprecate :SubtitleFormat, :none, 2026, 5
+        deprecate :SubtitleFormat=, :none, 2026, 5
 
         def initialize(switch=nil, subtitleformatsoperation=nil, subtitleformat=nil, srclanguage=nil, subtitlename=nil)
           @Switch = switch
@@ -8266,6 +8277,8 @@ module TencentCloud
         # @type OutputConfig: :class:`Tencentcloud::Vod.v20180717.models.AigcImageOutputConfig`
         # @param InputRegion: <p>输入的区域信息。可选值：</p><ul><li>Mainland：中国大陆；</li><li>Oversea：海外；</li><li>OverseaUSWest：海外-美西；</li></ul>
         # @type InputRegion: String
+        # @param SceneType: <p>场景类型。取值如下：<li>当 ModelName 为 Hunyuan 时：   3d_panorama 表示全景图；</li><li>其他 ModelName 暂不支持。</li></p>
+        # @type SceneType: String
         # @param Seed: <p>模型随机种子。</p>
         # @type Seed: Integer
         # @param SessionId: <p>用于去重的识别码，如果三天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长 50 个字符，不带或者带空字符串表示不做去重。</p>
@@ -8277,9 +8290,9 @@ module TencentCloud
         # @param ExtInfo: <p>保留字段，特殊用途时使用。</p><ul><li><p>Hunyuan 3.0</p><ul><li>支持自由设置分辨率宽高，宽、高均在 [512, 2048] 像素范围内，宽高乘积 ≤ 1024x1024 像素。示例：<code>{&quot;AdditionalParameters&quot;: &quot;{\&quot;size\&quot;:\&quot;728x1024\&quot;}&quot;}</code></li></ul></li><li><p>SI 系列</p><ul><li>支持自由设置分辨率宽高：<ul><li>SI 4.0：合法总像素范围 [1280x720=921600, 4096x4096=16777216]，示例：<code>{&quot;AdditionalParameters&quot;: &quot;{\&quot;size\&quot;:\&quot;728x1356\&quot;}&quot;}</code></li><li>SI 4.5：合法总像素范围 [2560x1440=3686400, 4096x4096=16777216]，示例：<code>{&quot;AdditionalParameters&quot;: &quot;{\&quot;size\&quot;:\&quot;2560x1440\&quot;}&quot;}</code></li><li>SI 5.0-lite：合法总像素范围 [2560x1440=3686400, 3072x3072x1.1025=10404496]，示例：<code>{&quot;AdditionalParameters&quot;: &quot;{\&quot;size\&quot;:\&quot;2560x1440\&quot;}&quot;}</code></li></ul></li><li>可用于开启输出多张图像，示例：<code>{&quot;AdditionalParameters&quot;: &quot;{\&quot;sequential_image_generation\&quot;:\&quot;auto\&quot;}&quot;}</code>。除此之外，还需要在<code>Prompt</code>中说明需要输出图片张数，如：输出3张图片。</li></ul></li><li><p>Qwen 0925</p><ul><li>支持自由设置分辨率宽高，合法总像素范围 [512x512=261632, 2048x2048=4194304]。示例：<code>{&quot;AdditionalParameters&quot;: &quot;{\&quot;size\&quot;:\&quot;728*1024\&quot;}&quot;}</code></li></ul></li></ul>
         # @type ExtInfo: String
 
-        attr_accessor :SubAppId, :ModelName, :ModelVersion, :FileInfos, :Prompt, :NegativePrompt, :EnhancePrompt, :OutputConfig, :InputRegion, :Seed, :SessionId, :SessionContext, :TasksPriority, :ExtInfo
+        attr_accessor :SubAppId, :ModelName, :ModelVersion, :FileInfos, :Prompt, :NegativePrompt, :EnhancePrompt, :OutputConfig, :InputRegion, :SceneType, :Seed, :SessionId, :SessionContext, :TasksPriority, :ExtInfo
 
-        def initialize(subappid=nil, modelname=nil, modelversion=nil, fileinfos=nil, prompt=nil, negativeprompt=nil, enhanceprompt=nil, outputconfig=nil, inputregion=nil, seed=nil, sessionid=nil, sessioncontext=nil, taskspriority=nil, extinfo=nil)
+        def initialize(subappid=nil, modelname=nil, modelversion=nil, fileinfos=nil, prompt=nil, negativeprompt=nil, enhanceprompt=nil, outputconfig=nil, inputregion=nil, scenetype=nil, seed=nil, sessionid=nil, sessioncontext=nil, taskspriority=nil, extinfo=nil)
           @SubAppId = subappid
           @ModelName = modelname
           @ModelVersion = modelversion
@@ -8289,6 +8302,7 @@ module TencentCloud
           @EnhancePrompt = enhanceprompt
           @OutputConfig = outputconfig
           @InputRegion = inputregion
+          @SceneType = scenetype
           @Seed = seed
           @SessionId = sessionid
           @SessionContext = sessioncontext
@@ -8316,6 +8330,7 @@ module TencentCloud
             @OutputConfig.deserialize(params['OutputConfig'])
           end
           @InputRegion = params['InputRegion']
+          @SceneType = params['SceneType']
           @Seed = params['Seed']
           @SessionId = params['SessionId']
           @SessionContext = params['SessionContext']
@@ -9809,8 +9824,8 @@ module TencentCloud
 
         attr_accessor :Name, :SubAppId, :Comment, :MediaProcessTask, :AiContentReviewTask, :AiAnalysisTask, :AiRecognitionTaskSet, :AiRecognitionTask, :ReviewAudioVideoTask
         extend Gem::Deprecate
-        deprecate :AiRecognitionTask, :none, 2026, 4
-        deprecate :AiRecognitionTask=, :none, 2026, 4
+        deprecate :AiRecognitionTask, :none, 2026, 5
+        deprecate :AiRecognitionTask=, :none, 2026, 5
 
         def initialize(name=nil, subappid=nil, comment=nil, mediaprocesstask=nil, aicontentreviewtask=nil, aianalysistask=nil, airecognitiontaskset=nil, airecognitiontask=nil, reviewaudiovideotask=nil)
           @Name = name
@@ -13630,8 +13645,8 @@ module TencentCloud
 
         attr_accessor :DomainName, :Domain, :Scheme, :PlayKey, :RequestId
         extend Gem::Deprecate
-        deprecate :DomainName, :none, 2026, 4
-        deprecate :DomainName=, :none, 2026, 4
+        deprecate :DomainName, :none, 2026, 5
+        deprecate :DomainName=, :none, 2026, 5
 
         def initialize(domainname=nil, domain=nil, scheme=nil, playkey=nil, requestid=nil)
           @DomainName = domainname
@@ -15228,8 +15243,8 @@ module TencentCloud
 
         attr_accessor :SubAppId, :RoundPlayIds, :Status, :CreateTime, :UpdateTime, :ScrollToken, :Offset, :Limit
         extend Gem::Deprecate
-        deprecate :Offset, :none, 2026, 4
-        deprecate :Offset=, :none, 2026, 4
+        deprecate :Offset, :none, 2026, 5
+        deprecate :Offset=, :none, 2026, 5
 
         def initialize(subappid=nil, roundplayids=nil, status=nil, createtime=nil, updatetime=nil, scrolltoken=nil, offset=nil, limit=nil)
           @SubAppId = subappid
@@ -15273,8 +15288,8 @@ module TencentCloud
 
         attr_accessor :TotalCount, :RoundPlaySet, :ScrollToken, :RequestId
         extend Gem::Deprecate
-        deprecate :TotalCount, :none, 2026, 4
-        deprecate :TotalCount=, :none, 2026, 4
+        deprecate :TotalCount, :none, 2026, 5
+        deprecate :TotalCount=, :none, 2026, 5
 
         def initialize(totalcount=nil, roundplayset=nil, scrolltoken=nil, requestid=nil)
           @TotalCount = totalcount
@@ -18203,8 +18218,8 @@ module TencentCloud
 
         attr_accessor :Uv, :Uid
         extend Gem::Deprecate
-        deprecate :Uid, :none, 2026, 4
-        deprecate :Uid=, :none, 2026, 4
+        deprecate :Uid, :none, 2026, 5
+        deprecate :Uid=, :none, 2026, 5
 
         def initialize(uv=nil, uid=nil)
           @Uv = uv
@@ -19802,8 +19817,8 @@ module TencentCloud
 
         attr_accessor :SubAppId, :FileId, :Definition, :ImportTasks
         extend Gem::Deprecate
-        deprecate :ImportTasks, :none, 2026, 4
-        deprecate :ImportTasks=, :none, 2026, 4
+        deprecate :ImportTasks, :none, 2026, 5
+        deprecate :ImportTasks=, :none, 2026, 5
 
         def initialize(subappid=nil, fileid=nil, definition=nil, importtasks=nil)
           @SubAppId = subappid
@@ -21466,8 +21481,8 @@ module TencentCloud
 
         attr_accessor :StartTimeOffset, :EndTimeOffset, :Confidence, :Suggestion, :Name, :Label, :Url, :AreaCoordSet, :PicUrlExpireTimeStamp, :PicUrlExpireTime
         extend Gem::Deprecate
-        deprecate :PicUrlExpireTimeStamp, :none, 2026, 4
-        deprecate :PicUrlExpireTimeStamp=, :none, 2026, 4
+        deprecate :PicUrlExpireTimeStamp, :none, 2026, 5
+        deprecate :PicUrlExpireTimeStamp=, :none, 2026, 5
 
         def initialize(starttimeoffset=nil, endtimeoffset=nil, confidence=nil, suggestion=nil, name=nil, label=nil, url=nil, areacoordset=nil, picurlexpiretimestamp=nil, picurlexpiretime=nil)
           @StartTimeOffset = starttimeoffset
@@ -21521,8 +21536,8 @@ module TencentCloud
 
         attr_accessor :StartTimeOffset, :EndTimeOffset, :Confidence, :Label, :Suggestion, :Url, :PicUrlExpireTimeStamp, :PicUrlExpireTime
         extend Gem::Deprecate
-        deprecate :PicUrlExpireTimeStamp, :none, 2026, 4
-        deprecate :PicUrlExpireTimeStamp=, :none, 2026, 4
+        deprecate :PicUrlExpireTimeStamp, :none, 2026, 5
+        deprecate :PicUrlExpireTimeStamp=, :none, 2026, 5
 
         def initialize(starttimeoffset=nil, endtimeoffset=nil, confidence=nil, label=nil, suggestion=nil, url=nil, picurlexpiretimestamp=nil, picurlexpiretime=nil)
           @StartTimeOffset = starttimeoffset
@@ -23145,8 +23160,8 @@ module TencentCloud
 
         attr_accessor :Duration, :Transitions, :MediaTransitions
         extend Gem::Deprecate
-        deprecate :Transitions, :none, 2026, 4
-        deprecate :Transitions=, :none, 2026, 4
+        deprecate :Transitions, :none, 2026, 5
+        deprecate :Transitions=, :none, 2026, 5
 
         def initialize(duration=nil, transitions=nil, mediatransitions=nil)
           @Duration = duration
@@ -26778,10 +26793,10 @@ module TencentCloud
 
         attr_accessor :TaskId, :Status, :ErrCode, :Message, :FileId, :FileName, :FileUrl, :MetaData, :MediaProcessResultSet, :AiContentReviewResultSet, :AiAnalysisResultSet, :AiRecognitionResultSet, :TasksPriority, :TasksNotifyMode, :SessionContext, :SessionId, :Operator, :OperationType
         extend Gem::Deprecate
-        deprecate :ErrCode, :none, 2026, 4
-        deprecate :ErrCode=, :none, 2026, 4
-        deprecate :Message, :none, 2026, 4
-        deprecate :Message=, :none, 2026, 4
+        deprecate :ErrCode, :none, 2026, 5
+        deprecate :ErrCode=, :none, 2026, 5
+        deprecate :Message, :none, 2026, 5
+        deprecate :Message=, :none, 2026, 5
 
         def initialize(taskid=nil, status=nil, errcode=nil, message=nil, fileid=nil, filename=nil, fileurl=nil, metadata=nil, mediaprocessresultset=nil, aicontentreviewresultset=nil, aianalysisresultset=nil, airecognitionresultset=nil, taskspriority=nil, tasksnotifymode=nil, sessioncontext=nil, sessionid=nil, operator=nil, operationtype=nil)
           @TaskId = taskid
@@ -26895,8 +26910,8 @@ module TencentCloud
 
         attr_accessor :Name, :Type, :Comment, :MediaProcessTask, :AiContentReviewTask, :AiAnalysisTask, :AiRecognitionTaskSet, :AiRecognitionTask, :MiniProgramPublishTask, :ReviewAudioVideoTask, :CreateTime, :UpdateTime
         extend Gem::Deprecate
-        deprecate :AiRecognitionTask, :none, 2026, 4
-        deprecate :AiRecognitionTask=, :none, 2026, 4
+        deprecate :AiRecognitionTask, :none, 2026, 5
+        deprecate :AiRecognitionTask=, :none, 2026, 5
 
         def initialize(name=nil, type=nil, comment=nil, mediaprocesstask=nil, aicontentreviewtask=nil, aianalysistask=nil, airecognitiontaskset=nil, airecognitiontask=nil, miniprogrampublishtask=nil, reviewaudiovideotask=nil, createtime=nil, updatetime=nil)
           @Name = name
@@ -27792,8 +27807,8 @@ module TencentCloud
 
         attr_accessor :ProductType, :StartTime, :ExpireTime, :ProductInstanceId, :LastConsumeDate, :BindStatus, :ProductInstanceResourceSet, :ResourceSet, :ProductInstanceStatus, :RefundStatus, :RenewStatus
         extend Gem::Deprecate
-        deprecate :ProductInstanceResourceSet, :none, 2026, 4
-        deprecate :ProductInstanceResourceSet=, :none, 2026, 4
+        deprecate :ProductInstanceResourceSet, :none, 2026, 5
+        deprecate :ProductInstanceResourceSet=, :none, 2026, 5
 
         def initialize(producttype=nil, starttime=nil, expiretime=nil, productinstanceid=nil, lastconsumedate=nil, bindstatus=nil, productinstanceresourceset=nil, resourceset=nil, productinstancestatus=nil, refundstatus=nil, renewstatus=nil)
           @ProductType = producttype
@@ -30081,8 +30096,8 @@ module TencentCloud
 
         attr_accessor :FileId, :SubAppId, :SessionId, :SessionContext, :TasksPriority, :TasksNotifyMode
         extend Gem::Deprecate
-        deprecate :TasksNotifyMode, :none, 2026, 4
-        deprecate :TasksNotifyMode=, :none, 2026, 4
+        deprecate :TasksNotifyMode, :none, 2026, 5
+        deprecate :TasksNotifyMode=, :none, 2026, 5
 
         def initialize(fileid=nil, subappid=nil, sessionid=nil, sessioncontext=nil, taskspriority=nil, tasksnotifymode=nil)
           @FileId = fileid
@@ -30233,8 +30248,8 @@ module TencentCloud
 
         attr_accessor :Name, :SubAppId, :Comment, :MediaProcessTask, :AiContentReviewTask, :AiAnalysisTask, :AiRecognitionTaskSet, :AiRecognitionTask, :ReviewAudioVideoTask
         extend Gem::Deprecate
-        deprecate :AiRecognitionTask, :none, 2026, 4
-        deprecate :AiRecognitionTask=, :none, 2026, 4
+        deprecate :AiRecognitionTask, :none, 2026, 5
+        deprecate :AiRecognitionTask=, :none, 2026, 5
 
         def initialize(name=nil, subappid=nil, comment=nil, mediaprocesstask=nil, aicontentreviewtask=nil, aianalysistask=nil, airecognitiontaskset=nil, airecognitiontask=nil, reviewaudiovideotask=nil)
           @Name = name
@@ -30411,10 +30426,10 @@ module TencentCloud
 
         attr_accessor :FileId, :OriginalStorageClass, :TargetStorageClass, :RestoreTier, :RestoreDay, :Status, :Message
         extend Gem::Deprecate
-        deprecate :Status, :none, 2026, 4
-        deprecate :Status=, :none, 2026, 4
-        deprecate :Message, :none, 2026, 4
-        deprecate :Message=, :none, 2026, 4
+        deprecate :Status, :none, 2026, 5
+        deprecate :Status=, :none, 2026, 5
+        deprecate :Message, :none, 2026, 5
+        deprecate :Message=, :none, 2026, 5
 
         def initialize(fileid=nil, originalstorageclass=nil, targetstorageclass=nil, restoretier=nil, restoreday=nil, status=nil, message=nil)
           @FileId = fileid
@@ -30774,8 +30789,8 @@ module TencentCloud
 
         attr_accessor :ReviewResultSet, :MediaReviewResult, :RequestId
         extend Gem::Deprecate
-        deprecate :ReviewResultSet, :none, 2026, 4
-        deprecate :ReviewResultSet=, :none, 2026, 4
+        deprecate :ReviewResultSet, :none, 2026, 5
+        deprecate :ReviewResultSet=, :none, 2026, 5
 
         def initialize(reviewresultset=nil, mediareviewresult=nil, requestid=nil)
           @ReviewResultSet = reviewresultset
@@ -32241,8 +32256,8 @@ module TencentCloud
 
         attr_accessor :Url, :SubAppId, :StartTimeOffset, :EndTimeOffset, :IsPersistence, :ExpireTime, :Procedure, :ClassId, :SourceContext, :SessionContext, :Precision, :OutputMediaType, :ExtInfo
         extend Gem::Deprecate
-        deprecate :Precision, :none, 2026, 4
-        deprecate :Precision=, :none, 2026, 4
+        deprecate :Precision, :none, 2026, 5
+        deprecate :Precision=, :none, 2026, 5
 
         def initialize(url=nil, subappid=nil, starttimeoffset=nil, endtimeoffset=nil, ispersistence=nil, expiretime=nil, procedure=nil, classid=nil, sourcecontext=nil, sessioncontext=nil, precision=nil, outputmediatype=nil, extinfo=nil)
           @Url = url
@@ -33247,8 +33262,8 @@ module TencentCloud
 
         attr_accessor :Width, :Height, :CycleConfig
         extend Gem::Deprecate
-        deprecate :CycleConfig, :none, 2026, 4
-        deprecate :CycleConfig=, :none, 2026, 4
+        deprecate :CycleConfig, :none, 2026, 5
+        deprecate :CycleConfig=, :none, 2026, 5
 
         def initialize(width=nil, height=nil, cycleconfig=nil)
           @Width = width
@@ -33909,8 +33924,8 @@ module TencentCloud
 
         attr_accessor :Switch, :Definition
         extend Gem::Deprecate
-        deprecate :Definition, :none, 2026, 4
-        deprecate :Definition=, :none, 2026, 4
+        deprecate :Definition, :none, 2026, 5
+        deprecate :Definition=, :none, 2026, 5
 
         def initialize(switch=nil, definition=nil)
           @Switch = switch

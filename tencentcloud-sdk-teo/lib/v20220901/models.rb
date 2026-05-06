@@ -2406,8 +2406,8 @@ module TencentCloud
 
         attr_accessor :Switch, :CacheTime, :IgnoreCacheControl
         extend Gem::Deprecate
-        deprecate :IgnoreCacheControl, :none, 2026, 4
-        deprecate :IgnoreCacheControl=, :none, 2026, 4
+        deprecate :IgnoreCacheControl, :none, 2026, 5
+        deprecate :IgnoreCacheControl=, :none, 2026, 5
 
         def initialize(switch=nil, cachetime=nil, ignorecachecontrol=nil)
           @Switch = switch
@@ -4521,8 +4521,8 @@ module TencentCloud
 
         attr_accessor :ZoneId, :ProxyName, :Area, :Ipv6, :StaticIp, :AccelerateMainland, :DDosProtectionConfig
         extend Gem::Deprecate
-        deprecate :DDosProtectionConfig, :none, 2026, 4
-        deprecate :DDosProtectionConfig=, :none, 2026, 4
+        deprecate :DDosProtectionConfig, :none, 2026, 5
+        deprecate :DDosProtectionConfig=, :none, 2026, 5
 
         def initialize(zoneid=nil, proxyname=nil, area=nil, ipv6=nil, staticip=nil, acceleratemainland=nil, ddosprotectionconfig=nil)
           @ZoneId = zoneid
@@ -5103,8 +5103,8 @@ module TencentCloud
 
         attr_accessor :ZoneId, :Targets, :Mode, :EncodeUrl, :Headers, :PrefetchMediaSegments
         extend Gem::Deprecate
-        deprecate :EncodeUrl, :none, 2026, 4
-        deprecate :EncodeUrl=, :none, 2026, 4
+        deprecate :EncodeUrl, :none, 2026, 5
+        deprecate :EncodeUrl=, :none, 2026, 5
 
         def initialize(zoneid=nil, targets=nil, mode=nil, encodeurl=nil, headers=nil, prefetchmediasegments=nil)
           @ZoneId = zoneid
@@ -5188,8 +5188,8 @@ module TencentCloud
 
         attr_accessor :ZoneId, :Type, :Method, :Targets, :EncodeUrl, :CacheTag
         extend Gem::Deprecate
-        deprecate :EncodeUrl, :none, 2026, 4
-        deprecate :EncodeUrl=, :none, 2026, 4
+        deprecate :EncodeUrl, :none, 2026, 5
+        deprecate :EncodeUrl=, :none, 2026, 5
 
         def initialize(zoneid=nil, type=nil, method=nil, targets=nil, encodeurl=nil, cachetag=nil)
           @ZoneId = zoneid
@@ -5800,10 +5800,10 @@ module TencentCloud
 
         attr_accessor :Type, :ZoneName, :Area, :PlanId, :AliasZoneName, :Tags, :AllowDuplicates, :JumpStart
         extend Gem::Deprecate
-        deprecate :AllowDuplicates, :none, 2026, 4
-        deprecate :AllowDuplicates=, :none, 2026, 4
-        deprecate :JumpStart, :none, 2026, 4
-        deprecate :JumpStart=, :none, 2026, 4
+        deprecate :AllowDuplicates, :none, 2026, 5
+        deprecate :AllowDuplicates=, :none, 2026, 5
+        deprecate :JumpStart, :none, 2026, 5
+        deprecate :JumpStart=, :none, 2026, 5
 
         def initialize(type=nil, zonename=nil, area=nil, planid=nil, aliaszonename=nil, tags=nil, allowduplicates=nil, jumpstart=nil)
           @Type = type
@@ -11414,8 +11414,8 @@ module TencentCloud
 
         attr_accessor :StartTime, :EndTime, :MetricNames, :ZoneIds, :ProxyIds, :Interval, :Filters, :Area
         extend Gem::Deprecate
-        deprecate :Area, :none, 2026, 4
-        deprecate :Area=, :none, 2026, 4
+        deprecate :Area, :none, 2026, 5
+        deprecate :Area=, :none, 2026, 5
 
         def initialize(starttime=nil, endtime=nil, metricnames=nil, zoneids=nil, proxyids=nil, interval=nil, filters=nil, area=nil)
           @StartTime = starttime
@@ -13093,9 +13093,9 @@ module TencentCloud
         # @type Key: String
         # @param Value: 键值。不能为空，最大支持 1 MB。支持存储字符串数据。
         # @type Value: String
-        # @param Expiration: 过期时间，绝对时间。表示从 1970 年 1 月 1 日（UTC/GMT 的午夜）开始所经过的秒数，不能小于当前时间。若 Expiration 和 ExpirationTTL 都填写，以 ExpirationTTL 为准。若 Expiration 和 ExpirationTTL 都不填写，则该键值对永不过期。
+        # @param Expiration: 键值对的过期时间，绝对时间，单位为秒，表示从 1970 年 1 月 1 日 00:00:00（UTC）起经过的秒数（即 Unix 时间戳）。取值必须大于等于当前时间 + 60，即过期时间距当前至少 60 秒。当 Expiration 与 ExpirationTTL 同时填写时，以 ExpirationTTL 为准；当两者均不填写时，键值对永不过期。
         # @type Expiration: Integer
-        # @param ExpirationTTL: 过期时间，相对时间，单位为秒。表示数据将在指定秒数后过期，必须大于 0。若 Expiration 和 ExpirationTTL 都填写，以 ExpirationTTL 为准。若 Expiration 和 ExpirationTTL 都不填写，则该键值对永不过期。
+        # @param ExpirationTTL: 键值对的存活时长，相对时间，单位为秒，表示数据将在写入后经过指定秒数过期。取值范围：大于等于 60。当 Expiration 与 ExpirationTTL 同时填写时，以 ExpirationTTL 为准；当两者均不填写时，键值对永不过期。
         # @type ExpirationTTL: Integer
 
         attr_accessor :ZoneId, :Namespace, :Key, :Value, :Expiration, :ExpirationTTL
@@ -15613,8 +15613,8 @@ module TencentCloud
 
         attr_accessor :ZoneId, :ProxyId, :ProxyName, :Area, :Cname, :Ips, :Status, :Ipv6, :StaticIp, :AccelerateMainland, :DDosProtectionConfig, :L4ProxyRuleCount, :UpdateTime
         extend Gem::Deprecate
-        deprecate :DDosProtectionConfig, :none, 2026, 4
-        deprecate :DDosProtectionConfig=, :none, 2026, 4
+        deprecate :DDosProtectionConfig, :none, 2026, 5
+        deprecate :DDosProtectionConfig=, :none, 2026, 5
 
         def initialize(zoneid=nil, proxyid=nil, proxyname=nil, area=nil, cname=nil, ips=nil, status=nil, ipv6=nil, staticip=nil, acceleratemainland=nil, ddosprotectionconfig=nil, l4proxyrulecount=nil, updatetime=nil)
           @ZoneId = zoneid
@@ -17203,8 +17203,8 @@ module TencentCloud
 
         attr_accessor :ZoneId, :Hosts, :Mode, :ServerCertInfo, :ApplyType, :ClientCertInfo, :UpstreamCertInfo
         extend Gem::Deprecate
-        deprecate :ApplyType, :none, 2026, 4
-        deprecate :ApplyType=, :none, 2026, 4
+        deprecate :ApplyType, :none, 2026, 5
+        deprecate :ApplyType=, :none, 2026, 5
 
         def initialize(zoneid=nil, hosts=nil, mode=nil, servercertinfo=nil, applytype=nil, clientcertinfo=nil, upstreamcertinfo=nil)
           @ZoneId = zoneid
@@ -19726,12 +19726,12 @@ module TencentCloud
 
         attr_accessor :OriginType, :Origin, :BackupOrigin, :OriginGroupName, :BackOriginGroupName, :PrivateAccess, :PrivateParameters, :HostHeader, :VodeoSubAppId, :VodeoDistributionRange, :VodeoBucketId, :VodOriginScope, :VodBucketId
         extend Gem::Deprecate
-        deprecate :VodeoSubAppId, :none, 2026, 4
-        deprecate :VodeoSubAppId=, :none, 2026, 4
-        deprecate :VodeoDistributionRange, :none, 2026, 4
-        deprecate :VodeoDistributionRange=, :none, 2026, 4
-        deprecate :VodeoBucketId, :none, 2026, 4
-        deprecate :VodeoBucketId=, :none, 2026, 4
+        deprecate :VodeoSubAppId, :none, 2026, 5
+        deprecate :VodeoSubAppId=, :none, 2026, 5
+        deprecate :VodeoDistributionRange, :none, 2026, 5
+        deprecate :VodeoDistributionRange=, :none, 2026, 5
+        deprecate :VodeoBucketId, :none, 2026, 5
+        deprecate :VodeoBucketId=, :none, 2026, 5
 
         def initialize(origintype=nil, origin=nil, backuporigin=nil, origingroupname=nil, backorigingroupname=nil, privateaccess=nil, privateparameters=nil, hostheader=nil, vodeosubappid=nil, vodeodistributionrange=nil, vodeobucketid=nil, vodoriginscope=nil, vodbucketid=nil)
           @OriginType = origintype
@@ -20046,12 +20046,12 @@ module TencentCloud
 
         attr_accessor :OriginType, :Origin, :BackupOrigin, :PrivateAccess, :PrivateParameters, :HostHeader, :VodeoSubAppId, :VodeoDistributionRange, :VodeoBucketId, :VodOriginScope, :VodBucketId
         extend Gem::Deprecate
-        deprecate :VodeoSubAppId, :none, 2026, 4
-        deprecate :VodeoSubAppId=, :none, 2026, 4
-        deprecate :VodeoDistributionRange, :none, 2026, 4
-        deprecate :VodeoDistributionRange=, :none, 2026, 4
-        deprecate :VodeoBucketId, :none, 2026, 4
-        deprecate :VodeoBucketId=, :none, 2026, 4
+        deprecate :VodeoSubAppId, :none, 2026, 5
+        deprecate :VodeoSubAppId=, :none, 2026, 5
+        deprecate :VodeoDistributionRange, :none, 2026, 5
+        deprecate :VodeoDistributionRange=, :none, 2026, 5
+        deprecate :VodeoBucketId, :none, 2026, 5
+        deprecate :VodeoBucketId=, :none, 2026, 5
 
         def initialize(origintype=nil, origin=nil, backuporigin=nil, privateaccess=nil, privateparameters=nil, hostheader=nil, vodeosubappid=nil, vodeodistributionrange=nil, vodeobucketid=nil, vodoriginscope=nil, vodbucketid=nil)
           @OriginType = origintype
@@ -21805,8 +21805,8 @@ module TencentCloud
 
         attr_accessor :Operator, :Target, :Values, :IgnoreCase, :Name, :IgnoreNameCase
         extend Gem::Deprecate
-        deprecate :IgnoreNameCase, :none, 2026, 4
-        deprecate :IgnoreNameCase=, :none, 2026, 4
+        deprecate :IgnoreNameCase, :none, 2026, 5
+        deprecate :IgnoreNameCase=, :none, 2026, 5
 
         def initialize(operator=nil, target=nil, values=nil, ignorecase=nil, name=nil, ignorenamecase=nil)
           @Operator = operator

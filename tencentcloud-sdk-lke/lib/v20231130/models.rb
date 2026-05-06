@@ -1736,8 +1736,8 @@ module TencentCloud
 
         attr_accessor :AttrBizId, :AttrKey, :AttrName, :LabelNames, :IsUpdating, :Status, :StatusDesc, :LabelTotalCount
         extend Gem::Deprecate
-        deprecate :AttrKey, :none, 2026, 4
-        deprecate :AttrKey=, :none, 2026, 4
+        deprecate :AttrKey, :none, 2026, 5
+        deprecate :AttrKey=, :none, 2026, 5
 
         def initialize(attrbizid=nil, attrkey=nil, attrname=nil, labelnames=nil, isupdating=nil, status=nil, statusdesc=nil, labeltotalcount=nil)
           @AttrBizId = attrbizid
@@ -2718,13 +2718,13 @@ module TencentCloud
 
       # CreateApp请求参数结构体
       class CreateAppRequest < TencentCloud::Common::AbstractModel
-        # @param AppType: 应用类型；knowledge_qa-知识问答管理
+        # @param AppType: <p>应用类型；<code>&quot;knowledge_qa&quot;</code> 知识问答应用（包含标准模式 单工作流 Multi-Agent 等模式）</p>
         # @type AppType: String
-        # @param BaseConfig: 应用基础配置
+        # @param BaseConfig: <p>应用基础配置</p>
         # @type BaseConfig: :class:`Tencentcloud::Lke.v20231130.models.BaseConfig`
-        # @param Pattern: 应用模式 standard:标准模式, agent: agent模式，single_workflow：单工作流模式
+        # @param Pattern: <p>应用模式 standard:标准模式, agent: agent模式，single_workflow：单工作流模式,ClawAgent:Claw模式</p>
         # @type Pattern: String
-        # @param AgentType: 智能体类型 dialogue 对话式智能体，wechat 公众号智能体
+        # @param AgentType: <p>智能体类型，用于区分应用最终以何种智能体形态对外服务（对话(&quot;dialogue&quot;) / 公众号(&quot;wechat&quot;)）。当前 ADP 创建页面不区分对话/公众号智能体，ADP 创建页默认走对话智能体。</p>
         # @type AgentType: String
 
         attr_accessor :AppType, :BaseConfig, :Pattern, :AgentType
@@ -2749,10 +2749,10 @@ module TencentCloud
 
       # CreateApp返回参数结构体
       class CreateAppResponse < TencentCloud::Common::AbstractModel
-        # @param AppBizId: 应用ID
+        # @param AppBizId: <p>应用ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppBizId: String
-        # @param IsCustomList: 判断账户应用列表权限是否是自定义的，用户交互提示
+        # @param IsCustomList: <p>判断账户应用列表权限是否是自定义的，用户交互提示</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsCustomList: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -3160,8 +3160,8 @@ module TencentCloud
 
         attr_accessor :KnowledgeName, :KnowledgeDescription, :EmbeddingModel, :KnowledgeType, :EsConfig
         extend Gem::Deprecate
-        deprecate :EmbeddingModel, :none, 2026, 4
-        deprecate :EmbeddingModel=, :none, 2026, 4
+        deprecate :EmbeddingModel, :none, 2026, 5
+        deprecate :EmbeddingModel=, :none, 2026, 5
 
         def initialize(knowledgename=nil, knowledgedescription=nil, embeddingmodel=nil, knowledgetype=nil, esconfig=nil)
           @KnowledgeName = knowledgename
@@ -4062,10 +4062,10 @@ module TencentCloud
 
         attr_accessor :UinAccount, :LoginUin, :LoginSubAccountUin, :SubBizType, :ModelName, :StartTime, :EndTime, :AppBizIds, :SubScenes, :AppType, :SpaceId, :StatStartTime, :StatEndTime
         extend Gem::Deprecate
-        deprecate :StartTime, :none, 2026, 4
-        deprecate :StartTime=, :none, 2026, 4
-        deprecate :EndTime, :none, 2026, 4
-        deprecate :EndTime=, :none, 2026, 4
+        deprecate :StartTime, :none, 2026, 5
+        deprecate :StartTime=, :none, 2026, 5
+        deprecate :EndTime, :none, 2026, 5
+        deprecate :EndTime=, :none, 2026, 5
 
         def initialize(uinaccount=nil, loginuin=nil, loginsubaccountuin=nil, subbiztype=nil, modelname=nil, starttime=nil, endtime=nil, appbizids=nil, subscenes=nil, apptype=nil, spaceid=nil, statstarttime=nil, statendtime=nil)
           @UinAccount = uinaccount
@@ -5003,10 +5003,10 @@ module TencentCloud
 
         attr_accessor :LoginUin, :LoginSubAccountUin, :UinAccount, :SubBizType, :ModelName, :StartTime, :EndTime, :AppBizIds, :SpaceId, :StatStartTime, :StatEndTime
         extend Gem::Deprecate
-        deprecate :StartTime, :none, 2026, 4
-        deprecate :StartTime=, :none, 2026, 4
-        deprecate :EndTime, :none, 2026, 4
-        deprecate :EndTime=, :none, 2026, 4
+        deprecate :StartTime, :none, 2026, 5
+        deprecate :StartTime=, :none, 2026, 5
+        deprecate :EndTime, :none, 2026, 5
+        deprecate :EndTime=, :none, 2026, 5
 
         def initialize(loginuin=nil, loginsubaccountuin=nil, uinaccount=nil, subbiztype=nil, modelname=nil, starttime=nil, endtime=nil, appbizids=nil, spaceid=nil, statstarttime=nil, statendtime=nil)
           @LoginUin = loginuin
@@ -5273,10 +5273,10 @@ module TencentCloud
 
         attr_accessor :UinAccount, :SubBizType, :ModelName, :StartTime, :EndTime, :AppBizIds, :AppType, :SubScenes, :StatStartTime, :StatEndTime
         extend Gem::Deprecate
-        deprecate :StartTime, :none, 2026, 4
-        deprecate :StartTime=, :none, 2026, 4
-        deprecate :EndTime, :none, 2026, 4
-        deprecate :EndTime=, :none, 2026, 4
+        deprecate :StartTime, :none, 2026, 5
+        deprecate :StartTime=, :none, 2026, 5
+        deprecate :EndTime, :none, 2026, 5
+        deprecate :EndTime=, :none, 2026, 5
 
         def initialize(uinaccount=nil, subbiztype=nil, modelname=nil, starttime=nil, endtime=nil, appbizids=nil, apptype=nil, subscenes=nil, statstarttime=nil, statendtime=nil)
           @UinAccount = uinaccount
@@ -5385,10 +5385,10 @@ module TencentCloud
 
         attr_accessor :UinAccount, :LoginUin, :LoginSubAccountUin, :SubBizType, :ModelName, :StartTime, :EndTime, :AppBizIds, :SubScenes, :AppType, :SpaceId, :StatStartTime, :StatEndTime
         extend Gem::Deprecate
-        deprecate :StartTime, :none, 2026, 4
-        deprecate :StartTime=, :none, 2026, 4
-        deprecate :EndTime, :none, 2026, 4
-        deprecate :EndTime=, :none, 2026, 4
+        deprecate :StartTime, :none, 2026, 5
+        deprecate :StartTime=, :none, 2026, 5
+        deprecate :EndTime, :none, 2026, 5
+        deprecate :EndTime=, :none, 2026, 5
 
         def initialize(uinaccount=nil, loginuin=nil, loginsubaccountuin=nil, subbiztype=nil, modelname=nil, starttime=nil, endtime=nil, appbizids=nil, subscenes=nil, apptype=nil, spaceid=nil, statstarttime=nil, statendtime=nil)
           @UinAccount = uinaccount
@@ -6093,8 +6093,8 @@ module TencentCloud
 
         attr_accessor :DocBizId, :FileName, :FileType, :FileSize, :FileUrl, :DocId, :CreateTime
         extend Gem::Deprecate
-        deprecate :DocBizId, :none, 2026, 4
-        deprecate :DocBizId=, :none, 2026, 4
+        deprecate :DocBizId, :none, 2026, 5
+        deprecate :DocBizId=, :none, 2026, 5
 
         def initialize(docbizid=nil, filename=nil, filetype=nil, filesize=nil, fileurl=nil, docid=nil, createtime=nil)
           @DocBizId = docbizid
@@ -6801,8 +6801,8 @@ module TencentCloud
 
         attr_accessor :Type, :BotAppKey, :VisitorBizId, :VisitorLabels
         extend Gem::Deprecate
-        deprecate :VisitorLabels, :none, 2026, 4
-        deprecate :VisitorLabels=, :none, 2026, 4
+        deprecate :VisitorLabels, :none, 2026, 5
+        deprecate :VisitorLabels=, :none, 2026, 5
 
         def initialize(type=nil, botappkey=nil, visitorbizid=nil, visitorlabels=nil)
           @Type = type
@@ -7942,10 +7942,10 @@ module TencentCloud
 
         attr_accessor :KnowledgeName, :KnowledgeDescription, :EmbeddingModel, :QaExtractModel, :OwnerStaffId
         extend Gem::Deprecate
-        deprecate :EmbeddingModel, :none, 2026, 4
-        deprecate :EmbeddingModel=, :none, 2026, 4
-        deprecate :QaExtractModel, :none, 2026, 4
-        deprecate :QaExtractModel=, :none, 2026, 4
+        deprecate :EmbeddingModel, :none, 2026, 5
+        deprecate :EmbeddingModel=, :none, 2026, 5
+        deprecate :QaExtractModel, :none, 2026, 5
+        deprecate :QaExtractModel=, :none, 2026, 5
 
         def initialize(knowledgename=nil, knowledgedescription=nil, embeddingmodel=nil, qaextractmodel=nil, ownerstaffid=nil)
           @KnowledgeName = knowledgename
@@ -8226,8 +8226,8 @@ module TencentCloud
 
         attr_accessor :AppBizId, :BotBizId, :PageNumber, :PageSize, :ChannelType, :ChannelStatus
         extend Gem::Deprecate
-        deprecate :BotBizId, :none, 2026, 4
-        deprecate :BotBizId=, :none, 2026, 4
+        deprecate :BotBizId, :none, 2026, 5
+        deprecate :BotBizId=, :none, 2026, 5
 
         def initialize(appbizid=nil, botbizid=nil, pagenumber=nil, pagesize=nil, channeltype=nil, channelstatus=nil)
           @AppBizId = appbizid
@@ -14401,8 +14401,8 @@ module TencentCloud
 
         attr_accessor :RunEnv, :AppBizId, :WorkflowRunId, :WorkflowId, :Name, :Output, :State, :FailMessage, :TotalTokens, :CreateTime, :StartTime, :EndTime, :DialogJson, :Query, :MainModelName, :CustomVariables, :WorkflowGraph, :LatestMessage
         extend Gem::Deprecate
-        deprecate :DialogJson, :none, 2026, 4
-        deprecate :DialogJson=, :none, 2026, 4
+        deprecate :DialogJson, :none, 2026, 5
+        deprecate :DialogJson=, :none, 2026, 5
 
         def initialize(runenv=nil, appbizid=nil, workflowrunid=nil, workflowid=nil, name=nil, output=nil, state=nil, failmessage=nil, totaltokens=nil, createtime=nil, starttime=nil, endtime=nil, dialogjson=nil, query=nil, mainmodelname=nil, customvariables=nil, workflowgraph=nil, latestmessage=nil)
           @RunEnv = runenv
