@@ -287,8 +287,8 @@ module TencentCloud
 
         attr_accessor :AndroidAppId, :Name, :AndroidAppVersion, :PackageName, :PackageVersion, :PackageLabel, :VersionName
         extend Gem::Deprecate
-        deprecate :PackageVersion, :none, 2026, 3
-        deprecate :PackageVersion=, :none, 2026, 3
+        deprecate :PackageVersion, :none, 2026, 5
+        deprecate :PackageVersion=, :none, 2026, 5
 
         def initialize(androidappid=nil, name=nil, androidappversion=nil, packagename=nil, packageversion=nil, packagelabel=nil, versionname=nil)
           @AndroidAppId = androidappid
@@ -1058,17 +1058,21 @@ module TencentCloud
         # @type AndroidInstanceIds: Array
         # @param UserIP: 用户IP，可以根据该 IP 选择就近加速点。如果不填，将自动选择就近加速点。
         # @type UserIP: String
+        # @param ExpirationDuration: 有效期，默认为 12 小时，最长为 7 天，建议设置不要过长，否则泄漏风险越大。支持 s（秒）、m（分）、h（小时）、d（天）等单位，比如 1d、24h、86400s 都表示一天，1h2m3s 表示一小时两分三秒
+        # @type ExpirationDuration: String
 
-        attr_accessor :AndroidInstanceIds, :UserIP
+        attr_accessor :AndroidInstanceIds, :UserIP, :ExpirationDuration
 
-        def initialize(androidinstanceids=nil, userip=nil)
+        def initialize(androidinstanceids=nil, userip=nil, expirationduration=nil)
           @AndroidInstanceIds = androidinstanceids
           @UserIP = userip
+          @ExpirationDuration = expirationduration
         end
 
         def deserialize(params)
           @AndroidInstanceIds = params['AndroidInstanceIds']
           @UserIP = params['UserIP']
+          @ExpirationDuration = params['ExpirationDuration']
         end
       end
 
@@ -2174,8 +2178,8 @@ module TencentCloud
 
         attr_accessor :Total, :Labels, :AndroidInstanceLabels, :RequestId
         extend Gem::Deprecate
-        deprecate :Labels, :none, 2026, 3
-        deprecate :Labels=, :none, 2026, 3
+        deprecate :Labels, :none, 2026, 5
+        deprecate :Labels=, :none, 2026, 5
 
         def initialize(total=nil, labels=nil, androidinstancelabels=nil, requestid=nil)
           @Total = total

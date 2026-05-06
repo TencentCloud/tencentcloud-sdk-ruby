@@ -1012,7 +1012,7 @@ module TencentCloud
         # <li>0：关闭加速；</li>
         # <li>1：开启加速。</li>
         # @type AccelerateType: Integer
-        # @param SessionPersistTime: 会话保持时间。
+        # @param SessionPersistTime: 会话保持时间，单位为秒。
         # @type SessionPersistTime: Integer
         # @param Status: 状态，取值有：
         # <li>online：启用；</li>
@@ -1117,7 +1117,7 @@ module TencentCloud
         # @type OriginType: String
         # @param OriginValue: 源站信息：
         # <li>当 OriginType 为 custom 时，表示一个或多个源站，如`["8.8.8.8","9.9.9.9"]` 或 `OriginValue=["test.com"]`；</li>
-        # <li>当 OriginType 为 loadbalancer 时，表示一个负载均衡，如`["lb-xdffsfasdfs"]`；</li>
+        # <li>当 OriginType 为 loadbalancer 时，表示一个负载均衡，如`["lb-3pbiw4d9iqz0"]`；</li>
         # <li>当 OriginType 为 origins 时，要求有且仅有一个元素，表示源站组ID，如`["origin-537f5b41-162a-11ed-abaa-525400c5da15"]`。</li>
         # @type OriginValue: Array
         # @param RuleId: 规则ID。
@@ -1139,7 +1139,7 @@ module TencentCloud
         # <li>true：开启；</li>
         # <li>false：关闭。</li>默认值：false。
         # @type SessionPersist: Boolean
-        # @param SessionPersistTime: 会话保持的时间，只有当SessionPersist为true时，该值才会生效。
+        # @param SessionPersistTime: 会话保持的时间，单位为秒，只有当SessionPersist为true时，该值才会生效。
         # @type SessionPersistTime: Integer
         # @param OriginPort: 源站端口，支持格式：
         # <li>单端口，如：80。</li>
@@ -3934,7 +3934,7 @@ module TencentCloud
         # <li>true：开启；</li>
         # <li>false：关闭。</li>默认值：false。
         # @type SessionPersist: Boolean
-        # @param SessionPersistTime: 会话保持的时间，只有当SessionPersist为true时，该值才会生效。
+        # @param SessionPersistTime: 会话保持的时间，单位为秒，只有当SessionPersist为true时，该值才会生效。
         # @type SessionPersistTime: Integer
         # @param OriginPort: 源站端口，支持格式：
         # <li>单端口：80；</li>

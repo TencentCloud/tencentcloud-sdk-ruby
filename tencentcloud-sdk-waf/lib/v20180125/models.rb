@@ -77,8 +77,8 @@ module TencentCloud
 
         attr_accessor :BTime, :Count, :BeginTime
         extend Gem::Deprecate
-        deprecate :BTime, :none, 2026, 4
-        deprecate :BTime=, :none, 2026, 4
+        deprecate :BTime, :none, 2026, 5
+        deprecate :BTime=, :none, 2026, 5
 
         def initialize(btime=nil, count=nil, begintime=nil)
           @BTime = btime
@@ -804,8 +804,8 @@ module TencentCloud
 
         attr_accessor :Name, :SortId, :Strategies, :Domain, :ActionType, :Redirect, :ExpireTime, :Edition, :Bypass, :EventId, :JobType, :JobDateTime, :Source, :Label, :Status, :PageId, :LogicalOp, :ActionRatio
         extend Gem::Deprecate
-        deprecate :Bypass, :none, 2026, 4
-        deprecate :Bypass=, :none, 2026, 4
+        deprecate :Bypass, :none, 2026, 5
+        deprecate :Bypass=, :none, 2026, 5
 
         def initialize(name=nil, sortid=nil, strategies=nil, domain=nil, actiontype=nil, redirect=nil, expiretime=nil, edition=nil, bypass=nil, eventid=nil, jobtype=nil, jobdatetime=nil, source=nil, label=nil, status=nil, pageid=nil, logicalop=nil, actionratio=nil)
           @Name = name
@@ -1159,18 +1159,18 @@ module TencentCloud
 
         attr_accessor :Domain, :CertType, :IsCdn, :UpstreamType, :IsWebsocket, :LoadBalance, :Ports, :IsKeepAlive, :InstanceID, :HttpsRewrite, :IsHttp2, :ActiveCheck, :CipherTemplate, :Cert, :PrivateKey, :SSLId, :ResourceId, :IpHeaders, :UpstreamScheme, :HttpsUpstreamPort, :IsGray, :GrayAreas, :UpstreamDomain, :SrcList, :Edition, :Anycast, :Weights, :TLSVersion, :Ciphers, :ProxyConnectTimeout, :ProxyReadTimeout, :ProxySendTimeout, :SniType, :SniHost, :XFFReset, :Note, :UpstreamHost, :ProxyBuffer, :ProbeStatus, :GmType, :GmCertType, :GmCert, :GmPrivateKey, :GmEncCert, :GmEncPrivateKey, :GmSSLId, :UpstreamPolicy, :UpstreamRules, :UseCase, :Gzip
         extend Gem::Deprecate
-        deprecate :ResourceId, :none, 2026, 4
-        deprecate :ResourceId=, :none, 2026, 4
-        deprecate :HttpsUpstreamPort, :none, 2026, 4
-        deprecate :HttpsUpstreamPort=, :none, 2026, 4
-        deprecate :IsGray, :none, 2026, 4
-        deprecate :IsGray=, :none, 2026, 4
-        deprecate :GrayAreas, :none, 2026, 4
-        deprecate :GrayAreas=, :none, 2026, 4
-        deprecate :Edition, :none, 2026, 4
-        deprecate :Edition=, :none, 2026, 4
-        deprecate :Anycast, :none, 2026, 4
-        deprecate :Anycast=, :none, 2026, 4
+        deprecate :ResourceId, :none, 2026, 5
+        deprecate :ResourceId=, :none, 2026, 5
+        deprecate :HttpsUpstreamPort, :none, 2026, 5
+        deprecate :HttpsUpstreamPort=, :none, 2026, 5
+        deprecate :IsGray, :none, 2026, 5
+        deprecate :IsGray=, :none, 2026, 5
+        deprecate :GrayAreas, :none, 2026, 5
+        deprecate :GrayAreas=, :none, 2026, 5
+        deprecate :Edition, :none, 2026, 5
+        deprecate :Edition=, :none, 2026, 5
+        deprecate :Anycast, :none, 2026, 5
+        deprecate :Anycast=, :none, 2026, 5
 
         def initialize(domain=nil, certtype=nil, iscdn=nil, upstreamtype=nil, iswebsocket=nil, loadbalance=nil, ports=nil, iskeepalive=nil, instanceid=nil, httpsrewrite=nil, ishttp2=nil, activecheck=nil, ciphertemplate=nil, cert=nil, privatekey=nil, sslid=nil, resourceid=nil, ipheaders=nil, upstreamscheme=nil, httpsupstreamport=nil, isgray=nil, grayareas=nil, upstreamdomain=nil, srclist=nil, edition=nil, anycast=nil, weights=nil, tlsversion=nil, ciphers=nil, proxyconnecttimeout=nil, proxyreadtimeout=nil, proxysendtimeout=nil, snitype=nil, snihost=nil, xffreset=nil, note=nil, upstreamhost=nil, proxybuffer=nil, probestatus=nil, gmtype=nil, gmcerttype=nil, gmcert=nil, gmprivatekey=nil, gmenccert=nil, gmencprivatekey=nil, gmsslid=nil, upstreampolicy=nil, upstreamrules=nil, usecase=nil, gzip=nil)
           @Domain = domain
@@ -2435,10 +2435,10 @@ module TencentCloud
 
         attr_accessor :Id, :ActionType, :Ip, :Note, :Source, :TsVersion, :ValidTs, :Hosts, :RuleId, :IpList, :CreateTime, :JobType, :CronType, :JobDateTime, :ValidStatus, :GroupIds
         extend Gem::Deprecate
-        deprecate :Id, :none, 2026, 4
-        deprecate :Id=, :none, 2026, 4
-        deprecate :Ip, :none, 2026, 4
-        deprecate :Ip=, :none, 2026, 4
+        deprecate :Id, :none, 2026, 5
+        deprecate :Id=, :none, 2026, 5
+        deprecate :Ip, :none, 2026, 5
+        deprecate :Ip=, :none, 2026, 5
 
         def initialize(id=nil, actiontype=nil, ip=nil, note=nil, source=nil, tsversion=nil, validts=nil, hosts=nil, ruleid=nil, iplist=nil, createtime=nil, jobtype=nil, crontype=nil, jobdatetime=nil, validstatus=nil, groupids=nil)
           @Id = id
@@ -4544,8 +4544,8 @@ module TencentCloud
 
         attr_accessor :Domain, :IpList, :ActionType, :ValidTS, :InstanceId, :Edition, :SourceType, :Note, :JobType, :JobDateTime
         extend Gem::Deprecate
-        deprecate :ValidTS, :none, 2026, 4
-        deprecate :ValidTS=, :none, 2026, 4
+        deprecate :ValidTS, :none, 2026, 5
+        deprecate :ValidTS=, :none, 2026, 5
 
         def initialize(domain=nil, iplist=nil, actiontype=nil, validts=nil, instanceid=nil, edition=nil, sourcetype=nil, note=nil, jobtype=nil, jobdatetime=nil)
           @Domain = domain
@@ -6185,8 +6185,8 @@ module TencentCloud
 
         attr_accessor :From, :To, :Query, :FieldName, :TopicId, :Sort, :Count
         extend Gem::Deprecate
-        deprecate :TopicId, :none, 2026, 4
-        deprecate :TopicId=, :none, 2026, 4
+        deprecate :TopicId, :none, 2026, 5
+        deprecate :TopicId=, :none, 2026, 5
 
         def initialize(from=nil, to=nil, query=nil, fieldname=nil, topicid=nil, sort=nil, count=nil)
           @From = from
@@ -9392,10 +9392,10 @@ module TencentCloud
 
         attr_accessor :Domain, :Count, :ActionType, :VtsMin, :VtsMax, :CtsMin, :CtsMax, :OffSet, :Limit, :Source, :Sort, :Ip, :ValidStatus, :ValidTimeStampMin, :ValidTimeStampMax, :RuleId, :TimerType
         extend Gem::Deprecate
-        deprecate :VtsMin, :none, 2026, 4
-        deprecate :VtsMin=, :none, 2026, 4
-        deprecate :VtsMax, :none, 2026, 4
-        deprecate :VtsMax=, :none, 2026, 4
+        deprecate :VtsMin, :none, 2026, 5
+        deprecate :VtsMin=, :none, 2026, 5
+        deprecate :VtsMax, :none, 2026, 5
+        deprecate :VtsMax=, :none, 2026, 5
 
         def initialize(domain=nil, count=nil, actiontype=nil, vtsmin=nil, vtsmax=nil, ctsmin=nil, ctsmax=nil, offset=nil, limit=nil, source=nil, sort=nil, ip=nil, validstatus=nil, validtimestampmin=nil, validtimestampmax=nil, ruleid=nil, timertype=nil)
           @Domain = domain
@@ -9498,10 +9498,10 @@ module TencentCloud
 
         attr_accessor :Domain, :Count, :Category, :VtsMin, :VtsMax, :CtsMin, :CtsMax, :Skip, :Limit, :Name, :Sort, :Ip, :ValidTimeStampMin, :ValidTimeStampMax
         extend Gem::Deprecate
-        deprecate :VtsMin, :none, 2026, 4
-        deprecate :VtsMin=, :none, 2026, 4
-        deprecate :VtsMax, :none, 2026, 4
-        deprecate :VtsMax=, :none, 2026, 4
+        deprecate :VtsMin, :none, 2026, 5
+        deprecate :VtsMin=, :none, 2026, 5
+        deprecate :VtsMax, :none, 2026, 5
+        deprecate :VtsMax=, :none, 2026, 5
 
         def initialize(domain=nil, count=nil, category=nil, vtsmin=nil, vtsmax=nil, ctsmin=nil, ctsmax=nil, skip=nil, limit=nil, name=nil, sort=nil, ip=nil, validtimestampmin=nil, validtimestampmax=nil)
           @Domain = domain
@@ -12260,8 +12260,8 @@ module TencentCloud
 
         attr_accessor :Domain, :DomainId, :InstanceId, :Edition, :InstanceName, :Cert, :CreateTime, :Engine, :HttpsRewrite, :HttpsUpstreamPort, :IsCdn, :IsGray, :IsHttp2, :IsWebsocket, :LoadBalance, :Mode, :PrivateKey, :SSLId, :UpstreamDomain, :UpstreamType, :SrcList, :Ports, :CertType, :UpstreamScheme, :Cls, :Cname, :IsKeepAlive, :ActiveCheck, :TLSVersion, :Ciphers, :CipherTemplate, :ProxyConnectTimeout, :ProxyReadTimeout, :ProxySendTimeout, :SniType, :SniHost, :Weights, :IpHeaders, :XFFReset, :Note, :UpstreamHost, :Level, :ProxyBuffer, :GmType, :GmCertType, :GmCert, :GmPrivateKey, :GmEncCert, :GmEncPrivateKey, :GmSSLId, :Labels, :ProbeStatus, :UpstreamPolicy, :UpstreamRules, :UseCase, :Gzip, :State, :PrivateVipStatus
         extend Gem::Deprecate
-        deprecate :IsGray, :none, 2026, 4
-        deprecate :IsGray=, :none, 2026, 4
+        deprecate :IsGray, :none, 2026, 5
+        deprecate :IsGray=, :none, 2026, 5
 
         def initialize(domain=nil, domainid=nil, instanceid=nil, edition=nil, instancename=nil, cert=nil, createtime=nil, engine=nil, httpsrewrite=nil, httpsupstreamport=nil, iscdn=nil, isgray=nil, ishttp2=nil, iswebsocket=nil, loadbalance=nil, mode=nil, privatekey=nil, sslid=nil, upstreamdomain=nil, upstreamtype=nil, srclist=nil, ports=nil, certtype=nil, upstreamscheme=nil, cls=nil, cname=nil, iskeepalive=nil, activecheck=nil, tlsversion=nil, ciphers=nil, ciphertemplate=nil, proxyconnecttimeout=nil, proxyreadtimeout=nil, proxysendtimeout=nil, snitype=nil, snihost=nil, weights=nil, ipheaders=nil, xffreset=nil, note=nil, upstreamhost=nil, level=nil, proxybuffer=nil, gmtype=nil, gmcerttype=nil, gmcert=nil, gmprivatekey=nil, gmenccert=nil, gmencprivatekey=nil, gmsslid=nil, labels=nil, probestatus=nil, upstreampolicy=nil, upstreamrules=nil, usecase=nil, gzip=nil, state=nil, privatevipstatus=nil)
           @Domain = domain
@@ -14667,10 +14667,12 @@ module TencentCloud
         # @type Payload: String
         # @param ImageResult: <p>图片检测结果</p>
         # @type ImageResult: Array
+        # @param MsgID: <p>要代答的消息id，此消息id用于作为GenerateLLMSecAnswer接口的入参</p>
+        # @type MsgID: String
 
-        attr_accessor :SensitiveResult, :KeyWordsResult, :DataCategoryResult, :PromptInjectionResult, :RuleId, :RuleName, :Action, :Payload, :ImageResult
+        attr_accessor :SensitiveResult, :KeyWordsResult, :DataCategoryResult, :PromptInjectionResult, :RuleId, :RuleName, :Action, :Payload, :ImageResult, :MsgID
 
-        def initialize(sensitiveresult=nil, keywordsresult=nil, datacategoryresult=nil, promptinjectionresult=nil, ruleid=nil, rulename=nil, action=nil, payload=nil, imageresult=nil)
+        def initialize(sensitiveresult=nil, keywordsresult=nil, datacategoryresult=nil, promptinjectionresult=nil, ruleid=nil, rulename=nil, action=nil, payload=nil, imageresult=nil, msgid=nil)
           @SensitiveResult = sensitiveresult
           @KeyWordsResult = keywordsresult
           @DataCategoryResult = datacategoryresult
@@ -14680,6 +14682,7 @@ module TencentCloud
           @Action = action
           @Payload = payload
           @ImageResult = imageresult
+          @MsgID = msgid
         end
 
         def deserialize(params)
@@ -14716,6 +14719,7 @@ module TencentCloud
               @ImageResult << imageresult_tmp
             end
           end
+          @MsgID = params['MsgID']
         end
       end
 
@@ -16293,8 +16297,8 @@ module TencentCloud
 
         attr_accessor :Id, :Name, :ExpireTime, :SortId, :ActionType, :Redirect, :Remark, :EventId, :Strategies, :Bypass, :Domains, :JobType, :JobDateTime, :GroupIds, :LogicalOp, :PageId, :ActionRatio
         extend Gem::Deprecate
-        deprecate :Bypass, :none, 2026, 4
-        deprecate :Bypass=, :none, 2026, 4
+        deprecate :Bypass, :none, 2026, 5
+        deprecate :Bypass=, :none, 2026, 5
 
         def initialize(id=nil, name=nil, expiretime=nil, sortid=nil, actiontype=nil, redirect=nil, remark=nil, eventid=nil, strategies=nil, bypass=nil, domains=nil, jobtype=nil, jobdatetime=nil, groupids=nil, logicalop=nil, pageid=nil, actionratio=nil)
           @Id = id
@@ -16878,8 +16882,8 @@ module TencentCloud
 
         attr_accessor :Domain, :RuleId, :RuleName, :RuleAction, :Strategies, :Edition, :Redirect, :Bypass, :SortId, :ExpireTime, :JobType, :JobDateTime, :Source, :Status, :PageId, :LogicalOp, :ActionRatio
         extend Gem::Deprecate
-        deprecate :Bypass, :none, 2026, 4
-        deprecate :Bypass=, :none, 2026, 4
+        deprecate :Bypass, :none, 2026, 5
+        deprecate :Bypass=, :none, 2026, 5
 
         def initialize(domain=nil, ruleid=nil, rulename=nil, ruleaction=nil, strategies=nil, edition=nil, redirect=nil, bypass=nil, sortid=nil, expiretime=nil, jobtype=nil, jobdatetime=nil, source=nil, status=nil, pageid=nil, logicalop=nil, actionratio=nil)
           @Domain = domain
@@ -17805,8 +17809,8 @@ module TencentCloud
 
         attr_accessor :Domain, :IpList, :ActionType, :RuleId, :ValidTS, :InstanceId, :Edition, :SourceType, :Note, :JobType, :JobDateTime
         extend Gem::Deprecate
-        deprecate :ValidTS, :none, 2026, 4
-        deprecate :ValidTS=, :none, 2026, 4
+        deprecate :ValidTS, :none, 2026, 5
+        deprecate :ValidTS=, :none, 2026, 5
 
         def initialize(domain=nil, iplist=nil, actiontype=nil, ruleid=nil, validts=nil, instanceid=nil, edition=nil, sourcetype=nil, note=nil, jobtype=nil, jobdatetime=nil)
           @Domain = domain
@@ -18568,10 +18572,10 @@ module TencentCloud
 
         attr_accessor :Domain, :DomainId, :InstanceID, :CertType, :Cert, :PrivateKey, :SSLId, :IsCdn, :UpstreamScheme, :HttpsUpstreamPort, :HttpsRewrite, :UpstreamType, :UpstreamDomain, :SrcList, :IsHttp2, :IsWebsocket, :LoadBalance, :IsGray, :Edition, :Ports, :IsKeepAlive, :Anycast, :Weights, :ActiveCheck, :TLSVersion, :Ciphers, :CipherTemplate, :ProxyConnectTimeout, :ProxyReadTimeout, :ProxySendTimeout, :SniType, :SniHost, :IpHeaders, :XFFReset, :Note, :UpstreamHost, :ProxyBuffer, :ProbeStatus, :GmType, :GmCertType, :GmCert, :GmPrivateKey, :GmEncCert, :GmEncPrivateKey, :GmSSLId, :UpstreamPolicy, :UpstreamRules, :UseCase, :Gzip
         extend Gem::Deprecate
-        deprecate :IsGray, :none, 2026, 4
-        deprecate :IsGray=, :none, 2026, 4
-        deprecate :Anycast, :none, 2026, 4
-        deprecate :Anycast=, :none, 2026, 4
+        deprecate :IsGray, :none, 2026, 5
+        deprecate :IsGray=, :none, 2026, 5
+        deprecate :Anycast, :none, 2026, 5
+        deprecate :Anycast=, :none, 2026, 5
 
         def initialize(domain=nil, domainid=nil, instanceid=nil, certtype=nil, cert=nil, privatekey=nil, sslid=nil, iscdn=nil, upstreamscheme=nil, httpsupstreamport=nil, httpsrewrite=nil, upstreamtype=nil, upstreamdomain=nil, srclist=nil, ishttp2=nil, iswebsocket=nil, loadbalance=nil, isgray=nil, edition=nil, ports=nil, iskeepalive=nil, anycast=nil, weights=nil, activecheck=nil, tlsversion=nil, ciphers=nil, ciphertemplate=nil, proxyconnecttimeout=nil, proxyreadtimeout=nil, proxysendtimeout=nil, snitype=nil, snihost=nil, ipheaders=nil, xffreset=nil, note=nil, upstreamhost=nil, proxybuffer=nil, probestatus=nil, gmtype=nil, gmcerttype=nil, gmcert=nil, gmprivatekey=nil, gmenccert=nil, gmencprivatekey=nil, gmsslid=nil, upstreampolicy=nil, upstreamrules=nil, usecase=nil, gzip=nil)
           @Domain = domain
@@ -20347,10 +20351,10 @@ module TencentCloud
 
         attr_accessor :Context, :ListOver, :Analysis, :ColNames, :Results, :AnalysisResults, :RequestId
         extend Gem::Deprecate
-        deprecate :ColNames, :none, 2026, 4
-        deprecate :ColNames=, :none, 2026, 4
-        deprecate :AnalysisResults, :none, 2026, 4
-        deprecate :AnalysisResults=, :none, 2026, 4
+        deprecate :ColNames, :none, 2026, 5
+        deprecate :ColNames=, :none, 2026, 5
+        deprecate :AnalysisResults, :none, 2026, 5
+        deprecate :AnalysisResults=, :none, 2026, 5
 
         def initialize(context=nil, listover=nil, analysis=nil, colnames=nil, results=nil, analysisresults=nil, requestid=nil)
           @Context = context

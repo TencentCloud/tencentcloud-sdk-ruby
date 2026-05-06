@@ -53,6 +53,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询组件生成任务。
+
+        # @param request: Request instance for DescribeHunyuanTo3DMotionJob.
+        # @type request: :class:`Tencentcloud::ai3d::V20250513::DescribeHunyuanTo3DMotionJobRequest`
+        # @rtype: :class:`Tencentcloud::ai3d::V20250513::DescribeHunyuanTo3DMotionJobResponse`
+        def DescribeHunyuanTo3DMotionJob(request)
+          body = send_request('DescribeHunyuanTo3DMotionJob', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeHunyuanTo3DMotionJobResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询组件拆分任务。
 
         # @param request: Request instance for DescribeHunyuanTo3DUVJob.
@@ -236,6 +260,31 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = SubmitHunyuan3DPartJobResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 输入文本后，可根据文本描述生成对应的 3D人物 动作数据，输出带动画数据的FBX文件。
+        # 默认提供1个并发，代表最多能同时处理1个已提交的任务，上一个任务处理完毕后，才能开始处理下一个任务。
+
+        # @param request: Request instance for SubmitHunyuanTo3DMotionJob.
+        # @type request: :class:`Tencentcloud::ai3d::V20250513::SubmitHunyuanTo3DMotionJobRequest`
+        # @rtype: :class:`Tencentcloud::ai3d::V20250513::SubmitHunyuanTo3DMotionJobResponse`
+        def SubmitHunyuanTo3DMotionJob(request)
+          body = send_request('SubmitHunyuanTo3DMotionJob', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SubmitHunyuanTo3DMotionJobResponse.new
             model.deserialize(response['Response'])
             model
           else

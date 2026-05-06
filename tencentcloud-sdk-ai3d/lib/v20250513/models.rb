@@ -57,6 +57,61 @@ module TencentCloud
         end
       end
 
+      # DescribeHunyuanTo3DMotionJob请求参数结构体
+      class DescribeHunyuanTo3DMotionJobRequest < TencentCloud::Common::AbstractModel
+        # @param JobId: <p>任务ID。</p>
+        # @type JobId: String
+
+        attr_accessor :JobId
+
+        def initialize(jobid=nil)
+          @JobId = jobid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+        end
+      end
+
+      # DescribeHunyuanTo3DMotionJob返回参数结构体
+      class DescribeHunyuanTo3DMotionJobResponse < TencentCloud::Common::AbstractModel
+        # @param Status: <p>任务状态。WAIT：等待中，RUN：执行中，FAIL：任务失败，DONE：任务成功 示例值：RUN。</p>
+        # @type Status: String
+        # @param ErrorCode: <p>错误码。</p>
+        # @type ErrorCode: String
+        # @param ErrorMessage: <p>错误信息。</p>
+        # @type ErrorMessage: String
+        # @param ResultFile3Ds: <p>生成文件的URL地址，有效期1天。</p>
+        # @type ResultFile3Ds: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :ErrorCode, :ErrorMessage, :ResultFile3Ds, :RequestId
+
+        def initialize(status=nil, errorcode=nil, errormessage=nil, resultfile3ds=nil, requestid=nil)
+          @Status = status
+          @ErrorCode = errorcode
+          @ErrorMessage = errormessage
+          @ResultFile3Ds = resultfile3ds
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @ErrorCode = params['ErrorCode']
+          @ErrorMessage = params['ErrorMessage']
+          unless params['ResultFile3Ds'].nil?
+            @ResultFile3Ds = []
+            params['ResultFile3Ds'].each do |i|
+              file3d_tmp = File3D.new
+              file3d_tmp.deserialize(i)
+              @ResultFile3Ds << file3d_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeHunyuanTo3DUVJob请求参数结构体
       class DescribeHunyuanTo3DUVJobRequest < TencentCloud::Common::AbstractModel
         # @param JobId: 任务ID。
@@ -540,6 +595,69 @@ module TencentCloud
       # SubmitHunyuan3DPartJob返回参数结构体
       class SubmitHunyuan3DPartJobResponse < TencentCloud::Common::AbstractModel
         # @param JobId: <p>任务ID。</p>
+        # @type JobId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :JobId, :RequestId
+
+        def initialize(jobid=nil, requestid=nil)
+          @JobId = jobid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # SubmitHunyuanTo3DMotionJob请求参数结构体
+      class SubmitHunyuanTo3DMotionJobRequest < TencentCloud::Common::AbstractModel
+        # @param Prompt: <p>输入文本prompt，限定最大字符为128。</p>
+        # @type Prompt: String
+        # @param Model: <p>模型名称：HY-Motion-1.0，默认HY-Motion-1.0。</p>
+        # @type Model: String
+        # @param RetargetFile: <p>需重定向的模型地址，只能支持混元生3D动画生成的模型（动画模板的接口）</p>
+        # @type RetargetFile: :class:`Tencentcloud::Ai3d.v20250513.models.InputFile3D`
+        # @param Duration: <p>生成动画的时长，默认5，范围：1-12（单位s）</p>
+        # @type Duration: Integer
+        # @param EnableMesh: <p>默认true，返回的fbx是否带蒙皮mesh</p>
+        # @type EnableMesh: Boolean
+        # @param EnableRewrite: <p>是否开启prompt扩写，开启后将补充完善输入的prompt。<br>默认false。</p>
+        # @type EnableRewrite: Boolean
+        # @param EnableDurationEst: <p>是否开启时长自动匹配，开启后将自动根据prompt匹配适合时长的动作数据<br>默认false。</p>
+        # @type EnableDurationEst: Boolean
+
+        attr_accessor :Prompt, :Model, :RetargetFile, :Duration, :EnableMesh, :EnableRewrite, :EnableDurationEst
+
+        def initialize(prompt=nil, model=nil, retargetfile=nil, duration=nil, enablemesh=nil, enablerewrite=nil, enabledurationest=nil)
+          @Prompt = prompt
+          @Model = model
+          @RetargetFile = retargetfile
+          @Duration = duration
+          @EnableMesh = enablemesh
+          @EnableRewrite = enablerewrite
+          @EnableDurationEst = enabledurationest
+        end
+
+        def deserialize(params)
+          @Prompt = params['Prompt']
+          @Model = params['Model']
+          unless params['RetargetFile'].nil?
+            @RetargetFile = InputFile3D.new
+            @RetargetFile.deserialize(params['RetargetFile'])
+          end
+          @Duration = params['Duration']
+          @EnableMesh = params['EnableMesh']
+          @EnableRewrite = params['EnableRewrite']
+          @EnableDurationEst = params['EnableDurationEst']
+        end
+      end
+
+      # SubmitHunyuanTo3DMotionJob返回参数结构体
+      class SubmitHunyuanTo3DMotionJobResponse < TencentCloud::Common::AbstractModel
+        # @param JobId: <p>任务ID（有效期24小时）</p>
         # @type JobId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
