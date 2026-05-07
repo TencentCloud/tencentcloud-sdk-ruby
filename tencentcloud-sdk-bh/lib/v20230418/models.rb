@@ -74,10 +74,10 @@ module TencentCloud
 
         attr_accessor :Account, :LoginAccount, :LoginPassword, :DeviceId, :InstanceId, :Password, :PrivateKey, :PrivateKeyPassword, :Exe, :Drivers, :Width, :Height, :IntranetAccess, :AutoManageAccessCredential
         extend Gem::Deprecate
-        deprecate :LoginAccount, :none, 2026, 4
-        deprecate :LoginAccount=, :none, 2026, 4
-        deprecate :LoginPassword, :none, 2026, 4
-        deprecate :LoginPassword=, :none, 2026, 4
+        deprecate :LoginAccount, :none, 2026, 5
+        deprecate :LoginAccount=, :none, 2026, 5
+        deprecate :LoginPassword, :none, 2026, 5
+        deprecate :LoginPassword=, :none, 2026, 5
 
         def initialize(account=nil, loginaccount=nil, loginpassword=nil, deviceid=nil, instanceid=nil, password=nil, privatekey=nil, privatekeypassword=nil, exe=nil, drivers=nil, width=nil, height=nil, intranetaccess=nil, automanageaccesscredential=nil)
           @Account = account
@@ -705,6 +705,46 @@ module TencentCloud
 
         def deserialize(params)
           @AuthMode = params['AuthMode']
+        end
+      end
+
+      # BindDeviceAccountKubeconfig请求参数结构体
+      class BindDeviceAccountKubeconfigRequest < TencentCloud::Common::AbstractModel
+        # @param Id: 容器账号Id
+        # @type Id: Integer
+        # @param Kubeconfig: 容器账号凭据
+        # @type Kubeconfig: String
+        # @param ManageDimension: 托管维度。1-集群
+        # @type ManageDimension: Integer
+
+        attr_accessor :Id, :Kubeconfig, :ManageDimension
+
+        def initialize(id=nil, kubeconfig=nil, managedimension=nil)
+          @Id = id
+          @Kubeconfig = kubeconfig
+          @ManageDimension = managedimension
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Kubeconfig = params['Kubeconfig']
+          @ManageDimension = params['ManageDimension']
+        end
+      end
+
+      # BindDeviceAccountKubeconfig返回参数结构体
+      class BindDeviceAccountKubeconfigResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 
@@ -6237,8 +6277,8 @@ module TencentCloud
 
         attr_accessor :ResourceId, :Status, :ResourceEdition, :ResourceNode, :AutoRenewFlag, :PackageBandwidth, :PackageNode, :LogDelivery
         extend Gem::Deprecate
-        deprecate :Status, :none, 2026, 4
-        deprecate :Status=, :none, 2026, 4
+        deprecate :Status, :none, 2026, 5
+        deprecate :Status=, :none, 2026, 5
 
         def initialize(resourceid=nil, status=nil, resourceedition=nil, resourcenode=nil, autorenewflag=nil, packagebandwidth=nil, packagenode=nil, logdelivery=nil)
           @ResourceId = resourceid
@@ -8449,8 +8489,8 @@ module TencentCloud
 
         attr_accessor :Id, :InstanceId, :Name, :ApCode, :PublicIp, :PrivateIp, :Status, :Reason, :ExitCode, :StartTime, :EndTime, :StdOut, :StdErr, :DeviceName, :Account
         extend Gem::Deprecate
-        deprecate :Name, :none, 2026, 4
-        deprecate :Name=, :none, 2026, 4
+        deprecate :Name, :none, 2026, 5
+        deprecate :Name=, :none, 2026, 5
 
         def initialize(id=nil, instanceid=nil, name=nil, apcode=nil, publicip=nil, privateip=nil, status=nil, reason=nil, exitcode=nil, starttime=nil, endtime=nil, stdout=nil, stderr=nil, devicename=nil, account=nil)
           @Id = id

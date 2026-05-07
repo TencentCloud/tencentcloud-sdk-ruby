@@ -1664,7 +1664,6 @@ module TencentCloud
         end
 
         # 支持对输入图的内容进行判断、分类以及总结；支持用户对通用文字识别输出结构进行自定义。
-        # 默认接口请求频率限制：1次/秒
 
         # @param request: Request instance for RecognizeAgent.
         # @type request: :class:`Tencentcloud::ocr::V20181119::RecognizeAgentRequest`
@@ -2870,7 +2869,6 @@ module TencentCloud
         end
 
         # 提供针对特定场景（如商户门头照、车牌等）图片的PS篡改、AIGC合成、图片质量检测能力，可应用于业务流程中对特定场景图片真实性、有效性校验的场景。
-        # 默认接口请求频率限制：10次/秒
 
         # @param request: Request instance for VerifyScenePhoto.
         # @type request: :class:`Tencentcloud::ocr::V20181119::VerifyScenePhotoRequest`

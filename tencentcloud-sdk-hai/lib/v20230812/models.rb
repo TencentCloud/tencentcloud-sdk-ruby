@@ -152,9 +152,9 @@ module TencentCloud
 
       # 资源相关信息
       class ComputeInfo < TencentCloud::Common::AbstractModel
-        # @param ComputeResources: 资源类型及数量
+        # @param ComputeResources: <p>资源类型及数量</p>
         # @type ComputeResources: Array
-        # @param Replicas: 副本数
+        # @param Replicas: <p>副本数</p>
         # @type Replicas: Integer
 
         attr_accessor :ComputeResources, :Replicas

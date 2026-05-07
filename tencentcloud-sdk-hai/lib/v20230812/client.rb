@@ -607,7 +607,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口(UpdateServiceConfigs)用于更新服务配置
+        # 本接口(UpdateServiceConfigs)用于更新服务配置。
 
         # @param request: Request instance for UpdateServiceConfigs.
         # @type request: :class:`Tencentcloud::hai::V20230812::UpdateServiceConfigsRequest`

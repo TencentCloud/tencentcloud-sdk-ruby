@@ -3936,6 +3936,53 @@ module TencentCloud
         end
       end
 
+      # ModifyApmService请求参数结构体
+      class ModifyApmServiceRequest < TencentCloud::Common::AbstractModel
+        # @param ServiceID: 应用ID
+        # @type ServiceID: String
+        # @param ServiceDescription: 应用描述
+        # @type ServiceDescription: String
+        # @param Tags: 标签列表
+        # @type Tags: Array
+
+        attr_accessor :ServiceID, :ServiceDescription, :Tags
+
+        def initialize(serviceid=nil, servicedescription=nil, tags=nil)
+          @ServiceID = serviceid
+          @ServiceDescription = servicedescription
+          @Tags = tags
+        end
+
+        def deserialize(params)
+          @ServiceID = params['ServiceID']
+          @ServiceDescription = params['ServiceDescription']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              apmtag_tmp = ApmTag.new
+              apmtag_tmp.deserialize(i)
+              @Tags << apmtag_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyApmService返回参数结构体
+      class ModifyApmServiceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyGeneralApmApplicationConfig请求参数结构体
       class ModifyGeneralApmApplicationConfigRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 业务系统Id

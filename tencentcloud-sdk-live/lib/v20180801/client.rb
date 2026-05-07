@@ -3874,7 +3874,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取直播源站配置信息，支持直播原站格式。
+        # 获取直播源站配置信息，支持直播源站格式。
 
         # @param request: Request instance for DescribeOriginStreamInfo.
         # @type request: :class:`Tencentcloud::live::V20180801::DescribeOriginStreamInfoRequest`
@@ -5080,7 +5080,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 变更直播源站配置，支持直播原站格式。
+        # 变更直播源站配置，支持直播源站格式。
 
         # @param request: Request instance for ModifyOriginStreamInfo.
         # @type request: :class:`Tencentcloud::live::V20180801::ModifyOriginStreamInfoRequest`

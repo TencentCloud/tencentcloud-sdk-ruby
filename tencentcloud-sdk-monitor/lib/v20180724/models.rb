@@ -1154,19 +1154,19 @@ module TencentCloud
 
       # BindingPolicyObject请求参数结构体
       class BindingPolicyObjectRequest < TencentCloud::Common::AbstractModel
-        # @param Module: 必填。固定值"monitor"
+        # @param Module: <p>必填。固定值&quot;monitor&quot;</p>
         # @type Module: String
-        # @param GroupId: 策略组id，例如 4739573。逐渐弃用，建议使用 PolicyId 参数
+        # @param GroupId: <p>策略组id，例如 4739573。逐渐弃用，建议使用 PolicyId 参数</p>
         # @type GroupId: Integer
-        # @param PolicyId: 告警策略ID，例如“policy-gh892hg0”。PolicyId 参数与 GroupId 参数至少要填一个，否则会报参数错误，建议使用该参数。若两者同时存在则以该参数为准
+        # @param PolicyId: <p>告警策略ID，例如“policy-gh892hg0”。PolicyId 参数与 GroupId 参数至少要填一个，否则会报参数错误，建议使用该参数。若两者同时存在则以该参数为准</p>
         # @type PolicyId: String
-        # @param InstanceGroupId: 实例分组ID
+        # @param InstanceGroupId: <p>实例分组ID</p>
         # @type InstanceGroupId: Integer
-        # @param Dimensions: 需要绑定的对象维度信息，当为实例绑定渠道时，此处为必填信息
+        # @param Dimensions: <p>需要绑定的对象维度信息。当告警对象选择为实例绑定方式时，该参数为必填参数；当告警对象选择为标签绑定、实例分组方式时，该参数为选填参数。</p>
         # @type Dimensions: Array
-        # @param EbSubject: 事件配置的告警
+        # @param EbSubject: <p>事件配置的告警</p>
         # @type EbSubject: String
-        # @param EbEventFlag: 是否配置了事件告警
+        # @param EbEventFlag: <p>是否配置了事件告警</p>
         # @type EbEventFlag: Integer
 
         attr_accessor :Module, :GroupId, :PolicyId, :InstanceGroupId, :Dimensions, :EbSubject, :EbEventFlag
@@ -11940,14 +11940,14 @@ module TencentCloud
 
         attr_accessor :AlarmNotifyPeriod, :AlarmNotifyType, :EventID, :RuleID, :MetricName, :Description
         extend Gem::Deprecate
-        deprecate :AlarmNotifyPeriod, :none, 2026, 4
-        deprecate :AlarmNotifyPeriod=, :none, 2026, 4
-        deprecate :AlarmNotifyType, :none, 2026, 4
-        deprecate :AlarmNotifyType=, :none, 2026, 4
-        deprecate :EventID, :none, 2026, 4
-        deprecate :EventID=, :none, 2026, 4
-        deprecate :RuleID, :none, 2026, 4
-        deprecate :RuleID=, :none, 2026, 4
+        deprecate :AlarmNotifyPeriod, :none, 2026, 5
+        deprecate :AlarmNotifyPeriod=, :none, 2026, 5
+        deprecate :AlarmNotifyType, :none, 2026, 5
+        deprecate :AlarmNotifyType=, :none, 2026, 5
+        deprecate :EventID, :none, 2026, 5
+        deprecate :EventID=, :none, 2026, 5
+        deprecate :RuleID, :none, 2026, 5
+        deprecate :RuleID=, :none, 2026, 5
 
         def initialize(alarmnotifyperiod=nil, alarmnotifytype=nil, eventid=nil, ruleid=nil, metricname=nil, description=nil)
           @AlarmNotifyPeriod = alarmnotifyperiod
@@ -14931,10 +14931,10 @@ module TencentCloud
 
         attr_accessor :URL, :URLRelabelConfig, :BasicAuth, :MaxBlockSize, :Label, :Headers, :RemoteWriteType
         extend Gem::Deprecate
-        deprecate :MaxBlockSize, :none, 2026, 4
-        deprecate :MaxBlockSize=, :none, 2026, 4
-        deprecate :Label, :none, 2026, 4
-        deprecate :Label=, :none, 2026, 4
+        deprecate :MaxBlockSize, :none, 2026, 5
+        deprecate :MaxBlockSize=, :none, 2026, 5
+        deprecate :Label, :none, 2026, 5
+        deprecate :Label=, :none, 2026, 5
 
         def initialize(url=nil, urlrelabelconfig=nil, basicauth=nil, maxblocksize=nil, label=nil, headers=nil, remotewritetype=nil)
           @URL = url

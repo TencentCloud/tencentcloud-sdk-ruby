@@ -501,30 +501,35 @@ module TencentCloud
 
       # DescribeSmsSignList请求参数结构体
       class DescribeSmsSignListRequest < TencentCloud::Common::AbstractModel
-        # @param SignIdSet: 签名 ID 数组。
-        # 注：默认数组最大长度100。
-        # @type SignIdSet: Array
-        # @param International: 是否国际/港澳台短信：
-        # 0：表示国内短信。
-        # 1：表示国际/港澳台短信。
+        # @param International: <p>是否国际/港澳台短信：<br>0：表示国内短信。<br>1：表示国际/港澳台短信。</p>
         # @type International: Integer
+        # @param SignIdSet: <p>签名 ID 数组。<br>注：默认数组最大长度100。</p>
+        # @type SignIdSet: Array
+        # @param Limit: <p>最大上限，最多100。注：默认为10，SignIdSet 为空时启用。</p>
+        # @type Limit: Integer
+        # @param Offset: <p>偏移量。注：默认为0，SignIdSet 为空时启用。</p>
+        # @type Offset: Integer
 
-        attr_accessor :SignIdSet, :International
+        attr_accessor :International, :SignIdSet, :Limit, :Offset
 
-        def initialize(signidset=nil, international=nil)
-          @SignIdSet = signidset
+        def initialize(international=nil, signidset=nil, limit=nil, offset=nil)
           @International = international
+          @SignIdSet = signidset
+          @Limit = limit
+          @Offset = offset
         end
 
         def deserialize(params)
-          @SignIdSet = params['SignIdSet']
           @International = params['International']
+          @SignIdSet = params['SignIdSet']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
         end
       end
 
       # DescribeSmsSignList返回参数结构体
       class DescribeSmsSignListResponse < TencentCloud::Common::AbstractModel
-        # @param DescribeSignListStatusSet: 获取签名信息响应
+        # @param DescribeSignListStatusSet: <p>获取签名信息响应</p>
         # @type DescribeSignListStatusSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

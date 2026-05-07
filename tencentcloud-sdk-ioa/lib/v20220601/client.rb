@@ -869,6 +869,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改业务资源，会对一些必填参数进行校验和参数合法性校验，修改业务资源时，先调用下校验相同业务资源接口，看资源是不是有冲突。修改时也会做校验，但没有返回对应的异常信息,私有化调用path为：capi/GatewayResource/ModifyBusinessResource
+
+        # @param request: Request instance for ModifyBusinessResource.
+        # @type request: :class:`Tencentcloud::ioa::V20220601::ModifyBusinessResourceRequest`
+        # @rtype: :class:`Tencentcloud::ioa::V20220601::ModifyBusinessResourceResponse`
+        def ModifyBusinessResource(request)
+          body = send_request('ModifyBusinessResource', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyBusinessResourceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 给接入设备加黑加白,私有化调用path为：capi/NGN/ModifyDeviceTrustStatus
 
         # @param request: Request instance for ModifyDeviceTrustStatus.

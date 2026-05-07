@@ -770,6 +770,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改apm应用信息
+
+        # @param request: Request instance for ModifyApmService.
+        # @type request: :class:`Tencentcloud::apm::V20210622::ModifyApmServiceRequest`
+        # @rtype: :class:`Tencentcloud::apm::V20210622::ModifyApmServiceResponse`
+        def ModifyApmService(request)
+          body = send_request('ModifyApmService', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyApmServiceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 对外开放的openApi，客户可以灵活的指定需要修改的字段，再加入需要修改的服务列表.
 
         # @param request: Request instance for ModifyGeneralApmApplicationConfig.

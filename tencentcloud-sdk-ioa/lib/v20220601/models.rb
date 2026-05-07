@@ -4764,6 +4764,70 @@ module TencentCloud
         end
       end
 
+      # ModifyBusinessResource请求参数结构体
+      class ModifyBusinessResourceRequest < TencentCloud::Common::AbstractModel
+        # @param AreaId: 业务资源所在的模块id，没有资源模块先创建资源模块(只支持32位)
+        # @type AreaId: Integer
+        # @param Protocol: 业务资源协议类型,3：所有,2：UDP，1：TCP(只支持32位)
+        # @type Protocol: Integer
+        # @param ServiceName: 业务资源名称，同一个资源模块下面不可重复
+        # @type ServiceName: String
+        # @param Levels: 业务资源优先级 1-65535(只支持32位)
+        # @type Levels: Integer
+        # @param ServiceType: 业务资源类型:ip,domain,ip_section，对应ip、域名、ip段
+        # @type ServiceType: String
+        # @param ServicePort: 业务资源端口 all,1-65535
+        # @type ServicePort: String
+        # @param ServiceId: 修改业务资源的id(只支持32位)
+        # @type ServiceId: Integer
+        # @param ServiceAddress: 业务资源地址(ip、域名、ip段)
+        # @type ServiceAddress: String
+        # @param DirectConn: 是否走代理,该参数不传，默认为0, 2：内外网直连，1：内网直连， 0：不启用代理配置(只支持32位)
+        # @type DirectConn: Integer
+
+        attr_accessor :AreaId, :Protocol, :ServiceName, :Levels, :ServiceType, :ServicePort, :ServiceId, :ServiceAddress, :DirectConn
+
+        def initialize(areaid=nil, protocol=nil, servicename=nil, levels=nil, servicetype=nil, serviceport=nil, serviceid=nil, serviceaddress=nil, directconn=nil)
+          @AreaId = areaid
+          @Protocol = protocol
+          @ServiceName = servicename
+          @Levels = levels
+          @ServiceType = servicetype
+          @ServicePort = serviceport
+          @ServiceId = serviceid
+          @ServiceAddress = serviceaddress
+          @DirectConn = directconn
+        end
+
+        def deserialize(params)
+          @AreaId = params['AreaId']
+          @Protocol = params['Protocol']
+          @ServiceName = params['ServiceName']
+          @Levels = params['Levels']
+          @ServiceType = params['ServiceType']
+          @ServicePort = params['ServicePort']
+          @ServiceId = params['ServiceId']
+          @ServiceAddress = params['ServiceAddress']
+          @DirectConn = params['DirectConn']
+        end
+      end
+
+      # ModifyBusinessResource返回参数结构体
+      class ModifyBusinessResourceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyDeviceTrustStatus请求参数结构体
       class ModifyDeviceTrustStatusRequest < TencentCloud::Common::AbstractModel
         # @param Status: <p>设备状态，1表示拉黑，0表示加白</p>

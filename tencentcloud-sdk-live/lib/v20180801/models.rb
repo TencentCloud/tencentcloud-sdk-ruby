@@ -10156,33 +10156,200 @@ module TencentCloud
 
       # DescribeOriginStreamInfo请求参数结构体
       class DescribeOriginStreamInfoRequest < TencentCloud::Common::AbstractModel
+        # @param DomainName: <p>域名。</p>
+        # @type DomainName: String
 
+        attr_accessor :DomainName
 
-        def initialize()
+        def initialize(domainname=nil)
+          @DomainName = domainname
         end
 
         def deserialize(params)
+          @DomainName = params['DomainName']
         end
       end
 
       # DescribeOriginStreamInfo返回参数结构体
       class DescribeOriginStreamInfoResponse < TencentCloud::Common::AbstractModel
-        # @param CacheFormatRule: 缓存格式规则。
-        # 0：默认格式。
-        # 1：云直播源站格式。
-        # 当 OriginStreamPlayType 为 customization 时候生效。
+        # @param Status: <p>配置状态信息：0 配置中，1 成功，2 关闭中，3 关闭成功。</p>
+        # @type Status: Integer
+        # @param CdnStreamPlayType: <p>播放类型。</p>
+        # @type CdnStreamPlayType: Array
+        # @param OriginStreamType: <p>原站配置类型：1 直播原站。<br>2 streamPackage。</p>
+        # @type OriginStreamType: Integer
+        # @param OriginStreamPlayType: <p>原站播放类型。</p>
+        # @type OriginStreamPlayType: String
+        # @param OriginAddressType: <p>原站地址类型：1 ip，2 域名。</p>
+        # @type OriginAddressType: Integer
+        # @param OriginAddress: <p>原站地址信息，每项用分号分割域名（ip）、端口信息。<br>端口为空也要带上分号，表示取默认端口。</p>
+        # @type OriginAddress: Array
+        # @param OriginTimeout: <p>超时时间，单位 ms。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OriginTimeout: Integer
+        # @param OriginRetryTimes: <p>重试次数，单位 次。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OriginRetryTimes: Integer
+        # @param TimeJitter: <p>时间戳修正，可取值：on、off。<br>当原站播放协议为 rtmp、flv 时，传递该字段才会生效。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TimeJitter: String
+        # @param HlsPlayFragmentCount: <p>分片数，单位 个。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HlsPlayFragmentCount: Integer
+        # @param HlsPlayFragmentDuration: <p>分片时长，单位 ms。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HlsPlayFragmentDuration: Integer
+        # @param PassThroughHttpHeader: <p>是否透传 http 头信息，可取值：on、off。<br>当原站播放协议为 hls 时，传递该字段才会生效。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PassThroughHttpHeader: String
+        # @param PassThroughResponse: <p>是否透传相应，可取值：on、off。<br>当原站播放协议为 hls 时，传递该字段才会生效。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PassThroughResponse: String
+        # @param PassThroughParam: <p>是否透传参数，可取值：on、off。<br>当原站播放协议为 hls 时，传递该字段才会生效。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PassThroughParam: String
+        # @param OriginHost: <p>原站 host。<br>当原站播放协议为 hls 时，传递该字段才会生效。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OriginHost: String
+        # @param IndexerCache: <p>索引缓存，单位 ms。<br>当原站播放协议为 hls 时，传递该字段才会生效。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IndexerCache: Integer
+        # @param FragmentCache: <p>分片缓存，单位 ms。<br>当原站播放协议为 hls 时，传递该字段才会生效。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FragmentCache: Integer
+        # @param DomainName: <p>域名。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DomainName: String
+        # @param UsingHttps: <p>https 回源，可取值：on、off。<br>当原站播放协议为flv、hls时，传递此字段才会生效。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UsingHttps: String
+        # @param CacheFollowOrigin: <p>是否遵循原站，可取值：on、off。<br>当原站播放协议为hls时，此字段才会生效。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CacheFollowOrigin: String
+        # @param CacheStatusCode: <p>状态码缓存，数组元素格式：<br>cacheKey:interval<br>cacheKey 可取值：cache_400_sec、cache_403_sec、cache_404_sec、cache_405_sec、cache_500_sec、cache_503_sec、cache_504_sec。<br>interval 单位 ms。<br>当原站播放协议为hls时，此字段才会生效。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CacheStatusCode: Array
+        # @param UrlReplaceRules: <p>url改写， 格式为： url1&lt;|&gt;url2; 其中，&lt;|&gt; 为分隔符。<br>url1、url2 长度限制100，不可包含特殊字符。<br>当原站播放协议为hls时，此字段才会生效。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UrlReplaceRules: Array
+        # @param OptionsRequest: <p>是否 options 支持，可取值：on、off。<br>当原站播放协议为hls时，此字段才会生效。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OptionsRequest: String
+        # @param FollowRedirect: <p>是否 follow 301/302，可取值：on、off。<br>当原站播放协议为hls时，此字段才会生效。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FollowRedirect: String
+        # @param StreamPackageRegion: <p>源站类型 OriginStreamType 为 2 时，该字段有效。 代表源站地址 OriginAddress 对应的地区 region。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StreamPackageRegion: Array
+        # @param CustomerName: <p>客户名。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CustomerName: String
+        # @param IndexerKeepParam: <p>当 OriginStreamPlayType 为 hls 时生效，设置索引缓存保留指定参数列表，最多支持 30 组，每个参数小于等于 20 字符。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IndexerKeepParam: Array
+        # @param FragmentKeepParam: <p>当 OriginStreamPlayType 为 hls 时生效，设置分片缓存保留指定参数列表，最多支持 30 组，每个参数小于等于 20 字符。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FragmentKeepParam: Array
+        # @param MediaPackageType: <p>当 OriginStreamType = 2 时有效，表示 mediapackage 具体类型：<br>media_package =&gt; 仅配置普通频道。<br>media_package_pure_ad =&gt; 仅配置广告。<br>media_package_mix_ad =&gt; 同时配置普通频道和广告。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MediaPackageType: String
+        # @param MediaPackageChannelTypes: <p>当 OriginStreamType = 2 且 MediaPackageType = media_package 时有效，表示 mediapackage 频道类型，可组合如下值：normal（频道）、ssai（广告）、linear_assembly（线性组装）。</p>
+        # @type MediaPackageChannelTypes: Array
+        # @param IndexerHeader: <p>当 OriginStreamPlayType 为 hls 时生效，设置索引自定义 header，每一组参数、取值用空格分开。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IndexerHeader: Array
+        # @param FragmentHeader: <p>当 OriginStreamPlayType 为 hls 时生效，设置分片自定义 header，每一组参数、取值用空格分开。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FragmentHeader: Array
+        # @param CustomizationRules: <p>自定义规则列表。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CustomizationRules: Array
+        # @param CacheFormatRule: <p>缓存格式规则。<br>0：默认格式。<br>1：云直播源站格式。<br>当 OriginStreamPlayType 为 customization 时候生效。</p>
         # @type CacheFormatRule: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :CacheFormatRule, :RequestId
+        attr_accessor :Status, :CdnStreamPlayType, :OriginStreamType, :OriginStreamPlayType, :OriginAddressType, :OriginAddress, :OriginTimeout, :OriginRetryTimes, :TimeJitter, :HlsPlayFragmentCount, :HlsPlayFragmentDuration, :PassThroughHttpHeader, :PassThroughResponse, :PassThroughParam, :OriginHost, :IndexerCache, :FragmentCache, :DomainName, :UsingHttps, :CacheFollowOrigin, :CacheStatusCode, :UrlReplaceRules, :OptionsRequest, :FollowRedirect, :StreamPackageRegion, :CustomerName, :IndexerKeepParam, :FragmentKeepParam, :MediaPackageType, :MediaPackageChannelTypes, :IndexerHeader, :FragmentHeader, :CustomizationRules, :CacheFormatRule, :RequestId
 
-        def initialize(cacheformatrule=nil, requestid=nil)
+        def initialize(status=nil, cdnstreamplaytype=nil, originstreamtype=nil, originstreamplaytype=nil, originaddresstype=nil, originaddress=nil, origintimeout=nil, originretrytimes=nil, timejitter=nil, hlsplayfragmentcount=nil, hlsplayfragmentduration=nil, passthroughhttpheader=nil, passthroughresponse=nil, passthroughparam=nil, originhost=nil, indexercache=nil, fragmentcache=nil, domainname=nil, usinghttps=nil, cachefolloworigin=nil, cachestatuscode=nil, urlreplacerules=nil, optionsrequest=nil, followredirect=nil, streampackageregion=nil, customername=nil, indexerkeepparam=nil, fragmentkeepparam=nil, mediapackagetype=nil, mediapackagechanneltypes=nil, indexerheader=nil, fragmentheader=nil, customizationrules=nil, cacheformatrule=nil, requestid=nil)
+          @Status = status
+          @CdnStreamPlayType = cdnstreamplaytype
+          @OriginStreamType = originstreamtype
+          @OriginStreamPlayType = originstreamplaytype
+          @OriginAddressType = originaddresstype
+          @OriginAddress = originaddress
+          @OriginTimeout = origintimeout
+          @OriginRetryTimes = originretrytimes
+          @TimeJitter = timejitter
+          @HlsPlayFragmentCount = hlsplayfragmentcount
+          @HlsPlayFragmentDuration = hlsplayfragmentduration
+          @PassThroughHttpHeader = passthroughhttpheader
+          @PassThroughResponse = passthroughresponse
+          @PassThroughParam = passthroughparam
+          @OriginHost = originhost
+          @IndexerCache = indexercache
+          @FragmentCache = fragmentcache
+          @DomainName = domainname
+          @UsingHttps = usinghttps
+          @CacheFollowOrigin = cachefolloworigin
+          @CacheStatusCode = cachestatuscode
+          @UrlReplaceRules = urlreplacerules
+          @OptionsRequest = optionsrequest
+          @FollowRedirect = followredirect
+          @StreamPackageRegion = streampackageregion
+          @CustomerName = customername
+          @IndexerKeepParam = indexerkeepparam
+          @FragmentKeepParam = fragmentkeepparam
+          @MediaPackageType = mediapackagetype
+          @MediaPackageChannelTypes = mediapackagechanneltypes
+          @IndexerHeader = indexerheader
+          @FragmentHeader = fragmentheader
+          @CustomizationRules = customizationrules
           @CacheFormatRule = cacheformatrule
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @Status = params['Status']
+          @CdnStreamPlayType = params['CdnStreamPlayType']
+          @OriginStreamType = params['OriginStreamType']
+          @OriginStreamPlayType = params['OriginStreamPlayType']
+          @OriginAddressType = params['OriginAddressType']
+          @OriginAddress = params['OriginAddress']
+          @OriginTimeout = params['OriginTimeout']
+          @OriginRetryTimes = params['OriginRetryTimes']
+          @TimeJitter = params['TimeJitter']
+          @HlsPlayFragmentCount = params['HlsPlayFragmentCount']
+          @HlsPlayFragmentDuration = params['HlsPlayFragmentDuration']
+          @PassThroughHttpHeader = params['PassThroughHttpHeader']
+          @PassThroughResponse = params['PassThroughResponse']
+          @PassThroughParam = params['PassThroughParam']
+          @OriginHost = params['OriginHost']
+          @IndexerCache = params['IndexerCache']
+          @FragmentCache = params['FragmentCache']
+          @DomainName = params['DomainName']
+          @UsingHttps = params['UsingHttps']
+          @CacheFollowOrigin = params['CacheFollowOrigin']
+          @CacheStatusCode = params['CacheStatusCode']
+          @UrlReplaceRules = params['UrlReplaceRules']
+          @OptionsRequest = params['OptionsRequest']
+          @FollowRedirect = params['FollowRedirect']
+          @StreamPackageRegion = params['StreamPackageRegion']
+          @CustomerName = params['CustomerName']
+          @IndexerKeepParam = params['IndexerKeepParam']
+          @FragmentKeepParam = params['FragmentKeepParam']
+          @MediaPackageType = params['MediaPackageType']
+          @MediaPackageChannelTypes = params['MediaPackageChannelTypes']
+          @IndexerHeader = params['IndexerHeader']
+          @FragmentHeader = params['FragmentHeader']
+          unless params['CustomizationRules'].nil?
+            @CustomizationRules = []
+            params['CustomizationRules'].each do |i|
+              originstreamcustomizationrule_tmp = OriginStreamCustomizationRule.new
+              originstreamcustomizationrule_tmp.deserialize(i)
+              @CustomizationRules << originstreamcustomizationrule_tmp
+            end
+          end
           @CacheFormatRule = params['CacheFormatRule']
           @RequestId = params['RequestId']
         end
@@ -14414,12 +14581,148 @@ module TencentCloud
 
       # ModifyOriginStreamInfo请求参数结构体
       class ModifyOriginStreamInfoRequest < TencentCloud::Common::AbstractModel
+        # @param DomainName: <p>域名。</p>
+        # @type DomainName: String
+        # @param OriginStreamPlayType: <p>源站播放协议，可取值：rtmp、flv、hls、dash、hls|dash、customization。</p>
+        # @type OriginStreamPlayType: String
+        # @param CdnStreamPlayType: <p>播放协议，可取值：rtmp、flv、hls、dash、hls|dash、customization。<br>自定义回源协议填写 customization。</p>
+        # @type CdnStreamPlayType: Array
+        # @param OriginStreamType: <p>原站类型：<br>1 =&gt; 直播原站。<br>2 =&gt; mediaPackage。</p>
+        # @type OriginStreamType: Integer
+        # @param OriginAddress: <p>原站地址信息，每项用冒号分割域名（ip）、端口信息。<br>端口为空也要带上分号，表示取默认端口。<br>自定义回源协议填写 customization。</p>
+        # @type OriginAddress: Array
+        # @param OriginAddressType: <p>原站地址类型：<br>1 =&gt; IP 类型。<br>2 =&gt; 域名类型。</p>
+        # @type OriginAddressType: Integer
+        # @param CustomerName: <p>自定义名称</p>
+        # @type CustomerName: String
+        # @param OriginHost: <p>原站 host。<br>当原站播放协议为 hls 时，传递该字段才会生效。</p>
+        # @type OriginHost: String
+        # @param OriginTimeout: <p>超时时间，单位 ms，取值范围：1 ～ 60000，默认值：10000。</p>
+        # @type OriginTimeout: Integer
+        # @param OriginRetryTimes: <p>重试次数，单位 次，取值范围：1 ～ 10，默认值：10。</p>
+        # @type OriginRetryTimes: Integer
+        # @param PassThroughHttpHeader: <p>是否透传 http 头信息，可取值：on、off。<br>当原站播放协议为 hls 时，传递该字段才会生效。</p>
+        # @type PassThroughHttpHeader: String
+        # @param PassThroughResponse: <p>是否透传相应，可取值：on、off。<br>当原站播放协议为 hls 时，传递该字段才会生效。</p>
+        # @type PassThroughResponse: String
+        # @param PassThroughParam: <p>是否透传参数，可取值：on、off。<br>当原站播放协议为 hls 时，传递该字段才会生效。</p>
+        # @type PassThroughParam: String
+        # @param IndexerCache: <p>索引缓存，单位 ms，取值范围：1 ～ 60000，默认值：10000。<br>当原站播放协议为 hls 时，传递该字段才会生效。</p>
+        # @type IndexerCache: Integer
+        # @param FragmentCache: <p>分片缓存，单位 ms，取值范围：1 ～ 60000，默认值：10000。<br>当原站播放协议为 hls 时，传递该字段才会生效。</p>
+        # @type FragmentCache: Integer
+        # @param HlsPlayFragmentCount: <p>分片数，单位 个，取值范围：1 ～ 10，默认值：3。</p>
+        # @type HlsPlayFragmentCount: Integer
+        # @param HlsPlayFragmentDuration: <p>分片时长，单位 ms，取值范围：1 ～ 10000，默认值：3000。</p>
+        # @type HlsPlayFragmentDuration: Integer
+        # @param TimeJitter: <p>时间戳修正，可取值：on、off，默认值：off。<br>当原站播放协议为 rtmp、flv 时，传递该字段才会生效。</p>
+        # @type TimeJitter: String
+        # @param UsingHttps: <p>https 回源，可取值：on、off，默认值：off。<br>当原站播放协议为flv、hls时，传递此字段才会生效。</p>
+        # @type UsingHttps: String
+        # @param CacheFollowOrigin: <p>遵循原站，可取值：on、off，默认值：off。<br>当原站播放协议为hls时，传递此字段才会生效。</p>
+        # @type CacheFollowOrigin: String
+        # @param CacheStatusCode: <p>状态码缓存，数组元素格式：<br>cacheKey:interval<br>cacheKey 可取值：cache_400_sec、cache_403_sec、cache_404_sec、cache_405_sec、cache_500_sec、cache_503_sec、cache_504_sec。<br>interval 单位 ms。<br>当原站播放协议为hls时，传递此字段才会生效。</p>
+        # @type CacheStatusCode: Array
+        # @param UrlReplaceRules: <p>url改写， 格式为： url1&lt;|&gt;url2; 其中，&lt;|&gt; 为分隔符。<br>url1、url2 长度限制100，不可包含特殊字符。<br>当原站播放协议为hls时，传递此字段才会生效。</p>
+        # @type UrlReplaceRules: Array
+        # @param OptionsRequest: <p>options 支持，可取值：on、off，默认值：off。<br>当原站播放协议为hls时，传递此字段才会生效。</p>
+        # @type OptionsRequest: String
+        # @param FollowRedirect: <p>follow 301/302，可取值：on、off，默认值：off。<br>当原站播放协议为hls时，传递此字段才会生效。</p>
+        # @type FollowRedirect: String
+        # @param IndexerKeepParam: <p>当 OriginStreamPlayType 为 hls 时生效，设置索引缓存保留指定参数列表，最多支持 30 组，每个参数小于等于 20 字符。</p>
+        # @type IndexerKeepParam: Array
+        # @param FragmentKeepParam: <p>当 OriginStreamPlayType 为 hls 时生效，设置分片缓存保留指定参数列表，最多支持 30 组，每个参数小于等于 20 字符。</p>
+        # @type FragmentKeepParam: Array
+        # @param MediaPackageType: <p>当 OriginStreamType = 2 时有效，表示 mediapackage 具体类型：<br>media_package =&gt; 仅配置普通频道。<br>media_package_pure_ad =&gt; 仅配置广告。<br>media_package_mix_ad =&gt; 同时配置普通频道和广告。<br>注意：配置时候，优先使用 media_package。和 MediaPackageChannelTypes 字段配合使用。</p>
+        # @type MediaPackageType: String
+        # @param MediaPackageChannelTypes: <p>当 OriginStreamType = 2 且 MediaPackageType = media_package 时有效，表示 mediapackage 频道类型，可组合如下值：normal（频道）、ssai（广告）、linear_assembly（线性组装）。</p>
+        # @type MediaPackageChannelTypes: Array
+        # @param IndexerHeader: <p>当 OriginStreamPlayType 为 hls 时生效，设置索引自定义 header，最大支持 10 组，每一组参数、取值用空格分开，允许字符规则如下：<br>头部参数：由大小写字母、数字及-组成，长度支持1 ～100个字符，黑名单：Host、Connection、Content-Length、Range。<br>头部取值：不支持中文、不支持以$开头，长度支持1 ～ 100个字符，不允许有空格。</p>
+        # @type IndexerHeader: Array
+        # @param FragmentHeader: <p>当 OriginStreamPlayType 为 hls 时生效，设置分片自定义 header，最大支持 10 组，每一组参数、取值用空格分开，允许字符规则如下：<br>头部参数：由大小写字母、数字及-组成，长度支持1 ～100个字符，黑名单：Host、Connection、Content-Length、Range。<br>头部取值：不支持中文、不支持以$开头，长度支持1 ～ 100个字符，不允许有空格。</p>
+        # @type FragmentHeader: Array
+        # @param CustomizationRules: <p>自定义回源规则列表，当 OriginStreamPlayType 为 customization 时候生效。</p>
+        # @type CustomizationRules: Array
+        # @param CacheFormatRule: <p>缓存格式规则。<br>0：默认格式。<br>1：云直播源站格式。<br>当 OriginStreamPlayType 为 customization 时候生效。</p>
+        # @type CacheFormatRule: Integer
 
+        attr_accessor :DomainName, :OriginStreamPlayType, :CdnStreamPlayType, :OriginStreamType, :OriginAddress, :OriginAddressType, :CustomerName, :OriginHost, :OriginTimeout, :OriginRetryTimes, :PassThroughHttpHeader, :PassThroughResponse, :PassThroughParam, :IndexerCache, :FragmentCache, :HlsPlayFragmentCount, :HlsPlayFragmentDuration, :TimeJitter, :UsingHttps, :CacheFollowOrigin, :CacheStatusCode, :UrlReplaceRules, :OptionsRequest, :FollowRedirect, :IndexerKeepParam, :FragmentKeepParam, :MediaPackageType, :MediaPackageChannelTypes, :IndexerHeader, :FragmentHeader, :CustomizationRules, :CacheFormatRule
 
-        def initialize()
+        def initialize(domainname=nil, originstreamplaytype=nil, cdnstreamplaytype=nil, originstreamtype=nil, originaddress=nil, originaddresstype=nil, customername=nil, originhost=nil, origintimeout=nil, originretrytimes=nil, passthroughhttpheader=nil, passthroughresponse=nil, passthroughparam=nil, indexercache=nil, fragmentcache=nil, hlsplayfragmentcount=nil, hlsplayfragmentduration=nil, timejitter=nil, usinghttps=nil, cachefolloworigin=nil, cachestatuscode=nil, urlreplacerules=nil, optionsrequest=nil, followredirect=nil, indexerkeepparam=nil, fragmentkeepparam=nil, mediapackagetype=nil, mediapackagechanneltypes=nil, indexerheader=nil, fragmentheader=nil, customizationrules=nil, cacheformatrule=nil)
+          @DomainName = domainname
+          @OriginStreamPlayType = originstreamplaytype
+          @CdnStreamPlayType = cdnstreamplaytype
+          @OriginStreamType = originstreamtype
+          @OriginAddress = originaddress
+          @OriginAddressType = originaddresstype
+          @CustomerName = customername
+          @OriginHost = originhost
+          @OriginTimeout = origintimeout
+          @OriginRetryTimes = originretrytimes
+          @PassThroughHttpHeader = passthroughhttpheader
+          @PassThroughResponse = passthroughresponse
+          @PassThroughParam = passthroughparam
+          @IndexerCache = indexercache
+          @FragmentCache = fragmentcache
+          @HlsPlayFragmentCount = hlsplayfragmentcount
+          @HlsPlayFragmentDuration = hlsplayfragmentduration
+          @TimeJitter = timejitter
+          @UsingHttps = usinghttps
+          @CacheFollowOrigin = cachefolloworigin
+          @CacheStatusCode = cachestatuscode
+          @UrlReplaceRules = urlreplacerules
+          @OptionsRequest = optionsrequest
+          @FollowRedirect = followredirect
+          @IndexerKeepParam = indexerkeepparam
+          @FragmentKeepParam = fragmentkeepparam
+          @MediaPackageType = mediapackagetype
+          @MediaPackageChannelTypes = mediapackagechanneltypes
+          @IndexerHeader = indexerheader
+          @FragmentHeader = fragmentheader
+          @CustomizationRules = customizationrules
+          @CacheFormatRule = cacheformatrule
         end
 
         def deserialize(params)
+          @DomainName = params['DomainName']
+          @OriginStreamPlayType = params['OriginStreamPlayType']
+          @CdnStreamPlayType = params['CdnStreamPlayType']
+          @OriginStreamType = params['OriginStreamType']
+          @OriginAddress = params['OriginAddress']
+          @OriginAddressType = params['OriginAddressType']
+          @CustomerName = params['CustomerName']
+          @OriginHost = params['OriginHost']
+          @OriginTimeout = params['OriginTimeout']
+          @OriginRetryTimes = params['OriginRetryTimes']
+          @PassThroughHttpHeader = params['PassThroughHttpHeader']
+          @PassThroughResponse = params['PassThroughResponse']
+          @PassThroughParam = params['PassThroughParam']
+          @IndexerCache = params['IndexerCache']
+          @FragmentCache = params['FragmentCache']
+          @HlsPlayFragmentCount = params['HlsPlayFragmentCount']
+          @HlsPlayFragmentDuration = params['HlsPlayFragmentDuration']
+          @TimeJitter = params['TimeJitter']
+          @UsingHttps = params['UsingHttps']
+          @CacheFollowOrigin = params['CacheFollowOrigin']
+          @CacheStatusCode = params['CacheStatusCode']
+          @UrlReplaceRules = params['UrlReplaceRules']
+          @OptionsRequest = params['OptionsRequest']
+          @FollowRedirect = params['FollowRedirect']
+          @IndexerKeepParam = params['IndexerKeepParam']
+          @FragmentKeepParam = params['FragmentKeepParam']
+          @MediaPackageType = params['MediaPackageType']
+          @MediaPackageChannelTypes = params['MediaPackageChannelTypes']
+          @IndexerHeader = params['IndexerHeader']
+          @FragmentHeader = params['FragmentHeader']
+          unless params['CustomizationRules'].nil?
+            @CustomizationRules = []
+            params['CustomizationRules'].each do |i|
+              originstreamcustomizationrule_tmp = OriginStreamCustomizationRule.new
+              originstreamcustomizationrule_tmp.deserialize(i)
+              @CustomizationRules << originstreamcustomizationrule_tmp
+            end
+          end
+          @CacheFormatRule = params['CacheFormatRule']
         end
       end
 
@@ -14568,6 +14871,86 @@ module TencentCloud
           @Bandwidth = params['Bandwidth']
           @Online = params['Online']
           @Request = params['Request']
+        end
+      end
+
+      # 播放域名回源自定义协议规则。
+      class OriginStreamCustomizationRule < TencentCloud::Common::AbstractModel
+        # @param MatchRule: <p>匹配规则，可选项如下：<br>.m3u8、.mpd、.ts、.mp4、.m4s、.m4a、.m4i、.m4v、.m4f、.aac、.webm。</p>
+        # @type MatchRule: String
+        # @param OriginAddressType: <p>原站地址类型： 1 =&gt; IP 类型。 2 =&gt; 域名类型。</p>
+        # @type OriginAddressType: Integer
+        # @param OriginHost: <p>原站 host。</p>
+        # @type OriginHost: String
+        # @param OriginAddress: <p>原站地址信息，每项用冒号分割域名（ip）、端口信息。 端口为空也要带上分号，表示取默认端口。</p>
+        # @type OriginAddress: Array
+        # @param PassThroughHttpHeader: <p>是否透传 http 头信息，可取值：on、off。</p>
+        # @type PassThroughHttpHeader: String
+        # @param PassThroughResponse: <p>是否透传相应，可取值：on、off。</p>
+        # @type PassThroughResponse: String
+        # @param PassThroughParam: <p>是否透传参数，可取值：on、off。</p>
+        # @type PassThroughParam: String
+        # @param UrlReplaceRules: <p>url改写， 格式为： url1&lt;|&gt;url2; 其中，&lt;|&gt; 为分隔符。 url1、url2 长度限制100，不可包含特殊字符。</p>
+        # @type UrlReplaceRules: Array
+        # @param OptionsRequest: <p>options 支持，可取值：on、off，默认值：off。</p>
+        # @type OptionsRequest: String
+        # @param OriginTimeout: <p>回源超时时间，单位 ms，取值范围：1 ～ 60000，默认值：10000。</p>
+        # @type OriginTimeout: Integer
+        # @param OriginRetryTimes: <p>重试次数，单位 次，取值范围：1 ～ 10。</p>
+        # @type OriginRetryTimes: Integer
+        # @param CacheStatusCode: <p>状态码缓存，数组元素格式： cacheKey:interval cacheKey 可取值：cache_400_sec、cache_403_sec、cache_404_sec、cache_405_sec、cache_500_sec、cache_503_sec、cache_504_sec。 interval 单位 s。</p>
+        # @type CacheStatusCode: Array
+        # @param Cache: <p>缓存时间，单位 s，取值范围：0 ～ 31536000。</p>
+        # @type Cache: Integer
+        # @param KeepParam: <p>缓存键。</p>
+        # @type KeepParam: Array
+        # @param HttpHeader: <p>设置索引自定义 header，最大支持 10 组，每一组参数、取值用空格分开，允许字符规则如下： 头部参数：由大小写字母、数字及-组成，长度支持1 ～100个字符，黑名单：Host、Connection、Content-Length、Range。 头部取值：不支持中文、不支持以$开头，长度支持1 ～ 100个字符，不允许有空格。</p>
+        # @type HttpHeader: Array
+        # @param CustomizationCacheFollowOrigin: <p>自定义回源缓存随源配置。<br>0：不开启。<br>1：开启。</p>
+        # @type CustomizationCacheFollowOrigin: Integer
+        # @param KeepHttpHeader: <p>缓存 Http 头部键。</p>
+        # @type KeepHttpHeader: Array
+
+        attr_accessor :MatchRule, :OriginAddressType, :OriginHost, :OriginAddress, :PassThroughHttpHeader, :PassThroughResponse, :PassThroughParam, :UrlReplaceRules, :OptionsRequest, :OriginTimeout, :OriginRetryTimes, :CacheStatusCode, :Cache, :KeepParam, :HttpHeader, :CustomizationCacheFollowOrigin, :KeepHttpHeader
+
+        def initialize(matchrule=nil, originaddresstype=nil, originhost=nil, originaddress=nil, passthroughhttpheader=nil, passthroughresponse=nil, passthroughparam=nil, urlreplacerules=nil, optionsrequest=nil, origintimeout=nil, originretrytimes=nil, cachestatuscode=nil, cache=nil, keepparam=nil, httpheader=nil, customizationcachefolloworigin=nil, keephttpheader=nil)
+          @MatchRule = matchrule
+          @OriginAddressType = originaddresstype
+          @OriginHost = originhost
+          @OriginAddress = originaddress
+          @PassThroughHttpHeader = passthroughhttpheader
+          @PassThroughResponse = passthroughresponse
+          @PassThroughParam = passthroughparam
+          @UrlReplaceRules = urlreplacerules
+          @OptionsRequest = optionsrequest
+          @OriginTimeout = origintimeout
+          @OriginRetryTimes = originretrytimes
+          @CacheStatusCode = cachestatuscode
+          @Cache = cache
+          @KeepParam = keepparam
+          @HttpHeader = httpheader
+          @CustomizationCacheFollowOrigin = customizationcachefolloworigin
+          @KeepHttpHeader = keephttpheader
+        end
+
+        def deserialize(params)
+          @MatchRule = params['MatchRule']
+          @OriginAddressType = params['OriginAddressType']
+          @OriginHost = params['OriginHost']
+          @OriginAddress = params['OriginAddress']
+          @PassThroughHttpHeader = params['PassThroughHttpHeader']
+          @PassThroughResponse = params['PassThroughResponse']
+          @PassThroughParam = params['PassThroughParam']
+          @UrlReplaceRules = params['UrlReplaceRules']
+          @OptionsRequest = params['OptionsRequest']
+          @OriginTimeout = params['OriginTimeout']
+          @OriginRetryTimes = params['OriginRetryTimes']
+          @CacheStatusCode = params['CacheStatusCode']
+          @Cache = params['Cache']
+          @KeepParam = params['KeepParam']
+          @HttpHeader = params['HttpHeader']
+          @CustomizationCacheFollowOrigin = params['CustomizationCacheFollowOrigin']
+          @KeepHttpHeader = params['KeepHttpHeader']
         end
       end
 

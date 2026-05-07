@@ -17,6 +17,122 @@
 module TencentCloud
   module Tcb
     module V20180608
+      # AI 模型信息
+      class AIModel < TencentCloud::Common::AbstractModel
+        # @param Model: 模型名
+        # @type Model: String
+        # @param EnableMCP: 是否开启MCP
+        # @type EnableMCP: Boolean
+        # @param Tags: 标签
+        # @type Tags: Array
+
+        attr_accessor :Model, :EnableMCP, :Tags
+
+        def initialize(model=nil, enablemcp=nil, tags=nil)
+          @Model = model
+          @EnableMCP = enablemcp
+          @Tags = tags
+        end
+
+        def deserialize(params)
+          @Model = params['Model']
+          @EnableMCP = params['EnableMCP']
+          @Tags = params['Tags']
+        end
+      end
+
+      # AI 模型信息
+      class AIModelGroup < TencentCloud::Common::AbstractModel
+        # @param GroupName: <p>模型分组</p><p>枚举值：</p><ul><li>hunyuan-exp： 内置 hunyuan 分组，Models 中包含混元生文模型</li><li>hunyuan-image： 内置 hunyuan 分组，Models 中包含混元生图模型</li><li>deepseek： 内置 deepseek 分组，Models 中包含Deepseek生文模型</li><li>cloudbase： 内置 cloudbase 分组，Models 中包含云开发提供的模型，支持的所有模型可从 DescribeManagedAIModelList 获取</li><li>custom-xxxx： 自定义模型分组，Models 中包含用户自行配置的模型</li></ul>
+        # @type GroupName: String
+        # @param Models: <p>模型列表</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Models: Array
+        # @param Type: <p>模型类型</p><p>枚举值：</p><ul><li>builtin： 内置模型分组类别</li><li>custom： 用户自定义模型分组类别</li></ul>
+        # @type Type: String
+        # @param OriginType: <p>原始模型类型</p><p>枚举值：</p><ul><li>builtin： 内置模型类型</li><li>custom： 用户自定义模型类型</li></ul>
+        # @type OriginType: String
+        # @param Remark: <p>备注</p>
+        # @type Remark: String
+        # @param BaseUrl: <p>模型地址</p>
+        # @type BaseUrl: String
+        # @param Status: <p>模型状态, 1: 开启, 2: 关闭</p>
+        # @type Status: Integer
+        # @param Secret: <p>模型密钥</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Secret: :class:`Tencentcloud::Tcb.v20180608.models.AIModelSecret`
+        # @param CreateTime: <p>创建时间</p>
+        # @type CreateTime: String
+        # @param UpdateTime: <p>更新时间</p>
+        # @type UpdateTime: String
+
+        attr_accessor :GroupName, :Models, :Type, :OriginType, :Remark, :BaseUrl, :Status, :Secret, :CreateTime, :UpdateTime
+
+        def initialize(groupname=nil, models=nil, type=nil, origintype=nil, remark=nil, baseurl=nil, status=nil, secret=nil, createtime=nil, updatetime=nil)
+          @GroupName = groupname
+          @Models = models
+          @Type = type
+          @OriginType = origintype
+          @Remark = remark
+          @BaseUrl = baseurl
+          @Status = status
+          @Secret = secret
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @GroupName = params['GroupName']
+          unless params['Models'].nil?
+            @Models = []
+            params['Models'].each do |i|
+              aimodel_tmp = AIModel.new
+              aimodel_tmp.deserialize(i)
+              @Models << aimodel_tmp
+            end
+          end
+          @Type = params['Type']
+          @OriginType = params['OriginType']
+          @Remark = params['Remark']
+          @BaseUrl = params['BaseUrl']
+          @Status = params['Status']
+          unless params['Secret'].nil?
+            @Secret = AIModelSecret.new
+            @Secret.deserialize(params['Secret'])
+          end
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # AI模型密钥信息
+      class AIModelSecret < TencentCloud::Common::AbstractModel
+        # @param SecretSource: 密钥来源
+        # @type SecretSource: String
+        # @param SecretId: 密钥ID, 和SecretKey一一对应
+        # @type SecretId: String
+        # @param SecretKey: 密钥Key, 和SecretId一一对应
+        # @type SecretKey: String
+        # @param ApiKey: ApiKey,SecretKey和ApiKey二选一
+        # @type ApiKey: String
+
+        attr_accessor :SecretSource, :SecretId, :SecretKey, :ApiKey
+
+        def initialize(secretsource=nil, secretid=nil, secretkey=nil, apikey=nil)
+          @SecretSource = secretsource
+          @SecretId = secretid
+          @SecretKey = secretkey
+          @ApiKey = apikey
+        end
+
+        def deserialize(params)
+          @SecretSource = params['SecretSource']
+          @SecretId = params['SecretId']
+          @SecretKey = params['SecretKey']
+          @ApiKey = params['ApiKey']
+        end
+      end
+
       # AddProvider请求参数结构体
       class AddProviderRequest < TencentCloud::Common::AbstractModel
         # @param EnvId: 云开发环境 ID，用于唯一标识当前操作所属的云开发环境。
@@ -392,6 +508,76 @@ module TencentCloud
           @WanStatus = params['WanStatus']
           @ClusterStatus = params['ClusterStatus']
           @ServerlessStatus = params['ServerlessStatus']
+        end
+      end
+
+      # CreateAIModel请求参数结构体
+      class CreateAIModelRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: <p>环境id</p>
+        # @type EnvId: String
+        # @param GroupName: <p>分组名</p><p>入参限制：不允许以 cloudbase 为前缀</p>
+        # @type GroupName: String
+        # @param BaseUrl: <p>模型服务地址</p>
+        # @type BaseUrl: String
+        # @param Models: <p>模型名列表</p>
+        # @type Models: Array
+        # @param Remark: <p>分组备注</p>
+        # @type Remark: String
+        # @param Status: <p>模型状态,  1: 开启, 2: 关闭</p>
+        # @type Status: Integer
+        # @param Secret: <p>模型密钥</p>
+        # @type Secret: :class:`Tencentcloud::Tcb.v20180608.models.AIModelSecret`
+
+        attr_accessor :EnvId, :GroupName, :BaseUrl, :Models, :Remark, :Status, :Secret
+
+        def initialize(envid=nil, groupname=nil, baseurl=nil, models=nil, remark=nil, status=nil, secret=nil)
+          @EnvId = envid
+          @GroupName = groupname
+          @BaseUrl = baseurl
+          @Models = models
+          @Remark = remark
+          @Status = status
+          @Secret = secret
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @GroupName = params['GroupName']
+          @BaseUrl = params['BaseUrl']
+          unless params['Models'].nil?
+            @Models = []
+            params['Models'].each do |i|
+              aimodel_tmp = AIModel.new
+              aimodel_tmp.deserialize(i)
+              @Models << aimodel_tmp
+            end
+          end
+          @Remark = params['Remark']
+          @Status = params['Status']
+          unless params['Secret'].nil?
+            @Secret = AIModelSecret.new
+            @Secret.deserialize(params['Secret'])
+          end
+        end
+      end
+
+      # CreateAIModel返回参数结构体
+      class CreateAIModelResponse < TencentCloud::Common::AbstractModel
+        # @param Count: <p>创建数量</p>
+        # @type Count: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Count, :RequestId
+
+        def initialize(count=nil, requestid=nil)
+          @Count = count
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Count = params['Count']
+          @RequestId = params['RequestId']
         end
       end
 
@@ -1303,6 +1489,46 @@ module TencentCloud
         end
       end
 
+      # DeleteAIModel请求参数结构体
+      class DeleteAIModelRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: <p>环境id</p>
+        # @type EnvId: String
+        # @param GroupNames: <p>分组名列表</p>
+        # @type GroupNames: Array
+
+        attr_accessor :EnvId, :GroupNames
+
+        def initialize(envid=nil, groupnames=nil)
+          @EnvId = envid
+          @GroupNames = groupnames
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @GroupNames = params['GroupNames']
+        end
+      end
+
+      # DeleteAIModel返回参数结构体
+      class DeleteAIModelResponse < TencentCloud::Common::AbstractModel
+        # @param Count: <p>成功删除数量</p>
+        # @type Count: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Count, :RequestId
+
+        def initialize(count=nil, requestid=nil)
+          @Count = count
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Count = params['Count']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteApiKey请求参数结构体
       class DeleteApiKeyRequest < TencentCloud::Common::AbstractModel
         # @param EnvId: 环境 ID，用于标识该密钥归属的云开发环境，不同环境之间的数据相互隔离
@@ -1597,6 +1823,50 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAIModels请求参数结构体
+      class DescribeAIModelsRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: 环境id
+        # @type EnvId: String
+
+        attr_accessor :EnvId
+
+        def initialize(envid=nil)
+          @EnvId = envid
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+        end
+      end
+
+      # DescribeAIModels返回参数结构体
+      class DescribeAIModelsResponse < TencentCloud::Common::AbstractModel
+        # @param AIModels: 模型列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AIModels: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AIModels, :RequestId
+
+        def initialize(aimodels=nil, requestid=nil)
+          @AIModels = aimodels
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['AIModels'].nil?
+            @AIModels = []
+            params['AIModels'].each do |i|
+              aimodelgroup_tmp = AIModelGroup.new
+              aimodelgroup_tmp.deserialize(i)
+              @AIModels << aimodelgroup_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -2813,6 +3083,50 @@ module TencentCloud
           unless params['PwdUpdateStrategy'].nil?
             @PwdUpdateStrategy = PasswordUpdateLoginConfig.new
             @PwdUpdateStrategy.deserialize(params['PwdUpdateStrategy'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeManagedAIModelList请求参数结构体
+      class DescribeManagedAIModelListRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: <p>环境id</p>
+        # @type EnvId: String
+
+        attr_accessor :EnvId
+
+        def initialize(envid=nil)
+          @EnvId = envid
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+        end
+      end
+
+      # DescribeManagedAIModelList返回参数结构体
+      class DescribeManagedAIModelListResponse < TencentCloud::Common::AbstractModel
+        # @param ManagedAIModelList: <p>托管模型列表</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ManagedAIModelList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ManagedAIModelList, :RequestId
+
+        def initialize(managedaimodellist=nil, requestid=nil)
+          @ManagedAIModelList = managedaimodellist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ManagedAIModelList'].nil?
+            @ManagedAIModelList = []
+            params['ManagedAIModelList'].each do |i|
+              managedaimodelgroup_tmp = ManagedAIModelGroup.new
+              managedaimodelgroup_tmp.deserialize(i)
+              @ManagedAIModelList << managedaimodelgroup_tmp
+            end
           end
           @RequestId = params['RequestId']
         end
@@ -5032,6 +5346,136 @@ module TencentCloud
         end
       end
 
+      # 托管型AI 模型信息
+      class ManagedAIModel < TencentCloud::Common::AbstractModel
+        # @param Model: <p>模型名</p>
+        # @type Model: String
+        # @param EnableMCP: <p>是否开启MCP</p>
+        # @type EnableMCP: Boolean
+        # @param ModelSpec: <p>模型规格</p>
+        # @type ModelSpec: :class:`Tencentcloud::Tcb.v20180608.models.ManagedAIModelSpec`
+        # @param ModelChargingInfo: <p>模型计费信息</p>
+        # @type ModelChargingInfo: Array
+
+        attr_accessor :Model, :EnableMCP, :ModelSpec, :ModelChargingInfo
+
+        def initialize(model=nil, enablemcp=nil, modelspec=nil, modelcharginginfo=nil)
+          @Model = model
+          @EnableMCP = enablemcp
+          @ModelSpec = modelspec
+          @ModelChargingInfo = modelcharginginfo
+        end
+
+        def deserialize(params)
+          @Model = params['Model']
+          @EnableMCP = params['EnableMCP']
+          unless params['ModelSpec'].nil?
+            @ModelSpec = ManagedAIModelSpec.new
+            @ModelSpec.deserialize(params['ModelSpec'])
+          end
+          unless params['ModelChargingInfo'].nil?
+            @ModelChargingInfo = []
+            params['ModelChargingInfo'].each do |i|
+              managedaimodelcharginginfo_tmp = ManagedAIModelChargingInfo.new
+              managedaimodelcharginginfo_tmp.deserialize(i)
+              @ModelChargingInfo << managedaimodelcharginginfo_tmp
+            end
+          end
+        end
+      end
+
+      # 托管 AI 模型计费信息
+      class ManagedAIModelChargingInfo < TencentCloud::Common::AbstractModel
+        # @param Type: <p>计费类型</p><p>枚举值：</p><ul><li>Uniform： 固定计费</li><li>Tiered： 分段计费</li></ul>
+        # @type Type: String
+        # @param Name: <p>分组名称</p>
+        # @type Name: String
+        # @param InputPrice: <p>输入 Token 价格</p>
+        # @type InputPrice: String
+        # @param OutputPrice: <p>输出 Token 价格</p>
+        # @type OutputPrice: String
+        # @param CachePrice: <p>命中缓存价格</p>
+        # @type CachePrice: String
+        # @param InputOutputUnit: <p>计费单位</p>
+        # @type InputOutputUnit: String
+
+        attr_accessor :Type, :Name, :InputPrice, :OutputPrice, :CachePrice, :InputOutputUnit
+
+        def initialize(type=nil, name=nil, inputprice=nil, outputprice=nil, cacheprice=nil, inputoutputunit=nil)
+          @Type = type
+          @Name = name
+          @InputPrice = inputprice
+          @OutputPrice = outputprice
+          @CachePrice = cacheprice
+          @InputOutputUnit = inputoutputunit
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Name = params['Name']
+          @InputPrice = params['InputPrice']
+          @OutputPrice = params['OutputPrice']
+          @CachePrice = params['CachePrice']
+          @InputOutputUnit = params['InputOutputUnit']
+        end
+      end
+
+      # 云开发内置 AI 模型信息
+      class ManagedAIModelGroup < TencentCloud::Common::AbstractModel
+        # @param GroupName: <p>模型分组</p>
+        # @type GroupName: String
+        # @param Models: <p>模型列表</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Models: Array
+        # @param Remark: <p>备注</p>
+        # @type Remark: String
+
+        attr_accessor :GroupName, :Models, :Remark
+
+        def initialize(groupname=nil, models=nil, remark=nil)
+          @GroupName = groupname
+          @Models = models
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @GroupName = params['GroupName']
+          unless params['Models'].nil?
+            @Models = []
+            params['Models'].each do |i|
+              managedaimodel_tmp = ManagedAIModel.new
+              managedaimodel_tmp.deserialize(i)
+              @Models << managedaimodel_tmp
+            end
+          end
+          @Remark = params['Remark']
+        end
+      end
+
+      # 托管 AI 模型参数规格
+      class ManagedAIModelSpec < TencentCloud::Common::AbstractModel
+        # @param MaxInputToken: <p>最大输入 Token</p>
+        # @type MaxInputToken: String
+        # @param MaxOutputToken: <p>最大输出 Token</p>
+        # @type MaxOutputToken: String
+        # @param ContextLength: <p>上下文长度</p>
+        # @type ContextLength: String
+
+        attr_accessor :MaxInputToken, :MaxOutputToken, :ContextLength
+
+        def initialize(maxinputtoken=nil, maxoutputtoken=nil, contextlength=nil)
+          @MaxInputToken = maxinputtoken
+          @MaxOutputToken = maxoutputtoken
+          @ContextLength = contextlength
+        end
+
+        def deserialize(params)
+          @MaxInputToken = params['MaxInputToken']
+          @MaxOutputToken = params['MaxOutputToken']
+          @ContextLength = params['ContextLength']
+        end
+      end
+
       # 多语言文字，在 Locale 中 展示的 Message
       class MessageLocalized < TencentCloud::Common::AbstractModel
         # @param Message: 字符串
@@ -6697,6 +7141,76 @@ module TencentCloud
           @ClusterId = params['ClusterId']
           @VpcId = params['VpcId']
           @VersionClbSubnetId = params['VersionClbSubnetId']
+        end
+      end
+
+      # UpdateAIModel请求参数结构体
+      class UpdateAIModelRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: <p>环境id</p>
+        # @type EnvId: String
+        # @param GroupName: <p>分组名</p>
+        # @type GroupName: String
+        # @param BaseUrl: <p>模型地址</p><p>枚举值：</p><ul><li>http://default.tcb： 默认模型地址，custom模型切换为builtin模型时使用</li></ul>
+        # @type BaseUrl: String
+        # @param Models: <p>模型名列表</p><p>Models 列表更新采用全量替换</p>
+        # @type Models: Array
+        # @param Remark: <p>备注</p>
+        # @type Remark: String
+        # @param Status: <p>模型状态, 1: 开启, 2: 关闭</p>
+        # @type Status: Integer
+        # @param Secret: <p>模型密钥</p>
+        # @type Secret: :class:`Tencentcloud::Tcb.v20180608.models.AIModelSecret`
+
+        attr_accessor :EnvId, :GroupName, :BaseUrl, :Models, :Remark, :Status, :Secret
+
+        def initialize(envid=nil, groupname=nil, baseurl=nil, models=nil, remark=nil, status=nil, secret=nil)
+          @EnvId = envid
+          @GroupName = groupname
+          @BaseUrl = baseurl
+          @Models = models
+          @Remark = remark
+          @Status = status
+          @Secret = secret
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @GroupName = params['GroupName']
+          @BaseUrl = params['BaseUrl']
+          unless params['Models'].nil?
+            @Models = []
+            params['Models'].each do |i|
+              aimodel_tmp = AIModel.new
+              aimodel_tmp.deserialize(i)
+              @Models << aimodel_tmp
+            end
+          end
+          @Remark = params['Remark']
+          @Status = params['Status']
+          unless params['Secret'].nil?
+            @Secret = AIModelSecret.new
+            @Secret.deserialize(params['Secret'])
+          end
+        end
+      end
+
+      # UpdateAIModel返回参数结构体
+      class UpdateAIModelResponse < TencentCloud::Common::AbstractModel
+        # @param Count: <p>更新数量</p>
+        # @type Count: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Count, :RequestId
+
+        def initialize(count=nil, requestid=nil)
+          @Count = count
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Count = params['Count']
+          @RequestId = params['RequestId']
         end
       end
 

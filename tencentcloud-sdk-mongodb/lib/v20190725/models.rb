@@ -3729,6 +3729,57 @@ module TencentCloud
         end
       end
 
+      # EnableWanService请求参数结构体
+      class EnableWanServiceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID。
+        # @type InstanceId: String
+        # @param LoadBalancerId: 负载均衡ID。
+        # @type LoadBalancerId: String
+        # @param NodeList: 节点及监听端口信息。
+        # @type NodeList: Array
+
+        attr_accessor :InstanceId, :LoadBalancerId, :NodeList
+
+        def initialize(instanceid=nil, loadbalancerid=nil, nodelist=nil)
+          @InstanceId = instanceid
+          @LoadBalancerId = loadbalancerid
+          @NodeList = nodelist
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @LoadBalancerId = params['LoadBalancerId']
+          unless params['NodeList'].nil?
+            @NodeList = []
+            params['NodeList'].each do |i|
+              wanservicenodelist_tmp = WanServiceNodeList.new
+              wanservicenodelist_tmp.deserialize(i)
+              @NodeList << wanservicenodelist_tmp
+            end
+          end
+        end
+      end
+
+      # EnableWanService返回参数结构体
+      class EnableWanServiceResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: 异步任务ID。
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :RequestId
+
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 按 Key 闪回键值对
       class FBKeyValue < TencentCloud::Common::AbstractModel
         # @param Key: 指定按 Key 闪回的目标 Key （键） 。
@@ -5189,8 +5240,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :Memory, :Volume, :OplogSize, :NodeNum, :ReplicateSetNum, :InMaintenance, :MongosMemory, :AddNodeList, :RemoveNodeList, :Cpu, :MachineCode
         extend Gem::Deprecate
-        deprecate :OplogSize, :none, 2026, 4
-        deprecate :OplogSize=, :none, 2026, 4
+        deprecate :OplogSize, :none, 2026, 5
+        deprecate :OplogSize=, :none, 2026, 5
 
         def initialize(instanceid=nil, memory=nil, volume=nil, oplogsize=nil, nodenum=nil, replicatesetnum=nil, inmaintenance=nil, mongosmemory=nil, addnodelist=nil, removenodelist=nil, cpu=nil, machinecode=nil)
           @InstanceId = instanceid
@@ -6879,6 +6930,26 @@ module TencentCloud
           @UpdateTime = params['UpdateTime']
           @UserDesc = params['UserDesc']
           @ConsolePassUpdateTime = params['ConsolePassUpdateTime']
+        end
+      end
+
+      # mongodb外网服务节点信息。
+      class WanServiceNodeList < TencentCloud::Common::AbstractModel
+        # @param VipVport: 实例节点的vip及端口信息。
+        # @type VipVport: String
+        # @param ListenerPort: CLB监听器监听端口，取值范围1~65535。
+        # @type ListenerPort: String
+
+        attr_accessor :VipVport, :ListenerPort
+
+        def initialize(vipvport=nil, listenerport=nil)
+          @VipVport = vipvport
+          @ListenerPort = listenerport
+        end
+
+        def deserialize(params)
+          @VipVport = params['VipVport']
+          @ListenerPort = params['ListenerPort']
         end
       end
 

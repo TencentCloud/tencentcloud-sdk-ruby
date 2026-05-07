@@ -101,6 +101,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 绑定容器账号凭据
+
+        # @param request: Request instance for BindDeviceAccountKubeconfig.
+        # @type request: :class:`Tencentcloud::bh::V20230418::BindDeviceAccountKubeconfigRequest`
+        # @rtype: :class:`Tencentcloud::bh::V20230418::BindDeviceAccountKubeconfigResponse`
+        def BindDeviceAccountKubeconfig(request)
+          body = send_request('BindDeviceAccountKubeconfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = BindDeviceAccountKubeconfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 绑定主机账号密码
 
         # @param request: Request instance for BindDeviceAccountPassword.

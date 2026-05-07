@@ -2989,8 +2989,8 @@ module TencentCloud
 
         attr_accessor :SegmentSet, :SubtitlePath, :OutputStorage
         extend Gem::Deprecate
-        deprecate :OutputStorage, :none, 2026, 4
-        deprecate :OutputStorage=, :none, 2026, 4
+        deprecate :OutputStorage, :none, 2026, 5
+        deprecate :OutputStorage=, :none, 2026, 5
 
         def initialize(segmentset=nil, subtitlepath=nil, outputstorage=nil)
           @SegmentSet = segmentset
@@ -8100,10 +8100,12 @@ module TencentCloud
 
       # CreateAigcImageTask请求参数结构体
       class CreateAigcImageTaskRequest < TencentCloud::Common::AbstractModel
-        # @param ModelName: <p>模型名称。<br>当前支持的模型列表：<br>Hunyuan,<br>GEM，<br>Qwen。</p>
+        # @param ModelName: <p>模型名称。<br>当前支持的模型列表：<br>Hunyuan,<br>GEM，<br>Qwen，<br>Vidu，<br>Kling。</p>
         # @type ModelName: String
-        # @param ModelVersion: <p>指定模型特定版本号。默认使用系统当前所支持的模型稳定版本。</p><ol><li>GEM， 可选[2.5,3.0]。</li></ol>
+        # @param ModelVersion: <p>指定模型特定版本号。默认使用系统当前所支持的模型稳定版本。</p><ol><li>GEM，可选[2.5,3.0,3.1]。</li><li>Vidu，可选[q2]。</li><li>Kling，可选[2.1、O1、3.0、3.0-Omni]</li></ol>
         # @type ModelVersion: String
+        # @param SceneType: <p>场景化生图使用，仅部分模型支持。</p><p>枚举值：</p><ul><li>3d_panorama： 全景图。仅Hunyuan支持。</li></ul>
+        # @type SceneType: String
         # @param Prompt: <p>生成图片的描述。(注：最大支持1000字符)。当未传入参考图片时，此参数必填。</p>
         # @type Prompt: String
         # @param NegativePrompt: <p>用于描述您想要阻止模型生成的内容。 注意：部分模型支持。 例如： 顶部照明、明亮的色彩 人物、动物 多辆汽车、风。</p>
@@ -8121,11 +8123,12 @@ module TencentCloud
         # @param Operator: <p>接口操作者名称。</p>
         # @type Operator: String
 
-        attr_accessor :ModelName, :ModelVersion, :Prompt, :NegativePrompt, :EnhancePrompt, :ImageInfos, :ExtraParameters, :AdditionalParameters, :StoreCosParam, :Operator
+        attr_accessor :ModelName, :ModelVersion, :SceneType, :Prompt, :NegativePrompt, :EnhancePrompt, :ImageInfos, :ExtraParameters, :AdditionalParameters, :StoreCosParam, :Operator
 
-        def initialize(modelname=nil, modelversion=nil, prompt=nil, negativeprompt=nil, enhanceprompt=nil, imageinfos=nil, extraparameters=nil, additionalparameters=nil, storecosparam=nil, operator=nil)
+        def initialize(modelname=nil, modelversion=nil, scenetype=nil, prompt=nil, negativeprompt=nil, enhanceprompt=nil, imageinfos=nil, extraparameters=nil, additionalparameters=nil, storecosparam=nil, operator=nil)
           @ModelName = modelname
           @ModelVersion = modelversion
+          @SceneType = scenetype
           @Prompt = prompt
           @NegativePrompt = negativeprompt
           @EnhancePrompt = enhanceprompt
@@ -8139,6 +8142,7 @@ module TencentCloud
         def deserialize(params)
           @ModelName = params['ModelName']
           @ModelVersion = params['ModelVersion']
+          @SceneType = params['SceneType']
           @Prompt = params['Prompt']
           @NegativePrompt = params['NegativePrompt']
           @EnhancePrompt = params['EnhancePrompt']
@@ -9101,8 +9105,8 @@ module TencentCloud
 
         attr_accessor :OutputName, :Description, :Protocol, :OutputRegion, :OutputType, :OutputKind, :SRTSettings, :RTMPSettings, :RTPSettings, :AllowIpList, :MaxConcurrent, :SecurityGroupIds, :Zones, :RISTSettings, :PidSelector, :StreamSelector
         extend Gem::Deprecate
-        deprecate :PidSelector, :none, 2026, 4
-        deprecate :PidSelector=, :none, 2026, 4
+        deprecate :PidSelector, :none, 2026, 5
+        deprecate :PidSelector=, :none, 2026, 5
 
         def initialize(outputname=nil, description=nil, protocol=nil, outputregion=nil, outputtype=nil, outputkind=nil, srtsettings=nil, rtmpsettings=nil, rtpsettings=nil, allowiplist=nil, maxconcurrent=nil, securitygroupids=nil, zones=nil, ristsettings=nil, pidselector=nil, streamselector=nil)
           @OutputName = outputname
@@ -13949,8 +13953,8 @@ module TencentCloud
 
         attr_accessor :OutputId, :OutputName, :OutputType, :OutputKind, :Description, :Protocol, :OutputAddressList, :OutputRegion, :SRTSettings, :RTPSettings, :RTMPSettings, :RTMPPullSettings, :AllowIpList, :RTSPPullSettings, :HLSPullSettings, :MaxConcurrent, :SecurityGroupIds, :Zones, :RISTSettings, :PidSelector, :StreamUrls, :StreamSelector
         extend Gem::Deprecate
-        deprecate :PidSelector, :none, 2026, 4
-        deprecate :PidSelector=, :none, 2026, 4
+        deprecate :PidSelector, :none, 2026, 5
+        deprecate :PidSelector=, :none, 2026, 5
 
         def initialize(outputid=nil, outputname=nil, outputtype=nil, outputkind=nil, description=nil, protocol=nil, outputaddresslist=nil, outputregion=nil, srtsettings=nil, rtpsettings=nil, rtmpsettings=nil, rtmppullsettings=nil, allowiplist=nil, rtsppullsettings=nil, hlspullsettings=nil, maxconcurrent=nil, securitygroupids=nil, zones=nil, ristsettings=nil, pidselector=nil, streamurls=nil, streamselector=nil)
           @OutputId = outputid
@@ -18276,8 +18280,8 @@ module TencentCloud
 
         attr_accessor :TaskType, :EvaluationTypeSet, :EvaluationRangeType, :ContrastInfoSet, :ContrastMediaSet, :ContrastTemplateSet, :StartTime, :EndTime, :StartFrameIndex, :EndFrameIndex, :ResolutionAlignmentMode, :BitrateSet, :VCRFSet
         extend Gem::Deprecate
-        deprecate :ContrastInfoSet, :none, 2026, 4
-        deprecate :ContrastInfoSet=, :none, 2026, 4
+        deprecate :ContrastInfoSet, :none, 2026, 5
+        deprecate :ContrastInfoSet=, :none, 2026, 5
 
         def initialize(tasktype=nil, evaluationtypeset=nil, evaluationrangetype=nil, contrastinfoset=nil, contrastmediaset=nil, contrasttemplateset=nil, starttime=nil, endtime=nil, startframeindex=nil, endframeindex=nil, resolutionalignmentmode=nil, bitrateset=nil, vcrfset=nil)
           @TaskType = tasktype
@@ -21019,10 +21023,10 @@ module TencentCloud
 
         attr_accessor :QualityControlResults, :DiagnoseResults, :QualityControlResultSet, :DiagnoseResultSet
         extend Gem::Deprecate
-        deprecate :QualityControlResults, :none, 2026, 4
-        deprecate :QualityControlResults=, :none, 2026, 4
-        deprecate :DiagnoseResults, :none, 2026, 4
-        deprecate :DiagnoseResults=, :none, 2026, 4
+        deprecate :QualityControlResults, :none, 2026, 5
+        deprecate :QualityControlResults=, :none, 2026, 5
+        deprecate :DiagnoseResults, :none, 2026, 5
+        deprecate :DiagnoseResults=, :none, 2026, 5
 
         def initialize(qualitycontrolresults=nil, diagnoseresults=nil, qualitycontrolresultset=nil, diagnoseresultset=nil)
           @QualityControlResults = qualitycontrolresults
@@ -24260,8 +24264,8 @@ module TencentCloud
 
         attr_accessor :OutputId, :OutputName, :Description, :Protocol, :OutputKind, :SRTSettings, :RTPSettings, :RTMPSettings, :AllowIpList, :MaxConcurrent, :SecurityGroupIds, :Zones, :RISTSettings, :OutputType, :PidSelector, :StreamSelector
         extend Gem::Deprecate
-        deprecate :PidSelector, :none, 2026, 4
-        deprecate :PidSelector=, :none, 2026, 4
+        deprecate :PidSelector, :none, 2026, 5
+        deprecate :PidSelector=, :none, 2026, 5
 
         def initialize(outputid=nil, outputname=nil, description=nil, protocol=nil, outputkind=nil, srtsettings=nil, rtpsettings=nil, rtmpsettings=nil, allowiplist=nil, maxconcurrent=nil, securitygroupids=nil, zones=nil, ristsettings=nil, outputtype=nil, pidselector=nil, streamselector=nil)
           @OutputId = outputid
