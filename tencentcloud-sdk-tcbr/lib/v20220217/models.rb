@@ -2845,28 +2845,37 @@ module TencentCloud
 
       # 存储配置
       class VolumeConf < TencentCloud::Common::AbstractModel
-        # @param Type: 存储类型
+        # @param Type: <p>存储类型</p>
         # @type Type: String
-        # @param BucketName: 对象存储桶名称
+        # @param BucketName: <p>对象存储桶名称</p>
         # @type BucketName: String
-        # @param Endpoint: 存储连接地址
+        # @param Endpoint: <p>存储连接地址</p>
         # @type Endpoint: String
-        # @param KeyID: 存储连接用户密码
+        # @param KeyID: <p>存储连接用户密码</p>
         # @type KeyID: String
-        # @param DstPath: 存储挂载目的目录
+        # @param DstPath: <p>存储挂载目的目录</p>
         # @type DstPath: String
-        # @param SrcPath: 存储挂载源目录
+        # @param SrcPath: <p>存储挂载源目录</p>
         # @type SrcPath: String
+        # @param MountIP: <p>cfs 实例ip</p>
+        # @type MountIP: String
+        # @param ReadOnly: <p>默认读写</p>
+        # @type ReadOnly: Boolean
+        # @param InstanceId: <p>CFS 实例 ID</p>
+        # @type InstanceId: String
 
-        attr_accessor :Type, :BucketName, :Endpoint, :KeyID, :DstPath, :SrcPath
+        attr_accessor :Type, :BucketName, :Endpoint, :KeyID, :DstPath, :SrcPath, :MountIP, :ReadOnly, :InstanceId
 
-        def initialize(type=nil, bucketname=nil, endpoint=nil, keyid=nil, dstpath=nil, srcpath=nil)
+        def initialize(type=nil, bucketname=nil, endpoint=nil, keyid=nil, dstpath=nil, srcpath=nil, mountip=nil, readonly=nil, instanceid=nil)
           @Type = type
           @BucketName = bucketname
           @Endpoint = endpoint
           @KeyID = keyid
           @DstPath = dstpath
           @SrcPath = srcpath
+          @MountIP = mountip
+          @ReadOnly = readonly
+          @InstanceId = instanceid
         end
 
         def deserialize(params)
@@ -2876,6 +2885,9 @@ module TencentCloud
           @KeyID = params['KeyID']
           @DstPath = params['DstPath']
           @SrcPath = params['SrcPath']
+          @MountIP = params['MountIP']
+          @ReadOnly = params['ReadOnly']
+          @InstanceId = params['InstanceId']
         end
       end
 

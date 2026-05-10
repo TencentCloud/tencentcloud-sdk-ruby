@@ -1294,10 +1294,10 @@ module TencentCloud
 
         attr_accessor :Id, :ClusterId, :Ftitle, :ClusterName, :RegionId, :ZoneId, :AppId, :Uin, :ProjectId, :VpcId, :SubnetId, :Status, :AddTime, :RunTime, :Config, :MasterIp, :EmrVersion, :ChargeType, :TradeVersion, :ResourceOrderId, :IsTradeCluster, :AlarmInfo, :IsWoodpeckerCluster, :MetaDb, :Tags, :HiveMetaDb, :ServiceClass, :AliasInfo, :ProductId, :Zone, :SceneName, :SceneServiceClass, :SceneEmrVersion, :DisplayName, :VpcName, :SubnetName, :ClusterExternalServiceInfo, :UniqVpcId, :UniqSubnetId, :TopologyInfoList, :IsMultiZoneCluster, :IsCvmReplace, :ClusterTitle, :ConfigDetail, :BindFileSystemNum, :ClusterRelationInfoList, :RedisId
         extend Gem::Deprecate
-        deprecate :Ftitle, :none, 2026, 4
-        deprecate :Ftitle=, :none, 2026, 4
-        deprecate :Config, :none, 2026, 4
-        deprecate :Config=, :none, 2026, 4
+        deprecate :Ftitle, :none, 2026, 5
+        deprecate :Ftitle=, :none, 2026, 5
+        deprecate :Config, :none, 2026, 5
+        deprecate :Config=, :none, 2026, 5
 
         def initialize(id=nil, clusterid=nil, ftitle=nil, clustername=nil, regionid=nil, zoneid=nil, appid=nil, uin=nil, projectid=nil, vpcid=nil, subnetid=nil, status=nil, addtime=nil, runtime=nil, config=nil, masterip=nil, emrversion=nil, chargetype=nil, tradeversion=nil, resourceorderid=nil, istradecluster=nil, alarminfo=nil, iswoodpeckercluster=nil, metadb=nil, tags=nil, hivemetadb=nil, serviceclass=nil, aliasinfo=nil, productid=nil, zone=nil, scenename=nil, sceneserviceclass=nil, sceneemrversion=nil, displayname=nil, vpcname=nil, subnetname=nil, clusterexternalserviceinfo=nil, uniqvpcid=nil, uniqsubnetid=nil, topologyinfolist=nil, ismultizonecluster=nil, iscvmreplace=nil, clustertitle=nil, configdetail=nil, bindfilesystemnum=nil, clusterrelationinfolist=nil, redisid=nil)
           @Id = id
@@ -2092,10 +2092,12 @@ module TencentCloud
         # @type PartitionNumber: Integer
         # @param WebUiVersion: <p>服务ui地址</p><p>枚举值：</p><ul><li>0： 服务ui地址，只返回1条服务ui地址</li><li>1： 服务ui地址，如果服务含有多个ui地址将全部返回，例如impala的Impalad、StateStore、Catalogd</li></ul><p>默认值：0</p>
         # @type WebUiVersion: Integer
+        # @param EnableCbsSysEncryptFlag: <p>系统盘是否加密</p>
+        # @type EnableCbsSysEncryptFlag: Boolean
 
-        attr_accessor :ProductVersion, :EnableSupportHAFlag, :InstanceName, :InstanceChargeType, :LoginSettings, :SceneSoftwareConfig, :InstanceChargePrepaid, :SecurityGroupIds, :ScriptBootstrapActionConfig, :ClientToken, :NeedMasterWan, :EnableRemoteLoginFlag, :EnableKerberosFlag, :CustomConf, :Tags, :DisasterRecoverGroupIds, :EnableCbsEncryptFlag, :MetaDBInfo, :DependService, :ZoneResourceConfiguration, :CosBucket, :NodeMarks, :LoadBalancerId, :DefaultMetaVersion, :NeedCdbAudit, :SgIP, :PartitionNumber, :WebUiVersion
+        attr_accessor :ProductVersion, :EnableSupportHAFlag, :InstanceName, :InstanceChargeType, :LoginSettings, :SceneSoftwareConfig, :InstanceChargePrepaid, :SecurityGroupIds, :ScriptBootstrapActionConfig, :ClientToken, :NeedMasterWan, :EnableRemoteLoginFlag, :EnableKerberosFlag, :CustomConf, :Tags, :DisasterRecoverGroupIds, :EnableCbsEncryptFlag, :MetaDBInfo, :DependService, :ZoneResourceConfiguration, :CosBucket, :NodeMarks, :LoadBalancerId, :DefaultMetaVersion, :NeedCdbAudit, :SgIP, :PartitionNumber, :WebUiVersion, :EnableCbsSysEncryptFlag
 
-        def initialize(productversion=nil, enablesupporthaflag=nil, instancename=nil, instancechargetype=nil, loginsettings=nil, scenesoftwareconfig=nil, instancechargeprepaid=nil, securitygroupids=nil, scriptbootstrapactionconfig=nil, clienttoken=nil, needmasterwan=nil, enableremoteloginflag=nil, enablekerberosflag=nil, customconf=nil, tags=nil, disasterrecovergroupids=nil, enablecbsencryptflag=nil, metadbinfo=nil, dependservice=nil, zoneresourceconfiguration=nil, cosbucket=nil, nodemarks=nil, loadbalancerid=nil, defaultmetaversion=nil, needcdbaudit=nil, sgip=nil, partitionnumber=nil, webuiversion=nil)
+        def initialize(productversion=nil, enablesupporthaflag=nil, instancename=nil, instancechargetype=nil, loginsettings=nil, scenesoftwareconfig=nil, instancechargeprepaid=nil, securitygroupids=nil, scriptbootstrapactionconfig=nil, clienttoken=nil, needmasterwan=nil, enableremoteloginflag=nil, enablekerberosflag=nil, customconf=nil, tags=nil, disasterrecovergroupids=nil, enablecbsencryptflag=nil, metadbinfo=nil, dependservice=nil, zoneresourceconfiguration=nil, cosbucket=nil, nodemarks=nil, loadbalancerid=nil, defaultmetaversion=nil, needcdbaudit=nil, sgip=nil, partitionnumber=nil, webuiversion=nil, enablecbssysencryptflag=nil)
           @ProductVersion = productversion
           @EnableSupportHAFlag = enablesupporthaflag
           @InstanceName = instancename
@@ -2124,6 +2126,7 @@ module TencentCloud
           @SgIP = sgip
           @PartitionNumber = partitionnumber
           @WebUiVersion = webuiversion
+          @EnableCbsSysEncryptFlag = enablecbssysencryptflag
         end
 
         def deserialize(params)
@@ -2202,6 +2205,7 @@ module TencentCloud
           @SgIP = params['SgIP']
           @PartitionNumber = params['PartitionNumber']
           @WebUiVersion = params['WebUiVersion']
+          @EnableCbsSysEncryptFlag = params['EnableCbsSysEncryptFlag']
         end
       end
 
@@ -2416,10 +2420,12 @@ module TencentCloud
         # @type PartitionNumber: Integer
         # @param WebUiVersion: <p>服务ui地址</p><p>枚举值：</p><ul><li>0： 服务ui地址，只返回1条服务ui地址</li><li>1： 服务ui地址，如果服务含有多个ui地址将全部返回，例如impala的Impalad、StateStore、Catalogd</li></ul><p>默认值：0</p>
         # @type WebUiVersion: Integer
+        # @param CbsSysEncrypt: <p>是否开启集群维度cbs系统盘加密,0关闭1开启</p>
+        # @type CbsSysEncrypt: Integer
 
-        attr_accessor :ProductId, :Software, :SupportHA, :InstanceName, :PayMode, :TimeSpan, :TimeUnit, :LoginSettings, :VPCSettings, :ResourceSpec, :COSSettings, :Placement, :SgId, :PreExecutedFileSettings, :AutoRenew, :ClientToken, :NeedMasterWan, :RemoteLoginAtCreate, :CheckSecurity, :ExtendFsField, :Tags, :DisasterRecoverGroupIds, :CbsEncrypt, :MetaType, :UnifyMetaInstanceId, :MetaDBInfo, :ApplicationRole, :SceneName, :ExternalService, :VersionID, :MultiZone, :MultiZoneSettings, :CosBucket, :NodeMarks, :LoadBalancerId, :DefaultMetaVersion, :NeedCdbAudit, :SgIP, :PartitionNumber, :WebUiVersion
+        attr_accessor :ProductId, :Software, :SupportHA, :InstanceName, :PayMode, :TimeSpan, :TimeUnit, :LoginSettings, :VPCSettings, :ResourceSpec, :COSSettings, :Placement, :SgId, :PreExecutedFileSettings, :AutoRenew, :ClientToken, :NeedMasterWan, :RemoteLoginAtCreate, :CheckSecurity, :ExtendFsField, :Tags, :DisasterRecoverGroupIds, :CbsEncrypt, :MetaType, :UnifyMetaInstanceId, :MetaDBInfo, :ApplicationRole, :SceneName, :ExternalService, :VersionID, :MultiZone, :MultiZoneSettings, :CosBucket, :NodeMarks, :LoadBalancerId, :DefaultMetaVersion, :NeedCdbAudit, :SgIP, :PartitionNumber, :WebUiVersion, :CbsSysEncrypt
 
-        def initialize(productid=nil, software=nil, supportha=nil, instancename=nil, paymode=nil, timespan=nil, timeunit=nil, loginsettings=nil, vpcsettings=nil, resourcespec=nil, cossettings=nil, placement=nil, sgid=nil, preexecutedfilesettings=nil, autorenew=nil, clienttoken=nil, needmasterwan=nil, remoteloginatcreate=nil, checksecurity=nil, extendfsfield=nil, tags=nil, disasterrecovergroupids=nil, cbsencrypt=nil, metatype=nil, unifymetainstanceid=nil, metadbinfo=nil, applicationrole=nil, scenename=nil, externalservice=nil, versionid=nil, multizone=nil, multizonesettings=nil, cosbucket=nil, nodemarks=nil, loadbalancerid=nil, defaultmetaversion=nil, needcdbaudit=nil, sgip=nil, partitionnumber=nil, webuiversion=nil)
+        def initialize(productid=nil, software=nil, supportha=nil, instancename=nil, paymode=nil, timespan=nil, timeunit=nil, loginsettings=nil, vpcsettings=nil, resourcespec=nil, cossettings=nil, placement=nil, sgid=nil, preexecutedfilesettings=nil, autorenew=nil, clienttoken=nil, needmasterwan=nil, remoteloginatcreate=nil, checksecurity=nil, extendfsfield=nil, tags=nil, disasterrecovergroupids=nil, cbsencrypt=nil, metatype=nil, unifymetainstanceid=nil, metadbinfo=nil, applicationrole=nil, scenename=nil, externalservice=nil, versionid=nil, multizone=nil, multizonesettings=nil, cosbucket=nil, nodemarks=nil, loadbalancerid=nil, defaultmetaversion=nil, needcdbaudit=nil, sgip=nil, partitionnumber=nil, webuiversion=nil, cbssysencrypt=nil)
           @ProductId = productid
           @Software = software
           @SupportHA = supportha
@@ -2460,6 +2466,7 @@ module TencentCloud
           @SgIP = sgip
           @PartitionNumber = partitionnumber
           @WebUiVersion = webuiversion
+          @CbsSysEncrypt = cbssysencrypt
         end
 
         def deserialize(params)
@@ -2556,6 +2563,7 @@ module TencentCloud
           @SgIP = params['SgIP']
           @PartitionNumber = params['PartitionNumber']
           @WebUiVersion = params['WebUiVersion']
+          @CbsSysEncrypt = params['CbsSysEncrypt']
         end
       end
 
@@ -14816,12 +14824,12 @@ module TencentCloud
 
         attr_accessor :DetectAlert, :DetetcFunctionKey, :DetetcFunctionValue, :DetetcTime, :DetectFunctionKey, :DetectFunctionValue, :DetectTime
         extend Gem::Deprecate
-        deprecate :DetetcFunctionKey, :none, 2026, 4
-        deprecate :DetetcFunctionKey=, :none, 2026, 4
-        deprecate :DetetcFunctionValue, :none, 2026, 4
-        deprecate :DetetcFunctionValue=, :none, 2026, 4
-        deprecate :DetetcTime, :none, 2026, 4
-        deprecate :DetetcTime=, :none, 2026, 4
+        deprecate :DetetcFunctionKey, :none, 2026, 5
+        deprecate :DetetcFunctionKey=, :none, 2026, 5
+        deprecate :DetetcFunctionValue, :none, 2026, 5
+        deprecate :DetetcFunctionValue=, :none, 2026, 5
+        deprecate :DetetcTime, :none, 2026, 5
+        deprecate :DetetcTime=, :none, 2026, 5
 
         def initialize(detectalert=nil, detetcfunctionkey=nil, detetcfunctionvalue=nil, detetctime=nil, detectfunctionkey=nil, detectfunctionvalue=nil, detecttime=nil)
           @DetectAlert = detectalert

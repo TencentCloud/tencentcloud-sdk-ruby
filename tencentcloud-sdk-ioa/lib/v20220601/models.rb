@@ -203,6 +203,42 @@ module TencentCloud
         end
       end
 
+      # BindBusinessResourceConnectorGroup请求参数结构体
+      class BindBusinessResourceConnectorGroupRequest < TencentCloud::Common::AbstractModel
+        # @param ServiceId: 要绑定连接器的业务资源id，创建时候响应会返回，修改调用端自己获取传递
+        # @type ServiceId: Integer
+        # @param ConnectorGroupId: 业务资源要绑定的连接器id
+        # @type ConnectorGroupId: String
+
+        attr_accessor :ServiceId, :ConnectorGroupId
+
+        def initialize(serviceid=nil, connectorgroupid=nil)
+          @ServiceId = serviceid
+          @ConnectorGroupId = connectorgroupid
+        end
+
+        def deserialize(params)
+          @ServiceId = params['ServiceId']
+          @ConnectorGroupId = params['ConnectorGroupId']
+        end
+      end
+
+      # BindBusinessResourceConnectorGroup返回参数结构体
+      class BindBusinessResourceConnectorGroupResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 自动划分规则数据
       class ComplexRule < TencentCloud::Common::AbstractModel
         # @param SimpleRules: 简单规则表达式

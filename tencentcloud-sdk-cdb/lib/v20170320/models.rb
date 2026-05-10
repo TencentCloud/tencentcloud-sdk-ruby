@@ -61,8 +61,8 @@ module TencentCloud
 
         attr_accessor :Notes, :Host, :User, :ModifyTime, :ModifyPasswordTime, :CreateTime, :MaxUserConnections, :OpenCam
         extend Gem::Deprecate
-        deprecate :CreateTime, :none, 2026, 4
-        deprecate :CreateTime=, :none, 2026, 4
+        deprecate :CreateTime, :none, 2026, 5
+        deprecate :CreateTime=, :none, 2026, 5
 
         def initialize(notes=nil, host=nil, user=nil, modifytime=nil, modifypasswordtime=nil, createtime=nil, maxuserconnections=nil, opencam=nil)
           @Notes = notes
@@ -448,8 +448,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :StartTime, :EndTime, :AggregationConditions, :AuditLogFilter, :LogFilter
         extend Gem::Deprecate
-        deprecate :AuditLogFilter, :none, 2026, 4
-        deprecate :AuditLogFilter=, :none, 2026, 4
+        deprecate :AuditLogFilter, :none, 2026, 5
+        deprecate :AuditLogFilter=, :none, 2026, 5
 
         def initialize(instanceid=nil, starttime=nil, endtime=nil, aggregationconditions=nil, auditlogfilter=nil, logfilter=nil)
           @InstanceId = instanceid
@@ -1113,10 +1113,10 @@ module TencentCloud
 
         attr_accessor :ExpandThreshold, :ShrinkThreshold, :ExpandPeriod, :ShrinkPeriod, :ExpandSecondPeriod, :ShrinkSecondPeriod
         extend Gem::Deprecate
-        deprecate :ExpandPeriod, :none, 2026, 4
-        deprecate :ExpandPeriod=, :none, 2026, 4
-        deprecate :ShrinkPeriod, :none, 2026, 4
-        deprecate :ShrinkPeriod=, :none, 2026, 4
+        deprecate :ExpandPeriod, :none, 2026, 5
+        deprecate :ExpandPeriod=, :none, 2026, 5
+        deprecate :ShrinkPeriod, :none, 2026, 5
+        deprecate :ShrinkPeriod=, :none, 2026, 5
 
         def initialize(expandthreshold=nil, shrinkthreshold=nil, expandperiod=nil, shrinkperiod=nil, expandsecondperiod=nil, shrinksecondperiod=nil)
           @ExpandThreshold = expandthreshold
@@ -1433,8 +1433,8 @@ module TencentCloud
 
         attr_accessor :Name, :Size, :Date, :IntranetUrl, :InternetUrl, :Type, :BinlogStartTime, :BinlogFinishTime, :Region, :Status, :RemoteInfo, :CosStorageType, :InstanceId, :Progress
         extend Gem::Deprecate
-        deprecate :InstanceId, :none, 2026, 4
-        deprecate :InstanceId=, :none, 2026, 4
+        deprecate :InstanceId, :none, 2026, 5
+        deprecate :InstanceId=, :none, 2026, 5
 
         def initialize(name=nil, size=nil, date=nil, intraneturl=nil, interneturl=nil, type=nil, binlogstarttime=nil, binlogfinishtime=nil, region=nil, status=nil, remoteinfo=nil, cosstoragetype=nil, instanceid=nil, progress=nil)
           @Name = name
@@ -2386,8 +2386,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :StartTime, :EndTime, :Order, :OrderBy, :Filter, :LogFilter, :ColumnFilter
         extend Gem::Deprecate
-        deprecate :Filter, :none, 2026, 4
-        deprecate :Filter=, :none, 2026, 4
+        deprecate :Filter, :none, 2026, 5
+        deprecate :Filter=, :none, 2026, 5
 
         def initialize(instanceid=nil, starttime=nil, endtime=nil, order=nil, orderby=nil, filter=nil, logfilter=nil, columnfilter=nil)
           @InstanceId = instanceid
@@ -2934,8 +2934,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :SpecifiedRollbackTime, :SpecifiedBackupId, :UniqVpcId, :UniqSubnetId, :Memory, :Volume, :InstanceName, :SecurityGroup, :ResourceTags, :Cpu, :ProtectMode, :DeployMode, :SlaveZone, :BackupZone, :DeviceType, :InstanceNodes, :DeployGroupId, :DryRun, :CageId, :ProjectId, :PayType, :Period, :ClusterTopology, :SrcRegion, :SpecifiedSubBackupId, :MasterZone, :Zone
         extend Gem::Deprecate
-        deprecate :MasterZone, :none, 2026, 4
-        deprecate :MasterZone=, :none, 2026, 4
+        deprecate :MasterZone, :none, 2026, 5
+        deprecate :MasterZone=, :none, 2026, 5
 
         def initialize(instanceid=nil, specifiedrollbacktime=nil, specifiedbackupid=nil, uniqvpcid=nil, uniqsubnetid=nil, memory=nil, volume=nil, instancename=nil, securitygroup=nil, resourcetags=nil, cpu=nil, protectmode=nil, deploymode=nil, slavezone=nil, backupzone=nil, devicetype=nil, instancenodes=nil, deploygroupid=nil, dryrun=nil, cageid=nil, projectid=nil, paytype=nil, period=nil, clustertopology=nil, srcregion=nil, specifiedsubbackupid=nil, masterzone=nil, zone=nil)
           @InstanceId = instanceid
@@ -5115,10 +5115,10 @@ module TencentCloud
 
         attr_accessor :StartTimeMin, :StartTimeMax, :BackupExpireDays, :BackupMethod, :BinlogExpireDays, :BackupTimeWindow, :EnableBackupPeriodSave, :BackupPeriodSaveDays, :BackupPeriodSaveInterval, :BackupPeriodSaveCount, :StartBackupPeriodSaveDate, :EnableBackupArchive, :BackupArchiveDays, :EnableBinlogArchive, :BinlogArchiveDays, :EnableBackupStandby, :BackupStandbyDays, :EnableBinlogStandby, :BinlogStandbyDays, :RequestId
         extend Gem::Deprecate
-        deprecate :StartTimeMin, :none, 2026, 4
-        deprecate :StartTimeMin=, :none, 2026, 4
-        deprecate :StartTimeMax, :none, 2026, 4
-        deprecate :StartTimeMax=, :none, 2026, 4
+        deprecate :StartTimeMin, :none, 2026, 5
+        deprecate :StartTimeMin=, :none, 2026, 5
+        deprecate :StartTimeMax, :none, 2026, 5
+        deprecate :StartTimeMax=, :none, 2026, 5
 
         def initialize(starttimemin=nil, starttimemax=nil, backupexpiredays=nil, backupmethod=nil, binlogexpiredays=nil, backuptimewindow=nil, enablebackupperiodsave=nil, backupperiodsavedays=nil, backupperiodsaveinterval=nil, backupperiodsavecount=nil, startbackupperiodsavedate=nil, enablebackuparchive=nil, backuparchivedays=nil, enablebinlogarchive=nil, binlogarchivedays=nil, enablebackupstandby=nil, backupstandbydays=nil, enablebinlogstandby=nil, binlogstandbydays=nil, requestid=nil)
           @StartTimeMin = starttimemin
@@ -6392,79 +6392,77 @@ module TencentCloud
 
       # DescribeDBInstances请求参数结构体
       class DescribeDBInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param ProjectId: 项目 ID。
+        # @param ProjectId: <p>项目 ID。</p>
         # @type ProjectId: Integer
-        # @param InstanceTypes: 实例类型，可取值：1 - 主实例，2 - 灾备实例，3 - 只读实例。
+        # @param InstanceTypes: <p>实例类型，可取值：1 - 主实例，2 - 灾备实例，3 - 只读实例。</p>
         # @type InstanceTypes: Array
-        # @param Vips: 实例的内网 IP 地址。
+        # @param Vips: <p>实例的内网 IP 地址。</p>
         # @type Vips: Array
-        # @param Status: 实例状态，可取值：<br>0 - 创建中<br>1 - 运行中<br>4 - 正在进行隔离操作<br>5 - 已隔离（可在回收站恢复开机）
+        # @param Status: <p>实例状态，可取值：<br>0 - 创建中<br>1 - 运行中<br>4 - 正在进行隔离操作<br>5 - 已隔离（可在回收站恢复开机）</p>
         # @type Status: Array
-        # @param Offset: 偏移量，默认值为 0。
+        # @param Offset: <p>偏移量，默认值为 0。</p>
         # @type Offset: Integer
-        # @param Limit: 单次请求返回的数量，默认值为 20，最大值为 2000。
+        # @param Limit: <p>单次请求返回的数量，默认值为 20，最大值为 2000。</p>
         # @type Limit: Integer
-        # @param SecurityGroupId: 安全组 ID。当使用安全组 ID 为过滤条件时，需指定 WithSecurityGroup 参数为 1。
+        # @param SecurityGroupId: <p>安全组 ID。当使用安全组 ID 为过滤条件时，需指定 WithSecurityGroup 参数为 1。</p>
         # @type SecurityGroupId: String
-        # @param PayTypes: 付费类型，可取值：0 - 包年包月，1 - 小时计费。
+        # @param PayTypes: <p>付费类型，可取值：0 - 包年包月，1 - 小时计费。</p>
         # @type PayTypes: Array
-        # @param InstanceNames: 实例名称。
+        # @param InstanceNames: <p>实例名称。</p>
         # @type InstanceNames: Array
-        # @param TaskStatus: 实例任务状态，可能取值：<br>0 - 没有任务<br>1 - 升级中<br>2 - 数据导入中<br>3 - 开放Slave中<br>4 - 外网访问开通中<br>5 - 批量操作执行中<br>6 - 回档中<br>7 - 外网访问关闭中<br>8 - 密码修改中<br>9 - 实例名修改中<br>10 - 重启中<br>12 - 自建迁移中<br>13 - 删除库表中<br>14 - 灾备实例创建同步中<br>15 - 升级待切换<br>16 - 升级切换中<br>17 - 升级切换完成<br>19 - 参数设置待执行<br>34 - 原地升级待执行
+        # @param TaskStatus: <p>实例任务状态，可能取值：<br>0 - 没有任务<br>1 - 升级中<br>2 - 数据导入中<br>3 - 开放Slave中<br>4 - 外网访问开通中<br>5 - 批量操作执行中<br>6 - 回档中<br>7 - 外网访问关闭中<br>8 - 密码修改中<br>9 - 实例名修改中<br>10 - 重启中<br>12 - 自建迁移中<br>13 - 删除库表中<br>14 - 灾备实例创建同步中<br>15 - 升级待切换<br>16 - 升级切换中<br>17 - 升级切换完成<br>19 - 参数设置待执行<br>34 - 原地升级待执行</p>
         # @type TaskStatus: Array
-        # @param EngineVersions: 实例数据库引擎版本，可能取值：5.1、5.5、5.6 和 5.7。
+        # @param EngineVersions: <p>实例数据库引擎版本，可能取值：5.1、5.5、5.6 和 5.7。</p>
         # @type EngineVersions: Array
-        # @param VpcIds: 私有网络的 ID。
+        # @param VpcIds: <p>私有网络的 ID。</p>
         # @type VpcIds: Array
-        # @param ZoneIds: 可用区的 ID。
+        # @param ZoneIds: <p>可用区的 ID。</p>
         # @type ZoneIds: Array
-        # @param SubnetIds: 子网 ID。
+        # @param SubnetIds: <p>子网 ID。</p>
         # @type SubnetIds: Array
-        # @param CdbErrors: 是否锁定标记，可选值：0 - 不锁定，1 - 锁定，默认为0。
+        # @param CdbErrors: <p>是否锁定标记，可选值：0 - 不锁定，1 - 锁定，默认为0。</p>
         # @type CdbErrors: Array
-        # @param OrderBy: 返回结果集排序的字段，目前支持："instanceId"，"instanceName"，"createTime"，"deadlineTime"。
+        # @param OrderBy: <p>返回结果集排序的字段，目前支持：&quot;instanceId&quot;，&quot;instanceName&quot;，&quot;createTime&quot;，&quot;deadlineTime&quot;。</p>
         # @type OrderBy: String
-        # @param OrderDirection: 返回结果集排序方式。目前支持值："ASC" - 表示升序，"DESC" - 表示降序，默认为 "DESC"。
+        # @param OrderDirection: <p>返回结果集排序方式。目前支持值：&quot;ASC&quot; - 表示升序，&quot;DESC&quot; - 表示降序，默认为 &quot;DESC&quot;。</p>
         # @type OrderDirection: String
-        # @param WithSecurityGroup: 是否以安全组 ID 为过滤条件。
-        # 说明：0表示否，1表示是。
+        # @param WithSecurityGroup: <p>是否以安全组 ID 为过滤条件。<br>说明：0表示否，1表示是。</p>
         # @type WithSecurityGroup: Integer
-        # @param WithExCluster: 是否包含独享集群详细信息，可取值：0 - 不包含，1 - 包含。
+        # @param WithExCluster: <p>是否包含独享集群详细信息，可取值：0 - 不包含，1 - 包含。</p>
         # @type WithExCluster: Integer
-        # @param ExClusterId: 独享集群 ID。
+        # @param ExClusterId: <p>独享集群 ID。</p>
         # @type ExClusterId: String
-        # @param InstanceIds: 实例 ID。
+        # @param InstanceIds: <p>实例 ID。</p>
         # @type InstanceIds: Array
-        # @param InitFlag: 初始化标记，可取值：0 - 未初始化，1 - 初始化。
+        # @param InitFlag: <p>初始化标记，可取值：0 - 未初始化，1 - 初始化。</p>
         # @type InitFlag: Integer
-        # @param WithDr: 是否包含灾备关系对应的实例，可取值：0 - 不包含，1 - 包含。默认取值为1。如果拉取主实例，则灾备关系的数据在DrInfo字段中， 如果拉取灾备实例， 则灾备关系的数据在MasterInfo字段中。灾备关系中只包含部分基本的数据，详细的数据需要自行调接口拉取。
+        # @param WithDr: <p>是否包含灾备关系对应的实例，可取值：0 - 不包含，1 - 包含。默认取值为1。如果拉取主实例，则灾备关系的数据在DrInfo字段中， 如果拉取灾备实例， 则灾备关系的数据在MasterInfo字段中。灾备关系中只包含部分基本的数据，详细的数据需要自行调接口拉取。</p>
         # @type WithDr: Integer
-        # @param WithRo: 是否包含只读实例，可取值：0 - 不包含，1 - 包含。默认取值为1。
+        # @param WithRo: <p>是否包含只读实例，可取值：0 - 不包含，1 - 包含。默认取值为1。</p>
         # @type WithRo: Integer
-        # @param WithMaster: 是否包含主实例，可取值：0 - 不包含，1 - 包含。默认取值为1。
+        # @param WithMaster: <p>是否包含主实例，可取值：0 - 不包含，1 - 包含。默认取值为1。</p>
         # @type WithMaster: Integer
-        # @param DeployGroupIds: 置放群组ID列表。
+        # @param DeployGroupIds: <p>置放群组ID列表。</p>
         # @type DeployGroupIds: Array
-        # @param TagKeysForSearch: 是否以标签键为过滤条件。
+        # @param TagKeysForSearch: <p>是否以标签键为过滤条件。</p>
         # @type TagKeysForSearch: Array
-        # @param CageIds: 金融围拢 ID 。
+        # @param CageIds: <p>金融围拢 ID 。</p>
         # @type CageIds: Array
-        # @param TagValues: 标签值
+        # @param TagValues: <p>标签值</p>
         # @type TagValues: Array
-        # @param UniqueVpcIds: 私有网络字符型vpcId
+        # @param UniqueVpcIds: <p>私有网络字符型vpcId</p>
         # @type UniqueVpcIds: Array
-        # @param UniqSubnetIds: 私有网络字符型subnetId
+        # @param UniqSubnetIds: <p>私有网络字符型subnetId</p>
         # @type UniqSubnetIds: Array
-        # @param Tags: 标签键值
-        # 请注意，创建中的实例无法查询到标签。
+        # @param Tags: <p>标签键值<br>请注意，创建中的实例无法查询到标签。</p>
         # @type Tags: Array
-        # @param ProxyVips: 数据库代理 IP 。
+        # @param ProxyVips: <p>数据库代理 IP 。</p>
         # @type ProxyVips: Array
-        # @param ProxyIds: 数据库代理 ID 。
+        # @param ProxyIds: <p>数据库代理 ID 。</p>
         # @type ProxyIds: Array
-        # @param EngineTypes: 数据库引擎类型。可选值为：InnoDB、RocksDB。
+        # @param EngineTypes: <p>数据库引擎类型。可选值为：InnoDB、RocksDB。</p>
         # @type EngineTypes: Array
-        # @param QueryClusterInfo: 是否获取云盘版实例节点信息，可填：true 或 false。默认为 false。
+        # @param QueryClusterInfo: <p>是否获取云盘版实例节点信息，可填：true 或 false。默认为 false。</p>
         # @type QueryClusterInfo: Boolean
 
         attr_accessor :ProjectId, :InstanceTypes, :Vips, :Status, :Offset, :Limit, :SecurityGroupId, :PayTypes, :InstanceNames, :TaskStatus, :EngineVersions, :VpcIds, :ZoneIds, :SubnetIds, :CdbErrors, :OrderBy, :OrderDirection, :WithSecurityGroup, :WithExCluster, :ExClusterId, :InstanceIds, :InitFlag, :WithDr, :WithRo, :WithMaster, :DeployGroupIds, :TagKeysForSearch, :CageIds, :TagValues, :UniqueVpcIds, :UniqSubnetIds, :Tags, :ProxyVips, :ProxyIds, :EngineTypes, :QueryClusterInfo
@@ -6557,9 +6555,9 @@ module TencentCloud
 
       # DescribeDBInstances返回参数结构体
       class DescribeDBInstancesResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 符合查询条件的实例总数。
+        # @param TotalCount: <p>符合查询条件的实例总数。</p>
         # @type TotalCount: Integer
-        # @param Items: 实例详细信息列表。
+        # @param Items: <p>实例详细信息列表。</p>
         # @type Items: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -7810,8 +7808,8 @@ module TencentCloud
 
         attr_accessor :Count, :CustomConf, :WeightRule, :CustomConfInfo, :RequestId
         extend Gem::Deprecate
-        deprecate :CustomConf, :none, 2026, 4
-        deprecate :CustomConf=, :none, 2026, 4
+        deprecate :CustomConf, :none, 2026, 5
+        deprecate :CustomConf=, :none, 2026, 5
 
         def initialize(count=nil, customconf=nil, weightrule=nil, customconfinfo=nil, requestid=nil)
           @Count = count
@@ -9464,118 +9462,117 @@ module TencentCloud
 
       # 实例详细信息
       class InstanceInfo < TencentCloud::Common::AbstractModel
-        # @param WanStatus: 外网状态，可能的返回值为：0-未开通外网；1-已开通外网；2-已关闭外网
+        # @param WanStatus: <p>外网状态，可能的返回值为：0-未开通外网；1-已开通外网；2-已关闭外网</p>
         # @type WanStatus: Integer
-        # @param Zone: 可用区信息
+        # @param Zone: <p>可用区信息</p>
         # @type Zone: String
-        # @param InitFlag: 初始化标志，可能的返回值为：0-未初始化；1-已初始化
+        # @param InitFlag: <p>初始化标志，可能的返回值为：0-未初始化；1-已初始化</p>
         # @type InitFlag: Integer
-        # @param RoVipInfo: 只读vip信息。单独开通只读实例访问的只读实例才有该字段
+        # @param RoVipInfo: <p>只读vip信息。单独开通只读实例访问的只读实例才有该字段</p>
         # @type RoVipInfo: :class:`Tencentcloud::Cdb.v20170320.models.RoVipInfo`
-        # @param Memory: 内存容量，单位为 MB
+        # @param Memory: <p>内存容量，单位为 MB</p>
         # @type Memory: Integer
-        # @param Status: 实例状态，可能的返回值：0-创建中；1-运行中；4-正在进行隔离操作；5-已隔离
+        # @param Status: <p>实例状态，可能的返回值：0-创建中；1-运行中；4-正在进行隔离操作；5-已隔离</p>
         # @type Status: Integer
-        # @param VpcId: 私有网络 ID，例如：51102
+        # @param VpcId: <p>私有网络 ID，例如：51102</p>
         # @type VpcId: Integer
-        # @param SlaveInfo: 备机信息
+        # @param SlaveInfo: <p>备机信息</p>
         # @type SlaveInfo: :class:`Tencentcloud::Cdb.v20170320.models.SlaveInfo`
-        # @param InstanceId: 实例 ID
+        # @param InstanceId: <p>实例 ID</p>
         # @type InstanceId: String
-        # @param Volume: 硬盘容量，单位为 GB
+        # @param Volume: <p>硬盘容量，单位为 GB</p>
         # @type Volume: Integer
-        # @param AutoRenew: 自动续费标志，可能的返回值：0-未开通自动续费；1-已开通自动续费；2-已关闭自动续费
+        # @param AutoRenew: <p>自动续费标志，可能的返回值：0-未开通自动续费；1-已开通自动续费；2-已关闭自动续费</p>
         # @type AutoRenew: Integer
-        # @param ProtectMode: 数据复制方式。0 - 异步复制；1 - 半同步复制；2 - 强同步复制
+        # @param ProtectMode: <p>数据复制方式。0 - 异步复制；1 - 半同步复制；2 - 强同步复制</p>
         # @type ProtectMode: Integer
-        # @param RoGroups: 只读组详细信息
+        # @param RoGroups: <p>只读组详细信息</p>
         # @type RoGroups: Array
-        # @param SubnetId: 子网 ID，例如：2333
+        # @param SubnetId: <p>子网 ID，例如：2333</p>
         # @type SubnetId: Integer
-        # @param InstanceType: 实例类型，可能的返回值：1-主实例；2-灾备实例；3-只读实例
+        # @param InstanceType: <p>实例类型，可能的返回值：1-主实例；2-灾备实例；3-只读实例</p>
         # @type InstanceType: Integer
-        # @param ProjectId: 项目 ID
+        # @param ProjectId: <p>项目 ID</p>
         # @type ProjectId: Integer
-        # @param Region: 地域信息
+        # @param Region: <p>地域信息</p>
         # @type Region: String
-        # @param DeadlineTime: 实例到期时间
+        # @param DeadlineTime: <p>实例到期时间</p>
         # @type DeadlineTime: String
-        # @param DeployMode: 可用区部署方式。可能的值为：0 - 单可用区；1 - 多可用区
+        # @param DeployMode: <p>可用区部署方式。可能的值为：0 - 单可用区；1 - 多可用区</p>
         # @type DeployMode: Integer
-        # @param TaskStatus: 实例任务状态。0 - 没有任务 ,1 - 升级中,2 - 数据导入中,3 - 开放Slave中,4 - 外网访问开通中,5 - 批量操作执行中,6 - 回档中,7 - 外网访问关闭中,8 - 密码修改中,9 - 实例名修改中,10 - 重启中,12 - 自建迁移中,13 - 删除库表中,14 - 灾备实例创建同步中,15 - 升级待切换,16 - 升级切换中,17 - 升级切换完成
+        # @param TaskStatus: <p>实例任务状态。0 - 没有任务 ,1 - 升级中,2 - 数据导入中,3 - 开放Slave中,4 - 外网访问开通中,5 - 批量操作执行中,6 - 回档中,7 - 外网访问关闭中,8 - 密码修改中,9 - 实例名修改中,10 - 重启中,12 - 自建迁移中,13 - 删除库表中,14 - 灾备实例创建同步中,15 - 升级待切换,16 - 升级切换中,17 - 升级切换完成</p>
         # @type TaskStatus: Integer
-        # @param MasterInfo: 主实例详细信息
+        # @param MasterInfo: <p>主实例详细信息</p>
         # @type MasterInfo: :class:`Tencentcloud::Cdb.v20170320.models.MasterInfo`
-        # @param DeviceType: 实例类型
+        # @param DeviceType: <p>实例类型</p>
         # @type DeviceType: String
-        # @param EngineVersion: 内核版本
+        # @param EngineVersion: <p>内核版本</p>
         # @type EngineVersion: String
-        # @param InstanceName: 实例名称
+        # @param InstanceName: <p>实例名称</p>
         # @type InstanceName: String
-        # @param DrInfo: 灾备实例详细信息
+        # @param DrInfo: <p>灾备实例详细信息</p>
         # @type DrInfo: Array
-        # @param WanDomain: 外网域名
+        # @param WanDomain: <p>外网域名</p>
         # @type WanDomain: String
-        # @param WanPort: 外网端口号
+        # @param WanPort: <p>外网端口号</p>
         # @type WanPort: Integer
-        # @param PayType: 付费类型，可能的返回值：0-包年包月；1-按量计费
+        # @param PayType: <p>付费类型，可能的返回值：0-包年包月；1-按量计费</p>
         # @type PayType: Integer
-        # @param CreateTime: 实例创建时间
+        # @param CreateTime: <p>实例创建时间</p>
         # @type CreateTime: String
-        # @param Vip: 实例 IP
+        # @param Vip: <p>实例 IP</p>
         # @type Vip: String
-        # @param Vport: 端口号
+        # @param Vport: <p>端口号</p>
         # @type Vport: Integer
-        # @param CdbError: 磁盘写入是否被锁定（实例数据写入量已经超过磁盘配额）。0 -未被锁定 1 -已被锁定
+        # @param CdbError: <p>磁盘写入是否被锁定（实例数据写入量已经超过磁盘配额）。0 -未被锁定 1 -已被锁定</p>
         # @type CdbError: Integer
-        # @param UniqVpcId: 私有网络描述符，例如：“vpc-5v8wn9mg”
+        # @param UniqVpcId: <p>私有网络描述符，例如：“vpc-5v8wn9mg”</p>
         # @type UniqVpcId: String
-        # @param UniqSubnetId: 子网描述符，例如：“subnet-1typ0s7d”
+        # @param UniqSubnetId: <p>子网描述符，例如：“subnet-1typ0s7d”</p>
         # @type UniqSubnetId: String
-        # @param PhysicalId: 物理 ID
+        # @param PhysicalId: <p>物理 ID</p>
         # @type PhysicalId: String
-        # @param Cpu: 核心数
+        # @param Cpu: <p>核心数</p>
         # @type Cpu: Integer
-        # @param Qps: 每秒查询数量
+        # @param Qps: <p>每秒查询数量</p>
         # @type Qps: Integer
-        # @param ZoneName: 可用区中文名称
+        # @param ZoneName: <p>可用区中文名称</p>
         # @type ZoneName: String
-        # @param DeviceClass: 物理机型
+        # @param DeviceClass: <p>物理机型</p>
         # @type DeviceClass: String
-        # @param DeployGroupId: 置放群组 ID
+        # @param DeployGroupId: <p>置放群组 ID</p>
         # @type DeployGroupId: String
-        # @param ZoneId: 可用区 ID
+        # @param ZoneId: <p>可用区 ID</p>
         # @type ZoneId: Integer
-        # @param InstanceNodes: 节点数
+        # @param InstanceNodes: <p>节点数</p>
         # @type InstanceNodes: Integer
-        # @param TagList: 标签列表
+        # @param TagList: <p>标签列表</p>
         # @type TagList: Array
-        # @param EngineType: 引擎类型
+        # @param EngineType: <p>引擎类型</p>
         # @type EngineType: String
-        # @param MaxDelayTime: 最大延迟阈值
+        # @param MaxDelayTime: <p>最大延迟阈值</p>
         # @type MaxDelayTime: Integer
-        # @param DiskType: 实例磁盘类型，仅云盘版和单节点（云盘）实例才会返回有效值。
-        # 说明：
-        # 1. 若返回："DiskType": "CLOUD_HSSD"，则表示该实例磁盘类型为增强型 SSD 云硬盘。
-        # 2. 若返回："DiskType": "CLOUD_SSD"，则表示该实例磁盘类型为 SSD 云硬盘。
-        # 3. 若返回："DiskType": ""，且参数 DeviceType 值为 UNIVERSAL 或 EXCLUSIVE，则表示该实例采用的是本地 SSD 盘。
+        # @param DiskType: <p>实例磁盘类型，仅云盘版和单节点（云盘）实例才会返回有效值。<br>说明：</p><ol><li>若返回：&quot;DiskType&quot;: &quot;CLOUD_HSSD&quot;，则表示该实例磁盘类型为增强型 SSD 云硬盘。</li><li>若返回：&quot;DiskType&quot;: &quot;CLOUD_SSD&quot;，则表示该实例磁盘类型为 SSD 云硬盘。</li><li>若返回：&quot;DiskType&quot;: &quot;&quot;，且参数 DeviceType 值为 UNIVERSAL 或 EXCLUSIVE，则表示该实例采用的是本地 SSD 盘。</li></ol>
         # @type DiskType: String
-        # @param ExpandCpu: 当前扩容的CPU核心数。
+        # @param ExpandCpu: <p>当前扩容的CPU核心数。</p>
         # @type ExpandCpu: Integer
-        # @param ClusterInfo: 云盘版实例节点信息
+        # @param ClusterInfo: <p>云盘版实例节点信息</p>
         # @type ClusterInfo: Array
-        # @param AnalysisNodeInfos: 分析引擎节点列表
+        # @param AnalysisNodeInfos: <p>分析引擎节点列表</p>
         # @type AnalysisNodeInfos: Array
-        # @param DeviceBandwidth: 设备带宽，单位G。当DeviceClass不为空时此参数才有效。例：25-表示当前设备带宽为25G；10-表示当前设备带宽为10G。
+        # @param DeviceBandwidth: <p>设备带宽，单位G。当DeviceClass不为空时此参数才有效。例：25-表示当前设备带宽为25G；10-表示当前设备带宽为10G。</p>
         # @type DeviceBandwidth: Integer
-        # @param DestroyProtect: 实例销毁保护状态，on表示开启保护，否则为关闭保护
+        # @param DestroyProtect: <p>实例销毁保护状态，on表示开启保护，否则为关闭保护</p>
         # @type DestroyProtect: String
-        # @param CpuModel: TDSQL引擎参数
+        # @param CpuModel: <p>TDSQL引擎参数</p>
         # @type CpuModel: String
+        # @param AnalysisUpgradeVersionInfo: <p>分析引擎实例版本升级信息</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AnalysisUpgradeVersionInfo: :class:`Tencentcloud::Cdb.v20170320.models.UpgradeAnalysisInstanceVersionInfo`
 
-        attr_accessor :WanStatus, :Zone, :InitFlag, :RoVipInfo, :Memory, :Status, :VpcId, :SlaveInfo, :InstanceId, :Volume, :AutoRenew, :ProtectMode, :RoGroups, :SubnetId, :InstanceType, :ProjectId, :Region, :DeadlineTime, :DeployMode, :TaskStatus, :MasterInfo, :DeviceType, :EngineVersion, :InstanceName, :DrInfo, :WanDomain, :WanPort, :PayType, :CreateTime, :Vip, :Vport, :CdbError, :UniqVpcId, :UniqSubnetId, :PhysicalId, :Cpu, :Qps, :ZoneName, :DeviceClass, :DeployGroupId, :ZoneId, :InstanceNodes, :TagList, :EngineType, :MaxDelayTime, :DiskType, :ExpandCpu, :ClusterInfo, :AnalysisNodeInfos, :DeviceBandwidth, :DestroyProtect, :CpuModel
+        attr_accessor :WanStatus, :Zone, :InitFlag, :RoVipInfo, :Memory, :Status, :VpcId, :SlaveInfo, :InstanceId, :Volume, :AutoRenew, :ProtectMode, :RoGroups, :SubnetId, :InstanceType, :ProjectId, :Region, :DeadlineTime, :DeployMode, :TaskStatus, :MasterInfo, :DeviceType, :EngineVersion, :InstanceName, :DrInfo, :WanDomain, :WanPort, :PayType, :CreateTime, :Vip, :Vport, :CdbError, :UniqVpcId, :UniqSubnetId, :PhysicalId, :Cpu, :Qps, :ZoneName, :DeviceClass, :DeployGroupId, :ZoneId, :InstanceNodes, :TagList, :EngineType, :MaxDelayTime, :DiskType, :ExpandCpu, :ClusterInfo, :AnalysisNodeInfos, :DeviceBandwidth, :DestroyProtect, :CpuModel, :AnalysisUpgradeVersionInfo
 
-        def initialize(wanstatus=nil, zone=nil, initflag=nil, rovipinfo=nil, memory=nil, status=nil, vpcid=nil, slaveinfo=nil, instanceid=nil, volume=nil, autorenew=nil, protectmode=nil, rogroups=nil, subnetid=nil, instancetype=nil, projectid=nil, region=nil, deadlinetime=nil, deploymode=nil, taskstatus=nil, masterinfo=nil, devicetype=nil, engineversion=nil, instancename=nil, drinfo=nil, wandomain=nil, wanport=nil, paytype=nil, createtime=nil, vip=nil, vport=nil, cdberror=nil, uniqvpcid=nil, uniqsubnetid=nil, physicalid=nil, cpu=nil, qps=nil, zonename=nil, deviceclass=nil, deploygroupid=nil, zoneid=nil, instancenodes=nil, taglist=nil, enginetype=nil, maxdelaytime=nil, disktype=nil, expandcpu=nil, clusterinfo=nil, analysisnodeinfos=nil, devicebandwidth=nil, destroyprotect=nil, cpumodel=nil)
+        def initialize(wanstatus=nil, zone=nil, initflag=nil, rovipinfo=nil, memory=nil, status=nil, vpcid=nil, slaveinfo=nil, instanceid=nil, volume=nil, autorenew=nil, protectmode=nil, rogroups=nil, subnetid=nil, instancetype=nil, projectid=nil, region=nil, deadlinetime=nil, deploymode=nil, taskstatus=nil, masterinfo=nil, devicetype=nil, engineversion=nil, instancename=nil, drinfo=nil, wandomain=nil, wanport=nil, paytype=nil, createtime=nil, vip=nil, vport=nil, cdberror=nil, uniqvpcid=nil, uniqsubnetid=nil, physicalid=nil, cpu=nil, qps=nil, zonename=nil, deviceclass=nil, deploygroupid=nil, zoneid=nil, instancenodes=nil, taglist=nil, enginetype=nil, maxdelaytime=nil, disktype=nil, expandcpu=nil, clusterinfo=nil, analysisnodeinfos=nil, devicebandwidth=nil, destroyprotect=nil, cpumodel=nil, analysisupgradeversioninfo=nil)
           @WanStatus = wanstatus
           @Zone = zone
           @InitFlag = initflag
@@ -9628,6 +9625,7 @@ module TencentCloud
           @DeviceBandwidth = devicebandwidth
           @DestroyProtect = destroyprotect
           @CpuModel = cpumodel
+          @AnalysisUpgradeVersionInfo = analysisupgradeversioninfo
         end
 
         def deserialize(params)
@@ -9727,6 +9725,10 @@ module TencentCloud
           @DeviceBandwidth = params['DeviceBandwidth']
           @DestroyProtect = params['DestroyProtect']
           @CpuModel = params['CpuModel']
+          unless params['AnalysisUpgradeVersionInfo'].nil?
+            @AnalysisUpgradeVersionInfo = UpgradeAnalysisInstanceVersionInfo.new
+            @AnalysisUpgradeVersionInfo.deserialize(params['AnalysisUpgradeVersionInfo'])
+          end
         end
       end
 
@@ -9810,8 +9812,8 @@ module TencentCloud
 
         attr_accessor :AsyncRequestId, :RequestId
         extend Gem::Deprecate
-        deprecate :AsyncRequestId, :none, 2026, 4
-        deprecate :AsyncRequestId=, :none, 2026, 4
+        deprecate :AsyncRequestId, :none, 2026, 5
+        deprecate :AsyncRequestId=, :none, 2026, 5
 
         def initialize(asyncrequestid=nil, requestid=nil)
           @AsyncRequestId = asyncrequestid
@@ -9922,41 +9924,41 @@ module TencentCloud
 
       # 主实例信息
       class MasterInfo < TencentCloud::Common::AbstractModel
-        # @param Region: 地域信息
+        # @param Region: <p>地域信息</p>
         # @type Region: String
-        # @param RegionId: 地域ID
+        # @param RegionId: <p>地域ID</p>
         # @type RegionId: Integer
-        # @param ZoneId: 可用区ID
+        # @param ZoneId: <p>可用区ID</p>
         # @type ZoneId: Integer
-        # @param Zone: 可用区信息
+        # @param Zone: <p>可用区信息</p>
         # @type Zone: String
-        # @param InstanceId: 实例ID
+        # @param InstanceId: <p>实例ID</p>
         # @type InstanceId: String
-        # @param ResourceId: 实例长ID
+        # @param ResourceId: <p>实例长ID</p>
         # @type ResourceId: String
-        # @param Status: 实例状态
+        # @param Status: <p>实例状态</p>
         # @type Status: Integer
-        # @param InstanceName: 实例名称
+        # @param InstanceName: <p>实例名称</p>
         # @type InstanceName: String
-        # @param InstanceType: 实例类型
+        # @param InstanceType: <p>实例类型</p>
         # @type InstanceType: Integer
-        # @param TaskStatus: 任务状态
+        # @param TaskStatus: <p>任务状态</p>
         # @type TaskStatus: Integer
-        # @param Memory: 内存容量
+        # @param Memory: <p>内存容量</p>
         # @type Memory: Integer
-        # @param Volume: 硬盘容量
+        # @param Volume: <p>硬盘容量</p>
         # @type Volume: Integer
-        # @param DeviceType: 实例机型
+        # @param DeviceType: <p>实例机型</p>
         # @type DeviceType: String
-        # @param Qps: 每秒查询数
+        # @param Qps: <p>每秒查询数</p>
         # @type Qps: Integer
-        # @param VpcId: 私有网络ID
+        # @param VpcId: <p>私有网络ID</p>
         # @type VpcId: Integer
-        # @param SubnetId: 子网ID
+        # @param SubnetId: <p>子网ID</p>
         # @type SubnetId: Integer
-        # @param ExClusterId: 独享集群ID
+        # @param ExClusterId: <p>独享集群ID</p>
         # @type ExClusterId: String
-        # @param ExClusterName: 独享集群名称
+        # @param ExClusterName: <p>独享集群名称</p>
         # @type ExClusterName: String
 
         attr_accessor :Region, :RegionId, :ZoneId, :Zone, :InstanceId, :ResourceId, :Status, :InstanceName, :InstanceType, :TaskStatus, :Memory, :Volume, :DeviceType, :Qps, :VpcId, :SubnetId, :ExClusterId, :ExClusterName
@@ -10215,8 +10217,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :NewPassword, :Accounts, :SkipValidatePassword
         extend Gem::Deprecate
-        deprecate :SkipValidatePassword, :none, 2026, 4
-        deprecate :SkipValidatePassword=, :none, 2026, 4
+        deprecate :SkipValidatePassword, :none, 2026, 5
+        deprecate :SkipValidatePassword=, :none, 2026, 5
 
         def initialize(instanceid=nil, newpassword=nil, accounts=nil, skipvalidatepassword=nil)
           @InstanceId = instanceid
@@ -10558,8 +10560,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :LogExpireDay, :HighLogExpireDay, :AuditAll, :AuditRuleFilters, :RuleTemplateIds
         extend Gem::Deprecate
-        deprecate :AuditRuleFilters, :none, 2026, 4
-        deprecate :AuditRuleFilters=, :none, 2026, 4
+        deprecate :AuditRuleFilters, :none, 2026, 5
+        deprecate :AuditRuleFilters=, :none, 2026, 5
 
         def initialize(instanceid=nil, logexpireday=nil, highlogexpireday=nil, auditall=nil, auditrulefilters=nil, ruletemplateids=nil)
           @InstanceId = instanceid
@@ -11313,8 +11315,8 @@ module TencentCloud
 
         attr_accessor :AsyncRequestId, :RequestId
         extend Gem::Deprecate
-        deprecate :AsyncRequestId, :none, 2026, 4
-        deprecate :AsyncRequestId=, :none, 2026, 4
+        deprecate :AsyncRequestId, :none, 2026, 5
+        deprecate :AsyncRequestId=, :none, 2026, 5
 
         def initialize(asyncrequestid=nil, requestid=nil)
           @AsyncRequestId = asyncrequestid
@@ -11739,8 +11741,8 @@ module TencentCloud
 
         attr_accessor :RoGroupId, :RoGroupInfo, :RoWeightValues, :IsBalanceRoLoad, :ReplicationDelayTime
         extend Gem::Deprecate
-        deprecate :ReplicationDelayTime, :none, 2026, 4
-        deprecate :ReplicationDelayTime=, :none, 2026, 4
+        deprecate :ReplicationDelayTime, :none, 2026, 5
+        deprecate :ReplicationDelayTime=, :none, 2026, 5
 
         def initialize(rogroupid=nil, rogroupinfo=nil, roweightvalues=nil, isbalanceroload=nil, replicationdelaytime=nil)
           @RoGroupId = rogroupid
@@ -11971,8 +11973,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :LogExpireDay, :HighLogExpireDay, :AuditRuleFilters, :RuleTemplateIds, :AuditAll
         extend Gem::Deprecate
-        deprecate :AuditRuleFilters, :none, 2026, 4
-        deprecate :AuditRuleFilters=, :none, 2026, 4
+        deprecate :AuditRuleFilters, :none, 2026, 5
+        deprecate :AuditRuleFilters=, :none, 2026, 5
 
         def initialize(instanceid=nil, logexpireday=nil, highlogexpireday=nil, auditrulefilters=nil, ruletemplateids=nil, auditall=nil)
           @InstanceId = instanceid
@@ -12251,8 +12253,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :ParamName, :OldValue, :NewValue, :IsSucess, :ModifyTime, :IsSuccess
         extend Gem::Deprecate
-        deprecate :IsSucess, :none, 2026, 4
-        deprecate :IsSucess=, :none, 2026, 4
+        deprecate :IsSucess, :none, 2026, 5
+        deprecate :IsSucess=, :none, 2026, 5
 
         def initialize(instanceid=nil, paramname=nil, oldvalue=nil, newvalue=nil, issucess=nil, modifytime=nil, issuccess=nil)
           @InstanceId = instanceid
@@ -13743,9 +13745,9 @@ module TencentCloud
 
       # 备机信息
       class SlaveInfo < TencentCloud::Common::AbstractModel
-        # @param First: 第一备机信息
+        # @param First: <p>第一备机信息</p>
         # @type First: :class:`Tencentcloud::Cdb.v20170320.models.SlaveInstanceInfo`
-        # @param Second: 第二备机信息
+        # @param Second: <p>第二备机信息</p>
         # @type Second: :class:`Tencentcloud::Cdb.v20170320.models.SlaveInstanceInfo`
 
         attr_accessor :First, :Second
@@ -14738,6 +14740,34 @@ module TencentCloud
         def deserialize(params)
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
+        end
+      end
+
+      # 分析引擎实例版本升级信息
+      class UpgradeAnalysisInstanceVersionInfo < TencentCloud::Common::AbstractModel
+        # @param Vip: <p>版本升级灰度ip</p>
+        # @type Vip: String
+        # @param Vport: <p>版本升级灰度port</p>
+        # @type Vport: Integer
+        # @param EngineVersion: <p>升级之后版本</p>
+        # @type EngineVersion: String
+        # @param ExpireTime: <p>实例升级灰度事件</p><p>单位：天</p>
+        # @type ExpireTime: Integer
+
+        attr_accessor :Vip, :Vport, :EngineVersion, :ExpireTime
+
+        def initialize(vip=nil, vport=nil, engineversion=nil, expiretime=nil)
+          @Vip = vip
+          @Vport = vport
+          @EngineVersion = engineversion
+          @ExpireTime = expiretime
+        end
+
+        def deserialize(params)
+          @Vip = params['Vip']
+          @Vport = params['Vport']
+          @EngineVersion = params['EngineVersion']
+          @ExpireTime = params['ExpireTime']
         end
       end
 

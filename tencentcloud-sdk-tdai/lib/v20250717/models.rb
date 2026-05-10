@@ -164,10 +164,12 @@ module TencentCloud
         # @type LastActiveTime: String
         # @param Description: <p>无</p>
         # @type Description: String
+        # @param CreatingProgress: <p>发货进度详情</p>
+        # @type CreatingProgress: :class:`Tencentcloud::Tdai.v20250717.models.CreatingProgress`
 
-        attr_accessor :InstanceId, :InstanceName, :AgentId, :AgentName, :AgentInternalName, :AgentType, :AgentVersion, :Status, :Parameters, :CreateTime, :UpdateTime, :Tags, :DeployPlace, :PolicyIds, :ClawConfig, :InstanceType, :AllowedActions, :LastActiveTime, :Description
+        attr_accessor :InstanceId, :InstanceName, :AgentId, :AgentName, :AgentInternalName, :AgentType, :AgentVersion, :Status, :Parameters, :CreateTime, :UpdateTime, :Tags, :DeployPlace, :PolicyIds, :ClawConfig, :InstanceType, :AllowedActions, :LastActiveTime, :Description, :CreatingProgress
 
-        def initialize(instanceid=nil, instancename=nil, agentid=nil, agentname=nil, agentinternalname=nil, agenttype=nil, agentversion=nil, status=nil, parameters=nil, createtime=nil, updatetime=nil, tags=nil, deployplace=nil, policyids=nil, clawconfig=nil, instancetype=nil, allowedactions=nil, lastactivetime=nil, description=nil)
+        def initialize(instanceid=nil, instancename=nil, agentid=nil, agentname=nil, agentinternalname=nil, agenttype=nil, agentversion=nil, status=nil, parameters=nil, createtime=nil, updatetime=nil, tags=nil, deployplace=nil, policyids=nil, clawconfig=nil, instancetype=nil, allowedactions=nil, lastactivetime=nil, description=nil, creatingprogress=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @AgentId = agentid
@@ -187,6 +189,7 @@ module TencentCloud
           @AllowedActions = allowedactions
           @LastActiveTime = lastactivetime
           @Description = description
+          @CreatingProgress = creatingprogress
         end
 
         def deserialize(params)
@@ -226,6 +229,10 @@ module TencentCloud
           @AllowedActions = params['AllowedActions']
           @LastActiveTime = params['LastActiveTime']
           @Description = params['Description']
+          unless params['CreatingProgress'].nil?
+            @CreatingProgress = CreatingProgress.new
+            @CreatingProgress.deserialize(params['CreatingProgress'])
+          end
         end
       end
 
@@ -618,6 +625,69 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 发货步骤描述
+      class CreatingProgress < TencentCloud::Common::AbstractModel
+        # @param TotalSteps: <p>总步骤数</p>
+        # @type TotalSteps: Integer
+        # @param CurrentStep: <p>当前步骤</p>
+        # @type CurrentStep: Integer
+        # @param Steps: <p>步骤详情</p>
+        # @type Steps: Array
+
+        attr_accessor :TotalSteps, :CurrentStep, :Steps
+
+        def initialize(totalsteps=nil, currentstep=nil, steps=nil)
+          @TotalSteps = totalsteps
+          @CurrentStep = currentstep
+          @Steps = steps
+        end
+
+        def deserialize(params)
+          @TotalSteps = params['TotalSteps']
+          @CurrentStep = params['CurrentStep']
+          unless params['Steps'].nil?
+            @Steps = []
+            params['Steps'].each do |i|
+              creatingstepinfo_tmp = CreatingStepInfo.new
+              creatingstepinfo_tmp.deserialize(i)
+              @Steps << creatingstepinfo_tmp
+            end
+          end
+        end
+      end
+
+      # 发货步骤详情
+      class CreatingStepInfo < TencentCloud::Common::AbstractModel
+        # @param StepName: <p>步骤名称</p>
+        # @type StepName: String
+        # @param StepDesc: <p>步骤描述</p>
+        # @type StepDesc: String
+        # @param Status: <p>步骤状态</p>
+        # @type Status: String
+        # @param FinishTime: <p>完成时间</p>
+        # @type FinishTime: String
+        # @param ErrMsg: <p>错误信息描述</p>
+        # @type ErrMsg: String
+
+        attr_accessor :StepName, :StepDesc, :Status, :FinishTime, :ErrMsg
+
+        def initialize(stepname=nil, stepdesc=nil, status=nil, finishtime=nil, errmsg=nil)
+          @StepName = stepname
+          @StepDesc = stepdesc
+          @Status = status
+          @FinishTime = finishtime
+          @ErrMsg = errmsg
+        end
+
+        def deserialize(params)
+          @StepName = params['StepName']
+          @StepDesc = params['StepDesc']
+          @Status = params['Status']
+          @FinishTime = params['FinishTime']
+          @ErrMsg = params['ErrMsg']
         end
       end
 

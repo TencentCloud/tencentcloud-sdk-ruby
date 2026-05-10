@@ -5103,19 +5103,23 @@ module TencentCloud
         # @type Resolution: String
         # @param LogoAdd: <p>是否添加图标水印。默认不加。1-添加，0-不添加。</p><p>取值范围：[0, 1]</p><p>默认值：0</p>
         # @type LogoAdd: Integer
+        # @param OutputFormat: <p>指定图片的输出格式，支持jpeg, png。</p>
+        # @type OutputFormat: String
 
-        attr_accessor :AspectRatio, :Resolution, :LogoAdd
+        attr_accessor :AspectRatio, :Resolution, :LogoAdd, :OutputFormat
 
-        def initialize(aspectratio=nil, resolution=nil, logoadd=nil)
+        def initialize(aspectratio=nil, resolution=nil, logoadd=nil, outputformat=nil)
           @AspectRatio = aspectratio
           @Resolution = resolution
           @LogoAdd = logoadd
+          @OutputFormat = outputformat
         end
 
         def deserialize(params)
           @AspectRatio = params['AspectRatio']
           @Resolution = params['Resolution']
           @LogoAdd = params['LogoAdd']
+          @OutputFormat = params['OutputFormat']
         end
       end
 

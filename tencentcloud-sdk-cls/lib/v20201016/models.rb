@@ -2842,8 +2842,8 @@ module TencentCloud
 
         attr_accessor :Name, :AlarmTargets, :MonitorTime, :TriggerCount, :AlarmPeriod, :Condition, :AlarmLevel, :MultiConditions, :Status, :Enable, :MessageTemplate, :CallBack, :Analysis, :GroupTriggerStatus, :GroupTriggerCondition, :Tags, :MonitorObjectType, :Classifications, :AlarmNoticeIds, :MonitorNotice
         extend Gem::Deprecate
-        deprecate :Enable, :none, 2026, 4
-        deprecate :Enable=, :none, 2026, 4
+        deprecate :Enable, :none, 2026, 5
+        deprecate :Enable=, :none, 2026, 5
 
         def initialize(name=nil, alarmtargets=nil, monitortime=nil, triggercount=nil, alarmperiod=nil, condition=nil, alarmlevel=nil, multiconditions=nil, status=nil, enable=nil, messagetemplate=nil, callback=nil, analysis=nil, grouptriggerstatus=nil, grouptriggercondition=nil, tags=nil, monitorobjecttype=nil, classifications=nil, alarmnoticeids=nil, monitornotice=nil)
           @Name = name
@@ -3182,8 +3182,8 @@ module TencentCloud
 
         attr_accessor :Name, :TopicId, :Type, :LogType, :ConfigFlag, :LogsetId, :LogsetName, :TopicName, :HostFile, :ContainerFile, :ContainerStdout, :LogFormat, :ExtractRule, :ExcludePaths, :UserDefineRule, :GroupId, :GroupIds, :CollectInfos, :AdvancedConfig
         extend Gem::Deprecate
-        deprecate :LogFormat, :none, 2026, 4
-        deprecate :LogFormat=, :none, 2026, 4
+        deprecate :LogFormat, :none, 2026, 5
+        deprecate :LogFormat=, :none, 2026, 5
 
         def initialize(name=nil, topicid=nil, type=nil, logtype=nil, configflag=nil, logsetid=nil, logsetname=nil, topicname=nil, hostfile=nil, containerfile=nil, containerstdout=nil, logformat=nil, extractrule=nil, excludepaths=nil, userdefinerule=nil, groupid=nil, groupids=nil, collectinfos=nil, advancedconfig=nil)
           @Name = name
@@ -4988,6 +4988,157 @@ module TencentCloud
         end
       end
 
+      # CreateRecordingRuleTask请求参数结构体
+      class CreateRecordingRuleTaskRequest < TencentCloud::Common::AbstractModel
+        # @param TopicId: <p>源指标主题id</p><p>取值参考：</p><ul><li><a href="https://cloud.tencent.com/document/api/614/56454">DescribeTopics</a></li><li><a href="https://console.cloud.tencent.com/cls/metric">指标主题</a></li></ul>
+        # @type TopicId: String
+        # @param DstTopicId: <p>目标指标主题id，可与 TopicId 相同</p>
+        # @type DstTopicId: String
+        # @param Name: <p>预聚合任务名称</p><p>入参限制：仅支持字母、数字、及下划线，不允许下划线开头，小于256个字符</p>
+        # @type Name: String
+        # @param EnableFlag: <p>任务状态； 1:开启；2:关闭</p>
+        # @type EnableFlag: Integer
+        # @param ProcessStartTime: <p>任务执行开始时间 ,Unix时间戳</p><p>单位：ms</p>
+        # @type ProcessStartTime: Integer
+        # @param ProcessPeriod: <p>调度周期(分钟)，支持范围(0,1440]分钟。</p>
+        # @type ProcessPeriod: Integer
+        # @param ProcessDelay: <p>执行延迟，建议设置为30秒，避免指标上报延迟导致预聚合任务计算结果不精确</p><p>单位：秒</p>
+        # @type ProcessDelay: Integer
+        # @param RecordingRuleContent: <p>执行语句(PromQL)</p>
+        # @type RecordingRuleContent: String
+        # @param MetricName: <p>指标名称</p>
+        # @type MetricName: String
+        # @param CustomMetricLabels: <p>指标自定义维度</p>
+        # @type CustomMetricLabels: Array
+        # @param HasServicesLog: <p>是否开启投递服务日志。1：关闭，2：开启。</p>
+        # @type HasServicesLog: Integer
+
+        attr_accessor :TopicId, :DstTopicId, :Name, :EnableFlag, :ProcessStartTime, :ProcessPeriod, :ProcessDelay, :RecordingRuleContent, :MetricName, :CustomMetricLabels, :HasServicesLog
+
+        def initialize(topicid=nil, dsttopicid=nil, name=nil, enableflag=nil, processstarttime=nil, processperiod=nil, processdelay=nil, recordingrulecontent=nil, metricname=nil, custommetriclabels=nil, hasserviceslog=nil)
+          @TopicId = topicid
+          @DstTopicId = dsttopicid
+          @Name = name
+          @EnableFlag = enableflag
+          @ProcessStartTime = processstarttime
+          @ProcessPeriod = processperiod
+          @ProcessDelay = processdelay
+          @RecordingRuleContent = recordingrulecontent
+          @MetricName = metricname
+          @CustomMetricLabels = custommetriclabels
+          @HasServicesLog = hasserviceslog
+        end
+
+        def deserialize(params)
+          @TopicId = params['TopicId']
+          @DstTopicId = params['DstTopicId']
+          @Name = params['Name']
+          @EnableFlag = params['EnableFlag']
+          @ProcessStartTime = params['ProcessStartTime']
+          @ProcessPeriod = params['ProcessPeriod']
+          @ProcessDelay = params['ProcessDelay']
+          @RecordingRuleContent = params['RecordingRuleContent']
+          @MetricName = params['MetricName']
+          unless params['CustomMetricLabels'].nil?
+            @CustomMetricLabels = []
+            params['CustomMetricLabels'].each do |i|
+              metriclabel_tmp = MetricLabel.new
+              metriclabel_tmp.deserialize(i)
+              @CustomMetricLabels << metriclabel_tmp
+            end
+          end
+          @HasServicesLog = params['HasServicesLog']
+        end
+      end
+
+      # CreateRecordingRuleTask返回参数结构体
+      class CreateRecordingRuleTaskResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>任务id</p>
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateRecordingRuleYamlTask请求参数结构体
+      class CreateRecordingRuleYamlTaskRequest < TencentCloud::Common::AbstractModel
+        # @param TopicId: <p>源指标主题id</p><p>取值参考：</p><ul><li><a href="https://cloud.tencent.com/document/api/614/56454">DescribeTopics</a></li><li><a href="https://console.cloud.tencent.com/cls/metric">指标主题</a></li></ul>
+        # @type TopicId: String
+        # @param DstTopicId: <p>目标指标主题id，可与 TopicId 相同</p>
+        # @type DstTopicId: String
+        # @param EnableFlag: <p>任务状态； 1:开启；2:关闭</p>
+        # @type EnableFlag: Integer
+        # @param ProcessStartTime: <p>任务执行开始时间 ,Unix时间戳</p><p>单位：ms</p>
+        # @type ProcessStartTime: Integer
+        # @param ProcessPeriod: <p>调度周期(分钟)，支持范围(0,1440]分钟。</p><p>单位：分钟</p><p>也可在YAML中使用 interval: duration 为每个group单独设置执行间隔</p>
+        # @type ProcessPeriod: Integer
+        # @param ProcessDelay: <p>执行延迟，建议设置为30秒，避免指标上报延迟导致预聚合任务计算结果不精确</p><p>单位：秒</p>
+        # @type ProcessDelay: Integer
+        # @param YamlConfigName: <p>yaml配置名称</p>
+        # @type YamlConfigName: String
+        # @param YamlContent: <p>yaml配置内容</p><p>兼容 Prometheus Recording Rules 配置文件，API调用时请注意字符串中的换行与缩进。</p>
+        # @type YamlContent: String
+        # @param HasServicesLog: <p>是否开启投递服务日志。1：关闭，2：开启。</p>
+        # @type HasServicesLog: Integer
+
+        attr_accessor :TopicId, :DstTopicId, :EnableFlag, :ProcessStartTime, :ProcessPeriod, :ProcessDelay, :YamlConfigName, :YamlContent, :HasServicesLog
+
+        def initialize(topicid=nil, dsttopicid=nil, enableflag=nil, processstarttime=nil, processperiod=nil, processdelay=nil, yamlconfigname=nil, yamlcontent=nil, hasserviceslog=nil)
+          @TopicId = topicid
+          @DstTopicId = dsttopicid
+          @EnableFlag = enableflag
+          @ProcessStartTime = processstarttime
+          @ProcessPeriod = processperiod
+          @ProcessDelay = processdelay
+          @YamlConfigName = yamlconfigname
+          @YamlContent = yamlcontent
+          @HasServicesLog = hasserviceslog
+        end
+
+        def deserialize(params)
+          @TopicId = params['TopicId']
+          @DstTopicId = params['DstTopicId']
+          @EnableFlag = params['EnableFlag']
+          @ProcessStartTime = params['ProcessStartTime']
+          @ProcessPeriod = params['ProcessPeriod']
+          @ProcessDelay = params['ProcessDelay']
+          @YamlConfigName = params['YamlConfigName']
+          @YamlContent = params['YamlContent']
+          @HasServicesLog = params['HasServicesLog']
+        end
+      end
+
+      # CreateRecordingRuleYamlTask返回参数结构体
+      class CreateRecordingRuleYamlTaskResponse < TencentCloud::Common::AbstractModel
+        # @param YamlId: <p>Yaml配置id， 可以关联多子任务</p>
+        # @type YamlId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :YamlId, :RequestId
+
+        def initialize(yamlid=nil, requestid=nil)
+          @YamlId = yamlid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @YamlId = params['YamlId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateScheduledSql请求参数结构体
       class CreateScheduledSqlRequest < TencentCloud::Common::AbstractModel
         # @param SrcTopicId: 源日志主题ID- 通过[获取日志主题列表](https://cloud.tencent.com/document/product/614/56454)获取日志主题Id。
@@ -5350,62 +5501,44 @@ module TencentCloud
 
       # CreateTopic请求参数结构体
       class CreateTopicRequest < TencentCloud::Common::AbstractModel
-        # @param LogsetId: 日志集ID
-        # - 通过[获取日志集列表](https://cloud.tencent.com/document/product/614/58624)获取日志集Id。
+        # @param LogsetId: <p>日志集ID</p><ul><li>通过<a href="https://cloud.tencent.com/document/product/614/58624">获取日志集列表</a>获取日志集Id。</li></ul>
         # @type LogsetId: String
-        # @param TopicName: 主题名称
-        # 名称限制
-        # - 不能为空字符串
-        # - 不能包含字符'|'
-        # - 不能使用以下名称["cls_service_log","loglistener_status","loglistener_alarm","loglistener_business","cls_service_metric"]
+        # @param TopicName: <p>主题名称<br>名称限制</p><ul><li>不能为空字符串</li><li>不能包含字符&#39;|&#39;</li><li>不能使用以下名称[&quot;cls_service_log&quot;,&quot;loglistener_status&quot;,&quot;loglistener_alarm&quot;,&quot;loglistener_business&quot;,&quot;cls_service_metric&quot;]</li></ul>
         # @type TopicName: String
-        # @param PartitionCount: 主题分区个数。默认创建1个，最大支持创建10个分区。
+        # @param PartitionCount: <p>主题分区个数。默认创建1个，最大支持创建10个分区。</p>
         # @type PartitionCount: Integer
-        # @param Tags: 标签描述列表，通过指定该参数可以同时绑定标签到相应的主题。最大支持10个标签键值对，同一个资源只能绑定到同一个标签键下。
+        # @param Tags: <p>标签描述列表，通过指定该参数可以同时绑定标签到相应的主题。最大支持10个标签键值对，同一个资源只能绑定到同一个标签键下。</p>
         # @type Tags: Array
-        # @param AutoSplit: 是否开启自动分裂，默认值为true
+        # @param AutoSplit: <p>是否开启自动分裂，默认值为true</p>
         # @type AutoSplit: Boolean
-        # @param MaxSplitPartitions: 开启自动分裂后，每个主题能够允许的最大分区数，默认值为50
+        # @param MaxSplitPartitions: <p>开启自动分裂后，每个主题能够允许的最大分区数，默认值为50</p>
         # @type MaxSplitPartitions: Integer
-        # @param StorageType: 日志主题的存储类型，可选值 hot（标准存储），cold（低频存储）；默认为hot。指标主题不支持该配置。
+        # @param StorageType: <p>日志主题的存储类型，可选值 hot（标准存储），cold（低频存储）；默认为hot。指标主题不支持该配置。</p>
         # @type StorageType: String
-        # @param Period: 存储时间，单位天。
-        # - 日志主题：日志接入标准存储时，支持1至3600天，值为3640时代表永久保存。
-        # - 日志主题：日志接入低频存储时，支持7至3600天，值为3640时代表永久保存。
-        # - 指标主题：支持1至3600天，值为3640时代表永久保存。
+        # @param Period: <p>存储时间，单位天。</p><ul><li>日志主题：日志接入标准存储时，支持1至3600天，值为3640时代表永久保存。</li><li>日志主题：日志接入低频存储时，支持7至3600天，值为3640时代表永久保存。</li><li>指标主题：支持1至3600天，值为3640时代表永久保存。</li></ul>
         # @type Period: Integer
-        # @param Describes: 主题描述
+        # @param Describes: <p>主题描述</p>
         # @type Describes: String
-        # @param HotPeriod: 0：日志主题关闭日志沉降。
-        # 非0：日志主题开启日志沉降后标准存储的天数，HotPeriod需要大于等于7，且小于Period。
-        # 仅在StorageType为 hot 时生效，指标主题不支持该配置。
+        # @param HotPeriod: <p>0：日志主题关闭日志沉降。<br>非0：日志主题开启日志沉降后标准存储的天数，HotPeriod需要大于等于7，且小于Period。<br>仅在StorageType为 hot 时生效，指标主题不支持该配置。</p>
         # @type HotPeriod: Integer
-        # @param Encryption: 加密相关参数。 支持加密地域并且开白用户可以传此参数，其他场景不能传递该参数。
-        # 0或者不传： 不加密
-        # 1：kms-cls 云产品密钥加密
-
-        # 支持地域：ap-beijing,ap-guangzhou,ap-shanghai,ap-singapore,ap-bangkok,ap-jakarta,eu-frankfurt,ap-seoul,ap-tokyo
+        # @param Encryption: <p>加密相关参数。 支持加密地域并且开白用户可以传此参数，其他场景不能传递该参数。<br>0或者不传： 不加密<br>1：kms-cls 云产品密钥加密</p><p>支持地域：ap-beijing,ap-guangzhou,ap-shanghai,ap-singapore,ap-bangkok,ap-jakarta,eu-frankfurt,ap-seoul,ap-tokyo</p>
         # @type Encryption: Integer
-        # @param BizType: 主题类型
-        # - 0:日志主题，默认值
-        # - 1:指标主题
+        # @param BizType: <p>主题类型</p><ul><li>0:日志主题，默认值</li><li>1:指标主题</li></ul>
         # @type BizType: Integer
-        # @param TopicId: 主题自定义ID，格式为：用户自定义部分-用户APPID。未填写该参数时将自动生成ID。
-        # - 用户自定义部分仅支持小写字母、数字和-，且不能以-开头和结尾，长度为3至40字符
-        # - 尾部需要使用-拼接用户APPID，APPID可在https://console.cloud.tencent.com/developer页面查询。
-        # - 如果指定该字段，需保证全地域唯一
+        # @param TopicId: <p>主题自定义ID，格式为：用户自定义部分-用户APPID。未填写该参数时将自动生成ID。</p><ul><li>用户自定义部分仅支持小写字母、数字和-，且不能以-开头和结尾，长度为3至40字符</li><li>尾部需要使用-拼接用户APPID，APPID可在https://console.cloud.tencent.com/developer页面查询。</li><li>如果指定该字段，需保证全地域唯一</li></ul>
         # @type TopicId: String
-        # @param IsWebTracking: 免鉴权开关。 false：关闭； true：开启。默认为false。
-        # 开启后将支持指定操作匿名访问该日志主题。详情请参见[日志主题](https://cloud.tencent.com/document/product/614/41035)。指标主题不支持该配置。
+        # @param IsWebTracking: <p>免鉴权开关。 false：关闭； true：开启。默认为false。<br>开启后将支持指定操作匿名访问该日志主题。详情请参见<a href="https://cloud.tencent.com/document/product/614/41035">日志主题</a>。指标主题不支持该配置。</p>
         # @type IsWebTracking: Boolean
-        # @param Extends: 主题扩展信息
+        # @param Extends: <p>主题扩展信息</p>
         # @type Extends: :class:`Tencentcloud::Cls.v20201016.models.TopicExtendInfo`
-        # @param IsSourceFrom: 开启记录公网来源ip和服务端接收时间
+        # @param IsSourceFrom: <p>开启记录公网来源ip和服务端接收时间</p>
         # @type IsSourceFrom: Boolean
+        # @param BillingMode: <p>计费模式</p><p>枚举值：</p><ul><li>0： 按功能项计费</li><li>1： 原始日志量计费</li></ul><p>默认值：0</p><p>通过接口调用时默认值为0，通过控制台调用时默认值为1</p>
+        # @type BillingMode: Integer
 
-        attr_accessor :LogsetId, :TopicName, :PartitionCount, :Tags, :AutoSplit, :MaxSplitPartitions, :StorageType, :Period, :Describes, :HotPeriod, :Encryption, :BizType, :TopicId, :IsWebTracking, :Extends, :IsSourceFrom
+        attr_accessor :LogsetId, :TopicName, :PartitionCount, :Tags, :AutoSplit, :MaxSplitPartitions, :StorageType, :Period, :Describes, :HotPeriod, :Encryption, :BizType, :TopicId, :IsWebTracking, :Extends, :IsSourceFrom, :BillingMode
 
-        def initialize(logsetid=nil, topicname=nil, partitioncount=nil, tags=nil, autosplit=nil, maxsplitpartitions=nil, storagetype=nil, period=nil, describes=nil, hotperiod=nil, encryption=nil, biztype=nil, topicid=nil, iswebtracking=nil, extends=nil, issourcefrom=nil)
+        def initialize(logsetid=nil, topicname=nil, partitioncount=nil, tags=nil, autosplit=nil, maxsplitpartitions=nil, storagetype=nil, period=nil, describes=nil, hotperiod=nil, encryption=nil, biztype=nil, topicid=nil, iswebtracking=nil, extends=nil, issourcefrom=nil, billingmode=nil)
           @LogsetId = logsetid
           @TopicName = topicname
           @PartitionCount = partitioncount
@@ -5422,6 +5555,7 @@ module TencentCloud
           @IsWebTracking = iswebtracking
           @Extends = extends
           @IsSourceFrom = issourcefrom
+          @BillingMode = billingmode
         end
 
         def deserialize(params)
@@ -5451,12 +5585,13 @@ module TencentCloud
             @Extends.deserialize(params['Extends'])
           end
           @IsSourceFrom = params['IsSourceFrom']
+          @BillingMode = params['BillingMode']
         end
       end
 
       # CreateTopic返回参数结构体
       class CreateTopicResponse < TencentCloud::Common::AbstractModel
-        # @param TopicId: 主题ID
+        # @param TopicId: <p>主题ID</p>
         # @type TopicId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -7120,6 +7255,78 @@ module TencentCloud
 
       # DeleteNoticeContent返回参数结构体
       class DeleteNoticeContentResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteRecordingRuleTask请求参数结构体
+      class DeleteRecordingRuleTaskRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>任务ID</p>
+        # @type TaskId: String
+        # @param TopicId: <p>源指标主题id</p>
+        # @type TopicId: String
+
+        attr_accessor :TaskId, :TopicId
+
+        def initialize(taskid=nil, topicid=nil)
+          @TaskId = taskid
+          @TopicId = topicid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @TopicId = params['TopicId']
+        end
+      end
+
+      # DeleteRecordingRuleTask返回参数结构体
+      class DeleteRecordingRuleTaskResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteRecordingRuleYamlTask请求参数结构体
+      class DeleteRecordingRuleYamlTaskRequest < TencentCloud::Common::AbstractModel
+        # @param YamlId: <p>任务ID</p>
+        # @type YamlId: String
+        # @param TopicId: <p>源指标主题id</p>
+        # @type TopicId: String
+
+        attr_accessor :YamlId, :TopicId
+
+        def initialize(yamlid=nil, topicid=nil)
+          @YamlId = yamlid
+          @TopicId = topicid
+        end
+
+        def deserialize(params)
+          @YamlId = params['YamlId']
+          @TopicId = params['TopicId']
+        end
+      end
+
+      # DeleteRecordingRuleYamlTask返回参数结构体
+      class DeleteRecordingRuleYamlTaskResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -10572,6 +10779,138 @@ module TencentCloud
               @RebuildTasks << rebuildindextaskinfo_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeRecordingRuleTask请求参数结构体
+      class DescribeRecordingRuleTaskRequest < TencentCloud::Common::AbstractModel
+        # @param TopicId: <p>源指标主题id</p>
+        # @type TopicId: String
+        # @param Offset: <p>分页的偏移量，默认值为0。</p>
+        # @type Offset: Integer
+        # @param Limit: <p>分页单页限制数目，默认值为20，最大值100。</p>
+        # @type Limit: Integer
+        # @param Filters: <li>yamlId【关联yaml配置ID】进行过滤，模糊匹配。类型：String。必选：否</li> <li>taskName按照【任务名称】进行过滤，模糊匹配。类型：String。必选：否</li> <li>taskId按照【任务ID】进行过滤，模糊匹配。类型：String。必选：否</li>
+        # @type Filters: Array
+
+        attr_accessor :TopicId, :Offset, :Limit, :Filters
+
+        def initialize(topicid=nil, offset=nil, limit=nil, filters=nil)
+          @TopicId = topicid
+          @Offset = offset
+          @Limit = limit
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @TopicId = params['TopicId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeRecordingRuleTask返回参数结构体
+      class DescribeRecordingRuleTaskResponse < TencentCloud::Common::AbstractModel
+        # @param RecordingRuleTaskInfos: <p>RecordingRule任务列表信息</p>
+        # @type RecordingRuleTaskInfos: Array
+        # @param TotalCount: <p>任务总条数</p>
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RecordingRuleTaskInfos, :TotalCount, :RequestId
+
+        def initialize(recordingruletaskinfos=nil, totalcount=nil, requestid=nil)
+          @RecordingRuleTaskInfos = recordingruletaskinfos
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['RecordingRuleTaskInfos'].nil?
+            @RecordingRuleTaskInfos = []
+            params['RecordingRuleTaskInfos'].each do |i|
+              recordingruletaskinfo_tmp = RecordingRuleTaskInfo.new
+              recordingruletaskinfo_tmp.deserialize(i)
+              @RecordingRuleTaskInfos << recordingruletaskinfo_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeRecordingRuleYamlTask请求参数结构体
+      class DescribeRecordingRuleYamlTaskRequest < TencentCloud::Common::AbstractModel
+        # @param TopicId: <p>源指标主题id</p>
+        # @type TopicId: String
+        # @param Offset: <p>分页的偏移量，默认值为0。</p>
+        # @type Offset: Integer
+        # @param Limit: <p>分页单页限制数目，默认值为20，最大值100。</p>
+        # @type Limit: Integer
+        # @param Filters: <li>yamlConfigName【配置文件名称】进行过滤，模糊匹配。类型：String。必选：否</li> <li>yamlId按照【yamlID】进行过滤，模糊匹配。类型：String。必选：否</li>
+        # @type Filters: Array
+
+        attr_accessor :TopicId, :Offset, :Limit, :Filters
+
+        def initialize(topicid=nil, offset=nil, limit=nil, filters=nil)
+          @TopicId = topicid
+          @Offset = offset
+          @Limit = limit
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @TopicId = params['TopicId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeRecordingRuleYamlTask返回参数结构体
+      class DescribeRecordingRuleYamlTaskResponse < TencentCloud::Common::AbstractModel
+        # @param RecordingRuleYamlTaskInfos: <p>RecordingRule任务列表信息</p>
+        # @type RecordingRuleYamlTaskInfos: Array
+        # @param TotalCount: <p>任务总条数</p>
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RecordingRuleYamlTaskInfos, :TotalCount, :RequestId
+
+        def initialize(recordingruleyamltaskinfos=nil, totalcount=nil, requestid=nil)
+          @RecordingRuleYamlTaskInfos = recordingruleyamltaskinfos
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['RecordingRuleYamlTaskInfos'].nil?
+            @RecordingRuleYamlTaskInfos = []
+            params['RecordingRuleYamlTaskInfos'].each do |i|
+              recordingruleyamltaskinfo_tmp = RecordingRuleYamlTaskInfo.new
+              recordingruleyamltaskinfo_tmp.deserialize(i)
+              @RecordingRuleYamlTaskInfos << recordingruleyamltaskinfo_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -14259,8 +14598,8 @@ module TencentCloud
 
         attr_accessor :AlarmId, :Name, :MonitorTime, :Condition, :AlarmLevel, :MultiConditions, :TriggerCount, :AlarmPeriod, :AlarmTargets, :Status, :Enable, :MessageTemplate, :CallBack, :Analysis, :GroupTriggerStatus, :GroupTriggerCondition, :Tags, :MonitorObjectType, :Classifications, :AlarmNoticeIds, :MonitorNotice
         extend Gem::Deprecate
-        deprecate :Enable, :none, 2026, 4
-        deprecate :Enable=, :none, 2026, 4
+        deprecate :Enable, :none, 2026, 5
+        deprecate :Enable=, :none, 2026, 5
 
         def initialize(alarmid=nil, name=nil, monitortime=nil, condition=nil, alarmlevel=nil, multiconditions=nil, triggercount=nil, alarmperiod=nil, alarmtargets=nil, status=nil, enable=nil, messagetemplate=nil, callback=nil, analysis=nil, grouptriggerstatus=nil, grouptriggercondition=nil, tags=nil, monitorobjecttype=nil, classifications=nil, alarmnoticeids=nil, monitornotice=nil)
           @AlarmId = alarmid
@@ -14563,8 +14902,8 @@ module TencentCloud
 
         attr_accessor :ConfigExtraId, :Name, :TopicId, :HostFile, :ContainerFile, :ContainerStdout, :LogType, :LogFormat, :ExtractRule, :ExcludePaths, :UserDefineRule, :Type, :GroupId, :ConfigFlag, :LogsetId, :LogsetName, :TopicName, :AdvancedConfig
         extend Gem::Deprecate
-        deprecate :LogFormat, :none, 2026, 4
-        deprecate :LogFormat=, :none, 2026, 4
+        deprecate :LogFormat, :none, 2026, 5
+        deprecate :LogFormat=, :none, 2026, 5
 
         def initialize(configextraid=nil, name=nil, topicid=nil, hostfile=nil, containerfile=nil, containerstdout=nil, logtype=nil, logformat=nil, extractrule=nil, excludepaths=nil, userdefinerule=nil, type=nil, groupid=nil, configflag=nil, logsetid=nil, logsetname=nil, topicname=nil, advancedconfig=nil)
           @ConfigExtraId = configextraid
@@ -16176,6 +16515,161 @@ module TencentCloud
         end
       end
 
+      # ModifyRecordingRuleTask请求参数结构体
+      class ModifyRecordingRuleTaskRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>任务ID</p>
+        # @type TaskId: String
+        # @param TopicId: <p>源指标主题id</p>
+        # @type TopicId: String
+        # @param DstTopicId: <p>目标指标主题id</p>
+        # @type DstTopicId: String
+        # @param Name: <p>任务名称</p>
+        # @type Name: String
+        # @param EnableFlag: <p>任务启动状态.   1开启,  2关闭</p>
+        # @type EnableFlag: Integer
+        # @param ProcessStartTime: <p>调度开始时间,Unix时间戳，单位ms</p>
+        # @type ProcessStartTime: Integer
+        # @param ProcessPeriod: <p>调度周期(分钟)，支持范围(0,1440]分钟。</p>
+        # @type ProcessPeriod: Integer
+        # @param ProcessDelay: <p>执行延迟(秒)</p>
+        # @type ProcessDelay: Integer
+        # @param MetricName: <p>指标名称</p>
+        # @type MetricName: String
+        # @param RecordingRuleContent: <p>执行语句(PromQL)</p>
+        # @type RecordingRuleContent: String
+        # @param CustomMetricLabels: <p>自定义指标名称</p>
+        # @type CustomMetricLabels: Array
+        # @param HasServicesLog: <p>是否开启投递服务日志。1：关闭，2：开启。</p>
+        # @type HasServicesLog: Integer
+
+        attr_accessor :TaskId, :TopicId, :DstTopicId, :Name, :EnableFlag, :ProcessStartTime, :ProcessPeriod, :ProcessDelay, :MetricName, :RecordingRuleContent, :CustomMetricLabels, :HasServicesLog
+
+        def initialize(taskid=nil, topicid=nil, dsttopicid=nil, name=nil, enableflag=nil, processstarttime=nil, processperiod=nil, processdelay=nil, metricname=nil, recordingrulecontent=nil, custommetriclabels=nil, hasserviceslog=nil)
+          @TaskId = taskid
+          @TopicId = topicid
+          @DstTopicId = dsttopicid
+          @Name = name
+          @EnableFlag = enableflag
+          @ProcessStartTime = processstarttime
+          @ProcessPeriod = processperiod
+          @ProcessDelay = processdelay
+          @MetricName = metricname
+          @RecordingRuleContent = recordingrulecontent
+          @CustomMetricLabels = custommetriclabels
+          @HasServicesLog = hasserviceslog
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @TopicId = params['TopicId']
+          @DstTopicId = params['DstTopicId']
+          @Name = params['Name']
+          @EnableFlag = params['EnableFlag']
+          @ProcessStartTime = params['ProcessStartTime']
+          @ProcessPeriod = params['ProcessPeriod']
+          @ProcessDelay = params['ProcessDelay']
+          @MetricName = params['MetricName']
+          @RecordingRuleContent = params['RecordingRuleContent']
+          unless params['CustomMetricLabels'].nil?
+            @CustomMetricLabels = []
+            params['CustomMetricLabels'].each do |i|
+              metriclabel_tmp = MetricLabel.new
+              metriclabel_tmp.deserialize(i)
+              @CustomMetricLabels << metriclabel_tmp
+            end
+          end
+          @HasServicesLog = params['HasServicesLog']
+        end
+      end
+
+      # ModifyRecordingRuleTask返回参数结构体
+      class ModifyRecordingRuleTaskResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>预聚合任务id</p>
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyRecordingRuleYamlTask请求参数结构体
+      class ModifyRecordingRuleYamlTaskRequest < TencentCloud::Common::AbstractModel
+        # @param YamlID: <p>Yaml配置id</p>
+        # @type YamlID: String
+        # @param TopicId: <p>源指标主题id</p>
+        # @type TopicId: String
+        # @param DstTopicId: <p>目标指标主题id</p>
+        # @type DstTopicId: String
+        # @param EnableFlag: <p>任务状态； 1:开启；2:关闭</p>
+        # @type EnableFlag: Integer
+        # @param ProcessStartTime: <p>调度开始时间,Unix时间戳，单位ms</p>
+        # @type ProcessStartTime: Integer
+        # @param ProcessPeriod: <p>调度周期(分钟)，支持范围(0,1440]分钟。</p>
+        # @type ProcessPeriod: Integer
+        # @param ProcessDelay: <p>执行延迟(秒)</p>
+        # @type ProcessDelay: Integer
+        # @param YamlConfigName: <p>yaml配置名称</p>
+        # @type YamlConfigName: String
+        # @param YamlContent: <p>yaml配置内容</p>
+        # @type YamlContent: String
+        # @param HasServicesLog: <p>是否开启投递服务日志。1：关闭，2：开启。</p>
+        # @type HasServicesLog: Integer
+
+        attr_accessor :YamlID, :TopicId, :DstTopicId, :EnableFlag, :ProcessStartTime, :ProcessPeriod, :ProcessDelay, :YamlConfigName, :YamlContent, :HasServicesLog
+
+        def initialize(yamlid=nil, topicid=nil, dsttopicid=nil, enableflag=nil, processstarttime=nil, processperiod=nil, processdelay=nil, yamlconfigname=nil, yamlcontent=nil, hasserviceslog=nil)
+          @YamlID = yamlid
+          @TopicId = topicid
+          @DstTopicId = dsttopicid
+          @EnableFlag = enableflag
+          @ProcessStartTime = processstarttime
+          @ProcessPeriod = processperiod
+          @ProcessDelay = processdelay
+          @YamlConfigName = yamlconfigname
+          @YamlContent = yamlcontent
+          @HasServicesLog = hasserviceslog
+        end
+
+        def deserialize(params)
+          @YamlID = params['YamlID']
+          @TopicId = params['TopicId']
+          @DstTopicId = params['DstTopicId']
+          @EnableFlag = params['EnableFlag']
+          @ProcessStartTime = params['ProcessStartTime']
+          @ProcessPeriod = params['ProcessPeriod']
+          @ProcessDelay = params['ProcessDelay']
+          @YamlConfigName = params['YamlConfigName']
+          @YamlContent = params['YamlContent']
+          @HasServicesLog = params['HasServicesLog']
+        end
+      end
+
+      # ModifyRecordingRuleYamlTask返回参数结构体
+      class ModifyRecordingRuleYamlTaskResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyScheduledSql请求参数结构体
       class ModifyScheduledSqlRequest < TencentCloud::Common::AbstractModel
         # @param TaskId: 任务ID，通过[获取定时SQL分析任务列表](https://cloud.tencent.com/document/product/614/95519)获取
@@ -16510,58 +17004,44 @@ module TencentCloud
 
       # ModifyTopic请求参数结构体
       class ModifyTopicRequest < TencentCloud::Common::AbstractModel
-        # @param TopicId:  主题ID- 通过[获取主题列表](https://cloud.tencent.com/document/product/614/56454)获取主题Id。
+        # @param TopicId: <p>主题ID- 通过<a href="https://cloud.tencent.com/document/product/614/56454">获取主题列表</a>获取主题Id。</p>
         # @type TopicId: String
-        # @param TopicName: 主题名称
-        # 输入限制：
-        # - 不能为空字符串
-        # - 不能包含字符'|'
-        # - 不能使用以下名称["cls_service_log","loglistener_status","loglistener_alarm","loglistener_business","cls_service_metric"]
+        # @param TopicName: <p>主题名称<br>输入限制：</p><ul><li>不能为空字符串</li><li>不能包含字符&#39;|&#39;</li><li>不能使用以下名称[&quot;cls_service_log&quot;,&quot;loglistener_status&quot;,&quot;loglistener_alarm&quot;,&quot;loglistener_business&quot;,&quot;cls_service_metric&quot;]</li></ul>
         # @type TopicName: String
-        # @param Tags: 标签描述列表，通过指定该参数可以同时绑定标签到相应的主题。最大支持10个标签键值对，并且不能有重复的键值对。
+        # @param Tags: <p>标签描述列表，通过指定该参数可以同时绑定标签到相应的主题。最大支持10个标签键值对，并且不能有重复的键值对。</p>
         # @type Tags: Array
-        # @param Status: 主题是否开启采集，true：开启采集；false：关闭采集。
-        # 控制台目前不支持修改此参数。
+        # @param Status: <p>主题是否开启采集，true：开启采集；false：关闭采集。<br>控制台目前不支持修改此参数。</p>
         # @type Status: Boolean
-        # @param AutoSplit: 是否开启自动分裂
+        # @param AutoSplit: <p>是否开启自动分裂</p>
         # @type AutoSplit: Boolean
-        # @param MaxSplitPartitions: 若开启最大分裂，该主题能够允许的最大分区数；
-        # 默认为50；必须为正数
+        # @param MaxSplitPartitions: <p>若开启最大分裂，该主题能够允许的最大分区数；<br>默认为50；必须为正数</p>
         # @type MaxSplitPartitions: Integer
-        # @param Period: 生命周期，单位天，标准存储取值范围1\~3600，低频存储取值范围7\~3600。取值为3640时代表永久保存
+        # @param Period: <p>生命周期，单位天，标准存储取值范围1~3600，低频存储取值范围7~3600。取值为3640时代表永久保存</p>
         # @type Period: Integer
-        # @param StorageType: 存储类型：cold 低频存储，hot 标准存储
+        # @param StorageType: <p>存储类型：cold 低频存储，hot 标准存储</p>
         # @type StorageType: String
-        # @param Describes: 主题描述
+        # @param Describes: <p>主题描述</p>
         # @type Describes: String
-        # @param HotPeriod: 0：日志主题关闭日志沉降。
-        # 非0：日志主题开启日志沉降后标准存储的天数。HotPeriod需要大于等于7，且小于Period。
-        # 仅在StorageType为 hot 时生效，指标主题不支持该配置。
+        # @param HotPeriod: <p>0：日志主题关闭日志沉降。<br>非0：日志主题开启日志沉降后标准存储的天数。HotPeriod需要大于等于7，且小于Period。<br>仅在StorageType为 hot 时生效，指标主题不支持该配置。</p>
         # @type HotPeriod: Integer
-        # @param IsWebTracking: 免鉴权开关。 false：关闭； true：开启。
-        # 开启后将支持指定操作匿名访问该日志主题。详情请参见[日志主题](https://cloud.tencent.com/document/product/614/41035)。
+        # @param IsWebTracking: <p>免鉴权开关。 false：关闭； true：开启。<br>开启后将支持指定操作匿名访问该日志主题。详情请参见<a href="https://cloud.tencent.com/document/product/614/41035">日志主题</a>。</p>
         # @type IsWebTracking: Boolean
-        # @param Extends: 主题扩展信息
+        # @param Extends: <p>主题扩展信息</p>
         # @type Extends: :class:`Tencentcloud::Cls.v20201016.models.TopicExtendInfo`
-        # @param PartitionCount: 主题分区数量。
-        # 默认为1；
-        # 取值范围及约束：
-        # - 当输入值<=0，系统自动调整为1。
-        # - 如果未传MaxSplitPartitions，需要PartitionCount<=50；
-        # - 如果传递了MaxSplitPartitions，需要PartitionCount<=MaxSplitPartitions；
+        # @param PartitionCount: <p>主题分区数量。<br>默认为1；<br>取值范围及约束：</p><ul><li>当输入值&lt;=0，系统自动调整为1。</li><li>如果未传MaxSplitPartitions，需要PartitionCount&lt;=50；</li><li>如果传递了MaxSplitPartitions，需要PartitionCount&lt;=MaxSplitPartitions；</li></ul>
         # @type PartitionCount: Integer
-        # @param CancelTopicAsyncTaskID: 取消切换存储任务的id
-        # - 通过[获取日志主题列表](https://cloud.tencent.com/document/product/614/56454)获取取消切换存储任务的id【Topics中的TopicAsyncTaskID字段】。
+        # @param CancelTopicAsyncTaskID: <p>取消切换存储任务的id</p><ul><li>通过<a href="https://cloud.tencent.com/document/product/614/56454">获取日志主题列表</a>获取取消切换存储任务的id【Topics中的TopicAsyncTaskID字段】。</li></ul>
         # @type CancelTopicAsyncTaskID: String
-        # @param Encryption: 加密相关参数。 支持加密地域并且开白用户可以传此参数，其他场景不能传递该参数。
-        # 只支持传入1：kms-cls 云产品秘钥加密
+        # @param Encryption: <p>加密相关参数。 支持加密地域并且开白用户可以传此参数，其他场景不能传递该参数。<br>只支持传入1：kms-cls 云产品秘钥加密</p>
         # @type Encryption: Integer
-        # @param IsSourceFrom: 开启记录公网来源ip和服务端接收时间
+        # @param IsSourceFrom: <p>开启记录公网来源ip和服务端接收时间</p>
         # @type IsSourceFrom: Boolean
+        # @param BillingMode: <p>计费模式</p><p>枚举值：</p><ul><li>0： 按功能项计费</li><li>1： 原始日志量计费</li></ul>
+        # @type BillingMode: Integer
 
-        attr_accessor :TopicId, :TopicName, :Tags, :Status, :AutoSplit, :MaxSplitPartitions, :Period, :StorageType, :Describes, :HotPeriod, :IsWebTracking, :Extends, :PartitionCount, :CancelTopicAsyncTaskID, :Encryption, :IsSourceFrom
+        attr_accessor :TopicId, :TopicName, :Tags, :Status, :AutoSplit, :MaxSplitPartitions, :Period, :StorageType, :Describes, :HotPeriod, :IsWebTracking, :Extends, :PartitionCount, :CancelTopicAsyncTaskID, :Encryption, :IsSourceFrom, :BillingMode
 
-        def initialize(topicid=nil, topicname=nil, tags=nil, status=nil, autosplit=nil, maxsplitpartitions=nil, period=nil, storagetype=nil, describes=nil, hotperiod=nil, iswebtracking=nil, extends=nil, partitioncount=nil, canceltopicasynctaskid=nil, encryption=nil, issourcefrom=nil)
+        def initialize(topicid=nil, topicname=nil, tags=nil, status=nil, autosplit=nil, maxsplitpartitions=nil, period=nil, storagetype=nil, describes=nil, hotperiod=nil, iswebtracking=nil, extends=nil, partitioncount=nil, canceltopicasynctaskid=nil, encryption=nil, issourcefrom=nil, billingmode=nil)
           @TopicId = topicid
           @TopicName = topicname
           @Tags = tags
@@ -16578,6 +17058,7 @@ module TencentCloud
           @CancelTopicAsyncTaskID = canceltopicasynctaskid
           @Encryption = encryption
           @IsSourceFrom = issourcefrom
+          @BillingMode = billingmode
         end
 
         def deserialize(params)
@@ -16607,6 +17088,7 @@ module TencentCloud
           @CancelTopicAsyncTaskID = params['CancelTopicAsyncTaskID']
           @Encryption = params['Encryption']
           @IsSourceFrom = params['IsSourceFrom']
+          @BillingMode = params['BillingMode']
         end
       end
 
@@ -17608,8 +18090,8 @@ module TencentCloud
 
         attr_accessor :LogContent, :LineNum, :DstTopicId, :FailReason, :Time, :DstTopicName
         extend Gem::Deprecate
-        deprecate :DstTopicName, :none, 2026, 4
-        deprecate :DstTopicName=, :none, 2026, 4
+        deprecate :DstTopicName, :none, 2026, 5
+        deprecate :DstTopicName=, :none, 2026, 5
 
         def initialize(logcontent=nil, linenum=nil, dsttopicid=nil, failreason=nil, time=nil, dsttopicname=nil)
           @LogContent = logcontent
@@ -17791,6 +18273,165 @@ module TencentCloud
           @Progress = params['Progress']
           @UpdateTime = params['UpdateTime']
           @StatusMessage = params['StatusMessage']
+        end
+      end
+
+      # 预聚合任务详情
+      class RecordingRuleTaskInfo < TencentCloud::Common::AbstractModel
+        # @param TaskId: 预聚合任务id
+        # @type TaskId: String
+        # @param TopicId: 源日志主题id
+        # @type TopicId: String
+        # @param Name: 预聚合任务名称
+        # @type Name: String
+        # @param CreateTime: 任务创建时间
+        # @type CreateTime: String
+        # @param UpdateTime: 任务更新时间
+        # @type UpdateTime: String
+        # @param Status: 任务状态，1:运行 2:停止 3:异常-找不到源日志主题 4:异常-找不到目标主题
+
+        # 5: 访问权限问题 6:内部故障 7:其他故障
+        # @type Status: Integer
+        # @param EnableFlag: 任务启用状态，1开启,  2关闭
+        # @type EnableFlag: Integer
+        # @param ProcessStartTime: 调度开始时间
+        # @type ProcessStartTime: Integer
+        # @param ProcessPeriod: 调度周期(分钟)
+        # @type ProcessPeriod: Integer
+        # @param ProcessDelay: 执行延迟(秒)
+        # @type ProcessDelay: Integer
+        # @param HasServicesLog: 是否开启投递服务日志。1：关闭，2：开启。
+        # @type HasServicesLog: Integer
+        # @param RecordingRuleContent: 预聚合检索语句
+        # @type RecordingRuleContent: String
+        # @param MetricName: 指标名称
+        # @type MetricName: String
+        # @param CustomMetricLabels: 自定义指标名称
+        # @type CustomMetricLabels: Array
+        # @param YamlId: yaml配置文件id
+        # @type YamlId: String
+        # @param YamlConfigName: yaml配置文件名称
+        # @type YamlConfigName: String
+        # @param DstTopicId: 目标日志主题id
+        # @type DstTopicId: String
+
+        attr_accessor :TaskId, :TopicId, :Name, :CreateTime, :UpdateTime, :Status, :EnableFlag, :ProcessStartTime, :ProcessPeriod, :ProcessDelay, :HasServicesLog, :RecordingRuleContent, :MetricName, :CustomMetricLabels, :YamlId, :YamlConfigName, :DstTopicId
+
+        def initialize(taskid=nil, topicid=nil, name=nil, createtime=nil, updatetime=nil, status=nil, enableflag=nil, processstarttime=nil, processperiod=nil, processdelay=nil, hasserviceslog=nil, recordingrulecontent=nil, metricname=nil, custommetriclabels=nil, yamlid=nil, yamlconfigname=nil, dsttopicid=nil)
+          @TaskId = taskid
+          @TopicId = topicid
+          @Name = name
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @Status = status
+          @EnableFlag = enableflag
+          @ProcessStartTime = processstarttime
+          @ProcessPeriod = processperiod
+          @ProcessDelay = processdelay
+          @HasServicesLog = hasserviceslog
+          @RecordingRuleContent = recordingrulecontent
+          @MetricName = metricname
+          @CustomMetricLabels = custommetriclabels
+          @YamlId = yamlid
+          @YamlConfigName = yamlconfigname
+          @DstTopicId = dsttopicid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @TopicId = params['TopicId']
+          @Name = params['Name']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @Status = params['Status']
+          @EnableFlag = params['EnableFlag']
+          @ProcessStartTime = params['ProcessStartTime']
+          @ProcessPeriod = params['ProcessPeriod']
+          @ProcessDelay = params['ProcessDelay']
+          @HasServicesLog = params['HasServicesLog']
+          @RecordingRuleContent = params['RecordingRuleContent']
+          @MetricName = params['MetricName']
+          unless params['CustomMetricLabels'].nil?
+            @CustomMetricLabels = []
+            params['CustomMetricLabels'].each do |i|
+              metriclabel_tmp = MetricLabel.new
+              metriclabel_tmp.deserialize(i)
+              @CustomMetricLabels << metriclabel_tmp
+            end
+          end
+          @YamlId = params['YamlId']
+          @YamlConfigName = params['YamlConfigName']
+          @DstTopicId = params['DstTopicId']
+        end
+      end
+
+      # 预聚合Yaml任务详情
+      class RecordingRuleYamlTaskInfo < TencentCloud::Common::AbstractModel
+        # @param YamlId: yaml配置文件id
+        # @type YamlId: String
+        # @param TopicId: 源日志主题id
+        # @type TopicId: String
+        # @param DstTopicId: 写入描述的日志主题id
+        # @type DstTopicId: String
+        # @param CreateTime: 任务创建时间
+        # @type CreateTime: String
+        # @param UpdateTime: 任务更新时间
+        # @type UpdateTime: String
+        # @param Status: 任务状态，1:运行 2:停止 3:异常-找不到源日志主题 4:异常-找不到目标主题
+
+        # 5: 访问权限问题 6:内部故障 7:其他故障
+        # @type Status: Integer
+        # @param EnableFlag: 任务启用状态，1开启,  2关闭
+        # @type EnableFlag: Integer
+        # @param ProcessStartTime: 调度开始时间
+        # @type ProcessStartTime: Integer
+        # @param ProcessPeriod: 调度周期(分钟)
+        # @type ProcessPeriod: Integer
+        # @param ProcessDelay: 执行延迟(秒)
+        # @type ProcessDelay: Integer
+        # @param HasServicesLog: 是否开启投递服务日志。1：关闭，2：开启。
+        # @type HasServicesLog: Integer
+        # @param YamlConfigName: yaml配置文件名称
+        # @type YamlConfigName: String
+        # @param YamlContent: yaml配置文件内容
+        # @type YamlContent: String
+        # @param SubTaskCount: yaml文件子任务数量
+        # @type SubTaskCount: Integer
+
+        attr_accessor :YamlId, :TopicId, :DstTopicId, :CreateTime, :UpdateTime, :Status, :EnableFlag, :ProcessStartTime, :ProcessPeriod, :ProcessDelay, :HasServicesLog, :YamlConfigName, :YamlContent, :SubTaskCount
+
+        def initialize(yamlid=nil, topicid=nil, dsttopicid=nil, createtime=nil, updatetime=nil, status=nil, enableflag=nil, processstarttime=nil, processperiod=nil, processdelay=nil, hasserviceslog=nil, yamlconfigname=nil, yamlcontent=nil, subtaskcount=nil)
+          @YamlId = yamlid
+          @TopicId = topicid
+          @DstTopicId = dsttopicid
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @Status = status
+          @EnableFlag = enableflag
+          @ProcessStartTime = processstarttime
+          @ProcessPeriod = processperiod
+          @ProcessDelay = processdelay
+          @HasServicesLog = hasserviceslog
+          @YamlConfigName = yamlconfigname
+          @YamlContent = yamlcontent
+          @SubTaskCount = subtaskcount
+        end
+
+        def deserialize(params)
+          @YamlId = params['YamlId']
+          @TopicId = params['TopicId']
+          @DstTopicId = params['DstTopicId']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @Status = params['Status']
+          @EnableFlag = params['EnableFlag']
+          @ProcessStartTime = params['ProcessStartTime']
+          @ProcessPeriod = params['ProcessPeriod']
+          @ProcessDelay = params['ProcessDelay']
+          @HasServicesLog = params['HasServicesLog']
+          @YamlConfigName = params['YamlConfigName']
+          @YamlContent = params['YamlContent']
+          @SubTaskCount = params['SubTaskCount']
         end
       end
 
@@ -18364,10 +19005,10 @@ module TencentCloud
 
         attr_accessor :From, :To, :QueryString, :QuerySyntax, :TopicId, :Topics, :Sort, :Limit, :Offset, :Context, :SamplingRate, :UseNewAnalysis, :HighLight, :Query, :SyntaxRule
         extend Gem::Deprecate
-        deprecate :Query, :none, 2026, 4
-        deprecate :Query=, :none, 2026, 4
-        deprecate :SyntaxRule, :none, 2026, 4
-        deprecate :SyntaxRule=, :none, 2026, 4
+        deprecate :Query, :none, 2026, 5
+        deprecate :Query=, :none, 2026, 5
+        deprecate :SyntaxRule, :none, 2026, 5
+        deprecate :SyntaxRule=, :none, 2026, 5
 
         def initialize(from=nil, to=nil, querystring=nil, querysyntax=nil, topicid=nil, topics=nil, sort=nil, limit=nil, offset=nil, context=nil, samplingrate=nil, usenewanalysis=nil, highlight=nil, query=nil, syntaxrule=nil)
           @From = from
@@ -19116,77 +19757,66 @@ module TencentCloud
 
       # 主题基本信息
       class TopicInfo < TencentCloud::Common::AbstractModel
-        # @param LogsetId: 日志集ID
+        # @param LogsetId: <p>日志集ID</p>
         # @type LogsetId: String
-        # @param TopicId: 主题ID
+        # @param TopicId: <p>主题ID</p>
         # @type TopicId: String
-        # @param TopicName: 主题名称
+        # @param TopicName: <p>主题名称</p>
         # @type TopicName: String
-        # @param PartitionCount: 主题分区个数
+        # @param PartitionCount: <p>主题分区个数</p>
         # @type PartitionCount: Integer
-        # @param Index: 主题是否开启索引（主题类型需为日志主题）
+        # @param Index: <p>主题是否开启索引（主题类型需为日志主题）</p>
         # @type Index: Boolean
-        # @param AssumerUin: AssumerUin非空则表示创建该日志主题的服务方Uin
+        # @param AssumerUin: <p>AssumerUin非空则表示创建该日志主题的服务方Uin</p>
         # @type AssumerUin: Integer
-        # @param AssumerName: 云产品标识，主题由其它云产品创建时，该字段会显示云产品名称，例如CDN、TKE
+        # @param AssumerName: <p>云产品标识，主题由其它云产品创建时，该字段会显示云产品名称，例如CDN、TKE</p>
         # @type AssumerName: String
-        # @param CreateTime: 创建时间。格式：yyyy-MM-dd HH:mm:ss
+        # @param CreateTime: <p>创建时间。格式：yyyy-MM-dd HH:mm:ss</p>
         # @type CreateTime: String
-        # @param Status: 主题是否开启采集，true：开启采集；false：关闭采集。
-        # 创建日志主题时默认开启，可通过SDK调用ModifyTopic修改此字段。
-        # 控制台目前不支持修改此参数。
+        # @param Status: <p>主题是否开启采集，true：开启采集；false：关闭采集。<br>创建日志主题时默认开启，可通过SDK调用ModifyTopic修改此字段。<br>控制台目前不支持修改此参数。</p>
         # @type Status: Boolean
-        # @param Tags: 主题绑定的标签信息
+        # @param Tags: <p>主题绑定的标签信息</p>
         # @type Tags: Array
-        # @param RoleName: RoleName非空则表示创建该日志主题的服务方使用的角色
+        # @param RoleName: <p>RoleName非空则表示创建该日志主题的服务方使用的角色</p>
         # @type RoleName: String
-        # @param AutoSplit: 该主题是否开启自动分裂
+        # @param AutoSplit: <p>该主题是否开启自动分裂</p>
         # @type AutoSplit: Boolean
-        # @param MaxSplitPartitions: 若开启自动分裂的话，该主题能够允许的最大分区数
+        # @param MaxSplitPartitions: <p>若开启自动分裂的话，该主题能够允许的最大分区数</p>
         # @type MaxSplitPartitions: Integer
-        # @param StorageType: 主题的存储类型
-
-        # - hot: 标准存储
-        # - cold: 低频存储
+        # @param StorageType: <p>主题的存储类型</p><ul><li>hot: 标准存储</li><li>cold: 低频存储</li></ul>
         # @type StorageType: String
-        # @param Period: 生命周期，单位天，可取值范围1~3600。取值为3640时代表永久保存
+        # @param Period: <p>生命周期，单位天，可取值范围1~3600。取值为3640时代表永久保存</p>
         # @type Period: Integer
-        # @param SubAssumerName: 云产品二级标识，日志主题由其它云产品创建时，该字段会显示云产品名称及其日志类型的二级分类，例如TKE-Audit、TKE-Event。部分云产品仅有云产品标识(AssumerName)，无该字段。
+        # @param SubAssumerName: <p>云产品二级标识，日志主题由其它云产品创建时，该字段会显示云产品名称及其日志类型的二级分类，例如TKE-Audit、TKE-Event。部分云产品仅有云产品标识(AssumerName)，无该字段。</p>
         # @type SubAssumerName: String
-        # @param Describes: 主题描述
+        # @param Describes: <p>主题描述</p>
         # @type Describes: String
-        # @param HotPeriod: 开启日志沉降，标准存储的生命周期， hotPeriod < Period。
-        # 标准存储为 hotPeriod, 低频存储则为 Period-hotPeriod。（主题类型需为日志主题）
-        # HotPeriod=0为没有开启日志沉降。
+        # @param HotPeriod: <p>开启日志沉降，标准存储的生命周期， hotPeriod &lt; Period。<br>标准存储为 hotPeriod, 低频存储则为 Period-hotPeriod。（主题类型需为日志主题）<br>HotPeriod=0为没有开启日志沉降。</p>
         # @type HotPeriod: Integer
-        # @param KeyId: kms-cls服务秘钥id
+        # @param KeyId: <p>kms-cls服务秘钥id</p>
         # @type KeyId: String
-        # @param BizType: 主题类型。
-        # - 0: 日志主题
-        # - 1: 指标主题
+        # @param BizType: <p>主题类型。</p><ul><li>0: 日志主题 </li><li>1: 指标主题</li></ul>
         # @type BizType: Integer
-        # @param IsWebTracking: 免鉴权开关。 false：关闭； true：开启。
-        # 开启后将支持指定操作匿名访问该日志主题。详情请参见[日志主题](https://cloud.tencent.com/document/product/614/41035)。
+        # @param IsWebTracking: <p>免鉴权开关。 false：关闭； true：开启。<br>开启后将支持指定操作匿名访问该日志主题。详情请参见<a href="https://cloud.tencent.com/document/product/614/41035">日志主题</a>。</p>
         # @type IsWebTracking: Boolean
-        # @param Extends: 日志主题扩展信息
+        # @param Extends: <p>日志主题扩展信息</p>
         # @type Extends: :class:`Tencentcloud::Cls.v20201016.models.TopicExtendInfo`
-        # @param TopicAsyncTaskID: 异步迁移任务ID
+        # @param TopicAsyncTaskID: <p>异步迁移任务ID</p>
         # @type TopicAsyncTaskID: String
-        # @param MigrationStatus: 异步迁移状态
-        # - 1：进行中
-        # - 2：已完成
-        # - 3：失败
-        # - 4：已取消
+        # @param MigrationStatus: <p>异步迁移状态</p><ul><li>1：进行中</li><li>2：已完成</li><li>3：失败</li><li>4：已取消</li></ul>
         # @type MigrationStatus: Integer
-        # @param EffectiveDate: 异步迁移完成后，预计生效日期
-        # 时间格式：yyyy-MM-dd HH:mm:ss
+        # @param EffectiveDate: <p>异步迁移完成后，预计生效日期<br>时间格式：yyyy-MM-dd HH:mm:ss</p>
         # @type EffectiveDate: String
-        # @param IsSourceFrom: IsSourceFrom 开启记录公网来源ip和服务端接收时间
+        # @param IsSourceFrom: <p>IsSourceFrom 开启记录公网来源ip和服务端接收时间</p>
         # @type IsSourceFrom: Boolean
+        # @param BillingMode: <p>当前计费模式</p><p>枚举值：</p><ul><li>0： 按功能项计费</li><li>1： 原始日志量计费</li></ul>
+        # @type BillingMode: Integer
+        # @param NewBillingMode: <p>如果有异步任务，任务成功后的新计费模式</p><p>枚举值：</p><ul><li>0： 按功能项计费</li><li>1： 原始日志量计费</li></ul>
+        # @type NewBillingMode: Integer
 
-        attr_accessor :LogsetId, :TopicId, :TopicName, :PartitionCount, :Index, :AssumerUin, :AssumerName, :CreateTime, :Status, :Tags, :RoleName, :AutoSplit, :MaxSplitPartitions, :StorageType, :Period, :SubAssumerName, :Describes, :HotPeriod, :KeyId, :BizType, :IsWebTracking, :Extends, :TopicAsyncTaskID, :MigrationStatus, :EffectiveDate, :IsSourceFrom
+        attr_accessor :LogsetId, :TopicId, :TopicName, :PartitionCount, :Index, :AssumerUin, :AssumerName, :CreateTime, :Status, :Tags, :RoleName, :AutoSplit, :MaxSplitPartitions, :StorageType, :Period, :SubAssumerName, :Describes, :HotPeriod, :KeyId, :BizType, :IsWebTracking, :Extends, :TopicAsyncTaskID, :MigrationStatus, :EffectiveDate, :IsSourceFrom, :BillingMode, :NewBillingMode
 
-        def initialize(logsetid=nil, topicid=nil, topicname=nil, partitioncount=nil, index=nil, assumeruin=nil, assumername=nil, createtime=nil, status=nil, tags=nil, rolename=nil, autosplit=nil, maxsplitpartitions=nil, storagetype=nil, period=nil, subassumername=nil, describes=nil, hotperiod=nil, keyid=nil, biztype=nil, iswebtracking=nil, extends=nil, topicasynctaskid=nil, migrationstatus=nil, effectivedate=nil, issourcefrom=nil)
+        def initialize(logsetid=nil, topicid=nil, topicname=nil, partitioncount=nil, index=nil, assumeruin=nil, assumername=nil, createtime=nil, status=nil, tags=nil, rolename=nil, autosplit=nil, maxsplitpartitions=nil, storagetype=nil, period=nil, subassumername=nil, describes=nil, hotperiod=nil, keyid=nil, biztype=nil, iswebtracking=nil, extends=nil, topicasynctaskid=nil, migrationstatus=nil, effectivedate=nil, issourcefrom=nil, billingmode=nil, newbillingmode=nil)
           @LogsetId = logsetid
           @TopicId = topicid
           @TopicName = topicname
@@ -19213,6 +19843,8 @@ module TencentCloud
           @MigrationStatus = migrationstatus
           @EffectiveDate = effectivedate
           @IsSourceFrom = issourcefrom
+          @BillingMode = billingmode
+          @NewBillingMode = newbillingmode
         end
 
         def deserialize(params)
@@ -19252,6 +19884,8 @@ module TencentCloud
           @MigrationStatus = params['MigrationStatus']
           @EffectiveDate = params['EffectiveDate']
           @IsSourceFrom = params['IsSourceFrom']
+          @BillingMode = params['BillingMode']
+          @NewBillingMode = params['NewBillingMode']
         end
       end
 
@@ -19320,8 +19954,8 @@ module TencentCloud
 
         attr_accessor :TopicId, :HashKey, :CompressType
         extend Gem::Deprecate
-        deprecate :HashKey, :none, 2026, 4
-        deprecate :HashKey=, :none, 2026, 4
+        deprecate :HashKey, :none, 2026, 5
+        deprecate :HashKey=, :none, 2026, 5
 
         def initialize(topicid=nil, hashkey=nil, compresstype=nil)
           @TopicId = topicid
@@ -19498,10 +20132,10 @@ module TencentCloud
 
         attr_accessor :CallbackType, :Url, :WebCallbackId, :Method, :NoticeContentId, :RemindType, :Mobiles, :UserIds, :Headers, :Body, :Index
         extend Gem::Deprecate
-        deprecate :Headers, :none, 2026, 4
-        deprecate :Headers=, :none, 2026, 4
-        deprecate :Body, :none, 2026, 4
-        deprecate :Body=, :none, 2026, 4
+        deprecate :Headers, :none, 2026, 5
+        deprecate :Headers=, :none, 2026, 5
+        deprecate :Body, :none, 2026, 5
+        deprecate :Body=, :none, 2026, 5
 
         def initialize(callbacktype=nil, url=nil, webcallbackid=nil, method=nil, noticecontentid=nil, remindtype=nil, mobiles=nil, userids=nil, headers=nil, body=nil, index=nil)
           @CallbackType = callbacktype

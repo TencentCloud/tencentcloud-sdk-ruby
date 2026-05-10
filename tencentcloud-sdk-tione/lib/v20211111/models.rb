@@ -617,6 +617,8 @@ module TencentCloud
 
       # CreateDataSource请求参数结构体
       class CreateDataSourceRequest < TencentCloud::Common::AbstractModel
+        # @param TiProjectId: <p>TI工作空间ID</p><p>仅用于“工作空间”白名单功能。如需使用，请联系TI管理员开通白名单。</p>
+        # @type TiProjectId: String
         # @param Name: 数据源名称
         # @type Name: String
         # @param Type: 数据源类型英文名
@@ -630,9 +632,10 @@ module TencentCloud
         # @param Tags: 标签配置
         # @type Tags: Array
 
-        attr_accessor :Name, :Type, :Permission, :StorageId, :MountConfigure, :Tags
+        attr_accessor :TiProjectId, :Name, :Type, :Permission, :StorageId, :MountConfigure, :Tags
 
-        def initialize(name=nil, type=nil, permission=nil, storageid=nil, mountconfigure=nil, tags=nil)
+        def initialize(tiprojectid=nil, name=nil, type=nil, permission=nil, storageid=nil, mountconfigure=nil, tags=nil)
+          @TiProjectId = tiprojectid
           @Name = name
           @Type = type
           @Permission = permission
@@ -642,6 +645,7 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @TiProjectId = params['TiProjectId']
           @Name = params['Name']
           @Type = params['Type']
           @Permission = params['Permission']
@@ -1218,20 +1222,24 @@ module TencentCloud
         # @type Type: String
         # @param StorageId: 存储实例ID
         # @type StorageId: String
+        # @param TiProjectId: <p>TI工作空间ID</p><p>仅用于“工作空间”白名单功能。如需使用，请联系TI管理员开通白名单。</p>
+        # @type TiProjectId: String
         # @param LimitMount: 限制开关是否开启，只有开启时才有限制，默认关闭
         # @type LimitMount: Boolean
 
-        attr_accessor :Type, :StorageId, :LimitMount
+        attr_accessor :Type, :StorageId, :TiProjectId, :LimitMount
 
-        def initialize(type=nil, storageid=nil, limitmount=nil)
+        def initialize(type=nil, storageid=nil, tiprojectid=nil, limitmount=nil)
           @Type = type
           @StorageId = storageid
+          @TiProjectId = tiprojectid
           @LimitMount = limitmount
         end
 
         def deserialize(params)
           @Type = params['Type']
           @StorageId = params['StorageId']
+          @TiProjectId = params['TiProjectId']
           @LimitMount = params['LimitMount']
         end
       end
@@ -2534,16 +2542,20 @@ module TencentCloud
 
       # DeleteDataSource请求参数结构体
       class DeleteDataSourceRequest < TencentCloud::Common::AbstractModel
+        # @param TiProjectId: <p>TI工作空间ID</p><p>仅用于“工作空间”白名单功能。如需使用，请联系TI管理员开通白名单。</p>
+        # @type TiProjectId: String
         # @param Id: 数据源ID
         # @type Id: String
 
-        attr_accessor :Id
+        attr_accessor :TiProjectId, :Id
 
-        def initialize(id=nil)
+        def initialize(tiprojectid=nil, id=nil)
+          @TiProjectId = tiprojectid
           @Id = id
         end
 
         def deserialize(params)
+          @TiProjectId = params['TiProjectId']
           @Id = params['Id']
         end
       end
@@ -2713,8 +2725,8 @@ module TencentCloud
 
         attr_accessor :ServiceId, :ServiceCategory
         extend Gem::Deprecate
-        deprecate :ServiceCategory, :none, 2026, 4
-        deprecate :ServiceCategory=, :none, 2026, 4
+        deprecate :ServiceCategory, :none, 2026, 5
+        deprecate :ServiceCategory=, :none, 2026, 5
 
         def initialize(serviceid=nil, servicecategory=nil)
           @ServiceId = serviceid
@@ -2745,19 +2757,23 @@ module TencentCloud
 
       # DeleteMountLimit请求参数结构体
       class DeleteMountLimitRequest < TencentCloud::Common::AbstractModel
+        # @param TiProjectId: <p>TI工作空间ID</p><p>仅用于“工作空间”白名单功能。如需使用，请联系TI管理员开通白名单。</p>
+        # @type TiProjectId: String
         # @param Type: 数据源类型英文名
         # @type Type: String
         # @param StorageId: 存储实例ID
         # @type StorageId: String
 
-        attr_accessor :Type, :StorageId
+        attr_accessor :TiProjectId, :Type, :StorageId
 
-        def initialize(type=nil, storageid=nil)
+        def initialize(tiprojectid=nil, type=nil, storageid=nil)
+          @TiProjectId = tiprojectid
           @Type = type
           @StorageId = storageid
         end
 
         def deserialize(params)
+          @TiProjectId = params['TiProjectId']
           @Type = params['Type']
           @StorageId = params['StorageId']
         end
@@ -3465,6 +3481,8 @@ module TencentCloud
 
       # DescribeDataSources请求参数结构体
       class DescribeDataSourcesRequest < TencentCloud::Common::AbstractModel
+        # @param TiProjectId: <p>TI工作空间ID</p><p>仅用于“工作空间”白名单功能。如需使用，请联系TI管理员开通白名单。</p>
+        # @type TiProjectId: String
         # @param Filters: 过滤条件
         # @type Filters: Array
         # @param TagFilters: 标签过滤条件
@@ -3478,9 +3496,10 @@ module TencentCloud
         # @param Order: 输出列表的排列顺序。取值范围：ASC：升序排列 DESC：降序排列
         # @type Order: String
 
-        attr_accessor :Filters, :TagFilters, :Offset, :Limit, :OrderField, :Order
+        attr_accessor :TiProjectId, :Filters, :TagFilters, :Offset, :Limit, :OrderField, :Order
 
-        def initialize(filters=nil, tagfilters=nil, offset=nil, limit=nil, orderfield=nil, order=nil)
+        def initialize(tiprojectid=nil, filters=nil, tagfilters=nil, offset=nil, limit=nil, orderfield=nil, order=nil)
+          @TiProjectId = tiprojectid
           @Filters = filters
           @TagFilters = tagfilters
           @Offset = offset
@@ -3490,6 +3509,7 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @TiProjectId = params['TiProjectId']
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
@@ -4093,8 +4113,8 @@ module TencentCloud
 
         attr_accessor :ServiceGroupId, :ServiceCategory
         extend Gem::Deprecate
-        deprecate :ServiceCategory, :none, 2026, 4
-        deprecate :ServiceCategory=, :none, 2026, 4
+        deprecate :ServiceCategory, :none, 2026, 5
+        deprecate :ServiceCategory=, :none, 2026, 5
 
         def initialize(servicegroupid=nil, servicecategory=nil)
           @ServiceGroupId = servicegroupid
@@ -4180,8 +4200,8 @@ module TencentCloud
 
         attr_accessor :ServiceGroupId, :ServiceCategory
         extend Gem::Deprecate
-        deprecate :ServiceCategory, :none, 2026, 4
-        deprecate :ServiceCategory=, :none, 2026, 4
+        deprecate :ServiceCategory, :none, 2026, 5
+        deprecate :ServiceCategory=, :none, 2026, 5
 
         def initialize(servicegroupid=nil, servicecategory=nil)
           @ServiceGroupId = servicegroupid
@@ -4239,8 +4259,8 @@ module TencentCloud
 
         attr_accessor :TiProjectId, :Offset, :Limit, :Order, :OrderField, :Filters, :TagFilters, :ServiceCategory
         extend Gem::Deprecate
-        deprecate :ServiceCategory, :none, 2026, 4
-        deprecate :ServiceCategory=, :none, 2026, 4
+        deprecate :ServiceCategory, :none, 2026, 5
+        deprecate :ServiceCategory=, :none, 2026, 5
 
         def initialize(tiprojectid=nil, offset=nil, limit=nil, order=nil, orderfield=nil, filters=nil, tagfilters=nil, servicecategory=nil)
           @TiProjectId = tiprojectid
@@ -4378,8 +4398,8 @@ module TencentCloud
 
         attr_accessor :ServiceId, :ServiceCategory
         extend Gem::Deprecate
-        deprecate :ServiceCategory, :none, 2026, 4
-        deprecate :ServiceCategory=, :none, 2026, 4
+        deprecate :ServiceCategory, :none, 2026, 5
+        deprecate :ServiceCategory=, :none, 2026, 5
 
         def initialize(serviceid=nil, servicecategory=nil)
           @ServiceId = serviceid
@@ -4419,18 +4439,22 @@ module TencentCloud
       class DescribeMountInstanceRequest < TencentCloud::Common::AbstractModel
         # @param Type: 数据源类型英文名
         # @type Type: String
+        # @param TiProjectId: <p>TI工作空间ID</p><p>仅用于“工作空间”白名单功能。如需使用，请联系TI管理员开通白名单。</p>
+        # @type TiProjectId: String
         # @param StorageId: 存储实例ID
         # @type StorageId: String
 
-        attr_accessor :Type, :StorageId
+        attr_accessor :Type, :TiProjectId, :StorageId
 
-        def initialize(type=nil, storageid=nil)
+        def initialize(type=nil, tiprojectid=nil, storageid=nil)
           @Type = type
+          @TiProjectId = tiprojectid
           @StorageId = storageid
         end
 
         def deserialize(params)
           @Type = params['Type']
+          @TiProjectId = params['TiProjectId']
           @StorageId = params['StorageId']
         end
       end
@@ -4462,21 +4486,25 @@ module TencentCloud
       class DescribeMountInstancesRequest < TencentCloud::Common::AbstractModel
         # @param Type: 数据源类型英文名
         # @type Type: String
+        # @param TiProjectId: <p>TI工作空间ID</p><p>仅用于“工作空间”白名单功能。如需使用，请联系TI管理员开通白名单。</p>
+        # @type TiProjectId: String
         # @param Offset: 偏移量
         # @type Offset: Integer
         # @param Limit: 分页大小
         # @type Limit: Integer
 
-        attr_accessor :Type, :Offset, :Limit
+        attr_accessor :Type, :TiProjectId, :Offset, :Limit
 
-        def initialize(type=nil, offset=nil, limit=nil)
+        def initialize(type=nil, tiprojectid=nil, offset=nil, limit=nil)
           @Type = type
+          @TiProjectId = tiprojectid
           @Offset = offset
           @Limit = limit
         end
 
         def deserialize(params)
           @Type = params['Type']
+          @TiProjectId = params['TiProjectId']
           @Offset = params['Offset']
           @Limit = params['Limit']
         end
@@ -4515,6 +4543,8 @@ module TencentCloud
 
       # DescribeMountLimits请求参数结构体
       class DescribeMountLimitsRequest < TencentCloud::Common::AbstractModel
+        # @param TiProjectId: <p>TI工作空间ID</p><p>仅用于“工作空间”白名单功能。如需使用，请联系TI管理员开通白名单。</p>
+        # @type TiProjectId: String
         # @param Filters: 过滤条件
         # @type Filters: Array
         # @param Offset: 偏移量
@@ -4526,9 +4556,10 @@ module TencentCloud
         # @param OrderField: 排序的依据字段
         # @type OrderField: String
 
-        attr_accessor :Filters, :Offset, :Limit, :Order, :OrderField
+        attr_accessor :TiProjectId, :Filters, :Offset, :Limit, :Order, :OrderField
 
-        def initialize(filters=nil, offset=nil, limit=nil, order=nil, orderfield=nil)
+        def initialize(tiprojectid=nil, filters=nil, offset=nil, limit=nil, order=nil, orderfield=nil)
+          @TiProjectId = tiprojectid
           @Filters = filters
           @Offset = offset
           @Limit = limit
@@ -4537,6 +4568,7 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @TiProjectId = params['TiProjectId']
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
@@ -8339,8 +8371,8 @@ module TencentCloud
 
         attr_accessor :Name, :Uid, :ChargeType, :Phase, :IP, :CreateTime, :Containers, :ContainerInfos, :CrossTenantENIInfo, :Status, :StartScheduleTime, :Message, :NodeIP, :NodeId, :ResourceGroupId, :ResourceGroupName, :ResourceInfo
         extend Gem::Deprecate
-        deprecate :Containers, :none, 2026, 4
-        deprecate :Containers=, :none, 2026, 4
+        deprecate :Containers, :none, 2026, 5
+        deprecate :Containers=, :none, 2026, 5
 
         def initialize(name=nil, uid=nil, chargetype=nil, phase=nil, ip=nil, createtime=nil, containers=nil, containerinfos=nil, crosstenanteniinfo=nil, status=nil, startscheduletime=nil, message=nil, nodeip=nil, nodeid=nil, resourcegroupid=nil, resourcegroupname=nil, resourceinfo=nil)
           @Name = name
@@ -9499,10 +9531,10 @@ module TencentCloud
 
         attr_accessor :ServiceGroupId, :ServiceId, :ServiceGroupName, :ServiceDescription, :ServiceInfo, :ClusterId, :Region, :Namespace, :ChargeType, :ResourceGroupId, :ResourceGroupName, :Tags, :IngressName, :CreatedBy, :CreateTime, :UpdateTime, :Uin, :SubUin, :AppId, :BusinessStatus, :ServiceLimit, :ScheduledAction, :CreateFailedReason, :Status, :BillingInfo, :Weight, :CreateSource, :Version, :LatestVersion, :ResourceGroupSWType, :ArchiveStatus, :DeployType, :InstancePerReplicas, :MonitorSource, :SubUinName, :SchedulingPolicy, :ExternalResourceGroups
         extend Gem::Deprecate
-        deprecate :ServiceLimit, :none, 2026, 4
-        deprecate :ServiceLimit=, :none, 2026, 4
-        deprecate :ScheduledAction, :none, 2026, 4
-        deprecate :ScheduledAction=, :none, 2026, 4
+        deprecate :ServiceLimit, :none, 2026, 5
+        deprecate :ServiceLimit=, :none, 2026, 5
+        deprecate :ScheduledAction, :none, 2026, 5
+        deprecate :ScheduledAction=, :none, 2026, 5
 
         def initialize(servicegroupid=nil, serviceid=nil, servicegroupname=nil, servicedescription=nil, serviceinfo=nil, clusterid=nil, region=nil, namespace=nil, chargetype=nil, resourcegroupid=nil, resourcegroupname=nil, tags=nil, ingressname=nil, createdby=nil, createtime=nil, updatetime=nil, uin=nil, subuin=nil, appid=nil, businessstatus=nil, servicelimit=nil, scheduledaction=nil, createfailedreason=nil, status=nil, billinginfo=nil, weight=nil, createsource=nil, version=nil, latestversion=nil, resourcegroupswtype=nil, archivestatus=nil, deploytype=nil, instanceperreplicas=nil, monitorsource=nil, subuinname=nil, schedulingpolicy=nil, externalresourcegroups=nil)
           @ServiceGroupId = servicegroupid
@@ -10042,10 +10074,10 @@ module TencentCloud
 
         attr_accessor :Replicas, :ImageInfo, :Env, :Resources, :InstanceType, :ModelInfo, :LogEnable, :LogConfig, :AuthorizationEnable, :HorizontalPodAutoscaler, :Status, :Weight, :ResourceTotal, :OldReplicas, :HybridBillingPrepaidReplicas, :OldHybridBillingPrepaidReplicas, :ModelHotUpdateEnable, :InstanceAlias, :ScaleMode, :CronScaleJobs, :ScaleStrategy, :ScheduledAction, :PodList, :Pods, :PodInfos, :ServiceLimit, :ModelTurboEnable, :VolumeMount, :InferCodeInfo, :Command, :ServiceEIP, :ServicePort, :TerminationGracePeriodSeconds, :PreStopCommand, :GrpcEnable, :HealthProbe, :RollingUpdate, :InstancePerReplicas, :VolumeMounts, :SchedulingStrategy, :NodeCount
         extend Gem::Deprecate
-        deprecate :PodList, :none, 2026, 4
-        deprecate :PodList=, :none, 2026, 4
-        deprecate :Pods, :none, 2026, 4
-        deprecate :Pods=, :none, 2026, 4
+        deprecate :PodList, :none, 2026, 5
+        deprecate :PodList=, :none, 2026, 5
+        deprecate :Pods, :none, 2026, 5
+        deprecate :Pods=, :none, 2026, 5
 
         def initialize(replicas=nil, imageinfo=nil, env=nil, resources=nil, instancetype=nil, modelinfo=nil, logenable=nil, logconfig=nil, authorizationenable=nil, horizontalpodautoscaler=nil, status=nil, weight=nil, resourcetotal=nil, oldreplicas=nil, hybridbillingprepaidreplicas=nil, oldhybridbillingprepaidreplicas=nil, modelhotupdateenable=nil, instancealias=nil, scalemode=nil, cronscalejobs=nil, scalestrategy=nil, scheduledaction=nil, podlist=nil, pods=nil, podinfos=nil, servicelimit=nil, modelturboenable=nil, volumemount=nil, infercodeinfo=nil, command=nil, serviceeip=nil, serviceport=nil, terminationgraceperiodseconds=nil, prestopcommand=nil, grpcenable=nil, healthprobe=nil, rollingupdate=nil, instanceperreplicas=nil, volumemounts=nil, schedulingstrategy=nil, nodecount=nil)
           @Replicas = replicas
@@ -11396,6 +11428,8 @@ module TencentCloud
 
       # UpdateDataSource请求参数结构体
       class UpdateDataSourceRequest < TencentCloud::Common::AbstractModel
+        # @param TiProjectId: <p>TI工作空间ID</p><p>仅用于“工作空间”白名单功能。如需使用，请联系TI管理员开通白名单。</p>
+        # @type TiProjectId: String
         # @param Id: 数据源ID
         # @type Id: String
         # @param Name: 数据源名称
@@ -11405,9 +11439,10 @@ module TencentCloud
         # @param MountConfigure: 数据源挂载配置
         # @type MountConfigure: :class:`Tencentcloud::Tione.v20211111.models.MountConfigureInfo`
 
-        attr_accessor :Id, :Name, :Permission, :MountConfigure
+        attr_accessor :TiProjectId, :Id, :Name, :Permission, :MountConfigure
 
-        def initialize(id=nil, name=nil, permission=nil, mountconfigure=nil)
+        def initialize(tiprojectid=nil, id=nil, name=nil, permission=nil, mountconfigure=nil)
+          @TiProjectId = tiprojectid
           @Id = id
           @Name = name
           @Permission = permission
@@ -11415,6 +11450,7 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @TiProjectId = params['TiProjectId']
           @Id = params['Id']
           @Name = params['Name']
           @Permission = params['Permission']
@@ -11449,19 +11485,23 @@ module TencentCloud
         # @type StorageId: String
         # @param LimitMount: 限制开关是否开启，只有开启时才有限制，默认关闭
         # @type LimitMount: Boolean
+        # @param TiProjectId: <p>TI工作空间ID</p><p>仅用于“工作空间”白名单功能。如需使用，请联系TI管理员开通白名单。</p>
+        # @type TiProjectId: String
 
-        attr_accessor :Type, :StorageId, :LimitMount
+        attr_accessor :Type, :StorageId, :LimitMount, :TiProjectId
 
-        def initialize(type=nil, storageid=nil, limitmount=nil)
+        def initialize(type=nil, storageid=nil, limitmount=nil, tiprojectid=nil)
           @Type = type
           @StorageId = storageid
           @LimitMount = limitmount
+          @TiProjectId = tiprojectid
         end
 
         def deserialize(params)
           @Type = params['Type']
           @StorageId = params['StorageId']
           @LimitMount = params['LimitMount']
+          @TiProjectId = params['TiProjectId']
         end
       end
 
@@ -11628,8 +11668,8 @@ module TencentCloud
 
         attr_accessor :Replicas, :UpdatedReplicas, :ReadyReplicas, :AvailableReplicas, :UnavailableReplicas, :Status, :StatefulSetCondition, :Conditions, :Reason
         extend Gem::Deprecate
-        deprecate :StatefulSetCondition, :none, 2026, 4
-        deprecate :StatefulSetCondition=, :none, 2026, 4
+        deprecate :StatefulSetCondition, :none, 2026, 5
+        deprecate :StatefulSetCondition=, :none, 2026, 5
 
         def initialize(replicas=nil, updatedreplicas=nil, readyreplicas=nil, availablereplicas=nil, unavailablereplicas=nil, status=nil, statefulsetcondition=nil, conditions=nil, reason=nil)
           @Replicas = replicas

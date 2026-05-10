@@ -29,6 +29,30 @@ module TencentCloud
         end
 
 
+        # saas版本，创建/修改业务资源后，调用绑定连接器接口,私有化调用path为：capi/GatewayResource/BindBusinessResourceConnectorGroup
+
+        # @param request: Request instance for BindBusinessResourceConnectorGroup.
+        # @type request: :class:`Tencentcloud::ioa::V20220601::BindBusinessResourceConnectorGroupRequest`
+        # @rtype: :class:`Tencentcloud::ioa::V20220601::BindBusinessResourceConnectorGroupResponse`
+        def BindBusinessResourceConnectorGroup(request)
+          body = send_request('BindBusinessResourceConnectorGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = BindBusinessResourceConnectorGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建业务资源，会对一些必填参数进行校验和参数合法性校验，创建业务资源时，先调用下校验相同业务资源接口，看资源是不是有冲突。创建时也会做校验，但没有返回对应的异常信息，私有化调用path为：capi/GatewayResource/CreateBusinessResource
 
         # @param request: Request instance for CreateBusinessResource.

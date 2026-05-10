@@ -4086,6 +4086,38 @@ module TencentCloud
         end
       end
 
+      # AIGC 高级自定义主体信息
+      class AigcAdvancedCustomElementInfo < TencentCloud::Common::AbstractModel
+        # @param Id: <p>主体 ID。</p>
+        # @type Id: String
+        # @param Name: <p>主体名字。</p>
+        # @type Name: String
+        # @param VoiceId: <p>主体音色 ID。</p>
+        # @type VoiceId: String
+        # @param Description: <p>主体描述。</p>
+        # @type Description: String
+        # @param CreateTime: <p>主体创建时间。格式按照 ISO 8601标准表示，详见 <a href="https://cloud.tencent.com/document/product/266/11732#I">ISO 日期格式说明</a>。</p>
+        # @type CreateTime: String
+
+        attr_accessor :Id, :Name, :VoiceId, :Description, :CreateTime
+
+        def initialize(id=nil, name=nil, voiceid=nil, description=nil, createtime=nil)
+          @Id = id
+          @Name = name
+          @VoiceId = voiceid
+          @Description = description
+          @CreateTime = createtime
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Name = params['Name']
+          @VoiceId = params['VoiceId']
+          @Description = params['Description']
+          @CreateTime = params['CreateTime']
+        end
+      end
+
       # AIGC 生音效任务的输出媒体文件配置。
       class AigcAudioOutputConfig < TencentCloud::Common::AbstractModel
         # @param StorageMode: <p>存储模式</p><p>枚举值：</p><ul><li>Temporary： 临时存储，生成的视频文件不会存储到云点播，可在事件通知中获取到临时访问的 URL，有效期 7 天</li><li>Permanent： 永久存储，生成的视频文件将存储到云点播，可在事件通知中获取到 FileId</li></ul><p>默认值：Temporary</p>
@@ -4119,6 +4151,54 @@ module TencentCloud
           @ExpireTime = params['ExpireTime']
           @Duration = params['Duration']
           @OutputAudioFormat = params['OutputAudioFormat']
+        end
+      end
+
+      # 参考音频信息。
+      class AigcAudioReferenceAudioInfo < TencentCloud::Common::AbstractModel
+        # @param Type: <p>可访问的文件 URL。当 Type 取值为 Url 时，本参数有效。说明：1. 推荐使用小于7M的图片；2. 图片格式的取值为：jpeg，jpg, png, webp。</p>
+        # @type Type: String
+        # @param FileId: <p>音频文件的媒体文件 ID，即该文件在云点播上的全局唯一标识符，在上传成功后由云点播后台分配。可以在 <a href="/document/product/266/7830">视频上传完成事件通知</a> 或 <a href="https://console.cloud.tencent.com/vod/media">云点播控制台</a> 获取该字段。当 Type 取值为 File 时，本参数有效。</p>
+        # @type FileId: String
+        # @param Url: <p>音频文件 URL，需要外网可访问。当 Type 取值为 Url 时，本参数有效。</p>
+        # @type Url: String
+
+        attr_accessor :Type, :FileId, :Url
+
+        def initialize(type=nil, fileid=nil, url=nil)
+          @Type = type
+          @FileId = fileid
+          @Url = url
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @FileId = params['FileId']
+          @Url = params['Url']
+        end
+      end
+
+      # 用于AIGC视频生成的参考视频素材。
+      class AigcAudioReferenceVideoInfo < TencentCloud::Common::AbstractModel
+        # @param Type: <p>输入的视频文件类型。取值有： <li>File：点播媒体文件；</li> <li>Url：可访问的 Url；</li></p>
+        # @type Type: String
+        # @param FileId: <p>视频文件的媒体文件 ID，即该文件在云点播上的全局唯一标识符，在上传成功后由云点播后台分配。可以在 <a href="/document/product/266/7830">视频上传完成事件通知</a> 或 <a href="https://console.cloud.tencent.com/vod/media">云点播控制台</a> 获取该字段。当 Type 取值为 File 时，本参数有效。</p>
+        # @type FileId: String
+        # @param Url: <p>参考视频URL，需要外网可访问。当 Type 取值为 Url 时，本参数有效。</p>
+        # @type Url: String
+
+        attr_accessor :Type, :FileId, :Url
+
+        def initialize(type=nil, fileid=nil, url=nil)
+          @Type = type
+          @FileId = fileid
+          @Url = url
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @FileId = params['FileId']
+          @Url = params['Url']
         end
       end
 
@@ -5179,7 +5259,7 @@ module TencentCloud
         # @type VoiceId: String
         # @param KeepOriginalSound: <p>是否保留视频原声。当 Category 为 Video 时有效。取值如下：</p><li>Enabled：保留</li><li>Disabled：不保留</li>
         # @type KeepOriginalSound: String
-        # @param Usage: <p>用于区分输入是首帧或参考帧。可选值：</p><ul><li>FirstFrame：首帧；</li><li>Reference：参考帧；</li></ul><p><strong>注意，默认是FirstFrame</strong></p>
+        # @param Usage: <p>用于区分输入图像用于<strong>首（尾）帧生视频</strong>、<strong>图生视频</strong>或<strong>参考生视频</strong>。可选值：</p><ul><li>FirstFrame：用于首（尾）帧生视频 或 图生视频；</li><li>Reference：用于参考生视频；</li></ul><p><strong>注意，默认是FirstFrame</strong></p>
         # @type Usage: String
 
         attr_accessor :Type, :Category, :FileId, :Url, :ReferenceType, :ObjectId, :VoiceId, :KeepOriginalSound, :Usage
@@ -5436,7 +5516,7 @@ module TencentCloud
         # @type CoverType: String
         # @param Procedure: <p>媒体后续任务处理操作，即完成媒体上传后，可自动发起任务流操作。参数值为任务流模板名，云点播支持 <a href="/document/product/266/33819">创建任务流模板</a> 并为模板命名。</p>
         # @type Procedure: String
-        # @param ExpireTime: <p>媒体文件过期时间，格式按照 ISO 8601 标准表示，详见 <a href="/document/product/266/11732#iso-.E6.97.A5.E6.9C.9F.E6.A0.BC.E5.BC.8F">ISO 日期格式说明</a>。</p>
+        # @param ExpireTime: <p>媒体文件过期时间，格式按照 ISO 8601 标准表示，详见 <a href="/document/product/266/11732#I">ISO 日期格式说明</a>。</p>
         # @type ExpireTime: String
         # @param StorageRegion: <p>指定上传园区，仅适用于对上传地域有特殊需求的用户。</p>
         # @type StorageRegion: String
@@ -6613,16 +6693,15 @@ module TencentCloud
 
       # CDN 日志信息
       class CdnLogInfo < TencentCloud::Common::AbstractModel
-        # @param Date: 日志所属日期， 格式为：yyyy-MM-dd ，如2018-03-01。
+        # @param Date: <p>日志所属日期， 格式为：yyyy-MM-dd ，如2018-03-01。</p>
         # @type Date: String
-        # @param Name: 日志名称，格式为：日期小时-域名
-        # 如 example.com。
+        # @param Name: <p>日志名称，格式为：日期小时-域名<br>如 example.com。</p>
         # @type Name: String
-        # @param Url: 日志下载链接，24小时内下载有效。
+        # @param Url: <p>日志下载链接，24小时内下载有效。</p>
         # @type Url: String
-        # @param StartTime: 日志起始时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#iso-.E6.97.A5.E6.9C.9F.E6.A0.BC.E5.BC.8F)。
+        # @param StartTime: <p>日志起始时间，使用 <a href="https://cloud.tencent.com/document/product/266/11732#I">ISO 日期格式</a>。</p>
         # @type StartTime: String
-        # @param EndTime: 日志结束时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#iso-.E6.97.A5.E6.9C.9F.E6.A0.BC.E5.BC.8F)。
+        # @param EndTime: <p>日志结束时间，使用 <a href="https://cloud.tencent.com/document/product/266/11732#I">ISO 日期格式</a>。</p>
         # @type EndTime: String
 
         attr_accessor :Date, :Name, :Url, :StartTime, :EndTime
@@ -6877,17 +6956,15 @@ module TencentCloud
 
       # 自适应码流任务多语言音频流输入参数。
       class ComplexAdaptiveDynamicStreamingTaskAudioInput < TencentCloud::Common::AbstractModel
-        # @param FileId: 音频源的媒体 ID。固定取该媒体中的首个音频流，视频流和其它音频流（如有）将被忽略。
+        # @param FileId: <p>音频源的媒体 ID。固定取该媒体源文件中的首个音频流，视频流和其它音频流（如有）将被忽略。</p>
         # @type FileId: String
-        # @param Name: 输出的自适应码流中的音频流名称，长度限制为16个字符。
+        # @param Name: <p>输出的自适应码流中的音频流名称，长度限制为16个字符。</p>
         # @type Name: String
-        # @param Language: 输出的自适应码流中的音频流语言，长度限制为16个字符。要求符合 RFC5646 规范。
+        # @param Language: <p>输出的自适应码流中的音频流语言，长度限制为16个字符。要求符合 RFC5646 规范。</p>
         # @type Language: String
-        # @param Default: 是否设置为自适应码流的默认音频。取值：
-        # <li>YES：设置为默认音频；</li>
-        # <li>NO：不设置为默认音频（默认值）。</li>
+        # @param Default: <p>是否设置为自适应码流的默认音频。取值：</p><li>YES：设置为默认音频；</li><li>NO：不设置为默认音频（默认值）。</li>
         # @type Default: String
-        # @param AudioTrackIdx: 音轨序号，表示选择音频源中的第几个音轨，从0开始计数。默认值为0，表示选择最靠前的音轨。
+        # @param AudioTrackIdx: <p>音轨序号，表示选择音频源中的第几个音轨，从0开始计数。默认值为0，表示选择最靠前的音轨。</p>
         # @type AudioTrackIdx: Integer
 
         attr_accessor :FileId, :Name, :Language, :Default, :AudioTrackIdx
@@ -8250,6 +8327,87 @@ module TencentCloud
         end
       end
 
+      # CreateAigcAudioTask请求参数结构体
+      class CreateAigcAudioTaskRequest < TencentCloud::Common::AbstractModel
+        # @param ModelName: <p>模型名称。</p>
+        # @type ModelName: String
+        # @param ModelVersion: <p>指定模型特定版本号。默认使用系统当前所支持的模型稳定版本。</p>
+        # @type ModelVersion: String
+        # @param SceneType: <p>指定场景，目前支持sfx（音效）。</p>
+        # @type SceneType: String
+        # @param Prompt: <p>生成音频的描述</p>
+        # @type Prompt: String
+        # @param VideoInfos: <p>参考视频信息</p>
+        # @type VideoInfos: Array
+        # @param AudioInfos: <p>传入参考音频信息。</p><p>比如传入音频生成音乐时需要传入。</p>
+        # @type AudioInfos: Array
+        # @param OutputConfig: <p>输出参数</p>
+        # @type OutputConfig: :class:`Tencentcloud::Vod.v20180717.models.AigcAudioOutputConfig`
+        # @param AdditionalParameters: <p>用于传入一些模型需要的特殊场景参数，Json格式序列化成字符串。<br>示例：<br>{"camera_control":{"type":"simple"}}</p>
+        # @type AdditionalParameters: String
+
+        attr_accessor :ModelName, :ModelVersion, :SceneType, :Prompt, :VideoInfos, :AudioInfos, :OutputConfig, :AdditionalParameters
+
+        def initialize(modelname=nil, modelversion=nil, scenetype=nil, prompt=nil, videoinfos=nil, audioinfos=nil, outputconfig=nil, additionalparameters=nil)
+          @ModelName = modelname
+          @ModelVersion = modelversion
+          @SceneType = scenetype
+          @Prompt = prompt
+          @VideoInfos = videoinfos
+          @AudioInfos = audioinfos
+          @OutputConfig = outputconfig
+          @AdditionalParameters = additionalparameters
+        end
+
+        def deserialize(params)
+          @ModelName = params['ModelName']
+          @ModelVersion = params['ModelVersion']
+          @SceneType = params['SceneType']
+          @Prompt = params['Prompt']
+          unless params['VideoInfos'].nil?
+            @VideoInfos = []
+            params['VideoInfos'].each do |i|
+              aigcaudioreferencevideoinfo_tmp = AigcAudioReferenceVideoInfo.new
+              aigcaudioreferencevideoinfo_tmp.deserialize(i)
+              @VideoInfos << aigcaudioreferencevideoinfo_tmp
+            end
+          end
+          unless params['AudioInfos'].nil?
+            @AudioInfos = []
+            params['AudioInfos'].each do |i|
+              aigcaudioreferenceaudioinfo_tmp = AigcAudioReferenceAudioInfo.new
+              aigcaudioreferenceaudioinfo_tmp.deserialize(i)
+              @AudioInfos << aigcaudioreferenceaudioinfo_tmp
+            end
+          end
+          unless params['OutputConfig'].nil?
+            @OutputConfig = AigcAudioOutputConfig.new
+            @OutputConfig.deserialize(params['OutputConfig'])
+          end
+          @AdditionalParameters = params['AdditionalParameters']
+        end
+      end
+
+      # CreateAigcAudioTask返回参数结构体
+      class CreateAigcAudioTaskResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>任务创建成功后，返回的任务ID。<br>调用查询接口，轮询获取任务进度及生成结果。</p>
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateAigcCustomElement请求参数结构体
       class CreateAigcCustomElementRequest < TencentCloud::Common::AbstractModel
         # @param ElementName: 主体名称。不能超过20个字符
@@ -8813,7 +8971,7 @@ module TencentCloud
       class CreateAigcVideoTaskRequest < TencentCloud::Common::AbstractModel
         # @param SubAppId: <p><b>点播<a href="/document/product/266/14574">应用</a> ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b></p>
         # @type SubAppId: Integer
-        # @param ModelName: <p>模型名称。取值：<br>Kling：可灵；<br>Vidu；<br>Hailuo：海螺；<br>Jimeng：即梦；<br>Hunyuan：混元；<br>Mingmou：明眸；<br>GV；<br>OS；<br>PixVerse;</p>
+        # @param ModelName: <p>模型名称。取值：<br>Kling：可灵；<br>Vidu；<br>Hailuo：海螺；<br>Hunyuan：混元；<br>Mingmou：明眸；<br>GV；<br>OS；<br>PixVerse;</p>
         # @type ModelName: String
         # @param ModelVersion: <p>模型版本。取值：<br>当 ModelName 是 Hailuo，可选值为 02、2.3、2.3-fast；<br>当 ModelName 是 Kling，可选值为 1.6、2.0、2.1、2.5、2.6、O1、3.0、3.0-Omni；<br>当 ModelName 是 Jimeng，可选值为 3.0pro；<br>当 ModelName 是 Vidu，可选值为 q2、q2-pro、q2-turbo、q3、q3-pro、q3-turbo；<br>当 ModelName 是 GV，可选值为 3.1、3.1-fast；<br>当 ModelName 是 OS，可选值为 2.0；<br>当 ModelName 是 Hunyuan，可选值为 1.5；<br>当 ModelName 是 Mingmou，可选值为 1.0；<br>当 ModelName 是 PixVerse，可选值为 v5.6、v6、c1；</p>
         # @type ModelVersion: String
@@ -9889,42 +10047,52 @@ module TencentCloud
 
       # CreateMPSTemplate请求参数结构体
       class CreateMPSTemplateRequest < TencentCloud::Common::AbstractModel
-        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。</b>
+        # @param SubAppId: <p><b>点播<a href="/document/product/266/14574">应用</a> ID。</b></p>
         # @type SubAppId: Integer
-        # @param TemplateType: 需要创建的 MPS 模板的类型。取值：
-        # <li>Transcode: 创建转码模板，目前仅支持创建增强模板。</li>
-        # <li>AIAnalysis: 创建智能分析模板。</li>
-        # <li>SmartSubtitle: 创建智能字幕模板。</li>
-        # <li>SmartErase: 创建智能擦除模板。</li>
+        # @param TemplateType: <p>需要创建的 MPS 模板的类型。取值：</p><li>AIAnalysis: 创建智能分析模板。</li><li>SmartSubtitle: 创建智能字幕模板。</li><li>SmartErase: 创建智能擦除模板。</li>
         # @type TemplateType: String
-        # @param MPSCreateTemplateParams: MPS 创建模板参数。该参数用于透传至媒体处理服务（MPS），从云点播侧创建用户自定义的 MPS 任务模板。
-        # 目前仅支持通过此方式创建以下任务类型的模板：
-        # 1. 音视频增强：仅支持填写“[创建转码模板](https://cloud.tencent.com/document/product/862/37605)”接口中的 Container 、Name、Comment、RemoveVideo、RemoveAudio、VideoTemplate、AudioTemplate 和 EnhanceConfig 几个参数。其中 EnhanceConfig 此处必填，且 Container 目前暂不支持 hls。
-        # 2. 智能分析：仅支持填写“[创建内容分析模板](https://cloud.tencent.com/document/api/862/40249)”接口中的Name、Comment、ClassificationConfigure、TagConfigure、CoverConfigure、FrameTagConfigure几个参数的内容。目前仅支持在模板中配置以上参数，其他参数无需填写，若包含其它参数，系统将自动忽略。
-        # 3. 智能字幕：仅支持填写“[创建智能字幕模板](https://cloud.tencent.com/document/api/862/117004)”接口中的Name、Comment、TranslateSwitch、VideoSrcLanguage、SubtitleFormat、SubtitleType、AsrHotWordsConfigure、TranslateDstLanguage、ProcessType几个参数的内容。目前仅支持在模板中配置以上参数，其他参数无需填写，若包含其它参数，系统将自动忽略。
-        # 4. 智能擦除：仅支持填写“[创建智能擦除模板](https://cloud.tencent.com/document/api/862/123735)”接口中的Name、Comment、EraseType、EraseSubtitleConfig、EraseWatermarkConfig、ErasePrivacyConfig几个参数的内容。目前仅支持在模板中配置以上参数，其他参数无需填写，若包含其它参数，系统将自动忽略。
-
-        # 目前模板中仅支持配置以上参数，其他参数无需填写。若包含其它参数，系统将自动忽略。以上透传参数以JSON形式表示。
+        # @param MPSCreateTemplateParams: <p>MPS 创建模板参数。该参数用于透传至媒体处理服务（MPS），从云点播侧创建用户自定义的 MPS 任务模板。<br>目前仅支持通过此方式创建以下任务类型的模板：</p><ol><li>智能分析：仅支持填写“<a href="https://cloud.tencent.com/document/api/862/40249">创建内容分析模板</a>”接口中的Name、Comment、ClassificationConfigure、TagConfigure、CoverConfigure、FrameTagConfigure几个参数的内容。目前仅支持在模板中配置以上参数，其他参数无需填写，若包含其它参数，系统将自动忽略。</li><li>智能字幕：仅支持填写“<a href="https://cloud.tencent.com/document/api/862/117004">创建智能字幕模板</a>”接口中的Name、Comment、TranslateSwitch、VideoSrcLanguage、SubtitleFormat、SubtitleType、AsrHotWordsConfigure、TranslateDstLanguage、ProcessType几个参数的内容。目前仅支持在模板中配置以上参数，其他参数无需填写，若包含其它参数，系统将自动忽略。</li><li>智能擦除：仅支持填写“<a href="https://cloud.tencent.com/document/api/862/123735">创建智能擦除模板</a>”接口中的Name、Comment、EraseType、EraseSubtitleConfig、EraseWatermarkConfig、ErasePrivacyConfig几个参数的内容。目前仅支持在模板中配置以上参数，其他参数无需填写，若包含其它参数，系统将自动忽略。</li></ol><p>目前模板中仅支持配置以上参数，其他参数无需填写。若包含其它参数，系统将自动忽略。以上透传参数以JSON形式表示。</p>
         # @type MPSCreateTemplateParams: String
+        # @param AIAnalysisTemplate: <p>智能分析模板参数，MPSCreateTemplateParams为空时有效。</p>
+        # @type AIAnalysisTemplate: :class:`Tencentcloud::Vod.v20180717.models.MPSAIAnalysisTemplate`
+        # @param SmartSubtitleTemplate: <p>智能字幕模板参数，MPSCreateTemplateParams为空时有效。</p>
+        # @type SmartSubtitleTemplate: :class:`Tencentcloud::Vod.v20180717.models.MPSSmartSubtitleTemplate`
+        # @param SmartEraseTemplate: <p>智能擦除模板参数，MPSCreateTemplateParams为空时有效。</p>
+        # @type SmartEraseTemplate: :class:`Tencentcloud::Vod.v20180717.models.MPSSmartEraseTemplate`
 
-        attr_accessor :SubAppId, :TemplateType, :MPSCreateTemplateParams
+        attr_accessor :SubAppId, :TemplateType, :MPSCreateTemplateParams, :AIAnalysisTemplate, :SmartSubtitleTemplate, :SmartEraseTemplate
 
-        def initialize(subappid=nil, templatetype=nil, mpscreatetemplateparams=nil)
+        def initialize(subappid=nil, templatetype=nil, mpscreatetemplateparams=nil, aianalysistemplate=nil, smartsubtitletemplate=nil, smarterasetemplate=nil)
           @SubAppId = subappid
           @TemplateType = templatetype
           @MPSCreateTemplateParams = mpscreatetemplateparams
+          @AIAnalysisTemplate = aianalysistemplate
+          @SmartSubtitleTemplate = smartsubtitletemplate
+          @SmartEraseTemplate = smarterasetemplate
         end
 
         def deserialize(params)
           @SubAppId = params['SubAppId']
           @TemplateType = params['TemplateType']
           @MPSCreateTemplateParams = params['MPSCreateTemplateParams']
+          unless params['AIAnalysisTemplate'].nil?
+            @AIAnalysisTemplate = MPSAIAnalysisTemplate.new
+            @AIAnalysisTemplate.deserialize(params['AIAnalysisTemplate'])
+          end
+          unless params['SmartSubtitleTemplate'].nil?
+            @SmartSubtitleTemplate = MPSSmartSubtitleTemplate.new
+            @SmartSubtitleTemplate.deserialize(params['SmartSubtitleTemplate'])
+          end
+          unless params['SmartEraseTemplate'].nil?
+            @SmartEraseTemplate = MPSSmartEraseTemplate.new
+            @SmartEraseTemplate.deserialize(params['SmartEraseTemplate'])
+          end
         end
       end
 
       # CreateMPSTemplate返回参数结构体
       class CreateMPSTemplateResponse < TencentCloud::Common::AbstractModel
-        # @param Definition: MPS 任务模板唯一标识。该模板独立于直接在 MPS 服务中创建的模板。
+        # @param Definition: <p>MPS 任务模板唯一标识。该模板独立于直接在 MPS 服务中创建的模板。</p>
         # @type Definition: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -11521,6 +11689,42 @@ module TencentCloud
         end
       end
 
+      # DeleteAigcAdvancedCustomElement请求参数结构体
+      class DeleteAigcAdvancedCustomElementRequest < TencentCloud::Common::AbstractModel
+        # @param SubAppId: <p><b>点播<a href="/document/product/266/14574">应用</a> ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b></p>
+        # @type SubAppId: Integer
+        # @param ElementId: <p>AIGC 高级自定义主体的 ID</p>
+        # @type ElementId: String
+
+        attr_accessor :SubAppId, :ElementId
+
+        def initialize(subappid=nil, elementid=nil)
+          @SubAppId = subappid
+          @ElementId = elementid
+        end
+
+        def deserialize(params)
+          @SubAppId = params['SubAppId']
+          @ElementId = params['ElementId']
+        end
+      end
+
+      # DeleteAigcAdvancedCustomElement返回参数结构体
+      class DeleteAigcAdvancedCustomElementResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteAigcApiToken请求参数结构体
       class DeleteAigcApiTokenRequest < TencentCloud::Common::AbstractModel
         # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
@@ -12735,6 +12939,61 @@ module TencentCloud
         end
       end
 
+      # DescribeAigcAdvancedCustomElements请求参数结构体
+      class DescribeAigcAdvancedCustomElementsRequest < TencentCloud::Common::AbstractModel
+        # @param SubAppId: <p><b>点播<a href="https://cloud.tencent.com/document/product/266/14574">应用</a> ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b></p>
+        # @type SubAppId: Integer
+        # @param Offset: <p>分页返回的起始偏移量。将返回第 Offset 到第 Offset+Limit-1 条。</p><p>默认值：0</p><p>Offset 必须是 Limit 的整数倍。</p>
+        # @type Offset: Integer
+        # @param Limit: <p>分页返回的记录条数。</p><p>取值范围：[1, 300]</p><p>默认值：10</p><p>Offset 必须是 Limit 的整数倍。</p>
+        # @type Limit: Integer
+
+        attr_accessor :SubAppId, :Offset, :Limit
+
+        def initialize(subappid=nil, offset=nil, limit=nil)
+          @SubAppId = subappid
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @SubAppId = params['SubAppId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeAigcAdvancedCustomElements返回参数结构体
+      class DescribeAigcAdvancedCustomElementsResponse < TencentCloud::Common::AbstractModel
+        # @param ElementSet: <p>AIGC 高级自定义主体信息。</p>
+        # @type ElementSet: Array
+        # @param TotalCount: <p>记录总数。</p>
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ElementSet, :TotalCount, :RequestId
+
+        def initialize(elementset=nil, totalcount=nil, requestid=nil)
+          @ElementSet = elementset
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ElementSet'].nil?
+            @ElementSet = []
+            params['ElementSet'].each do |i|
+              aigcadvancedcustomelementinfo_tmp = AigcAdvancedCustomElementInfo.new
+              aigcadvancedcustomelementinfo_tmp.deserialize(i)
+              @ElementSet << aigcadvancedcustomelementinfo_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeAigcApiTokens请求参数结构体
       class DescribeAigcApiTokensRequest < TencentCloud::Common::AbstractModel
         # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
@@ -13424,17 +13683,17 @@ module TencentCloud
 
       # DescribeCdnLogs请求参数结构体
       class DescribeCdnLogsRequest < TencentCloud::Common::AbstractModel
-        # @param DomainName: 域名。
+        # @param DomainName: <p>域名。</p>
         # @type DomainName: String
-        # @param StartTime: 获取日志起始时间点，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#iso-.E6.97.A5.E6.9C.9F.E6.A0.BC.E5.BC.8F)。
+        # @param StartTime: <p>获取日志起始时间点，使用 <a href="https://cloud.tencent.com/document/product/266/11732#I">ISO 日期格式</a>。</p><p>参数格式：YYYY-MM-DDThh:mm:ssZ</p>
         # @type StartTime: String
-        # @param EndTime: 结束时间需大于起始时间；使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#iso-.E6.97.A5.E6.9C.9F.E6.A0.BC.E5.BC.8F)。
+        # @param EndTime: <p>结束时间需大于起始时间；使用 <a href="https://cloud.tencent.com/document/product/266/11732#I">ISO 日期格式</a>。</p><p>参数格式：YYYY-MM-DDThh:mm:ssZ</p>
         # @type EndTime: String
-        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
+        # @param SubAppId: <p><b>点播<a href="/document/product/266/14574">应用</a> ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b></p>
         # @type SubAppId: Integer
-        # @param Limit: 分页拉取的最大返回结果数。默认值：100；最大值：1000。
+        # @param Limit: <p>分页拉取的最大返回结果数。默认值：100；最大值：1000。</p>
         # @type Limit: Integer
-        # @param Offset: 分页拉取的起始偏移量。默认值：0。
+        # @param Offset: <p>分页拉取的起始偏移量。默认值：0。</p>
         # @type Offset: Integer
 
         attr_accessor :DomainName, :StartTime, :EndTime, :SubAppId, :Limit, :Offset
@@ -13460,11 +13719,11 @@ module TencentCloud
 
       # DescribeCdnLogs返回参数结构体
       class DescribeCdnLogsResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 日志下载链接总数量。
+        # @param TotalCount: <p>日志下载链接总数量。</p>
         # @type TotalCount: Integer
-        # @param OverseaCdnLogs: 海外CDN节点的日志下载列表。如果域名没有开启海外加速，忽略该参数。
+        # @param OverseaCdnLogs: <p>海外CDN节点的日志下载列表。如果域名没有开启海外加速，忽略该参数。</p>
         # @type OverseaCdnLogs: Array
-        # @param DomesticCdnLogs: 国内CDN节点的日志下载列表。
+        # @param DomesticCdnLogs: <p>国内CDN节点的日志下载列表。</p>
         # @type DomesticCdnLogs: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -16746,29 +17005,25 @@ module TencentCloud
 
       # 域名信息
       class DomainDetailInfo < TencentCloud::Common::AbstractModel
-        # @param Domain: 域名名称。
+        # @param Domain: <p>域名名称。</p>
         # @type Domain: String
-        # @param AccelerateAreaInfos: 加速地区信息。
+        # @param AccelerateAreaInfos: <p>加速地区信息。</p>
         # @type AccelerateAreaInfos: Array
-        # @param DeployStatus: 部署状态，取值有：
-        # <li>Online：上线；</li>
-        # <li>Deploying：部署中；</li>
-        # <li>Locked: 锁定中，出现该状态时，无法对该域名进行部署变更。</li>
+        # @param DeployStatus: <p>部署状态，取值有：</p><li>Online：上线；</li><li>Deploying：部署中；</li><li>Locked: 锁定中，出现该状态时，无法对该域名进行部署变更。</li>
         # @type DeployStatus: String
-        # @param HTTPSConfig: HTTPS 配置信息。
+        # @param HTTPSConfig: <p>HTTPS 配置信息。</p>
         # @type HTTPSConfig: :class:`Tencentcloud::Vod.v20180717.models.DomainHTTPSConfig`
-        # @param UrlSignatureAuthPolicy: [Key 防盗链](https://cloud.tencent.com/document/product/266/14047)配置信息。
+        # @param UrlSignatureAuthPolicy: <p><a href="https://cloud.tencent.com/document/product/266/14047">Key 防盗链</a>配置信息。</p>
         # @type UrlSignatureAuthPolicy: :class:`Tencentcloud::Vod.v20180717.models.UrlSignatureAuthPolicy`
-        # @param RefererAuthPolicy: [Referer 防盗链](https://cloud.tencent.com/document/product/266/14046)配置信息。
+        # @param RefererAuthPolicy: <p><a href="https://cloud.tencent.com/document/product/266/14046">Referer 防盗链</a>配置信息。</p>
         # @type RefererAuthPolicy: :class:`Tencentcloud::Vod.v20180717.models.RefererAuthPolicy`
-        # @param CreateTime: 域名添加到腾讯云点播系统中的时间。
-        # <li>格式按照 ISO 8601标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#iso-.E6.97.A5.E6.9C.9F.E6.A0.BC.E5.BC.8F)。</li>
+        # @param CreateTime: <p>域名添加到腾讯云点播系统中的时间。<li>格式按照 ISO 8601标准表示，详见 <a href="https://cloud.tencent.com/document/product/266/11732#I">ISO 日期格式说明</a>。</li></p>
         # @type CreateTime: String
-        # @param QUICConfig: 域名 QUIC 配置信息。
+        # @param QUICConfig: <p>域名 QUIC 配置信息。</p>
         # @type QUICConfig: :class:`Tencentcloud::Vod.v20180717.models.DomainQUICConfig`
-        # @param IPFilterPolicy: IP 访问限制配置信息。
+        # @param IPFilterPolicy: <p>IP 访问限制配置信息。</p>
         # @type IPFilterPolicy: :class:`Tencentcloud::Vod.v20180717.models.IPFilterPolicy`
-        # @param Type: 域名类型，取值有： <li>VOD：使用 VOD 产品分发的域名；</li> <li>EdgeOne：使用 EdgeOne 产品分发的域名。</li>
+        # @param Type: <p>域名类型，取值有： <li>VOD：使用 VOD 产品分发的域名；</li> <li>EdgeOne：使用 EdgeOne 产品分发的域名。</li></p>
         # @type Type: String
 
         attr_accessor :Domain, :AccelerateAreaInfos, :DeployStatus, :HTTPSConfig, :UrlSignatureAuthPolicy, :RefererAuthPolicy, :CreateTime, :QUICConfig, :IPFilterPolicy, :Type
@@ -16824,10 +17079,9 @@ module TencentCloud
 
       # 域名 HTTPS 配置信息
       class DomainHTTPSConfig < TencentCloud::Common::AbstractModel
-        # @param CertExpireTime: 证书过期时间。
-        # <li>格式按照 ISO 8601标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#iso-.E6.97.A5.E6.9C.9F.E6.A0.BC.E5.BC.8F)。</li>
+        # @param CertExpireTime: <p>证书过期时间。<li>格式按照 ISO 8601标准表示，详见 <a href="https://cloud.tencent.com/document/product/266/11732#I">ISO 日期格式说明</a>。</li></p><p>参数格式：YYYY-MM-DDThh:mm:ss+08:00</p>
         # @type CertExpireTime: String
-        # @param CloudCertId: 腾讯云 SSL 产品中的证书 ID。
+        # @param CloudCertId: <p>腾讯云 SSL 产品中的证书 ID。</p>
         # @type CloudCertId: String
 
         attr_accessor :CertExpireTime, :CloudCertId
@@ -20775,6 +21029,184 @@ module TencentCloud
         end
       end
 
+      # MPS智能分析模板配置选项
+      class MPSAIAnalysisConfigureInfo < TencentCloud::Common::AbstractModel
+        # @param Switch: <p>智能分类任务开关，可选值： <li>ON：开启智能分类任务；</li> <li>OFF：关闭智能分类任务。</li></p>
+        # @type Switch: String
+
+        attr_accessor :Switch
+
+        def initialize(switch=nil)
+          @Switch = switch
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+        end
+      end
+
+      # MPS智能分析模板输入
+      class MPSAIAnalysisTemplate < TencentCloud::Common::AbstractModel
+        # @param Name: <p>视频内容分析模板名称，长度限制：64 个字符。</p>
+        # @type Name: String
+        # @param Comment: <p>视频内容分析模板描述信息，长度限制：256 个字符。</p>
+        # @type Comment: String
+        # @param ClassificationConfigure: <p>智能分类任务控制参数。</p>
+        # @type ClassificationConfigure: :class:`Tencentcloud::Vod.v20180717.models.MPSAIAnalysisConfigureInfo`
+        # @param TagConfigure: <p>智能标签任务控制参数。</p>
+        # @type TagConfigure: :class:`Tencentcloud::Vod.v20180717.models.MPSAIAnalysisConfigureInfo`
+        # @param CoverConfigure: <p>智能封面任务控制参数。</p>
+        # @type CoverConfigure: :class:`Tencentcloud::Vod.v20180717.models.MPSAIAnalysisConfigureInfo`
+        # @param FrameTagConfigure: <p>智能按帧标签任务控制参数。</p>
+        # @type FrameTagConfigure: :class:`Tencentcloud::Vod.v20180717.models.MPSAIAnalysisConfigureInfo`
+        # @param SplitConfigure: <p>智能拆条任务控制参数。</p>
+        # @type SplitConfigure: :class:`Tencentcloud::Vod.v20180717.models.MPSAIAnalysisConfigureInfo`
+        # @param HighlightConfigure: <p>智能集锦任务控制参数。</p>
+        # @type HighlightConfigure: :class:`Tencentcloud::Vod.v20180717.models.MPSAIAnalysisConfigureInfo`
+        # @param OpeningAndEndingConfigure: <p>智能片头片尾任务控制参数。</p>
+        # @type OpeningAndEndingConfigure: :class:`Tencentcloud::Vod.v20180717.models.MPSAIAnalysisConfigureInfo`
+
+        attr_accessor :Name, :Comment, :ClassificationConfigure, :TagConfigure, :CoverConfigure, :FrameTagConfigure, :SplitConfigure, :HighlightConfigure, :OpeningAndEndingConfigure
+
+        def initialize(name=nil, comment=nil, classificationconfigure=nil, tagconfigure=nil, coverconfigure=nil, frametagconfigure=nil, splitconfigure=nil, highlightconfigure=nil, openingandendingconfigure=nil)
+          @Name = name
+          @Comment = comment
+          @ClassificationConfigure = classificationconfigure
+          @TagConfigure = tagconfigure
+          @CoverConfigure = coverconfigure
+          @FrameTagConfigure = frametagconfigure
+          @SplitConfigure = splitconfigure
+          @HighlightConfigure = highlightconfigure
+          @OpeningAndEndingConfigure = openingandendingconfigure
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Comment = params['Comment']
+          unless params['ClassificationConfigure'].nil?
+            @ClassificationConfigure = MPSAIAnalysisConfigureInfo.new
+            @ClassificationConfigure.deserialize(params['ClassificationConfigure'])
+          end
+          unless params['TagConfigure'].nil?
+            @TagConfigure = MPSAIAnalysisConfigureInfo.new
+            @TagConfigure.deserialize(params['TagConfigure'])
+          end
+          unless params['CoverConfigure'].nil?
+            @CoverConfigure = MPSAIAnalysisConfigureInfo.new
+            @CoverConfigure.deserialize(params['CoverConfigure'])
+          end
+          unless params['FrameTagConfigure'].nil?
+            @FrameTagConfigure = MPSAIAnalysisConfigureInfo.new
+            @FrameTagConfigure.deserialize(params['FrameTagConfigure'])
+          end
+          unless params['SplitConfigure'].nil?
+            @SplitConfigure = MPSAIAnalysisConfigureInfo.new
+            @SplitConfigure.deserialize(params['SplitConfigure'])
+          end
+          unless params['HighlightConfigure'].nil?
+            @HighlightConfigure = MPSAIAnalysisConfigureInfo.new
+            @HighlightConfigure.deserialize(params['HighlightConfigure'])
+          end
+          unless params['OpeningAndEndingConfigure'].nil?
+            @OpeningAndEndingConfigure = MPSAIAnalysisConfigureInfo.new
+            @OpeningAndEndingConfigure.deserialize(params['OpeningAndEndingConfigure'])
+          end
+        end
+      end
+
+      # MPS智能分析模板输入
+      class MPSAIAnalysisTemplateForUpdate < TencentCloud::Common::AbstractModel
+        # @param Definition: <p>视频内容分析模板唯一标识。</p>
+        # @type Definition: Integer
+        # @param Name: <p>视频内容分析模板名称，长度限制：64 个字符。</p>
+        # @type Name: String
+        # @param Comment: <p>视频内容分析模板描述信息，长度限制：256 个字符。</p>
+        # @type Comment: String
+        # @param ClassificationConfigure: <p>智能分类任务控制参数。</p>
+        # @type ClassificationConfigure: :class:`Tencentcloud::Vod.v20180717.models.MPSAIAnalysisConfigureInfo`
+        # @param TagConfigure: <p>智能标签任务控制参数。</p>
+        # @type TagConfigure: :class:`Tencentcloud::Vod.v20180717.models.MPSAIAnalysisConfigureInfo`
+        # @param CoverConfigure: <p>智能封面任务控制参数。</p>
+        # @type CoverConfigure: :class:`Tencentcloud::Vod.v20180717.models.MPSAIAnalysisConfigureInfo`
+        # @param FrameTagConfigure: <p>智能按帧标签任务控制参数。</p>
+        # @type FrameTagConfigure: :class:`Tencentcloud::Vod.v20180717.models.MPSAIAnalysisConfigureInfo`
+        # @param SplitConfigure: <p>智能拆条任务控制参数。</p>
+        # @type SplitConfigure: :class:`Tencentcloud::Vod.v20180717.models.MPSAIAnalysisConfigureInfo`
+        # @param HighlightConfigure: <p>智能集锦任务控制参数。</p>
+        # @type HighlightConfigure: :class:`Tencentcloud::Vod.v20180717.models.MPSAIAnalysisConfigureInfo`
+        # @param OpeningAndEndingConfigure: <p>智能片头片尾任务控制参数。</p>
+        # @type OpeningAndEndingConfigure: :class:`Tencentcloud::Vod.v20180717.models.MPSAIAnalysisConfigureInfo`
+
+        attr_accessor :Definition, :Name, :Comment, :ClassificationConfigure, :TagConfigure, :CoverConfigure, :FrameTagConfigure, :SplitConfigure, :HighlightConfigure, :OpeningAndEndingConfigure
+
+        def initialize(definition=nil, name=nil, comment=nil, classificationconfigure=nil, tagconfigure=nil, coverconfigure=nil, frametagconfigure=nil, splitconfigure=nil, highlightconfigure=nil, openingandendingconfigure=nil)
+          @Definition = definition
+          @Name = name
+          @Comment = comment
+          @ClassificationConfigure = classificationconfigure
+          @TagConfigure = tagconfigure
+          @CoverConfigure = coverconfigure
+          @FrameTagConfigure = frametagconfigure
+          @SplitConfigure = splitconfigure
+          @HighlightConfigure = highlightconfigure
+          @OpeningAndEndingConfigure = openingandendingconfigure
+        end
+
+        def deserialize(params)
+          @Definition = params['Definition']
+          @Name = params['Name']
+          @Comment = params['Comment']
+          unless params['ClassificationConfigure'].nil?
+            @ClassificationConfigure = MPSAIAnalysisConfigureInfo.new
+            @ClassificationConfigure.deserialize(params['ClassificationConfigure'])
+          end
+          unless params['TagConfigure'].nil?
+            @TagConfigure = MPSAIAnalysisConfigureInfo.new
+            @TagConfigure.deserialize(params['TagConfigure'])
+          end
+          unless params['CoverConfigure'].nil?
+            @CoverConfigure = MPSAIAnalysisConfigureInfo.new
+            @CoverConfigure.deserialize(params['CoverConfigure'])
+          end
+          unless params['FrameTagConfigure'].nil?
+            @FrameTagConfigure = MPSAIAnalysisConfigureInfo.new
+            @FrameTagConfigure.deserialize(params['FrameTagConfigure'])
+          end
+          unless params['SplitConfigure'].nil?
+            @SplitConfigure = MPSAIAnalysisConfigureInfo.new
+            @SplitConfigure.deserialize(params['SplitConfigure'])
+          end
+          unless params['HighlightConfigure'].nil?
+            @HighlightConfigure = MPSAIAnalysisConfigureInfo.new
+            @HighlightConfigure.deserialize(params['HighlightConfigure'])
+          end
+          unless params['OpeningAndEndingConfigure'].nil?
+            @OpeningAndEndingConfigure = MPSAIAnalysisConfigureInfo.new
+            @OpeningAndEndingConfigure.deserialize(params['OpeningAndEndingConfigure'])
+          end
+        end
+      end
+
+      # AI 视频智能分析输入参数类型
+      class MPSAiAnalysisTaskInput < TencentCloud::Common::AbstractModel
+        # @param Definition: <p>视频内容分析模板 ID。</p>
+        # @type Definition: Integer
+        # @param ExtendedParameter: <p>扩展参数，其值为序列化的 json字符串。注意：此参数为定制需求参数，参考如下：<a href="https://cloud.tencent.com/document/product/862/101530">智能檫除</a><a href="https://cloud.tencent.com/document/product/862/112098">智能拆条</a><a href="https://cloud.tencent.com/document/product/862/107280">高光集锦</a><a href="https://cloud.tencent.com/document/product/862/112112">智能横转竖</a></p>
+        # @type ExtendedParameter: String
+
+        attr_accessor :Definition, :ExtendedParameter
+
+        def initialize(definition=nil, extendedparameter=nil)
+          @Definition = definition
+          @ExtendedParameter = extendedparameter
+        end
+
+        def deserialize(params)
+          @Definition = params['Definition']
+          @ExtendedParameter = params['ExtendedParameter']
+        end
+      end
+
       # 使用MPS进行处理后的智能媒体信息
       class MPSAiMediaInfo < TencentCloud::Common::AbstractModel
         # @param AiMediaList: MPS处理后的智能媒体信息列表
@@ -20889,6 +21321,79 @@ module TencentCloud
         end
       end
 
+      # 智能擦除，擦除区域坐标配置。
+      # 区域由左上角与右下角点的坐标确定。
+      # 坐标原点为画面左上角，坐标点可使用像素值或百分比单位指定。
+      # 对自动擦除区域：
+      # 当单位为%时，坐标范围为[0,1]；
+      # 当单位为px时，X值范围为 [0，视频画面宽度]，Y值范围为 [0，视频画面高度]
+      # 对指定擦除区域：
+      # 当单位为%时，坐标范围为[0,1)；
+      # 当单位为px时，X值范围为 [0，视频画面宽度]，Y值范围为 [0，视频画面高度]
+      class MPSEraseArea < TencentCloud::Common::AbstractModel
+        # @param LeftTopX: <p>区域左上角X坐标。 如当Unit取1即使用百分比单位时，0.05表示区域左上角离整个画面左上角的横向距离为画面宽度的5%。</p>
+        # @type LeftTopX: Float
+        # @param LeftTopY: <p>区域左上角Y坐标。 如当Unit取1即使用百分比单位时，0.1表示区域左上角离整个画面左上角的纵向距离为画面高度的10%。</p>
+        # @type LeftTopY: Float
+        # @param RightBottomX: <p>区域右下角X坐标。 如当Unit取1即使用百分比单位时，0.75表示区域右下角离整个画面左上角的横向距离为画面宽度的75%。</p>
+        # @type RightBottomX: Float
+        # @param RightBottomY: <p>区域右下角Y坐标。 如当Unit取1即使用百分比单位时，0.9表示区域右下角离整个画面左上角的纵向距离为画面高度的90%。</p>
+        # @type RightBottomY: Float
+        # @param Unit: <p>坐标单位 - 1 百分比 - 2 像素值</p>
+        # @type Unit: Integer
+
+        attr_accessor :LeftTopX, :LeftTopY, :RightBottomX, :RightBottomY, :Unit
+
+        def initialize(lefttopx=nil, lefttopy=nil, rightbottomx=nil, rightbottomy=nil, unit=nil)
+          @LeftTopX = lefttopx
+          @LeftTopY = lefttopy
+          @RightBottomX = rightbottomx
+          @RightBottomY = rightbottomy
+          @Unit = unit
+        end
+
+        def deserialize(params)
+          @LeftTopX = params['LeftTopX']
+          @LeftTopY = params['LeftTopY']
+          @RightBottomX = params['RightBottomX']
+          @RightBottomY = params['RightBottomY']
+          @Unit = params['Unit']
+        end
+      end
+
+      # 智能擦除，指定擦除区域配置。
+      # 对指定时间段内的指定区域直接进行擦除。
+      # 当BeginMs和EndMs均取0时对整个视频内的指定区域直接进行擦除。
+      class MPSEraseTimeArea < TencentCloud::Common::AbstractModel
+        # @param BeginMs: <p>开始时间，单位:毫秒</p>
+        # @type BeginMs: Integer
+        # @param EndMs: <p>结束时间，单位:毫秒</p>
+        # @type EndMs: Integer
+        # @param Areas: <p>时间段内擦除区域列表</p>
+        # @type Areas: Array
+
+        attr_accessor :BeginMs, :EndMs, :Areas
+
+        def initialize(beginms=nil, endms=nil, areas=nil)
+          @BeginMs = beginms
+          @EndMs = endms
+          @Areas = areas
+        end
+
+        def deserialize(params)
+          @BeginMs = params['BeginMs']
+          @EndMs = params['EndMs']
+          unless params['Areas'].nil?
+            @Areas = []
+            params['Areas'].each do |i|
+              mpserasearea_tmp = MPSEraseArea.new
+              mpserasearea_tmp.deserialize(i)
+              @Areas << mpserasearea_tmp
+            end
+          end
+        end
+      end
+
       # 用于描述 MPS 视频处理任务中的返回文件结果。
       class MPSOutputFile < TencentCloud::Common::AbstractModel
         # @param FileType: 文件类型。用于标识 MPS 视频处理任务执行结果中的特定返回文件。
@@ -20968,6 +21473,584 @@ module TencentCloud
         def deserialize(params)
           @FileType = params['FileType']
           @Url = params['Url']
+        end
+      end
+
+      # 智能擦除自定义参数
+      class MPSOverrideEraseParameter < TencentCloud::Common::AbstractModel
+        # @param EraseType: <p>擦除类型</p><ul><li>subtitle 去字幕</li><li>watermark 去水印</li><li>privacy 隐私保护</li></ul>
+        # @type EraseType: String
+        # @param EraseSubtitleConfig: <p>字幕擦除配置；<br>当EraseType值为：subtitle，此字段为必填参数</p>
+        # @type EraseSubtitleConfig: :class:`Tencentcloud::Vod.v20180717.models.MPSUpdateSmartEraseSubtitleConfig`
+        # @param EraseWatermarkConfig: <p>水印擦除配置；<br>当EraseType值为：watermark，此字段为必填参数</p>
+        # @type EraseWatermarkConfig: :class:`Tencentcloud::Vod.v20180717.models.MPSUpdateSmartEraseWatermarkConfig`
+        # @param ErasePrivacyConfig: <p>隐私保护配置；<br>当EraseType值为：privacy，此字段为必填参数</p>
+        # @type ErasePrivacyConfig: :class:`Tencentcloud::Vod.v20180717.models.MPSSmartErasePrivacyConfig`
+        # @param SubtitleEmbedId: <p>擦除压制字幕模板id。</p>
+        # @type SubtitleEmbedId: Integer
+
+        attr_accessor :EraseType, :EraseSubtitleConfig, :EraseWatermarkConfig, :ErasePrivacyConfig, :SubtitleEmbedId
+
+        def initialize(erasetype=nil, erasesubtitleconfig=nil, erasewatermarkconfig=nil, eraseprivacyconfig=nil, subtitleembedid=nil)
+          @EraseType = erasetype
+          @EraseSubtitleConfig = erasesubtitleconfig
+          @EraseWatermarkConfig = erasewatermarkconfig
+          @ErasePrivacyConfig = eraseprivacyconfig
+          @SubtitleEmbedId = subtitleembedid
+        end
+
+        def deserialize(params)
+          @EraseType = params['EraseType']
+          unless params['EraseSubtitleConfig'].nil?
+            @EraseSubtitleConfig = MPSUpdateSmartEraseSubtitleConfig.new
+            @EraseSubtitleConfig.deserialize(params['EraseSubtitleConfig'])
+          end
+          unless params['EraseWatermarkConfig'].nil?
+            @EraseWatermarkConfig = MPSUpdateSmartEraseWatermarkConfig.new
+            @EraseWatermarkConfig.deserialize(params['EraseWatermarkConfig'])
+          end
+          unless params['ErasePrivacyConfig'].nil?
+            @ErasePrivacyConfig = MPSSmartErasePrivacyConfig.new
+            @ErasePrivacyConfig.deserialize(params['ErasePrivacyConfig'])
+          end
+          @SubtitleEmbedId = params['SubtitleEmbedId']
+        end
+      end
+
+      # 智能擦除自定义参数
+      class MPSRawSmartEraseParameter < TencentCloud::Common::AbstractModel
+        # @param EraseType: <p>擦除类型</p><ul><li>subtitle 去字幕</li><li>watermark 去水印</li><li>privacy 隐私保护</li></ul>
+        # @type EraseType: String
+        # @param EraseSubtitleConfig: <p>字幕擦除配置；<br>当EraseType值为：subtitle，此字段为必填参数</p>
+        # @type EraseSubtitleConfig: :class:`Tencentcloud::Vod.v20180717.models.MPSSmartEraseSubtitleConfig`
+        # @param EraseWatermarkConfig: <p>水印擦除配置；<br>当EraseType值为：watermark，此字段为必填参数</p>
+        # @type EraseWatermarkConfig: :class:`Tencentcloud::Vod.v20180717.models.MPSSmartEraseWatermarkConfig`
+        # @param ErasePrivacyConfig: <p>隐私保护配置；<br>当EraseType值为：privacy，此字段为必填参数</p>
+        # @type ErasePrivacyConfig: :class:`Tencentcloud::Vod.v20180717.models.MPSSmartErasePrivacyConfig`
+        # @param SubtitleEmbedId: <p>擦除字幕压制模板id。</p>
+        # @type SubtitleEmbedId: Integer
+        # @param UseOriginalPos: <p>压制配置，默认开启1, 把字幕压制回原字幕位置。</p>
+        # @type UseOriginalPos: Integer
+        # @param UseOriginalSize: <p>压制配置，默认开启1, 开启后使用原字幕字号。</p>
+        # @type UseOriginalSize: Integer
+
+        attr_accessor :EraseType, :EraseSubtitleConfig, :EraseWatermarkConfig, :ErasePrivacyConfig, :SubtitleEmbedId, :UseOriginalPos, :UseOriginalSize
+
+        def initialize(erasetype=nil, erasesubtitleconfig=nil, erasewatermarkconfig=nil, eraseprivacyconfig=nil, subtitleembedid=nil, useoriginalpos=nil, useoriginalsize=nil)
+          @EraseType = erasetype
+          @EraseSubtitleConfig = erasesubtitleconfig
+          @EraseWatermarkConfig = erasewatermarkconfig
+          @ErasePrivacyConfig = eraseprivacyconfig
+          @SubtitleEmbedId = subtitleembedid
+          @UseOriginalPos = useoriginalpos
+          @UseOriginalSize = useoriginalsize
+        end
+
+        def deserialize(params)
+          @EraseType = params['EraseType']
+          unless params['EraseSubtitleConfig'].nil?
+            @EraseSubtitleConfig = MPSSmartEraseSubtitleConfig.new
+            @EraseSubtitleConfig.deserialize(params['EraseSubtitleConfig'])
+          end
+          unless params['EraseWatermarkConfig'].nil?
+            @EraseWatermarkConfig = MPSSmartEraseWatermarkConfig.new
+            @EraseWatermarkConfig.deserialize(params['EraseWatermarkConfig'])
+          end
+          unless params['ErasePrivacyConfig'].nil?
+            @ErasePrivacyConfig = MPSSmartErasePrivacyConfig.new
+            @ErasePrivacyConfig.deserialize(params['ErasePrivacyConfig'])
+          end
+          @SubtitleEmbedId = params['SubtitleEmbedId']
+          @UseOriginalPos = params['UseOriginalPos']
+          @UseOriginalSize = params['UseOriginalSize']
+        end
+      end
+
+      # 自定义智能字幕参数
+      class MPSRawSmartSubtitleParameter < TencentCloud::Common::AbstractModel
+        # @param SubtitleType: <p>智能字幕字幕语言类型。</p><p>枚举值：</p><ul><li>0： 源语言</li><li>1： 翻译语言</li><li>2： 源语言+翻译语言</li></ul><p>当TranslateSwitch为OFF时仅支持取0当TranslateSwitch为ON时仅支持取1或2</p>
+        # @type SubtitleType: Integer
+        # @param VideoSrcLanguage: <p>智能字幕视频源语言<br>OCR识别仅支持以下语言：<br><code>zh_en</code>：中英<br><code>multi</code>：其他<br>ASR识别和纯字幕翻译当前支持以下语言：<br><code>auto</code>：自动识别<br><code>zh</code>：简体中文<br><code>en</code>：英语<br><code>ja</code>：日语<br><code>ko</code>：韩语<br><code>zh-PY</code>：中英粤<br><code>zh_medical</code>：中文医疗<br><code>vi</code>：越南语<br><code>ms</code>：马来语<br><code>id</code>：印度尼西亚语<br><code>fil</code>：菲律宾语<br><code>th</code>：泰语<br><code>pt</code>：葡萄牙语<br><code>tr</code>：土耳其语<br><code>ar</code>：阿拉伯语<br><code>es</code>：西班牙语<br><code>hi</code>：印地语<br><code>fr</code>：法语<br><code>de</code>：德语<br><code>it</code>：意大利语<br><code>zh_dialect</code>：中文方言<br><code>zh_en</code>：中英<br><code>yue</code>：粤语<br><code>ru</code>：俄语<br><code>prime_zh</code>：中英方言<br><code>af-ZA</code>：南非荷兰语（南非）<br><code>sq-AL</code>：阿尔巴尼亚语（阿尔巴尼亚）<br><code>am-ET</code>：阿姆哈拉语（埃塞俄比亚）<br><code>ar-DZ</code>：阿拉伯语（阿尔及利亚）<br><code>ar-BH</code>：阿拉伯语（巴林）<br><code>ar-EG</code>：阿拉伯语（埃及）<br><code>ar-IQ</code>：阿拉伯语（伊拉克）<br><code>ar-IL</code>：阿拉伯语（以色列）<br><code>ar-JO</code>：阿拉伯语（约旦）<br><code>ar-KW</code>：阿拉伯语（科威特）<br><code>ar-LB</code>：阿拉伯语（黎巴嫩）<br><code>ar-MR</code>：阿拉伯语（毛里塔尼亚）<br><code>ar-MA</code>：阿拉伯语（摩洛哥）<br><code>ar-OM</code>：阿拉伯语（阿曼）<br><code>ar-QA</code>：阿拉伯语（卡塔尔）<br><code>ar-SA</code>：阿拉伯语（沙特阿拉伯）<br><code>ar-PS</code>：阿拉伯语（巴勒斯坦国）<br><code>ar-SY</code>：阿拉伯语（叙利亚）<br><code>ar-TN</code>：阿拉伯语（突尼斯）<br><code>ar-AE</code>：阿拉伯语（阿拉伯联合酋长国）<br><code>ar-YE</code>：阿拉伯语（也门）<br><code>hy-AM</code>：亚美尼亚语（亚美尼亚）<br><code>az-AZ</code>：阿塞拜疆语（阿塞拜疆）<br><code>eu-ES</code>：巴斯克语（西班牙）<br><code>bn-BD</code>：孟加拉语（孟加拉）<br><code>bn-IN</code>：孟加拉语（印度）<br><code>bs-BA</code>：波斯尼亚语（波斯尼亚和黑塞哥维那）<br><code>bg-BG</code>：保加利亚语（保加利亚）<br><code>my-MM</code>：缅甸语（缅甸）<br><code>ca-ES</code>：加泰罗尼亚语（西班牙）<br><code>hr-HR</code>：克罗地亚语（克罗地亚）<br><code>cs-CZ</code>：捷克语（捷克共和国）<br><code>da-DK</code>：丹麦语（丹麦）<br><code>nl-BE</code>：荷兰语（比利时）<br><code>nl-NL</code>：荷兰语（荷兰）<br><code>en-AU</code>：英语（澳大利亚）<br><code>en-CA</code>：英语（加拿大）<br><code>en-GH</code>：英语（加纳）<br><code>en-HK</code>：英语（中国香港）<br><code>en-IN</code>：英语（印度）<br><code>en-IE</code>：英语（爱尔兰）<br><code>en-KE</code>：英语（肯尼亚）<br><code>en-NZ</code>：英语（新西兰）<br><code>en-NG</code>：英语（尼日利亚）<br><code>en-PK</code>：英语（巴基斯坦）<br><code>en-PH</code>：英语（菲律宾）<br><code>en-SG</code>：英语（新加坡）<br><code>en-ZA</code>：英语（南非）<br><code>en-TZ</code>：英语（坦桑尼亚）<br><code>en-GB</code>：英语（英国）<br><code>en-US</code>：英语（美国）<br><code>et-EE</code>：爱沙尼亚语（爱沙尼亚）<br><code>fil-PH</code>：菲律宾语（菲律宾）<br><code>fi-FI</code>：芬兰语（芬兰）<br><code>fr-BE</code>：法语（比利时）<br><code>fr-CA</code>：法语（加拿大）<br><code>fr-FR</code>：法语（法国）<br><code>fr-CH</code>：法语（瑞士）<br><code>gl-ES</code>：加利西亚语（西班牙）<br><code>ka-GE</code>：格鲁吉亚语（格鲁吉亚）<br><code>el-GR</code>：希腊语（希腊）<br><code>gu-IN</code>：古吉拉特语（印度）<br><code>iw-IL</code>：希伯来语（以色列）<br><code>hi-IN</code>：印地语（印度）<br><code>hu-HU</code>：匈牙利语（匈牙利）<br><code>is-IS</code>：冰岛语（冰岛）<br><code>id-ID</code>：印度尼西亚语（印度尼西亚）<br><code>it-IT</code>：意大利语（意大利）<br><code>it-CH</code>：意大利语（瑞士）<br><code>ja-JP</code>：日语（日本）<br><code>jv-ID</code>：爪哇语（印度尼西亚）<br><code>kn-IN</code>：卡纳达语（印度）<br><code>kk-KZ</code>：哈萨克语（哈萨克斯坦）<br><code>km-KH</code>：高棉语（柬埔寨）<br><code>rw-RW</code>：卢旺达语（卢旺达）<br><code>ko-KR</code>：韩语（韩国）<br><code>lo-LA</code>：老挝语（老挝）<br><code>lv-LV</code>：拉脱维亚语（拉脱维亚）<br><code>lt-LT</code>：立陶宛语（立陶宛）<br><code>mk-MK</code>：马其顿语（北马其顿）<br><code>ms-MY</code>：马来语（马来西亚）<br><code>ml-IN</code>：马拉雅拉姆语（印度）<br><code>mr-IN</code>：马拉地语（印度）<br><code>mn-MN</code>：蒙古语（蒙古）<br><code>ne-NP</code>：尼泊尔语（尼泊尔）<br><code>no-NO</code>：博克马尔挪威语（挪威）<br><code>fa-IR</code>：波斯语（伊朗）<br><code>pl-PL</code>：波兰语（波兰）<br><code>pt-BR</code>：葡萄牙语（巴西）<br><code>pt-PT</code>：葡萄牙语（葡萄牙）<br><code>ro-RO</code>：罗马尼亚语（罗马尼亚）<br><code>ru-RU</code>：俄语（俄罗斯）<br><code>sr-RS</code>：塞尔维亚语（塞尔维亚）<br><code>si-LK</code>：僧伽罗语（斯里兰卡）<br><code>sk-SK</code>：斯洛伐克语（斯洛伐克）<br><code>sl-SI</code>：斯洛文尼亚语（斯洛文尼亚）<br><code>st-ZA</code>：南索托语（南非）<br><code>es-AR</code>：西班牙语（阿根廷）<br><code>es-BO</code>：西班牙语（玻利维亚）<br><code>es-CL</code>：西班牙语（智利）<br><code>es-CO</code>：西班牙语（哥伦比亚）<br><code>es-CR</code>：西班牙语（哥斯达黎加）<br><code>es-DO</code>：西班牙语（多米尼加共和国）<br><code>es-EC</code>：西班牙语（厄瓜多尔）<br><code>es-SV</code>：西班牙语（萨尔瓦多）<br><code>es-GT</code>：西班牙语（危地马拉）<br><code>es-HN</code>：西班牙语（洪都拉斯）<br><code>es-MX</code>：西班牙语（墨西哥）<br><code>es-NI</code>：西班牙语（尼加拉瓜）<br><code>es-PA</code>：西班牙语（巴拿马）<br><code>es-PY</code>：西班牙语（巴拉圭）<br><code>es-PE</code>：西班牙语（秘鲁）<br><code>es-PR</code>：西班牙语（波多黎各）<br><code>es-ES</code>：西班牙语（西班牙）<br><code>es-US</code>：西班牙语（美国）<br><code>es-UY</code>：西班牙语（乌拉圭）<br><code>es-VE</code>：西班牙语（委内瑞拉）<br><code>su-ID</code>：巽他语（印度尼西亚）<br><code>sw-KE</code>：斯瓦希里语（肯尼亚）<br><code>sw-TZ</code>：斯瓦希里语（坦桑尼亚）<br><code>sv-SE</code>：瑞典语（瑞典）<br><code>ta-IN</code>：泰米尔语（印度）<br><code>ta-MY</code>：泰米尔语（马来西亚）<br><code>ta-SG</code>：泰米尔语（新加坡）<br><code>ta-LK</code>：泰米尔语（斯里兰卡）<br><code>te-IN</code>：泰卢固语（印度）<br><code>th-TH</code>：泰语（泰国）<br><code>ts-ZA</code>：聪加语（南非）<br><code>tr-TR</code>：土耳其语（土耳其）<br><code>uk-UA</code>：乌克兰语（乌克兰）<br><code>ur-IN</code>：乌尔都语（印度）<br><code>ur-PK</code>：乌尔都语（巴基斯坦）<br><code>uz-UZ</code>：乌兹别克语（乌兹别克斯坦）<br><code>ve-ZA</code>：文达语（南非）<br><code>vi-VN</code>：越南语（越南）<br><code>xh-ZA</code>：科萨语（南非）<br><code>zu-ZA</code>：祖鲁语（南非）</p>
+        # @type VideoSrcLanguage: String
+        # @param SubtitleFormat: <p>智能字幕文件格式:</p><ul><li>ASR识别翻译处理类型下：<ul><li>vtt: WebVTT 格式字幕</li><li>srt: SRT 格式字幕</li><li>不填或填空：不生成字幕文件</li></ul></li><li>纯字幕翻译处理类型下：<ul><li>original：与源文件一致</li><li>vtt: WebVTT 格式字幕</li><li>srt: SRT 格式字幕</li></ul></li><li>OCR识别翻译处理类型下：<ul><li>vtt: WebVTT 格式字幕</li><li>srt: SRT 格式字幕</li></ul></li></ul><p><strong>注意</strong>：</p><ul><li>ASR识别方式下，翻译大于等于2种语言时不允许传空或不传；</li><li>纯字幕翻译和OCR识别翻译方式下，不允许传空或不传</li><li>OCR类型的任务，在开启压制时，允许不传或传空</li></ul>
+        # @type SubtitleFormat: String
+        # @param TranslateSwitch: <p>字幕翻译开关<br><code>ON</code>: 开启翻译<br><code>OFF</code>: 关闭翻译</p><p><strong>注意</strong>：纯字幕翻译方式下，不传默认是打开的，不允许传空或<code>OFF</code>；</p>
+        # @type TranslateSwitch: String
+        # @param TranslateDstLanguage: <p>字幕翻译目标语言<br>当TranslateSwitch为ON的时候生效，翻译语言列表：<br><code>ab</code>：阿布哈兹语<br><code>ace</code>：亚齐语<br><code>ach</code>：阿乔利语<br><code>af</code>：南非荷兰语<br><code>ak</code>：契维语（阿坎语）<br><code>am</code>：Amharic<br><code>ar</code>：阿拉伯语<br><code>as</code>：阿萨姆语<br><code>ay</code>：艾马拉语<br><code>az</code>：阿塞拜疆语<br><code>ba</code>：巴什基尔语<br><code>ban</code>：巴厘语<br><code>bbc</code>：巴塔克托巴语<br><code>bem</code>：Bemba<br><code>bew</code>：Betawi<br><code>bg</code>：保加利亚语<br><code>bho</code>：博杰普尔语<br><code>bik</code>：Bikol<br><code>bm</code>：班巴拉语<br><code>bn</code>：孟加拉语<br><code>br</code>：布列塔尼语<br><code>bs</code>：波斯尼亚语<br><code>btx</code>：巴塔克卡罗语<br><code>bts</code>：巴塔克西马隆贡语<br><code>bua</code>：布里亚特语<br><code>ca</code>：加泰罗尼亚语<br><code>ceb</code>：宿务语<br><code>cgg</code>：Kiga<br><code>chm</code>：草原马里语<br><code>ckb</code>：库尔德语（索拉尼语）<br><code>cnh</code>：哈卡钦语<br><code>co</code>：科西嘉语<br><code>crh</code>：克里米亚鞑靼语<br><code>crs</code>：塞舌尔克里奥尔语<br><code>cs</code>：捷克语<br><code>cv</code>：楚瓦什语<br><code>cy</code>：威尔士语<br><code>da</code>：丹麦语<br><code>de</code>：德语<br><code>din</code>：Dinka<br><code>doi</code>：多格来语<br><code>dov</code>：敦贝语<br><code>dv</code>：第维埃语<br><code>dz</code>：宗卡语<br><code>ee</code>：Ewe<br><code>el</code>：希腊语<br><code>en</code>：英语<br><code>eo</code>：世界语<br><code>es</code>：西班牙语<br><code>et</code>：爱沙尼亚语<br><code>eu</code>：巴斯克语<br><code>fa</code>：波斯语<br><code>ff</code>：富拉语<br><code>fi</code>：芬兰语<br><code>fil</code>：菲律宾语（塔加拉语）<br><code>fj</code>：斐济语<br><code>fr</code>：法语<br><code>fr-CA</code>：法语（加拿大）<br><code>fr-FR</code>：法语（法国）<br><code>fy</code>：弗里斯兰语<br><code>ga</code>：爱尔兰语<br><code>gaa</code>：加 (Ga) 语<br><code>gd</code>：苏格兰盖尔语<br><code>gl</code>：加利西亚语<br><code>gn</code>：瓜拉尼语<br><code>gom</code>：贡根语<br><code>gu</code>：古吉拉特语<br><code>gv</code>：马恩岛语<br><code>ha</code>：Hausa<br><code>haw</code>：夏威夷语<br><code>he</code>：希伯来语<br><code>hi</code>：印地语<br><code>hil</code>：希利盖农语<br><code>hmn</code>：苗语<br><code>hr</code>：克罗地亚语<br><code>hrx</code>：洪斯吕克语<br><code>ht</code>：海地克里奥尔语<br><code>hu</code>：匈牙利语<br><code>hy</code>：亚美尼亚语<br><code>id</code>：印度尼西亚语<br><code>ig</code>：Igbo<br><code>ilo</code>：伊洛果语<br><code>is</code>：冰岛语<br><code>it</code>：意大利语<br><code>iw</code>：希伯来语<br><code>ja</code>：日语<br><code>jv</code>：爪哇语<br><code>ka</code>：格鲁吉亚语<br><code>kk</code>：哈萨克语<br><code>km</code>：高棉语<br><code>kn</code>：卡纳达语<br><code>ko</code>：韩语<br><code>kri</code>：Krio<br><code>ku</code>：库尔德语（库尔曼吉语）<br><code>ktu</code>：吉土巴语<br><code>ky</code>：吉尔吉斯语<br><code>la</code>：拉丁语<br><code>lb</code>：卢森堡语<br><code>lg</code>：干达语（卢干达语）<br><code>li</code>：林堡语<br><code>lij</code>：利古里亚语<br><code>lmo</code>：伦巴第语<br><code>ln</code>：林加拉语<br><code>lo</code>：老挝语<br><code>lt</code>：立陶宛语<br><code>ltg</code>：拉特加莱语<br><code>luo</code>：Luo<br><code>lus</code>：米佐语<br><code>lv</code>：拉脱维亚语<br><code>mai</code>：迈蒂利语<br><code>mak</code>：马卡萨<br><code>mg</code>：马尔加什语<br><code>mi</code>：毛利语<br><code>min</code>：米南语<br><code>mk</code>：马其顿语<br><code>ml</code>：马拉雅拉姆语<br><code>mn</code>：蒙古语<br><code>mr</code>：马拉地语<br><code>ms</code>：马来语<br><code>mt</code>：马耳他语<br><code>my</code>：缅甸语<br><code>ne</code>：尼泊尔语<br><code>new</code>：尼瓦尔语<br><code>nl</code>：荷兰语<br><code>no</code>：挪威语<br><code>nr</code>：恩德贝莱语（南部）<br><code>nso</code>：北索托语（塞佩蒂语）<br><code>nus</code>：努尔语<br><code>ny</code>：齐切瓦语（尼扬贾语）<br><code>oc</code>：奥克斯坦语<br><code>om</code>：Oromo<br><code>or</code>：奥里亚语<br><code>pa</code>：旁遮普语<br><code>pag</code>：邦阿西楠语<br><code>pam</code>：邦板牙语<br><code>pap</code>：Papiamento<br><code>pl</code>：波兰语<br><code>ps</code>：Pashto<br><code>pt</code>：葡萄牙语<br><code>pt-BR</code>：葡萄牙语（巴西）<br><code>pt-PT</code>：葡萄牙语（葡萄牙）<br><code>qu</code>：克丘亚语<br><code>ro</code>：罗马尼亚语<br><code>rom</code>：罗姆语<br><code>rn</code>：Rundi<br><code>ru</code>：俄语<br><code>rw</code>：卢旺达语<br><code>sa</code>：梵语<br><code>scn</code>：西西里语<br><code>sd</code>：信德语<br><code>sg</code>：Sango<br><code>shn</code>：掸语<br><code>si</code>：僧伽罗语<br><code>sk</code>：斯洛伐克语<br><code>sl</code>：斯洛文尼亚语<br><code>sm</code>：萨摩亚语<br><code>sn</code>：修纳语<br><code>so</code>：索马里语<br><code>sq</code>：阿尔巴尼亚语<br><code>sr</code>：塞尔维亚语<br><code>ss</code>：斯瓦特语<br><code>st</code>：塞索托语<br><code>su</code>：巽他语<br><code>sv</code>：瑞典语<br><code>sw</code>：斯瓦希里语<br><code>szl</code>：西里西亚语<br><code>ta</code>：泰米尔语<br><code>te</code>：泰卢固语<br><code>tet</code>：德顿语<br><code>tg</code>：塔吉克语<br><code>th</code>：泰语<br><code>ti</code>：提格里尼亚语<br><code>tk</code>：土库曼语<br><code>tn</code>：茨瓦纳语<br><code>tr</code>：土耳其语<br><code>ts</code>：聪加语<br><code>tt</code>：鞑靼语<br><code>ug</code>：维吾尔语<br><code>uk</code>：乌克兰语<br><code>ur</code>：乌尔都语<br><code>uz</code>：乌兹别克语<br><code>vi</code>：越南语<br><code>xh</code>：科萨语<br><code>yi</code>：意第绪语<br><code>yo</code>：约鲁巴语<br><code>yua</code>：尤卡坦玛雅语<br><code>yue</code>：粤语<br><code>zh</code>：简体中文<br><code>zh-TW</code>：中文（繁体）<br><code>zu</code>：祖鲁语</p><p><strong>注意</strong>：多语言方式，则使用 <code>/</code> 分割，如：<code>en/ja</code>，表示英语和日语。</p>
+        # @type TranslateDstLanguage: String
+        # @param ExtInfo: <p>自定义参数</p>
+        # @type ExtInfo: String
+        # @param ProcessType: <p>字幕处理类型：</p><ul><li>0：ASR识别字幕</li><li>1：纯字幕翻译</li><li>2：OCR识别字幕</li></ul><p><strong>注意</strong>：不传的情况下默认类型为 ASR识别字幕</p>
+        # @type ProcessType: Integer
+
+        attr_accessor :SubtitleType, :VideoSrcLanguage, :SubtitleFormat, :TranslateSwitch, :TranslateDstLanguage, :ExtInfo, :ProcessType
+
+        def initialize(subtitletype=nil, videosrclanguage=nil, subtitleformat=nil, translateswitch=nil, translatedstlanguage=nil, extinfo=nil, processtype=nil)
+          @SubtitleType = subtitletype
+          @VideoSrcLanguage = videosrclanguage
+          @SubtitleFormat = subtitleformat
+          @TranslateSwitch = translateswitch
+          @TranslateDstLanguage = translatedstlanguage
+          @ExtInfo = extinfo
+          @ProcessType = processtype
+        end
+
+        def deserialize(params)
+          @SubtitleType = params['SubtitleType']
+          @VideoSrcLanguage = params['VideoSrcLanguage']
+          @SubtitleFormat = params['SubtitleFormat']
+          @TranslateSwitch = params['TranslateSwitch']
+          @TranslateDstLanguage = params['TranslateDstLanguage']
+          @ExtInfo = params['ExtInfo']
+          @ProcessType = params['ProcessType']
+        end
+      end
+
+      # 字幕OCR提取框选区域配置
+      class MPSSelectingSubtitleAreasConfig < TencentCloud::Common::AbstractModel
+        # @param AutoAreas: <p>自动选择自定义区域。 对选定区域，利用AI模型自动检测其中存在的选择目标并提取。</p>
+        # @type AutoAreas: Array
+        # @param SampleWidth: <p>示例视频或图片的宽，单位像素值</p>
+        # @type SampleWidth: Integer
+        # @param SampleHeight: <p>示例视频或图片的高，单位像素值</p>
+        # @type SampleHeight: Integer
+
+        attr_accessor :AutoAreas, :SampleWidth, :SampleHeight
+
+        def initialize(autoareas=nil, samplewidth=nil, sampleheight=nil)
+          @AutoAreas = autoareas
+          @SampleWidth = samplewidth
+          @SampleHeight = sampleheight
+        end
+
+        def deserialize(params)
+          unless params['AutoAreas'].nil?
+            @AutoAreas = []
+            params['AutoAreas'].each do |i|
+              mpserasearea_tmp = MPSEraseArea.new
+              mpserasearea_tmp.deserialize(i)
+              @AutoAreas << mpserasearea_tmp
+            end
+          end
+          @SampleWidth = params['SampleWidth']
+          @SampleHeight = params['SampleHeight']
+        end
+      end
+
+      # 智能擦除模板隐私保护配置
+      class MPSSmartErasePrivacyConfig < TencentCloud::Common::AbstractModel
+        # @param PrivacyModel: <p>隐私保护擦除方式。</p><p>枚举值：</p><ul><li>blur： 模糊</li><li>mosaic： 马赛克</li></ul>
+        # @type PrivacyModel: String
+        # @param PrivacyTargets: <p>隐私保护目标，（在API Explorer上使用时无需传入数组，添加相应项并填入对应值即可）。</p><p>枚举值：</p><ul><li>face： 人脸</li><li>plate： 车牌</li></ul>
+        # @type PrivacyTargets: Array
+
+        attr_accessor :PrivacyModel, :PrivacyTargets
+
+        def initialize(privacymodel=nil, privacytargets=nil)
+          @PrivacyModel = privacymodel
+          @PrivacyTargets = privacytargets
+        end
+
+        def deserialize(params)
+          @PrivacyModel = params['PrivacyModel']
+          @PrivacyTargets = params['PrivacyTargets']
+        end
+      end
+
+      # 智能擦除模板去字幕配置
+      class MPSSmartEraseSubtitleConfig < TencentCloud::Common::AbstractModel
+        # @param SubtitleEraseMethod: <p>字幕擦除方式。<br><strong>自动擦除：</strong>通过AI模型自动识别视频中的字幕文本内容，进行无痕化擦除，生成新的视频。但画面干扰、特殊字幕样式可能会带来一定漏擦误擦问题，可以通过指定区域擦除处理。<br>当使用自动擦除时，若您不指定AutoAreas，将对默认区域（画面中下部）进行自动擦除；若指定AutoAreas，将改为对您指定的区域进行自动擦除。<br><strong>指定区域擦除：</strong>若您的字幕位置较固定，建议您直接指定擦除区域，最大程度减少漏擦的情况。<br>当您选择指定区域擦除时，请在CustomAreas中至少传入一个指定区域。</p><ul><li>auto 自动擦除</li><li>custom 指定区域擦除</li></ul>
+        # @type SubtitleEraseMethod: String
+        # @param SubtitleModel: <p>字幕擦除模型。<br><strong>标准版（推荐）：</strong>若您的字幕样式标准，通常建议选择该版本，细节无痕化效果更好。<br><strong>区域版：</strong>若您的字幕存在花体、阴影、动效等特殊样式，建议选择区域版，擦除面积更大，但细节效果不如标准版。</p><ul><li>standard 标准模型</li><li>area 区域模型</li></ul>
+        # @type SubtitleModel: String
+        # @param OcrSwitch: <p>是否开启OCR字幕提取，默认取OFF。<br>当且仅当SubtitleEraseMethod取auto时支持开启OCR字幕提取，开启后将识别自动擦除区域内出现时间最长且最稳定的文字区域为字幕区域，对字幕区域中的文字进行提取和擦除。</p><ul><li>ON 开启</li><li>OFF 关闭</li></ul>
+        # @type OcrSwitch: String
+        # @param SubtitleLang: <p>字幕语言，用于指导OCR识别，默认取zh_en；仅当OcrSwitch取"ON"时生效。</p><ul><li>zh_en 中英文</li><li>multi 其他<br>其他具体支持识别如下语言：<br>中文、英文、日文、韩语、西班牙语、法语、德语、葡萄牙语、越南语、马来语、俄语、意大利语、荷兰语、瑞典语、芬兰语、丹麦语、挪威语、匈牙利语、泰语、印地语、阿拉伯语、印度-孟加拉语、印度-古吉拉特语、印度-卡纳达语 、印度-马拉亚拉姆语 、印度-泰米尔语、印度-泰卢固语、斯洛文尼亚语、波兰语、加泰罗尼亚语、波斯尼亚语、捷克语、爱沙尼亚语、克罗地亚语、旁遮普语、马拉地语、阿塞拜疆语、印尼语、卢森堡语 、立陶宛语、拉脱维亚语、马耳他语、斯洛伐克语、土耳其语、哈萨克语、希腊语、爱尔兰语、白俄罗斯语、高棉语、他加禄语、普什图语、波斯语、塔吉克斯坦语</li></ul>
+        # @type SubtitleLang: String
+        # @param SubtitleFormat: <p>字幕文件格式，默认取vtt；仅当OcrSwitch取"ON"时生效。</p><ul><li>srt srt格式</li><li>vtt WebVTT格式</li><li>当填写SubtitleEmbedId时可以取值空字符串，表示不输出字幕文件</li></ul>
+        # @type SubtitleFormat: String
+        # @param TransSwitch: <p>是否开启字幕翻译，默认取OFF；仅当OcrSwitch取"ON"时生效。</p><ul><li>ON 开启</li><li>OFF 关闭</li></ul>
+        # @type TransSwitch: String
+        # @param TransDstLang: <p>字幕翻译目标语言，默认取en；仅当TransSwitch取"ON"时生效。<br>当前支持以下语言：<br>zh：简体中文<br>en：英语<br>ja：日语<br>ko：韩语<br>fr：法语<br>es：西班牙语<br>it：意大利语<br>de：德语<br>tr：土耳其语<br>ru：俄语<br>pt：葡萄牙语<br>vi：越南语<br>id：印度尼西亚语<br>ms：马来语<br>th：泰语<br>ar：阿拉伯语<br>hi：印地语</p>
+        # @type TransDstLang: String
+        # @param AutoAreas: <p>自动擦除自定义区域。<br>对选定区域，利用AI模型自动检测其中存在的擦除目标并擦除。<br>注意：当擦除方式选择custom时，此参数将不会生效；修改模板时，清除区域请传入[]，不传时将保持模板区域信息不变。</p>
+        # @type AutoAreas: Array
+        # @param CustomAreas: <p>指定擦除自定义区域。<br>对选定区域，在选定时间段内不进行检测识别直接进行擦除。<br>注意：修改模板时，清除区域请传入[]，不传时将保持模板区域信息不变。</p>
+        # @type CustomAreas: Array
+        # @param UseOriginalPos: <p>压制配置，默认开启1, 把字幕压制回原字幕位置。只有开启OCR翻译时可以填写，取0时表示不开启压回原位</p>
+        # @type UseOriginalPos: Integer
+        # @param UseOriginalSize: <p>压制配置，默认开启1, 开启后使用原字幕字号。只有开启OCR翻译时可以填写，取0时表示不使用原字号</p>
+        # @type UseOriginalSize: Integer
+
+        attr_accessor :SubtitleEraseMethod, :SubtitleModel, :OcrSwitch, :SubtitleLang, :SubtitleFormat, :TransSwitch, :TransDstLang, :AutoAreas, :CustomAreas, :UseOriginalPos, :UseOriginalSize
+
+        def initialize(subtitleerasemethod=nil, subtitlemodel=nil, ocrswitch=nil, subtitlelang=nil, subtitleformat=nil, transswitch=nil, transdstlang=nil, autoareas=nil, customareas=nil, useoriginalpos=nil, useoriginalsize=nil)
+          @SubtitleEraseMethod = subtitleerasemethod
+          @SubtitleModel = subtitlemodel
+          @OcrSwitch = ocrswitch
+          @SubtitleLang = subtitlelang
+          @SubtitleFormat = subtitleformat
+          @TransSwitch = transswitch
+          @TransDstLang = transdstlang
+          @AutoAreas = autoareas
+          @CustomAreas = customareas
+          @UseOriginalPos = useoriginalpos
+          @UseOriginalSize = useoriginalsize
+        end
+
+        def deserialize(params)
+          @SubtitleEraseMethod = params['SubtitleEraseMethod']
+          @SubtitleModel = params['SubtitleModel']
+          @OcrSwitch = params['OcrSwitch']
+          @SubtitleLang = params['SubtitleLang']
+          @SubtitleFormat = params['SubtitleFormat']
+          @TransSwitch = params['TransSwitch']
+          @TransDstLang = params['TransDstLang']
+          unless params['AutoAreas'].nil?
+            @AutoAreas = []
+            params['AutoAreas'].each do |i|
+              mpserasearea_tmp = MPSEraseArea.new
+              mpserasearea_tmp.deserialize(i)
+              @AutoAreas << mpserasearea_tmp
+            end
+          end
+          unless params['CustomAreas'].nil?
+            @CustomAreas = []
+            params['CustomAreas'].each do |i|
+              mpserasetimearea_tmp = MPSEraseTimeArea.new
+              mpserasetimearea_tmp.deserialize(i)
+              @CustomAreas << mpserasetimearea_tmp
+            end
+          end
+          @UseOriginalPos = params['UseOriginalPos']
+          @UseOriginalSize = params['UseOriginalSize']
+        end
+      end
+
+      # 智能擦除任务
+      class MPSSmartEraseTaskInput < TencentCloud::Common::AbstractModel
+        # @param Definition: <p>智能擦除模板id。</p>
+        # @type Definition: Integer
+        # @param RawParameter: <p>智能擦除自定义参数，当 Definition 填 0 时有效。 该参数用于高度定制场景，建议您优先使用 Definition 指定智能擦除参数。</p>
+        # @type RawParameter: :class:`Tencentcloud::Vod.v20180717.models.MPSRawSmartEraseParameter`
+        # @param OverrideParameter: <p>智能擦除自定义参数，当 Definition 不填 0 时有效。 当填写了该结构中的部分擦除参数时，将使用填写的参数覆盖智能擦除模板中的参数。 该参数用于高度定制场景，建议您仅使用 Definition 指定智能擦除参数。</p>
+        # @type OverrideParameter: :class:`Tencentcloud::Vod.v20180717.models.MPSOverrideEraseParameter`
+
+        attr_accessor :Definition, :RawParameter, :OverrideParameter
+
+        def initialize(definition=nil, rawparameter=nil, overrideparameter=nil)
+          @Definition = definition
+          @RawParameter = rawparameter
+          @OverrideParameter = overrideparameter
+        end
+
+        def deserialize(params)
+          @Definition = params['Definition']
+          unless params['RawParameter'].nil?
+            @RawParameter = MPSRawSmartEraseParameter.new
+            @RawParameter.deserialize(params['RawParameter'])
+          end
+          unless params['OverrideParameter'].nil?
+            @OverrideParameter = MPSOverrideEraseParameter.new
+            @OverrideParameter.deserialize(params['OverrideParameter'])
+          end
+        end
+      end
+
+      # MPS智能擦除模板输入
+      class MPSSmartEraseTemplate < TencentCloud::Common::AbstractModel
+        # @param Name: <p>智能擦除模板名称长度限制：64 个字符。</p>
+        # @type Name: String
+        # @param EraseType: <p>擦除类型</p><ul><li>subtitle 去字幕</li><li>watermark 去水印</li><li>privacy 隐私保护</li></ul>
+        # @type EraseType: String
+        # @param Comment: <p>智能擦除模板描述信息长度限制：256 个字符。</p>
+        # @type Comment: String
+        # @param EraseSubtitleConfig: <p>字幕擦除配置，EraseType取subtitle时必填且仅此时生效。</p>
+        # @type EraseSubtitleConfig: :class:`Tencentcloud::Vod.v20180717.models.MPSSmartEraseSubtitleConfig`
+        # @param EraseWatermarkConfig: <p>水印擦除配置，EraseType取watermark时必填且仅此时生效。</p>
+        # @type EraseWatermarkConfig: :class:`Tencentcloud::Vod.v20180717.models.MPSSmartEraseWatermarkConfig`
+        # @param ErasePrivacyConfig: <p>隐私保护配置，EraseType取privacy时必填且仅此时生效。</p>
+        # @type ErasePrivacyConfig: :class:`Tencentcloud::Vod.v20180717.models.MPSSmartErasePrivacyConfig`
+        # @param SampleWidth: <p>示例视频或图片的宽，单位像素值</p>
+        # @type SampleWidth: Integer
+        # @param SampleHeight: <p>示例视频或图片的高，单位像素值</p>
+        # @type SampleHeight: Integer
+
+        attr_accessor :Name, :EraseType, :Comment, :EraseSubtitleConfig, :EraseWatermarkConfig, :ErasePrivacyConfig, :SampleWidth, :SampleHeight
+
+        def initialize(name=nil, erasetype=nil, comment=nil, erasesubtitleconfig=nil, erasewatermarkconfig=nil, eraseprivacyconfig=nil, samplewidth=nil, sampleheight=nil)
+          @Name = name
+          @EraseType = erasetype
+          @Comment = comment
+          @EraseSubtitleConfig = erasesubtitleconfig
+          @EraseWatermarkConfig = erasewatermarkconfig
+          @ErasePrivacyConfig = eraseprivacyconfig
+          @SampleWidth = samplewidth
+          @SampleHeight = sampleheight
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @EraseType = params['EraseType']
+          @Comment = params['Comment']
+          unless params['EraseSubtitleConfig'].nil?
+            @EraseSubtitleConfig = MPSSmartEraseSubtitleConfig.new
+            @EraseSubtitleConfig.deserialize(params['EraseSubtitleConfig'])
+          end
+          unless params['EraseWatermarkConfig'].nil?
+            @EraseWatermarkConfig = MPSSmartEraseWatermarkConfig.new
+            @EraseWatermarkConfig.deserialize(params['EraseWatermarkConfig'])
+          end
+          unless params['ErasePrivacyConfig'].nil?
+            @ErasePrivacyConfig = MPSSmartErasePrivacyConfig.new
+            @ErasePrivacyConfig.deserialize(params['ErasePrivacyConfig'])
+          end
+          @SampleWidth = params['SampleWidth']
+          @SampleHeight = params['SampleHeight']
+        end
+      end
+
+      # MPS智能擦除模板输入
+      class MPSSmartEraseTemplateForUpdate < TencentCloud::Common::AbstractModel
+        # @param Definition: <p>智能擦除模板唯一标识</p>
+        # @type Definition: Integer
+        # @param Name: <p>智能擦除模板名称长度限制：64 个字符。</p>
+        # @type Name: String
+        # @param EraseType: <p>擦除类型</p><ul><li>subtitle 去字幕</li><li>watermark 去水印</li><li>privacy 隐私保护</li></ul>
+        # @type EraseType: String
+        # @param Comment: <p>智能擦除模板描述信息长度限制：256 个字符。</p>
+        # @type Comment: String
+        # @param EraseSubtitleConfig: <p>字幕擦除配置，EraseType取subtitle或者EraseType不填，对应模板原EraseType为subtitle时生效。</p>
+        # @type EraseSubtitleConfig: :class:`Tencentcloud::Vod.v20180717.models.MPSSmartEraseSubtitleConfig`
+        # @param EraseWatermarkConfig: <p>水印擦除配置，EraseType取watermark或者EraseType不填，对应模板原EraseType为watermark时生效。</p>
+        # @type EraseWatermarkConfig: :class:`Tencentcloud::Vod.v20180717.models.MPSSmartEraseWatermarkConfig`
+        # @param ErasePrivacyConfig: <p>隐私保护配置，EraseType取privacy或者EraseType不填，对应模板原EraseType为privacy时生效。</p>
+        # @type ErasePrivacyConfig: :class:`Tencentcloud::Vod.v20180717.models.MPSSmartErasePrivacyConfig`
+        # @param SampleWidth: <p>示例视频或图片的宽，单位像素值</p>
+        # @type SampleWidth: Integer
+        # @param SampleHeight: <p>示例视频或图片的高，单位像素值</p>
+        # @type SampleHeight: Integer
+
+        attr_accessor :Definition, :Name, :EraseType, :Comment, :EraseSubtitleConfig, :EraseWatermarkConfig, :ErasePrivacyConfig, :SampleWidth, :SampleHeight
+
+        def initialize(definition=nil, name=nil, erasetype=nil, comment=nil, erasesubtitleconfig=nil, erasewatermarkconfig=nil, eraseprivacyconfig=nil, samplewidth=nil, sampleheight=nil)
+          @Definition = definition
+          @Name = name
+          @EraseType = erasetype
+          @Comment = comment
+          @EraseSubtitleConfig = erasesubtitleconfig
+          @EraseWatermarkConfig = erasewatermarkconfig
+          @ErasePrivacyConfig = eraseprivacyconfig
+          @SampleWidth = samplewidth
+          @SampleHeight = sampleheight
+        end
+
+        def deserialize(params)
+          @Definition = params['Definition']
+          @Name = params['Name']
+          @EraseType = params['EraseType']
+          @Comment = params['Comment']
+          unless params['EraseSubtitleConfig'].nil?
+            @EraseSubtitleConfig = MPSSmartEraseSubtitleConfig.new
+            @EraseSubtitleConfig.deserialize(params['EraseSubtitleConfig'])
+          end
+          unless params['EraseWatermarkConfig'].nil?
+            @EraseWatermarkConfig = MPSSmartEraseWatermarkConfig.new
+            @EraseWatermarkConfig.deserialize(params['EraseWatermarkConfig'])
+          end
+          unless params['ErasePrivacyConfig'].nil?
+            @ErasePrivacyConfig = MPSSmartErasePrivacyConfig.new
+            @ErasePrivacyConfig.deserialize(params['ErasePrivacyConfig'])
+          end
+          @SampleWidth = params['SampleWidth']
+          @SampleHeight = params['SampleHeight']
+        end
+      end
+
+      # 智能擦除模板去水印配置
+      class MPSSmartEraseWatermarkConfig < TencentCloud::Common::AbstractModel
+        # @param WatermarkEraseMethod: <p>水印擦除方式。 <strong>自动擦除：</strong>通过A模型自动识别视频中的水印，擦除后生成新的视频。适用于动态水印。 当使用自动擦除时，若您不指定AutoAreas，将对视频全屏进行自动擦除；若指定AutoAreas，将改为对您指定的区域进行自动擦除。 <strong>指定区域擦除：</strong>针对位置较固定的静态水印，建议您直接指定擦除区域。 当您选择指定区域擦除时，请至少传入一个指定区域。 - auto 自动擦除 - custom 指定区域擦除</p>
+        # @type WatermarkEraseMethod: String
+        # @param WatermarkModel: <p>水印擦除模型。 基础版：效果一般，性价比高，适合动画或背景较干净的视频。 高级版：效果更好，适合短剧等现实风格视频。 - basic 基础版 - advanced 高级版</p>
+        # @type WatermarkModel: String
+        # @param AutoAreas: <p>自动擦除自定义区域。 对选定区域，利用AI模型自动检测其中存在的擦除目标并擦除。 注意，当擦除方式为custom时，此参数将不会生效。清除区域请传入[]，不传时将保持模板区域信息不变。</p>
+        # @type AutoAreas: Array
+        # @param CustomAreas: <p>指定擦除自定义区域。 对选定区域，在选定时间段内不进行检测识别直接进行擦除。 注意：清除区域请传入[]，不传时将保持模板区域信息不变。</p>
+        # @type CustomAreas: Array
+
+        attr_accessor :WatermarkEraseMethod, :WatermarkModel, :AutoAreas, :CustomAreas
+
+        def initialize(watermarkerasemethod=nil, watermarkmodel=nil, autoareas=nil, customareas=nil)
+          @WatermarkEraseMethod = watermarkerasemethod
+          @WatermarkModel = watermarkmodel
+          @AutoAreas = autoareas
+          @CustomAreas = customareas
+        end
+
+        def deserialize(params)
+          @WatermarkEraseMethod = params['WatermarkEraseMethod']
+          @WatermarkModel = params['WatermarkModel']
+          unless params['AutoAreas'].nil?
+            @AutoAreas = []
+            params['AutoAreas'].each do |i|
+              mpserasearea_tmp = MPSEraseArea.new
+              mpserasearea_tmp.deserialize(i)
+              @AutoAreas << mpserasearea_tmp
+            end
+          end
+          unless params['CustomAreas'].nil?
+            @CustomAreas = []
+            params['CustomAreas'].each do |i|
+              mpserasetimearea_tmp = MPSEraseTimeArea.new
+              mpserasetimearea_tmp.deserialize(i)
+              @CustomAreas << mpserasetimearea_tmp
+            end
+          end
+        end
+      end
+
+      # MPS智能字幕模板输入
+      class MPSSmartSubtitleTemplate < TencentCloud::Common::AbstractModel
+        # @param Name: <p>智能字幕模板名称<br>长度限制：64 个字符。</p>
+        # @type Name: String
+        # @param Comment: <p>智能字幕模板描述信息<br>长度限制：256 个字符。</p>
+        # @type Comment: String
+        # @param SubtitleType: <p>智能字幕字幕语言类型<br>0: 源语言<br>1: 翻译语言<br>2: 源语言+翻译语言<br>当TranslateSwitch为OFF时仅支持取0<br>当TranslateSwitch为ON时仅支持取1或2</p>
+        # @type SubtitleType: Integer
+        # @param VideoSrcLanguage: <p>智能字幕视频源语言<br>OCR识别仅支持以下语言：<br><code>zh_en</code>：中英<br><code>multi</code>：其他<br>ASR识别和纯字幕翻译当前支持以下语言：<br><code>auto</code>：自动识别<br><code>zh</code>：简体中文<br><code>en</code>：英语<br><code>ja</code>：日语<br><code>ko</code>：韩语<br><code>zh-PY</code>：中英粤<br><code>zh_medical</code>：中文医疗<br><code>vi</code>：越南语<br><code>ms</code>：马来语<br><code>id</code>：印度尼西亚语<br><code>fil</code>：菲律宾语<br><code>th</code>：泰语<br><code>pt</code>：葡萄牙语<br><code>tr</code>：土耳其语<br><code>ar</code>：阿拉伯语<br><code>es</code>：西班牙语<br><code>hi</code>：印地语<br><code>fr</code>：法语<br><code>de</code>：德语<br><code>it</code>：意大利语<br><code>zh_dialect</code>：中文方言<br><code>zh_en</code>：中英<br><code>yue</code>：粤语<br><code>ru</code>：俄语<br><code>prime_zh</code>：中英方言<br><code>af-ZA</code>：南非荷兰语（南非）<br><code>sq-AL</code>：阿尔巴尼亚语（阿尔巴尼亚）<br><code>am-ET</code>：阿姆哈拉语（埃塞俄比亚）<br><code>ar-DZ</code>：阿拉伯语（阿尔及利亚）<br><code>ar-BH</code>：阿拉伯语（巴林）<br><code>ar-EG</code>：阿拉伯语（埃及）<br><code>ar-IQ</code>：阿拉伯语（伊拉克）<br><code>ar-IL</code>：阿拉伯语（以色列）<br><code>ar-JO</code>：阿拉伯语（约旦）<br><code>ar-KW</code>：阿拉伯语（科威特）<br><code>ar-LB</code>：阿拉伯语（黎巴嫩）<br><code>ar-MR</code>：阿拉伯语（毛里塔尼亚）<br><code>ar-MA</code>：阿拉伯语（摩洛哥）<br><code>ar-OM</code>：阿拉伯语（阿曼）<br><code>ar-QA</code>：阿拉伯语（卡塔尔）<br><code>ar-SA</code>：阿拉伯语（沙特阿拉伯）<br><code>ar-PS</code>：阿拉伯语（巴勒斯坦国）<br><code>ar-SY</code>：阿拉伯语（叙利亚）<br><code>ar-TN</code>：阿拉伯语（突尼斯）<br><code>ar-AE</code>：阿拉伯语（阿拉伯联合酋长国）<br><code>ar-YE</code>：阿拉伯语（也门）<br><code>hy-AM</code>：亚美尼亚语（亚美尼亚）<br><code>az-AZ</code>：阿塞拜疆语（阿塞拜疆）<br><code>eu-ES</code>：巴斯克语（西班牙）<br><code>bn-BD</code>：孟加拉语（孟加拉）<br><code>bn-IN</code>：孟加拉语（印度）<br><code>bs-BA</code>：波斯尼亚语（波斯尼亚和黑塞哥维那）<br><code>bg-BG</code>：保加利亚语（保加利亚）<br><code>my-MM</code>：缅甸语（缅甸）<br><code>ca-ES</code>：加泰罗尼亚语（西班牙）<br><code>hr-HR</code>：克罗地亚语（克罗地亚）<br><code>cs-CZ</code>：捷克语（捷克共和国）<br><code>da-DK</code>：丹麦语（丹麦）<br><code>nl-BE</code>：荷兰语（比利时）<br><code>nl-NL</code>：荷兰语（荷兰）<br><code>en-AU</code>：英语（澳大利亚）<br><code>en-CA</code>：英语（加拿大）<br><code>en-GH</code>：英语（加纳）<br><code>en-HK</code>：英语（中国香港）<br><code>en-IN</code>：英语（印度）<br><code>en-IE</code>：英语（爱尔兰）<br><code>en-KE</code>：英语（肯尼亚）<br><code>en-NZ</code>：英语（新西兰）<br><code>en-NG</code>：英语（尼日利亚）<br><code>en-PK</code>：英语（巴基斯坦）<br><code>en-PH</code>：英语（菲律宾）<br><code>en-SG</code>：英语（新加坡）<br><code>en-ZA</code>：英语（南非）<br><code>en-TZ</code>：英语（坦桑尼亚）<br><code>en-GB</code>：英语（英国）<br><code>en-US</code>：英语（美国）<br><code>et-EE</code>：爱沙尼亚语（爱沙尼亚）<br><code>fil-PH</code>：菲律宾语（菲律宾）<br><code>fi-FI</code>：芬兰语（芬兰）<br><code>fr-BE</code>：法语（比利时）<br><code>fr-CA</code>：法语（加拿大）<br><code>fr-FR</code>：法语（法国）<br><code>fr-CH</code>：法语（瑞士）<br><code>gl-ES</code>：加利西亚语（西班牙）<br><code>ka-GE</code>：格鲁吉亚语（格鲁吉亚）<br><code>el-GR</code>：希腊语（希腊）<br><code>gu-IN</code>：古吉拉特语（印度）<br><code>iw-IL</code>：希伯来语（以色列）<br><code>hi-IN</code>：印地语（印度）<br><code>hu-HU</code>：匈牙利语（匈牙利）<br><code>is-IS</code>：冰岛语（冰岛）<br><code>id-ID</code>：印度尼西亚语（印度尼西亚）<br><code>it-IT</code>：意大利语（意大利）<br><code>it-CH</code>：意大利语（瑞士）<br><code>ja-JP</code>：日语（日本）<br><code>jv-ID</code>：爪哇语（印度尼西亚）<br><code>kn-IN</code>：卡纳达语（印度）<br><code>kk-KZ</code>：哈萨克语（哈萨克斯坦）<br><code>km-KH</code>：高棉语（柬埔寨）<br><code>rw-RW</code>：卢旺达语（卢旺达）<br><code>ko-KR</code>：韩语（韩国）<br><code>lo-LA</code>：老挝语（老挝）<br><code>lv-LV</code>：拉脱维亚语（拉脱维亚）<br><code>lt-LT</code>：立陶宛语（立陶宛）<br><code>mk-MK</code>：马其顿语（北马其顿）<br><code>ms-MY</code>：马来语（马来西亚）<br><code>ml-IN</code>：马拉雅拉姆语（印度）<br><code>mr-IN</code>：马拉地语（印度）<br><code>mn-MN</code>：蒙古语（蒙古）<br><code>ne-NP</code>：尼泊尔语（尼泊尔）<br><code>no-NO</code>：博克马尔挪威语（挪威）<br><code>fa-IR</code>：波斯语（伊朗）<br><code>pl-PL</code>：波兰语（波兰）<br><code>pt-BR</code>：葡萄牙语（巴西）<br><code>pt-PT</code>：葡萄牙语（葡萄牙）<br><code>ro-RO</code>：罗马尼亚语（罗马尼亚）<br><code>ru-RU</code>：俄语（俄罗斯）<br><code>sr-RS</code>：塞尔维亚语（塞尔维亚）<br><code>si-LK</code>：僧伽罗语（斯里兰卡）<br><code>sk-SK</code>：斯洛伐克语（斯洛伐克）<br><code>sl-SI</code>：斯洛文尼亚语（斯洛文尼亚）<br><code>st-ZA</code>：南索托语（南非）<br><code>es-AR</code>：西班牙语（阿根廷）<br><code>es-BO</code>：西班牙语（玻利维亚）<br><code>es-CL</code>：西班牙语（智利）<br><code>es-CO</code>：西班牙语（哥伦比亚）<br><code>es-CR</code>：西班牙语（哥斯达黎加）<br><code>es-DO</code>：西班牙语（多米尼加共和国）<br><code>es-EC</code>：西班牙语（厄瓜多尔）<br><code>es-SV</code>：西班牙语（萨尔瓦多）<br><code>es-GT</code>：西班牙语（危地马拉）<br><code>es-HN</code>：西班牙语（洪都拉斯）<br><code>es-MX</code>：西班牙语（墨西哥）<br><code>es-NI</code>：西班牙语（尼加拉瓜）<br><code>es-PA</code>：西班牙语（巴拿马）<br><code>es-PY</code>：西班牙语（巴拉圭）<br><code>es-PE</code>：西班牙语（秘鲁）<br><code>es-PR</code>：西班牙语（波多黎各）<br><code>es-ES</code>：西班牙语（西班牙）<br><code>es-US</code>：西班牙语（美国）<br><code>es-UY</code>：西班牙语（乌拉圭）<br><code>es-VE</code>：西班牙语（委内瑞拉）<br><code>su-ID</code>：巽他语（印度尼西亚）<br><code>sw-KE</code>：斯瓦希里语（肯尼亚）<br><code>sw-TZ</code>：斯瓦希里语（坦桑尼亚）<br><code>sv-SE</code>：瑞典语（瑞典）<br><code>ta-IN</code>：泰米尔语（印度）<br><code>ta-MY</code>：泰米尔语（马来西亚）<br><code>ta-SG</code>：泰米尔语（新加坡）<br><code>ta-LK</code>：泰米尔语（斯里兰卡）<br><code>te-IN</code>：泰卢固语（印度）<br><code>th-TH</code>：泰语（泰国）<br><code>ts-ZA</code>：聪加语（南非）<br><code>tr-TR</code>：土耳其语（土耳其）<br><code>uk-UA</code>：乌克兰语（乌克兰）<br><code>ur-IN</code>：乌尔都语（印度）<br><code>ur-PK</code>：乌尔都语（巴基斯坦）<br><code>uz-UZ</code>：乌兹别克语（乌兹别克斯坦）<br><code>ve-ZA</code>：文达语（南非）<br><code>vi-VN</code>：越南语（越南）<br><code>xh-ZA</code>：科萨语（南非）<br><code>zu-ZA</code>：祖鲁语（南非）</p>
+        # @type VideoSrcLanguage: String
+        # @param SubtitleFormat: <p>智能字幕文件格式:</p><ul><li>ASR识别翻译处理类型下：<ul><li>vtt: WebVTT 格式字幕</li><li>srt: SRT 格式字幕</li><li>不填或填空：不生成字幕文件</li></ul></li><li>纯字幕翻译处理类型下：<ul><li>original：与源文件一致</li><li>vtt: WebVTT 格式字幕</li><li>srt: SRT 格式字幕</li></ul></li><li>OCR识别翻译处理类型下：<ul><li>vtt: WebVTT 格式字幕</li><li>srt: SRT 格式字幕</li></ul></li></ul><p><strong>注意</strong>：</p><ul><li>ASR识别方式下，翻译大于等于2种语言时不允许传空或不传；</li><li>纯字幕翻译方式下，不允许传空或不传</li><li>OCR类型的任务，在开启压制时，允许不传或传空</li></ul>
+        # @type SubtitleFormat: String
+        # @param TranslateSwitch: <p>字幕翻译开关<br><code>ON</code>: 开启翻译<br><code>OFF</code>: 关闭翻译</p><p><strong>注意</strong>：纯字幕翻译方式下，不传默认是打开的，不允许传空或<code>OFF</code>；</p>
+        # @type TranslateSwitch: String
+        # @param TranslateDstLanguage: <p>字幕翻译目标语言<br>当TranslateSwitch为ON的时候生效，翻译语言列表：<br><code>ab</code>：阿布哈兹语<br><code>ace</code>：亚齐语<br><code>ach</code>：阿乔利语<br><code>af</code>：南非荷兰语<br><code>ak</code>：契维语（阿坎语）<br><code>am</code>：Amharic<br><code>ar</code>：阿拉伯语<br><code>as</code>：阿萨姆语<br><code>ay</code>：艾马拉语<br><code>az</code>：阿塞拜疆语<br><code>ba</code>：巴什基尔语<br><code>ban</code>：巴厘语<br><code>bbc</code>：巴塔克托巴语<br><code>bem</code>：Bemba<br><code>bew</code>：Betawi<br><code>bg</code>：保加利亚语<br><code>bho</code>：博杰普尔语<br><code>bik</code>：Bikol<br><code>bm</code>：班巴拉语<br><code>bn</code>：孟加拉语<br><code>br</code>：布列塔尼语<br><code>bs</code>：波斯尼亚语<br><code>btx</code>：巴塔克卡罗语<br><code>bts</code>：巴塔克西马隆贡语<br><code>bua</code>：布里亚特语<br><code>ca</code>：加泰罗尼亚语<br><code>ceb</code>：宿务语<br><code>cgg</code>：Kiga<br><code>chm</code>：草原马里语<br><code>ckb</code>：库尔德语（索拉尼语）<br><code>cnh</code>：哈卡钦语<br><code>co</code>：科西嘉语<br><code>crh</code>：克里米亚鞑靼语<br><code>crs</code>：塞舌尔克里奥尔语<br><code>cs</code>：捷克语<br><code>cv</code>：楚瓦什语<br><code>cy</code>：威尔士语<br><code>da</code>：丹麦语<br><code>de</code>：德语<br><code>din</code>：Dinka<br><code>doi</code>：多格来语<br><code>dov</code>：敦贝语<br><code>dv</code>：第维埃语<br><code>dz</code>：宗卡语<br><code>ee</code>：Ewe<br><code>el</code>：希腊语<br><code>en</code>：英语<br><code>eo</code>：世界语<br><code>es</code>：西班牙语<br><code>et</code>：爱沙尼亚语<br><code>eu</code>：巴斯克语<br><code>fa</code>：波斯语<br><code>ff</code>：富拉语<br><code>fi</code>：芬兰语<br><code>fil</code>：菲律宾语（塔加拉语）<br><code>fj</code>：斐济语<br><code>fr</code>：法语<br><code>fr-CA</code>：法语（加拿大）<br><code>fr-FR</code>：法语（法国）<br><code>fy</code>：弗里斯兰语<br><code>ga</code>：爱尔兰语<br><code>gaa</code>：加 (Ga) 语<br><code>gd</code>：苏格兰盖尔语<br><code>gl</code>：加利西亚语<br><code>gn</code>：瓜拉尼语<br><code>gom</code>：贡根语<br><code>gu</code>：古吉拉特语<br><code>gv</code>：马恩岛语<br><code>ha</code>：Hausa<br><code>haw</code>：夏威夷语<br><code>he</code>：希伯来语<br><code>hi</code>：印地语<br><code>hil</code>：希利盖农语<br><code>hmn</code>：苗语<br><code>hr</code>：克罗地亚语<br><code>hrx</code>：洪斯吕克语<br><code>ht</code>：海地克里奥尔语<br><code>hu</code>：匈牙利语<br><code>hy</code>：亚美尼亚语<br><code>id</code>：印度尼西亚语<br><code>ig</code>：Igbo<br><code>ilo</code>：伊洛果语<br><code>is</code>：冰岛语<br><code>it</code>：意大利语<br><code>iw</code>：希伯来语<br><code>ja</code>：日语<br><code>jv</code>：爪哇语<br><code>ka</code>：格鲁吉亚语<br><code>kk</code>：哈萨克语<br><code>km</code>：高棉语<br><code>kn</code>：卡纳达语<br><code>ko</code>：韩语<br><code>kri</code>：Krio<br><code>ku</code>：库尔德语（库尔曼吉语）<br><code>ktu</code>：吉土巴语<br><code>ky</code>：吉尔吉斯语<br><code>la</code>：拉丁语<br><code>lb</code>：卢森堡语<br><code>lg</code>：干达语（卢干达语）<br><code>li</code>：林堡语<br><code>lij</code>：利古里亚语<br><code>lmo</code>：伦巴第语<br><code>ln</code>：林加拉语<br><code>lo</code>：老挝语<br><code>lt</code>：立陶宛语<br><code>ltg</code>：拉特加莱语<br><code>luo</code>：Luo<br><code>lus</code>：米佐语<br><code>lv</code>：拉脱维亚语<br><code>mai</code>：迈蒂利语<br><code>mak</code>：马卡萨<br><code>mg</code>：马尔加什语<br><code>mi</code>：毛利语<br><code>min</code>：米南语<br><code>mk</code>：马其顿语<br><code>ml</code>：马拉雅拉姆语<br><code>mn</code>：蒙古语<br><code>mr</code>：马拉地语<br><code>ms</code>：马来语<br><code>mt</code>：马耳他语<br><code>my</code>：缅甸语<br><code>ne</code>：尼泊尔语<br><code>new</code>：尼瓦尔语<br><code>nl</code>：荷兰语<br><code>no</code>：挪威语<br><code>nr</code>：恩德贝莱语（南部）<br><code>nso</code>：北索托语（塞佩蒂语）<br><code>nus</code>：努尔语<br><code>ny</code>：齐切瓦语（尼扬贾语）<br><code>oc</code>：奥克斯坦语<br><code>om</code>：Oromo<br><code>or</code>：奥里亚语<br><code>pa</code>：旁遮普语<br><code>pag</code>：邦阿西楠语<br><code>pam</code>：邦板牙语<br><code>pap</code>：Papiamento<br><code>pl</code>：波兰语<br><code>ps</code>：Pashto<br><code>pt</code>：葡萄牙语<br><code>pt-BR</code>：葡萄牙语（巴西）<br><code>pt-PT</code>：葡萄牙语（葡萄牙）<br><code>qu</code>：克丘亚语<br><code>ro</code>：罗马尼亚语<br><code>rom</code>：罗姆语<br><code>rn</code>：Rundi<br><code>ru</code>：俄语<br><code>rw</code>：卢旺达语<br><code>sa</code>：梵语<br><code>scn</code>：西西里语<br><code>sd</code>：信德语<br><code>sg</code>：Sango<br><code>shn</code>：掸语<br><code>si</code>：僧伽罗语<br><code>sk</code>：斯洛伐克语<br><code>sl</code>：斯洛文尼亚语<br><code>sm</code>：萨摩亚语<br><code>sn</code>：修纳语<br><code>so</code>：索马里语<br><code>sq</code>：阿尔巴尼亚语<br><code>sr</code>：塞尔维亚语<br><code>ss</code>：斯瓦特语<br><code>st</code>：塞索托语<br><code>su</code>：巽他语<br><code>sv</code>：瑞典语<br><code>sw</code>：斯瓦希里语<br><code>szl</code>：西里西亚语<br><code>ta</code>：泰米尔语<br><code>te</code>：泰卢固语<br><code>tet</code>：德顿语<br><code>tg</code>：塔吉克语<br><code>th</code>：泰语<br><code>ti</code>：提格里尼亚语<br><code>tk</code>：土库曼语<br><code>tn</code>：茨瓦纳语<br><code>tr</code>：土耳其语<br><code>ts</code>：聪加语<br><code>tt</code>：鞑靼语<br><code>ug</code>：维吾尔语<br><code>uk</code>：乌克兰语<br><code>ur</code>：乌尔都语<br><code>uz</code>：乌兹别克语<br><code>vi</code>：越南语<br><code>xh</code>：科萨语<br><code>yi</code>：意第绪语<br><code>yo</code>：约鲁巴语<br><code>yua</code>：尤卡坦玛雅语<br><code>yue</code>：粤语<br><code>zh</code>：简体中文<br><code>zh-TW</code>：中文（繁体）<br><code>zu</code>：祖鲁语</p><p><strong>注意</strong>：多语言方式，则使用 <code>/</code> 分割，如：<code>en/ja</code>，表示英语和日语。</p>
+        # @type TranslateDstLanguage: String
+        # @param ProcessType: <p>字幕处理类型：</p><ul><li>0：ASR识别字幕</li><li>1：纯字幕翻译</li><li>2：OCR识别字幕</li></ul><p><strong>注意</strong>：不传的情况下默认类型为 ASR识别字幕</p>
+        # @type ProcessType: Integer
+        # @param SelectingSubtitleAreasConfig: <p>字幕OCR提取框选区域配置</p>
+        # @type SelectingSubtitleAreasConfig: :class:`Tencentcloud::Vod.v20180717.models.MPSSelectingSubtitleAreasConfig`
+        # @param SpeakerMode: <p>说话人识别开关，可选值：<br>0：表示不开启说话人识别；<br>1：表示开启说话人识别；<br>默认不开启说话人识别。</p>
+        # @type SpeakerMode: Integer
+        # @param SpeakerLabel: <p>说话人识别输出到字幕文件，可选值：<br>0：表示不输出到字幕文件；<br>1：表示输出到vtt字幕文件<br>注意：使用此参数SpeakerMode的值不能为0；<br>默认不输出到字幕文件。</p>
+        # @type SpeakerLabel: Integer
+
+        attr_accessor :Name, :Comment, :SubtitleType, :VideoSrcLanguage, :SubtitleFormat, :TranslateSwitch, :TranslateDstLanguage, :ProcessType, :SelectingSubtitleAreasConfig, :SpeakerMode, :SpeakerLabel
+
+        def initialize(name=nil, comment=nil, subtitletype=nil, videosrclanguage=nil, subtitleformat=nil, translateswitch=nil, translatedstlanguage=nil, processtype=nil, selectingsubtitleareasconfig=nil, speakermode=nil, speakerlabel=nil)
+          @Name = name
+          @Comment = comment
+          @SubtitleType = subtitletype
+          @VideoSrcLanguage = videosrclanguage
+          @SubtitleFormat = subtitleformat
+          @TranslateSwitch = translateswitch
+          @TranslateDstLanguage = translatedstlanguage
+          @ProcessType = processtype
+          @SelectingSubtitleAreasConfig = selectingsubtitleareasconfig
+          @SpeakerMode = speakermode
+          @SpeakerLabel = speakerlabel
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Comment = params['Comment']
+          @SubtitleType = params['SubtitleType']
+          @VideoSrcLanguage = params['VideoSrcLanguage']
+          @SubtitleFormat = params['SubtitleFormat']
+          @TranslateSwitch = params['TranslateSwitch']
+          @TranslateDstLanguage = params['TranslateDstLanguage']
+          @ProcessType = params['ProcessType']
+          unless params['SelectingSubtitleAreasConfig'].nil?
+            @SelectingSubtitleAreasConfig = MPSSelectingSubtitleAreasConfig.new
+            @SelectingSubtitleAreasConfig.deserialize(params['SelectingSubtitleAreasConfig'])
+          end
+          @SpeakerMode = params['SpeakerMode']
+          @SpeakerLabel = params['SpeakerLabel']
+        end
+      end
+
+      # MPS智能字幕模板输入
+      class MPSSmartSubtitleTemplateForUpdate < TencentCloud::Common::AbstractModel
+        # @param Definition: <p>智能字幕模板唯一标识</p>
+        # @type Definition: Integer
+        # @param Name: <p>智能字幕模板名称<br>长度限制：64 个字符。</p>
+        # @type Name: String
+        # @param Comment: <p>智能字幕模板描述信息<br>长度限制：256 个字符。</p>
+        # @type Comment: String
+        # @param SubtitleType: <p>智能字幕字幕语言类型<br>0: 源语言<br>1: 翻译语言<br>2: 源语言+翻译语言<br>当TranslateSwitch为OFF时仅支持取0<br>当TranslateSwitch为ON时仅支持取1或2</p>
+        # @type SubtitleType: Integer
+        # @param VideoSrcLanguage: <p>智能字幕视频源语言<br>OCR识别仅支持以下语言：<br><code>zh_en</code>：中英<br><code>multi</code>：其他<br>ASR识别和纯字幕翻译当前支持以下语言：<br><code>auto</code>：自动识别<br><code>zh</code>：简体中文<br><code>en</code>：英语<br><code>ja</code>：日语<br><code>ko</code>：韩语<br><code>zh-PY</code>：中英粤<br><code>zh_medical</code>：中文医疗<br><code>vi</code>：越南语<br><code>ms</code>：马来语<br><code>id</code>：印度尼西亚语<br><code>fil</code>：菲律宾语<br><code>th</code>：泰语<br><code>pt</code>：葡萄牙语<br><code>tr</code>：土耳其语<br><code>ar</code>：阿拉伯语<br><code>es</code>：西班牙语<br><code>hi</code>：印地语<br><code>fr</code>：法语<br><code>de</code>：德语<br><code>it</code>：意大利语<br><code>zh_dialect</code>：中文方言<br><code>zh_en</code>：中英<br><code>yue</code>：粤语<br><code>ru</code>：俄语<br><code>prime_zh</code>：中英方言<br><code>af-ZA</code>：南非荷兰语（南非）<br><code>sq-AL</code>：阿尔巴尼亚语（阿尔巴尼亚）<br><code>am-ET</code>：阿姆哈拉语（埃塞俄比亚）<br><code>ar-DZ</code>：阿拉伯语（阿尔及利亚）<br><code>ar-BH</code>：阿拉伯语（巴林）<br><code>ar-EG</code>：阿拉伯语（埃及）<br><code>ar-IQ</code>：阿拉伯语（伊拉克）<br><code>ar-IL</code>：阿拉伯语（以色列）<br><code>ar-JO</code>：阿拉伯语（约旦）<br><code>ar-KW</code>：阿拉伯语（科威特）<br><code>ar-LB</code>：阿拉伯语（黎巴嫩）<br><code>ar-MR</code>：阿拉伯语（毛里塔尼亚）<br><code>ar-MA</code>：阿拉伯语（摩洛哥）<br><code>ar-OM</code>：阿拉伯语（阿曼）<br><code>ar-QA</code>：阿拉伯语（卡塔尔）<br><code>ar-SA</code>：阿拉伯语（沙特阿拉伯）<br><code>ar-PS</code>：阿拉伯语（巴勒斯坦国）<br><code>ar-SY</code>：阿拉伯语（叙利亚）<br><code>ar-TN</code>：阿拉伯语（突尼斯）<br><code>ar-AE</code>：阿拉伯语（阿拉伯联合酋长国）<br><code>ar-YE</code>：阿拉伯语（也门）<br><code>hy-AM</code>：亚美尼亚语（亚美尼亚）<br><code>az-AZ</code>：阿塞拜疆语（阿塞拜疆）<br><code>eu-ES</code>：巴斯克语（西班牙）<br><code>bn-BD</code>：孟加拉语（孟加拉）<br><code>bn-IN</code>：孟加拉语（印度）<br><code>bs-BA</code>：波斯尼亚语（波斯尼亚和黑塞哥维那）<br><code>bg-BG</code>：保加利亚语（保加利亚）<br><code>my-MM</code>：缅甸语（缅甸）<br><code>ca-ES</code>：加泰罗尼亚语（西班牙）<br><code>hr-HR</code>：克罗地亚语（克罗地亚）<br><code>cs-CZ</code>：捷克语（捷克共和国）<br><code>da-DK</code>：丹麦语（丹麦）<br><code>nl-BE</code>：荷兰语（比利时）<br><code>nl-NL</code>：荷兰语（荷兰）<br><code>en-AU</code>：英语（澳大利亚）<br><code>en-CA</code>：英语（加拿大）<br><code>en-GH</code>：英语（加纳）<br><code>en-HK</code>：英语（中国香港）<br><code>en-IN</code>：英语（印度）<br><code>en-IE</code>：英语（爱尔兰）<br><code>en-KE</code>：英语（肯尼亚）<br><code>en-NZ</code>：英语（新西兰）<br><code>en-NG</code>：英语（尼日利亚）<br><code>en-PK</code>：英语（巴基斯坦）<br><code>en-PH</code>：英语（菲律宾）<br><code>en-SG</code>：英语（新加坡）<br><code>en-ZA</code>：英语（南非）<br><code>en-TZ</code>：英语（坦桑尼亚）<br><code>en-GB</code>：英语（英国）<br><code>en-US</code>：英语（美国）<br><code>et-EE</code>：爱沙尼亚语（爱沙尼亚）<br><code>fil-PH</code>：菲律宾语（菲律宾）<br><code>fi-FI</code>：芬兰语（芬兰）<br><code>fr-BE</code>：法语（比利时）<br><code>fr-CA</code>：法语（加拿大）<br><code>fr-FR</code>：法语（法国）<br><code>fr-CH</code>：法语（瑞士）<br><code>gl-ES</code>：加利西亚语（西班牙）<br><code>ka-GE</code>：格鲁吉亚语（格鲁吉亚）<br><code>el-GR</code>：希腊语（希腊）<br><code>gu-IN</code>：古吉拉特语（印度）<br><code>iw-IL</code>：希伯来语（以色列）<br><code>hi-IN</code>：印地语（印度）<br><code>hu-HU</code>：匈牙利语（匈牙利）<br><code>is-IS</code>：冰岛语（冰岛）<br><code>id-ID</code>：印度尼西亚语（印度尼西亚）<br><code>it-IT</code>：意大利语（意大利）<br><code>it-CH</code>：意大利语（瑞士）<br><code>ja-JP</code>：日语（日本）<br><code>jv-ID</code>：爪哇语（印度尼西亚）<br><code>kn-IN</code>：卡纳达语（印度）<br><code>kk-KZ</code>：哈萨克语（哈萨克斯坦）<br><code>km-KH</code>：高棉语（柬埔寨）<br><code>rw-RW</code>：卢旺达语（卢旺达）<br><code>ko-KR</code>：韩语（韩国）<br><code>lo-LA</code>：老挝语（老挝）<br><code>lv-LV</code>：拉脱维亚语（拉脱维亚）<br><code>lt-LT</code>：立陶宛语（立陶宛）<br><code>mk-MK</code>：马其顿语（北马其顿）<br><code>ms-MY</code>：马来语（马来西亚）<br><code>ml-IN</code>：马拉雅拉姆语（印度）<br><code>mr-IN</code>：马拉地语（印度）<br><code>mn-MN</code>：蒙古语（蒙古）<br><code>ne-NP</code>：尼泊尔语（尼泊尔）<br><code>no-NO</code>：博克马尔挪威语（挪威）<br><code>fa-IR</code>：波斯语（伊朗）<br><code>pl-PL</code>：波兰语（波兰）<br><code>pt-BR</code>：葡萄牙语（巴西）<br><code>pt-PT</code>：葡萄牙语（葡萄牙）<br><code>ro-RO</code>：罗马尼亚语（罗马尼亚）<br><code>ru-RU</code>：俄语（俄罗斯）<br><code>sr-RS</code>：塞尔维亚语（塞尔维亚）<br><code>si-LK</code>：僧伽罗语（斯里兰卡）<br><code>sk-SK</code>：斯洛伐克语（斯洛伐克）<br><code>sl-SI</code>：斯洛文尼亚语（斯洛文尼亚）<br><code>st-ZA</code>：南索托语（南非）<br><code>es-AR</code>：西班牙语（阿根廷）<br><code>es-BO</code>：西班牙语（玻利维亚）<br><code>es-CL</code>：西班牙语（智利）<br><code>es-CO</code>：西班牙语（哥伦比亚）<br><code>es-CR</code>：西班牙语（哥斯达黎加）<br><code>es-DO</code>：西班牙语（多米尼加共和国）<br><code>es-EC</code>：西班牙语（厄瓜多尔）<br><code>es-SV</code>：西班牙语（萨尔瓦多）<br><code>es-GT</code>：西班牙语（危地马拉）<br><code>es-HN</code>：西班牙语（洪都拉斯）<br><code>es-MX</code>：西班牙语（墨西哥）<br><code>es-NI</code>：西班牙语（尼加拉瓜）<br><code>es-PA</code>：西班牙语（巴拿马）<br><code>es-PY</code>：西班牙语（巴拉圭）<br><code>es-PE</code>：西班牙语（秘鲁）<br><code>es-PR</code>：西班牙语（波多黎各）<br><code>es-ES</code>：西班牙语（西班牙）<br><code>es-US</code>：西班牙语（美国）<br><code>es-UY</code>：西班牙语（乌拉圭）<br><code>es-VE</code>：西班牙语（委内瑞拉）<br><code>su-ID</code>：巽他语（印度尼西亚）<br><code>sw-KE</code>：斯瓦希里语（肯尼亚）<br><code>sw-TZ</code>：斯瓦希里语（坦桑尼亚）<br><code>sv-SE</code>：瑞典语（瑞典）<br><code>ta-IN</code>：泰米尔语（印度）<br><code>ta-MY</code>：泰米尔语（马来西亚）<br><code>ta-SG</code>：泰米尔语（新加坡）<br><code>ta-LK</code>：泰米尔语（斯里兰卡）<br><code>te-IN</code>：泰卢固语（印度）<br><code>th-TH</code>：泰语（泰国）<br><code>ts-ZA</code>：聪加语（南非）<br><code>tr-TR</code>：土耳其语（土耳其）<br><code>uk-UA</code>：乌克兰语（乌克兰）<br><code>ur-IN</code>：乌尔都语（印度）<br><code>ur-PK</code>：乌尔都语（巴基斯坦）<br><code>uz-UZ</code>：乌兹别克语（乌兹别克斯坦）<br><code>ve-ZA</code>：文达语（南非）<br><code>vi-VN</code>：越南语（越南）<br><code>xh-ZA</code>：科萨语（南非）<br><code>zu-ZA</code>：祖鲁语（南非）</p>
+        # @type VideoSrcLanguage: String
+        # @param SubtitleFormat: <p>智能字幕文件格式:</p><ul><li>ASR识别翻译处理类型下：<ul><li>vtt: WebVTT 格式字幕</li><li>srt: SRT 格式字幕</li><li>不填或填空：不生成字幕文件</li></ul></li><li>纯字幕翻译处理类型下：<ul><li>original：与源文件一致</li><li>vtt: WebVTT 格式字幕</li><li>srt: SRT 格式字幕</li></ul></li><li>OCR识别翻译处理类型下：<ul><li>vtt: WebVTT 格式字幕</li><li>srt: SRT 格式字幕</li></ul></li></ul><p><strong>注意</strong>：</p><ul><li>ASR识别方式下，翻译大于等于2种语言时不允许传空或不传；</li><li>纯字幕翻译方式下，不允许传空或不传</li><li>OCR类型的任务，在开启压制时，允许不传或传空</li></ul>
+        # @type SubtitleFormat: String
+        # @param TranslateSwitch: <p>字幕翻译开关<br><code>ON</code>: 开启翻译<br><code>OFF</code>: 关闭翻译</p><p><strong>注意</strong>：纯字幕翻译方式下，不传默认是打开的，不允许传空或<code>OFF</code>；</p>
+        # @type TranslateSwitch: String
+        # @param TranslateDstLanguage: <p>字幕翻译目标语言<br>当TranslateSwitch为ON的时候生效，翻译语言列表：<br><code>ab</code>：阿布哈兹语<br><code>ace</code>：亚齐语<br><code>ach</code>：阿乔利语<br><code>af</code>：南非荷兰语<br><code>ak</code>：契维语（阿坎语）<br><code>am</code>：Amharic<br><code>ar</code>：阿拉伯语<br><code>as</code>：阿萨姆语<br><code>ay</code>：艾马拉语<br><code>az</code>：阿塞拜疆语<br><code>ba</code>：巴什基尔语<br><code>ban</code>：巴厘语<br><code>bbc</code>：巴塔克托巴语<br><code>bem</code>：Bemba<br><code>bew</code>：Betawi<br><code>bg</code>：保加利亚语<br><code>bho</code>：博杰普尔语<br><code>bik</code>：Bikol<br><code>bm</code>：班巴拉语<br><code>bn</code>：孟加拉语<br><code>br</code>：布列塔尼语<br><code>bs</code>：波斯尼亚语<br><code>btx</code>：巴塔克卡罗语<br><code>bts</code>：巴塔克西马隆贡语<br><code>bua</code>：布里亚特语<br><code>ca</code>：加泰罗尼亚语<br><code>ceb</code>：宿务语<br><code>cgg</code>：Kiga<br><code>chm</code>：草原马里语<br><code>ckb</code>：库尔德语（索拉尼语）<br><code>cnh</code>：哈卡钦语<br><code>co</code>：科西嘉语<br><code>crh</code>：克里米亚鞑靼语<br><code>crs</code>：塞舌尔克里奥尔语<br><code>cs</code>：捷克语<br><code>cv</code>：楚瓦什语<br><code>cy</code>：威尔士语<br><code>da</code>：丹麦语<br><code>de</code>：德语<br><code>din</code>：Dinka<br><code>doi</code>：多格来语<br><code>dov</code>：敦贝语<br><code>dv</code>：第维埃语<br><code>dz</code>：宗卡语<br><code>ee</code>：Ewe<br><code>el</code>：希腊语<br><code>en</code>：英语<br><code>eo</code>：世界语<br><code>es</code>：西班牙语<br><code>et</code>：爱沙尼亚语<br><code>eu</code>：巴斯克语<br><code>fa</code>：波斯语<br><code>ff</code>：富拉语<br><code>fi</code>：芬兰语<br><code>fil</code>：菲律宾语（塔加拉语）<br><code>fj</code>：斐济语<br><code>fr</code>：法语<br><code>fr-CA</code>：法语（加拿大）<br><code>fr-FR</code>：法语（法国）<br><code>fy</code>：弗里斯兰语<br><code>ga</code>：爱尔兰语<br><code>gaa</code>：加 (Ga) 语<br><code>gd</code>：苏格兰盖尔语<br><code>gl</code>：加利西亚语<br><code>gn</code>：瓜拉尼语<br><code>gom</code>：贡根语<br><code>gu</code>：古吉拉特语<br><code>gv</code>：马恩岛语<br><code>ha</code>：Hausa<br><code>haw</code>：夏威夷语<br><code>he</code>：希伯来语<br><code>hi</code>：印地语<br><code>hil</code>：希利盖农语<br><code>hmn</code>：苗语<br><code>hr</code>：克罗地亚语<br><code>hrx</code>：洪斯吕克语<br><code>ht</code>：海地克里奥尔语<br><code>hu</code>：匈牙利语<br><code>hy</code>：亚美尼亚语<br><code>id</code>：印度尼西亚语<br><code>ig</code>：Igbo<br><code>ilo</code>：伊洛果语<br><code>is</code>：冰岛语<br><code>it</code>：意大利语<br><code>iw</code>：希伯来语<br><code>ja</code>：日语<br><code>jv</code>：爪哇语<br><code>ka</code>：格鲁吉亚语<br><code>kk</code>：哈萨克语<br><code>km</code>：高棉语<br><code>kn</code>：卡纳达语<br><code>ko</code>：韩语<br><code>kri</code>：Krio<br><code>ku</code>：库尔德语（库尔曼吉语）<br><code>ktu</code>：吉土巴语<br><code>ky</code>：吉尔吉斯语<br><code>la</code>：拉丁语<br><code>lb</code>：卢森堡语<br><code>lg</code>：干达语（卢干达语）<br><code>li</code>：林堡语<br><code>lij</code>：利古里亚语<br><code>lmo</code>：伦巴第语<br><code>ln</code>：林加拉语<br><code>lo</code>：老挝语<br><code>lt</code>：立陶宛语<br><code>ltg</code>：拉特加莱语<br><code>luo</code>：Luo<br><code>lus</code>：米佐语<br><code>lv</code>：拉脱维亚语<br><code>mai</code>：迈蒂利语<br><code>mak</code>：马卡萨<br><code>mg</code>：马尔加什语<br><code>mi</code>：毛利语<br><code>min</code>：米南语<br><code>mk</code>：马其顿语<br><code>ml</code>：马拉雅拉姆语<br><code>mn</code>：蒙古语<br><code>mr</code>：马拉地语<br><code>ms</code>：马来语<br><code>mt</code>：马耳他语<br><code>my</code>：缅甸语<br><code>ne</code>：尼泊尔语<br><code>new</code>：尼瓦尔语<br><code>nl</code>：荷兰语<br><code>no</code>：挪威语<br><code>nr</code>：恩德贝莱语（南部）<br><code>nso</code>：北索托语（塞佩蒂语）<br><code>nus</code>：努尔语<br><code>ny</code>：齐切瓦语（尼扬贾语）<br><code>oc</code>：奥克斯坦语<br><code>om</code>：Oromo<br><code>or</code>：奥里亚语<br><code>pa</code>：旁遮普语<br><code>pag</code>：邦阿西楠语<br><code>pam</code>：邦板牙语<br><code>pap</code>：Papiamento<br><code>pl</code>：波兰语<br><code>ps</code>：Pashto<br><code>pt</code>：葡萄牙语<br><code>pt-BR</code>：葡萄牙语（巴西）<br><code>pt-PT</code>：葡萄牙语（葡萄牙）<br><code>qu</code>：克丘亚语<br><code>ro</code>：罗马尼亚语<br><code>rom</code>：罗姆语<br><code>rn</code>：Rundi<br><code>ru</code>：俄语<br><code>rw</code>：卢旺达语<br><code>sa</code>：梵语<br><code>scn</code>：西西里语<br><code>sd</code>：信德语<br><code>sg</code>：Sango<br><code>shn</code>：掸语<br><code>si</code>：僧伽罗语<br><code>sk</code>：斯洛伐克语<br><code>sl</code>：斯洛文尼亚语<br><code>sm</code>：萨摩亚语<br><code>sn</code>：修纳语<br><code>so</code>：索马里语<br><code>sq</code>：阿尔巴尼亚语<br><code>sr</code>：塞尔维亚语<br><code>ss</code>：斯瓦特语<br><code>st</code>：塞索托语<br><code>su</code>：巽他语<br><code>sv</code>：瑞典语<br><code>sw</code>：斯瓦希里语<br><code>szl</code>：西里西亚语<br><code>ta</code>：泰米尔语<br><code>te</code>：泰卢固语<br><code>tet</code>：德顿语<br><code>tg</code>：塔吉克语<br><code>th</code>：泰语<br><code>ti</code>：提格里尼亚语<br><code>tk</code>：土库曼语<br><code>tn</code>：茨瓦纳语<br><code>tr</code>：土耳其语<br><code>ts</code>：聪加语<br><code>tt</code>：鞑靼语<br><code>ug</code>：维吾尔语<br><code>uk</code>：乌克兰语<br><code>ur</code>：乌尔都语<br><code>uz</code>：乌兹别克语<br><code>vi</code>：越南语<br><code>xh</code>：科萨语<br><code>yi</code>：意第绪语<br><code>yo</code>：约鲁巴语<br><code>yua</code>：尤卡坦玛雅语<br><code>yue</code>：粤语<br><code>zh</code>：简体中文<br><code>zh-TW</code>：中文（繁体）<br><code>zu</code>：祖鲁语</p><p><strong>注意</strong>：多语言方式，则使用 <code>/</code> 分割，如：<code>en/ja</code>，表示英语和日语。</p>
+        # @type TranslateDstLanguage: String
+        # @param ProcessType: <p>字幕处理类型：</p><ul><li>0：ASR识别字幕</li><li>1：纯字幕翻译</li><li>2：OCR识别字幕</li></ul><p><strong>注意</strong>：不传的情况下，默认是ASR方式</p>
+        # @type ProcessType: Integer
+        # @param SelectingSubtitleAreasConfig: <p>字幕OCR提取框选区域配置</p>
+        # @type SelectingSubtitleAreasConfig: :class:`Tencentcloud::Vod.v20180717.models.MPSSelectingSubtitleAreasConfig`
+        # @param SpeakerMode: <p>说话人识别开关，可选值：<br>0：表示不开启说话人识别；<br>1：表示开启说话人识别。</p>
+        # @type SpeakerMode: Integer
+        # @param SpeakerLabel: <p>说话人识别输出到字幕文件，可选值：<br>0：表示不输出到字幕文件；<br>1：表示输出到vtt字幕文件<br>注意：使用此参数SpeakerMode的值不能为0。</p>
+        # @type SpeakerLabel: Integer
+
+        attr_accessor :Definition, :Name, :Comment, :SubtitleType, :VideoSrcLanguage, :SubtitleFormat, :TranslateSwitch, :TranslateDstLanguage, :ProcessType, :SelectingSubtitleAreasConfig, :SpeakerMode, :SpeakerLabel
+
+        def initialize(definition=nil, name=nil, comment=nil, subtitletype=nil, videosrclanguage=nil, subtitleformat=nil, translateswitch=nil, translatedstlanguage=nil, processtype=nil, selectingsubtitleareasconfig=nil, speakermode=nil, speakerlabel=nil)
+          @Definition = definition
+          @Name = name
+          @Comment = comment
+          @SubtitleType = subtitletype
+          @VideoSrcLanguage = videosrclanguage
+          @SubtitleFormat = subtitleformat
+          @TranslateSwitch = translateswitch
+          @TranslateDstLanguage = translatedstlanguage
+          @ProcessType = processtype
+          @SelectingSubtitleAreasConfig = selectingsubtitleareasconfig
+          @SpeakerMode = speakermode
+          @SpeakerLabel = speakerlabel
+        end
+
+        def deserialize(params)
+          @Definition = params['Definition']
+          @Name = params['Name']
+          @Comment = params['Comment']
+          @SubtitleType = params['SubtitleType']
+          @VideoSrcLanguage = params['VideoSrcLanguage']
+          @SubtitleFormat = params['SubtitleFormat']
+          @TranslateSwitch = params['TranslateSwitch']
+          @TranslateDstLanguage = params['TranslateDstLanguage']
+          @ProcessType = params['ProcessType']
+          unless params['SelectingSubtitleAreasConfig'].nil?
+            @SelectingSubtitleAreasConfig = MPSSelectingSubtitleAreasConfig.new
+            @SelectingSubtitleAreasConfig.deserialize(params['SelectingSubtitleAreasConfig'])
+          end
+          @SpeakerMode = params['SpeakerMode']
+          @SpeakerLabel = params['SpeakerLabel']
+        end
+      end
+
+      # 智能字幕输入结构体
+      class MPSSmartSubtitlesTaskInput < TencentCloud::Common::AbstractModel
+        # @param Definition: <p>智能字幕模板 ID。</p>
+        # @type Definition: Integer
+        # @param RawParameter: <p>智能字幕自定义参数，当 Definition 填 0 时有效。 该参数用于高度定制场景，建议您优先使用 Definition 指定智能字幕参数。</p>
+        # @type RawParameter: :class:`Tencentcloud::Vod.v20180717.models.MPSRawSmartSubtitleParameter`
+
+        attr_accessor :Definition, :RawParameter
+
+        def initialize(definition=nil, rawparameter=nil)
+          @Definition = definition
+          @RawParameter = rawparameter
+        end
+
+        def deserialize(params)
+          @Definition = params['Definition']
+          unless params['RawParameter'].nil?
+            @RawParameter = MPSRawSmartSubtitleParameter.new
+            @RawParameter.deserialize(params['RawParameter'])
+          end
         end
       end
 
@@ -21091,6 +22174,110 @@ module TencentCloud
         def deserialize(params)
           @TaskType = params['TaskType']
           @MPSTemplateInfo = params['MPSTemplateInfo']
+        end
+      end
+
+      # 智能擦除模板去字幕配置
+      class MPSUpdateSmartEraseSubtitleConfig < TencentCloud::Common::AbstractModel
+        # @param SubtitleEraseMethod: <p>字幕擦除方式。 <strong>自动擦除：</strong>通过AI模型自动识别视频中的字幕文本内容，进行无痕化擦除，生成新的视频。但画面干扰、特殊字幕样式可能会带来一定漏擦误擦问题，可以通过指定区域擦除处理。 当使用自动擦除时，若您不指定AutoAreas，将对默认区域（画面中下部）进行自动擦除；若指定AutoAreas，将改为对您指定的区域进行自动擦除。 <strong>指定区域擦除：</strong>若您的字幕位置较固定，建议您直接指定擦除区域，最大程度减少漏擦的情况。 当您选择指定区域擦除时，请在CustomAreas中至少传入一个指定区域。 </p><ul><li>auto 自动擦除 -</li><li>custom 指定区域擦除</li></ul>
+        # @type SubtitleEraseMethod: String
+        # @param SubtitleModel: <p>字幕擦除模型。 <strong>标准版（推荐）：</strong>若您的字幕样式标准，通常建议选择该版本，细节无痕化效果更好。 <strong>区域版：</strong>若您的字幕存在花体、阴影、动效等特殊样式，建议选择区域版，擦除面积更大，但细节效果不如标准版。 - standard 标准模型 - area 区域模型</p>
+        # @type SubtitleModel: String
+        # @param OcrSwitch: <p>是否开启OCR字幕提取，默认取OFF。 当且仅当SubtitleEraseMethod取auto时支持开启OCR字幕提取，开启后将识别自动擦除区域内出现时间最长且最稳定的文字区域为字幕区域，对字幕区域中的文字进行提取和擦除。 </p><ul><li>ON 开启</li><li>OFF 关闭</li></ul>
+        # @type OcrSwitch: String
+        # @param SubtitleLang: <p>字幕语言，用于指导OCR识别，默认取zh_en；<br>仅当OcrSwitch取&quot;ON&quot;时生效。 </p><ul><li>zh_en 中英文 </li><li>multi 其他 其他具体支持识别如下语言： 中文、英文、日文、韩语、西班牙语、法语、德语、葡萄牙语、越南语、马来语、俄语、意大利语、荷兰语、瑞典语、芬兰语、丹麦语、挪威语、匈牙利语、泰语、印地语、阿拉伯语、印度-孟加拉语、印度-古吉拉特语、印度-卡纳达语 、印度-马拉亚拉姆语 、印度-泰米尔语、印度-泰卢固语、斯洛文尼亚语、波兰语、加泰罗尼亚语、波斯尼亚语、捷克语、爱沙尼亚语、克罗地亚语、旁遮普语、马拉地语、阿塞拜疆语、印尼语、卢森堡语 、立陶宛语、拉脱维亚语、马耳他语、斯洛伐克语、土耳其语、哈萨克语、希腊语、爱尔兰语、白俄罗斯语、高棉语、他加禄语、普什图语、波斯语、塔吉克斯坦语</li></ul>
+        # @type SubtitleLang: String
+        # @param SubtitleFormat: <p>字幕文件格式，默认取vtt；仅当OcrSwitch取&quot;ON&quot;时生效。</p><ul><li>srt srt格式 </li><li>vtt WebVTT格式</li></ul>
+        # @type SubtitleFormat: String
+        # @param TransSwitch: <p>是否开启字幕翻译，默认取OFF；仅当OcrSwitch取&quot;ON&quot;时生效。 </p><ul><li>ON 开启 </li><li>OFF 关闭</li></ul>
+        # @type TransSwitch: String
+        # @param TransDstLang: <p>字幕翻译目标语言，默认取en；仅当TransSwitch取&quot;ON&quot;时生效。当前支持以下语言：<br>zh：简体中文<br>en：英语<br>ja：日语<br>ko：韩语<br>fr：法语<br>es：西班牙语<br>it：意大利语<br>de：德语<br>tr：土耳其语<br>ru：俄语<br>pt：葡萄牙语<br>vi：越南语<br>id：印度尼西亚语<br>ms：马来语<br>th：泰语<br>ar：阿拉伯语<br>hi：印地语</p>
+        # @type TransDstLang: String
+        # @param AutoAreas: <p>自动擦除自定义区域。 对选定区域，利用AI模型自动检测其中存在的擦除目标并擦除。<br>注意：当擦除方式选择custom时，此参数将不会生效；修改模板时，清除区域请传入[]，不传时将保持模板区域信息不变。</p>
+        # @type AutoAreas: Array
+        # @param CustomAreas: <p>指定擦除自定义区域。 对选定区域，在选定时间段内不进行检测识别直接进行擦除。 注意：修改模板时，清除区域请传入[]，不传时将保持模板区域信息不变。</p>
+        # @type CustomAreas: Array
+
+        attr_accessor :SubtitleEraseMethod, :SubtitleModel, :OcrSwitch, :SubtitleLang, :SubtitleFormat, :TransSwitch, :TransDstLang, :AutoAreas, :CustomAreas
+
+        def initialize(subtitleerasemethod=nil, subtitlemodel=nil, ocrswitch=nil, subtitlelang=nil, subtitleformat=nil, transswitch=nil, transdstlang=nil, autoareas=nil, customareas=nil)
+          @SubtitleEraseMethod = subtitleerasemethod
+          @SubtitleModel = subtitlemodel
+          @OcrSwitch = ocrswitch
+          @SubtitleLang = subtitlelang
+          @SubtitleFormat = subtitleformat
+          @TransSwitch = transswitch
+          @TransDstLang = transdstlang
+          @AutoAreas = autoareas
+          @CustomAreas = customareas
+        end
+
+        def deserialize(params)
+          @SubtitleEraseMethod = params['SubtitleEraseMethod']
+          @SubtitleModel = params['SubtitleModel']
+          @OcrSwitch = params['OcrSwitch']
+          @SubtitleLang = params['SubtitleLang']
+          @SubtitleFormat = params['SubtitleFormat']
+          @TransSwitch = params['TransSwitch']
+          @TransDstLang = params['TransDstLang']
+          unless params['AutoAreas'].nil?
+            @AutoAreas = []
+            params['AutoAreas'].each do |i|
+              mpserasearea_tmp = MPSEraseArea.new
+              mpserasearea_tmp.deserialize(i)
+              @AutoAreas << mpserasearea_tmp
+            end
+          end
+          unless params['CustomAreas'].nil?
+            @CustomAreas = []
+            params['CustomAreas'].each do |i|
+              mpserasetimearea_tmp = MPSEraseTimeArea.new
+              mpserasetimearea_tmp.deserialize(i)
+              @CustomAreas << mpserasetimearea_tmp
+            end
+          end
+        end
+      end
+
+      # 智能擦除模板去水印配置
+      class MPSUpdateSmartEraseWatermarkConfig < TencentCloud::Common::AbstractModel
+        # @param WatermarkEraseMethod: <p>水印擦除方式。<br> <strong>自动擦除：</strong>通过A模型自动识别视频中的水印，擦除后生成新的视频。适用于动态水印。 当使用自动擦除时，若您不指定AutoAreas，将对视频全屏进行自动擦除；若指定AutoAreas，将改为对您指定的区域进行自动擦除。<br><strong>指定区域擦除：</strong>针对位置较固定的静态水印，建议您直接指定擦除区域。 当您选择指定区域擦除时，请至少传入一个指定区域。 - auto 自动擦除 - custom 指定区域擦除</p>
+        # @type WatermarkEraseMethod: String
+        # @param WatermarkModel: <p>水印擦除模型。 基础版：效果一般，性价比高，适合动画或背景较干净的视频。 高级版：效果更好，适合短剧等现实风格视频。 </p><ul><li>basic 基础版 </li><li>advanced 高级版</li></ul>
+        # @type WatermarkModel: String
+        # @param AutoAreas: <p>自动擦除自定义区域。 对选定区域，利用AI模型自动检测其中存在的擦除目标并擦除。 注意，当擦除方式为custom时，此参数将不会生效。清除区域请传入[]，不传时将保持模板区域信息不变。</p>
+        # @type AutoAreas: Array
+        # @param CustomAreas: <p>指定擦除自定义区域。 对选定区域，在选定时间段内不进行检测识别直接进行擦除。 注意：清除区域请传入[]，不传时将保持模板区域信息不变。</p>
+        # @type CustomAreas: Array
+
+        attr_accessor :WatermarkEraseMethod, :WatermarkModel, :AutoAreas, :CustomAreas
+
+        def initialize(watermarkerasemethod=nil, watermarkmodel=nil, autoareas=nil, customareas=nil)
+          @WatermarkEraseMethod = watermarkerasemethod
+          @WatermarkModel = watermarkmodel
+          @AutoAreas = autoareas
+          @CustomAreas = customareas
+        end
+
+        def deserialize(params)
+          @WatermarkEraseMethod = params['WatermarkEraseMethod']
+          @WatermarkModel = params['WatermarkModel']
+          unless params['AutoAreas'].nil?
+            @AutoAreas = []
+            params['AutoAreas'].each do |i|
+              mpserasearea_tmp = MPSEraseArea.new
+              mpserasearea_tmp.deserialize(i)
+              @AutoAreas << mpserasearea_tmp
+            end
+          end
+          unless params['CustomAreas'].nil?
+            @CustomAreas = []
+            params['CustomAreas'].each do |i|
+              mpserasetimearea_tmp = MPSEraseTimeArea.new
+              mpserasetimearea_tmp.deserialize(i)
+              @CustomAreas << mpserasetimearea_tmp
+            end
+          end
         end
       end
 
@@ -24484,23 +25671,44 @@ module TencentCloud
       class ModifyMPSTemplateRequest < TencentCloud::Common::AbstractModel
         # @param SubAppId: <p><b>点播<a href="/document/product/266/14574">应用</a> ID。</b></p>
         # @type SubAppId: Integer
-        # @param TemplateType: <p>需要修改的 MPS 模板的类型。</p><p>枚举值：</p><ul><li>Transcode： 转码模板，目前仅支持修改增强参数</li><li>AIAnalysis： 智能分析模板</li><li>SmartSubtitle： 智能字幕模板</li><li>SmartErase： 智能擦除模板</li></ul>
+        # @param TemplateType: <p>需要修改的 MPS 模板的类型。</p><p>枚举值：</p><ul><li>AIAnalysis： 智能分析模板</li><li>SmartSubtitle： 智能字幕模板</li><li>SmartErase： 智能擦除模板</li></ul>
         # @type TemplateType: String
         # @param MPSModifyTemplateParams: <p>MPS 修改模板参数。该参数用于透传至媒体处理服务（MPS），从云点播侧修改用户自定义的 MPS 任务模板。<br> 目前仅支持通过此方式修改以下任务类型的模板：</p><ol><li>音视频增强：仅支持填写“<a href="https://cloud.tencent.com/document/api/862/37578">修改转码模板</a>”接口中的 Name、Comment、RemoveVideo、RemoveAudio、VideoTemplate、AudioTemplate 和 EnhanceConfig 几个参数的内容。目前仅支持在模板中配置以上参数，其他参数无需填写，若包含其它参数，系统将自动忽略。</li><li>智能分析：仅支持填写“<a href="https://cloud.tencent.com/document/api/862/40246">修改内容分析模板</a>”接口中的Name、Comment、ClassificationConfigure、TagConfigure、CoverConfigure、FrameTagConfigure几个参数的内容。目前仅支持在模板中配置以上参数，其他参数无需填写，若包含其它参数，系统将自动忽略。</li><li>智能字幕：仅支持填写“<a href="https://cloud.tencent.com/document/api/862/117001">修改智能字幕模板</a>”接口中的Name、Comment、TranslateSwitch、VideoSrcLanguage、SubtitleFormat、SubtitleType、AsrHotWordsConfigure、TranslateDstLanguage、ProcessType几个参数的内容。目前仅支持在模板中配置以上参数，其他参数无需填写，若包含其它参数，系统将自动忽略。</li><li>智能擦除：仅支持填写“<a href="https://cloud.tencent.com/document/api/862/123732">修改智能擦除模板</a>”接口中的Name、Comment、EraseType、EraseSubtitleConfig、EraseWatermarkConfig、ErasePrivacyConfig几个参数的内容。目前仅支持在模板中配置以上参数，其他参数无需填写，若包含其它参数，系统将自动忽略。</li></ol>
         # @type MPSModifyTemplateParams: String
+        # @param AIAnalysisTemplate: <p>智能分析模板参数，MPSModifyTemplateParams为空时有效。</p>
+        # @type AIAnalysisTemplate: :class:`Tencentcloud::Vod.v20180717.models.MPSAIAnalysisTemplateForUpdate`
+        # @param SmartSubtitleTemplate: <p>智能字幕模板参数，MPSModifyTemplateParams为空时有效。</p>
+        # @type SmartSubtitleTemplate: :class:`Tencentcloud::Vod.v20180717.models.MPSSmartSubtitleTemplateForUpdate`
+        # @param SmartEraseTemplate: <p>智能擦除模板参数，MPSModifyTemplateParams为空时有效。</p>
+        # @type SmartEraseTemplate: :class:`Tencentcloud::Vod.v20180717.models.MPSSmartEraseTemplateForUpdate`
 
-        attr_accessor :SubAppId, :TemplateType, :MPSModifyTemplateParams
+        attr_accessor :SubAppId, :TemplateType, :MPSModifyTemplateParams, :AIAnalysisTemplate, :SmartSubtitleTemplate, :SmartEraseTemplate
 
-        def initialize(subappid=nil, templatetype=nil, mpsmodifytemplateparams=nil)
+        def initialize(subappid=nil, templatetype=nil, mpsmodifytemplateparams=nil, aianalysistemplate=nil, smartsubtitletemplate=nil, smarterasetemplate=nil)
           @SubAppId = subappid
           @TemplateType = templatetype
           @MPSModifyTemplateParams = mpsmodifytemplateparams
+          @AIAnalysisTemplate = aianalysistemplate
+          @SmartSubtitleTemplate = smartsubtitletemplate
+          @SmartEraseTemplate = smarterasetemplate
         end
 
         def deserialize(params)
           @SubAppId = params['SubAppId']
           @TemplateType = params['TemplateType']
           @MPSModifyTemplateParams = params['MPSModifyTemplateParams']
+          unless params['AIAnalysisTemplate'].nil?
+            @AIAnalysisTemplate = MPSAIAnalysisTemplateForUpdate.new
+            @AIAnalysisTemplate.deserialize(params['AIAnalysisTemplate'])
+          end
+          unless params['SmartSubtitleTemplate'].nil?
+            @SmartSubtitleTemplate = MPSSmartSubtitleTemplateForUpdate.new
+            @SmartSubtitleTemplate.deserialize(params['SmartSubtitleTemplate'])
+          end
+          unless params['SmartEraseTemplate'].nil?
+            @SmartEraseTemplate = MPSSmartEraseTemplateForUpdate.new
+            @SmartEraseTemplate.deserialize(params['SmartEraseTemplate'])
+          end
         end
       end
 
@@ -26307,44 +27515,34 @@ module TencentCloud
 
       # 播放器配置详情
       class PlayerConfig < TencentCloud::Common::AbstractModel
-        # @param Name: 播放器配置名字。
+        # @param Name: <p>播放器配置名字。</p>
         # @type Name: String
-        # @param Type: 播放器配置类型，取值范围：
-        # <li>Preset：系统预置配置；</li>
-        # <li>Custom：用户自定义配置。</li>
+        # @param Type: <p>播放器配置类型，取值范围：</p><li>Preset：系统预置配置；</li><li>Custom：用户自定义配置。</li>
         # @type Type: String
-        # @param AudioVideoType: 播放的音视频类型，可选值有：
-        # <li>AdaptiveDynamicStream：自适应码流输出；</li>
-        # <li>Transcode：转码输出；</li>
-        # <li>Original：原始音视频。</li>
+        # @param AudioVideoType: <p>播放的音视频类型，可选值有：</p><li>AdaptiveDynamicStream：自适应码流输出；</li><li>Transcode：转码输出；</li><li>Original：原始音视频。</li>
         # @type AudioVideoType: String
-        # @param DrmSwitch: 播放 DRM 保护的自适应码流开关：
-        # <li>ON：开启，表示仅播放 DRM  保护的自适应码流输出；</li>
-        # <li>OFF：关闭，表示播放未加密的自适应码流输出。</li>
+        # @param DrmSwitch: <p>播放 DRM 保护的自适应码流开关：</p><li>ON：开启，表示仅播放 DRM  保护的自适应码流输出；</li><li>OFF：关闭，表示播放未加密的自适应码流输出。</li>
         # @type DrmSwitch: String
-        # @param AdaptiveDynamicStreamingDefinition: 允许输出的未加密的自适应码流模板 ID。
+        # @param AdaptiveDynamicStreamingDefinition: <p>允许输出的未加密的自适应码流模板 ID。</p>
         # @type AdaptiveDynamicStreamingDefinition: Integer
-        # @param DrmStreamingsInfo: 允许输出的 DRM 自适应码流模板内容。
+        # @param DrmStreamingsInfo: <p>允许输出的 DRM 自适应码流模板内容。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DrmStreamingsInfo: :class:`Tencentcloud::Vod.v20180717.models.DrmStreamingsInfo`
-        # @param TranscodeDefinition: 允许输出的转码模板 ID。
+        # @param TranscodeDefinition: <p>允许输出的转码模板 ID。</p>
         # @type TranscodeDefinition: Integer
-        # @param ImageSpriteDefinition: 允许输出的雪碧图模板 ID。
+        # @param ImageSpriteDefinition: <p>允许输出的雪碧图模板 ID。</p>
         # @type ImageSpriteDefinition: Integer
-        # @param ResolutionNameSet: 播放器对不于不同分辨率的子流展示名字。
+        # @param ResolutionNameSet: <p>播放器对不于不同分辨率的子流展示名字。</p>
         # @type ResolutionNameSet: Array
-        # @param CreateTime: 播放器配置创建时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#iso-.E6.97.A5.E6.9C.9F.E6.A0.BC.E5.BC.8F)。
+        # @param CreateTime: <p>播放器配置创建时间，使用 <a href="https://cloud.tencent.com/document/product/266/11732#I">ISO 日期格式</a>。</p>
         # @type CreateTime: String
-        # @param UpdateTime: 播放器配置最后修改时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#iso-.E6.97.A5.E6.9C.9F.E6.A0.BC.E5.BC.8F)。
+        # @param UpdateTime: <p>播放器配置最后修改时间，使用 <a href="https://cloud.tencent.com/document/product/266/11732#I">ISO 日期格式</a>。</p>
         # @type UpdateTime: String
-        # @param Domain: 播放时使用的域名。值为 Default，表示使用[默认分发配置](https://cloud.tencent.com/document/product/266/33373)中的域名。
+        # @param Domain: <p>播放时使用的域名。值为 Default，表示使用<a href="https://cloud.tencent.com/document/product/266/33373">默认分发配置</a>中的域名。</p>
         # @type Domain: String
-        # @param Scheme: 播放时使用的 Scheme。取值范围：
-        # <li>Default：使用[默认分发配置](https://cloud.tencent.com/document/product/266/33373)中的 Scheme；</li>
-        # <li>HTTP；</li>
-        # <li>HTTPS。</li>
+        # @param Scheme: <p>播放时使用的 Scheme。取值范围：</p><li>Default：使用[默认分发配置](https://cloud.tencent.com/document/product/266/33373)中的 Scheme；</li><li>HTTP；</li><li>HTTPS。</li>
         # @type Scheme: String
-        # @param Comment: 模板描述信息。
+        # @param Comment: <p>模板描述信息。</p>
         # @type Comment: String
 
         attr_accessor :Name, :Type, :AudioVideoType, :DrmSwitch, :AdaptiveDynamicStreamingDefinition, :DrmStreamingsInfo, :TranscodeDefinition, :ImageSpriteDefinition, :ResolutionNameSet, :CreateTime, :UpdateTime, :Domain, :Scheme, :Comment
@@ -27660,17 +28858,26 @@ module TencentCloud
         # @type FileId: String
         # @param SubAppId: <p><b>点播<a href="/document/product/266/14574">应用</a> ID。</b></p>
         # @type SubAppId: Integer
-        # @param MPSProcessMediaParams: <p>该参数用于透传至媒体处理服务（MPS），以便从云点播侧发起 MPS 视频处理任务。<br>视频处理参数详情请参考：<a href="https://cloud.tencent.com/document/api/862/37578">MPS 发起媒体处理</a>。<br>填写说明：</p><ol><li>目前仅需要配置 MPS “发起媒体处理”接口中任务配置相关的参数，如 AiAnalysisTask 与 MediaProcessTask，其他参数无需填写。若包含其它参数，系统将自动忽略；</li><li>当前仅支持通过此方式发起智能擦除及音视频增强任务。若配置了其他任务类型的相关参数，系统将自动忽略这些参数；</li><li>音视频增强任务目前不支持使用预置模板发起，可通过 <a href="https://cloud.tencent.com/document/product/266/122580">CreateMPSTemplate</a> 接口创建自定义模板。</li></ol>
+        # @param MPSProcessMediaParams: <p>可选参数，该参数用于透传至媒体处理服务（MPS），以便从云点播侧发起 MPS 视频处理任务。不同类型的视频处理参数详情请参考 <a href="https://cloud.tencent.com/document/product/266/131209">使用MPS 媒体 AI 能力</a>，可通过<a href="https://cloud.tencent.com/document/product/266/122580">CreateMPSTemplate</a> 接口创建自定义模板。</p>
         # @type MPSProcessMediaParams: String
+        # @param AiAnalysisTask: <p>视频内容分析类型任务参数，MPSProcessMediaParams为空时有效。</p>
+        # @type AiAnalysisTask: :class:`Tencentcloud::Vod.v20180717.models.MPSAiAnalysisTaskInput`
+        # @param SmartSubtitlesTask: <p>智能字幕类型任务参数，MPSProcessMediaParams为空时有效。</p>
+        # @type SmartSubtitlesTask: :class:`Tencentcloud::Vod.v20180717.models.MPSSmartSubtitlesTaskInput`
+        # @param SmartEraseTask: <p>智能擦除类型任务参数，MPSProcessMediaParams为空时有效。</p>
+        # @type SmartEraseTask: :class:`Tencentcloud::Vod.v20180717.models.MPSSmartEraseTaskInput`
         # @param ExtInfo: <p>保留字段，特殊用途时使用。</p>
         # @type ExtInfo: String
 
-        attr_accessor :FileId, :SubAppId, :MPSProcessMediaParams, :ExtInfo
+        attr_accessor :FileId, :SubAppId, :MPSProcessMediaParams, :AiAnalysisTask, :SmartSubtitlesTask, :SmartEraseTask, :ExtInfo
 
-        def initialize(fileid=nil, subappid=nil, mpsprocessmediaparams=nil, extinfo=nil)
+        def initialize(fileid=nil, subappid=nil, mpsprocessmediaparams=nil, aianalysistask=nil, smartsubtitlestask=nil, smarterasetask=nil, extinfo=nil)
           @FileId = fileid
           @SubAppId = subappid
           @MPSProcessMediaParams = mpsprocessmediaparams
+          @AiAnalysisTask = aianalysistask
+          @SmartSubtitlesTask = smartsubtitlestask
+          @SmartEraseTask = smarterasetask
           @ExtInfo = extinfo
         end
 
@@ -27678,6 +28885,18 @@ module TencentCloud
           @FileId = params['FileId']
           @SubAppId = params['SubAppId']
           @MPSProcessMediaParams = params['MPSProcessMediaParams']
+          unless params['AiAnalysisTask'].nil?
+            @AiAnalysisTask = MPSAiAnalysisTaskInput.new
+            @AiAnalysisTask.deserialize(params['AiAnalysisTask'])
+          end
+          unless params['SmartSubtitlesTask'].nil?
+            @SmartSubtitlesTask = MPSSmartSubtitlesTaskInput.new
+            @SmartSubtitlesTask.deserialize(params['SmartSubtitlesTask'])
+          end
+          unless params['SmartEraseTask'].nil?
+            @SmartEraseTask = MPSSmartEraseTaskInput.new
+            @SmartEraseTask.deserialize(params['SmartEraseTask'])
+          end
           @ExtInfo = params['ExtInfo']
         end
       end
@@ -27866,38 +29085,36 @@ module TencentCloud
 
       # ProcessMedia请求参数结构体
       class ProcessMediaRequest < TencentCloud::Common::AbstractModel
-        # @param FileId: 媒体文件 ID，即该文件在云点播上的全局唯一标识符，在上传成功后由云点播后台分配。可以在 [视频上传完成事件通知](/document/product/266/7830) 或 [云点播控制台](https://console.cloud.tencent.com/vod/media) 获取该字段。
-        # FileId和MediaStoragePath必须提供其中一个。
+        # @param FileId: <p>媒体文件 ID，即该文件在云点播上的全局唯一标识符，在上传成功后由云点播后台分配。可以在 <a href="/document/product/266/7830">视频上传完成事件通知</a> 或 <a href="https://console.cloud.tencent.com/vod/media">云点播控制台</a> 获取该字段。<br>FileId和MediaStoragePath必须提供其中一个。</p>
         # @type FileId: String
-        # @param MediaStoragePath: 媒体的存储路径。
-        # 只有[FileID + Path 模式](https://cloud.tencent.com/document/product/266/126825)的子应用可以通过MediaStoragePath发起任务。
-        # FileId和MediaStoragePath必须提供其中一个。
+        # @param MediaStoragePath: <p>媒体的存储路径。<br>只有<a href="https://cloud.tencent.com/document/product/266/126825">FileID + Path 模式</a>的子应用可以通过MediaStoragePath发起任务。<br>FileId和MediaStoragePath必须提供其中一个。</p>
         # @type MediaStoragePath: String
-        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
+        # @param SubAppId: <p><b>点播<a href="/document/product/266/14574">应用</a> ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b></p>
         # @type SubAppId: Integer
-        # @param MediaProcessTask: 视频处理类型任务参数。
+        # @param MediaProcessTask: <p>视频处理类型任务参数。</p>
         # @type MediaProcessTask: :class:`Tencentcloud::Vod.v20180717.models.MediaProcessTaskInput`
-        # @param AiContentReviewTask: 音视频内容审核类型任务参数 \*。
-        # <font color=red>\* 不建议使用</font>，推荐使用 [音视频审核(ReviewAudioVideo)](https://cloud.tencent.com/document/api/266/80283) 或 [图片审核(ReviewImage)](https://cloud.tencent.com/document/api/266/73217)。
+        # @param AiContentReviewTask: <p>音视频内容审核类型任务参数 *。<br><font color="red">* 不建议使用</font>，推荐使用 <a href="https://cloud.tencent.com/document/api/266/80283">音视频审核(ReviewAudioVideo)</a> 或 <a href="https://cloud.tencent.com/document/api/266/73217">图片审核(ReviewImage)</a>。</p>
         # @type AiContentReviewTask: :class:`Tencentcloud::Vod.v20180717.models.AiContentReviewTaskInput`
-        # @param AiAnalysisTask: 音视频内容分析类型任务参数。
+        # @param AiAnalysisTask: <p>音视频内容分析类型任务参数。</p>
         # @type AiAnalysisTask: :class:`Tencentcloud::Vod.v20180717.models.AiAnalysisTaskInput`
-        # @param AiRecognitionTask: 音视频内容识别类型任务参数。
+        # @param AiRecognitionTask: <p>音视频内容识别类型任务参数。</p>
         # @type AiRecognitionTask: :class:`Tencentcloud::Vod.v20180717.models.AiRecognitionTaskInput`
-        # @param TasksPriority: 任务流的优先级，数值越大优先级越高，取值范围是 -10 到 10，不填代表 0。
+        # @param TasksPriority: <p>任务流的优先级，数值越大优先级越高，取值范围是 -10 到 10，不填代表 0。</p>
         # @type TasksPriority: Integer
-        # @param TasksNotifyMode: 任务流状态变更通知模式，可取值有 Finish，Change 和 None，不填代表 Finish。
+        # @param TasksNotifyMode: <p>任务流状态变更通知模式，可取值有 Finish，Change 和 None，不填代表 Finish。</p>
         # @type TasksNotifyMode: String
-        # @param SessionContext: 来源上下文，用于透传用户请求信息，任务流状态变更回调将返回该字段值，最长 1000 个字符。
+        # @param SessionContext: <p>来源上下文，用于透传用户请求信息，任务流状态变更回调将返回该字段值，最长 1000 个字符。</p>
         # @type SessionContext: String
-        # @param SessionId: 用于去重的识别码，如果三天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长 50 个字符，不带或者带空字符串表示不做去重。
+        # @param SessionId: <p>用于去重的识别码，如果三天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长 50 个字符，不带或者带空字符串表示不做去重。</p>
         # @type SessionId: String
-        # @param ExtInfo: 保留字段，特殊用途时使用。
+        # @param ExtInfo: <p>保留字段，特殊用途时使用。</p>
         # @type ExtInfo: String
+        # @param Url: <p>FileID为空时有效，拉取Url生成新媒资产生新FileID，媒体处理产物将作为新媒资的附属产物。</p><p>注意：新媒资会产生存储费用</p>
+        # @type Url: String
 
-        attr_accessor :FileId, :MediaStoragePath, :SubAppId, :MediaProcessTask, :AiContentReviewTask, :AiAnalysisTask, :AiRecognitionTask, :TasksPriority, :TasksNotifyMode, :SessionContext, :SessionId, :ExtInfo
+        attr_accessor :FileId, :MediaStoragePath, :SubAppId, :MediaProcessTask, :AiContentReviewTask, :AiAnalysisTask, :AiRecognitionTask, :TasksPriority, :TasksNotifyMode, :SessionContext, :SessionId, :ExtInfo, :Url
 
-        def initialize(fileid=nil, mediastoragepath=nil, subappid=nil, mediaprocesstask=nil, aicontentreviewtask=nil, aianalysistask=nil, airecognitiontask=nil, taskspriority=nil, tasksnotifymode=nil, sessioncontext=nil, sessionid=nil, extinfo=nil)
+        def initialize(fileid=nil, mediastoragepath=nil, subappid=nil, mediaprocesstask=nil, aicontentreviewtask=nil, aianalysistask=nil, airecognitiontask=nil, taskspriority=nil, tasksnotifymode=nil, sessioncontext=nil, sessionid=nil, extinfo=nil, url=nil)
           @FileId = fileid
           @MediaStoragePath = mediastoragepath
           @SubAppId = subappid
@@ -27910,6 +29127,7 @@ module TencentCloud
           @SessionContext = sessioncontext
           @SessionId = sessionid
           @ExtInfo = extinfo
+          @Url = url
         end
 
         def deserialize(params)
@@ -27937,12 +29155,13 @@ module TencentCloud
           @SessionContext = params['SessionContext']
           @SessionId = params['SessionId']
           @ExtInfo = params['ExtInfo']
+          @Url = params['Url']
         end
       end
 
       # ProcessMedia返回参数结构体
       class ProcessMediaResponse < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务 ID
+        # @param TaskId: <p>任务 ID</p>
         # @type TaskId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -27994,40 +29213,27 @@ module TencentCloud
 
       # 预付费商品实例
       class ProductInstance < TencentCloud::Common::AbstractModel
-        # @param ProductType: 预付费商品实例类型，取值有：
-        # <li>StarterPackage：点播新手包。</li>
-        # <li>MiniProgramPlugin：点播小程序插件。</li>
-        # <li>ResourcePackage：点播资源包。</li>
+        # @param ProductType: <p>预付费商品实例类型，取值有：</p><li>StarterPackage：点播新手包。</li><li>MiniProgramPlugin：点播小程序插件。</li><li>ResourcePackage：点播资源包。</li>
         # @type ProductType: String
-        # @param StartTime: 资源包实例起始日期。使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#iso-.E6.97.A5.E6.9C.9F.E6.A0.BC.E5.BC.8F)。
+        # @param StartTime: <p>资源包实例起始日期。使用 <a href="https://cloud.tencent.com/document/product/266/11732#I">ISO 日期格式</a>。</p>
         # @type StartTime: String
-        # @param ExpireTime: 资源包实例过期日期。使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#iso-.E6.97.A5.E6.9C.9F.E6.A0.BC.E5.BC.8F)。
+        # @param ExpireTime: <p>资源包实例过期日期。使用 <a href="https://cloud.tencent.com/document/product/266/11732#I">ISO 日期格式</a>。</p>
         # @type ExpireTime: String
-        # @param ProductInstanceId: 资源包实例ID。对应每个资源包，系统会分配相应的资源。续费或者升级资源包时，需要带上这个资源ID。
+        # @param ProductInstanceId: <p>资源包实例ID。对应每个资源包，系统会分配相应的资源。续费或者升级资源包时，需要带上这个资源ID。</p>
         # @type ProductInstanceId: String
-        # @param LastConsumeDate: 系统最近一次扣除资源包的日期。使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#iso-.E6.97.A5.E6.9C.9F.E6.A0.BC.E5.BC.8F)。
+        # @param LastConsumeDate: <p>系统最近一次扣除资源包的日期。使用 <a href="https://cloud.tencent.com/document/product/266/11732#I">ISO 日期格式</a>。</p>
         # @type LastConsumeDate: String
-        # @param BindStatus: 资源包绑定 License 状态，取值有：
-        # <li>0：未绑定。</li>
-        # <li>1：已绑定。</li>
+        # @param BindStatus: <p>资源包绑定 License 状态，取值有：</p><li>0：未绑定。</li><li>1：已绑定。</li>
         # @type BindStatus: Integer
-        # @param ProductInstanceResourceSet: 预付费资源包实例中包含的资源包列表。
+        # @param ProductInstanceResourceSet: <p>预付费资源包实例中包含的资源包列表。</p>
         # @type ProductInstanceResourceSet: Array
-        # @param ResourceSet: 预付费资源包实例中包含的资源包列表。
+        # @param ResourceSet: <p>预付费资源包实例中包含的资源包列表。</p>
         # @type ResourceSet: Array
-        # @param ProductInstanceStatus: 资源包实例的状态，取值有：
-        # <li>Effective：生效，可用于计费抵扣。</li>
-        # <li>Isolated：隔离，不可用于计费抵扣。</li>
+        # @param ProductInstanceStatus: <p>资源包实例的状态，取值有：</p><li>Effective：生效，可用于计费抵扣。</li><li>Isolated：隔离，不可用于计费抵扣。</li>
         # @type ProductInstanceStatus: String
-        # @param RefundStatus: 资源包实例的可退还状态，取值有：
-        # <li>FullRefund：可全额退款。</li>
-        # <li>Denied：不可退款。</li>
+        # @param RefundStatus: <p>资源包实例的可退还状态，取值有：</p><li>FullRefund：可全额退款。</li><li>Denied：不可退款。</li>
         # @type RefundStatus: String
-        # @param RenewStatus: 自动续费状态，取值有：
-        # <li>Never：不自动续费。</li>
-        # <li>Expire：到期自动续费。</li>
-        # <li>ExpireOrUseOut：到期或用完自动续费。</li>
-        # <li>NotSupport：不支持。</li>
+        # @param RenewStatus: <p>自动续费状态，取值有：</p><li>Never：不自动续费。</li><li>Expire：到期自动续费。</li><li>ExpireOrUseOut：到期或用完自动续费。</li><li>NotSupport：不支持。</li>
         # @type RenewStatus: String
 
         attr_accessor :ProductType, :StartTime, :ExpireTime, :ProductInstanceId, :LastConsumeDate, :BindStatus, :ProductInstanceResourceSet, :ResourceSet, :ProductInstanceStatus, :RefundStatus, :RenewStatus

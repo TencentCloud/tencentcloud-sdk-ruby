@@ -1114,6 +1114,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询共享订阅组详情信息
+
+        # @param request: Request instance for DescribeSharedSubscriptionClient.
+        # @type request: :class:`Tencentcloud::mqtt::V20240516::DescribeSharedSubscriptionClientRequest`
+        # @rtype: :class:`Tencentcloud::mqtt::V20240516::DescribeSharedSubscriptionClientResponse`
+        def DescribeSharedSubscriptionClient(request)
+          body = send_request('DescribeSharedSubscriptionClient', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSharedSubscriptionClientResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询集群下共享订阅组列表
 
         # @param request: Request instance for DescribeSharedSubscriptionGroups.
@@ -1148,6 +1172,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeSharedSubscriptionLagResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询共享订阅组订阅列表
+
+        # @param request: Request instance for DescribeSharedSubscriptions.
+        # @type request: :class:`Tencentcloud::mqtt::V20240516::DescribeSharedSubscriptionsRequest`
+        # @rtype: :class:`Tencentcloud::mqtt::V20240516::DescribeSharedSubscriptionsResponse`
+        def DescribeSharedSubscriptions(request)
+          body = send_request('DescribeSharedSubscriptions', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSharedSubscriptionsResponse.new
             model.deserialize(response['Response'])
             model
           else

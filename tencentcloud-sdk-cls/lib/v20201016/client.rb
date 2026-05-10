@@ -908,6 +908,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建指标预聚合任务
+
+        # @param request: Request instance for CreateRecordingRuleTask.
+        # @type request: :class:`Tencentcloud::cls::V20201016::CreateRecordingRuleTaskRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::CreateRecordingRuleTaskResponse`
+        def CreateRecordingRuleTask(request)
+          body = send_request('CreateRecordingRuleTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateRecordingRuleTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 通过yaml文件创建指标预聚合任务
+
+        # @param request: Request instance for CreateRecordingRuleYamlTask.
+        # @type request: :class:`Tencentcloud::cls::V20201016::CreateRecordingRuleYamlTaskRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::CreateRecordingRuleYamlTaskResponse`
+        def CreateRecordingRuleYamlTask(request)
+          body = send_request('CreateRecordingRuleYamlTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateRecordingRuleYamlTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口用于创建定时SQL分析任务
 
         # @param request: Request instance for CreateScheduledSql.
@@ -1710,6 +1758,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteNoticeContentResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口用于删除预聚合分析任务
+
+        # @param request: Request instance for DeleteRecordingRuleTask.
+        # @type request: :class:`Tencentcloud::cls::V20201016::DeleteRecordingRuleTaskRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::DeleteRecordingRuleTaskResponse`
+        def DeleteRecordingRuleTask(request)
+          body = send_request('DeleteRecordingRuleTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteRecordingRuleTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口用于删除yaml预聚合任务
+
+        # @param request: Request instance for DeleteRecordingRuleYamlTask.
+        # @type request: :class:`Tencentcloud::cls::V20201016::DeleteRecordingRuleYamlTaskRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::DeleteRecordingRuleYamlTaskResponse`
+        def DeleteRecordingRuleYamlTask(request)
+          body = send_request('DeleteRecordingRuleYamlTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteRecordingRuleYamlTaskResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2997,6 +3093,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口用于获取预聚合任务列表
+
+        # @param request: Request instance for DescribeRecordingRuleTask.
+        # @type request: :class:`Tencentcloud::cls::V20201016::DescribeRecordingRuleTaskRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::DescribeRecordingRuleTaskResponse`
+        def DescribeRecordingRuleTask(request)
+          body = send_request('DescribeRecordingRuleTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRecordingRuleTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口用于获取yaml预聚合任务列表
+
+        # @param request: Request instance for DescribeRecordingRuleYamlTask.
+        # @type request: :class:`Tencentcloud::cls::V20201016::DescribeRecordingRuleYamlTaskRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::DescribeRecordingRuleYamlTaskResponse`
+        def DescribeRecordingRuleYamlTask(request)
+          body = send_request('DescribeRecordingRuleYamlTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRecordingRuleYamlTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口用于获取定时SQL分析任务列表
 
         # @param request: Request instance for DescribeScheduledSqlInfo.
@@ -3968,6 +4112,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyNoticeContentResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口用于修改定时预聚合任务
+
+        # @param request: Request instance for ModifyRecordingRuleTask.
+        # @type request: :class:`Tencentcloud::cls::V20201016::ModifyRecordingRuleTaskRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::ModifyRecordingRuleTaskResponse`
+        def ModifyRecordingRuleTask(request)
+          body = send_request('ModifyRecordingRuleTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyRecordingRuleTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 通过yaml文件修改指标预聚合任务
+
+        # @param request: Request instance for ModifyRecordingRuleYamlTask.
+        # @type request: :class:`Tencentcloud::cls::V20201016::ModifyRecordingRuleYamlTaskRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::ModifyRecordingRuleYamlTaskResponse`
+        def ModifyRecordingRuleYamlTask(request)
+          body = send_request('ModifyRecordingRuleYamlTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyRecordingRuleYamlTaskResponse.new
             model.deserialize(response['Response'])
             model
           else

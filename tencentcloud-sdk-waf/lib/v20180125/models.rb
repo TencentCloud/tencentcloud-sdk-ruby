@@ -19708,21 +19708,25 @@ module TencentCloud
 
       # prompt注入检测结果结构体
       class PromptDetectResult < TencentCloud::Common::AbstractModel
-        # @param Result: 检测结果
+        # @param Result: <p>检测结果</p>
         # @type Result: String
-        # @param Confidence: 置信度
+        # @param Confidence: <p>置信度</p>
         # @type Confidence: Integer
+        # @param Category: <p>检出类别</p>
+        # @type Category: Array
 
-        attr_accessor :Result, :Confidence
+        attr_accessor :Result, :Confidence, :Category
 
-        def initialize(result=nil, confidence=nil)
+        def initialize(result=nil, confidence=nil, category=nil)
           @Result = result
           @Confidence = confidence
+          @Category = category
         end
 
         def deserialize(params)
           @Result = params['Result']
           @Confidence = params['Confidence']
+          @Category = params['Category']
         end
       end
 

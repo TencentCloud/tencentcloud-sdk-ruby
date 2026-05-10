@@ -1646,15 +1646,18 @@ module TencentCloud
         # @type AudioDownloadUrl: String
         # @param SubtitleDownloadUrl: 字幕下载url
         # @type SubtitleDownloadUrl: String
+        # @param TotalDurationMs: 音频时长
+        # @type TotalDurationMs: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Status, :AudioDownloadUrl, :SubtitleDownloadUrl, :RequestId
+        attr_accessor :Status, :AudioDownloadUrl, :SubtitleDownloadUrl, :TotalDurationMs, :RequestId
 
-        def initialize(status=nil, audiodownloadurl=nil, subtitledownloadurl=nil, requestid=nil)
+        def initialize(status=nil, audiodownloadurl=nil, subtitledownloadurl=nil, totaldurationms=nil, requestid=nil)
           @Status = status
           @AudioDownloadUrl = audiodownloadurl
           @SubtitleDownloadUrl = subtitledownloadurl
+          @TotalDurationMs = totaldurationms
           @RequestId = requestid
         end
 
@@ -1662,6 +1665,7 @@ module TencentCloud
           @Status = params['Status']
           @AudioDownloadUrl = params['AudioDownloadUrl']
           @SubtitleDownloadUrl = params['SubtitleDownloadUrl']
+          @TotalDurationMs = params['TotalDurationMs']
           @RequestId = params['RequestId']
         end
       end
@@ -6989,14 +6993,17 @@ module TencentCloud
         # @type Audio: String
         # @param Alignments: 字幕对齐数据
         # @type Alignments: Array
+        # @param TotalDurationMs: 音频时长
+        # @type TotalDurationMs: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Audio, :Alignments, :RequestId
+        attr_accessor :Audio, :Alignments, :TotalDurationMs, :RequestId
 
-        def initialize(audio=nil, alignments=nil, requestid=nil)
+        def initialize(audio=nil, alignments=nil, totaldurationms=nil, requestid=nil)
           @Audio = audio
           @Alignments = alignments
+          @TotalDurationMs = totaldurationms
           @RequestId = requestid
         end
 
@@ -7010,6 +7017,7 @@ module TencentCloud
               @Alignments << alignmentitem_tmp
             end
           end
+          @TotalDurationMs = params['TotalDurationMs']
           @RequestId = params['RequestId']
         end
       end

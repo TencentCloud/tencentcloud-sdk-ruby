@@ -508,9 +508,9 @@ module TencentCloud
 
       # 服务部署信息
       class DeploymentConfig < TencentCloud::Common::AbstractModel
-        # @param Container: 容器配置
+        # @param Container: <p>容器配置</p>
         # @type Container: :class:`Tencentcloud::Hai.v20230812.models.ContainerInfo`
-        # @param ContainerCount: 容器数量
+        # @param ContainerCount: <p>容器数量</p>
         # @type ContainerCount: Integer
 
         attr_accessor :Container, :ContainerCount

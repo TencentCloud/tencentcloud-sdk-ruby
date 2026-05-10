@@ -993,93 +993,6 @@ module TencentCloud
         end
       end
 
-      # 汽车票字段信息
-      class BusInvoiceInfo < TencentCloud::Common::AbstractModel
-        # @param Name: 识别出的字段名称(关键字)，支持以下字段：
-        # 发票代码、发票号码、日期、票价、始发地、目的地、姓名、时间、发票消费类型、身份证号、省、市、开票日期、乘车地点、检票口、客票类型、车型、座位号、车次。
-        # @type Name: String
-        # @param Value: 识别出的字段名称对应的值，也就是字段Name对应的字符串结果。
-        # @type Value: String
-        # @param Rect: 文本行在旋转纠正之后的图像中的像素坐标。
-        # @type Rect: :class:`Tencentcloud::Ocr.v20181119.models.Rect`
-
-        attr_accessor :Name, :Value, :Rect
-
-        def initialize(name=nil, value=nil, rect=nil)
-          @Name = name
-          @Value = value
-          @Rect = rect
-        end
-
-        def deserialize(params)
-          @Name = params['Name']
-          @Value = params['Value']
-          unless params['Rect'].nil?
-            @Rect = Rect.new
-            @Rect.deserialize(params['Rect'])
-          end
-        end
-      end
-
-      # BusInvoiceOCR请求参数结构体
-      class BusInvoiceOCRRequest < TencentCloud::Common::AbstractModel
-        # @param ImageBase64: 图片的 Base64 值。支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。支持的图片大小：所下载图片经Base64编码后不超过 10M。图片下载时间不超过 3 秒。图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
-        # @type ImageBase64: String
-        # @param ImageUrl: 图片的 Url 地址。支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。支持的图片大小：所下载图片经 Base64 编码后不超过 10M。图片下载时间不超过 3 秒。图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。非腾讯云存储的 Url 速度和稳定性可能受一定影响。
-        # @type ImageUrl: String
-        # @param IsPdf: 是否开启PDF识别，默认值为true，开启后可同时支持图片和PDF的识别。
-        # @type IsPdf: Boolean
-        # @param PdfPageNumber: 需要识别的PDF页面的对应页码，仅支持PDF单页识别，当上传文件为PDF且IsPdf参数值为true时有效，默认值为1。
-        # @type PdfPageNumber: Integer
-
-        attr_accessor :ImageBase64, :ImageUrl, :IsPdf, :PdfPageNumber
-
-        def initialize(imagebase64=nil, imageurl=nil, ispdf=nil, pdfpagenumber=nil)
-          @ImageBase64 = imagebase64
-          @ImageUrl = imageurl
-          @IsPdf = ispdf
-          @PdfPageNumber = pdfpagenumber
-        end
-
-        def deserialize(params)
-          @ImageBase64 = params['ImageBase64']
-          @ImageUrl = params['ImageUrl']
-          @IsPdf = params['IsPdf']
-          @PdfPageNumber = params['PdfPageNumber']
-        end
-      end
-
-      # BusInvoiceOCR返回参数结构体
-      class BusInvoiceOCRResponse < TencentCloud::Common::AbstractModel
-        # @param BusInvoiceInfos: 汽车票识别结果，具体内容请点击左侧链接。
-        # @type BusInvoiceInfos: Array
-        # @param Angle: 图片旋转角度（角度制），文本的水平方向为0°，顺时针为正，逆时针为负。
-        # @type Angle: Float
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :BusInvoiceInfos, :Angle, :RequestId
-
-        def initialize(businvoiceinfos=nil, angle=nil, requestid=nil)
-          @BusInvoiceInfos = businvoiceinfos
-          @Angle = angle
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['BusInvoiceInfos'].nil?
-            @BusInvoiceInfos = []
-            params['BusInvoiceInfos'].each do |i|
-              businvoiceinfo_tmp = BusInvoiceInfo.new
-              businvoiceinfo_tmp.deserialize(i)
-              @BusInvoiceInfos << businvoiceinfo_tmp
-            end
-          end
-          @Angle = params['Angle']
-          @RequestId = params['RequestId']
-        end
-      end
-
       # 名片识别结果
       class BusinessCardInfo < TencentCloud::Common::AbstractModel
         # @param Name: 识别出的字段名称（关键字，可能重复，比如多个手机），能识别的字段名为：
@@ -2166,93 +2079,6 @@ module TencentCloud
           @BackPageName = params['BackPageName']
           @BackPageCardCode = params['BackPageCardCode']
           @DriverLicenseType = params['DriverLicenseType']
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # 识别出的字段
-      class DutyPaidProofInfo < TencentCloud::Common::AbstractModel
-        # @param Name: 识别出的字段名称(关键字)，支持以下字段：
-        # 税号 、纳税人识别号 、纳税人名称 、金额合计大写 、金额合计小写 、填发日期 、税务机关 、填票人。
-        # @type Name: String
-        # @param Value: 识别出的字段名称对应的值，也就是字段Name对应的字符串结果。
-        # @type Value: String
-        # @param Rect: 文本行在旋转纠正之后的图像中的像素坐标。
-        # @type Rect: :class:`Tencentcloud::Ocr.v20181119.models.Rect`
-
-        attr_accessor :Name, :Value, :Rect
-
-        def initialize(name=nil, value=nil, rect=nil)
-          @Name = name
-          @Value = value
-          @Rect = rect
-        end
-
-        def deserialize(params)
-          @Name = params['Name']
-          @Value = params['Value']
-          unless params['Rect'].nil?
-            @Rect = Rect.new
-            @Rect.deserialize(params['Rect'])
-          end
-        end
-      end
-
-      # DutyPaidProofOCR请求参数结构体
-      class DutyPaidProofOCRRequest < TencentCloud::Common::AbstractModel
-        # @param ImageBase64: 图片的 Base64 值。支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。支持的图片大小：所下载图片经Base64编码后不超过 10M。图片下载时间不超过 3 秒。图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
-        # @type ImageBase64: String
-        # @param ImageUrl: 图片的 Url 地址。支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。支持的图片大小：所下载图片经 Base64 编码后不超过 10M。图片下载时间不超过 3 秒。图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。非腾讯云存储的 Url 速度和稳定性可能受一定影响。
-        # @type ImageUrl: String
-        # @param IsPdf: 是否开启PDF识别，默认值为true，开启后可同时支持图片和PDF的识别。
-        # @type IsPdf: Boolean
-        # @param PdfPageNumber: 需要识别的PDF页面的对应页码，仅支持PDF单页识别，当上传文件为PDF且IsPdf参数值为true时有效，默认值为1。
-        # @type PdfPageNumber: Integer
-
-        attr_accessor :ImageBase64, :ImageUrl, :IsPdf, :PdfPageNumber
-
-        def initialize(imagebase64=nil, imageurl=nil, ispdf=nil, pdfpagenumber=nil)
-          @ImageBase64 = imagebase64
-          @ImageUrl = imageurl
-          @IsPdf = ispdf
-          @PdfPageNumber = pdfpagenumber
-        end
-
-        def deserialize(params)
-          @ImageBase64 = params['ImageBase64']
-          @ImageUrl = params['ImageUrl']
-          @IsPdf = params['IsPdf']
-          @PdfPageNumber = params['PdfPageNumber']
-        end
-      end
-
-      # DutyPaidProofOCR返回参数结构体
-      class DutyPaidProofOCRResponse < TencentCloud::Common::AbstractModel
-        # @param DutyPaidProofInfos: 完税证明识别结果，具体内容请点击左侧链接。
-        # @type DutyPaidProofInfos: Array
-        # @param Angle: 图片旋转角度（角度制），文本的水平方向为0°，顺时针为正，逆时针为负。
-        # @type Angle: Float
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :DutyPaidProofInfos, :Angle, :RequestId
-
-        def initialize(dutypaidproofinfos=nil, angle=nil, requestid=nil)
-          @DutyPaidProofInfos = dutypaidproofinfos
-          @Angle = angle
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['DutyPaidProofInfos'].nil?
-            @DutyPaidProofInfos = []
-            params['DutyPaidProofInfos'].each do |i|
-              dutypaidproofinfo_tmp = DutyPaidProofInfo.new
-              dutypaidproofinfo_tmp.deserialize(i)
-              @DutyPaidProofInfos << dutypaidproofinfo_tmp
-            end
-          end
-          @Angle = params['Angle']
           @RequestId = params['RequestId']
         end
       end
@@ -3731,147 +3557,6 @@ module TencentCloud
               @SubItems << subitemgroup_tmp
             end
           end
-        end
-      end
-
-      # 金融票据整单识别单个字段的内容
-      class FinanBillInfo < TencentCloud::Common::AbstractModel
-        # @param Name: 识别出的字段名称(关键字)，支持以下字段：
-        # 【进账单】
-        # 日期、出票全称、出票账号、出票开户行、收款人全称、收款人账号、收款开户行、大写金额、小写金额、票据种类、票据张数、票据号码；
-        # 【支票】
-        # 开户银行、支票种类、凭证号码2、日期、大写金额、小写金额、付款行编号、密码、凭证号码1；
-        # 【银行承兑汇票】或【商业承兑汇票】
-        # 出票日期、行号1、行号2、出票人全称、出票人账号、付款行全称、收款人全称、收款人账号、收款人开户行、出票金额大写、出票金额小写、汇票到期日、付款行行号、付款行地址。
-        # @type Name: String
-        # @param Value: 识别出的字段名称对应的值，也就是字段Name对应的字符串结果。
-        # @type Value: String
-
-        attr_accessor :Name, :Value
-
-        def initialize(name=nil, value=nil)
-          @Name = name
-          @Value = value
-        end
-
-        def deserialize(params)
-          @Name = params['Name']
-          @Value = params['Value']
-        end
-      end
-
-      # FinanBillOCR请求参数结构体
-      class FinanBillOCRRequest < TencentCloud::Common::AbstractModel
-        # @param ImageBase64: 图片的 Base64 值。支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。支持的图片大小：所下载图片经Base64编码后不超过 10M。图片下载时间不超过 3 秒。图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
-        # @type ImageBase64: String
-        # @param ImageUrl: 图片的 Url 地址。支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。支持的图片大小：所下载图片经 Base64 编码后不超过 10M。图片下载时间不超过 3 秒。图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。非腾讯云存储的 Url 速度和稳定性可能受一定影响。
-        # @type ImageUrl: String
-
-        attr_accessor :ImageBase64, :ImageUrl
-
-        def initialize(imagebase64=nil, imageurl=nil)
-          @ImageBase64 = imagebase64
-          @ImageUrl = imageurl
-        end
-
-        def deserialize(params)
-          @ImageBase64 = params['ImageBase64']
-          @ImageUrl = params['ImageUrl']
-        end
-      end
-
-      # FinanBillOCR返回参数结构体
-      class FinanBillOCRResponse < TencentCloud::Common::AbstractModel
-        # @param FinanBillInfos: 金融票据整单识别结果，具体内容请点击左侧链接。
-        # @type FinanBillInfos: Array
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :FinanBillInfos, :RequestId
-
-        def initialize(finanbillinfos=nil, requestid=nil)
-          @FinanBillInfos = finanbillinfos
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['FinanBillInfos'].nil?
-            @FinanBillInfos = []
-            params['FinanBillInfos'].each do |i|
-              finanbillinfo_tmp = FinanBillInfo.new
-              finanbillinfo_tmp.deserialize(i)
-              @FinanBillInfos << finanbillinfo_tmp
-            end
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # 金融票据切片识别单个字段的内容
-      class FinanBillSliceInfo < TencentCloud::Common::AbstractModel
-        # @param Name: 识别出的字段名称(关键字)，支持以下字段：
-        # 大写金额、小写金额、账号、票号1、票号2、收款人、大写日期、同城交换号、地址-省份、地址-城市、付款行全称、支票密码、支票用途。
-        # @type Name: String
-        # @param Value: 识别出的字段名称对应的值，也就是字段Name对应的字符串结果。
-        # @type Value: String
-
-        attr_accessor :Name, :Value
-
-        def initialize(name=nil, value=nil)
-          @Name = name
-          @Value = value
-        end
-
-        def deserialize(params)
-          @Name = params['Name']
-          @Value = params['Value']
-        end
-      end
-
-      # FinanBillSliceOCR请求参数结构体
-      class FinanBillSliceOCRRequest < TencentCloud::Common::AbstractModel
-        # @param ImageBase64: 图片的 Base64 值。支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。支持的图片大小：所下载图片经Base64编码后不超过 10M。图片下载时间不超过 3 秒。图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
-        # @type ImageBase64: String
-        # @param ImageUrl: 图片的 Url 地址。支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。支持的图片大小：所下载图片经 Base64 编码后不超过 10M。图片下载时间不超过 3 秒。图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。非腾讯云存储的 Url 速度和稳定性可能受一定影响。
-        # @type ImageUrl: String
-
-        attr_accessor :ImageBase64, :ImageUrl
-
-        def initialize(imagebase64=nil, imageurl=nil)
-          @ImageBase64 = imagebase64
-          @ImageUrl = imageurl
-        end
-
-        def deserialize(params)
-          @ImageBase64 = params['ImageBase64']
-          @ImageUrl = params['ImageUrl']
-        end
-      end
-
-      # FinanBillSliceOCR返回参数结构体
-      class FinanBillSliceOCRResponse < TencentCloud::Common::AbstractModel
-        # @param FinanBillSliceInfos: 金融票据切片识别结果，具体内容请点击左侧链接。
-        # @type FinanBillSliceInfos: Array
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :FinanBillSliceInfos, :RequestId
-
-        def initialize(finanbillsliceinfos=nil, requestid=nil)
-          @FinanBillSliceInfos = finanbillsliceinfos
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['FinanBillSliceInfos'].nil?
-            @FinanBillSliceInfos = []
-            params['FinanBillSliceInfos'].each do |i|
-              finanbillsliceinfo_tmp = FinanBillSliceInfo.new
-              finanbillsliceinfo_tmp.deserialize(i)
-              @FinanBillSliceInfos << finanbillsliceinfo_tmp
-            end
-          end
-          @RequestId = params['RequestId']
         end
       end
 
@@ -5819,93 +5504,6 @@ module TencentCloud
             @Rect.deserialize(params['Rect'])
           end
           @Image = params['Image']
-        end
-      end
-
-      # 通用机打发票信息
-      class InvoiceGeneralInfo < TencentCloud::Common::AbstractModel
-        # @param Name: 识别出的字段名称(关键字)，支持以下字段识别（注：下划线表示一个字段）：
-        # 发票代码、发票号码、日期、合计金额(小写)、合计金额(大写)、购买方识别号、销售方识别号、校验码、购买方名称、销售方名称、时间、种类、发票消费类型、省、市、是否有公司印章、发票名称、<span style="text-decoration:underline">购买方地址、电话</span>、<span style="text-decoration:underline">销售方地址、电话</span>、购买方开户行及账号、销售方开户行及账号、经办人取票用户、经办人支付信息、经办人商户号、经办人订单号、<span style="text-decoration:underline">货物或应税劳务、服务名称</span>、数量、单价、税率、税额、金额、单位、规格型号、合计税额、合计金额、备注、收款人、复核、开票人、密码区、行业分类
-        # @type Name: String
-        # @param Value: 识别出的字段名称对应的值，也就是字段Name对应的字符串结果。
-        # @type Value: String
-        # @param Rect: 文本行在旋转纠正之后的图像中的像素坐标。
-        # @type Rect: :class:`Tencentcloud::Ocr.v20181119.models.Rect`
-
-        attr_accessor :Name, :Value, :Rect
-
-        def initialize(name=nil, value=nil, rect=nil)
-          @Name = name
-          @Value = value
-          @Rect = rect
-        end
-
-        def deserialize(params)
-          @Name = params['Name']
-          @Value = params['Value']
-          unless params['Rect'].nil?
-            @Rect = Rect.new
-            @Rect.deserialize(params['Rect'])
-          end
-        end
-      end
-
-      # InvoiceGeneralOCR请求参数结构体
-      class InvoiceGeneralOCRRequest < TencentCloud::Common::AbstractModel
-        # @param ImageBase64: 图片的 Base64 值。支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。支持的图片大小：所下载图片经Base64编码后不超过 10M。图片下载时间不超过 3 秒。图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
-        # @type ImageBase64: String
-        # @param ImageUrl: 图片的 Url 地址。支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。支持的图片大小：所下载图片经 Base64 编码后不超过 10M。图片下载时间不超过 3 秒。图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。非腾讯云存储的 Url 速度和稳定性可能受一定影响。
-        # @type ImageUrl: String
-        # @param IsPdf: 是否开启PDF识别，默认值为true，开启后可同时支持图片和PDF的识别。
-        # @type IsPdf: Boolean
-        # @param PdfPageNumber: 需要识别的PDF页面的对应页码，仅支持PDF单页识别，当上传文件为PDF且IsPdf参数值为true时有效，默认值为1。
-        # @type PdfPageNumber: Integer
-
-        attr_accessor :ImageBase64, :ImageUrl, :IsPdf, :PdfPageNumber
-
-        def initialize(imagebase64=nil, imageurl=nil, ispdf=nil, pdfpagenumber=nil)
-          @ImageBase64 = imagebase64
-          @ImageUrl = imageurl
-          @IsPdf = ispdf
-          @PdfPageNumber = pdfpagenumber
-        end
-
-        def deserialize(params)
-          @ImageBase64 = params['ImageBase64']
-          @ImageUrl = params['ImageUrl']
-          @IsPdf = params['IsPdf']
-          @PdfPageNumber = params['PdfPageNumber']
-        end
-      end
-
-      # InvoiceGeneralOCR返回参数结构体
-      class InvoiceGeneralOCRResponse < TencentCloud::Common::AbstractModel
-        # @param InvoiceGeneralInfos: 通用机打发票识别结果，具体内容请点击左侧链接。
-        # @type InvoiceGeneralInfos: Array
-        # @param Angle: 图片旋转角度（角度制），文本的水平方向为0°，顺时针为正，逆时针为负。
-        # @type Angle: Float
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :InvoiceGeneralInfos, :Angle, :RequestId
-
-        def initialize(invoicegeneralinfos=nil, angle=nil, requestid=nil)
-          @InvoiceGeneralInfos = invoicegeneralinfos
-          @Angle = angle
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['InvoiceGeneralInfos'].nil?
-            @InvoiceGeneralInfos = []
-            params['InvoiceGeneralInfos'].each do |i|
-              invoicegeneralinfo_tmp = InvoiceGeneralInfo.new
-              invoicegeneralinfo_tmp.deserialize(i)
-              @InvoiceGeneralInfos << invoicegeneralinfo_tmp
-            end
-          end
-          @Angle = params['Angle']
-          @RequestId = params['RequestId']
         end
       end
 
@@ -8155,18 +7753,11 @@ module TencentCloud
 
       # PermitOCR请求参数结构体
       class PermitOCRRequest < TencentCloud::Common::AbstractModel
-        # @param ImageBase64: 图片的 Base64 值。
-        # 支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。
-        # 支持的图片大小：所下载图片经Base64编码后不超过 7M。图片下载时间不超过 3 秒。
-        # 图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
+        # @param ImageBase64: <p>图片的 Base64 值。支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。支持的图片大小：所下载图片经Base64编码后不超过 7M。图片下载时间不超过 3 秒。图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。</p>
         # @type ImageBase64: String
-        # @param ImageUrl: 图片的 Url 地址。
-        # 支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。
-        # 支持的图片大小：所下载图片经 Base64 编码后不超过 7M。图片下载时间不超过 3 秒。
-        # 图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。
-        # 非腾讯云存储的 Url 速度和稳定性可能受一定影响。
+        # @param ImageUrl: <p>图片的 Url 地址。支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。支持的图片大小：所下载图片经 Base64 编码后不超过 7M。图片下载时间不超过 3 秒。图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。非腾讯云存储的 Url 速度和稳定性可能受一定影响。</p>
         # @type ImageUrl: String
-        # @param CropPortrait: 是否返回头像照片，默认为 false
+        # @param CropPortrait: <p>是否返回头像照片，默认为 false</p>
         # @type CropPortrait: Boolean
 
         attr_accessor :ImageBase64, :ImageUrl, :CropPortrait
@@ -8186,25 +7777,25 @@ module TencentCloud
 
       # PermitOCR返回参数结构体
       class PermitOCRResponse < TencentCloud::Common::AbstractModel
-        # @param Name: 姓名
+        # @param Name: <p>姓名</p>
         # @type Name: String
-        # @param EnglishName: 英文姓名
+        # @param EnglishName: <p>英文姓名</p>
         # @type EnglishName: String
-        # @param Number: 证件号
+        # @param Number: <p>证件号</p>
         # @type Number: String
-        # @param Sex: 性别
+        # @param Sex: <p>性别</p>
         # @type Sex: String
-        # @param ValidDate: 有效期限
+        # @param ValidDate: <p>有效期限</p>
         # @type ValidDate: String
-        # @param IssueAuthority: 签发机关
+        # @param IssueAuthority: <p>签发机关</p>
         # @type IssueAuthority: String
-        # @param IssueAddress: 签发地点
+        # @param IssueAddress: <p>签发地点</p>
         # @type IssueAddress: String
-        # @param Birthday: 出生日期
+        # @param Birthday: <p>出生日期</p>
         # @type Birthday: String
-        # @param PortraitImage: 头像照片的base64
+        # @param PortraitImage: <p>头像照片的base64</p>
         # @type PortraitImage: String
-        # @param Type: 返回类型
+        # @param Type: <p>返回类型</p>
         # @type Type: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -8844,85 +8435,6 @@ module TencentCloud
           @City = params['City']
           @QRCodeMark = params['QRCodeMark']
           @CompanySealMark = params['CompanySealMark']
-        end
-      end
-
-      # QuotaInvoiceOCR请求参数结构体
-      class QuotaInvoiceOCRRequest < TencentCloud::Common::AbstractModel
-        # @param ImageBase64: 图片的 Base64 值。支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。支持的图片大小：所下载图片经Base64编码后不超过 10M。图片下载时间不超过 3 秒。图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
-        # @type ImageBase64: String
-        # @param ImageUrl: 图片的 Url 地址。支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。支持的图片大小：所下载图片经 Base64 编码后不超过 10M。图片下载时间不超过 3 秒。图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。非腾讯云存储的 Url 速度和稳定性可能受一定影响。
-        # @type ImageUrl: String
-        # @param IsPdf: 是否开启PDF识别，默认值为true，开启后可同时支持图片和PDF的识别。
-        # @type IsPdf: Boolean
-        # @param PdfPageNumber: 需要识别的PDF页面的对应页码，仅支持PDF单页识别，当上传文件为PDF且IsPdf参数值为true时有效，默认值为1。
-        # @type PdfPageNumber: Integer
-
-        attr_accessor :ImageBase64, :ImageUrl, :IsPdf, :PdfPageNumber
-
-        def initialize(imagebase64=nil, imageurl=nil, ispdf=nil, pdfpagenumber=nil)
-          @ImageBase64 = imagebase64
-          @ImageUrl = imageurl
-          @IsPdf = ispdf
-          @PdfPageNumber = pdfpagenumber
-        end
-
-        def deserialize(params)
-          @ImageBase64 = params['ImageBase64']
-          @ImageUrl = params['ImageUrl']
-          @IsPdf = params['IsPdf']
-          @PdfPageNumber = params['PdfPageNumber']
-        end
-      end
-
-      # QuotaInvoiceOCR返回参数结构体
-      class QuotaInvoiceOCRResponse < TencentCloud::Common::AbstractModel
-        # @param InvoiceNum: 发票号码
-        # @type InvoiceNum: String
-        # @param InvoiceCode: 发票代码
-        # @type InvoiceCode: String
-        # @param Rate: 大写金额
-        # @type Rate: String
-        # @param RateNum: 小写金额
-        # @type RateNum: String
-        # @param InvoiceType: 发票消费类型
-        # @type InvoiceType: String
-        # @param Province: 省
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Province: String
-        # @param City: 市
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type City: String
-        # @param HasStamp: 是否有公司印章（1有 0无 空为识别不出）
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type HasStamp: String
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :InvoiceNum, :InvoiceCode, :Rate, :RateNum, :InvoiceType, :Province, :City, :HasStamp, :RequestId
-
-        def initialize(invoicenum=nil, invoicecode=nil, rate=nil, ratenum=nil, invoicetype=nil, province=nil, city=nil, hasstamp=nil, requestid=nil)
-          @InvoiceNum = invoicenum
-          @InvoiceCode = invoicecode
-          @Rate = rate
-          @RateNum = ratenum
-          @InvoiceType = invoicetype
-          @Province = province
-          @City = city
-          @HasStamp = hasstamp
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @InvoiceNum = params['InvoiceNum']
-          @InvoiceCode = params['InvoiceCode']
-          @Rate = params['Rate']
-          @RateNum = params['RateNum']
-          @InvoiceType = params['InvoiceType']
-          @Province = params['Province']
-          @City = params['City']
-          @HasStamp = params['HasStamp']
-          @RequestId = params['RequestId']
         end
       end
 
@@ -11114,93 +10626,6 @@ module TencentCloud
             end
           end
           @SealShape = params['SealShape']
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # 轮船票字段信息
-      class ShipInvoiceInfo < TencentCloud::Common::AbstractModel
-        # @param Name: 识别出的字段名称(关键字)，支持以下字段：
-        # 发票代码、发票号码、日期、票价、始发地、目的地、姓名、时间、发票消费类型、省、市、币种。
-        # @type Name: String
-        # @param Value: 识别出的字段名称对应的值，也就是字段Name对应的字符串结果。
-        # @type Value: String
-        # @param Rect: 文本行在旋转纠正之后的图像中的像素坐标。
-        # @type Rect: :class:`Tencentcloud::Ocr.v20181119.models.Rect`
-
-        attr_accessor :Name, :Value, :Rect
-
-        def initialize(name=nil, value=nil, rect=nil)
-          @Name = name
-          @Value = value
-          @Rect = rect
-        end
-
-        def deserialize(params)
-          @Name = params['Name']
-          @Value = params['Value']
-          unless params['Rect'].nil?
-            @Rect = Rect.new
-            @Rect.deserialize(params['Rect'])
-          end
-        end
-      end
-
-      # ShipInvoiceOCR请求参数结构体
-      class ShipInvoiceOCRRequest < TencentCloud::Common::AbstractModel
-        # @param ImageBase64: 图片的 Base64 值。支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。支持的图片大小：所下载图片经Base64编码后不超过 10M。图片下载时间不超过 3 秒。图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
-        # @type ImageBase64: String
-        # @param ImageUrl: 图片的 Url 地址。支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。支持的图片大小：所下载图片经 Base64 编码后不超过 10M。图片下载时间不超过 3 秒。图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。非腾讯云存储的 Url 速度和稳定性可能受一定影响。
-        # @type ImageUrl: String
-        # @param IsPdf: 是否开启PDF识别，默认值为true，开启后可同时支持图片和PDF的识别。
-        # @type IsPdf: Boolean
-        # @param PdfPageNumber: 需要识别的PDF页面的对应页码，仅支持PDF单页识别，当上传文件为PDF且IsPdf参数值为true时有效，默认值为1。
-        # @type PdfPageNumber: Integer
-
-        attr_accessor :ImageBase64, :ImageUrl, :IsPdf, :PdfPageNumber
-
-        def initialize(imagebase64=nil, imageurl=nil, ispdf=nil, pdfpagenumber=nil)
-          @ImageBase64 = imagebase64
-          @ImageUrl = imageurl
-          @IsPdf = ispdf
-          @PdfPageNumber = pdfpagenumber
-        end
-
-        def deserialize(params)
-          @ImageBase64 = params['ImageBase64']
-          @ImageUrl = params['ImageUrl']
-          @IsPdf = params['IsPdf']
-          @PdfPageNumber = params['PdfPageNumber']
-        end
-      end
-
-      # ShipInvoiceOCR返回参数结构体
-      class ShipInvoiceOCRResponse < TencentCloud::Common::AbstractModel
-        # @param ShipInvoiceInfos: 轮船票识别结果，具体内容请点击左侧链接。
-        # @type ShipInvoiceInfos: Array
-        # @param Angle: 图片旋转角度（角度制），文本的水平方向为0°，顺时针为正，逆时针为负。
-        # @type Angle: Float
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :ShipInvoiceInfos, :Angle, :RequestId
-
-        def initialize(shipinvoiceinfos=nil, angle=nil, requestid=nil)
-          @ShipInvoiceInfos = shipinvoiceinfos
-          @Angle = angle
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['ShipInvoiceInfos'].nil?
-            @ShipInvoiceInfos = []
-            params['ShipInvoiceInfos'].each do |i|
-              shipinvoiceinfo_tmp = ShipInvoiceInfo.new
-              shipinvoiceinfo_tmp.deserialize(i)
-              @ShipInvoiceInfos << shipinvoiceinfo_tmp
-            end
-          end
-          @Angle = params['Angle']
           @RequestId = params['RequestId']
         end
       end
@@ -13398,93 +12823,6 @@ module TencentCloud
         end
       end
 
-      # 过路过桥费字段信息
-      class TollInvoiceInfo < TencentCloud::Common::AbstractModel
-        # @param Name: 识别出的字段名称（关键字）。支持以下字段的识别：
-        # 发票代码、发票号码、日期、金额、入口、出口、时间、发票消费类型、高速标志。
-        # @type Name: String
-        # @param Value: 识别出的字段名称对应的值，也就是字段Name对应的字符串结果。
-        # @type Value: String
-        # @param Rect: 文本行在旋转纠正之后的图像中的像素坐标。
-        # @type Rect: :class:`Tencentcloud::Ocr.v20181119.models.Rect`
-
-        attr_accessor :Name, :Value, :Rect
-
-        def initialize(name=nil, value=nil, rect=nil)
-          @Name = name
-          @Value = value
-          @Rect = rect
-        end
-
-        def deserialize(params)
-          @Name = params['Name']
-          @Value = params['Value']
-          unless params['Rect'].nil?
-            @Rect = Rect.new
-            @Rect.deserialize(params['Rect'])
-          end
-        end
-      end
-
-      # TollInvoiceOCR请求参数结构体
-      class TollInvoiceOCRRequest < TencentCloud::Common::AbstractModel
-        # @param ImageBase64: 图片的 Base64 值。支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。支持的图片大小：所下载图片经Base64编码后不超过 10M。图片下载时间不超过 3 秒。图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
-        # @type ImageBase64: String
-        # @param ImageUrl: 图片的 Url 地址。支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。支持的图片大小：所下载图片经 Base64 编码后不超过 10M。图片下载时间不超过 3 秒。图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。非腾讯云存储的 Url 速度和稳定性可能受一定影响。
-        # @type ImageUrl: String
-        # @param IsPdf: 是否开启PDF识别，默认值为true，开启后可同时支持图片和PDF的识别。
-        # @type IsPdf: Boolean
-        # @param PdfPageNumber: 需要识别的PDF页面的对应页码，仅支持PDF单页识别，当上传文件为PDF且IsPdf参数值为true时有效，默认值为1。
-        # @type PdfPageNumber: Integer
-
-        attr_accessor :ImageBase64, :ImageUrl, :IsPdf, :PdfPageNumber
-
-        def initialize(imagebase64=nil, imageurl=nil, ispdf=nil, pdfpagenumber=nil)
-          @ImageBase64 = imagebase64
-          @ImageUrl = imageurl
-          @IsPdf = ispdf
-          @PdfPageNumber = pdfpagenumber
-        end
-
-        def deserialize(params)
-          @ImageBase64 = params['ImageBase64']
-          @ImageUrl = params['ImageUrl']
-          @IsPdf = params['IsPdf']
-          @PdfPageNumber = params['PdfPageNumber']
-        end
-      end
-
-      # TollInvoiceOCR返回参数结构体
-      class TollInvoiceOCRResponse < TencentCloud::Common::AbstractModel
-        # @param TollInvoiceInfos: 过路过桥费发票识别结果，具体内容请点击左侧链接。
-        # @type TollInvoiceInfos: Array
-        # @param Angle: 图片旋转角度（角度制），文本的水平方向为0°，顺时针为正，逆时针为负。
-        # @type Angle: Float
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :TollInvoiceInfos, :Angle, :RequestId
-
-        def initialize(tollinvoiceinfos=nil, angle=nil, requestid=nil)
-          @TollInvoiceInfos = tollinvoiceinfos
-          @Angle = angle
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['TollInvoiceInfos'].nil?
-            @TollInvoiceInfos = []
-            params['TollInvoiceInfos'].each do |i|
-              tollinvoiceinfo_tmp = TollInvoiceInfo.new
-              tollinvoiceinfo_tmp.deserialize(i)
-              @TollInvoiceInfos << tollinvoiceinfo_tmp
-            end
-          end
-          @Angle = params['Angle']
-          @RequestId = params['RequestId']
-        end
-      end
-
       # 火车票
       class TrainTicket < TencentCloud::Common::AbstractModel
         # @param Title: 发票名称
@@ -15149,93 +14487,6 @@ module TencentCloud
             @FinancialBill = FinancialBill.new
             @FinancialBill.deserialize(params['FinancialBill'])
           end
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # 增值税发票卷票信息
-      class VatRollInvoiceInfo < TencentCloud::Common::AbstractModel
-        # @param Name: 识别出的字段名称(关键字)，支持以下字段：
-        # 发票代码、合计金额(小写)、合计金额(大写)、开票日期、发票号码、购买方识别号、销售方识别号、校验码、销售方名称、购买方名称、发票消费类型、省、市、是否有公司印章、单价、金额、数量、服务类型、品名、种类。
-        # @type Name: String
-        # @param Value: 识别出的字段名称对应的值，也就是字段Name对应的字符串结果。
-        # @type Value: String
-        # @param Rect: 文本行在旋转纠正之后的图像中的像素坐标。
-        # @type Rect: :class:`Tencentcloud::Ocr.v20181119.models.Rect`
-
-        attr_accessor :Name, :Value, :Rect
-
-        def initialize(name=nil, value=nil, rect=nil)
-          @Name = name
-          @Value = value
-          @Rect = rect
-        end
-
-        def deserialize(params)
-          @Name = params['Name']
-          @Value = params['Value']
-          unless params['Rect'].nil?
-            @Rect = Rect.new
-            @Rect.deserialize(params['Rect'])
-          end
-        end
-      end
-
-      # VatRollInvoiceOCR请求参数结构体
-      class VatRollInvoiceOCRRequest < TencentCloud::Common::AbstractModel
-        # @param ImageBase64: 图片的 Base64 值。支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。支持的图片大小：所下载图片经Base64编码后不超过 10M。图片下载时间不超过 3 秒。图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
-        # @type ImageBase64: String
-        # @param ImageUrl: 图片的 Url 地址。支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。支持的图片大小：所下载图片经 Base64 编码后不超过 10M。图片下载时间不超过 3 秒。图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。非腾讯云存储的 Url 速度和稳定性可能受一定影响。
-        # @type ImageUrl: String
-        # @param IsPdf: 是否开启PDF识别，默认值为true，开启后可同时支持图片和PDF的识别。
-        # @type IsPdf: Boolean
-        # @param PdfPageNumber: 需要识别的PDF页面的对应页码，仅支持PDF单页识别，当上传文件为PDF且IsPdf参数值为true时有效，默认值为1。
-        # @type PdfPageNumber: Integer
-
-        attr_accessor :ImageBase64, :ImageUrl, :IsPdf, :PdfPageNumber
-
-        def initialize(imagebase64=nil, imageurl=nil, ispdf=nil, pdfpagenumber=nil)
-          @ImageBase64 = imagebase64
-          @ImageUrl = imageurl
-          @IsPdf = ispdf
-          @PdfPageNumber = pdfpagenumber
-        end
-
-        def deserialize(params)
-          @ImageBase64 = params['ImageBase64']
-          @ImageUrl = params['ImageUrl']
-          @IsPdf = params['IsPdf']
-          @PdfPageNumber = params['PdfPageNumber']
-        end
-      end
-
-      # VatRollInvoiceOCR返回参数结构体
-      class VatRollInvoiceOCRResponse < TencentCloud::Common::AbstractModel
-        # @param VatRollInvoiceInfos: 增值税发票（卷票）识别结果，具体内容请点击左侧链接。
-        # @type VatRollInvoiceInfos: Array
-        # @param Angle: 图片旋转角度（角度制），文本的水平方向为0°，顺时针为正，逆时针为负。
-        # @type Angle: Float
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :VatRollInvoiceInfos, :Angle, :RequestId
-
-        def initialize(vatrollinvoiceinfos=nil, angle=nil, requestid=nil)
-          @VatRollInvoiceInfos = vatrollinvoiceinfos
-          @Angle = angle
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['VatRollInvoiceInfos'].nil?
-            @VatRollInvoiceInfos = []
-            params['VatRollInvoiceInfos'].each do |i|
-              vatrollinvoiceinfo_tmp = VatRollInvoiceInfo.new
-              vatrollinvoiceinfo_tmp.deserialize(i)
-              @VatRollInvoiceInfos << vatrollinvoiceinfo_tmp
-            end
-          end
-          @Angle = params['Angle']
           @RequestId = params['RequestId']
         end
       end

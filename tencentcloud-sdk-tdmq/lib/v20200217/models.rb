@@ -2321,6 +2321,49 @@ module TencentCloud
         end
       end
 
+      # CreateRocketMQRouterRule请求参数结构体
+      class CreateRocketMQRouterRuleRequest < TencentCloud::Common::AbstractModel
+        # @param StartNow: <p>true: 立即启动任务<br>false: 创建任务后不立即启动，可以在控制台操作启动</p>
+        # @type StartNow: Boolean
+        # @param Rule: <p>规则数据结构</p>
+        # @type Rule: :class:`Tencentcloud::Tdmq.v20200217.models.RocketMQRouterRuleInfo`
+        # @param SyncType: <p>数据同步类型。<br>Topic：按照topic维度同步</p>
+        # @type SyncType: String
+
+        attr_accessor :StartNow, :Rule, :SyncType
+
+        def initialize(startnow=nil, rule=nil, synctype=nil)
+          @StartNow = startnow
+          @Rule = rule
+          @SyncType = synctype
+        end
+
+        def deserialize(params)
+          @StartNow = params['StartNow']
+          unless params['Rule'].nil?
+            @Rule = RocketMQRouterRuleInfo.new
+            @Rule.deserialize(params['Rule'])
+          end
+          @SyncType = params['SyncType']
+        end
+      end
+
+      # CreateRocketMQRouterRule返回参数结构体
+      class CreateRocketMQRouterRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateRocketMQTopic请求参数结构体
       class CreateRocketMQTopicRequest < TencentCloud::Common::AbstractModel
         # @param Topic: 主题名称，3-64个字符，只能包含字母、数字、“-”及“_”
@@ -6686,8 +6729,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :EnvironmentId, :TopicName, :MsgId, :PulsarMsgId, :QueryDlqMsg, :QueryDeadLetterMessage, :Offset, :Limit, :FilterTrackGroup
         extend Gem::Deprecate
-        deprecate :QueryDlqMsg, :none, 2026, 4
-        deprecate :QueryDlqMsg=, :none, 2026, 4
+        deprecate :QueryDlqMsg, :none, 2026, 5
+        deprecate :QueryDlqMsg=, :none, 2026, 5
 
         def initialize(clusterid=nil, environmentid=nil, topicname=nil, msgid=nil, pulsarmsgid=nil, querydlqmsg=nil, querydeadlettermessage=nil, offset=nil, limit=nil, filtertrackgroup=nil)
           @ClusterId = clusterid
@@ -6792,8 +6835,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :EnvironmentId, :TopicName, :MsgId, :GroupName, :QueryDLQMsg, :QueryDeadLetterMessage
         extend Gem::Deprecate
-        deprecate :QueryDLQMsg, :none, 2026, 4
-        deprecate :QueryDLQMsg=, :none, 2026, 4
+        deprecate :QueryDLQMsg, :none, 2026, 5
+        deprecate :QueryDLQMsg=, :none, 2026, 5
 
         def initialize(clusterid=nil, environmentid=nil, topicname=nil, msgid=nil, groupname=nil, querydlqmsg=nil, querydeadlettermessage=nil)
           @ClusterId = clusterid
@@ -7512,8 +7555,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :EnvironmentId, :TopicName, :StartTime, :EndTime, :MsgId, :MsgKey, :Offset, :Limit, :TaskRequestId, :QueryDlqMsg, :NumOfLatestMsg, :Tag, :QueryDeadLetterMessage
         extend Gem::Deprecate
-        deprecate :QueryDlqMsg, :none, 2026, 4
-        deprecate :QueryDlqMsg=, :none, 2026, 4
+        deprecate :QueryDlqMsg, :none, 2026, 5
+        deprecate :QueryDlqMsg=, :none, 2026, 5
 
         def initialize(clusterid=nil, environmentid=nil, topicname=nil, starttime=nil, endtime=nil, msgid=nil, msgkey=nil, offset=nil, limit=nil, taskrequestid=nil, querydlqmsg=nil, numoflatestmsg=nil, tag=nil, querydeadlettermessage=nil)
           @ClusterId = clusterid
@@ -12344,8 +12387,8 @@ module TencentCloud
 
         attr_accessor :MaxTpsPerNamespace, :MaxNamespaceNum, :UsedNamespaceNum, :MaxTopicNum, :UsedTopicNum, :MaxGroupNum, :UsedGroupNum, :MaxRetentionTime, :MaxLatencyTime, :MaxQueuesPerTopic, :TopicDistribution, :MaxRoleNum, :MaxTpsLimit
         extend Gem::Deprecate
-        deprecate :MaxTpsPerNamespace, :none, 2026, 4
-        deprecate :MaxTpsPerNamespace=, :none, 2026, 4
+        deprecate :MaxTpsPerNamespace, :none, 2026, 5
+        deprecate :MaxTpsPerNamespace=, :none, 2026, 5
 
         def initialize(maxtpspernamespace=nil, maxnamespacenum=nil, usednamespacenum=nil, maxtopicnum=nil, usedtopicnum=nil, maxgroupnum=nil, usedgroupnum=nil, maxretentiontime=nil, maxlatencytime=nil, maxqueuespertopic=nil, topicdistribution=nil, maxrolenum=nil, maxtpslimit=nil)
           @MaxTpsPerNamespace = maxtpspernamespace
@@ -12751,10 +12794,10 @@ module TencentCloud
 
         attr_accessor :Name, :ConsumerNum, :TPS, :TotalAccumulative, :ConsumptionMode, :ReadEnabled, :RetryPartitionNum, :CreateTime, :UpdateTime, :ClientProtocol, :Remark, :ConsumerType, :BroadcastEnabled, :GroupType, :RetryMaxTimes, :InstanceId, :Namespace, :SubscribeTopicNum, :TagList
         extend Gem::Deprecate
-        deprecate :TPS, :none, 2026, 4
-        deprecate :TPS=, :none, 2026, 4
-        deprecate :TotalAccumulative, :none, 2026, 4
-        deprecate :TotalAccumulative=, :none, 2026, 4
+        deprecate :TPS, :none, 2026, 5
+        deprecate :TPS=, :none, 2026, 5
+        deprecate :TotalAccumulative, :none, 2026, 5
+        deprecate :TotalAccumulative=, :none, 2026, 5
 
         def initialize(name=nil, consumernum=nil, tps=nil, totalaccumulative=nil, consumptionmode=nil, readenabled=nil, retrypartitionnum=nil, createtime=nil, updatetime=nil, clientprotocol=nil, remark=nil, consumertype=nil, broadcastenabled=nil, grouptype=nil, retrymaxtimes=nil, instanceid=nil, namespace=nil, subscribetopicnum=nil, taglist=nil)
           @Name = name
@@ -13162,6 +13205,90 @@ module TencentCloud
         end
       end
 
+      # rocketmq router规则基本信息
+      class RocketMQRouterRuleInfo < TencentCloud::Common::AbstractModel
+        # @param SourceType: <p>源类型。<br>OPEN_SOURCE_ROCKETMQ：开源rocketmq<br>ALI_ROCKETMQ：阿里云rocketmq<br>TENCENT_ROCKETMQ：腾讯云rocketmq<br>TENCENT_MQTT：腾讯云MQTT<br>ALI_MNS：阿里云mns</p>
+        # @type SourceType: String
+        # @param TargetType: <p>目标类型。<br>枚举和SourceType字段一样</p>
+        # @type TargetType: String
+        # @param RemarkName: <p>规则备注，创建后任务后可以修改</p>
+        # @type RemarkName: String
+        # @param AliRocketMQSource: <p>阿里云rocketmq源信息</p>
+        # @type AliRocketMQSource: :class:`Tencentcloud::Tdmq.v20200217.models.RouterRocketMQSource`
+        # @param AliRocketMQTarget: <p>阿里云rocketmq目标信息</p>
+        # @type AliRocketMQTarget: :class:`Tencentcloud::Tdmq.v20200217.models.RouterRocketMQTarget`
+        # @param AliMessageServiceSource: <p>阿里云mns源信息</p>
+        # @type AliMessageServiceSource: :class:`Tencentcloud::Tdmq.v20200217.models.RouterMessageServiceSource`
+        # @param AliMessageServiceTarget: <p>阿里云mns目标信息</p>
+        # @type AliMessageServiceTarget: :class:`Tencentcloud::Tdmq.v20200217.models.RouterMessageServiceTarget`
+        # @param TenRocketMQSource: <p>腾讯云rocketmq源信息</p>
+        # @type TenRocketMQSource: :class:`Tencentcloud::Tdmq.v20200217.models.RouterTencentRocketMQSource`
+        # @param TenRocketMQTarget: <p>腾讯云rocketmq目标信息</p>
+        # @type TenRocketMQTarget: :class:`Tencentcloud::Tdmq.v20200217.models.RouterTencentRocketMQTarget`
+        # @param AliasName: <p>任务别名</p>
+        # @type AliasName: String
+        # @param TenMQTTSource: <p>腾讯云 MQTT 源集群信息</p>
+        # @type TenMQTTSource: :class:`Tencentcloud::Tdmq.v20200217.models.RouterTencentMQTTSource`
+        # @param TenMQTTTarget: <p>腾讯云 MQTT 目标集群信息</p>
+        # @type TenMQTTTarget: :class:`Tencentcloud::Tdmq.v20200217.models.RouterTencentMQTTTarget`
+
+        attr_accessor :SourceType, :TargetType, :RemarkName, :AliRocketMQSource, :AliRocketMQTarget, :AliMessageServiceSource, :AliMessageServiceTarget, :TenRocketMQSource, :TenRocketMQTarget, :AliasName, :TenMQTTSource, :TenMQTTTarget
+
+        def initialize(sourcetype=nil, targettype=nil, remarkname=nil, alirocketmqsource=nil, alirocketmqtarget=nil, alimessageservicesource=nil, alimessageservicetarget=nil, tenrocketmqsource=nil, tenrocketmqtarget=nil, aliasname=nil, tenmqttsource=nil, tenmqtttarget=nil)
+          @SourceType = sourcetype
+          @TargetType = targettype
+          @RemarkName = remarkname
+          @AliRocketMQSource = alirocketmqsource
+          @AliRocketMQTarget = alirocketmqtarget
+          @AliMessageServiceSource = alimessageservicesource
+          @AliMessageServiceTarget = alimessageservicetarget
+          @TenRocketMQSource = tenrocketmqsource
+          @TenRocketMQTarget = tenrocketmqtarget
+          @AliasName = aliasname
+          @TenMQTTSource = tenmqttsource
+          @TenMQTTTarget = tenmqtttarget
+        end
+
+        def deserialize(params)
+          @SourceType = params['SourceType']
+          @TargetType = params['TargetType']
+          @RemarkName = params['RemarkName']
+          unless params['AliRocketMQSource'].nil?
+            @AliRocketMQSource = RouterRocketMQSource.new
+            @AliRocketMQSource.deserialize(params['AliRocketMQSource'])
+          end
+          unless params['AliRocketMQTarget'].nil?
+            @AliRocketMQTarget = RouterRocketMQTarget.new
+            @AliRocketMQTarget.deserialize(params['AliRocketMQTarget'])
+          end
+          unless params['AliMessageServiceSource'].nil?
+            @AliMessageServiceSource = RouterMessageServiceSource.new
+            @AliMessageServiceSource.deserialize(params['AliMessageServiceSource'])
+          end
+          unless params['AliMessageServiceTarget'].nil?
+            @AliMessageServiceTarget = RouterMessageServiceTarget.new
+            @AliMessageServiceTarget.deserialize(params['AliMessageServiceTarget'])
+          end
+          unless params['TenRocketMQSource'].nil?
+            @TenRocketMQSource = RouterTencentRocketMQSource.new
+            @TenRocketMQSource.deserialize(params['TenRocketMQSource'])
+          end
+          unless params['TenRocketMQTarget'].nil?
+            @TenRocketMQTarget = RouterTencentRocketMQTarget.new
+            @TenRocketMQTarget.deserialize(params['TenRocketMQTarget'])
+          end
+          @AliasName = params['AliasName']
+          unless params['TenMQTTSource'].nil?
+            @TenMQTTSource = RouterTencentMQTTSource.new
+            @TenMQTTSource.deserialize(params['TenMQTTSource'])
+          end
+          unless params['TenMQTTTarget'].nil?
+            @TenMQTTTarget = RouterTencentMQTTTarget.new
+            @TenMQTTTarget.deserialize(params['TenMQTTTarget'])
+          end
+        end
+      end
+
       # RocketMQ消费组订阅信息
       class RocketMQSubscription < TencentCloud::Common::AbstractModel
         # @param Topic: 主题名称
@@ -13545,6 +13672,426 @@ module TencentCloud
           @TokenType = params['TokenType']
           @SecretName = params['SecretName']
           @RotateFreq = params['RotateFreq']
+        end
+      end
+
+      # rocketmq router mns 源信息
+      class RouterMessageServiceSource < TencentCloud::Common::AbstractModel
+        # @param AccessKey: <p>access key</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccessKey: String
+        # @param Endpoint: <p>mns接入点。<br>需要和router内网联通，一般是公网接入点</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Endpoint: String
+        # @param Queue: <p>mns queue名字。<br>可以在https://mns.console.aliyun.com/region/cn-shenzhen/queues 看到</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Queue: String
+        # @param SecretKey: <p>secret key</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SecretKey: String
+        # @param EnableDecodeBody: <p>是否自动解码mns body。<br>ON：自动解码，复制后的消息内容为解码后的明文。<br>OFF：不用解码，保持Mns消息体原始状态</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnableDecodeBody: String
+        # @param SourceConsumeConcurrentThreadCount: <p>mns消费并发数</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SourceConsumeConcurrentThreadCount: Integer
+        # @param FilterFromTimestampMs: <p>过滤时间戳，毫秒级时间戳</p>
+        # @type FilterFromTimestampMs: Integer
+
+        attr_accessor :AccessKey, :Endpoint, :Queue, :SecretKey, :EnableDecodeBody, :SourceConsumeConcurrentThreadCount, :FilterFromTimestampMs
+
+        def initialize(accesskey=nil, endpoint=nil, queue=nil, secretkey=nil, enabledecodebody=nil, sourceconsumeconcurrentthreadcount=nil, filterfromtimestampms=nil)
+          @AccessKey = accesskey
+          @Endpoint = endpoint
+          @Queue = queue
+          @SecretKey = secretkey
+          @EnableDecodeBody = enabledecodebody
+          @SourceConsumeConcurrentThreadCount = sourceconsumeconcurrentthreadcount
+          @FilterFromTimestampMs = filterfromtimestampms
+        end
+
+        def deserialize(params)
+          @AccessKey = params['AccessKey']
+          @Endpoint = params['Endpoint']
+          @Queue = params['Queue']
+          @SecretKey = params['SecretKey']
+          @EnableDecodeBody = params['EnableDecodeBody']
+          @SourceConsumeConcurrentThreadCount = params['SourceConsumeConcurrentThreadCount']
+          @FilterFromTimestampMs = params['FilterFromTimestampMs']
+        end
+      end
+
+      # rocketmq router mns 目标信息
+      class RouterMessageServiceTarget < TencentCloud::Common::AbstractModel
+        # @param AccessKey: <p>access key</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccessKey: String
+        # @param Endpoint: <p>mns接入点，需要和router内网联通，一般是公网接入点</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Endpoint: String
+        # @param SecretKey: <p>secret key</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SecretKey: String
+        # @param Queue: <p>mns queue名字。可以在https://mns.console.aliyun.com/region/cn-shenzhen/queues 看到</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Queue: String
+        # @param SendWithBase64: <p>是否用base64编码发送mns消息。<br> ON：发送base64编码的消息体到mns</p><p>OFF：将原始消息体发送到mns</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SendWithBase64: String
+        # @param TargetProduceConcurrentThreadCount: <p>发送mns的并发数</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TargetProduceConcurrentThreadCount: Integer
+        # @param Topic: <p>topic名字。可以在https://mns.console.aliyun.com/region/cn-shenzhen/topics 看到</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Topic: String
+
+        attr_accessor :AccessKey, :Endpoint, :SecretKey, :Queue, :SendWithBase64, :TargetProduceConcurrentThreadCount, :Topic
+
+        def initialize(accesskey=nil, endpoint=nil, secretkey=nil, queue=nil, sendwithbase64=nil, targetproduceconcurrentthreadcount=nil, topic=nil)
+          @AccessKey = accesskey
+          @Endpoint = endpoint
+          @SecretKey = secretkey
+          @Queue = queue
+          @SendWithBase64 = sendwithbase64
+          @TargetProduceConcurrentThreadCount = targetproduceconcurrentthreadcount
+          @Topic = topic
+        end
+
+        def deserialize(params)
+          @AccessKey = params['AccessKey']
+          @Endpoint = params['Endpoint']
+          @SecretKey = params['SecretKey']
+          @Queue = params['Queue']
+          @SendWithBase64 = params['SendWithBase64']
+          @TargetProduceConcurrentThreadCount = params['TargetProduceConcurrentThreadCount']
+          @Topic = params['Topic']
+        end
+      end
+
+      # rocketmq router的rocketmq源信息
+      class RouterRocketMQSource < TencentCloud::Common::AbstractModel
+        # @param AccessKey: <p>access key</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccessKey: String
+        # @param FilterExpression: <p>过滤表达式, 参考：https://github.com/apache/rocketmq/blob/develop/common/src/main/java/org/apache/rocketmq/common/filter/ExpressionType.java</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FilterExpression: String
+        # @param FilterFromTimestampMs: <p>过滤时间，毫秒时间戳</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FilterFromTimestampMs: Integer
+        # @param FilterType: <p>过滤类型，参考：https://github.com/apache/rocketmq/blob/develop/common/src/main/java/org/apache/rocketmq/common/filter/ExpressionType.java</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FilterType: String
+        # @param Group: <p>消费者组名。会使用该消费者来消费消息</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Group: String
+        # @param NameServerAddressList: <p>namesrv地址列表，也可以是云厂商提供的接入点信息</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NameServerAddressList: String
+        # @param SecretKey: <p>secret key</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SecretKey: String
+        # @param Topic: <p>topic名字</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Topic: String
+        # @param Namespace: <p>4.X的命名空间，没有使用则留空，5.X也留空。<br> naemspace 需要包含MQ_INST那部分. 比如：MQ_INST_rocketmxxx57d53rnn5_tiger_namespace</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Namespace: String
+        # @param SourceConsumeConcurrentThreadCount: <p>消费者并发数，0 ～ 100</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SourceConsumeConcurrentThreadCount: Integer
+
+        attr_accessor :AccessKey, :FilterExpression, :FilterFromTimestampMs, :FilterType, :Group, :NameServerAddressList, :SecretKey, :Topic, :Namespace, :SourceConsumeConcurrentThreadCount
+
+        def initialize(accesskey=nil, filterexpression=nil, filterfromtimestampms=nil, filtertype=nil, group=nil, nameserveraddresslist=nil, secretkey=nil, topic=nil, namespace=nil, sourceconsumeconcurrentthreadcount=nil)
+          @AccessKey = accesskey
+          @FilterExpression = filterexpression
+          @FilterFromTimestampMs = filterfromtimestampms
+          @FilterType = filtertype
+          @Group = group
+          @NameServerAddressList = nameserveraddresslist
+          @SecretKey = secretkey
+          @Topic = topic
+          @Namespace = namespace
+          @SourceConsumeConcurrentThreadCount = sourceconsumeconcurrentthreadcount
+        end
+
+        def deserialize(params)
+          @AccessKey = params['AccessKey']
+          @FilterExpression = params['FilterExpression']
+          @FilterFromTimestampMs = params['FilterFromTimestampMs']
+          @FilterType = params['FilterType']
+          @Group = params['Group']
+          @NameServerAddressList = params['NameServerAddressList']
+          @SecretKey = params['SecretKey']
+          @Topic = params['Topic']
+          @Namespace = params['Namespace']
+          @SourceConsumeConcurrentThreadCount = params['SourceConsumeConcurrentThreadCount']
+        end
+      end
+
+      # rocketmq router任务的目标信息
+      class RouterRocketMQTarget < TencentCloud::Common::AbstractModel
+        # @param AccessKey: <p>access key</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccessKey: String
+        # @param NameServerAddressList: <p>namesrv地址列表，也可以是云厂商提供的接入点信息</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NameServerAddressList: String
+        # @param SecretKey: <p>secret key</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SecretKey: String
+        # @param Topic: <p>topic名字</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Topic: String
+        # @param Namespace: <p>4.X的命名空间，没有使用则留空，5.X也留空。 naemspace 需要包含MQ_INST那部分. 比如：MQ_INST_rocketmqka57d53rnn5_tiger_namespace</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Namespace: String
+        # @param TargetProduceConcurrentThreadCount: <p>生产者并发数，可以不用填，可以在规则创建后修改</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TargetProduceConcurrentThreadCount: Integer
+
+        attr_accessor :AccessKey, :NameServerAddressList, :SecretKey, :Topic, :Namespace, :TargetProduceConcurrentThreadCount
+
+        def initialize(accesskey=nil, nameserveraddresslist=nil, secretkey=nil, topic=nil, namespace=nil, targetproduceconcurrentthreadcount=nil)
+          @AccessKey = accesskey
+          @NameServerAddressList = nameserveraddresslist
+          @SecretKey = secretkey
+          @Topic = topic
+          @Namespace = namespace
+          @TargetProduceConcurrentThreadCount = targetproduceconcurrentthreadcount
+        end
+
+        def deserialize(params)
+          @AccessKey = params['AccessKey']
+          @NameServerAddressList = params['NameServerAddressList']
+          @SecretKey = params['SecretKey']
+          @Topic = params['Topic']
+          @Namespace = params['Namespace']
+          @TargetProduceConcurrentThreadCount = params['TargetProduceConcurrentThreadCount']
+        end
+      end
+
+      # 待复制的 MQTT 源集群信息
+      class RouterTencentMQTTSource < TencentCloud::Common::AbstractModel
+        # @param ClusterId: <p>MQTT 集群ID</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterId: String
+        # @param Topic: <p>主题名</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Topic: String
+        # @param SourceRegion: <p>地域</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SourceRegion: String
+        # @param UserName: <p>用户名</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserName: String
+        # @param Password: <p>用户密码</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Password: String
+        # @param SourceConsumeConcurrentThreadCount: <p>消费者并发数，0 ～ 100</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SourceConsumeConcurrentThreadCount: Integer
+        # @param FilterFromTimestampMs: <p>过滤时间，毫秒时间戳</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FilterFromTimestampMs: Integer
+        # @param Endpoint: <p>MQTT集群接入点信息</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Endpoint: String
+
+        attr_accessor :ClusterId, :Topic, :SourceRegion, :UserName, :Password, :SourceConsumeConcurrentThreadCount, :FilterFromTimestampMs, :Endpoint
+
+        def initialize(clusterid=nil, topic=nil, sourceregion=nil, username=nil, password=nil, sourceconsumeconcurrentthreadcount=nil, filterfromtimestampms=nil, endpoint=nil)
+          @ClusterId = clusterid
+          @Topic = topic
+          @SourceRegion = sourceregion
+          @UserName = username
+          @Password = password
+          @SourceConsumeConcurrentThreadCount = sourceconsumeconcurrentthreadcount
+          @FilterFromTimestampMs = filterfromtimestampms
+          @Endpoint = endpoint
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @Topic = params['Topic']
+          @SourceRegion = params['SourceRegion']
+          @UserName = params['UserName']
+          @Password = params['Password']
+          @SourceConsumeConcurrentThreadCount = params['SourceConsumeConcurrentThreadCount']
+          @FilterFromTimestampMs = params['FilterFromTimestampMs']
+          @Endpoint = params['Endpoint']
+        end
+      end
+
+      # MQTT 目标集群信息
+      class RouterTencentMQTTTarget < TencentCloud::Common::AbstractModel
+        # @param ClusterId: <p>MQTT 集群ID</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterId: String
+        # @param Topic: <p>主题名</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Topic: String
+        # @param SourceRegion: <p>地域</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SourceRegion: String
+        # @param UserName: <p>用户名</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserName: String
+        # @param Password: <p>用户密码</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Password: String
+        # @param TargetProduceConcurrentThreadCount: <p>消费者并发数，0 ～ 100</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TargetProduceConcurrentThreadCount: Integer
+        # @param FilterFromTimestampMs: <p>过滤时间，毫秒时间戳</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FilterFromTimestampMs: Integer
+        # @param Endpoint: <p>MQTT集群接入点信息</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Endpoint: String
+
+        attr_accessor :ClusterId, :Topic, :SourceRegion, :UserName, :Password, :TargetProduceConcurrentThreadCount, :FilterFromTimestampMs, :Endpoint
+
+        def initialize(clusterid=nil, topic=nil, sourceregion=nil, username=nil, password=nil, targetproduceconcurrentthreadcount=nil, filterfromtimestampms=nil, endpoint=nil)
+          @ClusterId = clusterid
+          @Topic = topic
+          @SourceRegion = sourceregion
+          @UserName = username
+          @Password = password
+          @TargetProduceConcurrentThreadCount = targetproduceconcurrentthreadcount
+          @FilterFromTimestampMs = filterfromtimestampms
+          @Endpoint = endpoint
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @Topic = params['Topic']
+          @SourceRegion = params['SourceRegion']
+          @UserName = params['UserName']
+          @Password = params['Password']
+          @TargetProduceConcurrentThreadCount = params['TargetProduceConcurrentThreadCount']
+          @FilterFromTimestampMs = params['FilterFromTimestampMs']
+          @Endpoint = params['Endpoint']
+        end
+      end
+
+      # rocketmq router腾讯云源
+      class RouterTencentRocketMQSource < TencentCloud::Common::AbstractModel
+        # @param FilterExpression: <p>过滤表达式, 参考：https://github.com/apache/rocketmq/blob/develop/common/src/main/java/org/apache/rocketmq/common/filter/ExpressionType.java</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FilterExpression: String
+        # @param FilterFromTimestampMs: <p>过滤时间，毫秒时间戳</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FilterFromTimestampMs: Integer
+        # @param FilterType: <p>过滤类型</p><p>枚举值：</p><ul><li>SQL92： 按SQL92表达式过滤</li><li>TAG： 按TAG表达式过滤</li></ul>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FilterType: String
+        # @param Topic: <p>topic名字</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Topic: String
+        # @param ClusterId: <p>rocketmq实例id</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterId: String
+        # @param Namespace: <p>4.X的命名空间，没有使用则留空，5.X也留空。 naemspace 需要包含MQ_INST那部分. 比如：MQ_INST_rocketmqka57d53rnn5_tiger_namespace</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Namespace: String
+        # @param SourceConsumeConcurrentThreadCount: <p>消费者并发数</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SourceConsumeConcurrentThreadCount: Integer
+        # @param SourceRegion: <p>源地域</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SourceRegion: String
+        # @param RoleName: <p>选择TDMQ RocketMQ时，选择一个角色来完成数据同步</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RoleName: String
+        # @param AccessKey: <p>选择腾讯云版RockeMQ类型后，RoleName对应的AssessKey值</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccessKey: String
+        # @param SecretKey: <p>选择腾讯云版RockeMQ类型后，RoleName对应的SecretKey值</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SecretKey: String
+
+        attr_accessor :FilterExpression, :FilterFromTimestampMs, :FilterType, :Topic, :ClusterId, :Namespace, :SourceConsumeConcurrentThreadCount, :SourceRegion, :RoleName, :AccessKey, :SecretKey
+
+        def initialize(filterexpression=nil, filterfromtimestampms=nil, filtertype=nil, topic=nil, clusterid=nil, namespace=nil, sourceconsumeconcurrentthreadcount=nil, sourceregion=nil, rolename=nil, accesskey=nil, secretkey=nil)
+          @FilterExpression = filterexpression
+          @FilterFromTimestampMs = filterfromtimestampms
+          @FilterType = filtertype
+          @Topic = topic
+          @ClusterId = clusterid
+          @Namespace = namespace
+          @SourceConsumeConcurrentThreadCount = sourceconsumeconcurrentthreadcount
+          @SourceRegion = sourceregion
+          @RoleName = rolename
+          @AccessKey = accesskey
+          @SecretKey = secretkey
+        end
+
+        def deserialize(params)
+          @FilterExpression = params['FilterExpression']
+          @FilterFromTimestampMs = params['FilterFromTimestampMs']
+          @FilterType = params['FilterType']
+          @Topic = params['Topic']
+          @ClusterId = params['ClusterId']
+          @Namespace = params['Namespace']
+          @SourceConsumeConcurrentThreadCount = params['SourceConsumeConcurrentThreadCount']
+          @SourceRegion = params['SourceRegion']
+          @RoleName = params['RoleName']
+          @AccessKey = params['AccessKey']
+          @SecretKey = params['SecretKey']
+        end
+      end
+
+      # rocketmq router腾讯云目标
+      class RouterTencentRocketMQTarget < TencentCloud::Common::AbstractModel
+        # @param Topic: <p>topic名字</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Topic: String
+        # @param ClusterId: <p>rocketmq实例id</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterId: String
+        # @param Namespace: <p>4.X的命名空间，没有使用则留空，5.X也留空。 naemspace 需要包含MQ_INST那部分. 比如：MQ_INST_rocket2mq3ka57d53rnn5_tiger_namespace</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Namespace: String
+        # @param TargetProduceConcurrentThreadCount: <p>消费者并发数</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TargetProduceConcurrentThreadCount: Integer
+        # @param TargetRegion: <p>目标region</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TargetRegion: String
+        # @param RoleName: <p>选择TDMQ RocketMQ时，选择一个角色来完成数据同步</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RoleName: String
+        # @param AccessKey: <p>选择腾讯云版RockeMQ类型后，RoleName对应的AssessKey值</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccessKey: String
+        # @param SecretKey: <p>选择腾讯云版RockeMQ类型后，RoleName对应的SecretKey值</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SecretKey: String
+
+        attr_accessor :Topic, :ClusterId, :Namespace, :TargetProduceConcurrentThreadCount, :TargetRegion, :RoleName, :AccessKey, :SecretKey
+
+        def initialize(topic=nil, clusterid=nil, namespace=nil, targetproduceconcurrentthreadcount=nil, targetregion=nil, rolename=nil, accesskey=nil, secretkey=nil)
+          @Topic = topic
+          @ClusterId = clusterid
+          @Namespace = namespace
+          @TargetProduceConcurrentThreadCount = targetproduceconcurrentthreadcount
+          @TargetRegion = targetregion
+          @RoleName = rolename
+          @AccessKey = accesskey
+          @SecretKey = secretkey
+        end
+
+        def deserialize(params)
+          @Topic = params['Topic']
+          @ClusterId = params['ClusterId']
+          @Namespace = params['Namespace']
+          @TargetProduceConcurrentThreadCount = params['TargetProduceConcurrentThreadCount']
+          @TargetRegion = params['TargetRegion']
+          @RoleName = params['RoleName']
+          @AccessKey = params['AccessKey']
+          @SecretKey = params['SecretKey']
         end
       end
 

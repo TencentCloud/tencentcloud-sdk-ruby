@@ -7047,6 +7047,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 接口已经废弃，调用会产生脏数据
+
         # 提交工作流。本接口已废弃，请使用接口BatchCreateTaskVersionAsync。
 
         # @param request: Request instance for SubmitWorkflow.

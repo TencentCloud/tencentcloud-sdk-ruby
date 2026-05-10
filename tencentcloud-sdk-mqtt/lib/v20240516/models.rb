@@ -2377,8 +2377,8 @@ module TencentCloud
 
         attr_accessor :InstanceType, :InstanceId, :InstanceName, :TopicNum, :TopicNumLimit, :TpsLimit, :CreatedTime, :Remark, :InstanceStatus, :SkuCode, :MaxSubscriptionPerClient, :AuthorizationPolicyLimit, :ClientNumLimit, :DeviceCertificateProvisionType, :AutomaticActivation, :RenewFlag, :PayMode, :ExpiryTime, :DestroyTime, :X509Mode, :MaxCaNum, :RegistrationCode, :MaxSubscription, :AuthorizationPolicy, :SharedSubscriptionGroupLimit, :MaxTopicFilterPerSharedSubscriptionGroup, :AutoSubscriptionPolicyLimit, :MaxTopicFilterPerAutoSubscriptionPolicy, :UseDefaultServerCert, :TrustedCaLimit, :ServerCertLimit, :TopicPrefixSlashLimit, :MessageRate, :TransportLayerSecurity, :MessageEnrichmentRuleLimit, :BlockRuleLimit, :RequestId
         extend Gem::Deprecate
-        deprecate :MaxTopicFilterPerSharedSubscriptionGroup, :none, 2026, 4
-        deprecate :MaxTopicFilterPerSharedSubscriptionGroup=, :none, 2026, 4
+        deprecate :MaxTopicFilterPerSharedSubscriptionGroup, :none, 2026, 5
+        deprecate :MaxTopicFilterPerSharedSubscriptionGroup=, :none, 2026, 5
 
         def initialize(instancetype=nil, instanceid=nil, instancename=nil, topicnum=nil, topicnumlimit=nil, tpslimit=nil, createdtime=nil, remark=nil, instancestatus=nil, skucode=nil, maxsubscriptionperclient=nil, authorizationpolicylimit=nil, clientnumlimit=nil, devicecertificateprovisiontype=nil, automaticactivation=nil, renewflag=nil, paymode=nil, expirytime=nil, destroytime=nil, x509mode=nil, maxcanum=nil, registrationcode=nil, maxsubscription=nil, authorizationpolicy=nil, sharedsubscriptiongrouplimit=nil, maxtopicfilterpersharedsubscriptiongroup=nil, autosubscriptionpolicylimit=nil, maxtopicfilterperautosubscriptionpolicy=nil, usedefaultservercert=nil, trustedcalimit=nil, servercertlimit=nil, topicprefixslashlimit=nil, messagerate=nil, transportlayersecurity=nil, messageenrichmentrulelimit=nil, blockrulelimit=nil, requestid=nil)
           @InstanceType = instancetype
@@ -2800,6 +2800,61 @@ module TencentCloud
         end
       end
 
+      # DescribeSharedSubscriptionClient请求参数结构体
+      class DescribeSharedSubscriptionClientRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 腾讯云MQTT实例ID，从 [DescribeInstanceList](https://cloud.tencent.com/document/api/1778/111029)接口或控制台获得。
+        # @type InstanceId: String
+        # @param SharedName: 共享订阅组名
+        # @type SharedName: String
+        # @param TopicFilter: 订阅表达式
+        # @type TopicFilter: String
+
+        attr_accessor :InstanceId, :SharedName, :TopicFilter
+
+        def initialize(instanceid=nil, sharedname=nil, topicfilter=nil)
+          @InstanceId = instanceid
+          @SharedName = sharedname
+          @TopicFilter = topicfilter
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @SharedName = params['SharedName']
+          @TopicFilter = params['TopicFilter']
+        end
+      end
+
+      # DescribeSharedSubscriptionClient返回参数结构体
+      class DescribeSharedSubscriptionClientResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 共享订阅组下Client信息
+        # @type Data: Array
+        # @param TotalCount: 查询总数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :TotalCount, :RequestId
+
+        def initialize(data=nil, totalcount=nil, requestid=nil)
+          @Data = data
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              sharedsubscriptionclient_tmp = SharedSubscriptionClient.new
+              sharedsubscriptionclient_tmp.deserialize(i)
+              @Data << sharedsubscriptionclient_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeSharedSubscriptionGroups请求参数结构体
       class DescribeSharedSubscriptionGroupsRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 腾讯云MQTT实例ID，从 [DescribeInstanceList](https://cloud.tencent.com/document/api/1778/111029)接口或控制台获得。
@@ -2883,6 +2938,54 @@ module TencentCloud
 
         def deserialize(params)
           @Lag = params['Lag']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeSharedSubscriptions请求参数结构体
+      class DescribeSharedSubscriptionsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 腾讯云MQTT实例ID，从 [DescribeInstanceList](https://cloud.tencent.com/document/api/1778/111029)接口或控制台获得。
+        # @type InstanceId: String
+        # @param SharedName: 共享订阅组名
+        # @type SharedName: String
+
+        attr_accessor :InstanceId, :SharedName
+
+        def initialize(instanceid=nil, sharedname=nil)
+          @InstanceId = instanceid
+          @SharedName = sharedname
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @SharedName = params['SharedName']
+        end
+      end
+
+      # DescribeSharedSubscriptions返回参数结构体
+      class DescribeSharedSubscriptionsResponse < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 集群id
+        # @type InstanceId: String
+        # @param SharedName: 共享组名
+        # @type SharedName: String
+        # @param TopicFilter: 共享组下的订阅表达式列表
+        # @type TopicFilter: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InstanceId, :SharedName, :TopicFilter, :RequestId
+
+        def initialize(instanceid=nil, sharedname=nil, topicfilter=nil, requestid=nil)
+          @InstanceId = instanceid
+          @SharedName = sharedname
+          @TopicFilter = topicfilter
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @SharedName = params['SharedName']
+          @TopicFilter = params['TopicFilter']
           @RequestId = params['RequestId']
         end
       end
@@ -3684,12 +3787,12 @@ module TencentCloud
 
         attr_accessor :MsgId, :Tags, :Keys, :ProducerAddr, :ProduceTime, :DeadLetterResendTimes, :DeadLetterResendSuccessTimes, :SubTopic, :Qos
         extend Gem::Deprecate
-        deprecate :DeadLetterResendTimes, :none, 2026, 4
-        deprecate :DeadLetterResendTimes=, :none, 2026, 4
-        deprecate :DeadLetterResendSuccessTimes, :none, 2026, 4
-        deprecate :DeadLetterResendSuccessTimes=, :none, 2026, 4
-        deprecate :SubTopic, :none, 2026, 4
-        deprecate :SubTopic=, :none, 2026, 4
+        deprecate :DeadLetterResendTimes, :none, 2026, 5
+        deprecate :DeadLetterResendTimes=, :none, 2026, 5
+        deprecate :DeadLetterResendSuccessTimes, :none, 2026, 5
+        deprecate :DeadLetterResendSuccessTimes=, :none, 2026, 5
+        deprecate :SubTopic, :none, 2026, 5
+        deprecate :SubTopic=, :none, 2026, 5
 
         def initialize(msgid=nil, tags=nil, keys=nil, produceraddr=nil, producetime=nil, deadletterresendtimes=nil, deadletterresendsuccesstimes=nil, subtopic=nil, qos=nil)
           @MsgId = msgid
@@ -4221,10 +4324,10 @@ module TencentCloud
 
         attr_accessor :InstanceId, :Name, :Remark, :SkuCode, :DeviceCertificateProvisionType, :AutomaticActivation, :AuthorizationPolicy, :UseDefaultServerCert, :X509Mode, :MessageRate
         extend Gem::Deprecate
-        deprecate :DeviceCertificateProvisionType, :none, 2026, 4
-        deprecate :DeviceCertificateProvisionType=, :none, 2026, 4
-        deprecate :AutomaticActivation, :none, 2026, 4
-        deprecate :AutomaticActivation=, :none, 2026, 4
+        deprecate :DeviceCertificateProvisionType, :none, 2026, 5
+        deprecate :DeviceCertificateProvisionType=, :none, 2026, 5
+        deprecate :AutomaticActivation, :none, 2026, 5
+        deprecate :AutomaticActivation=, :none, 2026, 5
 
         def initialize(instanceid=nil, name=nil, remark=nil, skucode=nil, devicecertificateprovisiontype=nil, automaticactivation=nil, authorizationpolicy=nil, usedefaultservercert=nil, x509mode=nil, messagerate=nil)
           @InstanceId = instanceid
@@ -4350,8 +4453,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :Algorithm, :From, :Secret, :PublicKey, :Status, :Remark, :Text
         extend Gem::Deprecate
-        deprecate :Text, :none, 2026, 4
-        deprecate :Text=, :none, 2026, 4
+        deprecate :Text, :none, 2026, 5
+        deprecate :Text=, :none, 2026, 5
 
         def initialize(instanceid=nil, algorithm=nil, from=nil, secret=nil, publickey=nil, status=nil, remark=nil, text=nil)
           @InstanceId = instanceid
@@ -4930,6 +5033,34 @@ module TencentCloud
           @Remark = params['Remark']
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # 共享订阅组下客户端
+      class SharedSubscriptionClient < TencentCloud::Common::AbstractModel
+        # @param ClientId: 客户端ID
+        # @type ClientId: String
+        # @param SharedName: 共享订阅组名
+        # @type SharedName: String
+        # @param TopicFilter: 共享组下的订阅表达式列表
+        # @type TopicFilter: String
+        # @param Online: 在线状态
+        # @type Online: Boolean
+
+        attr_accessor :ClientId, :SharedName, :TopicFilter, :Online
+
+        def initialize(clientid=nil, sharedname=nil, topicfilter=nil, online=nil)
+          @ClientId = clientid
+          @SharedName = sharedname
+          @TopicFilter = topicfilter
+          @Online = online
+        end
+
+        def deserialize(params)
+          @ClientId = params['ClientId']
+          @SharedName = params['SharedName']
+          @TopicFilter = params['TopicFilter']
+          @Online = params['Online']
         end
       end
 

@@ -67,10 +67,10 @@ module TencentCloud
 
         attr_accessor :AppID, :ClusterID, :AccountID, :Name, :Region, :Zones, :Networks, :Spec, :Status, :Period, :CreatedAt, :UpdatedAt, :Tenant, :Tags, :Security
         extend Gem::Deprecate
-        deprecate :Networks, :none, 2026, 4
-        deprecate :Networks=, :none, 2026, 4
-        deprecate :Spec, :none, 2026, 4
-        deprecate :Spec=, :none, 2026, 4
+        deprecate :Networks, :none, 2026, 5
+        deprecate :Networks=, :none, 2026, 5
+        deprecate :Spec, :none, 2026, 5
+        deprecate :Spec=, :none, 2026, 5
 
         def initialize(appid=nil, clusterid=nil, accountid=nil, name=nil, region=nil, zones=nil, networks=nil, spec=nil, status=nil, period=nil, createdat=nil, updatedat=nil, tenant=nil, tags=nil, security=nil)
           @AppID = appid
@@ -377,12 +377,17 @@ module TencentCloud
 
       # DescribeClusterDetail请求参数结构体
       class DescribeClusterDetailRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterID: <p>实例ID</p>
+        # @type ClusterID: String
 
+        attr_accessor :ClusterID
 
-        def initialize()
+        def initialize(clusterid=nil)
+          @ClusterID = clusterid
         end
 
         def deserialize(params)
+          @ClusterID = params['ClusterID']
         end
       end
 

@@ -159,33 +159,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # <b>此接口不再进行服务升级，建议您使用识别能力更强、服务性能更优的<a href="https://cloud.tencent.com/document/product/866/90802">通用票据识别（高级版）</a>。</b>
-        # 本接口支持识别公路汽车客票关键字段的识别，包括发票代码、发票号码、日期、票价、始发地、目的地、姓名、时间、发票消费类型、身份证号、省、市、开票日期、乘车地点、检票口、客票类型、车型、座位号、车次等。
-
-        # 默认接口请求频率限制：5次/秒。
-
-        # @param request: Request instance for BusInvoiceOCR.
-        # @type request: :class:`Tencentcloud::ocr::V20181119::BusInvoiceOCRRequest`
-        # @rtype: :class:`Tencentcloud::ocr::V20181119::BusInvoiceOCRResponse`
-        def BusInvoiceOCR(request)
-          body = send_request('BusInvoiceOCR', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = BusInvoiceOCRResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 本接口支持中英文名片各字段的自动定位与识别，包含姓名、电话、手机号、邮箱、公司、部门、职位、网址、地址、QQ、微信、MSN等。
 
         # 默认接口请求频率限制：10次/秒。
@@ -399,33 +372,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # <b>此接口不再进行服务升级，建议您使用识别能力更强、服务性能更优的<a href="https://cloud.tencent.com/document/product/866/90802">通用票据识别（高级版）</a>。</b>
-        # 本接口支持对完税证明的税号、纳税人识别号、纳税人名称、金额合计大写、金额合计小写、填发日期、税务机关、填票人等关键字段的识别。
-
-        # 默认接口请求频率限制：5次/秒。
-
-        # @param request: Request instance for DutyPaidProofOCR.
-        # @type request: :class:`Tencentcloud::ocr::V20181119::DutyPaidProofOCRRequest`
-        # @rtype: :class:`Tencentcloud::ocr::V20181119::DutyPaidProofOCRResponse`
-        def DutyPaidProofOCR(request)
-          body = send_request('DutyPaidProofOCR', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DutyPaidProofOCRResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 本接口支持数学试题内容的识别和结构化输出，包括通用文本解析和小学/初中/高中数学公式解析能力（包括91种题型，180种符号），公式返回格式为 Latex 格式文本。
 
         # 默认接口请求频率限制：5次/秒。
@@ -624,60 +570,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ExtractDocMultiProResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # <b>此接口不再进行服务升级，建议您使用识别能力更强、服务性能更优的<a href="https://cloud.tencent.com/document/product/866/90802">通用票据识别（高级版）</a>。</b>
-        # 本接口支持常见银行票据的自动分类和识别。整单识别包括支票（含现金支票、普通支票、转账支票），承兑汇票（含银行承兑汇票、商业承兑汇票）以及进账单等，适用于中国人民银行印发的 2010 版银行票据凭证版式（银发[2010]299 号）。
-
-        # 默认接口请求频率限制：5次/秒。
-
-        # @param request: Request instance for FinanBillOCR.
-        # @type request: :class:`Tencentcloud::ocr::V20181119::FinanBillOCRRequest`
-        # @rtype: :class:`Tencentcloud::ocr::V20181119::FinanBillOCRResponse`
-        def FinanBillOCR(request)
-          body = send_request('FinanBillOCR', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = FinanBillOCRResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # <b>此接口不再进行服务升级，建议您使用识别能力更强、服务性能更优的<a href="https://cloud.tencent.com/document/product/866/90802">通用票据识别（高级版）</a>。</b>
-        # 本接口支持常见银行票据的自动分类和识别。切片识别包括金融行业常见票据的重要切片字段识别，包括金额、账号、日期、凭证号码等。（金融票据切片：金融票据中待识别字段及其周围局部区域的裁剪图像。）
-
-        # 默认接口请求频率限制：5次/秒。
-
-        # @param request: Request instance for FinanBillSliceOCR.
-        # @type request: :class:`Tencentcloud::ocr::V20181119::FinanBillSliceOCRRequest`
-        # @rtype: :class:`Tencentcloud::ocr::V20181119::FinanBillSliceOCRResponse`
-        def FinanBillSliceOCR(request)
-          body = send_request('FinanBillSliceOCR', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = FinanBillSliceOCRResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1296,33 +1188,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # <b>此接口不再进行服务升级，建议您使用识别能力更强、服务性能更优的<a href="https://cloud.tencent.com/document/product/866/90802">通用票据识别（高级版）</a>。</b>
-        # 本接口支持对通用机打发票的发票代码、发票号码、日期、合计金额(小写)、合计金额(大写)、购买方识别号、销售方识别号、校验码、购买方名称、销售方名称、时间、种类、发票消费类型、省、市、是否有公司印章、发票名称、购买方地址、电话、销售方地址、电话、购买方开户行及账号、销售方开户行及账号、经办人取票用户、经办人支付信息、经办人商户号、经办人订单号、货物或应税劳务、服务名称、数量、单价、税率、税额、金额、单位、规格型号、合计税额、合计金额、备注、收款人、复核、开票人、密码区、行业分类等字段的识别。
-
-        # 默认接口请求频率限制：5次/秒。
-
-        # @param request: Request instance for InvoiceGeneralOCR.
-        # @type request: :class:`Tencentcloud::ocr::V20181119::InvoiceGeneralOCRRequest`
-        # @rtype: :class:`Tencentcloud::ocr::V20181119::InvoiceGeneralOCRResponse`
-        def InvoiceGeneralOCR(request)
-          body = send_request('InvoiceGeneralOCR', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = InvoiceGeneralOCRResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 本接口支持对中国大陆机动车车牌的自动定位和识别，返回地域编号和车牌号码与车牌颜色信息。
 
         # 默认接口请求频率限制：10次/秒。
@@ -1622,33 +1487,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = QuestionSplitOCRResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # <b>此接口不再进行服务升级，建议您使用识别能力更强、服务性能更优的<a href="https://cloud.tencent.com/document/product/866/90802">通用票据识别（高级版）</a>。</b>
-        # 本接口支持定额发票的发票号码、发票代码、金额(大小写)、发票消费类型、地区及是否有公司印章等关键字段的识别。
-
-        # 默认接口请求频率限制：5次/秒。
-
-        # @param request: Request instance for QuotaInvoiceOCR.
-        # @type request: :class:`Tencentcloud::ocr::V20181119::QuotaInvoiceOCRRequest`
-        # @rtype: :class:`Tencentcloud::ocr::V20181119::QuotaInvoiceOCRResponse`
-        def QuotaInvoiceOCR(request)
-          body = send_request('QuotaInvoiceOCR', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = QuotaInvoiceOCRResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2418,33 +2256,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # <b>此接口不再进行服务升级，建议您使用识别能力更强、服务性能更优的<a href="https://cloud.tencent.com/document/product/866/90802">通用票据识别（高级版）</a>。</b>
-        # 本接口支持识别轮船票的发票代码、发票号码、日期、姓名、票价、始发地、目的地、姓名、时间、发票消费类型、省、市、币种字段。
-
-        # 默认接口请求频率限制：5次/秒。
-
-        # @param request: Request instance for ShipInvoiceOCR.
-        # @type request: :class:`Tencentcloud::ocr::V20181119::ShipInvoiceOCRRequest`
-        # @rtype: :class:`Tencentcloud::ocr::V20181119::ShipInvoiceOCRResponse`
-        def ShipInvoiceOCR(request)
-          body = send_request('ShipInvoiceOCR', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = ShipInvoiceOCRResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 本接口支持识别并提取各类证照、票据、表单、合同等结构化场景的字段信息。无需任何配置，灵活高效。适用于各类结构化信息录入场景。
 
         # 默认接口请求频率限制：5次/秒。
@@ -2627,33 +2438,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # <b>此接口不再进行服务升级，建议您使用识别能力更强、服务性能更优的<a href="https://cloud.tencent.com/document/product/866/90802">通用票据识别（高级版）</a>。</b>
-        # 本接口支持过路过桥费发票关键字段的识别，包括发票代码、发票号码、日期、金额、入口、出口、时间、发票消费类型、高速标志等。
-
-        # 默认接口请求频率限制：5次/秒。
-
-        # @param request: Request instance for TollInvoiceOCR.
-        # @type request: :class:`Tencentcloud::ocr::V20181119::TollInvoiceOCRRequest`
-        # @rtype: :class:`Tencentcloud::ocr::V20181119::TollInvoiceOCRResponse`
-        def TollInvoiceOCR(request)
-          body = send_request('TollInvoiceOCR', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = TollInvoiceOCRResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 本接口支持火车票全字段的识别，包括编号、出发站、到达站、出发时间、车次、座位号、姓名、票价、席别、身份证号、发票消费类型、序列号、加收票价、手续费、大写金额、售票站、原票价、发票类型、收据号码、是否仅供报销使用等字段的识别。
 
         # 默认接口请求频率限制：5次/秒。
@@ -2718,33 +2502,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = VatInvoiceVerifyNewResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # <b>此接口不再进行服务升级，建议您使用识别能力更强、服务性能更优的<a href="https://cloud.tencent.com/document/product/866/90802">通用票据识别（高级版）</a>。</b>
-        # 本接口支持对增值税发票（卷票）关键字段的识别，包括的发票代码、合计金额(小写)、合计金额(大写)、开票日期、发票号码、购买方识别号、销售方识别号、校验码、销售方名称、购买方名称、发票消费类型、省、市、是否有公司印章、单价、金额、数量、服务类型、品名、种类等。
-
-        # 默认接口请求频率限制：5次/秒。
-
-        # @param request: Request instance for VatRollInvoiceOCR.
-        # @type request: :class:`Tencentcloud::ocr::V20181119::VatRollInvoiceOCRRequest`
-        # @rtype: :class:`Tencentcloud::ocr::V20181119::VatRollInvoiceOCRResponse`
-        def VatRollInvoiceOCR(request)
-          body = send_request('VatRollInvoiceOCR', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = VatRollInvoiceOCRResponse.new
             model.deserialize(response['Response'])
             model
           else
