@@ -888,8 +888,8 @@ module TencentCloud
 
         attr_accessor :StrategyId, :StrategyName, :CreateTime, :ModifyTime, :Description, :Config, :GatewayId, :CronConfig, :MaxReplicas
         extend Gem::Deprecate
-        deprecate :MaxReplicas, :none, 2026, 4
-        deprecate :MaxReplicas=, :none, 2026, 4
+        deprecate :MaxReplicas, :none, 2026, 5
+        deprecate :MaxReplicas=, :none, 2026, 5
 
         def initialize(strategyid=nil, strategyname=nil, createtime=nil, modifytime=nil, description=nil, config=nil, gatewayid=nil, cronconfig=nil, maxreplicas=nil)
           @StrategyId = strategyid
@@ -950,16 +950,16 @@ module TencentCloud
 
         attr_accessor :MaxReplicas, :Metrics, :Enabled, :CreateTime, :ModifyTime, :StrategyId, :AutoScalerId, :Behavior
         extend Gem::Deprecate
-        deprecate :Enabled, :none, 2026, 4
-        deprecate :Enabled=, :none, 2026, 4
-        deprecate :CreateTime, :none, 2026, 4
-        deprecate :CreateTime=, :none, 2026, 4
-        deprecate :ModifyTime, :none, 2026, 4
-        deprecate :ModifyTime=, :none, 2026, 4
-        deprecate :StrategyId, :none, 2026, 4
-        deprecate :StrategyId=, :none, 2026, 4
-        deprecate :AutoScalerId, :none, 2026, 4
-        deprecate :AutoScalerId=, :none, 2026, 4
+        deprecate :Enabled, :none, 2026, 5
+        deprecate :Enabled=, :none, 2026, 5
+        deprecate :CreateTime, :none, 2026, 5
+        deprecate :CreateTime=, :none, 2026, 5
+        deprecate :ModifyTime, :none, 2026, 5
+        deprecate :ModifyTime=, :none, 2026, 5
+        deprecate :StrategyId, :none, 2026, 5
+        deprecate :StrategyId=, :none, 2026, 5
+        deprecate :AutoScalerId, :none, 2026, 5
+        deprecate :AutoScalerId=, :none, 2026, 5
 
         def initialize(maxreplicas=nil, metrics=nil, enabled=nil, createtime=nil, modifytime=nil, strategyid=nil, autoscalerid=nil, behavior=nil)
           @MaxReplicas = maxreplicas
@@ -1080,14 +1080,14 @@ module TencentCloud
 
         attr_accessor :Enabled, :Params, :CreateTime, :ModifyTime, :StrategyId
         extend Gem::Deprecate
-        deprecate :Enabled, :none, 2026, 4
-        deprecate :Enabled=, :none, 2026, 4
-        deprecate :CreateTime, :none, 2026, 4
-        deprecate :CreateTime=, :none, 2026, 4
-        deprecate :ModifyTime, :none, 2026, 4
-        deprecate :ModifyTime=, :none, 2026, 4
-        deprecate :StrategyId, :none, 2026, 4
-        deprecate :StrategyId=, :none, 2026, 4
+        deprecate :Enabled, :none, 2026, 5
+        deprecate :Enabled=, :none, 2026, 5
+        deprecate :CreateTime, :none, 2026, 5
+        deprecate :CreateTime=, :none, 2026, 5
+        deprecate :ModifyTime, :none, 2026, 5
+        deprecate :ModifyTime=, :none, 2026, 5
+        deprecate :StrategyId, :none, 2026, 5
+        deprecate :StrategyId=, :none, 2026, 5
 
         def initialize(enabled=nil, params=nil, createtime=nil, modifytime=nil, strategyid=nil)
           @Enabled = enabled
@@ -1765,10 +1765,10 @@ module TencentCloud
 
         attr_accessor :GatewayId, :StrategyName, :Description, :Config, :CronScalerConfig, :MaxReplicas, :CronConfig
         extend Gem::Deprecate
-        deprecate :CronScalerConfig, :none, 2026, 4
-        deprecate :CronScalerConfig=, :none, 2026, 4
-        deprecate :MaxReplicas, :none, 2026, 4
-        deprecate :MaxReplicas=, :none, 2026, 4
+        deprecate :CronScalerConfig, :none, 2026, 5
+        deprecate :CronScalerConfig=, :none, 2026, 5
+        deprecate :MaxReplicas, :none, 2026, 5
+        deprecate :MaxReplicas=, :none, 2026, 5
 
         def initialize(gatewayid=nil, strategyname=nil, description=nil, config=nil, cronscalerconfig=nil, maxreplicas=nil, cronconfig=nil)
           @GatewayId = gatewayid
@@ -1811,8 +1811,8 @@ module TencentCloud
 
         attr_accessor :Result, :StrategyId, :RequestId
         extend Gem::Deprecate
-        deprecate :Result, :none, 2026, 4
-        deprecate :Result=, :none, 2026, 4
+        deprecate :Result, :none, 2026, 5
+        deprecate :Result=, :none, 2026, 5
 
         def initialize(result=nil, strategyid=nil, requestid=nil)
           @Result = result
@@ -1898,10 +1898,10 @@ module TencentCloud
 
         attr_accessor :GatewayId, :BindDomains, :CertId, :Name, :Key, :Crt
         extend Gem::Deprecate
-        deprecate :Key, :none, 2026, 4
-        deprecate :Key=, :none, 2026, 4
-        deprecate :Crt, :none, 2026, 4
-        deprecate :Crt=, :none, 2026, 4
+        deprecate :Key, :none, 2026, 5
+        deprecate :Key=, :none, 2026, 5
+        deprecate :Crt, :none, 2026, 5
+        deprecate :Crt=, :none, 2026, 5
 
         def initialize(gatewayid=nil, binddomains=nil, certid=nil, name=nil, key=nil, crt=nil)
           @GatewayId = gatewayid
@@ -2238,8 +2238,8 @@ module TencentCloud
 
         attr_accessor :GatewayId, :ServiceID, :RouteName, :Methods, :Hosts, :Paths, :Protocols, :PreserveHost, :HttpsRedirectStatusCode, :StripPath, :ForceHttps, :DestinationPorts, :Headers, :RequestBuffering, :ResponseBuffering, :RegexPriority, :QueryStringParameters
         extend Gem::Deprecate
-        deprecate :ForceHttps, :none, 2026, 4
-        deprecate :ForceHttps=, :none, 2026, 4
+        deprecate :ForceHttps, :none, 2026, 5
+        deprecate :ForceHttps=, :none, 2026, 5
 
         def initialize(gatewayid=nil, serviceid=nil, routename=nil, methods=nil, hosts=nil, paths=nil, protocols=nil, preservehost=nil, httpsredirectstatuscode=nil, strippath=nil, forcehttps=nil, destinationports=nil, headers=nil, requestbuffering=nil, responsebuffering=nil, regexpriority=nil, querystringparameters=nil)
           @GatewayId = gatewayid
@@ -6785,34 +6785,36 @@ module TencentCloud
 
       # DescribeGovernanceServices请求参数结构体
       class DescribeGovernanceServicesRequest < TencentCloud::Common::AbstractModel
-        # @param Name: 按照服务名过滤，精确匹配。
+        # @param Name: <p>按照服务名过滤，精确匹配。</p>
         # @type Name: String
-        # @param Namespace: 按照命名空间过滤，精确匹配。
+        # @param Namespace: <p>按照命名空间过滤，精确匹配。</p>
         # @type Namespace: String
-        # @param Metadatas: 使用元数据过滤，目前只支持一组元组数，若传了多条，只会使用第一条元数据过滤。
+        # @param Metadatas: <p>使用元数据过滤，目前只支持一组元组数，若传了多条，只会使用第一条元数据过滤。</p>
         # @type Metadatas: Array
-        # @param Offset: 偏移量，默认为0。
+        # @param Offset: <p>偏移量，默认为0。</p>
         # @type Offset: Integer
-        # @param Limit: 返回数量，默认为20，最大值为100。
+        # @param Limit: <p>返回数量，默认为20，最大值为100。</p>
         # @type Limit: Integer
-        # @param InstanceId: tse 实例 id。
+        # @param InstanceId: <p>tse 实例 id。</p>
         # @type InstanceId: String
-        # @param Department: 服务所属部门。
+        # @param Department: <p>服务所属部门。</p>
         # @type Department: String
-        # @param Business: 服务所属业务。
+        # @param Business: <p>服务所属业务。</p>
         # @type Business: String
-        # @param Host: 服务中实例的ip，用来过滤服务。
+        # @param Host: <p>服务中实例的ip，用来过滤服务。</p>
         # @type Host: String
-        # @param OnlyExistHealthyInstance: 是否只查询存在健康实例的服务
+        # @param OnlyExistHealthyInstance: <p>是否只查询存在健康实例的服务</p>
         # @type OnlyExistHealthyInstance: Boolean
-        # @param SyncToGlobalRegistry: 是否开启同步到全局注册中心
+        # @param SyncToGlobalRegistry: <p>是否开启同步到全局注册中心</p>
         # @type SyncToGlobalRegistry: String
-        # @param StatusFilter: 过滤筛选条件
+        # @param StatusFilter: <p>过滤筛选条件</p>
         # @type StatusFilter: Array
+        # @param Type: <p>服务类型</p><p>枚举值：</p><ul><li>0： 微服务（默认）</li><li>1： MCP Server</li><li>2： AI Agent</li></ul>
+        # @type Type: Integer
 
-        attr_accessor :Name, :Namespace, :Metadatas, :Offset, :Limit, :InstanceId, :Department, :Business, :Host, :OnlyExistHealthyInstance, :SyncToGlobalRegistry, :StatusFilter
+        attr_accessor :Name, :Namespace, :Metadatas, :Offset, :Limit, :InstanceId, :Department, :Business, :Host, :OnlyExistHealthyInstance, :SyncToGlobalRegistry, :StatusFilter, :Type
 
-        def initialize(name=nil, namespace=nil, metadatas=nil, offset=nil, limit=nil, instanceid=nil, department=nil, business=nil, host=nil, onlyexisthealthyinstance=nil, synctoglobalregistry=nil, statusfilter=nil)
+        def initialize(name=nil, namespace=nil, metadatas=nil, offset=nil, limit=nil, instanceid=nil, department=nil, business=nil, host=nil, onlyexisthealthyinstance=nil, synctoglobalregistry=nil, statusfilter=nil, type=nil)
           @Name = name
           @Namespace = namespace
           @Metadatas = metadatas
@@ -6825,6 +6827,7 @@ module TencentCloud
           @OnlyExistHealthyInstance = onlyexisthealthyinstance
           @SyncToGlobalRegistry = synctoglobalregistry
           @StatusFilter = statusfilter
+          @Type = type
         end
 
         def deserialize(params)
@@ -6854,14 +6857,15 @@ module TencentCloud
               @StatusFilter << filter_tmp
             end
           end
+          @Type = params['Type']
         end
       end
 
       # DescribeGovernanceServices返回参数结构体
       class DescribeGovernanceServicesResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 服务数总量。
+        # @param TotalCount: <p>服务数总量。</p>
         # @type TotalCount: Integer
-        # @param Content: 服务信息详情。
+        # @param Content: <p>服务信息详情。</p>
         # @type Content: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -7833,8 +7837,8 @@ module TencentCloud
 
         attr_accessor :GatewayId, :Type, :TypeList
         extend Gem::Deprecate
-        deprecate :Type, :none, 2026, 4
-        deprecate :Type=, :none, 2026, 4
+        deprecate :Type, :none, 2026, 5
+        deprecate :Type=, :none, 2026, 5
 
         def initialize(gatewayid=nil, type=nil, typelist=nil)
           @GatewayId = gatewayid
@@ -8945,52 +8949,54 @@ module TencentCloud
 
       # 治理中心服务信息。
       class GovernanceService < TencentCloud::Common::AbstractModel
-        # @param Name: 服务名称。
+        # @param Name: <p>服务名称。</p>
         # @type Name: String
-        # @param Namespace: 命名空间名称。
+        # @param Namespace: <p>命名空间名称。</p>
         # @type Namespace: String
-        # @param Metadatas: 元数据信息数组。
+        # @param Metadatas: <p>元数据信息数组。</p>
         # @type Metadatas: Array
-        # @param Comment: 描述信息。
+        # @param Comment: <p>描述信息。</p>
         # @type Comment: String
-        # @param CreateTime: 创建时间。
+        # @param CreateTime: <p>创建时间。</p>
         # @type CreateTime: String
-        # @param ModifyTime: 修改时间。
+        # @param ModifyTime: <p>修改时间。</p>
         # @type ModifyTime: String
-        # @param Department: 服务所属部门。
+        # @param Department: <p>服务所属部门。</p>
         # @type Department: String
-        # @param Business: 服务所属业务。
+        # @param Business: <p>服务所属业务。</p>
         # @type Business: String
-        # @param HealthyInstanceCount: 健康服务实例数
+        # @param HealthyInstanceCount: <p>健康服务实例数</p>
         # @type HealthyInstanceCount: Integer
-        # @param TotalInstanceCount: 服务实例总数
+        # @param TotalInstanceCount: <p>服务实例总数</p>
         # @type TotalInstanceCount: Integer
-        # @param Id: 服务ID
+        # @param Id: <p>服务ID</p>
         # @type Id: String
-        # @param Editable: 是否可以编辑
+        # @param Editable: <p>是否可以编辑</p>
         # @type Editable: Boolean
-        # @param UserIds: 可以编辑该资源的用户ID
+        # @param UserIds: <p>可以编辑该资源的用户ID</p>
         # @type UserIds: Array
-        # @param GroupIds: 可以编辑该资源的用户组ID
+        # @param GroupIds: <p>可以编辑该资源的用户组ID</p>
         # @type GroupIds: Array
-        # @param RemoveUserIds: 移除可以编辑该资源的用户ID
+        # @param RemoveUserIds: <p>移除可以编辑该资源的用户ID</p>
         # @type RemoveUserIds: Array
-        # @param RemoveGroupIds: 移除可以编辑该资源的用户组ID
+        # @param RemoveGroupIds: <p>移除可以编辑该资源的用户组ID</p>
         # @type RemoveGroupIds: Array
-        # @param ExportTo: 该服务对哪些命名空间可见
+        # @param ExportTo: <p>该服务对哪些命名空间可见</p>
         # @type ExportTo: Array
-        # @param Revision: 该服务信息摘要签名
+        # @param Revision: <p>该服务信息摘要签名</p>
         # @type Revision: String
-        # @param SyncToGlobalRegistry: 是否开启同步到全局注册中心
+        # @param SyncToGlobalRegistry: <p>是否开启同步到全局注册中心</p>
         # @type SyncToGlobalRegistry: Boolean
-        # @param IsolateInstanceCount: 隔离实例数
+        # @param IsolateInstanceCount: <p>隔离实例数</p>
         # @type IsolateInstanceCount: Integer
-        # @param ServiceStatus: 服务健康状态
+        # @param ServiceStatus: <p>服务健康状态</p>
         # @type ServiceStatus: Integer
+        # @param Type: <p>服务类型</p><p>枚举值：</p><ul><li>0： 微服务（默认）</li><li>1： MCP Server</li><li>2： AI Agent</li></ul>
+        # @type Type: Integer
 
-        attr_accessor :Name, :Namespace, :Metadatas, :Comment, :CreateTime, :ModifyTime, :Department, :Business, :HealthyInstanceCount, :TotalInstanceCount, :Id, :Editable, :UserIds, :GroupIds, :RemoveUserIds, :RemoveGroupIds, :ExportTo, :Revision, :SyncToGlobalRegistry, :IsolateInstanceCount, :ServiceStatus
+        attr_accessor :Name, :Namespace, :Metadatas, :Comment, :CreateTime, :ModifyTime, :Department, :Business, :HealthyInstanceCount, :TotalInstanceCount, :Id, :Editable, :UserIds, :GroupIds, :RemoveUserIds, :RemoveGroupIds, :ExportTo, :Revision, :SyncToGlobalRegistry, :IsolateInstanceCount, :ServiceStatus, :Type
 
-        def initialize(name=nil, namespace=nil, metadatas=nil, comment=nil, createtime=nil, modifytime=nil, department=nil, business=nil, healthyinstancecount=nil, totalinstancecount=nil, id=nil, editable=nil, userids=nil, groupids=nil, removeuserids=nil, removegroupids=nil, exportto=nil, revision=nil, synctoglobalregistry=nil, isolateinstancecount=nil, servicestatus=nil)
+        def initialize(name=nil, namespace=nil, metadatas=nil, comment=nil, createtime=nil, modifytime=nil, department=nil, business=nil, healthyinstancecount=nil, totalinstancecount=nil, id=nil, editable=nil, userids=nil, groupids=nil, removeuserids=nil, removegroupids=nil, exportto=nil, revision=nil, synctoglobalregistry=nil, isolateinstancecount=nil, servicestatus=nil, type=nil)
           @Name = name
           @Namespace = namespace
           @Metadatas = metadatas
@@ -9012,6 +9018,7 @@ module TencentCloud
           @SyncToGlobalRegistry = synctoglobalregistry
           @IsolateInstanceCount = isolateinstancecount
           @ServiceStatus = servicestatus
+          @Type = type
         end
 
         def deserialize(params)
@@ -9043,6 +9050,7 @@ module TencentCloud
           @SyncToGlobalRegistry = params['SyncToGlobalRegistry']
           @IsolateInstanceCount = params['IsolateInstanceCount']
           @ServiceStatus = params['ServiceStatus']
+          @Type = params['Type']
         end
       end
 
@@ -9180,34 +9188,36 @@ module TencentCloud
 
       # 治理中心服务入参
       class GovernanceServiceInput < TencentCloud::Common::AbstractModel
-        # @param Name: 服务名。
+        # @param Name: <p>服务名。</p>
         # @type Name: String
-        # @param Namespace: 服务所属命名空间。
+        # @param Namespace: <p>服务所属命名空间。</p>
         # @type Namespace: String
-        # @param Comment: 服务描述信息。
+        # @param Comment: <p>服务描述信息。</p>
         # @type Comment: String
-        # @param Metadatas: 服务元数据。
+        # @param Metadatas: <p>服务元数据。</p>
         # @type Metadatas: Array
-        # @param Department: 服务所属部门。
+        # @param Department: <p>服务所属部门。</p>
         # @type Department: String
-        # @param Business: 服务所属业务。
+        # @param Business: <p>服务所属业务。</p>
         # @type Business: String
-        # @param UserIds: 被添加进来可以操作此命名空间的用户ID列表
+        # @param UserIds: <p>被添加进来可以操作此命名空间的用户ID列表</p>
         # @type UserIds: Array
-        # @param GroupIds: 被添加进来可以操作此命名空间的用户组ID列表
+        # @param GroupIds: <p>被添加进来可以操作此命名空间的用户组ID列表</p>
         # @type GroupIds: Array
-        # @param RemoveUserIds: 从操作此命名空间的用户组ID列表被移除的ID列表
+        # @param RemoveUserIds: <p>从操作此命名空间的用户组ID列表被移除的ID列表</p>
         # @type RemoveUserIds: Array
-        # @param RemoveGroupIds: 从可以操作此命名空间的用户组ID列表中被移除的ID列表
+        # @param RemoveGroupIds: <p>从可以操作此命名空间的用户组ID列表中被移除的ID列表</p>
         # @type RemoveGroupIds: Array
-        # @param ExportTo: 该服务对哪些命名空间可见
+        # @param ExportTo: <p>该服务对哪些命名空间可见</p>
         # @type ExportTo: Array
-        # @param SyncToGlobalRegistry: 是否开启同步到全局注册中心
+        # @param SyncToGlobalRegistry: <p>是否开启同步到全局注册中心</p>
         # @type SyncToGlobalRegistry: Boolean
+        # @param Type: <p>服务类型</p><p>枚举值：</p><ul><li>0： 微服务（默认）</li><li>1： MCP Server</li><li>2： AI Agent</li></ul><p>默认值：0</p>
+        # @type Type: Integer
 
-        attr_accessor :Name, :Namespace, :Comment, :Metadatas, :Department, :Business, :UserIds, :GroupIds, :RemoveUserIds, :RemoveGroupIds, :ExportTo, :SyncToGlobalRegistry
+        attr_accessor :Name, :Namespace, :Comment, :Metadatas, :Department, :Business, :UserIds, :GroupIds, :RemoveUserIds, :RemoveGroupIds, :ExportTo, :SyncToGlobalRegistry, :Type
 
-        def initialize(name=nil, namespace=nil, comment=nil, metadatas=nil, department=nil, business=nil, userids=nil, groupids=nil, removeuserids=nil, removegroupids=nil, exportto=nil, synctoglobalregistry=nil)
+        def initialize(name=nil, namespace=nil, comment=nil, metadatas=nil, department=nil, business=nil, userids=nil, groupids=nil, removeuserids=nil, removegroupids=nil, exportto=nil, synctoglobalregistry=nil, type=nil)
           @Name = name
           @Namespace = namespace
           @Comment = comment
@@ -9220,6 +9230,7 @@ module TencentCloud
           @RemoveGroupIds = removegroupids
           @ExportTo = exportto
           @SyncToGlobalRegistry = synctoglobalregistry
+          @Type = type
         end
 
         def deserialize(params)
@@ -9242,6 +9253,7 @@ module TencentCloud
           @RemoveGroupIds = params['RemoveGroupIds']
           @ExportTo = params['ExportTo']
           @SyncToGlobalRegistry = params['SyncToGlobalRegistry']
+          @Type = params['Type']
         end
       end
 
@@ -9457,8 +9469,8 @@ module TencentCloud
 
         attr_accessor :Total, :CertificatesList, :Pages
         extend Gem::Deprecate
-        deprecate :Pages, :none, 2026, 4
-        deprecate :Pages=, :none, 2026, 4
+        deprecate :Pages, :none, 2026, 5
+        deprecate :Pages=, :none, 2026, 5
 
         def initialize(total=nil, certificateslist=nil, pages=nil)
           @Total = total
@@ -9601,8 +9613,8 @@ module TencentCloud
 
         attr_accessor :ID, :Name, :Methods, :Paths, :Hosts, :Protocols, :PreserveHost, :HttpsRedirectStatusCode, :StripPath, :CreatedTime, :ForceHttps, :ServiceName, :ServiceID, :DestinationPorts, :Headers, :RequestBuffering, :ResponseBuffering, :RegexPriority, :QueryStringParameters
         extend Gem::Deprecate
-        deprecate :ForceHttps, :none, 2026, 4
-        deprecate :ForceHttps=, :none, 2026, 4
+        deprecate :ForceHttps, :none, 2026, 5
+        deprecate :ForceHttps=, :none, 2026, 5
 
         def initialize(id=nil, name=nil, methods=nil, paths=nil, hosts=nil, protocols=nil, preservehost=nil, httpsredirectstatuscode=nil, strippath=nil, createdtime=nil, forcehttps=nil, servicename=nil, serviceid=nil, destinationports=nil, headers=nil, requestbuffering=nil, responsebuffering=nil, regexpriority=nil, querystringparameters=nil)
           @ID = id
@@ -10377,10 +10389,10 @@ module TencentCloud
 
         attr_accessor :GatewayId, :StrategyId, :StrategyName, :Description, :Config, :CronScalerConfig, :MaxReplicas, :CronConfig
         extend Gem::Deprecate
-        deprecate :CronScalerConfig, :none, 2026, 4
-        deprecate :CronScalerConfig=, :none, 2026, 4
-        deprecate :MaxReplicas, :none, 2026, 4
-        deprecate :MaxReplicas=, :none, 2026, 4
+        deprecate :CronScalerConfig, :none, 2026, 5
+        deprecate :CronScalerConfig=, :none, 2026, 5
+        deprecate :MaxReplicas, :none, 2026, 5
+        deprecate :MaxReplicas=, :none, 2026, 5
 
         def initialize(gatewayid=nil, strategyid=nil, strategyname=nil, description=nil, config=nil, cronscalerconfig=nil, maxreplicas=nil, cronconfig=nil)
           @GatewayId = gatewayid
@@ -10515,10 +10527,10 @@ module TencentCloud
 
         attr_accessor :GatewayId, :Id, :Name, :Key, :Crt, :BindDomains, :CertId, :CertSource
         extend Gem::Deprecate
-        deprecate :Name, :none, 2026, 4
-        deprecate :Name=, :none, 2026, 4
-        deprecate :BindDomains, :none, 2026, 4
-        deprecate :BindDomains=, :none, 2026, 4
+        deprecate :Name, :none, 2026, 5
+        deprecate :Name=, :none, 2026, 5
+        deprecate :BindDomains, :none, 2026, 5
+        deprecate :BindDomains=, :none, 2026, 5
 
         def initialize(gatewayid=nil, id=nil, name=nil, key=nil, crt=nil, binddomains=nil, certid=nil, certsource=nil)
           @GatewayId = gatewayid
@@ -10714,8 +10726,8 @@ module TencentCloud
 
         attr_accessor :GatewayId, :ServiceID, :RouteID, :RouteName, :Methods, :Hosts, :Paths, :Protocols, :PreserveHost, :HttpsRedirectStatusCode, :StripPath, :ForceHttps, :DestinationPorts, :Headers, :RequestBuffering, :ResponseBuffering, :RegexPriority, :QueryStringParameters
         extend Gem::Deprecate
-        deprecate :ForceHttps, :none, 2026, 4
-        deprecate :ForceHttps=, :none, 2026, 4
+        deprecate :ForceHttps, :none, 2026, 5
+        deprecate :ForceHttps=, :none, 2026, 5
 
         def initialize(gatewayid=nil, serviceid=nil, routeid=nil, routename=nil, methods=nil, hosts=nil, paths=nil, protocols=nil, preservehost=nil, httpsredirectstatuscode=nil, strippath=nil, forcehttps=nil, destinationports=nil, headers=nil, requestbuffering=nil, responsebuffering=nil, regexpriority=nil, querystringparameters=nil)
           @GatewayId = gatewayid
@@ -13122,8 +13134,8 @@ module TencentCloud
 
         attr_accessor :EnableActiveHealthCheck, :ActiveHealthCheck, :EnablePassiveHealthCheck, :PassiveHealthCheck, :Successes, :Failures, :Timeouts, :HealthyHttpStatuses, :UnhealthyHttpStatuses, :IgnoreZeroWeightNodes, :ZeroWeightHeathCheck
         extend Gem::Deprecate
-        deprecate :IgnoreZeroWeightNodes, :none, 2026, 4
-        deprecate :IgnoreZeroWeightNodes=, :none, 2026, 4
+        deprecate :IgnoreZeroWeightNodes, :none, 2026, 5
+        deprecate :IgnoreZeroWeightNodes=, :none, 2026, 5
 
         def initialize(enableactivehealthcheck=nil, activehealthcheck=nil, enablepassivehealthcheck=nil, passivehealthcheck=nil, successes=nil, failures=nil, timeouts=nil, healthyhttpstatuses=nil, unhealthyhttpstatuses=nil, ignorezeroweightnodes=nil, zeroweightheathcheck=nil)
           @EnableActiveHealthCheck = enableactivehealthcheck

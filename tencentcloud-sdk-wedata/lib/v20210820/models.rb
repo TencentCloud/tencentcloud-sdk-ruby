@@ -4320,26 +4320,28 @@ module TencentCloud
 
       # CommitIntegrationTask请求参数结构体
       class CommitIntegrationTaskRequest < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务id
+        # @param TaskId: <p>任务id</p>
         # @type TaskId: String
-        # @param ProjectId: 项目id
+        # @param ProjectId: <p>项目id</p>
         # @type ProjectId: String
-        # @param CommitType: 0.仅提交，1.立即启动，2.停止线上作业，丢弃作业状态数据，重新启动运行，3.暂停线上作业，保留作业状态数据，继续运行，4.保留作业状态数据，继续运行
+        # @param CommitType: <p>0.仅提交，1.立即启动，2.停止线上作业，丢弃作业状态数据，重新启动运行，3.暂停线上作业，保留作业状态数据，继续运行，4.保留作业状态数据，继续运行</p>
         # @type CommitType: Integer
-        # @param TaskType: 实时任务 201   离线任务 202  默认实时任务
+        # @param TaskType: <p>实时任务 201   离线任务 202  默认实时任务</p>
         # @type TaskType: Integer
-        # @param ExtConfig: 额外参数
+        # @param ExtConfig: <p>额外参数</p>
         # @type ExtConfig: Array
-        # @param VersionDesc: 提交版本描述
+        # @param VersionDesc: <p>提交版本描述</p>
         # @type VersionDesc: String
-        # @param InstanceVersion: 提交版本号
+        # @param InstanceVersion: <p>提交版本号</p>
         # @type InstanceVersion: Integer
-        # @param EventDesc: 前端操作类型描述
+        # @param EventDesc: <p>前端操作类型描述</p>
         # @type EventDesc: String
+        # @param CurrentStatus: <p>提交时任务状态</p><p>枚举值：</p><ul><li>3： 运行中</li></ul>
+        # @type CurrentStatus: Integer
 
-        attr_accessor :TaskId, :ProjectId, :CommitType, :TaskType, :ExtConfig, :VersionDesc, :InstanceVersion, :EventDesc
+        attr_accessor :TaskId, :ProjectId, :CommitType, :TaskType, :ExtConfig, :VersionDesc, :InstanceVersion, :EventDesc, :CurrentStatus
 
-        def initialize(taskid=nil, projectid=nil, committype=nil, tasktype=nil, extconfig=nil, versiondesc=nil, instanceversion=nil, eventdesc=nil)
+        def initialize(taskid=nil, projectid=nil, committype=nil, tasktype=nil, extconfig=nil, versiondesc=nil, instanceversion=nil, eventdesc=nil, currentstatus=nil)
           @TaskId = taskid
           @ProjectId = projectid
           @CommitType = committype
@@ -4348,6 +4350,7 @@ module TencentCloud
           @VersionDesc = versiondesc
           @InstanceVersion = instanceversion
           @EventDesc = eventdesc
+          @CurrentStatus = currentstatus
         end
 
         def deserialize(params)
@@ -4366,14 +4369,15 @@ module TencentCloud
           @VersionDesc = params['VersionDesc']
           @InstanceVersion = params['InstanceVersion']
           @EventDesc = params['EventDesc']
+          @CurrentStatus = params['CurrentStatus']
         end
       end
 
       # CommitIntegrationTask返回参数结构体
       class CommitIntegrationTaskResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 操作成功与否标识
+        # @param Data: <p>操作成功与否标识</p>
         # @type Data: Boolean
-        # @param DataDto: 数据结构
+        # @param DataDto: <p>数据结构</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataDto: :class:`Tencentcloud::Wedata.v20210820.models.CommitTaskDataDto`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。

@@ -2441,6 +2441,132 @@ module TencentCloud
         end
       end
 
+      # DescribeTRTCAIRecognitionUsage请求参数结构体
+      class DescribeTRTCAIRecognitionUsageRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: 查询开始时间，格式为YYYY-MM-DD HH:mm:ss。
+        # @type StartTime: String
+        # @param EndTime: 查询结束时间，格式为YYYY-MM-DD HH:mm:ss。单次查询统计区间最多不能超过31天。
+        # @type EndTime: String
+        # @param AuType: 用量类型列表。
+        # - conversation AI 实时对话
+        # - asr 语音转文本
+        # - translation 实时翻译
+        # - tts 实时语音合成
+        # @type AuType: Array
+        # @param SdkAppId: 应用ID，可不传。传应用ID时返回的是该应用的用量，不传时返回多个应用的合计值。
+        # @type SdkAppId: String
+
+        attr_accessor :StartTime, :EndTime, :AuType, :SdkAppId
+
+        def initialize(starttime=nil, endtime=nil, autype=nil, sdkappid=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @AuType = autype
+          @SdkAppId = sdkappid
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @AuType = params['AuType']
+          @SdkAppId = params['SdkAppId']
+        end
+      end
+
+      # DescribeTRTCAIRecognitionUsage返回参数结构体
+      class DescribeTRTCAIRecognitionUsageResponse < TencentCloud::Common::AbstractModel
+        # @param UsageKey: 用量类型列表
+        # @type UsageKey: Array
+        # @param UsageList: 用量列表
+        # @type UsageList: Array
+        # @param TotalUsage: 总用量列表
+        # @type TotalUsage: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :UsageKey, :UsageList, :TotalUsage, :RequestId
+
+        def initialize(usagekey=nil, usagelist=nil, totalusage=nil, requestid=nil)
+          @UsageKey = usagekey
+          @UsageList = usagelist
+          @TotalUsage = totalusage
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @UsageKey = params['UsageKey']
+          unless params['UsageList'].nil?
+            @UsageList = []
+            params['UsageList'].each do |i|
+              usagelist_tmp = UsageList.new
+              usagelist_tmp.deserialize(i)
+              @UsageList << usagelist_tmp
+            end
+          end
+          @TotalUsage = params['TotalUsage']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeTRTCDedicatedCloudAccUsage请求参数结构体
+      class DescribeTRTCDedicatedCloudAccUsageRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: 查询开始时间，格式为YYYY-MM-DD HH:mm:ss。
+        # @type StartTime: String
+        # @param EndTime: 查询结束时间，格式为YYYY-MM-DD HH:mm:ss。单次查询统计区间最多不能超过31天。
+        # @type EndTime: String
+        # @param SdkAppId: 应用ID，可不传。传应用ID时返回的是该应用的用量，不传时返回多个应用的合计值。
+        # @type SdkAppId: Integer
+
+        attr_accessor :StartTime, :EndTime, :SdkAppId
+
+        def initialize(starttime=nil, endtime=nil, sdkappid=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @SdkAppId = sdkappid
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @SdkAppId = params['SdkAppId']
+        end
+      end
+
+      # DescribeTRTCDedicatedCloudAccUsage返回参数结构体
+      class DescribeTRTCDedicatedCloudAccUsageResponse < TencentCloud::Common::AbstractModel
+        # @param UsageKey: 用量指标名列表
+        # @type UsageKey: Array
+        # @param UsageList: 用量明细列表
+        # @type UsageList: Array
+        # @param TotalUsage: 汇总用量列表
+        # @type TotalUsage: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :UsageKey, :UsageList, :TotalUsage, :RequestId
+
+        def initialize(usagekey=nil, usagelist=nil, totalusage=nil, requestid=nil)
+          @UsageKey = usagekey
+          @UsageList = usagelist
+          @TotalUsage = totalusage
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @UsageKey = params['UsageKey']
+          unless params['UsageList'].nil?
+            @UsageList = []
+            params['UsageList'].each do |i|
+              usagelist_tmp = UsageList.new
+              usagelist_tmp.deserialize(i)
+              @UsageList << usagelist_tmp
+            end
+          end
+          @TotalUsage = params['TotalUsage']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeTRTCMarketQualityData请求参数结构体
       class DescribeTRTCMarketQualityDataRequest < TencentCloud::Common::AbstractModel
         # @param SdkAppId: 用户SdkAppId（如：1400xxxxxx）
@@ -2707,6 +2833,73 @@ module TencentCloud
             @Data = TRTCDataResult.new
             @Data.deserialize(params['Data'])
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeTRTCSegmentModerationUsage请求参数结构体
+      class DescribeTRTCSegmentModerationUsageRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: 查询开始时间，格式为YYYY-MM-DD HH:mm:ss。
+        # @type StartTime: String
+        # @param EndTime: 查询结束时间，格式为YYYY-MM-DD HH:mm:ss。单次查询统计区间最多不能超过31天。
+        # @type EndTime: String
+        # @param Type: 媒体类型，枚举值：audio（音频）、picture（图片）
+        # @type Type: String
+        # @param Business: 使用场景（业务类型），枚举值：0 = AI 内容理解（审核场景）、1 = 音视频切片（云端切片场景）
+        # @type Business: Integer
+        # @param SdkAppId: 应用ID，可不传。传应用ID时返回的是该应用的用量，不传时返回多个应用的合计值。
+        # @type SdkAppId: Integer
+
+        attr_accessor :StartTime, :EndTime, :Type, :Business, :SdkAppId
+
+        def initialize(starttime=nil, endtime=nil, type=nil, business=nil, sdkappid=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @Type = type
+          @Business = business
+          @SdkAppId = sdkappid
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Type = params['Type']
+          @Business = params['Business']
+          @SdkAppId = params['SdkAppId']
+        end
+      end
+
+      # DescribeTRTCSegmentModerationUsage返回参数结构体
+      class DescribeTRTCSegmentModerationUsageResponse < TencentCloud::Common::AbstractModel
+        # @param UsageKey: 用量指标名列表
+        # @type UsageKey: Array
+        # @param UsageList: 用量明细列表
+        # @type UsageList: Array
+        # @param TotalUsage: 汇总用量列表
+        # @type TotalUsage: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :UsageKey, :UsageList, :TotalUsage, :RequestId
+
+        def initialize(usagekey=nil, usagelist=nil, totalusage=nil, requestid=nil)
+          @UsageKey = usagekey
+          @UsageList = usagelist
+          @TotalUsage = totalusage
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @UsageKey = params['UsageKey']
+          unless params['UsageList'].nil?
+            @UsageList = []
+            params['UsageList'].each do |i|
+              usagelist_tmp = UsageList.new
+              usagelist_tmp.deserialize(i)
+              @UsageList << usagelist_tmp
+            end
+          end
+          @TotalUsage = params['TotalUsage']
           @RequestId = params['RequestId']
         end
       end
@@ -7628,6 +7821,26 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 用量列表
+      class UsageList < TencentCloud::Common::AbstractModel
+        # @param TimeKey: 时间
+        # @type TimeKey: String
+        # @param UsageValue: 用量数值
+        # @type UsageValue: Array
+
+        attr_accessor :TimeKey, :UsageValue
+
+        def initialize(timekey=nil, usagevalue=nil)
+          @TimeKey = timekey
+          @UsageValue = usagevalue
+        end
+
+        def deserialize(params)
+          @TimeKey = params['TimeKey']
+          @UsageValue = params['UsageValue']
         end
       end
 

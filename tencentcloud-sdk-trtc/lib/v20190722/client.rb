@@ -828,6 +828,60 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # AI 智能识别与对话用量查询（AI对话/语音转文本/实时翻译/实时语音合成）
+        # - 查询时间小于等于1天时，返回每5分钟粒度的数据；查询时间大于1天时，返回按天汇总的数据。
+        # - 单次查询统计区间最多不能超过31天。
+        # - 若查询当天用量，由于统计延迟等原因，返回数据可能不够准确。
+
+        # @param request: Request instance for DescribeTRTCAIRecognitionUsage.
+        # @type request: :class:`Tencentcloud::trtc::V20190722::DescribeTRTCAIRecognitionUsageRequest`
+        # @rtype: :class:`Tencentcloud::trtc::V20190722::DescribeTRTCAIRecognitionUsageResponse`
+        def DescribeTRTCAIRecognitionUsage(request)
+          body = send_request('DescribeTRTCAIRecognitionUsage', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeTRTCAIRecognitionUsageResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # TRTC专属云网络加速用量查询
+        # - 查询时间小于等于1天时，返回每5分钟粒度的数据；查询时间大于1天时，返回按天汇总的数据。
+        # - 单次查询统计区间最多不能超过31天。
+        # - 若查询当天用量，由于统计延迟等原因，返回数据可能不够准确。
+
+        # @param request: Request instance for DescribeTRTCDedicatedCloudAccUsage.
+        # @type request: :class:`Tencentcloud::trtc::V20190722::DescribeTRTCDedicatedCloudAccUsageRequest`
+        # @rtype: :class:`Tencentcloud::trtc::V20190722::DescribeTRTCDedicatedCloudAccUsageResponse`
+        def DescribeTRTCDedicatedCloudAccUsage(request)
+          body = send_request('DescribeTRTCDedicatedCloudAccUsage', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeTRTCDedicatedCloudAccUsageResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询TRTC监控仪表盘-数据大盘质量指标（包括下列指标）
         # joinSuccessRate：加入频道成功率。
         # joinSuccessIn5sRate：5s内加入频道成功率。
@@ -968,6 +1022,33 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeTRTCRealTimeScaleDataResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 切片截图与内容理解用量查询，支持查询音视频切片（云端切片场景）和 AI 内容理解（审核场景）两种业务类型
+        # - 查询时间小于等于1天时，返回每5分钟粒度的数据；查询时间大于1天时，返回按天汇总的数据。
+        # - 单次查询统计区间最多不能超过31天。
+        # - 若查询当天用量，由于统计延迟等原因，返回数据可能不够准确。
+
+        # @param request: Request instance for DescribeTRTCSegmentModerationUsage.
+        # @type request: :class:`Tencentcloud::trtc::V20190722::DescribeTRTCSegmentModerationUsageRequest`
+        # @rtype: :class:`Tencentcloud::trtc::V20190722::DescribeTRTCSegmentModerationUsageResponse`
+        def DescribeTRTCSegmentModerationUsage(request)
+          body = send_request('DescribeTRTCSegmentModerationUsage', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeTRTCSegmentModerationUsageResponse.new
             model.deserialize(response['Response'])
             model
           else

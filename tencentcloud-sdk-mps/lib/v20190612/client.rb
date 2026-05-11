@@ -3593,7 +3593,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 音色设计，根据prompt生成音色ID
+        # 音色设计，根据prompt生成音色ID。克隆/设计音色数量上限默认100
 
         # @param request: Request instance for DesignVoiceAsync.
         # @type request: :class:`Tencentcloud::mps::V20190612::DesignVoiceAsyncRequest`
@@ -3603,6 +3603,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DesignVoiceAsyncResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 快速探测视频文件的硬字幕区域
+
+        # @param request: Request instance for DetectVideoSubtitleArea.
+        # @type request: :class:`Tencentcloud::mps::V20190612::DetectVideoSubtitleAreaRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::DetectVideoSubtitleAreaResponse`
+        def DetectVideoSubtitleArea(request)
+          body = send_request('DetectVideoSubtitleArea', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DetectVideoSubtitleAreaResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -4928,7 +4952,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 同步接口，返回克隆音色Id或合成音频结果
+        # 同步接口，返回克隆音色ID或合成音频结果。克隆/设计音色数量上限默认100
 
         # @param request: Request instance for SyncDubbing.
         # @type request: :class:`Tencentcloud::mps::V20190612::SyncDubbingRequest`

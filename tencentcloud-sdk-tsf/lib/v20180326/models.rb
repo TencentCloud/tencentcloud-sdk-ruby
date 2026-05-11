@@ -1347,8 +1347,8 @@ module TencentCloud
 
         attr_accessor :ConfigId, :ConfigName, :ConfigPath, :ConfigDesc, :ConfigTags, :ConfigPipeline, :ConfigCreateTime, :ConfigUpdateTime, :ConfigSchema, :ConfigAssociatedGroups, :ConfigAssociatedGroupList, :FilebeatConfigEnable, :FilebeatCloseTimeout, :FilebeatIgnoreOlder, :FilebeatHarvesterLimit, :FilebeatCloseInactive, :FilebeatCleanInactive, :CustomMultilinePattern
         extend Gem::Deprecate
-        deprecate :ConfigAssociatedGroups, :none, 2026, 4
-        deprecate :ConfigAssociatedGroups=, :none, 2026, 4
+        deprecate :ConfigAssociatedGroups, :none, 2026, 5
+        deprecate :ConfigAssociatedGroups=, :none, 2026, 5
 
         def initialize(configid=nil, configname=nil, configpath=nil, configdesc=nil, configtags=nil, configpipeline=nil, configcreatetime=nil, configupdatetime=nil, configschema=nil, configassociatedgroups=nil, configassociatedgrouplist=nil, filebeatconfigenable=nil, filebeatclosetimeout=nil, filebeatignoreolder=nil, filebeatharvesterlimit=nil, filebeatcloseinactive=nil, filebeatcleaninactive=nil, custommultilinepattern=nil)
           @ConfigId = configid
@@ -3731,10 +3731,10 @@ module TencentCloud
 
         attr_accessor :ApplicationName, :ApplicationType, :MicroserviceType, :ApplicationDesc, :ApplicationLogConfig, :ApplicationResourceType, :ApplicationRuntimeType, :ProgramId, :ServiceConfigList, :IgnoreCreateImageRepository, :ProgramIdList, :ApmInstanceId, :ProgramLanguage, :FrameworkType, :ServiceGovernanceConfig, :CreateSameNameImageRepository
         extend Gem::Deprecate
-        deprecate :ApplicationLogConfig, :none, 2026, 4
-        deprecate :ApplicationLogConfig=, :none, 2026, 4
-        deprecate :ApplicationResourceType, :none, 2026, 4
-        deprecate :ApplicationResourceType=, :none, 2026, 4
+        deprecate :ApplicationLogConfig, :none, 2026, 5
+        deprecate :ApplicationLogConfig=, :none, 2026, 5
+        deprecate :ApplicationResourceType, :none, 2026, 5
+        deprecate :ApplicationResourceType=, :none, 2026, 5
 
         def initialize(applicationname=nil, applicationtype=nil, microservicetype=nil, applicationdesc=nil, applicationlogconfig=nil, applicationresourcetype=nil, applicationruntimetype=nil, programid=nil, serviceconfiglist=nil, ignorecreateimagerepository=nil, programidlist=nil, apminstanceid=nil, programlanguage=nil, frameworktype=nil, servicegovernanceconfig=nil, createsamenameimagerepository=nil)
           @ApplicationName = applicationname
@@ -7121,12 +7121,12 @@ module TencentCloud
 
         attr_accessor :GroupId, :TagName, :InstanceNum, :Server, :Reponame, :CpuLimit, :MemLimit, :JvmOpts, :CpuRequest, :MemRequest, :DoNotStart, :RepoName, :UpdateType, :UpdateIvl, :AgentCpuRequest, :AgentCpuLimit, :AgentMemRequest, :AgentMemLimit, :IstioCpuRequest, :IstioCpuLimit, :IstioMemRequest, :IstioMemLimit, :MaxSurge, :MaxUnavailable, :HealthCheckSettings, :Envs, :ServiceSetting, :DeployAgent, :SchedulingStrategy, :IncrementalDeployment, :RepoType, :VolumeInfos, :VolumeMountInfos, :VolumeInfoList, :VolumeMountInfoList, :VolumeClean, :AgentProfileList, :WarmupSetting
         extend Gem::Deprecate
-        deprecate :Reponame, :none, 2026, 4
-        deprecate :Reponame=, :none, 2026, 4
-        deprecate :VolumeInfos, :none, 2026, 4
-        deprecate :VolumeInfos=, :none, 2026, 4
-        deprecate :VolumeMountInfos, :none, 2026, 4
-        deprecate :VolumeMountInfos=, :none, 2026, 4
+        deprecate :Reponame, :none, 2026, 5
+        deprecate :Reponame=, :none, 2026, 5
+        deprecate :VolumeInfos, :none, 2026, 5
+        deprecate :VolumeInfos=, :none, 2026, 5
+        deprecate :VolumeMountInfos, :none, 2026, 5
+        deprecate :VolumeMountInfos=, :none, 2026, 5
 
         def initialize(groupid=nil, tagname=nil, instancenum=nil, server=nil, cpulimit=nil, memlimit=nil, jvmopts=nil, cpurequest=nil, memrequest=nil, donotstart=nil, reponame=nil, updatetype=nil, updateivl=nil, agentcpurequest=nil, agentcpulimit=nil, agentmemrequest=nil, agentmemlimit=nil, istiocpurequest=nil, istiocpulimit=nil, istiomemrequest=nil, istiomemlimit=nil, maxsurge=nil, maxunavailable=nil, healthchecksettings=nil, envs=nil, servicesetting=nil, deployagent=nil, schedulingstrategy=nil, incrementaldeployment=nil, repotype=nil, volumeinfos=nil, volumemountinfos=nil, volumeinfolist=nil, volumemountinfolist=nil, volumeclean=nil, agentprofilelist=nil, warmupsetting=nil)
           @GroupId = groupid
@@ -11167,31 +11167,38 @@ module TencentCloud
 
       # DescribePrograms请求参数结构体
       class DescribeProgramsRequest < TencentCloud::Common::AbstractModel
-        # @param SearchWord: 模糊查询数据集ID，数据集名称，不传入时查询全量
+        # @param SearchWord: <p>模糊查询数据集ID，数据集名称，不传入时查询全量</p>
         # @type SearchWord: String
-        # @param Limit: 每页数量，默认值20
+        # @param Limit: <p>每页数量，默认值20</p>
         # @type Limit: Integer
-        # @param Offset: 起始偏移量，默认值0
+        # @param Offset: <p>起始偏移量，默认值0</p>
         # @type Offset: Integer
+        # @param SearchFilters: <p>模糊查询，传递模糊查询字段和对应的值</p>
+        # @type SearchFilters: :class:`Tencentcloud::Tsf.v20180326.models.SearchFiltersProgram`
 
-        attr_accessor :SearchWord, :Limit, :Offset
+        attr_accessor :SearchWord, :Limit, :Offset, :SearchFilters
 
-        def initialize(searchword=nil, limit=nil, offset=nil)
+        def initialize(searchword=nil, limit=nil, offset=nil, searchfilters=nil)
           @SearchWord = searchword
           @Limit = limit
           @Offset = offset
+          @SearchFilters = searchfilters
         end
 
         def deserialize(params)
           @SearchWord = params['SearchWord']
           @Limit = params['Limit']
           @Offset = params['Offset']
+          unless params['SearchFilters'].nil?
+            @SearchFilters = SearchFiltersProgram.new
+            @SearchFilters.deserialize(params['SearchFilters'])
+          end
         end
       end
 
       # DescribePrograms返回参数结构体
       class DescribeProgramsResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 数据集列表
+        # @param Result: <p>数据集列表</p>
         # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.PagedProgram`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -14807,8 +14814,8 @@ module TencentCloud
 
         attr_accessor :Reponame, :Repotype, :TagCount, :IsPublic, :IsUserFavor, :IsQcloudOfficial, :FavorCount, :PullCount, :Description, :CreationTime, :UpdateTime, :TcrRepoInfo, :TcrBindingId, :ApplicationId, :ApplicationName, :ApplicationNameReal, :Public, :CreateMode, :RepoName, :RepoType
         extend Gem::Deprecate
-        deprecate :ApplicationName, :none, 2026, 4
-        deprecate :ApplicationName=, :none, 2026, 4
+        deprecate :ApplicationName, :none, 2026, 5
+        deprecate :ApplicationName=, :none, 2026, 5
 
         def initialize(reponame=nil, repotype=nil, tagcount=nil, ispublic=nil, isuserfavor=nil, isqcloudofficial=nil, favorcount=nil, pullcount=nil, description=nil, creationtime=nil, updatetime=nil, tcrrepoinfo=nil, tcrbindingid=nil, applicationid=nil, applicationname=nil, applicationnamereal=nil, public=nil, createmode=nil, reponame=nil, repotype=nil)
           @Reponame = reponame
@@ -19071,6 +19078,26 @@ module TencentCloud
         end
       end
 
+      # 模糊查询数据集信息指定字段和值
+      class SearchFiltersProgram < TencentCloud::Common::AbstractModel
+        # @param ProgramId: <p>数据集ID</p>
+        # @type ProgramId: String
+        # @param ProgramName: <p>数据集名称</p>
+        # @type ProgramName: String
+
+        attr_accessor :ProgramId, :ProgramName
+
+        def initialize(programid=nil, programname=nil)
+          @ProgramId = programid
+          @ProgramName = programname
+        end
+
+        def deserialize(params)
+          @ProgramId = params['ProgramId']
+          @ProgramName = params['ProgramName']
+        end
+      end
+
       # SearchStdoutLog请求参数结构体
       class SearchStdoutLogRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 机器实例ID， 和 部署组 ID 二者必选其一，不能同时为空
@@ -20419,8 +20446,8 @@ module TencentCloud
 
         attr_accessor :ThreadCount, :ThreadActive, :DeamonThreadCount, :DaemonThreadCount
         extend Gem::Deprecate
-        deprecate :DeamonThreadCount, :none, 2026, 4
-        deprecate :DeamonThreadCount=, :none, 2026, 4
+        deprecate :DeamonThreadCount, :none, 2026, 5
+        deprecate :DeamonThreadCount=, :none, 2026, 5
 
         def initialize(threadcount=nil, threadactive=nil, deamonthreadcount=nil, daemonthreadcount=nil)
           @ThreadCount = threadcount

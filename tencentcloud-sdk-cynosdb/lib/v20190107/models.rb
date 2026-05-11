@@ -343,8 +343,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :Cpu, :Memory, :ReadOnlyCount, :DeviceType, :InstanceGrpId, :VpcId, :SubnetId, :Port, :InstanceName, :AutoVoucher, :DbType, :OrderSource, :DealMode, :ParamTemplateId, :InstanceParams, :SecurityGroupIds, :UpgradeProxy
         extend Gem::Deprecate
-        deprecate :InstanceGrpId, :none, 2026, 4
-        deprecate :InstanceGrpId=, :none, 2026, 4
+        deprecate :InstanceGrpId, :none, 2026, 5
+        deprecate :InstanceGrpId=, :none, 2026, 5
 
         def initialize(clusterid=nil, cpu=nil, memory=nil, readonlycount=nil, devicetype=nil, instancegrpid=nil, vpcid=nil, subnetid=nil, port=nil, instancename=nil, autovoucher=nil, dbtype=nil, ordersource=nil, dealmode=nil, paramtemplateid=nil, instanceparams=nil, securitygroupids=nil, upgradeproxy=nil)
           @ClusterId = clusterid
@@ -414,8 +414,8 @@ module TencentCloud
 
         attr_accessor :TranId, :DealNames, :ResourceIds, :BigDealIds, :RequestId
         extend Gem::Deprecate
-        deprecate :ResourceIds, :none, 2026, 4
-        deprecate :ResourceIds=, :none, 2026, 4
+        deprecate :ResourceIds, :none, 2026, 5
+        deprecate :ResourceIds=, :none, 2026, 5
 
         def initialize(tranid=nil, dealnames=nil, resourceids=nil, bigdealids=nil, requestid=nil)
           @TranId = tranid
@@ -1432,10 +1432,10 @@ module TencentCloud
 
         attr_accessor :ID, :AppId, :ClusterId, :Region, :CreateTime, :DelayTime, :ErrMsg, :FlowId, :Input, :InstanceGrpId, :InstanceGroupId, :InstanceId, :ObjectId, :ObjectType, :Operator, :Output, :Status, :TaskType, :TriggerTaskId, :UpdateTime, :StartTime, :EndTime, :ClusterName, :InstanceName, :Process, :ModifyParamsData, :CreateClustersData, :RollbackData, :ModifyInstanceData, :ManualBackupData, :ModifyDbVersionData, :ClusterSlaveData, :SwitchClusterLogBin, :ModifyInstanceParamsData, :TaskMaintainInfo, :InstanceCLSDeliveryInfos, :TaskProgressInfo, :GdnTaskInfo, :VaultId, :VaultName
         extend Gem::Deprecate
-        deprecate :InstanceGrpId, :none, 2026, 4
-        deprecate :InstanceGrpId=, :none, 2026, 4
-        deprecate :ModifyParamsData, :none, 2026, 4
-        deprecate :ModifyParamsData=, :none, 2026, 4
+        deprecate :InstanceGrpId, :none, 2026, 5
+        deprecate :InstanceGrpId=, :none, 2026, 5
+        deprecate :ModifyParamsData, :none, 2026, 5
+        deprecate :ModifyParamsData=, :none, 2026, 5
 
         def initialize(id=nil, appid=nil, clusterid=nil, region=nil, createtime=nil, delaytime=nil, errmsg=nil, flowid=nil, input=nil, instancegrpid=nil, instancegroupid=nil, instanceid=nil, objectid=nil, objecttype=nil, operator=nil, output=nil, status=nil, tasktype=nil, triggertaskid=nil, updatetime=nil, starttime=nil, endtime=nil, clustername=nil, instancename=nil, process=nil, modifyparamsdata=nil, createclustersdata=nil, rollbackdata=nil, modifyinstancedata=nil, manualbackupdata=nil, modifydbversiondata=nil, clusterslavedata=nil, switchclusterlogbin=nil, modifyinstanceparamsdata=nil, taskmaintaininfo=nil, instanceclsdeliveryinfos=nil, taskprogressinfo=nil, gdntaskinfo=nil, vaultid=nil, vaultname=nil)
           @ID = id
@@ -2134,8 +2134,8 @@ module TencentCloud
 
         attr_accessor :InstanceGrpId, :InstanceGroupId, :InstanceId
         extend Gem::Deprecate
-        deprecate :InstanceGrpId, :none, 2026, 4
-        deprecate :InstanceGrpId=, :none, 2026, 4
+        deprecate :InstanceGrpId, :none, 2026, 5
+        deprecate :InstanceGrpId=, :none, 2026, 5
 
         def initialize(instancegrpid=nil, instancegroupid=nil, instanceid=nil)
           @InstanceGrpId = instancegrpid
@@ -2548,8 +2548,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :StartTime, :EndTime, :Order, :OrderBy, :Filter, :LogFilter, :ColumnFilter
         extend Gem::Deprecate
-        deprecate :Filter, :none, 2026, 4
-        deprecate :Filter=, :none, 2026, 4
+        deprecate :Filter, :none, 2026, 5
+        deprecate :Filter=, :none, 2026, 5
 
         def initialize(instanceid=nil, starttime=nil, endtime=nil, order=nil, orderby=nil, filter=nil, logfilter=nil, columnfilter=nil)
           @InstanceId = instanceid
@@ -2895,121 +2895,97 @@ module TencentCloud
 
       # CreateClusters请求参数结构体
       class CreateClustersRequest < TencentCloud::Common::AbstractModel
-        # @param Zone: 可用区
+        # @param Zone: <p>可用区</p>
         # @type Zone: String
-        # @param VpcId: 所属VPC网络ID
+        # @param VpcId: <p>所属VPC网络ID</p>
         # @type VpcId: String
-        # @param SubnetId: 所属子网ID
+        # @param SubnetId: <p>所属子网ID</p>
         # @type SubnetId: String
-        # @param DbType: 数据库类型，取值范围:
-        # <li> MYSQL </li>
+        # @param DbType: <p>数据库类型</p><p>枚举值：</p><ul><li>MYSQL： MYSQL</li></ul>
         # @type DbType: String
-        # @param DbVersion: 数据库版本，取值范围:
-        # <li> MYSQL可选值：5.7，8.0 </li>
+        # @param DbVersion: <p>数据库版本</p><p>枚举值：</p><ul><li>5.7： MySQL5.7版本</li><li>8.0： MySQL8.0版本</li></ul>
         # @type DbVersion: String
-        # @param ProjectId: 所属项目ID
+        # @param ProjectId: <p>所属项目ID</p>
         # @type ProjectId: Integer
-        # @param Cpu: 当DbMode为NORMAL或不填时必选
-        # 普通实例Cpu核数
+        # @param Cpu: <p>当DbMode为NORMAL或不填时必选<br>普通实例Cpu核数</p>
         # @type Cpu: Integer
-        # @param Memory: 当DbMode为NORMAL或不填时必选
-        # 普通实例内存,单位GB
+        # @param Memory: <p>当DbMode为NORMAL或不填时必选<br>普通实例内存,单位GB</p>
         # @type Memory: Integer
-        # @param InstanceCount: 实例数量，数量范围为(0,16]，默认值为2（即一个rw实例+一个ro实例），传递的n表示1个rw实例+n-1个ro实例（规格相同），如需要更精确的集群组成搭配，请使用InstanceInitInfos
+        # @param InstanceCount: <p>实例数量，数量范围为(0,16]，默认值为2（即一个rw实例+一个ro实例），传递的n表示1个rw实例+n-1个ro实例（规格相同），如需要更精确的集群组成搭配，请使用InstanceInitInfos</p>
         # @type InstanceCount: Integer
-        # @param Storage: 该参数无实际意义，已废弃。
-        # 存储大小，单位GB。
+        # @param Storage: <p>该参数无实际意义，已废弃。<br>存储大小，单位GB。</p>
         # @type Storage: Integer
-        # @param ClusterName: 集群名称，长度小于64个字符，每个字符取值范围：大/小写字母，数字，特殊符号（'-','_','.'）
+        # @param ClusterName: <p>集群名称，长度小于64个字符，每个字符取值范围：大/小写字母，数字，特殊符号（&#39;-&#39;,&#39;_&#39;,&#39;.&#39;）</p>
         # @type ClusterName: String
-        # @param AdminPassword: 账号密码(8-64个字符，包含大小写英文字母、数字和符号~!@#$%^&*_-+=`|\(){}[]:;'<>,.?/中的任意三种)
+        # @param AdminPassword: <p>账号密码(8-64个字符，包含大小写英文字母、数字和符号~!@#$%^&amp;*_-+=`|(){}[]:;&#39;&lt;&gt;,.?/中的任意三种)</p>
         # @type AdminPassword: String
-        # @param Port: 端口，默认3306，取值范围[0, 65535)
+        # @param Port: <p>端口，默认3306，取值范围[0, 65535)</p>
         # @type Port: Integer
-        # @param PayMode: 计费模式，支持值为0和1，默认值为0。
-        # 取值为0，表示按量计费。
-        # 取值为1，表示包年包月。
+        # @param PayMode: <p>计费模式</p><p>枚举值：</p><ul><li>0： 表示按量计费</li><li>1： 表示包年包月</li></ul><p>默认值：0</p>
         # @type PayMode: Integer
-        # @param Count: 购买集群数，可选值范围[1,50]，默认为1
+        # @param Count: <p>购买集群数，可选值范围[1,50]，默认为1</p>
         # @type Count: Integer
-        # @param RollbackStrategy: 回档类型：
-        # noneRollback：不回档；
-        # snapRollback，快照回档；
-        # timeRollback，时间点回档
+        # @param RollbackStrategy: <p>回档类型</p><p>枚举值：</p><ul><li>noneRollback： 不回档</li><li>snapRollback： 快照回档</li><li>timeRollback： 时间点回档</li></ul>
         # @type RollbackStrategy: String
-        # @param RollbackId: 快照回档，表示snapshotId；时间点回档，表示queryId，为0，表示需要判断时间点是否有效
+        # @param RollbackId: <p>快照回档，表示snapshotId；时间点回档，表示queryId，为0，表示需要判断时间点是否有效</p>
         # @type RollbackId: Integer
-        # @param OriginalClusterId: 回档时，传入源集群ID，用于查找源poolId
+        # @param OriginalClusterId: <p>回档时，传入源集群ID，用于查找源poolId</p>
         # @type OriginalClusterId: String
-        # @param ExpectTime: 时间点回档，指定时间；快照回档，快照时间
+        # @param ExpectTime: <p>时间点回档，指定时间；快照回档，快照时间</p>
         # @type ExpectTime: String
-        # @param ExpectTimeThresh: 该参数无实际意义，已废弃。
-        # 时间点回档，指定时间允许范围
+        # @param ExpectTimeThresh: <p>该参数无实际意义，已废弃。<br>时间点回档，指定时间允许范围</p>
         # @type ExpectTimeThresh: Integer
-        # @param StorageLimit: 普通实例存储上限，单位GB
-        # 当DbType为MYSQL，且存储计费模式为预付费时，该参数需不大于cpu与memory对应存储规格上限
+        # @param StorageLimit: <p>普通实例存储上限，单位GB<br>当DbType为MYSQL，且存储计费模式为预付费时，该参数需不大于cpu与memory对应存储规格上限</p>
         # @type StorageLimit: Integer
-        # @param TimeSpan: 包年包月购买时长
+        # @param TimeSpan: <p>包年包月购买时长</p>
         # @type TimeSpan: Integer
-        # @param TimeUnit: 包年包月购买时长单位，['s','d','m','y']
+        # @param TimeUnit: <p>包年包月购买时长单位，[&#39;s&#39;,&#39;d&#39;,&#39;m&#39;,&#39;y&#39;]</p>
         # @type TimeUnit: String
-        # @param AutoRenewFlag: 包年包月购买是否自动续费，默认为0。
-        # 0标识默认续费方式，1表示自动续费，2表示不自动续费。
+        # @param AutoRenewFlag: <p>包年包月购买是否自动续费</p><p>枚举值：</p><ul><li>0： 默认续费方式</li><li>1： 自动续费</li><li>2： 不自动续费</li></ul><p>默认值：0</p>
         # @type AutoRenewFlag: Integer
-        # @param AutoVoucher: 是否自动选择代金券 1是 0否 默认为0
+        # @param AutoVoucher: <p>是否自动选择代金券 1是 0否 默认为0</p><p>枚举值：</p><ul><li>1： 是</li><li>0： 否</li></ul><p>默认值：0</p>
         # @type AutoVoucher: Integer
-        # @param HaCount: 实例数量（该参数已不再使用，只做存量兼容处理）
+        # @param HaCount: <p>实例数量（该参数已不再使用，只做存量兼容处理）</p>
         # @type HaCount: Integer
-        # @param OrderSource: 订单来源
+        # @param OrderSource: <p>订单来源</p>
         # @type OrderSource: String
-        # @param ResourceTags: 集群创建需要绑定的tag数组信息
+        # @param ResourceTags: <p>集群创建需要绑定的tag数组信息</p>
         # @type ResourceTags: Array
-        # @param DbMode: Db类型
-        # 当DbType为MYSQL时可选(默认NORMAL)：
-        # <li>NORMAL</li>
-        # <li>SERVERLESS</li>
+        # @param DbMode: <p>Db类型</p><p>枚举值：</p><ul><li>NORMAL： 普通实例</li><li>SERVERLESS： serverless实例</li></ul><p>默认值：NORMAL</p><p>当DbType为MYSQL时可选(默认NORMAL)</p>
         # @type DbMode: String
-        # @param MinCpu: 当DbMode为SERVERLESS时必填
-        # cpu最小值，可选范围参考DescribeServerlessInstanceSpecs接口返回
+        # @param MinCpu: <p>当DbMode为SERVERLESS时必填<br>cpu最小值，可选范围参考DescribeServerlessInstanceSpecs接口返回</p>
         # @type MinCpu: Float
-        # @param MaxCpu: 当DbMode为SERVERLESS时必填：
-        # cpu最大值，可选范围参考DescribeServerlessInstanceSpecs接口返回
+        # @param MaxCpu: <p>当DbMode为SERVERLESS时必填：<br>cpu最大值，可选范围参考DescribeServerlessInstanceSpecs接口返回</p>
         # @type MaxCpu: Float
-        # @param AutoPause: 当DbMode为SERVERLESS时，指定集群是否自动暂停，可选范围
-        # <li>yes</li>
-        # <li>no</li>
-        # 默认值:yes
+        # @param AutoPause: <p>否自动暂停</p><p>枚举值：</p><ul><li>yes： 是</li><li>no： 否</li></ul><p>默认值：yes</p><p>DbMode为SERVERLESS生效</p>
         # @type AutoPause: String
-        # @param AutoPauseDelay: 当DbMode为SERVERLESS时，指定集群自动暂停的延迟，单位秒，可选范围[600,691200]
-        # 默认值:600
+        # @param AutoPauseDelay: <p>当DbMode为SERVERLESS时，指定集群自动暂停的延迟，单位秒，可选范围[600,691200]<br>默认值:600</p>
         # @type AutoPauseDelay: Integer
-        # @param StoragePayMode: 集群存储计费模式，按量计费：0，包年包月：1。默认按量计费
-        # 当DbType为MYSQL时，在集群计算计费模式为后付费（包括DbMode为SERVERLESS）时，存储计费模式仅可为按量计费
-        # 回档与克隆均不支持包年包月存储
+        # @param StoragePayMode: <p>集群存储计费模式，按量计费：0，包年包月：1。默认按量计费<br>当DbType为MYSQL时，在集群计算计费模式为后付费（包括DbMode为SERVERLESS）时，存储计费模式仅可为按量计费<br>回档与克隆均不支持包年包月存储</p>
         # @type StoragePayMode: Integer
-        # @param SecurityGroupIds: 安全组id数组
+        # @param SecurityGroupIds: <p>安全组id数组</p>
         # @type SecurityGroupIds: Array
-        # @param AlarmPolicyIds: 告警策略Id数组
+        # @param AlarmPolicyIds: <p>告警策略Id数组</p>
         # @type AlarmPolicyIds: Array
-        # @param ClusterParams: 参数数组，暂时支持character_set_server （utf8｜latin1｜gbk｜utf8mb4） ，lower_case_table_names，1-大小写不敏感，0-大小写敏感
+        # @param ClusterParams: <p>参数数组，暂时支持character_set_server （utf8｜latin1｜gbk｜utf8mb4） ，lower_case_table_names，1-大小写不敏感，0-大小写敏感</p>
         # @type ClusterParams: Array
-        # @param DealMode: 交易模式，0-下单且支付，1-下单
+        # @param DealMode: <p>交易模式</p><p>枚举值：</p><ul><li>0： 下单且支付</li><li>1： 下单</li></ul><p>默认值：0</p>
         # @type DealMode: Integer
-        # @param ParamTemplateId: 参数模板ID，可以通过查询参数模板信息DescribeParamTemplates获得参数模板ID
+        # @param ParamTemplateId: <p>参数模板ID，可以通过查询参数模板信息DescribeParamTemplates获得参数模板ID</p>
         # @type ParamTemplateId: Integer
-        # @param SlaveZone: 多可用区地址
+        # @param SlaveZone: <p>多可用区地址</p>
         # @type SlaveZone: String
-        # @param InstanceInitInfos: 实例初始化配置信息，主要用于购买集群时选不同规格实例
+        # @param InstanceInitInfos: <p>实例初始化配置信息，主要用于购买集群时选不同规格实例</p>
         # @type InstanceInitInfos: Array
-        # @param GdnId: 全球数据库唯一标识
+        # @param GdnId: <p>全球数据库唯一标识</p>
         # @type GdnId: String
-        # @param ProxyConfig: 数据库代理配置
+        # @param ProxyConfig: <p>数据库代理配置</p>
         # @type ProxyConfig: :class:`Tencentcloud::Cynosdb.v20190107.models.ProxyConfig`
-        # @param AutoArchive: 是否自动归档
+        # @param AutoArchive: <p>是否自动归档</p><p>枚举值：</p><ul><li>yes： 是</li><li>no： 否</li></ul><p>默认值：no</p><p>仅当前集群主实例为SERVERLESS时，该参数生效</p>
         # @type AutoArchive: String
-        # @param AutoArchiveDelayHours: 暂停后的归档处理时间
+        # @param AutoArchiveDelayHours: <p>暂停后的归档处理时间</p><p>单位：时</p><p>默认值：12</p><p>仅当前集群主实例为SERVERLESS时，该参数生效</p>
         # @type AutoArchiveDelayHours: Integer
-        # @param CynosVersion: 内核小版本号
+        # @param CynosVersion: <p>内核小版本号</p>
         # @type CynosVersion: String
 
         attr_accessor :Zone, :VpcId, :SubnetId, :DbType, :DbVersion, :ProjectId, :Cpu, :Memory, :InstanceCount, :Storage, :ClusterName, :AdminPassword, :Port, :PayMode, :Count, :RollbackStrategy, :RollbackId, :OriginalClusterId, :ExpectTime, :ExpectTimeThresh, :StorageLimit, :TimeSpan, :TimeUnit, :AutoRenewFlag, :AutoVoucher, :HaCount, :OrderSource, :ResourceTags, :DbMode, :MinCpu, :MaxCpu, :AutoPause, :AutoPauseDelay, :StoragePayMode, :SecurityGroupIds, :AlarmPolicyIds, :ClusterParams, :DealMode, :ParamTemplateId, :SlaveZone, :InstanceInitInfos, :GdnId, :ProxyConfig, :AutoArchive, :AutoArchiveDelayHours, :CynosVersion
@@ -3139,15 +3115,15 @@ module TencentCloud
 
       # CreateClusters返回参数结构体
       class CreateClustersResponse < TencentCloud::Common::AbstractModel
-        # @param TranId: 冻结流水ID
+        # @param TranId: <p>冻结流水ID</p>
         # @type TranId: String
-        # @param DealNames: 订单号
+        # @param DealNames: <p>订单号</p>
         # @type DealNames: Array
-        # @param ResourceIds: 资源ID列表（该字段已不再维护，请使用dealNames字段查询接口DescribeResourcesByDealName获取资源ID）
+        # @param ResourceIds: <p>资源ID列表（该字段已不再维护，请使用dealNames字段查询接口DescribeResourcesByDealName获取资源ID）</p>
         # @type ResourceIds: Array
-        # @param ClusterIds: 集群ID列表（该字段已不再维护，请使用dealNames字段查询接口DescribeResourcesByDealName获取集群ID）
+        # @param ClusterIds: <p>集群ID列表（该字段已不再维护，请使用dealNames字段查询接口DescribeResourcesByDealName获取集群ID）</p>
         # @type ClusterIds: Array
-        # @param BigDealIds: 大订单号
+        # @param BigDealIds: <p>大订单号</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BigDealIds: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -4582,130 +4558,126 @@ module TencentCloud
 
       # 实例信息
       class CynosdbInstance < TencentCloud::Common::AbstractModel
-        # @param Uin: 用户Uin
+        # @param Uin: <p>用户Uin</p>
         # @type Uin: String
-        # @param AppId: 用户AppId
+        # @param AppId: <p>用户AppId</p>
         # @type AppId: Integer
-        # @param ClusterId: 集群ID
+        # @param ClusterId: <p>集群ID</p>
         # @type ClusterId: String
-        # @param ClusterName: 集群名称
+        # @param ClusterName: <p>集群名称</p>
         # @type ClusterName: String
-        # @param InstanceId: 实例ID
+        # @param InstanceId: <p>实例ID</p>
         # @type InstanceId: String
-        # @param InstanceName: 实例名称
+        # @param InstanceName: <p>实例名称</p>
         # @type InstanceName: String
-        # @param ProjectId: 项目ID
+        # @param ProjectId: <p>项目ID</p>
         # @type ProjectId: Integer
-        # @param Region: 地域
+        # @param Region: <p>地域</p>
         # @type Region: String
-        # @param Zone: 可用区
+        # @param Zone: <p>可用区</p>
         # @type Zone: String
-        # @param Status: 实例状态
+        # @param Status: <p>实例状态</p>
         # @type Status: String
-        # @param StatusDesc: 实例状态中文描述
+        # @param StatusDesc: <p>实例状态中文描述</p>
         # @type StatusDesc: String
-        # @param DbMode: 实例形态，是否为serverless实例
+        # @param DbMode: <p>实例形态，是否为serverless实例</p>
         # @type DbMode: String
-        # @param DbType: 数据库类型
+        # @param DbType: <p>数据库类型</p>
         # @type DbType: String
-        # @param DbVersion: 数据库版本
+        # @param DbVersion: <p>数据库版本</p>
         # @type DbVersion: String
-        # @param Cpu: Cpu，单位：核
+        # @param Cpu: <p>Cpu，单位：核</p>
         # @type Cpu: Integer
-        # @param Memory: 内存，单位：GB
+        # @param Memory: <p>内存，单位：GB</p>
         # @type Memory: Integer
-        # @param Storage: 存储量，单位：GB
+        # @param Storage: <p>存储量，单位：GB</p>
         # @type Storage: Integer
-        # @param InstanceType: 实例类型
+        # @param InstanceType: <p>实例类型</p>
         # @type InstanceType: String
-        # @param InstanceRole: 实例当前角色
+        # @param InstanceRole: <p>实例当前角色</p>
         # @type InstanceRole: String
-        # @param UpdateTime: 更新时间
+        # @param UpdateTime: <p>更新时间</p>
         # @type UpdateTime: String
-        # @param CreateTime: 创建时间
+        # @param CreateTime: <p>创建时间</p>
         # @type CreateTime: String
-        # @param VpcId: VPC网络ID
+        # @param VpcId: <p>VPC网络ID</p>
         # @type VpcId: String
-        # @param SubnetId: 子网ID
+        # @param SubnetId: <p>子网ID</p>
         # @type SubnetId: String
-        # @param Vip: 实例内网IP
+        # @param Vip: <p>实例内网IP</p>
         # @type Vip: String
-        # @param Vport: 实例内网端口
+        # @param Vport: <p>实例内网端口</p>
         # @type Vport: Integer
-        # @param PayMode: 付费模式
+        # @param PayMode: <p>付费模式</p>
         # @type PayMode: Integer
-        # @param PeriodEndTime: 实例过期时间
+        # @param PeriodEndTime: <p>实例过期时间</p>
         # @type PeriodEndTime: String
-        # @param DestroyDeadlineText: 销毁期限
+        # @param DestroyDeadlineText: <p>销毁期限</p>
         # @type DestroyDeadlineText: String
-        # @param IsolateTime: 隔离时间
+        # @param IsolateTime: <p>隔离时间</p>
         # @type IsolateTime: String
-        # @param NetType: 网络类型
+        # @param NetType: <p>网络类型</p>
         # @type NetType: Integer
-        # @param WanDomain: 外网域名
+        # @param WanDomain: <p>外网域名</p>
         # @type WanDomain: String
-        # @param WanIP: 外网IP
+        # @param WanIP: <p>外网IP</p>
         # @type WanIP: String
-        # @param WanPort: 外网端口
+        # @param WanPort: <p>外网端口</p>
         # @type WanPort: Integer
-        # @param WanStatus: 外网状态
+        # @param WanStatus: <p>外网状态</p>
         # @type WanStatus: String
-        # @param DestroyTime: 实例销毁时间
+        # @param DestroyTime: <p>实例销毁时间</p>
         # @type DestroyTime: String
-        # @param CynosVersion: Cynos内核版本
+        # @param CynosVersion: <p>Cynos内核版本</p>
         # @type CynosVersion: String
-        # @param ProcessingTask: 正在处理的任务
+        # @param ProcessingTask: <p>正在处理的任务</p>
         # @type ProcessingTask: String
-        # @param RenewFlag: 续费标志
+        # @param RenewFlag: <p>续费标志</p>
         # @type RenewFlag: Integer
-        # @param MinCpu: serverless实例cpu下限
+        # @param MinCpu: <p>serverless实例cpu下限</p>
         # @type MinCpu: Float
-        # @param MaxCpu: serverless实例cpu上限
+        # @param MaxCpu: <p>serverless实例cpu上限</p>
         # @type MaxCpu: Float
-        # @param ServerlessStatus: serverless实例状态, 可选值：
-        # resume
-        # pause
+        # @param ServerlessStatus: <p>serverless实例状态, 可选值：<br>resume<br>pause</p>
         # @type ServerlessStatus: String
-        # @param StorageId: 预付费存储Id
+        # @param StorageId: <p>预付费存储Id</p>
         # @type StorageId: String
-        # @param StoragePayMode: 存储付费类型
+        # @param StoragePayMode: <p>存储付费类型</p>
         # @type StoragePayMode: Integer
-        # @param PhysicalZone: 物理区
+        # @param PhysicalZone: <p>物理区</p>
         # @type PhysicalZone: String
-        # @param BusinessType: 商业类型
+        # @param BusinessType: <p>商业类型</p>
         # @type BusinessType: String
-        # @param Tasks: 任务
+        # @param Tasks: <p>任务</p>
         # @type Tasks: Array
-        # @param IsFreeze: 是否冻结
+        # @param IsFreeze: <p>是否冻结</p>
         # @type IsFreeze: String
-        # @param ResourceTags: 资源标签
+        # @param ResourceTags: <p>资源标签</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceTags: Array
-        # @param MasterZone: 主可用区
+        # @param MasterZone: <p>主可用区</p>
         # @type MasterZone: String
-        # @param SlaveZones: 备可用区
+        # @param SlaveZones: <p>备可用区</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SlaveZones: Array
-        # @param InstanceNetInfo: 实例网络信息
+        # @param InstanceNetInfo: <p>实例网络信息</p>
         # @type InstanceNetInfo: Array
-        # @param ResourcePackages: 实例绑定资源包信息（此处只返回计算资源包，即packageType=CCU）
+        # @param ResourcePackages: <p>实例绑定资源包信息（此处只返回计算资源包，即packageType=CCU）</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourcePackages: Array
-        # @param InstanceIndexMode: 实例索引形态,可选值【mixedRowColumn（行列混存），onlyRowIndex（仅行存）】
+        # @param InstanceIndexMode: <p>实例索引形态,可选值【mixedRowColumn（行列混存），onlyRowIndex（仅行存）】</p>
         # @type InstanceIndexMode: String
-        # @param InstanceAbility: 当前实例支持的能力
+        # @param InstanceAbility: <p>当前实例支持的能力</p>
         # @type InstanceAbility: :class:`Tencentcloud::Cynosdb.v20190107.models.InstanceAbility`
-        # @param DeviceType: 实例机器类型
-        # 1. common，通用型。
-        # 2. exclusive，独享型。
+        # @param DeviceType: <p>实例机器类型</p><ol><li>common，通用型。</li><li>exclusive，独享型。</li></ol>
         # @type DeviceType: String
-        # @param InstanceStorageType: 实例存储类型
+        # @param InstanceStorageType: <p>实例存储类型</p>
         # @type InstanceStorageType: String
-        # @param CynosVersionTag: 未知字段
+        # @param CynosVersionTag: <p>未知字段</p>
         # @type CynosVersionTag: String
-        # @param NodeList: libradb 节点信息
+        # @param NodeList: <p>libradb 节点信息</p>
         # @type NodeList: Array
-        # @param GdnId: 全球数据库唯一标识
+        # @param GdnId: <p>全球数据库唯一标识</p>
         # @type GdnId: String
 
         attr_accessor :Uin, :AppId, :ClusterId, :ClusterName, :InstanceId, :InstanceName, :ProjectId, :Region, :Zone, :Status, :StatusDesc, :DbMode, :DbType, :DbVersion, :Cpu, :Memory, :Storage, :InstanceType, :InstanceRole, :UpdateTime, :CreateTime, :VpcId, :SubnetId, :Vip, :Vport, :PayMode, :PeriodEndTime, :DestroyDeadlineText, :IsolateTime, :NetType, :WanDomain, :WanIP, :WanPort, :WanStatus, :DestroyTime, :CynosVersion, :ProcessingTask, :RenewFlag, :MinCpu, :MaxCpu, :ServerlessStatus, :StorageId, :StoragePayMode, :PhysicalZone, :BusinessType, :Tasks, :IsFreeze, :ResourceTags, :MasterZone, :SlaveZones, :InstanceNetInfo, :ResourcePackages, :InstanceIndexMode, :InstanceAbility, :DeviceType, :InstanceStorageType, :CynosVersionTag, :NodeList, :GdnId
@@ -6306,8 +6278,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :StartTime, :EndTime, :Order, :OrderBy, :Filter, :Limit, :Offset, :LogFilter
         extend Gem::Deprecate
-        deprecate :Filter, :none, 2026, 4
-        deprecate :Filter=, :none, 2026, 4
+        deprecate :Filter, :none, 2026, 5
+        deprecate :Filter=, :none, 2026, 5
 
         def initialize(instanceid=nil, starttime=nil, endtime=nil, order=nil, orderby=nil, filter=nil, limit=nil, offset=nil, logfilter=nil)
           @InstanceId = instanceid
@@ -7583,8 +7555,8 @@ module TencentCloud
 
         attr_accessor :TotalCount, :InstanceGrpInfoList, :InstanceGroupInfoList, :RequestId
         extend Gem::Deprecate
-        deprecate :InstanceGrpInfoList, :none, 2026, 4
-        deprecate :InstanceGrpInfoList=, :none, 2026, 4
+        deprecate :InstanceGrpInfoList, :none, 2026, 5
+        deprecate :InstanceGrpInfoList=, :none, 2026, 5
 
         def initialize(totalcount=nil, instancegrpinfolist=nil, instancegroupinfolist=nil, requestid=nil)
           @TotalCount = totalcount
@@ -7989,8 +7961,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :InstanceGroupId
         extend Gem::Deprecate
-        deprecate :InstanceId, :none, 2026, 4
-        deprecate :InstanceId=, :none, 2026, 4
+        deprecate :InstanceId, :none, 2026, 5
+        deprecate :InstanceId=, :none, 2026, 5
 
         def initialize(instanceid=nil, instancegroupid=nil)
           @InstanceId = instanceid
@@ -12492,25 +12464,23 @@ module TencentCloud
 
       # 实例初始化配置信息
       class InstanceInitInfo < TencentCloud::Common::AbstractModel
-        # @param Cpu: 实例cpu
+        # @param Cpu: <p>实例cpu</p>
         # @type Cpu: Integer
-        # @param Memory: 实例内存
+        # @param Memory: <p>实例内存</p>
         # @type Memory: Integer
-        # @param InstanceType: 实例类型 rw/ro
+        # @param InstanceType: <p>实例类型 rw/ro</p>
         # @type InstanceType: String
-        # @param InstanceCount: 实例个数,范围[1,15]
+        # @param InstanceCount: <p>实例个数,范围[1,15]</p>
         # @type InstanceCount: Integer
-        # @param MinRoCount: Serverless实例个数最小值，范围[1,15]
+        # @param MinRoCount: <p>Serverless实例个数最小值，范围[1,15]</p>
         # @type MinRoCount: Integer
-        # @param MaxRoCount: Serverless实例个数最大值，范围[1,15]
+        # @param MaxRoCount: <p>Serverless实例个数最大值，范围[1,15]</p>
         # @type MaxRoCount: Integer
-        # @param MinRoCpu: Serverless实例最小规格
+        # @param MinRoCpu: <p>Serverless实例最小规格</p>
         # @type MinRoCpu: Float
-        # @param MaxRoCpu: Serverless实例最大规格
+        # @param MaxRoCpu: <p>Serverless实例最大规格</p>
         # @type MaxRoCpu: Float
-        # @param DeviceType: 实例机器类型
-        # 1. common，通用型。
-        # 2. exclusive，独享型。
+        # @param DeviceType: <p>实例机器类型</p><ol><li>common，通用型。</li><li>exclusive，独享型。</li></ol>
         # @type DeviceType: String
 
         attr_accessor :Cpu, :Memory, :InstanceType, :InstanceCount, :MinRoCount, :MaxRoCount, :MinRoCpu, :MaxRoCpu, :DeviceType
@@ -16205,35 +16175,33 @@ module TencentCloud
 
       # ModifyServerlessStrategy请求参数结构体
       class ModifyServerlessStrategyRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterId: serverless集群id
+        # @param ClusterId: <p>serverless集群id</p>
         # @type ClusterId: String
-        # @param AutoPause: 集群是否自动暂停，可选范围
-        # <li>yes</li>
-        # <li>no</li>
+        # @param AutoPause: <p>集群是否自动暂停，可选范围</p><li>yes</li><li>no</li>
         # @type AutoPause: String
-        # @param AutoPauseDelay: 集群自动暂停的延迟，单位秒，可选范围[600,691200]，默认600
+        # @param AutoPauseDelay: <p>集群自动暂停的延迟，单位秒，可选范围[600,691200]，默认600</p>
         # @type AutoPauseDelay: Integer
-        # @param AutoScaleUpDelay: 该参数暂时无效
+        # @param AutoScaleUpDelay: <p>该参数暂时无效</p>
         # @type AutoScaleUpDelay: Integer
-        # @param AutoScaleDownDelay: 该参数暂时无效
+        # @param AutoScaleDownDelay: <p>该参数暂时无效</p>
         # @type AutoScaleDownDelay: Integer
-        # @param MinCpu: cpu最小值，可选范围参考DescribeServerlessInstanceSpecs接口返回
+        # @param MinCpu: <p>cpu最小值，可选范围参考DescribeServerlessInstanceSpecs接口返回</p>
         # @type MinCpu: Float
-        # @param MaxCpu: cpu最大值，可选范围参考DescribeServerlessInstanceSpecs接口返回
+        # @param MaxCpu: <p>cpu最大值，可选范围参考DescribeServerlessInstanceSpecs接口返回</p>
         # @type MaxCpu: Float
-        # @param MinRoCpu: 只读实例cpu最小值，可选范围参考DescribeServerlessInstanceSpecs接口返回
+        # @param MinRoCpu: <p>只读实例cpu最小值，可选范围参考DescribeServerlessInstanceSpecs接口返回</p>
         # @type MinRoCpu: Float
-        # @param MaxRoCpu: 只读cpu最大值，可选范围参考DescribeServerlessInstanceSpecs接口返回
+        # @param MaxRoCpu: <p>只读cpu最大值，可选范围参考DescribeServerlessInstanceSpecs接口返回</p>
         # @type MaxRoCpu: Float
-        # @param MinRoCount: 只读节点最小个数
+        # @param MinRoCount: <p>只读节点最小个数</p>
         # @type MinRoCount: Integer
-        # @param MaxRoCount: 只读节点最大个数
+        # @param MaxRoCount: <p>只读节点最大个数</p>
         # @type MaxRoCount: Integer
-        # @param AutoArchive: 是否开启归档，可选范围<li>yes</li><li>no</li>默认值:yes
+        # @param AutoArchive: <p>是否开启归档，可选范围<li>yes</li><li>no</li>默认值:yes</p>
         # @type AutoArchive: String
-        # @param UpgradeType: 升级类型。 默认值：upgradeImmediate。 可选值： upgradeImmediate：立即完成修改 upgradeInMaintain：在维护时间窗口内完成修改
+        # @param UpgradeType: <p>升级类型。 默认值：upgradeImmediate。 可选值： upgradeImmediate：立即完成修改 upgradeInMaintain：在维护时间窗口内完成修改</p>
         # @type UpgradeType: String
-        # @param SecurityGroupIdsForNewRo: 新增的只读实例需要绑定的安全组列表。仅仅针对于在这次调整策略过程中新产生的只读实例绑定安全组，存量的实例不绑定。
+        # @param SecurityGroupIdsForNewRo: <p>新增的只读实例需要绑定的安全组列表。仅仅针对于在这次调整策略过程中新产生的只读实例绑定安全组，存量的实例不绑定。</p>
         # @type SecurityGroupIdsForNewRo: Array
 
         attr_accessor :ClusterId, :AutoPause, :AutoPauseDelay, :AutoScaleUpDelay, :AutoScaleDownDelay, :MinCpu, :MaxCpu, :MinRoCpu, :MaxRoCpu, :MinRoCount, :MaxRoCount, :AutoArchive, :UpgradeType, :SecurityGroupIdsForNewRo
@@ -16275,17 +16243,17 @@ module TencentCloud
 
       # ModifyServerlessStrategy返回参数结构体
       class ModifyServerlessStrategyResponse < TencentCloud::Common::AbstractModel
-        # @param FlowId: 异步流程id
+        # @param FlowId: <p>异步流程id</p>
         # @type FlowId: Integer
-        # @param TaskId: 任务id
+        # @param TaskId: <p>任务id</p>
         # @type TaskId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :FlowId, :TaskId, :RequestId
         extend Gem::Deprecate
-        deprecate :FlowId, :none, 2026, 4
-        deprecate :FlowId=, :none, 2026, 4
+        deprecate :FlowId, :none, 2026, 5
+        deprecate :FlowId=, :none, 2026, 5
 
         def initialize(flowid=nil, taskid=nil, requestid=nil)
           @FlowId = flowid
@@ -16436,8 +16404,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :InstanceGrpId, :InstanceGroupId, :Vip, :Vport, :DbType, :OldIpReserveHours
         extend Gem::Deprecate
-        deprecate :InstanceGrpId, :none, 2026, 4
-        deprecate :InstanceGrpId=, :none, 2026, 4
+        deprecate :InstanceGrpId, :none, 2026, 5
+        deprecate :InstanceGrpId=, :none, 2026, 5
 
         def initialize(clusterid=nil, instancegrpid=nil, instancegroupid=nil, vip=nil, vport=nil, dbtype=nil, oldipreservehours=nil)
           @ClusterId = clusterid
@@ -16838,8 +16806,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :LogExpireDay, :HighLogExpireDay, :AuditRuleFilters, :RuleTemplateIds, :AuditAll
         extend Gem::Deprecate
-        deprecate :AuditRuleFilters, :none, 2026, 4
-        deprecate :AuditRuleFilters=, :none, 2026, 4
+        deprecate :AuditRuleFilters, :none, 2026, 5
+        deprecate :AuditRuleFilters=, :none, 2026, 5
 
         def initialize(instanceid=nil, logexpireday=nil, highlogexpireday=nil, auditrulefilters=nil, ruletemplateids=nil, auditall=nil)
           @InstanceId = instanceid
@@ -17150,8 +17118,8 @@ module TencentCloud
 
         attr_accessor :InstanceGrpId, :InstanceId, :InstanceGroupId
         extend Gem::Deprecate
-        deprecate :InstanceGrpId, :none, 2026, 4
-        deprecate :InstanceGrpId=, :none, 2026, 4
+        deprecate :InstanceGrpId, :none, 2026, 5
+        deprecate :InstanceGrpId=, :none, 2026, 5
 
         def initialize(instancegrpid=nil, instanceid=nil, instancegroupid=nil)
           @InstanceGrpId = instancegrpid
@@ -17744,24 +17712,27 @@ module TencentCloud
 
       # 访问代理配置
       class ProxyConfig < TencentCloud::Common::AbstractModel
-        # @param ProxyCount: 数据库代理组节点个数。该参数不再建议使用,建议使用ProxyZones
+        # @param ProxyCount: <p>数据库代理组节点个数。该参数不再建议使用,建议使用ProxyZones</p>
         # @type ProxyCount: Integer
-        # @param Cpu: cpu核数
+        # @param Cpu: <p>cpu核数</p>
         # @type Cpu: Integer
-        # @param Mem: 内存
+        # @param Mem: <p>内存</p>
         # @type Mem: Integer
-        # @param ConnectionPoolType: 连接池类型:SessionConnectionPool(会话级别连接池 )
+        # @param ConnectionPoolType: <p>连接池类型:SessionConnectionPool(会话级别连接池 )</p>
         # @type ConnectionPoolType: String
-        # @param OpenConnectionPool: 是否开启连接池,yes-开启，no-不开启
+        # @param OpenConnectionPool: <p>是否开启连接池,yes-开启，no-不开启</p>
         # @type OpenConnectionPool: String
-        # @param ConnectionPoolTimeOut: 连接池阈值:单位（秒）
+        # @param ConnectionPoolTimeOut: <p>连接池阈值:单位（秒）</p>
         # @type ConnectionPoolTimeOut: Integer
-        # @param Description: 描述说明
+        # @param Description: <p>描述说明</p>
         # @type Description: String
-        # @param ProxyZones: 数据库节点信息（该参数与ProxyCount需要任选一个输入）
+        # @param ProxyZones: <p>数据库节点信息（该参数与ProxyCount需要任选一个输入）</p>
         # @type ProxyZones: Array
 
         attr_accessor :ProxyCount, :Cpu, :Mem, :ConnectionPoolType, :OpenConnectionPool, :ConnectionPoolTimeOut, :Description, :ProxyZones
+        extend Gem::Deprecate
+        deprecate :ProxyCount, :none, 2026, 5
+        deprecate :ProxyCount=, :none, 2026, 5
 
         def initialize(proxycount=nil, cpu=nil, mem=nil, connectionpooltype=nil, openconnectionpool=nil, connectionpooltimeout=nil, description=nil, proxyzones=nil)
           @ProxyCount = proxycount
@@ -18237,8 +18208,8 @@ module TencentCloud
 
         attr_accessor :Values, :Names, :ExactMatch, :Name, :Operator
         extend Gem::Deprecate
-        deprecate :Operator, :none, 2026, 4
-        deprecate :Operator=, :none, 2026, 4
+        deprecate :Operator, :none, 2026, 5
+        deprecate :Operator=, :none, 2026, 5
 
         def initialize(values=nil, names=nil, exactmatch=nil, name=nil, operator=nil)
           @Values = values
@@ -20144,19 +20115,19 @@ module TencentCloud
 
       # serverless规格
       class ServerlessSpec < TencentCloud::Common::AbstractModel
-        # @param MinCpu: cpu最小值
+        # @param MinCpu: <p>cpu最小值</p>
         # @type MinCpu: Float
-        # @param MaxCpu: cpu最大值
+        # @param MaxCpu: <p>cpu最大值</p>
         # @type MaxCpu: Float
-        # @param MaxStorageSize: 最大存储空间
+        # @param MaxStorageSize: <p>最大存储空间</p>
         # @type MaxStorageSize: Integer
-        # @param IsDefault: 是否为默认规格
+        # @param IsDefault: <p>是否为默认规格</p>
         # @type IsDefault: Integer
-        # @param HasStock: 是否有库存
+        # @param HasStock: <p>是否有库存</p>
         # @type HasStock: Boolean
-        # @param StockCount: 库存数量
+        # @param StockCount: <p>库存数量</p>
         # @type StockCount: Integer
-        # @param ZoneStockInfos: 可用区库存信息
+        # @param ZoneStockInfos: <p>可用区库存信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ZoneStockInfos: Array
 

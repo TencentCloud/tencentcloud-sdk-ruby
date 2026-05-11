@@ -472,46 +472,52 @@ module TencentCloud
 
       # ES cos自动备份信息
       class CosBackup < TencentCloud::Common::AbstractModel
-        # @param IsAutoBackup: 是否开启cos自动备份
+        # @param IsAutoBackup: <p>是否开启cos自动备份</p>
         # @type IsAutoBackup: Boolean
-        # @param BackupTime: 自动备份执行时间（精确到小时）, e.g. "22:00"
+        # @param BackupTime: <p>自动备份执行时间（精确到小时）, e.g. &quot;22:00&quot;</p>
         # @type BackupTime: String
-        # @param SnapshotName: 备份快照前缀
+        # @param SnapshotName: <p>备份快照前缀</p>
         # @type SnapshotName: String
-        # @param EsRepositoryType: 0 腾讯云仓库; 1 客户仓库
+        # @param EsRepositoryType: <p>0 腾讯云仓库; 1 客户仓库</p>
         # @type EsRepositoryType: Integer
-        # @param PaasEsRepository: 托管快照仓库名称
+        # @param PaasEsRepository: <p>托管快照仓库名称</p>
         # @type PaasEsRepository: String
-        # @param UserEsRepository: 客户快照仓库名称
+        # @param UserEsRepository: <p>客户快照仓库名称</p>
         # @type UserEsRepository: String
-        # @param CosBasePath: cos存储文件夹目录
+        # @param CosBasePath: <p>cos存储文件夹目录</p>
         # @type CosBasePath: String
-        # @param StorageDuration: 快照存储周期 单位天
+        # @param StorageDuration: <p>快照存储周期 单位天</p>
         # @type StorageDuration: Integer
-        # @param AutoBackupInterval: 自动备份频率单位小时
+        # @param AutoBackupInterval: <p>自动备份频率单位小时</p>
         # @type AutoBackupInterval: Integer
-        # @param CosRetention: 备份锁定 0 不锁定; 1 锁定
+        # @param CosRetention: <p>备份锁定 0 不锁定; 1 锁定</p>
         # @type CosRetention: Integer
-        # @param RetainUntilDate: 锁定截止日期 2022-12-10T08:34:48.000Z
+        # @param RetainUntilDate: <p>锁定截止日期 2022-12-10T08:34:48.000Z</p>
         # @type RetainUntilDate: String
-        # @param RetentionGraceTime: 锁定宽限期
+        # @param RetentionGraceTime: <p>锁定宽限期</p>
         # @type RetentionGraceTime: Integer
-        # @param RemoteCos: 跨地域备份 0 不跨地域; 1 跨地域
+        # @param RemoteCos: <p>跨地域备份 0 不跨地域; 1 跨地域</p>
         # @type RemoteCos: Integer
-        # @param RemoteCosRegion: 跨地域备份地域名称 ap-guangzhou
+        # @param RemoteCosRegion: <p>跨地域备份地域名称 ap-guangzhou</p>
         # @type RemoteCosRegion: String
-        # @param StrategyName: 策略名称
+        # @param StrategyName: <p>策略名称</p>
         # @type StrategyName: String
-        # @param Indices: 备份索引列表，如果不填表示备份所有索引
+        # @param Indices: <p>备份索引列表，如果不填表示备份所有索引</p>
         # @type Indices: String
-        # @param MultiAz: cos多AZ备份 0 单AZ; 1 多AZ
+        # @param MultiAz: <p>cos多AZ备份 0 单AZ; 1 多AZ</p>
         # @type MultiAz: Integer
-        # @param CreateTime: 策略创建时间
+        # @param MaxSnapshotPerSec: <p>每节点写入仓库的最大速度 max_snapshot_bytes_per_sec, 默认40m</p>
+        # @type MaxSnapshotPerSec: String
+        # @param MaxRestorePerSec: <p>每节点读取仓库的最大速度 max_restore_bytes_per_sec, 710前默认40m, 710及以后默认无限制</p>
+        # @type MaxRestorePerSec: String
+        # @param CreateTime: <p>策略创建时间</p>
         # @type CreateTime: String
+        # @param InstanceId: <p>实例ID</p>
+        # @type InstanceId: String
 
-        attr_accessor :IsAutoBackup, :BackupTime, :SnapshotName, :EsRepositoryType, :PaasEsRepository, :UserEsRepository, :CosBasePath, :StorageDuration, :AutoBackupInterval, :CosRetention, :RetainUntilDate, :RetentionGraceTime, :RemoteCos, :RemoteCosRegion, :StrategyName, :Indices, :MultiAz, :CreateTime
+        attr_accessor :IsAutoBackup, :BackupTime, :SnapshotName, :EsRepositoryType, :PaasEsRepository, :UserEsRepository, :CosBasePath, :StorageDuration, :AutoBackupInterval, :CosRetention, :RetainUntilDate, :RetentionGraceTime, :RemoteCos, :RemoteCosRegion, :StrategyName, :Indices, :MultiAz, :MaxSnapshotPerSec, :MaxRestorePerSec, :CreateTime, :InstanceId
 
-        def initialize(isautobackup=nil, backuptime=nil, snapshotname=nil, esrepositorytype=nil, paasesrepository=nil, useresrepository=nil, cosbasepath=nil, storageduration=nil, autobackupinterval=nil, cosretention=nil, retainuntildate=nil, retentiongracetime=nil, remotecos=nil, remotecosregion=nil, strategyname=nil, indices=nil, multiaz=nil, createtime=nil)
+        def initialize(isautobackup=nil, backuptime=nil, snapshotname=nil, esrepositorytype=nil, paasesrepository=nil, useresrepository=nil, cosbasepath=nil, storageduration=nil, autobackupinterval=nil, cosretention=nil, retainuntildate=nil, retentiongracetime=nil, remotecos=nil, remotecosregion=nil, strategyname=nil, indices=nil, multiaz=nil, maxsnapshotpersec=nil, maxrestorepersec=nil, createtime=nil, instanceid=nil)
           @IsAutoBackup = isautobackup
           @BackupTime = backuptime
           @SnapshotName = snapshotname
@@ -529,7 +535,10 @@ module TencentCloud
           @StrategyName = strategyname
           @Indices = indices
           @MultiAz = multiaz
+          @MaxSnapshotPerSec = maxsnapshotpersec
+          @MaxRestorePerSec = maxrestorepersec
           @CreateTime = createtime
+          @InstanceId = instanceid
         end
 
         def deserialize(params)
@@ -550,7 +559,10 @@ module TencentCloud
           @StrategyName = params['StrategyName']
           @Indices = params['Indices']
           @MultiAz = params['MultiAz']
+          @MaxSnapshotPerSec = params['MaxSnapshotPerSec']
+          @MaxRestorePerSec = params['MaxRestorePerSec']
           @CreateTime = params['CreateTime']
+          @InstanceId = params['InstanceId']
         end
       end
 
@@ -660,34 +672,36 @@ module TencentCloud
 
       # CreateClusterSnapshot请求参数结构体
       class CreateClusterSnapshotRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例名称
+        # @param InstanceId: <p>实例名称</p>
         # @type InstanceId: String
-        # @param SnapshotName: 快照名称
+        # @param SnapshotName: <p>快照名称</p>
         # @type SnapshotName: String
-        # @param Indices: 索引名称
+        # @param Indices: <p>索引名称</p>
         # @type Indices: String
-        # @param EsRepositoryType: 0 腾讯云仓库; 1 客户仓库
+        # @param EsRepositoryType: <p>0 腾讯云仓库; 1 客户仓库</p>
         # @type EsRepositoryType: Integer
-        # @param UserEsRepository: 客户快照仓库名称
+        # @param UserEsRepository: <p>客户快照仓库名称</p>
         # @type UserEsRepository: String
-        # @param StorageDuration: 快照存储周期 单位天，范围[0, INF), 如果没有设置则默认7天
+        # @param StorageDuration: <p>快照存储周期 单位天，范围[0, INF), 如果没有设置则默认7天</p>
         # @type StorageDuration: Integer
-        # @param CosRetention: 备份锁定 0 不锁定; 1 锁定
+        # @param CosRetention: <p>备份锁定 0 不锁定; 1 锁定</p>
         # @type CosRetention: Integer
-        # @param RetainUntilDate: 锁定截止日期 2022-12-10T08:34:48.000Z
+        # @param RetainUntilDate: <p>锁定截止日期 2022-12-10T08:34:48.000Z</p>
         # @type RetainUntilDate: String
-        # @param RetentionGraceTime: 锁定宽限期,单位天
+        # @param RetentionGraceTime: <p>锁定宽限期,单位天</p>
         # @type RetentionGraceTime: Integer
-        # @param RemoteCos: 跨地域备份 0 不跨地域; 1 跨地域
+        # @param RemoteCos: <p>跨地域备份 0 不跨地域; 1 跨地域</p>
         # @type RemoteCos: Integer
-        # @param RemoteCosRegion: 跨地域备份地域名称 ap-guangzhou
+        # @param RemoteCosRegion: <p>跨地域备份地域名称 ap-guangzhou</p>
         # @type RemoteCosRegion: String
-        # @param MultiAz: cos多AZ备份 0 单AZ; 1 多AZ
+        # @param MultiAz: <p>cos多AZ备份 0 单AZ; 1 多AZ</p>
         # @type MultiAz: Integer
+        # @param MaxSnapshotPerSec: <p>快照创建速率（单位mb）</p>
+        # @type MaxSnapshotPerSec: String
 
-        attr_accessor :InstanceId, :SnapshotName, :Indices, :EsRepositoryType, :UserEsRepository, :StorageDuration, :CosRetention, :RetainUntilDate, :RetentionGraceTime, :RemoteCos, :RemoteCosRegion, :MultiAz
+        attr_accessor :InstanceId, :SnapshotName, :Indices, :EsRepositoryType, :UserEsRepository, :StorageDuration, :CosRetention, :RetainUntilDate, :RetentionGraceTime, :RemoteCos, :RemoteCosRegion, :MultiAz, :MaxSnapshotPerSec
 
-        def initialize(instanceid=nil, snapshotname=nil, indices=nil, esrepositorytype=nil, useresrepository=nil, storageduration=nil, cosretention=nil, retainuntildate=nil, retentiongracetime=nil, remotecos=nil, remotecosregion=nil, multiaz=nil)
+        def initialize(instanceid=nil, snapshotname=nil, indices=nil, esrepositorytype=nil, useresrepository=nil, storageduration=nil, cosretention=nil, retainuntildate=nil, retentiongracetime=nil, remotecos=nil, remotecosregion=nil, multiaz=nil, maxsnapshotpersec=nil)
           @InstanceId = instanceid
           @SnapshotName = snapshotname
           @Indices = indices
@@ -700,6 +714,7 @@ module TencentCloud
           @RemoteCos = remotecos
           @RemoteCosRegion = remotecosregion
           @MultiAz = multiaz
+          @MaxSnapshotPerSec = maxsnapshotpersec
         end
 
         def deserialize(params)
@@ -715,12 +730,13 @@ module TencentCloud
           @RemoteCos = params['RemoteCos']
           @RemoteCosRegion = params['RemoteCosRegion']
           @MultiAz = params['MultiAz']
+          @MaxSnapshotPerSec = params['MaxSnapshotPerSec']
         end
       end
 
       # CreateClusterSnapshot返回参数结构体
       class CreateClusterSnapshotResponse < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例名称
+        # @param InstanceId: <p>实例名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -1655,17 +1671,25 @@ module TencentCloud
 
       # DeleteInstance请求参数结构体
       class DeleteInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: <p>实例ID</p>
         # @type InstanceId: String
+        # @param LockEnabled: <p>回收站锁定设置，true时不可手动销毁，到预设时间后自动销毁</p><p>默认值：false</p>
+        # @type LockEnabled: Boolean
+        # @param LockDuration: <p>放入回收站的锁定时间</p><p>取值范围：[1, 7]</p><p>单位：天</p><p>默认值：1</p>
+        # @type LockDuration: Integer
 
-        attr_accessor :InstanceId
+        attr_accessor :InstanceId, :LockEnabled, :LockDuration
 
-        def initialize(instanceid=nil)
+        def initialize(instanceid=nil, lockenabled=nil, lockduration=nil)
           @InstanceId = instanceid
+          @LockEnabled = lockenabled
+          @LockDuration = lockduration
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
+          @LockEnabled = params['LockEnabled']
+          @LockDuration = params['LockDuration']
         end
       end
 
@@ -4667,267 +4691,270 @@ module TencentCloud
 
       # 实例详细信息
       class InstanceInfo < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: <p>实例ID</p>
         # @type InstanceId: String
-        # @param InstanceName: 实例名称
+        # @param InstanceName: <p>实例名称</p>
         # @type InstanceName: String
-        # @param Region: 地域
+        # @param Region: <p>地域</p>
         # @type Region: String
-        # @param Zone: 可用区
+        # @param Zone: <p>可用区</p>
         # @type Zone: String
-        # @param AppId: 用户ID
+        # @param AppId: <p>用户ID</p>
         # @type AppId: Integer
-        # @param Uin: 用户UIN
+        # @param Uin: <p>用户UIN</p>
         # @type Uin: String
-        # @param VpcUid: 实例所属VPC的UID
+        # @param VpcUid: <p>实例所属VPC的UID</p>
         # @type VpcUid: String
-        # @param SubnetUid: 实例所属子网的UID
+        # @param SubnetUid: <p>实例所属子网的UID</p>
         # @type SubnetUid: String
-        # @param Status: 实例状态，0:处理中,1:正常,-1:停止,-2:销毁中,-3:已销毁, -4:隔离中,2:创建集群时初始化中
+        # @param Status: <p>实例状态，0:处理中,1:正常,-1:停止,-2:销毁中,-3:已销毁, -4:隔离中,2:创建集群时初始化中</p>
         # @type Status: Integer
-        # @param RenewFlag: 自动续费标识。取值范围：
-        # RENEW_FLAG_AUTO：自动续费
-        # RENEW_FLAG_MANUAL：不自动续费
-        # 默认取值：
-        # RENEW_FLAG_DEFAULT：不自动续费
-        # 若该参数指定为 RENEW_FLAG_AUTO，在账户余额充足的情况下，实例到期后将按月自动续费。
+        # @param RenewFlag: <p>自动续费标识。取值范围：<br>RENEW_FLAG_AUTO：自动续费<br>RENEW_FLAG_MANUAL：不自动续费<br>默认取值：<br>RENEW_FLAG_DEFAULT：不自动续费<br>若该参数指定为 RENEW_FLAG_AUTO，在账户余额充足的情况下，实例到期后将按月自动续费。</p>
         # @type RenewFlag: String
-        # @param ChargeType: 实例计费模式。取值范围：  PREPAID：表示预付费，即包年包月  POSTPAID_BY_HOUR：表示后付费，即按量计费  CDHPAID：CDH付费，即只对CDH计费，不对CDH上的实例计费。
+        # @param ChargeType: <p>实例计费模式。取值范围：  PREPAID：表示预付费，即包年包月  POSTPAID_BY_HOUR：表示后付费，即按量计费  CDHPAID：CDH付费，即只对CDH计费，不对CDH上的实例计费。</p>
         # @type ChargeType: String
-        # @param ChargePeriod: 包年包月购买时长,单位:月
+        # @param ChargePeriod: <p>包年包月购买时长,单位:月</p>
         # @type ChargePeriod: Integer
-        # @param NodeType: 节点规格<li>ES.S1.SMALL2：1核2G</li><li>ES.S1.MEDIUM4：2核4G</li><li>ES.S1.MEDIUM8：2核8G</li><li>ES.S1.LARGE16：4核16G</li><li>ES.S1.2XLARGE32：8核32G</li><li>ES.S1.4XLARGE32：16核32G</li><li>ES.S1.4XLARGE64：16核64G</li>
+        # @param NodeType: <p>节点规格<li>ES.S1.SMALL2：1核2G</li><li>ES.S1.MEDIUM4：2核4G</li><li>ES.S1.MEDIUM8：2核8G</li><li>ES.S1.LARGE16：4核16G</li><li>ES.S1.2XLARGE32：8核32G</li><li>ES.S1.4XLARGE32：16核32G</li><li>ES.S1.4XLARGE64：16核64G</li></p>
         # @type NodeType: String
-        # @param NodeNum: 节点个数
+        # @param NodeNum: <p>节点个数</p>
         # @type NodeNum: Integer
-        # @param CpuNum: 节点CPU核数
+        # @param CpuNum: <p>节点CPU核数</p>
         # @type CpuNum: Integer
-        # @param MemSize: 节点内存大小，单位GB
+        # @param MemSize: <p>节点内存大小，单位GB</p>
         # @type MemSize: Integer
-        # @param DiskType: 节点磁盘类型
+        # @param DiskType: <p>节点磁盘类型</p>
         # @type DiskType: String
-        # @param DiskSize: 节点磁盘大小，单位GB
+        # @param DiskSize: <p>节点磁盘大小，单位GB</p>
         # @type DiskSize: Integer
-        # @param EsDomain: ES域名
+        # @param EsDomain: <p>ES域名</p>
         # @type EsDomain: String
-        # @param EsVip: ES VIP
+        # @param EsVip: <p>ES VIP</p>
         # @type EsVip: String
-        # @param EsPort: ES端口
+        # @param EsPort: <p>ES端口</p>
         # @type EsPort: Integer
-        # @param KibanaUrl: Kibana访问url
+        # @param KibanaUrl: <p>Kibana访问url</p>
         # @type KibanaUrl: String
-        # @param EsVersion: ES版本号
+        # @param EsVersion: <p>ES版本号</p>
         # @type EsVersion: String
-        # @param EsConfig: ES配置项
+        # @param EsConfig: <p>ES配置项</p>
         # @type EsConfig: String
-        # @param EsAcl: Kibana访问控制配置
+        # @param EsAcl: <p>Kibana访问控制配置</p>
         # @type EsAcl: :class:`Tencentcloud::Es.v20180416.models.EsAcl`
-        # @param CreateTime: 实例创建时间
+        # @param CreateTime: <p>实例创建时间</p>
         # @type CreateTime: String
-        # @param UpdateTime: 实例最后修改操作时间
+        # @param UpdateTime: <p>实例最后修改操作时间</p>
         # @type UpdateTime: String
-        # @param Deadline: 实例到期时间
+        # @param Deadline: <p>实例到期时间</p>
         # @type Deadline: String
-        # @param InstanceType: 实例类型（实例类型标识，当前只有1,2两种）
+        # @param InstanceType: <p>实例类型（实例类型标识，当前只有1,2两种）</p>
         # @type InstanceType: Integer
-        # @param IkConfig: Ik分词器配置
+        # @param IkConfig: <p>Ik分词器配置</p>
         # @type IkConfig: :class:`Tencentcloud::Es.v20180416.models.EsDictionaryInfo`
-        # @param MasterNodeInfo: 专用主节点配置
+        # @param MasterNodeInfo: <p>专用主节点配置</p>
         # @type MasterNodeInfo: :class:`Tencentcloud::Es.v20180416.models.MasterNodeInfo`
-        # @param CosBackup: cos自动备份配置
+        # @param CosBackup: <p>cos自动备份配置</p>
         # @type CosBackup: :class:`Tencentcloud::Es.v20180416.models.CosBackup`
-        # @param AllowCosBackup: 是否允许cos自动备份
+        # @param AllowCosBackup: <p>是否允许cos自动备份</p>
         # @type AllowCosBackup: Boolean
-        # @param TagList: 实例拥有的标签列表
+        # @param TagList: <p>实例拥有的标签列表</p>
         # @type TagList: Array
-        # @param LicenseType: License类型<li>oss：开源版</li><li>basic：基础版</li><li>platinum：白金版</li>默认值platinum
+        # @param LicenseType: <p>License类型<li>oss：开源版</li><li>basic：基础版</li><li>platinum：白金版</li>默认值platinum</p>
         # @type LicenseType: String
-        # @param EnableHotWarmMode: 是否为冷热集群<li>true: 冷热集群</li><li>false: 非冷热集群</li>
+        # @param EnableHotWarmMode: <p>是否为冷热集群<li>true: 冷热集群</li><li>false: 非冷热集群</li></p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnableHotWarmMode: Boolean
-        # @param WarmNodeType: 温节点规格<li>ES.S1.SMALL2：1核2G</li><li>ES.S1.MEDIUM4：2核4G</li><li>ES.S1.MEDIUM8：2核8G</li><li>ES.S1.LARGE16：4核16G</li><li>ES.S1.2XLARGE32：8核32G</li><li>ES.S1.4XLARGE32：16核32G</li><li>ES.S1.4XLARGE64：16核64G</li>
+        # @param WarmNodeType: <p>温节点规格<li>ES.S1.SMALL2：1核2G</li><li>ES.S1.MEDIUM4：2核4G</li><li>ES.S1.MEDIUM8：2核8G</li><li>ES.S1.LARGE16：4核16G</li><li>ES.S1.2XLARGE32：8核32G</li><li>ES.S1.4XLARGE32：16核32G</li><li>ES.S1.4XLARGE64：16核64G</li></p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WarmNodeType: String
-        # @param WarmNodeNum: 温节点个数
+        # @param WarmNodeNum: <p>温节点个数</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WarmNodeNum: Integer
-        # @param WarmCpuNum: 温节点CPU核数
+        # @param WarmCpuNum: <p>温节点CPU核数</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WarmCpuNum: Integer
-        # @param WarmMemSize: 温节点内存内存大小，单位GB
+        # @param WarmMemSize: <p>温节点内存内存大小，单位GB</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WarmMemSize: Integer
-        # @param WarmDiskType: 温节点磁盘类型
+        # @param WarmDiskType: <p>温节点磁盘类型</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WarmDiskType: String
-        # @param WarmDiskSize: 温节点磁盘大小，单位GB
+        # @param WarmDiskSize: <p>温节点磁盘大小，单位GB</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WarmDiskSize: Integer
-        # @param NodeInfoList: 集群节点信息列表
+        # @param NodeInfoList: <p>集群节点信息列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NodeInfoList: Array
-        # @param EsPublicUrl: Es公网地址
+        # @param EsPublicUrl: <p>Es公网地址</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EsPublicUrl: String
-        # @param MultiZoneInfo: 多可用区网络信息
+        # @param MultiZoneInfo: <p>多可用区网络信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MultiZoneInfo: Array
-        # @param DeployMode: 部署模式<li>0：单可用区</li><li>1：多可用区，北京、上海、上海金融、广州、南京、香港、新加坡、法兰克福（白名单控制）</li>
+        # @param DeployMode: <p>部署模式<li>0：单可用区</li><li>1：多可用区，北京、上海、上海金融、广州、南京、香港、新加坡、法兰克福（白名单控制）</li></p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeployMode: Integer
-        # @param PublicAccess: ES公网访问状态<li>OPEN：开启</li><li>CLOSE：关闭</li>
+        # @param PublicAccess: <p>ES公网访问状态<li>OPEN：开启</li><li>CLOSE：关闭</li></p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PublicAccess: String
-        # @param EsPublicAcl: ES公网访问控制配置
+        # @param EsPublicAcl: <p>ES公网访问控制配置</p>
         # @type EsPublicAcl: :class:`Tencentcloud::Es.v20180416.models.EsAcl`
-        # @param KibanaPrivateUrl: Kibana内网地址
+        # @param KibanaPrivateUrl: <p>Kibana内网地址</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KibanaPrivateUrl: String
-        # @param KibanaPublicAccess: Kibana公网访问状态<li>OPEN：开启</li><li>CLOSE：关闭</li>
+        # @param KibanaPublicAccess: <p>Kibana公网访问状态<li>OPEN：开启</li><li>CLOSE：关闭</li></p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KibanaPublicAccess: String
-        # @param KibanaPrivateAccess: Kibana内网访问状态<li>OPEN：开启</li><li>CLOSE：关闭</li>
+        # @param KibanaPrivateAccess: <p>Kibana内网访问状态<li>OPEN：开启</li><li>CLOSE：关闭</li></p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KibanaPrivateAccess: String
-        # @param SecurityType: 6.8（及以上版本）基础版是否开启xpack security认证<li>1：不开启</li><li>2：开启</li>
+        # @param SecurityType: <p>6.8（及以上版本）基础版是否开启xpack security认证<li>1：不开启</li><li>2：开启</li></p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecurityType: Integer
-        # @param SceneType: 场景化模板类型：0、不开启；1、通用场景；2、日志场景；3、搜索场景
+        # @param SceneType: <p>场景化模板类型：0、不开启；1、通用场景；2、日志场景；3、搜索场景</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SceneType: Integer
-        # @param KibanaConfig: Kibana配置项
+        # @param KibanaConfig: <p>Kibana配置项</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KibanaConfig: String
-        # @param KibanaNodeInfo: Kibana节点信息
+        # @param KibanaNodeInfo: <p>Kibana节点信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KibanaNodeInfo: :class:`Tencentcloud::Es.v20180416.models.KibanaNodeInfo`
-        # @param WebNodeTypeInfo: 可视化节点配置
+        # @param WebNodeTypeInfo: <p>可视化节点配置</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WebNodeTypeInfo: :class:`Tencentcloud::Es.v20180416.models.WebNodeTypeInfo`
-        # @param Jdk: JDK类型，oracle或kona
+        # @param Jdk: <p>JDK类型，oracle或kona</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Jdk: String
-        # @param Protocol: 集群网络通讯协议
+        # @param Protocol: <p>集群网络通讯协议</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Protocol: String
-        # @param SecurityGroups: 安全组id
+        # @param SecurityGroups: <p>安全组id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecurityGroups: Array
-        # @param ColdNodeType: 冷节点规格<li>ES.S1.SMALL2：1核2G</li><li>ES.S1.MEDIUM4：2核4G</li><li>ES.S1.MEDIUM8：2核8G</li><li>ES.S1.LARGE16：4核16G</li><li>ES.S1.2XLARGE32：8核32G</li><li>ES.S1.4XLARGE32：16核32G</li><li>ES.S1.4XLARGE64：16核64G</li>
+        # @param ColdNodeType: <p>冷节点规格<li>ES.S1.SMALL2：1核2G</li><li>ES.S1.MEDIUM4：2核4G</li><li>ES.S1.MEDIUM8：2核8G</li><li>ES.S1.LARGE16：4核16G</li><li>ES.S1.2XLARGE32：8核32G</li><li>ES.S1.4XLARGE32：16核32G</li><li>ES.S1.4XLARGE64：16核64G</li></p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ColdNodeType: String
-        # @param ColdNodeNum: 冷节点个数
+        # @param ColdNodeNum: <p>冷节点个数</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ColdNodeNum: Integer
-        # @param ColdCpuNum: 冷节点CPU核数
+        # @param ColdCpuNum: <p>冷节点CPU核数</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ColdCpuNum: Integer
-        # @param ColdMemSize: 冷节点内存大小，单位GB
+        # @param ColdMemSize: <p>冷节点内存大小，单位GB</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ColdMemSize: Integer
-        # @param ColdDiskType: 冷节点磁盘类型
+        # @param ColdDiskType: <p>冷节点磁盘类型</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ColdDiskType: String
-        # @param ColdDiskSize: 冷节点磁盘大小，单位GB
+        # @param ColdDiskSize: <p>冷节点磁盘大小，单位GB</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ColdDiskSize: Integer
-        # @param FrozenNodeType: 冻节点规格<li>ES.S1.SMALL2：1核2G</li><li>ES.S1.MEDIUM4：2核4G</li><li>ES.S1.MEDIUM8：2核8G</li><li>ES.S1.LARGE16：4核16G</li><li>ES.S1.2XLARGE32：8核32G</li><li>ES.S1.4XLARGE32：16核32G</li><li>ES.S1.4XLARGE64：16核64G</li>
+        # @param FrozenNodeType: <p>冻节点规格<li>ES.S1.SMALL2：1核2G</li><li>ES.S1.MEDIUM4：2核4G</li><li>ES.S1.MEDIUM8：2核8G</li><li>ES.S1.LARGE16：4核16G</li><li>ES.S1.2XLARGE32：8核32G</li><li>ES.S1.4XLARGE32：16核32G</li><li>ES.S1.4XLARGE64：16核64G</li></p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FrozenNodeType: String
-        # @param FrozenNodeNum: 冻节点个数
+        # @param FrozenNodeNum: <p>冻节点个数</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FrozenNodeNum: Integer
-        # @param FrozenCpuNum: 冻节点CPU核数
+        # @param FrozenCpuNum: <p>冻节点CPU核数</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FrozenCpuNum: Integer
-        # @param FrozenMemSize: 冻节点内存大小，单位GB
+        # @param FrozenMemSize: <p>冻节点内存大小，单位GB</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FrozenMemSize: Integer
-        # @param FrozenDiskType: 冻节点磁盘类型
+        # @param FrozenDiskType: <p>冻节点磁盘类型</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FrozenDiskType: String
-        # @param FrozenDiskSize: 冻节点磁盘大小，单位GB
+        # @param FrozenDiskSize: <p>冻节点磁盘大小，单位GB</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FrozenDiskSize: Integer
-        # @param HealthStatus: 集群健康状态 -1 未知；0 Green; 1 Yellow; 2 Red
+        # @param HealthStatus: <p>集群健康状态 -1 未知；0 Green; 1 Yellow; 2 Red</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HealthStatus: Integer
-        # @param EsPrivateUrl: https集群内网url
+        # @param EsPrivateUrl: <p>https集群内网url</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EsPrivateUrl: String
-        # @param EsPrivateDomain: https集群内网域名
+        # @param EsPrivateDomain: <p>https集群内网域名</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EsPrivateDomain: String
-        # @param EsConfigSets: 集群的配置组信息
+        # @param EsConfigSets: <p>集群的配置组信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EsConfigSets: Array
-        # @param OperationDuration: 集群可维护时间段
+        # @param OperationDuration: <p>集群可维护时间段</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OperationDuration: :class:`Tencentcloud::Es.v20180416.models.OperationDuration`
-        # @param OptionalWebServiceInfos: web节点列表
+        # @param OptionalWebServiceInfos: <p>web节点列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OptionalWebServiceInfos: Array
-        # @param AutoIndexEnabled: 自治索引开关
+        # @param AutoIndexEnabled: <p>自治索引开关</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AutoIndexEnabled: Boolean
-        # @param EnableHybridStorage: 是否支持存储计算分离
+        # @param EnableHybridStorage: <p>是否支持存储计算分离</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnableHybridStorage: Boolean
-        # @param ProcessPercent: 流程进度
+        # @param ProcessPercent: <p>流程进度</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProcessPercent: Float
-        # @param KibanaAlteringPublicAccess: Kibana的alerting外网告警策略<li>OPEN：开启</li><li>CLOSE：关闭</li>
+        # @param KibanaAlteringPublicAccess: <p>Kibana的alerting外网告警策略<li>OPEN：开启</li><li>CLOSE：关闭</li></p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KibanaAlteringPublicAccess: String
-        # @param HasKernelUpgrade: 本月是否有内核可以更新：false-无，true-有
+        # @param HasKernelUpgrade: <p>本月是否有内核可以更新：false-无，true-有</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HasKernelUpgrade: Boolean
-        # @param CdcId: cdcId，使用cdc子网时传递
+        # @param CdcId: <p>cdcId，使用cdc子网时传递</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CdcId: String
-        # @param KibanaPrivateVip: kibana内网vip
+        # @param KibanaPrivateVip: <p>kibana内网vip</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KibanaPrivateVip: String
-        # @param CustomKibanaPrivateUrl: 自定义kibana内网url
+        # @param CustomKibanaPrivateUrl: <p>自定义kibana内网url</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CustomKibanaPrivateUrl: String
-        # @param OutboundPublicAcls: 节点出站访问详细信息
+        # @param OutboundPublicAcls: <p>节点出站访问详细信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OutboundPublicAcls: Array
-        # @param NetConnectScheme: 网络连接方案
+        # @param NetConnectScheme: <p>网络连接方案</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NetConnectScheme: String
-        # @param DisasterRecoverGroupAffinity: 置放群组相关参数
+        # @param DisasterRecoverGroupAffinity: <p>置放群组相关参数</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DisasterRecoverGroupAffinity: Integer
-        # @param SubProductCode: 子产品ID枚举值： 开源版："sp_es_io2"， 基础版："sp_es_basic"，白金版："sp_es_platinum"，企业版："sp_es_enterprise"，CDC白金版："sp_es_cdc_platinum"，日志增强版："sp_es_enlogging"，tsearch："sp_tsearch_io2"，logstash："sp_es_logstash" ，可以为空，为空的时候后台取LicenseType映射该字段
+        # @param SubProductCode: <p>子产品ID枚举值： 开源版：&quot;sp_es_io2&quot;， 基础版：&quot;sp_es_basic&quot;，白金版：&quot;sp_es_platinum&quot;，企业版：&quot;sp_es_enterprise&quot;，CDC白金版：&quot;sp_es_cdc_platinum&quot;，日志增强版：&quot;sp_es_enlogging&quot;，tsearch：&quot;sp_tsearch_io2&quot;，logstash：&quot;sp_es_logstash&quot; ，可以为空，为空的时候后台取LicenseType映射该字段</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubProductCode: String
-        # @param CosBucketStorageSize: 存算分离cos用量，单位M
+        # @param CosBucketStorageSize: <p>存算分离cos用量，单位M</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CosBucketStorageSize: Integer
-        # @param ReadWriteMode: 读写分离模式：0-不开启，1-本地读写分离，2-远端读写分离
+        # @param ReadWriteMode: <p>读写分离模式：0-不开启，1-本地读写分离，2-远端读写分离</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReadWriteMode: Integer
-        # @param EnableScheduleRecoverGroup: 是否有置放群组异步调度任务
+        # @param EnableScheduleRecoverGroup: <p>是否有置放群组异步调度任务</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnableScheduleRecoverGroup: Boolean
-        # @param EnableScheduleOperationDuration: 异步调度任务的时间
+        # @param EnableScheduleOperationDuration: <p>异步调度任务的时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnableScheduleOperationDuration: :class:`Tencentcloud::Es.v20180416.models.EnableScheduleOperationDuration`
-        # @param EnableDestroyProtection: 开启集群保护：OPEN-开启，CLOSE-关闭
+        # @param EnableDestroyProtection: <p>开启集群保护：OPEN-开启，CLOSE-关闭</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnableDestroyProtection: String
-        # @param ShowKibanaIpPort: kibana内网访问地址
+        # @param ShowKibanaIpPort: <p>kibana内网访问地址</p>
         # @type ShowKibanaIpPort: String
-        # @param IsCdzLite: 是否为CDZLite可用区
+        # @param IsCdzLite: <p>是否为CDZLite可用区</p>
         # @type IsCdzLite: Boolean
-        # @param EsPrivateTcpUrl: 集群内网tcp地址
+        # @param EsPrivateTcpUrl: <p>集群内网tcp地址</p>
         # @type EsPrivateTcpUrl: String
+        # @param IsInRecycleBin: <p>是否在回收站内</p><p>默认值：false</p>
+        # @type IsInRecycleBin: Boolean
+        # @param RecycleLockEnabled: <p>回收站内是否锁定</p><p>默认值：false</p>
+        # @type RecycleLockEnabled: Boolean
+        # @param MayDestroyPoint: <p>预计销毁的时间</p><p>参数格式：YYYY-MM-DD hh:mm:ss</p>
+        # @type MayDestroyPoint: String
+        # @param DelayDestroyInterval: <p>延迟销毁的时间</p><p>单位：天</p>
+        # @type DelayDestroyInterval: Integer
 
-        attr_accessor :InstanceId, :InstanceName, :Region, :Zone, :AppId, :Uin, :VpcUid, :SubnetUid, :Status, :RenewFlag, :ChargeType, :ChargePeriod, :NodeType, :NodeNum, :CpuNum, :MemSize, :DiskType, :DiskSize, :EsDomain, :EsVip, :EsPort, :KibanaUrl, :EsVersion, :EsConfig, :EsAcl, :CreateTime, :UpdateTime, :Deadline, :InstanceType, :IkConfig, :MasterNodeInfo, :CosBackup, :AllowCosBackup, :TagList, :LicenseType, :EnableHotWarmMode, :WarmNodeType, :WarmNodeNum, :WarmCpuNum, :WarmMemSize, :WarmDiskType, :WarmDiskSize, :NodeInfoList, :EsPublicUrl, :MultiZoneInfo, :DeployMode, :PublicAccess, :EsPublicAcl, :KibanaPrivateUrl, :KibanaPublicAccess, :KibanaPrivateAccess, :SecurityType, :SceneType, :KibanaConfig, :KibanaNodeInfo, :WebNodeTypeInfo, :Jdk, :Protocol, :SecurityGroups, :ColdNodeType, :ColdNodeNum, :ColdCpuNum, :ColdMemSize, :ColdDiskType, :ColdDiskSize, :FrozenNodeType, :FrozenNodeNum, :FrozenCpuNum, :FrozenMemSize, :FrozenDiskType, :FrozenDiskSize, :HealthStatus, :EsPrivateUrl, :EsPrivateDomain, :EsConfigSets, :OperationDuration, :OptionalWebServiceInfos, :AutoIndexEnabled, :EnableHybridStorage, :ProcessPercent, :KibanaAlteringPublicAccess, :HasKernelUpgrade, :CdcId, :KibanaPrivateVip, :CustomKibanaPrivateUrl, :OutboundPublicAcls, :NetConnectScheme, :DisasterRecoverGroupAffinity, :SubProductCode, :CosBucketStorageSize, :ReadWriteMode, :EnableScheduleRecoverGroup, :EnableScheduleOperationDuration, :EnableDestroyProtection, :ShowKibanaIpPort, :IsCdzLite, :EsPrivateTcpUrl
+        attr_accessor :InstanceId, :InstanceName, :Region, :Zone, :AppId, :Uin, :VpcUid, :SubnetUid, :Status, :RenewFlag, :ChargeType, :ChargePeriod, :NodeType, :NodeNum, :CpuNum, :MemSize, :DiskType, :DiskSize, :EsDomain, :EsVip, :EsPort, :KibanaUrl, :EsVersion, :EsConfig, :EsAcl, :CreateTime, :UpdateTime, :Deadline, :InstanceType, :IkConfig, :MasterNodeInfo, :CosBackup, :AllowCosBackup, :TagList, :LicenseType, :EnableHotWarmMode, :WarmNodeType, :WarmNodeNum, :WarmCpuNum, :WarmMemSize, :WarmDiskType, :WarmDiskSize, :NodeInfoList, :EsPublicUrl, :MultiZoneInfo, :DeployMode, :PublicAccess, :EsPublicAcl, :KibanaPrivateUrl, :KibanaPublicAccess, :KibanaPrivateAccess, :SecurityType, :SceneType, :KibanaConfig, :KibanaNodeInfo, :WebNodeTypeInfo, :Jdk, :Protocol, :SecurityGroups, :ColdNodeType, :ColdNodeNum, :ColdCpuNum, :ColdMemSize, :ColdDiskType, :ColdDiskSize, :FrozenNodeType, :FrozenNodeNum, :FrozenCpuNum, :FrozenMemSize, :FrozenDiskType, :FrozenDiskSize, :HealthStatus, :EsPrivateUrl, :EsPrivateDomain, :EsConfigSets, :OperationDuration, :OptionalWebServiceInfos, :AutoIndexEnabled, :EnableHybridStorage, :ProcessPercent, :KibanaAlteringPublicAccess, :HasKernelUpgrade, :CdcId, :KibanaPrivateVip, :CustomKibanaPrivateUrl, :OutboundPublicAcls, :NetConnectScheme, :DisasterRecoverGroupAffinity, :SubProductCode, :CosBucketStorageSize, :ReadWriteMode, :EnableScheduleRecoverGroup, :EnableScheduleOperationDuration, :EnableDestroyProtection, :ShowKibanaIpPort, :IsCdzLite, :EsPrivateTcpUrl, :IsInRecycleBin, :RecycleLockEnabled, :MayDestroyPoint, :DelayDestroyInterval
 
-        def initialize(instanceid=nil, instancename=nil, region=nil, zone=nil, appid=nil, uin=nil, vpcuid=nil, subnetuid=nil, status=nil, renewflag=nil, chargetype=nil, chargeperiod=nil, nodetype=nil, nodenum=nil, cpunum=nil, memsize=nil, disktype=nil, disksize=nil, esdomain=nil, esvip=nil, esport=nil, kibanaurl=nil, esversion=nil, esconfig=nil, esacl=nil, createtime=nil, updatetime=nil, deadline=nil, instancetype=nil, ikconfig=nil, masternodeinfo=nil, cosbackup=nil, allowcosbackup=nil, taglist=nil, licensetype=nil, enablehotwarmmode=nil, warmnodetype=nil, warmnodenum=nil, warmcpunum=nil, warmmemsize=nil, warmdisktype=nil, warmdisksize=nil, nodeinfolist=nil, espublicurl=nil, multizoneinfo=nil, deploymode=nil, publicaccess=nil, espublicacl=nil, kibanaprivateurl=nil, kibanapublicaccess=nil, kibanaprivateaccess=nil, securitytype=nil, scenetype=nil, kibanaconfig=nil, kibananodeinfo=nil, webnodetypeinfo=nil, jdk=nil, protocol=nil, securitygroups=nil, coldnodetype=nil, coldnodenum=nil, coldcpunum=nil, coldmemsize=nil, colddisktype=nil, colddisksize=nil, frozennodetype=nil, frozennodenum=nil, frozencpunum=nil, frozenmemsize=nil, frozendisktype=nil, frozendisksize=nil, healthstatus=nil, esprivateurl=nil, esprivatedomain=nil, esconfigsets=nil, operationduration=nil, optionalwebserviceinfos=nil, autoindexenabled=nil, enablehybridstorage=nil, processpercent=nil, kibanaalteringpublicaccess=nil, haskernelupgrade=nil, cdcid=nil, kibanaprivatevip=nil, customkibanaprivateurl=nil, outboundpublicacls=nil, netconnectscheme=nil, disasterrecovergroupaffinity=nil, subproductcode=nil, cosbucketstoragesize=nil, readwritemode=nil, enableschedulerecovergroup=nil, enablescheduleoperationduration=nil, enabledestroyprotection=nil, showkibanaipport=nil, iscdzlite=nil, esprivatetcpurl=nil)
+        def initialize(instanceid=nil, instancename=nil, region=nil, zone=nil, appid=nil, uin=nil, vpcuid=nil, subnetuid=nil, status=nil, renewflag=nil, chargetype=nil, chargeperiod=nil, nodetype=nil, nodenum=nil, cpunum=nil, memsize=nil, disktype=nil, disksize=nil, esdomain=nil, esvip=nil, esport=nil, kibanaurl=nil, esversion=nil, esconfig=nil, esacl=nil, createtime=nil, updatetime=nil, deadline=nil, instancetype=nil, ikconfig=nil, masternodeinfo=nil, cosbackup=nil, allowcosbackup=nil, taglist=nil, licensetype=nil, enablehotwarmmode=nil, warmnodetype=nil, warmnodenum=nil, warmcpunum=nil, warmmemsize=nil, warmdisktype=nil, warmdisksize=nil, nodeinfolist=nil, espublicurl=nil, multizoneinfo=nil, deploymode=nil, publicaccess=nil, espublicacl=nil, kibanaprivateurl=nil, kibanapublicaccess=nil, kibanaprivateaccess=nil, securitytype=nil, scenetype=nil, kibanaconfig=nil, kibananodeinfo=nil, webnodetypeinfo=nil, jdk=nil, protocol=nil, securitygroups=nil, coldnodetype=nil, coldnodenum=nil, coldcpunum=nil, coldmemsize=nil, colddisktype=nil, colddisksize=nil, frozennodetype=nil, frozennodenum=nil, frozencpunum=nil, frozenmemsize=nil, frozendisktype=nil, frozendisksize=nil, healthstatus=nil, esprivateurl=nil, esprivatedomain=nil, esconfigsets=nil, operationduration=nil, optionalwebserviceinfos=nil, autoindexenabled=nil, enablehybridstorage=nil, processpercent=nil, kibanaalteringpublicaccess=nil, haskernelupgrade=nil, cdcid=nil, kibanaprivatevip=nil, customkibanaprivateurl=nil, outboundpublicacls=nil, netconnectscheme=nil, disasterrecovergroupaffinity=nil, subproductcode=nil, cosbucketstoragesize=nil, readwritemode=nil, enableschedulerecovergroup=nil, enablescheduleoperationduration=nil, enabledestroyprotection=nil, showkibanaipport=nil, iscdzlite=nil, esprivatetcpurl=nil, isinrecyclebin=nil, recyclelockenabled=nil, maydestroypoint=nil, delaydestroyinterval=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @Region = region
@@ -5025,6 +5052,10 @@ module TencentCloud
           @ShowKibanaIpPort = showkibanaipport
           @IsCdzLite = iscdzlite
           @EsPrivateTcpUrl = esprivatetcpurl
+          @IsInRecycleBin = isinrecyclebin
+          @RecycleLockEnabled = recyclelockenabled
+          @MayDestroyPoint = maydestroypoint
+          @DelayDestroyInterval = delaydestroyinterval
         end
 
         def deserialize(params)
@@ -5194,6 +5225,10 @@ module TencentCloud
           @ShowKibanaIpPort = params['ShowKibanaIpPort']
           @IsCdzLite = params['IsCdzLite']
           @EsPrivateTcpUrl = params['EsPrivateTcpUrl']
+          @IsInRecycleBin = params['IsInRecycleBin']
+          @RecycleLockEnabled = params['RecycleLockEnabled']
+          @MayDestroyPoint = params['MayDestroyPoint']
+          @DelayDestroyInterval = params['DelayDestroyInterval']
         end
       end
 
@@ -6378,31 +6413,33 @@ module TencentCloud
 
       # ES集群操作详细信息
       class Operation < TencentCloud::Common::AbstractModel
-        # @param Id: 操作唯一id
+        # @param Id: <p>操作唯一id</p>
         # @type Id: Integer
-        # @param StartTime: 操作开始时间
+        # @param StartTime: <p>操作开始时间</p>
         # @type StartTime: String
-        # @param Type: 操作类型
+        # @param Type: <p>操作类型</p>
         # @type Type: String
-        # @param Detail: 操作详情
+        # @param Detail: <p>操作详情</p>
         # @type Detail: :class:`Tencentcloud::Es.v20180416.models.OperationDetail`
-        # @param Result: 操作结果
+        # @param Result: <p>操作结果</p>
         # @type Result: String
-        # @param Tasks: 流程任务信息
+        # @param Tasks: <p>流程任务信息</p>
         # @type Tasks: Array
-        # @param Progress: 操作进度
+        # @param Progress: <p>操作进度</p>
         # @type Progress: Float
-        # @param RollbackTag: 回滚标记， 0未回滚 ，1回滚中，2已回滚
+        # @param RollbackTag: <p>回滚标记， 0未回滚 ，1回滚中，2已回滚</p>
         # @type RollbackTag: Integer
-        # @param SubAccountUin: 操作者Uin
+        # @param SubAccountUin: <p>操作者Uin</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubAccountUin: String
-        # @param AutoScaleTag: 自动扩容标识：0-非自动，1-自动
+        # @param AutoScaleTag: <p>自动扩容标识：0-非自动，1-自动</p>
         # @type AutoScaleTag: Integer
+        # @param SuspendedReason: <p>流程异常原因</p>
+        # @type SuspendedReason: String
 
-        attr_accessor :Id, :StartTime, :Type, :Detail, :Result, :Tasks, :Progress, :RollbackTag, :SubAccountUin, :AutoScaleTag
+        attr_accessor :Id, :StartTime, :Type, :Detail, :Result, :Tasks, :Progress, :RollbackTag, :SubAccountUin, :AutoScaleTag, :SuspendedReason
 
-        def initialize(id=nil, starttime=nil, type=nil, detail=nil, result=nil, tasks=nil, progress=nil, rollbacktag=nil, subaccountuin=nil, autoscaletag=nil)
+        def initialize(id=nil, starttime=nil, type=nil, detail=nil, result=nil, tasks=nil, progress=nil, rollbacktag=nil, subaccountuin=nil, autoscaletag=nil, suspendedreason=nil)
           @Id = id
           @StartTime = starttime
           @Type = type
@@ -6413,6 +6450,7 @@ module TencentCloud
           @RollbackTag = rollbacktag
           @SubAccountUin = subaccountuin
           @AutoScaleTag = autoscaletag
+          @SuspendedReason = suspendedreason
         end
 
         def deserialize(params)
@@ -6436,6 +6474,7 @@ module TencentCloud
           @RollbackTag = params['RollbackTag']
           @SubAccountUin = params['SubAccountUin']
           @AutoScaleTag = params['AutoScaleTag']
+          @SuspendedReason = params['SuspendedReason']
         end
       end
 
@@ -6655,29 +6694,29 @@ module TencentCloud
 
       # 任务进度详情
       class ProcessDetail < TencentCloud::Common::AbstractModel
-        # @param Completed: 已完成数量
+        # @param Completed: <p>已完成数量</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Completed: Integer
-        # @param Remain: 剩余数量
+        # @param Remain: <p>剩余数量</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Remain: Integer
-        # @param Total: 总数量
+        # @param Total: <p>总数量</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Total: Integer
-        # @param TaskType: 任务类型：
-        # 60：重启型任务
-        # 70：分片迁移型任务
-        # 80：节点变配任务
+        # @param TaskType: <p>任务类型：<br>60：重启型任务<br>70：分片迁移型任务<br>80：节点变配任务</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskType: Integer
+        # @param EstimatedTimeRemaining: <p>预估剩余时间</p><p>单位：秒</p>
+        # @type EstimatedTimeRemaining: Integer
 
-        attr_accessor :Completed, :Remain, :Total, :TaskType
+        attr_accessor :Completed, :Remain, :Total, :TaskType, :EstimatedTimeRemaining
 
-        def initialize(completed=nil, remain=nil, total=nil, tasktype=nil)
+        def initialize(completed=nil, remain=nil, total=nil, tasktype=nil, estimatedtimeremaining=nil)
           @Completed = completed
           @Remain = remain
           @Total = total
           @TaskType = tasktype
+          @EstimatedTimeRemaining = estimatedtimeremaining
         end
 
         def deserialize(params)
@@ -6685,6 +6724,7 @@ module TencentCloud
           @Remain = params['Remain']
           @Total = params['Total']
           @TaskType = params['TaskType']
+          @EstimatedTimeRemaining = params['EstimatedTimeRemaining']
         end
       end
 
@@ -7022,32 +7062,30 @@ module TencentCloud
 
       # RestoreClusterSnapshot请求参数结构体
       class RestoreClusterSnapshotRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 集群实例Id，格式：es-xxxx
+        # @param InstanceId: <p>集群实例Id，格式：es-xxxx</p>
         # @type InstanceId: String
-        # @param RepositoryName: 仓库名称
+        # @param RepositoryName: <p>仓库名称</p>
         # @type RepositoryName: String
-        # @param SnapshotName: 集群快照名称
+        # @param SnapshotName: <p>集群快照名称</p>
         # @type SnapshotName: String
-        # @param TargetInstanceId: 目标集群实例Id，格式：es-xxxx，如果是恢复到本地，则和InstanceId一致
+        # @param TargetInstanceId: <p>目标集群实例Id，格式：es-xxxx，如果是恢复到本地，则和InstanceId一致</p>
         # @type TargetInstanceId: String
-        # @param Password: elastic用户名对应的密码信息
+        # @param Password: <p>elastic用户名对应的密码信息</p>
         # @type Password: String
-        # @param IndexSettings: 要在所有恢复的索引中添加或更改的设置的逗号分隔列表。使用此参数可以在恢复快照时覆盖索引设置。
+        # @param IndexSettings: <p>要在所有恢复的索引中添加或更改的设置的逗号分隔列表。使用此参数可以在恢复快照时覆盖索引设置。</p>
         # @type IndexSettings: String
-        # @param IncludeGlobalState: 不应从快照还原的以逗号分隔的索引设置列表。
+        # @param IncludeGlobalState: <p>不应从快照还原的以逗号分隔的索引设置列表。</p>
         # @type IncludeGlobalState: Array
-        # @param Indices: 需要恢复的索引名称，非必填，为空则表示恢复所有
-
-        # 支持传多个索引名称
+        # @param Indices: <p>需要恢复的索引名称，非必填，为空则表示恢复所有</p><p>支持传多个索引名称</p>
         # @type Indices: String
-        # @param Partial: 如果为 false，则如果快照中包含的一个或多个索引没有所有主分片可用，则整个恢复操作将失败。默认为 false,
-
-        # 如果为 true，则允许恢复具有不可用分片的索引的部分快照。只有成功包含在快照中的分片才会被恢复。所有丢失的碎片将被重新创建为空
+        # @param Partial: <p>如果为 false，则如果快照中包含的一个或多个索引没有所有主分片可用，则整个恢复操作将失败。默认为 false,</p><p>如果为 true，则允许恢复具有不可用分片的索引的部分快照。只有成功包含在快照中的分片才会被恢复。所有丢失的碎片将被重新创建为空</p>
         # @type Partial: String
+        # @param MaxRestorePerSec: <p>快照恢复速率（单位mb）</p>
+        # @type MaxRestorePerSec: String
 
-        attr_accessor :InstanceId, :RepositoryName, :SnapshotName, :TargetInstanceId, :Password, :IndexSettings, :IncludeGlobalState, :Indices, :Partial
+        attr_accessor :InstanceId, :RepositoryName, :SnapshotName, :TargetInstanceId, :Password, :IndexSettings, :IncludeGlobalState, :Indices, :Partial, :MaxRestorePerSec
 
-        def initialize(instanceid=nil, repositoryname=nil, snapshotname=nil, targetinstanceid=nil, password=nil, indexsettings=nil, includeglobalstate=nil, indices=nil, partial=nil)
+        def initialize(instanceid=nil, repositoryname=nil, snapshotname=nil, targetinstanceid=nil, password=nil, indexsettings=nil, includeglobalstate=nil, indices=nil, partial=nil, maxrestorepersec=nil)
           @InstanceId = instanceid
           @RepositoryName = repositoryname
           @SnapshotName = snapshotname
@@ -7057,6 +7095,7 @@ module TencentCloud
           @IncludeGlobalState = includeglobalstate
           @Indices = indices
           @Partial = partial
+          @MaxRestorePerSec = maxrestorepersec
         end
 
         def deserialize(params)
@@ -7069,12 +7108,13 @@ module TencentCloud
           @IncludeGlobalState = params['IncludeGlobalState']
           @Indices = params['Indices']
           @Partial = params['Partial']
+          @MaxRestorePerSec = params['MaxRestorePerSec']
         end
       end
 
       # RestoreClusterSnapshot返回参数结构体
       class RestoreClusterSnapshotResponse < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 集群实例id
+        # @param InstanceId: <p>集群实例id</p>
         # @type InstanceId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -7590,108 +7630,106 @@ module TencentCloud
 
       # 集群快照数据结构
       class Snapshots < TencentCloud::Common::AbstractModel
-        # @param SnapshotName: 快照名称
+        # @param SnapshotName: <p>快照名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SnapshotName: String
-        # @param Uuid: 快照Uuid
+        # @param Uuid: <p>快照Uuid</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Uuid: String
-        # @param Repository: 仓库名称
+        # @param Repository: <p>仓库名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Repository: String
-        # @param Version: 该快照所属集群的版本号
+        # @param Version: <p>该快照所属集群的版本号</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Version: String
-        # @param Indices: 备份的索引列表
+        # @param Indices: <p>备份的索引列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Indices: Array
-        # @param DataStreams: 备份的datastream列表
+        # @param DataStreams: <p>备份的datastream列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataStreams: Array
-        # @param State: 备份的状态
-
-        # FAILED            备份失败
-
-        # IN_PROGRESS 备份执行中
-
-        # PARTIAL          备份部分成功，部分失败，备份失败的索引和原因会在Failures字段中展示
-
-        # SUCCESS     备份成功
+        # @param State: <p>备份的状态</p><p>FAILED            备份失败</p><p>IN_PROGRESS 备份执行中</p><p>PARTIAL          备份部分成功，部分失败，备份失败的索引和原因会在Failures字段中展示</p><p>SUCCESS     备份成功</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type State: String
-        # @param StartTime: 快照备份的开始时间
+        # @param StartTime: <p>快照备份的开始时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartTime: String
-        # @param EndTime: 快照备份的结束时间
+        # @param EndTime: <p>快照备份的结束时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTime: String
-        # @param DurationInMillis: 快照备份的耗时时间
+        # @param DurationInMillis: <p>快照备份的耗时时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DurationInMillis: Integer
-        # @param TotalShards: 备份的总分片数
+        # @param TotalShards: <p>备份的总分片数</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalShards: Integer
-        # @param FailedShards: 备份失败的分片数量
+        # @param FailedShards: <p>备份失败的分片数量</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FailedShards: Integer
-        # @param SuccessfulShards: 备份成功的分片数量
+        # @param SuccessfulShards: <p>备份成功的分片数量</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SuccessfulShards: Integer
-        # @param Failures: 备份失败的索引分片和失败原因
+        # @param Failures: <p>备份失败的索引分片和失败原因</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Failures: Array
-        # @param UserBackUp: 是否用户备份
+        # @param UserBackUp: <p>是否用户备份</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserBackUp: String
-        # @param EsRepositoryType: 0 腾讯云仓库; 1 客户仓库
+        # @param EsRepositoryType: <p>0 腾讯云仓库; 1 客户仓库</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EsRepositoryType: Integer
-        # @param PaasEsRepository: 托管快照仓库名称
+        # @param PaasEsRepository: <p>托管快照仓库名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PaasEsRepository: String
-        # @param UserEsRepository: 客户快照仓库名称
+        # @param UserEsRepository: <p>客户快照仓库名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserEsRepository: String
-        # @param StorageDuration: 快照存储周期 单位天，范围[0, INF), 如果没有设置则默认7天
+        # @param StorageDuration: <p>快照存储周期 单位天，范围[0, INF), 如果没有设置则默认7天</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StorageDuration: Integer
-        # @param AutoBackupInterval: 自动备份频率, 如果是0,则等效24
+        # @param AutoBackupInterval: <p>自动备份频率, 如果是0,则等效24</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AutoBackupInterval: Integer
-        # @param CosRetention: 备份锁定 0 不锁定; 1 锁定
+        # @param CosRetention: <p>备份锁定 0 不锁定; 1 锁定</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CosRetention: Integer
-        # @param RetainUntilDate: 锁定截止日期 2022-12-10T08:34:48.000Z
+        # @param RetainUntilDate: <p>锁定截止日期 2022-12-10T08:34:48.000Z</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RetainUntilDate: String
-        # @param RetentionGraceTime: 锁定宽限期,单位天
+        # @param RetentionGraceTime: <p>锁定宽限期,单位天</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RetentionGraceTime: Integer
-        # @param IsLocked: 是否已经备份锁定 0 不锁定; 1 锁定
+        # @param IsLocked: <p>是否已经备份锁定 0 不锁定; 1 锁定</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsLocked: Integer
-        # @param RemoteCos: 跨地域备份 0 不跨地域; 1 跨地域
+        # @param RemoteCos: <p>跨地域备份 0 不跨地域; 1 跨地域</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RemoteCos: Integer
-        # @param RemoteCosRegion: 跨地域备份地域名称 ap-guangzhou
+        # @param RemoteCosRegion: <p>跨地域备份地域名称 ap-guangzhou</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RemoteCosRegion: String
-        # @param CosEncryption: 备份加密 0 不加密; 1 加密
+        # @param CosEncryption: <p>备份加密 0 不加密; 1 加密</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CosEncryption: Integer
-        # @param KmsKey: kms密钥
+        # @param KmsKey: <p>kms密钥</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KmsKey: String
-        # @param StrategyName: 策略名称
+        # @param StrategyName: <p>策略名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StrategyName: String
-        # @param MultiAz: cos多AZ备份 0 单AZ; 1 多AZ
+        # @param MultiAz: <p>cos多AZ备份 0 单AZ; 1 多AZ</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MultiAz: Integer
+        # @param MaxSnapshotPerSec: <p>每节点写入仓库的最大速度 max_snapshot_bytes_per_sec, 默认40m</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxSnapshotPerSec: String
+        # @param InstanceId: <p>实例ID</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
 
-        attr_accessor :SnapshotName, :Uuid, :Repository, :Version, :Indices, :DataStreams, :State, :StartTime, :EndTime, :DurationInMillis, :TotalShards, :FailedShards, :SuccessfulShards, :Failures, :UserBackUp, :EsRepositoryType, :PaasEsRepository, :UserEsRepository, :StorageDuration, :AutoBackupInterval, :CosRetention, :RetainUntilDate, :RetentionGraceTime, :IsLocked, :RemoteCos, :RemoteCosRegion, :CosEncryption, :KmsKey, :StrategyName, :MultiAz
+        attr_accessor :SnapshotName, :Uuid, :Repository, :Version, :Indices, :DataStreams, :State, :StartTime, :EndTime, :DurationInMillis, :TotalShards, :FailedShards, :SuccessfulShards, :Failures, :UserBackUp, :EsRepositoryType, :PaasEsRepository, :UserEsRepository, :StorageDuration, :AutoBackupInterval, :CosRetention, :RetainUntilDate, :RetentionGraceTime, :IsLocked, :RemoteCos, :RemoteCosRegion, :CosEncryption, :KmsKey, :StrategyName, :MultiAz, :MaxSnapshotPerSec, :InstanceId
 
-        def initialize(snapshotname=nil, uuid=nil, repository=nil, version=nil, indices=nil, datastreams=nil, state=nil, starttime=nil, endtime=nil, durationinmillis=nil, totalshards=nil, failedshards=nil, successfulshards=nil, failures=nil, userbackup=nil, esrepositorytype=nil, paasesrepository=nil, useresrepository=nil, storageduration=nil, autobackupinterval=nil, cosretention=nil, retainuntildate=nil, retentiongracetime=nil, islocked=nil, remotecos=nil, remotecosregion=nil, cosencryption=nil, kmskey=nil, strategyname=nil, multiaz=nil)
+        def initialize(snapshotname=nil, uuid=nil, repository=nil, version=nil, indices=nil, datastreams=nil, state=nil, starttime=nil, endtime=nil, durationinmillis=nil, totalshards=nil, failedshards=nil, successfulshards=nil, failures=nil, userbackup=nil, esrepositorytype=nil, paasesrepository=nil, useresrepository=nil, storageduration=nil, autobackupinterval=nil, cosretention=nil, retainuntildate=nil, retentiongracetime=nil, islocked=nil, remotecos=nil, remotecosregion=nil, cosencryption=nil, kmskey=nil, strategyname=nil, multiaz=nil, maxsnapshotpersec=nil, instanceid=nil)
           @SnapshotName = snapshotname
           @Uuid = uuid
           @Repository = repository
@@ -7722,6 +7760,8 @@ module TencentCloud
           @KmsKey = kmskey
           @StrategyName = strategyname
           @MultiAz = multiaz
+          @MaxSnapshotPerSec = maxsnapshotpersec
+          @InstanceId = instanceid
         end
 
         def deserialize(params)
@@ -7762,6 +7802,8 @@ module TencentCloud
           @KmsKey = params['KmsKey']
           @StrategyName = params['StrategyName']
           @MultiAz = params['MultiAz']
+          @MaxSnapshotPerSec = params['MaxSnapshotPerSec']
+          @InstanceId = params['InstanceId']
         end
       end
 

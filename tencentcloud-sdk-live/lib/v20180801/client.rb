@@ -1090,6 +1090,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 该接口用于创建场景化视频任务。
+
+        # @param request: Request instance for CreateSceneVideoTask.
+        # @type request: :class:`Tencentcloud::live::V20180801::CreateSceneVideoTaskRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::CreateSceneVideoTaskResponse`
+        def CreateSceneVideoTask(request)
+          body = send_request('CreateSceneVideoTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateSceneVideoTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建一个在指定时间启动、结束的截图任务，并使用指定截图模板ID对应的配置进行截图。
         # - 注意事项
         # 1. 断流会结束当前截图。在结束时间到达之前任务仍然有效，期间只要正常推流都会正常截图，与是否多次推、断流无关。
@@ -4108,6 +4132,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeRecordTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 该接口用于查询场景化视频任务进展及结果。
+
+        # @param request: Request instance for DescribeSceneVideoTask.
+        # @type request: :class:`Tencentcloud::live::V20180801::DescribeSceneVideoTaskRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::DescribeSceneVideoTaskResponse`
+        def DescribeSceneVideoTask(request)
+          body = send_request('DescribeSceneVideoTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSceneVideoTaskResponse.new
             model.deserialize(response['Response'])
             model
           else

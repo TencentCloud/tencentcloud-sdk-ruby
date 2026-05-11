@@ -4540,6 +4540,110 @@ module TencentCloud
         end
       end
 
+      # CreateSceneVideoTask请求参数结构体
+      class CreateSceneVideoTaskRequest < TencentCloud::Common::AbstractModel
+        # @param ModelName: <p>模型名称。</p>
+        # @type ModelName: String
+        # @param ModelVersion: <p>模型版本号。</p>
+        # @type ModelVersion: String
+        # @param SceneType: <p>场景化类型。</p><p>枚举值：</p><ul><li>template_effect： 模板特效。</li></ul>
+        # @type SceneType: String
+        # @param Prompt: <p>输入的Prompt。避免出现违规词汇，审核会进行拦截。</p>
+        # @type Prompt: String
+        # @param Duration: <p>指定输出的视频时长。</p><p>部分场景不支持指定时长。</p>
+        # @type Duration: Integer
+        # @param ImageUrl: <p>输入的首帧参考图片Url。需外网可访问。</p>
+        # @type ImageUrl: String
+        # @param LastImageUrl: <p>输入的尾帧参考图片Url。</p>
+        # @type LastImageUrl: String
+        # @param ImageInfos: <p>多图参考生视频时，通过该参数指定多张参考图。</p>
+        # @type ImageInfos: Array
+        # @param VideoInfos: <p>视频编辑时，指定参考视频信息。</p>
+        # @type VideoInfos: Array
+        # @param ExtraParameters: <p>常规扩展参数。</p>
+        # @type ExtraParameters: :class:`Tencentcloud::Live.v20180801.models.SceneVideoExtraParam`
+        # @param AdditionalParameters: <p>模型扩展参数，用于透传到模型侧。</p>
+        # @type AdditionalParameters: String
+        # @param StoreCosParam: <p>输出结果存储到私有cos，需授权响应角色权限。</p>
+        # @type StoreCosParam: :class:`Tencentcloud::Live.v20180801.models.SceneStoreCosParam`
+        # @param Operator: <p>操作者名称。</p>
+        # @type Operator: String
+
+        attr_accessor :ModelName, :ModelVersion, :SceneType, :Prompt, :Duration, :ImageUrl, :LastImageUrl, :ImageInfos, :VideoInfos, :ExtraParameters, :AdditionalParameters, :StoreCosParam, :Operator
+
+        def initialize(modelname=nil, modelversion=nil, scenetype=nil, prompt=nil, duration=nil, imageurl=nil, lastimageurl=nil, imageinfos=nil, videoinfos=nil, extraparameters=nil, additionalparameters=nil, storecosparam=nil, operator=nil)
+          @ModelName = modelname
+          @ModelVersion = modelversion
+          @SceneType = scenetype
+          @Prompt = prompt
+          @Duration = duration
+          @ImageUrl = imageurl
+          @LastImageUrl = lastimageurl
+          @ImageInfos = imageinfos
+          @VideoInfos = videoinfos
+          @ExtraParameters = extraparameters
+          @AdditionalParameters = additionalparameters
+          @StoreCosParam = storecosparam
+          @Operator = operator
+        end
+
+        def deserialize(params)
+          @ModelName = params['ModelName']
+          @ModelVersion = params['ModelVersion']
+          @SceneType = params['SceneType']
+          @Prompt = params['Prompt']
+          @Duration = params['Duration']
+          @ImageUrl = params['ImageUrl']
+          @LastImageUrl = params['LastImageUrl']
+          unless params['ImageInfos'].nil?
+            @ImageInfos = []
+            params['ImageInfos'].each do |i|
+              scenevideoreferenceimageinfo_tmp = SceneVideoReferenceImageInfo.new
+              scenevideoreferenceimageinfo_tmp.deserialize(i)
+              @ImageInfos << scenevideoreferenceimageinfo_tmp
+            end
+          end
+          unless params['VideoInfos'].nil?
+            @VideoInfos = []
+            params['VideoInfos'].each do |i|
+              scenevideoreferencevideoinfo_tmp = SceneVideoReferenceVideoInfo.new
+              scenevideoreferencevideoinfo_tmp.deserialize(i)
+              @VideoInfos << scenevideoreferencevideoinfo_tmp
+            end
+          end
+          unless params['ExtraParameters'].nil?
+            @ExtraParameters = SceneVideoExtraParam.new
+            @ExtraParameters.deserialize(params['ExtraParameters'])
+          end
+          @AdditionalParameters = params['AdditionalParameters']
+          unless params['StoreCosParam'].nil?
+            @StoreCosParam = SceneStoreCosParam.new
+            @StoreCosParam.deserialize(params['StoreCosParam'])
+          end
+          @Operator = params['Operator']
+        end
+      end
+
+      # CreateSceneVideoTask返回参数结构体
+      class CreateSceneVideoTaskResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>输出的任务ID。</p>
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateScreenshotTask请求参数结构体
       class CreateScreenshotTaskRequest < TencentCloud::Common::AbstractModel
         # @param StreamName: 流名称。
@@ -11107,6 +11211,65 @@ module TencentCloud
         end
       end
 
+      # DescribeSceneVideoTask请求参数结构体
+      class DescribeSceneVideoTaskRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>任务ID。</p>
+        # @type TaskId: String
+
+        attr_accessor :TaskId
+
+        def initialize(taskid=nil)
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # DescribeSceneVideoTask返回参数结构体
+      class DescribeSceneVideoTaskResponse < TencentCloud::Common::AbstractModel
+        # @param InfoList: <p>一些特殊场景的返回信息。</p>
+        # @type InfoList: Array
+        # @param Status: <p>任务状态。</p><p>枚举值：</p><ul><li>DONE： 任务结束。</li><li>RUN： 任务运行中。</li><li>WAIT： 任务准备中。</li><li>FAIL： 任务失败。</li></ul>
+        # @type Status: String
+        # @param Resolution: <p>输出视频的分辨率。示例：720x1280。</p>
+        # @type Resolution: String
+        # @param Message: <p>错误信息。</p>
+        # @type Message: String
+        # @param VideoUrls: <p>输出的视频Url。默认过期时间:12小时，请尽快拉取并转存。也可以使用私有Cos桶长期存储。</p>
+        # @type VideoUrls: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InfoList, :Status, :Resolution, :Message, :VideoUrls, :RequestId
+
+        def initialize(infolist=nil, status=nil, resolution=nil, message=nil, videourls=nil, requestid=nil)
+          @InfoList = infolist
+          @Status = status
+          @Resolution = resolution
+          @Message = message
+          @VideoUrls = videourls
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['InfoList'].nil?
+            @InfoList = []
+            params['InfoList'].each do |i|
+              scenevideooutputinfo_tmp = SceneVideoOutputInfo.new
+              scenevideooutputinfo_tmp.deserialize(i)
+              @InfoList << scenevideooutputinfo_tmp
+            end
+          end
+          @Status = params['Status']
+          @Resolution = params['Resolution']
+          @Message = params['Message']
+          @VideoUrls = params['VideoUrls']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeScreenShotSheetNumList请求参数结构体
       class DescribeScreenShotSheetNumListRequest < TencentCloud::Common::AbstractModel
         # @param StartTime: 起始时间点，接口查询支持两种时间格式：
@@ -16241,6 +16404,134 @@ module TencentCloud
           @DomainName = params['DomainName']
           @AppName = params['AppName']
           @StreamName = params['StreamName']
+        end
+      end
+
+      # 场景化视频结果文件上传COS时，需传入的信息。 需创建并授权LVB_QCSRole角色。
+      class SceneStoreCosParam < TencentCloud::Common::AbstractModel
+        # @param CosBucketName: <p>Cos桶名称。</p>
+        # @type CosBucketName: String
+        # @param CosBucketRegion: <p>Cos桶地域。</p>
+        # @type CosBucketRegion: String
+        # @param CosBucketPath: <p>存储路径。</p>
+        # @type CosBucketPath: String
+
+        attr_accessor :CosBucketName, :CosBucketRegion, :CosBucketPath
+
+        def initialize(cosbucketname=nil, cosbucketregion=nil, cosbucketpath=nil)
+          @CosBucketName = cosbucketname
+          @CosBucketRegion = cosbucketregion
+          @CosBucketPath = cosbucketpath
+        end
+
+        def deserialize(params)
+          @CosBucketName = params['CosBucketName']
+          @CosBucketRegion = params['CosBucketRegion']
+          @CosBucketPath = params['CosBucketPath']
+        end
+      end
+
+      # 用于场景化创作视频时用到的扩展参数信息。
+      class SceneVideoExtraParam < TencentCloud::Common::AbstractModel
+        # @param Resolution: <p>指定输出分辨率。选项:720P, 1080P, 2K, 4K。</p>
+        # @type Resolution: String
+        # @param AspectRatio: <p>指定输出视频的宽高比，示例：16:9。</p>
+        # @type AspectRatio: String
+        # @param OffPeak: <p>错峰模型，仅支持的模型可使用。</p>
+        # @type OffPeak: Boolean
+        # @param LogoAdd: <p>自动添加水印，默认左上角添加 &quot;AI生成&quot; 标识。</p>
+        # @type LogoAdd: Boolean
+        # @param EnableAudio: <p>使用音画同出。</p>
+        # @type EnableAudio: Boolean
+        # @param EnableBgm: <p>生成背景音乐。</p>
+        # @type EnableBgm: Boolean
+        # @param EnablePromptEnhance: <p>对输入的Prompt进行优化。</p>
+        # @type EnablePromptEnhance: Boolean
+        # @param CallbackUrl: <p>回调URL。</p>
+        # @type CallbackUrl: String
+
+        attr_accessor :Resolution, :AspectRatio, :OffPeak, :LogoAdd, :EnableAudio, :EnableBgm, :EnablePromptEnhance, :CallbackUrl
+
+        def initialize(resolution=nil, aspectratio=nil, offpeak=nil, logoadd=nil, enableaudio=nil, enablebgm=nil, enablepromptenhance=nil, callbackurl=nil)
+          @Resolution = resolution
+          @AspectRatio = aspectratio
+          @OffPeak = offpeak
+          @LogoAdd = logoadd
+          @EnableAudio = enableaudio
+          @EnableBgm = enablebgm
+          @EnablePromptEnhance = enablepromptenhance
+          @CallbackUrl = callbackurl
+        end
+
+        def deserialize(params)
+          @Resolution = params['Resolution']
+          @AspectRatio = params['AspectRatio']
+          @OffPeak = params['OffPeak']
+          @LogoAdd = params['LogoAdd']
+          @EnableAudio = params['EnableAudio']
+          @EnableBgm = params['EnableBgm']
+          @EnablePromptEnhance = params['EnablePromptEnhance']
+          @CallbackUrl = params['CallbackUrl']
+        end
+      end
+
+      # 场景化视频输出信息。
+      class SceneVideoOutputInfo < TencentCloud::Common::AbstractModel
+        # @param Info: <p>输出信息。</p>
+        # @type Info: String
+        # @param Type: <p>输出类型。</p>
+        # @type Type: String
+
+        attr_accessor :Info, :Type
+
+        def initialize(info=nil, type=nil)
+          @Info = info
+          @Type = type
+        end
+
+        def deserialize(params)
+          @Info = params['Info']
+          @Type = params['Type']
+        end
+      end
+
+      # 用于场景化生视频创作的参考图片信息。
+      class SceneVideoReferenceImageInfo < TencentCloud::Common::AbstractModel
+        # @param ImageUrl: <p>输入的参考图Url，需外网可访问。</p>
+        # @type ImageUrl: String
+        # @param Text: <p>针对该参考图的Prompt描述，仅部分模型是支持。</p>
+        # @type Text: String
+        # @param ReferenceType: <p>参考类型。</p>
+        # @type ReferenceType: String
+
+        attr_accessor :ImageUrl, :Text, :ReferenceType
+
+        def initialize(imageurl=nil, text=nil, referencetype=nil)
+          @ImageUrl = imageurl
+          @Text = text
+          @ReferenceType = referencetype
+        end
+
+        def deserialize(params)
+          @ImageUrl = params['ImageUrl']
+          @Text = params['Text']
+          @ReferenceType = params['ReferenceType']
+        end
+      end
+
+      # 用于场景化视频生成的参考视频素材。
+      class SceneVideoReferenceVideoInfo < TencentCloud::Common::AbstractModel
+        # @param VideoUrl: <p>参考视频Url，需外网可访问。</p>
+        # @type VideoUrl: String
+
+        attr_accessor :VideoUrl
+
+        def initialize(videourl=nil)
+          @VideoUrl = videourl
+        end
+
+        def deserialize(params)
+          @VideoUrl = params['VideoUrl']
         end
       end
 

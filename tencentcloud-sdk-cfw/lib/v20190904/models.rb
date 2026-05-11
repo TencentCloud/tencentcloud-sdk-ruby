@@ -5601,6 +5601,65 @@ module TencentCloud
         end
       end
 
+      # DescribeSerialRegion请求参数结构体
+      class DescribeSerialRegionRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeSerialRegion返回参数结构体
+      class DescribeSerialRegionResponse < TencentCloud::Common::AbstractModel
+        # @param SerialRegionLst: 串行地域带宽分配
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SerialRegionLst: Array
+        # @param UnUsedWidth: 剩余可分配通用带宽 单位M
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UnUsedWidth: Integer
+        # @param UnUsedQuota: 可配置实例个数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UnUsedQuota: Integer
+        # @param BypassWidth: 旁路带宽数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BypassWidth: Integer
+        # @param SendBypassWidth: 赠送的旁路带宽数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SendBypassWidth: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SerialRegionLst, :UnUsedWidth, :UnUsedQuota, :BypassWidth, :SendBypassWidth, :RequestId
+
+        def initialize(serialregionlst=nil, unusedwidth=nil, unusedquota=nil, bypasswidth=nil, sendbypasswidth=nil, requestid=nil)
+          @SerialRegionLst = serialregionlst
+          @UnUsedWidth = unusedwidth
+          @UnUsedQuota = unusedquota
+          @BypassWidth = bypasswidth
+          @SendBypassWidth = sendbypasswidth
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['SerialRegionLst'].nil?
+            @SerialRegionLst = []
+            params['SerialRegionLst'].each do |i|
+              serialregioninfo_tmp = SerialRegionInfo.new
+              serialregioninfo_tmp.deserialize(i)
+              @SerialRegionLst << serialregioninfo_tmp
+            end
+          end
+          @UnUsedWidth = params['UnUsedWidth']
+          @UnUsedQuota = params['UnUsedQuota']
+          @BypassWidth = params['BypassWidth']
+          @SendBypassWidth = params['SendBypassWidth']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeSourceAsset请求参数结构体
       class DescribeSourceAssetRequest < TencentCloud::Common::AbstractModel
         # @param ChooseType: ChooseType为1，查询已经分组的资产；ChooseType不为1查询没有分组的资产
@@ -10764,6 +10823,46 @@ module TencentCloud
           @Id = params['Id']
           @OrderIndex = params['OrderIndex']
           @NewOrderIndex = params['NewOrderIndex']
+        end
+      end
+
+      # 防火墙串行地域带宽分配情况
+      class SerialRegionInfo < TencentCloud::Common::AbstractModel
+        # @param Region: 地域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Region: String
+        # @param Width: 分配带宽值 单位Mbps
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Width: Integer
+        # @param ElasticSwitch: 弹性开关
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ElasticSwitch: Integer
+        # @param ElasticBandwidth: 弹性带宽上限，单位Mbps
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ElasticBandwidth: Integer
+        # @param InFlowMax: 七天入向峰值带宽，单位bps
+        # @type InFlowMax: Integer
+        # @param OutFlowMax: 七天出向峰值带宽，单位bps
+        # @type OutFlowMax: Integer
+
+        attr_accessor :Region, :Width, :ElasticSwitch, :ElasticBandwidth, :InFlowMax, :OutFlowMax
+
+        def initialize(region=nil, width=nil, elasticswitch=nil, elasticbandwidth=nil, inflowmax=nil, outflowmax=nil)
+          @Region = region
+          @Width = width
+          @ElasticSwitch = elasticswitch
+          @ElasticBandwidth = elasticbandwidth
+          @InFlowMax = inflowmax
+          @OutFlowMax = outflowmax
+        end
+
+        def deserialize(params)
+          @Region = params['Region']
+          @Width = params['Width']
+          @ElasticSwitch = params['ElasticSwitch']
+          @ElasticBandwidth = params['ElasticBandwidth']
+          @InFlowMax = params['InFlowMax']
+          @OutFlowMax = params['OutFlowMax']
         end
       end
 

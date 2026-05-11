@@ -211,10 +211,10 @@ module TencentCloud
 
         attr_accessor :Model, :Messages, :Stream, :StreamModeration, :TopP, :Temperature, :EnableEnhancement, :Tools, :ToolChoice, :CustomTool, :SearchInfo, :Citation, :EnableSpeedSearch, :EnableMultimedia, :EnableDeepSearch, :Seed, :ForceSearchEnhancement, :Stop, :EnableRecommendedQuestions, :EnableDeepRead, :WebSearchOptions, :TopicChoice, :EnableThinking
         extend Gem::Deprecate
-        deprecate :EnableDeepSearch, :none, 2026, 2
-        deprecate :EnableDeepSearch=, :none, 2026, 2
-        deprecate :EnableDeepRead, :none, 2026, 2
-        deprecate :EnableDeepRead=, :none, 2026, 2
+        deprecate :EnableDeepSearch, :none, 2026, 5
+        deprecate :EnableDeepSearch=, :none, 2026, 5
+        deprecate :EnableDeepRead, :none, 2026, 5
+        deprecate :EnableDeepRead=, :none, 2026, 5
 
         def initialize(model=nil, messages=nil, stream=nil, streammoderation=nil, topp=nil, temperature=nil, enableenhancement=nil, tools=nil, toolchoice=nil, customtool=nil, searchinfo=nil, citation=nil, enablespeedsearch=nil, enablemultimedia=nil, enabledeepsearch=nil, seed=nil, forcesearchenhancement=nil, stop=nil, enablerecommendedquestions=nil, enabledeepread=nil, websearchoptions=nil, topicchoice=nil, enablethinking=nil)
           @Model = model
@@ -324,8 +324,8 @@ module TencentCloud
 
         attr_accessor :Created, :Usage, :Note, :Id, :Choices, :ErrorMsg, :ModerationLevel, :SearchInfo, :Replaces, :RecommendedQuestions, :Processes, :RequestId
         extend Gem::Deprecate
-        deprecate :ModerationLevel, :none, 2026, 2
-        deprecate :ModerationLevel=, :none, 2026, 2
+        deprecate :ModerationLevel, :none, 2026, 5
+        deprecate :ModerationLevel=, :none, 2026, 5
 
         def initialize(created=nil, usage=nil, note=nil, id=nil, choices=nil, errormsg=nil, moderationlevel=nil, searchinfo=nil, replaces=nil, recommendedquestions=nil, processes=nil, requestid=nil)
           @Created = created
@@ -1237,10 +1237,10 @@ module TencentCloud
 
         attr_accessor :Data, :FirstID, :LastID, :HasMore, :Object, :FirstMsgID, :LastMsgID, :RequestId
         extend Gem::Deprecate
-        deprecate :FirstID, :none, 2026, 2
-        deprecate :FirstID=, :none, 2026, 2
-        deprecate :LastID, :none, 2026, 2
-        deprecate :LastID=, :none, 2026, 2
+        deprecate :FirstID, :none, 2026, 5
+        deprecate :FirstID=, :none, 2026, 5
+        deprecate :LastID, :none, 2026, 5
+        deprecate :LastID=, :none, 2026, 5
 
         def initialize(data=nil, firstid=nil, lastid=nil, hasmore=nil, object=nil, firstmsgid=nil, lastmsgid=nil, requestid=nil)
           @Data = data
