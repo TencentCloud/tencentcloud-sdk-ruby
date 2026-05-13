@@ -821,6 +821,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 工作空间用户列表
+
+        # @param request: Request instance for DescribeWorkSpaceUsers.
+        # @type request: :class:`Tencentcloud::oceanus::V20190422::DescribeWorkSpaceUsersRequest`
+        # @rtype: :class:`Tencentcloud::oceanus::V20190422::DescribeWorkSpaceUsersResponse`
+        def DescribeWorkSpaceUsers(request)
+          body = send_request('DescribeWorkSpaceUsers', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeWorkSpaceUsersResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 授权工作空间列表
 
         # @param request: Request instance for DescribeWorkSpaces.

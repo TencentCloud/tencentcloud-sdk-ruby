@@ -308,10 +308,14 @@ module TencentCloud
         # @type IdcPointType: String
         # @param BIapLinkProtected: 运营商链路是否有保护
         # @type BIapLinkProtected: Boolean
+        # @param ServiceType: 服务类型：SHARE-共享型，EXCLUSIVE-独占型
+        # @type ServiceType: String
+        # @param VlanRange: VLAN范围
+        # @type VlanRange: String
 
-        attr_accessor :InstanceId, :Name, :IapId, :IdcAddress, :IdcType, :Bandwidth, :Telephone, :Status, :ApplyTime, :ReadyTime, :ExpireTime, :Remarks, :RegionStatus, :AppId, :Uin, :CustomerAuthName, :DirectConnectId, :CloudAttachServiceGatewaysSupport, :BUpdateBandwidth, :ArRegion, :IapCode, :IdcPointType, :BIapLinkProtected
+        attr_accessor :InstanceId, :Name, :IapId, :IdcAddress, :IdcType, :Bandwidth, :Telephone, :Status, :ApplyTime, :ReadyTime, :ExpireTime, :Remarks, :RegionStatus, :AppId, :Uin, :CustomerAuthName, :DirectConnectId, :CloudAttachServiceGatewaysSupport, :BUpdateBandwidth, :ArRegion, :IapCode, :IdcPointType, :BIapLinkProtected, :ServiceType, :VlanRange
 
-        def initialize(instanceid=nil, name=nil, iapid=nil, idcaddress=nil, idctype=nil, bandwidth=nil, telephone=nil, status=nil, applytime=nil, readytime=nil, expiretime=nil, remarks=nil, regionstatus=nil, appid=nil, uin=nil, customerauthname=nil, directconnectid=nil, cloudattachservicegatewayssupport=nil, bupdatebandwidth=nil, arregion=nil, iapcode=nil, idcpointtype=nil, biaplinkprotected=nil)
+        def initialize(instanceid=nil, name=nil, iapid=nil, idcaddress=nil, idctype=nil, bandwidth=nil, telephone=nil, status=nil, applytime=nil, readytime=nil, expiretime=nil, remarks=nil, regionstatus=nil, appid=nil, uin=nil, customerauthname=nil, directconnectid=nil, cloudattachservicegatewayssupport=nil, bupdatebandwidth=nil, arregion=nil, iapcode=nil, idcpointtype=nil, biaplinkprotected=nil, servicetype=nil, vlanrange=nil)
           @InstanceId = instanceid
           @Name = name
           @IapId = iapid
@@ -335,6 +339,8 @@ module TencentCloud
           @IapCode = iapcode
           @IdcPointType = idcpointtype
           @BIapLinkProtected = biaplinkprotected
+          @ServiceType = servicetype
+          @VlanRange = vlanrange
         end
 
         def deserialize(params)
@@ -361,6 +367,8 @@ module TencentCloud
           @IapCode = params['IapCode']
           @IdcPointType = params['IdcPointType']
           @BIapLinkProtected = params['BIapLinkProtected']
+          @ServiceType = params['ServiceType']
+          @VlanRange = params['VlanRange']
         end
       end
 
@@ -438,13 +446,16 @@ module TencentCloud
 
       # CreateCloudAttachService请求参数结构体
       class CreateCloudAttachServiceRequest < TencentCloud::Common::AbstractModel
-        # @param Data: 创建敏捷上云入参
+        # @param Data: <p>创建敏捷上云入参</p>
         # @type Data: :class:`Tencentcloud::Dc.v20180410.models.CreateCasInput`
+        # @param Tags: <p>标签</p>
+        # @type Tags: Array
 
-        attr_accessor :Data
+        attr_accessor :Data, :Tags
 
-        def initialize(data=nil)
+        def initialize(data=nil, tags=nil)
           @Data = data
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -452,12 +463,20 @@ module TencentCloud
             @Data = CreateCasInput.new
             @Data.deserialize(params['Data'])
           end
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 
       # CreateCloudAttachService返回参数结构体
       class CreateCloudAttachServiceResponse < TencentCloud::Common::AbstractModel
-        # @param CloudAttach: 敏捷上云服务详情
+        # @param CloudAttach: <p>敏捷上云服务详情</p>
         # @type CloudAttach: :class:`Tencentcloud::Dc.v20180410.models.CloudAttachInfo`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

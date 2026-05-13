@@ -9558,20 +9558,17 @@ module TencentCloud
 
       # DescribeRecordingRules请求参数结构体
       class DescribeRecordingRulesRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: Prometheus 实例 ID
+        # @param InstanceId: <p>Prometheus 实例 ID</p>
         # @type InstanceId: String
-        # @param Limit: 返回数量，默认为 20，最大值为 100
+        # @param Limit: <p>返回数量，默认为 20，最大值为 100</p>
         # @type Limit: Integer
-        # @param Offset: 偏移量，默认为 0
+        # @param Offset: <p>偏移量，默认为 0</p>
         # @type Offset: Integer
-        # @param RuleId: 规则 ID
+        # @param RuleId: <p>规则 ID</p>
         # @type RuleId: String
-        # @param RuleState: 规则状态码，取值如下：
-        # <li>1=RuleDeleted</li>
-        # <li>2=RuleEnabled</li>
-        # <li>3=RuleDisabled</li>
+        # @param RuleState: <p>规则状态码，取值如下：</p><li>1=RuleDeleted</li><li>2=RuleEnabled</li><li>3=RuleDisabled</li>
         # @type RuleState: Integer
-        # @param Name: 规则名称
+        # @param Name: <p>规则名称</p>
         # @type Name: String
 
         attr_accessor :InstanceId, :Limit, :Offset, :RuleId, :RuleState, :Name
@@ -9597,19 +9594,22 @@ module TencentCloud
 
       # DescribeRecordingRules返回参数结构体
       class DescribeRecordingRulesResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 规则组数量
+        # @param TotalCount: <p>规则组数量</p>
         # @type TotalCount: Integer
-        # @param RecordingRuleSet: 规则组详情
+        # @param RecordingRuleSet: <p>规则组详情</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RecordingRuleSet: Array
+        # @param TotalRuleCount: <p>预聚合规则数</p>
+        # @type TotalRuleCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TotalCount, :RecordingRuleSet, :RequestId
+        attr_accessor :TotalCount, :RecordingRuleSet, :TotalRuleCount, :RequestId
 
-        def initialize(totalcount=nil, recordingruleset=nil, requestid=nil)
+        def initialize(totalcount=nil, recordingruleset=nil, totalrulecount=nil, requestid=nil)
           @TotalCount = totalcount
           @RecordingRuleSet = recordingruleset
+          @TotalRuleCount = totalrulecount
           @RequestId = requestid
         end
 
@@ -9623,6 +9623,7 @@ module TencentCloud
               @RecordingRuleSet << recordingruleset_tmp
             end
           end
+          @TotalRuleCount = params['TotalRuleCount']
           @RequestId = params['RequestId']
         end
       end

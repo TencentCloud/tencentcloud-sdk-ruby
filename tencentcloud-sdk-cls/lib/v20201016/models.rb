@@ -1943,10 +1943,14 @@ module TencentCloud
         # @param Menus: <p>自定义显示菜单</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Menus: Array
+        # @param Domain: <p>公网访问域名</p>
+        # @type Domain: String
+        # @param IntranetDomain: <p>内网访问域名</p>
+        # @type IntranetDomain: String
 
-        attr_accessor :ConsoleId, :AccessMode, :LoginMode, :DomainPrefix, :Accounts, :IntranetType, :IntranetRegion, :VpcId, :SubnetId, :AnonymousLogin, :AuthRoles, :Tags, :HideParams, :AccessControlRules, :Remarks, :Menus
+        attr_accessor :ConsoleId, :AccessMode, :LoginMode, :DomainPrefix, :Accounts, :IntranetType, :IntranetRegion, :VpcId, :SubnetId, :AnonymousLogin, :AuthRoles, :Tags, :HideParams, :AccessControlRules, :Remarks, :Menus, :Domain, :IntranetDomain
 
-        def initialize(consoleid=nil, accessmode=nil, loginmode=nil, domainprefix=nil, accounts=nil, intranettype=nil, intranetregion=nil, vpcid=nil, subnetid=nil, anonymouslogin=nil, authroles=nil, tags=nil, hideparams=nil, accesscontrolrules=nil, remarks=nil, menus=nil)
+        def initialize(consoleid=nil, accessmode=nil, loginmode=nil, domainprefix=nil, accounts=nil, intranettype=nil, intranetregion=nil, vpcid=nil, subnetid=nil, anonymouslogin=nil, authroles=nil, tags=nil, hideparams=nil, accesscontrolrules=nil, remarks=nil, menus=nil, domain=nil, intranetdomain=nil)
           @ConsoleId = consoleid
           @AccessMode = accessmode
           @LoginMode = loginmode
@@ -1963,6 +1967,8 @@ module TencentCloud
           @AccessControlRules = accesscontrolrules
           @Remarks = remarks
           @Menus = menus
+          @Domain = domain
+          @IntranetDomain = intranetdomain
         end
 
         def deserialize(params)
@@ -2013,6 +2019,8 @@ module TencentCloud
           end
           @Remarks = params['Remarks']
           @Menus = params['Menus']
+          @Domain = params['Domain']
+          @IntranetDomain = params['IntranetDomain']
         end
       end
 

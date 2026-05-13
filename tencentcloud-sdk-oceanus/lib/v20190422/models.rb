@@ -79,15 +79,15 @@ module TencentCloud
 
       # CheckSavepoint请求参数结构体
       class CheckSavepointRequest < TencentCloud::Common::AbstractModel
-        # @param JobId: 作业 id
+        # @param JobId: <p>作业 id</p>
         # @type JobId: String
-        # @param SerialId: 快照资源 id
+        # @param SerialId: <p>快照资源 id</p>
         # @type SerialId: String
-        # @param RecordType: 快照类型 1: savepoint；2: checkpoint；3: cancelWithSavepoint
+        # @param RecordType: <p>快照类型 1: savepoint；2: checkpoint；3: cancelWithSavepoint</p>
         # @type RecordType: Integer
-        # @param SavepointPath: 快照路径，目前只支持 cos 路径
+        # @param SavepointPath: <p>快照路径，目前只支持 cos 路径</p>
         # @type SavepointPath: String
-        # @param WorkSpaceId: 工作空间 id
+        # @param WorkSpaceId: <p>工作空间 id</p>
         # @type WorkSpaceId: String
 
         attr_accessor :JobId, :SerialId, :RecordType, :SavepointPath, :WorkSpaceId
@@ -111,9 +111,9 @@ module TencentCloud
 
       # CheckSavepoint返回参数结构体
       class CheckSavepointResponse < TencentCloud::Common::AbstractModel
-        # @param SerialId: 资源 id
+        # @param SerialId: <p>资源 id</p>
         # @type SerialId: String
-        # @param SavepointStatus: 1=可用，2=不可用
+        # @param SavepointStatus: <p>1=可用，2=不可用</p>
         # @type SavepointStatus: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1708,11 +1708,11 @@ module TencentCloud
 
       # DeleteResourceConfigs请求参数结构体
       class DeleteResourceConfigsRequest < TencentCloud::Common::AbstractModel
-        # @param ResourceId: 资源ID
+        # @param ResourceId: <p>资源ID</p>
         # @type ResourceId: String
-        # @param ResourceConfigVersions: 资源版本数组
+        # @param ResourceConfigVersions: <p>资源版本数组</p>
         # @type ResourceConfigVersions: Array
-        # @param WorkSpaceId: 工作空间 SerialId
+        # @param WorkSpaceId: <p>工作空间 SerialId</p>
         # @type WorkSpaceId: String
 
         attr_accessor :ResourceId, :ResourceConfigVersions, :WorkSpaceId
@@ -3117,6 +3117,53 @@ module TencentCloud
         end
       end
 
+      # DescribeWorkSpaceUsers请求参数结构体
+      class DescribeWorkSpaceUsersRequest < TencentCloud::Common::AbstractModel
+        # @param WorkSpaceId: 工作空间 SerialId
+        # @type WorkSpaceId: String
+        # @param AuthSubAccountUin: 子用户
+        # @type AuthSubAccountUin: String
+
+        attr_accessor :WorkSpaceId, :AuthSubAccountUin
+
+        def initialize(workspaceid=nil, authsubaccountuin=nil)
+          @WorkSpaceId = workspaceid
+          @AuthSubAccountUin = authsubaccountuin
+        end
+
+        def deserialize(params)
+          @WorkSpaceId = params['WorkSpaceId']
+          @AuthSubAccountUin = params['AuthSubAccountUin']
+        end
+      end
+
+      # DescribeWorkSpaceUsers返回参数结构体
+      class DescribeWorkSpaceUsersResponse < TencentCloud::Common::AbstractModel
+        # @param RoleAuths: 空间用户列表
+        # @type RoleAuths: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RoleAuths, :RequestId
+
+        def initialize(roleauths=nil, requestid=nil)
+          @RoleAuths = roleauths
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['RoleAuths'].nil?
+            @RoleAuths = []
+            params['RoleAuths'].each do |i|
+              roleauth_tmp = RoleAuth.new
+              roleauth_tmp.deserialize(i)
+              @RoleAuths << roleauth_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeWorkSpaces请求参数结构体
       class DescribeWorkSpacesRequest < TencentCloud::Common::AbstractModel
         # @param Offset: 偏移量，默认 0
@@ -4209,13 +4256,13 @@ module TencentCloud
 
       # SqlGateway返回LogicalType类型
       class LogicalType < TencentCloud::Common::AbstractModel
-        # @param Type: 类型
+        # @param Type: <p>类型</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
-        # @param NullAble: 是否允许为空
+        # @param NullAble: <p>是否允许为空</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NullAble: Boolean
-        # @param Length: 长度
+        # @param Length: <p>长度</p><p>单位：字符数</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Length: Integer
 
@@ -5511,14 +5558,10 @@ module TencentCloud
 
       # setats disk
       class SetatsDisk < TencentCloud::Common::AbstractModel
-        # @param DiskType: 磁盘类型
-        # CLOUD_BSSD
-        # CLOUD_SSD
-        # CLOUD_HSSD
-        # CLOUD_PREMIUM
+        # @param DiskType: <p>磁盘类型<br>CLOUD_BSSD<br>CLOUD_SSD<br>CLOUD_HSSD<br>CLOUD_PREMIUM</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiskType: String
-        # @param DiskSize: 磁盘大小
+        # @param DiskSize: <p>磁盘大小</p><p>单位：GB</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiskSize: Integer
 

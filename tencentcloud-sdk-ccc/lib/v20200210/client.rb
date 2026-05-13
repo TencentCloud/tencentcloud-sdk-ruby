@@ -735,6 +735,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取AI 会话交互事件流
+
+        # @param request: Request instance for DescribeAICallInteractionRecords.
+        # @type request: :class:`Tencentcloud::ccc::V20200210::DescribeAICallInteractionRecordsRequest`
+        # @rtype: :class:`Tencentcloud::ccc::V20200210::DescribeAICallInteractionRecordsResponse`
+        def DescribeAICallInteractionRecords(request)
+          body = send_request('DescribeAICallInteractionRecords', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAICallInteractionRecordsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 调用该接口，可以通过 Session ID 查询指定会话在特定时间段内，AI服务的处理时延明细与统计数据，时延信息包括：
         # - 端到端（ETE）时延：统计从用户语音输入到 AI 返回完整响应的整体耗时。
         # - 自动语音识别（ASR）时延：统计语音输入被识别为文本所需的处理耗时。

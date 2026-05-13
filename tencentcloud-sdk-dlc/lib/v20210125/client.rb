@@ -2695,6 +2695,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 是否成功开通TCLake
+
+        # @param request: Request instance for DescribeTCLakeMetaInstance.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::DescribeTCLakeMetaInstanceRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::DescribeTCLakeMetaInstanceResponse`
+        def DescribeTCLakeMetaInstance(request)
+          body = send_request('DescribeTCLakeMetaInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeTCLakeMetaInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DescribeTable），用于查询单个表的详细信息。
 
         # @param request: Request instance for DescribeTable.
@@ -3497,6 +3521,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = GrantDLCCatalogAccessResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 开通TCLake
+
+        # @param request: Request instance for InitializeTCLake.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::InitializeTCLakeRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::InitializeTCLakeResponse`
+        def InitializeTCLake(request)
+          body = send_request('InitializeTCLake', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = InitializeTCLakeResponse.new
             model.deserialize(response['Response'])
             model
           else

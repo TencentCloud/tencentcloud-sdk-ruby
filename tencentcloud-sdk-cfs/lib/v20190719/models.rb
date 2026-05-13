@@ -2897,6 +2897,34 @@ module TencentCloud
         end
       end
 
+      # 入参权限组规则列表
+      class InputPermissionGroupRules < TencentCloud::Common::AbstractModel
+        # @param AuthClientIp: 允许访问的客户端IP
+        # @type AuthClientIp: String
+        # @param RWPermission: 读写权限, ro为只读，rw为读写
+        # @type RWPermission: String
+        # @param UserPermission: 用户权限。其中all_squash为所有访问用户都会被映射为匿名用户或用户组；no_all_squash为访问用户会先与本机用户匹配，匹配失败后再映射为匿名用户或用户组；root_squash为将来访的root用户映射为匿名用户或用户组；no_root_squash为来访的root用户保持root帐号权限。
+        # @type UserPermission: String
+        # @param Priority: 规则优先级，1-100。 其中 1 为最高，100为最低
+        # @type Priority: Integer
+
+        attr_accessor :AuthClientIp, :RWPermission, :UserPermission, :Priority
+
+        def initialize(authclientip=nil, rwpermission=nil, userpermission=nil, priority=nil)
+          @AuthClientIp = authclientip
+          @RWPermission = rwpermission
+          @UserPermission = userpermission
+          @Priority = priority
+        end
+
+        def deserialize(params)
+          @AuthClientIp = params['AuthClientIp']
+          @RWPermission = params['RWPermission']
+          @UserPermission = params['UserPermission']
+          @Priority = params['Priority']
+        end
+      end
+
       # 生命周期任务
       class LifecycleDataTaskInfo < TencentCloud::Common::AbstractModel
         # @param TaskId: 任务id
@@ -3464,6 +3492,60 @@ module TencentCloud
           @SubnetName = params['SubnetName']
           @CcnID = params['CcnID']
           @CidrBlock = params['CidrBlock']
+        end
+      end
+
+      # OverrideCfsRules请求参数结构体
+      class OverrideCfsRulesRequest < TencentCloud::Common::AbstractModel
+        # @param PermissionGroupId: 权限组 ID
+        # @type PermissionGroupId: String
+        # @param RuleList: 权限组规则列表
+        # @type RuleList: Array
+
+        attr_accessor :PermissionGroupId, :RuleList
+
+        def initialize(permissiongroupid=nil, rulelist=nil)
+          @PermissionGroupId = permissiongroupid
+          @RuleList = rulelist
+        end
+
+        def deserialize(params)
+          @PermissionGroupId = params['PermissionGroupId']
+          unless params['RuleList'].nil?
+            @RuleList = []
+            params['RuleList'].each do |i|
+              inputpermissiongrouprules_tmp = InputPermissionGroupRules.new
+              inputpermissiongrouprules_tmp.deserialize(i)
+              @RuleList << inputpermissiongrouprules_tmp
+            end
+          end
+        end
+      end
+
+      # OverrideCfsRules返回参数结构体
+      class OverrideCfsRulesResponse < TencentCloud::Common::AbstractModel
+        # @param RuleList: 权限组规则列表
+        # @type RuleList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RuleList, :RequestId
+
+        def initialize(rulelist=nil, requestid=nil)
+          @RuleList = rulelist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['RuleList'].nil?
+            @RuleList = []
+            params['RuleList'].each do |i|
+              pgroupruleinfo_tmp = PGroupRuleInfo.new
+              pgroupruleinfo_tmp.deserialize(i)
+              @RuleList << pgroupruleinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
         end
       end
 

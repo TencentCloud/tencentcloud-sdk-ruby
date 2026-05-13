@@ -1531,7 +1531,7 @@ module TencentCloud
 
       # DescribeInstancesDiskNum请求参数结构体
       class DescribeInstancesDiskNumRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceIds: 云服务器实例ID，通过[DescribeInstances](/document/product/213/15728)接口查询。
+        # @param InstanceIds: <p>云服务器实例ID，通过<a href="/document/product/213/15728">DescribeInstances</a>接口查询。</p>
         # @type InstanceIds: Array
 
         attr_accessor :InstanceIds
@@ -1547,7 +1547,7 @@ module TencentCloud
 
       # DescribeInstancesDiskNum返回参数结构体
       class DescribeInstancesDiskNumResponse < TencentCloud::Common::AbstractModel
-        # @param AttachDetail: 各个云服务器已挂载和可挂载弹性云盘的数量。
+        # @param AttachDetail: <p>各个云服务器已挂载和可挂载弹性云盘的数量。</p>
         # @type AttachDetail: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

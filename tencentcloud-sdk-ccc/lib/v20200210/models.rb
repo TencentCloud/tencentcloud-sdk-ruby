@@ -162,6 +162,80 @@ module TencentCloud
         end
       end
 
+      # 表示一轮完整的对话交互
+      class AICallInteractionRound < TencentCloud::Common::AbstractModel
+        # @param RoundId: <p>本轮对话的唯一标识 Id</p>
+        # @type RoundId: String
+        # @param RoundIndex: <p>轮次</p>
+        # @type RoundIndex: Integer
+        # @param Tags: <p>用户回复分类的标签， json序列化后的表示</p>
+        # @type Tags: String
+        # @param Messages: <p>本轮涉及到的消息内容</p>
+        # @type Messages: Array
+        # @param Paths: <p>本轮对话在画布中经过的节点路径</p>
+        # @type Paths: Array
+
+        attr_accessor :RoundId, :RoundIndex, :Tags, :Messages, :Paths
+
+        def initialize(roundid=nil, roundindex=nil, tags=nil, messages=nil, paths=nil)
+          @RoundId = roundid
+          @RoundIndex = roundindex
+          @Tags = tags
+          @Messages = messages
+          @Paths = paths
+        end
+
+        def deserialize(params)
+          @RoundId = params['RoundId']
+          @RoundIndex = params['RoundIndex']
+          @Tags = params['Tags']
+          unless params['Messages'].nil?
+            @Messages = []
+            params['Messages'].each do |i|
+              airoundmessage_tmp = AIRoundMessage.new
+              airoundmessage_tmp.deserialize(i)
+              @Messages << airoundmessage_tmp
+            end
+          end
+          unless params['Paths'].nil?
+            @Paths = []
+            params['Paths'].each do |i|
+              airoundpath_tmp = AIRoundPath.new
+              airoundpath_tmp.deserialize(i)
+              @Paths << airoundpath_tmp
+            end
+          end
+        end
+      end
+
+      # 智能体的响应延时
+      class AICallLatencyMetrics < TencentCloud::Common::AbstractModel
+        # @param AsrLatency: <p>asr时延（毫秒）</p><p>-1 表示无 asr时延</p>
+        # @type AsrLatency: Integer
+        # @param LLMFirstTokenLatency: <p>llm首token时延(毫秒)</p>
+        # @type LLMFirstTokenLatency: Integer
+        # @param TTSLatency: <p>tts时延（毫秒）</p><p>-1 表示无 tts时延</p>
+        # @type TTSLatency: Integer
+        # @param TotalLatency: <p>总时延</p>
+        # @type TotalLatency: Integer
+
+        attr_accessor :AsrLatency, :LLMFirstTokenLatency, :TTSLatency, :TotalLatency
+
+        def initialize(asrlatency=nil, llmfirsttokenlatency=nil, ttslatency=nil, totallatency=nil)
+          @AsrLatency = asrlatency
+          @LLMFirstTokenLatency = llmfirsttokenlatency
+          @TTSLatency = ttslatency
+          @TotalLatency = totallatency
+        end
+
+        def deserialize(params)
+          @AsrLatency = params['AsrLatency']
+          @LLMFirstTokenLatency = params['LLMFirstTokenLatency']
+          @TTSLatency = params['TTSLatency']
+          @TotalLatency = params['TotalLatency']
+        end
+      end
+
       # AI时延明细
       class AILatencyDetail < TencentCloud::Common::AbstractModel
         # @param RoundId: 对话ID
@@ -259,6 +333,92 @@ module TencentCloud
           @MinLatency = params['MinLatency']
           @MiddleLatency = params['MiddleLatency']
           @P90Latency = params['P90Latency']
+        end
+      end
+
+      # 表示一轮对话中的用户和 AI 消息
+      class AIRoundMessage < TencentCloud::Common::AbstractModel
+        # @param Timestamp: <p>消息的毫秒级时间戳</p><p>单位：ms</p>
+        # @type Timestamp: Integer
+        # @param UserReply: <p>用户消息</p>
+        # @type UserReply: :class:`Tencentcloud::Ccc.v20200210.models.UserReplyEvent`
+        # @param AISpeak: <p>智能体响应消息</p>
+        # @type AISpeak: :class:`Tencentcloud::Ccc.v20200210.models.AISpeakEvent`
+
+        attr_accessor :Timestamp, :UserReply, :AISpeak
+
+        def initialize(timestamp=nil, userreply=nil, aispeak=nil)
+          @Timestamp = timestamp
+          @UserReply = userreply
+          @AISpeak = aispeak
+        end
+
+        def deserialize(params)
+          @Timestamp = params['Timestamp']
+          unless params['UserReply'].nil?
+            @UserReply = UserReplyEvent.new
+            @UserReply.deserialize(params['UserReply'])
+          end
+          unless params['AISpeak'].nil?
+            @AISpeak = AISpeakEvent.new
+            @AISpeak.deserialize(params['AISpeak'])
+          end
+        end
+      end
+
+      # 本轮对话在画布中经过的节点路径
+      class AIRoundPath < TencentCloud::Common::AbstractModel
+        # @param NodeName: <p>画布中的节点名称</p>
+        # @type NodeName: String
+        # @param NodeType: <p>画布中的节点类型</p><p>枚举值：</p><ul><li>DIALOGUE： 对话节点</li><li>API_CALL： 接口调用节点</li><li>TRANSFER： 转接节点</li><li>KEY_PRESS： 按键节点</li><li>END_CALL： 挂断节点</li></ul>
+        # @type NodeType: String
+        # @param Timestamp: <p>经过当前节点的时间戳</p><p>单位：ms</p>
+        # @type Timestamp: Integer
+
+        attr_accessor :NodeName, :NodeType, :Timestamp
+
+        def initialize(nodename=nil, nodetype=nil, timestamp=nil)
+          @NodeName = nodename
+          @NodeType = nodetype
+          @Timestamp = timestamp
+        end
+
+        def deserialize(params)
+          @NodeName = params['NodeName']
+          @NodeType = params['NodeType']
+          @Timestamp = params['Timestamp']
+        end
+      end
+
+      # 智能体发言事件
+      class AISpeakEvent < TencentCloud::Common::AbstractModel
+        # @param CanBeInterrupted: <p>本次话术是否允许被用户VAD打断</p>
+        # @type CanBeInterrupted: Boolean
+        # @param SpokenText: <p>智能体播报的话术文本内容</p>
+        # @type SpokenText: String
+        # @param SpokenType: <p>智能体发言类型</p><p>枚举值：</p><ul><li>Script： 智能体话术</li><li>KnowledgeBase： 知识库</li><li>LLMFallback： 大模型兜底</li><li>NoResponseTip： 无响应提示</li><li>智能追问： SmartFollowUp</li><li>FAQ： FAQ</li><li>转人工 - 排队等待音： TransferWaitingPrompt</li><li>无响应挂断前放音： PlayNoResponseEndPrompt</li><li>转人工 - 排队前放音： PlayQueuePrompt</li><li>转人工 - 接待前放音： PlayPromptBeforeReception</li><li>转人工 - 排队超时放音： PlayQueueTimeoutPrompt</li><li>转人工 - 转人工失败放音： PlayTransferFailPrompt</li><li>DTMF收号（按键用户输入）： Dtmf</li><li>按键节点 - 播放提示音： PlayDtmfPrompt</li><li>按键节点 - 输入错误提示音： PlayInvalidDtmfPrompt</li><li>按键节点 - 超时提示音： PlayDtmfTimeoutPrompt</li><li>其他类型： Other</li></ul>
+        # @type SpokenType: String
+        # @param LatencyMetrics: <p>本次响应生成的时延结果</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LatencyMetrics: :class:`Tencentcloud::Ccc.v20200210.models.AICallLatencyMetrics`
+
+        attr_accessor :CanBeInterrupted, :SpokenText, :SpokenType, :LatencyMetrics
+
+        def initialize(canbeinterrupted=nil, spokentext=nil, spokentype=nil, latencymetrics=nil)
+          @CanBeInterrupted = canbeinterrupted
+          @SpokenText = spokentext
+          @SpokenType = spokentype
+          @LatencyMetrics = latencymetrics
+        end
+
+        def deserialize(params)
+          @CanBeInterrupted = params['CanBeInterrupted']
+          @SpokenText = params['SpokenText']
+          @SpokenType = params['SpokenType']
+          unless params['LatencyMetrics'].nil?
+            @LatencyMetrics = AICallLatencyMetrics.new
+            @LatencyMetrics.deserialize(params['LatencyMetrics'])
+          end
         end
       end
 
@@ -401,8 +561,8 @@ module TencentCloud
 
         attr_accessor :User, :Message, :Timestamp, :Start, :End
         extend Gem::Deprecate
-        deprecate :Timestamp, :none, 2026, 4
-        deprecate :Timestamp=, :none, 2026, 4
+        deprecate :Timestamp, :none, 2026, 5
+        deprecate :Timestamp=, :none, 2026, 5
 
         def initialize(user=nil, message=nil, timestamp=nil, start=nil, _end=nil)
           @User = user
@@ -691,8 +851,8 @@ module TencentCloud
 
         attr_accessor :SdkAppId, :StaffEmail, :StaffSkillGroupList, :SkillGroupList
         extend Gem::Deprecate
-        deprecate :SkillGroupList, :none, 2026, 4
-        deprecate :SkillGroupList=, :none, 2026, 4
+        deprecate :SkillGroupList, :none, 2026, 5
+        deprecate :SkillGroupList=, :none, 2026, 5
 
         def initialize(sdkappid=nil, staffemail=nil, staffskillgrouplist=nil, skillgrouplist=nil)
           @SdkAppId = sdkappid
@@ -1176,8 +1336,8 @@ module TencentCloud
 
         attr_accessor :SdkAppId, :AIAgentId, :Callee, :Callers, :PromptVariables, :Variables, :MaxRingTimeoutSecond
         extend Gem::Deprecate
-        deprecate :PromptVariables, :none, 2026, 4
-        deprecate :PromptVariables=, :none, 2026, 4
+        deprecate :PromptVariables, :none, 2026, 5
+        deprecate :PromptVariables=, :none, 2026, 5
 
         def initialize(sdkappid=nil, aiagentid=nil, callee=nil, callers=nil, promptvariables=nil, variables=nil, maxringtimeoutsecond=nil)
           @SdkAppId = sdkappid
@@ -1490,8 +1650,8 @@ module TencentCloud
 
         attr_accessor :SdkAppId, :Callee, :LLMType, :APIKey, :APIUrl, :SystemPrompt, :Model, :VoiceType, :Callers, :WelcomeMessage, :WelcomeType, :WelcomeMessagePriority, :MaxDuration, :Languages, :InterruptMode, :InterruptSpeechDuration, :EndFunctionEnable, :EndFunctionDesc, :TransferFunctionEnable, :TransferItems, :NotifyDuration, :NotifyMessage, :NotifyMaxCount, :CustomTTSConfig, :PromptVariables, :VadSilenceTime, :ExtractConfig, :Temperature, :Variables, :TopP, :VadLevel, :ToneWord, :EnableComplianceAudio, :EnableVoicemailDetection, :VoicemailAction, :LLMExtraBody, :MaxCallDurationMs, :MaxRingTimeoutSecond, :AmbientSoundType, :AmbientSoundVolume
         extend Gem::Deprecate
-        deprecate :PromptVariables, :none, 2026, 4
-        deprecate :PromptVariables=, :none, 2026, 4
+        deprecate :PromptVariables, :none, 2026, 5
+        deprecate :PromptVariables=, :none, 2026, 5
 
         def initialize(sdkappid=nil, callee=nil, llmtype=nil, apikey=nil, apiurl=nil, systemprompt=nil, model=nil, voicetype=nil, callers=nil, welcomemessage=nil, welcometype=nil, welcomemessagepriority=nil, maxduration=nil, languages=nil, interruptmode=nil, interruptspeechduration=nil, endfunctionenable=nil, endfunctiondesc=nil, transferfunctionenable=nil, transferitems=nil, notifyduration=nil, notifymessage=nil, notifymaxcount=nil, customttsconfig=nil, promptvariables=nil, vadsilencetime=nil, extractconfig=nil, temperature=nil, variables=nil, topp=nil, vadlevel=nil, toneword=nil, enablecomplianceaudio=nil, enablevoicemaildetection=nil, voicemailaction=nil, llmextrabody=nil, maxcalldurationms=nil, maxringtimeoutsecond=nil, ambientsoundtype=nil, ambientsoundvolume=nil)
           @SdkAppId = sdkappid
@@ -1971,8 +2131,8 @@ module TencentCloud
 
         attr_accessor :SdkAppId, :UserId, :Callee, :Caller, :Callers, :IsForceUseMobile, :Uui, :UUI
         extend Gem::Deprecate
-        deprecate :Uui, :none, 2026, 4
-        deprecate :Uui=, :none, 2026, 4
+        deprecate :Uui, :none, 2026, 5
+        deprecate :Uui=, :none, 2026, 5
 
         def initialize(sdkappid=nil, userid=nil, callee=nil, caller=nil, callers=nil, isforceusemobile=nil, uui=nil)
           @SdkAppId = sdkappid
@@ -2892,6 +3052,53 @@ module TencentCloud
         end
       end
 
+      # DescribeAICallInteractionRecords请求参数结构体
+      class DescribeAICallInteractionRecordsRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: <p>应用 ID，可以查看 https://console.cloud.tencent.com/ccc。</p>
+        # @type SdkAppId: Integer
+        # @param SessionId: <p>查询的会话SessionID</p>
+        # @type SessionId: String
+
+        attr_accessor :SdkAppId, :SessionId
+
+        def initialize(sdkappid=nil, sessionid=nil)
+          @SdkAppId = sdkappid
+          @SessionId = sessionid
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @SessionId = params['SessionId']
+        end
+      end
+
+      # DescribeAICallInteractionRecords返回参数结构体
+      class DescribeAICallInteractionRecordsResponse < TencentCloud::Common::AbstractModel
+        # @param InteractionEventList: <p>返回的会话交互结果</p>
+        # @type InteractionEventList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InteractionEventList, :RequestId
+
+        def initialize(interactioneventlist=nil, requestid=nil)
+          @InteractionEventList = interactioneventlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['InteractionEventList'].nil?
+            @InteractionEventList = []
+            params['InteractionEventList'].each do |i|
+              aicallinteractionround_tmp = AICallInteractionRound.new
+              aicallinteractionround_tmp.deserialize(i)
+              @InteractionEventList << aicallinteractionround_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeAILatency请求参数结构体
       class DescribeAILatencyRequest < TencentCloud::Common::AbstractModel
         # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
@@ -3457,10 +3664,10 @@ module TencentCloud
 
         attr_accessor :SdkAppId, :InstanceId, :CdrId, :Limit, :Offset, :Order, :SessionId
         extend Gem::Deprecate
-        deprecate :InstanceId, :none, 2026, 4
-        deprecate :InstanceId=, :none, 2026, 4
-        deprecate :CdrId, :none, 2026, 4
-        deprecate :CdrId=, :none, 2026, 4
+        deprecate :InstanceId, :none, 2026, 5
+        deprecate :InstanceId=, :none, 2026, 5
+        deprecate :CdrId, :none, 2026, 5
+        deprecate :CdrId=, :none, 2026, 5
 
         def initialize(sdkappid=nil, instanceid=nil, cdrid=nil, limit=nil, offset=nil, order=nil, sessionid=nil)
           @SdkAppId = sdkappid
@@ -3865,8 +4072,8 @@ module TencentCloud
 
         attr_accessor :StartTimestamp, :EndTimestamp, :InstanceId, :SdkAppId, :Limit, :Offset, :Type
         extend Gem::Deprecate
-        deprecate :InstanceId, :none, 2026, 4
-        deprecate :InstanceId=, :none, 2026, 4
+        deprecate :InstanceId, :none, 2026, 5
+        deprecate :InstanceId=, :none, 2026, 5
 
         def initialize(starttimestamp=nil, endtimestamp=nil, instanceid=nil, sdkappid=nil, limit=nil, offset=nil, type=nil)
           @StartTimestamp = starttimestamp
@@ -3903,8 +4110,8 @@ module TencentCloud
 
         attr_accessor :TotalCount, :IMCdrs, :IMCdrList, :RequestId
         extend Gem::Deprecate
-        deprecate :IMCdrs, :none, 2026, 4
-        deprecate :IMCdrs=, :none, 2026, 4
+        deprecate :IMCdrs, :none, 2026, 5
+        deprecate :IMCdrs=, :none, 2026, 5
 
         def initialize(totalcount=nil, imcdrs=nil, imcdrlist=nil, requestid=nil)
           @TotalCount = totalcount
@@ -4396,8 +4603,8 @@ module TencentCloud
 
         attr_accessor :TotalCount, :TelCdrs, :TelCdrList, :RequestId
         extend Gem::Deprecate
-        deprecate :TelCdrs, :none, 2026, 4
-        deprecate :TelCdrs=, :none, 2026, 4
+        deprecate :TelCdrs, :none, 2026, 5
+        deprecate :TelCdrs=, :none, 2026, 5
 
         def initialize(totalcount=nil, telcdrs=nil, telcdrlist=nil, requestid=nil)
           @TotalCount = totalcount
@@ -4897,8 +5104,8 @@ module TencentCloud
 
         attr_accessor :TelCallOutCount, :TelCallInCount, :SeatUsedCount, :VoipCallInCount, :VOIPCallInCount, :AsrOfflineCount, :AsrRealtimeCount, :RequestId
         extend Gem::Deprecate
-        deprecate :VoipCallInCount, :none, 2026, 4
-        deprecate :VoipCallInCount=, :none, 2026, 4
+        deprecate :VoipCallInCount, :none, 2026, 5
+        deprecate :VoipCallInCount=, :none, 2026, 5
 
         def initialize(telcalloutcount=nil, telcallincount=nil, seatusedcount=nil, voipcallincount=nil, asrofflinecount=nil, asrrealtimecount=nil, requestid=nil)
           @TelCallOutCount = telcalloutcount
@@ -4946,8 +5153,8 @@ module TencentCloud
 
         attr_accessor :StartTimeStamp, :EndTimeStamp, :SdkAppId, :PageSize, :PageNumber, :InstanceId, :Limit, :Offset, :Phones, :SessionIds
         extend Gem::Deprecate
-        deprecate :InstanceId, :none, 2026, 4
-        deprecate :InstanceId=, :none, 2026, 4
+        deprecate :InstanceId, :none, 2026, 5
+        deprecate :InstanceId=, :none, 2026, 5
 
         def initialize(starttimestamp=nil, endtimestamp=nil, sdkappid=nil, pagesize=nil, pagenumber=nil, instanceid=nil, limit=nil, offset=nil, phones=nil, sessionids=nil)
           @StartTimeStamp = starttimestamp
@@ -4989,8 +5196,8 @@ module TencentCloud
 
         attr_accessor :TotalCount, :TelCdrs, :TelCdrList, :RequestId
         extend Gem::Deprecate
-        deprecate :TelCdrs, :none, 2026, 4
-        deprecate :TelCdrs=, :none, 2026, 4
+        deprecate :TelCdrs, :none, 2026, 5
+        deprecate :TelCdrs=, :none, 2026, 5
 
         def initialize(totalcount=nil, telcdrs=nil, telcdrlist=nil, requestid=nil)
           @TotalCount = totalcount
@@ -7200,10 +7407,10 @@ module TencentCloud
 
         attr_accessor :Name, :Mail, :Phone, :Nick, :StaffNumber, :RoleId, :RoleIdList, :RoleList, :SkillGroupList, :LastModifyTimestamp, :ExtensionNumber, :ForwardingConfig
         extend Gem::Deprecate
-        deprecate :RoleId, :none, 2026, 4
-        deprecate :RoleId=, :none, 2026, 4
-        deprecate :RoleIdList, :none, 2026, 4
-        deprecate :RoleIdList=, :none, 2026, 4
+        deprecate :RoleId, :none, 2026, 5
+        deprecate :RoleId=, :none, 2026, 5
+        deprecate :RoleIdList, :none, 2026, 5
+        deprecate :RoleIdList=, :none, 2026, 5
 
         def initialize(name=nil, mail=nil, phone=nil, nick=nil, staffnumber=nil, roleid=nil, roleidlist=nil, rolelist=nil, skillgrouplist=nil, lastmodifytimestamp=nil, extensionnumber=nil, forwardingconfig=nil)
           @Name = name
@@ -7625,8 +7832,8 @@ module TencentCloud
 
         attr_accessor :Caller, :Callee, :Time, :Direction, :CallType, :Duration, :RecordURL, :RecordId, :SeatUser, :EndStatus, :SkillGroup, :CallerLocation, :IVRDuration, :RingTimestamp, :AcceptTimestamp, :EndedTimestamp, :IVRKeyPressed, :HungUpSide, :ServeParticipants, :SkillGroupId, :EndStatusString, :StartTimestamp, :QueuedTimestamp, :PostIVRKeyPressed, :QueuedSkillGroupId, :SessionId, :ProtectedCaller, :ProtectedCallee, :Uui, :UUI, :IVRKeyPressedEx, :AsrUrl, :AsrStatus, :CustomRecordURL, :Remark, :QueuedSkillGroupName, :VoicemailRecordURL, :VoicemailAsrURL, :AIAgentId, :AIAgentName, :SysHangupReason, :SysHangupReasonString
         extend Gem::Deprecate
-        deprecate :Uui, :none, 2026, 4
-        deprecate :Uui=, :none, 2026, 4
+        deprecate :Uui, :none, 2026, 5
+        deprecate :Uui=, :none, 2026, 5
 
         def initialize(caller=nil, callee=nil, time=nil, direction=nil, calltype=nil, duration=nil, recordurl=nil, recordid=nil, seatuser=nil, endstatus=nil, skillgroup=nil, callerlocation=nil, ivrduration=nil, ringtimestamp=nil, accepttimestamp=nil, endedtimestamp=nil, ivrkeypressed=nil, hungupside=nil, serveparticipants=nil, skillgroupid=nil, endstatusstring=nil, starttimestamp=nil, queuedtimestamp=nil, postivrkeypressed=nil, queuedskillgroupid=nil, sessionid=nil, protectedcaller=nil, protectedcallee=nil, uui=nil, ivrkeypressedex=nil, asrurl=nil, asrstatus=nil, customrecordurl=nil, remark=nil, queuedskillgroupname=nil, voicemailrecordurl=nil, voicemailasrurl=nil, aiagentid=nil, aiagentname=nil, syshangupreason=nil, syshangupreasonstring=nil)
           @Caller = caller
@@ -8202,6 +8409,34 @@ module TencentCloud
             end
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 用户发言事件
+      class UserReplyEvent < TencentCloud::Common::AbstractModel
+        # @param ASRTranscript: <p>ASR语音识别引擎将用户语音转换成的原始文本结果</p>
+        # @type ASRTranscript: String
+        # @param MatchedIntent: <p>命中画布中该对话节点配置的回复分类</p>
+        # @type MatchedIntent: String
+        # @param ExtractedSlots: <p>用户回复分类的标签， json序列化后的信息</p>
+        # @type ExtractedSlots: String
+        # @param BranchType: <p>用户回复命中的分支类型</p><p>枚举值：</p><ul><li>Intent： 用户意图</li><li>Fallback： 兜底分支</li><li>NoResponse： 无响应跳转分支</li><li>SlotCollectionSuccess： 词槽收集完成跳转分支</li><li>SlotCollectionFail： 词槽收集失败跳转分支</li><li>GlobalIntent： 全局节点意图</li><li>LogicAnd： 逻辑判断节点 and</li><li>LogicOr： 逻辑判断节点 or</li><li>DTMF成功： DTMFSuccess</li><li>DTMF失败： DTMFFail</li><li>DTMF导航： DTMFNavigation</li><li>DTMF分机： DTMFExtension</li><li>DTMF收号： DTMFCollection</li><li>转接智能体节点失败： TransferAgentFail</li></ul>
+        # @type BranchType: String
+
+        attr_accessor :ASRTranscript, :MatchedIntent, :ExtractedSlots, :BranchType
+
+        def initialize(asrtranscript=nil, matchedintent=nil, extractedslots=nil, branchtype=nil)
+          @ASRTranscript = asrtranscript
+          @MatchedIntent = matchedintent
+          @ExtractedSlots = extractedslots
+          @BranchType = branchtype
+        end
+
+        def deserialize(params)
+          @ASRTranscript = params['ASRTranscript']
+          @MatchedIntent = params['MatchedIntent']
+          @ExtractedSlots = params['ExtractedSlots']
+          @BranchType = params['BranchType']
         end
       end
 

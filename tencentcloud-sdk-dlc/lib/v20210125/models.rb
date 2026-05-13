@@ -1904,8 +1904,8 @@ module TencentCloud
 
         attr_accessor :EngineType, :DataEngineName, :ClusterType, :Mode, :AutoResume, :MinClusters, :MaxClusters, :DefaultDataEngine, :CidrBlock, :Message, :Size, :PayMode, :TimeSpan, :TimeUnit, :AutoRenew, :Tags, :AutoSuspend, :CrontabResumeSuspend, :CrontabResumeSuspendStrategy, :EngineExecType, :MaxConcurrency, :TolerableQueueTime, :AutoSuspendTime, :ResourceType, :DataEngineConfigPairs, :ImageVersionName, :MainClusterName, :ElasticSwitch, :ElasticLimit, :SessionResourceTemplate, :AutoAuthorization, :EngineNetworkId, :EngineGeneration
         extend Gem::Deprecate
-        deprecate :DefaultDataEngine, :none, 2026, 4
-        deprecate :DefaultDataEngine=, :none, 2026, 4
+        deprecate :DefaultDataEngine, :none, 2026, 5
+        deprecate :DefaultDataEngine=, :none, 2026, 5
 
         def initialize(enginetype=nil, dataenginename=nil, clustertype=nil, mode=nil, autoresume=nil, minclusters=nil, maxclusters=nil, defaultdataengine=nil, cidrblock=nil, message=nil, size=nil, paymode=nil, timespan=nil, timeunit=nil, autorenew=nil, tags=nil, autosuspend=nil, crontabresumesuspend=nil, crontabresumesuspendstrategy=nil, engineexectype=nil, maxconcurrency=nil, tolerablequeuetime=nil, autosuspendtime=nil, resourcetype=nil, dataengineconfigpairs=nil, imageversionname=nil, mainclustername=nil, elasticswitch=nil, elasticlimit=nil, sessionresourcetemplate=nil, autoauthorization=nil, enginenetworkid=nil, enginegeneration=nil)
           @EngineType = enginetype
@@ -8982,6 +8982,37 @@ module TencentCloud
         end
       end
 
+      # DescribeTCLakeMetaInstance请求参数结构体
+      class DescribeTCLakeMetaInstanceRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeTCLakeMetaInstance返回参数结构体
+      class DescribeTCLakeMetaInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param Status: <p>开通状态</p><p>枚举值：</p><ul><li>Running： 开通成功</li></ul>
+        # @type Status: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :RequestId
+
+        def initialize(status=nil, requestid=nil)
+          @Status = status
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeTablePartitions请求参数结构体
       class DescribeTablePartitionsRequest < TencentCloud::Common::AbstractModel
         # @param Catalog: 数据目录名称
@@ -11787,6 +11818,41 @@ module TencentCloud
         end
       end
 
+      # InitializeTCLake请求参数结构体
+      class InitializeTCLakeRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # InitializeTCLake返回参数结构体
+      class InitializeTCLakeResponse < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>实例Id</p>
+        # @type InstanceId: String
+        # @param IsSuccess: <p>是否成功</p>
+        # @type IsSuccess: Boolean
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InstanceId, :IsSuccess, :RequestId
+
+        def initialize(instanceid=nil, issuccess=nil, requestid=nil)
+          @InstanceId = instanceid
+          @IsSuccess = issuccess
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @IsSuccess = params['IsSuccess']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ip端口对信息
       class IpPortPair < TencentCloud::Common::AbstractModel
         # @param Ip: ip信息
@@ -14457,8 +14523,8 @@ module TencentCloud
 
         attr_accessor :LifecycleEnable, :Expiration, :DropTable, :ExpiredField, :ExpiredFieldFormat
         extend Gem::Deprecate
-        deprecate :DropTable, :none, 2026, 4
-        deprecate :DropTable=, :none, 2026, 4
+        deprecate :DropTable, :none, 2026, 5
+        deprecate :DropTable=, :none, 2026, 5
 
         def initialize(lifecycleenable=nil, expiration=nil, droptable=nil, expiredfield=nil, expiredfieldformat=nil)
           @LifecycleEnable = lifecycleenable
@@ -15715,10 +15781,10 @@ module TencentCloud
 
         attr_accessor :DatabaseName, :TableName, :DatasourceConnectionName, :TableComment, :Type, :TableFormat, :UserAlias, :UserSubUin, :GovernPolicy, :DbGovernPolicyIsDisable, :SmartPolicy, :PrimaryKeys
         extend Gem::Deprecate
-        deprecate :GovernPolicy, :none, 2026, 4
-        deprecate :GovernPolicy=, :none, 2026, 4
-        deprecate :DbGovernPolicyIsDisable, :none, 2026, 4
-        deprecate :DbGovernPolicyIsDisable=, :none, 2026, 4
+        deprecate :GovernPolicy, :none, 2026, 5
+        deprecate :GovernPolicy=, :none, 2026, 5
+        deprecate :DbGovernPolicyIsDisable, :none, 2026, 5
+        deprecate :DbGovernPolicyIsDisable=, :none, 2026, 5
 
         def initialize(databasename=nil, tablename=nil, datasourceconnectionname=nil, tablecomment=nil, type=nil, tableformat=nil, useralias=nil, usersubuin=nil, governpolicy=nil, dbgovernpolicyisdisable=nil, smartpolicy=nil, primarykeys=nil)
           @DatabaseName = databasename
