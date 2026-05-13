@@ -13632,10 +13632,12 @@ module TencentCloud
         # @type Operator: String
         # @param FeedbackContent: <p>自定义反馈</p>
         # @type FeedbackContent: String
+        # @param Visitor: <p>用户</p>
+        # @type Visitor: String
 
-        attr_accessor :ReplyBizId, :RecordBizId, :Question, :Answer, :Reasons, :Status, :CreateTime, :UpdateTime, :Operator, :FeedbackContent
+        attr_accessor :ReplyBizId, :RecordBizId, :Question, :Answer, :Reasons, :Status, :CreateTime, :UpdateTime, :Operator, :FeedbackContent, :Visitor
 
-        def initialize(replybizid=nil, recordbizid=nil, question=nil, answer=nil, reasons=nil, status=nil, createtime=nil, updatetime=nil, operator=nil, feedbackcontent=nil)
+        def initialize(replybizid=nil, recordbizid=nil, question=nil, answer=nil, reasons=nil, status=nil, createtime=nil, updatetime=nil, operator=nil, feedbackcontent=nil, visitor=nil)
           @ReplyBizId = replybizid
           @RecordBizId = recordbizid
           @Question = question
@@ -13646,6 +13648,7 @@ module TencentCloud
           @UpdateTime = updatetime
           @Operator = operator
           @FeedbackContent = feedbackcontent
+          @Visitor = visitor
         end
 
         def deserialize(params)
@@ -13659,6 +13662,7 @@ module TencentCloud
           @UpdateTime = params['UpdateTime']
           @Operator = params['Operator']
           @FeedbackContent = params['FeedbackContent']
+          @Visitor = params['Visitor']
         end
       end
 

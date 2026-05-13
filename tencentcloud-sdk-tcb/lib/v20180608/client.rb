@@ -55,6 +55,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 从环境池里立即取出1个环境
+
+        # @param request: Request instance for AllocateEnv.
+        # @type request: :class:`Tencentcloud::tcb::V20180608::AllocateEnvRequest`
+        # @rtype: :class:`Tencentcloud::tcb::V20180608::AllocateEnvResponse`
+        def AllocateEnv(request)
+          body = send_request('AllocateEnv', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AllocateEnvResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 白名单接口，申请Tcb角色临时凭证
+
+        # @param request: Request instance for AssumeRoleForAllocatedEnv.
+        # @type request: :class:`Tencentcloud::tcb::V20180608::AssumeRoleForAllocatedEnvRequest`
+        # @rtype: :class:`Tencentcloud::tcb::V20180608::AssumeRoleForAllocatedEnvResponse`
+        def AssumeRoleForAllocatedEnv(request)
+          body = send_request('AssumeRoleForAllocatedEnv', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AssumeRoleForAllocatedEnvResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 检查是否开通Tcb服务
 
         # @param request: Request instance for CheckTcbService.
@@ -1806,6 +1854,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyUserResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 从环境池里立即取出1个环境
+
+        # @param request: Request instance for ReleaseEnv.
+        # @type request: :class:`Tencentcloud::tcb::V20180608::ReleaseEnvRequest`
+        # @rtype: :class:`Tencentcloud::tcb::V20180608::ReleaseEnvResponse`
+        def ReleaseEnv(request)
+          body = send_request('ReleaseEnv', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ReleaseEnvResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -3897,6 +3897,76 @@ module TencentCloud
         end
       end
 
+      # DescribeEdgeIpSimple请求参数结构体
+      class DescribeEdgeIpSimpleRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: 过滤条件组合
+        # @type Filters: Array
+        # @param Limit: 每页条数
+        # @type Limit: Integer
+        # @param Offset: 偏移值
+        # @type Offset: Integer
+        # @param Order: desc：降序；asc：升序。根据By字段的值进行排序，这里传参的话则By也必须有值
+        # @type Order: String
+        # @param By: 排序所用到的字段
+        # @type By: String
+
+        attr_accessor :Filters, :Limit, :Offset, :Order, :By
+
+        def initialize(filters=nil, limit=nil, offset=nil, order=nil, by=nil)
+          @Filters = filters
+          @Limit = limit
+          @Offset = offset
+          @Order = order
+          @By = by
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              commonfilter_tmp = CommonFilter.new
+              commonfilter_tmp.deserialize(i)
+              @Filters << commonfilter_tmp
+            end
+          end
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @Order = params['Order']
+          @By = params['By']
+        end
+      end
+
+      # DescribeEdgeIpSimple返回参数结构体
+      class DescribeEdgeIpSimpleResponse < TencentCloud::Common::AbstractModel
+        # @param Data: ip 开关列表
+        # @type Data: Array
+        # @param Total: ip 开关列表个数
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :Total, :RequestId
+
+        def initialize(data=nil, total=nil, requestid=nil)
+          @Data = data
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              edgeipinfosimple_tmp = EdgeIpInfoSimple.new
+              edgeipinfosimple_tmp.deserialize(i)
+              @Data << edgeipinfosimple_tmp
+            end
+          end
+          @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeEnterpriseSGRuleProgress请求参数结构体
       class DescribeEnterpriseSGRuleProgressRequest < TencentCloud::Common::AbstractModel
 
@@ -6427,6 +6497,55 @@ module TencentCloud
           @Domain = params['Domain']
           @OverUsedStatus = params['OverUsedStatus']
           @SwitchSupportType = params['SwitchSupportType']
+        end
+      end
+
+      # 边界防火墙公网IP开关列表
+      class EdgeIpInfoSimple < TencentCloud::Common::AbstractModel
+        # @param PublicIp: 公网IP
+        # @type PublicIp: String
+        # @param PublicIpType: 公网 IP 类型 1 公网,2 弹性,3 弹性ipv6,4 anycastIP, 6 HighQualityEIP
+        # @type PublicIpType: Integer
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param InstanceName: 实例名
+        # @type InstanceName: String
+        # @param Status: 开关状态
+        # 0 : 关闭
+        # 1 : 开启
+        # 2 : 开启中
+        # 3 : 关闭中
+        # 4 : 异常
+        # @type Status: Integer
+        # @param SwitchMode: 0 : 旁路 1 : 串行 2 : 正在模式切换
+        # @type SwitchMode: Integer
+        # @param Region: 地域
+        # @type Region: String
+        # @param AssetType: 资产类型
+        # @type AssetType: String
+
+        attr_accessor :PublicIp, :PublicIpType, :InstanceId, :InstanceName, :Status, :SwitchMode, :Region, :AssetType
+
+        def initialize(publicip=nil, publiciptype=nil, instanceid=nil, instancename=nil, status=nil, switchmode=nil, region=nil, assettype=nil)
+          @PublicIp = publicip
+          @PublicIpType = publiciptype
+          @InstanceId = instanceid
+          @InstanceName = instancename
+          @Status = status
+          @SwitchMode = switchmode
+          @Region = region
+          @AssetType = assettype
+        end
+
+        def deserialize(params)
+          @PublicIp = params['PublicIp']
+          @PublicIpType = params['PublicIpType']
+          @InstanceId = params['InstanceId']
+          @InstanceName = params['InstanceName']
+          @Status = params['Status']
+          @SwitchMode = params['SwitchMode']
+          @Region = params['Region']
+          @AssetType = params['AssetType']
         end
       end
 

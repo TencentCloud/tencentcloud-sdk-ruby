@@ -236,6 +236,50 @@ module TencentCloud
         end
       end
 
+      # AllocateEnv请求参数结构体
+      class AllocateEnvRequest < TencentCloud::Common::AbstractModel
+        # @param AllocateId: <p>分配请求ID，会按这个值做幂等</p><p>入参限制：长度不超过64</p>
+        # @type AllocateId: String
+        # @param ExternalAppId: <p>客户平台的应用标识，如果没有则不传</p>
+        # @type ExternalAppId: String
+
+        attr_accessor :AllocateId, :ExternalAppId
+
+        def initialize(allocateid=nil, externalappid=nil)
+          @AllocateId = allocateid
+          @ExternalAppId = externalappid
+        end
+
+        def deserialize(params)
+          @AllocateId = params['AllocateId']
+          @ExternalAppId = params['ExternalAppId']
+        end
+      end
+
+      # AllocateEnv返回参数结构体
+      class AllocateEnvResponse < TencentCloud::Common::AbstractModel
+        # @param EnvId: <p>环境ID</p>
+        # @type EnvId: String
+        # @param ExternalAppId: <p>回显    客户平台的应用标识，如果没有则不传</p>
+        # @type ExternalAppId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :EnvId, :ExternalAppId, :RequestId
+
+        def initialize(envid=nil, externalappid=nil, requestid=nil)
+          @EnvId = envid
+          @ExternalAppId = externalappid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @ExternalAppId = params['ExternalAppId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # API Key 访问凭证信息。描述云开发环境下 API Key 的完整信息，包括标识符、名称、令牌值、创建时间和过期时间。支持两种类型：api_key（服务端管理员访问凭证，用于服务端接口调用的身份认证，可设置有效期，单个环境最多 5 个）和 publish_key（前端匿名访问凭证，固定有效期，每个环境仅保留一个）。注意：令牌值（ApiKey 字段）仅在创建时返回完整明文，列表查询时将进行脱敏处理。
       class ApiKeyToken < TencentCloud::Common::AbstractModel
         # @param KeyId: API Key 的唯一标识符，由系统基于 UUID 自动生成的 Base64 URL 编码字符串。后续对该 API Key 进行删除、修改名称或精确查询操作时，均需使用该值作为定位参数
@@ -268,6 +312,60 @@ module TencentCloud
           @ApiKey = params['ApiKey']
           @ExpireAt = params['ExpireAt']
           @CreateAt = params['CreateAt']
+        end
+      end
+
+      # AssumeRoleForAllocatedEnv请求参数结构体
+      class AssumeRoleForAllocatedEnvRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: <p>环境ID</p>
+        # @type EnvId: String
+
+        attr_accessor :EnvId
+
+        def initialize(envid=nil)
+          @EnvId = envid
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+        end
+      end
+
+      # AssumeRoleForAllocatedEnv返回参数结构体
+      class AssumeRoleForAllocatedEnvResponse < TencentCloud::Common::AbstractModel
+        # @param SecretId: <p>SecretId</p>
+        # @type SecretId: String
+        # @param SecretKey: <p>SecretKey</p>
+        # @type SecretKey: String
+        # @param Token: <p>Token值</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Token: String
+        # @param ExpiredTime: <p>过期时间戳</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExpiredTime: Integer
+        # @param IsCache: <p>是否从缓存中加载。标明该值是否实时从sts服务获取，还是从缓存中获取。调用方可不关心</p>
+        # @type IsCache: Boolean
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SecretId, :SecretKey, :Token, :ExpiredTime, :IsCache, :RequestId
+
+        def initialize(secretid=nil, secretkey=nil, token=nil, expiredtime=nil, iscache=nil, requestid=nil)
+          @SecretId = secretid
+          @SecretKey = secretkey
+          @Token = token
+          @ExpiredTime = expiredtime
+          @IsCache = iscache
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @SecretId = params['SecretId']
+          @SecretKey = params['SecretKey']
+          @Token = params['Token']
+          @ExpiredTime = params['ExpiredTime']
+          @IsCache = params['IsCache']
+          @RequestId = params['RequestId']
         end
       end
 
@@ -6711,6 +6809,42 @@ module TencentCloud
           @Email = params['Email']
           @PhoneNumber = params['PhoneNumber']
           @Groups = params['Groups']
+        end
+      end
+
+      # ReleaseEnv请求参数结构体
+      class ReleaseEnvRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: <p>环境ID</p>
+        # @type EnvId: String
+        # @param AllocateId: <p>分配请求ID</p>
+        # @type AllocateId: String
+
+        attr_accessor :EnvId, :AllocateId
+
+        def initialize(envid=nil, allocateid=nil)
+          @EnvId = envid
+          @AllocateId = allocateid
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @AllocateId = params['AllocateId']
+        end
+      end
+
+      # ReleaseEnv返回参数结构体
+      class ReleaseEnvResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 

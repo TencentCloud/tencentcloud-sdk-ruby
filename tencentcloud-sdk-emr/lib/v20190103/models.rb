@@ -11483,26 +11483,30 @@ module TencentCloud
 
       # 规格管理，规格类型描述
       class NodeResource < TencentCloud::Common::AbstractModel
-        # @param ResourceConfigId: 配置Id
+        # @param ResourceConfigId: <p>配置Id</p>
         # @type ResourceConfigId: Integer
-        # @param Resource: Resource
+        # @param Resource: <p>Resource</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Resource: :class:`Tencentcloud::Emr.v20190103.models.Resource`
-        # @param CreateTime: 创建时间
+        # @param CreateTime: <p>创建时间</p>
         # @type CreateTime: String
-        # @param UpdateTime: 更新时间
+        # @param UpdateTime: <p>更新时间</p>
         # @type UpdateTime: String
-        # @param IsDefault: 是否默认配置,DEFAULT,BACKUP
+        # @param IsDefault: <p>是否默认配置,DEFAULT,BACKUP</p>
         # @type IsDefault: String
-        # @param MaxResourceNum: 该类型剩余
+        # @param MaxResourceNum: <p>该类型剩余</p>
         # @type MaxResourceNum: Integer
-        # @param PrepaidUnderwritePeriods: 支持的包销时长
+        # @param PrepaidUnderwritePeriods: <p>支持的包销时长</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PrepaidUnderwritePeriods: Array
+        # @param QuotaNum: <p>配额数量</p>
+        # @type QuotaNum: Integer
+        # @param QuotaUnit: <p>配额单位</p>
+        # @type QuotaUnit: String
 
-        attr_accessor :ResourceConfigId, :Resource, :CreateTime, :UpdateTime, :IsDefault, :MaxResourceNum, :PrepaidUnderwritePeriods
+        attr_accessor :ResourceConfigId, :Resource, :CreateTime, :UpdateTime, :IsDefault, :MaxResourceNum, :PrepaidUnderwritePeriods, :QuotaNum, :QuotaUnit
 
-        def initialize(resourceconfigid=nil, resource=nil, createtime=nil, updatetime=nil, isdefault=nil, maxresourcenum=nil, prepaidunderwriteperiods=nil)
+        def initialize(resourceconfigid=nil, resource=nil, createtime=nil, updatetime=nil, isdefault=nil, maxresourcenum=nil, prepaidunderwriteperiods=nil, quotanum=nil, quotaunit=nil)
           @ResourceConfigId = resourceconfigid
           @Resource = resource
           @CreateTime = createtime
@@ -11510,6 +11514,8 @@ module TencentCloud
           @IsDefault = isdefault
           @MaxResourceNum = maxresourcenum
           @PrepaidUnderwritePeriods = prepaidunderwriteperiods
+          @QuotaNum = quotanum
+          @QuotaUnit = quotaunit
         end
 
         def deserialize(params)
@@ -11523,6 +11529,8 @@ module TencentCloud
           @IsDefault = params['IsDefault']
           @MaxResourceNum = params['MaxResourceNum']
           @PrepaidUnderwritePeriods = params['PrepaidUnderwritePeriods']
+          @QuotaNum = params['QuotaNum']
+          @QuotaUnit = params['QuotaUnit']
         end
       end
 
@@ -11761,56 +11769,60 @@ module TencentCloud
 
       # 节点规格类型
       class NodeSpecInstanceType < TencentCloud::Common::AbstractModel
-        # @param InstanceType: 规格
+        # @param InstanceType: <p>规格</p>
         # @type InstanceType: String
-        # @param Cpu: 4
+        # @param Cpu: <p>4</p>
         # @type Cpu: Integer
-        # @param Memory: 8，单位G
+        # @param Memory: <p>8，单位G</p>
         # @type Memory: Integer
-        # @param Order: 排序，越小排的越前
+        # @param Order: <p>排序，越小排的越前</p>
         # @type Order: Integer
-        # @param Num: 数量
+        # @param Num: <p>数量</p>
         # @type Num: Integer
-        # @param SellOutReason: 售罄原因
+        # @param SellOutReason: <p>售罄原因</p>
         # @type SellOutReason: String
-        # @param SystemDisk: 系统盘
+        # @param SystemDisk: <p>系统盘</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SystemDisk: Array
-        # @param DataDisk: 数据盘
+        # @param DataDisk: <p>数据盘</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataDisk: Array
-        # @param LocalDataDisk: 本地数据盘
+        # @param LocalDataDisk: <p>本地数据盘</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LocalDataDisk: Array
-        # @param SoldOutReason: 售罄原因
+        # @param SoldOutReason: <p>售罄原因</p>
         # @type SoldOutReason: String
-        # @param InstanceFamily: 机型类别
+        # @param InstanceFamily: <p>机型类别</p>
         # @type InstanceFamily: String
-        # @param NodeName: 节点名称
+        # @param NodeName: <p>节点名称</p>
         # @type NodeName: String
-        # @param NodeType: 节点类型
+        # @param NodeType: <p>节点类型</p>
         # @type NodeType: String
-        # @param Type: 类别
+        # @param Type: <p>类别</p>
         # @type Type: String
-        # @param TypeName: 类别名称
+        # @param TypeName: <p>类别名称</p>
         # @type TypeName: String
-        # @param FamilyName: 类别分类
+        # @param FamilyName: <p>类别分类</p>
         # @type FamilyName: String
-        # @param CpuType: cpu类型
+        # @param CpuType: <p>cpu类型</p>
         # @type CpuType: String
-        # @param Remark: 售罄 RunOut、库存少 Less、充足 Enough
+        # @param Remark: <p>售罄 RunOut、库存少 Less、充足 Enough</p>
         # @type Remark: String
-        # @param OriginPrice: 原价
+        # @param OriginPrice: <p>原价</p>
         # @type OriginPrice: Float
-        # @param PrepaidUnderwritePeriods: 包销计费机型支持的购买时长
+        # @param PrepaidUnderwritePeriods: <p>包销计费机型支持的购买时长</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PrepaidUnderwritePeriods: Array
-        # @param GpuDesc: GPU信息
+        # @param GpuDesc: <p>GPU信息</p>
         # @type GpuDesc: String
+        # @param QuotaNum: <p>配额数量</p>
+        # @type QuotaNum: Integer
+        # @param QuotaUnit: <p>配额单位</p>
+        # @type QuotaUnit: String
 
-        attr_accessor :InstanceType, :Cpu, :Memory, :Order, :Num, :SellOutReason, :SystemDisk, :DataDisk, :LocalDataDisk, :SoldOutReason, :InstanceFamily, :NodeName, :NodeType, :Type, :TypeName, :FamilyName, :CpuType, :Remark, :OriginPrice, :PrepaidUnderwritePeriods, :GpuDesc
+        attr_accessor :InstanceType, :Cpu, :Memory, :Order, :Num, :SellOutReason, :SystemDisk, :DataDisk, :LocalDataDisk, :SoldOutReason, :InstanceFamily, :NodeName, :NodeType, :Type, :TypeName, :FamilyName, :CpuType, :Remark, :OriginPrice, :PrepaidUnderwritePeriods, :GpuDesc, :QuotaNum, :QuotaUnit
 
-        def initialize(instancetype=nil, cpu=nil, memory=nil, order=nil, num=nil, selloutreason=nil, systemdisk=nil, datadisk=nil, localdatadisk=nil, soldoutreason=nil, instancefamily=nil, nodename=nil, nodetype=nil, type=nil, typename=nil, familyname=nil, cputype=nil, remark=nil, originprice=nil, prepaidunderwriteperiods=nil, gpudesc=nil)
+        def initialize(instancetype=nil, cpu=nil, memory=nil, order=nil, num=nil, selloutreason=nil, systemdisk=nil, datadisk=nil, localdatadisk=nil, soldoutreason=nil, instancefamily=nil, nodename=nil, nodetype=nil, type=nil, typename=nil, familyname=nil, cputype=nil, remark=nil, originprice=nil, prepaidunderwriteperiods=nil, gpudesc=nil, quotanum=nil, quotaunit=nil)
           @InstanceType = instancetype
           @Cpu = cpu
           @Memory = memory
@@ -11832,6 +11844,8 @@ module TencentCloud
           @OriginPrice = originprice
           @PrepaidUnderwritePeriods = prepaidunderwriteperiods
           @GpuDesc = gpudesc
+          @QuotaNum = quotanum
+          @QuotaUnit = quotaunit
         end
 
         def deserialize(params)
@@ -11877,6 +11891,8 @@ module TencentCloud
           @OriginPrice = params['OriginPrice']
           @PrepaidUnderwritePeriods = params['PrepaidUnderwritePeriods']
           @GpuDesc = params['GpuDesc']
+          @QuotaNum = params['QuotaNum']
+          @QuotaUnit = params['QuotaUnit']
         end
       end
 

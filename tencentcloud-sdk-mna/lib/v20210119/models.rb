@@ -1935,6 +1935,61 @@ module TencentCloud
         end
       end
 
+      # GetHardwareInfo请求参数结构体
+      class GetHardwareInfoRequest < TencentCloud::Common::AbstractModel
+        # @param Vendor: 厂商名称
+        # @type Vendor: String
+        # @param SN: 设备SN序列号
+        # @type SN: String
+
+        attr_accessor :Vendor, :SN
+
+        def initialize(vendor=nil, sn=nil)
+          @Vendor = vendor
+          @SN = sn
+        end
+
+        def deserialize(params)
+          @Vendor = params['Vendor']
+          @SN = params['SN']
+        end
+      end
+
+      # GetHardwareInfo返回参数结构体
+      class GetHardwareInfoResponse < TencentCloud::Common::AbstractModel
+        # @param LicensePayMode: license授权有效期
+        # 0：月度授权
+        # 1：永久授权
+        # -1：未知
+        # @type LicensePayMode: Integer
+        # @param Payer: 付费方 0：客户付费 1：厂商付费
+        # @type Payer: Integer
+        # @param SN: 硬件序列号
+        # @type SN: String
+        # @param Vendor: 厂商名称
+        # @type Vendor: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :LicensePayMode, :Payer, :SN, :Vendor, :RequestId
+
+        def initialize(licensepaymode=nil, payer=nil, sn=nil, vendor=nil, requestid=nil)
+          @LicensePayMode = licensepaymode
+          @Payer = payer
+          @SN = sn
+          @Vendor = vendor
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @LicensePayMode = params['LicensePayMode']
+          @Payer = params['Payer']
+          @SN = params['SN']
+          @Vendor = params['Vendor']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # GetHardwareList请求参数结构体
       class GetHardwareListRequest < TencentCloud::Common::AbstractModel
         # @param PageNumber: 页码

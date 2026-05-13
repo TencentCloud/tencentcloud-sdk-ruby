@@ -9888,28 +9888,23 @@ module TencentCloud
 
       # DescribeTasks请求参数结构体
       class DescribeTasksRequest < TencentCloud::Common::AbstractModel
-        # @param Limit: 返回数量，默认为10，最大值为100。
+        # @param Limit: <p>返回数量，默认为10，最大值为100。</p>
         # @type Limit: Integer
-        # @param Offset: 偏移量，默认为0。
+        # @param Offset: <p>偏移量，默认为0。</p>
         # @type Offset: Integer
-        # @param Filters: 过滤条件，如下支持的过滤类型，传参Name应为以下其中一个,其中task-id支持最大50个过滤个数，其他过滤参数支持的总数不超过5个。
-        # task-id - String - （任务ID准确过滤）task-id取值形如：e386471f-139a-4e59-877f-50ece8135b99。
-        # task-state - String - （任务状态过滤）取值范围 0(初始化)， 1(运行中)， 2(成功)， -1(失败)。
-        # task-sql-keyword - String - （SQL语句关键字模糊过滤）取值形如：DROP TABLE。
-        # task-operator- string （子uin过滤）
-        # task-kind - string （任务类型过滤）
+        # @param Filters: <p>过滤条件，如下支持的过滤类型，传参Name应为以下其中一个,其中task-id支持最大50个过滤个数，其他过滤参数支持的总数不超过5个。<br>task-id - String - （任务ID准确过滤）task-id取值形如：e386471f-139a-4e59-877f-50ece8135b99。<br>task-state - String - （任务状态过滤）取值范围 0(初始化)， 1(运行中)， 2(成功)， -1(失败)。<br>task-sql-keyword - String - （SQL语句关键字模糊过滤）取值形如：DROP TABLE。<br>task-operator- string （子uin过滤）<br>task-kind - string （任务类型过滤）</p>
         # @type Filters: Array
-        # @param SortBy: 排序字段，支持如下字段类型，create-time（创建时间，默认）、update-time（更新时间）
+        # @param SortBy: <p>排序字段，支持如下字段类型，create-time（创建时间，默认）、update-time（更新时间）</p>
         # @type SortBy: String
-        # @param Sorting: 排序方式，desc表示正序，asc表示反序， 默认为asc。
+        # @param Sorting: <p>排序方式，desc表示正序，asc表示反序， 默认为asc。</p>
         # @type Sorting: String
-        # @param StartTime: 起始时间点，格式为yyyy-mm-dd HH:MM:SS。默认为45天前的当前时刻
+        # @param StartTime: <p>起始时间点，格式为yyyy-mm-dd HH:MM:SS。默认为45天前的当前时刻</p>
         # @type StartTime: String
-        # @param EndTime: 结束时间点，格式为yyyy-mm-dd HH:MM:SS时间跨度在(0,30天]，支持最近45天数据查询。默认为当前时刻
+        # @param EndTime: <p>结束时间点，格式为yyyy-mm-dd HH:MM:SS时间跨度在(0,30天]，支持最近45天数据查询。默认为当前时刻</p>
         # @type EndTime: String
-        # @param DataEngineName: 数据引擎名称，用于筛选
+        # @param DataEngineName: <p>数据引擎名称，用于筛选</p>
         # @type DataEngineName: String
-        # @param ResourceGroupName: spark引擎资源组名称
+        # @param ResourceGroupName: <p>spark引擎资源组名称</p>
         # @type ResourceGroupName: String
 
         attr_accessor :Limit, :Offset, :Filters, :SortBy, :Sorting, :StartTime, :EndTime, :DataEngineName, :ResourceGroupName
@@ -9948,11 +9943,11 @@ module TencentCloud
 
       # DescribeTasks返回参数结构体
       class DescribeTasksResponse < TencentCloud::Common::AbstractModel
-        # @param TaskList: 任务对象列表。
+        # @param TaskList: <p>任务对象列表。</p>
         # @type TaskList: Array
-        # @param TotalCount: 实例总数。
+        # @param TotalCount: <p>实例总数。</p>
         # @type TotalCount: Integer
-        # @param TasksOverview: 任务概览信息
+        # @param TasksOverview: <p>任务概览信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TasksOverview: :class:`Tencentcloud::Dlc.v20210125.models.TasksOverview`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。

@@ -11824,6 +11824,30 @@ module TencentCloud
         end
       end
 
+      # RabbitMQ 虚拟主机基础配额信息
+      class RabbitMQVHostBaseQuota < TencentCloud::Common::AbstractModel
+        # @param MaxConnectionPerVhost: 单个 vhost 下允许的最大连接数
+        # @type MaxConnectionPerVhost: Integer
+        # @param MaxExchangePerVhost: 单个 vhost 下允许的最大交换机数
+        # @type MaxExchangePerVhost: Integer
+        # @param MaxQueuePerVhost: 单个 vhost 下允许的最大队列数
+        # @type MaxQueuePerVhost: Integer
+
+        attr_accessor :MaxConnectionPerVhost, :MaxExchangePerVhost, :MaxQueuePerVhost
+
+        def initialize(maxconnectionpervhost=nil, maxexchangepervhost=nil, maxqueuepervhost=nil)
+          @MaxConnectionPerVhost = maxconnectionpervhost
+          @MaxExchangePerVhost = maxexchangepervhost
+          @MaxQueuePerVhost = maxqueuepervhost
+        end
+
+        def deserialize(params)
+          @MaxConnectionPerVhost = params['MaxConnectionPerVhost']
+          @MaxExchangePerVhost = params['MaxExchangePerVhost']
+          @MaxQueuePerVhost = params['MaxQueuePerVhost']
+        end
+      end
+
       # RabbitMQ 托管版实例信息
       class RabbitMQVipInstance < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID
@@ -11986,10 +12010,12 @@ module TencentCloud
         # @type CreateTs: Integer
         # @param ModifyTs: 修改时间时间戳
         # @type ModifyTs: Integer
+        # @param Quota: 基础配额信息
+        # @type Quota: :class:`Tencentcloud::Tdmq.v20200217.models.RabbitMQVHostBaseQuota`
 
-        attr_accessor :InstanceId, :VirtualHost, :Description, :Tags, :CreateTime, :ModifyTime, :VirtualHostStatistics, :TraceFlag, :Status, :MessageHeapCount, :MessageRateIn, :MessageRateOut, :MirrorQueuePolicyFlag, :CreateTs, :ModifyTs
+        attr_accessor :InstanceId, :VirtualHost, :Description, :Tags, :CreateTime, :ModifyTime, :VirtualHostStatistics, :TraceFlag, :Status, :MessageHeapCount, :MessageRateIn, :MessageRateOut, :MirrorQueuePolicyFlag, :CreateTs, :ModifyTs, :Quota
 
-        def initialize(instanceid=nil, virtualhost=nil, description=nil, tags=nil, createtime=nil, modifytime=nil, virtualhoststatistics=nil, traceflag=nil, status=nil, messageheapcount=nil, messageratein=nil, messagerateout=nil, mirrorqueuepolicyflag=nil, createts=nil, modifyts=nil)
+        def initialize(instanceid=nil, virtualhost=nil, description=nil, tags=nil, createtime=nil, modifytime=nil, virtualhoststatistics=nil, traceflag=nil, status=nil, messageheapcount=nil, messageratein=nil, messagerateout=nil, mirrorqueuepolicyflag=nil, createts=nil, modifyts=nil, quota=nil)
           @InstanceId = instanceid
           @VirtualHost = virtualhost
           @Description = description
@@ -12005,6 +12031,7 @@ module TencentCloud
           @MirrorQueuePolicyFlag = mirrorqueuepolicyflag
           @CreateTs = createts
           @ModifyTs = modifyts
+          @Quota = quota
         end
 
         def deserialize(params)
@@ -12026,6 +12053,10 @@ module TencentCloud
           @MirrorQueuePolicyFlag = params['MirrorQueuePolicyFlag']
           @CreateTs = params['CreateTs']
           @ModifyTs = params['ModifyTs']
+          unless params['Quota'].nil?
+            @Quota = RabbitMQVHostBaseQuota.new
+            @Quota.deserialize(params['Quota'])
+          end
         end
       end
 

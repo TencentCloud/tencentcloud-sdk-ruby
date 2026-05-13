@@ -586,22 +586,25 @@ module TencentCloud
 
       # ocr关键词命中位置信息
       class OcrHitInfo < TencentCloud::Common::AbstractModel
-        # @param Type: 标识模型命中还是关键词命中
+        # @param Type: <p>标识模型命中还是关键词命中</p>
         # @type Type: String
-        # @param Keyword: 命中关键词
+        # @param Keyword: <p>命中关键词</p>
         # @type Keyword: String
-        # @param LibName: 自定义词库名称
+        # @param LibName: <p>自定义词库名称</p>
         # @type LibName: String
-        # @param Positions: 位置信息
+        # @param Positions: <p>位置信息</p>
         # @type Positions: Array
+        # @param Label: <p>命中标签</p>
+        # @type Label: String
 
-        attr_accessor :Type, :Keyword, :LibName, :Positions
+        attr_accessor :Type, :Keyword, :LibName, :Positions, :Label
 
-        def initialize(type=nil, keyword=nil, libname=nil, positions=nil)
+        def initialize(type=nil, keyword=nil, libname=nil, positions=nil, label=nil)
           @Type = type
           @Keyword = keyword
           @LibName = libname
           @Positions = positions
+          @Label = label
         end
 
         def deserialize(params)
@@ -616,6 +619,7 @@ module TencentCloud
               @Positions << positions_tmp
             end
           end
+          @Label = params['Label']
         end
       end
 

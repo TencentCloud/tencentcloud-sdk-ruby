@@ -10592,31 +10592,25 @@ module TencentCloud
 
       # CreateTranscodeTemplate请求参数结构体
       class CreateTranscodeTemplateRequest < TencentCloud::Common::AbstractModel
-        # @param Container: 封装格式，可选值：mp4、flv、hls、ts、webm、mkv、mxf、mov、mp3、flac、ogg、m4a。其中，mp3、flac、ogg、m4a 为纯音频文件。
+        # @param Container: <p>封装格式，可选值：mp4、flv、hls、ts、webm、mkv、mxf、mov、mp3、flac、ogg、m4a、wav。其中，mp3、flac、ogg、m4a、wav 为纯音频文件。</p>
         # @type Container: String
-        # @param Name: 转码模板名称，长度限制：64 个字符。
+        # @param Name: <p>转码模板名称，长度限制：64 个字符。</p>
         # @type Name: String
-        # @param Comment: 模板描述信息，长度限制：256 个字符。
+        # @param Comment: <p>模板描述信息，长度限制：256 个字符。</p>
         # @type Comment: String
-        # @param RemoveVideo: 是否去除视频数据，可选值：
-        # <li>0：保留</li>
-        # <li>1：去除</li>
-        # 默认值：0。
+        # @param RemoveVideo: <p>是否去除视频数据，可选值：</p><li>0：保留</li><li>1：去除</li>默认值：0。
         # @type RemoveVideo: Integer
-        # @param RemoveAudio: 是否去除音频数据，可选值：
-        # <li>0：保留</li>
-        # <li>1：去除</li>
-        # 默认值：0。
+        # @param RemoveAudio: <p>是否去除音频数据，可选值：</p><li>0：保留</li><li>1：去除</li>默认值：0。
         # @type RemoveAudio: Integer
-        # @param VideoTemplate: 视频流配置参数，当 RemoveVideo 为 0，该字段必填。
+        # @param VideoTemplate: <p>视频流配置参数，当 RemoveVideo 为 0，该字段必填。</p>
         # @type VideoTemplate: :class:`Tencentcloud::Mps.v20190612.models.VideoTemplateInfo`
-        # @param AudioTemplate: 音频流配置参数，当 RemoveAudio 为 0，该字段必填。
+        # @param AudioTemplate: <p>音频流配置参数，当 RemoveAudio 为 0，该字段必填。</p>
         # @type AudioTemplate: :class:`Tencentcloud::Mps.v20190612.models.AudioTemplateInfo`
-        # @param TEHDConfig: 极速高清转码参数。
+        # @param TEHDConfig: <p>极速高清转码参数。</p>
         # @type TEHDConfig: :class:`Tencentcloud::Mps.v20190612.models.TEHDConfig`
-        # @param EnhanceConfig: 音视频增强配置。
+        # @param EnhanceConfig: <p>音视频增强配置。</p>
         # @type EnhanceConfig: :class:`Tencentcloud::Mps.v20190612.models.EnhanceConfig`
-        # @param StdExtInfo: 扩展参数，序列化的 json 字符串。
+        # @param StdExtInfo: <p>扩展参数，序列化的 json 字符串。</p>
         # @type StdExtInfo: String
 
         attr_accessor :Container, :Name, :Comment, :RemoveVideo, :RemoveAudio, :VideoTemplate, :AudioTemplate, :TEHDConfig, :EnhanceConfig, :StdExtInfo
@@ -10662,7 +10656,7 @@ module TencentCloud
 
       # CreateTranscodeTemplate返回参数结构体
       class CreateTranscodeTemplateResponse < TencentCloud::Common::AbstractModel
-        # @param Definition: 转码模板唯一标识。
+        # @param Definition: <p>转码模板唯一标识。</p>
         # @type Definition: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -25488,29 +25482,25 @@ module TencentCloud
 
       # ModifyTranscodeTemplate请求参数结构体
       class ModifyTranscodeTemplateRequest < TencentCloud::Common::AbstractModel
-        # @param Definition: 转码模板唯一标识。
+        # @param Definition: <p>转码模板唯一标识。</p>
         # @type Definition: Integer
-        # @param Container: 封装格式，可选值：mp4、flv、hls、mp3、flac、ogg、m4a。其中，mp3、flac、ogg、m4a 为纯音频文件。
+        # @param Container: <p>封装格式，可选值：mp4、flv、hls、mp3、flac、ogg、m4a、wav。其中，mp3、flac、ogg、m4a、wav 为纯音频文件。</p>
         # @type Container: String
-        # @param Name: 转码模板名称，长度限制：64 个字符。
+        # @param Name: <p>转码模板名称，长度限制：64 个字符。</p>
         # @type Name: String
-        # @param Comment: 模板描述信息，长度限制：256 个字符。
+        # @param Comment: <p>模板描述信息，长度限制：256 个字符。</p>
         # @type Comment: String
-        # @param RemoveVideo: 是否去除视频数据，可选值：
-        # <li>0：保留</li>
-        # <li>1：去除</li>
+        # @param RemoveVideo: <p>是否去除视频数据，可选值：</p><li>0：保留</li><li>1：去除</li>
         # @type RemoveVideo: Integer
-        # @param RemoveAudio: 是否去除音频数据，可选值：
-        # <li>0：保留</li>
-        # <li>1：去除</li>
+        # @param RemoveAudio: <p>是否去除音频数据，可选值：</p><li>0：保留</li><li>1：去除</li>
         # @type RemoveAudio: Integer
-        # @param VideoTemplate: 视频流配置参数。
+        # @param VideoTemplate: <p>视频流配置参数。</p>
         # @type VideoTemplate: :class:`Tencentcloud::Mps.v20190612.models.VideoTemplateInfoForUpdate`
-        # @param AudioTemplate: 音频流配置参数。
+        # @param AudioTemplate: <p>音频流配置参数。</p>
         # @type AudioTemplate: :class:`Tencentcloud::Mps.v20190612.models.AudioTemplateInfoForUpdate`
-        # @param TEHDConfig: 极速高清转码参数。
+        # @param TEHDConfig: <p>极速高清转码参数。</p>
         # @type TEHDConfig: :class:`Tencentcloud::Mps.v20190612.models.TEHDConfigForUpdate`
-        # @param EnhanceConfig: 音视频增强参数。
+        # @param EnhanceConfig: <p>音视频增强参数。</p>
         # @type EnhanceConfig: :class:`Tencentcloud::Mps.v20190612.models.EnhanceConfig`
 
         attr_accessor :Definition, :Container, :Name, :Comment, :RemoveVideo, :RemoveAudio, :VideoTemplate, :AudioTemplate, :TEHDConfig, :EnhanceConfig

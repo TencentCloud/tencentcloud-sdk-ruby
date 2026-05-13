@@ -11728,6 +11728,9 @@ module TencentCloud
         # @type Status: String
 
         attr_accessor :TiProjectId, :Name, :Description, :CreateTime, :ResourceGroups, :ActionType, :Status
+        extend Gem::Deprecate
+        deprecate :ResourceGroups, :none, 2026, 5
+        deprecate :ResourceGroups=, :none, 2026, 5
 
         def initialize(tiprojectid=nil, name=nil, description=nil, createtime=nil, resourcegroups=nil, actiontype=nil, status=nil)
           @TiProjectId = tiprojectid

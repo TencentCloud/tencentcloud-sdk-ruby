@@ -1087,6 +1087,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 互联网边界防火墙开关列表(轻量)
+
+        # @param request: Request instance for DescribeEdgeIpSimple.
+        # @type request: :class:`Tencentcloud::cfw::V20190904::DescribeEdgeIpSimpleRequest`
+        # @rtype: :class:`Tencentcloud::cfw::V20190904::DescribeEdgeIpSimpleResponse`
+        def DescribeEdgeIpSimple(request)
+          body = send_request('DescribeEdgeIpSimple', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeEdgeIpSimpleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询新版安全组下发进度
 
         # @param request: Request instance for DescribeEnterpriseSGRuleProgress.
