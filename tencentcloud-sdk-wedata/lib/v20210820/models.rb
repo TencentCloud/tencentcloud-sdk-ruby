@@ -26234,181 +26234,184 @@ module TencentCloud
 
       # 集成任务
       class IntegrationTaskInfo < TencentCloud::Common::AbstractModel
-        # @param TaskName: 任务名称
+        # @param TaskName: <p>任务名称</p>
         # @type TaskName: String
-        # @param Description: 任务描述
+        # @param Description: <p>任务描述</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
-        # @param SyncType: 同步类型1.解决方案(整库迁移),2.单表同步
+        # @param SyncType: <p>同步类型1.解决方案(整库迁移),2.单表同步</p>
         # @type SyncType: Integer
-        # @param TaskType: 201.实时,202.离线
+        # @param TaskType: <p>201.实时,202.离线</p>
         # @type TaskType: Integer
-        # @param WorkflowId: 任务所属工作流id
+        # @param WorkflowId: <p>任务所属工作流id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WorkflowId: String
-        # @param TaskId: 任务id
+        # @param TaskId: <p>任务id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskId: String
-        # @param ScheduleTaskId: 任务调度id(oceanus or us等作业id)，非填项
+        # @param ScheduleTaskId: <p>任务调度id(oceanus or us等作业id)，非填项</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScheduleTaskId: String
-        # @param TaskGroupId: inlong任务id
+        # @param TaskGroupId: <p>inlong任务id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskGroupId: String
-        # @param ProjectId: 项目id
+        # @param ProjectId: <p>项目id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProjectId: String
-        # @param CreatorUin: 创建人uin
+        # @param CreatorUin: <p>创建人uin</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreatorUin: String
-        # @param OperatorUin: 操作人uin
+        # @param OperatorUin: <p>操作人uin</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OperatorUin: String
-        # @param OwnerUin: owner uin
+        # @param OwnerUin: <p>owner uin</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OwnerUin: String
-        # @param AppId: 应用id
+        # @param AppId: <p>应用id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppId: String
-        # @param Status: 0:新建(任务开发态默认状态)|1:未开始|2:操作中|3:运行中|4:暂停|5:任务停止中|6:停止|7:执行失败|20:异常|21:未知|
+        # @param Status: <p>0:新建(任务开发态默认状态)|1:未开始|2:操作中|3:运行中|4:暂停|5:任务停止中|6:停止|7:执行失败|20:异常|21:未知|</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
-        # @param Nodes: 节点列表
+        # @param Nodes: <p>节点列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Nodes: Array
-        # @param ExecutorId: 执行资源id
+        # @param ExecutorId: <p>执行资源id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExecutorId: String
-        # @param Config: 任务配置信息
+        # @param Config: <p>任务配置信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Config: Array
-        # @param ExtConfig: 任务扩展配置信息
+        # @param ExtConfig: <p>任务扩展配置信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExtConfig: Array
-        # @param ExecuteContext: 任务执行context信息
+        # @param ExecuteContext: <p>任务执行context信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExecuteContext: Array
-        # @param Mappings: 节点映射
+        # @param Mappings: <p>节点映射</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Mappings: Array
-        # @param TaskMode: 任务配置模式，0:画布 1:表单 3:脚本
+        # @param TaskMode: <p>任务配置模式，0:画布 1:表单 3:脚本</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskMode: String
-        # @param Incharge: 责任人
+        # @param Incharge: <p>责任人</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Incharge: String
-        # @param OfflineTaskAddEntity: 离线新增参数
+        # @param OfflineTaskAddEntity: <p>离线新增参数</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OfflineTaskAddEntity: :class:`Tencentcloud::Wedata.v20210820.models.OfflineTaskAddParam`
-        # @param ExecutorGroupName: group name
+        # @param ExecutorGroupName: <p>group name</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExecutorGroupName: String
-        # @param InLongManagerUrl: inlong manager url
+        # @param InLongManagerUrl: <p>inlong manager url</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InLongManagerUrl: String
-        # @param InLongStreamId: stream id
+        # @param InLongStreamId: <p>stream id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InLongStreamId: String
-        # @param InLongManagerVersion: version
+        # @param InLongManagerVersion: <p>version</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InLongManagerVersion: String
-        # @param DataProxyUrl: inlong dataproxy url
+        # @param DataProxyUrl: <p>inlong dataproxy url</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataProxyUrl: Array
-        # @param Submit: 任务版本是否已提交运维
+        # @param Submit: <p>任务版本是否已提交运维</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Submit: Boolean
-        # @param InputDatasourceType: 数据源类型：MYSQL|POSTGRE|ORACLE|SQLSERVER|FTP|HIVE|HDFS|ICEBERG|KAFKA|HBASE|SPARK|VIRTUAL|TBASE|DB2|DM|GAUSSDB|GBASE|IMPALA|ES|S3_DATAINSIGHT|GREENPLUM|PHOENIX|SAP_HANA|SFTP|OCEANBASE|CLICKHOUSE|KUDU|VERTICA|REDIS|COS|DLC|DLCV1|DORIS|CKAFKA|DTS_KAFKA|S3|CDW|LOCAL|TDSQLC|TDSQL|TDSQL_MYSQL|MONGODB|INFORMIX|SYBASE|REST_API|SuperSQL|PRESTO|DR_SUM|TiDB|StarRocks|Trino|Kyuubi|GDB|TCHOUSE_X|TCHOUSE_P|TDSQL_POSTGRE
+        # @param InputDatasourceType: <p>数据源类型：MYSQL|POSTGRE|ORACLE|SQLSERVER|FTP|HIVE|HDFS|ICEBERG|KAFKA|HBASE|SPARK|VIRTUAL|TBASE|DB2|DM|GAUSSDB|GBASE|IMPALA|ES|S3_DATAINSIGHT|GREENPLUM|PHOENIX|SAP_HANA|SFTP|OCEANBASE|CLICKHOUSE|KUDU|VERTICA|REDIS|COS|DLC|DLCV1|DORIS|CKAFKA|DTS_KAFKA|S3|CDW|LOCAL|TDSQLC|TDSQL|TDSQL_MYSQL|MONGODB|INFORMIX|SYBASE|REST_API|SuperSQL|PRESTO|DR_SUM|TiDB|StarRocks|Trino|Kyuubi|GDB|TCHOUSE_X|TCHOUSE_P|TDSQL_POSTGRE</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InputDatasourceType: String
-        # @param OutputDatasourceType: 数据源类型：MYSQL|POSTGRE|ORACLE|SQLSERVER|FTP|HIVE|HDFS|ICEBERG|KAFKA|HBASE|SPARK|VIRTUAL|TBASE|DB2|DM|GAUSSDB|GBASE|IMPALA|ES|S3_DATAINSIGHT|GREENPLUM|PHOENIX|SAP_HANA|SFTP|OCEANBASE|CLICKHOUSE|KUDU|VERTICA|REDIS|COS|DLC|DLCV1|DORIS|CKAFKA|DTS_KAFKA|S3|CDW|LOCAL|TDSQLC|TDSQL|TDSQL_MYSQL|MONGODB|INFORMIX|SYBASE|REST_API|SuperSQL|PRESTO|DR_SUM|TiDB|StarRocks|Trino|Kyuubi|GDB|TCHOUSE_X|TCHOUSE_P|TDSQL_POSTGRE
+        # @param OutputDatasourceType: <p>数据源类型：MYSQL|POSTGRE|ORACLE|SQLSERVER|FTP|HIVE|HDFS|ICEBERG|KAFKA|HBASE|SPARK|VIRTUAL|TBASE|DB2|DM|GAUSSDB|GBASE|IMPALA|ES|S3_DATAINSIGHT|GREENPLUM|PHOENIX|SAP_HANA|SFTP|OCEANBASE|CLICKHOUSE|KUDU|VERTICA|REDIS|COS|DLC|DLCV1|DORIS|CKAFKA|DTS_KAFKA|S3|CDW|LOCAL|TDSQLC|TDSQL|TDSQL_MYSQL|MONGODB|INFORMIX|SYBASE|REST_API|SuperSQL|PRESTO|DR_SUM|TiDB|StarRocks|Trino|Kyuubi|GDB|TCHOUSE_X|TCHOUSE_P|TDSQL_POSTGRE</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OutputDatasourceType: String
-        # @param NumRecordsIn: 读取条数
+        # @param NumRecordsIn: <p>读取条数</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NumRecordsIn: Integer
-        # @param NumRecordsOut: 写入条数
+        # @param NumRecordsOut: <p>写入条数</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NumRecordsOut: Integer
-        # @param ReaderDelay: 读取延迟
+        # @param ReaderDelay: <p>读取延迟</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReaderDelay: Float
-        # @param NumRestarts: 重启次数
+        # @param NumRestarts: <p>重启次数</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NumRestarts: Integer
-        # @param CreateTime: 任务创建时间
+        # @param CreateTime: <p>任务创建时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
-        # @param UpdateTime: 任务更新时间
+        # @param UpdateTime: <p>任务更新时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
-        # @param LastRunTime: 任务最后一次运行时间
+        # @param LastRunTime: <p>任务最后一次运行时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LastRunTime: String
-        # @param StopTime: 任务停止时间
+        # @param StopTime: <p>任务停止时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StopTime: String
-        # @param HasVersion: 作业是否已提交
+        # @param HasVersion: <p>作业是否已提交</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HasVersion: Boolean
-        # @param Locked: 任务是否被锁定
+        # @param Locked: <p>任务是否被锁定</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Locked: Boolean
-        # @param Locker: 任务锁定人
+        # @param Locker: <p>任务锁定人</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Locker: String
-        # @param RunningCu: 耗费资源量
+        # @param RunningCu: <p>耗费资源量</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RunningCu: Float
-        # @param TaskAlarmRegularList: 该任务关联的告警规则
+        # @param TaskAlarmRegularList: <p>该任务关联的告警规则</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskAlarmRegularList: Array
-        # @param SwitchResource: 实时任务资源分层情况： 0：进行中,1：成功 ,2：失败
+        # @param SwitchResource: <p>实时任务资源分层情况： 0：进行中,1：成功 ,2：失败</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SwitchResource: Integer
-        # @param ReadPhase: 实时任务读取阶段：0：全部全量,1：部分全量,2：全部增量
+        # @param ReadPhase: <p>实时任务读取阶段：0：全部全量,1：部分全量,2：全部增量</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReadPhase: Integer
-        # @param InstanceVersion: 实时任务版本号
+        # @param InstanceVersion: <p>实时任务版本号</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceVersion: Integer
-        # @param ArrangeSpaceTaskId: 离线任务导入到编排空间的任务id
+        # @param ArrangeSpaceTaskId: <p>离线任务导入到编排空间的任务id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ArrangeSpaceTaskId: String
-        # @param OfflineTaskStatus: 离线任务状态区分1.未提交2.已提交3.已导出
+        # @param OfflineTaskStatus: <p>离线任务状态区分1.未提交2.已提交3.已导出</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OfflineTaskStatus: Integer
-        # @param TaskImportInfo: 导入到编排空间配置
+        # @param TaskImportInfo: <p>导入到编排空间配置</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskImportInfo: :class:`Tencentcloud::Wedata.v20210820.models.TaskImportInfo`
-        # @param BusinessLatency: 业务延迟
+        # @param BusinessLatency: <p>业务延迟</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BusinessLatency: Integer
-        # @param CurrentSyncPosition: 当前同步位点
+        # @param CurrentSyncPosition: <p>当前同步位点</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CurrentSyncPosition: Integer
-        # @param TagList: 标签列表
+        # @param TagList: <p>标签列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagList: Array
-        # @param ErrorMessage: 错误信息
+        # @param ErrorMessage: <p>错误信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorMessage: String
-        # @param TaskSubType: 任务子状态
+        # @param TaskSubType: <p>任务子状态</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskSubType: Integer
-        # @param NotExistsCheckPoint: 是否存在SavePoint, 0-存在, 1-不存在, null 为未知
+        # @param NotExistsCheckPoint: <p>是否存在SavePoint, 0-存在, 1-不存在, null 为未知</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NotExistsCheckPoint: Integer
-        # @param SavePointId: savepiontPath
+        # @param SavePointId: <p>savepiontPath</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SavePointId: String
-        # @param SavePointPath: savepiontId
+        # @param SavePointPath: <p>savepiontId</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SavePointPath: String
+        # @param LastOperateInfo: <p>最近一次操作信息</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LastOperateInfo: :class:`Tencentcloud::Wedata.v20210820.models.LastOperateInfo`
 
-        attr_accessor :TaskName, :Description, :SyncType, :TaskType, :WorkflowId, :TaskId, :ScheduleTaskId, :TaskGroupId, :ProjectId, :CreatorUin, :OperatorUin, :OwnerUin, :AppId, :Status, :Nodes, :ExecutorId, :Config, :ExtConfig, :ExecuteContext, :Mappings, :TaskMode, :Incharge, :OfflineTaskAddEntity, :ExecutorGroupName, :InLongManagerUrl, :InLongStreamId, :InLongManagerVersion, :DataProxyUrl, :Submit, :InputDatasourceType, :OutputDatasourceType, :NumRecordsIn, :NumRecordsOut, :ReaderDelay, :NumRestarts, :CreateTime, :UpdateTime, :LastRunTime, :StopTime, :HasVersion, :Locked, :Locker, :RunningCu, :TaskAlarmRegularList, :SwitchResource, :ReadPhase, :InstanceVersion, :ArrangeSpaceTaskId, :OfflineTaskStatus, :TaskImportInfo, :BusinessLatency, :CurrentSyncPosition, :TagList, :ErrorMessage, :TaskSubType, :NotExistsCheckPoint, :SavePointId, :SavePointPath
+        attr_accessor :TaskName, :Description, :SyncType, :TaskType, :WorkflowId, :TaskId, :ScheduleTaskId, :TaskGroupId, :ProjectId, :CreatorUin, :OperatorUin, :OwnerUin, :AppId, :Status, :Nodes, :ExecutorId, :Config, :ExtConfig, :ExecuteContext, :Mappings, :TaskMode, :Incharge, :OfflineTaskAddEntity, :ExecutorGroupName, :InLongManagerUrl, :InLongStreamId, :InLongManagerVersion, :DataProxyUrl, :Submit, :InputDatasourceType, :OutputDatasourceType, :NumRecordsIn, :NumRecordsOut, :ReaderDelay, :NumRestarts, :CreateTime, :UpdateTime, :LastRunTime, :StopTime, :HasVersion, :Locked, :Locker, :RunningCu, :TaskAlarmRegularList, :SwitchResource, :ReadPhase, :InstanceVersion, :ArrangeSpaceTaskId, :OfflineTaskStatus, :TaskImportInfo, :BusinessLatency, :CurrentSyncPosition, :TagList, :ErrorMessage, :TaskSubType, :NotExistsCheckPoint, :SavePointId, :SavePointPath, :LastOperateInfo
 
-        def initialize(taskname=nil, description=nil, synctype=nil, tasktype=nil, workflowid=nil, taskid=nil, scheduletaskid=nil, taskgroupid=nil, projectid=nil, creatoruin=nil, operatoruin=nil, owneruin=nil, appid=nil, status=nil, nodes=nil, executorid=nil, config=nil, extconfig=nil, executecontext=nil, mappings=nil, taskmode=nil, incharge=nil, offlinetaskaddentity=nil, executorgroupname=nil, inlongmanagerurl=nil, inlongstreamid=nil, inlongmanagerversion=nil, dataproxyurl=nil, submit=nil, inputdatasourcetype=nil, outputdatasourcetype=nil, numrecordsin=nil, numrecordsout=nil, readerdelay=nil, numrestarts=nil, createtime=nil, updatetime=nil, lastruntime=nil, stoptime=nil, hasversion=nil, locked=nil, locker=nil, runningcu=nil, taskalarmregularlist=nil, switchresource=nil, readphase=nil, instanceversion=nil, arrangespacetaskid=nil, offlinetaskstatus=nil, taskimportinfo=nil, businesslatency=nil, currentsyncposition=nil, taglist=nil, errormessage=nil, tasksubtype=nil, notexistscheckpoint=nil, savepointid=nil, savepointpath=nil)
+        def initialize(taskname=nil, description=nil, synctype=nil, tasktype=nil, workflowid=nil, taskid=nil, scheduletaskid=nil, taskgroupid=nil, projectid=nil, creatoruin=nil, operatoruin=nil, owneruin=nil, appid=nil, status=nil, nodes=nil, executorid=nil, config=nil, extconfig=nil, executecontext=nil, mappings=nil, taskmode=nil, incharge=nil, offlinetaskaddentity=nil, executorgroupname=nil, inlongmanagerurl=nil, inlongstreamid=nil, inlongmanagerversion=nil, dataproxyurl=nil, submit=nil, inputdatasourcetype=nil, outputdatasourcetype=nil, numrecordsin=nil, numrecordsout=nil, readerdelay=nil, numrestarts=nil, createtime=nil, updatetime=nil, lastruntime=nil, stoptime=nil, hasversion=nil, locked=nil, locker=nil, runningcu=nil, taskalarmregularlist=nil, switchresource=nil, readphase=nil, instanceversion=nil, arrangespacetaskid=nil, offlinetaskstatus=nil, taskimportinfo=nil, businesslatency=nil, currentsyncposition=nil, taglist=nil, errormessage=nil, tasksubtype=nil, notexistscheckpoint=nil, savepointid=nil, savepointpath=nil, lastoperateinfo=nil)
           @TaskName = taskname
           @Description = description
           @SyncType = synctype
@@ -26467,6 +26470,7 @@ module TencentCloud
           @NotExistsCheckPoint = notexistscheckpoint
           @SavePointId = savepointid
           @SavePointPath = savepointpath
+          @LastOperateInfo = lastoperateinfo
         end
 
         def deserialize(params)
@@ -26576,6 +26580,10 @@ module TencentCloud
           @NotExistsCheckPoint = params['NotExistsCheckPoint']
           @SavePointId = params['SavePointId']
           @SavePointPath = params['SavePointPath']
+          unless params['LastOperateInfo'].nil?
+            @LastOperateInfo = LastOperateInfo.new
+            @LastOperateInfo.deserialize(params['LastOperateInfo'])
+          end
         end
       end
 
@@ -26909,6 +26917,41 @@ module TencentCloud
         def deserialize(params)
           @LabelId = params['LabelId']
           @LabelValue = params['LabelValue']
+        end
+      end
+
+      # 最近一次的操作信息
+      class LastOperateInfo < TencentCloud::Common::AbstractModel
+        # @param TaskEvent: <p>任务事件</p>
+        # @type TaskEvent: String
+        # @param OperateId: <p>操作ID</p>
+        # @type OperateId: String
+        # @param ErrorMsg: <p>错误信息</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorMsg: String
+        # @param CreatedTime: <p>创建时间</p><p>参数格式：YYYY-MM-DD hh:mm:ss</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreatedTime: String
+        # @param UpdatedTime: <p>更新时间</p><p>参数格式：YYYY-MM-DD hh:mm:ss</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdatedTime: String
+
+        attr_accessor :TaskEvent, :OperateId, :ErrorMsg, :CreatedTime, :UpdatedTime
+
+        def initialize(taskevent=nil, operateid=nil, errormsg=nil, createdtime=nil, updatedtime=nil)
+          @TaskEvent = taskevent
+          @OperateId = operateid
+          @ErrorMsg = errormsg
+          @CreatedTime = createdtime
+          @UpdatedTime = updatedtime
+        end
+
+        def deserialize(params)
+          @TaskEvent = params['TaskEvent']
+          @OperateId = params['OperateId']
+          @ErrorMsg = params['ErrorMsg']
+          @CreatedTime = params['CreatedTime']
+          @UpdatedTime = params['UpdatedTime']
         end
       end
 

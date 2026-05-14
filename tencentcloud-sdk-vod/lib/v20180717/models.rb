@@ -8444,6 +8444,88 @@ module TencentCloud
         end
       end
 
+      # CreateAigcAudioClone请求参数结构体
+      class CreateAigcAudioCloneRequest < TencentCloud::Common::AbstractModel
+        # @param SubAppId: <p><b>点播<a href="https://cloud.tencent.com/document/product/266/14574">应用</a> ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b></p>
+        # @type SubAppId: Integer
+        # @param AudioFileInfo: <p>原音频文件（需要确保可访问） 模型将以此参数中传入的音频音色为示例对音色进行复刻。  </p><p>入参限制：注1：音频仅支持格式：mp3、m4a、wav； 注2：上传的音频文件的时长最少应不低于 10 秒，最长应不超过 5 分钟； 注3：上传的音频文件大小需不超过20mb； 注4：音频内容免涉版权，否则会被下架或销毁。</p>
+        # @type AudioFileInfo: :class:`Tencentcloud::Vod.v20180717.models.AigcAudioCloneInputFileInfo`
+        # @param VoiceId: <p>自定义的声音ID，示例：&quot;vidu01&quot;。</p><p>入参限制：</p><ul><li>自定义的 voice_id 长度范围[8,256];</li><li>首字符必须为英文字母;</li><li>允许数字、字母、横线、下划线;</li><li>末位字符不可为 -、_</li><li>voice_id 不可与已有 id 重复，否则会报错.</li></ul>
+        # @type VoiceId: String
+        # @param Text: <p>复刻试听参数。</p><p>参数格式：限制 1000 字符以内，模型将使用复刻后的音色朗读本段文本内容，并返回试听音频链接。 注：试听将根据字符数正常收取语音合成费用。</p>
+        # @type Text: String
+        # @param PromptAudioFileInfo: <p>音色复刻示例音频。提供本参数将有助于增强语音合成的音色相似度和稳定性，若使用本参数，需同时上传一小段示例音频。</p><p>入参限制：注1：音频仅支持格式：mp3、m4a、wav； 注2：上传的音频文件的时长最少应小于 8 秒； 注3：上传的音频文件大小需不超过20mb。</p>
+        # @type PromptAudioFileInfo: :class:`Tencentcloud::Vod.v20180717.models.AigcAudioCloneInputFileInfo`
+        # @param PromptText: <p>示例音频对应的文本内容 需确保和音频内容一致，句末需有标点符号做结尾。</p>
+        # @type PromptText: String
+        # @param Payload: <p>透传参数。  入参限制：不做任何处理，仅数据传输 注：最多 1048576个字符</p>
+        # @type Payload: String
+        # @param SessionId: <p>用于去重的识别码，如果三天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长 50 个字符，不带或者带空字符串表示不做去重。</p>
+        # @type SessionId: String
+        # @param SessionContext: <p>来源上下文，用于透传用户请求信息，音画质重生完成回调将返回该字段值，最长 1000 个字符。</p>
+        # @type SessionContext: String
+        # @param TasksPriority: <p>任务的优先级，数值越大优先级越高，取值范围是 -10 到 10，不填代表 0。</p>
+        # @type TasksPriority: Integer
+        # @param ExtInfo: <p>保留字段，特殊用途时使用。</p>
+        # @type ExtInfo: String
+
+        attr_accessor :SubAppId, :AudioFileInfo, :VoiceId, :Text, :PromptAudioFileInfo, :PromptText, :Payload, :SessionId, :SessionContext, :TasksPriority, :ExtInfo
+
+        def initialize(subappid=nil, audiofileinfo=nil, voiceid=nil, text=nil, promptaudiofileinfo=nil, prompttext=nil, payload=nil, sessionid=nil, sessioncontext=nil, taskspriority=nil, extinfo=nil)
+          @SubAppId = subappid
+          @AudioFileInfo = audiofileinfo
+          @VoiceId = voiceid
+          @Text = text
+          @PromptAudioFileInfo = promptaudiofileinfo
+          @PromptText = prompttext
+          @Payload = payload
+          @SessionId = sessionid
+          @SessionContext = sessioncontext
+          @TasksPriority = taskspriority
+          @ExtInfo = extinfo
+        end
+
+        def deserialize(params)
+          @SubAppId = params['SubAppId']
+          unless params['AudioFileInfo'].nil?
+            @AudioFileInfo = AigcAudioCloneInputFileInfo.new
+            @AudioFileInfo.deserialize(params['AudioFileInfo'])
+          end
+          @VoiceId = params['VoiceId']
+          @Text = params['Text']
+          unless params['PromptAudioFileInfo'].nil?
+            @PromptAudioFileInfo = AigcAudioCloneInputFileInfo.new
+            @PromptAudioFileInfo.deserialize(params['PromptAudioFileInfo'])
+          end
+          @PromptText = params['PromptText']
+          @Payload = params['Payload']
+          @SessionId = params['SessionId']
+          @SessionContext = params['SessionContext']
+          @TasksPriority = params['TasksPriority']
+          @ExtInfo = params['ExtInfo']
+        end
+      end
+
+      # CreateAigcAudioClone返回参数结构体
+      class CreateAigcAudioCloneResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>任务ID。</p>
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 创建 AIGC 声音复刻任务信息。
       class CreateAigcAudioCloneTask < TencentCloud::Common::AbstractModel
         # @param TaskId: <p>任务ID。</p>
@@ -36564,10 +36646,12 @@ module TencentCloud
         # @type Bframes: Integer
         # @param HlsTime: <p>分片平均时长。0或不填表示自动，将根据视频的 GOP 等特征自动选择合适的分片时长。</p><p>取值范围：[0, 10]</p><p>单位：秒</p><p>只支持转码模板，暂不支持自适应码流模板。</p>
         # @type HlsTime: Integer
+        # @param VideoProfile: <p>视频编码标准中对允许使用哪些编码工具或特性的一组预定义组合，适用于不同场景。</p><p>枚举值：</p><ul><li>baseline： 只支持I/P帧，并只支持无交错的场景，适用于视频通话、手机视频等场景。</li><li>main： 主流 Profile，提供I帧、P帧、B帧，并支持无交错模式和交错模式。主要用在主流的音视频消费产品如视频播放器、流媒体传输设备上。</li><li>high： 最高编码等级，在Main Profile上添加了8X8的预测，并支持自定义量化。广泛应用在蓝光存储、高清电视等场景。</li><li>default： 随原视频自动填充。  </li></ul><p>默认值：default</p><p>仅 Codec 为 libx264 时该配置项有效。</p>
+        # @type VideoProfile: String
 
-        attr_accessor :Codec, :Fps, :Bitrate, :ResolutionAdaptive, :Width, :Height, :FillType, :Vcrf, :Gop, :GopUnit, :PreserveHDRSwitch, :CodecTag, :Mode, :Bframes, :HlsTime
+        attr_accessor :Codec, :Fps, :Bitrate, :ResolutionAdaptive, :Width, :Height, :FillType, :Vcrf, :Gop, :GopUnit, :PreserveHDRSwitch, :CodecTag, :Mode, :Bframes, :HlsTime, :VideoProfile
 
-        def initialize(codec=nil, fps=nil, bitrate=nil, resolutionadaptive=nil, width=nil, height=nil, filltype=nil, vcrf=nil, gop=nil, gopunit=nil, preservehdrswitch=nil, codectag=nil, mode=nil, bframes=nil, hlstime=nil)
+        def initialize(codec=nil, fps=nil, bitrate=nil, resolutionadaptive=nil, width=nil, height=nil, filltype=nil, vcrf=nil, gop=nil, gopunit=nil, preservehdrswitch=nil, codectag=nil, mode=nil, bframes=nil, hlstime=nil, videoprofile=nil)
           @Codec = codec
           @Fps = fps
           @Bitrate = bitrate
@@ -36583,6 +36667,7 @@ module TencentCloud
           @Mode = mode
           @Bframes = bframes
           @HlsTime = hlstime
+          @VideoProfile = videoprofile
         end
 
         def deserialize(params)
@@ -36601,6 +36686,7 @@ module TencentCloud
           @Mode = params['Mode']
           @Bframes = params['Bframes']
           @HlsTime = params['HlsTime']
+          @VideoProfile = params['VideoProfile']
         end
       end
 
@@ -36636,10 +36722,12 @@ module TencentCloud
         # @type Bframes: Integer
         # @param HlsTime: <p>分片平均时长。0或不填表示自动，将根据视频的 GOP 等特征自动选择合适的分片时长。</p><p>取值范围：[0, 10]</p><p>单位：秒</p><p>只支持转码模板，暂不支持自适应码流模板。</p>
         # @type HlsTime: Integer
+        # @param VideoProfile: <p>视频编码标准中对允许使用哪些编码工具或特性的一组预定义组合，适用于不同场景。</p><p>枚举值：</p><ul><li>baseline： 只支持I/P帧，并只支持无交错的场景，适用于视频通话、手机视频等场景。</li><li>main： 主流 Profile，提供I帧、P帧、B帧，并支持无交错模式和交错模式。主要用在主流的音视频消费产品如视频播放器、流媒体传输设备上。</li><li>high： 最高编码等级，在Main Profile上添加了8X8的预测，并支持自定义量化。广泛应用在蓝光存储、高清电视等场景。</li><li>default： 随原视频自动填充。  </li></ul><p>默认值：default</p><p>仅 Codec 为 libx264 时该配置项有效。</p>
+        # @type VideoProfile: String
 
-        attr_accessor :Codec, :Fps, :Bitrate, :ResolutionAdaptive, :Width, :Height, :FillType, :Vcrf, :Gop, :PreserveHDRSwitch, :CodecTag, :GopUnit, :Mode, :Bframes, :HlsTime
+        attr_accessor :Codec, :Fps, :Bitrate, :ResolutionAdaptive, :Width, :Height, :FillType, :Vcrf, :Gop, :PreserveHDRSwitch, :CodecTag, :GopUnit, :Mode, :Bframes, :HlsTime, :VideoProfile
 
-        def initialize(codec=nil, fps=nil, bitrate=nil, resolutionadaptive=nil, width=nil, height=nil, filltype=nil, vcrf=nil, gop=nil, preservehdrswitch=nil, codectag=nil, gopunit=nil, mode=nil, bframes=nil, hlstime=nil)
+        def initialize(codec=nil, fps=nil, bitrate=nil, resolutionadaptive=nil, width=nil, height=nil, filltype=nil, vcrf=nil, gop=nil, preservehdrswitch=nil, codectag=nil, gopunit=nil, mode=nil, bframes=nil, hlstime=nil, videoprofile=nil)
           @Codec = codec
           @Fps = fps
           @Bitrate = bitrate
@@ -36655,6 +36743,7 @@ module TencentCloud
           @Mode = mode
           @Bframes = bframes
           @HlsTime = hlstime
+          @VideoProfile = videoprofile
         end
 
         def deserialize(params)
@@ -36673,6 +36762,7 @@ module TencentCloud
           @Mode = params['Mode']
           @Bframes = params['Bframes']
           @HlsTime = params['HlsTime']
+          @VideoProfile = params['VideoProfile']
         end
       end
 

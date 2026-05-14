@@ -914,16 +914,20 @@ module TencentCloud
 
       # 图片处理编排中使用的输入参数。
       class AddOnImageInput < TencentCloud::Common::AbstractModel
-        # @param Image: 图片路径。
+        # @param Type: <p>图片类型。</p>
+        # @type Type: String
+        # @param Image: <p>图片路径。</p>
         # @type Image: :class:`Tencentcloud::Mps.v20190612.models.MediaInputInfo`
 
-        attr_accessor :Image
+        attr_accessor :Type, :Image
 
-        def initialize(image=nil)
+        def initialize(type=nil, image=nil)
+          @Type = type
           @Image = image
         end
 
         def deserialize(params)
+          @Type = params['Type']
           unless params['Image'].nil?
             @Image = MediaInputInfo.new
             @Image.deserialize(params['Image'])
@@ -12978,19 +12982,22 @@ module TencentCloud
         # @param VoiceId: <p>音色id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VoiceId: String
+        # @param AudioUrl: <p>试听音频Url</p>
+        # @type AudioUrl: String
         # @param ExtInfo: <p>扩展信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExtInfo: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ErrorCode, :Msg, :Status, :VoiceId, :ExtInfo, :RequestId
+        attr_accessor :ErrorCode, :Msg, :Status, :VoiceId, :AudioUrl, :ExtInfo, :RequestId
 
-        def initialize(errorcode=nil, msg=nil, status=nil, voiceid=nil, extinfo=nil, requestid=nil)
+        def initialize(errorcode=nil, msg=nil, status=nil, voiceid=nil, audiourl=nil, extinfo=nil, requestid=nil)
           @ErrorCode = errorcode
           @Msg = msg
           @Status = status
           @VoiceId = voiceid
+          @AudioUrl = audiourl
           @ExtInfo = extinfo
           @RequestId = requestid
         end
@@ -13000,6 +13007,7 @@ module TencentCloud
           @Msg = params['Msg']
           @Status = params['Status']
           @VoiceId = params['VoiceId']
+          @AudioUrl = params['AudioUrl']
           @ExtInfo = params['ExtInfo']
           @RequestId = params['RequestId']
         end
@@ -17397,14 +17405,17 @@ module TencentCloud
         # @type Prompt: String
         # @param VoiceProfile: <p>音色属性</p>
         # @type VoiceProfile: :class:`Tencentcloud::Mps.v20190612.models.VoiceProfile`
+        # @param Text: <p>试听音频文本。长度不超过500</p>
+        # @type Text: String
         # @param ExtParam: <p>扩展参数，json字符串</p>
         # @type ExtParam: String
 
-        attr_accessor :Prompt, :VoiceProfile, :ExtParam
+        attr_accessor :Prompt, :VoiceProfile, :Text, :ExtParam
 
-        def initialize(prompt=nil, voiceprofile=nil, extparam=nil)
+        def initialize(prompt=nil, voiceprofile=nil, text=nil, extparam=nil)
           @Prompt = prompt
           @VoiceProfile = voiceprofile
+          @Text = text
           @ExtParam = extparam
         end
 
@@ -17414,6 +17425,7 @@ module TencentCloud
             @VoiceProfile = VoiceProfile.new
             @VoiceProfile.deserialize(params['VoiceProfile'])
           end
+          @Text = params['Text']
           @ExtParam = params['ExtParam']
         end
       end

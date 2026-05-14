@@ -15192,17 +15192,17 @@ module TencentCloud
 
       # VPC接入点信息
       class VpcEndpointInfo < TencentCloud::Common::AbstractModel
-        # @param VpcId: vpc的id
+        # @param VpcId: <p>vpc的id</p>
         # @type VpcId: String
-        # @param SubnetId: 子网id
+        # @param SubnetId: <p>子网id</p>
         # @type SubnetId: String
-        # @param VpcEndpoint: vpc接入点信息
+        # @param VpcEndpoint: <p>vpc接入点信息</p>
         # @type VpcEndpoint: String
-        # @param VpcDataStreamEndpointStatus: vpc接入点状态 OFF/ON/CREATING/DELETING
+        # @param VpcDataStreamEndpointStatus: <p>vpc接入点状态 OFF/ON/CREATING/DELETING</p>
         # @type VpcDataStreamEndpointStatus: String
-        # @param VpcTlsEndpoint: TLS加密的数据流接入点
+        # @param VpcTlsEndpoint: <p>TLS加密的数据流接入点</p>
         # @type VpcTlsEndpoint: String
-        # @param VpcErrorMessage: VPC 接入点操作失败的错误信息
+        # @param VpcErrorMessage: <p>VPC 接入点操作失败的错误信息</p>
         # @type VpcErrorMessage: String
 
         attr_accessor :VpcId, :SubnetId, :VpcEndpoint, :VpcDataStreamEndpointStatus, :VpcTlsEndpoint, :VpcErrorMessage

@@ -4323,11 +4323,6 @@ module TencentCloud
         # @type MessageRate: Integer
 
         attr_accessor :InstanceId, :Name, :Remark, :SkuCode, :DeviceCertificateProvisionType, :AutomaticActivation, :AuthorizationPolicy, :UseDefaultServerCert, :X509Mode, :MessageRate
-        extend Gem::Deprecate
-        deprecate :DeviceCertificateProvisionType, :none, 2026, 5
-        deprecate :DeviceCertificateProvisionType=, :none, 2026, 5
-        deprecate :AutomaticActivation, :none, 2026, 5
-        deprecate :AutomaticActivation=, :none, 2026, 5
 
         def initialize(instanceid=nil, name=nil, remark=nil, skucode=nil, devicecertificateprovisiontype=nil, automaticactivation=nil, authorizationpolicy=nil, usedefaultservercert=nil, x509mode=nil, messagerate=nil)
           @InstanceId = instanceid

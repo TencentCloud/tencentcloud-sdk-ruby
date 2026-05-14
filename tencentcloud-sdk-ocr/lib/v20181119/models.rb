@@ -11230,27 +11230,29 @@ module TencentCloud
 
       # SubmitExtractDocAgentJob请求参数结构体
       class SubmitExtractDocAgentJobRequest < TencentCloud::Common::AbstractModel
-        # @param ImageBase64: 图片/PDF的 Base64 值。要求Base64不超过10M，分辨率建议600*800以上，支持PNG、JPG、JPEG、BMP、PDF格式。图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
+        # @param ImageBase64: <p>图片/PDF的 Base64 值。要求Base64不超过10M，分辨率建议600*800以上，支持PNG、JPG、JPEG、BMP、PDF格式。图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。</p>
         # @type ImageBase64: String
-        # @param ImageUrl: 图片/PDF的 Url 地址。要求图片经Base64编码后不超过10M，分辨率建议600*800以上，支持PNG、JPG、JPEG、BMP、PDF格式。图片下载时间不超过 3 秒。图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。非腾讯云存储的 Url 速度和稳定性可能受一定影响。
+        # @param ImageUrl: <p>图片/PDF的 Url 地址。要求图片经Base64编码后不超过10M，分辨率建议600*800以上，支持PNG、JPG、JPEG、BMP、PDF格式。图片下载时间不超过 3 秒。图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。非腾讯云存储的 Url 速度和稳定性可能受一定影响。</p>
         # @type ImageUrl: String
-        # @param PdfPageNumber: 需要识别的PDF页面的对应页码，仅支持PDF单页识别，当上传文件为PDF且IsPdf参数值为true时有效，默认值为前5页。
+        # @param PdfPageNumber: <p>需要识别的PDF页面的对应页码，仅支持PDF单页识别，当上传文件为PDF且IsPdf参数值为true时有效，默认值为前5页。</p>
         # @type PdfPageNumber: Integer
-        # @param ItemNames: 自定义抽取需要的字段名称、字段类型、字段提示词。
+        # @param ItemNames: <p>自定义抽取需要的字段名称、字段类型、字段提示词。</p>
         # @type ItemNames: Array
-        # @param EnableCoord: 是否需要返回坐标，默认false。
+        # @param EnableCoord: <p>是否需要返回坐标，默认false。</p>
         # @type EnableCoord: Boolean
-        # @param FileStartPageNumber: 起始页
+        # @param FileStartPageNumber: <p>起始页</p>
         # @type FileStartPageNumber: Integer
-        # @param FileEndPageNumber: 结束页
+        # @param FileEndPageNumber: <p>结束页</p>
         # @type FileEndPageNumber: Integer
+        # @param ModelConfig: <p>model_hunyuan:选择混元底座视觉大模型精调抽取任务  model_youtu：选择优图底座多模态大模型精调抽取任务</p>
+        # @type ModelConfig: String
 
-        attr_accessor :ImageBase64, :ImageUrl, :PdfPageNumber, :ItemNames, :EnableCoord, :FileStartPageNumber, :FileEndPageNumber
+        attr_accessor :ImageBase64, :ImageUrl, :PdfPageNumber, :ItemNames, :EnableCoord, :FileStartPageNumber, :FileEndPageNumber, :ModelConfig
         extend Gem::Deprecate
         deprecate :PdfPageNumber, :none, 2026, 5
         deprecate :PdfPageNumber=, :none, 2026, 5
 
-        def initialize(imagebase64=nil, imageurl=nil, pdfpagenumber=nil, itemnames=nil, enablecoord=nil, filestartpagenumber=nil, fileendpagenumber=nil)
+        def initialize(imagebase64=nil, imageurl=nil, pdfpagenumber=nil, itemnames=nil, enablecoord=nil, filestartpagenumber=nil, fileendpagenumber=nil, modelconfig=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
           @PdfPageNumber = pdfpagenumber
@@ -11258,6 +11260,7 @@ module TencentCloud
           @EnableCoord = enablecoord
           @FileStartPageNumber = filestartpagenumber
           @FileEndPageNumber = fileendpagenumber
+          @ModelConfig = modelconfig
         end
 
         def deserialize(params)
@@ -11275,12 +11278,13 @@ module TencentCloud
           @EnableCoord = params['EnableCoord']
           @FileStartPageNumber = params['FileStartPageNumber']
           @FileEndPageNumber = params['FileEndPageNumber']
+          @ModelConfig = params['ModelConfig']
         end
       end
 
       # SubmitExtractDocAgentJob返回参数结构体
       class SubmitExtractDocAgentJobResponse < TencentCloud::Common::AbstractModel
-        # @param JobId: 任务唯一ID。由服务端生成。
+        # @param JobId: <p>任务唯一ID。由服务端生成。</p>
         # @type JobId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

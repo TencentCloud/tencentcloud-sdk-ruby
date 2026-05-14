@@ -6109,6 +6109,134 @@ module TencentCloud
         end
       end
 
+      # DescribeRumGroupLogV2请求参数结构体
+      class DescribeRumGroupLogV2Request < TencentCloud::Common::AbstractModel
+        # @param OrderBy: 排序方式 desc asc（必填）
+        # @type OrderBy: String
+        # @param StartTime: 开始时间（必填）
+        # @type StartTime: Integer
+        # @param Limit: 单次查询返回的原始日志条数，最大值为100（必填）
+        # @type Limit: Integer
+        # @param Filter: 过滤条件
+        # @type Filter: String
+        # @param EndTime: 结束时间（必填）
+        # @type EndTime: Integer
+        # @param ID: 项目ID（必填）
+        # @type ID: Integer
+        # @param Label: 聚合字段
+        # @type Label: String
+        # @param Last: 页数，第几页
+        # @type Last: Integer
+
+        attr_accessor :OrderBy, :StartTime, :Limit, :Filter, :EndTime, :ID, :Label, :Last
+
+        def initialize(orderby=nil, starttime=nil, limit=nil, filter=nil, endtime=nil, id=nil, label=nil, last=nil)
+          @OrderBy = orderby
+          @StartTime = starttime
+          @Limit = limit
+          @Filter = filter
+          @EndTime = endtime
+          @ID = id
+          @Label = label
+          @Last = last
+        end
+
+        def deserialize(params)
+          @OrderBy = params['OrderBy']
+          @StartTime = params['StartTime']
+          @Limit = params['Limit']
+          @Filter = params['Filter']
+          @EndTime = params['EndTime']
+          @ID = params['ID']
+          @Label = params['Label']
+          @Last = params['Last']
+        end
+      end
+
+      # DescribeRumGroupLogV2返回参数结构体
+      class DescribeRumGroupLogV2Response < TencentCloud::Common::AbstractModel
+        # @param Result: Query result in JSON string format
+        # @type Result: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeRumLogDetailsV2请求参数结构体
+      class DescribeRumLogDetailsV2Request < TencentCloud::Common::AbstractModel
+        # @param OrderBy: 排序方式 desc asc
+        # @type OrderBy: String
+        # @param StartTime: 开始时间（必填）格式为时间戳 毫秒
+        # @type StartTime: Integer
+        # @param Limit: 单次查询返回的原始日志条数，最大值为100（必填）
+        # @type Limit: Integer
+        # @param Filter: 查询的相关参数
+        # @type Filter: String
+        # @param EndTime: 结束时间（必填）格式为时间戳 毫秒
+        # @type EndTime: Integer
+        # @param ID: 项目ID（必填）
+        # @type ID: Integer
+        # @param LastTime: 上次查询的最后一个日志的时间戳
+        # @type LastTime: Integer
+        # @param LastRowId: 上次查询的最后一个日志的rowId
+        # @type LastRowId: Integer
+
+        attr_accessor :OrderBy, :StartTime, :Limit, :Filter, :EndTime, :ID, :LastTime, :LastRowId
+
+        def initialize(orderby=nil, starttime=nil, limit=nil, filter=nil, endtime=nil, id=nil, lasttime=nil, lastrowid=nil)
+          @OrderBy = orderby
+          @StartTime = starttime
+          @Limit = limit
+          @Filter = filter
+          @EndTime = endtime
+          @ID = id
+          @LastTime = lasttime
+          @LastRowId = lastrowid
+        end
+
+        def deserialize(params)
+          @OrderBy = params['OrderBy']
+          @StartTime = params['StartTime']
+          @Limit = params['Limit']
+          @Filter = params['Filter']
+          @EndTime = params['EndTime']
+          @ID = params['ID']
+          @LastTime = params['LastTime']
+          @LastRowId = params['LastRowId']
+        end
+      end
+
+      # DescribeRumLogDetailsV2返回参数结构体
+      class DescribeRumLogDetailsV2Response < TencentCloud::Common::AbstractModel
+        # @param Result: 日志明细
+        # @type Result: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeRumLogExport请求参数结构体
       class DescribeRumLogExportRequest < TencentCloud::Common::AbstractModel
         # @param Name: 导出标识name
@@ -6165,6 +6293,62 @@ module TencentCloud
         end
       end
 
+      # DescribeRumLogExportV2请求参数结构体
+      class DescribeRumLogExportV2Request < TencentCloud::Common::AbstractModel
+        # @param Name: Export name
+        # @type Name: String
+        # @param StartTime: Start time
+        # @type StartTime: Integer
+        # @param Filter: Query statement
+        # @type Filter: String
+        # @param EndTime: End time
+        # @type EndTime: Integer
+        # @param ID: Project ID
+        # @type ID: Integer
+        # @param Fields: c字段
+        # @type Fields: Array
+
+        attr_accessor :Name, :StartTime, :Filter, :EndTime, :ID, :Fields
+
+        def initialize(name=nil, starttime=nil, filter=nil, endtime=nil, id=nil, fields=nil)
+          @Name = name
+          @StartTime = starttime
+          @Filter = filter
+          @EndTime = endtime
+          @ID = id
+          @Fields = fields
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @StartTime = params['StartTime']
+          @Filter = params['Filter']
+          @EndTime = params['EndTime']
+          @ID = params['ID']
+          @Fields = params['Fields']
+        end
+      end
+
+      # DescribeRumLogExportV2返回参数结构体
+      class DescribeRumLogExportV2Response < TencentCloud::Common::AbstractModel
+        # @param Result: Query result in JSON string format
+        # @type Result: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeRumLogExports请求参数结构体
       class DescribeRumLogExportsRequest < TencentCloud::Common::AbstractModel
         # @param PageSize: 页面大小
@@ -6192,6 +6376,50 @@ module TencentCloud
       # DescribeRumLogExports返回参数结构体
       class DescribeRumLogExportsResponse < TencentCloud::Common::AbstractModel
         # @param Result: 返回字符串
+        # @type Result: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeRumLogExportsV2请求参数结构体
+      class DescribeRumLogExportsV2Request < TencentCloud::Common::AbstractModel
+        # @param PageSize: Page size
+        # @type PageSize: Integer
+        # @param PageNum: Page number
+        # @type PageNum: Integer
+        # @param ID: Project ID
+        # @type ID: Integer
+
+        attr_accessor :PageSize, :PageNum, :ID
+
+        def initialize(pagesize=nil, pagenum=nil, id=nil)
+          @PageSize = pagesize
+          @PageNum = pagenum
+          @ID = id
+        end
+
+        def deserialize(params)
+          @PageSize = params['PageSize']
+          @PageNum = params['PageNum']
+          @ID = params['ID']
+        end
+      end
+
+      # DescribeRumLogExportsV2返回参数结构体
+      class DescribeRumLogExportsV2Response < TencentCloud::Common::AbstractModel
+        # @param Result: Query result in JSON string format
         # @type Result: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6269,6 +6497,70 @@ module TencentCloud
         end
       end
 
+      # DescribeRumLogTotalV2请求参数结构体
+      class DescribeRumLogTotalV2Request < TencentCloud::Common::AbstractModel
+        # @param OrderBy: 排序方式 desc asc
+        # @type OrderBy: String
+        # @param StartTime: 开始时间（必填）格式为时间戳 毫秒
+        # @type StartTime: Integer
+        # @param Limit: 单次查询返回的原始日志条数，最大值为100（必填）
+        # @type Limit: Integer
+        # @param Filter: 查询的相关参数
+        # @type Filter: String
+        # @param EndTime: 结束时间（必填）格式为时间戳 毫秒
+        # @type EndTime: Integer
+        # @param ID: 项目ID（必填）
+        # @type ID: Integer
+        # @param LastTime: 上次查询的最后一个日志的时间戳
+        # @type LastTime: Integer
+        # @param LastRowId: 上次查询的最后一个日志的rowId
+        # @type LastRowId: Integer
+
+        attr_accessor :OrderBy, :StartTime, :Limit, :Filter, :EndTime, :ID, :LastTime, :LastRowId
+
+        def initialize(orderby=nil, starttime=nil, limit=nil, filter=nil, endtime=nil, id=nil, lasttime=nil, lastrowid=nil)
+          @OrderBy = orderby
+          @StartTime = starttime
+          @Limit = limit
+          @Filter = filter
+          @EndTime = endtime
+          @ID = id
+          @LastTime = lasttime
+          @LastRowId = lastrowid
+        end
+
+        def deserialize(params)
+          @OrderBy = params['OrderBy']
+          @StartTime = params['StartTime']
+          @Limit = params['Limit']
+          @Filter = params['Filter']
+          @EndTime = params['EndTime']
+          @ID = params['ID']
+          @LastTime = params['LastTime']
+          @LastRowId = params['LastRowId']
+        end
+      end
+
+      # DescribeRumLogTotalV2返回参数结构体
+      class DescribeRumLogTotalV2Response < TencentCloud::Common::AbstractModel
+        # @param Result: 日志总量
+        # @type Result: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeRumStatsLogList请求参数结构体
       class DescribeRumStatsLogListRequest < TencentCloud::Common::AbstractModel
         # @param StartTime: 开始时间（必填）
@@ -6304,6 +6596,58 @@ module TencentCloud
       # DescribeRumStatsLogList返回参数结构体
       class DescribeRumStatsLogListResponse < TencentCloud::Common::AbstractModel
         # @param Result: 返回字符串
+        # @type Result: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeRumStatsLogListV2请求参数结构体
+      class DescribeRumStatsLogListV2Request < TencentCloud::Common::AbstractModel
+        # @param StartTime: 开始时间（必填）
+        # @type StartTime: Integer
+        # @param Limit: 单次查询返回的原始日志条数，最大值为100（必填）
+        # @type Limit: Integer
+        # @param Filter: 过滤条件
+        # @type Filter: String
+        # @param EndTime: 结束时间（必填）
+        # @type EndTime: Integer
+        # @param ID: 项目ID（必填）
+        # @type ID: Integer
+
+        attr_accessor :StartTime, :Limit, :Filter, :EndTime, :ID
+
+        def initialize(starttime=nil, limit=nil, filter=nil, endtime=nil, id=nil)
+          @StartTime = starttime
+          @Limit = limit
+          @Filter = filter
+          @EndTime = endtime
+          @ID = id
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @Limit = params['Limit']
+          @Filter = params['Filter']
+          @EndTime = params['EndTime']
+          @ID = params['ID']
+        end
+      end
+
+      # DescribeRumStatsLogListV2返回参数结构体
+      class DescribeRumStatsLogListV2Response < TencentCloud::Common::AbstractModel
+        # @param Result: Query result in JSON string format
         # @type Result: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

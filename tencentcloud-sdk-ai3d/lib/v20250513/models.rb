@@ -57,6 +57,61 @@ module TencentCloud
         end
       end
 
+      # DescribeAutoRiggingJob请求参数结构体
+      class DescribeAutoRiggingJobRequest < TencentCloud::Common::AbstractModel
+        # @param JobId: <p>任务ID。</p>
+        # @type JobId: String
+
+        attr_accessor :JobId
+
+        def initialize(jobid=nil)
+          @JobId = jobid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+        end
+      end
+
+      # DescribeAutoRiggingJob返回参数结构体
+      class DescribeAutoRiggingJobResponse < TencentCloud::Common::AbstractModel
+        # @param Status: <p>任务状态。WAIT：等待中，RUN：执行中，FAIL：任务失败，DONE：任务成功 示例值：RUN。</p>
+        # @type Status: String
+        # @param ErrorCode: <p>错误码。</p>
+        # @type ErrorCode: String
+        # @param ErrorMessage: <p>错误信息。</p>
+        # @type ErrorMessage: String
+        # @param ResultFile3Ds: <p>生成文件的URL地址，有效期1天。</p>
+        # @type ResultFile3Ds: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :ErrorCode, :ErrorMessage, :ResultFile3Ds, :RequestId
+
+        def initialize(status=nil, errorcode=nil, errormessage=nil, resultfile3ds=nil, requestid=nil)
+          @Status = status
+          @ErrorCode = errorcode
+          @ErrorMessage = errormessage
+          @ResultFile3Ds = resultfile3ds
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @ErrorCode = params['ErrorCode']
+          @ErrorMessage = params['ErrorMessage']
+          unless params['ResultFile3Ds'].nil?
+            @ResultFile3Ds = []
+            params['ResultFile3Ds'].each do |i|
+              file3d_tmp = File3D.new
+              file3d_tmp.deserialize(i)
+              @ResultFile3Ds << file3d_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeHunyuanTo3DMotionJob请求参数结构体
       class DescribeHunyuanTo3DMotionJobRequest < TencentCloud::Common::AbstractModel
         # @param JobId: <p>任务ID。</p>
@@ -565,6 +620,49 @@ module TencentCloud
               @ResultFile3Ds << file3d_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # SubmitAutoRiggingJob请求参数结构体
+      class SubmitAutoRiggingJobRequest < TencentCloud::Common::AbstractModel
+        # @param File3D: <p>3D人物模型文件，通过输入源模型生成3D人物模型动画。<br>人物模型需为标准T-Pose文件（双臂水平展开的人物站立姿态），3D模型文件必选其一，参考值：<br>FBX：3D模型文件，格式为FBX，文件大小不超过60Mb；<br>OBJ：3D模型文件，格式为OBJ，文件大小不超过60Mb；</p>
+        # @type File3D: :class:`Tencentcloud::Ai3d.v20250513.models.InputFile3D`
+        # @param MotionType: <p>预设动作类型，参考值：</p><ol><li>回旋踢  </li><li>左勾拳  </li><li>蓄力攻击  </li><li>蓄力出拳  </li><li>二连击打  </li><li>二连击打-2  </li><li>后撤  </li><li>受击  </li><li>受击-2  </li><li>受击-3  </li><li>受击倒地-1  </li><li>受击倒地-2  </li><li>落地  </li><li>沮丧  </li><li>割喉  </li><li>刺拳  </li><li>连续击打  </li><li>踢腿  </li><li>侧踢  </li><li>打太极  </li><li>后空翻  </li><li>蹲姿转体  </li><li>走路-1  </li><li>走路-2  </li><li>走路-3  </li><li>待机-1  </li><li>待机-2  </li><li>街舞  </li><li>扭扭舞  </li><li>左转弯  </li><li>右转弯  </li><li>慢跑  </li><li>慢跑-2  </li><li>奔跑  </li><li>冲刺跑-1  </li><li>冲刺跑-2  </li><li>冲刺跑-3  </li><li>原地跳-1  </li><li>滑铲  </li><li>向前大跳  </li><li>向前大跳-2  </li><li>跨越  </li><li>恐吓  </li><li>向前跌倒  </li><li>右转  </li><li>原地跳-2  </li><li>转身  </li><li>发送冲击波</li></ol>
+        # @type MotionType: Integer
+
+        attr_accessor :File3D, :MotionType
+
+        def initialize(file3d=nil, motiontype=nil)
+          @File3D = file3d
+          @MotionType = motiontype
+        end
+
+        def deserialize(params)
+          unless params['File3D'].nil?
+            @File3D = InputFile3D.new
+            @File3D.deserialize(params['File3D'])
+          end
+          @MotionType = params['MotionType']
+        end
+      end
+
+      # SubmitAutoRiggingJob返回参数结构体
+      class SubmitAutoRiggingJobResponse < TencentCloud::Common::AbstractModel
+        # @param JobId: <p>任务ID（有效期24小时）</p>
+        # @type JobId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :JobId, :RequestId
+
+        def initialize(jobid=nil, requestid=nil)
+          @JobId = jobid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
           @RequestId = params['RequestId']
         end
       end

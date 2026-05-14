@@ -1785,44 +1785,46 @@ module TencentCloud
 
       # 资产视角风险信息
       class AssetRiskItem < TencentCloud::Common::AbstractModel
-        # @param AppId: 租户ID
+        # @param AppId: <p>租户ID</p>
         # @type AppId: Integer
-        # @param Provider: 云厂商
+        # @param Provider: <p>云厂商</p>
         # @type Provider: String
-        # @param ProviderName: 云厂商名称
+        # @param ProviderName: <p>云厂商名称</p>
         # @type ProviderName: String
-        # @param CloudAccountName: 云账号名称
+        # @param CloudAccountName: <p>云账号名称</p>
         # @type CloudAccountName: String
-        # @param CloudAccountId: 云账号ID
+        # @param CloudAccountId: <p>云账号ID</p>
         # @type CloudAccountId: String
-        # @param InstanceName: 实例名称
+        # @param InstanceName: <p>实例名称</p>
         # @type InstanceName: String
-        # @param InstanceId: 实例ID
+        # @param InstanceId: <p>实例ID</p>
         # @type InstanceId: String
-        # @param CreateTime: 首次发现时间
+        # @param CreateTime: <p>首次发现时间</p>
         # @type CreateTime: String
-        # @param UpdateTime: 更新时间
+        # @param UpdateTime: <p>更新时间</p>
         # @type UpdateTime: String
-        # @param RiskStatus: 风险状态
+        # @param RiskStatus: <p>风险状态</p>
         # @type RiskStatus: Integer
-        # @param RiskTitle: 风险名称
+        # @param RiskTitle: <p>风险名称</p>
         # @type RiskTitle: String
-        # @param CheckType: 检查类型
+        # @param CheckType: <p>检查类型</p>
         # @type CheckType: String
-        # @param Severity: 风险等级
+        # @param Severity: <p>风险等级</p>
         # @type Severity: String
-        # @param RiskRuleId: 风险规则ID
+        # @param RiskRuleId: <p>风险规则ID</p>
         # @type RiskRuleId: String
-        # @param Classify: 处置分类
+        # @param Classify: <p>处置分类</p>
         # @type Classify: String
-        # @param StandardTerms: 等保合规
+        # @param StandardTerms: <p>等保合规</p>
         # @type StandardTerms: Array
-        # @param AssetType: 资产类型
+        # @param AssetType: <p>资产类型</p>
         # @type AssetType: String
+        # @param AssetTypeIconURL: <p>资产类型图标</p>
+        # @type AssetTypeIconURL: String
 
-        attr_accessor :AppId, :Provider, :ProviderName, :CloudAccountName, :CloudAccountId, :InstanceName, :InstanceId, :CreateTime, :UpdateTime, :RiskStatus, :RiskTitle, :CheckType, :Severity, :RiskRuleId, :Classify, :StandardTerms, :AssetType
+        attr_accessor :AppId, :Provider, :ProviderName, :CloudAccountName, :CloudAccountId, :InstanceName, :InstanceId, :CreateTime, :UpdateTime, :RiskStatus, :RiskTitle, :CheckType, :Severity, :RiskRuleId, :Classify, :StandardTerms, :AssetType, :AssetTypeIconURL
 
-        def initialize(appid=nil, provider=nil, providername=nil, cloudaccountname=nil, cloudaccountid=nil, instancename=nil, instanceid=nil, createtime=nil, updatetime=nil, riskstatus=nil, risktitle=nil, checktype=nil, severity=nil, riskruleid=nil, classify=nil, standardterms=nil, assettype=nil)
+        def initialize(appid=nil, provider=nil, providername=nil, cloudaccountname=nil, cloudaccountid=nil, instancename=nil, instanceid=nil, createtime=nil, updatetime=nil, riskstatus=nil, risktitle=nil, checktype=nil, severity=nil, riskruleid=nil, classify=nil, standardterms=nil, assettype=nil, assettypeiconurl=nil)
           @AppId = appid
           @Provider = provider
           @ProviderName = providername
@@ -1840,6 +1842,7 @@ module TencentCloud
           @Classify = classify
           @StandardTerms = standardterms
           @AssetType = assettype
+          @AssetTypeIconURL = assettypeiconurl
         end
 
         def deserialize(params)
@@ -1867,6 +1870,7 @@ module TencentCloud
             end
           end
           @AssetType = params['AssetType']
+          @AssetTypeIconURL = params['AssetTypeIconURL']
         end
       end
 
@@ -3404,40 +3408,42 @@ module TencentCloud
 
       # 检查项视角风险
       class CheckViewRiskItem < TencentCloud::Common::AbstractModel
-        # @param RiskRuleId: 检查项规则ID
+        # @param RiskRuleId: <p>检查项规则ID</p>
         # @type RiskRuleId: String
-        # @param RiskTitle: 风险名称
+        # @param RiskTitle: <p>风险名称</p>
         # @type RiskTitle: String
-        # @param CheckType: 检查类型
+        # @param CheckType: <p>检查类型</p>
         # @type CheckType: String
-        # @param Severity: 风险等级
+        # @param Severity: <p>风险等级</p>
         # @type Severity: String
-        # @param RiskDesc: 存在1个风险项
+        # @param RiskDesc: <p>存在1个风险项</p>
         # @type RiskDesc: String
-        # @param CreateTime: 首次发现时间
+        # @param CreateTime: <p>首次发现时间</p>
         # @type CreateTime: String
-        # @param UpdateTime: 风险更新时间
+        # @param UpdateTime: <p>风险更新时间</p>
         # @type UpdateTime: String
-        # @param Provider: 云厂商
+        # @param Provider: <p>云厂商</p>
         # @type Provider: String
-        # @param RiskStatus: 风险状态
+        # @param RiskStatus: <p>风险状态</p>
         # @type RiskStatus: Integer
-        # @param AssetCount: 受影响资产数量
+        # @param AssetCount: <p>受影响资产数量</p>
         # @type AssetCount: Integer
-        # @param RiskCount: 风险数量
+        # @param RiskCount: <p>风险数量</p>
         # @type RiskCount: Integer
-        # @param AssetType: 资产类型
+        # @param AssetType: <p>资产类型</p>
         # @type AssetType: String
-        # @param EventType: 事件类型
+        # @param EventType: <p>事件类型</p>
         # @type EventType: String
-        # @param Classify: 处置分类
+        # @param Classify: <p>处置分类</p>
         # @type Classify: String
-        # @param StandardTerms: cspm规范条款
+        # @param StandardTerms: <p>cspm规范条款</p>
         # @type StandardTerms: Array
+        # @param AssetTypeIconURL: <p>资产类型图标</p>
+        # @type AssetTypeIconURL: String
 
-        attr_accessor :RiskRuleId, :RiskTitle, :CheckType, :Severity, :RiskDesc, :CreateTime, :UpdateTime, :Provider, :RiskStatus, :AssetCount, :RiskCount, :AssetType, :EventType, :Classify, :StandardTerms
+        attr_accessor :RiskRuleId, :RiskTitle, :CheckType, :Severity, :RiskDesc, :CreateTime, :UpdateTime, :Provider, :RiskStatus, :AssetCount, :RiskCount, :AssetType, :EventType, :Classify, :StandardTerms, :AssetTypeIconURL
 
-        def initialize(riskruleid=nil, risktitle=nil, checktype=nil, severity=nil, riskdesc=nil, createtime=nil, updatetime=nil, provider=nil, riskstatus=nil, assetcount=nil, riskcount=nil, assettype=nil, eventtype=nil, classify=nil, standardterms=nil)
+        def initialize(riskruleid=nil, risktitle=nil, checktype=nil, severity=nil, riskdesc=nil, createtime=nil, updatetime=nil, provider=nil, riskstatus=nil, assetcount=nil, riskcount=nil, assettype=nil, eventtype=nil, classify=nil, standardterms=nil, assettypeiconurl=nil)
           @RiskRuleId = riskruleid
           @RiskTitle = risktitle
           @CheckType = checktype
@@ -3453,6 +3459,7 @@ module TencentCloud
           @EventType = eventtype
           @Classify = classify
           @StandardTerms = standardterms
+          @AssetTypeIconURL = assettypeiconurl
         end
 
         def deserialize(params)
@@ -3478,6 +3485,7 @@ module TencentCloud
               @StandardTerms << standardterm_tmp
             end
           end
+          @AssetTypeIconURL = params['AssetTypeIconURL']
         end
       end
 
@@ -5892,7 +5900,7 @@ module TencentCloud
 
       # DescribeAssetProcessList请求参数结构体
       class DescribeAssetProcessListRequest < TencentCloud::Common::AbstractModel
-        # @param MemberId: 集团账号的成员id
+        # @param MemberId: <p>集团账号的成员id</p>
         # @type MemberId: Array
         # @param Filters: 过滤内容
         # @type Filters: Array
@@ -5970,7 +5978,7 @@ module TencentCloud
 
       # DescribeAssetRiskList请求参数结构体
       class DescribeAssetRiskListRequest < TencentCloud::Common::AbstractModel
-        # @param MemberId: 集团账号的成员id
+        # @param MemberId: <p>集团账号的成员id</p>
         # @type MemberId: Array
         # @param Filters: 过滤内容
         # @type Filters: Array
@@ -6304,7 +6312,7 @@ module TencentCloud
 
       # DescribeCSIPRiskStatistics请求参数结构体
       class DescribeCSIPRiskStatisticsRequest < TencentCloud::Common::AbstractModel
-        # @param MemberId: 集团账号的成员id
+        # @param MemberId: <p>集团账号的成员id</p>
         # @type MemberId: Array
         # @param Filter: 过滤内容
         # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
@@ -6645,7 +6653,7 @@ module TencentCloud
 
       # DescribeCheckViewRisks请求参数结构体
       class DescribeCheckViewRisksRequest < TencentCloud::Common::AbstractModel
-        # @param MemberId: 集团账号的成员id
+        # @param MemberId: <p>集团账号的成员id</p>
         # @type MemberId: Array
         # @param Filters: 过滤内容
         # @type Filters: Array
@@ -6970,7 +6978,7 @@ module TencentCloud
 
       # DescribeConfigCheckRules请求参数结构体
       class DescribeConfigCheckRulesRequest < TencentCloud::Common::AbstractModel
-        # @param MemberId: 集团账号的成员id
+        # @param MemberId: <p>集团账号的成员id</p>
         # @type MemberId: Array
         # @param Filters: 过滤内容
         # @type Filters: Array
@@ -9961,7 +9969,7 @@ module TencentCloud
 
       # DescribeExposeAssetCategory请求参数结构体
       class DescribeExposeAssetCategoryRequest < TencentCloud::Common::AbstractModel
-        # @param MemberId: 集团账号的成员id
+        # @param MemberId: <p>集团账号的成员id</p>
         # @type MemberId: Array
 
         attr_accessor :MemberId
@@ -10004,7 +10012,7 @@ module TencentCloud
 
       # DescribeExposePath请求参数结构体
       class DescribeExposePathRequest < TencentCloud::Common::AbstractModel
-        # @param MemberId: 集团账号的成员id
+        # @param MemberId: <p>集团账号的成员id</p>
         # @type MemberId: Array
         # @param AssetId: 资产ID
         # @type AssetId: String
@@ -10056,7 +10064,7 @@ module TencentCloud
 
       # DescribeExposures请求参数结构体
       class DescribeExposuresRequest < TencentCloud::Common::AbstractModel
-        # @param MemberId: 集团账号的成员id
+        # @param MemberId: <p>集团账号的成员id</p>
         # @type MemberId: Array
         # @param Filters: 过滤内容
         # @type Filters: Array
@@ -10228,7 +10236,7 @@ module TencentCloud
 
       # DescribeHighBaseLineRiskList请求参数结构体
       class DescribeHighBaseLineRiskListRequest < TencentCloud::Common::AbstractModel
-        # @param MemberId: 集团账号的成员id
+        # @param MemberId: <p>集团账号的成员id</p>
         # @type MemberId: Array
         # @param Filters: 过滤内容
         # @type Filters: Array
@@ -12085,7 +12093,7 @@ module TencentCloud
       class DescribeRiskDetailListRequest < TencentCloud::Common::AbstractModel
         # @param RiskRuleId: 风险规则ID
         # @type RiskRuleId: String
-        # @param MemberId: 集团账号的成员id
+        # @param MemberId: <p>集团账号的成员id</p>
         # @type MemberId: Array
         # @param Filters: 过滤内容
         # @type Filters: Array
@@ -12553,6 +12561,93 @@ module TencentCloud
           end
           @ReturnCode = params['ReturnCode']
           @ReturnMsg = params['ReturnMsg']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeSkillScanPayInfo请求参数结构体
+      class DescribeSkillScanPayInfoRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeSkillScanPayInfo返回参数结构体
+      class DescribeSkillScanPayInfoResponse < TencentCloud::Common::AbstractModel
+        # @param AppID: <p>订单所属租户 AppID</p>
+        # @type AppID: Integer
+        # @param OrderStatus: <p>订单状态<br>枚举值：<br>0：未购买<br>1：正常<br>2：隔离<br>6：试用中<br>7：已过期<br>8：试用到期</p>
+        # @type OrderStatus: Integer
+        # @param TotalQuota: <p>总配额</p>
+        # @type TotalQuota: Integer
+        # @param UsedCount: <p>已消耗配额</p>
+        # @type UsedCount: Integer
+        # @param PayMode: <p>支付模式<br>枚举值：<br>0：后付费<br>1：预付费</p>
+        # @type PayMode: Integer
+        # @param AutoRenew: <p>自动续费标志<br>枚举值：<br>0：未设置<br>1：自动续费<br>2：不自动续费</p>
+        # @type AutoRenew: Integer
+        # @param ResourceId: <p>资源ID</p>
+        # @type ResourceId: String
+        # @param TimeSpan: <p>购买时长</p>
+        # @type TimeSpan: Integer
+        # @param TimeUnit: <p>时长单位</p>
+        # @type TimeUnit: String
+        # @param BeginTime: <p>订单开始时间</p>
+        # @type BeginTime: String
+        # @param EndTime: <p>订单到期时间</p>
+        # @type EndTime: String
+        # @param BetaEndTime: <p>公测结束时间，固定为 2026-06-30 23:59:59</p>
+        # @type BetaEndTime: String
+        # @param TimeNow: <p>服务器当前时间</p>
+        # @type TimeNow: String
+        # @param Uin: <p>租户 Uin</p>
+        # @type Uin: String
+        # @param NickName: <p>租户昵称</p>
+        # @type NickName: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AppID, :OrderStatus, :TotalQuota, :UsedCount, :PayMode, :AutoRenew, :ResourceId, :TimeSpan, :TimeUnit, :BeginTime, :EndTime, :BetaEndTime, :TimeNow, :Uin, :NickName, :RequestId
+
+        def initialize(appid=nil, orderstatus=nil, totalquota=nil, usedcount=nil, paymode=nil, autorenew=nil, resourceid=nil, timespan=nil, timeunit=nil, begintime=nil, endtime=nil, betaendtime=nil, timenow=nil, uin=nil, nickname=nil, requestid=nil)
+          @AppID = appid
+          @OrderStatus = orderstatus
+          @TotalQuota = totalquota
+          @UsedCount = usedcount
+          @PayMode = paymode
+          @AutoRenew = autorenew
+          @ResourceId = resourceid
+          @TimeSpan = timespan
+          @TimeUnit = timeunit
+          @BeginTime = begintime
+          @EndTime = endtime
+          @BetaEndTime = betaendtime
+          @TimeNow = timenow
+          @Uin = uin
+          @NickName = nickname
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @AppID = params['AppID']
+          @OrderStatus = params['OrderStatus']
+          @TotalQuota = params['TotalQuota']
+          @UsedCount = params['UsedCount']
+          @PayMode = params['PayMode']
+          @AutoRenew = params['AutoRenew']
+          @ResourceId = params['ResourceId']
+          @TimeSpan = params['TimeSpan']
+          @TimeUnit = params['TimeUnit']
+          @BeginTime = params['BeginTime']
+          @EndTime = params['EndTime']
+          @BetaEndTime = params['BetaEndTime']
+          @TimeNow = params['TimeNow']
+          @Uin = params['Uin']
+          @NickName = params['NickName']
           @RequestId = params['RequestId']
         end
       end
@@ -13613,7 +13708,7 @@ module TencentCloud
 
       # DescribeVulRiskList请求参数结构体
       class DescribeVulRiskListRequest < TencentCloud::Common::AbstractModel
-        # @param MemberId: 集团账号的成员id
+        # @param MemberId: <p>集团账号的成员id</p>
         # @type MemberId: Array
         # @param Filters: 过滤内容
         # @type Filters: Array
@@ -14852,28 +14947,32 @@ module TencentCloud
 
       # dspm资产字段信息
       class DspmAssetFieldInfo < TencentCloud::Common::AbstractModel
-        # @param AssetId: 资产实例id
+        # @param AssetId: <p>资产实例id</p>
         # @type AssetId: String
-        # @param DbName: 数据库名称
+        # @param DbName: <p>数据库名称</p>
         # @type DbName: String
-        # @param SchemaName: schema名
+        # @param SchemaName: <p>schema名</p>
         # @type SchemaName: String
-        # @param TableName: 表名
+        # @param TableName: <p>表名</p>
         # @type TableName: String
-        # @param FieldName: 字段名
+        # @param FieldName: <p>字段名</p>
         # @type FieldName: String
-        # @param RuleIds: 数据项id集合
+        # @param RuleIds: <p>数据项id集合</p>
         # @type RuleIds: Array
-        # @param RuleNames: 数据项名称集合
+        # @param RuleNames: <p>数据项名称集合</p>
         # @type RuleNames: Array
-        # @param CategoryIds: 分类id集合
+        # @param CategoryIds: <p>分类id集合</p>
         # @type CategoryIds: Array
-        # @param CategoryNames: 分类名称集合
+        # @param CategoryNames: <p>分类名称集合</p>
         # @type CategoryNames: Array
+        # @param CategoryDetails: <p>分类详情</p>
+        # @type CategoryDetails: Array
+        # @param FieldComment: <p>字段注释</p>
+        # @type FieldComment: String
 
-        attr_accessor :AssetId, :DbName, :SchemaName, :TableName, :FieldName, :RuleIds, :RuleNames, :CategoryIds, :CategoryNames
+        attr_accessor :AssetId, :DbName, :SchemaName, :TableName, :FieldName, :RuleIds, :RuleNames, :CategoryIds, :CategoryNames, :CategoryDetails, :FieldComment
 
-        def initialize(assetid=nil, dbname=nil, schemaname=nil, tablename=nil, fieldname=nil, ruleids=nil, rulenames=nil, categoryids=nil, categorynames=nil)
+        def initialize(assetid=nil, dbname=nil, schemaname=nil, tablename=nil, fieldname=nil, ruleids=nil, rulenames=nil, categoryids=nil, categorynames=nil, categorydetails=nil, fieldcomment=nil)
           @AssetId = assetid
           @DbName = dbname
           @SchemaName = schemaname
@@ -14883,6 +14982,8 @@ module TencentCloud
           @RuleNames = rulenames
           @CategoryIds = categoryids
           @CategoryNames = categorynames
+          @CategoryDetails = categorydetails
+          @FieldComment = fieldcomment
         end
 
         def deserialize(params)
@@ -14895,6 +14996,15 @@ module TencentCloud
           @RuleNames = params['RuleNames']
           @CategoryIds = params['CategoryIds']
           @CategoryNames = params['CategoryNames']
+          unless params['CategoryDetails'].nil?
+            @CategoryDetails = []
+            params['CategoryDetails'].each do |i|
+              dspmidentifycategorydetail_tmp = DspmIdentifyCategoryDetail.new
+              dspmidentifycategorydetail_tmp.deserialize(i)
+              @CategoryDetails << dspmidentifycategorydetail_tmp
+            end
+          end
+          @FieldComment = params['FieldComment']
         end
       end
 
@@ -14989,30 +15099,36 @@ module TencentCloud
 
       # dspm资产表信息
       class DspmAssetTableInfo < TencentCloud::Common::AbstractModel
-        # @param AssetId: 资产实例id
+        # @param AssetId: <p>资产实例id</p>
         # @type AssetId: String
-        # @param DbName: 数据库名称
+        # @param DbName: <p>数据库名称</p>
         # @type DbName: String
-        # @param SchemaName: schema名称
+        # @param SchemaName: <p>schema名称</p>
         # @type SchemaName: String
-        # @param TableName: 表名
+        # @param TableName: <p>表名</p>
         # @type TableName: String
-        # @param FieldCount: 字段数
+        # @param FieldCount: <p>字段数</p>
         # @type FieldCount: Integer
-        # @param SensitiveFieldCount: 敏感字段数
+        # @param SensitiveFieldCount: <p>敏感字段数</p>
         # @type SensitiveFieldCount: Integer
-        # @param RuleIds: 数据项id集合
+        # @param RuleIds: <p>数据项id集合</p>
         # @type RuleIds: Array
-        # @param RuleNames: 数据项名称集合
+        # @param RuleNames: <p>数据项名称集合</p>
         # @type RuleNames: Array
-        # @param CategoryIds: 分类id集合
+        # @param CategoryIds: <p>分类id集合</p>
         # @type CategoryIds: Array
-        # @param CategoryNames: 分类名称集合
+        # @param CategoryNames: <p>分类名称集合</p>
         # @type CategoryNames: Array
+        # @param CategoryDetails: <p>分类详情</p>
+        # @type CategoryDetails: Array
+        # @param TableId: <p>数据表id</p>
+        # @type TableId: Integer
+        # @param TableComment: <p>表注释</p>
+        # @type TableComment: String
 
-        attr_accessor :AssetId, :DbName, :SchemaName, :TableName, :FieldCount, :SensitiveFieldCount, :RuleIds, :RuleNames, :CategoryIds, :CategoryNames
+        attr_accessor :AssetId, :DbName, :SchemaName, :TableName, :FieldCount, :SensitiveFieldCount, :RuleIds, :RuleNames, :CategoryIds, :CategoryNames, :CategoryDetails, :TableId, :TableComment
 
-        def initialize(assetid=nil, dbname=nil, schemaname=nil, tablename=nil, fieldcount=nil, sensitivefieldcount=nil, ruleids=nil, rulenames=nil, categoryids=nil, categorynames=nil)
+        def initialize(assetid=nil, dbname=nil, schemaname=nil, tablename=nil, fieldcount=nil, sensitivefieldcount=nil, ruleids=nil, rulenames=nil, categoryids=nil, categorynames=nil, categorydetails=nil, tableid=nil, tablecomment=nil)
           @AssetId = assetid
           @DbName = dbname
           @SchemaName = schemaname
@@ -15023,6 +15139,9 @@ module TencentCloud
           @RuleNames = rulenames
           @CategoryIds = categoryids
           @CategoryNames = categorynames
+          @CategoryDetails = categorydetails
+          @TableId = tableid
+          @TableComment = tablecomment
         end
 
         def deserialize(params)
@@ -15036,6 +15155,16 @@ module TencentCloud
           @RuleNames = params['RuleNames']
           @CategoryIds = params['CategoryIds']
           @CategoryNames = params['CategoryNames']
+          unless params['CategoryDetails'].nil?
+            @CategoryDetails = []
+            params['CategoryDetails'].each do |i|
+              dspmidentifycategorydetail_tmp = DspmIdentifyCategoryDetail.new
+              dspmidentifycategorydetail_tmp.deserialize(i)
+              @CategoryDetails << dspmidentifycategorydetail_tmp
+            end
+          end
+          @TableId = params['TableId']
+          @TableComment = params['TableComment']
         end
       end
 
@@ -16554,82 +16683,86 @@ module TencentCloud
 
       # 暴露资产
       class ExposesItem < TencentCloud::Common::AbstractModel
-        # @param Provider: 云厂商
+        # @param Provider: <p>云厂商</p>
         # @type Provider: String
-        # @param CloudAccountName: 云账号名称
+        # @param CloudAccountName: <p>云账号名称</p>
         # @type CloudAccountName: String
-        # @param CloudAccountId: 云账号
+        # @param CloudAccountId: <p>云账号</p>
         # @type CloudAccountId: String
-        # @param Domain: 域名
+        # @param Domain: <p>域名</p>
         # @type Domain: String
-        # @param Ip: IP
+        # @param Ip: <p>IP</p>
         # @type Ip: String
-        # @param Port: 端口或者端口范围
+        # @param Port: <p>端口或者端口范围</p>
         # @type Port: String
-        # @param Status: 开放
+        # @param Status: <p>开放</p>
         # @type Status: String
-        # @param RiskType: 风险类型
+        # @param RiskType: <p>风险类型</p>
         # @type RiskType: String
-        # @param AclType: acl类型
+        # @param AclType: <p>acl类型</p>
         # @type AclType: String
-        # @param AclList: acl列表
+        # @param AclList: <p>acl列表</p>
         # @type AclList: String
-        # @param AssetId: 资产ID
+        # @param AssetId: <p>资产ID</p>
         # @type AssetId: String
-        # @param InstanceName: 实例名称
+        # @param InstanceName: <p>实例名称</p>
         # @type InstanceName: String
-        # @param AssetType: 资产类型
+        # @param AssetType: <p>资产类型</p>
         # @type AssetType: String
-        # @param PortServiceCount: 端口服务数量
+        # @param PortServiceCount: <p>端口服务数量</p>
         # @type PortServiceCount: Integer
-        # @param HighRiskPortServiceCount: 高危端口数量
+        # @param HighRiskPortServiceCount: <p>高危端口数量</p>
         # @type HighRiskPortServiceCount: Integer
-        # @param WebAppCount: web应用数量
+        # @param WebAppCount: <p>web应用数量</p>
         # @type WebAppCount: Integer
-        # @param RiskWebAppCount: 有风险web应用数量
+        # @param RiskWebAppCount: <p>有风险web应用数量</p>
         # @type RiskWebAppCount: Integer
-        # @param WeakPasswordCount: 弱口令数量
+        # @param WeakPasswordCount: <p>弱口令数量</p>
         # @type WeakPasswordCount: Integer
-        # @param VulCount: 漏洞数量
+        # @param VulCount: <p>漏洞数量</p>
         # @type VulCount: Integer
-        # @param CreateTime: 首次发现时间
+        # @param CreateTime: <p>首次发现时间</p>
         # @type CreateTime: String
-        # @param UpdateTime: 最近更新时间
+        # @param UpdateTime: <p>最近更新时间</p>
         # @type UpdateTime: String
-        # @param AssetTypeName: 实例类型名称
+        # @param AssetTypeName: <p>实例类型名称</p>
         # @type AssetTypeName: String
-        # @param DisplayStatus: 开放状态
+        # @param DisplayStatus: <p>开放状态</p>
         # @type DisplayStatus: String
-        # @param DisplayRiskType: 端口状态
+        # @param DisplayRiskType: <p>端口状态</p>
         # @type DisplayRiskType: String
-        # @param ScanTaskStatus: 扫描任务状态
+        # @param ScanTaskStatus: <p>扫描任务状态</p>
         # @type ScanTaskStatus: String
-        # @param Uuid: uuid
+        # @param Uuid: <p>uuid</p>
         # @type Uuid: String
-        # @param HasScan: 是否进行过安全体检
+        # @param HasScan: <p>是否进行过安全体检</p>
         # @type HasScan: String
-        # @param AppId: 租户ID
+        # @param AppId: <p>租户ID</p>
         # @type AppId: Integer
-        # @param AppIdStr: 租户ID字符串
+        # @param AppIdStr: <p>租户ID字符串</p>
         # @type AppIdStr: String
-        # @param ExposureID: 记录ID
+        # @param ExposureID: <p>记录ID</p>
         # @type ExposureID: Integer
-        # @param PortDetectCount: 端口开放数量
+        # @param PortDetectCount: <p>端口开放数量</p>
         # @type PortDetectCount: Integer
-        # @param PortDetectResult: 端口开放结果
+        # @param PortDetectResult: <p>端口开放结果</p>
         # @type PortDetectResult: String
-        # @param Tag: 标签
+        # @param Tag: <p>标签</p>
         # @type Tag: String
-        # @param Comment: 备注
+        # @param Comment: <p>备注</p>
         # @type Comment: String
-        # @param ToGovernedRiskCount: 待治理风险数量
+        # @param ToGovernedRiskCount: <p>待治理风险数量</p>
         # @type ToGovernedRiskCount: Integer
-        # @param ToGovernedRiskContent: 待治理风险内容
+        # @param ToGovernedRiskContent: <p>待治理风险内容</p>
         # @type ToGovernedRiskContent: String
+        # @param AssetTypeIconURL: <p>资产类型图标</p>
+        # @type AssetTypeIconURL: String
+        # @param AssetTypeIconSolidURL: <p>资产类型3D图标</p>
+        # @type AssetTypeIconSolidURL: String
 
-        attr_accessor :Provider, :CloudAccountName, :CloudAccountId, :Domain, :Ip, :Port, :Status, :RiskType, :AclType, :AclList, :AssetId, :InstanceName, :AssetType, :PortServiceCount, :HighRiskPortServiceCount, :WebAppCount, :RiskWebAppCount, :WeakPasswordCount, :VulCount, :CreateTime, :UpdateTime, :AssetTypeName, :DisplayStatus, :DisplayRiskType, :ScanTaskStatus, :Uuid, :HasScan, :AppId, :AppIdStr, :ExposureID, :PortDetectCount, :PortDetectResult, :Tag, :Comment, :ToGovernedRiskCount, :ToGovernedRiskContent
+        attr_accessor :Provider, :CloudAccountName, :CloudAccountId, :Domain, :Ip, :Port, :Status, :RiskType, :AclType, :AclList, :AssetId, :InstanceName, :AssetType, :PortServiceCount, :HighRiskPortServiceCount, :WebAppCount, :RiskWebAppCount, :WeakPasswordCount, :VulCount, :CreateTime, :UpdateTime, :AssetTypeName, :DisplayStatus, :DisplayRiskType, :ScanTaskStatus, :Uuid, :HasScan, :AppId, :AppIdStr, :ExposureID, :PortDetectCount, :PortDetectResult, :Tag, :Comment, :ToGovernedRiskCount, :ToGovernedRiskContent, :AssetTypeIconURL, :AssetTypeIconSolidURL
 
-        def initialize(provider=nil, cloudaccountname=nil, cloudaccountid=nil, domain=nil, ip=nil, port=nil, status=nil, risktype=nil, acltype=nil, acllist=nil, assetid=nil, instancename=nil, assettype=nil, portservicecount=nil, highriskportservicecount=nil, webappcount=nil, riskwebappcount=nil, weakpasswordcount=nil, vulcount=nil, createtime=nil, updatetime=nil, assettypename=nil, displaystatus=nil, displayrisktype=nil, scantaskstatus=nil, uuid=nil, hasscan=nil, appid=nil, appidstr=nil, exposureid=nil, portdetectcount=nil, portdetectresult=nil, tag=nil, comment=nil, togovernedriskcount=nil, togovernedriskcontent=nil)
+        def initialize(provider=nil, cloudaccountname=nil, cloudaccountid=nil, domain=nil, ip=nil, port=nil, status=nil, risktype=nil, acltype=nil, acllist=nil, assetid=nil, instancename=nil, assettype=nil, portservicecount=nil, highriskportservicecount=nil, webappcount=nil, riskwebappcount=nil, weakpasswordcount=nil, vulcount=nil, createtime=nil, updatetime=nil, assettypename=nil, displaystatus=nil, displayrisktype=nil, scantaskstatus=nil, uuid=nil, hasscan=nil, appid=nil, appidstr=nil, exposureid=nil, portdetectcount=nil, portdetectresult=nil, tag=nil, comment=nil, togovernedriskcount=nil, togovernedriskcontent=nil, assettypeiconurl=nil, assettypeiconsolidurl=nil)
           @Provider = provider
           @CloudAccountName = cloudaccountname
           @CloudAccountId = cloudaccountid
@@ -16666,6 +16799,8 @@ module TencentCloud
           @Comment = comment
           @ToGovernedRiskCount = togovernedriskcount
           @ToGovernedRiskContent = togovernedriskcontent
+          @AssetTypeIconURL = assettypeiconurl
+          @AssetTypeIconSolidURL = assettypeiconsolidurl
         end
 
         def deserialize(params)
@@ -16705,6 +16840,8 @@ module TencentCloud
           @Comment = params['Comment']
           @ToGovernedRiskCount = params['ToGovernedRiskCount']
           @ToGovernedRiskContent = params['ToGovernedRiskContent']
+          @AssetTypeIconURL = params['AssetTypeIconURL']
+          @AssetTypeIconSolidURL = params['AssetTypeIconSolidURL']
         end
       end
 

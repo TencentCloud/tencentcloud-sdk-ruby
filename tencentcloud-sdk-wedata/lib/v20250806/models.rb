@@ -2964,20 +2964,20 @@ module TencentCloud
 
         attr_accessor :CycleType, :ScheduleTimeZone, :CrontabExpression, :StartTime, :EndTime, :ExecutionStartTime, :ExecutionEndTime, :CalendarOpen, :CalendarId, :SelfDepend, :UpstreamDependencyConfigList, :EventListenerList, :AllowRedoType, :ParamTaskOutList, :ParamTaskInList, :TaskOutputRegistryList, :InitStrategy, :ScheduleRunType, :RunPriority, :RetryWait, :MaxRetryAttempts, :ExecutionTTL, :WaitExecutionTotalTTL, :ScheduleType, :RunPriorityType, :RetryWaitMinute, :MaxRetryNumber, :ExecutionTTLMinute, :WaitExecutionTotalTTLMinute, :DependencyTriggerPolicy, :AllowDownstreamDependency
         extend Gem::Deprecate
-        deprecate :ScheduleRunType, :none, 2026, 4
-        deprecate :ScheduleRunType=, :none, 2026, 4
-        deprecate :RunPriority, :none, 2026, 4
-        deprecate :RunPriority=, :none, 2026, 4
-        deprecate :RetryWait, :none, 2026, 4
-        deprecate :RetryWait=, :none, 2026, 4
-        deprecate :MaxRetryAttempts, :none, 2026, 4
-        deprecate :MaxRetryAttempts=, :none, 2026, 4
-        deprecate :ExecutionTTL, :none, 2026, 4
-        deprecate :ExecutionTTL=, :none, 2026, 4
-        deprecate :WaitExecutionTotalTTL, :none, 2026, 4
-        deprecate :WaitExecutionTotalTTL=, :none, 2026, 4
-        deprecate :AllowDownstreamDependency, :none, 2026, 4
-        deprecate :AllowDownstreamDependency=, :none, 2026, 4
+        deprecate :ScheduleRunType, :none, 2026, 5
+        deprecate :ScheduleRunType=, :none, 2026, 5
+        deprecate :RunPriority, :none, 2026, 5
+        deprecate :RunPriority=, :none, 2026, 5
+        deprecate :RetryWait, :none, 2026, 5
+        deprecate :RetryWait=, :none, 2026, 5
+        deprecate :MaxRetryAttempts, :none, 2026, 5
+        deprecate :MaxRetryAttempts=, :none, 2026, 5
+        deprecate :ExecutionTTL, :none, 2026, 5
+        deprecate :ExecutionTTL=, :none, 2026, 5
+        deprecate :WaitExecutionTotalTTL, :none, 2026, 5
+        deprecate :WaitExecutionTotalTTL=, :none, 2026, 5
+        deprecate :AllowDownstreamDependency, :none, 2026, 5
+        deprecate :AllowDownstreamDependency=, :none, 2026, 5
 
         def initialize(cycletype=nil, scheduletimezone=nil, crontabexpression=nil, starttime=nil, endtime=nil, executionstarttime=nil, executionendtime=nil, calendaropen=nil, calendarid=nil, selfdepend=nil, upstreamdependencyconfiglist=nil, eventlistenerlist=nil, allowredotype=nil, paramtaskoutlist=nil, paramtaskinlist=nil, taskoutputregistrylist=nil, initstrategy=nil, scheduleruntype=nil, runpriority=nil, retrywait=nil, maxretryattempts=nil, executionttl=nil, waitexecutiontotalttl=nil, scheduletype=nil, runprioritytype=nil, retrywaitminute=nil, maxretrynumber=nil, executionttlminute=nil, waitexecutiontotalttlminute=nil, dependencytriggerpolicy=nil, allowdownstreamdependency=nil)
           @CycleType = cycletype
@@ -3362,30 +3362,32 @@ module TencentCloud
 
       # CreateTriggerWorkflow请求参数结构体
       class CreateTriggerWorkflowRequest < TencentCloud::Common::AbstractModel
-        # @param ProjectId: 项目ID
+        # @param ProjectId: <p>项目ID</p>
         # @type ProjectId: String
-        # @param WorkflowName: 工作流名称
+        # @param WorkflowName: <p>工作流名称</p>
         # @type WorkflowName: String
-        # @param ParentFolderPath: 所属文件夹路径
+        # @param ParentFolderPath: <p>所属文件夹路径</p>
         # @type ParentFolderPath: String
-        # @param WorkflowDesc: 工作流描述
+        # @param WorkflowDesc: <p>工作流描述</p>
         # @type WorkflowDesc: String
-        # @param OwnerUin: 工作流负责人ID
+        # @param OwnerUin: <p>工作流负责人ID</p>
         # @type OwnerUin: String
-        # @param WorkflowParams: 工作流参数
+        # @param WorkflowParams: <p>工作流参数</p>
         # @type WorkflowParams: Array
-        # @param TriggerWorkflowSchedulerConfigurations: 统一调度信息
+        # @param TriggerWorkflowSchedulerConfigurations: <p>统一调度信息</p>
         # @type TriggerWorkflowSchedulerConfigurations: Array
-        # @param BundleId: BundleId项
+        # @param BundleId: <p>BundleId项</p>
         # @type BundleId: String
-        # @param BundleInfo: Bundle信息
+        # @param BundleInfo: <p>Bundle信息</p>
         # @type BundleInfo: String
-        # @param GeneralTaskParams: 通用参数配置
+        # @param GeneralTaskParams: <p>通用参数配置</p>
         # @type GeneralTaskParams: Array
+        # @param TriggerWorkflowRunConfiguration: <p>工作流调度运行配置</p>
+        # @type TriggerWorkflowRunConfiguration: :class:`Tencentcloud::Wedata.v20250806.models.WorkflowRunConfig`
 
-        attr_accessor :ProjectId, :WorkflowName, :ParentFolderPath, :WorkflowDesc, :OwnerUin, :WorkflowParams, :TriggerWorkflowSchedulerConfigurations, :BundleId, :BundleInfo, :GeneralTaskParams
+        attr_accessor :ProjectId, :WorkflowName, :ParentFolderPath, :WorkflowDesc, :OwnerUin, :WorkflowParams, :TriggerWorkflowSchedulerConfigurations, :BundleId, :BundleInfo, :GeneralTaskParams, :TriggerWorkflowRunConfiguration
 
-        def initialize(projectid=nil, workflowname=nil, parentfolderpath=nil, workflowdesc=nil, owneruin=nil, workflowparams=nil, triggerworkflowschedulerconfigurations=nil, bundleid=nil, bundleinfo=nil, generaltaskparams=nil)
+        def initialize(projectid=nil, workflowname=nil, parentfolderpath=nil, workflowdesc=nil, owneruin=nil, workflowparams=nil, triggerworkflowschedulerconfigurations=nil, bundleid=nil, bundleinfo=nil, generaltaskparams=nil, triggerworkflowrunconfiguration=nil)
           @ProjectId = projectid
           @WorkflowName = workflowname
           @ParentFolderPath = parentfolderpath
@@ -3396,6 +3398,7 @@ module TencentCloud
           @BundleId = bundleid
           @BundleInfo = bundleinfo
           @GeneralTaskParams = generaltaskparams
+          @TriggerWorkflowRunConfiguration = triggerworkflowrunconfiguration
         end
 
         def deserialize(params)
@@ -3430,12 +3433,16 @@ module TencentCloud
               @GeneralTaskParams << workflowgeneraltaskparam_tmp
             end
           end
+          unless params['TriggerWorkflowRunConfiguration'].nil?
+            @TriggerWorkflowRunConfiguration = WorkflowRunConfig.new
+            @TriggerWorkflowRunConfiguration.deserialize(params['TriggerWorkflowRunConfiguration'])
+          end
         end
       end
 
       # CreateTriggerWorkflow返回参数结构体
       class CreateTriggerWorkflowResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 返回工作流ID
+        # @param Data: <p>返回工作流ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: :class:`Tencentcloud::Wedata.v20250806.models.CreateTriggerWorkflowResult`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -20627,20 +20634,20 @@ module TencentCloud
 
         attr_accessor :CycleType, :ScheduleTimeZone, :CrontabExpression, :StartTime, :EndTime, :ExecutionStartTime, :ExecutionEndTime, :CalendarOpen, :CalendarId, :CalendarName, :SelfDepend, :UpstreamDependencyConfigList, :DownstreamDependencyConfigList, :EventListenerList, :AllowRedoType, :ParamTaskOutList, :ParamTaskInList, :TaskOutputRegistryList, :InitStrategy, :ScheduleRunType, :DownStreamDependencyConfigList, :RunPriority, :RetryWait, :MaxRetryAttempts, :ExecutionTTL, :WaitExecutionTotalTTL, :ScheduleType, :RunPriorityType, :RetryWaitMinute, :MaxRetryNumber, :ExecutionTTLMinute, :WaitExecutionTotalTTLMinute, :DependencyTriggerPolicy, :AllowDownstreamDependency
         extend Gem::Deprecate
-        deprecate :ScheduleRunType, :none, 2026, 4
-        deprecate :ScheduleRunType=, :none, 2026, 4
-        deprecate :DownStreamDependencyConfigList, :none, 2026, 4
-        deprecate :DownStreamDependencyConfigList=, :none, 2026, 4
-        deprecate :RunPriority, :none, 2026, 4
-        deprecate :RunPriority=, :none, 2026, 4
-        deprecate :RetryWait, :none, 2026, 4
-        deprecate :RetryWait=, :none, 2026, 4
-        deprecate :MaxRetryAttempts, :none, 2026, 4
-        deprecate :MaxRetryAttempts=, :none, 2026, 4
-        deprecate :ExecutionTTL, :none, 2026, 4
-        deprecate :ExecutionTTL=, :none, 2026, 4
-        deprecate :WaitExecutionTotalTTL, :none, 2026, 4
-        deprecate :WaitExecutionTotalTTL=, :none, 2026, 4
+        deprecate :ScheduleRunType, :none, 2026, 5
+        deprecate :ScheduleRunType=, :none, 2026, 5
+        deprecate :DownStreamDependencyConfigList, :none, 2026, 5
+        deprecate :DownStreamDependencyConfigList=, :none, 2026, 5
+        deprecate :RunPriority, :none, 2026, 5
+        deprecate :RunPriority=, :none, 2026, 5
+        deprecate :RetryWait, :none, 2026, 5
+        deprecate :RetryWait=, :none, 2026, 5
+        deprecate :MaxRetryAttempts, :none, 2026, 5
+        deprecate :MaxRetryAttempts=, :none, 2026, 5
+        deprecate :ExecutionTTL, :none, 2026, 5
+        deprecate :ExecutionTTL=, :none, 2026, 5
+        deprecate :WaitExecutionTotalTTL, :none, 2026, 5
+        deprecate :WaitExecutionTotalTTL=, :none, 2026, 5
 
         def initialize(cycletype=nil, scheduletimezone=nil, crontabexpression=nil, starttime=nil, endtime=nil, executionstarttime=nil, executionendtime=nil, calendaropen=nil, calendarid=nil, calendarname=nil, selfdepend=nil, upstreamdependencyconfiglist=nil, downstreamdependencyconfiglist=nil, eventlistenerlist=nil, allowredotype=nil, paramtaskoutlist=nil, paramtaskinlist=nil, taskoutputregistrylist=nil, initstrategy=nil, scheduleruntype=nil, runpriority=nil, retrywait=nil, maxretryattempts=nil, executionttl=nil, waitexecutiontotalttl=nil, scheduletype=nil, runprioritytype=nil, retrywaitminute=nil, maxretrynumber=nil, executionttlminute=nil, waitexecutiontotalttlminute=nil, dependencytriggerpolicy=nil, allowdownstreamdependency=nil)
           @CycleType = cycletype
@@ -22144,43 +22151,46 @@ module TencentCloud
 
       # 查询工作流详细信息
       class TriggerWorkflowDetail < TencentCloud::Common::AbstractModel
-        # @param WorkflowName: 工作流名称
+        # @param WorkflowName: <p>工作流名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WorkflowName: String
-        # @param OwnerUin: 责任人ID
+        # @param OwnerUin: <p>责任人ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OwnerUin: String
-        # @param CreateUserUin: 创建人ID
+        # @param CreateUserUin: <p>创建人ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateUserUin: String
-        # @param WorkflowParams: 工作流参数数组
+        # @param WorkflowParams: <p>工作流参数数组</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WorkflowParams: Array
-        # @param TriggerWorkflowSchedulerConfigurations: 统一调度参数
+        # @param TriggerWorkflowSchedulerConfigurations: <p>统一调度参数</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TriggerWorkflowSchedulerConfigurations: Array
-        # @param WorkflowDesc: 工作流描述
+        # @param WorkflowDesc: <p>工作流描述</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WorkflowDesc: String
-        # @param Path: 工作流所属路径
+        # @param Path: <p>工作流所属路径</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Path: String
-        # @param BundleId: BundleId项
+        # @param BundleId: <p>BundleId项</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BundleId: String
-        # @param BundleInfo: BundleInfo项
+        # @param BundleInfo: <p>BundleInfo项</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BundleInfo: String
-        # @param GeneralTaskParams: 通用参数
+        # @param GeneralTaskParams: <p>通用参数</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GeneralTaskParams: Array
-        # @param SchedulerStatus: Trigger 状态 启动ACTIVE，暂停PAUSED
+        # @param SchedulerStatus: <p>Trigger 状态 启动ACTIVE，暂停PAUSED</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SchedulerStatus: String
+        # @param TriggerWorkflowRunConfiguration: <p>工作流运行参数配置</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TriggerWorkflowRunConfiguration: :class:`Tencentcloud::Wedata.v20250806.models.WorkflowRunConfig`
 
-        attr_accessor :WorkflowName, :OwnerUin, :CreateUserUin, :WorkflowParams, :TriggerWorkflowSchedulerConfigurations, :WorkflowDesc, :Path, :BundleId, :BundleInfo, :GeneralTaskParams, :SchedulerStatus
+        attr_accessor :WorkflowName, :OwnerUin, :CreateUserUin, :WorkflowParams, :TriggerWorkflowSchedulerConfigurations, :WorkflowDesc, :Path, :BundleId, :BundleInfo, :GeneralTaskParams, :SchedulerStatus, :TriggerWorkflowRunConfiguration
 
-        def initialize(workflowname=nil, owneruin=nil, createuseruin=nil, workflowparams=nil, triggerworkflowschedulerconfigurations=nil, workflowdesc=nil, path=nil, bundleid=nil, bundleinfo=nil, generaltaskparams=nil, schedulerstatus=nil)
+        def initialize(workflowname=nil, owneruin=nil, createuseruin=nil, workflowparams=nil, triggerworkflowschedulerconfigurations=nil, workflowdesc=nil, path=nil, bundleid=nil, bundleinfo=nil, generaltaskparams=nil, schedulerstatus=nil, triggerworkflowrunconfiguration=nil)
           @WorkflowName = workflowname
           @OwnerUin = owneruin
           @CreateUserUin = createuseruin
@@ -22192,6 +22202,7 @@ module TencentCloud
           @BundleInfo = bundleinfo
           @GeneralTaskParams = generaltaskparams
           @SchedulerStatus = schedulerstatus
+          @TriggerWorkflowRunConfiguration = triggerworkflowrunconfiguration
         end
 
         def deserialize(params)
@@ -22227,6 +22238,10 @@ module TencentCloud
             end
           end
           @SchedulerStatus = params['SchedulerStatus']
+          unless params['TriggerWorkflowRunConfiguration'].nil?
+            @TriggerWorkflowRunConfiguration = WorkflowRunConfig.new
+            @TriggerWorkflowRunConfiguration.deserialize(params['TriggerWorkflowRunConfiguration'])
+          end
         end
       end
 
@@ -23983,26 +23998,28 @@ module TencentCloud
 
       # 查询工作流详细信息
       class UpdateTriggerWorkflowPartially < TencentCloud::Common::AbstractModel
-        # @param WorkflowName: 工作流名称
+        # @param WorkflowName: <p>工作流名称</p>
         # @type WorkflowName: String
-        # @param OwnerUin: 责任人ID
+        # @param OwnerUin: <p>责任人ID</p>
         # @type OwnerUin: String
-        # @param WorkflowParams: 工作流参数数组
+        # @param WorkflowParams: <p>工作流参数数组</p>
         # @type WorkflowParams: Array
-        # @param TriggerWorkflowSchedulerConfigurations: 统一调度参数
+        # @param TriggerWorkflowSchedulerConfigurations: <p>统一调度参数</p>
         # @type TriggerWorkflowSchedulerConfigurations: Array
-        # @param WorkflowDesc: 工作流描述
+        # @param WorkflowDesc: <p>工作流描述</p>
         # @type WorkflowDesc: String
-        # @param BundleId: BundleId项
+        # @param BundleId: <p>BundleId项</p>
         # @type BundleId: String
-        # @param BundleInfo: BundleInfo项
+        # @param BundleInfo: <p>BundleInfo项</p>
         # @type BundleInfo: String
-        # @param GeneralTaskParams: 通用参数
+        # @param GeneralTaskParams: <p>通用参数</p>
         # @type GeneralTaskParams: Array
+        # @param TriggerWorkflowRunConfiguration: <p>工作流运行参数配置</p>
+        # @type TriggerWorkflowRunConfiguration: :class:`Tencentcloud::Wedata.v20250806.models.WorkflowRunConfig`
 
-        attr_accessor :WorkflowName, :OwnerUin, :WorkflowParams, :TriggerWorkflowSchedulerConfigurations, :WorkflowDesc, :BundleId, :BundleInfo, :GeneralTaskParams
+        attr_accessor :WorkflowName, :OwnerUin, :WorkflowParams, :TriggerWorkflowSchedulerConfigurations, :WorkflowDesc, :BundleId, :BundleInfo, :GeneralTaskParams, :TriggerWorkflowRunConfiguration
 
-        def initialize(workflowname=nil, owneruin=nil, workflowparams=nil, triggerworkflowschedulerconfigurations=nil, workflowdesc=nil, bundleid=nil, bundleinfo=nil, generaltaskparams=nil)
+        def initialize(workflowname=nil, owneruin=nil, workflowparams=nil, triggerworkflowschedulerconfigurations=nil, workflowdesc=nil, bundleid=nil, bundleinfo=nil, generaltaskparams=nil, triggerworkflowrunconfiguration=nil)
           @WorkflowName = workflowname
           @OwnerUin = owneruin
           @WorkflowParams = workflowparams
@@ -24011,6 +24028,7 @@ module TencentCloud
           @BundleId = bundleid
           @BundleInfo = bundleinfo
           @GeneralTaskParams = generaltaskparams
+          @TriggerWorkflowRunConfiguration = triggerworkflowrunconfiguration
         end
 
         def deserialize(params)
@@ -24042,6 +24060,10 @@ module TencentCloud
               workflowgeneraltaskparam_tmp.deserialize(i)
               @GeneralTaskParams << workflowgeneraltaskparam_tmp
             end
+          end
+          unless params['TriggerWorkflowRunConfiguration'].nil?
+            @TriggerWorkflowRunConfiguration = WorkflowRunConfig.new
+            @TriggerWorkflowRunConfiguration.deserialize(params['TriggerWorkflowRunConfiguration'])
           end
         end
       end
@@ -24125,10 +24147,12 @@ module TencentCloud
         # @type BundleInfo: String
         # @param GeneralTaskParams: 通用参数配置
         # @type GeneralTaskParams: Array
+        # @param TriggerWorkflowRunConfiguration: 
+        # @type TriggerWorkflowRunConfiguration: :class:`Tencentcloud::Wedata.v20250806.models.WorkflowRunConfig`
 
-        attr_accessor :ProjectId, :WorkflowId, :WorkflowName, :OwnerUin, :WorkflowDesc, :WorkflowParams, :TriggerWorkflowSchedulerConfigurations, :BundleId, :BundleInfo, :GeneralTaskParams
+        attr_accessor :ProjectId, :WorkflowId, :WorkflowName, :OwnerUin, :WorkflowDesc, :WorkflowParams, :TriggerWorkflowSchedulerConfigurations, :BundleId, :BundleInfo, :GeneralTaskParams, :TriggerWorkflowRunConfiguration
 
-        def initialize(projectid=nil, workflowid=nil, workflowname=nil, owneruin=nil, workflowdesc=nil, workflowparams=nil, triggerworkflowschedulerconfigurations=nil, bundleid=nil, bundleinfo=nil, generaltaskparams=nil)
+        def initialize(projectid=nil, workflowid=nil, workflowname=nil, owneruin=nil, workflowdesc=nil, workflowparams=nil, triggerworkflowschedulerconfigurations=nil, bundleid=nil, bundleinfo=nil, generaltaskparams=nil, triggerworkflowrunconfiguration=nil)
           @ProjectId = projectid
           @WorkflowId = workflowid
           @WorkflowName = workflowname
@@ -24139,6 +24163,7 @@ module TencentCloud
           @BundleId = bundleid
           @BundleInfo = bundleinfo
           @GeneralTaskParams = generaltaskparams
+          @TriggerWorkflowRunConfiguration = triggerworkflowrunconfiguration
         end
 
         def deserialize(params)
@@ -24172,6 +24197,10 @@ module TencentCloud
               workflowgeneraltaskparam_tmp.deserialize(i)
               @GeneralTaskParams << workflowgeneraltaskparam_tmp
             end
+          end
+          unless params['TriggerWorkflowRunConfiguration'].nil?
+            @TriggerWorkflowRunConfiguration = WorkflowRunConfig.new
+            @TriggerWorkflowRunConfiguration.deserialize(params['TriggerWorkflowRunConfiguration'])
           end
         end
       end
@@ -24699,6 +24728,28 @@ module TencentCloud
               @Items << workflowpermission_tmp
             end
           end
+        end
+      end
+
+      # 工作流运行配置
+      class WorkflowRunConfig < TencentCloud::Common::AbstractModel
+        # @param MaxConcurrentNum: <p>工作流运行最大并发数，取值范围：[1, 1000]</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxConcurrentNum: Integer
+        # @param QueuingMode: <p>1：开启  0：关闭<br>当工作流达到最大并发上限时，若开启，新工作流运行排队等待，直到其他运行释放并发，最大等待时长为48小时，超过则自动跳过不再执行；若关闭，新工作流直接跳过结束。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QueuingMode: Integer
+
+        attr_accessor :MaxConcurrentNum, :QueuingMode
+
+        def initialize(maxconcurrentnum=nil, queuingmode=nil)
+          @MaxConcurrentNum = maxconcurrentnum
+          @QueuingMode = queuingmode
+        end
+
+        def deserialize(params)
+          @MaxConcurrentNum = params['MaxConcurrentNum']
+          @QueuingMode = params['QueuingMode']
         end
       end
 

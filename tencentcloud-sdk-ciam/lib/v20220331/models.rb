@@ -208,40 +208,42 @@ module TencentCloud
 
       # CreateUser请求参数结构体
       class CreateUserRequest < TencentCloud::Common::AbstractModel
-        # @param UserStoreId: 用户目录ID
+        # @param UserStoreId: <p>用户目录ID</p>
         # @type UserStoreId: String
-        # @param PhoneNumber: 手机号码
+        # @param PhoneNumber: <p>手机号码</p>
         # @type PhoneNumber: String
-        # @param Email: 邮箱
+        # @param Email: <p>邮箱</p>
         # @type Email: String
-        # @param Password: 密码
+        # @param Password: <p>密码</p>
         # @type Password: String
-        # @param UserName: 用户名
+        # @param UserName: <p>用户名</p>
         # @type UserName: String
-        # @param Nickname: 昵称
+        # @param Nickname: <p>昵称</p>
         # @type Nickname: String
-        # @param Address: 地址
+        # @param Address: <p>地址</p>
         # @type Address: String
-        # @param UserGroup: 用户组ID
+        # @param UserGroup: <p>用户组ID</p>
         # @type UserGroup: Array
-        # @param Birthdate: 生日
+        # @param Birthdate: <p>生日</p>
         # @type Birthdate: Integer
-        # @param CustomizationAttributes: 自定义属性
+        # @param CustomizationAttributes: <p>自定义属性</p>
         # @type CustomizationAttributes: Array
-        # @param IndexedAttribute1: 索引字段1
+        # @param IndexedAttribute1: <p>索引字段1</p>
         # @type IndexedAttribute1: String
-        # @param IndexedAttribute2: 索引字段2
+        # @param IndexedAttribute2: <p>索引字段2</p>
         # @type IndexedAttribute2: String
-        # @param IndexedAttribute3: 索引字段3
+        # @param IndexedAttribute3: <p>索引字段3</p>
         # @type IndexedAttribute3: String
-        # @param IndexedAttribute4: 索引字段4
+        # @param IndexedAttribute4: <p>索引字段4</p>
         # @type IndexedAttribute4: String
-        # @param IndexedAttribute5: 索引字段5
+        # @param IndexedAttribute5: <p>索引字段5</p>
         # @type IndexedAttribute5: String
+        # @param UserOrg: <p>用户所属组织机构ID</p>
+        # @type UserOrg: Array
 
-        attr_accessor :UserStoreId, :PhoneNumber, :Email, :Password, :UserName, :Nickname, :Address, :UserGroup, :Birthdate, :CustomizationAttributes, :IndexedAttribute1, :IndexedAttribute2, :IndexedAttribute3, :IndexedAttribute4, :IndexedAttribute5
+        attr_accessor :UserStoreId, :PhoneNumber, :Email, :Password, :UserName, :Nickname, :Address, :UserGroup, :Birthdate, :CustomizationAttributes, :IndexedAttribute1, :IndexedAttribute2, :IndexedAttribute3, :IndexedAttribute4, :IndexedAttribute5, :UserOrg
 
-        def initialize(userstoreid=nil, phonenumber=nil, email=nil, password=nil, username=nil, nickname=nil, address=nil, usergroup=nil, birthdate=nil, customizationattributes=nil, indexedattribute1=nil, indexedattribute2=nil, indexedattribute3=nil, indexedattribute4=nil, indexedattribute5=nil)
+        def initialize(userstoreid=nil, phonenumber=nil, email=nil, password=nil, username=nil, nickname=nil, address=nil, usergroup=nil, birthdate=nil, customizationattributes=nil, indexedattribute1=nil, indexedattribute2=nil, indexedattribute3=nil, indexedattribute4=nil, indexedattribute5=nil, userorg=nil)
           @UserStoreId = userstoreid
           @PhoneNumber = phonenumber
           @Email = email
@@ -257,6 +259,7 @@ module TencentCloud
           @IndexedAttribute3 = indexedattribute3
           @IndexedAttribute4 = indexedattribute4
           @IndexedAttribute5 = indexedattribute5
+          @UserOrg = userorg
         end
 
         def deserialize(params)
@@ -282,12 +285,13 @@ module TencentCloud
           @IndexedAttribute3 = params['IndexedAttribute3']
           @IndexedAttribute4 = params['IndexedAttribute4']
           @IndexedAttribute5 = params['IndexedAttribute5']
+          @UserOrg = params['UserOrg']
         end
       end
 
       # CreateUser返回参数结构体
       class CreateUserResponse < TencentCloud::Common::AbstractModel
-        # @param User: 创建的用户信息
+        # @param User: <p>创建的用户信息</p>
         # @type User: :class:`Tencentcloud::Ciam.v20220331.models.User`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -465,14 +469,11 @@ module TencentCloud
 
       # DescribeUserById请求参数结构体
       class DescribeUserByIdRequest < TencentCloud::Common::AbstractModel
-        # @param UserStoreId: 用户目录ID
+        # @param UserStoreId: <p>用户目录ID</p>
         # @type UserStoreId: String
-        # @param UserId: 用户ID
+        # @param UserId: <p>用户ID</p>
         # @type UserId: String
-        # @param Original: 返回信息是否为原文
-
-        # <li> **false** </li>	默认，返回信息为脱敏信息
-        # <li> **true** </li>	返回用户信息原文
+        # @param Original: <p>返回信息是否为原文</p><li> **false** </li>    默认，返回信息为脱敏信息<li> **true** </li>    返回用户信息原文
         # @type Original: Boolean
 
         attr_accessor :UserStoreId, :UserId, :Original
@@ -492,7 +493,7 @@ module TencentCloud
 
       # DescribeUserById返回参数结构体
       class DescribeUserByIdResponse < TencentCloud::Common::AbstractModel
-        # @param User: 用户信息
+        # @param User: <p>用户信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type User: :class:`Tencentcloud::Ciam.v20220331.models.User`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -1216,16 +1217,13 @@ module TencentCloud
 
       # ListUser请求参数结构体
       class ListUserRequest < TencentCloud::Common::AbstractModel
-        # @param UserStoreId: 用户目录ID
+        # @param UserStoreId: <p>用户目录ID</p>
         # @type UserStoreId: String
-        # @param Pageable: 分页数据
+        # @param Pageable: <p>分页数据</p>
         # @type Pageable: :class:`Tencentcloud::Ciam.v20220331.models.Pageable`
-        # @param Filters: Key可选值为condition、userGroupId
-
-        # <li> **condition** </li>	Values = 查询条件，用户ID，用户名称，手机或邮箱
-        # <li> **userGroupId** </li>	Values = 用户组ID
+        # @param Filters: <p>Key可选值为condition、userGroup、userOrg、weComUserOrg<li> <strong>condition</strong> </li>    Values = 查询条件，用户ID，用户名称，手机或邮箱<li> <strong>userGroup</strong> </li>    Values = 用户组ID<li> <strong>userOrg</strong> </li>    Values = 用户所属机构ID<li> <strong>weComUserOrg</strong> </li>    Values = 用户所属企业微信机构ID</p>
         # @type Filters: Array
-        # @param Original: 返回信息是否为原文
+        # @param Original: <p>返回信息是否为原文</p>
         # @type Original: Boolean
 
         attr_accessor :UserStoreId, :Pageable, :Filters, :Original
@@ -1257,12 +1255,12 @@ module TencentCloud
 
       # ListUser返回参数结构体
       class ListUserResponse < TencentCloud::Common::AbstractModel
-        # @param Total: 总条数
+        # @param Total: <p>总条数</p>
         # @type Total: Integer
-        # @param Pageable: 分页对象
+        # @param Pageable: <p>分页对象</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Pageable: :class:`Tencentcloud::Ciam.v20220331.models.Pageable`
-        # @param Content: 用户列表
+        # @param Content: <p>用户列表</p>
         # @type Content: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1703,40 +1701,42 @@ module TencentCloud
 
       # UpdateUser请求参数结构体
       class UpdateUserRequest < TencentCloud::Common::AbstractModel
-        # @param UserId: 用户ID
+        # @param UserId: <p>用户ID</p>
         # @type UserId: String
-        # @param UserStoreId: 用户目录ID
+        # @param UserStoreId: <p>用户目录ID</p>
         # @type UserStoreId: String
-        # @param UserName: 用户名称
+        # @param UserName: <p>用户名称</p>
         # @type UserName: String
-        # @param PhoneNumber: 手机号码
+        # @param PhoneNumber: <p>手机号码</p>
         # @type PhoneNumber: String
-        # @param Email: 邮箱
+        # @param Email: <p>邮箱</p>
         # @type Email: String
-        # @param Nickname: 昵称
+        # @param Nickname: <p>昵称</p>
         # @type Nickname: String
-        # @param Address: 地址
+        # @param Address: <p>地址</p>
         # @type Address: String
-        # @param UserGroup: 用户组
+        # @param UserGroup: <p>用户组</p>
         # @type UserGroup: Array
-        # @param Birthdate: 生日
+        # @param Birthdate: <p>生日</p>
         # @type Birthdate: Integer
-        # @param CustomizationAttributes: 自定义属性
+        # @param CustomizationAttributes: <p>自定义属性</p>
         # @type CustomizationAttributes: Array
-        # @param IndexedAttribute1: 索引字段1
+        # @param IndexedAttribute1: <p>索引字段1</p>
         # @type IndexedAttribute1: String
-        # @param IndexedAttribute2: 索引字段2
+        # @param IndexedAttribute2: <p>索引字段2</p>
         # @type IndexedAttribute2: String
-        # @param IndexedAttribute3: 索引字段3
+        # @param IndexedAttribute3: <p>索引字段3</p>
         # @type IndexedAttribute3: String
-        # @param IndexedAttribute4: 索引字段4
+        # @param IndexedAttribute4: <p>索引字段4</p>
         # @type IndexedAttribute4: String
-        # @param IndexedAttribute5: 索引字段5
+        # @param IndexedAttribute5: <p>索引字段5</p>
         # @type IndexedAttribute5: String
+        # @param UserOrg: <p>用户所属组织机构ID</p>
+        # @type UserOrg: Array
 
-        attr_accessor :UserId, :UserStoreId, :UserName, :PhoneNumber, :Email, :Nickname, :Address, :UserGroup, :Birthdate, :CustomizationAttributes, :IndexedAttribute1, :IndexedAttribute2, :IndexedAttribute3, :IndexedAttribute4, :IndexedAttribute5
+        attr_accessor :UserId, :UserStoreId, :UserName, :PhoneNumber, :Email, :Nickname, :Address, :UserGroup, :Birthdate, :CustomizationAttributes, :IndexedAttribute1, :IndexedAttribute2, :IndexedAttribute3, :IndexedAttribute4, :IndexedAttribute5, :UserOrg
 
-        def initialize(userid=nil, userstoreid=nil, username=nil, phonenumber=nil, email=nil, nickname=nil, address=nil, usergroup=nil, birthdate=nil, customizationattributes=nil, indexedattribute1=nil, indexedattribute2=nil, indexedattribute3=nil, indexedattribute4=nil, indexedattribute5=nil)
+        def initialize(userid=nil, userstoreid=nil, username=nil, phonenumber=nil, email=nil, nickname=nil, address=nil, usergroup=nil, birthdate=nil, customizationattributes=nil, indexedattribute1=nil, indexedattribute2=nil, indexedattribute3=nil, indexedattribute4=nil, indexedattribute5=nil, userorg=nil)
           @UserId = userid
           @UserStoreId = userstoreid
           @UserName = username
@@ -1752,6 +1752,7 @@ module TencentCloud
           @IndexedAttribute3 = indexedattribute3
           @IndexedAttribute4 = indexedattribute4
           @IndexedAttribute5 = indexedattribute5
+          @UserOrg = userorg
         end
 
         def deserialize(params)
@@ -1777,12 +1778,13 @@ module TencentCloud
           @IndexedAttribute3 = params['IndexedAttribute3']
           @IndexedAttribute4 = params['IndexedAttribute4']
           @IndexedAttribute5 = params['IndexedAttribute5']
+          @UserOrg = params['UserOrg']
         end
       end
 
       # UpdateUser返回参数结构体
       class UpdateUserResponse < TencentCloud::Common::AbstractModel
-        # @param User: 更新之后的用户信息
+        # @param User: <p>更新之后的用户信息</p>
         # @type User: :class:`Tencentcloud::Ciam.v20220331.models.User`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1893,126 +1895,135 @@ module TencentCloud
 
       # 用户信息
       class User < TencentCloud::Common::AbstractModel
-        # @param UserId: 用户ID
+        # @param UserId: <p>用户ID</p>
         # @type UserId: String
-        # @param UserName: 用户名
+        # @param UserName: <p>用户名</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserName: String
-        # @param PhoneNumber: 手机号
+        # @param PhoneNumber: <p>手机号</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PhoneNumber: String
-        # @param Email: 邮箱
+        # @param Email: <p>邮箱</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Email: String
-        # @param LastSignOn: 上次登录时间
+        # @param LastSignOn: <p>上次登录时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LastSignOn: Integer
-        # @param CreatedDate: 创建时间
+        # @param CreatedDate: <p>创建时间</p>
         # @type CreatedDate: Integer
-        # @param Status: 状态
+        # @param Status: <p>状态</p>
         # @type Status: String
-        # @param UserDataSourceEnum: 用户来源
+        # @param UserDataSourceEnum: <p>用户来源</p>
         # @type UserDataSourceEnum: String
-        # @param Nickname: 昵称
+        # @param Nickname: <p>昵称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Nickname: String
-        # @param Address: 地址
+        # @param Address: <p>地址</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Address: String
-        # @param Birthdate: 生日
+        # @param Birthdate: <p>生日</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Birthdate: Integer
-        # @param UserGroups: 用户组ID
+        # @param UserGroups: <p>用户组ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserGroups: Array
-        # @param LastModifiedDate: 上次修改时间
+        # @param UserGroupNames: <p>用户组名称</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserGroupNames: Array
+        # @param LastModifiedDate: <p>上次修改时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LastModifiedDate: Integer
-        # @param CustomAttributes: 自定义属性
+        # @param CustomAttributes: <p>自定义属性</p>
         # @type CustomAttributes: Array
-        # @param ResidentIdentityCard: 身份证号
+        # @param ResidentIdentityCard: <p>身份证号</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResidentIdentityCard: String
-        # @param QqOpenId: QQ的OpenId
+        # @param QqOpenId: <p>QQ的OpenId</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QqOpenId: String
-        # @param QqUnionId: QQ的UnionId
+        # @param QqUnionId: <p>QQ的UnionId</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QqUnionId: String
-        # @param WechatOpenId: 微信的WechatOpenId
+        # @param WechatOpenId: <p>微信的WechatOpenId</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WechatOpenId: String
-        # @param WechatUnionId: 微信的WechatUnionId
+        # @param WechatUnionId: <p>微信的WechatUnionId</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WechatUnionId: String
-        # @param AlipayUserId: 支付宝的AlipayUserId
+        # @param AlipayUserId: <p>支付宝的AlipayUserId</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AlipayUserId: String
-        # @param WeComUserId: 企业微信的WeComUserId
+        # @param WeComUserId: <p>企业微信的WeComUserId</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WeComUserId: String
-        # @param Description: 描述
+        # @param Description: <p>描述</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
-        # @param Name: 姓名
+        # @param Name: <p>姓名</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
-        # @param Locale: 坐标
+        # @param Locale: <p>坐标</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Locale: String
-        # @param Gender: 性别
+        # @param Gender: <p>性别</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Gender: String
-        # @param IdentityVerificationMethod: 实名核验方式
+        # @param IdentityVerificationMethod: <p>实名核验方式</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IdentityVerificationMethod: String
-        # @param IdentityVerified: 是否已经实名核验
+        # @param IdentityVerified: <p>是否已经实名核验</p>
         # @type IdentityVerified: Boolean
-        # @param Job: 工作
+        # @param Job: <p>工作</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Job: String
-        # @param Nationality: 国家
+        # @param Nationality: <p>国家</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Nationality: String
-        # @param Primary: 是否主账号（进行过账号融合后，主账号为true，从账号为false）
+        # @param Primary: <p>是否主账号（进行过账号融合后，主账号为true，从账号为false）</p>
         # @type Primary: Boolean
-        # @param Zone: 时区
+        # @param Zone: <p>时区</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Zone: String
-        # @param AlreadyFirstLogin: 是否已经首次登录
+        # @param AlreadyFirstLogin: <p>是否已经首次登录</p>
         # @type AlreadyFirstLogin: Boolean
-        # @param TenantId: 租户id
+        # @param TenantId: <p>租户id</p>
         # @type TenantId: String
-        # @param UserStoreId: 用户目录id
+        # @param UserStoreId: <p>用户目录id</p>
         # @type UserStoreId: String
-        # @param Version: 版本
+        # @param Version: <p>版本</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Version: Integer
-        # @param LockType: 锁定类型（分为管理员锁定，和登录策略锁定）
+        # @param LockType: <p>锁定类型（分为管理员锁定，和登录策略锁定）</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LockType: String
-        # @param LockTime: 锁定时间点
+        # @param LockTime: <p>锁定时间点</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LockTime: Integer
-        # @param IndexedAttribute1: 索引字段1
+        # @param IndexedAttribute1: <p>索引字段1</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IndexedAttribute1: String
-        # @param IndexedAttribute2: 索引字段2
+        # @param IndexedAttribute2: <p>索引字段2</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IndexedAttribute2: String
-        # @param IndexedAttribute3: 索引字段3
+        # @param IndexedAttribute3: <p>索引字段3</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IndexedAttribute3: String
-        # @param IndexedAttribute4: 索引字段4
+        # @param IndexedAttribute4: <p>索引字段4</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IndexedAttribute4: String
-        # @param IndexedAttribute5: 索引字段5
+        # @param IndexedAttribute5: <p>索引字段5</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IndexedAttribute5: String
+        # @param UserOrgs: <p>用户所属组织机构ID</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserOrgs: Array
+        # @param WeComUserOrgs: <p>用户所属企业微信组织机构</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WeComUserOrgs: Array
 
-        attr_accessor :UserId, :UserName, :PhoneNumber, :Email, :LastSignOn, :CreatedDate, :Status, :UserDataSourceEnum, :Nickname, :Address, :Birthdate, :UserGroups, :LastModifiedDate, :CustomAttributes, :ResidentIdentityCard, :QqOpenId, :QqUnionId, :WechatOpenId, :WechatUnionId, :AlipayUserId, :WeComUserId, :Description, :Name, :Locale, :Gender, :IdentityVerificationMethod, :IdentityVerified, :Job, :Nationality, :Primary, :Zone, :AlreadyFirstLogin, :TenantId, :UserStoreId, :Version, :LockType, :LockTime, :IndexedAttribute1, :IndexedAttribute2, :IndexedAttribute3, :IndexedAttribute4, :IndexedAttribute5
+        attr_accessor :UserId, :UserName, :PhoneNumber, :Email, :LastSignOn, :CreatedDate, :Status, :UserDataSourceEnum, :Nickname, :Address, :Birthdate, :UserGroups, :UserGroupNames, :LastModifiedDate, :CustomAttributes, :ResidentIdentityCard, :QqOpenId, :QqUnionId, :WechatOpenId, :WechatUnionId, :AlipayUserId, :WeComUserId, :Description, :Name, :Locale, :Gender, :IdentityVerificationMethod, :IdentityVerified, :Job, :Nationality, :Primary, :Zone, :AlreadyFirstLogin, :TenantId, :UserStoreId, :Version, :LockType, :LockTime, :IndexedAttribute1, :IndexedAttribute2, :IndexedAttribute3, :IndexedAttribute4, :IndexedAttribute5, :UserOrgs, :WeComUserOrgs
 
-        def initialize(userid=nil, username=nil, phonenumber=nil, email=nil, lastsignon=nil, createddate=nil, status=nil, userdatasourceenum=nil, nickname=nil, address=nil, birthdate=nil, usergroups=nil, lastmodifieddate=nil, customattributes=nil, residentidentitycard=nil, qqopenid=nil, qqunionid=nil, wechatopenid=nil, wechatunionid=nil, alipayuserid=nil, wecomuserid=nil, description=nil, name=nil, locale=nil, gender=nil, identityverificationmethod=nil, identityverified=nil, job=nil, nationality=nil, primary=nil, zone=nil, alreadyfirstlogin=nil, tenantid=nil, userstoreid=nil, version=nil, locktype=nil, locktime=nil, indexedattribute1=nil, indexedattribute2=nil, indexedattribute3=nil, indexedattribute4=nil, indexedattribute5=nil)
+        def initialize(userid=nil, username=nil, phonenumber=nil, email=nil, lastsignon=nil, createddate=nil, status=nil, userdatasourceenum=nil, nickname=nil, address=nil, birthdate=nil, usergroups=nil, usergroupnames=nil, lastmodifieddate=nil, customattributes=nil, residentidentitycard=nil, qqopenid=nil, qqunionid=nil, wechatopenid=nil, wechatunionid=nil, alipayuserid=nil, wecomuserid=nil, description=nil, name=nil, locale=nil, gender=nil, identityverificationmethod=nil, identityverified=nil, job=nil, nationality=nil, primary=nil, zone=nil, alreadyfirstlogin=nil, tenantid=nil, userstoreid=nil, version=nil, locktype=nil, locktime=nil, indexedattribute1=nil, indexedattribute2=nil, indexedattribute3=nil, indexedattribute4=nil, indexedattribute5=nil, userorgs=nil, wecomuserorgs=nil)
           @UserId = userid
           @UserName = username
           @PhoneNumber = phonenumber
@@ -2025,6 +2036,7 @@ module TencentCloud
           @Address = address
           @Birthdate = birthdate
           @UserGroups = usergroups
+          @UserGroupNames = usergroupnames
           @LastModifiedDate = lastmodifieddate
           @CustomAttributes = customattributes
           @ResidentIdentityCard = residentidentitycard
@@ -2055,6 +2067,8 @@ module TencentCloud
           @IndexedAttribute3 = indexedattribute3
           @IndexedAttribute4 = indexedattribute4
           @IndexedAttribute5 = indexedattribute5
+          @UserOrgs = userorgs
+          @WeComUserOrgs = wecomuserorgs
         end
 
         def deserialize(params)
@@ -2070,6 +2084,7 @@ module TencentCloud
           @Address = params['Address']
           @Birthdate = params['Birthdate']
           @UserGroups = params['UserGroups']
+          @UserGroupNames = params['UserGroupNames']
           @LastModifiedDate = params['LastModifiedDate']
           unless params['CustomAttributes'].nil?
             @CustomAttributes = []
@@ -2107,6 +2122,8 @@ module TencentCloud
           @IndexedAttribute3 = params['IndexedAttribute3']
           @IndexedAttribute4 = params['IndexedAttribute4']
           @IndexedAttribute5 = params['IndexedAttribute5']
+          @UserOrgs = params['UserOrgs']
+          @WeComUserOrgs = params['WeComUserOrgs']
         end
       end
 

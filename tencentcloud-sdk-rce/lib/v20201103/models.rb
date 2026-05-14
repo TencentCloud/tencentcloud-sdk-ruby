@@ -691,65 +691,51 @@ module TencentCloud
 
       # 全栈式风控引擎入参
       class InputManageMarketingRisk < TencentCloud::Common::AbstractModel
-        # @param Account: 用户账号类型；默认开通QQOpenId、手机号MD5权限；如果需要使用微信OpenId入参，则需要"提交工单"或联系对接人进行资格审核，审核通过后方可正常使用微信开放账号。
-        # 1：QQ开放账号
-        # 2：微信开放账号
-        # 10004：手机号MD5，中国大陆11位手机号进行MD5加密，取32位小写值
-        # 10005：手机号SHA256，中国大陆11位手机号进行SHA256加密，取64位小写值
+        # @param Account: <p>用户账号类型；默认开通QQOpenId、手机号MD5权限；如果需要使用微信OpenId入参，则需要&quot;提交工单&quot;或联系对接人进行资格审核，审核通过后方可正常使用微信开放账号。<br>1：QQ开放账号<br>2：微信开放账号<br>10004：手机号MD5，中国大陆11位手机号进行MD5加密，取32位小写值<br>10005：手机号SHA256，中国大陆11位手机号进行SHA256加密，取64位小写值</p>
         # @type Account: :class:`Tencentcloud::Rce.v20201103.models.AccountInfo`
-        # @param SceneCode: 场景码，用于识别和区分不同的业务场景，可在控制台上新建和管理
-        # 控制台链接：https://console.cloud.tencent.com/rce/risk/strategy/scene-root
-        # 活动防刷默认场景码：e_activity_antirush
-        # 登录保护默认场景码：e_login_protection
-        # 注册保护默认场景码：e_register_protection
+        # @param SceneCode: <p>场景码，用于识别和区分不同的业务场景，可在控制台上新建和管理<br>控制台链接：https://console.cloud.tencent.com/rce/risk/strategy/scene-root<br>活动防刷默认场景码：e_activity_antirush<br>登录保护默认场景码：e_login_protection<br>注册保护默认场景码：e_register_protection</p>
         # @type SceneCode: String
-        # @param UserIp: 用户外网ip（传入用户非外网ip会影响判断结果）。
+        # @param UserIp: <p>用户外网ip（传入用户非外网ip会影响判断结果）。</p>
         # @type UserIp: String
-        # @param PostTime: 用户操作时间戳，精确到秒。
+        # @param PostTime: <p>用户操作时间戳，精确到秒。</p>
         # @type PostTime: Integer
-        # @param UserId: 业务平台用户唯一标识，支持自定义。
+        # @param UserId: <p>业务平台用户唯一标识，支持自定义。</p>
         # @type UserId: String
-        # @param DeviceToken: 设备指纹DeviceToken值，集成设备指纹后获取；如果集成了相应的设备指纹，该字段必填。
+        # @param DeviceToken: <p>设备指纹DeviceToken值，集成设备指纹后获取；如果集成了相应的设备指纹，该字段必填。</p>
         # @type DeviceToken: String
-        # @param DeviceBusinessId: 设备指纹 BusinessId。
+        # @param DeviceBusinessId: <p>设备指纹 BusinessId。</p>
         # @type DeviceBusinessId: Integer
-        # @param BusinessId: 业务ID。网站或应用在多个业务中使用此服务，通过此ID区分统计数据。
+        # @param BusinessId: <p>业务ID。网站或应用在多个业务中使用此服务，通过此ID区分统计数据。</p>
         # @type BusinessId: Integer
-        # @param Nickname: 昵称，UTF-8 编码。
+        # @param Nickname: <p>昵称，UTF-8 编码。</p>
         # @type Nickname: String
-        # @param EmailAddress: 用户邮箱地址。
+        # @param EmailAddress: <p>用户邮箱地址。</p>
         # @type EmailAddress: String
-        # @param CheckDevice: 是否识别设备异常：
-        # 0：不识别。
-        # 1：识别。
+        # @param CheckDevice: <p>是否识别设备异常：<br>0：不识别。<br>1：识别。</p>
         # @type CheckDevice: Integer
-        # @param CookieHash: 用户HTTP请求中的Cookie进行2次hash的值，只要保证相同Cookie的hash值一致即可。
+        # @param CookieHash: <p>用户HTTP请求中的Cookie进行2次hash的值，只要保证相同Cookie的hash值一致即可。</p>
         # @type CookieHash: String
-        # @param Referer: 用户HTTP请求的Referer值。
+        # @param Referer: <p>用户HTTP请求的Referer值。</p>
         # @type Referer: String
-        # @param UserAgent: 用户HTTP请求的User-Agent值。
+        # @param UserAgent: <p>用户HTTP请求的User-Agent值。</p>
         # @type UserAgent: String
-        # @param XForwardedFor: 用户HTTP请求的X-Forwarded-For值。
+        # @param XForwardedFor: <p>用户HTTP请求的X-Forwarded-For值。</p>
         # @type XForwardedFor: String
-        # @param MacAddress: MAC地址或设备唯一标识。
+        # @param MacAddress: <p>MAC地址或设备唯一标识。</p>
         # @type MacAddress: String
-        # @param VendorId: 手机制造商ID，如果手机注册，请带上此信息。
+        # @param VendorId: <p>手机制造商ID，如果手机注册，请带上此信息。</p>
         # @type VendorId: String
-        # @param DeviceType: 设备类型(已不推荐使用)。
+        # @param DeviceType: <p>设备类型(已不推荐使用)。</p>
         # @type DeviceType: Integer
-        # @param Details: 扩展字段。
+        # @param Details: <p>扩展字段。</p>
         # @type Details: Array
-        # @param Sponsor: 邀请助力场景相关信息。
+        # @param Sponsor: <p>邀请助力场景相关信息。</p>
         # @type Sponsor: :class:`Tencentcloud::Rce.v20201103.models.SponsorInfo`
-        # @param OnlineScam: 详情请跳转至OnlineScamInfo查看。
+        # @param OnlineScam: <p>详情请跳转至OnlineScamInfo查看。</p>
         # @type OnlineScam: :class:`Tencentcloud::Rce.v20201103.models.OnlineScamInfo`
-        # @param Platform: 1：Android
-        # 2：iOS
-        # 3：H5
-        # 4：小程序
+        # @param Platform: <p>1：Android<br>2：iOS<br>3：H5<br>4：小程序<br>5：鸿蒙</p>
         # @type Platform: String
-        # @param DataAuthorization: 数据授权信息。
-        # 注意：新接入通用业务欺诈保护（RCE）服务的客户该字段【必传】。
+        # @param DataAuthorization: <p>数据授权信息。<br>注意：新接入通用业务欺诈保护（RCE）服务的客户该字段【必传】。</p>
         # @type DataAuthorization: :class:`Tencentcloud::Rce.v20201103.models.DataAuthorizationInfo`
 
         attr_accessor :Account, :SceneCode, :UserIp, :PostTime, :UserId, :DeviceToken, :DeviceBusinessId, :BusinessId, :Nickname, :EmailAddress, :CheckDevice, :CookieHash, :Referer, :UserAgent, :XForwardedFor, :MacAddress, :VendorId, :DeviceType, :Details, :Sponsor, :OnlineScam, :Platform, :DataAuthorization
@@ -1587,19 +1573,14 @@ module TencentCloud
 
       # 全栈式风控引擎出参
       class OutputManageMarketingRisk < TencentCloud::Common::AbstractModel
-        # @param Code: 错误码，0 表示成功，非0表示失败错误码。
-        # 0：成功
-        # 1：错误
-        # 1002：参数错误
-        # 4300：未开通服务
-        # 4301：后端未创建对应产品
+        # @param Code: <p>错误码，0 表示成功，非0表示失败错误码。<br>0：成功<br>1002：参数错误<br>4300：未开通服务<br>4301：后端未创建对应产品<br>6000：系统内部错误</p>
         # @type Code: Integer
-        # @param Message: UTF-8编码，出错消息。
+        # @param Message: <p>UTF-8编码，出错消息。</p>
         # @type Message: String
-        # @param Value: 业务详情。
+        # @param Value: <p>业务详情。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: :class:`Tencentcloud::Rce.v20201103.models.OutputManageMarketingRiskValue`
-        # @param UUid: 控制台显示的req_id。
+        # @param UUid: <p>控制台显示的req_id。</p>
         # @type UUid: String
 
         attr_accessor :Code, :Message, :Value, :UUid

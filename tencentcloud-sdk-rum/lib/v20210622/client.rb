@@ -1591,6 +1591,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 根据label 聚合分析日志
+
+        # @param request: Request instance for DescribeRumGroupLogV2.
+        # @type request: :class:`Tencentcloud::rum::V20210622::DescribeRumGroupLogV2Request`
+        # @rtype: :class:`Tencentcloud::rum::V20210622::DescribeRumGroupLogV2Response`
+        def DescribeRumGroupLogV2(request)
+          body = send_request('DescribeRumGroupLogV2', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRumGroupLogV2Response.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询日志明细
+
+        # @param request: Request instance for DescribeRumLogDetailsV2.
+        # @type request: :class:`Tencentcloud::rum::V20210622::DescribeRumLogDetailsV2Request`
+        # @rtype: :class:`Tencentcloud::rum::V20210622::DescribeRumLogDetailsV2Response`
+        def DescribeRumLogDetailsV2(request)
+          body = send_request('DescribeRumLogDetailsV2', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRumLogDetailsV2Response.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取项目下的日志列表（实例创建的项目下的日志列表）
 
         # @param request: Request instance for DescribeRumLogExport.
@@ -1601,6 +1649,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeRumLogExportResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建日志导出
+
+        # @param request: Request instance for DescribeRumLogExportV2.
+        # @type request: :class:`Tencentcloud::rum::V20210622::DescribeRumLogExportV2Request`
+        # @rtype: :class:`Tencentcloud::rum::V20210622::DescribeRumLogExportV2Response`
+        def DescribeRumLogExportV2(request)
+          body = send_request('DescribeRumLogExportV2', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRumLogExportV2Response.new
             model.deserialize(response['Response'])
             model
           else
@@ -1639,6 +1711,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取日志导出列表
+
+        # @param request: Request instance for DescribeRumLogExportsV2.
+        # @type request: :class:`Tencentcloud::rum::V20210622::DescribeRumLogExportsV2Request`
+        # @rtype: :class:`Tencentcloud::rum::V20210622::DescribeRumLogExportsV2Response`
+        def DescribeRumLogExportsV2(request)
+          body = send_request('DescribeRumLogExportsV2', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRumLogExportsV2Response.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取项目下的日志列表（实例创建的项目下的日志列表）
 
         # @param request: Request instance for DescribeRumLogList.
@@ -1663,6 +1759,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询原始日志总量
+
+        # @param request: Request instance for DescribeRumLogTotalV2.
+        # @type request: :class:`Tencentcloud::rum::V20210622::DescribeRumLogTotalV2Request`
+        # @rtype: :class:`Tencentcloud::rum::V20210622::DescribeRumLogTotalV2Response`
+        def DescribeRumLogTotalV2(request)
+          body = send_request('DescribeRumLogTotalV2', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRumLogTotalV2Response.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取项目下的日志列表，分钟级
 
         # @param request: Request instance for DescribeRumStatsLogList.
@@ -1673,6 +1793,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeRumStatsLogListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询日志时间分布
+
+        # @param request: Request instance for DescribeRumStatsLogListV2.
+        # @type request: :class:`Tencentcloud::rum::V20210622::DescribeRumStatsLogListV2Request`
+        # @rtype: :class:`Tencentcloud::rum::V20210622::DescribeRumStatsLogListV2Response`
+        def DescribeRumStatsLogListV2(request)
+          body = send_request('DescribeRumStatsLogListV2', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRumStatsLogListV2Response.new
             model.deserialize(response['Response'])
             model
           else

@@ -8264,27 +8264,27 @@ module TencentCloud
 
       # DescribeInstanceSlowQueries请求参数结构体
       class DescribeInstanceSlowQueriesRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: <p>实例ID</p>
         # @type InstanceId: String
-        # @param StartTime: 事务开始最早时间
+        # @param StartTime: <p>事务开始最早时间</p>
         # @type StartTime: String
-        # @param EndTime: 事务开始最晚时间
+        # @param EndTime: <p>事务开始最晚时间</p>
         # @type EndTime: String
-        # @param Limit: 限制条数
+        # @param Limit: <p>限制条数</p><p>建议控制 limit 大小，当 limit 过大时，由于平台返回结果大小限制，可能会造成截断</p>
         # @type Limit: Integer
-        # @param Offset: 偏移量
+        # @param Offset: <p>偏移量</p>
         # @type Offset: Integer
-        # @param Username: 用户名
+        # @param Username: <p>用户名</p>
         # @type Username: String
-        # @param Host: 客户端host
+        # @param Host: <p>客户端host</p>
         # @type Host: String
-        # @param Database: 数据库名
+        # @param Database: <p>数据库名</p>
         # @type Database: String
-        # @param OrderBy: 排序字段，可选值：QueryTime,LockTime,RowsExamined,RowsSent
+        # @param OrderBy: <p>排序字段</p><p>枚举值：</p><ul><li>QueryTime： 按照 SQL 语句的总执行时长排序</li><li>LockTime： 按照 SQL 语句在等待锁（如表锁、行锁）上消耗的时间排序</li><li>RowsExamined： 按照 SQL 语句在执行过程中扫描的行数排序</li><li>RowsSent： 按照 SQL 语句最终返回给客户端的结果行数排序</li><li>Timestamp： 按照慢查询语句发生的时间戳排序</li></ul>
         # @type OrderBy: String
-        # @param OrderByType: 排序类型，可选值：asc,desc
+        # @param OrderByType: <p>排序类型，可选值：asc,desc</p>
         # @type OrderByType: String
-        # @param SqlText: sql语句
+        # @param SqlText: <p>sql语句</p>
         # @type SqlText: String
 
         attr_accessor :InstanceId, :StartTime, :EndTime, :Limit, :Offset, :Username, :Host, :Database, :OrderBy, :OrderByType, :SqlText
@@ -8320,9 +8320,9 @@ module TencentCloud
 
       # DescribeInstanceSlowQueries返回参数结构体
       class DescribeInstanceSlowQueriesResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 总条数
+        # @param TotalCount: <p>总条数</p>
         # @type TotalCount: Integer
-        # @param SlowQueries: 慢查询记录
+        # @param SlowQueries: <p>慢查询记录</p>
         # @type SlowQueries: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

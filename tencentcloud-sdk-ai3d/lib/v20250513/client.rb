@@ -53,6 +53,31 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 3D模型绑骨蒙皮接口，基于混元大模型，根据输入的人物或动物模型进行绑骨蒙皮，输出带骨骼信息的3D模型。
+        # 默认提供1个并发，代表最多能同时处理1个已提交的任务，上一个任务处理完毕后，才能开始处理下一个任务。
+
+        # @param request: Request instance for DescribeAutoRiggingJob.
+        # @type request: :class:`Tencentcloud::ai3d::V20250513::DescribeAutoRiggingJobRequest`
+        # @rtype: :class:`Tencentcloud::ai3d::V20250513::DescribeAutoRiggingJobResponse`
+        def DescribeAutoRiggingJob(request)
+          body = send_request('DescribeAutoRiggingJob', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAutoRiggingJobResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询组件生成任务。
 
         # @param request: Request instance for DescribeHunyuanTo3DMotionJob.
@@ -236,6 +261,31 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = QueryHunyuanTo3DRapidJobResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 3D模型绑骨蒙皮接口，基于混元大模型，根据输入的人物或动物模型进行绑骨蒙皮，输出带骨骼信息的3D模型。
+        # 默认提供1个并发，代表最多能同时处理1个已提交的任务，上一个任务处理完毕后，才能开始处理下一个任务。
+
+        # @param request: Request instance for SubmitAutoRiggingJob.
+        # @type request: :class:`Tencentcloud::ai3d::V20250513::SubmitAutoRiggingJobRequest`
+        # @rtype: :class:`Tencentcloud::ai3d::V20250513::SubmitAutoRiggingJobResponse`
+        def SubmitAutoRiggingJob(request)
+          body = send_request('SubmitAutoRiggingJob', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SubmitAutoRiggingJobResponse.new
             model.deserialize(response['Response'])
             model
           else

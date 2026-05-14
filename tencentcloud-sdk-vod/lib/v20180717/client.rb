@@ -284,6 +284,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 该接口用于创建 AIGC 音色复刻。注意，调用本接口会产生费用，请参考[计费文档](https://cloud.tencent.com/document/product/266/95125#96b3b59a-f9e1-49e9-966a-bedb70a4bf12)。
+
+        # @param request: Request instance for CreateAigcAudioClone.
+        # @type request: :class:`Tencentcloud::vod::V20180717::CreateAigcAudioCloneRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::CreateAigcAudioCloneResponse`
+        def CreateAigcAudioClone(request)
+          body = send_request('CreateAigcAudioClone', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateAigcAudioCloneResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 调用该接口，用于创建AI生音频任务。
 
         # @param request: Request instance for CreateAigcAudioTask.
