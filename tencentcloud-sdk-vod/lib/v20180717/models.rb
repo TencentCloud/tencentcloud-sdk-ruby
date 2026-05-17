@@ -15580,27 +15580,28 @@ module TencentCloud
 
       # DescribeProcedureTemplates请求参数结构体
       class DescribeProcedureTemplatesRequest < TencentCloud::Common::AbstractModel
-        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
+        # @param SubAppId: <p><b>点播<a href="/document/product/266/14574">应用</a> ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b></p>
         # @type SubAppId: Integer
-        # @param Names: 任务流模板名字过滤条件，数组长度限制：100。
+        # @param Names: <p>任务流模板名字过滤条件，数组长度限制：100。</p>
         # @type Names: Array
-        # @param Type: 任务流模板类型过滤条件，可选值：
-        # <li>Preset：系统预置任务流模板；</li>
-        # <li>Custom：用户自定义任务流模板。</li>
+        # @param Type: <p>任务流模板类型过滤条件，可选值：</p><li>Preset：系统预置任务流模板；</li><li>Custom：用户自定义任务流模板。</li>
         # @type Type: String
-        # @param Offset: 分页偏移量，默认值：0。
+        # @param Offset: <p>分页偏移量，默认值：0。</p>
         # @type Offset: Integer
-        # @param Limit: 返回记录条数，默认值：10，最大值：100。
+        # @param Limit: <p>返回记录条数，默认值：10，最大值：100。</p>
         # @type Limit: Integer
+        # @param SortBy: <p>指定字段对返回结果进行生序或者降序Sort.Field 目前只支持 CreateTime 。Sort.Order 为 desc（降序）或者 asc（升序）</p><p>入参限制：当前仅支持排序字段为CreateTime</p>
+        # @type SortBy: Array
 
-        attr_accessor :SubAppId, :Names, :Type, :Offset, :Limit
+        attr_accessor :SubAppId, :Names, :Type, :Offset, :Limit, :SortBy
 
-        def initialize(subappid=nil, names=nil, type=nil, offset=nil, limit=nil)
+        def initialize(subappid=nil, names=nil, type=nil, offset=nil, limit=nil, sortby=nil)
           @SubAppId = subappid
           @Names = names
           @Type = type
           @Offset = offset
           @Limit = limit
+          @SortBy = sortby
         end
 
         def deserialize(params)
@@ -15609,14 +15610,22 @@ module TencentCloud
           @Type = params['Type']
           @Offset = params['Offset']
           @Limit = params['Limit']
+          unless params['SortBy'].nil?
+            @SortBy = []
+            params['SortBy'].each do |i|
+              sortby_tmp = SortBy.new
+              sortby_tmp.deserialize(i)
+              @SortBy << sortby_tmp
+            end
+          end
         end
       end
 
       # DescribeProcedureTemplates返回参数结构体
       class DescribeProcedureTemplatesResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 符合过滤条件的记录总数。
+        # @param TotalCount: <p>符合过滤条件的记录总数。</p>
         # @type TotalCount: Integer
-        # @param ProcedureTemplateSet: 任务流模板详情列表。
+        # @param ProcedureTemplateSet: <p>任务流模板详情列表。</p>
         # @type ProcedureTemplateSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

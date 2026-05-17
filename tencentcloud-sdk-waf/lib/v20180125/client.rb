@@ -4496,6 +4496,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改域名新规则状态
+
+        # @param request: Request instance for ModifyOwaspDomainUpdateStatus.
+        # @type request: :class:`Tencentcloud::waf::V20180125::ModifyOwaspDomainUpdateStatusRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::ModifyOwaspDomainUpdateStatusResponse`
+        def ModifyOwaspDomainUpdateStatus(request)
+          body = send_request('ModifyOwaspDomainUpdateStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyOwaspDomainUpdateStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 更新规则的开关
 
         # @param request: Request instance for ModifyOwaspRuleStatus.

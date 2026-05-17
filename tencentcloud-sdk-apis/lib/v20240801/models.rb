@@ -684,26 +684,30 @@ module TencentCloud
 
       # CreateModel请求参数结构体
       class CreateModelRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceID: 实例
+        # @param InstanceID: <p>实例</p>
         # @type InstanceID: String
-        # @param Name: 模型名称
+        # @param Name: <p>模型名称</p>
         # @type Name: String
-        # @param HttpProtocolType: 协议类型：http/https
+        # @param HttpProtocolType: <p>协议类型：http/https</p>
         # @type HttpProtocolType: String
-        # @param TargetPath: 目标路径
+        # @param TargetPath: <p>目标路径</p>
         # @type TargetPath: String
-        # @param TargetHosts: 目标服务器
+        # @param TargetHosts: <p>目标服务器</p>
         # @type TargetHosts: Array
-        # @param CredentialID: 凭据ID
+        # @param CredentialID: <p>凭据ID</p>
         # @type CredentialID: String
-        # @param CheckTargetCertsError: https时，是否检查证书合法
+        # @param CheckTargetCertsError: <p>https时，是否检查证书合法</p>
         # @type CheckTargetCertsError: Boolean
-        # @param HttpProtocolVersion: http协议版本：1.1/2.0
+        # @param HttpProtocolVersion: <p>http协议版本：1.1/2.0</p>
         # @type HttpProtocolVersion: String
+        # @param ModelID: <p>model ID</p>
+        # @type ModelID: String
+        # @param Description: <p>描述</p>
+        # @type Description: String
 
-        attr_accessor :InstanceID, :Name, :HttpProtocolType, :TargetPath, :TargetHosts, :CredentialID, :CheckTargetCertsError, :HttpProtocolVersion
+        attr_accessor :InstanceID, :Name, :HttpProtocolType, :TargetPath, :TargetHosts, :CredentialID, :CheckTargetCertsError, :HttpProtocolVersion, :ModelID, :Description
 
-        def initialize(instanceid=nil, name=nil, httpprotocoltype=nil, targetpath=nil, targethosts=nil, credentialid=nil, checktargetcertserror=nil, httpprotocolversion=nil)
+        def initialize(instanceid=nil, name=nil, httpprotocoltype=nil, targetpath=nil, targethosts=nil, credentialid=nil, checktargetcertserror=nil, httpprotocolversion=nil, modelid=nil, description=nil)
           @InstanceID = instanceid
           @Name = name
           @HttpProtocolType = httpprotocoltype
@@ -712,6 +716,8 @@ module TencentCloud
           @CredentialID = credentialid
           @CheckTargetCertsError = checktargetcertserror
           @HttpProtocolVersion = httpprotocolversion
+          @ModelID = modelid
+          @Description = description
         end
 
         def deserialize(params)
@@ -730,12 +736,14 @@ module TencentCloud
           @CredentialID = params['CredentialID']
           @CheckTargetCertsError = params['CheckTargetCertsError']
           @HttpProtocolVersion = params['HttpProtocolVersion']
+          @ModelID = params['ModelID']
+          @Description = params['Description']
         end
       end
 
       # CreateModel返回参数结构体
       class CreateModelResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 结果集
+        # @param Data: <p>结果集</p>
         # @type Data: :class:`Tencentcloud::Apis.v20240801.models.ResultIDVO`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -810,10 +818,12 @@ module TencentCloud
         # @type FallbackStatus: Boolean
         # @param FallbackModels: <p>Fallback模型配置</p>
         # @type FallbackModels: Array
+        # @param ModelProtocol: <p>模型协议</p>
+        # @type ModelProtocol: String
 
-        attr_accessor :InstanceID, :Name, :Description, :PubPath, :TargetModels, :PathMatchType, :InvokeLimitConfigStatus, :InvokeLimitConfig, :TokenLimitStatus, :TokenLimitConfig, :TmsStatus, :TmsConfig, :IpWhiteStatus, :IpWhiteList, :IpBlackList, :PluginConfigs, :Timeout, :PromptModerateStatus, :PromptModerateConfig, :SensitiveDataCheckStatus, :SensitiveDataCheckConfig, :TargetSelect, :FindHostKeyMethod, :HostKeyHeaderName, :FallbackStatus, :FallbackModels
+        attr_accessor :InstanceID, :Name, :Description, :PubPath, :TargetModels, :PathMatchType, :InvokeLimitConfigStatus, :InvokeLimitConfig, :TokenLimitStatus, :TokenLimitConfig, :TmsStatus, :TmsConfig, :IpWhiteStatus, :IpWhiteList, :IpBlackList, :PluginConfigs, :Timeout, :PromptModerateStatus, :PromptModerateConfig, :SensitiveDataCheckStatus, :SensitiveDataCheckConfig, :TargetSelect, :FindHostKeyMethod, :HostKeyHeaderName, :FallbackStatus, :FallbackModels, :ModelProtocol
 
-        def initialize(instanceid=nil, name=nil, description=nil, pubpath=nil, targetmodels=nil, pathmatchtype=nil, invokelimitconfigstatus=nil, invokelimitconfig=nil, tokenlimitstatus=nil, tokenlimitconfig=nil, tmsstatus=nil, tmsconfig=nil, ipwhitestatus=nil, ipwhitelist=nil, ipblacklist=nil, pluginconfigs=nil, timeout=nil, promptmoderatestatus=nil, promptmoderateconfig=nil, sensitivedatacheckstatus=nil, sensitivedatacheckconfig=nil, targetselect=nil, findhostkeymethod=nil, hostkeyheadername=nil, fallbackstatus=nil, fallbackmodels=nil)
+        def initialize(instanceid=nil, name=nil, description=nil, pubpath=nil, targetmodels=nil, pathmatchtype=nil, invokelimitconfigstatus=nil, invokelimitconfig=nil, tokenlimitstatus=nil, tokenlimitconfig=nil, tmsstatus=nil, tmsconfig=nil, ipwhitestatus=nil, ipwhitelist=nil, ipblacklist=nil, pluginconfigs=nil, timeout=nil, promptmoderatestatus=nil, promptmoderateconfig=nil, sensitivedatacheckstatus=nil, sensitivedatacheckconfig=nil, targetselect=nil, findhostkeymethod=nil, hostkeyheadername=nil, fallbackstatus=nil, fallbackmodels=nil, modelprotocol=nil)
           @InstanceID = instanceid
           @Name = name
           @Description = description
@@ -840,6 +850,7 @@ module TencentCloud
           @HostKeyHeaderName = hostkeyheadername
           @FallbackStatus = fallbackstatus
           @FallbackModels = fallbackmodels
+          @ModelProtocol = modelprotocol
         end
 
         def deserialize(params)
@@ -905,6 +916,7 @@ module TencentCloud
               @FallbackModels << targetmodeldto_tmp
             end
           end
+          @ModelProtocol = params['ModelProtocol']
         end
       end
 
@@ -2184,40 +2196,44 @@ module TencentCloud
 
       # 查询模型详情的响应
       class DescribeModelResponseVO < TencentCloud::Common::AbstractModel
-        # @param AppID: 腾讯云AppID
+        # @param AppID: <p>腾讯云AppID</p>
         # @type AppID: Integer
-        # @param Uin: 腾讯云Uin
+        # @param Uin: <p>腾讯云Uin</p>
         # @type Uin: String
-        # @param InstanceID: 实例ID
+        # @param InstanceID: <p>实例ID</p>
         # @type InstanceID: String
-        # @param ID: 模型ID
+        # @param ID: <p>模型ID</p>
         # @type ID: String
-        # @param Name: 模型名称
+        # @param Name: <p>模型名称</p>
         # @type Name: String
-        # @param CredentialID: 凭据ID
+        # @param CredentialID: <p>凭据ID</p>
         # @type CredentialID: String
-        # @param CredentialName: 凭据名称
+        # @param CredentialName: <p>凭据名称</p>
         # @type CredentialName: String
-        # @param HttpProtocolType: http协议类型
+        # @param HttpProtocolType: <p>http协议类型</p>
         # @type HttpProtocolType: String
-        # @param CheckTargetCertsError: https时，是否校验目标证书
+        # @param CheckTargetCertsError: <p>https时，是否校验目标证书</p>
         # @type CheckTargetCertsError: Boolean
-        # @param HttpProtocolVersion: http协议版本：1.1/2.0
+        # @param HttpProtocolVersion: <p>http协议版本：1.1/2.0</p>
         # @type HttpProtocolVersion: String
-        # @param TargetPath: 目标路径
+        # @param TargetPath: <p>目标路径</p>
         # @type TargetPath: String
-        # @param TargetHosts: 目标器列表
+        # @param TargetHosts: <p>目标器列表</p>
         # @type TargetHosts: Array
-        # @param ModelServiceCount: 被模型服务使用的个数
+        # @param ModelServiceCount: <p>被模型服务使用的个数</p>
         # @type ModelServiceCount: Integer
-        # @param CreateTime: 创建时间
+        # @param CreateTime: <p>创建时间</p>
         # @type CreateTime: String
-        # @param LastUpdateTime: 最后修改时间
+        # @param LastUpdateTime: <p>最后修改时间</p>
         # @type LastUpdateTime: String
+        # @param ModelID: <p>model ID</p>
+        # @type ModelID: String
+        # @param Description: <p>描述</p>
+        # @type Description: String
 
-        attr_accessor :AppID, :Uin, :InstanceID, :ID, :Name, :CredentialID, :CredentialName, :HttpProtocolType, :CheckTargetCertsError, :HttpProtocolVersion, :TargetPath, :TargetHosts, :ModelServiceCount, :CreateTime, :LastUpdateTime
+        attr_accessor :AppID, :Uin, :InstanceID, :ID, :Name, :CredentialID, :CredentialName, :HttpProtocolType, :CheckTargetCertsError, :HttpProtocolVersion, :TargetPath, :TargetHosts, :ModelServiceCount, :CreateTime, :LastUpdateTime, :ModelID, :Description
 
-        def initialize(appid=nil, uin=nil, instanceid=nil, id=nil, name=nil, credentialid=nil, credentialname=nil, httpprotocoltype=nil, checktargetcertserror=nil, httpprotocolversion=nil, targetpath=nil, targethosts=nil, modelservicecount=nil, createtime=nil, lastupdatetime=nil)
+        def initialize(appid=nil, uin=nil, instanceid=nil, id=nil, name=nil, credentialid=nil, credentialname=nil, httpprotocoltype=nil, checktargetcertserror=nil, httpprotocolversion=nil, targetpath=nil, targethosts=nil, modelservicecount=nil, createtime=nil, lastupdatetime=nil, modelid=nil, description=nil)
           @AppID = appid
           @Uin = uin
           @InstanceID = instanceid
@@ -2233,6 +2249,8 @@ module TencentCloud
           @ModelServiceCount = modelservicecount
           @CreateTime = createtime
           @LastUpdateTime = lastupdatetime
+          @ModelID = modelid
+          @Description = description
         end
 
         def deserialize(params)
@@ -2258,6 +2276,8 @@ module TencentCloud
           @ModelServiceCount = params['ModelServiceCount']
           @CreateTime = params['CreateTime']
           @LastUpdateTime = params['LastUpdateTime']
+          @ModelID = params['ModelID']
+          @Description = params['Description']
         end
       end
 
@@ -2392,10 +2412,13 @@ module TencentCloud
         # @param FallbackModels: <p>备份模型</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FallbackModels: Array
+        # @param ModelProtocol: <p>模型类型</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModelProtocol: String
 
-        attr_accessor :AppID, :Uin, :InstanceID, :ID, :Name, :Description, :PubPath, :PathMatchType, :TargetModels, :ModelNames, :InvokeLimitConfigStatus, :InvokeLimitConfig, :CreateTime, :LastUpdateTime, :TokenLimitStatus, :TokenLimitConfig, :TmsStatus, :TmsConfig, :IpWhiteStatus, :IpWhiteList, :IpBlackStatus, :IpBlackList, :PluginConfigs, :Timeout, :Status, :RelateAgentAppNum, :Url, :PromptModerateStatus, :PromptModerateConfig, :SensitiveDataCheckStatus, :SensitiveDataCheckConfig, :TargetSelect, :FindHostKeyMethod, :HostKeyHeaderName, :FallbackStatus, :FallbackModels
+        attr_accessor :AppID, :Uin, :InstanceID, :ID, :Name, :Description, :PubPath, :PathMatchType, :TargetModels, :ModelNames, :InvokeLimitConfigStatus, :InvokeLimitConfig, :CreateTime, :LastUpdateTime, :TokenLimitStatus, :TokenLimitConfig, :TmsStatus, :TmsConfig, :IpWhiteStatus, :IpWhiteList, :IpBlackStatus, :IpBlackList, :PluginConfigs, :Timeout, :Status, :RelateAgentAppNum, :Url, :PromptModerateStatus, :PromptModerateConfig, :SensitiveDataCheckStatus, :SensitiveDataCheckConfig, :TargetSelect, :FindHostKeyMethod, :HostKeyHeaderName, :FallbackStatus, :FallbackModels, :ModelProtocol
 
-        def initialize(appid=nil, uin=nil, instanceid=nil, id=nil, name=nil, description=nil, pubpath=nil, pathmatchtype=nil, targetmodels=nil, modelnames=nil, invokelimitconfigstatus=nil, invokelimitconfig=nil, createtime=nil, lastupdatetime=nil, tokenlimitstatus=nil, tokenlimitconfig=nil, tmsstatus=nil, tmsconfig=nil, ipwhitestatus=nil, ipwhitelist=nil, ipblackstatus=nil, ipblacklist=nil, pluginconfigs=nil, timeout=nil, status=nil, relateagentappnum=nil, url=nil, promptmoderatestatus=nil, promptmoderateconfig=nil, sensitivedatacheckstatus=nil, sensitivedatacheckconfig=nil, targetselect=nil, findhostkeymethod=nil, hostkeyheadername=nil, fallbackstatus=nil, fallbackmodels=nil)
+        def initialize(appid=nil, uin=nil, instanceid=nil, id=nil, name=nil, description=nil, pubpath=nil, pathmatchtype=nil, targetmodels=nil, modelnames=nil, invokelimitconfigstatus=nil, invokelimitconfig=nil, createtime=nil, lastupdatetime=nil, tokenlimitstatus=nil, tokenlimitconfig=nil, tmsstatus=nil, tmsconfig=nil, ipwhitestatus=nil, ipwhitelist=nil, ipblackstatus=nil, ipblacklist=nil, pluginconfigs=nil, timeout=nil, status=nil, relateagentappnum=nil, url=nil, promptmoderatestatus=nil, promptmoderateconfig=nil, sensitivedatacheckstatus=nil, sensitivedatacheckconfig=nil, targetselect=nil, findhostkeymethod=nil, hostkeyheadername=nil, fallbackstatus=nil, fallbackmodels=nil, modelprotocol=nil)
           @AppID = appid
           @Uin = uin
           @InstanceID = instanceid
@@ -2432,6 +2455,7 @@ module TencentCloud
           @HostKeyHeaderName = hostkeyheadername
           @FallbackStatus = fallbackstatus
           @FallbackModels = fallbackmodels
+          @ModelProtocol = modelprotocol
         end
 
         def deserialize(params)
@@ -2507,33 +2531,36 @@ module TencentCloud
               @FallbackModels << targetmodeldto_tmp
             end
           end
+          @ModelProtocol = params['ModelProtocol']
         end
       end
 
       # DescribeModelServices请求参数结构体
       class DescribeModelServicesRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceID: 实例
+        # @param InstanceID: <p>实例</p>
         # @type InstanceID: String
-        # @param Offset: 分页参数
+        # @param Offset: <p>分页参数</p>
         # @type Offset: Integer
-        # @param Limit: 分页限制
+        # @param Limit: <p>分页限制</p>
         # @type Limit: Integer
-        # @param IDs: ID列表
+        # @param IDs: <p>ID列表</p>
         # @type IDs: Array
-        # @param NotIDs: 排除的ID列表
+        # @param NotIDs: <p>排除的ID列表</p>
         # @type NotIDs: Array
-        # @param Status: 状态：normal，disabled
+        # @param Status: <p>状态：normal，disabled</p>
         # @type Status: String
-        # @param Keyword: 关键词
+        # @param Keyword: <p>关键词</p>
         # @type Keyword: String
-        # @param ModelID: 模型ID
+        # @param ModelID: <p>模型ID</p>
         # @type ModelID: String
-        # @param Sort: 排序
+        # @param Sort: <p>排序</p>
         # @type Sort: :class:`Tencentcloud::Apis.v20240801.models.DescribeModelServicesSort`
+        # @param ModelProtocol: <p>模型类型，OpenAI或Anthropic</p>
+        # @type ModelProtocol: String
 
-        attr_accessor :InstanceID, :Offset, :Limit, :IDs, :NotIDs, :Status, :Keyword, :ModelID, :Sort
+        attr_accessor :InstanceID, :Offset, :Limit, :IDs, :NotIDs, :Status, :Keyword, :ModelID, :Sort, :ModelProtocol
 
-        def initialize(instanceid=nil, offset=nil, limit=nil, ids=nil, notids=nil, status=nil, keyword=nil, modelid=nil, sort=nil)
+        def initialize(instanceid=nil, offset=nil, limit=nil, ids=nil, notids=nil, status=nil, keyword=nil, modelid=nil, sort=nil, modelprotocol=nil)
           @InstanceID = instanceid
           @Offset = offset
           @Limit = limit
@@ -2543,6 +2570,7 @@ module TencentCloud
           @Keyword = keyword
           @ModelID = modelid
           @Sort = sort
+          @ModelProtocol = modelprotocol
         end
 
         def deserialize(params)
@@ -2558,12 +2586,13 @@ module TencentCloud
             @Sort = DescribeModelServicesSort.new
             @Sort.deserialize(params['Sort'])
           end
+          @ModelProtocol = params['ModelProtocol']
         end
       end
 
       # DescribeModelServices返回参数结构体
       class DescribeModelServicesResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 结果集
+        # @param Data: <p>结果集</p>
         # @type Data: :class:`Tencentcloud::Apis.v20240801.models.DescribeModelServicesResponseVO`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3435,28 +3464,32 @@ module TencentCloud
 
       # ModifyModel请求参数结构体
       class ModifyModelRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceID: 实例
+        # @param InstanceID: <p>实例</p>
         # @type InstanceID: String
-        # @param ID: 模型ID
+        # @param ID: <p>模型ID</p>
         # @type ID: String
-        # @param Name: 模型名称
+        # @param Name: <p>模型名称</p>
         # @type Name: String
-        # @param HttpProtocolType: 协议类型：http/https
+        # @param HttpProtocolType: <p>协议类型：http/https</p>
         # @type HttpProtocolType: String
-        # @param TargetPath: 目标路径
+        # @param TargetPath: <p>目标路径</p>
         # @type TargetPath: String
-        # @param TargetHosts: 目标服务器
+        # @param TargetHosts: <p>目标服务器</p>
         # @type TargetHosts: Array
-        # @param CredentialID: 凭据ID
+        # @param CredentialID: <p>凭据ID</p>
         # @type CredentialID: String
-        # @param CheckTargetCertsError: https时，是否检查证书合法
+        # @param CheckTargetCertsError: <p>https时，是否检查证书合法</p>
         # @type CheckTargetCertsError: Boolean
-        # @param HttpProtocolVersion: http协议版本：1.1/2.0
+        # @param HttpProtocolVersion: <p>http协议版本：1.1/2.0</p>
         # @type HttpProtocolVersion: String
+        # @param ModelID: <p>model ID</p>
+        # @type ModelID: String
+        # @param Description: <p>描述</p>
+        # @type Description: String
 
-        attr_accessor :InstanceID, :ID, :Name, :HttpProtocolType, :TargetPath, :TargetHosts, :CredentialID, :CheckTargetCertsError, :HttpProtocolVersion
+        attr_accessor :InstanceID, :ID, :Name, :HttpProtocolType, :TargetPath, :TargetHosts, :CredentialID, :CheckTargetCertsError, :HttpProtocolVersion, :ModelID, :Description
 
-        def initialize(instanceid=nil, id=nil, name=nil, httpprotocoltype=nil, targetpath=nil, targethosts=nil, credentialid=nil, checktargetcertserror=nil, httpprotocolversion=nil)
+        def initialize(instanceid=nil, id=nil, name=nil, httpprotocoltype=nil, targetpath=nil, targethosts=nil, credentialid=nil, checktargetcertserror=nil, httpprotocolversion=nil, modelid=nil, description=nil)
           @InstanceID = instanceid
           @ID = id
           @Name = name
@@ -3466,6 +3499,8 @@ module TencentCloud
           @CredentialID = credentialid
           @CheckTargetCertsError = checktargetcertserror
           @HttpProtocolVersion = httpprotocolversion
+          @ModelID = modelid
+          @Description = description
         end
 
         def deserialize(params)
@@ -3485,12 +3520,14 @@ module TencentCloud
           @CredentialID = params['CredentialID']
           @CheckTargetCertsError = params['CheckTargetCertsError']
           @HttpProtocolVersion = params['HttpProtocolVersion']
+          @ModelID = params['ModelID']
+          @Description = params['Description']
         end
       end
 
       # ModifyModel返回参数结构体
       class ModifyModelResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 结果集
+        # @param Data: <p>结果集</p>
         # @type Data: :class:`Tencentcloud::Apis.v20240801.models.ResultIDVO`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3565,10 +3602,12 @@ module TencentCloud
         # @type FallbackStatus: Boolean
         # @param FallbackModels: <p>备份模型</p>
         # @type FallbackModels: Array
+        # @param ModelProtocol: <p>模型类型</p>
+        # @type ModelProtocol: String
 
-        attr_accessor :InstanceID, :ID, :Name, :Description, :TargetModels, :InvokeLimitConfigStatus, :InvokeLimitConfig, :TokenLimitStatus, :TokenLimitConfig, :TmsStatus, :TmsConfig, :IpWhiteStatus, :IpWhiteList, :IpBlackStatus, :IpBlackList, :PluginConfigs, :Timeout, :PromptModerateStatus, :PromptModerateConfig, :SensitiveDataCheckStatus, :SensitiveDataCheckConfig, :TargetSelect, :FindHostKeyMethod, :HostKeyHeaderName, :FallbackStatus, :FallbackModels
+        attr_accessor :InstanceID, :ID, :Name, :Description, :TargetModels, :InvokeLimitConfigStatus, :InvokeLimitConfig, :TokenLimitStatus, :TokenLimitConfig, :TmsStatus, :TmsConfig, :IpWhiteStatus, :IpWhiteList, :IpBlackStatus, :IpBlackList, :PluginConfigs, :Timeout, :PromptModerateStatus, :PromptModerateConfig, :SensitiveDataCheckStatus, :SensitiveDataCheckConfig, :TargetSelect, :FindHostKeyMethod, :HostKeyHeaderName, :FallbackStatus, :FallbackModels, :ModelProtocol
 
-        def initialize(instanceid=nil, id=nil, name=nil, description=nil, targetmodels=nil, invokelimitconfigstatus=nil, invokelimitconfig=nil, tokenlimitstatus=nil, tokenlimitconfig=nil, tmsstatus=nil, tmsconfig=nil, ipwhitestatus=nil, ipwhitelist=nil, ipblackstatus=nil, ipblacklist=nil, pluginconfigs=nil, timeout=nil, promptmoderatestatus=nil, promptmoderateconfig=nil, sensitivedatacheckstatus=nil, sensitivedatacheckconfig=nil, targetselect=nil, findhostkeymethod=nil, hostkeyheadername=nil, fallbackstatus=nil, fallbackmodels=nil)
+        def initialize(instanceid=nil, id=nil, name=nil, description=nil, targetmodels=nil, invokelimitconfigstatus=nil, invokelimitconfig=nil, tokenlimitstatus=nil, tokenlimitconfig=nil, tmsstatus=nil, tmsconfig=nil, ipwhitestatus=nil, ipwhitelist=nil, ipblackstatus=nil, ipblacklist=nil, pluginconfigs=nil, timeout=nil, promptmoderatestatus=nil, promptmoderateconfig=nil, sensitivedatacheckstatus=nil, sensitivedatacheckconfig=nil, targetselect=nil, findhostkeymethod=nil, hostkeyheadername=nil, fallbackstatus=nil, fallbackmodels=nil, modelprotocol=nil)
           @InstanceID = instanceid
           @ID = id
           @Name = name
@@ -3595,6 +3634,7 @@ module TencentCloud
           @HostKeyHeaderName = hostkeyheadername
           @FallbackStatus = fallbackstatus
           @FallbackModels = fallbackmodels
+          @ModelProtocol = modelprotocol
         end
 
         def deserialize(params)
@@ -3660,6 +3700,7 @@ module TencentCloud
               @FallbackModels << targetmodeldto_tmp
             end
           end
+          @ModelProtocol = params['ModelProtocol']
         end
       end
 
@@ -3759,23 +3800,28 @@ module TencentCloud
 
       # 提示词安全配置
       class PromptModerateConfigDTO < TencentCloud::Common::AbstractModel
-        # @param Action: 执行动作
+        # @param Action: <p>执行动作</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Action: String
-        # @param InterceptMessage: 响应拦截内容
+        # @param InterceptMessage: <p>响应拦截内容</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InterceptMessage: String
+        # @param ContextScope: <p>检测上下文</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ContextScope: String
 
-        attr_accessor :Action, :InterceptMessage
+        attr_accessor :Action, :InterceptMessage, :ContextScope
 
-        def initialize(action=nil, interceptmessage=nil)
+        def initialize(action=nil, interceptmessage=nil, contextscope=nil)
           @Action = action
           @InterceptMessage = interceptmessage
+          @ContextScope = contextscope
         end
 
         def deserialize(params)
           @Action = params['Action']
           @InterceptMessage = params['InterceptMessage']
+          @ContextScope = params['ContextScope']
         end
       end
 
@@ -3824,19 +3870,24 @@ module TencentCloud
         # @param CheckItems: <p>检测项</p><p>枚举值：</p><ul><li>birthday： 生日</li><li>email： 邮箱</li><li>identity_number： 身份证</li><li>phone_number： 电话号码</li><li>secret： 秘钥</li><li>password： 密码</li><li>private_key： 私钥</li></ul>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CheckItems: Array
+        # @param ContextScope: <p>检测上下文</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ContextScope: String
 
-        attr_accessor :Action, :InterceptMessage, :CheckItems
+        attr_accessor :Action, :InterceptMessage, :CheckItems, :ContextScope
 
-        def initialize(action=nil, interceptmessage=nil, checkitems=nil)
+        def initialize(action=nil, interceptmessage=nil, checkitems=nil, contextscope=nil)
           @Action = action
           @InterceptMessage = interceptmessage
           @CheckItems = checkitems
+          @ContextScope = contextscope
         end
 
         def deserialize(params)
           @Action = params['Action']
           @InterceptMessage = params['InterceptMessage']
           @CheckItems = params['CheckItems']
+          @ContextScope = params['ContextScope']
         end
       end
 
@@ -3910,34 +3961,38 @@ module TencentCloud
 
       # 内容安全配置
       class TmsConfigDTO < TencentCloud::Common::AbstractModel
-        # @param Scope: 检测范围,请求/响应
+        # @param Scope: <p>检测范围,请求/响应</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Scope: Array
-        # @param Mode: 检测形式
+        # @param Mode: <p>检测形式</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Mode: String
-        # @param Action: 执行动作
+        # @param Action: <p>执行动作</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Action: String
-        # @param MergeCount: 合并请求检测event数，联动Mode字段sync
+        # @param MergeCount: <p>合并请求检测event数，联动Mode字段sync</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MergeCount: Integer
-        # @param BizType: 风控策略
+        # @param BizType: <p>风控策略</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BizType: String
-        # @param InterceptMessage: 响应拦截内容
+        # @param InterceptMessage: <p>响应拦截内容</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InterceptMessage: String
+        # @param ContextScope: <p>检测上下文</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ContextScope: String
 
-        attr_accessor :Scope, :Mode, :Action, :MergeCount, :BizType, :InterceptMessage
+        attr_accessor :Scope, :Mode, :Action, :MergeCount, :BizType, :InterceptMessage, :ContextScope
 
-        def initialize(scope=nil, mode=nil, action=nil, mergecount=nil, biztype=nil, interceptmessage=nil)
+        def initialize(scope=nil, mode=nil, action=nil, mergecount=nil, biztype=nil, interceptmessage=nil, contextscope=nil)
           @Scope = scope
           @Mode = mode
           @Action = action
           @MergeCount = mergecount
           @BizType = biztype
           @InterceptMessage = interceptmessage
+          @ContextScope = contextscope
         end
 
         def deserialize(params)
@@ -3947,6 +4002,7 @@ module TencentCloud
           @MergeCount = params['MergeCount']
           @BizType = params['BizType']
           @InterceptMessage = params['InterceptMessage']
+          @ContextScope = params['ContextScope']
         end
       end
 

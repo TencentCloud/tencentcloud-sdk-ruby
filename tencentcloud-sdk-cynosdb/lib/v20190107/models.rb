@@ -4592,7 +4592,7 @@ module TencentCloud
         # @type Memory: Integer
         # @param Storage: <p>存储量，单位：GB</p>
         # @type Storage: Integer
-        # @param InstanceType: <p>实例类型</p>
+        # @param InstanceType: <p>实例类型</p><p>枚举值：</p><ul><li>rw： 读写实例</li><li>ro： 只读实例</li></ul>
         # @type InstanceType: String
         # @param InstanceRole: <p>实例当前角色</p>
         # @type InstanceRole: String
@@ -19480,72 +19480,63 @@ module TencentCloud
 
       # RollbackToNewCluster请求参数结构体
       class RollbackToNewClusterRequest < TencentCloud::Common::AbstractModel
-        # @param Zone: 可用区
+        # @param Zone: <p>可用区</p>
         # @type Zone: String
-        # @param OriginalClusterId: 回档时，传入源集群ID，用于查找源poolId
+        # @param OriginalClusterId: <p>回档时，传入源集群ID，用于查找源poolId</p>
         # @type OriginalClusterId: String
-        # @param UniqVpcId: 所属VPC网络ID
+        # @param UniqVpcId: <p>所属VPC网络ID</p>
         # @type UniqVpcId: String
-        # @param UniqSubnetId: 所属子网ID
+        # @param UniqSubnetId: <p>所属子网ID</p>
         # @type UniqSubnetId: String
-        # @param ClusterName: 集群名称，长度小于64个字符，每个字符取值范围：大/小写字母，数字，特殊符号（'-','_','.'）
+        # @param ClusterName: <p>集群名称，长度小于64个字符，每个字符取值范围：大/小写字母，数字，特殊符号（&#39;-&#39;,&#39;_&#39;,&#39;.&#39;）</p>
         # @type ClusterName: String
-        # @param RollbackId: 快照回档，表示snapshotId；时间点回档，表示queryId，为0，表示需要判断时间点是否有效
+        # @param RollbackId: <p>快照回档，表示snapshotId；时间点回档，表示queryId，为0，表示需要判断时间点是否有效</p>
         # @type RollbackId: Integer
-        # @param ExpectTime: 时间点回档，指定时间；快照回档，快照时间
+        # @param ExpectTime: <p>时间点回档，指定时间；快照回档，快照时间</p>
         # @type ExpectTime: String
-        # @param AutoVoucher: 是否自动选择代金券 1是 0否 默认为0
+        # @param AutoVoucher: <p>是否自动选择代金券 1是 0否 默认为0</p>
         # @type AutoVoucher: Integer
-        # @param ResourceTags: 集群创建需要绑定的tag数组信息
+        # @param ResourceTags: <p>集群创建需要绑定的tag数组信息</p>
         # @type ResourceTags: Array
-        # @param DbMode: Db类型
-        # 当DbType为MYSQL时可选(默认NORMAL)：
-        # <li>NORMAL</li>
-        # <li>SERVERLESS</li>
+        # @param DbMode: <p>Db类型<br>当DbType为MYSQL时可选(默认NORMAL)：</p><li>NORMAL</li><li>SERVERLESS</li>
         # @type DbMode: String
-        # @param MinCpu: 当DbMode为SEVERLESS时必填
-        # cpu最小值，可选范围参考DescribeServerlessInstanceSpecs接口返回
+        # @param MinCpu: <p>当DbMode为SEVERLESS时必填<br>cpu最小值，可选范围参考DescribeServerlessInstanceSpecs接口返回</p>
         # @type MinCpu: Float
-        # @param MaxCpu: 当DbMode为SEVERLESS时必填：
-        # cpu最大值，可选范围参考DescribeServerlessInstanceSpecs接口返回
+        # @param MaxCpu: <p>当DbMode为SEVERLESS时必填：<br>cpu最大值，可选范围参考DescribeServerlessInstanceSpecs接口返回</p>
         # @type MaxCpu: Float
-        # @param AutoPause: 当DbMode为SEVERLESS时，指定集群是否自动暂停，可选范围
-        # <li>yes</li>
-        # <li>no</li>
-        # 默认值:yes
+        # @param AutoPause: <p>当DbMode为SEVERLESS时，指定集群是否自动暂停，可选范围</p><li>yes</li><li>no</li>默认值:yes
         # @type AutoPause: String
-        # @param AutoPauseDelay: 当DbMode为SEVERLESS时，指定集群自动暂停的延迟，单位秒，可选范围[600,691200]
-        # 默认值:600
+        # @param AutoPauseDelay: <p>当DbMode为SEVERLESS时，指定集群自动暂停的延迟，单位秒，可选范围[600,691200]<br>默认值:600</p>
         # @type AutoPauseDelay: Integer
-        # @param SecurityGroupIds: 安全组id数组
+        # @param SecurityGroupIds: <p>安全组id数组</p>
         # @type SecurityGroupIds: Array
-        # @param AlarmPolicyIds: 告警策略Id数组
+        # @param AlarmPolicyIds: <p>告警策略Id数组</p>
         # @type AlarmPolicyIds: Array
-        # @param ClusterParams: 参数数组，暂时支持character_set_server （utf8｜latin1｜gbk｜utf8mb4） ，lower_case_table_names，1-大小写不敏感，0-大小写敏感
+        # @param ClusterParams: <p>参数数组，暂时支持character_set_server （utf8｜latin1｜gbk｜utf8mb4） ，lower_case_table_names，1-大小写不敏感，0-大小写敏感</p>
         # @type ClusterParams: Array
-        # @param ParamTemplateId: 参数模板ID，可以通过查询参数模板信息DescribeParamTemplates获得参数模板ID
+        # @param ParamTemplateId: <p>参数模板ID，可以通过查询参数模板信息DescribeParamTemplates获得参数模板ID</p>
         # @type ParamTemplateId: Integer
-        # @param InstanceInitInfos: 实例初始化配置信息，主要用于购买集群时选不同规格实例
+        # @param InstanceInitInfos: <p>实例初始化配置信息，主要用于购买集群时选不同规格实例</p>
         # @type InstanceInitInfos: Array
-        # @param DealMode: 0-下单并支付 1-下单
+        # @param DealMode: <p>0-下单并支付 1-下单</p>
         # @type DealMode: Integer
-        # @param PayMode: 计算节点付费模式：0-按量计费，1-预付费
+        # @param PayMode: <p>计算节点付费模式：0-按量计费，1-预付费</p>
         # @type PayMode: Integer
-        # @param TimeSpan: 时间
+        # @param TimeSpan: <p>时间</p>
         # @type TimeSpan: Integer
-        # @param TimeUnit: 单位
+        # @param TimeUnit: <p>单位</p>
         # @type TimeUnit: String
-        # @param RollbackDatabases: 回档库信息
+        # @param RollbackDatabases: <p>回档库信息</p>
         # @type RollbackDatabases: Array
-        # @param RollbackTables: 回档表信息
+        # @param RollbackTables: <p>回档表信息</p>
         # @type RollbackTables: Array
-        # @param OriginalROInstanceList: 原ro实例信息
+        # @param OriginalROInstanceList: <p>原ro实例信息</p>
         # @type OriginalROInstanceList: Array
-        # @param ProjectId: 项目id
+        # @param ProjectId: <p>项目id</p>
         # @type ProjectId: Integer
-        # @param AutoArchive: 是否开启归档，可选范围<li>yes</li><li>no</li>默认值:yes
+        # @param AutoArchive: <p>是否开启归档，可选范围<li>yes</li><li>no</li>默认值:yes</p>
         # @type AutoArchive: String
-        # @param FromSaveBackup: 是否从保存备份中恢复
+        # @param FromSaveBackup: <p>是否从保存备份中恢复</p>
         # @type FromSaveBackup: Boolean
 
         attr_accessor :Zone, :OriginalClusterId, :UniqVpcId, :UniqSubnetId, :ClusterName, :RollbackId, :ExpectTime, :AutoVoucher, :ResourceTags, :DbMode, :MinCpu, :MaxCpu, :AutoPause, :AutoPauseDelay, :SecurityGroupIds, :AlarmPolicyIds, :ClusterParams, :ParamTemplateId, :InstanceInitInfos, :DealMode, :PayMode, :TimeSpan, :TimeUnit, :RollbackDatabases, :RollbackTables, :OriginalROInstanceList, :ProjectId, :AutoArchive, :FromSaveBackup
@@ -19652,15 +19643,15 @@ module TencentCloud
 
       # RollbackToNewCluster返回参数结构体
       class RollbackToNewClusterResponse < TencentCloud::Common::AbstractModel
-        # @param TranId: 冻结流水ID
+        # @param TranId: <p>冻结流水ID</p>
         # @type TranId: String
-        # @param DealNames: 订单号
+        # @param DealNames: <p>订单号</p>
         # @type DealNames: Array
-        # @param ResourceIds: 资源ID列表（该字段已不再维护，请使用dealNames字段查询接口DescribeResourcesByDealName获取资源ID）
+        # @param ResourceIds: <p>资源ID列表（该字段已不再维护，请使用dealNames字段查询接口DescribeResourcesByDealName获取资源ID）</p>
         # @type ResourceIds: Array
-        # @param ClusterIds: 集群ID列表（该字段已不再维护，请使用dealNames字段查询接口DescribeResourcesByDealName获取集群ID）
+        # @param ClusterIds: <p>集群ID列表（该字段已不再维护，请使用dealNames字段查询接口DescribeResourcesByDealName获取集群ID）</p>
         # @type ClusterIds: Array
-        # @param BigDealIds: 大订单号
+        # @param BigDealIds: <p>大订单号</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BigDealIds: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。

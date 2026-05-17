@@ -7888,21 +7888,24 @@ module TencentCloud
       class CreateSealResponse < TencentCloud::Common::AbstractModel
         # @param SealId: <p>电子印章ID，为32位字符串。<br>建议开发者保留此印章ID，后续指定签署区印章或者操作印章需此印章ID。<br>可登录腾讯电子签控制台，在 &quot;印章&quot;-&gt;&quot;印章中心&quot;选择查看的印章，在&quot;印章详情&quot; 中查看某个印章的SealId(在页面中展示为印章ID)。</p>
         # @type SealId: String
+        # @param ImageUrl: <p>电子印章预览链接地址，地址默认失效时间为24小时。</p>
+        # @type ImageUrl: String
         # @param SealOperatorVerifyPath: <p>人脸验证操作人链接，用法可以参考&quot;<a href="https://qian.tencent.com/developers/company/openwxminiprogram/">跳转电子签小程序配置</a>&quot;，默认为空。</p>
         # @type SealOperatorVerifyPath: String
         # @param SealOperatorVerifyQrcodeUrl: <p>人脸验证操作人二维码链接，扫码后会跳转到腾讯电子签小程序进行人脸验证，默认为空。</p>
         # @type SealOperatorVerifyQrcodeUrl: String
-        # @param PreviewFileUrl: <p>创建印章预览逻辑，返回的是印章加盖在示例文件上的效果图片链接。</p>
+        # @param PreviewFileUrl: <p>创建印章预览逻辑，返回的是印章加盖在示例文件上的效果图片链接。链接有效期为90天。</p>
         # @type PreviewFileUrl: String
-        # @param PreviewPdfUrl: <p>创建印章预览逻辑，返回的是印章加盖在示例文件上的效果PDF文件链接。</p>
+        # @param PreviewPdfUrl: <p>创建印章预览逻辑，返回的是印章加盖在示例文件上的效果PDF文件链接。链接有效期为90天。</p>
         # @type PreviewPdfUrl: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :SealId, :SealOperatorVerifyPath, :SealOperatorVerifyQrcodeUrl, :PreviewFileUrl, :PreviewPdfUrl, :RequestId
+        attr_accessor :SealId, :ImageUrl, :SealOperatorVerifyPath, :SealOperatorVerifyQrcodeUrl, :PreviewFileUrl, :PreviewPdfUrl, :RequestId
 
-        def initialize(sealid=nil, sealoperatorverifypath=nil, sealoperatorverifyqrcodeurl=nil, previewfileurl=nil, previewpdfurl=nil, requestid=nil)
+        def initialize(sealid=nil, imageurl=nil, sealoperatorverifypath=nil, sealoperatorverifyqrcodeurl=nil, previewfileurl=nil, previewpdfurl=nil, requestid=nil)
           @SealId = sealid
+          @ImageUrl = imageurl
           @SealOperatorVerifyPath = sealoperatorverifypath
           @SealOperatorVerifyQrcodeUrl = sealoperatorverifyqrcodeurl
           @PreviewFileUrl = previewfileurl
@@ -7912,6 +7915,7 @@ module TencentCloud
 
         def deserialize(params)
           @SealId = params['SealId']
+          @ImageUrl = params['ImageUrl']
           @SealOperatorVerifyPath = params['SealOperatorVerifyPath']
           @SealOperatorVerifyQrcodeUrl = params['SealOperatorVerifyQrcodeUrl']
           @PreviewFileUrl = params['PreviewFileUrl']

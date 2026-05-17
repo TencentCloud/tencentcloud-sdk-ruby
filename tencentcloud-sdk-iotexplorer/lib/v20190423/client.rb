@@ -2405,6 +2405,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询实例概览详情。
+
+        # @param request: Request instance for DescribeLicenseOverview.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::DescribeLicenseOverviewRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::DescribeLicenseOverviewResponse`
+        def DescribeLicenseOverview(request)
+          body = send_request('DescribeLicenseOverview', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeLicenseOverviewResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 提供查询LoRa自定义频点详情的能力
 
         # @param request: Request instance for DescribeLoRaFrequency.

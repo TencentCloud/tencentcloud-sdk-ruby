@@ -18164,6 +18164,42 @@ module TencentCloud
         end
       end
 
+      # ModifyOwaspDomainUpdateStatus请求参数结构体
+      class ModifyOwaspDomainUpdateStatusRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param UpdateStatus: 新规则状态，0为关闭，1为开启，2为仅观察
+        # @type UpdateStatus: Integer
+
+        attr_accessor :Domain, :UpdateStatus
+
+        def initialize(domain=nil, updatestatus=nil)
+          @Domain = domain
+          @UpdateStatus = updatestatus
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @UpdateStatus = params['UpdateStatus']
+        end
+      end
+
+      # ModifyOwaspDomainUpdateStatus返回参数结构体
+      class ModifyOwaspDomainUpdateStatusResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyOwaspRuleStatus请求参数结构体
       class ModifyOwaspRuleStatusRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 域名

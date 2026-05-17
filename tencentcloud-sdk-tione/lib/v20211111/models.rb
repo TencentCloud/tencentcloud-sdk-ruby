@@ -3337,23 +3337,27 @@ module TencentCloud
 
       # DescribeBillingSpecs请求参数结构体
       class DescribeBillingSpecsRequest < TencentCloud::Common::AbstractModel
-        # @param ChargeType: 付费模式：POSTPAID_BY_HOUR按量计费、PREPAID包年包月
+        # @param ChargeType: <p>付费模式：POSTPAID_BY_HOUR按量计费、PREPAID包年包月</p>
         # @type ChargeType: String
-        # @param TaskType: 枚举值：空、TRAIN、NOTEBOOK、INFERENCE或EMS
+        # @param TiProjectId: <p>TI工作空间ID</p><p>仅用于“工作空间”白名单功能。如需使用，请联系TI管理员开通白名单。</p>
+        # @type TiProjectId: String
+        # @param TaskType: <p>枚举值：空、TRAIN、NOTEBOOK、INFERENCE或EMS</p>
         # @type TaskType: String
-        # @param ResourceType: 资源类型：["", "CALC", "CPU", "GPU", "GPU-SW"]
+        # @param ResourceType: <p>资源类型：[&quot;&quot;, &quot;CALC&quot;, &quot;CPU&quot;, &quot;GPU&quot;, &quot;GPU-SW&quot;]</p>
         # @type ResourceType: String
 
-        attr_accessor :ChargeType, :TaskType, :ResourceType
+        attr_accessor :ChargeType, :TiProjectId, :TaskType, :ResourceType
 
-        def initialize(chargetype=nil, tasktype=nil, resourcetype=nil)
+        def initialize(chargetype=nil, tiprojectid=nil, tasktype=nil, resourcetype=nil)
           @ChargeType = chargetype
+          @TiProjectId = tiprojectid
           @TaskType = tasktype
           @ResourceType = resourcetype
         end
 
         def deserialize(params)
           @ChargeType = params['ChargeType']
+          @TiProjectId = params['TiProjectId']
           @TaskType = params['TaskType']
           @ResourceType = params['ResourceType']
         end
@@ -3361,7 +3365,7 @@ module TencentCloud
 
       # DescribeBillingSpecs返回参数结构体
       class DescribeBillingSpecsResponse < TencentCloud::Common::AbstractModel
-        # @param Specs: 计费项列表
+        # @param Specs: <p>计费项列表</p>
         # @type Specs: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6136,57 +6140,41 @@ module TencentCloud
 
       # 资源组节点信息
       class Instance < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 资源组节点id
+        # @param InstanceId: <p>资源组节点id</p>
         # @type InstanceId: String
-        # @param UsedResource: 节点已用资源
+        # @param UsedResource: <p>节点已用资源</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UsedResource: :class:`Tencentcloud::Tione.v20211111.models.ResourceInfo`
-        # @param TotalResource: 节点总资源
+        # @param TotalResource: <p>节点总资源</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalResource: :class:`Tencentcloud::Tione.v20211111.models.ResourceInfo`
-        # @param InstanceStatus: 节点状态
-        # 注意：此字段为枚举值
-        # 说明:
-        # DEPLOYING: 部署中
-        # RUNNING: 运行中
-        # DEPLOY_FAILED: 部署失败
-        # RELEASING 释放中
-        # RELEASED：已释放
-        # EXCEPTION：异常
-        # DEBT_OR_EXPIRED: 欠费过期
+        # @param InstanceStatus: <p>节点状态<br>注意：此字段为枚举值<br>说明:<br>DEPLOYING: 部署中<br>RUNNING: 运行中<br>DEPLOY_FAILED: 部署失败<br>RELEASING 释放中<br>RELEASED：已释放<br>EXCEPTION：异常<br>DEBT_OR_EXPIRED: 欠费过期</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceStatus: String
-        # @param SubUin: 创建人
+        # @param SubUin: <p>创建人</p>
         # @type SubUin: String
-        # @param CreateTime: 创建时间:
-        # 注意：北京时间，比如: 2021-12-01 12:00:00
+        # @param CreateTime: <p>创建时间:<br>注意：北京时间，比如: 2021-12-01 12:00:00</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
-        # @param ExpireTime: 到期时间
-        # 注意：北京时间，比如：2021-12-11 12:00:00
+        # @param ExpireTime: <p>到期时间<br>注意：北京时间，比如：2021-12-11 12:00:00</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExpireTime: String
-        # @param AutoRenewFlag: 自动续费标识
-        # 注意：此字段为枚举值
-        # 说明：
-        # NOTIFY_AND_MANUAL_RENEW：手动续费(取消自动续费)且到期通知
-        # NOTIFY_AND_AUTO_RENEW：自动续费且到期通知
-        # DISABLE_NOTIFY_AND_MANUAL_RENEW：手动续费(取消自动续费)且到期不通知
+        # @param AutoRenewFlag: <p>自动续费标识<br>注意：此字段为枚举值<br>说明：<br>NOTIFY_AND_MANUAL_RENEW：手动续费(取消自动续费)且到期通知<br>NOTIFY_AND_AUTO_RENEW：自动续费且到期通知<br>DISABLE_NOTIFY_AND_MANUAL_RENEW：手动续费(取消自动续费)且到期不通知</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AutoRenewFlag: String
-        # @param SpecId: 计费项ID
+        # @param SpecId: <p>计费项ID</p>
         # @type SpecId: String
-        # @param SpecAlias: 计费项别名
+        # @param SpecAlias: <p>计费项别名</p>
         # @type SpecAlias: String
-        # @param SpecFeatures: 计费项特性列表
+        # @param SpecFeatures: <p>计费项特性列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SpecFeatures: Array
-        # @param CvmInstanceId: 纳管cvmid
+        # @param CvmInstanceId: <p>纳管cvmid</p>
         # @type CvmInstanceId: String
-        # @param ErrCode: 部署失败错误码
+        # @param ErrCode: <p>部署失败错误码</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrCode: String
-        # @param ErrMsg: 部署失败错误信息
+        # @param ErrMsg: <p>部署失败错误信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrMsg: String
 
@@ -8325,48 +8313,48 @@ module TencentCloud
 
       # Pod信息展示
       class Pod < TencentCloud::Common::AbstractModel
-        # @param Name: pod名
+        # @param Name: <p>pod名</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
-        # @param Uid: pod的唯一id
+        # @param Uid: <p>pod的唯一id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Uid: String
-        # @param ChargeType: 服务付费模式
+        # @param ChargeType: <p>服务付费模式</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ChargeType: String
-        # @param Phase: pod的状态
+        # @param Phase: <p>pod的状态</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Phase: String
-        # @param IP: pod的IP
+        # @param IP: <p>pod的IP</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IP: String
-        # @param CreateTime: pod的创建时间
+        # @param CreateTime: <p>pod的创建时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
-        # @param Containers: 容器列表
+        # @param Containers: <p>容器列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Containers: :class:`Tencentcloud::Tione.v20211111.models.Container`
-        # @param ContainerInfos: 容器列表
+        # @param ContainerInfos: <p>容器列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ContainerInfos: Array
-        # @param CrossTenantENIInfo: 容器调用信息
+        # @param CrossTenantENIInfo: <p>容器调用信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CrossTenantENIInfo: :class:`Tencentcloud::Tione.v20211111.models.CrossTenantENIInfo`
-        # @param Status: 实例的状态信息
+        # @param Status: <p>实例的状态信息</p>
         # @type Status: String
-        # @param StartScheduleTime: 实例的开始调度时间
+        # @param StartScheduleTime: <p>实例的开始调度时间</p>
         # @type StartScheduleTime: String
-        # @param Message: 实例状态的补充信息
+        # @param Message: <p>实例状态的补充信息</p>
         # @type Message: String
-        # @param NodeIP: 当前实例所在的节点 IP
+        # @param NodeIP: <p>当前实例所在的节点 IP</p>
         # @type NodeIP: String
-        # @param NodeId: 当前实例所在节点id
+        # @param NodeId: <p>当前实例所在节点id</p>
         # @type NodeId: String
-        # @param ResourceGroupId: 当时实例所属资源组 id
+        # @param ResourceGroupId: <p>当时实例所属资源组 id</p>
         # @type ResourceGroupId: String
-        # @param ResourceGroupName: 资源组名称
+        # @param ResourceGroupName: <p>资源组名称</p>
         # @type ResourceGroupName: String
-        # @param ResourceInfo: 实例的资源占用信息
+        # @param ResourceInfo: <p>实例的资源占用信息</p>
         # @type ResourceInfo: :class:`Tencentcloud::Tione.v20211111.models.ResourceInfo`
 
         attr_accessor :Name, :Uid, :ChargeType, :Phase, :IP, :CreateTime, :Containers, :ContainerInfos, :CrossTenantENIInfo, :Status, :StartScheduleTime, :Message, :NodeIP, :NodeId, :ResourceGroupId, :ResourceGroupName, :ResourceInfo
@@ -9404,139 +9392,121 @@ module TencentCloud
 
       # 描述在线服务
       class Service < TencentCloud::Common::AbstractModel
-        # @param ServiceGroupId: 服务组id
+        # @param ServiceGroupId: <p>服务组id</p>
         # @type ServiceGroupId: String
-        # @param ServiceId: 服务id
+        # @param ServiceId: <p>服务id</p>
         # @type ServiceId: String
-        # @param ServiceGroupName: 服务组名
+        # @param ServiceGroupName: <p>服务组名</p>
         # @type ServiceGroupName: String
-        # @param ServiceDescription: 服务描述
+        # @param ServiceDescription: <p>服务描述</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceDescription: String
-        # @param ServiceInfo: 服务的详细信息
+        # @param ServiceInfo: <p>服务的详细信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceInfo: :class:`Tencentcloud::Tione.v20211111.models.ServiceInfo`
-        # @param ClusterId: 集群id
+        # @param ClusterId: <p>集群id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterId: String
-        # @param Region: 地域
+        # @param Region: <p>地域</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Region: String
-        # @param Namespace: 命名空间
+        # @param Namespace: <p>命名空间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Namespace: String
-        # @param ChargeType: 付费类型
+        # @param ChargeType: <p>付费类型</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ChargeType: String
-        # @param ResourceGroupId: 包年包月服务的资源组id，按量计费的服务为空
+        # @param ResourceGroupId: <p>包年包月服务的资源组id，按量计费的服务为空</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceGroupId: String
-        # @param ResourceGroupName: 包年包月服务对应的资源组名字
+        # @param ResourceGroupName: <p>包年包月服务对应的资源组名字</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceGroupName: String
-        # @param Tags: 服务的标签
+        # @param Tags: <p>服务的标签</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
-        # @param IngressName: 服务所在的 ingress 的 name
+        # @param IngressName: <p>服务所在的 ingress 的 name</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IngressName: String
-        # @param CreatedBy: 创建者
+        # @param CreatedBy: <p>创建者</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreatedBy: String
-        # @param CreateTime: 创建时间
+        # @param CreateTime: <p>创建时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
-        # @param UpdateTime: 更新时间
+        # @param UpdateTime: <p>更新时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
-        # @param Uin: 主账号
+        # @param Uin: <p>主账号</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Uin: String
-        # @param SubUin: 子账号
+        # @param SubUin: <p>子账号</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubUin: String
-        # @param AppId: app_id
+        # @param AppId: <p>app_id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppId: Integer
-        # @param BusinessStatus: 服务的业务状态
-        # CREATING 创建中
-        # CREATE_FAILED 创建失败
-        # CREATE_SUCCEED 创建成功
-        # ARREARS_STOP 因欠费停止
-        # WHITELIST_STOP 白名单额度不足
-        # RELEASE_FAILED 资源释放失败
-        # WHITELIST_RELEASE_FAILED 白名单资源释放失败
-        # TIMEOUT_EXCEPTION 创建超时异常
-        # BILLING 计费中
-        # WHITELIST_USING 白名单试用中
+        # @param BusinessStatus: <p>服务的业务状态<br>CREATING 创建中<br>CREATE_FAILED 创建失败<br>CREATE_SUCCEED 创建成功<br>ARREARS_STOP 因欠费停止<br>WHITELIST_STOP 白名单额度不足<br>RELEASE_FAILED 资源释放失败<br>WHITELIST_RELEASE_FAILED 白名单资源释放失败<br>TIMEOUT_EXCEPTION 创建超时异常<br>BILLING 计费中<br>WHITELIST_USING 白名单试用中</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BusinessStatus: String
-        # @param ServiceLimit: 已废弃,以ServiceInfo中的对应为准
+        # @param ServiceLimit: <p>已废弃,以ServiceInfo中的对应为准</p>
         # @type ServiceLimit: :class:`Tencentcloud::Tione.v20211111.models.ServiceLimit`
-        # @param ScheduledAction: 已废弃,以ServiceInfo中的对应为准
+        # @param ScheduledAction: <p>已废弃,以ServiceInfo中的对应为准</p>
         # @type ScheduledAction: :class:`Tencentcloud::Tione.v20211111.models.ScheduledAction`
-        # @param CreateFailedReason: 服务创建失败的原因，创建成功后该字段为默认值 CREATE_SUCCEED
+        # @param CreateFailedReason: <p>服务创建失败的原因，创建成功后该字段为默认值 CREATE_SUCCEED</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateFailedReason: String
-        # @param Status: 服务状态
-        # CREATING 创建中
-        # CREATE_FAILED 创建失败
-        # TIMEOUT_EXCEPTION 创建超时异常
-        # Normal 正常运行中
-        # Stopped 已停止
-        # Stopping 停止中
-        # Abnormal 异常
-        # Pending 启动中
-        # Waiting 就绪中
+        # @param Status: <p>服务状态<br>CREATING 创建中<br>CREATE_FAILED 创建失败<br>TIMEOUT_EXCEPTION 创建超时异常<br>Normal 正常运行中<br>Stopped 已停止<br>Stopping 停止中<br>Abnormal 异常<br>Pending 启动中<br>Waiting 就绪中</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
-        # @param BillingInfo: 费用信息
+        # @param BillingInfo: <p>费用信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BillingInfo: String
-        # @param Weight: 模型权重
+        # @param Weight: <p>模型权重</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Weight: Integer
-        # @param CreateSource: 服务的创建来源
-        # AUTO_ML: 来自自动学习的一键发布
-        # DEFAULT: 其他来源
+        # @param CreateSource: <p>服务的创建来源<br>AUTO_ML: 来自自动学习的一键发布<br>DEFAULT: 其他来源</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateSource: String
-        # @param Version: 版本号
+        # @param Version: <p>版本号</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Version: String
-        # @param LatestVersion: 服务组下服务的最高版本号
+        # @param LatestVersion: <p>服务组下服务的最高版本号</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LatestVersion: String
-        # @param ResourceGroupSWType: 资源组类别 托管 NORMAL，纳管 SW
+        # @param ResourceGroupSWType: <p>资源组类别 托管 NORMAL，纳管 SW</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceGroupSWType: String
-        # @param ArchiveStatus: 服务的归档状态  Waiting 等待归档中，Archived 已归档
+        # @param ArchiveStatus: <p>服务的归档状态  Waiting 等待归档中，Archived 已归档</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ArchiveStatus: String
-        # @param DeployType: 服务的部署类型 [STANDARD 标准部署，DIST 分布式多机部署] 默认STANDARD
+        # @param DeployType: <p>服务的部署类型 [STANDARD 标准部署，DIST 分布式多机部署] 默认STANDARD</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeployType: String
-        # @param InstancePerReplicas: 单副本下的实例数，仅在部署类型为DIST时生效，默认1
+        # @param InstancePerReplicas: <p>单副本下的实例数，仅在部署类型为DIST时生效，默认1</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstancePerReplicas: String
-        # @param MonitorSource: 用于监控查询的Source
-        # 枚举值，部分情况下与CreateSource不同，通过该字段兼容
+        # @param MonitorSource: <p>用于监控查询的Source<br>枚举值，部分情况下与CreateSource不同，通过该字段兼容</p>
         # @type MonitorSource: String
-        # @param SubUinName: 服务创建者的子账号名称
+        # @param SubUinName: <p>服务创建者的子账号名称</p>
         # @type SubUinName: String
-        # @param SchedulingPolicy: 服务的调度策略
+        # @param SchedulingPolicy: <p>服务的调度策略</p>
         # @type SchedulingPolicy: :class:`Tencentcloud::Tione.v20211111.models.SchedulingPolicy`
-        # @param ExternalResourceGroups: 外部的资源组信息，表示借调了哪些资源组的资源
+        # @param ExternalResourceGroups: <p>外部的资源组信息，表示借调了哪些资源组的资源</p>
         # @type ExternalResourceGroups: Array
+        # @param Changer: <p>变更服务的子账户</p>
+        # @type Changer: String
+        # @param ChangerName: <p>变更服务的子账户名称</p>
+        # @type ChangerName: String
 
-        attr_accessor :ServiceGroupId, :ServiceId, :ServiceGroupName, :ServiceDescription, :ServiceInfo, :ClusterId, :Region, :Namespace, :ChargeType, :ResourceGroupId, :ResourceGroupName, :Tags, :IngressName, :CreatedBy, :CreateTime, :UpdateTime, :Uin, :SubUin, :AppId, :BusinessStatus, :ServiceLimit, :ScheduledAction, :CreateFailedReason, :Status, :BillingInfo, :Weight, :CreateSource, :Version, :LatestVersion, :ResourceGroupSWType, :ArchiveStatus, :DeployType, :InstancePerReplicas, :MonitorSource, :SubUinName, :SchedulingPolicy, :ExternalResourceGroups
+        attr_accessor :ServiceGroupId, :ServiceId, :ServiceGroupName, :ServiceDescription, :ServiceInfo, :ClusterId, :Region, :Namespace, :ChargeType, :ResourceGroupId, :ResourceGroupName, :Tags, :IngressName, :CreatedBy, :CreateTime, :UpdateTime, :Uin, :SubUin, :AppId, :BusinessStatus, :ServiceLimit, :ScheduledAction, :CreateFailedReason, :Status, :BillingInfo, :Weight, :CreateSource, :Version, :LatestVersion, :ResourceGroupSWType, :ArchiveStatus, :DeployType, :InstancePerReplicas, :MonitorSource, :SubUinName, :SchedulingPolicy, :ExternalResourceGroups, :Changer, :ChangerName
         extend Gem::Deprecate
         deprecate :ServiceLimit, :none, 2026, 5
         deprecate :ServiceLimit=, :none, 2026, 5
         deprecate :ScheduledAction, :none, 2026, 5
         deprecate :ScheduledAction=, :none, 2026, 5
 
-        def initialize(servicegroupid=nil, serviceid=nil, servicegroupname=nil, servicedescription=nil, serviceinfo=nil, clusterid=nil, region=nil, namespace=nil, chargetype=nil, resourcegroupid=nil, resourcegroupname=nil, tags=nil, ingressname=nil, createdby=nil, createtime=nil, updatetime=nil, uin=nil, subuin=nil, appid=nil, businessstatus=nil, servicelimit=nil, scheduledaction=nil, createfailedreason=nil, status=nil, billinginfo=nil, weight=nil, createsource=nil, version=nil, latestversion=nil, resourcegroupswtype=nil, archivestatus=nil, deploytype=nil, instanceperreplicas=nil, monitorsource=nil, subuinname=nil, schedulingpolicy=nil, externalresourcegroups=nil)
+        def initialize(servicegroupid=nil, serviceid=nil, servicegroupname=nil, servicedescription=nil, serviceinfo=nil, clusterid=nil, region=nil, namespace=nil, chargetype=nil, resourcegroupid=nil, resourcegroupname=nil, tags=nil, ingressname=nil, createdby=nil, createtime=nil, updatetime=nil, uin=nil, subuin=nil, appid=nil, businessstatus=nil, servicelimit=nil, scheduledaction=nil, createfailedreason=nil, status=nil, billinginfo=nil, weight=nil, createsource=nil, version=nil, latestversion=nil, resourcegroupswtype=nil, archivestatus=nil, deploytype=nil, instanceperreplicas=nil, monitorsource=nil, subuinname=nil, schedulingpolicy=nil, externalresourcegroups=nil, changer=nil, changername=nil)
           @ServiceGroupId = servicegroupid
           @ServiceId = serviceid
           @ServiceGroupName = servicegroupname
@@ -9574,6 +9544,8 @@ module TencentCloud
           @SubUinName = subuinname
           @SchedulingPolicy = schedulingpolicy
           @ExternalResourceGroups = externalresourcegroups
+          @Changer = changer
+          @ChangerName = changername
         end
 
         def deserialize(params)
@@ -9640,6 +9612,8 @@ module TencentCloud
               @ExternalResourceGroups << resourcegroupinfo_tmp
             end
           end
+          @Changer = params['Changer']
+          @ChangerName = params['ChangerName']
         end
       end
 
@@ -9873,10 +9847,14 @@ module TencentCloud
         # @type GatewayLogConfig: :class:`Tencentcloud::Tione.v20211111.models.LogConfig`
         # @param GatewayConfig: <p>网关路由相关配置</p>
         # @type GatewayConfig: :class:`Tencentcloud::Tione.v20211111.models.GatewayConfig`
+        # @param Changer: <p>变更服务的子账户</p>
+        # @type Changer: String
+        # @param ChangerName: <p>变更服务的子账户名称</p>
+        # @type ChangerName: String
 
-        attr_accessor :ServiceGroupId, :ServiceGroupName, :CreatedBy, :CreateTime, :UpdateTime, :Uin, :ServiceCount, :RunningServiceCount, :Services, :Status, :Tags, :LatestVersion, :BusinessStatus, :BillingInfo, :CreateSource, :WeightUpdateStatus, :ReplicasCount, :AvailableReplicasCount, :SubUin, :AppId, :AuthorizationEnable, :AuthTokens, :MonitorSource, :SubUinName, :GatewayLogConfig, :GatewayConfig
+        attr_accessor :ServiceGroupId, :ServiceGroupName, :CreatedBy, :CreateTime, :UpdateTime, :Uin, :ServiceCount, :RunningServiceCount, :Services, :Status, :Tags, :LatestVersion, :BusinessStatus, :BillingInfo, :CreateSource, :WeightUpdateStatus, :ReplicasCount, :AvailableReplicasCount, :SubUin, :AppId, :AuthorizationEnable, :AuthTokens, :MonitorSource, :SubUinName, :GatewayLogConfig, :GatewayConfig, :Changer, :ChangerName
 
-        def initialize(servicegroupid=nil, servicegroupname=nil, createdby=nil, createtime=nil, updatetime=nil, uin=nil, servicecount=nil, runningservicecount=nil, services=nil, status=nil, tags=nil, latestversion=nil, businessstatus=nil, billinginfo=nil, createsource=nil, weightupdatestatus=nil, replicascount=nil, availablereplicascount=nil, subuin=nil, appid=nil, authorizationenable=nil, authtokens=nil, monitorsource=nil, subuinname=nil, gatewaylogconfig=nil, gatewayconfig=nil)
+        def initialize(servicegroupid=nil, servicegroupname=nil, createdby=nil, createtime=nil, updatetime=nil, uin=nil, servicecount=nil, runningservicecount=nil, services=nil, status=nil, tags=nil, latestversion=nil, businessstatus=nil, billinginfo=nil, createsource=nil, weightupdatestatus=nil, replicascount=nil, availablereplicascount=nil, subuin=nil, appid=nil, authorizationenable=nil, authtokens=nil, monitorsource=nil, subuinname=nil, gatewaylogconfig=nil, gatewayconfig=nil, changer=nil, changername=nil)
           @ServiceGroupId = servicegroupid
           @ServiceGroupName = servicegroupname
           @CreatedBy = createdby
@@ -9903,6 +9881,8 @@ module TencentCloud
           @SubUinName = subuinname
           @GatewayLogConfig = gatewaylogconfig
           @GatewayConfig = gatewayconfig
+          @Changer = changer
+          @ChangerName = changername
         end
 
         def deserialize(params)
@@ -9959,6 +9939,8 @@ module TencentCloud
             @GatewayConfig = GatewayConfig.new
             @GatewayConfig.deserialize(params['GatewayConfig'])
           end
+          @Changer = params['Changer']
+          @ChangerName = params['ChangerName']
         end
       end
 
@@ -10290,26 +10272,26 @@ module TencentCloud
 
       # 计费项内容
       class Spec < TencentCloud::Common::AbstractModel
-        # @param SpecId: 计费项标签
+        # @param SpecId: <p>计费项标签</p>
         # @type SpecId: String
-        # @param SpecName: 计费项名称
+        # @param SpecName: <p>计费项名称</p>
         # @type SpecName: String
-        # @param SpecAlias: 计费项显示名称
+        # @param SpecAlias: <p>计费项显示名称</p>
         # @type SpecAlias: String
-        # @param Available: 是否售罄
+        # @param Available: <p>是否售罄</p>
         # @type Available: Boolean
-        # @param AvailableRegion: 当前资源售罄时，可用的区域有哪些
+        # @param AvailableRegion: <p>当前资源售罄时，可用的区域有哪些</p>
         # @type AvailableRegion: Array
-        # @param SpecFeatures: 当前计费项支持的特性
+        # @param SpecFeatures: <p>当前计费项支持的特性</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SpecFeatures: Array
-        # @param SpecType: 计费项类型
+        # @param SpecType: <p>计费项类型</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SpecType: String
-        # @param GpuType: GPU类型
+        # @param GpuType: <p>GPU类型</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GpuType: String
-        # @param CategoryId: 计费项CategoryId
+        # @param CategoryId: <p>计费项CategoryId</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CategoryId: String
 

@@ -1543,17 +1543,17 @@ module TencentCloud
 
       # 回热任务
       class RestoreTask < TencentCloud::Common::AbstractModel
-        # @param RestoreTaskId: 回热任务ID
+        # @param RestoreTaskId: <p>回热任务ID</p>
         # @type RestoreTaskId: Integer
-        # @param FilePath: 回热任务文件路径
+        # @param FilePath: <p>回热任务文件路径，不支持目录和通配符</p>
         # @type FilePath: String
-        # @param Type: 回热任务类型（1：标准；2：极速；3：批量，暂时仅支持标准）
+        # @param Type: <p>回热任务类型（1：标准；2：极速；3：批量，暂时仅支持标准）</p>
         # @type Type: Integer
-        # @param Days: 指定恢复出的临时副本的有效时长（单位天）
+        # @param Days: <p>指定恢复出的临时副本的有效时长（单位天）</p>
         # @type Days: Integer
-        # @param Status: 回热任务状态（1：绑定文件中；2：绑定文件完成；3：文件回热中；4：文件回热完成）
+        # @param Status: <p>回热任务状态（1：绑定文件中；2：绑定文件完成；3：文件回热中；4：文件回热完成）</p>
         # @type Status: Integer
-        # @param CreateTime: 创建时间
+        # @param CreateTime: <p>创建时间</p>
         # @type CreateTime: String
 
         attr_accessor :RestoreTaskId, :FilePath, :Type, :Days, :Status, :CreateTime

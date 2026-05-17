@@ -3594,6 +3594,1447 @@ module TencentCloud
         end
       end
 
+      # cos访问权限信息
+      class CosAccessInfo < TencentCloud::Common::AbstractModel
+        # @param AccessUin: 可访问账号uin
+        # @type AccessUin: String
+        # @param AccessUid: 可访问账号uid
+        # @type AccessUid: String
+        # @param NickName: 昵称
+        # @type NickName: String
+        # @param Identity: 身份标识
+        # 1 主账号
+        # 2 子账号
+        # @type Identity: Integer
+        # @param MainNickName: 所属主账号名称
+        # @type MainNickName: String
+        # @param AkList: 可访问ak列表
+        # @type AkList: Array
+        # @param CamPolicyCount: 可访问权限数
+        # @type CamPolicyCount: Integer
+        # @param UpdateTime: 修改时间Unix时间单位毫秒
+        # @type UpdateTime: Integer
+
+        attr_accessor :AccessUin, :AccessUid, :NickName, :Identity, :MainNickName, :AkList, :CamPolicyCount, :UpdateTime
+
+        def initialize(accessuin=nil, accessuid=nil, nickname=nil, identity=nil, mainnickname=nil, aklist=nil, campolicycount=nil, updatetime=nil)
+          @AccessUin = accessuin
+          @AccessUid = accessuid
+          @NickName = nickname
+          @Identity = identity
+          @MainNickName = mainnickname
+          @AkList = aklist
+          @CamPolicyCount = campolicycount
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @AccessUin = params['AccessUin']
+          @AccessUid = params['AccessUid']
+          @NickName = params['NickName']
+          @Identity = params['Identity']
+          @MainNickName = params['MainNickName']
+          @AkList = params['AkList']
+          @CamPolicyCount = params['CamPolicyCount']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # cos命令信息
+      class CosActionInfo < TencentCloud::Common::AbstractModel
+        # @param ActionName: 接口名
+        # @type ActionName: String
+        # @param ActionNameCn: 接口中文名
+        # @type ActionNameCn: String
+        # @param ActionDescription: 接口描述
+        # @type ActionDescription: String
+
+        attr_accessor :ActionName, :ActionNameCn, :ActionDescription
+
+        def initialize(actionname=nil, actionnamecn=nil, actiondescription=nil)
+          @ActionName = actionname
+          @ActionNameCn = actionnamecn
+          @ActionDescription = actiondescription
+        end
+
+        def deserialize(params)
+          @ActionName = params['ActionName']
+          @ActionNameCn = params['ActionNameCn']
+          @ActionDescription = params['ActionDescription']
+        end
+      end
+
+      # cos关联ak资产信息
+      class CosAkAssetInfo < TencentCloud::Common::AbstractModel
+        # @param AppId: appid
+        # @type AppId: Integer
+        # @param AkId: ak id
+        # @type AkId: String
+        # @param AkName: ak名称
+        # @type AkName: String
+        # @param AkRemark: ak备注
+        # @type AkRemark: String
+        # @param AkOwnerUin: ak所属uin
+        # @type AkOwnerUin: String
+        # @param AkOwnerType: ak类型 1 主 2 子
+        # @type AkOwnerType: Integer
+        # @param AkOwnerName: ak所属账号名
+        # @type AkOwnerName: String
+        # @param AkMainOwnerName: ak主账号名
+        # @type AkMainOwnerName: String
+        # @param AkRelBucketSet: ak关联桶集合
+        # @type AkRelBucketSet: Array
+        # @param AkRelAlarmSet: ak关联告警集合
+        # @type AkRelAlarmSet: Array
+        # @param AkRelIpCount: Ak关联ip数
+        # @type AkRelIpCount: Integer
+        # @param AkStatus: ak状态 0 禁用 1 启用
+        # @type AkStatus: Integer
+        # @param CreateTimestamp: 创建时间
+        # @type CreateTimestamp: Integer
+        # @param LastAccessTimestamp: 最后访问时间
+        # @type LastAccessTimestamp: Integer
+
+        attr_accessor :AppId, :AkId, :AkName, :AkRemark, :AkOwnerUin, :AkOwnerType, :AkOwnerName, :AkMainOwnerName, :AkRelBucketSet, :AkRelAlarmSet, :AkRelIpCount, :AkStatus, :CreateTimestamp, :LastAccessTimestamp
+
+        def initialize(appid=nil, akid=nil, akname=nil, akremark=nil, akowneruin=nil, akownertype=nil, akownername=nil, akmainownername=nil, akrelbucketset=nil, akrelalarmset=nil, akrelipcount=nil, akstatus=nil, createtimestamp=nil, lastaccesstimestamp=nil)
+          @AppId = appid
+          @AkId = akid
+          @AkName = akname
+          @AkRemark = akremark
+          @AkOwnerUin = akowneruin
+          @AkOwnerType = akownertype
+          @AkOwnerName = akownername
+          @AkMainOwnerName = akmainownername
+          @AkRelBucketSet = akrelbucketset
+          @AkRelAlarmSet = akrelalarmset
+          @AkRelIpCount = akrelipcount
+          @AkStatus = akstatus
+          @CreateTimestamp = createtimestamp
+          @LastAccessTimestamp = lastaccesstimestamp
+        end
+
+        def deserialize(params)
+          @AppId = params['AppId']
+          @AkId = params['AkId']
+          @AkName = params['AkName']
+          @AkRemark = params['AkRemark']
+          @AkOwnerUin = params['AkOwnerUin']
+          @AkOwnerType = params['AkOwnerType']
+          @AkOwnerName = params['AkOwnerName']
+          @AkMainOwnerName = params['AkMainOwnerName']
+          @AkRelBucketSet = params['AkRelBucketSet']
+          unless params['AkRelAlarmSet'].nil?
+            @AkRelAlarmSet = []
+            params['AkRelAlarmSet'].each do |i|
+              cosriskinfo_tmp = CosRiskInfo.new
+              cosriskinfo_tmp.deserialize(i)
+              @AkRelAlarmSet << cosriskinfo_tmp
+            end
+          end
+          @AkRelIpCount = params['AkRelIpCount']
+          @AkStatus = params['AkStatus']
+          @CreateTimestamp = params['CreateTimestamp']
+          @LastAccessTimestamp = params['LastAccessTimestamp']
+        end
+      end
+
+      # cos ak 集合
+      class CosAkSet < TencentCloud::Common::AbstractModel
+        # @param AppId: ak所属appid
+        # @type AppId: Integer
+        # @param AkNameSet: ak名称集合
+        # @type AkNameSet: Array
+
+        attr_accessor :AppId, :AkNameSet
+
+        def initialize(appid=nil, aknameset=nil)
+          @AppId = appid
+          @AkNameSet = aknameset
+        end
+
+        def deserialize(params)
+          @AppId = params['AppId']
+          @AkNameSet = params['AkNameSet']
+        end
+      end
+
+      # 对象存储告警信息
+      class CosAlarmInfo < TencentCloud::Common::AbstractModel
+        # @param AppId: appid
+        # @type AppId: Integer
+        # @param PolicyId: 策略id
+        # @type PolicyId: Integer
+        # @param PolicyName: 策略名称
+        # @type PolicyName: String
+        # @param PolicyAbnormalType: 策略类型 0-未知规则分类(Unknown), 1-异常行为(AbnormalBehavior), 2-权限过大(ExcessivePermission), 3-资源枚举(ResourceEnumerated), 4-匿名访问(AnonymousAccess)
+        # @type PolicyAbnormalType: Integer
+        # @param PolicyRiskLevel: 风险等级：0:Normal, 1:Tip, 2:Low, 3:Middle, 4:High, 5:Critical
+        # @type PolicyRiskLevel: Integer
+        # @param PolicyDescription: 策略信息描述
+        # @type PolicyDescription: String
+        # @param BucketName: 桶名
+        # @type BucketName: String
+        # @param BucketRegion: 桶地域
+        # @type BucketRegion: String
+        # @param BucketMarker: 桶备注
+        # @type BucketMarker: String
+        # @param BucketTagInfo: 桶tag信息
+        # @type BucketTagInfo: String
+        # @param BucketAccessWay: 桶可访问属性
+        # @type BucketAccessWay: String
+        # @param AccountUin: 所属账号uin
+        # @type AccountUin: String
+        # @param AccountNickName: 所属账号昵称
+        # @type AccountNickName: String
+        # @param AccountIdentify: 所属账号社身份 1 主 2子
+        # @type AccountIdentify: Integer
+        # @param AccountMainNickName: 子账号所属主账号昵称
+        # @type AccountMainNickName: String
+        # @param AlarmTimestamp: 告警时间戳Unix时间单位毫秒
+        # @type AlarmTimestamp: Integer
+        # @param HandleStatus: 处置状态 0 未处理 1 标记处置 2标记忽略
+        # @type HandleStatus: Integer
+        # @param AlarmId: 告警对象id
+        # @type AlarmId: Integer
+        # @param BucketRegionCode: 桶地域码值
+        # @type BucketRegionCode: String
+        # @param CategoryDetails: 数据识别分类详情
+        # @type CategoryDetails: Array
+
+        attr_accessor :AppId, :PolicyId, :PolicyName, :PolicyAbnormalType, :PolicyRiskLevel, :PolicyDescription, :BucketName, :BucketRegion, :BucketMarker, :BucketTagInfo, :BucketAccessWay, :AccountUin, :AccountNickName, :AccountIdentify, :AccountMainNickName, :AlarmTimestamp, :HandleStatus, :AlarmId, :BucketRegionCode, :CategoryDetails
+
+        def initialize(appid=nil, policyid=nil, policyname=nil, policyabnormaltype=nil, policyrisklevel=nil, policydescription=nil, bucketname=nil, bucketregion=nil, bucketmarker=nil, buckettaginfo=nil, bucketaccessway=nil, accountuin=nil, accountnickname=nil, accountidentify=nil, accountmainnickname=nil, alarmtimestamp=nil, handlestatus=nil, alarmid=nil, bucketregioncode=nil, categorydetails=nil)
+          @AppId = appid
+          @PolicyId = policyid
+          @PolicyName = policyname
+          @PolicyAbnormalType = policyabnormaltype
+          @PolicyRiskLevel = policyrisklevel
+          @PolicyDescription = policydescription
+          @BucketName = bucketname
+          @BucketRegion = bucketregion
+          @BucketMarker = bucketmarker
+          @BucketTagInfo = buckettaginfo
+          @BucketAccessWay = bucketaccessway
+          @AccountUin = accountuin
+          @AccountNickName = accountnickname
+          @AccountIdentify = accountidentify
+          @AccountMainNickName = accountmainnickname
+          @AlarmTimestamp = alarmtimestamp
+          @HandleStatus = handlestatus
+          @AlarmId = alarmid
+          @BucketRegionCode = bucketregioncode
+          @CategoryDetails = categorydetails
+        end
+
+        def deserialize(params)
+          @AppId = params['AppId']
+          @PolicyId = params['PolicyId']
+          @PolicyName = params['PolicyName']
+          @PolicyAbnormalType = params['PolicyAbnormalType']
+          @PolicyRiskLevel = params['PolicyRiskLevel']
+          @PolicyDescription = params['PolicyDescription']
+          @BucketName = params['BucketName']
+          @BucketRegion = params['BucketRegion']
+          @BucketMarker = params['BucketMarker']
+          @BucketTagInfo = params['BucketTagInfo']
+          @BucketAccessWay = params['BucketAccessWay']
+          @AccountUin = params['AccountUin']
+          @AccountNickName = params['AccountNickName']
+          @AccountIdentify = params['AccountIdentify']
+          @AccountMainNickName = params['AccountMainNickName']
+          @AlarmTimestamp = params['AlarmTimestamp']
+          @HandleStatus = params['HandleStatus']
+          @AlarmId = params['AlarmId']
+          @BucketRegionCode = params['BucketRegionCode']
+          unless params['CategoryDetails'].nil?
+            @CategoryDetails = []
+            params['CategoryDetails'].each do |i|
+              cosidentifycategorydetail_tmp = CosIdentifyCategoryDetail.new
+              cosidentifycategorydetail_tmp.deserialize(i)
+              @CategoryDetails << cosidentifycategorydetail_tmp
+            end
+          end
+        end
+      end
+
+      # 告警或者风险id信息
+      class CosAlarmRiskIdInfo < TencentCloud::Common::AbstractModel
+        # @param AlarmRiskId: 告警id
+        # @type AlarmRiskId: Integer
+        # @param AppId: 租户id
+        # @type AppId: Integer
+
+        attr_accessor :AlarmRiskId, :AppId
+
+        def initialize(alarmriskid=nil, appid=nil)
+          @AlarmRiskId = alarmriskid
+          @AppId = appid
+        end
+
+        def deserialize(params)
+          @AlarmRiskId = params['AlarmRiskId']
+          @AppId = params['AppId']
+        end
+      end
+
+      # cos每日告警/风险信息
+      class CosAlarmTrendInfo < TencentCloud::Common::AbstractModel
+        # @param CurrentDateStr: 当前日期字符串格式
+        # @type CurrentDateStr: String
+        # @param CurrentDayCount: 当前日期总数
+        # @type CurrentDayCount: Integer
+        # @param CurrentDayOverView: 当天告警分类详情
+        # @type CurrentDayOverView: Array
+
+        attr_accessor :CurrentDateStr, :CurrentDayCount, :CurrentDayOverView
+
+        def initialize(currentdatestr=nil, currentdaycount=nil, currentdayoverview=nil)
+          @CurrentDateStr = currentdatestr
+          @CurrentDayCount = currentdaycount
+          @CurrentDayOverView = currentdayoverview
+        end
+
+        def deserialize(params)
+          @CurrentDateStr = params['CurrentDateStr']
+          @CurrentDayCount = params['CurrentDayCount']
+          unless params['CurrentDayOverView'].nil?
+            @CurrentDayOverView = []
+            params['CurrentDayOverView'].each do |i|
+              cosriskinfo_tmp = CosRiskInfo.new
+              cosriskinfo_tmp.deserialize(i)
+              @CurrentDayOverView << cosriskinfo_tmp
+            end
+          end
+        end
+      end
+
+      # cos审计资产数据识别详情
+      class CosAssetDataScanDetail < TencentCloud::Common::AbstractModel
+        # @param Status: <p>识别任务状态 0:未识别 1:识别中 2:识别终止 3:识别成功 4:识别失败</p>
+        # @type Status: Integer
+        # @param Progress: <p>识别进度</p>
+        # @type Progress: Float
+        # @param LatestScanTime: <p>最近扫描时间</p>
+        # @type LatestScanTime: Integer
+        # @param ErrorInfo: <p>识别失败信息</p>
+        # @type ErrorInfo: String
+        # @param CategoryDetails: <p>识别结果分类详情</p>
+        # @type CategoryDetails: Array
+
+        attr_accessor :Status, :Progress, :LatestScanTime, :ErrorInfo, :CategoryDetails
+
+        def initialize(status=nil, progress=nil, latestscantime=nil, errorinfo=nil, categorydetails=nil)
+          @Status = status
+          @Progress = progress
+          @LatestScanTime = latestscantime
+          @ErrorInfo = errorinfo
+          @CategoryDetails = categorydetails
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @Progress = params['Progress']
+          @LatestScanTime = params['LatestScanTime']
+          @ErrorInfo = params['ErrorInfo']
+          unless params['CategoryDetails'].nil?
+            @CategoryDetails = []
+            params['CategoryDetails'].each do |i|
+              cosidentifycategorydetail_tmp = CosIdentifyCategoryDetail.new
+              cosidentifycategorydetail_tmp.deserialize(i)
+              @CategoryDetails << cosidentifycategorydetail_tmp
+            end
+          end
+        end
+      end
+
+      # cos审计文件数据识别信息
+      class CosAssetFileIdentifyInfo < TencentCloud::Common::AbstractModel
+        # @param FileName: 文件名称
+        # @type FileName: String
+        # @param DirName: 文件路径
+        # @type DirName: String
+        # @param CategoryDetails: 分类数据项详情
+        # @type CategoryDetails: Array
+
+        attr_accessor :FileName, :DirName, :CategoryDetails
+
+        def initialize(filename=nil, dirname=nil, categorydetails=nil)
+          @FileName = filename
+          @DirName = dirname
+          @CategoryDetails = categorydetails
+        end
+
+        def deserialize(params)
+          @FileName = params['FileName']
+          @DirName = params['DirName']
+          unless params['CategoryDetails'].nil?
+            @CategoryDetails = []
+            params['CategoryDetails'].each do |i|
+              cosidentifycategorydetail_tmp = CosIdentifyCategoryDetail.new
+              cosidentifycategorydetail_tmp.deserialize(i)
+              @CategoryDetails << cosidentifycategorydetail_tmp
+            end
+          end
+        end
+      end
+
+      # Cos资产信息
+      class CosAssetInfo < TencentCloud::Common::AbstractModel
+        # @param AppId: appid
+        # @type AppId: Integer
+        # @param BucketName: cos桶名
+        # @type BucketName: String
+        # @param BucketRegion: cos region名
+        # @type BucketRegion: String
+        # @param BucketRegionCode: 地域码值
+        # @type BucketRegionCode: String
+        # @param BucketMarker: cos桶备注
+        # @type BucketMarker: String
+        # @param BucketOwnerUin: cos桶主账号所属者
+        # @type BucketOwnerUin: String
+        # @param BucketOwnerNickName: cos主账号所属者昵称
+        # @type BucketOwnerNickName: String
+        # @param BucketTagInfo: cos桶标签详情
+        # @type BucketTagInfo: String
+        # @param BucketSecuritySuggestion: 安全建议
+        # 1 暂无异常
+        # 2 建议加固
+        # 3 立即处理
+        # @type BucketSecuritySuggestion: Integer
+        # @param BucketAlarmList: 告警列表
+        # @type BucketAlarmList: Array
+        # @param BucketRiskList: 风险列表
+        # @type BucketRiskList: Array
+        # @param BucketInvokeSourceIpCount: 调用源ip数
+        # @type BucketInvokeSourceIpCount: Integer
+        # @param BucketAccessWay: 访问策略
+        # @type BucketAccessWay: :class:`Tencentcloud::Csip.v20221121.models.CosBucketAccessWay`
+        # @param CreateTime: 创建时间Unix时间单位毫秒
+        # @type CreateTime: Integer
+        # @param LastAccessTime: 最后访问时间Unix时间单位毫秒
+        # @type LastAccessTime: Integer
+        # @param BucketId: 存储桶id
+        # @type BucketId: Integer
+        # @param MonitorStatus: 0 关闭
+        # 1 开启
+        # @type MonitorStatus: Integer
+        # @param DataScanInfo: 数据识别扫描信息
+        # @type DataScanInfo: :class:`Tencentcloud::Csip.v20221121.models.CosAssetDataScanDetail`
+
+        attr_accessor :AppId, :BucketName, :BucketRegion, :BucketRegionCode, :BucketMarker, :BucketOwnerUin, :BucketOwnerNickName, :BucketTagInfo, :BucketSecuritySuggestion, :BucketAlarmList, :BucketRiskList, :BucketInvokeSourceIpCount, :BucketAccessWay, :CreateTime, :LastAccessTime, :BucketId, :MonitorStatus, :DataScanInfo
+
+        def initialize(appid=nil, bucketname=nil, bucketregion=nil, bucketregioncode=nil, bucketmarker=nil, bucketowneruin=nil, bucketownernickname=nil, buckettaginfo=nil, bucketsecuritysuggestion=nil, bucketalarmlist=nil, bucketrisklist=nil, bucketinvokesourceipcount=nil, bucketaccessway=nil, createtime=nil, lastaccesstime=nil, bucketid=nil, monitorstatus=nil, datascaninfo=nil)
+          @AppId = appid
+          @BucketName = bucketname
+          @BucketRegion = bucketregion
+          @BucketRegionCode = bucketregioncode
+          @BucketMarker = bucketmarker
+          @BucketOwnerUin = bucketowneruin
+          @BucketOwnerNickName = bucketownernickname
+          @BucketTagInfo = buckettaginfo
+          @BucketSecuritySuggestion = bucketsecuritysuggestion
+          @BucketAlarmList = bucketalarmlist
+          @BucketRiskList = bucketrisklist
+          @BucketInvokeSourceIpCount = bucketinvokesourceipcount
+          @BucketAccessWay = bucketaccessway
+          @CreateTime = createtime
+          @LastAccessTime = lastaccesstime
+          @BucketId = bucketid
+          @MonitorStatus = monitorstatus
+          @DataScanInfo = datascaninfo
+        end
+
+        def deserialize(params)
+          @AppId = params['AppId']
+          @BucketName = params['BucketName']
+          @BucketRegion = params['BucketRegion']
+          @BucketRegionCode = params['BucketRegionCode']
+          @BucketMarker = params['BucketMarker']
+          @BucketOwnerUin = params['BucketOwnerUin']
+          @BucketOwnerNickName = params['BucketOwnerNickName']
+          @BucketTagInfo = params['BucketTagInfo']
+          @BucketSecuritySuggestion = params['BucketSecuritySuggestion']
+          unless params['BucketAlarmList'].nil?
+            @BucketAlarmList = []
+            params['BucketAlarmList'].each do |i|
+              cosriskalarminfo_tmp = CosRiskAlarmInfo.new
+              cosriskalarminfo_tmp.deserialize(i)
+              @BucketAlarmList << cosriskalarminfo_tmp
+            end
+          end
+          unless params['BucketRiskList'].nil?
+            @BucketRiskList = []
+            params['BucketRiskList'].each do |i|
+              cosriskalarminfo_tmp = CosRiskAlarmInfo.new
+              cosriskalarminfo_tmp.deserialize(i)
+              @BucketRiskList << cosriskalarminfo_tmp
+            end
+          end
+          @BucketInvokeSourceIpCount = params['BucketInvokeSourceIpCount']
+          unless params['BucketAccessWay'].nil?
+            @BucketAccessWay = CosBucketAccessWay.new
+            @BucketAccessWay.deserialize(params['BucketAccessWay'])
+          end
+          @CreateTime = params['CreateTime']
+          @LastAccessTime = params['LastAccessTime']
+          @BucketId = params['BucketId']
+          @MonitorStatus = params['MonitorStatus']
+          unless params['DataScanInfo'].nil?
+            @DataScanInfo = CosAssetDataScanDetail.new
+            @DataScanInfo.deserialize(params['DataScanInfo'])
+          end
+        end
+      end
+
+      # cos资产同步任务信息
+      class CosAssetSyncTaskInfo < TencentCloud::Common::AbstractModel
+        # @param AppId: appid
+        # @type AppId: Integer
+        # @param TaskId: 同步任务id
+        # @type TaskId: String
+        # @param LastScanTime: 最后一次扫描时间
+        # @type LastScanTime: Integer
+
+        attr_accessor :AppId, :TaskId, :LastScanTime
+
+        def initialize(appid=nil, taskid=nil, lastscantime=nil)
+          @AppId = appid
+          @TaskId = taskid
+          @LastScanTime = lastscantime
+        end
+
+        def deserialize(params)
+          @AppId = params['AppId']
+          @TaskId = params['TaskId']
+          @LastScanTime = params['LastScanTime']
+        end
+      end
+
+      # cos审计支付信息
+      class CosAuditPayInfo < TencentCloud::Common::AbstractModel
+        # @param AppId: APPID
+        # @type AppId: Integer
+        # @param OrderStatus: 订单状态 0未购买 1正常，2隔离，3销毁，6试用中，7到期
+        # @type OrderStatus: Integer
+        # @param BucketNum: 已购对象存储数量
+        # @type BucketNum: Integer
+        # @param PayMode: 支付模式，0-后付费 1-预付费
+        # @type PayMode: Integer
+        # @param IsSelfBuy: 是否单独购买，1-单独购买，2-被其它账号共享
+        # @type IsSelfBuy: Integer
+        # @param BeginTime: 订单开始时间
+        # @type BeginTime: String
+        # @param EndTime: 订单到期时间
+        # @type EndTime: String
+        # @param AutoRenew: 0-用户未设置,1-用户设置自动续费,2-用户设置不自动续费
+        # @type AutoRenew: Integer
+        # @param TimeSpan: 订单时长
+        # @type TimeSpan: Integer
+        # @param TimeUnit: 时长单位
+        # @type TimeUnit: String
+        # @param ResourceId: 资源id
+        # @type ResourceId: String
+        # @param BetaEndTime: 公测结束时间
+        # @type BetaEndTime: String
+        # @param TimeNow: 系统当前时间
+        # @type TimeNow: String
+        # @param IsShareToOther: 是否分享给其它账号，1-是，2-否
+        # @type IsShareToOther: Integer
+        # @param Uin: uin
+        # @type Uin: String
+        # @param NickName: 昵称
+        # @type NickName: String
+        # @param BindBucket: 共享的bucketIdSet
+        # @type BindBucket: Array
+        # @param SharedAppIdSet: 共享的appid
+        # @type SharedAppIdSet: Array
+        # @param PostPayStatus: 是否已经开启后付费
+        # @type PostPayStatus: Integer
+        # @param IsTestUser: 0：未做过试用期试用   1 ：做过试用期试用
+        # @type IsTestUser: Integer
+        # @param AvailableBucketNum: 剩余可用数
+        # @type AvailableBucketNum: Integer
+        # @param MonitorBucketNum: 已开启的监测存储桶数
+        # @type MonitorBucketNum: Integer
+        # @param TotalBucketNum: 总的存储桶数
+        # @type TotalBucketNum: Integer
+
+        attr_accessor :AppId, :OrderStatus, :BucketNum, :PayMode, :IsSelfBuy, :BeginTime, :EndTime, :AutoRenew, :TimeSpan, :TimeUnit, :ResourceId, :BetaEndTime, :TimeNow, :IsShareToOther, :Uin, :NickName, :BindBucket, :SharedAppIdSet, :PostPayStatus, :IsTestUser, :AvailableBucketNum, :MonitorBucketNum, :TotalBucketNum
+
+        def initialize(appid=nil, orderstatus=nil, bucketnum=nil, paymode=nil, isselfbuy=nil, begintime=nil, endtime=nil, autorenew=nil, timespan=nil, timeunit=nil, resourceid=nil, betaendtime=nil, timenow=nil, issharetoother=nil, uin=nil, nickname=nil, bindbucket=nil, sharedappidset=nil, postpaystatus=nil, istestuser=nil, availablebucketnum=nil, monitorbucketnum=nil, totalbucketnum=nil)
+          @AppId = appid
+          @OrderStatus = orderstatus
+          @BucketNum = bucketnum
+          @PayMode = paymode
+          @IsSelfBuy = isselfbuy
+          @BeginTime = begintime
+          @EndTime = endtime
+          @AutoRenew = autorenew
+          @TimeSpan = timespan
+          @TimeUnit = timeunit
+          @ResourceId = resourceid
+          @BetaEndTime = betaendtime
+          @TimeNow = timenow
+          @IsShareToOther = issharetoother
+          @Uin = uin
+          @NickName = nickname
+          @BindBucket = bindbucket
+          @SharedAppIdSet = sharedappidset
+          @PostPayStatus = postpaystatus
+          @IsTestUser = istestuser
+          @AvailableBucketNum = availablebucketnum
+          @MonitorBucketNum = monitorbucketnum
+          @TotalBucketNum = totalbucketnum
+        end
+
+        def deserialize(params)
+          @AppId = params['AppId']
+          @OrderStatus = params['OrderStatus']
+          @BucketNum = params['BucketNum']
+          @PayMode = params['PayMode']
+          @IsSelfBuy = params['IsSelfBuy']
+          @BeginTime = params['BeginTime']
+          @EndTime = params['EndTime']
+          @AutoRenew = params['AutoRenew']
+          @TimeSpan = params['TimeSpan']
+          @TimeUnit = params['TimeUnit']
+          @ResourceId = params['ResourceId']
+          @BetaEndTime = params['BetaEndTime']
+          @TimeNow = params['TimeNow']
+          @IsShareToOther = params['IsShareToOther']
+          @Uin = params['Uin']
+          @NickName = params['NickName']
+          unless params['BindBucket'].nil?
+            @BindBucket = []
+            params['BindBucket'].each do |i|
+              cosbucketid_tmp = CosBucketId.new
+              cosbucketid_tmp.deserialize(i)
+              @BindBucket << cosbucketid_tmp
+            end
+          end
+          @SharedAppIdSet = params['SharedAppIdSet']
+          @PostPayStatus = params['PostPayStatus']
+          @IsTestUser = params['IsTestUser']
+          @AvailableBucketNum = params['AvailableBucketNum']
+          @MonitorBucketNum = params['MonitorBucketNum']
+          @TotalBucketNum = params['TotalBucketNum']
+        end
+      end
+
+      # cos风险识别桶访问规则
+      class CosBucketAccessWay < TencentCloud::Common::AbstractModel
+        # @param AccessType: 可访问方式：
+        # specify 指定用户
+        # anonymous 可匿名访问
+        # @type AccessType: String
+        # @param AccessUserCount: 用户数
+        # @type AccessUserCount: Integer
+        # @param AccessAkCount: ak数
+        # @type AccessAkCount: Integer
+        # @param AccessRoleCount: 角色数
+        # @type AccessRoleCount: Integer
+
+        attr_accessor :AccessType, :AccessUserCount, :AccessAkCount, :AccessRoleCount
+
+        def initialize(accesstype=nil, accessusercount=nil, accessakcount=nil, accessrolecount=nil)
+          @AccessType = accesstype
+          @AccessUserCount = accessusercount
+          @AccessAkCount = accessakcount
+          @AccessRoleCount = accessrolecount
+        end
+
+        def deserialize(params)
+          @AccessType = params['AccessType']
+          @AccessUserCount = params['AccessUserCount']
+          @AccessAkCount = params['AccessAkCount']
+          @AccessRoleCount = params['AccessRoleCount']
+        end
+      end
+
+      # 存储桶数量
+      class CosBucketBillingInfo < TencentCloud::Common::AbstractModel
+        # @param AppId: appid
+        # @type AppId: Integer
+        # @param OwnerUin: uin
+        # @type OwnerUin: String
+        # @param OwnerNickName: 昵称
+        # @type OwnerNickName: String
+        # @param BucketCount: 存储桶数量
+        # @type BucketCount: Integer
+        # @param BuyStatus: 0 未购买 1  已单独购买 2 已被共享
+        # @type BuyStatus: Integer
+        # @param ShareFromAppId: 共享账号appid
+        # @type ShareFromAppId: Integer
+        # @param ShareFromUin: 共享账号uin
+        # @type ShareFromUin: String
+        # @param ShareFromNickName: 共享账号昵称
+        # @type ShareFromNickName: String
+        # @param MonitorBucketCount: 监控的存储桶数
+        # @type MonitorBucketCount: Integer
+        # @param IsAutoMonitor: 0 关闭 1 开启
+        # @type IsAutoMonitor: Integer
+
+        attr_accessor :AppId, :OwnerUin, :OwnerNickName, :BucketCount, :BuyStatus, :ShareFromAppId, :ShareFromUin, :ShareFromNickName, :MonitorBucketCount, :IsAutoMonitor
+
+        def initialize(appid=nil, owneruin=nil, ownernickname=nil, bucketcount=nil, buystatus=nil, sharefromappid=nil, sharefromuin=nil, sharefromnickname=nil, monitorbucketcount=nil, isautomonitor=nil)
+          @AppId = appid
+          @OwnerUin = owneruin
+          @OwnerNickName = ownernickname
+          @BucketCount = bucketcount
+          @BuyStatus = buystatus
+          @ShareFromAppId = sharefromappid
+          @ShareFromUin = sharefromuin
+          @ShareFromNickName = sharefromnickname
+          @MonitorBucketCount = monitorbucketcount
+          @IsAutoMonitor = isautomonitor
+        end
+
+        def deserialize(params)
+          @AppId = params['AppId']
+          @OwnerUin = params['OwnerUin']
+          @OwnerNickName = params['OwnerNickName']
+          @BucketCount = params['BucketCount']
+          @BuyStatus = params['BuyStatus']
+          @ShareFromAppId = params['ShareFromAppId']
+          @ShareFromUin = params['ShareFromUin']
+          @ShareFromNickName = params['ShareFromNickName']
+          @MonitorBucketCount = params['MonitorBucketCount']
+          @IsAutoMonitor = params['IsAutoMonitor']
+        end
+      end
+
+      # 存储桶id
+      class CosBucketId < TencentCloud::Common::AbstractModel
+        # @param AppId: appid
+        # @type AppId: String
+        # @param BucketIdSet: bucket id集合
+        # @type BucketIdSet: Array
+
+        attr_accessor :AppId, :BucketIdSet
+
+        def initialize(appid=nil, bucketidset=nil)
+          @AppId = appid
+          @BucketIdSet = bucketidset
+        end
+
+        def deserialize(params)
+          @AppId = params['AppId']
+          @BucketIdSet = params['BucketIdSet']
+        end
+      end
+
+      # cos存储桶详情信息
+      class CosBucketInfo < TencentCloud::Common::AbstractModel
+        # @param AppId: appid信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AppId: Integer
+        # @param BucketName: 存储桶名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BucketName: String
+        # @param BucketRegion: 地域信息
+        # @type BucketRegion: String
+        # @param BucketRegionCode: 地域码值
+        # @type BucketRegionCode: String
+        # @param BucketMarker: 备注
+        # @type BucketMarker: String
+
+        attr_accessor :AppId, :BucketName, :BucketRegion, :BucketRegionCode, :BucketMarker
+
+        def initialize(appid=nil, bucketname=nil, bucketregion=nil, bucketregioncode=nil, bucketmarker=nil)
+          @AppId = appid
+          @BucketName = bucketname
+          @BucketRegion = bucketregion
+          @BucketRegionCode = bucketregioncode
+          @BucketMarker = bucketmarker
+        end
+
+        def deserialize(params)
+          @AppId = params['AppId']
+          @BucketName = params['BucketName']
+          @BucketRegion = params['BucketRegion']
+          @BucketRegionCode = params['BucketRegionCode']
+          @BucketMarker = params['BucketMarker']
+        end
+      end
+
+      # cos存储桶任务信息
+      class CosBucketTaskInfo < TencentCloud::Common::AbstractModel
+        # @param AppId: appid
+        # @type AppId: Integer
+        # @param BucketName: 存储桶名
+        # @type BucketName: String
+        # @param TaskId: 任务id
+        # @type TaskId: String
+        # @param LastScanTime: 最后一次扫描时间
+        # @type LastScanTime: Integer
+
+        attr_accessor :AppId, :BucketName, :TaskId, :LastScanTime
+
+        def initialize(appid=nil, bucketname=nil, taskid=nil, lastscantime=nil)
+          @AppId = appid
+          @BucketName = bucketname
+          @TaskId = taskid
+          @LastScanTime = lastscantime
+        end
+
+        def deserialize(params)
+          @AppId = params['AppId']
+          @BucketName = params['BucketName']
+          @TaskId = params['TaskId']
+          @LastScanTime = params['LastScanTime']
+        end
+      end
+
+      # cos字典信息
+      class CosDictionary < TencentCloud::Common::AbstractModel
+        # @param DictId: <p>字典id</p>
+        # @type DictId: Integer
+        # @param DictName: <p>字典名称</p>
+        # @type DictName: String
+
+        attr_accessor :DictId, :DictName
+
+        def initialize(dictid=nil, dictname=nil)
+          @DictId = dictid
+          @DictName = dictname
+        end
+
+        def deserialize(params)
+          @DictId = params['DictId']
+          @DictName = params['DictName']
+        end
+      end
+
+      # cos数据识别结果分类详情
+      class CosIdentifyCategoryDetail < TencentCloud::Common::AbstractModel
+        # @param CategoryId: <p>分类id</p>
+        # @type CategoryId: Integer
+        # @param CategoryName: <p>分类名称</p>
+        # @type CategoryName: String
+        # @param RuleSet: <p>数据项集合</p>
+        # @type RuleSet: Array
+
+        attr_accessor :CategoryId, :CategoryName, :RuleSet
+
+        def initialize(categoryid=nil, categoryname=nil, ruleset=nil)
+          @CategoryId = categoryid
+          @CategoryName = categoryname
+          @RuleSet = ruleset
+        end
+
+        def deserialize(params)
+          @CategoryId = params['CategoryId']
+          @CategoryName = params['CategoryName']
+          unless params['RuleSet'].nil?
+            @RuleSet = []
+            params['RuleSet'].each do |i|
+              cosidentifyruledetail_tmp = CosIdentifyRuleDetail.new
+              cosidentifyruledetail_tmp.deserialize(i)
+              @RuleSet << cosidentifyruledetail_tmp
+            end
+          end
+        end
+      end
+
+      # cos数据项详情
+      class CosIdentifyRuleDetail < TencentCloud::Common::AbstractModel
+        # @param RuleId: 数据项id
+        # @type RuleId: Integer
+        # @param RuleName: 数据项名称
+        # @type RuleName: String
+        # @param LevelId: 敏感级别id
+        # @type LevelId: Integer
+        # @param LevelName: 敏感级别名称
+        # @type LevelName: String
+        # @param LevelScore: 敏感程度
+        # @type LevelScore: Integer
+
+        attr_accessor :RuleId, :RuleName, :LevelId, :LevelName, :LevelScore
+
+        def initialize(ruleid=nil, rulename=nil, levelid=nil, levelname=nil, levelscore=nil)
+          @RuleId = ruleid
+          @RuleName = rulename
+          @LevelId = levelid
+          @LevelName = levelname
+          @LevelScore = levelscore
+        end
+
+        def deserialize(params)
+          @RuleId = params['RuleId']
+          @RuleName = params['RuleName']
+          @LevelId = params['LevelId']
+          @LevelName = params['LevelName']
+          @LevelScore = params['LevelScore']
+        end
+      end
+
+      # cos调用详情信息
+      class CosInvokeDetailInfo < TencentCloud::Common::AbstractModel
+        # @param InvokeTimestamp: 调用时间
+        # @type InvokeTimestamp: Integer
+        # @param InvokeRequestId: 请求id
+        # @type InvokeRequestId: String
+        # @param InvokeContent: 调用内容
+        # @type InvokeContent: String
+
+        attr_accessor :InvokeTimestamp, :InvokeRequestId, :InvokeContent
+
+        def initialize(invoketimestamp=nil, invokerequestid=nil, invokecontent=nil)
+          @InvokeTimestamp = invoketimestamp
+          @InvokeRequestId = invokerequestid
+          @InvokeContent = invokecontent
+        end
+
+        def deserialize(params)
+          @InvokeTimestamp = params['InvokeTimestamp']
+          @InvokeRequestId = params['InvokeRequestId']
+          @InvokeContent = params['InvokeContent']
+        end
+      end
+
+      # cos调用源ip vpc信息
+      class CosInvokeIpVpcInfo < TencentCloud::Common::AbstractModel
+        # @param Uin: vpc所属uin
+        # @type Uin: String
+        # @param AppId: vpc所属appid
+        # @type AppId: Integer
+        # @param NickName: 昵称
+        # @type NickName: String
+        # @param VpcId: vpcid信息
+        # @type VpcId: String
+        # @param VpcName: vpc名称
+        # @type VpcName: String
+
+        attr_accessor :Uin, :AppId, :NickName, :VpcId, :VpcName
+
+        def initialize(uin=nil, appid=nil, nickname=nil, vpcid=nil, vpcname=nil)
+          @Uin = uin
+          @AppId = appid
+          @NickName = nickname
+          @VpcId = vpcid
+          @VpcName = vpcname
+        end
+
+        def deserialize(params)
+          @Uin = params['Uin']
+          @AppId = params['AppId']
+          @NickName = params['NickName']
+          @VpcId = params['VpcId']
+          @VpcName = params['VpcName']
+        end
+      end
+
+      # cos调用日志
+      class CosInvokeLog < TencentCloud::Common::AbstractModel
+        # @param InvokeTimestamp: 调用时间戳
+        # @type InvokeTimestamp: Integer
+        # @param RequestId: 请求id
+        # @type RequestId: String
+        # @param RequestContent: 请求内容 base64 json 结构
+        # @type RequestContent: String
+
+        attr_accessor :InvokeTimestamp, :RequestId, :RequestContent
+
+        def initialize(invoketimestamp=nil, requestid=nil, requestcontent=nil)
+          @InvokeTimestamp = invoketimestamp
+          @RequestId = requestid
+          @RequestContent = requestcontent
+        end
+
+        def deserialize(params)
+          @InvokeTimestamp = params['InvokeTimestamp']
+          @RequestId = params['RequestId']
+          @RequestContent = params['RequestContent']
+        end
+      end
+
+      # cos概览页面数据结构
+      class CosOverview < TencentCloud::Common::AbstractModel
+        # @param AssetCount: 资产总数
+        # @type AssetCount: Integer
+        # @param AlarmAssetCount: 需要立即处理的资产数
+        # @type AlarmAssetCount: Integer
+        # @param RiskAssetCount: 需要加固的资产数
+        # @type RiskAssetCount: Integer
+        # @param AlarmCount: 告警总数
+        # @type AlarmCount: Integer
+        # @param IncrementAlarmCount: 当日新增告警总数
+        # @type IncrementAlarmCount: Integer
+        # @param RiskCount: 风险总数
+        # @type RiskCount: Integer
+        # @param IncrementRiskCount: 当日新增告警总数
+        # @type IncrementRiskCount: Integer
+        # @param RiskTop: 风险top详情
+        # @type RiskTop: Array
+        # @param AlarmTop: 告警风险top
+        # @type AlarmTop: Array
+
+        attr_accessor :AssetCount, :AlarmAssetCount, :RiskAssetCount, :AlarmCount, :IncrementAlarmCount, :RiskCount, :IncrementRiskCount, :RiskTop, :AlarmTop
+
+        def initialize(assetcount=nil, alarmassetcount=nil, riskassetcount=nil, alarmcount=nil, incrementalarmcount=nil, riskcount=nil, incrementriskcount=nil, risktop=nil, alarmtop=nil)
+          @AssetCount = assetcount
+          @AlarmAssetCount = alarmassetcount
+          @RiskAssetCount = riskassetcount
+          @AlarmCount = alarmcount
+          @IncrementAlarmCount = incrementalarmcount
+          @RiskCount = riskcount
+          @IncrementRiskCount = incrementriskcount
+          @RiskTop = risktop
+          @AlarmTop = alarmtop
+        end
+
+        def deserialize(params)
+          @AssetCount = params['AssetCount']
+          @AlarmAssetCount = params['AlarmAssetCount']
+          @RiskAssetCount = params['RiskAssetCount']
+          @AlarmCount = params['AlarmCount']
+          @IncrementAlarmCount = params['IncrementAlarmCount']
+          @RiskCount = params['RiskCount']
+          @IncrementRiskCount = params['IncrementRiskCount']
+          unless params['RiskTop'].nil?
+            @RiskTop = []
+            params['RiskTop'].each do |i|
+              cosriskinfo_tmp = CosRiskInfo.new
+              cosriskinfo_tmp.deserialize(i)
+              @RiskTop << cosriskinfo_tmp
+            end
+          end
+          unless params['AlarmTop'].nil?
+            @AlarmTop = []
+            params['AlarmTop'].each do |i|
+              cosriskinfo_tmp = CosRiskInfo.new
+              cosriskinfo_tmp.deserialize(i)
+              @AlarmTop << cosriskinfo_tmp
+            end
+          end
+        end
+      end
+
+      # cos权限信息
+      class CosPermissionInfo < TencentCloud::Common::AbstractModel
+        # @param PermissionSource: 权限来源
+        # @type PermissionSource: String
+        # @param PermissionContent: 权限内容
+        # @type PermissionContent: String
+        # @param GrantResource: 授权资源
+        # @type GrantResource: String
+        # @param GrantAction: 授权动作
+        # @type GrantAction: String
+        # @param GrantCondition: 授权条件
+        # @type GrantCondition: String
+
+        attr_accessor :PermissionSource, :PermissionContent, :GrantResource, :GrantAction, :GrantCondition
+
+        def initialize(permissionsource=nil, permissioncontent=nil, grantresource=nil, grantaction=nil, grantcondition=nil)
+          @PermissionSource = permissionsource
+          @PermissionContent = permissioncontent
+          @GrantResource = grantresource
+          @GrantAction = grantaction
+          @GrantCondition = grantcondition
+        end
+
+        def deserialize(params)
+          @PermissionSource = params['PermissionSource']
+          @PermissionContent = params['PermissionContent']
+          @GrantResource = params['GrantResource']
+          @GrantAction = params['GrantAction']
+          @GrantCondition = params['GrantCondition']
+        end
+      end
+
+      # cos策略信息
+      class CosPolicyInfo < TencentCloud::Common::AbstractModel
+        # @param PolicyName: 策略名称
+        # @type PolicyName: String
+        # @param PolicyType: 策略类型
+        # PolicyType：1 告警策略 2 风险策略  3  白名单策略  4 ip隐藏策略
+        # @type PolicyType: Integer
+        # @param PolicySource: system:系统内置 user:用户自定义
+        # @type PolicySource: Integer
+        # @param PolicyContent: 策略内容
+        # @type PolicyContent: String
+        # @param PolicyStatus: 0 关闭
+        # 1 开启
+        # @type PolicyStatus: Integer
+        # @param PolicyAbnormalType: 策略分类
+        # @type PolicyAbnormalType: Integer
+        # @param RiskLevel: 风险级别
+        # @type RiskLevel: Integer
+        # @param PolicyId: 策略id
+        # @type PolicyId: Integer
+        # @param PolicyCreateTime: 创建时间
+        # @type PolicyCreateTime: Integer
+        # @param PolicyUpdateTime: 更新时间
+        # @type PolicyUpdateTime: Integer
+        # @param PolicyHitCount: 策略近七天命中次数
+        # @type PolicyHitCount: Integer
+        # @param PolicyContentHash: 告警内容hash
+        # @type PolicyContentHash: String
+        # @param RelAccountCount: 关联账户数
+        # @type RelAccountCount: Integer
+        # @param RelAccountUin: 关联账号uin
+        # @type RelAccountUin: String
+        # @param RelAccountName: 关联账号名
+        # @type RelAccountName: String
+        # @param PolicyDescription: 描述信息
+        # @type PolicyDescription: String
+        # @param PolicyMarker: 备注信息
+        # @type PolicyMarker: String
+        # @param AppId: appid
+        # @type AppId: Integer
+        # @param PolicyIdSet: 多账号场景下的id集合
+        # @type PolicyIdSet: Array
+        # @param PolicyHistoryHandleStatus: 是否处置历史数据状态  0 无须处置 1 需要处置 2 已处置
+        # @type PolicyHistoryHandleStatus: Integer
+        # @param SystemPolicyEditStatus: 系统策略编辑状态
+        # @type SystemPolicyEditStatus: Integer
+
+        attr_accessor :PolicyName, :PolicyType, :PolicySource, :PolicyContent, :PolicyStatus, :PolicyAbnormalType, :RiskLevel, :PolicyId, :PolicyCreateTime, :PolicyUpdateTime, :PolicyHitCount, :PolicyContentHash, :RelAccountCount, :RelAccountUin, :RelAccountName, :PolicyDescription, :PolicyMarker, :AppId, :PolicyIdSet, :PolicyHistoryHandleStatus, :SystemPolicyEditStatus
+
+        def initialize(policyname=nil, policytype=nil, policysource=nil, policycontent=nil, policystatus=nil, policyabnormaltype=nil, risklevel=nil, policyid=nil, policycreatetime=nil, policyupdatetime=nil, policyhitcount=nil, policycontenthash=nil, relaccountcount=nil, relaccountuin=nil, relaccountname=nil, policydescription=nil, policymarker=nil, appid=nil, policyidset=nil, policyhistoryhandlestatus=nil, systempolicyeditstatus=nil)
+          @PolicyName = policyname
+          @PolicyType = policytype
+          @PolicySource = policysource
+          @PolicyContent = policycontent
+          @PolicyStatus = policystatus
+          @PolicyAbnormalType = policyabnormaltype
+          @RiskLevel = risklevel
+          @PolicyId = policyid
+          @PolicyCreateTime = policycreatetime
+          @PolicyUpdateTime = policyupdatetime
+          @PolicyHitCount = policyhitcount
+          @PolicyContentHash = policycontenthash
+          @RelAccountCount = relaccountcount
+          @RelAccountUin = relaccountuin
+          @RelAccountName = relaccountname
+          @PolicyDescription = policydescription
+          @PolicyMarker = policymarker
+          @AppId = appid
+          @PolicyIdSet = policyidset
+          @PolicyHistoryHandleStatus = policyhistoryhandlestatus
+          @SystemPolicyEditStatus = systempolicyeditstatus
+        end
+
+        def deserialize(params)
+          @PolicyName = params['PolicyName']
+          @PolicyType = params['PolicyType']
+          @PolicySource = params['PolicySource']
+          @PolicyContent = params['PolicyContent']
+          @PolicyStatus = params['PolicyStatus']
+          @PolicyAbnormalType = params['PolicyAbnormalType']
+          @RiskLevel = params['RiskLevel']
+          @PolicyId = params['PolicyId']
+          @PolicyCreateTime = params['PolicyCreateTime']
+          @PolicyUpdateTime = params['PolicyUpdateTime']
+          @PolicyHitCount = params['PolicyHitCount']
+          @PolicyContentHash = params['PolicyContentHash']
+          @RelAccountCount = params['RelAccountCount']
+          @RelAccountUin = params['RelAccountUin']
+          @RelAccountName = params['RelAccountName']
+          @PolicyDescription = params['PolicyDescription']
+          @PolicyMarker = params['PolicyMarker']
+          @AppId = params['AppId']
+          @PolicyIdSet = params['PolicyIdSet']
+          @PolicyHistoryHandleStatus = params['PolicyHistoryHandleStatus']
+          @SystemPolicyEditStatus = params['SystemPolicyEditStatus']
+        end
+      end
+
+      # 风险接口情况
+      class CosRiskActionInfo < TencentCloud::Common::AbstractModel
+        # @param ActionName: 接口名
+        # @type ActionName: String
+        # @param ActionNameCn: 接口名中文
+        # @type ActionNameCn: String
+        # @param InvokeCount: 调用次数
+        # @type InvokeCount: Integer
+        # @param ActionAccessTime: 最后访问时间Unix时间单位毫秒
+        # @type ActionAccessTime: Integer
+
+        attr_accessor :ActionName, :ActionNameCn, :InvokeCount, :ActionAccessTime
+
+        def initialize(actionname=nil, actionnamecn=nil, invokecount=nil, actionaccesstime=nil)
+          @ActionName = actionname
+          @ActionNameCn = actionnamecn
+          @InvokeCount = invokecount
+          @ActionAccessTime = actionaccesstime
+        end
+
+        def deserialize(params)
+          @ActionName = params['ActionName']
+          @ActionNameCn = params['ActionNameCn']
+          @InvokeCount = params['InvokeCount']
+          @ActionAccessTime = params['ActionAccessTime']
+        end
+      end
+
+      # cos风险告警信息
+      class CosRiskAlarmInfo < TencentCloud::Common::AbstractModel
+        # @param PolicyType: 策略类型枚举值
+        # @type PolicyType: Integer
+        # @param PolicyTypeName: 策略名
+        # @type PolicyTypeName: String
+        # @param PolicyCount: 策略类型对应的策略数量
+        # @type PolicyCount: Integer
+
+        attr_accessor :PolicyType, :PolicyTypeName, :PolicyCount
+
+        def initialize(policytype=nil, policytypename=nil, policycount=nil)
+          @PolicyType = policytype
+          @PolicyTypeName = policytypename
+          @PolicyCount = policycount
+        end
+
+        def deserialize(params)
+          @PolicyType = params['PolicyType']
+          @PolicyTypeName = params['PolicyTypeName']
+          @PolicyCount = params['PolicyCount']
+        end
+      end
+
+      # 受影响的存储桶信息
+      class CosRiskBucketInfo < TencentCloud::Common::AbstractModel
+        # @param AppId: appid
+        # @type AppId: Integer
+        # @param BucketName: 桶名
+        # @type BucketName: String
+        # @param BucketRegion: 桶地域
+        # @type BucketRegion: String
+        # @param BucketMarker: 桶备注信息
+        # @type BucketMarker: String
+        # @param BucketUin: 桶uin
+        # @type BucketUin: String
+        # @param BucketNickName: uin昵称
+        # @type BucketNickName: String
+        # @param BucketMainNickName: uin主账号昵称
+        # @type BucketMainNickName: String
+        # @param BucketIdentify: uin身份
+        # @type BucketIdentify: Integer
+        # @param LastScanTimestamp: 风险检出时间Unix时间单位毫秒
+        # @type LastScanTimestamp: Integer
+        # @param HandleStatus: 状态信息
+        # @type HandleStatus: Integer
+        # @param PolicyName: 风险名称
+        # @type PolicyName: String
+        # @param PolicyType: 风险类型
+        # @type PolicyType: Integer
+        # @param PolicyId: 策略id
+        # @type PolicyId: Integer
+        # @param PolicyLevel: 策略级别
+        # @type PolicyLevel: Integer
+        # @param PolicyDescription: 策略描述
+        # @type PolicyDescription: String
+        # @param BucketAccessWay: 访问方式
+        # @type BucketAccessWay: String
+        # @param BucketTagInfo: 标签信息
+        # @type BucketTagInfo: String
+        # @param RiskId: 风险id
+        # @type RiskId: Integer
+        # @param BucketRegionCode: cos地域码值
+        # @type BucketRegionCode: String
+        # @param BucketMonitorStatus: 是否开启自动监测状态 0 关闭 1 开启
+        # @type BucketMonitorStatus: Integer
+
+        attr_accessor :AppId, :BucketName, :BucketRegion, :BucketMarker, :BucketUin, :BucketNickName, :BucketMainNickName, :BucketIdentify, :LastScanTimestamp, :HandleStatus, :PolicyName, :PolicyType, :PolicyId, :PolicyLevel, :PolicyDescription, :BucketAccessWay, :BucketTagInfo, :RiskId, :BucketRegionCode, :BucketMonitorStatus
+
+        def initialize(appid=nil, bucketname=nil, bucketregion=nil, bucketmarker=nil, bucketuin=nil, bucketnickname=nil, bucketmainnickname=nil, bucketidentify=nil, lastscantimestamp=nil, handlestatus=nil, policyname=nil, policytype=nil, policyid=nil, policylevel=nil, policydescription=nil, bucketaccessway=nil, buckettaginfo=nil, riskid=nil, bucketregioncode=nil, bucketmonitorstatus=nil)
+          @AppId = appid
+          @BucketName = bucketname
+          @BucketRegion = bucketregion
+          @BucketMarker = bucketmarker
+          @BucketUin = bucketuin
+          @BucketNickName = bucketnickname
+          @BucketMainNickName = bucketmainnickname
+          @BucketIdentify = bucketidentify
+          @LastScanTimestamp = lastscantimestamp
+          @HandleStatus = handlestatus
+          @PolicyName = policyname
+          @PolicyType = policytype
+          @PolicyId = policyid
+          @PolicyLevel = policylevel
+          @PolicyDescription = policydescription
+          @BucketAccessWay = bucketaccessway
+          @BucketTagInfo = buckettaginfo
+          @RiskId = riskid
+          @BucketRegionCode = bucketregioncode
+          @BucketMonitorStatus = bucketmonitorstatus
+        end
+
+        def deserialize(params)
+          @AppId = params['AppId']
+          @BucketName = params['BucketName']
+          @BucketRegion = params['BucketRegion']
+          @BucketMarker = params['BucketMarker']
+          @BucketUin = params['BucketUin']
+          @BucketNickName = params['BucketNickName']
+          @BucketMainNickName = params['BucketMainNickName']
+          @BucketIdentify = params['BucketIdentify']
+          @LastScanTimestamp = params['LastScanTimestamp']
+          @HandleStatus = params['HandleStatus']
+          @PolicyName = params['PolicyName']
+          @PolicyType = params['PolicyType']
+          @PolicyId = params['PolicyId']
+          @PolicyLevel = params['PolicyLevel']
+          @PolicyDescription = params['PolicyDescription']
+          @BucketAccessWay = params['BucketAccessWay']
+          @BucketTagInfo = params['BucketTagInfo']
+          @RiskId = params['RiskId']
+          @BucketRegionCode = params['BucketRegionCode']
+          @BucketMonitorStatus = params['BucketMonitorStatus']
+        end
+      end
+
+      # cos风险详情
+      class CosRiskInfo < TencentCloud::Common::AbstractModel
+        # @param PolicyType: 策略类型码值
+        # @type PolicyType: Integer
+        # @param PolicyTypeName: 策略分类名
+        # @type PolicyTypeName: String
+        # @param PolicyCount: 命中策略总数
+        # @type PolicyCount: Integer
+
+        attr_accessor :PolicyType, :PolicyTypeName, :PolicyCount
+
+        def initialize(policytype=nil, policytypename=nil, policycount=nil)
+          @PolicyType = policytype
+          @PolicyTypeName = policytypename
+          @PolicyCount = policycount
+        end
+
+        def deserialize(params)
+          @PolicyType = params['PolicyType']
+          @PolicyTypeName = params['PolicyTypeName']
+          @PolicyCount = params['PolicyCount']
+        end
+      end
+
+      # 对象存储风险趋势图
+      class CosRiskTrendInfo < TencentCloud::Common::AbstractModel
+        # @param CurrentDateStr: 当前日期
+        # @type CurrentDateStr: String
+        # @param RiskDataSet: 风险数据信息
+        # @type RiskDataSet: Array
+
+        attr_accessor :CurrentDateStr, :RiskDataSet
+
+        def initialize(currentdatestr=nil, riskdataset=nil)
+          @CurrentDateStr = currentdatestr
+          @RiskDataSet = riskdataset
+        end
+
+        def deserialize(params)
+          @CurrentDateStr = params['CurrentDateStr']
+          unless params['RiskDataSet'].nil?
+            @RiskDataSet = []
+            params['RiskDataSet'].each do |i|
+              cosriskinfo_tmp = CosRiskInfo.new
+              cosriskinfo_tmp.deserialize(i)
+              @RiskDataSet << cosriskinfo_tmp
+            end
+          end
+        end
+      end
+
+      # 风险视角风险列表
+      class CosRiskViewInfo < TencentCloud::Common::AbstractModel
+        # @param AppId: appid
+        # @type AppId: Integer
+        # @param PolicyName: 策略名称
+        # @type PolicyName: String
+        # @param PolicyId: 策略id
+        # @type PolicyId: String
+        # @param PolicyType: 策略分类
+        # @type PolicyType: Integer
+        # @param PolicyRiskLevel: 策略风险等级
+        # @type PolicyRiskLevel: Integer
+        # @param PolicyDescription: 策略描述
+        # @type PolicyDescription: String
+        # @param HandleBucketCount: 待处理的桶数
+        # @type HandleBucketCount: Integer
+        # @param LastScanTimestamp: 最近风险检出时间Unix时间单位毫秒
+        # @type LastScanTimestamp: Integer
+
+        attr_accessor :AppId, :PolicyName, :PolicyId, :PolicyType, :PolicyRiskLevel, :PolicyDescription, :HandleBucketCount, :LastScanTimestamp
+
+        def initialize(appid=nil, policyname=nil, policyid=nil, policytype=nil, policyrisklevel=nil, policydescription=nil, handlebucketcount=nil, lastscantimestamp=nil)
+          @AppId = appid
+          @PolicyName = policyname
+          @PolicyId = policyid
+          @PolicyType = policytype
+          @PolicyRiskLevel = policyrisklevel
+          @PolicyDescription = policydescription
+          @HandleBucketCount = handlebucketcount
+          @LastScanTimestamp = lastscantimestamp
+        end
+
+        def deserialize(params)
+          @AppId = params['AppId']
+          @PolicyName = params['PolicyName']
+          @PolicyId = params['PolicyId']
+          @PolicyType = params['PolicyType']
+          @PolicyRiskLevel = params['PolicyRiskLevel']
+          @PolicyDescription = params['PolicyDescription']
+          @HandleBucketCount = params['HandleBucketCount']
+          @LastScanTimestamp = params['LastScanTimestamp']
+        end
+      end
+
+      # Cos桶关联角色列表信息
+      class CosRoleAccessInfo < TencentCloud::Common::AbstractModel
+        # @param RoleId: 角色ID
+        # @type RoleId: String
+        # @param RoleName: 角色名称
+        # @type RoleName: String
+        # @param RoleDescription: 角色描述
+        # @type RoleDescription: String
+        # @param PermissionCount: 可访问权限数
+        # @type PermissionCount: Integer
+        # @param CreateTime: 策略创建时间
+        # @type CreateTime: Integer
+
+        attr_accessor :RoleId, :RoleName, :RoleDescription, :PermissionCount, :CreateTime
+
+        def initialize(roleid=nil, rolename=nil, roledescription=nil, permissioncount=nil, createtime=nil)
+          @RoleId = roleid
+          @RoleName = rolename
+          @RoleDescription = roledescription
+          @PermissionCount = permissioncount
+          @CreateTime = createtime
+        end
+
+        def deserialize(params)
+          @RoleId = params['RoleId']
+          @RoleName = params['RoleName']
+          @RoleDescription = params['RoleDescription']
+          @PermissionCount = params['PermissionCount']
+          @CreateTime = params['CreateTime']
+        end
+      end
+
+      # 对象存储调用源ip信息
+      class CosSourceIpInfo < TencentCloud::Common::AbstractModel
+        # @param UA: 调用UA
+        # @type UA: Array
+        # @param VpcInfo: 调用vpc信息
+        # @type VpcInfo: :class:`Tencentcloud::Csip.v20221121.models.CosInvokeIpVpcInfo`
+
+        attr_accessor :UA, :VpcInfo
+
+        def initialize(ua=nil, vpcinfo=nil)
+          @UA = ua
+          @VpcInfo = vpcinfo
+        end
+
+        def deserialize(params)
+          @UA = params['UA']
+          unless params['VpcInfo'].nil?
+            @VpcInfo = CosInvokeIpVpcInfo.new
+            @VpcInfo.deserialize(params['VpcInfo'])
+          end
+        end
+      end
+
       # CreateAccessKeyCheckTask请求参数结构体
       class CreateAccessKeyCheckTaskRequest < TencentCloud::Common::AbstractModel
         # @param MemberId: 集团账号的成员id
@@ -3690,6 +5131,172 @@ module TencentCloud
           @TaskID = params['TaskID']
           @Code = params['Code']
           @Msg = params['Msg']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateCosAssetSyncTask请求参数结构体
+      class CreateCosAssetSyncTaskRequest < TencentCloud::Common::AbstractModel
+        # @param MemberId: 集团账号的成员id
+        # @type MemberId: Array
+        # @param SyncType: 1 同步所有 2 仅同步资产数
+        # @type SyncType: Integer
+
+        attr_accessor :MemberId, :SyncType
+
+        def initialize(memberid=nil, synctype=nil)
+          @MemberId = memberid
+          @SyncType = synctype
+        end
+
+        def deserialize(params)
+          @MemberId = params['MemberId']
+          @SyncType = params['SyncType']
+        end
+      end
+
+      # CreateCosAssetSyncTask返回参数结构体
+      class CreateCosAssetSyncTaskResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 同步任务id
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateCosObjectScanTask请求参数结构体
+      class CreateCosObjectScanTaskRequest < TencentCloud::Common::AbstractModel
+        # @param TaskType: <p>1: 敏感数据识别 2:恶意文件扫描</p>
+        # @type TaskType: Integer
+        # @param MemberId: 集团账号的成员id
+        # @type MemberId: Array
+        # @param BucketSet: <p>存储桶列表</p>
+        # @type BucketSet: Array
+
+        attr_accessor :TaskType, :MemberId, :BucketSet
+
+        def initialize(tasktype=nil, memberid=nil, bucketset=nil)
+          @TaskType = tasktype
+          @MemberId = memberid
+          @BucketSet = bucketset
+        end
+
+        def deserialize(params)
+          @TaskType = params['TaskType']
+          @MemberId = params['MemberId']
+          @BucketSet = params['BucketSet']
+        end
+      end
+
+      # CreateCosObjectScanTask返回参数结构体
+      class CreateCosObjectScanTaskResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateCosPolicy请求参数结构体
+      class CreateCosPolicyRequest < TencentCloud::Common::AbstractModel
+        # @param CosPolicyInfo: 策略信息
+        # @type CosPolicyInfo: :class:`Tencentcloud::Csip.v20221121.models.CosPolicyInfo`
+        # @param MemberId: 集团账号的成员id
+        # @type MemberId: Array
+
+        attr_accessor :CosPolicyInfo, :MemberId
+
+        def initialize(cospolicyinfo=nil, memberid=nil)
+          @CosPolicyInfo = cospolicyinfo
+          @MemberId = memberid
+        end
+
+        def deserialize(params)
+          unless params['CosPolicyInfo'].nil?
+            @CosPolicyInfo = CosPolicyInfo.new
+            @CosPolicyInfo.deserialize(params['CosPolicyInfo'])
+          end
+          @MemberId = params['MemberId']
+        end
+      end
+
+      # CreateCosPolicy返回参数结构体
+      class CreateCosPolicyResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateCosRiskScanTask请求参数结构体
+      class CreateCosRiskScanTaskRequest < TencentCloud::Common::AbstractModel
+        # @param MemberId: 集团账号的成员id
+        # @type MemberId: Array
+        # @param BucketNameSet: 需要扫描的桶列表
+        # @type BucketNameSet: Array
+        # @param IsScanAllBucket: 是否扫描全部的桶
+        # @type IsScanAllBucket: Boolean
+
+        attr_accessor :MemberId, :BucketNameSet, :IsScanAllBucket
+
+        def initialize(memberid=nil, bucketnameset=nil, isscanallbucket=nil)
+          @MemberId = memberid
+          @BucketNameSet = bucketnameset
+          @IsScanAllBucket = isscanallbucket
+        end
+
+        def deserialize(params)
+          @MemberId = params['MemberId']
+          unless params['BucketNameSet'].nil?
+            @BucketNameSet = []
+            params['BucketNameSet'].each do |i|
+              cosbucketinfo_tmp = CosBucketInfo.new
+              cosbucketinfo_tmp.deserialize(i)
+              @BucketNameSet << cosbucketinfo_tmp
+            end
+          end
+          @IsScanAllBucket = params['IsScanAllBucket']
+        end
+      end
+
+      # CreateCosRiskScanTask返回参数结构体
+      class CreateCosRiskScanTaskResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -4861,6 +6468,81 @@ module TencentCloud
               @Tag << tag_tmp
             end
           end
+        end
+      end
+
+      # DeleteCosAkAsset请求参数结构体
+      class DeleteCosAkAssetRequest < TencentCloud::Common::AbstractModel
+        # @param CosAkSet: 要删除的cos ak集合
+        # @type CosAkSet: Array
+
+        attr_accessor :CosAkSet
+
+        def initialize(cosakset=nil)
+          @CosAkSet = cosakset
+        end
+
+        def deserialize(params)
+          unless params['CosAkSet'].nil?
+            @CosAkSet = []
+            params['CosAkSet'].each do |i|
+              cosakset_tmp = CosAkSet.new
+              cosakset_tmp.deserialize(i)
+              @CosAkSet << cosakset_tmp
+            end
+          end
+        end
+      end
+
+      # DeleteCosAkAsset返回参数结构体
+      class DeleteCosAkAssetResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteCosPolicy请求参数结构体
+      class DeleteCosPolicyRequest < TencentCloud::Common::AbstractModel
+        # @param PolicyIdSet: 要删除的策略集合
+        # @type PolicyIdSet: Array
+        # @param IsDeleteAll: 是否删除所有
+        # @type IsDeleteAll: Integer
+
+        attr_accessor :PolicyIdSet, :IsDeleteAll
+
+        def initialize(policyidset=nil, isdeleteall=nil)
+          @PolicyIdSet = policyidset
+          @IsDeleteAll = isdeleteall
+        end
+
+        def deserialize(params)
+          @PolicyIdSet = params['PolicyIdSet']
+          @IsDeleteAll = params['IsDeleteAll']
+        end
+      end
+
+      # DeleteCosPolicy返回参数结构体
+      class DeleteCosPolicyResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 
@@ -6239,6 +7921,64 @@ module TencentCloud
         end
       end
 
+      # DescribeBucketInvokeIpList请求参数结构体
+      class DescribeBucketInvokeIpListRequest < TencentCloud::Common::AbstractModel
+        # @param RelAppId: appid
+        # @type RelAppId: Integer
+        # @param BucketName: 桶名
+        # @type BucketName: String
+        # @param Filter: 过滤条件
+        # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
+
+        attr_accessor :RelAppId, :BucketName, :Filter
+
+        def initialize(relappid=nil, bucketname=nil, filter=nil)
+          @RelAppId = relappid
+          @BucketName = bucketname
+          @Filter = filter
+        end
+
+        def deserialize(params)
+          @RelAppId = params['RelAppId']
+          @BucketName = params['BucketName']
+          unless params['Filter'].nil?
+            @Filter = Filter.new
+            @Filter.deserialize(params['Filter'])
+          end
+        end
+      end
+
+      # DescribeBucketInvokeIpList返回参数结构体
+      class DescribeBucketInvokeIpListResponse < TencentCloud::Common::AbstractModel
+        # @param Data: ip信息
+        # @type Data: Array
+        # @param Total: 总数
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :Total, :RequestId
+
+        def initialize(data=nil, total=nil, requestid=nil)
+          @Data = data
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              cossourceipinfo_tmp = CosSourceIpInfo.new
+              cossourceipinfo_tmp.deserialize(i)
+              @Data << cossourceipinfo_tmp
+            end
+          end
+          @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeCFWAssetStatistics请求参数结构体
       class DescribeCFWAssetStatisticsRequest < TencentCloud::Common::AbstractModel
 
@@ -7090,6 +8830,1428 @@ module TencentCloud
               @CheckTypeList << attributeoptionset_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCosAccessPermission请求参数结构体
+      class DescribeCosAccessPermissionRequest < TencentCloud::Common::AbstractModel
+        # @param RelAppId: 关联的appid
+        # @type RelAppId: Integer
+        # @param BucketName: 桶名
+        # @type BucketName: String
+        # @param RelUin: 需要查看的uin
+        # @type RelUin: String
+        # @param Filter: 过滤器
+        # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
+
+        attr_accessor :RelAppId, :BucketName, :RelUin, :Filter
+
+        def initialize(relappid=nil, bucketname=nil, reluin=nil, filter=nil)
+          @RelAppId = relappid
+          @BucketName = bucketname
+          @RelUin = reluin
+          @Filter = filter
+        end
+
+        def deserialize(params)
+          @RelAppId = params['RelAppId']
+          @BucketName = params['BucketName']
+          @RelUin = params['RelUin']
+          unless params['Filter'].nil?
+            @Filter = Filter.new
+            @Filter.deserialize(params['Filter'])
+          end
+        end
+      end
+
+      # DescribeCosAccessPermission返回参数结构体
+      class DescribeCosAccessPermissionResponse < TencentCloud::Common::AbstractModel
+        # @param Data: cos权限信息
+        # @type Data: Array
+        # @param Total: 总数
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :Total, :RequestId
+
+        def initialize(data=nil, total=nil, requestid=nil)
+          @Data = data
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              cospermissioninfo_tmp = CosPermissionInfo.new
+              cospermissioninfo_tmp.deserialize(i)
+              @Data << cospermissioninfo_tmp
+            end
+          end
+          @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCosAccessPermissions请求参数结构体
+      class DescribeCosAccessPermissionsRequest < TencentCloud::Common::AbstractModel
+        # @param RelAppId: appid
+        # @type RelAppId: Integer
+        # @param BucketName: 桶名
+        # @type BucketName: String
+        # @param Filter: 过滤条件
+        # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
+
+        attr_accessor :RelAppId, :BucketName, :Filter
+
+        def initialize(relappid=nil, bucketname=nil, filter=nil)
+          @RelAppId = relappid
+          @BucketName = bucketname
+          @Filter = filter
+        end
+
+        def deserialize(params)
+          @RelAppId = params['RelAppId']
+          @BucketName = params['BucketName']
+          unless params['Filter'].nil?
+            @Filter = Filter.new
+            @Filter.deserialize(params['Filter'])
+          end
+        end
+      end
+
+      # DescribeCosAccessPermissions返回参数结构体
+      class DescribeCosAccessPermissionsResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 返回数据列表
+        # @type Data: Array
+        # @param Total: 总数
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :Total, :RequestId
+
+        def initialize(data=nil, total=nil, requestid=nil)
+          @Data = data
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              cosaccessinfo_tmp = CosAccessInfo.new
+              cosaccessinfo_tmp.deserialize(i)
+              @Data << cosaccessinfo_tmp
+            end
+          end
+          @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCosActionList请求参数结构体
+      class DescribeCosActionListRequest < TencentCloud::Common::AbstractModel
+        # @param Filter: 过滤器
+        # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
+
+        attr_accessor :Filter
+
+        def initialize(filter=nil)
+          @Filter = filter
+        end
+
+        def deserialize(params)
+          unless params['Filter'].nil?
+            @Filter = Filter.new
+            @Filter.deserialize(params['Filter'])
+          end
+        end
+      end
+
+      # DescribeCosActionList返回参数结构体
+      class DescribeCosActionListResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 列表
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              cosactioninfo_tmp = CosActionInfo.new
+              cosactioninfo_tmp.deserialize(i)
+              @Data << cosactioninfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCosAkAsset请求参数结构体
+      class DescribeCosAkAssetRequest < TencentCloud::Common::AbstractModel
+        # @param MemberId: 集团账号的成员id
+        # @type MemberId: Array
+        # @param Filter: 查询过滤器
+        # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
+
+        attr_accessor :MemberId, :Filter
+
+        def initialize(memberid=nil, filter=nil)
+          @MemberId = memberid
+          @Filter = filter
+        end
+
+        def deserialize(params)
+          @MemberId = params['MemberId']
+          unless params['Filter'].nil?
+            @Filter = Filter.new
+            @Filter.deserialize(params['Filter'])
+          end
+        end
+      end
+
+      # DescribeCosAkAsset返回参数结构体
+      class DescribeCosAkAssetResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 总数
+        # @type Total: Integer
+        # @param Data: ak资产列表
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :Data, :RequestId
+
+        def initialize(total=nil, data=nil, requestid=nil)
+          @Total = total
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              cosakassetinfo_tmp = CosAkAssetInfo.new
+              cosakassetinfo_tmp.deserialize(i)
+              @Data << cosakassetinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCosAkInvokeIpList请求参数结构体
+      class DescribeCosAkInvokeIpListRequest < TencentCloud::Common::AbstractModel
+        # @param RelAppId: appid
+        # @type RelAppId: Integer
+        # @param Ak: ak
+        # @type Ak: String
+        # @param Filter: 过滤条件
+        # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
+
+        attr_accessor :RelAppId, :Ak, :Filter
+
+        def initialize(relappid=nil, ak=nil, filter=nil)
+          @RelAppId = relappid
+          @Ak = ak
+          @Filter = filter
+        end
+
+        def deserialize(params)
+          @RelAppId = params['RelAppId']
+          @Ak = params['Ak']
+          unless params['Filter'].nil?
+            @Filter = Filter.new
+            @Filter.deserialize(params['Filter'])
+          end
+        end
+      end
+
+      # DescribeCosAkInvokeIpList返回参数结构体
+      class DescribeCosAkInvokeIpListResponse < TencentCloud::Common::AbstractModel
+        # @param Data: ip信息
+        # @type Data: Array
+        # @param Total: 总数
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :Total, :RequestId
+
+        def initialize(data=nil, total=nil, requestid=nil)
+          @Data = data
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              cossourceipinfo_tmp = CosSourceIpInfo.new
+              cossourceipinfo_tmp.deserialize(i)
+              @Data << cossourceipinfo_tmp
+            end
+          end
+          @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCosAlarmList请求参数结构体
+      class DescribeCosAlarmListRequest < TencentCloud::Common::AbstractModel
+        # @param MemberId: 集团账号的成员id
+        # @type MemberId: Array
+        # @param Filter: 过滤器
+        # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
+
+        attr_accessor :MemberId, :Filter
+
+        def initialize(memberid=nil, filter=nil)
+          @MemberId = memberid
+          @Filter = filter
+        end
+
+        def deserialize(params)
+          @MemberId = params['MemberId']
+          unless params['Filter'].nil?
+            @Filter = Filter.new
+            @Filter.deserialize(params['Filter'])
+          end
+        end
+      end
+
+      # DescribeCosAlarmList返回参数结构体
+      class DescribeCosAlarmListResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 总数
+        # @type Total: Integer
+        # @param Data: 告警列表
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :Data, :RequestId
+
+        def initialize(total=nil, data=nil, requestid=nil)
+          @Total = total
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              cosalarminfo_tmp = CosAlarmInfo.new
+              cosalarminfo_tmp.deserialize(i)
+              @Data << cosalarminfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCosAlarmTrendData请求参数结构体
+      class DescribeCosAlarmTrendDataRequest < TencentCloud::Common::AbstractModel
+        # @param MemberId: 集团账号的成员id
+        # @type MemberId: Array
+        # @param LastDays: 需要查看多久的时间
+        # @type LastDays: Integer
+
+        attr_accessor :MemberId, :LastDays
+
+        def initialize(memberid=nil, lastdays=nil)
+          @MemberId = memberid
+          @LastDays = lastdays
+        end
+
+        def deserialize(params)
+          @MemberId = params['MemberId']
+          @LastDays = params['LastDays']
+        end
+      end
+
+      # DescribeCosAlarmTrendData返回参数结构体
+      class DescribeCosAlarmTrendDataResponse < TencentCloud::Common::AbstractModel
+        # @param CosAlarmTrendInfo: 告警趋势信息
+        # @type CosAlarmTrendInfo: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CosAlarmTrendInfo, :RequestId
+
+        def initialize(cosalarmtrendinfo=nil, requestid=nil)
+          @CosAlarmTrendInfo = cosalarmtrendinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['CosAlarmTrendInfo'].nil?
+            @CosAlarmTrendInfo = []
+            params['CosAlarmTrendInfo'].each do |i|
+              cosalarmtrendinfo_tmp = CosAlarmTrendInfo.new
+              cosalarmtrendinfo_tmp.deserialize(i)
+              @CosAlarmTrendInfo << cosalarmtrendinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCosAsset请求参数结构体
+      class DescribeCosAssetRequest < TencentCloud::Common::AbstractModel
+        # @param Filter: 请求过滤器
+        # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
+        # @param MemberId: 集团账号的成员id
+        # @type MemberId: Array
+
+        attr_accessor :Filter, :MemberId
+
+        def initialize(filter=nil, memberid=nil)
+          @Filter = filter
+          @MemberId = memberid
+        end
+
+        def deserialize(params)
+          unless params['Filter'].nil?
+            @Filter = Filter.new
+            @Filter.deserialize(params['Filter'])
+          end
+          @MemberId = params['MemberId']
+        end
+      end
+
+      # DescribeCosAsset返回参数结构体
+      class DescribeCosAssetResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 总数
+        # @type Total: Integer
+        # @param Data: 桶信息
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :Data, :RequestId
+
+        def initialize(total=nil, data=nil, requestid=nil)
+          @Total = total
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              cosassetinfo_tmp = CosAssetInfo.new
+              cosassetinfo_tmp.deserialize(i)
+              @Data << cosassetinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCosAssetSyncTask请求参数结构体
+      class DescribeCosAssetSyncTaskRequest < TencentCloud::Common::AbstractModel
+        # @param MemberId: 集团账号的成员id
+        # @type MemberId: Array
+
+        attr_accessor :MemberId
+
+        def initialize(memberid=nil)
+          @MemberId = memberid
+        end
+
+        def deserialize(params)
+          @MemberId = params['MemberId']
+        end
+      end
+
+      # DescribeCosAssetSyncTask返回参数结构体
+      class DescribeCosAssetSyncTaskResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 数据信息
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              cosassetsynctaskinfo_tmp = CosAssetSyncTaskInfo.new
+              cosassetsynctaskinfo_tmp.deserialize(i)
+              @Data << cosassetsynctaskinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCosAuditAppIdList请求参数结构体
+      class DescribeCosAuditAppIdListRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeCosAuditAppIdList返回参数结构体
+      class DescribeCosAuditAppIdListResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 已购买appid集合
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Data = params['Data']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCosAuditDictionaryList请求参数结构体
+      class DescribeCosAuditDictionaryListRequest < TencentCloud::Common::AbstractModel
+        # @param DictType: <p>字典类型（RootCategory：一级分类，IdentifyRule:敏感识别数据项）</p>
+        # @type DictType: String
+        # @param Filters: <p>筛选条件</p>
+        # @type Filters: Array
+
+        attr_accessor :DictType, :Filters
+
+        def initialize(dicttype=nil, filters=nil)
+          @DictType = dicttype
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @DictType = params['DictType']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              wherefilter_tmp = WhereFilter.new
+              wherefilter_tmp.deserialize(i)
+              @Filters << wherefilter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeCosAuditDictionaryList返回参数结构体
+      class DescribeCosAuditDictionaryListResponse < TencentCloud::Common::AbstractModel
+        # @param DataSet: <p>结果集</p>
+        # @type DataSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DataSet, :RequestId
+
+        def initialize(dataset=nil, requestid=nil)
+          @DataSet = dataset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['DataSet'].nil?
+            @DataSet = []
+            params['DataSet'].each do |i|
+              cosdictionary_tmp = CosDictionary.new
+              cosdictionary_tmp.deserialize(i)
+              @DataSet << cosdictionary_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCosAuditPayInfo请求参数结构体
+      class DescribeCosAuditPayInfoRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeCosAuditPayInfo返回参数结构体
+      class DescribeCosAuditPayInfoResponse < TencentCloud::Common::AbstractModel
+        # @param CosAuditPayInfo: cos审计支付信息
+        # @type CosAuditPayInfo: :class:`Tencentcloud::Csip.v20221121.models.CosAuditPayInfo`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CosAuditPayInfo, :RequestId
+
+        def initialize(cosauditpayinfo=nil, requestid=nil)
+          @CosAuditPayInfo = cosauditpayinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['CosAuditPayInfo'].nil?
+            @CosAuditPayInfo = CosAuditPayInfo.new
+            @CosAuditPayInfo.deserialize(params['CosAuditPayInfo'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCosBucketBillingInfo请求参数结构体
+      class DescribeCosBucketBillingInfoRequest < TencentCloud::Common::AbstractModel
+        # @param MemberId: 集团账号的成员id
+        # @type MemberId: Array
+
+        attr_accessor :MemberId
+
+        def initialize(memberid=nil)
+          @MemberId = memberid
+        end
+
+        def deserialize(params)
+          @MemberId = params['MemberId']
+        end
+      end
+
+      # DescribeCosBucketBillingInfo返回参数结构体
+      class DescribeCosBucketBillingInfoResponse < TencentCloud::Common::AbstractModel
+        # @param CosBucketBillingInfoSet: 存储桶计费信息
+        # @type CosBucketBillingInfoSet: Array
+        # @param Total: 总数
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CosBucketBillingInfoSet, :Total, :RequestId
+
+        def initialize(cosbucketbillinginfoset=nil, total=nil, requestid=nil)
+          @CosBucketBillingInfoSet = cosbucketbillinginfoset
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['CosBucketBillingInfoSet'].nil?
+            @CosBucketBillingInfoSet = []
+            params['CosBucketBillingInfoSet'].each do |i|
+              cosbucketbillinginfo_tmp = CosBucketBillingInfo.new
+              cosbucketbillinginfo_tmp.deserialize(i)
+              @CosBucketBillingInfoSet << cosbucketbillinginfo_tmp
+            end
+          end
+          @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCosBucketList请求参数结构体
+      class DescribeCosBucketListRequest < TencentCloud::Common::AbstractModel
+        # @param MemberId: 集团账号的成员id
+        # @type MemberId: Array
+        # @param Filter: 过滤条件
+        # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
+
+        attr_accessor :MemberId, :Filter
+
+        def initialize(memberid=nil, filter=nil)
+          @MemberId = memberid
+          @Filter = filter
+        end
+
+        def deserialize(params)
+          @MemberId = params['MemberId']
+          unless params['Filter'].nil?
+            @Filter = Filter.new
+            @Filter.deserialize(params['Filter'])
+          end
+        end
+      end
+
+      # DescribeCosBucketList返回参数结构体
+      class DescribeCosBucketListResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 总数
+        # @type Total: Integer
+        # @param Data: 资产信息
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :Data, :RequestId
+
+        def initialize(total=nil, data=nil, requestid=nil)
+          @Total = total
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              cosassetinfo_tmp = CosAssetInfo.new
+              cosassetinfo_tmp.deserialize(i)
+              @Data << cosassetinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCosBucketRisk请求参数结构体
+      class DescribeCosBucketRiskRequest < TencentCloud::Common::AbstractModel
+        # @param MemberId: 集团账号的成员id
+        # @type MemberId: Array
+        # @param Filter: 过滤器
+        # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
+
+        attr_accessor :MemberId, :Filter
+
+        def initialize(memberid=nil, filter=nil)
+          @MemberId = memberid
+          @Filter = filter
+        end
+
+        def deserialize(params)
+          @MemberId = params['MemberId']
+          unless params['Filter'].nil?
+            @Filter = Filter.new
+            @Filter.deserialize(params['Filter'])
+          end
+        end
+      end
+
+      # DescribeCosBucketRisk返回参数结构体
+      class DescribeCosBucketRiskResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 总数
+        # @type Total: Integer
+        # @param Data: 列表
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :Data, :RequestId
+
+        def initialize(total=nil, data=nil, requestid=nil)
+          @Total = total
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              cosriskbucketinfo_tmp = CosRiskBucketInfo.new
+              cosriskbucketinfo_tmp.deserialize(i)
+              @Data << cosriskbucketinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCosIdentifyFileList请求参数结构体
+      class DescribeCosIdentifyFileListRequest < TencentCloud::Common::AbstractModel
+        # @param BucketName: <p>存储桶名</p>
+        # @type BucketName: String
+        # @param MemberId: 集团账号的成员id
+        # @type MemberId: Array
+        # @param Filter: <p>筛选项</p>
+        # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
+        # @param ResultStatus: <p>0：没有识别结果 1：有识别结果</p>
+        # @type ResultStatus: Integer
+
+        attr_accessor :BucketName, :MemberId, :Filter, :ResultStatus
+
+        def initialize(bucketname=nil, memberid=nil, filter=nil, resultstatus=nil)
+          @BucketName = bucketname
+          @MemberId = memberid
+          @Filter = filter
+          @ResultStatus = resultstatus
+        end
+
+        def deserialize(params)
+          @BucketName = params['BucketName']
+          @MemberId = params['MemberId']
+          unless params['Filter'].nil?
+            @Filter = Filter.new
+            @Filter.deserialize(params['Filter'])
+          end
+          @ResultStatus = params['ResultStatus']
+        end
+      end
+
+      # DescribeCosIdentifyFileList返回参数结构体
+      class DescribeCosIdentifyFileListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: <p>总数</p>
+        # @type TotalCount: Integer
+        # @param DataSet: <p>结果集</p>
+        # @type DataSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :DataSet, :RequestId
+
+        def initialize(totalcount=nil, dataset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @DataSet = dataset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['DataSet'].nil?
+            @DataSet = []
+            params['DataSet'].each do |i|
+              cosassetfileidentifyinfo_tmp = CosAssetFileIdentifyInfo.new
+              cosassetfileidentifyinfo_tmp.deserialize(i)
+              @DataSet << cosassetfileidentifyinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCosInvokeUa请求参数结构体
+      class DescribeCosInvokeUaRequest < TencentCloud::Common::AbstractModel
+        # @param RelAppId: appid
+        # @type RelAppId: Integer
+        # @param Filter: 过滤器
+        # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
+
+        attr_accessor :RelAppId, :Filter
+
+        def initialize(relappid=nil, filter=nil)
+          @RelAppId = relappid
+          @Filter = filter
+        end
+
+        def deserialize(params)
+          @RelAppId = params['RelAppId']
+          unless params['Filter'].nil?
+            @Filter = Filter.new
+            @Filter.deserialize(params['Filter'])
+          end
+        end
+      end
+
+      # DescribeCosInvokeUa返回参数结构体
+      class DescribeCosInvokeUaResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 总数
+        # @type Total: Integer
+        # @param Data: 文件列表
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :Data, :RequestId
+
+        def initialize(total=nil, data=nil, requestid=nil)
+          @Total = total
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          @Data = params['Data']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCosIpInvokeLog请求参数结构体
+      class DescribeCosIpInvokeLogRequest < TencentCloud::Common::AbstractModel
+        # @param RelAppId: appid
+        # @type RelAppId: Integer
+        # @param Filter: 过滤器
+        # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
+
+        attr_accessor :RelAppId, :Filter
+
+        def initialize(relappid=nil, filter=nil)
+          @RelAppId = relappid
+          @Filter = filter
+        end
+
+        def deserialize(params)
+          @RelAppId = params['RelAppId']
+          unless params['Filter'].nil?
+            @Filter = Filter.new
+            @Filter.deserialize(params['Filter'])
+          end
+        end
+      end
+
+      # DescribeCosIpInvokeLog返回参数结构体
+      class DescribeCosIpInvokeLogResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 总数
+        # @type Total: Integer
+        # @param Data: 请求日志数据
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :Data, :RequestId
+
+        def initialize(total=nil, data=nil, requestid=nil)
+          @Total = total
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              cosinvokelog_tmp = CosInvokeLog.new
+              cosinvokelog_tmp.deserialize(i)
+              @Data << cosinvokelog_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCosIpInvokeRecordFile请求参数结构体
+      class DescribeCosIpInvokeRecordFileRequest < TencentCloud::Common::AbstractModel
+        # @param RelAppId: appid
+        # @type RelAppId: Integer
+        # @param Filter: 过滤器
+        # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
+
+        attr_accessor :RelAppId, :Filter
+
+        def initialize(relappid=nil, filter=nil)
+          @RelAppId = relappid
+          @Filter = filter
+        end
+
+        def deserialize(params)
+          @RelAppId = params['RelAppId']
+          unless params['Filter'].nil?
+            @Filter = Filter.new
+            @Filter.deserialize(params['Filter'])
+          end
+        end
+      end
+
+      # DescribeCosIpInvokeRecordFile返回参数结构体
+      class DescribeCosIpInvokeRecordFileResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 总数
+        # @type Total: Integer
+        # @param Data: 文件列表
+        # @type Data: Array
+        # @param DataSet: 文件列表详情
+        # @type DataSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :Data, :DataSet, :RequestId
+        extend Gem::Deprecate
+        deprecate :Data, :none, 2026, 5
+        deprecate :Data=, :none, 2026, 5
+
+        def initialize(total=nil, data=nil, dataset=nil, requestid=nil)
+          @Total = total
+          @Data = data
+          @DataSet = dataset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          @Data = params['Data']
+          unless params['DataSet'].nil?
+            @DataSet = []
+            params['DataSet'].each do |i|
+              cosassetfileidentifyinfo_tmp = CosAssetFileIdentifyInfo.new
+              cosassetfileidentifyinfo_tmp.deserialize(i)
+              @DataSet << cosassetfileidentifyinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCosOverview请求参数结构体
+      class DescribeCosOverviewRequest < TencentCloud::Common::AbstractModel
+        # @param MemberId: 集团账号的成员id
+        # @type MemberId: Array
+        # @param Filter: 过滤信息
+        # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
+
+        attr_accessor :MemberId, :Filter
+
+        def initialize(memberid=nil, filter=nil)
+          @MemberId = memberid
+          @Filter = filter
+        end
+
+        def deserialize(params)
+          @MemberId = params['MemberId']
+          unless params['Filter'].nil?
+            @Filter = Filter.new
+            @Filter.deserialize(params['Filter'])
+          end
+        end
+      end
+
+      # DescribeCosOverview返回参数结构体
+      class DescribeCosOverviewResponse < TencentCloud::Common::AbstractModel
+        # @param CosOverview: cos概览
+        # @type CosOverview: :class:`Tencentcloud::Csip.v20221121.models.CosOverview`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CosOverview, :RequestId
+
+        def initialize(cosoverview=nil, requestid=nil)
+          @CosOverview = cosoverview
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['CosOverview'].nil?
+            @CosOverview = CosOverview.new
+            @CosOverview.deserialize(params['CosOverview'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCosPolicy请求参数结构体
+      class DescribeCosPolicyRequest < TencentCloud::Common::AbstractModel
+        # @param MemberId: 集团账号的成员id
+        # @type MemberId: Array
+        # @param Filter: 过滤条件
+        # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
+
+        attr_accessor :MemberId, :Filter
+
+        def initialize(memberid=nil, filter=nil)
+          @MemberId = memberid
+          @Filter = filter
+        end
+
+        def deserialize(params)
+          @MemberId = params['MemberId']
+          unless params['Filter'].nil?
+            @Filter = Filter.new
+            @Filter.deserialize(params['Filter'])
+          end
+        end
+      end
+
+      # DescribeCosPolicy返回参数结构体
+      class DescribeCosPolicyResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 策略总数
+        # @type Total: Integer
+        # @param Data: 策略信息
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :Data, :RequestId
+
+        def initialize(total=nil, data=nil, requestid=nil)
+          @Total = total
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              cospolicyinfo_tmp = CosPolicyInfo.new
+              cospolicyinfo_tmp.deserialize(i)
+              @Data << cospolicyinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCosRiskActionList请求参数结构体
+      class DescribeCosRiskActionListRequest < TencentCloud::Common::AbstractModel
+        # @param RelAppId: appid
+        # @type RelAppId: Integer
+        # @param PolicyId: 策略id
+        # @type PolicyId: Integer
+        # @param BucketName: 桶名
+        # @type BucketName: String
+        # @param Filter: 过滤器
+        # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
+
+        attr_accessor :RelAppId, :PolicyId, :BucketName, :Filter
+
+        def initialize(relappid=nil, policyid=nil, bucketname=nil, filter=nil)
+          @RelAppId = relappid
+          @PolicyId = policyid
+          @BucketName = bucketname
+          @Filter = filter
+        end
+
+        def deserialize(params)
+          @RelAppId = params['RelAppId']
+          @PolicyId = params['PolicyId']
+          @BucketName = params['BucketName']
+          unless params['Filter'].nil?
+            @Filter = Filter.new
+            @Filter.deserialize(params['Filter'])
+          end
+        end
+      end
+
+      # DescribeCosRiskActionList返回参数结构体
+      class DescribeCosRiskActionListResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 总数
+        # @type Total: Integer
+        # @param Data: 列表
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :Data, :RequestId
+
+        def initialize(total=nil, data=nil, requestid=nil)
+          @Total = total
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              cosriskactioninfo_tmp = CosRiskActionInfo.new
+              cosriskactioninfo_tmp.deserialize(i)
+              @Data << cosriskactioninfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCosRiskEvidence请求参数结构体
+      class DescribeCosRiskEvidenceRequest < TencentCloud::Common::AbstractModel
+        # @param RelAppId: appid
+        # @type RelAppId: Integer
+        # @param PolicyId: 策略id
+        # @type PolicyId: Integer
+        # @param BucketName: 存储桶名
+        # @type BucketName: String
+        # @param Filter: 过滤器
+        # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
+
+        attr_accessor :RelAppId, :PolicyId, :BucketName, :Filter
+
+        def initialize(relappid=nil, policyid=nil, bucketname=nil, filter=nil)
+          @RelAppId = relappid
+          @PolicyId = policyid
+          @BucketName = bucketname
+          @Filter = filter
+        end
+
+        def deserialize(params)
+          @RelAppId = params['RelAppId']
+          @PolicyId = params['PolicyId']
+          @BucketName = params['BucketName']
+          unless params['Filter'].nil?
+            @Filter = Filter.new
+            @Filter.deserialize(params['Filter'])
+          end
+        end
+      end
+
+      # DescribeCosRiskEvidence返回参数结构体
+      class DescribeCosRiskEvidenceResponse < TencentCloud::Common::AbstractModel
+        # @param Evidences: 证据信息
+        # @type Evidences: Array
+        # @param Total: 总数
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Evidences, :Total, :RequestId
+
+        def initialize(evidences=nil, total=nil, requestid=nil)
+          @Evidences = evidences
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Evidences'].nil?
+            @Evidences = []
+            params['Evidences'].each do |i|
+              cospermissioninfo_tmp = CosPermissionInfo.new
+              cospermissioninfo_tmp.deserialize(i)
+              @Evidences << cospermissioninfo_tmp
+            end
+          end
+          @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCosRiskScanTask请求参数结构体
+      class DescribeCosRiskScanTaskRequest < TencentCloud::Common::AbstractModel
+        # @param BucketInfoSet: 需要查看的存储桶详情
+        # @type BucketInfoSet: Array
+
+        attr_accessor :BucketInfoSet
+
+        def initialize(bucketinfoset=nil)
+          @BucketInfoSet = bucketinfoset
+        end
+
+        def deserialize(params)
+          unless params['BucketInfoSet'].nil?
+            @BucketInfoSet = []
+            params['BucketInfoSet'].each do |i|
+              cosbucketinfo_tmp = CosBucketInfo.new
+              cosbucketinfo_tmp.deserialize(i)
+              @BucketInfoSet << cosbucketinfo_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeCosRiskScanTask返回参数结构体
+      class DescribeCosRiskScanTaskResponse < TencentCloud::Common::AbstractModel
+        # @param BucketTaskInfoSet: cos桶任务详情
+        # @type BucketTaskInfoSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :BucketTaskInfoSet, :RequestId
+
+        def initialize(buckettaskinfoset=nil, requestid=nil)
+          @BucketTaskInfoSet = buckettaskinfoset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['BucketTaskInfoSet'].nil?
+            @BucketTaskInfoSet = []
+            params['BucketTaskInfoSet'].each do |i|
+              cosbuckettaskinfo_tmp = CosBucketTaskInfo.new
+              cosbuckettaskinfo_tmp.deserialize(i)
+              @BucketTaskInfoSet << cosbuckettaskinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCosRoleAccessPermission请求参数结构体
+      class DescribeCosRoleAccessPermissionRequest < TencentCloud::Common::AbstractModel
+        # @param RelAppId: 关联的appid
+        # @type RelAppId: Integer
+        # @param RelRoleId: 需要查看的角色id
+        # @type RelRoleId: String
+        # @param BucketName: 桶名
+        # @type BucketName: String
+        # @param Filter: 过滤器
+        # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
+
+        attr_accessor :RelAppId, :RelRoleId, :BucketName, :Filter
+
+        def initialize(relappid=nil, relroleid=nil, bucketname=nil, filter=nil)
+          @RelAppId = relappid
+          @RelRoleId = relroleid
+          @BucketName = bucketname
+          @Filter = filter
+        end
+
+        def deserialize(params)
+          @RelAppId = params['RelAppId']
+          @RelRoleId = params['RelRoleId']
+          @BucketName = params['BucketName']
+          unless params['Filter'].nil?
+            @Filter = Filter.new
+            @Filter.deserialize(params['Filter'])
+          end
+        end
+      end
+
+      # DescribeCosRoleAccessPermission返回参数结构体
+      class DescribeCosRoleAccessPermissionResponse < TencentCloud::Common::AbstractModel
+        # @param Data: cos权限信息
+        # @type Data: Array
+        # @param Total: 总数
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :Total, :RequestId
+
+        def initialize(data=nil, total=nil, requestid=nil)
+          @Data = data
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              cospermissioninfo_tmp = CosPermissionInfo.new
+              cospermissioninfo_tmp.deserialize(i)
+              @Data << cospermissioninfo_tmp
+            end
+          end
+          @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCosRoleAccessPermissions请求参数结构体
+      class DescribeCosRoleAccessPermissionsRequest < TencentCloud::Common::AbstractModel
+        # @param RelAppId: 存储桶所属appid
+        # @type RelAppId: Integer
+        # @param BucketName: 存储桶名
+        # @type BucketName: String
+        # @param Filter: 过滤条件
+        # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
+
+        attr_accessor :RelAppId, :BucketName, :Filter
+
+        def initialize(relappid=nil, bucketname=nil, filter=nil)
+          @RelAppId = relappid
+          @BucketName = bucketname
+          @Filter = filter
+        end
+
+        def deserialize(params)
+          @RelAppId = params['RelAppId']
+          @BucketName = params['BucketName']
+          unless params['Filter'].nil?
+            @Filter = Filter.new
+            @Filter.deserialize(params['Filter'])
+          end
+        end
+      end
+
+      # DescribeCosRoleAccessPermissions返回参数结构体
+      class DescribeCosRoleAccessPermissionsResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 总数
+        # @type Total: Integer
+        # @param Data: 角色详情
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :Data, :RequestId
+
+        def initialize(total=nil, data=nil, requestid=nil)
+          @Total = total
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              cosroleaccessinfo_tmp = CosRoleAccessInfo.new
+              cosroleaccessinfo_tmp.deserialize(i)
+              @Data << cosroleaccessinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCosSourceIp请求参数结构体
+      class DescribeCosSourceIpRequest < TencentCloud::Common::AbstractModel
+        # @param MemberId: 集团账号的成员id
+        # @type MemberId: Array
+        # @param Filter: 过滤条件
+        # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
+
+        attr_accessor :MemberId, :Filter
+
+        def initialize(memberid=nil, filter=nil)
+          @MemberId = memberid
+          @Filter = filter
+        end
+
+        def deserialize(params)
+          @MemberId = params['MemberId']
+          unless params['Filter'].nil?
+            @Filter = Filter.new
+            @Filter.deserialize(params['Filter'])
+          end
+        end
+      end
+
+      # DescribeCosSourceIp返回参数结构体
+      class DescribeCosSourceIpResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 列表信息
+        # @type Data: Array
+        # @param Total: 总数
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :Total, :RequestId
+
+        def initialize(data=nil, total=nil, requestid=nil)
+          @Data = data
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              cossourceipinfo_tmp = CosSourceIpInfo.new
+              cossourceipinfo_tmp.deserialize(i)
+              @Data << cossourceipinfo_tmp
+            end
+          end
+          @Total = params['Total']
           @RequestId = params['RequestId']
         end
       end
@@ -10316,6 +13478,98 @@ module TencentCloud
         end
       end
 
+      # DescribeIpInvokeRecordDetail请求参数结构体
+      class DescribeIpInvokeRecordDetailRequest < TencentCloud::Common::AbstractModel
+        # @param Filter: 过滤器
+        # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
+
+        attr_accessor :Filter
+
+        def initialize(filter=nil)
+          @Filter = filter
+        end
+
+        def deserialize(params)
+          unless params['Filter'].nil?
+            @Filter = Filter.new
+            @Filter.deserialize(params['Filter'])
+          end
+        end
+      end
+
+      # DescribeIpInvokeRecordDetail返回参数结构体
+      class DescribeIpInvokeRecordDetailResponse < TencentCloud::Common::AbstractModel
+        # @param InvokeDetailInfo: 调用详情信息
+        # @type InvokeDetailInfo: Array
+        # @param InvokePermission: 调用权限相关
+        # @type InvokePermission: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InvokeDetailInfo, :InvokePermission, :RequestId
+
+        def initialize(invokedetailinfo=nil, invokepermission=nil, requestid=nil)
+          @InvokeDetailInfo = invokedetailinfo
+          @InvokePermission = invokepermission
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['InvokeDetailInfo'].nil?
+            @InvokeDetailInfo = []
+            params['InvokeDetailInfo'].each do |i|
+              cosinvokedetailinfo_tmp = CosInvokeDetailInfo.new
+              cosinvokedetailinfo_tmp.deserialize(i)
+              @InvokeDetailInfo << cosinvokedetailinfo_tmp
+            end
+          end
+          unless params['InvokePermission'].nil?
+            @InvokePermission = []
+            params['InvokePermission'].each do |i|
+              cospermissioninfo_tmp = CosPermissionInfo.new
+              cospermissioninfo_tmp.deserialize(i)
+              @InvokePermission << cospermissioninfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeIpInvokeRecord请求参数结构体
+      class DescribeIpInvokeRecordRequest < TencentCloud::Common::AbstractModel
+        # @param Filter: 过滤条件
+        # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
+
+        attr_accessor :Filter
+
+        def initialize(filter=nil)
+          @Filter = filter
+        end
+
+        def deserialize(params)
+          unless params['Filter'].nil?
+            @Filter = Filter.new
+            @Filter.deserialize(params['Filter'])
+          end
+        end
+      end
+
+      # DescribeIpInvokeRecord返回参数结构体
+      class DescribeIpInvokeRecordResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeKeySandboxCredentialList请求参数结构体
       class DescribeKeySandboxCredentialListRequest < TencentCloud::Common::AbstractModel
         # @param Filter: 过滤条件列表，支持的过滤条件如下：
@@ -10843,6 +14097,53 @@ module TencentCloud
         end
       end
 
+      # DescribePolicyHitData请求参数结构体
+      class DescribePolicyHitDataRequest < TencentCloud::Common::AbstractModel
+        # @param IndexTimestamp: 查看的日期时间戳
+        # @type IndexTimestamp: Integer
+        # @param MemberId: 集团账号的成员id
+        # @type MemberId: Array
+
+        attr_accessor :IndexTimestamp, :MemberId
+
+        def initialize(indextimestamp=nil, memberid=nil)
+          @IndexTimestamp = indextimestamp
+          @MemberId = memberid
+        end
+
+        def deserialize(params)
+          @IndexTimestamp = params['IndexTimestamp']
+          @MemberId = params['MemberId']
+        end
+      end
+
+      # DescribePolicyHitData返回参数结构体
+      class DescribePolicyHitDataResponse < TencentCloud::Common::AbstractModel
+        # @param PolicyHitDetail: 策略命中详情信息
+        # @type PolicyHitDetail: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PolicyHitDetail, :RequestId
+
+        def initialize(policyhitdetail=nil, requestid=nil)
+          @PolicyHitDetail = policyhitdetail
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['PolicyHitDetail'].nil?
+            @PolicyHitDetail = []
+            params['PolicyHitDetail'].each do |i|
+              cosriskinfo_tmp = CosRiskInfo.new
+              cosriskinfo_tmp.deserialize(i)
+              @PolicyHitDetail << cosriskinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribePublicIpAssets请求参数结构体
       class DescribePublicIpAssetsRequest < TencentCloud::Common::AbstractModel
         # @param MemberId: 集团账号的成员id
@@ -11033,6 +14334,64 @@ module TencentCloud
               filterdataobject_tmp = FilterDataObject.new
               filterdataobject_tmp.deserialize(i)
               @RegionList << filterdataobject_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeRiskBucketList请求参数结构体
+      class DescribeRiskBucketListRequest < TencentCloud::Common::AbstractModel
+        # @param RelAppId: 关联的appid
+        # @type RelAppId: Integer
+        # @param PolicyId: 规则id
+        # @type PolicyId: String
+        # @param Filter: 过滤器
+        # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
+
+        attr_accessor :RelAppId, :PolicyId, :Filter
+
+        def initialize(relappid=nil, policyid=nil, filter=nil)
+          @RelAppId = relappid
+          @PolicyId = policyid
+          @Filter = filter
+        end
+
+        def deserialize(params)
+          @RelAppId = params['RelAppId']
+          @PolicyId = params['PolicyId']
+          unless params['Filter'].nil?
+            @Filter = Filter.new
+            @Filter.deserialize(params['Filter'])
+          end
+        end
+      end
+
+      # DescribeRiskBucketList返回参数结构体
+      class DescribeRiskBucketListResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 总数
+        # @type Total: Integer
+        # @param Data: 受影响的存储桶
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :Data, :RequestId
+
+        def initialize(total=nil, data=nil, requestid=nil)
+          @Total = total
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              cosriskbucketinfo_tmp = CosRiskBucketInfo.new
+              cosriskbucketinfo_tmp.deserialize(i)
+              @Data << cosriskbucketinfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -12171,6 +15530,60 @@ module TencentCloud
         end
       end
 
+      # DescribeRiskItemList请求参数结构体
+      class DescribeRiskItemListRequest < TencentCloud::Common::AbstractModel
+        # @param MemberId: 集团账号的成员id
+        # @type MemberId: Array
+        # @param Filter: 过滤器
+        # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
+
+        attr_accessor :MemberId, :Filter
+
+        def initialize(memberid=nil, filter=nil)
+          @MemberId = memberid
+          @Filter = filter
+        end
+
+        def deserialize(params)
+          @MemberId = params['MemberId']
+          unless params['Filter'].nil?
+            @Filter = Filter.new
+            @Filter.deserialize(params['Filter'])
+          end
+        end
+      end
+
+      # DescribeRiskItemList返回参数结构体
+      class DescribeRiskItemListResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 列表信息
+        # @type Data: Array
+        # @param Total: 总数
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :Total, :RequestId
+
+        def initialize(data=nil, total=nil, requestid=nil)
+          @Data = data
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              cosriskviewinfo_tmp = CosRiskViewInfo.new
+              cosriskviewinfo_tmp.deserialize(i)
+              @Data << cosriskviewinfo_tmp
+            end
+          end
+          @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeRiskRuleDetail请求参数结构体
       class DescribeRiskRuleDetailRequest < TencentCloud::Common::AbstractModel
         # @param RiskRuleId: 风险规则ID
@@ -12302,6 +15715,53 @@ module TencentCloud
               attributeoptionset_tmp = AttributeOptionSet.new
               attributeoptionset_tmp.deserialize(i)
               @InstanceTypeList << attributeoptionset_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeRiskTrendData请求参数结构体
+      class DescribeRiskTrendDataRequest < TencentCloud::Common::AbstractModel
+        # @param MemberId: 集团账号的成员id
+        # @type MemberId: Array
+        # @param LastDays: 指定的日期
+        # @type LastDays: Integer
+
+        attr_accessor :MemberId, :LastDays
+
+        def initialize(memberid=nil, lastdays=nil)
+          @MemberId = memberid
+          @LastDays = lastdays
+        end
+
+        def deserialize(params)
+          @MemberId = params['MemberId']
+          @LastDays = params['LastDays']
+        end
+      end
+
+      # DescribeRiskTrendData返回参数结构体
+      class DescribeRiskTrendDataResponse < TencentCloud::Common::AbstractModel
+        # @param CosRiskTrendData: 风险趋势数据
+        # @type CosRiskTrendData: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CosRiskTrendData, :RequestId
+
+        def initialize(cosrisktrenddata=nil, requestid=nil)
+          @CosRiskTrendData = cosrisktrenddata
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['CosRiskTrendData'].nil?
+            @CosRiskTrendData = []
+            params['CosRiskTrendData'].each do |i|
+              cosrisktrendinfo_tmp = CosRiskTrendInfo.new
+              cosrisktrendinfo_tmp.deserialize(i)
+              @CosRiskTrendData << cosrisktrendinfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -17438,6 +20898,143 @@ module TencentCloud
         end
       end
 
+      # ModifyAlarmRiskStatus请求参数结构体
+      class ModifyAlarmRiskStatusRequest < TencentCloud::Common::AbstractModel
+        # @param AlarmRiskIdSet: 告警或者风险id
+        # @type AlarmRiskIdSet: Array
+        # @param AlarmRiskType: 风险或告警状态  1 告警 2风险
+        # @type AlarmRiskType: Integer
+        # @param HandleStatus: 处置状态
+        # @type HandleStatus: Integer
+
+        attr_accessor :AlarmRiskIdSet, :AlarmRiskType, :HandleStatus
+
+        def initialize(alarmriskidset=nil, alarmrisktype=nil, handlestatus=nil)
+          @AlarmRiskIdSet = alarmriskidset
+          @AlarmRiskType = alarmrisktype
+          @HandleStatus = handlestatus
+        end
+
+        def deserialize(params)
+          unless params['AlarmRiskIdSet'].nil?
+            @AlarmRiskIdSet = []
+            params['AlarmRiskIdSet'].each do |i|
+              cosalarmriskidinfo_tmp = CosAlarmRiskIdInfo.new
+              cosalarmriskidinfo_tmp.deserialize(i)
+              @AlarmRiskIdSet << cosalarmriskidinfo_tmp
+            end
+          end
+          @AlarmRiskType = params['AlarmRiskType']
+          @HandleStatus = params['HandleStatus']
+        end
+      end
+
+      # ModifyAlarmRiskStatus返回参数结构体
+      class ModifyAlarmRiskStatusResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyCosAuditMonitorAccount请求参数结构体
+      class ModifyCosAuditMonitorAccountRequest < TencentCloud::Common::AbstractModel
+        # @param ResourceId: 资源id
+        # @type ResourceId: String
+        # @param MonitorAppIdSet: 需要监测的appid信息
+        # @type MonitorAppIdSet: Array
+        # @param BindBucket: 选择存储桶映射关系
+        # @type BindBucket: Array
+
+        attr_accessor :ResourceId, :MonitorAppIdSet, :BindBucket
+
+        def initialize(resourceid=nil, monitorappidset=nil, bindbucket=nil)
+          @ResourceId = resourceid
+          @MonitorAppIdSet = monitorappidset
+          @BindBucket = bindbucket
+        end
+
+        def deserialize(params)
+          @ResourceId = params['ResourceId']
+          @MonitorAppIdSet = params['MonitorAppIdSet']
+          unless params['BindBucket'].nil?
+            @BindBucket = []
+            params['BindBucket'].each do |i|
+              cosbucketid_tmp = CosBucketId.new
+              cosbucketid_tmp.deserialize(i)
+              @BindBucket << cosbucketid_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyCosAuditMonitorAccount返回参数结构体
+      class ModifyCosAuditMonitorAccountResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyCosMarkInfo请求参数结构体
+      class ModifyCosMarkInfoRequest < TencentCloud::Common::AbstractModel
+        # @param BucketNameSet: 需要修改的存储桶列表
+        # @type BucketNameSet: Array
+        # @param MarkInfo: 备注信息
+        # @type MarkInfo: String
+
+        attr_accessor :BucketNameSet, :MarkInfo
+
+        def initialize(bucketnameset=nil, markinfo=nil)
+          @BucketNameSet = bucketnameset
+          @MarkInfo = markinfo
+        end
+
+        def deserialize(params)
+          unless params['BucketNameSet'].nil?
+            @BucketNameSet = []
+            params['BucketNameSet'].each do |i|
+              cosbucketinfo_tmp = CosBucketInfo.new
+              cosbucketinfo_tmp.deserialize(i)
+              @BucketNameSet << cosbucketinfo_tmp
+            end
+          end
+          @MarkInfo = params['MarkInfo']
+        end
+      end
+
+      # ModifyCosMarkInfo返回参数结构体
+      class ModifyCosMarkInfoResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyDspmAccessRecord请求参数结构体
       class ModifyDspmAccessRecordRequest < TencentCloud::Common::AbstractModel
         # @param MemberId: 集团账号的成员id
@@ -18158,6 +21755,42 @@ module TencentCloud
 
         def deserialize(params)
           @Status = params['Status']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyPolicyStatus请求参数结构体
+      class ModifyPolicyStatusRequest < TencentCloud::Common::AbstractModel
+        # @param PolicyIdSet: 策略id集合
+        # @type PolicyIdSet: Array
+        # @param Status: 状态值
+        # @type Status: Integer
+
+        attr_accessor :PolicyIdSet, :Status
+
+        def initialize(policyidset=nil, status=nil)
+          @PolicyIdSet = policyidset
+          @Status = status
+        end
+
+        def deserialize(params)
+          @PolicyIdSet = params['PolicyIdSet']
+          @Status = params['Status']
+        end
+      end
+
+      # ModifyPolicyStatus返回参数结构体
+      class ModifyPolicyStatusResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -18917,28 +22550,28 @@ module TencentCloud
 
       # 地域配置
       class RegionConfig < TencentCloud::Common::AbstractModel
-        # @param Region: 地域
+        # @param Region: <p>地域</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Region: String
-        # @param RegionName: 地域中文
+        # @param RegionName: <p>地域中文</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegionName: String
-        # @param Foreign: 是否国外
+        # @param Foreign: <p>是否境外</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Foreign: Integer
-        # @param Code: 地域码
+        # @param Code: <p>地域码</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Code: Integer
-        # @param IsAutoDriveCloud: 是否自驾云
+        # @param IsAutoDriveCloud: <p>是否自驾云</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsAutoDriveCloud: Integer
-        # @param IsSupportNat: 是否支持nat
+        # @param IsSupportNat: <p>是否支持nat</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsSupportNat: Integer
-        # @param RegionArea: 地区信息
+        # @param RegionArea: <p>地区信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegionArea: String
-        # @param RegionNameEN: 地域英文
+        # @param RegionNameEN: <p>地域英文</p>
         # @type RegionNameEN: String
 
         attr_accessor :Region, :RegionName, :Foreign, :Code, :IsAutoDriveCloud, :IsSupportNat, :RegionArea, :RegionNameEN
