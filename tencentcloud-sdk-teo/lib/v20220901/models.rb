@@ -14426,9 +14426,9 @@ module TencentCloud
         # @type Type: String
         # @param Port: 检查端口。当 Type=HTTP 或 Type=HTTPS 或 Type=TCP 或 Type=UDP 时为必填。
         # @type Port: Integer
-        # @param Interval: 检查频率，表示多久发起一次健康检查任务，单位为秒。可取值有：30，60，180，300 或 600。
+        # @param Interval: 检查频率，表示多久发起一次健康检查任务，单位为秒。可配置 10-600 秒。
         # @type Interval: Integer
-        # @param Timeout: 每一次健康检查的超时时间，若健康检查消耗时间大于此值，则检查结果判定为”不健康“， 单位为秒，默认值为 5s，取值必须小于 Interval。
+        # @param Timeout: 每一次健康检查的超时时间，若健康检查消耗时间大于此值，则检查结果判定为“不健康”， 单位为秒，默认值为 5s，取值必须小于 Interval。
         # @type Timeout: Integer
         # @param HealthThreshold: 健康阈值，表示连续几次健康检查结果为"健康"，则判断源站为"健康"，单位为次，默认 3 次，最小取值 1 次。
         # @type HealthThreshold: Integer

@@ -16197,10 +16197,12 @@ module TencentCloud
         # @type ShuffleWriteBytesSum: Integer
         # @param ActiveCore: <p>活跃core</p>
         # @type ActiveCore: Integer
+        # @param QueueTime: <p>排队时间</p><p>单位：毫秒</p>
+        # @type QueueTime: Integer
 
-        attr_accessor :DatabaseName, :DataAmount, :Id, :UsedTime, :OutputPath, :CreateTime, :State, :SQLType, :SQL, :ResultExpired, :RowAffectInfo, :DataSet, :Error, :Percentage, :OutputMessage, :TaskType, :ProgressDetail, :UpdateTime, :DataEngineId, :OperateUin, :DataEngineName, :InputType, :InputConf, :DataNumber, :CanDownload, :UserAlias, :SparkJobName, :SparkJobId, :SparkJobFile, :UiUrl, :TotalTime, :CmdArgs, :ImageVersion, :DriverSize, :ExecutorSize, :ExecutorNums, :ExecutorMaxNumbers, :CommonMetrics, :SparkMonitorMetrics, :PrestoMonitorMetrics, :ResultFormat, :EngineTypeDetail, :ResourceGroupName, :Source, :SourceExtra, :CreatorUin, :CreatorAlias, :CustomizedConf, :TaskTimeSum, :StageStartTime, :InputRecordsSum, :AnalysisStatusType, :OutputRecordsSum, :OutputBytesSum, :OutputFilesNum, :OutputSmallFilesNum, :ShuffleReadRecordsSum, :ShuffleReadBytesSum, :SparkAppId, :TaskCategory, :TaskName, :EngineType, :EngineHasListenerConfig, :ResourceGroupId, :JobTimeSum, :LaunchTime, :GpuDriverSize, :GpuExecutorSize, :ShuffleWriteBytesSum, :ActiveCore
+        attr_accessor :DatabaseName, :DataAmount, :Id, :UsedTime, :OutputPath, :CreateTime, :State, :SQLType, :SQL, :ResultExpired, :RowAffectInfo, :DataSet, :Error, :Percentage, :OutputMessage, :TaskType, :ProgressDetail, :UpdateTime, :DataEngineId, :OperateUin, :DataEngineName, :InputType, :InputConf, :DataNumber, :CanDownload, :UserAlias, :SparkJobName, :SparkJobId, :SparkJobFile, :UiUrl, :TotalTime, :CmdArgs, :ImageVersion, :DriverSize, :ExecutorSize, :ExecutorNums, :ExecutorMaxNumbers, :CommonMetrics, :SparkMonitorMetrics, :PrestoMonitorMetrics, :ResultFormat, :EngineTypeDetail, :ResourceGroupName, :Source, :SourceExtra, :CreatorUin, :CreatorAlias, :CustomizedConf, :TaskTimeSum, :StageStartTime, :InputRecordsSum, :AnalysisStatusType, :OutputRecordsSum, :OutputBytesSum, :OutputFilesNum, :OutputSmallFilesNum, :ShuffleReadRecordsSum, :ShuffleReadBytesSum, :SparkAppId, :TaskCategory, :TaskName, :EngineType, :EngineHasListenerConfig, :ResourceGroupId, :JobTimeSum, :LaunchTime, :GpuDriverSize, :GpuExecutorSize, :ShuffleWriteBytesSum, :ActiveCore, :QueueTime
 
-        def initialize(databasename=nil, dataamount=nil, id=nil, usedtime=nil, outputpath=nil, createtime=nil, state=nil, sqltype=nil, sql=nil, resultexpired=nil, rowaffectinfo=nil, dataset=nil, error=nil, percentage=nil, outputmessage=nil, tasktype=nil, progressdetail=nil, updatetime=nil, dataengineid=nil, operateuin=nil, dataenginename=nil, inputtype=nil, inputconf=nil, datanumber=nil, candownload=nil, useralias=nil, sparkjobname=nil, sparkjobid=nil, sparkjobfile=nil, uiurl=nil, totaltime=nil, cmdargs=nil, imageversion=nil, driversize=nil, executorsize=nil, executornums=nil, executormaxnumbers=nil, commonmetrics=nil, sparkmonitormetrics=nil, prestomonitormetrics=nil, resultformat=nil, enginetypedetail=nil, resourcegroupname=nil, source=nil, sourceextra=nil, creatoruin=nil, creatoralias=nil, customizedconf=nil, tasktimesum=nil, stagestarttime=nil, inputrecordssum=nil, analysisstatustype=nil, outputrecordssum=nil, outputbytessum=nil, outputfilesnum=nil, outputsmallfilesnum=nil, shufflereadrecordssum=nil, shufflereadbytessum=nil, sparkappid=nil, taskcategory=nil, taskname=nil, enginetype=nil, enginehaslistenerconfig=nil, resourcegroupid=nil, jobtimesum=nil, launchtime=nil, gpudriversize=nil, gpuexecutorsize=nil, shufflewritebytessum=nil, activecore=nil)
+        def initialize(databasename=nil, dataamount=nil, id=nil, usedtime=nil, outputpath=nil, createtime=nil, state=nil, sqltype=nil, sql=nil, resultexpired=nil, rowaffectinfo=nil, dataset=nil, error=nil, percentage=nil, outputmessage=nil, tasktype=nil, progressdetail=nil, updatetime=nil, dataengineid=nil, operateuin=nil, dataenginename=nil, inputtype=nil, inputconf=nil, datanumber=nil, candownload=nil, useralias=nil, sparkjobname=nil, sparkjobid=nil, sparkjobfile=nil, uiurl=nil, totaltime=nil, cmdargs=nil, imageversion=nil, driversize=nil, executorsize=nil, executornums=nil, executormaxnumbers=nil, commonmetrics=nil, sparkmonitormetrics=nil, prestomonitormetrics=nil, resultformat=nil, enginetypedetail=nil, resourcegroupname=nil, source=nil, sourceextra=nil, creatoruin=nil, creatoralias=nil, customizedconf=nil, tasktimesum=nil, stagestarttime=nil, inputrecordssum=nil, analysisstatustype=nil, outputrecordssum=nil, outputbytessum=nil, outputfilesnum=nil, outputsmallfilesnum=nil, shufflereadrecordssum=nil, shufflereadbytessum=nil, sparkappid=nil, taskcategory=nil, taskname=nil, enginetype=nil, enginehaslistenerconfig=nil, resourcegroupid=nil, jobtimesum=nil, launchtime=nil, gpudriversize=nil, gpuexecutorsize=nil, shufflewritebytessum=nil, activecore=nil, queuetime=nil)
           @DatabaseName = databasename
           @DataAmount = dataamount
           @Id = id
@@ -16271,6 +16273,7 @@ module TencentCloud
           @GpuExecutorSize = gpuexecutorsize
           @ShuffleWriteBytesSum = shufflewritebytessum
           @ActiveCore = activecore
+          @QueueTime = queuetime
         end
 
         def deserialize(params)
@@ -16353,6 +16356,7 @@ module TencentCloud
           @GpuExecutorSize = params['GpuExecutorSize']
           @ShuffleWriteBytesSum = params['ShuffleWriteBytesSum']
           @ActiveCore = params['ActiveCore']
+          @QueueTime = params['QueueTime']
         end
       end
 

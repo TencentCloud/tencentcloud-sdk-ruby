@@ -2276,8 +2276,8 @@ module TencentCloud
 
         attr_accessor :Policies, :Roles, :Idps, :User, :Group, :Member, :IdentityProviders, :RequestId
         extend Gem::Deprecate
-        deprecate :Idps, :none, 2026, 1
-        deprecate :Idps=, :none, 2026, 1
+        deprecate :Idps, :none, 2026, 5
+        deprecate :Idps=, :none, 2026, 5
 
         def initialize(policies=nil, roles=nil, idps=nil, user=nil, group=nil, member=nil, identityproviders=nil, requestid=nil)
           @Policies = policies

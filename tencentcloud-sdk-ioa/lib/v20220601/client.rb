@@ -77,6 +77,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建企业目录配置
+
+        # @param request: Request instance for CreateCompanyDirectoryConfig.
+        # @type request: :class:`Tencentcloud::ioa::V20220601::CreateCompanyDirectoryConfigRequest`
+        # @rtype: :class:`Tencentcloud::ioa::V20220601::CreateCompanyDirectoryConfigResponse`
+        def CreateCompanyDirectoryConfig(request)
+          body = send_request('CreateCompanyDirectoryConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateCompanyDirectoryConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建文件鉴定任务，私有化调用path为：capi/DlpOpenApi/CreateDLPFileDetectTask
 
         # @param request: Request instance for CreateDLPFileDetectTask.
@@ -303,6 +327,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeBusinessResourcesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取企业目录配置
+
+        # @param request: Request instance for DescribeCompanyDirectoryConfig.
+        # @type request: :class:`Tencentcloud::ioa::V20220601::DescribeCompanyDirectoryConfigRequest`
+        # @rtype: :class:`Tencentcloud::ioa::V20220601::DescribeCompanyDirectoryConfigResponse`
+        def DescribeCompanyDirectoryConfig(request)
+          body = send_request('DescribeCompanyDirectoryConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCompanyDirectoryConfigResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -903,6 +951,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyBusinessResourceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 编辑企业目录配置
+
+        # @param request: Request instance for ModifyCompanyDirectoryConfig.
+        # @type request: :class:`Tencentcloud::ioa::V20220601::ModifyCompanyDirectoryConfigRequest`
+        # @rtype: :class:`Tencentcloud::ioa::V20220601::ModifyCompanyDirectoryConfigResponse`
+        def ModifyCompanyDirectoryConfig(request)
+          body = send_request('ModifyCompanyDirectoryConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyCompanyDirectoryConfigResponse.new
             model.deserialize(response['Response'])
             model
           else

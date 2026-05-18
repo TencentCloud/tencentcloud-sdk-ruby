@@ -708,32 +708,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 在腾讯云容器服务下创建 Prometheus 服务发现。
-        # <p>注意：前提条件，已经通过 Prometheus 控制台集成了对应的腾讯云容器服务，具体请参考
-        # <a href="https://cloud.tencent.com/document/product/248/48859" target="_blank">Agent 安装</a>。</p>
-
-        # @param request: Request instance for CreateServiceDiscovery.
-        # @type request: :class:`Tencentcloud::monitor::V20180724::CreateServiceDiscoveryRequest`
-        # @rtype: :class:`Tencentcloud::monitor::V20180724::CreateServiceDiscoveryResponse`
-        def CreateServiceDiscovery(request)
-          body = send_request('CreateServiceDiscovery', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = CreateServiceDiscoveryResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 删除告警通知模板
 
         # @param request: Request instance for DeleteAlarmNotices.
@@ -2796,32 +2770,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeSSOAccountResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 列出在腾讯云容器服务下创建的 Prometheus 服务发现。
-        # <p>注意：前提条件，已经通过 Prometheus 控制台集成了对应的腾讯云容器服务，具体请参考
-        # <a href="https://cloud.tencent.com/document/product/248/48859" target="_blank">Agent 安装</a>。</p>
-
-        # @param request: Request instance for DescribeServiceDiscovery.
-        # @type request: :class:`Tencentcloud::monitor::V20180724::DescribeServiceDiscoveryRequest`
-        # @rtype: :class:`Tencentcloud::monitor::V20180724::DescribeServiceDiscoveryResponse`
-        def DescribeServiceDiscovery(request)
-          body = send_request('DescribeServiceDiscovery', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeServiceDiscoveryResponse.new
             model.deserialize(response['Response'])
             model
           else

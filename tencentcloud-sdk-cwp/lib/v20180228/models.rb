@@ -4423,8 +4423,8 @@ module TencentCloud
 
         attr_accessor :Id, :Uuid, :Name, :Level, :Rule, :Decription, :Operator, :IsGlobal, :Status, :CreateTime, :ModifyTime, :Hostip, :Uuids, :White, :DealOldEvents, :Description
         extend Gem::Deprecate
-        deprecate :Decription, :none, 2026, 4
-        deprecate :Decription=, :none, 2026, 4
+        deprecate :Decription, :none, 2026, 5
+        deprecate :Decription=, :none, 2026, 5
 
         def initialize(id=nil, uuid=nil, name=nil, level=nil, rule=nil, decription=nil, operator=nil, isglobal=nil, status=nil, createtime=nil, modifytime=nil, hostip=nil, uuids=nil, white=nil, dealoldevents=nil, description=nil)
           @Id = id
@@ -15854,19 +15854,17 @@ module TencentCloud
 
       # DescribeLicenseBindList请求参数结构体
       class DescribeLicenseBindListRequest < TencentCloud::Common::AbstractModel
-        # @param LicenseId: 授权ID
+        # @param LicenseId: <p>授权ID取DescribeLicenseList接口List对象下的LicenseId参数值</p>
         # @type LicenseId: Integer
-        # @param LicenseType: 授权类型
+        # @param LicenseType: <p>授权类型</p><p>枚举值：</p><ul><li>0： 专业版-按量计费</li><li>1： 专业版-包年包月(主机安全)</li><li>2： 旗舰版-包年包月(主机安全)</li><li>3： 轻量版-LH-包年包月</li><li>6： 专业版-包年包月（云安全中心）</li><li>7： 旗舰版-包年包月（云安全中心）</li></ul>
         # @type LicenseType: Integer
-        # @param ResourceId: 资源ID
+        # @param ResourceId: <p>资源ID,取DescribeLicenseList接口List对象下的ResourceId参数值</p>
         # @type ResourceId: String
-        # @param Filters: <li>InstanceID、IP、
-
-        # MachineName 模糊查询</li>
+        # @param Filters: <li>InstanceID、IP、<p>MachineName 模糊查询</li></p>
         # @type Filters: Array
-        # @param Limit: 限制条数,默认10.
+        # @param Limit: <p>限制条数,默认10.</p>
         # @type Limit: Integer
-        # @param Offset: 偏移量,默认0.
+        # @param Offset: <p>偏移量,默认0.</p>
         # @type Offset: Integer
 
         attr_accessor :LicenseId, :LicenseType, :ResourceId, :Filters, :Limit, :Offset
@@ -15899,9 +15897,9 @@ module TencentCloud
 
       # DescribeLicenseBindList返回参数结构体
       class DescribeLicenseBindListResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 总条数
+        # @param TotalCount: <p>总条数</p>
         # @type TotalCount: Integer
-        # @param List: 绑定机器列表信息
+        # @param List: <p>绑定机器列表信息</p>
         # @type List: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -17293,16 +17291,16 @@ module TencentCloud
 
         attr_accessor :MachineCnt, :TencentCloudMachineCnt, :AliCloudMachineCnt, :BaiduCloudMachineCnt, :IDCMachineCnt, :OtherCloudMachineCnt, :ProtectMachineCnt, :BaseMachineCnt, :SpecialtyMachineCnt, :FlagshipMachineCnt, :RiskMachineCnt, :CompareYesterdayRiskMachineCnt, :CompareYesterdayNotProtectMachineCnt, :CompareYesterdayDeadlineMachineCnt, :DeadlineMachineCnt, :NotProtectMachineCnt, :LHGeneralDiscountCnt, :CompareYesterdayMachineCnt, :MachineDestroyAfterOfflineHours, :CloudFrom, :RequestId
         extend Gem::Deprecate
-        deprecate :TencentCloudMachineCnt, :none, 2026, 4
-        deprecate :TencentCloudMachineCnt=, :none, 2026, 4
-        deprecate :AliCloudMachineCnt, :none, 2026, 4
-        deprecate :AliCloudMachineCnt=, :none, 2026, 4
-        deprecate :BaiduCloudMachineCnt, :none, 2026, 4
-        deprecate :BaiduCloudMachineCnt=, :none, 2026, 4
-        deprecate :IDCMachineCnt, :none, 2026, 4
-        deprecate :IDCMachineCnt=, :none, 2026, 4
-        deprecate :OtherCloudMachineCnt, :none, 2026, 4
-        deprecate :OtherCloudMachineCnt=, :none, 2026, 4
+        deprecate :TencentCloudMachineCnt, :none, 2026, 5
+        deprecate :TencentCloudMachineCnt=, :none, 2026, 5
+        deprecate :AliCloudMachineCnt, :none, 2026, 5
+        deprecate :AliCloudMachineCnt=, :none, 2026, 5
+        deprecate :BaiduCloudMachineCnt, :none, 2026, 5
+        deprecate :BaiduCloudMachineCnt=, :none, 2026, 5
+        deprecate :IDCMachineCnt, :none, 2026, 5
+        deprecate :IDCMachineCnt=, :none, 2026, 5
+        deprecate :OtherCloudMachineCnt, :none, 2026, 5
+        deprecate :OtherCloudMachineCnt=, :none, 2026, 5
 
         def initialize(machinecnt=nil, tencentcloudmachinecnt=nil, alicloudmachinecnt=nil, baiducloudmachinecnt=nil, idcmachinecnt=nil, othercloudmachinecnt=nil, protectmachinecnt=nil, basemachinecnt=nil, specialtymachinecnt=nil, flagshipmachinecnt=nil, riskmachinecnt=nil, compareyesterdayriskmachinecnt=nil, compareyesterdaynotprotectmachinecnt=nil, compareyesterdaydeadlinemachinecnt=nil, deadlinemachinecnt=nil, notprotectmachinecnt=nil, lhgeneraldiscountcnt=nil, compareyesterdaymachinecnt=nil, machinedestroyafterofflinehours=nil, cloudfrom=nil, requestid=nil)
           @MachineCnt = machinecnt
@@ -28682,10 +28680,10 @@ module TencentCloud
 
         attr_accessor :Filters, :Fileds, :Fields, :Where
         extend Gem::Deprecate
-        deprecate :Fileds, :none, 2026, 4
-        deprecate :Fileds=, :none, 2026, 4
-        deprecate :Fields, :none, 2026, 4
-        deprecate :Fields=, :none, 2026, 4
+        deprecate :Fileds, :none, 2026, 5
+        deprecate :Fileds=, :none, 2026, 5
+        deprecate :Fields, :none, 2026, 5
+        deprecate :Fields=, :none, 2026, 5
 
         def initialize(filters=nil, fileds=nil, fields=nil, where=nil)
           @Filters = filters

@@ -4806,23 +4806,23 @@ module TencentCloud
 
       # 主域名详情
       class DisplayDomain < TencentCloud::Common::AbstractModel
-        # @param Id: 主键ID
+        # @param Id: <p>主键ID</p>
         # @type Id: Integer
-        # @param Domain: 主域名
+        # @param Domain: <p>主域名</p>
         # @type Domain: String
-        # @param ICP: ICP
+        # @param ICP: <p>ICP</p>
         # @type ICP: String
-        # @param RegisteredTime: 注册时间
+        # @param RegisteredTime: <p>注册时间</p>
         # @type RegisteredTime: String
-        # @param ExpiredTime: 过期时间
+        # @param ExpiredTime: <p>过期时间</p>
         # @type ExpiredTime: String
-        # @param Company: 公司
+        # @param Company: <p>公司</p>
         # @type Company: String
-        # @param DisplayToolCommon: 公共字段
+        # @param DisplayToolCommon: <p>公共字段</p>
         # @type DisplayToolCommon: :class:`Tencentcloud::Ctem.v20231128.models.DisplayToolCommon`
-        # @param IsCloudAsset: 是否为云资产
+        # @param IsCloudAsset: <p>是否为云资产</p>
         # @type IsCloudAsset: Integer
-        # @param CloudAssetStatus: 云资产状态，-1为下线
+        # @param CloudAssetStatus: <p>云资产状态，-1为下线</p>
         # @type CloudAssetStatus: Integer
 
         attr_accessor :Id, :Domain, :ICP, :RegisteredTime, :ExpiredTime, :Company, :DisplayToolCommon, :IsCloudAsset, :CloudAssetStatus
@@ -6002,36 +6002,38 @@ module TencentCloud
 
       # 数据管理公共字段
       class DisplayToolCommon < TencentCloud::Common::AbstractModel
-        # @param EnterpriseUid: 子公司ID
+        # @param EnterpriseUid: <p>子公司ID</p>
         # @type EnterpriseUid: String
-        # @param EnterpriseName: 子公司名称
+        # @param EnterpriseName: <p>子公司名称</p>
         # @type EnterpriseName: String
-        # @param JobId: 主任务ID
+        # @param JobId: <p>主任务ID</p>
         # @type JobId: Integer
-        # @param JobStageId: 单任务ID
+        # @param JobStageId: <p>单任务ID</p>
         # @type JobStageId: Integer
-        # @param Ignored: 是否忽略
+        # @param Ignored: <p>是否忽略</p>
         # @type Ignored: Boolean
-        # @param JobRecordId: 子任务ID
+        # @param JobRecordId: <p>子任务ID</p>
         # @type JobRecordId: Integer
-        # @param CustomerId: 企业ID
+        # @param CustomerId: <p>企业ID</p>
         # @type CustomerId: Integer
-        # @param CustomerName: 企业名称
+        # @param CustomerName: <p>企业名称</p>
         # @type CustomerName: String
-        # @param Detail: 详情
+        # @param Detail: <p>详情</p>
         # @type Detail: String
-        # @param Md5: Md5值
+        # @param Md5: <p>Md5值</p>
         # @type Md5: String
-        # @param CreateAt: 创建时间
+        # @param CreateAt: <p>创建时间</p>
         # @type CreateAt: String
-        # @param UpdateAt: 更新时间
+        # @param UpdateAt: <p>更新时间</p>
         # @type UpdateAt: String
-        # @param Labels: 标签列表，json格式：{\"tag1\":[\"责任人xxx\"],\"tag2\":[\"测试站\"]}
+        # @param Labels: <p>标签列表，json格式：{"tag1":["责任人xxx"],"tag2":["测试站"]}</p>
         # @type Labels: String
+        # @param IsPlainTextInDemo: <p>演示模式是否明文展示</p><p>枚举值：</p><ul><li>0： 否</li><li>1： 是</li></ul>
+        # @type IsPlainTextInDemo: Integer
 
-        attr_accessor :EnterpriseUid, :EnterpriseName, :JobId, :JobStageId, :Ignored, :JobRecordId, :CustomerId, :CustomerName, :Detail, :Md5, :CreateAt, :UpdateAt, :Labels
+        attr_accessor :EnterpriseUid, :EnterpriseName, :JobId, :JobStageId, :Ignored, :JobRecordId, :CustomerId, :CustomerName, :Detail, :Md5, :CreateAt, :UpdateAt, :Labels, :IsPlainTextInDemo
 
-        def initialize(enterpriseuid=nil, enterprisename=nil, jobid=nil, jobstageid=nil, ignored=nil, jobrecordid=nil, customerid=nil, customername=nil, detail=nil, md5=nil, createat=nil, updateat=nil, labels=nil)
+        def initialize(enterpriseuid=nil, enterprisename=nil, jobid=nil, jobstageid=nil, ignored=nil, jobrecordid=nil, customerid=nil, customername=nil, detail=nil, md5=nil, createat=nil, updateat=nil, labels=nil, isplaintextindemo=nil)
           @EnterpriseUid = enterpriseuid
           @EnterpriseName = enterprisename
           @JobId = jobid
@@ -6045,6 +6047,7 @@ module TencentCloud
           @CreateAt = createat
           @UpdateAt = updateat
           @Labels = labels
+          @IsPlainTextInDemo = isplaintextindemo
         end
 
         def deserialize(params)
@@ -6061,6 +6064,7 @@ module TencentCloud
           @CreateAt = params['CreateAt']
           @UpdateAt = params['UpdateAt']
           @Labels = params['Labels']
+          @IsPlainTextInDemo = params['IsPlainTextInDemo']
         end
       end
 

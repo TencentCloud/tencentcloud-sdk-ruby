@@ -9623,10 +9623,14 @@ module TencentCloud
         # @type TokenUsage: Integer
         # @param ImageEncode: <p>图片base64编码后的数据,body大小最大支持10M</p>
         # @type ImageEncode: String
+        # @param ToolName: <p>tool_call 场景工具名称</p>
+        # @type ToolName: String
+        # @param ToolArgs: <p>tool_call 场景工具参数</p>
+        # @type ToolArgs: String
 
-        attr_accessor :ServiceId, :Type, :InstanceId, :Content, :ChatId, :UserId, :TokenUsage, :ImageEncode
+        attr_accessor :ServiceId, :Type, :InstanceId, :Content, :ChatId, :UserId, :TokenUsage, :ImageEncode, :ToolName, :ToolArgs
 
-        def initialize(serviceid=nil, type=nil, instanceid=nil, content=nil, chatid=nil, userid=nil, tokenusage=nil, imageencode=nil)
+        def initialize(serviceid=nil, type=nil, instanceid=nil, content=nil, chatid=nil, userid=nil, tokenusage=nil, imageencode=nil, toolname=nil, toolargs=nil)
           @ServiceId = serviceid
           @Type = type
           @InstanceId = instanceid
@@ -9635,6 +9639,8 @@ module TencentCloud
           @UserId = userid
           @TokenUsage = tokenusage
           @ImageEncode = imageencode
+          @ToolName = toolname
+          @ToolArgs = toolargs
         end
 
         def deserialize(params)
@@ -9646,6 +9652,8 @@ module TencentCloud
           @UserId = params['UserId']
           @TokenUsage = params['TokenUsage']
           @ImageEncode = params['ImageEncode']
+          @ToolName = params['ToolName']
+          @ToolArgs = params['ToolArgs']
         end
       end
 

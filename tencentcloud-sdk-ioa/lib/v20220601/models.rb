@@ -413,6 +413,81 @@ module TencentCloud
         end
       end
 
+      # CreateCompanyDirectoryConfig请求参数结构体
+      class CreateCompanyDirectoryConfigRequest < TencentCloud::Common::AbstractModel
+        # @param Type: <p>企业目录类型</p>
+        # @type Type: String
+        # @param Name: <p>企业目录名</p>
+        # @type Name: String
+        # @param Config: <p>配置是通过 SM2 加密再 Hex 之后的数据</p>
+        # @type Config: String
+        # @param SyncEnable: <p>是否开启定时同步</p>
+        # @type SyncEnable: Boolean
+        # @param SyncPolicy: <p>定时同步的策略，枚举值：支持每4小时（4hours）/每日定时（daily）/每周定时（weekly）</p>
+        # @type SyncPolicy: String
+        # @param SyncPolicyParams: <p>JSON 字符串，针对不同类型的同步策略，提取对应不同的值</p>
+        # @type SyncPolicyParams: String
+        # @param CreateAuthConfig: <p>是否同步创建认证源</p>
+        # @type CreateAuthConfig: Boolean
+        # @param DisplayOnLoginPage: <p>是否在登录页展示</p>
+        # @type DisplayOnLoginPage: Boolean
+        # @param Description: <p>描述</p>
+        # @type Description: String
+        # @param Scene: <p>使用场景：API 创建，快速上手，普通配置等</p>
+        # @type Scene: String
+
+        attr_accessor :Type, :Name, :Config, :SyncEnable, :SyncPolicy, :SyncPolicyParams, :CreateAuthConfig, :DisplayOnLoginPage, :Description, :Scene
+
+        def initialize(type=nil, name=nil, config=nil, syncenable=nil, syncpolicy=nil, syncpolicyparams=nil, createauthconfig=nil, displayonloginpage=nil, description=nil, scene=nil)
+          @Type = type
+          @Name = name
+          @Config = config
+          @SyncEnable = syncenable
+          @SyncPolicy = syncpolicy
+          @SyncPolicyParams = syncpolicyparams
+          @CreateAuthConfig = createauthconfig
+          @DisplayOnLoginPage = displayonloginpage
+          @Description = description
+          @Scene = scene
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Name = params['Name']
+          @Config = params['Config']
+          @SyncEnable = params['SyncEnable']
+          @SyncPolicy = params['SyncPolicy']
+          @SyncPolicyParams = params['SyncPolicyParams']
+          @CreateAuthConfig = params['CreateAuthConfig']
+          @DisplayOnLoginPage = params['DisplayOnLoginPage']
+          @Description = params['Description']
+          @Scene = params['Scene']
+        end
+      end
+
+      # CreateCompanyDirectoryConfig返回参数结构体
+      class CreateCompanyDirectoryConfigResponse < TencentCloud::Common::AbstractModel
+        # @param Data: <p>创建企业目录配置的结果</p>
+        # @type Data: :class:`Tencentcloud::Ioa.v20220601.models.DirectoryConfigResultData`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = DirectoryConfigResultData.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 文件鉴定任务分页数据
       class CreateDLPFileDetectTaskData < TencentCloud::Common::AbstractModel
         # @param TaskRequestId: 任务请求唯一Id
@@ -1670,6 +1745,45 @@ module TencentCloud
         def deserialize(params)
           unless params['Data'].nil?
             @Data = DescribeBusinessResourcePageRsp.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCompanyDirectoryConfig请求参数结构体
+      class DescribeCompanyDirectoryConfigRequest < TencentCloud::Common::AbstractModel
+        # @param Id: <p>企业目录 ID</p>
+        # @type Id: Integer
+
+        attr_accessor :Id
+
+        def initialize(id=nil)
+          @Id = id
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+        end
+      end
+
+      # DescribeCompanyDirectoryConfig返回参数结构体
+      class DescribeCompanyDirectoryConfigResponse < TencentCloud::Common::AbstractModel
+        # @param Data: <p>企业目录配置详情</p>
+        # @type Data: :class:`Tencentcloud::Ioa.v20220601.models.DirectoryConfigData`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = DirectoryConfigData.new
             @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
@@ -4194,6 +4308,110 @@ module TencentCloud
         end
       end
 
+      # 企业目录的配置数据
+      class DirectoryConfigData < TencentCloud::Common::AbstractModel
+        # @param Id: <p>企业目录 ID</p>
+        # @type Id: Integer
+        # @param Type: <p>目录对应身份源类型</p><p>枚举值：</p><ul><li>WeCom： 企业微信</li><li>Lark： 飞书</li><li>DingTalk： 钉钉</li><li>MicrosoftEntraID： 微软 AAD</li></ul>
+        # @type Type: String
+        # @param Name: <p>企业目录名称</p>
+        # @type Name: String
+        # @param Config: <p>使用 JSON 字符串表示的配置信息</p>
+        # @type Config: String
+        # @param SyncEnable: <p>是否开启了定时同步</p>
+        # @type SyncEnable: Boolean
+        # @param SyncPolicy: <p>定时同步的策略</p><p>枚举值：</p><ul><li>4hours： 按创建时间开始的每 4 小时</li><li>daily： 每日</li><li>weekly： 每周</li></ul>
+        # @type SyncPolicy: String
+        # @param SyncPolicyParams: <p>JSON 字符串，针对不同类型的同步策略，提取对应不同的值</p>
+        # @type SyncPolicyParams: String
+        # @param CreateAuthConfig: <p>是否配置了同步创建认证配置</p>
+        # @type CreateAuthConfig: Boolean
+        # @param Description: <p>描述</p>
+        # @type Description: String
+        # @param SourceId: <p>对应 Config 的配置 ID</p>
+        # @type SourceId: String
+        # @param DisplayOnLoginPage: <p>是否在登录页展示</p>
+        # @type DisplayOnLoginPage: Boolean
+
+        attr_accessor :Id, :Type, :Name, :Config, :SyncEnable, :SyncPolicy, :SyncPolicyParams, :CreateAuthConfig, :Description, :SourceId, :DisplayOnLoginPage
+
+        def initialize(id=nil, type=nil, name=nil, config=nil, syncenable=nil, syncpolicy=nil, syncpolicyparams=nil, createauthconfig=nil, description=nil, sourceid=nil, displayonloginpage=nil)
+          @Id = id
+          @Type = type
+          @Name = name
+          @Config = config
+          @SyncEnable = syncenable
+          @SyncPolicy = syncpolicy
+          @SyncPolicyParams = syncpolicyparams
+          @CreateAuthConfig = createauthconfig
+          @Description = description
+          @SourceId = sourceid
+          @DisplayOnLoginPage = displayonloginpage
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Type = params['Type']
+          @Name = params['Name']
+          @Config = params['Config']
+          @SyncEnable = params['SyncEnable']
+          @SyncPolicy = params['SyncPolicy']
+          @SyncPolicyParams = params['SyncPolicyParams']
+          @CreateAuthConfig = params['CreateAuthConfig']
+          @Description = params['Description']
+          @SourceId = params['SourceId']
+          @DisplayOnLoginPage = params['DisplayOnLoginPage']
+        end
+      end
+
+      # 创建/编辑企业目录配置之后返回结果数据
+      class DirectoryConfigResultData < TencentCloud::Common::AbstractModel
+        # @param Id: <p>企业目录 ID</p>
+        # @type Id: Integer
+        # @param Name: <p>企业目录名称</p>
+        # @type Name: String
+        # @param IdentifySourceId: <p>身份源配置 ID</p>
+        # @type IdentifySourceId: String
+        # @param CreateAuthConfig: <p>是否同步创建了认证配置</p>
+        # @type CreateAuthConfig: Boolean
+        # @param AuthSourceId: <p>认证源配置 ID</p>
+        # @type AuthSourceId: String
+        # @param AuthConfigId: <p>认证配置 ID</p>
+        # @type AuthConfigId: Integer
+        # @param AuthPolicyId: <p>认证策略 ID</p>
+        # @type AuthPolicyId: Integer
+        # @param AuthSupportPlatforms: <p>认证支持的平台, PC 或 Mobile</p>
+        # @type AuthSupportPlatforms: Array
+        # @param AuthMethods: <p>认证方式，授权认证/扫码认证 等</p>
+        # @type AuthMethods: Array
+
+        attr_accessor :Id, :Name, :IdentifySourceId, :CreateAuthConfig, :AuthSourceId, :AuthConfigId, :AuthPolicyId, :AuthSupportPlatforms, :AuthMethods
+
+        def initialize(id=nil, name=nil, identifysourceid=nil, createauthconfig=nil, authsourceid=nil, authconfigid=nil, authpolicyid=nil, authsupportplatforms=nil, authmethods=nil)
+          @Id = id
+          @Name = name
+          @IdentifySourceId = identifysourceid
+          @CreateAuthConfig = createauthconfig
+          @AuthSourceId = authsourceid
+          @AuthConfigId = authconfigid
+          @AuthPolicyId = authpolicyid
+          @AuthSupportPlatforms = authsupportplatforms
+          @AuthMethods = authmethods
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Name = params['Name']
+          @IdentifySourceId = params['IdentifySourceId']
+          @CreateAuthConfig = params['CreateAuthConfig']
+          @AuthSourceId = params['AuthSourceId']
+          @AuthConfigId = params['AuthConfigId']
+          @AuthPolicyId = params['AuthPolicyId']
+          @AuthSupportPlatforms = params['AuthSupportPlatforms']
+          @AuthMethods = params['AuthMethods']
+        end
+      end
+
       # ExportDeviceDownloadTask请求参数结构体
       class ExportDeviceDownloadTaskRequest < TencentCloud::Common::AbstractModel
         # @param OsType: 系统类型（0: win，1：linux，2: mac，4：android，5：ios，-1：全系统（SaaS一体化版本） ； 不传默认为0）(只支持32位)
@@ -4860,6 +5078,81 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyCompanyDirectoryConfig请求参数结构体
+      class ModifyCompanyDirectoryConfigRequest < TencentCloud::Common::AbstractModel
+        # @param Type: <p>企业目录类型</p>
+        # @type Type: String
+        # @param Name: <p>企业目录名</p>
+        # @type Name: String
+        # @param Config: <p>使用 JSON 字符串表示的配置信息</p><p>调用此接口前，需要先调用DescribeCompanyDirectoryConfig获取完整的配置，然后对里面需要更新的配置进行修改，请求的时候必须传完整配置，否则可能导致配置缺失出现错误。如果是脱敏的信息，保持原样的脱敏格式提交，如果和脱敏格式不一致，会认为是新的配置值更新原有配置</p>
+        # @type Config: String
+        # @param SyncEnable: <p>是否开启定时同步</p>
+        # @type SyncEnable: Boolean
+        # @param SyncPolicy: <p>定时同步的策略，枚举值：支持每4小时（4hours）/每日定时（daily）/每周定时（weekly）</p>
+        # @type SyncPolicy: String
+        # @param SyncPolicyParams: <p>JSON 字符串，针对不同类型的同步策略，提取对应不同的值</p>
+        # @type SyncPolicyParams: String
+        # @param CreateAuthConfig: <p>是否同步创建认证源</p>
+        # @type CreateAuthConfig: Boolean
+        # @param DisplayOnLoginPage: <p>是否在登录页展示</p>
+        # @type DisplayOnLoginPage: Boolean
+        # @param Id: <p>企业目录 ID</p>
+        # @type Id: Integer
+        # @param Description: <p>描述</p>
+        # @type Description: String
+
+        attr_accessor :Type, :Name, :Config, :SyncEnable, :SyncPolicy, :SyncPolicyParams, :CreateAuthConfig, :DisplayOnLoginPage, :Id, :Description
+
+        def initialize(type=nil, name=nil, config=nil, syncenable=nil, syncpolicy=nil, syncpolicyparams=nil, createauthconfig=nil, displayonloginpage=nil, id=nil, description=nil)
+          @Type = type
+          @Name = name
+          @Config = config
+          @SyncEnable = syncenable
+          @SyncPolicy = syncpolicy
+          @SyncPolicyParams = syncpolicyparams
+          @CreateAuthConfig = createauthconfig
+          @DisplayOnLoginPage = displayonloginpage
+          @Id = id
+          @Description = description
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Name = params['Name']
+          @Config = params['Config']
+          @SyncEnable = params['SyncEnable']
+          @SyncPolicy = params['SyncPolicy']
+          @SyncPolicyParams = params['SyncPolicyParams']
+          @CreateAuthConfig = params['CreateAuthConfig']
+          @DisplayOnLoginPage = params['DisplayOnLoginPage']
+          @Id = params['Id']
+          @Description = params['Description']
+        end
+      end
+
+      # ModifyCompanyDirectoryConfig返回参数结构体
+      class ModifyCompanyDirectoryConfigResponse < TencentCloud::Common::AbstractModel
+        # @param Data: <p>编辑企业目录配置的结果</p>
+        # @type Data: :class:`Tencentcloud::Ioa.v20220601.models.DirectoryConfigResultData`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = DirectoryConfigResultData.new
+            @Data.deserialize(params['Data'])
+          end
           @RequestId = params['RequestId']
         end
       end

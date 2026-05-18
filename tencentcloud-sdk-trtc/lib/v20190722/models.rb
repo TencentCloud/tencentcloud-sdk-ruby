@@ -7340,7 +7340,8 @@ module TencentCloud
         # @type UnSubscribeList: Array
         # @param MaxIdleTime: 所有参与转录的主播持续离开TRTC房间或切换成观众超过MaxIdleTime的时长，自动停止转录任务，单位：秒。默认值为 30 秒，该值需大于等于 5秒，且小于等于 86400秒(24小时)。
         # @type MaxIdleTime: Integer
-        # @param SendCustomMode: 自定义通道：支持自定义信息，只可以填0-2， 0表示不开启自定义通道，1表示开启自定义数据，2表示开启自定义消息。不填默认不开启自定义通道。注意：填1自定义数据只对 SDK版本 >= 5.15.0生效。
+        # @param SendCustomMode: 自定义数据模式： 0表示不开启自定义数据，1表示开启自定义数据。
+        # 不填默认为0，表示不开启自定义数据。
         # @type SendCustomMode: Integer
 
         attr_accessor :UserId, :UserSig, :SubscribeList, :UnSubscribeList, :MaxIdleTime, :SendCustomMode

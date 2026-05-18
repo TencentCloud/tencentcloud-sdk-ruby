@@ -2085,8 +2085,8 @@ module TencentCloud
 
         attr_accessor :TaskGroupInstanceId, :TaskGroupInstanceObjectId, :TaskGroupInstanceStatus, :TaskGroupInstanceCreateTime, :TaskGroupInstanceUpdateTime, :TaskGroupInstanceStatusType, :TaskGroupInstanceStartTime, :TaskGroupInstanceEndTime, :TaskGroupInstanceExecuteLog, :TaskGroupInstanceIsRedo, :TaskGroupInstanceExecuteTime
         extend Gem::Deprecate
-        deprecate :TaskGroupInstanceExecuteLog, :none, 2026, 4
-        deprecate :TaskGroupInstanceExecuteLog=, :none, 2026, 4
+        deprecate :TaskGroupInstanceExecuteLog, :none, 2026, 5
+        deprecate :TaskGroupInstanceExecuteLog=, :none, 2026, 5
 
         def initialize(taskgroupinstanceid=nil, taskgroupinstanceobjectid=nil, taskgroupinstancestatus=nil, taskgroupinstancecreatetime=nil, taskgroupinstanceupdatetime=nil, taskgroupinstancestatustype=nil, taskgroupinstancestarttime=nil, taskgroupinstanceendtime=nil, taskgroupinstanceexecutelog=nil, taskgroupinstanceisredo=nil, taskgroupinstanceexecutetime=nil)
           @TaskGroupInstanceId = taskgroupinstanceid
@@ -2143,44 +2143,46 @@ module TencentCloud
 
       # 任务列表信息
       class TaskListItem < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务ID
+        # @param TaskId: <p>任务ID</p>
         # @type TaskId: Integer
-        # @param TaskTitle: 任务标题
+        # @param TaskTitle: <p>任务标题</p>
         # @type TaskTitle: String
-        # @param TaskDescription: 任务描述
+        # @param TaskDescription: <p>任务描述</p>
         # @type TaskDescription: String
-        # @param TaskTag: 任务标签
+        # @param TaskTag: <p>任务标签</p>
         # @type TaskTag: String
-        # @param TaskStatus: 任务状态(1001 -- 未开始   1002 -- 进行中  1003 -- 暂停中   1004 -- 任务结束)
+        # @param TaskStatus: <p>任务状态(1001 -- 未开始   1002 -- 进行中  1003 -- 暂停中   1004 -- 任务结束)</p>
         # @type TaskStatus: Integer
-        # @param TaskCreateTime: 任务创建时间
+        # @param TaskCreateTime: <p>任务创建时间</p>
         # @type TaskCreateTime: String
-        # @param TaskUpdateTime: 任务更新时间
+        # @param TaskUpdateTime: <p>任务更新时间</p>
         # @type TaskUpdateTime: String
-        # @param TaskPreCheckStatus: 0--未开始，1--进行中，2--已完成
+        # @param TaskPreCheckStatus: <p>0--未开始，1--进行中，2--已完成</p>
         # @type TaskPreCheckStatus: Integer
-        # @param TaskPreCheckSuccess: 环境检查是否通过
+        # @param TaskPreCheckSuccess: <p>环境检查是否通过</p>
         # @type TaskPreCheckSuccess: Boolean
-        # @param TaskExpect: 演练是否符合预期 1-符合预期 2-不符合预期
+        # @param TaskExpect: <p>演练是否符合预期 1-符合预期 2-不符合预期</p>
         # @type TaskExpect: Integer
-        # @param ApplicationId: 关联应用ID
+        # @param ApplicationId: <p>关联应用ID</p>
         # @type ApplicationId: String
-        # @param ApplicationName: 关联应用名称
+        # @param ApplicationName: <p>关联应用名称</p>
         # @type ApplicationName: String
-        # @param VerifyId: 验证项ID
+        # @param VerifyId: <p>验证项ID</p>
         # @type VerifyId: Integer
-        # @param TaskStatusType: 状态类型: 0 -- 无状态，1 -- 成功，2-- 失败，3--终止
+        # @param TaskStatusType: <p>状态类型: 0 -- 无状态，1 -- 成功，2-- 失败，3--终止</p>
         # @type TaskStatusType: Integer
-        # @param ArchId: 架构ID
+        # @param ArchId: <p>架构ID</p>
         # @type ArchId: String
-        # @param ArchName: 架构名称
+        # @param ArchName: <p>架构名称</p>
         # @type ArchName: String
-        # @param TaskSource: 来源
+        # @param TaskSource: <p>来源</p>
         # @type TaskSource: Integer
+        # @param Tags: <p>云资源标签列表</p>
+        # @type Tags: Array
 
-        attr_accessor :TaskId, :TaskTitle, :TaskDescription, :TaskTag, :TaskStatus, :TaskCreateTime, :TaskUpdateTime, :TaskPreCheckStatus, :TaskPreCheckSuccess, :TaskExpect, :ApplicationId, :ApplicationName, :VerifyId, :TaskStatusType, :ArchId, :ArchName, :TaskSource
+        attr_accessor :TaskId, :TaskTitle, :TaskDescription, :TaskTag, :TaskStatus, :TaskCreateTime, :TaskUpdateTime, :TaskPreCheckStatus, :TaskPreCheckSuccess, :TaskExpect, :ApplicationId, :ApplicationName, :VerifyId, :TaskStatusType, :ArchId, :ArchName, :TaskSource, :Tags
 
-        def initialize(taskid=nil, tasktitle=nil, taskdescription=nil, tasktag=nil, taskstatus=nil, taskcreatetime=nil, taskupdatetime=nil, taskprecheckstatus=nil, taskprechecksuccess=nil, taskexpect=nil, applicationid=nil, applicationname=nil, verifyid=nil, taskstatustype=nil, archid=nil, archname=nil, tasksource=nil)
+        def initialize(taskid=nil, tasktitle=nil, taskdescription=nil, tasktag=nil, taskstatus=nil, taskcreatetime=nil, taskupdatetime=nil, taskprecheckstatus=nil, taskprechecksuccess=nil, taskexpect=nil, applicationid=nil, applicationname=nil, verifyid=nil, taskstatustype=nil, archid=nil, archname=nil, tasksource=nil, tags=nil)
           @TaskId = taskid
           @TaskTitle = tasktitle
           @TaskDescription = taskdescription
@@ -2198,6 +2200,7 @@ module TencentCloud
           @ArchId = archid
           @ArchName = archname
           @TaskSource = tasksource
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -2218,6 +2221,14 @@ module TencentCloud
           @ArchId = params['ArchId']
           @ArchName = params['ArchName']
           @TaskSource = params['TaskSource']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tagwithdescribe_tmp = TagWithDescribe.new
+              tagwithdescribe_tmp.deserialize(i)
+              @Tags << tagwithdescribe_tmp
+            end
+          end
         end
       end
 

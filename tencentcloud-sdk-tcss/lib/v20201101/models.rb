@@ -4226,24 +4226,26 @@ module TencentCloud
 
       # CreateAssetImageRegistryScanTask请求参数结构体
       class CreateAssetImageRegistryScanTaskRequest < TencentCloud::Common::AbstractModel
-        # @param All: 是否扫描全部镜像
+        # @param All: <p>是否扫描全部镜像</p>
         # @type All: Boolean
-        # @param Images: 扫描的镜像列表
+        # @param Images: <p>扫描的镜像列表</p>
         # @type Images: Array
-        # @param ScanType: 扫描类型数组
+        # @param ScanType: <p>扫描类型数组</p>
         # @type ScanType: Array
-        # @param Id: 扫描的镜像列表
+        # @param Id: <p>扫描的镜像列表</p>
         # @type Id: Array
-        # @param Filters: 过滤条件
+        # @param Filters: <p>过滤条件</p>
         # @type Filters: Array
-        # @param ExcludeImageList: 不需要扫描的镜像列表, 与Filters配合使用
+        # @param ExcludeImageList: <p>不需要扫描的镜像列表, 与Filters配合使用</p>
         # @type ExcludeImageList: Array
-        # @param OnlyScanLatest: 是否仅扫描各repository最新版的镜像, 与Filters配合使用
+        # @param OnlyScanLatest: <p>是否仅扫描各repository最新版的镜像, 与Filters配合使用</p>
         # @type OnlyScanLatest: Boolean
+        # @param Timeout: <p>任务超时时长</p><p>单位：秒</p>
+        # @type Timeout: Integer
 
-        attr_accessor :All, :Images, :ScanType, :Id, :Filters, :ExcludeImageList, :OnlyScanLatest
+        attr_accessor :All, :Images, :ScanType, :Id, :Filters, :ExcludeImageList, :OnlyScanLatest, :Timeout
 
-        def initialize(all=nil, images=nil, scantype=nil, id=nil, filters=nil, excludeimagelist=nil, onlyscanlatest=nil)
+        def initialize(all=nil, images=nil, scantype=nil, id=nil, filters=nil, excludeimagelist=nil, onlyscanlatest=nil, timeout=nil)
           @All = all
           @Images = images
           @ScanType = scantype
@@ -4251,6 +4253,7 @@ module TencentCloud
           @Filters = filters
           @ExcludeImageList = excludeimagelist
           @OnlyScanLatest = onlyscanlatest
+          @Timeout = timeout
         end
 
         def deserialize(params)
@@ -4275,12 +4278,13 @@ module TencentCloud
           end
           @ExcludeImageList = params['ExcludeImageList']
           @OnlyScanLatest = params['OnlyScanLatest']
+          @Timeout = params['Timeout']
         end
       end
 
       # CreateAssetImageRegistryScanTask返回参数结构体
       class CreateAssetImageRegistryScanTaskResponse < TencentCloud::Common::AbstractModel
-        # @param TaskID: 返回的任务ID
+        # @param TaskID: <p>返回的任务ID</p>
         # @type TaskID: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

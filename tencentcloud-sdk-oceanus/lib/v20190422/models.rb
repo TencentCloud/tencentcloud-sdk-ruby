@@ -1496,25 +1496,40 @@ module TencentCloud
 
       # CreateVariable请求参数结构体
       class CreateVariableRequest < TencentCloud::Common::AbstractModel
-        # @param Name: 变量名
+        # @param Name: <p>变量名</p>
         # @type Name: String
-        # @param Value: 变量值
+        # @param Value: <p>变量值</p>
         # @type Value: String
-        # @param Type: 变量类型  1：显式   2：隐藏
+        # @param Type: <p>变量类型  1：显式   2：隐藏</p>
         # @type Type: Integer
-        # @param Remark: 描述信息
+        # @param Remark: <p>描述信息</p>
         # @type Remark: String
-        # @param WorkSpaceId: 工作空间 SerialId
+        # @param WorkSpaceId: <p>工作空间 SerialId</p>
         # @type WorkSpaceId: String
+        # @param ValueType: <p>变量值类型</p><p>枚举值：</p><ul><li>0： 自定义变量</li><li>1： 凭据值</li></ul>
+        # @type ValueType: Integer
+        # @param SecretRegion: <p>凭据所在地域</p>
+        # @type SecretRegion: String
+        # @param SecretName: <p>凭据名称</p>
+        # @type SecretName: String
+        # @param SecretVersionId: <p>凭据版本</p>
+        # @type SecretVersionId: String
+        # @param SecretValueMd5: <p>凭据值md5</p>
+        # @type SecretValueMd5: String
 
-        attr_accessor :Name, :Value, :Type, :Remark, :WorkSpaceId
+        attr_accessor :Name, :Value, :Type, :Remark, :WorkSpaceId, :ValueType, :SecretRegion, :SecretName, :SecretVersionId, :SecretValueMd5
 
-        def initialize(name=nil, value=nil, type=nil, remark=nil, workspaceid=nil)
+        def initialize(name=nil, value=nil, type=nil, remark=nil, workspaceid=nil, valuetype=nil, secretregion=nil, secretname=nil, secretversionid=nil, secretvaluemd5=nil)
           @Name = name
           @Value = value
           @Type = type
           @Remark = remark
           @WorkSpaceId = workspaceid
+          @ValueType = valuetype
+          @SecretRegion = secretregion
+          @SecretName = secretname
+          @SecretVersionId = secretversionid
+          @SecretValueMd5 = secretvaluemd5
         end
 
         def deserialize(params)
@@ -1523,12 +1538,17 @@ module TencentCloud
           @Type = params['Type']
           @Remark = params['Remark']
           @WorkSpaceId = params['WorkSpaceId']
+          @ValueType = params['ValueType']
+          @SecretRegion = params['SecretRegion']
+          @SecretName = params['SecretName']
+          @SecretVersionId = params['SecretVersionId']
+          @SecretValueMd5 = params['SecretValueMd5']
         end
       end
 
       # CreateVariable返回参数结构体
       class CreateVariableResponse < TencentCloud::Common::AbstractModel
-        # @param VariableId: 变量Id
+        # @param VariableId: <p>变量Id</p>
         # @type VariableId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5461,10 +5481,14 @@ module TencentCloud
         # @type ImageVersion: String
         # @param WebUIType: <p>类型：0 公网，1 内网</p><p>枚举值：</p><ul><li>0： 公网</li><li>1： 内网</li></ul><p>默认值：0</p>
         # @type WebUIType: Integer
+        # @param Name: <p>setats集群的名字</p>
+        # @type Name: String
+        # @param Remark: <p>setats集群注释</p>
+        # @type Remark: String
 
-        attr_accessor :SetatsSerialId, :Status, :Warehouse, :MasterInfo, :WorkerInfo, :Tags, :AutoRenewFlag, :ExpireTime, :SecondsUntilExpiry, :CreateTime, :ManagerUrl, :IsolatedTime, :OwnerClusterGroupSerialId, :Type, :SetatsUiUrl, :ImageVersion, :WebUIType
+        attr_accessor :SetatsSerialId, :Status, :Warehouse, :MasterInfo, :WorkerInfo, :Tags, :AutoRenewFlag, :ExpireTime, :SecondsUntilExpiry, :CreateTime, :ManagerUrl, :IsolatedTime, :OwnerClusterGroupSerialId, :Type, :SetatsUiUrl, :ImageVersion, :WebUIType, :Name, :Remark
 
-        def initialize(setatsserialid=nil, status=nil, warehouse=nil, masterinfo=nil, workerinfo=nil, tags=nil, autorenewflag=nil, expiretime=nil, secondsuntilexpiry=nil, createtime=nil, managerurl=nil, isolatedtime=nil, ownerclustergroupserialid=nil, type=nil, setatsuiurl=nil, imageversion=nil, webuitype=nil)
+        def initialize(setatsserialid=nil, status=nil, warehouse=nil, masterinfo=nil, workerinfo=nil, tags=nil, autorenewflag=nil, expiretime=nil, secondsuntilexpiry=nil, createtime=nil, managerurl=nil, isolatedtime=nil, ownerclustergroupserialid=nil, type=nil, setatsuiurl=nil, imageversion=nil, webuitype=nil, name=nil, remark=nil)
           @SetatsSerialId = setatsserialid
           @Status = status
           @Warehouse = warehouse
@@ -5482,6 +5506,8 @@ module TencentCloud
           @SetatsUiUrl = setatsuiurl
           @ImageVersion = imageversion
           @WebUIType = webuitype
+          @Name = name
+          @Remark = remark
         end
 
         def deserialize(params)
@@ -5518,6 +5544,8 @@ module TencentCloud
           @SetatsUiUrl = params['SetatsUiUrl']
           @ImageVersion = params['ImageVersion']
           @WebUIType = params['WebUIType']
+          @Name = params['Name']
+          @Remark = params['Remark']
         end
       end
 
@@ -6203,34 +6231,46 @@ module TencentCloud
 
       # 变量信息列表
       class VariableItem < TencentCloud::Common::AbstractModel
-        # @param SerialId: 变量id
+        # @param SerialId: <p>变量id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SerialId: String
-        # @param Name: 变量名
+        # @param Name: <p>变量名</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
-        # @param Value: 变量值
+        # @param Value: <p>变量值</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
-        # @param Type: 变量值是否隐藏
+        # @param ValueType: <p>变量值类型</p><p>枚举值：</p><ul><li>0： 自定义变量</li><li>1： 凭据值</li></ul>
+        # @type ValueType: Integer
+        # @param SecretRegion: <p>凭据所在地域</p>
+        # @type SecretRegion: String
+        # @param SecretName: <p>凭据名称</p>
+        # @type SecretName: String
+        # @param SecretVersionId: <p>凭据版本</p>
+        # @type SecretVersionId: String
+        # @param Type: <p>变量值是否隐藏</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: Integer
-        # @param Remark: 变量描述
+        # @param Remark: <p>变量描述</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Remark: String
-        # @param CreateTime: 变量创建时间
+        # @param CreateTime: <p>变量创建时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
-        # @param CreatorUin: 变量创建人
+        # @param CreatorUin: <p>变量创建人</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreatorUin: String
 
-        attr_accessor :SerialId, :Name, :Value, :Type, :Remark, :CreateTime, :CreatorUin
+        attr_accessor :SerialId, :Name, :Value, :ValueType, :SecretRegion, :SecretName, :SecretVersionId, :Type, :Remark, :CreateTime, :CreatorUin
 
-        def initialize(serialid=nil, name=nil, value=nil, type=nil, remark=nil, createtime=nil, creatoruin=nil)
+        def initialize(serialid=nil, name=nil, value=nil, valuetype=nil, secretregion=nil, secretname=nil, secretversionid=nil, type=nil, remark=nil, createtime=nil, creatoruin=nil)
           @SerialId = serialid
           @Name = name
           @Value = value
+          @ValueType = valuetype
+          @SecretRegion = secretregion
+          @SecretName = secretname
+          @SecretVersionId = secretversionid
           @Type = type
           @Remark = remark
           @CreateTime = createtime
@@ -6241,6 +6281,10 @@ module TencentCloud
           @SerialId = params['SerialId']
           @Name = params['Name']
           @Value = params['Value']
+          @ValueType = params['ValueType']
+          @SecretRegion = params['SecretRegion']
+          @SecretName = params['SecretName']
+          @SecretVersionId = params['SecretVersionId']
           @Type = params['Type']
           @Remark = params['Remark']
           @CreateTime = params['CreateTime']

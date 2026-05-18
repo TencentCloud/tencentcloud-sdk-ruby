@@ -539,23 +539,31 @@ module TencentCloud
 
       # DescribeDeviceSessionDetails请求参数结构体
       class DescribeDeviceSessionDetailsRequest < TencentCloud::Common::AbstractModel
-        # @param SessionId: 会话ID
+        # @param SessionId: <p>会话ID</p>
         # @type SessionId: String
+        # @param StartTime: <p>查询指标开始时间</p><p>单位：秒</p>
+        # @type StartTime: Integer
+        # @param EndTime: <p>查询指标结束时间</p><p>单位：秒</p>
+        # @type EndTime: Integer
 
-        attr_accessor :SessionId
+        attr_accessor :SessionId, :StartTime, :EndTime
 
-        def initialize(sessionid=nil)
+        def initialize(sessionid=nil, starttime=nil, endtime=nil)
           @SessionId = sessionid
+          @StartTime = starttime
+          @EndTime = endtime
         end
 
         def deserialize(params)
           @SessionId = params['SessionId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
         end
       end
 
       # DescribeDeviceSessionDetails返回参数结构体
       class DescribeDeviceSessionDetailsResponse < TencentCloud::Common::AbstractModel
-        # @param Details: 按设备区分的会话详细数据
+        # @param Details: <p>按设备区分的会话详细数据</p>
         # @type Details: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1997,86 +2005,88 @@ module TencentCloud
 
       # 会话数据详单（按设备区分）
       class SessionDeviceDetail < TencentCloud::Common::AbstractModel
-        # @param DeviceType: 设备类型：field或remote
+        # @param DeviceType: <p>设备类型：field或remote</p>
         # @type DeviceType: String
-        # @param StartTime: 起始点位时间，单位：秒
+        # @param StartTime: <p>起始点位时间，单位：秒</p>
         # @type StartTime: Integer
-        # @param EndTime: 结束点位时间，单位：秒
+        # @param EndTime: <p>结束点位时间，单位：秒</p>
         # @type EndTime: Integer
-        # @param SessionId: 会话ID
+        # @param SessionId: <p>会话ID</p>
         # @type SessionId: String
-        # @param Rate: 码率，单位：kbps
+        # @param Rate: <p>码率，单位：kbps</p>
         # @type Rate: Array
-        # @param Fps: 帧率
+        # @param Fps: <p>帧率</p>
         # @type Fps: Array
-        # @param Lost: 丢包率，单位：%
+        # @param Lost: <p>丢包率，单位：%</p>
         # @type Lost: Array
-        # @param NetworkLatency: 网络时延，单位：ms
+        # @param NetworkLatency: <p>网络时延，单位：ms</p>
         # @type NetworkLatency: Array
-        # @param VideoLatency: 视频时延，单位：ms
+        # @param VideoLatency: <p>视频时延，单位：ms</p>
         # @type VideoLatency: Array
-        # @param CpuUsed: CPU使用率，单位：%
+        # @param CpuUsed: <p>CPU使用率，单位：%</p>
         # @type CpuUsed: Array
-        # @param MemUsed: 内存使用率，单位：%
+        # @param MemUsed: <p>内存使用率，单位：%</p>
         # @type MemUsed: Array
-        # @param TimeOffset: 时间偏移量，单位：秒
+        # @param TimeOffset: <p>时间偏移量，单位：秒</p>
         # @type TimeOffset: Array
-        # @param ProjectId: 项目ID
+        # @param ProjectId: <p>项目ID</p>
         # @type ProjectId: String
-        # @param DeviceId: 设备ID
+        # @param DeviceId: <p>设备ID</p>
         # @type DeviceId: String
-        # @param Ver: sdk版本
+        # @param Ver: <p>sdk版本</p>
         # @type Ver: String
-        # @param SdkMode: 模式(p2p/server)
+        # @param SdkMode: <p>模式(p2p/server)</p>
         # @type SdkMode: String
-        # @param DecodeCost: 解码耗时，单位：ms
+        # @param DecodeCost: <p>解码耗时，单位：ms</p>
         # @type DecodeCost: Array
-        # @param RenderConst: 【已废弃，使用RenderCost】
+        # @param RenderConst: <p>【已废弃，使用RenderCost】</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RenderConst: Array
-        # @param K100: 卡顿k100
+        # @param K100: <p>卡顿k100</p>
         # @type K100: Array
-        # @param K150: 卡顿k150
+        # @param K150: <p>卡顿k150</p>
         # @type K150: Array
-        # @param NACK: nack请求数
+        # @param NACK: <p>nack请求数</p>
         # @type NACK: Array
-        # @param BitRateEstimate: 服务端调控码率,单位：kbps
+        # @param BitRateEstimate: <p>服务端调控码率,单位：kbps</p>
         # @type BitRateEstimate: Array
-        # @param Width: 宽度
+        # @param Width: <p>宽度</p>
         # @type Width: Integer
-        # @param Height: 高度
+        # @param Height: <p>高度</p>
         # @type Height: Integer
-        # @param EncodeCost: 编码耗时，单位：ms
+        # @param EncodeCost: <p>编码耗时，单位：ms</p>
         # @type EncodeCost: Array
-        # @param CaptureCost: 采集耗时，单位：ms
+        # @param CaptureCost: <p>采集耗时，单位：ms</p>
         # @type CaptureCost: Array
-        # @param RenderCost: 渲染耗时，单位：ms
+        # @param RenderCost: <p>渲染耗时，单位：ms</p>
         # @type RenderCost: Array
-        # @param ConfigWidth: 配置宽度
+        # @param ConfigWidth: <p>配置宽度</p>
         # @type ConfigWidth: Integer
-        # @param ConfigHeight: 配置高度
+        # @param ConfigHeight: <p>配置高度</p>
         # @type ConfigHeight: Integer
-        # @param FrameDelta: 平均帧间隔
+        # @param FrameDelta: <p>平均帧间隔</p>
         # @type FrameDelta: Array
-        # @param MaxFrameDelta: 最大帧间隔
+        # @param MaxFrameDelta: <p>最大帧间隔</p>
         # @type MaxFrameDelta: Array
-        # @param TotalBitrateEstimate: 总码率评估,单位：kbps
+        # @param TotalBitrateEstimate: <p>总码率评估,单位：kbps</p>
         # @type TotalBitrateEstimate: Array
-        # @param Lag100Duration: 帧间隔大于100ms的卡顿时长
+        # @param Lag100Duration: <p>帧间隔大于100ms的卡顿时长</p>
         # @type Lag100Duration: Array
-        # @param Lag150Duration: 帧间隔大于150ms的卡顿时长
+        # @param Lag150Duration: <p>帧间隔大于150ms的卡顿时长</p>
         # @type Lag150Duration: Array
-        # @param MultiMode: 是否开启多网：0 单网，1 多网
+        # @param MultiMode: <p>是否开启多网：0 单网，1 多网</p>
         # @type MultiMode: Integer
-        # @param MultiNet: 多网卡信息
+        # @param MultiNet: <p>多网卡信息</p>
         # @type MultiNet: Array
+        # @param ControlLatency: <p>现场设备和远端设备消息通道往返延迟</p><p>单位：毫秒ms</p>
+        # @type ControlLatency: Array
 
-        attr_accessor :DeviceType, :StartTime, :EndTime, :SessionId, :Rate, :Fps, :Lost, :NetworkLatency, :VideoLatency, :CpuUsed, :MemUsed, :TimeOffset, :ProjectId, :DeviceId, :Ver, :SdkMode, :DecodeCost, :RenderConst, :K100, :K150, :NACK, :BitRateEstimate, :Width, :Height, :EncodeCost, :CaptureCost, :RenderCost, :ConfigWidth, :ConfigHeight, :FrameDelta, :MaxFrameDelta, :TotalBitrateEstimate, :Lag100Duration, :Lag150Duration, :MultiMode, :MultiNet
+        attr_accessor :DeviceType, :StartTime, :EndTime, :SessionId, :Rate, :Fps, :Lost, :NetworkLatency, :VideoLatency, :CpuUsed, :MemUsed, :TimeOffset, :ProjectId, :DeviceId, :Ver, :SdkMode, :DecodeCost, :RenderConst, :K100, :K150, :NACK, :BitRateEstimate, :Width, :Height, :EncodeCost, :CaptureCost, :RenderCost, :ConfigWidth, :ConfigHeight, :FrameDelta, :MaxFrameDelta, :TotalBitrateEstimate, :Lag100Duration, :Lag150Duration, :MultiMode, :MultiNet, :ControlLatency
         extend Gem::Deprecate
-        deprecate :RenderConst, :none, 2026, 3
-        deprecate :RenderConst=, :none, 2026, 3
+        deprecate :RenderConst, :none, 2026, 5
+        deprecate :RenderConst=, :none, 2026, 5
 
-        def initialize(devicetype=nil, starttime=nil, endtime=nil, sessionid=nil, rate=nil, fps=nil, lost=nil, networklatency=nil, videolatency=nil, cpuused=nil, memused=nil, timeoffset=nil, projectid=nil, deviceid=nil, ver=nil, sdkmode=nil, decodecost=nil, renderconst=nil, k100=nil, k150=nil, nack=nil, bitrateestimate=nil, width=nil, height=nil, encodecost=nil, capturecost=nil, rendercost=nil, configwidth=nil, configheight=nil, framedelta=nil, maxframedelta=nil, totalbitrateestimate=nil, lag100duration=nil, lag150duration=nil, multimode=nil, multinet=nil)
+        def initialize(devicetype=nil, starttime=nil, endtime=nil, sessionid=nil, rate=nil, fps=nil, lost=nil, networklatency=nil, videolatency=nil, cpuused=nil, memused=nil, timeoffset=nil, projectid=nil, deviceid=nil, ver=nil, sdkmode=nil, decodecost=nil, renderconst=nil, k100=nil, k150=nil, nack=nil, bitrateestimate=nil, width=nil, height=nil, encodecost=nil, capturecost=nil, rendercost=nil, configwidth=nil, configheight=nil, framedelta=nil, maxframedelta=nil, totalbitrateestimate=nil, lag100duration=nil, lag150duration=nil, multimode=nil, multinet=nil, controllatency=nil)
           @DeviceType = devicetype
           @StartTime = starttime
           @EndTime = endtime
@@ -2113,6 +2123,7 @@ module TencentCloud
           @Lag150Duration = lag150duration
           @MultiMode = multimode
           @MultiNet = multinet
+          @ControlLatency = controllatency
         end
 
         def deserialize(params)
@@ -2159,6 +2170,7 @@ module TencentCloud
               @MultiNet << multinet_tmp
             end
           end
+          @ControlLatency = params['ControlLatency']
         end
       end
 

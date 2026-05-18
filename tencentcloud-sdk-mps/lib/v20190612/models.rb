@@ -5150,7 +5150,7 @@ module TencentCloud
         end
       end
 
-      # Aigc结果文件上传COS时，需传入的信息。 需创建并授权LVB_QCSRole角色。
+      # Aigc结果文件上传COS时，需传入的信息。 需创建并授权MPS_QcsRole角色。
       class AigcStoreCosParam < TencentCloud::Common::AbstractModel
         # @param CosBucketName: 存储至 cos 的 bucket 桶名称。需要cos存储时，该值必填。 示例值：bucket。
         # @type CosBucketName: String

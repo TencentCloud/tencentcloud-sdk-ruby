@@ -2331,11 +2331,11 @@ module TencentCloud
 
       # CreateGrafanaIntegration请求参数结构体
       class CreateGrafanaIntegrationRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: Grafana 实例 ID，例如：grafana-abcdefgh
+        # @param InstanceId: <p>Grafana 实例 ID，例如：grafana-abcdefgh</p>
         # @type InstanceId: String
-        # @param Kind: 集成类型(接口DescribeGrafanaIntegrationOverviews返回的集成信息中的Code字段)
+        # @param Kind: <p>集成类型(接口DescribeGrafanaIntegrationOverviews返回的集成信息中的Code字段)</p>
         # @type Kind: String
-        # @param Content: 集成配置
+        # @param Content: <p>集成配置</p>
         # @type Content: String
 
         attr_accessor :InstanceId, :Kind, :Content
@@ -2355,7 +2355,7 @@ module TencentCloud
 
       # CreateGrafanaIntegration返回参数结构体
       class CreateGrafanaIntegrationResponse < TencentCloud::Common::AbstractModel
-        # @param IntegrationId: 集成 ID
+        # @param IntegrationId: <p>集成 ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IntegrationId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -3218,65 +3218,6 @@ module TencentCloud
 
         def deserialize(params)
           @UserId = params['UserId']
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # CreateServiceDiscovery请求参数结构体
-      class CreateServiceDiscoveryRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: Prometheus 实例 ID
-        # @type InstanceId: String
-        # @param KubeClusterId: <li>类型为TKE：对应集成的腾讯云容器服务集群 ID</li>
-        # @type KubeClusterId: String
-        # @param KubeType: 用户 Kubernetes 集群类型：
-        # <li> 1 = 容器服务集群(TKE) </li>
-        # @type KubeType: Integer
-        # @param Type: 服务发现类型，取值如下：
-        # <li> 1 = ServiceMonitor</li>
-        # <li> 2 = PodMonitor</li>
-        # <li> 3 = JobMonitor</li>
-        # @type Type: Integer
-        # @param Yaml: 服务发现配置信息，YAML 格式，[具体YAML参数内容请参考](https://cloud.tencent.com/document/product/1416/55995#service-monitor)
-        # @type Yaml: String
-
-        attr_accessor :InstanceId, :KubeClusterId, :KubeType, :Type, :Yaml
-
-        def initialize(instanceid=nil, kubeclusterid=nil, kubetype=nil, type=nil, yaml=nil)
-          @InstanceId = instanceid
-          @KubeClusterId = kubeclusterid
-          @KubeType = kubetype
-          @Type = type
-          @Yaml = yaml
-        end
-
-        def deserialize(params)
-          @InstanceId = params['InstanceId']
-          @KubeClusterId = params['KubeClusterId']
-          @KubeType = params['KubeType']
-          @Type = params['Type']
-          @Yaml = params['Yaml']
-        end
-      end
-
-      # CreateServiceDiscovery返回参数结构体
-      class CreateServiceDiscoveryResponse < TencentCloud::Common::AbstractModel
-        # @param ServiceDiscovery: 创建成功之后，返回对应服务发现信息
-        # @type ServiceDiscovery: :class:`Tencentcloud::Monitor.v20180724.models.ServiceDiscoveryItem`
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :ServiceDiscovery, :RequestId
-
-        def initialize(servicediscovery=nil, requestid=nil)
-          @ServiceDiscovery = servicediscovery
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['ServiceDiscovery'].nil?
-            @ServiceDiscovery = ServiceDiscoveryItem.new
-            @ServiceDiscovery.deserialize(params['ServiceDiscovery'])
-          end
           @RequestId = params['RequestId']
         end
       end
@@ -9772,59 +9713,6 @@ module TencentCloud
               grafanaaccountinfo_tmp = GrafanaAccountInfo.new
               grafanaaccountinfo_tmp.deserialize(i)
               @AccountSet << grafanaaccountinfo_tmp
-            end
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # DescribeServiceDiscovery请求参数结构体
-      class DescribeServiceDiscoveryRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: Prometheus 实例 ID
-        # @type InstanceId: String
-        # @param KubeClusterId: <li>类型是 TKE，为对应的腾讯云容器服务集群 ID</li>
-        # @type KubeClusterId: String
-        # @param KubeType: 用户 Kubernetes 集群类型：
-        # <li> 1 = 容器服务集群(TKE) </li>
-        # @type KubeType: Integer
-
-        attr_accessor :InstanceId, :KubeClusterId, :KubeType
-
-        def initialize(instanceid=nil, kubeclusterid=nil, kubetype=nil)
-          @InstanceId = instanceid
-          @KubeClusterId = kubeclusterid
-          @KubeType = kubetype
-        end
-
-        def deserialize(params)
-          @InstanceId = params['InstanceId']
-          @KubeClusterId = params['KubeClusterId']
-          @KubeType = params['KubeType']
-        end
-      end
-
-      # DescribeServiceDiscovery返回参数结构体
-      class DescribeServiceDiscoveryResponse < TencentCloud::Common::AbstractModel
-        # @param ServiceDiscoverySet: 返回服务发现列表信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ServiceDiscoverySet: Array
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :ServiceDiscoverySet, :RequestId
-
-        def initialize(servicediscoveryset=nil, requestid=nil)
-          @ServiceDiscoverySet = servicediscoveryset
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['ServiceDiscoverySet'].nil?
-            @ServiceDiscoverySet = []
-            params['ServiceDiscoverySet'].each do |i|
-              servicediscoveryitem_tmp = ServiceDiscoveryItem.new
-              servicediscoveryitem_tmp.deserialize(i)
-              @ServiceDiscoverySet << servicediscoveryitem_tmp
             end
           end
           @RequestId = params['RequestId']

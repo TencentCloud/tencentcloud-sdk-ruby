@@ -650,36 +650,38 @@ module TencentCloud
 
       # 设备的基本信息
       class DeviceBaseInfo < TencentCloud::Common::AbstractModel
-        # @param DeviceId: 设备唯一ID
+        # @param DeviceId: <p>设备唯一ID</p>
         # @type DeviceId: String
-        # @param DeviceName: 设备名称
+        # @param DeviceName: <p>设备名称</p>
         # @type DeviceName: String
-        # @param CreateTime: 设备创建的时间，单位：ms
+        # @param CreateTime: <p>设备创建的时间，单位：ms</p>
         # @type CreateTime: String
-        # @param LastTime: 设备最后在线时间，单位：ms
+        # @param LastTime: <p>设备最后在线时间，单位：ms</p>
         # @type LastTime: String
-        # @param Remark: 设备的备注
+        # @param Remark: <p>设备的备注</p>
         # @type Remark: String
-        # @param AccessScope: 接入环境。0：公有云网关；1：自有网关；2：公有云网关和自有网关。默认公有云网关。 具体含义： 公有云网关：即该设备只能接入公有云网关（就近接入） 自有网关：即该设备只能接入已经注册上线的自有网关（就近接入或固定ip接入） 公有云网关和自有网关：即该设备同时可以接入公有云网关和已经注册上线的自有网关（就近接入或固定ip接入）
+        # @param AccessScope: <p>接入环境。0：公有云网关；1：自有网关；2：公有云网关和自有网关。默认公有云网关。 具体含义： 公有云网关：即该设备只能接入公有云网关（就近接入） 自有网关：即该设备只能接入已经注册上线的自有网关（就近接入或固定ip接入） 公有云网关和自有网关：即该设备同时可以接入公有云网关和已经注册上线的自有网关（就近接入或固定ip接入）</p>
         # @type AccessScope: Integer
-        # @param LicensePayMode: license授权有效期 0：月度授权 1：永久授权
+        # @param LicensePayMode: <p>license授权有效期 0：月度授权 1：永久授权</p>
         # @type LicensePayMode: Integer
-        # @param Payer: 付费方 0：厂商付费 1：客户付费
+        # @param Payer: <p>付费方 0：厂商付费 1：客户付费</p>
         # @type Payer: Integer
-        # @param GroupId: 设备分组ID
+        # @param GroupId: <p>设备分组ID</p>
         # @type GroupId: String
-        # @param GroupName: 设备分组名称
+        # @param GroupName: <p>设备分组名称</p>
         # @type GroupName: String
-        # @param FlowTrunc: 设备无流量包处理方式，0: 按量付费，1: 截断加速
+        # @param FlowTrunc: <p>设备无流量包处理方式，0: 按量付费，1: 截断加速</p>
         # @type FlowTrunc: Integer
-        # @param Sn: 设备sn
+        # @param Sn: <p>设备sn</p>
         # @type Sn: String
-        # @param Vendor: 厂商
+        # @param Vendor: <p>厂商</p>
         # @type Vendor: String
+        # @param AllowedRegions: <p>可接入地域列表。</p>
+        # @type AllowedRegions: Array
 
-        attr_accessor :DeviceId, :DeviceName, :CreateTime, :LastTime, :Remark, :AccessScope, :LicensePayMode, :Payer, :GroupId, :GroupName, :FlowTrunc, :Sn, :Vendor
+        attr_accessor :DeviceId, :DeviceName, :CreateTime, :LastTime, :Remark, :AccessScope, :LicensePayMode, :Payer, :GroupId, :GroupName, :FlowTrunc, :Sn, :Vendor, :AllowedRegions
 
-        def initialize(deviceid=nil, devicename=nil, createtime=nil, lasttime=nil, remark=nil, accessscope=nil, licensepaymode=nil, payer=nil, groupid=nil, groupname=nil, flowtrunc=nil, sn=nil, vendor=nil)
+        def initialize(deviceid=nil, devicename=nil, createtime=nil, lasttime=nil, remark=nil, accessscope=nil, licensepaymode=nil, payer=nil, groupid=nil, groupname=nil, flowtrunc=nil, sn=nil, vendor=nil, allowedregions=nil)
           @DeviceId = deviceid
           @DeviceName = devicename
           @CreateTime = createtime
@@ -693,6 +695,7 @@ module TencentCloud
           @FlowTrunc = flowtrunc
           @Sn = sn
           @Vendor = vendor
+          @AllowedRegions = allowedregions
         end
 
         def deserialize(params)
@@ -709,6 +712,7 @@ module TencentCloud
           @FlowTrunc = params['FlowTrunc']
           @Sn = params['Sn']
           @Vendor = params['Vendor']
+          @AllowedRegions = params['AllowedRegions']
         end
       end
 
@@ -2292,15 +2296,15 @@ module TencentCloud
 
       # GetNetMonitor请求参数结构体
       class GetNetMonitorRequest < TencentCloud::Common::AbstractModel
-        # @param DeviceId: 设备id
+        # @param DeviceId: <p>设备id</p>
         # @type DeviceId: String
-        # @param BeginTime: 开始时间
+        # @param BeginTime: <p>开始时间</p>
         # @type BeginTime: Integer
-        # @param EndTime: 结束时间
+        # @param EndTime: <p>结束时间</p>
         # @type EndTime: Integer
-        # @param Metrics: 统计指标（上行速率："TxRate":bit/s，下行速率："RxRate":bit/s，丢包："Loss":%，时延："RTT":ms）
+        # @param Metrics: <p>统计指标（上行速率：&quot;TxRate&quot;:bit/s，下行速率：&quot;RxRate&quot;:bit/s，丢包：&quot;Loss&quot;:%，时延：&quot;RTT&quot;:ms）</p>
         # @type Metrics: String
-        # @param GatewayType: 网关类型。0：公有云网关；1：自有网关。不传默认为0。
+        # @param GatewayType: <p>网关类型。0：公有云网关；1：自有网关。不传默认为0。</p>
         # @type GatewayType: Integer
 
         attr_accessor :DeviceId, :BeginTime, :EndTime, :Metrics, :GatewayType
@@ -2324,13 +2328,9 @@ module TencentCloud
 
       # GetNetMonitor返回参数结构体
       class GetNetMonitorResponse < TencentCloud::Common::AbstractModel
-        # @param MonitorData: 监控数据
+        # @param MonitorData: <p>监控数据</p>
         # @type MonitorData: Array
-        # @param AccessRegion: 接入区域。取值范围：['MC','AP','EU','AM']
-        # MC=中国大陆
-        # AP=亚太
-        # EU=欧洲
-        # AM=美洲
+        # @param AccessRegion: <p>接入区域。取值范围：[&#39;MC&#39;,&#39;AP&#39;,&#39;EU&#39;,&#39;AM&#39;]<br>MC=中国大陆<br>AP=亚太<br>EU=欧洲<br>AM=美洲</p>
         # @type AccessRegion: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

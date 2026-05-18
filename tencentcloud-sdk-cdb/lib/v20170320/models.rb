@@ -193,41 +193,38 @@ module TencentCloud
 
       # AdjustCdbProxyAddress请求参数结构体
       class AdjustCdbProxyAddressRequest < TencentCloud::Common::AbstractModel
-        # @param ProxyGroupId: 代理组 ID。可通过 [DescribeCdbProxyInfo](https://cloud.tencent.com/document/api/236/90585) 接口获取。
+        # @param ProxyGroupId: <p>代理组 ID。可通过 <a href="https://cloud.tencent.com/document/api/236/90585">DescribeCdbProxyInfo</a> 接口获取。</p>
         # @type ProxyGroupId: String
-        # @param WeightMode: 权重分配模式，
-        # 系统自动分配："system"， 自定义："custom"
+        # @param WeightMode: <p>权重分配模式，<br>系统自动分配：&quot;system&quot;， 自定义：&quot;custom&quot;</p>
         # @type WeightMode: String
-        # @param IsKickOut: 是否开启延迟剔除，取值："true" | "false"
+        # @param IsKickOut: <p>是否开启延迟剔除，取值：&quot;true&quot; | &quot;false&quot;</p>
         # @type IsKickOut: Boolean
-        # @param MinCount: 最小保留数量，最小取值：0。
-        # 说明：当 IsKickOut 为 true 时才有效。
+        # @param MinCount: <p>最小保留数量，最小取值：0。<br>说明：当 IsKickOut 为 true 时才有效。</p>
         # @type MinCount: Integer
-        # @param MaxDelay: 延迟剔除阈值，最小取值：1，取值范围：[1,10000]，整数。
+        # @param MaxDelay: <p>延迟剔除阈值，最小取值：1，取值范围：[1,10000]，整数。</p>
         # @type MaxDelay: Integer
-        # @param FailOver: 是否开启故障转移，取值："true" | "false"
+        # @param FailOver: <p>是否开启故障转移，取值：&quot;true&quot; | &quot;false&quot;</p>
         # @type FailOver: Boolean
-        # @param AutoAddRo: 是否自动添加RO，取值："true" | "false"
+        # @param AutoAddRo: <p>是否自动添加RO，取值：&quot;true&quot; | &quot;false&quot;</p>
         # @type AutoAddRo: Boolean
-        # @param ReadOnly: 是否是只读，取值："true" | "false"
+        # @param ReadOnly: <p>是否是只读，取值：&quot;true&quot; | &quot;false&quot;</p>
         # @type ReadOnly: Boolean
-        # @param ProxyAddressId: 代理组地址 ID。可通过 [DescribeCdbProxyInfo](https://cloud.tencent.com/document/api/236/90585) 接口获取。
+        # @param ProxyAddressId: <p>代理组地址 ID。可通过 <a href="https://cloud.tencent.com/document/api/236/90585">DescribeCdbProxyInfo</a> 接口获取。</p>
         # @type ProxyAddressId: String
-        # @param TransSplit: 是否开启事务分离，取值："true" | "false"，默认值 false。
+        # @param TransSplit: <p>是否开启事务分离，取值：&quot;true&quot; | &quot;false&quot;，默认值 false。</p>
         # @type TransSplit: Boolean
-        # @param ConnectionPool: 是否开启连接池。默认关闭。
-        # 注意：如需使用数据库代理连接池能力，MySQL 8.0 主实例的内核小版本要大于等于 MySQL 8.0 20230630。
+        # @param ConnectionPool: <p>是否开启连接池。默认关闭。<br>注意：如需使用数据库代理连接池能力，MySQL 8.0 主实例的内核小版本要大于等于 MySQL 8.0 20230630。</p>
         # @type ConnectionPool: Boolean
-        # @param ProxyAllocation: 读写权重分配。如果 WeightMode 传的是 system ，则传入的权重不生效，由系统分配默认权重。
+        # @param ProxyAllocation: <p>读写权重分配。如果 WeightMode 传的是 system ，则传入的权重不生效，由系统分配默认权重。</p>
         # @type ProxyAllocation: Array
-        # @param AutoLoadBalance: 是否开启自适应负载均衡。默认关闭。
+        # @param AutoLoadBalance: <p>是否开启自适应负载均衡。默认关闭。</p>
         # @type AutoLoadBalance: Boolean
-        # @param AccessMode: 访问模式：nearby - 就近访问，balance - 均衡分配，默认就近访问。
+        # @param AccessMode: <p>访问模式：nearby - 就近访问，balance - 均衡分配，默认就近访问。</p>
         # @type AccessMode: String
-        # @param ApNodeAsRoNode: 是否将libra节点当作普通RO节点
-        # @type ApNodeAsRoNode: String
-        # @param ApQueryToOtherNode: libra节点故障，是否转发给其他节点
-        # @type ApQueryToOtherNode: String
+        # @param ApNodeAsRoNode: <p>是否将libra节点当作普通RO节点</p>
+        # @type ApNodeAsRoNode: Boolean
+        # @param ApQueryToOtherNode: <p>libra节点故障，是否转发给其他节点</p>
+        # @type ApQueryToOtherNode: Boolean
 
         attr_accessor :ProxyGroupId, :WeightMode, :IsKickOut, :MinCount, :MaxDelay, :FailOver, :AutoAddRo, :ReadOnly, :ProxyAddressId, :TransSplit, :ConnectionPool, :ProxyAllocation, :AutoLoadBalance, :AccessMode, :ApNodeAsRoNode, :ApQueryToOtherNode
 
@@ -279,7 +276,7 @@ module TencentCloud
 
       # AdjustCdbProxyAddress返回参数结构体
       class AdjustCdbProxyAddressResponse < TencentCloud::Common::AbstractModel
-        # @param AsyncRequestId: 异步任务ID
+        # @param AsyncRequestId: <p>异步任务ID</p>
         # @type AsyncRequestId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

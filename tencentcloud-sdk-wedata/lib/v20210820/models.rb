@@ -6362,30 +6362,32 @@ module TencentCloud
 
       # CreateTaskVersionDs请求参数结构体
       class CreateTaskVersionDsRequest < TencentCloud::Common::AbstractModel
-        # @param Task: 任务id
+        # @param Task: <p>任务id</p>
         # @type Task: :class:`Tencentcloud::Wedata.v20210820.models.BatchCreateTaskVersionDTO`
-        # @param NeedCheckParentSubmitted: 是否需要校验父任务已经提交到调度
+        # @param NeedCheckParentSubmitted: <p>是否需要校验父任务已经提交到调度</p>
         # @type NeedCheckParentSubmitted: Boolean
-        # @param AutoRun: 是否自动运行
+        # @param AutoRun: <p>是否自动运行</p>
         # @type AutoRun: Boolean
-        # @param ProjectId: 项目ID
+        # @param ProjectId: <p>项目ID</p>
         # @type ProjectId: String
         # @param RequestFromSource: 请求来源，WEB 前端；CLIENT 客户端
         # @type RequestFromSource: String
-        # @param AlarmWays: 告警方式:email-邮件;sms-短信;wecom-企业微信
+        # @param AlarmWays: <p>告警方式:email-邮件;sms-短信;wecom-企业微信</p>
         # @type AlarmWays: String
-        # @param AlarmRecipientTypes: 告警对象:1-项目管理员，2-任务责任人
+        # @param AlarmRecipientTypes: <p>告警对象:1-项目管理员，2-任务责任人</p>
         # @type AlarmRecipientTypes: String
-        # @param EnableCheckTaskCycleLink: 是否需要校验循环依赖，默认为 true，如果使用了 CheckTaskCycleLink 和 CheckTaskCycleConfiguration 两个接口校验成功可以传 false，后台服务器不再做校验
+        # @param EnableCheckTaskCycleLink: <p>是否需要校验循环依赖，默认为 true，如果使用了 CheckTaskCycleLink 和 CheckTaskCycleConfiguration 两个接口校验成功可以传 false，后台服务器不再做校验</p>
         # @type EnableCheckTaskCycleLink: Boolean
-        # @param EnableMakeUp: 是否需要补录中间实例
+        # @param EnableMakeUp: <p>是否需要补录中间实例</p>
         # @type EnableMakeUp: Boolean
-        # @param AssignApprovalList: 指定审批人列表
+        # @param AssignApprovalList: <p>指定审批人列表</p>
         # @type AssignApprovalList: Array
+        # @param MissingInstanceStrategy: <p>MAKEUP:补录缺失的实例;FORCE_SUCCESS:将缺失的实例置成功;SKIP:不处理，忽略缺失的实例</p>
+        # @type MissingInstanceStrategy: String
 
-        attr_accessor :Task, :NeedCheckParentSubmitted, :AutoRun, :ProjectId, :RequestFromSource, :AlarmWays, :AlarmRecipientTypes, :EnableCheckTaskCycleLink, :EnableMakeUp, :AssignApprovalList
+        attr_accessor :Task, :NeedCheckParentSubmitted, :AutoRun, :ProjectId, :RequestFromSource, :AlarmWays, :AlarmRecipientTypes, :EnableCheckTaskCycleLink, :EnableMakeUp, :AssignApprovalList, :MissingInstanceStrategy
 
-        def initialize(task=nil, needcheckparentsubmitted=nil, autorun=nil, projectid=nil, requestfromsource=nil, alarmways=nil, alarmrecipienttypes=nil, enablechecktaskcyclelink=nil, enablemakeup=nil, assignapprovallist=nil)
+        def initialize(task=nil, needcheckparentsubmitted=nil, autorun=nil, projectid=nil, requestfromsource=nil, alarmways=nil, alarmrecipienttypes=nil, enablechecktaskcyclelink=nil, enablemakeup=nil, assignapprovallist=nil, missinginstancestrategy=nil)
           @Task = task
           @NeedCheckParentSubmitted = needcheckparentsubmitted
           @AutoRun = autorun
@@ -6396,6 +6398,7 @@ module TencentCloud
           @EnableCheckTaskCycleLink = enablechecktaskcyclelink
           @EnableMakeUp = enablemakeup
           @AssignApprovalList = assignapprovallist
+          @MissingInstanceStrategy = missinginstancestrategy
         end
 
         def deserialize(params)
@@ -6412,12 +6415,13 @@ module TencentCloud
           @EnableCheckTaskCycleLink = params['EnableCheckTaskCycleLink']
           @EnableMakeUp = params['EnableMakeUp']
           @AssignApprovalList = params['AssignApprovalList']
+          @MissingInstanceStrategy = params['MissingInstanceStrategy']
         end
       end
 
       # CreateTaskVersionDs返回参数结构体
       class CreateTaskVersionDsResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 版本
+        # @param Data: <p>版本</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -8054,41 +8058,47 @@ module TencentCloud
 
       # 数据源对象
       class DatasourceBaseInfo < TencentCloud::Common::AbstractModel
-        # @param DatabaseNames: 若数据源列表为绑定数据库，则为db名称
+        # @param DatabaseNames: <p>若数据源列表为绑定数据库，则为db名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DatabaseNames: Array
-        # @param Description: 数据源描述信息
+        # @param Description: <p>数据源描述信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
-        # @param ID: 数据源ID
+        # @param ID: <p>数据源ID</p>
         # @type ID: Integer
-        # @param Instance: 数据源引擎的实例ID，如CDB实例ID
+        # @param Instance: <p>数据源引擎的实例ID，如CDB实例ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Instance: String
-        # @param Name: 数据源名称，在相同SpaceName下，数据源名称不能为空
+        # @param Name: <p>数据源名称，在相同SpaceName下，数据源名称不能为空</p>
         # @type Name: String
-        # @param Region: 数据源引擎所属区域
+        # @param Region: <p>数据源引擎所属区域</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Region: String
-        # @param Type: 数据源类型:枚举值
+        # @param Type: <p>数据源类型:枚举值</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
-        # @param ClusterId: 数据源所属的集群id
+        # @param ClusterId: <p>数据源所属的集群id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterId: String
-        # @param Version: 数据源版本信息
+        # @param Version: <p>数据源版本信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Version: String
-        # @param ParamsString: 数据源附带参数信息Params json字符串
+        # @param ParamsString: <p>数据源附带参数信息Params json字符串</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParamsString: String
-        # @param Category: 区分数据源类型自定义源还是系统源
+        # @param Category: <p>区分数据源类型自定义源还是系统源</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Category: String
+        # @param Ip: <p>数据实例ip</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Ip: String
+        # @param Port: <p>数据实例port</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Port: String
 
-        attr_accessor :DatabaseNames, :Description, :ID, :Instance, :Name, :Region, :Type, :ClusterId, :Version, :ParamsString, :Category
+        attr_accessor :DatabaseNames, :Description, :ID, :Instance, :Name, :Region, :Type, :ClusterId, :Version, :ParamsString, :Category, :Ip, :Port
 
-        def initialize(databasenames=nil, description=nil, id=nil, instance=nil, name=nil, region=nil, type=nil, clusterid=nil, version=nil, paramsstring=nil, category=nil)
+        def initialize(databasenames=nil, description=nil, id=nil, instance=nil, name=nil, region=nil, type=nil, clusterid=nil, version=nil, paramsstring=nil, category=nil, ip=nil, port=nil)
           @DatabaseNames = databasenames
           @Description = description
           @ID = id
@@ -8100,6 +8110,8 @@ module TencentCloud
           @Version = version
           @ParamsString = paramsstring
           @Category = category
+          @Ip = ip
+          @Port = port
         end
 
         def deserialize(params)
@@ -8114,6 +8126,8 @@ module TencentCloud
           @Version = params['Version']
           @ParamsString = params['ParamsString']
           @Category = params['Category']
+          @Ip = params['Ip']
+          @Port = params['Port']
         end
       end
 
@@ -31525,34 +31539,34 @@ module TencentCloud
 
       # 任务参数输出dto
       class ParameterTaskOutDsDto < TencentCloud::Common::AbstractModel
-        # @param Id: 唯一标识
+        # @param Id: <p>唯一标识</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: Integer
-        # @param TaskId: 任务id
+        # @param TaskId: <p>任务id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskId: String
-        # @param ParamKey: 参数名
+        # @param ParamKey: <p>参数名</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParamKey: String
-        # @param ParamDesc: 参数描述
+        # @param ParamDesc: <p>参数描述</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParamDesc: String
-        # @param ParamDefine: 参数定义
+        # @param ParamDefine: <p>参数定义</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParamDefine: String
-        # @param CreateTime: 创建时间
+        # @param CreateTime: <p>创建时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
-        # @param UpdateTime: 更新时间
+        # @param UpdateTime: <p>更新时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
-        # @param TaskName: 任务名
+        # @param TaskName: <p>任务名</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskName: String
-        # @param ProjectId: 项目id
+        # @param ProjectId: <p>项目id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProjectId: String
-        # @param ProjectName: 项目名
+        # @param ProjectName: <p>项目名</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProjectName: String
 
@@ -40057,358 +40071,328 @@ module TencentCloud
 
       # 任务信息
       class TaskDsDTO < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务ID
+        # @param TaskId: <p>任务ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskId: String
-        # @param VirtualTaskId: 虚拟任务标记
+        # @param VirtualTaskId: <p>虚拟任务标记</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VirtualTaskId: String
-        # @param VirtualFlag: 虚拟任务标记
+        # @param VirtualFlag: <p>虚拟任务标记</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VirtualFlag: Boolean
-        # @param TaskName: 任务名
+        # @param TaskName: <p>任务名</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskName: String
-        # @param WorkflowId: 工作流id
+        # @param WorkflowId: <p>工作流id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WorkflowId: String
-        # @param RealWorkflowId: 真实工作流id
+        # @param RealWorkflowId: <p>真实工作流id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RealWorkflowId: String
-        # @param WorkflowName: 工作流名称
+        # @param WorkflowName: <p>工作流名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WorkflowName: String
-        # @param FolderId: 文件夹id
+        # @param FolderId: <p>文件夹id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FolderId: String
-        # @param FolderName: 文件夹名字
+        # @param FolderName: <p>文件夹名字</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FolderName: String
-        # @param CreateTime: 创建时间
+        # @param CreateTime: <p>创建时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
-        # @param LastUpdate: 更新时间
+        # @param LastUpdate: <p>更新时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LastUpdate: String
-        # @param Status: <p>任务状态，取值范围：</p>
-        # <ul>
-        # <li>N 新建</li>
-        # <li>Y 运行</li>
-        # <li>F 停止</li>
-        # <li>O 冻结</li>
-        # <li>T 停止中</li>
-        # <li>INVALID 已失效</li>
-        # </ul>
+        # @param Status: <p>任务状态，取值范围：</p><ul><li>N 新建</li><li>Y 运行</li><li>F 停止</li><li>O 冻结</li><li>T 停止中</li><li>INVALID 已失效</li></ul>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
-        # @param InCharge: 责任人
+        # @param InCharge: <p>责任人</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InCharge: String
-        # @param InChargeId: 责任人用户id
+        # @param InChargeId: <p>责任人用户id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InChargeId: String
-        # @param StartTime: 生效日期
+        # @param StartTime: <p>生效日期</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartTime: String
-        # @param EndTime: 结束日期
+        # @param EndTime: <p>结束日期</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTime: String
-        # @param ExecutionStartTime: 执行时间左闭区间
+        # @param ExecutionStartTime: <p>执行时间左闭区间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExecutionStartTime: String
-        # @param ExecutionEndTime: 执行时间右闭区间
+        # @param ExecutionEndTime: <p>执行时间右闭区间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExecutionEndTime: String
-        # @param ProjectId: 项目id
+        # @param ProjectId: <p>项目id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProjectId: String
-        # @param ProjectIdent: 项目标识
+        # @param ProjectIdent: <p>项目标识</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProjectIdent: String
-        # @param ProjectName: 项目名称
+        # @param ProjectName: <p>项目名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProjectName: String
-        # @param CycleType: 周期类型
+        # @param CycleType: <p>周期类型</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CycleType: String
-        # @param CycleStep: 步长
+        # @param CycleStep: <p>步长</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CycleStep: Integer
-        # @param CrontabExpression: 对于crontab类型调度配置其为用户输入 对于周期类型调度配置其为系统计算
+        # @param CrontabExpression: <p>对于crontab类型调度配置其为用户输入 对于周期类型调度配置其为系统计算</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CrontabExpression: String
-        # @param DelayTime: 延时调度
+        # @param DelayTime: <p>延时调度</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DelayTime: Integer
-        # @param StartupTime: 延时执行时间
+        # @param StartupTime: <p>延时执行时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartupTime: Integer
-        # @param RetryWait: 重试等待时间,单位分钟
+        # @param RetryWait: <p>重试等待时间,单位分钟</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RetryWait: Integer
-        # @param Retriable: 是否可重试
+        # @param Retriable: <p>是否可重试</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Retriable: Integer
-        # @param TaskAction: 调度扩展信息
+        # @param TaskAction: <p>调度扩展信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskAction: String
-        # @param TryLimit: 运行次数限制
+        # @param TryLimit: <p>运行次数限制</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TryLimit: Integer
-        # @param RunPriority: 运行优先级
+        # @param RunPriority: <p>运行优先级</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RunPriority: Integer
-        # @param TaskType: 任务类型
+        # @param TaskType: <p>任务类型</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskType: :class:`Tencentcloud::Wedata.v20210820.models.TaskTypeDsVO`
-        # @param BrokerIp: 指定的运行节点
+        # @param BrokerIp: <p>指定的运行节点</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BrokerIp: String
-        # @param ClusterId: 集群name
+        # @param ClusterId: <p>集群name</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterId: String
-        # @param MinDateTime: 最小数据时间
+        # @param MinDateTime: <p>最小数据时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MinDateTime: String
-        # @param MaxDateTime: 最大数据时间
+        # @param MaxDateTime: <p>最大数据时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxDateTime: String
-        # @param ExecutionTTL: 运行耗时超时时间
+        # @param ExecutionTTL: <p>运行耗时超时时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExecutionTTL: Integer
-        # @param SelfDepend: 是否自身依赖 是1 否2 并行3
+        # @param SelfDepend: <p>是否自身依赖 是1 否2 并行3</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SelfDepend: String
-        # @param LeftCoordinate: LeftCoordinate坐标
+        # @param LeftCoordinate: <p>LeftCoordinate坐标</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LeftCoordinate: Float
-        # @param TopCoordinate: TopCoordinate坐标
+        # @param TopCoordinate: <p>TopCoordinate坐标</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TopCoordinate: Float
-        # @param TaskExt: TaskExt信息
+        # @param TaskExt: <p>TaskExt信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskExt: :class:`Tencentcloud::Wedata.v20210820.models.TaskExtDsVO`
-        # @param Properties: taskExt 导入导出json使用 private Map  properties;
+        # @param Properties: <p>taskExt 导入导出json使用 private Map  properties;</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Properties: String
-        # @param Notes: 任务备注
+        # @param Notes: <p>任务备注</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Notes: String
-        # @param InstanceInitStrategy: 实例生成策略 T+1 表示当前周期生成上一周期数据时间任务实例 默认T+1 T+0 表示当前周期生成当前周期数据时间任务实例 T-1
-        #      * 表示当前周期生成下一周期数据时间任务实例
-        #      *
-        #      * service不做默认策略处理, 下沉到数据初始化默认T+1, service涉及到多个更新task的路径
+        # @param InstanceInitStrategy: <p>实例生成策略 T+1 表示当前周期生成上一周期数据时间任务实例 默认T+1 T+0 表示当前周期生成当前周期数据时间任务实例 T-1</p><pre><code> * 表示当前周期生成下一周期数据时间任务实例 * * service不做默认策略处理, 下沉到数据初始化默认T+1, service涉及到多个更新task的路径</code></pre>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceInitStrategy: String
-        # @param YarnQueue: 资源池队列名称
+        # @param YarnQueue: <p>资源池队列名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type YarnQueue: String
-        # @param Alarms: 任务告警信息
+        # @param Alarms: <p>任务告警信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Alarms: Array
-        # @param Alarm: alarmDTO 导入导出json使用
+        # @param Alarm: <p>alarmDTO 导入导出json使用</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Alarm: String
-        # @param ScriptChange: 任务脚本是否发生变化
+        # @param ScriptChange: <p>任务脚本是否发生变化</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScriptChange: Boolean
-        # @param Submit: 任务版本是否已提交
+        # @param Submit: <p>任务版本是否已提交</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Submit: Boolean
-        # @param LastSchedulerCommitTime: 最新调度计划变更时间 仅生产态
+        # @param LastSchedulerCommitTime: <p>最新调度计划变更时间 仅生产态</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LastSchedulerCommitTime: String
-        # @param NormalizedJobStartTime: 仅生产态存储于生产态序列化任务信息, 减少base CPU重复密集计算
+        # @param NormalizedJobStartTime: <p>仅生产态存储于生产态序列化任务信息, 减少base CPU重复密集计算</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NormalizedJobStartTime: String
-        # @param RecoverFreezeStartTime: 启动暂停的任务时，选择不补录中间实例，通过此字段来标识从哪个时间开始生成实例
+        # @param RecoverFreezeStartTime: <p>启动暂停的任务时，选择不补录中间实例，通过此字段来标识从哪个时间开始生成实例</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RecoverFreezeStartTime: String
-        # @param SourceServer: 源数据源
+        # @param SourceServer: <p>源数据源</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SourceServer: String
-        # @param TargetServer: 目标数据源
+        # @param TargetServer: <p>目标数据源</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TargetServer: String
-        # @param Tasks: 父子节点树
+        # @param Tasks: <p>父子节点树</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tasks: Array
-        # @param Creater: 创建者
+        # @param Creater: <p>创建者</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Creater: String
-        # @param DependencyRel: 分支，依赖关系，and/or, 默认and
+        # @param DependencyRel: <p>分支，依赖关系，and/or, 默认and</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DependencyRel: String
-        # @param DependencyWorkflow: 是否支持工作流依赖 yes / no 默认 no
+        # @param DependencyWorkflow: <p>是否支持工作流依赖 yes / no 默认 no</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DependencyWorkflow: String
-        # @param EventListenerConfig: 支持事件监听器配置导入导出
+        # @param EventListenerConfig: <p>支持事件监听器配置导入导出</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EventListenerConfig: String
-        # @param EventPublisherConfig: 支持事件触发器配置导入导出
+        # @param EventPublisherConfig: <p>支持事件触发器配置导入导出</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EventPublisherConfig: String
-        # @param DependencyConfigList: 依赖配置
+        # @param DependencyConfigList: <p>依赖配置</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DependencyConfigList: Array
-        # @param VirtualTaskStatus: <p>任务状态，取值范围：</p>
-        # <ul>
-        # <li>N 新建</li>
-        # <li>Y 运行</li>
-        # <li>F 停止</li>
-        # <li>O 冻结</li>
-        # <li>T 停止中</li>
-        # <li>INVALID 已失效</li>
-        # </ul>
+        # @param VirtualTaskStatus: <p>任务状态，取值范围：</p><ul><li>N 新建</li><li>Y 运行</li><li>F 停止</li><li>O 冻结</li><li>T 停止中</li><li>INVALID 已失效</li></ul>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VirtualTaskStatus: String
-        # @param RecycleTips: 回收站还原提示语
+        # @param RecycleTips: <p>回收站还原提示语</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RecycleTips: String
-        # @param RecycleUser: 回收站所属用户
+        # @param RecycleUser: <p>回收站所属用户</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RecycleUser: String
-        # @param NewOrUpdate: 新增 或 修改
+        # @param NewOrUpdate: <p>新增 或 修改</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NewOrUpdate: String
-        # @param Params: 任务上游依赖信息 用于发布管理导入导出
+        # @param Params: <p>任务上游依赖信息 用于发布管理导入导出</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Params: Array
-        # @param TaskLinkInfo: 任务上游依赖信息 用于发布管理导入导出
+        # @param TaskLinkInfo: <p>任务上游依赖信息 用于发布管理导入导出</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskLinkInfo: Array
-        # @param ImportResult: 导入结果
+        # @param ImportResult: <p>导入结果</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImportResult: Boolean
-        # @param ImportErrMsg: 导入失败原因
+        # @param ImportErrMsg: <p>导入失败原因</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImportErrMsg: String
-        # @param ContentType: 任务内容 全部内容 配置内容 资源内容
+        # @param ContentType: <p>任务内容 全部内容 配置内容 资源内容</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ContentType: String
-        # @param TaskAutoSubmit: 是否导入提交运行
+        # @param TaskAutoSubmit: <p>是否导入提交运行</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskAutoSubmit: Boolean
-        # @param ProductName: 上层产品 数据质量 / 数据开发 / ...
+        # @param ProductName: <p>上层产品 数据质量 / 数据开发 / ...</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProductName: String
-        # @param OwnId: 创建者帐号
+        # @param OwnId: <p>创建者帐号</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OwnId: String
-        # @param UserId: 子账号
+        # @param UserId: <p>子账号</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserId: String
-        # @param TenantId: 租户id
+        # @param TenantId: <p>租户id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TenantId: String
-        # @param UpdateUser: 最后修改的人
+        # @param UpdateUser: <p>最后修改的人</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateUser: String
-        # @param UpdateTime: 最后修改时间
+        # @param UpdateTime: <p>最后修改时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
-        # @param UpdateUserId: 最后修改的人的ID
+        # @param UpdateUserId: <p>最后修改的人的ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateUserId: String
-        # @param SchedulerDesc: 调度计划
+        # @param SchedulerDesc: <p>调度计划</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SchedulerDesc: String
-        # @param ResourceGroup: 资源组
-
+        # @param ResourceGroup: <p>资源组</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceGroup: String
-        # @param VersionDesc: 版本提交说明
+        # @param VersionDesc: <p>版本提交说明</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VersionDesc: String
-        # @param LinkId: 编排-删除添加的链接
+        # @param LinkId: <p>编排-删除添加的链接</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LinkId: String
-        # @param UserFileId: 脚本引用关系
+        # @param UserFileId: <p>脚本引用关系</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserFileId: String
-        # @param SourceServiceId: 来源数据源ID
+        # @param SourceServiceId: <p>来源数据源ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SourceServiceId: String
-        # @param SourceServiceType: 来源数据源类型
+        # @param SourceServiceType: <p>来源数据源类型</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SourceServiceType: String
-        # @param TargetServiceId: 去向数据源ID
+        # @param TargetServiceId: <p>去向数据源ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TargetServiceId: String
-        # @param TargetServiceType: 去向数据源类型
+        # @param TargetServiceType: <p>去向数据源类型</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TargetServiceType: String
-        # @param ParamInList: 输入参数
+        # @param ParamInList: <p>输入参数</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParamInList: Array
-        # @param ParamOutList: 输出参数
+        # @param ParamOutList: <p>输出参数</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParamOutList: Array
-        # @param TaskFolderId: 任务文件夹id
+        # @param TaskFolderId: <p>任务文件夹id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskFolderId: String
-        # @param MaxRetryAttempts: 最大尝试次数
+        # @param MaxRetryAttempts: <p>最大尝试次数</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxRetryAttempts: Integer
-        # @param ResourceGroupName: 资源组名称
+        # @param ResourceGroupName: <p>资源组名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceGroupName: String
-        # @param SourceServiceName: 数据源
+        # @param SourceServiceName: <p>数据源</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SourceServiceName: String
-        # @param TaskRegisterOutputTable: 任务产出登记
+        # @param TaskRegisterOutputTable: <p>任务产出登记</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskRegisterOutputTable: Array
-        # @param CycleDependencyConfigList: 循环依赖配置
+        # @param CycleDependencyConfigList: <p>循环依赖配置</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CycleDependencyConfigList: Array
-        # @param Warning: 特殊警告信息
+        # @param Warning: <p>特殊警告信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Warning: String
-        # @param ScheduleRunType: 0 正常调度 1 空跑调度
+        # @param ScheduleRunType: <p>0 正常调度 1 空跑调度</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScheduleRunType: Integer
-        # @param ConcurrentStrategy: 0 并发度达到上限时，本次排队等待 1 并发度达到上限时，本次不执行，直接kill
+        # @param ConcurrentStrategy: <p>0 并发度达到上限时，本次排队等待 1 并发度达到上限时，本次不执行，直接kill</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConcurrentStrategy: Integer
-        # @param ScheduleTimeZone: UTC+8;UDC-8
+        # @param ScheduleTimeZone: <p>UTC+8;UDC-8</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScheduleTimeZone: String
-        # @param TemplateId: 引用的代码模版id
+        # @param TemplateId: <p>引用的代码模版id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TemplateId: String
-        # @param AllowRedoType: 允许重跑类 ALL 无论实例成功或者失败，都允许重跑 FAILURE 只有失败的实例允许重跑，成功的实例不允许重跑 NONE 无论成功或者失败，都不允许重跑
+        # @param AllowRedoType: <p>允许重跑类 ALL 无论实例成功或者失败，都允许重跑 FAILURE 只有失败的实例允许重跑，成功的实例不允许重跑 NONE 无论成功或者失败，都不允许重跑</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AllowRedoType: String
-        # @param BundleId: BundleId
-        # CI/CD工程生成的bundle唯一标识
+        # @param BundleId: <p>BundleId<br>CI/CD工程生成的bundle唯一标识</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BundleId: String
-        # @param BundleInfo: bundle信息
+        # @param BundleInfo: <p>bundle信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BundleInfo: String
-        # @param AllowDownstreamDependency: 是否允许下游依赖 0 不允许 1 允许
+        # @param AllowDownstreamDependency: <p>是否允许下游依赖 0 不允许 1 允许</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AllowDownstreamDependency: Integer
-        # @param DependencyTriggerPolicy: - 任务依赖运行条件，默认为ALL_SUCCESS，暂时只支持工作流调度项目下配置
-        # - ALL_SUCCESS： 全部成功：所有上游依赖任务都达到终态时，进行依赖判断，如果上游全部都成功，则依赖判断成功，否则如果上游有一个跳过运行，则标记为跳过运行，其余情况标记为上游失败
-        # - ALL_FAILED：全部失败：所有上游依赖任务都达到终态时，进行依赖判断，如果上游状态都是失败或者上游失败，则依赖判断成功，否则就标记为跳过运行
-        # - ALL_DONE：全部完成：所有上游依赖任务都达到终态时，进行依赖判断，直接是依赖判断成功
-        # - ALL_DONE_AT_LEAST_ONE_SUCCESS：上游全部完成至少一个成功: 所有上游依赖任务都达到终态时，进行依赖判断，至少有一个成功，则依赖判断成功，否则就是跳过运行
-        # - ALL_SKIPPED：上游全部都跳过: 所有上游依赖任务都达到终态时，进行依赖判断，所有的上游都是跳过状态才算依赖判断成功，否则当前节点就是跳过运行
-        # - ONE_FAILED：至少一个失败: 上游只要有一个失败了，就进行依赖判断，且依赖判断成功，如果上游全部完成但是没有失败，则跳过运行
-        # - ONE_SUCCESS：至少一个成功：上游只要有一个成功，就进行依赖判断，且依赖判断成功，如果上游全部完成但是没有成功，则跳过运行
-        # - ONE_DONE：至少一个完成：上游只要有一个完成了，就进行依赖判断，且依赖判断成功，否则还是等待上游
-        # - NONE_FAILED：上游全部完成，没有失败: 所有上游依赖任务都达到终态时，进行依赖判断，如果上游都是成功或者跳过运行，则依赖判断成功，否则标记为上游失败
-        # - ALL_DONE_NONE_FAILED_AT_LEAST_ONE_SUCCESS：上游全部完成，没有失败，至少有一个成功: 所有上游依赖任务都达到终态时，进行依赖判断，上游没有一个失败且至少有一个成功的情况下，依赖判断成功，否则就是跳过运行
-        # - NONE_SKIPPED：上游全部完成，没有跳过运行: 所有上游依赖任务都达到终态时，进行依赖判断, 如果上游状态全部都是成功、失败、上游失败状态，则依赖判断成功，否则为跳过运行
-        # - ALL_DONE_AT_LEAST_ONE_FAILED：上游全部完成至少一个失败: 所有上游依赖任务都达到终态时，进行依赖判断，至少有一个失败，则依赖判断成功，否则就是跳过运行
+        # @param DependencyTriggerPolicy: <ul><li>任务依赖运行条件，默认为ALL_SUCCESS，暂时只支持工作流调度项目下配置</li><li>ALL_SUCCESS： 全部成功：所有上游依赖任务都达到终态时，进行依赖判断，如果上游全部都成功，则依赖判断成功，否则如果上游有一个跳过运行，则标记为跳过运行，其余情况标记为上游失败</li><li>ALL_FAILED：全部失败：所有上游依赖任务都达到终态时，进行依赖判断，如果上游状态都是失败或者上游失败，则依赖判断成功，否则就标记为跳过运行</li><li>ALL_DONE：全部完成：所有上游依赖任务都达到终态时，进行依赖判断，直接是依赖判断成功</li><li>ALL_DONE_AT_LEAST_ONE_SUCCESS：上游全部完成至少一个成功: 所有上游依赖任务都达到终态时，进行依赖判断，至少有一个成功，则依赖判断成功，否则就是跳过运行</li><li>ALL_SKIPPED：上游全部都跳过: 所有上游依赖任务都达到终态时，进行依赖判断，所有的上游都是跳过状态才算依赖判断成功，否则当前节点就是跳过运行</li><li>ONE_FAILED：至少一个失败: 上游只要有一个失败了，就进行依赖判断，且依赖判断成功，如果上游全部完成但是没有失败，则跳过运行</li><li>ONE_SUCCESS：至少一个成功：上游只要有一个成功，就进行依赖判断，且依赖判断成功，如果上游全部完成但是没有成功，则跳过运行</li><li>ONE_DONE：至少一个完成：上游只要有一个完成了，就进行依赖判断，且依赖判断成功，否则还是等待上游</li><li>NONE_FAILED：上游全部完成，没有失败: 所有上游依赖任务都达到终态时，进行依赖判断，如果上游都是成功或者跳过运行，则依赖判断成功，否则标记为上游失败</li><li>ALL_DONE_NONE_FAILED_AT_LEAST_ONE_SUCCESS：上游全部完成，没有失败，至少有一个成功: 所有上游依赖任务都达到终态时，进行依赖判断，上游没有一个失败且至少有一个成功的情况下，依赖判断成功，否则就是跳过运行</li><li>NONE_SKIPPED：上游全部完成，没有跳过运行: 所有上游依赖任务都达到终态时，进行依赖判断, 如果上游状态全部都是成功、失败、上游失败状态，则依赖判断成功，否则为跳过运行</li><li>ALL_DONE_AT_LEAST_ONE_FAILED：上游全部完成至少一个失败: 所有上游依赖任务都达到终态时，进行依赖判断，至少有一个失败，则依赖判断成功，否则就是跳过运行</li></ul>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DependencyTriggerPolicy: String
+        # @param LastUpdateTimestamp: <p>任务最后更新时间戳</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LastUpdateTimestamp: Integer
 
-        attr_accessor :TaskId, :VirtualTaskId, :VirtualFlag, :TaskName, :WorkflowId, :RealWorkflowId, :WorkflowName, :FolderId, :FolderName, :CreateTime, :LastUpdate, :Status, :InCharge, :InChargeId, :StartTime, :EndTime, :ExecutionStartTime, :ExecutionEndTime, :ProjectId, :ProjectIdent, :ProjectName, :CycleType, :CycleStep, :CrontabExpression, :DelayTime, :StartupTime, :RetryWait, :Retriable, :TaskAction, :TryLimit, :RunPriority, :TaskType, :BrokerIp, :ClusterId, :MinDateTime, :MaxDateTime, :ExecutionTTL, :SelfDepend, :LeftCoordinate, :TopCoordinate, :TaskExt, :Properties, :Notes, :InstanceInitStrategy, :YarnQueue, :Alarms, :Alarm, :ScriptChange, :Submit, :LastSchedulerCommitTime, :NormalizedJobStartTime, :RecoverFreezeStartTime, :SourceServer, :TargetServer, :Tasks, :Creater, :DependencyRel, :DependencyWorkflow, :EventListenerConfig, :EventPublisherConfig, :DependencyConfigList, :VirtualTaskStatus, :RecycleTips, :RecycleUser, :NewOrUpdate, :Params, :TaskLinkInfo, :ImportResult, :ImportErrMsg, :ContentType, :TaskAutoSubmit, :ProductName, :OwnId, :UserId, :TenantId, :UpdateUser, :UpdateTime, :UpdateUserId, :SchedulerDesc, :ResourceGroup, :VersionDesc, :LinkId, :UserFileId, :SourceServiceId, :SourceServiceType, :TargetServiceId, :TargetServiceType, :ParamInList, :ParamOutList, :TaskFolderId, :MaxRetryAttempts, :ResourceGroupName, :SourceServiceName, :TaskRegisterOutputTable, :CycleDependencyConfigList, :Warning, :ScheduleRunType, :ConcurrentStrategy, :ScheduleTimeZone, :TemplateId, :AllowRedoType, :BundleId, :BundleInfo, :AllowDownstreamDependency, :DependencyTriggerPolicy
+        attr_accessor :TaskId, :VirtualTaskId, :VirtualFlag, :TaskName, :WorkflowId, :RealWorkflowId, :WorkflowName, :FolderId, :FolderName, :CreateTime, :LastUpdate, :Status, :InCharge, :InChargeId, :StartTime, :EndTime, :ExecutionStartTime, :ExecutionEndTime, :ProjectId, :ProjectIdent, :ProjectName, :CycleType, :CycleStep, :CrontabExpression, :DelayTime, :StartupTime, :RetryWait, :Retriable, :TaskAction, :TryLimit, :RunPriority, :TaskType, :BrokerIp, :ClusterId, :MinDateTime, :MaxDateTime, :ExecutionTTL, :SelfDepend, :LeftCoordinate, :TopCoordinate, :TaskExt, :Properties, :Notes, :InstanceInitStrategy, :YarnQueue, :Alarms, :Alarm, :ScriptChange, :Submit, :LastSchedulerCommitTime, :NormalizedJobStartTime, :RecoverFreezeStartTime, :SourceServer, :TargetServer, :Tasks, :Creater, :DependencyRel, :DependencyWorkflow, :EventListenerConfig, :EventPublisherConfig, :DependencyConfigList, :VirtualTaskStatus, :RecycleTips, :RecycleUser, :NewOrUpdate, :Params, :TaskLinkInfo, :ImportResult, :ImportErrMsg, :ContentType, :TaskAutoSubmit, :ProductName, :OwnId, :UserId, :TenantId, :UpdateUser, :UpdateTime, :UpdateUserId, :SchedulerDesc, :ResourceGroup, :VersionDesc, :LinkId, :UserFileId, :SourceServiceId, :SourceServiceType, :TargetServiceId, :TargetServiceType, :ParamInList, :ParamOutList, :TaskFolderId, :MaxRetryAttempts, :ResourceGroupName, :SourceServiceName, :TaskRegisterOutputTable, :CycleDependencyConfigList, :Warning, :ScheduleRunType, :ConcurrentStrategy, :ScheduleTimeZone, :TemplateId, :AllowRedoType, :BundleId, :BundleInfo, :AllowDownstreamDependency, :DependencyTriggerPolicy, :LastUpdateTimestamp
 
-        def initialize(taskid=nil, virtualtaskid=nil, virtualflag=nil, taskname=nil, workflowid=nil, realworkflowid=nil, workflowname=nil, folderid=nil, foldername=nil, createtime=nil, lastupdate=nil, status=nil, incharge=nil, inchargeid=nil, starttime=nil, endtime=nil, executionstarttime=nil, executionendtime=nil, projectid=nil, projectident=nil, projectname=nil, cycletype=nil, cyclestep=nil, crontabexpression=nil, delaytime=nil, startuptime=nil, retrywait=nil, retriable=nil, taskaction=nil, trylimit=nil, runpriority=nil, tasktype=nil, brokerip=nil, clusterid=nil, mindatetime=nil, maxdatetime=nil, executionttl=nil, selfdepend=nil, leftcoordinate=nil, topcoordinate=nil, taskext=nil, properties=nil, notes=nil, instanceinitstrategy=nil, yarnqueue=nil, alarms=nil, alarm=nil, scriptchange=nil, submit=nil, lastschedulercommittime=nil, normalizedjobstarttime=nil, recoverfreezestarttime=nil, sourceserver=nil, targetserver=nil, tasks=nil, creater=nil, dependencyrel=nil, dependencyworkflow=nil, eventlistenerconfig=nil, eventpublisherconfig=nil, dependencyconfiglist=nil, virtualtaskstatus=nil, recycletips=nil, recycleuser=nil, neworupdate=nil, params=nil, tasklinkinfo=nil, importresult=nil, importerrmsg=nil, contenttype=nil, taskautosubmit=nil, productname=nil, ownid=nil, userid=nil, tenantid=nil, updateuser=nil, updatetime=nil, updateuserid=nil, schedulerdesc=nil, resourcegroup=nil, versiondesc=nil, linkid=nil, userfileid=nil, sourceserviceid=nil, sourceservicetype=nil, targetserviceid=nil, targetservicetype=nil, paraminlist=nil, paramoutlist=nil, taskfolderid=nil, maxretryattempts=nil, resourcegroupname=nil, sourceservicename=nil, taskregisteroutputtable=nil, cycledependencyconfiglist=nil, warning=nil, scheduleruntype=nil, concurrentstrategy=nil, scheduletimezone=nil, templateid=nil, allowredotype=nil, bundleid=nil, bundleinfo=nil, allowdownstreamdependency=nil, dependencytriggerpolicy=nil)
+        def initialize(taskid=nil, virtualtaskid=nil, virtualflag=nil, taskname=nil, workflowid=nil, realworkflowid=nil, workflowname=nil, folderid=nil, foldername=nil, createtime=nil, lastupdate=nil, status=nil, incharge=nil, inchargeid=nil, starttime=nil, endtime=nil, executionstarttime=nil, executionendtime=nil, projectid=nil, projectident=nil, projectname=nil, cycletype=nil, cyclestep=nil, crontabexpression=nil, delaytime=nil, startuptime=nil, retrywait=nil, retriable=nil, taskaction=nil, trylimit=nil, runpriority=nil, tasktype=nil, brokerip=nil, clusterid=nil, mindatetime=nil, maxdatetime=nil, executionttl=nil, selfdepend=nil, leftcoordinate=nil, topcoordinate=nil, taskext=nil, properties=nil, notes=nil, instanceinitstrategy=nil, yarnqueue=nil, alarms=nil, alarm=nil, scriptchange=nil, submit=nil, lastschedulercommittime=nil, normalizedjobstarttime=nil, recoverfreezestarttime=nil, sourceserver=nil, targetserver=nil, tasks=nil, creater=nil, dependencyrel=nil, dependencyworkflow=nil, eventlistenerconfig=nil, eventpublisherconfig=nil, dependencyconfiglist=nil, virtualtaskstatus=nil, recycletips=nil, recycleuser=nil, neworupdate=nil, params=nil, tasklinkinfo=nil, importresult=nil, importerrmsg=nil, contenttype=nil, taskautosubmit=nil, productname=nil, ownid=nil, userid=nil, tenantid=nil, updateuser=nil, updatetime=nil, updateuserid=nil, schedulerdesc=nil, resourcegroup=nil, versiondesc=nil, linkid=nil, userfileid=nil, sourceserviceid=nil, sourceservicetype=nil, targetserviceid=nil, targetservicetype=nil, paraminlist=nil, paramoutlist=nil, taskfolderid=nil, maxretryattempts=nil, resourcegroupname=nil, sourceservicename=nil, taskregisteroutputtable=nil, cycledependencyconfiglist=nil, warning=nil, scheduleruntype=nil, concurrentstrategy=nil, scheduletimezone=nil, templateid=nil, allowredotype=nil, bundleid=nil, bundleinfo=nil, allowdownstreamdependency=nil, dependencytriggerpolicy=nil, lastupdatetimestamp=nil)
           @TaskId = taskid
           @VirtualTaskId = virtualtaskid
           @VirtualFlag = virtualflag
@@ -40514,6 +40498,7 @@ module TencentCloud
           @BundleInfo = bundleinfo
           @AllowDownstreamDependency = allowdownstreamdependency
           @DependencyTriggerPolicy = dependencytriggerpolicy
+          @LastUpdateTimestamp = lastupdatetimestamp
         end
 
         def deserialize(params)
@@ -40691,6 +40676,7 @@ module TencentCloud
           @BundleInfo = params['BundleInfo']
           @AllowDownstreamDependency = params['AllowDownstreamDependency']
           @DependencyTriggerPolicy = params['DependencyTriggerPolicy']
+          @LastUpdateTimestamp = params['LastUpdateTimestamp']
         end
       end
 
@@ -42832,58 +42818,61 @@ module TencentCloud
 
       # 编排空间试运行记录
       class TestRunningRecord < TencentCloud::Common::AbstractModel
-        # @param StartTime: 开始时间
+        # @param StartTime: <p>开始时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartTime: String
-        # @param EndTime: 结束时间
+        # @param EndTime: <p>结束时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTime: String
-        # @param UpdateTime: 更新时间
+        # @param UpdateTime: <p>更新时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
-        # @param RecordId: 试运行记录id
+        # @param RecordId: <p>试运行记录id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RecordId: Integer
-        # @param JobId: 开发侧提交的jobid
+        # @param JobId: <p>开发侧提交的jobid</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JobId: Integer
-        # @param ExecutionJobId: 执行平台jobid
+        # @param ExecutionJobId: <p>执行平台jobid</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExecutionJobId: String
-        # @param RecordName: 试运行记录名称
+        # @param RecordName: <p>试运行记录名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RecordName: String
-        # @param ScriptContent: 脚本内容
+        # @param ScriptContent: <p>脚本内容</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScriptContent: String
-        # @param Status: 状态
+        # @param Status: <p>状态</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
-        # @param TimeCost: 耗时
+        # @param TimeCost: <p>耗时</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimeCost: Integer
-        # @param UserUin: 用户uin
+        # @param UserUin: <p>用户uin</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserUin: String
-        # @param OwnerUin: 主账户uin
+        # @param OwnerUin: <p>主账户uin</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OwnerUin: String
-        # @param SubRecordList: 子记录信息
+        # @param SubRecordList: <p>子记录信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubRecordList: Array
-        # @param Region: 结果或日志地域
+        # @param Region: <p>结果或日志地域</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Region: String
-        # @param BucketName: 结果或日志桶名
+        # @param BucketName: <p>结果或日志桶名</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BucketName: String
-        # @param ErrorMessage: 错误信息
+        # @param ErrorMessage: <p>错误信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorMessage: String
+        # @param ScriptContentTruncated: <p>脚本内容是否被截断</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScriptContentTruncated: Boolean
 
-        attr_accessor :StartTime, :EndTime, :UpdateTime, :RecordId, :JobId, :ExecutionJobId, :RecordName, :ScriptContent, :Status, :TimeCost, :UserUin, :OwnerUin, :SubRecordList, :Region, :BucketName, :ErrorMessage
+        attr_accessor :StartTime, :EndTime, :UpdateTime, :RecordId, :JobId, :ExecutionJobId, :RecordName, :ScriptContent, :Status, :TimeCost, :UserUin, :OwnerUin, :SubRecordList, :Region, :BucketName, :ErrorMessage, :ScriptContentTruncated
 
-        def initialize(starttime=nil, endtime=nil, updatetime=nil, recordid=nil, jobid=nil, executionjobid=nil, recordname=nil, scriptcontent=nil, status=nil, timecost=nil, useruin=nil, owneruin=nil, subrecordlist=nil, region=nil, bucketname=nil, errormessage=nil)
+        def initialize(starttime=nil, endtime=nil, updatetime=nil, recordid=nil, jobid=nil, executionjobid=nil, recordname=nil, scriptcontent=nil, status=nil, timecost=nil, useruin=nil, owneruin=nil, subrecordlist=nil, region=nil, bucketname=nil, errormessage=nil, scriptcontenttruncated=nil)
           @StartTime = starttime
           @EndTime = endtime
           @UpdateTime = updatetime
@@ -42900,6 +42889,7 @@ module TencentCloud
           @Region = region
           @BucketName = bucketname
           @ErrorMessage = errormessage
+          @ScriptContentTruncated = scriptcontenttruncated
         end
 
         def deserialize(params)
@@ -42926,69 +42916,76 @@ module TencentCloud
           @Region = params['Region']
           @BucketName = params['BucketName']
           @ErrorMessage = params['ErrorMessage']
+          @ScriptContentTruncated = params['ScriptContentTruncated']
         end
       end
 
       # 试运行子记录
       class TestRunningSubRecord < TencentCloud::Common::AbstractModel
-        # @param StartTime: 开发时间
+        # @param StartTime: <p>开发时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartTime: String
-        # @param EndTime: 结束时间
+        # @param EndTime: <p>结束时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTime: String
-        # @param ExecutionJobId: 执行平台执行id
+        # @param ExecutionJobId: <p>执行平台执行id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExecutionJobId: String
-        # @param ExecutionSubJobId: 执行平台子执行jobid
+        # @param ExecutionSubJobId: <p>执行平台子执行jobid</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExecutionSubJobId: String
-        # @param JobId: 开发侧提交的jobid
+        # @param JobId: <p>开发侧提交的jobid</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JobId: String
-        # @param DetailId: 子记录id
+        # @param DetailId: <p>子记录id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DetailId: Integer
-        # @param RecordId: 试运行记录id
+        # @param RecordId: <p>试运行记录id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RecordId: Integer
-        # @param ScriptContent: 脚本内容
+        # @param ScriptContent: <p>脚本内容</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScriptContent: String
-        # @param Status: 状态
+        # @param Status: <p>状态</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
-        # @param TimeCost: 耗时
+        # @param TimeCost: <p>耗时</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimeCost: Integer
-        # @param ResultTotalCount: 结果总行数
+        # @param ResultTotalCount: <p>结果总行数</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResultTotalCount: Integer
-        # @param ResultPreviewCount: 预览结果行数
+        # @param ResultPreviewCount: <p>预览结果行数</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResultPreviewCount: Integer
-        # @param ResultFilePath: 结果文件路径
+        # @param ResultFilePath: <p>结果文件路径</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResultFilePath: String
-        # @param ResultPreviewFilePath: 预览结果文件路径
+        # @param ResultPreviewFilePath: <p>预览结果文件路径</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResultPreviewFilePath: String
-        # @param UpdateTime: 更新时间
+        # @param UpdateTime: <p>更新时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
-        # @param Sequence: 序号
+        # @param Sequence: <p>序号</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Sequence: String
-        # @param LogFilePath: 日志路径
+        # @param LogFilePath: <p>日志路径</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogFilePath: String
-        # @param HasSubResultSet: 是否包含子结果
+        # @param HasSubResultSet: <p>是否包含子结果</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HasSubResultSet: Boolean
+        # @param ScriptContentTruncated: <p>脚本内容是否被截断</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScriptContentTruncated: Boolean
+        # @param SchemaInfoFilePath: <p>结果集表字符信息</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SchemaInfoFilePath: String
 
-        attr_accessor :StartTime, :EndTime, :ExecutionJobId, :ExecutionSubJobId, :JobId, :DetailId, :RecordId, :ScriptContent, :Status, :TimeCost, :ResultTotalCount, :ResultPreviewCount, :ResultFilePath, :ResultPreviewFilePath, :UpdateTime, :Sequence, :LogFilePath, :HasSubResultSet
+        attr_accessor :StartTime, :EndTime, :ExecutionJobId, :ExecutionSubJobId, :JobId, :DetailId, :RecordId, :ScriptContent, :Status, :TimeCost, :ResultTotalCount, :ResultPreviewCount, :ResultFilePath, :ResultPreviewFilePath, :UpdateTime, :Sequence, :LogFilePath, :HasSubResultSet, :ScriptContentTruncated, :SchemaInfoFilePath
 
-        def initialize(starttime=nil, endtime=nil, executionjobid=nil, executionsubjobid=nil, jobid=nil, detailid=nil, recordid=nil, scriptcontent=nil, status=nil, timecost=nil, resulttotalcount=nil, resultpreviewcount=nil, resultfilepath=nil, resultpreviewfilepath=nil, updatetime=nil, sequence=nil, logfilepath=nil, hassubresultset=nil)
+        def initialize(starttime=nil, endtime=nil, executionjobid=nil, executionsubjobid=nil, jobid=nil, detailid=nil, recordid=nil, scriptcontent=nil, status=nil, timecost=nil, resulttotalcount=nil, resultpreviewcount=nil, resultfilepath=nil, resultpreviewfilepath=nil, updatetime=nil, sequence=nil, logfilepath=nil, hassubresultset=nil, scriptcontenttruncated=nil, schemainfofilepath=nil)
           @StartTime = starttime
           @EndTime = endtime
           @ExecutionJobId = executionjobid
@@ -43007,6 +43004,8 @@ module TencentCloud
           @Sequence = sequence
           @LogFilePath = logfilepath
           @HasSubResultSet = hassubresultset
+          @ScriptContentTruncated = scriptcontenttruncated
+          @SchemaInfoFilePath = schemainfofilepath
         end
 
         def deserialize(params)
@@ -43028,6 +43027,8 @@ module TencentCloud
           @Sequence = params['Sequence']
           @LogFilePath = params['LogFilePath']
           @HasSubResultSet = params['HasSubResultSet']
+          @ScriptContentTruncated = params['ScriptContentTruncated']
+          @SchemaInfoFilePath = params['SchemaInfoFilePath']
         end
       end
 
