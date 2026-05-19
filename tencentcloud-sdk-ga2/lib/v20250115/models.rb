@@ -1074,13 +1074,13 @@ module TencentCloud
 
       # 终端节点配置
       class EndpointConfigurations < TencentCloud::Common::AbstractModel
-        # @param EndpointType: 域名类型。可选值'Domain', 'PublicIp'。
+        # @param EndpointType: <p>域名类型。可选值&#39;Domain&#39;, &#39;PublicIp&#39;。</p>
         # @type EndpointType: String
-        # @param EndpointService: 域名。
+        # @param EndpointService: <p>域名。</p>
         # @type EndpointService: String
-        # @param Weight: 权重。
+        # @param Weight: <p>权重。</p>
         # @type Weight: Integer
-        # @param HealthCheckStatus: 健康检查状态；HEALTH：健康；UNHEALTH：不健康。
+        # @param HealthCheckStatus: <p>健康检查状态；HEALTH：健康；UNHEALTH：不健康。</p>
         # @type HealthCheckStatus: String
 
         attr_accessor :EndpointType, :EndpointService, :Weight, :HealthCheckStatus
@@ -1968,33 +1968,33 @@ module TencentCloud
 
       # ModifyListener请求参数结构体
       class ModifyListenerRequest < TencentCloud::Common::AbstractModel
-        # @param GlobalAcceleratorId: 全球加速实例ID。
+        # @param GlobalAcceleratorId: <p>全球加速实例ID。</p>
         # @type GlobalAcceleratorId: String
-        # @param ListenerId: 监听器ID。
+        # @param ListenerId: <p>监听器ID。</p>
         # @type ListenerId: String
-        # @param Name: 名称，最大长度不能超过60个字节。
+        # @param Name: <p>名称，最大长度不能超过60个字节。</p>
         # @type Name: String
-        # @param Description: 描述信息，最大长度不能超过100个字节。
+        # @param Description: <p>描述信息，最大长度不能超过100个字节。</p>
         # @type Description: String
-        # @param IdleTimeout: 连接空闲等待时间。
+        # @param IdleTimeout: <p>连接空闲等待时间。</p>
         # @type IdleTimeout: Integer
-        # @param ClientAffinity: 是否开启会话保持。
+        # @param ClientAffinity: <p>是否开启会话保持。</p>
         # @type ClientAffinity: String
-        # @param ClientAffinityTime: 会话保持时间。
+        # @param ClientAffinityTime: <p>会话保持时间。</p>
         # @type ClientAffinityTime: Integer
-        # @param RequestTimeout: 请求超时时间。
+        # @param RequestTimeout: <p>请求超时时间。</p>
         # @type RequestTimeout: Integer
-        # @param XForwardedForRealIp: 是否打开七层获取源IP方式。
+        # @param XForwardedForRealIp: <p>是否打开七层获取源IP方式。</p>
         # @type XForwardedForRealIp: Boolean
-        # @param CertificationType: 解析方式。UNIDIRECTIONAL：双向。MUTUAL：单向。
+        # @param CertificationType: <p>解析方式。UNIDIRECTIONAL：双向。MUTUAL：单向。</p>
         # @type CertificationType: String
-        # @param CipherPolicyId: 加密算法套件。
+        # @param CipherPolicyId: <p>加密算法套件。</p>
         # @type CipherPolicyId: String
-        # @param ServerCertificates: 服务器证书。
+        # @param ServerCertificates: <p>服务器证书。</p>
         # @type ServerCertificates: Array
-        # @param ClientCaCertificates: 客户端证书。
+        # @param ClientCaCertificates: <p>客户端证书。</p>
         # @type ClientCaCertificates: Array
-        # @param GetRealIpType: 四层获取源IP方式。
+        # @param GetRealIpType: <p>四层获取源IP方式。</p>
         # @type GetRealIpType: String
 
         attr_accessor :GlobalAcceleratorId, :ListenerId, :Name, :Description, :IdleTimeout, :ClientAffinity, :ClientAffinityTime, :RequestTimeout, :XForwardedForRealIp, :CertificationType, :CipherPolicyId, :ServerCertificates, :ClientCaCertificates, :GetRealIpType
@@ -2036,7 +2036,7 @@ module TencentCloud
 
       # ModifyListener返回参数结构体
       class ModifyListenerResponse < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务ID。
+        # @param TaskId: <p>任务ID。</p>
         # @type TaskId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

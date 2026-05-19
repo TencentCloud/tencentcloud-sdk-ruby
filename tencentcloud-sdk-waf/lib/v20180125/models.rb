@@ -10873,6 +10873,53 @@ module TencentCloud
         end
       end
 
+      # DescribeSkillSecScanResult请求参数结构体
+      class DescribeSkillSecScanResultRequest < TencentCloud::Common::AbstractModel
+        # @param ServiceId: <p>服务ID</p>
+        # @type ServiceId: String
+        # @param ContentHash: <p>ZIP 文件的 SHA256 哈希值，格式为 sha256:hex_digest，请严格遵循文档中的zip打包规范</p>
+        # @type ContentHash: String
+        # @param Lang: <p>返回语言。支持 zh / en，默认 zh</p>
+        # @type Lang: String
+
+        attr_accessor :ServiceId, :ContentHash, :Lang
+
+        def initialize(serviceid=nil, contenthash=nil, lang=nil)
+          @ServiceId = serviceid
+          @ContentHash = contenthash
+          @Lang = lang
+        end
+
+        def deserialize(params)
+          @ServiceId = params['ServiceId']
+          @ContentHash = params['ContentHash']
+          @Lang = params['Lang']
+        end
+      end
+
+      # DescribeSkillSecScanResult返回参数结构体
+      class DescribeSkillSecScanResultResponse < TencentCloud::Common::AbstractModel
+        # @param Data: <p>检测结果</p>
+        # @type Data: :class:`Tencentcloud::Waf.v20180125.models.SkillScanQueryData`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = SkillScanQueryData.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeSpartaProtectionInfo请求参数结构体
       class DescribeSpartaProtectionInfoRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 域名
@@ -20954,6 +21001,214 @@ module TencentCloud
         end
       end
 
+      # skills检测命中规则名录
+      class SkillRuleCatalogItem < TencentCloud::Common::AbstractModel
+        # @param Key: <p>规则分类标识（如 static_analysis、ai_analysis）</p>
+        # @type Key: String
+        # @param Value: <p>规则分类中文名称</p>
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
+        end
+      end
+
+      # skills检测能力标签
+      class SkillScanCapabilityTag < TencentCloud::Common::AbstractModel
+        # @param Id: <p>标签唯一ID</p>
+        # @type Id: String
+        # @param Name: <p>标签名称（如 network_access、file_system 等）</p>
+        # @type Name: String
+
+        attr_accessor :Id, :Name
+
+        def initialize(id=nil, name=nil)
+          @Id = id
+          @Name = name
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Name = params['Name']
+        end
+      end
+
+      # 扫描结果详情（按子引擎分组）
+      class SkillScanItem < TencentCloud::Common::AbstractModel
+        # @param ScanType: <p>子引擎类型：AI（AI 分析）/ STATIC（静态分析）</p>
+        # @type ScanType: String
+        # @param RuleList: <p>该引擎命中的规则列表</p>
+        # @type RuleList: Array
+
+        attr_accessor :ScanType, :RuleList
+
+        def initialize(scantype=nil, rulelist=nil)
+          @ScanType = scantype
+          @RuleList = rulelist
+        end
+
+        def deserialize(params)
+          @ScanType = params['ScanType']
+          unless params['RuleList'].nil?
+            @RuleList = []
+            params['RuleList'].each do |i|
+              skillscanrulehit_tmp = SkillScanRuleHit.new
+              skillscanrulehit_tmp.deserialize(i)
+              @RuleList << skillscanrulehit_tmp
+            end
+          end
+        end
+      end
+
+      # skills检测结果列表
+      class SkillScanQueryData < TencentCloud::Common::AbstractModel
+        # @param Status: <p>检测状态：success（检测完成，有结果）、scanning（检测进行中）、not_found（无记录）、failed（检测失败）</p><p>枚举值：</p><ul><li>success： 检测完成，有结果</li><li>scanning： 检测进行中</li><li>not_found： 无记录</li><li>failed： 检测失败</li></ul>
+        # @type Status: String
+        # @param SkillName: <p>Skill 名称，用于页面展示、结果列表呈现和人工研判</p>
+        # @type SkillName: String
+        # @param SkillDescription: <p>Skill 描述，通常来自 Skill 元数据或说明信息，用于帮助调用方理解 Skill 的用途</p>
+        # @type SkillDescription: String
+        # @param ContentHash: <p>ZIP 文件的 SHA256 哈希值，格式为 sha256:hex_digest</p>
+        # @type ContentHash: String
+        # @param RiskLevel: <p>风险等级：malicious（恶意）、suspicious（可疑）、benign（可信）</p>
+        # @type RiskLevel: String
+        # @param Mitigation: <p>综合处置建议字段，位于 data 顶层，用于给出本次检测结果的总体修复、缓解或人工处置建议</p>
+        # @type Mitigation: String
+        # @param SecurityScore: <p>安全评分（0-100，100 为最安全）</p><p>取值范围：[0, 100]</p>
+        # @type SecurityScore: Integer
+        # @param EngineVersion: <p>本次扫描使用的引擎版本号</p>
+        # @type EngineVersion: Integer
+        # @param CapabilityTags: <p>Skill 的能力标签列表，对外固定返回格式为 [{id,name}]。该字段用于描述 Skill 具备的能力特征或适用场景，便于调用方做检索、展示或分类；不等同于风险标签，也不表示风险高低或命中规则结果。当 lang=en 时，仅 name 会切换为英文，id 保持不变</p>
+        # @type CapabilityTags: Array
+        # @param RuleCatalog: <p>融合规则目录全集，key 为融合 rule_id（9xxxx），value 为风险类别名称；包含所有融合规则类别，调用方可据此展示分类标签，无需本地维护映射表。传 lang=en 时返回英文名称。该对象是名称映射表，不表达主标签优先级</p>
+        # @type RuleCatalog: Array
+        # @param ScanItems: <p>扫描结果详情，按子引擎分组，每个元素包含 scan_type（引擎类型）和 rule_list（命中的规则列表）；规则中的 rule_id 使用融合编码（9xxxx），可与 rule_catalog 交叉引用。传 lang=en 时，description 返回英文文本</p>
+        # @type ScanItems: Array
+        # @param ReportUrl: <p>综合安全审计报告地址。调用方可通过 report_url_expire_hours 指定有效期，不传时默认返回 1 年有效期地址</p>
+        # @type ReportUrl: String
+        # @param ScannedAt: <p>扫描完成时间</p>
+        # @type ScannedAt: String
+        # @param CreatedAt: <p>任务创建时间</p>
+        # @type CreatedAt: String
+        # @param FailedAt: <p>失败时间</p>
+        # @type FailedAt: String
+        # @param Message: <p>失败原因描述</p>
+        # @type Message: String
+
+        attr_accessor :Status, :SkillName, :SkillDescription, :ContentHash, :RiskLevel, :Mitigation, :SecurityScore, :EngineVersion, :CapabilityTags, :RuleCatalog, :ScanItems, :ReportUrl, :ScannedAt, :CreatedAt, :FailedAt, :Message
+
+        def initialize(status=nil, skillname=nil, skilldescription=nil, contenthash=nil, risklevel=nil, mitigation=nil, securityscore=nil, engineversion=nil, capabilitytags=nil, rulecatalog=nil, scanitems=nil, reporturl=nil, scannedat=nil, createdat=nil, failedat=nil, message=nil)
+          @Status = status
+          @SkillName = skillname
+          @SkillDescription = skilldescription
+          @ContentHash = contenthash
+          @RiskLevel = risklevel
+          @Mitigation = mitigation
+          @SecurityScore = securityscore
+          @EngineVersion = engineversion
+          @CapabilityTags = capabilitytags
+          @RuleCatalog = rulecatalog
+          @ScanItems = scanitems
+          @ReportUrl = reporturl
+          @ScannedAt = scannedat
+          @CreatedAt = createdat
+          @FailedAt = failedat
+          @Message = message
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @SkillName = params['SkillName']
+          @SkillDescription = params['SkillDescription']
+          @ContentHash = params['ContentHash']
+          @RiskLevel = params['RiskLevel']
+          @Mitigation = params['Mitigation']
+          @SecurityScore = params['SecurityScore']
+          @EngineVersion = params['EngineVersion']
+          unless params['CapabilityTags'].nil?
+            @CapabilityTags = []
+            params['CapabilityTags'].each do |i|
+              skillscancapabilitytag_tmp = SkillScanCapabilityTag.new
+              skillscancapabilitytag_tmp.deserialize(i)
+              @CapabilityTags << skillscancapabilitytag_tmp
+            end
+          end
+          unless params['RuleCatalog'].nil?
+            @RuleCatalog = []
+            params['RuleCatalog'].each do |i|
+              skillrulecatalogitem_tmp = SkillRuleCatalogItem.new
+              skillrulecatalogitem_tmp.deserialize(i)
+              @RuleCatalog << skillrulecatalogitem_tmp
+            end
+          end
+          unless params['ScanItems'].nil?
+            @ScanItems = []
+            params['ScanItems'].each do |i|
+              skillscanitem_tmp = SkillScanItem.new
+              skillscanitem_tmp.deserialize(i)
+              @ScanItems << skillscanitem_tmp
+            end
+          end
+          @ReportUrl = params['ReportUrl']
+          @ScannedAt = params['ScannedAt']
+          @CreatedAt = params['CreatedAt']
+          @FailedAt = params['FailedAt']
+          @Message = params['Message']
+        end
+      end
+
+      # SkillScanRuleHit 命中的规则
+      class SkillScanRuleHit < TencentCloud::Common::AbstractModel
+        # @param RuleId: <p>规则唯一ID</p>
+        # @type RuleId: String
+        # @param Description: <p>规则描述（命中原因说明）</p>
+        # @type Description: String
+
+        attr_accessor :RuleId, :Description
+
+        def initialize(ruleid=nil, description=nil)
+          @RuleId = ruleid
+          @Description = description
+        end
+
+        def deserialize(params)
+          @RuleId = params['RuleId']
+          @Description = params['Description']
+        end
+      end
+
+      # skills 上检测接口返回信息
+      class SkillScanUploadData < TencentCloud::Common::AbstractModel
+        # @param ContentHash: <p>文件的 SHA256 Hash，用于轮询查询接口</p>
+        # @type ContentHash: String
+        # @param Status: <p>固定为 scanning，表示任务已接收</p>
+        # @type Status: String
+        # @param Message: <p>可读的操作结果描述</p>
+        # @type Message: String
+
+        attr_accessor :ContentHash, :Status, :Message
+
+        def initialize(contenthash=nil, status=nil, message=nil)
+          @ContentHash = contenthash
+          @Status = status
+          @Message = message
+        end
+
+        def deserialize(params)
+          @ContentHash = params['ContentHash']
+          @Status = params['Status']
+          @Message = params['Message']
+        end
+      end
+
       # waf斯巴达-编辑防护域名中的端口结构
       class SpartaProtectionPort < TencentCloud::Common::AbstractModel
         # @param NginxServerId: 分配的服务器id。首次接入的域名和端口该参数填0，已接入的域名和端口分配的id可以通过DescribeDomainDetailsSaas或DescribeDomains接口获取。
@@ -21857,6 +22112,53 @@ module TencentCloud
           end
           @LimitRuleID = params['LimitRuleID']
           @Domain = params['Domain']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UploadSkillSecScan请求参数结构体
+      class UploadSkillSecScanRequest < TencentCloud::Common::AbstractModel
+        # @param ServiceId: <p>服务ID</p>
+        # @type ServiceId: String
+        # @param FileData: <p>zip压缩包base64编码后的数据</p>
+        # @type FileData: String
+        # @param FileName: <p>skills文件压缩之后的文件名，.zip结尾</p>
+        # @type FileName: String
+
+        attr_accessor :ServiceId, :FileData, :FileName
+
+        def initialize(serviceid=nil, filedata=nil, filename=nil)
+          @ServiceId = serviceid
+          @FileData = filedata
+          @FileName = filename
+        end
+
+        def deserialize(params)
+          @ServiceId = params['ServiceId']
+          @FileData = params['FileData']
+          @FileName = params['FileName']
+        end
+      end
+
+      # UploadSkillSecScan返回参数结构体
+      class UploadSkillSecScanResponse < TencentCloud::Common::AbstractModel
+        # @param Data: <p>上传结果</p>
+        # @type Data: :class:`Tencentcloud::Waf.v20180125.models.SkillScanUploadData`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = SkillScanUploadData.new
+            @Data.deserialize(params['Data'])
+          end
           @RequestId = params['RequestId']
         end
       end

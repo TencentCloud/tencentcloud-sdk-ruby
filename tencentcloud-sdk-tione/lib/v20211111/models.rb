@@ -5063,6 +5063,42 @@ module TencentCloud
         end
       end
 
+      # DescribeTrainingTaskPodUrl请求参数结构体
+      class DescribeTrainingTaskPodUrlRequest < TencentCloud::Common::AbstractModel
+        # @param PodName: 任务实例名
+        # @type PodName: String
+
+        attr_accessor :PodName
+
+        def initialize(podname=nil)
+          @PodName = podname
+        end
+
+        def deserialize(params)
+          @PodName = params['PodName']
+        end
+      end
+
+      # DescribeTrainingTaskPodUrl返回参数结构体
+      class DescribeTrainingTaskPodUrlResponse < TencentCloud::Common::AbstractModel
+        # @param PodUrl: Pod登录URL
+        # @type PodUrl: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PodUrl, :RequestId
+
+        def initialize(podurl=nil, requestid=nil)
+          @PodUrl = podurl
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @PodUrl = params['PodUrl']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeTrainingTaskPods请求参数结构体
       class DescribeTrainingTaskPodsRequest < TencentCloud::Common::AbstractModel
         # @param Id: 训练任务ID

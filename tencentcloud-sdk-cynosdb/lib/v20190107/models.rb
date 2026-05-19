@@ -9896,22 +9896,17 @@ module TencentCloud
 
       # DescribeProxies请求参数结构体
       class DescribeProxiesRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群 ID（该参数必传，例如 cynosdbmysql-2u2mh111）。
+        # @param ClusterId: <p>集群 ID（该参数必传，例如 cynosdbmysql-2u2mh111）。</p>
         # @type ClusterId: String
-        # @param Limit: 返回数量，默认为 20，最大值为 100
+        # @param Limit: <p>返回数量，默认为 20，最大值为 100</p>
         # @type Limit: Integer
-        # @param Offset: 记录偏移量，默认值为0
+        # @param Offset: <p>记录偏移量，默认值为0</p>
         # @type Offset: Integer
-        # @param OrderBy: 排序字段，取值范围：
-        # <li> CREATETIME：创建时间</li>
-        # <li> PERIODENDTIME：过期时间</li>
+        # @param OrderBy: <p>排序字段，取值范围：</p><li> CREATETIME：创建时间</li><li> PERIODENDTIME：过期时间</li>
         # @type OrderBy: String
-        # @param OrderByType: 排序类型，取值范围：
-        # <li> ASC：升序排序 </li>
-        # <li> DESC：降序排序 </li>
+        # @param OrderByType: <p>排序类型，取值范围：</p><li> ASC：升序排序 </li><li> DESC：降序排序 </li>
         # @type OrderByType: String
-        # @param Filters: 搜索条件，若存在多个 Filter 时，Filter 间的关系为逻辑与（AND）关系。
-        # 说明：此参数当前仅支持 Status 和 ProxyGroupId 两种过滤条件。
+        # @param Filters: <p>搜索条件，若存在多个 Filter 时，Filter 间的关系为逻辑与（AND）关系。<br>说明：此参数当前仅支持 Status 和 ProxyGroupId 两种过滤条件。</p>
         # @type Filters: Array
 
         attr_accessor :ClusterId, :Limit, :Offset, :OrderBy, :OrderByType, :Filters
@@ -9944,22 +9939,25 @@ module TencentCloud
 
       # DescribeProxies返回参数结构体
       class DescribeProxiesResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 数据库代理组数
+        # @param TotalCount: <p>数据库代理组数</p>
         # @type TotalCount: Integer
-        # @param ProxyGroupInfos: 数据库代理组列表
+        # @param ProxyGroupInfos: <p>数据库代理组列表</p>
         # @type ProxyGroupInfos: Array
-        # @param ProxyNodeInfos: 数据库代理节点
+        # @param ProxyNodeInfos: <p>数据库代理节点</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProxyNodeInfos: Array
+        # @param ColumnStoreProxyForward: <p>sql自动转发</p>
+        # @type ColumnStoreProxyForward: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TotalCount, :ProxyGroupInfos, :ProxyNodeInfos, :RequestId
+        attr_accessor :TotalCount, :ProxyGroupInfos, :ProxyNodeInfos, :ColumnStoreProxyForward, :RequestId
 
-        def initialize(totalcount=nil, proxygroupinfos=nil, proxynodeinfos=nil, requestid=nil)
+        def initialize(totalcount=nil, proxygroupinfos=nil, proxynodeinfos=nil, columnstoreproxyforward=nil, requestid=nil)
           @TotalCount = totalcount
           @ProxyGroupInfos = proxygroupinfos
           @ProxyNodeInfos = proxynodeinfos
+          @ColumnStoreProxyForward = columnstoreproxyforward
           @RequestId = requestid
         end
 
@@ -9981,6 +9979,7 @@ module TencentCloud
               @ProxyNodeInfos << proxynodeinfo_tmp
             end
           end
+          @ColumnStoreProxyForward = params['ColumnStoreProxyForward']
           @RequestId = params['RequestId']
         end
       end

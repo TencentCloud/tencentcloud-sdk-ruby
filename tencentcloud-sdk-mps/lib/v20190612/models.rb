@@ -35515,18 +35515,21 @@ module TencentCloud
         # @type Gender: String
         # @param Age: <p>年龄</p><p>枚举值：</p><ul><li>child： 儿童</li><li>teenager： 少年</li><li>youth： 青年</li><li>middle_aged： 中年</li><li>senior： 老年</li><li>unknown： 未知</li></ul>
         # @type Age: String
+        # @param Languages: <p>语言，当前支持：<br>zh 中文 (Chinese)<br>en 英语 (English)<br>ja 日语 (Japanese)<br>de 德语 (German)<br>fr 法语 (French)<br>ko 韩语 (Korean)<br>ru 俄语 (Russian)<br>uk 乌克兰语 (Ukrainian)<br>pt 葡萄牙语 (Portuguese)<br>it 意大利语 (Italian)<br>es 西班牙语 (Spanish)<br>id 印度尼西亚语 (Indonesian)<br>nl 荷兰语 (Dutch)<br>tr 土耳其语 (Turkish)<br>fil 菲律宾语 (Filipino)<br>ms 马来语 (Malay)<br>el 希腊语 (Greek)<br>fi 芬兰语 (Finnish)<br>hr 克罗地亚语 (Croatian)<br>sk 斯洛伐克语 (Slovak)<br>pl 波兰语 (Polish)<br>sv 瑞典语 (Swedish)<br>hi 印地语 (Hindi)<br>bg 保加利亚语 (Bulgarian)<br>ro 罗马尼亚语 (Romanian)<br>ar 阿拉伯语 (Arabic)<br>cs 捷克语 (Czech)<br>da 丹麦语 (Danish)<br>ta 泰米尔语 (Tamil)<br>hun 匈牙利语（Hungarian）<br>vi 越南语（Vietnamese）<br>no 挪威语（Norwegian）<br>yue 粤语（Cantonese）<br>th 泰语（Thai）<br>he 希伯来语（Hebrew）<br>ca 加泰罗尼亚语（Catalan）<br>nn 尼诺斯克语（Nynorsk）<br>af 阿非利卡语（Afrikaans）<br>fa 波斯语（Persian）<br>sl 斯洛文尼亚语（Slovenian）</p>
+        # @type Languages: Array
         # @param Labels: <p>标签</p>
         # @type Labels: Array
         # @param Scenes: <p>使用场景</p>
         # @type Scenes: Array
 
-        attr_accessor :Name, :Description, :Gender, :Age, :Labels, :Scenes
+        attr_accessor :Name, :Description, :Gender, :Age, :Languages, :Labels, :Scenes
 
-        def initialize(name=nil, description=nil, gender=nil, age=nil, labels=nil, scenes=nil)
+        def initialize(name=nil, description=nil, gender=nil, age=nil, languages=nil, labels=nil, scenes=nil)
           @Name = name
           @Description = description
           @Gender = gender
           @Age = age
+          @Languages = languages
           @Labels = labels
           @Scenes = scenes
         end
@@ -35536,6 +35539,7 @@ module TencentCloud
           @Description = params['Description']
           @Gender = params['Gender']
           @Age = params['Age']
+          @Languages = params['Languages']
           @Labels = params['Labels']
           @Scenes = params['Scenes']
         end

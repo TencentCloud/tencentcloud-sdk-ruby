@@ -10101,17 +10101,17 @@ module TencentCloud
 
       # ExportPrometheusReadOnlyDynamicAPI请求参数结构体
       class ExportPrometheusReadOnlyDynamicAPIRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: Prometheus 实例 ID
+        # @param InstanceId: <p>Prometheus 实例 ID</p>
         # @type InstanceId: String
-        # @param Method: HTTP 方法名 GET/POST/PUT/DELETE 等
+        # @param Method: <p>HTTP 方法名 GET/POST/PUT/DELETE 等</p>
         # @type Method: String
-        # @param Path: HTTP 路径（包括 query string）
+        # @param Path: <p>HTTP 路径（包括 query string）</p>
         # @type Path: String
-        # @param RequestBody: HTTP 请求体，任何数据
+        # @param RequestBody: <p>HTTP 请求体，任何数据</p>
         # @type RequestBody: String
-        # @param Headers: HTTP 请求头
+        # @param Headers: <p>HTTP 请求头</p>
         # @type Headers: Array
-        # @param SelfMonitor: 是否请求自监控数据。自监控仅支持 /api/v1/query 与 /api/v1/query_range 接口。
+        # @param SelfMonitor: <p>是否请求自监控数据。自监控仅支持 /api/v1/query 与 /api/v1/query_range 接口。</p>
         # @type SelfMonitor: Boolean
 
         attr_accessor :InstanceId, :Method, :Path, :RequestBody, :Headers, :SelfMonitor
@@ -10144,7 +10144,7 @@ module TencentCloud
 
       # ExportPrometheusReadOnlyDynamicAPI返回参数结构体
       class ExportPrometheusReadOnlyDynamicAPIResponse < TencentCloud::Common::AbstractModel
-        # @param HTTP: HTTP 响应数据
+        # @param HTTP: <p>HTTP 响应数据</p>
         # @type HTTP: :class:`Tencentcloud::Monitor.v20180724.models.PrometheusDynamicAPIResponseHTTP`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

@@ -809,40 +809,52 @@ module TencentCloud
 
       # DescribeDatabaseObjects请求参数结构体
       class DescribeDatabaseObjectsRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID，形如：tdsql3-42f40429.
+        # @param InstanceId: <p>实例 ID，形如：tdsql3-42f40429.</p>
         # @type InstanceId: String
-        # @param DbName: 数据库名称，通过 DescribeDatabases 接口获取。
+        # @param DbName: <p>数据库名称，通过 DescribeDatabases 接口获取。</p>
         # @type DbName: String
+        # @param Offset: <p>分页索引</p>
+        # @type Offset: Integer
+        # @param Limit: <p>每页数量</p>
+        # @type Limit: Integer
+        # @param TableRegexp: <p>数据表名称匹配表达式</p>
+        # @type TableRegexp: String
 
-        attr_accessor :InstanceId, :DbName
+        attr_accessor :InstanceId, :DbName, :Offset, :Limit, :TableRegexp
 
-        def initialize(instanceid=nil, dbname=nil)
+        def initialize(instanceid=nil, dbname=nil, offset=nil, limit=nil, tableregexp=nil)
           @InstanceId = instanceid
           @DbName = dbname
+          @Offset = offset
+          @Limit = limit
+          @TableRegexp = tableregexp
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
           @DbName = params['DbName']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @TableRegexp = params['TableRegexp']
         end
       end
 
       # DescribeDatabaseObjects返回参数结构体
       class DescribeDatabaseObjectsResponse < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 透传入参。
+        # @param InstanceId: <p>透传入参。</p>
         # @type InstanceId: String
-        # @param DbName: 数据库名称。
+        # @param DbName: <p>数据库名称。</p>
         # @type DbName: String
-        # @param Tables: 表列表。
+        # @param Tables: <p>表列表。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tables: Array
-        # @param Views: 视图列表。
+        # @param Views: <p>视图列表。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Views: Array
-        # @param Procs: 存储过程列表。
+        # @param Procs: <p>存储过程列表。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Procs: Array
-        # @param Funcs: 函数列表。
+        # @param Funcs: <p>函数列表。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Funcs: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。

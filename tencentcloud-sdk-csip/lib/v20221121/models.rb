@@ -23799,51 +23799,41 @@ module TencentCloud
 
       # Skill 安全检测结果详情
       class SkillScanItem < TencentCloud::Common::AbstractModel
-        # @param SkillName: Skill 名称
+        # @param SkillName: <p>Skill 名称</p>
         # @type SkillName: String
-        # @param SkillDescription: Skill 描述，帮助理解 Skill 的主要用途
+        # @param SkillDescription: <p>Skill 描述，帮助理解 Skill 的主要用途</p>
         # @type SkillDescription: String
-        # @param ContentHash: ZIP 文件的 SHA256 Hash
-        # 参数格式：sha256:<64位hex>
+        # @param ContentHash: <p>ZIP 文件的 SHA256 Hash<br>参数格式：sha256:&lt;64位hex&gt;</p>
         # @type ContentHash: String
-        # @param UploadFileCount: 原始上传 ZIP 文件解压后的实际文件数，也是计费的范围，扫描成功后1个文件计为1次额度
+        # @param UploadFileCount: <p>原始上传 ZIP 文件解压后的实际文件数，也是计费的范围，扫描成功后1个文件计为1次额度</p>
         # @type UploadFileCount: Integer
-        # @param RiskLevel: 综合风险等级
-        # 枚举值：
-        # malicious：恶意
-        # suspicious：可疑
-        # benign：可信
+        # @param RiskLevel: <p>综合风险等级<br>枚举值：<br>malicious：恶意<br>suspicious：可疑<br>benign：可信</p>
         # @type RiskLevel: String
-        # @param PrimaryRuleID: 风险主标签融合规则 ID（9xxxx），由服务端从命中的融合风险标签中生成；benign 且无规则命中时为空。展示名称可通过 RuleCatalog 获取
+        # @param PrimaryRuleID: <p>风险主标签融合规则 ID（9xxxx），由服务端从命中的融合风险标签中生成；benign 且无规则命中时为空。展示名称可通过 RuleCatalog 获取</p>
         # @type PrimaryRuleID: String
-        # @param Mitigation: 综合处置建议，用于指导调用方优先执行下线、隔离、修复、复检等动作。历史结果中可能为空。传 Language=en-US 时返回英文文案
+        # @param Mitigation: <p>综合处置建议，用于指导调用方优先执行下线、隔离、修复、复检等动作。历史结果中可能为空。传 Language=en-US 时返回英文文案</p>
         # @type Mitigation: String
-        # @param RiskDescription: 风险综合描述，对本次检测发现的风险进行概括性说明。传 Language=en-US 时返回英文文案
+        # @param RiskDescription: <p>风险综合描述，对本次检测发现的风险进行概括性说明。传 Language=en-US 时返回英文文案</p>
         # @type RiskDescription: String
-        # @param SecurityScore: 安全评分
-        # 取值范围：[0, 100]
-        # 补充说明：100 为最安全
+        # @param SecurityScore: <p>安全评分取值范围：[0, 100]补充说明：分数越高越安全</p>
         # @type SecurityScore: Integer
-        # @param EngineVersion: 本次扫描使用的引擎版本号
+        # @param EngineVersion: <p>本次扫描使用的引擎版本号</p>
         # @type EngineVersion: Integer
-        # @param CapabilityTags: Skill 能力标签列表，描述 Skill 具备的能力特征或适用场景。不等同于风险标签，也不参与风险等级判定。传 Language=en-US 时 Name 切换为英文，ID 保持不变
+        # @param CapabilityTags: <p>Skill 能力标签列表，描述 Skill 具备的能力特征或适用场景。不等同于风险标签，也不参与风险等级判定。传 Language=en-US 时 Name 切换为英文，ID 保持不变</p>
         # @type CapabilityTags: Array
-        # @param RuleCatalog: 融合规则目录全集，包含所有融合规则类别（9xxxx），调用方可据此展示分类标签，无需本地维护映射表。传 Language=en-US 时返回英文名称
+        # @param RuleCatalog: <p>融合规则目录全集，包含所有融合规则类别（9xxxx），调用方可据此展示分类标签，无需本地维护映射表。传 Language=en-US 时返回英文名称</p>
         # @type RuleCatalog: Array
-        # @param ScanItems: 扫描结果详情，按子引擎分组。每个元素包含 ScanType（引擎类型）和 RuleList（命中规则列表）。规则中的 RuleID 使用融合编码（9xxxx），可与 RuleCatalog 交叉引用。传 Language=en-US 时 Description 返回英文文本
+        # @param ScanItems: <p>扫描结果详情，按子引擎分组。每个元素包含 ScanType（引擎类型）和 RuleList（命中规则列表）。规则中的 RuleID 使用融合编码（9xxxx），可与 RuleCatalog 交叉引用。传 Language=en-US 时 Description 返回英文文本</p>
         # @type ScanItems: Array
-        # @param ReportURL: 综合安全审计报告地址（签名 URL）。有效期由请求参数 ReportURLExpireHours 控制
+        # @param ReportURL: <p>综合安全审计报告地址（签名 URL）。有效期由请求参数 ReportURLExpireHours 控制</p>
         # @type ReportURL: String
-        # @param ScannedAt: 扫描完成时间。仅 Status=SUCCESS 时有值
-        # 参数格式：YYYY-MM-DDTHH:mm:ssZ（ISO8601格式）
+        # @param ScannedAt: <p>扫描完成时间。仅 Status=SUCCESS 时有值<br>参数格式：YYYY-MM-DDTHH:mm:ssZ（ISO8601格式）</p>
         # @type ScannedAt: String
-        # @param CreatedAt: 任务创建时间。仅 Status=SCANNING 时有值
-        # 参数格式：YYYY-MM-DDTHH:mm:ssZ（ISO8601格式）
+        # @param CreatedAt: <p>任务创建时间。仅 Status=SCANNING 时有值<br>参数格式：YYYY-MM-DDTHH:mm:ssZ（ISO8601格式）</p>
         # @type CreatedAt: String
-        # @param FailedAt: 失败时间。仅 Status=FAILED 时有值
-        # 参数格式：YYYY-MM-DDTHH:mm:ssZ（ISO8601格式）
+        # @param FailedAt: <p>失败时间。仅 Status=FAILED 时有值<br>参数格式：YYYY-MM-DDTHH:mm:ssZ（ISO8601格式）</p>
         # @type FailedAt: String
-        # @param Message: 失败原因描述。仅 Status=FAILED 时有值
+        # @param Message: <p>失败原因描述。仅 Status=FAILED 时有值</p>
         # @type Message: String
 
         attr_accessor :SkillName, :SkillDescription, :ContentHash, :UploadFileCount, :RiskLevel, :PrimaryRuleID, :Mitigation, :RiskDescription, :SecurityScore, :EngineVersion, :CapabilityTags, :RuleCatalog, :ScanItems, :ReportURL, :ScannedAt, :CreatedAt, :FailedAt, :Message

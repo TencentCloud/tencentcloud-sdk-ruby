@@ -1354,6 +1354,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取单个训练任务实例的登录链接
+
+        # @param request: Request instance for DescribeTrainingTaskPodUrl.
+        # @type request: :class:`Tencentcloud::tione::V20211111::DescribeTrainingTaskPodUrlRequest`
+        # @rtype: :class:`Tencentcloud::tione::V20211111::DescribeTrainingTaskPodUrlResponse`
+        def DescribeTrainingTaskPodUrl(request)
+          body = send_request('DescribeTrainingTaskPodUrl', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeTrainingTaskPodUrlResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 训练任务pod列表
 
         # @param request: Request instance for DescribeTrainingTaskPods.

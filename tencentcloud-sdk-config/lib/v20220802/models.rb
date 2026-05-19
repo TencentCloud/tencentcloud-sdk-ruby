@@ -887,23 +887,23 @@ module TencentCloud
 
       # 合规包规则信息
       class CompliancePackRule < TencentCloud::Common::AbstractModel
-        # @param RuleName: 规则名称
+        # @param RuleName: <p>规则名称</p>
         # @type RuleName: String
-        # @param RiskLevel: 风险等级
+        # @param RiskLevel: <p>风险等级</p>
         # @type RiskLevel: Integer
-        # @param InputParameter: 入参
+        # @param InputParameter: <p>入参</p>
         # @type InputParameter: Array
-        # @param Identifier: 规则身份标识
+        # @param Identifier: <p>规则身份标识</p>
         # @type Identifier: String
-        # @param Description: 描述
+        # @param Description: <p>描述</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
-        # @param ManagedRuleIdentifier: 预设规则身份标识
+        # @param ManagedRuleIdentifier: <p>预设规则身份标识</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ManagedRuleIdentifier: String
-        # @param ConfigRuleId: 规则ID
+        # @param ConfigRuleId: <p>规则ID</p>
         # @type ConfigRuleId: String
-        # @param CompliancePackId: 合规包ID
+        # @param CompliancePackId: <p>合规包ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CompliancePackId: String
 
@@ -1040,26 +1040,26 @@ module TencentCloud
 
       # 用户合规包信息
       class ConfigCompliancePack < TencentCloud::Common::AbstractModel
-        # @param Status: 合规包状态
+        # @param Status: <p>合规包状态</p>
         # @type Status: String
-        # @param CompliancePackId: 合规包ID
+        # @param CompliancePackId: <p>合规包ID</p>
         # @type CompliancePackId: String
-        # @param Description: 描述
+        # @param Description: <p>描述</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
-        # @param CompliancePackName: 合规包名称
+        # @param CompliancePackName: <p>合规包名称</p>
         # @type CompliancePackName: String
-        # @param RiskLevel: 风险等级
+        # @param RiskLevel: <p>风险等级</p>
         # @type RiskLevel: Integer
-        # @param ComplianceResult: 评估结果
+        # @param ComplianceResult: <p>评估结果</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ComplianceResult: String
-        # @param CreateTime: 创建时间
+        # @param CreateTime: <p>创建时间</p>
         # @type CreateTime: String
-        # @param NoCompliantNames: 不合规规则名
+        # @param NoCompliantNames: <p>不合规规则名</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NoCompliantNames: Array
-        # @param RuleCount: 合规包规则数
+        # @param RuleCount: <p>合规包规则数</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleCount: Integer
 
@@ -2277,7 +2277,7 @@ module TencentCloud
 
       # DescribeSystemCompliancePack请求参数结构体
       class DescribeSystemCompliancePackRequest < TencentCloud::Common::AbstractModel
-        # @param CompliancePackId: 合规包ID
+        # @param CompliancePackId: <p>合规包ID</p>
         # @type CompliancePackId: String
 
         attr_accessor :CompliancePackId
@@ -2293,15 +2293,15 @@ module TencentCloud
 
       # DescribeSystemCompliancePack返回参数结构体
       class DescribeSystemCompliancePackResponse < TencentCloud::Common::AbstractModel
-        # @param CompliancePackId: 合规包ID
+        # @param CompliancePackId: <p>合规包ID</p>
         # @type CompliancePackId: String
-        # @param CompliancePackName: 合规包名称
+        # @param CompliancePackName: <p>合规包名称</p>
         # @type CompliancePackName: String
-        # @param Description: 合规包描述
+        # @param Description: <p>合规包描述</p>
         # @type Description: String
-        # @param RiskLevel: 风险等级
+        # @param RiskLevel: <p>风险等级</p>
         # @type RiskLevel: Integer
-        # @param ConfigRules: 合规包规则列表
+        # @param ConfigRules: <p>合规包规则列表</p>
         # @type ConfigRules: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3833,7 +3833,7 @@ module TencentCloud
         end
       end
 
-      # 资源列列表信息
+      # 资源列表信息
       class ResourceListInfo < TencentCloud::Common::AbstractModel
         # @param ResourceType: 资源类型
         # @type ResourceType: String
@@ -4081,46 +4081,46 @@ module TencentCloud
 
       # 管理端规则详情
       class SystemConfigRule < TencentCloud::Common::AbstractModel
-        # @param Identifier: 规则标识
+        # @param Identifier: <p>规则标识</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Identifier: String
-        # @param RuleName: 规则名
+        # @param RuleName: <p>规则名</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleName: String
-        # @param InputParameter: 规则参数
+        # @param InputParameter: <p>规则参数</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InputParameter: Array
-        # @param SourceCondition: 规则触发条件
+        # @param SourceCondition: <p>规则触发条件</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SourceCondition: Array
-        # @param ResourceType: 支持的资源类型
+        # @param ResourceType: <p>支持的资源类型</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceType: Array
-        # @param Label: 标签
+        # @param Label: <p>标签</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Label: Array
-        # @param RiskLevel: 风险等级，1，2，3
+        # @param RiskLevel: <p>风险等级，1，2，3</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskLevel: Integer
-        # @param ServiceFunction: 对应的函数
+        # @param ServiceFunction: <p>对应的函数</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceFunction: String
-        # @param CreateTime: 创建时间
+        # @param CreateTime: <p>创建时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
-        # @param UpdateTime: 更新时间
+        # @param UpdateTime: <p>更新时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
-        # @param TriggerType: 触发类型
+        # @param TriggerType: <p>触发类型</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TriggerType: Array
-        # @param Description: 描述
+        # @param Description: <p>描述</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
-        # @param ReferenceCount: 使用次数
+        # @param ReferenceCount: <p>使用次数</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReferenceCount: Integer
-        # @param IdentifierType: 规则类型
+        # @param IdentifierType: <p>规则类型</p>
         # @type IdentifierType: String
 
         attr_accessor :Identifier, :RuleName, :InputParameter, :SourceCondition, :ResourceType, :Label, :RiskLevel, :ServiceFunction, :CreateTime, :UpdateTime, :TriggerType, :Description, :ReferenceCount, :IdentifierType

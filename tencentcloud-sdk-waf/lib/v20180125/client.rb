@@ -2813,6 +2813,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 根据文件Hash查询Skill安全检测结果
+
+        # @param request: Request instance for DescribeSkillSecScanResult.
+        # @type request: :class:`Tencentcloud::waf::V20180125::DescribeSkillSecScanResultRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::DescribeSkillSecScanResultResponse`
+        def DescribeSkillSecScanResult(request)
+          body = send_request('DescribeSkillSecScanResult', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSkillSecScanResultResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # waf斯巴达-获取防护域名信息
 
         # @param request: Request instance for DescribeSpartaProtectionInfo.
@@ -5181,6 +5205,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = UpdateRateLimitV2Response.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 上传Skill ZIP文件，触发异步安全检测
+
+        # @param request: Request instance for UploadSkillSecScan.
+        # @type request: :class:`Tencentcloud::waf::V20180125::UploadSkillSecScanRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::UploadSkillSecScanResponse`
+        def UploadSkillSecScan(request)
+          body = send_request('UploadSkillSecScan', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UploadSkillSecScanResponse.new
             model.deserialize(response['Response'])
             model
           else
