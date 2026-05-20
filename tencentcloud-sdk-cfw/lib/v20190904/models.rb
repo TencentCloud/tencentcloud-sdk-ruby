@@ -2940,21 +2940,21 @@ module TencentCloud
 
       # DescribeAclRule请求参数结构体
       class DescribeAclRuleRequest < TencentCloud::Common::AbstractModel
-        # @param Limit: 每页条数
+        # @param Limit: <p>每页条数</p>
         # @type Limit: Integer
-        # @param Offset: 偏移值
+        # @param Offset: <p>偏移值</p>
         # @type Offset: Integer
-        # @param Index: 需要查询的索引，特定场景使用，可不填
+        # @param Index: <p>需要查询的索引，特定场景使用，可不填</p>
         # @type Index: String
-        # @param Filters: 过滤条件组合
+        # @param Filters: <p>过滤条件组合</p>
         # @type Filters: Array
-        # @param StartTime: 检索的起始时间，可不传
+        # @param StartTime: <p>检索的起始时间，可不传</p>
         # @type StartTime: String
-        # @param EndTime: 检索的截止时间，可不传
+        # @param EndTime: <p>检索的截止时间，可不传</p>
         # @type EndTime: String
-        # @param Order: desc：降序；asc：升序。根据By字段的值进行排序，这里传参的话则By也必须有值，默认为asc
+        # @param Order: <p>desc：降序；asc：升序。根据By字段的值进行排序，这里传参的话则By也必须有值，默认为asc</p>
         # @type Order: String
-        # @param By: 排序所用到的字段，默认为sequence
+        # @param By: <p>排序所用到的字段，默认为sequence</p>
         # @type By: String
 
         attr_accessor :Limit, :Offset, :Index, :Filters, :StartTime, :EndTime, :Order, :By
@@ -2991,11 +2991,11 @@ module TencentCloud
 
       # DescribeAclRule返回参数结构体
       class DescribeAclRuleResponse < TencentCloud::Common::AbstractModel
-        # @param Total: 总条数
+        # @param Total: <p>总条数</p>
         # @type Total: Integer
-        # @param Data: nat访问控制列表数据
+        # @param Data: <p>nat访问控制列表数据</p>
         # @type Data: Array
-        # @param AllTotal: 未过滤的总条数
+        # @param AllTotal: <p>未过滤的总条数</p>
         # @type AllTotal: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4889,21 +4889,21 @@ module TencentCloud
 
       # DescribeNatAcRule请求参数结构体
       class DescribeNatAcRuleRequest < TencentCloud::Common::AbstractModel
-        # @param Limit: 每页条数
+        # @param Limit: <p>每页条数</p>
         # @type Limit: Integer
-        # @param Offset: 偏移值
+        # @param Offset: <p>偏移值</p>
         # @type Offset: Integer
-        # @param Index: 需要查询的索引，特定场景使用，可不填
+        # @param Index: <p>需要查询的索引，特定场景使用，可不填</p>
         # @type Index: String
-        # @param Filters: 过滤条件组合，Direction 为0时表述查询出向规则，为1时表示查询入向规则
+        # @param Filters: <p>过滤条件组合，Direction 为0时表述查询出向规则，为1时表示查询入向规则</p>
         # @type Filters: Array
-        # @param StartTime: 检索的起始时间，可不传
+        # @param StartTime: <p>检索的起始时间，可不传</p>
         # @type StartTime: String
-        # @param EndTime: 检索的截止时间，可不传
+        # @param EndTime: <p>检索的截止时间，可不传</p>
         # @type EndTime: String
-        # @param Order: desc：降序；asc：升序。根据By字段的值进行排序，这里传参的话则By也必须有值，默认为asc
+        # @param Order: <p>desc：降序；asc：升序。根据By字段的值进行排序，这里传参的话则By也必须有值，默认为asc</p>
         # @type Order: String
-        # @param By: 排序所用到的字段，默认为sequence
+        # @param By: <p>排序所用到的字段，默认为sequence</p>
         # @type By: String
 
         attr_accessor :Limit, :Offset, :Index, :Filters, :StartTime, :EndTime, :Order, :By
@@ -4940,11 +4940,11 @@ module TencentCloud
 
       # DescribeNatAcRule返回参数结构体
       class DescribeNatAcRuleResponse < TencentCloud::Common::AbstractModel
-        # @param Total: 总条数
+        # @param Total: <p>总条数</p>
         # @type Total: Integer
-        # @param Data: nat访问控制列表数据
+        # @param Data: <p>nat访问控制列表数据</p>
         # @type Data: Array
-        # @param AllTotal: 未过滤的总条数
+        # @param AllTotal: <p>未过滤的总条数</p>
         # @type AllTotal: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6159,21 +6159,21 @@ module TencentCloud
 
       # DescribeVpcAcRule请求参数结构体
       class DescribeVpcAcRuleRequest < TencentCloud::Common::AbstractModel
-        # @param Limit: 每页条数
+        # @param Limit: <p>每页条数</p>
         # @type Limit: Integer
-        # @param Offset: 偏移值
+        # @param Offset: <p>偏移值</p>
         # @type Offset: Integer
-        # @param Index: 需要查询的索引，特定场景使用，可不填
+        # @param Index: <p>需要查询的索引，特定场景使用，可不填</p>
         # @type Index: String
-        # @param Filters: 过滤条件组合
+        # @param Filters: <p>过滤条件组合</p>
         # @type Filters: Array
-        # @param StartTime: 检索的起始时间，可不传
+        # @param StartTime: <p>检索的起始时间，可不传</p>
         # @type StartTime: String
-        # @param EndTime: 检索的截止时间，可不传
+        # @param EndTime: <p>检索的截止时间，可不传</p>
         # @type EndTime: String
-        # @param Order: desc：降序；asc：升序。根据By字段的值进行排序，这里传参的话则By也必须有值
+        # @param Order: <p>desc：降序；asc：升序。根据By字段的值进行排序，这里传参的话则By也必须有值</p>
         # @type Order: String
-        # @param By: 排序所用到的字段
+        # @param By: <p>排序所用到的字段</p>
         # @type By: String
 
         attr_accessor :Limit, :Offset, :Index, :Filters, :StartTime, :EndTime, :Order, :By
@@ -6210,9 +6210,9 @@ module TencentCloud
 
       # DescribeVpcAcRule返回参数结构体
       class DescribeVpcAcRuleResponse < TencentCloud::Common::AbstractModel
-        # @param Total: 总条数
+        # @param Total: <p>总条数</p>
         # @type Total: Integer
-        # @param Data: 内网间访问控制列表数据
+        # @param Data: <p>内网间访问控制列表数据</p>
         # @type Data: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

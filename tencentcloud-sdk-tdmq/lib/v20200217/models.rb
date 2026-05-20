@@ -1663,25 +1663,26 @@ module TencentCloud
 
       # CreateRabbitMQUser请求参数结构体
       class CreateRabbitMQUserRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID，形如 amqp-xxxxxxxx。有效的 InstanceId 可通过登录 [TDMQ RabbitMQ 控制台](https://console.cloud.tencent.com/trabbitmq/cluster?rid=1)查询。
+        # @param InstanceId: <p>实例 ID，形如 amqp-xxxxxxxx。有效的 InstanceId 可通过登录 <a href="https://console.cloud.tencent.com/trabbitmq/cluster?rid=1">TDMQ RabbitMQ 控制台</a>查询。</p>
         # @type InstanceId: String
-        # @param User: 用户名，登录时使用
+        # @param User: <p>用户名，登录时使用</p>
         # @type User: String
-        # @param Password: 密码，登录时使用。规范：不能为空，8-64个字符，至少要包含小写字母、大写字母、数字、特殊字符【()`~!@#$%^&*_=|{}[]:;',.?/】中的两项
+        # @param Password: <p>密码，登录时使用。规范：不能为空，8-64个字符，至少要包含小写字母、大写字母、数字、特殊字符【()`~!@#$%^&amp;*_=|{}[]:;&#39;,.?/】中的两项</p>
         # @type Password: String
-        # @param Description: 描述
+        # @param Description: <p>描述</p>
         # @type Description: String
-        # @param Tags: 用户标签，用于决定改用户访问RabbitMQ Management的权限范围
-        # management：普通控制台用户，monitoring：管理型控制台用户，其他值：非控制台用户
+        # @param Tags: <p>用户标签，用于决定改用户访问RabbitMQ Management的权限范围<br>management：普通控制台用户，monitoring：管理型控制台用户，其他值：非控制台用户</p>
         # @type Tags: Array
-        # @param MaxConnections: 该用户的最大连接数，不填写则不限制
+        # @param MaxConnections: <p>该用户的最大连接数，不填写则不限制</p>
         # @type MaxConnections: Integer
-        # @param MaxChannels: 该用户的最大channel数，不填写则不限制
+        # @param MaxChannels: <p>该用户的最大channel数，不填写则不限制</p>
         # @type MaxChannels: Integer
+        # @param EnableCamAuth: <p>是否开启cam验证</p>
+        # @type EnableCamAuth: Boolean
 
-        attr_accessor :InstanceId, :User, :Password, :Description, :Tags, :MaxConnections, :MaxChannels
+        attr_accessor :InstanceId, :User, :Password, :Description, :Tags, :MaxConnections, :MaxChannels, :EnableCamAuth
 
-        def initialize(instanceid=nil, user=nil, password=nil, description=nil, tags=nil, maxconnections=nil, maxchannels=nil)
+        def initialize(instanceid=nil, user=nil, password=nil, description=nil, tags=nil, maxconnections=nil, maxchannels=nil, enablecamauth=nil)
           @InstanceId = instanceid
           @User = user
           @Password = password
@@ -1689,6 +1690,7 @@ module TencentCloud
           @Tags = tags
           @MaxConnections = maxconnections
           @MaxChannels = maxchannels
+          @EnableCamAuth = enablecamauth
         end
 
         def deserialize(params)
@@ -1699,12 +1701,13 @@ module TencentCloud
           @Tags = params['Tags']
           @MaxConnections = params['MaxConnections']
           @MaxChannels = params['MaxChannels']
+          @EnableCamAuth = params['EnableCamAuth']
         end
       end
 
       # CreateRabbitMQUser返回参数结构体
       class CreateRabbitMQUserResponse < TencentCloud::Common::AbstractModel
-        # @param User: 用户名，登录时使用
+        # @param User: <p>用户名，登录时使用</p>
         # @type User: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -9591,25 +9594,26 @@ module TencentCloud
 
       # ModifyRabbitMQUser请求参数结构体
       class ModifyRabbitMQUserRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID，形如 amqp-xxxxxxxx。有效的 InstanceId 可通过登录 [TDMQ RabbitMQ 控制台](https://console.cloud.tencent.com/trabbitmq/cluster?rid=1)查询。
+        # @param InstanceId: <p>实例 ID，形如 amqp-xxxxxxxx。有效的 InstanceId 可通过登录 <a href="https://console.cloud.tencent.com/trabbitmq/cluster?rid=1">TDMQ RabbitMQ 控制台</a>查询。</p>
         # @type InstanceId: String
-        # @param User: 用户名，形如rabbitmq。有效的 User 名称可通过登录 [TDMQ RabbitMQ 控制台](https://console.cloud.tencent.com/trabbitmq/cluster?rid=1)查询，点击集群列表中的集群，进入集群详情，并在用户与权限页签中找到用户列表，从而找到用户名称。当前不支持修改admin的密码。
+        # @param User: <p>用户名，形如rabbitmq。有效的 User 名称可通过登录 <a href="https://console.cloud.tencent.com/trabbitmq/cluster?rid=1">TDMQ RabbitMQ 控制台</a>查询，点击集群列表中的集群，进入集群详情，并在用户与权限页签中找到用户列表，从而找到用户名称。当前不支持修改admin的密码。</p>
         # @type User: String
-        # @param Password: 密码，登录时使用。规范：不能为空，8-64个字符，至少要包含小写字母、大写字母、数字、特殊字符【()`~!@#$%^&*_=|{}[]:;',.?/】中的两项
+        # @param Password: <p>密码，登录时使用。规范：不能为空，8-64个字符，至少要包含小写字母、大写字母、数字、特殊字符【()`~!@#$%^&amp;*_=|{}[]:;&#39;,.?/】中的两项</p>
         # @type Password: String
-        # @param Description: 描述，不传则不修改
+        # @param Description: <p>描述，不传则不修改</p>
         # @type Description: String
-        # @param Tags: 用户标签，用于决定改用户访问 RabbitMQ Management 的权限范围
-        # management：普通控制台用户，monitoring：管理型控制台用户，其他值：非控制台用户
+        # @param Tags: <p>用户标签，用于决定改用户访问 RabbitMQ Management 的权限范围<br>management：普通控制台用户，monitoring：管理型控制台用户，其他值：非控制台用户</p>
         # @type Tags: Array
-        # @param MaxConnections: 该用户的最大连接数，不传则不修改
+        # @param MaxConnections: <p>该用户的最大连接数，不传则不修改</p>
         # @type MaxConnections: Integer
-        # @param MaxChannels: 该用户的最大channel数，不传则不修改
+        # @param MaxChannels: <p>该用户的最大channel数，不传则不修改</p>
         # @type MaxChannels: Integer
+        # @param EnableCamAuth: <p>是否开启cam验证</p>
+        # @type EnableCamAuth: Boolean
 
-        attr_accessor :InstanceId, :User, :Password, :Description, :Tags, :MaxConnections, :MaxChannels
+        attr_accessor :InstanceId, :User, :Password, :Description, :Tags, :MaxConnections, :MaxChannels, :EnableCamAuth
 
-        def initialize(instanceid=nil, user=nil, password=nil, description=nil, tags=nil, maxconnections=nil, maxchannels=nil)
+        def initialize(instanceid=nil, user=nil, password=nil, description=nil, tags=nil, maxconnections=nil, maxchannels=nil, enablecamauth=nil)
           @InstanceId = instanceid
           @User = user
           @Password = password
@@ -9617,6 +9621,7 @@ module TencentCloud
           @Tags = tags
           @MaxConnections = maxconnections
           @MaxChannels = maxchannels
+          @EnableCamAuth = enablecamauth
         end
 
         def deserialize(params)
@@ -9627,6 +9632,7 @@ module TencentCloud
           @Tags = params['Tags']
           @MaxConnections = params['MaxConnections']
           @MaxChannels = params['MaxChannels']
+          @EnableCamAuth = params['EnableCamAuth']
         end
       end
 

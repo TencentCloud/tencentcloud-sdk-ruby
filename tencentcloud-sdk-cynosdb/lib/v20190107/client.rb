@@ -149,6 +149,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（AddLibraDBInstances）用于集群添加只读分析引擎
+
+        # @param request: Request instance for AddLibraDBInstances.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::AddLibraDBInstancesRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::AddLibraDBInstancesResponse`
+        def AddLibraDBInstances(request)
+          body = send_request('AddLibraDBInstances', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AddLibraDBInstancesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（AssociateSecurityGroups）用于安全组批量绑定云资源。
 
         # @param request: Request instance for AssociateSecurityGroups.

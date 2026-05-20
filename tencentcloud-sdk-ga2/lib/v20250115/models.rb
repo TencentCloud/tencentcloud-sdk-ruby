@@ -1072,6 +1072,42 @@ module TencentCloud
         end
       end
 
+      # DescribeTaskResult请求参数结构体
+      class DescribeTaskResultRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 异步任务ID。
+        # @type TaskId: String
+
+        attr_accessor :TaskId
+
+        def initialize(taskid=nil)
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # DescribeTaskResult返回参数结构体
+      class DescribeTaskResultResponse < TencentCloud::Common::AbstractModel
+        # @param Status: 任务状态。
+        # @type Status: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :RequestId
+
+        def initialize(status=nil, requestid=nil)
+          @Status = status
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 终端节点配置
       class EndpointConfigurations < TencentCloud::Common::AbstractModel
         # @param EndpointType: <p>域名类型。可选值&#39;Domain&#39;, &#39;PublicIp&#39;。</p>

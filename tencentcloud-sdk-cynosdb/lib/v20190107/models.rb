@@ -434,6 +434,149 @@ module TencentCloud
         end
       end
 
+      # AddLibraDBInstances请求参数结构体
+      class AddLibraDBInstancesRequest < TencentCloud::Common::AbstractModel
+        # @param Zone: 可用区
+        # @type Zone: String
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param Cpu: Cpu核数
+        # @type Cpu: Integer
+        # @param Mem: 内存，单位为GB
+        # @type Mem: Integer
+        # @param StorageSize: 磁盘大小
+        # @type StorageSize: Integer
+        # @param PayMode: 付费模式
+        # @type PayMode: Integer
+        # @param Objects: 同步对象列表
+        # @type Objects: :class:`Tencentcloud::Cynosdb.v20190107.models.Objects`
+        # @param Port: 新增RO组时使用的Port，取值范围为[0,65535)
+        # @type Port: Integer
+        # @param GoodsNum: 新增只读实例数，取值范围为(0,15]
+        # @type GoodsNum: Integer
+        # @param InstanceName: 实例名称，字符串长度范围为[0,64)，取值范围为大小写字母，0-9数字，'_','-','.'
+        # @type InstanceName: String
+        # @param ReplicasNum: 副本数
+        # @type ReplicasNum: Integer
+        # @param InstanceType: ReplicasNum>1或者ReplicasNum=1且Cpu>=32核的时候取值为'Exclusive'，其余场景取值'Common'
+        # @type InstanceType: String
+        # @param StorageType: 磁盘类型
+        # @type StorageType: String
+        # @param AutoVoucher: 是否自动选择代金券 1是 0否 默认为0
+        # @type AutoVoucher: Integer
+        # @param OrderSource: 订单来源，字符串长度范围为[0,64)
+        # @type OrderSource: String
+        # @param DealMode: 交易模式 0-下单并支付 1-下单
+        # @type DealMode: Integer
+        # @param VpcId: 所属VPC网络ID。
+        # @type VpcId: String
+        # @param SubnetId: 所属子网ID，如果设置了VpcId，则SubnetId必填。
+        # @type SubnetId: String
+        # @param SecurityGroupIds: 安全组ID，新建只读实例时可以指定安全组。
+        # @type SecurityGroupIds: Array
+        # @param LibraDBVersion: 分析引擎版本
+        # @type LibraDBVersion: String
+        # @param TimeSpan: 购买时长,与TimeUnit组合才能生效
+        # @type TimeSpan: Integer
+        # @param TimeUnit: 购买时长单位, 与TimeSpan组合生效，可选:日:d,月:m
+        # @type TimeUnit: String
+        # @param SrcInstanceId: 源端实例id
+        # @type SrcInstanceId: String
+
+        attr_accessor :Zone, :ClusterId, :Cpu, :Mem, :StorageSize, :PayMode, :Objects, :Port, :GoodsNum, :InstanceName, :ReplicasNum, :InstanceType, :StorageType, :AutoVoucher, :OrderSource, :DealMode, :VpcId, :SubnetId, :SecurityGroupIds, :LibraDBVersion, :TimeSpan, :TimeUnit, :SrcInstanceId
+
+        def initialize(zone=nil, clusterid=nil, cpu=nil, mem=nil, storagesize=nil, paymode=nil, objects=nil, port=nil, goodsnum=nil, instancename=nil, replicasnum=nil, instancetype=nil, storagetype=nil, autovoucher=nil, ordersource=nil, dealmode=nil, vpcid=nil, subnetid=nil, securitygroupids=nil, libradbversion=nil, timespan=nil, timeunit=nil, srcinstanceid=nil)
+          @Zone = zone
+          @ClusterId = clusterid
+          @Cpu = cpu
+          @Mem = mem
+          @StorageSize = storagesize
+          @PayMode = paymode
+          @Objects = objects
+          @Port = port
+          @GoodsNum = goodsnum
+          @InstanceName = instancename
+          @ReplicasNum = replicasnum
+          @InstanceType = instancetype
+          @StorageType = storagetype
+          @AutoVoucher = autovoucher
+          @OrderSource = ordersource
+          @DealMode = dealmode
+          @VpcId = vpcid
+          @SubnetId = subnetid
+          @SecurityGroupIds = securitygroupids
+          @LibraDBVersion = libradbversion
+          @TimeSpan = timespan
+          @TimeUnit = timeunit
+          @SrcInstanceId = srcinstanceid
+        end
+
+        def deserialize(params)
+          @Zone = params['Zone']
+          @ClusterId = params['ClusterId']
+          @Cpu = params['Cpu']
+          @Mem = params['Mem']
+          @StorageSize = params['StorageSize']
+          @PayMode = params['PayMode']
+          unless params['Objects'].nil?
+            @Objects = Objects.new
+            @Objects.deserialize(params['Objects'])
+          end
+          @Port = params['Port']
+          @GoodsNum = params['GoodsNum']
+          @InstanceName = params['InstanceName']
+          @ReplicasNum = params['ReplicasNum']
+          @InstanceType = params['InstanceType']
+          @StorageType = params['StorageType']
+          @AutoVoucher = params['AutoVoucher']
+          @OrderSource = params['OrderSource']
+          @DealMode = params['DealMode']
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+          @SecurityGroupIds = params['SecurityGroupIds']
+          @LibraDBVersion = params['LibraDBVersion']
+          @TimeSpan = params['TimeSpan']
+          @TimeUnit = params['TimeUnit']
+          @SrcInstanceId = params['SrcInstanceId']
+        end
+      end
+
+      # AddLibraDBInstances返回参数结构体
+      class AddLibraDBInstancesResponse < TencentCloud::Common::AbstractModel
+        # @param BigDealIds: 大订单号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BigDealIds: Array
+        # @param TranId: 冻结流水，一次开通一个冻结流水。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TranId: String
+        # @param DealNames: 后付费订单号。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DealNames: Array
+        # @param ResourceIds: 发货资源id列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceIds: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :BigDealIds, :TranId, :DealNames, :ResourceIds, :RequestId
+
+        def initialize(bigdealids=nil, tranid=nil, dealnames=nil, resourceids=nil, requestid=nil)
+          @BigDealIds = bigdealids
+          @TranId = tranid
+          @DealNames = dealnames
+          @ResourceIds = resourceids
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @BigDealIds = params['BigDealIds']
+          @TranId = params['TranId']
+          @DealNames = params['DealNames']
+          @ResourceIds = params['ResourceIds']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 数据库地址
       class Addr < TencentCloud::Common::AbstractModel
         # @param IP: IP地址
@@ -2911,7 +3054,7 @@ module TencentCloud
         # @type Cpu: Integer
         # @param Memory: <p>当DbMode为NORMAL或不填时必选<br>普通实例内存,单位GB</p>
         # @type Memory: Integer
-        # @param InstanceCount: <p>实例数量，数量范围为(0,16]，默认值为2（即一个rw实例+一个ro实例），传递的n表示1个rw实例+n-1个ro实例（规格相同），如需要更精确的集群组成搭配，请使用InstanceInitInfos</p>
+        # @param InstanceCount: <p>实例数量</p><p>取值范围：[1, 16]</p><p>默认值：2</p><ul><li>取值为2，表示一个 rw 实例 + 一个 ro 实例。</li><li>传递的 n 表示1个 rw 实例 + n-1个 ro 实例（规格相同）。</li><li>如需要更精确的集群组成搭配，请使用 InstanceInitInfos。</li><li>此参数设置的数值适用于预置资源集群，如需设置 Serverless 集群的实例规格及数量，请使用 InstanceInitInfos.N 中的 InstanceInitInfo 结构。</li></ul>
         # @type InstanceCount: Integer
         # @param Storage: <p>该参数无实际意义，已废弃。<br>存储大小，单位GB。</p>
         # @type Storage: Integer
@@ -2985,12 +3128,14 @@ module TencentCloud
         # @type AutoArchive: String
         # @param AutoArchiveDelayHours: <p>暂停后的归档处理时间</p><p>单位：时</p><p>默认值：12</p><p>仅当前集群主实例为SERVERLESS时，该参数生效</p>
         # @type AutoArchiveDelayHours: Integer
+        # @param ClusterLevel: <p>集群级别，可空。例如 P0, P1。（可忽略该字段）</p>
+        # @type ClusterLevel: String
         # @param CynosVersion: <p>内核小版本号</p>
         # @type CynosVersion: String
 
-        attr_accessor :Zone, :VpcId, :SubnetId, :DbType, :DbVersion, :ProjectId, :Cpu, :Memory, :InstanceCount, :Storage, :ClusterName, :AdminPassword, :Port, :PayMode, :Count, :RollbackStrategy, :RollbackId, :OriginalClusterId, :ExpectTime, :ExpectTimeThresh, :StorageLimit, :TimeSpan, :TimeUnit, :AutoRenewFlag, :AutoVoucher, :HaCount, :OrderSource, :ResourceTags, :DbMode, :MinCpu, :MaxCpu, :AutoPause, :AutoPauseDelay, :StoragePayMode, :SecurityGroupIds, :AlarmPolicyIds, :ClusterParams, :DealMode, :ParamTemplateId, :SlaveZone, :InstanceInitInfos, :GdnId, :ProxyConfig, :AutoArchive, :AutoArchiveDelayHours, :CynosVersion
+        attr_accessor :Zone, :VpcId, :SubnetId, :DbType, :DbVersion, :ProjectId, :Cpu, :Memory, :InstanceCount, :Storage, :ClusterName, :AdminPassword, :Port, :PayMode, :Count, :RollbackStrategy, :RollbackId, :OriginalClusterId, :ExpectTime, :ExpectTimeThresh, :StorageLimit, :TimeSpan, :TimeUnit, :AutoRenewFlag, :AutoVoucher, :HaCount, :OrderSource, :ResourceTags, :DbMode, :MinCpu, :MaxCpu, :AutoPause, :AutoPauseDelay, :StoragePayMode, :SecurityGroupIds, :AlarmPolicyIds, :ClusterParams, :DealMode, :ParamTemplateId, :SlaveZone, :InstanceInitInfos, :GdnId, :ProxyConfig, :AutoArchive, :AutoArchiveDelayHours, :ClusterLevel, :CynosVersion
 
-        def initialize(zone=nil, vpcid=nil, subnetid=nil, dbtype=nil, dbversion=nil, projectid=nil, cpu=nil, memory=nil, instancecount=nil, storage=nil, clustername=nil, adminpassword=nil, port=nil, paymode=nil, count=nil, rollbackstrategy=nil, rollbackid=nil, originalclusterid=nil, expecttime=nil, expecttimethresh=nil, storagelimit=nil, timespan=nil, timeunit=nil, autorenewflag=nil, autovoucher=nil, hacount=nil, ordersource=nil, resourcetags=nil, dbmode=nil, mincpu=nil, maxcpu=nil, autopause=nil, autopausedelay=nil, storagepaymode=nil, securitygroupids=nil, alarmpolicyids=nil, clusterparams=nil, dealmode=nil, paramtemplateid=nil, slavezone=nil, instanceinitinfos=nil, gdnid=nil, proxyconfig=nil, autoarchive=nil, autoarchivedelayhours=nil, cynosversion=nil)
+        def initialize(zone=nil, vpcid=nil, subnetid=nil, dbtype=nil, dbversion=nil, projectid=nil, cpu=nil, memory=nil, instancecount=nil, storage=nil, clustername=nil, adminpassword=nil, port=nil, paymode=nil, count=nil, rollbackstrategy=nil, rollbackid=nil, originalclusterid=nil, expecttime=nil, expecttimethresh=nil, storagelimit=nil, timespan=nil, timeunit=nil, autorenewflag=nil, autovoucher=nil, hacount=nil, ordersource=nil, resourcetags=nil, dbmode=nil, mincpu=nil, maxcpu=nil, autopause=nil, autopausedelay=nil, storagepaymode=nil, securitygroupids=nil, alarmpolicyids=nil, clusterparams=nil, dealmode=nil, paramtemplateid=nil, slavezone=nil, instanceinitinfos=nil, gdnid=nil, proxyconfig=nil, autoarchive=nil, autoarchivedelayhours=nil, clusterlevel=nil, cynosversion=nil)
           @Zone = zone
           @VpcId = vpcid
           @SubnetId = subnetid
@@ -3036,6 +3181,7 @@ module TencentCloud
           @ProxyConfig = proxyconfig
           @AutoArchive = autoarchive
           @AutoArchiveDelayHours = autoarchivedelayhours
+          @ClusterLevel = clusterlevel
           @CynosVersion = cynosversion
         end
 
@@ -3109,6 +3255,7 @@ module TencentCloud
           end
           @AutoArchive = params['AutoArchive']
           @AutoArchiveDelayHours = params['AutoArchiveDelayHours']
+          @ClusterLevel = params['ClusterLevel']
           @CynosVersion = params['CynosVersion']
         end
       end
@@ -16608,6 +16755,26 @@ module TencentCloud
           @TaskStatus = params['TaskStatus']
           @ObjectId = params['ObjectId']
           @ObjectType = params['ObjectType']
+        end
+      end
+
+      # 同步对象列表
+      class Objects < TencentCloud::Common::AbstractModel
+        # @param DatabaseTables: 包含数据库表信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DatabaseTables: :class:`Tencentcloud::Cynosdb.v20190107.models.MigrateObject`
+
+        attr_accessor :DatabaseTables
+
+        def initialize(databasetables=nil)
+          @DatabaseTables = databasetables
+        end
+
+        def deserialize(params)
+          unless params['DatabaseTables'].nil?
+            @DatabaseTables = MigrateObject.new
+            @DatabaseTables.deserialize(params['DatabaseTables'])
+          end
         end
       end
 

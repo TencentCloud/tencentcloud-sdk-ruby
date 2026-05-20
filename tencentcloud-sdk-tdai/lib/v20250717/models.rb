@@ -531,19 +531,31 @@ module TencentCloud
 
       # CreateChatCompletion请求参数结构体
       class CreateChatCompletionRequest < TencentCloud::Common::AbstractModel
-        # @param IsHidden: 是否隐藏
+        # @param InputContent: <p>输入内容</p>
+        # @type InputContent: String
+        # @param InstanceId: <p>实例ID</p>
+        # @type InstanceId: String
+        # @param ChatId: <p>对话窗口ID，空值表示新的会话</p>
+        # @type ChatId: String
+        # @param IsHidden: <p>是否隐藏</p>
         # @type IsHidden: Boolean
-        # @param IsChatHidden: 是否隐藏会话
+        # @param IsChatHidden: <p>是否隐藏会话</p>
         # @type IsChatHidden: Boolean
 
-        attr_accessor :IsHidden, :IsChatHidden
+        attr_accessor :InputContent, :InstanceId, :ChatId, :IsHidden, :IsChatHidden
 
-        def initialize(ishidden=nil, ischathidden=nil)
+        def initialize(inputcontent=nil, instanceid=nil, chatid=nil, ishidden=nil, ischathidden=nil)
+          @InputContent = inputcontent
+          @InstanceId = instanceid
+          @ChatId = chatid
           @IsHidden = ishidden
           @IsChatHidden = ischathidden
         end
 
         def deserialize(params)
+          @InputContent = params['InputContent']
+          @InstanceId = params['InstanceId']
+          @ChatId = params['ChatId']
           @IsHidden = params['IsHidden']
           @IsChatHidden = params['IsChatHidden']
         end

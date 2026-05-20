@@ -13592,7 +13592,7 @@ module TencentCloud
       class ExportZoneConfigRequest < TencentCloud::Common::AbstractModel
         # @param ZoneId: 站点 ID。
         # @type ZoneId: String
-        # @param Types: 导出配置项的类型列表，不填表示导出所有类型的配置，当前支持的取值有：<li>L7AccelerationConfig：表示导出七层加速配置，对应控制台「站点加速-全局加速配置」和「站点加速-规则引擎」。</li><li>WebSecurity：表示导出 Web 防护配置。</li> 需注意：后续支持导出的类型会随着迭代增加，导出所有类型时需要注意导出文件大小，建议使用时指定需要导出的配置类型，以便控制请求响应包负载大小。
+        # @param Types: 导出配置项的类型列表，不填表示导出所有类型的配置，当前支持的取值有：<li>L7AccelerationConfig：表示导出七层加速配置，对应控制台「站点加速-全局加速配置」和「站点加速-规则引擎」。</li><li>WebSecurity：表示导出 Web 防护配置。</li><li> AccelerationDomain：表示导出加速域名配置，对应控制台「域名服务-域名管理」和「域名服务-共享 CNAME 管理」。</li><li> Origin：表示导出源站配置，对应控制台「源站配置-源站组」和「源站配置-负载均衡」。</li> 需注意：后续支持导出的类型会随着迭代增加，导出所有类型时需要注意导出文件大小，建议使用时指定需要导出的配置类型，以便控制请求响应包负载大小。
         # @type Types: Array
 
         attr_accessor :ZoneId, :Types
@@ -21838,6 +21838,7 @@ module TencentCloud
         # <li>Shield：源站卸载配置；</li>
         # <li>TLSConfig：SSL/TLS 安全；</li>
         # <li>ModifyOrigin：修改源站；</li>
+        # <li> SiteFailover：源站故障转移；</li>
         # <li>HTTPUpstreamTimeout：七层回源超时配置；</li>
         # <li>HttpResponse：HTTP 应答；</li>
         # <li>ErrorPage：自定义错误页面；</li>
@@ -21936,6 +21937,9 @@ module TencentCloud
         # @param ModifyOriginParameters: 修改源站配置参数，当 Name 取值为 ModifyOrigin 时，该参数必填。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModifyOriginParameters: :class:`Tencentcloud::Teo.v20220901.models.ModifyOriginParameters`
+        # @param SiteFailoverParameters: 源站故障转移配置参数，当 Name 取值为 SiteFailover 时，该参数必填。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SiteFailoverParameters: :class:`Tencentcloud::Teo.v20220901.models.SiteFailoverParameters`
         # @param HTTPUpstreamTimeoutParameters: 七层回源超时配置，当 Name 取值为 HTTPUpstreamTimeout 时，该参数必填。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HTTPUpstreamTimeoutParameters: :class:`Tencentcloud::Teo.v20220901.models.HTTPUpstreamTimeoutParameters`
@@ -21965,9 +21969,9 @@ module TencentCloud
         # @param OriginAuthenticationParameters: 回源鉴权配置参数，当 Name 取值为 OriginAuthentication 时，该参数必填。该参数为白名单功能，如有需要，请联系腾讯云工程师处理。
         # @type OriginAuthenticationParameters: :class:`Tencentcloud::Teo.v20220901.models.OriginAuthenticationParameters`
 
-        attr_accessor :Name, :CacheParameters, :CacheKeyParameters, :CachePrefreshParameters, :AccessURLRedirectParameters, :UpstreamURLRewriteParameters, :QUICParameters, :WebSocketParameters, :AuthenticationParameters, :MaxAgeParameters, :StatusCodeCacheParameters, :OfflineCacheParameters, :SmartRoutingParameters, :RangeOriginPullParameters, :UpstreamHTTP2Parameters, :HostHeaderParameters, :ForceRedirectHTTPSParameters, :OriginPullProtocolParameters, :CompressionParameters, :HSTSParameters, :ClientIPHeaderParameters, :OCSPStaplingParameters, :HTTP2Parameters, :PostMaxSizeParameters, :ClientIPCountryParameters, :UpstreamFollowRedirectParameters, :UpstreamRequestParameters, :ShieldParameters, :TLSConfigParameters, :ModifyOriginParameters, :HTTPUpstreamTimeoutParameters, :HttpResponseParameters, :ErrorPageParameters, :ModifyResponseHeaderParameters, :ModifyRequestHeaderParameters, :ResponseSpeedLimitParameters, :SetContentIdentifierParameters, :VaryParameters, :ContentCompressionParameters, :OriginAuthenticationParameters
+        attr_accessor :Name, :CacheParameters, :CacheKeyParameters, :CachePrefreshParameters, :AccessURLRedirectParameters, :UpstreamURLRewriteParameters, :QUICParameters, :WebSocketParameters, :AuthenticationParameters, :MaxAgeParameters, :StatusCodeCacheParameters, :OfflineCacheParameters, :SmartRoutingParameters, :RangeOriginPullParameters, :UpstreamHTTP2Parameters, :HostHeaderParameters, :ForceRedirectHTTPSParameters, :OriginPullProtocolParameters, :CompressionParameters, :HSTSParameters, :ClientIPHeaderParameters, :OCSPStaplingParameters, :HTTP2Parameters, :PostMaxSizeParameters, :ClientIPCountryParameters, :UpstreamFollowRedirectParameters, :UpstreamRequestParameters, :ShieldParameters, :TLSConfigParameters, :ModifyOriginParameters, :SiteFailoverParameters, :HTTPUpstreamTimeoutParameters, :HttpResponseParameters, :ErrorPageParameters, :ModifyResponseHeaderParameters, :ModifyRequestHeaderParameters, :ResponseSpeedLimitParameters, :SetContentIdentifierParameters, :VaryParameters, :ContentCompressionParameters, :OriginAuthenticationParameters
 
-        def initialize(name=nil, cacheparameters=nil, cachekeyparameters=nil, cacheprefreshparameters=nil, accessurlredirectparameters=nil, upstreamurlrewriteparameters=nil, quicparameters=nil, websocketparameters=nil, authenticationparameters=nil, maxageparameters=nil, statuscodecacheparameters=nil, offlinecacheparameters=nil, smartroutingparameters=nil, rangeoriginpullparameters=nil, upstreamhttp2parameters=nil, hostheaderparameters=nil, forceredirecthttpsparameters=nil, originpullprotocolparameters=nil, compressionparameters=nil, hstsparameters=nil, clientipheaderparameters=nil, ocspstaplingparameters=nil, http2parameters=nil, postmaxsizeparameters=nil, clientipcountryparameters=nil, upstreamfollowredirectparameters=nil, upstreamrequestparameters=nil, shieldparameters=nil, tlsconfigparameters=nil, modifyoriginparameters=nil, httpupstreamtimeoutparameters=nil, httpresponseparameters=nil, errorpageparameters=nil, modifyresponseheaderparameters=nil, modifyrequestheaderparameters=nil, responsespeedlimitparameters=nil, setcontentidentifierparameters=nil, varyparameters=nil, contentcompressionparameters=nil, originauthenticationparameters=nil)
+        def initialize(name=nil, cacheparameters=nil, cachekeyparameters=nil, cacheprefreshparameters=nil, accessurlredirectparameters=nil, upstreamurlrewriteparameters=nil, quicparameters=nil, websocketparameters=nil, authenticationparameters=nil, maxageparameters=nil, statuscodecacheparameters=nil, offlinecacheparameters=nil, smartroutingparameters=nil, rangeoriginpullparameters=nil, upstreamhttp2parameters=nil, hostheaderparameters=nil, forceredirecthttpsparameters=nil, originpullprotocolparameters=nil, compressionparameters=nil, hstsparameters=nil, clientipheaderparameters=nil, ocspstaplingparameters=nil, http2parameters=nil, postmaxsizeparameters=nil, clientipcountryparameters=nil, upstreamfollowredirectparameters=nil, upstreamrequestparameters=nil, shieldparameters=nil, tlsconfigparameters=nil, modifyoriginparameters=nil, sitefailoverparameters=nil, httpupstreamtimeoutparameters=nil, httpresponseparameters=nil, errorpageparameters=nil, modifyresponseheaderparameters=nil, modifyrequestheaderparameters=nil, responsespeedlimitparameters=nil, setcontentidentifierparameters=nil, varyparameters=nil, contentcompressionparameters=nil, originauthenticationparameters=nil)
           @Name = name
           @CacheParameters = cacheparameters
           @CacheKeyParameters = cachekeyparameters
@@ -21998,6 +22002,7 @@ module TencentCloud
           @ShieldParameters = shieldparameters
           @TLSConfigParameters = tlsconfigparameters
           @ModifyOriginParameters = modifyoriginparameters
+          @SiteFailoverParameters = sitefailoverparameters
           @HTTPUpstreamTimeoutParameters = httpupstreamtimeoutparameters
           @HttpResponseParameters = httpresponseparameters
           @ErrorPageParameters = errorpageparameters
@@ -22127,6 +22132,10 @@ module TencentCloud
           unless params['ModifyOriginParameters'].nil?
             @ModifyOriginParameters = ModifyOriginParameters.new
             @ModifyOriginParameters.deserialize(params['ModifyOriginParameters'])
+          end
+          unless params['SiteFailoverParameters'].nil?
+            @SiteFailoverParameters = SiteFailoverParameters.new
+            @SiteFailoverParameters.deserialize(params['SiteFailoverParameters'])
           end
           unless params['HTTPUpstreamTimeoutParameters'].nil?
             @HTTPUpstreamTimeoutParameters = HTTPUpstreamTimeoutParameters.new
@@ -23103,6 +23112,131 @@ module TencentCloud
 
         def deserialize(params)
           @ShieldSpaceId = params['ShieldSpaceId']
+        end
+      end
+
+      # 源站故障转移 配置参数内部结构。
+      class SiteFailover < TencentCloud::Common::AbstractModel
+        # @param Mode: 源站故障转移类型。取值有：
+        # <li>FailoverToHost:回源到指定 IP/域名；</li>
+        # <li> FailoverToCOS:回源到腾讯云 COS；</li>
+        # <li>FailoverToS3CompatibleObjectStorage:回源到 S3 兼容；</li>
+        # <li> FailoverRedirectToURL :重定向至指定 URL；</li>
+        # <li> FailoverCustomResponsePage:使用自定义响应页面。</li>
+        # @type Mode: String
+        # @param Origin: 源站地址，根据 Mode 的取值分为以下情况：
+        # <li>当 Mode = FailoverToHost 时，该参数请填写 IPV4、IPV6 地址或域名；</li>
+        # <li>当 Mode = FailoverToCOS 时，该参数请填写 COS 桶的访问域名；</li>
+        # <li>当 Mode = FailoverToS3CompatibleObjectStorage，该参数请填写 S3 桶的访问域名。</li>
+        # @type Origin: String
+        # @param OriginProtocol: 回源协议配置。当 Mode 取值为 FailoverToHost 时该参数必填。取值有：
+        # <li>http：使用 HTTP 协议；</li>
+        # <li>https：使用 HTTPS 协议；</li>
+        # <li>follow：协议跟随。</li>
+        # @type OriginProtocol: String
+        # @param HTTPOriginPort: HTTP 回源端口，取值范围 1～65535。当回源协议 OriginProtocol 为 http 或者 follow 时该参数必填。
+        # @type HTTPOriginPort: Integer
+        # @param HTTPSOriginPort: HTTPS 回源端口，取值范围 1～65535。当回源协议 OriginProtocol 为 https 或者 follow 时该参数必填。
+        # @type HTTPSOriginPort: Integer
+        # @param UpstreamHostHeader: 回源Host Header 重写配置，
+        # @type UpstreamHostHeader: :class:`Tencentcloud::Teo.v20220901.models.HostHeaderParameters`
+        # @param UpstreamURLRewrite: 回源 URL 重写配置。
+        # @type UpstreamURLRewrite: :class:`Tencentcloud::Teo.v20220901.models.UpstreamURLRewriteParameters`
+        # @param UpstreamRequestParameters: 回源请求参数配置。
+        # @type UpstreamRequestParameters: :class:`Tencentcloud::Teo.v20220901.models.UpstreamRequestParameters`
+        # @param UpstreamHTTP2Parameters: HTTP2 回源配置参数。
+        # @type UpstreamHTTP2Parameters: :class:`Tencentcloud::Teo.v20220901.models.UpstreamHTTP2Parameters`
+        # @param PrivateAccess: 指定是否允许访问私有对象存储源站，当源站类型 Mode = FailoverToCOS 或 FailoverToS3CompatibleObjectStorage 时该参数必填，取值有：
+        # <li>on：使用私有鉴权；</li>
+        # <li>off：不使用私有鉴权。</li>
+        # @type PrivateAccess: String
+        # @param PrivateParameters: 私有鉴权使用参数，该参数仅当 Mode = FailoverToS3CompatibleObjectStorage 且 PrivateAccess = on 时会生效。
+        # @type PrivateParameters: :class:`Tencentcloud::Teo.v20220901.models.OriginPrivateParameters`
+        # @param RedirectURL: 重定向目标 URL。当 Mode 取值为 FailoverRedirectToURL 时该参数必填。
+        # @type RedirectURL: String
+        # @param ResponsePageId: 响应页面 ID。当 Mode 取值为 FailoverCustomResponsePage 时该参数必填。
+        # @type ResponsePageId: String
+        # @param StatusCode: 响应状态码。当 Mode 取值为 FailoverRedirectToURL 或 FailoverCustomResponsePage 时该参数必填。取值有：
+        # <li>当 Mode = FailoverRedirectToURL 时，该参数取值为 301、302、303、307、308 之一；</li>
+        # <li>当 Mode = FailoverCustomResponsePage 时，该参数取值为 400、403、404、405、414、416、451、500、501、502、503、504 之一。</li>
+        # @type StatusCode: Integer
+
+        attr_accessor :Mode, :Origin, :OriginProtocol, :HTTPOriginPort, :HTTPSOriginPort, :UpstreamHostHeader, :UpstreamURLRewrite, :UpstreamRequestParameters, :UpstreamHTTP2Parameters, :PrivateAccess, :PrivateParameters, :RedirectURL, :ResponsePageId, :StatusCode
+
+        def initialize(mode=nil, origin=nil, originprotocol=nil, httporiginport=nil, httpsoriginport=nil, upstreamhostheader=nil, upstreamurlrewrite=nil, upstreamrequestparameters=nil, upstreamhttp2parameters=nil, privateaccess=nil, privateparameters=nil, redirecturl=nil, responsepageid=nil, statuscode=nil)
+          @Mode = mode
+          @Origin = origin
+          @OriginProtocol = originprotocol
+          @HTTPOriginPort = httporiginport
+          @HTTPSOriginPort = httpsoriginport
+          @UpstreamHostHeader = upstreamhostheader
+          @UpstreamURLRewrite = upstreamurlrewrite
+          @UpstreamRequestParameters = upstreamrequestparameters
+          @UpstreamHTTP2Parameters = upstreamhttp2parameters
+          @PrivateAccess = privateaccess
+          @PrivateParameters = privateparameters
+          @RedirectURL = redirecturl
+          @ResponsePageId = responsepageid
+          @StatusCode = statuscode
+        end
+
+        def deserialize(params)
+          @Mode = params['Mode']
+          @Origin = params['Origin']
+          @OriginProtocol = params['OriginProtocol']
+          @HTTPOriginPort = params['HTTPOriginPort']
+          @HTTPSOriginPort = params['HTTPSOriginPort']
+          unless params['UpstreamHostHeader'].nil?
+            @UpstreamHostHeader = HostHeaderParameters.new
+            @UpstreamHostHeader.deserialize(params['UpstreamHostHeader'])
+          end
+          unless params['UpstreamURLRewrite'].nil?
+            @UpstreamURLRewrite = UpstreamURLRewriteParameters.new
+            @UpstreamURLRewrite.deserialize(params['UpstreamURLRewrite'])
+          end
+          unless params['UpstreamRequestParameters'].nil?
+            @UpstreamRequestParameters = UpstreamRequestParameters.new
+            @UpstreamRequestParameters.deserialize(params['UpstreamRequestParameters'])
+          end
+          unless params['UpstreamHTTP2Parameters'].nil?
+            @UpstreamHTTP2Parameters = UpstreamHTTP2Parameters.new
+            @UpstreamHTTP2Parameters.deserialize(params['UpstreamHTTP2Parameters'])
+          end
+          @PrivateAccess = params['PrivateAccess']
+          unless params['PrivateParameters'].nil?
+            @PrivateParameters = OriginPrivateParameters.new
+            @PrivateParameters.deserialize(params['PrivateParameters'])
+          end
+          @RedirectURL = params['RedirectURL']
+          @ResponsePageId = params['ResponsePageId']
+          @StatusCode = params['StatusCode']
+        end
+      end
+
+      # 源站故障转移配置参数。
+      class SiteFailoverParameters < TencentCloud::Common::AbstractModel
+        # @param SiteFailoverStatusCodes: 源站故障转移条件状态码。当源站返回的响应状态码命中本字段返回时，才会按照SiteFailoverParams执行源站转移。该参数取值为 4xx、5xx 之一。
+        # @type SiteFailoverStatusCodes: Array
+        # @param SiteFailoverParams: 源站故障转移配置参数列表。最小长度为1，最大长度为2。
+        # @type SiteFailoverParams: Array
+
+        attr_accessor :SiteFailoverStatusCodes, :SiteFailoverParams
+
+        def initialize(sitefailoverstatuscodes=nil, sitefailoverparams=nil)
+          @SiteFailoverStatusCodes = sitefailoverstatuscodes
+          @SiteFailoverParams = sitefailoverparams
+        end
+
+        def deserialize(params)
+          @SiteFailoverStatusCodes = params['SiteFailoverStatusCodes']
+          unless params['SiteFailoverParams'].nil?
+            @SiteFailoverParams = []
+            params['SiteFailoverParams'].each do |i|
+              sitefailover_tmp = SiteFailover.new
+              sitefailover_tmp.deserialize(i)
+              @SiteFailoverParams << sitefailover_tmp
+            end
+          end
         end
       end
 

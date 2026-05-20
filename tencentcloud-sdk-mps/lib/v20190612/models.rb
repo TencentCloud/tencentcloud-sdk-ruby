@@ -12076,6 +12076,50 @@ module TencentCloud
         end
       end
 
+      # DeleteVoice请求参数结构体
+      class DeleteVoiceRequest < TencentCloud::Common::AbstractModel
+        # @param VoiceId: <p>音色Id</p>
+        # @type VoiceId: String
+        # @param ExtParam: <p>扩展参数，json字符串</p>
+        # @type ExtParam: String
+
+        attr_accessor :VoiceId, :ExtParam
+
+        def initialize(voiceid=nil, extparam=nil)
+          @VoiceId = voiceid
+          @ExtParam = extparam
+        end
+
+        def deserialize(params)
+          @VoiceId = params['VoiceId']
+          @ExtParam = params['ExtParam']
+        end
+      end
+
+      # DeleteVoice返回参数结构体
+      class DeleteVoiceResponse < TencentCloud::Common::AbstractModel
+        # @param ErrorCode: <p>错误码，成功时返回0</p>
+        # @type ErrorCode: Integer
+        # @param Msg: <p>错误信息，成功时返回success</p>
+        # @type Msg: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrorCode, :Msg, :RequestId
+
+        def initialize(errorcode=nil, msg=nil, requestid=nil)
+          @ErrorCode = errorcode
+          @Msg = msg
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrorCode = params['ErrorCode']
+          @Msg = params['Msg']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteWatermarkTemplate请求参数结构体
       class DeleteWatermarkTemplateRequest < TencentCloud::Common::AbstractModel
         # @param Definition: 水印模板唯一标识。
@@ -32758,7 +32802,7 @@ module TencentCloud
         # @type Output: :class:`Tencentcloud::Mps.v20190612.models.SyncDubbingOutputOption`
         # @param ResourceId: <p>资源ID，需要保证对应资源是开启状态。默认为账号主资源ID。</p>
         # @type ResourceId: String
-        # @param ExtParam: <p>扩展参数，json字符串</p><p>synExt    Object    语音合成扩展参数<br>    -duration    Float    合成音频时长，单位秒，示例：5.2<br>    -sampleRate    Integer    合成音频采样率，默认16000，支持[8000,16000,22050,32000,44100]<br>    -pitch    Integer    音调，默认0原音色输出，取值[-12, 12]<br>cloneExt    Object    音色克隆扩展参数<br>    -timeRanges    Float[][]    指定克隆音频时间范围，默认[[0, 20]]，示例[[5.2, 10], [45, 59.8]]</p>
+        # @param ExtParam: <p>扩展参数，json字符串</p><p><strong>synExt</strong>    Object    语音合成扩展参数<br>  <strong>duration</strong>    Float    合成音频时长（单位秒），默认不控制时长。示例：5.2<br>  <strong>sampleRate</strong>    Integer    合成音频采样率，默认16000，支持[8000,16000,22050,24000,32000,44100]<br>  <strong>pitch</strong>    Integer    音调，默认0原音色输出，取值[-12, 12]<br><strong>cloneExt</strong>    Object    音色克隆扩展参数<br>  <strong>timeRanges</strong>    Float[][]    指定克隆音频时间范围（单位秒），默认取音频前20s。示例：[[5.2, 10], [45, 59.8]]</p>
         # @type ExtParam: String
 
         attr_accessor :Text, :TextLang, :VoiceId, :AudioData, :AudioUrl, :AudioLang, :VoiceProfile, :Output, :ResourceId, :ExtParam

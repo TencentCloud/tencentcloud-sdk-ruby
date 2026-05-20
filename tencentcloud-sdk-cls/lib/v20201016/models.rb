@@ -5524,7 +5524,7 @@ module TencentCloud
         # @type Extends: :class:`Tencentcloud::Cls.v20201016.models.TopicExtendInfo`
         # @param IsSourceFrom: <p>开启记录公网来源ip和服务端接收时间</p>
         # @type IsSourceFrom: Boolean
-        # @param BillingMode: <p>计费模式</p><p>枚举值：</p><ul><li>0： 按功能项计费</li><li>1： 原始日志量计费</li></ul><p>默认值：0</p><p>通过接口调用时默认值为0，通过控制台调用时默认值为1</p>
+        # @param BillingMode: <p>计费模式</p><p>枚举值：</p><ul><li>0： 按使用功能计费</li><li>1： 按原始日志量计费（目前仅面向少部分客户支持）</li></ul><p>默认值：0</p>
         # @type BillingMode: Integer
 
         attr_accessor :LogsetId, :TopicName, :PartitionCount, :Tags, :AutoSplit, :MaxSplitPartitions, :StorageType, :Period, :Describes, :HotPeriod, :Encryption, :BizType, :TopicId, :IsWebTracking, :Extends, :IsSourceFrom, :BillingMode
@@ -17027,7 +17027,7 @@ module TencentCloud
         # @type Encryption: Integer
         # @param IsSourceFrom: <p>开启记录公网来源ip和服务端接收时间</p>
         # @type IsSourceFrom: Boolean
-        # @param BillingMode: <p>计费模式</p><p>枚举值：</p><ul><li>0： 按功能项计费</li><li>1： 原始日志量计费</li></ul>
+        # @param BillingMode: <p>计费模式</p><p>枚举值：</p><ul><li>0： 按使用功能计费</li><li>1： 按原始日志量计费（目前仅面向少部分客户支持）</li></ul><p>默认值：0</p>
         # @type BillingMode: Integer
 
         attr_accessor :TopicId, :TopicName, :Tags, :Status, :AutoSplit, :MaxSplitPartitions, :Period, :StorageType, :Describes, :HotPeriod, :IsWebTracking, :Extends, :PartitionCount, :CancelTopicAsyncTaskID, :Encryption, :IsSourceFrom, :BillingMode
@@ -19794,9 +19794,9 @@ module TencentCloud
         # @type EffectiveDate: String
         # @param IsSourceFrom: <p>IsSourceFrom 开启记录公网来源ip和服务端接收时间</p>
         # @type IsSourceFrom: Boolean
-        # @param BillingMode: <p>当前计费模式</p><p>枚举值：</p><ul><li>0： 按功能项计费</li><li>1： 原始日志量计费</li></ul>
+        # @param BillingMode: <p>当前计费模式</p><p>枚举值：</p><ul><li>0： 按使用功能计费</li><li>1： 按原始日志量计费（目前仅面向少部分客户支持）</li></ul>
         # @type BillingMode: Integer
-        # @param NewBillingMode: <p>如果有异步任务，任务成功后的新计费模式</p><p>枚举值：</p><ul><li>0： 按功能项计费</li><li>1： 原始日志量计费</li></ul>
+        # @param NewBillingMode: <p>如果有异步任务，任务成功后的新计费模式</p><p>枚举值：</p><ul><li>0： 按使用功能计费</li><li>1： 按原始日志量计费（目前仅面向少部分客户支持）</li></ul>
         # @type NewBillingMode: Integer
 
         attr_accessor :LogsetId, :TopicId, :TopicName, :PartitionCount, :Index, :AssumerUin, :AssumerName, :CreateTime, :Status, :Tags, :RoleName, :AutoSplit, :MaxSplitPartitions, :StorageType, :Period, :SubAssumerName, :Describes, :HotPeriod, :KeyId, :BizType, :IsWebTracking, :Extends, :TopicAsyncTaskID, :MigrationStatus, :EffectiveDate, :IsSourceFrom, :BillingMode, :NewBillingMode

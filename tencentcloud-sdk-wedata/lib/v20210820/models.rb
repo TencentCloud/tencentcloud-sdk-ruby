@@ -7624,15 +7624,19 @@ module TencentCloud
         # @param TotalPageNumber: 总分页页码
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalPageNumber: Integer
+        # @param SnapshotId: 快照Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SnapshotId: String
 
-        attr_accessor :PageNumber, :PageSize, :Rows, :TotalCount, :TotalPageNumber
+        attr_accessor :PageNumber, :PageSize, :Rows, :TotalCount, :TotalPageNumber, :SnapshotId
 
-        def initialize(pagenumber=nil, pagesize=nil, rows=nil, totalcount=nil, totalpagenumber=nil)
+        def initialize(pagenumber=nil, pagesize=nil, rows=nil, totalcount=nil, totalpagenumber=nil, snapshotid=nil)
           @PageNumber = pagenumber
           @PageSize = pagesize
           @Rows = rows
           @TotalCount = totalcount
           @TotalPageNumber = totalpagenumber
+          @SnapshotId = snapshotid
         end
 
         def deserialize(params)
@@ -7648,6 +7652,7 @@ module TencentCloud
           end
           @TotalCount = params['TotalCount']
           @TotalPageNumber = params['TotalPageNumber']
+          @SnapshotId = params['SnapshotId']
         end
       end
 
@@ -10876,13 +10881,13 @@ module TencentCloud
 
       # DescribeDataSourceList请求参数结构体
       class DescribeDataSourceListRequest < TencentCloud::Common::AbstractModel
-        # @param PageNumber: 页码
+        # @param PageNumber: <p>页码</p>
         # @type PageNumber: Integer
-        # @param PageSize: 返回数量
+        # @param PageSize: <p>返回数量</p>
         # @type PageSize: Integer
-        # @param OrderFields: 排序配置
+        # @param OrderFields: <p>排序配置</p>
         # @type OrderFields: Array
-        # @param Filters: 可选过滤条件，Filter可选配置(参考): "Name": { "type": "string", "description": "数据源名称" }, "Type": { "type": "string", "description": "类型" }, "ClusterId": { "type": "string", "description": "集群id" }, "CategoryId": { "type": "string", "description": "分类，项目或空间id" }
+        # @param Filters: <p>可选过滤条件，Filter可选配置(参考): &quot;Name&quot;: { &quot;type&quot;: &quot;string&quot;, &quot;description&quot;: &quot;数据源名称&quot; }, &quot;Type&quot;: { &quot;type&quot;: &quot;string&quot;, &quot;description&quot;: &quot;类型&quot; }, &quot;ClusterId&quot;: { &quot;type&quot;: &quot;string&quot;, &quot;description&quot;: &quot;集群id&quot; }, &quot;CategoryId&quot;: { &quot;type&quot;: &quot;string&quot;, &quot;description&quot;: &quot;分类，项目或空间id&quot; }</p>
         # @type Filters: Array
 
         attr_accessor :PageNumber, :PageSize, :OrderFields, :Filters
@@ -10918,7 +10923,7 @@ module TencentCloud
 
       # DescribeDataSourceList返回参数结构体
       class DescribeDataSourceListResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 数据源列表
+        # @param Data: <p>数据源列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: :class:`Tencentcloud::Wedata.v20210820.models.DataSourceInfoPage`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -12668,39 +12673,39 @@ module TencentCloud
 
       # DescribeInstanceLogDetail请求参数结构体
       class DescribeInstanceLogDetailRequest < TencentCloud::Common::AbstractModel
-        # @param ProjectId: 项目ID
+        # @param ProjectId: <p>项目ID</p>
         # @type ProjectId: String
-        # @param TaskId: 任务id
+        # @param TaskId: <p>任务id</p>
         # @type TaskId: String
-        # @param CurRunDate: 数据时间
+        # @param CurRunDate: <p>数据时间</p>
         # @type CurRunDate: String
-        # @param LogLevelType: 日志级别，Info/Debug/Warn/Error/All
+        # @param LogLevelType: <p>日志级别，Info/Debug/Warn/Error/All</p>
         # @type LogLevelType: String
-        # @param ExecutionFileType: 文件类型,Log/Code
+        # @param ExecutionFileType: <p>文件类型,Log/Code</p>
         # @type ExecutionFileType: String
-        # @param ExecutionJobId: 统一执行平台执行id, 注意: ExecutionJobId 跟 "BrokerIp+OriginFileName" 必须有一个不为空
+        # @param ExecutionJobId: <p>统一执行平台执行id, 注意: ExecutionJobId 跟 &quot;BrokerIp+OriginFileName&quot; 必须有一个不为空</p>
         # @type ExecutionJobId: String
-        # @param BrokerIp: 服务器Ip, 注意: "BrokerIp+OriginFileName"跟ExecutionJobId必须有一个不为空
+        # @param BrokerIp: <p>服务器Ip, 注意: &quot;BrokerIp+OriginFileName&quot;跟ExecutionJobId必须有一个不为空</p>
         # @type BrokerIp: String
-        # @param OriginFileName: 文件Name, 注意: "BrokerIp+OriginFileName"跟ExecutionJobId必须有一个不为空
+        # @param OriginFileName: <p>文件Name, 注意: &quot;BrokerIp+OriginFileName&quot;跟ExecutionJobId必须有一个不为空</p>
         # @type OriginFileName: String
-        # @param StartCount: 起始行
+        # @param StartCount: <p>起始行</p>
         # @type StartCount: Integer
-        # @param LineCount: 每次查询行数
+        # @param LineCount: <p>每次查询行数</p>
         # @type LineCount: Integer
-        # @param ExtInfo: 查询日志扩展信息,通过统一执行平台接口分页查询日志时需要带上,第一页时为null
+        # @param ExtInfo: <p>查询日志扩展信息,通过统一执行平台接口分页查询日志时需要带上,第一页时为null</p>
         # @type ExtInfo: String
         # @param RequestFromSource: 请求来源，WEB 前端；CLIENT 客户端
         # @type RequestFromSource: String
-        # @param InstanceLifeDetailDtoList: 生命周期为基础数据进行日志匹配
+        # @param InstanceLifeDetailDtoList: <p>生命周期为基础数据进行日志匹配</p>
         # @type InstanceLifeDetailDtoList: Array
-        # @param CurrentLifeRound: 当前生命周期
+        # @param CurrentLifeRound: <p>当前生命周期</p>
         # @type CurrentLifeRound: Integer
-        # @param MaxLifeRound: 生命周期总数
+        # @param MaxLifeRound: <p>生命周期总数</p>
         # @type MaxLifeRound: Integer
-        # @param Tries: 当前生命周期重试次数
+        # @param Tries: <p>当前生命周期重试次数</p>
         # @type Tries: Integer
-        # @param Dynamic: 动态加载日志
+        # @param Dynamic: <p>动态加载日志</p>
         # @type Dynamic: Boolean
 
         attr_accessor :ProjectId, :TaskId, :CurRunDate, :LogLevelType, :ExecutionFileType, :ExecutionJobId, :BrokerIp, :OriginFileName, :StartCount, :LineCount, :ExtInfo, :RequestFromSource, :InstanceLifeDetailDtoList, :CurrentLifeRound, :MaxLifeRound, :Tries, :Dynamic
@@ -12755,7 +12760,7 @@ module TencentCloud
 
       # DescribeInstanceLogDetail返回参数结构体
       class DescribeInstanceLogDetailResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 日志结果
+        # @param Data: <p>日志结果</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: :class:`Tencentcloud::Wedata.v20210820.models.InstanceLogInfoOpsDto`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -12779,33 +12784,33 @@ module TencentCloud
 
       # DescribeInstanceLogFile请求参数结构体
       class DescribeInstanceLogFileRequest < TencentCloud::Common::AbstractModel
-        # @param ProjectId: 项目ID
+        # @param ProjectId: <p>项目ID</p>
         # @type ProjectId: String
-        # @param TaskId: 任务ID
+        # @param TaskId: <p>任务ID</p>
         # @type TaskId: String
-        # @param CurRunDate: 实例数据时间
+        # @param CurRunDate: <p>实例数据时间</p>
         # @type CurRunDate: String
         # @param RequestFromSource: 请求来源，WEB 前端；CLIENT 客户端
         # @type RequestFromSource: String
-        # @param BrokerIp: 执行机IP
+        # @param BrokerIp: <p>执行机IP</p>
         # @type BrokerIp: String
-        # @param OriginFileName: 日志文件名
+        # @param OriginFileName: <p>日志文件名</p>
         # @type OriginFileName: String
-        # @param ExecutionJobId: 执行平台下发执行id
+        # @param ExecutionJobId: <p>执行平台下发执行id</p>
         # @type ExecutionJobId: String
-        # @param LogLevelType: 日志级别，Info/Debug/Warn/Error/All
+        # @param LogLevelType: <p>日志级别，Info/Debug/Warn/Error/All</p>
         # @type LogLevelType: String
-        # @param ExecutionFileType: 文件类型,Log/Code
+        # @param ExecutionFileType: <p>文件类型,Log/Code</p>
         # @type ExecutionFileType: String
-        # @param InstanceLifeDetailDtoList: 生命周期为基础数据进行日志匹配。Dynamic=true动态获取日志链路中使用
+        # @param InstanceLifeDetailDtoList: <p>生命周期为基础数据进行日志匹配。Dynamic=true动态获取日志链路中使用</p>
         # @type InstanceLifeDetailDtoList: Array
-        # @param CurrentLifeRound: 当前生命周期数
+        # @param CurrentLifeRound: <p>当前生命周期数</p>
         # @type CurrentLifeRound: Integer
-        # @param MaxLifeRound: 最大生命周期数
+        # @param MaxLifeRound: <p>最大生命周期数</p>
         # @type MaxLifeRound: Integer
-        # @param Tries: 当前生命周期重试次数
+        # @param Tries: <p>当前生命周期重试次数</p>
         # @type Tries: Integer
-        # @param Dynamic: 动态获取日志信息标识
+        # @param Dynamic: <p>动态获取日志信息标识</p>
         # @type Dynamic: Boolean
 
         attr_accessor :ProjectId, :TaskId, :CurRunDate, :RequestFromSource, :BrokerIp, :OriginFileName, :ExecutionJobId, :LogLevelType, :ExecutionFileType, :InstanceLifeDetailDtoList, :CurrentLifeRound, :MaxLifeRound, :Tries, :Dynamic
@@ -12854,7 +12859,7 @@ module TencentCloud
 
       # DescribeInstanceLogFile返回参数结构体
       class DescribeInstanceLogFileResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 下载文件详情
+        # @param Data: <p>下载文件详情</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: :class:`Tencentcloud::Wedata.v20210820.models.InstanceDownloadLogInfo`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -22961,17 +22966,17 @@ module TencentCloud
 
       # GetCosToken请求参数结构体
       class GetCosTokenRequest < TencentCloud::Common::AbstractModel
-        # @param ProjectId: 项目id
+        # @param ProjectId: <p>项目id</p>
         # @type ProjectId: String
-        # @param OriginDomain: 请求域名
+        # @param OriginDomain: <p>请求域名</p>
         # @type OriginDomain: String
-        # @param CrossFlag: 是否需要跨域
+        # @param CrossFlag: <p>是否需要跨域</p>
         # @type CrossFlag: Boolean
-        # @param BucketName: 桶名
+        # @param BucketName: <p>桶名</p>
         # @type BucketName: String
-        # @param RemotePath: 远程地址
+        # @param RemotePath: <p>远程地址</p>
         # @type RemotePath: String
-        # @param RemoteRegion: 地域
+        # @param RemoteRegion: <p>地域</p>
         # @type RemoteRegion: String
 
         attr_accessor :ProjectId, :OriginDomain, :CrossFlag, :BucketName, :RemotePath, :RemoteRegion
@@ -22997,16 +23002,16 @@ module TencentCloud
 
       # GetCosToken返回参数结构体
       class GetCosTokenResponse < TencentCloud::Common::AbstractModel
-        # @param Region: cos地域
+        # @param Region: <p>cos地域</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Region: String
-        # @param Token: Token信息
+        # @param Token: <p>Token信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Token: :class:`Tencentcloud::Wedata.v20210820.models.CosTokenResponse`
-        # @param Bucket: 桶名
+        # @param Bucket: <p>桶名</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Bucket: String
-        # @param EndPoint: 终止点（针对私有云环境）
+        # @param EndPoint: <p>终止点（针对私有云环境）</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndPoint: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。

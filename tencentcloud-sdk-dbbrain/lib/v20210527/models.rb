@@ -901,19 +901,19 @@ module TencentCloud
 
       # CreateDBDiagReportTask请求参数结构体
       class CreateDBDiagReportTaskRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID。可通过 [DescribeDiagDBInstances](https://cloud.tencent.com/document/api/1130/57798) 接口获取。
+        # @param InstanceId: <p>实例 ID。可通过 <a href="https://cloud.tencent.com/document/api/1130/57798">DescribeDiagDBInstances</a> 接口获取。TDSQL MySQL数据库类型，实例ID应填写为“实例ID&amp;分片ID”的格式。</p>
         # @type InstanceId: String
-        # @param StartTime: 开始时间，如“2020-11-08T14:00:00+08:00”。
+        # @param StartTime: <p>开始时间，如“2020-11-08T14:00:00+08:00”。</p>
         # @type StartTime: String
-        # @param EndTime: 结束时间，如“2020-11-09T14:00:00+08:00”。
+        # @param EndTime: <p>结束时间，如“2020-11-09T14:00:00+08:00”。</p>
         # @type EndTime: String
-        # @param SendMailFlag: 是否发送邮件: 0 - 否，1 - 是。
+        # @param SendMailFlag: <p>是否发送邮件: 0 - 否，1 - 是。</p>
         # @type SendMailFlag: Integer
-        # @param ContactPerson: 接收邮件的联系人ID数组。
+        # @param ContactPerson: <p>接收邮件的联系人ID数组。</p>
         # @type ContactPerson: Array
-        # @param ContactGroup: 接收邮件的联系组ID数组。
+        # @param ContactGroup: <p>接收邮件的联系组ID数组。</p>
         # @type ContactGroup: Array
-        # @param Product: 服务产品类型，支持值："mysql" - 云数据库 MySQL；"cynosdb" - 云数据库 TDSQL-C for MySQL，"redis" - 云数据库 Redis，"mongodb" - 云数据库 MongoDB，"mariadb" - 云数据库 MariaDB，"dcdb" - 云数据库 TDSQL MySQL，默认为"mysql"。
+        # @param Product: <p>服务产品类型，支持值：&quot;mysql&quot; - 云数据库 MySQL；&quot;cynosdb&quot; - 云数据库 TDSQL-C for MySQL，&quot;redis&quot; - 云数据库 Redis，&quot;mongodb&quot; - 云数据库 MongoDB，&quot;mariadb&quot; - 云数据库 MariaDB，&quot;dcdb&quot; - 云数据库 TDSQL MySQL，默认为&quot;mysql&quot;。</p>
         # @type Product: String
 
         attr_accessor :InstanceId, :StartTime, :EndTime, :SendMailFlag, :ContactPerson, :ContactGroup, :Product
@@ -941,7 +941,7 @@ module TencentCloud
 
       # CreateDBDiagReportTask返回参数结构体
       class CreateDBDiagReportTaskResponse < TencentCloud::Common::AbstractModel
-        # @param AsyncRequestId: 异步任务的请求 ID，可使用此 ID 查询异步任务的执行结果。
+        # @param AsyncRequestId: <p>异步任务的请求 ID，可使用此 ID 查询异步任务的执行结果。</p>
         # @type AsyncRequestId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5169,13 +5169,13 @@ module TencentCloud
 
       # DescribeUserSqlAdvice请求参数结构体
       class DescribeUserSqlAdviceRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID。可通过 [DescribeDiagDBInstances](https://cloud.tencent.com/document/api/1130/57798) 接口获取。
+        # @param InstanceId: <p>实例 ID。可通过 <a href="https://cloud.tencent.com/document/api/1130/57798">DescribeDiagDBInstances</a> 接口获取。</p>
         # @type InstanceId: String
-        # @param SqlText: SQL语句。
+        # @param SqlText: <p>SQL语句。</p>
         # @type SqlText: String
-        # @param Schema: 库名。
+        # @param Schema: <p>库名。</p>
         # @type Schema: String
-        # @param Product: 服务产品类型，支持值："mysql" - 云数据库 MySQL；"cynosdb" - 云数据库 TDSQL-C for MySQL；"dbbrain-mysql" - 自建 MySQL，默认为"mysql"。
+        # @param Product: <p>服务产品类型，支持值&quot;dcdb&quot; - 云数据库TDSQL MySQL；&quot;mysql&quot; - 云数据库 MySQL；&quot;cynosdb&quot; - 云数据库 TDSQL-C for MySQL；&quot;dbbrain-mysql&quot; - 自建 MySQL，默认为&quot;mysql&quot;。</p>
         # @type Product: String
 
         attr_accessor :InstanceId, :SqlText, :Schema, :Product
@@ -5197,19 +5197,19 @@ module TencentCloud
 
       # DescribeUserSqlAdvice返回参数结构体
       class DescribeUserSqlAdviceResponse < TencentCloud::Common::AbstractModel
-        # @param Advices: SQL优化建议，可解析为JSON数组，无需优化时输出为空。
+        # @param Advices: <p>SQL优化建议，可解析为JSON数组，无需优化时输出为空。</p>
         # @type Advices: String
-        # @param Comments: SQL优化建议备注，可解析为String数组，无需优化时输出为空。
+        # @param Comments: <p>SQL优化建议备注，可解析为String数组，无需优化时输出为空。</p>
         # @type Comments: String
-        # @param SqlText: SQL语句。
+        # @param SqlText: <p>SQL语句。</p>
         # @type SqlText: String
-        # @param Schema: 库名。
+        # @param Schema: <p>库名。</p>
         # @type Schema: String
-        # @param Tables: 相关表的DDL信息，可解析为JSON数组。
+        # @param Tables: <p>相关表的DDL信息，可解析为JSON数组。</p>
         # @type Tables: String
-        # @param SqlPlan: SQL执行计划，可解析为JSON，无需优化时输出为空。
+        # @param SqlPlan: <p>SQL执行计划，可解析为JSON，无需优化时输出为空。</p>
         # @type SqlPlan: String
-        # @param Cost: SQL优化后的成本节约详情，可解析为JSON，无需优化时输出为空。
+        # @param Cost: <p>SQL优化后的成本节约详情，可解析为JSON，无需优化时输出为空。</p>
         # @type Cost: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

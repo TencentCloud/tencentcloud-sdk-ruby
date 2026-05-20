@@ -1885,6 +1885,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除音色（通过音色克隆或设计创建的）。
+
+        # @param request: Request instance for DeleteVoice.
+        # @type request: :class:`Tencentcloud::mps::V20190612::DeleteVoiceRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::DeleteVoiceResponse`
+        def DeleteVoice(request)
+          body = send_request('DeleteVoice', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteVoiceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除用户自定义水印模板。
 
         # @param request: Request instance for DeleteWatermarkTemplate.

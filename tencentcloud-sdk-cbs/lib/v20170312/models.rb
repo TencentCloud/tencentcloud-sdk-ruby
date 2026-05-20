@@ -1838,68 +1838,68 @@ module TencentCloud
         end
       end
 
-      # 描述购买云盘时的费用明细。
+      # 描述购买云硬盘时的费用明细。
       class DetailPrice < TencentCloud::Common::AbstractModel
-        # @param PriceTitle: 描述计费项目名称。
-        # @type PriceTitle: String
-        # @param PriceName: 描述计费项目显示名称，用户控制台展示。
-        # @type PriceName: String
-        # @param OriginalPrice: 预付费云盘预支费用的原价，单位：元。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type OriginalPrice: Float
-        # @param DiscountPrice: 预付费云盘预支费用的折扣价，单位：元。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type DiscountPrice: Float
-        # @param UnitPrice: 后付费云盘原单价，单位：元。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type UnitPrice: Float
-        # @param UnitPriceDiscount: 后付费云盘折扣单价，单位：元。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type UnitPriceDiscount: Float
-        # @param ChargeUnit: 后付费云盘的计价单元，取值范围：HOUR：表示后付费云盘的计价单元是按小时计算。
+        # @param ChargeUnit: 后付费云硬盘的计价单元，取值范围：HOUR：表示后付费云硬盘的计价单元是按小时计算。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ChargeUnit: String
-        # @param OriginalPriceHigh: 高精度预付费云盘预支费用的原价，单位：元。
+        # @param DiscountPrice: 预付费云硬盘预支费用的折扣价，单位：元。
         # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type OriginalPriceHigh: String
-        # @param DiscountPriceHigh: 高精度预付费云盘预支费用的折扣价，单位：元。
+        # @type DiscountPrice: Float
+        # @param DiscountPriceHigh: 高精度预付费云硬盘预支费用的折扣价，单位：元。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiscountPriceHigh: String
-        # @param UnitPriceHigh: 高精度后付费云盘原单价，单位：元。
+        # @param OriginalPrice: 预付费云硬盘预支费用的原价，单位：元。
         # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type UnitPriceHigh: String
-        # @param UnitPriceDiscountHigh: 高精度后付费云盘折扣单价，单位：元。
+        # @type OriginalPrice: Float
+        # @param OriginalPriceHigh: 高精度预付费云硬盘预支费用的原价，单位：元。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OriginalPriceHigh: String
+        # @param PriceName: 描述计费项目名称
+        # @type PriceName: String
+        # @param PriceTitle: 描述计费项目显示名称，用户控制台展示
+        # @type PriceTitle: String
+        # @param UnitPrice: 后付费云硬盘原单价，单位：元。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UnitPrice: Float
+        # @param UnitPriceDiscount: 后付费云硬盘折扣单价，单位：元。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UnitPriceDiscount: Float
+        # @param UnitPriceDiscountHigh: 高精度后付费云硬盘折扣单价，单位：元。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UnitPriceDiscountHigh: String
+        # @param UnitPriceHigh: 高精度后付费云硬盘原单价，单位：元。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UnitPriceHigh: String
 
-        attr_accessor :PriceTitle, :PriceName, :OriginalPrice, :DiscountPrice, :UnitPrice, :UnitPriceDiscount, :ChargeUnit, :OriginalPriceHigh, :DiscountPriceHigh, :UnitPriceHigh, :UnitPriceDiscountHigh
+        attr_accessor :ChargeUnit, :DiscountPrice, :DiscountPriceHigh, :OriginalPrice, :OriginalPriceHigh, :PriceName, :PriceTitle, :UnitPrice, :UnitPriceDiscount, :UnitPriceDiscountHigh, :UnitPriceHigh
 
-        def initialize(pricetitle=nil, pricename=nil, originalprice=nil, discountprice=nil, unitprice=nil, unitpricediscount=nil, chargeunit=nil, originalpricehigh=nil, discountpricehigh=nil, unitpricehigh=nil, unitpricediscounthigh=nil)
-          @PriceTitle = pricetitle
-          @PriceName = pricename
-          @OriginalPrice = originalprice
+        def initialize(chargeunit=nil, discountprice=nil, discountpricehigh=nil, originalprice=nil, originalpricehigh=nil, pricename=nil, pricetitle=nil, unitprice=nil, unitpricediscount=nil, unitpricediscounthigh=nil, unitpricehigh=nil)
+          @ChargeUnit = chargeunit
           @DiscountPrice = discountprice
+          @DiscountPriceHigh = discountpricehigh
+          @OriginalPrice = originalprice
+          @OriginalPriceHigh = originalpricehigh
+          @PriceName = pricename
+          @PriceTitle = pricetitle
           @UnitPrice = unitprice
           @UnitPriceDiscount = unitpricediscount
-          @ChargeUnit = chargeunit
-          @OriginalPriceHigh = originalpricehigh
-          @DiscountPriceHigh = discountpricehigh
-          @UnitPriceHigh = unitpricehigh
           @UnitPriceDiscountHigh = unitpricediscounthigh
+          @UnitPriceHigh = unitpricehigh
         end
 
         def deserialize(params)
-          @PriceTitle = params['PriceTitle']
-          @PriceName = params['PriceName']
-          @OriginalPrice = params['OriginalPrice']
+          @ChargeUnit = params['ChargeUnit']
           @DiscountPrice = params['DiscountPrice']
+          @DiscountPriceHigh = params['DiscountPriceHigh']
+          @OriginalPrice = params['OriginalPrice']
+          @OriginalPriceHigh = params['OriginalPriceHigh']
+          @PriceName = params['PriceName']
+          @PriceTitle = params['PriceTitle']
           @UnitPrice = params['UnitPrice']
           @UnitPriceDiscount = params['UnitPriceDiscount']
-          @ChargeUnit = params['ChargeUnit']
-          @OriginalPriceHigh = params['OriginalPriceHigh']
-          @DiscountPriceHigh = params['DiscountPriceHigh']
-          @UnitPriceHigh = params['UnitPriceHigh']
           @UnitPriceDiscountHigh = params['UnitPriceDiscountHigh']
+          @UnitPriceHigh = params['UnitPriceHigh']
         end
       end
 
@@ -3006,40 +3006,40 @@ module TencentCloud
         # @param CageId: 围笼Id，可通过 [DescribeDiskStoragePool](https://cloud.tencent.com/document/api/362/62143) 获取。作为入参时，表示对指定的CageId的资源进行操作，可为空。 作为出参时，表示资源所属围笼ID，可为空。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CageId: String
+        # @param CdcId: 实例所属的独享集群ID。可通过 [DescribeDiskStoragePool](https://cloud.tencent.com/document/api/362/62143) 获取。作为入参时，表示对指定的CdcId独享集群的资源进行操作，可为空。 作为出参时，表示资源所属的独享集群的ID，可为空。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CdcId: String
+        # @param CdcName: 独享集群名字。作为入参时，忽略。作为出参时，表示云硬盘所属的独享集群名，可为空。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CdcName: String
+        # @param DedicatedClusterId: 独享集群id。
+        # @type DedicatedClusterId: String
         # @param ProjectId: 实例所属项目ID，可通过DescribeProject获取。不填默认为0，表示默认项目。
         # @type ProjectId: Integer
         # @param ProjectName: 实例所属项目名称，可通过[DescribeProject](/document/api/651/78725)获取。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProjectName: String
-        # @param CdcName: 独享集群名字。作为入参时，忽略。作为出参时，表示云硬盘所属的独享集群名，可为空。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type CdcName: String
-        # @param CdcId: 实例所属的独享集群ID。可通过 [DescribeDiskStoragePool](https://cloud.tencent.com/document/api/362/62143) 获取。作为入参时，表示对指定的CdcId独享集群的资源进行操作，可为空。 作为出参时，表示资源所属的独享集群的ID，可为空。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type CdcId: String
-        # @param DedicatedClusterId: 独享集群id。
-        # @type DedicatedClusterId: String
 
-        attr_accessor :Zone, :CageId, :ProjectId, :ProjectName, :CdcName, :CdcId, :DedicatedClusterId
+        attr_accessor :Zone, :CageId, :CdcId, :CdcName, :DedicatedClusterId, :ProjectId, :ProjectName
 
-        def initialize(zone=nil, cageid=nil, projectid=nil, projectname=nil, cdcname=nil, cdcid=nil, dedicatedclusterid=nil)
+        def initialize(zone=nil, cageid=nil, cdcid=nil, cdcname=nil, dedicatedclusterid=nil, projectid=nil, projectname=nil)
           @Zone = zone
           @CageId = cageid
+          @CdcId = cdcid
+          @CdcName = cdcname
+          @DedicatedClusterId = dedicatedclusterid
           @ProjectId = projectid
           @ProjectName = projectname
-          @CdcName = cdcname
-          @CdcId = cdcid
-          @DedicatedClusterId = dedicatedclusterid
         end
 
         def deserialize(params)
           @Zone = params['Zone']
           @CageId = params['CageId']
+          @CdcId = params['CdcId']
+          @CdcName = params['CdcName']
+          @DedicatedClusterId = params['DedicatedClusterId']
           @ProjectId = params['ProjectId']
           @ProjectName = params['ProjectName']
-          @CdcName = params['CdcName']
-          @CdcId = params['CdcId']
-          @DedicatedClusterId = params['DedicatedClusterId']
         end
       end
 
@@ -3139,60 +3139,60 @@ module TencentCloud
         end
       end
 
-      # 描述预付费或后付费云盘的价格。
+      # 描述预付费或后付费云硬盘的价格。
       class Price < TencentCloud::Common::AbstractModel
-        # @param UnitPriceDiscount: 后付费云盘折扣单价，单位：元。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type UnitPriceDiscount: Float
-        # @param DiscountPrice: 预付费云盘预支费用的折扣价，单位：元。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type DiscountPrice: Float
-        # @param UnitPrice: 后付费云盘原单价，单位：元。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type UnitPrice: Float
-        # @param UnitPriceHigh: 高精度后付费云盘原单价, 单位：元
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type UnitPriceHigh: String
-        # @param OriginalPriceHigh: 高精度预付费云盘预支费用的原价, 单位：元	。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type OriginalPriceHigh: String
-        # @param OriginalPrice: 预付费云盘预支费用的原价，单位：元。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type OriginalPrice: Float
-        # @param DiscountPriceHigh: 高精度预付费云盘预支费用的折扣价, 单位：元
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type DiscountPriceHigh: String
-        # @param UnitPriceDiscountHigh: 高精度后付费云盘折扣单价, 单位：元
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type UnitPriceDiscountHigh: String
-        # @param ChargeUnit: 后付费云盘的计价单元，取值范围：<br><li>HOUR：表示后付费云盘的计价单元是按小时计算。</li>
+        # @param ChargeUnit: 后付费云硬盘的计价单元，取值范围：HOUR：表示后付费云硬盘的计价单元是按小时计算。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ChargeUnit: String
+        # @param DiscountPrice: 预付费云硬盘预支费用的折扣价，单位：元。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiscountPrice: Float
+        # @param DiscountPriceHigh: 高精度预付费云硬盘预支费用的折扣价，单位：元。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiscountPriceHigh: String
+        # @param OriginalPrice: 预付费云硬盘预支费用的原价，单位：元。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OriginalPrice: Float
+        # @param OriginalPriceHigh: 高精度预付费云硬盘预支费用的原价，单位：元。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OriginalPriceHigh: String
+        # @param UnitPrice: 后付费云硬盘原单价，单位：元。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UnitPrice: Float
+        # @param UnitPriceDiscount: 后付费云硬盘折扣单价，单位：元。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UnitPriceDiscount: Float
+        # @param UnitPriceDiscountHigh: 高精度后付费云硬盘折扣单价，单位：元。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UnitPriceDiscountHigh: String
+        # @param UnitPriceHigh: 高精度后付费云硬盘原单价，单位：元。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UnitPriceHigh: String
 
-        attr_accessor :UnitPriceDiscount, :DiscountPrice, :UnitPrice, :UnitPriceHigh, :OriginalPriceHigh, :OriginalPrice, :DiscountPriceHigh, :UnitPriceDiscountHigh, :ChargeUnit
+        attr_accessor :ChargeUnit, :DiscountPrice, :DiscountPriceHigh, :OriginalPrice, :OriginalPriceHigh, :UnitPrice, :UnitPriceDiscount, :UnitPriceDiscountHigh, :UnitPriceHigh
 
-        def initialize(unitpricediscount=nil, discountprice=nil, unitprice=nil, unitpricehigh=nil, originalpricehigh=nil, originalprice=nil, discountpricehigh=nil, unitpricediscounthigh=nil, chargeunit=nil)
-          @UnitPriceDiscount = unitpricediscount
-          @DiscountPrice = discountprice
-          @UnitPrice = unitprice
-          @UnitPriceHigh = unitpricehigh
-          @OriginalPriceHigh = originalpricehigh
-          @OriginalPrice = originalprice
-          @DiscountPriceHigh = discountpricehigh
-          @UnitPriceDiscountHigh = unitpricediscounthigh
+        def initialize(chargeunit=nil, discountprice=nil, discountpricehigh=nil, originalprice=nil, originalpricehigh=nil, unitprice=nil, unitpricediscount=nil, unitpricediscounthigh=nil, unitpricehigh=nil)
           @ChargeUnit = chargeunit
+          @DiscountPrice = discountprice
+          @DiscountPriceHigh = discountpricehigh
+          @OriginalPrice = originalprice
+          @OriginalPriceHigh = originalpricehigh
+          @UnitPrice = unitprice
+          @UnitPriceDiscount = unitpricediscount
+          @UnitPriceDiscountHigh = unitpricediscounthigh
+          @UnitPriceHigh = unitpricehigh
         end
 
         def deserialize(params)
-          @UnitPriceDiscount = params['UnitPriceDiscount']
-          @DiscountPrice = params['DiscountPrice']
-          @UnitPrice = params['UnitPrice']
-          @UnitPriceHigh = params['UnitPriceHigh']
-          @OriginalPriceHigh = params['OriginalPriceHigh']
-          @OriginalPrice = params['OriginalPrice']
-          @DiscountPriceHigh = params['DiscountPriceHigh']
-          @UnitPriceDiscountHigh = params['UnitPriceDiscountHigh']
           @ChargeUnit = params['ChargeUnit']
+          @DiscountPrice = params['DiscountPrice']
+          @DiscountPriceHigh = params['DiscountPriceHigh']
+          @OriginalPrice = params['OriginalPrice']
+          @OriginalPriceHigh = params['OriginalPriceHigh']
+          @UnitPrice = params['UnitPrice']
+          @UnitPriceDiscount = params['UnitPriceDiscount']
+          @UnitPriceDiscountHigh = params['UnitPriceDiscountHigh']
+          @UnitPriceHigh = params['UnitPriceHigh']
         end
       end
 

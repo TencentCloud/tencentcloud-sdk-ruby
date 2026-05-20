@@ -33,7 +33,7 @@ module TencentCloud
         # @type VoiceType: Integer
         # @param PrimaryLanguage: <p>主语言类型：<li>1-中文（默认）</li><li>2-英文</li></p>
         # @type PrimaryLanguage: Integer
-        # @param SampleRate: <p>音频采样率：<li>16000：16k（默认）</li><li>8000：8k</li></p>
+        # @param SampleRate: <p>音频采样率：<li>16000：16k（默认）</li><li>8000：8k</li></p><p>枚举值：</p><ul><li>16000： 16kHz音频采样率</li></ul>
         # @type SampleRate: Integer
         # @param Codec: <p>返回音频格式，可取值：mp3（默认），wav，pcm</p>
         # @type Codec: String

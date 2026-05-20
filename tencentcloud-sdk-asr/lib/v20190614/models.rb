@@ -300,8 +300,8 @@ module TencentCloud
 
         attr_accessor :ModelName, :TextUrl, :ModelType, :TagInfos
         extend Gem::Deprecate
-        deprecate :TagInfos, :none, 2026, 4
-        deprecate :TagInfos=, :none, 2026, 4
+        deprecate :TagInfos, :none, 2026, 5
+        deprecate :TagInfos=, :none, 2026, 5
 
         def initialize(modelname=nil, texturl=nil, modeltype=nil, taginfos=nil)
           @ModelName = modelname
@@ -393,8 +393,8 @@ module TencentCloud
 
         attr_accessor :EngineModelType, :ChannelNum, :ResTextFormat, :SourceType, :Data, :DataLen, :Url, :CallbackUrl, :SpeakerDiarization, :SpeakerNumber, :HotwordId, :ReinforceHotword, :CustomizationId, :EmotionRecognition, :EmotionalEnergy, :ConvertNumMode, :FilterDirty, :FilterPunc, :FilterModal, :SentenceMaxLength, :Extra, :HotwordList, :KeyWordLibIdList, :ReplaceTextId, :SpeakerRoles
         extend Gem::Deprecate
-        deprecate :ReinforceHotword, :none, 2026, 4
-        deprecate :ReinforceHotword=, :none, 2026, 4
+        deprecate :ReinforceHotword, :none, 2026, 5
+        deprecate :ReinforceHotword=, :none, 2026, 5
 
         def initialize(enginemodeltype=nil, channelnum=nil, restextformat=nil, sourcetype=nil, data=nil, datalen=nil, url=nil, callbackurl=nil, speakerdiarization=nil, speakernumber=nil, hotwordid=nil, reinforcehotword=nil, customizationid=nil, emotionrecognition=nil, emotionalenergy=nil, convertnummode=nil, filterdirty=nil, filterpunc=nil, filtermodal=nil, sentencemaxlength=nil, extra=nil, hotwordlist=nil, keywordlibidlist=nil, replacetextid=nil, speakerroles=nil)
           @EngineModelType = enginemodeltype
@@ -792,8 +792,8 @@ module TencentCloud
 
         attr_accessor :TagInfos, :Offset, :Limit
         extend Gem::Deprecate
-        deprecate :TagInfos, :none, 2026, 4
-        deprecate :TagInfos=, :none, 2026, 4
+        deprecate :TagInfos, :none, 2026, 5
+        deprecate :TagInfos=, :none, 2026, 5
 
         def initialize(taginfos=nil, offset=nil, limit=nil)
           @TagInfos = taginfos
@@ -917,8 +917,8 @@ module TencentCloud
 
         attr_accessor :TagInfos, :Limit, :Offset
         extend Gem::Deprecate
-        deprecate :TagInfos, :none, 2026, 4
-        deprecate :TagInfos=, :none, 2026, 4
+        deprecate :TagInfos, :none, 2026, 5
+        deprecate :TagInfos=, :none, 2026, 5
 
         def initialize(taginfos=nil, limit=nil, offset=nil)
           @TagInfos = taginfos
@@ -1218,8 +1218,8 @@ module TencentCloud
 
         attr_accessor :ModelName, :DictName, :ModelId, :ModelType, :ServiceType, :ModelState, :AtUpdated, :TagInfos
         extend Gem::Deprecate
-        deprecate :TagInfos, :none, 2026, 4
-        deprecate :TagInfos=, :none, 2026, 4
+        deprecate :TagInfos, :none, 2026, 5
+        deprecate :TagInfos=, :none, 2026, 5
 
         def initialize(modelname=nil, dictname=nil, modelid=nil, modeltype=nil, servicetype=nil, modelstate=nil, atupdated=nil, taginfos=nil)
           @ModelName = modelname
@@ -1360,7 +1360,7 @@ module TencentCloud
         # @param EmotionalEnergy: <p>情绪能量值，取值为音量分贝值/10。取值范围：[1,10]。值越高情绪越强烈。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EmotionalEnergy: Float
-        # @param SilenceTime: <p>本句与上一句之间的静音时长</p>
+        # @param SilenceTime: <p>本句与上一句之间的静音时长（ms）</p><p>枚举值：</p><ul><li>0： 表示无静音间隔</li></ul>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SilenceTime: Integer
         # @param EmotionType: <p>情绪类型（可能为空，有2种情况 1、没有对应资源包；2、情绪跟语音效果相关，如果情绪不够强烈时可能无法识别）</p>
@@ -1508,14 +1508,14 @@ module TencentCloud
 
         attr_accessor :EngSerViceType, :SourceType, :VoiceFormat, :ProjectId, :SubServiceType, :Url, :UsrAudioKey, :Data, :DataLen, :WordInfo, :FilterDirty, :FilterModal, :FilterPunc, :ConvertNumMode, :HotwordId, :CustomizationId, :ReinforceHotword, :HotwordList, :InputSampleRate, :ReplaceTextId
         extend Gem::Deprecate
-        deprecate :ProjectId, :none, 2026, 4
-        deprecate :ProjectId=, :none, 2026, 4
-        deprecate :SubServiceType, :none, 2026, 4
-        deprecate :SubServiceType=, :none, 2026, 4
-        deprecate :UsrAudioKey, :none, 2026, 4
-        deprecate :UsrAudioKey=, :none, 2026, 4
-        deprecate :ReinforceHotword, :none, 2026, 4
-        deprecate :ReinforceHotword=, :none, 2026, 4
+        deprecate :ProjectId, :none, 2026, 5
+        deprecate :ProjectId=, :none, 2026, 5
+        deprecate :SubServiceType, :none, 2026, 5
+        deprecate :SubServiceType=, :none, 2026, 5
+        deprecate :UsrAudioKey, :none, 2026, 5
+        deprecate :UsrAudioKey=, :none, 2026, 5
+        deprecate :ReinforceHotword, :none, 2026, 5
+        deprecate :ReinforceHotword=, :none, 2026, 5
 
         def initialize(engservicetype=nil, sourcetype=nil, voiceformat=nil, projectid=nil, subservicetype=nil, url=nil, usraudiokey=nil, data=nil, datalen=nil, wordinfo=nil, filterdirty=nil, filtermodal=nil, filterpunc=nil, convertnummode=nil, hotwordid=nil, customizationid=nil, reinforcehotword=nil, hotwordlist=nil, inputsamplerate=nil, replacetextid=nil)
           @EngSerViceType = engservicetype
