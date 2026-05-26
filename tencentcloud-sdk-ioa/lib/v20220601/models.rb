@@ -822,6 +822,46 @@ module TencentCloud
         end
       end
 
+      # DeleteDeviceVirtualGroup请求参数结构体
+      class DeleteDeviceVirtualGroupRequest < TencentCloud::Common::AbstractModel
+        # @param DomainInstanceId: 管理域实例ID，用于CAM管理域权限分配。若企业未进行管理域的划分，可直接传入根域"1"，此时表示针对当前企业的全部设备和账号进行接口CRUD，具体CRUD的影响范围限制于相应接口的入参。
+        # @type DomainInstanceId: String
+        # @param DeviceVirtualGroupId: 必填，终端自定义分组id
+        # @type DeviceVirtualGroupId: Integer
+        # @param OsType: 必填，系统类型（0: win，1：linux，2: mac，4：android，5：ios，-1：全系统（SaaS一体化版本） ； 不传默认为0）(只支持32位)
+        # @type OsType: Integer
+
+        attr_accessor :DomainInstanceId, :DeviceVirtualGroupId, :OsType
+
+        def initialize(domaininstanceid=nil, devicevirtualgroupid=nil, ostype=nil)
+          @DomainInstanceId = domaininstanceid
+          @DeviceVirtualGroupId = devicevirtualgroupid
+          @OsType = ostype
+        end
+
+        def deserialize(params)
+          @DomainInstanceId = params['DomainInstanceId']
+          @DeviceVirtualGroupId = params['DeviceVirtualGroupId']
+          @OsType = params['OsType']
+        end
+      end
+
+      # DeleteDeviceVirtualGroup返回参数结构体
+      class DeleteDeviceVirtualGroupResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 账号分组信息
       class DescribeAccountGroupsData < TencentCloud::Common::AbstractModel
         # @param NamePath: 账号分组名全路径，点分格式

@@ -1772,8 +1772,8 @@ module TencentCloud
 
         attr_accessor :TaskName, :TaskType, :SourceResource, :TargetResource, :TransformParam, :PrivateLinkParam, :SchemaId, :TransformsParam, :TaskId, :Tags, :Description
         extend Gem::Deprecate
-        deprecate :PrivateLinkParam, :none, 2026, 4
-        deprecate :PrivateLinkParam=, :none, 2026, 4
+        deprecate :PrivateLinkParam, :none, 2026, 5
+        deprecate :PrivateLinkParam=, :none, 2026, 5
 
         def initialize(taskname=nil, tasktype=nil, sourceresource=nil, targetresource=nil, transformparam=nil, privatelinkparam=nil, schemaid=nil, transformsparam=nil, taskid=nil, tags=nil, description=nil)
           @TaskName = taskname
@@ -2161,8 +2161,8 @@ module TencentCloud
 
         attr_accessor :ReturnCode, :ReturnMessage, :Data, :DeleteRouteTimestamp
         extend Gem::Deprecate
-        deprecate :DeleteRouteTimestamp, :none, 2026, 4
-        deprecate :DeleteRouteTimestamp=, :none, 2026, 4
+        deprecate :DeleteRouteTimestamp, :none, 2026, 5
+        deprecate :DeleteRouteTimestamp=, :none, 2026, 5
 
         def initialize(returncode=nil, returnmessage=nil, data=nil, deleteroutetimestamp=nil)
           @ReturnCode = returncode
@@ -3752,53 +3752,6 @@ module TencentCloud
         end
       end
 
-      # DeleteTopicIpWhiteList请求参数结构体
-      class DeleteTopicIpWhiteListRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: ckafka集群实例Id，可通过[DescribeInstances](https://cloud.tencent.com/document/product/597/40835)接口获取
-        # @type InstanceId: String
-        # @param TopicName: 主题名，可通过[DescribeTopic](https://cloud.tencent.com/document/product/597/40847)接口获取。
-        # @type TopicName: String
-        # @param IpWhiteList: ip白名单列表
-        # @type IpWhiteList: Array
-
-        attr_accessor :InstanceId, :TopicName, :IpWhiteList
-
-        def initialize(instanceid=nil, topicname=nil, ipwhitelist=nil)
-          @InstanceId = instanceid
-          @TopicName = topicname
-          @IpWhiteList = ipwhitelist
-        end
-
-        def deserialize(params)
-          @InstanceId = params['InstanceId']
-          @TopicName = params['TopicName']
-          @IpWhiteList = params['IpWhiteList']
-        end
-      end
-
-      # DeleteTopicIpWhiteList返回参数结构体
-      class DeleteTopicIpWhiteListResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 删除主题IP白名单结果
-        # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.JgwOperateResponse`
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Result, :RequestId
-
-        def initialize(result=nil, requestid=nil)
-          @Result = result
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['Result'].nil?
-            @Result = JgwOperateResponse.new
-            @Result.deserialize(params['Result'])
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
       # DeleteTopic请求参数结构体
       class DeleteTopicRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: ckafka 实例Id
@@ -3922,8 +3875,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :ResourceType, :ResourceName, :Offset, :Limit, :SearchWord
         extend Gem::Deprecate
-        deprecate :SearchWord, :none, 2026, 4
-        deprecate :SearchWord=, :none, 2026, 4
+        deprecate :SearchWord, :none, 2026, 5
+        deprecate :SearchWord=, :none, 2026, 5
 
         def initialize(instanceid=nil, resourcetype=nil, resourcename=nil, offset=nil, limit=nil, searchword=nil)
           @InstanceId = instanceid
@@ -5432,8 +5385,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :SearchWord, :Status, :Offset, :Limit, :TagKey, :Filters, :InstanceIds, :InstanceIdList, :TagList
         extend Gem::Deprecate
-        deprecate :InstanceIds, :none, 2026, 4
-        deprecate :InstanceIds=, :none, 2026, 4
+        deprecate :InstanceIds, :none, 2026, 5
+        deprecate :InstanceIds=, :none, 2026, 5
 
         def initialize(instanceid=nil, searchword=nil, status=nil, offset=nil, limit=nil, tagkey=nil, filters=nil, instanceids=nil, instanceidlist=nil, taglist=nil)
           @InstanceId = instanceid
@@ -5518,8 +5471,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :SearchWord, :Status, :Offset, :Limit, :TagKey, :VpcId
         extend Gem::Deprecate
-        deprecate :TagKey, :none, 2026, 4
-        deprecate :TagKey=, :none, 2026, 4
+        deprecate :TagKey, :none, 2026, 5
+        deprecate :TagKey=, :none, 2026, 5
 
         def initialize(instanceid=nil, searchword=nil, status=nil, offset=nil, limit=nil, tagkey=nil, vpcid=nil)
           @InstanceId = instanceid
@@ -9608,8 +9561,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :MsgRetentionTime, :InstanceName, :Config, :DynamicRetentionConfig, :RebalanceTime, :PublicNetwork, :DynamicDiskConfig, :MaxMessageByte, :UncleanLeaderElectionEnable, :DeleteProtectionEnable, :RetentionBytes, :AdminSecurity, :TransactionalIdExpirationMs
         extend Gem::Deprecate
-        deprecate :DynamicDiskConfig, :none, 2026, 4
-        deprecate :DynamicDiskConfig=, :none, 2026, 4
+        deprecate :DynamicDiskConfig, :none, 2026, 5
+        deprecate :DynamicDiskConfig=, :none, 2026, 5
 
         def initialize(instanceid=nil, msgretentiontime=nil, instancename=nil, config=nil, dynamicretentionconfig=nil, rebalancetime=nil, publicnetwork=nil, dynamicdiskconfig=nil, maxmessagebyte=nil, uncleanleaderelectionenable=nil, deleteprotectionenable=nil, retentionbytes=nil, adminsecurity=nil, transactionalidexpirationms=nil)
           @InstanceId = instanceid
@@ -12849,8 +12802,8 @@ module TencentCloud
 
         attr_accessor :ZoneId, :IsInternalApp, :AppId, :Flag, :ZoneName, :ZoneStatus, :Exflag, :SoldOut, :SalesInfo, :ExtraFlag
         extend Gem::Deprecate
-        deprecate :Exflag, :none, 2026, 4
-        deprecate :Exflag=, :none, 2026, 4
+        deprecate :Exflag, :none, 2026, 5
+        deprecate :Exflag=, :none, 2026, 5
 
         def initialize(zoneid=nil, isinternalapp=nil, appid=nil, flag=nil, zonename=nil, zonestatus=nil, exflag=nil, soldout=nil, salesinfo=nil, extraflag=nil)
           @ZoneId = zoneid

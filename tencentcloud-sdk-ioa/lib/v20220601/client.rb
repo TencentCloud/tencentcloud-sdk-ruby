@@ -221,6 +221,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除终端自定义分组，私有化调用path为：/capi/Assets/Device/DeleteDeviceVirtualGroup
+
+        # @param request: Request instance for DeleteDeviceVirtualGroup.
+        # @type request: :class:`Tencentcloud::ioa::V20220601::DeleteDeviceVirtualGroupRequest`
+        # @rtype: :class:`Tencentcloud::ioa::V20220601::DeleteDeviceVirtualGroupResponse`
+        def DeleteDeviceVirtualGroup(request)
+          body = send_request('DeleteDeviceVirtualGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteDeviceVirtualGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 以分页的方式查询账号分组列表，私有化调用path为：/capi/Assets/DescribeAccountGroups
 
         # @param request: Request instance for DescribeAccountGroups.

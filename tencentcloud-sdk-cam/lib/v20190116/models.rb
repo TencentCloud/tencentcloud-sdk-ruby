@@ -2401,6 +2401,48 @@ module TencentCloud
         end
       end
 
+      # GetPasswordRules请求参数结构体
+      class GetPasswordRulesRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # GetPasswordRules返回参数结构体
+      class GetPasswordRulesResponse < TencentCloud::Common::AbstractModel
+        # @param Rules: 密码规则
+        # @type Rules: :class:`Tencentcloud::Cam.v20190116.models.PassWordRule`
+        # @param UpdateTime: 修改时间
+        # @type UpdateTime: String
+        # @param Modifier: 修改人
+        # @type Modifier: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Rules, :UpdateTime, :Modifier, :RequestId
+
+        def initialize(rules=nil, updatetime=nil, modifier=nil, requestid=nil)
+          @Rules = rules
+          @UpdateTime = updatetime
+          @Modifier = modifier
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Rules'].nil?
+            @Rules = PassWordRule.new
+            @Rules.deserialize(params['Rules'])
+          end
+          @UpdateTime = params['UpdateTime']
+          @Modifier = params['Modifier']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # GetPolicy请求参数结构体
       class GetPolicyRequest < TencentCloud::Common::AbstractModel
         # @param PolicyId: 策略Id。
@@ -4235,6 +4277,48 @@ module TencentCloud
         end
       end
 
+      # 子账号密码规则
+      class PassWordRule < TencentCloud::Common::AbstractModel
+        # @param MinimumLength: 最小长度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MinimumLength: Integer
+        # @param MustContain: 必须包含的字符
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MustContain: String
+        # @param ForcePasswordChange: 强制修改周期
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ForcePasswordChange: Integer
+        # @param ReusePasswordLimit: 重复使用次数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReusePasswordLimit: Integer
+        # @param RetryPasswordLimit: 密码重试次数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RetryPasswordLimit: Integer
+        # @param PasswordExpirationInvalidation: 密码过期失效 1：是，2：否（是：密码过期后，子用户无法登录，需要管理员重置密码。否：密码过期后，子用户可登录，登录后强制根据旧密码修改密码）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PasswordExpirationInvalidation: Integer
+
+        attr_accessor :MinimumLength, :MustContain, :ForcePasswordChange, :ReusePasswordLimit, :RetryPasswordLimit, :PasswordExpirationInvalidation
+
+        def initialize(minimumlength=nil, mustcontain=nil, forcepasswordchange=nil, reusepasswordlimit=nil, retrypasswordlimit=nil, passwordexpirationinvalidation=nil)
+          @MinimumLength = minimumlength
+          @MustContain = mustcontain
+          @ForcePasswordChange = forcepasswordchange
+          @ReusePasswordLimit = reusepasswordlimit
+          @RetryPasswordLimit = retrypasswordlimit
+          @PasswordExpirationInvalidation = passwordexpirationinvalidation
+        end
+
+        def deserialize(params)
+          @MinimumLength = params['MinimumLength']
+          @MustContain = params['MustContain']
+          @ForcePasswordChange = params['ForcePasswordChange']
+          @ReusePasswordLimit = params['ReusePasswordLimit']
+          @RetryPasswordLimit = params['RetryPasswordLimit']
+          @PasswordExpirationInvalidation = params['PasswordExpirationInvalidation']
+        end
+      end
+
       # 策略版本详情
       class PolicyVersionDetail < TencentCloud::Common::AbstractModel
         # @param VersionId: 策略版本号
@@ -5142,6 +5226,41 @@ module TencentCloud
 
       # UpdateOIDCConfig返回参数结构体
       class UpdateOIDCConfigResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdatePasswordRules请求参数结构体
+      class UpdatePasswordRulesRequest < TencentCloud::Common::AbstractModel
+        # @param Rules: 密码规则
+        # @type Rules: :class:`Tencentcloud::Cam.v20190116.models.PassWordRule`
+
+        attr_accessor :Rules
+
+        def initialize(rules=nil)
+          @Rules = rules
+        end
+
+        def deserialize(params)
+          unless params['Rules'].nil?
+            @Rules = PassWordRule.new
+            @Rules.deserialize(params['Rules'])
+          end
+        end
+      end
+
+      # UpdatePasswordRules返回参数结构体
+      class UpdatePasswordRulesResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

@@ -612,6 +612,44 @@ module TencentCloud
         end
       end
 
+      # DescribeAccessRegions请求参数结构体
+      class DescribeAccessRegionsRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeAccessRegions返回参数结构体
+      class DescribeAccessRegionsResponse < TencentCloud::Common::AbstractModel
+        # @param RegionList: <p>地域信息列表</p>
+        # @type RegionList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RegionList, :RequestId
+
+        def initialize(regionlist=nil, requestid=nil)
+          @RegionList = regionlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['RegionList'].nil?
+            @RegionList = []
+            params['RegionList'].each do |i|
+              regioninfo_tmp = RegionInfo.new
+              regioninfo_tmp.deserialize(i)
+              @RegionList << regioninfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 目标IP信息
       class DestIpInfo < TencentCloud::Common::AbstractModel
         # @param Time: 时间：s
@@ -2850,6 +2888,42 @@ module TencentCloud
         end
       end
 
+      # ModifyDeviceAccessRegions请求参数结构体
+      class ModifyDeviceAccessRegionsRequest < TencentCloud::Common::AbstractModel
+        # @param DeviceIds: <p>设备ID</p>
+        # @type DeviceIds: Array
+        # @param AllowedRegions: <p>接入地域</p>
+        # @type AllowedRegions: Array
+
+        attr_accessor :DeviceIds, :AllowedRegions
+
+        def initialize(deviceids=nil, allowedregions=nil)
+          @DeviceIds = deviceids
+          @AllowedRegions = allowedregions
+        end
+
+        def deserialize(params)
+          @DeviceIds = params['DeviceIds']
+          @AllowedRegions = params['AllowedRegions']
+        end
+      end
+
+      # ModifyDeviceAccessRegions返回参数结构体
+      class ModifyDeviceAccessRegionsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyPackageRenewFlag请求参数结构体
       class ModifyPackageRenewFlagRequest < TencentCloud::Common::AbstractModel
         # @param ResourceId: 流量包的唯一资源ID
@@ -3098,6 +3172,30 @@ module TencentCloud
         def deserialize(params)
           @ResourceId = params['ResourceId']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 此数据结构用来展示可用地域信息。
+      class RegionInfo < TencentCloud::Common::AbstractModel
+        # @param RegionId: <p>地域 ID。</p>
+        # @type RegionId: String
+        # @param RegionName: <p>地域名称。</p>
+        # @type RegionName: String
+        # @param RegionAbbr: <p>地域英文缩写。</p>
+        # @type RegionAbbr: String
+
+        attr_accessor :RegionId, :RegionName, :RegionAbbr
+
+        def initialize(regionid=nil, regionname=nil, regionabbr=nil)
+          @RegionId = regionid
+          @RegionName = regionname
+          @RegionAbbr = regionabbr
+        end
+
+        def deserialize(params)
+          @RegionId = params['RegionId']
+          @RegionName = params['RegionName']
+          @RegionAbbr = params['RegionAbbr']
         end
       end
 

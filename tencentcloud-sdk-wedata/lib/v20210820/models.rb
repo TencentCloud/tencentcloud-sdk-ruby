@@ -2997,7 +2997,7 @@ module TencentCloud
 
       # 批量操作出参
       class BatchTaskOperateNew < TencentCloud::Common::AbstractModel
-        # @param JobId: 操作Id
+        # @param JobId: <p>操作Id</p><p>可使用JobId字段通过ListBatchDetail接口 查询异步操作结果</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JobId: Integer
 
@@ -23461,22 +23461,22 @@ module TencentCloud
 
       # 获取任务脚本内容返回体
       class GetPaginationTaskScriptResponseInfo < TencentCloud::Common::AbstractModel
-        # @param ProjectId: 项目编号
+        # @param ProjectId: <p>项目编号</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProjectId: String
-        # @param TaskId: 任务编号
+        # @param TaskId: <p>任务编号</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskId: String
-        # @param PageSize: 页内尺寸
+        # @param PageSize: <p>页内尺寸</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PageSize: Integer
-        # @param PageNum: 页码
+        # @param PageNum: <p>页码</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PageNum: Integer
-        # @param PageTotal: 总页数
+        # @param PageTotal: <p>总页数</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PageTotal: Integer
-        # @param Base64ScriptContent: 分页内容
+        # @param Base64ScriptContent: <p>分页内容</p><p>分页拉取全部代码内容后，先拼接，再Base64解码获取完整脚本内容</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Base64ScriptContent: String
 
@@ -42822,6 +42822,7 @@ module TencentCloud
       end
 
       # 编排空间试运行记录
+      # 查询执行日志 可调用DownloadLogByLine接口
       class TestRunningRecord < TencentCloud::Common::AbstractModel
         # @param StartTime: <p>开始时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。

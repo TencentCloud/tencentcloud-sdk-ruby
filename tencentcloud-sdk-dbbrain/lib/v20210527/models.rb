@@ -2323,20 +2323,19 @@ module TencentCloud
 
       # DescribeDBDiagEvents请求参数结构体
       class DescribeDBDiagEventsRequest < TencentCloud::Common::AbstractModel
-        # @param StartTime: 开始时间，如“2021-05-27 00:00:00”，支持的最早查询时间为当前时间的前30天。
+        # @param StartTime: <p>开始时间，如“2021-05-27 00:00:00”，支持的最早查询时间为当前时间的前30天。</p>
         # @type StartTime: String
-        # @param EndTime: 结束时间，如“2021-05-27 01:00:00”，支持的最早查询时间为当前时间的前30天。
+        # @param EndTime: <p>结束时间，如“2021-05-27 01:00:00”，支持的最早查询时间为当前时间的前30天。</p>
         # @type EndTime: String
-        # @param Severities: 风险等级列表，取值按影响程度从高至低分别为：1 - 致命、2 -严重、3 - 告警、4 - 提示、5 -健康。
+        # @param Severities: <p>风险等级列表，取值按影响程度从高至低分别为：1 - 致命、2 -严重、3 - 告警、4 - 提示、5 -健康。</p>
         # @type Severities: Array
-        # @param InstanceIds: 实例ID列表。可通过 [DescribeDiagDBInstances](https://cloud.tencent.com/document/api/1130/57798) 接口获取。
-        # 查询TDSQL MySQL分布式实例:Instanceld：填写集群ID&Shard实例ID，如：dcdbt-157xxxk&shard-qxxxx
+        # @param InstanceIds: <p>实例ID列表。可通过 <a href="https://cloud.tencent.com/document/api/1130/57798">DescribeDiagDBInstances</a> 接口获取。<br>查询TDSQL MySQL分布式实例:Instanceld：填写集群ID&amp;Shard实例ID，如：dcdbt-157xxxk&amp;shard-qxxxx</p>
         # @type InstanceIds: Array
-        # @param Product: 服务产品类型，支持值包括："mysql" - 云数据库 MySQL，"redis" - 云数据库 Redis，"mariadb"-数据库mariadb    默认为"mysql"。
+        # @param Product: <p>服务产品类型，支持值包括：&quot;mysql&quot; - 云数据库 MySQL，&quot;redis&quot; - 云数据库 Redis，&quot;mariadb&quot;-数据库mariadb，&quot;cynosdb&quot;-数据库 TDSQL-C, &quot;dcdb&quot;-数据库TDSQL MySQL    默认为&quot;mysql&quot;。</p>
         # @type Product: String
-        # @param Offset: 偏移量，默认0。
+        # @param Offset: <p>偏移量，默认0。</p>
         # @type Offset: Integer
-        # @param Limit: 返回数量，默认20，最大值为50。
+        # @param Limit: <p>返回数量，默认20，最大值为50。</p>
         # @type Limit: Integer
 
         attr_accessor :StartTime, :EndTime, :Severities, :InstanceIds, :Product, :Offset, :Limit
@@ -2364,9 +2363,9 @@ module TencentCloud
 
       # DescribeDBDiagEvents返回参数结构体
       class DescribeDBDiagEventsResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 诊断事件的总数目。
+        # @param TotalCount: <p>诊断事件的总数目。</p>
         # @type TotalCount: Integer
-        # @param Items: 诊断事件的列表。
+        # @param Items: <p>诊断事件的列表。</p>
         # @type Items: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2781,11 +2780,11 @@ module TencentCloud
 
       # DescribeHealthScore请求参数结构体
       class DescribeHealthScoreRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 需要获取健康得分的实例ID。
+        # @param InstanceId: <p>需要获取健康得分的实例ID。可通过 <a href="https://cloud.tencent.com/document/api/1130/57798">DescribeDiagDBInstances</a> 接口获取。如果是dcdb(TDSQL MySQL)，请使用 <code>{ClusterId}&amp;{InstanceId}</code> 拼接结果代替入参</p>
         # @type InstanceId: String
-        # @param Time: 获取健康得分的时间，时间格式如：2019-09-10 12:13:14。
+        # @param Time: <p>获取健康得分的时间，时间格式如：2019-09-10 12:13:14。</p>
         # @type Time: String
-        # @param Product: 服务产品类型，支持值包括： "mysql" - 云数据库 MySQL， "cynosdb" - 云数据库 TDSQL-C for MySQL，"redis" - 云数据库 Redis，默认为"mysql"。
+        # @param Product: <p>服务产品类型，支持值包括： &quot;mysql&quot; - 云数据库 MySQL， &quot;cynosdb&quot; - 云数据库 TDSQL-C for MySQL，&quot;redis&quot; - 云数据库 Redis，默认为&quot;mysql&quot;。</p>
         # @type Product: String
 
         attr_accessor :InstanceId, :Time, :Product
@@ -2805,7 +2804,7 @@ module TencentCloud
 
       # DescribeHealthScore返回参数结构体
       class DescribeHealthScoreResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 健康得分以及异常扣分项。
+        # @param Data: <p>健康得分以及异常扣分项。</p>
         # @type Data: :class:`Tencentcloud::Dbbrain.v20210527.models.HealthScoreInfo`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5311,11 +5310,11 @@ module TencentCloud
       class EventInfo < TencentCloud::Common::AbstractModel
         # @param EventId: 事件 ID 。
         # @type EventId: Integer
-        # @param DiagType: 诊断类型。
+        # @param DiagType: 诊断类型。包含以下值：内存利用率，CPU利用率，磁盘空间利用率，复制，复制IO线程中断。
         # @type DiagType: String
-        # @param StartTime: 开始时间。
+        # @param StartTime: 开始时间。格式: "yyyy-MM-dd'T'HH:mm:ssXXX"
         # @type StartTime: String
-        # @param EndTime: 结束时间。
+        # @param EndTime: 结束时间。格式: "yyyy-MM-dd'T'HH:mm:ssXXX"
         # @type EndTime: String
         # @param Outline: 概要。
         # @type Outline: String
@@ -5438,6 +5437,11 @@ module TencentCloud
         # @param HealthScore: 健康得分。
         # @type HealthScore: Integer
         # @param HealthLevel: 健康等级, 如："HEALTH", "SUB_HEALTH", "RISK", "HIGH_RISK"。
+        # 其中：
+        # HEALTH - 健康
+        # SUB_HEALTH - 亚健康
+        # RISK - 危险
+        # HIGH_RISK - 高危
         # @type HealthLevel: String
 
         attr_accessor :IssueTypes, :EventsTotalCount, :HealthScore, :HealthLevel

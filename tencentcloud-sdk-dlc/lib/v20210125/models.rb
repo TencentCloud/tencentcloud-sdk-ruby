@@ -3695,6 +3695,65 @@ module TencentCloud
         end
       end
 
+      # CreateUserRole请求参数结构体
+      class CreateUserRoleRequest < TencentCloud::Common::AbstractModel
+        # @param Arn: 角色Arn信息
+        # @type Arn: String
+        # @param Desc: 角色描述信息
+        # @type Desc: String
+        # @param Name: 角色名称
+        # @type Name: String
+        # @param CosPermissionList: cos授权路径列表
+        # @type CosPermissionList: Array
+        # @param PermissionJson: cam策略json
+        # @type PermissionJson: String
+        # @param IsDefault: 是否设置为常驻：1非常驻（默认）、2常驻（仅能设置一个常驻）
+        # @type IsDefault: Integer
+
+        attr_accessor :Arn, :Desc, :Name, :CosPermissionList, :PermissionJson, :IsDefault
+
+        def initialize(arn=nil, desc=nil, name=nil, cospermissionlist=nil, permissionjson=nil, isdefault=nil)
+          @Arn = arn
+          @Desc = desc
+          @Name = name
+          @CosPermissionList = cospermissionlist
+          @PermissionJson = permissionjson
+          @IsDefault = isdefault
+        end
+
+        def deserialize(params)
+          @Arn = params['Arn']
+          @Desc = params['Desc']
+          @Name = params['Name']
+          unless params['CosPermissionList'].nil?
+            @CosPermissionList = []
+            params['CosPermissionList'].each do |i|
+              cospermission_tmp = CosPermission.new
+              cospermission_tmp.deserialize(i)
+              @CosPermissionList << cospermission_tmp
+            end
+          end
+          @PermissionJson = params['PermissionJson']
+          @IsDefault = params['IsDefault']
+        end
+      end
+
+      # CreateUserRole返回参数结构体
+      class CreateUserRoleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateUserVpcConnection请求参数结构体
       class CreateUserVpcConnectionRequest < TencentCloud::Common::AbstractModel
         # @param UserVpcId: 用户vpcid

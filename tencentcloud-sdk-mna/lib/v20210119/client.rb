@@ -293,6 +293,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询可接入地域列表。
+
+        # @param request: Request instance for DescribeAccessRegions.
+        # @type request: :class:`Tencentcloud::mna::V20210119::DescribeAccessRegionsRequest`
+        # @rtype: :class:`Tencentcloud::mna::V20210119::DescribeAccessRegionsResponse`
+        def DescribeAccessRegions(request)
+          body = send_request('DescribeAccessRegions', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAccessRegionsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 下载活跃设备数量统计
 
         # @param request: Request instance for DownloadActiveDeviceCount.
@@ -951,6 +975,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = GroupDeleteDeviceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改设备接入地域。
+
+        # @param request: Request instance for ModifyDeviceAccessRegions.
+        # @type request: :class:`Tencentcloud::mna::V20210119::ModifyDeviceAccessRegionsRequest`
+        # @rtype: :class:`Tencentcloud::mna::V20210119::ModifyDeviceAccessRegionsResponse`
+        def ModifyDeviceAccessRegions(request)
+          body = send_request('ModifyDeviceAccessRegions', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyDeviceAccessRegionsResponse.new
             model.deserialize(response['Response'])
             model
           else

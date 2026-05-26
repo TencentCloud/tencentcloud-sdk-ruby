@@ -1760,9 +1760,9 @@ module TencentCloud
         # @type EventId: Integer
         # @param DiagType: 诊断类型。
         # @type DiagType: String
-        # @param StartTime: 开始时间。
+        # @param StartTime: 开始时间。格式: "yyyy-MM-dd'T'HH:mm:ssXXX"
         # @type StartTime: String
-        # @param EndTime: 结束时间。
+        # @param EndTime: 结束时间。格式: "yyyy-MM-dd'T'HH:mm:ssXXX"
         # @type EndTime: String
         # @param Outline: 概要。
         # @type Outline: String

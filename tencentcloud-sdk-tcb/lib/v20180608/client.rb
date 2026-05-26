@@ -103,6 +103,32 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 为云存储绑定外部云存储源。
+        # 将一个用户自有的 COS桶 作为外部存储源绑定到指定云开发环境的云存储。绑定后，该环境的云存储文件操作将指向此桶，通过 BasePath 路径前缀实现与其他环境的数据隔离。
+        # 每个环境仅允许绑定 1 个外部云存储源。
+
+        # @param request: Request instance for BindStorageSource.
+        # @type request: :class:`Tencentcloud::tcb::V20180608::BindStorageSourceRequest`
+        # @rtype: :class:`Tencentcloud::tcb::V20180608::BindStorageSourceResponse`
+        def BindStorageSource(request)
+          body = send_request('BindStorageSource', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = BindStorageSourceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 检查是否开通Tcb服务
 
         # @param request: Request instance for CheckTcbService.
@@ -1847,6 +1873,34 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改指定云开发环境已绑定的外部云存储源配置。
+        # 修改之后，大约3~5分钟生效。
+
+        # 注意⚠️
+        # 本接口仅更新存储源绑定关系，不会迁移您的数据。
+
+        # @param request: Request instance for ModifyStorageSource.
+        # @type request: :class:`Tencentcloud::tcb::V20180608::ModifyStorageSourceRequest`
+        # @rtype: :class:`Tencentcloud::tcb::V20180608::ModifyStorageSourceResponse`
+        def ModifyStorageSource(request)
+          body = send_request('ModifyStorageSource', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyStorageSourceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 修改tcb用户
 
         # @param request: Request instance for ModifyUser.
@@ -1983,6 +2037,34 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = SearchClsLogResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 从指定云开发环境中解绑已绑定的外部云存储源。解绑后，该环境将不再关联外部 存储源，云存储功能恢复为未绑定状态。
+        # 解绑操作仅移除 CloudBase 侧的绑定关系，不会删除桶本身及桶内数据，桶仍由用户自行管理。
+
+        # 注意⚠️
+        # 解绑之后，会导致云存储不可用，请谨慎操作。
+
+        # @param request: Request instance for UnbindStorageSource.
+        # @type request: :class:`Tencentcloud::tcb::V20180608::UnbindStorageSourceRequest`
+        # @rtype: :class:`Tencentcloud::tcb::V20180608::UnbindStorageSourceResponse`
+        def UnbindStorageSource(request)
+          body = send_request('UnbindStorageSource', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UnbindStorageSourceResponse.new
             model.deserialize(response['Response'])
             model
           else

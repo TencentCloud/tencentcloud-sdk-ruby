@@ -1508,6 +1508,42 @@ module TencentCloud
         end
       end
 
+      # DeleteDBBackups请求参数结构体
+      class DeleteDBBackupsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例id,cmgo-xxxx
+        # @type InstanceId: String
+        # @param BackupIds: 备份文件id列表
+        # @type BackupIds: Array
+
+        attr_accessor :InstanceId, :BackupIds
+
+        def initialize(instanceid=nil, backupids=nil)
+          @InstanceId = instanceid
+          @BackupIds = backupids
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @BackupIds = params['BackupIds']
+        end
+      end
+
+      # DeleteDBBackups返回参数结构体
+      class DeleteDBBackupsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteLogDownloadTask请求参数结构体
       class DeleteLogDownloadTaskRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID
@@ -3266,6 +3302,33 @@ module TencentCloud
         end
       end
 
+      # DescribePasswordRotation请求参数结构体
+      class DescribePasswordRotationRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribePasswordRotation返回参数结构体
+      class DescribePasswordRotationResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeSRVConnectionDomain请求参数结构体
       class DescribeSRVConnectionDomainRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID，例如：cmgo-p8vn****。请登录 [MongoDB 控制台](https://console.cloud.tencent.com/mongodb)在实例列表复制实例 ID。
@@ -3635,6 +3698,33 @@ module TencentCloud
 
       # DropDBInstanceParamTpl返回参数结构体
       class DropDBInstanceParamTplResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # EnablePasswordRotation请求参数结构体
+      class EnablePasswordRotationRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # EnablePasswordRotation返回参数结构体
+      class EnablePasswordRotationResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -5058,6 +5148,50 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyBackupExpireTime请求参数结构体
+      class ModifyBackupExpireTimeRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>实例ID</p>
+        # @type InstanceId: String
+        # @param ExpireTime: <p>过期时间</p><p>参数格式：YYYY-MM-DD hh:mm:ss</p>
+        # @type ExpireTime: String
+        # @param BackupIds: <p>备份ID</p>
+        # @type BackupIds: Array
+
+        attr_accessor :InstanceId, :ExpireTime, :BackupIds
+
+        def initialize(instanceid=nil, expiretime=nil, backupids=nil)
+          @InstanceId = instanceid
+          @ExpireTime = expiretime
+          @BackupIds = backupids
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @ExpireTime = params['ExpireTime']
+          @BackupIds = params['BackupIds']
+        end
+      end
+
+      # ModifyBackupExpireTime返回参数结构体
+      class ModifyBackupExpireTimeResponse < TencentCloud::Common::AbstractModel
+        # @param FailedBackups: <p>失败的备份ID</p>
+        # @type FailedBackups: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FailedBackups, :RequestId
+
+        def initialize(failedbackups=nil, requestid=nil)
+          @FailedBackups = failedbackups
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FailedBackups = params['FailedBackups']
           @RequestId = params['RequestId']
         end
       end

@@ -4008,21 +4008,26 @@ module TencentCloud
 
       # Token限流配置
       class TokenLimitConfigDTO < TencentCloud::Common::AbstractModel
-        # @param LimitRequestBody: 单次请求上限，k
+        # @param Type: <p>限流类型</p><p>枚举值：</p><ul><li>minute： 时间窗口</li><li>day： 自然日</li><li>month： 自然月</li></ul>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param LimitRequestBody: <p>单次请求上限，k</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LimitRequestBody: Integer
-        # @param LimitWindows: 累次token总量消耗上限
+        # @param LimitWindows: <p>累次token总量消耗上限</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LimitWindows: Array
 
-        attr_accessor :LimitRequestBody, :LimitWindows
+        attr_accessor :Type, :LimitRequestBody, :LimitWindows
 
-        def initialize(limitrequestbody=nil, limitwindows=nil)
+        def initialize(type=nil, limitrequestbody=nil, limitwindows=nil)
+          @Type = type
           @LimitRequestBody = limitrequestbody
           @LimitWindows = limitwindows
         end
 
         def deserialize(params)
+          @Type = params['Type']
           @LimitRequestBody = params['LimitRequestBody']
           unless params['LimitWindows'].nil?
             @LimitWindows = []

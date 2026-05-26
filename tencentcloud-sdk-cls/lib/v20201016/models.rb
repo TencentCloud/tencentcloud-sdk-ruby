@@ -5405,7 +5405,7 @@ module TencentCloud
       class CreateSplunkDeliverRequest < TencentCloud::Common::AbstractModel
         # @param TopicId: <p>日志主题id</p><ul><li>通过<a href="https://cloud.tencent.com/document/product/614/56454">获取日志主题列表</a>获取日志主题Id。</li></ul>
         # @type TopicId: String
-        # @param Name: <p>splunk投递任务名称；<br>name有如下限制：</p><ul><li>不能为空</li><li>长度不大于64</li><li>只能包含aA-zZ、下划线、-、0-9</li></ul>
+        # @param Name: <p>splunk投递任务名称；name有如下限制：- 不能为空- 长度不大于256- 只能包含aA-zZ、下划线、-、0-9</p>
         # @type Name: String
         # @param NetInfo: <p>Splunk投递任务-目标配置-网络信息</p>
         # @type NetInfo: :class:`Tencentcloud::Cls.v20201016.models.NetInfo`
@@ -16906,7 +16906,7 @@ module TencentCloud
         # @type TaskId: String
         # @param TopicId: <p>日志主题id</p><ul><li>通过<a href="https://cloud.tencent.com/document/product/614/56454">获取日志主题列表</a>获取日志主题Id。</li></ul>
         # @type TopicId: String
-        # @param Name: <p>投递任务名称<br>name有以下限制：</p><ul><li>不能为空</li><li>长度不大于64</li><li>只能包含aA-zZ、下划线、-、0-9</li></ul>
+        # @param Name: <p>投递任务名称name有以下限制：- 不能为空- 长度不大于256- 只能包含aA-zZ、下划线、-、0-9</p>
         # @type Name: String
         # @param Enable: <p>投递任务启用状态；0:禁用；1:启用</p>
         # @type Enable: Integer

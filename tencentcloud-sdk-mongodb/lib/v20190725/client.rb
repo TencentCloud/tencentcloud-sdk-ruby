@@ -318,6 +318,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除全量备份
+
+        # @param request: Request instance for DeleteDBBackups.
+        # @type request: :class:`Tencentcloud::mongodb::V20190725::DeleteDBBackupsRequest`
+        # @rtype: :class:`Tencentcloud::mongodb::V20190725::DeleteDBBackupsResponse`
+        def DeleteDBBackups(request)
+          body = send_request('DeleteDBBackups', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteDBBackupsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除日志下载任务
 
         # @param request: Request instance for DeleteLogDownloadTask.
@@ -896,6 +920,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取密码轮转状态信息
+
+        # @param request: Request instance for DescribePasswordRotation.
+        # @type request: :class:`Tencentcloud::mongodb::V20190725::DescribePasswordRotationRequest`
+        # @rtype: :class:`Tencentcloud::mongodb::V20190725::DescribePasswordRotationResponse`
+        def DescribePasswordRotation(request)
+          body = send_request('DescribePasswordRotation', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePasswordRotationResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DescribeSRVConnectionDomain）用于查询MongoDB数据库当前的域名信息。
 
         # @param request: Request instance for DescribeSRVConnectionDomain.
@@ -1075,6 +1123,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DropDBInstanceParamTplResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 开启密码轮转
+
+        # @param request: Request instance for EnablePasswordRotation.
+        # @type request: :class:`Tencentcloud::mongodb::V20190725::EnablePasswordRotationRequest`
+        # @rtype: :class:`Tencentcloud::mongodb::V20190725::EnablePasswordRotationResponse`
+        def EnablePasswordRotation(request)
+          body = send_request('EnablePasswordRotation', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = EnablePasswordRotationResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1364,6 +1436,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyAuditServiceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改备份过期时间
+
+        # @param request: Request instance for ModifyBackupExpireTime.
+        # @type request: :class:`Tencentcloud::mongodb::V20190725::ModifyBackupExpireTimeRequest`
+        # @rtype: :class:`Tencentcloud::mongodb::V20190725::ModifyBackupExpireTimeResponse`
+        def ModifyBackupExpireTime(request)
+          body = send_request('ModifyBackupExpireTime', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyBackupExpireTimeResponse.new
             model.deserialize(response['Response'])
             model
           else

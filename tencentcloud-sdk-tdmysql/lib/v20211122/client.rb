@@ -53,6 +53,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（CreateCloneInstance）提供创建克隆实例功能
+
+        # @param request: Request instance for CreateCloneInstance.
+        # @type request: :class:`Tencentcloud::tdmysql::V20211122::CreateCloneInstanceRequest`
+        # @rtype: :class:`Tencentcloud::tdmysql::V20211122::CreateCloneInstanceResponse`
+        def CreateCloneInstance(request)
+          body = send_request('CreateCloneInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateCloneInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（CreateDBInstances）提供批量创建实例功能
+
+        # @param request: Request instance for CreateDBInstances.
+        # @type request: :class:`Tencentcloud::tdmysql::V20211122::CreateDBInstancesRequest`
+        # @rtype: :class:`Tencentcloud::tdmysql::V20211122::CreateDBInstancesResponse`
+        def CreateDBInstances(request)
+          body = send_request('CreateDBInstances', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateDBInstancesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建实例手工备份  CreateDBSBackup
 
         # @param request: Request instance for CreateDBSBackup.
@@ -87,6 +135,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteDBSBackupSetsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DescribeDBInstanceDetail）提供查询实例详情功能
+
+        # @param request: Request instance for DescribeDBInstanceDetail.
+        # @type request: :class:`Tencentcloud::tdmysql::V20211122::DescribeDBInstanceDetailRequest`
+        # @rtype: :class:`Tencentcloud::tdmysql::V20211122::DescribeDBInstanceDetailResponse`
+        def DescribeDBInstanceDetail(request)
+          body = send_request('DescribeDBInstanceDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDBInstanceDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DescribeDBInstances）提供查询实例列表功能
+
+        # @param request: Request instance for DescribeDBInstances.
+        # @type request: :class:`Tencentcloud::tdmysql::V20211122::DescribeDBInstancesRequest`
+        # @rtype: :class:`Tencentcloud::tdmysql::V20211122::DescribeDBInstancesResponse`
+        def DescribeDBInstances(request)
+          body = send_request('DescribeDBInstances', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDBInstancesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -173,6 +269,102 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询实例备份策略 DescribeDBSBackupPolicy
+
+        # @param request: Request instance for DescribeDBSBackupPolicy.
+        # @type request: :class:`Tencentcloud::tdmysql::V20211122::DescribeDBSBackupPolicyRequest`
+        # @rtype: :class:`Tencentcloud::tdmysql::V20211122::DescribeDBSBackupPolicyResponse`
+        def DescribeDBSBackupPolicy(request)
+          body = send_request('DescribeDBSBackupPolicy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDBSBackupPolicyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询实例备份集信息 DescribeDBSBackupSets
+
+        # @param request: Request instance for DescribeDBSBackupSets.
+        # @type request: :class:`Tencentcloud::tdmysql::V20211122::DescribeDBSBackupSetsRequest`
+        # @rtype: :class:`Tencentcloud::tdmysql::V20211122::DescribeDBSBackupSetsResponse`
+        def DescribeDBSBackupSets(request)
+          body = send_request('DescribeDBSBackupSets', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDBSBackupSetsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询实例备份空间概览 DescribeDBSBackupStatistics
+
+        # @param request: Request instance for DescribeDBSBackupStatistics.
+        # @type request: :class:`Tencentcloud::tdmysql::V20211122::DescribeDBSBackupStatisticsRequest`
+        # @rtype: :class:`Tencentcloud::tdmysql::V20211122::DescribeDBSBackupStatisticsResponse`
+        def DescribeDBSBackupStatistics(request)
+          body = send_request('DescribeDBSBackupStatistics', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDBSBackupStatisticsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询备份集统计详情 DescribeDBSBackupStatisticsDetail
+
+        # @param request: Request instance for DescribeDBSBackupStatisticsDetail.
+        # @type request: :class:`Tencentcloud::tdmysql::V20211122::DescribeDBSBackupStatisticsDetailRequest`
+        # @rtype: :class:`Tencentcloud::tdmysql::V20211122::DescribeDBSBackupStatisticsDetailResponse`
+        def DescribeDBSBackupStatisticsDetail(request)
+          body = send_request('DescribeDBSBackupStatisticsDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDBSBackupStatisticsDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询实例克隆列表 DescribeDBSCloneInstances
 
         # @param request: Request instance for DescribeDBSCloneInstances.
@@ -245,6 +437,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（DescribeDatabases）用于查询云数据库实例的数据库列表。
+
+        # @param request: Request instance for DescribeDatabases.
+        # @type request: :class:`Tencentcloud::tdmysql::V20211122::DescribeDatabasesRequest`
+        # @rtype: :class:`Tencentcloud::tdmysql::V20211122::DescribeDatabasesResponse`
+        def DescribeDatabases(request)
+          body = send_request('DescribeDatabases', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDatabasesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DescribeFlow）用于查询异步任务流程状态
 
         # @param request: Request instance for DescribeFlow.
@@ -269,6 +485,102 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（DescribeSaleInfo）提供查询可用售卖地域功能
+
+        # @param request: Request instance for DescribeSaleInfo.
+        # @type request: :class:`Tencentcloud::tdmysql::V20211122::DescribeSaleInfoRequest`
+        # @rtype: :class:`Tencentcloud::tdmysql::V20211122::DescribeSaleInfoResponse`
+        def DescribeSaleInfo(request)
+          body = send_request('DescribeSaleInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSaleInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DescribeSpecs）提供查询售卖规格功能
+
+        # @param request: Request instance for DescribeSpecs.
+        # @type request: :class:`Tencentcloud::tdmysql::V20211122::DescribeSpecsRequest`
+        # @rtype: :class:`Tencentcloud::tdmysql::V20211122::DescribeSpecsResponse`
+        def DescribeSpecs(request)
+          body = send_request('DescribeSpecs', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSpecsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DescribeUserPrivileges）提供查询用户的权限功能
+
+        # @param request: Request instance for DescribeUserPrivileges.
+        # @type request: :class:`Tencentcloud::tdmysql::V20211122::DescribeUserPrivilegesRequest`
+        # @rtype: :class:`Tencentcloud::tdmysql::V20211122::DescribeUserPrivilegesResponse`
+        def DescribeUserPrivileges(request)
+          body = send_request('DescribeUserPrivileges', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeUserPrivilegesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DescribeUsers）提供查询用户列表功能
+
+        # @param request: Request instance for DescribeUsers.
+        # @type request: :class:`Tencentcloud::tdmysql::V20211122::DescribeUsersRequest`
+        # @rtype: :class:`Tencentcloud::tdmysql::V20211122::DescribeUsersResponse`
+        def DescribeUsers(request)
+          body = send_request('DescribeUsers', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeUsersResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DestroyInstances）提供批量销毁实例功能
 
         # @param request: Request instance for DestroyInstances.
@@ -279,6 +591,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DestroyInstancesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（ExpandInstance）提供横向扩容实例功能
+
+        # @param request: Request instance for ExpandInstance.
+        # @type request: :class:`Tencentcloud::tdmysql::V20211122::ExpandInstanceRequest`
+        # @rtype: :class:`Tencentcloud::tdmysql::V20211122::ExpandInstanceResponse`
+        def ExpandInstance(request)
+          body = send_request('ExpandInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ExpandInstanceResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -447,6 +783,78 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyInstanceNameResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口(ModifyPrivileges)修改用户权限
+
+        # @param request: Request instance for ModifyUserPrivileges.
+        # @type request: :class:`Tencentcloud::tdmysql::V20211122::ModifyUserPrivilegesRequest`
+        # @rtype: :class:`Tencentcloud::tdmysql::V20211122::ModifyUserPrivilegesResponse`
+        def ModifyUserPrivileges(request)
+          body = send_request('ModifyUserPrivileges', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyUserPrivilegesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（RestartDBInstances）用于重启数据库实例
+
+        # @param request: Request instance for RestartDBInstances.
+        # @type request: :class:`Tencentcloud::tdmysql::V20211122::RestartDBInstancesRequest`
+        # @rtype: :class:`Tencentcloud::tdmysql::V20211122::RestartDBInstancesResponse`
+        def RestartDBInstances(request)
+          body = send_request('RestartDBInstances', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RestartDBInstancesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（UpgradeInstance）提供纵向扩容实例功能
+
+        # @param request: Request instance for UpgradeInstance.
+        # @type request: :class:`Tencentcloud::tdmysql::V20211122::UpgradeInstanceRequest`
+        # @rtype: :class:`Tencentcloud::tdmysql::V20211122::UpgradeInstanceResponse`
+        def UpgradeInstance(request)
+          body = send_request('UpgradeInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpgradeInstanceResponse.new
             model.deserialize(response['Response'])
             model
           else

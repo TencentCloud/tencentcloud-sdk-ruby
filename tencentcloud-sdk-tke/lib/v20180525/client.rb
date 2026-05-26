@@ -2741,7 +2741,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查看超级节点列表
+        # 查看超级节点列表，仅支持TKE标准集群
 
         # @param request: Request instance for DescribeClusterVirtualNode.
         # @type request: :class:`Tencentcloud::tke::V20180525::DescribeClusterVirtualNodeRequest`

@@ -2475,6 +2475,37 @@ module TencentCloud
         end
       end
 
+      # GetNFCToken请求参数结构体
+      class GetNFCTokenRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # GetNFCToken返回参数结构体
+      class GetNFCTokenResponse < TencentCloud::Common::AbstractModel
+        # @param Token: NFCToken
+        # @type Token: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Token, :RequestId
+
+        def initialize(token=nil, requestid=nil)
+          @Token = token
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Token = params['Token']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # GetWeChatBillDetails请求参数结构体
       class GetWeChatBillDetailsRequest < TencentCloud::Common::AbstractModel
         # @param Date: 拉取的日期（YYYY-MM-DD）。
@@ -2537,6 +2568,132 @@ module TencentCloud
               @WeChatBillDetails << wechatbilldetail_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GetWxNFCResult请求参数结构体
+      class GetWxNFCResultRequest < TencentCloud::Common::AbstractModel
+        # @param NFCToken: <p>前端 NFC SDK返回的唯一标识ID</p>
+        # @type NFCToken: String
+
+        attr_accessor :NFCToken
+
+        def initialize(nfctoken=nil)
+          @NFCToken = nfctoken
+        end
+
+        def deserialize(params)
+          @NFCToken = params['NFCToken']
+        end
+      end
+
+      # GetWxNFCResult返回参数结构体
+      class GetWxNFCResultResponse < TencentCloud::Common::AbstractModel
+        # @param ResultCode: <p>NFC计费结果码，NFC识读成功一次则计费一次（同一个NFC请求重复拉取结果不会重复计费）。计费结果码取值范围：<br>  0：识读成功，计费<br>-1：识读失败，不计费</p>
+        # @type ResultCode: String
+        # @param IdNum: <p>身份证号</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IdNum: String
+        # @param Name: <p>姓名</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Picture: <p>证件中的人像照片</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Picture: String
+        # @param IdCardFrontImg: <p>身份类证件正面照片（人像面）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IdCardFrontImg: String
+        # @param IdCardBackImg: <p>身份类证件背面照片（国徽面）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IdCardBackImg: String
+        # @param BirthDate: <p>出生日期</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BirthDate: String
+        # @param BeginTime: <p>有效期起始时间</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BeginTime: String
+        # @param EndTime: <p>有效期结束时间</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndTime: String
+        # @param Address: <p>住址</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Address: String
+        # @param Nation: <p>民族</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Nation: String
+        # @param Sex: <p>性别</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Sex: String
+        # @param IdType: <p>证件类型</p><p>枚举值：</p><ul><li>01： 身份证</li><li>03： 中国护照</li><li>06： 港澳通行证</li><li>07： 台胞证</li><li>08： 外国护照</li><li>13： 外国人永久居留证</li><li>14： 港澳台居民居住证</li><li>15： 回乡证</li><li>16： 大陆居民来往台湾通行证</li><li>99： 其他证件</li></ul>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IdType: String
+        # @param EnName: <p>英文姓名</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnName: String
+        # @param SigningOrganization: <p>签发机关</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SigningOrganization: String
+        # @param OtherIdNum: <p>港澳台居民居住证，通行证号码</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OtherIdNum: String
+        # @param Nationality: <p>旅行证件国籍</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Nationality: String
+        # @param PersonalNumber: <p>旅行证件机读区第二行 29~42 位</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PersonalNumber: String
+        # @param CheckMRTD: <p>证件的验真结果</p><ul><li>JSON格式如下： {&quot;result_issuer &quot;:&quot;签发者证书合法性验证结果 &quot;,&quot;result_paper&quot;:&quot;证件安全对象合法性验证结果 &quot;,&quot;result_data&quot; :&quot;防数据篡改验证结果 &quot;,&quot;result_chip&quot; :&quot;防证书件芯片被复制验证结果&quot;} 。 - 取值范围： 0:验证通过，1: 验证不通过，2: 未验证，3:部分通过，当4项核验结果都为0时，表示证件为真。</li></ul>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CheckMRTD: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ResultCode, :IdNum, :Name, :Picture, :IdCardFrontImg, :IdCardBackImg, :BirthDate, :BeginTime, :EndTime, :Address, :Nation, :Sex, :IdType, :EnName, :SigningOrganization, :OtherIdNum, :Nationality, :PersonalNumber, :CheckMRTD, :RequestId
+
+        def initialize(resultcode=nil, idnum=nil, name=nil, picture=nil, idcardfrontimg=nil, idcardbackimg=nil, birthdate=nil, begintime=nil, endtime=nil, address=nil, nation=nil, sex=nil, idtype=nil, enname=nil, signingorganization=nil, otheridnum=nil, nationality=nil, personalnumber=nil, checkmrtd=nil, requestid=nil)
+          @ResultCode = resultcode
+          @IdNum = idnum
+          @Name = name
+          @Picture = picture
+          @IdCardFrontImg = idcardfrontimg
+          @IdCardBackImg = idcardbackimg
+          @BirthDate = birthdate
+          @BeginTime = begintime
+          @EndTime = endtime
+          @Address = address
+          @Nation = nation
+          @Sex = sex
+          @IdType = idtype
+          @EnName = enname
+          @SigningOrganization = signingorganization
+          @OtherIdNum = otheridnum
+          @Nationality = nationality
+          @PersonalNumber = personalnumber
+          @CheckMRTD = checkmrtd
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ResultCode = params['ResultCode']
+          @IdNum = params['IdNum']
+          @Name = params['Name']
+          @Picture = params['Picture']
+          @IdCardFrontImg = params['IdCardFrontImg']
+          @IdCardBackImg = params['IdCardBackImg']
+          @BirthDate = params['BirthDate']
+          @BeginTime = params['BeginTime']
+          @EndTime = params['EndTime']
+          @Address = params['Address']
+          @Nation = params['Nation']
+          @Sex = params['Sex']
+          @IdType = params['IdType']
+          @EnName = params['EnName']
+          @SigningOrganization = params['SigningOrganization']
+          @OtherIdNum = params['OtherIdNum']
+          @Nationality = params['Nationality']
+          @PersonalNumber = params['PersonalNumber']
+          @CheckMRTD = params['CheckMRTD']
           @RequestId = params['RequestId']
         end
       end

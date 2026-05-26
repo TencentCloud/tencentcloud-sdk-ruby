@@ -8295,6 +8295,45 @@ module TencentCloud
         end
       end
 
+      # DescribePrometheusAlertmanagerConfig请求参数结构体
+      class DescribePrometheusAlertmanagerConfigRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>Prometheus 实例 ID</p>
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribePrometheusAlertmanagerConfig返回参数结构体
+      class DescribePrometheusAlertmanagerConfigResponse < TencentCloud::Common::AbstractModel
+        # @param AlertmanagerConfig: <p>Alertmanager 配置</p>
+        # @type AlertmanagerConfig: :class:`Tencentcloud::Monitor.v20180724.models.PrometheusAlertmanagerConfigV2`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AlertmanagerConfig, :RequestId
+
+        def initialize(alertmanagerconfig=nil, requestid=nil)
+          @AlertmanagerConfig = alertmanagerconfig
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['AlertmanagerConfig'].nil?
+            @AlertmanagerConfig = PrometheusAlertmanagerConfigV2.new
+            @AlertmanagerConfig.deserialize(params['AlertmanagerConfig'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribePrometheusClusterAgents请求参数结构体
       class DescribePrometheusClusterAgentsRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例id
@@ -13316,6 +13355,57 @@ module TencentCloud
         end
       end
 
+      # Prometheus Alertmanger 抑制规则
+      class PrometheusAlertmanagerConfigInhibitRule < TencentCloud::Common::AbstractModel
+        # @param SourceMatchers: Source 告警的标签匹配规则，比如 "a=b"、"a!=c" 等
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SourceMatchers: Array
+        # @param TargetMatchers: Target 告警的标签匹配规则，比如 "a=b"、"a!=c" 等
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TargetMatchers: Array
+        # @param Equal: Source 和 Target 告警都必须有的一组标签名，比如 alertname、cluster 等
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Equal: Array
+
+        attr_accessor :SourceMatchers, :TargetMatchers, :Equal
+
+        def initialize(sourcematchers=nil, targetmatchers=nil, equal=nil)
+          @SourceMatchers = sourcematchers
+          @TargetMatchers = targetmatchers
+          @Equal = equal
+        end
+
+        def deserialize(params)
+          @SourceMatchers = params['SourceMatchers']
+          @TargetMatchers = params['TargetMatchers']
+          @Equal = params['Equal']
+        end
+      end
+
+      # Prometheus Alertmanger 可修改配置
+      class PrometheusAlertmanagerConfigV2 < TencentCloud::Common::AbstractModel
+        # @param InhibitRules: Prometheus Alertmanger 抑制规则组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InhibitRules: Array
+
+        attr_accessor :InhibitRules
+
+        def initialize(inhibitrules=nil)
+          @InhibitRules = inhibitrules
+        end
+
+        def deserialize(params)
+          unless params['InhibitRules'].nil?
+            @InhibitRules = []
+            params['InhibitRules'].each do |i|
+              prometheusalertmanagerconfiginhibitrule_tmp = PrometheusAlertmanagerConfigInhibitRule.new
+              prometheusalertmanagerconfiginhibitrule_tmp.deserialize(i)
+              @InhibitRules << prometheusalertmanagerconfiginhibitrule_tmp
+            end
+          end
+        end
+      end
+
       # 与腾讯云可观测平台融合托管 Prometheus 实例，关联集群基础信息
       class PrometheusClusterAgentBasic < TencentCloud::Common::AbstractModel
         # @param Region: 地域
@@ -14878,6 +14968,45 @@ module TencentCloud
         end
       end
 
+      # ReplacePrometheusAlertmanagerConfig请求参数结构体
+      class ReplacePrometheusAlertmanagerConfigRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>Prometheus 实例 ID</p>
+        # @type InstanceId: String
+        # @param AlertmanagerConfig: <p>Alertmanager 配置</p>
+        # @type AlertmanagerConfig: :class:`Tencentcloud::Monitor.v20180724.models.PrometheusAlertmanagerConfigV2`
+
+        attr_accessor :InstanceId, :AlertmanagerConfig
+
+        def initialize(instanceid=nil, alertmanagerconfig=nil)
+          @InstanceId = instanceid
+          @AlertmanagerConfig = alertmanagerconfig
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          unless params['AlertmanagerConfig'].nil?
+            @AlertmanagerConfig = PrometheusAlertmanagerConfigV2.new
+            @AlertmanagerConfig.deserialize(params['AlertmanagerConfig'])
+          end
+        end
+      end
+
+      # ReplacePrometheusAlertmanagerConfig返回参数结构体
+      class ReplacePrometheusAlertmanagerConfigResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ResumeGrafanaInstance请求参数结构体
       class ResumeGrafanaInstanceRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: Grafana 实例 ID，例如：grafana-12345678
@@ -14906,6 +15035,68 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # RoutePrometheusDynamicAPI请求参数结构体
+      class RoutePrometheusDynamicAPIRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>Prometheus 实例 ID</p>
+        # @type InstanceId: String
+        # @param Method: <p>HTTP 方法名 GET/POST/PUT/DELETE 等</p>
+        # @type Method: String
+        # @param Path: <p>HTTP 路径（包括 query string）</p>
+        # @type Path: String
+        # @param RequestBody: <p>HTTP 请求体，任何数据</p>
+        # @type RequestBody: String
+        # @param Headers: <p>HTTP 请求头</p>
+        # @type Headers: Array
+
+        attr_accessor :InstanceId, :Method, :Path, :RequestBody, :Headers
+
+        def initialize(instanceid=nil, method=nil, path=nil, requestbody=nil, headers=nil)
+          @InstanceId = instanceid
+          @Method = method
+          @Path = path
+          @RequestBody = requestbody
+          @Headers = headers
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Method = params['Method']
+          @Path = params['Path']
+          @RequestBody = params['RequestBody']
+          unless params['Headers'].nil?
+            @Headers = []
+            params['Headers'].each do |i|
+              prometheusstringkeyvaluepair_tmp = PrometheusStringKeyValuePair.new
+              prometheusstringkeyvaluepair_tmp.deserialize(i)
+              @Headers << prometheusstringkeyvaluepair_tmp
+            end
+          end
+        end
+      end
+
+      # RoutePrometheusDynamicAPI返回参数结构体
+      class RoutePrometheusDynamicAPIResponse < TencentCloud::Common::AbstractModel
+        # @param HTTP: <p>HTTP 响应数据</p>
+        # @type HTTP: :class:`Tencentcloud::Monitor.v20180724.models.PrometheusDynamicAPIResponseHTTP`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :HTTP, :RequestId
+
+        def initialize(http=nil, requestid=nil)
+          @HTTP = http
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['HTTP'].nil?
+            @HTTP = PrometheusDynamicAPIResponseHTTP.new
+            @HTTP.deserialize(params['HTTP'])
+          end
           @RequestId = params['RequestId']
         end
       end

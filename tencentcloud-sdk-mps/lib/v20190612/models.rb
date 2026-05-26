@@ -3021,15 +3021,15 @@ module TencentCloud
 
       # 语音全文识别片段。
       class AiRecognitionTaskAsrFullTextSegmentItem < TencentCloud::Common::AbstractModel
-        # @param Confidence: 识别片段置信度。取值：0~100。
+        # @param Confidence: <p>识别片段置信度。取值：0~100。</p>
         # @type Confidence: Float
-        # @param StartTimeOffset: 识别片段起始的偏移时间，单位：秒。
+        # @param StartTimeOffset: <p>识别片段起始的偏移时间，单位：秒。</p>
         # @type StartTimeOffset: Float
-        # @param EndTimeOffset: 识别片段终止的偏移时间，单位：秒。
+        # @param EndTimeOffset: <p>识别片段终止的偏移时间，单位：秒。</p>
         # @type EndTimeOffset: Float
-        # @param Text: 识别文本。
+        # @param Text: <p>识别文本。</p>
         # @type Text: String
-        # @param Wordlist: 字词时间戳信息。
+        # @param Wordlist: <p>字词时间戳信息。</p>
         # @type Wordlist: Array
 
         attr_accessor :Confidence, :StartTimeOffset, :EndTimeOffset, :Text, :Wordlist
@@ -3648,11 +3648,11 @@ module TencentCloud
 
       # 文本全文识别片段。
       class AiRecognitionTaskOcrFullTextSegmentTextItem < TencentCloud::Common::AbstractModel
-        # @param Confidence: 识别片段置信度。取值：0~100。
+        # @param Confidence: <p>识别片段置信度。取值：0~100。</p>
         # @type Confidence: Float
-        # @param AreaCoordSet: 识别结果的区域坐标。数组包含 4 个元素 [x1,y1,x2,y2]，依次表示区域左上点、右下点的横纵坐标。
+        # @param AreaCoordSet: <p>识别结果的区域坐标。数组包含 4 个元素 [x1,y1,x2,y2]，依次表示区域左上点、右下点的横纵坐标。</p>
         # @type AreaCoordSet: Array
-        # @param Text: 识别文本。
+        # @param Text: <p>识别文本。</p>
         # @type Text: String
 
         attr_accessor :Confidence, :AreaCoordSet, :Text
@@ -3900,17 +3900,17 @@ module TencentCloud
 
       # 翻译片段。
       class AiRecognitionTaskTransTextSegmentItem < TencentCloud::Common::AbstractModel
-        # @param Confidence: 识别片段置信度。取值：0~100。
+        # @param Confidence: <p>识别片段置信度。取值：0~100。</p>
         # @type Confidence: Float
-        # @param StartTimeOffset: 识别片段起始的偏移时间，单位：秒。
+        # @param StartTimeOffset: <p>识别片段起始的偏移时间，单位：秒。</p>
         # @type StartTimeOffset: Float
-        # @param EndTimeOffset: 识别片段终止的偏移时间，单位：秒。
+        # @param EndTimeOffset: <p>识别片段终止的偏移时间，单位：秒。</p>
         # @type EndTimeOffset: Float
-        # @param Text: 识别文本。
+        # @param Text: <p>识别文本。</p>
         # @type Text: String
-        # @param Trans: 翻译文本。
+        # @param Trans: <p>翻译文本。</p>
         # @type Trans: String
-        # @param Wordlist: 字词时间戳信息。
+        # @param Wordlist: <p>字词时间戳信息。</p>
         # @type Wordlist: Array
 
         attr_accessor :Confidence, :StartTimeOffset, :EndTimeOffset, :Text, :Trans, :Wordlist
@@ -5101,7 +5101,7 @@ module TencentCloud
 
       # 用于AIGC创作图片时用到的扩展参数信息。
       class AigcImageExtraParam < TencentCloud::Common::AbstractModel
-        # @param AspectRatio: <p>指定所生成视频的宽高比。</p><p>不同模型支持的宽高比:</p><ol><li>GEM支持：1:1、3:2、2:3、3:4、4:3、4:5、5:4、9:16、16:9 和 21:9。</li></ol><p>注：具体模型的宽高比参数，可查看相应模型官网获取更完整描述。</p>
+        # @param AspectRatio: <p>指定所生成视频的宽高比。</p><p>不同模型支持的宽高比:</p><ol><li>Kling 2.1支持：16:9、9:16、1:1、4:3、3:4、3:2、2:3、21:9。</li><li>Kling 3.0支持：16:9、9:16、1:1、4:3、3:4、3:2、2:3、21:9。</li><li>Kling 3.0-Omni支持：16:9、9:16、1:1、4:3、3:4、3:2、2:3、21:9。</li><li>Kling O1支持：16:9、9:16、1:1、4:3、3:4、3:2、2:3、21:9。</li><li>Vidu q2支持：16:9、9:16、1:1、3:4、4:3、21:9、2:3、3:2。</li><li>MJ v7的宽高比需要在 prompt 中进行指定。</li></ol><p>注：具体模型的宽高比参数，可查看相应模型官网获取更完整描述。</p>
         # @type AspectRatio: String
         # @param Resolution: <p>指定图片输出分辨率。</p><p>支持该参数的模型：<br>支持选择: 720P, 1080P, 2K, 4K。</p>
         # @type Resolution: String
@@ -5178,13 +5178,13 @@ module TencentCloud
 
       # 用于AIGC创作视频时用到的扩展参数信息。
       class AigcVideoExtraParam < TencentCloud::Common::AbstractModel
-        # @param Resolution: <p>生成视频的分辨率，分辨率与选择模型及设置的视频时长相关。 </p><p>不同模型支持的分辨率选项:</p><ol><li>Kling 720P(默认), 1080P。</li><li>Hailuo 768P(默认), 1080P。</li><li>Vidu 720P(默认)，1080P。</li><li>GV 720P(默认),1080P。</li><li>OS 720P, 图片仅支持1280x720、720x1280，暂不支持指定。</li></ol><p>注意：除模型可支持的分辨率外，还可以生成 2K、4K分辨率。</p>
+        # @param Resolution: <p>生成视频的分辨率，分辨率与选择模型及设置的视频时长相关。 </p><p>不同模型支持的分辨率选项:</p><ol><li>Kling 720P(默认)，1080P。Kling 3.0、Kling 3.0-Omni 支持 4K。</li><li>Hailuo 768P(默认)，1080P。</li><li>Vidu 540P，720P(默认)，1080P。</li><li>PixVerse 540P，720P(默认)，1080P。</li><li>H2 720P，1080P(默认)。</li></ol><p>注意：除模型可支持的分辨率外，还可以生成 2K、4K分辨率。</p>
         # @type Resolution: String
-        # @param AspectRatio: <p>指定所生成视频的宽高比。 </p><p>不同模型对于此参数的支持：</p><ol><li>Kling 仅文生视频支持, 16:9(默认值)、9:16、 1:1。</li><li>Hailuo 暂不支持。</li><li>Vidu 仅文生和参考图生视频 支持[16:9、9:16、4:3、3:4、1:1]，其中仅q2支持4:3、3:4。</li><li>GV 16:9(默认值)、9:16。</li><li>OS 仅文生视频支持, 16:9(默认), 9:16。</li></ol><p>注：关于具体模型支持的宽高比例，可查看具体模型官网介绍获取更完整描述。</p>
+        # @param AspectRatio: <p>指定所生成视频的宽高比。 </p><p>不同模型对于此参数的支持：</p><ol><li>Kling 仅文生视频支持, 16:9(默认值)、9:16、 1:1。</li><li>Hailuo 暂不支持。</li><li>Vidu 仅文生和参考图生视频支持 [16:9、9:16、4:3、3:4、1:1]，其中仅 q2 支持 4:3、3:4。</li><li>PixVerse 仅文生和参考图生视频支持 [16:9、9:16、4:3、3:4、1:1、2:3、3:2、21:9]，其中仅 v6、c1 支持 2:3、3:2、21:9。</li><li>H2 仅文生和参考图生视频支持 [16:9、9:16、4:3、3:4、4:5、5:4、1:1、21:9、9:21]。</li></ol><p>注：关于具体模型支持的宽高比例，可查看具体模型官网介绍获取更完整描述。</p>
         # @type AspectRatio: String
-        # @param LogoAdd: <p>是否添加图标水印。</p><ol><li>Hailuo 支持此参数。</li><li>Kling 支持此参数。</li><li>Vidu 支持此参数。</li></ol>
+        # @param LogoAdd: <p>是否添加图标水印。</p><ol><li>Hailuo 支持此参数。</li><li>Kling 支持此参数。</li><li>Vidu 支持此参数。</li><li>H2 支持此参数。</li></ol>
         # @type LogoAdd: Integer
-        # @param EnableAudio: <p>为视频生成音频。接受的值包括 true 或 false。 </p><p>支持此参数的模型：</p><ol><li>GV，默认true。</li><li>OS，默认true。</li></ol>
+        # @param EnableAudio: <p>为视频生成音频。接受的值包括 true 或 false。 </p><p>支持此参数的模型：</p><ol><li>Vidu，仅 q3 系列模型支持该参数，默认 false。</li><li>PixVerse，默认 false。</li><li>Kling，默认 false。</li></ol>
         # @type EnableAudio: Boolean
         # @param OffPeak: <p>错峰模型，目前仅支持Vidu模型。<br>错峰模式下提交的任务，会在48小时内生成，未能完成的任务会被自动取消。</p>
         # @type OffPeak: Boolean
@@ -8052,23 +8052,23 @@ module TencentCloud
 
       # CreateAigcImageTask请求参数结构体
       class CreateAigcImageTaskRequest < TencentCloud::Common::AbstractModel
-        # @param ModelName: <p>模型名称。<br>当前支持的模型列表：<br>Hunyuan,<br>GEM，<br>Qwen，<br>Vidu，<br>Kling。</p>
+        # @param ModelName: <p>模型名称。<br>当前支持的模型列表：<br>Hunyuan，<br>Qwen，<br>Vidu，<br>Kling，<br>MJ。</p>
         # @type ModelName: String
-        # @param ModelVersion: <p>指定模型特定版本号。默认使用系统当前所支持的模型稳定版本。</p><ol><li>GEM，可选[2.5,3.0,3.1]。</li><li>Vidu，可选[q2]。</li><li>Kling，可选[2.1、O1、3.0、3.0-Omni]</li></ol>
+        # @param ModelVersion: <p>指定模型特定版本号。默认使用系统当前所支持的模型稳定版本。</p><ol><li>Hunyuan，可选 [3.0]。</li><li>Vidu，可选 [q2]。</li><li>Kling，可选 [2.1、O1、3.0、3.0-Omni]。</li><li>Qwen，可选 [0925]。</li><li>MJ，可选 [v7]</li></ol>
         # @type ModelVersion: String
         # @param SceneType: <p>场景化生图使用，仅部分模型支持。</p><p>枚举值：</p><ul><li>3d_panorama： 全景图。仅Hunyuan支持。</li></ul>
         # @type SceneType: String
-        # @param Prompt: <p>生成图片的描述。(注：最大支持1000字符)。当未传入参考图片时，此参数必填。</p>
+        # @param Prompt: <p>生成图片的描述。当未传入参考图片时，此参数必填。</p>
         # @type Prompt: String
-        # @param NegativePrompt: <p>用于描述您想要阻止模型生成的内容。 注意：部分模型支持。 例如： 顶部照明、明亮的色彩 人物、动物 多辆汽车、风。</p>
+        # @param NegativePrompt: <p>用于描述您想要阻止模型生成的内容。 注意：部分模型支持。</p><p>例如：顶部照明、明亮的色彩、人物、动物、多辆汽车、风。</p>
         # @type NegativePrompt: String
-        # @param EnhancePrompt: <p>默认取值为False，模型会严格地遵循指令。如果需要更精细的prompt获得最佳效果，可将此参数设置为True，将自动优化传入的prompt，以提升生成质量。</p>
+        # @param EnhancePrompt: <p>默认取值为False，模型会严格地遵循指令。<br>如果需要更精细的prompt获得最佳效果，可将此参数设置为True，将自动优化传入的prompt，以提升生成质量。</p>
         # @type EnhancePrompt: Boolean
-        # @param ImageInfos: <p>用于传入参考的资源图片信息，默认支持传入一张图片。</p><p>支持多图输入的模型：</p><ol><li>GEM，可支持最多3张图片输入作为资源图。</li></ol><p>注意：</p><ol><li>推荐图片小于7M，各模型限制不同。</li><li>图片格式支持：jpeg, png, webp。</li></ol>
+        # @param ImageInfos: <p>用于传入参考的资源图片信息，默认支持传入一张图片。</p><p>支持多图输入的模型：</p><ol><li>Kling 2.1，可支持最多 4 张图片输入作为资源图。</li><li>Kling 3.0-Omni，可支持最多 10 张图片输入作为资源图。</li><li>Kling O1，可支持最多 10 张图片输入作为资源图。</li><li>Vidu q2，可支持最多 7 张图片输入作为资源图。</li><li>Hunyuan 3.0，可支持最多 3 张图片输入作为资源图。</li><li>MJ v7，可支持最多 3 张图片输入作为资源图。</li></ol><p>注意：</p><ol><li>推荐图片小于7M，各模型限制不同。</li><li>图片格式支持：jpeg, png, webp。</li></ol>
         # @type ImageInfos: Array
         # @param ExtraParameters: <p>用于传入模型要求的额外参数。</p>
         # @type ExtraParameters: :class:`Tencentcloud::Mps.v20190612.models.AigcImageExtraParam`
-        # @param AdditionalParameters: <p>用于传入一些模型需要的特殊场景参数，Json格式序列化成字符串。 示例： {"size":"2048x2048"}</p>
+        # @param AdditionalParameters: <p>用于传入一些模型需要的特殊场景参数，Json格式序列化成字符串。 </p><ol><li>Hunyuan 3.0，支持自由设置分辨率宽高，宽、高均在 [512, 2048] 像素范围内，宽高乘积 ≤ 1024x1024 像素。</li><li>Qwen 0925，支持自由设置分辨率宽高，合法总像素范围 [512x512=261632, 2048x2048=4194304]。</li></ol><p>示例： {"size":"1024x1024"}。</p>
         # @type AdditionalParameters: String
         # @param StoreCosParam: <p>文件结果指定存储Cos桶信息。 注意：需开通Cos，创建并授权MPS_QcsRole角色。</p>
         # @type StoreCosParam: :class:`Tencentcloud::Mps.v20190612.models.AigcStoreCosParam`
@@ -8141,33 +8141,33 @@ module TencentCloud
 
       # CreateAigcVideoTask请求参数结构体
       class CreateAigcVideoTaskRequest < TencentCloud::Common::AbstractModel
-        # @param ModelName: <p>模型名称。<br>当前支持的模型列表:<br>Hunyuan,<br>Hailuo，<br>Kling，<br>Vidu，<br>OS，<br>GV，<br>PixVerse。</p>
+        # @param ModelName: <p>模型名称。<br>当前支持的模型列表:<br>Hunyuan，<br>Hailuo，<br>Kling，<br>Vidu，<br>PixVerse，<br>Mingmou，<br>H2。</p>
         # @type ModelName: String
-        # @param ModelVersion: <p>指定模型特定版本号。默认使用系统当前所支持的模型稳定版本。</p><ol><li>Hailuo， 可选[02、2.3、2.3-fast]。</li><li>Kling，可选[1.6、2.0、2.1、2.5、O1、2.6、3.0、3.0-Omni]。</li><li>Vidu,可选[q2、q2-pro、q2-turbo、q3-pro、q3-turbo、q3、q3-mix]。</li><li>GV, 可选[3.1、3.1-fast]。</li><li>OS，可选[2.0]。</li><li>PixVerse，可选[v5.6、v6、c1]</li></ol>
+        # @param ModelVersion: <p>指定模型特定版本号。默认使用系统当前所支持的模型稳定版本。</p><ol><li>Hunyuan，可选 [1.5]。</li><li>Hailuo，可选 [02、2.3、2.3-fast]。</li><li>Kling，可选 [1.6、2.0、2.1、2.5、O1、2.6、3.0、3.0-Omni]。</li><li>Vidu，可选 [q2、q2-pro、q2-turbo、q3-pro、q3-turbo、q3、q3-mix]。</li><li>PixVerse，可选 [v5.6、v6、c1]。</li><li>H2，可选 [1.0]。</li></ol>
         # @type ModelVersion: String
-        # @param SceneType: <p>指定场景生视频。<br>注意：仅部分模型支持指定场景。</p><ol><li>Kling支持动作控制，motion_control。</li><li>Mingmou支持横转竖，land2port。</li><li>Vidu支持特效模板，template_effect。</li></ol>
+        # @param SceneType: <p>指定场景生视频。<br>注意：仅部分模型支持指定场景。</p><ol><li>Kling支持：动作控制，motion_control；数字人，avatar_i2v；对口型，lip_sync。</li><li>Mingmou支持：横转竖，land2port。</li><li>Vidu支持：特效模板，template_effect。</li></ol>
         # @type SceneType: String
-        # @param Prompt: <p>生成视频的描述。(注：最大支持2000字符)。当未传入图片时，此参数必填。</p>
+        # @param Prompt: <p>生成视频的描述。当未传入图片时，此参数必填。</p>
         # @type Prompt: String
-        # @param NegativePrompt: <p>用于描述您想要阻止模型生成的内容。<br>注意：部分模型支持。<br>例如：<br>顶部照明、明亮的色彩<br>人物、动物<br>多辆汽车、风。</p>
+        # @param NegativePrompt: <p>用于描述您想要阻止模型生成的内容。<br>注意：部分模型支持。<br>例如：<br>顶部照明、明亮的色彩。<br>人物、动物。<br>多辆汽车、风。</p>
         # @type NegativePrompt: String
-        # @param EnhancePrompt: <p>默认取值为False，模型会严格地遵循指令。如果需要更精细的prompt获得最佳效果，可将此参数设置为True，将自动优化传入的prompt，以提升生成质量。</p>
+        # @param EnhancePrompt: <p>默认取值为False，模型会严格地遵循指令。<br>如果需要更精细的prompt获得最佳效果，可将此参数设置为True，将自动优化传入的prompt，以提升生成质量。</p>
         # @type EnhancePrompt: Boolean
-        # @param ImageUrl: <p>用于指导视频生成的图片 URL。该URL需外网可访问。<br>注意：</p><ol><li>推荐图片大小不超过10M，不同模型大小限制不相同。</li><li>支持的图片格式：jpeg、png。</li><li>使用OS模型时，需输入图片尺寸为: 1280x720、720x1280。</li></ol>
+        # @param ImageUrl: <p>用于指导视频生成的图片 URL。该URL需外网可访问。<br>注意：</p><ol><li>推荐图片大小不超过10M，不同模型大小限制不相同，可查看相应模型官网获取更完整描述。</li><li>支持的图片格式：jpeg、png。</li></ol>
         # @type ImageUrl: String
-        # @param LastImageUrl: <p>模型将以此参数传入的图片作为尾帧画面来生成视频。<br>支持此参数的模型：</p><ol><li>GV，传入尾帧图片时，必须同时传入ImageUrl作为首帧。</li><li>Kling， 在Resolution:1080P的情况下 2.1版本支持首尾帧。</li><li>Vidu, q2-pro, q2-turbo 支持首尾帧。</li></ol><p>注意：</p><ol><li>推荐图片大小不超过10M，各模型限制不同。</li><li>支持的图片格式：jpeg、png。</li></ol>
+        # @param LastImageUrl: <p>模型将以此参数传入的图片作为尾帧画面来生成视频。<br>支持此参数的模型：</p><ol><li>Kling，2.0、O1、3.0、3.0-Omni 支持首尾帧。</li><li>Kling，1.6、2.1、2.5、2.6 在 Resolution:1080P 的情况下支持首尾帧。</li><li>Vidu，q2-pro、q2-turbo、q3-pro、q3-turbo 支持首尾帧。</li><li>PixVerse，v5.6、v6、c1 支持首尾帧。</li><li>Hailuo，02 支持首尾帧。</li></ol><p>注意：</p><ol><li>推荐图片大小不超过10M，各模型限制不同。</li><li>支持的图片格式：jpeg、png。</li></ol>
         # @type LastImageUrl: String
-        # @param ImageInfos: <p>最多包含三张素材资源图片的列表，用于描述模型在生成视频时要使用的资源图片。</p><p>支持多图输入的模型：</p><ol><li>GV，使用多图输入时，不可使用ImageUrl和LastImageUrl。</li><li>Vidu，支持多图参考生视频。q2模型1-7张图片，可通过ImageInfos里面的ReferenceType作为主体id来传入。</li></ol><p>注意：</p><ol><li>图片大小不超过10M。</li><li>支持的图片格式：jpeg、png。</li></ol>
+        # @param ImageInfos: <p>包含多张素材资源图片的列表，用于描述模型在生成视频时要使用的资源图片。</p><p>支持多图输入的模型：</p><ol><li>Vidu，q2、q2-pro、q3-turbo、q3、q3-mix 支持多图参考生视频。支持上传 1-7 张图片，可通过 ImageInfos 里面的 ReferenceType 作为主体 id 来传入。</li><li>Kling，O1、3.0-Omni、1.6 支持多图参考生视频。<ol><li>Kling 1.6 支持上传 1-4 张图片。</li><li>Kling O1、3.0-Omni 支持上传 1-7 张图片。当有参考视频时，支持上传 0-4 张图片。</li></ol></li><li>PixVerse，v5.6、v6、c1 支持多图参考生视频。支持上传 1-7 张图片，需要通过 ImageInfos 里面的 Text 字段传入图片名称。</li><li>H2，1.0 支持多图参数生视频。支持上传 1-9 张图片。当有参考视频时，支持上传 0-5 张图片。</li></ol><p>注意：</p><ol><li>图片大小不超过10M。</li><li>支持的图片格式：jpeg、png。</li></ol>
         # @type ImageInfos: Array
-        # @param VideoInfos: <p>目前仅Kling O1版本支持参考视频信息传入。<br>可作为特征参考视频，也可作为待编辑视频，默认为待编辑视频；可选择性保留视频原声。</p>
+        # @param VideoInfos: <p>目前仅 Kling O1、Kling 3.0-Omni、Vidu q2-pro、H2 1.0 支持参考视频信息传入。</p><ol><li>Kling O1、3.0-Omni 可作为特征参考视频，也可作为待编辑视频，默认为待编辑视频；可选择性保留视频原声。</li><li>Vidu q2-pro 支持视频参考。</li><li>H2 1.0 支持视频参考。</li></ol>
         # @type VideoInfos: Array
-        # @param Duration: <p>生成视频的时长。<br>注意：</p><ol><li>Kling支持 5、10秒。默认: 5秒。</li><li>Hailuo的std模式可支持6、10秒，其他仅6秒。默认：6秒。</li><li>Vidu支持1-10秒。</li><li>GV支持 8秒。 默认：8秒。</li><li>OS支持4、8、12秒。 默认：8秒。</li></ol>
+        # @param Duration: <p>生成视频的时长。<br>注意：</p><ol><li>Kling，默认：5 秒。<ul><li>O1 支持 3-10 秒。</li><li>3.0-Omni 支持 3-15 秒，当使用视频参考时只支持 3-10 秒。</li><li>3.0 支持 3-15 秒。</li><li>其他版本支持 5、10 秒。</li></ul></li><li>Hailuo 的 std 模式可支持 6、10 秒，其他仅 6 秒。默认：6 秒。</li><li>Vidu，默认：5 秒。<ul><li>q3-pro、q3-turbo、q3、q3-mix 支持 3-16 秒。</li><li>q2-pro、q2-turbo、q2 支持 1-10 秒。 </li></ul></li><li>PixVerse，默认：5 秒。<ul><li>v5.6 支持 5、8、10 秒。</li><li>v6、c1 支持 1-15 秒。</li></ul></li><li>H2，支持 3-15 秒，默认 ：5 秒。</li></ol>
         # @type Duration: Integer
         # @param ExtraParameters: <p>用于传入要求的额外参数。</p>
         # @type ExtraParameters: :class:`Tencentcloud::Mps.v20190612.models.AigcVideoExtraParam`
         # @param StoreCosParam: <p>文件结果指定存储Cos桶信息。 注意：需开通Cos，创建并授权MPS_QcsRole角色。</p>
         # @type StoreCosParam: :class:`Tencentcloud::Mps.v20190612.models.AigcStoreCosParam`
-        # @param AdditionalParameters: <p>用于传入一些模型需要的特殊场景参数，Json格式序列化成字符串。<br>示例：<br>{"camera_control":{"type":"simple"}}</p>
+        # @param AdditionalParameters: <p>用于传入一些模型需要的特殊场景参数、分镜prompt等，Json格式序列化成字符串。<br>示例：<br>{"camera_control":{"type":"simple"}}</p>
         # @type AdditionalParameters: String
         # @param Operator: <p>接口操作者名称。</p>
         # @type Operator: String
@@ -30760,18 +30760,18 @@ module TencentCloud
 
       # 语音全文识别片段。
       class SmartSubtitleTaskAsrFullTextSegmentItem < TencentCloud::Common::AbstractModel
-        # @param Confidence: 识别片段置信度。取值：0~100。
+        # @param Confidence: <p>识别片段置信度。取值：0~100。</p>
         # @type Confidence: Float
-        # @param StartTimeOffset: 识别片段起始的偏移时间，单位：秒。
+        # @param StartTimeOffset: <p>识别片段起始的偏移时间，单位：秒。</p>
         # @type StartTimeOffset: Float
-        # @param EndTimeOffset: 识别片段终止的偏移时间，单位：秒。
+        # @param EndTimeOffset: <p>识别片段终止的偏移时间，单位：秒。</p>
         # @type EndTimeOffset: Float
-        # @param Text: 识别文本。
+        # @param Text: <p>识别文本。</p>
         # @type Text: String
-        # @param Wordlist: 字词时间戳信息。
+        # @param Wordlist: <p>字词时间戳信息。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Wordlist: Array
-        # @param SpeakerId: 说话人ID（如启用说话人识别）
+        # @param SpeakerId: <p>说话人ID（如启用说话人识别）</p>
         # @type SpeakerId: String
 
         attr_accessor :Confidence, :StartTimeOffset, :EndTimeOffset, :Text, :Wordlist, :SpeakerId
@@ -32969,31 +32969,24 @@ module TencentCloud
 
       # 任务的事件通知配置。
       class TaskNotifyConfig < TencentCloud::Common::AbstractModel
-        # @param NotifyType: 通知类型，可选值：
-        # <li>CMQ：已下线，建议切换到TDMQ-CMQ</li>
-        # <li>TDMQ-CMQ：消息队列</li>
-        # <li>URL：指定URL时HTTP回调推送到 NotifyUrl 指定的地址，回调协议http+json，包体内容同解析事件通知接口的输出参数 </li>
-        # <li>SCF：不推荐使用，需要在控制台额外配置SCF</li>
-        # <li>AWS-SQS：AWS 队列，只适用于 AWS 任务，且要求同区域</li>
-        # <font color="red"> 注：不填或为空时默认 TDMQ-CMQ，如需采用其他类型需填写对应类型值；如果使用TDMQ-CMQ消息队列，任务回包过大可能会写入队列失败 </font>
+        # @param NotifyType: <p>通知类型，可选值：</p><li>CMQ：已下线，建议切换到TDMQ-CMQ</li><li>TDMQ-CMQ：消息队列</li><li>URL：指定URL时HTTP回调推送到 NotifyUrl 指定的地址，回调协议http+json，包体内容同解析事件通知接口的输出参数 </li><li>SCF：不推荐使用，需要在控制台额外配置SCF</li><li>AWS-SQS：AWS 队列，只适用于 AWS 任务，且要求同区域</li><font color="red"> 注：不填或为空时默认 TDMQ-CMQ，如需采用其他类型需填写对应类型值；如果使用TDMQ-CMQ消息队列，任务回包过大可能会写入队列失败 </font>
         # @type NotifyType: String
-        # @param NotifyMode: 工作流通知的模式，可取值有 Finish 和 Change，不填代表 Finish。
+        # @param NotifyMode: <p>工作流通知的模式，可取值有 Finish 和 Change，不填代表 Finish。</p>
         # @type NotifyMode: String
-        # @param NotifyUrl: HTTP回调地址，NotifyType为URL时必填。
+        # @param NotifyUrl: <p>HTTP回调地址，NotifyType为URL时必填。</p>
         # @type NotifyUrl: String
-        # @param CmqModel: CMQ或TDMQ-CMQ 的模型，有 Queue 和 Topic 两种。
+        # @param CmqModel: <p>CMQ或TDMQ-CMQ 的模型，有 Queue 和 Topic 两种。</p>
         # @type CmqModel: String
-        # @param CmqRegion: CMQ或TDMQ-CMQ 的园区，如 sh，bj 等。
+        # @param CmqRegion: <p>CMQ或TDMQ-CMQ 的园区，如 sh，bj 等。</p>
         # @type CmqRegion: String
-        # @param TopicName: 当模型为 Topic 时有效，表示接收事件通知的 CMQ 或 TDMQ-CMQ 的主题名。
+        # @param TopicName: <p>当模型为 Topic 时有效，表示接收事件通知的 CMQ 或 TDMQ-CMQ 的主题名。</p>
         # @type TopicName: String
-        # @param QueueName: 当模型为 Queue 时有效，表示接收事件通知的 CMQ 或 TDMQ-CMQ 的队列名。
+        # @param QueueName: <p>当模型为 Queue 时有效，表示接收事件通知的 CMQ 或 TDMQ-CMQ 的队列名。</p>
         # @type QueueName: String
-        # @param AwsSQS: AWS SQS 回调，NotifyType为 AWS-SQS 时必填。
-
+        # @param AwsSQS: <p>AWS SQS 回调，NotifyType为 AWS-SQS 时必填。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AwsSQS: :class:`Tencentcloud::Mps.v20190612.models.AwsSQS`
-        # @param NotifyKey: 用于生成回调签名的key。
+        # @param NotifyKey: <p>用于生成回调签名的key。</p>
         # @type NotifyKey: String
 
         attr_accessor :NotifyType, :NotifyMode, :NotifyUrl, :CmqModel, :CmqRegion, :TopicName, :QueueName, :AwsSQS, :NotifyKey

@@ -488,6 +488,45 @@ module TencentCloud
         end
       end
 
+      # BindStorageSource请求参数结构体
+      class BindStorageSourceRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: 环境ID
+        # @type EnvId: String
+        # @param StorageConfig: 存储源
+        # @type StorageConfig: :class:`Tencentcloud::Tcb.v20180608.models.ExternalStorage`
+
+        attr_accessor :EnvId, :StorageConfig
+
+        def initialize(envid=nil, storageconfig=nil)
+          @EnvId = envid
+          @StorageConfig = storageconfig
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          unless params['StorageConfig'].nil?
+            @StorageConfig = ExternalStorage.new
+            @StorageConfig.deserialize(params['StorageConfig'])
+          end
+        end
+      end
+
+      # BindStorageSource返回参数结构体
+      class BindStorageSourceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CheckTcbService请求参数结构体
       class CheckTcbServiceRequest < TencentCloud::Common::AbstractModel
 
@@ -2877,16 +2916,15 @@ module TencentCloud
 
       # DescribeEnvs请求参数结构体
       class DescribeEnvsRequest < TencentCloud::Common::AbstractModel
-        # @param EnvId: 环境ID，如果传了这个参数则只返回该环境的相关信息
+        # @param EnvId: <p>环境ID，如果传了这个参数则只返回该环境的相关信息</p>
         # @type EnvId: String
-        # @param IsVisible: 指定Channels字段为可见渠道列表或不可见渠道列表
-        # 如只想获取渠道A的环境 就填写IsVisible= true,Channels = ["A"], 过滤渠道A拉取其他渠道环境时填写IsVisible= false,Channels = ["A"]
+        # @param IsVisible: <p>指定Channels字段为可见渠道列表或不可见渠道列表<br>如只想获取渠道A的环境 就填写IsVisible= true,Channels = [&quot;A&quot;], 过滤渠道A拉取其他渠道环境时填写IsVisible= false,Channels = [&quot;A&quot;]</p>
         # @type IsVisible: Boolean
-        # @param Channels: 渠道列表，代表可见或不可见渠道由IsVisible参数指定
+        # @param Channels: <p>渠道列表，代表可见或不可见渠道由IsVisible参数指定</p>
         # @type Channels: Array
-        # @param Limit: 分页参数，单页限制个数
+        # @param Limit: <p>分页参数，单页限制个数</p>
         # @type Limit: Integer
-        # @param Offset: 分页参数，偏移量
+        # @param Offset: <p>分页参数，偏移量</p>
         # @type Offset: Integer
 
         attr_accessor :EnvId, :IsVisible, :Channels, :Limit, :Offset
@@ -2910,9 +2948,9 @@ module TencentCloud
 
       # DescribeEnvs返回参数结构体
       class DescribeEnvsResponse < TencentCloud::Common::AbstractModel
-        # @param EnvList: 环境信息列表
+        # @param EnvList: <p>环境信息列表</p>
         # @type EnvList: Array
-        # @param Total: 环境个数
+        # @param Total: <p>环境个数</p>
         # @type Total: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4201,10 +4239,14 @@ module TencentCloud
         # @type ArchitectureType: String
         # @param Recycle: <p>回收标志，默认为空</p>
         # @type Recycle: String
+        # @param Meta: <p>环境meta信息列表</p>
+        # @type Meta: Array
+        # @param PostgreSQL: <p>pg信息</p>
+        # @type PostgreSQL: Array
 
-        attr_accessor :EnvId, :Source, :Alias, :CreateTime, :UpdateTime, :Status, :Databases, :Storages, :Functions, :PackageId, :PackageName, :LogServices, :StaticStorages, :IsAutoDegrade, :EnvChannel, :PayMode, :IsDefault, :Region, :Tags, :CustomLogServices, :EnvType, :IsDauPackage, :PackageType, :ArchitectureType, :Recycle
+        attr_accessor :EnvId, :Source, :Alias, :CreateTime, :UpdateTime, :Status, :Databases, :Storages, :Functions, :PackageId, :PackageName, :LogServices, :StaticStorages, :IsAutoDegrade, :EnvChannel, :PayMode, :IsDefault, :Region, :Tags, :CustomLogServices, :EnvType, :IsDauPackage, :PackageType, :ArchitectureType, :Recycle, :Meta, :PostgreSQL
 
-        def initialize(envid=nil, source=nil, _alias=nil, createtime=nil, updatetime=nil, status=nil, databases=nil, storages=nil, functions=nil, packageid=nil, packagename=nil, logservices=nil, staticstorages=nil, isautodegrade=nil, envchannel=nil, paymode=nil, isdefault=nil, region=nil, tags=nil, customlogservices=nil, envtype=nil, isdaupackage=nil, packagetype=nil, architecturetype=nil, recycle=nil)
+        def initialize(envid=nil, source=nil, _alias=nil, createtime=nil, updatetime=nil, status=nil, databases=nil, storages=nil, functions=nil, packageid=nil, packagename=nil, logservices=nil, staticstorages=nil, isautodegrade=nil, envchannel=nil, paymode=nil, isdefault=nil, region=nil, tags=nil, customlogservices=nil, envtype=nil, isdaupackage=nil, packagetype=nil, architecturetype=nil, recycle=nil, meta=nil, postgresql=nil)
           @EnvId = envid
           @Source = source
           @Alias = _alias
@@ -4230,6 +4272,8 @@ module TencentCloud
           @PackageType = packagetype
           @ArchitectureType = architecturetype
           @Recycle = recycle
+          @Meta = meta
+          @PostgreSQL = postgresql
         end
 
         def deserialize(params)
@@ -4307,6 +4351,22 @@ module TencentCloud
           @PackageType = params['PackageType']
           @ArchitectureType = params['ArchitectureType']
           @Recycle = params['Recycle']
+          unless params['Meta'].nil?
+            @Meta = []
+            params['Meta'].each do |i|
+              kvpair_tmp = KVPair.new
+              kvpair_tmp.deserialize(i)
+              @Meta << kvpair_tmp
+            end
+          end
+          unless params['PostgreSQL'].nil?
+            @PostgreSQL = []
+            params['PostgreSQL'].each do |i|
+              postgresqlinfo_tmp = PostgreSQLInfo.new
+              postgresqlinfo_tmp.deserialize(i)
+              @PostgreSQL << postgresqlinfo_tmp
+            end
+          end
         end
       end
 
@@ -6132,6 +6192,45 @@ module TencentCloud
         end
       end
 
+      # ModifyStorageSource请求参数结构体
+      class ModifyStorageSourceRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: 环境ID
+        # @type EnvId: String
+        # @param StorageConfig: 存储源
+        # @type StorageConfig: :class:`Tencentcloud::Tcb.v20180608.models.ExternalStorage`
+
+        attr_accessor :EnvId, :StorageConfig
+
+        def initialize(envid=nil, storageconfig=nil)
+          @EnvId = envid
+          @StorageConfig = storageconfig
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          unless params['StorageConfig'].nil?
+            @StorageConfig = ExternalStorage.new
+            @StorageConfig.deserialize(params['StorageConfig'])
+          end
+        end
+      end
+
+      # ModifyStorageSource返回参数结构体
+      class ModifyStorageSourceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyUser请求参数结构体
       class ModifyUserRequest < TencentCloud::Common::AbstractModel
         # @param EnvId: 环境id
@@ -6504,6 +6603,38 @@ module TencentCloud
           @AclTag = params['AclTag']
           @EnvId = params['EnvId']
           @Rule = params['Rule']
+        end
+      end
+
+      # PostgreSQL资源信息结构体
+      class PostgreSQLInfo < TencentCloud::Common::AbstractModel
+        # @param Name: <p>数据库名称</p>
+        # @type Name: String
+        # @param InstanceName: <p>实例id</p>
+        # @type InstanceName: String
+        # @param Status: <p>实例状态</p>
+        # @type Status: Integer
+        # @param Region: <p>地域</p>
+        # @type Region: String
+        # @param Version: <p>数据库引擎版本</p>
+        # @type Version: String
+
+        attr_accessor :Name, :InstanceName, :Status, :Region, :Version
+
+        def initialize(name=nil, instancename=nil, status=nil, region=nil, version=nil)
+          @Name = name
+          @InstanceName = instancename
+          @Status = status
+          @Region = region
+          @Version = version
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @InstanceName = params['InstanceName']
+          @Status = params['Status']
+          @Region = params['Region']
+          @Version = params['Version']
         end
       end
 
@@ -7264,6 +7395,38 @@ module TencentCloud
           @ClusterId = params['ClusterId']
           @VpcId = params['VpcId']
           @VersionClbSubnetId = params['VersionClbSubnetId']
+        end
+      end
+
+      # UnbindStorageSource请求参数结构体
+      class UnbindStorageSourceRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: 环境ID
+        # @type EnvId: String
+
+        attr_accessor :EnvId
+
+        def initialize(envid=nil)
+          @EnvId = envid
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+        end
+      end
+
+      # UnbindStorageSource返回参数结构体
+      class UnbindStorageSourceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 

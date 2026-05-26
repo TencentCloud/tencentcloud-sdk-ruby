@@ -394,7 +394,7 @@ module TencentCloud
 
       # DescribeVsmAttributes请求参数结构体
       class DescribeVsmAttributesRequest < TencentCloud::Common::AbstractModel
-        # @param ResourceId: 资源Id
+        # @param ResourceId: <p>资源Id</p>
         # @type ResourceId: String
 
         attr_accessor :ResourceId
@@ -410,60 +410,62 @@ module TencentCloud
 
       # DescribeVsmAttributes返回参数结构体
       class DescribeVsmAttributesResponse < TencentCloud::Common::AbstractModel
-        # @param ResourceId: 资源Id
+        # @param ResourceId: <p>资源Id</p>
         # @type ResourceId: String
-        # @param ResourceName: 资源名称
+        # @param ResourceName: <p>资源名称</p>
         # @type ResourceName: String
-        # @param Status: 资源状态，1表示资源为正常，2表示资源处于隔离状态
+        # @param Status: <p>资源状态，1表示资源为正常，2表示资源处于隔离状态</p>
         # @type Status: Integer
-        # @param Vip: 资源IP
+        # @param Vip: <p>资源IP</p>
         # @type Vip: String
-        # @param VpcId: 资源所属Vpc
+        # @param VpcId: <p>资源所属Vpc</p>
         # @type VpcId: String
-        # @param SubnetId: 资源所属子网
+        # @param SubnetId: <p>资源所属子网</p>
         # @type SubnetId: String
-        # @param Model: 资源所属HSM的规格
+        # @param Model: <p>资源所属HSM的规格</p>
         # @type Model: String
-        # @param VsmType: 资源类型，17表示EVSM，33表示GVSM，49表示SVSM
+        # @param VsmType: <p>资源类型，17表示EVSM，33表示GVSM，49表示SVSM</p>
         # @type VsmType: Integer
-        # @param RegionId: 地域Id，返回腾讯云地域代码，如广州为1，北京为8
+        # @param RegionId: <p>地域Id，返回腾讯云地域代码，如广州为1，北京为8</p>
         # @type RegionId: Integer
-        # @param ZoneId: 区域Id，返回腾讯云每个地域的可用区代码
+        # @param ZoneId: <p>区域Id，返回腾讯云每个地域的可用区代码</p>
         # @type ZoneId: Integer
-        # @param ExpireTime: 资源过期时间，以时间戳形式展示。
+        # @param ExpireTime: <p>资源过期时间，以时间戳形式展示。</p>
         # @type ExpireTime: Integer
-        # @param SgList: 安全组详情信息,如果未配置字段返回null
+        # @param SgList: <p>安全组详情信息,如果未配置字段返回null</p>
         # @type SgList: Array
-        # @param SubnetName: 子网名
+        # @param SubnetName: <p>子网名</p>
         # @type SubnetName: String
-        # @param RegionName: 地域名
+        # @param RegionName: <p>地域名</p>
         # @type RegionName: String
-        # @param ZoneName: 区域名
+        # @param ZoneName: <p>区域名</p>
         # @type ZoneName: String
-        # @param Expired: 实例是否已经过期
+        # @param Expired: <p>实例是否已经过期</p>
         # @type Expired: Boolean
-        # @param RemainSeconds: 为正数表示实例距离过期时间剩余秒数，为负数表示实例已经过期多少秒
+        # @param RemainSeconds: <p>为正数表示实例距离过期时间剩余秒数，为负数表示实例已经过期多少秒</p>
         # @type RemainSeconds: Integer
-        # @param VpcName: 私有虚拟网络名称
+        # @param VpcName: <p>私有虚拟网络名称</p>
         # @type VpcName: String
-        # @param VpcCidrBlock: VPC的IPv4 CIDR
+        # @param VpcCidrBlock: <p>VPC的IPv4 CIDR</p>
         # @type VpcCidrBlock: String
-        # @param SubnetCidrBlock: 子网的CIDR
+        # @param SubnetCidrBlock: <p>子网的CIDR</p>
         # @type SubnetCidrBlock: String
-        # @param Tags: 资源所关联的标签Tag
+        # @param Tags: <p>资源所关联的标签Tag</p>
         # @type Tags: Array
-        # @param RenewFlag: 资源续费标识，0表示默认状态(用户未设置，即初始状态)， 1表示自动续费，2表示明确不自动续费(用户设置)
+        # @param RenewFlag: <p>资源续费标识，0表示默认状态(用户未设置，即初始状态)， 1表示自动续费，2表示明确不自动续费(用户设置)</p>
         # @type RenewFlag: Integer
-        # @param Manufacturer: 厂商
+        # @param Manufacturer: <p>厂商</p>
         # @type Manufacturer: String
-        # @param PqcFlag: 0-关闭，1-开启
+        # @param PqcFlag: <p>0-关闭，1-开启</p>
         # @type PqcFlag: Integer
+        # @param DeployEnv: <p>环境</p><p>默认值：cloud</p><p>cloud或者cdc</p>
+        # @type DeployEnv: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ResourceId, :ResourceName, :Status, :Vip, :VpcId, :SubnetId, :Model, :VsmType, :RegionId, :ZoneId, :ExpireTime, :SgList, :SubnetName, :RegionName, :ZoneName, :Expired, :RemainSeconds, :VpcName, :VpcCidrBlock, :SubnetCidrBlock, :Tags, :RenewFlag, :Manufacturer, :PqcFlag, :RequestId
+        attr_accessor :ResourceId, :ResourceName, :Status, :Vip, :VpcId, :SubnetId, :Model, :VsmType, :RegionId, :ZoneId, :ExpireTime, :SgList, :SubnetName, :RegionName, :ZoneName, :Expired, :RemainSeconds, :VpcName, :VpcCidrBlock, :SubnetCidrBlock, :Tags, :RenewFlag, :Manufacturer, :PqcFlag, :DeployEnv, :RequestId
 
-        def initialize(resourceid=nil, resourcename=nil, status=nil, vip=nil, vpcid=nil, subnetid=nil, model=nil, vsmtype=nil, regionid=nil, zoneid=nil, expiretime=nil, sglist=nil, subnetname=nil, regionname=nil, zonename=nil, expired=nil, remainseconds=nil, vpcname=nil, vpccidrblock=nil, subnetcidrblock=nil, tags=nil, renewflag=nil, manufacturer=nil, pqcflag=nil, requestid=nil)
+        def initialize(resourceid=nil, resourcename=nil, status=nil, vip=nil, vpcid=nil, subnetid=nil, model=nil, vsmtype=nil, regionid=nil, zoneid=nil, expiretime=nil, sglist=nil, subnetname=nil, regionname=nil, zonename=nil, expired=nil, remainseconds=nil, vpcname=nil, vpccidrblock=nil, subnetcidrblock=nil, tags=nil, renewflag=nil, manufacturer=nil, pqcflag=nil, deployenv=nil, requestid=nil)
           @ResourceId = resourceid
           @ResourceName = resourcename
           @Status = status
@@ -488,6 +490,7 @@ module TencentCloud
           @RenewFlag = renewflag
           @Manufacturer = manufacturer
           @PqcFlag = pqcflag
+          @DeployEnv = deployenv
           @RequestId = requestid
         end
 
@@ -530,6 +533,7 @@ module TencentCloud
           @RenewFlag = params['RenewFlag']
           @Manufacturer = params['Manufacturer']
           @PqcFlag = params['PqcFlag']
+          @DeployEnv = params['DeployEnv']
           @RequestId = params['RequestId']
         end
       end
@@ -929,62 +933,62 @@ module TencentCloud
 
       # 资源信息
       class ResourceInfo < TencentCloud::Common::AbstractModel
-        # @param ResourceId: 资源Id
+        # @param ResourceId: <p>资源Id</p>
         # @type ResourceId: String
-        # @param ResourceName: 资源名称
+        # @param ResourceName: <p>资源名称</p>
         # @type ResourceName: String
-        # @param Status: 资源状态，1-正常，2-隔离，3-销毁
+        # @param Status: <p>资源状态，1-正常，2-隔离，3-销毁</p>
         # @type Status: Integer
-        # @param Vip: 资源IP
+        # @param Vip: <p>资源IP</p>
         # @type Vip: String
-        # @param VpcId: 资源所属Vpc
+        # @param VpcId: <p>资源所属Vpc</p>
         # @type VpcId: String
-        # @param SubnetId: 资源所属子网
+        # @param SubnetId: <p>资源所属子网</p>
         # @type SubnetId: String
-        # @param Model: 资源所属HSM规格
+        # @param Model: <p>资源所属HSM规格</p>
         # @type Model: String
-        # @param VsmType: 云加密机类型id
+        # @param VsmType: <p>云加密机类型id</p>
         # @type VsmType: Integer
-        # @param RegionId: 地域Id
+        # @param RegionId: <p>地域Id</p>
         # @type RegionId: Integer
-        # @param ZoneId: 区域Id
+        # @param ZoneId: <p>区域Id</p>
         # @type ZoneId: Integer
-        # @param ExpireTime: 过期时间（Epoch Unix Timestamp）
+        # @param ExpireTime: <p>过期时间（Epoch Unix Timestamp）</p>
         # @type ExpireTime: Integer
-        # @param RegionName: 地域名
+        # @param RegionName: <p>地域名</p>
         # @type RegionName: String
-        # @param ZoneName: 区域名
+        # @param ZoneName: <p>区域名</p>
         # @type ZoneName: String
-        # @param SgList: 实例的安全组列表
+        # @param SgList: <p>实例的安全组列表</p>
         # @type SgList: Array
-        # @param SubnetName: 子网名称
+        # @param SubnetName: <p>子网名称</p>
         # @type SubnetName: String
-        # @param Expired: 当前实例是否已经过期
+        # @param Expired: <p>当前实例是否已经过期</p>
         # @type Expired: Boolean
-        # @param RemainSeconds: 为正数表示实例距离过期时间还剩余多少秒，为负数表示已经过期多少秒
+        # @param RemainSeconds: <p>为正数表示实例距离过期时间还剩余多少秒，为负数表示已经过期多少秒</p>
         # @type RemainSeconds: Integer
-        # @param VpcName: Vpc名称
+        # @param VpcName: <p>Vpc名称</p>
         # @type VpcName: String
-        # @param CreateUin: 创建者Uin账号
+        # @param CreateUin: <p>创建者Uin账号</p>
         # @type CreateUin: String
-        # @param RenewFlag: 自动续费状态标识， 0-手动续费，1-自动续费，2-到期不续
+        # @param RenewFlag: <p>自动续费状态标识， 0-手动续费，1-自动续费，2-到期不续</p>
         # @type RenewFlag: Integer
-        # @param Tags: 标签列表
+        # @param Tags: <p>标签列表</p>
         # @type Tags: Array
-        # @param Manufacturer: 厂商
+        # @param Manufacturer: <p>厂商</p>
         # @type Manufacturer: String
-        # @param AlarmStatus: 告警状态，0：停用，1：启用
+        # @param AlarmStatus: <p>告警状态，0：停用，1：启用</p>
         # @type AlarmStatus: Integer
-        # @param PqcStatus: 0不支持
-        # 1关闭
-        # 2开启
+        # @param PqcStatus: <p>0不支持<br>1关闭<br>2开启</p>
         # @type PqcStatus: Integer
-        # @param PqcFlag: 0关闭，1开启
+        # @param PqcFlag: <p>0关闭，1开启</p>
         # @type PqcFlag: Integer
+        # @param DeployEnv: <p>环境</p><p>默认值：cloud</p><p>cloud或者cdc</p>
+        # @type DeployEnv: String
 
-        attr_accessor :ResourceId, :ResourceName, :Status, :Vip, :VpcId, :SubnetId, :Model, :VsmType, :RegionId, :ZoneId, :ExpireTime, :RegionName, :ZoneName, :SgList, :SubnetName, :Expired, :RemainSeconds, :VpcName, :CreateUin, :RenewFlag, :Tags, :Manufacturer, :AlarmStatus, :PqcStatus, :PqcFlag
+        attr_accessor :ResourceId, :ResourceName, :Status, :Vip, :VpcId, :SubnetId, :Model, :VsmType, :RegionId, :ZoneId, :ExpireTime, :RegionName, :ZoneName, :SgList, :SubnetName, :Expired, :RemainSeconds, :VpcName, :CreateUin, :RenewFlag, :Tags, :Manufacturer, :AlarmStatus, :PqcStatus, :PqcFlag, :DeployEnv
 
-        def initialize(resourceid=nil, resourcename=nil, status=nil, vip=nil, vpcid=nil, subnetid=nil, model=nil, vsmtype=nil, regionid=nil, zoneid=nil, expiretime=nil, regionname=nil, zonename=nil, sglist=nil, subnetname=nil, expired=nil, remainseconds=nil, vpcname=nil, createuin=nil, renewflag=nil, tags=nil, manufacturer=nil, alarmstatus=nil, pqcstatus=nil, pqcflag=nil)
+        def initialize(resourceid=nil, resourcename=nil, status=nil, vip=nil, vpcid=nil, subnetid=nil, model=nil, vsmtype=nil, regionid=nil, zoneid=nil, expiretime=nil, regionname=nil, zonename=nil, sglist=nil, subnetname=nil, expired=nil, remainseconds=nil, vpcname=nil, createuin=nil, renewflag=nil, tags=nil, manufacturer=nil, alarmstatus=nil, pqcstatus=nil, pqcflag=nil, deployenv=nil)
           @ResourceId = resourceid
           @ResourceName = resourcename
           @Status = status
@@ -1010,6 +1014,7 @@ module TencentCloud
           @AlarmStatus = alarmstatus
           @PqcStatus = pqcstatus
           @PqcFlag = pqcflag
+          @DeployEnv = deployenv
         end
 
         def deserialize(params)
@@ -1052,6 +1057,7 @@ module TencentCloud
           @AlarmStatus = params['AlarmStatus']
           @PqcStatus = params['PqcStatus']
           @PqcFlag = params['PqcFlag']
+          @DeployEnv = params['DeployEnv']
         end
       end
 

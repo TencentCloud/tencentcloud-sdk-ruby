@@ -477,7 +477,7 @@ module TencentCloud
         end
       end
 
-      # 资源列列表信息
+      # 资源列表信息
       class AggregateResourceInfo < TencentCloud::Common::AbstractModel
         # @param ResourceType: 资源类型
         # @type ResourceType: String

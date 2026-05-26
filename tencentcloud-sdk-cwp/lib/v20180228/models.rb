@@ -16010,56 +16010,62 @@ module TencentCloud
 
       # DescribeLicenseGeneral返回参数结构体
       class DescribeLicenseGeneralResponse < TencentCloud::Common::AbstractModel
-        # @param LicenseCnt: 总授权数 (包含隔离,过期等不可用状态)
+        # @param LicenseCnt: <p>总授权数 (包含隔离,过期等不可用状态)</p>
         # @type LicenseCnt: Integer
-        # @param AvailableLicenseCnt: 可用授权数
+        # @param AvailableLicenseCnt: <p>可用授权数</p>
         # @type AvailableLicenseCnt: Integer
-        # @param AvailableProVersionLicenseCnt: 可用专业版授权数(包含后付费).
+        # @param AvailableProVersionLicenseCnt: <p>可用专业版授权数(包含后付费).</p>
         # @type AvailableProVersionLicenseCnt: Integer
-        # @param AvailableFlagshipVersionLicenseCnt: 可用旗舰版授权数
+        # @param AvailableFlagshipVersionLicenseCnt: <p>可用旗舰版授权数</p>
         # @type AvailableFlagshipVersionLicenseCnt: Integer
-        # @param NearExpiryLicenseCnt: 即将到期授权数 (15天内到期的)
+        # @param NearExpiryLicenseCnt: <p>即将到期授权数 (15天内到期的)</p>
         # @type NearExpiryLicenseCnt: Integer
-        # @param ExpireLicenseCnt: 已到期授权数(不包含已删除的记录)
+        # @param ExpireLicenseCnt: <p>已到期授权数(不包含已删除的记录)</p>
         # @type ExpireLicenseCnt: Integer
-        # @param AutoOpenStatus: 自动升级开关状态,默认 false,  true 开启, false 关闭
+        # @param AutoOpenStatus: <p>自动升级开关状态,默认 false,  true 开启, false 关闭</p>
         # @type AutoOpenStatus: Boolean
-        # @param ProtectType: PROVERSION_POSTPAY 专业版-后付费, PROVERSION_PREPAY 专业版-预付费, FLAGSHIP_PREPAY 旗舰版-预付费
+        # @param ProtectType: <p>PROVERSION_POSTPAY 专业版-后付费, PROVERSION_PREPAY 专业版-预付费, FLAGSHIP_PREPAY 旗舰版-预付费</p>
         # @type ProtectType: String
-        # @param IsOpenStatusHistory: 历史是否开通过自动升级开关
+        # @param IsOpenStatusHistory: <p>历史是否开通过自动升级开关</p>
         # @type IsOpenStatusHistory: Boolean
-        # @param UsedLicenseCnt: 已使用授权数
+        # @param UsedLicenseCnt: <p>已使用授权数</p>
         # @type UsedLicenseCnt: Integer
-        # @param NotExpiredLicenseCnt: 未到期授权数
+        # @param NotExpiredLicenseCnt: <p>未到期授权数</p>
         # @type NotExpiredLicenseCnt: Integer
-        # @param FlagshipVersionLicenseCnt: 旗舰版总授权数(有效订单)
+        # @param FlagshipVersionLicenseCnt: <p>旗舰版总授权数(有效订单)</p>
         # @type FlagshipVersionLicenseCnt: Integer
-        # @param ProVersionLicenseCnt: 专业版总授权数(有效订单)
+        # @param ProVersionLicenseCnt: <p>专业版总授权数(有效订单)</p>
         # @type ProVersionLicenseCnt: Integer
-        # @param CwpVersionLicenseCnt: 轻量版总授权数(有效订单的授权数)
+        # @param CwpVersionLicenseCnt: <p>轻量版总授权数(有效订单的授权数)</p>
         # @type CwpVersionLicenseCnt: Integer
-        # @param AvailableLHLicenseCnt: 可用惠普版授权数
+        # @param AvailableLHLicenseCnt: <p>可用惠普版授权数</p>
         # @type AvailableLHLicenseCnt: Integer
-        # @param AutoRepurchaseSwitch: 自动加购开关, true 开启, false 关闭
+        # @param AutoRepurchaseSwitch: <p>自动加购开关, true 开启, false 关闭</p>
         # @type AutoRepurchaseSwitch: Boolean
-        # @param AutoRepurchaseRenewSwitch: 自动加购订单是否自动续费 ,true 开启, false 关闭
+        # @param AutoRepurchaseRenewSwitch: <p>自动加购订单是否自动续费 ,true 开启, false 关闭</p>
         # @type AutoRepurchaseRenewSwitch: Boolean
-        # @param DestroyOrderNum: 已销毁订单数
+        # @param DestroyOrderNum: <p>已销毁订单数</p>
         # @type DestroyOrderNum: Integer
-        # @param RepurchaseRenewSwitch: 自动加购是否自动续费开关,true 开启,false 关闭
+        # @param RepurchaseRenewSwitch: <p>自动加购是否自动续费开关,true 开启,false 关闭</p>
         # @type RepurchaseRenewSwitch: Boolean
-        # @param AutoBindRaspSwitch: 是否自动新增机器绑定rasp防护,false 关闭 true 开启
+        # @param AutoBindRaspSwitch: <p>是否自动新增机器绑定rasp防护,false 关闭 true 开启</p>
         # @type AutoBindRaspSwitch: Boolean
-        # @param AutoOpenRaspSwitch: 是否自动新增机器开启rasp防护,false 关闭 true 开启
+        # @param AutoOpenRaspSwitch: <p>是否自动新增机器开启rasp防护,false 关闭 true 开启</p>
         # @type AutoOpenRaspSwitch: Boolean
-        # @param AutoDowngradeSwitch: 是否自动缩容开关开启
+        # @param AutoDowngradeSwitch: <p>是否自动缩容开关开启</p>
         # @type AutoDowngradeSwitch: Boolean
+        # @param AvailableAISecurityLicenseCnt: <p>可使用的AI防护版授权数</p>
+        # @type AvailableAISecurityLicenseCnt: Integer
+        # @param AISecurityVersionLicenseCnt: <p>AI 防护版总授权数</p>
+        # @type AISecurityVersionLicenseCnt: Integer
+        # @param ApplicationAvailableLicenseCnt: <p>应用防护授权数+旗舰版授权数相加后的可使用授权数</p>
+        # @type ApplicationAvailableLicenseCnt: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :LicenseCnt, :AvailableLicenseCnt, :AvailableProVersionLicenseCnt, :AvailableFlagshipVersionLicenseCnt, :NearExpiryLicenseCnt, :ExpireLicenseCnt, :AutoOpenStatus, :ProtectType, :IsOpenStatusHistory, :UsedLicenseCnt, :NotExpiredLicenseCnt, :FlagshipVersionLicenseCnt, :ProVersionLicenseCnt, :CwpVersionLicenseCnt, :AvailableLHLicenseCnt, :AutoRepurchaseSwitch, :AutoRepurchaseRenewSwitch, :DestroyOrderNum, :RepurchaseRenewSwitch, :AutoBindRaspSwitch, :AutoOpenRaspSwitch, :AutoDowngradeSwitch, :RequestId
+        attr_accessor :LicenseCnt, :AvailableLicenseCnt, :AvailableProVersionLicenseCnt, :AvailableFlagshipVersionLicenseCnt, :NearExpiryLicenseCnt, :ExpireLicenseCnt, :AutoOpenStatus, :ProtectType, :IsOpenStatusHistory, :UsedLicenseCnt, :NotExpiredLicenseCnt, :FlagshipVersionLicenseCnt, :ProVersionLicenseCnt, :CwpVersionLicenseCnt, :AvailableLHLicenseCnt, :AutoRepurchaseSwitch, :AutoRepurchaseRenewSwitch, :DestroyOrderNum, :RepurchaseRenewSwitch, :AutoBindRaspSwitch, :AutoOpenRaspSwitch, :AutoDowngradeSwitch, :AvailableAISecurityLicenseCnt, :AISecurityVersionLicenseCnt, :ApplicationAvailableLicenseCnt, :RequestId
 
-        def initialize(licensecnt=nil, availablelicensecnt=nil, availableproversionlicensecnt=nil, availableflagshipversionlicensecnt=nil, nearexpirylicensecnt=nil, expirelicensecnt=nil, autoopenstatus=nil, protecttype=nil, isopenstatushistory=nil, usedlicensecnt=nil, notexpiredlicensecnt=nil, flagshipversionlicensecnt=nil, proversionlicensecnt=nil, cwpversionlicensecnt=nil, availablelhlicensecnt=nil, autorepurchaseswitch=nil, autorepurchaserenewswitch=nil, destroyordernum=nil, repurchaserenewswitch=nil, autobindraspswitch=nil, autoopenraspswitch=nil, autodowngradeswitch=nil, requestid=nil)
+        def initialize(licensecnt=nil, availablelicensecnt=nil, availableproversionlicensecnt=nil, availableflagshipversionlicensecnt=nil, nearexpirylicensecnt=nil, expirelicensecnt=nil, autoopenstatus=nil, protecttype=nil, isopenstatushistory=nil, usedlicensecnt=nil, notexpiredlicensecnt=nil, flagshipversionlicensecnt=nil, proversionlicensecnt=nil, cwpversionlicensecnt=nil, availablelhlicensecnt=nil, autorepurchaseswitch=nil, autorepurchaserenewswitch=nil, destroyordernum=nil, repurchaserenewswitch=nil, autobindraspswitch=nil, autoopenraspswitch=nil, autodowngradeswitch=nil, availableaisecuritylicensecnt=nil, aisecurityversionlicensecnt=nil, applicationavailablelicensecnt=nil, requestid=nil)
           @LicenseCnt = licensecnt
           @AvailableLicenseCnt = availablelicensecnt
           @AvailableProVersionLicenseCnt = availableproversionlicensecnt
@@ -16082,6 +16088,9 @@ module TencentCloud
           @AutoBindRaspSwitch = autobindraspswitch
           @AutoOpenRaspSwitch = autoopenraspswitch
           @AutoDowngradeSwitch = autodowngradeswitch
+          @AvailableAISecurityLicenseCnt = availableaisecuritylicensecnt
+          @AISecurityVersionLicenseCnt = aisecurityversionlicensecnt
+          @ApplicationAvailableLicenseCnt = applicationavailablelicensecnt
           @RequestId = requestid
         end
 
@@ -16108,6 +16117,9 @@ module TencentCloud
           @AutoBindRaspSwitch = params['AutoBindRaspSwitch']
           @AutoOpenRaspSwitch = params['AutoOpenRaspSwitch']
           @AutoDowngradeSwitch = params['AutoDowngradeSwitch']
+          @AvailableAISecurityLicenseCnt = params['AvailableAISecurityLicenseCnt']
+          @AISecurityVersionLicenseCnt = params['AISecurityVersionLicenseCnt']
+          @ApplicationAvailableLicenseCnt = params['ApplicationAvailableLicenseCnt']
           @RequestId = params['RequestId']
         end
       end
@@ -16235,7 +16247,7 @@ module TencentCloud
 
       # DescribeLicenseWhiteConfig请求参数结构体
       class DescribeLicenseWhiteConfigRequest < TencentCloud::Common::AbstractModel
-        # @param RuleName: 规则名称,例如: cwp
+        # @param RuleName: <p>规则名称,例如: cwp</p>
         # @type RuleName: String
 
         attr_accessor :RuleName
@@ -16251,24 +16263,27 @@ module TencentCloud
 
       # DescribeLicenseWhiteConfig返回参数结构体
       class DescribeLicenseWhiteConfigResponse < TencentCloud::Common::AbstractModel
-        # @param FlagShip: 旗舰版 配置信息
+        # @param FlagShip: <p>旗舰版 配置信息</p>
         # @type FlagShip: :class:`Tencentcloud::Cwp.v20180228.models.VersionWhiteConfig`
-        # @param Professional: 专业版 配置信息
+        # @param Professional: <p>专业版 配置信息</p>
         # @type Professional: :class:`Tencentcloud::Cwp.v20180228.models.VersionWhiteConfig`
-        # @param PrattWhitney: 轻量版 配置信息
+        # @param PrattWhitney: <p>轻量版 配置信息</p>
         # @type PrattWhitney: :class:`Tencentcloud::Cwp.v20180228.models.VersionWhiteConfig`
-        # @param RASP: 重保授权包 配置信息
+        # @param RASP: <p>重保授权包 配置信息</p>
         # @type RASP: :class:`Tencentcloud::Cwp.v20180228.models.VersionWhiteConfig`
+        # @param LOG: <p>日志分析配置信息</p>
+        # @type LOG: :class:`Tencentcloud::Cwp.v20180228.models.VersionWhiteConfig`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :FlagShip, :Professional, :PrattWhitney, :RASP, :RequestId
+        attr_accessor :FlagShip, :Professional, :PrattWhitney, :RASP, :LOG, :RequestId
 
-        def initialize(flagship=nil, professional=nil, prattwhitney=nil, rasp=nil, requestid=nil)
+        def initialize(flagship=nil, professional=nil, prattwhitney=nil, rasp=nil, log=nil, requestid=nil)
           @FlagShip = flagship
           @Professional = professional
           @PrattWhitney = prattwhitney
           @RASP = rasp
+          @LOG = log
           @RequestId = requestid
         end
 
@@ -16288,6 +16303,10 @@ module TencentCloud
           unless params['RASP'].nil?
             @RASP = VersionWhiteConfig.new
             @RASP.deserialize(params['RASP'])
+          end
+          unless params['LOG'].nil?
+            @LOG = VersionWhiteConfig.new
+            @LOG.deserialize(params['LOG'])
           end
           @RequestId = params['RequestId']
         end

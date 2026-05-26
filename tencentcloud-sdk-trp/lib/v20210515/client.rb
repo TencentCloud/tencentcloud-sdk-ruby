@@ -703,6 +703,174 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 统计用户次数
+
+        # @param request: Request instance for DescribeFlavorKingCycleBrandImportantCityScanAnalysis.
+        # @type request: :class:`Tencentcloud::trp::V20210515::DescribeFlavorKingCycleBrandImportantCityScanAnalysisRequest`
+        # @rtype: :class:`Tencentcloud::trp::V20210515::DescribeFlavorKingCycleBrandImportantCityScanAnalysisResponse`
+        def DescribeFlavorKingCycleBrandImportantCityScanAnalysis(request)
+          body = send_request('DescribeFlavorKingCycleBrandImportantCityScanAnalysis', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeFlavorKingCycleBrandImportantCityScanAnalysisResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 统计用户次数
+
+        # @param request: Request instance for DescribeFlavorKingCycleBrandImportantProvinceScanAnalysis.
+        # @type request: :class:`Tencentcloud::trp::V20210515::DescribeFlavorKingCycleBrandImportantProvinceScanAnalysisRequest`
+        # @rtype: :class:`Tencentcloud::trp::V20210515::DescribeFlavorKingCycleBrandImportantProvinceScanAnalysisResponse`
+        def DescribeFlavorKingCycleBrandImportantProvinceScanAnalysis(request)
+          body = send_request('DescribeFlavorKingCycleBrandImportantProvinceScanAnalysis', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeFlavorKingCycleBrandImportantProvinceScanAnalysisResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 统计用户次数
+
+        # @param request: Request instance for DescribeFlavorKingCycleBrandImportantProvinceUserAnalysis.
+        # @type request: :class:`Tencentcloud::trp::V20210515::DescribeFlavorKingCycleBrandImportantProvinceUserAnalysisRequest`
+        # @rtype: :class:`Tencentcloud::trp::V20210515::DescribeFlavorKingCycleBrandImportantProvinceUserAnalysisResponse`
+        def DescribeFlavorKingCycleBrandImportantProvinceUserAnalysis(request)
+          body = send_request('DescribeFlavorKingCycleBrandImportantProvinceUserAnalysis', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeFlavorKingCycleBrandImportantProvinceUserAnalysisResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 统计用户次数
+
+        # @param request: Request instance for DescribeFlavorKingCycleBrandProvinceCityScanAnalysis.
+        # @type request: :class:`Tencentcloud::trp::V20210515::DescribeFlavorKingCycleBrandProvinceCityScanAnalysisRequest`
+        # @rtype: :class:`Tencentcloud::trp::V20210515::DescribeFlavorKingCycleBrandProvinceCityScanAnalysisResponse`
+        def DescribeFlavorKingCycleBrandProvinceCityScanAnalysis(request)
+          body = send_request('DescribeFlavorKingCycleBrandProvinceCityScanAnalysis', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeFlavorKingCycleBrandProvinceCityScanAnalysisResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 统计用户次数
+
+        # @param request: Request instance for DescribeFlavorKingCycleBrandProvinceScanAnalysis.
+        # @type request: :class:`Tencentcloud::trp::V20210515::DescribeFlavorKingCycleBrandProvinceScanAnalysisRequest`
+        # @rtype: :class:`Tencentcloud::trp::V20210515::DescribeFlavorKingCycleBrandProvinceScanAnalysisResponse`
+        def DescribeFlavorKingCycleBrandProvinceScanAnalysis(request)
+          body = send_request('DescribeFlavorKingCycleBrandProvinceScanAnalysis', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeFlavorKingCycleBrandProvinceScanAnalysisResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 统计扫码次数
+
+        # @param request: Request instance for DescribeFlavorKingCycleBrandScanAnalysis.
+        # @type request: :class:`Tencentcloud::trp::V20210515::DescribeFlavorKingCycleBrandScanAnalysisRequest`
+        # @rtype: :class:`Tencentcloud::trp::V20210515::DescribeFlavorKingCycleBrandScanAnalysisResponse`
+        def DescribeFlavorKingCycleBrandScanAnalysis(request)
+          body = send_request('DescribeFlavorKingCycleBrandScanAnalysis', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeFlavorKingCycleBrandScanAnalysisResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 统计用户次数
+
+        # @param request: Request instance for DescribeFlavorKingCycleBrandScanMetrics.
+        # @type request: :class:`Tencentcloud::trp::V20210515::DescribeFlavorKingCycleBrandScanMetricsRequest`
+        # @rtype: :class:`Tencentcloud::trp::V20210515::DescribeFlavorKingCycleBrandScanMetricsResponse`
+        def DescribeFlavorKingCycleBrandScanMetrics(request)
+          body = send_request('DescribeFlavorKingCycleBrandScanMetrics', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeFlavorKingCycleBrandScanMetricsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取异步任务的输出地址
 
         # @param request: Request instance for DescribeJobFileUrl.
@@ -1050,6 +1218,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeTraceDataListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 地理位置信息下载
+
+        # @param request: Request instance for DownloadGEO.
+        # @type request: :class:`Tencentcloud::trp::V20210515::DownloadGEORequest`
+        # @rtype: :class:`Tencentcloud::trp::V20210515::DownloadGEOResponse`
+        def DownloadGEO(request)
+          body = send_request('DownloadGEO', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DownloadGEOResponse.new
             model.deserialize(response['Response'])
             model
           else

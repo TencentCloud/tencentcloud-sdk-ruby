@@ -1124,33 +1124,28 @@ module TencentCloud
 
       # 抄送信息
       class CcInfo < TencentCloud::Common::AbstractModel
-        # @param Mobile: 被抄送方手机号码， 支持中国大陆手机号11位数字(无需加+86前缀或其他字符)。
-        # 请确认手机号所有方为此业务通知方。
+        # @param Mobile: <p>被抄送方手机号码， 支持中国大陆手机号11位数字(无需加+86前缀或其他字符)。<br>请确认手机号所有方为此业务通知方。</p>
         # @type Mobile: String
-        # @param Name: 被抄送方姓名。
-        # 抄送方的姓名将用于身份认证，请确保填写的姓名为抄送方的真实姓名，而非昵称等代名。
+        # @param Name: <p>被抄送方姓名。<br>抄送方的姓名将用于身份认证，请确保填写的姓名为抄送方的真实姓名，而非昵称等代名。</p>
         # @type Name: String
-        # @param CcType: 被抄送方类型, 可设置以下类型:
-        # <ul><li> **0** :个人抄送方</li>
-        # <li> **1** :企业员工抄送方</li></ul>
+        # @param CcType: <p>被抄送方类型, 可设置以下类型:</p><ul><li> **0** :个人抄送方</li><li> **1** :企业员工抄送方</li></ul>
         # @type CcType: Integer
-        # @param CcPermission: 被抄送方权限, 可设置如下权限:
-        # <ul><li> **0** :可查看合同内容</li>
-        # <li> **1** :可查看合同内容也可下载原文</li></ul>
+        # @param CcPermission: <p>被抄送方权限, 可设置如下权限:</p><ul><li> **0** :可查看合同内容</li><li> **1** :可查看合同内容也可下载原文</li></ul>
         # @type CcPermission: Integer
-        # @param NotifyType: 通知签署方经办人的方式,  有以下途径:
-        # <ul><li> **sms** :  (默认)短信</li>
-        # <li> **none** : 不通知</li></ul>
+        # @param NotifyType: <p>通知签署方经办人的方式,  有以下途径:</p><ul><li> **sms** :  (默认)短信</li><li> **none** : 不通知</li></ul>
         # @type NotifyType: String
+        # @param OrganizationName: <p>被抄送方企业名称。<br>请确认该名称与企业营业执照中注册的名称一致。<br>如果名称中包含英文括号()，请使用中文括号（）代替。</p><p>注意:<br><font color="red">此为白名单功能，需要联系客户经理，开通白名单后才能使用。</font><br>使用文档 <a href="https://qian.tencent.com/developers/company/enterprise_inbox">签署方/抄送方仅指定企业名称发起合同</a></p>
+        # @type OrganizationName: String
 
-        attr_accessor :Mobile, :Name, :CcType, :CcPermission, :NotifyType
+        attr_accessor :Mobile, :Name, :CcType, :CcPermission, :NotifyType, :OrganizationName
 
-        def initialize(mobile=nil, name=nil, cctype=nil, ccpermission=nil, notifytype=nil)
+        def initialize(mobile=nil, name=nil, cctype=nil, ccpermission=nil, notifytype=nil, organizationname=nil)
           @Mobile = mobile
           @Name = name
           @CcType = cctype
           @CcPermission = ccpermission
           @NotifyType = notifytype
+          @OrganizationName = organizationname
         end
 
         def deserialize(params)
@@ -1159,6 +1154,7 @@ module TencentCloud
           @CcType = params['CcType']
           @CcPermission = params['CcPermission']
           @NotifyType = params['NotifyType']
+          @OrganizationName = params['OrganizationName']
         end
       end
 

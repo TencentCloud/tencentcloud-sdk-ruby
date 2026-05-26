@@ -4702,35 +4702,37 @@ module TencentCloud
 
       # AIGC生图任务输入文件信息
       class AigcImageTaskInputFileInfo < TencentCloud::Common::AbstractModel
-        # @param Type: 输入的视频文件类型。取值有： <li>File：点播媒体文件；</li> <li>Url：可访问的 Url；</li>
+        # @param Type: <p>输入的文件类型。取值有： <li>File：点播媒体文件；</li> <li>Url：可访问的 Url；</li>  <li>Base64：图片或视频转换的Base64字符串；</li></p>
         # @type Type: String
-        # @param FileId: 图片文件的媒体文件 ID，即该文件在云点播上的全局唯一标识符，在上传成功后由云点播后台分配。可以在 [视频上传完成事件通知](/document/product/266/7830) 或 [云点播控制台](https://console.cloud.tencent.com/vod/media) 获取该字段。当 Type 取值为 File 时，本参数有效。
-        # 说明：
-        # 1. 推荐使用小于7M的图片；
-        # 2. 图片格式的取值为：jpeg，jpg, png, webp。
+        # @param FileId: <p>图片文件的媒体文件 ID，即该文件在云点播上的全局唯一标识符，在上传成功后由云点播后台分配。可以在 <a href="/document/product/266/7830">视频上传完成事件通知</a> 或 <a href="https://console.cloud.tencent.com/vod/media">云点播控制台</a> 获取该字段。当 Type 取值为 File 时，本参数有效。<br>说明：</p><ol><li>推荐使用小于7M的图片；</li><li>图片格式的取值为：jpeg，jpg, png, webp。</li></ol>
         # @type FileId: String
-        # @param Url: 可访问的文件 URL。当 Type 取值为 Url 时，本参数有效。
-        # 说明：
-        # 1. 推荐使用小于7M的图片；
-        # 2. 图片格式的取值为：jpeg，jpg, png, webp。
+        # @param Url: <p>可访问的文件 URL。当 Type 取值为 Url 时，本参数有效。<br>说明：</p><ol><li>推荐使用小于7M的图片；</li><li>图片格式的取值为：jpeg，jpg, png, webp。</li></ol>
         # @type Url: String
-        # @param Text: 输入图片的描述信息，用于帮助模型理解图片。仅GEM 2.5、GEM 3.0 有效。
+        # @param Base64: <p>可访问的文件 Base64。当 Type 取值为 Base64 时，本参数有效。说明：</p><ol><li>所有文件的文件大小总和不能超过 7 MB，避免转为 Base64 后超出云 API 的 10 MB包大小上限；</li><li>图片格式应为：jpeg，jpg, png, webp；</li><li>不要有data:image/jpeg;base64,之类的前缀。</li></ol>
+        # @type Base64: String
+        # @param Text: <p>输入图片的描述信息，用于帮助模型理解图片。仅GEM 2.5、GEM 3.0 有效。</p>
         # @type Text: String
+        # @param ReferenceType: <p><strong>仅当 ModelName 为 OG 时有效</strong>。图片类型。</p><p>枚举值：</p><ul><li>mask： 图片蒙版。</li></ul>
+        # @type ReferenceType: String
 
-        attr_accessor :Type, :FileId, :Url, :Text
+        attr_accessor :Type, :FileId, :Url, :Base64, :Text, :ReferenceType
 
-        def initialize(type=nil, fileid=nil, url=nil, text=nil)
+        def initialize(type=nil, fileid=nil, url=nil, base64=nil, text=nil, referencetype=nil)
           @Type = type
           @FileId = fileid
           @Url = url
+          @Base64 = base64
           @Text = text
+          @ReferenceType = referencetype
         end
 
         def deserialize(params)
           @Type = params['Type']
           @FileId = params['FileId']
           @Url = params['Url']
+          @Base64 = params['Base64']
           @Text = params['Text']
+          @ReferenceType = params['ReferenceType']
         end
       end
 
@@ -5278,7 +5280,7 @@ module TencentCloud
 
       # AIGC 生视频任务输入的图片文件信息。
       class AigcVideoTaskInputFileInfo < TencentCloud::Common::AbstractModel
-        # @param Type: <p>输入的视频文件类型。取值有： <li>File：点播媒体文件；</li> <li>Url：可访问的 Url；</li></p>
+        # @param Type: <p>输入的视频文件类型。取值有： <li>File：点播媒体文件；</li> <li>Url：可访问的 Url；</li> <li>Base64：图片或视频转换的Base64字符串；</li></p>
         # @type Type: String
         # @param Category: <p>文件分类。取值为：</p><ul><li>Image: 图片；<strong>注意，要使用Usage字段定义图片类型</strong>。</li><li>Video: 视频。</li></ul>
         # @type Category: String
@@ -5286,6 +5288,8 @@ module TencentCloud
         # @type FileId: String
         # @param Url: <p>可访问的文件 URL。当 Type 取值为 Url 时，本参数有效。<br>说明：</p><ol><li>推荐使用小于10M的图片；</li><li>图片格式的取值为：jpeg，jpg, png。</li></ol>
         # @type Url: String
+        # @param Base64: <p>可访问的文件 Base64。当 Type 取值为 Base64 时，本参数有效。说明：</p><ol><li>所有文件的文件大小总和不能超过7MB，避免转为 Base64 后超出云API的10MB包大小上限；</li><li>图片格式应为：jpeg，jpg, png, webp。</li><li>视频格式应为：mp4, mov, avi。</li><li>不要有data:image/jpeg;base64,之类的前缀。</li></ol>
+        # @type Base64: String
         # @param ReferenceType: <p>参考类型，GV、Kling、PixVerse模型适用。<br>注意：<br>当使用 GV 模型时，可作为参考方式，可选值：asset 表示素材、style 表示风格；<br>当使用 Kling 模型以及 Category 为 Video 时，可区分参考视频类型，feature 表示特征参考视频，base 表示待编辑视频；<br>当使用 PixVerse 模型时，可用于多图（主体）参考生模式，可选值：subject 表示主体、background 表示背景；</p>
         # @type ReferenceType: String
         # @param ObjectId: <p>用法：Vidu主体Id。<br>Vidu主体Id：prompt可以通过 @主体Id 的方式使用。当 Category 为 Image 时有效。</p>
@@ -5299,13 +5303,14 @@ module TencentCloud
         # @param Text: <p><strong>仅 PixVerse 模型的多图（主体）参考生模式生效</strong>，针对图片指定名字, 用来更精准效果。用法：当本字段值为“小猫”，在 Prompt 中使用 @小猫 精确描述场景。@Text 后必须有空格，如 @小猫 跑步。Prompt 中引用的名称必须与本字段完全一致。</p>
         # @type Text: String
 
-        attr_accessor :Type, :Category, :FileId, :Url, :ReferenceType, :ObjectId, :VoiceId, :KeepOriginalSound, :Usage, :Text
+        attr_accessor :Type, :Category, :FileId, :Url, :Base64, :ReferenceType, :ObjectId, :VoiceId, :KeepOriginalSound, :Usage, :Text
 
-        def initialize(type=nil, category=nil, fileid=nil, url=nil, referencetype=nil, objectid=nil, voiceid=nil, keeporiginalsound=nil, usage=nil, text=nil)
+        def initialize(type=nil, category=nil, fileid=nil, url=nil, base64=nil, referencetype=nil, objectid=nil, voiceid=nil, keeporiginalsound=nil, usage=nil, text=nil)
           @Type = type
           @Category = category
           @FileId = fileid
           @Url = url
+          @Base64 = base64
           @ReferenceType = referencetype
           @ObjectId = objectid
           @VoiceId = voiceid
@@ -5319,6 +5324,7 @@ module TencentCloud
           @Category = params['Category']
           @FileId = params['FileId']
           @Url = params['Url']
+          @Base64 = params['Base64']
           @ReferenceType = params['ReferenceType']
           @ObjectId = params['ObjectId']
           @VoiceId = params['VoiceId']
@@ -5362,13 +5368,16 @@ module TencentCloud
 
       # AIGC 生视频任务的输出信息。
       class AigcVideoTaskOutput < TencentCloud::Common::AbstractModel
-        # @param FileInfos: AIGC 生视频任务的输出文件信息。
+        # @param FileInfos: <p>AIGC 生视频任务的输出文件信息。</p>
         # @type FileInfos: Array
+        # @param ProcedureTaskIds: <p>任务类型为 Procedure 的任务 ID。若发起<a href="https://cloud.tencent.com/document/product/266/126239">创建 AIGC 生视频任务</a>时指定了任务流模板(Procedure)，当该任务流模板指定了 MediaProcessTask、AiAnalysisTask、AiRecognitionTask 中的一个或多个时发起该任务。</p>
+        # @type ProcedureTaskIds: Array
 
-        attr_accessor :FileInfos
+        attr_accessor :FileInfos, :ProcedureTaskIds
 
-        def initialize(fileinfos=nil)
+        def initialize(fileinfos=nil, proceduretaskids=nil)
           @FileInfos = fileinfos
+          @ProcedureTaskIds = proceduretaskids
         end
 
         def deserialize(params)
@@ -5380,6 +5389,7 @@ module TencentCloud
               @FileInfos << aigcvideotaskoutputfileinfo_tmp
             end
           end
+          @ProcedureTaskIds = params['ProcedureTaskIds']
         end
       end
 
@@ -9252,6 +9262,8 @@ module TencentCloud
         # @type InputRegion: String
         # @param SceneType: <p>场景类型。取值如下：</p><li>当 ModelName 为 Kling 时：    motion_control 表示动作控制；    avatar_i2v 表示数字人；    lip_sync 表示对口型；</li><li>当 ModelName 为 Vidu 时：    template_effect 表示特效模板；</li><li>其他 ModelName 暂不支持。</li>
         # @type SceneType: String
+        # @param Procedure: <p><a href="https://cloud.tencent.com/document/product/266/33475#.E4.BB.BB.E5.8A.A1.E6.B5.81">任务流名称</a>，在需要对生成的新视频执行任务流时填写。</p>
+        # @type Procedure: String
         # @param Seed: <p>模型随机种子。</p>
         # @type Seed: Integer
         # @param SessionId: <p>用于去重的识别码，如果三天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长 50 个字符，不带或者带空字符串表示不做去重。</p>
@@ -9263,9 +9275,9 @@ module TencentCloud
         # @param ExtInfo: <p>保留字段，特殊用途时使用。<br>可用于传入模型特殊参数、分镜prompt等</p>
         # @type ExtInfo: String
 
-        attr_accessor :SubAppId, :ModelName, :ModelVersion, :FileInfos, :SubjectInfos, :LastFrameFileId, :LastFrameUrl, :Prompt, :NegativePrompt, :EnhancePrompt, :OutputConfig, :InputRegion, :SceneType, :Seed, :SessionId, :SessionContext, :TasksPriority, :ExtInfo
+        attr_accessor :SubAppId, :ModelName, :ModelVersion, :FileInfos, :SubjectInfos, :LastFrameFileId, :LastFrameUrl, :Prompt, :NegativePrompt, :EnhancePrompt, :OutputConfig, :InputRegion, :SceneType, :Procedure, :Seed, :SessionId, :SessionContext, :TasksPriority, :ExtInfo
 
-        def initialize(subappid=nil, modelname=nil, modelversion=nil, fileinfos=nil, subjectinfos=nil, lastframefileid=nil, lastframeurl=nil, prompt=nil, negativeprompt=nil, enhanceprompt=nil, outputconfig=nil, inputregion=nil, scenetype=nil, seed=nil, sessionid=nil, sessioncontext=nil, taskspriority=nil, extinfo=nil)
+        def initialize(subappid=nil, modelname=nil, modelversion=nil, fileinfos=nil, subjectinfos=nil, lastframefileid=nil, lastframeurl=nil, prompt=nil, negativeprompt=nil, enhanceprompt=nil, outputconfig=nil, inputregion=nil, scenetype=nil, procedure=nil, seed=nil, sessionid=nil, sessioncontext=nil, taskspriority=nil, extinfo=nil)
           @SubAppId = subappid
           @ModelName = modelname
           @ModelVersion = modelversion
@@ -9279,6 +9291,7 @@ module TencentCloud
           @OutputConfig = outputconfig
           @InputRegion = inputregion
           @SceneType = scenetype
+          @Procedure = procedure
           @Seed = seed
           @SessionId = sessionid
           @SessionContext = sessioncontext
@@ -9317,6 +9330,7 @@ module TencentCloud
           end
           @InputRegion = params['InputRegion']
           @SceneType = params['SceneType']
+          @Procedure = params['Procedure']
           @Seed = params['Seed']
           @SessionId = params['SessionId']
           @SessionContext = params['SessionContext']

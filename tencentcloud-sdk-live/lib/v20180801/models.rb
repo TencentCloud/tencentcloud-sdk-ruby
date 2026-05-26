@@ -1369,56 +1369,46 @@ module TencentCloud
 
       # 导播台信息
       class CasterInfo < TencentCloud::Common::AbstractModel
-        # @param CasterId: 导播台ID
+        # @param CasterId: <p>导播台ID</p>
         # @type CasterId: Integer
-        # @param CasterName: 导播台名称
+        # @param CasterName: <p>导播台名称</p>
         # @type CasterName: String
-        # @param StartLiveTime: 导播台上一次启动pgm的时间，值为unix时间戳。
+        # @param StartLiveTime: <p>导播台上一次启动pgm的时间，值为unix时间戳。</p>
         # @type StartLiveTime: Integer
-        # @param Description: 导播台的描述
+        # @param Description: <p>导播台的描述</p>
         # @type Description: String
-        # @param CreateTime: 导播台创建时间，值为unix时间戳。
+        # @param CreateTime: <p>导播台创建时间，值为unix时间戳。</p>
         # @type CreateTime: Integer
-        # @param Status: 导播台状态
-        # 0：停止状态，无预监，无主监
-        # 1：无预监，有主监
-        # 2：有预监，无主监
-        # 3：有预监，有主监
+        # @param Status: <p>导播台状态<br>0：停止状态，无预监，无主监<br>1：无预监，有主监<br>2：有预监，无主监<br>3：有预监，有主监</p>
         # @type Status: Integer
-        # @param ExpireTime: 导播台的过期时间戳。值为-1或unix时间戳。
-        # 默认值为-1。 当值为-1时，表示该导播台永不过期。
-        # 当值为正常unix时间戳时，导播台将在该时间过期。
-        # 导播台过期后，预监与主监画面将自动停止，转推自动停止。
-        # 点播、直播url将停止转拉，推流url需自行停止推流。
+        # @param ExpireTime: <p>导播台的过期时间戳。值为-1或unix时间戳。<br>默认值为-1。 当值为-1时，表示该导播台永不过期。<br>当值为正常unix时间戳时，导播台将在该时间过期。<br>导播台过期后，预监与主监画面将自动停止，转推自动停止。<br>点播、直播url将停止转拉，推流url需自行停止推流。</p>
         # @type ExpireTime: Integer
-        # @param DelayTime: 导播台延时播放时间，单位为秒。
+        # @param DelayTime: <p>导播台延时播放时间，单位为秒。</p>
         # @type DelayTime: Integer
-        # @param PgmWidth: 导播台主监输出的宽度，单位为像素。
+        # @param PgmWidth: <p>导播台主监输出的宽度，单位为像素。</p>
         # @type PgmWidth: Integer
-        # @param PgmHeight: 导播台主监输出的高度，单位为像素。
+        # @param PgmHeight: <p>导播台主监输出的高度，单位为像素。</p>
         # @type PgmHeight: Integer
-        # @param PgmFps: 导播台主监输出的帧率。
+        # @param PgmFps: <p>导播台主监输出的帧率。</p>
         # @type PgmFps: Integer
-        # @param PgmBitRate: 导播台主监输出的码率，单位为kbps
+        # @param PgmBitRate: <p>导播台主监输出的码率，单位为kbps</p>
         # @type PgmBitRate: Integer
-        # @param PgmAudioBitRate: 导播台主监输出的音频码率，单位为kbps。
+        # @param PgmAudioBitRate: <p>导播台主监输出的音频码率，单位为kbps。</p>
         # @type PgmAudioBitRate: Integer
-        # @param FeeType: 导播台的计费类型。
-        # 0 通用型 1 播单型。
-        # 注： 本参数暂无作用。
+        # @param FeeType: <p>导播台的计费类型。<br>0 通用型 1 播单型。<br>注： 本参数暂无作用。</p>
         # @type FeeType: Integer
-        # @param RecordTemplateId: 录制模板id。
+        # @param RecordTemplateId: <p>录制模板id。</p>
         # @type RecordTemplateId: Integer
-        # @param RecordStatus: 录制状态。
-        # 0：未录制
-        # 1：录制中
+        # @param RecordStatus: <p>录制状态。<br>0：未录制<br>1：录制中</p>
         # @type RecordStatus: Integer
-        # @param RecordTaskId: 录制接口返回的taskid
+        # @param RecordTaskId: <p>录制接口返回的taskid</p>
         # @type RecordTaskId: String
+        # @param PgmVcodec: <p>导播台主监输出的编码方式</p><p>枚举值：</p><ul><li>h264： h264编码</li><li>h265： h265编码</li></ul><p>默认值：h264</p>
+        # @type PgmVcodec: String
 
-        attr_accessor :CasterId, :CasterName, :StartLiveTime, :Description, :CreateTime, :Status, :ExpireTime, :DelayTime, :PgmWidth, :PgmHeight, :PgmFps, :PgmBitRate, :PgmAudioBitRate, :FeeType, :RecordTemplateId, :RecordStatus, :RecordTaskId
+        attr_accessor :CasterId, :CasterName, :StartLiveTime, :Description, :CreateTime, :Status, :ExpireTime, :DelayTime, :PgmWidth, :PgmHeight, :PgmFps, :PgmBitRate, :PgmAudioBitRate, :FeeType, :RecordTemplateId, :RecordStatus, :RecordTaskId, :PgmVcodec
 
-        def initialize(casterid=nil, castername=nil, startlivetime=nil, description=nil, createtime=nil, status=nil, expiretime=nil, delaytime=nil, pgmwidth=nil, pgmheight=nil, pgmfps=nil, pgmbitrate=nil, pgmaudiobitrate=nil, feetype=nil, recordtemplateid=nil, recordstatus=nil, recordtaskid=nil)
+        def initialize(casterid=nil, castername=nil, startlivetime=nil, description=nil, createtime=nil, status=nil, expiretime=nil, delaytime=nil, pgmwidth=nil, pgmheight=nil, pgmfps=nil, pgmbitrate=nil, pgmaudiobitrate=nil, feetype=nil, recordtemplateid=nil, recordstatus=nil, recordtaskid=nil, pgmvcodec=nil)
           @CasterId = casterid
           @CasterName = castername
           @StartLiveTime = startlivetime
@@ -1436,6 +1426,7 @@ module TencentCloud
           @RecordTemplateId = recordtemplateid
           @RecordStatus = recordstatus
           @RecordTaskId = recordtaskid
+          @PgmVcodec = pgmvcodec
         end
 
         def deserialize(params)
@@ -1456,6 +1447,7 @@ module TencentCloud
           @RecordTemplateId = params['RecordTemplateId']
           @RecordStatus = params['RecordStatus']
           @RecordTaskId = params['RecordTaskId']
+          @PgmVcodec = params['PgmVcodec']
         end
       end
 
@@ -2768,52 +2760,34 @@ module TencentCloud
 
       # CreateCaster请求参数结构体
       class CreateCasterRequest < TencentCloud::Common::AbstractModel
-        # @param CasterName: 导播台名称
+        # @param CasterName: <p>导播台名称</p>
         # @type CasterName: String
-        # @param Description: 导播台的描述
-        # 最大允许长度256
+        # @param Description: <p>导播台的描述<br>最大允许长度256</p>
         # @type Description: String
-        # @param ExpireTime: 导播台的过期时间戳。值为-1或unix时间戳。
-        # 默认值为-1。
-        # 当值为-1时，表示该导播台永不过期。
-        # 当值为正常unix时间戳时，导播台将在该时间过期。
-        # 导播台过期后，预监与主监画面将自动停止，转推自动停止。
-        # 点播、直播url将停止转拉，推流url需自行停止推流。
+        # @param ExpireTime: <p>导播台的过期时间戳。值为-1或unix时间戳。<br>默认值为-1。<br>当值为-1时，表示该导播台永不过期。<br>当值为正常unix时间戳时，导播台将在该时间过期。<br>导播台过期后，预监与主监画面将自动停止，转推自动停止。<br>点播、直播url将停止转拉，推流url需自行停止推流。</p>
         # @type ExpireTime: Integer
-        # @param DelayTime: 导播台延时播放时间，单位为秒。
-        # 默认为0，最大支持300秒
+        # @param DelayTime: <p>导播台延时播放时间，单位为秒。<br>默认为0，最大支持300秒</p>
         # @type DelayTime: Integer
-        # @param TransitionType: 导播台转场类型。
-        # 默认为空。
-        # 允许使用通过DescribeCasterTransitionTypes接口中查询到的转场类型。
+        # @param TransitionType: <p>导播台转场类型。<br>默认为空。<br>允许使用通过DescribeCasterTransitionTypes接口中查询到的转场类型。</p>
         # @type TransitionType: String
-        # @param PgmWidth: 导播台主监输出的宽度，单位为像素。
-        # 默认为1280，最大允许4096。
+        # @param PgmWidth: <p>导播台主监输出的宽度，单位为像素。<br>默认为1280，最大允许4096。</p>
         # @type PgmWidth: Integer
-        # @param PgmHeight: 导播台主监输出的高度，单位为像素。
-        # 默认为720，最大允许2160。
+        # @param PgmHeight: <p>导播台主监输出的高度，单位为像素。<br>默认为720，最大允许2160。</p>
         # @type PgmHeight: Integer
-        # @param PgmFps: 导播台主监输出的帧率。
-        # 默认为0，表示随源输出。
-        # 最大支持60。
+        # @param PgmFps: <p>导播台主监输出的帧率。<br>默认为0，表示随源输出。<br>最大支持60。</p>
         # @type PgmFps: Integer
-        # @param PgmBitRate: 导播台主监输出的码率，单位为kbps。
-        # 默认为0，表示随源的码率输出。
-        # 最大允许10000kbps。
+        # @param PgmBitRate: <p>导播台主监输出的码率，单位为kbps。<br>默认为0，表示随源的码率输出。<br>最大允许10000kbps。</p>
         # @type PgmBitRate: Integer
-        # @param FeeType: 导播台的计费类型。
-        # 0 通用型
-        # 1 播单型。
-        # 注： 本参数暂无作用。
+        # @param FeeType: <p>导播台的计费类型。<br>0 通用型<br>1 播单型。<br>注： 本参数暂无作用。</p>
         # @type FeeType: Integer
-        # @param PgmAudioBitRate: 导播台主监输出的音频码率，单位为kbps。
-        # 可选项：[0, 128, 192, 256]
-        # 默认值为0，表示随源的音频码率输出。
+        # @param PgmAudioBitRate: <p>导播台主监输出的音频码率，单位为kbps。<br>可选项：[0, 128, 192, 256]<br>默认值为0，表示随源的音频码率输出。</p>
         # @type PgmAudioBitRate: Integer
+        # @param PgmVcodec: <p>导播台主监输出的编码方式</p><p>枚举值：</p><ul><li>h264： h264编码</li><li>h265： h265编码</li></ul><p>默认值：h264</p>
+        # @type PgmVcodec: String
 
-        attr_accessor :CasterName, :Description, :ExpireTime, :DelayTime, :TransitionType, :PgmWidth, :PgmHeight, :PgmFps, :PgmBitRate, :FeeType, :PgmAudioBitRate
+        attr_accessor :CasterName, :Description, :ExpireTime, :DelayTime, :TransitionType, :PgmWidth, :PgmHeight, :PgmFps, :PgmBitRate, :FeeType, :PgmAudioBitRate, :PgmVcodec
 
-        def initialize(castername=nil, description=nil, expiretime=nil, delaytime=nil, transitiontype=nil, pgmwidth=nil, pgmheight=nil, pgmfps=nil, pgmbitrate=nil, feetype=nil, pgmaudiobitrate=nil)
+        def initialize(castername=nil, description=nil, expiretime=nil, delaytime=nil, transitiontype=nil, pgmwidth=nil, pgmheight=nil, pgmfps=nil, pgmbitrate=nil, feetype=nil, pgmaudiobitrate=nil, pgmvcodec=nil)
           @CasterName = castername
           @Description = description
           @ExpireTime = expiretime
@@ -2825,6 +2799,7 @@ module TencentCloud
           @PgmBitRate = pgmbitrate
           @FeeType = feetype
           @PgmAudioBitRate = pgmaudiobitrate
+          @PgmVcodec = pgmvcodec
         end
 
         def deserialize(params)
@@ -2839,12 +2814,13 @@ module TencentCloud
           @PgmBitRate = params['PgmBitRate']
           @FeeType = params['FeeType']
           @PgmAudioBitRate = params['PgmAudioBitRate']
+          @PgmVcodec = params['PgmVcodec']
         end
       end
 
       # CreateCaster返回参数结构体
       class CreateCasterResponse < TencentCloud::Common::AbstractModel
-        # @param CasterId: 导播台ID
+        # @param CasterId: <p>导播台ID</p>
         # @type CasterId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -13479,10 +13455,12 @@ module TencentCloud
         # @type RecordTaskId: String
         # @param PgmAudioBitRate: <p>导播台主监输出的音频码率，单位为kbps。<br>可选项：[0, 128, 192, 256]<br>默认值为0，表示随源的音频码率输出。</p>
         # @type PgmAudioBitRate: Integer
+        # @param PgmVcodec: <p>导播台主监输出的编码方式</p><p>枚举值：</p><ul><li>h264： h264编码</li><li>h265： h265编码</li></ul><p>默认值：h264</p>
+        # @type PgmVcodec: String
 
-        attr_accessor :CasterId, :CasterName, :Description, :RecordTemplateId, :RecordStatus, :ExpireTime, :DelayTime, :TransitionType, :PgmWidth, :PgmHeight, :PgmFps, :PgmBitRate, :FeeType, :RecordTaskId, :PgmAudioBitRate
+        attr_accessor :CasterId, :CasterName, :Description, :RecordTemplateId, :RecordStatus, :ExpireTime, :DelayTime, :TransitionType, :PgmWidth, :PgmHeight, :PgmFps, :PgmBitRate, :FeeType, :RecordTaskId, :PgmAudioBitRate, :PgmVcodec
 
-        def initialize(casterid=nil, castername=nil, description=nil, recordtemplateid=nil, recordstatus=nil, expiretime=nil, delaytime=nil, transitiontype=nil, pgmwidth=nil, pgmheight=nil, pgmfps=nil, pgmbitrate=nil, feetype=nil, recordtaskid=nil, pgmaudiobitrate=nil)
+        def initialize(casterid=nil, castername=nil, description=nil, recordtemplateid=nil, recordstatus=nil, expiretime=nil, delaytime=nil, transitiontype=nil, pgmwidth=nil, pgmheight=nil, pgmfps=nil, pgmbitrate=nil, feetype=nil, recordtaskid=nil, pgmaudiobitrate=nil, pgmvcodec=nil)
           @CasterId = casterid
           @CasterName = castername
           @Description = description
@@ -13498,6 +13476,7 @@ module TencentCloud
           @FeeType = feetype
           @RecordTaskId = recordtaskid
           @PgmAudioBitRate = pgmaudiobitrate
+          @PgmVcodec = pgmvcodec
         end
 
         def deserialize(params)
@@ -13516,6 +13495,7 @@ module TencentCloud
           @FeeType = params['FeeType']
           @RecordTaskId = params['RecordTaskId']
           @PgmAudioBitRate = params['PgmAudioBitRate']
+          @PgmVcodec = params['PgmVcodec']
         end
       end
 

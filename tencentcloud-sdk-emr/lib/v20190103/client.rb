@@ -608,6 +608,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 描述容器EMR-TKE集群DynamicInstance详情
+
+        # @param request: Request instance for DescribeDynamicInstanceDetail.
+        # @type request: :class:`Tencentcloud::emr::V20190103::DescribeDynamicInstanceDetailRequest`
+        # @rtype: :class:`Tencentcloud::emr::V20190103::DescribeDynamicInstanceDetailResponse`
+        def DescribeDynamicInstanceDetail(request)
+          body = send_request('DescribeDynamicInstanceDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDynamicInstanceDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 描述容器EMR-TKE集群DynamicInstance列表
 
         # @param request: Request instance for DescribeDynamicInstanceList.

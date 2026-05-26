@@ -533,6 +533,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # NFC核验服务，获取NFC识别请求对应的Token信息。
+
+        # @param request: Request instance for GetNFCToken.
+        # @type request: :class:`Tencentcloud::faceid::V20180301::GetNFCTokenRequest`
+        # @rtype: :class:`Tencentcloud::faceid::V20180301::GetNFCTokenResponse`
+        def GetNFCToken(request)
+          body = send_request('GetNFCToken', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetNFCTokenResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询微信渠道服务（微信小程序、微信原生H5、微信普通H5）的账单明细及计费状态。
 
         # @param request: Request instance for GetWeChatBillDetails.
@@ -543,6 +567,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = GetWeChatBillDetailsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取到证件NFC数据，接口传入NFC SDK返回的Token（十分钟内有效），可返回对应NFC获取的证件信息。支持身份证类证件（二代身份证、港澳居住证、台湾居住证、外国人永居证）以及旅行类证件（港澳通行证、台湾通行证、台胞证、回乡证）的NFC识别及核验。
+
+        # @param request: Request instance for GetWxNFCResult.
+        # @type request: :class:`Tencentcloud::faceid::V20180301::GetWxNFCResultRequest`
+        # @rtype: :class:`Tencentcloud::faceid::V20180301::GetWxNFCResultResponse`
+        def GetWxNFCResult(request)
+          body = send_request('GetWxNFCResult', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetWxNFCResultResponse.new
             model.deserialize(response['Response'])
             model
           else

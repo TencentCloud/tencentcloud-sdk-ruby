@@ -49,10 +49,12 @@ module TencentCloud
         # @type AccountRemark: String
         # @param AccountType: <p>数据库账号类型，目前仅在创建sqlserver凭据场景会使用到，仅支持L3</p><p>枚举值：</p><ul><li>L3： 普通权限账号</li></ul>
         # @type AccountType: String
+        # @param EncryptType: <p>凭据加密类型</p><p>枚举值：</p><ul><li>0： KMS 密钥</li><li>1： 软件密钥</li></ul><p>默认值：0</p>
+        # @type EncryptType: Integer
 
-        attr_accessor :SecretName, :UserNamePrefix, :ProductName, :InstanceID, :Domains, :PrivilegesList, :Description, :KmsKeyId, :Tags, :RotationBeginTime, :EnableRotation, :RotationFrequency, :KmsHsmClusterId, :AccountRemark, :AccountType
+        attr_accessor :SecretName, :UserNamePrefix, :ProductName, :InstanceID, :Domains, :PrivilegesList, :Description, :KmsKeyId, :Tags, :RotationBeginTime, :EnableRotation, :RotationFrequency, :KmsHsmClusterId, :AccountRemark, :AccountType, :EncryptType
 
-        def initialize(secretname=nil, usernameprefix=nil, productname=nil, instanceid=nil, domains=nil, privilegeslist=nil, description=nil, kmskeyid=nil, tags=nil, rotationbegintime=nil, enablerotation=nil, rotationfrequency=nil, kmshsmclusterid=nil, accountremark=nil, accounttype=nil)
+        def initialize(secretname=nil, usernameprefix=nil, productname=nil, instanceid=nil, domains=nil, privilegeslist=nil, description=nil, kmskeyid=nil, tags=nil, rotationbegintime=nil, enablerotation=nil, rotationfrequency=nil, kmshsmclusterid=nil, accountremark=nil, accounttype=nil, encrypttype=nil)
           @SecretName = secretname
           @UserNamePrefix = usernameprefix
           @ProductName = productname
@@ -68,6 +70,7 @@ module TencentCloud
           @KmsHsmClusterId = kmshsmclusterid
           @AccountRemark = accountremark
           @AccountType = accounttype
+          @EncryptType = encrypttype
         end
 
         def deserialize(params)
@@ -100,6 +103,7 @@ module TencentCloud
           @KmsHsmClusterId = params['KmsHsmClusterId']
           @AccountRemark = params['AccountRemark']
           @AccountType = params['AccountType']
+          @EncryptType = params['EncryptType']
         end
       end
 
@@ -137,26 +141,26 @@ module TencentCloud
 
       # CreateSSHKeyPairSecret请求参数结构体
       class CreateSSHKeyPairSecretRequest < TencentCloud::Common::AbstractModel
-        # @param SecretName: 凭据名称，同一region内不可重复，最长128字节，使用字母、数字或者 - _ 的组合，第一个字符必须为字母或者数字。
+        # @param SecretName: <p>凭据名称，同一region内不可重复，最长128字节，使用字母、数字或者 - _ 的组合，第一个字符必须为字母或者数字。</p>
         # @type SecretName: String
-        # @param ProjectId: 密钥对创建后所属的项目ID。
+        # @param ProjectId: <p>密钥对创建后所属的项目ID。</p>
         # @type ProjectId: Integer
-        # @param Description: 描述信息，用于详细描述用途等，最大支持2048字节。
+        # @param Description: <p>描述信息，用于详细描述用途等，最大支持2048字节。</p>
         # @type Description: String
-        # @param KmsKeyId: 指定对凭据进行加密的KMS CMK。
-        # 如果为空则表示使用Secrets Manager为您默认创建的CMK进行加密。
-        # 您也可以指定在同region 下自行创建的KMS CMK进行加密。
+        # @param KmsKeyId: <p>指定对凭据进行加密的KMS CMK。<br>如果为空则表示使用Secrets Manager为您默认创建的CMK进行加密。<br>您也可以指定在同region 下自行创建的KMS CMK进行加密。</p>
         # @type KmsKeyId: String
-        # @param Tags: 标签列表。
+        # @param Tags: <p>标签列表。</p>
         # @type Tags: Array
-        # @param SSHKeyName: 用户自定义输入的SSH密钥对的名称，可由数字，字母和下划线组成，只能以数字和字母开头，长度不超过25个字符。
+        # @param SSHKeyName: <p>用户自定义输入的SSH密钥对的名称，可由数字，字母和下划线组成，只能以数字和字母开头，长度不超过25个字符。</p>
         # @type SSHKeyName: String
-        # @param KmsHsmClusterId: KMS的独享集群的ID。当KmsKeyId为空,并且用户的KMS存在有效的HsmClusterId时有效。
+        # @param KmsHsmClusterId: <p>KMS的独享集群的ID。当KmsKeyId为空,并且用户的KMS存在有效的HsmClusterId时有效。</p>
         # @type KmsHsmClusterId: String
+        # @param EncryptType: <p>凭据加密类型</p><p>枚举值：</p><ul><li>0： KMS 密钥</li><li>1： 软件密钥</li></ul><p>默认值：0</p>
+        # @type EncryptType: Integer
 
-        attr_accessor :SecretName, :ProjectId, :Description, :KmsKeyId, :Tags, :SSHKeyName, :KmsHsmClusterId
+        attr_accessor :SecretName, :ProjectId, :Description, :KmsKeyId, :Tags, :SSHKeyName, :KmsHsmClusterId, :EncryptType
 
-        def initialize(secretname=nil, projectid=nil, description=nil, kmskeyid=nil, tags=nil, sshkeyname=nil, kmshsmclusterid=nil)
+        def initialize(secretname=nil, projectid=nil, description=nil, kmskeyid=nil, tags=nil, sshkeyname=nil, kmshsmclusterid=nil, encrypttype=nil)
           @SecretName = secretname
           @ProjectId = projectid
           @Description = description
@@ -164,6 +168,7 @@ module TencentCloud
           @Tags = tags
           @SSHKeyName = sshkeyname
           @KmsHsmClusterId = kmshsmclusterid
+          @EncryptType = encrypttype
         end
 
         def deserialize(params)
@@ -181,20 +186,21 @@ module TencentCloud
           end
           @SSHKeyName = params['SSHKeyName']
           @KmsHsmClusterId = params['KmsHsmClusterId']
+          @EncryptType = params['EncryptType']
         end
       end
 
       # CreateSSHKeyPairSecret返回参数结构体
       class CreateSSHKeyPairSecretResponse < TencentCloud::Common::AbstractModel
-        # @param SecretName: 创建的凭据名称。
+        # @param SecretName: <p>创建的凭据名称。</p>
         # @type SecretName: String
-        # @param SSHKeyID: 创建的SSH密钥ID。
+        # @param SSHKeyID: <p>创建的SSH密钥ID。</p>
         # @type SSHKeyID: String
-        # @param SSHKeyName: 创建的SSH密钥名称。
+        # @param SSHKeyName: <p>创建的SSH密钥名称。</p>
         # @type SSHKeyName: String
-        # @param TagCode: 标签操作的返回码. 0: 成功；1: 内部错误；2: 业务处理错误
+        # @param TagCode: <p>标签操作的返回码. 0: 成功；1: 内部错误；2: 业务处理错误</p>
         # @type TagCode: Integer
-        # @param TagMsg: 标签操作的返回信息。
+        # @param TagMsg: <p>标签操作的返回信息。</p>
         # @type TagMsg: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -222,30 +228,32 @@ module TencentCloud
 
       # CreateSecret请求参数结构体
       class CreateSecretRequest < TencentCloud::Common::AbstractModel
-        # @param SecretName: 凭据名称，同一region内不可重复，最长128字节，使用字母、数字或者 - _ 的组合，第一个字符必须为字母或者数字。一旦创建不可修改。
+        # @param SecretName: <p>凭据名称，同一region内不可重复，最长128字节，使用字母、数字或者 - _ 的组合，第一个字符必须为字母或者数字。一旦创建不可修改。</p>
         # @type SecretName: String
-        # @param VersionId: 凭据版本，查询凭据信息时需要根据SecretName 和 VersionId进行查询，最长64 字节，使用字母、数字或者 - _ . 的组合并且以字母或数字开头。若为空，则使用默认的初始凭据版本号。可选，若为空或该凭据为云产品类凭据，则该版本号默认为 SSM_Current。
+        # @param VersionId: <p>凭据版本，查询凭据信息时需要根据SecretName 和 VersionId进行查询，最长64 字节，使用字母、数字或者 - _ . 的组合并且以字母或数字开头。若为空，则使用默认的初始凭据版本号。可选，若为空或该凭据为云产品类凭据，则该版本号默认为 SSM_Current。</p>
         # @type VersionId: String
-        # @param Description: 描述信息，用于详细描述用途等，最大支持2048字节。
+        # @param Description: <p>描述信息，用于详细描述用途等，最大支持2048字节。</p>
         # @type Description: String
-        # @param KmsKeyId: 指定对凭据进行加密的KMS CMK。如果为空则表示使用Secrets Manager为您默认创建的CMK进行加密。您也可以指定在同region 下自行创建的KMS CMK进行加密。
+        # @param KmsKeyId: <p>指定对凭据进行加密的KMS CMK。如果为空则表示使用Secrets Manager为您默认创建的CMK进行加密。您也可以指定在同region 下自行创建的KMS CMK进行加密。</p>
         # @type KmsKeyId: String
-        # @param SecretType: 凭据类型，默认为0自定义凭据。
+        # @param SecretType: <p>凭据类型，默认为0自定义凭据。</p>
         # @type SecretType: Integer
-        # @param SecretBinary: 二进制凭据信息base64编码后的明文。SecretBinary 和 SecretString 必须且只能设置一个，最大支持32KB字节。
+        # @param SecretBinary: <p>二进制凭据信息base64编码后的明文。SecretBinary 和 SecretString 必须且只能设置一个，最大支持32KB字节。</p>
         # @type SecretBinary: String
-        # @param SecretString: 文本类型凭据信息明文（不需要进行base64编码）。SecretBinary 和 SecretString 必须且只能设置一个，最大支持32KB字节。
+        # @param SecretString: <p>文本类型凭据信息明文（不需要进行base64编码）。SecretBinary 和 SecretString 必须且只能设置一个，最大支持32KB字节。</p>
         # @type SecretString: String
-        # @param AdditionalConfig: JSON 格式字符串，用于指定特定凭据类型的额外配置。
+        # @param AdditionalConfig: <p>JSON 格式字符串，用于指定特定凭据类型的额外配置。</p>
         # @type AdditionalConfig: String
-        # @param Tags: 标签列表
+        # @param Tags: <p>标签列表</p>
         # @type Tags: Array
-        # @param KmsHsmClusterId: KMS的独享集群的ID。当KmsKeyId为空,并且用户的KMS存在有效的HsmClusterId时有效。
+        # @param KmsHsmClusterId: <p>KMS的独享集群的ID。当KmsKeyId为空,并且用户的KMS存在有效的HsmClusterId时有效。</p>
         # @type KmsHsmClusterId: String
+        # @param EncryptType: <p>凭据加密类型</p><p>枚举值：</p><ul><li>0： KMS 密钥加密</li><li>1： 软密钥加密</li></ul>
+        # @type EncryptType: Integer
 
-        attr_accessor :SecretName, :VersionId, :Description, :KmsKeyId, :SecretType, :SecretBinary, :SecretString, :AdditionalConfig, :Tags, :KmsHsmClusterId
+        attr_accessor :SecretName, :VersionId, :Description, :KmsKeyId, :SecretType, :SecretBinary, :SecretString, :AdditionalConfig, :Tags, :KmsHsmClusterId, :EncryptType
 
-        def initialize(secretname=nil, versionid=nil, description=nil, kmskeyid=nil, secrettype=nil, secretbinary=nil, secretstring=nil, additionalconfig=nil, tags=nil, kmshsmclusterid=nil)
+        def initialize(secretname=nil, versionid=nil, description=nil, kmskeyid=nil, secrettype=nil, secretbinary=nil, secretstring=nil, additionalconfig=nil, tags=nil, kmshsmclusterid=nil, encrypttype=nil)
           @SecretName = secretname
           @VersionId = versionid
           @Description = description
@@ -256,6 +264,7 @@ module TencentCloud
           @AdditionalConfig = additionalconfig
           @Tags = tags
           @KmsHsmClusterId = kmshsmclusterid
+          @EncryptType = encrypttype
         end
 
         def deserialize(params)
@@ -276,18 +285,19 @@ module TencentCloud
             end
           end
           @KmsHsmClusterId = params['KmsHsmClusterId']
+          @EncryptType = params['EncryptType']
         end
       end
 
       # CreateSecret返回参数结构体
       class CreateSecretResponse < TencentCloud::Common::AbstractModel
-        # @param SecretName: 新创建的凭据名称。
+        # @param SecretName: <p>新创建的凭据名称。</p>
         # @type SecretName: String
-        # @param VersionId: 新创建的凭据版本。
+        # @param VersionId: <p>新创建的凭据版本。</p>
         # @type VersionId: String
-        # @param TagCode: 标签操作的返回码. 0: 成功；1: 内部错误；2: 业务处理错误
+        # @param TagCode: <p>标签操作的返回码. 0: 成功；1: 内部错误；2: 业务处理错误</p>
         # @type TagCode: Integer
-        # @param TagMsg: 标签操作的返回信息
+        # @param TagMsg: <p>标签操作的返回信息</p>
         # @type TagMsg: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -536,7 +546,7 @@ module TencentCloud
 
       # DescribeSecret请求参数结构体
       class DescribeSecretRequest < TencentCloud::Common::AbstractModel
-        # @param SecretName: 指定需要获取凭据详细信息的凭据名称。
+        # @param SecretName: <p>指定需要获取凭据详细信息的凭据名称。</p>
         # @type SecretName: String
 
         attr_accessor :SecretName
@@ -552,46 +562,50 @@ module TencentCloud
 
       # DescribeSecret返回参数结构体
       class DescribeSecretResponse < TencentCloud::Common::AbstractModel
-        # @param SecretName: 凭据名称。
+        # @param SecretName: <p>凭据名称。</p>
         # @type SecretName: String
-        # @param Description: 凭据描述信息。
+        # @param Description: <p>凭据描述信息。</p>
         # @type Description: String
-        # @param KmsKeyId: 用于加密的KMS CMK ID。
+        # @param KmsKeyId: <p>用于加密的KMS CMK ID。</p>
         # @type KmsKeyId: String
-        # @param CreateUin: 创建者UIN。
+        # @param CreateUin: <p>创建者UIN。</p>
         # @type CreateUin: Integer
-        # @param Status: 凭据状态：Enabled、Disabled、PendingDelete, Creating, Failed。
+        # @param Status: <p>凭据状态：Enabled、Disabled、PendingDelete, Creating, Failed。</p>
         # @type Status: String
-        # @param DeleteTime: 删除日期，uinx 时间戳，非计划删除状态的凭据为0。
+        # @param DeleteTime: <p>删除日期，uinx 时间戳，非计划删除状态的凭据为0。</p>
         # @type DeleteTime: Integer
-        # @param CreateTime: 创建日期。
+        # @param CreateTime: <p>创建日期。</p>
         # @type CreateTime: Integer
-        # @param SecretType: 0 --  用户自定义凭据类型；1 -- 数据库凭据类型；2 -- SSH密钥对凭据类型；3 -- 云API密钥（AKSK）凭据类型（使用此功能需要联系云助手单独开启白名单）；4 -- Redis类型凭据。
+        # @param SecretType: <p>0 --  用户自定义凭据类型；1 -- 数据库凭据类型；2 -- SSH密钥对凭据类型；3 -- 云API密钥（AKSK）凭据类型（使用此功能需要联系云助手单独开启白名单）；4 -- Redis类型凭据。</p>
         # @type SecretType: Integer
-        # @param ProductName: 云产品名称。
+        # @param ProductName: <p>云产品名称。</p>
         # @type ProductName: String
-        # @param ResourceID: 云产品实例ID。
+        # @param ResourceID: <p>云产品实例ID。</p>
         # @type ResourceID: String
-        # @param RotationStatus: 是否开启轮转：True -- 开启轮转；False -- 关闭轮转。
+        # @param RotationStatus: <p>是否开启轮转：True -- 开启轮转；False -- 关闭轮转。</p>
         # @type RotationStatus: Boolean
-        # @param RotationFrequency: 轮转周期，默认以天为单位。
+        # @param RotationFrequency: <p>轮转周期，默认以天为单位。</p>
         # @type RotationFrequency: Integer
-        # @param ResourceName: 当凭据类型为SSH密钥对凭据时，此字段有效，用于表示SSH密钥对凭据的名称。
+        # @param ResourceName: <p>当凭据类型为SSH密钥对凭据时，此字段有效，用于表示SSH密钥对凭据的名称。</p>
         # @type ResourceName: String
-        # @param ProjectID: 当凭据类型为SSH密钥对凭据时，此字段有效，用于表示SSH密钥对所属的项目ID。
+        # @param ProjectID: <p>当凭据类型为SSH密钥对凭据时，此字段有效，用于表示SSH密钥对所属的项目ID。</p>
         # @type ProjectID: Integer
-        # @param AssociatedInstanceIDs: 当凭据类型为SSH密钥对凭据时，此字段有效，用于表示SSH密钥对所关联的CVM实例ID。
+        # @param AssociatedInstanceIDs: <p>当凭据类型为SSH密钥对凭据时，此字段有效，用于表示SSH密钥对所关联的CVM实例ID。</p>
         # @type AssociatedInstanceIDs: Array
-        # @param TargetUin: 当凭据类型为云API密钥对凭据时，此字段有效，用于表示此云API密钥对所属的用户UIN。
+        # @param TargetUin: <p>当凭据类型为云API密钥对凭据时，此字段有效，用于表示此云API密钥对所属的用户UIN。</p>
         # @type TargetUin: Integer
-        # @param AdditionalConfig: 凭据额外配置
+        # @param AdditionalConfig: <p>凭据额外配置</p>
         # @type AdditionalConfig: String
+        # @param EncryptType: <p>凭据加密类型</p><p>枚举值：</p><ul><li>0： KMS 密钥加密</li><li>1： 软密钥加密</li></ul><p>默认值：0</p>
+        # @type EncryptType: Integer
+        # @param EncryptSwitching: <p>凭据更新状态</p>
+        # @type EncryptSwitching: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :SecretName, :Description, :KmsKeyId, :CreateUin, :Status, :DeleteTime, :CreateTime, :SecretType, :ProductName, :ResourceID, :RotationStatus, :RotationFrequency, :ResourceName, :ProjectID, :AssociatedInstanceIDs, :TargetUin, :AdditionalConfig, :RequestId
+        attr_accessor :SecretName, :Description, :KmsKeyId, :CreateUin, :Status, :DeleteTime, :CreateTime, :SecretType, :ProductName, :ResourceID, :RotationStatus, :RotationFrequency, :ResourceName, :ProjectID, :AssociatedInstanceIDs, :TargetUin, :AdditionalConfig, :EncryptType, :EncryptSwitching, :RequestId
 
-        def initialize(secretname=nil, description=nil, kmskeyid=nil, createuin=nil, status=nil, deletetime=nil, createtime=nil, secrettype=nil, productname=nil, resourceid=nil, rotationstatus=nil, rotationfrequency=nil, resourcename=nil, projectid=nil, associatedinstanceids=nil, targetuin=nil, additionalconfig=nil, requestid=nil)
+        def initialize(secretname=nil, description=nil, kmskeyid=nil, createuin=nil, status=nil, deletetime=nil, createtime=nil, secrettype=nil, productname=nil, resourceid=nil, rotationstatus=nil, rotationfrequency=nil, resourcename=nil, projectid=nil, associatedinstanceids=nil, targetuin=nil, additionalconfig=nil, encrypttype=nil, encryptswitching=nil, requestid=nil)
           @SecretName = secretname
           @Description = description
           @KmsKeyId = kmskeyid
@@ -609,6 +623,8 @@ module TencentCloud
           @AssociatedInstanceIDs = associatedinstanceids
           @TargetUin = targetuin
           @AdditionalConfig = additionalconfig
+          @EncryptType = encrypttype
+          @EncryptSwitching = encryptswitching
           @RequestId = requestid
         end
 
@@ -630,6 +646,8 @@ module TencentCloud
           @AssociatedInstanceIDs = params['AssociatedInstanceIDs']
           @TargetUin = params['TargetUin']
           @AdditionalConfig = params['AdditionalConfig']
+          @EncryptType = params['EncryptType']
+          @EncryptSwitching = params['EncryptSwitching']
           @RequestId = params['RequestId']
         end
       end
@@ -1011,41 +1029,28 @@ module TencentCloud
 
       # ListSecrets请求参数结构体
       class ListSecretsRequest < TencentCloud::Common::AbstractModel
-        # @param Offset: 查询列表的起始位置，以0开始，不设置默认为0。
+        # @param Offset: <p>查询列表的起始位置，以0开始，不设置默认为0。</p>
         # @type Offset: Integer
-        # @param Limit: 单次查询返回的最大数量，0或不设置则使用默认值 20。
+        # @param Limit: <p>单次查询返回的最大数量，0或不设置则使用默认值 20。</p>
         # @type Limit: Integer
-        # @param OrderType: 根据创建时间的排序方式，0或者不设置则使用降序排序， 1 表示升序排序。
+        # @param OrderType: <p>根据创建时间的排序方式，0或者不设置则使用降序排序， 1 表示升序排序。</p>
         # @type OrderType: Integer
-        # @param State: 根据凭据状态进行过滤。
-        # 默认为0表示查询全部。
-        # 1 --  表示查询Enabled 凭据列表。
-        # 2 --  表示查询Disabled 凭据列表。
-        # 3 --  表示查询PendingDelete 凭据列表。
-        # 4 --  表示PendingCreate。
-        # 5 --  表示CreateFailed。
-        # 其中状态PendingCreate和CreateFailed只有在SecretType为云产品凭据时生效
+        # @param State: <p>根据凭据状态进行过滤。<br>默认为0表示查询全部。<br>1 --  表示查询Enabled 凭据列表。<br>2 --  表示查询Disabled 凭据列表。<br>3 --  表示查询PendingDelete 凭据列表。<br>4 --  表示PendingCreate。<br>5 --  表示CreateFailed。<br>其中状态PendingCreate和CreateFailed只有在SecretType为云产品凭据时生效</p>
         # @type State: Integer
-        # @param SearchSecretName: 根据凭据名称进行过滤，为空表示不过滤。
+        # @param SearchSecretName: <p>根据凭据名称进行过滤，为空表示不过滤。</p>
         # @type SearchSecretName: String
-        # @param TagFilters: 标签过滤条件。
+        # @param TagFilters: <p>标签过滤条件。</p>
         # @type TagFilters: Array
-        # @param SecretType: 0  -- 表示用户自定义凭据，默认为0。
-        # 1  -- 表示用户云产品凭据。
-        # 2 -- 表示SSH密钥对凭据。
-        # 3 -- 表示云API密钥对凭据。
+        # @param SecretType: <p>0  -- 表示用户自定义凭据，默认为0。<br>1  -- 表示用户云产品凭据。<br>2 -- 表示SSH密钥对凭据。<br>3 -- 表示云API密钥对凭据。</p>
         # @type SecretType: Integer
-        # @param ProductName: 此参数仅在SecretType参数值为1时生效，
-        # 当SecretType值为1时：
-        # 如果ProductName值为空，则表示查询所有类型的云产品凭据；
-        # 如果ProductName值为某个指定的云产品值如Mysql时，则表示查询Mysql数据库凭据；
-        # 如果ProductName值为多个云产品值，如：Mysql,Tdsql-mysql,Tdsql_C_Mysql（多个值以英文逗号,分隔开）则表示查询三种云产品类型的凭据；
-        # 支持的云产品列表请通过接口：DescribeSupportedProducts进行查询。
+        # @param ProductName: <p>此参数仅在SecretType参数值为1时生效，<br>当SecretType值为1时：<br>如果ProductName值为空，则表示查询所有类型的云产品凭据；<br>如果ProductName值为某个指定的云产品值如Mysql时，则表示查询Mysql数据库凭据；<br>如果ProductName值为多个云产品值，如：Mysql,Tdsql-mysql,Tdsql_C_Mysql（多个值以英文逗号,分隔开）则表示查询三种云产品类型的凭据；<br>支持的云产品列表请通过接口：DescribeSupportedProducts进行查询。</p>
         # @type ProductName: String
+        # @param EncryptType: <p>凭据加密类型</p><p>枚举值：</p><ul><li>0： KMS 密钥加密</li><li>1： 软密钥加密</li></ul><p>默认值：0</p>
+        # @type EncryptType: Integer
 
-        attr_accessor :Offset, :Limit, :OrderType, :State, :SearchSecretName, :TagFilters, :SecretType, :ProductName
+        attr_accessor :Offset, :Limit, :OrderType, :State, :SearchSecretName, :TagFilters, :SecretType, :ProductName, :EncryptType
 
-        def initialize(offset=nil, limit=nil, ordertype=nil, state=nil, searchsecretname=nil, tagfilters=nil, secrettype=nil, productname=nil)
+        def initialize(offset=nil, limit=nil, ordertype=nil, state=nil, searchsecretname=nil, tagfilters=nil, secrettype=nil, productname=nil, encrypttype=nil)
           @Offset = offset
           @Limit = limit
           @OrderType = ordertype
@@ -1054,6 +1059,7 @@ module TencentCloud
           @TagFilters = tagfilters
           @SecretType = secrettype
           @ProductName = productname
+          @EncryptType = encrypttype
         end
 
         def deserialize(params)
@@ -1072,14 +1078,15 @@ module TencentCloud
           end
           @SecretType = params['SecretType']
           @ProductName = params['ProductName']
+          @EncryptType = params['EncryptType']
         end
       end
 
       # ListSecrets返回参数结构体
       class ListSecretsResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 根据State和SearchSecretName 筛选的凭据总数。
+        # @param TotalCount: <p>根据State和SearchSecretName 筛选的凭据总数。</p>
         # @type TotalCount: Integer
-        # @param SecretMetadatas: 返回凭据信息列表。
+        # @param SecretMetadatas: <p>返回凭据信息列表。</p>
         # @type SecretMetadatas: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1325,52 +1332,52 @@ module TencentCloud
 
       # 凭据的基础信息
       class SecretMetadata < TencentCloud::Common::AbstractModel
-        # @param SecretName: 凭据名称
+        # @param SecretName: <p>凭据名称</p>
         # @type SecretName: String
-        # @param Description: 凭据的描述信息
+        # @param Description: <p>凭据的描述信息</p>
         # @type Description: String
-        # @param KmsKeyId: 用于加密凭据的KMS KeyId
+        # @param KmsKeyId: <p>用于加密凭据的KMS KeyId</p>
         # @type KmsKeyId: String
-        # @param CreateUin: 创建者UIN
+        # @param CreateUin: <p>创建者UIN</p>
         # @type CreateUin: Integer
-        # @param Status: 凭据状态：Enabled、Disabled、PendingDelete、Creating、Failed
+        # @param Status: <p>凭据状态：Enabled、Disabled、PendingDelete、Creating、Failed</p>
         # @type Status: String
-        # @param DeleteTime: 凭据删除日期，对于status为PendingDelete 的有效，unix时间戳
+        # @param DeleteTime: <p>凭据删除日期，对于status为PendingDelete 的有效，unix时间戳</p>
         # @type DeleteTime: Integer
-        # @param CreateTime: 凭据创建时间，unix时间戳
+        # @param CreateTime: <p>凭据创建时间，unix时间戳</p>
         # @type CreateTime: Integer
-        # @param KmsKeyType: 用于加密凭据的KMS CMK类型，DEFAULT 表示SecretsManager 创建的默认密钥， CUSTOMER 表示用户指定的密钥
+        # @param KmsKeyType: <p>用于加密凭据的KMS CMK类型，DEFAULT 表示SecretsManager 创建的默认密钥， CUSTOMER 表示用户指定的密钥</p>
         # @type KmsKeyType: String
-        # @param RotationStatus: 1:--开启轮转；0--禁止轮转
+        # @param RotationStatus: <p>1:--开启轮转；0--禁止轮转</p>
         # @type RotationStatus: Integer
-        # @param NextRotationTime: 下一次轮转开始时间，uinx 时间戳
+        # @param NextRotationTime: <p>下一次轮转开始时间，uinx 时间戳</p>
         # @type NextRotationTime: Integer
-        # @param SecretType: 0 -- 用户自定义凭据；
-        # 1 -- 云产品凭据；
-        # 2 -- SSH密钥对凭据；
-        # 3 -- 云API密钥对凭据；
-        # 4 -- Redis类型凭据；
+        # @param SecretType: <p>0 -- 用户自定义凭据；<br>1 -- 云产品凭据；<br>2 -- SSH密钥对凭据；<br>3 -- 云API密钥对凭据；<br>4 -- Redis类型凭据；</p>
         # @type SecretType: Integer
-        # @param ProductName: 云产品名称，仅在SecretType为1，即凭据类型为云产品凭据时生效
+        # @param ProductName: <p>云产品名称，仅在SecretType为1，即凭据类型为云产品凭据时生效</p>
         # @type ProductName: String
-        # @param ResourceName: 当凭据类型为SSH密钥对凭据时，此字段有效，用于表示SSH密钥对凭据的名称。
+        # @param ResourceName: <p>当凭据类型为SSH密钥对凭据时，此字段有效，用于表示SSH密钥对凭据的名称。</p>
         # @type ResourceName: String
-        # @param ProjectID: 当凭据类型为SSH密钥对凭据时，此字段有效，用于表示SSH密钥对所属的项目ID。
+        # @param ProjectID: <p>当凭据类型为SSH密钥对凭据时，此字段有效，用于表示SSH密钥对所属的项目ID。</p>
         # @type ProjectID: Integer
-        # @param AssociatedInstanceIDs: 当凭据类型为SSH密钥对凭据时，此字段有效，用于表示SSH密钥对所关联的CVM实例ID。
+        # @param AssociatedInstanceIDs: <p>当凭据类型为SSH密钥对凭据时，此字段有效，用于表示SSH密钥对所关联的CVM实例ID。</p>
         # @type AssociatedInstanceIDs: Array
-        # @param TargetUin: 当凭据类型为云API密钥对凭据时，此字段有效，用于表示云API密钥对所属的用户UIN。
+        # @param TargetUin: <p>当凭据类型为云API密钥对凭据时，此字段有效，用于表示云API密钥对所属的用户UIN。</p>
         # @type TargetUin: Integer
-        # @param RotationFrequency: 轮转的频率，以天作为单位，在轮转开启状态下生效。
+        # @param RotationFrequency: <p>轮转的频率，以天作为单位，在轮转开启状态下生效。</p>
         # @type RotationFrequency: Integer
-        # @param ResourceID: 云产品凭据对应的云产品实例 ID 号。
+        # @param ResourceID: <p>云产品凭据对应的云产品实例 ID 号。</p>
         # @type ResourceID: String
-        # @param RotationBeginTime: 用户指定的轮转开始时间。
+        # @param RotationBeginTime: <p>用户指定的轮转开始时间。</p>
         # @type RotationBeginTime: String
+        # @param EncryptType: <p>凭据加密类型</p><p>枚举值：</p><ul><li>0： KMS 密钥加密</li><li>1： 软密钥加密</li></ul><p>默认值：0</p>
+        # @type EncryptType: Integer
+        # @param EncryptSwitching: <p>凭据密钥加密切换中</p>
+        # @type EncryptSwitching: Boolean
 
-        attr_accessor :SecretName, :Description, :KmsKeyId, :CreateUin, :Status, :DeleteTime, :CreateTime, :KmsKeyType, :RotationStatus, :NextRotationTime, :SecretType, :ProductName, :ResourceName, :ProjectID, :AssociatedInstanceIDs, :TargetUin, :RotationFrequency, :ResourceID, :RotationBeginTime
+        attr_accessor :SecretName, :Description, :KmsKeyId, :CreateUin, :Status, :DeleteTime, :CreateTime, :KmsKeyType, :RotationStatus, :NextRotationTime, :SecretType, :ProductName, :ResourceName, :ProjectID, :AssociatedInstanceIDs, :TargetUin, :RotationFrequency, :ResourceID, :RotationBeginTime, :EncryptType, :EncryptSwitching
 
-        def initialize(secretname=nil, description=nil, kmskeyid=nil, createuin=nil, status=nil, deletetime=nil, createtime=nil, kmskeytype=nil, rotationstatus=nil, nextrotationtime=nil, secrettype=nil, productname=nil, resourcename=nil, projectid=nil, associatedinstanceids=nil, targetuin=nil, rotationfrequency=nil, resourceid=nil, rotationbegintime=nil)
+        def initialize(secretname=nil, description=nil, kmskeyid=nil, createuin=nil, status=nil, deletetime=nil, createtime=nil, kmskeytype=nil, rotationstatus=nil, nextrotationtime=nil, secrettype=nil, productname=nil, resourcename=nil, projectid=nil, associatedinstanceids=nil, targetuin=nil, rotationfrequency=nil, resourceid=nil, rotationbegintime=nil, encrypttype=nil, encryptswitching=nil)
           @SecretName = secretname
           @Description = description
           @KmsKeyId = kmskeyid
@@ -1390,6 +1397,8 @@ module TencentCloud
           @RotationFrequency = rotationfrequency
           @ResourceID = resourceid
           @RotationBeginTime = rotationbegintime
+          @EncryptType = encrypttype
+          @EncryptSwitching = encryptswitching
         end
 
         def deserialize(params)
@@ -1412,6 +1421,8 @@ module TencentCloud
           @RotationFrequency = params['RotationFrequency']
           @ResourceID = params['ResourceID']
           @RotationBeginTime = params['RotationBeginTime']
+          @EncryptType = params['EncryptType']
+          @EncryptSwitching = params['EncryptSwitching']
         end
       end
 

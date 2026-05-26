@@ -242,8 +242,8 @@ module TencentCloud
 
         attr_accessor :BatchId, :CorpId, :BatchCode, :CodeCnt, :MerchantId, :ProductId, :BatchType, :Remark, :MpTpl, :Status, :CreateTime, :UpdateTime, :MerchantName, :ProductName, :Ext, :TplName, :Job, :ProductionDate, :ValidDate, :Attrs
         extend Gem::Deprecate
-        deprecate :Ext, :none, 2026, 3
-        deprecate :Ext=, :none, 2026, 3
+        deprecate :Ext, :none, 2026, 5
+        deprecate :Ext=, :none, 2026, 5
 
         def initialize(batchid=nil, corpid=nil, batchcode=nil, codecnt=nil, merchantid=nil, productid=nil, batchtype=nil, remark=nil, mptpl=nil, status=nil, createtime=nil, updatetime=nil, merchantname=nil, productname=nil, ext=nil, tplname=nil, job=nil, productiondate=nil, validdate=nil, attrs=nil)
           @BatchId = batchid
@@ -2155,6 +2155,355 @@ module TencentCloud
         end
       end
 
+      # DescribeFlavorKingCycleBrandImportantCityScanAnalysis请求参数结构体
+      class DescribeFlavorKingCycleBrandImportantCityScanAnalysisRequest < TencentCloud::Common::AbstractModel
+        # @param CorpId: <p>企业ID</p>
+        # @type CorpId: Integer
+        # @param TypeDate: <p>日期类型</p>
+        # @type TypeDate: String
+        # @param QueryDate: <p>溯源ID</p>
+        # @type QueryDate: String
+
+        attr_accessor :CorpId, :TypeDate, :QueryDate
+
+        def initialize(corpid=nil, typedate=nil, querydate=nil)
+          @CorpId = corpid
+          @TypeDate = typedate
+          @QueryDate = querydate
+        end
+
+        def deserialize(params)
+          @CorpId = params['CorpId']
+          @TypeDate = params['TypeDate']
+          @QueryDate = params['QueryDate']
+        end
+      end
+
+      # DescribeFlavorKingCycleBrandImportantCityScanAnalysis返回参数结构体
+      class DescribeFlavorKingCycleBrandImportantCityScanAnalysisResponse < TencentCloud::Common::AbstractModel
+        # @param Data: <p>数据</p>
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              flavorkingcyclebrandimportantcityscananalysiscityitem_tmp = FlavorKingCycleBrandImportantCityScanAnalysisCityItem.new
+              flavorkingcyclebrandimportantcityscananalysiscityitem_tmp.deserialize(i)
+              @Data << flavorkingcyclebrandimportantcityscananalysiscityitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeFlavorKingCycleBrandImportantProvinceScanAnalysis请求参数结构体
+      class DescribeFlavorKingCycleBrandImportantProvinceScanAnalysisRequest < TencentCloud::Common::AbstractModel
+        # @param CorpId: <p>企业ID</p>
+        # @type CorpId: Integer
+        # @param TypeDate: <p>日期类型</p>
+        # @type TypeDate: String
+        # @param QueryDate: <p>溯源ID</p>
+        # @type QueryDate: String
+        # @param ProvinceList: <p>省份</p>
+        # @type ProvinceList: Array
+
+        attr_accessor :CorpId, :TypeDate, :QueryDate, :ProvinceList
+
+        def initialize(corpid=nil, typedate=nil, querydate=nil, provincelist=nil)
+          @CorpId = corpid
+          @TypeDate = typedate
+          @QueryDate = querydate
+          @ProvinceList = provincelist
+        end
+
+        def deserialize(params)
+          @CorpId = params['CorpId']
+          @TypeDate = params['TypeDate']
+          @QueryDate = params['QueryDate']
+          @ProvinceList = params['ProvinceList']
+        end
+      end
+
+      # DescribeFlavorKingCycleBrandImportantProvinceScanAnalysis返回参数结构体
+      class DescribeFlavorKingCycleBrandImportantProvinceScanAnalysisResponse < TencentCloud::Common::AbstractModel
+        # @param Data: <p>数据</p>
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              flavorkingcyclebrandimportantprovincescananalysisprovinceitem_tmp = FlavorKingCycleBrandImportantProvinceScanAnalysisProvinceItem.new
+              flavorkingcyclebrandimportantprovincescananalysisprovinceitem_tmp.deserialize(i)
+              @Data << flavorkingcyclebrandimportantprovincescananalysisprovinceitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeFlavorKingCycleBrandImportantProvinceUserAnalysis请求参数结构体
+      class DescribeFlavorKingCycleBrandImportantProvinceUserAnalysisRequest < TencentCloud::Common::AbstractModel
+        # @param CorpId: <p>企业ID</p>
+        # @type CorpId: Integer
+        # @param TypeDate: <p>日期类型</p>
+        # @type TypeDate: String
+        # @param QueryDate: <p>溯源ID</p>
+        # @type QueryDate: String
+        # @param ProvinceList: <p>省份</p>
+        # @type ProvinceList: Array
+
+        attr_accessor :CorpId, :TypeDate, :QueryDate, :ProvinceList
+
+        def initialize(corpid=nil, typedate=nil, querydate=nil, provincelist=nil)
+          @CorpId = corpid
+          @TypeDate = typedate
+          @QueryDate = querydate
+          @ProvinceList = provincelist
+        end
+
+        def deserialize(params)
+          @CorpId = params['CorpId']
+          @TypeDate = params['TypeDate']
+          @QueryDate = params['QueryDate']
+          @ProvinceList = params['ProvinceList']
+        end
+      end
+
+      # DescribeFlavorKingCycleBrandImportantProvinceUserAnalysis返回参数结构体
+      class DescribeFlavorKingCycleBrandImportantProvinceUserAnalysisResponse < TencentCloud::Common::AbstractModel
+        # @param Data: <p>数据</p>
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              flavorkingcyclebrandimportantprovinceuseranalysisprovinceitem_tmp = FlavorKingCycleBrandImportantProvinceUserAnalysisProvinceItem.new
+              flavorkingcyclebrandimportantprovinceuseranalysisprovinceitem_tmp.deserialize(i)
+              @Data << flavorkingcyclebrandimportantprovinceuseranalysisprovinceitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeFlavorKingCycleBrandProvinceCityScanAnalysis请求参数结构体
+      class DescribeFlavorKingCycleBrandProvinceCityScanAnalysisRequest < TencentCloud::Common::AbstractModel
+        # @param CorpId: <p>CorpId</p>
+        # @type CorpId: Integer
+        # @param QueryDate: <p>溯源ID</p>
+        # @type QueryDate: String
+
+        attr_accessor :CorpId, :QueryDate
+
+        def initialize(corpid=nil, querydate=nil)
+          @CorpId = corpid
+          @QueryDate = querydate
+        end
+
+        def deserialize(params)
+          @CorpId = params['CorpId']
+          @QueryDate = params['QueryDate']
+        end
+      end
+
+      # DescribeFlavorKingCycleBrandProvinceCityScanAnalysis返回参数结构体
+      class DescribeFlavorKingCycleBrandProvinceCityScanAnalysisResponse < TencentCloud::Common::AbstractModel
+        # @param Data: <p>数据</p>
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              flavorkingcyclebrandprovincecityscananalysisprovinceitem_tmp = FlavorKingCycleBrandProvinceCityScanAnalysisProvinceItem.new
+              flavorkingcyclebrandprovincecityscananalysisprovinceitem_tmp.deserialize(i)
+              @Data << flavorkingcyclebrandprovincecityscananalysisprovinceitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeFlavorKingCycleBrandProvinceScanAnalysis请求参数结构体
+      class DescribeFlavorKingCycleBrandProvinceScanAnalysisRequest < TencentCloud::Common::AbstractModel
+        # @param CorpId: <p>企业ID</p>
+        # @type CorpId: Integer
+        # @param TypeDate: <p>日期类型</p>
+        # @type TypeDate: String
+        # @param QueryDate: <p>溯源ID</p>
+        # @type QueryDate: String
+
+        attr_accessor :CorpId, :TypeDate, :QueryDate
+
+        def initialize(corpid=nil, typedate=nil, querydate=nil)
+          @CorpId = corpid
+          @TypeDate = typedate
+          @QueryDate = querydate
+        end
+
+        def deserialize(params)
+          @CorpId = params['CorpId']
+          @TypeDate = params['TypeDate']
+          @QueryDate = params['QueryDate']
+        end
+      end
+
+      # DescribeFlavorKingCycleBrandProvinceScanAnalysis返回参数结构体
+      class DescribeFlavorKingCycleBrandProvinceScanAnalysisResponse < TencentCloud::Common::AbstractModel
+        # @param Data: <p>数据</p>
+        # @type Data: :class:`Tencentcloud::Trp.v20210515.models.FlavorKingCycleBrandProvinceScanAnalysisResponse`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = FlavorKingCycleBrandProvinceScanAnalysisResponse.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeFlavorKingCycleBrandScanAnalysis请求参数结构体
+      class DescribeFlavorKingCycleBrandScanAnalysisRequest < TencentCloud::Common::AbstractModel
+        # @param CorpId: <p>企业ID</p>
+        # @type CorpId: Integer
+        # @param TypeDate: <p>日期类型</p>
+        # @type TypeDate: String
+        # @param QueryDate: <p>溯源ID</p>
+        # @type QueryDate: String
+
+        attr_accessor :CorpId, :TypeDate, :QueryDate
+
+        def initialize(corpid=nil, typedate=nil, querydate=nil)
+          @CorpId = corpid
+          @TypeDate = typedate
+          @QueryDate = querydate
+        end
+
+        def deserialize(params)
+          @CorpId = params['CorpId']
+          @TypeDate = params['TypeDate']
+          @QueryDate = params['QueryDate']
+        end
+      end
+
+      # DescribeFlavorKingCycleBrandScanAnalysis返回参数结构体
+      class DescribeFlavorKingCycleBrandScanAnalysisResponse < TencentCloud::Common::AbstractModel
+        # @param Data: <p>响应</p>
+        # @type Data: :class:`Tencentcloud::Trp.v20210515.models.FlavorKingCycleBrandScanAnalysisResponse`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = FlavorKingCycleBrandScanAnalysisResponse.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeFlavorKingCycleBrandScanMetrics请求参数结构体
+      class DescribeFlavorKingCycleBrandScanMetricsRequest < TencentCloud::Common::AbstractModel
+        # @param CorpId: <p>CorpId</p>
+        # @type CorpId: Integer
+        # @param QueryDate: <p>溯源ID</p>
+        # @type QueryDate: String
+
+        attr_accessor :CorpId, :QueryDate
+
+        def initialize(corpid=nil, querydate=nil)
+          @CorpId = corpid
+          @QueryDate = querydate
+        end
+
+        def deserialize(params)
+          @CorpId = params['CorpId']
+          @QueryDate = params['QueryDate']
+        end
+      end
+
+      # DescribeFlavorKingCycleBrandScanMetrics返回参数结构体
+      class DescribeFlavorKingCycleBrandScanMetricsResponse < TencentCloud::Common::AbstractModel
+        # @param Data: <p>数据</p>
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              flavorkingcyclebrandscanmetricsitem_tmp = FlavorKingCycleBrandScanMetricsItem.new
+              flavorkingcyclebrandscanmetricsitem_tmp.deserialize(i)
+              @Data << flavorkingcyclebrandscanmetricsitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeJobFileUrl请求参数结构体
       class DescribeJobFileUrlRequest < TencentCloud::Common::AbstractModel
         # @param JobId: 调度ID
@@ -2651,8 +3000,8 @@ module TencentCloud
 
         attr_accessor :Products, :TotalCount, :ScanLogs, :RequestId
         extend Gem::Deprecate
-        deprecate :Products, :none, 2026, 3
-        deprecate :Products=, :none, 2026, 3
+        deprecate :Products, :none, 2026, 5
+        deprecate :Products=, :none, 2026, 5
 
         def initialize(products=nil, totalcount=nil, scanlogs=nil, requestid=nil)
           @Products = products
@@ -3010,6 +3359,33 @@ module TencentCloud
         end
       end
 
+      # DownloadGEO请求参数结构体
+      class DownloadGEORequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DownloadGEO返回参数结构体
+      class DownloadGEOResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # EffectFeedback请求参数结构体
       class EffectFeedbackRequest < TencentCloud::Common::AbstractModel
         # @param BusinessSecurityData: 业务加密入参。
@@ -3060,8 +3436,8 @@ module TencentCloud
 
         attr_accessor :Value
         extend Gem::Deprecate
-        deprecate :Value, :none, 2026, 3
-        deprecate :Value=, :none, 2026, 3
+        deprecate :Value, :none, 2026, 5
+        deprecate :Value=, :none, 2026, 5
 
         def initialize(value=nil)
           @Value = value
@@ -3069,6 +3445,546 @@ module TencentCloud
 
         def deserialize(params)
           @Value = params['Value']
+        end
+      end
+
+      # 品牌扫码数据
+      class FlavorKingCycleBrandImportantCityScanAnalysisCityItem < TencentCloud::Common::AbstractModel
+        # @param Ratio: <p>口味王分布</p>
+        # @type Ratio: Float
+        # @param MarketShare: <p>口味王市场份额</p>
+        # @type MarketShare: Float
+        # @param OtherMarketShare: <p>其他品牌市场份额</p>
+        # @type OtherMarketShare: Float
+        # @param LastCycleRatio: <p>上周期口味王分布</p>
+        # @type LastCycleRatio: Float
+        # @param LastCycleMarketShare: <p>上周期口味王牌市场份额</p>
+        # @type LastCycleMarketShare: Float
+        # @param LastCycleOtherMarketShare: <p>上周期其他品牌市场份额</p>
+        # @type LastCycleOtherMarketShare: Float
+        # @param GrowRatio: <p>口味王增长率</p>
+        # @type GrowRatio: Float
+        # @param OtherGrowRatio: <p>其他品牌增长率</p>
+        # @type OtherGrowRatio: Float
+        # @param Regions: <p>下属城市明细</p>
+        # @type Regions: Array
+        # @param City: <p>城市</p>
+        # @type City: String
+
+        attr_accessor :Ratio, :MarketShare, :OtherMarketShare, :LastCycleRatio, :LastCycleMarketShare, :LastCycleOtherMarketShare, :GrowRatio, :OtherGrowRatio, :Regions, :City
+
+        def initialize(ratio=nil, marketshare=nil, othermarketshare=nil, lastcycleratio=nil, lastcyclemarketshare=nil, lastcycleothermarketshare=nil, growratio=nil, othergrowratio=nil, regions=nil, city=nil)
+          @Ratio = ratio
+          @MarketShare = marketshare
+          @OtherMarketShare = othermarketshare
+          @LastCycleRatio = lastcycleratio
+          @LastCycleMarketShare = lastcyclemarketshare
+          @LastCycleOtherMarketShare = lastcycleothermarketshare
+          @GrowRatio = growratio
+          @OtherGrowRatio = othergrowratio
+          @Regions = regions
+          @City = city
+        end
+
+        def deserialize(params)
+          @Ratio = params['Ratio']
+          @MarketShare = params['MarketShare']
+          @OtherMarketShare = params['OtherMarketShare']
+          @LastCycleRatio = params['LastCycleRatio']
+          @LastCycleMarketShare = params['LastCycleMarketShare']
+          @LastCycleOtherMarketShare = params['LastCycleOtherMarketShare']
+          @GrowRatio = params['GrowRatio']
+          @OtherGrowRatio = params['OtherGrowRatio']
+          unless params['Regions'].nil?
+            @Regions = []
+            params['Regions'].each do |i|
+              flavorkingcyclebrandimportantcityscananalysisregionitem_tmp = FlavorKingCycleBrandImportantCityScanAnalysisRegionItem.new
+              flavorkingcyclebrandimportantcityscananalysisregionitem_tmp.deserialize(i)
+              @Regions << flavorkingcyclebrandimportantcityscananalysisregionitem_tmp
+            end
+          end
+          @City = params['City']
+        end
+      end
+
+      # 品牌扫码数据
+      class FlavorKingCycleBrandImportantCityScanAnalysisRegionItem < TencentCloud::Common::AbstractModel
+        # @param Ratio: <p>口味王分布</p>
+        # @type Ratio: Float
+        # @param MarketShare: <p>口味王市场份额</p>
+        # @type MarketShare: Float
+        # @param OtherMarketShare: <p>其他品牌市场份额</p>
+        # @type OtherMarketShare: Float
+        # @param LastCycleRatio: <p>上周期口味王分布</p>
+        # @type LastCycleRatio: Float
+        # @param LastCycleMarketShare: <p>上周期口味王市场份额</p>
+        # @type LastCycleMarketShare: Float
+        # @param LastCycleOtherMarketShare: <p>上周期其他品牌市场份额</p>
+        # @type LastCycleOtherMarketShare: Float
+        # @param GrowRatio: <p>口味王增长率</p>
+        # @type GrowRatio: Float
+        # @param OtherGrowRatio: <p>其他品牌增长率</p>
+        # @type OtherGrowRatio: Float
+        # @param Region: <p>区</p>
+        # @type Region: String
+
+        attr_accessor :Ratio, :MarketShare, :OtherMarketShare, :LastCycleRatio, :LastCycleMarketShare, :LastCycleOtherMarketShare, :GrowRatio, :OtherGrowRatio, :Region
+
+        def initialize(ratio=nil, marketshare=nil, othermarketshare=nil, lastcycleratio=nil, lastcyclemarketshare=nil, lastcycleothermarketshare=nil, growratio=nil, othergrowratio=nil, region=nil)
+          @Ratio = ratio
+          @MarketShare = marketshare
+          @OtherMarketShare = othermarketshare
+          @LastCycleRatio = lastcycleratio
+          @LastCycleMarketShare = lastcyclemarketshare
+          @LastCycleOtherMarketShare = lastcycleothermarketshare
+          @GrowRatio = growratio
+          @OtherGrowRatio = othergrowratio
+          @Region = region
+        end
+
+        def deserialize(params)
+          @Ratio = params['Ratio']
+          @MarketShare = params['MarketShare']
+          @OtherMarketShare = params['OtherMarketShare']
+          @LastCycleRatio = params['LastCycleRatio']
+          @LastCycleMarketShare = params['LastCycleMarketShare']
+          @LastCycleOtherMarketShare = params['LastCycleOtherMarketShare']
+          @GrowRatio = params['GrowRatio']
+          @OtherGrowRatio = params['OtherGrowRatio']
+          @Region = params['Region']
+        end
+      end
+
+      # 品牌扫码数据
+      class FlavorKingCycleBrandImportantProvinceScanAnalysisCityItem < TencentCloud::Common::AbstractModel
+        # @param Ratio: <p>口味王分布</p>
+        # @type Ratio: Float
+        # @param MarketShare: <p>口味王市场份额</p>
+        # @type MarketShare: Float
+        # @param OtherMarketShare: <p>其他品牌市场份额</p>
+        # @type OtherMarketShare: Float
+        # @param LastCycleRatio: <p>上周期口味王分布</p>
+        # @type LastCycleRatio: Float
+        # @param LastCycleMarketShare: <p>上周期口味王市场份额</p>
+        # @type LastCycleMarketShare: Float
+        # @param LastCycleOtherMarketShare: <p>上周期其他品牌市场份额</p>
+        # @type LastCycleOtherMarketShare: Float
+        # @param GrowRatio: <p>口味王增长率</p>
+        # @type GrowRatio: Float
+        # @param OtherGrowRatio: <p>其他品牌增长率</p>
+        # @type OtherGrowRatio: Float
+        # @param City: <p>城市</p>
+        # @type City: String
+
+        attr_accessor :Ratio, :MarketShare, :OtherMarketShare, :LastCycleRatio, :LastCycleMarketShare, :LastCycleOtherMarketShare, :GrowRatio, :OtherGrowRatio, :City
+
+        def initialize(ratio=nil, marketshare=nil, othermarketshare=nil, lastcycleratio=nil, lastcyclemarketshare=nil, lastcycleothermarketshare=nil, growratio=nil, othergrowratio=nil, city=nil)
+          @Ratio = ratio
+          @MarketShare = marketshare
+          @OtherMarketShare = othermarketshare
+          @LastCycleRatio = lastcycleratio
+          @LastCycleMarketShare = lastcyclemarketshare
+          @LastCycleOtherMarketShare = lastcycleothermarketshare
+          @GrowRatio = growratio
+          @OtherGrowRatio = othergrowratio
+          @City = city
+        end
+
+        def deserialize(params)
+          @Ratio = params['Ratio']
+          @MarketShare = params['MarketShare']
+          @OtherMarketShare = params['OtherMarketShare']
+          @LastCycleRatio = params['LastCycleRatio']
+          @LastCycleMarketShare = params['LastCycleMarketShare']
+          @LastCycleOtherMarketShare = params['LastCycleOtherMarketShare']
+          @GrowRatio = params['GrowRatio']
+          @OtherGrowRatio = params['OtherGrowRatio']
+          @City = params['City']
+        end
+      end
+
+      # 品牌扫码数据
+      class FlavorKingCycleBrandImportantProvinceScanAnalysisProvinceItem < TencentCloud::Common::AbstractModel
+        # @param Ratio: <p>口味王分布</p>
+        # @type Ratio: Float
+        # @param MarketShare: <p>口味王市场份额</p>
+        # @type MarketShare: Float
+        # @param OtherMarketShare: <p>其他品牌市场份额</p>
+        # @type OtherMarketShare: Float
+        # @param LastCycleRatio: <p>上周期口味王分布</p>
+        # @type LastCycleRatio: Float
+        # @param LastCycleMarketShare: <p>上周期口味王市场份额</p>
+        # @type LastCycleMarketShare: Float
+        # @param LastCycleOtherMarketShare: <p>上周期其他品牌市场份额</p>
+        # @type LastCycleOtherMarketShare: Float
+        # @param GrowRatio: <p>口味王增长率</p>
+        # @type GrowRatio: Float
+        # @param OtherGrowRatio: <p>其他品牌增长率</p>
+        # @type OtherGrowRatio: Float
+        # @param Cities: <p>下属城市明细</p>
+        # @type Cities: Array
+        # @param Province: <p>省份</p>
+        # @type Province: String
+
+        attr_accessor :Ratio, :MarketShare, :OtherMarketShare, :LastCycleRatio, :LastCycleMarketShare, :LastCycleOtherMarketShare, :GrowRatio, :OtherGrowRatio, :Cities, :Province
+
+        def initialize(ratio=nil, marketshare=nil, othermarketshare=nil, lastcycleratio=nil, lastcyclemarketshare=nil, lastcycleothermarketshare=nil, growratio=nil, othergrowratio=nil, cities=nil, province=nil)
+          @Ratio = ratio
+          @MarketShare = marketshare
+          @OtherMarketShare = othermarketshare
+          @LastCycleRatio = lastcycleratio
+          @LastCycleMarketShare = lastcyclemarketshare
+          @LastCycleOtherMarketShare = lastcycleothermarketshare
+          @GrowRatio = growratio
+          @OtherGrowRatio = othergrowratio
+          @Cities = cities
+          @Province = province
+        end
+
+        def deserialize(params)
+          @Ratio = params['Ratio']
+          @MarketShare = params['MarketShare']
+          @OtherMarketShare = params['OtherMarketShare']
+          @LastCycleRatio = params['LastCycleRatio']
+          @LastCycleMarketShare = params['LastCycleMarketShare']
+          @LastCycleOtherMarketShare = params['LastCycleOtherMarketShare']
+          @GrowRatio = params['GrowRatio']
+          @OtherGrowRatio = params['OtherGrowRatio']
+          unless params['Cities'].nil?
+            @Cities = []
+            params['Cities'].each do |i|
+              flavorkingcyclebrandimportantprovincescananalysiscityitem_tmp = FlavorKingCycleBrandImportantProvinceScanAnalysisCityItem.new
+              flavorkingcyclebrandimportantprovincescananalysiscityitem_tmp.deserialize(i)
+              @Cities << flavorkingcyclebrandimportantprovincescananalysiscityitem_tmp
+            end
+          end
+          @Province = params['Province']
+        end
+      end
+
+      # 品牌扫码数据
+      class FlavorKingCycleBrandImportantProvinceUserAnalysisCityItem < TencentCloud::Common::AbstractModel
+        # @param MarketShare: <p>口味王市场份额</p>
+        # @type MarketShare: Float
+        # @param OtherMarketShare: <p>其他品牌市场份额</p>
+        # @type OtherMarketShare: Float
+        # @param GrowRatio: <p>口味王增长率</p>
+        # @type GrowRatio: Float
+        # @param OtherGrowRatio: <p>其他品牌增长率</p>
+        # @type OtherGrowRatio: Float
+        # @param City: <p>城市</p>
+        # @type City: String
+
+        attr_accessor :MarketShare, :OtherMarketShare, :GrowRatio, :OtherGrowRatio, :City
+
+        def initialize(marketshare=nil, othermarketshare=nil, growratio=nil, othergrowratio=nil, city=nil)
+          @MarketShare = marketshare
+          @OtherMarketShare = othermarketshare
+          @GrowRatio = growratio
+          @OtherGrowRatio = othergrowratio
+          @City = city
+        end
+
+        def deserialize(params)
+          @MarketShare = params['MarketShare']
+          @OtherMarketShare = params['OtherMarketShare']
+          @GrowRatio = params['GrowRatio']
+          @OtherGrowRatio = params['OtherGrowRatio']
+          @City = params['City']
+        end
+      end
+
+      # 品牌扫码数据
+      class FlavorKingCycleBrandImportantProvinceUserAnalysisProvinceItem < TencentCloud::Common::AbstractModel
+        # @param MarketShare: <p>口味王市场份额</p>
+        # @type MarketShare: Float
+        # @param OtherMarketShare: <p>其他品牌市场份额</p>
+        # @type OtherMarketShare: Float
+        # @param GrowRatio: <p>口味王增长率</p>
+        # @type GrowRatio: Float
+        # @param OtherGrowRatio: <p>其他品牌增长率</p>
+        # @type OtherGrowRatio: Float
+        # @param Cities: <p>下属城市明细</p>
+        # @type Cities: Array
+        # @param Province: <p>省份</p>
+        # @type Province: String
+
+        attr_accessor :MarketShare, :OtherMarketShare, :GrowRatio, :OtherGrowRatio, :Cities, :Province
+
+        def initialize(marketshare=nil, othermarketshare=nil, growratio=nil, othergrowratio=nil, cities=nil, province=nil)
+          @MarketShare = marketshare
+          @OtherMarketShare = othermarketshare
+          @GrowRatio = growratio
+          @OtherGrowRatio = othergrowratio
+          @Cities = cities
+          @Province = province
+        end
+
+        def deserialize(params)
+          @MarketShare = params['MarketShare']
+          @OtherMarketShare = params['OtherMarketShare']
+          @GrowRatio = params['GrowRatio']
+          @OtherGrowRatio = params['OtherGrowRatio']
+          unless params['Cities'].nil?
+            @Cities = []
+            params['Cities'].each do |i|
+              flavorkingcyclebrandimportantprovinceuseranalysiscityitem_tmp = FlavorKingCycleBrandImportantProvinceUserAnalysisCityItem.new
+              flavorkingcyclebrandimportantprovinceuseranalysiscityitem_tmp.deserialize(i)
+              @Cities << flavorkingcyclebrandimportantprovinceuseranalysiscityitem_tmp
+            end
+          end
+          @Province = params['Province']
+        end
+      end
+
+      # 品牌扫码数据
+      class FlavorKingCycleBrandProvinceCityScanAnalysisCityItem < TencentCloud::Common::AbstractModel
+        # @param Ratio: <p>口味王分布</p>
+        # @type Ratio: Array
+        # @param Regions: <p>分区域数据</p>
+        # @type Regions: Array
+        # @param City: <p>城市</p>
+        # @type City: String
+
+        attr_accessor :Ratio, :Regions, :City
+
+        def initialize(ratio=nil, regions=nil, city=nil)
+          @Ratio = ratio
+          @Regions = regions
+          @City = city
+        end
+
+        def deserialize(params)
+          @Ratio = params['Ratio']
+          unless params['Regions'].nil?
+            @Regions = []
+            params['Regions'].each do |i|
+              flavorkingcyclebrandprovincecityscananalysisregionitem_tmp = FlavorKingCycleBrandProvinceCityScanAnalysisRegionItem.new
+              flavorkingcyclebrandprovincecityscananalysisregionitem_tmp.deserialize(i)
+              @Regions << flavorkingcyclebrandprovincecityscananalysisregionitem_tmp
+            end
+          end
+          @City = params['City']
+        end
+      end
+
+      # 品牌扫码数据
+      class FlavorKingCycleBrandProvinceCityScanAnalysisProvinceItem < TencentCloud::Common::AbstractModel
+        # @param Ratio: <p>口味王分布</p>
+        # @type Ratio: Array
+        # @param Cities: <p>下属城市明细</p>
+        # @type Cities: Array
+        # @param Province: <p>省份</p>
+        # @type Province: String
+
+        attr_accessor :Ratio, :Cities, :Province
+
+        def initialize(ratio=nil, cities=nil, province=nil)
+          @Ratio = ratio
+          @Cities = cities
+          @Province = province
+        end
+
+        def deserialize(params)
+          @Ratio = params['Ratio']
+          unless params['Cities'].nil?
+            @Cities = []
+            params['Cities'].each do |i|
+              flavorkingcyclebrandprovincecityscananalysiscityitem_tmp = FlavorKingCycleBrandProvinceCityScanAnalysisCityItem.new
+              flavorkingcyclebrandprovincecityscananalysiscityitem_tmp.deserialize(i)
+              @Cities << flavorkingcyclebrandprovincecityscananalysiscityitem_tmp
+            end
+          end
+          @Province = params['Province']
+        end
+      end
+
+      # 品牌扫码数据
+      class FlavorKingCycleBrandProvinceCityScanAnalysisRegionItem < TencentCloud::Common::AbstractModel
+        # @param Ratio: <p>口味王分布</p>
+        # @type Ratio: Array
+        # @param Region: <p>区域</p>
+        # @type Region: String
+
+        attr_accessor :Ratio, :Region
+
+        def initialize(ratio=nil, region=nil)
+          @Ratio = ratio
+          @Region = region
+        end
+
+        def deserialize(params)
+          @Ratio = params['Ratio']
+          @Region = params['Region']
+        end
+      end
+
+      # 品牌扫码数据
+      class FlavorKingCycleBrandProvinceScanAnalysisDataItem < TencentCloud::Common::AbstractModel
+        # @param MarketShare: <p>口味王市场份额</p>
+        # @type MarketShare: Float
+        # @param OtherMarketShare: <p>其他品牌市场份额</p>
+        # @type OtherMarketShare: Float
+        # @param LastCycleMarketShare: <p>上周期口味王市场份额</p>
+        # @type LastCycleMarketShare: Float
+        # @param OtherLastCycleMarketShare: <p>上周期其他品牌市场份额</p>
+        # @type OtherLastCycleMarketShare: Float
+        # @param Ratio: <p>口味王分布</p>
+        # @type Ratio: Float
+        # @param LastCycleRatio: <p>上周期口味王分布</p>
+        # @type LastCycleRatio: Float
+        # @param Province: <p>省份</p>
+        # @type Province: String
+        # @param GrowRatio: <p>口味王环比</p>
+        # @type GrowRatio: Float
+        # @param OtherGrowRatio: <p>其他平台环比</p>
+        # @type OtherGrowRatio: Float
+
+        attr_accessor :MarketShare, :OtherMarketShare, :LastCycleMarketShare, :OtherLastCycleMarketShare, :Ratio, :LastCycleRatio, :Province, :GrowRatio, :OtherGrowRatio
+
+        def initialize(marketshare=nil, othermarketshare=nil, lastcyclemarketshare=nil, otherlastcyclemarketshare=nil, ratio=nil, lastcycleratio=nil, province=nil, growratio=nil, othergrowratio=nil)
+          @MarketShare = marketshare
+          @OtherMarketShare = othermarketshare
+          @LastCycleMarketShare = lastcyclemarketshare
+          @OtherLastCycleMarketShare = otherlastcyclemarketshare
+          @Ratio = ratio
+          @LastCycleRatio = lastcycleratio
+          @Province = province
+          @GrowRatio = growratio
+          @OtherGrowRatio = othergrowratio
+        end
+
+        def deserialize(params)
+          @MarketShare = params['MarketShare']
+          @OtherMarketShare = params['OtherMarketShare']
+          @LastCycleMarketShare = params['LastCycleMarketShare']
+          @OtherLastCycleMarketShare = params['OtherLastCycleMarketShare']
+          @Ratio = params['Ratio']
+          @LastCycleRatio = params['LastCycleRatio']
+          @Province = params['Province']
+          @GrowRatio = params['GrowRatio']
+          @OtherGrowRatio = params['OtherGrowRatio']
+        end
+      end
+
+      # 品牌扫码数据
+      class FlavorKingCycleBrandProvinceScanAnalysisResponse < TencentCloud::Common::AbstractModel
+        # @param MarketShare: <p>口味王全国份额</p>
+        # @type MarketShare: Float
+        # @param LastCycleMarketShare: <p>上周期口味王市场份额</p>
+        # @type LastCycleMarketShare: Float
+        # @param Provinces: <p>口味王全国周环比</p>
+        # @type Provinces: Array
+        # @param GrowRatio: <p>口味王环比</p>
+        # @type GrowRatio: Float
+        # @param OtherGrowRatio: <p>其他品牌环比</p>
+        # @type OtherGrowRatio: Float
+
+        attr_accessor :MarketShare, :LastCycleMarketShare, :Provinces, :GrowRatio, :OtherGrowRatio
+
+        def initialize(marketshare=nil, lastcyclemarketshare=nil, provinces=nil, growratio=nil, othergrowratio=nil)
+          @MarketShare = marketshare
+          @LastCycleMarketShare = lastcyclemarketshare
+          @Provinces = provinces
+          @GrowRatio = growratio
+          @OtherGrowRatio = othergrowratio
+        end
+
+        def deserialize(params)
+          @MarketShare = params['MarketShare']
+          @LastCycleMarketShare = params['LastCycleMarketShare']
+          unless params['Provinces'].nil?
+            @Provinces = []
+            params['Provinces'].each do |i|
+              flavorkingcyclebrandprovincescananalysisdataitem_tmp = FlavorKingCycleBrandProvinceScanAnalysisDataItem.new
+              flavorkingcyclebrandprovincescananalysisdataitem_tmp.deserialize(i)
+              @Provinces << flavorkingcyclebrandprovincescananalysisdataitem_tmp
+            end
+          end
+          @GrowRatio = params['GrowRatio']
+          @OtherGrowRatio = params['OtherGrowRatio']
+        end
+      end
+
+      # 品牌扫码数据
+      class FlavorKingCycleBrandScanAnalysisDataItem < TencentCloud::Common::AbstractModel
+        # @param Duration: <p>周期时间</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Duration: String
+        # @param BrandName: <p>品牌</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BrandName: String
+        # @param Ratio: <p>品牌占比</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Ratio: Float
+
+        attr_accessor :Duration, :BrandName, :Ratio
+
+        def initialize(duration=nil, brandname=nil, ratio=nil)
+          @Duration = duration
+          @BrandName = brandname
+          @Ratio = ratio
+        end
+
+        def deserialize(params)
+          @Duration = params['Duration']
+          @BrandName = params['BrandName']
+          @Ratio = params['Ratio']
+        end
+      end
+
+      # 品牌扫码数据
+      class FlavorKingCycleBrandScanAnalysisResponse < TencentCloud::Common::AbstractModel
+        # @param Count: <p>总数</p>
+        # @type Count: Integer
+        # @param CycleRatio: <p>占比</p>
+        # @type CycleRatio: Float
+        # @param CycleOverCycle: <p>环比</p>
+        # @type CycleOverCycle: Float
+        # @param CycleRatioItems: <p>占比详情</p>
+        # @type CycleRatioItems: Array
+
+        attr_accessor :Count, :CycleRatio, :CycleOverCycle, :CycleRatioItems
+
+        def initialize(count=nil, cycleratio=nil, cycleovercycle=nil, cycleratioitems=nil)
+          @Count = count
+          @CycleRatio = cycleratio
+          @CycleOverCycle = cycleovercycle
+          @CycleRatioItems = cycleratioitems
+        end
+
+        def deserialize(params)
+          @Count = params['Count']
+          @CycleRatio = params['CycleRatio']
+          @CycleOverCycle = params['CycleOverCycle']
+          unless params['CycleRatioItems'].nil?
+            @CycleRatioItems = []
+            params['CycleRatioItems'].each do |i|
+              flavorkingcyclebrandscananalysisdataitem_tmp = FlavorKingCycleBrandScanAnalysisDataItem.new
+              flavorkingcyclebrandscananalysisdataitem_tmp.deserialize(i)
+              @CycleRatioItems << flavorkingcyclebrandscananalysisdataitem_tmp
+            end
+          end
+        end
+      end
+
+      # 品牌扫码数据
+      class FlavorKingCycleBrandScanMetricsItem < TencentCloud::Common::AbstractModel
+        # @param Duration: <p>日期范围</p>
+        # @type Duration: String
+        # @param Ratio: <p>口味王分布</p>
+        # @type Ratio: Float
+
+        attr_accessor :Duration, :Ratio
+
+        def initialize(duration=nil, ratio=nil)
+          @Duration = duration
+          @Ratio = ratio
+        end
+
+        def deserialize(params)
+          @Duration = params['Duration']
+          @Ratio = params['Ratio']
         end
       end
 
@@ -4214,10 +5130,16 @@ module TencentCloud
         # @type IP: String
         # @param Code: <p>码</p>
         # @type Code: String
+        # @param ExtUid: <p>Uid扩展字段</p>
+        # @type ExtUid: String
+        # @param Latitude: <p>维度</p><p>取值范围：[-90, 90]</p>
+        # @type Latitude: Float
+        # @param Longitude: <p>精度</p><p>取值范围：[-180, 180]</p>
+        # @type Longitude: Float
 
-        attr_accessor :Uid, :Time, :ProvinceName, :CityName, :RegionName, :BrandName, :SpecName, :IP, :Code
+        attr_accessor :Uid, :Time, :ProvinceName, :CityName, :RegionName, :BrandName, :SpecName, :IP, :Code, :ExtUid, :Latitude, :Longitude
 
-        def initialize(uid=nil, time=nil, provincename=nil, cityname=nil, regionname=nil, brandname=nil, specname=nil, ip=nil, code=nil)
+        def initialize(uid=nil, time=nil, provincename=nil, cityname=nil, regionname=nil, brandname=nil, specname=nil, ip=nil, code=nil, extuid=nil, latitude=nil, longitude=nil)
           @Uid = uid
           @Time = time
           @ProvinceName = provincename
@@ -4227,6 +5149,9 @@ module TencentCloud
           @SpecName = specname
           @IP = ip
           @Code = code
+          @ExtUid = extuid
+          @Latitude = latitude
+          @Longitude = longitude
         end
 
         def deserialize(params)
@@ -4239,6 +5164,9 @@ module TencentCloud
           @SpecName = params['SpecName']
           @IP = params['IP']
           @Code = params['Code']
+          @ExtUid = params['ExtUid']
+          @Latitude = params['Latitude']
+          @Longitude = params['Longitude']
         end
       end
 
@@ -4670,8 +5598,8 @@ module TencentCloud
 
         attr_accessor :CorpId, :FactoryCnt, :ItemCnt, :TrackCnt, :SaleCnt, :ChainCnt, :RiskCnt, :UpdateTime
         extend Gem::Deprecate
-        deprecate :RiskCnt, :none, 2026, 3
-        deprecate :RiskCnt=, :none, 2026, 3
+        deprecate :RiskCnt, :none, 2026, 5
+        deprecate :RiskCnt=, :none, 2026, 5
 
         def initialize(corpid=nil, factorycnt=nil, itemcnt=nil, trackcnt=nil, salecnt=nil, chaincnt=nil, riskcnt=nil, updatetime=nil)
           @CorpId = corpid

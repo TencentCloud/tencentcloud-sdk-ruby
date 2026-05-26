@@ -142,17 +142,27 @@ module TencentCloud
         # @type KeyIds: Array
         # @param InstanceIds: 实例 ID 列表。每次请求批量实例的上限为 100。可通过[DescribeInstances](https://cloud.tencent.com/document/api/1207/47573)接口返回值中的InstanceId获取。
         # @type InstanceIds: Array
+        # @param AssociateType: 绑定类型。可选值：
+        # ONLINE - 在线绑定，不需要关机。
+        # OFFLINE - 离线绑定，会对实例进行关机。
+        # @type AssociateType: String
+        # @param Username: 绑定的用户名。当 AssociateType 为 OFFLINE 时，不支持该参数。
+        # @type Username: String
 
-        attr_accessor :KeyIds, :InstanceIds
+        attr_accessor :KeyIds, :InstanceIds, :AssociateType, :Username
 
-        def initialize(keyids=nil, instanceids=nil)
+        def initialize(keyids=nil, instanceids=nil, associatetype=nil, username=nil)
           @KeyIds = keyids
           @InstanceIds = instanceids
+          @AssociateType = associatetype
+          @Username = username
         end
 
         def deserialize(params)
           @KeyIds = params['KeyIds']
           @InstanceIds = params['InstanceIds']
+          @AssociateType = params['AssociateType']
+          @Username = params['Username']
         end
       end
 
@@ -169,6 +179,26 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 密钥对关联的实例信息
+      class AssociatedInstanceInfo < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>实例ID。</p>
+        # @type InstanceId: String
+        # @param Username: <p>密钥对绑定的用户。</p>
+        # @type Username: String
+
+        attr_accessor :InstanceId, :Username
+
+        def initialize(instanceid=nil, username=nil)
+          @InstanceId = instanceid
+          @Username = username
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Username = params['Username']
         end
       end
 
@@ -4330,17 +4360,27 @@ module TencentCloud
         # @type KeyIds: Array
         # @param InstanceIds: 实例 ID 列表。每次请求批量实例的上限为 100。可通过[DescribeInstances](https://cloud.tencent.com/document/api/1207/47573)接口返回值中的InstanceId获取。
         # @type InstanceIds: Array
+        # @param DisassociateType: 解绑定类型。可选值：
+        # ONLINE - 在线解绑定，不需要关机。
+        # OFFLINE - 离线解绑定，需要关机。
+        # @type DisassociateType: String
+        # @param Username: 解绑定的用户名。当 DisassociateType 为 OFFLINE 时，不支持该参数。
+        # @type Username: String
 
-        attr_accessor :KeyIds, :InstanceIds
+        attr_accessor :KeyIds, :InstanceIds, :DisassociateType, :Username
 
-        def initialize(keyids=nil, instanceids=nil)
+        def initialize(keyids=nil, instanceids=nil, disassociatetype=nil, username=nil)
           @KeyIds = keyids
           @InstanceIds = instanceids
+          @DisassociateType = disassociatetype
+          @Username = username
         end
 
         def deserialize(params)
           @KeyIds = params['KeyIds']
           @InstanceIds = params['InstanceIds']
+          @DisassociateType = params['DisassociateType']
+          @Username = params['Username']
         end
       end
 
@@ -6261,6 +6301,8 @@ module TencentCloud
         # @type PublicKey: String
         # @param AssociatedInstanceIds: 密钥对关联的实例 ID 列表。
         # @type AssociatedInstanceIds: Array
+        # @param AssociatedInstanceSet: 密钥对关联的实例列表。
+        # @type AssociatedInstanceSet: Array
         # @param CreatedTime: 创建时间。按照 ISO8601 标准表示，并且使用 UTC 时间。格式为：YYYY-MM-DDThh:mm:ssZ
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreatedTime: String
@@ -6270,13 +6312,14 @@ module TencentCloud
         # @param Tags: 密钥对绑定的标签列表。
         # @type Tags: Array
 
-        attr_accessor :KeyId, :KeyName, :PublicKey, :AssociatedInstanceIds, :CreatedTime, :PrivateKey, :Tags
+        attr_accessor :KeyId, :KeyName, :PublicKey, :AssociatedInstanceIds, :AssociatedInstanceSet, :CreatedTime, :PrivateKey, :Tags
 
-        def initialize(keyid=nil, keyname=nil, publickey=nil, associatedinstanceids=nil, createdtime=nil, privatekey=nil, tags=nil)
+        def initialize(keyid=nil, keyname=nil, publickey=nil, associatedinstanceids=nil, associatedinstanceset=nil, createdtime=nil, privatekey=nil, tags=nil)
           @KeyId = keyid
           @KeyName = keyname
           @PublicKey = publickey
           @AssociatedInstanceIds = associatedinstanceids
+          @AssociatedInstanceSet = associatedinstanceset
           @CreatedTime = createdtime
           @PrivateKey = privatekey
           @Tags = tags
@@ -6287,6 +6330,14 @@ module TencentCloud
           @KeyName = params['KeyName']
           @PublicKey = params['PublicKey']
           @AssociatedInstanceIds = params['AssociatedInstanceIds']
+          unless params['AssociatedInstanceSet'].nil?
+            @AssociatedInstanceSet = []
+            params['AssociatedInstanceSet'].each do |i|
+              associatedinstanceinfo_tmp = AssociatedInstanceInfo.new
+              associatedinstanceinfo_tmp.deserialize(i)
+              @AssociatedInstanceSet << associatedinstanceinfo_tmp
+            end
+          end
           @CreatedTime = params['CreatedTime']
           @PrivateKey = params['PrivateKey']
           unless params['Tags'].nil?

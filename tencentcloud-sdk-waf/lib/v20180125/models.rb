@@ -21082,7 +21082,7 @@ module TencentCloud
         # @type RiskLevel: String
         # @param Mitigation: <p>综合处置建议字段，位于 data 顶层，用于给出本次检测结果的总体修复、缓解或人工处置建议</p>
         # @type Mitigation: String
-        # @param SecurityScore: <p>安全评分（0-100，100 为最安全）</p><p>取值范围：[0, 100]</p>
+        # @param SecurityScore: <p>安全评分（0-100，分数越高越安全）</p><p>取值范围：[0, 100]</p>
         # @type SecurityScore: Integer
         # @param EngineVersion: <p>本次扫描使用的引擎版本号</p>
         # @type EngineVersion: Integer

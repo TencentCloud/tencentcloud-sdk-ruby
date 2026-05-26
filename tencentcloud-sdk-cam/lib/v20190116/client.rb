@@ -1134,6 +1134,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取CAM密码设置规则
+
+        # @param request: Request instance for GetPasswordRules.
+        # @type request: :class:`Tencentcloud::cam::V20190116::GetPasswordRulesRequest`
+        # @rtype: :class:`Tencentcloud::cam::V20190116::GetPasswordRulesResponse`
+        def GetPasswordRules(request)
+          body = send_request('GetPasswordRules', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetPasswordRulesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（GetPolicy）可用于查询查看策略详情。
 
         # @param request: Request instance for GetPolicy.
@@ -2032,6 +2056,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = UpdateOIDCConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 更新CAM密码设置规则
+
+        # @param request: Request instance for UpdatePasswordRules.
+        # @type request: :class:`Tencentcloud::cam::V20190116::UpdatePasswordRulesRequest`
+        # @rtype: :class:`Tencentcloud::cam::V20190116::UpdatePasswordRulesResponse`
+        def UpdatePasswordRules(request)
+          body = send_request('UpdatePasswordRules', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdatePasswordRulesResponse.new
             model.deserialize(response['Response'])
             model
           else

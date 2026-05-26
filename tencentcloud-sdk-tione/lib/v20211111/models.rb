@@ -1919,10 +1919,12 @@ module TencentCloud
         # @param PublicDataSource: <p>公有云数据源</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PublicDataSource: :class:`Tencentcloud::Tione.v20211111.models.PublicDataSourceFS`
+        # @param ReadOnly: <p>是否是只读存储</p>
+        # @type ReadOnly: Boolean
 
-        attr_accessor :MappingPath, :DataSourceUsage, :DataSourceType, :DataSetSource, :COSSource, :CFSSource, :HDFSSource, :GooseFSSource, :CFSTurboSource, :LocalDiskSource, :CBSSource, :HostPathSource, :PublicDataSource
+        attr_accessor :MappingPath, :DataSourceUsage, :DataSourceType, :DataSetSource, :COSSource, :CFSSource, :HDFSSource, :GooseFSSource, :CFSTurboSource, :LocalDiskSource, :CBSSource, :HostPathSource, :PublicDataSource, :ReadOnly
 
-        def initialize(mappingpath=nil, datasourceusage=nil, datasourcetype=nil, datasetsource=nil, cossource=nil, cfssource=nil, hdfssource=nil, goosefssource=nil, cfsturbosource=nil, localdisksource=nil, cbssource=nil, hostpathsource=nil, publicdatasource=nil)
+        def initialize(mappingpath=nil, datasourceusage=nil, datasourcetype=nil, datasetsource=nil, cossource=nil, cfssource=nil, hdfssource=nil, goosefssource=nil, cfsturbosource=nil, localdisksource=nil, cbssource=nil, hostpathsource=nil, publicdatasource=nil, readonly=nil)
           @MappingPath = mappingpath
           @DataSourceUsage = datasourceusage
           @DataSourceType = datasourcetype
@@ -1936,6 +1938,7 @@ module TencentCloud
           @CBSSource = cbssource
           @HostPathSource = hostpathsource
           @PublicDataSource = publicdatasource
+          @ReadOnly = readonly
         end
 
         def deserialize(params)
@@ -1982,6 +1985,7 @@ module TencentCloud
             @PublicDataSource = PublicDataSourceFS.new
             @PublicDataSource.deserialize(params['PublicDataSource'])
           end
+          @ReadOnly = params['ReadOnly']
         end
       end
 
@@ -5637,26 +5641,29 @@ module TencentCloud
 
       # 配置GooseFS参数
       class GooseFS < TencentCloud::Common::AbstractModel
-        # @param Id: goosefs实例id
+        # @param Id: <p>goosefs实例id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: String
-        # @param Type: GooseFS类型，包括GooseFS和GooseFSx
+        # @param Type: <p>GooseFS类型，包括GooseFS和GooseFSx</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
-        # @param Path: GooseFSx实例需要挂载的路径
+        # @param Path: <p>GooseFSx实例需要挂载的路径</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Path: String
-        # @param NameSpace: GooseFS命名空间
+        # @param NameSpace: <p>GooseFS命名空间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NameSpace: String
+        # @param MountOptions: <p>客户端的挂载参数，逗号分隔的参数名</p>
+        # @type MountOptions: String
 
-        attr_accessor :Id, :Type, :Path, :NameSpace
+        attr_accessor :Id, :Type, :Path, :NameSpace, :MountOptions
 
-        def initialize(id=nil, type=nil, path=nil, namespace=nil)
+        def initialize(id=nil, type=nil, path=nil, namespace=nil, mountoptions=nil)
           @Id = id
           @Type = type
           @Path = path
           @NameSpace = namespace
+          @MountOptions = mountoptions
         end
 
         def deserialize(params)
@@ -5664,14 +5671,15 @@ module TencentCloud
           @Type = params['Type']
           @Path = params['Path']
           @NameSpace = params['NameSpace']
+          @MountOptions = params['MountOptions']
         end
       end
 
       # GosseFSx的配置
       class GooseFSx < TencentCloud::Common::AbstractModel
-        # @param Id: goosefsx实例id
+        # @param Id: <p>goosefsx实例id</p>
         # @type Id: String
-        # @param Path: GooseFSx实例需要挂载的路径
+        # @param Path: <p>GooseFSx实例需要挂载的路径</p>
         # @type Path: String
 
         attr_accessor :Id, :Path

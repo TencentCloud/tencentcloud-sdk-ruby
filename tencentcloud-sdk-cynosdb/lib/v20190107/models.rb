@@ -4142,108 +4142,97 @@ module TencentCloud
 
       # 集群信息
       class CynosdbCluster < TencentCloud::Common::AbstractModel
-        # @param Status: 集群状态， 可选值如下:
-        # creating: 创建中
-        # running:运行中
-        # isolating:隔离中
-        # isolated:已隔离
-        # activating:解隔离中
-        # offlining:下线中
-        # offlined:已下线
-        # deleting:删除中
-        # deleted:已删除
+        # @param Status: <p>集群状态， 可选值如下:<br>creating: 创建中<br>running:运行中<br>isolating:隔离中<br>isolated:已隔离<br>activating:解隔离中<br>offlining:下线中<br>offlined:已下线<br>deleting:删除中<br>deleted:已删除</p>
         # @type Status: String
-        # @param UpdateTime: 更新时间
+        # @param UpdateTime: <p>更新时间</p>
         # @type UpdateTime: String
-        # @param Zone: 可用区
+        # @param Zone: <p>可用区</p>
         # @type Zone: String
-        # @param ClusterName: 集群名称
+        # @param ClusterName: <p>集群名称</p>
         # @type ClusterName: String
-        # @param Region: 地域
+        # @param Region: <p>地域</p>
         # @type Region: String
-        # @param DbVersion: 数据库版本
+        # @param DbVersion: <p>数据库版本</p>
         # @type DbVersion: String
-        # @param ClusterId: 集群ID
+        # @param ClusterId: <p>集群ID</p>
         # @type ClusterId: String
-        # @param InstanceNum: 实例数
+        # @param InstanceNum: <p>实例数</p>
         # @type InstanceNum: Integer
-        # @param Uin: 用户uin
+        # @param Uin: <p>用户uin</p>
         # @type Uin: String
-        # @param DbType: 引擎类型
+        # @param DbType: <p>引擎类型</p>
         # @type DbType: String
-        # @param AppId: 用户appid
+        # @param AppId: <p>用户appid</p>
         # @type AppId: Integer
-        # @param StatusDesc: 集群状态描述
+        # @param StatusDesc: <p>集群状态描述</p>
         # @type StatusDesc: String
-        # @param CreateTime: 集群创建时间
+        # @param CreateTime: <p>集群创建时间</p>
         # @type CreateTime: String
-        # @param PayMode: 付费模式。0-按量计费，1-包年包月
+        # @param PayMode: <p>付费模式。0-按量计费，1-包年包月</p>
         # @type PayMode: Integer
-        # @param PeriodEndTime: 截止时间
+        # @param PeriodEndTime: <p>截止时间</p>
         # @type PeriodEndTime: String
-        # @param Vip: 集群读写vip
+        # @param Vip: <p>集群读写vip</p>
         # @type Vip: String
-        # @param Vport: 集群读写vport
+        # @param Vport: <p>集群读写vport</p>
         # @type Vport: Integer
-        # @param ProjectID: 项目id
+        # @param ProjectID: <p>项目id</p>
         # @type ProjectID: Integer
-        # @param VpcId: 私有网络ID
+        # @param VpcId: <p>私有网络ID</p>
         # @type VpcId: String
-        # @param SubnetId: 子网ID
+        # @param SubnetId: <p>子网ID</p>
         # @type SubnetId: String
-        # @param CynosVersion: cynos内核版本
+        # @param CynosVersion: <p>cynos内核版本</p>
         # @type CynosVersion: String
-        # @param CynosVersionTag: cynos版本标签
+        # @param CynosVersionTag: <p>cynos版本标签</p>
         # @type CynosVersionTag: String
-        # @param StorageLimit: 存储容量
+        # @param StorageLimit: <p>存储容量</p>
         # @type StorageLimit: Integer
-        # @param RenewFlag: 续费标志
+        # @param RenewFlag: <p>续费标志</p>
         # @type RenewFlag: Integer
-        # @param ProcessingTask: 正在处理的任务
+        # @param ProcessingTask: <p>正在处理的任务</p>
         # @type ProcessingTask: String
-        # @param Tasks: 集群的任务数组
+        # @param Tasks: <p>集群的任务数组</p>
         # @type Tasks: Array
-        # @param ResourceTags: 集群绑定的tag数组
+        # @param ResourceTags: <p>集群绑定的tag数组</p>
         # @type ResourceTags: Array
-        # @param DbMode: Db类型(NORMAL, SERVERLESS)
+        # @param DbMode: <p>Db类型(NORMAL, SERVERLESS)</p>
         # @type DbMode: String
-        # @param ServerlessStatus: 当Db类型为SERVERLESS时，serverless集群状态，可选值:
-        # resume
-        # pause
+        # @param ServerlessStatus: <p>当Db类型为SERVERLESS时，serverless集群状态，可选值:<br>resume<br>pause</p>
         # @type ServerlessStatus: String
-        # @param Storage: 集群预付费存储值大小
+        # @param Storage: <p>集群预付费存储值大小</p>
         # @type Storage: Integer
-        # @param StorageId: 集群存储为预付费时的存储ID，用于预付费存储变配
+        # @param StorageId: <p>集群存储为预付费时的存储ID，用于预付费存储变配</p>
         # @type StorageId: String
-        # @param StoragePayMode: 集群存储付费模式。0-按量计费，1-包年包月
+        # @param StoragePayMode: <p>集群存储付费模式。0-按量计费，1-包年包月</p>
         # @type StoragePayMode: Integer
-        # @param MinStorageSize: 集群计算规格对应的最小存储值
+        # @param MinStorageSize: <p>集群计算规格对应的最小存储值</p>
         # @type MinStorageSize: Integer
-        # @param MaxStorageSize: 集群计算规格对应的最大存储值
+        # @param MaxStorageSize: <p>集群计算规格对应的最大存储值</p>
         # @type MaxStorageSize: Integer
-        # @param NetAddrs: 集群网络信息
+        # @param NetAddrs: <p>集群网络信息</p>
         # @type NetAddrs: Array
-        # @param PhysicalZone: 物理可用区
+        # @param PhysicalZone: <p>物理可用区</p>
         # @type PhysicalZone: String
-        # @param MasterZone: 主可用区
+        # @param MasterZone: <p>主可用区</p>
         # @type MasterZone: String
-        # @param HasSlaveZone: 是否有从可用区
+        # @param HasSlaveZone: <p>是否有从可用区</p>
         # @type HasSlaveZone: String
-        # @param SlaveZones: 从可用区
+        # @param SlaveZones: <p>从可用区</p>
         # @type SlaveZones: Array
-        # @param BusinessType: 商业类型
+        # @param BusinessType: <p>商业类型</p>
         # @type BusinessType: String
-        # @param IsFreeze: 是否冻结
+        # @param IsFreeze: <p>是否冻结</p>
         # @type IsFreeze: String
-        # @param OrderSource: 订单来源
+        # @param OrderSource: <p>订单来源</p>
         # @type OrderSource: String
-        # @param Ability: 能力
+        # @param Ability: <p>能力</p>
         # @type Ability: :class:`Tencentcloud::Cynosdb.v20190107.models.Ability`
-        # @param ResourcePackages: 实例绑定资源包信息（此处只返回存储资源包，即packageType=DISK）
+        # @param ResourcePackages: <p>实例绑定资源包信息（此处只返回存储资源包，即packageType=DISK）</p>
         # @type ResourcePackages: Array
-        # @param GdnId: 全球数据库唯一标识
+        # @param GdnId: <p>全球数据库唯一标识</p>
         # @type GdnId: String
-        # @param GdnRole: 集群角色。主集群- primary，从集群 - standby，如果 GdnId为空，该字段无效。
+        # @param GdnRole: <p>集群角色。主集群- primary，从集群 - standby，如果 GdnId为空，该字段无效。</p>
         # @type GdnRole: String
 
         attr_accessor :Status, :UpdateTime, :Zone, :ClusterName, :Region, :DbVersion, :ClusterId, :InstanceNum, :Uin, :DbType, :AppId, :StatusDesc, :CreateTime, :PayMode, :PeriodEndTime, :Vip, :Vport, :ProjectID, :VpcId, :SubnetId, :CynosVersion, :CynosVersionTag, :StorageLimit, :RenewFlag, :ProcessingTask, :Tasks, :ResourceTags, :DbMode, :ServerlessStatus, :Storage, :StorageId, :StoragePayMode, :MinStorageSize, :MaxStorageSize, :NetAddrs, :PhysicalZone, :MasterZone, :HasSlaveZone, :SlaveZones, :BusinessType, :IsFreeze, :OrderSource, :Ability, :ResourcePackages, :GdnId, :GdnRole
@@ -17658,36 +17647,38 @@ module TencentCloud
 
       # 实例参数信息
       class ParamItemDetail < TencentCloud::Common::AbstractModel
-        # @param CurrentValue: 当前值
+        # @param CurrentValue: <p>当前值</p>
         # @type CurrentValue: String
-        # @param Default: 默认值
+        # @param Default: <p>默认值</p>
         # @type Default: String
-        # @param EnumValue: 参数的可选枚举值。如果为非枚举值，则为空
+        # @param EnumValue: <p>参数的可选枚举值。如果为非枚举值，则为空</p>
         # @type EnumValue: Array
-        # @param IsGlobal: 1：全局参数，0：非全局参数
+        # @param IsGlobal: <p>1：全局参数，0：非全局参数</p>
         # @type IsGlobal: Integer
-        # @param Max: 最大值
+        # @param Max: <p>最大值</p>
         # @type Max: String
-        # @param Min: 最小值
+        # @param Min: <p>最小值</p>
         # @type Min: String
-        # @param NeedReboot: 修改参数后，是否需要重启数据库以使参数生效。0-不需要重启，1-需要重启。
+        # @param NeedReboot: <p>修改参数后，是否需要重启数据库以使参数生效。0-不需要重启，1-需要重启。</p>
         # @type NeedReboot: Integer
-        # @param ParamName: 参数名称
+        # @param ParamName: <p>参数名称</p>
         # @type ParamName: String
-        # @param ParamType: 参数类型：integer，enum，float，string，func
+        # @param ParamType: <p>参数类型：integer，enum，float，string，func</p>
         # @type ParamType: String
-        # @param Description: 参数描述
+        # @param ModifiableInfo: <p>参数是否可修改</p>
+        # @type ModifiableInfo: :class:`Tencentcloud::Cynosdb.v20190107.models.ModifiableInfo`
+        # @param Description: <p>参数描述</p>
         # @type Description: String
-        # @param IsFunc: 类型是否为公式
+        # @param IsFunc: <p>类型是否为公式</p>
         # @type IsFunc: Boolean
-        # @param Func: 参数配置公式
+        # @param Func: <p>参数配置公式</p>
         # @type Func: String
-        # @param FuncPattern: 支持公式的参数的默认公式样式
+        # @param FuncPattern: <p>支持公式的参数的默认公式样式</p>
         # @type FuncPattern: String
 
-        attr_accessor :CurrentValue, :Default, :EnumValue, :IsGlobal, :Max, :Min, :NeedReboot, :ParamName, :ParamType, :Description, :IsFunc, :Func, :FuncPattern
+        attr_accessor :CurrentValue, :Default, :EnumValue, :IsGlobal, :Max, :Min, :NeedReboot, :ParamName, :ParamType, :ModifiableInfo, :Description, :IsFunc, :Func, :FuncPattern
 
-        def initialize(currentvalue=nil, default=nil, enumvalue=nil, isglobal=nil, max=nil, min=nil, needreboot=nil, paramname=nil, paramtype=nil, description=nil, isfunc=nil, func=nil, funcpattern=nil)
+        def initialize(currentvalue=nil, default=nil, enumvalue=nil, isglobal=nil, max=nil, min=nil, needreboot=nil, paramname=nil, paramtype=nil, modifiableinfo=nil, description=nil, isfunc=nil, func=nil, funcpattern=nil)
           @CurrentValue = currentvalue
           @Default = default
           @EnumValue = enumvalue
@@ -17697,6 +17688,7 @@ module TencentCloud
           @NeedReboot = needreboot
           @ParamName = paramname
           @ParamType = paramtype
+          @ModifiableInfo = modifiableinfo
           @Description = description
           @IsFunc = isfunc
           @Func = func
@@ -17713,6 +17705,10 @@ module TencentCloud
           @NeedReboot = params['NeedReboot']
           @ParamName = params['ParamName']
           @ParamType = params['ParamType']
+          unless params['ModifiableInfo'].nil?
+            @ModifiableInfo = ModifiableInfo.new
+            @ModifiableInfo.deserialize(params['ModifiableInfo'])
+          end
           @Description = params['Description']
           @IsFunc = params['IsFunc']
           @Func = params['Func']
