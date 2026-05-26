@@ -965,102 +965,96 @@ module TencentCloud
 
       # CreateInstance请求参数结构体
       class CreateInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param Zone: 可用区
+        # @param Zone: <p>可用区</p>
         # @type Zone: String
-        # @param EsVersion: 实例版本（支持"5.6.4"、"6.4.3"、"6.8.2"、"7.5.1"、"7.10.1"）
+        # @param EsVersion: <p>实例版本（支持&quot;5.6.4&quot;、&quot;6.4.3&quot;、&quot;6.8.2&quot;、&quot;7.5.1&quot;、&quot;7.10.1&quot;）</p>
         # @type EsVersion: String
-        # @param VpcId: 私有网络ID
+        # @param VpcId: <p>私有网络ID</p>
         # @type VpcId: String
-        # @param SubnetId: 子网ID
+        # @param SubnetId: <p>子网ID</p>
         # @type SubnetId: String
-        # @param Password: 访问密码（密码需8到16位，至少包括两项（[a-z,A-Z],[0-9]和[-!@#$%&^*+=_:;,.?]的特殊符号）
+        # @param Password: <p>访问密码（密码需8到16位，至少包括两项（[a-z,A-Z],[0-9]和[-!@#$%&amp;^*+=_:;,.?]的特殊符号）</p>
         # @type Password: String
-        # @param InstanceName: 实例名称（1-50 个英文、汉字、数字、连接线-或下划线_）
+        # @param InstanceName: <p>实例名称（1-50 个英文、汉字、数字、连接线-或下划线_）</p>
         # @type InstanceName: String
-        # @param NodeNum: 已废弃请使用NodeInfoList
-        # 节点数量（2-50个）
+        # @param NodeNum: <p>已废弃请使用NodeInfoList<br>节点数量（2-50个）</p>
         # @type NodeNum: Integer
-        # @param ChargeType: 计费类型<li>PREPAID：预付费，即包年包月</li><li>POSTPAID_BY_HOUR：按小时后付费</li>默认值POSTPAID_BY_HOUR
+        # @param ChargeType: <p>计费类型<li>PREPAID：预付费，即包年包月</li><li>POSTPAID_BY_HOUR：按小时后付费</li>默认值POSTPAID_BY_HOUR</p>
         # @type ChargeType: String
-        # @param ChargePeriod: 包年包月购买时长（单位由参数TimeUnit决定）
+        # @param ChargePeriod: <p>包年包月购买时长（单位由参数TimeUnit决定）</p>
         # @type ChargePeriod: Integer
-        # @param RenewFlag: 自动续费标识<li>RENEW_FLAG_AUTO：自动续费</li><li>RENEW_FLAG_MANUAL：不自动续费，用户手动续费</li>ChargeType为PREPAID时需要设置，如不传递该参数，普通用户默认不自动续费，SVIP用户自动续费
+        # @param RenewFlag: <p>自动续费标识<li>RENEW_FLAG_AUTO：自动续费</li><li>RENEW_FLAG_MANUAL：不自动续费，用户手动续费</li>ChargeType为PREPAID时需要设置，如不传递该参数，普通用户默认不自动续费，SVIP用户自动续费</p>
         # @type RenewFlag: String
-        # @param NodeType: 已废弃请使用NodeInfoList
-        # 节点规格<li>ES.S1.SMALL2：1核2G</li><li>ES.S1.MEDIUM4：2核4G</li><li>ES.S1.MEDIUM8：2核8G</li><li>ES.S1.LARGE16：4核16G</li><li>ES.S1.2XLARGE32：8核32G</li><li>ES.S1.4XLARGE32：16核32G</li><li>ES.S1.4XLARGE64：16核64G</li>
+        # @param NodeType: <p>已废弃请使用NodeInfoList<br>节点规格<li>ES.S1.SMALL2：1核2G</li><li>ES.S1.MEDIUM4：2核4G</li><li>ES.S1.MEDIUM8：2核8G</li><li>ES.S1.LARGE16：4核16G</li><li>ES.S1.2XLARGE32：8核32G</li><li>ES.S1.4XLARGE32：16核32G</li><li>ES.S1.4XLARGE64：16核64G</li></p>
         # @type NodeType: String
-        # @param DiskType: 已废弃请使用NodeInfoList
-        # 节点磁盘类型<li>CLOUD_SSD：SSD云硬盘</li><li>CLOUD_PREMIUM：高性能云硬盘</li><li> CLOUD_HSSD：增强型SSD云硬盘</li><li> CLOUD_BSSD：通用型SSD云硬盘</li>默认值CLOUD_SSD
+        # @param DiskType: <p>已废弃请使用NodeInfoList<br>节点磁盘类型<li>CLOUD_SSD：SSD云硬盘</li><li>CLOUD_PREMIUM：高性能云硬盘</li><li> CLOUD_HSSD：增强型SSD云硬盘</li><li> CLOUD_BSSD：通用型SSD云硬盘</li>默认值CLOUD_SSD</p>
         # @type DiskType: String
-        # @param DiskSize: 已废弃请使用NodeInfoList
-        # 节点磁盘容量（单位GB）
+        # @param DiskSize: <p>已废弃请使用NodeInfoList<br>节点磁盘容量（单位GB）</p>
         # @type DiskSize: Integer
-        # @param TimeUnit: 计费时长单位（ChargeType为PREPAID时需要设置，默认值为“m”，表示月，当前只支持“m”）
+        # @param TimeUnit: <p>计费时长单位（ChargeType为PREPAID时需要设置，默认值为“m”，表示月，当前只支持“m”）</p>
         # @type TimeUnit: String
-        # @param AutoVoucher: 是否自动使用代金券<li>0：不自动使用</li><li>1：自动使用</li>默认值0
+        # @param AutoVoucher: <p>是否自动使用代金券<li>0：不自动使用</li><li>1：自动使用</li>默认值0</p>
         # @type AutoVoucher: Integer
-        # @param VoucherIds: 代金券ID列表（目前仅支持指定一张代金券）
+        # @param VoucherIds: <p>代金券ID列表（目前仅支持指定一张代金券）</p>
         # @type VoucherIds: Array
-        # @param EnableDedicatedMaster: 已废弃请使用NodeInfoList
-        # 是否创建专用主节点<li>true：开启专用主节点</li><li>false：不开启专用主节点</li>默认值false
+        # @param EnableDedicatedMaster: <p>已废弃请使用NodeInfoList<br>是否创建专用主节点<li>true：开启专用主节点</li><li>false：不开启专用主节点</li>默认值false</p>
         # @type EnableDedicatedMaster: Boolean
-        # @param MasterNodeNum: 已废弃请使用NodeInfoList
-        # 专用主节点个数（只支持3个和5个，EnableDedicatedMaster为true时该值必传）
+        # @param MasterNodeNum: <p>已废弃请使用NodeInfoList<br>专用主节点个数（只支持3个和5个，EnableDedicatedMaster为true时该值必传）</p>
         # @type MasterNodeNum: Integer
-        # @param MasterNodeType: 已废弃请使用NodeInfoList
-        # 专用主节点类型（EnableDedicatedMaster为true时必传）<li>ES.S1.SMALL2：1核2G</li><li>ES.S1.MEDIUM4：2核4G</li><li>ES.S1.MEDIUM8：2核8G</li><li>ES.S1.LARGE16：4核16G</li><li>ES.S1.2XLARGE32：8核32G</li><li>ES.S1.4XLARGE32：16核32G</li><li>ES.S1.4XLARGE64：16核64G</li>
+        # @param MasterNodeType: <p>已废弃请使用NodeInfoList<br>专用主节点类型（EnableDedicatedMaster为true时必传）<li>ES.S1.SMALL2：1核2G</li><li>ES.S1.MEDIUM4：2核4G</li><li>ES.S1.MEDIUM8：2核8G</li><li>ES.S1.LARGE16：4核16G</li><li>ES.S1.2XLARGE32：8核32G</li><li>ES.S1.4XLARGE32：16核32G</li><li>ES.S1.4XLARGE64：16核64G</li></p>
         # @type MasterNodeType: String
-        # @param MasterNodeDiskSize: 已废弃请使用NodeInfoList
-        # 专用主节点磁盘大小（单位GB，非必传，若传递则必须为50，暂不支持自定义）
+        # @param MasterNodeDiskSize: <p>已废弃请使用NodeInfoList<br>专用主节点磁盘大小（单位GB，非必传，若传递则必须为50，暂不支持自定义）</p>
         # @type MasterNodeDiskSize: Integer
-        # @param ClusterNameInConf: 集群配置文件中的ClusterName（系统默认配置为实例ID，暂不支持自定义）
+        # @param ClusterNameInConf: <p>集群配置文件中的ClusterName（系统默认配置为实例ID，暂不支持自定义）</p>
         # @type ClusterNameInConf: String
-        # @param DeployMode: 集群部署方式<li>0：单可用区部署</li><li>1：多可用区部署，北京、上海、上海金融、广州、南京、香港、新加坡、法兰克福（白名单控制）</li>默认为0
+        # @param DeployMode: <p>集群部署方式<li>0：单可用区部署</li><li>1：多可用区部署，北京、上海、上海金融、广州、南京、香港、新加坡、法兰克福（白名单控制）</li>默认为0</p>
         # @type DeployMode: Integer
-        # @param MultiZoneInfo: 多可用区部署时可用区的详细信息(DeployMode为1时必传)
+        # @param MultiZoneInfo: <p>多可用区部署时可用区的详细信息(DeployMode为1时必传)</p>
         # @type MultiZoneInfo: Array
-        # @param LicenseType: License类型<li>oss：开源版</li><li>basic：基础版</li><li>platinum：白金版</li>默认值platinum
+        # @param LicenseType: <p>License类型<li>oss：开源版</li><li>basic：基础版</li><li>platinum：白金版</li>默认值platinum</p>
         # @type LicenseType: String
-        # @param NodeInfoList: 节点信息列表， 用于描述集群各类节点的规格信息如节点类型，节点个数，节点规格，磁盘类型，磁盘大小等
+        # @param NodeInfoList: <p>节点信息列表， 用于描述集群各类节点的规格信息如节点类型，节点个数，节点规格，磁盘类型，磁盘大小等</p>
         # @type NodeInfoList: Array
-        # @param TagList: 节点标签信息列表
+        # @param TagList: <p>节点标签信息列表</p>
         # @type TagList: Array
-        # @param BasicSecurityType: 6.8（及以上版本）基础版是否开启xpack security认证<li>1：不开启</li><li>2：开启</li>
+        # @param BasicSecurityType: <p>6.8（及以上版本）基础版是否开启xpack security认证<li>1：不开启</li><li>2：开启</li></p>
         # @type BasicSecurityType: Integer
-        # @param SceneType: 场景化模板类型 0：不启用 1：通用 2：日志 3：搜索
+        # @param SceneType: <p>场景化模板类型 0：不启用 1：通用 2：日志 3：搜索</p>
         # @type SceneType: Integer
-        # @param WebNodeTypeInfo: 可视化节点配置
+        # @param WebNodeTypeInfo: <p>可视化节点配置</p>
         # @type WebNodeTypeInfo: :class:`Tencentcloud::Es.v20180416.models.WebNodeTypeInfo`
-        # @param Protocol: 创建https集群，默认是http
+        # @param Protocol: <p>创建https集群，默认是http</p>
         # @type Protocol: String
-        # @param OperationDuration: 可维护时间段
+        # @param OperationDuration: <p>可维护时间段</p>
         # @type OperationDuration: :class:`Tencentcloud::Es.v20180416.models.OperationDuration`
-        # @param EnableHybridStorage: 是否开启存算分离
+        # @param EnableHybridStorage: <p>是否开启存算分离</p>
         # @type EnableHybridStorage: Boolean
-        # @param DiskEnhance: 硬盘额外性能
+        # @param DiskEnhance: <p>硬盘额外性能</p>
         # @type DiskEnhance: Integer
-        # @param EnableDiagnose: 是否开启智能巡检
+        # @param EnableDiagnose: <p>是否开启智能巡检</p>
         # @type EnableDiagnose: Boolean
-        # @param CdcId: cdcId，使用cdc子网时传递
+        # @param CdcId: <p>cdcId，使用cdc子网时传递</p>
         # @type CdcId: String
-        # @param DisasterRecoverGroupAffinity: 置放群组亲和度，范围[0,10]，0表示不开启
+        # @param DisasterRecoverGroupAffinity: <p>置放群组亲和度，范围[0,10]，0表示不开启</p>
         # @type DisasterRecoverGroupAffinity: Integer
-        # @param SubProductCode: 子产品ID枚举值： 开源版："sp_es_io2"， 基础版："sp_es_basic"，白金版："sp_es_platinum"，企业版："sp_es_enterprise"，CDC白金版："sp_es_cdc_platinum"，日志增强版："sp_es_enlogging"，tsearch："sp_tsearch_io2"，logstash："sp_es_logstash" ，可以为空，为空的时候后台取LicenseType映射该字段
+        # @param SubProductCode: <p>子产品ID枚举值： 开源版：&quot;sp_es_io2&quot;， 基础版：&quot;sp_es_basic&quot;，白金版：&quot;sp_es_platinum&quot;，企业版：&quot;sp_es_enterprise&quot;，CDC白金版：&quot;sp_es_cdc_platinum&quot;，日志增强版：&quot;sp_es_enlogging&quot;，tsearch：&quot;sp_tsearch_io2&quot;，logstash：&quot;sp_es_logstash&quot; ，可以为空，为空的时候后台取LicenseType映射该字段</p>
         # @type SubProductCode: String
-        # @param ReadWriteMode: 读写分离模式：0-不开启，1-本地读写分离，2-远端读写分离
+        # @param ReadWriteMode: <p>读写分离模式：0-不开启，1-本地读写分离，2-远端读写分离</p>
         # @type ReadWriteMode: Integer
-        # @param EnableScheduleRecoverGroup: 置放群组是否开启异步任务
+        # @param EnableScheduleRecoverGroup: <p>置放群组是否开启异步任务</p>
         # @type EnableScheduleRecoverGroup: Boolean
-        # @param EnableScheduleOperationDuration: 置放群组开启异步任务的可维护时间段
+        # @param EnableScheduleOperationDuration: <p>置放群组开启异步任务的可维护时间段</p>
         # @type EnableScheduleOperationDuration: :class:`Tencentcloud::Es.v20180416.models.EnableScheduleOperationDuration`
-        # @param AutoScaleDiskInfoList: 自动扩盘参数列表
+        # @param AutoScaleDiskInfoList: <p>自动扩盘参数列表</p>
         # @type AutoScaleDiskInfoList: Array
-        # @param EnableKibanaPublicAccess: 是否开启kibana公网访问，不传默认开启
+        # @param EnableKibanaPublicAccess: <p>是否开启kibana公网访问，不传默认开启</p>
         # @type EnableKibanaPublicAccess: String
+        # @param AlarmPolicyIds: <p>已有的云监控告警策略 ID</p>
+        # @type AlarmPolicyIds: Array
 
-        attr_accessor :Zone, :EsVersion, :VpcId, :SubnetId, :Password, :InstanceName, :NodeNum, :ChargeType, :ChargePeriod, :RenewFlag, :NodeType, :DiskType, :DiskSize, :TimeUnit, :AutoVoucher, :VoucherIds, :EnableDedicatedMaster, :MasterNodeNum, :MasterNodeType, :MasterNodeDiskSize, :ClusterNameInConf, :DeployMode, :MultiZoneInfo, :LicenseType, :NodeInfoList, :TagList, :BasicSecurityType, :SceneType, :WebNodeTypeInfo, :Protocol, :OperationDuration, :EnableHybridStorage, :DiskEnhance, :EnableDiagnose, :CdcId, :DisasterRecoverGroupAffinity, :SubProductCode, :ReadWriteMode, :EnableScheduleRecoverGroup, :EnableScheduleOperationDuration, :AutoScaleDiskInfoList, :EnableKibanaPublicAccess
+        attr_accessor :Zone, :EsVersion, :VpcId, :SubnetId, :Password, :InstanceName, :NodeNum, :ChargeType, :ChargePeriod, :RenewFlag, :NodeType, :DiskType, :DiskSize, :TimeUnit, :AutoVoucher, :VoucherIds, :EnableDedicatedMaster, :MasterNodeNum, :MasterNodeType, :MasterNodeDiskSize, :ClusterNameInConf, :DeployMode, :MultiZoneInfo, :LicenseType, :NodeInfoList, :TagList, :BasicSecurityType, :SceneType, :WebNodeTypeInfo, :Protocol, :OperationDuration, :EnableHybridStorage, :DiskEnhance, :EnableDiagnose, :CdcId, :DisasterRecoverGroupAffinity, :SubProductCode, :ReadWriteMode, :EnableScheduleRecoverGroup, :EnableScheduleOperationDuration, :AutoScaleDiskInfoList, :EnableKibanaPublicAccess, :AlarmPolicyIds
 
-        def initialize(zone=nil, esversion=nil, vpcid=nil, subnetid=nil, password=nil, instancename=nil, nodenum=nil, chargetype=nil, chargeperiod=nil, renewflag=nil, nodetype=nil, disktype=nil, disksize=nil, timeunit=nil, autovoucher=nil, voucherids=nil, enablededicatedmaster=nil, masternodenum=nil, masternodetype=nil, masternodedisksize=nil, clusternameinconf=nil, deploymode=nil, multizoneinfo=nil, licensetype=nil, nodeinfolist=nil, taglist=nil, basicsecuritytype=nil, scenetype=nil, webnodetypeinfo=nil, protocol=nil, operationduration=nil, enablehybridstorage=nil, diskenhance=nil, enablediagnose=nil, cdcid=nil, disasterrecovergroupaffinity=nil, subproductcode=nil, readwritemode=nil, enableschedulerecovergroup=nil, enablescheduleoperationduration=nil, autoscalediskinfolist=nil, enablekibanapublicaccess=nil)
+        def initialize(zone=nil, esversion=nil, vpcid=nil, subnetid=nil, password=nil, instancename=nil, nodenum=nil, chargetype=nil, chargeperiod=nil, renewflag=nil, nodetype=nil, disktype=nil, disksize=nil, timeunit=nil, autovoucher=nil, voucherids=nil, enablededicatedmaster=nil, masternodenum=nil, masternodetype=nil, masternodedisksize=nil, clusternameinconf=nil, deploymode=nil, multizoneinfo=nil, licensetype=nil, nodeinfolist=nil, taglist=nil, basicsecuritytype=nil, scenetype=nil, webnodetypeinfo=nil, protocol=nil, operationduration=nil, enablehybridstorage=nil, diskenhance=nil, enablediagnose=nil, cdcid=nil, disasterrecovergroupaffinity=nil, subproductcode=nil, readwritemode=nil, enableschedulerecovergroup=nil, enablescheduleoperationduration=nil, autoscalediskinfolist=nil, enablekibanapublicaccess=nil, alarmpolicyids=nil)
           @Zone = zone
           @EsVersion = esversion
           @VpcId = vpcid
@@ -1103,6 +1097,7 @@ module TencentCloud
           @EnableScheduleOperationDuration = enablescheduleoperationduration
           @AutoScaleDiskInfoList = autoscalediskinfolist
           @EnableKibanaPublicAccess = enablekibanapublicaccess
+          @AlarmPolicyIds = alarmpolicyids
         end
 
         def deserialize(params)
@@ -1185,14 +1180,15 @@ module TencentCloud
             end
           end
           @EnableKibanaPublicAccess = params['EnableKibanaPublicAccess']
+          @AlarmPolicyIds = params['AlarmPolicyIds']
         end
       end
 
       # CreateInstance返回参数结构体
       class CreateInstanceResponse < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: <p>实例ID</p>
         # @type InstanceId: String
-        # @param DealName: 订单号
+        # @param DealName: <p>订单号</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DealName: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -6241,42 +6237,45 @@ module TencentCloud
 
       # 集群中一种节点类型（如热数据节点，冷数据节点，专用主节点等）的规格描述信息，包括节点类型，节点个数，节点规格，磁盘类型，磁盘大小等, Type不指定时默认为热数据节点；如果节点为master节点，则DiskType和DiskSize参数会被忽略（主节点无数据盘）
       class NodeInfo < TencentCloud::Common::AbstractModel
-        # @param NodeNum: 节点数量
+        # @param NodeNum: <p>节点数量</p>
         # @type NodeNum: Integer
-        # @param NodeType: 节点规格<li>ES.S1.SMALL2：1核2G</li><li>ES.S1.MEDIUM4：2核4G</li><li>ES.S1.MEDIUM8：2核8G</li><li>ES.S1.LARGE16：4核16G</li><li>ES.S1.2XLARGE32：8核32G</li><li>ES.S1.4XLARGE32：16核32G</li><li>ES.S1.4XLARGE64：16核64G</li>
+        # @param NodeType: <p>节点规格<li>ES.S1.SMALL2：1核2G</li><li>ES.S1.MEDIUM4：2核4G</li><li>ES.S1.MEDIUM8：2核8G</li><li>ES.S1.LARGE16：4核16G</li><li>ES.S1.2XLARGE32：8核32G</li><li>ES.S1.4XLARGE32：16核32G</li><li>ES.S1.4XLARGE64：16核64G</li></p>
         # @type NodeType: String
-        # @param Type: 节点类型<li>hotData: 热数据节点</li>
-        # <li>warmData: 冷数据节点</li>
-        # <li>dedicatedMaster: 专用主节点</li>
-        # 默认值为hotData
+        # @param Type: <p>节点类型<li>hotData: 热数据节点</li></p><li>warmData: 冷数据节点</li><li>dedicatedMaster: 专用主节点</li>默认值为hotData
         # @type Type: String
-        # @param DiskType: 节点磁盘类型<li>CLOUD_SSD：SSD云硬盘</li><li>CLOUD_PREMIUM：高硬能云硬盘</li>默认值CLOUD_SSD
+        # @param DiskType: <p>节点磁盘类型<li>CLOUD_SSD：SSD云硬盘</li><li>CLOUD_PREMIUM：高硬能云硬盘</li>默认值CLOUD_SSD</p>
         # @type DiskType: String
-        # @param DiskSize: 节点磁盘容量（单位GB）
+        # @param DiskSize: <p>节点磁盘容量（单位GB）</p>
         # @type DiskSize: Integer
-        # @param LocalDiskInfo: 节点本地盘信息
+        # @param LocalDiskInfo: <p>节点本地盘信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LocalDiskInfo: :class:`Tencentcloud::Es.v20180416.models.LocalDiskInfo`
-        # @param DiskCount: 节点磁盘块数
+        # @param DiskCount: <p>节点磁盘块数</p>
         # @type DiskCount: Integer
-        # @param DiskEncrypt: 节点磁盘是否加密 0: 不加密，1: 加密；默认不加密
+        # @param DiskEncrypt: <p>节点磁盘是否加密 0: 不加密，1: 加密；默认不加密</p>
         # @type DiskEncrypt: Integer
-        # @param CpuNum: cpu数目
+        # @param KmsKeyId: <p>自定义加密密钥id</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KmsKeyId: String
+        # @param KmsKeyName: <p>自定义加密密钥name</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KmsKeyName: String
+        # @param CpuNum: <p>cpu数目</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CpuNum: Integer
-        # @param MemSize: 内存大小，单位GB
+        # @param MemSize: <p>内存大小，单位GB</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MemSize: Integer
-        # @param DiskEnhance: 硬盘额外性能
+        # @param DiskEnhance: <p>硬盘额外性能</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiskEnhance: Integer
-        # @param GpuInfo: 节点Gpu信息
+        # @param GpuInfo: <p>节点Gpu信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GpuInfo: :class:`Tencentcloud::Es.v20180416.models.GpuInfo`
 
-        attr_accessor :NodeNum, :NodeType, :Type, :DiskType, :DiskSize, :LocalDiskInfo, :DiskCount, :DiskEncrypt, :CpuNum, :MemSize, :DiskEnhance, :GpuInfo
+        attr_accessor :NodeNum, :NodeType, :Type, :DiskType, :DiskSize, :LocalDiskInfo, :DiskCount, :DiskEncrypt, :KmsKeyId, :KmsKeyName, :CpuNum, :MemSize, :DiskEnhance, :GpuInfo
 
-        def initialize(nodenum=nil, nodetype=nil, type=nil, disktype=nil, disksize=nil, localdiskinfo=nil, diskcount=nil, diskencrypt=nil, cpunum=nil, memsize=nil, diskenhance=nil, gpuinfo=nil)
+        def initialize(nodenum=nil, nodetype=nil, type=nil, disktype=nil, disksize=nil, localdiskinfo=nil, diskcount=nil, diskencrypt=nil, kmskeyid=nil, kmskeyname=nil, cpunum=nil, memsize=nil, diskenhance=nil, gpuinfo=nil)
           @NodeNum = nodenum
           @NodeType = nodetype
           @Type = type
@@ -6285,6 +6284,8 @@ module TencentCloud
           @LocalDiskInfo = localdiskinfo
           @DiskCount = diskcount
           @DiskEncrypt = diskencrypt
+          @KmsKeyId = kmskeyid
+          @KmsKeyName = kmskeyname
           @CpuNum = cpunum
           @MemSize = memsize
           @DiskEnhance = diskenhance
@@ -6303,6 +6304,8 @@ module TencentCloud
           end
           @DiskCount = params['DiskCount']
           @DiskEncrypt = params['DiskEncrypt']
+          @KmsKeyId = params['KmsKeyId']
+          @KmsKeyName = params['KmsKeyName']
           @CpuNum = params['CpuNum']
           @MemSize = params['MemSize']
           @DiskEnhance = params['DiskEnhance']

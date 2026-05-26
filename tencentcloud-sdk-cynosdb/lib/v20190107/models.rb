@@ -17,6 +17,30 @@
 module TencentCloud
   module Cynosdb
     module V20190107
+      # AI 优化器状态
+      class AIOptimizerStatus < TencentCloud::Common::AbstractModel
+        # @param Status: <p>状态。closing-关闭中，closed-关闭，opening-开启中，training-训练中，trained-训练完成，train_failed-训练失败。</p>
+        # @type Status: String
+        # @param OpenTime: <p>开启时间</p>
+        # @type OpenTime: String
+        # @param TrainingProgress: <p>训练进度</p>
+        # @type TrainingProgress: Integer
+
+        attr_accessor :Status, :OpenTime, :TrainingProgress
+
+        def initialize(status=nil, opentime=nil, trainingprogress=nil)
+          @Status = status
+          @OpenTime = opentime
+          @TrainingProgress = trainingprogress
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @OpenTime = params['OpenTime']
+          @TrainingProgress = params['TrainingProgress']
+        end
+      end
+
       # 集群支持的功能
       class Ability < TencentCloud::Common::AbstractModel
         # @param IsSupportSlaveZone: 是否支持从可用区
@@ -2315,50 +2339,48 @@ module TencentCloud
 
       # 集群实例信息
       class ClusterInstanceDetail < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: <p>实例ID</p>
         # @type InstanceId: String
-        # @param InstanceName: 实例名称
+        # @param InstanceName: <p>实例名称</p>
         # @type InstanceName: String
-        # @param InstanceType: 引擎类型
+        # @param InstanceType: <p>引擎类型</p>
         # @type InstanceType: String
-        # @param InstanceStatus: 实例状态
+        # @param InstanceStatus: <p>实例状态</p>
         # @type InstanceStatus: String
-        # @param InstanceStatusDesc: 实例状态描述
+        # @param InstanceStatusDesc: <p>实例状态描述</p>
         # @type InstanceStatusDesc: String
-        # @param InstanceCpu: cpu核数
+        # @param InstanceCpu: <p>cpu核数</p>
         # @type InstanceCpu: Integer
-        # @param InstanceMemory: 内存
+        # @param InstanceMemory: <p>内存</p>
         # @type InstanceMemory: Integer
-        # @param InstanceStorage: 硬盘
+        # @param InstanceStorage: <p>硬盘</p>
         # @type InstanceStorage: Integer
-        # @param InstanceRole: 实例角色
+        # @param InstanceRole: <p>实例角色</p>
         # @type InstanceRole: String
-        # @param MaintainStartTime: 执行开始时间(距离0点的秒数)
+        # @param MaintainStartTime: <p>执行开始时间(距离0点的秒数)</p>
         # @type MaintainStartTime: Integer
-        # @param MaintainDuration: 持续的时间(单位：秒)
+        # @param MaintainDuration: <p>持续的时间(单位：秒)</p>
         # @type MaintainDuration: Integer
-        # @param MaintainWeekDays: 可以执行的时间，枚举值：["Mon","Tue","Wed","Thu","Fri", "Sat", "Sun"]
+        # @param MaintainWeekDays: <p>可以执行的时间，枚举值：[&quot;Mon&quot;,&quot;Tue&quot;,&quot;Wed&quot;,&quot;Thu&quot;,&quot;Fri&quot;, &quot;Sat&quot;, &quot;Sun&quot;]</p>
         # @type MaintainWeekDays: Array
-        # @param ServerlessStatus: serverless实例子状态
+        # @param ServerlessStatus: <p>serverless实例子状态</p>
         # @type ServerlessStatus: String
-        # @param InstanceTasks: 实例任务信息
+        # @param InstanceTasks: <p>实例任务信息</p>
         # @type InstanceTasks: Array
-        # @param InstanceDeviceType: 实例机器类型
-        # 1. common，通用型。
-        # 2. exclusive，独享型。
+        # @param InstanceDeviceType: <p>实例机器类型</p><ol><li>common，通用型。</li><li>exclusive，独享型。</li></ol>
         # @type InstanceDeviceType: String
-        # @param InstanceStorageType: 实例存储类型
-        # 说明：仅当要查询的资源为 LibraDB 时，此参数才会返回值。
+        # @param InstanceStorageType: <p>实例存储类型<br>说明：仅当要查询的资源为 LibraDB 时，此参数才会返回值。</p>
         # @type InstanceStorageType: String
-        # @param DbMode: 数据库类型
+        # @param DbMode: <p>数据库类型</p>
         # @type DbMode: String
-        # @param NodeList: 节点列表
-        # 说明：仅当要查询的资源为 LibraDB 时，此参数才会返回值。
+        # @param NodeList: <p>节点列表<br>说明：仅当要查询的资源为 LibraDB 时，此参数才会返回值。</p>
         # @type NodeList: Array
+        # @param AIOptimizerStatus: <p>AI优化器状态</p>
+        # @type AIOptimizerStatus: :class:`Tencentcloud::Cynosdb.v20190107.models.AIOptimizerStatus`
 
-        attr_accessor :InstanceId, :InstanceName, :InstanceType, :InstanceStatus, :InstanceStatusDesc, :InstanceCpu, :InstanceMemory, :InstanceStorage, :InstanceRole, :MaintainStartTime, :MaintainDuration, :MaintainWeekDays, :ServerlessStatus, :InstanceTasks, :InstanceDeviceType, :InstanceStorageType, :DbMode, :NodeList
+        attr_accessor :InstanceId, :InstanceName, :InstanceType, :InstanceStatus, :InstanceStatusDesc, :InstanceCpu, :InstanceMemory, :InstanceStorage, :InstanceRole, :MaintainStartTime, :MaintainDuration, :MaintainWeekDays, :ServerlessStatus, :InstanceTasks, :InstanceDeviceType, :InstanceStorageType, :DbMode, :NodeList, :AIOptimizerStatus
 
-        def initialize(instanceid=nil, instancename=nil, instancetype=nil, instancestatus=nil, instancestatusdesc=nil, instancecpu=nil, instancememory=nil, instancestorage=nil, instancerole=nil, maintainstarttime=nil, maintainduration=nil, maintainweekdays=nil, serverlessstatus=nil, instancetasks=nil, instancedevicetype=nil, instancestoragetype=nil, dbmode=nil, nodelist=nil)
+        def initialize(instanceid=nil, instancename=nil, instancetype=nil, instancestatus=nil, instancestatusdesc=nil, instancecpu=nil, instancememory=nil, instancestorage=nil, instancerole=nil, maintainstarttime=nil, maintainduration=nil, maintainweekdays=nil, serverlessstatus=nil, instancetasks=nil, instancedevicetype=nil, instancestoragetype=nil, dbmode=nil, nodelist=nil, aioptimizerstatus=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @InstanceType = instancetype
@@ -2377,6 +2399,7 @@ module TencentCloud
           @InstanceStorageType = instancestoragetype
           @DbMode = dbmode
           @NodeList = nodelist
+          @AIOptimizerStatus = aioptimizerstatus
         end
 
         def deserialize(params)
@@ -2405,6 +2428,10 @@ module TencentCloud
           @InstanceStorageType = params['InstanceStorageType']
           @DbMode = params['DbMode']
           @NodeList = params['NodeList']
+          unless params['AIOptimizerStatus'].nil?
+            @AIOptimizerStatus = AIOptimizerStatus.new
+            @AIOptimizerStatus.deserialize(params['AIOptimizerStatus'])
+          end
         end
       end
 
@@ -2546,9 +2573,9 @@ module TencentCloud
 
       # CopyBackupToVault请求参数结构体
       class CopyBackupToVaultRequest < TencentCloud::Common::AbstractModel
-        # @param VaultId: 目标保险箱ID，备份文件将复制到此保险箱
+        # @param VaultId: <p>目标保险箱ID，备份文件将复制到此保险箱</p>
         # @type VaultId: String
-        # @param BackupIds: 备份文件ID列表，支持批量复制多个备份文件
+        # @param BackupIds: <p>备份文件ID列表，支持批量复制多个备份文件</p>
         # @type BackupIds: Array
 
         attr_accessor :VaultId, :BackupIds
@@ -2566,7 +2593,7 @@ module TencentCloud
 
       # CopyBackupToVault返回参数结构体
       class CopyBackupToVaultResponse < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务ID
+        # @param TaskId: <p>任务ID</p>
         # @type TaskId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -20648,15 +20675,15 @@ module TencentCloud
 
       # 稀疏备份策略配置信息
       class SparseBackupConfigInfo < TencentCloud::Common::AbstractModel
-        # @param OpType: 操作类型:add,modify,remove
+        # @param OpType: <p>操作类型:add,modify,remove</p>
         # @type OpType: String
-        # @param ConfigId: 配置 ID
+        # @param ConfigId: <p>配置 ID</p>
         # @type ConfigId: String
-        # @param SparsePeriodConfig: 周期策略类型：weekly/monthly/yearly
+        # @param SparsePeriodConfig: <p>周期策略类型：weekly/monthly/yearly</p>
         # @type SparsePeriodConfig: String
-        # @param SparsePeriodTime: 周期时间配置
+        # @param SparsePeriodTime: <p>周期时间配置</p>
         # @type SparsePeriodTime: :class:`Tencentcloud::Cynosdb.v20190107.models.SparsePeriodTime`
-        # @param SparseBackupSaveDays: 保留天数（7-7320天，最长20年）
+        # @param SparseBackupSaveDays: <p>保留天数（7-7320天，最长20年）</p>
         # @type SparseBackupSaveDays: Integer
 
         attr_accessor :OpType, :ConfigId, :SparsePeriodConfig, :SparsePeriodTime, :SparseBackupSaveDays
@@ -20683,10 +20710,10 @@ module TencentCloud
 
       # 稀疏备份配置
       class SparseBackupConfigRsp < TencentCloud::Common::AbstractModel
-        # @param SparseBackupSwitch: 稀疏备份开关：ON/OFF
+        # @param SparseBackupSwitch: <p>稀疏备份开关：ON/OFF</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SparseBackupSwitch: String
-        # @param SparseBackupConfigInfos: 稀疏备份策略列表（1-3条）
+        # @param SparseBackupConfigInfos: <p>稀疏备份策略列表（1-3条）</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SparseBackupConfigInfos: Array
 

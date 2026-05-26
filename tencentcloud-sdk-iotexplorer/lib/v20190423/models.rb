@@ -2555,6 +2555,97 @@ module TencentCloud
         end
       end
 
+      # CreateTWeSeeCallback请求参数结构体
+      class CreateTWeSeeCallbackRequest < TencentCloud::Common::AbstractModel
+        # @param Type: 回调类型。可选值：\n- `http` HTTP 回调
+        # @type Type: String
+        # @param CallbackUrl: 回调 URL。要求 http 或 https 协议，仅支持 80 或 443 端口
+        # @type CallbackUrl: String
+        # @param CallbackToken: 回调签名 Token。最大长度 128
+        # @type CallbackToken: String
+
+        attr_accessor :Type, :CallbackUrl, :CallbackToken
+
+        def initialize(type=nil, callbackurl=nil, callbacktoken=nil)
+          @Type = type
+          @CallbackUrl = callbackurl
+          @CallbackToken = callbacktoken
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @CallbackUrl = params['CallbackUrl']
+          @CallbackToken = params['CallbackToken']
+        end
+      end
+
+      # CreateTWeSeeCallback返回参数结构体
+      class CreateTWeSeeCallbackResponse < TencentCloud::Common::AbstractModel
+        # @param CallbackId: 回调目标 ID
+        # @type CallbackId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CallbackId, :RequestId
+
+        def initialize(callbackid=nil, requestid=nil)
+          @CallbackId = callbackid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @CallbackId = params['CallbackId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateTWeSeePostPaidService请求参数结构体
+      class CreateTWeSeePostPaidServiceRequest < TencentCloud::Common::AbstractModel
+        # @param ServiceType: 算法类型。可选值：
+
+        # - `VID_COMP`：视频理解
+        # - `IMG_COMP`：图片理解
+        # @type ServiceType: String
+
+        attr_accessor :ServiceType
+
+        def initialize(servicetype=nil)
+          @ServiceType = servicetype
+        end
+
+        def deserialize(params)
+          @ServiceType = params['ServiceType']
+        end
+      end
+
+      # CreateTWeSeePostPaidService返回参数结构体
+      class CreateTWeSeePostPaidServiceResponse < TencentCloud::Common::AbstractModel
+        # @param OrderId: 订单 ID
+        # @type OrderId: String
+        # @param ResourceId: 资源 ID
+        # @type ResourceId: String
+        # @param Status: 订单状态
+        # @type Status: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :OrderId, :ResourceId, :Status, :RequestId
+
+        def initialize(orderid=nil, resourceid=nil, status=nil, requestid=nil)
+          @OrderId = orderid
+          @ResourceId = resourceid
+          @Status = status
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @OrderId = params['OrderId']
+          @ResourceId = params['ResourceId']
+          @Status = params['Status']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateTWeSeeRecognitionTask请求参数结构体
       class CreateTWeSeeRecognitionTaskRequest < TencentCloud::Common::AbstractModel
         # @param ProductId: 产品ID
@@ -2797,6 +2888,97 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateTWeSeeSubscription请求参数结构体
+      class CreateTWeSeeSubscriptionRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品 ID
+        # @type ProductId: String
+        # @param DeviceName: 设备名称
+        # @type DeviceName: String
+        # @param ServiceType: 算法类型。可选值：
+
+        # - `VID_COMP`：视频理解
+        # @type ServiceType: String
+        # @param ServiceTier: 套餐规格。可选值：
+
+        # - `BASIC`：包年包月基础版（适用于视频理解）
+        # @type ServiceTier: String
+        # @param Period: 订阅购买时长，单位：月，支持 1-60
+        # @type Period: Integer
+        # @param ChannelId: 通道 ID
+        # @type ChannelId: Integer
+        # @param CustomOrderId: 自定义订单 ID
+        # @type CustomOrderId: String
+        # @param RenewFlag: 续费标识。可选值：
+        # - `NOTIFY_AND_MANUAL_RENEW`：到期前通知并手动续费（默认）
+        # - `NOTIFY_AND_AUTO_RENEW`：到期前通知并自动续费
+        # - `DISABLE_NOTIFY_AND_MANUAL_RENEW`：不通知且手动续费
+        # @type RenewFlag: String
+
+        attr_accessor :ProductId, :DeviceName, :ServiceType, :ServiceTier, :Period, :ChannelId, :CustomOrderId, :RenewFlag
+
+        def initialize(productid=nil, devicename=nil, servicetype=nil, servicetier=nil, period=nil, channelid=nil, customorderid=nil, renewflag=nil)
+          @ProductId = productid
+          @DeviceName = devicename
+          @ServiceType = servicetype
+          @ServiceTier = servicetier
+          @Period = period
+          @ChannelId = channelid
+          @CustomOrderId = customorderid
+          @RenewFlag = renewflag
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+          @ServiceType = params['ServiceType']
+          @ServiceTier = params['ServiceTier']
+          @Period = params['Period']
+          @ChannelId = params['ChannelId']
+          @CustomOrderId = params['CustomOrderId']
+          @RenewFlag = params['RenewFlag']
+        end
+      end
+
+      # CreateTWeSeeSubscription返回参数结构体
+      class CreateTWeSeeSubscriptionResponse < TencentCloud::Common::AbstractModel
+        # @param OrderId: 订单 ID
+        # @type OrderId: String
+        # @param Status: 订单状态
+        # @type Status: String
+        # @param ResourceId: 资源 ID
+        # @type ResourceId: String
+        # @param OriginalPrice: 原价
+        # @type OriginalPrice: String
+        # @param DiscountPrice: 折后价
+        # @type DiscountPrice: String
+        # @param Currency: 币种
+        # @type Currency: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :OrderId, :Status, :ResourceId, :OriginalPrice, :DiscountPrice, :Currency, :RequestId
+
+        def initialize(orderid=nil, status=nil, resourceid=nil, originalprice=nil, discountprice=nil, currency=nil, requestid=nil)
+          @OrderId = orderid
+          @Status = status
+          @ResourceId = resourceid
+          @OriginalPrice = originalprice
+          @DiscountPrice = discountprice
+          @Currency = currency
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @OrderId = params['OrderId']
+          @Status = params['Status']
+          @ResourceId = params['ResourceId']
+          @OriginalPrice = params['OriginalPrice']
+          @DiscountPrice = params['DiscountPrice']
+          @Currency = params['Currency']
           @RequestId = params['RequestId']
         end
       end
@@ -3633,6 +3815,38 @@ module TencentCloud
 
       # DeleteStudioProduct返回参数结构体
       class DeleteStudioProductResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteTWeSeeCallback请求参数结构体
+      class DeleteTWeSeeCallbackRequest < TencentCloud::Common::AbstractModel
+        # @param CallbackId: 回调目标 ID，格式为 `callback-` + 8 位小写字母数字
+        # @type CallbackId: String
+
+        attr_accessor :CallbackId
+
+        def initialize(callbackid=nil)
+          @CallbackId = callbackid
+        end
+
+        def deserialize(params)
+          @CallbackId = params['CallbackId']
+        end
+      end
+
+      # DeleteTWeSeeCallback返回参数结构体
+      class DeleteTWeSeeCallbackResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -6955,6 +7169,45 @@ module TencentCloud
         end
       end
 
+      # DescribeTWeSeeCallback请求参数结构体
+      class DescribeTWeSeeCallbackRequest < TencentCloud::Common::AbstractModel
+        # @param CallbackId: 回调目标 ID
+        # @type CallbackId: String
+
+        attr_accessor :CallbackId
+
+        def initialize(callbackid=nil)
+          @CallbackId = callbackid
+        end
+
+        def deserialize(params)
+          @CallbackId = params['CallbackId']
+        end
+      end
+
+      # DescribeTWeSeeCallback返回参数结构体
+      class DescribeTWeSeeCallbackResponse < TencentCloud::Common::AbstractModel
+        # @param CallbackInfo: 回调目标详情
+        # @type CallbackInfo: :class:`Tencentcloud::Iotexplorer.v20190423.models.SeeCallbackInfo`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CallbackInfo, :RequestId
+
+        def initialize(callbackinfo=nil, requestid=nil)
+          @CallbackInfo = callbackinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['CallbackInfo'].nil?
+            @CallbackInfo = SeeCallbackInfo.new
+            @CallbackInfo.deserialize(params['CallbackInfo'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeTWeSeeConfig请求参数结构体
       class DescribeTWeSeeConfigRequest < TencentCloud::Common::AbstractModel
         # @param ProductId: 产品ID
@@ -7025,6 +7278,51 @@ module TencentCloud
         end
       end
 
+      # DescribeTWeSeePostPaidService请求参数结构体
+      class DescribeTWeSeePostPaidServiceRequest < TencentCloud::Common::AbstractModel
+        # @param ServiceType: 算法类型。可选值：
+
+        # - `VID_COMP`：视频理解
+        # - `IMG_COMP`：图片理解
+        # @type ServiceType: String
+
+        attr_accessor :ServiceType
+
+        def initialize(servicetype=nil)
+          @ServiceType = servicetype
+        end
+
+        def deserialize(params)
+          @ServiceType = params['ServiceType']
+        end
+      end
+
+      # DescribeTWeSeePostPaidService返回参数结构体
+      class DescribeTWeSeePostPaidServiceResponse < TencentCloud::Common::AbstractModel
+        # @param ResourceId: 后付费资源 ID
+        # @type ResourceId: String
+        # @param Status: 资源状态。可选值：
+        # - `NORMAL`：正常
+        # - `ISOLATED`：已隔离
+        # @type Status: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ResourceId, :Status, :RequestId
+
+        def initialize(resourceid=nil, status=nil, requestid=nil)
+          @ResourceId = resourceid
+          @Status = status
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ResourceId = params['ResourceId']
+          @Status = params['Status']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeTWeSeeRecognitionTask请求参数结构体
       class DescribeTWeSeeRecognitionTaskRequest < TencentCloud::Common::AbstractModel
         # @param TaskId: 任务 ID
@@ -7065,6 +7363,222 @@ module TencentCloud
           unless params['TaskInfo'].nil?
             @TaskInfo = VisionRecognitionTask.new
             @TaskInfo.deserialize(params['TaskInfo'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeTWeSeeSubscription请求参数结构体
+      class DescribeTWeSeeSubscriptionRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品 ID
+        # @type ProductId: String
+        # @param DeviceName: 设备名称
+        # @type DeviceName: String
+        # @param ServiceType: 算法类型。可选值：
+
+        # - `VID_COMP`：视频理解
+        # @type ServiceType: String
+        # @param ChannelId: 通道 ID
+        # @type ChannelId: Integer
+
+        attr_accessor :ProductId, :DeviceName, :ServiceType, :ChannelId
+
+        def initialize(productid=nil, devicename=nil, servicetype=nil, channelid=nil)
+          @ProductId = productid
+          @DeviceName = devicename
+          @ServiceType = servicetype
+          @ChannelId = channelid
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+          @ServiceType = params['ServiceType']
+          @ChannelId = params['ChannelId']
+        end
+      end
+
+      # DescribeTWeSeeSubscription返回参数结构体
+      class DescribeTWeSeeSubscriptionResponse < TencentCloud::Common::AbstractModel
+        # @param ResourceId: 资源 ID
+        # @type ResourceId: String
+        # @param ServiceTier: 套餐规格。可能取值：
+
+        # - `BASIC`：包年包月基础版（适用于视频理解）
+        # @type ServiceTier: String
+        # @param ExpireTime: 到期时间，秒级时间戳
+        # @type ExpireTime: Integer
+        # @param Enabled: 启用状态，`true` 为开启，`false` 为关闭
+        # @type Enabled: Boolean
+        # @param Status: 订阅状态。可能取值：
+
+        # - `NORMAL`：正常
+        # - `ISOLATED`：隔离
+        # @type Status: String
+        # @param ComprehensionConfig: 视觉理解配置（适用于视频理解、图片理解）
+        # @type ComprehensionConfig: :class:`Tencentcloud::Iotexplorer.v20190423.models.SeeComprehensionConfig`
+        # @param CompHighlightConfig: 视频语义浓缩配置（适用于视频语义浓缩）
+        # @type CompHighlightConfig: :class:`Tencentcloud::Iotexplorer.v20190423.models.SeeCompHighlightConfig`
+        # @param EventIdFilterConfig: 云存事件 ID 过滤规则配置项
+        # @type EventIdFilterConfig: :class:`Tencentcloud::Iotexplorer.v20190423.models.SeeEventIdFilterConfig`
+        # @param QuotaBasic: 当前周期基础能力总额度
+        # @type QuotaBasic: Integer
+        # @param QuotaUsedBasic: 当前周期基础能力已用额度
+        # @type QuotaUsedBasic: Integer
+        # @param QuotaAdvanced: 当前周期高级能力总额度
+        # @type QuotaAdvanced: Integer
+        # @param QuotaUsedAdvanced: 当前周期高级能力已用额度
+        # @type QuotaUsedAdvanced: Integer
+        # @param QuotaRefreshTime: 额度刷新时间
+        # @type QuotaRefreshTime: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ResourceId, :ServiceTier, :ExpireTime, :Enabled, :Status, :ComprehensionConfig, :CompHighlightConfig, :EventIdFilterConfig, :QuotaBasic, :QuotaUsedBasic, :QuotaAdvanced, :QuotaUsedAdvanced, :QuotaRefreshTime, :RequestId
+
+        def initialize(resourceid=nil, servicetier=nil, expiretime=nil, enabled=nil, status=nil, comprehensionconfig=nil, comphighlightconfig=nil, eventidfilterconfig=nil, quotabasic=nil, quotausedbasic=nil, quotaadvanced=nil, quotausedadvanced=nil, quotarefreshtime=nil, requestid=nil)
+          @ResourceId = resourceid
+          @ServiceTier = servicetier
+          @ExpireTime = expiretime
+          @Enabled = enabled
+          @Status = status
+          @ComprehensionConfig = comprehensionconfig
+          @CompHighlightConfig = comphighlightconfig
+          @EventIdFilterConfig = eventidfilterconfig
+          @QuotaBasic = quotabasic
+          @QuotaUsedBasic = quotausedbasic
+          @QuotaAdvanced = quotaadvanced
+          @QuotaUsedAdvanced = quotausedadvanced
+          @QuotaRefreshTime = quotarefreshtime
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ResourceId = params['ResourceId']
+          @ServiceTier = params['ServiceTier']
+          @ExpireTime = params['ExpireTime']
+          @Enabled = params['Enabled']
+          @Status = params['Status']
+          unless params['ComprehensionConfig'].nil?
+            @ComprehensionConfig = SeeComprehensionConfig.new
+            @ComprehensionConfig.deserialize(params['ComprehensionConfig'])
+          end
+          unless params['CompHighlightConfig'].nil?
+            @CompHighlightConfig = SeeCompHighlightConfig.new
+            @CompHighlightConfig.deserialize(params['CompHighlightConfig'])
+          end
+          unless params['EventIdFilterConfig'].nil?
+            @EventIdFilterConfig = SeeEventIdFilterConfig.new
+            @EventIdFilterConfig.deserialize(params['EventIdFilterConfig'])
+          end
+          @QuotaBasic = params['QuotaBasic']
+          @QuotaUsedBasic = params['QuotaUsedBasic']
+          @QuotaAdvanced = params['QuotaAdvanced']
+          @QuotaUsedAdvanced = params['QuotaUsedAdvanced']
+          @QuotaRefreshTime = params['QuotaRefreshTime']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeTWeSeeTask请求参数结构体
+      class DescribeTWeSeeTaskRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务 ID
+        # @type TaskId: String
+
+        attr_accessor :TaskId
+
+        def initialize(taskid=nil)
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # DescribeTWeSeeTask返回参数结构体
+      class DescribeTWeSeeTaskResponse < TencentCloud::Common::AbstractModel
+        # @param TaskInfo: 任务信息
+        # @type TaskInfo: :class:`Tencentcloud::Iotexplorer.v20190423.models.SeeTaskInfo`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskInfo, :RequestId
+
+        def initialize(taskinfo=nil, requestid=nil)
+          @TaskInfo = taskinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['TaskInfo'].nil?
+            @TaskInfo = SeeTaskInfo.new
+            @TaskInfo.deserialize(params['TaskInfo'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeTWeSeeTaskStatistics请求参数结构体
+      class DescribeTWeSeeTaskStatisticsRequest < TencentCloud::Common::AbstractModel
+        # @param ServiceType: 算法类型。可选值：
+
+        # - `VID_COMP`：视频理解
+        # - `IMG_COMP`：图片理解
+        # @type ServiceType: String
+        # @param ServiceTier: 套餐规格。可选值：
+
+        # - `POSTPAID`：后付费（适用于视频理解、图片理解）
+        # - `BASIC`：包年包月基础版（适用于视频理解）
+        # @type ServiceTier: String
+        # @param StartTime: 起始时间 UNIX 时间戳，单位：秒
+        # @type StartTime: Integer
+        # @param EndTime: 结束时间 UNIX 时间戳，单位：秒
+        # @type EndTime: Integer
+        # @param Interval: 数据点间隔，单位：秒；-1 表示汇总，只返回 1 个数据点
+        # @type Interval: Integer
+
+        attr_accessor :ServiceType, :ServiceTier, :StartTime, :EndTime, :Interval
+
+        def initialize(servicetype=nil, servicetier=nil, starttime=nil, endtime=nil, interval=nil)
+          @ServiceType = servicetype
+          @ServiceTier = servicetier
+          @StartTime = starttime
+          @EndTime = endtime
+          @Interval = interval
+        end
+
+        def deserialize(params)
+          @ServiceType = params['ServiceType']
+          @ServiceTier = params['ServiceTier']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Interval = params['Interval']
+        end
+      end
+
+      # DescribeTWeSeeTaskStatistics返回参数结构体
+      class DescribeTWeSeeTaskStatisticsResponse < TencentCloud::Common::AbstractModel
+        # @param StatData: 统计数据
+        # @type StatData: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :StatData, :RequestId
+
+        def initialize(statdata=nil, requestid=nil)
+          @StatData = statdata
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['StatData'].nil?
+            @StatData = []
+            params['StatData'].each do |i|
+              seestatitem_tmp = SeeStatItem.new
+              seestatitem_tmp.deserialize(i)
+              @StatData << seestatitem_tmp
+            end
           end
           @RequestId = params['RequestId']
         end
@@ -7395,6 +7909,52 @@ module TencentCloud
               @License << videolicenseentity_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DestroyTWeSeeSubscription请求参数结构体
+      class DestroyTWeSeeSubscriptionRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品 ID
+        # @type ProductId: String
+        # @param DeviceName: 设备名称
+        # @type DeviceName: String
+        # @param ServiceType: 算法类型。可选值：
+
+        # - `VID_COMP`：视频理解
+        # @type ServiceType: String
+        # @param ChannelId: 通道 ID
+        # @type ChannelId: Integer
+
+        attr_accessor :ProductId, :DeviceName, :ServiceType, :ChannelId
+
+        def initialize(productid=nil, devicename=nil, servicetype=nil, channelid=nil)
+          @ProductId = productid
+          @DeviceName = devicename
+          @ServiceType = servicetype
+          @ChannelId = channelid
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+          @ServiceType = params['ServiceType']
+          @ChannelId = params['ChannelId']
+        end
+      end
+
+      # DestroyTWeSeeSubscription返回参数结构体
+      class DestroyTWeSeeSubscriptionResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -9709,6 +10269,124 @@ module TencentCloud
         end
       end
 
+      # InquireTWeSeeSubscriptionCreatePrice请求参数结构体
+      class InquireTWeSeeSubscriptionCreatePriceRequest < TencentCloud::Common::AbstractModel
+        # @param ServiceType: 算法类型。可选值：
+
+        # - `VID_COMP`：视频理解
+        # @type ServiceType: String
+        # @param ServiceTier: 套餐规格。可选值：
+
+        # - `BASIC`：包年包月基础版（适用于视频理解）
+        # @type ServiceTier: String
+        # @param Period: 订阅购买时长，单位：月，支持 1-60
+        # @type Period: Integer
+
+        attr_accessor :ServiceType, :ServiceTier, :Period
+
+        def initialize(servicetype=nil, servicetier=nil, period=nil)
+          @ServiceType = servicetype
+          @ServiceTier = servicetier
+          @Period = period
+        end
+
+        def deserialize(params)
+          @ServiceType = params['ServiceType']
+          @ServiceTier = params['ServiceTier']
+          @Period = params['Period']
+        end
+      end
+
+      # InquireTWeSeeSubscriptionCreatePrice返回参数结构体
+      class InquireTWeSeeSubscriptionCreatePriceResponse < TencentCloud::Common::AbstractModel
+        # @param OriginalPrice: 原价
+        # @type OriginalPrice: String
+        # @param DiscountPrice: 折后价
+        # @type DiscountPrice: String
+        # @param Currency: 币种
+        # @type Currency: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :OriginalPrice, :DiscountPrice, :Currency, :RequestId
+
+        def initialize(originalprice=nil, discountprice=nil, currency=nil, requestid=nil)
+          @OriginalPrice = originalprice
+          @DiscountPrice = discountprice
+          @Currency = currency
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @OriginalPrice = params['OriginalPrice']
+          @DiscountPrice = params['DiscountPrice']
+          @Currency = params['Currency']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # InquireTWeSeeSubscriptionRenewPrice请求参数结构体
+      class InquireTWeSeeSubscriptionRenewPriceRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品 ID
+        # @type ProductId: String
+        # @param DeviceName: 设备名称
+        # @type DeviceName: String
+        # @param ServiceType: 算法类型。可选值：
+
+        # - `VID_COMP`：视频理解
+        # @type ServiceType: String
+        # @param Period: 续费时长，单位：月，支持 1-60
+        # @type Period: Integer
+        # @param ChannelId: 通道 ID
+        # @type ChannelId: Integer
+
+        attr_accessor :ProductId, :DeviceName, :ServiceType, :Period, :ChannelId
+
+        def initialize(productid=nil, devicename=nil, servicetype=nil, period=nil, channelid=nil)
+          @ProductId = productid
+          @DeviceName = devicename
+          @ServiceType = servicetype
+          @Period = period
+          @ChannelId = channelid
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+          @ServiceType = params['ServiceType']
+          @Period = params['Period']
+          @ChannelId = params['ChannelId']
+        end
+      end
+
+      # InquireTWeSeeSubscriptionRenewPrice返回参数结构体
+      class InquireTWeSeeSubscriptionRenewPriceResponse < TencentCloud::Common::AbstractModel
+        # @param OriginalPrice: 原价
+        # @type OriginalPrice: String
+        # @param DiscountPrice: 折后价
+        # @type DiscountPrice: String
+        # @param Currency: 币种
+        # @type Currency: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :OriginalPrice, :DiscountPrice, :Currency, :RequestId
+
+        def initialize(originalprice=nil, discountprice=nil, currency=nil, requestid=nil)
+          @OriginalPrice = originalprice
+          @DiscountPrice = discountprice
+          @Currency = currency
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @OriginalPrice = params['OriginalPrice']
+          @DiscountPrice = params['DiscountPrice']
+          @Currency = params['Currency']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 实例信息
       # 公共实例过期时间 0001-01-01T00:00:00Z，公共实例是永久有效
       class InstanceDetail < TencentCloud::Common::AbstractModel
@@ -10086,6 +10764,95 @@ module TencentCloud
             @TaskInfo = CloudStorageAIServiceTask.new
             @TaskInfo.deserialize(params['TaskInfo'])
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # InvokeTWeSeeComprehension请求参数结构体
+      class InvokeTWeSeeComprehensionRequest < TencentCloud::Common::AbstractModel
+        # @param InputURL: 输入视频 / 图片的 URL
+        # @type InputURL: String
+        # @param ServiceType: 算法类型。可选值：
+
+        # - `VID_COMP`：视频理解
+        # - `IMG_COMP`：图片理解
+        # @type ServiceType: String
+        # @param Metadata: 任务元数据
+        # @type Metadata: :class:`Tencentcloud::Iotexplorer.v20190423.models.SeeTaskMetadata`
+        # @param ComprehensionConfig: 视觉理解配置项
+        # @type ComprehensionConfig: :class:`Tencentcloud::Iotexplorer.v20190423.models.SeeComprehensionConfig`
+        # @param WaitResultTimeout: 等待结果的超时时间（单位：秒）。填 0 表示无需等待结果。最大超时时长 25 秒，默认超时时长 20 秒。
+        # @type WaitResultTimeout: Integer
+        # @param CallbackId: 回调目标 ID
+        # @type CallbackId: String
+
+        attr_accessor :InputURL, :ServiceType, :Metadata, :ComprehensionConfig, :WaitResultTimeout, :CallbackId
+
+        def initialize(inputurl=nil, servicetype=nil, metadata=nil, comprehensionconfig=nil, waitresulttimeout=nil, callbackid=nil)
+          @InputURL = inputurl
+          @ServiceType = servicetype
+          @Metadata = metadata
+          @ComprehensionConfig = comprehensionconfig
+          @WaitResultTimeout = waitresulttimeout
+          @CallbackId = callbackid
+        end
+
+        def deserialize(params)
+          @InputURL = params['InputURL']
+          @ServiceType = params['ServiceType']
+          unless params['Metadata'].nil?
+            @Metadata = SeeTaskMetadata.new
+            @Metadata.deserialize(params['Metadata'])
+          end
+          unless params['ComprehensionConfig'].nil?
+            @ComprehensionConfig = SeeComprehensionConfig.new
+            @ComprehensionConfig.deserialize(params['ComprehensionConfig'])
+          end
+          @WaitResultTimeout = params['WaitResultTimeout']
+          @CallbackId = params['CallbackId']
+        end
+      end
+
+      # InvokeTWeSeeComprehension返回参数结构体
+      class InvokeTWeSeeComprehensionResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务 ID
+        # @type TaskId: String
+        # @param Status: 任务状态。可能取值：
+
+        # - `1`：失败
+        # - `2`：空结果
+        # - `3`：有效结果
+        # - `4`：处理中
+        # @type Status: Integer
+        # @param ComprehensionResult: 视觉理解结果
+        # @type ComprehensionResult: :class:`Tencentcloud::Iotexplorer.v20190423.models.SeeComprehensionResult`
+        # @param CostBasic: 完成该任务所消耗的基础能力额度
+        # @type CostBasic: Integer
+        # @param CostAdvanced: 完成该任务所消耗的高级能力额度
+        # @type CostAdvanced: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :Status, :ComprehensionResult, :CostBasic, :CostAdvanced, :RequestId
+
+        def initialize(taskid=nil, status=nil, comprehensionresult=nil, costbasic=nil, costadvanced=nil, requestid=nil)
+          @TaskId = taskid
+          @Status = status
+          @ComprehensionResult = comprehensionresult
+          @CostBasic = costbasic
+          @CostAdvanced = costadvanced
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @Status = params['Status']
+          unless params['ComprehensionResult'].nil?
+            @ComprehensionResult = SeeComprehensionResult.new
+            @ComprehensionResult.deserialize(params['ComprehensionResult'])
+          end
+          @CostBasic = params['CostBasic']
+          @CostAdvanced = params['CostAdvanced']
           @RequestId = params['RequestId']
         end
       end
@@ -10832,6 +11599,141 @@ module TencentCloud
               @Modules << otamoduleinfo_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ListTWeSeeCallback请求参数结构体
+      class ListTWeSeeCallbackRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 分页大小，范围 1-100
+        # @type Limit: Integer
+        # @param Offset: 分页偏移量，范围 0-10000
+        # @type Offset: Integer
+
+        attr_accessor :Limit, :Offset
+
+        def initialize(limit=nil, offset=nil)
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # ListTWeSeeCallback返回参数结构体
+      class ListTWeSeeCallbackResponse < TencentCloud::Common::AbstractModel
+        # @param List: 回调目标列表
+        # @type List: Array
+        # @param Total: 已创建的回调目标总数
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :List, :Total, :RequestId
+
+        def initialize(list=nil, total=nil, requestid=nil)
+          @List = list
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              seecallbackinfo_tmp = SeeCallbackInfo.new
+              seecallbackinfo_tmp.deserialize(i)
+              @List << seecallbackinfo_tmp
+            end
+          end
+          @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ListTWeSeeTasks请求参数结构体
+      class ListTWeSeeTasksRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品 ID
+        # @type ProductId: String
+        # @param DeviceName: 设备名称
+        # @type DeviceName: String
+        # @param ServiceCategory: 算法类目。可能取值：
+        # - `COMPREHENSION`：视觉理解
+        # @type ServiceCategory: String
+        # @param Limit: 分页拉取数量
+        # @type Limit: Integer
+        # @param Offset: 分页拉取偏移
+        # @type Offset: Integer
+        # @param ChannelId: 通道 ID
+        # @type ChannelId: Integer
+        # @param StartTimeMs: 查询任务时间范围的起始时间（毫秒级 UNIX 时间戳）。不传则不生效时间范围条件。
+        # @type StartTimeMs: Integer
+        # @param EndTimeMs: 查询任务时间范围的结束时间（毫秒级 UNIX 时间戳）。不传则不生效时间范围条件。
+        # @type EndTimeMs: Integer
+        # @param Status: 要查询的任务的状态条件。不传则不按照状态过滤，可选值：
+
+        # - `1`：失败
+        # - `2`：空结果
+        # - `3`：有效结果
+        # @type Status: Integer
+
+        attr_accessor :ProductId, :DeviceName, :ServiceCategory, :Limit, :Offset, :ChannelId, :StartTimeMs, :EndTimeMs, :Status
+
+        def initialize(productid=nil, devicename=nil, servicecategory=nil, limit=nil, offset=nil, channelid=nil, starttimems=nil, endtimems=nil, status=nil)
+          @ProductId = productid
+          @DeviceName = devicename
+          @ServiceCategory = servicecategory
+          @Limit = limit
+          @Offset = offset
+          @ChannelId = channelid
+          @StartTimeMs = starttimems
+          @EndTimeMs = endtimems
+          @Status = status
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+          @ServiceCategory = params['ServiceCategory']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @ChannelId = params['ChannelId']
+          @StartTimeMs = params['StartTimeMs']
+          @EndTimeMs = params['EndTimeMs']
+          @Status = params['Status']
+        end
+      end
+
+      # ListTWeSeeTasks返回参数结构体
+      class ListTWeSeeTasksResponse < TencentCloud::Common::AbstractModel
+        # @param Tasks: 任务列表
+        # @type Tasks: Array
+        # @param Total: 任务数量
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Tasks, :Total, :RequestId
+
+        def initialize(tasks=nil, total=nil, requestid=nil)
+          @Tasks = tasks
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Tasks'].nil?
+            @Tasks = []
+            params['Tasks'].each do |i|
+              seetaskinfo_tmp = SeeTaskInfo.new
+              seetaskinfo_tmp.deserialize(i)
+              @Tasks << seetaskinfo_tmp
+            end
+          end
+          @Total = params['Total']
           @RequestId = params['RequestId']
         end
       end
@@ -11753,6 +12655,50 @@ module TencentCloud
         end
       end
 
+      # ModifyTWeSeeCallback请求参数结构体
+      class ModifyTWeSeeCallbackRequest < TencentCloud::Common::AbstractModel
+        # @param CallbackId: 回调目标 ID，格式为 `callback-` + 8 位小写字母数字
+        # @type CallbackId: String
+        # @param CallbackUrl: 回调 URL，需要可访问并通过 Echo 校验
+        # @type CallbackUrl: String
+        # @param Type: 回调类型。当前仅支持：`http`
+        # @type Type: String
+        # @param CallbackToken: 回调签名 token，最大长度 128
+        # @type CallbackToken: String
+
+        attr_accessor :CallbackId, :CallbackUrl, :Type, :CallbackToken
+
+        def initialize(callbackid=nil, callbackurl=nil, type=nil, callbacktoken=nil)
+          @CallbackId = callbackid
+          @CallbackUrl = callbackurl
+          @Type = type
+          @CallbackToken = callbacktoken
+        end
+
+        def deserialize(params)
+          @CallbackId = params['CallbackId']
+          @CallbackUrl = params['CallbackUrl']
+          @Type = params['Type']
+          @CallbackToken = params['CallbackToken']
+        end
+      end
+
+      # ModifyTWeSeeCallback返回参数结构体
+      class ModifyTWeSeeCallbackResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyTWeSeeConfig请求参数结构体
       class ModifyTWeSeeConfigRequest < TencentCloud::Common::AbstractModel
         # @param ProductId: 产品ID
@@ -11809,6 +12755,130 @@ module TencentCloud
 
       # ModifyTWeSeeConfig返回参数结构体
       class ModifyTWeSeeConfigResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyTWeSeeSubscriptionRenewFlag请求参数结构体
+      class ModifyTWeSeeSubscriptionRenewFlagRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品 ID
+        # @type ProductId: String
+        # @param DeviceName: 设备名称
+        # @type DeviceName: String
+        # @param ServiceType: 算法类型。可选值：
+
+        # - `VID_COMP`：视频理解
+        # @type ServiceType: String
+        # @param RenewFlag: 续费标识。可选值：
+        # - `NOTIFY_AND_MANUAL_RENEW`：到期前通知并手动续费
+        # - `NOTIFY_AND_AUTO_RENEW`：到期前通知并自动续费
+        # - `DISABLE_NOTIFY_AND_MANUAL_RENEW`：不通知且手动续费
+        # @type RenewFlag: String
+        # @param ChannelId: 通道 ID
+        # @type ChannelId: Integer
+
+        attr_accessor :ProductId, :DeviceName, :ServiceType, :RenewFlag, :ChannelId
+
+        def initialize(productid=nil, devicename=nil, servicetype=nil, renewflag=nil, channelid=nil)
+          @ProductId = productid
+          @DeviceName = devicename
+          @ServiceType = servicetype
+          @RenewFlag = renewflag
+          @ChannelId = channelid
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+          @ServiceType = params['ServiceType']
+          @RenewFlag = params['RenewFlag']
+          @ChannelId = params['ChannelId']
+        end
+      end
+
+      # ModifyTWeSeeSubscriptionRenewFlag返回参数结构体
+      class ModifyTWeSeeSubscriptionRenewFlagResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyTWeSeeSubscription请求参数结构体
+      class ModifyTWeSeeSubscriptionRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品 ID
+        # @type ProductId: String
+        # @param DeviceName: 设备名称
+        # @type DeviceName: String
+        # @param ServiceType: 算法类型。可选值：
+
+        # - `VID_COMP`：视频理解
+        # @type ServiceType: String
+        # @param ChannelId: 通道 ID
+        # @type ChannelId: Integer
+        # @param Enabled: 功能开关。`true` 为开启，`false` 为关闭；不传表示不修改
+        # @type Enabled: Boolean
+        # @param ComprehensionConfig: 视觉理解配置（适用于视频理解、图片理解），不传则不修改
+        # @type ComprehensionConfig: :class:`Tencentcloud::Iotexplorer.v20190423.models.SeeComprehensionConfig`
+        # @param CompHighlightConfig: 视频语义浓缩配置（适用于视频语义浓缩），不传则不修改
+        # @type CompHighlightConfig: :class:`Tencentcloud::Iotexplorer.v20190423.models.SeeCompHighlightConfig`
+        # @param EventIdFilterConfig: 云存事件 ID 过滤规则配置，不传则不修改
+        # @type EventIdFilterConfig: :class:`Tencentcloud::Iotexplorer.v20190423.models.SeeEventIdFilterConfig`
+
+        attr_accessor :ProductId, :DeviceName, :ServiceType, :ChannelId, :Enabled, :ComprehensionConfig, :CompHighlightConfig, :EventIdFilterConfig
+
+        def initialize(productid=nil, devicename=nil, servicetype=nil, channelid=nil, enabled=nil, comprehensionconfig=nil, comphighlightconfig=nil, eventidfilterconfig=nil)
+          @ProductId = productid
+          @DeviceName = devicename
+          @ServiceType = servicetype
+          @ChannelId = channelid
+          @Enabled = enabled
+          @ComprehensionConfig = comprehensionconfig
+          @CompHighlightConfig = comphighlightconfig
+          @EventIdFilterConfig = eventidfilterconfig
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+          @ServiceType = params['ServiceType']
+          @ChannelId = params['ChannelId']
+          @Enabled = params['Enabled']
+          unless params['ComprehensionConfig'].nil?
+            @ComprehensionConfig = SeeComprehensionConfig.new
+            @ComprehensionConfig.deserialize(params['ComprehensionConfig'])
+          end
+          unless params['CompHighlightConfig'].nil?
+            @CompHighlightConfig = SeeCompHighlightConfig.new
+            @CompHighlightConfig.deserialize(params['CompHighlightConfig'])
+          end
+          unless params['EventIdFilterConfig'].nil?
+            @EventIdFilterConfig = SeeEventIdFilterConfig.new
+            @EventIdFilterConfig.deserialize(params['EventIdFilterConfig'])
+          end
+        end
+      end
+
+      # ModifyTWeSeeSubscription返回参数结构体
+      class ModifyTWeSeeSubscriptionResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -13030,6 +14100,84 @@ module TencentCloud
         end
       end
 
+      # RenewTWeSeeSubscription请求参数结构体
+      class RenewTWeSeeSubscriptionRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品 ID
+        # @type ProductId: String
+        # @param DeviceName: 设备名称
+        # @type DeviceName: String
+        # @param ServiceType: 算法类型。可选值：
+
+        # - `VID_COMP`：视频理解
+        # @type ServiceType: String
+        # @param Period: 续费时长，单位：月，支持 1-60
+        # @type Period: Integer
+        # @param ChannelId: 通道 ID
+        # @type ChannelId: Integer
+        # @param CustomOrderId: 自定义订单 ID
+        # @type CustomOrderId: String
+
+        attr_accessor :ProductId, :DeviceName, :ServiceType, :Period, :ChannelId, :CustomOrderId
+
+        def initialize(productid=nil, devicename=nil, servicetype=nil, period=nil, channelid=nil, customorderid=nil)
+          @ProductId = productid
+          @DeviceName = devicename
+          @ServiceType = servicetype
+          @Period = period
+          @ChannelId = channelid
+          @CustomOrderId = customorderid
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+          @ServiceType = params['ServiceType']
+          @Period = params['Period']
+          @ChannelId = params['ChannelId']
+          @CustomOrderId = params['CustomOrderId']
+        end
+      end
+
+      # RenewTWeSeeSubscription返回参数结构体
+      class RenewTWeSeeSubscriptionResponse < TencentCloud::Common::AbstractModel
+        # @param OrderId: 订单 ID
+        # @type OrderId: String
+        # @param Status: 订单状态
+        # @type Status: String
+        # @param ResourceId: 资源 ID
+        # @type ResourceId: String
+        # @param OriginalPrice: 原价
+        # @type OriginalPrice: String
+        # @param DiscountPrice: 折后价
+        # @type DiscountPrice: String
+        # @param Currency: 币种
+        # @type Currency: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :OrderId, :Status, :ResourceId, :OriginalPrice, :DiscountPrice, :Currency, :RequestId
+
+        def initialize(orderid=nil, status=nil, resourceid=nil, originalprice=nil, discountprice=nil, currency=nil, requestid=nil)
+          @OrderId = orderid
+          @Status = status
+          @ResourceId = resourceid
+          @OriginalPrice = originalprice
+          @DiscountPrice = discountprice
+          @Currency = currency
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @OrderId = params['OrderId']
+          @Status = params['Status']
+          @ResourceId = params['ResourceId']
+          @OriginalPrice = params['OriginalPrice']
+          @DiscountPrice = params['DiscountPrice']
+          @Currency = params['Currency']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ResetCloudStorageAIService请求参数结构体
       class ResetCloudStorageAIServiceRequest < TencentCloud::Common::AbstractModel
         # @param ProductId: 产品 ID
@@ -13450,6 +14598,198 @@ module TencentCloud
         end
       end
 
+      # TWeSee 回调目标信息
+      class SeeCallbackInfo < TencentCloud::Common::AbstractModel
+        # @param CallbackId: 回调目标 ID
+        # @type CallbackId: String
+        # @param CallbackToken: 回调签名 token
+        # @type CallbackToken: String
+        # @param CallbackUrl: 回调 URL
+        # @type CallbackUrl: String
+        # @param CreateTime: 创建时间（秒级时间戳）
+        # @type CreateTime: Integer
+        # @param Type: 回调类型
+        # @type Type: String
+        # @param UpdateTime: 更新时间（秒级时间戳）
+        # @type UpdateTime: Integer
+
+        attr_accessor :CallbackId, :CallbackToken, :CallbackUrl, :CreateTime, :Type, :UpdateTime
+
+        def initialize(callbackid=nil, callbacktoken=nil, callbackurl=nil, createtime=nil, type=nil, updatetime=nil)
+          @CallbackId = callbackid
+          @CallbackToken = callbacktoken
+          @CallbackUrl = callbackurl
+          @CreateTime = createtime
+          @Type = type
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @CallbackId = params['CallbackId']
+          @CallbackToken = params['CallbackToken']
+          @CallbackUrl = params['CallbackUrl']
+          @CreateTime = params['CreateTime']
+          @Type = params['Type']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # TWeSee 视频语义浓缩配置
+      class SeeCompHighlightConfig < TencentCloud::Common::AbstractModel
+        # @param DisableHighlight: 是否禁用视频浓缩
+        # @type DisableHighlight: Boolean
+        # @param DetectTypes: 包含在浓缩结果中的目标类别。可选值：
+
+        # - `person`：人
+        # - `pet`：宠物
+        # - `vehicle`：车辆
+        # @type DetectTypes: Array
+        # @param EnableSummary: 指定是否返回浓缩视频的摘要文本
+        # @type EnableSummary: Boolean
+        # @param KeyFramesNum: 指定返回的关键帧图像数量
+        # @type KeyFramesNum: Integer
+
+        attr_accessor :DisableHighlight, :DetectTypes, :EnableSummary, :KeyFramesNum
+
+        def initialize(disablehighlight=nil, detecttypes=nil, enablesummary=nil, keyframesnum=nil)
+          @DisableHighlight = disablehighlight
+          @DetectTypes = detecttypes
+          @EnableSummary = enablesummary
+          @KeyFramesNum = keyframesnum
+        end
+
+        def deserialize(params)
+          @DisableHighlight = params['DisableHighlight']
+          @DetectTypes = params['DetectTypes']
+          @EnableSummary = params['EnableSummary']
+          @KeyFramesNum = params['KeyFramesNum']
+        end
+      end
+
+      # TWeSee 视频语义浓缩结果
+      class SeeCompHighlightResult < TencentCloud::Common::AbstractModel
+        # @param Summary: 摘要文本
+        # @type Summary: String
+
+        attr_accessor :Summary
+
+        def initialize(summary=nil)
+          @Summary = summary
+        end
+
+        def deserialize(params)
+          @Summary = params['Summary']
+        end
+      end
+
+      # TWeSee 视觉理解配置
+      class SeeComprehensionConfig < TencentCloud::Common::AbstractModel
+        # @param DetectTypes: 拓展的目标及事件检测类别
+        # @type DetectTypes: Array
+        # @param EnableSearch: 使该视频 / 图片录入搜索库，后续可进行搜索
+        # @type EnableSearch: Boolean
+        # @param OutputLang: 主输出语言，可选值包括：
+        # - `zh` 中文（默认值）
+        # - `en` 英语
+        # - `ja` 日语
+        # - `ko` 韩文
+        # - `pt-BR` 葡萄牙语（巴西）
+        # - `th` 泰语
+        # - `ms` 马来语
+        # @type OutputLang: String
+        # @param AlternativeOutputLang: 次选输出语言，可选值包括：
+        # - `zh` 中文
+        # - `en` 英语
+        # - `ja` 日语
+        # - `ko` 韩文
+        # - `pt-BR` 葡萄牙语（巴西）
+        # - `th` 泰语
+        # - `ms` 马来语
+        # @type AlternativeOutputLang: String
+        # @param MultiCameraLayout: 多摄像头布局定义。可选值包括：
+
+        # - 单摄（默认值）：`Single`
+
+        # - 双摄（纵向排列）- 全部画面：`Vertical,Num=2,Index=0;1`
+        # - 双摄（纵向排列）- 画面1：`Vertical,Num=2,Index=0`
+        # - 双摄（纵向排列）- 画面2：`Vertical,Num=2,Index=1`
+
+        # - 三摄（纵向排列）- 全部画面：`Vertical,Num=3,Index=0;1;2`
+        # - 三摄（纵向排列）- 画面1：`Vertical,Num=3,Index=0`
+        # - 三摄（纵向排列）- 画面2：`Vertical,Num=3,Index=1`
+        # - 三摄（纵向排列）- 画面3：`Vertical,Num=3,Index=2`
+        # - 三摄（纵向排列）- 画面1+2：`Vertical,Num=3,Index=0;1`
+        # - 三摄（纵向排列）- 画面1+3：`Vertical,Num=3,Index=0;2`
+        # - 三摄（纵向排列）- 画面2+3：`Vertical,Num=3,Index=1;2`
+        # @type MultiCameraLayout: String
+        # @param MaxDuration: 最大处理的输入视频时长，单位：秒（仅对视频输入生效）
+        # @type MaxDuration: Integer
+
+        attr_accessor :DetectTypes, :EnableSearch, :OutputLang, :AlternativeOutputLang, :MultiCameraLayout, :MaxDuration
+
+        def initialize(detecttypes=nil, enablesearch=nil, outputlang=nil, alternativeoutputlang=nil, multicameralayout=nil, maxduration=nil)
+          @DetectTypes = detecttypes
+          @EnableSearch = enablesearch
+          @OutputLang = outputlang
+          @AlternativeOutputLang = alternativeoutputlang
+          @MultiCameraLayout = multicameralayout
+          @MaxDuration = maxduration
+        end
+
+        def deserialize(params)
+          @DetectTypes = params['DetectTypes']
+          @EnableSearch = params['EnableSearch']
+          @OutputLang = params['OutputLang']
+          @AlternativeOutputLang = params['AlternativeOutputLang']
+          @MultiCameraLayout = params['MultiCameraLayout']
+          @MaxDuration = params['MaxDuration']
+        end
+      end
+
+      # TWeSee 视觉理解结果
+      class SeeComprehensionResult < TencentCloud::Common::AbstractModel
+        # @param DetectedClassifications: 识别到的目标类型与事件标签。可能取值：
+
+        # - `person`：人
+        # - `vehicle`：车辆
+        # - `dog`：狗
+        # - `cat`：猫
+        # - `fire`：火焰
+        # - `smoke`：烟雾
+        # - `package`：快递包裹
+        # - `license_plate`：车牌
+        # @type DetectedClassifications: Array
+        # @param Summary: 摘要文本
+        # @type Summary: String
+        # @param AlternativeSummary: 摘要文本（次选语言）
+        # @type AlternativeSummary: String
+        # @param ErrorCode: 错误码，可能取值：
+
+        # - `DownloadFailed`：下载视频/图片文件失败
+        # - `ReadFailed`：读取视频/图片文件失败
+        # @type ErrorCode: String
+        # @param ErrorMsg: 错误消息
+        # @type ErrorMsg: String
+
+        attr_accessor :DetectedClassifications, :Summary, :AlternativeSummary, :ErrorCode, :ErrorMsg
+
+        def initialize(detectedclassifications=nil, summary=nil, alternativesummary=nil, errorcode=nil, errormsg=nil)
+          @DetectedClassifications = detectedclassifications
+          @Summary = summary
+          @AlternativeSummary = alternativesummary
+          @ErrorCode = errorcode
+          @ErrorMsg = errormsg
+        end
+
+        def deserialize(params)
+          @DetectedClassifications = params['DetectedClassifications']
+          @Summary = params['Summary']
+          @AlternativeSummary = params['AlternativeSummary']
+          @ErrorCode = params['ErrorCode']
+          @ErrorMsg = params['ErrorMsg']
+        end
+      end
+
       # TWeSee 处理云存事件 EventId 的过滤规则配置
       class SeeEventIdFilterConfig < TencentCloud::Common::AbstractModel
         # @param IncludeOnly: 包含的云存事件 ID 集合
@@ -13467,6 +14807,167 @@ module TencentCloud
         def deserialize(params)
           @IncludeOnly = params['IncludeOnly']
           @Exclude = params['Exclude']
+        end
+      end
+
+      # TWeSee 统计数据点
+      class SeeStatItem < TencentCloud::Common::AbstractModel
+        # @param Time: 时间
+        # @type Time: String
+        # @param Count: 任务数量
+        # @type Count: Integer
+        # @param CostBasic: 基础能力用量
+        # @type CostBasic: Integer
+        # @param CostAdvanced: 高级能力用量
+        # @type CostAdvanced: Integer
+
+        attr_accessor :Time, :Count, :CostBasic, :CostAdvanced
+
+        def initialize(time=nil, count=nil, costbasic=nil, costadvanced=nil)
+          @Time = time
+          @Count = count
+          @CostBasic = costbasic
+          @CostAdvanced = costadvanced
+        end
+
+        def deserialize(params)
+          @Time = params['Time']
+          @Count = params['Count']
+          @CostBasic = params['CostBasic']
+          @CostAdvanced = params['CostAdvanced']
+        end
+      end
+
+      # TWeSee 任务详情
+      class SeeTaskInfo < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务 ID
+        # @type TaskId: String
+        # @param Status: 任务状态。可能取值：
+
+        # - `1`：失败
+        # - `2`：空结果
+        # - `3`：有效结果
+        # - `4`：处理中
+        # @type Status: Integer
+        # @param Metadata: 任务元数据
+        # @type Metadata: :class:`Tencentcloud::Iotexplorer.v20190423.models.SeeTaskMetadata`
+        # @param ServiceCategory: 算法类目。可能取值：
+
+        # - `COMPREHENSION`：视觉理解
+        # @type ServiceCategory: String
+        # @param ServiceType: 算法类型。可能取值：
+
+        # - `VID_COMP`：视频理解
+        # - `IMG_COMP`：图片理解
+        # @type ServiceType: String
+        # @param ServiceTier: 套餐规格。可能取值：
+
+        # - `POSTPAID`：后付费（适用于视频理解、图片理解）
+        # - `BASIC`：包年包月基础版（适用于视频理解）
+        # @type ServiceTier: String
+        # @param ComprehensionResult: 视觉理解结果（适用于视频理解、图片理解）
+        # @type ComprehensionResult: :class:`Tencentcloud::Iotexplorer.v20190423.models.SeeComprehensionResult`
+        # @param CompHighlightResult: 视频语义浓缩结果（适用于视频语义浓缩）
+        # @type CompHighlightResult: :class:`Tencentcloud::Iotexplorer.v20190423.models.SeeCompHighlightResult`
+        # @param CostBasic: 完成该任务所消耗的基础能力额度
+        # @type CostBasic: Integer
+        # @param CostAdvanced: 完成该任务所消耗的高级能力额度
+        # @type CostAdvanced: Integer
+        # @param Files: 输出文件名列表
+        # @type Files: Array
+        # @param FilesInfo: 输出文件详情列表
+        # @type FilesInfo: Array
+        # @param CreateTime: 创建时间
+        # @type CreateTime: Integer
+        # @param UpdateTime: 最后更新时间
+        # @type UpdateTime: Integer
+
+        attr_accessor :TaskId, :Status, :Metadata, :ServiceCategory, :ServiceType, :ServiceTier, :ComprehensionResult, :CompHighlightResult, :CostBasic, :CostAdvanced, :Files, :FilesInfo, :CreateTime, :UpdateTime
+
+        def initialize(taskid=nil, status=nil, metadata=nil, servicecategory=nil, servicetype=nil, servicetier=nil, comprehensionresult=nil, comphighlightresult=nil, costbasic=nil, costadvanced=nil, files=nil, filesinfo=nil, createtime=nil, updatetime=nil)
+          @TaskId = taskid
+          @Status = status
+          @Metadata = metadata
+          @ServiceCategory = servicecategory
+          @ServiceType = servicetype
+          @ServiceTier = servicetier
+          @ComprehensionResult = comprehensionresult
+          @CompHighlightResult = comphighlightresult
+          @CostBasic = costbasic
+          @CostAdvanced = costadvanced
+          @Files = files
+          @FilesInfo = filesinfo
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @Status = params['Status']
+          unless params['Metadata'].nil?
+            @Metadata = SeeTaskMetadata.new
+            @Metadata.deserialize(params['Metadata'])
+          end
+          @ServiceCategory = params['ServiceCategory']
+          @ServiceType = params['ServiceType']
+          @ServiceTier = params['ServiceTier']
+          unless params['ComprehensionResult'].nil?
+            @ComprehensionResult = SeeComprehensionResult.new
+            @ComprehensionResult.deserialize(params['ComprehensionResult'])
+          end
+          unless params['CompHighlightResult'].nil?
+            @CompHighlightResult = SeeCompHighlightResult.new
+            @CompHighlightResult.deserialize(params['CompHighlightResult'])
+          end
+          @CostBasic = params['CostBasic']
+          @CostAdvanced = params['CostAdvanced']
+          @Files = params['Files']
+          unless params['FilesInfo'].nil?
+            @FilesInfo = []
+            params['FilesInfo'].each do |i|
+              cloudstorageaiservicetaskfileinfo_tmp = CloudStorageAIServiceTaskFileInfo.new
+              cloudstorageaiservicetaskfileinfo_tmp.deserialize(i)
+              @FilesInfo << cloudstorageaiservicetaskfileinfo_tmp
+            end
+          end
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # TWeSee 任务元数据
+      class SeeTaskMetadata < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品 ID
+        # @type ProductId: String
+        # @param DeviceName: 设备名称
+        # @type DeviceName: String
+        # @param ChannelId: 通道 ID
+        # @type ChannelId: Integer
+        # @param StartTimeMs: 事件起始时间（毫秒级时间戳）
+        # @type StartTimeMs: Integer
+        # @param EndTimeMs: 事件结束时间（毫秒级时间戳）
+        # @type EndTimeMs: Integer
+        # @param CustomId: 自定义事件 ID
+        # @type CustomId: String
+
+        attr_accessor :ProductId, :DeviceName, :ChannelId, :StartTimeMs, :EndTimeMs, :CustomId
+
+        def initialize(productid=nil, devicename=nil, channelid=nil, starttimems=nil, endtimems=nil, customid=nil)
+          @ProductId = productid
+          @DeviceName = devicename
+          @ChannelId = channelid
+          @StartTimeMs = starttimems
+          @EndTimeMs = endtimems
+          @CustomId = customid
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+          @ChannelId = params['ChannelId']
+          @StartTimeMs = params['StartTimeMs']
+          @EndTimeMs = params['EndTimeMs']
+          @CustomId = params['CustomId']
         end
       end
 
@@ -14400,6 +15901,68 @@ module TencentCloud
           @Summary = params['Summary']
           @ChannelId = params['ChannelId']
           @Thumbnail = params['Thumbnail']
+        end
+      end
+
+      # TerminateTWeSeeSubscription请求参数结构体
+      class TerminateTWeSeeSubscriptionRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品 ID
+        # @type ProductId: String
+        # @param DeviceName: 设备名称
+        # @type DeviceName: String
+        # @param ServiceType: 算法类型。可选值：
+
+        # - `VID_COMP`：视频理解
+        # @type ServiceType: String
+        # @param ChannelId: 通道 ID
+        # @type ChannelId: Integer
+
+        attr_accessor :ProductId, :DeviceName, :ServiceType, :ChannelId
+
+        def initialize(productid=nil, devicename=nil, servicetype=nil, channelid=nil)
+          @ProductId = productid
+          @DeviceName = devicename
+          @ServiceType = servicetype
+          @ChannelId = channelid
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+          @ServiceType = params['ServiceType']
+          @ChannelId = params['ChannelId']
+        end
+      end
+
+      # TerminateTWeSeeSubscription返回参数结构体
+      class TerminateTWeSeeSubscriptionResponse < TencentCloud::Common::AbstractModel
+        # @param OrderId: 退订订单 ID
+        # @type OrderId: String
+        # @param Status: 退订订单状态
+        # @type Status: String
+        # @param Price: 退款金额（退款为负数）
+        # @type Price: String
+        # @param Currency: 币种
+        # @type Currency: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :OrderId, :Status, :Price, :Currency, :RequestId
+
+        def initialize(orderid=nil, status=nil, price=nil, currency=nil, requestid=nil)
+          @OrderId = orderid
+          @Status = status
+          @Price = price
+          @Currency = currency
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @OrderId = params['OrderId']
+          @Status = params['Status']
+          @Price = params['Price']
+          @Currency = params['Currency']
+          @RequestId = params['RequestId']
         end
       end
 

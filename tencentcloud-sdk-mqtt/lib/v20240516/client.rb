@@ -1162,6 +1162,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询集群下共享订阅组列表
+
+        # @param request: Request instance for DescribeSharedSubscriptionGroupsWithSubscriptions.
+        # @type request: :class:`Tencentcloud::mqtt::V20240516::DescribeSharedSubscriptionGroupsWithSubscriptionsRequest`
+        # @rtype: :class:`Tencentcloud::mqtt::V20240516::DescribeSharedSubscriptionGroupsWithSubscriptionsResponse`
+        def DescribeSharedSubscriptionGroupsWithSubscriptions(request)
+          body = send_request('DescribeSharedSubscriptionGroupsWithSubscriptions', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSharedSubscriptionGroupsWithSubscriptionsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询共享订阅消息堆积量
 
         # @param request: Request instance for DescribeSharedSubscriptionLag.
@@ -1563,6 +1587,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyUserResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改集群X509配置
+
+        # @param request: Request instance for ModifyX509Config.
+        # @type request: :class:`Tencentcloud::mqtt::V20240516::ModifyX509ConfigRequest`
+        # @rtype: :class:`Tencentcloud::mqtt::V20240516::ModifyX509ConfigResponse`
+        def ModifyX509Config(request)
+          body = send_request('ModifyX509Config', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyX509ConfigResponse.new
             model.deserialize(response['Response'])
             model
           else

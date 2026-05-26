@@ -640,6 +640,61 @@ module TencentCloud
         end
       end
 
+      # CreateMemoryPlusSpace请求参数结构体
+      class CreateMemoryPlusSpaceRequest < TencentCloud::Common::AbstractModel
+        # @param Name: <p>Memory 实例的自定义名称，用于唯一标识和管理实例。支持 60 个字符内的中英文、数字、中划线（-）及下划线（_）。</p>
+        # @type Name: String
+        # @param Description: <p>emory 实例的简要描述，包括使用场景、用途或背景信息，便于日常运维识别。长度限制为 0-200 个字符。</p>
+        # @type Description: String
+        # @param ResourceTags: <p>以键值对（Key-Value）形式为 Memory 实例绑定的标签，用于项目管理、成本分摊、环境隔离等场景。</p>
+        # @type ResourceTags: Array
+        # @param GoodsNum: <p>单次批量创建 Memory 实例的数量。取值范围为 1-50。</p>
+        # @type GoodsNum: Integer
+
+        attr_accessor :Name, :Description, :ResourceTags, :GoodsNum
+
+        def initialize(name=nil, description=nil, resourcetags=nil, goodsnum=nil)
+          @Name = name
+          @Description = description
+          @ResourceTags = resourcetags
+          @GoodsNum = goodsnum
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Description = params['Description']
+          unless params['ResourceTags'].nil?
+            @ResourceTags = []
+            params['ResourceTags'].each do |i|
+              resourcetag_tmp = ResourceTag.new
+              resourcetag_tmp.deserialize(i)
+              @ResourceTags << resourcetag_tmp
+            end
+          end
+          @GoodsNum = params['GoodsNum']
+        end
+      end
+
+      # CreateMemoryPlusSpace返回参数结构体
+      class CreateMemoryPlusSpaceResponse < TencentCloud::Common::AbstractModel
+        # @param SpaceIds: <p>实例 ID 列表。</p>
+        # @type SpaceIds: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SpaceIds, :RequestId
+
+        def initialize(spaceids=nil, requestid=nil)
+          @SpaceIds = spaceids
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @SpaceIds = params['SpaceIds']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 发货步骤描述
       class CreatingProgress < TencentCloud::Common::AbstractModel
         # @param TotalSteps: <p>总步骤数</p>
@@ -1184,6 +1239,285 @@ module TencentCloud
         end
       end
 
+      # DescribeMemoryPlusRecord请求参数结构体
+      class DescribeMemoryPlusRecordRequest < TencentCloud::Common::AbstractModel
+        # @param SpaceId: <p>查询的 Memory 实例 ID。</p>
+        # @type SpaceId: String
+        # @param Offset: <p>查询列表的起始位置（偏移量）。用于分页查询，指明从符合条件的第几条数据开始返回。</p>
+        # @type Offset: Integer
+        # @param Limit: <p>单次查询返回的记录数量上限（分页大小）。</p>
+        # @type Limit: Integer
+        # @param RecordType: <p>查询的记忆类型。</p><ul><li>conversation：L0 原始对话。</li><li>memory：L1 原子记忆。</li><li>scene：L2 场景记忆。</li><li>persona：L3 个性化画像。</li><li>memory/persona：L1 原子记忆-画像型。</li><li>memory/episodic：L1 原子记忆-事件型。</li><li>memory/instruction：L1 原子记忆-指令型。</li></ul>
+        # @type RecordType: String
+        # @param Output: <p>指定返回记录中的特定字段。</p>
+        # @type Output: Array
+        # @param Filters: <p>过滤条件，当前仅支持 <strong>RecordType</strong> 为 <strong>conversation</strong> 的 <strong>session_id</strong> 过滤。</p>
+        # @type Filters: Array
+        # @param OrderDirection: <p>查询结果列表的排序规则。</p><ul><li>ASC：升序。</li><li>DESC：降序。</li></ul>
+        # @type OrderDirection: String
+        # @param StartTime: <p>查询时间范围的起始时间点。</p>
+        # @type StartTime: String
+        # @param EndTime: <p>查询时间范围的结束时间点。</p>
+        # @type EndTime: String
+
+        attr_accessor :SpaceId, :Offset, :Limit, :RecordType, :Output, :Filters, :OrderDirection, :StartTime, :EndTime
+
+        def initialize(spaceid=nil, offset=nil, limit=nil, recordtype=nil, output=nil, filters=nil, orderdirection=nil, starttime=nil, endtime=nil)
+          @SpaceId = spaceid
+          @Offset = offset
+          @Limit = limit
+          @RecordType = recordtype
+          @Output = output
+          @Filters = filters
+          @OrderDirection = orderdirection
+          @StartTime = starttime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @SpaceId = params['SpaceId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @RecordType = params['RecordType']
+          @Output = params['Output']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              vdbfieldmap_tmp = VDBFieldMap.new
+              vdbfieldmap_tmp.deserialize(i)
+              @Filters << vdbfieldmap_tmp
+            end
+          end
+          @OrderDirection = params['OrderDirection']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+        end
+      end
+
+      # DescribeMemoryPlusRecord返回参数结构体
+      class DescribeMemoryPlusRecordResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: <p>查询结果总数量。</p>
+        # @type TotalCount: Integer
+        # @param Documents: <p>查询的记忆数据。</p>
+        # @type Documents: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Documents, :RequestId
+
+        def initialize(totalcount=nil, documents=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Documents = documents
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Documents'].nil?
+            @Documents = []
+            params['Documents'].each do |i|
+              vdbdocument_tmp = VDBDocument.new
+              vdbdocument_tmp.deserialize(i)
+              @Documents << vdbdocument_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeMemoryPlusSpace请求参数结构体
+      class DescribeMemoryPlusSpaceRequest < TencentCloud::Common::AbstractModel
+        # @param SpaceId: <p>指定查询的 Memory 实例 ID。</p>
+        # @type SpaceId: String
+
+        attr_accessor :SpaceId
+
+        def initialize(spaceid=nil)
+          @SpaceId = spaceid
+        end
+
+        def deserialize(params)
+          @SpaceId = params['SpaceId']
+        end
+      end
+
+      # DescribeMemoryPlusSpace返回参数结构体
+      class DescribeMemoryPlusSpaceResponse < TencentCloud::Common::AbstractModel
+        # @param SpaceId: <p>Memory 实例 ID。</p>
+        # @type SpaceId: String
+        # @param Name: <p>Memory 实例的自定义名称。</p>
+        # @type Name: String
+        # @param Description: <p>Memory 实例的简要描述，包括使用场景、用途或背景信息，便于日常运维识别。</p>
+        # @type Description: String
+        # @param AppId: <p>腾讯云账号的 APPID。</p>
+        # @type AppId: Integer
+        # @param Region: <p>Memroy 实例所属地域。</p>
+        # @type Region: String
+        # @param ResourceTags: <p>Memory 实例的标签信息。</p>
+        # @type ResourceTags: Array
+        # @param Status: <p>Memory 实例当前运行状态。</p><ul><li>1：运行中。</li><li>2：创建中。</li><li>3：销毁中。</li><li>4：已销毁。</li><li>5：隔离中。</li><li>6：已隔离。</li><li>7：恢复中。</li></ul>
+        # @type Status: Integer
+        # @param PayMode: <p>Memory 实例计费模式。</p><ul><li>-1：免费体验。</li><li>0：包年包月。</li><li>1：按量计费。</li></ul>
+        # @type PayMode: Integer
+        # @param Version: <p>Memory 版本信息：v1。</p>
+        # @type Version: String
+        # @param MemoryUsage: <p>Memory 当前已写入的记忆条数。</p>
+        # @type MemoryUsage: Integer
+        # @param MemoryLimit: <p>Memory 实例记忆条数配额上限。</p>
+        # @type MemoryLimit: Integer
+        # @param CreditUsage: <p>Memory 实例当前 Credit 的使用数量。</p>
+        # @type CreditUsage: Float
+        # @param CreditLimit: <p>Memory 实例 Credit 的最大使用数量。</p>
+        # @type CreditLimit: Float
+        # @param AccessUrl: <p>Memory 实例的内网访问地址。</p>
+        # @type AccessUrl: String
+        # @param WanAccessUrl: <p>Memory 实例的外网访问地址。</p>
+        # @type WanAccessUrl: String
+        # @param CreatedAt: <p>Memory 实例的创建时间。</p>
+        # @type CreatedAt: String
+        # @param ExpiredAt: <p>Memory 实例的到期时间。</p>
+        # @type ExpiredAt: String
+        # @param IsolatedAt: <p>Memory 实例的隔离时间。</p>
+        # @type IsolatedAt: String
+        # @param DestroyAt: <p>到期销毁时间</p>
+        # @type DestroyAt: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SpaceId, :Name, :Description, :AppId, :Region, :ResourceTags, :Status, :PayMode, :Version, :MemoryUsage, :MemoryLimit, :CreditUsage, :CreditLimit, :AccessUrl, :WanAccessUrl, :CreatedAt, :ExpiredAt, :IsolatedAt, :DestroyAt, :RequestId
+
+        def initialize(spaceid=nil, name=nil, description=nil, appid=nil, region=nil, resourcetags=nil, status=nil, paymode=nil, version=nil, memoryusage=nil, memorylimit=nil, creditusage=nil, creditlimit=nil, accessurl=nil, wanaccessurl=nil, createdat=nil, expiredat=nil, isolatedat=nil, destroyat=nil, requestid=nil)
+          @SpaceId = spaceid
+          @Name = name
+          @Description = description
+          @AppId = appid
+          @Region = region
+          @ResourceTags = resourcetags
+          @Status = status
+          @PayMode = paymode
+          @Version = version
+          @MemoryUsage = memoryusage
+          @MemoryLimit = memorylimit
+          @CreditUsage = creditusage
+          @CreditLimit = creditlimit
+          @AccessUrl = accessurl
+          @WanAccessUrl = wanaccessurl
+          @CreatedAt = createdat
+          @ExpiredAt = expiredat
+          @IsolatedAt = isolatedat
+          @DestroyAt = destroyat
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @SpaceId = params['SpaceId']
+          @Name = params['Name']
+          @Description = params['Description']
+          @AppId = params['AppId']
+          @Region = params['Region']
+          unless params['ResourceTags'].nil?
+            @ResourceTags = []
+            params['ResourceTags'].each do |i|
+              resourcetag_tmp = ResourceTag.new
+              resourcetag_tmp.deserialize(i)
+              @ResourceTags << resourcetag_tmp
+            end
+          end
+          @Status = params['Status']
+          @PayMode = params['PayMode']
+          @Version = params['Version']
+          @MemoryUsage = params['MemoryUsage']
+          @MemoryLimit = params['MemoryLimit']
+          @CreditUsage = params['CreditUsage']
+          @CreditLimit = params['CreditLimit']
+          @AccessUrl = params['AccessUrl']
+          @WanAccessUrl = params['WanAccessUrl']
+          @CreatedAt = params['CreatedAt']
+          @ExpiredAt = params['ExpiredAt']
+          @IsolatedAt = params['IsolatedAt']
+          @DestroyAt = params['DestroyAt']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeMemoryPlusSpaces请求参数结构体
+      class DescribeMemoryPlusSpacesRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: <p>查询列表的起始位置（偏移量）。用于分页查询，指明从符合条件的第几条数据开始返回。</p>
+        # @type Offset: Integer
+        # @param Limit: <p>单次查询返回的记录数量上限（分页大小）。</p>
+        # @type Limit: Integer
+        # @param SearchKeys: <p>查询实例名称或者实例id</p>
+        # @type SearchKeys: Array
+        # @param Status: <p>实例状态</p><p>枚举值：</p><ul><li>1： 运行中</li><li>2： 创建中</li><li>3： 删除中</li><li>4： 已删除</li><li>5： 隔离中</li><li>6： 已隔离（进入回收站）</li><li>7： 恢复中（从回收站恢复）</li></ul>
+        # @type Status: Array
+        # @param ResourceTags: <p>资源标签</p>
+        # @type ResourceTags: Array
+        # @param Orderby: <p>排序字段</p>
+        # @type Orderby: String
+        # @param OrderDirection: <p>排序方向</p><p>枚举值：</p><ul><li>ASC： 升序</li><li>DESC： 降序</li></ul>
+        # @type OrderDirection: String
+
+        attr_accessor :Offset, :Limit, :SearchKeys, :Status, :ResourceTags, :Orderby, :OrderDirection
+
+        def initialize(offset=nil, limit=nil, searchkeys=nil, status=nil, resourcetags=nil, orderby=nil, orderdirection=nil)
+          @Offset = offset
+          @Limit = limit
+          @SearchKeys = searchkeys
+          @Status = status
+          @ResourceTags = resourcetags
+          @Orderby = orderby
+          @OrderDirection = orderdirection
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @SearchKeys = params['SearchKeys']
+          @Status = params['Status']
+          unless params['ResourceTags'].nil?
+            @ResourceTags = []
+            params['ResourceTags'].each do |i|
+              resourcetag_tmp = ResourceTag.new
+              resourcetag_tmp.deserialize(i)
+              @ResourceTags << resourcetag_tmp
+            end
+          end
+          @Orderby = params['Orderby']
+          @OrderDirection = params['OrderDirection']
+        end
+      end
+
+      # DescribeMemoryPlusSpaces返回参数结构体
+      class DescribeMemoryPlusSpacesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: <p>查询结果总数量。</p>
+        # @type TotalCount: Integer
+        # @param Items: <p>实例列表信息</p>
+        # @type Items: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Items, :RequestId
+
+        def initialize(totalcount=nil, items=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Items = items
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              memoryplusinfo_tmp = MemoryPlusInfo.new
+              memoryplusinfo_tmp.deserialize(i)
+              @Items << memoryplusinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeReportUrl请求参数结构体
       class DescribeReportUrlRequest < TencentCloud::Common::AbstractModel
 
@@ -1211,6 +1545,74 @@ module TencentCloud
 
         def deserialize(params)
           @DownloadUrl = params['DownloadUrl']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeServiceAccessKey请求参数结构体
+      class DescribeServiceAccessKeyRequest < TencentCloud::Common::AbstractModel
+        # @param ServiceId: <p>指定 Memroy 实例 ID。</p>
+        # @type ServiceId: String
+
+        attr_accessor :ServiceId
+
+        def initialize(serviceid=nil)
+          @ServiceId = serviceid
+        end
+
+        def deserialize(params)
+          @ServiceId = params['ServiceId']
+        end
+      end
+
+      # DescribeServiceAccessKey返回参数结构体
+      class DescribeServiceAccessKeyResponse < TencentCloud::Common::AbstractModel
+        # @param AuthKey: <p>访问密钥。</p>
+        # @type AuthKey: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AuthKey, :RequestId
+
+        def initialize(authkey=nil, requestid=nil)
+          @AuthKey = authkey
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @AuthKey = params['AuthKey']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DestroyMemoryPlusSpace请求参数结构体
+      class DestroyMemoryPlusSpaceRequest < TencentCloud::Common::AbstractModel
+        # @param SpaceIds: <p>指定需要销毁的 Memory 实例 ID 列表。</p>
+        # @type SpaceIds: Array
+
+        attr_accessor :SpaceIds
+
+        def initialize(spaceids=nil)
+          @SpaceIds = spaceids
+        end
+
+        def deserialize(params)
+          @SpaceIds = params['SpaceIds']
+        end
+      end
+
+      # DestroyMemoryPlusSpace返回参数结构体
+      class DestroyMemoryPlusSpaceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -1303,6 +1705,105 @@ module TencentCloud
         end
       end
 
+      # IsolateMemoryPlusSpace请求参数结构体
+      class IsolateMemoryPlusSpaceRequest < TencentCloud::Common::AbstractModel
+        # @param SpaceIds: <p>指定需要放入回收站的 Memory 实例 ID 列表。</p>
+        # @type SpaceIds: Array
+
+        attr_accessor :SpaceIds
+
+        def initialize(spaceids=nil)
+          @SpaceIds = spaceids
+        end
+
+        def deserialize(params)
+          @SpaceIds = params['SpaceIds']
+        end
+      end
+
+      # IsolateMemoryPlusSpace返回参数结构体
+      class IsolateMemoryPlusSpaceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # Memory正式版实例列表元素信息
+      class MemoryPlusInfo < TencentCloud::Common::AbstractModel
+        # @param SpaceId: <p>实例id</p>
+        # @type SpaceId: String
+        # @param Name: <p>实例名称</p>
+        # @type Name: String
+        # @param Description: <p>描述</p>
+        # @type Description: String
+        # @param Status: <p>实例状态</p>
+        # @type Status: Integer
+        # @param Region: <p>地域</p>
+        # @type Region: String
+        # @param MemoryUsage: <p>记忆条数</p>
+        # @type MemoryUsage: Integer
+        # @param CreditUsage: <p>当月积分数</p>
+        # @type CreditUsage: Float
+        # @param ResourceTags: <p>资源标签</p>
+        # @type ResourceTags: Array
+        # @param CreatedAt: <p>创建时间</p>
+        # @type CreatedAt: String
+        # @param IsolatedAt: <p>隔离时间</p>
+        # @type IsolatedAt: String
+        # @param ExpiredAt: <p>到期时间</p>
+        # @type ExpiredAt: String
+        # @param DestroyAt: <p>到期销毁时间</p>
+        # @type DestroyAt: String
+
+        attr_accessor :SpaceId, :Name, :Description, :Status, :Region, :MemoryUsage, :CreditUsage, :ResourceTags, :CreatedAt, :IsolatedAt, :ExpiredAt, :DestroyAt
+
+        def initialize(spaceid=nil, name=nil, description=nil, status=nil, region=nil, memoryusage=nil, creditusage=nil, resourcetags=nil, createdat=nil, isolatedat=nil, expiredat=nil, destroyat=nil)
+          @SpaceId = spaceid
+          @Name = name
+          @Description = description
+          @Status = status
+          @Region = region
+          @MemoryUsage = memoryusage
+          @CreditUsage = creditusage
+          @ResourceTags = resourcetags
+          @CreatedAt = createdat
+          @IsolatedAt = isolatedat
+          @ExpiredAt = expiredat
+          @DestroyAt = destroyat
+        end
+
+        def deserialize(params)
+          @SpaceId = params['SpaceId']
+          @Name = params['Name']
+          @Description = params['Description']
+          @Status = params['Status']
+          @Region = params['Region']
+          @MemoryUsage = params['MemoryUsage']
+          @CreditUsage = params['CreditUsage']
+          unless params['ResourceTags'].nil?
+            @ResourceTags = []
+            params['ResourceTags'].each do |i|
+              resourcetag_tmp = ResourceTag.new
+              resourcetag_tmp.deserialize(i)
+              @ResourceTags << resourcetag_tmp
+            end
+          end
+          @CreatedAt = params['CreatedAt']
+          @IsolatedAt = params['IsolatedAt']
+          @ExpiredAt = params['ExpiredAt']
+          @DestroyAt = params['DestroyAt']
+        end
+      end
+
       # ModifyAgentInstanceParameters请求参数结构体
       class ModifyAgentInstanceParametersRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID
@@ -1379,6 +1880,46 @@ module TencentCloud
 
       # ModifyChatTitle返回参数结构体
       class ModifyChatTitleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyMemoryPlusSpace请求参数结构体
+      class ModifyMemoryPlusSpaceRequest < TencentCloud::Common::AbstractModel
+        # @param SpaceId: <p>指定需要修改的 Memory 实例 ID。</p>
+        # @type SpaceId: String
+        # @param Name: <p>指定修改后的实例名称。支持 60 个字符内 的中英文、数字、中划线（-）及下划线（_）。</p>
+        # @type Name: String
+        # @param Description: <p>指定修改后的实例描述。最多支持 200 个字符。</p>
+        # @type Description: String
+
+        attr_accessor :SpaceId, :Name, :Description
+
+        def initialize(spaceid=nil, name=nil, description=nil)
+          @SpaceId = spaceid
+          @Name = name
+          @Description = description
+        end
+
+        def deserialize(params)
+          @SpaceId = params['SpaceId']
+          @Name = params['Name']
+          @Description = params['Description']
+        end
+      end
+
+      # ModifyMemoryPlusSpace返回参数结构体
+      class ModifyMemoryPlusSpaceResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -1488,6 +2029,38 @@ module TencentCloud
         end
       end
 
+      # RecoverMemoryPlusSpace请求参数结构体
+      class RecoverMemoryPlusSpaceRequest < TencentCloud::Common::AbstractModel
+        # @param SpaceIds: <p>指定需要恢复的 Memory 实例 ID 列表。</p>
+        # @type SpaceIds: Array
+
+        attr_accessor :SpaceIds
+
+        def initialize(spaceids=nil)
+          @SpaceIds = spaceids
+        end
+
+        def deserialize(params)
+          @SpaceIds = params['SpaceIds']
+        end
+      end
+
+      # RecoverMemoryPlusSpace返回参数结构体
+      class RecoverMemoryPlusSpaceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # RemoveChat请求参数结构体
       class RemoveChatRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 智能体ID
@@ -1521,6 +2094,26 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 资源tag
+      class ResourceTag < TencentCloud::Common::AbstractModel
+        # @param TagKey: 标签键
+        # @type TagKey: String
+        # @param TagValue: 标签值
+        # @type TagValue: String
+
+        attr_accessor :TagKey, :TagValue
+
+        def initialize(tagkey=nil, tagvalue=nil)
+          @TagKey = tagkey
+          @TagValue = tagvalue
+        end
+
+        def deserialize(params)
+          @TagKey = params['TagKey']
+          @TagValue = params['TagValue']
         end
       end
 
@@ -1742,6 +2335,61 @@ module TencentCloud
         def deserialize(params)
           @StepBrief = params['StepBrief']
           @Content = params['Content']
+        end
+      end
+
+      # vdb数据库文档结构
+      class VDBDocument < TencentCloud::Common::AbstractModel
+        # @param Id: <p>vdb document数据id</p>
+        # @type Id: String
+        # @param Fields: <p>vdb document数据标量字段</p>
+        # @type Fields: Array
+
+        attr_accessor :Id, :Fields
+
+        def initialize(id=nil, fields=nil)
+          @Id = id
+          @Fields = fields
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          unless params['Fields'].nil?
+            @Fields = []
+            params['Fields'].each do |i|
+              vdbfieldmap_tmp = VDBFieldMap.new
+              vdbfieldmap_tmp.deserialize(i)
+              @Fields << vdbfieldmap_tmp
+            end
+          end
+        end
+      end
+
+      # vdb数据库文档中键值结构
+      class VDBFieldMap < TencentCloud::Common::AbstractModel
+        # @param Name: <p>vdb document字段名</p>
+        # @type Name: String
+        # @param Value: <p>vdb document字段值</p>
+        # @type Value: String
+        # @param Type: <p>vdb document字段类型</p>
+        # @type Type: String
+        # @param Description: <p>字段描述</p>
+        # @type Description: String
+
+        attr_accessor :Name, :Value, :Type, :Description
+
+        def initialize(name=nil, value=nil, type=nil, description=nil)
+          @Name = name
+          @Value = value
+          @Type = type
+          @Description = description
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Value = params['Value']
+          @Type = params['Type']
+          @Description = params['Description']
         end
       end
 

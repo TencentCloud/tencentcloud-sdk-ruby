@@ -2902,6 +2902,53 @@ module TencentCloud
         end
       end
 
+      # DescribeSharedSubscriptionGroupsWithSubscriptions请求参数结构体
+      class DescribeSharedSubscriptionGroupsWithSubscriptionsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>腾讯云MQTT实例ID，从 <a href="https://cloud.tencent.com/document/api/1778/111029">DescribeInstanceList</a>接口或控制台获得。</p>
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeSharedSubscriptionGroupsWithSubscriptions返回参数结构体
+      class DescribeSharedSubscriptionGroupsWithSubscriptionsResponse < TencentCloud::Common::AbstractModel
+        # @param Data: <p>集群下共享订阅组列表</p>
+        # @type Data: Array
+        # @param TotalCount: <p>查询总数</p>
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :TotalCount, :RequestId
+
+        def initialize(data=nil, totalcount=nil, requestid=nil)
+          @Data = data
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              sharedsubscriptiongroupwithsubscriptions_tmp = SharedSubscriptionGroupWithSubscriptions.new
+              sharedsubscriptiongroupwithsubscriptions_tmp.deserialize(i)
+              @Data << sharedsubscriptiongroupwithsubscriptions_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeSharedSubscriptionLag请求参数结构体
       class DescribeSharedSubscriptionLagRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 集群id
@@ -4637,6 +4684,50 @@ module TencentCloud
         end
       end
 
+      # ModifyX509Config请求参数结构体
+      class ModifyX509ConfigRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>腾讯云MQTT实例ID，从 <a href="https://cloud.tencent.com/document/api/1778/111029">DescribeInstanceList</a>接口或控制台获得。</p>
+        # @type InstanceId: String
+        # @param X509Mode: <p>证书验证模式</p><p>枚举值：</p><ul><li>TLS： 单向认证</li><li>mTLS： 双向认证</li><li>BYOC： 一机一证</li></ul>
+        # @type X509Mode: String
+        # @param DeviceCertificateProvisionType: <p>证书注册方式</p><p>枚举值：</p><ul><li>JITP： 自动注册</li><li>API： 手工注册</li></ul>
+        # @type DeviceCertificateProvisionType: String
+        # @param AutomaticActivation: <p>证书自动后激活状态</p><p>枚举值：</p><ul><li>true： 自动激活</li><li>false： 不激活</li></ul>
+        # @type AutomaticActivation: Boolean
+
+        attr_accessor :InstanceId, :X509Mode, :DeviceCertificateProvisionType, :AutomaticActivation
+
+        def initialize(instanceid=nil, x509mode=nil, devicecertificateprovisiontype=nil, automaticactivation=nil)
+          @InstanceId = instanceid
+          @X509Mode = x509mode
+          @DeviceCertificateProvisionType = devicecertificateprovisiontype
+          @AutomaticActivation = automaticactivation
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @X509Mode = params['X509Mode']
+          @DeviceCertificateProvisionType = params['DeviceCertificateProvisionType']
+          @AutomaticActivation = params['AutomaticActivation']
+        end
+      end
+
+      # ModifyX509Config返回参数结构体
+      class ModifyX509ConfigResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 价格标签信息
       class PriceTag < TencentCloud::Common::AbstractModel
         # @param Name: 计价名称，表示规格的计费项项目分类，具体规格的计价名称可参考  [获取MQTT产品售卖规格](https://cloud.tencent.com/document/product/1778/116232) 接口的返回结果。
@@ -5056,6 +5147,34 @@ module TencentCloud
           @SharedName = params['SharedName']
           @TopicFilter = params['TopicFilter']
           @Online = params['Online']
+        end
+      end
+
+      # 查询共享订阅组（带订阅）
+      class SharedSubscriptionGroupWithSubscriptions < TencentCloud::Common::AbstractModel
+        # @param SharedName: <p>共享组名</p>
+        # @type SharedName: String
+        # @param CreateTime: <p>创建时间</p><p>单位：毫秒级时间戳</p>
+        # @type CreateTime: Integer
+        # @param UpdateTime: <p>更新时间</p><p>单位：毫秒级时间戳</p>
+        # @type UpdateTime: Integer
+        # @param TopicFilters: <p>订阅表达式</p>
+        # @type TopicFilters: Array
+
+        attr_accessor :SharedName, :CreateTime, :UpdateTime, :TopicFilters
+
+        def initialize(sharedname=nil, createtime=nil, updatetime=nil, topicfilters=nil)
+          @SharedName = sharedname
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @TopicFilters = topicfilters
+        end
+
+        def deserialize(params)
+          @SharedName = params['SharedName']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @TopicFilters = params['TopicFilters']
         end
       end
 

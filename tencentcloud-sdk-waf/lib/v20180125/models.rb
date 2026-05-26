@@ -1026,138 +1026,110 @@ module TencentCloud
 
       # AddSpartaProtection请求参数结构体
       class AddSpartaProtectionRequest < TencentCloud::Common::AbstractModel
-        # @param Domain: 需要防护的域名
+        # @param Domain: <p>需要防护的域名</p>
         # @type Domain: String
-        # @param CertType: 证书类型。
-        # 0：仅配置HTTP监听端口，没有证书
-        # 1：证书来源为自有证书
-        # 2：证书来源为托管证书
+        # @param CertType: <p>证书类型。<br>0：仅配置HTTP监听端口，没有证书<br>1：证书来源为自有证书<br>2：证书来源为托管证书</p>
         # @type CertType: Integer
-        # @param IsCdn: waf前是否部署有七层代理服务。
-        # 0：没有部署代理服务
-        # 1：有部署代理服务，waf将使用XFF获取客户端IP
-        # 2：有部署代理服务，waf将使用remote_addr获取客户端IP
-        # 3：有部署代理服务，waf将使用ip_headers中的自定义header获取客户端IP
+        # @param IsCdn: <p>waf前是否部署有七层代理服务。<br>0：没有部署代理服务<br>1：有部署代理服务，waf将使用XFF获取客户端IP<br>2：有部署代理服务，waf将使用remote_addr获取客户端IP<br>3：有部署代理服务，waf将使用ip_headers中的自定义header获取客户端IP</p>
         # @type IsCdn: Integer
-        # @param UpstreamType: 回源类型。
-        # 0：通过IP回源
-        # 1：通过域名回源
+        # @param UpstreamType: <p>回源类型。<br>0：通过IP回源<br>1：通过域名回源</p>
         # @type UpstreamType: Integer
-        # @param IsWebsocket: 是否开启WebSocket支持。
-        # 0：关闭
-        # 1：开启
+        # @param IsWebsocket: <p>是否开启WebSocket支持。<br>0：关闭<br>1：开启</p>
         # @type IsWebsocket: Integer
-        # @param LoadBalance: 回源负载均衡策略。
-        # 0：轮询
-        # 1：IP hash
-        # 2：加权轮询
+        # @param LoadBalance: <p>回源负载均衡策略。<br>0：轮询<br>1：IP hash<br>2：加权轮询</p>
         # @type LoadBalance: String
-        # @param Ports: 服务端口列表配置。
-        # NginxServerId：新增域名时填'0'
-        # Port：监听端口号
-        # Protocol：端口协议
-        # UpstreamPort：与Port相同
-        # UpstreamProtocol：与Protocol相同
+        # @param Ports: <p>服务端口列表配置。<br>NginxServerId：新增域名时填&#39;0&#39;<br>Port：监听端口号<br>Protocol：端口协议<br>UpstreamPort：与Port相同<br>UpstreamProtocol：与Protocol相同</p>
         # @type Ports: Array
-        # @param IsKeepAlive: 必填项，是否开启长连接。
-        # 0： 短连接
-        # 1： 长连接
+        # @param IsKeepAlive: <p>必填项，是否开启长连接。<br>0： 短连接<br>1： 长连接</p>
         # @type IsKeepAlive: String
-        # @param InstanceID: 必填项，域名所属实例id
+        # @param InstanceID: <p>必填项，域名所属实例id</p>
         # @type InstanceID: String
-        # @param HttpsRewrite: 是否开启HTTP强制跳转到HTTPS。0：不强制跳转1：开启强制跳转
+        # @param HttpsRewrite: <p>是否开启HTTP强制跳转到HTTPS。0：不强制跳转1：开启强制跳转</p>
         # @type HttpsRewrite: Integer
-        # @param IsHttp2: 是否开启HTTP2，需要开启HTTPS协议支持。0：关闭1：开启
+        # @param IsHttp2: <p>是否开启HTTP2，需要开启HTTPS协议支持。0：关闭1：开启</p>
         # @type IsHttp2: Integer
-        # @param ActiveCheck: 是否开启主动健康检测。0：不开启1：开启
+        # @param ActiveCheck: <p>是否开启主动健康检测。0：不开启1：开启</p>
         # @type ActiveCheck: Integer
-        # @param CipherTemplate: 加密套件模板。0：不支持选择，使用默认模板  1：通用型模板 2：安全型模板3：自定义模板
+        # @param CipherTemplate: <p>加密套件模板。0：不支持选择，使用默认模板  1：通用型模板 2：安全型模板3：自定义模板</p>
         # @type CipherTemplate: Integer
-        # @param Cert: CertType为1时，需要填充此参数，表示自有证书的证书链
+        # @param Cert: <p>CertType为1时，需要填充此参数，表示自有证书的证书链</p>
         # @type Cert: String
-        # @param PrivateKey: CertType为1时，需要填充此参数，表示自有证书的私钥
+        # @param PrivateKey: <p>CertType为1时，需要填充此参数，表示自有证书的私钥</p>
         # @type PrivateKey: String
-        # @param SSLId: CertType为2时，需要填充此参数，表示腾讯云SSL平台托管的证书id
+        # @param SSLId: <p>CertType为2时，需要填充此参数，表示腾讯云SSL平台托管的证书id</p>
         # @type SSLId: String
-        # @param ResourceId: Waf的资源ID。
+        # @param ResourceId: <p>Waf的资源ID。</p>
         # @type ResourceId: String
-        # @param IpHeaders: IsCdn为3时，需要填此参数，表示自定义header
+        # @param IpHeaders: <p>IsCdn为3时，需要填此参数，表示自定义header</p>
         # @type IpHeaders: Array
-        # @param UpstreamScheme: 服务配置有HTTPS端口时，HTTPS的回源协议。
-        # http：使用http协议回源，和HttpsUpstreamPort配合使用
-        # https：使用https协议回源
+        # @param UpstreamScheme: <p>服务配置有HTTPS端口时，HTTPS的回源协议。<br>http：使用http协议回源，和HttpsUpstreamPort配合使用<br>https：使用https协议回源</p>
         # @type UpstreamScheme: String
-        # @param HttpsUpstreamPort: HTTPS回源端口,仅UpstreamScheme为http时需要填当前字段
+        # @param HttpsUpstreamPort: <p>HTTPS回源端口,仅UpstreamScheme为http时需要填当前字段</p>
         # @type HttpsUpstreamPort: String
-        # @param IsGray: 是否开启灰度，0表示不开启灰度。
+        # @param IsGray: <p>是否开启灰度，0表示不开启灰度。</p>
         # @type IsGray: Integer
-        # @param GrayAreas: 灰度的地区
+        # @param GrayAreas: <p>灰度的地区</p>
         # @type GrayAreas: Array
-        # @param UpstreamDomain: 域名回源时的回源域名。UpstreamType为1时，需要填充此字段
+        # @param UpstreamDomain: <p>域名回源时的回源域名。UpstreamType为1时，需要填充此字段</p>
         # @type UpstreamDomain: String
-        # @param SrcList: IP回源时的回源IP列表。UpstreamType为0时，需要填充此字段
+        # @param SrcList: <p>IP回源时的回源IP列表。UpstreamType为0时，需要填充此字段</p>
         # @type SrcList: Array
-        # @param Edition: WAF实例类型。
-        # sparta-waf：SAAS型WAF
-        # clb-waf：负载均衡型WAF
-        # cdn-waf：CDN上的Web防护能力
+        # @param Edition: <p>WAF实例类型。<br>sparta-waf：SAAS型WAF<br>clb-waf：负载均衡型WAF<br>cdn-waf：CDN上的Web防护能力</p>
         # @type Edition: String
-        # @param Anycast: 目前填0即可。anycast IP类型开关： 0 普通IP 1 Anycast IP
+        # @param Anycast: <p>目前填0即可。anycast IP类型开关： 0 普通IP 1 Anycast IP</p>
         # @type Anycast: Integer
-        # @param Weights: 回源IP列表各IP的权重，和SrcList一一对应。当且仅当UpstreamType为0，并且SrcList有多个IP，并且LoadBalance为2时需要填写，否则填 []
+        # @param Weights: <p>回源IP列表各IP的权重，和SrcList一一对应。当且仅当UpstreamType为0，并且SrcList有多个IP，并且LoadBalance为2时需要填写，否则填 []</p>
         # @type Weights: Array
-        # @param TLSVersion: TLS版本信息
+        # @param TLSVersion: <p>TLS版本信息</p>
         # @type TLSVersion: Integer
-        # @param Ciphers: 自定义的加密套件列表。CipherTemplate为3时需要填此字段，表示自定义的加密套件，值通过DescribeCiphersDetail接口获取。
+        # @param Ciphers: <p>自定义的加密套件列表。CipherTemplate为3时需要填此字段，表示自定义的加密套件，值通过DescribeCiphersDetail接口获取。</p>
         # @type Ciphers: Array
-        # @param ProxyConnectTimeout: WAF与源站的连接超时，默认10s。
+        # @param ProxyConnectTimeout: <p>WAF与源站的连接超时，默认10s。</p>
         # @type ProxyConnectTimeout: Integer
-        # @param ProxyReadTimeout: WAF与源站的读超时时间，默认300s。
+        # @param ProxyReadTimeout: <p>WAF与源站的读超时时间，默认300s。</p>
         # @type ProxyReadTimeout: Integer
-        # @param ProxySendTimeout: WAF与源站的写超时时间，默认300s。
+        # @param ProxySendTimeout: <p>WAF与源站的写超时时间，默认300s。</p>
         # @type ProxySendTimeout: Integer
-        # @param SniType: WAF回源时的SNI类型。
-        # 0：关闭SNI，不配置client_hello中的server_name
-        # 1：开启SNI，client_hello中的server_name为防护域名
-        # 2：开启SNI，SNI为域名回源时的源站域名
-        # 3：开启SNI，SNI为自定义域名
+        # @param SniType: <p>WAF回源时的SNI类型。<br>0：关闭SNI，不配置client_hello中的server_name<br>1：开启SNI，client_hello中的server_name为防护域名<br>2：开启SNI，SNI为域名回源时的源站域名<br>3：开启SNI，SNI为自定义域名</p>
         # @type SniType: Integer
-        # @param SniHost: SniType为3时，需要填此参数，表示自定义的SNI；
+        # @param SniHost: <p>SniType为3时，需要填此参数，表示自定义的SNI；</p>
         # @type SniHost: String
-        # @param XFFReset: 是否开启XFF重置。0：关闭 1：开启
+        # @param XFFReset: <p>是否开启XFF重置。0：关闭 1：开启</p>
         # @type XFFReset: Integer
-        # @param Note: 域名备注信息
+        # @param Note: <p>域名备注信息</p>
         # @type Note: String
-        # @param UpstreamHost: 自定义回源Host。默认为空字符串，表示使用防护域名作为回源Host。
+        # @param UpstreamHost: <p>自定义回源Host。默认为空字符串，表示使用防护域名作为回源Host。</p>
         # @type UpstreamHost: String
-        # @param ProxyBuffer: 是否开启缓存。 0：关闭 1：开启
+        # @param ProxyBuffer: <p>是否开启缓存。 0：关闭 1：开启</p>
         # @type ProxyBuffer: Integer
-        # @param ProbeStatus: 是否开启拨测。 0: 禁用拨测  1: 启用拨测。默认启用拨测
+        # @param ProbeStatus: <p>是否开启拨测。 0: 禁用拨测  1: 启用拨测。默认启用拨测</p>
         # @type ProbeStatus: Integer
-        # @param GmType: 国密选项。0：不开启国密 1：在原有TLS选项的基础上追加支持国密 2：开启国密并仅支持国密客户端访问
+        # @param GmType: <p>国密选项。0：不开启国密 1：在原有TLS选项的基础上追加支持国密 2：开启国密并仅支持国密客户端访问</p>
         # @type GmType: Integer
-        # @param GmCertType: 国密证书类型。0：无国密证书 1：证书来源为自有国密证书 2：证书来源为托管国密证书
+        # @param GmCertType: <p>国密证书类型。0：无国密证书 1：证书来源为自有国密证书 2：证书来源为托管国密证书</p>
         # @type GmCertType: Integer
-        # @param GmCert: GmCertType为1时，需要填充此参数，表示自有国密证书的证书链
+        # @param GmCert: <p>GmCertType为1时，需要填充此参数，表示自有国密证书的证书链</p>
         # @type GmCert: String
-        # @param GmPrivateKey: GmCertType为1时，需要填充此参数，表示自有国密证书的私钥
+        # @param GmPrivateKey: <p>GmCertType为1时，需要填充此参数，表示自有国密证书的私钥</p>
         # @type GmPrivateKey: String
-        # @param GmEncCert: GmCertType为1时，需要填充此参数，表示自有国密证书的加密证书
+        # @param GmEncCert: <p>GmCertType为1时，需要填充此参数，表示自有国密证书的加密证书</p>
         # @type GmEncCert: String
-        # @param GmEncPrivateKey: GmCertType为1时，需要填充此参数，表示自有国密证书的加密证书的私钥
+        # @param GmEncPrivateKey: <p>GmCertType为1时，需要填充此参数，表示自有国密证书的加密证书的私钥</p>
         # @type GmEncPrivateKey: String
-        # @param GmSSLId: GmCertType为2时，需要填充此参数，表示腾讯云SSL平台托管的证书id
+        # @param GmSSLId: <p>GmCertType为2时，需要填充此参数，表示腾讯云SSL平台托管的证书id</p>
         # @type GmSSLId: String
-        # @param UpstreamPolicy: 回源策略，支持负载均衡回源和分流回源两种方式。0：默认值，负载均衡回源；1：分流回源
+        # @param UpstreamPolicy: <p>回源策略，支持负载均衡回源和分流回源两种方式。0：默认值，负载均衡回源；1：分流回源</p>
         # @type UpstreamPolicy: Integer
-        # @param UpstreamRules: 分流回源时生效，分流回源的规则。
+        # @param UpstreamRules: <p>分流回源时生效，分流回源的规则。</p>
         # @type UpstreamRules: Array
-        # @param UseCase: 业务场景。0：默认值，表示常规业务场景 1：大模型业务场景
+        # @param UseCase: <p>业务场景。0：默认值，表示常规业务场景 1：大模型业务场景</p>
         # @type UseCase: Integer
-        # @param Gzip: gzip开关。0：关闭 1：默认值，打开。
+        # @param Gzip: <p>gzip开关。0：关闭 1：默认值，打开。</p>
         # @type Gzip: Integer
+        # @param Tags: <p>标签信息</p>
+        # @type Tags: Array
 
-        attr_accessor :Domain, :CertType, :IsCdn, :UpstreamType, :IsWebsocket, :LoadBalance, :Ports, :IsKeepAlive, :InstanceID, :HttpsRewrite, :IsHttp2, :ActiveCheck, :CipherTemplate, :Cert, :PrivateKey, :SSLId, :ResourceId, :IpHeaders, :UpstreamScheme, :HttpsUpstreamPort, :IsGray, :GrayAreas, :UpstreamDomain, :SrcList, :Edition, :Anycast, :Weights, :TLSVersion, :Ciphers, :ProxyConnectTimeout, :ProxyReadTimeout, :ProxySendTimeout, :SniType, :SniHost, :XFFReset, :Note, :UpstreamHost, :ProxyBuffer, :ProbeStatus, :GmType, :GmCertType, :GmCert, :GmPrivateKey, :GmEncCert, :GmEncPrivateKey, :GmSSLId, :UpstreamPolicy, :UpstreamRules, :UseCase, :Gzip
+        attr_accessor :Domain, :CertType, :IsCdn, :UpstreamType, :IsWebsocket, :LoadBalance, :Ports, :IsKeepAlive, :InstanceID, :HttpsRewrite, :IsHttp2, :ActiveCheck, :CipherTemplate, :Cert, :PrivateKey, :SSLId, :ResourceId, :IpHeaders, :UpstreamScheme, :HttpsUpstreamPort, :IsGray, :GrayAreas, :UpstreamDomain, :SrcList, :Edition, :Anycast, :Weights, :TLSVersion, :Ciphers, :ProxyConnectTimeout, :ProxyReadTimeout, :ProxySendTimeout, :SniType, :SniHost, :XFFReset, :Note, :UpstreamHost, :ProxyBuffer, :ProbeStatus, :GmType, :GmCertType, :GmCert, :GmPrivateKey, :GmEncCert, :GmEncPrivateKey, :GmSSLId, :UpstreamPolicy, :UpstreamRules, :UseCase, :Gzip, :Tags
         extend Gem::Deprecate
         deprecate :ResourceId, :none, 2026, 5
         deprecate :ResourceId=, :none, 2026, 5
@@ -1172,7 +1144,7 @@ module TencentCloud
         deprecate :Anycast, :none, 2026, 5
         deprecate :Anycast=, :none, 2026, 5
 
-        def initialize(domain=nil, certtype=nil, iscdn=nil, upstreamtype=nil, iswebsocket=nil, loadbalance=nil, ports=nil, iskeepalive=nil, instanceid=nil, httpsrewrite=nil, ishttp2=nil, activecheck=nil, ciphertemplate=nil, cert=nil, privatekey=nil, sslid=nil, resourceid=nil, ipheaders=nil, upstreamscheme=nil, httpsupstreamport=nil, isgray=nil, grayareas=nil, upstreamdomain=nil, srclist=nil, edition=nil, anycast=nil, weights=nil, tlsversion=nil, ciphers=nil, proxyconnecttimeout=nil, proxyreadtimeout=nil, proxysendtimeout=nil, snitype=nil, snihost=nil, xffreset=nil, note=nil, upstreamhost=nil, proxybuffer=nil, probestatus=nil, gmtype=nil, gmcerttype=nil, gmcert=nil, gmprivatekey=nil, gmenccert=nil, gmencprivatekey=nil, gmsslid=nil, upstreampolicy=nil, upstreamrules=nil, usecase=nil, gzip=nil)
+        def initialize(domain=nil, certtype=nil, iscdn=nil, upstreamtype=nil, iswebsocket=nil, loadbalance=nil, ports=nil, iskeepalive=nil, instanceid=nil, httpsrewrite=nil, ishttp2=nil, activecheck=nil, ciphertemplate=nil, cert=nil, privatekey=nil, sslid=nil, resourceid=nil, ipheaders=nil, upstreamscheme=nil, httpsupstreamport=nil, isgray=nil, grayareas=nil, upstreamdomain=nil, srclist=nil, edition=nil, anycast=nil, weights=nil, tlsversion=nil, ciphers=nil, proxyconnecttimeout=nil, proxyreadtimeout=nil, proxysendtimeout=nil, snitype=nil, snihost=nil, xffreset=nil, note=nil, upstreamhost=nil, proxybuffer=nil, probestatus=nil, gmtype=nil, gmcerttype=nil, gmcert=nil, gmprivatekey=nil, gmenccert=nil, gmencprivatekey=nil, gmsslid=nil, upstreampolicy=nil, upstreamrules=nil, usecase=nil, gzip=nil, tags=nil)
           @Domain = domain
           @CertType = certtype
           @IsCdn = iscdn
@@ -1223,6 +1195,7 @@ module TencentCloud
           @UpstreamRules = upstreamrules
           @UseCase = usecase
           @Gzip = gzip
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -1290,6 +1263,14 @@ module TencentCloud
           end
           @UseCase = params['UseCase']
           @Gzip = params['Gzip']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              taginfo_tmp = TagInfo.new
+              taginfo_tmp.deserialize(i)
+              @Tags << taginfo_tmp
+            end
+          end
         end
       end
 
@@ -2007,6 +1988,84 @@ module TencentCloud
             @CustomRule.deserialize(params['CustomRule'])
           end
           @IsPan = params['IsPan']
+        end
+      end
+
+      # 敏感数据加白字段模型
+      class ApiSecSensitiveWhiteField < TencentCloud::Common::AbstractModel
+        # @param FieldName: <p>字段名称</p>
+        # @type FieldName: String
+        # @param FieldType: <p>字段位置</p>
+        # @type FieldType: String
+        # @param SensitiveTypes: <p>敏感数据类型列表</p>
+        # @type SensitiveTypes: Array
+
+        attr_accessor :FieldName, :FieldType, :SensitiveTypes
+
+        def initialize(fieldname=nil, fieldtype=nil, sensitivetypes=nil)
+          @FieldName = fieldname
+          @FieldType = fieldtype
+          @SensitiveTypes = sensitivetypes
+        end
+
+        def deserialize(params)
+          @FieldName = params['FieldName']
+          @FieldType = params['FieldType']
+          @SensitiveTypes = params['SensitiveTypes']
+        end
+      end
+
+      # 敏感数据加白规则模型
+      class ApiSecSensitiveWhiteRule < TencentCloud::Common::AbstractModel
+        # @param RuleName: <p>白名单规则名称</p>
+        # @type RuleName: String
+        # @param ApiNameOp: <p>加白对象配置</p>
+        # @type ApiNameOp: Array
+        # @param WhiteMode: <p>加白模式</p><p>枚举值：</p><ul><li>1： 对整个API加白</li><li>2： 对指定字段加白</li></ul>
+        # @type WhiteMode: Integer
+        # @param WhiteFields: <p>加白字段配置列表</p>
+        # @type WhiteFields: Array
+        # @param Status: <p>规则开关</p><p>枚举值：</p><ul><li>0： 关</li><li>1： 开</li></ul>
+        # @type Status: Integer
+        # @param Description: <p>规则描述</p>
+        # @type Description: String
+        # @param UpdateTime: <p>修改时间</p><p>单位：s</p>
+        # @type UpdateTime: Integer
+
+        attr_accessor :RuleName, :ApiNameOp, :WhiteMode, :WhiteFields, :Status, :Description, :UpdateTime
+
+        def initialize(rulename=nil, apinameop=nil, whitemode=nil, whitefields=nil, status=nil, description=nil, updatetime=nil)
+          @RuleName = rulename
+          @ApiNameOp = apinameop
+          @WhiteMode = whitemode
+          @WhiteFields = whitefields
+          @Status = status
+          @Description = description
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @RuleName = params['RuleName']
+          unless params['ApiNameOp'].nil?
+            @ApiNameOp = []
+            params['ApiNameOp'].each do |i|
+              apinameop_tmp = ApiNameOp.new
+              apinameop_tmp.deserialize(i)
+              @ApiNameOp << apinameop_tmp
+            end
+          end
+          @WhiteMode = params['WhiteMode']
+          unless params['WhiteFields'].nil?
+            @WhiteFields = []
+            params['WhiteFields'].each do |i|
+              apisecsensitivewhitefield_tmp = ApiSecSensitiveWhiteField.new
+              apisecsensitivewhitefield_tmp.deserialize(i)
+              @WhiteFields << apisecsensitivewhitefield_tmp
+            end
+          end
+          @Status = params['Status']
+          @Description = params['Description']
+          @UpdateTime = params['UpdateTime']
         end
       end
 
@@ -3764,42 +3823,44 @@ module TencentCloud
 
       # 负载均衡型WAF域名详情
       class ClbDomainsInfo < TencentCloud::Common::AbstractModel
-        # @param Domain: 域名
+        # @param Domain: <p>域名</p>
         # @type Domain: String
-        # @param DomainId: 域名唯一ID
+        # @param DomainId: <p>域名唯一ID</p>
         # @type DomainId: String
-        # @param InstanceId: 域名所属实例ID
+        # @param InstanceId: <p>域名所属实例ID</p>
         # @type InstanceId: String
-        # @param InstanceName: 域名所属实例名
+        # @param InstanceName: <p>域名所属实例名</p>
         # @type InstanceName: String
-        # @param Edition: 域名所属实例类型
+        # @param Edition: <p>域名所属实例类型</p>
         # @type Edition: String
-        # @param IsCdn: waf前是否部署有七层代理服务。 0：没有部署代理服务 1：有部署代理服务，waf将使用XFF获取客户端IP 2：有部署代理服务，waf将使用remote_addr获取客户端IP 3：有部署代理服务，waf将使用ip_headers中的自定义header获取客户端IP
+        # @param IsCdn: <p>waf前是否部署有七层代理服务。 0：没有部署代理服务 1：有部署代理服务，waf将使用XFF获取客户端IP 2：有部署代理服务，waf将使用remote_addr获取客户端IP 3：有部署代理服务，waf将使用ip_headers中的自定义header获取客户端IP</p>
         # @type IsCdn: Integer
-        # @param LoadBalancerSet: 负载均衡类型为clb时，对应的负载均衡器信息
+        # @param LoadBalancerSet: <p>负载均衡类型为clb时，对应的负载均衡器信息</p>
         # @type LoadBalancerSet: Array
-        # @param FlowMode: 负载均衡型WAF的流量模式，1：清洗模式，0：镜像模式
+        # @param FlowMode: <p>负载均衡型WAF的流量模式，1：清洗模式，0：镜像模式</p>
         # @type FlowMode: Integer
-        # @param State: 域名绑定负载均衡器状态
+        # @param State: <p>域名绑定负载均衡器状态</p>
         # @type State: Integer
-        # @param AlbType: 负载均衡类型，clb或者apisix
+        # @param AlbType: <p>负载均衡类型，clb或者apisix</p>
         # @type AlbType: String
-        # @param IpHeaders: IsCdn=3时，表示自定义header
+        # @param IpHeaders: <p>IsCdn=3时，表示自定义header</p>
         # @type IpHeaders: Array
-        # @param CdcClusters: cdc-clb-waf类型WAF的CDC集群信息
+        # @param CdcClusters: <p>cdc-clb-waf类型WAF的CDC集群信息</p>
         # @type CdcClusters: String
-        # @param CloudType: 云类型:public:公有云；private:私有云;hybrid:混合云
+        # @param CloudType: <p>云类型:public:公有云；private:私有云;hybrid:混合云</p>
         # @type CloudType: String
-        # @param Note: 域名备注信息
+        # @param Note: <p>域名备注信息</p>
         # @type Note: String
-        # @param Labels: 域名标签
+        # @param Labels: <p>域名标签</p>
         # @type Labels: Array
-        # @param AccessStatus: clbwaf接入状态，0代表“尚无流量接入”，1代表“流量接入”，2代表“CLB监听器已注销”，3代表“配置生效中”，4代表“配置下发失败中”
+        # @param AccessStatus: <p>clbwaf接入状态，0代表“尚无流量接入”，1代表“流量接入”，2代表“CLB监听器已注销”，3代表“配置生效中”，4代表“配置下发失败中”</p>
         # @type AccessStatus: Integer
+        # @param TagInfos: <p>标签信息</p>
+        # @type TagInfos: Array
 
-        attr_accessor :Domain, :DomainId, :InstanceId, :InstanceName, :Edition, :IsCdn, :LoadBalancerSet, :FlowMode, :State, :AlbType, :IpHeaders, :CdcClusters, :CloudType, :Note, :Labels, :AccessStatus
+        attr_accessor :Domain, :DomainId, :InstanceId, :InstanceName, :Edition, :IsCdn, :LoadBalancerSet, :FlowMode, :State, :AlbType, :IpHeaders, :CdcClusters, :CloudType, :Note, :Labels, :AccessStatus, :TagInfos
 
-        def initialize(domain=nil, domainid=nil, instanceid=nil, instancename=nil, edition=nil, iscdn=nil, loadbalancerset=nil, flowmode=nil, state=nil, albtype=nil, ipheaders=nil, cdcclusters=nil, cloudtype=nil, note=nil, labels=nil, accessstatus=nil)
+        def initialize(domain=nil, domainid=nil, instanceid=nil, instancename=nil, edition=nil, iscdn=nil, loadbalancerset=nil, flowmode=nil, state=nil, albtype=nil, ipheaders=nil, cdcclusters=nil, cloudtype=nil, note=nil, labels=nil, accessstatus=nil, taginfos=nil)
           @Domain = domain
           @DomainId = domainid
           @InstanceId = instanceid
@@ -3816,6 +3877,7 @@ module TencentCloud
           @Note = note
           @Labels = labels
           @AccessStatus = accessstatus
+          @TagInfos = taginfos
         end
 
         def deserialize(params)
@@ -3842,71 +3904,85 @@ module TencentCloud
           @Note = params['Note']
           @Labels = params['Labels']
           @AccessStatus = params['AccessStatus']
+          unless params['TagInfos'].nil?
+            @TagInfos = []
+            params['TagInfos'].each do |i|
+              taginfo_tmp = TagInfo.new
+              taginfo_tmp.deserialize(i)
+              @TagInfos << taginfo_tmp
+            end
+          end
         end
       end
 
       # Clb类型防护对象
       class ClbObject < TencentCloud::Common::AbstractModel
-        # @param ObjectId: 对象ID
+        # @param ObjectId: <p>对象ID</p>
         # @type ObjectId: String
-        # @param InstanceId: 实例ID
+        # @param InstanceId: <p>实例ID</p>
         # @type InstanceId: String
-        # @param InstanceName: 实例名称
+        # @param InstanceName: <p>实例名称</p>
         # @type InstanceName: String
-        # @param PreciseDomains: 精准域名列表
+        # @param PreciseDomains: <p>精准域名列表</p>
         # @type PreciseDomains: Array
-        # @param Status: WAF功能开关状态，0关闭1开启
+        # @param Status: <p>WAF功能开关状态，0关闭1开启</p>
         # @type Status: Integer
-        # @param ClsStatus: WAF日志开关状态，0关闭1开启
+        # @param ClsStatus: <p>WAF日志开关状态，0关闭1开启</p>
         # @type ClsStatus: Integer
-        # @param VirtualDomain: CLB对象对应的虚拟域名
+        # @param VirtualDomain: <p>CLB对象对应的虚拟域名</p>
         # @type VirtualDomain: String
-        # @param ObjectName: 对象名称
+        # @param ObjectName: <p>对象名称</p>
         # @type ObjectName: String
-        # @param PublicIp: 公网地址
+        # @param PublicIp: <p>公网地址</p>
         # @type PublicIp: Array
-        # @param PrivateIp: 内网地址
+        # @param PrivateIp: <p>内网地址</p>
         # @type PrivateIp: Array
-        # @param VpcName: VPC名称
+        # @param VpcName: <p>VPC名称</p>
         # @type VpcName: String
-        # @param Vpc: VPC ID
+        # @param Vpc: <p>VPC ID</p>
         # @type Vpc: String
-        # @param InstanceLevel: waf实例等级，如果未绑定实例为0
+        # @param InstanceLevel: <p>waf实例等级，如果未绑定实例为0</p>
         # @type InstanceLevel: Integer
-        # @param PostCLSStatus: clb投递开关
+        # @param PostCLSStatus: <p>clb投递开关</p>
         # @type PostCLSStatus: Integer
-        # @param PostCKafkaStatus: kafka投递开关
+        # @param PostCKafkaStatus: <p>kafka投递开关</p>
         # @type PostCKafkaStatus: Integer
-        # @param Type: 对象类型：CLB:负载均衡器，TSE:云原生网关
+        # @param Type: <p>对象类型：CLB:负载均衡器，TSE:云原生网关</p>
         # @type Type: String
-        # @param Region: 对象地域
+        # @param Region: <p>对象地域</p>
         # @type Region: String
-        # @param Proxy: 代理状态: 0:不开启,1:以XFF的第一个IP地址作为客户端IP,2:以remote_addr作为客户端IP,3:从指定的头部字段获取客户端IP，字段通过IpHeaders字段给出
+        # @param Proxy: <p>代理状态: 0:不开启,1:以XFF的第一个IP地址作为客户端IP,2:以remote_addr作为客户端IP,3:从指定的头部字段获取客户端IP，字段通过IpHeaders字段给出</p>
         # @type Proxy: Integer
-        # @param IpHeaders: 指定获取客户端IP的头部字段列表。IsCdn为3时有效
+        # @param IpHeaders: <p>指定获取客户端IP的头部字段列表。IsCdn为3时有效</p>
         # @type IpHeaders: Array
-        # @param BotStatus: bot防护开关
+        # @param BotStatus: <p>bot防护开关</p>
         # @type BotStatus: Integer
-        # @param ApiStatus: api防护开关
+        # @param ApiStatus: <p>api防护开关</p>
         # @type ApiStatus: Integer
-        # @param ObjectFlowMode: 对象接入模式，0表示镜像模式，1表示清洗模式，2表示体检模式，默认为清洗模式
+        # @param ObjectFlowMode: <p>对象接入模式，0表示镜像模式，1表示清洗模式，2表示体检模式，默认为清洗模式</p>
         # @type ObjectFlowMode: Integer
-        # @param NumericalVpcId: 数值形式的私有网络 ID
+        # @param NumericalVpcId: <p>数值形式的私有网络 ID</p>
         # @type NumericalVpcId: Integer
-        # @param ModifyTime: 修改时间
+        # @param ModifyTime: <p>修改时间</p>
         # @type ModifyTime: String
-        # @param AddTime: 创建时间
+        # @param AddTime: <p>创建时间</p>
         # @type AddTime: String
-        # @param MemberAppId: 跨账号时，表示成员账号的appid
+        # @param MemberAppId: <p>跨账号时，表示成员账号的appid</p>
         # @type MemberAppId: Integer
-        # @param MemberUin: 跨账号时，表示成员账号的uin
+        # @param MemberUin: <p>跨账号时，表示成员账号的uin</p>
         # @type MemberUin: String
-        # @param MemberNickName: 跨账号时，表示成员账号的昵称
+        # @param MemberNickName: <p>跨账号时，表示成员账号的昵称</p>
         # @type MemberNickName: String
+        # @param TagInfos: <p>标签信息</p>
+        # @type TagInfos: Array
+        # @param PreciseDomainDetails: <p>精准域名信息</p>
+        # @type PreciseDomainDetails: Array
+        # @param WafAccessStatus: <p>waf接入状态</p>
+        # @type WafAccessStatus: Integer
 
-        attr_accessor :ObjectId, :InstanceId, :InstanceName, :PreciseDomains, :Status, :ClsStatus, :VirtualDomain, :ObjectName, :PublicIp, :PrivateIp, :VpcName, :Vpc, :InstanceLevel, :PostCLSStatus, :PostCKafkaStatus, :Type, :Region, :Proxy, :IpHeaders, :BotStatus, :ApiStatus, :ObjectFlowMode, :NumericalVpcId, :ModifyTime, :AddTime, :MemberAppId, :MemberUin, :MemberNickName
+        attr_accessor :ObjectId, :InstanceId, :InstanceName, :PreciseDomains, :Status, :ClsStatus, :VirtualDomain, :ObjectName, :PublicIp, :PrivateIp, :VpcName, :Vpc, :InstanceLevel, :PostCLSStatus, :PostCKafkaStatus, :Type, :Region, :Proxy, :IpHeaders, :BotStatus, :ApiStatus, :ObjectFlowMode, :NumericalVpcId, :ModifyTime, :AddTime, :MemberAppId, :MemberUin, :MemberNickName, :TagInfos, :PreciseDomainDetails, :WafAccessStatus
 
-        def initialize(objectid=nil, instanceid=nil, instancename=nil, precisedomains=nil, status=nil, clsstatus=nil, virtualdomain=nil, objectname=nil, publicip=nil, privateip=nil, vpcname=nil, vpc=nil, instancelevel=nil, postclsstatus=nil, postckafkastatus=nil, type=nil, region=nil, proxy=nil, ipheaders=nil, botstatus=nil, apistatus=nil, objectflowmode=nil, numericalvpcid=nil, modifytime=nil, addtime=nil, memberappid=nil, memberuin=nil, membernickname=nil)
+        def initialize(objectid=nil, instanceid=nil, instancename=nil, precisedomains=nil, status=nil, clsstatus=nil, virtualdomain=nil, objectname=nil, publicip=nil, privateip=nil, vpcname=nil, vpc=nil, instancelevel=nil, postclsstatus=nil, postckafkastatus=nil, type=nil, region=nil, proxy=nil, ipheaders=nil, botstatus=nil, apistatus=nil, objectflowmode=nil, numericalvpcid=nil, modifytime=nil, addtime=nil, memberappid=nil, memberuin=nil, membernickname=nil, taginfos=nil, precisedomaindetails=nil, wafaccessstatus=nil)
           @ObjectId = objectid
           @InstanceId = instanceid
           @InstanceName = instancename
@@ -3935,6 +4011,9 @@ module TencentCloud
           @MemberAppId = memberappid
           @MemberUin = memberuin
           @MemberNickName = membernickname
+          @TagInfos = taginfos
+          @PreciseDomainDetails = precisedomaindetails
+          @WafAccessStatus = wafaccessstatus
         end
 
         def deserialize(params)
@@ -3966,6 +4045,23 @@ module TencentCloud
           @MemberAppId = params['MemberAppId']
           @MemberUin = params['MemberUin']
           @MemberNickName = params['MemberNickName']
+          unless params['TagInfos'].nil?
+            @TagInfos = []
+            params['TagInfos'].each do |i|
+              taginfo_tmp = TagInfo.new
+              taginfo_tmp.deserialize(i)
+              @TagInfos << taginfo_tmp
+            end
+          end
+          unless params['PreciseDomainDetails'].nil?
+            @PreciseDomainDetails = []
+            params['PreciseDomainDetails'].each do |i|
+              domaininfo_tmp = DomainInfo.new
+              domaininfo_tmp.deserialize(i)
+              @PreciseDomainDetails << domaininfo_tmp
+            end
+          end
+          @WafAccessStatus = params['WafAccessStatus']
         end
       end
 
@@ -4521,16 +4617,19 @@ module TencentCloud
 
       # CreateHost请求参数结构体
       class CreateHostRequest < TencentCloud::Common::AbstractModel
-        # @param Host: 防护域名配置信息。内网负载均衡器必须携带对应的NumericalVpcId。
+        # @param Host: <p>防护域名配置信息。内网负载均衡器必须携带对应的NumericalVpcId。</p>
         # @type Host: :class:`Tencentcloud::Waf.v20180125.models.HostRecord`
-        # @param InstanceID: 实例id
+        # @param InstanceID: <p>实例id</p>
         # @type InstanceID: String
+        # @param Tags: <p>标签信息</p>
+        # @type Tags: Array
 
-        attr_accessor :Host, :InstanceID
+        attr_accessor :Host, :InstanceID, :Tags
 
-        def initialize(host=nil, instanceid=nil)
+        def initialize(host=nil, instanceid=nil, tags=nil)
           @Host = host
           @InstanceID = instanceid
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -4539,12 +4638,20 @@ module TencentCloud
             @Host.deserialize(params['Host'])
           end
           @InstanceID = params['InstanceID']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              taginfo_tmp = TagInfo.new
+              taginfo_tmp.deserialize(i)
+              @Tags << taginfo_tmp
+            end
+          end
         end
       end
 
       # CreateHost返回参数结构体
       class CreateHostResponse < TencentCloud::Common::AbstractModel
-        # @param DomainId: 新增防护域名ID
+        # @param DomainId: <p>新增防护域名ID</p>
         # @type DomainId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4848,31 +4955,42 @@ module TencentCloud
 
       # CreateProtectGroup请求参数结构体
       class CreateProtectGroupRequest < TencentCloud::Common::AbstractModel
-        # @param Name: 防护对象组名称
+        # @param Name: <p>防护对象组名称</p>
         # @type Name: String
-        # @param Domains: 防护对象组的应用范围
+        # @param Domains: <p>防护对象组的应用范围</p>
         # @type Domains: Array
-        # @param Remark: 防护对象组备注
+        # @param Remark: <p>防护对象组备注</p>
         # @type Remark: String
+        # @param Tags: <p>标签信息</p>
+        # @type Tags: Array
 
-        attr_accessor :Name, :Domains, :Remark
+        attr_accessor :Name, :Domains, :Remark, :Tags
 
-        def initialize(name=nil, domains=nil, remark=nil)
+        def initialize(name=nil, domains=nil, remark=nil, tags=nil)
           @Name = name
           @Domains = domains
           @Remark = remark
+          @Tags = tags
         end
 
         def deserialize(params)
           @Name = params['Name']
           @Domains = params['Domains']
           @Remark = params['Remark']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              taginfo_tmp = TagInfo.new
+              taginfo_tmp.deserialize(i)
+              @Tags << taginfo_tmp
+            end
+          end
         end
       end
 
       # CreateProtectGroup返回参数结构体
       class CreateProtectGroupResponse < TencentCloud::Common::AbstractModel
-        # @param GroupId: 防护对象组的ID
+        # @param GroupId: <p>防护对象组的ID</p>
         # @type GroupId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6891,24 +7009,26 @@ module TencentCloud
 
       # DescribeApiSecSensitiveRuleList请求参数结构体
       class DescribeApiSecSensitiveRuleListRequest < TencentCloud::Common::AbstractModel
-        # @param Domain: 域名
+        # @param Domain: <p>域名</p>
         # @type Domain: String
-        # @param IsQueryApiExtractRule: 是否查询api提取规则策略，true表示查询
+        # @param IsQueryApiExtractRule: <p>是否查询api提取规则策略，true表示查询</p>
         # @type IsQueryApiExtractRule: Boolean
-        # @param IsQueryApiPrivilegeRule: 是否查询api鉴权规则
+        # @param IsQueryApiPrivilegeRule: <p>是否查询api鉴权规则</p>
         # @type IsQueryApiPrivilegeRule: Boolean
-        # @param IsQueryApiSceneRule: 是否查询api场景规则
+        # @param IsQueryApiSceneRule: <p>是否查询api场景规则</p>
         # @type IsQueryApiSceneRule: Boolean
-        # @param RuleName: 查询鉴权配置的时候，该rule只返回鉴权配置的规则
+        # @param RuleName: <p>查询鉴权配置的时候，该rule只返回鉴权配置的规则</p>
         # @type RuleName: String
-        # @param IsQueryApiCustomEventRule: 是否查询api自定义事件规则
+        # @param IsQueryApiCustomEventRule: <p>是否查询api自定义事件规则</p>
         # @type IsQueryApiCustomEventRule: Boolean
-        # @param IsQueryApiExcludeRule: 是否查询无效api排除策略
+        # @param IsQueryApiExcludeRule: <p>是否查询无效api排除策略</p>
         # @type IsQueryApiExcludeRule: Boolean
+        # @param IsQueryApiSensitiveWhiteRule: <p>是否查询敏感数据加白规则</p>
+        # @type IsQueryApiSensitiveWhiteRule: Boolean
 
-        attr_accessor :Domain, :IsQueryApiExtractRule, :IsQueryApiPrivilegeRule, :IsQueryApiSceneRule, :RuleName, :IsQueryApiCustomEventRule, :IsQueryApiExcludeRule
+        attr_accessor :Domain, :IsQueryApiExtractRule, :IsQueryApiPrivilegeRule, :IsQueryApiSceneRule, :RuleName, :IsQueryApiCustomEventRule, :IsQueryApiExcludeRule, :IsQueryApiSensitiveWhiteRule
 
-        def initialize(domain=nil, isqueryapiextractrule=nil, isqueryapiprivilegerule=nil, isqueryapiscenerule=nil, rulename=nil, isqueryapicustomeventrule=nil, isqueryapiexcluderule=nil)
+        def initialize(domain=nil, isqueryapiextractrule=nil, isqueryapiprivilegerule=nil, isqueryapiscenerule=nil, rulename=nil, isqueryapicustomeventrule=nil, isqueryapiexcluderule=nil, isqueryapisensitivewhiterule=nil)
           @Domain = domain
           @IsQueryApiExtractRule = isqueryapiextractrule
           @IsQueryApiPrivilegeRule = isqueryapiprivilegerule
@@ -6916,6 +7036,7 @@ module TencentCloud
           @RuleName = rulename
           @IsQueryApiCustomEventRule = isqueryapicustomeventrule
           @IsQueryApiExcludeRule = isqueryapiexcluderule
+          @IsQueryApiSensitiveWhiteRule = isqueryapisensitivewhiterule
         end
 
         def deserialize(params)
@@ -6926,43 +7047,46 @@ module TencentCloud
           @RuleName = params['RuleName']
           @IsQueryApiCustomEventRule = params['IsQueryApiCustomEventRule']
           @IsQueryApiExcludeRule = params['IsQueryApiExcludeRule']
+          @IsQueryApiSensitiveWhiteRule = params['IsQueryApiSensitiveWhiteRule']
         end
       end
 
       # DescribeApiSecSensitiveRuleList返回参数结构体
       class DescribeApiSecSensitiveRuleListResponse < TencentCloud::Common::AbstractModel
-        # @param Data: api敏感规则列表
+        # @param Data: <p>api敏感规则列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: Array
-        # @param Total: 规则数量
+        # @param Total: <p>规则数量</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Total: Integer
-        # @param Status: 自定义敏感检测规则总开关
+        # @param Status: <p>自定义敏感检测规则总开关</p>
         # @type Status: Integer
-        # @param RuleNameList: 非内置规则的rulename列表
+        # @param RuleNameList: <p>非内置规则的rulename列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleNameList: Array
-        # @param ApiExtractRule: api提取规则列表
+        # @param ApiExtractRule: <p>api提取规则列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApiExtractRule: Array
-        # @param ApiSecPrivilegeRule: api鉴权规则列表
+        # @param ApiSecPrivilegeRule: <p>api鉴权规则列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApiSecPrivilegeRule: Array
-        # @param ApiSecSceneRule: api场景规则列表
+        # @param ApiSecSceneRule: <p>api场景规则列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApiSecSceneRule: Array
-        # @param ApiSecCustomEventRule: 自定义事件规则
+        # @param ApiSecCustomEventRule: <p>自定义事件规则</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApiSecCustomEventRule: Array
-        # @param ApiExcludeRule: 无效api排除规则列表
+        # @param ApiExcludeRule: <p>无效api排除规则列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApiExcludeRule: Array
+        # @param ApiSecSensitiveWhiteRule: <p>敏感数据加白规则列表</p>
+        # @type ApiSecSensitiveWhiteRule: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Data, :Total, :Status, :RuleNameList, :ApiExtractRule, :ApiSecPrivilegeRule, :ApiSecSceneRule, :ApiSecCustomEventRule, :ApiExcludeRule, :RequestId
+        attr_accessor :Data, :Total, :Status, :RuleNameList, :ApiExtractRule, :ApiSecPrivilegeRule, :ApiSecSceneRule, :ApiSecCustomEventRule, :ApiExcludeRule, :ApiSecSensitiveWhiteRule, :RequestId
 
-        def initialize(data=nil, total=nil, status=nil, rulenamelist=nil, apiextractrule=nil, apisecprivilegerule=nil, apisecscenerule=nil, apiseccustomeventrule=nil, apiexcluderule=nil, requestid=nil)
+        def initialize(data=nil, total=nil, status=nil, rulenamelist=nil, apiextractrule=nil, apisecprivilegerule=nil, apisecscenerule=nil, apiseccustomeventrule=nil, apiexcluderule=nil, apisecsensitivewhiterule=nil, requestid=nil)
           @Data = data
           @Total = total
           @Status = status
@@ -6972,6 +7096,7 @@ module TencentCloud
           @ApiSecSceneRule = apisecscenerule
           @ApiSecCustomEventRule = apiseccustomeventrule
           @ApiExcludeRule = apiexcluderule
+          @ApiSecSensitiveWhiteRule = apisecsensitivewhiterule
           @RequestId = requestid
         end
 
@@ -7025,6 +7150,14 @@ module TencentCloud
               apisecexcluderule_tmp = ApiSecExcludeRule.new
               apisecexcluderule_tmp.deserialize(i)
               @ApiExcludeRule << apisecexcluderule_tmp
+            end
+          end
+          unless params['ApiSecSensitiveWhiteRule'].nil?
+            @ApiSecSensitiveWhiteRule = []
+            params['ApiSecSensitiveWhiteRule'].each do |i|
+              apisecsensitivewhiterule_tmp = ApiSecSensitiveWhiteRule.new
+              apisecsensitivewhiterule_tmp.deserialize(i)
+              @ApiSecSensitiveWhiteRule << apisecsensitivewhiterule_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -8874,11 +9007,11 @@ module TencentCloud
 
       # DescribeDomains请求参数结构体
       class DescribeDomainsRequest < TencentCloud::Common::AbstractModel
-        # @param Offset: 分页偏移量，取Limit整数倍。最小值为0，最大值= Total/Limit向上取整
+        # @param Offset: <p>分页偏移量，取Limit整数倍。最小值为0，最大值= Total/Limit向上取整</p>
         # @type Offset: Integer
-        # @param Limit: 返回域名的数量
+        # @param Limit: <p>返回域名的数量</p>
         # @type Limit: Integer
-        # @param Filters: 过滤数组，过滤字段包括：Edition：实例版本，sparta-waf或clb-waf Domain：域名 DomainId：域名ID InstanceName：实例名称 InstanceId：实例ID FlowMode：流量接入模式，仅支持CLBWAF FlowCheckMode：流量体检模式，仅支持CLBWAF ClsStatus：日志开关 Status：WAF开关BotStatus：BOT开关 ApiStatus：API安全开关 Engine：引擎模式 UpstreamIP：源站IP，仅支持SAAS型WAF UpstreamDomain：源站域名，仅支持SAAS型WAF DomainState：域名状态，仅支持SAAS型WAF SgState：安全组状态，仅支持SAAS型WAF Label：分组标签，同时仅支持一种标签过滤
+        # @param Filters: <p>过滤数组，过滤字段包括：Edition：实例版本，sparta-waf或clb-waf AlbType：七层接入类型细分，clb或tsegw或apisix或scf Domain：域名 DomainId：域名ID InstanceName：实例名称 InstanceId：实例ID FlowMode：流量接入模式，仅支持CLBWAF FlowCheckMode：流量体检模式，仅支持CLBWAF ClsStatus：日志开关 Status：WAF开关BotStatus：BOT开关 ApiStatus：API安全开关 Engine：引擎模式 UpstreamIP：源站IP，仅支持SAAS型WAF UpstreamDomain：源站域名，仅支持SAAS型WAF DomainState：域名状态，仅支持SAAS型WAF SgState：安全组状态，仅支持SAAS型WAF Label：分组标签，同时仅支持一种标签过滤</p>
         # @type Filters: Array
 
         attr_accessor :Offset, :Limit, :Filters
@@ -8905,9 +9038,9 @@ module TencentCloud
 
       # DescribeDomains返回参数结构体
       class DescribeDomainsResponse < TencentCloud::Common::AbstractModel
-        # @param Total: 总数
+        # @param Total: <p>总数</p>
         # @type Total: Integer
-        # @param Domains: domain列表
+        # @param Domains: <p>domain列表</p>
         # @type Domains: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -11894,175 +12027,94 @@ module TencentCloud
 
       # domain列表
       class DomainInfo < TencentCloud::Common::AbstractModel
-        # @param Domain: 域名
+        # @param Domain: <p>域名</p>
         # @type Domain: String
-        # @param DomainId: 域名ID
+        # @param DomainId: <p>域名ID</p>
         # @type DomainId: String
-        # @param InstanceId: 实例ID
+        # @param InstanceId: <p>实例ID</p>
         # @type InstanceId: String
-        # @param Cname: cname地址
+        # @param Cname: <p>cname地址</p>
         # @type Cname: String
-        # @param Edition: 域名所属实例类型。
-        # sparta-waf：SaaS型WAF实例
-        # clb-waf：负载均衡型WAF实例
-        # cdc-clb-waf：CDC环境下负载均衡型WAF实例
+        # @param Edition: <p>域名所属实例类型。<br>sparta-waf：SaaS型WAF实例<br>clb-waf：负载均衡型WAF实例<br>cdc-clb-waf：CDC环境下负载均衡型WAF实例</p>
         # @type Edition: String
-        # @param Region: 地域。
-        # "多伦多": "ca"
-        # "广州": "gz"
-        # "成都": "cd"
-        # "福州": "fzec"
-        # "深圳": "szx"
-        # "印度": "in"
-        # "济南": "jnec"
-        # "重庆": "cq"
-        # "天津": "tsn"
-        # "欧洲东北": "ru"
-        # "南京": "nj"
-        # "美国硅谷": "usw"
-        # "泰国": "th"
-        # "广州Open": "gzopen"
-        # "深圳金融": "szjr"
-        # "法兰克福": "de"
-        # "日本": "jp"
-        # "弗吉尼亚": "use"
-        # "北京": "bj"
-        # "中国香港": "hk"
-        # "杭州": "hzec"
-        # "北京金融": "bjjr"
-        # "上海金融": "shjr"
-        # "台北": "tpe"
-        # "首尔": "kr"
-        # "上海": "sh"
-        # "新加坡": "sg"
-        # "清远": "qy"
+        # @param Region: <p>地域。<br>&quot;多伦多&quot;: &quot;ca&quot;<br>&quot;广州&quot;: &quot;gz&quot;<br>&quot;成都&quot;: &quot;cd&quot;<br>&quot;福州&quot;: &quot;fzec&quot;<br>&quot;深圳&quot;: &quot;szx&quot;<br>&quot;印度&quot;: &quot;in&quot;<br>&quot;济南&quot;: &quot;jnec&quot;<br>&quot;重庆&quot;: &quot;cq&quot;<br>&quot;天津&quot;: &quot;tsn&quot;<br>&quot;欧洲东北&quot;: &quot;ru&quot;<br>&quot;南京&quot;: &quot;nj&quot;<br>&quot;美国硅谷&quot;: &quot;usw&quot;<br>&quot;泰国&quot;: &quot;th&quot;<br>&quot;广州Open&quot;: &quot;gzopen&quot;<br>&quot;深圳金融&quot;: &quot;szjr&quot;<br>&quot;法兰克福&quot;: &quot;de&quot;<br>&quot;日本&quot;: &quot;jp&quot;<br>&quot;弗吉尼亚&quot;: &quot;use&quot;<br>&quot;北京&quot;: &quot;bj&quot;<br>&quot;中国香港&quot;: &quot;hk&quot;<br>&quot;杭州&quot;: &quot;hzec&quot;<br>&quot;北京金融&quot;: &quot;bjjr&quot;<br>&quot;上海金融&quot;: &quot;shjr&quot;<br>&quot;台北&quot;: &quot;tpe&quot;<br>&quot;首尔&quot;: &quot;kr&quot;<br>&quot;上海&quot;: &quot;sh&quot;<br>&quot;新加坡&quot;: &quot;sg&quot;<br>&quot;清远&quot;: &quot;qy&quot;</p>
         # @type Region: String
-        # @param InstanceName: 实例名
+        # @param InstanceName: <p>实例名</p>
         # @type InstanceName: String
-        # @param ClsStatus: 访问日志开关状态。
-        # 0：关闭
-        # 1：开启
+        # @param ClsStatus: <p>访问日志开关状态。<br>0：关闭<br>1：开启</p>
         # @type ClsStatus: Integer
-        # @param FlowMode: 负载均衡型WAF使用模式。
-        # 0：镜像模式
-        # 1：清洗模式
+        # @param FlowMode: <p>负载均衡型WAF使用模式。<br>0：镜像模式<br>1：清洗模式</p>
         # @type FlowMode: Integer
-        # @param Status: waf开关状态。
-        # 0：关闭
-        # 1：开启
+        # @param Status: <p>waf开关状态。<br>0：关闭<br>1：开启</p>
         # @type Status: Integer
-        # @param Mode: 规则引擎防护模式。
-        # 0：观察模式
-        # 1：拦截模式
+        # @param Mode: <p>规则引擎防护模式。<br>0：观察模式<br>1：拦截模式</p>
         # @type Mode: Integer
-        # @param Engine: 规则引擎和AI引擎防护模式联合状态。
-        # 1:初始状态,规则引擎拦截&&AI引擎未操作开关状态
-        # 10：规则引擎观察&&AI引擎关闭模式
-        # 11：规则引擎观察&&AI引擎观察模式
-        # 12：规则引擎观察&&AI引擎拦截模式
-        # 20：规则引擎拦截&&AI引擎关闭模式
-        # 21：规则引擎拦截&&AI引擎观察模式
-        # 22：规则引擎拦截&&AI引擎拦截模式
+        # @param Engine: <p>规则引擎和AI引擎防护模式联合状态。<br>1:初始状态,规则引擎拦截&amp;&amp;AI引擎未操作开关状态<br>10：规则引擎观察&amp;&amp;AI引擎关闭模式<br>11：规则引擎观察&amp;&amp;AI引擎观察模式<br>12：规则引擎观察&amp;&amp;AI引擎拦截模式<br>20：规则引擎拦截&amp;&amp;AI引擎关闭模式<br>21：规则引擎拦截&amp;&amp;AI引擎观察模式<br>22：规则引擎拦截&amp;&amp;AI引擎拦截模式</p>
         # @type Engine: Integer
-        # @param CCList: 沙箱集群回源出口IP列表
+        # @param CCList: <p>沙箱集群回源出口IP列表</p>
         # @type CCList: Array
-        # @param RsList: 生产集群回源出口IP列表
+        # @param RsList: <p>生产集群回源出口IP列表</p>
         # @type RsList: Array
-        # @param Ports: 服务端口配置
+        # @param Ports: <p>服务端口配置</p>
         # @type Ports: Array
-        # @param LoadBalancerSet: 负载均衡器相关配置
+        # @param LoadBalancerSet: <p>负载均衡器相关配置</p>
         # @type LoadBalancerSet: Array
-        # @param AppId: 用户id
+        # @param AppId: <p>用户id</p>
         # @type AppId: Integer
-        # @param State: SAAS型WAF域名状态：
-        # -2：配置下发失败
-        # -1：配置下发中
-        # 0：DNS解析中
-        # 1：无DNS解析记录，请接入WAF
-        # 10：DNS解析未知，域名启用了代理
-        # 11：DNS解析异常，使用A记录接入WAF IP
-        # 200：检测源站不可达
-        # 220：源站不支持长连接
-        # 311：证书过期
-        # 312：证书即将过期
-        # 310：证书异常
-        # 316：备案异常
-        # 5：WAF回源已变更
-        # 负载均衡型WAF域名LB监听器状态：
-        # 0：操作成功
-        # 4：正在绑定LB
-        # 6：正在解绑LB
-        # 7：解绑LB失败
-        # 8：绑定LB失败
-        # 10：内部错误
+        # @param State: <p>SAAS型WAF域名状态：<br>-2：配置下发失败<br>-1：配置下发中<br>0：DNS解析中<br>1：无DNS解析记录，请接入WAF<br>10：DNS解析未知，域名启用了代理<br>11：DNS解析异常，使用A记录接入WAF IP<br>200：检测源站不可达<br>220：源站不支持长连接<br>311：证书过期<br>312：证书即将过期<br>310：证书异常<br>316：备案异常<br>5：WAF回源已变更<br>负载均衡型WAF域名LB监听器状态：<br>0：操作成功<br>4：正在绑定LB<br>6：正在解绑LB<br>7：解绑LB失败<br>8：绑定LB失败<br>10：内部错误</p>
         # @type State: Integer
-        # @param CreateTime: 创建时间
+        # @param CreateTime: <p>创建时间</p>
         # @type CreateTime: String
-        # @param Ipv6Status: Ipv6开关状态。
-        # 0：关闭
-        # 1：开启
+        # @param ModifyTime: <p>编辑时间</p>
+        # @type ModifyTime: String
+        # @param Ipv6Status: <p>Ipv6开关状态。<br>0：关闭<br>1：开启</p>
         # @type Ipv6Status: Integer
-        # @param BotStatus: BOT开关状态。
-        # 0：关闭
-        # 1：关闭
-        # 2：开启
-        # 3：开启
+        # @param BotStatus: <p>BOT开关状态。<br>0：关闭<br>1：关闭<br>2：开启<br>3：开启</p>
         # @type BotStatus: Integer
-        # @param Level: 实例版本信息。
-        # 101：小微敏捷版
-        # 102：小微超轻版
-        # 2：高级版
-        # 3：企业版
-        # 4：旗舰版
-        # 6：独享版
+        # @param Level: <p>实例版本信息。<br>101：小微敏捷版<br>102：小微超轻版<br>2：高级版<br>3：企业版<br>4：旗舰版<br>6：独享版</p>
         # @type Level: Integer
-        # @param PostCLSStatus: 投递CLS状态。
-        # 0：关闭
-        # 1：开启
+        # @param PostCLSStatus: <p>投递CLS状态。<br>0：关闭<br>1：开启</p>
         # @type PostCLSStatus: Integer
-        # @param PostCKafkaStatus: 投递CKafka状态。
-        # 0：关闭
-        # 1：开启
+        # @param PostCKafkaStatus: <p>投递CKafka状态。<br>0：关闭<br>1：开启</p>
         # @type PostCKafkaStatus: Integer
-        # @param CdcClusters: cdc实例域名接入的集群信息,非cdc实例忽略。
+        # @param CdcClusters: <p>cdc实例域名接入的集群信息,非cdc实例忽略。</p>
         # @type CdcClusters: String
-        # @param ApiStatus: api安全开关状态。
-        # 0：关闭
-        # 1：开启
+        # @param ApiStatus: <p>api安全开关状态。<br>0：关闭<br>1：开启</p>
         # @type ApiStatus: Integer
-        # @param AlbType: 应用型负载均衡类型，默认clb。
-        # clb：七层负载均衡器类型
-        # apisix：apisix网关型
+        # @param AlbType: <p>应用型负载均衡类型，默认clb。<br>clb：七层负载均衡器类型<br>apisix：apisix网关型</p>
         # @type AlbType: String
-        # @param SgState: 安全组状态。
-        # 0：不展示
-        # 1：非腾讯云源站
-        # 2：安全组绑定失败
-        # 3：安全组发生变更
+        # @param SgState: <p>安全组状态。<br>0：不展示<br>1：非腾讯云源站<br>2：安全组绑定失败<br>3：安全组发生变更</p>
         # @type SgState: Integer
-        # @param SgDetail: 安全组状态的详细解释
+        # @param SgDetail: <p>安全组状态的详细解释</p>
         # @type SgDetail: String
-        # @param CloudType: 域名云环境。hybrid：混合云域名
-        # public：公有云域名
+        # @param CloudType: <p>域名云环境。hybrid：混合云域名<br>public：公有云域名</p>
         # @type CloudType: String
-        # @param Note: 域名备注信息
+        # @param Note: <p>域名备注信息</p>
         # @type Note: String
-        # @param SrcList: SAASWAF源站IP列表
+        # @param SrcList: <p>SAASWAF源站IP列表</p>
         # @type SrcList: Array
-        # @param UpstreamDomainList: SAASWAF源站域名列表
+        # @param UpstreamDomainList: <p>SAASWAF源站域名列表</p>
         # @type UpstreamDomainList: Array
-        # @param SgID: 安全组ID
+        # @param SgID: <p>安全组ID</p>
         # @type SgID: String
-        # @param AccessStatus: clbwaf接入状态，0代表“尚无流量接入”，1代表“流量接入”，2代表“CLB监听器已注销”，3代表“配置生效中”，4代表“配置下发失败中”
+        # @param AccessStatus: <p>clbwaf接入状态，0代表“尚无流量接入”，1代表“流量接入”，2代表“CLB监听器已注销”，3代表“配置生效中”，4代表“配置下发失败中”</p>
         # @type AccessStatus: Integer
-        # @param Labels: 域名标签
+        # @param Labels: <p>域名标签</p>
         # @type Labels: Array
-        # @param PrivateVipStatus: saaswaf独享ip状态，0是关闭，1是开启，2是开启中
+        # @param PrivateVipStatus: <p>saaswaf独享ip状态，0是关闭，1是开启，2是开启中</p>
         # @type PrivateVipStatus: Integer
+        # @param IsREIP: <p>代表是否是四层clbwaf域名</p>
+        # @type IsREIP: Integer
+        # @param REIPObjectId: <p>四层关联的对象ID</p>
+        # @type REIPObjectId: String
+        # @param TagInfos: <p>标签结构体</p>
+        # @type TagInfos: Array
+        # @param LLMStatus: <p>大模型开关</p><p>枚举值：</p><ul><li>0： 大模型开关关闭状态</li><li>1： 大模型开关开启状态</li></ul>
+        # @type LLMStatus: Integer
 
-        attr_accessor :Domain, :DomainId, :InstanceId, :Cname, :Edition, :Region, :InstanceName, :ClsStatus, :FlowMode, :Status, :Mode, :Engine, :CCList, :RsList, :Ports, :LoadBalancerSet, :AppId, :State, :CreateTime, :Ipv6Status, :BotStatus, :Level, :PostCLSStatus, :PostCKafkaStatus, :CdcClusters, :ApiStatus, :AlbType, :SgState, :SgDetail, :CloudType, :Note, :SrcList, :UpstreamDomainList, :SgID, :AccessStatus, :Labels, :PrivateVipStatus
+        attr_accessor :Domain, :DomainId, :InstanceId, :Cname, :Edition, :Region, :InstanceName, :ClsStatus, :FlowMode, :Status, :Mode, :Engine, :CCList, :RsList, :Ports, :LoadBalancerSet, :AppId, :State, :CreateTime, :ModifyTime, :Ipv6Status, :BotStatus, :Level, :PostCLSStatus, :PostCKafkaStatus, :CdcClusters, :ApiStatus, :AlbType, :SgState, :SgDetail, :CloudType, :Note, :SrcList, :UpstreamDomainList, :SgID, :AccessStatus, :Labels, :PrivateVipStatus, :IsREIP, :REIPObjectId, :TagInfos, :LLMStatus
 
-        def initialize(domain=nil, domainid=nil, instanceid=nil, cname=nil, edition=nil, region=nil, instancename=nil, clsstatus=nil, flowmode=nil, status=nil, mode=nil, engine=nil, cclist=nil, rslist=nil, ports=nil, loadbalancerset=nil, appid=nil, state=nil, createtime=nil, ipv6status=nil, botstatus=nil, level=nil, postclsstatus=nil, postckafkastatus=nil, cdcclusters=nil, apistatus=nil, albtype=nil, sgstate=nil, sgdetail=nil, cloudtype=nil, note=nil, srclist=nil, upstreamdomainlist=nil, sgid=nil, accessstatus=nil, labels=nil, privatevipstatus=nil)
+        def initialize(domain=nil, domainid=nil, instanceid=nil, cname=nil, edition=nil, region=nil, instancename=nil, clsstatus=nil, flowmode=nil, status=nil, mode=nil, engine=nil, cclist=nil, rslist=nil, ports=nil, loadbalancerset=nil, appid=nil, state=nil, createtime=nil, modifytime=nil, ipv6status=nil, botstatus=nil, level=nil, postclsstatus=nil, postckafkastatus=nil, cdcclusters=nil, apistatus=nil, albtype=nil, sgstate=nil, sgdetail=nil, cloudtype=nil, note=nil, srclist=nil, upstreamdomainlist=nil, sgid=nil, accessstatus=nil, labels=nil, privatevipstatus=nil, isreip=nil, reipobjectid=nil, taginfos=nil, llmstatus=nil)
           @Domain = domain
           @DomainId = domainid
           @InstanceId = instanceid
@@ -12082,6 +12134,7 @@ module TencentCloud
           @AppId = appid
           @State = state
           @CreateTime = createtime
+          @ModifyTime = modifytime
           @Ipv6Status = ipv6status
           @BotStatus = botstatus
           @Level = level
@@ -12100,6 +12153,10 @@ module TencentCloud
           @AccessStatus = accessstatus
           @Labels = labels
           @PrivateVipStatus = privatevipstatus
+          @IsREIP = isreip
+          @REIPObjectId = reipobjectid
+          @TagInfos = taginfos
+          @LLMStatus = llmstatus
         end
 
         def deserialize(params)
@@ -12136,6 +12193,7 @@ module TencentCloud
           @AppId = params['AppId']
           @State = params['State']
           @CreateTime = params['CreateTime']
+          @ModifyTime = params['ModifyTime']
           @Ipv6Status = params['Ipv6Status']
           @BotStatus = params['BotStatus']
           @Level = params['Level']
@@ -12154,6 +12212,17 @@ module TencentCloud
           @AccessStatus = params['AccessStatus']
           @Labels = params['Labels']
           @PrivateVipStatus = params['PrivateVipStatus']
+          @IsREIP = params['IsREIP']
+          @REIPObjectId = params['REIPObjectId']
+          unless params['TagInfos'].nil?
+            @TagInfos = []
+            params['TagInfos'].each do |i|
+              taginfo_tmp = TagInfo.new
+              taginfo_tmp.deserialize(i)
+              @TagInfos << taginfo_tmp
+            end
+          end
+          @LLMStatus = params['LLMStatus']
         end
       end
 
@@ -12235,196 +12304,135 @@ module TencentCloud
 
       # SaaS型WAF域名详情
       class DomainsPartInfo < TencentCloud::Common::AbstractModel
-        # @param Domain: 域名
+        # @param Domain: <p>域名</p>
         # @type Domain: String
-        # @param DomainId: 域名唯一ID
+        # @param DomainId: <p>域名唯一ID</p>
         # @type DomainId: String
-        # @param InstanceId: 域名所属实例唯一ID
+        # @param InstanceId: <p>域名所属实例唯一ID</p>
         # @type InstanceId: String
-        # @param Edition: 域名所属实例类型
+        # @param Edition: <p>域名所属实例类型</p>
         # @type Edition: String
-        # @param InstanceName: 域名所属实例名
+        # @param InstanceName: <p>域名所属实例名</p>
         # @type InstanceName: String
-        # @param Cert: 证书
+        # @param Cert: <p>证书</p>
         # @type Cert: String
-        # @param CreateTime: 创建时间
+        # @param CreateTime: <p>创建时间</p>
         # @type CreateTime: String
-        # @param Engine: 规则引擎和AI引擎防护模式联合状态。
-        # 1:初始状态,规则引擎拦截&&AI引擎未操作开关状态
-        # 10：规则引擎观察&&AI引擎关闭模式
-        # 11：规则引擎观察&&AI引擎观察模式
-        # 12：规则引擎观察&&AI引擎拦截模式
-        # 20：规则引擎拦截&&AI引擎关闭模式
-        # 21：规则引擎拦截&&AI引擎观察模式
-        # 22：规则引擎拦截&&AI引擎拦截模式
+        # @param ModifyTime: <p>更新时间</p>
+        # @type ModifyTime: String
+        # @param Engine: <p>规则引擎和AI引擎防护模式联合状态。<br>1:初始状态,规则引擎拦截&amp;&amp;AI引擎未操作开关状态<br>10：规则引擎观察&amp;&amp;AI引擎关闭模式<br>11：规则引擎观察&amp;&amp;AI引擎观察模式<br>12：规则引擎观察&amp;&amp;AI引擎拦截模式<br>20：规则引擎拦截&amp;&amp;AI引擎关闭模式<br>21：规则引擎拦截&amp;&amp;AI引擎观察模式<br>22：规则引擎拦截&amp;&amp;AI引擎拦截模式</p>
         # @type Engine: Integer
-        # @param HttpsRewrite: 是否开启HTTP强制跳转到HTTPS。
-        # 0：不强制跳转
-        # 1：开启强制跳转
+        # @param HttpsRewrite: <p>是否开启HTTP强制跳转到HTTPS。<br>0：不强制跳转<br>1：开启强制跳转</p>
         # @type HttpsRewrite: Integer
-        # @param HttpsUpstreamPort: HTTPS回源端口
+        # @param HttpsUpstreamPort: <p>HTTPS回源端口</p>
         # @type HttpsUpstreamPort: String
-        # @param IsCdn: waf前是否部署有七层代理服务。
-        # 0：没有部署代理服务
-        # 1：有部署代理服务，waf将使用XFF获取客户端IP
-        # 2：有部署代理服务，waf将使用remote_addr获取客户端IP
-        # 3：有部署代理服务，waf将使用ip_headers中的自定义header获取客户端IP
+        # @param IsCdn: <p>waf前是否部署有七层代理服务。<br>0：没有部署代理服务<br>1：有部署代理服务，waf将使用XFF获取客户端IP<br>2：有部署代理服务，waf将使用remote_addr获取客户端IP<br>3：有部署代理服务，waf将使用ip_headers中的自定义header获取客户端IP</p>
         # @type IsCdn: Integer
-        # @param IsGray: 是否开启灰度。
+        # @param IsGray: <p>是否开启灰度。</p>
         # @type IsGray: Integer
-        # @param IsHttp2: 是否开启HTTP2，需要开启HTTPS协议支持。
-        # 0：关闭
-        # 1：开启
+        # @param IsHttp2: <p>是否开启HTTP2，需要开启HTTPS协议支持。<br>0：关闭<br>1：开启</p>
         # @type IsHttp2: Integer
-        # @param IsWebsocket: 是否开启WebSocket支持。
-        # 0：关闭
-        # 1：开启
+        # @param IsWebsocket: <p>是否开启WebSocket支持。<br>0：关闭<br>1：开启</p>
         # @type IsWebsocket: Integer
-        # @param LoadBalance: 回源负载均衡策略。
-        # 0：轮询
-        # 1：IP hash
-        # 2：加权轮询
+        # @param LoadBalance: <p>回源负载均衡策略。<br>0：轮询<br>1：IP hash<br>2：加权轮询</p>
         # @type LoadBalance: Integer
-        # @param Mode: 防护模式。
-        # 0：观察模式
-        # 1：拦截模式
+        # @param Mode: <p>防护模式。<br>0：观察模式<br>1：拦截模式</p>
         # @type Mode: Integer
-        # @param PrivateKey: 自有证书的私钥
+        # @param PrivateKey: <p>自有证书的私钥</p>
         # @type PrivateKey: String
-        # @param SSLId: CertType为2时，需要填充此参数，表示腾讯云SSL平台托管的证书id
+        # @param SSLId: <p>CertType为2时，需要填充此参数，表示腾讯云SSL平台托管的证书id</p>
         # @type SSLId: String
-        # @param UpstreamDomain: 域名回源时的回源域名。UpstreamType为1时，需要填充此字段
+        # @param UpstreamDomain: <p>域名回源时的回源域名。UpstreamType为1时，需要填充此字段</p>
         # @type UpstreamDomain: String
-        # @param UpstreamType: 回源类型。
-        # 0：通过IP回源
-        # 1：通过域名回源
+        # @param UpstreamType: <p>回源类型。<br>0：通过IP回源<br>1：通过域名回源</p>
         # @type UpstreamType: Integer
-        # @param SrcList: IP回源时的回源IP列表。UpstreamType为0时，需要填充此字段
+        # @param SrcList: <p>IP回源时的回源IP列表。UpstreamType为0时，需要填充此字段</p>
         # @type SrcList: Array
-        # @param Ports: 域名端口配置
+        # @param Ports: <p>域名端口配置</p>
         # @type Ports: Array
-        # @param CertType: 证书类型。
-        # 0：仅配置HTTP监听端口，没有证书
-        # 1：证书来源为自有证书
-        # 2：证书来源为托管证书
+        # @param CertType: <p>证书类型。<br>0：仅配置HTTP监听端口，没有证书<br>1：证书来源为自有证书<br>2：证书来源为托管证书</p>
         # @type CertType: Integer
-        # @param UpstreamScheme: 服务配置有HTTPS端口时，HTTPS的回源协议。
-        # http：使用http协议回源，和HttpsUpstreamPort配合使用
-        # https：使用https协议回源
+        # @param UpstreamScheme: <p>服务配置有HTTPS端口时，HTTPS的回源协议。<br>http：使用http协议回源，和HttpsUpstreamPort配合使用<br>https：使用https协议回源</p>
         # @type UpstreamScheme: String
-        # @param Cls: 日志包是否开启。
-        # 0：关闭
-        # 1：开启
+        # @param Cls: <p>日志包是否开启。<br>0：关闭<br>1：开启</p>
         # @type Cls: Integer
-        # @param Cname: 接入Cname，SaaS型域名使用此Cname进行接入
+        # @param Cname: <p>接入Cname，SaaS型域名使用此Cname进行接入</p>
         # @type Cname: String
-        # @param IsKeepAlive: 是否开启长连接。
-        # 0： 短连接
-        # 1： 长连接
+        # @param IsKeepAlive: <p>是否开启长连接。<br>0： 短连接<br>1： 长连接</p>
         # @type IsKeepAlive: Integer
-        # @param ActiveCheck: 是否开启主动健康检测。
-        # 0：不开启
-        # 1：开启
+        # @param ActiveCheck: <p>是否开启主动健康检测。<br>0：不开启<br>1：开启</p>
         # @type ActiveCheck: Integer
-        # @param TLSVersion: TLS版本信息
+        # @param TLSVersion: <p>TLS版本信息</p>
         # @type TLSVersion: Integer
-        # @param Ciphers: 自定义的加密套件列表。CipherTemplate为3时需要填此字段，表示自定义的加密套件，值通过DescribeCiphersDetail接口获取。
+        # @param Ciphers: <p>自定义的加密套件列表。CipherTemplate为3时需要填此字段，表示自定义的加密套件，值通过DescribeCiphersDetail接口获取。</p>
         # @type Ciphers: Array
-        # @param CipherTemplate: 加密套件模板。
-        # 0：不支持选择，使用默认模板
-        # 1：通用型模板
-        # 2：安全型模板
-        # 3：自定义模板
+        # @param CipherTemplate: <p>加密套件模板。<br>0：不支持选择，使用默认模板<br>1：通用型模板<br>2：安全型模板<br>3：自定义模板</p>
         # @type CipherTemplate: Integer
-        # @param ProxyConnectTimeout: WAF与源站的连接超时，默认10s。
+        # @param ProxyConnectTimeout: <p>WAF与源站的连接超时，默认10s。</p>
         # @type ProxyConnectTimeout: Integer
-        # @param ProxyReadTimeout: WAF与源站的读超时时间，默认300s。
+        # @param ProxyReadTimeout: <p>WAF与源站的读超时时间，默认300s。</p>
         # @type ProxyReadTimeout: Integer
-        # @param ProxySendTimeout: WAF与源站的写超时时间，默认300s。
+        # @param ProxySendTimeout: <p>WAF与源站的写超时时间，默认300s。</p>
         # @type ProxySendTimeout: Integer
-        # @param SniType: WAF回源时的SNI类型。
-        # 0：关闭SNI，不配置client_hello中的server_name
-        # 1：开启SNI，client_hello中的server_name为防护域名
-        # 2：开启SNI，SNI为域名回源时的源站域名
-        # 3：开启SNI，SNI为自定义域名
+        # @param SniType: <p>WAF回源时的SNI类型。<br>0：关闭SNI，不配置client_hello中的server_name<br>1：开启SNI，client_hello中的server_name为防护域名<br>2：开启SNI，SNI为域名回源时的源站域名<br>3：开启SNI，SNI为自定义域名</p>
         # @type SniType: Integer
-        # @param SniHost: SniType为3时，需要填此参数，表示自定义的SNI；
+        # @param SniHost: <p>SniType为3时，需要填此参数，表示自定义的SNI；</p>
         # @type SniHost: String
-        # @param Weights: 回源IP权重
+        # @param Weights: <p>回源IP权重</p>
         # @type Weights: Array
-        # @param IpHeaders: IsCdn=3时，表示自定义header
+        # @param IpHeaders: <p>IsCdn=3时，表示自定义header</p>
         # @type IpHeaders: Array
-        # @param XFFReset: 是否开启XFF重置。
-        # 0：关闭
-        # 1：开启
+        # @param XFFReset: <p>是否开启XFF重置。<br>0：关闭<br>1：开启</p>
         # @type XFFReset: Integer
-        # @param Note: 域名备注信息
+        # @param Note: <p>域名备注信息</p>
         # @type Note: String
-        # @param UpstreamHost: 自定义回源Host。默认为空字符串，表示使用防护域名作为回源Host。
+        # @param UpstreamHost: <p>自定义回源Host。默认为空字符串，表示使用防护域名作为回源Host。</p>
         # @type UpstreamHost: String
-        # @param Level: 防护规则
+        # @param Level: <p>防护规则</p>
         # @type Level: String
-        # @param ProxyBuffer: 是否开启缓存 0-关闭 1-开启
+        # @param ProxyBuffer: <p>是否开启缓存 0-关闭 1-开启</p>
         # @type ProxyBuffer: Integer
-        # @param GmType: 国密选项。0：不开启国密 1：在原有TLS选项的基础上追加支持国密 2：开启国密并仅支持国密客户端访问
+        # @param GmType: <p>国密选项。0：不开启国密 1：在原有TLS选项的基础上追加支持国密 2：开启国密并仅支持国密客户端访问</p>
         # @type GmType: Integer
-        # @param GmCertType: 国密证书类型。0：无国密证书 1：证书来源为自有国密证书 2：证书来源为托管国密证书
+        # @param GmCertType: <p>国密证书类型。0：无国密证书 1：证书来源为自有国密证书 2：证书来源为托管国密证书</p>
         # @type GmCertType: Integer
-        # @param GmCert: GmCertType为1时，需要填充此参数，表示自有国密证书的证书链
+        # @param GmCert: <p>GmCertType为1时，需要填充此参数，表示自有国密证书的证书链</p>
         # @type GmCert: String
-        # @param GmPrivateKey: GmCertType为1时，需要填充此参数，表示自有国密证书的私钥
+        # @param GmPrivateKey: <p>GmCertType为1时，需要填充此参数，表示自有国密证书的私钥</p>
         # @type GmPrivateKey: String
-        # @param GmEncCert: GmCertType为1时，需要填充此参数，表示自有国密证书的加密证书
+        # @param GmEncCert: <p>GmCertType为1时，需要填充此参数，表示自有国密证书的加密证书</p>
         # @type GmEncCert: String
-        # @param GmEncPrivateKey: GmCertType为1时，需要填充此参数，表示自有国密证书的加密证书的私钥
+        # @param GmEncPrivateKey: <p>GmCertType为1时，需要填充此参数，表示自有国密证书的加密证书的私钥</p>
         # @type GmEncPrivateKey: String
-        # @param GmSSLId: GmCertType为2时，需要填充此参数，表示腾讯云SSL平台托管的证书id
+        # @param GmSSLId: <p>GmCertType为2时，需要填充此参数，表示腾讯云SSL平台托管的证书id</p>
         # @type GmSSLId: String
-        # @param Labels: 域名标签
+        # @param Labels: <p>域名标签</p>
         # @type Labels: Array
-        # @param ProbeStatus: 拨测状态。 0: 禁用拨测, 1: 启用拨测
+        # @param ProbeStatus: <p>拨测状态。 0: 禁用拨测, 1: 启用拨测</p>
         # @type ProbeStatus: Integer
-        # @param UpstreamPolicy: 回源策略。
-        # 0：负载均衡回源
-        # 1：分流回源
+        # @param UpstreamPolicy: <p>回源策略。<br>0：负载均衡回源<br>1：分流回源</p>
         # @type UpstreamPolicy: Integer
-        # @param UpstreamRules: 分流回源策略
+        # @param UpstreamRules: <p>分流回源策略</p>
         # @type UpstreamRules: Array
-        # @param UseCase: 业务场景。0：默认值，表示常规业务场景 1：大模型业务场景
+        # @param UseCase: <p>业务场景。0：默认值，表示常规业务场景 1：大模型业务场景</p>
         # @type UseCase: Integer
-        # @param Gzip: gzip开关。0：关闭 1：默认值，打开。
+        # @param Gzip: <p>gzip开关。0：关闭 1：默认值，打开。</p>
         # @type Gzip: Integer
-        # @param State: SAAS型WAF域名状态：
-        # -2：配置下发失败
-        # -1：配置下发中
-        # 0：DNS解析中
-        # 1：无DNS解析记录，请接入WAF
-        # 10：DNS解析未知，域名启用了代理
-        # 11：DNS解析异常，使用A记录接入WAF IP
-        # 200：检测源站不可达
-        # 220：源站不支持长连接
-        # 311：证书过期
-        # 312：证书即将过期
-        # 310：证书异常
-        # 316：备案异常
-        # 5：WAF回源已变更
-        # 负载均衡型WAF域名LB监听器状态：
-        # 0：操作成功
-        # 4：正在绑定LB
-        # 6：正在解绑LB
-        # 7：解绑LB失败
-        # 8：绑定LB失败
-        # 10：内部错误
+        # @param State: <p>SAAS型WAF域名状态：<br>-2：配置下发失败<br>-1：配置下发中<br>0：DNS解析中<br>1：无DNS解析记录，请接入WAF<br>10：DNS解析未知，域名启用了代理<br>11：DNS解析异常，使用A记录接入WAF IP<br>200：检测源站不可达<br>220：源站不支持长连接<br>311：证书过期<br>312：证书即将过期<br>310：证书异常<br>316：备案异常<br>5：WAF回源已变更<br>负载均衡型WAF域名LB监听器状态：<br>0：操作成功<br>4：正在绑定LB<br>6：正在解绑LB<br>7：解绑LB失败<br>8：绑定LB失败<br>10：内部错误</p>
         # @type State: Integer
-        # @param PrivateVipStatus: saaswaf独享ip状态，0是关闭状态，1是开启状态，2是开启中
+        # @param PrivateVipStatus: <p>saaswaf独享ip状态，0是关闭状态，1是开启状态，2是开启中</p>
         # @type PrivateVipStatus: Integer
+        # @param TagInfos: <p>标签结构体</p>
+        # @type TagInfos: Array
+        # @param Ipv6Status: <p>ipv6开启状态</p><p>枚举值：</p><ul><li>1： ipv6开关打开</li><li>0： ipv6开关关闭</li></ul>
+        # @type Ipv6Status: Integer
 
-        attr_accessor :Domain, :DomainId, :InstanceId, :Edition, :InstanceName, :Cert, :CreateTime, :Engine, :HttpsRewrite, :HttpsUpstreamPort, :IsCdn, :IsGray, :IsHttp2, :IsWebsocket, :LoadBalance, :Mode, :PrivateKey, :SSLId, :UpstreamDomain, :UpstreamType, :SrcList, :Ports, :CertType, :UpstreamScheme, :Cls, :Cname, :IsKeepAlive, :ActiveCheck, :TLSVersion, :Ciphers, :CipherTemplate, :ProxyConnectTimeout, :ProxyReadTimeout, :ProxySendTimeout, :SniType, :SniHost, :Weights, :IpHeaders, :XFFReset, :Note, :UpstreamHost, :Level, :ProxyBuffer, :GmType, :GmCertType, :GmCert, :GmPrivateKey, :GmEncCert, :GmEncPrivateKey, :GmSSLId, :Labels, :ProbeStatus, :UpstreamPolicy, :UpstreamRules, :UseCase, :Gzip, :State, :PrivateVipStatus
+        attr_accessor :Domain, :DomainId, :InstanceId, :Edition, :InstanceName, :Cert, :CreateTime, :ModifyTime, :Engine, :HttpsRewrite, :HttpsUpstreamPort, :IsCdn, :IsGray, :IsHttp2, :IsWebsocket, :LoadBalance, :Mode, :PrivateKey, :SSLId, :UpstreamDomain, :UpstreamType, :SrcList, :Ports, :CertType, :UpstreamScheme, :Cls, :Cname, :IsKeepAlive, :ActiveCheck, :TLSVersion, :Ciphers, :CipherTemplate, :ProxyConnectTimeout, :ProxyReadTimeout, :ProxySendTimeout, :SniType, :SniHost, :Weights, :IpHeaders, :XFFReset, :Note, :UpstreamHost, :Level, :ProxyBuffer, :GmType, :GmCertType, :GmCert, :GmPrivateKey, :GmEncCert, :GmEncPrivateKey, :GmSSLId, :Labels, :ProbeStatus, :UpstreamPolicy, :UpstreamRules, :UseCase, :Gzip, :State, :PrivateVipStatus, :TagInfos, :Ipv6Status
         extend Gem::Deprecate
         deprecate :IsGray, :none, 2026, 5
         deprecate :IsGray=, :none, 2026, 5
 
-        def initialize(domain=nil, domainid=nil, instanceid=nil, edition=nil, instancename=nil, cert=nil, createtime=nil, engine=nil, httpsrewrite=nil, httpsupstreamport=nil, iscdn=nil, isgray=nil, ishttp2=nil, iswebsocket=nil, loadbalance=nil, mode=nil, privatekey=nil, sslid=nil, upstreamdomain=nil, upstreamtype=nil, srclist=nil, ports=nil, certtype=nil, upstreamscheme=nil, cls=nil, cname=nil, iskeepalive=nil, activecheck=nil, tlsversion=nil, ciphers=nil, ciphertemplate=nil, proxyconnecttimeout=nil, proxyreadtimeout=nil, proxysendtimeout=nil, snitype=nil, snihost=nil, weights=nil, ipheaders=nil, xffreset=nil, note=nil, upstreamhost=nil, level=nil, proxybuffer=nil, gmtype=nil, gmcerttype=nil, gmcert=nil, gmprivatekey=nil, gmenccert=nil, gmencprivatekey=nil, gmsslid=nil, labels=nil, probestatus=nil, upstreampolicy=nil, upstreamrules=nil, usecase=nil, gzip=nil, state=nil, privatevipstatus=nil)
+        def initialize(domain=nil, domainid=nil, instanceid=nil, edition=nil, instancename=nil, cert=nil, createtime=nil, modifytime=nil, engine=nil, httpsrewrite=nil, httpsupstreamport=nil, iscdn=nil, isgray=nil, ishttp2=nil, iswebsocket=nil, loadbalance=nil, mode=nil, privatekey=nil, sslid=nil, upstreamdomain=nil, upstreamtype=nil, srclist=nil, ports=nil, certtype=nil, upstreamscheme=nil, cls=nil, cname=nil, iskeepalive=nil, activecheck=nil, tlsversion=nil, ciphers=nil, ciphertemplate=nil, proxyconnecttimeout=nil, proxyreadtimeout=nil, proxysendtimeout=nil, snitype=nil, snihost=nil, weights=nil, ipheaders=nil, xffreset=nil, note=nil, upstreamhost=nil, level=nil, proxybuffer=nil, gmtype=nil, gmcerttype=nil, gmcert=nil, gmprivatekey=nil, gmenccert=nil, gmencprivatekey=nil, gmsslid=nil, labels=nil, probestatus=nil, upstreampolicy=nil, upstreamrules=nil, usecase=nil, gzip=nil, state=nil, privatevipstatus=nil, taginfos=nil, ipv6status=nil)
           @Domain = domain
           @DomainId = domainid
           @InstanceId = instanceid
@@ -12432,6 +12440,7 @@ module TencentCloud
           @InstanceName = instancename
           @Cert = cert
           @CreateTime = createtime
+          @ModifyTime = modifytime
           @Engine = engine
           @HttpsRewrite = httpsrewrite
           @HttpsUpstreamPort = httpsupstreamport
@@ -12483,6 +12492,8 @@ module TencentCloud
           @Gzip = gzip
           @State = state
           @PrivateVipStatus = privatevipstatus
+          @TagInfos = taginfos
+          @Ipv6Status = ipv6status
         end
 
         def deserialize(params)
@@ -12493,6 +12504,7 @@ module TencentCloud
           @InstanceName = params['InstanceName']
           @Cert = params['Cert']
           @CreateTime = params['CreateTime']
+          @ModifyTime = params['ModifyTime']
           @Engine = params['Engine']
           @HttpsRewrite = params['HttpsRewrite']
           @HttpsUpstreamPort = params['HttpsUpstreamPort']
@@ -12558,6 +12570,15 @@ module TencentCloud
           @Gzip = params['Gzip']
           @State = params['State']
           @PrivateVipStatus = params['PrivateVipStatus']
+          unless params['TagInfos'].nil?
+            @TagInfos = []
+            params['TagInfos'].each do |i|
+              taginfo_tmp = TagInfo.new
+              taginfo_tmp.deserialize(i)
+              @TagInfos << taginfo_tmp
+            end
+          end
+          @Ipv6Status = params['Ipv6Status']
         end
       end
 
@@ -13325,7 +13346,7 @@ module TencentCloud
 
       # GetOrganizationRole返回参数结构体
       class GetOrganizationRoleResponse < TencentCloud::Common::AbstractModel
-        # @param Role: Admin:集团账号创建，DelegatedAdmin:委派管理员，Member：成员，NoMember：非集团账号成员
+        # @param Role: <p>Admin:集团账号创建，DelegatedAdmin:委派管理员，Member：成员，NoMember：非集团账号成员</p>
         # @type Role: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -14197,133 +14218,124 @@ module TencentCloud
 
       # 一个实例的详细信息
       class InstanceInfo < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例唯一ID
+        # @param InstanceId: <p>实例唯一ID</p>
         # @type InstanceId: String
-        # @param InstanceName: 实例名称
+        # @param InstanceName: <p>实例名称</p>
         # @type InstanceName: String
-        # @param ResourceIds: 实例对应资源ID，计费使用
+        # @param ResourceIds: <p>实例对应资源ID，计费使用</p>
         # @type ResourceIds: String
-        # @param Region: 实例所属地域
+        # @param Region: <p>实例所属地域</p>
         # @type Region: String
-        # @param PayMode: 付费模式
+        # @param PayMode: <p>付费模式</p>
         # @type PayMode: Integer
-        # @param RenewFlag: 自动续费标识。
-        # 0：关闭
-        # 1：开启
+        # @param RenewFlag: <p>自动续费标识。<br>0：关闭<br>1：开启</p>
         # @type RenewFlag: Integer
-        # @param Mode: 弹性计费开关。
-        # 0：关闭
-        # 1：开启
+        # @param Mode: <p>弹性计费开关。<br>0：关闭<br>1：开启</p>
         # @type Mode: Integer
-        # @param Level: 实例套餐版本。
-        # 101：小微版
-        # 102：超轻版
-        # 2：高级版
-        # 3：企业版
-        # 4：旗舰版
-        # 6：独享版
+        # @param Level: <p>实例套餐版本。<br>101：小微版<br>102：超轻版<br>2：高级版<br>3：企业版<br>4：旗舰版<br>6：独享版</p>
         # @type Level: Integer
-        # @param ValidTime: 实例过期时间
+        # @param ValidTime: <p>实例过期时间</p>
         # @type ValidTime: String
-        # @param BeginTime: 实例开始时间
+        # @param BeginTime: <p>实例开始时间</p>
         # @type BeginTime: String
-        # @param DomainCount: 已配置域名个数
+        # @param DomainCount: <p>已配置域名个数</p>
         # @type DomainCount: Integer
-        # @param SubDomainLimit: 域名数量上限
+        # @param SubDomainLimit: <p>域名数量上限</p>
         # @type SubDomainLimit: Integer
-        # @param MainDomainCount: 已配置主域名个数
+        # @param MainDomainCount: <p>已配置主域名个数</p>
         # @type MainDomainCount: Integer
-        # @param MainDomainLimit: 主域名数量上限
+        # @param MainDomainLimit: <p>主域名数量上限</p>
         # @type MainDomainLimit: Integer
-        # @param MaxQPS: 实例30天内QPS峰值
+        # @param MaxQPS: <p>实例30天内QPS峰值</p>
         # @type MaxQPS: Integer
-        # @param QPS: qps扩展包信息
+        # @param QPS: <p>qps扩展包信息</p>
         # @type QPS: :class:`Tencentcloud::Waf.v20180125.models.QPSPackageNew`
-        # @param DomainPkg: 域名扩展包信息
+        # @param DomainPkg: <p>域名扩展包信息</p>
         # @type DomainPkg: :class:`Tencentcloud::Waf.v20180125.models.DomainPackageNew`
-        # @param AppId: 用户appid
+        # @param AppId: <p>用户appid</p>
         # @type AppId: Integer
-        # @param Edition: clb或saas
+        # @param Edition: <p>clb或saas</p>
         # @type Edition: String
-        # @param FraudPkg: 业务安全包
+        # @param FraudPkg: <p>业务安全包</p>
         # @type FraudPkg: :class:`Tencentcloud::Waf.v20180125.models.FraudPkg`
-        # @param BotPkg: Bot资源包
+        # @param BotPkg: <p>Bot资源包</p>
         # @type BotPkg: :class:`Tencentcloud::Waf.v20180125.models.BotPkg`
-        # @param BotQPS: bot的qps详情
+        # @param BotQPS: <p>bot的qps详情</p>
         # @type BotQPS: :class:`Tencentcloud::Waf.v20180125.models.BotQPS`
-        # @param ElasticBilling: qps弹性计费上限
+        # @param ElasticBilling: <p>qps弹性计费上限</p>
         # @type ElasticBilling: Integer
-        # @param AttackLogPost: 攻击日志投递开关
+        # @param AttackLogPost: <p>攻击日志投递开关</p>
         # @type AttackLogPost: Integer
-        # @param MaxBandwidth: 带宽峰值，单位为B/s(字节每秒)
+        # @param MaxBandwidth: <p>带宽峰值，单位为B/s(字节每秒)</p>
         # @type MaxBandwidth: Integer
-        # @param APISecurity: api安全是否购买
+        # @param APISecurity: <p>api安全是否购买</p>
         # @type APISecurity: Integer
-        # @param QpsStandard: 购买的qps规格
+        # @param QpsStandard: <p>购买的qps规格</p>
         # @type QpsStandard: Integer
-        # @param BandwidthStandard: 购买的带宽规格
+        # @param BandwidthStandard: <p>购买的带宽规格</p>
         # @type BandwidthStandard: Integer
-        # @param Status: 实例状态
+        # @param Status: <p>实例状态</p>
         # @type Status: Integer
-        # @param SandboxQps: 实例沙箱qps值
+        # @param SandboxQps: <p>实例沙箱qps值</p>
         # @type SandboxQps: Integer
-        # @param IsAPISecurityTrial: 是否api 安全试用
+        # @param IsAPISecurityTrial: <p>是否api 安全试用</p>
         # @type IsAPISecurityTrial: Integer
-        # @param MajorEventsPkg: 重保包
+        # @param MajorEventsPkg: <p>重保包</p>
         # @type MajorEventsPkg: :class:`Tencentcloud::Waf.v20180125.models.MajorEventsPkg`
-        # @param HybridPkg: 混合云子节点包
+        # @param HybridPkg: <p>混合云子节点包</p>
         # @type HybridPkg: :class:`Tencentcloud::Waf.v20180125.models.HybridPkg`
-        # @param ApiPkg: API安全资源包
+        # @param ApiPkg: <p>API安全资源包</p>
         # @type ApiPkg: :class:`Tencentcloud::Waf.v20180125.models.ApiPkg`
-        # @param MiniPkg: 小程序安全加速包
+        # @param MiniPkg: <p>小程序安全加速包</p>
         # @type MiniPkg: :class:`Tencentcloud::Waf.v20180125.models.MiniPkg`
-        # @param MiniQpsStandard: 小程序qps规格
+        # @param MiniQpsStandard: <p>小程序qps规格</p>
         # @type MiniQpsStandard: Integer
-        # @param MiniMaxQPS: 小程序qps峰值
+        # @param MiniMaxQPS: <p>小程序qps峰值</p>
         # @type MiniMaxQPS: Integer
-        # @param LastQpsExceedTime: 最近一次超量时间
+        # @param LastQpsExceedTime: <p>最近一次超量时间</p>
         # @type LastQpsExceedTime: String
-        # @param MiniExtendPkg: 小程序安全接入ID数量扩张包
+        # @param MiniExtendPkg: <p>小程序安全接入ID数量扩张包</p>
         # @type MiniExtendPkg: :class:`Tencentcloud::Waf.v20180125.models.MiniExtendPkg`
-        # @param BillingItem: 计费项
+        # @param BillingItem: <p>计费项</p>
         # @type BillingItem: String
-        # @param FreeDelayFlag: 实例延期释放标识
+        # @param FreeDelayFlag: <p>实例延期释放标识</p>
         # @type FreeDelayFlag: Integer
-        # @param Last3MaxQPS: 最近3天最大qps
+        # @param Last3MaxQPS: <p>最近3天最大qps</p>
         # @type Last3MaxQPS: Integer
-        # @param Last3MaxBandwidth: 最近3天最大带宽
+        # @param Last3MaxBandwidth: <p>最近3天最大带宽</p>
         # @type Last3MaxBandwidth: Integer
-        # @param MajorEventsProPkg: 重保增强包
+        # @param MajorEventsProPkg: <p>重保增强包</p>
         # @type MajorEventsProPkg: :class:`Tencentcloud::Waf.v20180125.models.MajorEventsProPkg`
-        # @param BasicFlag: 1是基础2025版本；0不是
+        # @param BasicFlag: <p>1是基础2025版本；0不是</p>
         # @type BasicFlag: Integer
-        # @param NetworkConfig: 实例的网络配置
+        # @param NetworkConfig: <p>实例的网络配置</p>
         # @type NetworkConfig: :class:`Tencentcloud::Waf.v20180125.models.NetworkConfig`
-        # @param RCEPkg: RCE设备安全信息包
+        # @param RCEPkg: <p>RCE设备安全信息包</p>
         # @type RCEPkg: :class:`Tencentcloud::Waf.v20180125.models.RCEPkg`
-        # @param ExceedPolicy: 超量策略。0：超量沙箱
-        # 1：超量限流
+        # @param ExceedPolicy: <p>超量策略。0：超量沙箱<br>1：超量限流</p>
         # @type ExceedPolicy: Integer
-        # @param LLMPkg: 大模型安全信息包
+        # @param LLMPkg: <p>大模型安全信息包</p>
         # @type LLMPkg: :class:`Tencentcloud::Waf.v20180125.models.LLMPkg`
-        # @param ElasticResourceId: 弹性资源Id
+        # @param ElasticResourceId: <p>弹性资源Id</p>
         # @type ElasticResourceId: String
-        # @param LLMMonPkg: 预付费大模型安全信息包
+        # @param LLMMonPkg: <p>预付费大模型安全信息包</p>
         # @type LLMMonPkg: :class:`Tencentcloud::Waf.v20180125.models.LLMMonPkg`
-        # @param RegionId: 地域id
+        # @param RegionId: <p>地域id</p>
         # @type RegionId: Integer
-        # @param BotSecurityPkg: BOT安全护航信息
+        # @param BotSecurityPkg: <p>BOT安全护航信息</p>
         # @type BotSecurityPkg: :class:`Tencentcloud::Waf.v20180125.models.BotSecurityPkg`
-        # @param BotMonitorPkg: BOT安全监测资源信息
+        # @param BotMonitorPkg: <p>BOT安全监测资源信息</p>
         # @type BotMonitorPkg: :class:`Tencentcloud::Waf.v20180125.models.BotMonitorPkg`
-        # @param DedicatedIPPkg: 独享ip资源信息
+        # @param DedicatedIPPkg: <p>独享ip资源信息</p>
         # @type DedicatedIPPkg: :class:`Tencentcloud::Waf.v20180125.models.DedicatedIPPkg`
-        # @param DedicatedIPCount: 已经配置独享ip的数量
+        # @param DedicatedIPCount: <p>已经配置独享ip的数量</p>
         # @type DedicatedIPCount: Integer
+        # @param TagInfos: <p>标签结构体</p>
+        # @type TagInfos: Array
 
-        attr_accessor :InstanceId, :InstanceName, :ResourceIds, :Region, :PayMode, :RenewFlag, :Mode, :Level, :ValidTime, :BeginTime, :DomainCount, :SubDomainLimit, :MainDomainCount, :MainDomainLimit, :MaxQPS, :QPS, :DomainPkg, :AppId, :Edition, :FraudPkg, :BotPkg, :BotQPS, :ElasticBilling, :AttackLogPost, :MaxBandwidth, :APISecurity, :QpsStandard, :BandwidthStandard, :Status, :SandboxQps, :IsAPISecurityTrial, :MajorEventsPkg, :HybridPkg, :ApiPkg, :MiniPkg, :MiniQpsStandard, :MiniMaxQPS, :LastQpsExceedTime, :MiniExtendPkg, :BillingItem, :FreeDelayFlag, :Last3MaxQPS, :Last3MaxBandwidth, :MajorEventsProPkg, :BasicFlag, :NetworkConfig, :RCEPkg, :ExceedPolicy, :LLMPkg, :ElasticResourceId, :LLMMonPkg, :RegionId, :BotSecurityPkg, :BotMonitorPkg, :DedicatedIPPkg, :DedicatedIPCount
+        attr_accessor :InstanceId, :InstanceName, :ResourceIds, :Region, :PayMode, :RenewFlag, :Mode, :Level, :ValidTime, :BeginTime, :DomainCount, :SubDomainLimit, :MainDomainCount, :MainDomainLimit, :MaxQPS, :QPS, :DomainPkg, :AppId, :Edition, :FraudPkg, :BotPkg, :BotQPS, :ElasticBilling, :AttackLogPost, :MaxBandwidth, :APISecurity, :QpsStandard, :BandwidthStandard, :Status, :SandboxQps, :IsAPISecurityTrial, :MajorEventsPkg, :HybridPkg, :ApiPkg, :MiniPkg, :MiniQpsStandard, :MiniMaxQPS, :LastQpsExceedTime, :MiniExtendPkg, :BillingItem, :FreeDelayFlag, :Last3MaxQPS, :Last3MaxBandwidth, :MajorEventsProPkg, :BasicFlag, :NetworkConfig, :RCEPkg, :ExceedPolicy, :LLMPkg, :ElasticResourceId, :LLMMonPkg, :RegionId, :BotSecurityPkg, :BotMonitorPkg, :DedicatedIPPkg, :DedicatedIPCount, :TagInfos
 
-        def initialize(instanceid=nil, instancename=nil, resourceids=nil, region=nil, paymode=nil, renewflag=nil, mode=nil, level=nil, validtime=nil, begintime=nil, domaincount=nil, subdomainlimit=nil, maindomaincount=nil, maindomainlimit=nil, maxqps=nil, qps=nil, domainpkg=nil, appid=nil, edition=nil, fraudpkg=nil, botpkg=nil, botqps=nil, elasticbilling=nil, attacklogpost=nil, maxbandwidth=nil, apisecurity=nil, qpsstandard=nil, bandwidthstandard=nil, status=nil, sandboxqps=nil, isapisecuritytrial=nil, majoreventspkg=nil, hybridpkg=nil, apipkg=nil, minipkg=nil, miniqpsstandard=nil, minimaxqps=nil, lastqpsexceedtime=nil, miniextendpkg=nil, billingitem=nil, freedelayflag=nil, last3maxqps=nil, last3maxbandwidth=nil, majoreventspropkg=nil, basicflag=nil, networkconfig=nil, rcepkg=nil, exceedpolicy=nil, llmpkg=nil, elasticresourceid=nil, llmmonpkg=nil, regionid=nil, botsecuritypkg=nil, botmonitorpkg=nil, dedicatedippkg=nil, dedicatedipcount=nil)
+        def initialize(instanceid=nil, instancename=nil, resourceids=nil, region=nil, paymode=nil, renewflag=nil, mode=nil, level=nil, validtime=nil, begintime=nil, domaincount=nil, subdomainlimit=nil, maindomaincount=nil, maindomainlimit=nil, maxqps=nil, qps=nil, domainpkg=nil, appid=nil, edition=nil, fraudpkg=nil, botpkg=nil, botqps=nil, elasticbilling=nil, attacklogpost=nil, maxbandwidth=nil, apisecurity=nil, qpsstandard=nil, bandwidthstandard=nil, status=nil, sandboxqps=nil, isapisecuritytrial=nil, majoreventspkg=nil, hybridpkg=nil, apipkg=nil, minipkg=nil, miniqpsstandard=nil, minimaxqps=nil, lastqpsexceedtime=nil, miniextendpkg=nil, billingitem=nil, freedelayflag=nil, last3maxqps=nil, last3maxbandwidth=nil, majoreventspropkg=nil, basicflag=nil, networkconfig=nil, rcepkg=nil, exceedpolicy=nil, llmpkg=nil, elasticresourceid=nil, llmmonpkg=nil, regionid=nil, botsecuritypkg=nil, botmonitorpkg=nil, dedicatedippkg=nil, dedicatedipcount=nil, taginfos=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @ResourceIds = resourceids
@@ -14380,6 +14392,7 @@ module TencentCloud
           @BotMonitorPkg = botmonitorpkg
           @DedicatedIPPkg = dedicatedippkg
           @DedicatedIPCount = dedicatedipcount
+          @TagInfos = taginfos
         end
 
         def deserialize(params)
@@ -14493,6 +14506,14 @@ module TencentCloud
             @DedicatedIPPkg.deserialize(params['DedicatedIPPkg'])
           end
           @DedicatedIPCount = params['DedicatedIPCount']
+          unless params['TagInfos'].nil?
+            @TagInfos = []
+            params['TagInfos'].each do |i|
+              taginfo_tmp = TagInfo.new
+              taginfo_tmp.deserialize(i)
+              @TagInfos << taginfo_tmp
+            end
+          end
         end
       end
 
@@ -14830,10 +14851,12 @@ module TencentCloud
         # @type ImageResult: Array
         # @param MsgID: <p>要代答的消息id，此消息id用于作为GenerateLLMSecAnswer接口的入参</p>
         # @type MsgID: String
+        # @param ToolCallResult: <p>toolcall的检测结果</p>
+        # @type ToolCallResult: :class:`Tencentcloud::Waf.v20180125.models.ToolCallResult`
 
-        attr_accessor :SensitiveResult, :KeyWordsResult, :DataCategoryResult, :PromptInjectionResult, :RuleId, :RuleName, :Action, :Payload, :ImageResult, :MsgID
+        attr_accessor :SensitiveResult, :KeyWordsResult, :DataCategoryResult, :PromptInjectionResult, :RuleId, :RuleName, :Action, :Payload, :ImageResult, :MsgID, :ToolCallResult
 
-        def initialize(sensitiveresult=nil, keywordsresult=nil, datacategoryresult=nil, promptinjectionresult=nil, ruleid=nil, rulename=nil, action=nil, payload=nil, imageresult=nil, msgid=nil)
+        def initialize(sensitiveresult=nil, keywordsresult=nil, datacategoryresult=nil, promptinjectionresult=nil, ruleid=nil, rulename=nil, action=nil, payload=nil, imageresult=nil, msgid=nil, toolcallresult=nil)
           @SensitiveResult = sensitiveresult
           @KeyWordsResult = keywordsresult
           @DataCategoryResult = datacategoryresult
@@ -14844,6 +14867,7 @@ module TencentCloud
           @Payload = payload
           @ImageResult = imageresult
           @MsgID = msgid
+          @ToolCallResult = toolcallresult
         end
 
         def deserialize(params)
@@ -14881,6 +14905,10 @@ module TencentCloud
             end
           end
           @MsgID = params['MsgID']
+          unless params['ToolCallResult'].nil?
+            @ToolCallResult = ToolCallResult.new
+            @ToolCallResult.deserialize(params['ToolCallResult'])
+          end
         end
       end
 
@@ -16122,76 +16150,82 @@ module TencentCloud
 
       # ModifyApiSecSensitiveRule请求参数结构体
       class ModifyApiSecSensitiveRuleRequest < TencentCloud::Common::AbstractModel
-        # @param Domain: 域名
+        # @param Domain: <p>域名</p>
         # @type Domain: String
-        # @param Status: 1表示开，0表示关，3表示删除
+        # @param Status: <p>1表示开，0表示关，3表示删除</p>
         # @type Status: Integer
-        # @param RuleName: 规则名称
+        # @param RuleName: <p>规则名称</p>
         # @type RuleName: String
-        # @param CustomRule: 客户自定义配置
-        # @type CustomRule: :class:`Tencentcloud::Waf.v20180125.models.ApiSecCustomSensitiveRule`
-        # @param RuleNameList: rulename列表，批量操作的时候填改值
+        # @param RuleNameList: <p>rulename列表，批量操作的时候填改值</p>
         # @type RuleNameList: Array
-        # @param CustomApiExtractRule: api提取规则内容
-        # @type CustomApiExtractRule: :class:`Tencentcloud::Waf.v20180125.models.ApiSecExtractRule`
-        # @param ApiExtractRuleName: 批量操作的时候的api提取规则
+        # @param CustomRule: <p>客户自定义配置</p>
+        # @type CustomRule: :class:`Tencentcloud::Waf.v20180125.models.ApiSecCustomSensitiveRule`
+        # @param ApiExtractRuleName: <p>批量操作的时候的api提取规则</p>
         # @type ApiExtractRuleName: Array
-        # @param ApiSecPrivilegeRule: 自定义api鉴权规则
-        # @type ApiSecPrivilegeRule: :class:`Tencentcloud::Waf.v20180125.models.ApiSecPrivilegeRule`
-        # @param ApiSecPrivilegeRuleName: 匹配操作时候的api鉴权规则
+        # @param CustomApiExtractRule: <p>api提取规则内容</p>
+        # @type CustomApiExtractRule: :class:`Tencentcloud::Waf.v20180125.models.ApiSecExtractRule`
+        # @param ApiSecPrivilegeRuleName: <p>匹配操作时候的api鉴权规则</p>
         # @type ApiSecPrivilegeRuleName: Array
-        # @param ApiSecSceneRuleNameList: 批量操作的时候的自定义场景列表
+        # @param ApiSecPrivilegeRule: <p>自定义api鉴权规则</p>
+        # @type ApiSecPrivilegeRule: :class:`Tencentcloud::Waf.v20180125.models.ApiSecPrivilegeRule`
+        # @param ApiSecSceneRuleNameList: <p>批量操作的时候的自定义场景列表</p>
         # @type ApiSecSceneRuleNameList: Array
-        # @param ApiSecSceneRule: 单条自定义api场景规则
+        # @param ApiSecSceneRule: <p>单条自定义api场景规则</p>
         # @type ApiSecSceneRule: :class:`Tencentcloud::Waf.v20180125.models.ApiSecSceneRule`
-        # @param ApiSecCustomEventRuleNameList: 批量操作的时候的自定义事件规则列表
+        # @param ApiSecCustomEventRuleNameList: <p>批量操作的时候的自定义事件规则列表</p>
         # @type ApiSecCustomEventRuleNameList: Array
-        # @param ApiSecCustomEventRuleRule: 自定义事件规则
+        # @param ApiSecCustomEventRuleRule: <p>自定义事件规则</p>
         # @type ApiSecCustomEventRuleRule: :class:`Tencentcloud::Waf.v20180125.models.ApiSecCustomEventRule`
-        # @param CustomApiExcludeRule: 无效api排除规则
-        # @type CustomApiExcludeRule: :class:`Tencentcloud::Waf.v20180125.models.ApiSecExcludeRule`
-        # @param ApiExcludeRuleName: 批量操作的时候的无效api排除规则
+        # @param ApiExcludeRuleName: <p>批量操作的时候的无效api排除规则</p>
         # @type ApiExcludeRuleName: Array
+        # @param CustomApiExcludeRule: <p>无效api排除规则</p>
+        # @type CustomApiExcludeRule: :class:`Tencentcloud::Waf.v20180125.models.ApiSecExcludeRule`
+        # @param ApiSecSensitiveWhiteRuleNameList: <p>批量操作时的敏感数据加白规则名称列表</p>
+        # @type ApiSecSensitiveWhiteRuleNameList: Array
+        # @param ApiSecSensitiveWhiteRuleRule: <p>敏感数据加白规则</p>
+        # @type ApiSecSensitiveWhiteRuleRule: :class:`Tencentcloud::Waf.v20180125.models.ApiSecSensitiveWhiteRule`
 
-        attr_accessor :Domain, :Status, :RuleName, :CustomRule, :RuleNameList, :CustomApiExtractRule, :ApiExtractRuleName, :ApiSecPrivilegeRule, :ApiSecPrivilegeRuleName, :ApiSecSceneRuleNameList, :ApiSecSceneRule, :ApiSecCustomEventRuleNameList, :ApiSecCustomEventRuleRule, :CustomApiExcludeRule, :ApiExcludeRuleName
+        attr_accessor :Domain, :Status, :RuleName, :RuleNameList, :CustomRule, :ApiExtractRuleName, :CustomApiExtractRule, :ApiSecPrivilegeRuleName, :ApiSecPrivilegeRule, :ApiSecSceneRuleNameList, :ApiSecSceneRule, :ApiSecCustomEventRuleNameList, :ApiSecCustomEventRuleRule, :ApiExcludeRuleName, :CustomApiExcludeRule, :ApiSecSensitiveWhiteRuleNameList, :ApiSecSensitiveWhiteRuleRule
 
-        def initialize(domain=nil, status=nil, rulename=nil, customrule=nil, rulenamelist=nil, customapiextractrule=nil, apiextractrulename=nil, apisecprivilegerule=nil, apisecprivilegerulename=nil, apisecscenerulenamelist=nil, apisecscenerule=nil, apiseccustomeventrulenamelist=nil, apiseccustomeventrulerule=nil, customapiexcluderule=nil, apiexcluderulename=nil)
+        def initialize(domain=nil, status=nil, rulename=nil, rulenamelist=nil, customrule=nil, apiextractrulename=nil, customapiextractrule=nil, apisecprivilegerulename=nil, apisecprivilegerule=nil, apisecscenerulenamelist=nil, apisecscenerule=nil, apiseccustomeventrulenamelist=nil, apiseccustomeventrulerule=nil, apiexcluderulename=nil, customapiexcluderule=nil, apisecsensitivewhiterulenamelist=nil, apisecsensitivewhiterulerule=nil)
           @Domain = domain
           @Status = status
           @RuleName = rulename
-          @CustomRule = customrule
           @RuleNameList = rulenamelist
-          @CustomApiExtractRule = customapiextractrule
+          @CustomRule = customrule
           @ApiExtractRuleName = apiextractrulename
-          @ApiSecPrivilegeRule = apisecprivilegerule
+          @CustomApiExtractRule = customapiextractrule
           @ApiSecPrivilegeRuleName = apisecprivilegerulename
+          @ApiSecPrivilegeRule = apisecprivilegerule
           @ApiSecSceneRuleNameList = apisecscenerulenamelist
           @ApiSecSceneRule = apisecscenerule
           @ApiSecCustomEventRuleNameList = apiseccustomeventrulenamelist
           @ApiSecCustomEventRuleRule = apiseccustomeventrulerule
-          @CustomApiExcludeRule = customapiexcluderule
           @ApiExcludeRuleName = apiexcluderulename
+          @CustomApiExcludeRule = customapiexcluderule
+          @ApiSecSensitiveWhiteRuleNameList = apisecsensitivewhiterulenamelist
+          @ApiSecSensitiveWhiteRuleRule = apisecsensitivewhiterulerule
         end
 
         def deserialize(params)
           @Domain = params['Domain']
           @Status = params['Status']
           @RuleName = params['RuleName']
+          @RuleNameList = params['RuleNameList']
           unless params['CustomRule'].nil?
             @CustomRule = ApiSecCustomSensitiveRule.new
             @CustomRule.deserialize(params['CustomRule'])
           end
-          @RuleNameList = params['RuleNameList']
+          @ApiExtractRuleName = params['ApiExtractRuleName']
           unless params['CustomApiExtractRule'].nil?
             @CustomApiExtractRule = ApiSecExtractRule.new
             @CustomApiExtractRule.deserialize(params['CustomApiExtractRule'])
           end
-          @ApiExtractRuleName = params['ApiExtractRuleName']
+          @ApiSecPrivilegeRuleName = params['ApiSecPrivilegeRuleName']
           unless params['ApiSecPrivilegeRule'].nil?
             @ApiSecPrivilegeRule = ApiSecPrivilegeRule.new
             @ApiSecPrivilegeRule.deserialize(params['ApiSecPrivilegeRule'])
           end
-          @ApiSecPrivilegeRuleName = params['ApiSecPrivilegeRuleName']
           @ApiSecSceneRuleNameList = params['ApiSecSceneRuleNameList']
           unless params['ApiSecSceneRule'].nil?
             @ApiSecSceneRule = ApiSecSceneRule.new
@@ -16202,11 +16236,16 @@ module TencentCloud
             @ApiSecCustomEventRuleRule = ApiSecCustomEventRule.new
             @ApiSecCustomEventRuleRule.deserialize(params['ApiSecCustomEventRuleRule'])
           end
+          @ApiExcludeRuleName = params['ApiExcludeRuleName']
           unless params['CustomApiExcludeRule'].nil?
             @CustomApiExcludeRule = ApiSecExcludeRule.new
             @CustomApiExcludeRule.deserialize(params['CustomApiExcludeRule'])
           end
-          @ApiExcludeRuleName = params['ApiExcludeRuleName']
+          @ApiSecSensitiveWhiteRuleNameList = params['ApiSecSensitiveWhiteRuleNameList']
+          unless params['ApiSecSensitiveWhiteRuleRule'].nil?
+            @ApiSecSensitiveWhiteRuleRule = ApiSecSensitiveWhiteRule.new
+            @ApiSecSensitiveWhiteRuleRule.deserialize(params['ApiSecSensitiveWhiteRuleRule'])
+          end
         end
       end
 
@@ -17690,9 +17729,9 @@ module TencentCloud
 
       # ModifyHost请求参数结构体
       class ModifyHostRequest < TencentCloud::Common::AbstractModel
-        # @param Host: 编辑的域名配置信息
+        # @param Host: <p>编辑的域名配置信息</p>
         # @type Host: :class:`Tencentcloud::Waf.v20180125.models.HostRecord`
-        # @param InstanceID: 实例唯一ID
+        # @param InstanceID: <p>实例唯一ID</p>
         # @type InstanceID: String
 
         attr_accessor :Host, :InstanceID
@@ -17713,7 +17752,7 @@ module TencentCloud
 
       # ModifyHost返回参数结构体
       class ModifyHostResponse < TencentCloud::Common::AbstractModel
-        # @param DomainId: 编辑的域名ID
+        # @param DomainId: <p>编辑的域名ID</p>
         # @type DomainId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -18110,26 +18149,28 @@ module TencentCloud
 
       # ModifyObject请求参数结构体
       class ModifyObjectRequest < TencentCloud::Common::AbstractModel
-        # @param ObjectId: 修改对象标识
+        # @param ObjectId: <p>修改对象标识</p>
         # @type ObjectId: String
-        # @param OpType: 改动作类型:Status修改开关，InstanceId绑定实例, Proxy设置代理状态
+        # @param OpType: <p>改动作类型:Status修改开关，InstanceId绑定实例, Proxy设置代理状态</p>
         # @type OpType: String
-        # @param Status: 新的Waf开关状态，如果和已有状态相同认为修改成功。状态可以为0或1
+        # @param Status: <p>新的Waf开关状态，如果和已有状态相同认为修改成功。状态可以为0或1</p>
         # @type Status: Integer
-        # @param InstanceId: 新的实例ID，如果和已绑定的实例相同认为修改成功
+        # @param InstanceId: <p>新的实例ID，如果和已绑定的实例相同认为修改成功</p>
         # @type InstanceId: String
-        # @param Proxy: 是否开启代理，0:不开启,1:以XFF的第一个IP地址作为客户端IP,2:以remote_addr作为客户端IP,3:从指定的头部字段获取客户端IP，字段通过IpHeaders字段给出(OpType为Status或Proxy时，该值有效)
+        # @param Proxy: <p>是否开启代理，0:不开启,1:以XFF的第一个IP地址作为客户端IP,2:以remote_addr作为客户端IP,3:从指定的头部字段获取客户端IP，字段通过IpHeaders字段给出(OpType为Status或Proxy时，该值有效)</p>
         # @type Proxy: Integer
-        # @param IpHeaders: IsCdn=3时，需要填此参数，表示自定义header(OpType为Status或Proxy时，该值有效)
+        # @param IpHeaders: <p>IsCdn=3时，需要填此参数，表示自定义header(OpType为Status或Proxy时，该值有效)</p>
         # @type IpHeaders: Array
-        # @param MemberAppId: 对象所属集团成员appid
+        # @param MemberAppId: <p>对象所属集团成员appid</p>
         # @type MemberAppId: Integer
-        # @param MemberUin: 对象所属集团成员uin
+        # @param MemberUin: <p>对象所属集团成员uin</p>
         # @type MemberUin: String
+        # @param Tags: <p>标签信息</p>
+        # @type Tags: Array
 
-        attr_accessor :ObjectId, :OpType, :Status, :InstanceId, :Proxy, :IpHeaders, :MemberAppId, :MemberUin
+        attr_accessor :ObjectId, :OpType, :Status, :InstanceId, :Proxy, :IpHeaders, :MemberAppId, :MemberUin, :Tags
 
-        def initialize(objectid=nil, optype=nil, status=nil, instanceid=nil, proxy=nil, ipheaders=nil, memberappid=nil, memberuin=nil)
+        def initialize(objectid=nil, optype=nil, status=nil, instanceid=nil, proxy=nil, ipheaders=nil, memberappid=nil, memberuin=nil, tags=nil)
           @ObjectId = objectid
           @OpType = optype
           @Status = status
@@ -18138,6 +18179,7 @@ module TencentCloud
           @IpHeaders = ipheaders
           @MemberAppId = memberappid
           @MemberUin = memberuin
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -18149,6 +18191,14 @@ module TencentCloud
           @IpHeaders = params['IpHeaders']
           @MemberAppId = params['MemberAppId']
           @MemberUin = params['MemberUin']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              taginfo_tmp = TagInfo.new
+              taginfo_tmp.deserialize(i)
+              @Tags << taginfo_tmp
+            end
+          end
         end
       end
 
@@ -19979,24 +20029,29 @@ module TencentCloud
 
       # 防护对象组对象详情
       class ProtectGroupInfo < TencentCloud::Common::AbstractModel
-        # @param ID: 防护对象组ID
+        # @param ID: <p>防护对象组ID</p>
         # @type ID: Integer
-        # @param Name: 防护对象组名称
+        # @param Name: <p>防护对象组名称</p>
         # @type Name: String
-        # @param Remark: 防护对象组备注
+        # @param Remark: <p>防护对象组备注</p>
         # @type Remark: String
-        # @param Domains: 防护对象组中绑定的域名详情
+        # @param Domains: <p>防护对象组中绑定的域名详情</p>
         # @type Domains: Array
-        # @param RuleNum: 关联的批量规则数
+        # @param RuleNum: <p>关联的批量规则数</p>
         # @type RuleNum: Integer
-        # @param CreateTime: 创建时间
+        # @param CreateTime: <p>创建时间</p>
         # @type CreateTime: String
-        # @param UpdateTime: 更新时间
+        # @param UpdateTime: <p>更新时间</p>
         # @type UpdateTime: String
+        # @param TagInfos: <p>标签信息</p>
+        # @type TagInfos: Array
+        # @param BoundTemplate: <p>是否绑定了模板</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BoundTemplate: Boolean
 
-        attr_accessor :ID, :Name, :Remark, :Domains, :RuleNum, :CreateTime, :UpdateTime
+        attr_accessor :ID, :Name, :Remark, :Domains, :RuleNum, :CreateTime, :UpdateTime, :TagInfos, :BoundTemplate
 
-        def initialize(id=nil, name=nil, remark=nil, domains=nil, rulenum=nil, createtime=nil, updatetime=nil)
+        def initialize(id=nil, name=nil, remark=nil, domains=nil, rulenum=nil, createtime=nil, updatetime=nil, taginfos=nil, boundtemplate=nil)
           @ID = id
           @Name = name
           @Remark = remark
@@ -20004,6 +20059,8 @@ module TencentCloud
           @RuleNum = rulenum
           @CreateTime = createtime
           @UpdateTime = updatetime
+          @TagInfos = taginfos
+          @BoundTemplate = boundtemplate
         end
 
         def deserialize(params)
@@ -20021,6 +20078,15 @@ module TencentCloud
           @RuleNum = params['RuleNum']
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
+          unless params['TagInfos'].nil?
+            @TagInfos = []
+            params['TagInfos'].each do |i|
+              taginfo_tmp = TagInfo.new
+              taginfo_tmp.deserialize(i)
+              @TagInfos << taginfo_tmp
+            end
+          end
+          @BoundTemplate = params['BoundTemplate']
         end
       end
 
@@ -21485,6 +21551,26 @@ module TencentCloud
         end
       end
 
+      # 标签结构体
+      class TagInfo < TencentCloud::Common::AbstractModel
+        # @param TagKey: <p>标签键</p>
+        # @type TagKey: String
+        # @param TagValue: <p>标签值</p>
+        # @type TagValue: String
+
+        attr_accessor :TagKey, :TagValue
+
+        def initialize(tagkey=nil, tagvalue=nil)
+          @TagKey = tagkey
+          @TagValue = tagvalue
+        end
+
+        def deserialize(params)
+          @TagKey = params['TagKey']
+          @TagValue = params['TagValue']
+        end
+      end
+
       # 需要开启/关闭API安全的 实例+域名 组合实体
       class TargetEntity < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID
@@ -21679,6 +21765,30 @@ module TencentCloud
             @GeneralRule = TokenRuleEntry.new
             @GeneralRule.deserialize(params['GeneralRule'])
           end
+        end
+      end
+
+      # tool_call 场景检测结果
+      class ToolCallResult < TencentCloud::Common::AbstractModel
+        # @param RuleName: <p>命中规则名称</p>
+        # @type RuleName: String
+        # @param Action: <p>规则动作</p>
+        # @type Action: String
+        # @param Severity: <p>风险等级</p><p>枚举值：</p><ul><li>critical： 严重</li><li>high： 高危    </li><li>medium： 中危    </li><li>low： 低危</li></ul>
+        # @type Severity: String
+
+        attr_accessor :RuleName, :Action, :Severity
+
+        def initialize(rulename=nil, action=nil, severity=nil)
+          @RuleName = rulename
+          @Action = action
+          @Severity = severity
+        end
+
+        def deserialize(params)
+          @RuleName = params['RuleName']
+          @Action = params['Action']
+          @Severity = params['Severity']
         end
       end
 
@@ -22541,38 +22651,40 @@ module TencentCloud
         end
       end
 
-      # saas和clb信息
+      # saas和clb、四层域名信息
       class UserDomainInfo < TencentCloud::Common::AbstractModel
-        # @param Appid: 用户id
+        # @param Appid: <p>用户id</p>
         # @type Appid: Integer
-        # @param Domain: 域名
+        # @param Domain: <p>域名</p>
         # @type Domain: String
-        # @param DomainId: 域名id
+        # @param DomainId: <p>域名id</p>
         # @type DomainId: String
-        # @param InstanceId: 实例id
+        # @param InstanceId: <p>实例id</p>
         # @type InstanceId: String
-        # @param InstanceName: 实例名
+        # @param InstanceName: <p>实例名</p>
         # @type InstanceName: String
-        # @param Edition: waf类型
+        # @param Edition: <p>waf类型</p>
         # @type Edition: String
-        # @param Level: 版本
+        # @param Level: <p>版本</p>
         # @type Level: String
-        # @param WriteConfig: 指定域名访问日志字段的开关
+        # @param WriteConfig: <p>指定域名访问日志字段的开关</p>
         # @type WriteConfig: String
-        # @param Cls: 指定域名是否写cls的开关 1:写 0:不写
+        # @param Cls: <p>指定域名是否写cls的开关 1:写 0:不写</p>
         # @type Cls: Integer
-        # @param CloudType: 标记是否是混合云接入。hybrid表示混合云接入域名
+        # @param CloudType: <p>标记是否是混合云接入。hybrid表示混合云接入域名</p>
         # @type CloudType: String
-        # @param AlbType: 标记clbwaf类型
+        # @param AlbType: <p>标记clbwaf类型</p>
         # @type AlbType: String
-        # @param BotStatus: BOT开关状态
+        # @param BotStatus: <p>BOT开关状态</p>
         # @type BotStatus: Integer
-        # @param ApiStatus: API开关状态
+        # @param ApiStatus: <p>API开关状态</p>
         # @type ApiStatus: Integer
+        # @param IsREIP: <p>是否是四层clbwaf域名</p>
+        # @type IsREIP: Integer
 
-        attr_accessor :Appid, :Domain, :DomainId, :InstanceId, :InstanceName, :Edition, :Level, :WriteConfig, :Cls, :CloudType, :AlbType, :BotStatus, :ApiStatus
+        attr_accessor :Appid, :Domain, :DomainId, :InstanceId, :InstanceName, :Edition, :Level, :WriteConfig, :Cls, :CloudType, :AlbType, :BotStatus, :ApiStatus, :IsREIP
 
-        def initialize(appid=nil, domain=nil, domainid=nil, instanceid=nil, instancename=nil, edition=nil, level=nil, writeconfig=nil, cls=nil, cloudtype=nil, albtype=nil, botstatus=nil, apistatus=nil)
+        def initialize(appid=nil, domain=nil, domainid=nil, instanceid=nil, instancename=nil, edition=nil, level=nil, writeconfig=nil, cls=nil, cloudtype=nil, albtype=nil, botstatus=nil, apistatus=nil, isreip=nil)
           @Appid = appid
           @Domain = domain
           @DomainId = domainid
@@ -22586,6 +22698,7 @@ module TencentCloud
           @AlbType = albtype
           @BotStatus = botstatus
           @ApiStatus = apistatus
+          @IsREIP = isreip
         end
 
         def deserialize(params)
@@ -22602,6 +22715,7 @@ module TencentCloud
           @AlbType = params['AlbType']
           @BotStatus = params['BotStatus']
           @ApiStatus = params['ApiStatus']
+          @IsREIP = params['IsREIP']
         end
       end
 

@@ -939,12 +939,15 @@ module TencentCloud
         # @type CdcId: String
         # @param IsHighAvailability: <p>集群是否启用高可用模式。用于指导跨可用区资源打散等高可用策略的执行</p>
         # @type IsHighAvailability: Boolean
+        # @param ClusterCategory: <p>集群分类：tke=标准TKE集群，agent=Agent集群</p><p>默认值：tke</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterCategory: String
         # @param SecurityModeConfig: <p>开启后会下发Gatekeeper和网络策略</p>
         # @type SecurityModeConfig: :class:`Tencentcloud::Tke.v20180525.models.SecurityModeConfig`
 
-        attr_accessor :ClusterId, :ClusterName, :ClusterDescription, :ClusterVersion, :ClusterOs, :ClusterType, :ClusterNetworkSettings, :ClusterNodeNum, :ProjectId, :TagSpecification, :ClusterStatus, :Property, :ClusterMaterNodeNum, :ImageId, :OsCustomizeType, :ContainerRuntime, :CreatedTime, :DeletionProtection, :EnableExternalNode, :ClusterLevel, :AutoUpgradeClusterLevel, :QGPUShareEnable, :RuntimeVersion, :ClusterEtcdNodeNum, :CdcId, :IsHighAvailability, :SecurityModeConfig
+        attr_accessor :ClusterId, :ClusterName, :ClusterDescription, :ClusterVersion, :ClusterOs, :ClusterType, :ClusterNetworkSettings, :ClusterNodeNum, :ProjectId, :TagSpecification, :ClusterStatus, :Property, :ClusterMaterNodeNum, :ImageId, :OsCustomizeType, :ContainerRuntime, :CreatedTime, :DeletionProtection, :EnableExternalNode, :ClusterLevel, :AutoUpgradeClusterLevel, :QGPUShareEnable, :RuntimeVersion, :ClusterEtcdNodeNum, :CdcId, :IsHighAvailability, :ClusterCategory, :SecurityModeConfig
 
-        def initialize(clusterid=nil, clustername=nil, clusterdescription=nil, clusterversion=nil, clusteros=nil, clustertype=nil, clusternetworksettings=nil, clusternodenum=nil, projectid=nil, tagspecification=nil, clusterstatus=nil, property=nil, clustermaternodenum=nil, imageid=nil, oscustomizetype=nil, containerruntime=nil, createdtime=nil, deletionprotection=nil, enableexternalnode=nil, clusterlevel=nil, autoupgradeclusterlevel=nil, qgpushareenable=nil, runtimeversion=nil, clusteretcdnodenum=nil, cdcid=nil, ishighavailability=nil, securitymodeconfig=nil)
+        def initialize(clusterid=nil, clustername=nil, clusterdescription=nil, clusterversion=nil, clusteros=nil, clustertype=nil, clusternetworksettings=nil, clusternodenum=nil, projectid=nil, tagspecification=nil, clusterstatus=nil, property=nil, clustermaternodenum=nil, imageid=nil, oscustomizetype=nil, containerruntime=nil, createdtime=nil, deletionprotection=nil, enableexternalnode=nil, clusterlevel=nil, autoupgradeclusterlevel=nil, qgpushareenable=nil, runtimeversion=nil, clusteretcdnodenum=nil, cdcid=nil, ishighavailability=nil, clustercategory=nil, securitymodeconfig=nil)
           @ClusterId = clusterid
           @ClusterName = clustername
           @ClusterDescription = clusterdescription
@@ -971,6 +974,7 @@ module TencentCloud
           @ClusterEtcdNodeNum = clusteretcdnodenum
           @CdcId = cdcid
           @IsHighAvailability = ishighavailability
+          @ClusterCategory = clustercategory
           @SecurityModeConfig = securitymodeconfig
         end
 
@@ -1011,6 +1015,7 @@ module TencentCloud
           @ClusterEtcdNodeNum = params['ClusterEtcdNodeNum']
           @CdcId = params['CdcId']
           @IsHighAvailability = params['IsHighAvailability']
+          @ClusterCategory = params['ClusterCategory']
           unless params['SecurityModeConfig'].nil?
             @SecurityModeConfig = SecurityModeConfig.new
             @SecurityModeConfig.deserialize(params['SecurityModeConfig'])
@@ -21262,6 +21267,49 @@ module TencentCloud
         end
       end
 
+      # 子网资源分配
+      class SubnetAllocation < TencentCloud::Common::AbstractModel
+        # @param SubnetId: <p>子网 ID</p>
+        # @type SubnetId: String
+        # @param Ratio: <p>分配比例（百分比），所有 Ratio 之和必须等于 100</p>
+        # @type Ratio: Integer
+
+        attr_accessor :SubnetId, :Ratio
+
+        def initialize(subnetid=nil, ratio=nil)
+          @SubnetId = subnetid
+          @Ratio = ratio
+        end
+
+        def deserialize(params)
+          @SubnetId = params['SubnetId']
+          @Ratio = params['Ratio']
+        end
+      end
+
+      # 子网资源分配策略，精确控制各子网之间的资源分配比例。
+      class SubnetAllocationPolicy < TencentCloud::Common::AbstractModel
+        # @param Allocations: <p>子网分配列表</p>
+        # @type Allocations: Array
+
+        attr_accessor :Allocations
+
+        def initialize(allocations=nil)
+          @Allocations = allocations
+        end
+
+        def deserialize(params)
+          unless params['Allocations'].nil?
+            @Allocations = []
+            params['Allocations'].each do |i|
+              subnetallocation_tmp = SubnetAllocation.new
+              subnetallocation_tmp.deserialize(i)
+              @Allocations << subnetallocation_tmp
+            end
+          end
+        end
+      end
+
       # 子网信息
       class SubnetInfos < TencentCloud::Common::AbstractModel
         # @param SubnetId: 子网id
@@ -22797,34 +22845,34 @@ module TencentCloud
 
       # 虚拟节点池
       class VirtualNodePool < TencentCloud::Common::AbstractModel
-        # @param NodePoolId: 节点池ID
+        # @param NodePoolId: <p>节点池ID</p>
         # @type NodePoolId: String
-        # @param SubnetIds: 子网列表
+        # @param SubnetIds: <p>子网列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubnetIds: Array
-        # @param Name: 节点池名称
+        # @param Name: <p>节点池名称</p>
         # @type Name: String
-        # @param LifeState: 节点池生命周期
-        # - creating：创建中
-        # - normal：正常
-        # - updating：更新中
+        # @param LifeState: <p>节点池生命周期</p><ul><li>creating：创建中</li><li>normal：正常</li><li>updating：更新中</li></ul>
         # @type LifeState: String
-        # @param Labels: 虚拟节点label
+        # @param Labels: <p>虚拟节点label</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Labels: Array
-        # @param Taints: 虚拟节点taint
+        # @param Taints: <p>虚拟节点taint</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Taints: Array
+        # @param SubnetAllocationPolicy: <p>子网分配策略</p>
+        # @type SubnetAllocationPolicy: :class:`Tencentcloud::Tke.v20180525.models.SubnetAllocationPolicy`
 
-        attr_accessor :NodePoolId, :SubnetIds, :Name, :LifeState, :Labels, :Taints
+        attr_accessor :NodePoolId, :SubnetIds, :Name, :LifeState, :Labels, :Taints, :SubnetAllocationPolicy
 
-        def initialize(nodepoolid=nil, subnetids=nil, name=nil, lifestate=nil, labels=nil, taints=nil)
+        def initialize(nodepoolid=nil, subnetids=nil, name=nil, lifestate=nil, labels=nil, taints=nil, subnetallocationpolicy=nil)
           @NodePoolId = nodepoolid
           @SubnetIds = subnetids
           @Name = name
           @LifeState = lifestate
           @Labels = labels
           @Taints = taints
+          @SubnetAllocationPolicy = subnetallocationpolicy
         end
 
         def deserialize(params)
@@ -22847,6 +22895,10 @@ module TencentCloud
               taint_tmp.deserialize(i)
               @Taints << taint_tmp
             end
+          end
+          unless params['SubnetAllocationPolicy'].nil?
+            @SubnetAllocationPolicy = SubnetAllocationPolicy.new
+            @SubnetAllocationPolicy.deserialize(params['SubnetAllocationPolicy'])
           end
         end
       end
