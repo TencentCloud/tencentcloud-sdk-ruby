@@ -220,19 +220,23 @@ module TencentCloud
         # @type Data: String
         # @param Source: <p>数据推送来源，会在生成的单据中展示数据来源</p>
         # @type Source: String
+        # @param PluginId: <p>插件ID</p>
+        # @type PluginId: String
 
-        attr_accessor :EventId, :Data, :Source
+        attr_accessor :EventId, :Data, :Source, :PluginId
 
-        def initialize(eventid=nil, data=nil, source=nil)
+        def initialize(eventid=nil, data=nil, source=nil, pluginid=nil)
           @EventId = eventid
           @Data = data
           @Source = source
+          @PluginId = pluginid
         end
 
         def deserialize(params)
           @EventId = params['EventId']
           @Data = params['Data']
           @Source = params['Source']
+          @PluginId = params['PluginId']
         end
       end
 

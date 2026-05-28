@@ -19,31 +19,31 @@ module TencentCloud
     module V20201002
       # 垃圾投诉数据
       class AbuseReport < TencentCloud::Common::AbstractModel
-        # @param DeliverTime: 发送时间
+        # @param DeliverTime: <p>发送时间</p>
         # @type DeliverTime: String
-        # @param OriginalMailFrom: 发信地址
+        # @param OriginalMailFrom: <p>发信地址</p>
         # @type OriginalMailFrom: String
-        # @param OriginalRcptTo: 收信地址
+        # @param OriginalRcptTo: <p>收信地址</p>
         # @type OriginalRcptTo: String
-        # @param FromDomain: 发信域名
+        # @param FromDomain: <p>发信域名</p>
         # @type FromDomain: String
-        # @param ComplainTime: 投诉时间
+        # @param ComplainTime: <p>投诉时间</p>
         # @type ComplainTime: String
-        # @param Mta: 收信域名
+        # @param Mta: <p>收信域名</p>
         # @type Mta: String
-        # @param SourceIp: 来源ip
+        # @param SourceIp: <p>来源ip</p>
         # @type SourceIp: String
-        # @param InsertTime: 数据时间
+        # @param InsertTime: <p>数据时间</p>
         # @type InsertTime: String
-        # @param TemplateId: 模板id
+        # @param TemplateId: <p>模板ID</p>
         # @type TemplateId: String
-        # @param BulkId: bulkId
+        # @param BulkId: <p>bulkId</p>
         # @type BulkId: String
-        # @param MessageId: 邮件Message-Id
+        # @param MessageId: <p>邮件Message-Id</p>
         # @type MessageId: String
-        # @param AbuseTime: 投诉时间
+        # @param AbuseTime: <p>投诉时间</p>
         # @type AbuseTime: String
-        # @param Subject: 邮件主题
+        # @param Subject: <p>邮件主题</p>
         # @type Subject: String
 
         attr_accessor :DeliverTime, :OriginalMailFrom, :OriginalRcptTo, :FromDomain, :ComplainTime, :Mta, :SourceIp, :InsertTime, :TemplateId, :BulkId, :MessageId, :AbuseTime, :Subject
@@ -2132,8 +2132,8 @@ module TencentCloud
 
         attr_accessor :MessageId, :ToEmailAddress, :FromEmailAddress, :SendStatus, :DeliverStatus, :DeliverMessage, :RequestTime, :DeliverTime, :UserOpened, :UserClicked, :UserUnsubscribed, :UserComplainted, :UserComplained
         extend Gem::Deprecate
-        deprecate :UserComplainted, :none, 2026, 4
-        deprecate :UserComplainted=, :none, 2026, 4
+        deprecate :UserComplainted, :none, 2026, 5
+        deprecate :UserComplainted=, :none, 2026, 5
 
         def initialize(messageid=nil, toemailaddress=nil, fromemailaddress=nil, sendstatus=nil, deliverstatus=nil, delivermessage=nil, requesttime=nil, delivertime=nil, useropened=nil, userclicked=nil, userunsubscribed=nil, usercomplainted=nil, usercomplained=nil)
           @MessageId = messageid

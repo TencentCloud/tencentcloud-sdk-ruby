@@ -2050,17 +2050,17 @@ module TencentCloud
 
       # ModifyClusterMachine请求参数结构体
       class ModifyClusterMachineRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群 ID
+        # @param ClusterId: <p>集群 ID</p>
         # @type ClusterId: String
-        # @param MachineNames: 节点名列表
+        # @param MachineNames: <p>节点名列表</p>
         # @type MachineNames: Array
-        # @param DisplayName: machine的display name
+        # @param DisplayName: <p>machine的display name</p>
         # @type DisplayName: String
-        # @param SystemDisk: 系统盘的信息
+        # @param SystemDisk: <p>系统盘的信息</p>
         # @type SystemDisk: :class:`Tencentcloud::Tke.v20220501.models.Disk`
-        # @param SecurityGroupIDs: 安全组列表
+        # @param SecurityGroupIDs: <p>安全组列表</p>
         # @type SecurityGroupIDs: Array
-        # @param InstanceChargePrepaid: 节点预付费信息
+        # @param InstanceChargePrepaid: <p>节点预付费信息</p>
         # @type InstanceChargePrepaid: :class:`Tencentcloud::Tke.v20220501.models.InstanceChargePrepaid`
 
         attr_accessor :ClusterId, :MachineNames, :DisplayName, :SystemDisk, :SecurityGroupIDs, :InstanceChargePrepaid

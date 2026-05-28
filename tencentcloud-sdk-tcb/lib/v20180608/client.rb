@@ -1274,6 +1274,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（DescribePGUserMigration）用于查询目标环境指定 migration 详情。
+
+        # @param request: Request instance for DescribePGUserMigration.
+        # @type request: :class:`Tencentcloud::tcb::V20180608::DescribePGUserMigrationRequest`
+        # @rtype: :class:`Tencentcloud::tcb::V20180608::DescribePGUserMigrationResponse`
+        def DescribePGUserMigration(request)
+          body = send_request('DescribePGUserMigration', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePGUserMigrationResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询指定指标的配额使用量
 
         # @param request: Request instance for DescribeQuotaData.
@@ -1284,6 +1308,32 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeQuotaDataResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询资源基础权限。
+
+        # 查询云函数、云存储和数据库表的基础权限配置。支持单个资源查询和批量查询。
+
+        # @param request: Request instance for DescribeResourcePermission.
+        # @type request: :class:`Tencentcloud::tcb::V20180608::DescribeResourcePermissionRequest`
+        # @rtype: :class:`Tencentcloud::tcb::V20180608::DescribeResourcePermissionResponse`
+        def DescribeResourcePermission(request)
+          body = send_request('DescribeResourcePermission', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeResourcePermissionResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1624,6 +1674,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（ListPGUserMigrations）用于查询目标环境已应用的用户 migration 列表。
+
+        # @param request: Request instance for ListPGUserMigrations.
+        # @type request: :class:`Tencentcloud::tcb::V20180608::ListPGUserMigrationsRequest`
+        # @rtype: :class:`Tencentcloud::tcb::V20180608::ListPGUserMigrationsResponse`
+        def ListPGUserMigrations(request)
+          body = send_request('ListPGUserMigrations', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ListPGUserMigrationsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口(ListTables)用于查询文档型数据库所有表信息，包括表名、表中数据条数、表中数据量、索引个数及索引的大小等。
 
         # 该接口跟 [DescribeTables](https://cloud.tencent.com/document/api/876/127962) 接口功能一致，后续该接口可能会下线，请使用 [DescribeTable](https://cloud.tencent.com/document/api/876/127962)接口。
@@ -1848,6 +1922,32 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改资源基础权限。
+
+        # 修改云函数、云存储和数据库表的基础权限配置。支持预定义权限级别和自定义安全规则两种方式配置资源访问权限。
+
+        # @param request: Request instance for ModifyResourcePermission.
+        # @type request: :class:`Tencentcloud::tcb::V20180608::ModifyResourcePermissionRequest`
+        # @rtype: :class:`Tencentcloud::tcb::V20180608::ModifyResourcePermissionResponse`
+        def ModifyResourcePermission(request)
+          body = send_request('ModifyResourcePermission', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyResourcePermissionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 设置数据库安全规则。
         # 安全规则，用于控制C端用户的访问权限。详见 [安全规则介绍 ](https://cloud.tencent.com/document/product/876/123478)。
 
@@ -1925,6 +2025,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（PreviewPGUserMigrations）用于预览SQL migrations 在远端的执行计划，不实际执行SQL。
+
+        # @param request: Request instance for PreviewPGUserMigrations.
+        # @type request: :class:`Tencentcloud::tcb::V20180608::PreviewPGUserMigrationsRequest`
+        # @rtype: :class:`Tencentcloud::tcb::V20180608::PreviewPGUserMigrationsResponse`
+        def PreviewPGUserMigrations(request)
+          body = send_request('PreviewPGUserMigrations', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = PreviewPGUserMigrationsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（PushPGUserMigrations）用于批量应用Migrations。
+
+        # @param request: Request instance for PushPGUserMigrations.
+        # @type request: :class:`Tencentcloud::tcb::V20180608::PushPGUserMigrationsRequest`
+        # @rtype: :class:`Tencentcloud::tcb::V20180608::PushPGUserMigrationsResponse`
+        def PushPGUserMigrations(request)
+          body = send_request('PushPGUserMigrations', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = PushPGUserMigrationsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 从环境池里立即取出1个环境
 
         # @param request: Request instance for ReleaseEnv.
@@ -1961,6 +2109,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = RenewEnvResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（RepairPGUserMigrationHistory）用于受控修复 history，只修改 user_schema_migrations，不执行 SQL。
+
+        # @param request: Request instance for RepairPGUserMigrationHistory.
+        # @type request: :class:`Tencentcloud::tcb::V20180608::RepairPGUserMigrationHistoryRequest`
+        # @rtype: :class:`Tencentcloud::tcb::V20180608::RepairPGUserMigrationHistoryResponse`
+        def RepairPGUserMigrationHistory(request)
+          body = send_request('RepairPGUserMigrationHistory', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RepairPGUserMigrationHistoryResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（RollbackPGUserMigrations）用于按最近 N 条已应用 migration 倒序执行 rollback。
+
+        # @param request: Request instance for RollbackPGUserMigrations.
+        # @type request: :class:`Tencentcloud::tcb::V20180608::RollbackPGUserMigrationsRequest`
+        # @rtype: :class:`Tencentcloud::tcb::V20180608::RollbackPGUserMigrationsResponse`
+        def RollbackPGUserMigrations(request)
+          body = send_request('RollbackPGUserMigrations', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RollbackPGUserMigrationsResponse.new
             model.deserialize(response['Response'])
             model
           else

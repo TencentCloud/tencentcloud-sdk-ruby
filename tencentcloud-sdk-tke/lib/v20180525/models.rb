@@ -345,6 +345,53 @@ module TencentCloud
         end
       end
 
+      # AgentPlugin 安装配置，包含域名、Chart 版本和外部 PostgreSQL 连接信息
+      class AgentPluginConfig < TencentCloud::Common::AbstractModel
+        # @param ChartVersion: Helm Chart 版本，一般无需指定
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChartVersion: String
+        # @param Host: 外部 PostgreSQL 内网地址；配置后跳过内置 PostgreSQL
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Host: String
+        # @param Password: 外部 PostgreSQL 密码，配置 Host 时必填
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Password: String
+        # @param Port: 外部 PostgreSQL 端口
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Port: Integer
+        # @param SSLMode: SSL 模式，取值：disable / require / verify-full
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SSLMode: String
+        # @param ServiceDomain: Agent 实例访问域名，不填则不创建域名路由
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceDomain: String
+        # @param Username: 外部 PostgreSQL 用户名，配置 Host 时必填
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Username: String
+
+        attr_accessor :ChartVersion, :Host, :Password, :Port, :SSLMode, :ServiceDomain, :Username
+
+        def initialize(chartversion=nil, host=nil, password=nil, port=nil, sslmode=nil, servicedomain=nil, username=nil)
+          @ChartVersion = chartversion
+          @Host = host
+          @Password = password
+          @Port = port
+          @SSLMode = sslmode
+          @ServiceDomain = servicedomain
+          @Username = username
+        end
+
+        def deserialize(params)
+          @ChartVersion = params['ChartVersion']
+          @Host = params['Host']
+          @Password = params['Password']
+          @Port = params['Port']
+          @SSLMode = params['SSLMode']
+          @ServiceDomain = params['ServiceDomain']
+          @Username = params['Username']
+        end
+      end
+
       # 注释
       class AnnotationValue < TencentCloud::Common::AbstractModel
         # @param Name: 注释键
@@ -2836,30 +2883,32 @@ module TencentCloud
 
       # CreateClusterVirtualNodePool请求参数结构体
       class CreateClusterVirtualNodePoolRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群ID，通过DescribeClusters接口获取
+        # @param ClusterId: <p>集群ID，通过DescribeClusters接口获取</p>
         # @type ClusterId: String
-        # @param Name: 节点池名称
+        # @param Name: <p>节点池名称</p>
         # @type Name: String
-        # @param SecurityGroupIds: 安全组ID列表
+        # @param SecurityGroupIds: <p>安全组ID列表</p>
         # @type SecurityGroupIds: Array
-        # @param SubnetIds: 子网ID列表
+        # @param SubnetIds: <p>子网ID列表</p>
         # @type SubnetIds: Array
-        # @param Labels: 虚拟节点label
+        # @param Labels: <p>虚拟节点label</p>
         # @type Labels: Array
-        # @param Taints: 虚拟节点taint
+        # @param Taints: <p>虚拟节点taint</p>
         # @type Taints: Array
-        # @param VirtualNodes: 节点列表
+        # @param VirtualNodes: <p>节点列表</p>
         # @type VirtualNodes: Array
-        # @param DeletionProtection: 删除保护开关，默认关闭
+        # @param DeletionProtection: <p>删除保护开关，默认关闭</p>
         # @type DeletionProtection: Boolean
-        # @param OS: 节点池操作系统：
-        # - linux（默认）
-        # - windows
+        # @param OS: <p>节点池操作系统：</p><ul><li>linux（默认）</li><li>windows</li></ul>
         # @type OS: String
+        # @param SubnetAllocationPolicy: <p>子网资源分配策略，精确控制各子网之间的资源分配比例。</p>
+        # @type SubnetAllocationPolicy: :class:`Tencentcloud::Tke.v20180525.models.SubnetAllocationPolicy`
+        # @param AgentPlugin: <p>AgentPlugin 安装配置。传入即表示需要安装（即使是空对象 {}）</p>
+        # @type AgentPlugin: :class:`Tencentcloud::Tke.v20180525.models.AgentPluginConfig`
 
-        attr_accessor :ClusterId, :Name, :SecurityGroupIds, :SubnetIds, :Labels, :Taints, :VirtualNodes, :DeletionProtection, :OS
+        attr_accessor :ClusterId, :Name, :SecurityGroupIds, :SubnetIds, :Labels, :Taints, :VirtualNodes, :DeletionProtection, :OS, :SubnetAllocationPolicy, :AgentPlugin
 
-        def initialize(clusterid=nil, name=nil, securitygroupids=nil, subnetids=nil, labels=nil, taints=nil, virtualnodes=nil, deletionprotection=nil, os=nil)
+        def initialize(clusterid=nil, name=nil, securitygroupids=nil, subnetids=nil, labels=nil, taints=nil, virtualnodes=nil, deletionprotection=nil, os=nil, subnetallocationpolicy=nil, agentplugin=nil)
           @ClusterId = clusterid
           @Name = name
           @SecurityGroupIds = securitygroupids
@@ -2869,6 +2918,8 @@ module TencentCloud
           @VirtualNodes = virtualnodes
           @DeletionProtection = deletionprotection
           @OS = os
+          @SubnetAllocationPolicy = subnetallocationpolicy
+          @AgentPlugin = agentplugin
         end
 
         def deserialize(params)
@@ -2902,12 +2953,20 @@ module TencentCloud
           end
           @DeletionProtection = params['DeletionProtection']
           @OS = params['OS']
+          unless params['SubnetAllocationPolicy'].nil?
+            @SubnetAllocationPolicy = SubnetAllocationPolicy.new
+            @SubnetAllocationPolicy.deserialize(params['SubnetAllocationPolicy'])
+          end
+          unless params['AgentPlugin'].nil?
+            @AgentPlugin = AgentPluginConfig.new
+            @AgentPlugin.deserialize(params['AgentPlugin'])
+          end
         end
       end
 
       # CreateClusterVirtualNodePool返回参数结构体
       class CreateClusterVirtualNodePoolResponse < TencentCloud::Common::AbstractModel
-        # @param NodePoolId: 节点池ID
+        # @param NodePoolId: <p>节点池ID</p>
         # @type NodePoolId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

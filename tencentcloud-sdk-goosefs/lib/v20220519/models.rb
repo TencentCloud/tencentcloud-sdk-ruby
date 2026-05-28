@@ -567,8 +567,8 @@ module TencentCloud
 
         attr_accessor :Name, :Description, :VpcId, :SubnetId, :Zone, :Type, :Tag, :GooseFSxBuildElements, :SecurityGroupId, :ClusterPort
         extend Gem::Deprecate
-        deprecate :Type, :none, 2026, 4
-        deprecate :Type=, :none, 2026, 4
+        deprecate :Type, :none, 2026, 5
+        deprecate :Type=, :none, 2026, 5
 
         def initialize(name=nil, description=nil, vpcid=nil, subnetid=nil, zone=nil, type=nil, tag=nil, goosefsxbuildelements=nil, securitygroupid=nil, clusterport=nil)
           @Name = name
@@ -1693,8 +1693,8 @@ module TencentCloud
 
         attr_accessor :Model, :Capacity, :MappedBucketList
         extend Gem::Deprecate
-        deprecate :MappedBucketList, :none, 2026, 4
-        deprecate :MappedBucketList=, :none, 2026, 4
+        deprecate :MappedBucketList, :none, 2026, 5
+        deprecate :MappedBucketList=, :none, 2026, 5
 
         def initialize(model=nil, capacity=nil, mappedbucketlist=nil)
           @Model = model

@@ -3343,6 +3343,82 @@ module TencentCloud
         end
       end
 
+      # DescribePGUserMigration请求参数结构体
+      class DescribePGUserMigrationRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: <p>云开发环境ID</p>
+        # @type EnvId: String
+        # @param MigrationVersion: <p>版本号</p><p>参数格式：14位时间格式</p><p>入参限制：纯数字</p>
+        # @type MigrationVersion: String
+
+        attr_accessor :EnvId, :MigrationVersion
+
+        def initialize(envid=nil, migrationversion=nil)
+          @EnvId = envid
+          @MigrationVersion = migrationversion
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @MigrationVersion = params['MigrationVersion']
+        end
+      end
+
+      # DescribePGUserMigration返回参数结构体
+      class DescribePGUserMigrationResponse < TencentCloud::Common::AbstractModel
+        # @param Version: <p>版本号</p><p>参数格式：纯数字，14位时间格式</p>
+        # @type Version: String
+        # @param Name: <p>版本名</p><p>参数格式：只允许小写字母和下划线</p>
+        # @type Name: String
+        # @param Query: <p>要执行的migration sql 语句</p>
+        # @type Query: String
+        # @param Rollback: <p>回滚的sql 语句</p>
+        # @type Rollback: String
+        # @param Checksum: <p>migration query 语句的checksum值</p><p>由服务端自动生成，同版本 checksum 不一致会拒绝执行</p>
+        # @type Checksum: String
+        # @param Source: <p>用于标记调用来源</p>
+        # @type Source: String
+        # @param CreatedBy: <p>用于标记该条migration由谁创建，目前默认调用的用户uin</p>
+        # @type CreatedBy: String
+        # @param CreatedAt: <p>该migration创建时间</p>
+        # @type CreatedAt: String
+        # @param AppliedAt: <p>该migration应用时间</p>
+        # @type AppliedAt: String
+        # @param DurationMs: <p>该migration执行耗时</p><p>单位：毫秒</p>
+        # @type DurationMs: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Version, :Name, :Query, :Rollback, :Checksum, :Source, :CreatedBy, :CreatedAt, :AppliedAt, :DurationMs, :RequestId
+
+        def initialize(version=nil, name=nil, query=nil, rollback=nil, checksum=nil, source=nil, createdby=nil, createdat=nil, appliedat=nil, durationms=nil, requestid=nil)
+          @Version = version
+          @Name = name
+          @Query = query
+          @Rollback = rollback
+          @Checksum = checksum
+          @Source = source
+          @CreatedBy = createdby
+          @CreatedAt = createdat
+          @AppliedAt = appliedat
+          @DurationMs = durationms
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Version = params['Version']
+          @Name = params['Name']
+          @Query = params['Query']
+          @Rollback = params['Rollback']
+          @Checksum = params['Checksum']
+          @Source = params['Source']
+          @CreatedBy = params['CreatedBy']
+          @CreatedAt = params['CreatedAt']
+          @AppliedAt = params['AppliedAt']
+          @DurationMs = params['DurationMs']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeQuotaData请求参数结构体
       class DescribeQuotaDataRequest < TencentCloud::Common::AbstractModel
         # @param EnvId: 环境ID
@@ -3423,6 +3499,80 @@ module TencentCloud
           @Value = params['Value']
           @SubValue = params['SubValue']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeResourcePermission请求参数结构体
+      class DescribeResourcePermissionRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: 环境 ID
+        # @type EnvId: String
+        # @param ResourceType: 资源类型：`function`-云函数、`storage`-云存储、`table`-SQL型数据库表、`collection`-文档型数据库表 `<br>`示例值：`table`。
+        # @type ResourceType: String
+        # @param Resources: 资源标识列表。云函数不传或传空数组、云存储传存储桶名、数据库表传表名，不能超过100条。
+        # @type Resources: Array
+
+        attr_accessor :EnvId, :ResourceType, :Resources
+
+        def initialize(envid=nil, resourcetype=nil, resources=nil)
+          @EnvId = envid
+          @ResourceType = resourcetype
+          @Resources = resources
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @ResourceType = params['ResourceType']
+          @Resources = params['Resources']
+        end
+      end
+
+      # DescribeResourcePermission返回参数结构体
+      class DescribeResourcePermissionResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 查询资源权限返回结果
+        # @type Data: :class:`Tencentcloud::Tcb.v20180608.models.DescribeResourcePermissionResult`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = DescribeResourcePermissionResult.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 查询资源权限返回结果
+      class DescribeResourcePermissionResult < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 查询到的资源总数
+        # @type TotalCount: Integer
+        # @param PermissionList: 资源权限列表
+        # @type PermissionList: Array
+
+        attr_accessor :TotalCount, :PermissionList
+
+        def initialize(totalcount=nil, permissionlist=nil)
+          @TotalCount = totalcount
+          @PermissionList = permissionlist
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['PermissionList'].nil?
+            @PermissionList = []
+            params['PermissionList'].each do |i|
+              resourcepermission_tmp = ResourcePermission.new
+              resourcepermission_tmp.deserialize(i)
+              @PermissionList << resourcepermission_tmp
+            end
+          end
         end
       end
 
@@ -5210,6 +5360,65 @@ module TencentCloud
         end
       end
 
+      # ListPGUserMigrations请求参数结构体
+      class ListPGUserMigrationsRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: <p>云开发环境ID</p>
+        # @type EnvId: String
+        # @param Limit: <p>查询条数</p><p>取值范围：[1, 500]</p><p>默认值：100</p>
+        # @type Limit: Integer
+        # @param Offset: <p>分页偏移</p><p>默认值：0</p>
+        # @type Offset: Integer
+
+        attr_accessor :EnvId, :Limit, :Offset
+
+        def initialize(envid=nil, limit=nil, offset=nil)
+          @EnvId = envid
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # ListPGUserMigrations返回参数结构体
+      class ListPGUserMigrationsResponse < TencentCloud::Common::AbstractModel
+        # @param Total: <p>总数量</p>
+        # @type Total: Integer
+        # @param LatestVersion: <p>已应用最新版本号</p><p>参数格式：纯数字，14位时间格式</p>
+        # @type LatestVersion: String
+        # @param Migrations: <p>已应用migration列表</p>
+        # @type Migrations: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :LatestVersion, :Migrations, :RequestId
+
+        def initialize(total=nil, latestversion=nil, migrations=nil, requestid=nil)
+          @Total = total
+          @LatestVersion = latestversion
+          @Migrations = migrations
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          @LatestVersion = params['LatestVersion']
+          unless params['Migrations'].nil?
+            @Migrations = []
+            params['Migrations'].each do |i|
+              migrationsummary_tmp = MigrationSummary.new
+              migrationsummary_tmp.deserialize(i)
+              @Migrations << migrationsummary_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ListTables请求参数结构体
       class ListTablesRequest < TencentCloud::Common::AbstractModel
         # @param MgoLimit: 每页返回数量（0-1000)
@@ -5718,6 +5927,146 @@ module TencentCloud
         end
       end
 
+      # migration 执行计划冲突项
+      class MigrationConflict < TencentCloud::Common::AbstractModel
+        # @param Version: <p>migration 版本号</p><p>参数格式：纯数字，14位时间格式</p>
+        # @type Version: String
+        # @param Name: <p>migration 版本名</p><p>参数格式：仅允许小写字母和下划线</p>
+        # @type Name: String
+        # @param RemoteName: <p>数据库已应用migration的版本名</p><p>参数格式：仅允许小写字母和下划线</p>
+        # @type RemoteName: String
+        # @param LocalChecksum: <p>本次sql计算出来的checksum</p>
+        # @type LocalChecksum: String
+        # @param RemoteChecksum: <p>已应用的migration，数据库存储的checksum</p>
+        # @type RemoteChecksum: String
+        # @param Reason: <p>归入该分组的原因</p>
+        # @type Reason: String
+        # @param Message: <p>冲突信息</p>
+        # @type Message: String
+
+        attr_accessor :Version, :Name, :RemoteName, :LocalChecksum, :RemoteChecksum, :Reason, :Message
+
+        def initialize(version=nil, name=nil, remotename=nil, localchecksum=nil, remotechecksum=nil, reason=nil, message=nil)
+          @Version = version
+          @Name = name
+          @RemoteName = remotename
+          @LocalChecksum = localchecksum
+          @RemoteChecksum = remotechecksum
+          @Reason = reason
+          @Message = message
+        end
+
+        def deserialize(params)
+          @Version = params['Version']
+          @Name = params['Name']
+          @RemoteName = params['RemoteName']
+          @LocalChecksum = params['LocalChecksum']
+          @RemoteChecksum = params['RemoteChecksum']
+          @Reason = params['Reason']
+          @Message = params['Message']
+        end
+      end
+
+      # 结构化 SQL migration 信息
+      class MigrationInput < TencentCloud::Common::AbstractModel
+        # @param Version: <p>migration 版本号</p><p>参数格式：纯数字，14位时间格式</p>
+        # @type Version: String
+        # @param Name: <p>migration 版本名</p><p>入参限制：仅允许小写字母和下划线</p>
+        # @type Name: String
+        # @param Query: <p>migration 应用 sql 语句</p>
+        # @type Query: String
+        # @param Rollback: <p>migration 回滚 sql 语句</p>
+        # @type Rollback: String
+
+        attr_accessor :Version, :Name, :Query, :Rollback
+
+        def initialize(version=nil, name=nil, query=nil, rollback=nil)
+          @Version = version
+          @Name = name
+          @Query = query
+          @Rollback = rollback
+        end
+
+        def deserialize(params)
+          @Version = params['Version']
+          @Name = params['Name']
+          @Query = params['Query']
+          @Rollback = params['Rollback']
+        end
+      end
+
+      # migration 执行计划
+      class MigrationPlanItem < TencentCloud::Common::AbstractModel
+        # @param Version: <p>migration 版本号</p><p>参数格式：纯数字，14位时间格式</p>
+        # @type Version: String
+        # @param Name: <p>migration 版本名</p><p>参数格式：仅允许小写字母和下划线</p>
+        # @type Name: String
+        # @param Checksum: <p>migration query sql checksum</p><p>服务端自动生成，同版本不同checksum会拒绝执行</p>
+        # @type Checksum: String
+        # @param Status: <p>状态</p><p>枚举值：</p><ul><li>applied： 已应用</li><li>pending： 待执行</li></ul>
+        # @type Status: String
+        # @param Source: <p>标记请求来源</p>
+        # @type Source: String
+        # @param Reason: <p>被归入该分组的原因，比如not_applied、checksum_matched</p>
+        # @type Reason: String
+
+        attr_accessor :Version, :Name, :Checksum, :Status, :Source, :Reason
+
+        def initialize(version=nil, name=nil, checksum=nil, status=nil, source=nil, reason=nil)
+          @Version = version
+          @Name = name
+          @Checksum = checksum
+          @Status = status
+          @Source = source
+          @Reason = reason
+        end
+
+        def deserialize(params)
+          @Version = params['Version']
+          @Name = params['Name']
+          @Checksum = params['Checksum']
+          @Status = params['Status']
+          @Source = params['Source']
+          @Reason = params['Reason']
+        end
+      end
+
+      # migration 列表
+      class MigrationSummary < TencentCloud::Common::AbstractModel
+        # @param Version: <p>migration 版本号</p><p>参数格式：纯数字，14位时间格式</p>
+        # @type Version: String
+        # @param Name: <p>migration 版本名</p><p>参数格式：仅允许小写字母和下划线</p>
+        # @type Name: String
+        # @param Checksum: <p>migration query sql 语句checksum</p><p>服务端自动生成，同版本不同checksum会拒绝执行</p>
+        # @type Checksum: String
+        # @param AppliedAt: <p>应用时间</p>
+        # @type AppliedAt: String
+        # @param Source: <p>请求来源</p>
+        # @type Source: String
+        # @param CreatedBy: <p>migration 创建时间</p>
+        # @type CreatedBy: String
+
+        attr_accessor :Version, :Name, :Checksum, :AppliedAt, :Source, :CreatedBy
+
+        def initialize(version=nil, name=nil, checksum=nil, appliedat=nil, source=nil, createdby=nil)
+          @Version = version
+          @Name = name
+          @Checksum = checksum
+          @AppliedAt = appliedat
+          @Source = source
+          @CreatedBy = createdby
+        end
+
+        def deserialize(params)
+          @Version = params['Version']
+          @Name = params['Name']
+          @Checksum = params['Checksum']
+          @AppliedAt = params['AppliedAt']
+          @Source = params['Source']
+          @CreatedBy = params['CreatedBy']
+        end
+      end
+
       # ModifyClient请求参数结构体
       class ModifyClientRequest < TencentCloud::Common::AbstractModel
         # @param EnvId: 客户端所属的云开发环境 ID，用于标识该应用归属的云开发环境。不同环境之间的应用数据相互隔离。
@@ -6138,6 +6487,77 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyResourcePermission请求参数结构体
+      class ModifyResourcePermissionRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: 环境 ID
+        # @type EnvId: String
+        # @param ResourceType: 资源类型：`function`-云函数、`storage`-云存储、`table`-SQL型数据库表、`collection`-文档型数据库表。
+        # @type ResourceType: String
+        # @param Permission: 权限级别。可选值：- SQL型数据库表：`READONLY`-读取全部数据，修改本人数据；`PRIVATE`-读取和修改本人数据；`ADMINWRITE`-读取全部数据，不可修改数据；`ADMINONLY`-无权限 。- 文档型数据库表：`READONLY`-读取全部数据，修改本人数据；`PRIVATE`-读取和修改本人数据；`ADMINWRITE`-读取全部数据，不可修改数据；`ADMINONLY`-无权限；`CUSTOM`-自定义安全规则 。- 云函数：`CUSTOM`-自定义安全规则 。- 云存储（权限标签）：`READONLY`-所有用户可读，仅创建者和管理员可写；`PRIVATE`-仅创建者及管理员可读写；`ADMINWRITE`-所有用户可读，仅管理员可写；`ADMINONLY`-仅管理员可读写；`CUSTOM`-自定义安全规则。
+        # @type Permission: String
+        # @param Resource: 资源标识。云函数可不传、云存储传存储桶名、数据库表传表名。
+        # @type Resource: String
+        # @param SecurityRule: 自定义安全规则配置，当Permission为 `CUSTOM`时必传。JSON字符串格式的规则表达式。配置参考：[云函数安全规则](https://docs.cloudbase.net/cloud-function/security-rules)、[云存储安全规则](https://docs.cloudbase.net/storage/security-rules)、[文档型数据库安全规则](https://docs.cloudbase.net/database/security-rules)。
+        # @type SecurityRule: String
+
+        attr_accessor :EnvId, :ResourceType, :Permission, :Resource, :SecurityRule
+
+        def initialize(envid=nil, resourcetype=nil, permission=nil, resource=nil, securityrule=nil)
+          @EnvId = envid
+          @ResourceType = resourcetype
+          @Permission = permission
+          @Resource = resource
+          @SecurityRule = securityrule
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @ResourceType = params['ResourceType']
+          @Permission = params['Permission']
+          @Resource = params['Resource']
+          @SecurityRule = params['SecurityRule']
+        end
+      end
+
+      # ModifyResourcePermission返回参数结构体
+      class ModifyResourcePermissionResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 修改结果
+        # @type Data: :class:`Tencentcloud::Tcb.v20180608.models.ModifyResourcePermissionResult`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = ModifyResourcePermissionResult.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 修改资源基础权限结果
+      class ModifyResourcePermissionResult < TencentCloud::Common::AbstractModel
+        # @param Success: 是否成功
+        # @type Success: Boolean
+
+        attr_accessor :Success
+
+        def initialize(success=nil)
+          @Success = success
+        end
+
+        def deserialize(params)
+          @Success = params['Success']
         end
       end
 
@@ -6638,6 +7058,90 @@ module TencentCloud
         end
       end
 
+      # PreviewPGUserMigrations请求参数结构体
+      class PreviewPGUserMigrationsRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: <p>云开发环境ID</p>
+        # @type EnvId: String
+        # @param Migrations: <p>预览要执行的migration 列表</p>
+        # @type Migrations: Array
+        # @param Source: <p>标记请求来源</p>
+        # @type Source: String
+
+        attr_accessor :EnvId, :Migrations, :Source
+
+        def initialize(envid=nil, migrations=nil, source=nil)
+          @EnvId = envid
+          @Migrations = migrations
+          @Source = source
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          unless params['Migrations'].nil?
+            @Migrations = []
+            params['Migrations'].each do |i|
+              migrationinput_tmp = MigrationInput.new
+              migrationinput_tmp.deserialize(i)
+              @Migrations << migrationinput_tmp
+            end
+          end
+          @Source = params['Source']
+        end
+      end
+
+      # PreviewPGUserMigrations返回参数结构体
+      class PreviewPGUserMigrationsResponse < TencentCloud::Common::AbstractModel
+        # @param Pending: <p>将要执行的migration列表</p>
+        # @type Pending: Array
+        # @param Applied: <p>已经应用的migration列表</p>
+        # @type Applied: Array
+        # @param Conflicts: <p>版本相同但 checksum 不一致冲突的migration列表</p>
+        # @type Conflicts: Array
+        # @param Executable: <p>是否可直接执行；当前仅表示没有 checksum 冲突</p>
+        # @type Executable: Boolean
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Pending, :Applied, :Conflicts, :Executable, :RequestId
+
+        def initialize(pending=nil, applied=nil, conflicts=nil, executable=nil, requestid=nil)
+          @Pending = pending
+          @Applied = applied
+          @Conflicts = conflicts
+          @Executable = executable
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Pending'].nil?
+            @Pending = []
+            params['Pending'].each do |i|
+              migrationplanitem_tmp = MigrationPlanItem.new
+              migrationplanitem_tmp.deserialize(i)
+              @Pending << migrationplanitem_tmp
+            end
+          end
+          unless params['Applied'].nil?
+            @Applied = []
+            params['Applied'].each do |i|
+              migrationplanitem_tmp = MigrationPlanItem.new
+              migrationplanitem_tmp.deserialize(i)
+              @Applied << migrationplanitem_tmp
+            end
+          end
+          unless params['Conflicts'].nil?
+            @Conflicts = []
+            params['Conflicts'].each do |i|
+              migrationconflict_tmp = MigrationConflict.new
+              migrationconflict_tmp.deserialize(i)
+              @Conflicts << migrationconflict_tmp
+            end
+          end
+          @Executable = params['Executable']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 身份源配置信息。描述云开发环境下用户登录身份源的完整配置，定义了用户通过何种方式进入系统并完成身份认证。支持多种类型：包括标准协议身份源（OAuth 2.0、OIDC、SAML 2.0）、内置身份源（邮箱登录、自定义登录）以及通过插件机制扩展的身份源（如 CAS）。每个身份源包含认证配置、启用状态、用户自动注册策略、信息透传模式等核心属性，是登录认证流程的核心数据结构。
       class Provider < TencentCloud::Common::AbstractModel
         # @param Id: 身份源的唯一标识符，用于在系统内区分不同的身份源。格式要求：2~32 位，仅支持小写英文字母和数字，不可包含空格或特殊字符。创建后不可修改
@@ -6932,6 +7436,65 @@ module TencentCloud
         end
       end
 
+      # PushPGUserMigrations请求参数结构体
+      class PushPGUserMigrationsRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: <p>云开发环境ID</p>
+        # @type EnvId: String
+        # @param Migrations: <p>结构化 SQL migration 列表；每项包含 Query SQL 内容</p>
+        # @type Migrations: Array
+        # @param LockTimeoutMs: <p>等待获取数据库锁的最长时间</p><p>单位：毫秒</p><p>默认值：5000</p>
+        # @type LockTimeoutMs: Integer
+        # @param StatementTimeoutMs: <p>单条 SQL 执行最长时间，超过后由 PostgreSQL 取消该语句</p><p>单位：毫秒</p><p>默认值：300000</p>
+        # @type StatementTimeoutMs: Integer
+        # @param Source: <p>标记请求来源</p>
+        # @type Source: String
+
+        attr_accessor :EnvId, :Migrations, :LockTimeoutMs, :StatementTimeoutMs, :Source
+
+        def initialize(envid=nil, migrations=nil, locktimeoutms=nil, statementtimeoutms=nil, source=nil)
+          @EnvId = envid
+          @Migrations = migrations
+          @LockTimeoutMs = locktimeoutms
+          @StatementTimeoutMs = statementtimeoutms
+          @Source = source
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          unless params['Migrations'].nil?
+            @Migrations = []
+            params['Migrations'].each do |i|
+              migrationinput_tmp = MigrationInput.new
+              migrationinput_tmp.deserialize(i)
+              @Migrations << migrationinput_tmp
+            end
+          end
+          @LockTimeoutMs = params['LockTimeoutMs']
+          @StatementTimeoutMs = params['StatementTimeoutMs']
+          @Source = params['Source']
+        end
+      end
+
+      # PushPGUserMigrations返回参数结构体
+      class PushPGUserMigrationsResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>任务ID</p><p>可通过DescribeTaskResult 接口查询进度</p>
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ReleaseEnv请求参数结构体
       class ReleaseEnvRequest < TencentCloud::Common::AbstractModel
         # @param EnvId: <p>环境ID</p>
@@ -7005,6 +7568,167 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # RepairPGUserMigrationHistory请求参数结构体
+      class RepairPGUserMigrationHistoryRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: <p>云开发环境ID</p>
+        # @type EnvId: String
+        # @param MigrationVersion: <p>migration版本</p><p>参数格式：14位时间格式</p><p>入参限制：纯数字</p>
+        # @type MigrationVersion: String
+        # @param Name: <p>migration 版本名</p><p>入参限制：限制小写字母和下划线</p>
+        # @type Name: String
+        # @param Status: <p>状态</p><p>枚举值：</p><ul><li>applied： 已应用</li><li>reverted： 表示删除 history 记录</li></ul>
+        # @type Status: String
+        # @param Reason: <p>修复原因</p>
+        # @type Reason: String
+        # @param Query: <p>applied的时候填写，记录应用的sql语句</p>
+        # @type Query: String
+
+        attr_accessor :EnvId, :MigrationVersion, :Name, :Status, :Reason, :Query
+
+        def initialize(envid=nil, migrationversion=nil, name=nil, status=nil, reason=nil, query=nil)
+          @EnvId = envid
+          @MigrationVersion = migrationversion
+          @Name = name
+          @Status = status
+          @Reason = reason
+          @Query = query
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @MigrationVersion = params['MigrationVersion']
+          @Name = params['Name']
+          @Status = params['Status']
+          @Reason = params['Reason']
+          @Query = params['Query']
+        end
+      end
+
+      # RepairPGUserMigrationHistory返回参数结构体
+      class RepairPGUserMigrationHistoryResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 资源权限
+      class ResourcePermission < TencentCloud::Common::AbstractModel
+        # @param ResourceType: 资源类型。
+        # @type ResourceType: String
+        # @param Resource: 资源标识
+        # @type Resource: String
+        # @param Permission: 权限级别。取值：READONLY、PRIVATE、ADMINWRITE、ADMINONLY、CUSTOM。
+        # @type Permission: String
+        # @param SecurityRule: 自定义安全规则配置，当 Permission 为 CUSTOM 时返回。
+        # @type SecurityRule: String
+
+        attr_accessor :ResourceType, :Resource, :Permission, :SecurityRule
+
+        def initialize(resourcetype=nil, resource=nil, permission=nil, securityrule=nil)
+          @ResourceType = resourcetype
+          @Resource = resource
+          @Permission = permission
+          @SecurityRule = securityrule
+        end
+
+        def deserialize(params)
+          @ResourceType = params['ResourceType']
+          @Resource = params['Resource']
+          @Permission = params['Permission']
+          @SecurityRule = params['SecurityRule']
+        end
+      end
+
+      # RollbackPGUserMigrations请求参数结构体
+      class RollbackPGUserMigrationsRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: <p>云开发环境ID</p>
+        # @type EnvId: String
+        # @param LastN: <p>要回滚的条数</p><p>按照逆序回滚最近N条migration</p>
+        # @type LastN: Integer
+        # @param LockTimeoutMs: <p>等待获取数据库锁的最长时间</p><p>单位：毫秒</p><p>默认值：5000</p>
+        # @type LockTimeoutMs: Integer
+        # @param StatementTimeoutMs: <p>单条 SQL 执行最长时间，超过后由 PostgreSQL 取消该语句</p><p>单位：毫秒</p><p>默认值：300000</p>
+        # @type StatementTimeoutMs: Integer
+        # @param Source: <p>标记API调用来源</p>
+        # @type Source: String
+
+        attr_accessor :EnvId, :LastN, :LockTimeoutMs, :StatementTimeoutMs, :Source
+
+        def initialize(envid=nil, lastn=nil, locktimeoutms=nil, statementtimeoutms=nil, source=nil)
+          @EnvId = envid
+          @LastN = lastn
+          @LockTimeoutMs = locktimeoutms
+          @StatementTimeoutMs = statementtimeoutms
+          @Source = source
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @LastN = params['LastN']
+          @LockTimeoutMs = params['LockTimeoutMs']
+          @StatementTimeoutMs = params['StatementTimeoutMs']
+          @Source = params['Source']
+        end
+      end
+
+      # RollbackPGUserMigrations返回参数结构体
+      class RollbackPGUserMigrationsResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>任务ID</p><p>可通过DescribeTaskResult 接口查询进度</p>
+        # @type TaskId: String
+        # @param RolledBack: <p>已成功回滚并删除 history 的 migration</p>
+        # @type RolledBack: Array
+        # @param SkippedRollbackSql: <p>未提供 Rollback SQL、视为成功并删除 history 的 migration</p>
+        # @type SkippedRollbackSql: Array
+        # @param Failed: <p>执行 Rollback SQL 失败的 migration，可为空</p>
+        # @type Failed: :class:`Tencentcloud::Tcb.v20180608.models.MigrationSummary`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RolledBack, :SkippedRollbackSql, :Failed, :RequestId
+
+        def initialize(taskid=nil, rolledback=nil, skippedrollbacksql=nil, failed=nil, requestid=nil)
+          @TaskId = taskid
+          @RolledBack = rolledback
+          @SkippedRollbackSql = skippedrollbacksql
+          @Failed = failed
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          unless params['RolledBack'].nil?
+            @RolledBack = []
+            params['RolledBack'].each do |i|
+              migrationsummary_tmp = MigrationSummary.new
+              migrationsummary_tmp.deserialize(i)
+              @RolledBack << migrationsummary_tmp
+            end
+          end
+          unless params['SkippedRollbackSql'].nil?
+            @SkippedRollbackSql = []
+            params['SkippedRollbackSql'].each do |i|
+              migrationsummary_tmp = MigrationSummary.new
+              migrationsummary_tmp.deserialize(i)
+              @SkippedRollbackSql << migrationsummary_tmp
+            end
+          end
+          unless params['Failed'].nil?
+            @Failed = MigrationSummary.new
+            @Failed.deserialize(params['Failed'])
+          end
           @RequestId = params['RequestId']
         end
       end

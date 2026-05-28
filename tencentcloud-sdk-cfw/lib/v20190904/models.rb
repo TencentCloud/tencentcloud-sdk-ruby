@@ -675,26 +675,29 @@ module TencentCloud
 
       # CCN关联的实例信息
       class CcnAssociatedInstance < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: <p>实例ID</p>
         # @type InstanceId: String
-        # @param InstanceName: 实例名称
+        # @param InstanceName: <p>实例名称</p>
         # @type InstanceName: String
-        # @param InsType: 实例类型
+        # @param InsType: <p>实例类型</p>
         # @type InsType: String
-        # @param CidrLst: 实例的网段列表
+        # @param CidrLst: <p>实例的网段列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CidrLst: Array
-        # @param InstanceRegion: 实例所属地域
+        # @param InstanceRegion: <p>实例所属地域</p>
         # @type InstanceRegion: String
+        # @param IsCrossInstance: <p>是否跨账号</p>
+        # @type IsCrossInstance: Integer
 
-        attr_accessor :InstanceId, :InstanceName, :InsType, :CidrLst, :InstanceRegion
+        attr_accessor :InstanceId, :InstanceName, :InsType, :CidrLst, :InstanceRegion, :IsCrossInstance
 
-        def initialize(instanceid=nil, instancename=nil, instype=nil, cidrlst=nil, instanceregion=nil)
+        def initialize(instanceid=nil, instancename=nil, instype=nil, cidrlst=nil, instanceregion=nil, iscrossinstance=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @InsType = instype
           @CidrLst = cidrlst
           @InstanceRegion = instanceregion
+          @IsCrossInstance = iscrossinstance
         end
 
         def deserialize(params)
@@ -703,6 +706,7 @@ module TencentCloud
           @InsType = params['InsType']
           @CidrLst = params['CidrLst']
           @InstanceRegion = params['InstanceRegion']
+          @IsCrossInstance = params['IsCrossInstance']
         end
       end
 
@@ -9814,15 +9818,11 @@ module TencentCloud
 
       # 地域的防火墙引流网络状态
       class RegionFwStatus < TencentCloud::Common::AbstractModel
-        # @param Region: 地域
+        # @param Region: <p>地域</p>
         # @type Region: String
-        # @param Status: 引流网络部署状态
-        # 1. "NotDeployed"  防火墙集群未部署
-        # 2. "Deployed"        防火墙集群已部署，但未创建引流网络
-        # 3. "Auto"                防火墙集群已部署，并自动选择网段创建了引流网络
-        # 4. "Custom"            防火墙集群已部署，并根据用户自定义网段创建了引流网络
+        # @param Status: <p>引流网络部署状态</p><ol><li>&quot;NotDeployed&quot;  防火墙集群未部署</li><li>&quot;Deployed&quot;        防火墙集群已部署，但未创建引流网络</li><li>&quot;DeployedCustomOnly&quot;  防火墙集群已部署，但内网段被全覆盖，无法自动选择引流网络，需自定义设置引流网段</li><li>&quot;Auto&quot;                防火墙集群已部署，并自动选择网段创建了引流网络</li><li>&quot;Custom&quot;            防火墙集群已部署，并根据用户自定义网段创建了引流网络</li></ol>
         # @type Status: String
-        # @param Cidr: 引流网络的cidr，如果没有部署引流网络则为空
+        # @param Cidr: <p>引流网络的cidr，如果没有部署引流网络则为空</p>
         # @type Cidr: String
 
         attr_accessor :Region, :Status, :Cidr

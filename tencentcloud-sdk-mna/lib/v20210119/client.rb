@@ -1085,7 +1085,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 用户上报自定义的订单信息，多网聚合加速服务将相关信息进行保存
+        # 用户上报自定义的订单信息，多网聚合加速（腾讯云聚通）服务将相关信息进行保存
 
         # @param request: Request instance for ReportOrder.
         # @type request: :class:`Tencentcloud::mna::V20210119::ReportOrderRequest`

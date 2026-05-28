@@ -13361,18 +13361,21 @@ module TencentCloud
         # @type StartTime: String
         # @param EndTime: <p>结束日期，需大于等于起始日期。使用 <a href="https://cloud.tencent.com/document/product/266/11732#52">ISO 日期格式</a>。</p>
         # @type EndTime: String
-        # @param AigcType: <p>AIGC类型。</p><p>枚举值：</p><ul><li>Video： 视频</li><li>Image： 图片</li><li>Text： 文本</li><li>SceneAigcVideo： 场景化视频处理</li><li>SceneAigcImage： 场景化图片处理</li><li>SceneAigcTime： 场景化处理次数</li></ul>
+        # @param AigcType: <p>AIGC类型。</p><p>枚举值：</p><ul><li>Video： 视频</li><li>Image： 图片</li><li>Text： 文本</li><li>Audio： 音频</li><li>SceneAigcVideo： 场景化视频处理</li><li>SceneAigcImage： 场景化图片处理</li><li>SceneAigcTime： 场景化处理次数</li></ul>
         # @type AigcType: String
         # @param SubAppId: <p><b>点播<a href="/document/product/266/14574">应用</a> ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b></p>
         # @type SubAppId: Integer
+        # @param APIKey: <p>API Key</p>
+        # @type APIKey: String
 
-        attr_accessor :StartTime, :EndTime, :AigcType, :SubAppId
+        attr_accessor :StartTime, :EndTime, :AigcType, :SubAppId, :APIKey
 
-        def initialize(starttime=nil, endtime=nil, aigctype=nil, subappid=nil)
+        def initialize(starttime=nil, endtime=nil, aigctype=nil, subappid=nil, apikey=nil)
           @StartTime = starttime
           @EndTime = endtime
           @AigcType = aigctype
           @SubAppId = subappid
+          @APIKey = apikey
         end
 
         def deserialize(params)
@@ -13380,6 +13383,7 @@ module TencentCloud
           @EndTime = params['EndTime']
           @AigcType = params['AigcType']
           @SubAppId = params['SubAppId']
+          @APIKey = params['APIKey']
         end
       end
 

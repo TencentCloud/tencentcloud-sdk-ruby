@@ -1030,10 +1030,10 @@ module TencentCloud
 
         attr_accessor :Name, :StartTime, :EndTime, :SdkAppId, :Resolution, :MaxMicNumber, :SubType, :TeacherId, :AutoMic, :TurnOffMic, :AudioQuality, :DisableRecord, :Assistants, :RTCAudienceNumber, :AudienceType, :RecordLayout, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass, :RoomType, :Guests, :EndDelayTime, :LiveType, :RecordLiveUrl, :EnableAutoStart, :RecordBackground, :RecordScene, :RecordLang, :RecordStream, :WhiteBoardSnapshotMode, :SubtitlesTranscription, :RecordMerge, :EnableLiveRelay
         extend Gem::Deprecate
-        deprecate :RTCAudienceNumber, :none, 2026, 3
-        deprecate :RTCAudienceNumber=, :none, 2026, 3
-        deprecate :RecordLang, :none, 2026, 3
-        deprecate :RecordLang=, :none, 2026, 3
+        deprecate :RTCAudienceNumber, :none, 2026, 5
+        deprecate :RTCAudienceNumber=, :none, 2026, 5
+        deprecate :RecordLang, :none, 2026, 5
+        deprecate :RecordLang=, :none, 2026, 5
 
         def initialize(name=nil, starttime=nil, endtime=nil, sdkappid=nil, resolution=nil, maxmicnumber=nil, subtype=nil, teacherid=nil, automic=nil, turnoffmic=nil, audioquality=nil, disablerecord=nil, assistants=nil, rtcaudiencenumber=nil, audiencetype=nil, recordlayout=nil, groupid=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil, roomtype=nil, guests=nil, enddelaytime=nil, livetype=nil, recordliveurl=nil, enableautostart=nil, recordbackground=nil, recordscene=nil, recordlang=nil, recordstream=nil, whiteboardsnapshotmode=nil, subtitlestranscription=nil, recordmerge=nil, enableliverelay=nil)
           @Name = name
@@ -3482,24 +3482,26 @@ module TencentCloud
 
       # 房间事件对应的信息。
       class EventDataInfo < TencentCloud::Common::AbstractModel
-        # @param RoomId: 事件发生的房间号。
+        # @param RoomId: <p>事件发生的房间号。</p>
         # @type RoomId: Integer
-        # @param UserId: 事件发生的用户。
+        # @param UserId: <p>事件发生的用户。</p>
         # @type UserId: String
-        # @param Device: 用户设备类型。0: Unknown; 1: Windows; 2: macOS; 3: Android; 4: iOS; 5: Web; 6: Mobile webpage; 7: Weixin Mini Program.
+        # @param Device: <p>用户设备类型。0: Unknown; 1: Windows; 2: macOS; 3: Android; 4: iOS; 5: Web; 6: Mobile webpage; 7: Weixin Mini Program.</p>
         # @type Device: Integer
-        # @param Duration: 录制时长。单位：秒
+        # @param Duration: <p>录制时长。单位：秒</p>
         # @type Duration: Integer
-        # @param RecordSize: 录制文件大小
+        # @param RecordSize: <p>录制文件大小</p>
         # @type RecordSize: Integer
-        # @param RecordUrl: 录制url
+        # @param RecordUrl: <p>录制url</p>
         # @type RecordUrl: String
-        # @param Reason: MemberQuit事件，对应Reason（0:主动退出 1:被踢 2:永久被踢 4:失去心跳下线 5:房间结束，成员自动退出）
+        # @param Reason: <p>MemberQuit事件，对应Reason（0:主动退出 1:被踢 2:永久被踢 4:失去心跳下线 5:房间结束，成员自动退出）</p>
         # @type Reason: Integer
+        # @param Role: <p>角色</p><p>枚举值：</p><ul><li>0： 学生</li><li>1： 老师</li><li>2： 助教</li><li>3： 巡课/督导</li></ul>
+        # @type Role: Integer
 
-        attr_accessor :RoomId, :UserId, :Device, :Duration, :RecordSize, :RecordUrl, :Reason
+        attr_accessor :RoomId, :UserId, :Device, :Duration, :RecordSize, :RecordUrl, :Reason, :Role
 
-        def initialize(roomid=nil, userid=nil, device=nil, duration=nil, recordsize=nil, recordurl=nil, reason=nil)
+        def initialize(roomid=nil, userid=nil, device=nil, duration=nil, recordsize=nil, recordurl=nil, reason=nil, role=nil)
           @RoomId = roomid
           @UserId = userid
           @Device = device
@@ -3507,6 +3509,7 @@ module TencentCloud
           @RecordSize = recordsize
           @RecordUrl = recordurl
           @Reason = reason
+          @Role = role
         end
 
         def deserialize(params)
@@ -3517,6 +3520,7 @@ module TencentCloud
           @RecordSize = params['RecordSize']
           @RecordUrl = params['RecordUrl']
           @Reason = params['Reason']
+          @Role = params['Role']
         end
       end
 
@@ -4660,8 +4664,8 @@ module TencentCloud
 
         attr_accessor :RoomId, :SdkAppId, :StartTime, :EndTime, :TeacherId, :Name, :Resolution, :MaxMicNumber, :AutoMic, :AudioQuality, :SubType, :DisableRecord, :Assistants, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass, :RoomType, :RecordLayout, :EndDelayTime, :LiveType, :RecordLiveUrl, :EnableAutoStart, :RecordScene, :RecordLang, :WhiteBoardSnapshotMode, :SubtitlesTranscription, :Guests, :RecordMerge, :EnableLiveRelay
         extend Gem::Deprecate
-        deprecate :RecordLang, :none, 2026, 3
-        deprecate :RecordLang=, :none, 2026, 3
+        deprecate :RecordLang, :none, 2026, 5
+        deprecate :RecordLang=, :none, 2026, 5
 
         def initialize(roomid=nil, sdkappid=nil, starttime=nil, endtime=nil, teacherid=nil, name=nil, resolution=nil, maxmicnumber=nil, automic=nil, audioquality=nil, subtype=nil, disablerecord=nil, assistants=nil, groupid=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil, roomtype=nil, recordlayout=nil, enddelaytime=nil, livetype=nil, recordliveurl=nil, enableautostart=nil, recordscene=nil, recordlang=nil, whiteboardsnapshotmode=nil, subtitlestranscription=nil, guests=nil, recordmerge=nil, enableliverelay=nil)
           @RoomId = roomid
@@ -5088,10 +5092,10 @@ module TencentCloud
 
         attr_accessor :Name, :StartTime, :EndTime, :Resolution, :MaxMicNumber, :SubType, :TeacherId, :AutoMic, :TurnOffMic, :AudioQuality, :DisableRecord, :Assistants, :RTCAudienceNumber, :AudienceType, :RecordLayout, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass, :RoomType, :EndDelayTime, :LiveType, :RecordLiveUrl, :EnableAutoStart, :RecordBackground, :RecordScene, :RecordLang, :RecordStream, :WhiteBoardSnapshotMode, :SubtitlesTranscription, :Guests, :RecordMerge, :EnableLiveRelay
         extend Gem::Deprecate
-        deprecate :RTCAudienceNumber, :none, 2026, 3
-        deprecate :RTCAudienceNumber=, :none, 2026, 3
-        deprecate :RecordLang, :none, 2026, 3
-        deprecate :RecordLang=, :none, 2026, 3
+        deprecate :RTCAudienceNumber, :none, 2026, 5
+        deprecate :RTCAudienceNumber=, :none, 2026, 5
+        deprecate :RecordLang, :none, 2026, 5
+        deprecate :RecordLang=, :none, 2026, 5
 
         def initialize(name=nil, starttime=nil, endtime=nil, resolution=nil, maxmicnumber=nil, subtype=nil, teacherid=nil, automic=nil, turnoffmic=nil, audioquality=nil, disablerecord=nil, assistants=nil, rtcaudiencenumber=nil, audiencetype=nil, recordlayout=nil, groupid=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil, roomtype=nil, enddelaytime=nil, livetype=nil, recordliveurl=nil, enableautostart=nil, recordbackground=nil, recordscene=nil, recordlang=nil, recordstream=nil, whiteboardsnapshotmode=nil, subtitlestranscription=nil, guests=nil, recordmerge=nil, enableliverelay=nil)
           @Name = name
@@ -5426,9 +5430,9 @@ module TencentCloud
 
       # SetAppCustomContent请求参数结构体
       class SetAppCustomContentRequest < TencentCloud::Common::AbstractModel
-        # @param CustomContent: 自定义内容。
+        # @param CustomContent: <p>自定义内容。</p>
         # @type CustomContent: Array
-        # @param SdkAppId: 应用ID。
+        # @param SdkAppId: <p>应用ID。</p>
         # @type SdkAppId: Integer
 
         attr_accessor :CustomContent, :SdkAppId

@@ -710,6 +710,30 @@ module TencentCloud
         end
       end
 
+      # COS挂载信息
+      class CosOption < TencentCloud::Common::AbstractModel
+        # @param LocalPath: <p>文件系统本地挂载路径。</p>
+        # @type LocalPath: String
+        # @param RemotePath: <p>COS桶地址，可以在COS桶详情页查看。</p>
+        # @type RemotePath: String
+        # @param MountParamsOption: <p>cosfs2挂载工具支持的参数。</p>
+        # @type MountParamsOption: String
+
+        attr_accessor :LocalPath, :RemotePath, :MountParamsOption
+
+        def initialize(localpath=nil, remotepath=nil, mountparamsoption=nil)
+          @LocalPath = localpath
+          @RemotePath = remotepath
+          @MountParamsOption = mountparamsoption
+        end
+
+        def deserialize(params)
+          @LocalPath = params['LocalPath']
+          @RemotePath = params['RemotePath']
+          @MountParamsOption = params['MountParamsOption']
+        end
+      end
+
       # CreateCluster请求参数结构体
       class CreateClusterRequest < TencentCloud::Common::AbstractModel
         # @param Placement: <p>集群中实例所在的位置。</p>
@@ -2085,25 +2109,29 @@ module TencentCloud
 
       # 描述GooseFS挂载信息
       class GooseFSOption < TencentCloud::Common::AbstractModel
-        # @param LocalPath: 文件系统本地挂载路径。
+        # @param LocalPath: <p>文件系统本地挂载路径。</p>
         # @type LocalPath: String
-        # @param RemotePath: 文件系统远程挂载路径。
+        # @param RemotePath: <p>文件系统远程挂载路径。</p>
         # @type RemotePath: String
-        # @param Masters: 文件系统master的ip和端口。
+        # @param Masters: <p>文件系统master的ip和端口，此参数和FileSystemId互斥。</p>
         # @type Masters: Array
+        # @param FileSystemId: <p>GooseFS的文件ID；此参数和Masters 互斥。</p>
+        # @type FileSystemId: String
 
-        attr_accessor :LocalPath, :RemotePath, :Masters
+        attr_accessor :LocalPath, :RemotePath, :Masters, :FileSystemId
 
-        def initialize(localpath=nil, remotepath=nil, masters=nil)
+        def initialize(localpath=nil, remotepath=nil, masters=nil, filesystemid=nil)
           @LocalPath = localpath
           @RemotePath = remotepath
           @Masters = masters
+          @FileSystemId = filesystemid
         end
 
         def deserialize(params)
           @LocalPath = params['LocalPath']
           @RemotePath = params['RemotePath']
           @Masters = params['Masters']
+          @FileSystemId = params['FileSystemId']
         end
       end
 
@@ -3510,19 +3538,22 @@ module TencentCloud
 
       # 描述集群文件系统选项
       class StorageOption < TencentCloud::Common::AbstractModel
-        # @param CFSOptions: 集群挂载CFS文件系统选项。
+        # @param CFSOptions: <p>集群挂载CFS文件系统选项。</p>
         # @type CFSOptions: Array
-        # @param GooseFSOptions: 集群挂载GooseFS文件系统选项。
+        # @param GooseFSOptions: <p>集群挂载GooseFS文件系统选项。</p>
         # @type GooseFSOptions: Array
-        # @param GooseFSxOptions: 集群挂载GooseFSx文件系统选项。
+        # @param GooseFSxOptions: <p>集群挂载GooseFSx文件系统选项。</p>
         # @type GooseFSxOptions: Array
+        # @param CosOptions: <p>集群挂载COS文件系统选项。</p>
+        # @type CosOptions: Array
 
-        attr_accessor :CFSOptions, :GooseFSOptions, :GooseFSxOptions
+        attr_accessor :CFSOptions, :GooseFSOptions, :GooseFSxOptions, :CosOptions
 
-        def initialize(cfsoptions=nil, goosefsoptions=nil, goosefsxoptions=nil)
+        def initialize(cfsoptions=nil, goosefsoptions=nil, goosefsxoptions=nil, cosoptions=nil)
           @CFSOptions = cfsoptions
           @GooseFSOptions = goosefsoptions
           @GooseFSxOptions = goosefsxoptions
+          @CosOptions = cosoptions
         end
 
         def deserialize(params)
@@ -3548,6 +3579,14 @@ module TencentCloud
               goosefsxoption_tmp = GooseFSxOption.new
               goosefsxoption_tmp.deserialize(i)
               @GooseFSxOptions << goosefsxoption_tmp
+            end
+          end
+          unless params['CosOptions'].nil?
+            @CosOptions = []
+            params['CosOptions'].each do |i|
+              cosoption_tmp = CosOption.new
+              cosoption_tmp.deserialize(i)
+              @CosOptions << cosoption_tmp
             end
           end
         end
