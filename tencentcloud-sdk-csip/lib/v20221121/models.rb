@@ -3981,50 +3981,54 @@ module TencentCloud
 
       # Cos资产信息
       class CosAssetInfo < TencentCloud::Common::AbstractModel
-        # @param AppId: appid
+        # @param AppId: <p>appid</p>
         # @type AppId: Integer
-        # @param BucketName: cos桶名
+        # @param BucketName: <p>cos桶名</p>
         # @type BucketName: String
-        # @param BucketRegion: cos region名
+        # @param BucketRegion: <p>cos region名</p>
         # @type BucketRegion: String
-        # @param BucketRegionCode: 地域码值
+        # @param BucketRegionCode: <p>地域码值</p>
         # @type BucketRegionCode: String
-        # @param BucketMarker: cos桶备注
+        # @param BucketMarker: <p>cos桶备注</p>
         # @type BucketMarker: String
-        # @param BucketOwnerUin: cos桶主账号所属者
+        # @param BucketOwnerUin: <p>cos桶主账号所属者</p>
         # @type BucketOwnerUin: String
-        # @param BucketOwnerNickName: cos主账号所属者昵称
+        # @param BucketOwnerNickName: <p>cos主账号所属者昵称</p>
         # @type BucketOwnerNickName: String
-        # @param BucketTagInfo: cos桶标签详情
+        # @param BucketTagInfo: <p>cos桶标签详情</p>
         # @type BucketTagInfo: String
-        # @param BucketSecuritySuggestion: 安全建议
-        # 1 暂无异常
-        # 2 建议加固
-        # 3 立即处理
+        # @param BucketSecuritySuggestion: <p>安全建议<br>1 暂无异常<br>2 建议加固<br>3 立即处理</p>
         # @type BucketSecuritySuggestion: Integer
-        # @param BucketAlarmList: 告警列表
+        # @param BucketAlarmList: <p>告警列表</p>
         # @type BucketAlarmList: Array
-        # @param BucketRiskList: 风险列表
+        # @param BucketRiskList: <p>风险列表</p>
         # @type BucketRiskList: Array
-        # @param BucketInvokeSourceIpCount: 调用源ip数
+        # @param BucketInvokeSourceIpCount: <p>调用源ip数</p>
         # @type BucketInvokeSourceIpCount: Integer
-        # @param BucketAccessWay: 访问策略
+        # @param BucketAccessWay: <p>访问策略</p>
         # @type BucketAccessWay: :class:`Tencentcloud::Csip.v20221121.models.CosBucketAccessWay`
-        # @param CreateTime: 创建时间Unix时间单位毫秒
+        # @param CreateTime: <p>创建时间Unix时间单位毫秒</p>
         # @type CreateTime: Integer
-        # @param LastAccessTime: 最后访问时间Unix时间单位毫秒
+        # @param LastAccessTime: <p>最后访问时间Unix时间单位毫秒</p>
         # @type LastAccessTime: Integer
-        # @param BucketId: 存储桶id
+        # @param BucketId: <p>存储桶id</p>
         # @type BucketId: Integer
-        # @param MonitorStatus: 0 关闭
-        # 1 开启
+        # @param MonitorStatus: <p>0 关闭<br>1 开启</p>
         # @type MonitorStatus: Integer
-        # @param DataScanInfo: 数据识别扫描信息
+        # @param DataScanInfo: <p>数据识别扫描信息</p>
         # @type DataScanInfo: :class:`Tencentcloud::Csip.v20221121.models.CosAssetDataScanDetail`
+        # @param BucketAzType: <p>存储桶Az类型</p><p>枚举值：</p><ul><li>MAZ： 多az</li><li>SAZ： 单az</li></ul>
+        # @type BucketAzType: String
+        # @param BucketStorageSize: <p>存储桶存储大小</p><p>默认值：0</p>
+        # @type BucketStorageSize: Integer
+        # @param BucketObjectCount: <p>存储桶对象个数</p><p>默认值：0</p>
+        # @type BucketObjectCount: Integer
+        # @param IdentifySampleRate: <p>存储桶敏感识别采样率</p><p>取值范围：[0, 1]</p><p>默认值：0</p>
+        # @type IdentifySampleRate: Float
 
-        attr_accessor :AppId, :BucketName, :BucketRegion, :BucketRegionCode, :BucketMarker, :BucketOwnerUin, :BucketOwnerNickName, :BucketTagInfo, :BucketSecuritySuggestion, :BucketAlarmList, :BucketRiskList, :BucketInvokeSourceIpCount, :BucketAccessWay, :CreateTime, :LastAccessTime, :BucketId, :MonitorStatus, :DataScanInfo
+        attr_accessor :AppId, :BucketName, :BucketRegion, :BucketRegionCode, :BucketMarker, :BucketOwnerUin, :BucketOwnerNickName, :BucketTagInfo, :BucketSecuritySuggestion, :BucketAlarmList, :BucketRiskList, :BucketInvokeSourceIpCount, :BucketAccessWay, :CreateTime, :LastAccessTime, :BucketId, :MonitorStatus, :DataScanInfo, :BucketAzType, :BucketStorageSize, :BucketObjectCount, :IdentifySampleRate
 
-        def initialize(appid=nil, bucketname=nil, bucketregion=nil, bucketregioncode=nil, bucketmarker=nil, bucketowneruin=nil, bucketownernickname=nil, buckettaginfo=nil, bucketsecuritysuggestion=nil, bucketalarmlist=nil, bucketrisklist=nil, bucketinvokesourceipcount=nil, bucketaccessway=nil, createtime=nil, lastaccesstime=nil, bucketid=nil, monitorstatus=nil, datascaninfo=nil)
+        def initialize(appid=nil, bucketname=nil, bucketregion=nil, bucketregioncode=nil, bucketmarker=nil, bucketowneruin=nil, bucketownernickname=nil, buckettaginfo=nil, bucketsecuritysuggestion=nil, bucketalarmlist=nil, bucketrisklist=nil, bucketinvokesourceipcount=nil, bucketaccessway=nil, createtime=nil, lastaccesstime=nil, bucketid=nil, monitorstatus=nil, datascaninfo=nil, bucketaztype=nil, bucketstoragesize=nil, bucketobjectcount=nil, identifysamplerate=nil)
           @AppId = appid
           @BucketName = bucketname
           @BucketRegion = bucketregion
@@ -4043,6 +4047,10 @@ module TencentCloud
           @BucketId = bucketid
           @MonitorStatus = monitorstatus
           @DataScanInfo = datascaninfo
+          @BucketAzType = bucketaztype
+          @BucketStorageSize = bucketstoragesize
+          @BucketObjectCount = bucketobjectcount
+          @IdentifySampleRate = identifysamplerate
         end
 
         def deserialize(params)
@@ -4084,6 +4092,10 @@ module TencentCloud
             @DataScanInfo = CosAssetDataScanDetail.new
             @DataScanInfo.deserialize(params['DataScanInfo'])
           end
+          @BucketAzType = params['BucketAzType']
+          @BucketStorageSize = params['BucketStorageSize']
+          @BucketObjectCount = params['BucketObjectCount']
+          @IdentifySampleRate = params['IdentifySampleRate']
         end
       end
 
@@ -4113,56 +4125,62 @@ module TencentCloud
 
       # cos审计支付信息
       class CosAuditPayInfo < TencentCloud::Common::AbstractModel
-        # @param AppId: APPID
+        # @param AppId: <p>APPID</p>
         # @type AppId: Integer
-        # @param OrderStatus: 订单状态 0未购买 1正常，2隔离，3销毁，6试用中，7到期
+        # @param OrderStatus: <p>订单状态 0未购买 1正常，2隔离，3销毁，6试用中，7到期</p>
         # @type OrderStatus: Integer
-        # @param BucketNum: 已购对象存储数量
+        # @param BucketNum: <p>已购对象存储数量</p>
         # @type BucketNum: Integer
-        # @param PayMode: 支付模式，0-后付费 1-预付费
+        # @param PayMode: <p>支付模式，0-后付费 1-预付费</p>
         # @type PayMode: Integer
-        # @param IsSelfBuy: 是否单独购买，1-单独购买，2-被其它账号共享
+        # @param IsSelfBuy: <p>是否单独购买，1-单独购买，2-被其它账号共享</p>
         # @type IsSelfBuy: Integer
-        # @param BeginTime: 订单开始时间
+        # @param BeginTime: <p>订单开始时间</p>
         # @type BeginTime: String
-        # @param EndTime: 订单到期时间
+        # @param EndTime: <p>订单到期时间</p>
         # @type EndTime: String
-        # @param AutoRenew: 0-用户未设置,1-用户设置自动续费,2-用户设置不自动续费
+        # @param AutoRenew: <p>0-用户未设置,1-用户设置自动续费,2-用户设置不自动续费</p>
         # @type AutoRenew: Integer
-        # @param TimeSpan: 订单时长
+        # @param TimeSpan: <p>订单时长</p>
         # @type TimeSpan: Integer
-        # @param TimeUnit: 时长单位
+        # @param TimeUnit: <p>时长单位</p>
         # @type TimeUnit: String
-        # @param ResourceId: 资源id
+        # @param ResourceId: <p>资源id</p>
         # @type ResourceId: String
-        # @param BetaEndTime: 公测结束时间
+        # @param BetaEndTime: <p>公测结束时间</p>
         # @type BetaEndTime: String
-        # @param TimeNow: 系统当前时间
+        # @param TimeNow: <p>系统当前时间</p>
         # @type TimeNow: String
-        # @param IsShareToOther: 是否分享给其它账号，1-是，2-否
+        # @param IsShareToOther: <p>是否分享给其它账号，1-是，2-否</p>
         # @type IsShareToOther: Integer
-        # @param Uin: uin
+        # @param Uin: <p>uin</p>
         # @type Uin: String
-        # @param NickName: 昵称
+        # @param NickName: <p>昵称</p>
         # @type NickName: String
-        # @param BindBucket: 共享的bucketIdSet
+        # @param BindBucket: <p>共享的bucketIdSet</p>
         # @type BindBucket: Array
-        # @param SharedAppIdSet: 共享的appid
+        # @param SharedAppIdSet: <p>共享的appid</p>
         # @type SharedAppIdSet: Array
-        # @param PostPayStatus: 是否已经开启后付费
+        # @param PostPayStatus: <p>是否已经开启后付费</p>
         # @type PostPayStatus: Integer
-        # @param IsTestUser: 0：未做过试用期试用   1 ：做过试用期试用
+        # @param IsTestUser: <p>0：未做过试用期试用   1 ：做过试用期试用</p>
         # @type IsTestUser: Integer
-        # @param AvailableBucketNum: 剩余可用数
+        # @param AvailableBucketNum: <p>剩余可用数</p>
         # @type AvailableBucketNum: Integer
-        # @param MonitorBucketNum: 已开启的监测存储桶数
+        # @param MonitorBucketNum: <p>已开启的监测存储桶数</p>
         # @type MonitorBucketNum: Integer
-        # @param TotalBucketNum: 总的存储桶数
+        # @param TotalBucketNum: <p>总的存储桶数</p>
         # @type TotalBucketNum: Integer
+        # @param PostProductStatusList: <p>后付费产品开关状态</p>
+        # @type PostProductStatusList: Array
+        # @param PostProductBuyStatusList: <p>后付费产品购买状态</p>
+        # @type PostProductBuyStatusList: Array
+        # @param NewPostPayResourceId: <p>新后付费资源id</p>
+        # @type NewPostPayResourceId: String
 
-        attr_accessor :AppId, :OrderStatus, :BucketNum, :PayMode, :IsSelfBuy, :BeginTime, :EndTime, :AutoRenew, :TimeSpan, :TimeUnit, :ResourceId, :BetaEndTime, :TimeNow, :IsShareToOther, :Uin, :NickName, :BindBucket, :SharedAppIdSet, :PostPayStatus, :IsTestUser, :AvailableBucketNum, :MonitorBucketNum, :TotalBucketNum
+        attr_accessor :AppId, :OrderStatus, :BucketNum, :PayMode, :IsSelfBuy, :BeginTime, :EndTime, :AutoRenew, :TimeSpan, :TimeUnit, :ResourceId, :BetaEndTime, :TimeNow, :IsShareToOther, :Uin, :NickName, :BindBucket, :SharedAppIdSet, :PostPayStatus, :IsTestUser, :AvailableBucketNum, :MonitorBucketNum, :TotalBucketNum, :PostProductStatusList, :PostProductBuyStatusList, :NewPostPayResourceId
 
-        def initialize(appid=nil, orderstatus=nil, bucketnum=nil, paymode=nil, isselfbuy=nil, begintime=nil, endtime=nil, autorenew=nil, timespan=nil, timeunit=nil, resourceid=nil, betaendtime=nil, timenow=nil, issharetoother=nil, uin=nil, nickname=nil, bindbucket=nil, sharedappidset=nil, postpaystatus=nil, istestuser=nil, availablebucketnum=nil, monitorbucketnum=nil, totalbucketnum=nil)
+        def initialize(appid=nil, orderstatus=nil, bucketnum=nil, paymode=nil, isselfbuy=nil, begintime=nil, endtime=nil, autorenew=nil, timespan=nil, timeunit=nil, resourceid=nil, betaendtime=nil, timenow=nil, issharetoother=nil, uin=nil, nickname=nil, bindbucket=nil, sharedappidset=nil, postpaystatus=nil, istestuser=nil, availablebucketnum=nil, monitorbucketnum=nil, totalbucketnum=nil, postproductstatuslist=nil, postproductbuystatuslist=nil, newpostpayresourceid=nil)
           @AppId = appid
           @OrderStatus = orderstatus
           @BucketNum = bucketnum
@@ -4186,6 +4204,9 @@ module TencentCloud
           @AvailableBucketNum = availablebucketnum
           @MonitorBucketNum = monitorbucketnum
           @TotalBucketNum = totalbucketnum
+          @PostProductStatusList = postproductstatuslist
+          @PostProductBuyStatusList = postproductbuystatuslist
+          @NewPostPayResourceId = newpostpayresourceid
         end
 
         def deserialize(params)
@@ -4219,6 +4240,9 @@ module TencentCloud
           @AvailableBucketNum = params['AvailableBucketNum']
           @MonitorBucketNum = params['MonitorBucketNum']
           @TotalBucketNum = params['TotalBucketNum']
+          @PostProductStatusList = params['PostProductStatusList']
+          @PostProductBuyStatusList = params['PostProductBuyStatusList']
+          @NewPostPayResourceId = params['NewPostPayResourceId']
         end
       end
 
@@ -4254,30 +4278,38 @@ module TencentCloud
 
       # 存储桶数量
       class CosBucketBillingInfo < TencentCloud::Common::AbstractModel
-        # @param AppId: appid
+        # @param AppId: <p>appid</p>
         # @type AppId: Integer
-        # @param OwnerUin: uin
+        # @param OwnerUin: <p>uin</p>
         # @type OwnerUin: String
-        # @param OwnerNickName: 昵称
+        # @param OwnerNickName: <p>昵称</p>
         # @type OwnerNickName: String
-        # @param BucketCount: 存储桶数量
+        # @param BucketCount: <p>存储桶数量</p>
         # @type BucketCount: Integer
-        # @param BuyStatus: 0 未购买 1  已单独购买 2 已被共享
+        # @param BuyStatus: <p>0 未购买 1  已单独购买 2 已被共享</p>
         # @type BuyStatus: Integer
-        # @param ShareFromAppId: 共享账号appid
+        # @param ShareFromAppId: <p>共享账号appid</p>
         # @type ShareFromAppId: Integer
-        # @param ShareFromUin: 共享账号uin
+        # @param ShareFromUin: <p>共享账号uin</p>
         # @type ShareFromUin: String
-        # @param ShareFromNickName: 共享账号昵称
+        # @param ShareFromNickName: <p>共享账号昵称</p>
         # @type ShareFromNickName: String
-        # @param MonitorBucketCount: 监控的存储桶数
+        # @param MonitorBucketCount: <p>监控的存储桶数</p>
         # @type MonitorBucketCount: Integer
-        # @param IsAutoMonitor: 0 关闭 1 开启
+        # @param IsAutoMonitor: <p>0 关闭 1 开启</p>
         # @type IsAutoMonitor: Integer
+        # @param LogFeatureWhitelist: <p>是否启用白名单日志功能</p>
+        # @type LogFeatureWhitelist: Boolean
+        # @param IsHaveNewPostOrder: <p>是否存在新的后付费订单</p>
+        # @type IsHaveNewPostOrder: Boolean
+        # @param IsHaveOldPostOrder: <p>是否存在旧后付费订单</p>
+        # @type IsHaveOldPostOrder: Boolean
+        # @param PostProductList: <p>后付费产品列表</p>
+        # @type PostProductList: Array
 
-        attr_accessor :AppId, :OwnerUin, :OwnerNickName, :BucketCount, :BuyStatus, :ShareFromAppId, :ShareFromUin, :ShareFromNickName, :MonitorBucketCount, :IsAutoMonitor
+        attr_accessor :AppId, :OwnerUin, :OwnerNickName, :BucketCount, :BuyStatus, :ShareFromAppId, :ShareFromUin, :ShareFromNickName, :MonitorBucketCount, :IsAutoMonitor, :LogFeatureWhitelist, :IsHaveNewPostOrder, :IsHaveOldPostOrder, :PostProductList
 
-        def initialize(appid=nil, owneruin=nil, ownernickname=nil, bucketcount=nil, buystatus=nil, sharefromappid=nil, sharefromuin=nil, sharefromnickname=nil, monitorbucketcount=nil, isautomonitor=nil)
+        def initialize(appid=nil, owneruin=nil, ownernickname=nil, bucketcount=nil, buystatus=nil, sharefromappid=nil, sharefromuin=nil, sharefromnickname=nil, monitorbucketcount=nil, isautomonitor=nil, logfeaturewhitelist=nil, ishavenewpostorder=nil, ishaveoldpostorder=nil, postproductlist=nil)
           @AppId = appid
           @OwnerUin = owneruin
           @OwnerNickName = ownernickname
@@ -4288,6 +4320,10 @@ module TencentCloud
           @ShareFromNickName = sharefromnickname
           @MonitorBucketCount = monitorbucketcount
           @IsAutoMonitor = isautomonitor
+          @LogFeatureWhitelist = logfeaturewhitelist
+          @IsHaveNewPostOrder = ishavenewpostorder
+          @IsHaveOldPostOrder = ishaveoldpostorder
+          @PostProductList = postproductlist
         end
 
         def deserialize(params)
@@ -4301,6 +4337,10 @@ module TencentCloud
           @ShareFromNickName = params['ShareFromNickName']
           @MonitorBucketCount = params['MonitorBucketCount']
           @IsAutoMonitor = params['IsAutoMonitor']
+          @LogFeatureWhitelist = params['LogFeatureWhitelist']
+          @IsHaveNewPostOrder = params['IsHaveNewPostOrder']
+          @IsHaveOldPostOrder = params['IsHaveOldPostOrder']
+          @PostProductList = params['PostProductList']
         end
       end
 
@@ -5177,40 +5217,56 @@ module TencentCloud
 
       # CreateCosObjectScanTask请求参数结构体
       class CreateCosObjectScanTaskRequest < TencentCloud::Common::AbstractModel
-        # @param TaskType: <p>1: 敏感数据识别 2:恶意文件扫描</p>
+        # @param TaskType: <p>1: 敏感数据识别 2:恶意文件扫描 3:批量扫描敏感数据</p>
         # @type TaskType: Integer
-        # @param MemberId: 集团账号的成员id
+        # @param MemberId: <p>集团账号的成员id</p>
         # @type MemberId: Array
         # @param BucketSet: <p>存储桶列表</p>
         # @type BucketSet: Array
+        # @param TaskArgs: <p>任务参数</p>
+        # @type TaskArgs: String
+        # @param IsScanAll: <p>是否全部扫描</p>
+        # @type IsScanAll: Boolean
+        # @param DeleteBucketSet: <p>扫描时需要剔除的存储桶</p>
+        # @type DeleteBucketSet: Array
 
-        attr_accessor :TaskType, :MemberId, :BucketSet
+        attr_accessor :TaskType, :MemberId, :BucketSet, :TaskArgs, :IsScanAll, :DeleteBucketSet
 
-        def initialize(tasktype=nil, memberid=nil, bucketset=nil)
+        def initialize(tasktype=nil, memberid=nil, bucketset=nil, taskargs=nil, isscanall=nil, deletebucketset=nil)
           @TaskType = tasktype
           @MemberId = memberid
           @BucketSet = bucketset
+          @TaskArgs = taskargs
+          @IsScanAll = isscanall
+          @DeleteBucketSet = deletebucketset
         end
 
         def deserialize(params)
           @TaskType = params['TaskType']
           @MemberId = params['MemberId']
           @BucketSet = params['BucketSet']
+          @TaskArgs = params['TaskArgs']
+          @IsScanAll = params['IsScanAll']
+          @DeleteBucketSet = params['DeleteBucketSet']
         end
       end
 
       # CreateCosObjectScanTask返回参数结构体
       class CreateCosObjectScanTaskResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>任务id</p>
+        # @type TaskId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :TaskId, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @TaskId = params['TaskId']
           @RequestId = params['RequestId']
         end
       end
@@ -5606,67 +5662,67 @@ module TencentCloud
 
       # CreateDspmExportTask请求参数结构体
       class CreateDspmExportTaskRequest < TencentCloud::Common::AbstractModel
-        # @param MemberId: 集团账号的成员id
+        # @param MemberId: <p>集团账号的成员id</p>
         # @type MemberId: Array
-        # @param DangerLevel: 风险等级(0-安全,1-低风险,2-中风险,3-高风险,-1-全部)
+        # @param DangerLevel: <p>风险等级(0-安全,1-低风险,2-中风险,3-高风险,-1-全部)</p>
         # @type DangerLevel: Integer
-        # @param DbName: 数据库名称
+        # @param DbName: <p>数据库名称</p>
         # @type DbName: String
-        # @param DbPort: 数据库端口
+        # @param DbPort: <p>数据库端口</p>
         # @type DbPort: Integer
-        # @param DbIp: 数据库 IP
+        # @param DbIp: <p>数据库 IP</p>
         # @type DbIp: String
-        # @param AssetsId: 资产 ID
+        # @param AssetsId: <p>资产 ID</p>
         # @type AssetsId: Integer
-        # @param SessionId: 会话 ID
+        # @param SessionId: <p>会话 ID</p>
         # @type SessionId: String
-        # @param ClientSideIp: 客户端 IP
+        # @param ClientSideIp: <p>客户端 IP</p>
         # @type ClientSideIp: String
-        # @param EndTime: 结束时间
+        # @param EndTime: <p>结束时间</p>
         # @type EndTime: Integer
-        # @param HitRule: 命中规则
+        # @param HitRule: <p>命中规则</p>
         # @type HitRule: Integer
-        # @param StartTime: 开始时间
+        # @param StartTime: <p>开始时间</p>
         # @type StartTime: Integer
-        # @param FuzzySearch: 模糊查询
+        # @param FuzzySearch: <p>模糊查询</p>
         # @type FuzzySearch: String
-        # @param UserName: 用户名
+        # @param UserName: <p>用户名</p>
         # @type UserName: String
-        # @param ClientName: 客户端
+        # @param ClientName: <p>客户端</p>
         # @type ClientName: String
-        # @param SourceTypes: 流量来源，取值 Agent/Proxy/空；传Agent会返回Agent的日志，传Proxy会返回Proxy日志，两都都传或不传则返回所有
+        # @param SourceTypes: <p>流量来源，取值 Agent/Proxy/空；传Agent会返回Agent的日志，传Proxy会返回Proxy日志，两都传或不传则返回所有</p>
         # @type SourceTypes: Array
-        # @param TableName: 表名，长度限制64，多个表名查询的话可以用空格连接
+        # @param TableName: <p>表名，长度限制64，多个表名查询的话可以用空格连接</p>
         # @type TableName: String
-        # @param FieldName: 字段名，长度限制64，多个字段名查询的话可以用空格连接
+        # @param FieldName: <p>字段名，长度限制64，多个字段名查询的话可以用空格连接</p>
         # @type FieldName: String
-        # @param SqlMainTypes: SQL 主要类型，DDL, DML, DCL, TCL
+        # @param SqlMainTypes: <p>SQL 主要类型，DDL, DML, DCL, TCL</p>
         # @type SqlMainTypes: Array
-        # @param SqlType: 操作类型
+        # @param SqlType: <p>操作类型</p>
         # @type SqlType: String
-        # @param RowNumMin: 影响行数最小值
+        # @param RowNumMin: <p>影响行数最小值</p>
         # @type RowNumMin: Integer
-        # @param RowNumMax: 影响行数最大值
+        # @param RowNumMax: <p>影响行数最大值</p>
         # @type RowNumMax: Integer
-        # @param DbTypes: 数据库类型
+        # @param DbTypes: <p>数据库类型</p>
         # @type DbTypes: Array
-        # @param RetNo: 返回码
+        # @param RetNo: <p>返回码</p>
         # @type RetNo: Integer
-        # @param ClientDriverName: 客户端工具
+        # @param ClientDriverName: <p>客户端工具</p>
         # @type ClientDriverName: String
-        # @param ClientPort: 客户端端口
+        # @param ClientPort: <p>客户端端口</p>
         # @type ClientPort: Integer
-        # @param LogId: 审计日志 ID
+        # @param LogId: <p>审计日志 ID</p>
         # @type LogId: String
-        # @param DangerLevels: 风险等级数组(0-安全,1-低风险,2-中风险,3-高风险), 如果要全部，则需要将所有的值都传入。如果为空，则会参考：DangerLevel 入参
+        # @param DangerLevels: <p>风险等级数组(0-安全,1-低风险,2-中风险,3-高风险), 如果要全部，则需要将所有的值都传入。如果为空，则会参考：DangerLevel 入参</p>
         # @type DangerLevels: Array
-        # @param SensitiveCategoryRule: 字段分类
+        # @param SensitiveCategoryRule: <p>字段分类</p>
         # @type SensitiveCategoryRule: String
-        # @param SensitiveLevelRisk: 字段分级
+        # @param SensitiveLevelRisk: <p>字段分级</p>
         # @type SensitiveLevelRisk: String
-        # @param TrxId: 事务Id
+        # @param TrxId: <p>事务Id</p>
         # @type TrxId: Integer
-        # @param ClientMac: clientMac
+        # @param ClientMac: <p>clientMac</p>
         # @type ClientMac: String
 
         attr_accessor :MemberId, :DangerLevel, :DbName, :DbPort, :DbIp, :AssetsId, :SessionId, :ClientSideIp, :EndTime, :HitRule, :StartTime, :FuzzySearch, :UserName, :ClientName, :SourceTypes, :TableName, :FieldName, :SqlMainTypes, :SqlType, :RowNumMin, :RowNumMax, :DbTypes, :RetNo, :ClientDriverName, :ClientPort, :LogId, :DangerLevels, :SensitiveCategoryRule, :SensitiveLevelRisk, :TrxId, :ClientMac

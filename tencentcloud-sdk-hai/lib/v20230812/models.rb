@@ -2108,10 +2108,16 @@ module TencentCloud
         # @type DeploymentConfigs: Array
         # @param HyperParam: 服务超参数配置
         # @type HyperParam: :class:`Tencentcloud::Hai.v20230812.models.HyperParam`
+        # @param SecurityType: 
+        # @type SecurityType: String
+        # @param RoleComputeSet: 
+        # @type RoleComputeSet: Array
+        # @param TargetReplicas: 
+        # @type TargetReplicas: Integer
 
-        attr_accessor :ServiceId, :ServiceName, :ServiceState, :RunningReplicas, :TotalReplicas, :CreateTime, :ComputeSet, :ModelName, :DeploymentConfigs, :HyperParam
+        attr_accessor :ServiceId, :ServiceName, :ServiceState, :RunningReplicas, :TotalReplicas, :CreateTime, :ComputeSet, :ModelName, :DeploymentConfigs, :HyperParam, :SecurityType, :RoleComputeSet, :TargetReplicas
 
-        def initialize(serviceid=nil, servicename=nil, servicestate=nil, runningreplicas=nil, totalreplicas=nil, createtime=nil, computeset=nil, modelname=nil, deploymentconfigs=nil, hyperparam=nil)
+        def initialize(serviceid=nil, servicename=nil, servicestate=nil, runningreplicas=nil, totalreplicas=nil, createtime=nil, computeset=nil, modelname=nil, deploymentconfigs=nil, hyperparam=nil, securitytype=nil, rolecomputeset=nil, targetreplicas=nil)
           @ServiceId = serviceid
           @ServiceName = servicename
           @ServiceState = servicestate
@@ -2122,6 +2128,9 @@ module TencentCloud
           @ModelName = modelname
           @DeploymentConfigs = deploymentconfigs
           @HyperParam = hyperparam
+          @SecurityType = securitytype
+          @RoleComputeSet = rolecomputeset
+          @TargetReplicas = targetreplicas
         end
 
         def deserialize(params)
@@ -2152,6 +2161,16 @@ module TencentCloud
             @HyperParam = HyperParam.new
             @HyperParam.deserialize(params['HyperParam'])
           end
+          @SecurityType = params['SecurityType']
+          unless params['RoleComputeSet'].nil?
+            @RoleComputeSet = []
+            params['RoleComputeSet'].each do |i|
+              computedetail_tmp = ComputeDetail.new
+              computedetail_tmp.deserialize(i)
+              @RoleComputeSet << computedetail_tmp
+            end
+          end
+          @TargetReplicas = params['TargetReplicas']
         end
       end
 
@@ -2339,15 +2358,18 @@ module TencentCloud
         # @type ComputeSet: Array
         # @param SupportFunc: 当前部署模板所支持的增强功能
         # @type SupportFunc: Array
+        # @param RoleComputeSet: 
+        # @type RoleComputeSet: Array
 
-        attr_accessor :TemplateId, :DeployMode, :EngineType, :ComputeSet, :SupportFunc
+        attr_accessor :TemplateId, :DeployMode, :EngineType, :ComputeSet, :SupportFunc, :RoleComputeSet
 
-        def initialize(templateid=nil, deploymode=nil, enginetype=nil, computeset=nil, supportfunc=nil)
+        def initialize(templateid=nil, deploymode=nil, enginetype=nil, computeset=nil, supportfunc=nil, rolecomputeset=nil)
           @TemplateId = templateid
           @DeployMode = deploymode
           @EngineType = enginetype
           @ComputeSet = computeset
           @SupportFunc = supportfunc
+          @RoleComputeSet = rolecomputeset
         end
 
         def deserialize(params)
@@ -2363,6 +2385,14 @@ module TencentCloud
             end
           end
           @SupportFunc = params['SupportFunc']
+          unless params['RoleComputeSet'].nil?
+            @RoleComputeSet = []
+            params['RoleComputeSet'].each do |i|
+              computedetail_tmp = ComputeDetail.new
+              computedetail_tmp.deserialize(i)
+              @RoleComputeSet << computedetail_tmp
+            end
+          end
         end
       end
 

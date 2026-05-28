@@ -660,27 +660,27 @@ module TencentCloud
 
       # CreateCluster请求参数结构体
       class CreateClusterRequest < TencentCloud::Common::AbstractModel
-        # @param IdlType: 集群数据描述语言类型，如：`PROTO`，`TDR`或`MIX`
+        # @param IdlType: <p>集群数据描述语言类型，统一填<code>MIX</code></p><p>枚举值：</p><ul><li>MIX： 同时支持<code>PROTO</code>，<code>TDR</code>表</li></ul>
         # @type IdlType: String
-        # @param ClusterName: 集群名称，可使用中文或英文字符，最大长度32个字符
+        # @param ClusterName: <p>集群名称，可使用中文或英文字符，最大长度32个字符</p>
         # @type ClusterName: String
-        # @param VpcId: 集群所绑定的私有网络实例ID，形如：vpc-f49l6u0z
+        # @param VpcId: <p>集群所绑定的私有网络实例ID，形如：vpc-f49l6u0z</p>
         # @type VpcId: String
-        # @param SubnetId: 集群所绑定的子网实例ID，形如：subnet-pxir56ns
+        # @param SubnetId: <p>集群所绑定的子网实例ID，形如：subnet-pxir56ns</p>
         # @type SubnetId: String
-        # @param Password: 集群访问密码，必须是a-zA-Z0-9的字符,且必须包含数字和大小写字母
+        # @param Password: <p>集群访问密码，必须是a-zA-Z0-9的字符,且必须包含数字和大小写字母</p>
         # @type Password: String
-        # @param ResourceTags: 集群标签列表
+        # @param ResourceTags: <p>集群标签列表</p>
         # @type ResourceTags: Array
-        # @param Ipv6Enable: 集群是否开启IPv6功能
+        # @param Ipv6Enable: <p>集群是否开启IPv6功能</p>
         # @type Ipv6Enable: Integer
-        # @param ServerList: 独占集群占用的svr机器
+        # @param ServerList: <p>独占集群占用的svr机器</p>
         # @type ServerList: Array
-        # @param ProxyList: 独占集群占用的proxy机器
+        # @param ProxyList: <p>独占集群占用的proxy机器</p>
         # @type ProxyList: Array
-        # @param ClusterType: 集群类型1共享2独占
+        # @param ClusterType: <p>集群类型1共享2独占</p>
         # @type ClusterType: Integer
-        # @param AuthType: 密码认证类型，0 静态认证， 1 签名认证
+        # @param AuthType: <p>密码认证类型，0 静态认证， 1 签名认证</p>
         # @type AuthType: Integer
 
         attr_accessor :IdlType, :ClusterName, :VpcId, :SubnetId, :Password, :ResourceTags, :Ipv6Enable, :ServerList, :ProxyList, :ClusterType, :AuthType
@@ -737,7 +737,7 @@ module TencentCloud
 
       # CreateCluster返回参数结构体
       class CreateClusterResponse < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群ID
+        # @param ClusterId: <p>集群ID</p>
         # @type ClusterId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

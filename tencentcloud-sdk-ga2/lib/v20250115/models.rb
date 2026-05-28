@@ -207,6 +207,54 @@ module TencentCloud
         end
       end
 
+      # CreateForwardingPolicy请求参数结构体
+      class CreateForwardingPolicyRequest < TencentCloud::Common::AbstractModel
+        # @param GlobalAcceleratorId: 全球加速实例ID。
+        # @type GlobalAcceleratorId: String
+        # @param ListenerId: 监听器ID。
+        # @type ListenerId: String
+        # @param Host: 域名。
+        # @type Host: String
+
+        attr_accessor :GlobalAcceleratorId, :ListenerId, :Host
+
+        def initialize(globalacceleratorid=nil, listenerid=nil, host=nil)
+          @GlobalAcceleratorId = globalacceleratorid
+          @ListenerId = listenerid
+          @Host = host
+        end
+
+        def deserialize(params)
+          @GlobalAcceleratorId = params['GlobalAcceleratorId']
+          @ListenerId = params['ListenerId']
+          @Host = params['Host']
+        end
+      end
+
+      # CreateForwardingPolicy返回参数结构体
+      class CreateForwardingPolicyResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 异步任务ID。
+        # @type TaskId: String
+        # @param ForwardingPolicyId: 七层转发策略ID。
+        # @type ForwardingPolicyId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :ForwardingPolicyId, :RequestId
+
+        def initialize(taskid=nil, forwardingpolicyid=nil, requestid=nil)
+          @TaskId = taskid
+          @ForwardingPolicyId = forwardingpolicyid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @ForwardingPolicyId = params['ForwardingPolicyId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateForwardingRule请求参数结构体
       class CreateForwardingRuleRequest < TencentCloud::Common::AbstractModel
         # @param GlobalAcceleratorId: 全球加速实例ID。
@@ -550,6 +598,50 @@ module TencentCloud
         end
       end
 
+      # DeleteForwardingPolicy请求参数结构体
+      class DeleteForwardingPolicyRequest < TencentCloud::Common::AbstractModel
+        # @param GlobalAcceleratorId: 全球加速实例ID。
+        # @type GlobalAcceleratorId: String
+        # @param ListenerId: 监听器ID。
+        # @type ListenerId: String
+        # @param ForwardingPolicyId: 策略ID。
+        # @type ForwardingPolicyId: String
+
+        attr_accessor :GlobalAcceleratorId, :ListenerId, :ForwardingPolicyId
+
+        def initialize(globalacceleratorid=nil, listenerid=nil, forwardingpolicyid=nil)
+          @GlobalAcceleratorId = globalacceleratorid
+          @ListenerId = listenerid
+          @ForwardingPolicyId = forwardingpolicyid
+        end
+
+        def deserialize(params)
+          @GlobalAcceleratorId = params['GlobalAcceleratorId']
+          @ListenerId = params['ListenerId']
+          @ForwardingPolicyId = params['ForwardingPolicyId']
+        end
+      end
+
+      # DeleteForwardingPolicy返回参数结构体
+      class DeleteForwardingPolicyResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 异步任务ID。
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteForwardingRule请求参数结构体
       class DeleteForwardingRuleRequest < TencentCloud::Common::AbstractModel
         # @param GlobalAcceleratorId: 全球加速实例ID。
@@ -874,6 +966,65 @@ module TencentCloud
               endpointgroupconfigurationset_tmp = EndpointGroupConfigurationSet.new
               endpointgroupconfigurationset_tmp.deserialize(i)
               @EndpointGroupConfigurationSet << endpointgroupconfigurationset_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeForwardingPolicy请求参数结构体
+      class DescribeForwardingPolicyRequest < TencentCloud::Common::AbstractModel
+        # @param GlobalAcceleratorId: 全球加速实例ID。
+        # @type GlobalAcceleratorId: String
+        # @param ListenerId: 监听器ID。
+        # @type ListenerId: String
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Limit: 返回数量，默认为20，最大值为100。
+        # @type Limit: Integer
+
+        attr_accessor :GlobalAcceleratorId, :ListenerId, :Offset, :Limit
+
+        def initialize(globalacceleratorid=nil, listenerid=nil, offset=nil, limit=nil)
+          @GlobalAcceleratorId = globalacceleratorid
+          @ListenerId = listenerid
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @GlobalAcceleratorId = params['GlobalAcceleratorId']
+          @ListenerId = params['ListenerId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeForwardingPolicy返回参数结构体
+      class DescribeForwardingPolicyResponse < TencentCloud::Common::AbstractModel
+        # @param ForwardingPolicySet: 符合条件的策略信息。
+        # @type ForwardingPolicySet: Array
+        # @param TotalCount: 符合条件的实例个数。
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ForwardingPolicySet, :TotalCount, :RequestId
+
+        def initialize(forwardingpolicyset=nil, totalcount=nil, requestid=nil)
+          @ForwardingPolicySet = forwardingpolicyset
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ForwardingPolicySet'].nil?
+            @ForwardingPolicySet = []
+            params['ForwardingPolicySet'].each do |i|
+              forwardingpolicyset_tmp = ForwardingPolicySet.new
+              forwardingpolicyset_tmp.deserialize(i)
+              @ForwardingPolicySet << forwardingpolicyset_tmp
             end
           end
           @TotalCount = params['TotalCount']
@@ -1408,6 +1559,38 @@ module TencentCloud
         end
       end
 
+      # 七层转发策略信息
+      class ForwardingPolicySet < TencentCloud::Common::AbstractModel
+        # @param GlobalAcceleratorId: 全球加速实例ID。
+        # @type GlobalAcceleratorId: String
+        # @param ListenerId: 监听器ID。
+        # @type ListenerId: String
+        # @param ForwardingPolicyId: 策略ID。
+        # @type ForwardingPolicyId: String
+        # @param Host: 域名。
+        # @type Host: String
+        # @param DefaultHostFlag: 是否为默认域名。
+        # @type DefaultHostFlag: Boolean
+
+        attr_accessor :GlobalAcceleratorId, :ListenerId, :ForwardingPolicyId, :Host, :DefaultHostFlag
+
+        def initialize(globalacceleratorid=nil, listenerid=nil, forwardingpolicyid=nil, host=nil, defaulthostflag=nil)
+          @GlobalAcceleratorId = globalacceleratorid
+          @ListenerId = listenerid
+          @ForwardingPolicyId = forwardingpolicyid
+          @Host = host
+          @DefaultHostFlag = defaulthostflag
+        end
+
+        def deserialize(params)
+          @GlobalAcceleratorId = params['GlobalAcceleratorId']
+          @ListenerId = params['ListenerId']
+          @ForwardingPolicyId = params['ForwardingPolicyId']
+          @Host = params['Host']
+          @DefaultHostFlag = params['DefaultHostFlag']
+        end
+      end
+
       # 七层转发规则信息
       class ForwardingRuleSet < TencentCloud::Common::AbstractModel
         # @param RuleCondition: 七层转发规则条件信息。
@@ -1840,6 +2023,54 @@ module TencentCloud
       # ModifyEndpointGroup返回参数结构体
       class ModifyEndpointGroupResponse < TencentCloud::Common::AbstractModel
         # @param TaskId: <p>任务ID。</p>
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyForwardingPolicy请求参数结构体
+      class ModifyForwardingPolicyRequest < TencentCloud::Common::AbstractModel
+        # @param GlobalAcceleratorId: 全球加速实例ID。
+        # @type GlobalAcceleratorId: String
+        # @param ListenerId: 监听器ID。
+        # @type ListenerId: String
+        # @param ForwardingPolicyId: 策略ID。
+        # @type ForwardingPolicyId: String
+        # @param Host: 域名。
+        # @type Host: String
+
+        attr_accessor :GlobalAcceleratorId, :ListenerId, :ForwardingPolicyId, :Host
+
+        def initialize(globalacceleratorid=nil, listenerid=nil, forwardingpolicyid=nil, host=nil)
+          @GlobalAcceleratorId = globalacceleratorid
+          @ListenerId = listenerid
+          @ForwardingPolicyId = forwardingpolicyid
+          @Host = host
+        end
+
+        def deserialize(params)
+          @GlobalAcceleratorId = params['GlobalAcceleratorId']
+          @ListenerId = params['ListenerId']
+          @ForwardingPolicyId = params['ForwardingPolicyId']
+          @Host = params['Host']
+        end
+      end
+
+      # ModifyForwardingPolicy返回参数结构体
+      class ModifyForwardingPolicyResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 异步任务ID。
         # @type TaskId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

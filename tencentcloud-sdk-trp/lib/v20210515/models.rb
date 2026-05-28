@@ -3458,7 +3458,7 @@ module TencentCloud
         # @type OtherMarketShare: Float
         # @param LastCycleRatio: <p>上周期口味王分布</p>
         # @type LastCycleRatio: Float
-        # @param LastCycleMarketShare: <p>上周期口味王牌市场份额</p>
+        # @param LastCycleMarketShare: <p>上周期口味王品牌市场份额</p>
         # @type LastCycleMarketShare: Float
         # @param LastCycleOtherMarketShare: <p>上周期其他品牌市场份额</p>
         # @type LastCycleOtherMarketShare: Float

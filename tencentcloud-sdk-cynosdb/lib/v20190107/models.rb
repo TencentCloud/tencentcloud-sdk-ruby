@@ -601,6 +601,113 @@ module TencentCloud
         end
       end
 
+      # AddServerlessRoInstances请求参数结构体
+      class AddServerlessRoInstancesRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: <p>集群Id</p>
+        # @type ClusterId: String
+        # @param MinCpu: <p>ro实例最小规格</p>
+        # @type MinCpu: Float
+        # @param MaxCpu: <p>ro实例最大规格</p>
+        # @type MaxCpu: Float
+        # @param InstanceName: <p>ro实例名称</p>
+        # @type InstanceName: String
+        # @param VpcId: <p>所属VPC网络ID</p>
+        # @type VpcId: String
+        # @param SubnetId: <p>所属子网ID，如果设置了VpcId，则SubnetId必填</p>
+        # @type SubnetId: String
+        # @param Port: <p>新增RO组时使用的Port，取值范围为[0,65535)</p>
+        # @type Port: Integer
+        # @param SecurityGroupIds: <p>安全组ID，新建只读实例时可以指定安全组</p>
+        # @type SecurityGroupIds: Array
+        # @param AutoPause: <p>是否自动暂停</p><p>枚举值：</p><ul><li>yes： 是</li><li>no： 否</li></ul>
+        # @type AutoPause: String
+        # @param AutoPauseDelay: <p>自动暂停时间</p><p>单位：秒</p>
+        # @type AutoPauseDelay: Integer
+        # @param InstanceParams: <p>实例参数</p>
+        # @type InstanceParams: Array
+        # @param ParamTemplateId: <p>参数模板</p>
+        # @type ParamTemplateId: Integer
+        # @param RoCount: <p>新增的只读实例数量</p>
+        # @type RoCount: Integer
+
+        attr_accessor :ClusterId, :MinCpu, :MaxCpu, :InstanceName, :VpcId, :SubnetId, :Port, :SecurityGroupIds, :AutoPause, :AutoPauseDelay, :InstanceParams, :ParamTemplateId, :RoCount
+
+        def initialize(clusterid=nil, mincpu=nil, maxcpu=nil, instancename=nil, vpcid=nil, subnetid=nil, port=nil, securitygroupids=nil, autopause=nil, autopausedelay=nil, instanceparams=nil, paramtemplateid=nil, rocount=nil)
+          @ClusterId = clusterid
+          @MinCpu = mincpu
+          @MaxCpu = maxcpu
+          @InstanceName = instancename
+          @VpcId = vpcid
+          @SubnetId = subnetid
+          @Port = port
+          @SecurityGroupIds = securitygroupids
+          @AutoPause = autopause
+          @AutoPauseDelay = autopausedelay
+          @InstanceParams = instanceparams
+          @ParamTemplateId = paramtemplateid
+          @RoCount = rocount
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @MinCpu = params['MinCpu']
+          @MaxCpu = params['MaxCpu']
+          @InstanceName = params['InstanceName']
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+          @Port = params['Port']
+          @SecurityGroupIds = params['SecurityGroupIds']
+          @AutoPause = params['AutoPause']
+          @AutoPauseDelay = params['AutoPauseDelay']
+          unless params['InstanceParams'].nil?
+            @InstanceParams = []
+            params['InstanceParams'].each do |i|
+              modifyparamitem_tmp = ModifyParamItem.new
+              modifyparamitem_tmp.deserialize(i)
+              @InstanceParams << modifyparamitem_tmp
+            end
+          end
+          @ParamTemplateId = params['ParamTemplateId']
+          @RoCount = params['RoCount']
+        end
+      end
+
+      # AddServerlessRoInstances返回参数结构体
+      class AddServerlessRoInstancesResponse < TencentCloud::Common::AbstractModel
+        # @param TranId: <p>冻结流水，一次开通一个冻结流水</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TranId: String
+        # @param DealNames: <p>后付费订单号</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DealNames: Array
+        # @param ResourceIds: <p>发货资源id列表</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceIds: Array
+        # @param BigDealIds: <p>大订单号</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BigDealIds: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TranId, :DealNames, :ResourceIds, :BigDealIds, :RequestId
+
+        def initialize(tranid=nil, dealnames=nil, resourceids=nil, bigdealids=nil, requestid=nil)
+          @TranId = tranid
+          @DealNames = dealnames
+          @ResourceIds = resourceids
+          @BigDealIds = bigdealids
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TranId = params['TranId']
+          @DealNames = params['DealNames']
+          @ResourceIds = params['ResourceIds']
+          @BigDealIds = params['BigDealIds']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 数据库地址
       class Addr < TencentCloud::Common::AbstractModel
         # @param IP: IP地址
@@ -10775,6 +10882,58 @@ module TencentCloud
         end
       end
 
+      # DescribeSQLExecutionPlan请求参数结构体
+      class DescribeSQLExecutionPlanRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: <p>集群ID</p>
+        # @type ClusterId: String
+        # @param InstanceId: <p>实例ID</p>
+        # @type InstanceId: String
+        # @param TemplateID: <p>SQL模板ID</p>
+        # @type TemplateID: String
+        # @param PlanDetailId: <p>计划详情序列号</p>
+        # @type PlanDetailId: Integer
+
+        attr_accessor :ClusterId, :InstanceId, :TemplateID, :PlanDetailId
+
+        def initialize(clusterid=nil, instanceid=nil, templateid=nil, plandetailid=nil)
+          @ClusterId = clusterid
+          @InstanceId = instanceid
+          @TemplateID = templateid
+          @PlanDetailId = plandetailid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @InstanceId = params['InstanceId']
+          @TemplateID = params['TemplateID']
+          @PlanDetailId = params['PlanDetailId']
+        end
+      end
+
+      # DescribeSQLExecutionPlan返回参数结构体
+      class DescribeSQLExecutionPlanResponse < TencentCloud::Common::AbstractModel
+        # @param PlanDetail: <p>执行计划详情</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PlanDetail: :class:`Tencentcloud::Cynosdb.v20190107.models.ExecutionPlanDetail`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PlanDetail, :RequestId
+
+        def initialize(plandetail=nil, requestid=nil)
+          @PlanDetail = plandetail
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['PlanDetail'].nil?
+            @PlanDetail = ExecutionPlanDetail.new
+            @PlanDetail.deserialize(params['PlanDetail'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeSSLStatus请求参数结构体
       class DescribeSSLStatusRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
@@ -11631,6 +11790,140 @@ module TencentCloud
             @DstRoGroupInfo = RollbackRoGroupInfo.new
             @DstRoGroupInfo.deserialize(params['DstRoGroupInfo'])
           end
+        end
+      end
+
+      # 执行计划详情
+      class ExecutionPlanDetail < TencentCloud::Common::AbstractModel
+        # @param TemplateID: <p>模板ID</p>
+        # @type TemplateID: String
+        # @param Db: <p>数据库名</p>
+        # @type Db: String
+        # @param SQLSample: <p>原始SQL样例</p>
+        # @type SQLSample: String
+        # @param SQLSampleRewritten: <p>改写后SQL样例</p>
+        # @type SQLSampleRewritten: String
+        # @param TablePlanBefore: <p>优化前执行计划- 列表</p>
+        # @type TablePlanBefore: Array
+        # @param TablePlanAfter: <p>优化后执行计划 - 列表</p>
+        # @type TablePlanAfter: Array
+        # @param TreePlanBefore: <p>优化前树形执行计划</p>
+        # @type TreePlanBefore: String
+        # @param TreePlanAfter: <p>优化后树形执行计划</p>
+        # @type TreePlanAfter: String
+        # @param QueryTimeBefore: <p>优化前查询时间</p>
+        # @type QueryTimeBefore: Float
+        # @param QueryTimeAfter: <p>优化后查询时间</p>
+        # @type QueryTimeAfter: Float
+        # @param SQLScanRowsBefore: <p>优化前扫描行数</p>
+        # @type SQLScanRowsBefore: Integer
+        # @param SQLScanRowsAfter: <p>优化后扫描行数</p>
+        # @type SQLScanRowsAfter: Integer
+
+        attr_accessor :TemplateID, :Db, :SQLSample, :SQLSampleRewritten, :TablePlanBefore, :TablePlanAfter, :TreePlanBefore, :TreePlanAfter, :QueryTimeBefore, :QueryTimeAfter, :SQLScanRowsBefore, :SQLScanRowsAfter
+
+        def initialize(templateid=nil, db=nil, sqlsample=nil, sqlsamplerewritten=nil, tableplanbefore=nil, tableplanafter=nil, treeplanbefore=nil, treeplanafter=nil, querytimebefore=nil, querytimeafter=nil, sqlscanrowsbefore=nil, sqlscanrowsafter=nil)
+          @TemplateID = templateid
+          @Db = db
+          @SQLSample = sqlsample
+          @SQLSampleRewritten = sqlsamplerewritten
+          @TablePlanBefore = tableplanbefore
+          @TablePlanAfter = tableplanafter
+          @TreePlanBefore = treeplanbefore
+          @TreePlanAfter = treeplanafter
+          @QueryTimeBefore = querytimebefore
+          @QueryTimeAfter = querytimeafter
+          @SQLScanRowsBefore = sqlscanrowsbefore
+          @SQLScanRowsAfter = sqlscanrowsafter
+        end
+
+        def deserialize(params)
+          @TemplateID = params['TemplateID']
+          @Db = params['Db']
+          @SQLSample = params['SQLSample']
+          @SQLSampleRewritten = params['SQLSampleRewritten']
+          unless params['TablePlanBefore'].nil?
+            @TablePlanBefore = []
+            params['TablePlanBefore'].each do |i|
+              explainrow_tmp = ExplainRow.new
+              explainrow_tmp.deserialize(i)
+              @TablePlanBefore << explainrow_tmp
+            end
+          end
+          unless params['TablePlanAfter'].nil?
+            @TablePlanAfter = []
+            params['TablePlanAfter'].each do |i|
+              explainrow_tmp = ExplainRow.new
+              explainrow_tmp.deserialize(i)
+              @TablePlanAfter << explainrow_tmp
+            end
+          end
+          @TreePlanBefore = params['TreePlanBefore']
+          @TreePlanAfter = params['TreePlanAfter']
+          @QueryTimeBefore = params['QueryTimeBefore']
+          @QueryTimeAfter = params['QueryTimeAfter']
+          @SQLScanRowsBefore = params['SQLScanRowsBefore']
+          @SQLScanRowsAfter = params['SQLScanRowsAfter']
+        end
+      end
+
+      # 执行计划列表
+      class ExplainRow < TencentCloud::Common::AbstractModel
+        # @param Id: <p>查询的序列号</p>
+        # @type Id: Integer
+        # @param SelectType: <p>查询的类型，常见值：SIMPLE（简单查询，不含子查询或 UNION）、PRIMARY（最外层查询）、SUBQUERY（子查询中的第一个 SELECT）、DERIVED（派生表/FROM 子句中的子查询）、UNION（UNION 中第二个及之后的 SELECT）、UNION RESULT（UNION 的结果集）。</p>
+        # @type SelectType: String
+        # @param Table: <p>数据表名</p>
+        # @type Table: String
+        # @param Partitions: <p>查询匹配的分区</p>
+        # @type Partitions: String
+        # @param Type: <p>访问类型（非常重要，衡量查询效率的关键指标），从优到差排列：system &gt; const &gt; eq_ref &gt; ref &gt; fulltext &gt; ref_or_null &gt; index_merge &gt; unique_subquery &gt; index_subquery &gt; range &gt; index &gt; ALL。常见值说明： • system：表只有一行记录（系统表） • const：通过主键或唯一索引匹配一行，常见于 WHERE pk = 1 • eq_ref：连接时使用主键或唯一索引，每个索引值只匹配一行 • ref：使用非唯一索引查找，可能匹配多行 • range：索引范围扫描，如 BETWEEN、&gt;、&lt;、IN • index：全索引扫描（遍历整棵索引树） • ALL：全表扫描（最差，需优化）</p>
+        # @type Type: String
+        # @param PossibleKeys: <p>查询中可能使用到的索引。为 NULL 表示没有可用索引。</p>
+        # @type PossibleKeys: String
+        # @param Key: <p>实际使用的索引。为 NULL 表示未使用任何索引。</p>
+        # @type Key: String
+        # @param KeyLen: <p>实际使用的索引长度（字节数）。可用来判断联合索引中实际使用了哪几个列。值越短说明使用的索引列越少。</p>
+        # @type KeyLen: String
+        # @param Ref: <p>显示哪些列或常量与 key 列中的索引进行比较。常见值：const（常量）、某个列名、func（函数结果）。</p>
+        # @type Ref: String
+        # @param Rows: <p>预估要扫描的行数</p>
+        # @type Rows: Integer
+        # @param Filtered: <p>表示经过表条件过滤后，剩余行数占 rows 的百分比估算。100% 表示没有额外过滤，值越高越好。</p>
+        # @type Filtered: Float
+        # @param Extra: <p>附加信息（非常重要），常见值： • Using index：覆盖索引，无需回表（好） • Using where：在存储引擎返回行后再用 WHERE 过滤 • Using temporary：使用了临时表（常见于 GROUP BY/ORDER BY，需优化） • Using filesort：使用了文件排序而非索引排序（需优化） • Using index condition：使用了索引下推（ICP）</p>
+        # @type Extra: String
+
+        attr_accessor :Id, :SelectType, :Table, :Partitions, :Type, :PossibleKeys, :Key, :KeyLen, :Ref, :Rows, :Filtered, :Extra
+
+        def initialize(id=nil, selecttype=nil, table=nil, partitions=nil, type=nil, possiblekeys=nil, key=nil, keylen=nil, ref=nil, rows=nil, filtered=nil, extra=nil)
+          @Id = id
+          @SelectType = selecttype
+          @Table = table
+          @Partitions = partitions
+          @Type = type
+          @PossibleKeys = possiblekeys
+          @Key = key
+          @KeyLen = keylen
+          @Ref = ref
+          @Rows = rows
+          @Filtered = filtered
+          @Extra = extra
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @SelectType = params['SelectType']
+          @Table = params['Table']
+          @Partitions = params['Partitions']
+          @Type = params['Type']
+          @PossibleKeys = params['PossibleKeys']
+          @Key = params['Key']
+          @KeyLen = params['KeyLen']
+          @Ref = params['Ref']
+          @Rows = params['Rows']
+          @Filtered = params['Filtered']
+          @Extra = params['Extra']
         end
       end
 

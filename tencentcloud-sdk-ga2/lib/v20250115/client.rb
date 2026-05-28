@@ -77,6 +77,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建七层转发策略
+
+        # @param request: Request instance for CreateForwardingPolicy.
+        # @type request: :class:`Tencentcloud::ga2::V20250115::CreateForwardingPolicyRequest`
+        # @rtype: :class:`Tencentcloud::ga2::V20250115::CreateForwardingPolicyResponse`
+        def CreateForwardingPolicy(request)
+          body = send_request('CreateForwardingPolicy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateForwardingPolicyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建七层转发规则
 
         # @param request: Request instance for CreateForwardingRule.
@@ -183,6 +207,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteEndpointGroupsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除七层转发策略
+
+        # @param request: Request instance for DeleteForwardingPolicy.
+        # @type request: :class:`Tencentcloud::ga2::V20250115::DeleteForwardingPolicyRequest`
+        # @rtype: :class:`Tencentcloud::ga2::V20250115::DeleteForwardingPolicyResponse`
+        def DeleteForwardingPolicy(request)
+          body = send_request('DeleteForwardingPolicy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteForwardingPolicyResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -365,6 +413,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查看七层转发策略
+
+        # @param request: Request instance for DescribeForwardingPolicy.
+        # @type request: :class:`Tencentcloud::ga2::V20250115::DescribeForwardingPolicyRequest`
+        # @rtype: :class:`Tencentcloud::ga2::V20250115::DescribeForwardingPolicyResponse`
+        def DescribeForwardingPolicy(request)
+          body = send_request('DescribeForwardingPolicy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeForwardingPolicyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查看七层转发规则
 
         # @param request: Request instance for DescribeForwardingRule.
@@ -495,6 +567,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyEndpointGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改七层转发策略
+
+        # @param request: Request instance for ModifyForwardingPolicy.
+        # @type request: :class:`Tencentcloud::ga2::V20250115::ModifyForwardingPolicyRequest`
+        # @rtype: :class:`Tencentcloud::ga2::V20250115::ModifyForwardingPolicyResponse`
+        def ModifyForwardingPolicy(request)
+          body = send_request('ModifyForwardingPolicy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyForwardingPolicyResponse.new
             model.deserialize(response['Response'])
             model
           else

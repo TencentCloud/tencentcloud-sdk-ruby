@@ -2405,7 +2405,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查看防护对象列表
+        # 查看CLB/TSE防护对象列表
 
         # @param request: Request instance for DescribeObjects.
         # @type request: :class:`Tencentcloud::waf::V20180125::DescribeObjectsRequest`

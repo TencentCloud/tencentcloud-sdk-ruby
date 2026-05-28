@@ -9532,49 +9532,51 @@ module TencentCloud
 
       # DescribeIpAccessControl请求参数结构体
       class DescribeIpAccessControlRequest < TencentCloud::Common::AbstractModel
-        # @param Domain: 域名，当操作对象为全局规则时，Domain参数应填写为"global"
+        # @param Domain: <p>域名，当操作对象为全局规则时，Domain参数应填写为&quot;global&quot;</p>
         # @type Domain: String
-        # @param Count: 计数标识
+        # @param Count: <p>计数标识</p>
         # @type Count: Integer
-        # @param ActionType: 动作，40表示查询白名单，42表示查询黑名单
+        # @param ActionType: <p>动作，40表示查询白名单，42表示查询黑名单</p>
         # @type ActionType: Integer
-        # @param VtsMin: 最小有效时间的时间戳
+        # @param VtsMin: <p>最小有效时间的时间戳</p>
         # @type VtsMin: Integer
-        # @param VtsMax: 最大有效时间的时间戳
+        # @param VtsMax: <p>最大有效时间的时间戳</p>
         # @type VtsMax: Integer
-        # @param CtsMin: 最小创建时间的时间戳
+        # @param CtsMin: <p>最小创建时间的时间戳</p>
         # @type CtsMin: Integer
-        # @param CtsMax: 最大创建时间的时间戳
+        # @param CtsMax: <p>最大创建时间的时间戳</p>
         # @type CtsMax: Integer
-        # @param OffSet: 分页偏移量，取Limit整数倍。最小值为0，最大值= Total/Limit向上取整
+        # @param OffSet: <p>分页偏移量，取Limit整数倍。最小值为0，最大值= Total/Limit向上取整</p>
         # @type OffSet: Integer
-        # @param Limit: 每页返回的数量，默认为20
+        # @param Limit: <p>每页返回的数量，默认为20</p>
         # @type Limit: Integer
-        # @param Source: 用于按数据来源过滤黑白名单记录，非必填（默认为空字符串，表示不过滤/查询全部）。 "" (空字符串)	，不按来源过滤，返回所有记录（默认值） custom（自定义），用户在控制台手动添加的黑白名单规则 cc（CC 防护	），由 CC 防护模块自动添加的 IP 黑白名单 bot（Bot 防护），由 Bot 防护模块自动添加的 IP 黑白名单 batch（批量域名防护），批量域名维度添加的黑白名单规则 batch-group（防护对象组），防护对象组维度添加的黑白名单规则
+        # @param Source: <p>用于按数据来源过滤黑白名单记录，非必填（默认为空字符串，表示不过滤/查询全部）。 &quot;&quot; (空字符串)    ，不按来源过滤，返回所有记录（默认值） custom（自定义），用户在控制台手动添加的黑白名单规则 cc（CC 防护    ），由 CC 防护模块自动添加的 IP 黑白名单 bot（Bot 防护），由 Bot 防护模块自动添加的 IP 黑白名单 batch（批量域名防护），批量域名维度添加的黑白名单规则 batch-group（防护对象组），防护对象组维度添加的黑白名单规则</p>
         # @type Source: String
-        # @param Sort: 排序参数
+        # @param Sort: <p>排序参数</p>
         # @type Sort: String
-        # @param Ip: IP
+        # @param Ip: <p>IP</p>
         # @type Ip: String
-        # @param ValidStatus: 生效状态，1表示生效中，2表示过期，0表示全部
+        # @param ValidStatus: <p>生效状态，1表示生效中，2表示过期，0表示全部</p>
         # @type ValidStatus: Integer
-        # @param ValidTimeStampMin: 最小有效时间的时间戳
+        # @param ValidTimeStampMin: <p>最小有效时间的时间戳</p>
         # @type ValidTimeStampMin: String
-        # @param ValidTimeStampMax: 最大有效时间的时间戳
+        # @param ValidTimeStampMax: <p>最大有效时间的时间戳</p>
         # @type ValidTimeStampMax: String
-        # @param RuleId: 规则ID
+        # @param RuleId: <p>规则ID</p>
         # @type RuleId: Integer
-        # @param TimerType: 0表示全部，1表示永久生效，2表示定时生效，3表示周粒度生效，4表示月粒度生效
+        # @param TimerType: <p>0表示全部，1表示永久生效，2表示定时生效，3表示周粒度生效，4表示月粒度生效</p>
         # @type TimerType: Integer
+        # @param IpList: <p>查询的ip列表</p>
+        # @type IpList: Array
 
-        attr_accessor :Domain, :Count, :ActionType, :VtsMin, :VtsMax, :CtsMin, :CtsMax, :OffSet, :Limit, :Source, :Sort, :Ip, :ValidStatus, :ValidTimeStampMin, :ValidTimeStampMax, :RuleId, :TimerType
+        attr_accessor :Domain, :Count, :ActionType, :VtsMin, :VtsMax, :CtsMin, :CtsMax, :OffSet, :Limit, :Source, :Sort, :Ip, :ValidStatus, :ValidTimeStampMin, :ValidTimeStampMax, :RuleId, :TimerType, :IpList
         extend Gem::Deprecate
         deprecate :VtsMin, :none, 2026, 5
         deprecate :VtsMin=, :none, 2026, 5
         deprecate :VtsMax, :none, 2026, 5
         deprecate :VtsMax=, :none, 2026, 5
 
-        def initialize(domain=nil, count=nil, actiontype=nil, vtsmin=nil, vtsmax=nil, ctsmin=nil, ctsmax=nil, offset=nil, limit=nil, source=nil, sort=nil, ip=nil, validstatus=nil, validtimestampmin=nil, validtimestampmax=nil, ruleid=nil, timertype=nil)
+        def initialize(domain=nil, count=nil, actiontype=nil, vtsmin=nil, vtsmax=nil, ctsmin=nil, ctsmax=nil, offset=nil, limit=nil, source=nil, sort=nil, ip=nil, validstatus=nil, validtimestampmin=nil, validtimestampmax=nil, ruleid=nil, timertype=nil, iplist=nil)
           @Domain = domain
           @Count = count
           @ActionType = actiontype
@@ -9592,6 +9594,7 @@ module TencentCloud
           @ValidTimeStampMax = validtimestampmax
           @RuleId = ruleid
           @TimerType = timertype
+          @IpList = iplist
         end
 
         def deserialize(params)
@@ -9612,14 +9615,15 @@ module TencentCloud
           @ValidTimeStampMax = params['ValidTimeStampMax']
           @RuleId = params['RuleId']
           @TimerType = params['TimerType']
+          @IpList = params['IpList']
         end
       end
 
       # DescribeIpAccessControl返回参数结构体
       class DescribeIpAccessControlResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 输出
+        # @param Data: <p>输出</p>
         # @type Data: :class:`Tencentcloud::Waf.v20180125.models.IpAccessControlData`
-        # @param UsedTotal: 已经使用的IP黑白名单的IP总数
+        # @param UsedTotal: <p>已经使用的IP黑白名单的IP总数</p>
         # @type UsedTotal: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

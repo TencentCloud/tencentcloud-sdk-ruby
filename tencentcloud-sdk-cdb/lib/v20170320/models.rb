@@ -7496,10 +7496,12 @@ module TencentCloud
         # @type NodeDistribution: :class:`Tencentcloud::Cdb.v20170320.models.NodeDistribution`
         # @param ClusterTopology: <p>云盘版的节点拓扑配置。Nodeld 信息可通过 <a href="https://cloud.tencent.com/document/api/236/105116">DescribeClusterInfo</a> 接口获取。</p>
         # @type ClusterTopology: :class:`Tencentcloud::Cdb.v20170320.models.ClusterTopology`
+        # @param DstFourthZone: <p>目标实例备机3可用区 ID。可使用 <a href="https://cloud.tencent.com/document/product/236/80281">DescribeCdbZoneConfig</a> 获取可用区 ID。</p>
+        # @type DstFourthZone: Integer
 
-        attr_accessor :InstanceId, :DstCpu, :DstMemory, :DstDisk, :DstVersion, :DstDeployMode, :DstProtectMode, :DstSlaveZone, :DstBackupZone, :DstCdbType, :DstZoneId, :NodeDistribution, :ClusterTopology
+        attr_accessor :InstanceId, :DstCpu, :DstMemory, :DstDisk, :DstVersion, :DstDeployMode, :DstProtectMode, :DstSlaveZone, :DstBackupZone, :DstCdbType, :DstZoneId, :NodeDistribution, :ClusterTopology, :DstFourthZone
 
-        def initialize(instanceid=nil, dstcpu=nil, dstmemory=nil, dstdisk=nil, dstversion=nil, dstdeploymode=nil, dstprotectmode=nil, dstslavezone=nil, dstbackupzone=nil, dstcdbtype=nil, dstzoneid=nil, nodedistribution=nil, clustertopology=nil)
+        def initialize(instanceid=nil, dstcpu=nil, dstmemory=nil, dstdisk=nil, dstversion=nil, dstdeploymode=nil, dstprotectmode=nil, dstslavezone=nil, dstbackupzone=nil, dstcdbtype=nil, dstzoneid=nil, nodedistribution=nil, clustertopology=nil, dstfourthzone=nil)
           @InstanceId = instanceid
           @DstCpu = dstcpu
           @DstMemory = dstmemory
@@ -7513,6 +7515,7 @@ module TencentCloud
           @DstZoneId = dstzoneid
           @NodeDistribution = nodedistribution
           @ClusterTopology = clustertopology
+          @DstFourthZone = dstfourthzone
         end
 
         def deserialize(params)
@@ -7535,6 +7538,7 @@ module TencentCloud
             @ClusterTopology = ClusterTopology.new
             @ClusterTopology.deserialize(params['ClusterTopology'])
           end
+          @DstFourthZone = params['DstFourthZone']
         end
       end
 
@@ -14948,10 +14952,12 @@ module TencentCloud
         # @type CheckFastUpgradeReboot: Integer
         # @param DataCheckSensitive: <p>数据校验敏感度，非极速变配时使用此参数，敏感度根据当前实例规格计算迁移过程中的数据对比使用的cpu资源<br>对应的选项为: &quot;high&quot;、&quot;normal&quot;、&quot;low&quot;，默认为空<br>参数详解，：<br>&quot;high&quot;: 对应控制台中的高，数据库负载过高不建议使用<br>&quot;normal&quot;：对应控制台中的标准<br>&quot;low&quot;：对应控制台中的低</p>
         # @type DataCheckSensitive: String
+        # @param FourthZone: <p>备库 3 的可用区信息，默认为空，购买四节点主实例时可指定该参数。</p>
+        # @type FourthZone: String
 
-        attr_accessor :InstanceId, :Memory, :Volume, :ProtectMode, :DeployMode, :SlaveZone, :EngineVersion, :WaitSwitch, :BackupZone, :InstanceRole, :DeviceType, :Cpu, :FastUpgrade, :MaxDelayTime, :CrossCluster, :ZoneId, :RoTransType, :ClusterTopology, :CheckFastUpgradeReboot, :DataCheckSensitive
+        attr_accessor :InstanceId, :Memory, :Volume, :ProtectMode, :DeployMode, :SlaveZone, :EngineVersion, :WaitSwitch, :BackupZone, :InstanceRole, :DeviceType, :Cpu, :FastUpgrade, :MaxDelayTime, :CrossCluster, :ZoneId, :RoTransType, :ClusterTopology, :CheckFastUpgradeReboot, :DataCheckSensitive, :FourthZone
 
-        def initialize(instanceid=nil, memory=nil, volume=nil, protectmode=nil, deploymode=nil, slavezone=nil, engineversion=nil, waitswitch=nil, backupzone=nil, instancerole=nil, devicetype=nil, cpu=nil, fastupgrade=nil, maxdelaytime=nil, crosscluster=nil, zoneid=nil, rotranstype=nil, clustertopology=nil, checkfastupgradereboot=nil, datachecksensitive=nil)
+        def initialize(instanceid=nil, memory=nil, volume=nil, protectmode=nil, deploymode=nil, slavezone=nil, engineversion=nil, waitswitch=nil, backupzone=nil, instancerole=nil, devicetype=nil, cpu=nil, fastupgrade=nil, maxdelaytime=nil, crosscluster=nil, zoneid=nil, rotranstype=nil, clustertopology=nil, checkfastupgradereboot=nil, datachecksensitive=nil, fourthzone=nil)
           @InstanceId = instanceid
           @Memory = memory
           @Volume = volume
@@ -14972,6 +14978,7 @@ module TencentCloud
           @ClusterTopology = clustertopology
           @CheckFastUpgradeReboot = checkfastupgradereboot
           @DataCheckSensitive = datachecksensitive
+          @FourthZone = fourthzone
         end
 
         def deserialize(params)
@@ -14998,6 +15005,7 @@ module TencentCloud
           end
           @CheckFastUpgradeReboot = params['CheckFastUpgradeReboot']
           @DataCheckSensitive = params['DataCheckSensitive']
+          @FourthZone = params['FourthZone']
         end
       end
 

@@ -173,6 +173,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 添加serverless集群只读实例
+
+        # @param request: Request instance for AddServerlessRoInstances.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::AddServerlessRoInstancesRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::AddServerlessRoInstancesResponse`
+        def AddServerlessRoInstances(request)
+          body = send_request('AddServerlessRoInstances', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AddServerlessRoInstancesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（AssociateSecurityGroups）用于安全组批量绑定云资源。
 
         # @param request: Request instance for AssociateSecurityGroups.
@@ -2847,6 +2871,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeRollbackTimeRangeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口(DescribeSQLExecutionPlan)用于查询执行计划详情
+
+        # @param request: Request instance for DescribeSQLExecutionPlan.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::DescribeSQLExecutionPlanRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::DescribeSQLExecutionPlanResponse`
+        def DescribeSQLExecutionPlan(request)
+          body = send_request('DescribeSQLExecutionPlan', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSQLExecutionPlanResponse.new
             model.deserialize(response['Response'])
             model
           else
