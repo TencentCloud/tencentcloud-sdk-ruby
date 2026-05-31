@@ -1035,33 +1035,36 @@ module TencentCloud
 
       # 展示apm业务系统关联prometheus关系返回体
       class ApmPrometheusRules < TencentCloud::Common::AbstractModel
-        # @param Id: 指标匹配规则ID
+        # @param Id: <p>指标匹配规则ID</p>
         # @type Id: Integer
-        # @param Name: 指标匹配规则名
+        # @param Name: <p>指标匹配规则名</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
-        # @param ServiceName: 规则生效的应用。生效于全部应用就传空字符串
+        # @param ServiceName: <p>规则生效的应用。生效于全部应用就传空字符串</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceName: String
-        # @param Status: 指标匹配规则状态：1(启用)、2（不启用）
+        # @param Status: <p>指标匹配规则状态：1(启用)、2（不启用）</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
-        # @param MetricNameRule: 指标匹配规则
+        # @param MetricNameRule: <p>指标匹配规则</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MetricNameRule: String
-        # @param MetricMatchType: 匹配类型：0精准匹配，1前缀匹配，2后缀匹配
+        # @param MetricMatchType: <p>匹配类型：0精准匹配，1前缀匹配，2后缀匹配</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MetricMatchType: Integer
+        # @param AppendResourceAttributes: <p>是否追加资源属性</p>
+        # @type AppendResourceAttributes: Boolean
 
-        attr_accessor :Id, :Name, :ServiceName, :Status, :MetricNameRule, :MetricMatchType
+        attr_accessor :Id, :Name, :ServiceName, :Status, :MetricNameRule, :MetricMatchType, :AppendResourceAttributes
 
-        def initialize(id=nil, name=nil, servicename=nil, status=nil, metricnamerule=nil, metricmatchtype=nil)
+        def initialize(id=nil, name=nil, servicename=nil, status=nil, metricnamerule=nil, metricmatchtype=nil, appendresourceattributes=nil)
           @Id = id
           @Name = name
           @ServiceName = servicename
           @Status = status
           @MetricNameRule = metricnamerule
           @MetricMatchType = metricmatchtype
+          @AppendResourceAttributes = appendresourceattributes
         end
 
         def deserialize(params)
@@ -1071,6 +1074,7 @@ module TencentCloud
           @Status = params['Status']
           @MetricNameRule = params['MetricNameRule']
           @MetricMatchType = params['MetricMatchType']
+          @AppendResourceAttributes = params['AppendResourceAttributes']
         end
       end
 
@@ -1381,25 +1385,28 @@ module TencentCloud
 
       # CreateApmPrometheusRule请求参数结构体
       class CreateApmPrometheusRuleRequest < TencentCloud::Common::AbstractModel
-        # @param Name: 指标匹配规则名
+        # @param Name: <p>指标匹配规则名</p>
         # @type Name: String
-        # @param ServiceName: 规则生效的应用。作用全部应用就传空字符串
+        # @param ServiceName: <p>规则生效的应用。作用全部应用就传空字符串</p>
         # @type ServiceName: String
-        # @param MetricMatchType: 指标匹配类型：0精准匹配，1前缀匹配，2后缀匹配
+        # @param MetricMatchType: <p>指标匹配类型：0精准匹配，1前缀匹配，2后缀匹配</p>
         # @type MetricMatchType: Integer
-        # @param MetricNameRule: 客户定义的命中指标名规则。
+        # @param MetricNameRule: <p>客户定义的命中指标名规则。</p>
         # @type MetricNameRule: String
-        # @param InstanceId: 业务系统ID
+        # @param InstanceId: <p>业务系统ID</p>
         # @type InstanceId: String
+        # @param AppendResourceAttributes: <p>是否追加资源属性</p>
+        # @type AppendResourceAttributes: Boolean
 
-        attr_accessor :Name, :ServiceName, :MetricMatchType, :MetricNameRule, :InstanceId
+        attr_accessor :Name, :ServiceName, :MetricMatchType, :MetricNameRule, :InstanceId, :AppendResourceAttributes
 
-        def initialize(name=nil, servicename=nil, metricmatchtype=nil, metricnamerule=nil, instanceid=nil)
+        def initialize(name=nil, servicename=nil, metricmatchtype=nil, metricnamerule=nil, instanceid=nil, appendresourceattributes=nil)
           @Name = name
           @ServiceName = servicename
           @MetricMatchType = metricmatchtype
           @MetricNameRule = metricnamerule
           @InstanceId = instanceid
+          @AppendResourceAttributes = appendresourceattributes
         end
 
         def deserialize(params)
@@ -1408,12 +1415,13 @@ module TencentCloud
           @MetricMatchType = params['MetricMatchType']
           @MetricNameRule = params['MetricNameRule']
           @InstanceId = params['InstanceId']
+          @AppendResourceAttributes = params['AppendResourceAttributes']
         end
       end
 
       # CreateApmPrometheusRule返回参数结构体
       class CreateApmPrometheusRuleResponse < TencentCloud::Common::AbstractModel
-        # @param RuleId: 指标匹配规则的ID
+        # @param RuleId: <p>指标匹配规则的ID</p>
         # @type RuleId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3811,24 +3819,26 @@ module TencentCloud
 
       # ModifyApmPrometheusRule请求参数结构体
       class ModifyApmPrometheusRuleRequest < TencentCloud::Common::AbstractModel
-        # @param Id: 规则ID
+        # @param Id: <p>规则ID</p>
         # @type Id: Integer
-        # @param InstanceId: 业务系统ID
+        # @param InstanceId: <p>业务系统ID</p>
         # @type InstanceId: String
-        # @param Name: 所要修改的规则名
+        # @param Name: <p>所要修改的规则名</p>
         # @type Name: String
-        # @param Status: 规则状态：1(启用)、2（不启用）、3（删除）
+        # @param Status: <p>规则状态：1(启用)、2（不启用）、3（删除）</p>
         # @type Status: Integer
-        # @param ServiceName: 规则生效的应用。生效于全部应用就传空（这个如果不修改也要传旧的规则）
+        # @param ServiceName: <p>规则生效的应用。生效于全部应用就传空（这个如果不修改也要传旧的规则）</p>
         # @type ServiceName: String
-        # @param MetricMatchType: 匹配类型：0精准匹配，1前缀匹配，2后缀匹配（这个如果不修改也要传旧的规则）
+        # @param MetricMatchType: <p>匹配类型：0精准匹配，1前缀匹配，2后缀匹配（这个如果不修改也要传旧的规则）</p>
         # @type MetricMatchType: Integer
-        # @param MetricNameRule: 客户定义的命中指标名规则。
+        # @param MetricNameRule: <p>客户定义的命中指标名规则。</p>
         # @type MetricNameRule: String
+        # @param AppendResourceAttributes: <p>是否追加资源属性</p>
+        # @type AppendResourceAttributes: Boolean
 
-        attr_accessor :Id, :InstanceId, :Name, :Status, :ServiceName, :MetricMatchType, :MetricNameRule
+        attr_accessor :Id, :InstanceId, :Name, :Status, :ServiceName, :MetricMatchType, :MetricNameRule, :AppendResourceAttributes
 
-        def initialize(id=nil, instanceid=nil, name=nil, status=nil, servicename=nil, metricmatchtype=nil, metricnamerule=nil)
+        def initialize(id=nil, instanceid=nil, name=nil, status=nil, servicename=nil, metricmatchtype=nil, metricnamerule=nil, appendresourceattributes=nil)
           @Id = id
           @InstanceId = instanceid
           @Name = name
@@ -3836,6 +3846,7 @@ module TencentCloud
           @ServiceName = servicename
           @MetricMatchType = metricmatchtype
           @MetricNameRule = metricnamerule
+          @AppendResourceAttributes = appendresourceattributes
         end
 
         def deserialize(params)
@@ -3846,6 +3857,7 @@ module TencentCloud
           @ServiceName = params['ServiceName']
           @MetricMatchType = params['MetricMatchType']
           @MetricNameRule = params['MetricNameRule']
+          @AppendResourceAttributes = params['AppendResourceAttributes']
         end
       end
 

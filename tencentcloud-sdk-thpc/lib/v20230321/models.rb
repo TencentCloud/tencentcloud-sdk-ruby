@@ -258,8 +258,8 @@ module TencentCloud
 
         attr_accessor :Commands, :StorageMounts, :EnvVars, :Docker, :OutputRedirect, :JobType, :TaskType
         extend Gem::Deprecate
-        deprecate :JobType, :none, 2026, 5
-        deprecate :JobType=, :none, 2026, 5
+        deprecate :JobType, :none, 2026, 6
+        deprecate :JobType=, :none, 2026, 6
 
         def initialize(commands=nil, storagemounts=nil, envvars=nil, docker=nil, outputredirect=nil, jobtype=nil, tasktype=nil)
           @Commands = commands
@@ -731,6 +731,30 @@ module TencentCloud
           @LocalPath = params['LocalPath']
           @RemotePath = params['RemotePath']
           @MountParamsOption = params['MountParamsOption']
+        end
+      end
+
+      # COS存储选项概览信息。
+      class CosOptionOverview < TencentCloud::Common::AbstractModel
+        # @param LocalPath: <p>文件系统本地挂载路径。</p>
+        # @type LocalPath: String
+        # @param RemotePath: <p>COS桶地址。</p>
+        # @type RemotePath: String
+        # @param MountOption: <p>COS挂载参数</p>
+        # @type MountOption: String
+
+        attr_accessor :LocalPath, :RemotePath, :MountOption
+
+        def initialize(localpath=nil, remotepath=nil, mountoption=nil)
+          @LocalPath = localpath
+          @RemotePath = remotepath
+          @MountOption = mountoption
+        end
+
+        def deserialize(params)
+          @LocalPath = params['LocalPath']
+          @RemotePath = params['RemotePath']
+          @MountOption = params['MountOption']
         end
       end
 
@@ -2111,7 +2135,7 @@ module TencentCloud
       class GooseFSOption < TencentCloud::Common::AbstractModel
         # @param LocalPath: <p>文件系统本地挂载路径。</p>
         # @type LocalPath: String
-        # @param RemotePath: <p>文件系统远程挂载路径。</p>
+        # @param RemotePath: <p>文件系统远程挂载路径; 远端路径为GooseFS控制台看到的命名空间的url;命名空间文档参考https://cloud.tencent.com/document/product/1424/117877</p>
         # @type RemotePath: String
         # @param Masters: <p>文件系统master的ip和端口，此参数和FileSystemId互斥。</p>
         # @type Masters: Array
@@ -3594,19 +3618,22 @@ module TencentCloud
 
       # 集群存储选项概览信息。
       class StorageOptionOverview < TencentCloud::Common::AbstractModel
-        # @param CFSOptions: CFS存储选项概览信息列表。
+        # @param CFSOptions: <p>CFS存储选项概览信息列表。</p>
         # @type CFSOptions: Array
-        # @param GooseFSOptions: GooseFS存储选项概览信息列表。
+        # @param GooseFSOptions: <p>GooseFS存储选项概览信息列表。</p>
         # @type GooseFSOptions: Array
-        # @param GooseFSxOptions: GooseFSx存储选项概览信息列表。
+        # @param GooseFSxOptions: <p>GooseFSx存储选项概览信息列表。</p>
         # @type GooseFSxOptions: Array
+        # @param CosOptions: <p>COS存储选项概览信息列表。</p>
+        # @type CosOptions: Array
 
-        attr_accessor :CFSOptions, :GooseFSOptions, :GooseFSxOptions
+        attr_accessor :CFSOptions, :GooseFSOptions, :GooseFSxOptions, :CosOptions
 
-        def initialize(cfsoptions=nil, goosefsoptions=nil, goosefsxoptions=nil)
+        def initialize(cfsoptions=nil, goosefsoptions=nil, goosefsxoptions=nil, cosoptions=nil)
           @CFSOptions = cfsoptions
           @GooseFSOptions = goosefsoptions
           @GooseFSxOptions = goosefsxoptions
+          @CosOptions = cosoptions
         end
 
         def deserialize(params)
@@ -3632,6 +3659,14 @@ module TencentCloud
               goosefsxoptionoverview_tmp = GooseFSxOptionOverview.new
               goosefsxoptionoverview_tmp.deserialize(i)
               @GooseFSxOptions << goosefsxoptionoverview_tmp
+            end
+          end
+          unless params['CosOptions'].nil?
+            @CosOptions = []
+            params['CosOptions'].each do |i|
+              cosoptionoverview_tmp = CosOptionOverview.new
+              cosoptionoverview_tmp.deserialize(i)
+              @CosOptions << cosoptionoverview_tmp
             end
           end
         end

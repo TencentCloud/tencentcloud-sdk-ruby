@@ -16697,24 +16697,26 @@ module TencentCloud
 
       # ModifyClusterVirtualNodePool请求参数结构体
       class ModifyClusterVirtualNodePoolRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群ID，通过DescribeClusters接口获取
+        # @param ClusterId: <p>集群ID，通过DescribeClusters接口获取</p>
         # @type ClusterId: String
-        # @param NodePoolId: 节点池ID，通过DescribeNodePools接口获取
+        # @param NodePoolId: <p>节点池ID，通过DescribeNodePools接口获取</p>
         # @type NodePoolId: String
-        # @param Name: 节点池名称，必须修改至少一个参数
+        # @param Name: <p>节点池名称，必须修改至少一个参数</p>
         # @type Name: String
-        # @param SecurityGroupIds: 安全组ID列表，必须修改至少一个参数
+        # @param SecurityGroupIds: <p>安全组ID列表，必须修改至少一个参数</p>
         # @type SecurityGroupIds: Array
-        # @param Labels: 虚拟节点label，必须修改至少一个参数
+        # @param Labels: <p>虚拟节点label，必须修改至少一个参数</p>
         # @type Labels: Array
-        # @param Taints: 虚拟节点taint，必须修改至少一个参数
+        # @param Taints: <p>虚拟节点taint，必须修改至少一个参数</p>
         # @type Taints: Array
-        # @param DeletionProtection: 删除保护开关，必须修改至少一个参数
+        # @param DeletionProtection: <p>删除保护开关，必须修改至少一个参数</p>
         # @type DeletionProtection: Boolean
+        # @param SubnetAllocationPolicy: <p>子网分配策略</p>
+        # @type SubnetAllocationPolicy: :class:`Tencentcloud::Tke.v20180525.models.SubnetAllocationPolicy`
 
-        attr_accessor :ClusterId, :NodePoolId, :Name, :SecurityGroupIds, :Labels, :Taints, :DeletionProtection
+        attr_accessor :ClusterId, :NodePoolId, :Name, :SecurityGroupIds, :Labels, :Taints, :DeletionProtection, :SubnetAllocationPolicy
 
-        def initialize(clusterid=nil, nodepoolid=nil, name=nil, securitygroupids=nil, labels=nil, taints=nil, deletionprotection=nil)
+        def initialize(clusterid=nil, nodepoolid=nil, name=nil, securitygroupids=nil, labels=nil, taints=nil, deletionprotection=nil, subnetallocationpolicy=nil)
           @ClusterId = clusterid
           @NodePoolId = nodepoolid
           @Name = name
@@ -16722,6 +16724,7 @@ module TencentCloud
           @Labels = labels
           @Taints = taints
           @DeletionProtection = deletionprotection
+          @SubnetAllocationPolicy = subnetallocationpolicy
         end
 
         def deserialize(params)
@@ -16746,6 +16749,10 @@ module TencentCloud
             end
           end
           @DeletionProtection = params['DeletionProtection']
+          unless params['SubnetAllocationPolicy'].nil?
+            @SubnetAllocationPolicy = SubnetAllocationPolicy.new
+            @SubnetAllocationPolicy.deserialize(params['SubnetAllocationPolicy'])
+          end
         end
       end
 

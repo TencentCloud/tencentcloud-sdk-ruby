@@ -1984,10 +1984,12 @@ module TencentCloud
         # @type CreatedTime: String
         # @param UpdatedTime: 修改时间。格式为：YYYY-MM-DDThh:mm:ssZ
         # @type UpdatedTime: String
+        # @param Tags: 标签信息。
+        # @type Tags: Array
 
-        attr_accessor :InvokerId, :Name, :Type, :CommandId, :Username, :Parameters, :InstanceIds, :Enable, :ScheduleSettings, :CreatedTime, :UpdatedTime
+        attr_accessor :InvokerId, :Name, :Type, :CommandId, :Username, :Parameters, :InstanceIds, :Enable, :ScheduleSettings, :CreatedTime, :UpdatedTime, :Tags
 
-        def initialize(invokerid=nil, name=nil, type=nil, commandid=nil, username=nil, parameters=nil, instanceids=nil, enable=nil, schedulesettings=nil, createdtime=nil, updatedtime=nil)
+        def initialize(invokerid=nil, name=nil, type=nil, commandid=nil, username=nil, parameters=nil, instanceids=nil, enable=nil, schedulesettings=nil, createdtime=nil, updatedtime=nil, tags=nil)
           @InvokerId = invokerid
           @Name = name
           @Type = type
@@ -1999,6 +2001,7 @@ module TencentCloud
           @ScheduleSettings = schedulesettings
           @CreatedTime = createdtime
           @UpdatedTime = updatedtime
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -2016,6 +2019,14 @@ module TencentCloud
           end
           @CreatedTime = params['CreatedTime']
           @UpdatedTime = params['UpdatedTime']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 

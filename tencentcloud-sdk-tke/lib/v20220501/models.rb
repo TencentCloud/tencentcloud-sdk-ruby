@@ -201,53 +201,53 @@ module TencentCloud
 
       # 原生节点池创建参数
       class CreateNativeNodePoolParam < TencentCloud::Common::AbstractModel
-        # @param Scaling: 节点池伸缩配置
+        # @param Scaling: <p>节点池伸缩配置</p>
         # @type Scaling: :class:`Tencentcloud::Tke.v20220501.models.MachineSetScaling`
-        # @param SubnetIds: 子网列表
+        # @param SubnetIds: <p>子网列表</p>
         # @type SubnetIds: Array
-        # @param InstanceChargeType: 节点计费类型。PREPAID：包年包月；POSTPAID_BY_HOUR：按量计费（默认）；
+        # @param InstanceChargeType: <p>节点计费类型。PREPAID：包年包月；POSTPAID_BY_HOUR：按量计费（默认）；</p>
         # @type InstanceChargeType: String
-        # @param SystemDisk: 系统盘配置
+        # @param SystemDisk: <p>系统盘配置</p>
         # @type SystemDisk: :class:`Tencentcloud::Tke.v20220501.models.Disk`
-        # @param InstanceTypes: 机型列表
+        # @param InstanceTypes: <p>机型列表</p>
         # @type InstanceTypes: Array
-        # @param SecurityGroupIds: 安全组列表
+        # @param SecurityGroupIds: <p>安全组列表</p>
         # @type SecurityGroupIds: Array
-        # @param UpgradeSettings: 自动升级配置
+        # @param UpgradeSettings: <p>自动升级配置</p>
         # @type UpgradeSettings: :class:`Tencentcloud::Tke.v20220501.models.MachineUpgradeSettings`
-        # @param AutoRepair: 是否开启自愈能力
+        # @param AutoRepair: <p>是否开启自愈能力</p>
         # @type AutoRepair: Boolean
-        # @param InstanceChargePrepaid: 包年包月机型计费配置
+        # @param InstanceChargePrepaid: <p>包年包月机型计费配置</p>
         # @type InstanceChargePrepaid: :class:`Tencentcloud::Tke.v20220501.models.InstanceChargePrepaid`
-        # @param Management: 节点池 Management 参数设置
+        # @param Management: <p>节点池 Management 参数设置</p>
         # @type Management: :class:`Tencentcloud::Tke.v20220501.models.ManagementConfig`
-        # @param HealthCheckPolicyName: 故障自愈规则名称
+        # @param HealthCheckPolicyName: <p>故障自愈规则名称</p>
         # @type HealthCheckPolicyName: String
-        # @param HostNamePattern: 原生节点池hostName模式串
+        # @param HostNamePattern: <p>原生节点池hostName模式串</p>
         # @type HostNamePattern: String
-        # @param KubeletArgs: kubelet 自定义参数
+        # @param KubeletArgs: <p>kubelet 自定义参数</p>
         # @type KubeletArgs: Array
-        # @param Lifecycle: 预定义脚本
+        # @param Lifecycle: <p>预定义脚本</p>
         # @type Lifecycle: :class:`Tencentcloud::Tke.v20220501.models.LifecycleConfig`
-        # @param RuntimeRootDir: 运行时根目录
+        # @param RuntimeRootDir: <p>运行时根目录</p>
         # @type RuntimeRootDir: String
-        # @param EnableAutoscaling: 是否开启弹性伸缩
+        # @param EnableAutoscaling: <p>是否开启弹性伸缩</p>
         # @type EnableAutoscaling: Boolean
-        # @param Replicas: 期望节点数
+        # @param Replicas: <p>期望节点数</p>
         # @type Replicas: Integer
-        # @param InternetAccessible: 公网带宽设置
+        # @param InternetAccessible: <p>公网带宽设置</p>
         # @type InternetAccessible: :class:`Tencentcloud::Tke.v20220501.models.InternetAccessible`
-        # @param DataDisks: 原生节点池数据盘列表
+        # @param DataDisks: <p>原生节点池数据盘列表</p>
         # @type DataDisks: Array
-        # @param QGPUEnable: qgpu开关
+        # @param QGPUEnable: <p>qgpu开关</p>
         # @type QGPUEnable: Boolean
-        # @param KeyIds: 节点池ssh公钥id数组
+        # @param KeyIds: <p>节点池ssh公钥id数组</p>
         # @type KeyIds: Array
-        # @param MachineType: 节点池类型
+        # @param MachineType: <p>节点池类型</p>
         # @type MachineType: String
-        # @param AutomationService: 原生节点池安装节点自动化助手开关
+        # @param AutomationService: <p>原生节点池安装节点自动化助手开关</p>
         # @type AutomationService: Boolean
-        # @param Password: 原生节点池密码
+        # @param Password: <p>原生节点池密码</p>
         # @type Password: String
 
         attr_accessor :Scaling, :SubnetIds, :InstanceChargeType, :SystemDisk, :InstanceTypes, :SecurityGroupIds, :UpgradeSettings, :AutoRepair, :InstanceChargePrepaid, :Management, :HealthCheckPolicyName, :HostNamePattern, :KubeletArgs, :Lifecycle, :RuntimeRootDir, :EnableAutoscaling, :Replicas, :InternetAccessible, :DataDisks, :QGPUEnable, :KeyIds, :MachineType, :AutomationService, :Password
@@ -2246,83 +2246,77 @@ module TencentCloud
 
       # 节点信息
       class NativeNodeInfo < TencentCloud::Common::AbstractModel
-        # @param MachineName: 节点名称
+        # @param MachineName: <p>节点名称</p>
         # @type MachineName: String
-        # @param MachineState: Machine 状态
+        # @param MachineState: <p>Machine 状态</p>
         # @type MachineState: String
-        # @param Zone: Machine 所在可用区
+        # @param Zone: <p>Machine 所在可用区</p>
         # @type Zone: String
-        # @param InstanceChargeType: 节点计费类型。PREPAID：包年包月；POSTPAID_BY_HOUR：按量计费（默认）；
+        # @param InstanceChargeType: <p>节点计费类型。PREPAID：包年包月；POSTPAID_BY_HOUR：按量计费（默认）；</p>
         # @type InstanceChargeType: String
-        # @param CreatedAt: 创建时间
+        # @param CreatedAt: <p>创建时间</p>
         # @type CreatedAt: String
-        # @param LoginStatus: Machine 登录状态
+        # @param LoginStatus: <p>Machine 登录状态</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LoginStatus: String
-        # @param IsProtectedFromScaleIn: 是否开启缩容保护
+        # @param IsProtectedFromScaleIn: <p>是否开启缩容保护</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsProtectedFromScaleIn: Boolean
-        # @param DisplayName: Machine 名字
+        # @param DisplayName: <p>Machine 名字</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DisplayName: String
-        # @param CPU: CPU核数，单位：核
+        # @param CPU: <p>CPU核数，单位：核</p>
         # @type CPU: Integer
-        # @param GPU: GPU核数，单位：核
+        # @param GPU: <p>GPU核数，单位：核</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GPU: Integer
-        # @param RenewFlag: 自动续费标识
+        # @param RenewFlag: <p>自动续费标识</p>
         # @type RenewFlag: String
-        # @param PayMode: 节点计费模式
+        # @param PayMode: <p>节点计费模式</p>
         # @type PayMode: String
-        # @param Memory: 节点内存容量，单位：`GB`
+        # @param Memory: <p>节点内存容量，单位：<code>GB</code></p>
         # @type Memory: Integer
-        # @param SystemDisk: 节点系统盘配置信息
+        # @param SystemDisk: <p>节点系统盘配置信息</p>
         # @type SystemDisk: :class:`Tencentcloud::Tke.v20220501.models.Disk`
-        # @param InternetAccessible: 公网带宽相关信息设置
+        # @param InternetAccessible: <p>公网带宽相关信息设置</p>
         # @type InternetAccessible: :class:`Tencentcloud::Tke.v20220501.models.InternetAccessible`
-        # @param InstanceFamily: 机型所属机型族
+        # @param InstanceFamily: <p>机型所属机型族</p>
         # @type InstanceFamily: String
-        # @param LanIp: 节点内网 IP
+        # @param LanIp: <p>节点内网 IP</p>
         # @type LanIp: String
-        # @param InstanceType: 机型
+        # @param InstanceType: <p>机型</p>
         # @type InstanceType: String
-        # @param ExpiredTime: 包年包月节点计费过期时间
+        # @param ExpiredTime: <p>包年包月节点计费过期时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExpiredTime: String
-        # @param WanIp: 节点外网 IP
+        # @param WanIp: <p>节点外网 IP</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WanIp: String
-        # @param KeyIds: 节点密钥 ID 列表
+        # @param KeyIds: <p>节点密钥 ID 列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KeyIds: Array
-        # @param GPUParams: 节点GPU相关配置
+        # @param GPUParams: <p>节点GPU相关配置</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GPUParams: :class:`Tencentcloud::Tke.v20220501.models.GPUParams`
-        # @param DataDisks: 数据盘列表
+        # @param DataDisks: <p>数据盘列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataDisks: Array
-        # @param SecurityGroupIDs: 安全组列表
+        # @param SecurityGroupIDs: <p>安全组列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecurityGroupIDs: Array
-        # @param VpcId: VPC 唯一 ID
+        # @param VpcId: <p>VPC 唯一 ID</p>
         # @type VpcId: String
-        # @param SubnetId: 子网唯一 ID
+        # @param SubnetId: <p>子网唯一 ID</p>
         # @type SubnetId: String
-        # @param OsImage: OS的名称
+        # @param OsImage: <p>OS的名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OsImage: String
-        # @param MachineType: **原生节点的 Machine 类型**
-
-        # - Native 表示 CXM 类型的原生节点
-        # - NativeCVM 表示 CVM 类型的原生节点
+        # @param MachineType: <p><strong>原生节点的 Machine 类型</strong></p><ul><li>Native 表示 CXM 类型的原生节点</li><li>NativeCVM 表示 CVM 类型的原生节点</li></ul>
         # @type MachineType: String
-        # @param InstanceId: **原生节点对应的实例 ID**
-
-        # - ins-q47ofw6 表示这个实例是一个 CVM 的实例
-        # - eks-f8mvyaep 表示这个实例是一个 CXM 的实例
+        # @param InstanceId: <p><strong>原生节点对应的实例 ID</strong></p><ul><li>ins-q47ofw6 表示这个实例是一个 CVM 的实例</li><li>eks-f8mvyaep 表示这个实例是一个 CXM 的实例</li></ul>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
-        # @param Tags: 原生节点云标签
+        # @param Tags: <p>原生节点云标签</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
 
@@ -2420,56 +2414,56 @@ module TencentCloud
 
       # 原生节点池信息
       class NativeNodePoolInfo < TencentCloud::Common::AbstractModel
-        # @param Scaling: 伸缩配置
+        # @param Scaling: <p>伸缩配置</p>
         # @type Scaling: :class:`Tencentcloud::Tke.v20220501.models.MachineSetScaling`
-        # @param SubnetIds: 子网列表
+        # @param SubnetIds: <p>子网列表</p>
         # @type SubnetIds: Array
-        # @param SecurityGroupIds: 安全组列表
+        # @param SecurityGroupIds: <p>安全组列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecurityGroupIds: Array
-        # @param UpgradeSettings: 自动升级配置
+        # @param UpgradeSettings: <p>自动升级配置</p>
         # @type UpgradeSettings: :class:`Tencentcloud::Tke.v20220501.models.MachineUpgradeSettings`
-        # @param AutoRepair: 是否开启自愈能力
+        # @param AutoRepair: <p>是否开启自愈能力</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AutoRepair: Boolean
-        # @param InstanceChargeType: 节点计费类型
+        # @param InstanceChargeType: <p>节点计费类型</p>
         # @type InstanceChargeType: String
-        # @param InstanceChargePrepaid: 包年包月机型计费配置
+        # @param InstanceChargePrepaid: <p>包年包月机型计费配置</p>
         # @type InstanceChargePrepaid: :class:`Tencentcloud::Tke.v20220501.models.InstanceChargePrepaid`
-        # @param SystemDisk: 系统盘配置
+        # @param SystemDisk: <p>系统盘配置</p>
         # @type SystemDisk: :class:`Tencentcloud::Tke.v20220501.models.Disk`
-        # @param KeyIds: 密钥 ID 列表
+        # @param KeyIds: <p>密钥 ID 列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KeyIds: Array
-        # @param Management: Machine 系统配置
+        # @param Management: <p>Machine 系统配置</p>
         # @type Management: :class:`Tencentcloud::Tke.v20220501.models.ManagementConfig`
-        # @param HealthCheckPolicyName: 故障自愈规则名称
+        # @param HealthCheckPolicyName: <p>故障自愈规则名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HealthCheckPolicyName: String
-        # @param HostNamePattern: 原生节点池hostName模式串
+        # @param HostNamePattern: <p>原生节点池hostName模式串</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HostNamePattern: String
-        # @param KubeletArgs: kubelet 自定义参数
+        # @param KubeletArgs: <p>kubelet 自定义参数</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KubeletArgs: Array
-        # @param Lifecycle: 预定义脚本
+        # @param Lifecycle: <p>预定义脚本</p>
         # @type Lifecycle: :class:`Tencentcloud::Tke.v20220501.models.LifecycleConfig`
-        # @param RuntimeRootDir: 运行时根目录
+        # @param RuntimeRootDir: <p>运行时根目录</p>
         # @type RuntimeRootDir: String
-        # @param EnableAutoscaling: 是否开启弹性伸缩
+        # @param EnableAutoscaling: <p>是否开启弹性伸缩</p>
         # @type EnableAutoscaling: Boolean
-        # @param InstanceTypes: 机型列表
+        # @param InstanceTypes: <p>机型列表</p>
         # @type InstanceTypes: Array
-        # @param Replicas: 期望节点数
+        # @param Replicas: <p>期望节点数</p>
         # @type Replicas: Integer
-        # @param ReadyReplicas: 就绪 Machine 个数
+        # @param ReadyReplicas: <p>就绪 Machine 个数</p>
         # @type ReadyReplicas: Integer
-        # @param InternetAccessible: 公网带宽设置
+        # @param InternetAccessible: <p>公网带宽设置</p>
         # @type InternetAccessible: :class:`Tencentcloud::Tke.v20220501.models.InternetAccessible`
-        # @param DataDisks: 原生节点池数据盘
+        # @param DataDisks: <p>原生节点池数据盘</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataDisks: Array
-        # @param MachineType: 原生节点机型 Native, NativeCVM
+        # @param MachineType: <p>原生节点机型 Native, NativeCVM</p>
         # @type MachineType: String
 
         attr_accessor :Scaling, :SubnetIds, :SecurityGroupIds, :UpgradeSettings, :AutoRepair, :InstanceChargeType, :InstanceChargePrepaid, :SystemDisk, :KeyIds, :Management, :HealthCheckPolicyName, :HostNamePattern, :KubeletArgs, :Lifecycle, :RuntimeRootDir, :EnableAutoscaling, :InstanceTypes, :Replicas, :ReadyReplicas, :InternetAccessible, :DataDisks, :MachineType
@@ -3246,59 +3240,55 @@ module TencentCloud
 
       # 修改原生节点池参数
       class UpdateNativeNodePoolParam < TencentCloud::Common::AbstractModel
-        # @param Scaling: 伸缩配置
+        # @param Scaling: <p>伸缩配置</p>
         # @type Scaling: :class:`Tencentcloud::Tke.v20220501.models.MachineSetScaling`
-        # @param SubnetIds: 子网列表
+        # @param SubnetIds: <p>子网列表</p>
         # @type SubnetIds: Array
-        # @param SecurityGroupIds: 安全组列表
+        # @param SecurityGroupIds: <p>安全组列表</p>
         # @type SecurityGroupIds: Array
-        # @param UpgradeSettings: 自动升级配置
+        # @param UpgradeSettings: <p>自动升级配置</p>
         # @type UpgradeSettings: :class:`Tencentcloud::Tke.v20220501.models.MachineUpgradeSettings`
-        # @param AutoRepair: 是否开启自愈能力
+        # @param AutoRepair: <p>是否开启自愈能力</p>
         # @type AutoRepair: Boolean
-        # @param InstanceChargeType: 节点计费类型变更
-        # 当前仅支持按量计费转包年包月：
-        # - PREPAID
+        # @param InstanceChargeType: <p>计费类型</p><p>枚举值：</p><ul><li>POSTPAID_BY_HOUR： 目标计费类型为按量计费</li><li>PREPAID： 目标计费类型为包年包月计费</li></ul>
         # @type InstanceChargeType: String
-        # @param InstanceChargePrepaid: 包年包月机型计费配置
+        # @param InstanceChargePrepaid: <p>包年包月机型计费配置</p>
         # @type InstanceChargePrepaid: :class:`Tencentcloud::Tke.v20220501.models.InstanceChargePrepaid`
-        # @param SystemDisk: 系统盘配置
+        # @param SystemDisk: <p>系统盘配置</p>
         # @type SystemDisk: :class:`Tencentcloud::Tke.v20220501.models.Disk`
-        # @param Management: Machine 系统配置
+        # @param Management: <p>Machine 系统配置</p>
         # @type Management: :class:`Tencentcloud::Tke.v20220501.models.ManagementConfig`
-        # @param HealthCheckPolicyName: 故障自愈规则名称
+        # @param HealthCheckPolicyName: <p>故障自愈规则名称</p>
         # @type HealthCheckPolicyName: String
-        # @param HostNamePattern: 原生节点池hostName模式串
+        # @param HostNamePattern: <p>原生节点池hostName模式串</p>
         # @type HostNamePattern: String
-        # @param KubeletArgs: kubelet 自定义参数
+        # @param KubeletArgs: <p>kubelet 自定义参数</p>
         # @type KubeletArgs: Array
-        # @param Lifecycle: 预定义脚本
+        # @param Lifecycle: <p>预定义脚本</p>
         # @type Lifecycle: :class:`Tencentcloud::Tke.v20220501.models.LifecycleConfig`
-        # @param RuntimeRootDir: 运行时根目录
+        # @param RuntimeRootDir: <p>运行时根目录</p>
         # @type RuntimeRootDir: String
-        # @param EnableAutoscaling: 是否开启弹性伸缩
+        # @param EnableAutoscaling: <p>是否开启弹性伸缩</p>
         # @type EnableAutoscaling: Boolean
-        # @param InstanceTypes: 机型列表
+        # @param InstanceTypes: <p>机型列表</p>
         # @type InstanceTypes: Array
-        # @param Replicas: 期望节点数
+        # @param Replicas: <p>期望节点数</p>
         # @type Replicas: Integer
-        # @param UpdateExistedNode: 是否更新存量节点MetaData(包括： metadata、annotation、label)
+        # @param UpdateExistedNode: <p>是否更新存量节点MetaData(包括： metadata、annotation、label)</p>
         # @type UpdateExistedNode: Boolean
-        # @param DataDisks: 数据盘列表
+        # @param DataDisks: <p>数据盘列表</p>
         # @type DataDisks: Array
-        # @param UpdateMachineManagement: 节点management参数存量更新开关，有enable（打开）、disable（关闭）两个状态可选
-
-        # management包括：nameserver、host、kubelet、kernel参数
+        # @param UpdateMachineManagement: <p>节点management参数存量更新开关，有enable（打开）、disable（关闭）两个状态可选</p><p>management包括：nameserver、host、kubelet、kernel参数</p>
         # @type UpdateMachineManagement: String
-        # @param KeyIds: ssh公钥id数组
+        # @param KeyIds: <p>ssh公钥id数组</p>
         # @type KeyIds: Array
-        # @param DeletePolicy: 节点移出策略，有Random（随机）、Newest（优先移出最新实例）、Oldest（优先移出最旧实例）三种可选，默认是Newest
+        # @param DeletePolicy: <p>节点移出策略，有Random（随机）、Newest（优先移出最新实例）、Oldest（优先移出最旧实例）三种可选，默认是Newest</p>
         # @type DeletePolicy: String
-        # @param GPUConfigs: 节点池 GPU 配置
+        # @param GPUConfigs: <p>节点池 GPU 配置</p>
         # @type GPUConfigs: Array
-        # @param AutomationService: 原生节点池安装自动化助手开关状态
+        # @param AutomationService: <p>原生节点池安装自动化助手开关状态</p>
         # @type AutomationService: Boolean
-        # @param Password: 原生节点池密码
+        # @param Password: <p>原生节点池密码</p>
         # @type Password: String
 
         attr_accessor :Scaling, :SubnetIds, :SecurityGroupIds, :UpgradeSettings, :AutoRepair, :InstanceChargeType, :InstanceChargePrepaid, :SystemDisk, :Management, :HealthCheckPolicyName, :HostNamePattern, :KubeletArgs, :Lifecycle, :RuntimeRootDir, :EnableAutoscaling, :InstanceTypes, :Replicas, :UpdateExistedNode, :DataDisks, :UpdateMachineManagement, :KeyIds, :DeletePolicy, :GPUConfigs, :AutomationService, :Password

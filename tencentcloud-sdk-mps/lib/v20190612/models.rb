@@ -34349,6 +34349,64 @@ module TencentCloud
         end
       end
 
+      # UpdateVoice请求参数结构体
+      class UpdateVoiceRequest < TencentCloud::Common::AbstractModel
+        # @param VoiceId: <p>音色Id</p>
+        # @type VoiceId: String
+        # @param VoiceFields: <p>更新音色字段</p>
+        # @type VoiceFields: :class:`Tencentcloud::Mps.v20190612.models.VoiceUpdateFields`
+        # @param ExtParam: <p>扩展参数，json字符串</p>
+        # @type ExtParam: String
+
+        attr_accessor :VoiceId, :VoiceFields, :ExtParam
+
+        def initialize(voiceid=nil, voicefields=nil, extparam=nil)
+          @VoiceId = voiceid
+          @VoiceFields = voicefields
+          @ExtParam = extparam
+        end
+
+        def deserialize(params)
+          @VoiceId = params['VoiceId']
+          unless params['VoiceFields'].nil?
+            @VoiceFields = VoiceUpdateFields.new
+            @VoiceFields.deserialize(params['VoiceFields'])
+          end
+          @ExtParam = params['ExtParam']
+        end
+      end
+
+      # UpdateVoice返回参数结构体
+      class UpdateVoiceResponse < TencentCloud::Common::AbstractModel
+        # @param ErrorCode: <p>错误码，正确时返回0</p>
+        # @type ErrorCode: Integer
+        # @param Msg: <p>错误信息，正确时返回success</p>
+        # @type Msg: String
+        # @param Voice: <p>更新后的音色信息</p>
+        # @type Voice: :class:`Tencentcloud::Mps.v20190612.models.VoiceInfo`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrorCode, :Msg, :Voice, :RequestId
+
+        def initialize(errorcode=nil, msg=nil, voice=nil, requestid=nil)
+          @ErrorCode = errorcode
+          @Msg = msg
+          @Voice = voice
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrorCode = params['ErrorCode']
+          @Msg = params['Msg']
+          unless params['Voice'].nil?
+            @Voice = VoiceInfo.new
+            @Voice.deserialize(params['Voice'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 媒体处理 URL 对象信息。
       class UrlInputInfo < TencentCloud::Common::AbstractModel
         # @param Url: 视频的 URL。
@@ -35579,6 +35637,50 @@ module TencentCloud
           @Languages = params['Languages']
           @Labels = params['Labels']
           @Scenes = params['Scenes']
+        end
+      end
+
+      # 音色更新字段
+      class VoiceUpdateFields < TencentCloud::Common::AbstractModel
+        # @param Name: <p>音色名</p>
+        # @type Name: String
+        # @param Description: <p>音色描述</p>
+        # @type Description: String
+        # @param Gender: <p>性别</p><p>枚举值：</p><ul><li>male： 男</li><li>female： 女</li><li>unknown： 未知</li></ul>
+        # @type Gender: String
+        # @param Age: <p>年龄</p><p>枚举值：</p><ul><li>child： 儿童</li><li>teenager： 少年</li><li>youth： 青年</li><li>middle_aged： 中年</li><li>senior： 老年</li><li>unknown： 未知</li></ul>
+        # @type Age: String
+        # @param Languages: <p>语言</p>
+        # @type Languages: Array
+        # @param Labels: <p>标签</p>
+        # @type Labels: Array
+        # @param Scenes: <p>场景</p>
+        # @type Scenes: Array
+        # @param AudioUrl: <p>试听音频</p>
+        # @type AudioUrl: String
+
+        attr_accessor :Name, :Description, :Gender, :Age, :Languages, :Labels, :Scenes, :AudioUrl
+
+        def initialize(name=nil, description=nil, gender=nil, age=nil, languages=nil, labels=nil, scenes=nil, audiourl=nil)
+          @Name = name
+          @Description = description
+          @Gender = gender
+          @Age = age
+          @Languages = languages
+          @Labels = labels
+          @Scenes = scenes
+          @AudioUrl = audiourl
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Description = params['Description']
+          @Gender = params['Gender']
+          @Age = params['Age']
+          @Languages = params['Languages']
+          @Labels = params['Labels']
+          @Scenes = params['Scenes']
+          @AudioUrl = params['AudioUrl']
         end
       end
 

@@ -11660,13 +11660,24 @@ module TencentCloud
         # @type ProductId: String
         # @param DeviceName: 设备名称
         # @type DeviceName: String
-        # @param ServiceCategory: 算法类目。可能取值：
+        # @param ServiceCategory: 算法类目。可选值：
         # - `COMPREHENSION`：视觉理解
+        # - `HIGHLIGHT`：视频浓缩
         # @type ServiceCategory: String
         # @param Limit: 分页拉取数量
         # @type Limit: Integer
         # @param Offset: 分页拉取偏移
         # @type Offset: Integer
+        # @param ServiceTypes: 算法类型。
+
+        # 当 ServiceCategory 为 `COMPREHENSION` 时，可选值包括：
+        # - `VID_COMP`：视频理解
+        # - `IMG_COMP`：图片理解
+        # - `CONT_PERSON_MOTIONLESS`：静姿检测
+
+        # 当 ServiceCategory 为 `HIGHLIGHT` 时，可选值包括：
+        # - `COMP_HIGHLIGHT`：视频浓缩
+        # @type ServiceTypes: Array
         # @param ChannelId: 通道 ID
         # @type ChannelId: Integer
         # @param StartTimeMs: 查询任务时间范围的起始时间（毫秒级 UNIX 时间戳）。不传则不生效时间范围条件。
@@ -11679,19 +11690,23 @@ module TencentCloud
         # - `2`：空结果
         # - `3`：有效结果
         # @type Status: Integer
+        # @param FileURLExpireTime: 下载 URL 的过期时间（秒级 UNIX 时间戳）。若传入该参数，则响应中将包含所有文件的下载 URL
+        # @type FileURLExpireTime: Integer
 
-        attr_accessor :ProductId, :DeviceName, :ServiceCategory, :Limit, :Offset, :ChannelId, :StartTimeMs, :EndTimeMs, :Status
+        attr_accessor :ProductId, :DeviceName, :ServiceCategory, :Limit, :Offset, :ServiceTypes, :ChannelId, :StartTimeMs, :EndTimeMs, :Status, :FileURLExpireTime
 
-        def initialize(productid=nil, devicename=nil, servicecategory=nil, limit=nil, offset=nil, channelid=nil, starttimems=nil, endtimems=nil, status=nil)
+        def initialize(productid=nil, devicename=nil, servicecategory=nil, limit=nil, offset=nil, servicetypes=nil, channelid=nil, starttimems=nil, endtimems=nil, status=nil, fileurlexpiretime=nil)
           @ProductId = productid
           @DeviceName = devicename
           @ServiceCategory = servicecategory
           @Limit = limit
           @Offset = offset
+          @ServiceTypes = servicetypes
           @ChannelId = channelid
           @StartTimeMs = starttimems
           @EndTimeMs = endtimems
           @Status = status
+          @FileURLExpireTime = fileurlexpiretime
         end
 
         def deserialize(params)
@@ -11700,10 +11715,12 @@ module TencentCloud
           @ServiceCategory = params['ServiceCategory']
           @Limit = params['Limit']
           @Offset = params['Offset']
+          @ServiceTypes = params['ServiceTypes']
           @ChannelId = params['ChannelId']
           @StartTimeMs = params['StartTimeMs']
           @EndTimeMs = params['EndTimeMs']
           @Status = params['Status']
+          @FileURLExpireTime = params['FileURLExpireTime']
         end
       end
 
@@ -14790,6 +14807,51 @@ module TencentCloud
         end
       end
 
+      # TWeSee 标签持续检测配置
+      class SeeDetectContinuousConfig < TencentCloud::Common::AbstractModel
+        # @param DetectType: 检测标签。可选值：
+        # - `person_motionless`：人物静止
+        # @type DetectType: String
+        # @param DailyStartTime: 启用检测的按日周期起始时间分钟数。取值范围：0 ~ 1440
+        # @type DailyStartTime: Integer
+        # @param DailyEndTime: 启用检测的按日周期结束时间分钟数。取值范围：0 ~ 1440
+        # @type DailyEndTime: Integer
+        # @param Interval: 检测间隔分钟数。取值范围：5 ~ 60。
+        # @type Interval: Integer
+
+        attr_accessor :DetectType, :DailyStartTime, :DailyEndTime, :Interval
+
+        def initialize(detecttype=nil, dailystarttime=nil, dailyendtime=nil, interval=nil)
+          @DetectType = detecttype
+          @DailyStartTime = dailystarttime
+          @DailyEndTime = dailyendtime
+          @Interval = interval
+        end
+
+        def deserialize(params)
+          @DetectType = params['DetectType']
+          @DailyStartTime = params['DailyStartTime']
+          @DailyEndTime = params['DailyEndTime']
+          @Interval = params['Interval']
+        end
+      end
+
+      # TWeSee 标签持续检测结果
+      class SeeDetectContinuousResult < TencentCloud::Common::AbstractModel
+        # @param IsContinuousInRange: 检测标签是否在当前区间内持续
+        # @type IsContinuousInRange: Boolean
+
+        attr_accessor :IsContinuousInRange
+
+        def initialize(iscontinuousinrange=nil)
+          @IsContinuousInRange = iscontinuousinrange
+        end
+
+        def deserialize(params)
+          @IsContinuousInRange = params['IsContinuousInRange']
+        end
+      end
+
       # TWeSee 处理云存事件 EventId 的过滤规则配置
       class SeeEventIdFilterConfig < TencentCloud::Common::AbstractModel
         # @param IncludeOnly: 包含的云存事件 ID 集合
@@ -14854,11 +14916,13 @@ module TencentCloud
         # @param ServiceCategory: 算法类目。可能取值：
 
         # - `COMPREHENSION`：视觉理解
+        # - `HIGHLIGHT`：视频浓缩
         # @type ServiceCategory: String
         # @param ServiceType: 算法类型。可能取值：
 
         # - `VID_COMP`：视频理解
         # - `IMG_COMP`：图片理解
+        # - `COMP_HIGHLIGHT`：视频浓缩
         # @type ServiceType: String
         # @param ServiceTier: 套餐规格。可能取值：
 
@@ -14869,6 +14933,8 @@ module TencentCloud
         # @type ComprehensionResult: :class:`Tencentcloud::Iotexplorer.v20190423.models.SeeComprehensionResult`
         # @param CompHighlightResult: 视频语义浓缩结果（适用于视频语义浓缩）
         # @type CompHighlightResult: :class:`Tencentcloud::Iotexplorer.v20190423.models.SeeCompHighlightResult`
+        # @param DetectContinuousResult: 标签持续检测结果
+        # @type DetectContinuousResult: :class:`Tencentcloud::Iotexplorer.v20190423.models.SeeDetectContinuousResult`
         # @param CostBasic: 完成该任务所消耗的基础能力额度
         # @type CostBasic: Integer
         # @param CostAdvanced: 完成该任务所消耗的高级能力额度
@@ -14882,9 +14948,9 @@ module TencentCloud
         # @param UpdateTime: 最后更新时间
         # @type UpdateTime: Integer
 
-        attr_accessor :TaskId, :Status, :Metadata, :ServiceCategory, :ServiceType, :ServiceTier, :ComprehensionResult, :CompHighlightResult, :CostBasic, :CostAdvanced, :Files, :FilesInfo, :CreateTime, :UpdateTime
+        attr_accessor :TaskId, :Status, :Metadata, :ServiceCategory, :ServiceType, :ServiceTier, :ComprehensionResult, :CompHighlightResult, :DetectContinuousResult, :CostBasic, :CostAdvanced, :Files, :FilesInfo, :CreateTime, :UpdateTime
 
-        def initialize(taskid=nil, status=nil, metadata=nil, servicecategory=nil, servicetype=nil, servicetier=nil, comprehensionresult=nil, comphighlightresult=nil, costbasic=nil, costadvanced=nil, files=nil, filesinfo=nil, createtime=nil, updatetime=nil)
+        def initialize(taskid=nil, status=nil, metadata=nil, servicecategory=nil, servicetype=nil, servicetier=nil, comprehensionresult=nil, comphighlightresult=nil, detectcontinuousresult=nil, costbasic=nil, costadvanced=nil, files=nil, filesinfo=nil, createtime=nil, updatetime=nil)
           @TaskId = taskid
           @Status = status
           @Metadata = metadata
@@ -14893,6 +14959,7 @@ module TencentCloud
           @ServiceTier = servicetier
           @ComprehensionResult = comprehensionresult
           @CompHighlightResult = comphighlightresult
+          @DetectContinuousResult = detectcontinuousresult
           @CostBasic = costbasic
           @CostAdvanced = costadvanced
           @Files = files
@@ -14918,6 +14985,10 @@ module TencentCloud
           unless params['CompHighlightResult'].nil?
             @CompHighlightResult = SeeCompHighlightResult.new
             @CompHighlightResult.deserialize(params['CompHighlightResult'])
+          end
+          unless params['DetectContinuousResult'].nil?
+            @DetectContinuousResult = SeeDetectContinuousResult.new
+            @DetectContinuousResult.deserialize(params['DetectContinuousResult'])
           end
           @CostBasic = params['CostBasic']
           @CostAdvanced = params['CostAdvanced']
@@ -16972,15 +17043,18 @@ module TencentCloud
         # @type DetectTypes: Array
         # @param CustomDetectQueries: 自定义检测标签
         # @type CustomDetectQueries: Array
+        # @param DetectContinuous: 标签持续检测配置
+        # @type DetectContinuous: Array
 
-        attr_accessor :OutputLang, :AlternativeOutputLang, :MultiCameraLayout, :DetectTypes, :CustomDetectQueries
+        attr_accessor :OutputLang, :AlternativeOutputLang, :MultiCameraLayout, :DetectTypes, :CustomDetectQueries, :DetectContinuous
 
-        def initialize(outputlang=nil, alternativeoutputlang=nil, multicameralayout=nil, detecttypes=nil, customdetectqueries=nil)
+        def initialize(outputlang=nil, alternativeoutputlang=nil, multicameralayout=nil, detecttypes=nil, customdetectqueries=nil, detectcontinuous=nil)
           @OutputLang = outputlang
           @AlternativeOutputLang = alternativeoutputlang
           @MultiCameraLayout = multicameralayout
           @DetectTypes = detecttypes
           @CustomDetectQueries = customdetectqueries
+          @DetectContinuous = detectcontinuous
         end
 
         def deserialize(params)
@@ -16994,6 +17068,14 @@ module TencentCloud
               visioncustomdetectquery_tmp = VisionCustomDetectQuery.new
               visioncustomdetectquery_tmp.deserialize(i)
               @CustomDetectQueries << visioncustomdetectquery_tmp
+            end
+          end
+          unless params['DetectContinuous'].nil?
+            @DetectContinuous = []
+            params['DetectContinuous'].each do |i|
+              seedetectcontinuousconfig_tmp = SeeDetectContinuousConfig.new
+              seedetectcontinuousconfig_tmp.deserialize(i)
+              @DetectContinuous << seedetectcontinuousconfig_tmp
             end
           end
         end

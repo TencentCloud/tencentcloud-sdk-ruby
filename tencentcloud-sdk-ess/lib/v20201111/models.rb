@@ -105,12 +105,12 @@ module TencentCloud
 
         attr_accessor :AppId, :ProxyAppId, :ProxyOrganizationId, :ProxyOperator
         extend Gem::Deprecate
-        deprecate :AppId, :none, 2026, 5
-        deprecate :AppId=, :none, 2026, 5
-        deprecate :ProxyAppId, :none, 2026, 5
-        deprecate :ProxyAppId=, :none, 2026, 5
-        deprecate :ProxyOperator, :none, 2026, 5
-        deprecate :ProxyOperator=, :none, 2026, 5
+        deprecate :AppId, :none, 2026, 6
+        deprecate :AppId=, :none, 2026, 6
+        deprecate :ProxyAppId, :none, 2026, 6
+        deprecate :ProxyAppId=, :none, 2026, 6
+        deprecate :ProxyOperator, :none, 2026, 6
+        deprecate :ProxyOperator=, :none, 2026, 6
 
         def initialize(appid=nil, proxyappid=nil, proxyorganizationid=nil, proxyoperator=nil)
           @AppId = appid
@@ -642,8 +642,8 @@ module TencentCloud
 
         attr_accessor :UserInfo, :CertInfoCallback, :UserDefineSeal, :SealImgCallback, :CallbackUrl, :VerifyChannels, :LicenseType, :JumpUrl
         extend Gem::Deprecate
-        deprecate :CallbackUrl, :none, 2026, 5
-        deprecate :CallbackUrl=, :none, 2026, 5
+        deprecate :CallbackUrl, :none, 2026, 6
+        deprecate :CallbackUrl=, :none, 2026, 6
 
         def initialize(userinfo=nil, certinfocallback=nil, userdefineseal=nil, sealimgcallback=nil, callbackurl=nil, verifychannels=nil, licensetype=nil, jumpurl=nil)
           @UserInfo = userinfo
@@ -889,8 +889,8 @@ module TencentCloud
 
         attr_accessor :CallbackUrl, :Token, :CallbackKey, :CallbackToken
         extend Gem::Deprecate
-        deprecate :Token, :none, 2026, 5
-        deprecate :Token=, :none, 2026, 5
+        deprecate :Token, :none, 2026, 6
+        deprecate :Token=, :none, 2026, 6
 
         def initialize(callbackurl=nil, token=nil, callbackkey=nil, callbacktoken=nil)
           @CallbackUrl = callbackurl
@@ -920,12 +920,12 @@ module TencentCloud
 
         attr_accessor :ApplicationId, :OrganizationId, :OperatorId, :SubOrganizationId
         extend Gem::Deprecate
-        deprecate :ApplicationId, :none, 2026, 5
-        deprecate :ApplicationId=, :none, 2026, 5
-        deprecate :OrganizationId, :none, 2026, 5
-        deprecate :OrganizationId=, :none, 2026, 5
-        deprecate :SubOrganizationId, :none, 2026, 5
-        deprecate :SubOrganizationId=, :none, 2026, 5
+        deprecate :ApplicationId, :none, 2026, 6
+        deprecate :ApplicationId=, :none, 2026, 6
+        deprecate :OrganizationId, :none, 2026, 6
+        deprecate :OrganizationId=, :none, 2026, 6
+        deprecate :SubOrganizationId, :none, 2026, 6
+        deprecate :SubOrganizationId=, :none, 2026, 6
 
         def initialize(applicationid=nil, organizationid=nil, operatorid=nil, suborganizationid=nil)
           @ApplicationId = applicationid
@@ -3100,8 +3100,8 @@ module TencentCloud
 
         attr_accessor :ResourceType, :ResourceName, :ResourceId, :Operator, :Agent, :Organization
         extend Gem::Deprecate
-        deprecate :Organization, :none, 2026, 5
-        deprecate :Organization=, :none, 2026, 5
+        deprecate :Organization, :none, 2026, 6
+        deprecate :Organization=, :none, 2026, 6
 
         def initialize(resourcetype=nil, resourcename=nil, resourceid=nil, operator=nil, agent=nil, organization=nil)
           @ResourceType = resourcetype
@@ -4304,8 +4304,8 @@ module TencentCloud
 
         attr_accessor :ReportId, :Status, :ReportUrl, :RequestId
         extend Gem::Deprecate
-        deprecate :ReportUrl, :none, 2026, 5
-        deprecate :ReportUrl=, :none, 2026, 5
+        deprecate :ReportUrl, :none, 2026, 6
+        deprecate :ReportUrl=, :none, 2026, 6
 
         def initialize(reportid=nil, status=nil, reporturl=nil, requestid=nil)
           @ReportId = reportid
@@ -4839,8 +4839,8 @@ module TencentCloud
 
         attr_accessor :CanEditFlow, :CanEditFormField, :HideShowFlowName, :HideShowFlowType, :HideShowDeadline, :CanSkipAddApprover, :SkipUploadFile, :ForbidEditFillComponent, :CustomCreateFlowDescription, :ForbidAddApprover, :ForbidEditApprover, :ForbidEditFlowProperties, :HideComponentTypes, :ShowComponentTypes, :ResultPageConfig, :SignComponentConfig, :ForbidEditWatermark, :HideOperationInstructions, :HideOperationSteps, :SelfName, :HideSignCodeAfterStart, :PreviewAfterStart, :SignAfterStart, :NeedFlowDraft
         extend Gem::Deprecate
-        deprecate :HideOperationInstructions, :none, 2026, 5
-        deprecate :HideOperationInstructions=, :none, 2026, 5
+        deprecate :HideOperationInstructions, :none, 2026, 6
+        deprecate :HideOperationInstructions=, :none, 2026, 6
 
         def initialize(caneditflow=nil, caneditformfield=nil, hideshowflowname=nil, hideshowflowtype=nil, hideshowdeadline=nil, canskipaddapprover=nil, skipuploadfile=nil, forbideditfillcomponent=nil, customcreateflowdescription=nil, forbidaddapprover=nil, forbideditapprover=nil, forbideditflowproperties=nil, hidecomponenttypes=nil, showcomponenttypes=nil, resultpageconfig=nil, signcomponentconfig=nil, forbideditwatermark=nil, hideoperationinstructions=nil, hideoperationsteps=nil, selfname=nil, hidesigncodeafterstart=nil, previewafterstart=nil, signafterstart=nil, needflowdraft=nil)
           @CanEditFlow = caneditflow
@@ -5075,10 +5075,10 @@ module TencentCloud
 
         attr_accessor :Operator, :FlowName, :Approvers, :FlowDescription, :FlowType, :ClientToken, :DeadLine, :RemindedOn, :UserData, :Unordered, :CustomShowMap, :NeedSignReview, :Agent, :CcInfos, :AutoSignScene, :RelatedFlowId, :CallbackUrl, :FlowDisplayType, :Workflow, :FlowOperateLimit
         extend Gem::Deprecate
-        deprecate :RelatedFlowId, :none, 2026, 5
-        deprecate :RelatedFlowId=, :none, 2026, 5
-        deprecate :CallbackUrl, :none, 2026, 5
-        deprecate :CallbackUrl=, :none, 2026, 5
+        deprecate :RelatedFlowId, :none, 2026, 6
+        deprecate :RelatedFlowId=, :none, 2026, 6
+        deprecate :CallbackUrl, :none, 2026, 6
+        deprecate :CallbackUrl=, :none, 2026, 6
 
         def initialize(operator=nil, flowname=nil, approvers=nil, flowdescription=nil, flowtype=nil, clienttoken=nil, deadline=nil, remindedon=nil, userdata=nil, unordered=nil, customshowmap=nil, needsignreview=nil, agent=nil, ccinfos=nil, autosignscene=nil, relatedflowid=nil, callbackurl=nil, flowdisplaytype=nil, workflow=nil, flowoperatelimit=nil)
           @Operator = operator
@@ -5276,8 +5276,8 @@ module TencentCloud
 
         attr_accessor :FlowId, :Operator, :Agent, :FlowApproverInfos, :VideoVerifyTimesLimit, :Organization, :JumpUrl, :UrlType, :ExpiredOn
         extend Gem::Deprecate
-        deprecate :Organization, :none, 2026, 5
-        deprecate :Organization=, :none, 2026, 5
+        deprecate :Organization, :none, 2026, 6
+        deprecate :Organization=, :none, 2026, 6
 
         def initialize(flowid=nil, operator=nil, agent=nil, flowapproverinfos=nil, videoverifytimeslimit=nil, organization=nil, jumpurl=nil, urltype=nil, expiredon=nil)
           @FlowId = flowid
@@ -5808,8 +5808,8 @@ module TencentCloud
 
         attr_accessor :Operator, :Agent, :Organization
         extend Gem::Deprecate
-        deprecate :Organization, :none, 2026, 5
-        deprecate :Organization=, :none, 2026, 5
+        deprecate :Organization, :none, 2026, 6
+        deprecate :Organization=, :none, 2026, 6
 
         def initialize(operator=nil, agent=nil, organization=nil)
           @Operator = operator
@@ -6126,12 +6126,12 @@ module TencentCloud
 
         attr_accessor :Operator, :TemplateId, :FlowName, :MaxFlowNum, :QrEffectiveDay, :FlowEffectiveDay, :FlowDisplayType, :Restrictions, :UserData, :CallbackUrl, :Agent, :ApproverRestrictions, :ApproverComponentLimitTypes, :ForbidPersonalMultipleSign, :FlowNameAppendScannerInfo, :QrCodeName, :QrCodeExpiredOn
         extend Gem::Deprecate
-        deprecate :QrEffectiveDay, :none, 2026, 5
-        deprecate :QrEffectiveDay=, :none, 2026, 5
-        deprecate :CallbackUrl, :none, 2026, 5
-        deprecate :CallbackUrl=, :none, 2026, 5
-        deprecate :ApproverRestrictions, :none, 2026, 5
-        deprecate :ApproverRestrictions=, :none, 2026, 5
+        deprecate :QrEffectiveDay, :none, 2026, 6
+        deprecate :QrEffectiveDay=, :none, 2026, 6
+        deprecate :CallbackUrl, :none, 2026, 6
+        deprecate :CallbackUrl=, :none, 2026, 6
+        deprecate :ApproverRestrictions, :none, 2026, 6
+        deprecate :ApproverRestrictions=, :none, 2026, 6
 
         def initialize(operator=nil, templateid=nil, flowname=nil, maxflownum=nil, qreffectiveday=nil, floweffectiveday=nil, flowdisplaytype=nil, restrictions=nil, userdata=nil, callbackurl=nil, agent=nil, approverrestrictions=nil, approvercomponentlimittypes=nil, forbidpersonalmultiplesign=nil, flownameappendscannerinfo=nil, qrcodename=nil, qrcodeexpiredon=nil)
           @Operator = operator
@@ -7105,8 +7105,8 @@ module TencentCloud
 
         attr_accessor :Operator, :ResourceId, :FlowName, :ResourceType, :Unordered, :Deadline, :UserFlowTypeId, :FlowType, :Approvers, :IntelligentStatus, :Components, :FlowOption, :NeedSignReview, :NeedCreateReview, :UserData, :CcInfos, :FlowId, :Agent, :InitiatorComponents, :FlowDisplayType, :SignComponentConfig, :Workflow
         extend Gem::Deprecate
-        deprecate :SignComponentConfig, :none, 2026, 5
-        deprecate :SignComponentConfig=, :none, 2026, 5
+        deprecate :SignComponentConfig, :none, 2026, 6
+        deprecate :SignComponentConfig=, :none, 2026, 6
 
         def initialize(operator=nil, resourceid=nil, flowname=nil, resourcetype=nil, unordered=nil, deadline=nil, userflowtypeid=nil, flowtype=nil, approvers=nil, intelligentstatus=nil, components=nil, flowoption=nil, needsignreview=nil, needcreatereview=nil, userdata=nil, ccinfos=nil, flowid=nil, agent=nil, initiatorcomponents=nil, flowdisplaytype=nil, signcomponentconfig=nil, workflow=nil)
           @Operator = operator
@@ -7281,8 +7281,8 @@ module TencentCloud
 
         attr_accessor :UserName, :IdCardNumber, :SealName, :Operator, :IdCardType, :SealImage, :SealImageCompress, :Mobile, :EnableAutoSign, :SealColor, :ProcessSeal, :FileId, :Agent, :LicenseType, :SceneKey
         extend Gem::Deprecate
-        deprecate :SealImage, :none, 2026, 5
-        deprecate :SealImage=, :none, 2026, 5
+        deprecate :SealImage, :none, 2026, 6
+        deprecate :SealImage=, :none, 2026, 6
 
         def initialize(username=nil, idcardnumber=nil, sealname=nil, operator=nil, idcardtype=nil, sealimage=nil, sealimagecompress=nil, mobile=nil, enableautosign=nil, sealcolor=nil, processseal=nil, fileid=nil, agent=nil, licensetype=nil, scenekey=nil)
           @UserName = username
@@ -10496,10 +10496,10 @@ module TencentCloud
 
         attr_accessor :Operator, :BusinessType, :BusinessIds, :FileName, :FileType, :Offset, :Limit, :UrlTtl, :CcToken, :Scene, :Agent
         extend Gem::Deprecate
-        deprecate :CcToken, :none, 2026, 5
-        deprecate :CcToken=, :none, 2026, 5
-        deprecate :Scene, :none, 2026, 5
-        deprecate :Scene=, :none, 2026, 5
+        deprecate :CcToken, :none, 2026, 6
+        deprecate :CcToken=, :none, 2026, 6
+        deprecate :Scene, :none, 2026, 6
+        deprecate :Scene=, :none, 2026, 6
 
         def initialize(operator=nil, businesstype=nil, businessids=nil, filename=nil, filetype=nil, offset=nil, limit=nil, urlttl=nil, cctoken=nil, scene=nil, agent=nil)
           @Operator = operator
@@ -10876,12 +10876,12 @@ module TencentCloud
 
         attr_accessor :Operator, :Agent, :ContentType, :Filters, :Offset, :Limit, :ApplicationId, :IsChannel, :Organization, :GenerateSource, :WithPreviewUrl
         extend Gem::Deprecate
-        deprecate :IsChannel, :none, 2026, 5
-        deprecate :IsChannel=, :none, 2026, 5
-        deprecate :Organization, :none, 2026, 5
-        deprecate :Organization=, :none, 2026, 5
-        deprecate :GenerateSource, :none, 2026, 5
-        deprecate :GenerateSource=, :none, 2026, 5
+        deprecate :IsChannel, :none, 2026, 6
+        deprecate :IsChannel=, :none, 2026, 6
+        deprecate :Organization, :none, 2026, 6
+        deprecate :Organization=, :none, 2026, 6
+        deprecate :GenerateSource, :none, 2026, 6
+        deprecate :GenerateSource=, :none, 2026, 6
 
         def initialize(operator=nil, agent=nil, contenttype=nil, filters=nil, offset=nil, limit=nil, applicationid=nil, ischannel=nil, organization=nil, generatesource=nil, withpreviewurl=nil)
           @Operator = operator
@@ -11536,8 +11536,8 @@ module TencentCloud
 
         attr_accessor :Operator, :Limit, :Offset, :Name, :Status, :Export, :Id
         extend Gem::Deprecate
-        deprecate :Name, :none, 2026, 5
-        deprecate :Name=, :none, 2026, 5
+        deprecate :Name, :none, 2026, 6
+        deprecate :Name=, :none, 2026, 6
 
         def initialize(operator=nil, limit=nil, offset=nil, name=nil, status=nil, export=nil, id=nil)
           @Operator = operator
@@ -11582,8 +11582,8 @@ module TencentCloud
 
         attr_accessor :Total, :JoinedTotal, :ActivedTotal, :ExportUrl, :List, :ActivatedTotal, :RequestId
         extend Gem::Deprecate
-        deprecate :ActivedTotal, :none, 2026, 5
-        deprecate :ActivedTotal=, :none, 2026, 5
+        deprecate :ActivedTotal, :none, 2026, 6
+        deprecate :ActivedTotal=, :none, 2026, 6
 
         def initialize(total=nil, joinedtotal=nil, activedtotal=nil, exporturl=nil, list=nil, activatedtotal=nil, requestid=nil)
           @Total = total
@@ -13303,8 +13303,8 @@ module TencentCloud
 
         attr_accessor :ApproveMessage, :ApproveName, :ApproveStatus, :ReceiptId, :CustomUserId, :Mobile, :SignOrder, :ApproveTime, :ApproveType, :ApproverSource, :CustomApproverTag, :OrganizationId, :OrganizationName, :SignId, :ApproverRoleName, :RecipientId
         extend Gem::Deprecate
-        deprecate :ReceiptId, :none, 2026, 5
-        deprecate :ReceiptId=, :none, 2026, 5
+        deprecate :ReceiptId, :none, 2026, 6
+        deprecate :ReceiptId=, :none, 2026, 6
 
         def initialize(approvemessage=nil, approvename=nil, approvestatus=nil, receiptid=nil, customuserid=nil, mobile=nil, signorder=nil, approvetime=nil, approvetype=nil, approversource=nil, customapprovertag=nil, organizationid=nil, organizationname=nil, signid=nil, approverrolename=nil, recipientid=nil)
           @ApproveMessage = approvemessage
@@ -13572,8 +13572,8 @@ module TencentCloud
 
         attr_accessor :ApproverType, :OrganizationName, :ApproverName, :ApproverMobile, :ApproverIdCardType, :ApproverIdCardNumber, :RecipientId, :VerifyChannel, :NotifyType, :IsFullText, :PreReadTime, :UserId, :Required, :ApproverSource, :CustomApproverTag, :RegisterInfo, :ApproverOption, :JumpUrl, :SignId, :ApproverNeedSignReview, :SignComponents, :Components, :ComponentLimitType, :ApproverVerifyTypes, :ApproverSignTypes, :SignTypeSelector, :Deadline, :Intention, :SignEndpoints, :NotSaveContact, :ApproverEmail
         extend Gem::Deprecate
-        deprecate :JumpUrl, :none, 2026, 5
-        deprecate :JumpUrl=, :none, 2026, 5
+        deprecate :JumpUrl, :none, 2026, 6
+        deprecate :JumpUrl=, :none, 2026, 6
 
         def initialize(approvertype=nil, organizationname=nil, approvername=nil, approvermobile=nil, approveridcardtype=nil, approveridcardnumber=nil, recipientid=nil, verifychannel=nil, notifytype=nil, isfulltext=nil, prereadtime=nil, userid=nil, required=nil, approversource=nil, customapprovertag=nil, registerinfo=nil, approveroption=nil, jumpurl=nil, signid=nil, approverneedsignreview=nil, signcomponents=nil, components=nil, componentlimittype=nil, approververifytypes=nil, approversigntypes=nil, signtypeselector=nil, deadline=nil, intention=nil, signendpoints=nil, notsavecontact=nil, approveremail=nil)
           @ApproverType = approvertype
@@ -13892,8 +13892,8 @@ module TencentCloud
 
         attr_accessor :FlowName, :Approvers, :FileIds, :TemplateId, :FlowType, :FlowDescription, :Deadline, :CallbackUrl, :UserData, :Unordered, :Components, :NeedSignReview, :AutoSignScene, :FlowDisplayType
         extend Gem::Deprecate
-        deprecate :CallbackUrl, :none, 2026, 5
-        deprecate :CallbackUrl=, :none, 2026, 5
+        deprecate :CallbackUrl, :none, 2026, 6
+        deprecate :CallbackUrl=, :none, 2026, 6
 
         def initialize(flowname=nil, approvers=nil, fileids=nil, templateid=nil, flowtype=nil, flowdescription=nil, deadline=nil, callbackurl=nil, userdata=nil, unordered=nil, components=nil, needsignreview=nil, autosignscene=nil, flowdisplaytype=nil)
           @FlowName = flowname
@@ -14612,8 +14612,8 @@ module TencentCloud
 
         attr_accessor :TaskId, :Operator, :Agent, :Organization
         extend Gem::Deprecate
-        deprecate :Organization, :none, 2026, 5
-        deprecate :Organization=, :none, 2026, 5
+        deprecate :Organization, :none, 2026, 6
+        deprecate :Organization=, :none, 2026, 6
 
         def initialize(taskid=nil, operator=nil, agent=nil, organization=nil)
           @TaskId = taskid
@@ -16453,16 +16453,16 @@ module TencentCloud
 
         attr_accessor :OrganizationId, :Channel, :OrganizationOpenId, :ClientIp, :ProxyIp
         extend Gem::Deprecate
-        deprecate :OrganizationId, :none, 2026, 5
-        deprecate :OrganizationId=, :none, 2026, 5
-        deprecate :Channel, :none, 2026, 5
-        deprecate :Channel=, :none, 2026, 5
-        deprecate :OrganizationOpenId, :none, 2026, 5
-        deprecate :OrganizationOpenId=, :none, 2026, 5
-        deprecate :ClientIp, :none, 2026, 5
-        deprecate :ClientIp=, :none, 2026, 5
-        deprecate :ProxyIp, :none, 2026, 5
-        deprecate :ProxyIp=, :none, 2026, 5
+        deprecate :OrganizationId, :none, 2026, 6
+        deprecate :OrganizationId=, :none, 2026, 6
+        deprecate :Channel, :none, 2026, 6
+        deprecate :Channel=, :none, 2026, 6
+        deprecate :OrganizationOpenId, :none, 2026, 6
+        deprecate :OrganizationOpenId=, :none, 2026, 6
+        deprecate :ClientIp, :none, 2026, 6
+        deprecate :ClientIp=, :none, 2026, 6
+        deprecate :ProxyIp, :none, 2026, 6
+        deprecate :ProxyIp=, :none, 2026, 6
 
         def initialize(organizationid=nil, channel=nil, organizationopenid=nil, clientip=nil, proxyip=nil)
           @OrganizationId = organizationid
@@ -17117,10 +17117,10 @@ module TencentCloud
 
         attr_accessor :LegalName, :Uscc, :UnifiedSocialCreditCode, :OrganizationAddress, :AuthorizationTypes, :AuthorizationType, :AuthorizationMethods, :OrganizationIdCardType, :RegisterInfoOption
         extend Gem::Deprecate
-        deprecate :Uscc, :none, 2026, 5
-        deprecate :Uscc=, :none, 2026, 5
-        deprecate :AuthorizationType, :none, 2026, 5
-        deprecate :AuthorizationType=, :none, 2026, 5
+        deprecate :Uscc, :none, 2026, 6
+        deprecate :Uscc=, :none, 2026, 6
+        deprecate :AuthorizationType, :none, 2026, 6
+        deprecate :AuthorizationType=, :none, 2026, 6
 
         def initialize(legalname=nil, uscc=nil, unifiedsocialcreditcode=nil, organizationaddress=nil, authorizationtypes=nil, authorizationtype=nil, authorizationmethods=nil, organizationidcardtype=nil, registerinfooption=nil)
           @LegalName = legalname
@@ -17188,8 +17188,8 @@ module TencentCloud
 
         attr_accessor :LegalNameSame, :UnifiedSocialCreditCodeCNameSame, :OrganizationIdCardTypeSame, :UnifiedSocialCreditCodeSame
         extend Gem::Deprecate
-        deprecate :UnifiedSocialCreditCodeCNameSame, :none, 2026, 5
-        deprecate :UnifiedSocialCreditCodeCNameSame=, :none, 2026, 5
+        deprecate :UnifiedSocialCreditCodeCNameSame, :none, 2026, 6
+        deprecate :UnifiedSocialCreditCodeCNameSame=, :none, 2026, 6
 
         def initialize(legalnamesame=nil, unifiedsocialcreditcodecnamesame=nil, organizationidcardtypesame=nil, unifiedsocialcreditcodesame=nil)
           @LegalNameSame = legalnamesame
@@ -17321,8 +17321,8 @@ module TencentCloud
 
         attr_accessor :Name, :Mobile, :RelievedApproverReceiptId, :ApproverType, :ApproverSignComponentType, :ApproverSignRole, :ApproverSignSealId, :RelievedApproverRecipientId
         extend Gem::Deprecate
-        deprecate :RelievedApproverReceiptId, :none, 2026, 5
-        deprecate :RelievedApproverReceiptId=, :none, 2026, 5
+        deprecate :RelievedApproverReceiptId, :none, 2026, 6
+        deprecate :RelievedApproverReceiptId=, :none, 2026, 6
 
         def initialize(name=nil, mobile=nil, relievedapproverreceiptid=nil, approvertype=nil, approversigncomponenttype=nil, approversignrole=nil, approversignsealid=nil, relievedapproverrecipientid=nil)
           @Name = name
@@ -17893,8 +17893,8 @@ module TencentCloud
 
         attr_accessor :Operator, :FlowId, :ClientToken, :Agent, :CcNotifyType
         extend Gem::Deprecate
-        deprecate :ClientToken, :none, 2026, 5
-        deprecate :ClientToken=, :none, 2026, 5
+        deprecate :ClientToken, :none, 2026, 6
+        deprecate :ClientToken=, :none, 2026, 6
 
         def initialize(operator=nil, flowid=nil, clienttoken=nil, agent=nil, ccnotifytype=nil)
           @Operator = operator
@@ -18251,8 +18251,8 @@ module TencentCloud
 
         attr_accessor :TemplateId, :TemplateName, :Recipients, :Components, :SignComponents, :Description, :DocumentResourceIds, :FileInfos, :AttachmentResourceIds, :SignOrder, :Status, :Creator, :CreatedOn, :Promoter, :TemplateType, :Available, :OrganizationId, :CreatorId, :PreviewUrl, :UserFlowType, :TemplateVersion, :Published, :ShareTemplateId, :TemplateSeals, :Seals
         extend Gem::Deprecate
-        deprecate :Seals, :none, 2026, 5
-        deprecate :Seals=, :none, 2026, 5
+        deprecate :Seals, :none, 2026, 6
+        deprecate :Seals=, :none, 2026, 6
 
         def initialize(templateid=nil, templatename=nil, recipients=nil, components=nil, signcomponents=nil, description=nil, documentresourceids=nil, fileinfos=nil, attachmentresourceids=nil, signorder=nil, status=nil, creator=nil, createdon=nil, promoter=nil, templatetype=nil, available=nil, organizationid=nil, creatorid=nil, previewurl=nil, userflowtype=nil, templateversion=nil, published=nil, sharetemplateid=nil, templateseals=nil, seals=nil)
           @TemplateId = templateid
@@ -18565,46 +18565,27 @@ module TencentCloud
 
       # UploadFiles请求参数结构体
       class UploadFilesRequest < TencentCloud::Common::AbstractModel
-        # @param BusinessType: 文件对应业务类型,可以选择的类型如下<ul><li> **TEMPLATE** : 此上传的文件用户生成合同模板，文件类型支持.pdf/.doc/.docx/.html格式，如果非pdf文件需要通过<a href="https://qian.tencent.com/developers/companyApis/templatesAndFiles/CreateConvertTaskApi" target="_blank">创建文件转换任务</a>转换后才能使用</li><li> **DOCUMENT** : 此文件用来发起合同流程，文件类型支持.pdf/.doc/.docx/.jpg/.png/.xls.xlsx/.html。如果上传的是非pdf文件，用来发起流程，还需要通过<a href="https://qian.tencent.com/developers/companyApis/templatesAndFiles/CreateConvertTaskApi" target="_blank">创建文件转换任务</a>转换后得到的pdf文件才能用于发起合同接口。如果上传的文件不是用来发起合同，直接上传后使用返回的文件资源Id即可</li><li> **SEAL** : 此文件用于印章的生成，文件类型支持.jpg/.jpeg/.png</li></ul>   ["yDRSRUUgygj6rq2wUuO4zjEyBZ2NHiyT"]
+        # @param BusinessType: <p>文件对应业务类型,可以选择的类型如下<ul><li> <strong>TEMPLATE</strong> : 此上传的文件用户生成合同模板，文件类型支持.pdf/.doc/.docx/.html格式，如果非pdf文件需要通过<a href="https://qian.tencent.com/developers/companyApis/templatesAndFiles/CreateConvertTaskApi" target="_blank">创建文件转换任务</a>转换后才能使用</li><li> <strong>DOCUMENT</strong> : 此文件用来发起合同流程，文件类型支持.pdf/.doc/.docx/.jpg/.png/.xls.xlsx/.html。如果上传的是非pdf文件，用来发起流程，还需要通过<a href="https://qian.tencent.com/developers/companyApis/templatesAndFiles/CreateConvertTaskApi" target="_blank">创建文件转换任务</a>转换后得到的pdf文件才能用于发起合同接口。如果上传的文件不是用来发起合同，直接上传后使用返回的文件资源Id即可</li><li> <strong>SEAL</strong> : 此文件用于印章的生成，文件类型支持.jpg/.jpeg/.png</li><li> <strong>ARCHIVE</strong> : 此文件用于归档文件夹，文件类型支持.pdf/.zip格式</li></ul>   [&quot;yDRSRUUgygj6rq2wUuO4zjEyBZ2NHiyT&quot;]</p><p>枚举值：</p><ul><li>TEMPLATE： 此上传的文件用户生成合同模板</li><li>DOCUMENT： 此文件用来发起合同流程</li><li>SEAL： 此文件用于印章的生成</li><li>ARCHIVE： 此文件用于归档文件夹</li></ul>
         # @type BusinessType: String
-        # @param Caller: 执行本接口操作的员工信息。其中OperatorId为必填字段，即用户的UserId。
-        # 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
+        # @param Caller: <p>执行本接口操作的员工信息。其中OperatorId为必填字段，即用户的UserId。<br>注: <code>在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。</code></p>
         # @type Caller: :class:`Tencentcloud::Ess.v20201111.models.Caller`
-        # @param FileInfos: 请上传文件内容数组，最多可上传20个文件。
-
-        # <b>所有文件必须符合<font color="red">FileType</font>指定的文件类型。</b>
+        # @param FileInfos: <p>请上传文件内容数组，最多可上传20个文件。</p><p><b>所有文件必须符合<font color="red">FileType</font>指定的文件类型。</b></p>
         # @type FileInfos: Array
-        # @param FileType: 文件类型， 默认通过文件内容和文件后缀一起解析得到文件类型，调用接口时可以显示的指定上传文件的类型。
-        # 可支持的指定类型如下:
-        # <ul><li>pdf</li>
-        # <li>doc</li>
-        # <li>docx</li>
-        # <li>xls</li>
-        # <li>xlsx</li>
-        # <li>html</li>
-        # <li>jpg</li>
-        # <li>jpeg</li>
-        # <li>png</li></ul>
-        # 如：pdf 表示上传的文件 张三入职合同.pdf的文件类型是 pdf
+        # @param FileType: <p>文件类型， 默认通过文件内容和文件后缀一起解析得到文件类型，调用接口时可以显示的指定上传文件的类型。<br>可支持的指定类型如下:</p><ul><li>pdf</li><li>doc</li><li>docx</li><li>xls</li><li>xlsx</li><li>html</li><li>jpg</li><li>jpeg</li><li>png</li></ul>如：pdf 表示上传的文件 张三入职合同.pdf的文件类型是 pdf
         # @type FileType: String
-        # @param CoverRect: 此参数仅对上传的PDF文件有效。其主要作用是确定是否将PDF中的灰色矩阵置为白色。
-        # <ul><li>**true**：将灰色矩阵置为白色。</li>
-        # <li>**false**：无需处理，不会将灰色矩阵置为白色（默认）。</li></ul>
-
-        # 注: `该参数仅在关键字定位时，需要去除关键字所在的灰框场景下使用。`
+        # @param CoverRect: <p>此参数仅对上传的PDF文件有效。其主要作用是确定是否将PDF中的灰色矩阵置为白色。</p><ul><li>**true**：将灰色矩阵置为白色。</li><li>**false**：无需处理，不会将灰色矩阵置为白色（默认）。</li></ul><p>注: <code>该参数仅在关键字定位时，需要去除关键字所在的灰框场景下使用。</code></p>
         # @type CoverRect: Boolean
-        # @param CustomIds: 该字段已不再使用
+        # @param CustomIds: <p>该字段已不再使用</p>
         # @type CustomIds: Array
-        # @param FileUrls: 不再使用，上传文件链接数组，最多支持20个URL
+        # @param FileUrls: <p>不再使用，上传文件链接数组，最多支持20个URL</p>
         # @type FileUrls: String
-        # @param Agent: 代理企业和员工的信息。
-        # 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
+        # @param Agent: <p>代理企业和员工的信息。<br>在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。</p>
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
 
         attr_accessor :BusinessType, :Caller, :FileInfos, :FileType, :CoverRect, :CustomIds, :FileUrls, :Agent
         extend Gem::Deprecate
-        deprecate :FileUrls, :none, 2026, 5
-        deprecate :FileUrls=, :none, 2026, 5
+        deprecate :FileUrls, :none, 2026, 6
+        deprecate :FileUrls=, :none, 2026, 6
 
         def initialize(businesstype=nil, caller=nil, fileinfos=nil, filetype=nil, coverrect=nil, customids=nil, fileurls=nil, agent=nil)
           @BusinessType = businesstype
@@ -18644,11 +18625,9 @@ module TencentCloud
 
       # UploadFiles返回参数结构体
       class UploadFilesResponse < TencentCloud::Common::AbstractModel
-        # @param FileIds: 文件资源ID数组，每个文件资源ID为32位字符串。
-        # 建议开发者保存此资源ID，后续创建合同或创建合同流程需此资源ID。
-        # 注:`有效期一个小时（超过一小时后系统不定期清理，会有部分时间差）, 有效期内此文件id可以反复使用, 超过有效期无法使用`
+        # @param FileIds: <p>文件资源ID数组，每个文件资源ID为32位字符串。<br>建议开发者保存此资源ID，后续创建合同或创建合同流程需此资源ID。<br>注:<code>有效期一个小时（超过一小时后系统不定期清理，会有部分时间差）, 有效期内此文件id可以反复使用, 超过有效期无法使用</code></p>
         # @type FileIds: Array
-        # @param TotalCount: 上传成功文件数量
+        # @param TotalCount: <p>上传成功文件数量</p>
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -18707,14 +18686,14 @@ module TencentCloud
 
         attr_accessor :UserId, :Channel, :OpenId, :ClientIp, :ProxyIp
         extend Gem::Deprecate
-        deprecate :Channel, :none, 2026, 5
-        deprecate :Channel=, :none, 2026, 5
-        deprecate :OpenId, :none, 2026, 5
-        deprecate :OpenId=, :none, 2026, 5
-        deprecate :ClientIp, :none, 2026, 5
-        deprecate :ClientIp=, :none, 2026, 5
-        deprecate :ProxyIp, :none, 2026, 5
-        deprecate :ProxyIp=, :none, 2026, 5
+        deprecate :Channel, :none, 2026, 6
+        deprecate :Channel=, :none, 2026, 6
+        deprecate :OpenId, :none, 2026, 6
+        deprecate :OpenId=, :none, 2026, 6
+        deprecate :ClientIp, :none, 2026, 6
+        deprecate :ClientIp=, :none, 2026, 6
+        deprecate :ProxyIp, :none, 2026, 6
+        deprecate :ProxyIp=, :none, 2026, 6
 
         def initialize(userid=nil, channel=nil, openid=nil, clientip=nil, proxyip=nil)
           @UserId = userid

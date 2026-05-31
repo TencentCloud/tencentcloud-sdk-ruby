@@ -29,7 +29,7 @@ module TencentCloud
         end
 
 
-        # 添加消费者组授权
+        # 为资源（模型 API / MCP Server）添加消费者组授权。
 
         # @param request: Request instance for AddCloudNativeAPIGatewayConsumerGroupAuth.
         # @type request: :class:`Tencentcloud::tse::V20201207::AddCloudNativeAPIGatewayConsumerGroupAuthRequest`
@@ -53,7 +53,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 将消费者添加到指定的消费者组中
+        # 将消费者添加到消费者组。
 
         # @param request: Request instance for AddCloudNativeAPIGatewayConsumerInGroup.
         # @type request: :class:`Tencentcloud::tse::V20201207::AddCloudNativeAPIGatewayConsumerInGroupRequest`
@@ -221,7 +221,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建云原生网关的消费者，支持多种密钥生成方式
+        # 创建消费者。
 
         # @param request: Request instance for CreateCloudNativeAPIGatewayConsumer.
         # @type request: :class:`Tencentcloud::tse::V20201207::CreateCloudNativeAPIGatewayConsumerRequest`
@@ -245,7 +245,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建云原生网关的消费者组
+        # 创建消费者组。
 
         # @param request: Request instance for CreateCloudNativeAPIGatewayConsumerGroup.
         # @type request: :class:`Tencentcloud::tse::V20201207::CreateCloudNativeAPIGatewayConsumerGroupRequest`
@@ -269,7 +269,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建AI网关模型 API
+        # 创建 LLM 模型 API。
 
         # @param request: Request instance for CreateCloudNativeAPIGatewayLLMModelAPI.
         # @type request: :class:`Tencentcloud::tse::V20201207::CreateCloudNativeAPIGatewayLLMModelAPIRequest`
@@ -389,7 +389,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建云原生网关密钥
+        # 创建消费者密钥。
 
         # @param request: Request instance for CreateCloudNativeAPIGatewaySecretKey.
         # @type request: :class:`Tencentcloud::tse::V20201207::CreateCloudNativeAPIGatewaySecretKeyRequest`
@@ -917,7 +917,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 删除指定的云原生网关消费者
+        # 删除消费者（被绑定到消费者组/密钥时需先解绑）。
 
         # @param request: Request instance for DeleteCloudNativeAPIGatewayConsumer.
         # @type request: :class:`Tencentcloud::tse::V20201207::DeleteCloudNativeAPIGatewayConsumerRequest`
@@ -941,7 +941,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 删除云原生网关消费者组的信息
+        # 删除消费者组（被授权资源占用时返回 CheckItems）。
 
         # @param request: Request instance for DeleteCloudNativeAPIGatewayConsumerGroup.
         # @type request: :class:`Tencentcloud::tse::V20201207::DeleteCloudNativeAPIGatewayConsumerGroupRequest`
@@ -989,7 +989,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 删除 LLM 模型 API 信息
+        # 删除 LLM 模型 API。
 
         # @param request: Request instance for DeleteCloudNativeAPIGatewayLLMModelAPI.
         # @type request: :class:`Tencentcloud::tse::V20201207::DeleteCloudNativeAPIGatewayLLMModelAPIRequest`
@@ -1013,7 +1013,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 删除 LLM 模型服务信息
+        # 删除 LLM 模型服务（被模型 API 绑定时需先解绑）。
 
         # @param request: Request instance for DeleteCloudNativeAPIGatewayLLMModelService.
         # @type request: :class:`Tencentcloud::tse::V20201207::DeleteCloudNativeAPIGatewayLLMModelServiceRequest`
@@ -1109,7 +1109,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 删除云原生网关密钥
+        # 删除消费者密钥（被绑定时需先解绑）。
 
         # @param request: Request instance for DeleteCloudNativeAPIGatewaySecretKey.
         # @type request: :class:`Tencentcloud::tse::V20201207::DeleteCloudNativeAPIGatewaySecretKeyRequest`
@@ -1709,7 +1709,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询指定的云原生网关消费者
+        # 查询消费者详情。
 
         # @param request: Request instance for DescribeCloudNativeAPIGatewayConsumer.
         # @type request: :class:`Tencentcloud::tse::V20201207::DescribeCloudNativeAPIGatewayConsumerRequest`
@@ -1733,7 +1733,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查看云原生网关消费者组的信息
+        # 查询消费者组详情。
 
         # @param request: Request instance for DescribeCloudNativeAPIGatewayConsumerGroup.
         # @type request: :class:`Tencentcloud::tse::V20201207::DescribeCloudNativeAPIGatewayConsumerGroupRequest`
@@ -1757,7 +1757,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取消费者组列表
+        # 查询消费者组列表。
 
         # @param request: Request instance for DescribeCloudNativeAPIGatewayConsumerGroupList.
         # @type request: :class:`Tencentcloud::tse::V20201207::DescribeCloudNativeAPIGatewayConsumerGroupListRequest`
@@ -1781,7 +1781,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询云原生网关消费者列表
+        # 查询消费者列表。
 
         # @param request: Request instance for DescribeCloudNativeAPIGatewayConsumerList.
         # @type request: :class:`Tencentcloud::tse::V20201207::DescribeCloudNativeAPIGatewayConsumerListRequest`
@@ -1853,7 +1853,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询单个 LLM 模型 API 信息
+        # 查询单个 LLM 模型 API 详情。
 
         # @param request: Request instance for DescribeCloudNativeAPIGatewayLLMModelAPI.
         # @type request: :class:`Tencentcloud::tse::V20201207::DescribeCloudNativeAPIGatewayLLMModelAPIRequest`
@@ -1877,7 +1877,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询 LLM 模型 API 列表
+        # 查询 LLM 模型 API 列表。
 
         # @param request: Request instance for DescribeCloudNativeAPIGatewayLLMModelAPIs.
         # @type request: :class:`Tencentcloud::tse::V20201207::DescribeCloudNativeAPIGatewayLLMModelAPIsRequest`
@@ -1901,7 +1901,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询单个 LLM 模型服务列表
+        # 查询单个 LLM 模型服务详情。
 
         # @param request: Request instance for DescribeCloudNativeAPIGatewayLLMModelService.
         # @type request: :class:`Tencentcloud::tse::V20201207::DescribeCloudNativeAPIGatewayLLMModelServiceRequest`
@@ -1925,7 +1925,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询 LLM 模型服务列表
+        # 查询 LLM 模型服务列表。
 
         # @param request: Request instance for DescribeCloudNativeAPIGatewayLLMModelServices.
         # @type request: :class:`Tencentcloud::tse::V20201207::DescribeCloudNativeAPIGatewayLLMModelServicesRequest`
@@ -2045,7 +2045,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询密钥详情
+        # 查询密钥详情（SecretValue 字段会被掩码）。
 
         # @param request: Request instance for DescribeCloudNativeAPIGatewaySecretKey.
         # @type request: :class:`Tencentcloud::tse::V20201207::DescribeCloudNativeAPIGatewaySecretKeyRequest`
@@ -2069,7 +2069,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取密钥列表
+        # 查询密钥列表。
 
         # @param request: Request instance for DescribeCloudNativeAPIGatewaySecretKeyList.
         # @type request: :class:`Tencentcloud::tse::V20201207::DescribeCloudNativeAPIGatewaySecretKeyListRequest`
@@ -2093,7 +2093,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询密钥值
+        # 查询密钥明文值（KMS 类型密钥不可获取）。
 
         # @param request: Request instance for DescribeCloudNativeAPIGatewaySecretKeyValue.
         # @type request: :class:`Tencentcloud::tse::V20201207::DescribeCloudNativeAPIGatewaySecretKeyValueRequest`
@@ -3053,7 +3053,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 修改云原生网关消费者的信息
+        # 修改消费者。
 
         # @param request: Request instance for ModifyCloudNativeAPIGatewayConsumer.
         # @type request: :class:`Tencentcloud::tse::V20201207::ModifyCloudNativeAPIGatewayConsumerRequest`
@@ -3077,7 +3077,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 修改云原生网关消费者组的信息
+        # 修改消费者组。
 
         # @param request: Request instance for ModifyCloudNativeAPIGatewayConsumerGroup.
         # @type request: :class:`Tencentcloud::tse::V20201207::ModifyCloudNativeAPIGatewayConsumerGroupRequest`
@@ -3101,7 +3101,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 修改 LLM 模型 API 信息
+        # 修改 LLM 模型 API。
 
         # @param request: Request instance for ModifyCloudNativeAPIGatewayLLMModelAPI.
         # @type request: :class:`Tencentcloud::tse::V20201207::ModifyCloudNativeAPIGatewayLLMModelAPIRequest`
@@ -3197,7 +3197,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 修改密钥状态
+        # 修改密钥启用状态。
 
         # @param request: Request instance for ModifyCloudNativeAPIGatewaySecretKeyStatus.
         # @type request: :class:`Tencentcloud::tse::V20201207::ModifyCloudNativeAPIGatewaySecretKeyStatusRequest`
@@ -3629,7 +3629,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 云原生网关移除消费者组授权
+        # 从资源（模型 API / MCP Server）移除消费者组授权。
 
         # @param request: Request instance for RemoveCloudNativeAPIGatewayConsumerGroupAuth.
         # @type request: :class:`Tencentcloud::tse::V20201207::RemoveCloudNativeAPIGatewayConsumerGroupAuthRequest`
@@ -3653,7 +3653,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 从指定的消费者组中移除消费者
+        # 将消费者从消费者组移除。
 
         # @param request: Request instance for RemoveCloudNativeAPIGatewayConsumerInGroup.
         # @type request: :class:`Tencentcloud::tse::V20201207::RemoveCloudNativeAPIGatewayConsumerInGroupRequest`

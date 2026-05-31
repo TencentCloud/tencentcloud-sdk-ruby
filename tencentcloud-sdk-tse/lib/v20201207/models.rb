@@ -23,12 +23,15 @@ module TencentCloud
         # @type TriggerConditions: Array
         # @param FallbackServiceChain: <p>fallback 服务链</p>
         # @type FallbackServiceChain: Array
+        # @param QuotaFallbackTrigger: <p>额度降级触发配置</p>
+        # @type QuotaFallbackTrigger: :class:`Tencentcloud::Tse.v20201207.models.AIGWLLMQuotaFallbackTrigger`
 
-        attr_accessor :TriggerConditions, :FallbackServiceChain
+        attr_accessor :TriggerConditions, :FallbackServiceChain, :QuotaFallbackTrigger
 
-        def initialize(triggerconditions=nil, fallbackservicechain=nil)
+        def initialize(triggerconditions=nil, fallbackservicechain=nil, quotafallbacktrigger=nil)
           @TriggerConditions = triggerconditions
           @FallbackServiceChain = fallbackservicechain
+          @QuotaFallbackTrigger = quotafallbacktrigger
         end
 
         def deserialize(params)
@@ -41,6 +44,38 @@ module TencentCloud
               @FallbackServiceChain << aigwfallbackserviceitem_tmp
             end
           end
+          unless params['QuotaFallbackTrigger'].nil?
+            @QuotaFallbackTrigger = AIGWLLMQuotaFallbackTrigger.new
+            @QuotaFallbackTrigger.deserialize(params['QuotaFallbackTrigger'])
+          end
+        end
+      end
+
+      # AI 网关自定义脱敏规则（A 层 / B 层共用结构体，MaskFormat 含义随所属层不同）
+      class AIGWCustomDesensitizeRule < TencentCloud::Common::AbstractModel
+        # @param Name: <p>自定义脱敏规则名称</p>
+        # @type Name: String
+        # @param Pattern: <p>自定义脱敏规则匹配正则</p>
+        # @type Pattern: String
+        # @param MaskFormat: <p>自定义脱敏规则掩码</p>
+        # @type MaskFormat: String
+        # @param Enabled: <p>自定义脱敏规则开关</p>
+        # @type Enabled: Boolean
+
+        attr_accessor :Name, :Pattern, :MaskFormat, :Enabled
+
+        def initialize(name=nil, pattern=nil, maskformat=nil, enabled=nil)
+          @Name = name
+          @Pattern = pattern
+          @MaskFormat = maskformat
+          @Enabled = enabled
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Pattern = params['Pattern']
+          @MaskFormat = params['MaskFormat']
+          @Enabled = params['Enabled']
         end
       end
 
@@ -61,6 +96,100 @@ module TencentCloud
         def deserialize(params)
           @ModelServiceId = params['ModelServiceId']
           @ModelServiceName = params['ModelServiceName']
+        end
+      end
+
+      # AI 网关 A 层转发脱敏配置（请求转发到 LLM 供应商前对 messages 替换为占位符）
+      class AIGWForwardDesensitizeConfig < TencentCloud::Common::AbstractModel
+        # @param Enabled: <p>转发脱敏开关</p>
+        # @type Enabled: Boolean
+        # @param PredefinedRuleTypes: <p>预定义规则类型</p><p>枚举值：</p><ul><li>Phone： 电话号码</li><li>IdCard： 身份证号</li><li>BankCard： 银行卡号</li><li>Email： 电子邮箱地址</li><li>IP： IP地址</li><li>Name： 姓名</li></ul>
+        # @type PredefinedRuleTypes: Array
+        # @param CustomRules: <p>自定义脱敏规则</p>
+        # @type CustomRules: Array
+        # @param PlaceholderFormat: <p>掩码</p>
+        # @type PlaceholderFormat: String
+        # @param OnFailure: <p>脱敏异常处理</p><p>枚举值：</p><ul><li>Reject： 拒绝请求</li><li>Skip： 跳过</li></ul>
+        # @type OnFailure: String
+
+        attr_accessor :Enabled, :PredefinedRuleTypes, :CustomRules, :PlaceholderFormat, :OnFailure
+
+        def initialize(enabled=nil, predefinedruletypes=nil, customrules=nil, placeholderformat=nil, onfailure=nil)
+          @Enabled = enabled
+          @PredefinedRuleTypes = predefinedruletypes
+          @CustomRules = customrules
+          @PlaceholderFormat = placeholderformat
+          @OnFailure = onfailure
+        end
+
+        def deserialize(params)
+          @Enabled = params['Enabled']
+          @PredefinedRuleTypes = params['PredefinedRuleTypes']
+          unless params['CustomRules'].nil?
+            @CustomRules = []
+            params['CustomRules'].each do |i|
+              aigwcustomdesensitizerule_tmp = AIGWCustomDesensitizeRule.new
+              aigwcustomdesensitizerule_tmp.deserialize(i)
+              @CustomRules << aigwcustomdesensitizerule_tmp
+            end
+          end
+          @PlaceholderFormat = params['PlaceholderFormat']
+          @OnFailure = params['OnFailure']
+        end
+      end
+
+      # AI 网关意图路由配置
+      class AIGWIntentRoute < TencentCloud::Common::AbstractModel
+        # @param IntentModelServiceId: <p>意图识别模型id</p>
+        # @type IntentModelServiceId: String
+        # @param ConfidenceThreshold: <p>置信度</p>
+        # @type ConfidenceThreshold: Float
+        # @param DefaultModelServiceId: <p>默认服务id</p>
+        # @type DefaultModelServiceId: String
+        # @param Rules: <p>规则</p>
+        # @type Rules: Array
+
+        attr_accessor :IntentModelServiceId, :ConfidenceThreshold, :DefaultModelServiceId, :Rules
+
+        def initialize(intentmodelserviceid=nil, confidencethreshold=nil, defaultmodelserviceid=nil, rules=nil)
+          @IntentModelServiceId = intentmodelserviceid
+          @ConfidenceThreshold = confidencethreshold
+          @DefaultModelServiceId = defaultmodelserviceid
+          @Rules = rules
+        end
+
+        def deserialize(params)
+          @IntentModelServiceId = params['IntentModelServiceId']
+          @ConfidenceThreshold = params['ConfidenceThreshold']
+          @DefaultModelServiceId = params['DefaultModelServiceId']
+          unless params['Rules'].nil?
+            @Rules = []
+            params['Rules'].each do |i|
+              aigwintentrouterule_tmp = AIGWIntentRouteRule.new
+              aigwintentrouterule_tmp.deserialize(i)
+              @Rules << aigwintentrouterule_tmp
+            end
+          end
+        end
+      end
+
+      # AI 网关意图路由规则
+      class AIGWIntentRouteRule < TencentCloud::Common::AbstractModel
+        # @param IntentCode: <p>意图编码</p><p>枚举值：</p><ul><li>Coder： 代码编写</li><li>Math： 数学计算</li><li>Translation： 翻译</li><li>Flash： 快速问答</li><li>Complex： 复杂推理</li></ul>
+        # @type IntentCode: String
+        # @param ModelServiceId: <p>模型服务id</p>
+        # @type ModelServiceId: String
+
+        attr_accessor :IntentCode, :ModelServiceId
+
+        def initialize(intentcode=nil, modelserviceid=nil)
+          @IntentCode = intentcode
+          @ModelServiceId = modelserviceid
+        end
+
+        def deserialize(params)
+          @IntentCode = params['IntentCode']
+          @ModelServiceId = params['ModelServiceId']
         end
       end
 
@@ -88,6 +217,176 @@ module TencentCloud
         end
       end
 
+      # 云原生网关模型API 配额降级触发条件信息
+      class AIGWLLMQuotaFallbackTrigger < TencentCloud::Common::AbstractModel
+        # @param ThresholdPercent: <p>配额感知阈值百分比（RPM 与 TPM 共用）</p><p>取值范围：[0, 99]</p>
+        # @type ThresholdPercent: Integer
+        # @param CheckDimension: <p>检查维度策略</p><p>枚举值：</p><ul><li>AnyInsufficient：  RPM 或 TPM 任一不足即触发</li><li>AllInsufficient： RPM 和 TPM 同时不足才触发</li></ul>
+        # @type CheckDimension: String
+
+        attr_accessor :ThresholdPercent, :CheckDimension
+
+        def initialize(thresholdpercent=nil, checkdimension=nil)
+          @ThresholdPercent = thresholdpercent
+          @CheckDimension = checkdimension
+        end
+
+        def deserialize(params)
+          @ThresholdPercent = params['ThresholdPercent']
+          @CheckDimension = params['CheckDimension']
+        end
+      end
+
+      # 云原生网关模型LLM配额限制信息
+      class AIGWLLMQuotaLimit < TencentCloud::Common::AbstractModel
+        # @param RPMLimit: <p>该模型服务每分钟请求数上限，0 表示该维度不限</p>
+        # @type RPMLimit: Integer
+        # @param TPMLimit: <p>该模型服务每分钟 Token 数上限，0 表示该维度不限</p>
+        # @type TPMLimit: Integer
+
+        attr_accessor :RPMLimit, :TPMLimit
+
+        def initialize(rpmlimit=nil, tpmlimit=nil)
+          @RPMLimit = rpmlimit
+          @TPMLimit = tpmlimit
+        end
+
+        def deserialize(params)
+          @RPMLimit = params['RPMLimit']
+          @TPMLimit = params['TPMLimit']
+        end
+      end
+
+      # 延迟优先路由配置
+      class AIGWLatencyPriorityConfig < TencentCloud::Common::AbstractModel
+        # @param Rules: <p>路由规则列表</p>
+        # @type Rules: Array
+        # @param LatencyMetric: <p>延迟指标</p><p>枚举值：</p><ul><li>LLMLatency： LLM 延迟</li><li>NetworkLatency： 网络延迟</li></ul>
+        # @type LatencyMetric: String
+        # @param RouteMode: <p>路由策略</p><p>枚举值：</p><ul><li>FastMode： 快速模式</li><li>BalanceMode： 均衡模式</li></ul>
+        # @type RouteMode: String
+
+        attr_accessor :Rules, :LatencyMetric, :RouteMode
+
+        def initialize(rules=nil, latencymetric=nil, routemode=nil)
+          @Rules = rules
+          @LatencyMetric = latencymetric
+          @RouteMode = routemode
+        end
+
+        def deserialize(params)
+          unless params['Rules'].nil?
+            @Rules = []
+            params['Rules'].each do |i|
+              aigwlatencypriorityrouterule_tmp = AIGWLatencyPriorityRouteRule.new
+              aigwlatencypriorityrouterule_tmp.deserialize(i)
+              @Rules << aigwlatencypriorityrouterule_tmp
+            end
+          end
+          @LatencyMetric = params['LatencyMetric']
+          @RouteMode = params['RouteMode']
+        end
+      end
+
+      # AI 网关延迟优先路由模型服务
+      class AIGWLatencyPriorityRouteRule < TencentCloud::Common::AbstractModel
+        # @param ModelServiceId: <p>模型服务id</p>
+        # @type ModelServiceId: String
+
+        attr_accessor :ModelServiceId
+
+        def initialize(modelserviceid=nil)
+          @ModelServiceId = modelserviceid
+        end
+
+        def deserialize(params)
+          @ModelServiceId = params['ModelServiceId']
+        end
+      end
+
+      # AI 网关日志输出配置
+      class AIGWLogConfig < TencentCloud::Common::AbstractModel
+        # @param EnableRequestLogPayloads: <p>是否开启请求 payload 记录日志</p>
+        # @type EnableRequestLogPayloads: Boolean
+        # @param EnableResponseLogPayloads: <p>是否开启响应 payload 记录日志</p>
+        # @type EnableResponseLogPayloads: Boolean
+        # @param RequestLogPayloadMaxSize: <p>日志记录的请求body的最大字节数</p><p>取值范围：[512, 1048576]</p><p>EnableRequestLogPayloads 为true时必填</p>
+        # @type RequestLogPayloadMaxSize: Integer
+        # @param ResponseLogPayloadMaxSize: <p>日志记录的响应body的最大字节数</p><p>取值范围：[512, 1048576]</p><p>EnableResponseLogPayloads 为true时必填</p>
+        # @type ResponseLogPayloadMaxSize: Integer
+
+        attr_accessor :EnableRequestLogPayloads, :EnableResponseLogPayloads, :RequestLogPayloadMaxSize, :ResponseLogPayloadMaxSize
+
+        def initialize(enablerequestlogpayloads=nil, enableresponselogpayloads=nil, requestlogpayloadmaxsize=nil, responselogpayloadmaxsize=nil)
+          @EnableRequestLogPayloads = enablerequestlogpayloads
+          @EnableResponseLogPayloads = enableresponselogpayloads
+          @RequestLogPayloadMaxSize = requestlogpayloadmaxsize
+          @ResponseLogPayloadMaxSize = responselogpayloadmaxsize
+        end
+
+        def deserialize(params)
+          @EnableRequestLogPayloads = params['EnableRequestLogPayloads']
+          @EnableResponseLogPayloads = params['EnableResponseLogPayloads']
+          @RequestLogPayloadMaxSize = params['RequestLogPayloadMaxSize']
+          @ResponseLogPayloadMaxSize = params['ResponseLogPayloadMaxSize']
+        end
+      end
+
+      # AI 网关 B 层日志脱敏配置（写入 LLM Log 前对 payload 掩码）
+      class AIGWLogDesensitizeConfig < TencentCloud::Common::AbstractModel
+        # @param Enabled: <p>日志脱敏开关</p>
+        # @type Enabled: Boolean
+        # @param PredefinedRuleTypes: <p>预定义规则类型</p><p>枚举值：</p><ul><li>Phone： 电话号码</li><li>IdCard： 身份证号</li><li>BankCard： 银行卡号</li><li>Email： 邮箱地址</li><li>IP： IP地址</li><li>Name： 姓名</li></ul>
+        # @type PredefinedRuleTypes: Array
+        # @param CustomRules: <p>自定义脱敏规则</p>
+        # @type CustomRules: Array
+        # @param Scope: <p>日志脱敏范围</p><p>枚举值：</p><ul><li>Request： 请求</li><li>Response： 响应</li></ul>
+        # @type Scope: Array
+
+        attr_accessor :Enabled, :PredefinedRuleTypes, :CustomRules, :Scope
+
+        def initialize(enabled=nil, predefinedruletypes=nil, customrules=nil, scope=nil)
+          @Enabled = enabled
+          @PredefinedRuleTypes = predefinedruletypes
+          @CustomRules = customrules
+          @Scope = scope
+        end
+
+        def deserialize(params)
+          @Enabled = params['Enabled']
+          @PredefinedRuleTypes = params['PredefinedRuleTypes']
+          unless params['CustomRules'].nil?
+            @CustomRules = []
+            params['CustomRules'].each do |i|
+              aigwcustomdesensitizerule_tmp = AIGWCustomDesensitizeRule.new
+              aigwcustomdesensitizerule_tmp.deserialize(i)
+              @CustomRules << aigwcustomdesensitizerule_tmp
+            end
+          end
+          @Scope = params['Scope']
+        end
+      end
+
+      # AI网关标签过滤
+      class AIGWTagFilter < TencentCloud::Common::AbstractModel
+        # @param MatchStrategy: <p>匹配策略</p><p>枚举值：</p><ul><li>AND： 并</li><li>OR： 或</li></ul>
+        # @type MatchStrategy: String
+        # @param Tags: <p>标签</p>
+        # @type Tags: Array
+
+        attr_accessor :MatchStrategy, :Tags
+
+        def initialize(matchstrategy=nil, tags=nil)
+          @MatchStrategy = matchstrategy
+          @Tags = tags
+        end
+
+        def deserialize(params)
+          @MatchStrategy = params['MatchStrategy']
+          @Tags = params['Tags']
+        end
+      end
+
       # 云原生网关限流插件参数限流的精确Qps阈值
       class AccurateQpsThreshold < TencentCloud::Common::AbstractModel
         # @param Unit: qps阈值控制维度,包含:second、minute、hour、day、month、year
@@ -110,15 +409,13 @@ module TencentCloud
 
       # AddCloudNativeAPIGatewayConsumerGroupAuth请求参数结构体
       class AddCloudNativeAPIGatewayConsumerGroupAuthRequest < TencentCloud::Common::AbstractModel
-        # @param GatewayId: 网关实例id
+        # @param GatewayId: <p>网关实例id</p>
         # @type GatewayId: String
-        # @param ResourceType: 资源类型:
-
-        # - ModelAPI: 模型API
+        # @param ResourceType: <p>授权资源类型。</p><p>枚举值：</p><ul><li>ModelAPI：模型 API</li><li>MCPServer：MCP Server</li></ul>
         # @type ResourceType: String
-        # @param ResourceId: 对应资源的id
+        # @param ResourceId: <p>对应资源的 ID。</p><ul><li>ResourceType=ModelAPI 时是模型 API ID</li><li>ResourceType=MCPServer 时是 MCP Server ID</li></ul>
         # @type ResourceId: String
-        # @param ConsumerGroupIds: 资源ID
+        # @param ConsumerGroupIds: <p>消费者组 ID 列表（每个 ID 以 cg- 开头），长度 1-10。</p>
         # @type ConsumerGroupIds: Array
 
         attr_accessor :GatewayId, :ResourceType, :ResourceId, :ConsumerGroupIds
@@ -158,9 +455,9 @@ module TencentCloud
       class AddCloudNativeAPIGatewayConsumerInGroupRequest < TencentCloud::Common::AbstractModel
         # @param GatewayId: 网关实例id
         # @type GatewayId: String
-        # @param ConsumerGroupId: 消费者组ID
+        # @param ConsumerGroupId: <p>消费者组 ID（以 cg- 开头）。</p>
         # @type ConsumerGroupId: String
-        # @param ConsumerIds: 消费者ID
+        # @param ConsumerIds: <p>消费者 ID 列表，长度 1-10。</p>
         # @type ConsumerIds: Array
 
         attr_accessor :GatewayId, :ConsumerGroupId, :ConsumerIds
@@ -180,7 +477,7 @@ module TencentCloud
 
       # AddCloudNativeAPIGatewayConsumerInGroup返回参数结构体
       class AddCloudNativeAPIGatewayConsumerInGroupResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 添加结果
+        # @param Result: <p>是否成功。</p>
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -477,18 +774,18 @@ module TencentCloud
 
       # 消费者结构
       class CNAPIGwConsumer < TencentCloud::Common::AbstractModel
-        # @param ConsumerId: 分组id
+        # @param ConsumerId: <p>消费者 ID。</p>
         # @type ConsumerId: String
-        # @param Name: 名字
+        # @param Name: <p>名字</p>
         # @type Name: String
-        # @param CreateTime: 创建时间
+        # @param CreateTime: <p>创建时间</p>
         # @type CreateTime: String
-        # @param ModifyTime: 更新时间 yyyy-MM-dd hh:mm:ss
+        # @param ModifyTime: <p>更新时间 yyyy-MM-dd hh:mm:ss</p>
         # @type ModifyTime: String
-        # @param Description: 描述
+        # @param Description: <p>描述</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
-        # @param ConsumerGroups: 消费者分组
+        # @param ConsumerGroups: <p>消费者分组</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConsumerGroups: Array
 
@@ -638,41 +935,37 @@ module TencentCloud
 
       # 密钥信息
       class CNAPIGwSecretKey < TencentCloud::Common::AbstractModel
-        # @param SecretKeyId: 密钥id
+        # @param SecretKeyId: <p>密钥id</p>
         # @type SecretKeyId: String
-        # @param Name: 密钥名字
+        # @param Name: <p>密钥名字</p>
         # @type Name: String
-        # @param SecretType: 密钥类型：ApiKey/JWT
+        # @param SecretType: <p>密钥协议类型。</p>
         # @type SecretType: String
-        # @param Status: 状态:
-        # - Enable: 启用
-        # - Disable: 禁用
+        # @param Status: <p>状态。</p><p>枚举值：</p><ul><li>Enable： 启用</li><li>Disable： 禁用</li></ul>
         # @type Status: String
-        # @param GenerateType: 生成方式:KMS/System/Custom
+        # @param GenerateType: <p>密钥生成方式。</p><p>枚举值：</p><ul><li>System： 系统自动生成</li><li>Custom： 用户自定义</li><li>KMS： 使用 KMS 密钥</li></ul>
         # @type GenerateType: String
-        # @param SecretValue: 密钥值
+        # @param SecretValue: <p>密钥明文</p>
         # @type SecretValue: String
-        # @param KmsKeyName: KMS凭证名字
+        # @param KmsKeyName: <p>KMS凭证名字</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KmsKeyName: String
-        # @param KmsKeyVersion: KMS凭证版本
+        # @param KmsKeyVersion: <p>KMS凭证版本</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KmsKeyVersion: String
-        # @param Description: 描述
+        # @param Description: <p>描述</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
-        # @param CanBind: 是否可以绑定
+        # @param CanBind: <p>是否可以绑定</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CanBind: Boolean
-        # @param CreateTime: 创建时间
+        # @param CreateTime: <p>创建时间</p>
         # @type CreateTime: String
-        # @param ModifyTime: 修改时间
+        # @param ModifyTime: <p>修改时间</p>
         # @type ModifyTime: String
-        # @param BindCount: 绑定数
+        # @param BindCount: <p>绑定数</p>
         # @type BindCount: Integer
-        # @param ResourceType: 资源类型：
-        # - Consumer 消费者
-        # - LLM 模型服务
+        # @param ResourceType: <p>密钥归属资源类型。</p><p>枚举值：</p><ul><li>Consumer： 消费者</li><li>ModelService： 模型服务</li></ul>
         # @type ResourceType: String
 
         attr_accessor :SecretKeyId, :Name, :SecretType, :Status, :GenerateType, :SecretValue, :KmsKeyName, :KmsKeyVersion, :Description, :CanBind, :CreateTime, :ModifyTime, :BindCount, :ResourceType
@@ -1145,10 +1438,18 @@ module TencentCloud
         # @type CrossServiceFallbackConfig: :class:`Tencentcloud::Tse.v20201207.models.AIGWCrossServiceFallbackConfig`
         # @param DescribeCloudNativeAPIGatewayLLMModelAPI: <p>是否展示模型API</p>
         # @type DescribeCloudNativeAPIGatewayLLMModelAPI: Boolean
+        # @param TagFilter: <p>标签</p>
+        # @type TagFilter: :class:`Tencentcloud::Tse.v20201207.models.AIGWTagFilter`
+        # @param LogConfig: <p>日志显示相关开关</p>
+        # @type LogConfig: :class:`Tencentcloud::Tse.v20201207.models.AIGWLogConfig`
+        # @param LogDesensitizeConfig: <p>日志脱敏规则</p>
+        # @type LogDesensitizeConfig: :class:`Tencentcloud::Tse.v20201207.models.AIGWLogDesensitizeConfig`
+        # @param ForwardDesensitizeConfig: <p>转发脱敏规则</p>
+        # @type ForwardDesensitizeConfig: :class:`Tencentcloud::Tse.v20201207.models.AIGWForwardDesensitizeConfig`
 
-        attr_accessor :Id, :CreateTime, :ModifyTime, :Name, :SceneType, :RequestProtocol, :RouteList, :BasePath, :StripPath, :Description, :ModelServiceId, :ModelServiceName, :ModelServiceRoute, :MatchHeaders, :EnableCrossServiceFallback, :CrossServiceFallbackConfig, :DescribeCloudNativeAPIGatewayLLMModelAPI
+        attr_accessor :Id, :CreateTime, :ModifyTime, :Name, :SceneType, :RequestProtocol, :RouteList, :BasePath, :StripPath, :Description, :ModelServiceId, :ModelServiceName, :ModelServiceRoute, :MatchHeaders, :EnableCrossServiceFallback, :CrossServiceFallbackConfig, :DescribeCloudNativeAPIGatewayLLMModelAPI, :TagFilter, :LogConfig, :LogDesensitizeConfig, :ForwardDesensitizeConfig
 
-        def initialize(id=nil, createtime=nil, modifytime=nil, name=nil, scenetype=nil, requestprotocol=nil, routelist=nil, basepath=nil, strippath=nil, description=nil, modelserviceid=nil, modelservicename=nil, modelserviceroute=nil, matchheaders=nil, enablecrossservicefallback=nil, crossservicefallbackconfig=nil, describecloudnativeapigatewayllmmodelapi=nil)
+        def initialize(id=nil, createtime=nil, modifytime=nil, name=nil, scenetype=nil, requestprotocol=nil, routelist=nil, basepath=nil, strippath=nil, description=nil, modelserviceid=nil, modelservicename=nil, modelserviceroute=nil, matchheaders=nil, enablecrossservicefallback=nil, crossservicefallbackconfig=nil, describecloudnativeapigatewayllmmodelapi=nil, tagfilter=nil, logconfig=nil, logdesensitizeconfig=nil, forwarddesensitizeconfig=nil)
           @Id = id
           @CreateTime = createtime
           @ModifyTime = modifytime
@@ -1166,6 +1467,10 @@ module TencentCloud
           @EnableCrossServiceFallback = enablecrossservicefallback
           @CrossServiceFallbackConfig = crossservicefallbackconfig
           @DescribeCloudNativeAPIGatewayLLMModelAPI = describecloudnativeapigatewayllmmodelapi
+          @TagFilter = tagfilter
+          @LogConfig = logconfig
+          @LogDesensitizeConfig = logdesensitizeconfig
+          @ForwardDesensitizeConfig = forwarddesensitizeconfig
         end
 
         def deserialize(params)
@@ -1206,6 +1511,22 @@ module TencentCloud
             @CrossServiceFallbackConfig.deserialize(params['CrossServiceFallbackConfig'])
           end
           @DescribeCloudNativeAPIGatewayLLMModelAPI = params['DescribeCloudNativeAPIGatewayLLMModelAPI']
+          unless params['TagFilter'].nil?
+            @TagFilter = AIGWTagFilter.new
+            @TagFilter.deserialize(params['TagFilter'])
+          end
+          unless params['LogConfig'].nil?
+            @LogConfig = AIGWLogConfig.new
+            @LogConfig.deserialize(params['LogConfig'])
+          end
+          unless params['LogDesensitizeConfig'].nil?
+            @LogDesensitizeConfig = AIGWLogDesensitizeConfig.new
+            @LogDesensitizeConfig.deserialize(params['LogDesensitizeConfig'])
+          end
+          unless params['ForwardDesensitizeConfig'].nil?
+            @ForwardDesensitizeConfig = AIGWForwardDesensitizeConfig.new
+            @ForwardDesensitizeConfig.deserialize(params['ForwardDesensitizeConfig'])
+          end
         end
       end
 
@@ -1289,10 +1610,16 @@ module TencentCloud
         # @type UpstreamUrlMode: String
         # @param SNI: <p>sni</p>
         # @type SNI: String
+        # @param QuotaLimit: <p>配额限制</p>
+        # @type QuotaLimit: :class:`Tencentcloud::Tse.v20201207.models.AIGWLLMQuotaLimit`
+        # @param Tags: <p>标签</p>
+        # @type Tags: String
+        # @param SecretKeyIds: <p>绑定的模型服务秘钥</p>
+        # @type SecretKeyIds: Array
 
-        attr_accessor :Id, :Name, :CreateTime, :ModifyTime, :ServiceType, :ModelProvider, :ModelProtocol, :UpstreamURL, :ModelSelector, :DefaultModel, :EnableModelFallback, :ModelFallbackRule, :EnableModelParamCheck, :ModelParamCheckRule, :Description, :ConnectTimeout, :WriteTimeout, :ReadTimeout, :Retries, :UpstreamUrlMode, :SNI
+        attr_accessor :Id, :Name, :CreateTime, :ModifyTime, :ServiceType, :ModelProvider, :ModelProtocol, :UpstreamURL, :ModelSelector, :DefaultModel, :EnableModelFallback, :ModelFallbackRule, :EnableModelParamCheck, :ModelParamCheckRule, :Description, :ConnectTimeout, :WriteTimeout, :ReadTimeout, :Retries, :UpstreamUrlMode, :SNI, :QuotaLimit, :Tags, :SecretKeyIds
 
-        def initialize(id=nil, name=nil, createtime=nil, modifytime=nil, servicetype=nil, modelprovider=nil, modelprotocol=nil, upstreamurl=nil, modelselector=nil, defaultmodel=nil, enablemodelfallback=nil, modelfallbackrule=nil, enablemodelparamcheck=nil, modelparamcheckrule=nil, description=nil, connecttimeout=nil, writetimeout=nil, readtimeout=nil, retries=nil, upstreamurlmode=nil, sni=nil)
+        def initialize(id=nil, name=nil, createtime=nil, modifytime=nil, servicetype=nil, modelprovider=nil, modelprotocol=nil, upstreamurl=nil, modelselector=nil, defaultmodel=nil, enablemodelfallback=nil, modelfallbackrule=nil, enablemodelparamcheck=nil, modelparamcheckrule=nil, description=nil, connecttimeout=nil, writetimeout=nil, readtimeout=nil, retries=nil, upstreamurlmode=nil, sni=nil, quotalimit=nil, tags=nil, secretkeyids=nil)
           @Id = id
           @Name = name
           @CreateTime = createtime
@@ -1314,6 +1641,9 @@ module TencentCloud
           @Retries = retries
           @UpstreamUrlMode = upstreamurlmode
           @SNI = sni
+          @QuotaLimit = quotalimit
+          @Tags = tags
+          @SecretKeyIds = secretkeyids
         end
 
         def deserialize(params)
@@ -1344,24 +1674,36 @@ module TencentCloud
           @Retries = params['Retries']
           @UpstreamUrlMode = params['UpstreamUrlMode']
           @SNI = params['SNI']
+          unless params['QuotaLimit'].nil?
+            @QuotaLimit = AIGWLLMQuotaLimit.new
+            @QuotaLimit.deserialize(params['QuotaLimit'])
+          end
+          @Tags = params['Tags']
+          @SecretKeyIds = params['SecretKeyIds']
         end
       end
 
       # 模型服务路由配置
       class CloudNativeAPIGatewayLLMModelServiceRoute < TencentCloud::Common::AbstractModel
-        # @param SelectedTypes: 生效的路由算法类型：权重路由，模型名称路由、参数路由等Weighted/ModelName/Query (预留多个，暂时只能填写一个)
+        # @param SelectedTypes: <p>生效的路由算法类型：权重路由，模型名称路由、参数路由等Weighted/ModelName/Query (预留多个，暂时只能填写一个)</p>
         # @type SelectedTypes: Array
-        # @param WeightedConfig: 权重路由配置，最多10个
+        # @param WeightedConfig: <p>权重路由配置，最多10个</p>
         # @type WeightedConfig: Array
-        # @param ModelNameConfig: 模型名称路由配置，最多10个
+        # @param ModelNameConfig: <p>模型名称路由配置，最多10个</p>
         # @type ModelNameConfig: Array
+        # @param IntentRouteConfig: <p>意图识别</p>
+        # @type IntentRouteConfig: :class:`Tencentcloud::Tse.v20201207.models.AIGWIntentRoute`
+        # @param LatencyPriorityConfig: <p>延迟路由</p>
+        # @type LatencyPriorityConfig: :class:`Tencentcloud::Tse.v20201207.models.AIGWLatencyPriorityConfig`
 
-        attr_accessor :SelectedTypes, :WeightedConfig, :ModelNameConfig
+        attr_accessor :SelectedTypes, :WeightedConfig, :ModelNameConfig, :IntentRouteConfig, :LatencyPriorityConfig
 
-        def initialize(selectedtypes=nil, weightedconfig=nil, modelnameconfig=nil)
+        def initialize(selectedtypes=nil, weightedconfig=nil, modelnameconfig=nil, intentrouteconfig=nil, latencypriorityconfig=nil)
           @SelectedTypes = selectedtypes
           @WeightedConfig = weightedconfig
           @ModelNameConfig = modelnameconfig
+          @IntentRouteConfig = intentrouteconfig
+          @LatencyPriorityConfig = latencypriorityconfig
         end
 
         def deserialize(params)
@@ -1382,16 +1724,24 @@ module TencentCloud
               @ModelNameConfig << cloudnativeapigatewayllmmodelserviceroutemodelnamestrategy_tmp
             end
           end
+          unless params['IntentRouteConfig'].nil?
+            @IntentRouteConfig = AIGWIntentRoute.new
+            @IntentRouteConfig.deserialize(params['IntentRouteConfig'])
+          end
+          unless params['LatencyPriorityConfig'].nil?
+            @LatencyPriorityConfig = AIGWLatencyPriorityConfig.new
+            @LatencyPriorityConfig.deserialize(params['LatencyPriorityConfig'])
+          end
         end
       end
 
       # 模型服务模型名称路由策略
       class CloudNativeAPIGatewayLLMModelServiceRouteModelNameStrategy < TencentCloud::Common::AbstractModel
-        # @param ModelServiceId: 模型服务id
+        # @param ModelServiceId: <p>模型服务id</p>
         # @type ModelServiceId: String
-        # @param MatchModelName: 匹配模型服务
+        # @param MatchModelName: <p>匹配模型服务</p>
         # @type MatchModelName: String
-        # @param RewriteModelName: 重写模型
+        # @param RewriteModelName: <p>重写模型</p>
         # @type RewriteModelName: String
 
         attr_accessor :ModelServiceId, :MatchModelName, :RewriteModelName
@@ -1411,9 +1761,9 @@ module TencentCloud
 
       # 权重路由配置
       class CloudNativeAPIGatewayLLMModelServiceRouteWeightedStrategy < TencentCloud::Common::AbstractModel
-        # @param ModelServiceId: 模型服务id
+        # @param ModelServiceId: <p>模型服务id</p>
         # @type ModelServiceId: String
-        # @param Weight: 权重值
+        # @param Weight: <p>权重值</p>
         # @type Weight: Integer
 
         attr_accessor :ModelServiceId, :Weight
@@ -1633,8 +1983,8 @@ module TencentCloud
 
         attr_accessor :StrategyId, :StrategyName, :CreateTime, :ModifyTime, :Description, :Config, :GatewayId, :CronConfig, :MaxReplicas
         extend Gem::Deprecate
-        deprecate :MaxReplicas, :none, 2026, 5
-        deprecate :MaxReplicas=, :none, 2026, 5
+        deprecate :MaxReplicas, :none, 2026, 6
+        deprecate :MaxReplicas=, :none, 2026, 6
 
         def initialize(strategyid=nil, strategyname=nil, createtime=nil, modifytime=nil, description=nil, config=nil, gatewayid=nil, cronconfig=nil, maxreplicas=nil)
           @StrategyId = strategyid
@@ -1695,16 +2045,16 @@ module TencentCloud
 
         attr_accessor :MaxReplicas, :Metrics, :Enabled, :CreateTime, :ModifyTime, :StrategyId, :AutoScalerId, :Behavior
         extend Gem::Deprecate
-        deprecate :Enabled, :none, 2026, 5
-        deprecate :Enabled=, :none, 2026, 5
-        deprecate :CreateTime, :none, 2026, 5
-        deprecate :CreateTime=, :none, 2026, 5
-        deprecate :ModifyTime, :none, 2026, 5
-        deprecate :ModifyTime=, :none, 2026, 5
-        deprecate :StrategyId, :none, 2026, 5
-        deprecate :StrategyId=, :none, 2026, 5
-        deprecate :AutoScalerId, :none, 2026, 5
-        deprecate :AutoScalerId=, :none, 2026, 5
+        deprecate :Enabled, :none, 2026, 6
+        deprecate :Enabled=, :none, 2026, 6
+        deprecate :CreateTime, :none, 2026, 6
+        deprecate :CreateTime=, :none, 2026, 6
+        deprecate :ModifyTime, :none, 2026, 6
+        deprecate :ModifyTime=, :none, 2026, 6
+        deprecate :StrategyId, :none, 2026, 6
+        deprecate :StrategyId=, :none, 2026, 6
+        deprecate :AutoScalerId, :none, 2026, 6
+        deprecate :AutoScalerId=, :none, 2026, 6
 
         def initialize(maxreplicas=nil, metrics=nil, enabled=nil, createtime=nil, modifytime=nil, strategyid=nil, autoscalerid=nil, behavior=nil)
           @MaxReplicas = maxreplicas
@@ -1825,14 +2175,14 @@ module TencentCloud
 
         attr_accessor :Enabled, :Params, :CreateTime, :ModifyTime, :StrategyId
         extend Gem::Deprecate
-        deprecate :Enabled, :none, 2026, 5
-        deprecate :Enabled=, :none, 2026, 5
-        deprecate :CreateTime, :none, 2026, 5
-        deprecate :CreateTime=, :none, 2026, 5
-        deprecate :ModifyTime, :none, 2026, 5
-        deprecate :ModifyTime=, :none, 2026, 5
-        deprecate :StrategyId, :none, 2026, 5
-        deprecate :StrategyId=, :none, 2026, 5
+        deprecate :Enabled, :none, 2026, 6
+        deprecate :Enabled=, :none, 2026, 6
+        deprecate :CreateTime, :none, 2026, 6
+        deprecate :CreateTime=, :none, 2026, 6
+        deprecate :ModifyTime, :none, 2026, 6
+        deprecate :ModifyTime=, :none, 2026, 6
+        deprecate :StrategyId, :none, 2026, 6
+        deprecate :StrategyId=, :none, 2026, 6
 
         def initialize(enabled=nil, params=nil, createtime=nil, modifytime=nil, strategyid=nil)
           @Enabled = enabled
@@ -2510,10 +2860,10 @@ module TencentCloud
 
         attr_accessor :GatewayId, :StrategyName, :Description, :Config, :CronScalerConfig, :MaxReplicas, :CronConfig
         extend Gem::Deprecate
-        deprecate :CronScalerConfig, :none, 2026, 5
-        deprecate :CronScalerConfig=, :none, 2026, 5
-        deprecate :MaxReplicas, :none, 2026, 5
-        deprecate :MaxReplicas=, :none, 2026, 5
+        deprecate :CronScalerConfig, :none, 2026, 6
+        deprecate :CronScalerConfig=, :none, 2026, 6
+        deprecate :MaxReplicas, :none, 2026, 6
+        deprecate :MaxReplicas=, :none, 2026, 6
 
         def initialize(gatewayid=nil, strategyname=nil, description=nil, config=nil, cronscalerconfig=nil, maxreplicas=nil, cronconfig=nil)
           @GatewayId = gatewayid
@@ -2556,8 +2906,8 @@ module TencentCloud
 
         attr_accessor :Result, :StrategyId, :RequestId
         extend Gem::Deprecate
-        deprecate :Result, :none, 2026, 5
-        deprecate :Result=, :none, 2026, 5
+        deprecate :Result, :none, 2026, 6
+        deprecate :Result=, :none, 2026, 6
 
         def initialize(result=nil, strategyid=nil, requestid=nil)
           @Result = result
@@ -2643,10 +2993,10 @@ module TencentCloud
 
         attr_accessor :GatewayId, :BindDomains, :CertId, :Name, :Key, :Crt
         extend Gem::Deprecate
-        deprecate :Key, :none, 2026, 5
-        deprecate :Key=, :none, 2026, 5
-        deprecate :Crt, :none, 2026, 5
-        deprecate :Crt=, :none, 2026, 5
+        deprecate :Key, :none, 2026, 6
+        deprecate :Key=, :none, 2026, 6
+        deprecate :Crt, :none, 2026, 6
+        deprecate :Crt=, :none, 2026, 6
 
         def initialize(gatewayid=nil, binddomains=nil, certid=nil, name=nil, key=nil, crt=nil)
           @GatewayId = gatewayid
@@ -2694,13 +3044,11 @@ module TencentCloud
       class CreateCloudNativeAPIGatewayConsumerGroupRequest < TencentCloud::Common::AbstractModel
         # @param GatewayId: 网关实例id
         # @type GatewayId: String
-        # @param Name: 消费者组名称
+        # @param Name: <p>消费者组名称，最长 60 字符。同一网关下唯一。</p>
         # @type Name: String
-        # @param Status: 状态：
-        # - Enable 启用
-        # - Disable 禁用
+        # @param Status: <p>启用状态。</p><p>枚举值：</p><ul><li>Enable：启用</li><li>Disable：禁用</li></ul>
         # @type Status: String
-        # @param Description: 消费者组描述
+        # @param Description: <p>消费者组描述。最长 200 字符。</p>
         # @type Description: String
 
         attr_accessor :GatewayId, :Name, :Status, :Description
@@ -2722,7 +3070,7 @@ module TencentCloud
 
       # CreateCloudNativeAPIGatewayConsumerGroup返回参数结构体
       class CreateCloudNativeAPIGatewayConsumerGroupResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 创建结果
+        # @param Result: <p>创建结果。包含成功标识与新建资源 ID。</p>
         # @type Result: :class:`Tencentcloud::Tse.v20201207.models.CNAPIGwCreateCommonResult`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2747,9 +3095,9 @@ module TencentCloud
       class CreateCloudNativeAPIGatewayConsumerRequest < TencentCloud::Common::AbstractModel
         # @param GatewayId: 网关实例id
         # @type GatewayId: String
-        # @param Name: 消费者名称
+        # @param Name: <p>消费者名称，最长 60 字符。同一网关下唯一。</p>
         # @type Name: String
-        # @param Description: 消费者描述
+        # @param Description: <p>消费者描述。最长 200 字符。</p>
         # @type Description: String
 
         attr_accessor :GatewayId, :Name, :Description
@@ -2769,7 +3117,7 @@ module TencentCloud
 
       # CreateCloudNativeAPIGatewayConsumer返回参数结构体
       class CreateCloudNativeAPIGatewayConsumerResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 创建结果
+        # @param Result: <p>创建结果。包含成功标识与新建资源 ID。</p>
         # @type Result: :class:`Tencentcloud::Tse.v20201207.models.CNAPIGwCreateCommonResult`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2794,32 +3142,36 @@ module TencentCloud
       class CreateCloudNativeAPIGatewayLLMModelAPIRequest < TencentCloud::Common::AbstractModel
         # @param GatewayId: <p>网关 id。</p>
         # @type GatewayId: String
-        # @param Name: <p>AI 网关 LLM 模型 API 的唯一标识名称，格式规则：最长60个字符，支持中英文大小写、数字及分隔符（“-”、“_”)，不能以数字和分隔符开头，不能以分隔符结尾。</p>
+        # @param Name: <p>模型 API 名称，最长 60 字符。同一网关下唯一。</p>
         # @type Name: String
-        # @param SceneType: <p>选择业务场景,  选项：Chat（聊天）。</p>
+        # @param SceneType: <p>业务场景。</p><p>枚举值：</p><ul><li>Chat：聊天</li><li>Image：图像（需要网关版本 ≥ 3.9.3）</li></ul>
         # @type SceneType: String
-        # @param RequestProtocol: <p>业务场景对应的请求协议，选项：OpenAI（目前只支持 OpenAI）。</p>
+        # @param RequestProtocol: <p>请求协议（小写）。当前仅支持：</p><ul><li>openai</li></ul>
         # @type RequestProtocol: String
-        # @param ListModelServiceId: <p>初始化关联的模型服务列表。</p>
+        # @param ListModelServiceId: <p>关联的模型服务 ID 列表，长度 1-10。</p><p>注：字段名建议改为 ModelServiceIds，当前保留用于兼容。</p>
         # @type ListModelServiceId: Array
-        # @param RouteList: <p>路由列表</p>
+        # @param RouteList: <p>路由列表，至少 1 条。每条包含 Methods/Paths/Hosts 等 Kong 路由属性。</p>
         # @type RouteList: Array
-        # @param BasePath: <p>为API设置统一的前缀，格式：以/开头，支持字母、数字、短横线。</p>
+        # @param BasePath: <p>统一前缀路径（可选）。例如 /v1/openai。</p>
         # @type BasePath: String
-        # @param Description: <p>模型 API 的相关描述。</p>
+        # @param Description: <p>模型 API 描述。最长 200 字符。</p>
         # @type Description: String
-        # @param ModelServiceRoute: <p>模型服务路由策略（是指如何路由到模型服务）</p>
+        # @param ModelServiceRoute: <p>多模型服务路由策略。ListModelServiceId 多于 1 项时必填。</p>
         # @type ModelServiceRoute: :class:`Tencentcloud::Tse.v20201207.models.CloudNativeAPIGatewayLLMModelServiceRoute`
-        # @param MatchHeaders: <p>路由 Header 匹配规则</p>
+        # @param MatchHeaders: <p>Header 路由匹配规则。当前仅支持 Operator=exact。</p>
         # @type MatchHeaders: Array
-        # @param EnableCrossServiceFallback: <p>跨服务 fallback 开关</p>
+        # @param EnableCrossServiceFallback: <p>是否启用跨服务 Fallback。开启后需提供 CrossServiceFallbackConfig。</p>
         # @type EnableCrossServiceFallback: Boolean
-        # @param CrossServiceFallbackConfig: <p>跨服务 fallback 配置</p>
+        # @param CrossServiceFallbackConfig: <p>跨服务 Fallback 配置。EnableCrossServiceFallback=true 时必填。</p>
         # @type CrossServiceFallbackConfig: :class:`Tencentcloud::Tse.v20201207.models.AIGWCrossServiceFallbackConfig`
+        # @param TagFilter: <p>标签过滤策略。需要网关版本 ≥ 3.9.4。</p>
+        # @type TagFilter: :class:`Tencentcloud::Tse.v20201207.models.AIGWTagFilter`
+        # @param LogConfig: <p>日志输出配置（请求/响应 payload 落 LLM Log）。需要网关版本 ≥ 3.9.4。</p>
+        # @type LogConfig: :class:`Tencentcloud::Tse.v20201207.models.AIGWLogConfig`
 
-        attr_accessor :GatewayId, :Name, :SceneType, :RequestProtocol, :ListModelServiceId, :RouteList, :BasePath, :Description, :ModelServiceRoute, :MatchHeaders, :EnableCrossServiceFallback, :CrossServiceFallbackConfig
+        attr_accessor :GatewayId, :Name, :SceneType, :RequestProtocol, :ListModelServiceId, :RouteList, :BasePath, :Description, :ModelServiceRoute, :MatchHeaders, :EnableCrossServiceFallback, :CrossServiceFallbackConfig, :TagFilter, :LogConfig
 
-        def initialize(gatewayid=nil, name=nil, scenetype=nil, requestprotocol=nil, listmodelserviceid=nil, routelist=nil, basepath=nil, description=nil, modelserviceroute=nil, matchheaders=nil, enablecrossservicefallback=nil, crossservicefallbackconfig=nil)
+        def initialize(gatewayid=nil, name=nil, scenetype=nil, requestprotocol=nil, listmodelserviceid=nil, routelist=nil, basepath=nil, description=nil, modelserviceroute=nil, matchheaders=nil, enablecrossservicefallback=nil, crossservicefallbackconfig=nil, tagfilter=nil, logconfig=nil)
           @GatewayId = gatewayid
           @Name = name
           @SceneType = scenetype
@@ -2832,6 +3184,8 @@ module TencentCloud
           @MatchHeaders = matchheaders
           @EnableCrossServiceFallback = enablecrossservicefallback
           @CrossServiceFallbackConfig = crossservicefallbackconfig
+          @TagFilter = tagfilter
+          @LogConfig = logconfig
         end
 
         def deserialize(params)
@@ -2866,6 +3220,14 @@ module TencentCloud
           unless params['CrossServiceFallbackConfig'].nil?
             @CrossServiceFallbackConfig = AIGWCrossServiceFallbackConfig.new
             @CrossServiceFallbackConfig.deserialize(params['CrossServiceFallbackConfig'])
+          end
+          unless params['TagFilter'].nil?
+            @TagFilter = AIGWTagFilter.new
+            @TagFilter.deserialize(params['TagFilter'])
+          end
+          unless params['LogConfig'].nil?
+            @LogConfig = AIGWLogConfig.new
+            @LogConfig.deserialize(params['LogConfig'])
           end
         end
       end
@@ -2936,10 +3298,14 @@ module TencentCloud
         # @type UpstreamUrlMode: String
         # @param SNI: <p>sni</p>
         # @type SNI: String
+        # @param QuotaLimit: <p>模型服务级别的配额上限（RPM/TPM）。需要网关版本 ≥ 3.9.4。</p>
+        # @type QuotaLimit: :class:`Tencentcloud::Tse.v20201207.models.AIGWLLMQuotaLimit`
+        # @param Tags: <p>标签</p>
+        # @type Tags: Array
 
-        attr_accessor :GatewayId, :Name, :ServiceType, :ModelProvider, :ModelProtocol, :ModelSelector, :SecretKeyIds, :DefaultModel, :EnableModelFallback, :ModelFallbackRule, :EnableModelParamCheck, :ModelParamCheckRule, :Description, :UpstreamURL, :ConnectTimeout, :WriteTimeout, :ReadTimeout, :Retries, :UpstreamUrlMode, :SNI
+        attr_accessor :GatewayId, :Name, :ServiceType, :ModelProvider, :ModelProtocol, :ModelSelector, :SecretKeyIds, :DefaultModel, :EnableModelFallback, :ModelFallbackRule, :EnableModelParamCheck, :ModelParamCheckRule, :Description, :UpstreamURL, :ConnectTimeout, :WriteTimeout, :ReadTimeout, :Retries, :UpstreamUrlMode, :SNI, :QuotaLimit, :Tags
 
-        def initialize(gatewayid=nil, name=nil, servicetype=nil, modelprovider=nil, modelprotocol=nil, modelselector=nil, secretkeyids=nil, defaultmodel=nil, enablemodelfallback=nil, modelfallbackrule=nil, enablemodelparamcheck=nil, modelparamcheckrule=nil, description=nil, upstreamurl=nil, connecttimeout=nil, writetimeout=nil, readtimeout=nil, retries=nil, upstreamurlmode=nil, sni=nil)
+        def initialize(gatewayid=nil, name=nil, servicetype=nil, modelprovider=nil, modelprotocol=nil, modelselector=nil, secretkeyids=nil, defaultmodel=nil, enablemodelfallback=nil, modelfallbackrule=nil, enablemodelparamcheck=nil, modelparamcheckrule=nil, description=nil, upstreamurl=nil, connecttimeout=nil, writetimeout=nil, readtimeout=nil, retries=nil, upstreamurlmode=nil, sni=nil, quotalimit=nil, tags=nil)
           @GatewayId = gatewayid
           @Name = name
           @ServiceType = servicetype
@@ -2960,6 +3326,8 @@ module TencentCloud
           @Retries = retries
           @UpstreamUrlMode = upstreamurlmode
           @SNI = sni
+          @QuotaLimit = quotalimit
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -2989,6 +3357,11 @@ module TencentCloud
           @Retries = params['Retries']
           @UpstreamUrlMode = params['UpstreamUrlMode']
           @SNI = params['SNI']
+          unless params['QuotaLimit'].nil?
+            @QuotaLimit = AIGWLLMQuotaLimit.new
+            @QuotaLimit.deserialize(params['QuotaLimit'])
+          end
+          @Tags = params['Tags']
         end
       end
 
@@ -3309,8 +3682,8 @@ module TencentCloud
 
         attr_accessor :GatewayId, :ServiceID, :RouteName, :Methods, :Hosts, :Paths, :Protocols, :PreserveHost, :HttpsRedirectStatusCode, :StripPath, :ForceHttps, :DestinationPorts, :Headers, :RequestBuffering, :ResponseBuffering, :RegexPriority, :QueryStringParameters
         extend Gem::Deprecate
-        deprecate :ForceHttps, :none, 2026, 5
-        deprecate :ForceHttps=, :none, 2026, 5
+        deprecate :ForceHttps, :none, 2026, 6
+        deprecate :ForceHttps=, :none, 2026, 6
 
         def initialize(gatewayid=nil, serviceid=nil, routename=nil, methods=nil, hosts=nil, paths=nil, protocols=nil, preservehost=nil, httpsredirectstatuscode=nil, strippath=nil, forcehttps=nil, destinationports=nil, headers=nil, requestbuffering=nil, responsebuffering=nil, regexpriority=nil, querystringparameters=nil)
           @GatewayId = gatewayid
@@ -3387,34 +3760,21 @@ module TencentCloud
       class CreateCloudNativeAPIGatewaySecretKeyRequest < TencentCloud::Common::AbstractModel
         # @param GatewayId: 实例 ID
         # @type GatewayId: String
-        # @param SecretType: 密钥类型： ApiKey
+        # @param SecretType: <p>密钥协议类型。</p><p>枚举值：</p><ul><li>ApiKey</li><li>Basic</li><li>Hmac</li><li>OAuth2</li><li>JWT</li></ul>
         # @type SecretType: String
-        # @param Name: 密钥名字
+        # @param Name: <p>密钥名称，2-60 字符。</p>
         # @type Name: String
-        # @param GenerateType: 生成方式：
-
-        # 密钥类型 Consumer 时选项：
-
-        # - KMS
-        # - System 系统
-        # - Custom  自定义
-
-        # 密钥类型是 LLM 时选项
-
-        # - KMS
-        # - Custom  自定义
+        # @param GenerateType: <p>密钥生成方式。</p><p>枚举值：</p><ul><li>System：系统自动生成</li><li>Custom：用户自定义（需传 SecretValue）</li><li>KMS：使用 KMS 密钥（需传 KmsKeyName 与 KmsKeyVersion）</li></ul>
         # @type GenerateType: String
-        # @param ResourceType: 资源类型：
-        # - Consumer 消费者
-        # - LLM 模型服务
+        # @param ResourceType: <p>密钥归属资源类型。</p><p>枚举值：</p><ul><li>Consumer：消费者</li><li>ModelService：模型服务</li></ul>
         # @type ResourceType: String
-        # @param KmsKeyName: KMS 的凭证名字， GenerateType 时 kms 必填
+        # @param KmsKeyName: <p>KMS 密钥名称。GenerateType=KMS 时必填。</p>
         # @type KmsKeyName: String
-        # @param KmsKeyVersion: KMS 的凭证版本， GenerateType 时 kms 必填
+        # @param KmsKeyVersion: <p>KMS 密钥版本。GenerateType=KMS 时必填。</p>
         # @type KmsKeyVersion: String
-        # @param SecretValue: GenerateType 等于 Custom 是必填
+        # @param SecretValue: <p>密钥值，长度 8-256。GenerateType=Custom 时必填。</p>
         # @type SecretValue: String
-        # @param Description: 描述
+        # @param Description: <p>密钥描述。最长 200 字符。</p>
         # @type Description: String
 
         attr_accessor :GatewayId, :SecretType, :Name, :GenerateType, :ResourceType, :KmsKeyName, :KmsKeyVersion, :SecretValue, :Description
@@ -3446,7 +3806,7 @@ module TencentCloud
 
       # CreateCloudNativeAPIGatewaySecretKey返回参数结构体
       class CreateCloudNativeAPIGatewaySecretKeyResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 允许的操作
+        # @param Result: <p>创建结果。包含成功标识与新建资源 ID。</p>
         # @type Result: :class:`Tencentcloud::Tse.v20201207.models.CNAPIGwCreateCommonResult`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4904,7 +5264,7 @@ module TencentCloud
 
       # DeleteCloudNativeAPIGatewayLLMModelAPI返回参数结构体
       class DeleteCloudNativeAPIGatewayLLMModelAPIResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 是否成功
+        # @param Result: <p>是否成功。</p>
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4944,7 +5304,7 @@ module TencentCloud
 
       # DeleteCloudNativeAPIGatewayLLMModelService返回参数结构体
       class DeleteCloudNativeAPIGatewayLLMModelServiceResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 是否成功
+        # @param Result: <p>是否成功。</p>
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6373,11 +6733,11 @@ module TencentCloud
 
       # DescribeCloudNativeAPIGatewayConsumerGroupList请求参数结构体
       class DescribeCloudNativeAPIGatewayConsumerGroupListRequest < TencentCloud::Common::AbstractModel
-        # @param GatewayId: 网关实例id
+        # @param GatewayId: <p>网关实例id</p>
         # @type GatewayId: String
-        # @param Limit: 每页条数
+        # @param Limit: <p>每页条数，范围 [1, 100]，默认 10。</p>
         # @type Limit: Integer
-        # @param Offset: 起始位置
+        # @param Offset: <p>起始位置，从 0 开始。</p>
         # @type Offset: Integer
 
         attr_accessor :GatewayId, :Limit, :Offset
@@ -6397,7 +6757,7 @@ module TencentCloud
 
       # DescribeCloudNativeAPIGatewayConsumerGroupList返回参数结构体
       class DescribeCloudNativeAPIGatewayConsumerGroupListResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 修改结果
+        # @param Result: <p>分组列表</p>
         # @type Result: :class:`Tencentcloud::Tse.v20201207.models.CNAPIGwConsumerGroupList`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6420,9 +6780,9 @@ module TencentCloud
 
       # DescribeCloudNativeAPIGatewayConsumerGroup请求参数结构体
       class DescribeCloudNativeAPIGatewayConsumerGroupRequest < TencentCloud::Common::AbstractModel
-        # @param GatewayId: 网关实例id
+        # @param GatewayId: <p>网关实例id</p>
         # @type GatewayId: String
-        # @param ConsumerGroupId: 消费者组ID
+        # @param ConsumerGroupId: <p>消费者组ID</p>
         # @type ConsumerGroupId: String
 
         attr_accessor :GatewayId, :ConsumerGroupId
@@ -6440,7 +6800,7 @@ module TencentCloud
 
       # DescribeCloudNativeAPIGatewayConsumerGroup返回参数结构体
       class DescribeCloudNativeAPIGatewayConsumerGroupResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 删除结果
+        # @param Result: <p>消费者组详情。</p>
         # @type Result: :class:`Tencentcloud::Tse.v20201207.models.CNAPIGwConsumerGroup`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6463,11 +6823,11 @@ module TencentCloud
 
       # DescribeCloudNativeAPIGatewayConsumerList请求参数结构体
       class DescribeCloudNativeAPIGatewayConsumerListRequest < TencentCloud::Common::AbstractModel
-        # @param GatewayId: 网关实例id
+        # @param GatewayId: <p>网关实例id</p>
         # @type GatewayId: String
-        # @param Limit: 页显示条数，最大20
+        # @param Limit: <p>每页条数，范围 [1, 100]，默认 20。</p>
         # @type Limit: Integer
-        # @param Offset: 起始位置
+        # @param Offset: <p>起始位置，从 0 开始。</p>
         # @type Offset: Integer
 
         attr_accessor :GatewayId, :Limit, :Offset
@@ -6487,7 +6847,7 @@ module TencentCloud
 
       # DescribeCloudNativeAPIGatewayConsumerList返回参数结构体
       class DescribeCloudNativeAPIGatewayConsumerListResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 消费者列表
+        # @param Result: <p>消费者列表</p>
         # @type Result: :class:`Tencentcloud::Tse.v20201207.models.CNAPIGwConsumerList`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6510,9 +6870,9 @@ module TencentCloud
 
       # DescribeCloudNativeAPIGatewayConsumer请求参数结构体
       class DescribeCloudNativeAPIGatewayConsumerRequest < TencentCloud::Common::AbstractModel
-        # @param GatewayId: 网关实例id
+        # @param GatewayId: <p>网关实例id</p>
         # @type GatewayId: String
-        # @param ConsumerId: 消费者ID
+        # @param ConsumerId: <p>消费者ID</p>
         # @type ConsumerId: String
 
         attr_accessor :GatewayId, :ConsumerId
@@ -6530,7 +6890,7 @@ module TencentCloud
 
       # DescribeCloudNativeAPIGatewayConsumer返回参数结构体
       class DescribeCloudNativeAPIGatewayConsumerResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 删除结果
+        # @param Result: <p>消费者详情</p>
         # @type Result: :class:`Tencentcloud::Tse.v20201207.models.CNAPIGwConsumer`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6640,9 +7000,9 @@ module TencentCloud
 
       # DescribeCloudNativeAPIGatewayLLMModelAPI请求参数结构体
       class DescribeCloudNativeAPIGatewayLLMModelAPIRequest < TencentCloud::Common::AbstractModel
-        # @param GatewayId: 网关 id。
+        # @param GatewayId: <p>网关 id。</p>
         # @type GatewayId: String
-        # @param ModelAPIId: 模型 API ID，全局唯一标识。
+        # @param ModelAPIId: <p>模型 API ID，全局唯一标识。</p>
         # @type ModelAPIId: String
 
         attr_accessor :GatewayId, :ModelAPIId
@@ -6660,7 +7020,7 @@ module TencentCloud
 
       # DescribeCloudNativeAPIGatewayLLMModelAPI返回参数结构体
       class DescribeCloudNativeAPIGatewayLLMModelAPIResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 模型 API 信息。
+        # @param Result: <p>模型 API 信息。</p>
         # @type Result: :class:`Tencentcloud::Tse.v20201207.models.CloudNativeAPIGatewayLLMModelAPI`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6685,17 +7045,17 @@ module TencentCloud
       class DescribeCloudNativeAPIGatewayLLMModelAPIsRequest < TencentCloud::Common::AbstractModel
         # @param GatewayId: 网关 id。
         # @type GatewayId: String
-        # @param Limit: 返回数量，默认为 10，最大值为 1000。
+        # @param Limit: <p>每页条数，范围 [1, 1000]，默认 10。</p>
         # @type Limit: Integer
-        # @param Offset: 偏移量，默认为 0。
+        # @param Offset: <p>起始位置，从 0 开始。</p>
         # @type Offset: Integer
-        # @param Filters: 过滤条件，多个过滤条件之间是“与”的关系
+        # @param Filters: <p>过滤条件。当前未启用具体字段。</p>
         # @type Filters: Array
-        # @param Keyword: 搜索关键词，模糊匹配 name 和 description
+        # @param Keyword: <p>模糊匹配模型 API 名称。</p>
         # @type Keyword: String
-        # @param ConsumerGroupId: 通过消费者组Id筛选，UseToBind 为 true 时ConsumerGroupId不为空
+        # @param ConsumerGroupId: <p>消费者组 ID（以 cg- 开头），与 UseToBind 搭配使用。</p>
         # @type ConsumerGroupId: String
-        # @param UseToBind: 筛选可被绑定的数据， 比如模型API里面绑定模型服务筛选时，如果设置true, 返回结果只会有可以被绑定的数据。
+        # @param UseToBind: <p>是否用于绑定场景。true 时仅返回可被绑定到指定消费者组的模型 API。</p>
         # @type UseToBind: Boolean
 
         attr_accessor :GatewayId, :Limit, :Offset, :Filters, :Keyword, :ConsumerGroupId, :UseToBind
@@ -6753,9 +7113,9 @@ module TencentCloud
 
       # DescribeCloudNativeAPIGatewayLLMModelService请求参数结构体
       class DescribeCloudNativeAPIGatewayLLMModelServiceRequest < TencentCloud::Common::AbstractModel
-        # @param GatewayId: 网关 id。
+        # @param GatewayId: <p>网关 id。</p>
         # @type GatewayId: String
-        # @param ModelServiceId: 模型服务 ID，全局唯一标识。
+        # @param ModelServiceId: <p>模型服务 ID，全局唯一标识。</p>
         # @type ModelServiceId: String
 
         attr_accessor :GatewayId, :ModelServiceId
@@ -6773,7 +7133,7 @@ module TencentCloud
 
       # DescribeCloudNativeAPIGatewayLLMModelService返回参数结构体
       class DescribeCloudNativeAPIGatewayLLMModelServiceResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 模型服务。
+        # @param Result: <p>模型服务。</p>
         # @type Result: :class:`Tencentcloud::Tse.v20201207.models.CloudNativeAPIGatewayLLMModelService`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -7284,31 +7644,35 @@ module TencentCloud
 
       # DescribeCloudNativeAPIGatewaySecretKeyList请求参数结构体
       class DescribeCloudNativeAPIGatewaySecretKeyListRequest < TencentCloud::Common::AbstractModel
-        # @param GatewayId: 实例 ID
+        # @param GatewayId: <p>实例 ID</p>
         # @type GatewayId: String
-        # @param Limit: 每页数量，最大20个
+        # @param Limit: <p>每页条数，范围 [1, 100]，默认 10。</p>
         # @type Limit: Integer
-        # @param Offset: 起始值
+        # @param Offset: <p>起始位置，从 0 开始。</p>
         # @type Offset: Integer
+        # @param ResourceType: <p>密钥归属资源类型。UseToBind=true 时必填。</p><p>枚举值：</p><ul><li>Consumer：消费者</li><li>ModelService：模型服务</li></ul>
+        # @type ResourceType: String
 
-        attr_accessor :GatewayId, :Limit, :Offset
+        attr_accessor :GatewayId, :Limit, :Offset, :ResourceType
 
-        def initialize(gatewayid=nil, limit=nil, offset=nil)
+        def initialize(gatewayid=nil, limit=nil, offset=nil, resourcetype=nil)
           @GatewayId = gatewayid
           @Limit = limit
           @Offset = offset
+          @ResourceType = resourcetype
         end
 
         def deserialize(params)
           @GatewayId = params['GatewayId']
           @Limit = params['Limit']
           @Offset = params['Offset']
+          @ResourceType = params['ResourceType']
         end
       end
 
       # DescribeCloudNativeAPIGatewaySecretKeyList返回参数结构体
       class DescribeCloudNativeAPIGatewaySecretKeyListResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 允许的操作
+        # @param Result: <p>密钥列表</p>
         # @type Result: :class:`Tencentcloud::Tse.v20201207.models.CNAPIGwSecretKeyList`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -7331,9 +7695,9 @@ module TencentCloud
 
       # DescribeCloudNativeAPIGatewaySecretKey请求参数结构体
       class DescribeCloudNativeAPIGatewaySecretKeyRequest < TencentCloud::Common::AbstractModel
-        # @param GatewayId: 实例 ID
+        # @param GatewayId: <p>实例 ID</p>
         # @type GatewayId: String
-        # @param SecretKeyId: 密钥id
+        # @param SecretKeyId: <p>密钥id</p>
         # @type SecretKeyId: String
 
         attr_accessor :GatewayId, :SecretKeyId
@@ -7351,7 +7715,7 @@ module TencentCloud
 
       # DescribeCloudNativeAPIGatewaySecretKey返回参数结构体
       class DescribeCloudNativeAPIGatewaySecretKeyResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 允许的操作
+        # @param Result: <p>密钥详情。</p>
         # @type Result: :class:`Tencentcloud::Tse.v20201207.models.CNAPIGwSecretKey`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -9744,8 +10108,8 @@ module TencentCloud
 
         attr_accessor :GatewayId, :Type, :TypeList
         extend Gem::Deprecate
-        deprecate :Type, :none, 2026, 5
-        deprecate :Type=, :none, 2026, 5
+        deprecate :Type, :none, 2026, 6
+        deprecate :Type=, :none, 2026, 6
 
         def initialize(gatewayid=nil, type=nil, typelist=nil)
           @GatewayId = gatewayid
@@ -11376,8 +11740,8 @@ module TencentCloud
 
         attr_accessor :Total, :CertificatesList, :Pages
         extend Gem::Deprecate
-        deprecate :Pages, :none, 2026, 5
-        deprecate :Pages=, :none, 2026, 5
+        deprecate :Pages, :none, 2026, 6
+        deprecate :Pages=, :none, 2026, 6
 
         def initialize(total=nil, certificateslist=nil, pages=nil)
           @Total = total
@@ -11520,8 +11884,8 @@ module TencentCloud
 
         attr_accessor :ID, :Name, :Methods, :Paths, :Hosts, :Protocols, :PreserveHost, :HttpsRedirectStatusCode, :StripPath, :CreatedTime, :ForceHttps, :ServiceName, :ServiceID, :DestinationPorts, :Headers, :RequestBuffering, :ResponseBuffering, :RegexPriority, :QueryStringParameters
         extend Gem::Deprecate
-        deprecate :ForceHttps, :none, 2026, 5
-        deprecate :ForceHttps=, :none, 2026, 5
+        deprecate :ForceHttps, :none, 2026, 6
+        deprecate :ForceHttps=, :none, 2026, 6
 
         def initialize(id=nil, name=nil, methods=nil, paths=nil, hosts=nil, protocols=nil, preservehost=nil, httpsredirectstatuscode=nil, strippath=nil, createdtime=nil, forcehttps=nil, servicename=nil, serviceid=nil, destinationports=nil, headers=nil, requestbuffering=nil, responsebuffering=nil, regexpriority=nil, querystringparameters=nil)
           @ID = id
@@ -12350,10 +12714,10 @@ module TencentCloud
 
         attr_accessor :GatewayId, :StrategyId, :StrategyName, :Description, :Config, :CronScalerConfig, :MaxReplicas, :CronConfig
         extend Gem::Deprecate
-        deprecate :CronScalerConfig, :none, 2026, 5
-        deprecate :CronScalerConfig=, :none, 2026, 5
-        deprecate :MaxReplicas, :none, 2026, 5
-        deprecate :MaxReplicas=, :none, 2026, 5
+        deprecate :CronScalerConfig, :none, 2026, 6
+        deprecate :CronScalerConfig=, :none, 2026, 6
+        deprecate :MaxReplicas, :none, 2026, 6
+        deprecate :MaxReplicas=, :none, 2026, 6
 
         def initialize(gatewayid=nil, strategyid=nil, strategyname=nil, description=nil, config=nil, cronscalerconfig=nil, maxreplicas=nil, cronconfig=nil)
           @GatewayId = gatewayid
@@ -12488,10 +12852,10 @@ module TencentCloud
 
         attr_accessor :GatewayId, :Id, :Name, :Key, :Crt, :BindDomains, :CertId, :CertSource
         extend Gem::Deprecate
-        deprecate :Name, :none, 2026, 5
-        deprecate :Name=, :none, 2026, 5
-        deprecate :BindDomains, :none, 2026, 5
-        deprecate :BindDomains=, :none, 2026, 5
+        deprecate :Name, :none, 2026, 6
+        deprecate :Name=, :none, 2026, 6
+        deprecate :BindDomains, :none, 2026, 6
+        deprecate :BindDomains=, :none, 2026, 6
 
         def initialize(gatewayid=nil, id=nil, name=nil, key=nil, crt=nil, binddomains=nil, certid=nil, certsource=nil)
           @GatewayId = gatewayid
@@ -12536,15 +12900,13 @@ module TencentCloud
       class ModifyCloudNativeAPIGatewayConsumerGroupRequest < TencentCloud::Common::AbstractModel
         # @param GatewayId: 网关实例id
         # @type GatewayId: String
-        # @param ConsumerGroupId: 消费者组ID
+        # @param ConsumerGroupId: <p>消费者组 ID（以 cg- 开头）。</p>
         # @type ConsumerGroupId: String
-        # @param Name: 新的消费者组名称
+        # @param Name: <p>消费者组名称，最长 60 字符。</p>
         # @type Name: String
-        # @param Status: 状态：
-        # - Enable 启用
-        # - Disable 禁用
+        # @param Status: <p>启用状态。</p><p>枚举值：</p><ul><li>Enable：启用</li><li>Disable：禁用</li></ul>
         # @type Status: String
-        # @param Description: 新的消费者组描述
+        # @param Description: <p>消费者组描述。最长 200 字符。</p>
         # @type Description: String
 
         attr_accessor :GatewayId, :ConsumerGroupId, :Name, :Status, :Description
@@ -12586,11 +12948,11 @@ module TencentCloud
       class ModifyCloudNativeAPIGatewayConsumerRequest < TencentCloud::Common::AbstractModel
         # @param GatewayId: 网关实例id
         # @type GatewayId: String
-        # @param ConsumerId: 消费者ID
+        # @param ConsumerId: <p>消费者 ID。</p>
         # @type ConsumerId: String
-        # @param Name: 新的消费者名称
+        # @param Name: <p>消费者名称，最长 60 字符。</p>
         # @type Name: String
-        # @param Description: 新的消费者描述
+        # @param Description: <p>消费者描述。最长 200 字符。</p>
         # @type Description: String
 
         attr_accessor :GatewayId, :ConsumerId, :Name, :Description
@@ -12632,26 +12994,30 @@ module TencentCloud
         # @type GatewayId: String
         # @param ModelAPIId: <p>模型 API ID，全局唯一标识。</p>
         # @type ModelAPIId: String
-        # @param Name: <p>修改模型 API 名称</p>
+        # @param Name: <p>模型 API 名称，最长 60 字符。</p>
         # @type Name: String
-        # @param BasePath: <p>为API设置统一的前缀，格式：以/开头，支持字母、数字、短横线。</p>
+        # @param BasePath: <p>统一前缀路径（可选）。例如 /v1/openai。</p>
         # @type BasePath: String
-        # @param Description: <p>模型 API 的相关描述。</p>
+        # @param Description: <p>模型 API 描述。最长 200 字符。</p>
         # @type Description: String
-        # @param ListModelServiceId: <p>关联的模型服务列表（支持填多个模型服务）</p>
+        # @param ListModelServiceId: <p>关联的模型服务 ID 列表，长度 1-10。</p>
         # @type ListModelServiceId: Array
-        # @param ModelServiceRoute: <p>模型服务路由策略（是指如何路由到模型服务）</p>
+        # @param ModelServiceRoute: <p>多模型服务路由策略。ListModelServiceId 多于 1 项时必填。</p>
         # @type ModelServiceRoute: :class:`Tencentcloud::Tse.v20201207.models.CloudNativeAPIGatewayLLMModelServiceRoute`
-        # @param MatchHeaders: <p>headers 路由匹配</p>
+        # @param MatchHeaders: <p>Header 路由匹配规则。当前仅支持 Operator=exact。</p>
         # @type MatchHeaders: Array
-        # @param EnableCrossServiceFallback: <p>跨服务 fallback</p>
+        # @param EnableCrossServiceFallback: <p>是否启用跨服务 Fallback。</p>
         # @type EnableCrossServiceFallback: Boolean
-        # @param CrossServiceFallbackConfig: <p>跨服务 fallback 配置</p>
+        # @param CrossServiceFallbackConfig: <p>跨服务 Fallback 配置。EnableCrossServiceFallback=true 时必填。</p>
         # @type CrossServiceFallbackConfig: :class:`Tencentcloud::Tse.v20201207.models.AIGWCrossServiceFallbackConfig`
+        # @param TagFilter: <p>标签过滤策略。需要网关版本 ≥ 3.9.4。</p>
+        # @type TagFilter: :class:`Tencentcloud::Tse.v20201207.models.AIGWTagFilter`
+        # @param LogConfig: <p>日志输出配置。需要网关版本 ≥ 3.9.4。</p>
+        # @type LogConfig: :class:`Tencentcloud::Tse.v20201207.models.AIGWLogConfig`
 
-        attr_accessor :GatewayId, :ModelAPIId, :Name, :BasePath, :Description, :ListModelServiceId, :ModelServiceRoute, :MatchHeaders, :EnableCrossServiceFallback, :CrossServiceFallbackConfig
+        attr_accessor :GatewayId, :ModelAPIId, :Name, :BasePath, :Description, :ListModelServiceId, :ModelServiceRoute, :MatchHeaders, :EnableCrossServiceFallback, :CrossServiceFallbackConfig, :TagFilter, :LogConfig
 
-        def initialize(gatewayid=nil, modelapiid=nil, name=nil, basepath=nil, description=nil, listmodelserviceid=nil, modelserviceroute=nil, matchheaders=nil, enablecrossservicefallback=nil, crossservicefallbackconfig=nil)
+        def initialize(gatewayid=nil, modelapiid=nil, name=nil, basepath=nil, description=nil, listmodelserviceid=nil, modelserviceroute=nil, matchheaders=nil, enablecrossservicefallback=nil, crossservicefallbackconfig=nil, tagfilter=nil, logconfig=nil)
           @GatewayId = gatewayid
           @ModelAPIId = modelapiid
           @Name = name
@@ -12662,6 +13028,8 @@ module TencentCloud
           @MatchHeaders = matchheaders
           @EnableCrossServiceFallback = enablecrossservicefallback
           @CrossServiceFallbackConfig = crossservicefallbackconfig
+          @TagFilter = tagfilter
+          @LogConfig = logconfig
         end
 
         def deserialize(params)
@@ -12688,12 +13056,20 @@ module TencentCloud
             @CrossServiceFallbackConfig = AIGWCrossServiceFallbackConfig.new
             @CrossServiceFallbackConfig.deserialize(params['CrossServiceFallbackConfig'])
           end
+          unless params['TagFilter'].nil?
+            @TagFilter = AIGWTagFilter.new
+            @TagFilter.deserialize(params['TagFilter'])
+          end
+          unless params['LogConfig'].nil?
+            @LogConfig = AIGWLogConfig.new
+            @LogConfig.deserialize(params['LogConfig'])
+          end
         end
       end
 
       # ModifyCloudNativeAPIGatewayLLMModelAPI返回参数结构体
       class ModifyCloudNativeAPIGatewayLLMModelAPIResponse < TencentCloud::Common::AbstractModel
-        # @param Result: <p>是否成功</p>
+        # @param Result: <p>是否成功。</p>
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -12747,10 +13123,14 @@ module TencentCloud
         # @type UpstreamUrlMode: String
         # @param SNI: <p>SNI</p>
         # @type SNI: String
+        # @param QuotaLimit: <p>模型服务级别的配额上限（RPM/TPM）。需要网关版本 ≥ 3.9.4。</p>
+        # @type QuotaLimit: :class:`Tencentcloud::Tse.v20201207.models.AIGWLLMQuotaLimit`
+        # @param Tags: <p>标签</p>
+        # @type Tags: Array
 
-        attr_accessor :GatewayId, :ModelServiceId, :Name, :DefaultModel, :ModelSelector, :EnableModelFallback, :ModelFallbackRule, :EnableModelParamCheck, :ModelParamCheckRule, :Description, :UpstreamURL, :ConnectTimeout, :WriteTimeout, :ReadTimeout, :Retries, :UpstreamUrlMode, :SNI
+        attr_accessor :GatewayId, :ModelServiceId, :Name, :DefaultModel, :ModelSelector, :EnableModelFallback, :ModelFallbackRule, :EnableModelParamCheck, :ModelParamCheckRule, :Description, :UpstreamURL, :ConnectTimeout, :WriteTimeout, :ReadTimeout, :Retries, :UpstreamUrlMode, :SNI, :QuotaLimit, :Tags
 
-        def initialize(gatewayid=nil, modelserviceid=nil, name=nil, defaultmodel=nil, modelselector=nil, enablemodelfallback=nil, modelfallbackrule=nil, enablemodelparamcheck=nil, modelparamcheckrule=nil, description=nil, upstreamurl=nil, connecttimeout=nil, writetimeout=nil, readtimeout=nil, retries=nil, upstreamurlmode=nil, sni=nil)
+        def initialize(gatewayid=nil, modelserviceid=nil, name=nil, defaultmodel=nil, modelselector=nil, enablemodelfallback=nil, modelfallbackrule=nil, enablemodelparamcheck=nil, modelparamcheckrule=nil, description=nil, upstreamurl=nil, connecttimeout=nil, writetimeout=nil, readtimeout=nil, retries=nil, upstreamurlmode=nil, sni=nil, quotalimit=nil, tags=nil)
           @GatewayId = gatewayid
           @ModelServiceId = modelserviceid
           @Name = name
@@ -12768,6 +13148,8 @@ module TencentCloud
           @Retries = retries
           @UpstreamUrlMode = upstreamurlmode
           @SNI = sni
+          @QuotaLimit = quotalimit
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -12794,6 +13176,11 @@ module TencentCloud
           @Retries = params['Retries']
           @UpstreamUrlMode = params['UpstreamUrlMode']
           @SNI = params['SNI']
+          unless params['QuotaLimit'].nil?
+            @QuotaLimit = AIGWLLMQuotaLimit.new
+            @QuotaLimit.deserialize(params['QuotaLimit'])
+          end
+          @Tags = params['Tags']
         end
       end
 
@@ -12972,8 +13359,8 @@ module TencentCloud
 
         attr_accessor :GatewayId, :ServiceID, :RouteID, :RouteName, :Methods, :Hosts, :Paths, :Protocols, :PreserveHost, :HttpsRedirectStatusCode, :StripPath, :ForceHttps, :DestinationPorts, :Headers, :RequestBuffering, :ResponseBuffering, :RegexPriority, :QueryStringParameters
         extend Gem::Deprecate
-        deprecate :ForceHttps, :none, 2026, 5
-        deprecate :ForceHttps=, :none, 2026, 5
+        deprecate :ForceHttps, :none, 2026, 6
+        deprecate :ForceHttps=, :none, 2026, 6
 
         def initialize(gatewayid=nil, serviceid=nil, routeid=nil, routename=nil, methods=nil, hosts=nil, paths=nil, protocols=nil, preservehost=nil, httpsredirectstatuscode=nil, strippath=nil, forcehttps=nil, destinationports=nil, headers=nil, requestbuffering=nil, responsebuffering=nil, regexpriority=nil, querystringparameters=nil)
           @GatewayId = gatewayid
@@ -13050,11 +13437,11 @@ module TencentCloud
 
       # ModifyCloudNativeAPIGatewaySecretKeyStatus请求参数结构体
       class ModifyCloudNativeAPIGatewaySecretKeyStatusRequest < TencentCloud::Common::AbstractModel
-        # @param GatewayId: 实例 ID
+        # @param GatewayId: <p>实例 ID</p>
         # @type GatewayId: String
-        # @param Status: 密钥名字
+        # @param Status: <p>密钥状态。</p><p>枚举值：</p><ul><li>Enable：启用</li><li>Disable：禁用</li></ul>
         # @type Status: String
-        # @param SecretKeyId: 密钥id
+        # @param SecretKeyId: <p>密钥 ID（以 secret- 开头）。</p>
         # @type SecretKeyId: String
 
         attr_accessor :GatewayId, :Status, :SecretKeyId
@@ -14350,15 +14737,13 @@ module TencentCloud
 
       # RemoveCloudNativeAPIGatewayConsumerGroupAuth请求参数结构体
       class RemoveCloudNativeAPIGatewayConsumerGroupAuthRequest < TencentCloud::Common::AbstractModel
-        # @param GatewayId: 网关实例id
+        # @param GatewayId: <p>网关实例id</p>
         # @type GatewayId: String
-        # @param ResourceType: 资源类型:
-
-        # - ModelAPI: 模型API
+        # @param ResourceType: <p>授权资源类型。</p><p>枚举值：</p><ul><li>ModelAPI：模型 API</li><li>MCPServer：MCP Server</li></ul>
         # @type ResourceType: String
-        # @param ResourceId: 资源id
+        # @param ResourceId: <p>对应资源的 ID。</p><ul><li>ResourceType=ModelAPI 时是模型 API ID</li><li>ResourceType=MCPServer 时是 MCP Server ID</li></ul>
         # @type ResourceId: String
-        # @param ConsumerGroupIds: 资源ID
+        # @param ConsumerGroupIds: <p>消费者组 ID 列表（每个 ID 以 cg- 开头），长度 1-10。</p>
         # @type ConsumerGroupIds: Array
 
         attr_accessor :GatewayId, :ResourceType, :ResourceId, :ConsumerGroupIds
@@ -14398,9 +14783,9 @@ module TencentCloud
       class RemoveCloudNativeAPIGatewayConsumerInGroupRequest < TencentCloud::Common::AbstractModel
         # @param GatewayId: 网关实例id
         # @type GatewayId: String
-        # @param ConsumerGroupId: 消费者组ID
+        # @param ConsumerGroupId: <p>消费者组 ID（以 cg- 开头）。</p>
         # @type ConsumerGroupId: String
-        # @param ConsumerIds: 消费者ID列表
+        # @param ConsumerIds: <p>消费者 ID 列表，长度 1-10。</p>
         # @type ConsumerIds: Array
 
         attr_accessor :GatewayId, :ConsumerGroupId, :ConsumerIds
@@ -15506,8 +15891,8 @@ module TencentCloud
 
         attr_accessor :EnableActiveHealthCheck, :ActiveHealthCheck, :EnablePassiveHealthCheck, :PassiveHealthCheck, :Successes, :Failures, :Timeouts, :HealthyHttpStatuses, :UnhealthyHttpStatuses, :IgnoreZeroWeightNodes, :ZeroWeightHeathCheck
         extend Gem::Deprecate
-        deprecate :IgnoreZeroWeightNodes, :none, 2026, 5
-        deprecate :IgnoreZeroWeightNodes=, :none, 2026, 5
+        deprecate :IgnoreZeroWeightNodes, :none, 2026, 6
+        deprecate :IgnoreZeroWeightNodes=, :none, 2026, 6
 
         def initialize(enableactivehealthcheck=nil, activehealthcheck=nil, enablepassivehealthcheck=nil, passivehealthcheck=nil, successes=nil, failures=nil, timeouts=nil, healthyhttpstatuses=nil, unhealthyhttpstatuses=nil, ignorezeroweightnodes=nil, zeroweightheathcheck=nil)
           @EnableActiveHealthCheck = enableactivehealthcheck
