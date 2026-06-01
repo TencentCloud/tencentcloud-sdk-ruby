@@ -1143,57 +1143,32 @@ module TencentCloud
 
       # 服务配置入参
       class DiffConfigItem < TencentCloud::Common::AbstractModel
-        # @param Key: 配置项 Key
-        # MinNum 最小副本数
-        # MaxNum 最大副本数
-        # PolicyDetails 扩缩容策略
-        # AccessTypes 访问类型
-        # TimerScale 定时扩缩容
-        # InternalAccess 内网访问
-        # OperationMode 运行模式 noScale | condScale | alwaysScale | custom ｜ manualScale
-        # SessionAffinity 会话亲和性 open | close
-        # CpuSpecs cpu 规格
-        # MemSpecs mem规格
-        # EnvParam 环境变量
-        # LogPath 日志采集路径
-        # Port 端口
-        # Dockerfile dockerfile 文件名
-        # BuildDir 目标目录
-        # Tag 服务标签
-        # LogType 日志类型 none | default | custom
-        # LogSetId 日志集Id
-        # LogTopicId 日志主题ID
-        # LogParseType 日志解析类型 json ｜ line
-        # EntryPoint entrypoint 命令
-        # Cmd cmd命令
-        # VpcConf 网络信息
+        # @param Key: <p>配置项 Key<br>MinNum 最小副本数<br>MaxNum 最大副本数<br>PolicyDetails 扩缩容策略<br>AccessTypes 访问类型<br>TimerScale 定时扩缩容<br>InternalAccess 内网访问<br>OperationMode 运行模式 noScale | condScale | alwaysScale | custom ｜ manualScale<br>SessionAffinity 会话亲和性 open | close<br>CpuSpecs cpu 规格<br>MemSpecs mem规格<br>EnvParam 环境变量<br>LogPath 日志采集路径<br>Port 端口<br>Dockerfile dockerfile 文件名<br>BuildDir 目标目录<br>Tag 服务标签<br>LogType 日志类型 none | default | custom<br>LogSetId 日志集Id<br>LogTopicId 日志主题ID<br>LogParseType 日志解析类型 json ｜ line<br>EntryPoint entrypoint 命令<br>Cmd cmd命令<br>VpcConf 网络信息</p>
         # @type Key: String
-        # @param Value: 字符串类型配置项值
-        # InternalAccess、OperationMode、SessionAffinity、EnvParam、LogPath、Dockerfile、BuildDir、Tag、LogType、LogSetId、LogTopicId、LogParseType
+        # @param Value: <p>字符串类型配置项值<br>InternalAccess、OperationMode、SessionAffinity、EnvParam、LogPath、Dockerfile、BuildDir、Tag、LogType、LogSetId、LogTopicId、LogParseType</p>
         # @type Value: String
-        # @param IntValue: int 类型配置项值
-        # MinNum、MaxNum、Port
+        # @param IntValue: <p>int 类型配置项值<br>MinNum、MaxNum、Port</p>
         # @type IntValue: Integer
-        # @param BoolValue: bool 类型配置项值
+        # @param BoolValue: <p>bool 类型配置项值</p>
         # @type BoolValue: Boolean
-        # @param FloatValue: 浮点型配置项值
-        # CpuSpecs、MemSpecs
+        # @param FloatValue: <p>浮点型配置项值<br>CpuSpecs、MemSpecs</p>
         # @type FloatValue: Float
-        # @param ArrayValue: 字符串数组配置项值
-        # AccessTypes，EntryPoint，Cmd
+        # @param ArrayValue: <p>字符串数组配置项值<br>AccessTypes，EntryPoint，Cmd</p>
         # @type ArrayValue: Array
-        # @param PolicyDetails: 扩缩容策略配置项值
+        # @param PolicyDetails: <p>扩缩容策略配置项值</p>
         # @type PolicyDetails: Array
-        # @param TimerScale: 定时扩缩容配置项值
+        # @param TimerScale: <p>定时扩缩容配置项值</p>
         # @type TimerScale: Array
-        # @param VpcConf: 配置内网访问时网络信息
+        # @param VpcConf: <p>配置内网访问时网络信息</p>
         # @type VpcConf: :class:`Tencentcloud::Tcbr.v20220217.models.VpcConf`
-        # @param VolumesConf: 存储配置信息
+        # @param VolumesConf: <p>存储配置信息</p>
         # @type VolumesConf: Array
+        # @param PublicNetConf: <p>公网访问配置</p>
+        # @type PublicNetConf: :class:`Tencentcloud::Tcbr.v20220217.models.PublicNetConf`
 
-        attr_accessor :Key, :Value, :IntValue, :BoolValue, :FloatValue, :ArrayValue, :PolicyDetails, :TimerScale, :VpcConf, :VolumesConf
+        attr_accessor :Key, :Value, :IntValue, :BoolValue, :FloatValue, :ArrayValue, :PolicyDetails, :TimerScale, :VpcConf, :VolumesConf, :PublicNetConf
 
-        def initialize(key=nil, value=nil, intvalue=nil, boolvalue=nil, floatvalue=nil, arrayvalue=nil, policydetails=nil, timerscale=nil, vpcconf=nil, volumesconf=nil)
+        def initialize(key=nil, value=nil, intvalue=nil, boolvalue=nil, floatvalue=nil, arrayvalue=nil, policydetails=nil, timerscale=nil, vpcconf=nil, volumesconf=nil, publicnetconf=nil)
           @Key = key
           @Value = value
           @IntValue = intvalue
@@ -1204,6 +1179,7 @@ module TencentCloud
           @TimerScale = timerscale
           @VpcConf = vpcconf
           @VolumesConf = volumesconf
+          @PublicNetConf = publicnetconf
         end
 
         def deserialize(params)
@@ -1240,6 +1216,10 @@ module TencentCloud
               volumeconf_tmp.deserialize(i)
               @VolumesConf << volumeconf_tmp
             end
+          end
+          unless params['PublicNetConf'].nil?
+            @PublicNetConf = PublicNetConf.new
+            @PublicNetConf.deserialize(params['PublicNetConf'])
           end
         end
       end
@@ -1747,6 +1727,22 @@ module TencentCloud
         end
       end
 
+      # 公网访问配置
+      class PublicNetConf < TencentCloud::Common::AbstractModel
+        # @param PublicNetStatus: <p>是否开启公网访问</p><p>枚举值：</p><ul><li>ENABLE： 开启公网访问</li><li>DISABLE： 关闭公网访问</li></ul>
+        # @type PublicNetStatus: String
+
+        attr_accessor :PublicNetStatus
+
+        def initialize(publicnetstatus=nil)
+          @PublicNetStatus = publicnetstatus
+        end
+
+        def deserialize(params)
+          @PublicNetStatus = params['PublicNetStatus']
+        end
+      end
+
       # ReleaseGray请求参数结构体
       class ReleaseGrayRequest < TencentCloud::Common::AbstractModel
         # @param EnvId: 环境Id
@@ -1976,73 +1972,75 @@ module TencentCloud
 
       # 服务基础配置信息
       class ServerBaseConfig < TencentCloud::Common::AbstractModel
-        # @param EnvId: 环境 Id
+        # @param EnvId: <p>环境 Id</p>
         # @type EnvId: String
-        # @param ServerName: 服务名
+        # @param ServerName: <p>服务名</p>
         # @type ServerName: String
-        # @param OpenAccessTypes: 是否开启公网访问
+        # @param OpenAccessTypes: <p>是否开启公网访问</p>
         # @type OpenAccessTypes: Array
-        # @param Cpu: Cpu 规格
+        # @param Cpu: <p>Cpu 规格</p>
         # @type Cpu: Float
-        # @param Mem: Mem 规格
+        # @param Mem: <p>Mem 规格</p>
         # @type Mem: Float
-        # @param MinNum: 最小副本数
+        # @param MinNum: <p>最小副本数</p>
         # @type MinNum: Integer
-        # @param MaxNum: 最大副本数
+        # @param MaxNum: <p>最大副本数</p>
         # @type MaxNum: Integer
-        # @param PolicyDetails: 扩缩容配置
+        # @param PolicyDetails: <p>扩缩容配置</p>
         # @type PolicyDetails: Array
-        # @param CustomLogs: 日志采集路径
+        # @param CustomLogs: <p>日志采集路径</p>
         # @type CustomLogs: String
-        # @param EnvParams: 环境变量
+        # @param EnvParams: <p>环境变量</p>
         # @type EnvParams: String
-        # @param InitialDelaySeconds: 延迟检测时间
+        # @param InitialDelaySeconds: <p>延迟检测时间</p>
         # @type InitialDelaySeconds: Integer
-        # @param CreateTime: 创建时间
+        # @param CreateTime: <p>创建时间</p>
         # @type CreateTime: String
-        # @param Port: 服务端口
+        # @param Port: <p>服务端口</p>
         # @type Port: Integer
-        # @param HasDockerfile: 是否有Dockerfile
+        # @param HasDockerfile: <p>是否有Dockerfile</p>
         # @type HasDockerfile: Boolean
-        # @param Dockerfile: Dockerfile 文件名
+        # @param Dockerfile: <p>Dockerfile 文件名</p>
         # @type Dockerfile: String
-        # @param BuildDir: 构建目录
+        # @param BuildDir: <p>构建目录</p>
         # @type BuildDir: String
-        # @param LogType: 日志类型: none | default | custom
+        # @param LogType: <p>日志类型: none | default | custom</p>
         # @type LogType: String
-        # @param LogSetId: cls setId
+        # @param LogSetId: <p>cls setId</p>
         # @type LogSetId: String
-        # @param LogTopicId: cls 主题id
+        # @param LogTopicId: <p>cls 主题id</p>
         # @type LogTopicId: String
-        # @param LogParseType: 解析类型：json ｜ line
+        # @param LogParseType: <p>解析类型：json ｜ line</p>
         # @type LogParseType: String
-        # @param Tag: 服务标签, function: 函数托管
+        # @param Tag: <p>服务标签, function: 函数托管</p>
         # @type Tag: String
-        # @param InternalAccess: 内网访问开关 close | open
+        # @param InternalAccess: <p>内网访问开关 close | open</p>
         # @type InternalAccess: String
-        # @param InternalDomain: 内网域名
+        # @param InternalDomain: <p>内网域名</p>
         # @type InternalDomain: String
-        # @param OperationMode: 运行模式
+        # @param OperationMode: <p>运行模式</p>
         # @type OperationMode: String
-        # @param TimerScale: 定时扩缩容配置
+        # @param TimerScale: <p>定时扩缩容配置</p>
         # @type TimerScale: Array
-        # @param EntryPoint: Dockerfile EntryPoint 参数
+        # @param EntryPoint: <p>Dockerfile EntryPoint 参数</p>
         # @type EntryPoint: Array
-        # @param Cmd: Dockerfile Cmd 参数
+        # @param Cmd: <p>Dockerfile Cmd 参数</p>
         # @type Cmd: Array
-        # @param SessionAffinity: 会话亲和性开关
+        # @param SessionAffinity: <p>会话亲和性开关</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SessionAffinity: String
-        # @param VpcConf: Vpc 配置参数
+        # @param VpcConf: <p>Vpc 配置参数</p>
         # @type VpcConf: :class:`Tencentcloud::Tcbr.v20220217.models.VpcConf`
-        # @param VolumesConf: 存储配置信息
+        # @param VolumesConf: <p>存储配置信息</p>
         # @type VolumesConf: Array
-        # @param LinkImageRegistry: 关联镜像密钥
+        # @param LinkImageRegistry: <p>关联镜像密钥</p>
         # @type LinkImageRegistry: String
+        # @param PublicNetConf: <p>公网访问配置</p>
+        # @type PublicNetConf: :class:`Tencentcloud::Tcbr.v20220217.models.PublicNetConf`
 
-        attr_accessor :EnvId, :ServerName, :OpenAccessTypes, :Cpu, :Mem, :MinNum, :MaxNum, :PolicyDetails, :CustomLogs, :EnvParams, :InitialDelaySeconds, :CreateTime, :Port, :HasDockerfile, :Dockerfile, :BuildDir, :LogType, :LogSetId, :LogTopicId, :LogParseType, :Tag, :InternalAccess, :InternalDomain, :OperationMode, :TimerScale, :EntryPoint, :Cmd, :SessionAffinity, :VpcConf, :VolumesConf, :LinkImageRegistry
+        attr_accessor :EnvId, :ServerName, :OpenAccessTypes, :Cpu, :Mem, :MinNum, :MaxNum, :PolicyDetails, :CustomLogs, :EnvParams, :InitialDelaySeconds, :CreateTime, :Port, :HasDockerfile, :Dockerfile, :BuildDir, :LogType, :LogSetId, :LogTopicId, :LogParseType, :Tag, :InternalAccess, :InternalDomain, :OperationMode, :TimerScale, :EntryPoint, :Cmd, :SessionAffinity, :VpcConf, :VolumesConf, :LinkImageRegistry, :PublicNetConf
 
-        def initialize(envid=nil, servername=nil, openaccesstypes=nil, cpu=nil, mem=nil, minnum=nil, maxnum=nil, policydetails=nil, customlogs=nil, envparams=nil, initialdelayseconds=nil, createtime=nil, port=nil, hasdockerfile=nil, dockerfile=nil, builddir=nil, logtype=nil, logsetid=nil, logtopicid=nil, logparsetype=nil, tag=nil, internalaccess=nil, internaldomain=nil, operationmode=nil, timerscale=nil, entrypoint=nil, cmd=nil, sessionaffinity=nil, vpcconf=nil, volumesconf=nil, linkimageregistry=nil)
+        def initialize(envid=nil, servername=nil, openaccesstypes=nil, cpu=nil, mem=nil, minnum=nil, maxnum=nil, policydetails=nil, customlogs=nil, envparams=nil, initialdelayseconds=nil, createtime=nil, port=nil, hasdockerfile=nil, dockerfile=nil, builddir=nil, logtype=nil, logsetid=nil, logtopicid=nil, logparsetype=nil, tag=nil, internalaccess=nil, internaldomain=nil, operationmode=nil, timerscale=nil, entrypoint=nil, cmd=nil, sessionaffinity=nil, vpcconf=nil, volumesconf=nil, linkimageregistry=nil, publicnetconf=nil)
           @EnvId = envid
           @ServerName = servername
           @OpenAccessTypes = openaccesstypes
@@ -2074,6 +2072,7 @@ module TencentCloud
           @VpcConf = vpcconf
           @VolumesConf = volumesconf
           @LinkImageRegistry = linkimageregistry
+          @PublicNetConf = publicnetconf
         end
 
         def deserialize(params)
@@ -2132,6 +2131,10 @@ module TencentCloud
             end
           end
           @LinkImageRegistry = params['LinkImageRegistry']
+          unless params['PublicNetConf'].nil?
+            @PublicNetConf = PublicNetConf.new
+            @PublicNetConf.deserialize(params['PublicNetConf'])
+          end
         end
       end
 

@@ -942,6 +942,66 @@ module TencentCloud
         end
       end
 
+      # CreateDataRetrieval请求参数结构体
+      class CreateDataRetrievalRequest < TencentCloud::Common::AbstractModel
+        # @param FileSystemId: <p>文件系统实例 ID，通过查询文件系统 DescribeCfsFileSystems 获取 示例值：cfs-xxxxxx</p>
+        # @type FileSystemId: String
+        # @param DataRetrievalName: <p>数据检索名称 示例值：DataDive</p>
+        # @type DataRetrievalName: String
+        # @param CompoundCondition: <p>聚合检索条件 示例值：from entries|where size &gt;4096</p>
+        # @type CompoundCondition: String
+        # @param QueryCondition: <p>列表检索条件</p>
+        # @type QueryCondition: String
+        # @param DayOfMonth: <p>数据检索按月重复，每月1-31号，选择一天，每月将在这一天自动创建快照；例如1 代表1号；与DayOfWeek二选一 示例值：1</p>
+        # @type DayOfMonth: String
+        # @param DayOfWeek: <p>数据检索重复日期，星期一到星期日。 1代表星期一、7代表星期天，与DayOfMonth，二选一 示例值：2,3</p>
+        # @type DayOfWeek: String
+        # @param Hour: <p>重复时间点,0-23，小时 示例值：1,3,5</p>
+        # @type Hour: String
+
+        attr_accessor :FileSystemId, :DataRetrievalName, :CompoundCondition, :QueryCondition, :DayOfMonth, :DayOfWeek, :Hour
+
+        def initialize(filesystemid=nil, dataretrievalname=nil, compoundcondition=nil, querycondition=nil, dayofmonth=nil, dayofweek=nil, hour=nil)
+          @FileSystemId = filesystemid
+          @DataRetrievalName = dataretrievalname
+          @CompoundCondition = compoundcondition
+          @QueryCondition = querycondition
+          @DayOfMonth = dayofmonth
+          @DayOfWeek = dayofweek
+          @Hour = hour
+        end
+
+        def deserialize(params)
+          @FileSystemId = params['FileSystemId']
+          @DataRetrievalName = params['DataRetrievalName']
+          @CompoundCondition = params['CompoundCondition']
+          @QueryCondition = params['QueryCondition']
+          @DayOfMonth = params['DayOfMonth']
+          @DayOfWeek = params['DayOfWeek']
+          @Hour = params['Hour']
+        end
+      end
+
+      # CreateDataRetrieval返回参数结构体
+      class CreateDataRetrievalResponse < TencentCloud::Common::AbstractModel
+        # @param DataRetrievalId: <p>数据检索ID示例值：dataretrieval-123456</p>
+        # @type DataRetrievalId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DataRetrievalId, :RequestId
+
+        def initialize(dataretrievalid=nil, requestid=nil)
+          @DataRetrievalId = dataretrievalid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @DataRetrievalId = params['DataRetrievalId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateLifecycleDataTask请求参数结构体
       class CreateLifecycleDataTaskRequest < TencentCloud::Common::AbstractModel
         # @param FileSystemId: 文件系统唯一 ID
@@ -1260,6 +1320,118 @@ module TencentCloud
         end
       end
 
+      # 数据检索信息
+      class DataRetrievalInfo < TencentCloud::Common::AbstractModel
+        # @param DataRetrievalName: <p>数据检索策略名称</p>
+        # @type DataRetrievalName: String
+        # @param DataRetrievalId: <p>迁移任务id<br>示例值：migrate-001</p>
+        # @type DataRetrievalId: String
+        # @param FileSystemId: <p>文件系统实例 ID，通过查询文件系统 DescribeCfsFileSystems </p><p>获取示例值：cfs-xxxxxx</p>
+        # @type FileSystemId: String
+        # @param CompoundCondition: <p>聚合检索条件</p>
+        # @type CompoundCondition: String
+        # @param CreateTime: <p>创建时间<br>示例值：2023-01-09 15:03:57</p>
+        # @type CreateTime: String
+        # @param DayOfWeek: <p>数据检索重复日期，星期一到星期日。 1代表星期一、7代表星期天，与DayOfMonth，二选一</p>
+        # @type DayOfWeek: String
+        # @param DayOfMonth: <p>数据检索按月重复，每月1-31号，选择一天，每月将在这一天自动创建快照；例如1 代表1号；与DayOfWeek二选一</p>
+        # @type DayOfMonth: String
+        # @param Hour: <p>重复时间点,0-23，小时</p>
+        # @type Hour: String
+        # @param QueryCondition: <p>列表检索条件</p>
+        # @type QueryCondition: String
+        # @param UpdateTime: <p>修改时间</p><p>参数格式：2023-01-10 15:03:57</p>
+        # @type UpdateTime: String
+
+        attr_accessor :DataRetrievalName, :DataRetrievalId, :FileSystemId, :CompoundCondition, :CreateTime, :DayOfWeek, :DayOfMonth, :Hour, :QueryCondition, :UpdateTime
+
+        def initialize(dataretrievalname=nil, dataretrievalid=nil, filesystemid=nil, compoundcondition=nil, createtime=nil, dayofweek=nil, dayofmonth=nil, hour=nil, querycondition=nil, updatetime=nil)
+          @DataRetrievalName = dataretrievalname
+          @DataRetrievalId = dataretrievalid
+          @FileSystemId = filesystemid
+          @CompoundCondition = compoundcondition
+          @CreateTime = createtime
+          @DayOfWeek = dayofweek
+          @DayOfMonth = dayofmonth
+          @Hour = hour
+          @QueryCondition = querycondition
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @DataRetrievalName = params['DataRetrievalName']
+          @DataRetrievalId = params['DataRetrievalId']
+          @FileSystemId = params['FileSystemId']
+          @CompoundCondition = params['CompoundCondition']
+          @CreateTime = params['CreateTime']
+          @DayOfWeek = params['DayOfWeek']
+          @DayOfMonth = params['DayOfMonth']
+          @Hour = params['Hour']
+          @QueryCondition = params['QueryCondition']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # 数据检索任务信息
+      class DataRetrievalTaskInfo < TencentCloud::Common::AbstractModel
+        # @param DataRetrievalTaskID: <p>数据检索任务ID<br>示例值：dataretrievaltask-123456</p>
+        # @type DataRetrievalTaskID: String
+        # @param DataRetrievalId: <p>迁移任务id<br>示例值：migrate-001</p>
+        # @type DataRetrievalId: String
+        # @param FileSystemId: <p>文件系统实例 ID，通过查询文件系统 DescribeCfsFileSystems 获取示例值：cfs-xxxxxx</p>
+        # @type FileSystemId: String
+        # @param CompoundCondition: <p>聚合检索条件<br>示例值：from entries|where size &gt;4096</p>
+        # @type CompoundCondition: String
+        # @param QueryCondition: <p>列表检索条件</p>
+        # @type QueryCondition: String
+        # @param CreateTime: <p>创建时间<br>示例值：2023-01-09 15:03:57</p>
+        # @type CreateTime: String
+        # @param State: <p>任务状态<br>已完成：completed<br>排队中：waiting<br>进行中：running<br>失败：failed</p>
+        # @type State: String
+        # @param FileNum: <p>文件数量<br>示例：1000</p>
+        # @type FileNum: Integer
+        # @param DirNum: <p>目录数量<br>示例：1000</p>
+        # @type DirNum: Integer
+        # @param Size: <p>总文件大小，单位KiB<br>示例：1024</p>
+        # @type Size: Integer
+        # @param FileList: <p>文件清单下载地址<br>示例值：https://xx-12345.cos.ap-shanghai.myqcloud.com/list.csv</p>
+        # @type FileList: String
+        # @param ErrorInfo: <p>检索错误提示。默认：Null，当Status为failed时，将提示信息展示给用户。</p>
+        # @type ErrorInfo: String
+
+        attr_accessor :DataRetrievalTaskID, :DataRetrievalId, :FileSystemId, :CompoundCondition, :QueryCondition, :CreateTime, :State, :FileNum, :DirNum, :Size, :FileList, :ErrorInfo
+
+        def initialize(dataretrievaltaskid=nil, dataretrievalid=nil, filesystemid=nil, compoundcondition=nil, querycondition=nil, createtime=nil, state=nil, filenum=nil, dirnum=nil, size=nil, filelist=nil, errorinfo=nil)
+          @DataRetrievalTaskID = dataretrievaltaskid
+          @DataRetrievalId = dataretrievalid
+          @FileSystemId = filesystemid
+          @CompoundCondition = compoundcondition
+          @QueryCondition = querycondition
+          @CreateTime = createtime
+          @State = state
+          @FileNum = filenum
+          @DirNum = dirnum
+          @Size = size
+          @FileList = filelist
+          @ErrorInfo = errorinfo
+        end
+
+        def deserialize(params)
+          @DataRetrievalTaskID = params['DataRetrievalTaskID']
+          @DataRetrievalId = params['DataRetrievalId']
+          @FileSystemId = params['FileSystemId']
+          @CompoundCondition = params['CompoundCondition']
+          @QueryCondition = params['QueryCondition']
+          @CreateTime = params['CreateTime']
+          @State = params['State']
+          @FileNum = params['FileNum']
+          @DirNum = params['DirNum']
+          @Size = params['Size']
+          @FileList = params['FileList']
+          @ErrorInfo = params['ErrorInfo']
+        end
+      end
+
       # DeleteAutoSnapshotPolicy请求参数结构体
       class DeleteAutoSnapshotPolicyRequest < TencentCloud::Common::AbstractModel
         # @param AutoSnapshotPolicyId: 快照策略ID，查询快照策略接口获取,[DescribeAutoSnapshotPolicies](https://cloud.tencent.com/document/api/582/80208)
@@ -1475,6 +1647,38 @@ module TencentCloud
 
       # DeleteDataFlow返回参数结构体
       class DeleteDataFlowResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteDataRetrieval请求参数结构体
+      class DeleteDataRetrievalRequest < TencentCloud::Common::AbstractModel
+        # @param DataRetrievalId: <p>数据检索 ID。可通过 DescribeDataRetrieval 接口获取。</p>
+        # @type DataRetrievalId: String
+
+        attr_accessor :DataRetrievalId
+
+        def initialize(dataretrievalid=nil)
+          @DataRetrievalId = dataretrievalid
+        end
+
+        def deserialize(params)
+          @DataRetrievalId = params['DataRetrievalId']
+        end
+      end
+
+      # DeleteDataRetrieval返回参数结构体
+      class DeleteDataRetrievalResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -2182,6 +2386,142 @@ module TencentCloud
               dataflowinfo_tmp = DataFlowInfo.new
               dataflowinfo_tmp.deserialize(i)
               @DataFlows << dataflowinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDataRetrieval请求参数结构体
+      class DescribeDataRetrievalRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: <p>分页偏移量，默认值为 0。</p>
+        # @type Offset: Integer
+        # @param Limit: <p>分页单页限制数目，默认值为 20，最大值为 100。</p>
+        # @type Limit: Integer
+        # @param Filters: <p>过滤条件列表。支持的过滤字段：FileSystemId（文件系统 ID）、DataRetrievalId（数据检索 ID）、Name（数据检索名称，支持模糊搜索）。最多支持 10 个。</p>
+        # @type Filters: Array
+
+        attr_accessor :Offset, :Limit, :Filters
+
+        def initialize(offset=nil, limit=nil, filters=nil)
+          @Offset = offset
+          @Limit = limit
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeDataRetrieval返回参数结构体
+      class DescribeDataRetrievalResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: <p>数据检索总数。</p>
+        # @type TotalCount: Integer
+        # @param DataRetrievals: <p>数据检索策略的详细信息</p>
+        # @type DataRetrievals: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :DataRetrievals, :RequestId
+
+        def initialize(totalcount=nil, dataretrievals=nil, requestid=nil)
+          @TotalCount = totalcount
+          @DataRetrievals = dataretrievals
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['DataRetrievals'].nil?
+            @DataRetrievals = []
+            params['DataRetrievals'].each do |i|
+              dataretrievalinfo_tmp = DataRetrievalInfo.new
+              dataretrievalinfo_tmp.deserialize(i)
+              @DataRetrievals << dataretrievalinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDataRetrievalTask请求参数结构体
+      class DescribeDataRetrievalTaskRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: <p>开始时间。须早于 EndTime ，仅支持查询最近3个月内的任务数据</p><p>参数格式：2024-11-19 10:15:37</p>
+        # @type StartTime: String
+        # @param EndTime: <p>结束时间。须晚于 StartTime ，仅支持查询最近3个月内的任务数据。</p><p>参数格式：2024-10-  19 10:15:37</p>
+        # @type EndTime: String
+        # @param DataRetrievalId: <p>数据检索ID示例值：dataretrieval-123456</p>
+        # @type DataRetrievalId: String
+        # @param Offset: <p>分页的偏移量，默认值为0。 示例值：0</p>
+        # @type Offset: Integer
+        # @param Limit: <p>分页单页限制数目，默认值为20，最大值100。 示例值：20</p>
+        # @type Limit: Integer
+        # @param Filters: <p>DataRetrievalTaskID按照【数据检索任务id】进行过滤。类型：String</p>
+        # @type Filters: Array
+
+        attr_accessor :StartTime, :EndTime, :DataRetrievalId, :Offset, :Limit, :Filters
+
+        def initialize(starttime=nil, endtime=nil, dataretrievalid=nil, offset=nil, limit=nil, filters=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @DataRetrievalId = dataretrievalid
+          @Offset = offset
+          @Limit = limit
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @DataRetrievalId = params['DataRetrievalId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeDataRetrievalTask返回参数结构体
+      class DescribeDataRetrievalTaskResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: <p>数据检索任务总量 示例值：0</p>
+        # @type TotalCount: Integer
+        # @param DataRetrievalTasks: <p>检索任务详情</p>
+        # @type DataRetrievalTasks: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :DataRetrievalTasks, :RequestId
+
+        def initialize(totalcount=nil, dataretrievaltasks=nil, requestid=nil)
+          @TotalCount = totalcount
+          @DataRetrievalTasks = dataretrievaltasks
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['DataRetrievalTasks'].nil?
+            @DataRetrievalTasks = []
+            params['DataRetrievalTasks'].each do |i|
+              dataretrievaltaskinfo_tmp = DataRetrievalTaskInfo.new
+              dataretrievaltaskinfo_tmp.deserialize(i)
+              @DataRetrievalTasks << dataretrievaltaskinfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -3322,6 +3662,62 @@ module TencentCloud
         end
       end
 
+      # ModifyDataRetrieval请求参数结构体
+      class ModifyDataRetrievalRequest < TencentCloud::Common::AbstractModel
+        # @param DataRetrievalId: <p>数据检索ID示例值：dataretrieval-123456</p>
+        # @type DataRetrievalId: String
+        # @param DataRetrievalName: <p>数据检索名称示例值：DataDive</p>
+        # @type DataRetrievalName: String
+        # @param CompoundCondition: <p>聚合检索条件 示例值：from entries|where size &gt;4096</p>
+        # @type CompoundCondition: String
+        # @param QueryCondition: <p>列表检索条件</p>
+        # @type QueryCondition: String
+        # @param DayOfMonth: <p>数据检索按月重复，每月1-31号，选择一天，每月将在这一天自动创建快照；例如1 代表1号；与DayOfWeek二选一</p>
+        # @type DayOfMonth: String
+        # @param DayOfWeek: <p>数据检索重复日期，星期一到星期日。 1代表星期一、7代表星期天，与DayOfMonth，二选一</p>
+        # @type DayOfWeek: String
+        # @param Hour: <p>重复时间点,0-23，小时</p>
+        # @type Hour: String
+
+        attr_accessor :DataRetrievalId, :DataRetrievalName, :CompoundCondition, :QueryCondition, :DayOfMonth, :DayOfWeek, :Hour
+
+        def initialize(dataretrievalid=nil, dataretrievalname=nil, compoundcondition=nil, querycondition=nil, dayofmonth=nil, dayofweek=nil, hour=nil)
+          @DataRetrievalId = dataretrievalid
+          @DataRetrievalName = dataretrievalname
+          @CompoundCondition = compoundcondition
+          @QueryCondition = querycondition
+          @DayOfMonth = dayofmonth
+          @DayOfWeek = dayofweek
+          @Hour = hour
+        end
+
+        def deserialize(params)
+          @DataRetrievalId = params['DataRetrievalId']
+          @DataRetrievalName = params['DataRetrievalName']
+          @CompoundCondition = params['CompoundCondition']
+          @QueryCondition = params['QueryCondition']
+          @DayOfMonth = params['DayOfMonth']
+          @DayOfWeek = params['DayOfWeek']
+          @Hour = params['Hour']
+        end
+      end
+
+      # ModifyDataRetrieval返回参数结构体
+      class ModifyDataRetrievalResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyFileSystemAutoScaleUpRule请求参数结构体
       class ModifyFileSystemAutoScaleUpRuleRequest < TencentCloud::Common::AbstractModel
         # @param FileSystemId: 文件系统 ID，通过查询文件系统列表获取；[DescribeCfsFileSystems](https://cloud.tencent.com/document/product/582/38170)
@@ -3657,6 +4053,37 @@ module TencentCloud
           @FileSystemId = params['FileSystemId']
           @Path = params['Path']
           @DataFlowId = params['DataFlowId']
+        end
+      end
+
+      # RunDataRetrievalTask请求参数结构体
+      class RunDataRetrievalTaskRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # RunDataRetrievalTask返回参数结构体
+      class RunDataRetrievalTaskResponse < TencentCloud::Common::AbstractModel
+        # @param DataRetrievalTaskId: <p>数据检索任务 ID。</p>
+        # @type DataRetrievalTaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DataRetrievalTaskId, :RequestId
+
+        def initialize(dataretrievaltaskid=nil, requestid=nil)
+          @DataRetrievalTaskId = dataretrievaltaskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @DataRetrievalTaskId = params['DataRetrievalTaskId']
+          @RequestId = params['RequestId']
         end
       end
 

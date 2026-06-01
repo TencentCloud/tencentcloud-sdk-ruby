@@ -2178,31 +2178,46 @@ module TencentCloud
 
       # DescribeBillingInfo请求参数结构体
       class DescribeBillingInfoRequest < TencentCloud::Common::AbstractModel
-        # @param EnvId: 环境ID
+        # @param EnvId: <p>环境ID</p>
         # @type EnvId: String
+        # @param EnvIds: <p>环境列表，当环境列表不为空时，查询的环境以该参数为准</p>
+        # @type EnvIds: Array
+        # @param Limit: <p>每页条数（用于拉取列表时分页）</p>
+        # @type Limit: Integer
+        # @param Offset: <p>偏移</p>
+        # @type Offset: Integer
 
-        attr_accessor :EnvId
+        attr_accessor :EnvId, :EnvIds, :Limit, :Offset
 
-        def initialize(envid=nil)
+        def initialize(envid=nil, envids=nil, limit=nil, offset=nil)
           @EnvId = envid
+          @EnvIds = envids
+          @Limit = limit
+          @Offset = offset
         end
 
         def deserialize(params)
           @EnvId = params['EnvId']
+          @EnvIds = params['EnvIds']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
         end
       end
 
       # DescribeBillingInfo返回参数结构体
       class DescribeBillingInfoResponse < TencentCloud::Common::AbstractModel
-        # @param EnvBillingInfoList: 环境计费信息列表
+        # @param EnvBillingInfoList: <p>环境计费信息列表</p>
         # @type EnvBillingInfoList: Array
+        # @param Total: <p>总个数</p>
+        # @type Total: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :EnvBillingInfoList, :RequestId
+        attr_accessor :EnvBillingInfoList, :Total, :RequestId
 
-        def initialize(envbillinginfolist=nil, requestid=nil)
+        def initialize(envbillinginfolist=nil, total=nil, requestid=nil)
           @EnvBillingInfoList = envbillinginfolist
+          @Total = total
           @RequestId = requestid
         end
 
@@ -2215,6 +2230,7 @@ module TencentCloud
               @EnvBillingInfoList << envbillinginfoitem_tmp
             end
           end
+          @Total = params['Total']
           @RequestId = params['RequestId']
         end
       end
@@ -4249,46 +4265,39 @@ module TencentCloud
 
       # 环境计费信息
       class EnvBillingInfoItem < TencentCloud::Common::AbstractModel
-        # @param EnvId: 环境ID
+        # @param EnvId: <p>环境ID</p>
         # @type EnvId: String
-        # @param PackageId: tcb产品套餐ID，参考DescribePackages接口的返回值。
+        # @param PackageId: <p>tcb产品套餐ID，参考DescribePackages接口的返回值。</p>
         # @type PackageId: String
-        # @param IsAutoRenew: 自动续费标记
+        # @param IsAutoRenew: <p>自动续费标记</p>
         # @type IsAutoRenew: Boolean
-        # @param Status: 状态。包含以下取值：
-        # <li> 空字符串：初始化中</li>
-        # <li> NORMAL：正常</li>
-        # <li> ISOLATE：隔离</li>
+        # @param Status: <p>状态。包含以下取值：</p><li> 空字符串：初始化中</li><li> NORMAL：正常</li><li> ISOLATE：隔离</li>
         # @type Status: String
-        # @param PayMode: 支付方式。包含以下取值：
-        # <li> PREPAYMENT：预付费</li>
-        # <li> POSTPAID：后付费</li>
+        # @param PayMode: <p>支付方式。包含以下取值：</p><li> PREPAYMENT：预付费</li><li> POSTPAID：后付费</li>
         # @type PayMode: String
-        # @param IsolatedTime: 隔离时间，最近一次隔离的时间
+        # @param IsolatedTime: <p>隔离时间，最近一次隔离的时间</p>
         # @type IsolatedTime: String
-        # @param ExpireTime: 过期时间，套餐即将到期的时间
+        # @param ExpireTime: <p>过期时间，套餐即将到期的时间</p>
         # @type ExpireTime: String
-        # @param CreateTime: 创建时间，第一次接入计费方案的时间。
+        # @param CreateTime: <p>创建时间，第一次接入计费方案的时间。</p>
         # @type CreateTime: String
-        # @param UpdateTime: 更新时间，计费信息最近一次更新的时间。
+        # @param UpdateTime: <p>更新时间，计费信息最近一次更新的时间。</p>
         # @type UpdateTime: String
-        # @param IsAlwaysFree: true表示从未升级过付费版。
+        # @param IsAlwaysFree: <p>true表示从未升级过付费版。</p>
         # @type IsAlwaysFree: Boolean
-        # @param PaymentChannel: 付费渠道。
-        # <li> miniapp：小程序</li>
-        # <li> qcloud：腾讯云</li>
+        # @param PaymentChannel: <p>付费渠道。</p><li> miniapp：小程序</li><li> qcloud：腾讯云</li>
         # @type PaymentChannel: String
-        # @param OrderInfo: 最新的订单信息
+        # @param OrderInfo: <p>最新的订单信息</p>
         # @type OrderInfo: :class:`Tencentcloud::Tcb.v20180608.models.OrderInfo`
-        # @param FreeQuota: 免费配额信息。
+        # @param FreeQuota: <p>免费配额信息。</p>
         # @type FreeQuota: String
-        # @param EnableOverrun: 是否开启 `超过套餐额度部分转按量付费`
+        # @param EnableOverrun: <p>是否开启 <code>超过套餐额度部分转按量付费</code></p>
         # @type EnableOverrun: Boolean
-        # @param ExtPackageType: 环境套餐类型
+        # @param ExtPackageType: <p>环境套餐类型</p>
         # @type ExtPackageType: String
-        # @param EnvCharged: 是否付费期环境，可取值：yes/no。
+        # @param EnvCharged: <p>是否付费期环境，可取值：yes/no。</p>
         # @type EnvCharged: String
-        # @param EnvActivated: 是否已激活，可取值：yes/no。
+        # @param EnvActivated: <p>是否已激活，可取值：yes/no。</p>
         # @type EnvActivated: String
 
         attr_accessor :EnvId, :PackageId, :IsAutoRenew, :Status, :PayMode, :IsolatedTime, :ExpireTime, :CreateTime, :UpdateTime, :IsAlwaysFree, :PaymentChannel, :OrderInfo, :FreeQuota, :EnableOverrun, :ExtPackageType, :EnvCharged, :EnvActivated
@@ -8065,8 +8074,8 @@ module TencentCloud
 
         attr_accessor :EnvId, :CdnDomain, :Bucket, :Regoin, :Status, :Region
         extend Gem::Deprecate
-        deprecate :Regoin, :none, 2026, 5
-        deprecate :Regoin=, :none, 2026, 5
+        deprecate :Regoin, :none, 2026, 6
+        deprecate :Regoin=, :none, 2026, 6
 
         def initialize(envid=nil, cdndomain=nil, bucket=nil, regoin=nil, status=nil, region=nil)
           @EnvId = envid

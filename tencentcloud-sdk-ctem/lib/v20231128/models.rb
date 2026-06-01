@@ -159,44 +159,52 @@ module TencentCloud
 
       # CreateCustomer请求参数结构体
       class CreateCustomerRequest < TencentCloud::Common::AbstractModel
-        # @param Name: 企业名称
+        # @param Name: <p>企业名称</p>
         # @type Name: String
-        # @param ScanType: 资产收集、漏洞信息、弱口令、目录爆破、暗网泄露、Github泄露、文库网盘泄露、敏感信息泄露，其中资产收集必包含，多个用英文逗号隔离，例如：资产收集,漏洞信息
+        # @param ScanType: <p>资产收集、漏洞信息、弱口令、目录爆破、暗网泄露、Github泄露、文库网盘泄露、敏感信息泄露，其中资产收集必包含，多个用英文逗号隔离，例如：资产收集,漏洞信息</p>
         # @type ScanType: String
-        # @param Percent: 百分比取值范围为30-100
+        # @param Percent: <p>百分比取值范围为30-100</p>
         # @type Percent: Integer
-        # @param ScanCron: 周期测绘时间
+        # @param ScanCron: <p>周期测绘时间</p>
         # @type ScanCron: String
-        # @param IsScanNow: 是否立即启动
+        # @param IsScanNow: <p>是否立即启动</p>
         # @type IsScanNow: Boolean
-        # @param EnableCron: 是否启用周期测绘
+        # @param EnableCron: <p>是否启用周期测绘</p>
         # @type EnableCron: Boolean
-        # @param EnableScanSubEnterprise: 是否扫描子公司
+        # @param EnableScanSubEnterprise: <p>是否扫描子公司</p>
         # @type EnableScanSubEnterprise: Boolean
-        # @param EnableAuth: 是否授权
+        # @param EnableAuth: <p>是否授权</p>
         # @type EnableAuth: Boolean
-        # @param AuthStartAt: 授权开始时间
+        # @param AuthStartAt: <p>授权开始时间</p>
         # @type AuthStartAt: String
-        # @param AuthEndAt: 授权结束时间
+        # @param AuthEndAt: <p>授权结束时间</p>
         # @type AuthEndAt: String
-        # @param AuthFile: 授权文件id
+        # @param AuthFile: <p>授权文件id</p>
         # @type AuthFile: String
-        # @param ScanTime: 测绘时间配置项，采用json字符串格式
+        # @param ScanTime: <p>测绘时间配置项，采用json字符串格式</p>
         # @type ScanTime: String
-        # @param Keywords: 企业相关的关键字
+        # @param Keywords: <p>企业相关的关键字</p>
         # @type Keywords: String
-        # @param Icon: 图标
+        # @param Icon: <p>图标</p>
         # @type Icon: String
-        # @param Qps: 并发设置
+        # @param Qps: <p>并发设置</p>
         # @type Qps: Integer
-        # @param SubCompanyLevel: 限制子公司层级，-1表示不限制
+        # @param SubCompanyLevel: <p>限制子公司层级，-1表示不限制</p>
         # @type SubCompanyLevel: Integer
-        # @param IsIncludeFullScan: 是否以企业名称为起点做完整扫描(包含手动上传),如只想扫描特定的某几个域名，则传false。
+        # @param IsIncludeFullScan: <p>是否以企业名称为起点做完整扫描(包含手动上传),如只想扫描特定的某几个域名，则传false。</p>
         # @type IsIncludeFullScan: Boolean
+        # @param PortScanQps: <p>端口扫描 QPS，默认 100，下限 10，保守值 200，上限 5000</p><p>默认值：100</p>
+        # @type PortScanQps: Integer
+        # @param SingleIPTaskLimit: <p>单 IP 任务并发数，默认 1，下限 1，保守值 3，上限 10</p><p>默认值：1</p>
+        # @type SingleIPTaskLimit: Integer
+        # @param HighRiskAck: <p>任一速率超过保守值时必须为 true，否则参数错误</p>
+        # @type HighRiskAck: Boolean
+        # @param ScanRateAckChecklist: <p>知情同意勾选清单，用于审计回放</p>
+        # @type ScanRateAckChecklist: Array
 
-        attr_accessor :Name, :ScanType, :Percent, :ScanCron, :IsScanNow, :EnableCron, :EnableScanSubEnterprise, :EnableAuth, :AuthStartAt, :AuthEndAt, :AuthFile, :ScanTime, :Keywords, :Icon, :Qps, :SubCompanyLevel, :IsIncludeFullScan
+        attr_accessor :Name, :ScanType, :Percent, :ScanCron, :IsScanNow, :EnableCron, :EnableScanSubEnterprise, :EnableAuth, :AuthStartAt, :AuthEndAt, :AuthFile, :ScanTime, :Keywords, :Icon, :Qps, :SubCompanyLevel, :IsIncludeFullScan, :PortScanQps, :SingleIPTaskLimit, :HighRiskAck, :ScanRateAckChecklist
 
-        def initialize(name=nil, scantype=nil, percent=nil, scancron=nil, isscannow=nil, enablecron=nil, enablescansubenterprise=nil, enableauth=nil, authstartat=nil, authendat=nil, authfile=nil, scantime=nil, keywords=nil, icon=nil, qps=nil, subcompanylevel=nil, isincludefullscan=nil)
+        def initialize(name=nil, scantype=nil, percent=nil, scancron=nil, isscannow=nil, enablecron=nil, enablescansubenterprise=nil, enableauth=nil, authstartat=nil, authendat=nil, authfile=nil, scantime=nil, keywords=nil, icon=nil, qps=nil, subcompanylevel=nil, isincludefullscan=nil, portscanqps=nil, singleiptasklimit=nil, highriskack=nil, scanrateackchecklist=nil)
           @Name = name
           @ScanType = scantype
           @Percent = percent
@@ -214,6 +222,10 @@ module TencentCloud
           @Qps = qps
           @SubCompanyLevel = subcompanylevel
           @IsIncludeFullScan = isincludefullscan
+          @PortScanQps = portscanqps
+          @SingleIPTaskLimit = singleiptasklimit
+          @HighRiskAck = highriskack
+          @ScanRateAckChecklist = scanrateackchecklist
         end
 
         def deserialize(params)
@@ -234,6 +246,10 @@ module TencentCloud
           @Qps = params['Qps']
           @SubCompanyLevel = params['SubCompanyLevel']
           @IsIncludeFullScan = params['IsIncludeFullScan']
+          @PortScanQps = params['PortScanQps']
+          @SingleIPTaskLimit = params['SingleIPTaskLimit']
+          @HighRiskAck = params['HighRiskAck']
+          @ScanRateAckChecklist = params['ScanRateAckChecklist']
         end
       end
 
@@ -471,25 +487,37 @@ module TencentCloud
 
       # CreateJobRecord请求参数结构体
       class CreateJobRecordRequest < TencentCloud::Common::AbstractModel
-        # @param CustomerId: 企业ID
+        # @param CustomerId: <p>企业ID</p>
         # @type CustomerId: Integer
-        # @param TaskType: 任务类型：即时任务
+        # @param TaskType: <p>任务类型：即时任务</p>
         # @type TaskType: String
-        # @param ScanType: 资产收集、漏洞信息、弱口令、目录爆破、暗网泄露、Github泄露、文库网盘泄露、敏感信息泄露，其中资产收集必包含，多个用英文逗号隔离，例如：资产收集,漏洞信息
+        # @param ScanType: <p>资产收集、漏洞信息、弱口令、目录爆破、暗网泄露、Github泄露、文库网盘泄露、敏感信息泄露，其中资产收集必包含，多个用英文逗号隔离，例如：资产收集,漏洞信息</p>
         # @type ScanType: String
-        # @param Qps: qps设置
+        # @param Qps: <p>qps设置</p>
         # @type Qps: Integer
-        # @param IsIncludeFullScan: 是否包含完整扫描
+        # @param IsIncludeFullScan: <p>是否包含完整扫描</p>
         # @type IsIncludeFullScan: Boolean
+        # @param PortScanQps: <p>端口扫描 QPS，默认 100，下限 10，保守值 200，上限 5000</p><p>默认值：100</p>
+        # @type PortScanQps: Integer
+        # @param SingleIPTaskLimit: <p>单 IP 任务并发数，默认 1，下限 1，保守值 3，上限 10</p><p>默认值：1</p>
+        # @type SingleIPTaskLimit: Integer
+        # @param HighRiskAck: <p>任一速率超过保守值时必须为 true，否则参数错误</p>
+        # @type HighRiskAck: Boolean
+        # @param ScanRateAckChecklist: <p>知情同意勾选清单，用于审计回放</p>
+        # @type ScanRateAckChecklist: Array
 
-        attr_accessor :CustomerId, :TaskType, :ScanType, :Qps, :IsIncludeFullScan
+        attr_accessor :CustomerId, :TaskType, :ScanType, :Qps, :IsIncludeFullScan, :PortScanQps, :SingleIPTaskLimit, :HighRiskAck, :ScanRateAckChecklist
 
-        def initialize(customerid=nil, tasktype=nil, scantype=nil, qps=nil, isincludefullscan=nil)
+        def initialize(customerid=nil, tasktype=nil, scantype=nil, qps=nil, isincludefullscan=nil, portscanqps=nil, singleiptasklimit=nil, highriskack=nil, scanrateackchecklist=nil)
           @CustomerId = customerid
           @TaskType = tasktype
           @ScanType = scantype
           @Qps = qps
           @IsIncludeFullScan = isincludefullscan
+          @PortScanQps = portscanqps
+          @SingleIPTaskLimit = singleiptasklimit
+          @HighRiskAck = highriskack
+          @ScanRateAckChecklist = scanrateackchecklist
         end
 
         def deserialize(params)
@@ -498,12 +526,16 @@ module TencentCloud
           @ScanType = params['ScanType']
           @Qps = params['Qps']
           @IsIncludeFullScan = params['IsIncludeFullScan']
+          @PortScanQps = params['PortScanQps']
+          @SingleIPTaskLimit = params['SingleIPTaskLimit']
+          @HighRiskAck = params['HighRiskAck']
+          @ScanRateAckChecklist = params['ScanRateAckChecklist']
         end
       end
 
       # CreateJobRecord返回参数结构体
       class CreateJobRecordResponse < TencentCloud::Common::AbstractModel
-        # @param Id: 任务Id
+        # @param Id: <p>任务Id</p>
         # @type Id: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -979,57 +1011,61 @@ module TencentCloud
 
       # 企业详情
       class Customer < TencentCloud::Common::AbstractModel
-        # @param Id: 企业ID
+        # @param Id: <p>企业ID</p>
         # @type Id: Integer
-        # @param Name: 企业名称
+        # @param Name: <p>企业名称</p>
         # @type Name: String
-        # @param Percent: 股权占比
+        # @param Percent: <p>股权占比</p>
         # @type Percent: Integer
-        # @param ScanType: 资产收集、漏洞信息、弱口令、目录爆破、暗网泄露、Github泄露、文库网盘泄露、敏感信息泄露，其中资产收集必包含，多个用英文逗号隔离，例如：资产收集,漏洞信息
+        # @param ScanType: <p>资产收集、漏洞信息、弱口令、目录爆破、暗网泄露、Github泄露、文库网盘泄露、敏感信息泄露，其中资产收集必包含，多个用英文逗号隔离，例如：资产收集,漏洞信息</p>
         # @type ScanType: String
-        # @param Creator: 创建账号
+        # @param Creator: <p>创建账号</p>
         # @type Creator: String
-        # @param AppId: 腾讯云客户AppId
+        # @param AppId: <p>腾讯云客户AppId</p>
         # @type AppId: Integer
-        # @param Uin: 腾讯云客户Uin
+        # @param Uin: <p>腾讯云客户Uin</p>
         # @type Uin: String
-        # @param CreateAt: 创建时间
+        # @param CreateAt: <p>创建时间</p>
         # @type CreateAt: String
-        # @param UpdateAt: 更新时间
+        # @param UpdateAt: <p>更新时间</p>
         # @type UpdateAt: String
-        # @param ScanCron: 周期测绘时间
+        # @param ScanCron: <p>周期测绘时间</p>
         # @type ScanCron: String
-        # @param EnableCron: 是否启用周期测绘
+        # @param EnableCron: <p>是否启用周期测绘</p>
         # @type EnableCron: Boolean
-        # @param EnableScanSubEnterprise: 是否扫描子公司
+        # @param EnableScanSubEnterprise: <p>是否扫描子公司</p>
         # @type EnableScanSubEnterprise: Boolean
-        # @param EnableAuth: 是否授权
+        # @param EnableAuth: <p>是否授权</p>
         # @type EnableAuth: Boolean
-        # @param AuthStartAt: 授权开始时间
+        # @param AuthStartAt: <p>授权开始时间</p>
         # @type AuthStartAt: String
-        # @param AuthEndAt: 授权结束时间
+        # @param AuthEndAt: <p>授权结束时间</p>
         # @type AuthEndAt: String
-        # @param AuthFile: 授权文件id
+        # @param AuthFile: <p>授权文件id</p>
         # @type AuthFile: String
-        # @param ScanTime: 测绘时间配置项
+        # @param ScanTime: <p>测绘时间配置项</p>
         # @type ScanTime: String
-        # @param Icon: 图标
+        # @param Icon: <p>图标</p>
         # @type Icon: String
-        # @param Keywords: 关键字
+        # @param Keywords: <p>关键字</p>
         # @type Keywords: String
-        # @param Qps: Qps设置，10-500，默认100
+        # @param Qps: <p>Qps设置，10-500，默认100</p>
         # @type Qps: Integer
-        # @param SubCompanyLevel: 子公司拓展层次
+        # @param SubCompanyLevel: <p>子公司拓展层次</p>
         # @type SubCompanyLevel: Integer
-        # @param IsIncludeFullScan: 是否包含完整扫描
+        # @param IsIncludeFullScan: <p>是否包含完整扫描</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsIncludeFullScan: Boolean
-        # @param EnableGroupMemberDiscovered: 是否识别集团成员
+        # @param EnableGroupMemberDiscovered: <p>是否识别集团成员</p>
         # @type EnableGroupMemberDiscovered: Boolean
+        # @param SingleIPTaskLimit: <p>单 IP 任务并发数，默认 1，下限 1，保守值 3，上限 10</p>
+        # @type SingleIPTaskLimit: Integer
+        # @param PortScanQps: <p>端口扫描 QPS，默认 100，下限 10，保守值 200，上限 5000</p>
+        # @type PortScanQps: Integer
 
-        attr_accessor :Id, :Name, :Percent, :ScanType, :Creator, :AppId, :Uin, :CreateAt, :UpdateAt, :ScanCron, :EnableCron, :EnableScanSubEnterprise, :EnableAuth, :AuthStartAt, :AuthEndAt, :AuthFile, :ScanTime, :Icon, :Keywords, :Qps, :SubCompanyLevel, :IsIncludeFullScan, :EnableGroupMemberDiscovered
+        attr_accessor :Id, :Name, :Percent, :ScanType, :Creator, :AppId, :Uin, :CreateAt, :UpdateAt, :ScanCron, :EnableCron, :EnableScanSubEnterprise, :EnableAuth, :AuthStartAt, :AuthEndAt, :AuthFile, :ScanTime, :Icon, :Keywords, :Qps, :SubCompanyLevel, :IsIncludeFullScan, :EnableGroupMemberDiscovered, :SingleIPTaskLimit, :PortScanQps
 
-        def initialize(id=nil, name=nil, percent=nil, scantype=nil, creator=nil, appid=nil, uin=nil, createat=nil, updateat=nil, scancron=nil, enablecron=nil, enablescansubenterprise=nil, enableauth=nil, authstartat=nil, authendat=nil, authfile=nil, scantime=nil, icon=nil, keywords=nil, qps=nil, subcompanylevel=nil, isincludefullscan=nil, enablegroupmemberdiscovered=nil)
+        def initialize(id=nil, name=nil, percent=nil, scantype=nil, creator=nil, appid=nil, uin=nil, createat=nil, updateat=nil, scancron=nil, enablecron=nil, enablescansubenterprise=nil, enableauth=nil, authstartat=nil, authendat=nil, authfile=nil, scantime=nil, icon=nil, keywords=nil, qps=nil, subcompanylevel=nil, isincludefullscan=nil, enablegroupmemberdiscovered=nil, singleiptasklimit=nil, portscanqps=nil)
           @Id = id
           @Name = name
           @Percent = percent
@@ -1053,6 +1089,8 @@ module TencentCloud
           @SubCompanyLevel = subcompanylevel
           @IsIncludeFullScan = isincludefullscan
           @EnableGroupMemberDiscovered = enablegroupmemberdiscovered
+          @SingleIPTaskLimit = singleiptasklimit
+          @PortScanQps = portscanqps
         end
 
         def deserialize(params)
@@ -1079,6 +1117,8 @@ module TencentCloud
           @SubCompanyLevel = params['SubCompanyLevel']
           @IsIncludeFullScan = params['IsIncludeFullScan']
           @EnableGroupMemberDiscovered = params['EnableGroupMemberDiscovered']
+          @SingleIPTaskLimit = params['SingleIPTaskLimit']
+          @PortScanQps = params['PortScanQps']
         end
       end
 
@@ -4511,32 +4551,34 @@ module TencentCloud
 
       # API安全详情
       class DisplayApiSec < TencentCloud::Common::AbstractModel
-        # @param Id: 主键ID
+        # @param Id: <p>主键ID</p>
         # @type Id: Integer
-        # @param DisplayToolCommon: 公共字段
+        # @param DisplayToolCommon: <p>公共字段</p>
         # @type DisplayToolCommon: :class:`Tencentcloud::Ctem.v20231128.models.DisplayToolCommon`
-        # @param Url: Url
+        # @param Url: <p>Url</p>
         # @type Url: String
-        # @param Host: Host地址
+        # @param Host: <p>Host地址</p>
         # @type Host: String
-        # @param Path: Path路径
+        # @param Path: <p>Path路径</p>
         # @type Path: String
-        # @param Method: 方法：POST、GET、DELETE等
+        # @param Method: <p>方法：POST、GET、DELETE等</p>
         # @type Method: String
-        # @param Status: 修复状态：unrepaired:未修复，repaired:已修复, ignore:已忽略,checking:复测中
+        # @param Status: <p>修复状态：unrepaired:未修复，repaired:已修复, ignore:已忽略,checking:复测中</p>
         # @type Status: String
-        # @param Code: 状态码
+        # @param Code: <p>状态码</p>
         # @type Code: Integer
-        # @param Request: 请求体
+        # @param Request: <p>请求体</p>
         # @type Request: String
-        # @param Response: 响应体
+        # @param Response: <p>响应体</p>
         # @type Response: String
-        # @param IsRiskAPI: 是否风险API
+        # @param IsRiskAPI: <p>是否风险API</p>
         # @type IsRiskAPI: Boolean
+        # @param AggregationCount: <p>聚合视角下该组真实子项总数；非聚合视角为 0</p>
+        # @type AggregationCount: Integer
 
-        attr_accessor :Id, :DisplayToolCommon, :Url, :Host, :Path, :Method, :Status, :Code, :Request, :Response, :IsRiskAPI
+        attr_accessor :Id, :DisplayToolCommon, :Url, :Host, :Path, :Method, :Status, :Code, :Request, :Response, :IsRiskAPI, :AggregationCount
 
-        def initialize(id=nil, displaytoolcommon=nil, url=nil, host=nil, path=nil, method=nil, status=nil, code=nil, request=nil, response=nil, isriskapi=nil)
+        def initialize(id=nil, displaytoolcommon=nil, url=nil, host=nil, path=nil, method=nil, status=nil, code=nil, request=nil, response=nil, isriskapi=nil, aggregationcount=nil)
           @Id = id
           @DisplayToolCommon = displaytoolcommon
           @Url = url
@@ -4548,6 +4590,7 @@ module TencentCloud
           @Request = request
           @Response = response
           @IsRiskAPI = isriskapi
+          @AggregationCount = aggregationcount
         end
 
         def deserialize(params)
@@ -4565,6 +4608,7 @@ module TencentCloud
           @Request = params['Request']
           @Response = params['Response']
           @IsRiskAPI = params['IsRiskAPI']
+          @AggregationCount = params['AggregationCount']
         end
       end
 
@@ -4700,36 +4744,38 @@ module TencentCloud
 
       # 目录爆破详情
       class DisplayConfig < TencentCloud::Common::AbstractModel
-        # @param Id: 主键Id
+        # @param Id: <p>主键Id</p>
         # @type Id: Integer
-        # @param Url: 地址
+        # @param Url: <p>地址</p>
         # @type Url: String
-        # @param Title: 站点标题
+        # @param Title: <p>站点标题</p>
         # @type Title: String
-        # @param Code: 状态码
+        # @param Code: <p>状态码</p>
         # @type Code: Integer
-        # @param ContentLength: 响应长度
+        # @param ContentLength: <p>响应长度</p>
         # @type ContentLength: Integer
-        # @param DisplayToolCommon: 公共字段
+        # @param DisplayToolCommon: <p>公共字段</p>
         # @type DisplayToolCommon: :class:`Tencentcloud::Ctem.v20231128.models.DisplayToolCommon`
-        # @param Ip: Ip数据
+        # @param Ip: <p>Ip数据</p>
         # @type Ip: String
-        # @param AIRating: AI评分
+        # @param AIRating: <p>AI评分</p>
         # @type AIRating: Integer
-        # @param AIAnalysis: AI分析
+        # @param AIAnalysis: <p>AI分析</p>
         # @type AIAnalysis: String
-        # @param RiskLevel: 风险等级: 1-低危, 2-中危, 3-高危, 4-危级, 5-误报
+        # @param RiskLevel: <p>风险等级: 1-低危, 2-中危, 3-高危, 4-危级, 5-误报</p>
         # @type RiskLevel: Integer
-        # @param Suggestion: 建议
+        # @param Suggestion: <p>建议</p>
         # @type Suggestion: String
-        # @param IsCloudAsset: 是否为云资产
+        # @param IsCloudAsset: <p>是否为云资产</p>
         # @type IsCloudAsset: Integer
-        # @param CloudAssetStatus: 云资产状态，-1为下线
+        # @param CloudAssetStatus: <p>云资产状态，-1为下线</p>
         # @type CloudAssetStatus: Integer
+        # @param AggregationCount: <p>聚合视角下该组真实子项总数；非聚合视角为 0</p>
+        # @type AggregationCount: Integer
 
-        attr_accessor :Id, :Url, :Title, :Code, :ContentLength, :DisplayToolCommon, :Ip, :AIRating, :AIAnalysis, :RiskLevel, :Suggestion, :IsCloudAsset, :CloudAssetStatus
+        attr_accessor :Id, :Url, :Title, :Code, :ContentLength, :DisplayToolCommon, :Ip, :AIRating, :AIAnalysis, :RiskLevel, :Suggestion, :IsCloudAsset, :CloudAssetStatus, :AggregationCount
 
-        def initialize(id=nil, url=nil, title=nil, code=nil, contentlength=nil, displaytoolcommon=nil, ip=nil, airating=nil, aianalysis=nil, risklevel=nil, suggestion=nil, iscloudasset=nil, cloudassetstatus=nil)
+        def initialize(id=nil, url=nil, title=nil, code=nil, contentlength=nil, displaytoolcommon=nil, ip=nil, airating=nil, aianalysis=nil, risklevel=nil, suggestion=nil, iscloudasset=nil, cloudassetstatus=nil, aggregationcount=nil)
           @Id = id
           @Url = url
           @Title = title
@@ -4743,6 +4789,7 @@ module TencentCloud
           @Suggestion = suggestion
           @IsCloudAsset = iscloudasset
           @CloudAssetStatus = cloudassetstatus
+          @AggregationCount = aggregationcount
         end
 
         def deserialize(params)
@@ -4762,6 +4809,7 @@ module TencentCloud
           @Suggestion = params['Suggestion']
           @IsCloudAsset = params['IsCloudAsset']
           @CloudAssetStatus = params['CloudAssetStatus']
+          @AggregationCount = params['AggregationCount']
         end
       end
 
@@ -5175,51 +5223,53 @@ module TencentCloud
 
       # Http详情
       class DisplayHttp < TencentCloud::Common::AbstractModel
-        # @param Id: 主键ID
+        # @param Id: <p>主键ID</p>
         # @type Id: Integer
-        # @param DisplayToolCommon: 公共字段
+        # @param DisplayToolCommon: <p>公共字段</p>
         # @type DisplayToolCommon: :class:`Tencentcloud::Ctem.v20231128.models.DisplayToolCommon`
-        # @param Url: Url
+        # @param Url: <p>Url</p>
         # @type Url: String
-        # @param Title: 标题
+        # @param Title: <p>标题</p>
         # @type Title: String
-        # @param ContentLength: 报文长度
+        # @param ContentLength: <p>报文长度</p>
         # @type ContentLength: Integer
-        # @param Content: 报文内容
+        # @param Content: <p>报文内容</p>
         # @type Content: String
-        # @param ScreenshotThumbUrl: 截图缩略图URL
+        # @param ScreenshotThumbUrl: <p>截图缩略图URL</p>
         # @type ScreenshotThumbUrl: String
-        # @param ScreenshotUrl: 截图URL
+        # @param ScreenshotUrl: <p>截图URL</p>
         # @type ScreenshotUrl: String
-        # @param Code: 状态码
+        # @param Code: <p>状态码</p>
         # @type Code: Integer
-        # @param Api: Api地址
+        # @param Api: <p>Api地址</p>
         # @type Api: String
-        # @param Ip: 解析的IP
+        # @param Ip: <p>解析的IP</p>
         # @type Ip: String
-        # @param Ssl: 证书信息
+        # @param Ssl: <p>证书信息</p>
         # @type Ssl: String
-        # @param SslExpiredTime: ssl证书过期时间
+        # @param SslExpiredTime: <p>ssl证书过期时间</p>
         # @type SslExpiredTime: String
-        # @param IsChange: 资产是否发生变动
+        # @param IsChange: <p>资产是否发生变动</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsChange: Boolean
-        # @param IsCloudAsset: 是否为云资产：0-非云资产 1-是云资产
+        # @param IsCloudAsset: <p>是否为云资产：0-非云资产 1-是云资产</p>
         # @type IsCloudAsset: Integer
-        # @param CloudAssetStatus: 云资产是否下线：-1-已下线 0-正常
+        # @param CloudAssetStatus: <p>云资产是否下线：-1-已下线 0-正常</p>
         # @type CloudAssetStatus: Integer
-        # @param AvailabilityRate: 可用率（百分比）
+        # @param AvailabilityRate: <p>可用率（百分比）</p>
         # @type AvailabilityRate: Integer
-        # @param AvailabilityState: 可用状态 1:异常 0:正常
+        # @param AvailabilityState: <p>可用状态 1:异常 0:正常</p>
         # @type AvailabilityState: Integer
-        # @param ResponseTime: 平均响应时间：单位ms
+        # @param ResponseTime: <p>平均响应时间：单位ms</p>
         # @type ResponseTime: Integer
-        # @param AnalysisState: 域名解析状态 1:异常 0:正常
+        # @param AnalysisState: <p>域名解析状态 1:异常 0:正常</p>
         # @type AnalysisState: Integer
+        # @param AggregationCount: <p>聚合视角下该组真实子项总数；非聚合视角为 0</p>
+        # @type AggregationCount: Integer
 
-        attr_accessor :Id, :DisplayToolCommon, :Url, :Title, :ContentLength, :Content, :ScreenshotThumbUrl, :ScreenshotUrl, :Code, :Api, :Ip, :Ssl, :SslExpiredTime, :IsChange, :IsCloudAsset, :CloudAssetStatus, :AvailabilityRate, :AvailabilityState, :ResponseTime, :AnalysisState
+        attr_accessor :Id, :DisplayToolCommon, :Url, :Title, :ContentLength, :Content, :ScreenshotThumbUrl, :ScreenshotUrl, :Code, :Api, :Ip, :Ssl, :SslExpiredTime, :IsChange, :IsCloudAsset, :CloudAssetStatus, :AvailabilityRate, :AvailabilityState, :ResponseTime, :AnalysisState, :AggregationCount
 
-        def initialize(id=nil, displaytoolcommon=nil, url=nil, title=nil, contentlength=nil, content=nil, screenshotthumburl=nil, screenshoturl=nil, code=nil, api=nil, ip=nil, ssl=nil, sslexpiredtime=nil, ischange=nil, iscloudasset=nil, cloudassetstatus=nil, availabilityrate=nil, availabilitystate=nil, responsetime=nil, analysisstate=nil)
+        def initialize(id=nil, displaytoolcommon=nil, url=nil, title=nil, contentlength=nil, content=nil, screenshotthumburl=nil, screenshoturl=nil, code=nil, api=nil, ip=nil, ssl=nil, sslexpiredtime=nil, ischange=nil, iscloudasset=nil, cloudassetstatus=nil, availabilityrate=nil, availabilitystate=nil, responsetime=nil, analysisstate=nil, aggregationcount=nil)
           @Id = id
           @DisplayToolCommon = displaytoolcommon
           @Url = url
@@ -5240,6 +5290,7 @@ module TencentCloud
           @AvailabilityState = availabilitystate
           @ResponseTime = responsetime
           @AnalysisState = analysisstate
+          @AggregationCount = aggregationcount
         end
 
         def deserialize(params)
@@ -5266,6 +5317,7 @@ module TencentCloud
           @AvailabilityState = params['AvailabilityState']
           @ResponseTime = params['ResponseTime']
           @AnalysisState = params['AnalysisState']
+          @AggregationCount = params['AggregationCount']
         end
       end
 
@@ -5571,32 +5623,34 @@ module TencentCloud
 
       # 后台详情
       class DisplayManage < TencentCloud::Common::AbstractModel
-        # @param Id: 主键ID
+        # @param Id: <p>主键ID</p>
         # @type Id: Integer
-        # @param DisplayToolCommon: 公共字段
+        # @param DisplayToolCommon: <p>公共字段</p>
         # @type DisplayToolCommon: :class:`Tencentcloud::Ctem.v20231128.models.DisplayToolCommon`
-        # @param Url: Url
+        # @param Url: <p>Url</p>
         # @type Url: String
-        # @param Title: 标题
+        # @param Title: <p>标题</p>
         # @type Title: String
-        # @param Icon: Icon
+        # @param Icon: <p>Icon</p>
         # @type Icon: String
-        # @param Screenshot: 缩略图
+        # @param Screenshot: <p>缩略图</p>
         # @type Screenshot: String
-        # @param Code: 状态码
+        # @param Code: <p>状态码</p>
         # @type Code: Integer
-        # @param Host: 后台Host
+        # @param Host: <p>后台Host</p>
         # @type Host: String
-        # @param Status: 状态：not_converged:未收敛, converged:已收敛, ignore:已忽略
+        # @param Status: <p>状态：not_converged:未收敛, converged:已收敛, ignore:已忽略</p>
         # @type Status: String
-        # @param IsCloudAsset: 是否为云资产：0-非云资产 1-是云资产
+        # @param IsCloudAsset: <p>是否为云资产：0-非云资产 1-是云资产</p>
         # @type IsCloudAsset: Integer
-        # @param CloudAssetStatus: 云资产是否下线：-1-已下线 0-正常
+        # @param CloudAssetStatus: <p>云资产是否下线：-1-已下线 0-正常</p>
         # @type CloudAssetStatus: Integer
+        # @param AggregationCount: <p>聚合视角下该组真实子项总数；非聚合视角为 0</p>
+        # @type AggregationCount: Integer
 
-        attr_accessor :Id, :DisplayToolCommon, :Url, :Title, :Icon, :Screenshot, :Code, :Host, :Status, :IsCloudAsset, :CloudAssetStatus
+        attr_accessor :Id, :DisplayToolCommon, :Url, :Title, :Icon, :Screenshot, :Code, :Host, :Status, :IsCloudAsset, :CloudAssetStatus, :AggregationCount
 
-        def initialize(id=nil, displaytoolcommon=nil, url=nil, title=nil, icon=nil, screenshot=nil, code=nil, host=nil, status=nil, iscloudasset=nil, cloudassetstatus=nil)
+        def initialize(id=nil, displaytoolcommon=nil, url=nil, title=nil, icon=nil, screenshot=nil, code=nil, host=nil, status=nil, iscloudasset=nil, cloudassetstatus=nil, aggregationcount=nil)
           @Id = id
           @DisplayToolCommon = displaytoolcommon
           @Url = url
@@ -5608,6 +5662,7 @@ module TencentCloud
           @Status = status
           @IsCloudAsset = iscloudasset
           @CloudAssetStatus = cloudassetstatus
+          @AggregationCount = aggregationcount
         end
 
         def deserialize(params)
@@ -5625,6 +5680,7 @@ module TencentCloud
           @Status = params['Status']
           @IsCloudAsset = params['IsCloudAsset']
           @CloudAssetStatus = params['CloudAssetStatus']
+          @AggregationCount = params['AggregationCount']
         end
       end
 
@@ -5673,38 +5729,40 @@ module TencentCloud
 
       # 端口详情
       class DisplayPort < TencentCloud::Common::AbstractModel
-        # @param Id: 主键ID
+        # @param Id: <p>主键ID</p>
         # @type Id: Integer
-        # @param DisplayToolCommon: 公共字段
+        # @param DisplayToolCommon: <p>公共字段</p>
         # @type DisplayToolCommon: :class:`Tencentcloud::Ctem.v20231128.models.DisplayToolCommon`
-        # @param Asset: IP或域名地址
+        # @param Asset: <p>IP或域名地址</p>
         # @type Asset: String
-        # @param Ip: 解析的IP
+        # @param Ip: <p>解析的IP</p>
         # @type Ip: String
-        # @param Port: 端口
+        # @param Port: <p>端口</p>
         # @type Port: Integer
-        # @param IsHighRisk: 是否高危
+        # @param IsHighRisk: <p>是否高危</p>
         # @type IsHighRisk: Boolean
-        # @param App: 组件名称
+        # @param App: <p>组件名称</p>
         # @type App: String
-        # @param Service: 服务名称
+        # @param Service: <p>服务名称</p>
         # @type Service: String
-        # @param Banner: 端口响应详情
+        # @param Banner: <p>端口响应详情</p>
         # @type Banner: String
-        # @param LastCheckTime: 上次检测时间
+        # @param LastCheckTime: <p>上次检测时间</p>
         # @type LastCheckTime: String
-        # @param Status: 状态，close:连接超时，端口可能已关闭，open:端口开放, checking:复测中, ignore:已忽略
+        # @param Status: <p>状态，close:连接超时，端口可能已关闭，open:端口开放, checking:复测中, ignore:已忽略</p>
         # @type Status: String
-        # @param IsCloudAsset: 是否为云资产：0-非云资产 1-是云资产
+        # @param IsCloudAsset: <p>是否为云资产：0-非云资产 1-是云资产</p>
         # @type IsCloudAsset: Integer
-        # @param CloudAssetStatus: 云资产是否下线：-1-已下线 0-正常
+        # @param CloudAssetStatus: <p>云资产是否下线：-1-已下线 0-正常</p>
         # @type CloudAssetStatus: Integer
-        # @param AnalysisState: 域名解析状态 1:异常 0:正常
+        # @param AnalysisState: <p>域名解析状态 1:异常 0:正常</p>
         # @type AnalysisState: Integer
+        # @param AggregationCount: <p>聚合视角下该组真实子项总数；非聚合视角为 0</p>
+        # @type AggregationCount: Integer
 
-        attr_accessor :Id, :DisplayToolCommon, :Asset, :Ip, :Port, :IsHighRisk, :App, :Service, :Banner, :LastCheckTime, :Status, :IsCloudAsset, :CloudAssetStatus, :AnalysisState
+        attr_accessor :Id, :DisplayToolCommon, :Asset, :Ip, :Port, :IsHighRisk, :App, :Service, :Banner, :LastCheckTime, :Status, :IsCloudAsset, :CloudAssetStatus, :AnalysisState, :AggregationCount
 
-        def initialize(id=nil, displaytoolcommon=nil, asset=nil, ip=nil, port=nil, ishighrisk=nil, app=nil, service=nil, banner=nil, lastchecktime=nil, status=nil, iscloudasset=nil, cloudassetstatus=nil, analysisstate=nil)
+        def initialize(id=nil, displaytoolcommon=nil, asset=nil, ip=nil, port=nil, ishighrisk=nil, app=nil, service=nil, banner=nil, lastchecktime=nil, status=nil, iscloudasset=nil, cloudassetstatus=nil, analysisstate=nil, aggregationcount=nil)
           @Id = id
           @DisplayToolCommon = displaytoolcommon
           @Asset = asset
@@ -5719,6 +5777,7 @@ module TencentCloud
           @IsCloudAsset = iscloudasset
           @CloudAssetStatus = cloudassetstatus
           @AnalysisState = analysisstate
+          @AggregationCount = aggregationcount
         end
 
         def deserialize(params)
@@ -5739,6 +5798,7 @@ module TencentCloud
           @IsCloudAsset = params['IsCloudAsset']
           @CloudAssetStatus = params['CloudAssetStatus']
           @AnalysisState = params['AnalysisState']
+          @AggregationCount = params['AggregationCount']
         end
       end
 
@@ -5789,24 +5849,26 @@ module TencentCloud
 
       # 敏感信息泄露数据
       class DisplaySensitiveInfo < TencentCloud::Common::AbstractModel
-        # @param Id: 主键Id
+        # @param Id: <p>主键Id</p>
         # @type Id: Integer
-        # @param Type: 类型
+        # @param Type: <p>类型</p>
         # @type Type: String
-        # @param Source: 来源
+        # @param Source: <p>来源</p>
         # @type Source: String
-        # @param Value: 值
+        # @param Value: <p>值</p>
         # @type Value: String
-        # @param DisplayToolCommon: 公共字段
+        # @param DisplayToolCommon: <p>公共字段</p>
         # @type DisplayToolCommon: :class:`Tencentcloud::Ctem.v20231128.models.DisplayToolCommon`
-        # @param IsCloudAsset: 是否为云资产：0-非云资产 1-是云资产
+        # @param IsCloudAsset: <p>是否为云资产：0-非云资产 1-是云资产</p>
         # @type IsCloudAsset: Integer
-        # @param CloudAssetStatus: 云资产是否下线：-1-已下线 0-正常
+        # @param CloudAssetStatus: <p>云资产是否下线：-1-已下线 0-正常</p>
         # @type CloudAssetStatus: Integer
+        # @param AggregationCount: <p>聚合视角下该组真实子项总数；非聚合视角为 0</p>
+        # @type AggregationCount: Integer
 
-        attr_accessor :Id, :Type, :Source, :Value, :DisplayToolCommon, :IsCloudAsset, :CloudAssetStatus
+        attr_accessor :Id, :Type, :Source, :Value, :DisplayToolCommon, :IsCloudAsset, :CloudAssetStatus, :AggregationCount
 
-        def initialize(id=nil, type=nil, source=nil, value=nil, displaytoolcommon=nil, iscloudasset=nil, cloudassetstatus=nil)
+        def initialize(id=nil, type=nil, source=nil, value=nil, displaytoolcommon=nil, iscloudasset=nil, cloudassetstatus=nil, aggregationcount=nil)
           @Id = id
           @Type = type
           @Source = source
@@ -5814,6 +5876,7 @@ module TencentCloud
           @DisplayToolCommon = displaytoolcommon
           @IsCloudAsset = iscloudasset
           @CloudAssetStatus = cloudassetstatus
+          @AggregationCount = aggregationcount
         end
 
         def deserialize(params)
@@ -5827,6 +5890,7 @@ module TencentCloud
           end
           @IsCloudAsset = params['IsCloudAsset']
           @CloudAssetStatus = params['CloudAssetStatus']
+          @AggregationCount = params['AggregationCount']
         end
       end
 
@@ -5866,10 +5930,12 @@ module TencentCloud
         # @type DnsType: String
         # @param DnsValue: <p>DNS解析值</p>
         # @type DnsValue: String
+        # @param AggregationCount: <p>聚合视角下该组真实子项总数；非聚合视角为 0</p>
+        # @type AggregationCount: Integer
 
-        attr_accessor :Id, :SubDomain, :Ip, :Country, :Province, :City, :Isp, :DisplayToolCommon, :IsCloudAsset, :CloudAssetStatus, :AvailabilityRate, :AvailabilityState, :AnalysisState, :AverageDelay, :LossRate, :DnsType, :DnsValue
+        attr_accessor :Id, :SubDomain, :Ip, :Country, :Province, :City, :Isp, :DisplayToolCommon, :IsCloudAsset, :CloudAssetStatus, :AvailabilityRate, :AvailabilityState, :AnalysisState, :AverageDelay, :LossRate, :DnsType, :DnsValue, :AggregationCount
 
-        def initialize(id=nil, subdomain=nil, ip=nil, country=nil, province=nil, city=nil, isp=nil, displaytoolcommon=nil, iscloudasset=nil, cloudassetstatus=nil, availabilityrate=nil, availabilitystate=nil, analysisstate=nil, averagedelay=nil, lossrate=nil, dnstype=nil, dnsvalue=nil)
+        def initialize(id=nil, subdomain=nil, ip=nil, country=nil, province=nil, city=nil, isp=nil, displaytoolcommon=nil, iscloudasset=nil, cloudassetstatus=nil, availabilityrate=nil, availabilitystate=nil, analysisstate=nil, averagedelay=nil, lossrate=nil, dnstype=nil, dnsvalue=nil, aggregationcount=nil)
           @Id = id
           @SubDomain = subdomain
           @Ip = ip
@@ -5887,6 +5953,7 @@ module TencentCloud
           @LossRate = lossrate
           @DnsType = dnstype
           @DnsValue = dnsvalue
+          @AggregationCount = aggregationcount
         end
 
         def deserialize(params)
@@ -5910,51 +5977,54 @@ module TencentCloud
           @LossRate = params['LossRate']
           @DnsType = params['DnsType']
           @DnsValue = params['DnsValue']
+          @AggregationCount = params['AggregationCount']
         end
       end
 
       # 影子资产详情
       class DisplaySuspiciousAsset < TencentCloud::Common::AbstractModel
-        # @param Id: 主键ID
+        # @param Id: <p>主键ID</p>
         # @type Id: Integer
-        # @param DisplayToolCommon: 公共字段
+        # @param DisplayToolCommon: <p>公共字段</p>
         # @type DisplayToolCommon: :class:`Tencentcloud::Ctem.v20231128.models.DisplayToolCommon`
-        # @param Url: Url
+        # @param Url: <p>Url</p>
         # @type Url: String
-        # @param Title: 标题
+        # @param Title: <p>标题</p>
         # @type Title: String
-        # @param ContentLength: 报文长度
+        # @param ContentLength: <p>报文长度</p>
         # @type ContentLength: Integer
-        # @param Content: 报文内容
+        # @param Content: <p>报文内容</p>
         # @type Content: String
-        # @param ScreenshotThumbUrl: 截图缩略图URL
+        # @param ScreenshotThumbUrl: <p>截图缩略图URL</p>
         # @type ScreenshotThumbUrl: String
-        # @param ScreenshotUrl: 截图URL
+        # @param ScreenshotUrl: <p>截图URL</p>
         # @type ScreenshotUrl: String
-        # @param Code: 状态码
+        # @param Code: <p>状态码</p>
         # @type Code: Integer
-        # @param Api: Api
+        # @param Api: <p>Api</p>
         # @type Api: String
-        # @param Ip: 解析的IP
+        # @param Ip: <p>解析的IP</p>
         # @type Ip: String
-        # @param Ssl: 证书信息
+        # @param Ssl: <p>证书信息</p>
         # @type Ssl: String
-        # @param SslExpiredTime: ssl证书过期时间
+        # @param SslExpiredTime: <p>ssl证书过期时间</p>
         # @type SslExpiredTime: String
-        # @param SourceType: 来源类型
+        # @param SourceType: <p>来源类型</p>
         # @type SourceType: String
-        # @param SourceValue: 来源值
+        # @param SourceValue: <p>来源值</p>
         # @type SourceValue: String
-        # @param Trusted: 是否信任
+        # @param Trusted: <p>是否信任</p>
         # @type Trusted: Boolean
-        # @param Owner: 所属者
+        # @param Owner: <p>所属者</p>
         # @type Owner: String
-        # @param RootDomain: 根域名
+        # @param RootDomain: <p>根域名</p>
         # @type RootDomain: String
+        # @param AggregationCount: <p>聚合视角下该组真实子项总数；非聚合视角为 0</p>
+        # @type AggregationCount: Integer
 
-        attr_accessor :Id, :DisplayToolCommon, :Url, :Title, :ContentLength, :Content, :ScreenshotThumbUrl, :ScreenshotUrl, :Code, :Api, :Ip, :Ssl, :SslExpiredTime, :SourceType, :SourceValue, :Trusted, :Owner, :RootDomain
+        attr_accessor :Id, :DisplayToolCommon, :Url, :Title, :ContentLength, :Content, :ScreenshotThumbUrl, :ScreenshotUrl, :Code, :Api, :Ip, :Ssl, :SslExpiredTime, :SourceType, :SourceValue, :Trusted, :Owner, :RootDomain, :AggregationCount
 
-        def initialize(id=nil, displaytoolcommon=nil, url=nil, title=nil, contentlength=nil, content=nil, screenshotthumburl=nil, screenshoturl=nil, code=nil, api=nil, ip=nil, ssl=nil, sslexpiredtime=nil, sourcetype=nil, sourcevalue=nil, trusted=nil, owner=nil, rootdomain=nil)
+        def initialize(id=nil, displaytoolcommon=nil, url=nil, title=nil, contentlength=nil, content=nil, screenshotthumburl=nil, screenshoturl=nil, code=nil, api=nil, ip=nil, ssl=nil, sslexpiredtime=nil, sourcetype=nil, sourcevalue=nil, trusted=nil, owner=nil, rootdomain=nil, aggregationcount=nil)
           @Id = id
           @DisplayToolCommon = displaytoolcommon
           @Url = url
@@ -5973,6 +6043,7 @@ module TencentCloud
           @Trusted = trusted
           @Owner = owner
           @RootDomain = rootdomain
+          @AggregationCount = aggregationcount
         end
 
         def deserialize(params)
@@ -5997,6 +6068,7 @@ module TencentCloud
           @Trusted = params['Trusted']
           @Owner = params['Owner']
           @RootDomain = params['RootDomain']
+          @AggregationCount = params['AggregationCount']
         end
       end
 
@@ -6472,44 +6544,52 @@ module TencentCloud
 
       # ModifyCustomer请求参数结构体
       class ModifyCustomerRequest < TencentCloud::Common::AbstractModel
-        # @param Name: 企业名称
+        # @param Name: <p>企业名称</p>
         # @type Name: String
-        # @param Percent: 百分比取值范围为30-100
+        # @param Percent: <p>百分比取值范围为30-100</p>
         # @type Percent: Integer
-        # @param ScanType: 资产收集、漏洞信息、弱口令、目录爆破、暗网泄露、Github泄露、文库网盘泄露、敏感信息泄露，其中资产收集必包含，多个用英文逗号隔离，例如：资产收集,漏洞信息
+        # @param ScanType: <p>资产收集、漏洞信息、弱口令、目录爆破、暗网泄露、Github泄露、文库网盘泄露、敏感信息泄露，其中资产收集必包含，多个用英文逗号隔离，例如：资产收集,漏洞信息</p>
         # @type ScanType: String
-        # @param Id: 企业ID
+        # @param Id: <p>企业ID</p>
         # @type Id: Integer
-        # @param ScanCron: 周期测绘时间
+        # @param ScanCron: <p>周期测绘时间</p>
         # @type ScanCron: String
-        # @param IsScanNow: 是否立即启动
+        # @param IsScanNow: <p>是否立即启动</p>
         # @type IsScanNow: Boolean
-        # @param EnableCron: 是否启用周期测绘
+        # @param EnableCron: <p>是否启用周期测绘</p>
         # @type EnableCron: Boolean
-        # @param EnableScanSubEnterprise: 是否扫描子公司
+        # @param EnableScanSubEnterprise: <p>是否扫描子公司</p>
         # @type EnableScanSubEnterprise: Boolean
-        # @param EnableAuth: 是否授权
+        # @param EnableAuth: <p>是否授权</p>
         # @type EnableAuth: Boolean
-        # @param AuthStartAt: 授权开始时间
+        # @param AuthStartAt: <p>授权开始时间</p>
         # @type AuthStartAt: String
-        # @param AuthEndAt: 授权结束时间
+        # @param AuthEndAt: <p>授权结束时间</p>
         # @type AuthEndAt: String
-        # @param AuthFile: 授权文件id
+        # @param AuthFile: <p>授权文件id</p>
         # @type AuthFile: String
-        # @param ScanTime: 测绘时间配置项，采用json字符串格式
+        # @param ScanTime: <p>测绘时间配置项，采用json字符串格式</p>
         # @type ScanTime: String
-        # @param Icon: 企业图标
+        # @param Icon: <p>企业图标</p>
         # @type Icon: String
-        # @param Qps: 并发
+        # @param Qps: <p>并发</p>
         # @type Qps: Integer
-        # @param SubCompanyLevel: 子公司拓展层次
+        # @param SubCompanyLevel: <p>子公司拓展层次</p>
         # @type SubCompanyLevel: Integer
-        # @param IsIncludeFullScan: 是否包含完整的扫描
+        # @param IsIncludeFullScan: <p>是否包含完整的扫描</p>
         # @type IsIncludeFullScan: Boolean
+        # @param PortScanQps: <p>端口扫描 QPS，默认 100，下限 10，保守值 200，上限 5000</p><p>默认值：100</p>
+        # @type PortScanQps: Integer
+        # @param SingleIPTaskLimit: <p>单 IP 任务并发数，默认 1，下限 1，保守值 3，上限 10</p><p>默认值：1</p>
+        # @type SingleIPTaskLimit: Integer
+        # @param HighRiskAck: <p>任一速率超过保守值时必须为 true，否则参数错误</p>
+        # @type HighRiskAck: Boolean
+        # @param ScanRateAckChecklist: <p>知情同意勾选清单，用于审计回放</p>
+        # @type ScanRateAckChecklist: Array
 
-        attr_accessor :Name, :Percent, :ScanType, :Id, :ScanCron, :IsScanNow, :EnableCron, :EnableScanSubEnterprise, :EnableAuth, :AuthStartAt, :AuthEndAt, :AuthFile, :ScanTime, :Icon, :Qps, :SubCompanyLevel, :IsIncludeFullScan
+        attr_accessor :Name, :Percent, :ScanType, :Id, :ScanCron, :IsScanNow, :EnableCron, :EnableScanSubEnterprise, :EnableAuth, :AuthStartAt, :AuthEndAt, :AuthFile, :ScanTime, :Icon, :Qps, :SubCompanyLevel, :IsIncludeFullScan, :PortScanQps, :SingleIPTaskLimit, :HighRiskAck, :ScanRateAckChecklist
 
-        def initialize(name=nil, percent=nil, scantype=nil, id=nil, scancron=nil, isscannow=nil, enablecron=nil, enablescansubenterprise=nil, enableauth=nil, authstartat=nil, authendat=nil, authfile=nil, scantime=nil, icon=nil, qps=nil, subcompanylevel=nil, isincludefullscan=nil)
+        def initialize(name=nil, percent=nil, scantype=nil, id=nil, scancron=nil, isscannow=nil, enablecron=nil, enablescansubenterprise=nil, enableauth=nil, authstartat=nil, authendat=nil, authfile=nil, scantime=nil, icon=nil, qps=nil, subcompanylevel=nil, isincludefullscan=nil, portscanqps=nil, singleiptasklimit=nil, highriskack=nil, scanrateackchecklist=nil)
           @Name = name
           @Percent = percent
           @ScanType = scantype
@@ -6527,6 +6607,10 @@ module TencentCloud
           @Qps = qps
           @SubCompanyLevel = subcompanylevel
           @IsIncludeFullScan = isincludefullscan
+          @PortScanQps = portscanqps
+          @SingleIPTaskLimit = singleiptasklimit
+          @HighRiskAck = highriskack
+          @ScanRateAckChecklist = scanrateackchecklist
         end
 
         def deserialize(params)
@@ -6547,12 +6631,16 @@ module TencentCloud
           @Qps = params['Qps']
           @SubCompanyLevel = params['SubCompanyLevel']
           @IsIncludeFullScan = params['IsIncludeFullScan']
+          @PortScanQps = params['PortScanQps']
+          @SingleIPTaskLimit = params['SingleIPTaskLimit']
+          @HighRiskAck = params['HighRiskAck']
+          @ScanRateAckChecklist = params['ScanRateAckChecklist']
         end
       end
 
       # ModifyCustomer返回参数结构体
       class ModifyCustomerResponse < TencentCloud::Common::AbstractModel
-        # @param Id: 企业ID
+        # @param Id: <p>企业ID</p>
         # @type Id: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

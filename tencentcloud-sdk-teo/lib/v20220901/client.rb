@@ -501,6 +501,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口用于创建指定边缘函数的副本。创建副本后，当客户端请求匹配已配置的触发规则或默认域名时，您可以通过在请求头中添加 EO-Function-Replica-Name:[副本名称] 来访问特定的函数副本。每个函数默认支持创建两个副本。
+
+        # @param request: Request instance for CreateFunctionReplica.
+        # @type request: :class:`Tencentcloud::teo::V20220901::CreateFunctionReplicaRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::CreateFunctionReplicaResponse`
+        def CreateFunctionReplica(request)
+          body = send_request('CreateFunctionReplica', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateFunctionReplicaResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建边缘函数的触发规则。支持通过自定义过滤条件来决定是否需要执行函数，当需要执行函数时，提供了多种选择目标函数的方式，包括：直接指定，基于客户端归属地区选择和基于权重选择。
 
         # @param request: Request instance for CreateFunctionRule.
@@ -1296,6 +1320,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteFunctionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口用于删除指定的边缘函数副本。
+
+        # @param request: Request instance for DeleteFunctionReplica.
+        # @type request: :class:`Tencentcloud::teo::V20220901::DeleteFunctionReplicaRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::DeleteFunctionReplicaResponse`
+        def DeleteFunctionReplica(request)
+          body = send_request('DeleteFunctionReplica', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteFunctionReplicaResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2258,6 +2306,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeFunctionComponentBindingsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口用于查询边缘函数的副本列表。
+
+        # @param request: Request instance for DescribeFunctionReplicas.
+        # @type request: :class:`Tencentcloud::teo::V20220901::DescribeFunctionReplicasRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::DescribeFunctionReplicasResponse`
+        def DescribeFunctionReplicas(request)
+          body = send_request('DescribeFunctionReplicas', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeFunctionReplicasResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -4233,6 +4305,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyFunctionComponentBindingsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口用于修改指定边缘函数副本的内容和描述。
+
+        # @param request: Request instance for ModifyFunctionReplica.
+        # @type request: :class:`Tencentcloud::teo::V20220901::ModifyFunctionReplicaRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::ModifyFunctionReplicaResponse`
+        def ModifyFunctionReplica(request)
+          body = send_request('ModifyFunctionReplica', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyFunctionReplicaResponse.new
             model.deserialize(response['Response'])
             model
           else

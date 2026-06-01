@@ -501,6 +501,30 @@ module TencentCloud
         end
       end
 
+      # 镜像跨账号共享信息。
+      class BlueprintShareAcrossAccountInfo < TencentCloud::Common::AbstractModel
+        # @param BlueprintId: 镜像ID。
+        # @type BlueprintId: String
+        # @param AccountId: 镜像共享的账户ID。
+        # @type AccountId: String
+        # @param CreatedTime: 镜像共享时间。按照 ISO8601 标准表示，并且使用 UTC 时间。 格式为： YYYY-MM-DDThh:mm:ssZ。
+        # @type CreatedTime: String
+
+        attr_accessor :BlueprintId, :AccountId, :CreatedTime
+
+        def initialize(blueprintid=nil, accountid=nil, createdtime=nil)
+          @BlueprintId = blueprintid
+          @AccountId = accountid
+          @CreatedTime = createdtime
+        end
+
+        def deserialize(params)
+          @BlueprintId = params['BlueprintId']
+          @AccountId = params['AccountId']
+          @CreatedTime = params['CreatedTime']
+        end
+      end
+
       # 套餐信息。
       class Bundle < TencentCloud::Common::AbstractModel
         # @param BundleId: 套餐 ID。
@@ -1863,6 +1887,76 @@ module TencentCloud
               blueprint_tmp = Blueprint.new
               blueprint_tmp.deserialize(i)
               @BlueprintSet << blueprint_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeBlueprintsShareAcrossAccountInfos请求参数结构体
+      class DescribeBlueprintsShareAcrossAccountInfosRequest < TencentCloud::Common::AbstractModel
+        # @param BlueprintIds: 镜像 ID 列表。可以通过[DescribeBlueprints](https://cloud.tencent.com/document/product/1207/47689)接口返回的BlueprintId获取。
+        # @type BlueprintIds: Array
+        # @param Offset: 偏移量，默认为 0。
+        # @type Offset: Integer
+        # @param Limit: 返回数量，默认为 20，最大值为 100。
+        # @type Limit: Integer
+        # @param Filters: 过滤器列表。
+        # <li>account-id</li>按照【[账号 ID](https://console.cloud.tencent.com/developer)】进行过滤。
+        # 类型：String
+        # 必选：否
+        # 每次请求的 Filters 的上限为 10，Filter.Values 的上限为 5。
+        # @type Filters: Array
+
+        attr_accessor :BlueprintIds, :Offset, :Limit, :Filters
+
+        def initialize(blueprintids=nil, offset=nil, limit=nil, filters=nil)
+          @BlueprintIds = blueprintids
+          @Offset = offset
+          @Limit = limit
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @BlueprintIds = params['BlueprintIds']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeBlueprintsShareAcrossAccountInfos返回参数结构体
+      class DescribeBlueprintsShareAcrossAccountInfosResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 符合条件的镜像共享信息数量。
+        # @type TotalCount: Integer
+        # @param BlueprintShareAcrossAccountInfoSet: 镜像共享信息列表。
+        # @type BlueprintShareAcrossAccountInfoSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :BlueprintShareAcrossAccountInfoSet, :RequestId
+
+        def initialize(totalcount=nil, blueprintshareacrossaccountinfoset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @BlueprintShareAcrossAccountInfoSet = blueprintshareacrossaccountinfoset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['BlueprintShareAcrossAccountInfoSet'].nil?
+            @BlueprintShareAcrossAccountInfoSet = []
+            params['BlueprintShareAcrossAccountInfoSet'].each do |i|
+              blueprintshareacrossaccountinfo_tmp = BlueprintShareAcrossAccountInfo.new
+              blueprintshareacrossaccountinfo_tmp.deserialize(i)
+              @BlueprintShareAcrossAccountInfoSet << blueprintshareacrossaccountinfo_tmp
             end
           end
           @RequestId = params['RequestId']

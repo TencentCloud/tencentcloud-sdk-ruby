@@ -2406,8 +2406,8 @@ module TencentCloud
 
         attr_accessor :Switch, :CacheTime, :IgnoreCacheControl
         extend Gem::Deprecate
-        deprecate :IgnoreCacheControl, :none, 2026, 5
-        deprecate :IgnoreCacheControl=, :none, 2026, 5
+        deprecate :IgnoreCacheControl, :none, 2026, 6
+        deprecate :IgnoreCacheControl=, :none, 2026, 6
 
         def initialize(switch=nil, cachetime=nil, ignorecachecontrol=nil)
           @Switch = switch
@@ -4289,6 +4289,54 @@ module TencentCloud
         end
       end
 
+      # CreateFunctionReplica请求参数结构体
+      class CreateFunctionReplicaRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param FunctionId: 函数 ID。
+        # @type FunctionId: String
+        # @param ReplicaName: 边缘函数副本名称。限制可输入 1-50 个字符，允许的字符为a-z、0-9、-，且-不能单独注册或连续使用，不能放在开头或结尾。同一 FunctionId 下副本名称需唯一。
+        # @type ReplicaName: String
+        # @param Content: 边缘函数副本内容，当前仅支持 JavaScript 代码，最大支持 5MB。
+        # @type Content: String
+        # @param Remark: 边缘函数副本描述。最大支持 50 个字符。
+        # @type Remark: String
+
+        attr_accessor :ZoneId, :FunctionId, :ReplicaName, :Content, :Remark
+
+        def initialize(zoneid=nil, functionid=nil, replicaname=nil, content=nil, remark=nil)
+          @ZoneId = zoneid
+          @FunctionId = functionid
+          @ReplicaName = replicaname
+          @Content = content
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @FunctionId = params['FunctionId']
+          @ReplicaName = params['ReplicaName']
+          @Content = params['Content']
+          @Remark = params['Remark']
+        end
+      end
+
+      # CreateFunctionReplica返回参数结构体
+      class CreateFunctionReplicaResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateFunction请求参数结构体
       class CreateFunctionRequest < TencentCloud::Common::AbstractModel
         # @param ZoneId: 站点 ID。
@@ -4521,8 +4569,8 @@ module TencentCloud
 
         attr_accessor :ZoneId, :ProxyName, :Area, :Ipv6, :StaticIp, :AccelerateMainland, :DDosProtectionConfig
         extend Gem::Deprecate
-        deprecate :DDosProtectionConfig, :none, 2026, 5
-        deprecate :DDosProtectionConfig=, :none, 2026, 5
+        deprecate :DDosProtectionConfig, :none, 2026, 6
+        deprecate :DDosProtectionConfig=, :none, 2026, 6
 
         def initialize(zoneid=nil, proxyname=nil, area=nil, ipv6=nil, staticip=nil, acceleratemainland=nil, ddosprotectionconfig=nil)
           @ZoneId = zoneid
@@ -5103,8 +5151,8 @@ module TencentCloud
 
         attr_accessor :ZoneId, :Targets, :Mode, :EncodeUrl, :Headers, :PrefetchMediaSegments
         extend Gem::Deprecate
-        deprecate :EncodeUrl, :none, 2026, 5
-        deprecate :EncodeUrl=, :none, 2026, 5
+        deprecate :EncodeUrl, :none, 2026, 6
+        deprecate :EncodeUrl=, :none, 2026, 6
 
         def initialize(zoneid=nil, targets=nil, mode=nil, encodeurl=nil, headers=nil, prefetchmediasegments=nil)
           @ZoneId = zoneid
@@ -5188,8 +5236,8 @@ module TencentCloud
 
         attr_accessor :ZoneId, :Type, :Method, :Targets, :EncodeUrl, :CacheTag
         extend Gem::Deprecate
-        deprecate :EncodeUrl, :none, 2026, 5
-        deprecate :EncodeUrl=, :none, 2026, 5
+        deprecate :EncodeUrl, :none, 2026, 6
+        deprecate :EncodeUrl=, :none, 2026, 6
 
         def initialize(zoneid=nil, type=nil, method=nil, targets=nil, encodeurl=nil, cachetag=nil)
           @ZoneId = zoneid
@@ -5779,10 +5827,10 @@ module TencentCloud
 
         attr_accessor :Type, :ZoneName, :Area, :PlanId, :AliasZoneName, :Tags, :AllowDuplicates, :JumpStart
         extend Gem::Deprecate
-        deprecate :AllowDuplicates, :none, 2026, 5
-        deprecate :AllowDuplicates=, :none, 2026, 5
-        deprecate :JumpStart, :none, 2026, 5
-        deprecate :JumpStart=, :none, 2026, 5
+        deprecate :AllowDuplicates, :none, 2026, 6
+        deprecate :AllowDuplicates=, :none, 2026, 6
+        deprecate :JumpStart, :none, 2026, 6
+        deprecate :JumpStart=, :none, 2026, 6
 
         def initialize(type=nil, zonename=nil, area=nil, planid=nil, aliaszonename=nil, tags=nil, allowduplicates=nil, jumpstart=nil)
           @Type = type
@@ -6692,6 +6740,46 @@ module TencentCloud
 
       # DeleteEdgeKVNamespace返回参数结构体
       class DeleteEdgeKVNamespaceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteFunctionReplica请求参数结构体
+      class DeleteFunctionReplicaRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param FunctionId: 函数 ID。
+        # @type FunctionId: String
+        # @param ReplicaNames: 需要删除的函数的副本名称。支持以列表的形式传入。
+        # @type ReplicaNames: Array
+
+        attr_accessor :ZoneId, :FunctionId, :ReplicaNames
+
+        def initialize(zoneid=nil, functionid=nil, replicanames=nil)
+          @ZoneId = zoneid
+          @FunctionId = functionid
+          @ReplicaNames = replicanames
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @FunctionId = params['FunctionId']
+          @ReplicaNames = params['ReplicaNames']
+        end
+      end
+
+      # DeleteFunctionReplica返回参数结构体
+      class DeleteFunctionReplicaResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -8973,6 +9061,84 @@ module TencentCloud
               functioncomponentbinding_tmp = FunctionComponentBinding.new
               functioncomponentbinding_tmp.deserialize(i)
               @FunctionComponentBindings << functioncomponentbinding_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeFunctionReplicas请求参数结构体
+      class DescribeFunctionReplicasRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param FunctionId: 函数 ID。
+        # @type FunctionId: String
+        # @param Offset: 分页查询偏移量。默认值：0。
+        # @type Offset: Integer
+        # @param Limit: 分页查询限制数目。默认值：20，最大值：200。
+        # @type Limit: Integer
+        # @param SortBy: 排序依据，取值有：  <li>created-on：创建时间。</li>  默认根据 created-on 属性排序。
+        # @type SortBy: String
+        # @param SortOrder: 列表排序方式，取值有：  <li>asc：升序排列；</li>  <li>desc：降序排列。</li>  默认值为 asc。
+        # @type SortOrder: String
+        # @param Filters: 过滤条件，Filters.Values 的上限为 20。该参数不填写时，返回函数 ID 下全部函数副本。详细的过滤条件如下：  <li> replica-name：按照函数副本名称进行过滤，支持模糊查询。</li>
+        # @type Filters: Array
+
+        attr_accessor :ZoneId, :FunctionId, :Offset, :Limit, :SortBy, :SortOrder, :Filters
+
+        def initialize(zoneid=nil, functionid=nil, offset=nil, limit=nil, sortby=nil, sortorder=nil, filters=nil)
+          @ZoneId = zoneid
+          @FunctionId = functionid
+          @Offset = offset
+          @Limit = limit
+          @SortBy = sortby
+          @SortOrder = sortorder
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @FunctionId = params['FunctionId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @SortBy = params['SortBy']
+          @SortOrder = params['SortOrder']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              advancedfilter_tmp = AdvancedFilter.new
+              advancedfilter_tmp.deserialize(i)
+              @Filters << advancedfilter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeFunctionReplicas返回参数结构体
+      class DescribeFunctionReplicasResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 边缘函数副本总数。
+        # @type TotalCount: Integer
+        # @param FunctionReplicas: 边缘函数副本列表。
+        # @type FunctionReplicas: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :FunctionReplicas, :RequestId
+
+        def initialize(totalcount=nil, functionreplicas=nil, requestid=nil)
+          @TotalCount = totalcount
+          @FunctionReplicas = functionreplicas
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['FunctionReplicas'].nil?
+            @FunctionReplicas = []
+            params['FunctionReplicas'].each do |i|
+              functionreplica_tmp = FunctionReplica.new
+              functionreplica_tmp.deserialize(i)
+              @FunctionReplicas << functionreplica_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -11393,8 +11559,8 @@ module TencentCloud
 
         attr_accessor :StartTime, :EndTime, :MetricNames, :ZoneIds, :ProxyIds, :Interval, :Filters, :Area
         extend Gem::Deprecate
-        deprecate :Area, :none, 2026, 5
-        deprecate :Area=, :none, 2026, 5
+        deprecate :Area, :none, 2026, 6
+        deprecate :Area=, :none, 2026, 6
 
         def initialize(starttime=nil, endtime=nil, metricnames=nil, zoneids=nil, proxyids=nil, interval=nil, filters=nil, area=nil)
           @StartTime = starttime
@@ -14038,6 +14204,42 @@ module TencentCloud
         end
       end
 
+      # 边缘函数副本。
+      class FunctionReplica < TencentCloud::Common::AbstractModel
+        # @param FunctionId: 函数 ID。
+        # @type FunctionId: String
+        # @param ReplicaName: 边缘函数副本名称。
+        # @type ReplicaName: String
+        # @param Content: 边缘函数副本内容。格式为 JavaScript 代码。
+        # @type Content: String
+        # @param Remark: 边缘函数副本描述。
+        # @type Remark: String
+        # @param CreatedOn: 边缘函数副本创建时间。
+        # @type CreatedOn: String
+        # @param ModifiedOn: 边缘函数副本更新时间。
+        # @type ModifiedOn: String
+
+        attr_accessor :FunctionId, :ReplicaName, :Content, :Remark, :CreatedOn, :ModifiedOn
+
+        def initialize(functionid=nil, replicaname=nil, content=nil, remark=nil, createdon=nil, modifiedon=nil)
+          @FunctionId = functionid
+          @ReplicaName = replicaname
+          @Content = content
+          @Remark = remark
+          @CreatedOn = createdon
+          @ModifiedOn = modifiedon
+        end
+
+        def deserialize(params)
+          @FunctionId = params['FunctionId']
+          @ReplicaName = params['ReplicaName']
+          @Content = params['Content']
+          @Remark = params['Remark']
+          @CreatedOn = params['CreatedOn']
+          @ModifiedOn = params['ModifiedOn']
+        end
+      end
+
       # 边缘函数触发规则。
       class FunctionRule < TencentCloud::Common::AbstractModel
         # @param RuleId: 规则ID。
@@ -15592,8 +15794,8 @@ module TencentCloud
 
         attr_accessor :ZoneId, :ProxyId, :ProxyName, :Area, :Cname, :Ips, :Status, :Ipv6, :StaticIp, :AccelerateMainland, :DDosProtectionConfig, :L4ProxyRuleCount, :UpdateTime
         extend Gem::Deprecate
-        deprecate :DDosProtectionConfig, :none, 2026, 5
-        deprecate :DDosProtectionConfig=, :none, 2026, 5
+        deprecate :DDosProtectionConfig, :none, 2026, 6
+        deprecate :DDosProtectionConfig=, :none, 2026, 6
 
         def initialize(zoneid=nil, proxyid=nil, proxyname=nil, area=nil, cname=nil, ips=nil, status=nil, ipv6=nil, staticip=nil, acceleratemainland=nil, ddosprotectionconfig=nil, l4proxyrulecount=nil, updatetime=nil)
           @ZoneId = zoneid
@@ -16987,6 +17189,54 @@ module TencentCloud
         end
       end
 
+      # ModifyFunctionReplica请求参数结构体
+      class ModifyFunctionReplicaRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param FunctionId: 函数 ID。
+        # @type FunctionId: String
+        # @param ReplicaName: 需要修改的边缘函数副本名称。
+        # @type ReplicaName: String
+        # @param Content: 边缘函数副本内容，当前仅支持 JavaScript 代码，最大支持 5MB。
+        # @type Content: String
+        # @param Remark: 边缘函数副本描述。最大支持 50 个字符。
+        # @type Remark: String
+
+        attr_accessor :ZoneId, :FunctionId, :ReplicaName, :Content, :Remark
+
+        def initialize(zoneid=nil, functionid=nil, replicaname=nil, content=nil, remark=nil)
+          @ZoneId = zoneid
+          @FunctionId = functionid
+          @ReplicaName = replicaname
+          @Content = content
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @FunctionId = params['FunctionId']
+          @ReplicaName = params['ReplicaName']
+          @Content = params['Content']
+          @Remark = params['Remark']
+        end
+      end
+
+      # ModifyFunctionReplica返回参数结构体
+      class ModifyFunctionReplicaResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyFunction请求参数结构体
       class ModifyFunctionRequest < TencentCloud::Common::AbstractModel
         # @param ZoneId: 站点 ID。
@@ -17182,8 +17432,8 @@ module TencentCloud
 
         attr_accessor :ZoneId, :Hosts, :Mode, :ServerCertInfo, :ApplyType, :ClientCertInfo, :UpstreamCertInfo
         extend Gem::Deprecate
-        deprecate :ApplyType, :none, 2026, 5
-        deprecate :ApplyType=, :none, 2026, 5
+        deprecate :ApplyType, :none, 2026, 6
+        deprecate :ApplyType=, :none, 2026, 6
 
         def initialize(zoneid=nil, hosts=nil, mode=nil, servercertinfo=nil, applytype=nil, clientcertinfo=nil, upstreamcertinfo=nil)
           @ZoneId = zoneid
@@ -19705,12 +19955,12 @@ module TencentCloud
 
         attr_accessor :OriginType, :Origin, :BackupOrigin, :OriginGroupName, :BackOriginGroupName, :PrivateAccess, :PrivateParameters, :HostHeader, :VodeoSubAppId, :VodeoDistributionRange, :VodeoBucketId, :VodOriginScope, :VodBucketId
         extend Gem::Deprecate
-        deprecate :VodeoSubAppId, :none, 2026, 5
-        deprecate :VodeoSubAppId=, :none, 2026, 5
-        deprecate :VodeoDistributionRange, :none, 2026, 5
-        deprecate :VodeoDistributionRange=, :none, 2026, 5
-        deprecate :VodeoBucketId, :none, 2026, 5
-        deprecate :VodeoBucketId=, :none, 2026, 5
+        deprecate :VodeoSubAppId, :none, 2026, 6
+        deprecate :VodeoSubAppId=, :none, 2026, 6
+        deprecate :VodeoDistributionRange, :none, 2026, 6
+        deprecate :VodeoDistributionRange=, :none, 2026, 6
+        deprecate :VodeoBucketId, :none, 2026, 6
+        deprecate :VodeoBucketId=, :none, 2026, 6
 
         def initialize(origintype=nil, origin=nil, backuporigin=nil, origingroupname=nil, backorigingroupname=nil, privateaccess=nil, privateparameters=nil, hostheader=nil, vodeosubappid=nil, vodeodistributionrange=nil, vodeobucketid=nil, vodoriginscope=nil, vodbucketid=nil)
           @OriginType = origintype
@@ -20025,12 +20275,12 @@ module TencentCloud
 
         attr_accessor :OriginType, :Origin, :BackupOrigin, :PrivateAccess, :PrivateParameters, :HostHeader, :VodeoSubAppId, :VodeoDistributionRange, :VodeoBucketId, :VodOriginScope, :VodBucketId
         extend Gem::Deprecate
-        deprecate :VodeoSubAppId, :none, 2026, 5
-        deprecate :VodeoSubAppId=, :none, 2026, 5
-        deprecate :VodeoDistributionRange, :none, 2026, 5
-        deprecate :VodeoDistributionRange=, :none, 2026, 5
-        deprecate :VodeoBucketId, :none, 2026, 5
-        deprecate :VodeoBucketId=, :none, 2026, 5
+        deprecate :VodeoSubAppId, :none, 2026, 6
+        deprecate :VodeoSubAppId=, :none, 2026, 6
+        deprecate :VodeoDistributionRange, :none, 2026, 6
+        deprecate :VodeoDistributionRange=, :none, 2026, 6
+        deprecate :VodeoBucketId, :none, 2026, 6
+        deprecate :VodeoBucketId=, :none, 2026, 6
 
         def initialize(origintype=nil, origin=nil, backuporigin=nil, privateaccess=nil, privateparameters=nil, hostheader=nil, vodeosubappid=nil, vodeodistributionrange=nil, vodeobucketid=nil, vodoriginscope=nil, vodbucketid=nil)
           @OriginType = origintype
@@ -21788,8 +22038,8 @@ module TencentCloud
 
         attr_accessor :Operator, :Target, :Values, :IgnoreCase, :Name, :IgnoreNameCase
         extend Gem::Deprecate
-        deprecate :IgnoreNameCase, :none, 2026, 5
-        deprecate :IgnoreNameCase=, :none, 2026, 5
+        deprecate :IgnoreNameCase, :none, 2026, 6
+        deprecate :IgnoreNameCase=, :none, 2026, 6
 
         def initialize(operator=nil, target=nil, values=nil, ignorecase=nil, name=nil, ignorenamecase=nil)
           @Operator = operator

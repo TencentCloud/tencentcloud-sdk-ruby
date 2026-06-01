@@ -24767,43 +24767,40 @@ module TencentCloud
 
       # 转码信息
       class MediaTranscodeItem < TencentCloud::Common::AbstractModel
-        # @param Url: 转码后的视频文件地址。
+        # @param Url: <p>转码后的视频文件地址。</p>
         # @type Url: String
-        # @param Definition: 转码规格 ID，参见[转码参数模板](https://cloud.tencent.com/document/product/266/33476)。
-        # <font color=red>注意：取值 0 表示原始文件。</font>
+        # @param Definition: <p>转码规格 ID，参见<a href="https://cloud.tencent.com/document/product/266/33476">转码参数模板</a>。<br><font color="red">注意：取值 0 表示原始文件。</font></p>
         # @type Definition: Integer
-        # @param Bitrate: 视频流码率平均值与音频流码率平均值之和， 单位：bps。
+        # @param Bitrate: <p>视频流码率平均值与音频流码率平均值之和， 单位：bps。</p>
         # @type Bitrate: Integer
-        # @param Height: 视频流高度的最大值，单位：px。
+        # @param Height: <p>视频流高度的最大值，单位：px。</p>
         # @type Height: Integer
-        # @param Width: 视频流宽度的最大值，单位：px。
+        # @param Width: <p>视频流宽度的最大值，单位：px。</p>
         # @type Width: Integer
-        # @param Size: 媒体文件总大小，单位：字节。
-        # <li>当媒体文件为 HLS 时，大小是 m3u8 和 ts 文件大小的总和。</li>
+        # @param Size: <p>媒体文件总大小，单位：字节。</p><li>当媒体文件为 HLS 时，大小是 m3u8 和 ts 文件大小的总和。</li>
         # @type Size: Integer
-        # @param Duration: 视频时长，单位：秒。
+        # @param Duration: <p>视频时长，单位：秒。</p>
         # @type Duration: Float
-        # @param Md5: 视频的 md5 值。
+        # @param Md5: <p>视频的 md5 值。</p>
         # @type Md5: String
-        # @param Container: 容器类型，例如 m4a，mp4 等。
+        # @param Container: <p>容器类型，例如 m4a，mp4 等。</p>
         # @type Container: String
-        # @param VideoStreamSet: 视频流信息。
+        # @param VideoStreamSet: <p>视频流信息。</p>
         # @type VideoStreamSet: Array
-        # @param AudioStreamSet: 音频流信息。
+        # @param AudioStreamSet: <p>音频流信息。</p>
         # @type AudioStreamSet: Array
-        # @param DigitalWatermarkType: 数字水印类型。可选值：
-        # <li>Trace 表示经过溯源水印处理；</li>
-        # <li>CopyRight 表示经过版权水印处理；</li>
-        # <li>None 表示没有经过数字水印处理。</li>
+        # @param DigitalWatermarkType: <p>数字水印类型。可选值：</p><li>Trace 表示经过溯源水印处理；</li><li>CopyRight 表示经过版权水印处理；</li><li>None 表示没有经过数字水印处理。</li>
         # @type DigitalWatermarkType: String
-        # @param CopyRightWatermarkText: 版权信息。
+        # @param CopyRightWatermarkText: <p>版权信息。</p>
         # @type CopyRightWatermarkText: String
-        # @param BlindWatermarkDefinition: 数字水印模板id。
+        # @param BlindWatermarkDefinition: <p>数字水印模板id。</p>
         # @type BlindWatermarkDefinition: Integer
+        # @param FileId: <p>转码生成的新FileId，请求开启独立媒资输出时有效。</p>
+        # @type FileId: String
 
-        attr_accessor :Url, :Definition, :Bitrate, :Height, :Width, :Size, :Duration, :Md5, :Container, :VideoStreamSet, :AudioStreamSet, :DigitalWatermarkType, :CopyRightWatermarkText, :BlindWatermarkDefinition
+        attr_accessor :Url, :Definition, :Bitrate, :Height, :Width, :Size, :Duration, :Md5, :Container, :VideoStreamSet, :AudioStreamSet, :DigitalWatermarkType, :CopyRightWatermarkText, :BlindWatermarkDefinition, :FileId
 
-        def initialize(url=nil, definition=nil, bitrate=nil, height=nil, width=nil, size=nil, duration=nil, md5=nil, container=nil, videostreamset=nil, audiostreamset=nil, digitalwatermarktype=nil, copyrightwatermarktext=nil, blindwatermarkdefinition=nil)
+        def initialize(url=nil, definition=nil, bitrate=nil, height=nil, width=nil, size=nil, duration=nil, md5=nil, container=nil, videostreamset=nil, audiostreamset=nil, digitalwatermarktype=nil, copyrightwatermarktext=nil, blindwatermarkdefinition=nil, fileid=nil)
           @Url = url
           @Definition = definition
           @Bitrate = bitrate
@@ -24818,6 +24815,7 @@ module TencentCloud
           @DigitalWatermarkType = digitalwatermarktype
           @CopyRightWatermarkText = copyrightwatermarktext
           @BlindWatermarkDefinition = blindwatermarkdefinition
+          @FileId = fileid
         end
 
         def deserialize(params)
@@ -24849,6 +24847,7 @@ module TencentCloud
           @DigitalWatermarkType = params['DigitalWatermarkType']
           @CopyRightWatermarkText = params['CopyRightWatermarkText']
           @BlindWatermarkDefinition = params['BlindWatermarkDefinition']
+          @FileId = params['FileId']
         end
       end
 

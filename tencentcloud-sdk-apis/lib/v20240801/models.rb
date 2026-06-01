@@ -406,25 +406,28 @@ module TencentCloud
 
       # CreateAgentApp请求参数结构体
       class CreateAgentAppRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceID: 实例ID
+        # @param InstanceID: <p>实例ID</p>
         # @type InstanceID: String
-        # @param Name: 名称
+        # @param Name: <p>名称</p>
         # @type Name: String
-        # @param AuthType: 认证类型
+        # @param AuthType: <p>认证类型</p>
         # @type AuthType: String
-        # @param OAuth2ResourceServerID: OAuth2资源服务器ID
+        # @param OAuth2ResourceServerID: <p>OAuth2资源服务器ID</p>
         # @type OAuth2ResourceServerID: String
-        # @param Description: 描述
+        # @param Description: <p>描述</p>
         # @type Description: String
+        # @param ConnectorIDs: <p>API认证列表</p>
+        # @type ConnectorIDs: Array
 
-        attr_accessor :InstanceID, :Name, :AuthType, :OAuth2ResourceServerID, :Description
+        attr_accessor :InstanceID, :Name, :AuthType, :OAuth2ResourceServerID, :Description, :ConnectorIDs
 
-        def initialize(instanceid=nil, name=nil, authtype=nil, oauth2resourceserverid=nil, description=nil)
+        def initialize(instanceid=nil, name=nil, authtype=nil, oauth2resourceserverid=nil, description=nil, connectorids=nil)
           @InstanceID = instanceid
           @Name = name
           @AuthType = authtype
           @OAuth2ResourceServerID = oauth2resourceserverid
           @Description = description
+          @ConnectorIDs = connectorids
         end
 
         def deserialize(params)
@@ -433,6 +436,7 @@ module TencentCloud
           @AuthType = params['AuthType']
           @OAuth2ResourceServerID = params['OAuth2ResourceServerID']
           @Description = params['Description']
+          @ConnectorIDs = params['ConnectorIDs']
         end
       end
 
@@ -466,7 +470,7 @@ module TencentCloud
 
       # CreateAgentApp返回参数结构体
       class CreateAgentAppResponse < TencentCloud::Common::AbstractModel
-        # @param Data: app id
+        # @param Data: <p>app id</p>
         # @type Data: :class:`Tencentcloud::Apis.v20240801.models.CreateAgentAppResp`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1375,42 +1379,46 @@ module TencentCloud
 
       # 查询app详情响应
       class DescribeAgentAppResp < TencentCloud::Common::AbstractModel
-        # @param AppID: 租户appID
+        # @param AppID: <p>租户appID</p>
         # @type AppID: Integer
-        # @param Uin: 租户ID
+        # @param Uin: <p>租户ID</p>
         # @type Uin: String
-        # @param InstanceID: 实例ID
+        # @param InstanceID: <p>实例ID</p>
         # @type InstanceID: String
-        # @param ID: 应用ID
+        # @param ID: <p>应用ID</p>
         # @type ID: String
-        # @param Name: 名称
+        # @param Name: <p>名称</p>
         # @type Name: String
-        # @param Description: 描述
+        # @param Description: <p>描述</p>
         # @type Description: String
-        # @param Status: 状态
+        # @param Status: <p>状态</p>
         # @type Status: String
-        # @param CreateTime: 创建时间
+        # @param CreateTime: <p>创建时间</p>
         # @type CreateTime: String
-        # @param UpdateTime: 修改时间
+        # @param UpdateTime: <p>修改时间</p>
         # @type UpdateTime: String
-        # @param AuthType: 认证类型
+        # @param AuthType: <p>认证类型</p>
         # @type AuthType: String
-        # @param ApiKeys: apiKeys列表，脱敏
+        # @param ApiKeys: <p>apiKeys列表，脱敏</p>
         # @type ApiKeys: Array
-        # @param SecretKeys: secretKey列表，脱敏
+        # @param SecretKeys: <p>secretKey列表，脱敏</p>
         # @type SecretKeys: Array
-        # @param OAuth2ResourceServerID: OAuth2 Resource Server ID
+        # @param OAuth2ResourceServerID: <p>OAuth2 Resource Server ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OAuth2ResourceServerID: String
-        # @param McpServersNum: 绑定mcpServer数量
+        # @param McpServersNum: <p>绑定mcpServer数量</p>
         # @type McpServersNum: Integer
-        # @param ModelServicesNum: 绑定的模型服务数量
+        # @param ModelServicesNum: <p>绑定的模型服务数量</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModelServicesNum: Integer
+        # @param ConnectorIDs: <p>API认证列表</p>
+        # @type ConnectorIDs: Array
+        # @param ServicesNum: <p>关联API数量</p>
+        # @type ServicesNum: Integer
 
-        attr_accessor :AppID, :Uin, :InstanceID, :ID, :Name, :Description, :Status, :CreateTime, :UpdateTime, :AuthType, :ApiKeys, :SecretKeys, :OAuth2ResourceServerID, :McpServersNum, :ModelServicesNum
+        attr_accessor :AppID, :Uin, :InstanceID, :ID, :Name, :Description, :Status, :CreateTime, :UpdateTime, :AuthType, :ApiKeys, :SecretKeys, :OAuth2ResourceServerID, :McpServersNum, :ModelServicesNum, :ConnectorIDs, :ServicesNum
 
-        def initialize(appid=nil, uin=nil, instanceid=nil, id=nil, name=nil, description=nil, status=nil, createtime=nil, updatetime=nil, authtype=nil, apikeys=nil, secretkeys=nil, oauth2resourceserverid=nil, mcpserversnum=nil, modelservicesnum=nil)
+        def initialize(appid=nil, uin=nil, instanceid=nil, id=nil, name=nil, description=nil, status=nil, createtime=nil, updatetime=nil, authtype=nil, apikeys=nil, secretkeys=nil, oauth2resourceserverid=nil, mcpserversnum=nil, modelservicesnum=nil, connectorids=nil, servicesnum=nil)
           @AppID = appid
           @Uin = uin
           @InstanceID = instanceid
@@ -1426,6 +1434,8 @@ module TencentCloud
           @OAuth2ResourceServerID = oauth2resourceserverid
           @McpServersNum = mcpserversnum
           @ModelServicesNum = modelservicesnum
+          @ConnectorIDs = connectorids
+          @ServicesNum = servicesnum
         end
 
         def deserialize(params)
@@ -1451,6 +1461,8 @@ module TencentCloud
           @OAuth2ResourceServerID = params['OAuth2ResourceServerID']
           @McpServersNum = params['McpServersNum']
           @ModelServicesNum = params['ModelServicesNum']
+          @ConnectorIDs = params['ConnectorIDs']
+          @ServicesNum = params['ServicesNum']
         end
       end
 
@@ -1623,37 +1635,43 @@ module TencentCloud
 
       # 凭据详情响应
       class DescribeAgentCredentialResp < TencentCloud::Common::AbstractModel
-        # @param AppID: 租户应用ID
+        # @param AppID: <p>租户应用ID</p>
         # @type AppID: Integer
-        # @param Uin: 租户ID
+        # @param Uin: <p>租户ID</p>
         # @type Uin: String
-        # @param InstanceID: 实例ID
+        # @param InstanceID: <p>实例ID</p>
         # @type InstanceID: String
-        # @param ID: 凭据ID
+        # @param ID: <p>凭据ID</p>
         # @type ID: String
-        # @param Name: 凭据名称
+        # @param Name: <p>凭据名称</p>
         # @type Name: String
-        # @param Status: 状态
+        # @param Status: <p>状态</p>
         # @type Status: String
-        # @param RelateAgentAppNum: 关联应用数
+        # @param RelateAgentAppNum: <p>关联应用数</p>
         # @type RelateAgentAppNum: Integer
-        # @param RelateMcpServerNum: 关联mcp数
+        # @param RelateMcpServerNum: <p>关联mcp数</p>
         # @type RelateMcpServerNum: Integer
-        # @param RelateModelNum: 关联模型数
+        # @param RelateModelNum: <p>关联模型数</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RelateModelNum: Integer
-        # @param Content: 凭据内容
+        # @param RelateServiceNum: <p>关联服务数</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RelateServiceNum: Integer
+        # @param Content: <p>凭据内容</p>
         # @type Content: :class:`Tencentcloud::Apis.v20240801.models.AgentCredentialContentDTO`
-        # @param CreateTime: 创建时间
+        # @param CreateTime: <p>创建时间</p>
         # @type CreateTime: String
-        # @param LastUpdateTime: 修改时间
+        # @param LastUpdateTime: <p>修改时间</p>
         # @type LastUpdateTime: String
-        # @param Type: 类型
+        # @param Type: <p>类型</p>
         # @type Type: String
 
-        attr_accessor :AppID, :Uin, :InstanceID, :ID, :Name, :Status, :RelateAgentAppNum, :RelateMcpServerNum, :RelateModelNum, :Content, :CreateTime, :LastUpdateTime, :Type
+        attr_accessor :AppID, :Uin, :InstanceID, :ID, :Name, :Status, :RelateAgentAppNum, :RelateMcpServerNum, :RelateModelNum, :RelateServiceNum, :Content, :CreateTime, :LastUpdateTime, :Type
+        extend Gem::Deprecate
+        deprecate :RelateAgentAppNum, :none, 2026, 6
+        deprecate :RelateAgentAppNum=, :none, 2026, 6
 
-        def initialize(appid=nil, uin=nil, instanceid=nil, id=nil, name=nil, status=nil, relateagentappnum=nil, relatemcpservernum=nil, relatemodelnum=nil, content=nil, createtime=nil, lastupdatetime=nil, type=nil)
+        def initialize(appid=nil, uin=nil, instanceid=nil, id=nil, name=nil, status=nil, relateagentappnum=nil, relatemcpservernum=nil, relatemodelnum=nil, relateservicenum=nil, content=nil, createtime=nil, lastupdatetime=nil, type=nil)
           @AppID = appid
           @Uin = uin
           @InstanceID = instanceid
@@ -1663,6 +1681,7 @@ module TencentCloud
           @RelateAgentAppNum = relateagentappnum
           @RelateMcpServerNum = relatemcpservernum
           @RelateModelNum = relatemodelnum
+          @RelateServiceNum = relateservicenum
           @Content = content
           @CreateTime = createtime
           @LastUpdateTime = lastupdatetime
@@ -1679,6 +1698,7 @@ module TencentCloud
           @RelateAgentAppNum = params['RelateAgentAppNum']
           @RelateMcpServerNum = params['RelateMcpServerNum']
           @RelateModelNum = params['RelateModelNum']
+          @RelateServiceNum = params['RelateServiceNum']
           unless params['Content'].nil?
             @Content = AgentCredentialContentDTO.new
             @Content.deserialize(params['Content'])
@@ -3206,25 +3226,28 @@ module TencentCloud
 
       # ModifyAgentApp请求参数结构体
       class ModifyAgentAppRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceID: 实例ID
+        # @param InstanceID: <p>实例ID</p>
         # @type InstanceID: String
-        # @param ID: 应用ID
+        # @param ID: <p>应用ID</p>
         # @type ID: String
-        # @param Name: 名称
+        # @param Name: <p>名称</p>
         # @type Name: String
-        # @param OAuth2ResourceServerID: OAuth2资源服务器ID
+        # @param OAuth2ResourceServerID: <p>OAuth2资源服务器ID</p>
         # @type OAuth2ResourceServerID: String
-        # @param Description: 描述
+        # @param Description: <p>描述</p>
         # @type Description: String
+        # @param ConnectorIDs: <p>凭据ID</p>
+        # @type ConnectorIDs: Array
 
-        attr_accessor :InstanceID, :ID, :Name, :OAuth2ResourceServerID, :Description
+        attr_accessor :InstanceID, :ID, :Name, :OAuth2ResourceServerID, :Description, :ConnectorIDs
 
-        def initialize(instanceid=nil, id=nil, name=nil, oauth2resourceserverid=nil, description=nil)
+        def initialize(instanceid=nil, id=nil, name=nil, oauth2resourceserverid=nil, description=nil, connectorids=nil)
           @InstanceID = instanceid
           @ID = id
           @Name = name
           @OAuth2ResourceServerID = oauth2resourceserverid
           @Description = description
+          @ConnectorIDs = connectorids
         end
 
         def deserialize(params)
@@ -3233,12 +3256,13 @@ module TencentCloud
           @Name = params['Name']
           @OAuth2ResourceServerID = params['OAuth2ResourceServerID']
           @Description = params['Description']
+          @ConnectorIDs = params['ConnectorIDs']
         end
       end
 
       # ModifyAgentApp返回参数结构体
       class ModifyAgentAppResponse < TencentCloud::Common::AbstractModel
-        # @param Data: app id
+        # @param Data: <p>app id</p>
         # @type Data: :class:`Tencentcloud::Apis.v20240801.models.ResultIDVO`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

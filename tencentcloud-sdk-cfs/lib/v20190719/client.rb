@@ -245,6 +245,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建数据检索
+
+        # @param request: Request instance for CreateDataRetrieval.
+        # @type request: :class:`Tencentcloud::cfs::V20190719::CreateDataRetrievalRequest`
+        # @rtype: :class:`Tencentcloud::cfs::V20190719::CreateDataRetrievalResponse`
+        def CreateDataRetrieval(request)
+          body = send_request('CreateDataRetrieval', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateDataRetrievalResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 支持主动沉降/预热接口
 
         # @param request: Request instance for CreateLifecycleDataTask.
@@ -471,6 +495,32 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteDataFlowResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除数据检索。
+
+        # 删除指定的数据检索配置，不允许在存在关联任务时删除。调用接口后，若通过 DescribeDataRetrieval 接口查询不到对应的数据检索，则表示删除成功。
+
+        # @param request: Request instance for DeleteDataRetrieval.
+        # @type request: :class:`Tencentcloud::cfs::V20190719::DeleteDataRetrievalRequest`
+        # @rtype: :class:`Tencentcloud::cfs::V20190719::DeleteDataRetrievalResponse`
+        def DeleteDataRetrieval(request)
+          body = send_request('DeleteDataRetrieval', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteDataRetrievalResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -821,6 +871,56 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询数据检索。
+
+        # 查询数据检索列表，支持按文件系统 ID、数据检索 ID、名称等条件筛选。
+
+        # @param request: Request instance for DescribeDataRetrieval.
+        # @type request: :class:`Tencentcloud::cfs::V20190719::DescribeDataRetrievalRequest`
+        # @rtype: :class:`Tencentcloud::cfs::V20190719::DescribeDataRetrievalResponse`
+        def DescribeDataRetrieval(request)
+          body = send_request('DescribeDataRetrieval', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDataRetrievalResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询数据检索任务
+
+        # @param request: Request instance for DescribeDataRetrievalTask.
+        # @type request: :class:`Tencentcloud::cfs::V20190719::DescribeDataRetrievalTaskRequest`
+        # @rtype: :class:`Tencentcloud::cfs::V20190719::DescribeDataRetrievalTaskResponse`
+        def DescribeDataRetrievalTask(request)
+          body = send_request('DescribeDataRetrievalTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDataRetrievalTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询生命周期任务的接口。仅支持查询最近三个月内的任务数据。
 
         # @param request: Request instance for DescribeLifecycleDataTask.
@@ -1014,6 +1114,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改数据检索
+
+        # @param request: Request instance for ModifyDataRetrieval.
+        # @type request: :class:`Tencentcloud::cfs::V20190719::ModifyDataRetrievalRequest`
+        # @rtype: :class:`Tencentcloud::cfs::V20190719::ModifyDataRetrievalResponse`
+        def ModifyDataRetrieval(request)
+          body = send_request('ModifyDataRetrieval', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyDataRetrievalResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 用来设置文件系统扩容策略，该接口只支持turbo文件系统
 
         # @param request: Request instance for ModifyFileSystemAutoScaleUpRule.
@@ -1072,6 +1196,32 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = OverrideCfsRulesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 执行数据检索任务。
+
+        # 手动触发指定数据检索的执行，创建一个新的数据检索任务。单个文件系统同时执行的任务数不超过 20 个。
+
+        # @param request: Request instance for RunDataRetrievalTask.
+        # @type request: :class:`Tencentcloud::cfs::V20190719::RunDataRetrievalTaskRequest`
+        # @rtype: :class:`Tencentcloud::cfs::V20190719::RunDataRetrievalTaskResponse`
+        def RunDataRetrievalTask(request)
+          body = send_request('RunDataRetrievalTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RunDataRetrievalTaskResponse.new
             model.deserialize(response['Response'])
             model
           else
