@@ -561,8 +561,8 @@ module TencentCloud
 
         attr_accessor :User, :Message, :Timestamp, :Start, :End
         extend Gem::Deprecate
-        deprecate :Timestamp, :none, 2026, 5
-        deprecate :Timestamp=, :none, 2026, 5
+        deprecate :Timestamp, :none, 2026, 6
+        deprecate :Timestamp=, :none, 2026, 6
 
         def initialize(user=nil, message=nil, timestamp=nil, start=nil, _end=nil)
           @User = user
@@ -851,8 +851,8 @@ module TencentCloud
 
         attr_accessor :SdkAppId, :StaffEmail, :StaffSkillGroupList, :SkillGroupList
         extend Gem::Deprecate
-        deprecate :SkillGroupList, :none, 2026, 5
-        deprecate :SkillGroupList=, :none, 2026, 5
+        deprecate :SkillGroupList, :none, 2026, 6
+        deprecate :SkillGroupList=, :none, 2026, 6
 
         def initialize(sdkappid=nil, staffemail=nil, staffskillgrouplist=nil, skillgrouplist=nil)
           @SdkAppId = sdkappid
@@ -1336,8 +1336,8 @@ module TencentCloud
 
         attr_accessor :SdkAppId, :AIAgentId, :Callee, :Callers, :PromptVariables, :Variables, :MaxRingTimeoutSecond
         extend Gem::Deprecate
-        deprecate :PromptVariables, :none, 2026, 5
-        deprecate :PromptVariables=, :none, 2026, 5
+        deprecate :PromptVariables, :none, 2026, 6
+        deprecate :PromptVariables=, :none, 2026, 6
 
         def initialize(sdkappid=nil, aiagentid=nil, callee=nil, callers=nil, promptvariables=nil, variables=nil, maxringtimeoutsecond=nil)
           @SdkAppId = sdkappid
@@ -1650,8 +1650,8 @@ module TencentCloud
 
         attr_accessor :SdkAppId, :Callee, :LLMType, :APIKey, :APIUrl, :SystemPrompt, :Model, :VoiceType, :Callers, :WelcomeMessage, :WelcomeType, :WelcomeMessagePriority, :MaxDuration, :Languages, :InterruptMode, :InterruptSpeechDuration, :EndFunctionEnable, :EndFunctionDesc, :TransferFunctionEnable, :TransferItems, :NotifyDuration, :NotifyMessage, :NotifyMaxCount, :CustomTTSConfig, :PromptVariables, :VadSilenceTime, :ExtractConfig, :Temperature, :Variables, :TopP, :VadLevel, :ToneWord, :EnableComplianceAudio, :EnableVoicemailDetection, :VoicemailAction, :LLMExtraBody, :MaxCallDurationMs, :MaxRingTimeoutSecond, :AmbientSoundType, :AmbientSoundVolume
         extend Gem::Deprecate
-        deprecate :PromptVariables, :none, 2026, 5
-        deprecate :PromptVariables=, :none, 2026, 5
+        deprecate :PromptVariables, :none, 2026, 6
+        deprecate :PromptVariables=, :none, 2026, 6
 
         def initialize(sdkappid=nil, callee=nil, llmtype=nil, apikey=nil, apiurl=nil, systemprompt=nil, model=nil, voicetype=nil, callers=nil, welcomemessage=nil, welcometype=nil, welcomemessagepriority=nil, maxduration=nil, languages=nil, interruptmode=nil, interruptspeechduration=nil, endfunctionenable=nil, endfunctiondesc=nil, transferfunctionenable=nil, transferitems=nil, notifyduration=nil, notifymessage=nil, notifymaxcount=nil, customttsconfig=nil, promptvariables=nil, vadsilencetime=nil, extractconfig=nil, temperature=nil, variables=nil, topp=nil, vadlevel=nil, toneword=nil, enablecomplianceaudio=nil, enablevoicemaildetection=nil, voicemailaction=nil, llmextrabody=nil, maxcalldurationms=nil, maxringtimeoutsecond=nil, ambientsoundtype=nil, ambientsoundvolume=nil)
           @SdkAppId = sdkappid
@@ -2131,8 +2131,8 @@ module TencentCloud
 
         attr_accessor :SdkAppId, :UserId, :Callee, :Caller, :Callers, :IsForceUseMobile, :Uui, :UUI
         extend Gem::Deprecate
-        deprecate :Uui, :none, 2026, 5
-        deprecate :Uui=, :none, 2026, 5
+        deprecate :Uui, :none, 2026, 6
+        deprecate :Uui=, :none, 2026, 6
 
         def initialize(sdkappid=nil, userid=nil, callee=nil, caller=nil, callers=nil, isforceusemobile=nil, uui=nil)
           @SdkAppId = sdkappid
@@ -3664,10 +3664,10 @@ module TencentCloud
 
         attr_accessor :SdkAppId, :InstanceId, :CdrId, :Limit, :Offset, :Order, :SessionId
         extend Gem::Deprecate
-        deprecate :InstanceId, :none, 2026, 5
-        deprecate :InstanceId=, :none, 2026, 5
-        deprecate :CdrId, :none, 2026, 5
-        deprecate :CdrId=, :none, 2026, 5
+        deprecate :InstanceId, :none, 2026, 6
+        deprecate :InstanceId=, :none, 2026, 6
+        deprecate :CdrId, :none, 2026, 6
+        deprecate :CdrId=, :none, 2026, 6
 
         def initialize(sdkappid=nil, instanceid=nil, cdrid=nil, limit=nil, offset=nil, order=nil, sessionid=nil)
           @SdkAppId = sdkappid
@@ -4072,8 +4072,8 @@ module TencentCloud
 
         attr_accessor :StartTimestamp, :EndTimestamp, :InstanceId, :SdkAppId, :Limit, :Offset, :Type
         extend Gem::Deprecate
-        deprecate :InstanceId, :none, 2026, 5
-        deprecate :InstanceId=, :none, 2026, 5
+        deprecate :InstanceId, :none, 2026, 6
+        deprecate :InstanceId=, :none, 2026, 6
 
         def initialize(starttimestamp=nil, endtimestamp=nil, instanceid=nil, sdkappid=nil, limit=nil, offset=nil, type=nil)
           @StartTimestamp = starttimestamp
@@ -4110,8 +4110,8 @@ module TencentCloud
 
         attr_accessor :TotalCount, :IMCdrs, :IMCdrList, :RequestId
         extend Gem::Deprecate
-        deprecate :IMCdrs, :none, 2026, 5
-        deprecate :IMCdrs=, :none, 2026, 5
+        deprecate :IMCdrs, :none, 2026, 6
+        deprecate :IMCdrs=, :none, 2026, 6
 
         def initialize(totalcount=nil, imcdrs=nil, imcdrlist=nil, requestid=nil)
           @TotalCount = totalcount
@@ -4321,9 +4321,9 @@ module TencentCloud
 
       # DescribePredictiveDialingCampaign请求参数结构体
       class DescribePredictiveDialingCampaignRequest < TencentCloud::Common::AbstractModel
-        # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
+        # @param SdkAppId: <p>应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc</p>
         # @type SdkAppId: Integer
-        # @param CampaignId: 任务 ID
+        # @param CampaignId: <p>任务 ID</p>
         # @type CampaignId: Integer
 
         attr_accessor :SdkAppId, :CampaignId
@@ -4341,34 +4341,42 @@ module TencentCloud
 
       # DescribePredictiveDialingCampaign返回参数结构体
       class DescribePredictiveDialingCampaignResponse < TencentCloud::Common::AbstractModel
-        # @param CampaignId: 任务 ID
+        # @param CampaignId: <p>任务 ID</p>
         # @type CampaignId: Integer
-        # @param Name: 任务名称
+        # @param Name: <p>任务名称</p>
         # @type Name: String
-        # @param CallOrder: 被叫呼叫顺序 0 随机 1 顺序
+        # @param CallOrder: <p>被叫呼叫顺序 0 随机 1 顺序</p>
         # @type CallOrder: Integer
-        # @param SkillGroupId: 使用的座席技能组 ID
+        # @param SkillGroupId: <p>使用的座席技能组 ID</p>
         # @type SkillGroupId: Integer
-        # @param IVRId: 指定的 IVR ID
+        # @param IVRId: <p>指定的 IVR ID</p>
         # @type IVRId: Integer
-        # @param Priority: 相同应用内多个任务运行优先级，从高到底 1 - 5
+        # @param Priority: <p>相同应用内多个任务运行优先级，从高到底 1 - 5</p>
         # @type Priority: Integer
-        # @param ExpectedAbandonRate: 预期呼损率，百分比，5 - 50
+        # @param ExpectedAbandonRate: <p>预期呼损率，百分比，5 - 50</p>
         # @type ExpectedAbandonRate: Integer
-        # @param RetryTimes: 呼叫重试次数，0 - 2
+        # @param RetryTimes: <p>呼叫重试次数，0 - 2</p>
         # @type RetryTimes: Integer
-        # @param RetryInterval: 呼叫重试间隔时间，单位秒，60 - 86400
+        # @param RetryInterval: <p>呼叫重试间隔时间，单位秒，60 - 86400</p>
         # @type RetryInterval: Integer
-        # @param StartTime: 任务启动时间，Unix 时间戳，到此时间后会自动启动任务
+        # @param StartTime: <p>任务启动时间，Unix 时间戳，到此时间后会自动启动任务</p>
         # @type StartTime: Integer
-        # @param EndTime: 任务结束时间，Unix 时间戳，到此时间后会自动终止任务
+        # @param EndTime: <p>任务结束时间，Unix 时间戳，到此时间后会自动终止任务</p>
         # @type EndTime: Integer
+        # @param Variables: <p>自定义变量</p>
+        # @type Variables: Array
+        # @param UUI: <p>UUI</p>
+        # @type UUI: String
+        # @param Status: <p>任务状态</p><p>枚举值：</p><ul><li>0： 待开始 </li><li>1： 进行中</li><li>2： 已暂停</li><li>3： 已终止</li><li>4： 已完成</li></ul>
+        # @type Status: Integer
+        # @param StatusReason: <p>任务状态原因 0 正常 1 手动结束 2 超时结束</p>
+        # @type StatusReason: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :CampaignId, :Name, :CallOrder, :SkillGroupId, :IVRId, :Priority, :ExpectedAbandonRate, :RetryTimes, :RetryInterval, :StartTime, :EndTime, :RequestId
+        attr_accessor :CampaignId, :Name, :CallOrder, :SkillGroupId, :IVRId, :Priority, :ExpectedAbandonRate, :RetryTimes, :RetryInterval, :StartTime, :EndTime, :Variables, :UUI, :Status, :StatusReason, :RequestId
 
-        def initialize(campaignid=nil, name=nil, callorder=nil, skillgroupid=nil, ivrid=nil, priority=nil, expectedabandonrate=nil, retrytimes=nil, retryinterval=nil, starttime=nil, endtime=nil, requestid=nil)
+        def initialize(campaignid=nil, name=nil, callorder=nil, skillgroupid=nil, ivrid=nil, priority=nil, expectedabandonrate=nil, retrytimes=nil, retryinterval=nil, starttime=nil, endtime=nil, variables=nil, uui=nil, status=nil, statusreason=nil, requestid=nil)
           @CampaignId = campaignid
           @Name = name
           @CallOrder = callorder
@@ -4380,6 +4388,10 @@ module TencentCloud
           @RetryInterval = retryinterval
           @StartTime = starttime
           @EndTime = endtime
+          @Variables = variables
+          @UUI = uui
+          @Status = status
+          @StatusReason = statusreason
           @RequestId = requestid
         end
 
@@ -4395,6 +4407,17 @@ module TencentCloud
           @RetryInterval = params['RetryInterval']
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
+          unless params['Variables'].nil?
+            @Variables = []
+            params['Variables'].each do |i|
+              variable_tmp = Variable.new
+              variable_tmp.deserialize(i)
+              @Variables << variable_tmp
+            end
+          end
+          @UUI = params['UUI']
+          @Status = params['Status']
+          @StatusReason = params['StatusReason']
           @RequestId = params['RequestId']
         end
       end
@@ -4445,25 +4468,28 @@ module TencentCloud
 
       # DescribePredictiveDialingCampaigns请求参数结构体
       class DescribePredictiveDialingCampaignsRequest < TencentCloud::Common::AbstractModel
-        # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
+        # @param SdkAppId: <p>应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc</p>
         # @type SdkAppId: Integer
-        # @param PageSize: 分页尺寸，最大为 100
+        # @param PageSize: <p>分页尺寸，最大为 100</p>
         # @type PageSize: Integer
-        # @param PageNumber: 分页页码，从 0 开始
+        # @param PageNumber: <p>分页页码，从 0 开始</p>
         # @type PageNumber: Integer
-        # @param Name: 查询任务列表名称关键字
+        # @param Name: <p>查询任务列表名称关键字</p>
         # @type Name: String
-        # @param SkillGroupId: 查询任务列表技能组 ID
+        # @param SkillGroupId: <p>查询任务列表技能组 ID</p>
         # @type SkillGroupId: Integer
+        # @param CampaignId: <p>任务 ID</p>
+        # @type CampaignId: Integer
 
-        attr_accessor :SdkAppId, :PageSize, :PageNumber, :Name, :SkillGroupId
+        attr_accessor :SdkAppId, :PageSize, :PageNumber, :Name, :SkillGroupId, :CampaignId
 
-        def initialize(sdkappid=nil, pagesize=nil, pagenumber=nil, name=nil, skillgroupid=nil)
+        def initialize(sdkappid=nil, pagesize=nil, pagenumber=nil, name=nil, skillgroupid=nil, campaignid=nil)
           @SdkAppId = sdkappid
           @PageSize = pagesize
           @PageNumber = pagenumber
           @Name = name
           @SkillGroupId = skillgroupid
+          @CampaignId = campaignid
         end
 
         def deserialize(params)
@@ -4472,14 +4498,15 @@ module TencentCloud
           @PageNumber = params['PageNumber']
           @Name = params['Name']
           @SkillGroupId = params['SkillGroupId']
+          @CampaignId = params['CampaignId']
         end
       end
 
       # DescribePredictiveDialingCampaigns返回参数结构体
       class DescribePredictiveDialingCampaignsResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 数据总量
+        # @param TotalCount: <p>数据总量</p>
         # @type TotalCount: Integer
-        # @param CampaignList: 数据
+        # @param CampaignList: <p>数据</p>
         # @type CampaignList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4603,8 +4630,8 @@ module TencentCloud
 
         attr_accessor :TotalCount, :TelCdrs, :TelCdrList, :RequestId
         extend Gem::Deprecate
-        deprecate :TelCdrs, :none, 2026, 5
-        deprecate :TelCdrs=, :none, 2026, 5
+        deprecate :TelCdrs, :none, 2026, 6
+        deprecate :TelCdrs=, :none, 2026, 6
 
         def initialize(totalcount=nil, telcdrs=nil, telcdrlist=nil, requestid=nil)
           @TotalCount = totalcount
@@ -5104,8 +5131,8 @@ module TencentCloud
 
         attr_accessor :TelCallOutCount, :TelCallInCount, :SeatUsedCount, :VoipCallInCount, :VOIPCallInCount, :AsrOfflineCount, :AsrRealtimeCount, :RequestId
         extend Gem::Deprecate
-        deprecate :VoipCallInCount, :none, 2026, 5
-        deprecate :VoipCallInCount=, :none, 2026, 5
+        deprecate :VoipCallInCount, :none, 2026, 6
+        deprecate :VoipCallInCount=, :none, 2026, 6
 
         def initialize(telcalloutcount=nil, telcallincount=nil, seatusedcount=nil, voipcallincount=nil, asrofflinecount=nil, asrrealtimecount=nil, requestid=nil)
           @TelCallOutCount = telcalloutcount
@@ -5153,8 +5180,8 @@ module TencentCloud
 
         attr_accessor :StartTimeStamp, :EndTimeStamp, :SdkAppId, :PageSize, :PageNumber, :InstanceId, :Limit, :Offset, :Phones, :SessionIds
         extend Gem::Deprecate
-        deprecate :InstanceId, :none, 2026, 5
-        deprecate :InstanceId=, :none, 2026, 5
+        deprecate :InstanceId, :none, 2026, 6
+        deprecate :InstanceId=, :none, 2026, 6
 
         def initialize(starttimestamp=nil, endtimestamp=nil, sdkappid=nil, pagesize=nil, pagenumber=nil, instanceid=nil, limit=nil, offset=nil, phones=nil, sessionids=nil)
           @StartTimeStamp = starttimestamp
@@ -5196,8 +5223,8 @@ module TencentCloud
 
         attr_accessor :TotalCount, :TelCdrs, :TelCdrList, :RequestId
         extend Gem::Deprecate
-        deprecate :TelCdrs, :none, 2026, 5
-        deprecate :TelCdrs=, :none, 2026, 5
+        deprecate :TelCdrs, :none, 2026, 6
+        deprecate :TelCdrs=, :none, 2026, 6
 
         def initialize(totalcount=nil, telcdrs=nil, telcdrlist=nil, requestid=nil)
           @TotalCount = totalcount
@@ -7407,10 +7434,10 @@ module TencentCloud
 
         attr_accessor :Name, :Mail, :Phone, :Nick, :StaffNumber, :RoleId, :RoleIdList, :RoleList, :SkillGroupList, :LastModifyTimestamp, :ExtensionNumber, :ForwardingConfig
         extend Gem::Deprecate
-        deprecate :RoleId, :none, 2026, 5
-        deprecate :RoleId=, :none, 2026, 5
-        deprecate :RoleIdList, :none, 2026, 5
-        deprecate :RoleIdList=, :none, 2026, 5
+        deprecate :RoleId, :none, 2026, 6
+        deprecate :RoleId=, :none, 2026, 6
+        deprecate :RoleIdList, :none, 2026, 6
+        deprecate :RoleIdList=, :none, 2026, 6
 
         def initialize(name=nil, mail=nil, phone=nil, nick=nil, staffnumber=nil, roleid=nil, roleidlist=nil, rolelist=nil, skillgrouplist=nil, lastmodifytimestamp=nil, extensionnumber=nil, forwardingconfig=nil)
           @Name = name
@@ -7832,8 +7859,8 @@ module TencentCloud
 
         attr_accessor :Caller, :Callee, :Time, :Direction, :CallType, :Duration, :RecordURL, :RecordId, :SeatUser, :EndStatus, :SkillGroup, :CallerLocation, :IVRDuration, :RingTimestamp, :AcceptTimestamp, :EndedTimestamp, :IVRKeyPressed, :HungUpSide, :ServeParticipants, :SkillGroupId, :EndStatusString, :StartTimestamp, :QueuedTimestamp, :PostIVRKeyPressed, :QueuedSkillGroupId, :SessionId, :ProtectedCaller, :ProtectedCallee, :Uui, :UUI, :IVRKeyPressedEx, :AsrUrl, :AsrStatus, :CustomRecordURL, :Remark, :QueuedSkillGroupName, :VoicemailRecordURL, :VoicemailAsrURL, :AIAgentId, :AIAgentName, :SysHangupReason, :SysHangupReasonString
         extend Gem::Deprecate
-        deprecate :Uui, :none, 2026, 5
-        deprecate :Uui=, :none, 2026, 5
+        deprecate :Uui, :none, 2026, 6
+        deprecate :Uui=, :none, 2026, 6
 
         def initialize(caller=nil, callee=nil, time=nil, direction=nil, calltype=nil, duration=nil, recordurl=nil, recordid=nil, seatuser=nil, endstatus=nil, skillgroup=nil, callerlocation=nil, ivrduration=nil, ringtimestamp=nil, accepttimestamp=nil, endedtimestamp=nil, ivrkeypressed=nil, hungupside=nil, serveparticipants=nil, skillgroupid=nil, endstatusstring=nil, starttimestamp=nil, queuedtimestamp=nil, postivrkeypressed=nil, queuedskillgroupid=nil, sessionid=nil, protectedcaller=nil, protectedcallee=nil, uui=nil, ivrkeypressedex=nil, asrurl=nil, asrstatus=nil, customrecordurl=nil, remark=nil, queuedskillgroupname=nil, voicemailrecordurl=nil, voicemailasrurl=nil, aiagentid=nil, aiagentname=nil, syshangupreason=nil, syshangupreasonstring=nil)
           @Caller = caller

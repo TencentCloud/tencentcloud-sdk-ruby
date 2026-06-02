@@ -1801,19 +1801,15 @@ module TencentCloud
       class DescribeDBSAvailableRecoveryTimeRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: <p>实例ID</p>
         # @type InstanceId: String
-        # @param BackupSetId: <p>备份集ID,值来自 DescribeDBSBackupSets 接口返回</p>
-        # @type BackupSetId: Integer
 
-        attr_accessor :InstanceId, :BackupSetId
+        attr_accessor :InstanceId
 
-        def initialize(instanceid=nil, backupsetid=nil)
+        def initialize(instanceid=nil)
           @InstanceId = instanceid
-          @BackupSetId = backupsetid
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
-          @BackupSetId = params['BackupSetId']
         end
       end
 
@@ -3068,30 +3064,30 @@ module TencentCloud
 
         attr_accessor :ComputeNodeNum, :Zone, :CreateVersion, :InitParams, :Status, :InstanceId, :StorageNodeNum, :ResourceTags, :InstanceName, :Cpu, :VpcId, :Mem, :Vip, :SubnetId, :Vport, :Disk, :CreateTime, :Region, :StatusDesc, :MCCpu, :MCMem, :ComputerNodeCpu, :ComputerNodeMem, :StorageNodeCpu, :StorageNodeMem, :MCNum, :RenewFlag, :PayMode, :AccountTag, :InstanceType, :StorageType, :DestroyedAt, :ExpireAt, :IsolatedAt, :IsolatedFrom, :Replications, :FullReplications, :AppId, :SubAccountUin, :Uin, :Zones, :Nodes, :BinlogStatus, :CdcNodeCpu, :CdcNodeMem, :CdcNodeNum, :AZMode, :StandbyFlag, :StandbySecondaryNum, :ColumnarNodeCpu, :ColumnarNodeMem, :ColumnarNodeNum, :ColumnarNodeDisk, :ColumnarNodeStorageType, :InstanceCategory, :ExclusiveClusterId, :SQLMode, :InstanceMode, :ClusterId, :AutoScaleConfig, :AnalysisMode, :AnalysisRelationInfos
         extend Gem::Deprecate
-        deprecate :ComputeNodeNum, :none, 2026, 5
-        deprecate :ComputeNodeNum=, :none, 2026, 5
-        deprecate :Cpu, :none, 2026, 5
-        deprecate :Cpu=, :none, 2026, 5
-        deprecate :Mem, :none, 2026, 5
-        deprecate :Mem=, :none, 2026, 5
-        deprecate :MCCpu, :none, 2026, 5
-        deprecate :MCCpu=, :none, 2026, 5
-        deprecate :MCMem, :none, 2026, 5
-        deprecate :MCMem=, :none, 2026, 5
-        deprecate :ComputerNodeCpu, :none, 2026, 5
-        deprecate :ComputerNodeCpu=, :none, 2026, 5
-        deprecate :ComputerNodeMem, :none, 2026, 5
-        deprecate :ComputerNodeMem=, :none, 2026, 5
-        deprecate :MCNum, :none, 2026, 5
-        deprecate :MCNum=, :none, 2026, 5
-        deprecate :CdcNodeCpu, :none, 2026, 5
-        deprecate :CdcNodeCpu=, :none, 2026, 5
-        deprecate :CdcNodeMem, :none, 2026, 5
-        deprecate :CdcNodeMem=, :none, 2026, 5
-        deprecate :CdcNodeNum, :none, 2026, 5
-        deprecate :CdcNodeNum=, :none, 2026, 5
-        deprecate :ClusterId, :none, 2026, 5
-        deprecate :ClusterId=, :none, 2026, 5
+        deprecate :ComputeNodeNum, :none, 2026, 6
+        deprecate :ComputeNodeNum=, :none, 2026, 6
+        deprecate :Cpu, :none, 2026, 6
+        deprecate :Cpu=, :none, 2026, 6
+        deprecate :Mem, :none, 2026, 6
+        deprecate :Mem=, :none, 2026, 6
+        deprecate :MCCpu, :none, 2026, 6
+        deprecate :MCCpu=, :none, 2026, 6
+        deprecate :MCMem, :none, 2026, 6
+        deprecate :MCMem=, :none, 2026, 6
+        deprecate :ComputerNodeCpu, :none, 2026, 6
+        deprecate :ComputerNodeCpu=, :none, 2026, 6
+        deprecate :ComputerNodeMem, :none, 2026, 6
+        deprecate :ComputerNodeMem=, :none, 2026, 6
+        deprecate :MCNum, :none, 2026, 6
+        deprecate :MCNum=, :none, 2026, 6
+        deprecate :CdcNodeCpu, :none, 2026, 6
+        deprecate :CdcNodeCpu=, :none, 2026, 6
+        deprecate :CdcNodeMem, :none, 2026, 6
+        deprecate :CdcNodeMem=, :none, 2026, 6
+        deprecate :CdcNodeNum, :none, 2026, 6
+        deprecate :CdcNodeNum=, :none, 2026, 6
+        deprecate :ClusterId, :none, 2026, 6
+        deprecate :ClusterId=, :none, 2026, 6
 
         def initialize(computenodenum=nil, zone=nil, createversion=nil, initparams=nil, status=nil, instanceid=nil, storagenodenum=nil, resourcetags=nil, instancename=nil, cpu=nil, vpcid=nil, mem=nil, vip=nil, subnetid=nil, vport=nil, disk=nil, createtime=nil, region=nil, statusdesc=nil, mccpu=nil, mcmem=nil, computernodecpu=nil, computernodemem=nil, storagenodecpu=nil, storagenodemem=nil, mcnum=nil, renewflag=nil, paymode=nil, accounttag=nil, instancetype=nil, storagetype=nil, destroyedat=nil, expireat=nil, isolatedat=nil, isolatedfrom=nil, replications=nil, fullreplications=nil, appid=nil, subaccountuin=nil, uin=nil, zones=nil, nodes=nil, binlogstatus=nil, cdcnodecpu=nil, cdcnodemem=nil, cdcnodenum=nil, azmode=nil, standbyflag=nil, standbysecondarynum=nil, columnarnodecpu=nil, columnarnodemem=nil, columnarnodenum=nil, columnarnodedisk=nil, columnarnodestoragetype=nil, instancecategory=nil, exclusiveclusterid=nil, sqlmode=nil, instancemode=nil, clusterid=nil, autoscaleconfig=nil, analysismode=nil, analysisrelationinfos=nil)
           @ComputeNodeNum = computenodenum

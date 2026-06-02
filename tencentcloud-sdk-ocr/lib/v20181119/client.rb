@@ -1966,32 +1966,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口支持网约车行程单关键字段的识别，包括行程起止日期、上车时间、起点、终点、里程、金额等字段。
-
-        # 默认接口请求频率限制：20次/秒。
-
-        # @param request: Request instance for RecognizeOnlineTaxiItineraryOCR.
-        # @type request: :class:`Tencentcloud::ocr::V20181119::RecognizeOnlineTaxiItineraryOCRRequest`
-        # @rtype: :class:`Tencentcloud::ocr::V20181119::RecognizeOnlineTaxiItineraryOCRResponse`
-        def RecognizeOnlineTaxiItineraryOCR(request)
-          body = send_request('RecognizeOnlineTaxiItineraryOCR', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = RecognizeOnlineTaxiItineraryOCRResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 本接口用于识别门头照文字识别结果以及对应分类标签信息
         # 默认接口请求频率限制：1次/秒
 
@@ -2372,32 +2346,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = TableOCRResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 本接口支持出租车发票关键字段的识别，包括发票号码、发票代码、金额、日期、上下车时间、里程、车牌号、发票类型及所属地区等字段。
-
-        # 默认接口请求频率限制：5次/秒。
-
-        # @param request: Request instance for TaxiInvoiceOCR.
-        # @type request: :class:`Tencentcloud::ocr::V20181119::TaxiInvoiceOCRRequest`
-        # @rtype: :class:`Tencentcloud::ocr::V20181119::TaxiInvoiceOCRResponse`
-        def TaxiInvoiceOCR(request)
-          body = send_request('TaxiInvoiceOCR', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = TaxiInvoiceOCRResponse.new
             model.deserialize(response['Response'])
             model
           else

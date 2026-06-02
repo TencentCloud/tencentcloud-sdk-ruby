@@ -3291,9 +3291,9 @@ module TencentCloud
         end
       end
 
-      # DescribeResourceGrantedAccountsData
+      # 账号分组授权信息
       class DescribeResourceGrantedAccountGroupsData < TencentCloud::Common::AbstractModel
-        # @param Items: 
+        # @param Items: <p>授权信息</p>
         # @type Items: Array
 
         attr_accessor :Items
@@ -3356,9 +3356,9 @@ module TencentCloud
 
       # DescribeResourceGrantedAccountsData
       class DescribeResourceGrantedAccountsData < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 总数
+        # @param TotalCount: <p>总数</p>
         # @type TotalCount: Integer
-        # @param Items: 
+        # @param Items: <p>授权信息</p>
         # @type Items: Array
 
         attr_accessor :TotalCount, :Items
@@ -3422,7 +3422,7 @@ module TencentCloud
 
       # DescribeResourceGrantedAccountsData
       class DescribeResourceGrantedVirtualGroupsData < TencentCloud::Common::AbstractModel
-        # @param Items: 
+        # @param Items: <p>授权信息</p>
         # @type Items: Array
 
         attr_accessor :Items

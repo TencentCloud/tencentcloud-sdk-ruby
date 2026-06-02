@@ -101,6 +101,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 应用关联API
+
+        # @param request: Request instance for CreateAgentAppServices.
+        # @type request: :class:`Tencentcloud::apis::V20240801::CreateAgentAppServicesRequest`
+        # @rtype: :class:`Tencentcloud::apis::V20240801::CreateAgentAppServicesResponse`
+        def CreateAgentAppServices(request)
+          body = send_request('CreateAgentAppServices', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateAgentAppServicesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建Credential
 
         # @param request: Request instance for CreateAgentCredential.
@@ -197,6 +221,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建服务
+
+        # @param request: Request instance for CreateService.
+        # @type request: :class:`Tencentcloud::apis::V20240801::CreateServiceRequest`
+        # @rtype: :class:`Tencentcloud::apis::V20240801::CreateServiceResponse`
+        def CreateService(request)
+          body = send_request('CreateService', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateServiceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除app
 
         # @param request: Request instance for DeleteAgentApp.
@@ -255,6 +303,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteAgentAppModelServicesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 应用API关联解除
+
+        # @param request: Request instance for DeleteAgentAppServices.
+        # @type request: :class:`Tencentcloud::apis::V20240801::DeleteAgentAppServicesRequest`
+        # @rtype: :class:`Tencentcloud::apis::V20240801::DeleteAgentAppServicesResponse`
+        def DeleteAgentAppServices(request)
+          body = send_request('DeleteAgentAppServices', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteAgentAppServicesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -365,6 +437,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除服务
+
+        # @param request: Request instance for DeleteService.
+        # @type request: :class:`Tencentcloud::apis::V20240801::DeleteServiceRequest`
+        # @rtype: :class:`Tencentcloud::apis::V20240801::DeleteServiceResponse`
+        def DeleteService(request)
+          body = send_request('DeleteService', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteServiceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询app详情
 
         # @param request: Request instance for DescribeAgentApp.
@@ -423,6 +519,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeAgentAppModelServicesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建app
+
+        # @param request: Request instance for DescribeAgentAppServices.
+        # @type request: :class:`Tencentcloud::apis::V20240801::DescribeAgentAppServicesRequest`
+        # @rtype: :class:`Tencentcloud::apis::V20240801::DescribeAgentAppServicesResponse`
+        def DescribeAgentAppServices(request)
+          body = send_request('DescribeAgentAppServices', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAgentAppServicesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -653,6 +773,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询服务详情
+
+        # @param request: Request instance for DescribeService.
+        # @type request: :class:`Tencentcloud::apis::V20240801::DescribeServiceRequest`
+        # @rtype: :class:`Tencentcloud::apis::V20240801::DescribeServiceResponse`
+        def DescribeService(request)
+          body = send_request('DescribeService', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeServiceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询服务列表
+
+        # @param request: Request instance for DescribeServices.
+        # @type request: :class:`Tencentcloud::apis::V20240801::DescribeServicesRequest`
+        # @rtype: :class:`Tencentcloud::apis::V20240801::DescribeServicesResponse`
+        def DescribeServices(request)
+          body = send_request('DescribeServices', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeServicesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 修改app
 
         # @param request: Request instance for ModifyAgentApp.
@@ -783,6 +951,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyModelServiceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改服务
+
+        # @param request: Request instance for ModifyService.
+        # @type request: :class:`Tencentcloud::apis::V20240801::ModifyServiceRequest`
+        # @rtype: :class:`Tencentcloud::apis::V20240801::ModifyServiceResponse`
+        def ModifyService(request)
+          body = send_request('ModifyService', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyServiceResponse.new
             model.deserialize(response['Response'])
             model
           else

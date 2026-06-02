@@ -2703,6 +2703,50 @@ module TencentCloud
         end
       end
 
+      # DescribeDatabaseAutonomyStatus请求参数结构体
+      class DescribeDatabaseAutonomyStatusRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>实例 ID。</p>
+        # @type InstanceId: String
+        # @param Product: <p>服务产品类型。取值：mongodb（云数据库 MongoDB）。</p>
+        # @type Product: String
+        # @param Type: <p>自治功能类型。取值：AutoIndexAdvice（索引推荐）。</p>
+        # @type Type: String
+
+        attr_accessor :InstanceId, :Product, :Type
+
+        def initialize(instanceid=nil, product=nil, type=nil)
+          @InstanceId = instanceid
+          @Product = product
+          @Type = type
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Product = params['Product']
+          @Type = params['Type']
+        end
+      end
+
+      # DescribeDatabaseAutonomyStatus返回参数结构体
+      class DescribeDatabaseAutonomyStatusResponse < TencentCloud::Common::AbstractModel
+        # @param Status: <p>自治功能开关状态。取值：0（关闭）、1（开启）。</p>
+        # @type Status: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :RequestId
+
+        def initialize(status=nil, requestid=nil)
+          @Status = status
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDiagDBInstances请求参数结构体
       class DescribeDiagDBInstancesRequest < TencentCloud::Common::AbstractModel
         # @param IsSupported: 是否是DBbrain支持的实例，固定传 true。
@@ -8040,6 +8084,54 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateDatabaseAutonomyStatus请求参数结构体
+      class UpdateDatabaseAutonomyStatusRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>实例 ID。</p>
+        # @type InstanceId: String
+        # @param Product: <p>服务产品类型。取值：mongodb（云数据库 MongoDB）。</p>
+        # @type Product: String
+        # @param Type: <p>自治功能类型。取值：AutoIndexAdvice（索引推荐）。</p>
+        # @type Type: String
+        # @param Status: <p>开关状态。取值：0（关闭）、1（开启）。</p>
+        # @type Status: Integer
+
+        attr_accessor :InstanceId, :Product, :Type, :Status
+
+        def initialize(instanceid=nil, product=nil, type=nil, status=nil)
+          @InstanceId = instanceid
+          @Product = product
+          @Type = type
+          @Status = status
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Product = params['Product']
+          @Type = params['Type']
+          @Status = params['Status']
+        end
+      end
+
+      # UpdateDatabaseAutonomyStatus返回参数结构体
+      class UpdateDatabaseAutonomyStatusResponse < TencentCloud::Common::AbstractModel
+        # @param Status: <p>操作结果状态。取值：1（操作成功）。</p>
+        # @type Status: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :RequestId
+
+        def initialize(status=nil, requestid=nil)
+          @Status = status
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
           @RequestId = params['RequestId']
         end
       end

@@ -41,6 +41,22 @@ module TencentCloud
         end
       end
 
+      # AI 优化器任务数据
+      class AIOptimizerTaskData < TencentCloud::Common::AbstractModel
+        # @param TemplateID: <p>模板ID</p>
+        # @type TemplateID: String
+
+        attr_accessor :TemplateID
+
+        def initialize(templateid=nil)
+          @TemplateID = templateid
+        end
+
+        def deserialize(params)
+          @TemplateID = params['TemplateID']
+        end
+      end
+
       # 集群支持的功能
       class Ability < TencentCloud::Common::AbstractModel
         # @param IsSupportSlaveZone: 是否支持从可用区
@@ -367,8 +383,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :Cpu, :Memory, :ReadOnlyCount, :DeviceType, :InstanceGrpId, :VpcId, :SubnetId, :Port, :InstanceName, :AutoVoucher, :DbType, :OrderSource, :DealMode, :ParamTemplateId, :InstanceParams, :SecurityGroupIds, :UpgradeProxy
         extend Gem::Deprecate
-        deprecate :InstanceGrpId, :none, 2026, 5
-        deprecate :InstanceGrpId=, :none, 2026, 5
+        deprecate :InstanceGrpId, :none, 2026, 6
+        deprecate :InstanceGrpId=, :none, 2026, 6
 
         def initialize(clusterid=nil, cpu=nil, memory=nil, readonlycount=nil, devicetype=nil, instancegrpid=nil, vpcid=nil, subnetid=nil, port=nil, instancename=nil, autovoucher=nil, dbtype=nil, ordersource=nil, dealmode=nil, paramtemplateid=nil, instanceparams=nil, securitygroupids=nil, upgradeproxy=nil)
           @ClusterId = clusterid
@@ -438,8 +454,8 @@ module TencentCloud
 
         attr_accessor :TranId, :DealNames, :ResourceIds, :BigDealIds, :RequestId
         extend Gem::Deprecate
-        deprecate :ResourceIds, :none, 2026, 5
-        deprecate :ResourceIds=, :none, 2026, 5
+        deprecate :ResourceIds, :none, 2026, 6
+        deprecate :ResourceIds=, :none, 2026, 6
 
         def initialize(tranid=nil, dealnames=nil, resourceids=nil, bigdealids=nil, requestid=nil)
           @TranId = tranid
@@ -1619,99 +1635,101 @@ module TencentCloud
 
       # 任务信息
       class BizTaskInfo < TencentCloud::Common::AbstractModel
-        # @param ID: 任务id
+        # @param ID: <p>任务id</p>
         # @type ID: Integer
-        # @param AppId: 用户appid
+        # @param AppId: <p>用户appid</p>
         # @type AppId: Integer
-        # @param ClusterId: 集群id
+        # @param ClusterId: <p>集群id</p>
         # @type ClusterId: String
-        # @param Region: 地域
+        # @param Region: <p>地域</p>
         # @type Region: String
-        # @param CreateTime: 任务创建时间
+        # @param CreateTime: <p>任务创建时间</p>
         # @type CreateTime: String
-        # @param DelayTime: 延迟执行时间
+        # @param DelayTime: <p>延迟执行时间</p>
         # @type DelayTime: String
-        # @param ErrMsg: 任务失败信息
+        # @param ErrMsg: <p>任务失败信息</p>
         # @type ErrMsg: String
-        # @param FlowId: 异步任务流id
+        # @param FlowId: <p>异步任务流id</p>
         # @type FlowId: Integer
-        # @param Input: 任务输入信息
+        # @param Input: <p>任务输入信息</p>
         # @type Input: String
-        # @param InstanceGrpId: 实例组id
+        # @param InstanceGrpId: <p>实例组id</p>
         # @type InstanceGrpId: String
-        # @param InstanceGroupId: 实例组id
+        # @param InstanceGroupId: <p>实例组id</p>
         # @type InstanceGroupId: String
-        # @param InstanceId: 实例id
+        # @param InstanceId: <p>实例id</p>
         # @type InstanceId: String
-        # @param ObjectId: 任务操作对象id
+        # @param ObjectId: <p>任务操作对象id</p>
         # @type ObjectId: String
-        # @param ObjectType: 任务操作对象类型
+        # @param ObjectType: <p>任务操作对象类型</p>
         # @type ObjectType: String
-        # @param Operator: 操作者uin
+        # @param Operator: <p>操作者uin</p>
         # @type Operator: String
-        # @param Output: 任务输出信息
+        # @param Output: <p>任务输出信息</p>
         # @type Output: String
-        # @param Status: 任务状态
+        # @param Status: <p>任务状态</p>
         # @type Status: String
-        # @param TaskType: 任务类型
+        # @param TaskType: <p>任务类型</p>
         # @type TaskType: String
-        # @param TriggerTaskId: 触发本任务的父任务ID
+        # @param TriggerTaskId: <p>触发本任务的父任务ID</p>
         # @type TriggerTaskId: Integer
-        # @param UpdateTime: 更新时间
+        # @param UpdateTime: <p>更新时间</p>
         # @type UpdateTime: String
-        # @param StartTime: 任务开始时间
+        # @param StartTime: <p>任务开始时间</p>
         # @type StartTime: String
-        # @param EndTime: 任务结束时间
+        # @param EndTime: <p>任务结束时间</p>
         # @type EndTime: String
-        # @param ClusterName: 集群名称
+        # @param ClusterName: <p>集群名称</p>
         # @type ClusterName: String
-        # @param InstanceName: 实例名称
+        # @param InstanceName: <p>实例名称</p>
         # @type InstanceName: String
-        # @param Process: 任务进度
+        # @param Process: <p>任务进度</p>
         # @type Process: Integer
-        # @param ModifyParamsData: 修改参数任务信息
+        # @param ModifyParamsData: <p>修改参数任务信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModifyParamsData: Array
-        # @param CreateClustersData: 创建集群任务信息
+        # @param CreateClustersData: <p>创建集群任务信息</p>
         # @type CreateClustersData: :class:`Tencentcloud::Cynosdb.v20190107.models.CreateClustersData`
-        # @param RollbackData: 集群回档任务信息
+        # @param RollbackData: <p>集群回档任务信息</p>
         # @type RollbackData: :class:`Tencentcloud::Cynosdb.v20190107.models.RollbackData`
-        # @param ModifyInstanceData: 实例变配任务信息
+        # @param ModifyInstanceData: <p>实例变配任务信息</p>
         # @type ModifyInstanceData: :class:`Tencentcloud::Cynosdb.v20190107.models.ModifyInstanceData`
-        # @param ManualBackupData: 手动备份任务信息
+        # @param ManualBackupData: <p>手动备份任务信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ManualBackupData: :class:`Tencentcloud::Cynosdb.v20190107.models.ManualBackupData`
-        # @param ModifyDbVersionData: 修改内核版本任务信息
+        # @param ModifyDbVersionData: <p>修改内核版本任务信息</p>
         # @type ModifyDbVersionData: :class:`Tencentcloud::Cynosdb.v20190107.models.ModifyDbVersionData`
-        # @param ClusterSlaveData: 集群可用区信息
+        # @param ClusterSlaveData: <p>集群可用区信息</p>
         # @type ClusterSlaveData: :class:`Tencentcloud::Cynosdb.v20190107.models.ClusterSlaveData`
-        # @param SwitchClusterLogBin: 转换集群日志
+        # @param SwitchClusterLogBin: <p>转换集群日志</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SwitchClusterLogBin: :class:`Tencentcloud::Cynosdb.v20190107.models.SwitchClusterLogBin`
-        # @param ModifyInstanceParamsData: 修改实例参数数据
+        # @param ModifyInstanceParamsData: <p>修改实例参数数据</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModifyInstanceParamsData: :class:`Tencentcloud::Cynosdb.v20190107.models.BizTaskModifyParamsData`
-        # @param TaskMaintainInfo: 维护时间
+        # @param TaskMaintainInfo: <p>维护时间</p>
         # @type TaskMaintainInfo: :class:`Tencentcloud::Cynosdb.v20190107.models.TaskMaintainInfo`
-        # @param InstanceCLSDeliveryInfos: 实例日志投递信息
+        # @param InstanceCLSDeliveryInfos: <p>实例日志投递信息</p>
         # @type InstanceCLSDeliveryInfos: Array
-        # @param TaskProgressInfo: 任务进度信息
+        # @param TaskProgressInfo: <p>任务进度信息</p>
         # @type TaskProgressInfo: :class:`Tencentcloud::Cynosdb.v20190107.models.TaskProgressInfo`
-        # @param GdnTaskInfo: 全球数据库网络任务
+        # @param GdnTaskInfo: <p>全球数据库网络任务</p>
         # @type GdnTaskInfo: :class:`Tencentcloud::Cynosdb.v20190107.models.GdnTaskInfo`
-        # @param VaultId: 保险箱id
+        # @param VaultId: <p>保险箱id</p>
         # @type VaultId: String
-        # @param VaultName: 保险箱名称
+        # @param VaultName: <p>保险箱名称</p>
         # @type VaultName: String
+        # @param AIOptimizerTaskData: <p>AI优化器任务信息</p>
+        # @type AIOptimizerTaskData: :class:`Tencentcloud::Cynosdb.v20190107.models.AIOptimizerTaskData`
 
-        attr_accessor :ID, :AppId, :ClusterId, :Region, :CreateTime, :DelayTime, :ErrMsg, :FlowId, :Input, :InstanceGrpId, :InstanceGroupId, :InstanceId, :ObjectId, :ObjectType, :Operator, :Output, :Status, :TaskType, :TriggerTaskId, :UpdateTime, :StartTime, :EndTime, :ClusterName, :InstanceName, :Process, :ModifyParamsData, :CreateClustersData, :RollbackData, :ModifyInstanceData, :ManualBackupData, :ModifyDbVersionData, :ClusterSlaveData, :SwitchClusterLogBin, :ModifyInstanceParamsData, :TaskMaintainInfo, :InstanceCLSDeliveryInfos, :TaskProgressInfo, :GdnTaskInfo, :VaultId, :VaultName
+        attr_accessor :ID, :AppId, :ClusterId, :Region, :CreateTime, :DelayTime, :ErrMsg, :FlowId, :Input, :InstanceGrpId, :InstanceGroupId, :InstanceId, :ObjectId, :ObjectType, :Operator, :Output, :Status, :TaskType, :TriggerTaskId, :UpdateTime, :StartTime, :EndTime, :ClusterName, :InstanceName, :Process, :ModifyParamsData, :CreateClustersData, :RollbackData, :ModifyInstanceData, :ManualBackupData, :ModifyDbVersionData, :ClusterSlaveData, :SwitchClusterLogBin, :ModifyInstanceParamsData, :TaskMaintainInfo, :InstanceCLSDeliveryInfos, :TaskProgressInfo, :GdnTaskInfo, :VaultId, :VaultName, :AIOptimizerTaskData
         extend Gem::Deprecate
-        deprecate :InstanceGrpId, :none, 2026, 5
-        deprecate :InstanceGrpId=, :none, 2026, 5
-        deprecate :ModifyParamsData, :none, 2026, 5
-        deprecate :ModifyParamsData=, :none, 2026, 5
+        deprecate :InstanceGrpId, :none, 2026, 6
+        deprecate :InstanceGrpId=, :none, 2026, 6
+        deprecate :ModifyParamsData, :none, 2026, 6
+        deprecate :ModifyParamsData=, :none, 2026, 6
 
-        def initialize(id=nil, appid=nil, clusterid=nil, region=nil, createtime=nil, delaytime=nil, errmsg=nil, flowid=nil, input=nil, instancegrpid=nil, instancegroupid=nil, instanceid=nil, objectid=nil, objecttype=nil, operator=nil, output=nil, status=nil, tasktype=nil, triggertaskid=nil, updatetime=nil, starttime=nil, endtime=nil, clustername=nil, instancename=nil, process=nil, modifyparamsdata=nil, createclustersdata=nil, rollbackdata=nil, modifyinstancedata=nil, manualbackupdata=nil, modifydbversiondata=nil, clusterslavedata=nil, switchclusterlogbin=nil, modifyinstanceparamsdata=nil, taskmaintaininfo=nil, instanceclsdeliveryinfos=nil, taskprogressinfo=nil, gdntaskinfo=nil, vaultid=nil, vaultname=nil)
+        def initialize(id=nil, appid=nil, clusterid=nil, region=nil, createtime=nil, delaytime=nil, errmsg=nil, flowid=nil, input=nil, instancegrpid=nil, instancegroupid=nil, instanceid=nil, objectid=nil, objecttype=nil, operator=nil, output=nil, status=nil, tasktype=nil, triggertaskid=nil, updatetime=nil, starttime=nil, endtime=nil, clustername=nil, instancename=nil, process=nil, modifyparamsdata=nil, createclustersdata=nil, rollbackdata=nil, modifyinstancedata=nil, manualbackupdata=nil, modifydbversiondata=nil, clusterslavedata=nil, switchclusterlogbin=nil, modifyinstanceparamsdata=nil, taskmaintaininfo=nil, instanceclsdeliveryinfos=nil, taskprogressinfo=nil, gdntaskinfo=nil, vaultid=nil, vaultname=nil, aioptimizertaskdata=nil)
           @ID = id
           @AppId = appid
           @ClusterId = clusterid
@@ -1752,6 +1770,7 @@ module TencentCloud
           @GdnTaskInfo = gdntaskinfo
           @VaultId = vaultid
           @VaultName = vaultname
+          @AIOptimizerTaskData = aioptimizertaskdata
         end
 
         def deserialize(params)
@@ -1842,6 +1861,10 @@ module TencentCloud
           end
           @VaultId = params['VaultId']
           @VaultName = params['VaultName']
+          unless params['AIOptimizerTaskData'].nil?
+            @AIOptimizerTaskData = AIOptimizerTaskData.new
+            @AIOptimizerTaskData.deserialize(params['AIOptimizerTaskData'])
+          end
         end
       end
 
@@ -2408,8 +2431,8 @@ module TencentCloud
 
         attr_accessor :InstanceGrpId, :InstanceGroupId, :InstanceId
         extend Gem::Deprecate
-        deprecate :InstanceGrpId, :none, 2026, 5
-        deprecate :InstanceGrpId=, :none, 2026, 5
+        deprecate :InstanceGrpId, :none, 2026, 6
+        deprecate :InstanceGrpId=, :none, 2026, 6
 
         def initialize(instancegrpid=nil, instancegroupid=nil, instanceid=nil)
           @InstanceGrpId = instancegrpid
@@ -2825,8 +2848,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :StartTime, :EndTime, :Order, :OrderBy, :Filter, :LogFilter, :ColumnFilter
         extend Gem::Deprecate
-        deprecate :Filter, :none, 2026, 5
-        deprecate :Filter=, :none, 2026, 5
+        deprecate :Filter, :none, 2026, 6
+        deprecate :Filter=, :none, 2026, 6
 
         def initialize(instanceid=nil, starttime=nil, endtime=nil, order=nil, orderby=nil, filter=nil, logfilter=nil, columnfilter=nil)
           @InstanceId = instanceid
@@ -6548,8 +6571,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :StartTime, :EndTime, :Order, :OrderBy, :Filter, :Limit, :Offset, :LogFilter
         extend Gem::Deprecate
-        deprecate :Filter, :none, 2026, 5
-        deprecate :Filter=, :none, 2026, 5
+        deprecate :Filter, :none, 2026, 6
+        deprecate :Filter=, :none, 2026, 6
 
         def initialize(instanceid=nil, starttime=nil, endtime=nil, order=nil, orderby=nil, filter=nil, limit=nil, offset=nil, logfilter=nil)
           @InstanceId = instanceid
@@ -7825,8 +7848,8 @@ module TencentCloud
 
         attr_accessor :TotalCount, :InstanceGrpInfoList, :InstanceGroupInfoList, :RequestId
         extend Gem::Deprecate
-        deprecate :InstanceGrpInfoList, :none, 2026, 5
-        deprecate :InstanceGrpInfoList=, :none, 2026, 5
+        deprecate :InstanceGrpInfoList, :none, 2026, 6
+        deprecate :InstanceGrpInfoList=, :none, 2026, 6
 
         def initialize(totalcount=nil, instancegrpinfolist=nil, instancegroupinfolist=nil, requestid=nil)
           @TotalCount = totalcount
@@ -8231,8 +8254,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :InstanceGroupId
         extend Gem::Deprecate
-        deprecate :InstanceId, :none, 2026, 5
-        deprecate :InstanceId=, :none, 2026, 5
+        deprecate :InstanceId, :none, 2026, 6
+        deprecate :InstanceId=, :none, 2026, 6
 
         def initialize(instanceid=nil, instancegroupid=nil)
           @InstanceId = instanceid
@@ -16707,8 +16730,8 @@ module TencentCloud
 
         attr_accessor :FlowId, :TaskId, :RequestId
         extend Gem::Deprecate
-        deprecate :FlowId, :none, 2026, 5
-        deprecate :FlowId=, :none, 2026, 5
+        deprecate :FlowId, :none, 2026, 6
+        deprecate :FlowId=, :none, 2026, 6
 
         def initialize(flowid=nil, taskid=nil, requestid=nil)
           @FlowId = flowid
@@ -16859,8 +16882,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :InstanceGrpId, :InstanceGroupId, :Vip, :Vport, :DbType, :OldIpReserveHours
         extend Gem::Deprecate
-        deprecate :InstanceGrpId, :none, 2026, 5
-        deprecate :InstanceGrpId=, :none, 2026, 5
+        deprecate :InstanceGrpId, :none, 2026, 6
+        deprecate :InstanceGrpId=, :none, 2026, 6
 
         def initialize(clusterid=nil, instancegrpid=nil, instancegroupid=nil, vip=nil, vport=nil, dbtype=nil, oldipreservehours=nil)
           @ClusterId = clusterid
@@ -17281,8 +17304,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :LogExpireDay, :HighLogExpireDay, :AuditRuleFilters, :RuleTemplateIds, :AuditAll
         extend Gem::Deprecate
-        deprecate :AuditRuleFilters, :none, 2026, 5
-        deprecate :AuditRuleFilters=, :none, 2026, 5
+        deprecate :AuditRuleFilters, :none, 2026, 6
+        deprecate :AuditRuleFilters=, :none, 2026, 6
 
         def initialize(instanceid=nil, logexpireday=nil, highlogexpireday=nil, auditrulefilters=nil, ruletemplateids=nil, auditall=nil)
           @InstanceId = instanceid
@@ -17593,8 +17616,8 @@ module TencentCloud
 
         attr_accessor :InstanceGrpId, :InstanceId, :InstanceGroupId
         extend Gem::Deprecate
-        deprecate :InstanceGrpId, :none, 2026, 5
-        deprecate :InstanceGrpId=, :none, 2026, 5
+        deprecate :InstanceGrpId, :none, 2026, 6
+        deprecate :InstanceGrpId=, :none, 2026, 6
 
         def initialize(instancegrpid=nil, instanceid=nil, instancegroupid=nil)
           @InstanceGrpId = instancegrpid
@@ -18213,8 +18236,8 @@ module TencentCloud
 
         attr_accessor :ProxyCount, :Cpu, :Mem, :ConnectionPoolType, :OpenConnectionPool, :ConnectionPoolTimeOut, :Description, :ProxyZones
         extend Gem::Deprecate
-        deprecate :ProxyCount, :none, 2026, 5
-        deprecate :ProxyCount=, :none, 2026, 5
+        deprecate :ProxyCount, :none, 2026, 6
+        deprecate :ProxyCount=, :none, 2026, 6
 
         def initialize(proxycount=nil, cpu=nil, mem=nil, connectionpooltype=nil, openconnectionpool=nil, connectionpooltimeout=nil, description=nil, proxyzones=nil)
           @ProxyCount = proxycount
@@ -18690,8 +18713,8 @@ module TencentCloud
 
         attr_accessor :Values, :Names, :ExactMatch, :Name, :Operator
         extend Gem::Deprecate
-        deprecate :Operator, :none, 2026, 5
-        deprecate :Operator=, :none, 2026, 5
+        deprecate :Operator, :none, 2026, 6
+        deprecate :Operator=, :none, 2026, 6
 
         def initialize(values=nil, names=nil, exactmatch=nil, name=nil, operator=nil)
           @Values = values

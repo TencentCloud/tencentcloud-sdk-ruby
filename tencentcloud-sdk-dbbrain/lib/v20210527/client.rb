@@ -941,6 +941,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询数据库自治功能的开关状态。当前支持 MongoDB 的索引推荐（AutoIndexAdvice）功能状态查询。
+
+        # @param request: Request instance for DescribeDatabaseAutonomyStatus.
+        # @type request: :class:`Tencentcloud::dbbrain::V20210527::DescribeDatabaseAutonomyStatusRequest`
+        # @rtype: :class:`Tencentcloud::dbbrain::V20210527::DescribeDatabaseAutonomyStatusResponse`
+        def DescribeDatabaseAutonomyStatus(request)
+          body = send_request('DescribeDatabaseAutonomyStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDatabaseAutonomyStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取实例信息列表。Region统一选择广州。
 
         # @param request: Request instance for DescribeDiagDBInstances.
@@ -2031,6 +2055,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = UpdateAgentSwitchResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 设置数据库自治功能的开关状态。当前支持 MongoDB 的索引推荐（AutoIndexAdvice）功能的开启或关闭。
+
+        # @param request: Request instance for UpdateDatabaseAutonomyStatus.
+        # @type request: :class:`Tencentcloud::dbbrain::V20210527::UpdateDatabaseAutonomyStatusRequest`
+        # @rtype: :class:`Tencentcloud::dbbrain::V20210527::UpdateDatabaseAutonomyStatusResponse`
+        def UpdateDatabaseAutonomyStatus(request)
+          body = send_request('UpdateDatabaseAutonomyStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateDatabaseAutonomyStatusResponse.new
             model.deserialize(response['Response'])
             model
           else

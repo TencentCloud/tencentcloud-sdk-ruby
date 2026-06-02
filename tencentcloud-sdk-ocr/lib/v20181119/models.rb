@@ -4084,8 +4084,8 @@ module TencentCloud
 
         attr_accessor :TextDetections, :Angel, :Angle, :RequestId
         extend Gem::Deprecate
-        deprecate :Angel, :none, 2026, 5
-        deprecate :Angel=, :none, 2026, 5
+        deprecate :Angel, :none, 2026, 6
+        deprecate :Angel=, :none, 2026, 6
 
         def initialize(textdetections=nil, angel=nil, angle=nil, requestid=nil)
           @TextDetections = textdetections
@@ -4191,8 +4191,8 @@ module TencentCloud
 
         attr_accessor :TextDetections, :Language, :Angel, :PdfPageSize, :Angle, :RequestId
         extend Gem::Deprecate
-        deprecate :Angel, :none, 2026, 5
-        deprecate :Angel=, :none, 2026, 5
+        deprecate :Angel, :none, 2026, 6
+        deprecate :Angel=, :none, 2026, 6
 
         def initialize(textdetections=nil, language=nil, angel=nil, pdfpagesize=nil, angle=nil, requestid=nil)
           @TextDetections = textdetections
@@ -4288,8 +4288,8 @@ module TencentCloud
 
         attr_accessor :TextDetections, :Angel, :Angle, :RequestId
         extend Gem::Deprecate
-        deprecate :Angel, :none, 2026, 5
-        deprecate :Angel=, :none, 2026, 5
+        deprecate :Angel, :none, 2026, 6
+        deprecate :Angel=, :none, 2026, 6
 
         def initialize(textdetections=nil, angel=nil, angle=nil, requestid=nil)
           @TextDetections = textdetections
@@ -4435,8 +4435,8 @@ module TencentCloud
 
         attr_accessor :TextDetections, :Angel, :Angle, :RequestId
         extend Gem::Deprecate
-        deprecate :Angel, :none, 2026, 5
-        deprecate :Angel=, :none, 2026, 5
+        deprecate :Angel, :none, 2026, 6
+        deprecate :Angel=, :none, 2026, 6
 
         def initialize(textdetections=nil, angel=nil, angle=nil, requestid=nil)
           @TextDetections = textdetections
@@ -4637,8 +4637,8 @@ module TencentCloud
 
         attr_accessor :ReturnHeadImage, :DetectFake, :ImageBase64, :ImageUrl
         extend Gem::Deprecate
-        deprecate :DetectFake, :none, 2026, 5
-        deprecate :DetectFake=, :none, 2026, 5
+        deprecate :DetectFake, :none, 2026, 6
+        deprecate :DetectFake=, :none, 2026, 6
 
         def initialize(returnheadimage=nil, detectfake=nil, imagebase64=nil, imageurl=nil)
           @ReturnHeadImage = returnheadimage
@@ -4703,10 +4703,10 @@ module TencentCloud
 
         attr_accessor :CnName, :EnName, :TelexCode, :Sex, :Birthday, :Permanent, :IdNum, :Symbol, :FirstIssueDate, :CurrentIssueDate, :FakeDetectResult, :HeadImage, :SmallHeadImage, :WarningCode, :WarnCardInfos, :WindowEmbeddedText, :RequestId
         extend Gem::Deprecate
-        deprecate :FakeDetectResult, :none, 2026, 5
-        deprecate :FakeDetectResult=, :none, 2026, 5
-        deprecate :WarningCode, :none, 2026, 5
-        deprecate :WarningCode=, :none, 2026, 5
+        deprecate :FakeDetectResult, :none, 2026, 6
+        deprecate :FakeDetectResult=, :none, 2026, 6
+        deprecate :WarningCode, :none, 2026, 6
+        deprecate :WarningCode=, :none, 2026, 6
 
         def initialize(cnname=nil, enname=nil, telexcode=nil, sex=nil, birthday=nil, permanent=nil, idnum=nil, symbol=nil, firstissuedate=nil, currentissuedate=nil, fakedetectresult=nil, headimage=nil, smallheadimage=nil, warningcode=nil, warncardinfos=nil, windowembeddedtext=nil, requestid=nil)
           @CnName = cnname
@@ -5144,8 +5144,8 @@ module TencentCloud
 
         attr_accessor :ImageBase64, :ImageUrl, :CardSide, :Config, :EnableRecognitionRectify, :EnableReflectDetail, :EnableDateVerify, :CardWarnType
         extend Gem::Deprecate
-        deprecate :EnableDateVerify, :none, 2026, 5
-        deprecate :EnableDateVerify=, :none, 2026, 5
+        deprecate :EnableDateVerify, :none, 2026, 6
+        deprecate :EnableDateVerify=, :none, 2026, 6
 
         def initialize(imagebase64=nil, imageurl=nil, cardside=nil, config=nil, enablerecognitionrectify=nil, enablereflectdetail=nil, enabledateverify=nil, cardwarntype=nil)
           @ImageBase64 = imagebase64
@@ -6010,10 +6010,10 @@ module TencentCloud
 
         attr_accessor :ID, :Name, :Address, :Sex, :Warn, :Image, :AdvancedInfo, :Type, :Birthday, :MyKadNumber, :WarnCardInfos, :RequestId
         extend Gem::Deprecate
-        deprecate :Warn, :none, 2026, 5
-        deprecate :Warn=, :none, 2026, 5
-        deprecate :AdvancedInfo, :none, 2026, 5
-        deprecate :AdvancedInfo=, :none, 2026, 5
+        deprecate :Warn, :none, 2026, 6
+        deprecate :Warn=, :none, 2026, 6
+        deprecate :AdvancedInfo, :none, 2026, 6
+        deprecate :AdvancedInfo=, :none, 2026, 6
 
         def initialize(id=nil, name=nil, address=nil, sex=nil, warn=nil, image=nil, advancedinfo=nil, type=nil, birthday=nil, mykadnumber=nil, warncardinfos=nil, requestid=nil)
           @ID = id
@@ -6115,10 +6115,10 @@ module TencentCloud
 
         attr_accessor :ID, :Name, :DateOfBirth, :Sex, :DateOfExpiration, :IssuingCountry, :Nationality, :Warn, :Image, :AdvancedInfo, :CodeSet, :CodeCrc, :Surname, :GivenName, :Type, :PassportRecognizeInfos, :WarnCardInfos, :CardCount, :RequestId
         extend Gem::Deprecate
-        deprecate :Warn, :none, 2026, 5
-        deprecate :Warn=, :none, 2026, 5
-        deprecate :AdvancedInfo, :none, 2026, 5
-        deprecate :AdvancedInfo=, :none, 2026, 5
+        deprecate :Warn, :none, 2026, 6
+        deprecate :Warn=, :none, 2026, 6
+        deprecate :AdvancedInfo, :none, 2026, 6
+        deprecate :AdvancedInfo=, :none, 2026, 6
 
         def initialize(id=nil, name=nil, dateofbirth=nil, sex=nil, dateofexpiration=nil, issuingcountry=nil, nationality=nil, warn=nil, image=nil, advancedinfo=nil, codeset=nil, codecrc=nil, surname=nil, givenname=nil, type=nil, passportrecognizeinfos=nil, warncardinfos=nil, cardcount=nil, requestid=nil)
           @ID = id
@@ -9308,61 +9308,6 @@ module TencentCloud
         end
       end
 
-      # RecognizeOnlineTaxiItineraryOCR请求参数结构体
-      class RecognizeOnlineTaxiItineraryOCRRequest < TencentCloud::Common::AbstractModel
-        # @param ImageBase64: 图片的 Base64 值。支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。支持的图片大小：所下载图片经Base64编码后不超过 10M。图片下载时间不超过 3 秒。图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
-        # @type ImageBase64: String
-        # @param ImageUrl: 图片的 Url 地址。支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。支持的图片大小：所下载图片经 Base64 编码后不超过 10M。图片下载时间不超过 3 秒。图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。非腾讯云存储的 Url 速度和稳定性可能受一定影响。
-        # @type ImageUrl: String
-        # @param IsPdf: 是否开启PDF识别，默认值为false，开启后可同时支持图片和PDF的识别。
-        # @type IsPdf: Boolean
-        # @param PdfPageNumber: 需要识别的PDF页面的对应页码，仅支持PDF单页识别，当上传文件为PDF且IsPdf参数值为true时有效，默认值为1。
-        # @type PdfPageNumber: Integer
-
-        attr_accessor :ImageBase64, :ImageUrl, :IsPdf, :PdfPageNumber
-
-        def initialize(imagebase64=nil, imageurl=nil, ispdf=nil, pdfpagenumber=nil)
-          @ImageBase64 = imagebase64
-          @ImageUrl = imageurl
-          @IsPdf = ispdf
-          @PdfPageNumber = pdfpagenumber
-        end
-
-        def deserialize(params)
-          @ImageBase64 = params['ImageBase64']
-          @ImageUrl = params['ImageUrl']
-          @IsPdf = params['IsPdf']
-          @PdfPageNumber = params['PdfPageNumber']
-        end
-      end
-
-      # RecognizeOnlineTaxiItineraryOCR返回参数结构体
-      class RecognizeOnlineTaxiItineraryOCRResponse < TencentCloud::Common::AbstractModel
-        # @param OnlineTaxiItineraryInfos: 网约车行程单识别结果，具体内容请点击左侧链接。
-        # @type OnlineTaxiItineraryInfos: Array
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :OnlineTaxiItineraryInfos, :RequestId
-
-        def initialize(onlinetaxiitineraryinfos=nil, requestid=nil)
-          @OnlineTaxiItineraryInfos = onlinetaxiitineraryinfos
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['OnlineTaxiItineraryInfos'].nil?
-            @OnlineTaxiItineraryInfos = []
-            params['OnlineTaxiItineraryInfos'].each do |i|
-              onlinetaxiitineraryinfo_tmp = OnlineTaxiItineraryInfo.new
-              onlinetaxiitineraryinfo_tmp.deserialize(i)
-              @OnlineTaxiItineraryInfos << onlinetaxiitineraryinfo_tmp
-            end
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
       # RecognizeStoreName请求参数结构体
       class RecognizeStoreNameRequest < TencentCloud::Common::AbstractModel
         # @param ImageBase64: 图片的 Base64 值。支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。支持的图片大小：所下载图片经Base64编码后不超过 10M。图片下载时间不超过 3 秒。支持的图片像素：需介于20-10000px之间。图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
@@ -9645,8 +9590,8 @@ module TencentCloud
 
         attr_accessor :ID, :ThaiName, :EnFirstName, :EnLastName, :IssueDate, :ExpirationDate, :EnIssueDate, :EnExpirationDate, :Birthday, :EnBirthday, :Religion, :SerialNumber, :Address, :LaserID, :PortraitImage, :WarnCardInfos, :AdvancedInfo, :CardCount, :RequestId
         extend Gem::Deprecate
-        deprecate :AdvancedInfo, :none, 2026, 5
-        deprecate :AdvancedInfo=, :none, 2026, 5
+        deprecate :AdvancedInfo, :none, 2026, 6
+        deprecate :AdvancedInfo=, :none, 2026, 6
 
         def initialize(id=nil, thainame=nil, enfirstname=nil, enlastname=nil, issuedate=nil, expirationdate=nil, enissuedate=nil, enexpirationdate=nil, birthday=nil, enbirthday=nil, religion=nil, serialnumber=nil, address=nil, laserid=nil, portraitimage=nil, warncardinfos=nil, advancedinfo=nil, cardcount=nil, requestid=nil)
           @ID = id
@@ -11249,8 +11194,8 @@ module TencentCloud
 
         attr_accessor :ImageBase64, :ImageUrl, :PdfPageNumber, :ItemNames, :EnableCoord, :FileStartPageNumber, :FileEndPageNumber, :ModelConfig
         extend Gem::Deprecate
-        deprecate :PdfPageNumber, :none, 2026, 5
-        deprecate :PdfPageNumber=, :none, 2026, 5
+        deprecate :PdfPageNumber, :none, 2026, 6
+        deprecate :PdfPageNumber=, :none, 2026, 6
 
         def initialize(imagebase64=nil, imageurl=nil, pdfpagenumber=nil, itemnames=nil, enablecoord=nil, filestartpagenumber=nil, fileendpagenumber=nil, modelconfig=nil)
           @ImageBase64 = imagebase64
@@ -11373,10 +11318,10 @@ module TencentCloud
 
         attr_accessor :ImageBase64, :ImageUrl, :PdfPageNumber, :BoolSingleQuestion, :EnableDeepThink, :QuestionConfigMap, :ReferenceAnswer, :ImageBase64List, :ImageUrlList
         extend Gem::Deprecate
-        deprecate :BoolSingleQuestion, :none, 2026, 5
-        deprecate :BoolSingleQuestion=, :none, 2026, 5
-        deprecate :EnableDeepThink, :none, 2026, 5
-        deprecate :EnableDeepThink=, :none, 2026, 5
+        deprecate :BoolSingleQuestion, :none, 2026, 6
+        deprecate :BoolSingleQuestion=, :none, 2026, 6
+        deprecate :EnableDeepThink, :none, 2026, 6
+        deprecate :EnableDeepThink=, :none, 2026, 6
 
         def initialize(imagebase64=nil, imageurl=nil, pdfpagenumber=nil, boolsinglequestion=nil, enabledeepthink=nil, questionconfigmap=nil, referenceanswer=nil, imagebase64list=nil, imageurllist=nil)
           @ImageBase64 = imagebase64
@@ -11768,100 +11713,6 @@ module TencentCloud
               @TableItems << otherinvoicelist_tmp
             end
           end
-        end
-      end
-
-      # TaxiInvoiceOCR请求参数结构体
-      class TaxiInvoiceOCRRequest < TencentCloud::Common::AbstractModel
-        # @param ImageBase64: 图片的 Base64 值。支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。支持的图片大小：所下载图片经Base64编码后不超过 10M。图片下载时间不超过 3 秒。图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
-        # @type ImageBase64: String
-        # @param ImageUrl: 图片的 Url 地址。支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。支持的图片大小：所下载图片经 Base64 编码后不超过 10M。图片下载时间不超过 3 秒。图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。非腾讯云存储的 Url 速度和稳定性可能受一定影响。
-        # @type ImageUrl: String
-        # @param IsPdf: 是否开启PDF识别，默认值为true，开启后可同时支持图片和PDF的识别。
-        # @type IsPdf: Boolean
-        # @param PdfPageNumber: 需要识别的PDF页面的对应页码，仅支持PDF单页识别，当上传文件为PDF且IsPdf参数值为true时有效，默认值为1。
-        # @type PdfPageNumber: Integer
-
-        attr_accessor :ImageBase64, :ImageUrl, :IsPdf, :PdfPageNumber
-
-        def initialize(imagebase64=nil, imageurl=nil, ispdf=nil, pdfpagenumber=nil)
-          @ImageBase64 = imagebase64
-          @ImageUrl = imageurl
-          @IsPdf = ispdf
-          @PdfPageNumber = pdfpagenumber
-        end
-
-        def deserialize(params)
-          @ImageBase64 = params['ImageBase64']
-          @ImageUrl = params['ImageUrl']
-          @IsPdf = params['IsPdf']
-          @PdfPageNumber = params['PdfPageNumber']
-        end
-      end
-
-      # TaxiInvoiceOCR返回参数结构体
-      class TaxiInvoiceOCRResponse < TencentCloud::Common::AbstractModel
-        # @param InvoiceNum: 发票号码
-        # @type InvoiceNum: String
-        # @param InvoiceCode: 发票代码
-        # @type InvoiceCode: String
-        # @param Date: 日期
-        # @type Date: String
-        # @param Fare: 金额
-        # @type Fare: String
-        # @param GetOnTime: 上车时间
-        # @type GetOnTime: String
-        # @param GetOffTime: 下车时间
-        # @type GetOffTime: String
-        # @param Distance: 里程
-        # @type Distance: String
-        # @param Location: 发票所在地
-        # @type Location: String
-        # @param PlateNumber: 车牌号
-        # @type PlateNumber: String
-        # @param InvoiceType: 发票消费类型
-        # @type InvoiceType: String
-        # @param Province: 省
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Province: String
-        # @param City: 市
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type City: String
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :InvoiceNum, :InvoiceCode, :Date, :Fare, :GetOnTime, :GetOffTime, :Distance, :Location, :PlateNumber, :InvoiceType, :Province, :City, :RequestId
-
-        def initialize(invoicenum=nil, invoicecode=nil, date=nil, fare=nil, getontime=nil, getofftime=nil, distance=nil, location=nil, platenumber=nil, invoicetype=nil, province=nil, city=nil, requestid=nil)
-          @InvoiceNum = invoicenum
-          @InvoiceCode = invoicecode
-          @Date = date
-          @Fare = fare
-          @GetOnTime = getontime
-          @GetOffTime = getofftime
-          @Distance = distance
-          @Location = location
-          @PlateNumber = platenumber
-          @InvoiceType = invoicetype
-          @Province = province
-          @City = city
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @InvoiceNum = params['InvoiceNum']
-          @InvoiceCode = params['InvoiceCode']
-          @Date = params['Date']
-          @Fare = params['Fare']
-          @GetOnTime = params['GetOnTime']
-          @GetOffTime = params['GetOffTime']
-          @Distance = params['Distance']
-          @Location = params['Location']
-          @PlateNumber = params['PlateNumber']
-          @InvoiceType = params['InvoiceType']
-          @Province = params['Province']
-          @City = params['City']
-          @RequestId = params['RequestId']
         end
       end
 

@@ -629,7 +629,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 列表账户组直接关联的资源，私有化调用path为：capi/Assets/DescribeDirectAccountGroupResources
+        # 列表账户组直接关联的资源，私有化调用path为：capi/NGN/DescribeDirectAccountGroupResources
 
         # @param request: Request instance for DescribeDirectAccountGroupResources.
         # @type request: :class:`Tencentcloud::ioa::V20220601::DescribeDirectAccountGroupResourcesRequest`

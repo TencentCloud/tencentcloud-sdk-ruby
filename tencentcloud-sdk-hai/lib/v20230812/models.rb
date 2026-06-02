@@ -311,16 +311,19 @@ module TencentCloud
         # @type HyperParam: :class:`Tencentcloud::Hai.v20230812.models.HyperParam`
         # @param NetworkSetting: <p>网络设置</p>
         # @type NetworkSetting: :class:`Tencentcloud::Hai.v20230812.models.NetworkSetting`
+        # @param SecurityType: <p>推理服务安全类型</p><p>枚举值：</p><ul><li>STANDARD： 标准推理服务</li><li>CONFIDENTIAL： 可信推理服务</li></ul>
+        # @type SecurityType: String
 
-        attr_accessor :TemplateId, :ServiceName, :Replicas, :ServiceChargeType, :HyperParam, :NetworkSetting
+        attr_accessor :TemplateId, :ServiceName, :Replicas, :ServiceChargeType, :HyperParam, :NetworkSetting, :SecurityType
 
-        def initialize(templateid=nil, servicename=nil, replicas=nil, servicechargetype=nil, hyperparam=nil, networksetting=nil)
+        def initialize(templateid=nil, servicename=nil, replicas=nil, servicechargetype=nil, hyperparam=nil, networksetting=nil, securitytype=nil)
           @TemplateId = templateid
           @ServiceName = servicename
           @Replicas = replicas
           @ServiceChargeType = servicechargetype
           @HyperParam = hyperparam
           @NetworkSetting = networksetting
+          @SecurityType = securitytype
         end
 
         def deserialize(params)
@@ -336,6 +339,7 @@ module TencentCloud
             @NetworkSetting = NetworkSetting.new
             @NetworkSetting.deserialize(params['NetworkSetting'])
           end
+          @SecurityType = params['SecurityType']
         end
       end
 
@@ -1080,11 +1084,11 @@ module TencentCloud
 
       # DescribeServices请求参数结构体
       class DescribeServicesRequest < TencentCloud::Common::AbstractModel
-        # @param ServiceIds: 服务列表
+        # @param ServiceIds: <p>服务列表</p>
         # @type ServiceIds: Array
-        # @param Limit: 分页大小
+        # @param Limit: <p>分页大小</p>
         # @type Limit: Integer
-        # @param Offset: 偏移量
+        # @param Offset: <p>偏移量</p>
         # @type Offset: Integer
 
         attr_accessor :ServiceIds, :Limit, :Offset
@@ -1104,9 +1108,9 @@ module TencentCloud
 
       # DescribeServices返回参数结构体
       class DescribeServicesResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 总数
+        # @param TotalCount: <p>总数</p>
         # @type TotalCount: Integer
-        # @param ServiceInfoSet: 服务列表
+        # @param ServiceInfoSet: <p>服务列表</p>
         # @type ServiceInfoSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

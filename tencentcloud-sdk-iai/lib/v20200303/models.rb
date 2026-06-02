@@ -2673,35 +2673,35 @@ module TencentCloud
 
       # 返回的人员库信息
       class GroupInfo < TencentCloud::Common::AbstractModel
-        # @param GroupName: 人员库名称。
+        # @param GroupName: <p>人员库名称。</p>
         # @type GroupName: String
-        # @param GroupId: 人员库ID。
+        # @param GroupId: <p>人员库ID。</p>
         # @type GroupId: String
-        # @param GroupExDescriptions: 人员库自定义描述字段。
+        # @param GroupExDescriptions: <p>人员库自定义描述字段。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupExDescriptions: Array
-        # @param Tag: 人员库信息备注。
+        # @param Tag: <p>人员库信息备注。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tag: String
-        # @param FaceModelVersion: 人脸识别所用的算法模型版本。
+        # @param FaceModelVersion: <p>人脸识别所用的算法模型版本。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FaceModelVersion: String
-        # @param CreationTimestamp: Group的创建时间和日期 CreationTimestamp。
-        # - CreationTimestamp 的值是自 Unix 纪元时间到Group创建时间的毫秒数。
-        # - Unix 纪元时间是 1970 年 1 月 1 日星期四，协调世界时 (UTC) 00:00:00。
-        # - 有关更多信息，请参阅 Unix 时间。
+        # @param CreationTimestamp: <p>Group的创建时间和日期 CreationTimestamp。</p><ul><li>CreationTimestamp 的值是自 Unix 纪元时间到Group创建时间的毫秒数。 </li><li>Unix 纪元时间是 1970 年 1 月 1 日星期四，协调世界时 (UTC) 00:00:00。</li><li>有关更多信息，请参阅 Unix 时间。</li></ul>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreationTimestamp: Integer
+        # @param UpdateTimestamp: <p>Group的创建时间和日期 CreationTimestamp。- CreationTimestamp 的值是自 Unix 纪元时间到Group创建时间的毫秒数。 - Unix 纪元时间是 1970 年 1 月 1 日星期四，协调世界时 (UTC) 00:00:00。- 有关更多信息，请参阅 Unix 时间。</p>
+        # @type UpdateTimestamp: Integer
 
-        attr_accessor :GroupName, :GroupId, :GroupExDescriptions, :Tag, :FaceModelVersion, :CreationTimestamp
+        attr_accessor :GroupName, :GroupId, :GroupExDescriptions, :Tag, :FaceModelVersion, :CreationTimestamp, :UpdateTimestamp
 
-        def initialize(groupname=nil, groupid=nil, groupexdescriptions=nil, tag=nil, facemodelversion=nil, creationtimestamp=nil)
+        def initialize(groupname=nil, groupid=nil, groupexdescriptions=nil, tag=nil, facemodelversion=nil, creationtimestamp=nil, updatetimestamp=nil)
           @GroupName = groupname
           @GroupId = groupid
           @GroupExDescriptions = groupexdescriptions
           @Tag = tag
           @FaceModelVersion = facemodelversion
           @CreationTimestamp = creationtimestamp
+          @UpdateTimestamp = updatetimestamp
         end
 
         def deserialize(params)
@@ -2711,6 +2711,7 @@ module TencentCloud
           @Tag = params['Tag']
           @FaceModelVersion = params['FaceModelVersion']
           @CreationTimestamp = params['CreationTimestamp']
+          @UpdateTimestamp = params['UpdateTimestamp']
         end
       end
 
