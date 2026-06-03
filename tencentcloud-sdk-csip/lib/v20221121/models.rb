@@ -1821,10 +1821,12 @@ module TencentCloud
         # @type AssetType: String
         # @param AssetTypeIconURL: <p>资产类型图标</p>
         # @type AssetTypeIconURL: String
+        # @param AssetTypeName: <p>资产类型</p>
+        # @type AssetTypeName: String
 
-        attr_accessor :AppId, :Provider, :ProviderName, :CloudAccountName, :CloudAccountId, :InstanceName, :InstanceId, :CreateTime, :UpdateTime, :RiskStatus, :RiskTitle, :CheckType, :Severity, :RiskRuleId, :Classify, :StandardTerms, :AssetType, :AssetTypeIconURL
+        attr_accessor :AppId, :Provider, :ProviderName, :CloudAccountName, :CloudAccountId, :InstanceName, :InstanceId, :CreateTime, :UpdateTime, :RiskStatus, :RiskTitle, :CheckType, :Severity, :RiskRuleId, :Classify, :StandardTerms, :AssetType, :AssetTypeIconURL, :AssetTypeName
 
-        def initialize(appid=nil, provider=nil, providername=nil, cloudaccountname=nil, cloudaccountid=nil, instancename=nil, instanceid=nil, createtime=nil, updatetime=nil, riskstatus=nil, risktitle=nil, checktype=nil, severity=nil, riskruleid=nil, classify=nil, standardterms=nil, assettype=nil, assettypeiconurl=nil)
+        def initialize(appid=nil, provider=nil, providername=nil, cloudaccountname=nil, cloudaccountid=nil, instancename=nil, instanceid=nil, createtime=nil, updatetime=nil, riskstatus=nil, risktitle=nil, checktype=nil, severity=nil, riskruleid=nil, classify=nil, standardterms=nil, assettype=nil, assettypeiconurl=nil, assettypename=nil)
           @AppId = appid
           @Provider = provider
           @ProviderName = providername
@@ -1843,6 +1845,7 @@ module TencentCloud
           @StandardTerms = standardterms
           @AssetType = assettype
           @AssetTypeIconURL = assettypeiconurl
+          @AssetTypeName = assettypename
         end
 
         def deserialize(params)
@@ -1871,6 +1874,7 @@ module TencentCloud
           end
           @AssetType = params['AssetType']
           @AssetTypeIconURL = params['AssetTypeIconURL']
+          @AssetTypeName = params['AssetTypeName']
         end
       end
 
@@ -8451,15 +8455,15 @@ module TencentCloud
       class DescribeCheckViewRisksRequest < TencentCloud::Common::AbstractModel
         # @param MemberId: <p>集团账号的成员id</p>
         # @type MemberId: Array
-        # @param Filters: 过滤内容
+        # @param Filters: <p>过滤内容</p>
         # @type Filters: Array
-        # @param Limit: 分页大小
+        # @param Limit: <p>分页大小</p>
         # @type Limit: Integer
-        # @param Offset: 偏移量
+        # @param Offset: <p>偏移量</p>
         # @type Offset: Integer
-        # @param Order: 排序类型
+        # @param Order: <p>排序类型</p>
         # @type Order: String
-        # @param By: 排序字段
+        # @param By: <p>排序字段</p>
         # @type By: String
 
         attr_accessor :MemberId, :Filters, :Limit, :Offset, :Order, :By
@@ -8492,24 +8496,27 @@ module TencentCloud
 
       # DescribeCheckViewRisks返回参数结构体
       class DescribeCheckViewRisksResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 检查视角下风险数量
+        # @param TotalCount: <p>检查视角下风险数量</p>
         # @type TotalCount: Integer
-        # @param CheckViewRiskList: 检查视角下风险列表
+        # @param CheckViewRiskList: <p>检查视角下风险列表</p>
         # @type CheckViewRiskList: Array
-        # @param StandardNameList: 检查视角下cspm规范标签列表
+        # @param StandardNameList: <p>检查视角下cspm规范标签列表</p>
         # @type StandardNameList: Array
-        # @param AssetTypeList: 资产类型集合
+        # @param AssetTypeList: <p>资产类型集合</p>
         # @type AssetTypeList: Array
+        # @param ProviderList: <p>云厂商类型集合</p>
+        # @type ProviderList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TotalCount, :CheckViewRiskList, :StandardNameList, :AssetTypeList, :RequestId
+        attr_accessor :TotalCount, :CheckViewRiskList, :StandardNameList, :AssetTypeList, :ProviderList, :RequestId
 
-        def initialize(totalcount=nil, checkviewrisklist=nil, standardnamelist=nil, assettypelist=nil, requestid=nil)
+        def initialize(totalcount=nil, checkviewrisklist=nil, standardnamelist=nil, assettypelist=nil, providerlist=nil, requestid=nil)
           @TotalCount = totalcount
           @CheckViewRiskList = checkviewrisklist
           @StandardNameList = standardnamelist
           @AssetTypeList = assettypelist
+          @ProviderList = providerlist
           @RequestId = requestid
         end
 
@@ -8537,6 +8544,14 @@ module TencentCloud
               attributeoptionset_tmp = AttributeOptionSet.new
               attributeoptionset_tmp.deserialize(i)
               @AssetTypeList << attributeoptionset_tmp
+            end
+          end
+          unless params['ProviderList'].nil?
+            @ProviderList = []
+            params['ProviderList'].each do |i|
+              attributeoptionset_tmp = AttributeOptionSet.new
+              attributeoptionset_tmp.deserialize(i)
+              @ProviderList << attributeoptionset_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -9839,8 +9854,8 @@ module TencentCloud
 
         attr_accessor :Total, :Data, :DataSet, :RequestId
         extend Gem::Deprecate
-        deprecate :Data, :none, 2026, 5
-        deprecate :Data=, :none, 2026, 5
+        deprecate :Data, :none, 2026, 6
+        deprecate :Data=, :none, 2026, 6
 
         def initialize(total=nil, data=nil, dataset=nil, requestid=nil)
           @Total = total
@@ -15642,7 +15657,7 @@ module TencentCloud
 
       # DescribeRiskRuleDetail请求参数结构体
       class DescribeRiskRuleDetailRequest < TencentCloud::Common::AbstractModel
-        # @param RiskRuleId: 风险规则ID
+        # @param RiskRuleId: <p>风险规则ID</p>
         # @type RiskRuleId: String
 
         attr_accessor :RiskRuleId
@@ -15658,27 +15673,30 @@ module TencentCloud
 
       # DescribeRiskRuleDetail返回参数结构体
       class DescribeRiskRuleDetailResponse < TencentCloud::Common::AbstractModel
-        # @param RiskRuleId: 风险规则ID
+        # @param RiskRuleId: <p>风险规则ID</p>
         # @type RiskRuleId: String
-        # @param Provider: 云厂商
+        # @param Provider: <p>云厂商</p>
         # @type Provider: String
-        # @param RiskName: 风险名称
+        # @param RiskName: <p>风险名称</p>
         # @type RiskName: String
-        # @param RiskInfluence: 风险危害
+        # @param RiskInfluence: <p>风险危害</p>
         # @type RiskInfluence: String
-        # @param RiskFixAdvice: 修复指引
+        # @param RiskFixAdvice: <p>修复指引</p>
         # @type RiskFixAdvice: String
+        # @param AssetType: <p>资产类型</p>
+        # @type AssetType: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RiskRuleId, :Provider, :RiskName, :RiskInfluence, :RiskFixAdvice, :RequestId
+        attr_accessor :RiskRuleId, :Provider, :RiskName, :RiskInfluence, :RiskFixAdvice, :AssetType, :RequestId
 
-        def initialize(riskruleid=nil, provider=nil, riskname=nil, riskinfluence=nil, riskfixadvice=nil, requestid=nil)
+        def initialize(riskruleid=nil, provider=nil, riskname=nil, riskinfluence=nil, riskfixadvice=nil, assettype=nil, requestid=nil)
           @RiskRuleId = riskruleid
           @Provider = provider
           @RiskName = riskname
           @RiskInfluence = riskinfluence
           @RiskFixAdvice = riskfixadvice
+          @AssetType = assettype
           @RequestId = requestid
         end
 
@@ -15688,6 +15706,7 @@ module TencentCloud
           @RiskName = params['RiskName']
           @RiskInfluence = params['RiskInfluence']
           @RiskFixAdvice = params['RiskFixAdvice']
+          @AssetType = params['AssetType']
           @RequestId = params['RequestId']
         end
       end
@@ -19634,12 +19653,12 @@ module TencentCloud
 
         attr_accessor :UnprocessedRisk, :ConfigurationRisk, :BaselineDeviation, :LeakDetection, :SQLBehaviorAnomaly, :PermissionAnomaly, :LoginBehaviorAnomaly, :AttackSurfaceRisk, :AccountSensitiveOperation, :UnprocessedAlarm, :NumOfNewAlarmEvent, :NumOfNewConfigRisk
         extend Gem::Deprecate
-        deprecate :ConfigurationRisk, :none, 2026, 5
-        deprecate :ConfigurationRisk=, :none, 2026, 5
-        deprecate :BaselineDeviation, :none, 2026, 5
-        deprecate :BaselineDeviation=, :none, 2026, 5
-        deprecate :LeakDetection, :none, 2026, 5
-        deprecate :LeakDetection=, :none, 2026, 5
+        deprecate :ConfigurationRisk, :none, 2026, 6
+        deprecate :ConfigurationRisk=, :none, 2026, 6
+        deprecate :BaselineDeviation, :none, 2026, 6
+        deprecate :BaselineDeviation=, :none, 2026, 6
+        deprecate :LeakDetection, :none, 2026, 6
+        deprecate :LeakDetection=, :none, 2026, 6
 
         def initialize(unprocessedrisk=nil, configurationrisk=nil, baselinedeviation=nil, leakdetection=nil, sqlbehavioranomaly=nil, permissionanomaly=nil, loginbehavioranomaly=nil, attacksurfacerisk=nil, accountsensitiveoperation=nil, unprocessedalarm=nil, numofnewalarmevent=nil, numofnewconfigrisk=nil)
           @UnprocessedRisk = unprocessedrisk
@@ -19812,12 +19831,12 @@ module TencentCloud
 
         attr_accessor :Date, :UncontrolledAccount, :ConfigurationRisk, :BaselineRisk, :LeakDetectionRisk, :SQLBehaviorAnomaly, :PermissionAnomaly, :LoginBehaviorAnomaly, :AttackSurfaceRisk, :AccountSensitiveOperation
         extend Gem::Deprecate
-        deprecate :ConfigurationRisk, :none, 2026, 5
-        deprecate :ConfigurationRisk=, :none, 2026, 5
-        deprecate :BaselineRisk, :none, 2026, 5
-        deprecate :BaselineRisk=, :none, 2026, 5
-        deprecate :LeakDetectionRisk, :none, 2026, 5
-        deprecate :LeakDetectionRisk=, :none, 2026, 5
+        deprecate :ConfigurationRisk, :none, 2026, 6
+        deprecate :ConfigurationRisk=, :none, 2026, 6
+        deprecate :BaselineRisk, :none, 2026, 6
+        deprecate :BaselineRisk=, :none, 2026, 6
+        deprecate :LeakDetectionRisk, :none, 2026, 6
+        deprecate :LeakDetectionRisk=, :none, 2026, 6
 
         def initialize(date=nil, uncontrolledaccount=nil, configurationrisk=nil, baselinerisk=nil, leakdetectionrisk=nil, sqlbehavioranomaly=nil, permissionanomaly=nil, loginbehavioranomaly=nil, attacksurfacerisk=nil, accountsensitiveoperation=nil)
           @Date = date
@@ -23029,10 +23048,12 @@ module TencentCloud
         # @type CheckStatus: String
         # @param AppID: <p>用户AppID</p>
         # @type AppID: Integer
+        # @param AssetType: <p>资产类型</p>
+        # @type AssetType: String
 
-        attr_accessor :CreateTime, :UpdateTime, :RiskStatus, :RiskContent, :Provider, :ProviderName, :CloudAccountId, :CloudAccountName, :InstanceId, :InstanceName, :RiskId, :RiskRuleId, :CheckStatus, :AppID
+        attr_accessor :CreateTime, :UpdateTime, :RiskStatus, :RiskContent, :Provider, :ProviderName, :CloudAccountId, :CloudAccountName, :InstanceId, :InstanceName, :RiskId, :RiskRuleId, :CheckStatus, :AppID, :AssetType
 
-        def initialize(createtime=nil, updatetime=nil, riskstatus=nil, riskcontent=nil, provider=nil, providername=nil, cloudaccountid=nil, cloudaccountname=nil, instanceid=nil, instancename=nil, riskid=nil, riskruleid=nil, checkstatus=nil, appid=nil)
+        def initialize(createtime=nil, updatetime=nil, riskstatus=nil, riskcontent=nil, provider=nil, providername=nil, cloudaccountid=nil, cloudaccountname=nil, instanceid=nil, instancename=nil, riskid=nil, riskruleid=nil, checkstatus=nil, appid=nil, assettype=nil)
           @CreateTime = createtime
           @UpdateTime = updatetime
           @RiskStatus = riskstatus
@@ -23047,6 +23068,7 @@ module TencentCloud
           @RiskRuleId = riskruleid
           @CheckStatus = checkstatus
           @AppID = appid
+          @AssetType = assettype
         end
 
         def deserialize(params)
@@ -23064,6 +23086,7 @@ module TencentCloud
           @RiskRuleId = params['RiskRuleId']
           @CheckStatus = params['CheckStatus']
           @AppID = params['AppID']
+          @AssetType = params['AssetType']
         end
       end
 

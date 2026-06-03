@@ -4639,23 +4639,23 @@ module TencentCloud
 
       # ListGroups请求参数结构体
       class ListGroupsRequest < TencentCloud::Common::AbstractModel
-        # @param ZoneId: 空间 ID。
+        # @param ZoneId: <p>空间 ID。</p>
         # @type ZoneId: String
-        # @param NextToken: 查询返回结果下一页的令牌。首次调用 API 不需要NextToken。  当您首次调用 API 时，如果返回数据总条数超过MaxResults限制，数据会被截断，只返回MaxResults条数据，同时，返回参数IsTruncated为true，返回一个NextToken。您可以使用上一次返回的NextToken继续调用 API，其他请求参数保持不变，查询被截断的数据。您可以按此方法多次查询，直到IsTruncated为false，表示全部数据查询完毕。
+        # @param NextToken: <p>查询返回结果下一页的令牌。首次调用 API 不需要NextToken。  当您首次调用 API 时，如果返回数据总条数超过MaxResults限制，数据会被截断，只返回MaxResults条数据，同时，返回参数IsTruncated为true，返回一个NextToken。您可以使用上一次返回的NextToken继续调用 API，其他请求参数保持不变，查询被截断的数据。您可以按此方法多次查询，直到IsTruncated为false，表示全部数据查询完毕。</p>
         # @type NextToken: String
-        # @param MaxResults: 每页的最大数据条数。  取值范围：1~100。  默认值：10。
+        # @param MaxResults: <p>每页的最大数据条数。  取值范围：1~100。  默认值：10。</p>
         # @type MaxResults: Integer
-        # @param Filter: 过滤条件。  格式：<Attribute> <Operator> <Value>，不区分大小写。目前，<Attribute>只支持GroupName，<Operator>只支持eq（Equals）和sw（Start With）。  示例：Filter = "GroupName sw test"，表示查询名称以 test 开头的全部用户组。Filter = "GroupName eq testgroup"，表示查询名称为 testgroup 的用户组。
+        # @param Filter: <p>过滤条件，用户组名称</p>
         # @type Filter: String
-        # @param GroupType: 用户组的类型  Manual：手动创建，Synchronized：外部导入。
+        # @param GroupType: <p>用户组的类型  Manual：手动创建，Synchronized：外部导入。</p>
         # @type GroupType: String
-        # @param FilterUsers: 筛选的用户，该用户关联的用户组会返回IsSelected=1
+        # @param FilterUsers: <p>筛选的用户，该用户关联的用户组会返回IsSelected=1</p>
         # @type FilterUsers: Array
-        # @param SortField: 排序的字段，目前只支持CreateTime，默认是CreateTime字段
+        # @param SortField: <p>排序的字段，目前只支持CreateTime，默认是CreateTime字段</p>
         # @type SortField: String
-        # @param SortType: 排序类型：Desc 倒序 Asc  正序，需要您和SortField一起设置
+        # @param SortType: <p>排序类型：Desc 倒序 Asc  正序，需要您和SortField一起设置</p>
         # @type SortType: String
-        # @param Offset: 翻页offset. 不要与NextToken同时使用，优先使用NextToken
+        # @param Offset: <p>翻页offset. 不要与NextToken同时使用，优先使用NextToken</p>
         # @type Offset: Integer
 
         attr_accessor :ZoneId, :NextToken, :MaxResults, :Filter, :GroupType, :FilterUsers, :SortField, :SortType, :Offset
@@ -4687,15 +4687,15 @@ module TencentCloud
 
       # ListGroups返回参数结构体
       class ListGroupsResponse < TencentCloud::Common::AbstractModel
-        # @param NextToken: 查询返回结果下一页的令牌。  说明 只有IsTruncated为true时，才显示该参数。
+        # @param NextToken: <p>查询返回结果下一页的令牌。  说明 只有IsTruncated为true时，才显示该参数。</p>
         # @type NextToken: String
-        # @param Groups: 用户组列表。
+        # @param Groups: <p>用户组列表。</p>
         # @type Groups: Array
-        # @param MaxResults: 每页的最大数据条数。
+        # @param MaxResults: <p>每页的最大数据条数。</p>
         # @type MaxResults: Integer
-        # @param TotalCounts: 符合请求参数条件的数据总条数。
+        # @param TotalCounts: <p>符合请求参数条件的数据总条数。</p>
         # @type TotalCounts: Integer
-        # @param IsTruncated: 返回结果是否被截断。取值：  true：已截断。 false：未截断。
+        # @param IsTruncated: <p>返回结果是否被截断。取值：  true：已截断。 false：未截断。</p>
         # @type IsTruncated: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6907,8 +6907,8 @@ module TencentCloud
 
         attr_accessor :ProductResourceId, :ResourceGrantLast
         extend Gem::Deprecate
-        deprecate :ResourceGrantLast, :none, 2026, 4
-        deprecate :ResourceGrantLast=, :none, 2026, 4
+        deprecate :ResourceGrantLast, :none, 2026, 6
+        deprecate :ResourceGrantLast=, :none, 2026, 6
 
         def initialize(productresourceid=nil, resourcegrantlast=nil)
           @ProductResourceId = productresourceid
@@ -7742,8 +7742,8 @@ module TencentCloud
 
         attr_accessor :ResourceId, :ProductResourceId
         extend Gem::Deprecate
-        deprecate :ResourceId, :none, 2026, 4
-        deprecate :ResourceId=, :none, 2026, 4
+        deprecate :ResourceId, :none, 2026, 6
+        deprecate :ResourceId=, :none, 2026, 6
 
         def initialize(resourceid=nil, productresourceid=nil)
           @ResourceId = resourceid

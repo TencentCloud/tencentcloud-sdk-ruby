@@ -5274,28 +5274,29 @@ module TencentCloud
 
       # ModifyInstance请求参数结构体
       class ModifyInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param RegistryId: 实例ID
+        # @param RegistryId: <p>实例ID</p>
         # @type RegistryId: String
-        # @param RegistryType: 实例的规格,
-        # 基础版：basic
-        # 标准版：standard
-        # 高级版：premium
+        # @param RegistryType: <p>实例的规格,<br>基础版：basic<br>标准版：standard<br>高级版：premium</p>
         # @type RegistryType: String
-        # @param DeletionProtection: 实例删除保护，false为关闭
+        # @param DeletionProtection: <p>实例删除保护，false为关闭</p>
         # @type DeletionProtection: Boolean
+        # @param EnableCosVersioning: <p>实例是否开启多版本控制，false为关闭</p>
+        # @type EnableCosVersioning: Boolean
 
-        attr_accessor :RegistryId, :RegistryType, :DeletionProtection
+        attr_accessor :RegistryId, :RegistryType, :DeletionProtection, :EnableCosVersioning
 
-        def initialize(registryid=nil, registrytype=nil, deletionprotection=nil)
+        def initialize(registryid=nil, registrytype=nil, deletionprotection=nil, enablecosversioning=nil)
           @RegistryId = registryid
           @RegistryType = registrytype
           @DeletionProtection = deletionprotection
+          @EnableCosVersioning = enablecosversioning
         end
 
         def deserialize(params)
           @RegistryId = params['RegistryId']
           @RegistryType = params['RegistryType']
           @DeletionProtection = params['DeletionProtection']
+          @EnableCosVersioning = params['EnableCosVersioning']
         end
       end
 

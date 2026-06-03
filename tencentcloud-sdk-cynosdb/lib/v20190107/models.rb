@@ -3913,60 +3913,41 @@ module TencentCloud
 
       # CreateProxyEndPoint请求参数结构体
       class CreateProxyEndPointRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群 ID。
+        # @param ClusterId: <p>集群 ID。</p>
         # @type ClusterId: String
-        # @param UniqueVpcId: 私有网络 ID，默认与集群私有网络 ID 保持一致。
+        # @param UniqueVpcId: <p>私有网络 ID。</p>
         # @type UniqueVpcId: String
-        # @param UniqueSubnetId: 私有网络子网 ID，默认与集群子网 ID 保持一致。
+        # @param UniqueSubnetId: <p>私有网络子网 ID。</p>
         # @type UniqueSubnetId: String
-        # @param ConnectionPoolType: 连接池类型：SessionConnectionPool（会话级别连接池）。
+        # @param ConnectionPoolType: <p>连接池类型：SessionConnectionPool（会话级别连接池）。</p>
         # @type ConnectionPoolType: String
-        # @param OpenConnectionPool: 是否开启连接池。
-        # yes：表示开启。
-        # no：表示不开启。
+        # @param OpenConnectionPool: <p>是否开启连接池。<br>yes：表示开启。<br>no：表示不开启。</p>
         # @type OpenConnectionPool: String
-        # @param ConnectionPoolTimeOut: 连接池阈值：单位（秒），可选范围：0 - 300秒。
+        # @param ConnectionPoolTimeOut: <p>连接池阈值：单位（秒），可选范围：0 - 300秒。</p>
         # @type ConnectionPoolTimeOut: Integer
-        # @param SecurityGroupIds: 绑定的安全组 ID 数组。
+        # @param SecurityGroupIds: <p>绑定的安全组 ID 数组。</p>
         # @type SecurityGroupIds: Array
-        # @param Description: 描述说明。
+        # @param Description: <p>描述说明。</p>
         # @type Description: String
-        # @param Vip: 想要绑定的 vip 信息，需与 UniqueVpcId 对应。
+        # @param Vip: <p>想要绑定的 vip 信息，需与 UniqueVpcId 对应。</p>
         # @type Vip: String
-        # @param WeightMode: 权重模式：
-        # system：系统分配。
-        # custom：自定义。
+        # @param WeightMode: <p>权重模式：<br>system：系统分配。<br>custom：自定义。</p>
         # @type WeightMode: String
-        # @param AutoAddRo: 是否自动添加只读实例。
-        # yes：表示自动添加只读实例。
-        # no：表示不自动添加只读实例。
+        # @param AutoAddRo: <p>是否自动添加只读实例。<br>yes：表示自动添加只读实例。<br>no：表示不自动添加只读实例。</p>
         # @type AutoAddRo: String
-        # @param FailOver: 是否开启故障转移。
-        # yes：表示开启，开启后，当数据库代理出现故障时，连接地址将会路由到主实例。
-        # no：表示不开启。
-        # 说明：
-        # 仅当 RwType 参数值为 READWRITE 时，才支持设置此项。
+        # @param FailOver: <p>是否开启故障转移。<br>yes：表示开启，开启后，当数据库代理出现故障时，连接地址将会路由到主实例。<br>no：表示不开启。<br>说明：<br>仅当 RwType 参数值为 READWRITE 时，才支持设置此项。</p>
         # @type FailOver: String
-        # @param ConsistencyType: 一致性类型：
-        # eventual：最终一致性。
-        # global：全局一致性。
-        # session：会话一致性。
-        # 说明：
-        # 仅当 RwType 参数值为 READWRITE 时，才支持设置此项。
+        # @param ConsistencyType: <p>一致性类型：<br>eventual：最终一致性。<br>global：全局一致性。<br>session：会话一致性。<br>说明：<br>仅当 RwType 参数值为 READWRITE 时，才支持设置此项。</p>
         # @type ConsistencyType: String
-        # @param RwType: 读写属性：
-        # READWRITE：表示读写分离。当此参数值为 READWRITE 时，才支持设置 FailOver、ConsistencyType 参数。
-        # READONLY：表示只读。
+        # @param RwType: <p>读写属性：<br>READWRITE：表示读写分离。当此参数值为 READWRITE 时，才支持设置 FailOver、ConsistencyType 参数。<br>READONLY：表示只读。</p>
         # @type RwType: String
-        # @param ConsistencyTimeOut: 一致性超时时间。取值范围：0 ~ 1000000（微秒）。设置为0时，表示若只读实例出现延迟导致一致性策略不满足时，请求将一直等待。
+        # @param ConsistencyTimeOut: <p>一致性超时时间。取值范围：0 ~ 1000000（微秒）。设置为0时，表示若只读实例出现延迟导致一致性策略不满足时，请求将一直等待。</p>
         # @type ConsistencyTimeOut: Integer
-        # @param TransSplit: 是否开启事务拆分。开启后，在一个事务中拆分读和写到不同的实例上去执行。
+        # @param TransSplit: <p>是否开启事务拆分。开启后，在一个事务中拆分读和写到不同的实例上去执行。</p>
         # @type TransSplit: Boolean
-        # @param AccessMode: 接入模式：
-        # nearby：就近访问。
-        # balance：均衡分配。
+        # @param AccessMode: <p>接入模式：<br>nearby：就近访问。<br>balance：均衡分配。</p>
         # @type AccessMode: String
-        # @param InstanceWeights: 实例权重。
+        # @param InstanceWeights: <p>实例权重。</p>
         # @type InstanceWeights: Array
 
         attr_accessor :ClusterId, :UniqueVpcId, :UniqueSubnetId, :ConnectionPoolType, :OpenConnectionPool, :ConnectionPoolTimeOut, :SecurityGroupIds, :Description, :Vip, :WeightMode, :AutoAddRo, :FailOver, :ConsistencyType, :RwType, :ConsistencyTimeOut, :TransSplit, :AccessMode, :InstanceWeights
@@ -4023,11 +4004,11 @@ module TencentCloud
 
       # CreateProxyEndPoint返回参数结构体
       class CreateProxyEndPointResponse < TencentCloud::Common::AbstractModel
-        # @param FlowId: 异步流程 ID。
+        # @param FlowId: <p>异步流程 ID。</p>
         # @type FlowId: Integer
-        # @param TaskId: 异步任务 ID。
+        # @param TaskId: <p>异步任务 ID。</p>
         # @type TaskId: Integer
-        # @param ProxyGroupId: 数据库代理组 ID。
+        # @param ProxyGroupId: <p>数据库代理组 ID。</p>
         # @type ProxyGroupId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -16411,47 +16392,39 @@ module TencentCloud
 
       # ModifyProxyRwSplit请求参数结构体
       class ModifyProxyRwSplitRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群ID，例如cynosdbmysql-asd123
+        # @param ClusterId: <p>集群ID，例如cynosdbmysql-asd123</p>
         # @type ClusterId: String
-        # @param ProxyGroupId: 数据库代理组ID，例如cynosdbmysql-proxy-qwe123
+        # @param ProxyGroupId: <p>数据库代理组ID，例如cynosdbmysql-proxy-qwe123</p>
         # @type ProxyGroupId: String
-        # @param ConsistencyType: 一致性类型；“eventual"-最终一致性, "session"-会话一致性, "global"-全局一致性
+        # @param ConsistencyType: <p>一致性类型；“eventual&quot;-最终一致性, &quot;session&quot;-会话一致性, &quot;global&quot;-全局一致性</p>
         # @type ConsistencyType: String
-        # @param ConsistencyTimeOut: 一致性超时时间。
-        # 取值范围：0~1000000（微秒）,设置0则表示若只读实例出现延迟, 导致一致性策略不满足, 请求将一直等待。
+        # @param ConsistencyTimeOut: <p>一致性超时时间。<br>取值范围：0~1000000（微秒）,设置0则表示若只读实例出现延迟, 导致一致性策略不满足, 请求将一直等待。</p>
         # @type ConsistencyTimeOut: String
-        # @param WeightMode: 读写权重分配模式；系统自动分配："system"， 自定义："custom"
+        # @param WeightMode: <p>读写权重分配模式；系统自动分配：&quot;system&quot;， 自定义：&quot;custom&quot;</p>
         # @type WeightMode: String
-        # @param InstanceWeights: 实例只读权重。
+        # @param InstanceWeights: <p>实例只读权重。</p>
         # @type InstanceWeights: Array
-        # @param FailOver: 是否开启故障转移，代理出现故障后，连接地址将路由到主实例，取值："yes" , "no"
+        # @param FailOver: <p>是否开启故障转移，代理出现故障后，连接地址将路由到主实例，取值：&quot;yes&quot; , &quot;no&quot;</p>
         # @type FailOver: String
-        # @param AutoAddRo: 是否自动添加只读实例，取值："yes" , "no"
+        # @param AutoAddRo: <p>是否自动添加只读实例，取值：&quot;yes&quot; , &quot;no&quot;</p>
         # @type AutoAddRo: String
-        # @param OpenRw: 是否打开读写分离。
-        # 该参数已废弃，请通过RwType设置读写属性。
+        # @param OpenRw: <p>是否打开读写分离。<br>该参数已废弃，请通过RwType设置读写属性。</p>
         # @type OpenRw: String
-        # @param RwType: 读写类型：
-        # READWRITE,READONLY
+        # @param RwType: <p>读写类型：<br>READWRITE,READONLY</p>
         # @type RwType: String
-        # @param TransSplit: 事务拆分。
-        # 在一个事务中拆分读和写到不同的实例上去执行。
+        # @param TransSplit: <p>事务拆分。<br>在一个事务中拆分读和写到不同的实例上去执行。</p>
         # @type TransSplit: Boolean
-        # @param AccessMode: 连接模式：
-        # nearby,balance
+        # @param AccessMode: <p>连接模式：<br>nearby,balance</p>
         # @type AccessMode: String
-        # @param OpenConnectionPool: 是否打开连接池：
-        # yes,no
+        # @param OpenConnectionPool: <p>是否打开连接池：<br>yes,no</p>
         # @type OpenConnectionPool: String
-        # @param ConnectionPoolType: 连接池类型：
-        # SessionConnectionPool
+        # @param ConnectionPoolType: <p>连接池类型：<br>SessionConnectionPool</p>
         # @type ConnectionPoolType: String
-        # @param ConnectionPoolTimeOut: 连接池时间。
-        # 可选范围:0~300（秒）
+        # @param ConnectionPoolTimeOut: <p>连接池时间。<br>可选范围:0~300（秒）</p>
         # @type ConnectionPoolTimeOut: Integer
-        # @param ApNodeAsRoNode: 是否将libra节点当作普通RO节点
+        # @param ApNodeAsRoNode: <p>是否将libra节点当作普通RO节点</p>
         # @type ApNodeAsRoNode: Boolean
-        # @param ApQueryToOtherNode: libra节点故障，是否转发给其他节点
+        # @param ApQueryToOtherNode: <p>libra节点故障，是否转发给其他节点</p>
         # @type ApQueryToOtherNode: Boolean
 
         attr_accessor :ClusterId, :ProxyGroupId, :ConsistencyType, :ConsistencyTimeOut, :WeightMode, :InstanceWeights, :FailOver, :AutoAddRo, :OpenRw, :RwType, :TransSplit, :AccessMode, :OpenConnectionPool, :ConnectionPoolType, :ConnectionPoolTimeOut, :ApNodeAsRoNode, :ApQueryToOtherNode
@@ -16506,9 +16479,9 @@ module TencentCloud
 
       # ModifyProxyRwSplit返回参数结构体
       class ModifyProxyRwSplitResponse < TencentCloud::Common::AbstractModel
-        # @param FlowId: 异步FlowId
+        # @param FlowId: <p>异步FlowId</p>
         # @type FlowId: Integer
-        # @param TaskId: 异步任务ID
+        # @param TaskId: <p>异步任务ID</p>
         # @type TaskId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -18497,29 +18470,29 @@ module TencentCloud
 
       # 数据库代理组读写分离信息
       class ProxyGroupRwInfo < TencentCloud::Common::AbstractModel
-        # @param ConsistencyType: 一致性类型 eventual-最终一致性,global-全局一致性,session-会话一致性
+        # @param ConsistencyType: <p>一致性类型 eventual-最终一致性,global-全局一致性,session-会话一致性</p>
         # @type ConsistencyType: String
-        # @param ConsistencyTimeOut: 一致性超时时间
+        # @param ConsistencyTimeOut: <p>一致性超时时间</p>
         # @type ConsistencyTimeOut: Integer
-        # @param WeightMode: 权重模式 system-系统分配，custom-自定义
+        # @param WeightMode: <p>权重模式 system-系统分配，custom-自定义</p>
         # @type WeightMode: String
-        # @param FailOver: 是否开启故障转移
+        # @param FailOver: <p>是否开启故障转移</p>
         # @type FailOver: String
-        # @param AutoAddRo: 是否自动添加只读实例，yes-是，no-不自动添加
+        # @param AutoAddRo: <p>是否自动添加只读实例，yes-是，no-不自动添加</p>
         # @type AutoAddRo: String
-        # @param InstanceWeights: 实例权重数组
+        # @param InstanceWeights: <p>实例权重数组</p>
         # @type InstanceWeights: Array
-        # @param OpenRw: 是否开通读写节点，yse-是，no-否
+        # @param OpenRw: <p>是否开通读写节点，yse-是，no-否</p>
         # @type OpenRw: String
-        # @param RwType: 读写属性，可选值：READWRITE,READONLY
+        # @param RwType: <p>读写属性，可选值：READWRITE,READONLY</p>
         # @type RwType: String
-        # @param TransSplit: 事务拆分
+        # @param TransSplit: <p>事务拆分</p>
         # @type TransSplit: Boolean
-        # @param AccessMode: 连接模式，可选值：balance，nearby
+        # @param AccessMode: <p>连接模式，可选值：balance，nearby</p>
         # @type AccessMode: String
-        # @param ApNodeAsRoNode: 是否将libra节点当作普通RO节点
+        # @param ApNodeAsRoNode: <p>是否将libra节点当作普通RO节点</p>
         # @type ApNodeAsRoNode: Boolean
-        # @param ApQueryToOtherNode: libra节点故障，是否转发给其他节点
+        # @param ApQueryToOtherNode: <p>libra节点故障，是否转发给其他节点</p>
         # @type ApQueryToOtherNode: Boolean
 
         attr_accessor :ConsistencyType, :ConsistencyTimeOut, :WeightMode, :FailOver, :AutoAddRo, :InstanceWeights, :OpenRw, :RwType, :TransSplit, :AccessMode, :ApNodeAsRoNode, :ApQueryToOtherNode

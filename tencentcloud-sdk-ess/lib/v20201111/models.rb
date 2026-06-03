@@ -483,6 +483,82 @@ module TencentCloud
         end
       end
 
+      # 归档合同的参与人信息
+      class ArchiveFlowApproverInfo < TencentCloud::Common::AbstractModel
+        # @param ApproverName: <p>个人签署人姓名，如果传入，必须是证件上的真实中文名；中文名最长 25 个字符；</p>
+        # @type ApproverName: String
+        # @param ApproverType: <p>参与者类型，用于区分个人或企业，可选类型如下:<br><strong>0</strong>：企业<br><strong>1</strong>：个人</p>
+        # @type ApproverType: Integer
+        # @param OrganizationName: <p>企业签署方名称。长度不超过 200 个字符。<br>如果名称中包含英文括号()，请使用中文括号（）代替。<br>如果签署方是企业签署方(approverType = 0 )， 则企业名称必填。</p>
+        # @type OrganizationName: String
+        # @param ApproverMobile: <p>签署人手机号，必须是合法手机号。</p>
+        # @type ApproverMobile: String
+        # @param ApproverEmail: <p>签署人邮箱， 必须是合法邮箱格式。</p>
+        # @type ApproverEmail: String
+        # @param ApproverIdCardType: <p>签署方经办人的证件类型，支持以下类型，样式可以参考<a href="https://qian.tencent.com/developers/partner/id_card_support/" target="_blank">常见个人证件类型介绍</a></p><ul><li>ID_CARD 中国大陆居民身份证  (默认值)</li><li>HONGKONG_AND_MACAO 港澳居民来往内地通行证</li><li>HONGKONG_MACAO_AND_TAIWAN 港澳台居民居住证(格式同居民身份证)</li><li>OTHER_CARD_TYPE 其他证件</li></ul>
+        # @type ApproverIdCardType: String
+        # @param ApproverIdCardNumber: <p>签署方经办人的证件号码，应符合以下规则</p><ul><li>中国大陆居民身份证号码应为18位字符串，由数字和大写字母X组成（如存在X，请大写）。</li><li>中国港澳居民来往内地通行证号码共11位。第1位为字母，“H”字头签发给中国香港居民，“M”字头签发给中国澳门居民；第2位至第11位为数字。</li><li>中国港澳台居民居住证号码编码规则与中国大陆身份证相同，应为18位字符串。</li></ul>
+        # @type ApproverIdCardNumber: String
+        # @param ApproveTime: <p>当前参与者的签署时间，Unix 秒级时间戳。</p>
+        # @type ApproveTime: Integer
+
+        attr_accessor :ApproverName, :ApproverType, :OrganizationName, :ApproverMobile, :ApproverEmail, :ApproverIdCardType, :ApproverIdCardNumber, :ApproveTime
+
+        def initialize(approvername=nil, approvertype=nil, organizationname=nil, approvermobile=nil, approveremail=nil, approveridcardtype=nil, approveridcardnumber=nil, approvetime=nil)
+          @ApproverName = approvername
+          @ApproverType = approvertype
+          @OrganizationName = organizationname
+          @ApproverMobile = approvermobile
+          @ApproverEmail = approveremail
+          @ApproverIdCardType = approveridcardtype
+          @ApproverIdCardNumber = approveridcardnumber
+          @ApproveTime = approvetime
+        end
+
+        def deserialize(params)
+          @ApproverName = params['ApproverName']
+          @ApproverType = params['ApproverType']
+          @OrganizationName = params['OrganizationName']
+          @ApproverMobile = params['ApproverMobile']
+          @ApproverEmail = params['ApproverEmail']
+          @ApproverIdCardType = params['ApproverIdCardType']
+          @ApproverIdCardNumber = params['ApproverIdCardNumber']
+          @ApproveTime = params['ApproveTime']
+        end
+      end
+
+      # 归档合同结果
+      class ArchiveFlowResult < TencentCloud::Common::AbstractModel
+        # @param FlowId: <p>归档合同id</p>
+        # @type FlowId: String
+        # @param ArchiveFlowStatus: <p>合同处理结果</p><p>枚举值：</p><ul><li>0： 成功</li><li>1： 失败</li></ul>
+        # @type ArchiveFlowStatus: Integer
+        # @param BusinessId: <p>业务自定义id</p>
+        # @type BusinessId: String
+        # @param ResourceIdList: <p>资源ID列表</p>
+        # @type ResourceIdList: Array
+        # @param ErrorMessage: <p>错误信息</p>
+        # @type ErrorMessage: String
+
+        attr_accessor :FlowId, :ArchiveFlowStatus, :BusinessId, :ResourceIdList, :ErrorMessage
+
+        def initialize(flowid=nil, archiveflowstatus=nil, businessid=nil, resourceidlist=nil, errormessage=nil)
+          @FlowId = flowid
+          @ArchiveFlowStatus = archiveflowstatus
+          @BusinessId = businessid
+          @ResourceIdList = resourceidlist
+          @ErrorMessage = errormessage
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @ArchiveFlowStatus = params['ArchiveFlowStatus']
+          @BusinessId = params['BusinessId']
+          @ResourceIdList = params['ResourceIdList']
+          @ErrorMessage = params['ErrorMessage']
+        end
+      end
+
       # 企业扩展服务授权列表详情
       class AuthInfoDetail < TencentCloud::Common::AbstractModel
         # @param Type: 扩展服务类型，和入参一致
@@ -1835,6 +1911,126 @@ module TencentCloud
             @Identity = Identity.new
             @Identity.deserialize(params['Identity'])
           end
+        end
+      end
+
+      # 创建归档合同信息
+      class CreateArchiveFlow < TencentCloud::Common::AbstractModel
+        # @param ResourceIds: <p>合同文件的资源id，使用<a href="https://qian.tencent.com/developers/companyApis/templatesAndFiles/UploadFiles" target="_blank">UploadFiles</a> 上传文件返回resourceId，目前一个合同只能支持一个资源ID。</p>
+        # @type ResourceIds: Array
+        # @param FlowName: <p>合同名称，不传时系统会使用合同资源文件名作为合同名称；最终合同名称不能为空；长度不能超过200，只能由中文、字母、数字和下划线组成。</p>
+        # @type FlowName: String
+        # @param FlowType: <p>合同类型，自定义文本字符串，长度不能超过200。</p>
+        # @type FlowType: String
+        # @param BusinessId: <p>调用方业务系统中的合同业务编号，可以用于外部系统和归档合同做关联，长度不超过 128 字节</p>
+        # @type BusinessId: String
+        # @param CreatorName: <p>合同发起方/创建人名称，用于归档合同展示和检索，长度不超过 32 字符</p>
+        # @type CreatorName: String
+        # @param ApproverInfo: <p>签署人信息列表，用于记录合同由哪些个人或企业签署，最多 50 个参与者。</p>
+        # @type ApproverInfo: Array
+        # @param CcInfo: <p>关注人信息列表，用于记录合同关注对象，最多 50 个关注者。</p>
+        # @type CcInfo: Array
+        # @param UserData: <p>调用方自定义透传数据，可用于保存业务扩展信息，长度不超过 20480 字节。</p>
+        # @type UserData: String
+        # @param FlowDescription: <p>合同描述/备注信息，长度不超过 1000 个字符</p>
+        # @type FlowDescription: String
+        # @param ApproveTime: <p>合同签署完成时间，Unix 秒级时间戳</p>
+        # @type ApproveTime: Integer
+        # @param CustomCreatedOn: <p>合同发起时间/合同原始创建时间，Unix 秒级时间戳</p>
+        # @type CustomCreatedOn: Integer
+
+        attr_accessor :ResourceIds, :FlowName, :FlowType, :BusinessId, :CreatorName, :ApproverInfo, :CcInfo, :UserData, :FlowDescription, :ApproveTime, :CustomCreatedOn
+
+        def initialize(resourceids=nil, flowname=nil, flowtype=nil, businessid=nil, creatorname=nil, approverinfo=nil, ccinfo=nil, userdata=nil, flowdescription=nil, approvetime=nil, customcreatedon=nil)
+          @ResourceIds = resourceids
+          @FlowName = flowname
+          @FlowType = flowtype
+          @BusinessId = businessid
+          @CreatorName = creatorname
+          @ApproverInfo = approverinfo
+          @CcInfo = ccinfo
+          @UserData = userdata
+          @FlowDescription = flowdescription
+          @ApproveTime = approvetime
+          @CustomCreatedOn = customcreatedon
+        end
+
+        def deserialize(params)
+          @ResourceIds = params['ResourceIds']
+          @FlowName = params['FlowName']
+          @FlowType = params['FlowType']
+          @BusinessId = params['BusinessId']
+          @CreatorName = params['CreatorName']
+          unless params['ApproverInfo'].nil?
+            @ApproverInfo = []
+            params['ApproverInfo'].each do |i|
+              archiveflowapproverinfo_tmp = ArchiveFlowApproverInfo.new
+              archiveflowapproverinfo_tmp.deserialize(i)
+              @ApproverInfo << archiveflowapproverinfo_tmp
+            end
+          end
+          unless params['CcInfo'].nil?
+            @CcInfo = []
+            params['CcInfo'].each do |i|
+              archiveflowapproverinfo_tmp = ArchiveFlowApproverInfo.new
+              archiveflowapproverinfo_tmp.deserialize(i)
+              @CcInfo << archiveflowapproverinfo_tmp
+            end
+          end
+          @UserData = params['UserData']
+          @FlowDescription = params['FlowDescription']
+          @ApproveTime = params['ApproveTime']
+          @CustomCreatedOn = params['CustomCreatedOn']
+        end
+      end
+
+      # CreateArchiveFlowTask请求参数结构体
+      class CreateArchiveFlowTaskRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: <p>执行本接口操作的员工信息。注: <code>在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。</code></p>
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param ArchiveFlows: <p>归档合同列表，一次最多支持50个合同</p>
+        # @type ArchiveFlows: Array
+
+        attr_accessor :Operator, :ArchiveFlows
+
+        def initialize(operator=nil, archiveflows=nil)
+          @Operator = operator
+          @ArchiveFlows = archiveflows
+        end
+
+        def deserialize(params)
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          unless params['ArchiveFlows'].nil?
+            @ArchiveFlows = []
+            params['ArchiveFlows'].each do |i|
+              createarchiveflow_tmp = CreateArchiveFlow.new
+              createarchiveflow_tmp.deserialize(i)
+              @ArchiveFlows << createarchiveflow_tmp
+            end
+          end
+        end
+      end
+
+      # CreateArchiveFlowTask返回参数结构体
+      class CreateArchiveFlowTaskResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>归档任务ID，后续使用 <a href="">查询归档任务状态</a>接口获取归档任务执行结果</p>
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
         end
       end
 
@@ -9099,6 +9295,60 @@ module TencentCloud
         def deserialize(params)
           @DepartmentId = params['DepartmentId']
           @DepartmentName = params['DepartmentName']
+        end
+      end
+
+      # DescribeArchiveFlowTask请求参数结构体
+      class DescribeArchiveFlowTaskRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: <p>执行本接口操作的员工信息。注: <code>在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。</code></p>
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param TaskId: <p>任务id，<a href="">创建归档任务</a>时返回</p>
+        # @type TaskId: String
+
+        attr_accessor :Operator, :TaskId
+
+        def initialize(operator=nil, taskid=nil)
+          @Operator = operator
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # DescribeArchiveFlowTask返回参数结构体
+      class DescribeArchiveFlowTaskResponse < TencentCloud::Common::AbstractModel
+        # @param Status: <p>任务状态</p><p>枚举值：</p><ul><li>0： 待处理</li><li>1： 处理中</li><li>2： 任务完成</li><li>3： 任务完成(存在失败)</li></ul>
+        # @type Status: Integer
+        # @param ArchiveFlowResults: <p>每条合同的处理结果，与创建任务的archive_flows列表顺序一致</p>
+        # @type ArchiveFlowResults: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :ArchiveFlowResults, :RequestId
+
+        def initialize(status=nil, archiveflowresults=nil, requestid=nil)
+          @Status = status
+          @ArchiveFlowResults = archiveflowresults
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          unless params['ArchiveFlowResults'].nil?
+            @ArchiveFlowResults = []
+            params['ArchiveFlowResults'].each do |i|
+              archiveflowresult_tmp = ArchiveFlowResult.new
+              archiveflowresult_tmp.deserialize(i)
+              @ArchiveFlowResults << archiveflowresult_tmp
+            end
+          end
+          @RequestId = params['RequestId']
         end
       end
 

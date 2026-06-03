@@ -17,6 +17,111 @@
 module TencentCloud
   module Bi
     module V20220105
+      # API数据源连接配置
+      class ApiDatasourceConfig < TencentCloud::Common::AbstractModel
+        # @param FieldsJsonData: API数据源解析结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FieldsJsonData: String
+        # @param ConnectionType: 连接类型1:直连 2:抽取
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConnectionType: Integer
+        # @param FrequencyConfig: 抽取频率配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FrequencyConfig: :class:`Tencentcloud::Bi.v20220105.models.FrequencyConfig`
+        # @param Url: 请求URL
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Url: String
+        # @param RequestMethod: 1:GET 2:POST
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RequestMethod: Integer
+        # @param RequestHeader: 请求头
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RequestHeader: String
+        # @param RequestParams: 请求参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RequestParams: String
+        # @param RequestBody: 请求体
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RequestBody: String
+        # @param UserName: 用户名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserName: String
+        # @param Password: 密码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Password: String
+        # @param AuthorizationType: 1: 无鉴权 2:BASIC_AUTH
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AuthorizationType: Integer
+        # @param TableId: 表id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableId: Integer
+        # @param JsonPathDbNameMap: 路径DbName映射
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type JsonPathDbNameMap: String
+        # @param AuthApi: 鉴权API
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AuthApi: String
+        # @param AppKey: 应用Key
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AppKey: String
+        # @param AppSecret: 应用密钥
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AppSecret: String
+        # @param SecretKey: 数据密钥Key
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SecretKey: String
+        # @param SecretIv: 数据密钥初始化向量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SecretIv: String
+
+        attr_accessor :FieldsJsonData, :ConnectionType, :FrequencyConfig, :Url, :RequestMethod, :RequestHeader, :RequestParams, :RequestBody, :UserName, :Password, :AuthorizationType, :TableId, :JsonPathDbNameMap, :AuthApi, :AppKey, :AppSecret, :SecretKey, :SecretIv
+
+        def initialize(fieldsjsondata=nil, connectiontype=nil, frequencyconfig=nil, url=nil, requestmethod=nil, requestheader=nil, requestparams=nil, requestbody=nil, username=nil, password=nil, authorizationtype=nil, tableid=nil, jsonpathdbnamemap=nil, authapi=nil, appkey=nil, appsecret=nil, secretkey=nil, secretiv=nil)
+          @FieldsJsonData = fieldsjsondata
+          @ConnectionType = connectiontype
+          @FrequencyConfig = frequencyconfig
+          @Url = url
+          @RequestMethod = requestmethod
+          @RequestHeader = requestheader
+          @RequestParams = requestparams
+          @RequestBody = requestbody
+          @UserName = username
+          @Password = password
+          @AuthorizationType = authorizationtype
+          @TableId = tableid
+          @JsonPathDbNameMap = jsonpathdbnamemap
+          @AuthApi = authapi
+          @AppKey = appkey
+          @AppSecret = appsecret
+          @SecretKey = secretkey
+          @SecretIv = secretiv
+        end
+
+        def deserialize(params)
+          @FieldsJsonData = params['FieldsJsonData']
+          @ConnectionType = params['ConnectionType']
+          unless params['FrequencyConfig'].nil?
+            @FrequencyConfig = FrequencyConfig.new
+            @FrequencyConfig.deserialize(params['FrequencyConfig'])
+          end
+          @Url = params['Url']
+          @RequestMethod = params['RequestMethod']
+          @RequestHeader = params['RequestHeader']
+          @RequestParams = params['RequestParams']
+          @RequestBody = params['RequestBody']
+          @UserName = params['UserName']
+          @Password = params['Password']
+          @AuthorizationType = params['AuthorizationType']
+          @TableId = params['TableId']
+          @JsonPathDbNameMap = params['JsonPathDbNameMap']
+          @AuthApi = params['AuthApi']
+          @AppKey = params['AppKey']
+          @AppSecret = params['AppSecret']
+          @SecretKey = params['SecretKey']
+          @SecretIv = params['SecretIv']
+        end
+      end
+
       # 创建ApiKey接口出参
       class ApiKeyAuthApplyVO < TencentCloud::Common::AbstractModel
         # @param Id: <p>id</p>
@@ -420,6 +525,186 @@ module TencentCloud
             @Data = ApiKeyAuthApplyVO.new
             @Data.deserialize(params['Data'])
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateDataTable请求参数结构体
+      class CreateDataTableRequest < TencentCloud::Common::AbstractModel
+        # @param Type: 后端提供字典：数据表类型，1、数据库建表，2、SQL建表，3、Excel上传，4、API接入，5、腾讯文档，6、云数据库，7、手工输入，8、关联查询
+        # @type Type: Integer
+        # @param Name: 数据表名称
+        # @type Name: String
+        # @param ProjectId: 无
+        # @type ProjectId: Integer
+        # @param FoldId: 所属文件夹
+        # @type FoldId: Integer
+        # @param DatasourceId: 数据源Id
+        # @type DatasourceId: String
+        # @param TableName: 物理表名
+        # @type TableName: String
+        # @param Sql: sql语句
+        # @type Sql: String
+        # @param ExcelUrl: excel地址
+        # @type ExcelUrl: String
+        # @param Fields: 字段配置
+        # @type Fields: Array
+        # @param TableNodeType: 多表关联使用: 1:数据源原表,2:本地表,3:Excel表,4:API表
+        # @type TableNodeType: Integer
+        # @param Tables: 多表关联的原始表信息
+        # @type Tables: Array
+        # @param Joins: 多表关联的关联信息
+        # @type Joins: Array
+        # @param ExtInfo: 补充信息，如api数据源信息，腾讯文档接入信息等
+        # @type ExtInfo: String
+        # @param AsyncRequest: 是否是异步
+        # @type AsyncRequest: Boolean
+        # @param ParentTranId: 依赖的异步事务id
+        # @type ParentTranId: String
+        # @param ApiDatasourceConfig: API数据源配置
+        # @type ApiDatasourceConfig: :class:`Tencentcloud::Bi.v20220105.models.ApiDatasourceConfig`
+        # @param ParamList: 1
+        # @type ParamList: Array
+        # @param DlcExtInfo: dlc高级参数
+        # @type DlcExtInfo: String
+        # @param QueryDbData: 是否查询数据库
+        # @type QueryDbData: String
+        # @param TableComment: 数据表备注
+        # @type TableComment: String
+        # @param QueryFieldRemark: 是否查询字段备注
+        # @type QueryFieldRemark: Integer
+        # @param FieldRemarkList: 字段备注列表
+        # @type FieldRemarkList: Array
+
+        attr_accessor :Type, :Name, :ProjectId, :FoldId, :DatasourceId, :TableName, :Sql, :ExcelUrl, :Fields, :TableNodeType, :Tables, :Joins, :ExtInfo, :AsyncRequest, :ParentTranId, :ApiDatasourceConfig, :ParamList, :DlcExtInfo, :QueryDbData, :TableComment, :QueryFieldRemark, :FieldRemarkList
+
+        def initialize(type=nil, name=nil, projectid=nil, foldid=nil, datasourceid=nil, tablename=nil, sql=nil, excelurl=nil, fields=nil, tablenodetype=nil, tables=nil, joins=nil, extinfo=nil, asyncrequest=nil, parenttranid=nil, apidatasourceconfig=nil, paramlist=nil, dlcextinfo=nil, querydbdata=nil, tablecomment=nil, queryfieldremark=nil, fieldremarklist=nil)
+          @Type = type
+          @Name = name
+          @ProjectId = projectid
+          @FoldId = foldid
+          @DatasourceId = datasourceid
+          @TableName = tablename
+          @Sql = sql
+          @ExcelUrl = excelurl
+          @Fields = fields
+          @TableNodeType = tablenodetype
+          @Tables = tables
+          @Joins = joins
+          @ExtInfo = extinfo
+          @AsyncRequest = asyncrequest
+          @ParentTranId = parenttranid
+          @ApiDatasourceConfig = apidatasourceconfig
+          @ParamList = paramlist
+          @DlcExtInfo = dlcextinfo
+          @QueryDbData = querydbdata
+          @TableComment = tablecomment
+          @QueryFieldRemark = queryfieldremark
+          @FieldRemarkList = fieldremarklist
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Name = params['Name']
+          @ProjectId = params['ProjectId']
+          @FoldId = params['FoldId']
+          @DatasourceId = params['DatasourceId']
+          @TableName = params['TableName']
+          @Sql = params['Sql']
+          @ExcelUrl = params['ExcelUrl']
+          unless params['Fields'].nil?
+            @Fields = []
+            params['Fields'].each do |i|
+              tablefield_tmp = TableField.new
+              tablefield_tmp.deserialize(i)
+              @Fields << tablefield_tmp
+            end
+          end
+          @TableNodeType = params['TableNodeType']
+          unless params['Tables'].nil?
+            @Tables = []
+            params['Tables'].each do |i|
+              joinsourcetable_tmp = JoinSourceTable.new
+              joinsourcetable_tmp.deserialize(i)
+              @Tables << joinsourcetable_tmp
+            end
+          end
+          unless params['Joins'].nil?
+            @Joins = []
+            params['Joins'].each do |i|
+              joinrelation_tmp = JoinRelation.new
+              joinrelation_tmp.deserialize(i)
+              @Joins << joinrelation_tmp
+            end
+          end
+          @ExtInfo = params['ExtInfo']
+          @AsyncRequest = params['AsyncRequest']
+          @ParentTranId = params['ParentTranId']
+          unless params['ApiDatasourceConfig'].nil?
+            @ApiDatasourceConfig = ApiDatasourceConfig.new
+            @ApiDatasourceConfig.deserialize(params['ApiDatasourceConfig'])
+          end
+          unless params['ParamList'].nil?
+            @ParamList = []
+            params['ParamList'].each do |i|
+              paramcreatedto_tmp = ParamCreateDTO.new
+              paramcreatedto_tmp.deserialize(i)
+              @ParamList << paramcreatedto_tmp
+            end
+          end
+          @DlcExtInfo = params['DlcExtInfo']
+          @QueryDbData = params['QueryDbData']
+          @TableComment = params['TableComment']
+          @QueryFieldRemark = params['QueryFieldRemark']
+          unless params['FieldRemarkList'].nil?
+            @FieldRemarkList = []
+            params['FieldRemarkList'].each do |i|
+              fieldremarkdto_tmp = FieldRemarkDTO.new
+              fieldremarkdto_tmp.deserialize(i)
+              @FieldRemarkList << fieldremarkdto_tmp
+            end
+          end
+        end
+      end
+
+      # CreateDataTable返回参数结构体
+      class CreateDataTableResponse < TencentCloud::Common::AbstractModel
+        # @param ErrorInfo: 自定义错误信息对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorInfo: :class:`Tencentcloud::Bi.v20220105.models.ErrorInfo`
+        # @param Data: 成功返回数据表的id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Bi.v20220105.models.IdDTO`
+        # @param Extra: 额外信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Extra: String
+        # @param Msg: 错误提示
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Msg: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrorInfo, :Data, :Extra, :Msg, :RequestId
+
+        def initialize(errorinfo=nil, data=nil, extra=nil, msg=nil, requestid=nil)
+          @ErrorInfo = errorinfo
+          @Data = data
+          @Extra = extra
+          @Msg = msg
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ErrorInfo'].nil?
+            @ErrorInfo = ErrorInfo.new
+            @ErrorInfo.deserialize(params['ErrorInfo'])
+          end
+          unless params['Data'].nil?
+            @Data = IdDTO.new
+            @Data.deserialize(params['Data'])
+          end
+          @Extra = params['Extra']
+          @Msg = params['Msg']
           @RequestId = params['RequestId']
         end
       end
@@ -2852,6 +3137,110 @@ module TencentCloud
         end
       end
 
+      # DescribeSourceFieldList请求参数结构体
+      class DescribeSourceFieldListRequest < TencentCloud::Common::AbstractModel
+        # @param DataSourceId: 数据源Id
+        # @type DataSourceId: Integer
+        # @param TableName: 表名
+        # @type TableName: String
+        # @param Sql: sql内容
+        # @type Sql: String
+        # @param ProjectId: 项目id
+        # @type ProjectId: Integer
+        # @param AsyncRequest: 是否是异步
+        # @type AsyncRequest: Boolean
+        # @param TranId: 异步事务id
+        # @type TranId: String
+        # @param ParamList: 11
+        # @type ParamList: Array
+        # @param DlcExtInfo: DLC扩展参数
+        # @type DlcExtInfo: String
+        # @param QueryDbData: 是否查询数据库
+        # @type QueryDbData: String
+        # @param TableId: 数据表 Id
+        # @type TableId: String
+        # @param TableType: 后端提供字典：数据表类型，1、数据库建表，2、SQL建表，3、Excel上传，4、API接入，5、腾讯文档，6、云数据库，7、手工输入，8、关联查询
+        # @type TableType: Integer
+
+        attr_accessor :DataSourceId, :TableName, :Sql, :ProjectId, :AsyncRequest, :TranId, :ParamList, :DlcExtInfo, :QueryDbData, :TableId, :TableType
+
+        def initialize(datasourceid=nil, tablename=nil, sql=nil, projectid=nil, asyncrequest=nil, tranid=nil, paramlist=nil, dlcextinfo=nil, querydbdata=nil, tableid=nil, tabletype=nil)
+          @DataSourceId = datasourceid
+          @TableName = tablename
+          @Sql = sql
+          @ProjectId = projectid
+          @AsyncRequest = asyncrequest
+          @TranId = tranid
+          @ParamList = paramlist
+          @DlcExtInfo = dlcextinfo
+          @QueryDbData = querydbdata
+          @TableId = tableid
+          @TableType = tabletype
+        end
+
+        def deserialize(params)
+          @DataSourceId = params['DataSourceId']
+          @TableName = params['TableName']
+          @Sql = params['Sql']
+          @ProjectId = params['ProjectId']
+          @AsyncRequest = params['AsyncRequest']
+          @TranId = params['TranId']
+          unless params['ParamList'].nil?
+            @ParamList = []
+            params['ParamList'].each do |i|
+              paramcreatedto_tmp = ParamCreateDTO.new
+              paramcreatedto_tmp.deserialize(i)
+              @ParamList << paramcreatedto_tmp
+            end
+          end
+          @DlcExtInfo = params['DlcExtInfo']
+          @QueryDbData = params['QueryDbData']
+          @TableId = params['TableId']
+          @TableType = params['TableType']
+        end
+      end
+
+      # DescribeSourceFieldList返回参数结构体
+      class DescribeSourceFieldListResponse < TencentCloud::Common::AbstractModel
+        # @param ErrorInfo: 自定义错误信息对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorInfo: :class:`Tencentcloud::Bi.v20220105.models.ErrorInfo`
+        # @param Extra: 额外信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Extra: String
+        # @param Msg: 信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Msg: String
+        # @param Data: 表中字段的列表
+        # @type Data: :class:`Tencentcloud::Bi.v20220105.models.TableColumnListData`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrorInfo, :Extra, :Msg, :Data, :RequestId
+
+        def initialize(errorinfo=nil, extra=nil, msg=nil, data=nil, requestid=nil)
+          @ErrorInfo = errorinfo
+          @Extra = extra
+          @Msg = msg
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ErrorInfo'].nil?
+            @ErrorInfo = ErrorInfo.new
+            @ErrorInfo.deserialize(params['ErrorInfo'])
+          end
+          @Extra = params['Extra']
+          @Msg = params['Msg']
+          unless params['Data'].nil?
+            @Data = TableColumnListData.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeUserGroupInfo请求参数结构体
       class DescribeUserGroupInfoRequest < TencentCloud::Common::AbstractModel
         # @param Id: 用户组id
@@ -3488,6 +3877,56 @@ module TencentCloud
         end
       end
 
+      # 空值展示样式配置值结构
+      class EmptyValue < TencentCloud::Common::AbstractModel
+        # @param Type: 空值展示样式类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param Custom: 空值展示样式类型对应具体的展示字符串
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Custom: String
+
+        attr_accessor :Type, :Custom
+
+        def initialize(type=nil, custom=nil)
+          @Type = type
+          @Custom = custom
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Custom = params['Custom']
+        end
+      end
+
+      # 空值展示样式配置结构
+      class EmptyValueConfig < TencentCloud::Common::AbstractModel
+        # @param Number: 数值类字段空值样式配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Number: :class:`Tencentcloud::Bi.v20220105.models.EmptyValue`
+        # @param String: 字符串字段空置样式配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type String: :class:`Tencentcloud::Bi.v20220105.models.EmptyValue`
+
+        attr_accessor :Number, :String
+
+        def initialize(number=nil, string=nil)
+          @Number = number
+          @String = string
+        end
+
+        def deserialize(params)
+          unless params['Number'].nil?
+            @Number = EmptyValue.new
+            @Number.deserialize(params['Number'])
+          end
+          unless params['String'].nil?
+            @String = EmptyValue.new
+            @String.deserialize(params['String'])
+          end
+        end
+      end
+
       # 自定义错误信息对象
       class ErrorInfo < TencentCloud::Common::AbstractModel
         # @param ErrorTip: 错误说明字段
@@ -3615,6 +4054,75 @@ module TencentCloud
         end
       end
 
+      # 字段备注信息
+      class FieldRemarkDTO < TencentCloud::Common::AbstractModel
+        # @param FieldName: 字段名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FieldName: String
+        # @param Comment: 字段备注列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Comment: Array
+
+        attr_accessor :FieldName, :Comment
+
+        def initialize(fieldname=nil, comment=nil)
+          @FieldName = fieldname
+          @Comment = comment
+        end
+
+        def deserialize(params)
+          @FieldName = params['FieldName']
+          @Comment = params['Comment']
+        end
+      end
+
+      # 定时任务执行频率配置
+      class FrequencyConfig < TencentCloud::Common::AbstractModel
+        # @param Frequency: 周期
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Frequency: String
+        # @param Dates: 日期
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Dates: Array
+        # @param Time: 时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Time: String
+        # @param IntervalTime: 间隔时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IntervalTime: Integer
+        # @param IntervalTimeUnit: 1:SECOND,2:MINUTE,3:HOUR,4:DAY
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IntervalTimeUnit: Integer
+        # @param Hours: 小时列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Hours: Array
+        # @param Minute: 分钟列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Minute: Array
+
+        attr_accessor :Frequency, :Dates, :Time, :IntervalTime, :IntervalTimeUnit, :Hours, :Minute
+
+        def initialize(frequency=nil, dates=nil, time=nil, intervaltime=nil, intervaltimeunit=nil, hours=nil, minute=nil)
+          @Frequency = frequency
+          @Dates = dates
+          @Time = time
+          @IntervalTime = intervaltime
+          @IntervalTimeUnit = intervaltimeunit
+          @Hours = hours
+          @Minute = minute
+        end
+
+        def deserialize(params)
+          @Frequency = params['Frequency']
+          @Dates = params['Dates']
+          @Time = params['Time']
+          @IntervalTime = params['IntervalTime']
+          @IntervalTimeUnit = params['IntervalTimeUnit']
+          @Hours = params['Hours']
+          @Minute = params['Minute']
+        end
+      end
+
       # 仅包含id的对象
       class IdDTO < TencentCloud::Common::AbstractModel
         # @param Id: 请求id
@@ -3653,6 +4161,142 @@ module TencentCloud
           @ProjectId = params['ProjectId']
           @TranId = params['TranId']
           @TranStatus = params['TranStatus']
+        end
+      end
+
+      # 多表关联原始表之间的关联信息
+      class JoinRelation < TencentCloud::Common::AbstractModel
+        # @param JoinId: 表关联关系id,前端使用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type JoinId: String
+        # @param SourceTableNodeId: 原表节点id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SourceTableNodeId: String
+        # @param TargetTableNodeId: 目标表节点id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TargetTableNodeId: String
+        # @param JoinType: 多表关联的关联类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type JoinType: String
+        # @param Fields: 多表关联的字段列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Fields: Array
+
+        attr_accessor :JoinId, :SourceTableNodeId, :TargetTableNodeId, :JoinType, :Fields
+
+        def initialize(joinid=nil, sourcetablenodeid=nil, targettablenodeid=nil, jointype=nil, fields=nil)
+          @JoinId = joinid
+          @SourceTableNodeId = sourcetablenodeid
+          @TargetTableNodeId = targettablenodeid
+          @JoinType = jointype
+          @Fields = fields
+        end
+
+        def deserialize(params)
+          @JoinId = params['JoinId']
+          @SourceTableNodeId = params['SourceTableNodeId']
+          @TargetTableNodeId = params['TargetTableNodeId']
+          @JoinType = params['JoinType']
+          unless params['Fields'].nil?
+            @Fields = []
+            params['Fields'].each do |i|
+              joinrelationfield_tmp = JoinRelationField.new
+              joinrelationfield_tmp.deserialize(i)
+              @Fields << joinrelationfield_tmp
+            end
+          end
+        end
+      end
+
+      # 多表关联原始表之间使用的关联字段信息
+      class JoinRelationField < TencentCloud::Common::AbstractModel
+        # @param FieldJoinId: 字段关联关系id,前端使用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FieldJoinId: String
+        # @param SourceField: 原表字段
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SourceField: :class:`Tencentcloud::Bi.v20220105.models.TableField`
+        # @param TargetField: 目标表字段
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TargetField: :class:`Tencentcloud::Bi.v20220105.models.TableField`
+
+        attr_accessor :FieldJoinId, :SourceField, :TargetField
+
+        def initialize(fieldjoinid=nil, sourcefield=nil, targetfield=nil)
+          @FieldJoinId = fieldjoinid
+          @SourceField = sourcefield
+          @TargetField = targetfield
+        end
+
+        def deserialize(params)
+          @FieldJoinId = params['FieldJoinId']
+          unless params['SourceField'].nil?
+            @SourceField = TableField.new
+            @SourceField.deserialize(params['SourceField'])
+          end
+          unless params['TargetField'].nil?
+            @TargetField = TableField.new
+            @TargetField.deserialize(params['TargetField'])
+          end
+        end
+      end
+
+      # 多表关联原始表信息
+      class JoinSourceTable < TencentCloud::Common::AbstractModel
+        # @param TableNodeType: 1:数据源原表,2:本地表,3:Excel表,4:API表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableNodeType: Integer
+        # @param TableNodeId: 原始表节点Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableNodeId: String
+        # @param ParentId: 父节点id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ParentId: String
+        # @param TableId: 非必填, 数据源原表没有ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableId: String
+        # @param TableName: 必填,数据源原表用原始表名, 其他类型用BI的逻辑表名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableName: String
+        # @param Fields: 原始表需要展示的字段列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Fields: Array
+        # @param DatasourceId: 数据源id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DatasourceId: Integer
+        # @param TableAlias: 非必填,前端展示的数据源别名,excel建表需要
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableAlias: String
+
+        attr_accessor :TableNodeType, :TableNodeId, :ParentId, :TableId, :TableName, :Fields, :DatasourceId, :TableAlias
+
+        def initialize(tablenodetype=nil, tablenodeid=nil, parentid=nil, tableid=nil, tablename=nil, fields=nil, datasourceid=nil, tablealias=nil)
+          @TableNodeType = tablenodetype
+          @TableNodeId = tablenodeid
+          @ParentId = parentid
+          @TableId = tableid
+          @TableName = tablename
+          @Fields = fields
+          @DatasourceId = datasourceid
+          @TableAlias = tablealias
+        end
+
+        def deserialize(params)
+          @TableNodeType = params['TableNodeType']
+          @TableNodeId = params['TableNodeId']
+          @ParentId = params['ParentId']
+          @TableId = params['TableId']
+          @TableName = params['TableName']
+          unless params['Fields'].nil?
+            @Fields = []
+            params['Fields'].each do |i|
+              tablefield_tmp = TableField.new
+              tablefield_tmp.deserialize(i)
+              @Fields << tablefield_tmp
+            end
+          end
+          @DatasourceId = params['DatasourceId']
+          @TableAlias = params['TableAlias']
         end
       end
 
@@ -4662,6 +5306,48 @@ module TencentCloud
         end
       end
 
+      # 1
+      class ParamCreateDTO < TencentCloud::Common::AbstractModel
+        # @param ParamName: 参数名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ParamName: String
+        # @param DefaultValue: 默认值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DefaultValue: String
+        # @param ParamType: 参数类型，string/datetime/number
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ParamType: String
+        # @param FormatRule: 格式化类型，yyyy-MM-dd HH:mm:ss.SSS（只有时间必填）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FormatRule: String
+        # @param ComplexType: 复杂类型，格式化的另一种表达，例如YYYY-MM
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ComplexType: String
+        # @param Scope: 作用域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Scope: String
+
+        attr_accessor :ParamName, :DefaultValue, :ParamType, :FormatRule, :ComplexType, :Scope
+
+        def initialize(paramname=nil, defaultvalue=nil, paramtype=nil, formatrule=nil, complextype=nil, scope=nil)
+          @ParamName = paramname
+          @DefaultValue = defaultvalue
+          @ParamType = paramtype
+          @FormatRule = formatrule
+          @ComplexType = complextype
+          @Scope = scope
+        end
+
+        def deserialize(params)
+          @ParamName = params['ParamName']
+          @DefaultValue = params['DefaultValue']
+          @ParamType = params['ParamType']
+          @FormatRule = params['FormatRule']
+          @ComplexType = params['ComplexType']
+          @Scope = params['Scope']
+        end
+      end
+
       # 商业版本权限单元
       class PermissionComponent < TencentCloud::Common::AbstractModel
         # @param ModuleId: 权限值
@@ -5436,6 +6122,296 @@ module TencentCloud
           @Id = params['Id']
           @Name = params['Name']
           @Values = params['Values']
+        end
+      end
+
+      # 表的列数据抽象
+      class TableColumn < TencentCloud::Common::AbstractModel
+        # @param DbName: 列名字
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DbName: String
+        # @param AliasName: 列的别名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AliasName: String
+        # @param DbType: 列的类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DbType: String
+        # @param FieldType: 段类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FieldType: String
+        # @param Mark: 备注
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Mark: String
+        # @param ExcelName: excel名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExcelName: String
+        # @param DictId: 关联的字典表Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DictId: Integer
+        # @param DictName: 关联的字典表表名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DictName: String
+        # @param TableNodeId: 多表关联新增字段
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableNodeId: String
+        # @param TableName: 字段所属的表名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableName: String
+        # @param FieldComplexType: 用户设置的带格式的目标复杂格式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FieldComplexType: String
+        # @param FormatRule: 格式规则
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FormatRule: String
+        # @param IsFilter: 数据字段是否过滤空值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsFilter: Boolean
+        # @param CalcType: 计算字段类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CalcType: String
+        # @param CalcFormula: 计算字段的公式内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CalcFormula: String
+        # @param CalcDesc: 计算字段的中文公式内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CalcDesc: String
+        # @param JsonPathName: Api数据源json路径名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type JsonPathName: String
+        # @param Granularity: 地理类型标识
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Granularity: String
+        # @param GeoJsonId: 自定义地图Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GeoJsonId: Integer
+        # @param EmptyValueConfig: 空值展示样式配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EmptyValueConfig: :class:`Tencentcloud::Bi.v20220105.models.EmptyValueConfig`
+        # @param DbFieldName: 原列名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DbFieldName: String
+        # @param IsCopyOperation: 是否是复制字段操作
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsCopyOperation: Boolean
+        # @param IsCopyFromNormal: 是否从普通字段复制
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsCopyFromNormal: Boolean
+
+        attr_accessor :DbName, :AliasName, :DbType, :FieldType, :Mark, :ExcelName, :DictId, :DictName, :TableNodeId, :TableName, :FieldComplexType, :FormatRule, :IsFilter, :CalcType, :CalcFormula, :CalcDesc, :JsonPathName, :Granularity, :GeoJsonId, :EmptyValueConfig, :DbFieldName, :IsCopyOperation, :IsCopyFromNormal
+
+        def initialize(dbname=nil, aliasname=nil, dbtype=nil, fieldtype=nil, mark=nil, excelname=nil, dictid=nil, dictname=nil, tablenodeid=nil, tablename=nil, fieldcomplextype=nil, formatrule=nil, isfilter=nil, calctype=nil, calcformula=nil, calcdesc=nil, jsonpathname=nil, granularity=nil, geojsonid=nil, emptyvalueconfig=nil, dbfieldname=nil, iscopyoperation=nil, iscopyfromnormal=nil)
+          @DbName = dbname
+          @AliasName = aliasname
+          @DbType = dbtype
+          @FieldType = fieldtype
+          @Mark = mark
+          @ExcelName = excelname
+          @DictId = dictid
+          @DictName = dictname
+          @TableNodeId = tablenodeid
+          @TableName = tablename
+          @FieldComplexType = fieldcomplextype
+          @FormatRule = formatrule
+          @IsFilter = isfilter
+          @CalcType = calctype
+          @CalcFormula = calcformula
+          @CalcDesc = calcdesc
+          @JsonPathName = jsonpathname
+          @Granularity = granularity
+          @GeoJsonId = geojsonid
+          @EmptyValueConfig = emptyvalueconfig
+          @DbFieldName = dbfieldname
+          @IsCopyOperation = iscopyoperation
+          @IsCopyFromNormal = iscopyfromnormal
+        end
+
+        def deserialize(params)
+          @DbName = params['DbName']
+          @AliasName = params['AliasName']
+          @DbType = params['DbType']
+          @FieldType = params['FieldType']
+          @Mark = params['Mark']
+          @ExcelName = params['ExcelName']
+          @DictId = params['DictId']
+          @DictName = params['DictName']
+          @TableNodeId = params['TableNodeId']
+          @TableName = params['TableName']
+          @FieldComplexType = params['FieldComplexType']
+          @FormatRule = params['FormatRule']
+          @IsFilter = params['IsFilter']
+          @CalcType = params['CalcType']
+          @CalcFormula = params['CalcFormula']
+          @CalcDesc = params['CalcDesc']
+          @JsonPathName = params['JsonPathName']
+          @Granularity = params['Granularity']
+          @GeoJsonId = params['GeoJsonId']
+          unless params['EmptyValueConfig'].nil?
+            @EmptyValueConfig = EmptyValueConfig.new
+            @EmptyValueConfig.deserialize(params['EmptyValueConfig'])
+          end
+          @DbFieldName = params['DbFieldName']
+          @IsCopyOperation = params['IsCopyOperation']
+          @IsCopyFromNormal = params['IsCopyFromNormal']
+        end
+      end
+
+      # 表的全部列名数据列表
+      class TableColumnListData < TencentCloud::Common::AbstractModel
+        # @param List: 表中的列的列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type List: Array
+        # @param TranId: 异步事务id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TranId: String
+        # @param TranStatus: 异步事务状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TranStatus: Integer
+
+        attr_accessor :List, :TranId, :TranStatus
+
+        def initialize(list=nil, tranid=nil, transtatus=nil)
+          @List = list
+          @TranId = tranid
+          @TranStatus = transtatus
+        end
+
+        def deserialize(params)
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              tablecolumn_tmp = TableColumn.new
+              tablecolumn_tmp.deserialize(i)
+              @List << tablecolumn_tmp
+            end
+          end
+          @TranId = params['TranId']
+          @TranStatus = params['TranStatus']
+        end
+      end
+
+      # 表字段描述
+      class TableField < TencentCloud::Common::AbstractModel
+        # @param DbName: db里的字段column名
+        # @type DbName: String
+        # @param AliasName: bi展示名
+        # @type AliasName: String
+        # @param DbType: db里的字段类型
+        # @type DbType: String
+        # @param FieldType: BI归类后的抽象字段类型,比如字符串,数字,时间
+        # @type FieldType: String
+        # @param FieldComplexType: 字段组合计算公式后生成的复杂明细类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FieldComplexType: String
+        # @param Mark: 字段描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Mark: String
+        # @param FormatRule: 字段计算公式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FormatRule: String
+        # @param IsFilter: 数据字段是否过滤空值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsFilter: Boolean
+        # @param CalcType: 计算字段类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CalcType: String
+        # @param CalcFormula: 计算字段的公式内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CalcFormula: String
+        # @param CalcDesc: 计算字段的中文公式内容, 前端展示使用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CalcDesc: String
+        # @param DictId: 关联字典表id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DictId: Integer
+        # @param DictName: 关联字典表名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DictName: String
+        # @param TableNodeId: 非必填, 多表关联新增字段
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableNodeId: String
+        # @param ExcelName: excel
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExcelName: String
+        # @param TableName: 非必填,多表关联新增字段,字段所属的表名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableName: String
+        # @param JsonPathName: api数据源路径名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type JsonPathName: String
+        # @param Granularity: 地理字段标识
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Granularity: String
+        # @param GeoJsonId: 地图id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GeoJsonId: Integer
+        # @param EmptyValueConfig: 空值展示样式配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EmptyValueConfig: :class:`Tencentcloud::Bi.v20220105.models.EmptyValueConfig`
+        # @param DbFieldName: 原列名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DbFieldName: String
+        # @param IsCopyOperation: 是否是复制字段操作
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsCopyOperation: Boolean
+        # @param IsCopyFromNormal: 是否从普通字段复制
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsCopyFromNormal: Boolean
+
+        attr_accessor :DbName, :AliasName, :DbType, :FieldType, :FieldComplexType, :Mark, :FormatRule, :IsFilter, :CalcType, :CalcFormula, :CalcDesc, :DictId, :DictName, :TableNodeId, :ExcelName, :TableName, :JsonPathName, :Granularity, :GeoJsonId, :EmptyValueConfig, :DbFieldName, :IsCopyOperation, :IsCopyFromNormal
+
+        def initialize(dbname=nil, aliasname=nil, dbtype=nil, fieldtype=nil, fieldcomplextype=nil, mark=nil, formatrule=nil, isfilter=nil, calctype=nil, calcformula=nil, calcdesc=nil, dictid=nil, dictname=nil, tablenodeid=nil, excelname=nil, tablename=nil, jsonpathname=nil, granularity=nil, geojsonid=nil, emptyvalueconfig=nil, dbfieldname=nil, iscopyoperation=nil, iscopyfromnormal=nil)
+          @DbName = dbname
+          @AliasName = aliasname
+          @DbType = dbtype
+          @FieldType = fieldtype
+          @FieldComplexType = fieldcomplextype
+          @Mark = mark
+          @FormatRule = formatrule
+          @IsFilter = isfilter
+          @CalcType = calctype
+          @CalcFormula = calcformula
+          @CalcDesc = calcdesc
+          @DictId = dictid
+          @DictName = dictname
+          @TableNodeId = tablenodeid
+          @ExcelName = excelname
+          @TableName = tablename
+          @JsonPathName = jsonpathname
+          @Granularity = granularity
+          @GeoJsonId = geojsonid
+          @EmptyValueConfig = emptyvalueconfig
+          @DbFieldName = dbfieldname
+          @IsCopyOperation = iscopyoperation
+          @IsCopyFromNormal = iscopyfromnormal
+        end
+
+        def deserialize(params)
+          @DbName = params['DbName']
+          @AliasName = params['AliasName']
+          @DbType = params['DbType']
+          @FieldType = params['FieldType']
+          @FieldComplexType = params['FieldComplexType']
+          @Mark = params['Mark']
+          @FormatRule = params['FormatRule']
+          @IsFilter = params['IsFilter']
+          @CalcType = params['CalcType']
+          @CalcFormula = params['CalcFormula']
+          @CalcDesc = params['CalcDesc']
+          @DictId = params['DictId']
+          @DictName = params['DictName']
+          @TableNodeId = params['TableNodeId']
+          @ExcelName = params['ExcelName']
+          @TableName = params['TableName']
+          @JsonPathName = params['JsonPathName']
+          @Granularity = params['Granularity']
+          @GeoJsonId = params['GeoJsonId']
+          unless params['EmptyValueConfig'].nil?
+            @EmptyValueConfig = EmptyValueConfig.new
+            @EmptyValueConfig.deserialize(params['EmptyValueConfig'])
+          end
+          @DbFieldName = params['DbFieldName']
+          @IsCopyOperation = params['IsCopyOperation']
+          @IsCopyFromNormal = params['IsCopyFromNormal']
         end
       end
 

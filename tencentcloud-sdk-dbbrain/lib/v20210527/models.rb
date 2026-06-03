@@ -7423,25 +7423,29 @@ module TencentCloud
 
       # 实时会话访问来源详情。
       class SessionItem < TencentCloud::Common::AbstractModel
-        # @param Ip: 访问来源。
+        # @param Ip: <p>访问来源。</p>
         # @type Ip: String
-        # @param ActiveConn: 当前访问来源活跃连接数
+        # @param ActiveConn: <p>当前访问来源活跃连接数</p>
         # @type ActiveConn: String
-        # @param AllConn: 当前访问来源总连接数
+        # @param AllConn: <p>当前访问来源总连接数</p>
         # @type AllConn: Integer
+        # @param IsInternalIp: <p>是否为内网ip</p>
+        # @type IsInternalIp: Boolean
 
-        attr_accessor :Ip, :ActiveConn, :AllConn
+        attr_accessor :Ip, :ActiveConn, :AllConn, :IsInternalIp
 
-        def initialize(ip=nil, activeconn=nil, allconn=nil)
+        def initialize(ip=nil, activeconn=nil, allconn=nil, isinternalip=nil)
           @Ip = ip
           @ActiveConn = activeconn
           @AllConn = allconn
+          @IsInternalIp = isinternalip
         end
 
         def deserialize(params)
           @Ip = params['Ip']
           @ActiveConn = params['ActiveConn']
           @AllConn = params['AllConn']
+          @IsInternalIp = params['IsInternalIp']
         end
       end
 

@@ -1772,8 +1772,8 @@ module TencentCloud
 
         attr_accessor :TaskName, :TaskType, :SourceResource, :TargetResource, :TransformParam, :PrivateLinkParam, :SchemaId, :TransformsParam, :TaskId, :Tags, :Description
         extend Gem::Deprecate
-        deprecate :PrivateLinkParam, :none, 2026, 5
-        deprecate :PrivateLinkParam=, :none, 2026, 5
+        deprecate :PrivateLinkParam, :none, 2026, 6
+        deprecate :PrivateLinkParam=, :none, 2026, 6
 
         def initialize(taskname=nil, tasktype=nil, sourceresource=nil, targetresource=nil, transformparam=nil, privatelinkparam=nil, schemaid=nil, transformsparam=nil, taskid=nil, tags=nil, description=nil)
           @TaskName = taskname
@@ -2161,8 +2161,8 @@ module TencentCloud
 
         attr_accessor :ReturnCode, :ReturnMessage, :Data, :DeleteRouteTimestamp
         extend Gem::Deprecate
-        deprecate :DeleteRouteTimestamp, :none, 2026, 5
-        deprecate :DeleteRouteTimestamp=, :none, 2026, 5
+        deprecate :DeleteRouteTimestamp, :none, 2026, 6
+        deprecate :DeleteRouteTimestamp=, :none, 2026, 6
 
         def initialize(returncode=nil, returnmessage=nil, data=nil, deleteroutetimestamp=nil)
           @ReturnCode = returncode
@@ -2199,6 +2199,232 @@ module TencentCloud
         def deserialize(params)
           unless params['Result'].nil?
             @Result = CreateInstancePreResp.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateMetaAndDataSyncDatahubTask请求参数结构体
+      class CreateMetaAndDataSyncDatahubTaskRequest < TencentCloud::Common::AbstractModel
+        # @param TaskName: <p>任务名称</p><p>64字符内</p>
+        # @type TaskName: String
+        # @param SourceResourceId: <p>同步源连接</p><p>参数格式：resource-test</p>
+        # @type SourceResourceId: String
+        # @param TargetResourceId: <p>同步目标连接</p><p>参数格式：resource-test</p>
+        # @type TargetResourceId: String
+        # @param Tags: <p>标签列表</p>
+        # @type Tags: Array
+        # @param OffsetType: <p>Offset类型，最开始位置earliest，最新位置latest，时间点位置timestamp</p><p>枚举值：</p><ul><li>earliest： 最开始位置</li><li>latest： 最新位置</li><li>timestamp： 时间点位置</li></ul>
+        # @type OffsetType: String
+        # @param TopicRegularExpression: <p>正则匹配Topic列表</p><p>与TopicList参数二选一</p>
+        # @type TopicRegularExpression: String
+        # @param TopicList: <p>多选topic列表</p><p>与TopicRegularExpression参数二选一</p>
+        # @type TopicList: Array
+        # @param Prefix: <p>Topic 前缀</p>
+        # @type Prefix: String
+        # @param Separator: <p>Topic前缀分隔符</p><p>仅支持 &quot;.&quot; / &quot;-&quot; / &quot;_&quot;</p>
+        # @type Separator: String
+        # @param Description: <p>连接器任务描述</p><p>128字符内</p>
+        # @type Description: String
+
+        attr_accessor :TaskName, :SourceResourceId, :TargetResourceId, :Tags, :OffsetType, :TopicRegularExpression, :TopicList, :Prefix, :Separator, :Description
+
+        def initialize(taskname=nil, sourceresourceid=nil, targetresourceid=nil, tags=nil, offsettype=nil, topicregularexpression=nil, topiclist=nil, prefix=nil, separator=nil, description=nil)
+          @TaskName = taskname
+          @SourceResourceId = sourceresourceid
+          @TargetResourceId = targetresourceid
+          @Tags = tags
+          @OffsetType = offsettype
+          @TopicRegularExpression = topicregularexpression
+          @TopicList = topiclist
+          @Prefix = prefix
+          @Separator = separator
+          @Description = description
+        end
+
+        def deserialize(params)
+          @TaskName = params['TaskName']
+          @SourceResourceId = params['SourceResourceId']
+          @TargetResourceId = params['TargetResourceId']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+          @OffsetType = params['OffsetType']
+          @TopicRegularExpression = params['TopicRegularExpression']
+          @TopicList = params['TopicList']
+          @Prefix = params['Prefix']
+          @Separator = params['Separator']
+          @Description = params['Description']
+        end
+      end
+
+      # CreateMetaAndDataSyncDatahubTask返回参数结构体
+      class CreateMetaAndDataSyncDatahubTaskResponse < TencentCloud::Common::AbstractModel
+        # @param Result: <p>返回结果</p>
+        # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.CreateDatahubTaskRes`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = CreateDatahubTaskRes.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateMetaDataAndOffsetSyncDatahubTask请求参数结构体
+      class CreateMetaDataAndOffsetSyncDatahubTaskRequest < TencentCloud::Common::AbstractModel
+        # @param TaskName: <p>任务名称</p><p>参数格式：task-test</p><p>64字符内</p>
+        # @type TaskName: String
+        # @param SourceResourceId: <p>同步源连接</p><p>参数格式：resource-test</p>
+        # @type SourceResourceId: String
+        # @param TargetResourceId: <p>同步目标链接</p><p>参数格式：resource-test</p>
+        # @type TargetResourceId: String
+        # @param Description: <p>连接器任务描述</p><p>128字符内</p>
+        # @type Description: String
+        # @param OffsetType: <p>Offset类型，最开始位置earliest，最新位置latest</p><p>枚举值：</p><ul><li>earliest： 最开始位置</li><li>latest： 最新位置</li></ul>
+        # @type OffsetType: String
+        # @param TopicRegularExpression: <p>正则匹配Topic列表</p><p>与TopicList参数二选一</p>
+        # @type TopicRegularExpression: String
+        # @param TopicList: <p>多选topic列表</p><p>与TopicRegularExpression参数二选一</p>
+        # @type TopicList: Array
+        # @param Prefix: <p>Topic 前缀</p>
+        # @type Prefix: String
+        # @param Separator: <p>Topic前缀分隔符</p><p>仅支持 &quot;.&quot; / &quot;-&quot; / &quot;_&quot;</p>
+        # @type Separator: String
+        # @param Tags: <p>标签列表</p>
+        # @type Tags: Array
+
+        attr_accessor :TaskName, :SourceResourceId, :TargetResourceId, :Description, :OffsetType, :TopicRegularExpression, :TopicList, :Prefix, :Separator, :Tags
+
+        def initialize(taskname=nil, sourceresourceid=nil, targetresourceid=nil, description=nil, offsettype=nil, topicregularexpression=nil, topiclist=nil, prefix=nil, separator=nil, tags=nil)
+          @TaskName = taskname
+          @SourceResourceId = sourceresourceid
+          @TargetResourceId = targetresourceid
+          @Description = description
+          @OffsetType = offsettype
+          @TopicRegularExpression = topicregularexpression
+          @TopicList = topiclist
+          @Prefix = prefix
+          @Separator = separator
+          @Tags = tags
+        end
+
+        def deserialize(params)
+          @TaskName = params['TaskName']
+          @SourceResourceId = params['SourceResourceId']
+          @TargetResourceId = params['TargetResourceId']
+          @Description = params['Description']
+          @OffsetType = params['OffsetType']
+          @TopicRegularExpression = params['TopicRegularExpression']
+          @TopicList = params['TopicList']
+          @Prefix = params['Prefix']
+          @Separator = params['Separator']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+        end
+      end
+
+      # CreateMetaDataAndOffsetSyncDatahubTask返回参数结构体
+      class CreateMetaDataAndOffsetSyncDatahubTaskResponse < TencentCloud::Common::AbstractModel
+        # @param Result: <p>返回结果</p>
+        # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.CreateDatahubTaskRes`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = CreateDatahubTaskRes.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateMetaSyncDatahubTask请求参数结构体
+      class CreateMetaSyncDatahubTaskRequest < TencentCloud::Common::AbstractModel
+        # @param TaskName: <p>连接器任务名称</p><p>64字符内</p>
+        # @type TaskName: String
+        # @param SourceResourceId: <p>同步源连接</p><p>参数格式：resource-test</p>
+        # @type SourceResourceId: String
+        # @param TargetResourceId: <p>同步目标连接</p><p>参数格式：resource-test</p>
+        # @type TargetResourceId: String
+        # @param Description: <p>连接器任务描述</p><p>128字符内</p>
+        # @type Description: String
+        # @param Tags: <p>标签列表</p>
+        # @type Tags: Array
+
+        attr_accessor :TaskName, :SourceResourceId, :TargetResourceId, :Description, :Tags
+
+        def initialize(taskname=nil, sourceresourceid=nil, targetresourceid=nil, description=nil, tags=nil)
+          @TaskName = taskname
+          @SourceResourceId = sourceresourceid
+          @TargetResourceId = targetresourceid
+          @Description = description
+          @Tags = tags
+        end
+
+        def deserialize(params)
+          @TaskName = params['TaskName']
+          @SourceResourceId = params['SourceResourceId']
+          @TargetResourceId = params['TargetResourceId']
+          @Description = params['Description']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+        end
+      end
+
+      # CreateMetaSyncDatahubTask返回参数结构体
+      class CreateMetaSyncDatahubTaskResponse < TencentCloud::Common::AbstractModel
+        # @param Result: <p>返回结果</p>
+        # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.CreateDatahubTaskRes`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = CreateDatahubTaskRes.new
             @Result.deserialize(params['Result'])
           end
           @RequestId = params['RequestId']
@@ -2734,11 +2960,11 @@ module TencentCloud
 
       # CreateUser请求参数结构体
       class CreateUserRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: ckafka集群实例Id，可通过[DescribeInstances](https://cloud.tencent.com/document/product/597/40835)接口获取
+        # @param InstanceId: <p>ckafka集群实例Id，可通过<a href="https://cloud.tencent.com/document/product/597/40835">DescribeInstances</a>接口获取</p>
         # @type InstanceId: String
-        # @param Name: 用户名称
+        # @param Name: <p>用户名称</p>
         # @type Name: String
-        # @param Password: 用户密码
+        # @param Password: <p>用户密码</p>
         # @type Password: String
 
         attr_accessor :InstanceId, :Name, :Password
@@ -2758,7 +2984,7 @@ module TencentCloud
 
       # CreateUser返回参数结构体
       class CreateUserResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 返回结果
+        # @param Result: <p>返回结果</p>
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.JgwOperateResponse`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3875,8 +4101,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :ResourceType, :ResourceName, :Offset, :Limit, :SearchWord
         extend Gem::Deprecate
-        deprecate :SearchWord, :none, 2026, 5
-        deprecate :SearchWord=, :none, 2026, 5
+        deprecate :SearchWord, :none, 2026, 6
+        deprecate :SearchWord=, :none, 2026, 6
 
         def initialize(instanceid=nil, resourcetype=nil, resourcename=nil, offset=nil, limit=nil, searchword=nil)
           @InstanceId = instanceid
@@ -5049,17 +5275,17 @@ module TencentCloud
 
       # DescribeDatahubTopics请求参数结构体
       class DescribeDatahubTopicsRequest < TencentCloud::Common::AbstractModel
-        # @param SearchWord: 搜索词
+        # @param SearchWord: <p>搜索词</p><p>对Name或TopicName或TopicId字段进行模糊匹配</p>
         # @type SearchWord: String
-        # @param Offset: 本次查询的偏移位置，默认为0
+        # @param Offset: <p>本次查询的偏移位置，默认为0</p>
         # @type Offset: Integer
-        # @param Limit: 本次返回结果的最大个数，默认为50，最大值为50
+        # @param Limit: <p>本次返回结果的最大个数</p><p>取值范围：[1, 100]</p><p>默认值：20</p>
         # @type Limit: Integer
-        # @param QueryFromConnectResource: 是否从连接查询topic列表
+        # @param QueryFromConnectResource: <p>是否从连接查询topic列表</p><p>默认值：false</p>
         # @type QueryFromConnectResource: Boolean
-        # @param ConnectResourceId: 连接的ID
+        # @param ConnectResourceId: <p>连接的ID</p>
         # @type ConnectResourceId: String
-        # @param TopicRegularExpression: topic资源表达式
+        # @param TopicRegularExpression: <p>topic资源表达式</p>
         # @type TopicRegularExpression: String
 
         attr_accessor :SearchWord, :Offset, :Limit, :QueryFromConnectResource, :ConnectResourceId, :TopicRegularExpression
@@ -5112,7 +5338,7 @@ module TencentCloud
 
       # DescribeDatahubTopics返回参数结构体
       class DescribeDatahubTopicsResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 主题列表
+        # @param Result: <p>主题列表</p>
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.DescribeDatahubTopicsResp`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5385,8 +5611,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :SearchWord, :Status, :Offset, :Limit, :TagKey, :Filters, :InstanceIds, :InstanceIdList, :TagList
         extend Gem::Deprecate
-        deprecate :InstanceIds, :none, 2026, 5
-        deprecate :InstanceIds=, :none, 2026, 5
+        deprecate :InstanceIds, :none, 2026, 6
+        deprecate :InstanceIds=, :none, 2026, 6
 
         def initialize(instanceid=nil, searchword=nil, status=nil, offset=nil, limit=nil, tagkey=nil, filters=nil, instanceids=nil, instanceidlist=nil, taglist=nil)
           @InstanceId = instanceid
@@ -5471,8 +5697,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :SearchWord, :Status, :Offset, :Limit, :TagKey, :VpcId
         extend Gem::Deprecate
-        deprecate :TagKey, :none, 2026, 5
-        deprecate :TagKey=, :none, 2026, 5
+        deprecate :TagKey, :none, 2026, 6
+        deprecate :TagKey=, :none, 2026, 6
 
         def initialize(instanceid=nil, searchword=nil, status=nil, offset=nil, limit=nil, tagkey=nil, vpcid=nil)
           @InstanceId = instanceid
@@ -7012,13 +7238,13 @@ module TencentCloud
 
       # FetchLatestDatahubMessageList请求参数结构体
       class FetchLatestDatahubMessageListRequest < TencentCloud::Common::AbstractModel
-        # @param Name: 弹性topic名称
+        # @param Name: <p>弹性topic名称</p><p>取值参考：<a href="https://cloud.tencent.com/document/api/597/86863">DescribeDatahubTopics</a></p>
         # @type Name: String
-        # @param Partition: 分区id
+        # @param Partition: <p>分区id</p>
         # @type Partition: Integer
-        # @param Offset: 位点信息
+        # @param Offset: <p>位点信息</p>
         # @type Offset: Integer
-        # @param MessageCount: 最大查询条数，最小1，最大100
+        # @param MessageCount: <p>最大查询条数</p><p>取值范围：[1, 100]</p>
         # @type MessageCount: Integer
 
         attr_accessor :Name, :Partition, :Offset, :MessageCount
@@ -7040,7 +7266,7 @@ module TencentCloud
 
       # FetchLatestDatahubMessageList返回参数结构体
       class FetchLatestDatahubMessageListResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 返回结果。
+        # @param Result: <p>返回结果。</p>
         # @type Result: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -9561,8 +9787,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :MsgRetentionTime, :InstanceName, :Config, :DynamicRetentionConfig, :RebalanceTime, :PublicNetwork, :DynamicDiskConfig, :MaxMessageByte, :UncleanLeaderElectionEnable, :DeleteProtectionEnable, :RetentionBytes, :AdminSecurity, :TransactionalIdExpirationMs
         extend Gem::Deprecate
-        deprecate :DynamicDiskConfig, :none, 2026, 5
-        deprecate :DynamicDiskConfig=, :none, 2026, 5
+        deprecate :DynamicDiskConfig, :none, 2026, 6
+        deprecate :DynamicDiskConfig=, :none, 2026, 6
 
         def initialize(instanceid=nil, msgretentiontime=nil, instancename=nil, config=nil, dynamicretentionconfig=nil, rebalancetime=nil, publicnetwork=nil, dynamicdiskconfig=nil, maxmessagebyte=nil, uncleanleaderelectionenable=nil, deleteprotectionenable=nil, retentionbytes=nil, adminsecurity=nil, transactionalidexpirationms=nil)
           @InstanceId = instanceid
@@ -12540,15 +12766,15 @@ module TencentCloud
 
       # UpgradeBrokerVersion请求参数结构体
       class UpgradeBrokerVersionRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: ckafka集群实例Id
+        # @param InstanceId: <p>ckafka集群实例Id</p>
         # @type InstanceId: String
-        # @param Type: 1.平滑升配.2.垂直升配
+        # @param Type: <p>版本升级类型</p><p>枚举值：</p><ul><li>1： 小版本迁移升级(推荐)</li></ul>
         # @type Type: Integer
-        # @param SourceVersion: 版本号
+        # @param SourceVersion: <p>版本号</p>
         # @type SourceVersion: String
-        # @param TargetVersion: 版本号
+        # @param TargetVersion: <p>版本号</p>
         # @type TargetVersion: String
-        # @param DelayTimeStamp: 延迟时间
+        # @param DelayTimeStamp: <p>延迟时间</p>
         # @type DelayTimeStamp: String
 
         attr_accessor :InstanceId, :Type, :SourceVersion, :TargetVersion, :DelayTimeStamp
@@ -12572,7 +12798,7 @@ module TencentCloud
 
       # UpgradeBrokerVersion返回参数结构体
       class UpgradeBrokerVersionResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 升配结果
+        # @param Result: <p>升配结果</p>
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.JgwOperateResponse`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -12611,13 +12837,13 @@ module TencentCloud
 
       # 用户实体
       class User < TencentCloud::Common::AbstractModel
-        # @param UserId: 用户id
+        # @param UserId: <p>用户id</p>
         # @type UserId: Integer
-        # @param Name: 用户名称
+        # @param Name: <p>用户名称</p>
         # @type Name: String
-        # @param CreateTime: 创建时间
+        # @param CreateTime: <p>创建时间</p>
         # @type CreateTime: String
-        # @param UpdateTime: 最后更新时间
+        # @param UpdateTime: <p>最后更新时间</p>
         # @type UpdateTime: String
 
         attr_accessor :UserId, :Name, :CreateTime, :UpdateTime
@@ -12802,8 +13028,8 @@ module TencentCloud
 
         attr_accessor :ZoneId, :IsInternalApp, :AppId, :Flag, :ZoneName, :ZoneStatus, :Exflag, :SoldOut, :SalesInfo, :ExtraFlag
         extend Gem::Deprecate
-        deprecate :Exflag, :none, 2026, 5
-        deprecate :Exflag=, :none, 2026, 5
+        deprecate :Exflag, :none, 2026, 6
+        deprecate :Exflag=, :none, 2026, 6
 
         def initialize(zoneid=nil, isinternalapp=nil, appid=nil, flag=nil, zonename=nil, zonestatus=nil, exflag=nil, soldout=nil, salesinfo=nil, extraflag=nil)
           @ZoneId = zoneid

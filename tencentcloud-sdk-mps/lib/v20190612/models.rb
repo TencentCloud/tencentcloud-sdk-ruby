@@ -2993,8 +2993,8 @@ module TencentCloud
 
         attr_accessor :SegmentSet, :SubtitlePath, :OutputStorage
         extend Gem::Deprecate
-        deprecate :OutputStorage, :none, 2026, 5
-        deprecate :OutputStorage=, :none, 2026, 5
+        deprecate :OutputStorage, :none, 2026, 6
+        deprecate :OutputStorage=, :none, 2026, 6
 
         def initialize(segmentset=nil, subtitlepath=nil, outputstorage=nil)
           @SegmentSet = segmentset
@@ -9057,8 +9057,8 @@ module TencentCloud
 
         attr_accessor :OutputName, :Description, :Protocol, :OutputRegion, :OutputType, :OutputKind, :SRTSettings, :RTMPSettings, :RTPSettings, :AllowIpList, :MaxConcurrent, :SecurityGroupIds, :Zones, :RISTSettings, :PidSelector, :StreamSelector
         extend Gem::Deprecate
-        deprecate :PidSelector, :none, 2026, 5
-        deprecate :PidSelector=, :none, 2026, 5
+        deprecate :PidSelector, :none, 2026, 6
+        deprecate :PidSelector=, :none, 2026, 6
 
         def initialize(outputname=nil, description=nil, protocol=nil, outputregion=nil, outputtype=nil, outputkind=nil, srtsettings=nil, rtmpsettings=nil, rtpsettings=nil, allowiplist=nil, maxconcurrent=nil, securitygroupids=nil, zones=nil, ristsettings=nil, pidselector=nil, streamselector=nil)
           @OutputName = outputname
@@ -13947,8 +13947,8 @@ module TencentCloud
 
         attr_accessor :OutputId, :OutputName, :OutputType, :OutputKind, :Description, :Protocol, :OutputAddressList, :OutputRegion, :SRTSettings, :RTPSettings, :RTMPSettings, :RTMPPullSettings, :AllowIpList, :RTSPPullSettings, :HLSPullSettings, :MaxConcurrent, :SecurityGroupIds, :Zones, :RISTSettings, :PidSelector, :StreamUrls, :StreamSelector
         extend Gem::Deprecate
-        deprecate :PidSelector, :none, 2026, 5
-        deprecate :PidSelector=, :none, 2026, 5
+        deprecate :PidSelector, :none, 2026, 6
+        deprecate :PidSelector=, :none, 2026, 6
 
         def initialize(outputid=nil, outputname=nil, outputtype=nil, outputkind=nil, description=nil, protocol=nil, outputaddresslist=nil, outputregion=nil, srtsettings=nil, rtpsettings=nil, rtmpsettings=nil, rtmppullsettings=nil, allowiplist=nil, rtsppullsettings=nil, hlspullsettings=nil, maxconcurrent=nil, securitygroupids=nil, zones=nil, ristsettings=nil, pidselector=nil, streamurls=nil, streamselector=nil)
           @OutputId = outputid
@@ -18340,8 +18340,8 @@ module TencentCloud
 
         attr_accessor :TaskType, :EvaluationTypeSet, :EvaluationRangeType, :ContrastInfoSet, :ContrastMediaSet, :ContrastTemplateSet, :StartTime, :EndTime, :StartFrameIndex, :EndFrameIndex, :ResolutionAlignmentMode, :BitrateSet, :VCRFSet
         extend Gem::Deprecate
-        deprecate :ContrastInfoSet, :none, 2026, 5
-        deprecate :ContrastInfoSet=, :none, 2026, 5
+        deprecate :ContrastInfoSet, :none, 2026, 6
+        deprecate :ContrastInfoSet=, :none, 2026, 6
 
         def initialize(tasktype=nil, evaluationtypeset=nil, evaluationrangetype=nil, contrastinfoset=nil, contrastmediaset=nil, contrasttemplateset=nil, starttime=nil, endtime=nil, startframeindex=nil, endframeindex=nil, resolutionalignmentmode=nil, bitrateset=nil, vcrfset=nil)
           @TaskType = tasktype
@@ -20391,6 +20391,116 @@ module TencentCloud
         end
       end
 
+      # LLM 大模型检测发现的单条问题
+      class LLMDetectionIssue < TencentCloud::Common::AbstractModel
+        # @param Tag: <p>问题分类标签。</p>
+        # @type Tag: String
+        # @param Description: <p>问题描述。</p>
+        # @type Description: String
+        # @param Score: <p>该问题的质量得分，范围 [0, 100]。</p>
+        # @type Score: Float
+        # @param Confidence: <p>该问题的判断置信度，范围 [0, 100]。</p>
+        # @type Confidence: Float
+        # @param StartTimeMs: <p>问题起始时间（毫秒）。</p>
+        # @type StartTimeMs: Integer
+        # @param EndTimeMs: <p>问题结束时间（毫秒）</p>
+        # @type EndTimeMs: Integer
+        # @param ExtraData: <p>附加数据（JSON 格式），如严重程度等补充信息。</p>
+        # @type ExtraData: String
+
+        attr_accessor :Tag, :Description, :Score, :Confidence, :StartTimeMs, :EndTimeMs, :ExtraData
+
+        def initialize(tag=nil, description=nil, score=nil, confidence=nil, starttimems=nil, endtimems=nil, extradata=nil)
+          @Tag = tag
+          @Description = description
+          @Score = score
+          @Confidence = confidence
+          @StartTimeMs = starttimems
+          @EndTimeMs = endtimems
+          @ExtraData = extradata
+        end
+
+        def deserialize(params)
+          @Tag = params['Tag']
+          @Description = params['Description']
+          @Score = params['Score']
+          @Confidence = params['Confidence']
+          @StartTimeMs = params['StartTimeMs']
+          @EndTimeMs = params['EndTimeMs']
+          @ExtraData = params['ExtraData']
+        end
+      end
+
+      # LLM 大模型检测结果报告
+      class LLMDetectionReport < TencentCloud::Common::AbstractModel
+        # @param ResultCount: <p>检测结果数量。</p>
+        # @type ResultCount: Integer
+        # @param ResultSet: <p>各检测项结果列表。</p>
+        # @type ResultSet: Array
+
+        attr_accessor :ResultCount, :ResultSet
+
+        def initialize(resultcount=nil, resultset=nil)
+          @ResultCount = resultcount
+          @ResultSet = resultset
+        end
+
+        def deserialize(params)
+          @ResultCount = params['ResultCount']
+          unless params['ResultSet'].nil?
+            @ResultSet = []
+            params['ResultSet'].each do |i|
+              llmdetectionresultitem_tmp = LLMDetectionResultItem.new
+              llmdetectionresultitem_tmp.deserialize(i)
+              @ResultSet << llmdetectionresultitem_tmp
+            end
+          end
+        end
+      end
+
+      # LLM 大模型单个检测项的聚合结果
+      class LLMDetectionResultItem < TencentCloud::Common::AbstractModel
+        # @param Category: <p>检测分类。</p><p>枚举值：</p><ul><li>AIGCQualityCharacteristics： AIGC 质量特征</li></ul>
+        # @type Category: String
+        # @param Group: <p>检测分组。</p><p>枚举值：</p><ul><li>AIGCAuthenticity： AIGC 真实性，包括人体合理性、物理合理性、跨帧一致性等</li><li>AIGCTechQuality： AIGC 技术质量，包括画幅、黑边、强行竖屏等</li></ul>
+        # @type Group: String
+        # @param Type: <p>检测类型名称。</p><p>枚举值：</p><ul><li>BodyPoseCheck： 人体姿态合理性，属于 AIGCAuthenticity</li><li>BodyDetailCheck： 人体细节合理性，包括手指数、五官对称等，属于 AIGCAuthenticity</li><li>PhysicRulesCheck： 物理规律合理性，包括透视、光影、重力等，属于 AIGCAuthenticity</li><li>ObjectConsistencyCheck： 跨帧物体一致性，属于 AIGCAuthenticity</li><li>FormatCheck： 画幅、黑边、强行竖屏等格式问题，属于 AIGCTechQuality</li></ul>
+        # @type Type: String
+        # @param Score: <p>整体质量得分，范围 [0, 100]，越高越好。</p>
+        # @type Score: Float
+        # @param Confidence: <p>判断置信度，范围 [0, 100]，越高表示越确定。</p>
+        # @type Confidence: Float
+        # @param IssueSet: <p>检测发现的问题列表，无问题时为空。</p>
+        # @type IssueSet: Array
+
+        attr_accessor :Category, :Group, :Type, :Score, :Confidence, :IssueSet
+
+        def initialize(category=nil, group=nil, type=nil, score=nil, confidence=nil, issueset=nil)
+          @Category = category
+          @Group = group
+          @Type = type
+          @Score = score
+          @Confidence = confidence
+          @IssueSet = issueset
+        end
+
+        def deserialize(params)
+          @Category = params['Category']
+          @Group = params['Group']
+          @Type = params['Type']
+          @Score = params['Score']
+          @Confidence = params['Confidence']
+          unless params['IssueSet'].nil?
+            @IssueSet = []
+            params['IssueSet'].each do |i|
+              llmdetectionissue_tmp = LLMDetectionIssue.new
+              llmdetectionissue_tmp.deserialize(i)
+              @IssueSet << llmdetectionissue_tmp
+            end
+          end
+        end
+      end
+
       # 线性组装频道信息。
       class LinearAssemblyChannelInfo < TencentCloud::Common::AbstractModel
         # @param Name: <p>线性组装频道名称。</p>
@@ -21083,10 +21193,10 @@ module TencentCloud
 
         attr_accessor :QualityControlResults, :DiagnoseResults, :QualityControlResultSet, :DiagnoseResultSet
         extend Gem::Deprecate
-        deprecate :QualityControlResults, :none, 2026, 5
-        deprecate :QualityControlResults=, :none, 2026, 5
-        deprecate :DiagnoseResults, :none, 2026, 5
-        deprecate :DiagnoseResults=, :none, 2026, 5
+        deprecate :QualityControlResults, :none, 2026, 6
+        deprecate :QualityControlResults=, :none, 2026, 6
+        deprecate :DiagnoseResults, :none, 2026, 6
+        deprecate :DiagnoseResults=, :none, 2026, 6
 
         def initialize(qualitycontrolresults=nil, diagnoseresults=nil, qualitycontrolresultset=nil, diagnoseresultset=nil)
           @QualityControlResults = qualitycontrolresults
@@ -24324,8 +24434,8 @@ module TencentCloud
 
         attr_accessor :OutputId, :OutputName, :Description, :Protocol, :OutputKind, :SRTSettings, :RTPSettings, :RTMPSettings, :AllowIpList, :MaxConcurrent, :SecurityGroupIds, :Zones, :RISTSettings, :OutputType, :PidSelector, :StreamSelector
         extend Gem::Deprecate
-        deprecate :PidSelector, :none, 2026, 5
-        deprecate :PidSelector=, :none, 2026, 5
+        deprecate :PidSelector, :none, 2026, 6
+        deprecate :PidSelector=, :none, 2026, 6
 
         def initialize(outputid=nil, outputname=nil, description=nil, protocol=nil, outputkind=nil, srtsettings=nil, rtpsettings=nil, rtmpsettings=nil, allowiplist=nil, maxconcurrent=nil, securitygroupids=nil, zones=nil, ristsettings=nil, outputtype=nil, pidselector=nil, streamselector=nil)
           @OutputId = outputid
@@ -27826,10 +27936,12 @@ module TencentCloud
         # @type QualityControlResultSet: Array
         # @param ContainerDiagnoseResultSet: <p>格式诊断检出异常项。</p>
         # @type ContainerDiagnoseResultSet: Array
+        # @param LLMDetectionReport: <p>LLM大模型AIGC质量检测结果。</p>
+        # @type LLMDetectionReport: :class:`Tencentcloud::Mps.v20190612.models.LLMDetectionReport`
 
-        attr_accessor :NoAudio, :NoVideo, :QualityEvaluationScore, :QualityEvaluationMeanOpinionScore, :AestheticEvaluationScore, :QualityControlResultSet, :ContainerDiagnoseResultSet
+        attr_accessor :NoAudio, :NoVideo, :QualityEvaluationScore, :QualityEvaluationMeanOpinionScore, :AestheticEvaluationScore, :QualityControlResultSet, :ContainerDiagnoseResultSet, :LLMDetectionReport
 
-        def initialize(noaudio=nil, novideo=nil, qualityevaluationscore=nil, qualityevaluationmeanopinionscore=nil, aestheticevaluationscore=nil, qualitycontrolresultset=nil, containerdiagnoseresultset=nil)
+        def initialize(noaudio=nil, novideo=nil, qualityevaluationscore=nil, qualityevaluationmeanopinionscore=nil, aestheticevaluationscore=nil, qualitycontrolresultset=nil, containerdiagnoseresultset=nil, llmdetectionreport=nil)
           @NoAudio = noaudio
           @NoVideo = novideo
           @QualityEvaluationScore = qualityevaluationscore
@@ -27837,6 +27949,7 @@ module TencentCloud
           @AestheticEvaluationScore = aestheticevaluationscore
           @QualityControlResultSet = qualitycontrolresultset
           @ContainerDiagnoseResultSet = containerdiagnoseresultset
+          @LLMDetectionReport = llmdetectionreport
         end
 
         def deserialize(params)
@@ -27860,6 +27973,10 @@ module TencentCloud
               containerdiagnoseresultitem_tmp.deserialize(i)
               @ContainerDiagnoseResultSet << containerdiagnoseresultitem_tmp
             end
+          end
+          unless params['LLMDetectionReport'].nil?
+            @LLMDetectionReport = LLMDetectionReport.new
+            @LLMDetectionReport.deserialize(params['LLMDetectionReport'])
           end
         end
       end

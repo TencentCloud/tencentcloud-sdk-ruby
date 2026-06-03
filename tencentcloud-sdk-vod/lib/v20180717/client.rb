@@ -356,7 +356,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 该接口用于创建 AIGC 自定义音色。
+        # 该接口用于创建 AIGC 自定义音色。注意，调用本接口会产生创建自定义音色费用，请参考[计费文档](https://cloud.tencent.com/document/product/266/95125#5e5217e8-29fc-467e-ac2d-853648f988b7)。
 
         # @param request: Request instance for CreateAigcCustomVoice.
         # @type request: :class:`Tencentcloud::vod::V20180717::CreateAigcCustomVoiceRequest`

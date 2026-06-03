@@ -679,27 +679,87 @@ module TencentCloud
 
       # DescribeTokenPlanApiKeyUsageDetail请求参数结构体
       class DescribeTokenPlanApiKeyUsageDetailRequest < TencentCloud::Common::AbstractModel
+        # @param TeamId: 套餐 ID。可通过DescribeTokenPlanList接口获取。
+        # @type TeamId: String
+        # @param From: 起始时间，RFC3339 格式。不传默认为结束时间前 15 分钟。
+        # @type From: String
+        # @param To: 结束时间，RFC3339 格式。不传默认为当前时间。
+        # @type To: String
+        # @param Sort: 排序方式。取值：asc（升序）、desc（降序），默认为 desc。
+        # @type Sort: String
+        # @param Limit: 返回条数，默认为 20，最大值为 100。
+        # @type Limit: Integer
+        # @param Context: 翻页上下文，首次查询不传，后续传入上次返回的 Context，直到 ListOver 为 true。
+        # @type Context: String
+        # @param ApiKeyId: 按 API Key ID 精确过滤。最大 128 字符。与 ApiKeyName 至少需传入其一，都传时以 ApiKeyId 为准。可通过 DescribeTokenPlanApiKeyList 接口获取。
+        # @type ApiKeyId: String
+        # @param ApiKeyName: 按 API Key 名称模糊过滤。最大 64 字符。与 ApiKeyId 至少需传入其一，都传时以 ApiKeyId 为准。
+        # @type ApiKeyName: String
+        # @param ModelName: 按模型 ID (Model ID) 精确过滤。需要按模型名称过滤时传入该字段。
+        # @type ModelName: String
 
+        attr_accessor :TeamId, :From, :To, :Sort, :Limit, :Context, :ApiKeyId, :ApiKeyName, :ModelName
 
-        def initialize()
+        def initialize(teamid=nil, from=nil, to=nil, sort=nil, limit=nil, context=nil, apikeyid=nil, apikeyname=nil, modelname=nil)
+          @TeamId = teamid
+          @From = from
+          @To = to
+          @Sort = sort
+          @Limit = limit
+          @Context = context
+          @ApiKeyId = apikeyid
+          @ApiKeyName = apikeyname
+          @ModelName = modelname
         end
 
         def deserialize(params)
+          @TeamId = params['TeamId']
+          @From = params['From']
+          @To = params['To']
+          @Sort = params['Sort']
+          @Limit = params['Limit']
+          @Context = params['Context']
+          @ApiKeyId = params['ApiKeyId']
+          @ApiKeyName = params['ApiKeyName']
+          @ModelName = params['ModelName']
         end
       end
 
       # DescribeTokenPlanApiKeyUsageDetail返回参数结构体
       class DescribeTokenPlanApiKeyUsageDetailResponse < TencentCloud::Common::AbstractModel
+        # @param Context: 翻页上下文，传入下一次请求的 Context 参数继续翻页。
+        # @type Context: String
+        # @param ListOver: 是否已到末尾，为 true 时无需继续翻页。
+        # @type ListOver: Boolean
+        # @param List: 调用明细列表。
+        # @type List: Array
+        # @param ProductType: 	 套餐类型。取值：enterprise（企业版专业套餐）、enterprise-auto（企业版轻享套餐）
+        # @type ProductType: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :Context, :ListOver, :List, :ProductType, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(context=nil, listover=nil, list=nil, producttype=nil, requestid=nil)
+          @Context = context
+          @ListOver = listover
+          @List = list
+          @ProductType = producttype
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @Context = params['Context']
+          @ListOver = params['ListOver']
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              usagedetailitem_tmp = UsageDetailItem.new
+              usagedetailitem_tmp.deserialize(i)
+              @List << usagedetailitem_tmp
+            end
+          end
+          @ProductType = params['ProductType']
           @RequestId = params['RequestId']
         end
       end
@@ -1640,6 +1700,82 @@ module TencentCloud
         def deserialize(params)
           @BigOrderId = params['BigOrderId']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # Token Plan 企业版套餐调用明细项（字段与 CLS 日志对齐）
+      class UsageDetailItem < TencentCloud::Common::AbstractModel
+        # @param Uin: 主账号 UIN。
+        # @type Uin: String
+        # @param ModelName: 模型名称。
+        # @type ModelName: String
+        # @param ApiKeyId: APIKey ID。
+        # @type ApiKeyId: String
+        # @param ApiKeyName: APIKey 名称。
+        # @type ApiKeyName: String
+        # @param RequestId: 请求 ID。
+        # @type RequestId: String
+        # @param RequestTime: 请求时间（RFC3339 格式）。
+        # @type RequestTime: String
+        # @param InputToken: 输入 token 数。
+        # @type InputToken: Integer
+        # @param CacheToken: 缓存 token 数。
+        # @type CacheToken: Integer
+        # @param OutputToken: 输出 token 数。
+        # @type OutputToken: Integer
+        # @param TotalToken: 总 token 数。
+        # @type TotalToken: Integer
+        # @param InputQuota: 未命中缓存输入消耗额度。单位说明如下：
+        # - 套餐类型为专业套餐（enterprise），单位取值为积分；
+        # - 套餐类型轻享套餐（enterprise-auto），单位取值为 token。
+        # @type InputQuota: String
+        # @param CacheQuota: 缓存消耗额度。单位说明如下：
+        # - 套餐类型为专业套餐（enterprise），单位取值为积分；
+        # - 套餐类型轻享套餐（enterprise-auto），单位取值为 token。
+        # @type CacheQuota: String
+        # @param OutputQuota: 输出消耗额度。单位说明如下：
+        # - 套餐类型为专业套餐（enterprise），单位取值为积分；
+        # - 套餐类型轻享套餐（enterprise-auto），单位取值为 token。
+        # @type OutputQuota: String
+        # @param TotalQuota: 总消耗额度。单位说明如下：
+        # - 套餐类型为专业套餐（enterprise），单位取值为积分；
+        # - 套餐类型轻享套餐（enterprise-auto），单位取值为 token。
+        # @type TotalQuota: String
+
+        attr_accessor :Uin, :ModelName, :ApiKeyId, :ApiKeyName, :RequestId, :RequestTime, :InputToken, :CacheToken, :OutputToken, :TotalToken, :InputQuota, :CacheQuota, :OutputQuota, :TotalQuota
+
+        def initialize(uin=nil, modelname=nil, apikeyid=nil, apikeyname=nil, requestid=nil, requesttime=nil, inputtoken=nil, cachetoken=nil, outputtoken=nil, totaltoken=nil, inputquota=nil, cachequota=nil, outputquota=nil, totalquota=nil)
+          @Uin = uin
+          @ModelName = modelname
+          @ApiKeyId = apikeyid
+          @ApiKeyName = apikeyname
+          @RequestId = requestid
+          @RequestTime = requesttime
+          @InputToken = inputtoken
+          @CacheToken = cachetoken
+          @OutputToken = outputtoken
+          @TotalToken = totaltoken
+          @InputQuota = inputquota
+          @CacheQuota = cachequota
+          @OutputQuota = outputquota
+          @TotalQuota = totalquota
+        end
+
+        def deserialize(params)
+          @Uin = params['Uin']
+          @ModelName = params['ModelName']
+          @ApiKeyId = params['ApiKeyId']
+          @ApiKeyName = params['ApiKeyName']
+          @RequestId = params['RequestId']
+          @RequestTime = params['RequestTime']
+          @InputToken = params['InputToken']
+          @CacheToken = params['CacheToken']
+          @OutputToken = params['OutputToken']
+          @TotalToken = params['TotalToken']
+          @InputQuota = params['InputQuota']
+          @CacheQuota = params['CacheQuota']
+          @OutputQuota = params['OutputQuota']
+          @TotalQuota = params['TotalQuota']
         end
       end
 

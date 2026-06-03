@@ -783,8 +783,8 @@ module TencentCloud
 
         attr_accessor :DealId, :InstanceIds, :DealName, :RequestId
         extend Gem::Deprecate
-        deprecate :DealId, :none, 2026, 4
-        deprecate :DealId=, :none, 2026, 4
+        deprecate :DealId, :none, 2026, 6
+        deprecate :DealId=, :none, 2026, 6
 
         def initialize(dealid=nil, instanceids=nil, dealname=nil, requestid=nil)
           @DealId = dealid
@@ -954,28 +954,19 @@ module TencentCloud
 
       # CreateInstanceAccount请求参数结构体
       class CreateInstanceAccountRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID，请登录[Redis控制台](https://console.cloud.tencent.com/redis)在实例列表复制实例 ID。
+        # @param InstanceId: <p>实例 ID，请登录<a href="https://console.cloud.tencent.com/redis">Redis控制台</a>在实例列表复制实例 ID。</p>
         # @type InstanceId: String
-        # @param AccountName: 自定义的访问数据库的账号名称。
-        # - 仅由字母、数字、下划线、中划线组成。
-        # - 长度不能大于32位。
+        # @param AccountName: <p>自定义的访问数据库的账号名称。</p><ul><li>仅由字母、数字、下划线、中划线组成。</li><li>长度不能大于32位。</li></ul>
         # @type AccountName: String
-        # @param AccountPassword: 设置自定义账号的密码。密码复杂度要求如下：
-        # - 字符个数为[8,64]。
-        # - 至少包含小写字母、大写字母、数字和字符 ()`~!@#$%^&*-+=_|{}[]:;<>,.?/ 中的两种。
-        # - 不能以"/"开头。
+        # @param AccountPassword: <p>设置自定义账号的密码。密码复杂度要求如下：</p><ul><li>字符个数为[8,64]。</li><li>至少包含小写字母、大写字母、数字和字符 ()`~!@#$%^&amp;*-+=_|{}[]:;&lt;&gt;,.?/ 中的两种。</li><li>不能以&quot;/&quot;开头。</li></ul>
         # @type AccountPassword: String
-        # @param ReadonlyPolicy: 指定账号的读请求路由分发至主节点或副本节点。未开启副本只读，不支持选择副本节点。
-        # - master：主节点
-        # - replication：副本节点
+        # @param ReadonlyPolicy: <p>指定账号的读请求路由分发至主节点或副本节点。未开启副本只读，不支持选择副本节点。</p><ul><li>master：主节点</li><li>replication：副本节点</li></ul>
         # @type ReadonlyPolicy: Array
-        # @param Privilege: 账户读写权限，支持选择只读与读写权限。
-        # - r：只读。
-        # - rw: 读写。
+        # @param Privilege: <p>账户读写权限，支持选择只读与读写权限。</p><ul><li>r：只读。</li><li>rw: 读写。</li></ul>
         # @type Privilege: String
-        # @param Remark: 账号备注描述信息，长度为[0,64] 字节，支持中文。
+        # @param Remark: <p>账号备注描述信息，长度为[0,64] 字节，支持中文。</p>
         # @type Remark: String
-        # @param EncryptPassword: 是否加密密码
+        # @param EncryptPassword: <p>是否启用密码加密传输。</p><ul><li>true：加密。</li><li>false：不加密（默认值）。</li></ul>
         # @type EncryptPassword: Boolean
 
         attr_accessor :InstanceId, :AccountName, :AccountPassword, :ReadonlyPolicy, :Privilege, :Remark, :EncryptPassword
@@ -1003,7 +994,7 @@ module TencentCloud
 
       # CreateInstanceAccount返回参数结构体
       class CreateInstanceAccountResponse < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务ID。
+        # @param TaskId: <p>任务ID。</p>
         # @type TaskId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1075,7 +1066,7 @@ module TencentCloud
         # @type RedisClusterId: String
         # @param AlarmPolicyList: <p>告警策略 ID 数组。</p><ul><li>请登录<a href="https://console.cloud.tencent.com/monitor/alarm/policy">腾讯云可观测平台-告警管理-策略管理</a>获取告警策略 ID。</li><li>若不配置该参数，则绑定默认告警策略。默认告警策略具体信息，请登录<a href="https://console.cloud.tencent.com/monitor/alarm/policy">腾讯云可观测平台-告警管理-策略管理</a>查看。</li></ul>
         # @type AlarmPolicyList: Array
-        # @param EncryptPassword: <p>是否加密密码</p>
+        # @param EncryptPassword: <p>是否启用密码加密传输。</p><ul><li>true：加密。</li><li>false：不加密（默认值）。</li></ul>
         # @type EncryptPassword: Boolean
 
         attr_accessor :TypeId, :MemSize, :GoodsNum, :Period, :BillingMode, :ZoneId, :Password, :VpcId, :SubnetId, :ProjectId, :AutoRenew, :SecurityGroupIdList, :VPort, :RedisShardNum, :RedisReplicasNum, :ReplicasReadonly, :InstanceName, :NoAuth, :NodeSet, :ResourceTags, :ZoneName, :TemplateId, :DryRun, :ProductVersion, :RedisClusterId, :AlarmPolicyList, :EncryptPassword
@@ -1168,8 +1159,8 @@ module TencentCloud
 
         attr_accessor :DealId, :InstanceIds, :DealName, :RequestId
         extend Gem::Deprecate
-        deprecate :DealId, :none, 2026, 4
-        deprecate :DealId=, :none, 2026, 4
+        deprecate :DealId, :none, 2026, 6
+        deprecate :DealId=, :none, 2026, 6
 
         def initialize(dealid=nil, instanceids=nil, dealname=nil, requestid=nil)
           @DealId = dealid
@@ -1803,12 +1794,12 @@ module TencentCloud
 
         attr_accessor :DownloadUrl, :InnerDownloadUrl, :Filenames, :BackupInfos, :RequestId
         extend Gem::Deprecate
-        deprecate :DownloadUrl, :none, 2026, 4
-        deprecate :DownloadUrl=, :none, 2026, 4
-        deprecate :InnerDownloadUrl, :none, 2026, 4
-        deprecate :InnerDownloadUrl=, :none, 2026, 4
-        deprecate :Filenames, :none, 2026, 4
-        deprecate :Filenames=, :none, 2026, 4
+        deprecate :DownloadUrl, :none, 2026, 6
+        deprecate :DownloadUrl=, :none, 2026, 6
+        deprecate :InnerDownloadUrl, :none, 2026, 6
+        deprecate :InnerDownloadUrl=, :none, 2026, 6
+        deprecate :Filenames, :none, 2026, 6
+        deprecate :Filenames=, :none, 2026, 6
 
         def initialize(downloadurl=nil, innerdownloadurl=nil, filenames=nil, backupinfos=nil, requestid=nil)
           @DownloadUrl = downloadurl
@@ -2384,8 +2375,8 @@ module TencentCloud
 
         attr_accessor :DealIds, :DealName
         extend Gem::Deprecate
-        deprecate :DealIds, :none, 2026, 4
-        deprecate :DealIds=, :none, 2026, 4
+        deprecate :DealIds, :none, 2026, 6
+        deprecate :DealIds=, :none, 2026, 6
 
         def initialize(dealids=nil, dealname=nil)
           @DealIds = dealids
@@ -4588,8 +4579,8 @@ module TencentCloud
 
         attr_accessor :TotalCount, :InstanceSlowlogDetail, :InstanceSlowLogDetail, :RequestId
         extend Gem::Deprecate
-        deprecate :InstanceSlowlogDetail, :none, 2026, 4
-        deprecate :InstanceSlowlogDetail=, :none, 2026, 4
+        deprecate :InstanceSlowlogDetail, :none, 2026, 6
+        deprecate :InstanceSlowlogDetail=, :none, 2026, 6
 
         def initialize(totalcount=nil, instanceslowlogdetail=nil, requestid=nil)
           @TotalCount = totalcount
@@ -4757,10 +4748,10 @@ module TencentCloud
 
         attr_accessor :InstanceId, :InstanceName, :Limit, :Offset, :ProjectIds, :TaskTypes, :BeginTime, :EndTime, :TaskStatus, :Result, :OperatorUin, :OperateUin
         extend Gem::Deprecate
-        deprecate :ProjectIds, :none, 2026, 4
-        deprecate :ProjectIds=, :none, 2026, 4
-        deprecate :OperatorUin, :none, 2026, 4
-        deprecate :OperatorUin=, :none, 2026, 4
+        deprecate :ProjectIds, :none, 2026, 6
+        deprecate :ProjectIds=, :none, 2026, 6
+        deprecate :OperatorUin, :none, 2026, 6
+        deprecate :OperatorUin=, :none, 2026, 6
 
         def initialize(instanceid=nil, instancename=nil, limit=nil, offset=nil, projectids=nil, tasktypes=nil, begintime=nil, endtime=nil, taskstatus=nil, result=nil, operatoruin=nil, operateuin=nil)
           @InstanceId = instanceid
@@ -4954,8 +4945,8 @@ module TencentCloud
 
         attr_accessor :DealId, :DealName, :RequestId
         extend Gem::Deprecate
-        deprecate :DealId, :none, 2026, 4
-        deprecate :DealId=, :none, 2026, 4
+        deprecate :DealId, :none, 2026, 6
+        deprecate :DealId=, :none, 2026, 6
 
         def initialize(dealid=nil, dealname=nil, requestid=nil)
           @DealId = dealid
@@ -5079,8 +5070,8 @@ module TencentCloud
 
         attr_accessor :Status, :TaskId, :RequestId
         extend Gem::Deprecate
-        deprecate :Status, :none, 2026, 4
-        deprecate :Status=, :none, 2026, 4
+        deprecate :Status, :none, 2026, 6
+        deprecate :Status=, :none, 2026, 6
 
         def initialize(status=nil, taskid=nil, requestid=nil)
           @Status = status
@@ -6060,151 +6051,133 @@ module TencentCloud
 
       # 实例详细信息列表。
       class InstanceSet < TencentCloud::Common::AbstractModel
-        # @param InstanceName: 实例名称。
+        # @param InstanceName: <p>实例名称。</p>
         # @type InstanceName: String
-        # @param InstanceId: 实例 ID。
+        # @param InstanceId: <p>实例 ID。</p>
         # @type InstanceId: String
-        # @param Appid: 用户AppId。AppId是与账号ID有唯一对应关系的应用 ID，部分腾讯云产品会使用此 AppId。
+        # @param Appid: <p>用户AppId。AppId是与账号ID有唯一对应关系的应用 ID，部分腾讯云产品会使用此 AppId。</p>
         # @type Appid: Integer
-        # @param ProjectId: 项目 ID。
+        # @param ProjectId: <p>项目 ID。</p>
         # @type ProjectId: Integer
-        # @param RegionId: 地域 ID。<ul><li>1：广州。</li><li>4：上海。</li><li>5：中国香港。</li><li>7：上海金融。</li> <li>8：北京。</li> <li>9：新加坡。</li> <li>11：深圳金融。</li> <li>15：美西（硅谷）。</li><li>16：成都。</li><li>17：法兰克福。</li><li>18：首尔。</li><li>19：重庆。</li><li>22：美东（弗吉尼亚）。</li><li>23：曼谷。</li><li>25：东京。</li></ul>
+        # @param RegionId: <p>地域 ID。<ul><li>1：广州。</li><li>4：上海。</li><li>5：中国香港。</li><li>7：上海金融。</li> <li>8：北京。</li> <li>9：新加坡。</li> <li>11：深圳金融。</li> <li>15：美西（硅谷）。</li><li>16：成都。</li><li>17：法兰克福。</li><li>18：首尔。</li><li>19：重庆。</li><li>22：美东（弗吉尼亚）。</li><li>23：曼谷。</li><li>25：东京。</li></ul></p>
         # @type RegionId: Integer
-        # @param ZoneId: 区域 ID。
+        # @param ZoneId: <p>区域 ID。</p>
         # @type ZoneId: Integer
-        # @param VpcId: vpc网络 ID，例如75101。
+        # @param VpcId: <p>vpc网络 ID，例如75101。</p>
         # @type VpcId: Integer
-        # @param SubnetId: vpc网络下子网ID，如：46315。
+        # @param SubnetId: <p>vpc网络下子网ID，如：46315。</p>
         # @type SubnetId: Integer
-        # @param Status: 实例当前状态。<ul><li>0：待初始化。</li><li>1：实例在流程中。</li><li>2：实例运行中。</li><li>-2：实例已隔离。</li><li>-3：实例待删除。</li></ul>
+        # @param Status: <p>实例当前状态。<ul><li>0：待初始化。</li><li>1：实例在流程中。</li><li>2：实例运行中。</li><li>-2：实例已隔离。</li><li>-3：实例待删除。</li></ul></p>
         # @type Status: Integer
-        # @param WanIp: 实例 VIP。
+        # @param WanIp: <p>实例 VIP。</p>
         # @type WanIp: String
-        # @param Port: 实例端口号。
+        # @param Port: <p>实例端口号。</p>
         # @type Port: Integer
-        # @param Createtime: 实例创建时间。格式如：2020-01-15 10:20:00。
+        # @param Createtime: <p>实例创建时间。格式如：2020-01-15 10:20:00。</p>
         # @type Createtime: String
-        # @param Size: 实例内存容量大小。单位：MB，1MB=1024KB。
+        # @param Size: <p>实例内存容量大小。单位：MB，1MB=1024KB。</p>
         # @type Size: Float
-        # @param SizeUsed: 该字段已废弃。请使用腾讯云可观测平台API 接口 [GetMonitorData](https://cloud.tencent.com/document/product/248/31014) 获取实例已使用的内存容量。
+        # @param SizeUsed: <p>该字段已废弃。请使用腾讯云可观测平台API 接口 <a href="https://cloud.tencent.com/document/product/248/31014">GetMonitorData</a> 获取实例已使用的内存容量。</p>
         # @type SizeUsed: Float
-        # @param Type: 实例类型。
-        # - 2：Redis 2.8 内存版（标准架构）。
-        # - 3：CKV 3.2 内存版（标准架构）。
-        # - 4：CKV 3.2 内存版（集群架构）。
-        # - 5：Redis 2.8 内存版（单机）。
-        # - 6：Redis 4.0 内存版（标准架构）。
-        # - 7：Redis 4.0 内存版（集群架构）。
-        # - 8：Redis 5.0 内存版（标准架构）。
-        # - 9：Redis 5.0 内存版（集群架构）。
-        # - 15：Redis 6.2 内存版（标准架构）。
-        # - 16：Redis 6.2 内存版（集群架构）。
-        # - 17：Redis 7.0 内存版（标准架构）。
-        # - 18：Redis 7.0 内存版（集群架构）。
-        # - 200:Memcached 1.6 内存版（集群架构）。
+        # @param Type: <p>实例类型。</p><p>枚举值：</p><ul><li>2： Redis 2.8 内存版（标准架构）。</li><li>3： CKV 3.2 内存版（标准架构）。</li><li>4： CKV 3.2 内存版（集群架构）。</li><li>5： Redis 2.8 内存版（单机）。</li><li>6： Redis 4.0 内存版（标准架构）。</li><li>7： Redis 4.0 内存版（集群架构）。</li><li>8： Redis 5.0 内存版（标准架构）。</li><li>9： Redis 5.0 内存版（集群架构）。</li><li>15： Redis 6.2 内存版（标准架构）。</li><li>16： Redis 6.2 内存版（集群架构）。</li><li>17： Redis 7.0 内存版（标准架构）。</li><li>18： Redis 7.0 内存版（集群架构）。</li><li>19： Valkey 8.0 内存版（标准架构）。</li><li>20： Valkey 8.0 内存版（集群架构）。</li><li>200： Memcached 1.6 内存版（集群架构）。</li></ul>
         # @type Type: Integer
-        # @param AutoRenewFlag: 实例是否设置自动续费标识。<ul><li>1：设置自动续费。</li><li>0：未设置自动续费。</li></ul>
+        # @param AutoRenewFlag: <p>实例是否设置自动续费标识。<ul><li>1：设置自动续费。</li><li>0：未设置自动续费。</li></ul></p>
         # @type AutoRenewFlag: Integer
-        # @param DeadlineTime: 包年包月计费实例到期的时间。
+        # @param DeadlineTime: <p>包年包月计费实例到期的时间。</p>
         # @type DeadlineTime: String
-        # @param Engine: 引擎：社区版Redis、腾讯云CKV。
+        # @param Engine: <p>引擎：社区版Redis、腾讯云CKV。</p>
         # @type Engine: String
-        # @param ProductType: 产品类型。<ul><li>standalone：标准版。</li><li>cluster ：集群版。</li></ul>
+        # @param ProductType: <p>产品类型。<ul><li>standalone：标准版。</li><li>cluster ：集群版。</li></ul></p>
         # @type ProductType: String
-        # @param UniqVpcId: vpc网络id，例如vpc-fk33jsf43kgv。
+        # @param UniqVpcId: <p>vpc网络id，例如vpc-fk33jsf43kgv。</p>
         # @type UniqVpcId: String
-        # @param UniqSubnetId: vpc网络下子网id，例如：subnet-fd3j6l35mm0。
+        # @param UniqSubnetId: <p>vpc网络下子网id，例如：subnet-fd3j6l35mm0。</p>
         # @type UniqSubnetId: String
-        # @param BillingMode: 计费模式。<ul><li>0：按量计费。</li><li>1：包年包月。</li></ul>
+        # @param BillingMode: <p>计费模式。<ul><li>0：按量计费。</li><li>1：包年包月。</li></ul></p>
         # @type BillingMode: Integer
-        # @param InstanceTitle: 实例运行状态描述：如”实例运行中“。
+        # @param InstanceTitle: <p>实例运行状态描述：如”实例运行中“。</p>
         # @type InstanceTitle: String
-        # @param OfflineTime: 已隔离实例默认下线时间。按量计费实例隔离后默认两小时后下线，包年包月默认7天后下线。格式如：2020-02-15 10:20:00。
+        # @param OfflineTime: <p>已隔离实例默认下线时间。按量计费实例隔离后默认两小时后下线，包年包月默认7天后下线。格式如：2020-02-15 10:20:00。</p>
         # @type OfflineTime: String
-        # @param SubStatus: 流程中的实例返回的子状态。
-        # - 0：磁盘读写状态。
-        # - 1：磁盘超限只读状态。
+        # @param SubStatus: <p>流程中的实例返回的子状态。</p><ul><li>0：磁盘读写状态。</li><li>1：磁盘超限只读状态。</li></ul>
         # @type SubStatus: Integer
-        # @param Tags: 反亲和性标签。
+        # @param Tags: <p>反亲和性标签。</p>
         # @type Tags: Array
-        # @param InstanceNode: 实例节点信息。
+        # @param InstanceNode: <p>实例节点信息。</p>
         # @type InstanceNode: Array
-        # @param RedisShardSize: 分片大小。
+        # @param RedisShardSize: <p>分片大小。</p>
         # @type RedisShardSize: Integer
-        # @param RedisShardNum: 分片数量。
+        # @param RedisShardNum: <p>分片数量。</p>
         # @type RedisShardNum: Integer
-        # @param RedisReplicasNum: 副本数量。
+        # @param RedisReplicasNum: <p>副本数量。</p>
         # @type RedisReplicasNum: Integer
-        # @param PriceId: 计费 ID。
+        # @param PriceId: <p>计费 ID。</p>
         # @type PriceId: Integer
-        # @param CloseTime: 实例隔离开始的时间。
+        # @param CloseTime: <p>实例隔离开始的时间。</p>
         # @type CloseTime: String
-        # @param SlaveReadWeight: 从节点读取权重。
-        # - 0：表示关闭副本只读。
-        # - 100：表示开启副本只读。
+        # @param SlaveReadWeight: <p>从节点读取权重。</p><ul><li>0：表示关闭副本只读。</li><li>100：表示开启副本只读。</li></ul>
         # @type SlaveReadWeight: Integer
-        # @param InstanceTags: 实例关联的标签信息。
+        # @param InstanceTags: <p>实例关联的标签信息。</p>
         # @type InstanceTags: Array
-        # @param ProjectName: 项目名称。
+        # @param ProjectName: <p>项目名称。</p>
         # @type ProjectName: String
-        # @param NoAuth: 是否为免密实例。<ul><li>true：免密实例。</li><li>false：非免密实例。</li></ul>
+        # @param NoAuth: <p>是否为免密实例。<ul><li>true：免密实例。</li><li>false：非免密实例。</li></ul></p>
         # @type NoAuth: Boolean
-        # @param ClientLimit: 客户端连接数。
+        # @param ClientLimit: <p>客户端连接数。</p>
         # @type ClientLimit: Integer
-        # @param DtsStatus: DTS状态（内部参数，用户可忽略）。
+        # @param DtsStatus: <p>DTS状态（内部参数，用户可忽略）。</p>
         # @type DtsStatus: Integer
-        # @param NetLimit: 分片带宽上限，单位MB。
+        # @param NetLimit: <p>分片带宽上限，单位MB。</p>
         # @type NetLimit: Integer
-        # @param PasswordFree: 免密实例标识（内部参数，用户可忽略）。
+        # @param PasswordFree: <p>免密实例标识（内部参数，用户可忽略）。</p>
         # @type PasswordFree: Integer
-        # @param Vip6: 该参数存在命名不规范问题，建议用参数IPv6取代。内部参数，用户可忽略。
+        # @param Vip6: <p>该参数存在命名不规范问题，建议用参数IPv6取代。内部参数，用户可忽略。</p>
         # @type Vip6: String
-        # @param IPv6: 内部参数，用户可忽略。
+        # @param IPv6: <p>内部参数，用户可忽略。</p>
         # @type IPv6: String
-        # @param ReadOnly: 实例只读标识（内部参数，用户可忽略）。
+        # @param ReadOnly: <p>实例只读标识（内部参数，用户可忽略）。</p>
         # @type ReadOnly: Integer
-        # @param RemainBandwidthDuration: 内部参数，用户可忽略。
+        # @param RemainBandwidthDuration: <p>内部参数，用户可忽略。</p>
         # @type RemainBandwidthDuration: String
-        # @param DiskSize: Redis实例请忽略该参数。
+        # @param DiskSize: <p>Redis实例请忽略该参数。</p>
         # @type DiskSize: Integer
-        # @param MonitorVersion: 监控版本。<ul><li>1m：1分钟粒度监控。目前该监控粒度已下线，具体信息，请参见[云数据库 Redis 1分钟粒度下线公告](https://cloud.tencent.com/document/product/239/80653)。</li><li>5s：5秒粒度监控。</li></ul>
+        # @param MonitorVersion: <p>监控版本。<ul><li>1m：1分钟粒度监控。目前该监控粒度已下线，具体信息，请参见<a href="https://cloud.tencent.com/document/product/239/80653">云数据库 Redis 1分钟粒度下线公告</a>。</li><li>5s：5秒粒度监控。</li></ul></p>
         # @type MonitorVersion: String
-        # @param ClientLimitMin: 客户端最大连接数可设置的最小值。
+        # @param ClientLimitMin: <p>客户端最大连接数可设置的最小值。</p>
         # @type ClientLimitMin: Integer
-        # @param ClientLimitMax: 客户端最大连接数可设置的最大值。
+        # @param ClientLimitMax: <p>客户端最大连接数可设置的最大值。</p>
         # @type ClientLimitMax: Integer
-        # @param NodeSet: 实例的节点详细信息。
-        # 只有多可用区实例会返回。
+        # @param NodeSet: <p>实例的节点详细信息。<br>只有多可用区实例会返回。</p>
         # @type NodeSet: Array
-        # @param Region: 实例所在的地域信息，比如ap-guangzhou。
+        # @param Region: <p>实例所在的地域信息，比如ap-guangzhou。</p>
         # @type Region: String
-        # @param WanAddress: 外网地址。
+        # @param WanAddress: <p>外网地址。</p>
         # @type WanAddress: String
-        # @param PolarisServer: 北极星服务地址，内部使用。
+        # @param PolarisServer: <p>北极星服务地址，内部使用。</p>
         # @type PolarisServer: String
-        # @param RedisClusterId: CDC Redis集群ID。
+        # @param RedisClusterId: <p>CDC Redis集群ID。</p>
         # @type RedisClusterId: String
-        # @param DedicatedClusterId: CDC 集群ID。
+        # @param DedicatedClusterId: <p>CDC 集群ID。</p>
         # @type DedicatedClusterId: String
-        # @param ProductVersion: 产品版本。<ul><li>local：本地盘。</li><li>cloud：云盘版。</li><li>cdc：CDC 集群版本。</li></ul>
+        # @param ProductVersion: <p>产品版本。<ul><li>local：本地盘。</li><li>cloud：云盘版。</li><li>cdc：CDC 集群版本。</li></ul></p>
         # @type ProductVersion: String
-        # @param CurrentProxyVersion: 实例当前Proxy版本。
+        # @param CurrentProxyVersion: <p>实例当前Proxy版本。</p>
         # @type CurrentProxyVersion: String
-        # @param CurrentRedisVersion: 实例当前Cache小版本。如果实例加入全球复制组，显示全球复制的内核版本。
+        # @param CurrentRedisVersion: <p>实例当前Cache小版本。如果实例加入全球复制组，显示全球复制的内核版本。</p>
         # @type CurrentRedisVersion: String
-        # @param UpgradeProxyVersion: 实例可升级Proxy版本。
+        # @param UpgradeProxyVersion: <p>实例可升级Proxy版本。</p>
         # @type UpgradeProxyVersion: String
-        # @param UpgradeRedisVersion: 实例可升级Cache小版本。
+        # @param UpgradeRedisVersion: <p>实例可升级Cache小版本。</p>
         # @type UpgradeRedisVersion: String
-        # @param BackupMode: 备份模式：- SecondLevelBackup   秒级备份- NormalLevelBackup    普通备份
+        # @param BackupMode: <p>备份模式。</p><ul><li>SecondLevelBackup：秒级备份。</li><li>NormalLevelBackup：普通备份。</li></ul>
         # @type BackupMode: String
-        # @param DeleteProtectionSwitch: 删除保护开关，0关闭，1开启
+        # @param DeleteProtectionSwitch: <p>实例销毁保护开关。</p><ul><li>0：关闭。</li><li>1：开启。</li></ul>
         # @type DeleteProtectionSwitch: Integer
 
         attr_accessor :InstanceName, :InstanceId, :Appid, :ProjectId, :RegionId, :ZoneId, :VpcId, :SubnetId, :Status, :WanIp, :Port, :Createtime, :Size, :SizeUsed, :Type, :AutoRenewFlag, :DeadlineTime, :Engine, :ProductType, :UniqVpcId, :UniqSubnetId, :BillingMode, :InstanceTitle, :OfflineTime, :SubStatus, :Tags, :InstanceNode, :RedisShardSize, :RedisShardNum, :RedisReplicasNum, :PriceId, :CloseTime, :SlaveReadWeight, :InstanceTags, :ProjectName, :NoAuth, :ClientLimit, :DtsStatus, :NetLimit, :PasswordFree, :Vip6, :IPv6, :ReadOnly, :RemainBandwidthDuration, :DiskSize, :MonitorVersion, :ClientLimitMin, :ClientLimitMax, :NodeSet, :Region, :WanAddress, :PolarisServer, :RedisClusterId, :DedicatedClusterId, :ProductVersion, :CurrentProxyVersion, :CurrentRedisVersion, :UpgradeProxyVersion, :UpgradeRedisVersion, :BackupMode, :DeleteProtectionSwitch
         extend Gem::Deprecate
-        deprecate :SizeUsed, :none, 2026, 4
-        deprecate :SizeUsed=, :none, 2026, 4
+        deprecate :SizeUsed, :none, 2026, 6
+        deprecate :SizeUsed=, :none, 2026, 6
 
         def initialize(instancename=nil, instanceid=nil, appid=nil, projectid=nil, regionid=nil, zoneid=nil, vpcid=nil, subnetid=nil, status=nil, wanip=nil, port=nil, createtime=nil, size=nil, sizeused=nil, type=nil, autorenewflag=nil, deadlinetime=nil, engine=nil, producttype=nil, uniqvpcid=nil, uniqsubnetid=nil, billingmode=nil, instancetitle=nil, offlinetime=nil, substatus=nil, tags=nil, instancenode=nil, redisshardsize=nil, redisshardnum=nil, redisreplicasnum=nil, priceid=nil, closetime=nil, slavereadweight=nil, instancetags=nil, projectname=nil, noauth=nil, clientlimit=nil, dtsstatus=nil, netlimit=nil, passwordfree=nil, vip6=nil, ipv6=nil, readonly=nil, remainbandwidthduration=nil, disksize=nil, monitorversion=nil, clientlimitmin=nil, clientlimitmax=nil, nodeset=nil, region=nil, wanaddress=nil, polarisserver=nil, redisclusterid=nil, dedicatedclusterid=nil, productversion=nil, currentproxyversion=nil, currentredisversion=nil, upgradeproxyversion=nil, upgraderedisversion=nil, backupmode=nil, deleteprotectionswitch=nil)
           @InstanceName = instancename
@@ -7109,30 +7082,21 @@ module TencentCloud
 
       # ModifyInstanceAccount请求参数结构体
       class ModifyInstanceAccountRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID，请登录[Redis控制台](https://console.cloud.tencent.com/redis/instance/list)在实例列表复制实例 ID。
+        # @param InstanceId: <p>实例 ID，请登录<a href="https://console.cloud.tencent.com/redis/instance/list">Redis控制台</a>在实例列表复制实例 ID。</p>
         # @type InstanceId: String
-        # @param AccountName: 指定需修改的账号。
-        # - root：指在创建 Redis 数据库实例时自动生成的账号。用户无法修改其读写权限，仅可修改其请求路由策略。
-        # - 自定义的账号：用户在实例创建成功后手动创建的账号。用户可以随时修改其读写权限与请求路由策略。
+        # @param AccountName: <p>指定需修改的账号。</p><ul><li>root：指在创建 Redis 数据库实例时自动生成的账号。用户无法修改其读写权限，仅可修改其请求路由策略。</li><li>自定义的账号：用户在实例创建成功后手动创建的账号。用户可以随时修改其读写权限与请求路由策略。</li></ul>
         # @type AccountName: String
-        # @param AccountPassword: 指定所修改账号访问的密码。
+        # @param AccountPassword: <p>指定所修改账号访问的密码。</p>
         # @type AccountPassword: String
-        # @param Remark: 账号描述信息
+        # @param Remark: <p>账号描述信息</p>
         # @type Remark: String
-        # @param ReadonlyPolicy: 指定所修改账号读写请求路由的策略。
-        # - master：表示读写请求路由至主节点。
-        # - replication：表示读写请求路由至从节点。
+        # @param ReadonlyPolicy: <p>指定所修改账号读写请求路由的策略。</p><ul><li>master：表示读写请求路由至主节点。</li><li>replication：表示读写请求路由至从节点。</li></ul>
         # @type ReadonlyPolicy: Array
-        # @param Privilege: 指定所修改账号的读写权限。
-        # - r：只读。
-        # - w：只写。
-        # - rw：读写。
+        # @param Privilege: <p>指定所修改账号的读写权限。</p><ul><li>r：只读。</li><li>w：只写。</li><li>rw：读写。</li></ul>
         # @type Privilege: String
-        # @param NoAuth: 指定是否将默认账号（root）设置为免密账号。自定义账号不支持免密访问。
-        # - true：默认账号（root）设置为免密账号。
-        # - false：默认账号（root）不设置为免密账号。
+        # @param NoAuth: <p>指定是否将默认账号（root）设置为免密账号。自定义账号不支持免密访问。</p><ul><li>true：默认账号（root）设置为免密账号。</li><li>false：默认账号（root）不设置为免密账号。</li></ul>
         # @type NoAuth: Boolean
-        # @param EncryptPassword: 指定所修改的账号是否加密密码
+        # @param EncryptPassword: <p>是否启用密码加密传输。</p><ul><li>true：加密。</li><li>false：不加密（默认值）。</li></ul>
         # @type EncryptPassword: Boolean
 
         attr_accessor :InstanceId, :AccountName, :AccountPassword, :Remark, :ReadonlyPolicy, :Privilege, :NoAuth, :EncryptPassword
@@ -7162,7 +7126,7 @@ module TencentCloud
 
       # ModifyInstanceAccount返回参数结构体
       class ModifyInstanceAccountResponse < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务ID。
+        # @param TaskId: <p>任务ID。</p>
         # @type TaskId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -7625,12 +7589,12 @@ module TencentCloud
 
         attr_accessor :Operation, :InstanceIds, :InstanceNames, :ProjectId, :AutoRenews, :DeleteProtectionSwitches, :InstanceId, :InstanceName, :AutoRenew
         extend Gem::Deprecate
-        deprecate :InstanceId, :none, 2026, 4
-        deprecate :InstanceId=, :none, 2026, 4
-        deprecate :InstanceName, :none, 2026, 4
-        deprecate :InstanceName=, :none, 2026, 4
-        deprecate :AutoRenew, :none, 2026, 4
-        deprecate :AutoRenew=, :none, 2026, 4
+        deprecate :InstanceId, :none, 2026, 6
+        deprecate :InstanceId=, :none, 2026, 6
+        deprecate :InstanceName, :none, 2026, 6
+        deprecate :InstanceName=, :none, 2026, 6
+        deprecate :AutoRenew, :none, 2026, 6
+        deprecate :AutoRenew=, :none, 2026, 6
 
         def initialize(operation=nil, instanceids=nil, instancenames=nil, projectid=nil, autorenews=nil, deleteprotectionswitches=nil, instanceid=nil, instancename=nil, autorenew=nil)
           @Operation = operation
@@ -8219,8 +8183,8 @@ module TencentCloud
 
         attr_accessor :Type, :TypeName, :MinBuyNum, :MaxBuyNum, :Saleout, :Engine, :Version, :TotalSize, :ShardSize, :ReplicaNum, :ShardNum, :PayMode, :EnableRepicaReadOnly, :EnableReplicaReadOnly
         extend Gem::Deprecate
-        deprecate :EnableRepicaReadOnly, :none, 2026, 4
-        deprecate :EnableRepicaReadOnly=, :none, 2026, 4
+        deprecate :EnableRepicaReadOnly, :none, 2026, 6
+        deprecate :EnableRepicaReadOnly=, :none, 2026, 6
 
         def initialize(type=nil, typename=nil, minbuynum=nil, maxbuynum=nil, saleout=nil, engine=nil, version=nil, totalsize=nil, shardsize=nil, replicanum=nil, shardnum=nil, paymode=nil, enablerepicareadonly=nil, enablereplicareadonly=nil)
           @Type = type
@@ -8791,8 +8755,8 @@ module TencentCloud
 
         attr_accessor :DealId, :DealName, :RequestId
         extend Gem::Deprecate
-        deprecate :DealId, :none, 2026, 4
-        deprecate :DealId=, :none, 2026, 4
+        deprecate :DealId, :none, 2026, 6
+        deprecate :DealId=, :none, 2026, 6
 
         def initialize(dealid=nil, dealname=nil, requestid=nil)
           @DealId = dealid
@@ -9216,8 +9180,8 @@ module TencentCloud
 
         attr_accessor :TaskId, :RequestId
         extend Gem::Deprecate
-        deprecate :TaskId, :none, 2026, 4
-        deprecate :TaskId=, :none, 2026, 4
+        deprecate :TaskId, :none, 2026, 6
+        deprecate :TaskId=, :none, 2026, 6
 
         def initialize(taskid=nil, requestid=nil)
           @TaskId = taskid
@@ -9554,8 +9518,8 @@ module TencentCloud
 
         attr_accessor :DealId, :DealName, :ZoneId, :GoodsNum, :Creater, :CreatTime, :OverdueTime, :EndTime, :Status, :Description, :Price, :InstanceIds
         extend Gem::Deprecate
-        deprecate :DealId, :none, 2026, 4
-        deprecate :DealId=, :none, 2026, 4
+        deprecate :DealId, :none, 2026, 6
+        deprecate :DealId=, :none, 2026, 6
 
         def initialize(dealid=nil, dealname=nil, zoneid=nil, goodsnum=nil, creater=nil, creattime=nil, overduetime=nil, endtime=nil, status=nil, description=nil, price=nil, instanceids=nil)
           @DealId = dealid
@@ -9651,8 +9615,8 @@ module TencentCloud
 
         attr_accessor :DealId, :DealName, :RequestId
         extend Gem::Deprecate
-        deprecate :DealId, :none, 2026, 4
-        deprecate :DealId=, :none, 2026, 4
+        deprecate :DealId, :none, 2026, 6
+        deprecate :DealId=, :none, 2026, 6
 
         def initialize(dealid=nil, dealname=nil, requestid=nil)
           @DealId = dealid
@@ -9708,8 +9672,8 @@ module TencentCloud
 
         attr_accessor :DealId, :DealName, :RequestId
         extend Gem::Deprecate
-        deprecate :DealId, :none, 2026, 4
-        deprecate :DealId=, :none, 2026, 4
+        deprecate :DealId, :none, 2026, 6
+        deprecate :DealId=, :none, 2026, 6
 
         def initialize(dealid=nil, dealname=nil, requestid=nil)
           @DealId = dealid

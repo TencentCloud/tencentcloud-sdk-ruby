@@ -101,6 +101,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 添加数据表
+
+        # @param request: Request instance for CreateDataTable.
+        # @type request: :class:`Tencentcloud::bi::V20220105::CreateDataTableRequest`
+        # @rtype: :class:`Tencentcloud::bi::V20220105::CreateDataTableResponse`
+        def CreateDataTable(request)
+          body = send_request('CreateDataTable', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateDataTableResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建数据源
 
         # @param request: Request instance for CreateDatasource.
@@ -711,6 +735,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeResourceUserGroupPageListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 原始数据表字段接口信息
+
+        # @param request: Request instance for DescribeSourceFieldList.
+        # @type request: :class:`Tencentcloud::bi::V20220105::DescribeSourceFieldListRequest`
+        # @rtype: :class:`Tencentcloud::bi::V20220105::DescribeSourceFieldListResponse`
+        def DescribeSourceFieldList(request)
+          body = send_request('DescribeSourceFieldList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSourceFieldListResponse.new
             model.deserialize(response['Response'])
             model
           else

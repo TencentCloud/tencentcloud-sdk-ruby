@@ -344,10 +344,12 @@ module TencentCloud
         # @type SubtitleSet: Array
         # @param SubtitleInfoSet: <p>字幕压制信息列表。最大可支持 2 个。</p>
         # @type SubtitleInfoSet: Array
+        # @param DrmInfo: <p>第三方DRM加密信息。暂不支持任务流的方式使用第三方DRM信息发起任务。</p>
+        # @type DrmInfo: :class:`Tencentcloud::Vod.v20180717.models.ThirdPartyDrmInfo`
 
-        attr_accessor :Definition, :WatermarkSet, :TraceWatermark, :CopyRightWatermark, :BlindWatermark, :SubtitleSet, :SubtitleInfoSet
+        attr_accessor :Definition, :WatermarkSet, :TraceWatermark, :CopyRightWatermark, :BlindWatermark, :SubtitleSet, :SubtitleInfoSet, :DrmInfo
 
-        def initialize(definition=nil, watermarkset=nil, tracewatermark=nil, copyrightwatermark=nil, blindwatermark=nil, subtitleset=nil, subtitleinfoset=nil)
+        def initialize(definition=nil, watermarkset=nil, tracewatermark=nil, copyrightwatermark=nil, blindwatermark=nil, subtitleset=nil, subtitleinfoset=nil, drminfo=nil)
           @Definition = definition
           @WatermarkSet = watermarkset
           @TraceWatermark = tracewatermark
@@ -355,6 +357,7 @@ module TencentCloud
           @BlindWatermark = blindwatermark
           @SubtitleSet = subtitleset
           @SubtitleInfoSet = subtitleinfoset
+          @DrmInfo = drminfo
         end
 
         def deserialize(params)
@@ -387,6 +390,10 @@ module TencentCloud
               subtitleinfoinput_tmp.deserialize(i)
               @SubtitleInfoSet << subtitleinfoinput_tmp
             end
+          end
+          unless params['DrmInfo'].nil?
+            @DrmInfo = ThirdPartyDrmInfo.new
+            @DrmInfo.deserialize(params['DrmInfo'])
           end
         end
       end
@@ -4500,7 +4507,7 @@ module TencentCloud
         # @type ClassId: Integer
         # @param ExpireTime: <p>输出文件的过期时间，超过该时间文件将被删除，默认为永久不过期，格式按照 ISO 8601标准表示，详见 <a href="https://cloud.tencent.com/document/product/266/11732#I">ISO 日期格式说明</a>。</p>
         # @type ExpireTime: String
-        # @param Resolution: <p>生成图片的分辨率。各模型可选值：</p><ul><li>OG：1K、2K、4K，默认1K；</li><li>GG 2.5：1K、2K、4K，默认1K；</li><li>GG 3.0：1K、2K、4K，默认1K；</li><li>GG 3.1：512、1K、2K、4K，默认1K；</li><li>Kling 2.1：1k、2k，默认1k；</li><li>Kling 3.0：1k、2k，默认1k；</li><li>Kling 3.0-Omni：1k、2k、4k，默认1k；</li><li>Kling O1：1k、2k、4k，默认1k；</li><li>SI 4.0：1K、2K、4K，默认1K；</li><li>SI 4.5：2K、4K，默认2K；</li><li>SI 5.0-lite：2K、3K，默认2K；</li><li>Vidu q2：1080p、2K、4K，默认1080p；</li><li>Hunyuan 3.0：暂不支持本字段，可通过<code>ExtInfo</code>字段设置分辨率；</li><li>Qwen 0925：暂不支持本字段，可通过<code>ExtInfo</code>字段设置分辨率；</li></ul>
+        # @param Resolution: <p>生成图片的分辨率。各模型可选值：</p><ul><li>OG：1K、2K、4K，默认1K；</li><li>GG 2.5：1K、2K、4K，默认1K；</li><li>GG 3.0：1K、2K、4K，默认1K；</li><li>GG 3.1：720P、1K、2K、4K，默认1K；</li><li>Kling 2.1：1k、2k，默认1k；</li><li>Kling 3.0：1k、2k，默认1k；</li><li>Kling 3.0-Omni：1k、2k、4k，默认1k；</li><li>Kling O1：1k、2k、4k，默认1k；</li><li>SI 4.0：1K、2K、4K，默认1K；</li><li>SI 4.5：2K、4K，默认2K；</li><li>SI 5.0-lite：2K、3K，默认2K；</li><li>Vidu q2：1080p、2K、4K，默认1080p；</li><li>Hunyuan 3.0：暂不支持本字段，可通过<code>ExtInfo</code>字段设置分辨率；</li><li>Qwen 0925：暂不支持本字段，可通过<code>ExtInfo</code>字段设置分辨率；</li></ul>
         # @type Resolution: String
         # @param AspectRatio: <p>指定所生成图片的宽高比。</p><ul><li>OG：1:1, 3:2, 2:3, 3:4, 4:3, 16:9, 9:16, 21:9, 9:21；</li><li>GG 2.5：1:1, 2:3, 3:2, 3:4, 4:3, 4:5, 5:4, 9:16, 16:9, 21:9；</li><li>GG 3.0：1:1, 2:3, 3:2, 3:4, 4:3, 4:5, 5:4, 9:16, 16:9, 21:9；</li><li>GG 3.1：1:1, 1:4, 1:8, 2:3, 3:2, 3:4, 4:1, 4:3, 4:5, 5:4, 8:1, 9:16, 16:9, 21:9；</li><li>Kling 2.1：16:9, 9:16, 1:1, 4:3, 3:4, 3:2, 2:3, 21:9；</li><li>Kling 3.0：16:9, 9:16, 1:1, 4:3, 3:4, 3:2, 2:3, 21:9；</li><li>Kling 3.0-Omni：16:9, 9:16, 1:1, 4:3, 3:4, 3:2, 2:3, 21:9, auto；</li><li>Kling O1：16:9, 9:16, 1:1, 4:3, 3:4, 3:2, 2:3, 21:9, auto；</li><li>Vidu q2：16:9、9:16、1:1、3:4、4:3、21:9、2:3、3:2；</li><li>SI 4.0：<strong>不支持</strong>此参数，可通过prompt指定16:9, 9:16, 1:1, 4:3, 3:4, 3:2, 2:3, 21:9；</li><li>SI 4.5：<strong>不支持</strong>此参数，可通过prompt指定16:9, 9:16, 1:1, 4:3, 3:4, 3:2, 2:3, 21:9；</li><li>SI 5.0-lite：<strong>不支持</strong>此参数，可通过prompt指定16:9, 9:16, 1:1, 4:3, 3:4, 3:2, 2:3, 21:9；</li><li>Hunyuan 3.0：不支持；</li><li>Qwen 2.0：不支持；</li><li>Qwen 0925：不支持；</li></ul>
         # @type AspectRatio: String
@@ -5298,7 +5305,7 @@ module TencentCloud
         # @type VoiceId: String
         # @param KeepOriginalSound: <p>是否保留视频原声。当 Category 为 Video 时有效。取值如下：</p><li>Enabled：保留</li><li>Disabled：不保留</li>
         # @type KeepOriginalSound: String
-        # @param Usage: <p>用于区分输入图像用于<strong>首（尾）帧生视频</strong>、<strong>图生视频</strong>或<strong>参考生视频</strong>。可选值：</p><ul><li>FirstFrame：用于首（尾）帧生视频 或 图生视频；</li><li>Reference：用于参考生视频；</li></ul><p><strong>注意，默认是FirstFrame</strong></p>
+        # @param Usage: <p>用于区分输入图像用于<strong>首（尾）帧生视频</strong>、<strong>图生视频</strong>或<strong>参考生视频</strong>。可选值：</p><ul><li>FirstFrame：用于首（尾）帧生视频的首帧 或 图生视频；</li><li>Reference：用于参考生视频；</li><li>LastFrame：用于首（尾）帧生视频的尾帧；</li></ul><p><strong>注意，默认是FirstFrame</strong></p>
         # @type Usage: String
         # @param Text: <p><strong>仅 PixVerse 模型的多图（主体）参考生模式生效</strong>，针对图片指定名字, 用来更精准效果。用法：当本字段值为“小猫”，在 Prompt 中使用 @小猫 精确描述场景。@Text 后必须有空格，如 @小猫 跑步。Prompt 中引用的名称必须与本字段完全一致。</p>
         # @type Text: String
@@ -8224,6 +8231,8 @@ module TencentCloud
         # @type ElementImageList: String
         # @param TagList: <p>为主体配置标签，一个主体可以配置多个标签。</p><ul><li>用key:value承载，其中具体如下：</li></ul><p><pre><code>[  {        &quot;tag_id&quot;: &quot;o_101&quot;  }, {        &quot;tag_id&quot;: &quot;o_102&quot;    }]</code></pre></p>
         # @type TagList: String
+        # @param DisableModeration: <p>若已开通海外自定义主体库，可传入<code>True</code>使用海外自定义主体库。</p><p>枚举值：</p><ul><li>True： 使用海外自定义主体库。</li><li>False： 不使用海外自定义主体库。</li></ul>
+        # @type DisableModeration: String
         # @param SessionId: <p>用于去重的识别码，如果三天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长 50 个字符，不带或者带空字符串表示不做去重。</p>
         # @type SessionId: String
         # @param SessionContext: <p>来源上下文，用于透传用户请求信息，任务完成回调将返回该字段值，最长 1000 个字符。</p>
@@ -8231,9 +8240,9 @@ module TencentCloud
         # @param TasksPriority: <p>任务的优先级，数值越大优先级越高，取值范围是 -10 到 10，不填代表 0。</p>
         # @type TasksPriority: Integer
 
-        attr_accessor :SubAppId, :ElementName, :ElementDescription, :ReferenceType, :ElementVoiceId, :ElementVideoList, :ElementImageList, :TagList, :SessionId, :SessionContext, :TasksPriority
+        attr_accessor :SubAppId, :ElementName, :ElementDescription, :ReferenceType, :ElementVoiceId, :ElementVideoList, :ElementImageList, :TagList, :DisableModeration, :SessionId, :SessionContext, :TasksPriority
 
-        def initialize(subappid=nil, elementname=nil, elementdescription=nil, referencetype=nil, elementvoiceid=nil, elementvideolist=nil, elementimagelist=nil, taglist=nil, sessionid=nil, sessioncontext=nil, taskspriority=nil)
+        def initialize(subappid=nil, elementname=nil, elementdescription=nil, referencetype=nil, elementvoiceid=nil, elementvideolist=nil, elementimagelist=nil, taglist=nil, disablemoderation=nil, sessionid=nil, sessioncontext=nil, taskspriority=nil)
           @SubAppId = subappid
           @ElementName = elementname
           @ElementDescription = elementdescription
@@ -8242,6 +8251,7 @@ module TencentCloud
           @ElementVideoList = elementvideolist
           @ElementImageList = elementimagelist
           @TagList = taglist
+          @DisableModeration = disablemoderation
           @SessionId = sessionid
           @SessionContext = sessioncontext
           @TasksPriority = taskspriority
@@ -8256,6 +8266,7 @@ module TencentCloud
           @ElementVideoList = params['ElementVideoList']
           @ElementImageList = params['ElementImageList']
           @TagList = params['TagList']
+          @DisableModeration = params['DisableModeration']
           @SessionId = params['SessionId']
           @SessionContext = params['SessionContext']
           @TasksPriority = params['TasksPriority']
@@ -8792,6 +8803,8 @@ module TencentCloud
         # @type VoiceUrl: String
         # @param VideoId: <p>历史作品 ID，可通过引用历史作品提供音频素材。</p>
         # @type VideoId: String
+        # @param DisableModeration: <p>若已开通海外自定义音色库，可传入<code>True</code>使用海外自定义音色库。</p><p>枚举值：</p><ul><li>True： 使用海外自定义音色库。</li><li>False： 不使用海外自定义音色库。</li></ul>
+        # @type DisableModeration: String
         # @param SessionId: <p>用于去重的识别码，如果三天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长 50 个字符，不带或者带空字符串表示不做去重。</p>
         # @type SessionId: String
         # @param SessionContext: <p>来源上下文，用于透传用户请求信息，任务完成回调将返回该字段值，最长 1000 个字符。</p>
@@ -8799,13 +8812,14 @@ module TencentCloud
         # @param TasksPriority: <p>任务的优先级，数值越大优先级越高，取值范围是 -10 到 10，不填代表 0。</p>
         # @type TasksPriority: Integer
 
-        attr_accessor :SubAppId, :VoiceName, :VoiceUrl, :VideoId, :SessionId, :SessionContext, :TasksPriority
+        attr_accessor :SubAppId, :VoiceName, :VoiceUrl, :VideoId, :DisableModeration, :SessionId, :SessionContext, :TasksPriority
 
-        def initialize(subappid=nil, voicename=nil, voiceurl=nil, videoid=nil, sessionid=nil, sessioncontext=nil, taskspriority=nil)
+        def initialize(subappid=nil, voicename=nil, voiceurl=nil, videoid=nil, disablemoderation=nil, sessionid=nil, sessioncontext=nil, taskspriority=nil)
           @SubAppId = subappid
           @VoiceName = voicename
           @VoiceUrl = voiceurl
           @VideoId = videoid
+          @DisableModeration = disablemoderation
           @SessionId = sessionid
           @SessionContext = sessioncontext
           @TasksPriority = taskspriority
@@ -8816,6 +8830,7 @@ module TencentCloud
           @VoiceName = params['VoiceName']
           @VoiceUrl = params['VoiceUrl']
           @VideoId = params['VideoId']
+          @DisableModeration = params['DisableModeration']
           @SessionId = params['SessionId']
           @SessionContext = params['SessionContext']
           @TasksPriority = params['TasksPriority']
@@ -8906,7 +8921,7 @@ module TencentCloud
         # @type SubAppId: Integer
         # @param ModelName: <p>模型名称。取值：</p><li>OG</li><li>GG</li><li>SI</li><li>Qwen</li><li>Hunyuan</li><li>Vidu</li><li>Kling</li>
         # @type ModelName: String
-        # @param ModelVersion: <p>模型版本。取值：</p><li>当 ModelName 是 OG，可选值为 image2_low、image2_medium、image2_high；</li><li>当 ModelName 是 GG，可选值为 2.5、3.0、3.1；</li><li>当 ModelName 是 Jimeng，可选值为 4.0；</li><li>当 ModelName 是 SI，可选值为 4.0、4.5、5.0-lite；</li><li>当 ModelName 是 Qwen，可选值为 0925；</li><li>当 ModelName 是 Hunyuan，可选值为 3.0；</li><li>当 ModelName 是 Vidu，可选值为 q2；</li><li>当 ModelName 是 Kling，可选值为 2.1、3.0、3.0-Omni、O1；</li>
+        # @param ModelVersion: <p>模型版本。取值：</p><li>当 ModelName 是 OG，可选值为 image2_low、image2_medium、image2_high；</li><li>当 ModelName 是 GG，可选值为 2.5、3.0、3.1；</li><li>当 ModelName 是 Jimeng，可选值为 4.0；</li><li>当 ModelName 是 SI，可选值为 4.0、4.5、5.0-lite；</li><li>当 ModelName 是 Qwen，可选值为 0925；</li><li>当 ModelName 是 Hunyuan，可选值为 3.0；</li><li>当 ModelName 是 Vidu，可选值为 q2；</li><li>当 ModelName 是 Kling，可选值为 2.1、3.0、3.0-Omni、O1、scene；</li>
         # @type ModelVersion: String
         # @param FileInfos: <p>AIGC 生图任务的输入图片的文件信息。各模型支持最大参考图数量：</p><ul><li>GG 2.5： 3张；</li><li>GG 3.0：14张；</li><li>GG 3.1：14张；</li><li>Kling 2.1：4张；</li><li>Kling 3.0：1张；</li><li>Kling 3.0-Omni：10张；</li><li>Kling O1：10张；</li><li>SI 4.0：14张；</li><li>SI 4.5：14张；</li><li>SI 5.0-lite：14张；</li><li>Vidu q2：7张；</li><li>Hunyuan 3.0：3张；</li><li>Qwen 0925：1张；</li><li>MJ v7：3张。</li></ul>
         # @type FileInfos: Array
@@ -8920,7 +8935,7 @@ module TencentCloud
         # @type OutputConfig: :class:`Tencentcloud::Vod.v20180717.models.AigcImageOutputConfig`
         # @param InputRegion: <p>输入的区域信息。可选值：</p><ul><li>Mainland：中国大陆；</li><li>Oversea：海外；</li><li>OverseaUSWest：海外-美西；</li></ul>
         # @type InputRegion: String
-        # @param SceneType: <p>场景类型。取值如下：<li>当 ModelName 为 Hunyuan 时：   3d_panorama 表示全景图；</li><li>其他 ModelName 暂不支持。</li></p>
+        # @param SceneType: <p>场景类型。取值如下：</p><li>当 ModelName 为 Hunyuan 时：   3d_panorama 表示全景图；</li><li>当 ModelName 为 Kling 时：   image_expand 表示扩图；</li><li>其他 ModelName 暂不支持。</li>
         # @type SceneType: String
         # @param Seed: <p>模型随机种子。</p>
         # @type Seed: Integer
@@ -8930,7 +8945,7 @@ module TencentCloud
         # @type SessionContext: String
         # @param TasksPriority: <p>任务的优先级，数值越大优先级越高，取值范围是 -10 到 10，不填代表 0。</p>
         # @type TasksPriority: Integer
-        # @param ExtInfo: <p>保留字段，特殊用途时使用。</p><ul><li><p>Hunyuan 3.0</p><ul><li>支持自由设置分辨率宽高，宽、高均在 [512, 2048] 像素范围内，宽高乘积 ≤ 1024x1024 像素。示例：<code>{&quot;AdditionalParameters&quot;: &quot;{\&quot;size\&quot;:\&quot;728x1024\&quot;}&quot;}</code></li></ul></li><li><p>SI 系列</p><ul><li>支持自由设置分辨率宽高：<ul><li>SI 4.0：合法总像素范围 [1280x720=921600, 4096x4096=16777216]，示例：<code>{&quot;AdditionalParameters&quot;: &quot;{\&quot;size\&quot;:\&quot;728x1356\&quot;}&quot;}</code></li><li>SI 4.5：合法总像素范围 [2560x1440=3686400, 4096x4096=16777216]，示例：<code>{&quot;AdditionalParameters&quot;: &quot;{\&quot;size\&quot;:\&quot;2560x1440\&quot;}&quot;}</code></li><li>SI 5.0-lite：合法总像素范围 [2560x1440=3686400, 3072x3072x1.1025=10404496]，示例：<code>{&quot;AdditionalParameters&quot;: &quot;{\&quot;size\&quot;:\&quot;2560x1440\&quot;}&quot;}</code></li></ul></li><li>可用于开启输出多张图像，示例：<code>{&quot;AdditionalParameters&quot;: &quot;{\&quot;sequential_image_generation\&quot;:\&quot;auto\&quot;}&quot;}</code>。除此之外，还需要在<code>Prompt</code>中说明需要输出图片张数，如：输出3张图片。</li></ul></li><li><p>Qwen 0925</p><ul><li>支持自由设置分辨率宽高，合法总像素范围 [512x512=261632, 2048x2048=4194304]。示例：<code>{&quot;AdditionalParameters&quot;: &quot;{\&quot;size\&quot;:\&quot;728*1024\&quot;}&quot;}</code></li></ul></li><li><p>OG</p><ul><li>支持自由设置分辨率宽高：<ul><li>计算像素大小，需要被16整除</li><li>总像素数必须至少为655,360，且不得超过 8,294,400</li><li>示例：<code>{&quot;AdditionalParameters&quot;: &quot;{\&quot;size\&quot;:\&quot;728*1024\&quot;}&quot;}</code></li></ul></li><li>支持设置透明图层：<ul><li>示例：<code>{&quot;AdditionalParameters&quot;: &quot;{\&quot;background\&quot;:\&quot;transparent\&quot;}&quot;}</code></li></ul></li></ul></li></ul>
+        # @param ExtInfo: <p>保留字段，特殊用途时使用。</p><ul><li><p>Hunyuan 3.0</p><ul><li>支持自由设置分辨率宽高，宽、高均在 [512, 2048] 像素范围内，宽高乘积 ≤ 1024x1024 像素。示例：<code>{&quot;AdditionalParameters&quot;: &quot;{\&quot;size\&quot;:\&quot;728x1024\&quot;}&quot;}</code></li></ul></li><li><p>SI 系列</p><ul><li>支持自由设置分辨率宽高：<ul><li>SI 4.0：合法总像素范围 [1280x720=921600, 4096x4096=16777216]，示例：<code>{&quot;AdditionalParameters&quot;: &quot;{\&quot;size\&quot;:\&quot;728x1356\&quot;}&quot;}</code></li><li>SI 4.5：合法总像素范围 [2560x1440=3686400, 4096x4096=16777216]，示例：<code>{&quot;AdditionalParameters&quot;: &quot;{\&quot;size\&quot;:\&quot;2560x1440\&quot;}&quot;}</code></li><li>SI 5.0-lite：合法总像素范围 [2560x1440=3686400, 3072x3072x1.1025=10404496]，示例：<code>{&quot;AdditionalParameters&quot;: &quot;{\&quot;size\&quot;:\&quot;2560x1440\&quot;}&quot;}</code></li></ul></li><li>可用于开启输出多张图像，示例：<code>{&quot;AdditionalParameters&quot;: &quot;{\&quot;sequential_image_generation\&quot;:\&quot;auto\&quot;}&quot;}</code>。除此之外，还需要在<code>Prompt</code>中说明需要输出图片张数，如：输出3张图片。</li></ul></li><li><p>Qwen 0925</p><ul><li>支持自由设置分辨率宽高，合法总像素范围 [512x512=261632, 2048x2048=4194304]。示例：<code>{&quot;AdditionalParameters&quot;: &quot;{\&quot;size\&quot;:\&quot;728*1024\&quot;}&quot;}</code></li></ul></li><li><p>OG</p><ul><li>支持自由设置分辨率宽高：<ul><li>计算像素大小，需要被16整除</li><li>总像素数必须至少为655,360，且不得超过 8,294,400</li><li>示例：<code>{&quot;AdditionalParameters&quot;: &quot;{\&quot;size\&quot;:\&quot;728*1024\&quot;}&quot;}</code></li></ul></li><li>支持设置透明图层：<ul><li>示例：<code>{&quot;AdditionalParameters&quot;: &quot;{\&quot;background\&quot;:\&quot;transparent\&quot;}&quot;}</code></li></ul></li></ul></li><li><p>Kling</p><ul><li>支持设置扩图参数，示例：<code>{AdditionalParameters&quot;:&quot;{\&quot;down_expansion_ratio\&quot;:0.2,\&quot;left_expansion_ratio\&quot;:0.3,\&quot;right_expansion_ratio\&quot;:0.4,\&quot;up_expansion_ratio\&quot;:0.1}}</code><ul><li>通用约束：<ul><li>取值范围：[0, 2]；</li><li>新图片整体面积不得超过原图片的 3 倍；</li><li>可以通过 <code>Prompt</code> 字段传入正向提示词。</li><li>示例说明：<ul><li>up_expansion_ratio：向上扩充范围，基于原图高度的倍数计算。若原图高 20，参数值为 0.1，则原图顶边距离新图顶边为 20 × 0.1 = 2，该区域为扩图范围。</li><li>down_expansion_ratio：向下扩充范围，基于原图高度的倍数计算。若原图高 20，参数值为 0.2，则原图底边距离新图底边为 20 × 0.2 = 4，该区域为扩图范围。</li><li>left_expansion_ratio：向左扩充范围，基于原图宽度的倍数计算。若原图宽 30，参数值为 0.3，则原图左边距离新图左边为 30 × 0.3 = 9，该区域为扩图范围。</li><li>right_expansion_ratio：向右扩充范围，基于原图宽度的倍数计算。若原图宽 30，参数值为 0.4，则原图右边距离新图右边为 30 × 0.4 = 12，该区域为扩图范围。</li></ul></li></ul></li></ul></li></ul></li></ul>
         # @type ExtInfo: String
 
         attr_accessor :SubAppId, :ModelName, :ModelVersion, :FileInfos, :Prompt, :NegativePrompt, :EnhancePrompt, :OutputConfig, :InputRegion, :SceneType, :Seed, :SessionId, :SessionContext, :TasksPriority, :ExtInfo
@@ -32895,6 +32910,42 @@ module TencentCloud
         end
       end
 
+      # 第三方DRM厂商加密信息。
+      class SPEKEDrm < TencentCloud::Common::AbstractModel
+        # @param ResourceId: <p>资源标记，该字段内容为用户自定义； 支持1-128个字符的数字、字母、下划线(_)、中划线(-)。 该字段对应Speke请求中的cid字段。 注：不同DRM厂商对该字段的限制有所区别（如：华曦达不支持该字段带_），具体规则请与DRM厂商进行确认。</p>
+        # @type ResourceId: String
+        # @param KeyServerUrl: <p>DRM厂商访问地址，该字段内容从DRM厂商获取。注: 不同DRM厂商对子流的数量限制不一样，如 PallyCon 限制不能超过5条子流，DRMtoday厂商最多仅支持9条子流加密</p>
+        # @type KeyServerUrl: String
+        # @param Vector: <p>加密初始化向量(十六进制32字节字符串)，该字段内容为用户自定义。</p>
+        # @type Vector: String
+        # @param EncryptionMethod: <p>加密方式，可选值：<br>cbcs：PlayReady，Widevine，FairPlay，Widevine+FairPlay，Widevine+PlayReady，PlayReady+FairPlay，Widevine+PlayReady+FairPlay支持；<br>cenc：PlayReady，Widevine，Widevine+PlayReady支持；<br>若不填FairPlay 默认cbcs；<br>PlayReady，Widevine 默认cenc；<br>Widevine+FairPlay，PlayReady+FairPlay，Widevine+PlayReady+FairPlay默认cbcs；<br>Widevine+PlayReady默认cenc；</p>
+        # @type EncryptionMethod: String
+        # @param EncryptionPreset: <p>子流加密规则，默认 preset0<br>preset0：全部子流使用同一个key加密；<br>preset1：每个子流使用不同的key加密；</p>
+        # @type EncryptionPreset: String
+        # @param KeyAcquireMode: <p>DRM厂商请求方式。</p><p>枚举值：</p><ul><li>POST： 大多数DRM厂商使用POST方式请求。</li><li>GET： 部分DRM厂商支持GET方式请求。使用该种方式请求时，需要在KeyServerUrl字段带上各项请求信息。</li></ul><p>默认值：POST</p>
+        # @type KeyAcquireMode: String
+
+        attr_accessor :ResourceId, :KeyServerUrl, :Vector, :EncryptionMethod, :EncryptionPreset, :KeyAcquireMode
+
+        def initialize(resourceid=nil, keyserverurl=nil, vector=nil, encryptionmethod=nil, encryptionpreset=nil, keyacquiremode=nil)
+          @ResourceId = resourceid
+          @KeyServerUrl = keyserverurl
+          @Vector = vector
+          @EncryptionMethod = encryptionmethod
+          @EncryptionPreset = encryptionpreset
+          @KeyAcquireMode = keyacquiremode
+        end
+
+        def deserialize(params)
+          @ResourceId = params['ResourceId']
+          @KeyServerUrl = params['KeyServerUrl']
+          @Vector = params['Vector']
+          @EncryptionMethod = params['EncryptionMethod']
+          @EncryptionPreset = params['EncryptionPreset']
+          @KeyAcquireMode = params['KeyAcquireMode']
+        end
+      end
+
       # 对视频做采样截图任务输入参数类型
       class SampleSnapshotTaskInput < TencentCloud::Common::AbstractModel
         # @param Definition: 采样截图模板 ID。
@@ -35613,6 +35664,29 @@ module TencentCloud
           @FontSize = params['FontSize']
           @FontColor = params['FontColor']
           @FontAlpha = params['FontAlpha']
+        end
+      end
+
+      # 第三方Drm 加密信息。
+      class ThirdPartyDrmInfo < TencentCloud::Common::AbstractModel
+        # @param DrmTypes: <p>加密类型：</p><ul><li>FairPlay：只能用于HLS，切片格式只能是mp4</li><li>Widevine：可以用于HLS和DASH，切片格式只能是mp4</li><li>PlayReady：可以用于HLS和DASH，切片格式只能是mp4</li><li>Widevine+FairPlay，PlayReady+FairPlay，Widevine PlayReady FairPlay组合: 只能用于HLS，切片格式只能是mp4</li><li>Widevine PlayReady组合: 可用于HLS、MPEG-DASH，切片格式只能是mp4</li></ul>
+        # @type DrmTypes: Array
+        # @param SPEKEDrm: <p>第三方DRM厂商信息。</p>
+        # @type SPEKEDrm: :class:`Tencentcloud::Vod.v20180717.models.SPEKEDrm`
+
+        attr_accessor :DrmTypes, :SPEKEDrm
+
+        def initialize(drmtypes=nil, spekedrm=nil)
+          @DrmTypes = drmtypes
+          @SPEKEDrm = spekedrm
+        end
+
+        def deserialize(params)
+          @DrmTypes = params['DrmTypes']
+          unless params['SPEKEDrm'].nil?
+            @SPEKEDrm = SPEKEDrm.new
+            @SPEKEDrm.deserialize(params['SPEKEDrm'])
+          end
         end
       end
 
