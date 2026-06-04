@@ -497,7 +497,7 @@ module TencentCloud
         end
       end
 
-      # 全栈式风控引擎入参
+      # 风险识别RCE入参
       class InputCryptoManageMarketingRisk < TencentCloud::Common::AbstractModel
         # @param IsAuthorized: 是否授权：1已授权，否则未授权。
         #  调用全栈式风控引擎接口服务时，客户需先明确授权。

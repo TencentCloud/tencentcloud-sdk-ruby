@@ -2362,7 +2362,7 @@ module TencentCloud
         # @param CreationTimestamp: <p>Group的创建时间和日期 CreationTimestamp。CreationTimestamp 的值是自 Unix 纪元时间到Group创建时间的毫秒数。<br>Unix 纪元时间是 1970 年 1 月 1 日星期四，协调世界时 (UTC) 00:00:00。有关更多信息，请参阅 Unix 时间。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreationTimestamp: Integer
-        # @param UpdateTimestamp: <p>Group的更新时间和日期 UpdateTimestamp。</p><ul><li>UpdateTimestamp 的值是自 Unix 纪元时间到Group创建时间的毫秒数。 </li><li>Unix 纪元时间是 1970 年 1 月 1 日星期四，协调世界时 (UTC) 00:00:00。</li><li>有关更多信息，请参阅 Unix 时间。</li></ul>
+        # @param UpdateTimestamp: <p>Group的更新时间和日期 UpdateTimestamp。<br>UpdateTimestamp 的值是自 Unix 纪元时间到Group更新时间的毫秒数。<br>Unix 纪元时间是 1970 年 1 月 1 日星期四，协调世界时 (UTC) 00:00:00。<br>有关更多信息，请参阅 Unix 时间。</p>
         # @type UpdateTimestamp: Integer
 
         attr_accessor :GroupName, :GroupId, :GroupExDescriptions, :Tag, :FaceModelVersion, :CreationTimestamp, :UpdateTimestamp

@@ -4423,8 +4423,8 @@ module TencentCloud
 
         attr_accessor :Id, :Uuid, :Name, :Level, :Rule, :Decription, :Operator, :IsGlobal, :Status, :CreateTime, :ModifyTime, :Hostip, :Uuids, :White, :DealOldEvents, :Description
         extend Gem::Deprecate
-        deprecate :Decription, :none, 2026, 5
-        deprecate :Decription=, :none, 2026, 5
+        deprecate :Decription, :none, 2026, 6
+        deprecate :Decription=, :none, 2026, 6
 
         def initialize(id=nil, uuid=nil, name=nil, level=nil, rule=nil, decription=nil, operator=nil, isglobal=nil, status=nil, createtime=nil, modifytime=nil, hostip=nil, uuids=nil, white=nil, dealoldevents=nil, description=nil)
           @Id = id
@@ -17310,16 +17310,16 @@ module TencentCloud
 
         attr_accessor :MachineCnt, :TencentCloudMachineCnt, :AliCloudMachineCnt, :BaiduCloudMachineCnt, :IDCMachineCnt, :OtherCloudMachineCnt, :ProtectMachineCnt, :BaseMachineCnt, :SpecialtyMachineCnt, :FlagshipMachineCnt, :RiskMachineCnt, :CompareYesterdayRiskMachineCnt, :CompareYesterdayNotProtectMachineCnt, :CompareYesterdayDeadlineMachineCnt, :DeadlineMachineCnt, :NotProtectMachineCnt, :LHGeneralDiscountCnt, :CompareYesterdayMachineCnt, :MachineDestroyAfterOfflineHours, :CloudFrom, :RequestId
         extend Gem::Deprecate
-        deprecate :TencentCloudMachineCnt, :none, 2026, 5
-        deprecate :TencentCloudMachineCnt=, :none, 2026, 5
-        deprecate :AliCloudMachineCnt, :none, 2026, 5
-        deprecate :AliCloudMachineCnt=, :none, 2026, 5
-        deprecate :BaiduCloudMachineCnt, :none, 2026, 5
-        deprecate :BaiduCloudMachineCnt=, :none, 2026, 5
-        deprecate :IDCMachineCnt, :none, 2026, 5
-        deprecate :IDCMachineCnt=, :none, 2026, 5
-        deprecate :OtherCloudMachineCnt, :none, 2026, 5
-        deprecate :OtherCloudMachineCnt=, :none, 2026, 5
+        deprecate :TencentCloudMachineCnt, :none, 2026, 6
+        deprecate :TencentCloudMachineCnt=, :none, 2026, 6
+        deprecate :AliCloudMachineCnt, :none, 2026, 6
+        deprecate :AliCloudMachineCnt=, :none, 2026, 6
+        deprecate :BaiduCloudMachineCnt, :none, 2026, 6
+        deprecate :BaiduCloudMachineCnt=, :none, 2026, 6
+        deprecate :IDCMachineCnt, :none, 2026, 6
+        deprecate :IDCMachineCnt=, :none, 2026, 6
+        deprecate :OtherCloudMachineCnt, :none, 2026, 6
+        deprecate :OtherCloudMachineCnt=, :none, 2026, 6
 
         def initialize(machinecnt=nil, tencentcloudmachinecnt=nil, alicloudmachinecnt=nil, baiducloudmachinecnt=nil, idcmachinecnt=nil, othercloudmachinecnt=nil, protectmachinecnt=nil, basemachinecnt=nil, specialtymachinecnt=nil, flagshipmachinecnt=nil, riskmachinecnt=nil, compareyesterdayriskmachinecnt=nil, compareyesterdaynotprotectmachinecnt=nil, compareyesterdaydeadlinemachinecnt=nil, deadlinemachinecnt=nil, notprotectmachinecnt=nil, lhgeneraldiscountcnt=nil, compareyesterdaymachinecnt=nil, machinedestroyafterofflinehours=nil, cloudfrom=nil, requestid=nil)
           @MachineCnt = machinecnt
@@ -28699,10 +28699,10 @@ module TencentCloud
 
         attr_accessor :Filters, :Fileds, :Fields, :Where
         extend Gem::Deprecate
-        deprecate :Fileds, :none, 2026, 5
-        deprecate :Fileds=, :none, 2026, 5
-        deprecate :Fields, :none, 2026, 5
-        deprecate :Fields=, :none, 2026, 5
+        deprecate :Fileds, :none, 2026, 6
+        deprecate :Fileds=, :none, 2026, 6
+        deprecate :Fields, :none, 2026, 6
+        deprecate :Fields=, :none, 2026, 6
 
         def initialize(filters=nil, fileds=nil, fields=nil, where=nil)
           @Filters = filters
@@ -32480,85 +32480,82 @@ module TencentCloud
 
       # 主机列表
       class Machine < TencentCloud::Common::AbstractModel
-        # @param MachineName: 主机名称。
+        # @param MachineName: <p>主机名称。</p>
         # @type MachineName: String
-        # @param MachineOs: 主机系统。
+        # @param MachineOs: <p>主机系统。</p>
         # @type MachineOs: String
-        # @param MachineStatus: 主机状态。 <li>OFFLINE: 离线 </li> <li>ONLINE: 在线</li> <li>SHUTDOWN: 已关机</li> <li>UNINSTALLED: 未防护</li>
+        # @param MachineStatus: <p>主机状态。 <li>OFFLINE: 离线 </li> <li>ONLINE: 在线</li> <li>SHUTDOWN: 已关机</li> <li>UNINSTALLED: 未防护</li></p>
         # @type MachineStatus: String
-        # @param AgentStatus: ONLINE 防护中; OFFLINE 已离线;UNINStALLED 未安装
+        # @param AgentStatus: <p>ONLINE 防护中; OFFLINE 已离线;UNINStALLED 未安装</p>
         # @type AgentStatus: String
-        # @param InstanceStatus: RUNNING 运行中; STOPED 已关机; EXPIRED 待回收
+        # @param InstanceStatus: <p>RUNNING 运行中; STOPED 已关机; EXPIRED 待回收</p>
         # @type InstanceStatus: String
-        # @param Uuid: 主机安全Uuid，若客户端长时间不在线将返回空字符。
+        # @param Uuid: <p>主机安全Uuid，若客户端长时间不在线将返回空字符。</p>
         # @type Uuid: String
-        # @param Quuid: CVM或BM机器唯一Uuid。
+        # @param Quuid: <p>CVM或BM机器唯一Uuid。</p>
         # @type Quuid: String
-        # @param VulNum: 漏洞数。
+        # @param VulNum: <p>漏洞数。</p>
         # @type VulNum: Integer
-        # @param MachineIp: 主机IP。
+        # @param MachineIp: <p>主机IP。</p>
         # @type MachineIp: String
-        # @param IsProVersion: 是否是专业版。
-        # <li>true： 是</li>
-        # <li>false：否</li>
+        # @param IsProVersion: <p>是否是专业版。</p><li>true： 是</li><li>false：否</li>
         # @type IsProVersion: Boolean
-        # @param MachineWanIp: 主机外网IP。
+        # @param MachineWanIp: <p>主机外网IP。</p>
         # @type MachineWanIp: String
-        # @param PayMode: 主机状态。
-        # <li>POSTPAY: 表示后付费，即按量计费  </li>
-        # <li>PREPAY: 表示预付费，即包年包月</li>
+        # @param PayMode: <p>主机状态。</p><li>POSTPAY: 表示后付费，即按量计费  </li><li>PREPAY: 表示预付费，即包年包月</li>
         # @type PayMode: String
-        # @param MalwareNum: 木马数。
+        # @param MalwareNum: <p>木马数。</p>
         # @type MalwareNum: Integer
-        # @param Tag: 标签信息
+        # @param Tag: <p>标签信息</p>
         # @type Tag: Array
-        # @param BaselineNum: 基线风险数。
+        # @param BaselineNum: <p>基线风险数。</p>
         # @type BaselineNum: Integer
-        # @param CyberAttackNum: 网络风险数。
+        # @param CyberAttackNum: <p>网络风险数。</p>
         # @type CyberAttackNum: Integer
-        # @param SecurityStatus: 风险状态。
-        # <li>SAFE：安全</li>
-        # <li>RISK：风险</li>
-        # <li>UNKNOWN：未知</li>
+        # @param SecurityStatus: <p>风险状态。</p><li>SAFE：安全</li><li>RISK：风险</li><li>UNKNOWN：未知</li>
         # @type SecurityStatus: String
-        # @param InvasionNum: 入侵事件数
+        # @param InvasionNum: <p>入侵事件数</p>
         # @type InvasionNum: Integer
-        # @param RegionInfo: 地域信息
+        # @param RegionInfo: <p>地域信息</p>
         # @type RegionInfo: :class:`Tencentcloud::Cwp.v20180228.models.RegionInfo`
-        # @param InstanceState: 实例状态 TERMINATED_PRO_VERSION 已销毁
+        # @param InstanceState: <p>实例状态 TERMINATED_PRO_VERSION 已销毁</p>
         # @type InstanceState: String
-        # @param LicenseStatus: 防篡改 授权状态 1 授权 0 未授权
+        # @param LicenseStatus: <p>防篡改 授权状态 1 授权 0 未授权</p>
         # @type LicenseStatus: Integer
-        # @param ProjectId: 项目ID
+        # @param ProjectId: <p>项目ID</p>
         # @type ProjectId: Integer
-        # @param HasAssetScan: 是否有资产扫描接口，0无，1有
+        # @param HasAssetScan: <p>是否有资产扫描接口，0无，1有</p>
         # @type HasAssetScan: Integer
-        # @param MachineType: 机器所属专区类型 CVM 云服务器, BM 黑石, ECM 边缘计算, LH 轻量应用服务器 ,Other 混合云专区
+        # @param MachineType: <p>机器所属专区类型 CVM 云服务器, BM 黑石, ECM 边缘计算, LH 轻量应用服务器 ,Other 混合云专区</p>
         # @type MachineType: String
-        # @param KernelVersion: 内核版本
+        # @param KernelVersion: <p>内核版本</p>
         # @type KernelVersion: String
-        # @param ProtectType: 防护版本：BASIC_VERSION 基础版， PRO_VERSION 专业版，Flagship 旗舰版，GENERAL_DISCOUNT 轻量版
+        # @param ProtectType: <p>防护版本：BASIC_VERSION 基础版， PRO_VERSION 专业版，Flagship 旗舰版，GENERAL_DISCOUNT 轻量版</p>
         # @type ProtectType: String
-        # @param CloudTags: 云标签信息
+        # @param CloudTags: <p>云标签信息</p>
         # @type CloudTags: Array
-        # @param IsAddedOnTheFifteen: 是否15天内新增的主机 0：非15天内新增的主机，1：15天内增加的主机
+        # @param IsAddedOnTheFifteen: <p>是否15天内新增的主机 0：非15天内新增的主机，1：15天内增加的主机</p>
         # @type IsAddedOnTheFifteen: Integer
-        # @param IpList: 主机ip列表
+        # @param IpList: <p>主机ip列表</p>
         # @type IpList: String
-        # @param VpcId: 所属网络
+        # @param VpcId: <p>所属网络</p>
         # @type VpcId: String
-        # @param MachineExtraInfo: 附加信息
+        # @param MachineExtraInfo: <p>附加信息</p>
         # @type MachineExtraInfo: :class:`Tencentcloud::Cwp.v20180228.models.MachineExtraInfo`
-        # @param InstanceId: 实例ID
+        # @param InstanceId: <p>实例ID</p>
         # @type InstanceId: String
-        # @param Remark: 备注信息
+        # @param Remark: <p>备注信息</p>
         # @type Remark: String
-        # @param AgentVersion: 主机安全agent版本
+        # @param AgentVersion: <p>主机安全agent版本</p>
         # @type AgentVersion: String
+        # @param AppId: <p>机器对应APPID</p>
+        # @type AppId: Integer
+        # @param CSIPProtectType: <p>安全中心付费版本</p>
+        # @type CSIPProtectType: String
 
-        attr_accessor :MachineName, :MachineOs, :MachineStatus, :AgentStatus, :InstanceStatus, :Uuid, :Quuid, :VulNum, :MachineIp, :IsProVersion, :MachineWanIp, :PayMode, :MalwareNum, :Tag, :BaselineNum, :CyberAttackNum, :SecurityStatus, :InvasionNum, :RegionInfo, :InstanceState, :LicenseStatus, :ProjectId, :HasAssetScan, :MachineType, :KernelVersion, :ProtectType, :CloudTags, :IsAddedOnTheFifteen, :IpList, :VpcId, :MachineExtraInfo, :InstanceId, :Remark, :AgentVersion
+        attr_accessor :MachineName, :MachineOs, :MachineStatus, :AgentStatus, :InstanceStatus, :Uuid, :Quuid, :VulNum, :MachineIp, :IsProVersion, :MachineWanIp, :PayMode, :MalwareNum, :Tag, :BaselineNum, :CyberAttackNum, :SecurityStatus, :InvasionNum, :RegionInfo, :InstanceState, :LicenseStatus, :ProjectId, :HasAssetScan, :MachineType, :KernelVersion, :ProtectType, :CloudTags, :IsAddedOnTheFifteen, :IpList, :VpcId, :MachineExtraInfo, :InstanceId, :Remark, :AgentVersion, :AppId, :CSIPProtectType
 
-        def initialize(machinename=nil, machineos=nil, machinestatus=nil, agentstatus=nil, instancestatus=nil, uuid=nil, quuid=nil, vulnum=nil, machineip=nil, isproversion=nil, machinewanip=nil, paymode=nil, malwarenum=nil, tag=nil, baselinenum=nil, cyberattacknum=nil, securitystatus=nil, invasionnum=nil, regioninfo=nil, instancestate=nil, licensestatus=nil, projectid=nil, hasassetscan=nil, machinetype=nil, kernelversion=nil, protecttype=nil, cloudtags=nil, isaddedonthefifteen=nil, iplist=nil, vpcid=nil, machineextrainfo=nil, instanceid=nil, remark=nil, agentversion=nil)
+        def initialize(machinename=nil, machineos=nil, machinestatus=nil, agentstatus=nil, instancestatus=nil, uuid=nil, quuid=nil, vulnum=nil, machineip=nil, isproversion=nil, machinewanip=nil, paymode=nil, malwarenum=nil, tag=nil, baselinenum=nil, cyberattacknum=nil, securitystatus=nil, invasionnum=nil, regioninfo=nil, instancestate=nil, licensestatus=nil, projectid=nil, hasassetscan=nil, machinetype=nil, kernelversion=nil, protecttype=nil, cloudtags=nil, isaddedonthefifteen=nil, iplist=nil, vpcid=nil, machineextrainfo=nil, instanceid=nil, remark=nil, agentversion=nil, appid=nil, csipprotecttype=nil)
           @MachineName = machinename
           @MachineOs = machineos
           @MachineStatus = machinestatus
@@ -32593,6 +32590,8 @@ module TencentCloud
           @InstanceId = instanceid
           @Remark = remark
           @AgentVersion = agentversion
+          @AppId = appid
+          @CSIPProtectType = csipprotecttype
         end
 
         def deserialize(params)
@@ -32650,6 +32649,8 @@ module TencentCloud
           @InstanceId = params['InstanceId']
           @Remark = params['Remark']
           @AgentVersion = params['AgentVersion']
+          @AppId = params['AppId']
+          @CSIPProtectType = params['CSIPProtectType']
         end
       end
 

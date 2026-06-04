@@ -3238,30 +3238,29 @@ module TencentCloud
 
       # DescribeMySqlProcessList请求参数结构体
       class DescribeMySqlProcessListRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID。可通过 [DescribeDiagDBInstances](https://cloud.tencent.com/document/api/1130/57798) 接口获取。
+        # @param InstanceId: <p>实例 ID。可通过 <a href="https://cloud.tencent.com/document/api/1130/57798">DescribeDiagDBInstances</a> 接口获取。<strong>其中 dcdb(即TDSQL MySQL) 的查询入参InstanceId特殊，需要使用 ClusterId + &amp; + InstanceId 来组合代替， 如：<code>tdsqlshard-s1230&amp;shard-abcd</code></strong></p>
         # @type InstanceId: String
-        # @param ID: 线程的ID，用于筛选线程列表。
+        # @param ID: <p>线程的ID，用于筛选线程列表。</p>
         # @type ID: Integer
-        # @param User: 线程的操作账号名，用于筛选线程列表。
+        # @param User: <p>线程的操作账号名，用于筛选线程列表。</p>
         # @type User: String
-        # @param Host: 线程的操作主机地址，用于筛选线程列表。
+        # @param Host: <p>线程的操作主机地址，用于筛选线程列表。</p>
         # @type Host: String
-        # @param DB: 线程的操作数据库，用于筛选线程列表。
+        # @param DB: <p>线程的操作数据库，用于筛选线程列表。</p>
         # @type DB: String
-        # @param State: 线程的操作状态。包含以下枚举值：Sending data​-线程正在处理查询结果， ​Sorting result​-线程正在对查询结果进行排序​，Creating tmp table​-线程正在创建临时表，Altering table​-线程正在执行表结构变更，Updating-线程执行更新中。
+        # @param State: <p>线程的操作状态。包含以下枚举值：Sending data​-线程正在处理查询结果， ​Sorting result​-线程正在对查询结果进行排序​，Creating tmp table​-线程正在创建临时表，Altering table​-线程正在执行表结构变更，Updating-线程执行更新中。</p>
         # @type State: String
-        # @param Command: 线程的执行类型。包含以下枚举值：Sleep-线程处于空闲状态，Query-线程正在执行一个查询，Connect-从服务器连接到主服务器，Execute-线程正在执行预处理语句。
+        # @param Command: <p>线程的执行类型。包含以下枚举值：Sleep-线程处于空闲状态，Query-线程正在执行一个查询，Connect-从服务器连接到主服务器，Execute-线程正在执行预处理语句。</p>
         # @type Command: String
-        # @param Time: 线程的操作时长最小值，单位秒，用于筛选操作时长大于该值的线程列表。
+        # @param Time: <p>线程的操作时长最小值，单位秒，用于筛选操作时长大于该值的线程列表。</p>
         # @type Time: Integer
-        # @param Info: 线程的操作语句，用于筛选线程列表。
+        # @param Info: <p>线程的操作语句，用于筛选线程列表。</p>
         # @type Info: String
-        # @param Limit: 返回数量，默认20。
+        # @param Limit: <p>返回数量，默认20。</p>
         # @type Limit: Integer
-        # @param Product: 服务产品类型，支持值："mysql" - 云数据库 MySQL；"mariadb"-mariadb;"cynosdb"-TDSQL-C for MySQL ;"dcdb"-TDSQL MySQL 默认为"mysql"。
-
+        # @param Product: <p>服务产品类型，支持值：&quot;mysql&quot; - 云数据库 MySQL；&quot;mariadb&quot;-mariadb;&quot;cynosdb&quot;-TDSQL-C for MySQL ;&quot;dcdb&quot;-TDSQL MySQL 默认为&quot;mysql&quot;。</p>
         # @type Product: String
-        # @param StatDimensions: 会话统计的维度信息,可以多个维度。
+        # @param StatDimensions: <p>会话统计的维度信息,可以多个维度。</p>
         # @type StatDimensions: Array
 
         attr_accessor :InstanceId, :ID, :User, :Host, :DB, :State, :Command, :Time, :Info, :Limit, :Product, :StatDimensions
@@ -3306,9 +3305,9 @@ module TencentCloud
 
       # DescribeMySqlProcessList返回参数结构体
       class DescribeMySqlProcessListResponse < TencentCloud::Common::AbstractModel
-        # @param ProcessList: 实时线程列表。
+        # @param ProcessList: <p>实时线程列表。</p>
         # @type ProcessList: Array
-        # @param Statistics: sql会话统计信息。如果请求参数中包含StatDimensions，该参数则可能返回，否则不返回。
+        # @param Statistics: <p>sql会话统计信息。如果请求参数中包含StatDimensions，该参数则可能返回，否则不返回。</p>
         # @type Statistics: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
