@@ -3829,24 +3829,26 @@ module TencentCloud
 
       # DescribeUserList请求参数结构体
       class DescribeUserListRequest < TencentCloud::Common::AbstractModel
-        # @param EnvId: 环境id
+        # @param EnvId: <p>环境id</p>
         # @type EnvId: String
-        # @param PageNo: 页码，从1开始，默认1
+        # @param PageNo: <p>页码，从1开始，默认1</p>
         # @type PageNo: Integer
-        # @param PageSize: 每页数量，默认20，最大100
+        # @param PageSize: <p>每页数量，默认20，最大100</p>
         # @type PageSize: Integer
-        # @param Name: 用户名，模糊查询
+        # @param Name: <p>用户名，模糊查询</p>
         # @type Name: String
-        # @param NickName: 用户昵称，模糊查询
+        # @param NickName: <p>用户昵称，模糊查询</p>
         # @type NickName: String
-        # @param Phone: 手机号，模糊查询
+        # @param Phone: <p>手机号，模糊查询</p>
         # @type Phone: String
-        # @param Email: 邮箱，模糊查询
+        # @param Email: <p>邮箱，模糊查询</p>
         # @type Email: String
+        # @param UidList: <p>用户id列表，根据id过滤用户</p>
+        # @type UidList: Array
 
-        attr_accessor :EnvId, :PageNo, :PageSize, :Name, :NickName, :Phone, :Email
+        attr_accessor :EnvId, :PageNo, :PageSize, :Name, :NickName, :Phone, :Email, :UidList
 
-        def initialize(envid=nil, pageno=nil, pagesize=nil, name=nil, nickname=nil, phone=nil, email=nil)
+        def initialize(envid=nil, pageno=nil, pagesize=nil, name=nil, nickname=nil, phone=nil, email=nil, uidlist=nil)
           @EnvId = envid
           @PageNo = pageno
           @PageSize = pagesize
@@ -3854,6 +3856,7 @@ module TencentCloud
           @NickName = nickname
           @Phone = phone
           @Email = email
+          @UidList = uidlist
         end
 
         def deserialize(params)
@@ -3864,6 +3867,7 @@ module TencentCloud
           @NickName = params['NickName']
           @Phone = params['Phone']
           @Email = params['Email']
+          @UidList = params['UidList']
         end
       end
 
@@ -3896,7 +3900,7 @@ module TencentCloud
 
       # DescribeUserList返回参数结构体
       class DescribeUserListResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 结果返回
+        # @param Data: <p>结果返回</p>
         # @type Data: :class:`Tencentcloud::Tcb.v20180608.models.DescribeUserListResp`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

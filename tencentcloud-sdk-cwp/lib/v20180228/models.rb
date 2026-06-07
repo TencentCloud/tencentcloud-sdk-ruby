@@ -6893,7 +6893,7 @@ module TencentCloud
 
       # DeleteMachineClearHistory请求参数结构体
       class DeleteMachineClearHistoryRequest < TencentCloud::Common::AbstractModel
-        # @param Ids: 需要删除的记录id值,最大长度100个
+        # @param Ids: <p>需要删除的记录id值,最大长度100个</p>
         # @type Ids: Array
 
         attr_accessor :Ids
@@ -11557,9 +11557,9 @@ module TencentCloud
 
       # DescribeBanMode返回参数结构体
       class DescribeBanModeResponse < TencentCloud::Common::AbstractModel
-        # @param Mode: 阻断模式，STANDARD_MODE：标准阻断，DEEP_MODE：深度阻断
+        # @param Mode: <p>阻断模式，STANDARD_MODE：标准阻断，DEEP_MODE：深度阻断</p>
         # @type Mode: String
-        # @param StandardModeConfig: 标准阻断模式的配置
+        # @param StandardModeConfig: <p>标准阻断模式的配置</p>
         # @type StandardModeConfig: :class:`Tencentcloud::Cwp.v20180228.models.StandardModeConfig`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -11638,17 +11638,17 @@ module TencentCloud
 
       # DescribeBanStatus返回参数结构体
       class DescribeBanStatusResponse < TencentCloud::Common::AbstractModel
-        # @param Status: (已废弃) 阻断开关状态: 0 -- 关闭  1 -- 高级阻断 2 -- 基础阻断(只阻断情报库黑ip)
+        # @param Status: <p>(已废弃) 阻断开关状态: 0 -- 关闭  1 -- 高级阻断 2 -- 基础阻断(只阻断情报库黑ip)</p>
         # @type Status: Integer
-        # @param ShowTips: 是否弹窗提示信息 false: 关闭，true: 开启
+        # @param ShowTips: <p>是否弹窗提示信息 false: 关闭，true: 开启</p>
         # @type ShowTips: Boolean
-        # @param OpenSmartMode: 是否开启智能过白模式
+        # @param OpenSmartMode: <p>是否开启智能过白模式</p>
         # @type OpenSmartMode: Boolean
-        # @param BanBlackIp: 是否开启情报IP阻断
+        # @param BanBlackIp: <p>是否开启情报IP阻断</p>
         # @type BanBlackIp: Boolean
-        # @param BanVulIp: 是否开启漏洞IP阻断
+        # @param BanVulIp: <p>是否开启漏洞IP阻断</p>
         # @type BanVulIp: Boolean
-        # @param BanByRule: 是否开启规则阻断
+        # @param BanByRule: <p>是否开启规则阻断</p>
         # @type BanByRule: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -14066,7 +14066,7 @@ module TencentCloud
 
       # DescribeBruteAttackRules返回参数结构体
       class DescribeBruteAttackRulesResponse < TencentCloud::Common::AbstractModel
-        # @param Rules: 爆破阻断规则列表
+        # @param Rules: <p>爆破阻断规则列表</p>
         # @type Rules: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -16765,21 +16765,21 @@ module TencentCloud
 
       # DescribeLoginTypeGlobalConf返回参数结构体
       class DescribeLoginTypeGlobalConfResponse < TencentCloud::Common::AbstractModel
-        # @param Enable: 是否开启防卸载 <li>0 否</li> <li>1 是</li> <li>9 未设置,和0一样是未开启</li>
+        # @param Enable: <p>是否开启防卸载 <li>0 否</li> <li>1 是</li> <li>9 未设置,和0一样是未开启</li></p>
         # @type Enable: Integer
-        # @param Scope: 开启范围 <li>0 自选主机</li> <li>1 全部主机</li>
+        # @param Scope: <p>开启范围 <li>0 自选主机</li> <li>1 全部主机</li></p>
         # @type Scope: Integer
-        # @param IncludeHostCount: 正选主机配置数
+        # @param IncludeHostCount: <p>正选主机配置数</p>
         # @type IncludeHostCount: Integer
-        # @param ExcludeHostCount: 反选主机配置数
+        # @param ExcludeHostCount: <p>反选主机配置数</p>
         # @type ExcludeHostCount: Integer
-        # @param IncludeQuuid: 正选quuid配置列表
+        # @param IncludeQuuid: <p>正选quuid配置列表</p>
         # @type IncludeQuuid: Array
-        # @param ExcludeQuuid: 反选quuid配置列表
+        # @param ExcludeQuuid: <p>反选quuid配置列表</p>
         # @type ExcludeQuuid: Array
-        # @param EnableCount: 已开启机器数
+        # @param EnableCount: <p>已开启机器数</p>
         # @type EnableCount: Integer
-        # @param DisableCount: 未启机器数
+        # @param DisableCount: <p>未启机器数</p>
         # @type DisableCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -16815,13 +16815,13 @@ module TencentCloud
       class DescribeLoginTypeHostRequest < TencentCloud::Common::AbstractModel
         # @param Filters: <li>Name - string - 是否必填：否 - 主机名</li> <li>InstanceId - string - 是否必填：否 - 实例ID</li> <li>PublicIp - string - 是否必填：否 - 公网IP</li> <li>PrivateIp - string - 是否必填：否 - 私网IP</li>
         # @type Filters: Array
-        # @param Limit: 限制条数,默认10,最大100
+        # @param Limit: <p>限制条数,默认10,最大100</p>
         # @type Limit: Integer
-        # @param Offset: 偏移量,默认0
+        # @param Offset: <p>偏移量,默认0</p>
         # @type Offset: Integer
-        # @param Order: 排序方式: [ASC:升序|DESC:降序]
+        # @param Order: <p>排序方式: [ASC:升序|DESC:降序]</p>
         # @type Order: String
-        # @param By: 可选排序列: [Id]
+        # @param By: <p>可选排序列: [Id]</p>
         # @type By: String
 
         attr_accessor :Filters, :Limit, :Offset, :Order, :By
@@ -16852,9 +16852,9 @@ module TencentCloud
 
       # DescribeLoginTypeHost返回参数结构体
       class DescribeLoginTypeHostResponse < TencentCloud::Common::AbstractModel
-        # @param Total: 总数
+        # @param Total: <p>总数</p>
         # @type Total: Integer
-        # @param List: 主机列表
+        # @param List: <p>主机列表</p>
         # @type List: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -17077,19 +17077,15 @@ module TencentCloud
 
       # DescribeMachineClearHistory请求参数结构体
       class DescribeMachineClearHistoryRequest < TencentCloud::Common::AbstractModel
-        # @param Filters: 筛选条件
-        # 多个条件筛选时 Keywords,TimeBetween,取交集
-        # <li> Keywords 实例名称/内网/公网IP</li>
-        # <li> TimeBetween 时间区间</li>
+        # @param Filters: <p>筛选条件<br>多个条件筛选时 Keywords,TimeBetween,取交集</p><li> Keywords 实例名称/内网/公网IP</li><li> TimeBetween 时间区间</li>
         # @type Filters: Array
-        # @param Limit: 限制条数,默认10 ,最大100
+        # @param Limit: <p>限制条数,默认10 ,最大100</p>
         # @type Limit: Integer
-        # @param Offset: 偏移量,默认0
+        # @param Offset: <p>偏移量,默认0</p>
         # @type Offset: Integer
-        # @param Order: 正序, ASC , 倒序 DESC , 默认ASC
+        # @param Order: <p>正序, ASC , 倒序 DESC , 默认ASC</p>
         # @type Order: String
-        # @param By: AgentLastOfflineTime 客户端最后离线时间
-        # AutoClearTime 清理时间
+        # @param By: <p>AgentLastOfflineTime 客户端最后离线时间<br>AutoClearTime 清理时间</p>
         # @type By: String
 
         attr_accessor :Filters, :Limit, :Offset, :Order, :By
@@ -17120,9 +17116,9 @@ module TencentCloud
 
       # DescribeMachineClearHistory返回参数结构体
       class DescribeMachineClearHistoryResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 总条数
+        # @param TotalCount: <p>总条数</p>
         # @type TotalCount: Integer
-        # @param List: 列表数据
+        # @param List: <p>列表数据</p>
         # @type List: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -17643,7 +17639,7 @@ module TencentCloud
 
       # DescribeMachineOsList返回参数结构体
       class DescribeMachineOsListResponse < TencentCloud::Common::AbstractModel
-        # @param List: 操作系统列表
+        # @param List: <p>操作系统列表</p>
         # @type List: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -17932,45 +17928,31 @@ module TencentCloud
 
       # DescribeMachines请求参数结构体
       class DescribeMachinesRequest < TencentCloud::Common::AbstractModel
-        # @param MachineType: 机器所属专区类型
-        # CVM 云服务器
-        # BM 黑石
-        # ECM 边缘计算
-        # LH 轻量应用服务器
-        # Other 混合云专区
+        # @param MachineType: <p>机器所属专区类型<br>CVM 云服务器<br>BM 黑石<br>ECM 边缘计算<br>LH 轻量应用服务器<br>Other 混合云专区</p>
         # @type MachineType: String
-        # @param MachineRegion: 机器所属地域。如：ap-guangzhou，ap-shanghai，非腾讯云主机使用：ap-others
+        # @param MachineRegion: <p>机器所属地域。如：ap-guangzhou，ap-shanghai，非腾讯云主机使用：ap-others</p>
         # @type MachineRegion: String
-        # @param Limit: 返回数量，默认为10，最大值为100。
+        # @param Limit: <p>返回数量，默认为10，最大值为100。</p>
         # @type Limit: Integer
-        # @param Offset: 偏移量，默认为0。
+        # @param Offset: <p>偏移量，默认为0。</p>
         # @type Offset: Integer
-        # @param Filters: 过滤条件。
-        # <li>Ips - String - 是否必填：否 - 通过ip查询 </li>
-        # <li>Names - String - 是否必填：否 - 通过实例名查询 </li>
-        # <li>InstanceIds - String - 是否必填：否 - 通过实例id查询 </li>
-        # <li>Version - String  是否必填：否 - 当前防护版本（ PRO_VERSION：专业版 | BASIC_VERSION：基础版 | Flagship : 旗舰版 | ProtectedMachines: 专业版+旗舰版）</li>
-        # <li>Risk - String 是否必填: 否 - 风险主机( yes ) </li>
-        # <li>Os -String 是否必填: 否 - 操作系统( DescribeMachineOsList 接口 值 )
-        # 每个过滤条件只支持一个值，暂不支持多个值“或”关系查询</li>
-        # <li>Quuid - String - 是否必填: 否 - 云服务器uuid  最大100条.</li>
-        # <li>AddedOnTheFifteen- String 是否必填: 否 - 是否只查询15天内新增的主机( 1：是) </li>
-        # <li> TagId- String 是否必填: 否 - 查询指定标签关联的主机列表 </li>
-        # <li> AgentStatus- String 是否必填: 否 - ALL 全部; ONLINE 防护中; OFFLINE 已离线;UNINSTALLED 未安装</li>
-        # <li> MachineStatus- String 是否必填: 否 - ALL 全部; RUNNING 运行中; STOPPED 已关机; EXPIRED 待回收</li>
+        # @param Filters: <p>过滤条件。</p><li>Ips - String - 是否必填：否 - 通过ip查询 </li><li>Names - String - 是否必填：否 - 通过实例名查询 </li><li>InstanceIds - String - 是否必填：否 - 通过实例id查询 </li><li>Version - String  是否必填：否 - 当前防护版本（ PRO_VERSION：专业版 | BASIC_VERSION：基础版 | Flagship : 旗舰版 | ProtectedMachines: 专业版+旗舰版）</li><li>Risk - String 是否必填: 否 - 风险主机( yes ) </li><li>Os -String 是否必填: 否 - 操作系统( DescribeMachineOsList 接口 值 )每个过滤条件只支持一个值，暂不支持多个值“或”关系查询</li><li>Quuid - String - 是否必填: 否 - 云服务器uuid  最大100条.</li><li>AddedOnTheFifteen- String 是否必填: 否 - 是否只查询15天内新增的主机( 1：是) </li><li> TagId- String 是否必填: 否 - 查询指定标签关联的主机列表 </li><li> AgentStatus- String 是否必填: 否 - ALL 全部; ONLINE 防护中; OFFLINE 已离线;UNINSTALLED 未安装</li><li> MachineStatus- String 是否必填: 否 - ALL 全部; RUNNING 运行中; STOPPED 已关机; EXPIRED 待回收</li>
         # @type Filters: Array
-        # @param ProjectIds: 机器所属业务ID列表
+        # @param ProjectIds: <p>机器所属业务ID列表</p>
         # @type ProjectIds: Array
+        # @param MachineAppId: <p>机器对应的APPID</p>
+        # @type MachineAppId: Integer
 
-        attr_accessor :MachineType, :MachineRegion, :Limit, :Offset, :Filters, :ProjectIds
+        attr_accessor :MachineType, :MachineRegion, :Limit, :Offset, :Filters, :ProjectIds, :MachineAppId
 
-        def initialize(machinetype=nil, machineregion=nil, limit=nil, offset=nil, filters=nil, projectids=nil)
+        def initialize(machinetype=nil, machineregion=nil, limit=nil, offset=nil, filters=nil, projectids=nil, machineappid=nil)
           @MachineType = machinetype
           @MachineRegion = machineregion
           @Limit = limit
           @Offset = offset
           @Filters = filters
           @ProjectIds = projectids
+          @MachineAppId = machineappid
         end
 
         def deserialize(params)
@@ -17987,14 +17969,15 @@ module TencentCloud
             end
           end
           @ProjectIds = params['ProjectIds']
+          @MachineAppId = params['MachineAppId']
         end
       end
 
       # DescribeMachines返回参数结构体
       class DescribeMachinesResponse < TencentCloud::Common::AbstractModel
-        # @param Machines: 主机列表
+        # @param Machines: <p>主机列表</p>
         # @type Machines: Array
-        # @param TotalCount: 主机数量
+        # @param TotalCount: <p>主机数量</p>
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -18419,58 +18402,63 @@ module TencentCloud
 
       # DescribeMalwareTimingScanSetting请求参数结构体
       class DescribeMalwareTimingScanSettingRequest < TencentCloud::Common::AbstractModel
+        # @param ProductType: <p>产品类型 0-主机安全(默认) 1-安全中心</p>
+        # @type ProductType: Integer
 
+        attr_accessor :ProductType
 
-        def initialize()
+        def initialize(producttype=nil)
+          @ProductType = producttype
         end
 
         def deserialize(params)
+          @ProductType = params['ProductType']
         end
       end
 
       # DescribeMalwareTimingScanSetting返回参数结构体
       class DescribeMalwareTimingScanSettingResponse < TencentCloud::Common::AbstractModel
-        # @param CheckPattern: 检测模式 0 全盘检测  1快速检测
+        # @param CheckPattern: <p>检测模式 0 全盘检测  1快速检测</p>
         # @type CheckPattern: Integer
-        # @param StartTime: 检测周期 开始时间
+        # @param StartTime: <p>检测周期 开始时间</p>
         # @type StartTime: String
-        # @param EndTime: 检测周期 超时结束时间
+        # @param EndTime: <p>检测周期 超时结束时间</p>
         # @type EndTime: String
-        # @param IsGlobal: 是否全部服务器 1 全部 2 自选
+        # @param IsGlobal: <p>是否全部服务器 1 全部 2 自选</p>
         # @type IsGlobal: Integer
-        # @param QuuidList: 自选服务器时必须 主机quuid的string数组
+        # @param QuuidList: <p>自选服务器时必须 主机quuid的string数组</p>
         # @type QuuidList: Array
-        # @param MonitoringPattern: 监控模式 0 标准 1深度
+        # @param MonitoringPattern: <p>监控模式 0 标准 1深度</p>
         # @type MonitoringPattern: Integer
-        # @param Cycle: 周期 1每天
+        # @param Cycle: <p>周期 1每天</p>
         # @type Cycle: Integer
-        # @param EnableScan: 定时检测开关 0 关闭1 开启
+        # @param EnableScan: <p>定时检测开关 0 关闭1 开启</p>
         # @type EnableScan: Integer
-        # @param Id: 唯一ID
+        # @param Id: <p>唯一ID</p>
         # @type Id: Integer
-        # @param RealTimeMonitoring: 实时监控0 关闭 1开启
+        # @param RealTimeMonitoring: <p>实时监控0 关闭 1开启</p>
         # @type RealTimeMonitoring: Integer
-        # @param AutoIsolation: 是否自动隔离：1-是，0-否
+        # @param AutoIsolation: <p>是否自动隔离：1-是，0-否</p>
         # @type AutoIsolation: Integer
-        # @param ClickTimeout: 一键扫描超时时长，如：1800秒（s）
+        # @param ClickTimeout: <p>一键扫描超时时长，如：1800秒（s）</p>
         # @type ClickTimeout: Integer
-        # @param KillProcess: 是否杀掉进程 1杀掉 0不杀掉 只有开启自动隔离才生效
+        # @param KillProcess: <p>是否杀掉进程 1杀掉 0不杀掉 只有开启自动隔离才生效</p>
         # @type KillProcess: Integer
-        # @param EngineType: 1标准模式（只报严重、高危）、2增强模式（报严重、高危、中危）、3严格模式（报严重、高、中、低、提示）
+        # @param EngineType: <p>1标准模式（只报严重、高危）、2增强模式（报严重、高危、中危）、3严格模式（报严重、高、中、低、提示）</p>
         # @type EngineType: Integer
-        # @param EnableInspiredEngine: 启发引擎 0 关闭 1开启
+        # @param EnableInspiredEngine: <p>启发引擎 0 关闭 1开启</p>
         # @type EnableInspiredEngine: Integer
-        # @param EnableMemShellScan: 是否开启恶意进程查杀[0:未开启,1:开启]
+        # @param EnableMemShellScan: <p>是否开启恶意进程查杀[0:未开启,1:开启]</p>
         # @type EnableMemShellScan: Integer
-        # @param ProtectMode: 防护模式 0 标准 1 重保
+        # @param ProtectMode: <p>防护模式 0 标准 1 重保</p>
         # @type ProtectMode: Integer
-        # @param ProtectFileScope: 查杀范围 0 脚本类之外的恶意文件，1全部恶意文件
+        # @param ProtectFileScope: <p>查杀范围 0 脚本类之外的恶意文件，1全部恶意文件</p>
         # @type ProtectFileScope: Integer
-        # @param DoClean: 执行清理开关 0未开启 1开启
+        # @param DoClean: <p>执行清理开关 0未开启 1开启</p>
         # @type DoClean: Integer
-        # @param QuaraUuids: 自选的隔离主机集合
+        # @param QuaraUuids: <p>自选的隔离主机集合</p>
         # @type QuaraUuids: Array
-        # @param QuaraScope: 用户选择的隔离范围，0：默认全隔离 1：用户自选
+        # @param QuaraScope: <p>用户选择的隔离范围，0：默认全隔离 1：用户自选</p>
         # @type QuaraScope: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -18757,28 +18745,33 @@ module TencentCloud
 
       # DescribeNetAttackSetting请求参数结构体
       class DescribeNetAttackSettingRequest < TencentCloud::Common::AbstractModel
+        # @param ProductType: <p>产品类型 0-主机安全 1-安全中心</p>
+        # @type ProductType: Integer
 
+        attr_accessor :ProductType
 
-        def initialize()
+        def initialize(producttype=nil)
+          @ProductType = producttype
         end
 
         def deserialize(params)
+          @ProductType = params['ProductType']
         end
       end
 
       # DescribeNetAttackSetting返回参数结构体
       class DescribeNetAttackSettingResponse < TencentCloud::Common::AbstractModel
-        # @param NetAttackEnable: 0 关闭网络攻击检测，1开启网络攻击检测
+        # @param NetAttackEnable: <p>0 关闭网络攻击检测，1开启网络攻击检测</p>
         # @type NetAttackEnable: Integer
-        # @param NetAttackAlarmStatus: 0 新增告警事件默认待处理，1新增告警事件默认已处理，3新增告警事件默认忽略
+        # @param NetAttackAlarmStatus: <p>0 新增告警事件默认待处理，1新增告警事件默认已处理，3新增告警事件默认忽略</p>
         # @type NetAttackAlarmStatus: Integer
-        # @param Scope: 1 全部旗舰版主机，0 InstanceIds列表主机
+        # @param Scope: <p>1 全部旗舰版主机，0 InstanceIds列表主机</p>
         # @type Scope: Integer
-        # @param InstanceIds: 自选主机
+        # @param InstanceIds: <p>自选主机</p>
         # @type InstanceIds: Array
-        # @param ExcludeInstanceIds: 自选排除主机
+        # @param ExcludeInstanceIds: <p>自选排除主机</p>
         # @type ExcludeInstanceIds: Array
-        # @param AutoInclude: 新增资产自动包含 0 不包含 1包含
+        # @param AutoInclude: <p>新增资产自动包含 0 不包含 1包含</p>
         # @type AutoInclude: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -21243,20 +21236,25 @@ module TencentCloud
 
       # DescribeReverseShellSystemPolicyConfig请求参数结构体
       class DescribeReverseShellSystemPolicyConfigRequest < TencentCloud::Common::AbstractModel
+        # @param ProductType: <p>产品类型 0-主机安全(默认) 1-安全中心</p>
+        # @type ProductType: Integer
 
+        attr_accessor :ProductType
 
-        def initialize()
+        def initialize(producttype=nil)
+          @ProductType = producttype
         end
 
         def deserialize(params)
+          @ProductType = params['ProductType']
         end
       end
 
       # DescribeReverseShellSystemPolicyConfig返回参数结构体
       class DescribeReverseShellSystemPolicyConfigResponse < TencentCloud::Common::AbstractModel
-        # @param InnerNetAlarmShow: 内网告警展示
+        # @param InnerNetAlarmShow: <p>内网告警展示</p>
         # @type InnerNetAlarmShow: Boolean
-        # @param InnerIPShow: 内网ip展示
+        # @param InnerIPShow: <p>内网ip展示</p>
         # @type InnerIPShow: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -30960,11 +30958,11 @@ module TencentCloud
       # * 最多只能有5个Filter
       # * 同一个Filter存在多个Values，Values值数量最多不能超过5个。
       class Filter < TencentCloud::Common::AbstractModel
-        # @param Name: 过滤键的名称。
+        # @param Name: <p>过滤键的名称。</p>
         # @type Name: String
-        # @param Values: 一个或者多个过滤值。
+        # @param Values: <p>一个或者多个过滤值。</p>
         # @type Values: Array
-        # @param ExactMatch: 模糊搜索
+        # @param ExactMatch: <p>模糊搜索</p>
         # @type ExactMatch: Boolean
 
         attr_accessor :Name, :Values, :ExactMatch
@@ -33598,9 +33596,9 @@ module TencentCloud
 
       # ModifyBanMode请求参数结构体
       class ModifyBanModeRequest < TencentCloud::Common::AbstractModel
-        # @param Mode: 阻断模式，STANDARD_MODE：标准阻断，DEEP_MODE：深度阻断
+        # @param Mode: <p>阻断模式，STANDARD_MODE：标准阻断，DEEP_MODE：深度阻断</p>
         # @type Mode: String
-        # @param Ttl: 阻断时间，用于标准阻断模式
+        # @param Ttl: <p>阻断时间，用于标准阻断模式</p>
         # @type Ttl: Integer
 
         attr_accessor :Mode, :Ttl
@@ -34032,7 +34030,7 @@ module TencentCloud
 
       # ModifyBruteAttackRules请求参数结构体
       class ModifyBruteAttackRulesRequest < TencentCloud::Common::AbstractModel
-        # @param Rules: 暴力破解判断规则
+        # @param Rules: <p>暴力破解判断规则</p>
         # @type Rules: Array
 
         attr_accessor :Rules
@@ -34902,7 +34900,7 @@ module TencentCloud
 
       # ModifyMachineAutoClearConfig请求参数结构体
       class ModifyMachineAutoClearConfigRequest < TencentCloud::Common::AbstractModel
-        # @param ClearRule: 清理规则时间, 0 表示关闭, 单位为天, 最大为 30天
+        # @param ClearRule: <p>清理规则时间, 0 表示关闭, 单位为天, 最大为 30天</p>
         # @type ClearRule: Integer
 
         attr_accessor :ClearRule
@@ -35010,49 +35008,50 @@ module TencentCloud
 
       # ModifyMalwareTimingScanSettings请求参数结构体
       class ModifyMalwareTimingScanSettingsRequest < TencentCloud::Common::AbstractModel
-        # @param CheckPattern: 检测模式 0 全盘检测  1快速检测
+        # @param CheckPattern: <p>检测模式 0 全盘检测  1快速检测</p>
         # @type CheckPattern: Integer
-        # @param StartTime: 检测周期 开始时间，如：02:00:00
+        # @param StartTime: <p>检测周期 开始时间，如：02:00:00</p>
         # @type StartTime: String
-        # @param EndTime: 检测周期 超时结束时间，如：04:00:00
+        # @param EndTime: <p>检测周期 超时结束时间，如：04:00:00</p>
         # @type EndTime: String
-        # @param IsGlobal: 是否全部服务器 1 全部 2 自选
+        # @param IsGlobal: <p>是否全部服务器 1 全部 2 自选</p>
         # @type IsGlobal: Integer
-        # @param EnableScan: 定时检测开关 0 关闭 1开启
+        # @param EnableScan: <p>定时检测开关 0 关闭 1开启</p>
         # @type EnableScan: Integer
-        # @param MonitoringPattern: 监控模式 0 标准 1深度
+        # @param MonitoringPattern: <p>监控模式 0 标准 1深度</p>
         # @type MonitoringPattern: Integer
-        # @param Cycle: 扫描周期 默认每天 1
+        # @param Cycle: <p>扫描周期 默认每天 1</p>
         # @type Cycle: Integer
-        # @param RealTimeMonitoring: 实时监控 0 关闭 1开启
+        # @param RealTimeMonitoring: <p>实时监控 0 关闭 1开启</p>
         # @type RealTimeMonitoring: Integer
-        # @param QuuidList: 自选服务器时必须 主机quuid的string数组
+        # @param QuuidList: <p>自选服务器时必须 主机quuid的string数组</p>
         # @type QuuidList: Array
-        # @param AutoIsolation: 是否自动隔离 1隔离 0 不隔离
+        # @param AutoIsolation: <p>是否自动隔离 1隔离 0 不隔离</p>
         # @type AutoIsolation: Integer
-        # @param KillProcess: 是否杀掉进程 1杀掉 0不杀掉
+        # @param KillProcess: <p>是否杀掉进程 1杀掉 0不杀掉</p>
         # @type KillProcess: Integer
-        # @param DoClean: 1 清理, 0 不清理
-        # <li>本操作会修复被篡改的系统命令，计划任务等系统文件，操作中请确保yum/apt 可用</li>
+        # @param DoClean: <p>1 清理, 0 不清理</p><li>本操作会修复被篡改的系统命令，计划任务等系统文件，操作中请确保yum/apt 可用</li>
         # @type DoClean: Integer
-        # @param EngineType: 1标准模式（只报严重、高危）、2增强模式（报严重、高危、中危）、3严格模式（报严重、高、中、低、提示）
+        # @param EngineType: <p>1标准模式（只报严重、高危）、2增强模式（报严重、高危、中危）、3严格模式（报严重、高、中、低、提示）</p>
         # @type EngineType: Integer
-        # @param EnableInspiredEngine: 启发引擎开关 0 关闭 1开启
+        # @param EnableInspiredEngine: <p>启发引擎开关 0 关闭 1开启</p>
         # @type EnableInspiredEngine: Integer
-        # @param EnableMemShellScan: 是否开启恶意进程查杀[0:未开启,1:开启]
+        # @param EnableMemShellScan: <p>是否开启恶意进程查杀[0:未开启,1:开启]</p>
         # @type EnableMemShellScan: Integer
-        # @param ProtectMode: 防护模式 0 标准 1重保
+        # @param ProtectMode: <p>防护模式 0 标准 1重保</p>
         # @type ProtectMode: Integer
-        # @param ProtectFileScope: 查杀范围 0 脚本类之外的恶意文件，1全部恶意文件
+        # @param ProtectFileScope: <p>查杀范围 0 脚本类之外的恶意文件，1全部恶意文件</p>
         # @type ProtectFileScope: Integer
-        # @param QuaraUuids: 自选的隔离主机集合
+        # @param QuaraUuids: <p>自选的隔离主机集合</p>
         # @type QuaraUuids: Array
-        # @param QuaraScope: 用户选择的隔离范围，0：默认全隔离 1：用户自选
+        # @param QuaraScope: <p>用户选择的隔离范围，0：默认全隔离 1：用户自选</p>
         # @type QuaraScope: Integer
+        # @param ProductType: <p>产品类型 0-主机安全(默认) 1-安全中心</p>
+        # @type ProductType: Integer
 
-        attr_accessor :CheckPattern, :StartTime, :EndTime, :IsGlobal, :EnableScan, :MonitoringPattern, :Cycle, :RealTimeMonitoring, :QuuidList, :AutoIsolation, :KillProcess, :DoClean, :EngineType, :EnableInspiredEngine, :EnableMemShellScan, :ProtectMode, :ProtectFileScope, :QuaraUuids, :QuaraScope
+        attr_accessor :CheckPattern, :StartTime, :EndTime, :IsGlobal, :EnableScan, :MonitoringPattern, :Cycle, :RealTimeMonitoring, :QuuidList, :AutoIsolation, :KillProcess, :DoClean, :EngineType, :EnableInspiredEngine, :EnableMemShellScan, :ProtectMode, :ProtectFileScope, :QuaraUuids, :QuaraScope, :ProductType
 
-        def initialize(checkpattern=nil, starttime=nil, endtime=nil, isglobal=nil, enablescan=nil, monitoringpattern=nil, cycle=nil, realtimemonitoring=nil, quuidlist=nil, autoisolation=nil, killprocess=nil, doclean=nil, enginetype=nil, enableinspiredengine=nil, enablememshellscan=nil, protectmode=nil, protectfilescope=nil, quarauuids=nil, quarascope=nil)
+        def initialize(checkpattern=nil, starttime=nil, endtime=nil, isglobal=nil, enablescan=nil, monitoringpattern=nil, cycle=nil, realtimemonitoring=nil, quuidlist=nil, autoisolation=nil, killprocess=nil, doclean=nil, enginetype=nil, enableinspiredengine=nil, enablememshellscan=nil, protectmode=nil, protectfilescope=nil, quarauuids=nil, quarascope=nil, producttype=nil)
           @CheckPattern = checkpattern
           @StartTime = starttime
           @EndTime = endtime
@@ -35072,6 +35071,7 @@ module TencentCloud
           @ProtectFileScope = protectfilescope
           @QuaraUuids = quarauuids
           @QuaraScope = quarascope
+          @ProductType = producttype
         end
 
         def deserialize(params)
@@ -35094,6 +35094,7 @@ module TencentCloud
           @ProtectFileScope = params['ProtectFileScope']
           @QuaraUuids = params['QuaraUuids']
           @QuaraScope = params['QuaraScope']
+          @ProductType = params['ProductType']
         end
       end
 
@@ -35179,28 +35180,31 @@ module TencentCloud
 
       # ModifyNetAttackSetting请求参数结构体
       class ModifyNetAttackSettingRequest < TencentCloud::Common::AbstractModel
-        # @param NetAttackEnable: 0 关闭网络攻击检测，1开启网络攻击检测
+        # @param NetAttackEnable: <p>0 关闭网络攻击检测，1开启网络攻击检测</p>
         # @type NetAttackEnable: Integer
-        # @param NetAttackAlarmStatus: 0 新增告警事件默认待处理，1新增告警事件默认已处理，3新增告警事件默认忽略
+        # @param NetAttackAlarmStatus: <p>0 新增告警事件默认待处理，1新增告警事件默认已处理，3新增告警事件默认忽略</p>
         # @type NetAttackAlarmStatus: Integer
-        # @param Scope: 1 全部旗舰版主机，0 Quuids列表主机
+        # @param Scope: <p>1 全部旗舰版主机，0 Quuids列表主机</p>
         # @type Scope: Integer
-        # @param InstanceIds: 自选主机
+        # @param InstanceIds: <p>自选主机</p>
         # @type InstanceIds: Array
-        # @param ExcludeInstanceIds: 自选排除的主机
+        # @param ExcludeInstanceIds: <p>自选排除的主机</p>
         # @type ExcludeInstanceIds: Array
-        # @param AutoInclude: 新增资产自动包含 0 不包含 1包含
+        # @param AutoInclude: <p>新增资产自动包含 0 不包含 1包含</p>
         # @type AutoInclude: Integer
+        # @param ProductType: <p>产品类型 0-主机安全 1-安全中心</p>
+        # @type ProductType: Integer
 
-        attr_accessor :NetAttackEnable, :NetAttackAlarmStatus, :Scope, :InstanceIds, :ExcludeInstanceIds, :AutoInclude
+        attr_accessor :NetAttackEnable, :NetAttackAlarmStatus, :Scope, :InstanceIds, :ExcludeInstanceIds, :AutoInclude, :ProductType
 
-        def initialize(netattackenable=nil, netattackalarmstatus=nil, scope=nil, instanceids=nil, excludeinstanceids=nil, autoinclude=nil)
+        def initialize(netattackenable=nil, netattackalarmstatus=nil, scope=nil, instanceids=nil, excludeinstanceids=nil, autoinclude=nil, producttype=nil)
           @NetAttackEnable = netattackenable
           @NetAttackAlarmStatus = netattackalarmstatus
           @Scope = scope
           @InstanceIds = instanceids
           @ExcludeInstanceIds = excludeinstanceids
           @AutoInclude = autoinclude
+          @ProductType = producttype
         end
 
         def deserialize(params)
@@ -35210,6 +35214,7 @@ module TencentCloud
           @InstanceIds = params['InstanceIds']
           @ExcludeInstanceIds = params['ExcludeInstanceIds']
           @AutoInclude = params['AutoInclude']
+          @ProductType = params['ProductType']
         end
       end
 

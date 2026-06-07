@@ -3201,13 +3201,13 @@ module TencentCloud
 
       # ReportOrder请求参数结构体
       class ReportOrderRequest < TencentCloud::Common::AbstractModel
-        # @param OrderId: 订单编号唯一标识符
+        # @param OrderId: <p>订单编号唯一标识符</p>
         # @type OrderId: String
-        # @param ProjectId: 项目id
+        # @param ProjectId: <p>项目id</p>
         # @type ProjectId: String
-        # @param PackageType: 用量类型
+        # @param PackageType: <p>用量类型</p>
         # @type PackageType: String
-        # @param ReportMonth: 上报月份，默认当前月
+        # @param ReportMonth: <p>上报月份，默认当前月</p>
         # @type ReportMonth: String
 
         attr_accessor :OrderId, :ProjectId, :PackageType, :ReportMonth
@@ -3229,7 +3229,7 @@ module TencentCloud
 
       # ReportOrder返回参数结构体
       class ReportOrderResponse < TencentCloud::Common::AbstractModel
-        # @param OrderInfo: 订单信息
+        # @param OrderInfo: <p>订单信息</p>
         # @type OrderInfo: :class:`Tencentcloud::Mna.v20210119.models.OrderInfo`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

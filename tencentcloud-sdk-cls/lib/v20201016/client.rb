@@ -3429,6 +3429,31 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询日志服务是否开通
+        # API 中 Region 填写任意一个地域均可，建议使用广州(ap-guangzhou)
+
+        # @param request: Request instance for GetClsService.
+        # @type request: :class:`Tencentcloud::cls::V20201016::GetClsServiceRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::GetClsServiceResponse`
+        def GetClsService(request)
+          body = send_request('GetClsService', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetClsServiceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取时序label values列表
 
         # @param request: Request instance for GetMetricLabelValues.
@@ -4328,6 +4353,31 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = OpenClawServiceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 开通日志服务
+        # API 中 Region 填写任意一个地域均可开通所有地域的 CLS，建议使用广州(ap-guangzhou)
+
+        # @param request: Request instance for OpenClsService.
+        # @type request: :class:`Tencentcloud::cls::V20201016::OpenClsServiceRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::OpenClsServiceResponse`
+        def OpenClsService(request)
+          body = send_request('OpenClsService', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = OpenClsServiceResponse.new
             model.deserialize(response['Response'])
             model
           else

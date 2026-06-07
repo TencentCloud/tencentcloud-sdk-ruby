@@ -8607,11 +8607,13 @@ module TencentCloud
 
       # CreateAigcAudioTask请求参数结构体
       class CreateAigcAudioTaskRequest < TencentCloud::Common::AbstractModel
+        # @param SubAppId: <p>点播应用 ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</p>
+        # @type SubAppId: Integer
         # @param ModelName: <p>模型名称。</p>
         # @type ModelName: String
         # @param ModelVersion: <p>指定模型特定版本号。默认使用系统当前所支持的模型稳定版本。</p>
         # @type ModelVersion: String
-        # @param SceneType: <p>指定场景，目前支持sfx（音效）。</p>
+        # @param SceneType: <p>指定场景，目前支持sfx（音效）、music（音乐）。</p>
         # @type SceneType: String
         # @param Prompt: <p>生成音频的描述</p>
         # @type Prompt: String
@@ -8624,9 +8626,10 @@ module TencentCloud
         # @param AdditionalParameters: <p>用于传入一些模型需要的特殊场景参数，Json格式序列化成字符串。<br>示例：<br>{"camera_control":{"type":"simple"}}</p>
         # @type AdditionalParameters: String
 
-        attr_accessor :ModelName, :ModelVersion, :SceneType, :Prompt, :VideoInfos, :AudioInfos, :OutputConfig, :AdditionalParameters
+        attr_accessor :SubAppId, :ModelName, :ModelVersion, :SceneType, :Prompt, :VideoInfos, :AudioInfos, :OutputConfig, :AdditionalParameters
 
-        def initialize(modelname=nil, modelversion=nil, scenetype=nil, prompt=nil, videoinfos=nil, audioinfos=nil, outputconfig=nil, additionalparameters=nil)
+        def initialize(subappid=nil, modelname=nil, modelversion=nil, scenetype=nil, prompt=nil, videoinfos=nil, audioinfos=nil, outputconfig=nil, additionalparameters=nil)
+          @SubAppId = subappid
           @ModelName = modelname
           @ModelVersion = modelversion
           @SceneType = scenetype
@@ -8638,6 +8641,7 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @SubAppId = params['SubAppId']
           @ModelName = params['ModelName']
           @ModelVersion = params['ModelVersion']
           @SceneType = params['SceneType']
@@ -13382,15 +13386,18 @@ module TencentCloud
         # @type SubAppId: Integer
         # @param APIKey: <p>API Key</p>
         # @type APIKey: String
+        # @param APIKeys: <p>API Key</p>
+        # @type APIKeys: Array
 
-        attr_accessor :StartTime, :EndTime, :AigcType, :SubAppId, :APIKey
+        attr_accessor :StartTime, :EndTime, :AigcType, :SubAppId, :APIKey, :APIKeys
 
-        def initialize(starttime=nil, endtime=nil, aigctype=nil, subappid=nil, apikey=nil)
+        def initialize(starttime=nil, endtime=nil, aigctype=nil, subappid=nil, apikey=nil, apikeys=nil)
           @StartTime = starttime
           @EndTime = endtime
           @AigcType = aigctype
           @SubAppId = subappid
           @APIKey = apikey
+          @APIKeys = apikeys
         end
 
         def deserialize(params)
@@ -13399,6 +13406,7 @@ module TencentCloud
           @AigcType = params['AigcType']
           @SubAppId = params['SubAppId']
           @APIKey = params['APIKey']
+          @APIKeys = params['APIKeys']
         end
       end
 

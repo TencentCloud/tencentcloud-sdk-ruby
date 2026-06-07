@@ -765,22 +765,21 @@ module TencentCloud
 
       # 防火墙实例运行状态
       class CfwInsStatus < TencentCloud::Common::AbstractModel
-        # @param CfwInsId: 防火墙实例id
+        # @param CfwInsId: <p>防火墙实例id</p>
         # @type CfwInsId: String
-        # @param FwType: 防火墙类型，nat：nat防火墙；ew：vpc间防火墙
+        # @param FwType: <p>防火墙类型，nat：nat防火墙；ew：vpc间防火墙</p>
         # @type FwType: String
-        # @param Region: 实例所属地域
+        # @param Region: <p>实例所属地域</p>
         # @type Region: String
-        # @param Status: 实例运行状态，Running：正常运行；BypassAutoFix：bypass修复；Updating：升级中；Expand：扩容中；BypassManual：手动触发bypass中；BypassAuto：自动触发bypass中
+        # @param Status: <p>实例运行状态，Running：正常运行；BypassAutoFix：bypass修复；Updating：升级中；Expand：扩容中；BypassManual：手动触发bypass中；BypassAuto：自动触发bypass中；BypassTcDrop：丢包触发bypass中</p><p>枚举值：</p><ul><li>Running： 正常运行</li><li>BypassAutoFix： 自动bypass已修复</li><li>Updating： 实例升级中</li><li>Expand： 实例扩容中</li><li>BypassManual： 手动触发bypass中</li><li>BypassAuto： 自动触发bypass中</li><li>BypassTcDrop： 丢包触发bypass中</li></ul>
         # @type Status: String
-        # @param EventTime: 事件时间
+        # @param EventTime: <p>事件时间</p>
         # @type EventTime: String
-        # @param RecoverTime: 恢复时间
+        # @param RecoverTime: <p>恢复时间</p>
         # @type RecoverTime: String
-        # @param CfwInsName: 实例名称
+        # @param CfwInsName: <p>实例名称</p>
         # @type CfwInsName: String
-        # @param TrafficMode: Normal: 正常模式
-        # OnlyRoute: 透明模式
+        # @param TrafficMode: <p>Normal: 正常模式<br>OnlyRoute: 透明模式</p>
         # @type TrafficMode: String
 
         attr_accessor :CfwInsId, :FwType, :Region, :Status, :EventTime, :RecoverTime, :CfwInsName, :TrafficMode
@@ -1858,35 +1857,35 @@ module TencentCloud
 
       # 创建NAT ACL规则参数结构
       class CreateNatRuleItem < TencentCloud::Common::AbstractModel
-        # @param SourceContent: 访问源示例： net：IP/CIDR(192.168.0.2)
+        # @param SourceContent: <p>访问源示例： net：IP/CIDR(192.168.0.2)</p>
         # @type SourceContent: String
-        # @param SourceType: 访问源类型：入向规则时类型可以为 ip,net,template,location；出向规则时可以为 ip,net,template,instance,group,tag
+        # @param SourceType: <p>访问源类型：入向规则时类型可以为 ip,net,template,location；出向规则时可以为 ip,net,template,instance,group,tag</p>
         # @type SourceType: String
-        # @param TargetContent: 访问目的示例： net：IP/CIDR(192.168.0.2) domain：域名规则，例如*.qq.com
+        # @param TargetContent: <p>访问目的示例： net：IP/CIDR(192.168.0.2) domain：域名规则，例如*.qq.com</p>
         # @type TargetContent: String
-        # @param TargetType: 访问目的类型：入向规则时类型可以为ip,net,template,instance,group,tag；出向规则时可以为  ip,net,domain,template,location
+        # @param TargetType: <p>访问目的类型：入向规则时类型可以为ip,net,template,instance,group,tag；出向规则时可以为  ip,net,domain,template,location</p>
         # @type TargetType: String
-        # @param Protocol: 协议，可选的值： TCP UDP ICMP ANY HTTP HTTPS HTTP/HTTPS SMTP SMTPS SMTP/SMTPS FTP DNS
+        # @param Protocol: <p>协议，可选的值： TCP UDP ICMP ANY HTTP HTTPS HTTP/HTTPS SMTP SMTPS SMTP/SMTPS FTP DNS</p>
         # @type Protocol: String
-        # @param RuleAction: 访问控制策略中设置的流量通过云防火墙的方式。取值： accept：放行 drop：拒绝 log：观察
+        # @param RuleAction: <p>访问控制策略中设置的流量通过云防火墙的方式。取值： accept：放行 drop：拒绝 log：观察</p>
         # @type RuleAction: String
-        # @param Port: 访问控制策略的端口。取值： -1/-1：全部端口 80：80端口
+        # @param Port: <p>访问控制策略的端口。取值： -1/-1：全部端口 80：80端口</p>
         # @type Port: String
-        # @param Direction: 规则方向：1，入站；0，出站
+        # @param Direction: <p>规则方向：1，入站；0，出站</p>
         # @type Direction: Integer
-        # @param OrderIndex: 规则序号
+        # @param OrderIndex: <p>规则序号</p>
         # @type OrderIndex: Integer
-        # @param Enable: 规则状态，true表示启用，false表示禁用
+        # @param Enable: <p>规则状态，true表示启用，false表示禁用</p>
         # @type Enable: String
-        # @param Uuid: 规则对应的唯一id，创建规则时无需填写
+        # @param Uuid: <p>规则对应的唯一id，创建规则AddNatAcRule时无需填写；修改规则ModifyNatAcRule时必须填写</p><p>创建规则AddNatAcRule时无需填写；修改规则ModifyNatAcRule时必须填写</p>
         # @type Uuid: Integer
-        # @param Description: 描述
+        # @param Description: <p>描述</p>
         # @type Description: String
-        # @param ParamTemplateId: 端口协议组ID
+        # @param ParamTemplateId: <p>端口协议组ID</p>
         # @type ParamTemplateId: String
-        # @param InternalUuid: 内部id
+        # @param InternalUuid: <p>内部id</p>
         # @type InternalUuid: Integer
-        # @param Scope: 规则生效的范围：ALL，全局生效；ap-guangzhou，生效的地域；cfwnat-xxx，生效基于实例维度
+        # @param Scope: <p>规则生效的范围：ALL，全局生效；ap-guangzhou，生效的地域；cfwnat-xxx，生效基于实例维度</p>
         # @type Scope: String
 
         attr_accessor :SourceContent, :SourceType, :TargetContent, :TargetType, :Protocol, :RuleAction, :Port, :Direction, :OrderIndex, :Enable, :Uuid, :Description, :ParamTemplateId, :InternalUuid, :Scope

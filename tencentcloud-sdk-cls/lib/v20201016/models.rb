@@ -12735,6 +12735,37 @@ module TencentCloud
         end
       end
 
+      # GetClsService请求参数结构体
+      class GetClsServiceRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # GetClsService返回参数结构体
+      class GetClsServiceResponse < TencentCloud::Common::AbstractModel
+        # @param Status: 账户服务开通状态，0:服务已开通，1:服务未开通
+        # @type Status: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :RequestId
+
+        def initialize(status=nil, requestid=nil)
+          @Status = status
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # GetMetricLabelValues请求参数结构体
       class GetMetricLabelValuesRequest < TencentCloud::Common::AbstractModel
         # @param TopicId: <p>时序主题id</p>
@@ -17800,6 +17831,33 @@ module TencentCloud
           @SessionLogConfigName = params['SessionLogConfigName']
           @TraceTopicId = params['TraceTopicId']
           @TraceTopicName = params['TraceTopicName']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # OpenClsService请求参数结构体
+      class OpenClsServiceRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # OpenClsService返回参数结构体
+      class OpenClsServiceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end

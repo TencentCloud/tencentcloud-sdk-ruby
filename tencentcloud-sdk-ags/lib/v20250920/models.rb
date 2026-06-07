@@ -1123,9 +1123,9 @@ module TencentCloud
 
       # 资源配置
       class ResourceConfiguration < TencentCloud::Common::AbstractModel
-        # @param CPU: cpu 资源量
+        # @param CPU: <p>cpu 资源量</p>
         # @type CPU: String
-        # @param Memory: 内存资源量
+        # @param Memory: <p>内存资源量</p>
         # @type Memory: String
 
         attr_accessor :CPU, :Memory

@@ -21219,13 +21219,13 @@ module TencentCloud
 
       # SwitchClusterZone请求参数结构体
       class SwitchClusterZoneRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群Id
+        # @param ClusterId: <p>集群Id</p>
         # @type ClusterId: String
-        # @param OldZone: 当前可用区
+        # @param OldZone: <p>当前可用区</p>
         # @type OldZone: String
-        # @param NewZone: 要切换到的可用区
+        # @param NewZone: <p>要切换到的可用区</p>
         # @type NewZone: String
-        # @param IsInMaintainPeriod: 维护期间执行-yes,立即执行-no
+        # @param IsInMaintainPeriod: <p>维护期间执行-yes,立即执行-no</p>
         # @type IsInMaintainPeriod: String
 
         attr_accessor :ClusterId, :OldZone, :NewZone, :IsInMaintainPeriod
@@ -21247,19 +21247,23 @@ module TencentCloud
 
       # SwitchClusterZone返回参数结构体
       class SwitchClusterZoneResponse < TencentCloud::Common::AbstractModel
-        # @param FlowId: 异步FlowId
+        # @param TaskId: <p>任务id</p>
+        # @type TaskId: Integer
+        # @param FlowId: <p>异步FlowId</p>
         # @type FlowId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :FlowId, :RequestId
+        attr_accessor :TaskId, :FlowId, :RequestId
 
-        def initialize(flowid=nil, requestid=nil)
+        def initialize(taskid=nil, flowid=nil, requestid=nil)
+          @TaskId = taskid
           @FlowId = flowid
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @TaskId = params['TaskId']
           @FlowId = params['FlowId']
           @RequestId = params['RequestId']
         end

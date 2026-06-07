@@ -157,6 +157,32 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询模型列表。
+
+        # 支持按模型 ID、模型名称、模型能力等条件筛选，支持分页和排序。
+
+        # @param request: Request instance for DescribeModelList.
+        # @type request: :class:`Tencentcloud::tokenhub::V20260322::DescribeModelListRequest`
+        # @rtype: :class:`Tencentcloud::tokenhub::V20260322::DescribeModelListResponse`
+        def DescribeModelList(request)
+          body = send_request('DescribeModelList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeModelListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询 TokenPlan 套餐详情。
 
         # 返回套餐基本信息及额度中心主额度包余量。
