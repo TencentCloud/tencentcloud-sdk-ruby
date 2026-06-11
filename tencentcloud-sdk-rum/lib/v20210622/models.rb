@@ -5819,8 +5819,8 @@ module TencentCloud
 
         attr_accessor :Limit, :Offset, :Filters, :IsDemo
         extend Gem::Deprecate
-        deprecate :IsDemo, :none, 2026, 5
-        deprecate :IsDemo=, :none, 2026, 5
+        deprecate :IsDemo, :none, 2026, 6
+        deprecate :IsDemo=, :none, 2026, 6
 
         def initialize(limit=nil, offset=nil, filters=nil, isdemo=nil)
           @Limit = limit
@@ -6680,8 +6680,8 @@ module TencentCloud
 
         attr_accessor :EndTime, :StartTime, :ID, :IsDemo, :IDList
         extend Gem::Deprecate
-        deprecate :IsDemo, :none, 2026, 5
-        deprecate :IsDemo=, :none, 2026, 5
+        deprecate :IsDemo, :none, 2026, 6
+        deprecate :IsDemo=, :none, 2026, 6
 
         def initialize(endtime=nil, starttime=nil, id=nil, isdemo=nil, idlist=nil)
           @EndTime = endtime
@@ -6872,12 +6872,12 @@ module TencentCloud
 
         attr_accessor :ChargeStatuses, :ChargeTypes, :Limit, :Offset, :AreaIds, :InstanceStatuses, :InstanceIds, :Filters, :IsDemo
         extend Gem::Deprecate
-        deprecate :InstanceStatuses, :none, 2026, 5
-        deprecate :InstanceStatuses=, :none, 2026, 5
-        deprecate :InstanceIds, :none, 2026, 5
-        deprecate :InstanceIds=, :none, 2026, 5
-        deprecate :IsDemo, :none, 2026, 5
-        deprecate :IsDemo=, :none, 2026, 5
+        deprecate :InstanceStatuses, :none, 2026, 6
+        deprecate :InstanceStatuses=, :none, 2026, 6
+        deprecate :InstanceIds, :none, 2026, 6
+        deprecate :InstanceIds=, :none, 2026, 6
+        deprecate :IsDemo, :none, 2026, 6
+        deprecate :IsDemo=, :none, 2026, 6
 
         def initialize(chargestatuses=nil, chargetypes=nil, limit=nil, offset=nil, areaids=nil, instancestatuses=nil, instanceids=nil, filters=nil, isdemo=nil)
           @ChargeStatuses = chargestatuses
@@ -7955,56 +7955,58 @@ module TencentCloud
 
       # project Score分数实体
       class ScoreInfoV2 < TencentCloud::Common::AbstractModel
-        # @param ProjectID: 项目id
+        # @param ProjectID: <p>项目id</p>
         # @type ProjectID: Integer
-        # @param Score: 项目总分
+        # @param Score: <p>项目总分</p>
         # @type Score: Float
-        # @param ApiPerformanceScore: API性能评分
+        # @param ApiPerformanceScore: <p>API性能评分</p>
         # @type ApiPerformanceScore: Float
-        # @param ApiAvailableScore: API可用性评分
+        # @param ApiAvailableScore: <p>API可用性评分</p>
         # @type ApiAvailableScore: Float
-        # @param ApiNum: API调用总数
+        # @param ApiNum: <p>API调用总数</p>
         # @type ApiNum: Integer
-        # @param ApiFail: API失败次数
+        # @param ApiFail: <p>API失败次数</p>
         # @type ApiFail: Integer
-        # @param ApiDuration: API平均持续时间
+        # @param ApiDuration: <p>API平均持续时间</p>
         # @type ApiDuration: Float
-        # @param PagePerformanceScore: 页面性能评分
+        # @param PagePerformanceScore: <p>页面性能评分</p>
         # @type PagePerformanceScore: Float
-        # @param PagePv: 页面浏览量
+        # @param PagePv: <p>页面浏览量</p>
         # @type PagePv: Integer
-        # @param PageUv: 独立访客数
+        # @param PageUv: <p>独立访客数</p>
         # @type PageUv: Integer
-        # @param PageError: 页面错误数
+        # @param PageError: <p>页面错误数</p>
         # @type PageError: Integer
-        # @param PageDuration: 首屏时间
+        # @param PageDuration: <p>首屏时间</p>
         # @type PageDuration: Float
-        # @param PageLCP: 平均 LCP
+        # @param PageLCP: <p>平均 LCP</p>
         # @type PageLCP: Float
-        # @param PageFID: 平均 FID
+        # @param PageFID: <p>平均 FID</p>
         # @type PageFID: Float
-        # @param PageCLS: 平均 CLS
+        # @param PageCLS: <p>平均 CLS</p>
         # @type PageCLS: Float
-        # @param PageFCP: 平均 FCP
+        # @param PageFCP: <p>平均 FCP</p>
         # @type PageFCP: Float
-        # @param PageINP: 平均 INP
+        # @param PageINP: <p>平均 INP</p>
         # @type PageINP: Float
-        # @param JsErrorScore: JavaScript错误评分
+        # @param JsErrorScore: <p>JavaScript错误评分</p>
         # @type JsErrorScore: Float
-        # @param StaticAvailableScore: 静态资源可用性评分
+        # @param StaticAvailableScore: <p>静态资源可用性评分</p>
         # @type StaticAvailableScore: Float
-        # @param StaticPerformanceScore: 静态资源性能评分
+        # @param StaticPerformanceScore: <p>静态资源性能评分</p>
         # @type StaticPerformanceScore: Float
-        # @param StaticNum: 静态资源请求总数
+        # @param StaticNum: <p>静态资源请求总数</p>
         # @type StaticNum: Integer
-        # @param StaticFail: 静态资源加载失败数
+        # @param StaticFail: <p>静态资源加载失败数</p>
         # @type StaticFail: Integer
-        # @param StaticDuration: 静态资源加载时间
+        # @param StaticDuration: <p>静态资源加载时间</p>
         # @type StaticDuration: Float
+        # @param Exclusion: <p>忽略的配置项</p>
+        # @type Exclusion: String
 
-        attr_accessor :ProjectID, :Score, :ApiPerformanceScore, :ApiAvailableScore, :ApiNum, :ApiFail, :ApiDuration, :PagePerformanceScore, :PagePv, :PageUv, :PageError, :PageDuration, :PageLCP, :PageFID, :PageCLS, :PageFCP, :PageINP, :JsErrorScore, :StaticAvailableScore, :StaticPerformanceScore, :StaticNum, :StaticFail, :StaticDuration
+        attr_accessor :ProjectID, :Score, :ApiPerformanceScore, :ApiAvailableScore, :ApiNum, :ApiFail, :ApiDuration, :PagePerformanceScore, :PagePv, :PageUv, :PageError, :PageDuration, :PageLCP, :PageFID, :PageCLS, :PageFCP, :PageINP, :JsErrorScore, :StaticAvailableScore, :StaticPerformanceScore, :StaticNum, :StaticFail, :StaticDuration, :Exclusion
 
-        def initialize(projectid=nil, score=nil, apiperformancescore=nil, apiavailablescore=nil, apinum=nil, apifail=nil, apiduration=nil, pageperformancescore=nil, pagepv=nil, pageuv=nil, pageerror=nil, pageduration=nil, pagelcp=nil, pagefid=nil, pagecls=nil, pagefcp=nil, pageinp=nil, jserrorscore=nil, staticavailablescore=nil, staticperformancescore=nil, staticnum=nil, staticfail=nil, staticduration=nil)
+        def initialize(projectid=nil, score=nil, apiperformancescore=nil, apiavailablescore=nil, apinum=nil, apifail=nil, apiduration=nil, pageperformancescore=nil, pagepv=nil, pageuv=nil, pageerror=nil, pageduration=nil, pagelcp=nil, pagefid=nil, pagecls=nil, pagefcp=nil, pageinp=nil, jserrorscore=nil, staticavailablescore=nil, staticperformancescore=nil, staticnum=nil, staticfail=nil, staticduration=nil, exclusion=nil)
           @ProjectID = projectid
           @Score = score
           @ApiPerformanceScore = apiperformancescore
@@ -8028,6 +8030,7 @@ module TencentCloud
           @StaticNum = staticnum
           @StaticFail = staticfail
           @StaticDuration = staticduration
+          @Exclusion = exclusion
         end
 
         def deserialize(params)
@@ -8054,6 +8057,7 @@ module TencentCloud
           @StaticNum = params['StaticNum']
           @StaticFail = params['StaticFail']
           @StaticDuration = params['StaticDuration']
+          @Exclusion = params['Exclusion']
         end
       end
 

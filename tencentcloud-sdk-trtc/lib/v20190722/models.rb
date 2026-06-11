@@ -338,21 +338,21 @@ module TencentCloud
 
       # AsyncTextToSpeech请求参数结构体
       class AsyncTextToSpeechRequest < TencentCloud::Common::AbstractModel
-        # @param Text: 需要转语音的文字内容，最大允许50000字符，注意 1汉字=2字符
+        # @param Text: <p>需要转语音的文字内容，最大允许50000字符，注意 1汉字=2字符</p>
         # @type Text: String
-        # @param Voice: 文本转语音的声音配置
+        # @param Voice: <p>文本转语音的声音配置</p>
         # @type Voice: :class:`Tencentcloud::Trtc.v20190722.models.Voice`
-        # @param SdkAppId: TRTC的SdkAppId
+        # @param SdkAppId: <p>TRTC的SdkAppId</p>
         # @type SdkAppId: Integer
-        # @param AudioFormat: 文本转语音的输出音频的格式
+        # @param AudioFormat: <p>文本转语音的输出音频的格式</p>
         # @type AudioFormat: :class:`Tencentcloud::Trtc.v20190722.models.AudioFormat`
-        # @param Model: TTS的模型，当前固定为：flow_01_turbo
+        # @param Model: <p>TTS的模型，当前固定为：flow_02_turbo</p><p>枚举值：</p><ul><li>flow_02_turbo： flow_02_turbo</li></ul>
         # @type Model: String
-        # @param PronunciationDict: 多音字/生僻字发音纠正词典条目。指定特定词语在本次请求中使用的发音。
+        # @param PronunciationDict: <p>多音字/生僻字发音纠正词典条目。指定特定词语在本次请求中使用的发音。</p>
         # @type PronunciationDict: Array
-        # @param AlignmentMode: 默认为0，0表示不生成字幕，1表示生成字幕
+        # @param AlignmentMode: <p>默认为0，0表示不生成字幕，1表示生成字幕</p>
         # @type AlignmentMode: Integer
-        # @param LanguageCode: 需要合成的语言（ISO 639-1），默认自动识别，支持的语言如下：  zh（中文） en（英文） yue（粤语） ja（日语） ko（韩语） ar（阿拉伯语） id（印尼语） th（泰语）
+        # @param LanguageCode: <p>需要合成的语言（ISO 639-1），默认自动识别，支持的语言如下：  zh（中文） en（英文） yue（粤语） ja（日语） ko（韩语） ar（阿拉伯语） id（印尼语） th（泰语）</p>
         # @type LanguageCode: String
 
         attr_accessor :Text, :Voice, :SdkAppId, :AudioFormat, :Model, :PronunciationDict, :AlignmentMode, :LanguageCode
@@ -395,7 +395,7 @@ module TencentCloud
 
       # AsyncTextToSpeech返回参数结构体
       class AsyncTextToSpeechResponse < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务ID
+        # @param TaskId: <p>任务ID</p>
         # @type TaskId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1107,28 +1107,31 @@ module TencentCloud
 
       # CreateCloudTranscription请求参数结构体
       class CreateCloudTranscriptionRequest < TencentCloud::Common::AbstractModel
-        # @param SdkAppId: TRTC的[SdkAppId](https://cloud.tencent.com/document/product/647/46351#sdkappid)，和转录的房间所对应的SdkAppId相同。
+        # @param SdkAppId: <p>TRTC的<a href="https://cloud.tencent.com/document/product/647/46351#sdkappid">SdkAppId</a>，和转录的房间所对应的SdkAppId相同。</p>
         # @type SdkAppId: Integer
-        # @param RoomId: TRTC的[RoomId](https://cloud.tencent.com/document/product/647/46351#roomid)，转录的TRTC房间所对应的RoomId。注：房间号类型默认为整型，若房间号类型为字符串，请通过RoomIdType指定。
+        # @param RoomId: <p>TRTC的<a href="https://cloud.tencent.com/document/product/647/46351#roomid">RoomId</a>，转录的TRTC房间所对应的RoomId。注：房间号类型默认为整型，若房间号类型为字符串，请通过RoomIdType指定。</p>
         # @type RoomId: String
-        # @param RoomIdType: 房间信息RoomType，必须和转录的房间所对应的RoomId类型相同，0为整型房间号，1为字符串房间号。
+        # @param RoomIdType: <p>房间信息RoomType，必须和转录的房间所对应的RoomId类型相同，0为整型房间号，1为字符串房间号。</p>
         # @type RoomIdType: Integer
-        # @param TranscriptionParam: 转录服务加入TRTC房间的参数。
+        # @param TranscriptionParam: <p>转录服务加入TRTC房间的参数。</p>
         # @type TranscriptionParam: :class:`Tencentcloud::Trtc.v20190722.models.TranscriptionParam`
-        # @param AsrParam: 转录服务ASR使用的参数。
+        # @param AsrParam: <p>转录服务ASR使用的参数。</p>
         # @type AsrParam: :class:`Tencentcloud::Trtc.v20190722.models.AsrParam`
-        # @param TranslationParam: 转录服务翻译使用的参数。
+        # @param TranslationParam: <p>转录服务翻译使用的参数。</p>
         # @type TranslationParam: :class:`Tencentcloud::Trtc.v20190722.models.TranslationParam`
+        # @param TTSParam: <p>转录服务TTS使用的参数。</p>
+        # @type TTSParam: Array
 
-        attr_accessor :SdkAppId, :RoomId, :RoomIdType, :TranscriptionParam, :AsrParam, :TranslationParam
+        attr_accessor :SdkAppId, :RoomId, :RoomIdType, :TranscriptionParam, :AsrParam, :TranslationParam, :TTSParam
 
-        def initialize(sdkappid=nil, roomid=nil, roomidtype=nil, transcriptionparam=nil, asrparam=nil, translationparam=nil)
+        def initialize(sdkappid=nil, roomid=nil, roomidtype=nil, transcriptionparam=nil, asrparam=nil, translationparam=nil, ttsparam=nil)
           @SdkAppId = sdkappid
           @RoomId = roomid
           @RoomIdType = roomidtype
           @TranscriptionParam = transcriptionparam
           @AsrParam = asrparam
           @TranslationParam = translationparam
+          @TTSParam = ttsparam
         end
 
         def deserialize(params)
@@ -1147,12 +1150,20 @@ module TencentCloud
             @TranslationParam = TranslationParam.new
             @TranslationParam.deserialize(params['TranslationParam'])
           end
+          unless params['TTSParam'].nil?
+            @TTSParam = []
+            params['TTSParam'].each do |i|
+              ttsparam_tmp = TTSParam.new
+              ttsparam_tmp.deserialize(i)
+              @TTSParam << ttsparam_tmp
+            end
+          end
         end
       end
 
       # CreateCloudTranscription返回参数结构体
       class CreateCloudTranscriptionResponse < TencentCloud::Common::AbstractModel
-        # @param TaskId: 用于唯一标识转录任务，由腾讯云服务端生成，后续查询和停止请求都需要携带TaskID参数。
+        # @param TaskId: <p>用于唯一标识转录任务，由腾讯云服务端生成，后续查询和停止请求都需要携带TaskID参数。</p>
         # @type TaskId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5253,10 +5264,10 @@ module TencentCloud
 
         attr_accessor :Language, :AlternativeLanguage, :Model, :TranslationLanguage, :HotWordList, :VadSilenceTime, :VadLevel
         extend Gem::Deprecate
-        deprecate :Model, :none, 2026, 5
-        deprecate :Model=, :none, 2026, 5
-        deprecate :TranslationLanguage, :none, 2026, 5
-        deprecate :TranslationLanguage=, :none, 2026, 5
+        deprecate :Model, :none, 2026, 6
+        deprecate :Model=, :none, 2026, 6
+        deprecate :TranslationLanguage, :none, 2026, 6
+        deprecate :TranslationLanguage=, :none, 2026, 6
 
         def initialize(language=nil, alternativelanguage=nil, model=nil, translationlanguage=nil, hotwordlist=nil, vadsilencetime=nil, vadlevel=nil)
           @Language = language
@@ -6416,12 +6427,12 @@ module TencentCloud
 
         attr_accessor :SdkAppId, :RoomId, :RoomIdType, :UserId, :UserSig, :StreamUrl, :PrivateMapKey, :VideoEncodeParams, :AudioEncodeParams, :SourceUrl, :SeekSecond, :AutoPush, :RepeatNum, :MaxDuration, :Volume, :EnableProgress, :Tempo, :IdleTimeout
         extend Gem::Deprecate
-        deprecate :VideoEncodeParams, :none, 2026, 5
-        deprecate :VideoEncodeParams=, :none, 2026, 5
-        deprecate :AudioEncodeParams, :none, 2026, 5
-        deprecate :AudioEncodeParams=, :none, 2026, 5
-        deprecate :SourceUrl, :none, 2026, 5
-        deprecate :SourceUrl=, :none, 2026, 5
+        deprecate :VideoEncodeParams, :none, 2026, 6
+        deprecate :VideoEncodeParams=, :none, 2026, 6
+        deprecate :AudioEncodeParams, :none, 2026, 6
+        deprecate :AudioEncodeParams=, :none, 2026, 6
+        deprecate :SourceUrl, :none, 2026, 6
+        deprecate :SourceUrl=, :none, 2026, 6
 
         def initialize(sdkappid=nil, roomid=nil, roomidtype=nil, userid=nil, usersig=nil, streamurl=nil, privatemapkey=nil, videoencodeparams=nil, audioencodeparams=nil, sourceurl=nil, seeksecond=nil, autopush=nil, repeatnum=nil, maxduration=nil, volume=nil, enableprogress=nil, tempo=nil, idletimeout=nil)
           @SdkAppId = sdkappid
@@ -7042,6 +7053,75 @@ module TencentCloud
         end
       end
 
+      # 伴生转录TTS参数
+      class TTSParam < TencentCloud::Common::AbstractModel
+        # @param Model: <p>tts模型</p>
+        # @type Model: String
+        # @param Language: <p>tts语言，必须在TranslationParam 的TargetLang列表中。</p>
+        # @type Language: String
+        # @param TargetUser: <p>需要TTS播报的主播用户，该主播用户必须在订阅白名单里并且不在订阅黑名单里。</p>
+        # @type TargetUser: :class:`Tencentcloud::Trtc.v20190722.models.TranscriptionUserInfoParams`
+        # @param TTSRobotUser: <p>TTS 音频回推到房间的机器人用户。</p>
+        # @type TTSRobotUser: :class:`Tencentcloud::Trtc.v20190722.models.TranscriptionUserInfoParams`
+        # @param Voice: <p>TTS的声音配置参数。</p>
+        # @type Voice: :class:`Tencentcloud::Trtc.v20190722.models.TTSVoice`
+
+        attr_accessor :Model, :Language, :TargetUser, :TTSRobotUser, :Voice
+
+        def initialize(model=nil, language=nil, targetuser=nil, ttsrobotuser=nil, voice=nil)
+          @Model = model
+          @Language = language
+          @TargetUser = targetuser
+          @TTSRobotUser = ttsrobotuser
+          @Voice = voice
+        end
+
+        def deserialize(params)
+          @Model = params['Model']
+          @Language = params['Language']
+          unless params['TargetUser'].nil?
+            @TargetUser = TranscriptionUserInfoParams.new
+            @TargetUser.deserialize(params['TargetUser'])
+          end
+          unless params['TTSRobotUser'].nil?
+            @TTSRobotUser = TranscriptionUserInfoParams.new
+            @TTSRobotUser.deserialize(params['TTSRobotUser'])
+          end
+          unless params['Voice'].nil?
+            @Voice = TTSVoice.new
+            @Voice.deserialize(params['Voice'])
+          end
+        end
+      end
+
+      # 伴生转录TTS的语音参数配置
+      class TTSVoice < TencentCloud::Common::AbstractModel
+        # @param VoiceId: <p>音色 ID。</p>
+        # @type VoiceId: String
+        # @param Speed: <p>语速调节，0.5 为半速慢放，2.0 为两倍速快放，1.0 为正常语速，区间：[0.5, 2.0]，默认1.0。</p>
+        # @type Speed: Float
+        # @param Volume: <p>音量调节，0 为静音，10 为最大音量，建议保持默认值 1.0，区间：[0, 10]，默认1.0。</p>
+        # @type Volume: Float
+        # @param Pitch: <p>音高调节，负值声音更低沉，正值声音更尖锐，0 为原始音高，区间 [-12, 12]，默认0。</p>
+        # @type Pitch: Integer
+
+        attr_accessor :VoiceId, :Speed, :Volume, :Pitch
+
+        def initialize(voiceid=nil, speed=nil, volume=nil, pitch=nil)
+          @VoiceId = voiceid
+          @Speed = speed
+          @Volume = volume
+          @Pitch = pitch
+        end
+
+        def deserialize(params)
+          @VoiceId = params['VoiceId']
+          @Speed = params['Speed']
+          @Volume = params['Volume']
+          @Pitch = params['Pitch']
+        end
+      end
+
       # 腾讯云点播相关参数。
       class TencentVod < TencentCloud::Common::AbstractModel
         # @param Procedure: 媒体后续任务处理操作，即完成媒体上传后，可自动发起任务流操作。参数值为任务流模板名，云点播支持 创建任务流模板 并为模板命名。
@@ -7092,6 +7172,26 @@ module TencentCloud
         end
       end
 
+      # 伴生转录术语表词组对
+      class TermPair < TencentCloud::Common::AbstractModel
+        # @param Source: <p>源术语。</p>
+        # @type Source: String
+        # @param Target: <p>目标术语翻译结果。</p>
+        # @type Target: String
+
+        attr_accessor :Source, :Target
+
+        def initialize(source=nil, target=nil)
+          @Source = source
+          @Target = target
+        end
+
+        def deserialize(params)
+          @Source = params['Source']
+          @Target = params['Target']
+        end
+      end
+
       # 翻译术语
       class Terminology < TencentCloud::Common::AbstractModel
         # @param Source: 源术语
@@ -7112,41 +7212,62 @@ module TencentCloud
         end
       end
 
+      # 伴生转录术语表项
+      class TerminologyItem < TencentCloud::Common::AbstractModel
+        # @param TargetLang: <p>翻译目标语言。</p>
+        # @type TargetLang: String
+        # @param Terminology: <p>翻译目标语言对应的翻译术语配置。</p>
+        # @type Terminology: Array
+
+        attr_accessor :TargetLang, :Terminology
+
+        def initialize(targetlang=nil, terminology=nil)
+          @TargetLang = targetlang
+          @Terminology = terminology
+        end
+
+        def deserialize(params)
+          @TargetLang = params['TargetLang']
+          unless params['Terminology'].nil?
+            @Terminology = []
+            params['Terminology'].each do |i|
+              termpair_tmp = TermPair.new
+              termpair_tmp.deserialize(i)
+              @Terminology << termpair_tmp
+            end
+          end
+        end
+      end
+
       # TextToSpeech请求参数结构体
       class TextToSpeechRequest < TencentCloud::Common::AbstractModel
-        # @param Text: 需要转语音的文字内容，长度范围：[1, 255]
+        # @param Text: <p>需要转语音的文字内容，长度范围：[1, 255]</p>
         # @type Text: String
-        # @param Voice: 文本转语音的声音配置
+        # @param Voice: <p>文本转语音的声音配置</p>
         # @type Voice: :class:`Tencentcloud::Trtc.v20190722.models.Voice`
-        # @param SdkAppId: TRTC的SdkAppId
+        # @param SdkAppId: <p>TRTC的SdkAppId</p>
         # @type SdkAppId: Integer
-        # @param AudioFormat: 文本转语音的输出音频的格式
+        # @param AudioFormat: <p>文本转语音的输出音频的格式</p>
         # @type AudioFormat: :class:`Tencentcloud::Trtc.v20190722.models.AudioFormat`
-        # @param APIKey: TTS的API密钥
+        # @param APIKey: <p>TTS的API密钥</p>
         # @type APIKey: String
-        # @param Model: TTS的模型，当前固定为：flow_01_turbo
+        # @param Model: <p>TTS的模型，当前固定为：flow_02_turbo</p><p>枚举值：</p><ul><li>flow_02_turbo： flow_02_turbo</li></ul>
         # @type Model: String
-        # @param Language:  需要合成的语言（ISO 639-1），默认自动识别，支持的语言如下：
-        # - zh（中文）
-        # - en（英文）
-        # - yue（粤语）
-        # - ja（日语）
-        # - ko（韩语）
-        # - ar（阿拉伯语）
-        # - id（印尼语）
-        # - th（泰语）
+        # @param Language: <p>需要合成的语言（ISO 639-1），默认自动识别，支持的语言如下：</p><ul><li>zh（中文）</li><li>en（英文）</li><li>yue（粤语）</li><li>ja（日语）</li><li>ko（韩语）</li><li>ar（阿拉伯语）</li><li>id（印尼语）</li><li>th（泰语）</li></ul>
         # @type Language: String
-        # @param PronunciationDict: 多音字/生僻字发音纠正词典条目。指定特定词语在本次请求中使用的发音。
+        # @param PronunciationDict: <p>多音字/生僻字发音纠正词典条目。指定特定词语在本次请求中使用的发音。</p>
         # @type PronunciationDict: Array
-        # @param AlignmentMode: 默认为0，0表示不生成字幕，1表示生成字幕
+        # @param AlignmentMode: <p>默认为0，0表示不生成字幕，1表示生成字幕</p>
         # @type AlignmentMode: Integer
+        # @param ExtraParams: <p>json字符串，用于拓展用法</p>
+        # @type ExtraParams: String
 
-        attr_accessor :Text, :Voice, :SdkAppId, :AudioFormat, :APIKey, :Model, :Language, :PronunciationDict, :AlignmentMode
+        attr_accessor :Text, :Voice, :SdkAppId, :AudioFormat, :APIKey, :Model, :Language, :PronunciationDict, :AlignmentMode, :ExtraParams
         extend Gem::Deprecate
-        deprecate :APIKey, :none, 2026, 5
-        deprecate :APIKey=, :none, 2026, 5
+        deprecate :APIKey, :none, 2026, 6
+        deprecate :APIKey=, :none, 2026, 6
 
-        def initialize(text=nil, voice=nil, sdkappid=nil, audioformat=nil, apikey=nil, model=nil, language=nil, pronunciationdict=nil, alignmentmode=nil)
+        def initialize(text=nil, voice=nil, sdkappid=nil, audioformat=nil, apikey=nil, model=nil, language=nil, pronunciationdict=nil, alignmentmode=nil, extraparams=nil)
           @Text = text
           @Voice = voice
           @SdkAppId = sdkappid
@@ -7156,6 +7277,7 @@ module TencentCloud
           @Language = language
           @PronunciationDict = pronunciationdict
           @AlignmentMode = alignmentmode
+          @ExtraParams = extraparams
         end
 
         def deserialize(params)
@@ -7181,16 +7303,17 @@ module TencentCloud
             end
           end
           @AlignmentMode = params['AlignmentMode']
+          @ExtraParams = params['ExtraParams']
         end
       end
 
       # TextToSpeech返回参数结构体
       class TextToSpeechResponse < TencentCloud::Common::AbstractModel
-        # @param Audio: Base64编码的音频数据
+        # @param Audio: <p>Base64编码的音频数据</p>
         # @type Audio: String
-        # @param Alignments: 字幕对齐数据
+        # @param Alignments: <p>字幕对齐数据</p>
         # @type Alignments: Array
-        # @param TotalDurationMs: 音频时长
+        # @param TotalDurationMs: <p>音频时长</p>
         # @type TotalDurationMs: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -7221,39 +7344,33 @@ module TencentCloud
 
       # TextToSpeechSSE请求参数结构体
       class TextToSpeechSSERequest < TencentCloud::Common::AbstractModel
-        # @param Text: 需要转语音的文字内容，长度范围：[1, 255]
+        # @param Text: <p>需要转语音的文字内容，长度范围：[1, 255]</p>
         # @type Text: String
-        # @param Voice: 文本转语音的声音配置
+        # @param Voice: <p>文本转语音的声音配置</p>
         # @type Voice: :class:`Tencentcloud::Trtc.v20190722.models.Voice`
-        # @param SdkAppId: TRTC的SdkAppId
+        # @param SdkAppId: <p>TRTC的SdkAppId</p>
         # @type SdkAppId: Integer
-        # @param AudioFormat: 文本转语音的输出音频的格式
+        # @param AudioFormat: <p>文本转语音的输出音频的格式</p>
         # @type AudioFormat: :class:`Tencentcloud::Trtc.v20190722.models.AudioFormat`
-        # @param APIKey: TTS的API密钥
+        # @param APIKey: <p>TTS的API密钥</p>
         # @type APIKey: String
-        # @param Model: TTS的模型，当前固定为：flow_01_turbo
+        # @param Model: <p>TTS的模型，当前固定为：flow_02_turbo</p><p>枚举值：</p><ul><li>flow_02_turbo： flow_02_turbo</li></ul>
         # @type Model: String
-        # @param Language:  需要合成的语言（ISO 639-1），默认自动识别，支持如下语言：
-        # - zh（中文）
-        # - en（英文）
-        # - yue（粤语）
-        # - ja（日语）
-        # - ko（韩语）
-        # - ar（阿拉伯语）
-        # - id（印尼语）
-        # - th（泰语）
+        # @param Language: <p>需要合成的语言（ISO 639-1），默认自动识别，支持如下语言：</p><ul><li>zh（中文）</li><li>en（英文）</li><li>yue（粤语）</li><li>ja（日语）</li><li>ko（韩语）</li><li>ar（阿拉伯语）</li><li>id（印尼语）</li><li>th（泰语）</li></ul>
         # @type Language: String
-        # @param PronunciationDict: 多音字/生僻字发音纠正词典条目。指定特定词语在本次请求中使用的发音。
+        # @param PronunciationDict: <p>多音字/生僻字发音纠正词典条目。指定特定词语在本次请求中使用的发音。</p>
         # @type PronunciationDict: Array
-        # @param AlignmentMode: 默认为0，0表示不生成字幕，1表示生成字幕
+        # @param AlignmentMode: <p>默认为0，0表示不生成字幕，1表示生成字幕</p>
         # @type AlignmentMode: Integer
+        # @param ExtraParams: <p>json字符串，用于拓展用法</p>
+        # @type ExtraParams: String
 
-        attr_accessor :Text, :Voice, :SdkAppId, :AudioFormat, :APIKey, :Model, :Language, :PronunciationDict, :AlignmentMode
+        attr_accessor :Text, :Voice, :SdkAppId, :AudioFormat, :APIKey, :Model, :Language, :PronunciationDict, :AlignmentMode, :ExtraParams
         extend Gem::Deprecate
-        deprecate :APIKey, :none, 2026, 5
-        deprecate :APIKey=, :none, 2026, 5
+        deprecate :APIKey, :none, 2026, 6
+        deprecate :APIKey=, :none, 2026, 6
 
-        def initialize(text=nil, voice=nil, sdkappid=nil, audioformat=nil, apikey=nil, model=nil, language=nil, pronunciationdict=nil, alignmentmode=nil)
+        def initialize(text=nil, voice=nil, sdkappid=nil, audioformat=nil, apikey=nil, model=nil, language=nil, pronunciationdict=nil, alignmentmode=nil, extraparams=nil)
           @Text = text
           @Voice = voice
           @SdkAppId = sdkappid
@@ -7263,6 +7380,7 @@ module TencentCloud
           @Language = language
           @PronunciationDict = pronunciationdict
           @AlignmentMode = alignmentmode
+          @ExtraParams = extraparams
         end
 
         def deserialize(params)
@@ -7288,6 +7406,7 @@ module TencentCloud
             end
           end
           @AlignmentMode = params['AlignmentMode']
+          @ExtraParams = params['ExtraParams']
         end
       end
 
@@ -7407,10 +7526,10 @@ module TencentCloud
 
         attr_accessor :UserId, :UserSig, :IMAdminUserId, :IMAdminUserSig, :MaxIdleTime, :TranscriptionMode, :TargetUserId, :TargetUserIdList, :VoicePrint, :TurnDetection
         extend Gem::Deprecate
-        deprecate :IMAdminUserId, :none, 2026, 5
-        deprecate :IMAdminUserId=, :none, 2026, 5
-        deprecate :IMAdminUserSig, :none, 2026, 5
-        deprecate :IMAdminUserSig=, :none, 2026, 5
+        deprecate :IMAdminUserId, :none, 2026, 6
+        deprecate :IMAdminUserId=, :none, 2026, 6
+        deprecate :IMAdminUserSig, :none, 2026, 6
+        deprecate :IMAdminUserSig=, :none, 2026, 6
 
         def initialize(userid=nil, usersig=nil, imadminuserid=nil, imadminusersig=nil, maxidletime=nil, transcriptionmode=nil, targetuserid=nil, targetuseridlist=nil, voiceprint=nil, turndetection=nil)
           @UserId = userid
@@ -7501,17 +7620,28 @@ module TencentCloud
 
       # 翻译相关的参数
       class TranslationParam < TencentCloud::Common::AbstractModel
-        # @param TargetLang: 翻译的目标语言，示例值["en", "ja"]。目标语种列表[中文 "zh"，英语 "en"，越南语 "vi"，日语 "ja"，韩语 "ko"，印度尼西亚语 "id"，泰语 "th"，葡萄牙语 "pt"，阿拉伯语 "ar"，西班牙语 "es"，法语 "fr"，马来语 "ms"，德语 "de"，意大利语 "it"，俄语 "ru"]。
+        # @param TargetLang: <p>翻译的目标语言，示例值[&quot;en&quot;, &quot;ja&quot;]。目标语种列表[中文 &quot;zh&quot;，英语 &quot;en&quot;，越南语 &quot;vi&quot;，日语 &quot;ja&quot;，韩语 &quot;ko&quot;，印度尼西亚语 &quot;id&quot;，泰语 &quot;th&quot;，葡萄牙语 &quot;pt&quot;，阿拉伯语 &quot;ar&quot;，西班牙语 &quot;es&quot;，法语 &quot;fr&quot;，马来语 &quot;ms&quot;，德语 &quot;de&quot;，意大利语 &quot;it&quot;，俄语 &quot;ru&quot;]。</p>
         # @type TargetLang: Array
+        # @param Terminologies: <p>翻译术语表配置。</p>
+        # @type Terminologies: Array
 
-        attr_accessor :TargetLang
+        attr_accessor :TargetLang, :Terminologies
 
-        def initialize(targetlang=nil)
+        def initialize(targetlang=nil, terminologies=nil)
           @TargetLang = targetlang
+          @Terminologies = terminologies
         end
 
         def deserialize(params)
           @TargetLang = params['TargetLang']
+          unless params['Terminologies'].nil?
+            @Terminologies = []
+            params['Terminologies'].each do |i|
+              terminologyitem_tmp = TerminologyItem.new
+              terminologyitem_tmp.deserialize(i)
+              @Terminologies << terminologyitem_tmp
+            end
+          end
         end
       end
 
@@ -8014,22 +8144,25 @@ module TencentCloud
 
       # TTS的声音参数配置
       class Voice < TencentCloud::Common::AbstractModel
-        # @param VoiceId:  音色 ID，可从音色列表获取，或使用声音克隆生成的自定义音色 ID
+        # @param VoiceId: <p>音色 ID，可从音色列表获取，或使用声音克隆生成的自定义音色 ID</p>
         # @type VoiceId: String
-        # @param Speed: 语速调节，0.5 为半速慢放，2.0 为两倍速快放，1.0 为正常语速，区间：[0.5, 2.0]，默认1.0
+        # @param Speed: <p>语速调节，0.5 为半速慢放，2.0 为两倍速快放，1.0 为正常语速，区间：[0.5, 2.0]，默认1.0</p>
         # @type Speed: Float
-        # @param Volume:  音量调节，0 为静音，10 为最大音量，建议保持默认值 1.0，区间：[0, 10]，默认1.0
+        # @param Volume: <p>音量调节，0 为静音，10 为最大音量，建议保持默认值 1.0，区间：[0, 10]，默认1.0</p>
         # @type Volume: Float
-        # @param Pitch:  音高调节，负值声音更低沉，正值声音更尖锐，0 为原始音高，区间 [-12, 12],  默认0
+        # @param Pitch: <p>音高调节，负值声音更低沉，正值声音更尖锐，0 为原始音高，区间 [-12, 12],  默认0</p>
         # @type Pitch: Integer
+        # @param Emotion: <p>情绪控制，目前仅flow_01_ex模型支持</p><p>枚举值：</p><ul><li>happy： 高兴</li><li>sad： 悲伤</li><li>angry： 愤怒</li><li>fearful： 害怕</li><li>disgusted： 厌恶</li><li>surprised： 惊讶</li><li>calm： 中性</li><li>fluent： 生动</li><li>whisper： 低语</li></ul>
+        # @type Emotion: String
 
-        attr_accessor :VoiceId, :Speed, :Volume, :Pitch
+        attr_accessor :VoiceId, :Speed, :Volume, :Pitch, :Emotion
 
-        def initialize(voiceid=nil, speed=nil, volume=nil, pitch=nil)
+        def initialize(voiceid=nil, speed=nil, volume=nil, pitch=nil, emotion=nil)
           @VoiceId = voiceid
           @Speed = speed
           @Volume = volume
           @Pitch = pitch
+          @Emotion = emotion
         end
 
         def deserialize(params)
@@ -8037,30 +8170,31 @@ module TencentCloud
           @Speed = params['Speed']
           @Volume = params['Volume']
           @Pitch = params['Pitch']
+          @Emotion = params['Emotion']
         end
       end
 
       # VoiceClone请求参数结构体
       class VoiceCloneRequest < TencentCloud::Common::AbstractModel
-        # @param SdkAppId: TRTC的SdkAppId
+        # @param SdkAppId: <p>TRTC的SdkAppId</p>
         # @type SdkAppId: Integer
-        # @param VoiceName: 声音克隆的名称, 只允许使用数字、字母、下划线，不能超过36位
+        # @param VoiceName: <p>声音克隆的名称, 只允许使用数字、字母、下划线，不能超过36位</p>
         # @type VoiceName: String
-        # @param PromptAudio: 声音克隆的参考音频，必须为16k单声道的wav的base64字符串， 长度在6秒～180秒之间
+        # @param PromptAudio: <p>声音克隆的参考音频，必须为16k单声道的wav的base64字符串， 长度在6秒～180秒之间</p>
         # @type PromptAudio: String
-        # @param APIKey: TTS的API密钥
+        # @param APIKey: <p>TTS的API密钥</p>
         # @type APIKey: String
-        # @param PromptText: 声音克隆的参考文本，为参考音频对应的文字。
+        # @param PromptText: <p>声音克隆的参考文本，为参考音频对应的文字。</p>
         # @type PromptText: String
-        # @param Model: TTS的模型：flow_01_turbo，flow_01_ex
+        # @param Model: <p>TTS的模型：flow_02_turbo，flow_01_ex</p><p>枚举值：</p><ul><li>flow_02_turbo： flow_02_turbo</li><li>flow_01_ex： flow_01_ex</li></ul>
         # @type Model: String
-        # @param Language: 语言参数，默认为空， 参考： (ISO 639-1)
+        # @param Language: <p>语言参数，默认为空， 参考： (ISO 639-1)</p>
         # @type Language: String
 
         attr_accessor :SdkAppId, :VoiceName, :PromptAudio, :APIKey, :PromptText, :Model, :Language
         extend Gem::Deprecate
-        deprecate :APIKey, :none, 2026, 5
-        deprecate :APIKey=, :none, 2026, 5
+        deprecate :APIKey, :none, 2026, 6
+        deprecate :APIKey=, :none, 2026, 6
 
         def initialize(sdkappid=nil, voicename=nil, promptaudio=nil, apikey=nil, prompttext=nil, model=nil, language=nil)
           @SdkAppId = sdkappid
@@ -8085,7 +8219,7 @@ module TencentCloud
 
       # VoiceClone返回参数结构体
       class VoiceCloneResponse < TencentCloud::Common::AbstractModel
-        # @param VoiceId: 克隆出的音色ID，可以用此id进行语音合成
+        # @param VoiceId: <p>克隆出的音色ID，可以用此id进行语音合成</p>
         # @type VoiceId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

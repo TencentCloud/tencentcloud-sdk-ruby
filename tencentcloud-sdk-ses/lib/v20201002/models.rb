@@ -2132,8 +2132,8 @@ module TencentCloud
 
         attr_accessor :MessageId, :ToEmailAddress, :FromEmailAddress, :SendStatus, :DeliverStatus, :DeliverMessage, :RequestTime, :DeliverTime, :UserOpened, :UserClicked, :UserUnsubscribed, :UserComplainted, :UserComplained
         extend Gem::Deprecate
-        deprecate :UserComplainted, :none, 2026, 5
-        deprecate :UserComplainted=, :none, 2026, 5
+        deprecate :UserComplainted, :none, 2026, 6
+        deprecate :UserComplainted=, :none, 2026, 6
 
         def initialize(messageid=nil, toemailaddress=nil, fromemailaddress=nil, sendstatus=nil, deliverstatus=nil, delivermessage=nil, requesttime=nil, delivertime=nil, useropened=nil, userclicked=nil, userunsubscribed=nil, usercomplainted=nil, usercomplained=nil)
           @MessageId = messageid
@@ -2597,21 +2597,21 @@ module TencentCloud
 
       # 统计数据的结构体
       class Volume < TencentCloud::Common::AbstractModel
-        # @param SendDate: 日期
+        # @param SendDate: <p>日期</p>
         # @type SendDate: String
-        # @param RequestCount: 邮件请求数量
+        # @param RequestCount: <p>邮件请求数量</p>
         # @type RequestCount: Integer
-        # @param AcceptedCount: 腾讯云通过数量
+        # @param AcceptedCount: <p>腾讯云通过数量</p>
         # @type AcceptedCount: Integer
-        # @param DeliveredCount: 送达数量
+        # @param DeliveredCount: <p>送达数量</p>
         # @type DeliveredCount: Integer
-        # @param OpenedCount: 打开邮件的用户数量，根据收件人去重
+        # @param OpenedCount: <p>打开邮件总次数</p>
         # @type OpenedCount: Integer
-        # @param ClickedCount: 点击了邮件中的链接数量用户数量
+        # @param ClickedCount: <p>点击了邮件中的链接数量用户数量</p>
         # @type ClickedCount: Integer
-        # @param BounceCount: 退信数量
+        # @param BounceCount: <p>退信数量</p>
         # @type BounceCount: Integer
-        # @param UnsubscribeCount: 取消订阅的用户数量
+        # @param UnsubscribeCount: <p>取消订阅的用户数量</p>
         # @type UnsubscribeCount: Integer
 
         attr_accessor :SendDate, :RequestCount, :AcceptedCount, :DeliveredCount, :OpenedCount, :ClickedCount, :BounceCount, :UnsubscribeCount

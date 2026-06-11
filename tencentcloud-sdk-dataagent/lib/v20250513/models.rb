@@ -130,25 +130,25 @@ module TencentCloud
 
       # ChatAI请求参数结构体
       class ChatAIRequest < TencentCloud::Common::AbstractModel
-        # @param SessionId: 会话ID
+        # @param SessionId: <p>会话ID</p>
         # @type SessionId: String
-        # @param InstanceId: 实例ID
+        # @param InstanceId: <p>实例ID</p>
         # @type InstanceId: String
-        # @param Question: 问题内容
+        # @param Question: <p>问题内容</p>
         # @type Question: String
-        # @param Context: 上下文
+        # @param Context: <p>上下文</p>
         # @type Context: String
-        # @param Model: 模型
+        # @param Model: <p>模型</p>
         # @type Model: String
-        # @param DeepThinking: 是否深度思考
+        # @param DeepThinking: <p>是否深度思考</p>
         # @type DeepThinking: Boolean
-        # @param DataSourceIds: 数据源id
+        # @param DataSourceIds: <p>数据源id</p>
         # @type DataSourceIds: Array
-        # @param AgentType: agent类型
+        # @param AgentType: <p>agent类型</p>
         # @type AgentType: String
-        # @param OldRecordId: 需要重新生成答案的记录ID
+        # @param OldRecordId: <p>需要重新生成答案的记录ID</p>
         # @type OldRecordId: String
-        # @param KnowledgeBaseIds: 知识库id列表
+        # @param KnowledgeBaseIds: <p>知识库id列表</p>
         # @type KnowledgeBaseIds: Array
 
         attr_accessor :SessionId, :InstanceId, :Question, :Context, :Model, :DeepThinking, :DataSourceIds, :AgentType, :OldRecordId, :KnowledgeBaseIds
@@ -198,22 +198,25 @@ module TencentCloud
 
       # 文件分片
       class Chunk < TencentCloud::Common::AbstractModel
-        # @param Id: 切片ID
+        # @param Id: <p>切片ID</p>
         # @type Id: String
-        # @param Content: 切片内容
+        # @param Content: <p>切片内容</p>
         # @type Content: String
-        # @param Size: 切片的字数
+        # @param Size: <p>切片的字数</p>
         # @type Size: Integer
-        # @param Summary: 切片概要
+        # @param Summary: <p>切片概要</p>
         # @type Summary: String
+        # @param ChunkSource: <p>分段类型</p><p>枚举值：</p><ul><li>0： 自动分段</li><li>1： 新建分段</li></ul>
+        # @type ChunkSource: Integer
 
-        attr_accessor :Id, :Content, :Size, :Summary
+        attr_accessor :Id, :Content, :Size, :Summary, :ChunkSource
 
-        def initialize(id=nil, content=nil, size=nil, summary=nil)
+        def initialize(id=nil, content=nil, size=nil, summary=nil, chunksource=nil)
           @Id = id
           @Content = content
           @Size = size
           @Summary = summary
+          @ChunkSource = chunksource
         end
 
         def deserialize(params)
@@ -221,6 +224,7 @@ module TencentCloud
           @Content = params['Content']
           @Size = params['Size']
           @Summary = params['Summary']
+          @ChunkSource = params['ChunkSource']
         end
       end
 
@@ -496,6 +500,8 @@ module TencentCloud
         # @type CreateUser: String
         # @param CreateTime: <p>创建时间</p>
         # @type CreateTime: String
+        # @param UpdateTime: <p>更新时间</p>
+        # @type UpdateTime: String
         # @param ChunkConfig: <p>分片策略</p>
         # @type ChunkConfig: :class:`Tencentcloud::Dataagent.v20250513.models.KnowledgeTaskConfig`
         # @param Source: <p>文件来源0=unknow,1=user_cos,2=local</p>
@@ -511,9 +517,9 @@ module TencentCloud
         # @param Capabilities: <p>文件能力标识列表</p>
         # @type Capabilities: Array
 
-        attr_accessor :FileName, :FileSize, :Type, :FileId, :Status, :CreateUser, :CreateTime, :ChunkConfig, :Source, :FileUrl, :IsShowCase, :DocumentSummary, :WebUrl, :Capabilities
+        attr_accessor :FileName, :FileSize, :Type, :FileId, :Status, :CreateUser, :CreateTime, :UpdateTime, :ChunkConfig, :Source, :FileUrl, :IsShowCase, :DocumentSummary, :WebUrl, :Capabilities
 
-        def initialize(filename=nil, filesize=nil, type=nil, fileid=nil, status=nil, createuser=nil, createtime=nil, chunkconfig=nil, source=nil, fileurl=nil, isshowcase=nil, documentsummary=nil, weburl=nil, capabilities=nil)
+        def initialize(filename=nil, filesize=nil, type=nil, fileid=nil, status=nil, createuser=nil, createtime=nil, updatetime=nil, chunkconfig=nil, source=nil, fileurl=nil, isshowcase=nil, documentsummary=nil, weburl=nil, capabilities=nil)
           @FileName = filename
           @FileSize = filesize
           @Type = type
@@ -521,6 +527,7 @@ module TencentCloud
           @Status = status
           @CreateUser = createuser
           @CreateTime = createtime
+          @UpdateTime = updatetime
           @ChunkConfig = chunkconfig
           @Source = source
           @FileUrl = fileurl
@@ -538,6 +545,7 @@ module TencentCloud
           @Status = params['Status']
           @CreateUser = params['CreateUser']
           @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
           unless params['ChunkConfig'].nil?
             @ChunkConfig = KnowledgeTaskConfig.new
             @ChunkConfig.deserialize(params['ChunkConfig'])
@@ -893,10 +901,12 @@ module TencentCloud
         # @type GenParaSummary: Integer
         # @param EnableImageUnderstanding: <p>0：不开启图片理解，1：开启图片理解。默认1</p><p>取值范围：[1, 10000]</p><p>默认值：1</p>
         # @type EnableImageUnderstanding: Integer
+        # @param EnableExtractDb: <p>是否开启表格结构化提取</p><p>枚举值：</p><ul><li>0： 不开启表格提取</li><li>1： 开启表格提取</li></ul><p>默认值：1</p>
+        # @type EnableExtractDb: Integer
 
-        attr_accessor :ChunkType, :MaxChunkSize, :Delimiters, :ChunkOverlap, :Columns, :Indexes, :GenDocSummary, :GenParaSummary, :EnableImageUnderstanding
+        attr_accessor :ChunkType, :MaxChunkSize, :Delimiters, :ChunkOverlap, :Columns, :Indexes, :GenDocSummary, :GenParaSummary, :EnableImageUnderstanding, :EnableExtractDb
 
-        def initialize(chunktype=nil, maxchunksize=nil, delimiters=nil, chunkoverlap=nil, columns=nil, indexes=nil, gendocsummary=nil, genparasummary=nil, enableimageunderstanding=nil)
+        def initialize(chunktype=nil, maxchunksize=nil, delimiters=nil, chunkoverlap=nil, columns=nil, indexes=nil, gendocsummary=nil, genparasummary=nil, enableimageunderstanding=nil, enableextractdb=nil)
           @ChunkType = chunktype
           @MaxChunkSize = maxchunksize
           @Delimiters = delimiters
@@ -906,6 +916,7 @@ module TencentCloud
           @GenDocSummary = gendocsummary
           @GenParaSummary = genparasummary
           @EnableImageUnderstanding = enableimageunderstanding
+          @EnableExtractDb = enableextractdb
         end
 
         def deserialize(params)
@@ -925,6 +936,7 @@ module TencentCloud
           @GenDocSummary = params['GenDocSummary']
           @GenParaSummary = params['GenParaSummary']
           @EnableImageUnderstanding = params['EnableImageUnderstanding']
+          @EnableExtractDb = params['EnableExtractDb']
         end
       end
 
@@ -974,24 +986,27 @@ module TencentCloud
 
       # ModifyChunk请求参数结构体
       class ModifyChunkRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: <p>实例ID</p>
         # @type InstanceId: String
-        # @param FileId: 文件ID
+        # @param FileId: <p>文件ID</p>
         # @type FileId: String
-        # @param ChunkId: 切片ID
+        # @param ChunkId: <p>切片ID</p>
         # @type ChunkId: String
-        # @param Content: 编辑后的文本
+        # @param Content: <p>编辑后的文本</p>
         # @type Content: String
-        # @param KnowledgeBaseId: 知识库id
+        # @param Summary: <p>分段概要</p>
+        # @type Summary: String
+        # @param KnowledgeBaseId: <p>知识库id</p>
         # @type KnowledgeBaseId: String
 
-        attr_accessor :InstanceId, :FileId, :ChunkId, :Content, :KnowledgeBaseId
+        attr_accessor :InstanceId, :FileId, :ChunkId, :Content, :Summary, :KnowledgeBaseId
 
-        def initialize(instanceid=nil, fileid=nil, chunkid=nil, content=nil, knowledgebaseid=nil)
+        def initialize(instanceid=nil, fileid=nil, chunkid=nil, content=nil, summary=nil, knowledgebaseid=nil)
           @InstanceId = instanceid
           @FileId = fileid
           @ChunkId = chunkid
           @Content = content
+          @Summary = summary
           @KnowledgeBaseId = knowledgebaseid
         end
 
@@ -1000,6 +1015,7 @@ module TencentCloud
           @FileId = params['FileId']
           @ChunkId = params['ChunkId']
           @Content = params['Content']
+          @Summary = params['Summary']
           @KnowledgeBaseId = params['KnowledgeBaseId']
         end
       end
@@ -1137,11 +1153,11 @@ module TencentCloud
 
       # QueryChunkList请求参数结构体
       class QueryChunkListRequest < TencentCloud::Common::AbstractModel
-        # @param Page: 表示第一页
+        # @param Page: <p>表示第一页</p>
         # @type Page: Integer
-        # @param PageSize: 默认一页展示 10 条
+        # @param PageSize: <p>默认一页展示 10 条</p>
         # @type PageSize: Integer
-        # @param KnowledgeBaseId: 知识库id
+        # @param KnowledgeBaseId: <p>知识库id</p>
         # @type KnowledgeBaseId: String
 
         attr_accessor :Page, :PageSize, :KnowledgeBaseId
@@ -1161,23 +1177,31 @@ module TencentCloud
 
       # QueryChunkList返回参数结构体
       class QueryChunkListResponse < TencentCloud::Common::AbstractModel
-        # @param Total: 总数
+        # @param Total: <p>总数</p>
         # @type Total: Integer
-        # @param Chunks: 分片信息
+        # @param AutoTotal: <p>文档的自动分段数</p>
+        # @type AutoTotal: Integer
+        # @param ManualTotal: <p>文档的手动新建分段数</p>
+        # @type ManualTotal: Integer
+        # @param Chunks: <p>分片信息</p>
         # @type Chunks: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Total, :Chunks, :RequestId
+        attr_accessor :Total, :AutoTotal, :ManualTotal, :Chunks, :RequestId
 
-        def initialize(total=nil, chunks=nil, requestid=nil)
+        def initialize(total=nil, autototal=nil, manualtotal=nil, chunks=nil, requestid=nil)
           @Total = total
+          @AutoTotal = autototal
+          @ManualTotal = manualtotal
           @Chunks = chunks
           @RequestId = requestid
         end
 
         def deserialize(params)
           @Total = params['Total']
+          @AutoTotal = params['AutoTotal']
+          @ManualTotal = params['ManualTotal']
           unless params['Chunks'].nil?
             @Chunks = []
             params['Chunks'].each do |i|

@@ -39,33 +39,33 @@ module TencentCloud
 
       # 容器运行时安全，子策略信息
       class AbnormalProcessChildRuleInfo < TencentCloud::Common::AbstractModel
-        # @param RuleMode: <p>策略模式，   RULE_MODE_RELEASE: 放行<br>   RULE_MODE_ALERT: 告警<br>   RULE_MODE_HOLDUP:拦截</p>
-        # @type RuleMode: String
         # @param ProcessPath: <p>进程路径</p>
         # @type ProcessPath: String
+        # @param RuleMode: <p>策略模式，   RULE_MODE_RELEASE: 放行<br>   RULE_MODE_ALERT: 告警<br>   RULE_MODE_HOLDUP:拦截</p>
+        # @type RuleMode: String
+        # @param CmdLine: <p>命令行参数</p>
+        # @type CmdLine: String
         # @param RuleId: <p>子策略id</p>
         # @type RuleId: String
         # @param RuleLevel: <p>威胁等级，HIGH:高，MIDDLE:中，LOW:低</p>
         # @type RuleLevel: String
-        # @param CmdLine: <p>命令行参数</p>
-        # @type CmdLine: String
 
-        attr_accessor :RuleMode, :ProcessPath, :RuleId, :RuleLevel, :CmdLine
+        attr_accessor :ProcessPath, :RuleMode, :CmdLine, :RuleId, :RuleLevel
 
-        def initialize(rulemode=nil, processpath=nil, ruleid=nil, rulelevel=nil, cmdline=nil)
-          @RuleMode = rulemode
+        def initialize(processpath=nil, rulemode=nil, cmdline=nil, ruleid=nil, rulelevel=nil)
           @ProcessPath = processpath
+          @RuleMode = rulemode
+          @CmdLine = cmdline
           @RuleId = ruleid
           @RuleLevel = rulelevel
-          @CmdLine = cmdline
         end
 
         def deserialize(params)
-          @RuleMode = params['RuleMode']
           @ProcessPath = params['ProcessPath']
+          @RuleMode = params['RuleMode']
+          @CmdLine = params['CmdLine']
           @RuleId = params['RuleId']
           @RuleLevel = params['RuleLevel']
-          @CmdLine = params['CmdLine']
         end
       end
 
@@ -328,38 +328,51 @@ module TencentCloud
         end
       end
 
-      # 运行时安全，异常进程检测策略
-      class AbnormalProcessRuleInfo < TencentCloud::Common::AbstractModel
-        # @param IsEnable: true:策略启用，false:策略禁用
-        # @type IsEnable: Boolean
-        # @param ImageIds: 生效镜像id，空数组代表全部镜像
-        # @type ImageIds: Array
-        # @param ChildRules: 用户策略的子策略数组
+      # 异常进程策略列表扩展项（扁平独立结构体，含子规则内容和执行动作）
+      class AbnormalProcessRuleExtSetItem < TencentCloud::Common::AbstractModel
+        # @param ChildRules: 用户自定义策略子规则列表。IsDefault=false时有值
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ChildRules: Array
+        # @param EditUserName: 编辑用户名称
+        # @type EditUserName: String
+        # @param EffectImageCount: 策略生效镜像数量
+        # @type EffectImageCount: Integer
+        # @param IsDefault: true: 默认策略，false:自定义策略
+        # @type IsDefault: Boolean
+        # @param IsGlobal: 是否为全部镜像规则。true表示对所有镜像生效
+        # @type IsGlobal: Boolean
+        # @param IsEnable: true: 策略启用，false：策略禁用
+        # @type IsEnable: Boolean
+        # @param RuleActions: 规则组中所有执行动作的去重列表。RULE_MODE_ALERT:告警 RULE_MODE_HOLDUP:拦截
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleActions: Array
+        # @param RuleId: 策略Id
+        # @type RuleId: String
         # @param RuleName: 策略名字
         # @type RuleName: String
-        # @param RuleId: 策略id
-        # @type RuleId: String
-        # @param SystemChildRules: 系统策略的子策略数组
+        # @param SystemChildRules: 系统策略子规则列表。IsDefault=true时有值
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SystemChildRules: Array
-        # @param IsDefault: 是否是系统默认策略
-        # @type IsDefault: Boolean
+        # @param UpdateTime: 策略更新时间, 存在为空的情况
+        # @type UpdateTime: String
 
-        attr_accessor :IsEnable, :ImageIds, :ChildRules, :RuleName, :RuleId, :SystemChildRules, :IsDefault
+        attr_accessor :ChildRules, :EditUserName, :EffectImageCount, :IsDefault, :IsGlobal, :IsEnable, :RuleActions, :RuleId, :RuleName, :SystemChildRules, :UpdateTime
 
-        def initialize(isenable=nil, imageids=nil, childrules=nil, rulename=nil, ruleid=nil, systemchildrules=nil, isdefault=nil)
-          @IsEnable = isenable
-          @ImageIds = imageids
+        def initialize(childrules=nil, editusername=nil, effectimagecount=nil, isdefault=nil, isglobal=nil, isenable=nil, ruleactions=nil, ruleid=nil, rulename=nil, systemchildrules=nil, updatetime=nil)
           @ChildRules = childrules
-          @RuleName = rulename
-          @RuleId = ruleid
-          @SystemChildRules = systemchildrules
+          @EditUserName = editusername
+          @EffectImageCount = effectimagecount
           @IsDefault = isdefault
+          @IsGlobal = isglobal
+          @IsEnable = isenable
+          @RuleActions = ruleactions
+          @RuleId = ruleid
+          @RuleName = rulename
+          @SystemChildRules = systemchildrules
+          @UpdateTime = updatetime
         end
 
         def deserialize(params)
-          @IsEnable = params['IsEnable']
-          @ImageIds = params['ImageIds']
           unless params['ChildRules'].nil?
             @ChildRules = []
             params['ChildRules'].each do |i|
@@ -368,7 +381,72 @@ module TencentCloud
               @ChildRules << abnormalprocesschildruleinfo_tmp
             end
           end
+          @EditUserName = params['EditUserName']
+          @EffectImageCount = params['EffectImageCount']
+          @IsDefault = params['IsDefault']
+          @IsGlobal = params['IsGlobal']
+          @IsEnable = params['IsEnable']
+          @RuleActions = params['RuleActions']
+          @RuleId = params['RuleId']
           @RuleName = params['RuleName']
+          unless params['SystemChildRules'].nil?
+            @SystemChildRules = []
+            params['SystemChildRules'].each do |i|
+              abnormalprocesssystemchildruleinfo_tmp = AbnormalProcessSystemChildRuleInfo.new
+              abnormalprocesssystemchildruleinfo_tmp.deserialize(i)
+              @SystemChildRules << abnormalprocesssystemchildruleinfo_tmp
+            end
+          end
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # 运行时安全，异常进程检测策略
+      class AbnormalProcessRuleInfo < TencentCloud::Common::AbstractModel
+        # @param ChildRules: 用户策略的子策略数组
+        # @type ChildRules: Array
+        # @param ImageIds: 生效镜像id，空数组代表全部镜像
+        # @type ImageIds: Array
+        # @param IsEnable: true:策略启用，false:策略禁用
+        # @type IsEnable: Boolean
+        # @param RuleName: 策略名字
+        # @type RuleName: String
+        # @param IsDefault: 是否是系统默认策略
+        # @type IsDefault: Boolean
+        # @param IsGlobal: 是否为全部镜像规则。true表示对所有镜像生效
+        # @type IsGlobal: Boolean
+        # @param RuleId: 策略id
+        # @type RuleId: String
+        # @param SystemChildRules: 系统策略的子策略数组
+        # @type SystemChildRules: Array
+
+        attr_accessor :ChildRules, :ImageIds, :IsEnable, :RuleName, :IsDefault, :IsGlobal, :RuleId, :SystemChildRules
+
+        def initialize(childrules=nil, imageids=nil, isenable=nil, rulename=nil, isdefault=nil, isglobal=nil, ruleid=nil, systemchildrules=nil)
+          @ChildRules = childrules
+          @ImageIds = imageids
+          @IsEnable = isenable
+          @RuleName = rulename
+          @IsDefault = isdefault
+          @IsGlobal = isglobal
+          @RuleId = ruleid
+          @SystemChildRules = systemchildrules
+        end
+
+        def deserialize(params)
+          unless params['ChildRules'].nil?
+            @ChildRules = []
+            params['ChildRules'].each do |i|
+              abnormalprocesschildruleinfo_tmp = AbnormalProcessChildRuleInfo.new
+              abnormalprocesschildruleinfo_tmp.deserialize(i)
+              @ChildRules << abnormalprocesschildruleinfo_tmp
+            end
+          end
+          @ImageIds = params['ImageIds']
+          @IsEnable = params['IsEnable']
+          @RuleName = params['RuleName']
+          @IsDefault = params['IsDefault']
+          @IsGlobal = params['IsGlobal']
           @RuleId = params['RuleId']
           unless params['SystemChildRules'].nil?
             @SystemChildRules = []
@@ -378,16 +456,15 @@ module TencentCloud
               @SystemChildRules << abnormalprocesssystemchildruleinfo_tmp
             end
           end
-          @IsDefault = params['IsDefault']
         end
       end
 
       # 异常进程系统策略的子策略信息
       class AbnormalProcessSystemChildRuleInfo < TencentCloud::Common::AbstractModel
-        # @param RuleId: 子策略Id
-        # @type RuleId: String
         # @param IsEnable: 子策略状态，true为开启，false为关闭
         # @type IsEnable: Boolean
+        # @param RuleId: 子策略Id
+        # @type RuleId: String
         # @param RuleMode: 策略模式,  RULE_MODE_RELEASE: 放行
         #    RULE_MODE_ALERT: 告警
         #    RULE_MODE_HOLDUP:拦截
@@ -404,19 +481,19 @@ module TencentCloud
         # @param RuleLevel: 威胁等级，HIGH:高，MIDDLE:中，LOW:低
         # @type RuleLevel: String
 
-        attr_accessor :RuleId, :IsEnable, :RuleMode, :RuleType, :RuleLevel
+        attr_accessor :IsEnable, :RuleId, :RuleMode, :RuleType, :RuleLevel
 
-        def initialize(ruleid=nil, isenable=nil, rulemode=nil, ruletype=nil, rulelevel=nil)
-          @RuleId = ruleid
+        def initialize(isenable=nil, ruleid=nil, rulemode=nil, ruletype=nil, rulelevel=nil)
           @IsEnable = isenable
+          @RuleId = ruleid
           @RuleMode = rulemode
           @RuleType = ruletype
           @RuleLevel = rulelevel
         end
 
         def deserialize(params)
-          @RuleId = params['RuleId']
           @IsEnable = params['IsEnable']
+          @RuleId = params['RuleId']
           @RuleMode = params['RuleMode']
           @RuleType = params['RuleType']
           @RuleLevel = params['RuleLevel']
@@ -425,33 +502,33 @@ module TencentCloud
 
       # 容器运行时安全，访问控制子策略信息
       class AccessControlChildRuleInfo < TencentCloud::Common::AbstractModel
-        # @param RuleMode: <p>策略模式,  RULE_MODE_RELEASE: 放行<br>   RULE_MODE_ALERT: 告警<br>   RULE_MODE_HOLDUP:拦截</p>
-        # @type RuleMode: String
         # @param ProcessPath: <p>进程路径</p>
         # @type ProcessPath: String
+        # @param RuleMode: <p>策略模式,  RULE_MODE_RELEASE: 放行<br>   RULE_MODE_ALERT: 告警<br>   RULE_MODE_HOLDUP:拦截</p>
+        # @type RuleMode: String
         # @param TargetFilePath: <p>被访问文件路径，仅仅在访问控制生效</p>
         # @type TargetFilePath: String
-        # @param RuleId: <p>子策略id</p>
-        # @type RuleId: String
         # @param CmdLine: <p>命令行参数</p>
         # @type CmdLine: String
+        # @param RuleId: <p>子策略id</p>
+        # @type RuleId: String
 
-        attr_accessor :RuleMode, :ProcessPath, :TargetFilePath, :RuleId, :CmdLine
+        attr_accessor :ProcessPath, :RuleMode, :TargetFilePath, :CmdLine, :RuleId
 
-        def initialize(rulemode=nil, processpath=nil, targetfilepath=nil, ruleid=nil, cmdline=nil)
-          @RuleMode = rulemode
+        def initialize(processpath=nil, rulemode=nil, targetfilepath=nil, cmdline=nil, ruleid=nil)
           @ProcessPath = processpath
+          @RuleMode = rulemode
           @TargetFilePath = targetfilepath
-          @RuleId = ruleid
           @CmdLine = cmdline
+          @RuleId = ruleid
         end
 
         def deserialize(params)
-          @RuleMode = params['RuleMode']
           @ProcessPath = params['ProcessPath']
+          @RuleMode = params['RuleMode']
           @TargetFilePath = params['TargetFilePath']
-          @RuleId = params['RuleId']
           @CmdLine = params['CmdLine']
+          @RuleId = params['RuleId']
         end
       end
 
@@ -666,38 +743,51 @@ module TencentCloud
         end
       end
 
-      # 容器运行时，访问控制策略信息
-      class AccessControlRuleInfo < TencentCloud::Common::AbstractModel
-        # @param IsEnable: 开关,true:开启，false:禁用
-        # @type IsEnable: Boolean
-        # @param ImageIds: 生效镜像id，空数组代表全部镜像
-        # @type ImageIds: Array
-        # @param ChildRules: 用户策略的子策略数组
+      # 文件篡改策略列表扩展项（扁平独立结构体，含子规则内容和执行动作）
+      class AccessControlRuleExtSetItem < TencentCloud::Common::AbstractModel
+        # @param ChildRules: 用户自定义策略子规则列表。IsDefault=false时有值
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ChildRules: Array
+        # @param EditUserName: 编辑用户名称
+        # @type EditUserName: String
+        # @param EffectImageCount: 策略生效镜像数量
+        # @type EffectImageCount: Integer
+        # @param IsDefault: true: 默认策略，false:自定义策略
+        # @type IsDefault: Boolean
+        # @param IsGlobal: 是否为全部镜像规则。true表示对所有镜像生效
+        # @type IsGlobal: Boolean
+        # @param IsEnable: true: 策略启用，false：策略禁用
+        # @type IsEnable: Boolean
+        # @param RuleActions: 规则组中所有执行动作的去重列表。RULE_MODE_ALERT:告警 RULE_MODE_HOLDUP:拦截
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleActions: Array
+        # @param RuleId: 策略Id
+        # @type RuleId: String
         # @param RuleName: 策略名字
         # @type RuleName: String
-        # @param RuleId: 策略id
-        # @type RuleId: String
-        # @param SystemChildRules: 系统策略的子策略数组
+        # @param SystemChildRules: 系统策略子规则列表。IsDefault=true时有值
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SystemChildRules: Array
-        # @param IsDefault: 是否是系统默认策略
-        # @type IsDefault: Boolean
+        # @param UpdateTime: 策略更新时间, 存在为空的情况
+        # @type UpdateTime: String
 
-        attr_accessor :IsEnable, :ImageIds, :ChildRules, :RuleName, :RuleId, :SystemChildRules, :IsDefault
+        attr_accessor :ChildRules, :EditUserName, :EffectImageCount, :IsDefault, :IsGlobal, :IsEnable, :RuleActions, :RuleId, :RuleName, :SystemChildRules, :UpdateTime
 
-        def initialize(isenable=nil, imageids=nil, childrules=nil, rulename=nil, ruleid=nil, systemchildrules=nil, isdefault=nil)
-          @IsEnable = isenable
-          @ImageIds = imageids
+        def initialize(childrules=nil, editusername=nil, effectimagecount=nil, isdefault=nil, isglobal=nil, isenable=nil, ruleactions=nil, ruleid=nil, rulename=nil, systemchildrules=nil, updatetime=nil)
           @ChildRules = childrules
-          @RuleName = rulename
-          @RuleId = ruleid
-          @SystemChildRules = systemchildrules
+          @EditUserName = editusername
+          @EffectImageCount = effectimagecount
           @IsDefault = isdefault
+          @IsGlobal = isglobal
+          @IsEnable = isenable
+          @RuleActions = ruleactions
+          @RuleId = ruleid
+          @RuleName = rulename
+          @SystemChildRules = systemchildrules
+          @UpdateTime = updatetime
         end
 
         def deserialize(params)
-          @IsEnable = params['IsEnable']
-          @ImageIds = params['ImageIds']
           unless params['ChildRules'].nil?
             @ChildRules = []
             params['ChildRules'].each do |i|
@@ -706,7 +796,72 @@ module TencentCloud
               @ChildRules << accesscontrolchildruleinfo_tmp
             end
           end
+          @EditUserName = params['EditUserName']
+          @EffectImageCount = params['EffectImageCount']
+          @IsDefault = params['IsDefault']
+          @IsGlobal = params['IsGlobal']
+          @IsEnable = params['IsEnable']
+          @RuleActions = params['RuleActions']
+          @RuleId = params['RuleId']
           @RuleName = params['RuleName']
+          unless params['SystemChildRules'].nil?
+            @SystemChildRules = []
+            params['SystemChildRules'].each do |i|
+              accesscontrolsystemchildruleinfo_tmp = AccessControlSystemChildRuleInfo.new
+              accesscontrolsystemchildruleinfo_tmp.deserialize(i)
+              @SystemChildRules << accesscontrolsystemchildruleinfo_tmp
+            end
+          end
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # 容器运行时，访问控制策略信息
+      class AccessControlRuleInfo < TencentCloud::Common::AbstractModel
+        # @param ChildRules: 用户策略的子策略数组
+        # @type ChildRules: Array
+        # @param ImageIds: 生效镜像id，空数组代表全部镜像
+        # @type ImageIds: Array
+        # @param IsEnable: 开关,true:开启，false:禁用
+        # @type IsEnable: Boolean
+        # @param RuleName: 策略名字
+        # @type RuleName: String
+        # @param IsDefault: 是否是系统默认策略
+        # @type IsDefault: Boolean
+        # @param IsGlobal: true:全部镜像，false:指定镜像。IsGlobal=true时ImageIds返回空数组
+        # @type IsGlobal: Boolean
+        # @param RuleId: 策略id
+        # @type RuleId: String
+        # @param SystemChildRules: 系统策略的子策略数组
+        # @type SystemChildRules: Array
+
+        attr_accessor :ChildRules, :ImageIds, :IsEnable, :RuleName, :IsDefault, :IsGlobal, :RuleId, :SystemChildRules
+
+        def initialize(childrules=nil, imageids=nil, isenable=nil, rulename=nil, isdefault=nil, isglobal=nil, ruleid=nil, systemchildrules=nil)
+          @ChildRules = childrules
+          @ImageIds = imageids
+          @IsEnable = isenable
+          @RuleName = rulename
+          @IsDefault = isdefault
+          @IsGlobal = isglobal
+          @RuleId = ruleid
+          @SystemChildRules = systemchildrules
+        end
+
+        def deserialize(params)
+          unless params['ChildRules'].nil?
+            @ChildRules = []
+            params['ChildRules'].each do |i|
+              accesscontrolchildruleinfo_tmp = AccessControlChildRuleInfo.new
+              accesscontrolchildruleinfo_tmp.deserialize(i)
+              @ChildRules << accesscontrolchildruleinfo_tmp
+            end
+          end
+          @ImageIds = params['ImageIds']
+          @IsEnable = params['IsEnable']
+          @RuleName = params['RuleName']
+          @IsDefault = params['IsDefault']
+          @IsGlobal = params['IsGlobal']
           @RuleId = params['RuleId']
           unless params['SystemChildRules'].nil?
             @SystemChildRules = []
@@ -716,39 +871,38 @@ module TencentCloud
               @SystemChildRules << accesscontrolsystemchildruleinfo_tmp
             end
           end
-          @IsDefault = params['IsDefault']
         end
       end
 
       # 容器运行时安全，访问控制系统策略的子策略信息
       class AccessControlSystemChildRuleInfo < TencentCloud::Common::AbstractModel
+        # @param IsEnable: 子策略状态，true为开启，false为关闭
+        # @type IsEnable: Boolean
         # @param RuleId: 子策略Id
         # @type RuleId: String
         # @param RuleMode: 策略模式,  RULE_MODE_RELEASE: 放行
         #    RULE_MODE_ALERT: 告警
         #    RULE_MODE_HOLDUP:拦截
         # @type RuleMode: String
-        # @param IsEnable: 子策略状态，true为开启，false为关闭
-        # @type IsEnable: Boolean
         # @param RuleType: 子策略检测的入侵行为类型
         # CHANGE_CRONTAB：篡改计划任务
         # CHANGE_SYS_BIN：篡改系统程序
         # CHANGE_USRCFG：篡改用户配置
         # @type RuleType: String
 
-        attr_accessor :RuleId, :RuleMode, :IsEnable, :RuleType
+        attr_accessor :IsEnable, :RuleId, :RuleMode, :RuleType
 
-        def initialize(ruleid=nil, rulemode=nil, isenable=nil, ruletype=nil)
+        def initialize(isenable=nil, ruleid=nil, rulemode=nil, ruletype=nil)
+          @IsEnable = isenable
           @RuleId = ruleid
           @RuleMode = rulemode
-          @IsEnable = isenable
           @RuleType = ruletype
         end
 
         def deserialize(params)
+          @IsEnable = params['IsEnable']
           @RuleId = params['RuleId']
           @RuleMode = params['RuleMode']
-          @IsEnable = params['IsEnable']
           @RuleType = params['RuleType']
         end
       end
@@ -1793,48 +1947,37 @@ module TencentCloud
 
       # 集群列表Item
       class AssetClusterListItem < TencentCloud::Common::AbstractModel
-        # @param ClusterID: 集群ID
+        # @param ClusterID: <p>集群ID</p>
         # @type ClusterID: String
-        # @param ClusterName: 集群名称
+        # @param ClusterName: <p>集群名称</p>
         # @type ClusterName: String
-        # @param Status: 集群状态
-        # CSR_RUNNING: 运行中
-        # CSR_EXCEPTION:异常
-        # CSR_DEL:已经删除
+        # @param Status: <p>集群状态<br>CSR_RUNNING: 运行中<br>CSR_EXCEPTION:异常<br>CSR_DEL:已经删除</p>
         # @type Status: String
-        # @param BindRuleName: 绑定规则名称
+        # @param BindRuleID: <p>绑定的集群ID</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BindRuleID: String
+        # @param BindRuleName: <p>绑定规则名称</p>
         # @type BindRuleName: String
-        # @param ClusterType: 集群类型:
-        # CT_TKE:TKE集群;
-        # CT_USER_CREATE:用户自建集群;
-        # CT_TKE_SERVERLESS:TKE Serverless集群;
+        # @param ClusterType: <p>集群类型:<br>CT_TKE:TKE集群;<br>CT_USER_CREATE:用户自建集群;<br>CT_TKE_SERVERLESS:TKE Serverless集群;</p>
         # @type ClusterType: String
-        # @param ClusterVersion: 集群版本
+        # @param ClusterVersion: <p>集群版本</p>
         # @type ClusterVersion: String
-        # @param MemLimit: 内存量
+        # @param MemLimit: <p>内存量</p>
         # @type MemLimit: Integer
-        # @param CpuLimit: cpu
+        # @param CpuLimit: <p>cpu</p>
         # @type CpuLimit: Integer
-        # @param ClusterAuditStatus: 集群审计开关状态：
-        # 已关闭Closed/关闭中Closing/关闭失败CloseFailed/已开启Opened/开启中Opening/开启失败OpenFailed
+        # @param ClusterAuditStatus: <p>集群审计开关状态：<br>已关闭Closed/关闭中Closing/关闭失败CloseFailed/已开启Opened/开启中Opening/开启失败OpenFailed</p>
         # @type ClusterAuditStatus: String
-        # @param AccessedStatus: 接入状态:
-        # 未接入: AccessedNone
-        # 已防护: AccessedDefended
-        # 未防护: AccessedInstalled
-        # 部分防护: AccessedPartialDefence
-        # 接入异常: AccessedException
-        # 卸载异常: AccessedUninstallException
-        # 接入中: AccessedInstalling
-        # 卸载中: AccessedUninstalling
+        # @param AccessedStatus: <p>接入状态:<br>未接入: AccessedNone<br>已防护: AccessedDefended<br>未防护: AccessedInstalled<br>部分防护: AccessedPartialDefence<br>接入异常: AccessedException<br>卸载异常: AccessedUninstallException<br>接入中: AccessedInstalling<br>卸载中: AccessedUninstalling</p>
         # @type AccessedStatus: String
 
-        attr_accessor :ClusterID, :ClusterName, :Status, :BindRuleName, :ClusterType, :ClusterVersion, :MemLimit, :CpuLimit, :ClusterAuditStatus, :AccessedStatus
+        attr_accessor :ClusterID, :ClusterName, :Status, :BindRuleID, :BindRuleName, :ClusterType, :ClusterVersion, :MemLimit, :CpuLimit, :ClusterAuditStatus, :AccessedStatus
 
-        def initialize(clusterid=nil, clustername=nil, status=nil, bindrulename=nil, clustertype=nil, clusterversion=nil, memlimit=nil, cpulimit=nil, clusterauditstatus=nil, accessedstatus=nil)
+        def initialize(clusterid=nil, clustername=nil, status=nil, bindruleid=nil, bindrulename=nil, clustertype=nil, clusterversion=nil, memlimit=nil, cpulimit=nil, clusterauditstatus=nil, accessedstatus=nil)
           @ClusterID = clusterid
           @ClusterName = clustername
           @Status = status
+          @BindRuleID = bindruleid
           @BindRuleName = bindrulename
           @ClusterType = clustertype
           @ClusterVersion = clusterversion
@@ -1848,6 +1991,7 @@ module TencentCloud
           @ClusterID = params['ClusterID']
           @ClusterName = params['ClusterName']
           @Status = params['Status']
+          @BindRuleID = params['BindRuleID']
           @BindRuleName = params['BindRuleName']
           @ClusterType = params['ClusterType']
           @ClusterVersion = params['ClusterVersion']
@@ -3712,8 +3856,8 @@ module TencentCloud
 
         attr_accessor :Component, :Version, :FixedVersion, :Path, :Type, :Name
         extend Gem::Deprecate
-        deprecate :Component, :none, 2026, 5
-        deprecate :Component=, :none, 2026, 5
+        deprecate :Component, :none, 2026, 6
+        deprecate :Component=, :none, 2026, 6
 
         def initialize(component=nil, version=nil, fixedversion=nil, path=nil, type=nil, name=nil)
           @Component = component
@@ -4165,8 +4309,8 @@ module TencentCloud
 
         attr_accessor :All, :Images, :ScanType, :Id, :ExcludeIDs, :IsLatest, :ScanScope, :RegistryType, :Namespace, :ContainerRunning, :Timeout
         extend Gem::Deprecate
-        deprecate :All, :none, 2026, 5
-        deprecate :All=, :none, 2026, 5
+        deprecate :All, :none, 2026, 6
+        deprecate :All=, :none, 2026, 6
 
         def initialize(all=nil, images=nil, scantype=nil, id=nil, excludeids=nil, islatest=nil, scanscope=nil, registrytype=nil, namespace=nil, containerrunning=nil, timeout=nil)
           @All = all
@@ -4304,39 +4448,39 @@ module TencentCloud
 
       # CreateAssetImageScanSetting请求参数结构体
       class CreateAssetImageScanSettingRequest < TencentCloud::Common::AbstractModel
-        # @param Enable: 开关
+        # @param Enable: <p>开关</p>
         # @type Enable: Boolean
-        # @param ScanTime: 扫描开始时间
-        # 01:00 时分
+        # @param ScanTime: <p>扫描开始时间<br>01:00 时分</p>
         # @type ScanTime: String
-        # @param ScanPeriod: 扫描周期
+        # @param ScanPeriod: <p>扫描周期</p>
         # @type ScanPeriod: Integer
-        # @param ScanVirus: 扫描木马
+        # @param ScanVirus: <p>扫描木马</p>
         # @type ScanVirus: Boolean
-        # @param ScanRisk: 扫描敏感信息
+        # @param ScanRisk: <p>扫描敏感信息</p>
         # @type ScanRisk: Boolean
-        # @param ScanVul: 扫描漏洞
+        # @param ScanVul: <p>扫描漏洞</p>
         # @type ScanVul: Boolean
-        # @param All: 全部镜像
+        # @param All: <p>全部镜像</p>
         # @type All: Boolean
-        # @param Images: 自定义镜像
+        # @param Images: <p>自定义镜像</p>
         # @type Images: Array
-        # @param ContainerRunning: 镜像是否存在运行中的容器
+        # @param ContainerRunning: <p>镜像是否存在运行中的容器</p>
         # @type ContainerRunning: Boolean
-        # @param ScanScope: 扫描范围 0 全部授权镜像，1自选镜像，2 推荐扫描
+        # @param ScanScope: <p>扫描范围 0 全部授权镜像，1自选镜像，2 推荐扫描 , 3:集群筛选扫描</p><p>取值范围：[0, 3]</p><p>默认值：0</p>
         # @type ScanScope: Integer
-        # @param ScanEndTime: 扫描结束时间
-        # 02:00 时分
+        # @param ScanEndTime: <p>扫描结束时间<br>02:00 时分</p>
         # @type ScanEndTime: String
-        # @param ExcludeImages: 排除扫描的镜像
+        # @param ExcludeImages: <p>排除扫描的镜像</p>
         # @type ExcludeImages: Array
+        # @param ClusterIDs: <p>集群id</p>
+        # @type ClusterIDs: Array
 
-        attr_accessor :Enable, :ScanTime, :ScanPeriod, :ScanVirus, :ScanRisk, :ScanVul, :All, :Images, :ContainerRunning, :ScanScope, :ScanEndTime, :ExcludeImages
+        attr_accessor :Enable, :ScanTime, :ScanPeriod, :ScanVirus, :ScanRisk, :ScanVul, :All, :Images, :ContainerRunning, :ScanScope, :ScanEndTime, :ExcludeImages, :ClusterIDs
         extend Gem::Deprecate
-        deprecate :All, :none, 2026, 5
-        deprecate :All=, :none, 2026, 5
+        deprecate :All, :none, 2026, 6
+        deprecate :All=, :none, 2026, 6
 
-        def initialize(enable=nil, scantime=nil, scanperiod=nil, scanvirus=nil, scanrisk=nil, scanvul=nil, all=nil, images=nil, containerrunning=nil, scanscope=nil, scanendtime=nil, excludeimages=nil)
+        def initialize(enable=nil, scantime=nil, scanperiod=nil, scanvirus=nil, scanrisk=nil, scanvul=nil, all=nil, images=nil, containerrunning=nil, scanscope=nil, scanendtime=nil, excludeimages=nil, clusterids=nil)
           @Enable = enable
           @ScanTime = scantime
           @ScanPeriod = scanperiod
@@ -4349,6 +4493,7 @@ module TencentCloud
           @ScanScope = scanscope
           @ScanEndTime = scanendtime
           @ExcludeImages = excludeimages
+          @ClusterIDs = clusterids
         end
 
         def deserialize(params)
@@ -4364,6 +4509,7 @@ module TencentCloud
           @ScanScope = params['ScanScope']
           @ScanEndTime = params['ScanEndTime']
           @ExcludeImages = params['ExcludeImages']
+          @ClusterIDs = params['ClusterIDs']
         end
       end
 
@@ -4385,35 +4531,37 @@ module TencentCloud
 
       # CreateAssetImageScanTask请求参数结构体
       class CreateAssetImageScanTaskRequest < TencentCloud::Common::AbstractModel
-        # @param All: 是否扫描全部镜像；全部镜像，镜像列表和根据过滤条件筛选三选一。
+        # @param All: <p>是否扫描全部镜像；全部镜像，镜像列表和根据过滤条件筛选三选一。</p>
         # @type All: Boolean
-        # @param Images: 需要扫描的镜像列表；全部镜像，镜像列表和根据过滤条件筛选三选一。
+        # @param Images: <p>需要扫描的镜像列表；全部镜像，镜像列表和根据过滤条件筛选三选一。</p>
         # @type Images: Array
-        # @param ScanVul: 扫描漏洞；漏洞，木马和风险需选其一
+        # @param ScanVul: <p>扫描漏洞；漏洞，木马和风险需选其一</p>
         # @type ScanVul: Boolean
-        # @param ScanVirus: 扫描木马；漏洞，木马和风险需选其一
+        # @param ScanVirus: <p>扫描木马；漏洞，木马和风险需选其一</p>
         # @type ScanVirus: Boolean
-        # @param ScanRisk: 扫描风险；漏洞，木马和风险需选其一
+        # @param ScanRisk: <p>扫描风险；漏洞，木马和风险需选其一</p>
         # @type ScanRisk: Boolean
-        # @param Filters: 根据过滤条件筛选出镜像；全部镜像，镜像列表和根据过滤条件筛选三选一。
+        # @param Filters: <p>根据过滤条件筛选出镜像；全部镜像，镜像列表和根据过滤条件筛选三选一。</p>
         # @type Filters: Array
-        # @param ExcludeImageIds: 根据过滤条件筛选出镜像，再排除个别镜像
+        # @param ExcludeImageIds: <p>根据过滤条件筛选出镜像，再排除个别镜像</p>
         # @type ExcludeImageIds: Array
-        # @param ContainerRunning: 镜像是否存在运行中的容器
+        # @param ContainerRunning: <p>镜像是否存在运行中的容器</p>
         # @type ContainerRunning: Boolean
-        # @param ScanScope: 扫描范围 0 全部授权镜像，1自选镜像，2 推荐扫描
+        # @param ScanScope: <p>扫描范围 0 全部授权镜像，1自选镜像，2 推荐扫描 3:集群扫描</p><p>取值范围：[0, 3]</p><p>默认值：0</p>
         # @type ScanScope: Integer
-        # @param Timeout: 任务超时时长单位秒，默认1小时
+        # @param Timeout: <p>任务超时时长单位秒，默认1小时</p>
         # @type Timeout: Integer
-        # @param IsOneClickScanningTask: 一键扫描任务。默认false表示非一键扫描，true一键扫描
+        # @param IsOneClickScanningTask: <p>一键扫描任务。默认false表示非一键扫描，true一键扫描</p>
         # @type IsOneClickScanningTask: Boolean
+        # @param ClusterIDs: <p>集群id</p>
+        # @type ClusterIDs: Array
 
-        attr_accessor :All, :Images, :ScanVul, :ScanVirus, :ScanRisk, :Filters, :ExcludeImageIds, :ContainerRunning, :ScanScope, :Timeout, :IsOneClickScanningTask
+        attr_accessor :All, :Images, :ScanVul, :ScanVirus, :ScanRisk, :Filters, :ExcludeImageIds, :ContainerRunning, :ScanScope, :Timeout, :IsOneClickScanningTask, :ClusterIDs
         extend Gem::Deprecate
-        deprecate :All, :none, 2026, 5
-        deprecate :All=, :none, 2026, 5
+        deprecate :All, :none, 2026, 6
+        deprecate :All=, :none, 2026, 6
 
-        def initialize(all=nil, images=nil, scanvul=nil, scanvirus=nil, scanrisk=nil, filters=nil, excludeimageids=nil, containerrunning=nil, scanscope=nil, timeout=nil, isoneclickscanningtask=nil)
+        def initialize(all=nil, images=nil, scanvul=nil, scanvirus=nil, scanrisk=nil, filters=nil, excludeimageids=nil, containerrunning=nil, scanscope=nil, timeout=nil, isoneclickscanningtask=nil, clusterids=nil)
           @All = all
           @Images = images
           @ScanVul = scanvul
@@ -4425,6 +4573,7 @@ module TencentCloud
           @ScanScope = scanscope
           @Timeout = timeout
           @IsOneClickScanningTask = isoneclickscanningtask
+          @ClusterIDs = clusterids
         end
 
         def deserialize(params)
@@ -4446,12 +4595,13 @@ module TencentCloud
           @ScanScope = params['ScanScope']
           @Timeout = params['Timeout']
           @IsOneClickScanningTask = params['IsOneClickScanningTask']
+          @ClusterIDs = params['ClusterIDs']
         end
       end
 
       # CreateAssetImageScanTask返回参数结构体
       class CreateAssetImageScanTaskResponse < TencentCloud::Common::AbstractModel
-        # @param TaskID: 任务id
+        # @param TaskID: <p>任务id</p>
         # @type TaskID: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5355,7 +5505,7 @@ module TencentCloud
         # @type RuleInfo: :class:`Tencentcloud::Tcss.v20201101.models.K8sApiAbnormalRuleInfo`
         # @param CopySrcRuleID: 拷贝规则ID(适用于复制规则场景)
         # @type CopySrcRuleID: String
-        # @param EventID: 事件ID(适用于事件加白场景)
+        # @param EventID: 事件ID(已废弃，保留兼容性。事件加白请使用白名单接口 ModifyK8sApiAbnormalWhitelist)
         # @type EventID: Integer
 
         attr_accessor :RuleInfo, :CopySrcRuleID, :EventID
@@ -6328,28 +6478,34 @@ module TencentCloud
 
       # CreateVulScanTask请求参数结构体
       class CreateVulScanTaskRequest < TencentCloud::Common::AbstractModel
-        # @param LocalImageScanType: 本地镜像扫描范围类型。ALL:全部本地镜像，NOT_SCAN：全部已授权未扫描本地镜像，IMAGEIDS:自选本地镜像ID
+        # @param LocalImageScanType: <p>本地镜像扫描范围类型</p><p>枚举值：</p><ul><li>ALL： 全部本地镜像</li><li>NOT_SCAN： 全部已授权未扫描本地镜像</li><li>IMAGEIDS： 自选本地镜像ID</li><li>CLUSTER： 集群筛选</li></ul>
         # @type LocalImageScanType: String
-        # @param LocalImageIDs: 根据已授权的本地镜像IDs扫描，优先权高于根据满足条件的已授权的本地镜像。
+        # @param LocalImageIDs: <p>根据已授权的本地镜像IDs扫描，优先权高于根据满足条件的已授权的本地镜像。</p>
         # @type LocalImageIDs: Array
-        # @param RegistryImageScanType: 仓库镜像扫描范围类型。ALL:全部仓库镜像，NOT_SCAN：全部已授权未扫描仓库镜像，IMAGEIDS:自选仓库镜像ID
+        # @param RegistryImageScanType: <p>仓库镜像扫描范围类型。ALL:全部仓库镜像，NOT_SCAN：全部已授权未扫描仓库镜像，IMAGEIDS:自选仓库镜像ID</p>
         # @type RegistryImageScanType: String
-        # @param RegistryImageIDs: 根据已授权的仓库镜像IDs扫描，优先权高于根据满足条件的已授权的仓库镜像。
+        # @param RegistryImageIDs: <p>根据已授权的仓库镜像IDs扫描，优先权高于根据满足条件的已授权的仓库镜像。</p>
         # @type RegistryImageIDs: Array
-        # @param LocalTaskID: 本地镜像重新漏洞扫描时的任务ID
+        # @param LocalTaskID: <p>本地镜像重新漏洞扫描时的任务ID</p>
         # @type LocalTaskID: Integer
-        # @param RegistryTaskID: 仓库镜像重新漏洞扫描时的任务ID
+        # @param RegistryTaskID: <p>仓库镜像重新漏洞扫描时的任务ID</p>
         # @type RegistryTaskID: Integer
-        # @param LocalImageContainerRunning: 本地镜像容器运行中
+        # @param LocalImageContainerRunning: <p>本地镜像容器运行中</p>
         # @type LocalImageContainerRunning: Boolean
-        # @param RegistryImageContainerRunning: 仓库镜像容器运行中
+        # @param RegistryImageContainerRunning: <p>仓库镜像容器运行中</p>
         # @type RegistryImageContainerRunning: Boolean
-        # @param IsLatest: 仓库镜像是否是最新
+        # @param IsLatest: <p>仓库镜像是否是最新</p>
         # @type IsLatest: Boolean
+        # @param ExcludeLocalImageIDs: <p>要剔除的本地镜像id</p>
+        # @type ExcludeLocalImageIDs: Array
+        # @param ExcludeRegistryImageIDs: <p>要剔除的仓库镜像id</p>
+        # @type ExcludeRegistryImageIDs: Array
+        # @param LocalClusterIDs: <p>集群id</p>
+        # @type LocalClusterIDs: Array
 
-        attr_accessor :LocalImageScanType, :LocalImageIDs, :RegistryImageScanType, :RegistryImageIDs, :LocalTaskID, :RegistryTaskID, :LocalImageContainerRunning, :RegistryImageContainerRunning, :IsLatest
+        attr_accessor :LocalImageScanType, :LocalImageIDs, :RegistryImageScanType, :RegistryImageIDs, :LocalTaskID, :RegistryTaskID, :LocalImageContainerRunning, :RegistryImageContainerRunning, :IsLatest, :ExcludeLocalImageIDs, :ExcludeRegistryImageIDs, :LocalClusterIDs
 
-        def initialize(localimagescantype=nil, localimageids=nil, registryimagescantype=nil, registryimageids=nil, localtaskid=nil, registrytaskid=nil, localimagecontainerrunning=nil, registryimagecontainerrunning=nil, islatest=nil)
+        def initialize(localimagescantype=nil, localimageids=nil, registryimagescantype=nil, registryimageids=nil, localtaskid=nil, registrytaskid=nil, localimagecontainerrunning=nil, registryimagecontainerrunning=nil, islatest=nil, excludelocalimageids=nil, excluderegistryimageids=nil, localclusterids=nil)
           @LocalImageScanType = localimagescantype
           @LocalImageIDs = localimageids
           @RegistryImageScanType = registryimagescantype
@@ -6359,6 +6515,9 @@ module TencentCloud
           @LocalImageContainerRunning = localimagecontainerrunning
           @RegistryImageContainerRunning = registryimagecontainerrunning
           @IsLatest = islatest
+          @ExcludeLocalImageIDs = excludelocalimageids
+          @ExcludeRegistryImageIDs = excluderegistryimageids
+          @LocalClusterIDs = localclusterids
         end
 
         def deserialize(params)
@@ -6371,14 +6530,17 @@ module TencentCloud
           @LocalImageContainerRunning = params['LocalImageContainerRunning']
           @RegistryImageContainerRunning = params['RegistryImageContainerRunning']
           @IsLatest = params['IsLatest']
+          @ExcludeLocalImageIDs = params['ExcludeLocalImageIDs']
+          @ExcludeRegistryImageIDs = params['ExcludeRegistryImageIDs']
+          @LocalClusterIDs = params['LocalClusterIDs']
         end
       end
 
       # CreateVulScanTask返回参数结构体
       class CreateVulScanTaskResponse < TencentCloud::Common::AbstractModel
-        # @param LocalTaskID: 本地镜像重新漏洞扫描时的任务ID
+        # @param LocalTaskID: <p>本地镜像重新漏洞扫描时的任务ID</p>
         # @type LocalTaskID: Integer
-        # @param RegistryTaskID: 仓库镜像重新漏洞扫描时的任务ID
+        # @param RegistryTaskID: <p>仓库镜像重新漏洞扫描时的任务ID</p>
         # @type RegistryTaskID: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -7326,29 +7488,29 @@ module TencentCloud
 
       # DescribeAbnormalProcessRuleDetail请求参数结构体
       class DescribeAbnormalProcessRuleDetailRequest < TencentCloud::Common::AbstractModel
-        # @param RuleId: 策略唯一id
-        # @type RuleId: String
         # @param ImageId: 镜像id, 在添加白名单的时候使用
         # @type ImageId: String
         # @param Limit: 需要返回的数量，默认为10，最大值为100
         # @type Limit: Integer
         # @param Offset: 偏移量，默认为0。
         # @type Offset: Integer
+        # @param RuleId: 策略唯一id
+        # @type RuleId: String
 
-        attr_accessor :RuleId, :ImageId, :Limit, :Offset
+        attr_accessor :ImageId, :Limit, :Offset, :RuleId
 
-        def initialize(ruleid=nil, imageid=nil, limit=nil, offset=nil)
-          @RuleId = ruleid
+        def initialize(imageid=nil, limit=nil, offset=nil, ruleid=nil)
           @ImageId = imageid
           @Limit = limit
           @Offset = offset
+          @RuleId = ruleid
         end
 
         def deserialize(params)
-          @RuleId = params['RuleId']
           @ImageId = params['ImageId']
           @Limit = params['Limit']
           @Offset = params['Offset']
+          @RuleId = params['RuleId']
         end
       end
 
@@ -7377,30 +7539,33 @@ module TencentCloud
 
       # DescribeAbnormalProcessRules请求参数结构体
       class DescribeAbnormalProcessRulesRequest < TencentCloud::Common::AbstractModel
+        # @param By: 排序字段
+        # @type By: String
+        # @param Filters: 过滤参数,"Filters":[{"Name":"Status","Values":["2"]}]
+        # <li>ImageName- String - 是否必填：否 - 镜像名称，模糊查找绑定了该镜像的规则 </li>
+        # <li>ImageId- String - 是否必填：否 - 镜像ID，模糊查找绑定了该镜像的规则 </li>
+        # <li>RuleType- String - 是否必填：否 - 策略类型过滤，取值：system（系统策略）、user（用户策略） </li>
+        # <li>RuleAction- String - 是否必填：否 - 执行动作过滤，取值：RULE_MODE_ALERT（告警）、RULE_MODE_HOLDUP（拦截） </li>
+        # @type Filters: Array
         # @param Limit: 需要返回的数量，默认为10，最大值为100
         # @type Limit: Integer
         # @param Offset: 偏移量，默认为0。
         # @type Offset: Integer
-        # @param Filters: 过滤参数,"Filters":[{"Name":"Status","Values":["2"]}]
-        # @type Filters: Array
         # @param Order: 升序降序,asc desc
         # @type Order: String
-        # @param By: 排序字段
-        # @type By: String
 
-        attr_accessor :Limit, :Offset, :Filters, :Order, :By
+        attr_accessor :By, :Filters, :Limit, :Offset, :Order
 
-        def initialize(limit=nil, offset=nil, filters=nil, order=nil, by=nil)
+        def initialize(by=nil, filters=nil, limit=nil, offset=nil, order=nil)
+          @By = by
+          @Filters = filters
           @Limit = limit
           @Offset = offset
-          @Filters = filters
           @Order = order
-          @By = by
         end
 
         def deserialize(params)
-          @Limit = params['Limit']
-          @Offset = params['Offset']
+          @By = params['By']
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
@@ -7409,30 +7574,42 @@ module TencentCloud
               @Filters << runtimefilters_tmp
             end
           end
+          @Limit = params['Limit']
+          @Offset = params['Offset']
           @Order = params['Order']
-          @By = params['By']
         end
       end
 
       # DescribeAbnormalProcessRules返回参数结构体
       class DescribeAbnormalProcessRulesResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 事件总数量
-        # @type TotalCount: Integer
+        # @param RuleExtSet: 异常进程策略扩展信息列表（含子规则内容和执行动作）。新前端优先使用此字段
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleExtSet: Array
         # @param RuleSet: 异常进程策略信息列表
         # @type RuleSet: Array
+        # @param TotalCount: 事件总数量
+        # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TotalCount, :RuleSet, :RequestId
+        attr_accessor :RuleExtSet, :RuleSet, :TotalCount, :RequestId
 
-        def initialize(totalcount=nil, ruleset=nil, requestid=nil)
-          @TotalCount = totalcount
+        def initialize(ruleextset=nil, ruleset=nil, totalcount=nil, requestid=nil)
+          @RuleExtSet = ruleextset
           @RuleSet = ruleset
+          @TotalCount = totalcount
           @RequestId = requestid
         end
 
         def deserialize(params)
-          @TotalCount = params['TotalCount']
+          unless params['RuleExtSet'].nil?
+            @RuleExtSet = []
+            params['RuleExtSet'].each do |i|
+              abnormalprocessruleextsetitem_tmp = AbnormalProcessRuleExtSetItem.new
+              abnormalprocessruleextsetitem_tmp.deserialize(i)
+              @RuleExtSet << abnormalprocessruleextsetitem_tmp
+            end
+          end
           unless params['RuleSet'].nil?
             @RuleSet = []
             params['RuleSet'].each do |i|
@@ -7441,6 +7618,7 @@ module TencentCloud
               @RuleSet << rulebaseinfo_tmp
             end
           end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -7666,29 +7844,29 @@ module TencentCloud
 
       # DescribeAccessControlRuleDetail请求参数结构体
       class DescribeAccessControlRuleDetailRequest < TencentCloud::Common::AbstractModel
-        # @param RuleId: 策略唯一id
-        # @type RuleId: String
         # @param ImageId: 镜像id, 仅仅在事件加白的时候使用
         # @type ImageId: String
         # @param Limit: 需要返回的数量，默认为10，最大值为100
         # @type Limit: Integer
         # @param Offset: 偏移量，默认为0。
         # @type Offset: Integer
+        # @param RuleId: 策略唯一id
+        # @type RuleId: String
 
-        attr_accessor :RuleId, :ImageId, :Limit, :Offset
+        attr_accessor :ImageId, :Limit, :Offset, :RuleId
 
-        def initialize(ruleid=nil, imageid=nil, limit=nil, offset=nil)
-          @RuleId = ruleid
+        def initialize(imageid=nil, limit=nil, offset=nil, ruleid=nil)
           @ImageId = imageid
           @Limit = limit
           @Offset = offset
+          @RuleId = ruleid
         end
 
         def deserialize(params)
-          @RuleId = params['RuleId']
           @ImageId = params['ImageId']
           @Limit = params['Limit']
           @Offset = params['Offset']
+          @RuleId = params['RuleId']
         end
       end
 
@@ -7717,30 +7895,33 @@ module TencentCloud
 
       # DescribeAccessControlRules请求参数结构体
       class DescribeAccessControlRulesRequest < TencentCloud::Common::AbstractModel
+        # @param By: 排序字段
+        # @type By: String
+        # @param Filters: 过滤参数,"Filters":[{"Name":"Status","Values":["2"]}]
+        # <li>ImageName- String - 是否必填：否 - 镜像名称，模糊查找绑定了该镜像的规则 </li>
+        # <li>ImageId- String - 是否必填：否 - 镜像ID，模糊查找绑定了该镜像的规则 </li>
+        # <li>RuleType- String - 是否必填：否 - 策略类型过滤，取值：system（系统策略）、user（用户策略） </li>
+        # <li>RuleAction- String - 是否必填：否 - 执行动作过滤，取值：RULE_MODE_ALERT（告警）、RULE_MODE_HOLDUP（拦截） </li>
+        # @type Filters: Array
         # @param Limit: 需要返回的数量，默认为10，最大值为100
         # @type Limit: Integer
         # @param Offset: 偏移量，默认为0。
         # @type Offset: Integer
-        # @param Filters: 过滤参数,"Filters":[{"Name":"Status","Values":["2"]}]
-        # @type Filters: Array
         # @param Order: 升序降序,asc desc
         # @type Order: String
-        # @param By: 排序字段
-        # @type By: String
 
-        attr_accessor :Limit, :Offset, :Filters, :Order, :By
+        attr_accessor :By, :Filters, :Limit, :Offset, :Order
 
-        def initialize(limit=nil, offset=nil, filters=nil, order=nil, by=nil)
+        def initialize(by=nil, filters=nil, limit=nil, offset=nil, order=nil)
+          @By = by
+          @Filters = filters
           @Limit = limit
           @Offset = offset
-          @Filters = filters
           @Order = order
-          @By = by
         end
 
         def deserialize(params)
-          @Limit = params['Limit']
-          @Offset = params['Offset']
+          @By = params['By']
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
@@ -7749,30 +7930,42 @@ module TencentCloud
               @Filters << runtimefilters_tmp
             end
           end
+          @Limit = params['Limit']
+          @Offset = params['Offset']
           @Order = params['Order']
-          @By = params['By']
         end
       end
 
       # DescribeAccessControlRules返回参数结构体
       class DescribeAccessControlRulesResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 事件总数量
-        # @type TotalCount: Integer
+        # @param RuleExtSet: 访问控制策略扩展信息列表（含子规则内容和执行动作）。新前端优先使用此字段
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleExtSet: Array
         # @param RuleSet: 访问控制策略信息列表
         # @type RuleSet: Array
+        # @param TotalCount: 事件总数量
+        # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TotalCount, :RuleSet, :RequestId
+        attr_accessor :RuleExtSet, :RuleSet, :TotalCount, :RequestId
 
-        def initialize(totalcount=nil, ruleset=nil, requestid=nil)
-          @TotalCount = totalcount
+        def initialize(ruleextset=nil, ruleset=nil, totalcount=nil, requestid=nil)
+          @RuleExtSet = ruleextset
           @RuleSet = ruleset
+          @TotalCount = totalcount
           @RequestId = requestid
         end
 
         def deserialize(params)
-          @TotalCount = params['TotalCount']
+          unless params['RuleExtSet'].nil?
+            @RuleExtSet = []
+            params['RuleExtSet'].each do |i|
+              accesscontrolruleextsetitem_tmp = AccessControlRuleExtSetItem.new
+              accesscontrolruleextsetitem_tmp.deserialize(i)
+              @RuleExtSet << accesscontrolruleextsetitem_tmp
+            end
+          end
           unless params['RuleSet'].nil?
             @RuleSet = []
             params['RuleSet'].each do |i|
@@ -7781,6 +7974,7 @@ module TencentCloud
               @RuleSet << rulebaseinfo_tmp
             end
           end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -9415,8 +9609,8 @@ module TencentCloud
 
         attr_accessor :ImageDigest, :ImageRepoAddress, :RegistryType, :ImageName, :ImageTag, :ScanTime, :ScanStatus, :VulCnt, :VirusCnt, :RiskCnt, :SentiveInfoCnt, :OsName, :ScanVirusError, :ScanVulError, :LayerInfo, :InstanceId, :InstanceName, :Namespace, :ScanRiskError, :ScanVirusProgress, :ScanVulProgress, :ScanRiskProgress, :ScanRemainTime, :CveStatus, :RiskStatus, :VirusStatus, :Progress, :IsAuthorized, :ImageSize, :ImageId, :RegistryRegion, :ImageCreateTime, :SensitiveInfoCnt, :Id, :Solution, :Reason, :RequestId
         extend Gem::Deprecate
-        deprecate :SentiveInfoCnt, :none, 2026, 5
-        deprecate :SentiveInfoCnt=, :none, 2026, 5
+        deprecate :SentiveInfoCnt, :none, 2026, 6
+        deprecate :SentiveInfoCnt=, :none, 2026, 6
 
         def initialize(imagedigest=nil, imagerepoaddress=nil, registrytype=nil, imagename=nil, imagetag=nil, scantime=nil, scanstatus=nil, vulcnt=nil, viruscnt=nil, riskcnt=nil, sentiveinfocnt=nil, osname=nil, scanviruserror=nil, scanvulerror=nil, layerinfo=nil, instanceid=nil, instancename=nil, namespace=nil, scanriskerror=nil, scanvirusprogress=nil, scanvulprogress=nil, scanriskprogress=nil, scanremaintime=nil, cvestatus=nil, riskstatus=nil, virusstatus=nil, progress=nil, isauthorized=nil, imagesize=nil, imageid=nil, registryregion=nil, imagecreatetime=nil, sensitiveinfocnt=nil, id=nil, solution=nil, reason=nil, requestid=nil)
           @ImageDigest = imagedigest
@@ -10548,43 +10742,45 @@ module TencentCloud
 
       # DescribeAssetImageScanSetting返回参数结构体
       class DescribeAssetImageScanSettingResponse < TencentCloud::Common::AbstractModel
-        # @param Enable: 开关
+        # @param Enable: <p>开关</p>
         # @type Enable: Boolean
-        # @param ScanTime: 扫描时刻(完整时间;后端按0时区解析时分秒)
+        # @param ScanTime: <p>扫描时刻(完整时间;后端按0时区解析时分秒)</p>
         # @type ScanTime: String
-        # @param ScanPeriod: 扫描间隔
+        # @param ScanPeriod: <p>扫描间隔</p>
         # @type ScanPeriod: Integer
-        # @param ScanVirus: 扫描木马
+        # @param ScanVirus: <p>扫描木马</p>
         # @type ScanVirus: Boolean
-        # @param ScanRisk: 扫描敏感信息
+        # @param ScanRisk: <p>扫描敏感信息</p>
         # @type ScanRisk: Boolean
-        # @param ScanVul: 扫描漏洞
+        # @param ScanVul: <p>扫描漏洞</p>
         # @type ScanVul: Boolean
-        # @param All: 扫描全部镜像
+        # @param All: <p>扫描全部镜像</p>
         # @type All: Boolean
-        # @param Images: 自定义扫描镜像
+        # @param Images: <p>自定义扫描镜像</p>
         # @type Images: Array
-        # @param ContainerRunning: 镜像是否存在运行中的容器
+        # @param ContainerRunning: <p>镜像是否存在运行中的容器</p>
         # @type ContainerRunning: Boolean
-        # @param ScanScope: 扫描范围 0 全部授权镜像，1自选镜像，2 推荐扫描
+        # @param ScanScope: <p>扫描范围 0 全部授权镜像，1自选镜像，2 推荐扫描 3:集群筛选扫描</p>
         # @type ScanScope: Integer
-        # @param ScanEndTime: 扫描结束时间 02:00 时分
+        # @param ScanEndTime: <p>扫描结束时间 02:00 时分</p>
         # @type ScanEndTime: String
-        # @param ExcludeImages: 排除的扫描镜像
+        # @param ExcludeImages: <p>排除的扫描镜像</p>
         # @type ExcludeImages: Array
-        # @param LastScanTime: 最后一次扫描时间
+        # @param LastScanTime: <p>最后一次扫描时间</p>
         # @type LastScanTime: String
-        # @param ScanResult: 扫描结果(Success|InsufficientLicense|ImageNeedIsEmpty|InternalError)
+        # @param ScanResult: <p>扫描结果(Success|InsufficientLicense|ImageNeedIsEmpty|InternalError)</p>
         # @type ScanResult: String
+        # @param ClusterIDs: <p>集群id</p>
+        # @type ClusterIDs: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Enable, :ScanTime, :ScanPeriod, :ScanVirus, :ScanRisk, :ScanVul, :All, :Images, :ContainerRunning, :ScanScope, :ScanEndTime, :ExcludeImages, :LastScanTime, :ScanResult, :RequestId
+        attr_accessor :Enable, :ScanTime, :ScanPeriod, :ScanVirus, :ScanRisk, :ScanVul, :All, :Images, :ContainerRunning, :ScanScope, :ScanEndTime, :ExcludeImages, :LastScanTime, :ScanResult, :ClusterIDs, :RequestId
         extend Gem::Deprecate
-        deprecate :All, :none, 2026, 5
-        deprecate :All=, :none, 2026, 5
+        deprecate :All, :none, 2026, 6
+        deprecate :All=, :none, 2026, 6
 
-        def initialize(enable=nil, scantime=nil, scanperiod=nil, scanvirus=nil, scanrisk=nil, scanvul=nil, all=nil, images=nil, containerrunning=nil, scanscope=nil, scanendtime=nil, excludeimages=nil, lastscantime=nil, scanresult=nil, requestid=nil)
+        def initialize(enable=nil, scantime=nil, scanperiod=nil, scanvirus=nil, scanrisk=nil, scanvul=nil, all=nil, images=nil, containerrunning=nil, scanscope=nil, scanendtime=nil, excludeimages=nil, lastscantime=nil, scanresult=nil, clusterids=nil, requestid=nil)
           @Enable = enable
           @ScanTime = scantime
           @ScanPeriod = scanperiod
@@ -10599,6 +10795,7 @@ module TencentCloud
           @ExcludeImages = excludeimages
           @LastScanTime = lastscantime
           @ScanResult = scanresult
+          @ClusterIDs = clusterids
           @RequestId = requestid
         end
 
@@ -10617,6 +10814,7 @@ module TencentCloud
           @ExcludeImages = params['ExcludeImages']
           @LastScanTime = params['LastScanTime']
           @ScanResult = params['ScanResult']
+          @ClusterIDs = params['ClusterIDs']
           @RequestId = params['RequestId']
         end
       end
@@ -14617,8 +14815,8 @@ module TencentCloud
 
         attr_accessor :Enable, :ScanTime, :ScanPeriod, :ScanType, :All, :Images, :Id, :Latest, :ScanEndTime, :RegistryType, :ContainerRunning, :ScanScope, :Namespace, :ExcludeImageAssetIds, :LastScanTime, :ScanResult, :RequestId
         extend Gem::Deprecate
-        deprecate :All, :none, 2026, 5
-        deprecate :All=, :none, 2026, 5
+        deprecate :All, :none, 2026, 6
+        deprecate :All=, :none, 2026, 6
 
         def initialize(enable=nil, scantime=nil, scanperiod=nil, scantype=nil, all=nil, images=nil, id=nil, latest=nil, scanendtime=nil, registrytype=nil, containerrunning=nil, scanscope=nil, namespace=nil, excludeimageassetids=nil, lastscantime=nil, scanresult=nil, requestid=nil)
           @Enable = enable
@@ -15072,9 +15270,17 @@ module TencentCloud
 
       # DescribeK8sApiAbnormalRuleList请求参数结构体
       class DescribeK8sApiAbnormalRuleListRequest < TencentCloud::Common::AbstractModel
+        # @param By: 排序字段。
+        # <li>UpdateTime - string  - 是否必填: 否 -最后更新时间</li>
+        # <li>EffectClusterCount - string  - 是否必填: 否 -影响集群数</li>
+        # @type By: String
         # @param Filters: 过滤条件。
         # <li>RuleType - string  - 是否必填: 否 -规则类型</li>
         # <li>Status - string  - 是否必填: 否 -状态</li>
+        # <li>RuleName - string  - 是否必填: 否 -规则名称(模糊查询)</li>
+        # <li>ClusterName - string  - 是否必填: 否 -集群名称，模糊查找绑定了该集群的规则（含全集群规则）</li>
+        # <li>ClusterID - string  - 是否必填: 否 -集群ID，模糊查找绑定了该集群的规则（含全集群规则）</li>
+        # <li>RuleAction - string  - 是否必填: 否 -执行动作过滤，取值：RULE_MODE_ALERT（告警）、RULE_MODE_HOLDUP（拦截）</li>
         # @type Filters: Array
         # @param Limit: 需要返回的数量，默认为10，最大值为100
         # @type Limit: Integer
@@ -15082,22 +15288,19 @@ module TencentCloud
         # @type Offset: Integer
         # @param Order: 排序方式
         # @type Order: String
-        # @param By: 排序字段。
-        # <li>UpdateTime - string  - 是否必填: 否 -最后更新时间</li>
-        # <li>EffectClusterCount - string  - 是否必填: 否 -影响集群数</li>
-        # @type By: String
 
-        attr_accessor :Filters, :Limit, :Offset, :Order, :By
+        attr_accessor :By, :Filters, :Limit, :Offset, :Order
 
-        def initialize(filters=nil, limit=nil, offset=nil, order=nil, by=nil)
+        def initialize(by=nil, filters=nil, limit=nil, offset=nil, order=nil)
+          @By = by
           @Filters = filters
           @Limit = limit
           @Offset = offset
           @Order = order
-          @By = by
         end
 
         def deserialize(params)
+          @By = params['By']
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
@@ -15109,7 +15312,6 @@ module TencentCloud
           @Limit = params['Limit']
           @Offset = params['Offset']
           @Order = params['Order']
-          @By = params['By']
         end
       end
 
@@ -23453,8 +23655,8 @@ module TencentCloud
 
         attr_accessor :ImageDigest, :ImageRepoAddress, :RegistryType, :ImageName, :ImageTag, :ImageSize, :ScanTime, :ScanStatus, :VulCnt, :VirusCnt, :RiskCnt, :SentiveInfoCnt, :IsTrustImage, :OsName, :ScanVirusError, :ScanVulError, :InstanceId, :InstanceName, :Namespace, :ScanRiskError, :ScanVirusProgress, :ScanVulProgress, :ScanRiskProgress, :ScanRemainTime, :CveStatus, :RiskStatus, :VirusStatus, :Progress, :IsAuthorized, :RegistryRegion, :Id, :ImageId, :ImageCreateTime, :IsLatestImage, :LowLevelVulCnt, :MediumLevelVulCnt, :HighLevelVulCnt, :CriticalLevelVulCnt, :ContainerCnt, :ComponentCnt, :IsRunning, :HasNeedFixVul, :SensitiveInfoCnt, :RecommendedFix, :Solution, :Reason
         extend Gem::Deprecate
-        deprecate :SentiveInfoCnt, :none, 2026, 5
-        deprecate :SentiveInfoCnt=, :none, 2026, 5
+        deprecate :SentiveInfoCnt, :none, 2026, 6
+        deprecate :SentiveInfoCnt=, :none, 2026, 6
 
         def initialize(imagedigest=nil, imagerepoaddress=nil, registrytype=nil, imagename=nil, imagetag=nil, imagesize=nil, scantime=nil, scanstatus=nil, vulcnt=nil, viruscnt=nil, riskcnt=nil, sentiveinfocnt=nil, istrustimage=nil, osname=nil, scanviruserror=nil, scanvulerror=nil, instanceid=nil, instancename=nil, namespace=nil, scanriskerror=nil, scanvirusprogress=nil, scanvulprogress=nil, scanriskprogress=nil, scanremaintime=nil, cvestatus=nil, riskstatus=nil, virusstatus=nil, progress=nil, isauthorized=nil, registryregion=nil, id=nil, imageid=nil, imagecreatetime=nil, islatestimage=nil, lowlevelvulcnt=nil, mediumlevelvulcnt=nil, highlevelvulcnt=nil, criticallevelvulcnt=nil, containercnt=nil, componentcnt=nil, isrunning=nil, hasneedfixvul=nil, sensitiveinfocnt=nil, recommendedfix=nil, solution=nil, reason=nil)
           @ImageDigest = imagedigest
@@ -24589,38 +24791,38 @@ module TencentCloud
 
       # k8a api 异常请求规则详情
       class K8sApiAbnormalRuleInfo < TencentCloud::Common::AbstractModel
-        # @param RuleName: 规则名称
-        # @type RuleName: String
-        # @param Status: 状态
-        # @type Status: Boolean
-        # @param RuleInfoList: 规则信息列表
-        # @type RuleInfoList: Array
+        # @param EffectAllCluster: 是否所有集群生效
+        # @type EffectAllCluster: Boolean
         # @param EffectClusterIDSet: 生效集群IDSet
         # @type EffectClusterIDSet: Array
+        # @param RuleInfoList: 规则信息列表
+        # @type RuleInfoList: Array
+        # @param RuleName: 规则名称
+        # @type RuleName: String
         # @param RuleType: 规则类型
         # RT_SYSTEM 系统规则
         # RT_USER 用户自定义
         # @type RuleType: String
-        # @param EffectAllCluster: 是否所有集群生效
-        # @type EffectAllCluster: Boolean
+        # @param Status: 状态
+        # @type Status: Boolean
         # @param RuleID: 规则ID
         # @type RuleID: String
 
-        attr_accessor :RuleName, :Status, :RuleInfoList, :EffectClusterIDSet, :RuleType, :EffectAllCluster, :RuleID
+        attr_accessor :EffectAllCluster, :EffectClusterIDSet, :RuleInfoList, :RuleName, :RuleType, :Status, :RuleID
 
-        def initialize(rulename=nil, status=nil, ruleinfolist=nil, effectclusteridset=nil, ruletype=nil, effectallcluster=nil, ruleid=nil)
-          @RuleName = rulename
-          @Status = status
-          @RuleInfoList = ruleinfolist
-          @EffectClusterIDSet = effectclusteridset
-          @RuleType = ruletype
+        def initialize(effectallcluster=nil, effectclusteridset=nil, ruleinfolist=nil, rulename=nil, ruletype=nil, status=nil, ruleid=nil)
           @EffectAllCluster = effectallcluster
+          @EffectClusterIDSet = effectclusteridset
+          @RuleInfoList = ruleinfolist
+          @RuleName = rulename
+          @RuleType = ruletype
+          @Status = status
           @RuleID = ruleid
         end
 
         def deserialize(params)
-          @RuleName = params['RuleName']
-          @Status = params['Status']
+          @EffectAllCluster = params['EffectAllCluster']
+          @EffectClusterIDSet = params['EffectClusterIDSet']
           unless params['RuleInfoList'].nil?
             @RuleInfoList = []
             params['RuleInfoList'].each do |i|
@@ -24629,88 +24831,109 @@ module TencentCloud
               @RuleInfoList << k8sapiabnormalrulescopeinfo_tmp
             end
           end
-          @EffectClusterIDSet = params['EffectClusterIDSet']
+          @RuleName = params['RuleName']
           @RuleType = params['RuleType']
-          @EffectAllCluster = params['EffectAllCluster']
+          @Status = params['Status']
           @RuleID = params['RuleID']
         end
       end
 
       # k8s api 异常请求规则列表Item
       class K8sApiAbnormalRuleListItem < TencentCloud::Common::AbstractModel
+        # @param EffectAllCluster: 是否全部集群生效。true表示全部集群生效，false表示仅指定集群生效
+        # @type EffectAllCluster: Boolean
+        # @param EffectClusterCount: 受影响集群总数
+        # @type EffectClusterCount: Integer
+        # @param OprUin: 编辑账号
+        # @type OprUin: String
+        # @param RuleActions: 规则组中所有执行动作的去重列表。当前黑名单仅包含 RULE_MODE_ALERT（告警）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleActions: Array
         # @param RuleID: 规则ID
         # @type RuleID: String
+        # @param RuleInfoList: 子规则内容列表，从 rule_details JSON 反序列化
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleInfoList: Array
         # @param RuleName: 规则名称
         # @type RuleName: String
         # @param RuleType: 规则类型
         # RT_SYSTEM 系统规则
         # RT_USER 用户自定义
         # @type RuleType: String
-        # @param EffectClusterCount: 受影响集群总数
-        # @type EffectClusterCount: Integer
-        # @param UpdateTime: 更新时间
-        # @type UpdateTime: String
-        # @param OprUin: 编辑账号
-        # @type OprUin: String
         # @param Status: 状态
         # @type Status: Boolean
+        # @param UpdateTime: 更新时间
+        # @type UpdateTime: String
 
-        attr_accessor :RuleID, :RuleName, :RuleType, :EffectClusterCount, :UpdateTime, :OprUin, :Status
+        attr_accessor :EffectAllCluster, :EffectClusterCount, :OprUin, :RuleActions, :RuleID, :RuleInfoList, :RuleName, :RuleType, :Status, :UpdateTime
 
-        def initialize(ruleid=nil, rulename=nil, ruletype=nil, effectclustercount=nil, updatetime=nil, opruin=nil, status=nil)
+        def initialize(effectallcluster=nil, effectclustercount=nil, opruin=nil, ruleactions=nil, ruleid=nil, ruleinfolist=nil, rulename=nil, ruletype=nil, status=nil, updatetime=nil)
+          @EffectAllCluster = effectallcluster
+          @EffectClusterCount = effectclustercount
+          @OprUin = opruin
+          @RuleActions = ruleactions
           @RuleID = ruleid
+          @RuleInfoList = ruleinfolist
           @RuleName = rulename
           @RuleType = ruletype
-          @EffectClusterCount = effectclustercount
-          @UpdateTime = updatetime
-          @OprUin = opruin
           @Status = status
+          @UpdateTime = updatetime
         end
 
         def deserialize(params)
+          @EffectAllCluster = params['EffectAllCluster']
+          @EffectClusterCount = params['EffectClusterCount']
+          @OprUin = params['OprUin']
+          @RuleActions = params['RuleActions']
           @RuleID = params['RuleID']
+          unless params['RuleInfoList'].nil?
+            @RuleInfoList = []
+            params['RuleInfoList'].each do |i|
+              k8sapiabnormalrulescopeinfo_tmp = K8sApiAbnormalRuleScopeInfo.new
+              k8sapiabnormalrulescopeinfo_tmp.deserialize(i)
+              @RuleInfoList << k8sapiabnormalrulescopeinfo_tmp
+            end
+          end
           @RuleName = params['RuleName']
           @RuleType = params['RuleType']
-          @EffectClusterCount = params['EffectClusterCount']
-          @UpdateTime = params['UpdateTime']
-          @OprUin = params['OprUin']
           @Status = params['Status']
+          @UpdateTime = params['UpdateTime']
         end
       end
 
       # k8s api 异常事件规则配置范围
       class K8sApiAbnormalRuleScopeInfo < TencentCloud::Common::AbstractModel
+        # @param Action: <p>执行动作。黑名单规则仅支持 RULE_MODE_ALERT（告警），不再支持 RULE_MODE_RELEASE/PASS（放行）。放行请使用白名单接口 ModifyK8sApiAbnormalWhitelist</p>
+        # @type Action: String
         # @param Scope: <p>范围<br>系统事件:<br>ANONYMOUS_ACCESS: 匿名访问<br>ABNORMAL_UA_REQ: 异常UA请求<br>ANONYMOUS_ABNORMAL_PERMISSION: 匿名用户权限异动<br>GET_CREDENTIALS: 凭据信息获取<br>MOUNT_SENSITIVE_PATH: 敏感路径挂载<br>COMMAND_RUN: 命令执行<br>PRIVILEGE_CONTAINER: 特权容器<br>EXCEPTION_CRONTAB_TASK: 异常定时任务<br>STATICS_POD: 静态pod创建<br>ABNORMAL_CREATE_POD: 异常pod创建<br>USER_DEFINED: 用户自定义</p>
         # @type Scope: String
-        # @param Action: <p>动作(RULE_MODE_ALERT: 告警 RULE_MODE_RELEASE:放行)</p>
-        # @type Action: String
-        # @param RiskLevel: <p>威胁等级 HIGH:高级 MIDDLE: 中级 LOW:低级 NOTICE:提示</p>
-        # @type RiskLevel: String
-        # @param Status: <p>开关状态(true:开 false:关) 适用于系统规则</p>
-        # @type Status: Boolean
         # @param IsDelete: <p>是否被删除 适用于自定义规则入参</p>
         # @type IsDelete: Boolean
+        # @param RiskLevel: <p>威胁等级 HIGH:高级 MIDDLE: 中级 LOW:低级 NOTICE:提示</p>
+        # @type RiskLevel: String
         # @param RuleTypeZH: <p>规则类型对应中文</p>
         # @type RuleTypeZH: String
+        # @param Status: <p>开关状态(true:开 false:关) 适用于系统规则</p>
+        # @type Status: Boolean
 
-        attr_accessor :Scope, :Action, :RiskLevel, :Status, :IsDelete, :RuleTypeZH
+        attr_accessor :Action, :Scope, :IsDelete, :RiskLevel, :RuleTypeZH, :Status
 
-        def initialize(scope=nil, action=nil, risklevel=nil, status=nil, isdelete=nil, ruletypezh=nil)
-          @Scope = scope
+        def initialize(action=nil, scope=nil, isdelete=nil, risklevel=nil, ruletypezh=nil, status=nil)
           @Action = action
-          @RiskLevel = risklevel
-          @Status = status
+          @Scope = scope
           @IsDelete = isdelete
+          @RiskLevel = risklevel
           @RuleTypeZH = ruletypezh
+          @Status = status
         end
 
         def deserialize(params)
-          @Scope = params['Scope']
           @Action = params['Action']
-          @RiskLevel = params['RiskLevel']
-          @Status = params['Status']
+          @Scope = params['Scope']
           @IsDelete = params['IsDelete']
+          @RiskLevel = params['RiskLevel']
           @RuleTypeZH = params['RuleTypeZH']
+          @Status = params['Status']
         end
       end
 
@@ -28382,41 +28605,45 @@ module TencentCloud
 
       # 运行时安全，策略基本信息
       class RuleBaseInfo < TencentCloud::Common::AbstractModel
-        # @param IsDefault: true: 默认策略，false:自定义策略
-        # @type IsDefault: Boolean
-        # @param EffectImageCount: 策略生效镜像数量
-        # @type EffectImageCount: Integer
-        # @param RuleId: 策略Id
-        # @type RuleId: String
-        # @param UpdateTime: 策略更新时间, 存在为空的情况
-        # @type UpdateTime: String
-        # @param RuleName: 策略名字
-        # @type RuleName: String
         # @param EditUserName: 编辑用户名称
         # @type EditUserName: String
+        # @param EffectImageCount: 策略生效镜像数量
+        # @type EffectImageCount: Integer
+        # @param IsDefault: true: 默认策略，false:自定义策略
+        # @type IsDefault: Boolean
+        # @param IsGlobal: 是否为全部镜像规则。true表示对所有镜像生效
+        # @type IsGlobal: Boolean
         # @param IsEnable: true: 策略启用，false：策略禁用
         # @type IsEnable: Boolean
+        # @param RuleId: 策略Id
+        # @type RuleId: String
+        # @param RuleName: 策略名字
+        # @type RuleName: String
+        # @param UpdateTime: 策略更新时间, 存在为空的情况
+        # @type UpdateTime: String
 
-        attr_accessor :IsDefault, :EffectImageCount, :RuleId, :UpdateTime, :RuleName, :EditUserName, :IsEnable
+        attr_accessor :EditUserName, :EffectImageCount, :IsDefault, :IsGlobal, :IsEnable, :RuleId, :RuleName, :UpdateTime
 
-        def initialize(isdefault=nil, effectimagecount=nil, ruleid=nil, updatetime=nil, rulename=nil, editusername=nil, isenable=nil)
-          @IsDefault = isdefault
-          @EffectImageCount = effectimagecount
-          @RuleId = ruleid
-          @UpdateTime = updatetime
-          @RuleName = rulename
+        def initialize(editusername=nil, effectimagecount=nil, isdefault=nil, isglobal=nil, isenable=nil, ruleid=nil, rulename=nil, updatetime=nil)
           @EditUserName = editusername
+          @EffectImageCount = effectimagecount
+          @IsDefault = isdefault
+          @IsGlobal = isglobal
           @IsEnable = isenable
+          @RuleId = ruleid
+          @RuleName = rulename
+          @UpdateTime = updatetime
         end
 
         def deserialize(params)
-          @IsDefault = params['IsDefault']
-          @EffectImageCount = params['EffectImageCount']
-          @RuleId = params['RuleId']
-          @UpdateTime = params['UpdateTime']
-          @RuleName = params['RuleName']
           @EditUserName = params['EditUserName']
+          @EffectImageCount = params['EffectImageCount']
+          @IsDefault = params['IsDefault']
+          @IsGlobal = params['IsGlobal']
           @IsEnable = params['IsEnable']
+          @RuleId = params['RuleId']
+          @RuleName = params['RuleName']
+          @UpdateTime = params['UpdateTime']
         end
       end
 
@@ -30080,8 +30307,8 @@ module TencentCloud
 
         attr_accessor :ScanPeriod, :Enable, :ScanTime, :ScanType, :Images, :All, :Id, :Latest, :ContainerRunning, :ScanEndTime, :ScanScope, :RegistryType, :Namespace, :ExcludeImageAssetIds
         extend Gem::Deprecate
-        deprecate :All, :none, 2026, 5
-        deprecate :All=, :none, 2026, 5
+        deprecate :All, :none, 2026, 6
+        deprecate :All=, :none, 2026, 6
 
         def initialize(scanperiod=nil, enable=nil, scantime=nil, scantype=nil, images=nil, all=nil, id=nil, latest=nil, containerrunning=nil, scanendtime=nil, scanscope=nil, registrytype=nil, namespace=nil, excludeimageassetids=nil)
           @ScanPeriod = scanperiod

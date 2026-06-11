@@ -5374,8 +5374,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :Memory, :Volume, :OplogSize, :NodeNum, :ReplicateSetNum, :InMaintenance, :MongosMemory, :AddNodeList, :RemoveNodeList, :Cpu, :MachineCode
         extend Gem::Deprecate
-        deprecate :OplogSize, :none, 2026, 5
-        deprecate :OplogSize=, :none, 2026, 5
+        deprecate :OplogSize, :none, 2026, 6
+        deprecate :OplogSize=, :none, 2026, 6
 
         def initialize(instanceid=nil, memory=nil, volume=nil, oplogsize=nil, nodenum=nil, replicatesetnum=nil, inmaintenance=nil, mongosmemory=nil, addnodelist=nil, removenodelist=nil, cpu=nil, machinecode=nil)
           @InstanceId = instanceid
@@ -5918,6 +5918,46 @@ module TencentCloud
         def deserialize(params)
           @Key = params['Key']
           @Value = params['Value']
+        end
+      end
+
+      # PromoteDBInstanceToActive请求参数结构体
+      class PromoteDBInstanceToActiveRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 灾备实例id
+        # @type InstanceId: String
+        # @param MasterId: 主实例id
+        # @type MasterId: String
+
+        attr_accessor :InstanceId, :MasterId
+
+        def initialize(instanceid=nil, masterid=nil)
+          @InstanceId = instanceid
+          @MasterId = masterid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @MasterId = params['MasterId']
+        end
+      end
+
+      # PromoteDBInstanceToActive返回参数结构体
+      class PromoteDBInstanceToActiveResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: 任务id
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :RequestId
+
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
         end
       end
 
@@ -6531,27 +6571,29 @@ module TencentCloud
 
       # SetInstanceMaintenance请求参数结构体
       class SetInstanceMaintenanceRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 指定实例ID。例如：cmgo-p8vn****。请登录 [MongoDB 控制台](https://console.cloud.tencent.com/mongodb)在实例列表复制实例 ID。
+        # @param InstanceId: <p>指定实例ID。例如：cmgo-p8vn****。请登录 <a href="https://console.cloud.tencent.com/mongodb">MongoDB 控制台</a>在实例列表复制实例 ID。</p>
         # @type InstanceId: String
-        # @param MaintenanceStart: 维护时间窗开始时间。取值范围为"00:00-23:00"的任意整点或半点，如00:00或00:30。
+        # @param MaintenanceStart: <p>维护时间窗开始时间。取值范围为&quot;00:00-23:00&quot;的任意整点或半点，如00:00或00:30。</p>
         # @type MaintenanceStart: String
-        # @param MaintenanceEnd: 维护时间窗结束时间。
-        # - 取值范围为"00:00-23:00"的任意整点或半点，维护时间持续时长最小为30分钟，最大为3小时。
-        # - 结束时间务必是基于开始时间向后的时间。
+        # @param MaintenanceEnd: <p>维护时间窗结束时间。</p><ul><li>取值范围为&quot;00:00-23:00&quot;的任意整点或半点，维护时间持续时长最小为30分钟，最大为3小时。</li><li>结束时间务必是基于开始时间向后的时间。</li></ul>
         # @type MaintenanceEnd: String
+        # @param MaintenanceDays: <p>指定每周内维护时间窗口的具体日期。  格式：请输入 1-7 之间的数字代表周一到周日（例如：1 代表周一），多个日期请用英文逗号 , 分隔。 示例：输入 1,3,5 表示维护窗口周期在每周的周一、周三、周五。 默认值：不设置，则默认为全周期 (1,2,3,4,5,6,7)。</p>
+        # @type MaintenanceDays: String
 
-        attr_accessor :InstanceId, :MaintenanceStart, :MaintenanceEnd
+        attr_accessor :InstanceId, :MaintenanceStart, :MaintenanceEnd, :MaintenanceDays
 
-        def initialize(instanceid=nil, maintenancestart=nil, maintenanceend=nil)
+        def initialize(instanceid=nil, maintenancestart=nil, maintenanceend=nil, maintenancedays=nil)
           @InstanceId = instanceid
           @MaintenanceStart = maintenancestart
           @MaintenanceEnd = maintenanceend
+          @MaintenanceDays = maintenancedays
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
           @MaintenanceStart = params['MaintenanceStart']
           @MaintenanceEnd = params['MaintenanceEnd']
+          @MaintenanceDays = params['MaintenanceDays']
         end
       end
 

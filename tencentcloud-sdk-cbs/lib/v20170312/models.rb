@@ -273,6 +273,33 @@ module TencentCloud
         end
       end
 
+      # AttachRemoteDisks请求参数结构体
+      class AttachRemoteDisksRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # AttachRemoteDisks返回参数结构体
+      class AttachRemoteDisksResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 描述了新购云硬盘时自动将云硬盘初始化并挂载至云服务器内部的配置。
       class AutoMountConfiguration < TencentCloud::Common::AbstractModel
         # @param InstanceId: 要挂载到的实例ID。
@@ -842,6 +869,33 @@ module TencentCloud
 
         def deserialize(params)
           @DiskIdSet = params['DiskIdSet']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateRemoteDisks请求参数结构体
+      class CreateRemoteDisksRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # CreateRemoteDisks返回参数结构体
+      class CreateRemoteDisksResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -1572,6 +1626,111 @@ module TencentCloud
         end
       end
 
+      # DescribeRemoteDiskConfigQuota请求参数结构体
+      class DescribeRemoteDiskConfigQuotaRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: <p>过滤条件。支持的过滤条件如下：</p><ul><li>instance-family：按照机型族过滤。</li><li>instance-type：按照机型规格过滤。</li><li>zone：按照可用区过滤。</li><li>instance-charge-type：按照付费方式过滤。取值范围：PREPAID、POSTPAID_BY_HOUR、SPOTPAID、UNDERWRITE。</li></ul>
+        # @type Filters: Array
+
+        attr_accessor :Filters
+
+        def initialize(filters=nil)
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeRemoteDiskConfigQuota返回参数结构体
+      class DescribeRemoteDiskConfigQuotaResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeRemoteDisksDeniedActions请求参数结构体
+      class DescribeRemoteDisksDeniedActionsRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeRemoteDisksDeniedActions返回参数结构体
+      class DescribeRemoteDisksDeniedActionsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeRemoteDisks请求参数结构体
+      class DescribeRemoteDisksRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: <p>过滤条件。此参数不支持与 RemoteDiskIds 同时指定。</p>
+        # @type Filters: Array
+
+        attr_accessor :Filters
+
+        def initialize(filters=nil)
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeRemoteDisks返回参数结构体
+      class DescribeRemoteDisksResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeSnapshotGroups请求参数结构体
       class DescribeSnapshotGroupsRequest < TencentCloud::Common::AbstractModel
         # @param Filters: 过滤条件。<br><li>snapshot-group-id - Array of String - 是否必填：否 -（过滤条件）按快照组ID过滤 <br><li>snapshot-group-state - Array of String - 是否必填：否 -（过滤条件）按快照组状态过滤。(NORMAL: 正常 | CREATING:创建中 | ROLLBACKING:回滚中) <br><li>snapshot-group-name - Array of String - 是否必填：否 -（过滤条件）按快照组名称过滤 <br><li>snapshot-id - Array of String - 是否必填：否 -（过滤条件）按快照组内的快照ID过滤
@@ -1824,6 +1983,33 @@ module TencentCloud
 
       # DetachDisks返回参数结构体
       class DetachDisksResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DetachRemoteDisks请求参数结构体
+      class DetachRemoteDisksRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DetachRemoteDisks返回参数结构体
+      class DetachRemoteDisksResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -2377,6 +2563,33 @@ module TencentCloud
         end
       end
 
+      # InquirePriceCreateRemoteDisks请求参数结构体
+      class InquirePriceCreateRemoteDisksRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # InquirePriceCreateRemoteDisks返回参数结构体
+      class InquirePriceCreateRemoteDisksResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # InquirePriceModifyDiskBackupQuota请求参数结构体
       class InquirePriceModifyDiskBackupQuotaRequest < TencentCloud::Common::AbstractModel
         # @param DiskId: 云硬盘ID， 通过[DescribeDisks](/document/product/362/16315)接口查询。
@@ -2459,6 +2672,33 @@ module TencentCloud
             @DiskPrice = Price.new
             @DiskPrice.deserialize(params['DiskPrice'])
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # InquirePriceRenewRemoteDisks请求参数结构体
+      class InquirePriceRenewRemoteDisksRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # InquirePriceRenewRemoteDisks返回参数结构体
+      class InquirePriceRenewRemoteDisksResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -2915,6 +3155,33 @@ module TencentCloud
         end
       end
 
+      # ModifyRemoteDiskAttributes请求参数结构体
+      class ModifyRemoteDiskAttributesRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # ModifyRemoteDiskAttributes返回参数结构体
+      class ModifyRemoteDiskAttributesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifySnapshotAttribute请求参数结构体
       class ModifySnapshotAttributeRequest < TencentCloud::Common::AbstractModel
         # @param SnapshotId: 快照ID, 可通过[DescribeSnapshots](https://cloud.tencent.com/document/api/362/15647)查询。
@@ -3235,11 +3502,38 @@ module TencentCloud
         end
       end
 
+      # RenewRemoteDisk请求参数结构体
+      class RenewRemoteDiskRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # RenewRemoteDisk返回参数结构体
+      class RenewRemoteDiskResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ResizeDisk请求参数结构体
       class ResizeDiskRequest < TencentCloud::Common::AbstractModel
-        # @param DiskSize: 云硬盘扩容后的大小，单位为GB，必须大于当前云硬盘大小。云盘大小取值范围参见云硬盘[产品分类](/document/product/362/2353)的说明。
+        # @param DiskSize: <p>云硬盘扩容后的大小，单位为GB，必须大于当前云硬盘大小。云盘大小取值范围参见云硬盘<a href="/document/product/362/2353">产品分类</a>的说明。</p>
         # @type DiskSize: Integer
-        # @param DiskId: 云硬盘ID， 通过[DescribeDisks](/document/product/362/16315)接口查询。该字段仅供单块云硬盘扩容时传入。
+        # @param DiskId: <p>云硬盘ID， 通过<a href="/document/product/362/16315">DescribeDisks</a>接口查询。该字段仅供单块云硬盘扩容时传入。</p>
         # @type DiskId: String
 
         attr_accessor :DiskSize, :DiskId
@@ -3293,74 +3587,56 @@ module TencentCloud
 
       # 描述了快照的详细信息
       class Snapshot < TencentCloud::Common::AbstractModel
-        # @param Placement: 快照所在的位置。
+        # @param Placement: <p>快照所在的位置。</p>
         # @type Placement: :class:`Tencentcloud::Cbs.v20170312.models.Placement`
-        # @param CopyFromRemote: 是否为跨地域复制的快照。取值范围：
-        # <ul>
-        #     <li>true：表示为跨地域复制的快照。</li>
-        #     <li>false：本地域的快照。</li>
-        # </ul>
+        # @param CopyFromRemote: <p>是否为跨地域复制的快照。取值范围：</p><ul>    <li>true：表示为跨地域复制的快照。</li>    <li>false：本地域的快照。</li></ul>
         # @type CopyFromRemote: Boolean
-        # @param SnapshotState: 快照的状态。取值范围：
-        # <ul>
-        #     <li>NORMAL：正常</li>
-        #     <li>CREATING：创建中</li>
-        #     <li>ROLLBACKING：回滚中</li>
-        #     <li>COPYING_FROM_REMOTE：跨地域复制中</li>
-        #     <li>CHECKING_COPIED：复制校验中</li>
-        #     <li>TORECYCLE：待回收</li>
-        # </ul>
+        # @param SnapshotState: <p>快照的状态。取值范围：</p><ul>    <li>NORMAL：正常</li>    <li>CREATING：创建中</li>    <li>ROLLBACKING：回滚中</li>    <li>COPYING_FROM_REMOTE：跨地域复制中</li>    <li>CHECKING_COPIED：复制校验中</li>    <li>TORECYCLE：待回收</li></ul>
         # @type SnapshotState: String
-        # @param IsPermanent: 是否为永久快照。取值范围：
-        # <ul>
-        #     <li>true：永久快照</li>
-        #     <li>false：非永久快照</li>
-        # </ul>
+        # @param IsPermanent: <p>是否为永久快照。取值范围：</p><ul>    <li>true：永久快照</li>    <li>false：非永久快照</li></ul>
         # @type IsPermanent: Boolean
-        # @param SnapshotName: 快照名称，用户自定义的快照别名。调用[ModifySnapshotAttribute](/document/product/362/15650)可修改此字段。
+        # @param SnapshotName: <p>快照名称，用户自定义的快照别名。调用<a href="/document/product/362/15650">ModifySnapshotAttribute</a>可修改此字段。</p>
         # @type SnapshotName: String
-        # @param DeadlineTime: 快照到期时间。如果快照为永久保留，此字段为空。
+        # @param DeadlineTime: <p>快照到期时间。如果快照为永久保留，此字段为空。</p>
         # @type DeadlineTime: String
-        # @param Percent: 快照创建进度百分比，快照创建成功后此字段恒为100。
+        # @param Percent: <p>快照创建进度百分比，快照创建成功后此字段恒为100。</p>
         # @type Percent: Integer
-        # @param Images: 快照关联的镜像列表。
+        # @param Images: <p>快照关联的镜像列表。</p>
         # @type Images: Array
-        # @param ShareReference: 快照当前被共享数。
+        # @param ShareReference: <p>快照当前被共享数。</p>
         # @type ShareReference: Integer
-        # @param SnapshotType: 快照类型，目前该项取值可以为`PRIVATE_SNAPSHOT`（私有快照）或者`SHARED_SNAPSHOT`（共享快照）
+        # @param SnapshotType: <p>快照类型，目前该项取值可以为<code>PRIVATE_SNAPSHOT</code>（私有快照）或者<code>SHARED_SNAPSHOT</code>（共享快照）</p>
         # @type SnapshotType: String
-        # @param DiskSize: 创建此快照的云硬盘大小，单位GiB。
+        # @param DiskSize: <p>创建此快照的云硬盘大小，单位GiB。</p>
         # @type DiskSize: Integer
-        # @param DiskId: 创建此快照的云硬盘ID。
+        # @param DiskId: <p>创建此快照的云硬盘ID。</p>
         # @type DiskId: String
-        # @param CopyingToRegions: 快照正在跨地域复制的目的地域，若没有则返回`[]`。
+        # @param CopyingToRegions: <p>快照正在跨地域复制的目的地域，若没有则返回<code>[]</code>。</p>
         # @type CopyingToRegions: Array
-        # @param Encrypt: 是否为加密盘创建的快照。取值范围：
-        # <ul>
-        #     <li>true：该快照为加密盘创建的</li>
-        #     <li>false：非加密盘创建的快照</li>
-        # </ul>
+        # @param Encrypt: <p>是否为加密盘创建的快照。取值范围：</p><ul>    <li>true：该快照为加密盘创建的</li>    <li>false：非加密盘创建的快照</li></ul>
         # @type Encrypt: Boolean
-        # @param CreateTime: 快照的创建时间。
+        # @param CreateTime: <p>快照的创建时间。</p>
         # @type CreateTime: String
-        # @param ImageCount: 快照关联的镜像个数。
+        # @param ImageCount: <p>快照关联的镜像个数。</p>
         # @type ImageCount: Integer
-        # @param DiskUsage: 创建此快照的云硬盘类型。取值范围：
-        # <ul>
-        #     <li>SYSTEM_DISK：系统盘</li>
-        #     <li>DATA_DISK：数据盘</li>
-        # </ul>
+        # @param DiskUsage: <p>创建此快照的云硬盘类型。取值范围：</p><ul>    <li>SYSTEM_DISK：系统盘</li>    <li>DATA_DISK：数据盘</li></ul>
         # @type DiskUsage: String
-        # @param SnapshotId: 快照ID。
+        # @param SnapshotId: <p>快照ID。</p>
         # @type SnapshotId: String
-        # @param TimeStartShare: 快照开始共享的时间。
+        # @param TimeStartShare: <p>快照开始共享的时间。</p>
         # @type TimeStartShare: String
-        # @param Tags: 快照绑定的标签列表。
+        # @param Tags: <p>快照绑定的标签列表。</p>
         # @type Tags: Array
+        # @param IsLocked: <p>快照是否锁定。取值范围：</p><ul>    <li>true：已锁定</li>    <li>false：未锁定</li></ul>
+        # @type IsLocked: Boolean
+        # @param LatestModifyTime: <p>快照记录的最新修改时间</p>
+        # @type LatestModifyTime: String
+        # @param AutoSnapshotPolicyId: <p>自动快照策略ID，仅当该快照由自动快照策略方式创建时才会返回。</p>
+        # @type AutoSnapshotPolicyId: String
 
-        attr_accessor :Placement, :CopyFromRemote, :SnapshotState, :IsPermanent, :SnapshotName, :DeadlineTime, :Percent, :Images, :ShareReference, :SnapshotType, :DiskSize, :DiskId, :CopyingToRegions, :Encrypt, :CreateTime, :ImageCount, :DiskUsage, :SnapshotId, :TimeStartShare, :Tags
+        attr_accessor :Placement, :CopyFromRemote, :SnapshotState, :IsPermanent, :SnapshotName, :DeadlineTime, :Percent, :Images, :ShareReference, :SnapshotType, :DiskSize, :DiskId, :CopyingToRegions, :Encrypt, :CreateTime, :ImageCount, :DiskUsage, :SnapshotId, :TimeStartShare, :Tags, :IsLocked, :LatestModifyTime, :AutoSnapshotPolicyId
 
-        def initialize(placement=nil, copyfromremote=nil, snapshotstate=nil, ispermanent=nil, snapshotname=nil, deadlinetime=nil, percent=nil, images=nil, sharereference=nil, snapshottype=nil, disksize=nil, diskid=nil, copyingtoregions=nil, encrypt=nil, createtime=nil, imagecount=nil, diskusage=nil, snapshotid=nil, timestartshare=nil, tags=nil)
+        def initialize(placement=nil, copyfromremote=nil, snapshotstate=nil, ispermanent=nil, snapshotname=nil, deadlinetime=nil, percent=nil, images=nil, sharereference=nil, snapshottype=nil, disksize=nil, diskid=nil, copyingtoregions=nil, encrypt=nil, createtime=nil, imagecount=nil, diskusage=nil, snapshotid=nil, timestartshare=nil, tags=nil, islocked=nil, latestmodifytime=nil, autosnapshotpolicyid=nil)
           @Placement = placement
           @CopyFromRemote = copyfromremote
           @SnapshotState = snapshotstate
@@ -3381,6 +3657,9 @@ module TencentCloud
           @SnapshotId = snapshotid
           @TimeStartShare = timestartshare
           @Tags = tags
+          @IsLocked = islocked
+          @LatestModifyTime = latestmodifytime
+          @AutoSnapshotPolicyId = autosnapshotpolicyid
         end
 
         def deserialize(params)
@@ -3421,6 +3700,9 @@ module TencentCloud
               @Tags << tag_tmp
             end
           end
+          @IsLocked = params['IsLocked']
+          @LatestModifyTime = params['LatestModifyTime']
+          @AutoSnapshotPolicyId = params['AutoSnapshotPolicyId']
         end
       end
 
@@ -3533,6 +3815,68 @@ module TencentCloud
         end
       end
 
+      # SwitchParameterCreateRemoteDisks请求参数结构体
+      class SwitchParameterCreateRemoteDisksRequest < TencentCloud::Common::AbstractModel
+        # @param Placement: <p>实例所在的位置。通过该参数可以指定实例所属可用区、所属项目等属性。</p>
+        # @type Placement: :class:`Tencentcloud::Cbs.v20170312.models.Placement`
+
+        attr_accessor :Placement
+
+        def initialize(placement=nil)
+          @Placement = placement
+        end
+
+        def deserialize(params)
+          unless params['Placement'].nil?
+            @Placement = Placement.new
+            @Placement.deserialize(params['Placement'])
+          end
+        end
+      end
+
+      # SwitchParameterCreateRemoteDisks返回参数结构体
+      class SwitchParameterCreateRemoteDisksResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # SwitchParameterRenewRemoteDisks请求参数结构体
+      class SwitchParameterRenewRemoteDisksRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # SwitchParameterRenewRemoteDisks返回参数结构体
+      class SwitchParameterRenewRemoteDisksResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 标签。
       class Tag < TencentCloud::Common::AbstractModel
         # @param Key: 标签健。
@@ -3575,6 +3919,33 @@ module TencentCloud
 
       # TerminateDisks返回参数结构体
       class TerminateDisksResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # TerminateRemoteDisks请求参数结构体
+      class TerminateRemoteDisksRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # TerminateRemoteDisks返回参数结构体
+      class TerminateRemoteDisksResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

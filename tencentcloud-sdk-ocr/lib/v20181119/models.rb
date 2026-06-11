@@ -6445,16 +6445,22 @@ module TencentCloud
         # @type QuestionImagePositions: Array
         # @param RightAnswer: <p>题目级正确答案（步骤批改时使用，包含完整解题步骤）</p>
         # @type RightAnswer: String
+        # @param Subject: <p>学科（如语文、数学、英语）</p>
+        # @type Subject: String
+        # @param QuestionType: <p>题型（如选择题、填空题、计算题、应用题、判断题、作文题）</p>
+        # @type QuestionType: String
 
-        attr_accessor :MarkItemTitle, :AnswerInfos, :MarkInfos, :QuestionPositions, :QuestionImagePositions, :RightAnswer
+        attr_accessor :MarkItemTitle, :AnswerInfos, :MarkInfos, :QuestionPositions, :QuestionImagePositions, :RightAnswer, :Subject, :QuestionType
 
-        def initialize(markitemtitle=nil, answerinfos=nil, markinfos=nil, questionpositions=nil, questionimagepositions=nil, rightanswer=nil)
+        def initialize(markitemtitle=nil, answerinfos=nil, markinfos=nil, questionpositions=nil, questionimagepositions=nil, rightanswer=nil, subject=nil, questiontype=nil)
           @MarkItemTitle = markitemtitle
           @AnswerInfos = answerinfos
           @MarkInfos = markinfos
           @QuestionPositions = questionpositions
           @QuestionImagePositions = questionimagepositions
           @RightAnswer = rightanswer
+          @Subject = subject
+          @QuestionType = questiontype
         end
 
         def deserialize(params)
@@ -6485,6 +6491,8 @@ module TencentCloud
             end
           end
           @RightAnswer = params['RightAnswer']
+          @Subject = params['Subject']
+          @QuestionType = params['QuestionType']
         end
       end
 

@@ -29,30 +29,6 @@ module TencentCloud
         end
 
 
-        # 添加AI任务
-
-        # @param request: Request instance for AddAITask.
-        # @type request: :class:`Tencentcloud::iss::V20230517::AddAITaskRequest`
-        # @rtype: :class:`Tencentcloud::iss::V20230517::AddAITaskResponse`
-        def AddAITask(request)
-          body = send_request('AddAITask', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = AddAITaskResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 用于新增组织。
 
         # @param request: Request instance for AddOrganization.
@@ -488,30 +464,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 删除AI任务
-
-        # @param request: Request instance for DeleteAITask.
-        # @type request: :class:`Tencentcloud::iss::V20230517::DeleteAITaskRequest`
-        # @rtype: :class:`Tencentcloud::iss::V20230517::DeleteAITaskResponse`
-        def DeleteAITask(request)
-          body = send_request('DeleteAITask', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DeleteAITaskResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 用于删除域名。
 
         # @param request: Request instance for DeleteDomain.
@@ -738,54 +690,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteUserDeviceResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 获取AI任务详情
-
-        # @param request: Request instance for DescribeAITask.
-        # @type request: :class:`Tencentcloud::iss::V20230517::DescribeAITaskRequest`
-        # @rtype: :class:`Tencentcloud::iss::V20230517::DescribeAITaskResponse`
-        def DescribeAITask(request)
-          body = send_request('DescribeAITask', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeAITaskResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 获取AI任务识别结果
-
-        # @param request: Request instance for DescribeAITaskResult.
-        # @type request: :class:`Tencentcloud::iss::V20230517::DescribeAITaskResultRequest`
-        # @rtype: :class:`Tencentcloud::iss::V20230517::DescribeAITaskResultResponse`
-        def DescribeAITaskResult(request)
-          body = send_request('DescribeAITaskResult', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeAITaskResultResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1425,30 +1329,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取AI任务列表
-
-        # @param request: Request instance for ListAITasks.
-        # @type request: :class:`Tencentcloud::iss::V20230517::ListAITasksRequest`
-        # @rtype: :class:`Tencentcloud::iss::V20230517::ListAITasksResponse`
-        def ListAITasks(request)
-          body = send_request('ListAITasks', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = ListAITasksResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 获取设备抓拍结果列表
 
         # @param request: Request instance for ListDeviceSnapshots.
@@ -1939,54 +1819,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = SetForbidPlayChannelsResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 更新AI任务
-
-        # @param request: Request instance for UpdateAITask.
-        # @type request: :class:`Tencentcloud::iss::V20230517::UpdateAITaskRequest`
-        # @rtype: :class:`Tencentcloud::iss::V20230517::UpdateAITaskResponse`
-        def UpdateAITask(request)
-          body = send_request('UpdateAITask', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = UpdateAITaskResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 更新 AI 任务状态
-
-        # @param request: Request instance for UpdateAITaskStatus.
-        # @type request: :class:`Tencentcloud::iss::V20230517::UpdateAITaskStatusRequest`
-        # @rtype: :class:`Tencentcloud::iss::V20230517::UpdateAITaskStatusResponse`
-        def UpdateAITaskStatus(request)
-          body = send_request('UpdateAITaskStatus', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = UpdateAITaskStatusResponse.new
             model.deserialize(response['Response'])
             model
           else

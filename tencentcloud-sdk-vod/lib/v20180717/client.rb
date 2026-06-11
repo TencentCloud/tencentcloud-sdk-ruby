@@ -2229,6 +2229,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 该接口用于异步获取 AIGC 人脸信息。注意，调用本接口会产生人脸识别费用，请参考[计费文档](https://cloud.tencent.com/document/product/266/95125#96b3b59a-f9e1-49e9-966a-bedb70a4bf12)。
+
+        # @param request: Request instance for DescribeAigcFaceInfoAsync.
+        # @type request: :class:`Tencentcloud::vod::V20180717::DescribeAigcFaceInfoAsyncRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::DescribeAigcFaceInfoAsyncResponse`
+        def DescribeAigcFaceInfoAsync(request)
+          body = send_request('DescribeAigcFaceInfoAsync', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAigcFaceInfoAsyncResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 该接口返回查询时间范围内AIGC的统计信息。
         #    1. 可以查询最近365天内的AIGC统计数据。
         #    2. 查询时间跨度不超过90天。

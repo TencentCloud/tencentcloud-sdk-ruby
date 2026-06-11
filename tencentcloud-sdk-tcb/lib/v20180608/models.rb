@@ -4853,11 +4853,11 @@ module TencentCloud
       class HTTPServiceDomainParam < TencentCloud::Common::AbstractModel
         # @param Domain: <p>域名。全局唯一。如果域名在其他环境下占用或者腾讯云CDN占用，可能会导致创建失败</p>
         # @type Domain: String
-        # @param AccessType: <p>绑定类型。默认DIRECT。DIRECT: 直连到HTTP访问服务， CDN: 接入云开发CDN，CUSTOM: 自定义接入类型（其他CDN或者WAF）</p>
+        # @param AccessType: <p>绑定类型</p><p>枚举值：</p><ul><li>DIRECT： 直连到HTTP访问服务</li><li>CDN： 接入云开发CDN</li><li>CUSTOM： 自定义接入类型（CDN、EO、WAF等接入）</li></ul><p>默认值：DIRECT</p>
         # @type AccessType: String
-        # @param CertId: <p>证书ID。当前账户下SSL平台的证书ID</p>
+        # @param CertId: <p>证书ID。当前账户下SSL平台的证书ID，无证书无法使用https访问</p>
         # @type CertId: String
-        # @param Protocol: <p>协议类型。默认HTTP_AND_HTTPS。HTTP_AND_HTTPS: 同时开启http和https，HTTP_TO_HTTPS: http重定向成https，HTTPS_TO_HTTP: https重定向成http。如果未配置证书无法访问https或者进行重定向</p>
+        # @param Protocol: <p>协议类型</p><p>枚举值：</p><ul><li>HTTP： 仅开启http</li><li>HTTPS： 仅开启https</li><li>HTTP_AND_HTTPS： 同时开启http和https，默认</li><li>HTTP_TO_HTTPS： http重定向成https，需配置证书</li><li>HTTPS_TO_HTTP： https重定向成http，需配置证书</li></ul><p>默认值：HTTP_AND_HTTPS</p>
         # @type Protocol: String
         # @param CustomCname: <p>自定义CNAME。对应AccessType: Custom</p>
         # @type CustomCname: String
@@ -5006,9 +5006,9 @@ module TencentCloud
 
       # http访问服务客户端限频
       class HTTPServiceQPSPerClient < TencentCloud::Common::AbstractModel
-        # @param LimitBy: 客户端维度限频标识。限制当前资源被单个客户端调用的频率，客户端标识支持 用户ID（UserID） 或 客户端 IP（ClientIP）。UserID 包括 云开发用户 ID 或 微信 openid，如果请求无 UserID 信息，则不会限制。
+        # @param LimitBy: <p>客户端维度限频标识。限制当前资源被单个客户端调用的频率，客户端标识支持 用户ID（UserID） 或 客户端 IP（ClientIP）。UserID 包括 云开发用户 ID 或 微信 openid，如果请求无 UserID 信息，则不会限制。</p><p>枚举值：</p><ul><li>UserID： 云开发用户 ID 或 微信 openid</li><li>ClientIP： 客户端ip</li></ul>
         # @type LimitBy: String
-        # @param LimitValue: 限制QPS值，每秒请求次数
+        # @param LimitValue: <p>限制QPS值，每秒请求次数</p>
         # @type LimitValue: Integer
 
         attr_accessor :LimitBy, :LimitValue
@@ -5095,25 +5095,25 @@ module TencentCloud
 
       # 创建或修改HTTP访问服务输入的路由信息，修改HTTP访问服务路由信息时对应字段不传参数表示不用修改。
       class HTTPServiceRouteParam < TencentCloud::Common::AbstractModel
-        # @param Path: 路径
+        # @param Path: <p>路径</p>
         # @type Path: String
-        # @param UpstreamResourceType: 上游服务类型。创建时必填，修改时可选填。SCF: 云函数，CBR: 云托管，STATIC_STORE: 静态托管，WEB_SCF: WEB云函数，LH: Lighthouse
+        # @param UpstreamResourceType: <p>上游服务类型。创建时必填，修改时可选填</p><p>枚举值：</p><ul><li>SCF： 云函数</li><li>CBR： 云托管</li><li>STATIC_STORE： 静态托管</li><li>WEB_SCF： web云函数</li><li>LH： Lighthouse</li></ul>
         # @type UpstreamResourceType: String
-        # @param UpstreamResourceName: 上游服务名。创建时必填，修改时可选填
+        # @param UpstreamResourceName: <p>上游服务名。创建时必填，修改时可选填</p>
         # @type UpstreamResourceName: String
-        # @param PathRewrite: 路径重写
+        # @param PathRewrite: <p>路径重写</p>
         # @type PathRewrite: :class:`Tencentcloud::Tcb.v20180608.models.HTTPServicePathRewrite`
-        # @param EnableSafeDomain: 是否开启安全域名。默认开启
+        # @param EnableSafeDomain: <p>是否开启安全域名。默认开启</p>
         # @type EnableSafeDomain: Boolean
-        # @param EnableAuth: 是否开启身份认证。默认关闭
+        # @param EnableAuth: <p>是否开启身份认证。默认关闭</p>
         # @type EnableAuth: Boolean
-        # @param EnablePathTransmission: 是否开启路径透传。默认关闭
+        # @param EnablePathTransmission: <p>是否开启路径透传。默认关闭</p>
         # @type EnablePathTransmission: Boolean
-        # @param QPSPolicy: QPS限频策略
+        # @param QPSPolicy: <p>QPS限频策略</p>
         # @type QPSPolicy: :class:`Tencentcloud::Tcb.v20180608.models.HTTPServiceRouteQPSPolicy`
-        # @param Enable: 是否开启路由
+        # @param Enable: <p>是否开启路由</p>
         # @type Enable: Boolean
-        # @param Extension: 扩展字段，内部包含headers处理等
+        # @param Extension: <p>扩展字段，内部包含headers处理等</p>
         # @type Extension: :class:`Tencentcloud::Tcb.v20180608.models.HTTPServiceExtension`
 
         attr_accessor :Path, :UpstreamResourceType, :UpstreamResourceName, :PathRewrite, :EnableSafeDomain, :EnableAuth, :EnablePathTransmission, :QPSPolicy, :Enable, :Extension

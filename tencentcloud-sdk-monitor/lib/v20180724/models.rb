@@ -1598,6 +1598,33 @@ module TencentCloud
         end
       end
 
+      # 轮班人员组信息
+      class CoverStaffInfo < TencentCloud::Common::AbstractModel
+        # @param CoverStaffIDs: 轮班人员id组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CoverStaffIDs: Array
+        # @param CoverStartTime: 轮班开始时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CoverStartTime: Integer
+        # @param CoverEndTime: 轮班结束时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CoverEndTime: Integer
+
+        attr_accessor :CoverStaffIDs, :CoverStartTime, :CoverEndTime
+
+        def initialize(coverstaffids=nil, coverstarttime=nil, coverendtime=nil)
+          @CoverStaffIDs = coverstaffids
+          @CoverStartTime = coverstarttime
+          @CoverEndTime = coverendtime
+        end
+
+        def deserialize(params)
+          @CoverStaffIDs = params['CoverStaffIDs']
+          @CoverStartTime = params['CoverStartTime']
+          @CoverEndTime = params['CoverEndTime']
+        end
+      end
+
       # CreateAlarmNotice请求参数结构体
       class CreateAlarmNoticeRequest < TencentCloud::Common::AbstractModel
         # @param Module: <p>模块名，这里填“monitor”</p>
@@ -2427,6 +2454,103 @@ module TencentCloud
 
         def deserialize(params)
           @ChannelId = params['ChannelId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateOnCallForm请求参数结构体
+      class CreateOnCallFormRequest < TencentCloud::Common::AbstractModel
+        # @param Module: 固定值，为"monitor"
+        # @type Module: String
+        # @param OnCallFormName: 值班表名称
+        # @type OnCallFormName: String
+        # @param StaffInfos: 值班人员id组
+        # @type StaffInfos: Array
+        # @param RotationType: 轮转类型
+        # @type RotationType: String
+        # @param ShiftTime: 换班时间
+        # @type ShiftTime: String
+        # @param EffectiveStartTime: 有效期开始时间，单位s
+        # @type EffectiveStartTime: Integer
+        # @param EffectiveEndTime: 有效期结束时间，单位s
+        # @type EffectiveEndTime: Integer
+        # @param TimeZone: 时区(-12 - 12)
+        # @type TimeZone: Float
+        # @param OnCallFormDesc: 值班表描述
+        # @type OnCallFormDesc: String
+        # @param CoverStaffInfos: 轮班信息
+        # @type CoverStaffInfos: Array
+        # @param Tags: 模板绑定的标签
+        # @type Tags: Array
+
+        attr_accessor :Module, :OnCallFormName, :StaffInfos, :RotationType, :ShiftTime, :EffectiveStartTime, :EffectiveEndTime, :TimeZone, :OnCallFormDesc, :CoverStaffInfos, :Tags
+
+        def initialize(_module=nil, oncallformname=nil, staffinfos=nil, rotationtype=nil, shifttime=nil, effectivestarttime=nil, effectiveendtime=nil, timezone=nil, oncallformdesc=nil, coverstaffinfos=nil, tags=nil)
+          @Module = _module
+          @OnCallFormName = oncallformname
+          @StaffInfos = staffinfos
+          @RotationType = rotationtype
+          @ShiftTime = shifttime
+          @EffectiveStartTime = effectivestarttime
+          @EffectiveEndTime = effectiveendtime
+          @TimeZone = timezone
+          @OnCallFormDesc = oncallformdesc
+          @CoverStaffInfos = coverstaffinfos
+          @Tags = tags
+        end
+
+        def deserialize(params)
+          @Module = params['Module']
+          @OnCallFormName = params['OnCallFormName']
+          unless params['StaffInfos'].nil?
+            @StaffInfos = []
+            params['StaffInfos'].each do |i|
+              staffinfo_tmp = StaffInfo.new
+              staffinfo_tmp.deserialize(i)
+              @StaffInfos << staffinfo_tmp
+            end
+          end
+          @RotationType = params['RotationType']
+          @ShiftTime = params['ShiftTime']
+          @EffectiveStartTime = params['EffectiveStartTime']
+          @EffectiveEndTime = params['EffectiveEndTime']
+          @TimeZone = params['TimeZone']
+          @OnCallFormDesc = params['OnCallFormDesc']
+          unless params['CoverStaffInfos'].nil?
+            @CoverStaffInfos = []
+            params['CoverStaffInfos'].each do |i|
+              coverstaffinfo_tmp = CoverStaffInfo.new
+              coverstaffinfo_tmp.deserialize(i)
+              @CoverStaffInfos << coverstaffinfo_tmp
+            end
+          end
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+        end
+      end
+
+      # CreateOnCallForm返回参数结构体
+      class CreateOnCallFormResponse < TencentCloud::Common::AbstractModel
+        # @param OnCallFormID: 值班表id
+        # @type OnCallFormID: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :OnCallFormID, :RequestId
+
+        def initialize(oncallformid=nil, requestid=nil)
+          @OnCallFormID = oncallformid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @OnCallFormID = params['OnCallFormID']
           @RequestId = params['RequestId']
         end
       end
@@ -3578,6 +3702,50 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteOnCallForms请求参数结构体
+      class DeleteOnCallFormsRequest < TencentCloud::Common::AbstractModel
+        # @param Module: 固定值，为"monitor"
+        # @type Module: String
+        # @param OnCallFormIDs: 要删除的值班表id
+        # @type OnCallFormIDs: Array
+
+        attr_accessor :Module, :OnCallFormIDs
+
+        def initialize(_module=nil, oncallformids=nil)
+          @Module = _module
+          @OnCallFormIDs = oncallformids
+        end
+
+        def deserialize(params)
+          @Module = params['Module']
+          @OnCallFormIDs = params['OnCallFormIDs']
+        end
+      end
+
+      # DeleteOnCallForms返回参数结构体
+      class DeleteOnCallFormsResponse < TencentCloud::Common::AbstractModel
+        # @param FailedOnCallFormIDs: 失败删除的排班id
+        # @type FailedOnCallFormIDs: Array
+        # @param SuccessOnCallFormIDs: 成功删除的排班id
+        # @type SuccessOnCallFormIDs: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FailedOnCallFormIDs, :SuccessOnCallFormIDs, :RequestId
+
+        def initialize(failedoncallformids=nil, successoncallformids=nil, requestid=nil)
+          @FailedOnCallFormIDs = failedoncallformids
+          @SuccessOnCallFormIDs = successoncallformids
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FailedOnCallFormIDs = params['FailedOnCallFormIDs']
+          @SuccessOnCallFormIDs = params['SuccessOnCallFormIDs']
           @RequestId = params['RequestId']
         end
       end
@@ -6411,6 +6579,120 @@ module TencentCloud
             @Support = NotificationContentTemplateSupport.new
             @Support.deserialize(params['Support'])
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeOnCallForm请求参数结构体
+      class DescribeOnCallFormRequest < TencentCloud::Common::AbstractModel
+        # @param Module: 固定值，为"monitor"
+        # @type Module: String
+        # @param OnCallFormID: 值班id
+        # @type OnCallFormID: String
+
+        attr_accessor :Module, :OnCallFormID
+
+        def initialize(_module=nil, oncallformid=nil)
+          @Module = _module
+          @OnCallFormID = oncallformid
+        end
+
+        def deserialize(params)
+          @Module = params['Module']
+          @OnCallFormID = params['OnCallFormID']
+        end
+      end
+
+      # DescribeOnCallForm返回参数结构体
+      class DescribeOnCallFormResponse < TencentCloud::Common::AbstractModel
+        # @param OnCallForm: 值班详情
+        # @type OnCallForm: :class:`Tencentcloud::Monitor.v20180724.models.OneOnCallForm`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :OnCallForm, :RequestId
+
+        def initialize(oncallform=nil, requestid=nil)
+          @OnCallForm = oncallform
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['OnCallForm'].nil?
+            @OnCallForm = OneOnCallForm.new
+            @OnCallForm.deserialize(params['OnCallForm'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeOnCallForms请求参数结构体
+      class DescribeOnCallFormsRequest < TencentCloud::Common::AbstractModel
+        # @param Module: 固定值，为"monitor"
+        # @type Module: String
+        # @param Offset: 分页查询起始位
+        # @type Offset: Integer
+        # @param Limit: 分页查询页数
+        # @type Limit: Integer
+        # @param OnCallFormStaffIDs: 支持userId进行检索
+        # @type OnCallFormStaffIDs: Array
+        # @param RotationType: 值班类型
+        # @type RotationType: String
+        # @param Order: 排序方式
+        # @type Order: String
+        # @param OnCallFormName: 支持id、name进行检索
+        # @type OnCallFormName: String
+
+        attr_accessor :Module, :Offset, :Limit, :OnCallFormStaffIDs, :RotationType, :Order, :OnCallFormName
+
+        def initialize(_module=nil, offset=nil, limit=nil, oncallformstaffids=nil, rotationtype=nil, order=nil, oncallformname=nil)
+          @Module = _module
+          @Offset = offset
+          @Limit = limit
+          @OnCallFormStaffIDs = oncallformstaffids
+          @RotationType = rotationtype
+          @Order = order
+          @OnCallFormName = oncallformname
+        end
+
+        def deserialize(params)
+          @Module = params['Module']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @OnCallFormStaffIDs = params['OnCallFormStaffIDs']
+          @RotationType = params['RotationType']
+          @Order = params['Order']
+          @OnCallFormName = params['OnCallFormName']
+        end
+      end
+
+      # DescribeOnCallForms返回参数结构体
+      class DescribeOnCallFormsResponse < TencentCloud::Common::AbstractModel
+        # @param OnCallForms: 排班信息
+        # @type OnCallForms: Array
+        # @param TotalCount: 总数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :OnCallForms, :TotalCount, :RequestId
+
+        def initialize(oncallforms=nil, totalcount=nil, requestid=nil)
+          @OnCallForms = oncallforms
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['OnCallForms'].nil?
+            @OnCallForms = []
+            params['OnCallForms'].each do |i|
+              oncallform_tmp = OnCallForm.new
+              oncallform_tmp.deserialize(i)
+              @OnCallForms << oncallform_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -11868,14 +12150,14 @@ module TencentCloud
 
         attr_accessor :AlarmNotifyPeriod, :AlarmNotifyType, :EventID, :RuleID, :MetricName, :Description
         extend Gem::Deprecate
-        deprecate :AlarmNotifyPeriod, :none, 2026, 5
-        deprecate :AlarmNotifyPeriod=, :none, 2026, 5
-        deprecate :AlarmNotifyType, :none, 2026, 5
-        deprecate :AlarmNotifyType=, :none, 2026, 5
-        deprecate :EventID, :none, 2026, 5
-        deprecate :EventID=, :none, 2026, 5
-        deprecate :RuleID, :none, 2026, 5
-        deprecate :RuleID=, :none, 2026, 5
+        deprecate :AlarmNotifyPeriod, :none, 2026, 6
+        deprecate :AlarmNotifyPeriod=, :none, 2026, 6
+        deprecate :AlarmNotifyType, :none, 2026, 6
+        deprecate :AlarmNotifyType=, :none, 2026, 6
+        deprecate :EventID, :none, 2026, 6
+        deprecate :EventID=, :none, 2026, 6
+        deprecate :RuleID, :none, 2026, 6
+        deprecate :RuleID=, :none, 2026, 6
 
         def initialize(alarmnotifyperiod=nil, alarmnotifytype=nil, eventid=nil, ruleid=nil, metricname=nil, description=nil)
           @AlarmNotifyPeriod = alarmnotifyperiod
@@ -12606,6 +12888,163 @@ module TencentCloud
         end
       end
 
+      # 排班信息
+      class OnCallForm < TencentCloud::Common::AbstractModel
+        # @param OnCallFormID: 排班id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OnCallFormID: String
+        # @param OnCallFormName: 排班名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OnCallFormName: String
+        # @param OnCallFormDesc: 排班描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OnCallFormDesc: String
+        # @param RotationType: 轮值类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RotationType: String
+        # @param ShiftTime: 换班时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ShiftTime: String
+        # @param EffectiveStartTime: 有效期开始时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EffectiveStartTime: Integer
+        # @param EffectiveEndTime: 有效期结束时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EffectiveEndTime: Integer
+        # @param TimeZone: 时区
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TimeZone: Float
+        # @param CurrOnCallStaffs: 当前值班人员
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CurrOnCallStaffs: Array
+        # @param Tags: 模板绑定的标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
+
+        attr_accessor :OnCallFormID, :OnCallFormName, :OnCallFormDesc, :RotationType, :ShiftTime, :EffectiveStartTime, :EffectiveEndTime, :TimeZone, :CurrOnCallStaffs, :Tags
+
+        def initialize(oncallformid=nil, oncallformname=nil, oncallformdesc=nil, rotationtype=nil, shifttime=nil, effectivestarttime=nil, effectiveendtime=nil, timezone=nil, curroncallstaffs=nil, tags=nil)
+          @OnCallFormID = oncallformid
+          @OnCallFormName = oncallformname
+          @OnCallFormDesc = oncallformdesc
+          @RotationType = rotationtype
+          @ShiftTime = shifttime
+          @EffectiveStartTime = effectivestarttime
+          @EffectiveEndTime = effectiveendtime
+          @TimeZone = timezone
+          @CurrOnCallStaffs = curroncallstaffs
+          @Tags = tags
+        end
+
+        def deserialize(params)
+          @OnCallFormID = params['OnCallFormID']
+          @OnCallFormName = params['OnCallFormName']
+          @OnCallFormDesc = params['OnCallFormDesc']
+          @RotationType = params['RotationType']
+          @ShiftTime = params['ShiftTime']
+          @EffectiveStartTime = params['EffectiveStartTime']
+          @EffectiveEndTime = params['EffectiveEndTime']
+          @TimeZone = params['TimeZone']
+          @CurrOnCallStaffs = params['CurrOnCallStaffs']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+        end
+      end
+
+      # 排班详情
+      class OneOnCallForm < TencentCloud::Common::AbstractModel
+        # @param OnCallFormID: 值班id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OnCallFormID: String
+        # @param OnCallFormName: 值班名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OnCallFormName: String
+        # @param OnCallFormDesc: 值班描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OnCallFormDesc: String
+        # @param StaffInfos: 值班人员
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StaffInfos: Array
+        # @param RotationType: 轮班类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RotationType: String
+        # @param ShiftTime: 换班时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ShiftTime: String
+        # @param EffectiveStartTime: 值班有效期开始时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EffectiveStartTime: Integer
+        # @param EffectiveEndTime: 值班有效期结束时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EffectiveEndTime: Integer
+        # @param TimeZone: 时区
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TimeZone: Float
+        # @param CoverStaffInfos: 替班信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CoverStaffInfos: Array
+        # @param Tags: 模板绑定的标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
+
+        attr_accessor :OnCallFormID, :OnCallFormName, :OnCallFormDesc, :StaffInfos, :RotationType, :ShiftTime, :EffectiveStartTime, :EffectiveEndTime, :TimeZone, :CoverStaffInfos, :Tags
+
+        def initialize(oncallformid=nil, oncallformname=nil, oncallformdesc=nil, staffinfos=nil, rotationtype=nil, shifttime=nil, effectivestarttime=nil, effectiveendtime=nil, timezone=nil, coverstaffinfos=nil, tags=nil)
+          @OnCallFormID = oncallformid
+          @OnCallFormName = oncallformname
+          @OnCallFormDesc = oncallformdesc
+          @StaffInfos = staffinfos
+          @RotationType = rotationtype
+          @ShiftTime = shifttime
+          @EffectiveStartTime = effectivestarttime
+          @EffectiveEndTime = effectiveendtime
+          @TimeZone = timezone
+          @CoverStaffInfos = coverstaffinfos
+          @Tags = tags
+        end
+
+        def deserialize(params)
+          @OnCallFormID = params['OnCallFormID']
+          @OnCallFormName = params['OnCallFormName']
+          @OnCallFormDesc = params['OnCallFormDesc']
+          unless params['StaffInfos'].nil?
+            @StaffInfos = []
+            params['StaffInfos'].each do |i|
+              staffinfo_tmp = StaffInfo.new
+              staffinfo_tmp.deserialize(i)
+              @StaffInfos << staffinfo_tmp
+            end
+          end
+          @RotationType = params['RotationType']
+          @ShiftTime = params['ShiftTime']
+          @EffectiveStartTime = params['EffectiveStartTime']
+          @EffectiveEndTime = params['EffectiveEndTime']
+          @TimeZone = params['TimeZone']
+          unless params['CoverStaffInfos'].nil?
+            @CoverStaffInfos = []
+            params['CoverStaffInfos'].each do |i|
+              coverstaffinfo_tmp = CoverStaffInfo.new
+              coverstaffinfo_tmp.deserialize(i)
+              @CoverStaffInfos << coverstaffinfo_tmp
+            end
+          end
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+        end
+      end
+
       # 维度支持的操作符信息
       class Operator < TencentCloud::Common::AbstractModel
         # @param Id: 运算符标识
@@ -12917,11 +13356,11 @@ module TencentCloud
 
       # 托管Prometheus agent信息
       class PrometheusAgentInfo < TencentCloud::Common::AbstractModel
-        # @param ClusterType: 集群类型。可填入tke、eks、tkeedge、tdcc、external，分别代表标准集群、弹性集群、边缘集群、注册集群、外部集群
+        # @param ClusterType: <p>集群类型。可填入tke、eks、tkeedge、tdcc、external，分别代表标准集群、弹性集群、边缘集群、注册集群、外部集群</p>
         # @type ClusterType: String
-        # @param ClusterId: 集成容器服务中关联的集群ID
+        # @param ClusterId: <p>集成容器服务中关联的集群ID</p>
         # @type ClusterId: String
-        # @param Describe: 该参数未使用，不需要填写
+        # @param Describe: <p>该参数未使用，不需要填写</p>
         # @type Describe: String
 
         attr_accessor :ClusterType, :ClusterId, :Describe
@@ -14910,10 +15349,10 @@ module TencentCloud
 
         attr_accessor :URL, :URLRelabelConfig, :BasicAuth, :MaxBlockSize, :Label, :Headers, :RemoteWriteType
         extend Gem::Deprecate
-        deprecate :MaxBlockSize, :none, 2026, 5
-        deprecate :MaxBlockSize=, :none, 2026, 5
-        deprecate :Label, :none, 2026, 5
-        deprecate :Label=, :none, 2026, 5
+        deprecate :MaxBlockSize, :none, 2026, 6
+        deprecate :MaxBlockSize=, :none, 2026, 6
+        deprecate :Label, :none, 2026, 6
+        deprecate :Label=, :none, 2026, 6
 
         def initialize(url=nil, urlrelabelconfig=nil, basicauth=nil, maxblocksize=nil, label=nil, headers=nil, remotewritetype=nil)
           @URL = url
@@ -15252,6 +15691,23 @@ module TencentCloud
           @Value = params['Value']
           @Timestamp = params['Timestamp']
           @Order = params['Order']
+        end
+      end
+
+      # 值班人员id组
+      class StaffInfo < TencentCloud::Common::AbstractModel
+        # @param StaffIDs: 值班人员id组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StaffIDs: Array
+
+        attr_accessor :StaffIDs
+
+        def initialize(staffids=nil)
+          @StaffIDs = staffids
+        end
+
+        def deserialize(params)
+          @StaffIDs = params['StaffIDs']
         end
       end
 
@@ -16275,6 +16731,96 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateOnCallForm请求参数结构体
+      class UpdateOnCallFormRequest < TencentCloud::Common::AbstractModel
+        # @param Module: 固定值，为"monitor"
+        # @type Module: String
+        # @param OnCallFormID: 值班表id
+        # @type OnCallFormID: String
+        # @param OnCallFormName: 值班表名称
+        # @type OnCallFormName: String
+        # @param StaffInfos: 值班人员id组
+        # @type StaffInfos: Array
+        # @param RotationType: 轮转类型
+        # @type RotationType: String
+        # @param ShiftTime: 换班时间
+        # @type ShiftTime: String
+        # @param EffectiveStartTime: 有效期开始时间，单位s
+        # @type EffectiveStartTime: Integer
+        # @param EffectiveEndTime: 有效期结束时间，单位s
+        # @type EffectiveEndTime: Integer
+        # @param TimeZone: 时区(-12 - 12)
+        # @type TimeZone: Float
+        # @param OnCallFormDesc: 值班表描述
+        # @type OnCallFormDesc: String
+        # @param CoverStaffInfos: 轮班信息
+        # @type CoverStaffInfos: Array
+
+        attr_accessor :Module, :OnCallFormID, :OnCallFormName, :StaffInfos, :RotationType, :ShiftTime, :EffectiveStartTime, :EffectiveEndTime, :TimeZone, :OnCallFormDesc, :CoverStaffInfos
+
+        def initialize(_module=nil, oncallformid=nil, oncallformname=nil, staffinfos=nil, rotationtype=nil, shifttime=nil, effectivestarttime=nil, effectiveendtime=nil, timezone=nil, oncallformdesc=nil, coverstaffinfos=nil)
+          @Module = _module
+          @OnCallFormID = oncallformid
+          @OnCallFormName = oncallformname
+          @StaffInfos = staffinfos
+          @RotationType = rotationtype
+          @ShiftTime = shifttime
+          @EffectiveStartTime = effectivestarttime
+          @EffectiveEndTime = effectiveendtime
+          @TimeZone = timezone
+          @OnCallFormDesc = oncallformdesc
+          @CoverStaffInfos = coverstaffinfos
+        end
+
+        def deserialize(params)
+          @Module = params['Module']
+          @OnCallFormID = params['OnCallFormID']
+          @OnCallFormName = params['OnCallFormName']
+          unless params['StaffInfos'].nil?
+            @StaffInfos = []
+            params['StaffInfos'].each do |i|
+              staffinfo_tmp = StaffInfo.new
+              staffinfo_tmp.deserialize(i)
+              @StaffInfos << staffinfo_tmp
+            end
+          end
+          @RotationType = params['RotationType']
+          @ShiftTime = params['ShiftTime']
+          @EffectiveStartTime = params['EffectiveStartTime']
+          @EffectiveEndTime = params['EffectiveEndTime']
+          @TimeZone = params['TimeZone']
+          @OnCallFormDesc = params['OnCallFormDesc']
+          unless params['CoverStaffInfos'].nil?
+            @CoverStaffInfos = []
+            params['CoverStaffInfos'].each do |i|
+              coverstaffinfo_tmp = CoverStaffInfo.new
+              coverstaffinfo_tmp.deserialize(i)
+              @CoverStaffInfos << coverstaffinfo_tmp
+            end
+          end
+        end
+      end
+
+      # UpdateOnCallForm返回参数结构体
+      class UpdateOnCallFormResponse < TencentCloud::Common::AbstractModel
+        # @param OnCallFormID: 值班表id
+        # @type OnCallFormID: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :OnCallFormID, :RequestId
+
+        def initialize(oncallformid=nil, requestid=nil)
+          @OnCallFormID = oncallformid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @OnCallFormID = params['OnCallFormID']
           @RequestId = params['RequestId']
         end
       end

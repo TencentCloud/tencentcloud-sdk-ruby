@@ -391,6 +391,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建值班表
+
+        # @param request: Request instance for CreateOnCallForm.
+        # @type request: :class:`Tencentcloud::monitor::V20180724::CreateOnCallFormRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20180724::CreateOnCallFormResponse`
+        def CreateOnCallForm(request)
+          body = send_request('CreateOnCallForm', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateOnCallFormResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 增加策略组
 
         # @param request: Request instance for CreatePolicyGroup.
@@ -886,6 +910,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteGrafanaNotificationChannelResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除值班表接口
+
+        # @param request: Request instance for DeleteOnCallForms.
+        # @type request: :class:`Tencentcloud::monitor::V20180724::DeleteOnCallFormsRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20180724::DeleteOnCallFormsResponse`
+        def DeleteOnCallForms(request)
+          body = send_request('DeleteOnCallForms', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteOnCallFormsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1948,6 +1996,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeNotificationContentTemplateSupportsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询值班表详情
+
+        # @param request: Request instance for DescribeOnCallForm.
+        # @type request: :class:`Tencentcloud::monitor::V20180724::DescribeOnCallFormRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20180724::DescribeOnCallFormResponse`
+        def DescribeOnCallForm(request)
+          body = send_request('DescribeOnCallForm', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeOnCallFormResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询值班列表
+
+        # @param request: Request instance for DescribeOnCallForms.
+        # @type request: :class:`Tencentcloud::monitor::V20180724::DescribeOnCallFormsRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20180724::DescribeOnCallFormsResponse`
+        def DescribeOnCallForms(request)
+          body = send_request('DescribeOnCallForms', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeOnCallFormsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -3988,6 +4084,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = UpdateGrafanaWhiteListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改值班表
+
+        # @param request: Request instance for UpdateOnCallForm.
+        # @type request: :class:`Tencentcloud::monitor::V20180724::UpdateOnCallFormRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20180724::UpdateOnCallFormResponse`
+        def UpdateOnCallForm(request)
+          body = send_request('UpdateOnCallForm', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateOnCallFormResponse.new
             model.deserialize(response['Response'])
             model
           else

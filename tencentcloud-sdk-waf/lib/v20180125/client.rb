@@ -1397,6 +1397,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # API安全事件详情查询接口
+
+        # @param request: Request instance for DescribeApiSecEventDetail.
+        # @type request: :class:`Tencentcloud::waf::V20180125::DescribeApiSecEventDetailRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::DescribeApiSecEventDetailResponse`
+        def DescribeApiSecEventDetail(request)
+          body = send_request('DescribeApiSecEventDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeApiSecEventDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # api安全事件列表
+
+        # @param request: Request instance for DescribeApiSecEventList.
+        # @type request: :class:`Tencentcloud::waf::V20180125::DescribeApiSecEventListRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::DescribeApiSecEventListResponse`
+        def DescribeApiSecEventList(request)
+          body = send_request('DescribeApiSecEventList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeApiSecEventListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取api安全敏感规则列表
 
         # @param request: Request instance for DescribeApiSecSensitiveRuleList.

@@ -3949,10 +3949,12 @@ module TencentCloud
         # @type AccessMode: String
         # @param InstanceWeights: <p>实例权重。</p>
         # @type InstanceWeights: Array
+        # @param LoadBalanceMode: <p>负载均衡模式</p><p>枚举值：</p><ul><li>static： 静态负载</li><li>dynamic： 动态负载</li></ul>
+        # @type LoadBalanceMode: String
 
-        attr_accessor :ClusterId, :UniqueVpcId, :UniqueSubnetId, :ConnectionPoolType, :OpenConnectionPool, :ConnectionPoolTimeOut, :SecurityGroupIds, :Description, :Vip, :WeightMode, :AutoAddRo, :FailOver, :ConsistencyType, :RwType, :ConsistencyTimeOut, :TransSplit, :AccessMode, :InstanceWeights
+        attr_accessor :ClusterId, :UniqueVpcId, :UniqueSubnetId, :ConnectionPoolType, :OpenConnectionPool, :ConnectionPoolTimeOut, :SecurityGroupIds, :Description, :Vip, :WeightMode, :AutoAddRo, :FailOver, :ConsistencyType, :RwType, :ConsistencyTimeOut, :TransSplit, :AccessMode, :InstanceWeights, :LoadBalanceMode
 
-        def initialize(clusterid=nil, uniquevpcid=nil, uniquesubnetid=nil, connectionpooltype=nil, openconnectionpool=nil, connectionpooltimeout=nil, securitygroupids=nil, description=nil, vip=nil, weightmode=nil, autoaddro=nil, failover=nil, consistencytype=nil, rwtype=nil, consistencytimeout=nil, transsplit=nil, accessmode=nil, instanceweights=nil)
+        def initialize(clusterid=nil, uniquevpcid=nil, uniquesubnetid=nil, connectionpooltype=nil, openconnectionpool=nil, connectionpooltimeout=nil, securitygroupids=nil, description=nil, vip=nil, weightmode=nil, autoaddro=nil, failover=nil, consistencytype=nil, rwtype=nil, consistencytimeout=nil, transsplit=nil, accessmode=nil, instanceweights=nil, loadbalancemode=nil)
           @ClusterId = clusterid
           @UniqueVpcId = uniquevpcid
           @UniqueSubnetId = uniquesubnetid
@@ -3971,6 +3973,7 @@ module TencentCloud
           @TransSplit = transsplit
           @AccessMode = accessmode
           @InstanceWeights = instanceweights
+          @LoadBalanceMode = loadbalancemode
         end
 
         def deserialize(params)
@@ -3999,6 +4002,7 @@ module TencentCloud
               @InstanceWeights << proxyinstanceweight_tmp
             end
           end
+          @LoadBalanceMode = params['LoadBalanceMode']
         end
       end
 
@@ -11046,23 +11050,27 @@ module TencentCloud
 
       # DescribeServerlessInstanceSpecs请求参数结构体
       class DescribeServerlessInstanceSpecsRequest < TencentCloud::Common::AbstractModel
-        # @param Zone: 可用区
+        # @param Zone: <p>可用区</p>
         # @type Zone: String
+        # @param ClusterLevel: <p>集群级别</p>
+        # @type ClusterLevel: String
 
-        attr_accessor :Zone
+        attr_accessor :Zone, :ClusterLevel
 
-        def initialize(zone=nil)
+        def initialize(zone=nil, clusterlevel=nil)
           @Zone = zone
+          @ClusterLevel = clusterlevel
         end
 
         def deserialize(params)
           @Zone = params['Zone']
+          @ClusterLevel = params['ClusterLevel']
         end
       end
 
       # DescribeServerlessInstanceSpecs返回参数结构体
       class DescribeServerlessInstanceSpecsResponse < TencentCloud::Common::AbstractModel
-        # @param Specs: Serverless实例可选规格
+        # @param Specs: <p>Serverless实例可选规格</p>
         # @type Specs: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -16426,10 +16434,12 @@ module TencentCloud
         # @type ApNodeAsRoNode: Boolean
         # @param ApQueryToOtherNode: <p>libra节点故障，是否转发给其他节点</p>
         # @type ApQueryToOtherNode: Boolean
+        # @param LoadBalanceMode: <p>负载均衡模式</p><p>枚举值：</p><ul><li>static： 静态负载</li><li>dynamic： 动态负载</li></ul>
+        # @type LoadBalanceMode: String
 
-        attr_accessor :ClusterId, :ProxyGroupId, :ConsistencyType, :ConsistencyTimeOut, :WeightMode, :InstanceWeights, :FailOver, :AutoAddRo, :OpenRw, :RwType, :TransSplit, :AccessMode, :OpenConnectionPool, :ConnectionPoolType, :ConnectionPoolTimeOut, :ApNodeAsRoNode, :ApQueryToOtherNode
+        attr_accessor :ClusterId, :ProxyGroupId, :ConsistencyType, :ConsistencyTimeOut, :WeightMode, :InstanceWeights, :FailOver, :AutoAddRo, :OpenRw, :RwType, :TransSplit, :AccessMode, :OpenConnectionPool, :ConnectionPoolType, :ConnectionPoolTimeOut, :ApNodeAsRoNode, :ApQueryToOtherNode, :LoadBalanceMode
 
-        def initialize(clusterid=nil, proxygroupid=nil, consistencytype=nil, consistencytimeout=nil, weightmode=nil, instanceweights=nil, failover=nil, autoaddro=nil, openrw=nil, rwtype=nil, transsplit=nil, accessmode=nil, openconnectionpool=nil, connectionpooltype=nil, connectionpooltimeout=nil, apnodeasronode=nil, apquerytoothernode=nil)
+        def initialize(clusterid=nil, proxygroupid=nil, consistencytype=nil, consistencytimeout=nil, weightmode=nil, instanceweights=nil, failover=nil, autoaddro=nil, openrw=nil, rwtype=nil, transsplit=nil, accessmode=nil, openconnectionpool=nil, connectionpooltype=nil, connectionpooltimeout=nil, apnodeasronode=nil, apquerytoothernode=nil, loadbalancemode=nil)
           @ClusterId = clusterid
           @ProxyGroupId = proxygroupid
           @ConsistencyType = consistencytype
@@ -16447,6 +16457,7 @@ module TencentCloud
           @ConnectionPoolTimeOut = connectionpooltimeout
           @ApNodeAsRoNode = apnodeasronode
           @ApQueryToOtherNode = apquerytoothernode
+          @LoadBalanceMode = loadbalancemode
         end
 
         def deserialize(params)
@@ -16474,6 +16485,7 @@ module TencentCloud
           @ConnectionPoolTimeOut = params['ConnectionPoolTimeOut']
           @ApNodeAsRoNode = params['ApNodeAsRoNode']
           @ApQueryToOtherNode = params['ApQueryToOtherNode']
+          @LoadBalanceMode = params['LoadBalanceMode']
         end
       end
 
@@ -18494,10 +18506,12 @@ module TencentCloud
         # @type ApNodeAsRoNode: Boolean
         # @param ApQueryToOtherNode: <p>libra节点故障，是否转发给其他节点</p>
         # @type ApQueryToOtherNode: Boolean
+        # @param LoadBalanceMode: <p>自动负载</p><p>枚举值：</p><ul><li>static： 静态负载</li><li>dynamic： 动态负载</li></ul>
+        # @type LoadBalanceMode: String
 
-        attr_accessor :ConsistencyType, :ConsistencyTimeOut, :WeightMode, :FailOver, :AutoAddRo, :InstanceWeights, :OpenRw, :RwType, :TransSplit, :AccessMode, :ApNodeAsRoNode, :ApQueryToOtherNode
+        attr_accessor :ConsistencyType, :ConsistencyTimeOut, :WeightMode, :FailOver, :AutoAddRo, :InstanceWeights, :OpenRw, :RwType, :TransSplit, :AccessMode, :ApNodeAsRoNode, :ApQueryToOtherNode, :LoadBalanceMode
 
-        def initialize(consistencytype=nil, consistencytimeout=nil, weightmode=nil, failover=nil, autoaddro=nil, instanceweights=nil, openrw=nil, rwtype=nil, transsplit=nil, accessmode=nil, apnodeasronode=nil, apquerytoothernode=nil)
+        def initialize(consistencytype=nil, consistencytimeout=nil, weightmode=nil, failover=nil, autoaddro=nil, instanceweights=nil, openrw=nil, rwtype=nil, transsplit=nil, accessmode=nil, apnodeasronode=nil, apquerytoothernode=nil, loadbalancemode=nil)
           @ConsistencyType = consistencytype
           @ConsistencyTimeOut = consistencytimeout
           @WeightMode = weightmode
@@ -18510,6 +18524,7 @@ module TencentCloud
           @AccessMode = accessmode
           @ApNodeAsRoNode = apnodeasronode
           @ApQueryToOtherNode = apquerytoothernode
+          @LoadBalanceMode = loadbalancemode
         end
 
         def deserialize(params)
@@ -18532,6 +18547,7 @@ module TencentCloud
           @AccessMode = params['AccessMode']
           @ApNodeAsRoNode = params['ApNodeAsRoNode']
           @ApQueryToOtherNode = params['ApQueryToOtherNode']
+          @LoadBalanceMode = params['LoadBalanceMode']
         end
       end
 

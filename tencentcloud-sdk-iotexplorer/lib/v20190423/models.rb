@@ -1734,6 +1734,50 @@ module TencentCloud
         end
       end
 
+      # CreateDevicePublishSDPAnswer请求参数结构体
+      class CreateDevicePublishSDPAnswerRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+        # @param DeviceName: 设备名称
+        # @type DeviceName: String
+        # @param SDPOffer: SDP提议
+        # @type SDPOffer: String
+
+        attr_accessor :ProductId, :DeviceName, :SDPOffer
+
+        def initialize(productid=nil, devicename=nil, sdpoffer=nil)
+          @ProductId = productid
+          @DeviceName = devicename
+          @SDPOffer = sdpoffer
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+          @SDPOffer = params['SDPOffer']
+        end
+      end
+
+      # CreateDevicePublishSDPAnswer返回参数结构体
+      class CreateDevicePublishSDPAnswerResponse < TencentCloud::Common::AbstractModel
+        # @param SDPAnswer: SDP应答
+        # @type SDPAnswer: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SDPAnswer, :RequestId
+
+        def initialize(sdpanswer=nil, requestid=nil)
+          @SDPAnswer = sdpanswer
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @SDPAnswer = params['SDPAnswer']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateDevice请求参数结构体
       class CreateDeviceRequest < TencentCloud::Common::AbstractModel
         # @param ProductId: 产品ID。
@@ -1809,19 +1853,23 @@ module TencentCloud
         # @type DeviceName: String
         # @param SDPOffer: SDP提议
         # @type SDPOffer: String
+        # @param RequesterTag: 客户自定义拉流标识
+        # @type RequesterTag: String
 
-        attr_accessor :ProductId, :DeviceName, :SDPOffer
+        attr_accessor :ProductId, :DeviceName, :SDPOffer, :RequesterTag
 
-        def initialize(productid=nil, devicename=nil, sdpoffer=nil)
+        def initialize(productid=nil, devicename=nil, sdpoffer=nil, requestertag=nil)
           @ProductId = productid
           @DeviceName = devicename
           @SDPOffer = sdpoffer
+          @RequesterTag = requestertag
         end
 
         def deserialize(params)
           @ProductId = params['ProductId']
           @DeviceName = params['DeviceName']
           @SDPOffer = params['SDPOffer']
+          @RequesterTag = params['RequesterTag']
         end
       end
 
@@ -3503,6 +3551,42 @@ module TencentCloud
         def deserialize(params)
           @ResultCode = params['ResultCode']
           @ResultMessage = params['ResultMessage']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteDeviceSDP请求参数结构体
+      class DeleteDeviceSDPRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+        # @param DeviceName: 设备名称
+        # @type DeviceName: String
+
+        attr_accessor :ProductId, :DeviceName
+
+        def initialize(productid=nil, devicename=nil)
+          @ProductId = productid
+          @DeviceName = devicename
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+        end
+      end
+
+      # DeleteDeviceSDP返回参数结构体
+      class DeleteDeviceSDPResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end

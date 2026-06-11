@@ -1727,11 +1727,11 @@ module TencentCloud
 
       # DescribeRoleList请求参数结构体
       class DescribeRoleListRequest < TencentCloud::Common::AbstractModel
-        # @param Page: 页码，从1开始
+        # @param Page: <p>页码，从1开始</p>
         # @type Page: Integer
-        # @param Rp: 每页行数，不能大于200
+        # @param Rp: <p>每页行数，不能大于200</p>
         # @type Rp: Integer
-        # @param Tags: 标签筛选
+        # @param Tags: <p>标签筛选</p>
         # @type Tags: Array
 
         attr_accessor :Page, :Rp, :Tags
@@ -1758,9 +1758,9 @@ module TencentCloud
 
       # DescribeRoleList返回参数结构体
       class DescribeRoleListResponse < TencentCloud::Common::AbstractModel
-        # @param List: 角色详情列表。
+        # @param List: <p>角色详情列表。</p>
         # @type List: Array
-        # @param TotalNum: 角色总数
+        # @param TotalNum: <p>角色总数</p>
         # @type TotalNum: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2276,8 +2276,8 @@ module TencentCloud
 
         attr_accessor :Policies, :Roles, :Idps, :User, :Group, :Member, :IdentityProviders, :RequestId
         extend Gem::Deprecate
-        deprecate :Idps, :none, 2026, 5
-        deprecate :Idps=, :none, 2026, 5
+        deprecate :Idps, :none, 2026, 6
+        deprecate :Idps=, :none, 2026, 6
 
         def initialize(policies=nil, roles=nil, idps=nil, user=nil, group=nil, member=nil, identityproviders=nil, requestid=nil)
           @Policies = policies

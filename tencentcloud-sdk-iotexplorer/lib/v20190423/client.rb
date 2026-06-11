@@ -509,7 +509,31 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建设备SDP应答
+        # 创建设备推流SDP应答，此接口调用前需要先调用CreateDeviceSDPAnswer接口以保证设备处于拉流状态，接口返回是另外一路webrtc推流SDP信息，可以用来进行标准的WHIP推流
+
+        # @param request: Request instance for CreateDevicePublishSDPAnswer.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::CreateDevicePublishSDPAnswerRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::CreateDevicePublishSDPAnswerResponse`
+        def CreateDevicePublishSDPAnswer(request)
+          body = send_request('CreateDevicePublishSDPAnswer', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateDevicePublishSDPAnswerResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建设备SDP应答，调用此接口后，后台会对传入参数的设备进行拉流，并返回webrtc answer SDP返回，可以进行WHEP协议拉流。
 
         # @param request: Request instance for CreateDeviceSDPAnswer.
         # @type request: :class:`Tencentcloud::iotexplorer::V20190423::CreateDeviceSDPAnswerRequest`
@@ -1119,6 +1143,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteDeviceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除设备SDP应答，此接口调用是手动结束设备后台推拉流信息，快速响应挂断需求。
+
+        # @param request: Request instance for DeleteDeviceSDP.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::DeleteDeviceSDPRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::DeleteDeviceSDPResponse`
+        def DeleteDeviceSDP(request)
+          body = send_request('DeleteDeviceSDP', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteDeviceSDPResponse.new
             model.deserialize(response['Response'])
             model
           else

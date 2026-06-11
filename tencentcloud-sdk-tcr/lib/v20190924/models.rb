@@ -1431,6 +1431,49 @@ module TencentCloud
         end
       end
 
+      # DeleteAIModel请求参数结构体
+      class DeleteAIModelRequest < TencentCloud::Common::AbstractModel
+        # @param RegistryId: <p>TCR实例ID</p>
+        # @type RegistryId: String
+        # @param Items: <p>模型删除</p>
+        # @type Items: Array
+
+        attr_accessor :RegistryId, :Items
+
+        def initialize(registryid=nil, items=nil)
+          @RegistryId = registryid
+          @Items = items
+        end
+
+        def deserialize(params)
+          @RegistryId = params['RegistryId']
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              deletemodelitem_tmp = DeleteModelItem.new
+              deletemodelitem_tmp.deserialize(i)
+              @Items << deletemodelitem_tmp
+            end
+          end
+        end
+      end
+
+      # DeleteAIModel返回参数结构体
+      class DeleteAIModelResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteApplicationTriggerPersonal请求参数结构体
       class DeleteApplicationTriggerPersonalRequest < TencentCloud::Common::AbstractModel
         # @param TriggerName: 触发器名称
@@ -1804,6 +1847,30 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 删除模型结构体
+      class DeleteModelItem < TencentCloud::Common::AbstractModel
+        # @param NamespaceName: 
+        # @type NamespaceName: String
+        # @param RepositoryName: 
+        # @type RepositoryName: String
+        # @param Reference: 
+        # @type Reference: String
+
+        attr_accessor :NamespaceName, :RepositoryName, :Reference
+
+        def initialize(namespacename=nil, repositoryname=nil, reference=nil)
+          @NamespaceName = namespacename
+          @RepositoryName = repositoryname
+          @Reference = reference
+        end
+
+        def deserialize(params)
+          @NamespaceName = params['NamespaceName']
+          @RepositoryName = params['RepositoryName']
+          @Reference = params['Reference']
         end
       end
 
@@ -2242,6 +2309,49 @@ module TencentCloud
         end
       end
 
+      # DeleteSkill请求参数结构体
+      class DeleteSkillRequest < TencentCloud::Common::AbstractModel
+        # @param RegistryId: <p>TCR实例ID</p>
+        # @type RegistryId: String
+        # @param Items: <p>删除技能列表</p>
+        # @type Items: Array
+
+        attr_accessor :RegistryId, :Items
+
+        def initialize(registryid=nil, items=nil)
+          @RegistryId = registryid
+          @Items = items
+        end
+
+        def deserialize(params)
+          @RegistryId = params['RegistryId']
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              skilltype_tmp = SkillType.new
+              skilltype_tmp.deserialize(i)
+              @Items << skilltype_tmp
+            end
+          end
+        end
+      end
+
+      # DeleteSkill返回参数结构体
+      class DeleteSkillResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteTagRetentionRule请求参数结构体
       class DeleteTagRetentionRuleRequest < TencentCloud::Common::AbstractModel
         # @param RegistryId: 主实例iD
@@ -2314,6 +2424,57 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAIModelVersionDetail请求参数结构体
+      class DescribeAIModelVersionDetailRequest < TencentCloud::Common::AbstractModel
+        # @param RegistryId: <p>TCR实例ID</p>
+        # @type RegistryId: String
+        # @param NamespaceName: <p>命名空间</p>
+        # @type NamespaceName: String
+        # @param RepositoryName: <p>仓库名</p>
+        # @type RepositoryName: String
+        # @param Reference: <p>版本</p>
+        # @type Reference: String
+
+        attr_accessor :RegistryId, :NamespaceName, :RepositoryName, :Reference
+
+        def initialize(registryid=nil, namespacename=nil, repositoryname=nil, reference=nil)
+          @RegistryId = registryid
+          @NamespaceName = namespacename
+          @RepositoryName = repositoryname
+          @Reference = reference
+        end
+
+        def deserialize(params)
+          @RegistryId = params['RegistryId']
+          @NamespaceName = params['NamespaceName']
+          @RepositoryName = params['RepositoryName']
+          @Reference = params['Reference']
+        end
+      end
+
+      # DescribeAIModelVersionDetail返回参数结构体
+      class DescribeAIModelVersionDetailResponse < TencentCloud::Common::AbstractModel
+        # @param Model: <p>模型详情</p>
+        # @type Model: :class:`Tencentcloud::Tcr.v20190924.models.ModelDetail`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Model, :RequestId
+
+        def initialize(model=nil, requestid=nil)
+          @Model = model
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Model'].nil?
+            @Model = ModelDetail.new
+            @Model.deserialize(params['Model'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -4157,6 +4318,97 @@ module TencentCloud
         end
       end
 
+      # DescribeSkillDetail请求参数结构体
+      class DescribeSkillDetailRequest < TencentCloud::Common::AbstractModel
+        # @param RegistryId: <p>TCR实例ID</p>
+        # @type RegistryId: String
+        # @param SkillName: <p>技能名称</p>
+        # @type SkillName: String
+        # @param SkillVersion: <p>技能版本</p>
+        # @type SkillVersion: String
+
+        attr_accessor :RegistryId, :SkillName, :SkillVersion
+
+        def initialize(registryid=nil, skillname=nil, skillversion=nil)
+          @RegistryId = registryid
+          @SkillName = skillname
+          @SkillVersion = skillversion
+        end
+
+        def deserialize(params)
+          @RegistryId = params['RegistryId']
+          @SkillName = params['SkillName']
+          @SkillVersion = params['SkillVersion']
+        end
+      end
+
+      # DescribeSkillDetail返回参数结构体
+      class DescribeSkillDetailResponse < TencentCloud::Common::AbstractModel
+        # @param Skill: <p>技能详情</p>
+        # @type Skill: :class:`Tencentcloud::Tcr.v20190924.models.Skill`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Skill, :RequestId
+
+        def initialize(skill=nil, requestid=nil)
+          @Skill = skill
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Skill'].nil?
+            @Skill = Skill.new
+            @Skill.deserialize(params['Skill'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeSkillDownloadInfo请求参数结构体
+      class DescribeSkillDownloadInfoRequest < TencentCloud::Common::AbstractModel
+        # @param RegistryId: <p>TCR实例ID</p>
+        # @type RegistryId: String
+        # @param SkillName: <p>技能名称</p>
+        # @type SkillName: String
+        # @param SkillVersion: <p>技能版本</p>
+        # @type SkillVersion: String
+
+        attr_accessor :RegistryId, :SkillName, :SkillVersion
+
+        def initialize(registryid=nil, skillname=nil, skillversion=nil)
+          @RegistryId = registryid
+          @SkillName = skillname
+          @SkillVersion = skillversion
+        end
+
+        def deserialize(params)
+          @RegistryId = params['RegistryId']
+          @SkillName = params['SkillName']
+          @SkillVersion = params['SkillVersion']
+        end
+      end
+
+      # DescribeSkillDownloadInfo返回参数结构体
+      class DescribeSkillDownloadInfoResponse < TencentCloud::Common::AbstractModel
+        # @param PreSignedDownloadURL: <p>下载链接</p>
+        # @type PreSignedDownloadURL: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PreSignedDownloadURL, :RequestId
+
+        def initialize(presigneddownloadurl=nil, requestid=nil)
+          @PreSignedDownloadURL = presigneddownloadurl
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @PreSignedDownloadURL = params['PreSignedDownloadURL']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeTagRetentionExecution请求参数结构体
       class DescribeTagRetentionExecutionRequest < TencentCloud::Common::AbstractModel
         # @param RegistryId: 主实例iD
@@ -4963,6 +5215,266 @@ module TencentCloud
         end
       end
 
+      # ListAIModelVersions请求参数结构体
+      class ListAIModelVersionsRequest < TencentCloud::Common::AbstractModel
+        # @param RegistryId: <p>TCR实例ID</p>
+        # @type RegistryId: String
+        # @param NamespaceName: <p>命名空间</p>
+        # @type NamespaceName: String
+        # @param RepositoryName: <p>仓库名称</p>
+        # @type RepositoryName: String
+        # @param Offset: <p>偏移量</p>
+        # @type Offset: Integer
+        # @param Limit: <p>限制</p>
+        # @type Limit: Integer
+
+        attr_accessor :RegistryId, :NamespaceName, :RepositoryName, :Offset, :Limit
+
+        def initialize(registryid=nil, namespacename=nil, repositoryname=nil, offset=nil, limit=nil)
+          @RegistryId = registryid
+          @NamespaceName = namespacename
+          @RepositoryName = repositoryname
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @RegistryId = params['RegistryId']
+          @NamespaceName = params['NamespaceName']
+          @RepositoryName = params['RepositoryName']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # ListAIModelVersions返回参数结构体
+      class ListAIModelVersionsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: <p>总数</p>
+        # @type TotalCount: Integer
+        # @param VersionList: <p>版本列表</p>
+        # @type VersionList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :VersionList, :RequestId
+
+        def initialize(totalcount=nil, versionlist=nil, requestid=nil)
+          @TotalCount = totalcount
+          @VersionList = versionlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['VersionList'].nil?
+            @VersionList = []
+            params['VersionList'].each do |i|
+              versionlist_tmp = VersionList.new
+              versionlist_tmp.deserialize(i)
+              @VersionList << versionlist_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ListAIModels请求参数结构体
+      class ListAIModelsRequest < TencentCloud::Common::AbstractModel
+        # @param RegistryId: <p>TCR实例ID</p>
+        # @type RegistryId: String
+        # @param Namespace: <p>命名空间</p>
+        # @type Namespace: String
+        # @param ModelName: <p>模型名称</p>
+        # @type ModelName: String
+        # @param Offset: <p>偏移量</p>
+        # @type Offset: Integer
+        # @param Limit: <p>最大限制</p>
+        # @type Limit: Integer
+        # @param SearchKey: <p>模糊搜索</p>
+        # @type SearchKey: String
+
+        attr_accessor :RegistryId, :Namespace, :ModelName, :Offset, :Limit, :SearchKey
+
+        def initialize(registryid=nil, namespace=nil, modelname=nil, offset=nil, limit=nil, searchkey=nil)
+          @RegistryId = registryid
+          @Namespace = namespace
+          @ModelName = modelname
+          @Offset = offset
+          @Limit = limit
+          @SearchKey = searchkey
+        end
+
+        def deserialize(params)
+          @RegistryId = params['RegistryId']
+          @Namespace = params['Namespace']
+          @ModelName = params['ModelName']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @SearchKey = params['SearchKey']
+        end
+      end
+
+      # ListAIModels返回参数结构体
+      class ListAIModelsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: <p>总数</p>
+        # @type TotalCount: Integer
+        # @param ModelList: <p>模型列表</p>
+        # @type ModelList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :ModelList, :RequestId
+
+        def initialize(totalcount=nil, modellist=nil, requestid=nil)
+          @TotalCount = totalcount
+          @ModelList = modellist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['ModelList'].nil?
+            @ModelList = []
+            params['ModelList'].each do |i|
+              modellist_tmp = ModelList.new
+              modellist_tmp.deserialize(i)
+              @ModelList << modellist_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ListSkillVersions请求参数结构体
+      class ListSkillVersionsRequest < TencentCloud::Common::AbstractModel
+        # @param RegistryId: <p>TCR实例ID</p>
+        # @type RegistryId: String
+        # @param SkillName: <p>技能名称</p>
+        # @type SkillName: String
+        # @param Offset: <p>偏移量</p>
+        # @type Offset: Integer
+        # @param Limit: <p>最大限制</p>
+        # @type Limit: Integer
+
+        attr_accessor :RegistryId, :SkillName, :Offset, :Limit
+
+        def initialize(registryid=nil, skillname=nil, offset=nil, limit=nil)
+          @RegistryId = registryid
+          @SkillName = skillname
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @RegistryId = params['RegistryId']
+          @SkillName = params['SkillName']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # ListSkillVersions返回参数结构体
+      class ListSkillVersionsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: <p>总数</p>
+        # @type TotalCount: Integer
+        # @param VersionList: <p>Skill版本列表</p>
+        # @type VersionList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :VersionList, :RequestId
+
+        def initialize(totalcount=nil, versionlist=nil, requestid=nil)
+          @TotalCount = totalcount
+          @VersionList = versionlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['VersionList'].nil?
+            @VersionList = []
+            params['VersionList'].each do |i|
+              skillversionlist_tmp = SkillVersionList.new
+              skillversionlist_tmp.deserialize(i)
+              @VersionList << skillversionlist_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ListSkills请求参数结构体
+      class ListSkillsRequest < TencentCloud::Common::AbstractModel
+        # @param RegistryId: <p>TCR实例ID</p>
+        # @type RegistryId: String
+        # @param SearchKey: <p>模糊查询</p>
+        # @type SearchKey: String
+        # @param SkillName: <p>技能名称</p>
+        # @type SkillName: String
+        # @param SkillType: <p>技能类型</p><p>枚举值：</p><ul><li>MCP Server： MCP Server 类型</li></ul>
+        # @type SkillType: String
+        # @param Status: <p>状态</p><p>枚举值：</p><ul><li>active： 活跃</li></ul>
+        # @type Status: String
+        # @param Offset: <p>偏移量</p>
+        # @type Offset: Integer
+        # @param Limit: <p>限制</p>
+        # @type Limit: Integer
+
+        attr_accessor :RegistryId, :SearchKey, :SkillName, :SkillType, :Status, :Offset, :Limit
+
+        def initialize(registryid=nil, searchkey=nil, skillname=nil, skilltype=nil, status=nil, offset=nil, limit=nil)
+          @RegistryId = registryid
+          @SearchKey = searchkey
+          @SkillName = skillname
+          @SkillType = skilltype
+          @Status = status
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @RegistryId = params['RegistryId']
+          @SearchKey = params['SearchKey']
+          @SkillName = params['SkillName']
+          @SkillType = params['SkillType']
+          @Status = params['Status']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # ListSkills返回参数结构体
+      class ListSkillsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: <p>总数</p>
+        # @type TotalCount: Integer
+        # @param SkillList: <p>技能类型</p>
+        # @type SkillList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :SkillList, :RequestId
+
+        def initialize(totalcount=nil, skilllist=nil, requestid=nil)
+          @TotalCount = totalcount
+          @SkillList = skilllist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['SkillList'].nil?
+            @SkillList = []
+            params['SkillList'].each do |i|
+              skilllist_tmp = SkillList.new
+              skilllist_tmp.deserialize(i)
+              @SkillList << skilllist_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ManageExternalEndpoint请求参数结构体
       class ManageExternalEndpointRequest < TencentCloud::Common::AbstractModel
         # @param RegistryId: 实例Id
@@ -5150,6 +5662,106 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 模型详情
+      class ModelDetail < TencentCloud::Common::AbstractModel
+        # @param ModelName: 
+        # @type ModelName: String
+        # @param NamespaceName: 
+        # @type NamespaceName: String
+        # @param Version: 
+        # @type Version: String
+        # @param Digest: 
+        # @type Digest: String
+        # @param Size: 
+        # @type Size: Integer
+        # @param Framework: 
+        # @type Framework: String
+        # @param Precision: 
+        # @type Precision: String
+        # @param FileFormat: 
+        # @type FileFormat: String
+        # @param ParamSize: 
+        # @type ParamSize: String
+        # @param Family: 
+        # @type Family: String
+        # @param IsRecommended: 
+        # @type IsRecommended: Boolean
+        # @param PushTime: 
+        # @type PushTime: String
+
+        attr_accessor :ModelName, :NamespaceName, :Version, :Digest, :Size, :Framework, :Precision, :FileFormat, :ParamSize, :Family, :IsRecommended, :PushTime
+
+        def initialize(modelname=nil, namespacename=nil, version=nil, digest=nil, size=nil, framework=nil, precision=nil, fileformat=nil, paramsize=nil, family=nil, isrecommended=nil, pushtime=nil)
+          @ModelName = modelname
+          @NamespaceName = namespacename
+          @Version = version
+          @Digest = digest
+          @Size = size
+          @Framework = framework
+          @Precision = precision
+          @FileFormat = fileformat
+          @ParamSize = paramsize
+          @Family = family
+          @IsRecommended = isrecommended
+          @PushTime = pushtime
+        end
+
+        def deserialize(params)
+          @ModelName = params['ModelName']
+          @NamespaceName = params['NamespaceName']
+          @Version = params['Version']
+          @Digest = params['Digest']
+          @Size = params['Size']
+          @Framework = params['Framework']
+          @Precision = params['Precision']
+          @FileFormat = params['FileFormat']
+          @ParamSize = params['ParamSize']
+          @Family = params['Family']
+          @IsRecommended = params['IsRecommended']
+          @PushTime = params['PushTime']
+        end
+      end
+
+      # 模型详细参数
+      class ModelList < TencentCloud::Common::AbstractModel
+        # @param ModelName: 
+        # @type ModelName: String
+        # @param NamespaceName: 
+        # @type NamespaceName: String
+        # @param LatestVersion: 
+        # @type LatestVersion: String
+        # @param Kind: 
+        # @type Kind: String
+        # @param ImageSize: 
+        # @type ImageSize: String
+        # @param UpdateTime: 
+        # @type UpdateTime: String
+        # @param Digest: 
+        # @type Digest: String
+
+        attr_accessor :ModelName, :NamespaceName, :LatestVersion, :Kind, :ImageSize, :UpdateTime, :Digest
+
+        def initialize(modelname=nil, namespacename=nil, latestversion=nil, kind=nil, imagesize=nil, updatetime=nil, digest=nil)
+          @ModelName = modelname
+          @NamespaceName = namespacename
+          @LatestVersion = latestversion
+          @Kind = kind
+          @ImageSize = imagesize
+          @UpdateTime = updatetime
+          @Digest = digest
+        end
+
+        def deserialize(params)
+          @ModelName = params['ModelName']
+          @NamespaceName = params['NamespaceName']
+          @LatestVersion = params['LatestVersion']
+          @Kind = params['Kind']
+          @ImageSize = params['ImageSize']
+          @UpdateTime = params['UpdateTime']
+          @Digest = params['Digest']
         end
       end
 
@@ -6992,6 +7604,134 @@ module TencentCloud
         end
       end
 
+      # 查询单个 Skill 的完整详情
+      class Skill < TencentCloud::Common::AbstractModel
+        # @param SkillName: 
+        # @type SkillName: String
+        # @param SkillVersion: 
+        # @type SkillVersion: String
+        # @param Description: 
+        # @type Description: String
+        # @param Tags: 
+        # @type Tags: Array
+        # @param SkillType: 
+        # @type SkillType: String
+        # @param Runtime: 
+        # @type Runtime: String
+        # @param Status: 
+        # @type Status: String
+        # @param UpdateTime: 
+        # @type UpdateTime: String
+
+        attr_accessor :SkillName, :SkillVersion, :Description, :Tags, :SkillType, :Runtime, :Status, :UpdateTime
+
+        def initialize(skillname=nil, skillversion=nil, description=nil, tags=nil, skilltype=nil, runtime=nil, status=nil, updatetime=nil)
+          @SkillName = skillname
+          @SkillVersion = skillversion
+          @Description = description
+          @Tags = tags
+          @SkillType = skilltype
+          @Runtime = runtime
+          @Status = status
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @SkillName = params['SkillName']
+          @SkillVersion = params['SkillVersion']
+          @Description = params['Description']
+          @Tags = params['Tags']
+          @SkillType = params['SkillType']
+          @Runtime = params['Runtime']
+          @Status = params['Status']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # 查询指定实例下的 AI Skill 列表。
+      class SkillList < TencentCloud::Common::AbstractModel
+        # @param SkillName: 
+        # @type SkillName: String
+        # @param Description: 
+        # @type Description: String
+        # @param SkillType: 
+        # @type SkillType: String
+        # @param Tags: 
+        # @type Tags: Array
+        # @param LatestVersion: 
+        # @type LatestVersion: String
+        # @param Status: 
+        # @type Status: String
+        # @param UpdateTime: 
+        # @type UpdateTime: String
+
+        attr_accessor :SkillName, :Description, :SkillType, :Tags, :LatestVersion, :Status, :UpdateTime
+
+        def initialize(skillname=nil, description=nil, skilltype=nil, tags=nil, latestversion=nil, status=nil, updatetime=nil)
+          @SkillName = skillname
+          @Description = description
+          @SkillType = skilltype
+          @Tags = tags
+          @LatestVersion = latestversion
+          @Status = status
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @SkillName = params['SkillName']
+          @Description = params['Description']
+          @SkillType = params['SkillType']
+          @Tags = params['Tags']
+          @LatestVersion = params['LatestVersion']
+          @Status = params['Status']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # skill 数据结构
+      class SkillType < TencentCloud::Common::AbstractModel
+        # @param SkillName: 
+        # @type SkillName: String
+        # @param SkillVersion: 
+        # @type SkillVersion: String
+
+        attr_accessor :SkillName, :SkillVersion
+
+        def initialize(skillname=nil, skillversion=nil)
+          @SkillName = skillname
+          @SkillVersion = skillversion
+        end
+
+        def deserialize(params)
+          @SkillName = params['SkillName']
+          @SkillVersion = params['SkillVersion']
+        end
+      end
+
+      # skill VersionList
+      class SkillVersionList < TencentCloud::Common::AbstractModel
+        # @param Version: 
+        # @type Version: String
+        # @param Size: 
+        # @type Size: Integer
+        # @param PushTime: 
+        # @type PushTime: String
+
+        attr_accessor :Version, :Size, :PushTime
+
+        def initialize(version=nil, size=nil, pushtime=nil)
+          @Version = version
+          @Size = size
+          @PushTime = pushtime
+        end
+
+        def deserialize(params)
+          @Version = params['Version']
+          @Size = params['Size']
+          @PushTime = params['PushTime']
+        end
+      end
+
       # 云标签Tag
       class Tag < TencentCloud::Common::AbstractModel
         # @param Key: 云标签的key
@@ -7657,6 +8397,34 @@ module TencentCloud
             @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 模型版本详情
+      class VersionList < TencentCloud::Common::AbstractModel
+        # @param Version: 
+        # @type Version: String
+        # @param Size: 
+        # @type Size: Integer
+        # @param IsRecommended: 
+        # @type IsRecommended: Boolean
+        # @param PushTime: 
+        # @type PushTime: String
+
+        attr_accessor :Version, :Size, :IsRecommended, :PushTime
+
+        def initialize(version=nil, size=nil, isrecommended=nil, pushtime=nil)
+          @Version = version
+          @Size = size
+          @IsRecommended = isrecommended
+          @PushTime = pushtime
+        end
+
+        def deserialize(params)
+          @Version = params['Version']
+          @Size = params['Size']
+          @IsRecommended = params['IsRecommended']
+          @PushTime = params['PushTime']
         end
       end
 

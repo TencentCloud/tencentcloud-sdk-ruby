@@ -9603,6 +9603,117 @@ module TencentCloud
         end
       end
 
+      # DescribeOrgMemberAccountBalanceData
+      class DescribeOrgMemberAccountBalanceData < TencentCloud::Common::AbstractModel
+        # @param MemberUin: <p>成员账号Uin</p>
+        # @type MemberUin: String
+        # @param MemberName: <p>成员名称</p>
+        # @type MemberName: String
+        # @param IsCreditAccount: <p>是否为信用账户</p>
+        # @type IsCreditAccount: Boolean
+        # @param RealBalance: <p>当前真实可用余额</p><p>单位：分</p>
+        # @type RealBalance: Float
+        # @param CashAccountBalance: <p>现金账户余额</p><p>单位：分</p>
+        # @type CashAccountBalance: Float
+        # @param CreditAmount: <p>信用额度</p><p>单位：分</p><p>信用额度 = 基础信用额度 + 临时信用额度</p>
+        # @type CreditAmount: Float
+        # @param TempCredit: <p>临时信用额度</p><p>单位：分</p>
+        # @type TempCredit: Float
+        # @param BasicCreditAmount: <p>基础信用额度</p><p>单位：分</p>
+        # @type BasicCreditAmount: Float
+        # @param OweAmount: <p>欠费金额</p><p>单位：分</p>
+        # @type OweAmount: Float
+
+        attr_accessor :MemberUin, :MemberName, :IsCreditAccount, :RealBalance, :CashAccountBalance, :CreditAmount, :TempCredit, :BasicCreditAmount, :OweAmount
+
+        def initialize(memberuin=nil, membername=nil, iscreditaccount=nil, realbalance=nil, cashaccountbalance=nil, creditamount=nil, tempcredit=nil, basiccreditamount=nil, oweamount=nil)
+          @MemberUin = memberuin
+          @MemberName = membername
+          @IsCreditAccount = iscreditaccount
+          @RealBalance = realbalance
+          @CashAccountBalance = cashaccountbalance
+          @CreditAmount = creditamount
+          @TempCredit = tempcredit
+          @BasicCreditAmount = basiccreditamount
+          @OweAmount = oweamount
+        end
+
+        def deserialize(params)
+          @MemberUin = params['MemberUin']
+          @MemberName = params['MemberName']
+          @IsCreditAccount = params['IsCreditAccount']
+          @RealBalance = params['RealBalance']
+          @CashAccountBalance = params['CashAccountBalance']
+          @CreditAmount = params['CreditAmount']
+          @TempCredit = params['TempCredit']
+          @BasicCreditAmount = params['BasicCreditAmount']
+          @OweAmount = params['OweAmount']
+        end
+      end
+
+      # DescribeOrgMemberAccountBalance请求参数结构体
+      class DescribeOrgMemberAccountBalanceRequest < TencentCloud::Common::AbstractModel
+        # @param PageNumber: <p>页码</p><p>默认值：1</p><p>取值范围≥1</p>
+        # @type PageNumber: Integer
+        # @param PageSize: <p>单页大小</p><p>取值范围：[1, 10]</p><p>默认值：10</p>
+        # @type PageSize: Integer
+        # @param MemberUins: <p>成员uin列表</p><p>入参限制：元素必须为纯数字字符串，并且元素个数不能大于10</p><p>为空时返回当前组织内所有成员的账户余额信息，不为空时返回指定成员的账户余额信息</p>
+        # @type MemberUins: Array
+
+        attr_accessor :PageNumber, :PageSize, :MemberUins
+
+        def initialize(pagenumber=nil, pagesize=nil, memberuins=nil)
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @MemberUins = memberuins
+        end
+
+        def deserialize(params)
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          @MemberUins = params['MemberUins']
+        end
+      end
+
+      # DescribeOrgMemberAccountBalance返回参数结构体
+      class DescribeOrgMemberAccountBalanceResponse < TencentCloud::Common::AbstractModel
+        # @param Data: <p>成员账户余额列表</p>
+        # @type Data: Array
+        # @param TotalCount: <p>总记录数</p>
+        # @type TotalCount: Integer
+        # @param PageSize: <p>当前页实际返回数量</p>
+        # @type PageSize: Integer
+        # @param PageNumber: <p>当前页码</p>
+        # @type PageNumber: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :TotalCount, :PageSize, :PageNumber, :RequestId
+
+        def initialize(data=nil, totalcount=nil, pagesize=nil, pagenumber=nil, requestid=nil)
+          @Data = data
+          @TotalCount = totalcount
+          @PageSize = pagesize
+          @PageNumber = pagenumber
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              describeorgmemberaccountbalancedata_tmp = DescribeOrgMemberAccountBalanceData.new
+              describeorgmemberaccountbalancedata_tmp.deserialize(i)
+              @Data << describeorgmemberaccountbalancedata_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @PageSize = params['PageSize']
+          @PageNumber = params['PageNumber']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeRenewInstances请求参数结构体
       class DescribeRenewInstancesRequest < TencentCloud::Common::AbstractModel
         # @param MaxResults: 每页的最大实例条数。 取值范围：1~100。

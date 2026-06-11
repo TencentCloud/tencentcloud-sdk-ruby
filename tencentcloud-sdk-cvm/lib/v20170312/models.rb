@@ -2037,8 +2037,8 @@ module TencentCloud
 
         attr_accessor :GroupQuota, :CurrentNum, :CvmInHostGroupQuota, :CvmInSwGroupQuota, :CvmInRackGroupQuota, :CvmInSwitchGroupQuota, :RequestId
         extend Gem::Deprecate
-        deprecate :CvmInSwGroupQuota, :none, 2026, 5
-        deprecate :CvmInSwGroupQuota=, :none, 2026, 5
+        deprecate :CvmInSwGroupQuota, :none, 2026, 6
+        deprecate :CvmInSwGroupQuota=, :none, 2026, 6
 
         def initialize(groupquota=nil, currentnum=nil, cvminhostgroupquota=nil, cvminswgroupquota=nil, cvminrackgroupquota=nil, cvminswitchgroupquota=nil, requestid=nil)
           @GroupQuota = groupquota
@@ -3950,8 +3950,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :Password, :Username, :ForceStop, :StopType
         extend Gem::Deprecate
-        deprecate :ForceStop, :none, 2026, 5
-        deprecate :ForceStop=, :none, 2026, 5
+        deprecate :ForceStop, :none, 2026, 6
+        deprecate :ForceStop=, :none, 2026, 6
 
         def initialize(instanceid=nil, password=nil, username=nil, forcestop=nil, stoptype=nil)
           @InstanceId = instanceid
@@ -5442,106 +5442,106 @@ module TencentCloud
 
       # 描述实例的信息
       class Instance < TencentCloud::Common::AbstractModel
-        # @param Placement: 实例所在的位置。
+        # @param Placement: <p>实例所在的位置。</p>
         # @type Placement: :class:`Tencentcloud::Cvm.v20170312.models.Placement`
-        # @param InstanceId: 实例`ID`。
+        # @param InstanceId: <p>实例<code>ID</code>。</p>
         # @type InstanceId: String
-        # @param InstanceType: 实例机型。
+        # @param InstanceType: <p>实例机型。</p>
         # @type InstanceType: String
-        # @param CPU: 实例的CPU核数，单位：核。
+        # @param CPU: <p>实例的CPU核数，单位：核。</p>
         # @type CPU: Integer
-        # @param Memory: 实例内存容量，单位：`GiB`。
+        # @param Memory: <p>实例内存容量，单位：<code>GiB</code>。</p>
         # @type Memory: Integer
-        # @param RestrictState: 实例业务状态。取值范围：<br><li>NORMAL：表示正常状态的实例</li><li>EXPIRED：表示过期的实例</li><li>PROTECTIVELY_ISOLATED：表示被安全隔离的实例。</li>
+        # @param RestrictState: <p>实例业务状态。取值范围：<br><li>NORMAL：表示正常状态的实例</li><li>EXPIRED：表示过期的实例</li><li>PROTECTIVELY_ISOLATED：表示被安全隔离的实例。</li></p>
         # @type RestrictState: String
-        # @param InstanceName: 实例名称。
+        # @param InstanceName: <p>实例名称。</p>
         # @type InstanceName: String
-        # @param InstanceChargeType: 实例[计费类型](https://cloud.tencent.com/document/product/213/2180)。取值范围：<br><li>PREPAID：预付费，即包年包月</li><br><li>POSTPAID_BY_HOUR：按小时后付费</li><br><li>CDHPAID：独享子机（基于专用宿主机创建，宿主机部分的资源不收费）</li><br><li>SPOTPAID：竞价付费</li><br><li>CDCPAID：专用集群付费</li>
+        # @param InstanceChargeType: <p>实例<a href="https://cloud.tencent.com/document/product/213/2180">计费类型</a>。取值范围：<br><li>PREPAID：预付费，即包年包月</li><br><li>POSTPAID_BY_HOUR：按小时后付费</li><br><li>CDHPAID：独享子机（基于专用宿主机创建，宿主机部分的资源不收费）</li><br><li>SPOTPAID：竞价付费</li><br><li>CDCPAID：专用集群付费</li></p>
         # @type InstanceChargeType: String
-        # @param SystemDisk: 实例系统盘信息。
+        # @param SystemDisk: <p>实例系统盘信息。</p>
         # @type SystemDisk: :class:`Tencentcloud::Cvm.v20170312.models.SystemDisk`
-        # @param DataDisks: 实例数据盘信息。
+        # @param DataDisks: <p>实例数据盘信息。</p>
         # @type DataDisks: Array
-        # @param PrivateIpAddresses: 实例主网卡的内网`IP`列表。
+        # @param PrivateIpAddresses: <p>实例主网卡的内网<code>IP</code>列表。</p>
         # @type PrivateIpAddresses: Array
-        # @param PublicIpAddresses: 实例主网卡的公网`IP`列表。
+        # @param PublicIpAddresses: <p>实例主网卡的公网<code>IP</code>列表。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PublicIpAddresses: Array
-        # @param InternetAccessible: 实例带宽信息。
+        # @param InternetAccessible: <p>实例带宽信息。</p>
         # @type InternetAccessible: :class:`Tencentcloud::Cvm.v20170312.models.InternetAccessible`
-        # @param VirtualPrivateCloud: 实例所属虚拟私有网络信息。
+        # @param VirtualPrivateCloud: <p>实例所属虚拟私有网络信息。</p>
         # @type VirtualPrivateCloud: :class:`Tencentcloud::Cvm.v20170312.models.VirtualPrivateCloud`
-        # @param ImageId: 生产实例所使用的镜像`ID`。
+        # @param ImageId: <p>生产实例所使用的镜像<code>ID</code>。</p>
         # @type ImageId: String
-        # @param RenewFlag: 自动续费标识。取值范围：<br><li>`NOTIFY_AND_MANUAL_RENEW`：表示通知即将过期，但不自动续费</li><li>`NOTIFY_AND_AUTO_RENEW`：表示通知即将过期，而且自动续费</li><li>`DISABLE_NOTIFY_AND_MANUAL_RENEW`：表示不通知即将过期，也不自动续费。
-        # </li><li>注意：后付费模式本项为null</li>
+        # @param RenewFlag: <p>自动续费标识。取值范围：<br><li><code>NOTIFY_AND_MANUAL_RENEW</code>：表示通知即将过期，但不自动续费</li><li><code>NOTIFY_AND_AUTO_RENEW</code>：表示通知即将过期，而且自动续费</li><li><code>DISABLE_NOTIFY_AND_MANUAL_RENEW</code>：表示不通知即将过期，也不自动续费。</p></li><li>注意：后付费模式本项为null</li>
         # @type RenewFlag: String
-        # @param CreatedTime: 创建时间。按照`ISO8601`标准表示，并且使用`UTC`时间。格式为：`YYYY-MM-DDThh:mm:ssZ`。
+        # @param CreatedTime: <p>创建时间。按照<code>ISO8601</code>标准表示，并且使用<code>UTC</code>时间。格式为：<code>YYYY-MM-DDThh:mm:ssZ</code>。</p>
         # @type CreatedTime: String
-        # @param ExpiredTime: 到期时间。按照`ISO8601`标准表示，并且使用`UTC`时间。格式为：`YYYY-MM-DDThh:mm:ssZ`。注意：后付费模式本项为null
+        # @param ExpiredTime: <p>到期时间。按照<code>ISO8601</code>标准表示，并且使用<code>UTC</code>时间。格式为：<code>YYYY-MM-DDThh:mm:ssZ</code>。注意：后付费模式本项为null</p>
         # @type ExpiredTime: String
-        # @param OsName: 操作系统名称。
+        # @param OsName: <p>操作系统名称。</p>
         # @type OsName: String
-        # @param SecurityGroupIds: 实例所属安全组。该参数可以通过调用 [DescribeSecurityGroups](https://cloud.tencent.com/document/api/215/15808) 的返回值中的sgId字段来获取。
+        # @param SecurityGroupIds: <p>实例所属安全组。该参数可以通过调用 <a href="https://cloud.tencent.com/document/api/215/15808">DescribeSecurityGroups</a> 的返回值中的sgId字段来获取。</p>
         # @type SecurityGroupIds: Array
-        # @param LoginSettings: 实例登录设置。目前只返回实例所关联的密钥。
+        # @param LoginSettings: <p>实例登录设置。目前只返回实例所关联的密钥。</p>
         # @type LoginSettings: :class:`Tencentcloud::Cvm.v20170312.models.LoginSettings`
-        # @param InstanceState: 实例状态。状态类型详见[实例状态表](https://cloud.tencent.com/document/api/213/15753#InstanceStatus)
+        # @param InstanceState: <p>实例状态。状态类型详见<a href="https://cloud.tencent.com/document/api/213/15753#InstanceStatus">实例状态表</a></p>
         # @type InstanceState: String
-        # @param Tags: 实例关联的标签列表。
+        # @param Tags: <p>实例关联的标签列表。</p>
         # @type Tags: Array
-        # @param StopChargingMode: 实例的关机计费模式。
-        # 取值范围：<br><li>KEEP_CHARGING：关机继续收费</li><li>STOP_CHARGING：关机停止收费</li><li>NOT_APPLICABLE：实例处于非关机状态或者不适用关机停止计费的条件</li>
+        # @param StopChargingMode: <p>实例的关机计费模式。<br>取值范围：<br><li>KEEP_CHARGING：关机继续收费</li><li>STOP_CHARGING：关机停止收费</li><li>NOT_APPLICABLE：实例处于非关机状态或者不适用关机停止计费的条件</li></p>
         # @type StopChargingMode: String
-        # @param Uuid: 实例全局唯一ID
+        # @param Uuid: <p>实例全局唯一ID</p>
         # @type Uuid: String
-        # @param LatestOperation: 实例的最新操作。例：StopInstances、ResetInstance。
+        # @param LatestOperation: <p>实例的最新操作。例：StopInstances、ResetInstance。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LatestOperation: String
-        # @param LatestOperationState: 实例的最新操作状态。取值范围：<br><li>SUCCESS：表示操作成功</li><li>OPERATING：表示操作执行中</li><li>FAILED：表示操作失败</li>
+        # @param LatestOperationState: <p>实例的最新操作状态。取值范围：<br><li>SUCCESS：表示操作成功</li><li>OPERATING：表示操作执行中</li><li>FAILED：表示操作失败</li></p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LatestOperationState: String
-        # @param LatestOperationRequestId: 实例最新操作的唯一请求 ID。
+        # @param LatestOperationRequestId: <p>实例最新操作的唯一请求 ID。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LatestOperationRequestId: String
-        # @param DisasterRecoverGroupId: 分散置放群组ID。
+        # @param DisasterRecoverGroupId: <p>分散置放群组ID。</p>
         # @type DisasterRecoverGroupId: String
-        # @param IPv6Addresses: 实例的IPv6地址。
+        # @param IPv6Addresses: <p>实例的IPv6地址。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IPv6Addresses: Array
-        # @param CamRoleName: CAM角色名。
+        # @param CamRoleName: <p>CAM角色名。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CamRoleName: String
-        # @param HpcClusterId: 高性能计算集群`ID`。
+        # @param HpcClusterId: <p>高性能计算集群<code>ID</code>。</p>
         # @type HpcClusterId: String
-        # @param RdmaIpAddresses: 高性能计算集群`IP`列表。
+        # @param RdmaIpAddresses: <p>高性能计算集群<code>IP</code>列表。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RdmaIpAddresses: Array
-        # @param DedicatedClusterId: 实例所在的专用集群`ID`。
+        # @param DedicatedClusterId: <p>实例所在的专用集群<code>ID</code>。</p>
         # @type DedicatedClusterId: String
-        # @param IsolatedSource: 实例隔离类型。取值范围：<br><li>ARREAR：表示欠费隔离<br></li><li>EXPIRE：表示到期隔离<br></li><li>MANMADE：表示主动退还隔离<br></li><li>NOTISOLATED：表示未隔离<br></li>
+        # @param IsolatedSource: <p>实例隔离类型。取值范围：<br><li>ARREAR：表示欠费隔离<br></li><li>EXPIRE：表示到期隔离<br></li><li>MANMADE：表示主动退还隔离<br></li><li>NOTISOLATED：表示未隔离<br></li></p>
         # @type IsolatedSource: String
-        # @param GPUInfo: GPU信息。如果是gpu类型子机，该值会返回GPU信息，如果是其他类型子机则不返回。
+        # @param GPUInfo: <p>GPU信息。如果是gpu类型子机，该值会返回GPU信息，如果是其他类型子机则不返回。</p>
         # @type GPUInfo: :class:`Tencentcloud::Cvm.v20170312.models.GPUInfo`
-        # @param LicenseType: 实例的操作系统许可类型，默认为TencentCloud
+        # @param LicenseType: <p>实例的操作系统许可类型，默认为TencentCloud</p>
         # @type LicenseType: String
-        # @param DisableApiTermination: 实例销毁保护标志，表示是否允许通过api接口删除实例。取值范围：<br><li>true：表示开启实例保护，不允许通过api接口删除实例</li><li>false：表示关闭实例保护，允许通过api接口删除实例</li><br>默认取值：false。
+        # @param DisableApiTermination: <p>实例销毁保护标志，表示是否允许通过api接口删除实例。取值范围：<br><li>true：表示开启实例保护，不允许通过api接口删除实例</li><li>false：表示关闭实例保护，允许通过api接口删除实例</li><br>默认取值：false。</p>
         # @type DisableApiTermination: Boolean
-        # @param DefaultLoginUser: 默认登录用户。
+        # @param DefaultLoginUser: <p>默认登录用户。</p>
         # @type DefaultLoginUser: String
-        # @param DefaultLoginPort: 默认登录端口。
+        # @param DefaultLoginPort: <p>默认登录端口。</p>
         # @type DefaultLoginPort: Integer
-        # @param LatestOperationErrorMsg: 实例的最新操作错误信息。
+        # @param LatestOperationErrorMsg: <p>实例的最新操作错误信息。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LatestOperationErrorMsg: String
-        # @param Metadata: 自定义metadata，本参数对应创建 CVM时指定的Metadata 信息。**注：内测中**。
+        # @param Metadata: <p>自定义metadata，本参数对应创建 CVM时指定的Metadata 信息。<strong>注：内测中</strong>。</p>
         # @type Metadata: :class:`Tencentcloud::Cvm.v20170312.models.Metadata`
-        # @param PublicIPv6Addresses: 实例绑定的公网IPv6地址。
+        # @param PublicIPv6Addresses: <p>实例绑定的公网IPv6地址。</p>
         # @type PublicIPv6Addresses: Array
+        # @param CpuTopology: <p>描述了实例CPU拓扑结构的相关信息。</p>
+        # @type CpuTopology: :class:`Tencentcloud::Cvm.v20170312.models.CpuTopology`
 
-        attr_accessor :Placement, :InstanceId, :InstanceType, :CPU, :Memory, :RestrictState, :InstanceName, :InstanceChargeType, :SystemDisk, :DataDisks, :PrivateIpAddresses, :PublicIpAddresses, :InternetAccessible, :VirtualPrivateCloud, :ImageId, :RenewFlag, :CreatedTime, :ExpiredTime, :OsName, :SecurityGroupIds, :LoginSettings, :InstanceState, :Tags, :StopChargingMode, :Uuid, :LatestOperation, :LatestOperationState, :LatestOperationRequestId, :DisasterRecoverGroupId, :IPv6Addresses, :CamRoleName, :HpcClusterId, :RdmaIpAddresses, :DedicatedClusterId, :IsolatedSource, :GPUInfo, :LicenseType, :DisableApiTermination, :DefaultLoginUser, :DefaultLoginPort, :LatestOperationErrorMsg, :Metadata, :PublicIPv6Addresses
+        attr_accessor :Placement, :InstanceId, :InstanceType, :CPU, :Memory, :RestrictState, :InstanceName, :InstanceChargeType, :SystemDisk, :DataDisks, :PrivateIpAddresses, :PublicIpAddresses, :InternetAccessible, :VirtualPrivateCloud, :ImageId, :RenewFlag, :CreatedTime, :ExpiredTime, :OsName, :SecurityGroupIds, :LoginSettings, :InstanceState, :Tags, :StopChargingMode, :Uuid, :LatestOperation, :LatestOperationState, :LatestOperationRequestId, :DisasterRecoverGroupId, :IPv6Addresses, :CamRoleName, :HpcClusterId, :RdmaIpAddresses, :DedicatedClusterId, :IsolatedSource, :GPUInfo, :LicenseType, :DisableApiTermination, :DefaultLoginUser, :DefaultLoginPort, :LatestOperationErrorMsg, :Metadata, :PublicIPv6Addresses, :CpuTopology
 
-        def initialize(placement=nil, instanceid=nil, instancetype=nil, cpu=nil, memory=nil, restrictstate=nil, instancename=nil, instancechargetype=nil, systemdisk=nil, datadisks=nil, privateipaddresses=nil, publicipaddresses=nil, internetaccessible=nil, virtualprivatecloud=nil, imageid=nil, renewflag=nil, createdtime=nil, expiredtime=nil, osname=nil, securitygroupids=nil, loginsettings=nil, instancestate=nil, tags=nil, stopchargingmode=nil, uuid=nil, latestoperation=nil, latestoperationstate=nil, latestoperationrequestid=nil, disasterrecovergroupid=nil, ipv6addresses=nil, camrolename=nil, hpcclusterid=nil, rdmaipaddresses=nil, dedicatedclusterid=nil, isolatedsource=nil, gpuinfo=nil, licensetype=nil, disableapitermination=nil, defaultloginuser=nil, defaultloginport=nil, latestoperationerrormsg=nil, metadata=nil, publicipv6addresses=nil)
+        def initialize(placement=nil, instanceid=nil, instancetype=nil, cpu=nil, memory=nil, restrictstate=nil, instancename=nil, instancechargetype=nil, systemdisk=nil, datadisks=nil, privateipaddresses=nil, publicipaddresses=nil, internetaccessible=nil, virtualprivatecloud=nil, imageid=nil, renewflag=nil, createdtime=nil, expiredtime=nil, osname=nil, securitygroupids=nil, loginsettings=nil, instancestate=nil, tags=nil, stopchargingmode=nil, uuid=nil, latestoperation=nil, latestoperationstate=nil, latestoperationrequestid=nil, disasterrecovergroupid=nil, ipv6addresses=nil, camrolename=nil, hpcclusterid=nil, rdmaipaddresses=nil, dedicatedclusterid=nil, isolatedsource=nil, gpuinfo=nil, licensetype=nil, disableapitermination=nil, defaultloginuser=nil, defaultloginport=nil, latestoperationerrormsg=nil, metadata=nil, publicipv6addresses=nil, cputopology=nil)
           @Placement = placement
           @InstanceId = instanceid
           @InstanceType = instancetype
@@ -5585,6 +5585,7 @@ module TencentCloud
           @LatestOperationErrorMsg = latestoperationerrormsg
           @Metadata = metadata
           @PublicIPv6Addresses = publicipv6addresses
+          @CpuTopology = cputopology
         end
 
         def deserialize(params)
@@ -5666,6 +5667,10 @@ module TencentCloud
             @Metadata.deserialize(params['Metadata'])
           end
           @PublicIPv6Addresses = params['PublicIPv6Addresses']
+          unless params['CpuTopology'].nil?
+            @CpuTopology = CpuTopology.new
+            @CpuTopology.deserialize(params['CpuTopology'])
+          end
         end
       end
 
@@ -7625,8 +7630,8 @@ module TencentCloud
 
         attr_accessor :InstanceIds, :ForceReboot, :StopType
         extend Gem::Deprecate
-        deprecate :ForceReboot, :none, 2026, 5
-        deprecate :ForceReboot=, :none, 2026, 5
+        deprecate :ForceReboot, :none, 2026, 6
+        deprecate :ForceReboot=, :none, 2026, 6
 
         def initialize(instanceids=nil, forcereboot=nil, stoptype=nil)
           @InstanceIds = instanceids
@@ -8894,8 +8899,8 @@ module TencentCloud
 
         attr_accessor :InstanceIds, :ForceStop, :StopType, :StoppedMode
         extend Gem::Deprecate
-        deprecate :ForceStop, :none, 2026, 5
-        deprecate :ForceStop=, :none, 2026, 5
+        deprecate :ForceStop, :none, 2026, 6
+        deprecate :ForceStop=, :none, 2026, 6
 
         def initialize(instanceids=nil, forcestop=nil, stoptype=nil, stoppedmode=nil)
           @InstanceIds = instanceids

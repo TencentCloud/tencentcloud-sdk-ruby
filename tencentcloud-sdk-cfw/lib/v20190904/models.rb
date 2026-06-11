@@ -2369,25 +2369,26 @@ module TencentCloud
       class DeleteBlockIgnoreRuleNewRequest < TencentCloud::Common::AbstractModel
         # @param DeleteAll: 是否删除全部
         # @type DeleteAll: Integer
+        # @param ShowType: blocklist 封禁列表 whitelist 白名单列表
+        # @type ShowType: String
         # @param Rules: 规则列表
         # @type Rules: Array
         # @param RuleType: 封禁：1，放通：100，
         # 主要用于全部删除时区分列表类型
         # @type RuleType: Integer
-        # @param ShowType: blocklist 封禁列表 whitelist 白名单列表
-        # @type ShowType: String
 
-        attr_accessor :DeleteAll, :Rules, :RuleType, :ShowType
+        attr_accessor :DeleteAll, :ShowType, :Rules, :RuleType
 
-        def initialize(deleteall=nil, rules=nil, ruletype=nil, showtype=nil)
+        def initialize(deleteall=nil, showtype=nil, rules=nil, ruletype=nil)
           @DeleteAll = deleteall
+          @ShowType = showtype
           @Rules = rules
           @RuleType = ruletype
-          @ShowType = showtype
         end
 
         def deserialize(params)
           @DeleteAll = params['DeleteAll']
+          @ShowType = params['ShowType']
           unless params['Rules'].nil?
             @Rules = []
             params['Rules'].each do |i|
@@ -2397,7 +2398,6 @@ module TencentCloud
             end
           end
           @RuleType = params['RuleType']
-          @ShowType = params['ShowType']
         end
       end
 
@@ -4418,19 +4418,19 @@ module TencentCloud
 
       # DescribeFwGroupInstanceInfo请求参数结构体
       class DescribeFwGroupInstanceInfoRequest < TencentCloud::Common::AbstractModel
-        # @param Limit: 每页条数
+        # @param Limit: <p>每页条数</p>
         # @type Limit: Integer
-        # @param Offset: 偏移值
+        # @param Offset: <p>偏移值</p>
         # @type Offset: Integer
-        # @param Filters: 过滤条件组合
+        # @param Filters: <p>过滤条件组合</p>
         # @type Filters: Array
-        # @param StartTime: 检索的起始时间，可不传
+        # @param StartTime: <p>检索的起始时间，可不传</p>
         # @type StartTime: String
-        # @param EndTime: 检索的截止时间，可不传
+        # @param EndTime: <p>检索的截止时间，可不传</p>
         # @type EndTime: String
-        # @param Order: desc：降序；asc：升序。根据By字段的值进行排序，这里传参的话则By也必须有值
+        # @param Order: <p>desc：降序；asc：升序。根据By字段的值进行排序，这里传参的话则By也必须有值</p>
         # @type Order: String
-        # @param By: 排序所用到的字段
+        # @param By: <p>排序所用到的字段</p>
         # @type By: String
 
         attr_accessor :Limit, :Offset, :Filters, :StartTime, :EndTime, :Order, :By
@@ -4465,9 +4465,9 @@ module TencentCloud
 
       # DescribeFwGroupInstanceInfo返回参数结构体
       class DescribeFwGroupInstanceInfoResponse < TencentCloud::Common::AbstractModel
-        # @param VpcFwGroupLst: 防火墙(组)详细信息
+        # @param VpcFwGroupLst: <p>防火墙(组)详细信息</p>
         # @type VpcFwGroupLst: Array
-        # @param Total: 防火墙(组)个数
+        # @param Total: <p>防火墙(组)个数</p>
         # @type Total: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -7064,28 +7064,31 @@ module TencentCloud
 
       # ExpandCfwVertical请求参数结构体
       class ExpandCfwVerticalRequest < TencentCloud::Common::AbstractModel
-        # @param FwType: nat：nat防火墙，ew：东西向防火墙
+        # @param FwType: <p>nat：nat防火墙，ew：东西向防火墙</p>
         # @type FwType: String
-        # @param Width: 带宽值
+        # @param Width: <p>带宽值</p>
         # @type Width: Integer
-        # @param CfwInstance: 防火墙实例id
+        # @param CfwInstance: <p>防火墙实例id</p>
         # @type CfwInstance: String
-        # @param ElasticSwitch: 弹性开关 1打开 0 关闭
+        # @param ElasticSwitch: <p>弹性开关 1打开 0 关闭</p>
         # @type ElasticSwitch: Integer
-        # @param ElasticBandwidth: 弹性带宽上限，单位Mbps
+        # @param ElasticBandwidth: <p>弹性带宽上限，单位Mbps</p>
         # @type ElasticBandwidth: Integer
-        # @param Tags: 按量计费标签
+        # @param Tags: <p>按量计费标签</p>
         # @type Tags: Array
+        # @param ElasticTrafficSwitch: <p>按流量弹性开关</p><p>取值范围：[0, 1]</p><p>默认值：0</p>
+        # @type ElasticTrafficSwitch: Integer
 
-        attr_accessor :FwType, :Width, :CfwInstance, :ElasticSwitch, :ElasticBandwidth, :Tags
+        attr_accessor :FwType, :Width, :CfwInstance, :ElasticSwitch, :ElasticBandwidth, :Tags, :ElasticTrafficSwitch
 
-        def initialize(fwtype=nil, width=nil, cfwinstance=nil, elasticswitch=nil, elasticbandwidth=nil, tags=nil)
+        def initialize(fwtype=nil, width=nil, cfwinstance=nil, elasticswitch=nil, elasticbandwidth=nil, tags=nil, elastictrafficswitch=nil)
           @FwType = fwtype
           @Width = width
           @CfwInstance = cfwinstance
           @ElasticSwitch = elasticswitch
           @ElasticBandwidth = elasticbandwidth
           @Tags = tags
+          @ElasticTrafficSwitch = elastictrafficswitch
         end
 
         def deserialize(params)
@@ -7102,6 +7105,7 @@ module TencentCloud
               @Tags << taginfo_tmp
             end
           end
+          @ElasticTrafficSwitch = params['ElasticTrafficSwitch']
         end
       end
 
@@ -10006,72 +10010,70 @@ module TencentCloud
 
       # Nat实例卡片详细信息
       class NatInstanceInfo < TencentCloud::Common::AbstractModel
-        # @param NatinsId: nat实例id
+        # @param NatinsId: <p>nat实例id</p>
         # @type NatinsId: String
-        # @param NatinsName: nat实例名称
+        # @param NatinsName: <p>nat实例名称</p>
         # @type NatinsName: String
-        # @param Region: 实例所在地域
+        # @param Region: <p>实例所在地域</p>
         # @type Region: String
-        # @param FwMode: 0: 新增模式，1:接入模式
+        # @param FwMode: <p>0: 新增模式，1:接入模式</p>
         # @type FwMode: Integer
-        # @param BandWidth: 实例带宽大小 Mbps
+        # @param BandWidth: <p>实例带宽大小 Mbps</p>
         # @type BandWidth: Integer
-        # @param InFlowMax: 入向带宽峰值 bps
+        # @param InFlowMax: <p>入向带宽峰值 bps</p>
         # @type InFlowMax: Integer
-        # @param OutFlowMax: 出向带宽峰值 bps
+        # @param OutFlowMax: <p>出向带宽峰值 bps</p>
         # @type OutFlowMax: Integer
-        # @param RegionZh: 地域中文信息
+        # @param RegionZh: <p>地域中文信息</p>
         # @type RegionZh: String
-        # @param EipAddress: 公网ip数组
+        # @param EipAddress: <p>公网ip数组</p>
         # @type EipAddress: Array
-        # @param VpcIp: 内外使用ip数组
+        # @param VpcIp: <p>内外使用ip数组</p>
         # @type VpcIp: Array
-        # @param Subnets: 实例关联子网数组
+        # @param Subnets: <p>实例关联子网数组</p>
         # @type Subnets: Array
-        # @param Status: 0 :正常 1：正在初始化
+        # @param Status: <p>0 :正常 1：正在初始化</p>
         # @type Status: Integer
-        # @param RegionDetail: 地域区域信息
+        # @param RegionDetail: <p>地域区域信息</p>
         # @type RegionDetail: String
-        # @param ZoneZh: 实例所在可用区
+        # @param ZoneZh: <p>实例所在可用区</p>
         # @type ZoneZh: String
-        # @param ZoneZhBak: 实例所在可用区
+        # @param ZoneZhBak: <p>实例所在可用区</p>
         # @type ZoneZhBak: String
-        # @param RuleUsed: 已使用规则数
+        # @param RuleUsed: <p>已使用规则数</p>
         # @type RuleUsed: Integer
-        # @param RuleMax: 实例的规则限制最大规格数
+        # @param RuleMax: <p>实例的规则限制最大规格数</p>
         # @type RuleMax: Integer
-        # @param EngineVersion: 实例引擎版本
+        # @param EngineVersion: <p>实例引擎版本</p>
         # @type EngineVersion: String
-        # @param UpdateEnable: 引擎是否可升级：0，不可升级；1，可升级
+        # @param UpdateEnable: <p>引擎是否可升级：0，不可升级；1，可升级</p>
         # @type UpdateEnable: Integer
-        # @param NeedProbeEngineUpdate: 是的需要升级引擎 支持 nat拨测 1需要 0不需要
+        # @param NeedProbeEngineUpdate: <p>是的需要升级引擎 支持 nat拨测 1需要 0不需要</p>
         # @type NeedProbeEngineUpdate: Integer
-        # @param TrafficMode: 引擎运行模式，Normal:正常, OnlyRoute:透明模式
+        # @param TrafficMode: <p>引擎运行模式，Normal:正常, OnlyRoute:透明模式</p>
         # @type TrafficMode: String
-        # @param Zone: 实例主所在可用区
+        # @param Zone: <p>实例主所在可用区</p>
         # @type Zone: String
-        # @param ZoneBak: 实例备所在可用区
+        # @param ZoneBak: <p>实例备所在可用区</p>
         # @type ZoneBak: String
-        # @param ReserveTime: 引擎预约升级时间
+        # @param ReserveTime: <p>引擎预约升级时间</p>
         # @type ReserveTime: String
-        # @param ReserveVersion: 引擎预约升级版本
+        # @param ReserveVersion: <p>引擎预约升级版本</p>
         # @type ReserveVersion: String
-        # @param ReserveVersionState: 引擎预约升级版本状态 stable:稳定版；previewed:预览版
+        # @param ReserveVersionState: <p>引擎预约升级版本状态 stable:稳定版；previewed:预览版</p>
         # @type ReserveVersionState: String
-        # @param ElasticSwitch: 弹性开关
-        # 1 打开
-        # 0 关闭
+        # @param ElasticSwitch: <p>弹性开关<br>1 打开<br>0 关闭</p>
         # @type ElasticSwitch: Integer
-        # @param ElasticBandwidth: 弹性带宽，单位Mbps
+        # @param ElasticBandwidth: <p>弹性带宽，单位Mbps</p>
         # @type ElasticBandwidth: Integer
-        # @param IsFirstAfterPay: 是否首次开通按量付费
-        # 1 是
-        # 0 不是
+        # @param IsFirstAfterPay: <p>是否首次开通按量付费<br>1 是<br>0 不是</p>
         # @type IsFirstAfterPay: Integer
+        # @param ElasticTrafficSwitch: <p>按流量弹性开关</p><p>默认值：0</p>
+        # @type ElasticTrafficSwitch: Integer
 
-        attr_accessor :NatinsId, :NatinsName, :Region, :FwMode, :BandWidth, :InFlowMax, :OutFlowMax, :RegionZh, :EipAddress, :VpcIp, :Subnets, :Status, :RegionDetail, :ZoneZh, :ZoneZhBak, :RuleUsed, :RuleMax, :EngineVersion, :UpdateEnable, :NeedProbeEngineUpdate, :TrafficMode, :Zone, :ZoneBak, :ReserveTime, :ReserveVersion, :ReserveVersionState, :ElasticSwitch, :ElasticBandwidth, :IsFirstAfterPay
+        attr_accessor :NatinsId, :NatinsName, :Region, :FwMode, :BandWidth, :InFlowMax, :OutFlowMax, :RegionZh, :EipAddress, :VpcIp, :Subnets, :Status, :RegionDetail, :ZoneZh, :ZoneZhBak, :RuleUsed, :RuleMax, :EngineVersion, :UpdateEnable, :NeedProbeEngineUpdate, :TrafficMode, :Zone, :ZoneBak, :ReserveTime, :ReserveVersion, :ReserveVersionState, :ElasticSwitch, :ElasticBandwidth, :IsFirstAfterPay, :ElasticTrafficSwitch
 
-        def initialize(natinsid=nil, natinsname=nil, region=nil, fwmode=nil, bandwidth=nil, inflowmax=nil, outflowmax=nil, regionzh=nil, eipaddress=nil, vpcip=nil, subnets=nil, status=nil, regiondetail=nil, zonezh=nil, zonezhbak=nil, ruleused=nil, rulemax=nil, engineversion=nil, updateenable=nil, needprobeengineupdate=nil, trafficmode=nil, zone=nil, zonebak=nil, reservetime=nil, reserveversion=nil, reserveversionstate=nil, elasticswitch=nil, elasticbandwidth=nil, isfirstafterpay=nil)
+        def initialize(natinsid=nil, natinsname=nil, region=nil, fwmode=nil, bandwidth=nil, inflowmax=nil, outflowmax=nil, regionzh=nil, eipaddress=nil, vpcip=nil, subnets=nil, status=nil, regiondetail=nil, zonezh=nil, zonezhbak=nil, ruleused=nil, rulemax=nil, engineversion=nil, updateenable=nil, needprobeengineupdate=nil, trafficmode=nil, zone=nil, zonebak=nil, reservetime=nil, reserveversion=nil, reserveversionstate=nil, elasticswitch=nil, elasticbandwidth=nil, isfirstafterpay=nil, elastictrafficswitch=nil)
           @NatinsId = natinsid
           @NatinsName = natinsname
           @Region = region
@@ -10101,6 +10103,7 @@ module TencentCloud
           @ElasticSwitch = elasticswitch
           @ElasticBandwidth = elasticbandwidth
           @IsFirstAfterPay = isfirstafterpay
+          @ElasticTrafficSwitch = elastictrafficswitch
         end
 
         def deserialize(params)
@@ -10133,6 +10136,7 @@ module TencentCloud
           @ElasticSwitch = params['ElasticSwitch']
           @ElasticBandwidth = params['ElasticBandwidth']
           @IsFirstAfterPay = params['IsFirstAfterPay']
+          @ElasticTrafficSwitch = params['ElasticTrafficSwitch']
         end
       end
 
@@ -11528,32 +11532,35 @@ module TencentCloud
 
       # 防火墙串行地域带宽分配情况
       class SerialRegionInfo < TencentCloud::Common::AbstractModel
-        # @param Region: 地域
+        # @param Region: <p>地域</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Region: String
-        # @param Width: 分配带宽值 单位Mbps
+        # @param Width: <p>分配带宽值 单位Mbps</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Width: Integer
-        # @param ElasticSwitch: 弹性开关
+        # @param ElasticSwitch: <p>弹性开关</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ElasticSwitch: Integer
-        # @param ElasticBandwidth: 弹性带宽上限，单位Mbps
+        # @param ElasticBandwidth: <p>弹性带宽上限，单位Mbps</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ElasticBandwidth: Integer
-        # @param InFlowMax: 七天入向峰值带宽，单位bps
+        # @param InFlowMax: <p>七天入向峰值带宽，单位bps</p>
         # @type InFlowMax: Integer
-        # @param OutFlowMax: 七天出向峰值带宽，单位bps
+        # @param OutFlowMax: <p>七天出向峰值带宽，单位bps</p>
         # @type OutFlowMax: Integer
+        # @param ElasticTrafficSwitch: <p>边界按流量弹性开关</p><p>取值范围：[0, 1]</p><p>默认值：0</p>
+        # @type ElasticTrafficSwitch: Integer
 
-        attr_accessor :Region, :Width, :ElasticSwitch, :ElasticBandwidth, :InFlowMax, :OutFlowMax
+        attr_accessor :Region, :Width, :ElasticSwitch, :ElasticBandwidth, :InFlowMax, :OutFlowMax, :ElasticTrafficSwitch
 
-        def initialize(region=nil, width=nil, elasticswitch=nil, elasticbandwidth=nil, inflowmax=nil, outflowmax=nil)
+        def initialize(region=nil, width=nil, elasticswitch=nil, elasticbandwidth=nil, inflowmax=nil, outflowmax=nil, elastictrafficswitch=nil)
           @Region = region
           @Width = width
           @ElasticSwitch = elasticswitch
           @ElasticBandwidth = elasticbandwidth
           @InFlowMax = inflowmax
           @OutFlowMax = outflowmax
+          @ElasticTrafficSwitch = elastictrafficswitch
         end
 
         def deserialize(params)
@@ -11563,6 +11570,7 @@ module TencentCloud
           @ElasticBandwidth = params['ElasticBandwidth']
           @InFlowMax = params['InFlowMax']
           @OutFlowMax = params['OutFlowMax']
+          @ElasticTrafficSwitch = params['ElasticTrafficSwitch']
         end
       end
 
@@ -12455,72 +12463,72 @@ module TencentCloud
 
       # VPC防火墙实例卡片信息
       class VpcFwInstanceInfo < TencentCloud::Common::AbstractModel
-        # @param FwInsName: VPC防火墙实例名称
+        # @param FwInsName: <p>VPC防火墙实例名称</p>
         # @type FwInsName: String
-        # @param FwInsId: VPC防火墙实例ID
+        # @param FwInsId: <p>VPC防火墙实例ID</p>
         # @type FwInsId: String
-        # @param FwMode: VPC防火墙实例模式 0: 旧VPC模式防火墙 1: CCN模式防火墙
+        # @param FwMode: <p>VPC防火墙实例模式 0: 旧VPC模式防火墙 1: CCN模式防火墙</p>
         # @type FwMode: Integer
-        # @param JoinInsNum: VPC防火墙接入网络实例个数
+        # @param JoinInsNum: <p>VPC防火墙接入网络实例个数</p>
         # @type JoinInsNum: Integer
-        # @param FwSwitchNum: VPC防火墙开关个数
+        # @param FwSwitchNum: <p>VPC防火墙开关个数</p>
         # @type FwSwitchNum: Integer
-        # @param Status: VPC防火墙状态 0:正常 ， 1：创建中 2: 变更中
+        # @param Status: <p>VPC防火墙状态 0:正常 ， 1：创建中 2: 变更中</p>
         # @type Status: Integer
-        # @param Time: VPC防火墙创建时间
+        # @param Time: <p>VPC防火墙创建时间</p>
         # @type Time: String
-        # @param CcnId: VPC 相关云联网ID列表
+        # @param CcnId: <p>VPC 相关云联网ID列表</p>
         # @type CcnId: Array
-        # @param CcnName: VPC 相关云联网名称列表
+        # @param CcnName: <p>VPC 相关云联网名称列表</p>
         # @type CcnName: Array
-        # @param PeerConnectionId: VPC 相关对等连接ID列表
+        # @param PeerConnectionId: <p>VPC 相关对等连接ID列表</p>
         # @type PeerConnectionId: Array
-        # @param PeerConnectionName: VPC 相关对等连接名称列表
+        # @param PeerConnectionName: <p>VPC 相关对等连接名称列表</p>
         # @type PeerConnectionName: Array
-        # @param FwCvmLst: VPC防火墙CVM的列表
+        # @param FwCvmLst: <p>VPC防火墙CVM的列表</p>
         # @type FwCvmLst: Array
-        # @param JoinInsLst: VPC防火墙接入网络实例类型列表
+        # @param JoinInsLst: <p>VPC防火墙接入网络实例类型列表</p>
         # @type JoinInsLst: Array
-        # @param FwGateway: 防火墙网关信息
+        # @param FwGateway: <p>防火墙网关信息</p>
         # @type FwGateway: Array
-        # @param FwGroupId: 防火墙(组)ID
+        # @param FwGroupId: <p>防火墙(组)ID</p>
         # @type FwGroupId: String
-        # @param RuleUsed: 已使用规则数
+        # @param RuleUsed: <p>已使用规则数</p>
         # @type RuleUsed: Integer
-        # @param RuleMax: 最大规则数
+        # @param RuleMax: <p>最大规则数</p>
         # @type RuleMax: Integer
-        # @param Width: 防火墙实例带宽
+        # @param Width: <p>防火墙实例带宽</p>
         # @type Width: Integer
-        # @param UserVpcWidth: 用户VPC墙总带宽
+        # @param UserVpcWidth: <p>用户VPC墙总带宽</p>
         # @type UserVpcWidth: Integer
-        # @param JoinInsIdLst: 接入的vpc列表
+        # @param JoinInsIdLst: <p>接入的vpc列表</p>
         # @type JoinInsIdLst: Array
-        # @param FlowMax: 内网间峰值带宽 (单位 bps )
+        # @param FlowMax: <p>内网间峰值带宽 (单位 bps )</p>
         # @type FlowMax: Integer
-        # @param EngineVersion: 实例引擎版本
+        # @param EngineVersion: <p>实例引擎版本</p>
         # @type EngineVersion: String
-        # @param UpdateEnable: 引擎是否可升级：0，不可升级；1，可升级
+        # @param UpdateEnable: <p>引擎是否可升级：0，不可升级；1，可升级</p>
         # @type UpdateEnable: Integer
-        # @param TrafficMode: 引擎运行模式，Normal:正常, OnlyRoute:透明模式
+        # @param TrafficMode: <p>引擎运行模式，Normal:正常, OnlyRoute:透明模式</p>
         # @type TrafficMode: String
-        # @param ReserveTime: 引擎预约升级时间
+        # @param ReserveTime: <p>引擎预约升级时间</p>
         # @type ReserveTime: String
-        # @param ReserveVersion: 预约引擎升级版本
+        # @param ReserveVersion: <p>预约引擎升级版本</p>
         # @type ReserveVersion: String
-        # @param ReserveVersionState: 引擎预约升级版本状态
+        # @param ReserveVersionState: <p>引擎预约升级版本状态</p>
         # @type ReserveVersionState: String
-        # @param ElasticSwitch: 弹性开关 1打开 0关闭
+        # @param ElasticSwitch: <p>弹性开关 1打开 0关闭</p>
         # @type ElasticSwitch: Integer
-        # @param ElasticBandwidth: 弹性带宽，单位Mbps
+        # @param ElasticBandwidth: <p>弹性带宽，单位Mbps</p>
         # @type ElasticBandwidth: Integer
-        # @param IsFirstAfterPay: 是否首次开通按量付费
-        # 1 是
-        # 0 不是
+        # @param IsFirstAfterPay: <p>是否首次开通按量付费<br>1 是<br>0 不是</p>
         # @type IsFirstAfterPay: Integer
+        # @param ElasticTrafficSwitch: <p>按流量弹性开关</p><p>取值范围：[0, 1]</p><p>默认值：0</p>
+        # @type ElasticTrafficSwitch: Integer
 
-        attr_accessor :FwInsName, :FwInsId, :FwMode, :JoinInsNum, :FwSwitchNum, :Status, :Time, :CcnId, :CcnName, :PeerConnectionId, :PeerConnectionName, :FwCvmLst, :JoinInsLst, :FwGateway, :FwGroupId, :RuleUsed, :RuleMax, :Width, :UserVpcWidth, :JoinInsIdLst, :FlowMax, :EngineVersion, :UpdateEnable, :TrafficMode, :ReserveTime, :ReserveVersion, :ReserveVersionState, :ElasticSwitch, :ElasticBandwidth, :IsFirstAfterPay
+        attr_accessor :FwInsName, :FwInsId, :FwMode, :JoinInsNum, :FwSwitchNum, :Status, :Time, :CcnId, :CcnName, :PeerConnectionId, :PeerConnectionName, :FwCvmLst, :JoinInsLst, :FwGateway, :FwGroupId, :RuleUsed, :RuleMax, :Width, :UserVpcWidth, :JoinInsIdLst, :FlowMax, :EngineVersion, :UpdateEnable, :TrafficMode, :ReserveTime, :ReserveVersion, :ReserveVersionState, :ElasticSwitch, :ElasticBandwidth, :IsFirstAfterPay, :ElasticTrafficSwitch
 
-        def initialize(fwinsname=nil, fwinsid=nil, fwmode=nil, joininsnum=nil, fwswitchnum=nil, status=nil, time=nil, ccnid=nil, ccnname=nil, peerconnectionid=nil, peerconnectionname=nil, fwcvmlst=nil, joininslst=nil, fwgateway=nil, fwgroupid=nil, ruleused=nil, rulemax=nil, width=nil, uservpcwidth=nil, joininsidlst=nil, flowmax=nil, engineversion=nil, updateenable=nil, trafficmode=nil, reservetime=nil, reserveversion=nil, reserveversionstate=nil, elasticswitch=nil, elasticbandwidth=nil, isfirstafterpay=nil)
+        def initialize(fwinsname=nil, fwinsid=nil, fwmode=nil, joininsnum=nil, fwswitchnum=nil, status=nil, time=nil, ccnid=nil, ccnname=nil, peerconnectionid=nil, peerconnectionname=nil, fwcvmlst=nil, joininslst=nil, fwgateway=nil, fwgroupid=nil, ruleused=nil, rulemax=nil, width=nil, uservpcwidth=nil, joininsidlst=nil, flowmax=nil, engineversion=nil, updateenable=nil, trafficmode=nil, reservetime=nil, reserveversion=nil, reserveversionstate=nil, elasticswitch=nil, elasticbandwidth=nil, isfirstafterpay=nil, elastictrafficswitch=nil)
           @FwInsName = fwinsname
           @FwInsId = fwinsid
           @FwMode = fwmode
@@ -12551,6 +12559,7 @@ module TencentCloud
           @ElasticSwitch = elasticswitch
           @ElasticBandwidth = elasticbandwidth
           @IsFirstAfterPay = isfirstafterpay
+          @ElasticTrafficSwitch = elastictrafficswitch
         end
 
         def deserialize(params)
@@ -12605,6 +12614,7 @@ module TencentCloud
           @ElasticSwitch = params['ElasticSwitch']
           @ElasticBandwidth = params['ElasticBandwidth']
           @IsFirstAfterPay = params['IsFirstAfterPay']
+          @ElasticTrafficSwitch = params['ElasticTrafficSwitch']
         end
       end
 

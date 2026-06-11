@@ -59,14 +59,11 @@ module TencentCloud
 
       # AddLoginWhiteLists请求参数结构体
       class AddLoginWhiteListsRequest < TencentCloud::Common::AbstractModel
-        # @param HostLoginWhiteObj: 异地登录白名单实体
+        # @param HostLoginWhiteObj: <p>异地登录白名单实体</p>
         # @type HostLoginWhiteObj: :class:`Tencentcloud::Cwp.v20180228.models.HostLoginWhiteObj`
-        # @param ProcessType: 事件同步处理方式：
-        #   "" -- 不操作
-        #   "All" -- 将符合此配置的所有事件记录加白
-        #   "Id" -- 将EventId对应的事件记录加白
+        # @param ProcessType: <p>事件同步处理方式：<br>  &quot;&quot; -- 不操作<br>  &quot;All&quot; -- 将符合此配置的所有事件记录加白<br>  &quot;Id&quot; -- 将EventId对应的事件记录加白</p>
         # @type ProcessType: String
-        # @param EventId: 异地登录事件ID，当ProcessType为Id时此项必填
+        # @param EventId: <p>异地登录事件ID，当ProcessType为Id时此项必填</p>
         # @type EventId: Integer
 
         attr_accessor :HostLoginWhiteObj, :ProcessType, :EventId
@@ -89,7 +86,7 @@ module TencentCloud
 
       # AddLoginWhiteLists返回参数结构体
       class AddLoginWhiteListsResponse < TencentCloud::Common::AbstractModel
-        # @param DuplicateHosts: 重复添加的提示列表
+        # @param DuplicateHosts: <p>重复添加的提示列表</p>
         # @type DuplicateHosts: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6861,7 +6858,7 @@ module TencentCloud
 
       # DeleteLoginWhiteList请求参数结构体
       class DeleteLoginWhiteListRequest < TencentCloud::Common::AbstractModel
-        # @param Ids: 白名单ID (最大 100 条)
+        # @param Ids: <p>白名单ID (最大 100 条)</p>
         # @type Ids: Array
 
         attr_accessor :Ids
@@ -16883,11 +16880,11 @@ module TencentCloud
 
       # DescribeLoginWhiteCombinedList请求参数结构体
       class DescribeLoginWhiteCombinedListRequest < TencentCloud::Common::AbstractModel
-        # @param Limit: 需要返回的数量，默认为10，最大值为100
+        # @param Limit: <p>需要返回的数量，默认为10，最大值为100</p>
         # @type Limit: Integer
-        # @param Offset: 偏移量，默认为0。
+        # @param Offset: <p>偏移量，默认为0。</p>
         # @type Offset: Integer
-        # @param Filters: 过滤条件。<li>IpOrAlias - String - 是否必填：否 - 主机ip或别名筛选</li><li>UserName - String - 是否必填：否 - 用户名筛选</li><li>SrcIP - String - 是否必填：否 - 来源IP筛选</li><li>Location - String - 是否必填：否 - 登录地筛选</li><li>ModifyBeginTime - String - 是否必填：否 - 按照修改时间段筛选，开始时间</li><li>ModifyEndTime - String - 是否必填：否 - 按照修改时间段筛选，结束时间</li>
+        # @param Filters: <p>过滤条件。<li>IpOrAlias - String - 是否必填：否 - 主机ip或别名筛选</li><li>UserName - String - 是否必填：否 - 用户名筛选</li><li>SrcIP - String - 是否必填：否 - 来源IP筛选</li><li>Location - String - 是否必填：否 - 登录地筛选</li><li>ModifyBeginTime - String - 是否必填：否 - 按照修改时间段筛选，开始时间</li><li>ModifyEndTime - String - 是否必填：否 - 按照修改时间段筛选，结束时间</li></p>
         # @type Filters: Array
 
         attr_accessor :Limit, :Offset, :Filters
@@ -16914,9 +16911,9 @@ module TencentCloud
 
       # DescribeLoginWhiteCombinedList返回参数结构体
       class DescribeLoginWhiteCombinedListResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 总数量
+        # @param TotalCount: <p>总数量</p>
         # @type TotalCount: Integer
-        # @param LoginWhiteCombinedInfos: 合并后的白名单列表
+        # @param LoginWhiteCombinedInfos: <p>合并后的白名单列表</p>
         # @type LoginWhiteCombinedInfos: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -16945,13 +16942,13 @@ module TencentCloud
 
       # DescribeLoginWhiteHostList请求参数结构体
       class DescribeLoginWhiteHostListRequest < TencentCloud::Common::AbstractModel
-        # @param Id: 白名单ID
+        # @param Id: <p>白名单ID</p>
         # @type Id: Integer
-        # @param Limit: 需要返回的数量，最大值为1000
+        # @param Limit: <p>需要返回的数量，最大值为1000</p>
         # @type Limit: Integer
-        # @param Offset: 偏移量，默认为0。
+        # @param Offset: <p>偏移量，默认为0。</p>
         # @type Offset: Integer
-        # @param Filters: 过滤条件 <li>IpOrAlias - String - 是否必填：否 - 主机ip或别名筛选</li>
+        # @param Filters: <p>过滤条件 <li>IpOrAlias - String - 是否必填：否 - 主机ip或别名筛选</li></p>
         # @type Filters: Array
 
         attr_accessor :Id, :Limit, :Offset, :Filters
@@ -16980,9 +16977,9 @@ module TencentCloud
 
       # DescribeLoginWhiteHostList返回参数结构体
       class DescribeLoginWhiteHostListResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 总数
+        # @param TotalCount: <p>总数</p>
         # @type TotalCount: Integer
-        # @param Hosts: 服务器列表
+        # @param Hosts: <p>服务器列表</p>
         # @type Hosts: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -17261,45 +17258,45 @@ module TencentCloud
 
       # DescribeMachineGeneral返回参数结构体
       class DescribeMachineGeneralResponse < TencentCloud::Common::AbstractModel
-        # @param MachineCnt: 资产总数
+        # @param MachineCnt: <p>资产总数</p>
         # @type MachineCnt: Integer
-        # @param TencentCloudMachineCnt: 腾讯云服务商机器数
+        # @param TencentCloudMachineCnt: <p>腾讯云服务商机器数</p>
         # @type TencentCloudMachineCnt: Integer
-        # @param AliCloudMachineCnt: 阿里云服务商机器数
+        # @param AliCloudMachineCnt: <p>阿里云服务商机器数</p>
         # @type AliCloudMachineCnt: Integer
-        # @param BaiduCloudMachineCnt: 百度云服务商机器数
+        # @param BaiduCloudMachineCnt: <p>百度云服务商机器数</p>
         # @type BaiduCloudMachineCnt: Integer
-        # @param IDCMachineCnt: IDC机器数
+        # @param IDCMachineCnt: <p>IDC机器数</p>
         # @type IDCMachineCnt: Integer
-        # @param OtherCloudMachineCnt: 其他云服务商机器数
+        # @param OtherCloudMachineCnt: <p>其他云服务商机器数</p>
         # @type OtherCloudMachineCnt: Integer
-        # @param ProtectMachineCnt: 已防护机器数
+        # @param ProtectMachineCnt: <p>已防护机器数</p>
         # @type ProtectMachineCnt: Integer
-        # @param BaseMachineCnt: 已防护基础版机器数
+        # @param BaseMachineCnt: <p>已防护基础版机器数</p>
         # @type BaseMachineCnt: Integer
-        # @param SpecialtyMachineCnt: 已防护专业版机器数
+        # @param SpecialtyMachineCnt: <p>已防护专业版机器数</p>
         # @type SpecialtyMachineCnt: Integer
-        # @param FlagshipMachineCnt: 已防护旗舰版机器数
+        # @param FlagshipMachineCnt: <p>已防护旗舰版机器数</p>
         # @type FlagshipMachineCnt: Integer
-        # @param RiskMachineCnt: 存在风险的机器数
+        # @param RiskMachineCnt: <p>存在风险的机器数</p>
         # @type RiskMachineCnt: Integer
-        # @param CompareYesterdayRiskMachineCnt: 比较昨日风险机器数
+        # @param CompareYesterdayRiskMachineCnt: <p>比较昨日风险机器数</p>
         # @type CompareYesterdayRiskMachineCnt: Integer
-        # @param CompareYesterdayNotProtectMachineCnt: 比较昨日未防护机器数
+        # @param CompareYesterdayNotProtectMachineCnt: <p>比较昨日未防护机器数</p>
         # @type CompareYesterdayNotProtectMachineCnt: Integer
-        # @param CompareYesterdayDeadlineMachineCnt: 比较昨日即将到期的机器数
+        # @param CompareYesterdayDeadlineMachineCnt: <p>比较昨日即将到期的机器数</p>
         # @type CompareYesterdayDeadlineMachineCnt: Integer
-        # @param DeadlineMachineCnt: 即将到期的机器数
+        # @param DeadlineMachineCnt: <p>即将到期的机器数</p>
         # @type DeadlineMachineCnt: Integer
-        # @param NotProtectMachineCnt: 未防护机器数
+        # @param NotProtectMachineCnt: <p>未防护机器数</p>
         # @type NotProtectMachineCnt: Integer
-        # @param LHGeneralDiscountCnt: 已防护轻量机器数（Lighthouse机器）
+        # @param LHGeneralDiscountCnt: <p>已防护轻量机器数（Lighthouse机器）</p>
         # @type LHGeneralDiscountCnt: Integer
-        # @param CompareYesterdayMachineCnt: 比较昨日新增的主机数
+        # @param CompareYesterdayMachineCnt: <p>比较昨日新增的主机数</p>
         # @type CompareYesterdayMachineCnt: Integer
-        # @param MachineDestroyAfterOfflineHours: 自动清理时间,最大720小时,最小0, 默认0 ,0=关闭
+        # @param MachineDestroyAfterOfflineHours: <p>自动清理时间,最大720小时,最小0, 默认0 ,0=关闭</p>
         # @type MachineDestroyAfterOfflineHours: Integer
-        # @param CloudFrom: 云服务器类型数组
+        # @param CloudFrom: <p>云服务器类型数组</p>
         # @type CloudFrom: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -30036,7 +30033,7 @@ module TencentCloud
 
       # ExportTasks请求参数结构体
       class ExportTasksRequest < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务ID
+        # @param TaskId: <p>任务ID</p>
         # @type TaskId: String
 
         attr_accessor :TaskId
@@ -30052,24 +30049,28 @@ module TencentCloud
 
       # ExportTasks返回参数结构体
       class ExportTasksResponse < TencentCloud::Common::AbstractModel
-        # @param Status: PENDING：正在生成下载链接，FINISHED：下载链接已生成，ERROR：网络异常等异常情况
+        # @param Status: <p>PENDING：正在生成下载链接，FINISHED：下载链接已生成，ERROR：网络异常等异常情况</p>
         # @type Status: String
-        # @param DownloadUrl: 下载链接
+        # @param DownloadUrl: <p>下载链接</p>
         # @type DownloadUrl: String
+        # @param FileName: <p>文件名称</p>
+        # @type FileName: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Status, :DownloadUrl, :RequestId
+        attr_accessor :Status, :DownloadUrl, :FileName, :RequestId
 
-        def initialize(status=nil, downloadurl=nil, requestid=nil)
+        def initialize(status=nil, downloadurl=nil, filename=nil, requestid=nil)
           @Status = status
           @DownloadUrl = downloadurl
+          @FileName = filename
           @RequestId = requestid
         end
 
         def deserialize(params)
           @Status = params['Status']
           @DownloadUrl = params['DownloadUrl']
+          @FileName = params['FileName']
           @RequestId = params['RequestId']
         end
       end
@@ -34822,23 +34823,23 @@ module TencentCloud
 
       # ModifyLoginWhiteRecord请求参数结构体
       class ModifyLoginWhiteRecordRequest < TencentCloud::Common::AbstractModel
-        # @param UserName: 白名单用户（多个用户逗号隔开）
+        # @param UserName: <p>白名单用户（多个用户逗号隔开）</p>
         # @type UserName: String
-        # @param SrcIp: 更新后记录的白名单维度信息
+        # @param SrcIp: <p>更新后记录的白名单维度信息</p>
         # @type SrcIp: String
-        # @param StartTime: 开始时间
+        # @param StartTime: <p>开始时间</p>
         # @type StartTime: String
-        # @param EndTime: 结束时间
+        # @param EndTime: <p>结束时间</p>
         # @type EndTime: String
-        # @param Remark: 备注
+        # @param Remark: <p>备注</p>
         # @type Remark: String
-        # @param IsGlobal: 是否对所有服务器生效，0-否，1-是
+        # @param IsGlobal: <p>是否对所有服务器生效，0-否，1-是</p>
         # @type IsGlobal: Integer
-        # @param Id: 白名单ID
+        # @param Id: <p>白名单ID</p>
         # @type Id: Integer
-        # @param Hosts: 服务器列表
+        # @param Hosts: <p>服务器列表</p>
         # @type Hosts: Array
-        # @param Places: 地域列表
+        # @param Places: <p>地域列表</p>
         # @type Places: Array
 
         attr_accessor :UserName, :SrcIp, :StartTime, :EndTime, :Remark, :IsGlobal, :Id, :Hosts, :Places

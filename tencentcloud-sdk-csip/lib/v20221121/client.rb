@@ -485,6 +485,78 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建IaC检测接入Token
+
+        # @param request: Request instance for CreateIaCAccessToken.
+        # @type request: :class:`Tencentcloud::csip::V20221121::CreateIaCAccessTokenRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::CreateIaCAccessTokenResponse`
+        def CreateIaCAccessToken(request)
+          body = send_request('CreateIaCAccessToken', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateIaCAccessTokenResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建IaC检测文件导出任务
+
+        # @param request: Request instance for CreateIaCFileExportJob.
+        # @type request: :class:`Tencentcloud::csip::V20221121::CreateIaCFileExportJobRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::CreateIaCFileExportJobResponse`
+        def CreateIaCFileExportJob(request)
+          body = send_request('CreateIaCFileExportJob', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateIaCFileExportJobResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建IaC检测文件重新扫描任务
+
+        # @param request: Request instance for CreateIaCFileReScanTask.
+        # @type request: :class:`Tencentcloud::csip::V20221121::CreateIaCFileReScanTaskRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::CreateIaCFileReScanTaskResponse`
+        def CreateIaCFileReScanTask(request)
+          body = send_request('CreateIaCFileReScanTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateIaCFileReScanTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建风险中心扫描任务
 
         # @param request: Request instance for CreateRiskCenterScanTask.
@@ -759,6 +831,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteDspmWhitelistStrategyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除IaC检测接入Token
+
+        # @param request: Request instance for DeleteIaCAccessToken.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DeleteIaCAccessTokenRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DeleteIaCAccessTokenResponse`
+        def DeleteIaCAccessToken(request)
+          body = send_request('DeleteIaCAccessToken', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteIaCAccessTokenResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除IaC检测文件
+
+        # @param request: Request instance for DeleteIaCFile.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DeleteIaCFileRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DeleteIaCFileResponse`
+        def DeleteIaCFile(request)
+          body = send_request('DeleteIaCFile', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteIaCFileResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -3269,6 +3389,102 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取IaC检测文件列表
+
+        # @param request: Request instance for DescribeIaCFileList.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeIaCFileListRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeIaCFileListResponse`
+        def DescribeIaCFileList(request)
+          body = send_request('DescribeIaCFileList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeIaCFileListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取IaC检测文件概览
+
+        # @param request: Request instance for DescribeIaCFileOverview.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeIaCFileOverviewRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeIaCFileOverviewResponse`
+        def DescribeIaCFileOverview(request)
+          body = send_request('DescribeIaCFileOverview', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeIaCFileOverviewResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取IaC检测文件报告
+
+        # @param request: Request instance for DescribeIaCFileReport.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeIaCFileReportRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeIaCFileReportResponse`
+        def DescribeIaCFileReport(request)
+          body = send_request('DescribeIaCFileReport', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeIaCFileReportResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取IaC检测接入Token列表
+
+        # @param request: Request instance for DescribeIaCTokenList.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeIaCTokenListRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeIaCTokenListResponse`
+        def DescribeIaCTokenList(request)
+          body = send_request('DescribeIaCTokenList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeIaCTokenListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 对象存储异常检测调用记录信息
 
         # @param request: Request instance for DescribeIpInvokeRecord.
@@ -4887,6 +5103,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyDspmWhitelistStrategyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改IaC检测接入Token存储周期
+
+        # @param request: Request instance for ModifyIaCTokenPeriod.
+        # @type request: :class:`Tencentcloud::csip::V20221121::ModifyIaCTokenPeriodRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::ModifyIaCTokenPeriodResponse`
+        def ModifyIaCTokenPeriod(request)
+          body = send_request('ModifyIaCTokenPeriod', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyIaCTokenPeriodResponse.new
             model.deserialize(response['Response'])
             model
           else

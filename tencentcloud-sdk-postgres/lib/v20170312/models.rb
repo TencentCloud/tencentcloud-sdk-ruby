@@ -1517,8 +1517,8 @@ module TencentCloud
 
         attr_accessor :Zone, :MasterDBInstanceId, :SpecCode, :Storage, :InstanceCount, :Period, :VpcId, :SubnetId, :InstanceChargeType, :AutoVoucher, :VoucherIds, :AutoRenewFlag, :ProjectId, :ActivityId, :ReadOnlyGroupId, :TagList, :SecurityGroupIds, :NeedSupportIpv6, :Name, :DBVersion, :DedicatedClusterId, :DeletionProtection
         extend Gem::Deprecate
-        deprecate :DBVersion, :none, 2026, 4
-        deprecate :DBVersion=, :none, 2026, 4
+        deprecate :DBVersion, :none, 2026, 6
+        deprecate :DBVersion=, :none, 2026, 6
 
         def initialize(zone=nil, masterdbinstanceid=nil, speccode=nil, storage=nil, instancecount=nil, period=nil, vpcid=nil, subnetid=nil, instancechargetype=nil, autovoucher=nil, voucherids=nil, autorenewflag=nil, projectid=nil, activityid=nil, readonlygroupid=nil, taglist=nil, securitygroupids=nil, needsupportipv6=nil, name=nil, dbversion=nil, dedicatedclusterid=nil, deletionprotection=nil)
           @Zone = zone
@@ -5099,20 +5099,25 @@ module TencentCloud
 
       # DescribeZones请求参数结构体
       class DescribeZonesRequest < TencentCloud::Common::AbstractModel
+        # @param StorageType: <p>实例存储类型，根据磁盘类型返回支持的可用区</p><p>枚举值：</p><ul><li>PHYSICAL_LOCAL_SSD： 物理机本地ssd硬盘</li><li>CLOUD_PREMIUM： 高性能云硬盘</li><li>CLOUD_SSD： ssd云硬盘</li><li>CLOUD_HSSD： 增强型ssd云硬盘</li></ul><p>默认值：PHYSICAL_LOCAL_SSD</p>
+        # @type StorageType: String
 
+        attr_accessor :StorageType
 
-        def initialize()
+        def initialize(storagetype=nil)
+          @StorageType = storagetype
         end
 
         def deserialize(params)
+          @StorageType = params['StorageType']
         end
       end
 
       # DescribeZones返回参数结构体
       class DescribeZonesResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 返回的结果数量。
+        # @param TotalCount: <p>返回的结果数量。</p>
         # @type TotalCount: Integer
-        # @param ZoneSet: 可用区信息集合。
+        # @param ZoneSet: <p>可用区信息集合。</p>
         # @type ZoneSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5611,8 +5616,8 @@ module TencentCloud
 
         attr_accessor :Storage, :Memory, :DBInstanceId, :InstanceChargeType, :Cpu
         extend Gem::Deprecate
-        deprecate :InstanceChargeType, :none, 2026, 4
-        deprecate :InstanceChargeType=, :none, 2026, 4
+        deprecate :InstanceChargeType, :none, 2026, 6
+        deprecate :InstanceChargeType=, :none, 2026, 6
 
         def initialize(storage=nil, memory=nil, dbinstanceid=nil, instancechargetype=nil, cpu=nil)
           @Storage = storage

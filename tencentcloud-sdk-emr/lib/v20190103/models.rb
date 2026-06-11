@@ -1294,10 +1294,10 @@ module TencentCloud
 
         attr_accessor :Id, :ClusterId, :Ftitle, :ClusterName, :RegionId, :ZoneId, :AppId, :Uin, :ProjectId, :VpcId, :SubnetId, :Status, :AddTime, :RunTime, :Config, :MasterIp, :EmrVersion, :ChargeType, :TradeVersion, :ResourceOrderId, :IsTradeCluster, :AlarmInfo, :IsWoodpeckerCluster, :MetaDb, :Tags, :HiveMetaDb, :ServiceClass, :AliasInfo, :ProductId, :Zone, :SceneName, :SceneServiceClass, :SceneEmrVersion, :DisplayName, :VpcName, :SubnetName, :ClusterExternalServiceInfo, :UniqVpcId, :UniqSubnetId, :TopologyInfoList, :IsMultiZoneCluster, :IsCvmReplace, :ClusterTitle, :ConfigDetail, :BindFileSystemNum, :ClusterRelationInfoList, :RedisId
         extend Gem::Deprecate
-        deprecate :Ftitle, :none, 2026, 5
-        deprecate :Ftitle=, :none, 2026, 5
-        deprecate :Config, :none, 2026, 5
-        deprecate :Config=, :none, 2026, 5
+        deprecate :Ftitle, :none, 2026, 6
+        deprecate :Ftitle=, :none, 2026, 6
+        deprecate :Config, :none, 2026, 6
+        deprecate :Config=, :none, 2026, 6
 
         def initialize(id=nil, clusterid=nil, ftitle=nil, clustername=nil, regionid=nil, zoneid=nil, appid=nil, uin=nil, projectid=nil, vpcid=nil, subnetid=nil, status=nil, addtime=nil, runtime=nil, config=nil, masterip=nil, emrversion=nil, chargetype=nil, tradeversion=nil, resourceorderid=nil, istradecluster=nil, alarminfo=nil, iswoodpeckercluster=nil, metadb=nil, tags=nil, hivemetadb=nil, serviceclass=nil, aliasinfo=nil, productid=nil, zone=nil, scenename=nil, sceneserviceclass=nil, sceneemrversion=nil, displayname=nil, vpcname=nil, subnetname=nil, clusterexternalserviceinfo=nil, uniqvpcid=nil, uniqsubnetid=nil, topologyinfolist=nil, ismultizonecluster=nil, iscvmreplace=nil, clustertitle=nil, configdetail=nil, bindfilesystemnum=nil, clusterrelationinfolist=nil, redisid=nil)
           @Id = id
@@ -1598,15 +1598,18 @@ module TencentCloud
         # @type UserScript: String
         # @param TkeClusterNodePool: <p>节点组Id</p>
         # @type TkeClusterNodePool: String
+        # @param NodePoolJoinMode: <p>加入节点池的模式</p><p>枚举值：</p><ul><li>Inherit： 从节点池继承配置</li><li>OnlyJoin： 仅加入节点池，不继承配置</li></ul><p>默认值：Inherit</p>
+        # @type NodePoolJoinMode: String
 
-        attr_accessor :Labels, :Taints, :PreStartUserScript, :UserScript, :TkeClusterNodePool
+        attr_accessor :Labels, :Taints, :PreStartUserScript, :UserScript, :TkeClusterNodePool, :NodePoolJoinMode
 
-        def initialize(labels=nil, taints=nil, prestartuserscript=nil, userscript=nil, tkeclusternodepool=nil)
+        def initialize(labels=nil, taints=nil, prestartuserscript=nil, userscript=nil, tkeclusternodepool=nil, nodepooljoinmode=nil)
           @Labels = labels
           @Taints = taints
           @PreStartUserScript = prestartuserscript
           @UserScript = userscript
           @TkeClusterNodePool = tkeclusternodepool
+          @NodePoolJoinMode = nodepooljoinmode
         end
 
         def deserialize(params)
@@ -1629,6 +1632,7 @@ module TencentCloud
           @PreStartUserScript = params['PreStartUserScript']
           @UserScript = params['UserScript']
           @TkeClusterNodePool = params['TkeClusterNodePool']
+          @NodePoolJoinMode = params['NodePoolJoinMode']
         end
       end
 
@@ -15211,12 +15215,12 @@ module TencentCloud
 
         attr_accessor :DetectAlert, :DetetcFunctionKey, :DetetcFunctionValue, :DetetcTime, :DetectFunctionKey, :DetectFunctionValue, :DetectTime
         extend Gem::Deprecate
-        deprecate :DetetcFunctionKey, :none, 2026, 5
-        deprecate :DetetcFunctionKey=, :none, 2026, 5
-        deprecate :DetetcFunctionValue, :none, 2026, 5
-        deprecate :DetetcFunctionValue=, :none, 2026, 5
-        deprecate :DetetcTime, :none, 2026, 5
-        deprecate :DetetcTime=, :none, 2026, 5
+        deprecate :DetetcFunctionKey, :none, 2026, 6
+        deprecate :DetetcFunctionKey=, :none, 2026, 6
+        deprecate :DetetcFunctionValue, :none, 2026, 6
+        deprecate :DetetcFunctionValue=, :none, 2026, 6
+        deprecate :DetetcTime, :none, 2026, 6
+        deprecate :DetetcTime=, :none, 2026, 6
 
         def initialize(detectalert=nil, detetcfunctionkey=nil, detetcfunctionvalue=nil, detetctime=nil, detectfunctionkey=nil, detectfunctionvalue=nil, detecttime=nil)
           @DetectAlert = detectalert

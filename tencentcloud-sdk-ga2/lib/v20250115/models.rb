@@ -257,28 +257,32 @@ module TencentCloud
 
       # CreateForwardingRule请求参数结构体
       class CreateForwardingRuleRequest < TencentCloud::Common::AbstractModel
-        # @param GlobalAcceleratorId: 全球加速实例ID。
+        # @param GlobalAcceleratorId: <p>全球加速实例ID。</p>
         # @type GlobalAcceleratorId: String
-        # @param ListenerId: 监听器ID。
+        # @param ListenerId: <p>监听器ID。</p>
         # @type ListenerId: String
-        # @param ForwardingPolicyId: 策略ID。
+        # @param ForwardingPolicyId: <p>策略ID。</p>
         # @type ForwardingPolicyId: String
-        # @param RuleConditions: 七层转发规则条件信息。
+        # @param RuleConditions: <p>七层转发规则条件信息。</p>
         # @type RuleConditions: Array
-        # @param RuleActions: 七层转发规则行为信息。
+        # @param RuleActions: <p>七层转发规则行为信息。</p>
         # @type RuleActions: Array
-        # @param OriginHeaders: 回源Header信息。
+        # @param OriginHeaders: <p>回源Header信息。</p>
         # @type OriginHeaders: Array
-        # @param EnableOriginSni: 是否开启回源sni。
+        # @param EnableOriginSni: <p>是否开启回源sni。</p>
         # @type EnableOriginSni: Boolean
-        # @param OriginSni: 回源sni。
+        # @param OriginSni: <p>回源sni。</p>
         # @type OriginSni: String
-        # @param OriginHost: 回源host。
+        # @param OriginHost: <p>回源host。</p>
         # @type OriginHost: String
+        # @param ResponseHeaders: <p>源站响应头</p>
+        # @type ResponseHeaders: Array
+        # @param HideResponseHeaders: <p>删除源站响应头</p>
+        # @type HideResponseHeaders: Array
 
-        attr_accessor :GlobalAcceleratorId, :ListenerId, :ForwardingPolicyId, :RuleConditions, :RuleActions, :OriginHeaders, :EnableOriginSni, :OriginSni, :OriginHost
+        attr_accessor :GlobalAcceleratorId, :ListenerId, :ForwardingPolicyId, :RuleConditions, :RuleActions, :OriginHeaders, :EnableOriginSni, :OriginSni, :OriginHost, :ResponseHeaders, :HideResponseHeaders
 
-        def initialize(globalacceleratorid=nil, listenerid=nil, forwardingpolicyid=nil, ruleconditions=nil, ruleactions=nil, originheaders=nil, enableoriginsni=nil, originsni=nil, originhost=nil)
+        def initialize(globalacceleratorid=nil, listenerid=nil, forwardingpolicyid=nil, ruleconditions=nil, ruleactions=nil, originheaders=nil, enableoriginsni=nil, originsni=nil, originhost=nil, responseheaders=nil, hideresponseheaders=nil)
           @GlobalAcceleratorId = globalacceleratorid
           @ListenerId = listenerid
           @ForwardingPolicyId = forwardingpolicyid
@@ -288,6 +292,8 @@ module TencentCloud
           @EnableOriginSni = enableoriginsni
           @OriginSni = originsni
           @OriginHost = originhost
+          @ResponseHeaders = responseheaders
+          @HideResponseHeaders = hideresponseheaders
         end
 
         def deserialize(params)
@@ -321,14 +327,30 @@ module TencentCloud
           @EnableOriginSni = params['EnableOriginSni']
           @OriginSni = params['OriginSni']
           @OriginHost = params['OriginHost']
+          unless params['ResponseHeaders'].nil?
+            @ResponseHeaders = []
+            params['ResponseHeaders'].each do |i|
+              responseheaders_tmp = ResponseHeaders.new
+              responseheaders_tmp.deserialize(i)
+              @ResponseHeaders << responseheaders_tmp
+            end
+          end
+          unless params['HideResponseHeaders'].nil?
+            @HideResponseHeaders = []
+            params['HideResponseHeaders'].each do |i|
+              hideresponseheaders_tmp = HideResponseHeaders.new
+              hideresponseheaders_tmp.deserialize(i)
+              @HideResponseHeaders << hideresponseheaders_tmp
+            end
+          end
         end
       end
 
       # CreateForwardingRule返回参数结构体
       class CreateForwardingRuleResponse < TencentCloud::Common::AbstractModel
-        # @param TaskId: 异步任务ID。
+        # @param TaskId: <p>异步任务ID。</p>
         # @type TaskId: String
-        # @param ForwardingRuleId: 七层转发规则ID。
+        # @param ForwardingRuleId: <p>七层转发规则ID。</p>
         # @type ForwardingRuleId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -447,10 +469,12 @@ module TencentCloud
         # @type ServerCertificates: Array
         # @param ClientCaCertificates: <p>客户端证书。</p>
         # @type ClientCaCertificates: Array
+        # @param HttpVersion: <p>HTTPS监听器支持选择版本</p><p>枚举值：</p><ul><li>HTTP/1.1： HTTP/1.1</li><li>HTTP/2： HTTP/2</li></ul>
+        # @type HttpVersion: String
 
-        attr_accessor :GlobalAcceleratorId, :Name, :PortRanges, :Description, :ListenerType, :Protocol, :IdleTimeout, :GetRealIpType, :ClientAffinity, :RequestTimeout, :XForwardedForRealIp, :CertificationType, :CipherPolicyId, :ServerCertificates, :ClientCaCertificates
+        attr_accessor :GlobalAcceleratorId, :Name, :PortRanges, :Description, :ListenerType, :Protocol, :IdleTimeout, :GetRealIpType, :ClientAffinity, :RequestTimeout, :XForwardedForRealIp, :CertificationType, :CipherPolicyId, :ServerCertificates, :ClientCaCertificates, :HttpVersion
 
-        def initialize(globalacceleratorid=nil, name=nil, portranges=nil, description=nil, listenertype=nil, protocol=nil, idletimeout=nil, getrealiptype=nil, clientaffinity=nil, requesttimeout=nil, xforwardedforrealip=nil, certificationtype=nil, cipherpolicyid=nil, servercertificates=nil, clientcacertificates=nil)
+        def initialize(globalacceleratorid=nil, name=nil, portranges=nil, description=nil, listenertype=nil, protocol=nil, idletimeout=nil, getrealiptype=nil, clientaffinity=nil, requesttimeout=nil, xforwardedforrealip=nil, certificationtype=nil, cipherpolicyid=nil, servercertificates=nil, clientcacertificates=nil, httpversion=nil)
           @GlobalAcceleratorId = globalacceleratorid
           @Name = name
           @PortRanges = portranges
@@ -466,6 +490,7 @@ module TencentCloud
           @CipherPolicyId = cipherpolicyid
           @ServerCertificates = servercertificates
           @ClientCaCertificates = clientcacertificates
+          @HttpVersion = httpversion
         end
 
         def deserialize(params)
@@ -487,6 +512,7 @@ module TencentCloud
           @CipherPolicyId = params['CipherPolicyId']
           @ServerCertificates = params['ServerCertificates']
           @ClientCaCertificates = params['ClientCaCertificates']
+          @HttpVersion = params['HttpVersion']
         end
       end
 
@@ -1333,10 +1359,12 @@ module TencentCloud
         # @type IspType: String
         # @param CipherPolicyId: <p>HPPTS加密算法套件</p>
         # @type CipherPolicyId: String
+        # @param HttpVersion: <p>HTTPS回源协议支持选择[&#39;HTTP/1.1&#39;, &#39;HTTP/2&#39;]</p><p>枚举值：</p><ul><li>HTTP/1.1： 版本HTTP/1.1</li><li>HTTP/2： 版本HTTP/2</li></ul>
+        # @type HttpVersion: String
 
-        attr_accessor :Name, :EndpointGroupRegion, :EndpointConfigurations, :CheckType, :Description, :CheckPort, :ContextType, :CheckSendContext, :CheckRecvContext, :EnableHealthCheck, :ConnectTimeout, :HealthCheckInterval, :UnhealthyThreshold, :HealthyThreshold, :ForwardProtocol, :CheckDomain, :CheckPath, :CheckMethod, :StatusMask, :PortOverrides, :IspType, :CipherPolicyId
+        attr_accessor :Name, :EndpointGroupRegion, :EndpointConfigurations, :CheckType, :Description, :CheckPort, :ContextType, :CheckSendContext, :CheckRecvContext, :EnableHealthCheck, :ConnectTimeout, :HealthCheckInterval, :UnhealthyThreshold, :HealthyThreshold, :ForwardProtocol, :CheckDomain, :CheckPath, :CheckMethod, :StatusMask, :PortOverrides, :IspType, :CipherPolicyId, :HttpVersion
 
-        def initialize(name=nil, endpointgroupregion=nil, endpointconfigurations=nil, checktype=nil, description=nil, checkport=nil, contexttype=nil, checksendcontext=nil, checkrecvcontext=nil, enablehealthcheck=nil, connecttimeout=nil, healthcheckinterval=nil, unhealthythreshold=nil, healthythreshold=nil, forwardprotocol=nil, checkdomain=nil, checkpath=nil, checkmethod=nil, statusmask=nil, portoverrides=nil, isptype=nil, cipherpolicyid=nil)
+        def initialize(name=nil, endpointgroupregion=nil, endpointconfigurations=nil, checktype=nil, description=nil, checkport=nil, contexttype=nil, checksendcontext=nil, checkrecvcontext=nil, enablehealthcheck=nil, connecttimeout=nil, healthcheckinterval=nil, unhealthythreshold=nil, healthythreshold=nil, forwardprotocol=nil, checkdomain=nil, checkpath=nil, checkmethod=nil, statusmask=nil, portoverrides=nil, isptype=nil, cipherpolicyid=nil, httpversion=nil)
           @Name = name
           @EndpointGroupRegion = endpointgroupregion
           @EndpointConfigurations = endpointconfigurations
@@ -1359,6 +1387,7 @@ module TencentCloud
           @PortOverrides = portoverrides
           @IspType = isptype
           @CipherPolicyId = cipherpolicyid
+          @HttpVersion = httpversion
         end
 
         def deserialize(params)
@@ -1398,6 +1427,7 @@ module TencentCloud
           end
           @IspType = params['IspType']
           @CipherPolicyId = params['CipherPolicyId']
+          @HttpVersion = params['HttpVersion']
         end
       end
 
@@ -1459,10 +1489,12 @@ module TencentCloud
         # @type IspType: String
         # @param CipherPolicyId: <p>HPPTS加密算法套件</p>
         # @type CipherPolicyId: String
+        # @param HttpVersion: <p>仅HTTPS回源协议支持选择[&#39;HTTP/1.1&#39;, &#39;HTTP/2&#39;]</p><p>枚举值：</p><ul><li>HTTP/1.1： 版本HTTP/1.1</li><li>HTTP/2： 版本HTTP/2</li></ul>
+        # @type HttpVersion: String
 
-        attr_accessor :GlobalAcceleratorId, :ListenerId, :EndpointGroupId, :Name, :EndpointGroupRegion, :Description, :EndpointConfigurations, :EnableHealthCheck, :ConnectTimeout, :HealthCheckInterval, :UnhealthyThreshold, :HealthyThreshold, :CheckType, :CheckPort, :ContextType, :CheckSendContext, :CheckRecvContext, :CheckDomain, :CheckPath, :CheckMethod, :StatusMask, :EndpointGroupType, :ForwardProtocol, :PortOverrides, :VirtualExistForwardingRuleFlag, :OriginPublicIps, :IspType, :CipherPolicyId
+        attr_accessor :GlobalAcceleratorId, :ListenerId, :EndpointGroupId, :Name, :EndpointGroupRegion, :Description, :EndpointConfigurations, :EnableHealthCheck, :ConnectTimeout, :HealthCheckInterval, :UnhealthyThreshold, :HealthyThreshold, :CheckType, :CheckPort, :ContextType, :CheckSendContext, :CheckRecvContext, :CheckDomain, :CheckPath, :CheckMethod, :StatusMask, :EndpointGroupType, :ForwardProtocol, :PortOverrides, :VirtualExistForwardingRuleFlag, :OriginPublicIps, :IspType, :CipherPolicyId, :HttpVersion
 
-        def initialize(globalacceleratorid=nil, listenerid=nil, endpointgroupid=nil, name=nil, endpointgroupregion=nil, description=nil, endpointconfigurations=nil, enablehealthcheck=nil, connecttimeout=nil, healthcheckinterval=nil, unhealthythreshold=nil, healthythreshold=nil, checktype=nil, checkport=nil, contexttype=nil, checksendcontext=nil, checkrecvcontext=nil, checkdomain=nil, checkpath=nil, checkmethod=nil, statusmask=nil, endpointgrouptype=nil, forwardprotocol=nil, portoverrides=nil, virtualexistforwardingruleflag=nil, originpublicips=nil, isptype=nil, cipherpolicyid=nil)
+        def initialize(globalacceleratorid=nil, listenerid=nil, endpointgroupid=nil, name=nil, endpointgroupregion=nil, description=nil, endpointconfigurations=nil, enablehealthcheck=nil, connecttimeout=nil, healthcheckinterval=nil, unhealthythreshold=nil, healthythreshold=nil, checktype=nil, checkport=nil, contexttype=nil, checksendcontext=nil, checkrecvcontext=nil, checkdomain=nil, checkpath=nil, checkmethod=nil, statusmask=nil, endpointgrouptype=nil, forwardprotocol=nil, portoverrides=nil, virtualexistforwardingruleflag=nil, originpublicips=nil, isptype=nil, cipherpolicyid=nil, httpversion=nil)
           @GlobalAcceleratorId = globalacceleratorid
           @ListenerId = listenerid
           @EndpointGroupId = endpointgroupid
@@ -1491,6 +1523,7 @@ module TencentCloud
           @OriginPublicIps = originpublicips
           @IspType = isptype
           @CipherPolicyId = cipherpolicyid
+          @HttpVersion = httpversion
         end
 
         def deserialize(params)
@@ -1536,6 +1569,7 @@ module TencentCloud
           @OriginPublicIps = params['OriginPublicIps']
           @IspType = params['IspType']
           @CipherPolicyId = params['CipherPolicyId']
+          @HttpVersion = params['HttpVersion']
         end
       end
 
@@ -1733,6 +1767,26 @@ module TencentCloud
               @TagSet << tag_tmp
             end
           end
+        end
+      end
+
+      # 隐藏Header
+      class HideResponseHeaders < TencentCloud::Common::AbstractModel
+        # @param Key: <p>key</p>
+        # @type Key: String
+        # @param Value: <p>value</p>
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
         end
       end
 
@@ -1950,10 +2004,12 @@ module TencentCloud
         # @type PortOverrides: Array
         # @param CipherPolicyId: <p>HPPTS加密算法套件</p>
         # @type CipherPolicyId: String
+        # @param HttpVersion: <p>仅HTTPS回源协议支持选择[&#39;HTTP/1.1&#39;, &#39;HTTP/2&#39;]</p><p>枚举值：</p><ul><li>HTTP/1.1： 版本HTTP/1.1</li><li>HTTP/2： 版本HTTP/2</li></ul>
+        # @type HttpVersion: String
 
-        attr_accessor :GlobalAcceleratorId, :ListenerId, :EndpointGroupId, :EndpointConfigurations, :Name, :Description, :EnableHealthCheck, :ConnectTimeout, :HealthCheckInterval, :UnhealthyThreshold, :HealthyThreshold, :CheckType, :CheckPort, :ContextType, :CheckSendContext, :CheckRecvContext, :CheckDomain, :CheckPath, :CheckMethod, :StatusMask, :ForwardProtocol, :PortOverrides, :CipherPolicyId
+        attr_accessor :GlobalAcceleratorId, :ListenerId, :EndpointGroupId, :EndpointConfigurations, :Name, :Description, :EnableHealthCheck, :ConnectTimeout, :HealthCheckInterval, :UnhealthyThreshold, :HealthyThreshold, :CheckType, :CheckPort, :ContextType, :CheckSendContext, :CheckRecvContext, :CheckDomain, :CheckPath, :CheckMethod, :StatusMask, :ForwardProtocol, :PortOverrides, :CipherPolicyId, :HttpVersion
 
-        def initialize(globalacceleratorid=nil, listenerid=nil, endpointgroupid=nil, endpointconfigurations=nil, name=nil, description=nil, enablehealthcheck=nil, connecttimeout=nil, healthcheckinterval=nil, unhealthythreshold=nil, healthythreshold=nil, checktype=nil, checkport=nil, contexttype=nil, checksendcontext=nil, checkrecvcontext=nil, checkdomain=nil, checkpath=nil, checkmethod=nil, statusmask=nil, forwardprotocol=nil, portoverrides=nil, cipherpolicyid=nil)
+        def initialize(globalacceleratorid=nil, listenerid=nil, endpointgroupid=nil, endpointconfigurations=nil, name=nil, description=nil, enablehealthcheck=nil, connecttimeout=nil, healthcheckinterval=nil, unhealthythreshold=nil, healthythreshold=nil, checktype=nil, checkport=nil, contexttype=nil, checksendcontext=nil, checkrecvcontext=nil, checkdomain=nil, checkpath=nil, checkmethod=nil, statusmask=nil, forwardprotocol=nil, portoverrides=nil, cipherpolicyid=nil, httpversion=nil)
           @GlobalAcceleratorId = globalacceleratorid
           @ListenerId = listenerid
           @EndpointGroupId = endpointgroupid
@@ -1977,6 +2033,7 @@ module TencentCloud
           @ForwardProtocol = forwardprotocol
           @PortOverrides = portoverrides
           @CipherPolicyId = cipherpolicyid
+          @HttpVersion = httpversion
         end
 
         def deserialize(params)
@@ -2017,6 +2074,7 @@ module TencentCloud
             end
           end
           @CipherPolicyId = params['CipherPolicyId']
+          @HttpVersion = params['HttpVersion']
         end
       end
 
@@ -2090,30 +2148,34 @@ module TencentCloud
 
       # ModifyForwardingRule请求参数结构体
       class ModifyForwardingRuleRequest < TencentCloud::Common::AbstractModel
-        # @param GlobalAcceleratorId: 全球加速实例ID。
+        # @param GlobalAcceleratorId: <p>全球加速实例ID。</p>
         # @type GlobalAcceleratorId: String
-        # @param ListenerId: 监听器ID。
+        # @param ListenerId: <p>监听器ID。</p>
         # @type ListenerId: String
-        # @param ForwardingPolicyId: 策略ID。
+        # @param ForwardingPolicyId: <p>策略ID。</p>
         # @type ForwardingPolicyId: String
-        # @param ForwardingRuleId: 七层转发规则ID。
+        # @param ForwardingRuleId: <p>七层转发规则ID。</p>
         # @type ForwardingRuleId: String
-        # @param RuleConditions: 七层转发规则条件信息。
+        # @param RuleConditions: <p>七层转发规则条件信息。</p>
         # @type RuleConditions: Array
-        # @param RuleActions: 七层转发规则行为信息。
+        # @param RuleActions: <p>七层转发规则行为信息。</p>
         # @type RuleActions: Array
-        # @param OriginHeaders: 回源Header信息。
+        # @param OriginHeaders: <p>回源Header信息。</p>
         # @type OriginHeaders: Array
-        # @param EnableOriginSni: 是否开启回源sni。
+        # @param EnableOriginSni: <p>是否开启回源sni。</p>
         # @type EnableOriginSni: Boolean
-        # @param OriginSni: 回源sni。
+        # @param OriginSni: <p>回源sni。</p>
         # @type OriginSni: String
-        # @param OriginHost: 回源host。
+        # @param OriginHost: <p>回源host。</p>
         # @type OriginHost: String
+        # @param ResponseHeaders: <p>源站响应头</p>
+        # @type ResponseHeaders: Array
+        # @param HideResponseHeaders: <p>删除源站响应头</p>
+        # @type HideResponseHeaders: Array
 
-        attr_accessor :GlobalAcceleratorId, :ListenerId, :ForwardingPolicyId, :ForwardingRuleId, :RuleConditions, :RuleActions, :OriginHeaders, :EnableOriginSni, :OriginSni, :OriginHost
+        attr_accessor :GlobalAcceleratorId, :ListenerId, :ForwardingPolicyId, :ForwardingRuleId, :RuleConditions, :RuleActions, :OriginHeaders, :EnableOriginSni, :OriginSni, :OriginHost, :ResponseHeaders, :HideResponseHeaders
 
-        def initialize(globalacceleratorid=nil, listenerid=nil, forwardingpolicyid=nil, forwardingruleid=nil, ruleconditions=nil, ruleactions=nil, originheaders=nil, enableoriginsni=nil, originsni=nil, originhost=nil)
+        def initialize(globalacceleratorid=nil, listenerid=nil, forwardingpolicyid=nil, forwardingruleid=nil, ruleconditions=nil, ruleactions=nil, originheaders=nil, enableoriginsni=nil, originsni=nil, originhost=nil, responseheaders=nil, hideresponseheaders=nil)
           @GlobalAcceleratorId = globalacceleratorid
           @ListenerId = listenerid
           @ForwardingPolicyId = forwardingpolicyid
@@ -2124,6 +2186,8 @@ module TencentCloud
           @EnableOriginSni = enableoriginsni
           @OriginSni = originsni
           @OriginHost = originhost
+          @ResponseHeaders = responseheaders
+          @HideResponseHeaders = hideresponseheaders
         end
 
         def deserialize(params)
@@ -2158,12 +2222,28 @@ module TencentCloud
           @EnableOriginSni = params['EnableOriginSni']
           @OriginSni = params['OriginSni']
           @OriginHost = params['OriginHost']
+          unless params['ResponseHeaders'].nil?
+            @ResponseHeaders = []
+            params['ResponseHeaders'].each do |i|
+              responseheaders_tmp = ResponseHeaders.new
+              responseheaders_tmp.deserialize(i)
+              @ResponseHeaders << responseheaders_tmp
+            end
+          end
+          unless params['HideResponseHeaders'].nil?
+            @HideResponseHeaders = []
+            params['HideResponseHeaders'].each do |i|
+              hideresponseheaders_tmp = HideResponseHeaders.new
+              hideresponseheaders_tmp.deserialize(i)
+              @HideResponseHeaders << hideresponseheaders_tmp
+            end
+          end
         end
       end
 
       # ModifyForwardingRule返回参数结构体
       class ModifyForwardingRuleResponse < TencentCloud::Common::AbstractModel
-        # @param TaskId: 异步任务ID。
+        # @param TaskId: <p>异步任务ID。</p>
         # @type TaskId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2384,6 +2464,26 @@ module TencentCloud
         def deserialize(params)
           @FromPort = params['FromPort']
           @ToPort = params['ToPort']
+        end
+      end
+
+      # 响应Header
+      class ResponseHeaders < TencentCloud::Common::AbstractModel
+        # @param Key: <p>key</p>
+        # @type Key: String
+        # @param Value: <p>value</p>
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
         end
       end
 

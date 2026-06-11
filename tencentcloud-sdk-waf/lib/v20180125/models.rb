@@ -1449,6 +1449,58 @@ module TencentCloud
         end
       end
 
+      # APi事件列表
+      class ApiEvent < TencentCloud::Common::AbstractModel
+        # @param EventId: 事件id
+        # @type EventId: String
+        # @param EventType: 事件类型
+        # @type EventType: String
+        # @param Level: 事件等级，100,200,300对应低中高
+        # @type Level: String
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param Mode: 处置状态，1:新发现，2，确认中，3，已确认，4，已下线，5，已忽略
+        # @type Mode: String
+        # @param StartTime: 发现时间
+        # @type StartTime: Integer
+        # @param UpdateTime: 更新时间
+        # @type UpdateTime: Integer
+        # @param ApiName: 关联的api
+        # @type ApiName: String
+        # @param Method: 请求方式
+        # @type Method: String
+        # @param Source: 事件来源，custom标识自定义
+        # @type Source: String
+
+        attr_accessor :EventId, :EventType, :Level, :Domain, :Mode, :StartTime, :UpdateTime, :ApiName, :Method, :Source
+
+        def initialize(eventid=nil, eventtype=nil, level=nil, domain=nil, mode=nil, starttime=nil, updatetime=nil, apiname=nil, method=nil, source=nil)
+          @EventId = eventid
+          @EventType = eventtype
+          @Level = level
+          @Domain = domain
+          @Mode = mode
+          @StartTime = starttime
+          @UpdateTime = updatetime
+          @ApiName = apiname
+          @Method = method
+          @Source = source
+        end
+
+        def deserialize(params)
+          @EventId = params['EventId']
+          @EventType = params['EventType']
+          @Level = params['Level']
+          @Domain = params['Domain']
+          @Mode = params['Mode']
+          @StartTime = params['StartTime']
+          @UpdateTime = params['UpdateTime']
+          @ApiName = params['ApiName']
+          @Method = params['Method']
+          @Source = params['Source']
+        end
+      end
+
       # guard content
       class ApiGuardContent < TencentCloud::Common::AbstractModel
         # @param Prompt: <p>prompt</p>
@@ -1624,6 +1676,62 @@ module TencentCloud
         end
       end
 
+      # api安全攻击源详情
+      class ApiSecAttackSource < TencentCloud::Common::AbstractModel
+        # @param SrcIp: 攻击来源ip
+        # @type SrcIp: String
+        # @param EventLevel: 威胁等级
+        # @type EventLevel: String
+        # @param BotLabel: BOT标签
+        # @type BotLabel: String
+        # @param Timestamp: 变更时间
+        # @type Timestamp: Integer
+        # @param City: 地理位置
+        # @type City: String
+        # @param StartTime: 开始时间
+        # @type StartTime: Integer
+        # @param EventCount: 关联事件数量
+        # @type EventCount: Integer
+        # @param AttackCount: 攻击数量
+        # @type AttackCount: Integer
+        # @param MissUserName: 缺失参数名，当事件类型是缺失参数名，缺失参数名和密码时，返回此字段
+        # @type MissUserName: String
+        # @param AttackDetail: 当是水平越权和垂直越权时，返回此字段
+        # @type AttackDetail: Array
+        # @param MissPassword: 缺失密码参数，当事件类型是缺失参数名，缺失参数名和密码时，返回此字段
+        # @type MissPassword: String
+
+        attr_accessor :SrcIp, :EventLevel, :BotLabel, :Timestamp, :City, :StartTime, :EventCount, :AttackCount, :MissUserName, :AttackDetail, :MissPassword
+
+        def initialize(srcip=nil, eventlevel=nil, botlabel=nil, timestamp=nil, city=nil, starttime=nil, eventcount=nil, attackcount=nil, missusername=nil, attackdetail=nil, misspassword=nil)
+          @SrcIp = srcip
+          @EventLevel = eventlevel
+          @BotLabel = botlabel
+          @Timestamp = timestamp
+          @City = city
+          @StartTime = starttime
+          @EventCount = eventcount
+          @AttackCount = attackcount
+          @MissUserName = missusername
+          @AttackDetail = attackdetail
+          @MissPassword = misspassword
+        end
+
+        def deserialize(params)
+          @SrcIp = params['SrcIp']
+          @EventLevel = params['EventLevel']
+          @BotLabel = params['BotLabel']
+          @Timestamp = params['Timestamp']
+          @City = params['City']
+          @StartTime = params['StartTime']
+          @EventCount = params['EventCount']
+          @AttackCount = params['AttackCount']
+          @MissUserName = params['MissUserName']
+          @AttackDetail = params['AttackDetail']
+          @MissPassword = params['MissPassword']
+        end
+      end
+
       # api安全自定义事件规则结构体
       class ApiSecCustomEventRule < TencentCloud::Common::AbstractModel
         # @param RuleName: 规则名称
@@ -1730,6 +1838,34 @@ module TencentCloud
           @Level = params['Level']
           @MatchCond = params['MatchCond']
           @IsPan = params['IsPan']
+        end
+      end
+
+      # 事件变更内容
+      class ApiSecEventChange < TencentCloud::Common::AbstractModel
+        # @param UserName: 变更人
+        # @type UserName: String
+        # @param Mode: 变更的状态
+        # @type Mode: String
+        # @param Timestamp: 时间戳
+        # @type Timestamp: Integer
+        # @param Remark: 备注
+        # @type Remark: String
+
+        attr_accessor :UserName, :Mode, :Timestamp, :Remark
+
+        def initialize(username=nil, mode=nil, timestamp=nil, remark=nil)
+          @UserName = username
+          @Mode = mode
+          @Timestamp = timestamp
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @UserName = params['UserName']
+          @Mode = params['Mode']
+          @Timestamp = params['Timestamp']
+          @Remark = params['Remark']
         end
       end
 
@@ -7000,6 +7136,159 @@ module TencentCloud
               apiasset_tmp = ApiAsset.new
               apiasset_tmp.deserialize(i)
               @Data << apiasset_tmp
+            end
+          end
+          @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeApiSecEventDetail请求参数结构体
+      class DescribeApiSecEventDetailRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: <p>域名</p>
+        # @type Domain: String
+        # @param EventId: <p>API安全事件ID</p>
+        # @type EventId: String
+
+        attr_accessor :Domain, :EventId
+
+        def initialize(domain=nil, eventid=nil)
+          @Domain = domain
+          @EventId = eventid
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @EventId = params['EventId']
+        end
+      end
+
+      # DescribeApiSecEventDetail返回参数结构体
+      class DescribeApiSecEventDetailResponse < TencentCloud::Common::AbstractModel
+        # @param Description: <p>事件描述信息</p>
+        # @type Description: String
+        # @param EventInfo: <p>事件基本信息</p>
+        # @type EventInfo: :class:`Tencentcloud::Waf.v20180125.models.ApiEvent`
+        # @param AttackSource: <p>攻击源详情</p>
+        # @type AttackSource: Array
+        # @param ChangeHistory: <p>变更历史</p>
+        # @type ChangeHistory: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Description, :EventInfo, :AttackSource, :ChangeHistory, :RequestId
+
+        def initialize(description=nil, eventinfo=nil, attacksource=nil, changehistory=nil, requestid=nil)
+          @Description = description
+          @EventInfo = eventinfo
+          @AttackSource = attacksource
+          @ChangeHistory = changehistory
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Description = params['Description']
+          unless params['EventInfo'].nil?
+            @EventInfo = ApiEvent.new
+            @EventInfo.deserialize(params['EventInfo'])
+          end
+          unless params['AttackSource'].nil?
+            @AttackSource = []
+            params['AttackSource'].each do |i|
+              apisecattacksource_tmp = ApiSecAttackSource.new
+              apisecattacksource_tmp.deserialize(i)
+              @AttackSource << apisecattacksource_tmp
+            end
+          end
+          unless params['ChangeHistory'].nil?
+            @ChangeHistory = []
+            params['ChangeHistory'].each do |i|
+              apiseceventchange_tmp = ApiSecEventChange.new
+              apiseceventchange_tmp.deserialize(i)
+              @ChangeHistory << apiseceventchange_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeApiSecEventList请求参数结构体
+      class DescribeApiSecEventListRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param NeedTotalCount: 是否查询数量，默认不查询，为true则进行查询
+        # @type NeedTotalCount: Boolean
+        # @param Filters: 过滤条件
+        # @type Filters: Array
+        # @param PageIndex: 查询当前的页
+        # @type PageIndex: Integer
+        # @param PageSize: 每一页显示多少条数据
+        # @type PageSize: Integer
+        # @param Sort: 排序，第一个元素为排序的key，第二个元素为排序规则，其中1 为升序排列，而-1 是用于降序排列
+        # @type Sort: Array
+        # @param StartTs: 查询开始时间
+        # @type StartTs: Integer
+        # @param EndTs: 查询结束时间
+        # @type EndTs: Integer
+
+        attr_accessor :Domain, :NeedTotalCount, :Filters, :PageIndex, :PageSize, :Sort, :StartTs, :EndTs
+
+        def initialize(domain=nil, needtotalcount=nil, filters=nil, pageindex=nil, pagesize=nil, sort=nil, startts=nil, endts=nil)
+          @Domain = domain
+          @NeedTotalCount = needtotalcount
+          @Filters = filters
+          @PageIndex = pageindex
+          @PageSize = pagesize
+          @Sort = sort
+          @StartTs = startts
+          @EndTs = endts
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @NeedTotalCount = params['NeedTotalCount']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              apidatafilter_tmp = ApiDataFilter.new
+              apidatafilter_tmp.deserialize(i)
+              @Filters << apidatafilter_tmp
+            end
+          end
+          @PageIndex = params['PageIndex']
+          @PageSize = params['PageSize']
+          @Sort = params['Sort']
+          @StartTs = params['StartTs']
+          @EndTs = params['EndTs']
+        end
+      end
+
+      # DescribeApiSecEventList返回参数结构体
+      class DescribeApiSecEventListResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 事件列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: Array
+        # @param Total: 事件总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :Total, :RequestId
+
+        def initialize(data=nil, total=nil, requestid=nil)
+          @Data = data
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              apievent_tmp = ApiEvent.new
+              apievent_tmp.deserialize(i)
+              @Data << apievent_tmp
             end
           end
           @Total = params['Total']

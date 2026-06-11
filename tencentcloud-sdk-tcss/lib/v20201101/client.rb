@@ -1051,7 +1051,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建k8sapi异常事件规则
+        # 创建k8sapi异常事件规则。RuleInfoList中的Action仅支持RULE_MODE_ALERT（告警），不再支持RULE_MODE_RELEASE/PASS（放行）。EventID参数已移除，事件加白请使用白名单接口ModifyK8sApiAbnormalWhitelist。
 
         # @param request: Request instance for CreateK8sApiAbnormalRuleInfo.
         # @type request: :class:`Tencentcloud::tcss::V20201101::CreateK8sApiAbnormalRuleInfoRequest`
@@ -4616,7 +4616,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询k8sapi异常请求规则列表
+        # 查询k8sapi异常请求规则列表。支持按集群名称（ClusterName）和集群ID（ClusterID）模糊查找规则，全集群规则（is_all=1）始终返回。响应新增RuleInfoList（子规则内容）、RuleActions（执行动作去重列表）、EffectAllCluster字段。
 
         # @param request: Request instance for DescribeK8sApiAbnormalRuleList.
         # @type request: :class:`Tencentcloud::tcss::V20201101::DescribeK8sApiAbnormalRuleListRequest`
@@ -7686,7 +7686,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 修改k8sapi异常规则信息
+        # 修改k8sapi异常规则信息。RuleInfoList中的Action仅支持RULE_MODE_ALERT（告警），不再支持RULE_MODE_RELEASE/PASS（放行）。
 
         # @param request: Request instance for ModifyK8sApiAbnormalRuleInfo.
         # @type request: :class:`Tencentcloud::tcss::V20201101::ModifyK8sApiAbnormalRuleInfoRequest`

@@ -178,7 +178,7 @@ module TencentCloud
         # @type Remark: String
         # @param CreateTime: <p>集群创建时间</p>
         # @type CreateTime: String
-        # @param UpdateTime: <p>最后一次操作集群的时间</p>
+        # @param UpdateTime: <p>最后一次操作集群的时间</p><p>默认值：-</p>
         # @type UpdateTime: String
         # @param CuNum: <p>CU 数量</p>
         # @type CuNum: Integer
@@ -197,7 +197,7 @@ module TencentCloud
         # @param Tags: <p>集群绑定的标签</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
-        # @param IsolatedTime: <p>集群隔离时间; 没隔离时间，则为 -</p>
+        # @param IsolatedTime: <p>集群隔离时间; 没隔离时间，则为 -</p><p>默认值：-</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsolatedTime: String
         # @param ExpireTime: <p>集群过期时间; 没过期概念，则为 -</p>
@@ -316,10 +316,18 @@ module TencentCloud
         # @type ClusterProcessMsg: String
         # @param MaxCuPerJob: <p>单作业最大可配置 CU 数</p>
         # @type MaxCuPerJob: Integer
+        # @param HiveMetastore: <p>元数据服务信息</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HiveMetastore: :class:`Tencentcloud::Oceanus.v20190422.models.HiveMetastoreInfo`
+        # @param SecurityGroupIds: <p>安全组</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SecurityGroupIds: Array
+        # @param NetEniType: <p>弹性网卡方案，0：POD弹性网卡，1：Node弹性网卡。</p><p>枚举值：</p><ul><li>0： POD弹性网卡</li><li>1： Node弹性网卡</li></ul>
+        # @type NetEniType: Integer
 
-        attr_accessor :ClusterId, :Name, :Region, :AppId, :OwnerUin, :CreatorUin, :Status, :Remark, :CreateTime, :UpdateTime, :CuNum, :CuMem, :Zone, :StatusDesc, :CCNs, :NetEnvironmentType, :FreeCuNum, :Tags, :IsolatedTime, :ExpireTime, :SecondsUntilExpiry, :AutoRenewFlag, :DefaultCOSBucket, :CLSLogSet, :CLSTopicId, :CLSLogName, :CLSTopicName, :Version, :FreeCu, :DefaultLogCollectConf, :CustomizedDNSEnabled, :Correlations, :RunningCu, :PayMode, :IsNeedManageNode, :ClusterSessions, :ArchGeneration, :ClusterType, :Orders, :SqlGateways, :WebUIType, :Type, :SubEks, :AgentSerialId, :ResourceType, :BillingResourceMode, :MemRatio, :CrossTenantEniMode, :TotalCpu, :TotalMem, :RunningCpu, :RunningMem, :Setats, :Yarns, :DeploymentMode, :SlaveZones, :LogCOSBucket, :CdcId, :ClusterProcessMsg, :MaxCuPerJob
+        attr_accessor :ClusterId, :Name, :Region, :AppId, :OwnerUin, :CreatorUin, :Status, :Remark, :CreateTime, :UpdateTime, :CuNum, :CuMem, :Zone, :StatusDesc, :CCNs, :NetEnvironmentType, :FreeCuNum, :Tags, :IsolatedTime, :ExpireTime, :SecondsUntilExpiry, :AutoRenewFlag, :DefaultCOSBucket, :CLSLogSet, :CLSTopicId, :CLSLogName, :CLSTopicName, :Version, :FreeCu, :DefaultLogCollectConf, :CustomizedDNSEnabled, :Correlations, :RunningCu, :PayMode, :IsNeedManageNode, :ClusterSessions, :ArchGeneration, :ClusterType, :Orders, :SqlGateways, :WebUIType, :Type, :SubEks, :AgentSerialId, :ResourceType, :BillingResourceMode, :MemRatio, :CrossTenantEniMode, :TotalCpu, :TotalMem, :RunningCpu, :RunningMem, :Setats, :Yarns, :DeploymentMode, :SlaveZones, :LogCOSBucket, :CdcId, :ClusterProcessMsg, :MaxCuPerJob, :HiveMetastore, :SecurityGroupIds, :NetEniType
 
-        def initialize(clusterid=nil, name=nil, region=nil, appid=nil, owneruin=nil, creatoruin=nil, status=nil, remark=nil, createtime=nil, updatetime=nil, cunum=nil, cumem=nil, zone=nil, statusdesc=nil, ccns=nil, netenvironmenttype=nil, freecunum=nil, tags=nil, isolatedtime=nil, expiretime=nil, secondsuntilexpiry=nil, autorenewflag=nil, defaultcosbucket=nil, clslogset=nil, clstopicid=nil, clslogname=nil, clstopicname=nil, version=nil, freecu=nil, defaultlogcollectconf=nil, customizeddnsenabled=nil, correlations=nil, runningcu=nil, paymode=nil, isneedmanagenode=nil, clustersessions=nil, archgeneration=nil, clustertype=nil, orders=nil, sqlgateways=nil, webuitype=nil, type=nil, subeks=nil, agentserialid=nil, resourcetype=nil, billingresourcemode=nil, memratio=nil, crosstenantenimode=nil, totalcpu=nil, totalmem=nil, runningcpu=nil, runningmem=nil, setats=nil, yarns=nil, deploymentmode=nil, slavezones=nil, logcosbucket=nil, cdcid=nil, clusterprocessmsg=nil, maxcuperjob=nil)
+        def initialize(clusterid=nil, name=nil, region=nil, appid=nil, owneruin=nil, creatoruin=nil, status=nil, remark=nil, createtime=nil, updatetime=nil, cunum=nil, cumem=nil, zone=nil, statusdesc=nil, ccns=nil, netenvironmenttype=nil, freecunum=nil, tags=nil, isolatedtime=nil, expiretime=nil, secondsuntilexpiry=nil, autorenewflag=nil, defaultcosbucket=nil, clslogset=nil, clstopicid=nil, clslogname=nil, clstopicname=nil, version=nil, freecu=nil, defaultlogcollectconf=nil, customizeddnsenabled=nil, correlations=nil, runningcu=nil, paymode=nil, isneedmanagenode=nil, clustersessions=nil, archgeneration=nil, clustertype=nil, orders=nil, sqlgateways=nil, webuitype=nil, type=nil, subeks=nil, agentserialid=nil, resourcetype=nil, billingresourcemode=nil, memratio=nil, crosstenantenimode=nil, totalcpu=nil, totalmem=nil, runningcpu=nil, runningmem=nil, setats=nil, yarns=nil, deploymentmode=nil, slavezones=nil, logcosbucket=nil, cdcid=nil, clusterprocessmsg=nil, maxcuperjob=nil, hivemetastore=nil, securitygroupids=nil, netenitype=nil)
           @ClusterId = clusterid
           @Name = name
           @Region = region
@@ -380,6 +388,9 @@ module TencentCloud
           @CdcId = cdcid
           @ClusterProcessMsg = clusterprocessmsg
           @MaxCuPerJob = maxcuperjob
+          @HiveMetastore = hivemetastore
+          @SecurityGroupIds = securitygroupids
+          @NetEniType = netenitype
         end
 
         def deserialize(params)
@@ -508,6 +519,12 @@ module TencentCloud
           @CdcId = params['CdcId']
           @ClusterProcessMsg = params['ClusterProcessMsg']
           @MaxCuPerJob = params['MaxCuPerJob']
+          unless params['HiveMetastore'].nil?
+            @HiveMetastore = HiveMetastoreInfo.new
+            @HiveMetastore.deserialize(params['HiveMetastore'])
+          end
+          @SecurityGroupIds = params['SecurityGroupIds']
+          @NetEniType = params['NetEniType']
         end
       end
 
@@ -3560,6 +3577,79 @@ module TencentCloud
         end
       end
 
+      # HiveMetastoreInfo
+      class HiveMetastoreInfo < TencentCloud::Common::AbstractModel
+        # @param HiveMetastoreSerialId: <p>hms serialId</p>
+        # @type HiveMetastoreSerialId: String
+        # @param ClusterGroupSerialId: <p>集群SerialId</p>
+        # @type ClusterGroupSerialId: String
+        # @param Status: <p>状态枚举</p><p>枚举值：</p><ul><li>3： 运行中</li><li>1： 初始化中</li><li>2： 部署中</li><li>-2： 已删除</li></ul>
+        # @type Status: Integer
+        # @param Cpu: <p>使用核数</p><p>单位：cu</p>
+        # @type Cpu: Integer
+        # @param MemGB: <p>使用内存资源</p><p>单位：GB</p>
+        # @type MemGB: Integer
+        # @param Replica: <p>副本数</p>
+        # @type Replica: Integer
+        # @param HiveUri: <p>hms 访问uri</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HiveUri: String
+        # @param HiveNamespace: <p>命名空间</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HiveNamespace: String
+        # @param CreateTime: <p>创建时间</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param UpdateTime: <p>更新时间</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+        # @param HiveMetastoreWarehouseDir: <p>Warehouse地址</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HiveMetastoreWarehouseDir: String
+        # @param Config: <p>高级参数</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Config: Array
+
+        attr_accessor :HiveMetastoreSerialId, :ClusterGroupSerialId, :Status, :Cpu, :MemGB, :Replica, :HiveUri, :HiveNamespace, :CreateTime, :UpdateTime, :HiveMetastoreWarehouseDir, :Config
+
+        def initialize(hivemetastoreserialid=nil, clustergroupserialid=nil, status=nil, cpu=nil, memgb=nil, replica=nil, hiveuri=nil, hivenamespace=nil, createtime=nil, updatetime=nil, hivemetastorewarehousedir=nil, config=nil)
+          @HiveMetastoreSerialId = hivemetastoreserialid
+          @ClusterGroupSerialId = clustergroupserialid
+          @Status = status
+          @Cpu = cpu
+          @MemGB = memgb
+          @Replica = replica
+          @HiveUri = hiveuri
+          @HiveNamespace = hivenamespace
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @HiveMetastoreWarehouseDir = hivemetastorewarehousedir
+          @Config = config
+        end
+
+        def deserialize(params)
+          @HiveMetastoreSerialId = params['HiveMetastoreSerialId']
+          @ClusterGroupSerialId = params['ClusterGroupSerialId']
+          @Status = params['Status']
+          @Cpu = params['Cpu']
+          @MemGB = params['MemGB']
+          @Replica = params['Replica']
+          @HiveUri = params['HiveUri']
+          @HiveNamespace = params['HiveNamespace']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @HiveMetastoreWarehouseDir = params['HiveMetastoreWarehouseDir']
+          unless params['Config'].nil?
+            @Config = []
+            params['Config'].each do |i|
+              property_tmp = Property.new
+              property_tmp.deserialize(i)
+              @Config << property_tmp
+            end
+          end
+        end
+      end
+
       # 作业配置详情
       class JobConfig < TencentCloud::Common::AbstractModel
         # @param JobId: <p>作业Id</p>
@@ -5481,9 +5571,9 @@ module TencentCloud
         # @type ImageVersion: String
         # @param WebUIType: <p>类型：0 公网，1 内网</p><p>枚举值：</p><ul><li>0： 公网</li><li>1： 内网</li></ul><p>默认值：0</p>
         # @type WebUIType: Integer
-        # @param Name: <p>setats集群的名字</p>
+        # @param Name: <p>Setats集群名字</p>
         # @type Name: String
-        # @param Remark: <p>setats集群注释</p>
+        # @param Remark: <p>Setats集群描述</p>
         # @type Remark: String
 
         attr_accessor :SetatsSerialId, :Status, :Warehouse, :MasterInfo, :WorkerInfo, :Tags, :AutoRenewFlag, :ExpireTime, :SecondsUntilExpiry, :CreateTime, :ManagerUrl, :IsolatedTime, :OwnerClusterGroupSerialId, :Type, :SetatsUiUrl, :ImageVersion, :WebUIType, :Name, :Remark

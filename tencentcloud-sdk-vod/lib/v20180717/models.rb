@@ -4850,7 +4850,7 @@ module TencentCloud
         # @type ClassId: Integer
         # @param ExpireTime: <p>输出文件的过期时间，超过该时间文件将被删除，默认为永久不过期，格式按照 ISO 8601标准表示，详见 <a href="https://cloud.tencent.com/document/product/266/11732#I">ISO 日期格式说明</a>。</p>
         # @type ExpireTime: String
-        # @param Duration: <p>生成视频的时长，单位：秒。</p><li>当 ModelName 是 Kling，可选值为 5、10，默认为 5；</li><li>当 ModelName 是 Hailuo，可选值为 6、10，默认为 6；</li><li>当 ModelName 是 Vidu，可指定1-10；</li><li>当 ModelName 是 GV，可选值为 8，默认为 8；</li><li>当 ModelName 是 OS，可选值为 4、8、12，默认为 8；</li><li>当 ModelName 是 PixVerse，可指定1-15，默认为5；</li>
+        # @param Duration: <p>生成视频的时长，单位：秒。</p><li>当 ModelName 是 Kling，可选值为3-15，默认为 5；</li><li>当 ModelName 是 Hailuo，可选值为 6、10，默认为 6；</li><li>当 ModelName 是 Vidu，可指定1-10；</li><li>当 ModelName 是 GV，可选值为 8，默认为 8；</li><li>当 ModelName 是 OS，可选值为 4、8、12，默认为 8；</li><li>当 ModelName 是 PixVerse，可指定1-15，默认为5；</li>
         # @type Duration: Float
         # @param Resolution: <p>生成视频的分辨率。</p><li>当 ModelName 是 Kling，可选值为 720P、1080P，默认为 720P；</li><li>当 ModelName 是 Hailuo，可选值为 768P、1080P，默认为 768P；</li><li>当 ModelName 是 Vidu，可选值为 720P、1080P，默认为 720P；</li><li>当 ModelName 是 GV，可选值为 720P、1080P，默认为 720P；</li><li>当 ModelName 是 OS，可选值为 720P；</li><li>当 ModelName 是 PixVerse，可选值为 540p、720p、1080p、2k、4k，默认为720p；</li>
         # @type Resolution: String
@@ -13320,6 +13320,169 @@ module TencentCloud
         end
       end
 
+      # 异步获取 AIGC 人脸信息输入。
+      class DescribeAigcFaceInfoAsyncInput < TencentCloud::Common::AbstractModel
+        # @param FileInfos: <p>需要获取人脸信息的输入视频信息。</p>
+        # @type FileInfos: Array
+
+        attr_accessor :FileInfos
+
+        def initialize(fileinfos=nil)
+          @FileInfos = fileinfos
+        end
+
+        def deserialize(params)
+          unless params['FileInfos'].nil?
+            @FileInfos = []
+            params['FileInfos'].each do |i|
+              aigcfaceinputfileinfo_tmp = AigcFaceInputFileInfo.new
+              aigcfaceinputfileinfo_tmp.deserialize(i)
+              @FileInfos << aigcfaceinputfileinfo_tmp
+            end
+          end
+        end
+      end
+
+      # 异步获取 AIGC 人脸信息输出
+      class DescribeAigcFaceInfoAsyncOutput < TencentCloud::Common::AbstractModel
+        # @param FaceInfoSet: <p>人脸信息。</p>
+        # @type FaceInfoSet: Array
+
+        attr_accessor :FaceInfoSet
+
+        def initialize(faceinfoset=nil)
+          @FaceInfoSet = faceinfoset
+        end
+
+        def deserialize(params)
+          unless params['FaceInfoSet'].nil?
+            @FaceInfoSet = []
+            params['FaceInfoSet'].each do |i|
+              aigcfaceinfo_tmp = AigcFaceInfo.new
+              aigcfaceinfo_tmp.deserialize(i)
+              @FaceInfoSet << aigcfaceinfo_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeAigcFaceInfoAsync请求参数结构体
+      class DescribeAigcFaceInfoAsyncRequest < TencentCloud::Common::AbstractModel
+        # @param SubAppId: <p><b>点播<a href="/document/product/266/14574">应用</a> ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b></p>
+        # @type SubAppId: Integer
+        # @param FileInfos: <p>需要获取人脸信息的输入视频信息，最多包含一个文件。</p>
+        # @type FileInfos: Array
+        # @param SessionId: <p>用于去重的识别码，如果三天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长 50 个字符，不带或者带空字符串表示不做去重。</p>
+        # @type SessionId: String
+        # @param SessionContext: <p>来源上下文，用于透传用户请求信息，音画质重生完成回调将返回该字段值，最长 1000 个字符。</p>
+        # @type SessionContext: String
+        # @param TasksPriority: <p>任务的优先级，数值越大优先级越高，取值范围是 -10 到 10，不填代表 0。</p>
+        # @type TasksPriority: Integer
+
+        attr_accessor :SubAppId, :FileInfos, :SessionId, :SessionContext, :TasksPriority
+
+        def initialize(subappid=nil, fileinfos=nil, sessionid=nil, sessioncontext=nil, taskspriority=nil)
+          @SubAppId = subappid
+          @FileInfos = fileinfos
+          @SessionId = sessionid
+          @SessionContext = sessioncontext
+          @TasksPriority = taskspriority
+        end
+
+        def deserialize(params)
+          @SubAppId = params['SubAppId']
+          unless params['FileInfos'].nil?
+            @FileInfos = []
+            params['FileInfos'].each do |i|
+              aigcfaceinputfileinfo_tmp = AigcFaceInputFileInfo.new
+              aigcfaceinputfileinfo_tmp.deserialize(i)
+              @FileInfos << aigcfaceinputfileinfo_tmp
+            end
+          end
+          @SessionId = params['SessionId']
+          @SessionContext = params['SessionContext']
+          @TasksPriority = params['TasksPriority']
+        end
+      end
+
+      # DescribeAigcFaceInfoAsync返回参数结构体
+      class DescribeAigcFaceInfoAsyncResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>任务 ID。</p>
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 异步获取 AIGC 人脸信息任务。
+      class DescribeAigcFaceInfoAsyncTask < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>任务 ID。</p>
+        # @type TaskId: String
+        # @param Status: <p>任务状态，取值：<li>PROCESSING：处理中；</li><li>FINISH：已完成。</li></p>
+        # @type Status: String
+        # @param ErrCode: <p>错误码。源异常时返回非0错误码，返回0时请使用各个具体任务的 ErrCode。</p>
+        # @type ErrCode: Integer
+        # @param ErrCodeExt: <p>扩展错误码。</p><p>参数格式：扩展错误码。</p><p>枚举值：</p><ul><li>RequestLimitExceeded： 调用超出并发限制。</li><li>InvalidParameterValue： 参数错误。</li><li>InternalError： 内部错误。</li><li>FailedOperation： 操作失败。</li></ul>
+        # @type ErrCodeExt: String
+        # @param Message: <p>错误信息。</p>
+        # @type Message: String
+        # @param Progress: <p>任务进度，取值范围 [0-100] 。</p>
+        # @type Progress: Integer
+        # @param Input: <p>异步获取 AIGC 人脸信息任务的输入信息。</p>
+        # @type Input: :class:`Tencentcloud::Vod.v20180717.models.DescribeAigcFaceInfoAsyncInput`
+        # @param Output: <p>异步获取 AIGC 人脸信息任务的输出信息。</p>
+        # @type Output: :class:`Tencentcloud::Vod.v20180717.models.DescribeAigcFaceInfoAsyncOutput`
+        # @param SessionId: <p>用于去重的识别码，如果七天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长 50 个字符，不带或者带空字符串表示不做去重。</p>
+        # @type SessionId: String
+        # @param SessionContext: <p>来源上下文，用于透传用户请求信息，任务流状态变更回调将返回该字段值，最长 1000 个字符。</p>
+        # @type SessionContext: String
+
+        attr_accessor :TaskId, :Status, :ErrCode, :ErrCodeExt, :Message, :Progress, :Input, :Output, :SessionId, :SessionContext
+
+        def initialize(taskid=nil, status=nil, errcode=nil, errcodeext=nil, message=nil, progress=nil, input=nil, output=nil, sessionid=nil, sessioncontext=nil)
+          @TaskId = taskid
+          @Status = status
+          @ErrCode = errcode
+          @ErrCodeExt = errcodeext
+          @Message = message
+          @Progress = progress
+          @Input = input
+          @Output = output
+          @SessionId = sessionid
+          @SessionContext = sessioncontext
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @Status = params['Status']
+          @ErrCode = params['ErrCode']
+          @ErrCodeExt = params['ErrCodeExt']
+          @Message = params['Message']
+          @Progress = params['Progress']
+          unless params['Input'].nil?
+            @Input = DescribeAigcFaceInfoAsyncInput.new
+            @Input.deserialize(params['Input'])
+          end
+          unless params['Output'].nil?
+            @Output = DescribeAigcFaceInfoAsyncOutput.new
+            @Output.deserialize(params['Output'])
+          end
+          @SessionId = params['SessionId']
+          @SessionContext = params['SessionContext']
+        end
+      end
+
       # DescribeAigcFaceInfo请求参数结构体
       class DescribeAigcFaceInfoRequest < TencentCloud::Common::AbstractModel
         # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
@@ -16574,7 +16737,7 @@ module TencentCloud
 
       # DescribeTaskDetail返回参数结构体
       class DescribeTaskDetailResponse < TencentCloud::Common::AbstractModel
-        # @param TaskType: <p>任务类型，取值：<li>Procedure：视频处理任务；</li><li>EditMedia：视频编辑任务；</li><li>SplitMedia：视频拆条任务；</li><li>ComposeMedia：制作媒体文件任务；</li><li>WechatPublish：微信发布任务；</li><li>WechatMiniProgramPublish：微信小程序视频发布任务；</li><li>PullUpload：拉取上传媒体文件任务；</li><li>FastClipMedia：快速剪辑任务；</li><li>RemoveWatermarkTask：智能去除水印任务；</li><li>DescribeFileAttributesTask：获取文件属性任务；</li><li>RebuildMedia：音画质重生任务（不推荐使用）；</li><li>ReviewAudioVideo：音视频审核任务；</li><li>ExtractTraceWatermark：提取溯源水印任务；</li><li>ExtractCopyRightWatermark：提取版权水印任务；</li><li>QualityInspect：音画质检测任务；</li><li>QualityEnhance：音画质重生任务；</li><li>ComplexAdaptiveDynamicStreaming：复杂自适应码流任务；</li><li>ProcessMediaByMPS：MPS 视频处理任务；</li><li>AigcImageTask：AIGC 生图任务；</li><li>SceneAigcImageTask：场景化 AIGC 生图任务；</li><li>AigcVideoTask：AIGC 生视频任务；</li><li>ImportMediaKnowledge：导入媒体知识任务。</li><li>SceneAigcVideoTask：场景化 AIGC 生视频任务；</li><li> ExtractBlindWatermark：提取数字水印任务。</li><li> ExtractBlindWatermark：提取数字水印任务。</li><li> CreateAigcAdvancedCustomElement：创建自定义主体任务</li><li>CreateAigcCustomVoice：创建自定义音色任务</li><li>CreateAigcSubject：创建主体任务</li><li>AigcVideoRedrawTask：AIGC 视频转绘任务</li><li>CreateAigcAudioClone：AIGC 声音复刻任务</li></p>
+        # @param TaskType: <p>任务类型，取值：<li>Procedure：视频处理任务；</li><li>EditMedia：视频编辑任务；</li><li>SplitMedia：视频拆条任务；</li><li>ComposeMedia：制作媒体文件任务；</li><li>WechatPublish：微信发布任务；</li><li>WechatMiniProgramPublish：微信小程序视频发布任务；</li><li>PullUpload：拉取上传媒体文件任务；</li><li>FastClipMedia：快速剪辑任务；</li><li>RemoveWatermarkTask：智能去除水印任务；</li><li>DescribeFileAttributesTask：获取文件属性任务；</li><li>RebuildMedia：音画质重生任务（不推荐使用）；</li><li>ReviewAudioVideo：音视频审核任务；</li><li>ExtractTraceWatermark：提取溯源水印任务；</li><li>ExtractCopyRightWatermark：提取版权水印任务；</li><li>QualityInspect：音画质检测任务；</li><li>QualityEnhance：音画质重生任务；</li><li>ComplexAdaptiveDynamicStreaming：复杂自适应码流任务；</li><li>ProcessMediaByMPS：MPS 视频处理任务；</li><li>AigcImageTask：AIGC 生图任务；</li><li>SceneAigcImageTask：场景化 AIGC 生图任务；</li><li>AigcVideoTask：AIGC 生视频任务；</li><li>ImportMediaKnowledge：导入媒体知识任务。</li><li>SceneAigcVideoTask：场景化 AIGC 生视频任务；</li><li> ExtractBlindWatermark：提取数字水印任务。</li><li> ExtractBlindWatermark：提取数字水印任务。</li><li> CreateAigcAdvancedCustomElement：创建自定义主体任务</li><li>CreateAigcCustomVoice：创建自定义音色任务</li><li>CreateAigcSubject：创建主体任务</li><li>AigcVideoRedrawTask：AIGC 视频转绘任务</li><li>CreateAigcAudioClone：AIGC 声音复刻任务</li><li>DescribeAigcFaceInfoAsync：异步获取 AIGC 人脸信息任务</li></p>
         # @type TaskType: String
         # @param Status: <p>任务状态，取值：</p><li>WAITING：等待中；</li><li>PROCESSING：处理中；</li><li>FINISH：已完成；</li><li>ABORTED：已终止。</li>
         # @type Status: String
@@ -16672,18 +16835,20 @@ module TencentCloud
         # @type CreateAigcCustomVoiceTask: :class:`Tencentcloud::Vod.v20180717.models.CreateAigcCustomVoiceTask`
         # @param CreateAigcSubjectTask: <p>创建主体信息，仅当 TaskType 为 CreateAigcSubject，该字段有值。</p>
         # @type CreateAigcSubjectTask: :class:`Tencentcloud::Vod.v20180717.models.CreateAigcSubjectTask`
-        # @param AigcVideoRedrawTask: <p>AIGC 视频转绘信息，仅当 TaskType 为AigcVideoRedrawTask，该字段有值。</p>
+        # @param AigcVideoRedrawTask: <p>AIGC 视频转绘信息，仅当 TaskType 为 AigcVideoRedrawTask，该字段有值。</p>
         # @type AigcVideoRedrawTask: :class:`Tencentcloud::Vod.v20180717.models.AigcVideoRedrawTask`
-        # @param AigcAudioTask: <p>AIGC音效信息，仅当TaskType为AigcAudioTask时，该字段有值。</p>
+        # @param AigcAudioTask: <p>AIGC音效信息，仅当 TaskType 为 AigcAudioTask，该字段有值。</p>
         # @type AigcAudioTask: :class:`Tencentcloud::Vod.v20180717.models.AigcAudioTask`
-        # @param CreateAigcAudioCloneTask: <p>AIGC 声音复刻信息，仅当 TaskType 为CreateAigcAudioClone，该字段有值。</p>
+        # @param CreateAigcAudioCloneTask: <p>AIGC 声音复刻信息，仅当 TaskType 为 CreateAigcAudioClone，该字段有值。</p>
         # @type CreateAigcAudioCloneTask: :class:`Tencentcloud::Vod.v20180717.models.CreateAigcAudioCloneTask`
+        # @param DescribeAigcFaceInfoAsyncTask: <p>异步获取 AIGC 人脸信息，仅当 TaskType 为 DescribeAigcFaceInfoAsync，该字段有值。</p>
+        # @type DescribeAigcFaceInfoAsyncTask: :class:`Tencentcloud::Vod.v20180717.models.DescribeAigcFaceInfoAsyncTask`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TaskType, :Status, :CreateTime, :BeginProcessTime, :FinishTime, :ProcedureTask, :EditMediaTask, :WechatPublishTask, :ComposeMediaTask, :SplitMediaTask, :WechatMiniProgramPublishTask, :PullUploadTask, :TranscodeTask, :ConcatTask, :ClipTask, :CreateImageSpriteTask, :SnapshotByTimeOffsetTask, :RemoveWatermarkTask, :RebuildMediaTask, :ExtractTraceWatermarkTask, :ExtractCopyRightWatermarkTask, :ReviewAudioVideoTask, :ReduceMediaBitrateTask, :DescribeFileAttributesTask, :QualityInspectTask, :QualityEnhanceTask, :ComplexAdaptiveDynamicStreamingTask, :ProcessMediaByMPSTask, :AigcImageTask, :AigcVideoTask, :ImportMediaKnowledge, :SceneAigcImageTask, :SceneAigcVideoTask, :ProcessImageAsyncTask, :ExtractBlindWatermarkTask, :CreateAigcAdvancedCustomElementTask, :CreateAigcCustomVoiceTask, :CreateAigcSubjectTask, :AigcVideoRedrawTask, :AigcAudioTask, :CreateAigcAudioCloneTask, :RequestId
+        attr_accessor :TaskType, :Status, :CreateTime, :BeginProcessTime, :FinishTime, :ProcedureTask, :EditMediaTask, :WechatPublishTask, :ComposeMediaTask, :SplitMediaTask, :WechatMiniProgramPublishTask, :PullUploadTask, :TranscodeTask, :ConcatTask, :ClipTask, :CreateImageSpriteTask, :SnapshotByTimeOffsetTask, :RemoveWatermarkTask, :RebuildMediaTask, :ExtractTraceWatermarkTask, :ExtractCopyRightWatermarkTask, :ReviewAudioVideoTask, :ReduceMediaBitrateTask, :DescribeFileAttributesTask, :QualityInspectTask, :QualityEnhanceTask, :ComplexAdaptiveDynamicStreamingTask, :ProcessMediaByMPSTask, :AigcImageTask, :AigcVideoTask, :ImportMediaKnowledge, :SceneAigcImageTask, :SceneAigcVideoTask, :ProcessImageAsyncTask, :ExtractBlindWatermarkTask, :CreateAigcAdvancedCustomElementTask, :CreateAigcCustomVoiceTask, :CreateAigcSubjectTask, :AigcVideoRedrawTask, :AigcAudioTask, :CreateAigcAudioCloneTask, :DescribeAigcFaceInfoAsyncTask, :RequestId
 
-        def initialize(tasktype=nil, status=nil, createtime=nil, beginprocesstime=nil, finishtime=nil, proceduretask=nil, editmediatask=nil, wechatpublishtask=nil, composemediatask=nil, splitmediatask=nil, wechatminiprogrampublishtask=nil, pulluploadtask=nil, transcodetask=nil, concattask=nil, cliptask=nil, createimagespritetask=nil, snapshotbytimeoffsettask=nil, removewatermarktask=nil, rebuildmediatask=nil, extracttracewatermarktask=nil, extractcopyrightwatermarktask=nil, reviewaudiovideotask=nil, reducemediabitratetask=nil, describefileattributestask=nil, qualityinspecttask=nil, qualityenhancetask=nil, complexadaptivedynamicstreamingtask=nil, processmediabympstask=nil, aigcimagetask=nil, aigcvideotask=nil, importmediaknowledge=nil, sceneaigcimagetask=nil, sceneaigcvideotask=nil, processimageasynctask=nil, extractblindwatermarktask=nil, createaigcadvancedcustomelementtask=nil, createaigccustomvoicetask=nil, createaigcsubjecttask=nil, aigcvideoredrawtask=nil, aigcaudiotask=nil, createaigcaudioclonetask=nil, requestid=nil)
+        def initialize(tasktype=nil, status=nil, createtime=nil, beginprocesstime=nil, finishtime=nil, proceduretask=nil, editmediatask=nil, wechatpublishtask=nil, composemediatask=nil, splitmediatask=nil, wechatminiprogrampublishtask=nil, pulluploadtask=nil, transcodetask=nil, concattask=nil, cliptask=nil, createimagespritetask=nil, snapshotbytimeoffsettask=nil, removewatermarktask=nil, rebuildmediatask=nil, extracttracewatermarktask=nil, extractcopyrightwatermarktask=nil, reviewaudiovideotask=nil, reducemediabitratetask=nil, describefileattributestask=nil, qualityinspecttask=nil, qualityenhancetask=nil, complexadaptivedynamicstreamingtask=nil, processmediabympstask=nil, aigcimagetask=nil, aigcvideotask=nil, importmediaknowledge=nil, sceneaigcimagetask=nil, sceneaigcvideotask=nil, processimageasynctask=nil, extractblindwatermarktask=nil, createaigcadvancedcustomelementtask=nil, createaigccustomvoicetask=nil, createaigcsubjecttask=nil, aigcvideoredrawtask=nil, aigcaudiotask=nil, createaigcaudioclonetask=nil, describeaigcfaceinfoasynctask=nil, requestid=nil)
           @TaskType = tasktype
           @Status = status
           @CreateTime = createtime
@@ -16725,6 +16890,7 @@ module TencentCloud
           @AigcVideoRedrawTask = aigcvideoredrawtask
           @AigcAudioTask = aigcaudiotask
           @CreateAigcAudioCloneTask = createaigcaudioclonetask
+          @DescribeAigcFaceInfoAsyncTask = describeaigcfaceinfoasynctask
           @RequestId = requestid
         end
 
@@ -16877,6 +17043,10 @@ module TencentCloud
           unless params['CreateAigcAudioCloneTask'].nil?
             @CreateAigcAudioCloneTask = CreateAigcAudioCloneTask.new
             @CreateAigcAudioCloneTask.deserialize(params['CreateAigcAudioCloneTask'])
+          end
+          unless params['DescribeAigcFaceInfoAsyncTask'].nil?
+            @DescribeAigcFaceInfoAsyncTask = DescribeAigcFaceInfoAsyncTask.new
+            @DescribeAigcFaceInfoAsyncTask.deserialize(params['DescribeAigcFaceInfoAsyncTask'])
           end
           @RequestId = params['RequestId']
         end
@@ -18179,135 +18349,113 @@ module TencentCloud
 
       # 事件通知内容，其中，TranscodeCompleteEvent、ConcatCompleteEvent、ClipCompleteEvent、CreateImageSpriteCompleteEvent、SnapshotByTimeOffsetCompleteEvent 为兼容 2017 版接口发起任务的事件通知。
       class EventContent < TencentCloud::Common::AbstractModel
-        # @param EventHandle: 事件句柄，调用方必须调用 ConfirmEvents 来确认消息已经收到，确认有效时间 30 秒。失效后，事件可重新被获取。
+        # @param EventHandle: <p>事件句柄，调用方必须调用 ConfirmEvents 来确认消息已经收到，确认有效时间 30 秒。失效后，事件可重新被获取。</p>
         # @type EventHandle: String
-        # @param EventType: <b>支持事件类型：</b>
-        # <li>NewFileUpload：视频上传完成；</li>
-        # <li>ProcedureStateChanged：任务流状态变更；</li>
-        # <li>FileDeleted：视频删除完成；</li>
-        # <li>RestoreMediaComplete：视频取回完成；</li>
-        # <li>PullComplete：视频转拉完成；</li>
-        # <li>EditMediaComplete：视频编辑完成；</li>
-        # <li>SplitMediaComplete：视频拆分完成；</li>
-        # <li>ComposeMediaComplete：制作媒体文件完成；</li>
-        # <li>WechatMiniProgramPublishComplete：微信小程序发布完成。</li>
-        # <li>RemoveWatermark：智能去除水印完成。</li>
-        # <li>RebuildMediaComplete：音画质重生完成事件（不推荐使用）。</li>
-        # <li>ReviewAudioVideoComplete：音视频审核完成；</li>
-        # <li>ExtractTraceWatermarkComplete：提取溯源水印完成；</li>
-        # <li>ExtractCopyRightWatermarkComplete：提取版权水印完成；</li>
-        # <li>DescribeFileAttributesComplete：获取文件属性完成；</li>
-        # <li>QualityInspectComplete：音画质检测完成；</li>
-        # <li>QualityEnhanceComplete：音画质重生任务完成；</li>
-        # <li>PersistenceComplete：剪辑固化完成；</li>
-        # <li>ComplexAdaptiveDynamicStreamingComplete：复杂自适应码流任务完成。</li>
-        # <li>ProcessMediaByMPSComplete：MPS视频处理完成。</li>
-        # <li>AigcImageTaskComplete：AIGC 生图任务完成。</li>
-        # <li>AigcVideoTaskComplete：AIGC 生视频任务完成。</li>
-        # <b>兼容 2017 版的事件类型：</b>
-        # <li>TranscodeComplete：视频转码完成；</li>
-        # <li>ConcatComplete：视频拼接完成；</li>
-        # <li>ClipComplete：视频剪辑完成；</li>
-        # <li>CreateImageSpriteComplete：视频截取雪碧图完成；</li>
-        # <li>CreateSnapshotByTimeOffsetComplete：视频按时间点截图完成。</li>
+        # @param EventType: <p><b>支持事件类型：</b></p><li>NewFileUpload：视频上传完成；</li><li>ProcedureStateChanged：任务流状态变更；</li><li>FileDeleted：视频删除完成；</li><li>RestoreMediaComplete：视频取回完成；</li><li>PullComplete：视频转拉完成；</li><li>EditMediaComplete：视频编辑完成；</li><li>SplitMediaComplete：视频拆分完成；</li><li>ComposeMediaComplete：制作媒体文件完成；</li><li>WechatMiniProgramPublishComplete：微信小程序发布完成。</li><li>RemoveWatermark：智能去除水印完成。</li><li>RebuildMediaComplete：音画质重生完成事件（不推荐使用）。</li><li>ReviewAudioVideoComplete：音视频审核完成；</li><li>ExtractTraceWatermarkComplete：提取溯源水印完成；</li><li>ExtractCopyRightWatermarkComplete：提取版权水印完成；</li><li>DescribeFileAttributesComplete：获取文件属性完成；</li><li>QualityInspectComplete：音画质检测完成；</li><li>QualityEnhanceComplete：音画质重生任务完成；</li><li>PersistenceComplete：剪辑固化完成；</li><li>ComplexAdaptiveDynamicStreamingComplete：复杂自适应码流任务完成。</li><li>ProcessMediaByMPSComplete：MPS视频处理完成。</li><li>AigcImageTaskComplete：AIGC 生图任务完成。</li><li>AigcVideoTaskComplete：AIGC 生视频任务完成。</li><li>DescribeAigcFaceInfoAsyncComplete：异步获取 AIGC 人脸信息任务完成。</li><b>兼容 2017 版的事件类型：</b><li>TranscodeComplete：视频转码完成；</li><li>ConcatComplete：视频拼接完成；</li><li>ClipComplete：视频剪辑完成；</li><li>CreateImageSpriteComplete：视频截取雪碧图完成；</li><li>CreateSnapshotByTimeOffsetComplete：视频按时间点截图完成。</li>
         # @type EventType: String
-        # @param FileUploadEvent: 视频上传完成事件，当事件类型为 NewFileUpload 时有效。
+        # @param FileUploadEvent: <p>视频上传完成事件，当事件类型为 NewFileUpload 时有效。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileUploadEvent: :class:`Tencentcloud::Vod.v20180717.models.FileUploadTask`
-        # @param ProcedureStateChangeEvent: 任务流状态变更事件，当事件类型为 ProcedureStateChanged 时有效。
+        # @param ProcedureStateChangeEvent: <p>任务流状态变更事件，当事件类型为 ProcedureStateChanged 时有效。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProcedureStateChangeEvent: :class:`Tencentcloud::Vod.v20180717.models.ProcedureTask`
-        # @param FileDeleteEvent: 文件删除事件，当事件类型为 FileDeleted 时有效。
+        # @param FileDeleteEvent: <p>文件删除事件，当事件类型为 FileDeleted 时有效。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileDeleteEvent: :class:`Tencentcloud::Vod.v20180717.models.FileDeleteTask`
-        # @param PullCompleteEvent: 视频转拉完成事件，当事件类型为 PullComplete 时有效。
+        # @param PullCompleteEvent: <p>视频转拉完成事件，当事件类型为 PullComplete 时有效。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PullCompleteEvent: :class:`Tencentcloud::Vod.v20180717.models.PullUploadTask`
-        # @param EditMediaCompleteEvent: 视频编辑完成事件，当事件类型为 EditMediaComplete 时有效。
+        # @param EditMediaCompleteEvent: <p>视频编辑完成事件，当事件类型为 EditMediaComplete 时有效。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EditMediaCompleteEvent: :class:`Tencentcloud::Vod.v20180717.models.EditMediaTask`
-        # @param SplitMediaCompleteEvent: 视频拆分完成事件，当事件类型为 SplitMediaComplete 时有效。
+        # @param SplitMediaCompleteEvent: <p>视频拆分完成事件，当事件类型为 SplitMediaComplete 时有效。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SplitMediaCompleteEvent: :class:`Tencentcloud::Vod.v20180717.models.SplitMediaTask`
-        # @param ComposeMediaCompleteEvent: 制作媒体文件任务完成事件，当事件类型为 ComposeMediaComplete 时有效。
+        # @param ComposeMediaCompleteEvent: <p>制作媒体文件任务完成事件，当事件类型为 ComposeMediaComplete 时有效。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ComposeMediaCompleteEvent: :class:`Tencentcloud::Vod.v20180717.models.ComposeMediaTask`
-        # @param ClipCompleteEvent: 视频剪辑完成事件，当事件类型为 ClipComplete 时有效。
+        # @param ClipCompleteEvent: <p>视频剪辑完成事件，当事件类型为 ClipComplete 时有效。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClipCompleteEvent: :class:`Tencentcloud::Vod.v20180717.models.ClipTask2017`
-        # @param TranscodeCompleteEvent: 视频转码完成事件，当事件类型为 TranscodeComplete 时有效。
+        # @param TranscodeCompleteEvent: <p>视频转码完成事件，当事件类型为 TranscodeComplete 时有效。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TranscodeCompleteEvent: :class:`Tencentcloud::Vod.v20180717.models.TranscodeTask2017`
-        # @param CreateImageSpriteCompleteEvent: 视频截取雪碧图完成事件，当事件类型为 CreateImageSpriteComplete 时有效。
+        # @param CreateImageSpriteCompleteEvent: <p>视频截取雪碧图完成事件，当事件类型为 CreateImageSpriteComplete 时有效。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateImageSpriteCompleteEvent: :class:`Tencentcloud::Vod.v20180717.models.CreateImageSpriteTask2017`
-        # @param ConcatCompleteEvent: 视频拼接完成事件，当事件类型为 ConcatComplete 时有效。
+        # @param ConcatCompleteEvent: <p>视频拼接完成事件，当事件类型为 ConcatComplete 时有效。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConcatCompleteEvent: :class:`Tencentcloud::Vod.v20180717.models.ConcatTask2017`
-        # @param SnapshotByTimeOffsetCompleteEvent: 视频按时间点截图完成事件，当事件类型为 CreateSnapshotByTimeOffsetComplete 时有效。
+        # @param SnapshotByTimeOffsetCompleteEvent: <p>视频按时间点截图完成事件，当事件类型为 CreateSnapshotByTimeOffsetComplete 时有效。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SnapshotByTimeOffsetCompleteEvent: :class:`Tencentcloud::Vod.v20180717.models.SnapshotByTimeOffsetTask2017`
-        # @param WechatPublishCompleteEvent: 微信发布完成事件，当事件类型为 WechatPublishComplete 时有效。
+        # @param WechatPublishCompleteEvent: <p>微信发布完成事件，当事件类型为 WechatPublishComplete 时有效。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WechatPublishCompleteEvent: :class:`Tencentcloud::Vod.v20180717.models.WechatPublishTask`
-        # @param WechatMiniProgramPublishCompleteEvent: 微信小程序发布任务完成事件，当事件类型为 WechatMiniProgramPublishComplete 时有效。
+        # @param WechatMiniProgramPublishCompleteEvent: <p>微信小程序发布任务完成事件，当事件类型为 WechatMiniProgramPublishComplete 时有效。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WechatMiniProgramPublishCompleteEvent: :class:`Tencentcloud::Vod.v20180717.models.WechatMiniProgramPublishTask`
-        # @param RemoveWatermarkCompleteEvent: 智能去除水印完成事件，当事件类型为 RemoveWatermark 有效。
+        # @param RemoveWatermarkCompleteEvent: <p>智能去除水印完成事件，当事件类型为 RemoveWatermark 有效。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RemoveWatermarkCompleteEvent: :class:`Tencentcloud::Vod.v20180717.models.RemoveWatermarkTask`
-        # @param RestoreMediaCompleteEvent: 视频取回完成事件，当事件类型为 RestoreMediaComplete 时有效。
+        # @param RestoreMediaCompleteEvent: <p>视频取回完成事件，当事件类型为 RestoreMediaComplete 时有效。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RestoreMediaCompleteEvent: :class:`Tencentcloud::Vod.v20180717.models.RestoreMediaTask`
-        # @param RebuildMediaCompleteEvent: 音画质重生完成事件，当事件类型为 RebuildMediaComplete 时有效。
+        # @param RebuildMediaCompleteEvent: <p>音画质重生完成事件，当事件类型为 RebuildMediaComplete 时有效。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RebuildMediaCompleteEvent: :class:`Tencentcloud::Vod.v20180717.models.RebuildMediaTask`
-        # @param ExtractTraceWatermarkCompleteEvent: 溯源水印提取完成事件，当事件类型为 ExtractTraceWatermarkComplete 时有效。
+        # @param ExtractTraceWatermarkCompleteEvent: <p>溯源水印提取完成事件，当事件类型为 ExtractTraceWatermarkComplete 时有效。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExtractTraceWatermarkCompleteEvent: :class:`Tencentcloud::Vod.v20180717.models.ExtractTraceWatermarkTask`
-        # @param ExtractCopyRightWatermarkCompleteEvent: 版权水印提取完成事件，当事件类型为 ExtractCopyRightWatermarkComplete 时有效。
+        # @param ExtractCopyRightWatermarkCompleteEvent: <p>版权水印提取完成事件，当事件类型为 ExtractCopyRightWatermarkComplete 时有效。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExtractCopyRightWatermarkCompleteEvent: :class:`Tencentcloud::Vod.v20180717.models.ExtractCopyRightWatermarkTask`
-        # @param ReviewAudioVideoCompleteEvent: 音视频审核完成事件，当事件类型为 ReviewAudioVideoComplete 时有效。
+        # @param ReviewAudioVideoCompleteEvent: <p>音视频审核完成事件，当事件类型为 ReviewAudioVideoComplete 时有效。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReviewAudioVideoCompleteEvent: :class:`Tencentcloud::Vod.v20180717.models.ReviewAudioVideoTask`
-        # @param ReduceMediaBitrateCompleteEvent: 该字段已无效。
+        # @param ReduceMediaBitrateCompleteEvent: <p>该字段已无效。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReduceMediaBitrateCompleteEvent: :class:`Tencentcloud::Vod.v20180717.models.ReduceMediaBitrateTask`
-        # @param DescribeFileAttributesCompleteEvent: 获取文件属性完成事件，当事件类型为 DescribeFileAttributesComplete 时有效。
+        # @param DescribeFileAttributesCompleteEvent: <p>获取文件属性完成事件，当事件类型为 DescribeFileAttributesComplete 时有效。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DescribeFileAttributesCompleteEvent: :class:`Tencentcloud::Vod.v20180717.models.DescribeFileAttributesTask`
-        # @param QualityInspectCompleteEvent: 音画质检测完成事件，当事件类型为 QualityInspectComplete 时有效。
+        # @param QualityInspectCompleteEvent: <p>音画质检测完成事件，当事件类型为 QualityInspectComplete 时有效。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QualityInspectCompleteEvent: :class:`Tencentcloud::Vod.v20180717.models.QualityInspectTask`
-        # @param QualityEnhanceCompleteEvent: 音画质重生完成事件，当事件类型为 QualityEnhanceComplete 时有效。
+        # @param QualityEnhanceCompleteEvent: <p>音画质重生完成事件，当事件类型为 QualityEnhanceComplete 时有效。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QualityEnhanceCompleteEvent: :class:`Tencentcloud::Vod.v20180717.models.QualityEnhanceTask`
-        # @param MediaCastStatusChangedEvent: 媒体转推状态变化事件，当事件类型为 MediaCastStatusChanged 时有效。
+        # @param MediaCastStatusChangedEvent: <p>媒体转推状态变化事件，当事件类型为 MediaCastStatusChanged 时有效。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MediaCastStatusChangedEvent: :class:`Tencentcloud::Vod.v20180717.models.MediaCastEvent`
-        # @param PersistenceCompleteEvent: 剪辑固化完成事件，当事件类型为 PersistenceComplete 时有效。
+        # @param PersistenceCompleteEvent: <p>剪辑固化完成事件，当事件类型为 PersistenceComplete 时有效。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PersistenceCompleteEvent: :class:`Tencentcloud::Vod.v20180717.models.PersistenceCompleteTask`
-        # @param ComplexAdaptiveDynamicStreamingCompleteEvent: 自适应码流任务信息，仅当 EventType 为ComplexAdaptiveDynamicStreamingComplete 时有效。
+        # @param ComplexAdaptiveDynamicStreamingCompleteEvent: <p>自适应码流任务信息，仅当 EventType 为ComplexAdaptiveDynamicStreamingComplete 时有效。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ComplexAdaptiveDynamicStreamingCompleteEvent: :class:`Tencentcloud::Vod.v20180717.models.ComplexAdaptiveDynamicStreamingTask`
-        # @param ProcessMediaByMPSCompleteEvent: MPS 视频处理任务信息，仅当 EventType 为 ProcessMediaByMPSComplete 时有效。
+        # @param ProcessMediaByMPSCompleteEvent: <p>MPS 视频处理任务信息，仅当 EventType 为 ProcessMediaByMPSComplete 时有效。</p>
         # @type ProcessMediaByMPSCompleteEvent: :class:`Tencentcloud::Vod.v20180717.models.ProcessMediaByMPS`
-        # @param AigcImageCompleteEvent: AIGC 生图任务信息，仅当 EventType 为 AigcImageTaskComplete 时有效。
+        # @param AigcImageCompleteEvent: <p>AIGC 生图任务信息，仅当 EventType 为 AigcImageTaskComplete 时有效。</p>
         # @type AigcImageCompleteEvent: :class:`Tencentcloud::Vod.v20180717.models.AigcImageTask`
-        # @param AigcVideoCompleteEvent: AIGC 生视频任务信息，仅当 EventType 为 AigcVideoTaskComplete 时有效。
+        # @param AigcVideoCompleteEvent: <p>AIGC 生视频任务信息，仅当 EventType 为 AigcVideoTaskComplete 时有效。</p>
         # @type AigcVideoCompleteEvent: :class:`Tencentcloud::Vod.v20180717.models.AigcVideoTask`
-        # @param ExtractBlindWatermarkComplete: 提取数字水印信息，仅当 EventType 为 ExtractBlindWatermarkComplete 时有效。
+        # @param ExtractBlindWatermarkComplete: <p>提取数字水印信息，仅当 EventType 为 ExtractBlindWatermarkComplete 时有效。</p>
         # @type ExtractBlindWatermarkComplete: :class:`Tencentcloud::Vod.v20180717.models.ExtractBlindWatermarkTask`
-        # @param SceneAigcImageCompleteEvent: AIGC 场景化生图任务信息，仅当 EventType 为 SceneAigcImageCompleteEvent 时有效。
+        # @param SceneAigcImageCompleteEvent: <p>AIGC 场景化生图任务信息，仅当 EventType 为 SceneAigcImageCompleteEvent 时有效。</p>
         # @type SceneAigcImageCompleteEvent: :class:`Tencentcloud::Vod.v20180717.models.SceneAigcImageTask`
-        # @param ProcessImageAsyncCompleteEvent: 图片异步处理任务信息，仅当 EventType 为 ProcessImageAsyncCompleteEvent 时有效。
+        # @param ProcessImageAsyncCompleteEvent: <p>图片异步处理任务信息，仅当 EventType 为 ProcessImageAsyncCompleteEvent 时有效。</p>
         # @type ProcessImageAsyncCompleteEvent: :class:`Tencentcloud::Vod.v20180717.models.ProcessImageAsyncTask`
+        # @param CreateAigcAdvancedCustomElementCompleteEvent: <p>AIGC 自定义主体信息，仅当 EventType 为 CreateAigcAdvancedCustomElementCompleteEvent，该字段有值。</p>
+        # @type CreateAigcAdvancedCustomElementCompleteEvent: :class:`Tencentcloud::Vod.v20180717.models.CreateAigcAdvancedCustomElementTask`
+        # @param CreateAigcCustomVoiceCompleteEvent: <p>AIGC 自定义音色信息，仅当 EventType 为 CreateAigcCustomVoiceCompleteEvent，该字段有值。</p>
+        # @type CreateAigcCustomVoiceCompleteEvent: :class:`Tencentcloud::Vod.v20180717.models.CreateAigcCustomVoiceTask`
+        # @param DescribeAigcFaceInfoAsyncCompleteEvent: <p>异步获取 AIGC 人脸信息，仅当 EventType 为 DescribeAigcFaceInfoAsyncComplete，该字段有值。</p>
+        # @type DescribeAigcFaceInfoAsyncCompleteEvent: :class:`Tencentcloud::Vod.v20180717.models.DescribeAigcFaceInfoAsyncTask`
 
-        attr_accessor :EventHandle, :EventType, :FileUploadEvent, :ProcedureStateChangeEvent, :FileDeleteEvent, :PullCompleteEvent, :EditMediaCompleteEvent, :SplitMediaCompleteEvent, :ComposeMediaCompleteEvent, :ClipCompleteEvent, :TranscodeCompleteEvent, :CreateImageSpriteCompleteEvent, :ConcatCompleteEvent, :SnapshotByTimeOffsetCompleteEvent, :WechatPublishCompleteEvent, :WechatMiniProgramPublishCompleteEvent, :RemoveWatermarkCompleteEvent, :RestoreMediaCompleteEvent, :RebuildMediaCompleteEvent, :ExtractTraceWatermarkCompleteEvent, :ExtractCopyRightWatermarkCompleteEvent, :ReviewAudioVideoCompleteEvent, :ReduceMediaBitrateCompleteEvent, :DescribeFileAttributesCompleteEvent, :QualityInspectCompleteEvent, :QualityEnhanceCompleteEvent, :MediaCastStatusChangedEvent, :PersistenceCompleteEvent, :ComplexAdaptiveDynamicStreamingCompleteEvent, :ProcessMediaByMPSCompleteEvent, :AigcImageCompleteEvent, :AigcVideoCompleteEvent, :ExtractBlindWatermarkComplete, :SceneAigcImageCompleteEvent, :ProcessImageAsyncCompleteEvent
+        attr_accessor :EventHandle, :EventType, :FileUploadEvent, :ProcedureStateChangeEvent, :FileDeleteEvent, :PullCompleteEvent, :EditMediaCompleteEvent, :SplitMediaCompleteEvent, :ComposeMediaCompleteEvent, :ClipCompleteEvent, :TranscodeCompleteEvent, :CreateImageSpriteCompleteEvent, :ConcatCompleteEvent, :SnapshotByTimeOffsetCompleteEvent, :WechatPublishCompleteEvent, :WechatMiniProgramPublishCompleteEvent, :RemoveWatermarkCompleteEvent, :RestoreMediaCompleteEvent, :RebuildMediaCompleteEvent, :ExtractTraceWatermarkCompleteEvent, :ExtractCopyRightWatermarkCompleteEvent, :ReviewAudioVideoCompleteEvent, :ReduceMediaBitrateCompleteEvent, :DescribeFileAttributesCompleteEvent, :QualityInspectCompleteEvent, :QualityEnhanceCompleteEvent, :MediaCastStatusChangedEvent, :PersistenceCompleteEvent, :ComplexAdaptiveDynamicStreamingCompleteEvent, :ProcessMediaByMPSCompleteEvent, :AigcImageCompleteEvent, :AigcVideoCompleteEvent, :ExtractBlindWatermarkComplete, :SceneAigcImageCompleteEvent, :ProcessImageAsyncCompleteEvent, :CreateAigcAdvancedCustomElementCompleteEvent, :CreateAigcCustomVoiceCompleteEvent, :DescribeAigcFaceInfoAsyncCompleteEvent
 
-        def initialize(eventhandle=nil, eventtype=nil, fileuploadevent=nil, procedurestatechangeevent=nil, filedeleteevent=nil, pullcompleteevent=nil, editmediacompleteevent=nil, splitmediacompleteevent=nil, composemediacompleteevent=nil, clipcompleteevent=nil, transcodecompleteevent=nil, createimagespritecompleteevent=nil, concatcompleteevent=nil, snapshotbytimeoffsetcompleteevent=nil, wechatpublishcompleteevent=nil, wechatminiprogrampublishcompleteevent=nil, removewatermarkcompleteevent=nil, restoremediacompleteevent=nil, rebuildmediacompleteevent=nil, extracttracewatermarkcompleteevent=nil, extractcopyrightwatermarkcompleteevent=nil, reviewaudiovideocompleteevent=nil, reducemediabitratecompleteevent=nil, describefileattributescompleteevent=nil, qualityinspectcompleteevent=nil, qualityenhancecompleteevent=nil, mediacaststatuschangedevent=nil, persistencecompleteevent=nil, complexadaptivedynamicstreamingcompleteevent=nil, processmediabympscompleteevent=nil, aigcimagecompleteevent=nil, aigcvideocompleteevent=nil, extractblindwatermarkcomplete=nil, sceneaigcimagecompleteevent=nil, processimageasynccompleteevent=nil)
+        def initialize(eventhandle=nil, eventtype=nil, fileuploadevent=nil, procedurestatechangeevent=nil, filedeleteevent=nil, pullcompleteevent=nil, editmediacompleteevent=nil, splitmediacompleteevent=nil, composemediacompleteevent=nil, clipcompleteevent=nil, transcodecompleteevent=nil, createimagespritecompleteevent=nil, concatcompleteevent=nil, snapshotbytimeoffsetcompleteevent=nil, wechatpublishcompleteevent=nil, wechatminiprogrampublishcompleteevent=nil, removewatermarkcompleteevent=nil, restoremediacompleteevent=nil, rebuildmediacompleteevent=nil, extracttracewatermarkcompleteevent=nil, extractcopyrightwatermarkcompleteevent=nil, reviewaudiovideocompleteevent=nil, reducemediabitratecompleteevent=nil, describefileattributescompleteevent=nil, qualityinspectcompleteevent=nil, qualityenhancecompleteevent=nil, mediacaststatuschangedevent=nil, persistencecompleteevent=nil, complexadaptivedynamicstreamingcompleteevent=nil, processmediabympscompleteevent=nil, aigcimagecompleteevent=nil, aigcvideocompleteevent=nil, extractblindwatermarkcomplete=nil, sceneaigcimagecompleteevent=nil, processimageasynccompleteevent=nil, createaigcadvancedcustomelementcompleteevent=nil, createaigccustomvoicecompleteevent=nil, describeaigcfaceinfoasynccompleteevent=nil)
           @EventHandle = eventhandle
           @EventType = eventtype
           @FileUploadEvent = fileuploadevent
@@ -18343,6 +18491,9 @@ module TencentCloud
           @ExtractBlindWatermarkComplete = extractblindwatermarkcomplete
           @SceneAigcImageCompleteEvent = sceneaigcimagecompleteevent
           @ProcessImageAsyncCompleteEvent = processimageasynccompleteevent
+          @CreateAigcAdvancedCustomElementCompleteEvent = createaigcadvancedcustomelementcompleteevent
+          @CreateAigcCustomVoiceCompleteEvent = createaigccustomvoicecompleteevent
+          @DescribeAigcFaceInfoAsyncCompleteEvent = describeaigcfaceinfoasynccompleteevent
         end
 
         def deserialize(params)
@@ -18479,6 +18630,18 @@ module TencentCloud
           unless params['ProcessImageAsyncCompleteEvent'].nil?
             @ProcessImageAsyncCompleteEvent = ProcessImageAsyncTask.new
             @ProcessImageAsyncCompleteEvent.deserialize(params['ProcessImageAsyncCompleteEvent'])
+          end
+          unless params['CreateAigcAdvancedCustomElementCompleteEvent'].nil?
+            @CreateAigcAdvancedCustomElementCompleteEvent = CreateAigcAdvancedCustomElementTask.new
+            @CreateAigcAdvancedCustomElementCompleteEvent.deserialize(params['CreateAigcAdvancedCustomElementCompleteEvent'])
+          end
+          unless params['CreateAigcCustomVoiceCompleteEvent'].nil?
+            @CreateAigcCustomVoiceCompleteEvent = CreateAigcCustomVoiceTask.new
+            @CreateAigcCustomVoiceCompleteEvent.deserialize(params['CreateAigcCustomVoiceCompleteEvent'])
+          end
+          unless params['DescribeAigcFaceInfoAsyncCompleteEvent'].nil?
+            @DescribeAigcFaceInfoAsyncCompleteEvent = DescribeAigcFaceInfoAsyncTask.new
+            @DescribeAigcFaceInfoAsyncCompleteEvent.deserialize(params['DescribeAigcFaceInfoAsyncCompleteEvent'])
           end
         end
       end

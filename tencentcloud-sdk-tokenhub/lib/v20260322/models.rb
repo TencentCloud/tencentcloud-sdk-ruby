@@ -130,17 +130,21 @@ module TencentCloud
         # @type ResourceId: String
         # @param ResourceType: 资源类型。取值：endpoint（服务）、model（模型）。
         # @type ResourceType: String
+        # @param Status: 资源状态
+        # @type Status: String
 
-        attr_accessor :ResourceId, :ResourceType
+        attr_accessor :ResourceId, :ResourceType, :Status
 
-        def initialize(resourceid=nil, resourcetype=nil)
+        def initialize(resourceid=nil, resourcetype=nil, status=nil)
           @ResourceId = resourceid
           @ResourceType = resourcetype
+          @Status = status
         end
 
         def deserialize(params)
           @ResourceId = params['ResourceId']
           @ResourceType = params['ResourceType']
+          @Status = params['Status']
         end
       end
 

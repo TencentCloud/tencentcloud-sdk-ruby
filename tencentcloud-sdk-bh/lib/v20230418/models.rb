@@ -74,10 +74,10 @@ module TencentCloud
 
         attr_accessor :Account, :LoginAccount, :LoginPassword, :DeviceId, :InstanceId, :Password, :PrivateKey, :PrivateKeyPassword, :Exe, :Drivers, :Width, :Height, :IntranetAccess, :AutoManageAccessCredential
         extend Gem::Deprecate
-        deprecate :LoginAccount, :none, 2026, 5
-        deprecate :LoginAccount=, :none, 2026, 5
-        deprecate :LoginPassword, :none, 2026, 5
-        deprecate :LoginPassword=, :none, 2026, 5
+        deprecate :LoginAccount, :none, 2026, 6
+        deprecate :LoginAccount=, :none, 2026, 6
+        deprecate :LoginPassword, :none, 2026, 6
+        deprecate :LoginPassword=, :none, 2026, 6
 
         def initialize(account=nil, loginaccount=nil, loginpassword=nil, deviceid=nil, instanceid=nil, password=nil, privatekey=nil, privatekeypassword=nil, exe=nil, drivers=nil, width=nil, height=nil, intranetaccess=nil, automanageaccesscredential=nil)
           @Account = account
@@ -545,48 +545,66 @@ module TencentCloud
 
       # 应用资产信息
       class AppAsset < TencentCloud::Common::AbstractModel
-        # @param Id: 应用资产id
+        # @param Id: <p>应用资产id</p>
         # @type Id: Integer
-        # @param InstanceId: 实例id
+        # @param InstanceId: <p>实例id</p>
         # @type InstanceId: String
-        # @param Name: 资产名称
+        # @param Name: <p>资产名称</p>
         # @type Name: String
-        # @param DeviceId: 应用服务器id
+        # @param DeviceId: <p>应用服务器id</p>
         # @type DeviceId: Integer
-        # @param DeviceAccountId: 应用服务器账号id
+        # @param DeviceAccountId: <p>应用服务器账号id</p>
         # @type DeviceAccountId: Integer
-        # @param Kind: 应用资产类型。1-web应用
+        # @param Kind: <p>应用资产类型。1-web应用</p>
         # @type Kind: Integer
-        # @param ClientAppPath: 客户端工具路径
+        # @param ClientAppPath: <p>客户端工具路径</p>
         # @type ClientAppPath: String
-        # @param ClientAppKind: 客户端工具类型
+        # @param ClientAppKind: <p>客户端工具类型</p>
         # @type ClientAppKind: String
-        # @param Url: 应用资产url
+        # @param Url: <p>应用资产url</p>
         # @type Url: String
-        # @param BindStatus: 托管状态。0-未托管，1-已托管
+        # @param BindStatus: <p>托管状态</p><p>枚举值：</p><ul><li>0： 未托管</li><li>1： 已托管</li></ul>
         # @type BindStatus: Integer
-        # @param DeviceInstanceId: 应用服务器实例id
+        # @param DeviceInstanceId: <p>应用服务器实例id</p>
         # @type DeviceInstanceId: String
-        # @param DeviceName: 应用服务器名称
+        # @param DeviceName: <p>应用服务器名称</p>
         # @type DeviceName: String
-        # @param DeviceAccountName: 应用服务器账号名称
+        # @param DeviceAccountName: <p>应用服务器账号名称</p>
         # @type DeviceAccountName: String
-        # @param ResourceId: 堡垒机实例id
+        # @param ResourceId: <p>堡垒机实例id</p>
         # @type ResourceId: String
-        # @param Resource: 堡垒机实例信息
+        # @param Resource: <p>堡垒机实例信息</p>
         # @type Resource: :class:`Tencentcloud::Bh.v20230418.models.Resource`
-        # @param DomainId: 网络域id
+        # @param DomainId: <p>网络域id</p>
         # @type DomainId: String
-        # @param DomainName: 网络域名称
+        # @param DomainName: <p>网络域名称</p>
         # @type DomainName: String
-        # @param GroupSet: 资产组信息
+        # @param GroupSet: <p>资产组信息</p>
         # @type GroupSet: Array
-        # @param Department: 资产所属部门
+        # @param Department: <p>资产所属部门</p>
         # @type Department: :class:`Tencentcloud::Bh.v20230418.models.Department`
+        # @param AccountCount: <p>账号数量</p>
+        # @type AccountCount: Integer
+        # @param AgentInputType: <p>代填类型</p><p>枚举值：</p><ul><li>0： 不支持代填</li><li>1： 元素定位代填</li></ul>
+        # @type AgentInputType: Integer
+        # @param AgentInputSubmit: <p>是否自动提交</p><p>枚举值：</p><ul><li>0： 不自动提交</li><li>1： 自动提交</li></ul>
+        # @type AgentInputSubmit: Integer
+        # @param UserNameType: <p>用户名输入框选择器类型</p><p>枚举值：</p><ul><li>id： html标签id属性</li><li>name： html标签name属性</li><li>selector： css选择器</li><li>xpath： xpath</li></ul>
+        # @type UserNameType: String
+        # @param UserNameValue: <p>用户名输入框选择器属性</p>
+        # @type UserNameValue: String
+        # @param PasswordType: <p>密码输入框选择器类型</p><p>枚举值：</p><ul><li>id： html标签id属性</li><li>name： html标签name属性</li><li>selector： css选择器</li><li>xpath： xpath</li></ul>
+        # @type PasswordType: String
+        # @param PasswordValue: <p>密码输入框选择器属性</p>
+        # @type PasswordValue: String
+        # @param SubmitType: <p>提交按钮选择器类型，为空表示不支持自动提交</p><p>枚举值：</p><ul><li>id： html标签id属性</li><li>name： html标签name属性</li><li>selector： css选择器</li><li>xpath： xpath</li></ul>
+        # @type SubmitType: String
+        # @param SubmitValue: <p>提交按钮选择器属性值</p>
+        # @type SubmitValue: String
 
-        attr_accessor :Id, :InstanceId, :Name, :DeviceId, :DeviceAccountId, :Kind, :ClientAppPath, :ClientAppKind, :Url, :BindStatus, :DeviceInstanceId, :DeviceName, :DeviceAccountName, :ResourceId, :Resource, :DomainId, :DomainName, :GroupSet, :Department
+        attr_accessor :Id, :InstanceId, :Name, :DeviceId, :DeviceAccountId, :Kind, :ClientAppPath, :ClientAppKind, :Url, :BindStatus, :DeviceInstanceId, :DeviceName, :DeviceAccountName, :ResourceId, :Resource, :DomainId, :DomainName, :GroupSet, :Department, :AccountCount, :AgentInputType, :AgentInputSubmit, :UserNameType, :UserNameValue, :PasswordType, :PasswordValue, :SubmitType, :SubmitValue
 
-        def initialize(id=nil, instanceid=nil, name=nil, deviceid=nil, deviceaccountid=nil, kind=nil, clientapppath=nil, clientappkind=nil, url=nil, bindstatus=nil, deviceinstanceid=nil, devicename=nil, deviceaccountname=nil, resourceid=nil, resource=nil, domainid=nil, domainname=nil, groupset=nil, department=nil)
+        def initialize(id=nil, instanceid=nil, name=nil, deviceid=nil, deviceaccountid=nil, kind=nil, clientapppath=nil, clientappkind=nil, url=nil, bindstatus=nil, deviceinstanceid=nil, devicename=nil, deviceaccountname=nil, resourceid=nil, resource=nil, domainid=nil, domainname=nil, groupset=nil, department=nil, accountcount=nil, agentinputtype=nil, agentinputsubmit=nil, usernametype=nil, usernamevalue=nil, passwordtype=nil, passwordvalue=nil, submittype=nil, submitvalue=nil)
           @Id = id
           @InstanceId = instanceid
           @Name = name
@@ -606,6 +624,15 @@ module TencentCloud
           @DomainName = domainname
           @GroupSet = groupset
           @Department = department
+          @AccountCount = accountcount
+          @AgentInputType = agentinputtype
+          @AgentInputSubmit = agentinputsubmit
+          @UserNameType = usernametype
+          @UserNameValue = usernamevalue
+          @PasswordType = passwordtype
+          @PasswordValue = passwordvalue
+          @SubmitType = submittype
+          @SubmitValue = submitvalue
         end
 
         def deserialize(params)
@@ -641,6 +668,15 @@ module TencentCloud
             @Department = Department.new
             @Department.deserialize(params['Department'])
           end
+          @AccountCount = params['AccountCount']
+          @AgentInputType = params['AgentInputType']
+          @AgentInputSubmit = params['AgentInputSubmit']
+          @UserNameType = params['UserNameType']
+          @UserNameValue = params['UserNameValue']
+          @PasswordType = params['PasswordType']
+          @PasswordValue = params['PasswordValue']
+          @SubmitType = params['SubmitType']
+          @SubmitValue = params['SubmitValue']
         end
       end
 
@@ -6277,8 +6313,8 @@ module TencentCloud
 
         attr_accessor :ResourceId, :Status, :ResourceEdition, :ResourceNode, :AutoRenewFlag, :PackageBandwidth, :PackageNode, :LogDelivery
         extend Gem::Deprecate
-        deprecate :Status, :none, 2026, 5
-        deprecate :Status=, :none, 2026, 5
+        deprecate :Status, :none, 2026, 6
+        deprecate :Status=, :none, 2026, 6
 
         def initialize(resourceid=nil, status=nil, resourceedition=nil, resourcenode=nil, autorenewflag=nil, packagebandwidth=nil, packagenode=nil, logdelivery=nil)
           @ResourceId = resourceid
@@ -8489,8 +8525,8 @@ module TencentCloud
 
         attr_accessor :Id, :InstanceId, :Name, :ApCode, :PublicIp, :PrivateIp, :Status, :Reason, :ExitCode, :StartTime, :EndTime, :StdOut, :StdErr, :DeviceName, :Account
         extend Gem::Deprecate
-        deprecate :Name, :none, 2026, 5
-        deprecate :Name=, :none, 2026, 5
+        deprecate :Name, :none, 2026, 6
+        deprecate :Name=, :none, 2026, 6
 
         def initialize(id=nil, instanceid=nil, name=nil, apcode=nil, publicip=nil, privateip=nil, status=nil, reason=nil, exitcode=nil, starttime=nil, endtime=nil, stdout=nil, stderr=nil, devicename=nil, account=nil)
           @Id = id

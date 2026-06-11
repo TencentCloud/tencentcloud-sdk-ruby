@@ -1128,21 +1128,21 @@ module TencentCloud
 
       # CreateMigrationService请求参数结构体
       class CreateMigrationServiceRequest < TencentCloud::Common::AbstractModel
-        # @param SrcDatabaseType: 源实例数据库类型，如mysql,redis,percona,mongodb,postgresql,sqlserver,mariadb,cynosdbmysql(表示TDSQL-C MySQL数据库)
+        # @param SrcDatabaseType: <p>源实例数据库类型，如mysql,redis,percona,mongodb,postgresql,sqlserver,mariadb,cynosdbmysql(表示TDSQL-C MySQL数据库)tdsqlmysql,keewidb,tdstore</p><p>枚举值：</p><ul><li>mysql： MySQL数据库</li></ul>
         # @type SrcDatabaseType: String
-        # @param DstDatabaseType: 目标实例数据库类型，如mysql,redis,percona,mongodb,postgresql,sqlserver,mariadb,cynosdbmysql(表示TDSQL-C MySQL数据库)
+        # @param DstDatabaseType: <p>目标实例数据库类型，如mysql,redis,percona,mongodb,postgresql,sqlserver,mariadb,cynosdbmysql(表示TDSQL-C MySQL数据库)tdsqlmysql,keewidb,tdstore,tendis</p><p>枚举值：</p><ul><li>mysql： MySQL数据库</li></ul>
         # @type DstDatabaseType: String
-        # @param SrcRegion: 源实例地域，如：ap-guangzhou
+        # @param SrcRegion: <p>源实例地域，如：ap-guangzhou</p>
         # @type SrcRegion: String
-        # @param DstRegion: 目标实例地域，如：ap-guangzhou。注意，目标地域必须和API请求地域保持一致。
+        # @param DstRegion: <p>目标实例地域，如：ap-guangzhou。注意，目标地域必须和API请求地域保持一致。</p>
         # @type DstRegion: String
-        # @param InstanceClass: 实例规格，包括：small、medium、large、xlarge、2xlarge。当前未计费链路仅支持medium字段值。不同规格类型参考[计费概述](https://cloud.tencent.com/document/product/571/18736)
+        # @param InstanceClass: <p>实例规格，包括：small、medium、large、xlarge、2xlarge。当前未计费链路仅支持medium字段值。不同规格类型参考<a href="https://cloud.tencent.com/document/product/571/18736">计费概述</a></p>
         # @type InstanceClass: String
-        # @param Count: 购买数量，范围为[1,15]，默认为1
+        # @param Count: <p>购买数量，范围为[1,15]，默认为1</p>
         # @type Count: Integer
-        # @param JobName: 迁移服务名称，最大长度128
+        # @param JobName: <p>迁移服务名称，最大长度128</p>
         # @type JobName: String
-        # @param Tags: 标签信息
+        # @param Tags: <p>标签信息</p>
         # @type Tags: Array
 
         attr_accessor :SrcDatabaseType, :DstDatabaseType, :SrcRegion, :DstRegion, :InstanceClass, :Count, :JobName, :Tags
@@ -1179,7 +1179,7 @@ module TencentCloud
 
       # CreateMigrationService返回参数结构体
       class CreateMigrationServiceResponse < TencentCloud::Common::AbstractModel
-        # @param JobIds: 下单成功随机生成的迁移任务id列表，形如：dts-c1f6rs21
+        # @param JobIds: <p>下单成功随机生成的迁移任务id列表，形如：dts-c1f6rs21</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JobIds: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。

@@ -13816,10 +13816,12 @@ module TencentCloud
         # @type PreemptVerb: String
         # @param NodeCacheCapable: <p>节点缓存能力</p>
         # @type NodeCacheCapable: Boolean
+        # @param Ignorable: <p>extender 是否可忽略</p>
+        # @type Ignorable: Boolean
 
-        attr_accessor :FilterVerb, :PrioritizeVerb, :Weight, :ManagedResources, :ExtenderClientConfig, :PreemptVerb, :NodeCacheCapable
+        attr_accessor :FilterVerb, :PrioritizeVerb, :Weight, :ManagedResources, :ExtenderClientConfig, :PreemptVerb, :NodeCacheCapable, :Ignorable
 
-        def initialize(filterverb=nil, prioritizeverb=nil, weight=nil, managedresources=nil, extenderclientconfig=nil, preemptverb=nil, nodecachecapable=nil)
+        def initialize(filterverb=nil, prioritizeverb=nil, weight=nil, managedresources=nil, extenderclientconfig=nil, preemptverb=nil, nodecachecapable=nil, ignorable=nil)
           @FilterVerb = filterverb
           @PrioritizeVerb = prioritizeverb
           @Weight = weight
@@ -13827,6 +13829,7 @@ module TencentCloud
           @ExtenderClientConfig = extenderclientconfig
           @PreemptVerb = preemptverb
           @NodeCacheCapable = nodecachecapable
+          @Ignorable = ignorable
         end
 
         def deserialize(params)
@@ -13847,6 +13850,7 @@ module TencentCloud
           end
           @PreemptVerb = params['PreemptVerb']
           @NodeCacheCapable = params['NodeCacheCapable']
+          @Ignorable = params['Ignorable']
         end
       end
 
