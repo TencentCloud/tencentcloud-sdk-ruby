@@ -2076,6 +2076,46 @@ module TencentCloud
         end
       end
 
+      # CancelClusterServerlessScalePlan请求参数结构体
+      class CancelClusterServerlessScalePlanRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param PlanId: 计划ID
+        # @type PlanId: Integer
+
+        attr_accessor :ClusterId, :PlanId
+
+        def initialize(clusterid=nil, planid=nil)
+          @ClusterId = clusterid
+          @PlanId = planid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @PlanId = params['PlanId']
+        end
+      end
+
+      # CancelClusterServerlessScalePlan返回参数结构体
+      class CancelClusterServerlessScalePlanResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务id
+        # @type TaskId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CheckCreateLibraDBInstance请求参数结构体
       class CheckCreateLibraDBInstanceRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
@@ -2609,6 +2649,70 @@ module TencentCloud
         end
       end
 
+      # 集群周期弹性策略
+      class ClusterPeriodScalePolicy < TencentCloud::Common::AbstractModel
+        # @param PolicyId: <p>策略ID</p>
+        # @type PolicyId: String
+        # @param InstanceType: <p>实例类型。rw-读写类型，ro-只读类型。</p>
+        # @type InstanceType: String
+        # @param MinCpu: <p>弹性下限, 后续废弃, 请使用MinCcu</p>
+        # @type MinCpu: Float
+        # @param MaxCpu: <p>弹性上限,后续废弃，请使用MaxCcu</p>
+        # @type MaxCpu: Float
+        # @param ScaleStartTime: <p>弹性开始时间</p>
+        # @type ScaleStartTime: String
+        # @param ScaleEndTime: <p>弹性结束时间</p>
+        # @type ScaleEndTime: String
+        # @param PolicyStartTime: <p>策略有效起始日期时间</p>
+        # @type PolicyStartTime: String
+        # @param PolicyEndTime: <p>策略有效截止日期时间</p>
+        # @type PolicyEndTime: String
+        # @param PeriodType: <p>周期类型。day-天， week-星期，month-月</p>
+        # @type PeriodType: String
+        # @param PeriodConfig: <p>在周期内的时间配置。对于week，表示星期几；对于month，表示几号。对于day，此参数不生效。</p>
+        # @type PeriodConfig: Array
+        # @param CreateTime: <p>创建时间</p>
+        # @type CreateTime: String
+        # @param UpdateTime: <p>更新时间</p>
+        # @type UpdateTime: String
+        # @param Status: <p>策略状态。normal-正常，expired-过期, deleted-删除</p>
+        # @type Status: String
+
+        attr_accessor :PolicyId, :InstanceType, :MinCpu, :MaxCpu, :ScaleStartTime, :ScaleEndTime, :PolicyStartTime, :PolicyEndTime, :PeriodType, :PeriodConfig, :CreateTime, :UpdateTime, :Status
+
+        def initialize(policyid=nil, instancetype=nil, mincpu=nil, maxcpu=nil, scalestarttime=nil, scaleendtime=nil, policystarttime=nil, policyendtime=nil, periodtype=nil, periodconfig=nil, createtime=nil, updatetime=nil, status=nil)
+          @PolicyId = policyid
+          @InstanceType = instancetype
+          @MinCpu = mincpu
+          @MaxCpu = maxcpu
+          @ScaleStartTime = scalestarttime
+          @ScaleEndTime = scaleendtime
+          @PolicyStartTime = policystarttime
+          @PolicyEndTime = policyendtime
+          @PeriodType = periodtype
+          @PeriodConfig = periodconfig
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @Status = status
+        end
+
+        def deserialize(params)
+          @PolicyId = params['PolicyId']
+          @InstanceType = params['InstanceType']
+          @MinCpu = params['MinCpu']
+          @MaxCpu = params['MaxCpu']
+          @ScaleStartTime = params['ScaleStartTime']
+          @ScaleEndTime = params['ScaleEndTime']
+          @PolicyStartTime = params['PolicyStartTime']
+          @PolicyEndTime = params['PolicyEndTime']
+          @PeriodType = params['PeriodType']
+          @PeriodConfig = params['PeriodConfig']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @Status = params['Status']
+        end
+      end
+
       # 集群只读开关列表
       class ClusterReadOnlyValue < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
@@ -2626,6 +2730,88 @@ module TencentCloud
         def deserialize(params)
           @ClusterId = params['ClusterId']
           @ReadOnlyValue = params['ReadOnlyValue']
+        end
+      end
+
+      # 集群Serveless弹性计划
+      class ClusterServerlessScalePlan < TencentCloud::Common::AbstractModel
+        # @param PlanId: <p>计划ID</p>
+        # @type PlanId: Integer
+        # @param ClusterId: <p>集群ID</p>
+        # @type ClusterId: String
+        # @param ObjectInstance: <p>实例对象。具体是实例id或者类型。比如ro-即集群下的所有只读实例。</p>
+        # @type ObjectInstance: String
+        # @param PolicyId: <p>策略ID</p>
+        # @type PolicyId: String
+        # @param PolicyType: <p>策略类型</p>
+        # @type PolicyType: String
+        # @param SourceMinCpu: <p>原规格下限</p>
+        # @type SourceMinCpu: Float
+        # @param SourceMaxCpu: <p>原规格上限</p>
+        # @type SourceMaxCpu: Float
+        # @param TargetMinCpu: <p>原规格下限</p>
+        # @type TargetMinCpu: Float
+        # @param TargetMaxCpu: <p>原规格上限</p>
+        # @type TargetMaxCpu: Float
+        # @param Status: <p>计划状态</p>
+        # @type Status: String
+        # @param ScaleTaskId: <p>弹性任务ID</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScaleTaskId: Integer
+        # @param FailReason: <p>失败原因</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FailReason: String
+        # @param ExpectedStartTime: <p>计划预期开始执行时间</p>
+        # @type ExpectedStartTime: String
+        # @param ExpectedEndTime: <p>计划预期结束时间</p>
+        # @type ExpectedEndTime: String
+        # @param ResetTaskId: <p>恢复自动弹性任务</p>
+        # @type ResetTaskId: Integer
+        # @param ResetType: <p>恢复自动弹性任务执行方式</p>
+        # @type ResetType: String
+        # @param ResetTime: <p>恢复自动弹性任务执行时间</p>
+        # @type ResetTime: String
+
+        attr_accessor :PlanId, :ClusterId, :ObjectInstance, :PolicyId, :PolicyType, :SourceMinCpu, :SourceMaxCpu, :TargetMinCpu, :TargetMaxCpu, :Status, :ScaleTaskId, :FailReason, :ExpectedStartTime, :ExpectedEndTime, :ResetTaskId, :ResetType, :ResetTime
+
+        def initialize(planid=nil, clusterid=nil, objectinstance=nil, policyid=nil, policytype=nil, sourcemincpu=nil, sourcemaxcpu=nil, targetmincpu=nil, targetmaxcpu=nil, status=nil, scaletaskid=nil, failreason=nil, expectedstarttime=nil, expectedendtime=nil, resettaskid=nil, resettype=nil, resettime=nil)
+          @PlanId = planid
+          @ClusterId = clusterid
+          @ObjectInstance = objectinstance
+          @PolicyId = policyid
+          @PolicyType = policytype
+          @SourceMinCpu = sourcemincpu
+          @SourceMaxCpu = sourcemaxcpu
+          @TargetMinCpu = targetmincpu
+          @TargetMaxCpu = targetmaxcpu
+          @Status = status
+          @ScaleTaskId = scaletaskid
+          @FailReason = failreason
+          @ExpectedStartTime = expectedstarttime
+          @ExpectedEndTime = expectedendtime
+          @ResetTaskId = resettaskid
+          @ResetType = resettype
+          @ResetTime = resettime
+        end
+
+        def deserialize(params)
+          @PlanId = params['PlanId']
+          @ClusterId = params['ClusterId']
+          @ObjectInstance = params['ObjectInstance']
+          @PolicyId = params['PolicyId']
+          @PolicyType = params['PolicyType']
+          @SourceMinCpu = params['SourceMinCpu']
+          @SourceMaxCpu = params['SourceMaxCpu']
+          @TargetMinCpu = params['TargetMinCpu']
+          @TargetMaxCpu = params['TargetMaxCpu']
+          @Status = params['Status']
+          @ScaleTaskId = params['ScaleTaskId']
+          @FailReason = params['FailReason']
+          @ExpectedStartTime = params['ExpectedStartTime']
+          @ExpectedEndTime = params['ExpectedEndTime']
+          @ResetTaskId = params['ResetTaskId']
+          @ResetType = params['ResetType']
+          @ResetTime = params['ResetTime']
         end
       end
 
@@ -3165,6 +3351,78 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateClusterPeriodScalePolicy请求参数结构体
+      class CreateClusterPeriodScalePolicyRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: <p>集群ID</p>
+        # @type ClusterId: String
+        # @param InstanceType: <p>实例类型。rw读写，ro-只读</p>
+        # @type InstanceType: String
+        # @param ScaleStartTime: <p>当天开始弹性时间。格式是小时:分钟</p>
+        # @type ScaleStartTime: String
+        # @param ScaleEndTime: <p>当天结束弹性时间。格式是小时:分钟</p>
+        # @type ScaleEndTime: String
+        # @param PolicyStartTime: <p>策略生效的起始日期时间</p>
+        # @type PolicyStartTime: String
+        # @param PolicyEndTime: <p>策略生效的截止日期时间</p>
+        # @type PolicyEndTime: String
+        # @param PeriodType: <p>周期类型。day-天，week-周，month-月。</p>
+        # @type PeriodType: String
+        # @param MinCpu: <p>弹性规格下限</p>
+        # @type MinCpu: Float
+        # @param MaxCpu: <p>弹性规格上限</p>
+        # @type MaxCpu: Float
+        # @param PeriodConfig: <p>周期内的时间列表。针对PeriodType=week， 表示星期几，比如[1,3]表示星期一、星期三。同理，对于PeriodType=month，[1,3,10]表示每月的1、3、10号。PeriodType=day则该字段无效。</p>
+        # @type PeriodConfig: Array
+
+        attr_accessor :ClusterId, :InstanceType, :ScaleStartTime, :ScaleEndTime, :PolicyStartTime, :PolicyEndTime, :PeriodType, :MinCpu, :MaxCpu, :PeriodConfig
+
+        def initialize(clusterid=nil, instancetype=nil, scalestarttime=nil, scaleendtime=nil, policystarttime=nil, policyendtime=nil, periodtype=nil, mincpu=nil, maxcpu=nil, periodconfig=nil)
+          @ClusterId = clusterid
+          @InstanceType = instancetype
+          @ScaleStartTime = scalestarttime
+          @ScaleEndTime = scaleendtime
+          @PolicyStartTime = policystarttime
+          @PolicyEndTime = policyendtime
+          @PeriodType = periodtype
+          @MinCpu = mincpu
+          @MaxCpu = maxcpu
+          @PeriodConfig = periodconfig
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @InstanceType = params['InstanceType']
+          @ScaleStartTime = params['ScaleStartTime']
+          @ScaleEndTime = params['ScaleEndTime']
+          @PolicyStartTime = params['PolicyStartTime']
+          @PolicyEndTime = params['PolicyEndTime']
+          @PeriodType = params['PeriodType']
+          @MinCpu = params['MinCpu']
+          @MaxCpu = params['MaxCpu']
+          @PeriodConfig = params['PeriodConfig']
+        end
+      end
+
+      # CreateClusterPeriodScalePolicy返回参数结构体
+      class CreateClusterPeriodScalePolicyResponse < TencentCloud::Common::AbstractModel
+        # @param PolicyId: <p>策略ID</p>
+        # @type PolicyId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PolicyId, :RequestId
+
+        def initialize(policyid=nil, requestid=nil)
+          @PolicyId = policyid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @PolicyId = params['PolicyId']
           @RequestId = params['RequestId']
         end
       end
@@ -4511,140 +4769,126 @@ module TencentCloud
 
       # 集群详情详细信息
       class CynosdbClusterDetail < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群ID
+        # @param ClusterId: <p>集群ID</p>
         # @type ClusterId: String
-        # @param ClusterName: 集群名称
+        # @param ClusterName: <p>集群名称</p>
         # @type ClusterName: String
-        # @param Region: 地域
+        # @param Region: <p>地域</p>
         # @type Region: String
-        # @param Zone: 可用区
+        # @param Zone: <p>可用区</p>
         # @type Zone: String
-        # @param PhysicalZone: 物理可用区
+        # @param PhysicalZone: <p>物理可用区</p>
         # @type PhysicalZone: String
-        # @param Status: 状态，支持的值如下：
-        # - creating：创建中
-        # - running：运行中
-        # - isolating：隔离中
-        # - isolated：已隔离
-        # - activating：从回收站重新恢复
-        # - offlining：下线中
-        # - offlined：已下线
-        # - deleting：删除中
-        # - deleted：已删除
+        # @param Status: <p>状态，支持的值如下：</p><ul><li>creating：创建中</li><li>running：运行中</li><li>isolating：隔离中</li><li>isolated：已隔离</li><li>activating：从回收站重新恢复</li><li>offlining：下线中</li><li>offlined：已下线</li><li>deleting：删除中</li><li>deleted：已删除</li></ul>
         # @type Status: String
-        # @param StatusDesc: 状态描述
+        # @param StatusDesc: <p>状态描述</p>
         # @type StatusDesc: String
-        # @param ServerlessStatus: 当Db类型为SERVERLESS时，serverless集群状态，可选值:
-        # resume
-        # resuming
-        # pause
-        # pausing
+        # @param ServerlessStatus: <p>当Db类型为SERVERLESS时，serverless集群状态，可选值:<br>resume<br>resuming<br>pause<br>pausing</p>
         # @type ServerlessStatus: String
-        # @param StorageId: 存储Id
+        # @param StorageId: <p>存储Id</p>
         # @type StorageId: String
-        # @param Storage: 存储大小，单位为G
+        # @param Storage: <p>存储大小，单位为G</p>
         # @type Storage: Integer
-        # @param MaxStorageSize: 最大存储规格，单位为G
+        # @param MaxStorageSize: <p>最大存储规格，单位为G</p>
         # @type MaxStorageSize: Integer
-        # @param MinStorageSize: 最小存储规格，单位为G
+        # @param MinStorageSize: <p>最小存储规格，单位为G</p>
         # @type MinStorageSize: Integer
-        # @param StoragePayMode: 存储付费类型，1为包年包月，0为按量计费
+        # @param StoragePayMode: <p>存储付费类型，1为包年包月，0为按量计费</p>
         # @type StoragePayMode: Integer
-        # @param VpcName: VPC名称
+        # @param VpcName: <p>VPC名称</p>
         # @type VpcName: String
-        # @param VpcId: vpc唯一id
+        # @param VpcId: <p>vpc唯一id</p>
         # @type VpcId: String
-        # @param SubnetName: 子网名称
+        # @param SubnetName: <p>子网名称</p>
         # @type SubnetName: String
-        # @param SubnetId: 子网ID
+        # @param SubnetId: <p>子网ID</p>
         # @type SubnetId: String
-        # @param Charset: 字符集
+        # @param Charset: <p>字符集</p>
         # @type Charset: String
-        # @param CreateTime: 创建时间
+        # @param CreateTime: <p>创建时间</p>
         # @type CreateTime: String
-        # @param DbType: 数据库类型
+        # @param DbType: <p>数据库类型</p>
         # @type DbType: String
-        # @param DbMode: Db类型：<li>NORMAL</li><li>SERVERLESS</li>
+        # @param DbMode: <p>Db类型：<li>NORMAL</li><li>SERVERLESS</li></p>
         # @type DbMode: String
-        # @param DbVersion: 数据库版本
+        # @param DbVersion: <p>数据库版本</p>
         # @type DbVersion: String
-        # @param StorageLimit: 存储空间上限
+        # @param StorageLimit: <p>存储空间上限</p>
         # @type StorageLimit: Integer
-        # @param UsedStorage: 使用容量
+        # @param UsedStorage: <p>使用容量</p>
         # @type UsedStorage: Integer
-        # @param Vip: vip地址
+        # @param Vip: <p>vip地址</p>
         # @type Vip: String
-        # @param Vport: vport端口
+        # @param Vport: <p>vport端口</p>
         # @type Vport: Integer
-        # @param RoAddr: 集群只读实例的vip地址和vport端口
+        # @param RoAddr: <p>集群只读实例的vip地址和vport端口</p>
         # @type RoAddr: Array
-        # @param Ability: 集群支持的功能
+        # @param Ability: <p>集群支持的功能</p>
         # @type Ability: :class:`Tencentcloud::Cynosdb.v20190107.models.Ability`
-        # @param CynosVersion: cynos版本
+        # @param CynosVersion: <p>cynos版本</p>
         # @type CynosVersion: String
-        # @param BusinessType: 商业类型
+        # @param BusinessType: <p>商业类型</p>
         # @type BusinessType: String
-        # @param HasSlaveZone: 是否有从可用区
+        # @param HasSlaveZone: <p>是否有从可用区</p>
         # @type HasSlaveZone: String
-        # @param IsFreeze: 是否冻结
+        # @param IsFreeze: <p>是否冻结</p>
         # @type IsFreeze: String
-        # @param Tasks: 任务列表
+        # @param Tasks: <p>任务列表</p>
         # @type Tasks: Array
-        # @param MasterZone: 主可用区
+        # @param MasterZone: <p>主可用区</p>
         # @type MasterZone: String
-        # @param SlaveZones: 从可用区列表
+        # @param SlaveZones: <p>从可用区列表</p>
         # @type SlaveZones: Array
-        # @param InstanceSet: 实例信息
+        # @param InstanceSet: <p>实例信息</p>
         # @type InstanceSet: Array
-        # @param PayMode: 付费模式
+        # @param PayMode: <p>付费模式</p>
         # @type PayMode: Integer
-        # @param PeriodEndTime: 到期时间
+        # @param PeriodEndTime: <p>到期时间</p>
         # @type PeriodEndTime: String
-        # @param ProjectID: 项目id
+        # @param ProjectID: <p>项目id</p>
         # @type ProjectID: Integer
-        # @param ResourceTags: 实例绑定的tag数组信息
+        # @param ResourceTags: <p>实例绑定的tag数组信息</p>
         # @type ResourceTags: Array
-        # @param ProxyStatus: Proxy状态
+        # @param ProxyStatus: <p>Proxy状态</p>
         # @type ProxyStatus: String
-        # @param LogBin: binlog开关，可选值：ON, OFF
+        # @param LogBin: <p>binlog开关，可选值：ON, OFF</p>
         # @type LogBin: String
-        # @param IsSkipTrade: 是否跳过交易
+        # @param IsSkipTrade: <p>是否跳过交易</p>
         # @type IsSkipTrade: String
-        # @param PitrType: pitr类型，可选值：normal, redo_pitr
+        # @param PitrType: <p>pitr类型，可选值：normal, redo_pitr</p>
         # @type PitrType: String
-        # @param IsOpenPasswordComplexity: 是否打开密码复杂度
+        # @param IsOpenPasswordComplexity: <p>是否打开密码复杂度</p>
         # @type IsOpenPasswordComplexity: String
-        # @param NetworkStatus: 网络类型
+        # @param NetworkStatus: <p>网络类型</p>
         # @type NetworkStatus: String
-        # @param ResourcePackages: 集群绑定的资源包信息
+        # @param ResourcePackages: <p>集群绑定的资源包信息</p>
         # @type ResourcePackages: Array
-        # @param RenewFlag: 自动续费标识，1为自动续费，0为到期不续
+        # @param RenewFlag: <p>自动续费标识，1为自动续费，0为到期不续</p>
         # @type RenewFlag: Integer
-        # @param NetworkType: 节点网络类型
+        # @param NetworkType: <p>节点网络类型</p>
         # @type NetworkType: String
-        # @param SlaveZoneAttr: 备可用区属性
+        # @param SlaveZoneAttr: <p>备可用区属性</p>
         # @type SlaveZoneAttr: Array
-        # @param CynosVersionTag: 版本标签
+        # @param CynosVersionTag: <p>版本标签</p>
         # @type CynosVersionTag: String
-        # @param GdnId: 全球数据库网络唯一标识
+        # @param GdnId: <p>全球数据库网络唯一标识</p>
         # @type GdnId: String
-        # @param GdnRole: 集群在全球数据网络中的角色。
-        # 主集群- primary
-        # 从集群 - standby
-        # 如为空，该字段无效
+        # @param GdnRole: <p>集群在全球数据网络中的角色。<br>主集群- primary<br>从集群 - standby<br>如为空，该字段无效</p>
         # @type GdnRole: String
-        # @param UsedArchiveStorage: 二级存储使用量，单位：G
+        # @param UsedArchiveStorage: <p>二级存储使用量，单位：G</p>
         # @type UsedArchiveStorage: Integer
-        # @param ArchiveStatus: 归档状态，枚举值<li>normal:正常</li><li>archiving:归档中</li><li>resuming:恢复中</li><li>archived :已归档</li>
+        # @param ArchiveStatus: <p>归档状态，枚举值<li>normal:正常</li><li>archiving:归档中</li><li>resuming:恢复中</li><li>archived :已归档</li></p>
         # @type ArchiveStatus: String
-        # @param ArchiveProgress: 归档进度，百分比。
+        # @param ArchiveProgress: <p>归档进度，百分比。</p>
         # @type ArchiveProgress: Integer
-        # @param IsOpenTDE: 是否开启透明加密
+        # @param ClusterLevel: <p>集群级别。例如 P0, P1</p>
+        # @type ClusterLevel: String
+        # @param IsOpenTDE: <p>是否开启透明加密</p>
         # @type IsOpenTDE: Boolean
 
-        attr_accessor :ClusterId, :ClusterName, :Region, :Zone, :PhysicalZone, :Status, :StatusDesc, :ServerlessStatus, :StorageId, :Storage, :MaxStorageSize, :MinStorageSize, :StoragePayMode, :VpcName, :VpcId, :SubnetName, :SubnetId, :Charset, :CreateTime, :DbType, :DbMode, :DbVersion, :StorageLimit, :UsedStorage, :Vip, :Vport, :RoAddr, :Ability, :CynosVersion, :BusinessType, :HasSlaveZone, :IsFreeze, :Tasks, :MasterZone, :SlaveZones, :InstanceSet, :PayMode, :PeriodEndTime, :ProjectID, :ResourceTags, :ProxyStatus, :LogBin, :IsSkipTrade, :PitrType, :IsOpenPasswordComplexity, :NetworkStatus, :ResourcePackages, :RenewFlag, :NetworkType, :SlaveZoneAttr, :CynosVersionTag, :GdnId, :GdnRole, :UsedArchiveStorage, :ArchiveStatus, :ArchiveProgress, :IsOpenTDE
+        attr_accessor :ClusterId, :ClusterName, :Region, :Zone, :PhysicalZone, :Status, :StatusDesc, :ServerlessStatus, :StorageId, :Storage, :MaxStorageSize, :MinStorageSize, :StoragePayMode, :VpcName, :VpcId, :SubnetName, :SubnetId, :Charset, :CreateTime, :DbType, :DbMode, :DbVersion, :StorageLimit, :UsedStorage, :Vip, :Vport, :RoAddr, :Ability, :CynosVersion, :BusinessType, :HasSlaveZone, :IsFreeze, :Tasks, :MasterZone, :SlaveZones, :InstanceSet, :PayMode, :PeriodEndTime, :ProjectID, :ResourceTags, :ProxyStatus, :LogBin, :IsSkipTrade, :PitrType, :IsOpenPasswordComplexity, :NetworkStatus, :ResourcePackages, :RenewFlag, :NetworkType, :SlaveZoneAttr, :CynosVersionTag, :GdnId, :GdnRole, :UsedArchiveStorage, :ArchiveStatus, :ArchiveProgress, :ClusterLevel, :IsOpenTDE
 
-        def initialize(clusterid=nil, clustername=nil, region=nil, zone=nil, physicalzone=nil, status=nil, statusdesc=nil, serverlessstatus=nil, storageid=nil, storage=nil, maxstoragesize=nil, minstoragesize=nil, storagepaymode=nil, vpcname=nil, vpcid=nil, subnetname=nil, subnetid=nil, charset=nil, createtime=nil, dbtype=nil, dbmode=nil, dbversion=nil, storagelimit=nil, usedstorage=nil, vip=nil, vport=nil, roaddr=nil, ability=nil, cynosversion=nil, businesstype=nil, hasslavezone=nil, isfreeze=nil, tasks=nil, masterzone=nil, slavezones=nil, instanceset=nil, paymode=nil, periodendtime=nil, projectid=nil, resourcetags=nil, proxystatus=nil, logbin=nil, isskiptrade=nil, pitrtype=nil, isopenpasswordcomplexity=nil, networkstatus=nil, resourcepackages=nil, renewflag=nil, networktype=nil, slavezoneattr=nil, cynosversiontag=nil, gdnid=nil, gdnrole=nil, usedarchivestorage=nil, archivestatus=nil, archiveprogress=nil, isopentde=nil)
+        def initialize(clusterid=nil, clustername=nil, region=nil, zone=nil, physicalzone=nil, status=nil, statusdesc=nil, serverlessstatus=nil, storageid=nil, storage=nil, maxstoragesize=nil, minstoragesize=nil, storagepaymode=nil, vpcname=nil, vpcid=nil, subnetname=nil, subnetid=nil, charset=nil, createtime=nil, dbtype=nil, dbmode=nil, dbversion=nil, storagelimit=nil, usedstorage=nil, vip=nil, vport=nil, roaddr=nil, ability=nil, cynosversion=nil, businesstype=nil, hasslavezone=nil, isfreeze=nil, tasks=nil, masterzone=nil, slavezones=nil, instanceset=nil, paymode=nil, periodendtime=nil, projectid=nil, resourcetags=nil, proxystatus=nil, logbin=nil, isskiptrade=nil, pitrtype=nil, isopenpasswordcomplexity=nil, networkstatus=nil, resourcepackages=nil, renewflag=nil, networktype=nil, slavezoneattr=nil, cynosversiontag=nil, gdnid=nil, gdnrole=nil, usedarchivestorage=nil, archivestatus=nil, archiveprogress=nil, clusterlevel=nil, isopentde=nil)
           @ClusterId = clusterid
           @ClusterName = clustername
           @Region = region
@@ -4701,6 +4945,7 @@ module TencentCloud
           @UsedArchiveStorage = usedarchivestorage
           @ArchiveStatus = archivestatus
           @ArchiveProgress = archiveprogress
+          @ClusterLevel = clusterlevel
           @IsOpenTDE = isopentde
         end
 
@@ -4806,6 +5051,7 @@ module TencentCloud
           @UsedArchiveStorage = params['UsedArchiveStorage']
           @ArchiveStatus = params['ArchiveStatus']
           @ArchiveProgress = params['ArchiveProgress']
+          @ClusterLevel = params['ClusterLevel']
           @IsOpenTDE = params['IsOpenTDE']
         end
       end
@@ -5941,6 +6187,42 @@ module TencentCloud
 
       # DeleteClusterDatabase返回参数结构体
       class DeleteClusterDatabaseResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteClusterPeriodScalePolicy请求参数结构体
+      class DeleteClusterPeriodScalePolicyRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param PolicyId: 策略ID
+        # @type PolicyId: String
+
+        attr_accessor :ClusterId, :PolicyId
+
+        def initialize(clusterid=nil, policyid=nil)
+          @ClusterId = clusterid
+          @PolicyId = policyid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @PolicyId = params['PolicyId']
+        end
+      end
+
+      # DeleteClusterPeriodScalePolicy返回参数结构体
+      class DeleteClusterPeriodScalePolicyResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -8061,6 +8343,49 @@ module TencentCloud
         end
       end
 
+      # DescribeClusterPeriodScalePolicy请求参数结构体
+      class DescribeClusterPeriodScalePolicyRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群id
+        # @type ClusterId: String
+
+        attr_accessor :ClusterId
+
+        def initialize(clusterid=nil)
+          @ClusterId = clusterid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+        end
+      end
+
+      # DescribeClusterPeriodScalePolicy返回参数结构体
+      class DescribeClusterPeriodScalePolicyResponse < TencentCloud::Common::AbstractModel
+        # @param PolicyList: 集群周期弹性策略列表
+        # @type PolicyList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PolicyList, :RequestId
+
+        def initialize(policylist=nil, requestid=nil)
+          @PolicyList = policylist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['PolicyList'].nil?
+            @PolicyList = []
+            params['PolicyList'].each do |i|
+              clusterperiodscalepolicy_tmp = ClusterPeriodScalePolicy.new
+              clusterperiodscalepolicy_tmp.deserialize(i)
+              @PolicyList << clusterperiodscalepolicy_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeClusterReadOnly请求参数结构体
       class DescribeClusterReadOnlyRequest < TencentCloud::Common::AbstractModel
         # @param ClusterIds: 集群ID列表
@@ -8098,6 +8423,81 @@ module TencentCloud
               clusterreadonlyvalue_tmp = ClusterReadOnlyValue.new
               clusterreadonlyvalue_tmp.deserialize(i)
               @ClusterReadOnlyValues << clusterreadonlyvalue_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeClusterServerlessScalePlans请求参数结构体
+      class DescribeClusterServerlessScalePlansRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param InstanceIds: 实例列表
+        # @type InstanceIds: Array
+        # @param PolicyType: 策略类型. PolicyTypePeriodScale - 周期弹性
+        # @type PolicyType: String
+        # @param PlanId: 计划ID
+        # @type PlanId: Integer
+        # @param Limit: 分页数量限制，默认10
+        # @type Limit: Integer
+        # @param Offset: 查询偏移，默认0
+        # @type Offset: Integer
+        # @param ExpectedStartTime: 按计划预期执行时间为条件查询的开始时间点，包含当前时间
+        # @type ExpectedStartTime: String
+        # @param ExpectedEndTime: 按计划预期执行时间为条件查询的结束时间点，包含当前时间
+        # @type ExpectedEndTime: String
+
+        attr_accessor :ClusterId, :InstanceIds, :PolicyType, :PlanId, :Limit, :Offset, :ExpectedStartTime, :ExpectedEndTime
+
+        def initialize(clusterid=nil, instanceids=nil, policytype=nil, planid=nil, limit=nil, offset=nil, expectedstarttime=nil, expectedendtime=nil)
+          @ClusterId = clusterid
+          @InstanceIds = instanceids
+          @PolicyType = policytype
+          @PlanId = planid
+          @Limit = limit
+          @Offset = offset
+          @ExpectedStartTime = expectedstarttime
+          @ExpectedEndTime = expectedendtime
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @InstanceIds = params['InstanceIds']
+          @PolicyType = params['PolicyType']
+          @PlanId = params['PlanId']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @ExpectedStartTime = params['ExpectedStartTime']
+          @ExpectedEndTime = params['ExpectedEndTime']
+        end
+      end
+
+      # DescribeClusterServerlessScalePlans返回参数结构体
+      class DescribeClusterServerlessScalePlansResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 计划总数
+        # @type TotalCount: Integer
+        # @param ServerlessScalePlans: 策略列表
+        # @type ServerlessScalePlans: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :ServerlessScalePlans, :RequestId
+
+        def initialize(totalcount=nil, serverlessscaleplans=nil, requestid=nil)
+          @TotalCount = totalcount
+          @ServerlessScalePlans = serverlessscaleplans
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['ServerlessScalePlans'].nil?
+            @ServerlessScalePlans = []
+            params['ServerlessScalePlans'].each do |i|
+              clusterserverlessscaleplan_tmp = ClusterServerlessScalePlan.new
+              clusterserverlessscaleplan_tmp.deserialize(i)
+              @ServerlessScalePlans << clusterserverlessscaleplan_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -8686,32 +9086,35 @@ module TencentCloud
 
       # DescribeInstanceSpecs请求参数结构体
       class DescribeInstanceSpecsRequest < TencentCloud::Common::AbstractModel
-        # @param DbType: 数据库类型，取值范围:
-        # <li> MYSQL </li>
+        # @param DbType: <p>数据库类型，取值范围: </p><li> MYSQL </li>
         # @type DbType: String
-        # @param IncludeZoneStocks: 是否需要返回可用区信息
+        # @param IncludeZoneStocks: <p>是否需要返回可用区信息</p>
         # @type IncludeZoneStocks: Boolean
-        # @param DeviceType: 实例机器类型
+        # @param DeviceType: <p>实例机器类型</p>
         # @type DeviceType: String
+        # @param ClusterLevel: <p>集群级别，可空。例如 P0, P1</p>
+        # @type ClusterLevel: String
 
-        attr_accessor :DbType, :IncludeZoneStocks, :DeviceType
+        attr_accessor :DbType, :IncludeZoneStocks, :DeviceType, :ClusterLevel
 
-        def initialize(dbtype=nil, includezonestocks=nil, devicetype=nil)
+        def initialize(dbtype=nil, includezonestocks=nil, devicetype=nil, clusterlevel=nil)
           @DbType = dbtype
           @IncludeZoneStocks = includezonestocks
           @DeviceType = devicetype
+          @ClusterLevel = clusterlevel
         end
 
         def deserialize(params)
           @DbType = params['DbType']
           @IncludeZoneStocks = params['IncludeZoneStocks']
           @DeviceType = params['DeviceType']
+          @ClusterLevel = params['ClusterLevel']
         end
       end
 
       # DescribeInstanceSpecs返回参数结构体
       class DescribeInstanceSpecsResponse < TencentCloud::Common::AbstractModel
-        # @param InstanceSpecSet: 规格信息
+        # @param InstanceSpecSet: <p>规格信息</p>
         # @type InstanceSpecSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -15378,6 +15781,74 @@ module TencentCloud
         end
       end
 
+      # ModifyClusterPeriodScalePolicy请求参数结构体
+      class ModifyClusterPeriodScalePolicyRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: <p>集群ID</p>
+        # @type ClusterId: String
+        # @param PolicyId: <p>策略ID</p>
+        # @type PolicyId: String
+        # @param ScaleStartTime: <p>当天开始弹性时间。格式是小时:分钟</p>
+        # @type ScaleStartTime: String
+        # @param ScaleEndTime: <p>当天结束弹性时间。格式是小时:分钟</p>
+        # @type ScaleEndTime: String
+        # @param PolicyStartTime: <p>策略生效的起始日期时间</p>
+        # @type PolicyStartTime: String
+        # @param PolicyEndTime: <p>策略生效的截止日期时间</p>
+        # @type PolicyEndTime: String
+        # @param PeriodType: <p>周期类型。day-天，week-周，month-月。</p>
+        # @type PeriodType: String
+        # @param PeriodConfig: <p>周期内的时间列表。针对PeriodType=week， 表示星期几，比如[1,3]表示星期一、星期三。同理，对于PeriodType=month，[1,3,10]表示每月的1、3、10号。PeriodType=day则该字段无效。</p>
+        # @type PeriodConfig: Array
+        # @param MinCpu: <p>弹性规格下限</p>
+        # @type MinCpu: Float
+        # @param MaxCpu: <p>弹性规格上限</p>
+        # @type MaxCpu: Float
+
+        attr_accessor :ClusterId, :PolicyId, :ScaleStartTime, :ScaleEndTime, :PolicyStartTime, :PolicyEndTime, :PeriodType, :PeriodConfig, :MinCpu, :MaxCpu
+
+        def initialize(clusterid=nil, policyid=nil, scalestarttime=nil, scaleendtime=nil, policystarttime=nil, policyendtime=nil, periodtype=nil, periodconfig=nil, mincpu=nil, maxcpu=nil)
+          @ClusterId = clusterid
+          @PolicyId = policyid
+          @ScaleStartTime = scalestarttime
+          @ScaleEndTime = scaleendtime
+          @PolicyStartTime = policystarttime
+          @PolicyEndTime = policyendtime
+          @PeriodType = periodtype
+          @PeriodConfig = periodconfig
+          @MinCpu = mincpu
+          @MaxCpu = maxcpu
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @PolicyId = params['PolicyId']
+          @ScaleStartTime = params['ScaleStartTime']
+          @ScaleEndTime = params['ScaleEndTime']
+          @PolicyStartTime = params['PolicyStartTime']
+          @PolicyEndTime = params['PolicyEndTime']
+          @PeriodType = params['PeriodType']
+          @PeriodConfig = params['PeriodConfig']
+          @MinCpu = params['MinCpu']
+          @MaxCpu = params['MaxCpu']
+        end
+      end
+
+      # ModifyClusterPeriodScalePolicy返回参数结构体
+      class ModifyClusterPeriodScalePolicyResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyClusterReadOnly请求参数结构体
       class ModifyClusterReadOnlyRequest < TencentCloud::Common::AbstractModel
         # @param ClusterIds: 集群ID列表
@@ -17269,6 +17740,46 @@ module TencentCloud
           @Vip = params['Vip']
           @Vport = params['Vport']
           @ReturnTime = params['ReturnTime']
+        end
+      end
+
+      # OpenAIOptimizer请求参数结构体
+      class OpenAIOptimizerRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: <p>集群ID</p>
+        # @type ClusterId: String
+        # @param InstanceId: <p>实例ID</p>
+        # @type InstanceId: String
+
+        attr_accessor :ClusterId, :InstanceId
+
+        def initialize(clusterid=nil, instanceid=nil)
+          @ClusterId = clusterid
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # OpenAIOptimizer返回参数结构体
+      class OpenAIOptimizerResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>任务流id</p>
+        # @type TaskId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
         end
       end
 

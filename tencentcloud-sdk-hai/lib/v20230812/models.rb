@@ -441,25 +441,28 @@ module TencentCloud
 
       # DeployInferService请求参数结构体
       class DeployInferServiceRequest < TencentCloud::Common::AbstractModel
-        # @param ServiceMetaData: 服务元数据信息，如服务名
+        # @param ServiceMetaData: <p>服务元数据信息，如服务名</p>
         # @type ServiceMetaData: :class:`Tencentcloud::Hai.v20230812.models.ServiceMetaData`
-        # @param ComputeInfo: 资源相关信息
+        # @param ComputeInfo: <p>资源相关信息</p>
         # @type ComputeInfo: :class:`Tencentcloud::Hai.v20230812.models.ComputeInfo`
-        # @param DeploymentConfigs: 服务部署信息
+        # @param DeploymentConfigs: <p>服务部署信息</p>
         # @type DeploymentConfigs: Array
-        # @param HyperParam: 服务超参数配置
+        # @param HyperParam: <p>服务超参数配置</p>
         # @type HyperParam: :class:`Tencentcloud::Hai.v20230812.models.HyperParam`
-        # @param NetworkSetting: 网络设置
+        # @param NetworkSetting: <p>网络设置</p>
         # @type NetworkSetting: :class:`Tencentcloud::Hai.v20230812.models.NetworkSetting`
+        # @param SecurityType: <p>安全类型</p><p>枚举值：</p><ul><li>STANDARD： 标准推理</li><li>CONFIDENTIAL： 可信推理</li></ul>
+        # @type SecurityType: String
 
-        attr_accessor :ServiceMetaData, :ComputeInfo, :DeploymentConfigs, :HyperParam, :NetworkSetting
+        attr_accessor :ServiceMetaData, :ComputeInfo, :DeploymentConfigs, :HyperParam, :NetworkSetting, :SecurityType
 
-        def initialize(servicemetadata=nil, computeinfo=nil, deploymentconfigs=nil, hyperparam=nil, networksetting=nil)
+        def initialize(servicemetadata=nil, computeinfo=nil, deploymentconfigs=nil, hyperparam=nil, networksetting=nil, securitytype=nil)
           @ServiceMetaData = servicemetadata
           @ComputeInfo = computeinfo
           @DeploymentConfigs = deploymentconfigs
           @HyperParam = hyperparam
           @NetworkSetting = networksetting
+          @SecurityType = securitytype
         end
 
         def deserialize(params)
@@ -487,12 +490,13 @@ module TencentCloud
             @NetworkSetting = NetworkSetting.new
             @NetworkSetting.deserialize(params['NetworkSetting'])
           end
+          @SecurityType = params['SecurityType']
         end
       end
 
       # DeployInferService返回参数结构体
       class DeployInferServiceResponse < TencentCloud::Common::AbstractModel
-        # @param ServiceId: 服务ID
+        # @param ServiceId: <p>服务ID</p>
         # @type ServiceId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

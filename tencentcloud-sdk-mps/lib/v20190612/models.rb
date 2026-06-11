@@ -5099,6 +5099,118 @@ module TencentCloud
         end
       end
 
+      # 虚拟试穿任务配置。
+      class AiTryOnConfig < TencentCloud::Common::AbstractModel
+        # @param Model: <p>换装模型，取值：</p><ul><li>WAND-tryon-1.0-lite</li><li>WAND-tryon-1.0-flash</li><li>WAND-tryon-1.0-pro</li></ul>
+        # @type Model: String
+        # @param Prompt: <p>换装指令。</p><p>为空时使用内置指令。</p>
+        # @type Prompt: String
+        # @param Resolution: <p>输出图片分辨率，取值：</p><ul><li>1K</li><li>2K</li><li>4K</li></ul><p>默认值：1K</p>
+        # @type Resolution: String
+
+        attr_accessor :Model, :Prompt, :Resolution
+
+        def initialize(model=nil, prompt=nil, resolution=nil)
+          @Model = model
+          @Prompt = prompt
+          @Resolution = resolution
+        end
+
+        def deserialize(params)
+          @Model = params['Model']
+          @Prompt = params['Prompt']
+          @Resolution = params['Resolution']
+        end
+      end
+
+      # Aigc生音频扩展参数。
+      class AigcAudioExtraParam < TencentCloud::Common::AbstractModel
+        # @param ResourceId: <p>资源id，根据具体需要填写。</p>
+        # @type ResourceId: String
+
+        attr_accessor :ResourceId
+
+        def initialize(resourceid=nil)
+          @ResourceId = resourceid
+        end
+
+        def deserialize(params)
+          @ResourceId = params['ResourceId']
+        end
+      end
+
+      # Aigc生音频任务，输出的音频信息。
+      class AigcAudioOutputAudioInfo < TencentCloud::Common::AbstractModel
+        # @param Url: <p>音频URl。</p>
+        # @type Url: String
+        # @param Duration: <p>音频时长。</p>
+        # @type Duration: Integer
+
+        attr_accessor :Url, :Duration
+
+        def initialize(url=nil, duration=nil)
+          @Url = url
+          @Duration = duration
+        end
+
+        def deserialize(params)
+          @Url = params['Url']
+          @Duration = params['Duration']
+        end
+      end
+
+      # Aigc生音频任务，输出的视频信息。
+      class AigcAudioOutputVideoInfo < TencentCloud::Common::AbstractModel
+        # @param Url: <p>视频URL。</p>
+        # @type Url: String
+        # @param Duration: <p>视频时长。</p>
+        # @type Duration: Integer
+
+        attr_accessor :Url, :Duration
+
+        def initialize(url=nil, duration=nil)
+          @Url = url
+          @Duration = duration
+        end
+
+        def deserialize(params)
+          @Url = params['Url']
+          @Duration = params['Duration']
+        end
+      end
+
+      # 参考音频信息。
+      class AigcAudioReferenceAudioInfo < TencentCloud::Common::AbstractModel
+        # @param AudioUrl: <p>参考音频URL信息。需外网可访问。</p>
+        # @type AudioUrl: String
+
+        attr_accessor :AudioUrl
+
+        def initialize(audiourl=nil)
+          @AudioUrl = audiourl
+        end
+
+        def deserialize(params)
+          @AudioUrl = params['AudioUrl']
+        end
+      end
+
+      # 用于AIGC视频生成的参考视频素材。
+      class AigcAudioReferenceVideoInfo < TencentCloud::Common::AbstractModel
+        # @param VideoUrl: <p>参考视频url。需要外网可访问。</p>
+        # @type VideoUrl: String
+
+        attr_accessor :VideoUrl
+
+        def initialize(videourl=nil)
+          @VideoUrl = videourl
+        end
+
+        def deserialize(params)
+          @VideoUrl = params['VideoUrl']
+        end
+      end
+
       # 用于AIGC创作图片时用到的扩展参数信息。
       class AigcImageExtraParam < TencentCloud::Common::AbstractModel
         # @param AspectRatio: <p>指定所生成视频的宽高比。</p><p>不同模型支持的宽高比:</p><ol><li>Kling 2.1支持：16:9、9:16、1:1、4:3、3:4、3:2、2:3、21:9。</li><li>Kling 3.0支持：16:9、9:16、1:1、4:3、3:4、3:2、2:3、21:9。</li><li>Kling 3.0-Omni支持：16:9、9:16、1:1、4:3、3:4、3:2、2:3、21:9。</li><li>Kling O1支持：16:9、9:16、1:1、4:3、3:4、3:2、2:3、21:9。</li><li>Vidu q2支持：16:9、9:16、1:1、3:4、4:3、21:9、2:3、3:2。</li><li>MJ v7的宽高比需要在 prompt 中进行指定。</li></ol><p>注：具体模型的宽高比参数，可查看相应模型官网获取更完整描述。</p>
@@ -8050,6 +8162,102 @@ module TencentCloud
         end
       end
 
+      # CreateAigcAudioTask请求参数结构体
+      class CreateAigcAudioTaskRequest < TencentCloud::Common::AbstractModel
+        # @param ModelName: <p>模型名称。生音乐当前支持的模型: GL、MinimaxMusic。</p>
+        # @type ModelName: String
+        # @param ModelVersion: <p>指定模型特定版本号。默认使用系统当前所支持的模型稳定版本。<br>模型GL支持的版本号：2.0、3.0-clip、3.0-pro。<br>模型MinimaxMusic支持的版本号：2.0、2.5、2.6。</p>
+        # @type ModelVersion: String
+        # @param SceneType: <p>指定场景生音频。音乐: music。</p>
+        # @type SceneType: String
+        # @param Prompt: <p>生成视频的描述。(注：最大支持2000字符)。当未传入图片时，此参数必填。</p>
+        # @type Prompt: String
+        # @param VideoInfos: <p>参考视频信息。仅部分模型支持。</p>
+        # @type VideoInfos: Array
+        # @param AudioInfos: <p>传入参考音频信息。</p><p>比如传入音频生成音乐时需要传入。</p>
+        # @type AudioInfos: Array
+        # @param OutputAudioFormat: <p>输出音频格式，默认不填。mp3、wav。</p>
+        # @type OutputAudioFormat: String
+        # @param StoreCosParam: <p>文件结果指定存储Cos桶信息。 注意：需开通Cos，创建并授权MPS_QcsRole角色。</p>
+        # @type StoreCosParam: :class:`Tencentcloud::Mps.v20190612.models.AigcStoreCosParam`
+        # @param ExtraParameters: <p>用于传入要求的额外参数。</p>
+        # @type ExtraParameters: :class:`Tencentcloud::Mps.v20190612.models.AigcAudioExtraParam`
+        # @param AdditionalParameters: <p>用于传入一些模型需要的特殊场景参数，Json格式序列化成字符串。<br>示例MinimaxMusic模型传入歌词时：<br>{"lyric":{"小马在快乐奔跑，花儿在开放"}}</p>
+        # @type AdditionalParameters: String
+        # @param Operator: <p>接口操作者名称。</p>
+        # @type Operator: String
+
+        attr_accessor :ModelName, :ModelVersion, :SceneType, :Prompt, :VideoInfos, :AudioInfos, :OutputAudioFormat, :StoreCosParam, :ExtraParameters, :AdditionalParameters, :Operator
+
+        def initialize(modelname=nil, modelversion=nil, scenetype=nil, prompt=nil, videoinfos=nil, audioinfos=nil, outputaudioformat=nil, storecosparam=nil, extraparameters=nil, additionalparameters=nil, operator=nil)
+          @ModelName = modelname
+          @ModelVersion = modelversion
+          @SceneType = scenetype
+          @Prompt = prompt
+          @VideoInfos = videoinfos
+          @AudioInfos = audioinfos
+          @OutputAudioFormat = outputaudioformat
+          @StoreCosParam = storecosparam
+          @ExtraParameters = extraparameters
+          @AdditionalParameters = additionalparameters
+          @Operator = operator
+        end
+
+        def deserialize(params)
+          @ModelName = params['ModelName']
+          @ModelVersion = params['ModelVersion']
+          @SceneType = params['SceneType']
+          @Prompt = params['Prompt']
+          unless params['VideoInfos'].nil?
+            @VideoInfos = []
+            params['VideoInfos'].each do |i|
+              aigcaudioreferencevideoinfo_tmp = AigcAudioReferenceVideoInfo.new
+              aigcaudioreferencevideoinfo_tmp.deserialize(i)
+              @VideoInfos << aigcaudioreferencevideoinfo_tmp
+            end
+          end
+          unless params['AudioInfos'].nil?
+            @AudioInfos = []
+            params['AudioInfos'].each do |i|
+              aigcaudioreferenceaudioinfo_tmp = AigcAudioReferenceAudioInfo.new
+              aigcaudioreferenceaudioinfo_tmp.deserialize(i)
+              @AudioInfos << aigcaudioreferenceaudioinfo_tmp
+            end
+          end
+          @OutputAudioFormat = params['OutputAudioFormat']
+          unless params['StoreCosParam'].nil?
+            @StoreCosParam = AigcStoreCosParam.new
+            @StoreCosParam.deserialize(params['StoreCosParam'])
+          end
+          unless params['ExtraParameters'].nil?
+            @ExtraParameters = AigcAudioExtraParam.new
+            @ExtraParameters.deserialize(params['ExtraParameters'])
+          end
+          @AdditionalParameters = params['AdditionalParameters']
+          @Operator = params['Operator']
+        end
+      end
+
+      # CreateAigcAudioTask返回参数结构体
+      class CreateAigcAudioTaskResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>任务创建成功后，返回的任务ID。<br>调用查询接口，轮询获取任务进度及生成结果。</p>
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateAigcImageTask请求参数结构体
       class CreateAigcImageTaskRequest < TencentCloud::Common::AbstractModel
         # @param ModelName: <p>模型名称。<br>当前支持的模型列表：<br>Hunyuan，<br>Qwen，<br>Vidu，<br>Kling，<br>MJ。</p>
@@ -8145,7 +8353,7 @@ module TencentCloud
         # @type ModelName: String
         # @param ModelVersion: <p>指定模型特定版本号。默认使用系统当前所支持的模型稳定版本。</p><ol><li>Hunyuan，可选 [1.5]。</li><li>Hailuo，可选 [02、2.3、2.3-fast]。</li><li>Kling，可选 [1.6、2.0、2.1、2.5、O1、2.6、3.0、3.0-Omni]。</li><li>Vidu，可选 [q2、q2-pro、q2-turbo、q3-pro、q3-turbo、q3、q3-mix]。</li><li>PixVerse，可选 [v5.6、v6、c1]。</li><li>H2，可选 [1.0]。</li></ol>
         # @type ModelVersion: String
-        # @param SceneType: <p>指定场景生视频。<br>注意：仅部分模型支持指定场景。</p><ol><li>Kling支持：动作控制，motion_control；数字人，avatar_i2v；对口型，lip_sync。</li><li>Mingmou支持：横转竖，land2port。</li><li>Vidu支持：特效模板，template_effect。</li></ol>
+        # @param SceneType: <p>指定场景生成视频。<br>注意：仅部分模型支持指定场景。</p><ol><li>Kling支持：动作控制，motion_control；数字人，avatar_i2v；对口型，lip_sync。</li><li>Mingmou支持：横转竖，land2port。</li><li>Vidu支持：特效模板，template_effect。</li><li>Hunyuan支持: 3d世界模型, 3d_scene；涉及的返回文件非视频。</li></ol>
         # @type SceneType: String
         # @param Prompt: <p>生成视频的描述。当未传入图片时，此参数必填。</p>
         # @type Prompt: String
@@ -12410,6 +12618,68 @@ module TencentCloud
               adaptivedynamicstreamingtemplate_tmp = AdaptiveDynamicStreamingTemplate.new
               adaptivedynamicstreamingtemplate_tmp.deserialize(i)
               @AdaptiveDynamicStreamingTemplateSet << adaptivedynamicstreamingtemplate_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAigcAudioTask请求参数结构体
+      class DescribeAigcAudioTaskRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>创建AIGC生视频任务时，返回的任务ID。</p>
+        # @type TaskId: String
+
+        attr_accessor :TaskId
+
+        def initialize(taskid=nil)
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # DescribeAigcAudioTask返回参数结构体
+      class DescribeAigcAudioTaskResponse < TencentCloud::Common::AbstractModel
+        # @param Status: <p>任务当前状态。 WAIT：等待中， RUN：执行中， FAIL：任务失败， DONE：任务成功。</p>
+        # @type Status: String
+        # @param Message: <p>当任务状态为 FAIL时，返回失败信息。</p>
+        # @type Message: String
+        # @param AudioInfos: <p>输出的音频信息。</p>
+        # @type AudioInfos: Array
+        # @param VideoInfos: <p>输出的视频信息，仅视频配音等场景会输出。</p>
+        # @type VideoInfos: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :Message, :AudioInfos, :VideoInfos, :RequestId
+
+        def initialize(status=nil, message=nil, audioinfos=nil, videoinfos=nil, requestid=nil)
+          @Status = status
+          @Message = message
+          @AudioInfos = audioinfos
+          @VideoInfos = videoinfos
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @Message = params['Message']
+          unless params['AudioInfos'].nil?
+            @AudioInfos = []
+            params['AudioInfos'].each do |i|
+              aigcaudiooutputaudioinfo_tmp = AigcAudioOutputAudioInfo.new
+              aigcaudiooutputaudioinfo_tmp.deserialize(i)
+              @AudioInfos << aigcaudiooutputaudioinfo_tmp
+            end
+          end
+          unless params['VideoInfos'].nil?
+            @VideoInfos = []
+            params['VideoInfos'].each do |i|
+              aigcaudiooutputvideoinfo_tmp = AigcAudioOutputVideoInfo.new
+              aigcaudiooutputvideoinfo_tmp.deserialize(i)
+              @VideoInfos << aigcaudiooutputvideoinfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -20187,32 +20457,35 @@ module TencentCloud
 
       # 图片任务输入参数
       class ImageTaskInput < TencentCloud::Common::AbstractModel
-        # @param EncodeConfig: 图片编码配置。
+        # @param EncodeConfig: <p>图片编码配置。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EncodeConfig: :class:`Tencentcloud::Mps.v20190612.models.ImageEncodeConfig`
-        # @param EnhanceConfig: 图片增强配置。
+        # @param EnhanceConfig: <p>图片增强配置。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnhanceConfig: :class:`Tencentcloud::Mps.v20190612.models.ImageEnhanceConfig`
-        # @param EraseConfig: 图片擦除配置。
+        # @param EraseConfig: <p>图片擦除配置。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EraseConfig: :class:`Tencentcloud::Mps.v20190612.models.ImageEraseConfig`
-        # @param BlindWatermarkConfig: 盲水印配置。
+        # @param BlindWatermarkConfig: <p>盲水印配置。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BlindWatermarkConfig: :class:`Tencentcloud::Mps.v20190612.models.BlindWatermarkConfig`
-        # @param BeautyConfig: 美颜配置。
+        # @param BeautyConfig: <p>美颜配置。</p>
         # @type BeautyConfig: :class:`Tencentcloud::Mps.v20190612.models.BeautyConfig`
-        # @param TransformConfig: 图片基础转换能力。
+        # @param TransformConfig: <p>图片基础转换能力。</p>
         # @type TransformConfig: :class:`Tencentcloud::Mps.v20190612.models.ImageTransformConfig`
+        # @param AiTryOnConfig: <p>Ai 换装配置。</p>
+        # @type AiTryOnConfig: :class:`Tencentcloud::Mps.v20190612.models.AiTryOnConfig`
 
-        attr_accessor :EncodeConfig, :EnhanceConfig, :EraseConfig, :BlindWatermarkConfig, :BeautyConfig, :TransformConfig
+        attr_accessor :EncodeConfig, :EnhanceConfig, :EraseConfig, :BlindWatermarkConfig, :BeautyConfig, :TransformConfig, :AiTryOnConfig
 
-        def initialize(encodeconfig=nil, enhanceconfig=nil, eraseconfig=nil, blindwatermarkconfig=nil, beautyconfig=nil, transformconfig=nil)
+        def initialize(encodeconfig=nil, enhanceconfig=nil, eraseconfig=nil, blindwatermarkconfig=nil, beautyconfig=nil, transformconfig=nil, aitryonconfig=nil)
           @EncodeConfig = encodeconfig
           @EnhanceConfig = enhanceconfig
           @EraseConfig = eraseconfig
           @BlindWatermarkConfig = blindwatermarkconfig
           @BeautyConfig = beautyconfig
           @TransformConfig = transformconfig
+          @AiTryOnConfig = aitryonconfig
         end
 
         def deserialize(params)
@@ -20239,6 +20512,10 @@ module TencentCloud
           unless params['TransformConfig'].nil?
             @TransformConfig = ImageTransformConfig.new
             @TransformConfig.deserialize(params['TransformConfig'])
+          end
+          unless params['AiTryOnConfig'].nil?
+            @AiTryOnConfig = AiTryOnConfig.new
+            @AiTryOnConfig.deserialize(params['AiTryOnConfig'])
           end
         end
       end

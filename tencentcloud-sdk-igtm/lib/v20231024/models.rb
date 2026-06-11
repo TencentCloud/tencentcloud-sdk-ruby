@@ -2005,14 +2005,14 @@ module TencentCloud
 
       # 主力地址池
       class MainAddressPool < TencentCloud::Common::AbstractModel
-        # @param AddressPools: 集合中的地址池id与权重，数组
+        # @param AddressPools: <p>集合中的地址池id与权重，数组</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AddressPools: Array
-        # @param MainAddressPoolId: 地址池集合id
+        # @param MainAddressPoolId: <p>地址池集合id</p>
         # @type MainAddressPoolId: Integer
-        # @param MinSurviveNum: 切换阀值，不能大于主力集合内地址总数
+        # @param MinSurviveNum: <p>切换阈值，不能大于主力集合内地址总数</p>
         # @type MinSurviveNum: Integer
-        # @param TrafficStrategy: 切换策略:ALL解析所有地址；WEIGHT：负载均衡。当为ALL时，解析地址的权重值为1；当为WEIGHT时；权重为地址池权重*地址权重
+        # @param TrafficStrategy: <p>切换策略:ALL解析所有地址；WEIGHT：负载均衡。当为ALL时，解析地址的权重值为1；当为WEIGHT时；权重为地址池权重*地址权重</p>
         # @type TrafficStrategy: String
 
         attr_accessor :AddressPools, :MainAddressPoolId, :MinSurviveNum, :TrafficStrategy
@@ -2062,25 +2062,28 @@ module TencentCloud
 
       # ModifyAddressPool请求参数结构体
       class ModifyAddressPoolRequest < TencentCloud::Common::AbstractModel
-        # @param PoolId: 地址池id
+        # @param PoolId: <p>地址池id</p>
         # @type PoolId: Integer
-        # @param PoolName: 地址池名称，不允许重复
+        # @param PoolName: <p>地址池名称，不允许重复</p>
         # @type PoolName: String
-        # @param TrafficStrategy: 流量策略: WEIGHT负载均衡，ALL解析全部
+        # @param TrafficStrategy: <p>流量策略: WEIGHT负载均衡，ALL解析全部</p>
         # @type TrafficStrategy: String
-        # @param MonitorId: 监控器id，当监控器已关联策略时，此字段必传
+        # @param MonitorId: <p>监控器id，当监控器已关联策略时，此字段必传</p>
         # @type MonitorId: Integer
-        # @param AddressSet: 地址列表，全量更新逻辑，对于存量不需要修改的地址信息也需要带上(其中参数里的AddressId需传入正确的值)，否则会被删除。
+        # @param AddressSet: <p>地址列表，全量更新逻辑，对于存量不需要修改的地址信息也需要带上(其中参数里的AddressId需传入正确的值)，否则会被删除。</p>
         # @type AddressSet: Array
+        # @param KeepResource: <p>是否保留资源</p><p>枚举值：</p><ul><li>false： 全量操作，会有删除逻辑</li><li>true： 不会删除原有资源</li></ul>
+        # @type KeepResource: Boolean
 
-        attr_accessor :PoolId, :PoolName, :TrafficStrategy, :MonitorId, :AddressSet
+        attr_accessor :PoolId, :PoolName, :TrafficStrategy, :MonitorId, :AddressSet, :KeepResource
 
-        def initialize(poolid=nil, poolname=nil, trafficstrategy=nil, monitorid=nil, addressset=nil)
+        def initialize(poolid=nil, poolname=nil, trafficstrategy=nil, monitorid=nil, addressset=nil, keepresource=nil)
           @PoolId = poolid
           @PoolName = poolname
           @TrafficStrategy = trafficstrategy
           @MonitorId = monitorid
           @AddressSet = addressset
+          @KeepResource = keepresource
         end
 
         def deserialize(params)
@@ -2096,12 +2099,13 @@ module TencentCloud
               @AddressSet << address_tmp
             end
           end
+          @KeepResource = params['KeepResource']
         end
       end
 
       # ModifyAddressPool返回参数结构体
       class ModifyAddressPoolResponse < TencentCloud::Common::AbstractModel
-        # @param Msg: 是否修改成功
+        # @param Msg: <p>是否修改成功</p>
         # @type Msg: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2311,28 +2315,30 @@ module TencentCloud
 
       # ModifyStrategy请求参数结构体
       class ModifyStrategyRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例id
+        # @param InstanceId: <p>实例id</p>
         # @type InstanceId: String
-        # @param StrategyId: 策略id
+        # @param StrategyId: <p>策略id</p>
         # @type StrategyId: Integer
-        # @param Source: 解析线路，需要全量传参
+        # @param Source: <p>解析线路，需要全量传参</p>
         # @type Source: Array
-        # @param MainAddressPoolSet: 主力地址池集合，需要全量传参
+        # @param MainAddressPoolSet: <p>主力地址池集合，需要全量传参</p>
         # @type MainAddressPoolSet: Array
-        # @param FallbackAddressPoolSet: 兜底地址池集合，需要全量传参
+        # @param FallbackAddressPoolSet: <p>兜底地址池集合，需要全量传参</p>
         # @type FallbackAddressPoolSet: Array
-        # @param StrategyName: 策略名称，不允许重复
+        # @param StrategyName: <p>策略名称，不允许重复</p>
         # @type StrategyName: String
-        # @param IsEnabled: 策略开启状态：ENABLED开启；DISABLED关闭
+        # @param IsEnabled: <p>策略开启状态：ENABLED开启；DISABLED关闭</p>
         # @type IsEnabled: String
-        # @param KeepDomainRecords: 是否开启策略强制保留默认线路 disabled, enabled，默认不开启且只有一个策略能开启
+        # @param KeepDomainRecords: <p>是否开启策略强制保留默认线路 disabled, enabled，默认不开启且只有一个策略能开启</p>
         # @type KeepDomainRecords: String
-        # @param SwitchPoolType: 调度模式：AUTO默认；STOP仅暂停不切换
+        # @param SwitchPoolType: <p>调度模式：AUTO默认；STOP仅暂停不切换</p>
         # @type SwitchPoolType: String
+        # @param KeepResource: <p>是否保留资源</p><p>枚举值：</p><ul><li>false： 全量操作，会有删除逻辑</li><li>true： 不会删除原有资源</li></ul>
+        # @type KeepResource: Boolean
 
-        attr_accessor :InstanceId, :StrategyId, :Source, :MainAddressPoolSet, :FallbackAddressPoolSet, :StrategyName, :IsEnabled, :KeepDomainRecords, :SwitchPoolType
+        attr_accessor :InstanceId, :StrategyId, :Source, :MainAddressPoolSet, :FallbackAddressPoolSet, :StrategyName, :IsEnabled, :KeepDomainRecords, :SwitchPoolType, :KeepResource
 
-        def initialize(instanceid=nil, strategyid=nil, source=nil, mainaddresspoolset=nil, fallbackaddresspoolset=nil, strategyname=nil, isenabled=nil, keepdomainrecords=nil, switchpooltype=nil)
+        def initialize(instanceid=nil, strategyid=nil, source=nil, mainaddresspoolset=nil, fallbackaddresspoolset=nil, strategyname=nil, isenabled=nil, keepdomainrecords=nil, switchpooltype=nil, keepresource=nil)
           @InstanceId = instanceid
           @StrategyId = strategyid
           @Source = source
@@ -2342,6 +2348,7 @@ module TencentCloud
           @IsEnabled = isenabled
           @KeepDomainRecords = keepdomainrecords
           @SwitchPoolType = switchpooltype
+          @KeepResource = keepresource
         end
 
         def deserialize(params)
@@ -2375,12 +2382,13 @@ module TencentCloud
           @IsEnabled = params['IsEnabled']
           @KeepDomainRecords = params['KeepDomainRecords']
           @SwitchPoolType = params['SwitchPoolType']
+          @KeepResource = params['KeepResource']
         end
       end
 
       # ModifyStrategy返回参数结构体
       class ModifyStrategyResponse < TencentCloud::Common::AbstractModel
-        # @param Msg: 是否成功
+        # @param Msg: <p>是否成功</p>
         # @type Msg: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

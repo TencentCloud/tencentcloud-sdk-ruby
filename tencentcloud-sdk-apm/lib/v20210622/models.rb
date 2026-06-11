@@ -748,125 +748,119 @@ module TencentCloud
 
       # APM 业务系统信息
       class ApmInstanceDetail < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 业务系统 ID
+        # @param InstanceId: <p>业务系统 ID</p>
         # @type InstanceId: String
-        # @param Name: 业务系统名
+        # @param Name: <p>业务系统名</p>
         # @type Name: String
-        # @param Description: 业务系统描述信息
+        # @param Description: <p>业务系统描述信息</p>
         # @type Description: String
-        # @param Status: 业务系统状态。{
-        # 1: 初始化中; 2: 运行中; 4: 限流}
+        # @param Status: <p>业务系统状态。{<br>1: 初始化中; 2: 运行中; 4: 限流}</p>
         # @type Status: Integer
-        # @param Region: 业务系统所属地域
+        # @param Region: <p>业务系统所属地域</p>
         # @type Region: String
-        # @param Tags: 业务系统 Tag 列表
+        # @param Tags: <p>业务系统 Tag 列表</p>
         # @type Tags: Array
-        # @param AppId: AppID 信息
+        # @param AppId: <p>AppID 信息</p>
         # @type AppId: Integer
-        # @param CreateUin: 创建人 Uin
+        # @param CreateUin: <p>创建人 Uin</p>
         # @type CreateUin: String
-        # @param AmountOfUsedStorage: 存储使用量(单位：MB)
+        # @param AmountOfUsedStorage: <p>存储使用量(单位：MB)</p>
         # @type AmountOfUsedStorage: Float
-        # @param ServiceCount: 该业务系统服务端应用数量
+        # @param ServiceCount: <p>该业务系统服务端应用数量</p>
         # @type ServiceCount: Integer
-        # @param CountOfReportSpanPerDay: 日均上报 Span 数
+        # @param CountOfReportSpanPerDay: <p>日均上报 Span 数</p>
         # @type CountOfReportSpanPerDay: Integer
-        # @param TraceDuration: Trace 数据保存时长（单位：天）
+        # @param TraceDuration: <p>Trace 数据保存时长（单位：天）</p>
         # @type TraceDuration: Integer
-        # @param SpanDailyCounters: 业务系统上报额度
+        # @param SpanDailyCounters: <p>业务系统上报额度</p>
         # @type SpanDailyCounters: Integer
-        # @param BillingInstance: 业务系统是否已开通计费（0=未开通，1=已开通）
+        # @param BillingInstance: <p>业务系统是否已开通计费（0=未开通，1=已开通）</p>
         # @type BillingInstance: Integer
-        # @param ErrRateThreshold: 错误警示线（单位：%）
+        # @param ErrRateThreshold: <p>错误警示线（单位：%）</p>
         # @type ErrRateThreshold: Integer
-        # @param SampleRate: 采样率（单位：%）
+        # @param SampleRate: <p>采样率（单位：%）</p>
         # @type SampleRate: Integer
-        # @param ErrorSample: 是否开启错误采样（0=关, 1=开）
+        # @param ErrorSample: <p>是否开启错误采样（0=关, 1=开）</p>
         # @type ErrorSample: Integer
-        # @param SlowRequestSavedThreshold: 采样慢调用保存阈值（单位：ms）
+        # @param SlowRequestSavedThreshold: <p>采样慢调用保存阈值（单位：ms）</p>
         # @type SlowRequestSavedThreshold: Integer
-        # @param LogRegion: CLS 日志所在地域
+        # @param LogRegion: <p>CLS 日志所在地域</p>
         # @type LogRegion: String
-        # @param LogSource: 日志源
+        # @param LogSource: <p>日志源</p>
         # @type LogSource: String
-        # @param IsRelatedLog: 日志功能开关（0=关， 1=开）
+        # @param IsRelatedLog: <p>日志功能开关（0=关， 1=开）</p>
         # @type IsRelatedLog: Integer
-        # @param LogTopicID: 日志主题 ID
+        # @param LogTopicID: <p>日志主题 ID</p>
         # @type LogTopicID: String
-        # @param ClientCount: 该业务系统客户端应用数量
+        # @param ClientCount: <p>该业务系统客户端应用数量</p>
         # @type ClientCount: Integer
-        # @param TotalCount: 该业务系统最近2天活跃应用数量
+        # @param TotalCount: <p>该业务系统最近2天活跃应用数量</p>
         # @type TotalCount: Integer
-        # @param LogSet: CLS 日志集
+        # @param LogSet: <p>CLS 日志集</p>
         # @type LogSet: String
-        # @param MetricDuration: Metric 数据保存时长（单位：天）
+        # @param MetricDuration: <p>Metric 数据保存时长（单位：天）</p>
         # @type MetricDuration: Integer
-        # @param CustomShowTags: 用户自定义展示标签列表
+        # @param CustomShowTags: <p>用户自定义展示标签列表</p>
         # @type CustomShowTags: Array
-        # @param PayMode: 业务系统计费模式（1为预付费，0为按量付费）
+        # @param PayMode: <p>业务系统计费模式（1为预付费，0为按量付费）</p>
         # @type PayMode: Integer
-        # @param PayModeEffective: 业务系统计费模式是否生效
+        # @param PayModeEffective: <p>业务系统计费模式是否生效</p>
         # @type PayModeEffective: Boolean
-        # @param ResponseDurationWarningThreshold: 响应时间警示线（单位：ms）
+        # @param ResponseDurationWarningThreshold: <p>响应时间警示线（单位：ms）</p>
         # @type ResponseDurationWarningThreshold: Integer
-        # @param Free: 是否免费（0=否，1=限额免费，2=完全免费），默认0
+        # @param Free: <p>是否免费（0=否，1=限额免费，2=完全免费），默认0</p>
         # @type Free: Integer
-        # @param DefaultTSF: 是否 TSF 默认业务系统（0=否，1=是）
+        # @param DefaultTSF: <p>是否 TSF 默认业务系统（0=否，1=是）</p>
         # @type DefaultTSF: Integer
-        # @param IsRelatedDashboard: 是否关联 Dashboard（0=关, 1=开）
+        # @param IsRelatedDashboard: <p>是否关联 Dashboard（0=关, 1=开）</p>
         # @type IsRelatedDashboard: Integer
-        # @param DashboardTopicID: 关联的 Dashboard ID
+        # @param DashboardTopicID: <p>关联的 Dashboard ID</p>
         # @type DashboardTopicID: String
-        # @param IsInstrumentationVulnerabilityScan: 是否开启组件漏洞检测（0=关， 1=开）
+        # @param IsInstrumentationVulnerabilityScan: <p>是否开启组件漏洞检测（0=关， 1=开）</p>
         # @type IsInstrumentationVulnerabilityScan: Integer
-        # @param IsSqlInjectionAnalysis: 是否开启 SQL 注入分析（0=关， 1=开）
+        # @param IsSqlInjectionAnalysis: <p>是否开启 SQL 注入分析（0=关， 1=开）</p>
         # @type IsSqlInjectionAnalysis: Integer
-        # @param StopReason: 限流原因。{
-        # 1: 正式版限额;
-        # 2: 试用版限额;
-        # 4: 试用版到期;
-        # 8: 账号欠费
-        # }
+        # @param StopReason: <p>限流原因。{<br>1: 正式版限额;<br>2: 试用版限额;<br>4: 试用版到期;<br>8: 账号欠费<br>}</p>
         # @type StopReason: Integer
-        # @param IsRemoteCommandExecutionAnalysis: 是否开远程命令执行检测（0=关， 1=开）
+        # @param IsRemoteCommandExecutionAnalysis: <p>是否开远程命令执行检测（0=关， 1=开）</p>
         # @type IsRemoteCommandExecutionAnalysis: Integer
-        # @param IsMemoryHijackingAnalysis: 是否开内存马执行检测（0=关， 1=开）
+        # @param IsMemoryHijackingAnalysis: <p>是否开内存马执行检测（0=关， 1=开）</p>
         # @type IsMemoryHijackingAnalysis: Integer
-        # @param LogIndexType: CLS索引类型(0=全文索引，1=键值索引)
+        # @param LogIndexType: <p>CLS索引类型(0=全文索引，1=键值索引)</p>
         # @type LogIndexType: Integer
-        # @param LogTraceIdKey: traceId的索引key: 当CLS索引类型为键值索引时生效
+        # @param LogTraceIdKey: <p>traceId的索引key: 当CLS索引类型为键值索引时生效</p>
         # @type LogTraceIdKey: String
-        # @param IsDeleteAnyFileAnalysis: 是否开启删除任意文件检测（0-关闭，1-开启）
+        # @param IsDeleteAnyFileAnalysis: <p>是否开启删除任意文件检测（0-关闭，1-开启）</p>
         # @type IsDeleteAnyFileAnalysis: Integer
-        # @param IsReadAnyFileAnalysis: 是否开启读取任意文件检测（0-关闭，1-开启）
+        # @param IsReadAnyFileAnalysis: <p>是否开启读取任意文件检测（0-关闭，1-开启）</p>
         # @type IsReadAnyFileAnalysis: Integer
-        # @param IsUploadAnyFileAnalysis: 是否开启上传任意文件检测（0-关闭，1-开启）
+        # @param IsUploadAnyFileAnalysis: <p>是否开启上传任意文件检测（0-关闭，1-开启）</p>
         # @type IsUploadAnyFileAnalysis: Integer
-        # @param IsIncludeAnyFileAnalysis: 是否开启包含任意文件检测（0-关闭，1-开启）
+        # @param IsIncludeAnyFileAnalysis: <p>是否开启包含任意文件检测（0-关闭，1-开启）</p>
         # @type IsIncludeAnyFileAnalysis: Integer
-        # @param IsDirectoryTraversalAnalysis: 是否开启目录遍历检测（0-关闭，1-开启）
+        # @param IsDirectoryTraversalAnalysis: <p>是否开启目录遍历检测（0-关闭，1-开启）</p>
         # @type IsDirectoryTraversalAnalysis: Integer
-        # @param IsTemplateEngineInjectionAnalysis: 是否开启模板引擎注入检测（0-关闭，1-开启）
+        # @param IsTemplateEngineInjectionAnalysis: <p>是否开启模板引擎注入检测（0-关闭，1-开启）</p>
         # @type IsTemplateEngineInjectionAnalysis: Integer
-        # @param IsScriptEngineInjectionAnalysis: 是否开启脚本引擎注入检测（0-关闭，1-开启）
+        # @param IsScriptEngineInjectionAnalysis: <p>是否开启脚本引擎注入检测（0-关闭，1-开启）</p>
         # @type IsScriptEngineInjectionAnalysis: Integer
-        # @param IsExpressionInjectionAnalysis: 是否开启表达式注入检测（0-关闭，1-开启）
+        # @param IsExpressionInjectionAnalysis: <p>是否开启表达式注入检测（0-关闭，1-开启）</p>
         # @type IsExpressionInjectionAnalysis: Integer
-        # @param IsJNDIInjectionAnalysis: 是否开启JNDI注入检测（0-关闭，1-开启）
+        # @param IsJNDIInjectionAnalysis: <p>是否开启JNDI注入检测（0-关闭，1-开启）</p>
         # @type IsJNDIInjectionAnalysis: Integer
-        # @param IsJNIInjectionAnalysis: 是否开启JNI注入检测（0-关闭，1-开启）
+        # @param IsJNIInjectionAnalysis: <p>是否开启JNI注入检测（0-关闭，1-开启）</p>
         # @type IsJNIInjectionAnalysis: Integer
-        # @param IsWebshellBackdoorAnalysis: 是否开启Webshell后门检测（0-关闭，1-开启）
+        # @param IsWebshellBackdoorAnalysis: <p>是否开启Webshell后门检测（0-关闭，1-开启）</p>
         # @type IsWebshellBackdoorAnalysis: Integer
-        # @param IsDeserializationAnalysis: 是否开启反序列化检测（0-关闭，1-开启）
+        # @param IsDeserializationAnalysis: <p>是否开启反序列化检测（0-关闭，1-开启）</p>
         # @type IsDeserializationAnalysis: Integer
-        # @param Token: 业务系统鉴权 token
+        # @param Token: <p>业务系统鉴权 token</p>
         # @type Token: String
-        # @param UrlLongSegmentThreshold: URL长分段收敛阈值
+        # @param UrlLongSegmentThreshold: <p>URL长分段收敛阈值</p>
         # @type UrlLongSegmentThreshold: Integer
-        # @param UrlNumberSegmentThreshold: URL数字分段收敛阈值
+        # @param UrlNumberSegmentThreshold: <p>URL数字分段收敛阈值</p>
         # @type UrlNumberSegmentThreshold: Integer
-        # @param LogSpanIdKey: spanId的索引key: 当CLS索引类型为键值索引时生效
+        # @param LogSpanIdKey: <p>spanId的索引key: 当CLS索引类型为键值索引时生效</p>
         # @type LogSpanIdKey: String
 
         attr_accessor :InstanceId, :Name, :Description, :Status, :Region, :Tags, :AppId, :CreateUin, :AmountOfUsedStorage, :ServiceCount, :CountOfReportSpanPerDay, :TraceDuration, :SpanDailyCounters, :BillingInstance, :ErrRateThreshold, :SampleRate, :ErrorSample, :SlowRequestSavedThreshold, :LogRegion, :LogSource, :IsRelatedLog, :LogTopicID, :ClientCount, :TotalCount, :LogSet, :MetricDuration, :CustomShowTags, :PayMode, :PayModeEffective, :ResponseDurationWarningThreshold, :Free, :DefaultTSF, :IsRelatedDashboard, :DashboardTopicID, :IsInstrumentationVulnerabilityScan, :IsSqlInjectionAnalysis, :StopReason, :IsRemoteCommandExecutionAnalysis, :IsMemoryHijackingAnalysis, :LogIndexType, :LogTraceIdKey, :IsDeleteAnyFileAnalysis, :IsReadAnyFileAnalysis, :IsUploadAnyFileAnalysis, :IsIncludeAnyFileAnalysis, :IsDirectoryTraversalAnalysis, :IsTemplateEngineInjectionAnalysis, :IsScriptEngineInjectionAnalysis, :IsExpressionInjectionAnalysis, :IsJNDIInjectionAnalysis, :IsJNIInjectionAnalysis, :IsWebshellBackdoorAnalysis, :IsDeserializationAnalysis, :Token, :UrlLongSegmentThreshold, :UrlNumberSegmentThreshold, :LogSpanIdKey
@@ -1812,28 +1806,43 @@ module TencentCloud
 
       # DescribeApmInstances请求参数结构体
       class DescribeApmInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param Tags: Tag 列表
+        # @param Tags: <p>Tag 列表</p>
         # @type Tags: Array
-        # @param InstanceName: 按业务系统名过滤，支持模糊检索
+        # @param InstanceName: <p>按业务系统名过滤，支持模糊检索</p>
         # @type InstanceName: String
-        # @param InstanceId: 按业务系统 ID 过滤，支持模糊检索
+        # @param InstanceId: <p>按业务系统 ID 过滤，支持模糊检索</p>
         # @type InstanceId: String
-        # @param InstanceIds: 按业务系统 ID 过滤
+        # @param InstanceIds: <p>按业务系统 ID 过滤</p>
         # @type InstanceIds: Array
-        # @param DemoInstanceFlag: 是否查询官方 Demo 业务系统（0=非 Demo 业务系统，1=Demo 业务系统，默认为0）
+        # @param DemoInstanceFlag: <p>是否查询官方 Demo 业务系统（0=非 Demo 业务系统，1=Demo 业务系统，默认为0）</p>
         # @type DemoInstanceFlag: Integer
-        # @param AllRegionsFlag: 是否查询全地域业务系统（0=不查询全地域，1=查询全地域，默认为0）
+        # @param AllRegionsFlag: <p>是否查询全地域业务系统（0=不查询全地域，1=查询全地域，默认为0）</p>
         # @type AllRegionsFlag: Integer
+        # @param PageIndex: <p>页码，从1开始</p><p>单位：页</p>
+        # @type PageIndex: Integer
+        # @param PageSize: <p>每页数量，默认20，最大100</p><p>单位：个</p>
+        # @type PageSize: Integer
+        # @param Keyword: <p>搜索参数（OR 匹配 Name / InstanceKey）</p>
+        # @type Keyword: String
+        # @param OrderDirection: <p>排序类型：ASC | DESC</p>
+        # @type OrderDirection: String
+        # @param OrderBy: <p>排序字段：ServiceCount / TotalCount</p>
+        # @type OrderBy: String
 
-        attr_accessor :Tags, :InstanceName, :InstanceId, :InstanceIds, :DemoInstanceFlag, :AllRegionsFlag
+        attr_accessor :Tags, :InstanceName, :InstanceId, :InstanceIds, :DemoInstanceFlag, :AllRegionsFlag, :PageIndex, :PageSize, :Keyword, :OrderDirection, :OrderBy
 
-        def initialize(tags=nil, instancename=nil, instanceid=nil, instanceids=nil, demoinstanceflag=nil, allregionsflag=nil)
+        def initialize(tags=nil, instancename=nil, instanceid=nil, instanceids=nil, demoinstanceflag=nil, allregionsflag=nil, pageindex=nil, pagesize=nil, keyword=nil, orderdirection=nil, orderby=nil)
           @Tags = tags
           @InstanceName = instancename
           @InstanceId = instanceid
           @InstanceIds = instanceids
           @DemoInstanceFlag = demoinstanceflag
           @AllRegionsFlag = allregionsflag
+          @PageIndex = pageindex
+          @PageSize = pagesize
+          @Keyword = keyword
+          @OrderDirection = orderdirection
+          @OrderBy = orderby
         end
 
         def deserialize(params)
@@ -1850,20 +1859,34 @@ module TencentCloud
           @InstanceIds = params['InstanceIds']
           @DemoInstanceFlag = params['DemoInstanceFlag']
           @AllRegionsFlag = params['AllRegionsFlag']
+          @PageIndex = params['PageIndex']
+          @PageSize = params['PageSize']
+          @Keyword = params['Keyword']
+          @OrderDirection = params['OrderDirection']
+          @OrderBy = params['OrderBy']
         end
       end
 
       # DescribeApmInstances返回参数结构体
       class DescribeApmInstancesResponse < TencentCloud::Common::AbstractModel
-        # @param Instances: APM 业务系统列表
+        # @param Instances: <p>APM 业务系统列表</p>
         # @type Instances: Array
+        # @param TotalCount: <p>总数</p><p>单位：个</p>
+        # @type TotalCount: Integer
+        # @param PageIndex: <p>页码，从1开始 </p><p>单位：页</p>
+        # @type PageIndex: Integer
+        # @param PageSize: <p>每页数量，默认20，最大100</p><p>单位：个</p>
+        # @type PageSize: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Instances, :RequestId
+        attr_accessor :Instances, :TotalCount, :PageIndex, :PageSize, :RequestId
 
-        def initialize(instances=nil, requestid=nil)
+        def initialize(instances=nil, totalcount=nil, pageindex=nil, pagesize=nil, requestid=nil)
           @Instances = instances
+          @TotalCount = totalcount
+          @PageIndex = pageindex
+          @PageSize = pagesize
           @RequestId = requestid
         end
 
@@ -1876,6 +1899,9 @@ module TencentCloud
               @Instances << apminstancedetail_tmp
             end
           end
+          @TotalCount = params['TotalCount']
+          @PageIndex = params['PageIndex']
+          @PageSize = params['PageSize']
           @RequestId = params['RequestId']
         end
       end
@@ -2656,48 +2682,40 @@ module TencentCloud
 
       # DescribeMetricRecords请求参数结构体
       class DescribeMetricRecordsRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 业务系统 ID
+        # @param InstanceId: <p>业务系统 ID</p>
         # @type InstanceId: String
-        # @param Metrics: 指标列表
+        # @param Metrics: <p>指标列表</p>
         # @type Metrics: Array
-        # @param StartTime: 开始时间（单位为秒）
+        # @param StartTime: <p>开始时间（单位为秒）</p>
         # @type StartTime: Integer
-        # @param EndTime: 结束时间（单位为秒）
+        # @param EndTime: <p>结束时间（单位为秒）</p>
         # @type EndTime: Integer
-        # @param GroupBy: 聚合维度
+        # @param GroupBy: <p>聚合维度</p>
         # @type GroupBy: Array
-        # @param Filters: 过滤条件
+        # @param Filters: <p>过滤条件</p>
         # @type Filters: Array
-        # @param OrFilters: Or 过滤条件
+        # @param OrFilters: <p>Or 过滤条件</p>
         # @type OrFilters: Array
-        # @param OrderBy: 排序
-        # 现支持的 Key 有：
-
-        # - startTime(开始时间)
-        # - endTime(结束时间)
-        # - duration(响应时间)
-
-        # 现支持的 Value 有：
-
-        # - desc(降序排序)
-        # - asc(升序排序)
+        # @param OrderBy: <p>排序<br>现支持的 Key 有：</p><ul><li>startTime(开始时间)</li><li>endTime(结束时间)</li><li>duration(响应时间)</li></ul><p>现支持的 Value 有：</p><ul><li>desc(降序排序)</li><li>asc(升序排序)</li></ul>
         # @type OrderBy: :class:`Tencentcloud::Apm.v20210622.models.OrderBy`
-        # @param BusinessName: 业务名称，控制台用户请填写taw。
+        # @param BusinessName: <p>业务名称，控制台用户请填写taw。</p>
         # @type BusinessName: String
-        # @param Type: 特殊处理查询结果
+        # @param Type: <p>特殊处理查询结果</p>
         # @type Type: String
-        # @param Limit: 每页大小，默认为1000，合法取值范围为0~1000
+        # @param Limit: <p>每页大小，默认为1000，合法取值范围为0~1000</p>
         # @type Limit: Integer
-        # @param Offset: 分页起始点
+        # @param Offset: <p>分页起始点</p>
         # @type Offset: Integer
-        # @param PageIndex: 页码
+        # @param PageIndex: <p>页码</p>
         # @type PageIndex: Integer
-        # @param PageSize: 页长
+        # @param PageSize: <p>页长</p>
         # @type PageSize: Integer
+        # @param ServiceID: <p>应用Id</p>
+        # @type ServiceID: String
 
-        attr_accessor :InstanceId, :Metrics, :StartTime, :EndTime, :GroupBy, :Filters, :OrFilters, :OrderBy, :BusinessName, :Type, :Limit, :Offset, :PageIndex, :PageSize
+        attr_accessor :InstanceId, :Metrics, :StartTime, :EndTime, :GroupBy, :Filters, :OrFilters, :OrderBy, :BusinessName, :Type, :Limit, :Offset, :PageIndex, :PageSize, :ServiceID
 
-        def initialize(instanceid=nil, metrics=nil, starttime=nil, endtime=nil, groupby=nil, filters=nil, orfilters=nil, orderby=nil, businessname=nil, type=nil, limit=nil, offset=nil, pageindex=nil, pagesize=nil)
+        def initialize(instanceid=nil, metrics=nil, starttime=nil, endtime=nil, groupby=nil, filters=nil, orfilters=nil, orderby=nil, businessname=nil, type=nil, limit=nil, offset=nil, pageindex=nil, pagesize=nil, serviceid=nil)
           @InstanceId = instanceid
           @Metrics = metrics
           @StartTime = starttime
@@ -2712,6 +2730,7 @@ module TencentCloud
           @Offset = offset
           @PageIndex = pageindex
           @PageSize = pagesize
+          @ServiceID = serviceid
         end
 
         def deserialize(params)
@@ -2753,14 +2772,15 @@ module TencentCloud
           @Offset = params['Offset']
           @PageIndex = params['PageIndex']
           @PageSize = params['PageSize']
+          @ServiceID = params['ServiceID']
         end
       end
 
       # DescribeMetricRecords返回参数结构体
       class DescribeMetricRecordsResponse < TencentCloud::Common::AbstractModel
-        # @param Records: 指标结果集
+        # @param Records: <p>指标结果集</p>
         # @type Records: Array
-        # @param TotalCount: 查询指标结果集条数
+        # @param TotalCount: <p>查询指标结果集条数</p>
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3017,44 +3037,46 @@ module TencentCloud
 
       # DescribeTopologyNew请求参数结构体
       class DescribeTopologyNewRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 业务系统 ID
+        # @param InstanceId: <p>业务系统 ID</p>
         # @type InstanceId: String
-        # @param StartTime: 查询开始时间
+        # @param StartTime: <p>查询开始时间</p>
         # @type StartTime: Integer
-        # @param EndTime: 查询结束时间
+        # @param EndTime: <p>查询结束时间</p>
         # @type EndTime: Integer
-        # @param ServiceName: 应用名
+        # @param ServiceName: <p>应用名</p>
         # @type ServiceName: String
-        # @param UpLevel: 上游层级
+        # @param UpLevel: <p>上游层级</p>
         # @type UpLevel: Integer
-        # @param ServiceInstance: 应用实例信息
+        # @param ServiceInstance: <p>应用实例信息</p>
         # @type ServiceInstance: String
-        # @param DownLevel: 下游层级
+        # @param DownLevel: <p>下游层级</p>
         # @type DownLevel: Integer
-        # @param View: 视角
+        # @param View: <p>视角</p>
         # @type View: String
-        # @param Filters: 过滤器
+        # @param Filters: <p>过滤器</p>
         # @type Filters: Array
-        # @param Topic: 表示Topic（MQ拓扑图用）
+        # @param Topic: <p>表示Topic（MQ拓扑图用）</p>
         # @type Topic: String
-        # @param Selectors: 视图筛选列表
+        # @param Selectors: <p>视图筛选列表</p>
         # @type Selectors: :class:`Tencentcloud::Apm.v20210622.models.Selectors`
-        # @param Id: 视图ID
+        # @param Id: <p>视图ID</p>
         # @type Id: String
-        # @param TraceID: TraceID
+        # @param TraceID: <p>TraceID</p>
         # @type TraceID: String
-        # @param IsSlowTopFive: 查询top5慢响应节点
+        # @param IsSlowTopFive: <p>查询top5慢响应节点</p>
         # @type IsSlowTopFive: Boolean
-        # @param GetResource: 是否获取资源层信息
+        # @param GetResource: <p>是否获取资源层信息</p>
         # @type GetResource: Boolean
-        # @param Tags: 根据应用标签过滤
+        # @param Tags: <p>根据应用标签过滤</p>
         # @type Tags: Array
-        # @param Hidden: 不显示的节点类型
+        # @param Hidden: <p>不显示的节点类型</p>
         # @type Hidden: :class:`Tencentcloud::Apm.v20210622.models.Selectors`
+        # @param EnableResourceLink: <p>是否开启云资源关联</p>
+        # @type EnableResourceLink: Boolean
 
-        attr_accessor :InstanceId, :StartTime, :EndTime, :ServiceName, :UpLevel, :ServiceInstance, :DownLevel, :View, :Filters, :Topic, :Selectors, :Id, :TraceID, :IsSlowTopFive, :GetResource, :Tags, :Hidden
+        attr_accessor :InstanceId, :StartTime, :EndTime, :ServiceName, :UpLevel, :ServiceInstance, :DownLevel, :View, :Filters, :Topic, :Selectors, :Id, :TraceID, :IsSlowTopFive, :GetResource, :Tags, :Hidden, :EnableResourceLink
 
-        def initialize(instanceid=nil, starttime=nil, endtime=nil, servicename=nil, uplevel=nil, serviceinstance=nil, downlevel=nil, view=nil, filters=nil, topic=nil, selectors=nil, id=nil, traceid=nil, isslowtopfive=nil, getresource=nil, tags=nil, hidden=nil)
+        def initialize(instanceid=nil, starttime=nil, endtime=nil, servicename=nil, uplevel=nil, serviceinstance=nil, downlevel=nil, view=nil, filters=nil, topic=nil, selectors=nil, id=nil, traceid=nil, isslowtopfive=nil, getresource=nil, tags=nil, hidden=nil, enableresourcelink=nil)
           @InstanceId = instanceid
           @StartTime = starttime
           @EndTime = endtime
@@ -3072,6 +3094,7 @@ module TencentCloud
           @GetResource = getresource
           @Tags = tags
           @Hidden = hidden
+          @EnableResourceLink = enableresourcelink
         end
 
         def deserialize(params)
@@ -3112,32 +3135,37 @@ module TencentCloud
             @Hidden = Selectors.new
             @Hidden.deserialize(params['Hidden'])
           end
+          @EnableResourceLink = params['EnableResourceLink']
         end
       end
 
       # DescribeTopologyNew返回参数结构体
       class DescribeTopologyNewResponse < TencentCloud::Common::AbstractModel
-        # @param Nodes: 节点集合
+        # @param Nodes: <p>节点集合</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Nodes: Array
-        # @param Edges: 边集合
+        # @param Edges: <p>边集合</p>
         # @type Edges: Array
-        # @param TopologyModifyFlag: 拓扑图是否有修改
+        # @param TopologyModifyFlag: <p>拓扑图是否有修改</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TopologyModifyFlag: Integer
-        # @param Selectors: 节点数量
+        # @param Selectors: <p>节点数量</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Selectors: :class:`Tencentcloud::Apm.v20210622.models.SelectorView`
+        # @param OverviewStats: <p>节点状态</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OverviewStats: :class:`Tencentcloud::Apm.v20210622.models.OverviewStats`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Nodes, :Edges, :TopologyModifyFlag, :Selectors, :RequestId
+        attr_accessor :Nodes, :Edges, :TopologyModifyFlag, :Selectors, :OverviewStats, :RequestId
 
-        def initialize(nodes=nil, edges=nil, topologymodifyflag=nil, selectors=nil, requestid=nil)
+        def initialize(nodes=nil, edges=nil, topologymodifyflag=nil, selectors=nil, overviewstats=nil, requestid=nil)
           @Nodes = nodes
           @Edges = edges
           @TopologyModifyFlag = topologymodifyflag
           @Selectors = selectors
+          @OverviewStats = overviewstats
           @RequestId = requestid
         end
 
@@ -3162,6 +3190,10 @@ module TencentCloud
           unless params['Selectors'].nil?
             @Selectors = SelectorView.new
             @Selectors.deserialize(params['Selectors'])
+          end
+          unless params['OverviewStats'].nil?
+            @OverviewStats = OverviewStats.new
+            @OverviewStats.deserialize(params['OverviewStats'])
           end
           @RequestId = params['RequestId']
         end
@@ -4067,6 +4099,55 @@ module TencentCloud
         end
       end
 
+      # 拓扑图节点状态
+      class OverviewStats < TencentCloud::Common::AbstractModel
+        # @param ServiceStats: 应用节点状态
+        # @type ServiceStats: :class:`Tencentcloud::Apm.v20210622.models.TopologyNodeStats`
+        # @param DatabaseStats: 数据库节点状态
+        # @type DatabaseStats: :class:`Tencentcloud::Apm.v20210622.models.TopologyNodeStats`
+        # @param MQStats: 消息队列节点状态
+        # @type MQStats: :class:`Tencentcloud::Apm.v20210622.models.TopologyNodeStats`
+        # @param TotalNodes: 节点总数
+        # @type TotalNodes: Integer
+        # @param HealthyNodes: 健康节点总数
+        # @type HealthyNodes: Integer
+        # @param WarningNodes: 警告节点总数
+        # @type WarningNodes: Integer
+        # @param ErrorNodes: 错误节点总数
+        # @type ErrorNodes: Integer
+
+        attr_accessor :ServiceStats, :DatabaseStats, :MQStats, :TotalNodes, :HealthyNodes, :WarningNodes, :ErrorNodes
+
+        def initialize(servicestats=nil, databasestats=nil, mqstats=nil, totalnodes=nil, healthynodes=nil, warningnodes=nil, errornodes=nil)
+          @ServiceStats = servicestats
+          @DatabaseStats = databasestats
+          @MQStats = mqstats
+          @TotalNodes = totalnodes
+          @HealthyNodes = healthynodes
+          @WarningNodes = warningnodes
+          @ErrorNodes = errornodes
+        end
+
+        def deserialize(params)
+          unless params['ServiceStats'].nil?
+            @ServiceStats = TopologyNodeStats.new
+            @ServiceStats.deserialize(params['ServiceStats'])
+          end
+          unless params['DatabaseStats'].nil?
+            @DatabaseStats = TopologyNodeStats.new
+            @DatabaseStats.deserialize(params['DatabaseStats'])
+          end
+          unless params['MQStats'].nil?
+            @MQStats = TopologyNodeStats.new
+            @MQStats.deserialize(params['MQStats'])
+          end
+          @TotalNodes = params['TotalNodes']
+          @HealthyNodes = params['HealthyNodes']
+          @WarningNodes = params['WarningNodes']
+          @ErrorNodes = params['ErrorNodes']
+        end
+      end
+
       # 节点位置信息
       class Position < TencentCloud::Common::AbstractModel
         # @param X: 节点位置横坐标
@@ -4565,10 +4646,12 @@ module TencentCloud
         # @type SourceComp: String
         # @param TargetComp: 边上目标节点类型 应用/MQ/DB
         # @type TargetComp: String
+        # @param ReqCnt: 组件间调用次数
+        # @type ReqCnt: Integer
 
-        attr_accessor :Source, :Id, :Weight, :Target, :Duration, :ErrRate, :Qps, :Type, :Color, :SqlRequestCount, :SqlErrorRequestCount, :SourceComp, :TargetComp
+        attr_accessor :Source, :Id, :Weight, :Target, :Duration, :ErrRate, :Qps, :Type, :Color, :SqlRequestCount, :SqlErrorRequestCount, :SourceComp, :TargetComp, :ReqCnt
 
-        def initialize(source=nil, id=nil, weight=nil, target=nil, duration=nil, errrate=nil, qps=nil, type=nil, color=nil, sqlrequestcount=nil, sqlerrorrequestcount=nil, sourcecomp=nil, targetcomp=nil)
+        def initialize(source=nil, id=nil, weight=nil, target=nil, duration=nil, errrate=nil, qps=nil, type=nil, color=nil, sqlrequestcount=nil, sqlerrorrequestcount=nil, sourcecomp=nil, targetcomp=nil, reqcnt=nil)
           @Source = source
           @Id = id
           @Weight = weight
@@ -4582,6 +4665,7 @@ module TencentCloud
           @SqlErrorRequestCount = sqlerrorrequestcount
           @SourceComp = sourcecomp
           @TargetComp = targetcomp
+          @ReqCnt = reqcnt
         end
 
         def deserialize(params)
@@ -4598,6 +4682,7 @@ module TencentCloud
           @SqlErrorRequestCount = params['SqlErrorRequestCount']
           @SourceComp = params['SourceComp']
           @TargetComp = params['TargetComp']
+          @ReqCnt = params['ReqCnt']
         end
       end
 
@@ -4656,10 +4741,14 @@ module TencentCloud
         # @type ConsumerQps: Float
         # @param ServiceId: 应用 ID
         # @type ServiceId: String
+        # @param ReqCnt: 调用次数
+        # @type ReqCnt: Integer
+        # @param ConsumerReqCnt: 消息队列消费者视角的调用次数
+        # @type ConsumerReqCnt: Integer
 
-        attr_accessor :ErrRate, :Kind, :Name, :Weight, :Color, :Duration, :Qps, :Type, :Id, :Size, :IsModule, :Position, :Tags, :CanDrillDown, :Resource, :NodeView, :ConsumerDuration, :ConsumerErrRate, :ConsumerQps, :ServiceId
+        attr_accessor :ErrRate, :Kind, :Name, :Weight, :Color, :Duration, :Qps, :Type, :Id, :Size, :IsModule, :Position, :Tags, :CanDrillDown, :Resource, :NodeView, :ConsumerDuration, :ConsumerErrRate, :ConsumerQps, :ServiceId, :ReqCnt, :ConsumerReqCnt
 
-        def initialize(errrate=nil, kind=nil, name=nil, weight=nil, color=nil, duration=nil, qps=nil, type=nil, id=nil, size=nil, ismodule=nil, position=nil, tags=nil, candrilldown=nil, resource=nil, nodeview=nil, consumerduration=nil, consumererrrate=nil, consumerqps=nil, serviceid=nil)
+        def initialize(errrate=nil, kind=nil, name=nil, weight=nil, color=nil, duration=nil, qps=nil, type=nil, id=nil, size=nil, ismodule=nil, position=nil, tags=nil, candrilldown=nil, resource=nil, nodeview=nil, consumerduration=nil, consumererrrate=nil, consumerqps=nil, serviceid=nil, reqcnt=nil, consumerreqcnt=nil)
           @ErrRate = errrate
           @Kind = kind
           @Name = name
@@ -4680,6 +4769,8 @@ module TencentCloud
           @ConsumerErrRate = consumererrrate
           @ConsumerQps = consumerqps
           @ServiceId = serviceid
+          @ReqCnt = reqcnt
+          @ConsumerReqCnt = consumerreqcnt
         end
 
         def deserialize(params)
@@ -4716,6 +4807,36 @@ module TencentCloud
           @ConsumerErrRate = params['ConsumerErrRate']
           @ConsumerQps = params['ConsumerQps']
           @ServiceId = params['ServiceId']
+          @ReqCnt = params['ReqCnt']
+          @ConsumerReqCnt = params['ConsumerReqCnt']
+        end
+      end
+
+      # 拓扑图应用节点状态
+      class TopologyNodeStats < TencentCloud::Common::AbstractModel
+        # @param Total: 节点总数
+        # @type Total: Integer
+        # @param Healthy: 健康节点数量
+        # @type Healthy: Integer
+        # @param Warning: 警告节点数量
+        # @type Warning: Integer
+        # @param Error: 异常节点数量
+        # @type Error: Integer
+
+        attr_accessor :Total, :Healthy, :Warning, :Error
+
+        def initialize(total=nil, healthy=nil, warning=nil, error=nil)
+          @Total = total
+          @Healthy = healthy
+          @Warning = warning
+          @Error = error
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          @Healthy = params['Healthy']
+          @Warning = params['Warning']
+          @Error = params['Error']
         end
       end
 

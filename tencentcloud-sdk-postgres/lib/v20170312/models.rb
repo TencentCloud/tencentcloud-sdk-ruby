@@ -1089,23 +1089,27 @@ module TencentCloud
 
       # CreateBaseBackup请求参数结构体
       class CreateBaseBackupRequest < TencentCloud::Common::AbstractModel
-        # @param DBInstanceId: 实例ID。可通过[DescribeDBInstances](https://cloud.tencent.com/document/api/409/16773)接口获取
+        # @param DBInstanceId: <p>实例ID。可通过<a href="https://cloud.tencent.com/document/api/409/16773">DescribeDBInstances</a>接口获取</p>
         # @type DBInstanceId: String
+        # @param BackupMethod: <p>备份方式</p><p>枚举值：</p><ul><li>physical： 物理备份</li><li>logical： 逻辑备份</li><li>snapshot： 快照备份</li></ul>
+        # @type BackupMethod: String
 
-        attr_accessor :DBInstanceId
+        attr_accessor :DBInstanceId, :BackupMethod
 
-        def initialize(dbinstanceid=nil)
+        def initialize(dbinstanceid=nil, backupmethod=nil)
           @DBInstanceId = dbinstanceid
+          @BackupMethod = backupmethod
         end
 
         def deserialize(params)
           @DBInstanceId = params['DBInstanceId']
+          @BackupMethod = params['BackupMethod']
         end
       end
 
       # CreateBaseBackup返回参数结构体
       class CreateBaseBackupResponse < TencentCloud::Common::AbstractModel
-        # @param BaseBackupId: 数据备份集ID
+        # @param BaseBackupId: <p>数据备份集ID</p>
         # @type BaseBackupId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6057,26 +6061,28 @@ module TencentCloud
 
       # ModifyBackupPlan请求参数结构体
       class ModifyBackupPlanRequest < TencentCloud::Common::AbstractModel
-        # @param DBInstanceId: 实例ID。可通过[DescribeDBInstances](https://cloud.tencent.com/document/api/409/16773)接口获取
+        # @param DBInstanceId: <p>实例ID。可通过<a href="https://cloud.tencent.com/document/api/409/16773">DescribeDBInstances</a>接口获取</p>
         # @type DBInstanceId: String
-        # @param MinBackupStartTime: 实例最早开始备份时间
+        # @param MinBackupStartTime: <p>实例最早开始备份时间</p>
         # @type MinBackupStartTime: String
-        # @param MaxBackupStartTime: 实例最晚开始备份时间
+        # @param MaxBackupStartTime: <p>实例最晚开始备份时间</p>
         # @type MaxBackupStartTime: String
-        # @param BaseBackupRetentionPeriod: 实例备份保留时长，取值范围为7-1830，单位是天
+        # @param BaseBackupRetentionPeriod: <p>实例备份保留时长，取值范围为7-1830，单位是天</p>
         # @type BaseBackupRetentionPeriod: Integer
-        # @param BackupPeriod: 实例备份周期，若是星期维度，格式为小写星期英文单词，且至少设置两天备份；若是按月维度，格式为数字字符，如["1","2"]。
+        # @param BackupPeriod: <p>实例备份周期，若是星期维度，格式为小写星期英文单词，且至少设置两天备份；若是按月维度，格式为数字字符，如[&quot;1&quot;,&quot;2&quot;]。</p>
         # @type BackupPeriod: Array
-        # @param LogBackupRetentionPeriod: 实例日志备份保留时长，取值范围为7-1830，单位是天
+        # @param LogBackupRetentionPeriod: <p>实例日志备份保留时长，取值范围为7-1830，单位是天</p>
         # @type LogBackupRetentionPeriod: Integer
-        # @param PlanId: 备份计划ID，用于指明要修改哪个备份计划，不传则是修改默认备份计划。
+        # @param PlanId: <p>备份计划ID，用于指明要修改哪个备份计划，不传则是修改默认备份计划。</p>
         # @type PlanId: String
-        # @param PlanName: 要修改的备份计划名称。
+        # @param PlanName: <p>要修改的备份计划名称。</p>
         # @type PlanName: String
+        # @param BackupMethod: <p>备份方式</p><p>枚举值：</p><ul><li>physical： 物理备份</li><li>logical： 逻辑备份</li><li>snapshot： 快照备份</li></ul>
+        # @type BackupMethod: String
 
-        attr_accessor :DBInstanceId, :MinBackupStartTime, :MaxBackupStartTime, :BaseBackupRetentionPeriod, :BackupPeriod, :LogBackupRetentionPeriod, :PlanId, :PlanName
+        attr_accessor :DBInstanceId, :MinBackupStartTime, :MaxBackupStartTime, :BaseBackupRetentionPeriod, :BackupPeriod, :LogBackupRetentionPeriod, :PlanId, :PlanName, :BackupMethod
 
-        def initialize(dbinstanceid=nil, minbackupstarttime=nil, maxbackupstarttime=nil, basebackupretentionperiod=nil, backupperiod=nil, logbackupretentionperiod=nil, planid=nil, planname=nil)
+        def initialize(dbinstanceid=nil, minbackupstarttime=nil, maxbackupstarttime=nil, basebackupretentionperiod=nil, backupperiod=nil, logbackupretentionperiod=nil, planid=nil, planname=nil, backupmethod=nil)
           @DBInstanceId = dbinstanceid
           @MinBackupStartTime = minbackupstarttime
           @MaxBackupStartTime = maxbackupstarttime
@@ -6085,6 +6091,7 @@ module TencentCloud
           @LogBackupRetentionPeriod = logbackupretentionperiod
           @PlanId = planid
           @PlanName = planname
+          @BackupMethod = backupmethod
         end
 
         def deserialize(params)
@@ -6096,6 +6103,7 @@ module TencentCloud
           @LogBackupRetentionPeriod = params['LogBackupRetentionPeriod']
           @PlanId = params['PlanId']
           @PlanName = params['PlanName']
+          @BackupMethod = params['BackupMethod']
         end
       end
 

@@ -269,6 +269,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 取消Serverless集群的弹性计划
+
+        # @param request: Request instance for CancelClusterServerlessScalePlan.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::CancelClusterServerlessScalePlanRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::CancelClusterServerlessScalePlanResponse`
+        def CancelClusterServerlessScalePlan(request)
+          body = send_request('CancelClusterServerlessScalePlan', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CancelClusterServerlessScalePlanResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（CheckCreateLibraDBInstance）用于校验集群是否可以添加只读分析引擎实例
 
         # @param request: Request instance for CheckCreateLibraDBInstance.
@@ -653,6 +677,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建集群的周期弹性策略
+
+        # @param request: Request instance for CreateClusterPeriodScalePolicy.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::CreateClusterPeriodScalePolicyRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::CreateClusterPeriodScalePolicyResponse`
+        def CreateClusterPeriodScalePolicy(request)
+          body = send_request('CreateClusterPeriodScalePolicy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateClusterPeriodScalePolicyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（CreateClusters）用于新购集群。
 
         # @param request: Request instance for CreateClusters.
@@ -1023,6 +1071,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteClusterDatabaseResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除周期弹性策略
+
+        # @param request: Request instance for DeleteClusterPeriodScalePolicy.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::DeleteClusterPeriodScalePolicyRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::DeleteClusterPeriodScalePolicyResponse`
+        def DeleteClusterPeriodScalePolicy(request)
+          body = send_request('DeleteClusterPeriodScalePolicy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteClusterPeriodScalePolicyResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1853,6 +1925,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询集群内所有的周期弹性策略
+
+        # @param request: Request instance for DescribeClusterPeriodScalePolicy.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::DescribeClusterPeriodScalePolicyRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::DescribeClusterPeriodScalePolicyResponse`
+        def DescribeClusterPeriodScalePolicy(request)
+          body = send_request('DescribeClusterPeriodScalePolicy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeClusterPeriodScalePolicyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DescribeClusterReadOnly）用于查询集群只读开关。
 
         # @param request: Request instance for DescribeClusterReadOnly.
@@ -1863,6 +1959,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeClusterReadOnlyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询Serverless弹性扩容计划
+
+        # @param request: Request instance for DescribeClusterServerlessScalePlans.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::DescribeClusterServerlessScalePlansRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::DescribeClusterServerlessScalePlansResponse`
+        def DescribeClusterServerlessScalePlans(request)
+          body = send_request('DescribeClusterServerlessScalePlans', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeClusterServerlessScalePlansResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -3917,6 +4037,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 更新集群的周期弹性策略
+
+        # @param request: Request instance for ModifyClusterPeriodScalePolicy.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::ModifyClusterPeriodScalePolicyRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::ModifyClusterPeriodScalePolicyResponse`
+        def ModifyClusterPeriodScalePolicy(request)
+          body = send_request('ModifyClusterPeriodScalePolicy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyClusterPeriodScalePolicyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（ModifyClusterReadOnly）用于修改集群只读开关。
 
         # @param request: Request instance for ModifyClusterReadOnly.
@@ -4623,6 +4767,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = OfflineLibraDBInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口(OpenAIOptimizer)用于开启实例的AI优化器开关。
+
+        # @param request: Request instance for OpenAIOptimizer.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::OpenAIOptimizerRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::OpenAIOptimizerResponse`
+        def OpenAIOptimizer(request)
+          body = send_request('OpenAIOptimizer', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = OpenAIOptimizerResponse.new
             model.deserialize(response['Response'])
             model
           else

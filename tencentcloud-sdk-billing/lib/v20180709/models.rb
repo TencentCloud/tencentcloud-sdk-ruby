@@ -4157,28 +4157,30 @@ module TencentCloud
 
       # 消耗按产品汇总详情
       class ConsumptionBusinessSummaryDataItem < TencentCloud::Common::AbstractModel
-        # @param BusinessCode: 产品名称代码
+        # @param BusinessCode: <p>产品名称代码</p>
         # @type BusinessCode: String
-        # @param BusinessCodeName: 产品名称
+        # @param BusinessCodeName: <p>产品名称</p>
         # @type BusinessCodeName: String
-        # @param RealTotalCost: 折后总价
+        # @param RealTotalCost: <p>折后总价</p>
         # @type RealTotalCost: String
-        # @param Trend: 费用趋势
+        # @param Trend: <p>费用趋势</p>
         # @type Trend: :class:`Tencentcloud::Billing.v20180709.models.ConsumptionSummaryTrend`
-        # @param CashPayAmount: 现金
+        # @param CashPayAmount: <p>现金</p>
         # @type CashPayAmount: String
-        # @param IncentivePayAmount: 赠送金
+        # @param IncentivePayAmount: <p>赠送金</p>
         # @type IncentivePayAmount: String
-        # @param VoucherPayAmount: 代金券
+        # @param VoucherPayAmount: <p>代金券</p>
         # @type VoucherPayAmount: String
-        # @param TransferPayAmount: 分成金
+        # @param TransferPayAmount: <p>分成金</p>
         # @type TransferPayAmount: String
-        # @param RegionName: 地域名称（仅在地域汇总总展示）
+        # @param RegionName: <p>地域名称（仅在地域汇总中展示）</p>
         # @type RegionName: String
+        # @param LeftRealTotalCost: <p>待分摊金额</p><p>剩余待分摊的折后总金额</p>
+        # @type LeftRealTotalCost: String
 
-        attr_accessor :BusinessCode, :BusinessCodeName, :RealTotalCost, :Trend, :CashPayAmount, :IncentivePayAmount, :VoucherPayAmount, :TransferPayAmount, :RegionName
+        attr_accessor :BusinessCode, :BusinessCodeName, :RealTotalCost, :Trend, :CashPayAmount, :IncentivePayAmount, :VoucherPayAmount, :TransferPayAmount, :RegionName, :LeftRealTotalCost
 
-        def initialize(businesscode=nil, businesscodename=nil, realtotalcost=nil, trend=nil, cashpayamount=nil, incentivepayamount=nil, voucherpayamount=nil, transferpayamount=nil, regionname=nil)
+        def initialize(businesscode=nil, businesscodename=nil, realtotalcost=nil, trend=nil, cashpayamount=nil, incentivepayamount=nil, voucherpayamount=nil, transferpayamount=nil, regionname=nil, leftrealtotalcost=nil)
           @BusinessCode = businesscode
           @BusinessCodeName = businesscodename
           @RealTotalCost = realtotalcost
@@ -4188,6 +4190,7 @@ module TencentCloud
           @VoucherPayAmount = voucherpayamount
           @TransferPayAmount = transferpayamount
           @RegionName = regionname
+          @LeftRealTotalCost = leftrealtotalcost
         end
 
         def deserialize(params)
@@ -4203,33 +4206,36 @@ module TencentCloud
           @VoucherPayAmount = params['VoucherPayAmount']
           @TransferPayAmount = params['TransferPayAmount']
           @RegionName = params['RegionName']
+          @LeftRealTotalCost = params['LeftRealTotalCost']
         end
       end
 
       # 消耗按项目汇总详情
       class ConsumptionProjectSummaryDataItem < TencentCloud::Common::AbstractModel
-        # @param ProjectId: 项目ID
+        # @param ProjectId: <p>项目ID</p>
         # @type ProjectId: String
-        # @param ProjectName: 项目名称
+        # @param ProjectName: <p>项目名称</p>
         # @type ProjectName: String
-        # @param RealTotalCost: 折后总价
+        # @param RealTotalCost: <p>折后总价</p>
         # @type RealTotalCost: String
-        # @param Trend: 趋势
+        # @param Trend: <p>趋势</p>
         # @type Trend: :class:`Tencentcloud::Billing.v20180709.models.ConsumptionSummaryTrend`
-        # @param Business: 产品消耗详情
+        # @param Business: <p>产品消耗详情</p>
         # @type Business: Array
-        # @param CashPayAmount: 现金
+        # @param CashPayAmount: <p>现金</p>
         # @type CashPayAmount: String
-        # @param IncentivePayAmount: 赠送金
+        # @param IncentivePayAmount: <p>赠送金</p>
         # @type IncentivePayAmount: String
-        # @param VoucherPayAmount: 代金券
+        # @param VoucherPayAmount: <p>代金券</p>
         # @type VoucherPayAmount: String
-        # @param TransferPayAmount: 分成金
+        # @param TransferPayAmount: <p>分成金</p>
         # @type TransferPayAmount: String
+        # @param LeftRealTotalCost: <p>待分摊金额</p><p>剩余待分摊的折后总金额</p>
+        # @type LeftRealTotalCost: String
 
-        attr_accessor :ProjectId, :ProjectName, :RealTotalCost, :Trend, :Business, :CashPayAmount, :IncentivePayAmount, :VoucherPayAmount, :TransferPayAmount
+        attr_accessor :ProjectId, :ProjectName, :RealTotalCost, :Trend, :Business, :CashPayAmount, :IncentivePayAmount, :VoucherPayAmount, :TransferPayAmount, :LeftRealTotalCost
 
-        def initialize(projectid=nil, projectname=nil, realtotalcost=nil, trend=nil, business=nil, cashpayamount=nil, incentivepayamount=nil, voucherpayamount=nil, transferpayamount=nil)
+        def initialize(projectid=nil, projectname=nil, realtotalcost=nil, trend=nil, business=nil, cashpayamount=nil, incentivepayamount=nil, voucherpayamount=nil, transferpayamount=nil, leftrealtotalcost=nil)
           @ProjectId = projectid
           @ProjectName = projectname
           @RealTotalCost = realtotalcost
@@ -4239,6 +4245,7 @@ module TencentCloud
           @IncentivePayAmount = incentivepayamount
           @VoucherPayAmount = voucherpayamount
           @TransferPayAmount = transferpayamount
+          @LeftRealTotalCost = leftrealtotalcost
         end
 
         def deserialize(params)
@@ -4261,33 +4268,36 @@ module TencentCloud
           @IncentivePayAmount = params['IncentivePayAmount']
           @VoucherPayAmount = params['VoucherPayAmount']
           @TransferPayAmount = params['TransferPayAmount']
+          @LeftRealTotalCost = params['LeftRealTotalCost']
         end
       end
 
       # 消耗按地域汇总详情
       class ConsumptionRegionSummaryDataItem < TencentCloud::Common::AbstractModel
-        # @param RegionId: 地域ID
+        # @param RegionId: <p>地域ID</p>
         # @type RegionId: String
-        # @param RegionName: 地域名称
+        # @param RegionName: <p>地域名称</p>
         # @type RegionName: String
-        # @param RealTotalCost: 折后总价
+        # @param RealTotalCost: <p>折后总价</p>
         # @type RealTotalCost: String
-        # @param Trend: 趋势
+        # @param Trend: <p>趋势</p>
         # @type Trend: :class:`Tencentcloud::Billing.v20180709.models.ConsumptionSummaryTrend`
-        # @param Business: 产品消费详情
+        # @param Business: <p>产品消费详情</p>
         # @type Business: Array
-        # @param CashPayAmount: 现金
+        # @param CashPayAmount: <p>现金</p>
         # @type CashPayAmount: String
-        # @param VoucherPayAmount: 代金券
+        # @param VoucherPayAmount: <p>代金券</p>
         # @type VoucherPayAmount: String
-        # @param IncentivePayAmount: 赠送金
+        # @param IncentivePayAmount: <p>赠送金</p>
         # @type IncentivePayAmount: String
-        # @param TransferPayAmount: 分成金
+        # @param TransferPayAmount: <p>分成金</p>
         # @type TransferPayAmount: String
+        # @param LeftRealTotalCost: <p>待分摊金额</p><p>剩余待分摊的折后总金额</p>
+        # @type LeftRealTotalCost: String
 
-        attr_accessor :RegionId, :RegionName, :RealTotalCost, :Trend, :Business, :CashPayAmount, :VoucherPayAmount, :IncentivePayAmount, :TransferPayAmount
+        attr_accessor :RegionId, :RegionName, :RealTotalCost, :Trend, :Business, :CashPayAmount, :VoucherPayAmount, :IncentivePayAmount, :TransferPayAmount, :LeftRealTotalCost
 
-        def initialize(regionid=nil, regionname=nil, realtotalcost=nil, trend=nil, business=nil, cashpayamount=nil, voucherpayamount=nil, incentivepayamount=nil, transferpayamount=nil)
+        def initialize(regionid=nil, regionname=nil, realtotalcost=nil, trend=nil, business=nil, cashpayamount=nil, voucherpayamount=nil, incentivepayamount=nil, transferpayamount=nil, leftrealtotalcost=nil)
           @RegionId = regionid
           @RegionName = regionname
           @RealTotalCost = realtotalcost
@@ -4297,6 +4307,7 @@ module TencentCloud
           @VoucherPayAmount = voucherpayamount
           @IncentivePayAmount = incentivepayamount
           @TransferPayAmount = transferpayamount
+          @LeftRealTotalCost = leftrealtotalcost
         end
 
         def deserialize(params)
@@ -4319,6 +4330,7 @@ module TencentCloud
           @VoucherPayAmount = params['VoucherPayAmount']
           @IncentivePayAmount = params['IncentivePayAmount']
           @TransferPayAmount = params['TransferPayAmount']
+          @LeftRealTotalCost = params['LeftRealTotalCost']
         end
       end
 
@@ -4380,90 +4392,92 @@ module TencentCloud
 
       # 消耗按资源汇总详情
       class ConsumptionResourceSummaryDataItem < TencentCloud::Common::AbstractModel
-        # @param ResourceId: 资源ID
+        # @param ResourceId: <p>资源ID</p>
         # @type ResourceId: String
-        # @param ResourceName: 资源名称
+        # @param ResourceName: <p>资源名称</p>
         # @type ResourceName: String
-        # @param RealTotalCost: 折后总价
+        # @param RealTotalCost: <p>折后总价</p>
         # @type RealTotalCost: String
-        # @param CashPayAmount: 现金花费
+        # @param CashPayAmount: <p>现金花费</p>
         # @type CashPayAmount: String
-        # @param ProjectId: 项目ID
+        # @param ProjectId: <p>项目ID</p>
         # @type ProjectId: String
-        # @param ProjectName: 项目名称
+        # @param ProjectName: <p>项目名称</p>
         # @type ProjectName: String
-        # @param RegionId: 地域ID
+        # @param RegionId: <p>地域ID</p>
         # @type RegionId: String
-        # @param RegionName: 地域名称
+        # @param RegionName: <p>地域名称</p>
         # @type RegionName: String
-        # @param PayMode: 付费模式
+        # @param PayMode: <p>付费模式</p>
         # @type PayMode: String
-        # @param PayModeName: 付费模式名称
+        # @param PayModeName: <p>付费模式名称</p>
         # @type PayModeName: String
-        # @param BusinessCode: 产品名称代码
+        # @param BusinessCode: <p>产品名称代码</p>
         # @type BusinessCode: String
-        # @param BusinessCodeName: 产品名称
+        # @param BusinessCodeName: <p>产品名称</p>
         # @type BusinessCodeName: String
-        # @param ConsumptionTypeName: 消耗类型
+        # @param ConsumptionTypeName: <p>消耗类型</p>
         # @type ConsumptionTypeName: String
-        # @param RealCost: 折前价
+        # @param RealCost: <p>折前价</p>
         # @type RealCost: String
-        # @param FeeBeginTime: 费用起始时间
+        # @param FeeBeginTime: <p>费用起始时间</p>
         # @type FeeBeginTime: String
-        # @param FeeEndTime: 费用结束时间
+        # @param FeeEndTime: <p>费用结束时间</p>
         # @type FeeEndTime: String
-        # @param DayDiff: 天数
+        # @param DayDiff: <p>天数</p>
         # @type DayDiff: String
-        # @param DailyTotalCost: 每日消耗
+        # @param DailyTotalCost: <p>每日消耗</p>
         # @type DailyTotalCost: String
-        # @param OrderId: 订单号
+        # @param OrderId: <p>订单号</p>
         # @type OrderId: String
-        # @param VoucherPayAmount: 代金券
+        # @param VoucherPayAmount: <p>代金券</p>
         # @type VoucherPayAmount: String
-        # @param IncentivePayAmount: 赠送金
+        # @param IncentivePayAmount: <p>赠送金</p>
         # @type IncentivePayAmount: String
-        # @param TransferPayAmount: 分成金
+        # @param TransferPayAmount: <p>分成金</p>
         # @type TransferPayAmount: String
-        # @param PayerUin: 支付者UIN：支付者的账号 ID，账号 ID 是用户在腾讯云的唯一账号标识
+        # @param PayerUin: <p>支付者UIN：支付者的账号 ID，账号 ID 是用户在腾讯云的唯一账号标识</p>
         # @type PayerUin: String
-        # @param OwnerUin: 使用者UIN：实际使用资源的账号 ID
+        # @param OwnerUin: <p>使用者UIN：实际使用资源的账号 ID</p>
         # @type OwnerUin: String
-        # @param OperateUin: 操作者UIN：操作者账号 ID（预付费资源下单或后付费操作开通资源账号的 ID 或者角色 ID ）
+        # @param OperateUin: <p>操作者UIN：操作者账号 ID（预付费资源下单或后付费操作开通资源账号的 ID 或者角色 ID ）</p>
         # @type OperateUin: String
-        # @param ProductCode: 子产品编码
+        # @param ProductCode: <p>子产品编码</p>
         # @type ProductCode: String
-        # @param ProductCodeName: 子产品名称：用户采购的具体产品细分类型，例如：云服务器 CVM-标准型 S1
+        # @param ProductCodeName: <p>子产品名称：用户采购的具体产品细分类型，例如：云服务器 CVM-标准型 S1</p>
         # @type ProductCodeName: String
-        # @param RegionType: 地域类型
+        # @param RegionType: <p>地域类型</p>
         # @type RegionType: String
-        # @param RegionTypeName: 地域类型名称
+        # @param RegionTypeName: <p>地域类型名称</p>
         # @type RegionTypeName: String
-        # @param Extend1: 扩展字段1
+        # @param Extend1: <p>扩展字段1</p>
         # @type Extend1: String
-        # @param Extend2: 扩展字段2
+        # @param Extend2: <p>扩展字段2</p>
         # @type Extend2: String
-        # @param Extend3: 扩展字段3
+        # @param Extend3: <p>扩展字段3</p>
         # @type Extend3: String
-        # @param Extend4: 扩展字段4
+        # @param Extend4: <p>扩展字段4</p>
         # @type Extend4: String
-        # @param Extend5: 扩展字段5
+        # @param Extend5: <p>扩展字段5</p>
         # @type Extend5: String
-        # @param InstanceType: 实例类型
+        # @param InstanceType: <p>实例类型</p>
         # @type InstanceType: String
-        # @param InstanceTypeName: 实例类型名称
+        # @param InstanceTypeName: <p>实例类型名称</p>
         # @type InstanceTypeName: String
-        # @param PayTime: 扣费时间：结算扣费时间
+        # @param PayTime: <p>扣费时间：结算扣费时间</p>
         # @type PayTime: String
-        # @param ZoneName: 可用区：资源所属可用区，如广州三区
+        # @param ZoneName: <p>可用区：资源所属可用区，如广州三区</p>
         # @type ZoneName: String
-        # @param ComponentConfig: 配置描述
+        # @param ComponentConfig: <p>配置描述</p>
         # @type ComponentConfig: String
-        # @param Tags: 标签信息
+        # @param Tags: <p>标签信息</p>
         # @type Tags: String
+        # @param LeftRealTotalCost: <p>待分摊金额</p><p>剩余待分摊的折后总金额</p>
+        # @type LeftRealTotalCost: String
 
-        attr_accessor :ResourceId, :ResourceName, :RealTotalCost, :CashPayAmount, :ProjectId, :ProjectName, :RegionId, :RegionName, :PayMode, :PayModeName, :BusinessCode, :BusinessCodeName, :ConsumptionTypeName, :RealCost, :FeeBeginTime, :FeeEndTime, :DayDiff, :DailyTotalCost, :OrderId, :VoucherPayAmount, :IncentivePayAmount, :TransferPayAmount, :PayerUin, :OwnerUin, :OperateUin, :ProductCode, :ProductCodeName, :RegionType, :RegionTypeName, :Extend1, :Extend2, :Extend3, :Extend4, :Extend5, :InstanceType, :InstanceTypeName, :PayTime, :ZoneName, :ComponentConfig, :Tags
+        attr_accessor :ResourceId, :ResourceName, :RealTotalCost, :CashPayAmount, :ProjectId, :ProjectName, :RegionId, :RegionName, :PayMode, :PayModeName, :BusinessCode, :BusinessCodeName, :ConsumptionTypeName, :RealCost, :FeeBeginTime, :FeeEndTime, :DayDiff, :DailyTotalCost, :OrderId, :VoucherPayAmount, :IncentivePayAmount, :TransferPayAmount, :PayerUin, :OwnerUin, :OperateUin, :ProductCode, :ProductCodeName, :RegionType, :RegionTypeName, :Extend1, :Extend2, :Extend3, :Extend4, :Extend5, :InstanceType, :InstanceTypeName, :PayTime, :ZoneName, :ComponentConfig, :Tags, :LeftRealTotalCost
 
-        def initialize(resourceid=nil, resourcename=nil, realtotalcost=nil, cashpayamount=nil, projectid=nil, projectname=nil, regionid=nil, regionname=nil, paymode=nil, paymodename=nil, businesscode=nil, businesscodename=nil, consumptiontypename=nil, realcost=nil, feebegintime=nil, feeendtime=nil, daydiff=nil, dailytotalcost=nil, orderid=nil, voucherpayamount=nil, incentivepayamount=nil, transferpayamount=nil, payeruin=nil, owneruin=nil, operateuin=nil, productcode=nil, productcodename=nil, regiontype=nil, regiontypename=nil, extend1=nil, extend2=nil, extend3=nil, extend4=nil, extend5=nil, instancetype=nil, instancetypename=nil, paytime=nil, zonename=nil, componentconfig=nil, tags=nil)
+        def initialize(resourceid=nil, resourcename=nil, realtotalcost=nil, cashpayamount=nil, projectid=nil, projectname=nil, regionid=nil, regionname=nil, paymode=nil, paymodename=nil, businesscode=nil, businesscodename=nil, consumptiontypename=nil, realcost=nil, feebegintime=nil, feeendtime=nil, daydiff=nil, dailytotalcost=nil, orderid=nil, voucherpayamount=nil, incentivepayamount=nil, transferpayamount=nil, payeruin=nil, owneruin=nil, operateuin=nil, productcode=nil, productcodename=nil, regiontype=nil, regiontypename=nil, extend1=nil, extend2=nil, extend3=nil, extend4=nil, extend5=nil, instancetype=nil, instancetypename=nil, paytime=nil, zonename=nil, componentconfig=nil, tags=nil, leftrealtotalcost=nil)
           @ResourceId = resourceid
           @ResourceName = resourcename
           @RealTotalCost = realtotalcost
@@ -4504,6 +4518,7 @@ module TencentCloud
           @ZoneName = zonename
           @ComponentConfig = componentconfig
           @Tags = tags
+          @LeftRealTotalCost = leftrealtotalcost
         end
 
         def deserialize(params)
@@ -4547,6 +4562,7 @@ module TencentCloud
           @ZoneName = params['ZoneName']
           @ComponentConfig = params['ComponentConfig']
           @Tags = params['Tags']
+          @LeftRealTotalCost = params['LeftRealTotalCost']
         end
       end
 

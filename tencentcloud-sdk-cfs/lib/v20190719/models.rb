@@ -1004,43 +1004,47 @@ module TencentCloud
 
       # CreateLifecycleDataTask请求参数结构体
       class CreateLifecycleDataTaskRequest < TencentCloud::Common::AbstractModel
-        # @param FileSystemId: 文件系统唯一 ID
+        # @param FileSystemId: <p>文件系统唯一 ID</p>
         # @type FileSystemId: String
-        # @param Type: 生命周期任务类型；archive：沉降；restore：预热；release：数据释放；metaload：元数据加载
+        # @param Type: <p>生命周期任务类型；archive：沉降；restore：预热；release：数据释放；metaload：元数据加载</p>
         # @type Type: String
-        # @param TaskPath: 需要沉降的路径或文件，仅支持传入1个路径，不允许为空。
-        # @type TaskPath: String
-        # @param TaskName: 任务名称
+        # @param TaskName: <p>任务名称</p>
         # @type TaskName: String
-        # @param DataFlowId: 数据流动 ID ，该接口可以通过 DescribeDataFlow 查询
+        # @param TaskPath: <p>需要沉降的路径或文件，仅支持传入1个路径，不允许为空。</p>
+        # @type TaskPath: String
+        # @param DataFlowId: <p>数据流动 ID ，该接口可以通过 DescribeDataFlow 查询</p>
         # @type DataFlowId: String
-        # @param IsOverwrite: 	 当CFSTurbo内的文件和外置存储存在同名情况时，是否覆盖。  ture：覆盖  false：不覆盖（同时也不会释放热存数据）  为空时，默认为false
+        # @param IsOverwrite: <p>当CFSTurbo内的文件和外置存储存在同名情况时，是否覆盖。  ture：覆盖  false：不覆盖（同时也不会释放热存数据）  为空时，默认为false</p>
         # @type IsOverwrite: Boolean
+        # @param ListPath: <p>【新增】数据清单文件路径，清单文件内每行一条待处理文件的完整路径。与 TaskPath 二选一。路径必须以 /cfs 开头，且必须为 CFS 文件系统内已存在的文件。示例值：/cfs/lists/archive_list.txt</p>
+        # @type ListPath: String
 
-        attr_accessor :FileSystemId, :Type, :TaskPath, :TaskName, :DataFlowId, :IsOverwrite
+        attr_accessor :FileSystemId, :Type, :TaskName, :TaskPath, :DataFlowId, :IsOverwrite, :ListPath
 
-        def initialize(filesystemid=nil, type=nil, taskpath=nil, taskname=nil, dataflowid=nil, isoverwrite=nil)
+        def initialize(filesystemid=nil, type=nil, taskname=nil, taskpath=nil, dataflowid=nil, isoverwrite=nil, listpath=nil)
           @FileSystemId = filesystemid
           @Type = type
-          @TaskPath = taskpath
           @TaskName = taskname
+          @TaskPath = taskpath
           @DataFlowId = dataflowid
           @IsOverwrite = isoverwrite
+          @ListPath = listpath
         end
 
         def deserialize(params)
           @FileSystemId = params['FileSystemId']
           @Type = params['Type']
-          @TaskPath = params['TaskPath']
           @TaskName = params['TaskName']
+          @TaskPath = params['TaskPath']
           @DataFlowId = params['DataFlowId']
           @IsOverwrite = params['IsOverwrite']
+          @ListPath = params['ListPath']
         end
       end
 
       # CreateLifecycleDataTask返回参数结构体
       class CreateLifecycleDataTaskResponse < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务 ID
+        # @param TaskId: <p>任务 ID</p>
         # @type TaskId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3267,59 +3271,50 @@ module TencentCloud
 
       # 生命周期任务
       class LifecycleDataTaskInfo < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务id
+        # @param TaskId: <p>任务id</p>
         # @type TaskId: String
-        # @param TaskStatus: 任务状态.
-        # init：未执行
-        # running：执行中，finished：已完成
-        # ,failed：失败
-        # ,stopping：停止中,stopped：已停止
+        # @param TaskStatus: <p>任务状态.<br>init：未执行<br>running：执行中，finished：已完成<br>,failed：失败<br>,stopping：停止中,stopped：已停止</p>
         # @type TaskStatus: String
-        # @param CreationTime: 任务创建时间
+        # @param CreationTime: <p>任务创建时间</p>
         # @type CreationTime: String
-        # @param FinishTime: 任务结束时间
+        # @param FinishTime: <p>任务结束时间</p>
         # @type FinishTime: String
-        # @param FileTotalCount: 文件总数
+        # @param FileTotalCount: <p>文件总数</p>
         # @type FileTotalCount: Integer
-        # @param FileSuccessedCount: 处理成功文件数量
+        # @param FileSuccessedCount: <p>处理成功文件数量</p>
         # @type FileSuccessedCount: Integer
-        # @param FileFailedCount: 当前已经失败的文件数
+        # @param FileFailedCount: <p>当前已经失败的文件数</p>
         # @type FileFailedCount: Integer
-        # @param FileTotalSize: 文件容量，单位Byte
-
+        # @param FileTotalSize: <p>文件容量，单位Byte</p>
         # @type FileTotalSize: Integer
-        # @param FileSuccessedSize: 已处理完成的文件容量，单位Byte
-
+        # @param FileSuccessedSize: <p>已处理完成的文件容量，单位Byte</p>
         # @type FileSuccessedSize: Integer
-        # @param FileFailedSize: 已处理失败文件容量，单位Byte
+        # @param FileFailedSize: <p>已处理失败文件容量，单位Byte</p>
         # @type FileFailedSize: Integer
-        # @param FileTotalList: 总文件列表
+        # @param FileTotalList: <p>总文件列表</p>
         # @type FileTotalList: String
-        # @param FileSuccessedList: 成功的文件列表
+        # @param FileSuccessedList: <p>成功的文件列表</p>
         # @type FileSuccessedList: String
-        # @param FileFailedList: 失败文件的列表
+        # @param FileFailedList: <p>失败文件的列表</p>
         # @type FileFailedList: String
-        # @param FileSystemId: FileSystemId
+        # @param FileSystemId: <p>FileSystemId</p>
         # @type FileSystemId: String
-        # @param TaskName: 任务名称
+        # @param TaskName: <p>任务名称</p>
         # @type TaskName: String
-        # @param TaskPath: 任务路径
+        # @param TaskPath: <p>任务路径</p>
         # @type TaskPath: String
-        # @param Type: 任务类型,archive:表示沉降任务，restore：表示拉取任务
+        # @param Type: <p>任务类型,archive:表示沉降任务，restore：表示拉取任务</p>
         # @type Type: String
-        # @param DataFlowId: 数据流动Id
+        # @param DataFlowId: <p>数据流动Id</p>
         # @type DataFlowId: String
-        # @param IsOverwrite: 当CFSTurbo内的文件和外置存储存在同名情况时，是否覆盖。
-
-        # ture：覆盖
-
-        # false：不覆盖（同时也不会释放热存数据）
-        # 为空时，默认为false
+        # @param IsOverwrite: <p>当CFSTurbo内的文件和外置存储存在同名情况时，是否覆盖。</p><p>ture：覆盖</p><p>false：不覆盖（同时也不会释放热存数据）<br>为空时，默认为false</p>
         # @type IsOverwrite: Boolean
+        # @param ListPath: <p>【新增】数据清单文件路径，清单文件内每行一条待处理文件的完整路径。与 TaskPath 二选一。路径必须以 /cfs 开头，且必须为 CFS 文件系统内已存在的文件。示例值：/cfs/lists/archive_list.txt</p>
+        # @type ListPath: String
 
-        attr_accessor :TaskId, :TaskStatus, :CreationTime, :FinishTime, :FileTotalCount, :FileSuccessedCount, :FileFailedCount, :FileTotalSize, :FileSuccessedSize, :FileFailedSize, :FileTotalList, :FileSuccessedList, :FileFailedList, :FileSystemId, :TaskName, :TaskPath, :Type, :DataFlowId, :IsOverwrite
+        attr_accessor :TaskId, :TaskStatus, :CreationTime, :FinishTime, :FileTotalCount, :FileSuccessedCount, :FileFailedCount, :FileTotalSize, :FileSuccessedSize, :FileFailedSize, :FileTotalList, :FileSuccessedList, :FileFailedList, :FileSystemId, :TaskName, :TaskPath, :Type, :DataFlowId, :IsOverwrite, :ListPath
 
-        def initialize(taskid=nil, taskstatus=nil, creationtime=nil, finishtime=nil, filetotalcount=nil, filesuccessedcount=nil, filefailedcount=nil, filetotalsize=nil, filesuccessedsize=nil, filefailedsize=nil, filetotallist=nil, filesuccessedlist=nil, filefailedlist=nil, filesystemid=nil, taskname=nil, taskpath=nil, type=nil, dataflowid=nil, isoverwrite=nil)
+        def initialize(taskid=nil, taskstatus=nil, creationtime=nil, finishtime=nil, filetotalcount=nil, filesuccessedcount=nil, filefailedcount=nil, filetotalsize=nil, filesuccessedsize=nil, filefailedsize=nil, filetotallist=nil, filesuccessedlist=nil, filefailedlist=nil, filesystemid=nil, taskname=nil, taskpath=nil, type=nil, dataflowid=nil, isoverwrite=nil, listpath=nil)
           @TaskId = taskid
           @TaskStatus = taskstatus
           @CreationTime = creationtime
@@ -3339,6 +3334,7 @@ module TencentCloud
           @Type = type
           @DataFlowId = dataflowid
           @IsOverwrite = isoverwrite
+          @ListPath = listpath
         end
 
         def deserialize(params)
@@ -3361,6 +3357,7 @@ module TencentCloud
           @Type = params['Type']
           @DataFlowId = params['DataFlowId']
           @IsOverwrite = params['IsOverwrite']
+          @ListPath = params['ListPath']
         end
       end
 

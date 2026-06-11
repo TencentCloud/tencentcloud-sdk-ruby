@@ -4964,15 +4964,15 @@ module TencentCloud
 
       # 迁移执行过程信息
       class MigrateDetailInfo < TencentCloud::Common::AbstractModel
-        # @param StepAll: 总步骤数
+        # @param StepAll: <p>总步骤数</p>
         # @type StepAll: Integer
-        # @param StepNow: 当前步骤
+        # @param StepNow: <p>当前步骤</p>
         # @type StepNow: Integer
-        # @param MasterSlaveDistance: 主从差距，MB；只在任务正常，迁移或者同步的最后一步（追Binlog的阶段才有校），如果是非法值，返回-1
+        # @param MasterSlaveDistance: <p>主从差距，MB；只在任务正常，迁移或者同步的最后一步（追Binlog的阶段才有校），如果是非法值，返回-1</p>
         # @type MasterSlaveDistance: Integer
-        # @param SecondsBehindMaster: 主从差距，秒；只在任务正常，迁移或者同步的最后一步（追Binlog的阶段才有校），如果是非法值，返回-1
+        # @param SecondsBehindMaster: <p>主从差距，秒；只在任务正常，迁移或者同步的最后一步（追Binlog的阶段才有校），如果是非法值，返回-1</p>
         # @type SecondsBehindMaster: Integer
-        # @param StepInfo: 步骤信息
+        # @param StepInfo: <p>步骤信息</p>
         # @type StepInfo: Array
 
         attr_accessor :StepAll, :StepNow, :MasterSlaveDistance, :SecondsBehindMaster, :StepInfo
@@ -6248,11 +6248,11 @@ module TencentCloud
 
       # 错误信息及告警信息对象
       class ProcessStepTip < TencentCloud::Common::AbstractModel
-        # @param Message: 提示信息
+        # @param Message: <p>提示信息</p>
         # @type Message: String
-        # @param Solution: 解决方案
+        # @param Solution: <p>解决方案</p>
         # @type Solution: String
-        # @param HelpDoc: 文档提示
+        # @param HelpDoc: <p>文档提示</p>
         # @type HelpDoc: String
 
         attr_accessor :Message, :Solution, :HelpDoc
@@ -7059,33 +7059,36 @@ module TencentCloud
 
       # 步骤信息
       class StepDetailInfo < TencentCloud::Common::AbstractModel
-        # @param StepNo: 步骤序列
+        # @param StepNo: <p>步骤序列</p>
         # @type StepNo: Integer
-        # @param StepName: 步骤展现名称
+        # @param StepName: <p>步骤展现名称</p>
         # @type StepName: String
-        # @param StepId: 步骤英文标识
+        # @param StepId: <p>步骤英文标识</p>
         # @type StepId: String
-        # @param Status: 步骤状态:success(成功)、failed(失败)、running(执行中)、notStarted(未执行)、默认为notStarted
+        # @param Status: <p>步骤状态:success(成功)、failed(失败)、running(执行中)、notStarted(未执行)、默认为notStarted</p>
         # @type Status: String
-        # @param StartTime: 当前步骤开始的时间，格式为"yyyy-mm-dd hh:mm:ss"，该字段不存在或者为空是无意义 注意：此字段可能返回 null，表示取不到有效值。
+        # @param StartTime: <p>当前步骤开始的时间，格式为&quot;yyyy-mm-dd hh:mm:ss&quot;，该字段不存在或者为空是无意义 注意：此字段可能返回 null，表示取不到有效值。</p>
         # @type StartTime: String
-        # @param StepMessage: 步骤错误信息
+        # @param FinishTime: <p>完成时间</p>
+        # @type FinishTime: String
+        # @param StepMessage: <p>步骤错误信息</p>
         # @type StepMessage: String
-        # @param Percent: 执行进度
+        # @param Percent: <p>执行进度</p>
         # @type Percent: Integer
-        # @param Errors: 错误信息
+        # @param Errors: <p>错误信息</p>
         # @type Errors: Array
-        # @param Warnings: 告警提示
+        # @param Warnings: <p>告警提示</p>
         # @type Warnings: Array
 
-        attr_accessor :StepNo, :StepName, :StepId, :Status, :StartTime, :StepMessage, :Percent, :Errors, :Warnings
+        attr_accessor :StepNo, :StepName, :StepId, :Status, :StartTime, :FinishTime, :StepMessage, :Percent, :Errors, :Warnings
 
-        def initialize(stepno=nil, stepname=nil, stepid=nil, status=nil, starttime=nil, stepmessage=nil, percent=nil, errors=nil, warnings=nil)
+        def initialize(stepno=nil, stepname=nil, stepid=nil, status=nil, starttime=nil, finishtime=nil, stepmessage=nil, percent=nil, errors=nil, warnings=nil)
           @StepNo = stepno
           @StepName = stepname
           @StepId = stepid
           @Status = status
           @StartTime = starttime
+          @FinishTime = finishtime
           @StepMessage = stepmessage
           @Percent = percent
           @Errors = errors
@@ -7098,6 +7101,7 @@ module TencentCloud
           @StepId = params['StepId']
           @Status = params['Status']
           @StartTime = params['StartTime']
+          @FinishTime = params['FinishTime']
           @StepMessage = params['StepMessage']
           @Percent = params['Percent']
           unless params['Errors'].nil?
@@ -7121,33 +7125,36 @@ module TencentCloud
 
       # 单个步骤的详细信息
       class StepInfo < TencentCloud::Common::AbstractModel
-        # @param StepNo: 步骤编号
+        # @param StepNo: <p>步骤编号</p>
         # @type StepNo: Integer
-        # @param StepName: 步骤名
+        # @param StepName: <p>步骤名</p>
         # @type StepName: String
-        # @param StepId: 步骤标号
+        # @param StepId: <p>步骤标号</p>
         # @type StepId: String
-        # @param Status: 当前步骤状态,可能返回有 notStarted(未开始)、running(校验中)、failed(校验任务失败)、finished(完成)、skipped(跳过)、paused(暂停)
+        # @param Status: <p>当前步骤状态,可能返回有 notStarted(未开始)、running(校验中)、failed(校验任务失败)、finished(完成)、skipped(跳过)、paused(暂停)</p>
         # @type Status: String
-        # @param StartTime: 步骤开始时间，可能为空
+        # @param StartTime: <p>步骤开始时间，可能为空</p>
         # @type StartTime: String
-        # @param Errors: 错误信息
+        # @param FinishTime: <p>完成时间</p>
+        # @type FinishTime: String
+        # @param Errors: <p>错误信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Errors: Array
-        # @param Warnings: 警告信息
+        # @param Warnings: <p>警告信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Warnings: Array
-        # @param Progress: 当前步骤进度，范围为[0-100]，若为-1表示当前步骤不支持查看进度
+        # @param Progress: <p>当前步骤进度，范围为[0-100]，若为-1表示当前步骤不支持查看进度</p>
         # @type Progress: Integer
 
-        attr_accessor :StepNo, :StepName, :StepId, :Status, :StartTime, :Errors, :Warnings, :Progress
+        attr_accessor :StepNo, :StepName, :StepId, :Status, :StartTime, :FinishTime, :Errors, :Warnings, :Progress
 
-        def initialize(stepno=nil, stepname=nil, stepid=nil, status=nil, starttime=nil, errors=nil, warnings=nil, progress=nil)
+        def initialize(stepno=nil, stepname=nil, stepid=nil, status=nil, starttime=nil, finishtime=nil, errors=nil, warnings=nil, progress=nil)
           @StepNo = stepno
           @StepName = stepname
           @StepId = stepid
           @Status = status
           @StartTime = starttime
+          @FinishTime = finishtime
           @Errors = errors
           @Warnings = warnings
           @Progress = progress
@@ -7159,6 +7166,7 @@ module TencentCloud
           @StepId = params['StepId']
           @Status = params['Status']
           @StartTime = params['StartTime']
+          @FinishTime = params['FinishTime']
           unless params['Errors'].nil?
             @Errors = []
             params['Errors'].each do |i|
@@ -7672,26 +7680,26 @@ module TencentCloud
 
       # 同步任务的步骤信息
       class SyncDetailInfo < TencentCloud::Common::AbstractModel
-        # @param StepAll: 总步骤数
+        # @param StepAll: <p>总步骤数</p>
         # @type StepAll: Integer
-        # @param StepNow: 当前步骤
+        # @param StepNow: <p>当前步骤</p>
         # @type StepNow: Integer
-        # @param Progress: 总体进度
+        # @param Progress: <p>总体进度</p>
         # @type Progress: Integer
-        # @param CurrentStepProgress: 当前步骤进度，范围为[0-100]，若为-1表示当前步骤不支持查看进度
+        # @param CurrentStepProgress: <p>当前步骤进度，范围为[0-100]，若为-1表示当前步骤不支持查看进度</p>
         # @type CurrentStepProgress: Integer
-        # @param MasterSlaveDistance: 同步两端数据量差距
+        # @param MasterSlaveDistance: <p>同步两端数据量差距</p>
         # @type MasterSlaveDistance: Integer
-        # @param SecondsBehindMaster: 同步两端时间差距
+        # @param SecondsBehindMaster: <p>同步两端时间差距</p>
         # @type SecondsBehindMaster: Integer
-        # @param Message: 总体描述信息
+        # @param Message: <p>总体描述信息</p>
         # @type Message: String
-        # @param StepInfos: 详细步骤信息
+        # @param StepInfos: <p>详细步骤信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StepInfos: Array
-        # @param CauseOfCompareDisable: 不能发起内置校验的原因
+        # @param CauseOfCompareDisable: <p>不能发起内置校验的原因</p>
         # @type CauseOfCompareDisable: String
-        # @param ErrInfo: 任务的错误和解决方案信息
+        # @param ErrInfo: <p>任务的错误和解决方案信息</p>
         # @type ErrInfo: :class:`Tencentcloud::Dts.v20211206.models.ErrInfo`
 
         attr_accessor :StepAll, :StepNow, :Progress, :CurrentStepProgress, :MasterSlaveDistance, :SecondsBehindMaster, :Message, :StepInfos, :CauseOfCompareDisable, :ErrInfo

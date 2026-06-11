@@ -10578,50 +10578,33 @@ module TencentCloud
 
       # InvokeAISearchService请求参数结构体
       class InvokeAISearchServiceRequest < TencentCloud::Common::AbstractModel
-        # @param ProductId: 产品ID
+        # @param ProductId: <p>产品ID</p>
         # @type ProductId: String
-        # @param DeviceName: 设备名称
+        # @param DeviceName: <p>设备名称</p>
         # @type DeviceName: String
-        # @param Query: 自然语言查询
+        # @param Query: <p>自然语言查询</p>
         # @type Query: String
-        # @param SummaryLang: 搜索结果总结的语言类型，支持的类型有：en-US、zh-CN、id-ID、th-TH
+        # @param SummaryLang: <p>搜索结果总结的语言类型，支持的类型有：en-US、zh-CN、id-ID、th-TH</p>
         # @type SummaryLang: String
-        # @param ChannelId: 通道ID
+        # @param ChannelId: <p>通道ID</p>
         # @type ChannelId: Integer
-        # @param EnableSummary: 是否需要返回总结，默认为True；  开启后会加大接口响应时长
+        # @param EnableSummary: <p>是否需要返回总结，默认为True；  开启后会加大接口响应时长</p>
         # @type EnableSummary: Boolean
-        # @param StartTimeMs: 开始时间。
-
-        # 注：
-        # 1. 单位为毫秒（ms）
-        # 2. 如果同时指定了StartTimeMs与EndTimeMs，时间区间不能大于7天；如果只指定其中一个（例如只指定StartTimeMs，则查询自StartTimeMs后1天内的数据， 反之EndTimeMs也一样）
-        # 3. 只要指定了其中一个参数，接口则会忽略Query参数中关于时间的描述；（例如Query为"过去三天关于猫咪的视频"， 则会将"过去三天忽略"）
+        # @param StartTimeMs: <p>开始时间。</p><p>注：</p><ol><li>单位为毫秒（ms）</li><li>如果同时指定了StartTimeMs与EndTimeMs，时间区间不能大于7天；如果只指定其中一个（例如只指定StartTimeMs，则查询自StartTimeMs后1天内的数据， 反之EndTimeMs也一样）</li><li>只要指定了其中一个参数，接口则会忽略Query参数中关于时间的描述；（例如Query为&quot;过去三天关于猫咪的视频&quot;， 则会将&quot;过去三天忽略&quot;）</li></ol>
         # @type StartTimeMs: Integer
-        # @param EndTimeMs: 结束时间。
-
-        # 注：
-        # 1. 单位为毫秒（ms）
-        # 2. 如果同时指定了StartTimeMs与EndTimeMs，时间区间不能大于7天；如果只指定其中一个（例如只指定StartTimeMs，则查询自StartTimeMs后1天内的数据， 反之EndTimeMs也一样）
-        # 3. 只要指定了其中一个参数，接口则会忽略Query参数中关于时间的描述；（例如Query为"过去三天关于猫咪的视频"， 则会将"过去三天忽略"）
+        # @param EndTimeMs: <p>结束时间。</p><p>注：</p><ol><li>单位为毫秒（ms）</li><li>如果同时指定了StartTimeMs与EndTimeMs，时间区间不能大于7天；如果只指定其中一个（例如只指定StartTimeMs，则查询自StartTimeMs后1天内的数据， 反之EndTimeMs也一样）</li><li>只要指定了其中一个参数，接口则会忽略Query参数中关于时间的描述；（例如Query为&quot;过去三天关于猫咪的视频&quot;， 则会将&quot;过去三天忽略&quot;）</li></ol>
         # @type EndTimeMs: Integer
-        # @param TimeZone: 时区。默认值：Asia/Shanghai
-
-        # 注：
-        # 符合iana标准 https://www.iana.org/time-zones，例如Asia/Shanghai、Asia/Bangkok
+        # @param TimeZone: <p>时区。默认值：Asia/Shanghai</p><p>注：<br>符合iana标准 https://www.iana.org/time-zones，例如Asia/Shanghai、Asia/Bangkok</p>
         # @type TimeZone: String
-        # @param SearchMode: 取值为1表示高级搜索，取值为2表示简单搜索，默认为1
+        # @param SearchMode: <p>取值为1表示高级搜索，取值为2表示简单搜索，默认为1</p>
         # @type SearchMode: Integer
-        # @param Limit: 最终输出的条数；仅当SearchMode为2时支持自定义设置，默认为50
+        # @param Limit: <p>最终输出的条数；仅当SearchMode为2时支持自定义设置，默认为50</p>
         # @type Limit: Integer
-        # @param VectorSearchRadius: 向量搜索的相似度搜索半径，取值范围[-1, 1]；仅当SearchMode为2时支持自定义设置，默认为0.5
+        # @param VectorSearchRadius: <p>向量搜索的相似度搜索半径，取值范围[-1, 1]；仅当SearchMode为2时支持自定义设置，默认为0.5</p>
         # @type VectorSearchRadius: Float
-        # @param VectorSearchTopK: 指定向量搜索最相似的 Top K；仅当SearchMode为2时支持自定义设置，默认为100
+        # @param VectorSearchTopK: <p>指定向量搜索最相似的 Top K；仅当SearchMode为2时支持自定义设置，默认为100</p>
         # @type VectorSearchTopK: Integer
-        # @param Order: 搜索结果的排序方式，可选值：
-
-        # - `CORRELATION`：按相关性（默认）
-        # - `TIME_ASC`：按时间升序
-        # - `TIME_DESC`：按时间降序
+        # @param Order: <p>搜索结果的排序方式，可选值：</p><ul><li><code>CORRELATION</code>：按相关性（默认）</li><li><code>TIME_ASC</code>：按时间升序</li><li><code>TIME_DESC</code>：按时间降序</li></ul>
         # @type Order: String
 
         attr_accessor :ProductId, :DeviceName, :Query, :SummaryLang, :ChannelId, :EnableSummary, :StartTimeMs, :EndTimeMs, :TimeZone, :SearchMode, :Limit, :VectorSearchRadius, :VectorSearchTopK, :Order
@@ -10663,11 +10646,11 @@ module TencentCloud
 
       # InvokeAISearchService返回参数结构体
       class InvokeAISearchServiceResponse < TencentCloud::Common::AbstractModel
-        # @param Summary: 基于搜索结果的总结
+        # @param Summary: <p>基于搜索结果的总结</p>
         # @type Summary: String
-        # @param Targets: 视频结果集
+        # @param Targets: <p>视频结果集</p>
         # @type Targets: Array
-        # @param VideoURL: 视频回放URL
+        # @param VideoURL: <p>视频回放URL</p>
         # @type VideoURL: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -16013,23 +15996,23 @@ module TencentCloud
 
       # 视频语义搜索结果
       class TargetInfo < TencentCloud::Common::AbstractModel
-        # @param Id: 视频唯一ID
+        # @param Id: <p>视频唯一ID</p>
         # @type Id: String
-        # @param ProductId: 产品ID
+        # @param ProductId: <p>产品ID</p>
         # @type ProductId: String
-        # @param DeviceName: 设备名称
+        # @param DeviceName: <p>设备名称</p>
         # @type DeviceName: String
-        # @param StartTimeMs: 视频起始时间（毫秒级Unix时间戳）
+        # @param StartTimeMs: <p>视频起始时间（毫秒级Unix时间戳）</p>
         # @type StartTimeMs: Integer
-        # @param EndTimeMs: 视频结束时间（毫秒级Unix时间戳）
+        # @param EndTimeMs: <p>视频结束时间（毫秒级Unix时间戳）</p>
         # @type EndTimeMs: Integer
-        # @param EventId: 用户自定义事件ID，后续扩展使用
+        # @param EventId: <p>用户自定义事件ID，后续扩展使用</p>
         # @type EventId: String
-        # @param Summary: 视频内容摘要
+        # @param Summary: <p>视频内容摘要</p>
         # @type Summary: String
-        # @param ChannelId: 通道ID
+        # @param ChannelId: <p>通道ID</p>
         # @type ChannelId: Integer
-        # @param Thumbnail: 缩略图路径
+        # @param Thumbnail: <p>缩略图路径</p>
         # @type Thumbnail: String
 
         attr_accessor :Id, :ProductId, :DeviceName, :StartTimeMs, :EndTimeMs, :EventId, :Summary, :ChannelId, :Thumbnail

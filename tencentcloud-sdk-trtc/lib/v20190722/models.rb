@@ -352,7 +352,7 @@ module TencentCloud
         # @type PronunciationDict: Array
         # @param AlignmentMode: <p>默认为0，0表示不生成字幕，1表示生成字幕</p>
         # @type AlignmentMode: Integer
-        # @param LanguageCode: <p>需要合成的语言（ISO 639-1），默认自动识别，支持的语言如下：  zh（中文） en（英文） yue（粤语） ja（日语） ko（韩语） ar（阿拉伯语） id（印尼语） th（泰语）</p>
+        # @param LanguageCode: <p>需要合成的语言，默认为空，表示自动识别</p><p>枚举值：</p><ul><li>zh： 中文</li><li>en： 英文</li><li>ja： 日语</li><li>ko： 韩语</li><li>yue： 粤语</li><li>ms： 马来语</li><li>ar： 阿拉伯语</li><li>id： 印尼语</li><li>th： 泰语</li><li>vi： 越南语</li></ul>
         # @type LanguageCode: String
 
         attr_accessor :Text, :Voice, :SdkAppId, :AudioFormat, :Model, :PronunciationDict, :AlignmentMode, :LanguageCode
@@ -471,25 +471,11 @@ module TencentCloud
 
       # TTS音频输出的格式
       class AudioFormat < TencentCloud::Common::AbstractModel
-        # @param Format: 生成的音频格式
-
-        # - TextToSpeechSSE 流式接口
-
-        #  支持 pcm, 默认: pcm
-
-        # - TextToSpeech 非流式接口
-
-        #  支持 pcm,wav,mp3,  默认: pcm
-
-        # - AsyncTextToSpeech
-        # 支持pcm,mp3, 默认：mp3
+        # @param Format: <p>生成的音频格式</p><ul><li><p>TextToSpeechSSE 流式接口</p><p>支持 pcm,mp3,  默认: pcm</p></li><li><p>TextToSpeech 非流式接口</p><p>支持 pcm,wav,mp3,  默认: pcm</p></li><li><p>AsyncTextToSpeech<br>支持pcm,mp3, 默认: mp3</p></li></ul>
         # @type Format: String
-        # @param SampleRate: 生成的音频采样率，默认24000
-        # 可选
-        # - 16000
-        # - 24000
+        # @param SampleRate: <p>生成的音频采样率，默认24000<br>可选</p><ul><li>16000</li><li>24000</li></ul>
         # @type SampleRate: Integer
-        # @param Bitrate:  MP3 比特率 (kbps)，仅对 MP3 格式生效, 可以选： `64`, `128`, `192`, `256` ,  默认： `128`
+        # @param Bitrate: <p>MP3 比特率 (kbps)，仅对 MP3 格式生效, 可以选： <code>64</code>, <code>128</code>, <code>192</code>, <code>256</code> ,  默认： <code>128</code></p>
         # @type Bitrate: Integer
 
         attr_accessor :Format, :SampleRate, :Bitrate
@@ -7241,7 +7227,7 @@ module TencentCloud
 
       # TextToSpeech请求参数结构体
       class TextToSpeechRequest < TencentCloud::Common::AbstractModel
-        # @param Text: <p>需要转语音的文字内容，长度范围：[1, 255]</p>
+        # @param Text: <p>需要转语音的文字内容，最大支持2000字符</p>
         # @type Text: String
         # @param Voice: <p>文本转语音的声音配置</p>
         # @type Voice: :class:`Tencentcloud::Trtc.v20190722.models.Voice`
@@ -7251,9 +7237,9 @@ module TencentCloud
         # @type AudioFormat: :class:`Tencentcloud::Trtc.v20190722.models.AudioFormat`
         # @param APIKey: <p>TTS的API密钥</p>
         # @type APIKey: String
-        # @param Model: <p>TTS的模型，当前固定为：flow_02_turbo</p><p>枚举值：</p><ul><li>flow_02_turbo： flow_02_turbo</li></ul>
+        # @param Model: <p>TTS的模型，支持flow_02_turbo，flow_01_ex，默认为flow_02_turbo</p><p>枚举值：</p><ul><li>flow_02_turbo： 高性价比模型，兼顾效果和成本</li><li>flow_01_ex： 高天花板模型，能力全面，在音色克隆上表现更优</li></ul>
         # @type Model: String
-        # @param Language: <p>需要合成的语言（ISO 639-1），默认自动识别，支持的语言如下：</p><ul><li>zh（中文）</li><li>en（英文）</li><li>yue（粤语）</li><li>ja（日语）</li><li>ko（韩语）</li><li>ar（阿拉伯语）</li><li>id（印尼语）</li><li>th（泰语）</li></ul>
+        # @param Language: <p>需要合成的语言，默认为空，表示自动识别</p><p>枚举值：</p><ul><li>zh： 中文</li><li>en： 英文</li><li>ja： 日语</li><li>ko： 韩语</li><li>yue： 粤语</li><li>ms： 马来语</li><li>ar： 阿拉伯语</li><li>id： 印尼语</li><li>th： 泰语</li><li>vi： 越南语</li></ul>
         # @type Language: String
         # @param PronunciationDict: <p>多音字/生僻字发音纠正词典条目。指定特定词语在本次请求中使用的发音。</p>
         # @type PronunciationDict: Array
@@ -7344,7 +7330,7 @@ module TencentCloud
 
       # TextToSpeechSSE请求参数结构体
       class TextToSpeechSSERequest < TencentCloud::Common::AbstractModel
-        # @param Text: <p>需要转语音的文字内容，长度范围：[1, 255]</p>
+        # @param Text: <p>需要转语音的文字内容，最大支持20000字符</p>
         # @type Text: String
         # @param Voice: <p>文本转语音的声音配置</p>
         # @type Voice: :class:`Tencentcloud::Trtc.v20190722.models.Voice`
@@ -7354,9 +7340,9 @@ module TencentCloud
         # @type AudioFormat: :class:`Tencentcloud::Trtc.v20190722.models.AudioFormat`
         # @param APIKey: <p>TTS的API密钥</p>
         # @type APIKey: String
-        # @param Model: <p>TTS的模型，当前固定为：flow_02_turbo</p><p>枚举值：</p><ul><li>flow_02_turbo： flow_02_turbo</li></ul>
+        # @param Model: <p>TTS的模型，支持flow_02_turbo，flow_01_ex，默认为flow_02_turbo</p><p>枚举值：</p><ul><li>flow_02_turbo： 高性价比模型，兼顾效果和成本</li><li>flow_01_ex： 高天花板模型，能力全面，在音色克隆上表现更优</li></ul>
         # @type Model: String
-        # @param Language: <p>需要合成的语言（ISO 639-1），默认自动识别，支持如下语言：</p><ul><li>zh（中文）</li><li>en（英文）</li><li>yue（粤语）</li><li>ja（日语）</li><li>ko（韩语）</li><li>ar（阿拉伯语）</li><li>id（印尼语）</li><li>th（泰语）</li></ul>
+        # @param Language: <p>需要合成的语言，默认为空，表示自动识别</p><p>枚举值：</p><ul><li>zh： 中文</li><li>en： 英文</li><li>ja： 日语</li><li>ko： 韩语</li><li>yue： 粤语</li><li>ms： 马来语</li><li>ar： 阿拉伯语</li><li>id： 印尼语</li><li>th： 泰语</li><li>vi： 越南语</li></ul>
         # @type Language: String
         # @param PronunciationDict: <p>多音字/生僻字发音纠正词典条目。指定特定词语在本次请求中使用的发音。</p>
         # @type PronunciationDict: Array
@@ -8180,15 +8166,15 @@ module TencentCloud
         # @type SdkAppId: Integer
         # @param VoiceName: <p>声音克隆的名称, 只允许使用数字、字母、下划线，不能超过36位</p>
         # @type VoiceName: String
-        # @param PromptAudio: <p>声音克隆的参考音频，必须为16k单声道的wav的base64字符串， 长度在6秒～180秒之间</p>
+        # @param PromptAudio: <p>声音克隆的参考音频，base64字符串，支持wav、mp3、m4a格式，长度在6秒～180秒之间</p>
         # @type PromptAudio: String
         # @param APIKey: <p>TTS的API密钥</p>
         # @type APIKey: String
         # @param PromptText: <p>声音克隆的参考文本，为参考音频对应的文字。</p>
         # @type PromptText: String
-        # @param Model: <p>TTS的模型：flow_02_turbo，flow_01_ex</p><p>枚举值：</p><ul><li>flow_02_turbo： flow_02_turbo</li><li>flow_01_ex： flow_01_ex</li></ul>
+        # @param Model: <p>TTS的模型，支持flow_02_turbo，flow_01_ex，默认为flow_02_turbo</p><p>枚举值：</p><ul><li>flow_02_turbo： 高性价比模型，兼顾效果和成本</li><li>flow_01_ex： 高天花板模型，能力全面，在音色克隆上表现更优</li></ul>
         # @type Model: String
-        # @param Language: <p>语言参数，默认为空， 参考： (ISO 639-1)</p>
+        # @param Language: <p>语言参数，默认为空，表示自动识别</p><p>枚举值：</p><ul><li>zh： 中文</li><li>en： 英文</li><li>ja： 日语</li><li>ko： 韩语</li><li>yue： 粤语</li><li>ms： 马来语</li><li>ar： 阿拉伯语</li><li>id： 印尼语</li><li>th： 泰语</li><li>vi： 越南语</li></ul>
         # @type Language: String
 
         attr_accessor :SdkAppId, :VoiceName, :PromptAudio, :APIKey, :PromptText, :Model, :Language

@@ -275,12 +275,21 @@ module TencentCloud
 
       # AttachRemoteDisks请求参数结构体
       class AttachRemoteDisksRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>指定待挂载单副本SSD硬盘的CVM实例。</p>
+        # @type InstanceId: String
+        # @param RemoteDiskIds: <p>一个或多个待挂载的单副本SSD硬盘ID。</p>
+        # @type RemoteDiskIds: Array
 
+        attr_accessor :InstanceId, :RemoteDiskIds
 
-        def initialize()
+        def initialize(instanceid=nil, remotediskids=nil)
+          @InstanceId = instanceid
+          @RemoteDiskIds = remotediskids
         end
 
         def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @RemoteDiskIds = params['RemoteDiskIds']
         end
       end
 
@@ -875,12 +884,47 @@ module TencentCloud
 
       # CreateRemoteDisks请求参数结构体
       class CreateRemoteDisksRequest < TencentCloud::Common::AbstractModel
+        # @param DiskChargeType: <p>单副本SSD硬盘计费类型。 </p><p>枚举值：</p><ul><li>PREPAID： 预付费，即包年包月</li><li>POSTPAID_BY_HOUR： 按小时后付费</li></ul>
+        # @type DiskChargeType: String
+        # @param DiskSize: <p>单副本SSD硬盘大小，单位为GiB。</p><p>取值范围：[2000, 7000]</p>
+        # @type DiskSize: Integer
+        # @param InstanceId: <p>待挂载单副本SSD硬盘的CVM实例ID。</p>
+        # @type InstanceId: String
+        # @param Placement: <p>实例所在的位置。通过该参数可以指定实例所属可用区，所属项目。若不指定项目，将在默认项目下进行创建。</p>
+        # @type Placement: :class:`Tencentcloud::Cbs.v20170312.models.Placement`
+        # @param DiskChargePrepaid: <p>预付费模式，即包年包月相关参数设置。通过该参数指定包年包月单副本SSD硬盘的购买时长、是否设置自动续费等属性。 创建预付费单副本SSD硬盘该参数必传，创建按小时后付费单副本SSD硬盘无需传该参数。</p>
+        # @type DiskChargePrepaid: :class:`Tencentcloud::Cbs.v20170312.models.RemoteDiskChargePrepaid`
+        # @param DiskCount: <p>创建单副本SSD硬盘数量，不传则默认为1。</p>
+        # @type DiskCount: Integer
+        # @param DiskName: <p>单副本SSD的显示名称。</p>
+        # @type DiskName: String
 
+        attr_accessor :DiskChargeType, :DiskSize, :InstanceId, :Placement, :DiskChargePrepaid, :DiskCount, :DiskName
 
-        def initialize()
+        def initialize(diskchargetype=nil, disksize=nil, instanceid=nil, placement=nil, diskchargeprepaid=nil, diskcount=nil, diskname=nil)
+          @DiskChargeType = diskchargetype
+          @DiskSize = disksize
+          @InstanceId = instanceid
+          @Placement = placement
+          @DiskChargePrepaid = diskchargeprepaid
+          @DiskCount = diskcount
+          @DiskName = diskname
         end
 
         def deserialize(params)
+          @DiskChargeType = params['DiskChargeType']
+          @DiskSize = params['DiskSize']
+          @InstanceId = params['InstanceId']
+          unless params['Placement'].nil?
+            @Placement = Placement.new
+            @Placement.deserialize(params['Placement'])
+          end
+          unless params['DiskChargePrepaid'].nil?
+            @DiskChargePrepaid = RemoteDiskChargePrepaid.new
+            @DiskChargePrepaid.deserialize(params['DiskChargePrepaid'])
+          end
+          @DiskCount = params['DiskCount']
+          @DiskName = params['DiskName']
         end
       end
 
@@ -1667,12 +1711,17 @@ module TencentCloud
 
       # DescribeRemoteDisksDeniedActions请求参数结构体
       class DescribeRemoteDisksDeniedActionsRequest < TencentCloud::Common::AbstractModel
+        # @param RemoteDiskIds: <p>单副本SSD硬盘ID列表。每次批量请求单副本SSD硬盘的上限为 100。</p>
+        # @type RemoteDiskIds: Array
 
+        attr_accessor :RemoteDiskIds
 
-        def initialize()
+        def initialize(remotediskids=nil)
+          @RemoteDiskIds = remotediskids
         end
 
         def deserialize(params)
+          @RemoteDiskIds = params['RemoteDiskIds']
         end
       end
 
@@ -1999,12 +2048,25 @@ module TencentCloud
 
       # DetachRemoteDisks请求参数结构体
       class DetachRemoteDisksRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>指定从特定CVM实例上卸载单副本SSD硬盘。</p>
+        # @type InstanceId: String
+        # @param RemoteDiskIds: <p>一个或多个将要卸载的单副本SSD硬盘ID。</p>
+        # @type RemoteDiskIds: Array
+        # @param ForceDetach: <p>强制解挂，内部使用。</p>
+        # @type ForceDetach: Boolean
 
+        attr_accessor :InstanceId, :RemoteDiskIds, :ForceDetach
 
-        def initialize()
+        def initialize(instanceid=nil, remotediskids=nil, forcedetach=nil)
+          @InstanceId = instanceid
+          @RemoteDiskIds = remotediskids
+          @ForceDetach = forcedetach
         end
 
         def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @RemoteDiskIds = params['RemoteDiskIds']
+          @ForceDetach = params['ForceDetach']
         end
       end
 
@@ -2565,12 +2627,32 @@ module TencentCloud
 
       # InquirePriceCreateRemoteDisks请求参数结构体
       class InquirePriceCreateRemoteDisksRequest < TencentCloud::Common::AbstractModel
+        # @param DiskChargeType: <p>单副本SSD硬盘计费类型。</p><p>枚举值：</p><ul><li>PREPAID： 预付费，即包年包月</li><li>POSTPAID_BY_HOUR： 按小时后付费</li></ul>
+        # @type DiskChargeType: String
+        # @param DiskSize: <p>单副本SSD硬盘大小，单位为GiB。</p><p>取值范围：[2000, 7000]</p>
+        # @type DiskSize: Integer
+        # @param DiskChargePrepaid: <p>预付费模式，即包年包月相关参数设置。通过该参数指定包年包月云盘的购买时长、是否设置自动续费等属性。 创建预付费云盘该参数必传，创建按小时后付费云盘无需传该参数。</p>
+        # @type DiskChargePrepaid: :class:`Tencentcloud::Cbs.v20170312.models.RemoteDiskChargePrepaid`
+        # @param DiskCount: <p>购买单副本SSD硬盘的数量。不填则默认为1。</p>
+        # @type DiskCount: Integer
 
+        attr_accessor :DiskChargeType, :DiskSize, :DiskChargePrepaid, :DiskCount
 
-        def initialize()
+        def initialize(diskchargetype=nil, disksize=nil, diskchargeprepaid=nil, diskcount=nil)
+          @DiskChargeType = diskchargetype
+          @DiskSize = disksize
+          @DiskChargePrepaid = diskchargeprepaid
+          @DiskCount = diskcount
         end
 
         def deserialize(params)
+          @DiskChargeType = params['DiskChargeType']
+          @DiskSize = params['DiskSize']
+          unless params['DiskChargePrepaid'].nil?
+            @DiskChargePrepaid = RemoteDiskChargePrepaid.new
+            @DiskChargePrepaid.deserialize(params['DiskChargePrepaid'])
+          end
+          @DiskCount = params['DiskCount']
         end
       end
 
@@ -2678,12 +2760,28 @@ module TencentCloud
 
       # InquirePriceRenewRemoteDisks请求参数结构体
       class InquirePriceRenewRemoteDisksRequest < TencentCloud::Common::AbstractModel
+        # @param DiskChargePrepaidSet: <p>预付费模式，即包年包月相关参数设置。通过该参数可以指定包年包月云盘的购买时长。如果在该参数中指定CurInstanceDeadline，则会按对齐到子机到期时间来续费。如果是批量续费询价，该参数与Disks参数一一对应，元素数量需保持一致。</p>
+        # @type DiskChargePrepaidSet: Array
+        # @param RemoteDiskIds: <p>一个或多个单副本SSD硬盘ID。</p>
+        # @type RemoteDiskIds: Array
 
+        attr_accessor :DiskChargePrepaidSet, :RemoteDiskIds
 
-        def initialize()
+        def initialize(diskchargeprepaidset=nil, remotediskids=nil)
+          @DiskChargePrepaidSet = diskchargeprepaidset
+          @RemoteDiskIds = remotediskids
         end
 
         def deserialize(params)
+          unless params['DiskChargePrepaidSet'].nil?
+            @DiskChargePrepaidSet = []
+            params['DiskChargePrepaidSet'].each do |i|
+              remotediskchargeprepaid_tmp = RemoteDiskChargePrepaid.new
+              remotediskchargeprepaid_tmp.deserialize(i)
+              @DiskChargePrepaidSet << remotediskchargeprepaid_tmp
+            end
+          end
+          @RemoteDiskIds = params['RemoteDiskIds']
         end
       end
 
@@ -3157,12 +3255,25 @@ module TencentCloud
 
       # ModifyRemoteDiskAttributes请求参数结构体
       class ModifyRemoteDiskAttributesRequest < TencentCloud::Common::AbstractModel
+        # @param RemoteDiskIds: <p>一个或多个待操作的单副本SSD硬盘ID。如果传入多个单副本SSD硬盘ID，只支持所有硬盘修改为同一属性。</p>
+        # @type RemoteDiskIds: Array
+        # @param DiskName: <p>新的单副本SSD硬盘名称</p>
+        # @type DiskName: String
+        # @param ProjectId: <p>新的单副本SSD硬盘项目ID。</p>
+        # @type ProjectId: Integer
 
+        attr_accessor :RemoteDiskIds, :DiskName, :ProjectId
 
-        def initialize()
+        def initialize(remotediskids=nil, diskname=nil, projectid=nil)
+          @RemoteDiskIds = remotediskids
+          @DiskName = diskname
+          @ProjectId = projectid
         end
 
         def deserialize(params)
+          @RemoteDiskIds = params['RemoteDiskIds']
+          @DiskName = params['DiskName']
+          @ProjectId = params['ProjectId']
         end
       end
 
@@ -3463,6 +3574,36 @@ module TencentCloud
         end
       end
 
+      # 描述了单副本SSD硬盘的预付费计费模式。
+      class RemoteDiskChargePrepaid < TencentCloud::Common::AbstractModel
+        # @param Period: 购买单副本SSD硬盘的时长，默认单位为月，取值范围：1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 24, 36。
+        # @type Period: Integer
+        # @param CurInstanceDeadline: 需要将单副本SSD硬盘的到期时间与挂载的子机对齐时，可传入该参数。该参数表示子机当前的到期时间，此时Period如果传入，则表示子机需要续费的时长，单副本SSD硬盘会自动按对齐到子机续费后的到期时间续费。
+        # @type CurInstanceDeadline: String
+        # @param RenewFlag: 自动续费标识。取值范围：
+        # <ul>
+        #   <li>NOTIFY_AND_AUTO_RENEW：通知过期且自动续费</li>
+        #   <li>NOTIFY_AND_MANUAL_RENEW：通知过期不自动续费</li>
+        #   <li>DISABLE_NOTIFY_AND_MANUAL_RENEW：不通知过期不自动续费</li>
+        # </ul>
+        # 默认取值：NOTIFY_AND_MANUAL_RENEW。
+        # @type RenewFlag: String
+
+        attr_accessor :Period, :CurInstanceDeadline, :RenewFlag
+
+        def initialize(period=nil, curinstancedeadline=nil, renewflag=nil)
+          @Period = period
+          @CurInstanceDeadline = curinstancedeadline
+          @RenewFlag = renewflag
+        end
+
+        def deserialize(params)
+          @Period = params['Period']
+          @CurInstanceDeadline = params['CurInstanceDeadline']
+          @RenewFlag = params['RenewFlag']
+        end
+      end
+
       # RenewDisk请求参数结构体
       class RenewDiskRequest < TencentCloud::Common::AbstractModel
         # @param DiskChargePrepaid: <p>预付费模式，即包年包月相关参数设置。通过该参数可以指定包年包月云硬盘的续费时长。<br>在云硬盘与挂载的实例一起续费的场景下，可以指定参数CurInstanceDeadline，此时云硬盘会按对齐到实例续费后的到期时间来续费。</p>
@@ -3504,12 +3645,24 @@ module TencentCloud
 
       # RenewRemoteDisk请求参数结构体
       class RenewRemoteDiskRequest < TencentCloud::Common::AbstractModel
+        # @param DiskChargePrepaid: <p>预付费模式，即包年包月相关参数设置。通过该参数可以指定包年包月单副本SSD硬盘的续费时长。 在云硬盘与挂载的实例一起续费的场景下，可以指定参数CurInstanceDeadline，此时单副本SSD硬盘会按对齐到实例续费后的到期时间来续费。</p>
+        # @type DiskChargePrepaid: :class:`Tencentcloud::Cbs.v20170312.models.RemoteDiskChargePrepaid`
+        # @param RemoteDiskId: <p>单副本SSD硬盘ID。</p>
+        # @type RemoteDiskId: String
 
+        attr_accessor :DiskChargePrepaid, :RemoteDiskId
 
-        def initialize()
+        def initialize(diskchargeprepaid=nil, remotediskid=nil)
+          @DiskChargePrepaid = diskchargeprepaid
+          @RemoteDiskId = remotediskid
         end
 
         def deserialize(params)
+          unless params['DiskChargePrepaid'].nil?
+            @DiskChargePrepaid = RemoteDiskChargePrepaid.new
+            @DiskChargePrepaid.deserialize(params['DiskChargePrepaid'])
+          end
+          @RemoteDiskId = params['RemoteDiskId']
         end
       end
 
@@ -3935,12 +4088,17 @@ module TencentCloud
 
       # TerminateRemoteDisks请求参数结构体
       class TerminateRemoteDisksRequest < TencentCloud::Common::AbstractModel
+        # @param RemoteDiskIds: <p>一个或多个单副本SSD硬盘ID。</p>
+        # @type RemoteDiskIds: Array
 
+        attr_accessor :RemoteDiskIds
 
-        def initialize()
+        def initialize(remotediskids=nil)
+          @RemoteDiskIds = remotediskids
         end
 
         def deserialize(params)
+          @RemoteDiskIds = params['RemoteDiskIds']
         end
       end
 

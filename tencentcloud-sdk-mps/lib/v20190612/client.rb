@@ -246,6 +246,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 调用该接口，用于创建AI生音频任务。
+
+        # @param request: Request instance for CreateAigcAudioTask.
+        # @type request: :class:`Tencentcloud::mps::V20190612::CreateAigcAudioTaskRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::CreateAigcAudioTaskResponse`
+        def CreateAigcAudioTask(request)
+          body = send_request('CreateAigcAudioTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateAigcAudioTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 调用该接口用于创建AIGC生图片任务。
 
         # @param request: Request instance for CreateAigcImageTask.
@@ -2039,6 +2063,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeAdaptiveDynamicStreamingTemplatesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 调用该接口，用于查询AIGC生视频任务的进度以及获取生成结果。
+
+        # @param request: Request instance for DescribeAigcAudioTask.
+        # @type request: :class:`Tencentcloud::mps::V20190612::DescribeAigcAudioTaskRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::DescribeAigcAudioTaskResponse`
+        def DescribeAigcAudioTask(request)
+          body = send_request('DescribeAigcAudioTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAigcAudioTaskResponse.new
             model.deserialize(response['Response'])
             model
           else
