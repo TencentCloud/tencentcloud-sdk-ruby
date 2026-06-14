@@ -270,6 +270,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建慢日志统计下载任务
+
+        # @param request: Request instance for CreateSlowLogPatternDownloadTask.
+        # @type request: :class:`Tencentcloud::mongodb::V20190725::CreateSlowLogPatternDownloadTaskRequest`
+        # @rtype: :class:`Tencentcloud::mongodb::V20190725::CreateSlowLogPatternDownloadTaskResponse`
+        def CreateSlowLogPatternDownloadTask(request)
+          body = send_request('CreateSlowLogPatternDownloadTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateSlowLogPatternDownloadTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DeleteAccountUser）用于删除实例的自定义账号。
 
         # @param request: Request instance for DeleteAccountUser.
@@ -640,6 +664,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeDBInstanceDealResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取日志投递的相关配置信息
+
+        # @param request: Request instance for DescribeDBInstanceLogToCLS.
+        # @type request: :class:`Tencentcloud::mongodb::V20190725::DescribeDBInstanceLogToCLSRequest`
+        # @rtype: :class:`Tencentcloud::mongodb::V20190725::DescribeDBInstanceLogToCLSResponse`
+        def DescribeDBInstanceLogToCLS(request)
+          body = send_request('DescribeDBInstanceLogToCLS', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDBInstanceLogToCLSResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1282,6 +1330,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 终止实例流程
+
+        # @param request: Request instance for IncreaseDBInstanceConnectionLimit.
+        # @type request: :class:`Tencentcloud::mongodb::V20190725::IncreaseDBInstanceConnectionLimitRequest`
+        # @rtype: :class:`Tencentcloud::mongodb::V20190725::IncreaseDBInstanceConnectionLimitResponse`
+        def IncreaseDBInstanceConnectionLimit(request)
+          body = send_request('IncreaseDBInstanceConnectionLimit', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = IncreaseDBInstanceConnectionLimitResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（InquirePriceCreateDBInstances）用于创建数据库实例询价。本接口参数中必须传入region参数，否则无法通过校验。本接口仅允许针对购买限制范围内的实例配置进行询价。
 
         # @param request: Request instance for InquirePriceCreateDBInstances.
@@ -1460,6 +1532,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyBackupExpireTimeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 开启或关闭MongoDB慢日志、错误日志、操作日志投递CLS
+
+        # @param request: Request instance for ModifyDBInstanceLogToCLS.
+        # @type request: :class:`Tencentcloud::mongodb::V20190725::ModifyDBInstanceLogToCLSRequest`
+        # @rtype: :class:`Tencentcloud::mongodb::V20190725::ModifyDBInstanceLogToCLSResponse`
+        def ModifyDBInstanceLogToCLS(request)
+          body = send_request('ModifyDBInstanceLogToCLS', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyDBInstanceLogToCLSResponse.new
             model.deserialize(response['Response'])
             model
           else

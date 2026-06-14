@@ -711,55 +711,49 @@ module TencentCloud
 
       # CreateDatasourceCloud请求参数结构体
       class CreateDatasourceCloudRequest < TencentCloud::Common::AbstractModel
-        # @param ServiceType: 后端提供字典：域类型，1、腾讯云，2、本地
+        # @param ServiceType: <p>后端提供字典：域类型，1、腾讯云，2、本地</p>
         # @type ServiceType: String
-        # @param DbType: 驱动
-        # 取值范围：
-        # MYSQL：MySQL数据库
-        # PRESTO：PRESTO数据库
-        # POSTGRE：PostgreSQL数据库
-        # DLC：DLC数据库
-        # MSSQL：微软SQL Server数据库
+        # @param DbType: <p>驱动</p><p>枚举值：</p><ul><li>MYSQL： MySQL数据库</li><li>PRESTO： PRESTO数据库</li><li>POSTGRE： PostgreSQL数据库</li><li>DLC： DLC数据库</li><li>MSSQL： 微软SQL Server数据库</li></ul>
         # @type DbType: String
-        # @param Charset: 数据库编码
+        # @param Charset: <p>数据库编码</p>
         # @type Charset: String
-        # @param DbUser: 用户名
+        # @param DbUser: <p>用户名</p>
         # @type DbUser: String
-        # @param DbPwd: 密码
+        # @param DbPwd: <p>密码</p>
         # @type DbPwd: String
-        # @param DbName: 数据库名称
+        # @param DbName: <p>数据库名称</p>
         # @type DbName: String
-        # @param SourceName: 数据库别名
+        # @param SourceName: <p>数据库别名</p>
         # @type SourceName: String
-        # @param ProjectId: 项目ID
+        # @param ProjectId: <p>项目ID</p>
         # @type ProjectId: String
-        # @param Vip: 公有云内网ip
+        # @param Vip: <p>公有云内网ip</p>
         # @type Vip: String
-        # @param Vport: 公有云内网端口
+        # @param Vport: <p>公有云内网端口</p>
         # @type Vport: String
-        # @param VpcId: vpc标识
+        # @param VpcId: <p>vpc标识</p>
         # @type VpcId: String
-        # @param UniqVpcId: 统一vpc标识
+        # @param UniqVpcId: <p>统一vpc标识</p>
         # @type UniqVpcId: String
-        # @param RegionId: 区域标识（gz,bj)
+        # @param RegionId: <p>区域标识（gz,bj)</p>
         # @type RegionId: String
-        # @param ExtraParam: 扩展参数
+        # @param ExtraParam: <p>扩展参数</p>
         # @type ExtraParam: String
-        # @param InstanceId: 实例Id
+        # @param InstanceId: <p>实例Id</p>
         # @type InstanceId: String
-        # @param ProdDbName: 数据源产品名
+        # @param ProdDbName: <p>数据源产品名</p>
         # @type ProdDbName: String
-        # @param DataOrigin: 第三方数据源标识
+        # @param DataOrigin: <p>第三方数据源标识</p>
         # @type DataOrigin: String
-        # @param DataOriginProjectId: 第三方项目id
+        # @param DataOriginProjectId: <p>第三方项目id</p>
         # @type DataOriginProjectId: String
-        # @param DataOriginDatasourceId: 第三方数据源id
+        # @param DataOriginDatasourceId: <p>第三方数据源id</p>
         # @type DataOriginDatasourceId: String
-        # @param ClusterId: 集群id
+        # @param ClusterId: <p>集群id</p>
         # @type ClusterId: String
-        # @param Schema: 数据库schema
+        # @param Schema: <p>数据库schema</p>
         # @type Schema: String
-        # @param DbVersion: 数据库版本
+        # @param DbVersion: <p>数据库版本</p>
         # @type DbVersion: String
 
         attr_accessor :ServiceType, :DbType, :Charset, :DbUser, :DbPwd, :DbName, :SourceName, :ProjectId, :Vip, :Vport, :VpcId, :UniqVpcId, :RegionId, :ExtraParam, :InstanceId, :ProdDbName, :DataOrigin, :DataOriginProjectId, :DataOriginDatasourceId, :ClusterId, :Schema, :DbVersion
@@ -820,13 +814,13 @@ module TencentCloud
         # @param ErrorInfo: 自定义错误信息对象
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorInfo: :class:`Tencentcloud::Bi.v20220105.models.ErrorInfo`
-        # @param Data: 成功无
+        # @param Data: <p>成功无</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: :class:`Tencentcloud::Bi.v20220105.models.IdDTO`
-        # @param Extra: 额外信息
+        # @param Extra: <p>额外信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Extra: String
-        # @param Msg: 提示
+        # @param Msg: <p>提示</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Msg: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -859,59 +853,53 @@ module TencentCloud
 
       # CreateDatasource请求参数结构体
       class CreateDatasourceRequest < TencentCloud::Common::AbstractModel
-        # @param DbHost: HOST
+        # @param DbHost: <p>HOST</p>
         # @type DbHost: String
-        # @param DbPort: 端口
+        # @param DbPort: <p>端口</p>
         # @type DbPort: Integer
-        # @param ServiceType: 后端提供字典：域类型，1、腾讯云，2、本地
+        # @param ServiceType: <p>后端提供字典：域类型，1、腾讯云，2、本地</p>
         # @type ServiceType: String
-        # @param DbType: 驱动
-        # 取值范围：
-        # MYSQL：MySQL数据库
-        # PRESTO：PRESTO数据库
-        # POSTGRE：PostgreSQL数据库
-        # DLC：DLC数据库
-        # MSSQL：微软SQL Server数据库
+        # @param DbType: <p>驱动</p><p>枚举值：</p><ul><li>MYSQL： MySQL数据库</li><li>PRESTO： PRESTO数据库</li><li>POSTGRE： PostgreSQL数据库</li><li>DLC： DLC数据库</li><li>MSSQL： 微软SQL Server数据库</li></ul>
         # @type DbType: String
-        # @param Charset: 数据库编码
+        # @param Charset: <p>数据库编码</p>
         # @type Charset: String
-        # @param DbUser: 用户名
+        # @param DbUser: <p>用户名</p>
         # @type DbUser: String
-        # @param DbPwd: 密码
+        # @param DbPwd: <p>密码</p>
         # @type DbPwd: String
-        # @param DbName: 数据库名称
+        # @param DbName: <p>数据库名称</p>
         # @type DbName: String
-        # @param SourceName: 数据库别名
+        # @param SourceName: <p>数据库别名</p>
         # @type SourceName: String
-        # @param ProjectId: 项目id
+        # @param ProjectId: <p>项目id</p>
         # @type ProjectId: Integer
-        # @param Catalog: catalog值
+        # @param Catalog: <p>catalog值</p>
         # @type Catalog: String
-        # @param DataOrigin: 第三方数据源标识
+        # @param DataOrigin: <p>第三方数据源标识</p>
         # @type DataOrigin: String
-        # @param DataOriginProjectId: 第三方项目id
+        # @param DataOriginProjectId: <p>第三方项目id</p>
         # @type DataOriginProjectId: String
-        # @param DataOriginDatasourceId: 第三方数据源id
+        # @param DataOriginDatasourceId: <p>第三方数据源id</p>
         # @type DataOriginDatasourceId: String
-        # @param ExtraParam: 扩展参数
+        # @param ExtraParam: <p>扩展参数</p>
         # @type ExtraParam: String
-        # @param UniqVpcId: 腾讯云私有网络统一标识
+        # @param UniqVpcId: <p>腾讯云私有网络统一标识</p>
         # @type UniqVpcId: String
-        # @param Vip: 私有网络ip
+        # @param Vip: <p>私有网络ip</p>
         # @type Vip: String
-        # @param Vport: 私有网络端口
+        # @param Vport: <p>私有网络端口</p>
         # @type Vport: String
-        # @param VpcId: 腾讯云私有网络标识
+        # @param VpcId: <p>腾讯云私有网络标识</p>
         # @type VpcId: String
-        # @param OperationAuthLimit: 操作权限限制
+        # @param OperationAuthLimit: <p>操作权限限制</p>
         # @type OperationAuthLimit: Array
-        # @param UseVPC: 开启vpc
+        # @param UseVPC: <p>开启vpc</p>
         # @type UseVPC: Boolean
-        # @param RegionId: 地域
+        # @param RegionId: <p>地域</p>
         # @type RegionId: String
-        # @param Schema: 数据库schema
+        # @param Schema: <p>数据库schema</p>
         # @type Schema: String
-        # @param DbVersion: 数据库版本
+        # @param DbVersion: <p>数据库版本</p>
         # @type DbVersion: String
 
         attr_accessor :DbHost, :DbPort, :ServiceType, :DbType, :Charset, :DbUser, :DbPwd, :DbName, :SourceName, :ProjectId, :Catalog, :DataOrigin, :DataOriginProjectId, :DataOriginDatasourceId, :ExtraParam, :UniqVpcId, :Vip, :Vport, :VpcId, :OperationAuthLimit, :UseVPC, :RegionId, :Schema, :DbVersion
@@ -976,13 +964,13 @@ module TencentCloud
         # @param ErrorInfo: 自定义错误信息对象
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorInfo: :class:`Tencentcloud::Bi.v20220105.models.ErrorInfo`
-        # @param Data: 数据源id
+        # @param Data: <p>数据源id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: :class:`Tencentcloud::Bi.v20220105.models.IdDTO`
-        # @param Extra: 额外信息
+        # @param Extra: <p>额外信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Extra: String
-        # @param Msg: 提示
+        # @param Msg: <p>提示</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Msg: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -1161,51 +1149,23 @@ module TencentCloud
 
       # CreatePermissionRanks请求参数结构体
       class CreatePermissionRanksRequest < TencentCloud::Common::AbstractModel
-        # @param TableId: 页数
+        # @param TableId: <p>页数</p>
         # @type TableId: Integer
-        # @param Mode: 模式。
-        # 取值范围：
-        # - ALL：全部
-        # - Specify：指定
-        # - TAG：标签
-
-        # 默认值：ALL
-        # 示例值：ALL
+        # @param Mode: <p>模式</p><p>枚举值：</p><ul><li>ALL： 全部</li><li>Specify： 指定</li><li>TAG： 标签</li></ul><p>默认值：ALL</p>
         # @type Mode: String
-        # @param RoleType: 角色类型。
-        # 取值范围：
-
-        # - ROLES：按角色
-        # - Others：其它
-
-        # 默认值：Others
-        # 示例值：Others
+        # @param RoleType: <p>角色类型</p><p>枚举值：</p><ul><li>ROLES： 按角色</li><li>Others： 其它</li></ul><p>默认值：Others</p>
         # @type RoleType: String
-        # @param RoleId: 所有页码
+        # @param RoleId: <p>所有页码</p>
         # @type RoleId: Integer
-        # @param RulerInfo: 规则信息
+        # @param RulerInfo: <p>规则信息</p>
         # @type RulerInfo: String
-        # @param Type: 类型。
-        # 取值范围：
-
-        # - ROW：行权限
-        # - COLUMN：列权限
-
-        # 默认值：ROW
-        # 示例值：ROW
+        # @param Type: <p>类型</p><p>枚举值：</p><ul><li>ROW： 行权限</li><li>COLUMN： 列权限</li></ul><p>默认值：ROW</p>
         # @type Type: String
-        # @param OpenStatus: 开启状态。
-        # 取值范围：
-
-        # - Open：开启
-        # - Close：关闭
-
-        # 默认值：Close
-        # 示例值：Close
+        # @param OpenStatus: <p>开启状态</p><p>枚举值：</p><ul><li>Open： 开启</li><li>Close： 关闭</li></ul><p>默认值：Close</p>
         # @type OpenStatus: String
-        # @param ProjectId: 项目id
+        # @param ProjectId: <p>项目id</p>
         # @type ProjectId: Integer
-        # @param RowColumnConfigList: 行列权限配置
+        # @param RowColumnConfigList: <p>行列权限配置</p>
         # @type RowColumnConfigList: Array
 
         attr_accessor :TableId, :Mode, :RoleType, :RoleId, :RulerInfo, :Type, :OpenStatus, :ProjectId, :RowColumnConfigList
@@ -1247,13 +1207,13 @@ module TencentCloud
         # @param ErrorInfo: 自定义错误信息对象
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorInfo: :class:`Tencentcloud::Bi.v20220105.models.ErrorInfo`
-        # @param Msg: 消息
+        # @param Msg: <p>消息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Msg: String
-        # @param Extra: 112
+        # @param Extra: <p>112</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Extra: String
-        # @param Data: 1
+        # @param Data: <p>1</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -1283,22 +1243,19 @@ module TencentCloud
 
       # CreateProject请求参数结构体
       class CreateProjectRequest < TencentCloud::Common::AbstractModel
-        # @param Name: 项目名称
+        # @param Name: <p>项目名称</p>
         # @type Name: String
-        # @param ColorCode: logo底色
+        # @param ColorCode: <p>logo底色</p>
         # @type ColorCode: String
-        # @param Logo: 项目Logo
+        # @param Logo: <p>项目Logo</p>
         # @type Logo: String
-        # @param Mark: 备注
+        # @param Mark: <p>备注</p>
         # @type Mark: String
-        # @param IsApply: 是否允许用户申请
+        # @param IsApply: <p>是否允许用户申请</p>
         # @type IsApply: Boolean
-        # @param DefaultPanelType: 默认看板
-        # 取值范围：
-        # 1：项目看板
-        # 2：我的看板
+        # @param DefaultPanelType: <p>默认看板</p><p>枚举值：</p><ul><li>1： 项目看板</li><li>2： 我的看板</li></ul>
         # @type DefaultPanelType: Integer
-        # @param ManagePlatform: 管理平台
+        # @param ManagePlatform: <p>管理平台</p>
         # @type ManagePlatform: String
 
         attr_accessor :Name, :ColorCode, :Logo, :Mark, :IsApply, :DefaultPanelType, :ManagePlatform
@@ -1329,11 +1286,11 @@ module TencentCloud
         # @param ErrorInfo: 自定义错误信息对象
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorInfo: :class:`Tencentcloud::Bi.v20220105.models.ErrorInfo`
-        # @param Extra: 额外数据
+        # @param Extra: <p>额外数据</p>
         # @type Extra: String
-        # @param Data: 数据
+        # @param Data: <p>数据</p>
         # @type Data: :class:`Tencentcloud::Bi.v20220105.models.Data`
-        # @param Msg: 返回信息
+        # @param Msg: <p>返回信息</p>
         # @type Msg: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1498,13 +1455,13 @@ module TencentCloud
 
       # CreateUserRoleProject请求参数结构体
       class CreateUserRoleProjectRequest < TencentCloud::Common::AbstractModel
-        # @param ProjectId: 项目ID
+        # @param ProjectId: <p>项目ID</p>
         # @type ProjectId: Integer
-        # @param RoleIdList: 角色ID列表
+        # @param RoleIdList: <p>角色ID列表</p>
         # @type RoleIdList: Array
-        # @param UserList: 用户列表（废弃）
+        # @param UserList: <p>用户列表（废弃）</p>
         # @type UserList: Array
-        # @param UserInfoList: 用户列表（新）
+        # @param UserInfoList: <p>用户列表（新）</p>
         # @type UserInfoList: Array
 
         attr_accessor :ProjectId, :RoleIdList, :UserList, :UserInfoList
@@ -1546,13 +1503,13 @@ module TencentCloud
         # @param ErrorInfo: 自定义错误信息对象
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorInfo: :class:`Tencentcloud::Bi.v20220105.models.ErrorInfo`
-        # @param Extra: 扩展
+        # @param Extra: <p>扩展</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Extra: String
-        # @param Data: 数据
+        # @param Data: <p>数据</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: :class:`Tencentcloud::Bi.v20220105.models.DataId`
-        # @param Msg: 消息
+        # @param Msg: <p>消息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Msg: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -2073,14 +2030,11 @@ module TencentCloud
 
       # DeleteProject请求参数结构体
       class DeleteProjectRequest < TencentCloud::Common::AbstractModel
-        # @param Id: 项目ID
+        # @param Id: <p>项目ID</p>
         # @type Id: Integer
-        # @param Seed: 随机数
+        # @param Seed: <p>随机数</p>
         # @type Seed: String
-        # @param DefaultPanelType: 默认看板
-        # 取值范围：
-        # 1：项目看板
-        # 2：我的看板
+        # @param DefaultPanelType: <p>默认看板</p><p>枚举值：</p><ul><li>1： 项目看板</li><li>2： 我的看板</li></ul>
         # @type DefaultPanelType: Integer
 
         attr_accessor :Id, :Seed, :DefaultPanelType
@@ -2103,12 +2057,12 @@ module TencentCloud
         # @param ErrorInfo: 自定义错误信息对象
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorInfo: :class:`Tencentcloud::Bi.v20220105.models.ErrorInfo`
-        # @param Extra: ”“
+        # @param Extra: <p>”“</p>
         # @type Extra: String
-        # @param Data: ""
+        # @param Data: <p>&quot;&quot;</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: String
-        # @param Msg: ""
+        # @param Msg: <p>&quot;&quot;</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Msg: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -2636,39 +2590,17 @@ module TencentCloud
 
       # DescribePermissionRanksInfo请求参数结构体
       class DescribePermissionRanksInfoRequest < TencentCloud::Common::AbstractModel
-        # @param TableId: 页数
+        # @param TableId: <p>页数</p>
         # @type TableId: Integer
-        # @param Mode: 模式。
-        # 取值范围：
-
-        # - ALL：全部
-        # - Specify：指定
-        # - TAG：标签
-
-        # 默认值：ALL
-        # 示例值：ALL
+        # @param Mode: <p>模式</p><p>枚举值：</p><ul><li>ALL： 全部</li><li>Specify： 指定</li><li>TAG： 标签</li></ul><p>默认值：ALL</p>
         # @type Mode: String
-        # @param RoleType: 角色类型。
-        # 取值范围：
-
-        # - ROLES：按角色
-        # - Others：其它
-
-        # 默认值：Others
-        # 示例值：Others
+        # @param RoleType: <p>角色类型</p><p>枚举值：</p><ul><li>ROLES： 按角色</li><li>Others： 其它</li></ul><p>默认值：Others</p>
         # @type RoleType: String
-        # @param RoleId: 所有页码
+        # @param RoleId: <p>所有页码</p>
         # @type RoleId: Integer
-        # @param Type: 类型。
-        # 取值范围：
-
-        # - ROW：行权限
-        # - COLUMN：列权限
-
-        # 默认值：ROW
-        # 示例值：ROW
+        # @param Type: <p>类型</p><p>枚举值：</p><ul><li>ROW： 行权限</li><li>COLUMN： 列权限</li></ul><p>默认值：ROW</p>
         # @type Type: String
-        # @param ProjectId: 项目id
+        # @param ProjectId: <p>项目id</p>
         # @type ProjectId: Integer
 
         attr_accessor :TableId, :Mode, :RoleType, :RoleId, :Type, :ProjectId
@@ -2697,13 +2629,13 @@ module TencentCloud
         # @param ErrorInfo: 自定义错误信息对象
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorInfo: :class:`Tencentcloud::Bi.v20220105.models.ErrorInfo`
-        # @param Msg: 消息
+        # @param Msg: <p>消息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Msg: String
-        # @param Extra: 112
+        # @param Extra: <p>112</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Extra: String
-        # @param Data: 无
+        # @param Data: <p>无</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: :class:`Tencentcloud::Bi.v20220105.models.RankInfo`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -2810,18 +2742,11 @@ module TencentCloud
 
       # DescribePermissionStatusInfo请求参数结构体
       class DescribePermissionStatusInfoRequest < TencentCloud::Common::AbstractModel
-        # @param TableId: 页数
+        # @param TableId: <p>页数</p>
         # @type TableId: Integer
-        # @param Type: 类型。
-        # 取值范围：
-
-        # - ROW：行权限
-        # - COLUMN：列权限
-
-        # 默认值：ROW
-        # 示例值：ROW
+        # @param Type: <p>类型</p><p>枚举值：</p><ul><li>ROW： 行权限</li><li>COLUMN： 列权限</li></ul><p>默认值：ROW</p>
         # @type Type: String
-        # @param ProjectId: 1
+        # @param ProjectId: <p>1</p>
         # @type ProjectId: String
 
         attr_accessor :TableId, :Type, :ProjectId
@@ -2844,13 +2769,13 @@ module TencentCloud
         # @param ErrorInfo: 自定义错误信息对象
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorInfo: :class:`Tencentcloud::Bi.v20220105.models.ErrorInfo`
-        # @param Msg: 消息
+        # @param Msg: <p>消息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Msg: String
-        # @param Extra: 112
+        # @param Extra: <p>112</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Extra: String
-        # @param Data: 1
+        # @param Data: <p>1</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: :class:`Tencentcloud::Bi.v20220105.models.RowColumnStatus`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -2883,12 +2808,9 @@ module TencentCloud
 
       # DescribeProjectInfo请求参数结构体
       class DescribeProjectInfoRequest < TencentCloud::Common::AbstractModel
-        # @param Id: 项目Id
+        # @param Id: <p>项目Id</p>
         # @type Id: Integer
-        # @param DefaultPanelType: 默认看板
-        # 取值范围：
-        # 1：项目看板
-        # 2：我的看板
+        # @param DefaultPanelType: <p>默认看板</p><p>枚举值：</p><ul><li>1： 项目看板</li><li>2： 我的看板</li></ul>
         # @type DefaultPanelType: Integer
 
         attr_accessor :Id, :DefaultPanelType
@@ -2909,13 +2831,13 @@ module TencentCloud
         # @param ErrorInfo: 自定义错误信息对象
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorInfo: :class:`Tencentcloud::Bi.v20220105.models.ErrorInfo`
-        # @param Extra: ""
+        # @param Extra: <p>&quot;&quot;</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Extra: String
-        # @param Msg: ""
+        # @param Msg: <p>&quot;&quot;</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Msg: String
-        # @param Data: 项目详情
+        # @param Data: <p>项目详情</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: :class:`Tencentcloud::Bi.v20220105.models.Project`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -3515,19 +3437,19 @@ module TencentCloud
 
       # DescribeUserProjectList请求参数结构体
       class DescribeUserProjectListRequest < TencentCloud::Common::AbstractModel
-        # @param ProjectId: 项目ID
+        # @param ProjectId: <p>项目ID</p>
         # @type ProjectId: Integer
-        # @param AllPage: 无
+        # @param AllPage: <p>无</p>
         # @type AllPage: Boolean
-        # @param PageNo: 无
+        # @param PageNo: <p>无</p>
         # @type PageNo: Integer
-        # @param PageSize: 无
+        # @param PageSize: <p>无</p>
         # @type PageSize: Integer
-        # @param IsFilterPerAuthUser: 是否过滤掉企业管理员
+        # @param IsFilterPerAuthUser: <p>是否过滤掉企业管理员</p>
         # @type IsFilterPerAuthUser: Boolean
-        # @param IsFilterCurrentUser: 是否过滤掉当前用户
+        # @param IsFilterCurrentUser: <p>是否过滤掉当前用户</p>
         # @type IsFilterCurrentUser: Boolean
-        # @param Keyword: 关键字
+        # @param Keyword: <p>关键字</p>
         # @type Keyword: String
 
         attr_accessor :ProjectId, :AllPage, :PageNo, :PageSize, :IsFilterPerAuthUser, :IsFilterCurrentUser, :Keyword
@@ -3558,13 +3480,13 @@ module TencentCloud
         # @param ErrorInfo: 自定义错误信息对象
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorInfo: :class:`Tencentcloud::Bi.v20220105.models.ErrorInfo`
-        # @param Data: 数据
+        # @param Data: <p>数据</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: :class:`Tencentcloud::Bi.v20220105.models.CorpUserListData`
-        # @param Extra: 扩展
+        # @param Extra: <p>扩展</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Extra: String
-        # @param Msg: 消息
+        # @param Msg: <p>消息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Msg: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -4125,23 +4047,19 @@ module TencentCloud
 
       # 仅包含id的对象
       class IdDTO < TencentCloud::Common::AbstractModel
-        # @param Id: 请求id
+        # @param Id: <p>请求id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: Integer
-        # @param AccessKey: key
+        # @param AccessKey: <p>key</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AccessKey: String
-        # @param ProjectId: id
+        # @param ProjectId: <p>id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProjectId: Integer
-        # @param TranId: 事务id
+        # @param TranId: <p>事务id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TranId: String
-        # @param TranStatus: 事务状态
-        # 取值范围：
-        # 1: 处理中
-        # 2: 处理成功
-        # 3: 处理失败
+        # @param TranStatus: <p>事务状态</p><p>枚举值：</p><ul><li>1： 处理中</li><li>2： 处理成功</li><li>3： 处理失败</li></ul>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TranStatus: Integer
 
@@ -4364,57 +4282,51 @@ module TencentCloud
 
       # ModifyDatasourceCloud请求参数结构体
       class ModifyDatasourceCloudRequest < TencentCloud::Common::AbstractModel
-        # @param ServiceType: 后端提供字典：域类型，1、腾讯云，2、本地
+        # @param ServiceType: <p>后端提供字典：域类型，1、腾讯云，2、本地</p>
         # @type ServiceType: String
-        # @param DbType: 驱动
-        # 取值范围：
-        # MYSQL：MySQL数据库
-        # PRESTO：PRESTO数据库
-        # POSTGRE：PostgreSQL数据库
-        # DLC：DLC数据库
-        # MSSQL：微软SQL Server数据库
+        # @param DbType: <p>驱动</p><p>枚举值：</p><ul><li>MYSQL： MySQL数据库</li><li>PRESTO： PRESTO数据库</li><li>POSTGRE： PostgreSQL数据库</li><li>DLC： DLC数据库</li><li>MSSQL： 微软SQL Server数据库</li></ul>
         # @type DbType: String
-        # @param Charset: 数据库编码
+        # @param Charset: <p>数据库编码</p>
         # @type Charset: String
-        # @param DbUser: 用户名
+        # @param DbUser: <p>用户名</p>
         # @type DbUser: String
-        # @param DbPwd: 密码
+        # @param DbPwd: <p>密码</p>
         # @type DbPwd: String
-        # @param DbName: 数据库名称
+        # @param DbName: <p>数据库名称</p>
         # @type DbName: String
-        # @param SourceName: 数据库别名
+        # @param SourceName: <p>数据库别名</p>
         # @type SourceName: String
-        # @param ProjectId: 项目ID
+        # @param ProjectId: <p>项目ID</p>
         # @type ProjectId: String
-        # @param Id: 住键
+        # @param Id: <p>住键</p>
         # @type Id: Integer
-        # @param Vip: 公有云内网ip
+        # @param Vip: <p>公有云内网ip</p>
         # @type Vip: String
-        # @param Vport: 公有云内网端口
+        # @param Vport: <p>公有云内网端口</p>
         # @type Vport: String
-        # @param VpcId: vpc标识
+        # @param VpcId: <p>vpc标识</p>
         # @type VpcId: String
-        # @param UniqVpcId: 统一vpc标识
+        # @param UniqVpcId: <p>统一vpc标识</p>
         # @type UniqVpcId: String
-        # @param RegionId: 区域标识（gz,bj)
+        # @param RegionId: <p>区域标识（gz,bj)</p>
         # @type RegionId: String
-        # @param ExtraParam: 扩展参数
+        # @param ExtraParam: <p>扩展参数</p>
         # @type ExtraParam: String
-        # @param InstanceId: 实例id
+        # @param InstanceId: <p>实例id</p>
         # @type InstanceId: String
-        # @param ProdDbName: 数据源产品名
+        # @param ProdDbName: <p>数据源产品名</p>
         # @type ProdDbName: String
-        # @param DataOrigin: 第三方数据源标识
+        # @param DataOrigin: <p>第三方数据源标识</p>
         # @type DataOrigin: String
-        # @param DataOriginProjectId: 第三方项目id
+        # @param DataOriginProjectId: <p>第三方项目id</p>
         # @type DataOriginProjectId: String
-        # @param DataOriginDatasourceId: 第三方数据源id
+        # @param DataOriginDatasourceId: <p>第三方数据源id</p>
         # @type DataOriginDatasourceId: String
-        # @param ClusterId: 集群id
+        # @param ClusterId: <p>集群id</p>
         # @type ClusterId: String
-        # @param Schema: 数据库schema
+        # @param Schema: <p>数据库schema</p>
         # @type Schema: String
-        # @param DbVersion: 数据库版本
+        # @param DbVersion: <p>数据库版本</p>
         # @type DbVersion: String
 
         attr_accessor :ServiceType, :DbType, :Charset, :DbUser, :DbPwd, :DbName, :SourceName, :ProjectId, :Id, :Vip, :Vport, :VpcId, :UniqVpcId, :RegionId, :ExtraParam, :InstanceId, :ProdDbName, :DataOrigin, :DataOriginProjectId, :DataOriginDatasourceId, :ClusterId, :Schema, :DbVersion
@@ -4477,13 +4389,13 @@ module TencentCloud
         # @param ErrorInfo: 自定义错误信息对象
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorInfo: :class:`Tencentcloud::Bi.v20220105.models.ErrorInfo`
-        # @param Data: 无
+        # @param Data: <p>无</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: String
-        # @param Extra: 额外信息
+        # @param Extra: <p>额外信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Extra: String
-        # @param Msg: 提示
+        # @param Msg: <p>提示</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Msg: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -4513,59 +4425,53 @@ module TencentCloud
 
       # ModifyDatasource请求参数结构体
       class ModifyDatasourceRequest < TencentCloud::Common::AbstractModel
-        # @param DbHost: HOST
+        # @param DbHost: <p>HOST</p>
         # @type DbHost: String
-        # @param DbPort: 端口
+        # @param DbPort: <p>端口</p>
         # @type DbPort: Integer
-        # @param ServiceType: 后端提供字典：域类型，1、腾讯云，2、本地
+        # @param ServiceType: <p>后端提供字典：域类型，1、腾讯云，2、本地</p>
         # @type ServiceType: String
-        # @param DbType: 驱动
-        # 取值范围：
-        # MYSQL：MySQL数据库
-        # PRESTO：PRESTO数据库
-        # POSTGRE：PostgreSQL数据库
-        # DLC：DLC数据库
-        # MSSQL：微软SQL Server数据库
+        # @param DbType: <p>驱动</p><p>枚举值：</p><ul><li>MYSQL： MySQL数据库</li><li>PRESTO： PRESTO数据库</li><li>POSTGRE： PostgreSQL数据库</li><li>DLC： DLC数据库</li><li>MSSQL： 微软SQL Server数据库</li></ul>
         # @type DbType: String
-        # @param Charset: 数据库编码
+        # @param Charset: <p>数据库编码</p>
         # @type Charset: String
-        # @param DbUser: 用户名
+        # @param DbUser: <p>用户名</p>
         # @type DbUser: String
-        # @param DbPwd: 密码
+        # @param DbPwd: <p>密码</p>
         # @type DbPwd: String
-        # @param DbName: 数据库名称
+        # @param DbName: <p>数据库名称</p>
         # @type DbName: String
-        # @param SourceName: 数据库别名
+        # @param SourceName: <p>数据库别名</p>
         # @type SourceName: String
-        # @param Id: 数据源id
+        # @param Id: <p>数据源id</p>
         # @type Id: Integer
-        # @param ProjectId: 项目ID
+        # @param ProjectId: <p>项目ID</p>
         # @type ProjectId: Integer
-        # @param Catalog: catalog值
+        # @param Catalog: <p>catalog值</p>
         # @type Catalog: String
-        # @param DataOrigin: 第三方数据源标识
+        # @param DataOrigin: <p>第三方数据源标识</p>
         # @type DataOrigin: String
-        # @param DataOriginProjectId: 第三方项目id
+        # @param DataOriginProjectId: <p>第三方项目id</p>
         # @type DataOriginProjectId: String
-        # @param DataOriginDatasourceId: 第三方数据源id
+        # @param DataOriginDatasourceId: <p>第三方数据源id</p>
         # @type DataOriginDatasourceId: String
-        # @param ExtraParam: 扩展参数
+        # @param ExtraParam: <p>扩展参数</p>
         # @type ExtraParam: String
-        # @param UniqVpcId: 腾讯云私有网络统一标识
+        # @param UniqVpcId: <p>腾讯云私有网络统一标识</p>
         # @type UniqVpcId: String
-        # @param Vip: 私有网络ip
+        # @param Vip: <p>私有网络ip</p>
         # @type Vip: String
-        # @param Vport: 私有网络端口
+        # @param Vport: <p>私有网络端口</p>
         # @type Vport: String
-        # @param VpcId: 腾讯云私有网络标识
+        # @param VpcId: <p>腾讯云私有网络标识</p>
         # @type VpcId: String
-        # @param UseVPC: 开启vpc
+        # @param UseVPC: <p>开启vpc</p>
         # @type UseVPC: Boolean
-        # @param RegionId: 地域
+        # @param RegionId: <p>地域</p>
         # @type RegionId: String
-        # @param Schema: 数据库schema
+        # @param Schema: <p>数据库schema</p>
         # @type Schema: String
-        # @param DbVersion: 数据库版本
+        # @param DbVersion: <p>数据库版本</p>
         # @type DbVersion: String
 
         attr_accessor :DbHost, :DbPort, :ServiceType, :DbType, :Charset, :DbUser, :DbPwd, :DbName, :SourceName, :Id, :ProjectId, :Catalog, :DataOrigin, :DataOriginProjectId, :DataOriginDatasourceId, :ExtraParam, :UniqVpcId, :Vip, :Vport, :VpcId, :UseVPC, :RegionId, :Schema, :DbVersion
@@ -4630,13 +4536,13 @@ module TencentCloud
         # @param ErrorInfo: 自定义错误信息对象
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorInfo: :class:`Tencentcloud::Bi.v20220105.models.ErrorInfo`
-        # @param Data: 无
+        # @param Data: <p>无</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: String
-        # @param Extra: 额外信息
+        # @param Extra: <p>额外信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Extra: String
-        # @param Msg: 提示
+        # @param Msg: <p>提示</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Msg: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -4666,28 +4572,25 @@ module TencentCloud
 
       # ModifyProject请求参数结构体
       class ModifyProjectRequest < TencentCloud::Common::AbstractModel
-        # @param Id: 项目Id
+        # @param Id: <p>项目Id</p>
         # @type Id: Integer
-        # @param Name: 名字
+        # @param Name: <p>名字</p>
         # @type Name: String
-        # @param ColorCode: 颜色值
+        # @param ColorCode: <p>颜色值</p>
         # @type ColorCode: String
-        # @param Logo: 图标
+        # @param Logo: <p>图标</p>
         # @type Logo: String
-        # @param Mark: 备注
+        # @param Mark: <p>备注</p>
         # @type Mark: String
-        # @param IsApply: 可申请
+        # @param IsApply: <p>可申请</p>
         # @type IsApply: Boolean
-        # @param Seed: 种子
+        # @param Seed: <p>种子</p>
         # @type Seed: String
-        # @param DefaultPanelType: 默认看板
-        # 取值范围：
-        # 1：项目看板
-        # 2：我的看板
+        # @param DefaultPanelType: <p>默认看板</p><p>枚举值：</p><ul><li>1： 项目看板</li><li>2： 我的看板</li></ul>
         # @type DefaultPanelType: Integer
-        # @param PanelScope: 2
+        # @param PanelScope: <p>2</p>
         # @type PanelScope: String
-        # @param ManagePlatform: 项目管理平台
+        # @param ManagePlatform: <p>项目管理平台</p>
         # @type ManagePlatform: String
 
         attr_accessor :Id, :Name, :ColorCode, :Logo, :Mark, :IsApply, :Seed, :DefaultPanelType, :PanelScope, :ManagePlatform
@@ -4724,13 +4627,13 @@ module TencentCloud
         # @param ErrorInfo: 自定义错误信息对象
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorInfo: :class:`Tencentcloud::Bi.v20220105.models.ErrorInfo`
-        # @param Extra: 额外信息
+        # @param Extra: <p>额外信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Extra: String
-        # @param Data: 返回数据
+        # @param Data: <p>返回数据</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: String
-        # @param Msg: 结果
+        # @param Msg: <p>结果</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Msg: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -5350,28 +5253,19 @@ module TencentCloud
 
       # 商业版本权限单元
       class PermissionComponent < TencentCloud::Common::AbstractModel
-        # @param ModuleId: 权限值
+        # @param ModuleId: <p>权限值</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModuleId: String
-        # @param IncludeType: 可用性。
-        # 取值范围：
-
-        # - usable：可用
-        # - visible：可见
-        # - disabled：不可用
-        # - hidden：隐藏
-
-        # 默认值：disabled
-        # 示例值：disabled
+        # @param IncludeType: <p>可用性</p><p>枚举值：</p><ul><li>usable： 可用</li><li>visible： 可见</li><li>disabled： 不可用</li><li>hidden： 隐藏</li></ul><p>默认值：disabled</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IncludeType: String
-        # @param UpgradeVersionType: 目标升级版本
+        # @param UpgradeVersionType: <p>目标升级版本</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpgradeVersionType: String
-        # @param Tips: 补充信息
+        # @param Tips: <p>补充信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tips: String
-        # @param TipsKey: 补充信息的key值
+        # @param TipsKey: <p>补充信息的key值</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TipsKey: String
 
@@ -5612,22 +5506,13 @@ module TencentCloud
 
       # 定制化查询
       class ProjectConfigResult < TencentCloud::Common::AbstractModel
-        # @param ModuleId: 配置名称
+        # @param ModuleId: <p>配置名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModuleId: String
-        # @param IncludeType: 配置方式。
-        # 取值范围：
-
-        # - usable：可用
-        # - visible：可见
-        # - disabled：不可用
-        # - hidden：隐藏
-
-        # 默认值：disabled
-        # 示例值：disabled
+        # @param IncludeType: <p>配置方式</p><p>枚举值：</p><ul><li>usable： 可用</li><li>visible： 可见</li><li>disabled： 不可用</li><li>hidden： 隐藏</li></ul><p>默认值：disabled</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IncludeType: String
-        # @param Params: 额外参数
+        # @param Params: <p>额外参数</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Params: String
 
@@ -6771,78 +6656,71 @@ module TencentCloud
 
       # 用户ID和用户名
       class UserIdAndUserName < TencentCloud::Common::AbstractModel
-        # @param UserId: 用户ID
+        # @param UserId: <p>用户ID</p>
         # @type UserId: String
-        # @param UserName: 用户名
+        # @param UserName: <p>用户名</p>
         # @type UserName: String
-        # @param CorpId: 企业ID
+        # @param CorpId: <p>企业ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CorpId: String
-        # @param Email: 电子邮箱
+        # @param Email: <p>电子邮箱</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Email: String
-        # @param LastLogin: 最后一次登录时间
+        # @param LastLogin: <p>最后一次登录时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LastLogin: String
-        # @param Status: 用户状态。
-        # 取值范围：
-
-        # - 1：启用
-        # - 0：停用
-
-        # 默认值：1
-        # 示例值：1
+        # @param Status: <p>用户状态</p><p>枚举值：</p><ul><li>1： 启用</li><li>0： 停用</li></ul><p>默认值：1</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
-        # @param FirstModify: 首次登录是否修改密码
+        # @param FirstModify: <p>首次登录是否修改密码</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FirstModify: Integer
-        # @param PhoneNumber: 手机号码
+        # @param PhoneNumber: <p>手机号码</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PhoneNumber: String
-        # @param AreaCode: 手机区号
+        # @param AreaCode: <p>手机区号</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AreaCode: String
-        # @param CreatedUser: 创建人
+        # @param CreatedUser: <p>创建人</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreatedUser: String
-        # @param CreatedAt: 创建时间
+        # @param CreatedAt: <p>创建时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreatedAt: String
-        # @param UpdatedUser: 修改人
+        # @param UpdatedUser: <p>修改人</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdatedUser: String
-        # @param UpdatedAt: 更改时间
+        # @param UpdatedAt: <p>更改时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdatedAt: String
-        # @param GlobalUserName: 系统全局角色
+        # @param GlobalUserName: <p>系统全局角色</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GlobalUserName: String
-        # @param GlobalUserCode: 系统全局角色编码
+        # @param GlobalUserCode: <p>系统全局角色编码</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GlobalUserCode: String
-        # @param Mobile: 手机号
+        # @param Mobile: <p>手机号</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Mobile: String
-        # @param AppId: 1
+        # @param AppId: <p>1</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppId: String
-        # @param AppUserId: 1
+        # @param AppUserId: <p>1</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppUserId: String
-        # @param AppUserAliasName: 1
+        # @param AppUserAliasName: <p>1</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppUserAliasName: String
-        # @param AppUserName: 1
+        # @param AppUserName: <p>1</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppUserName: String
-        # @param InValidateAppRange: 1
+        # @param InValidateAppRange: <p>1</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InValidateAppRange: Boolean
-        # @param EmailActivationStatus: -1 免激活  0 未激活  1 已激活 空代表待绑定
+        # @param EmailActivationStatus: <p>-1 免激活  0 未激活  1 已激活 空代表待绑定</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EmailActivationStatus: Integer
-        # @param Id: 1
+        # @param Id: <p>1</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: Integer
 

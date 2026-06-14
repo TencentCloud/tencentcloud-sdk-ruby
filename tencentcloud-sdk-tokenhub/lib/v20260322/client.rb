@@ -29,6 +29,58 @@ module TencentCloud
         end
 
 
+        # 创建术语库。
+
+        # 在当前应用下创建一个新的翻译术语库，用于自定义源语言到目标语言的术语映射。创建成功后返回术语库 ID，可通过该 ID 进一步管理术语条目。
+
+        # @param request: Request instance for CreateGlossary.
+        # @type request: :class:`Tencentcloud::tokenhub::V20260322::CreateGlossaryRequest`
+        # @rtype: :class:`Tencentcloud::tokenhub::V20260322::CreateGlossaryResponse`
+        def CreateGlossary(request)
+          body = send_request('CreateGlossary', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateGlossaryResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 批量创建术语条目。
+
+        # 在指定术语库下批量创建术语条目。单次最多创建 100 条。
+
+        # @param request: Request instance for CreateGlossaryEntries.
+        # @type request: :class:`Tencentcloud::tokenhub::V20260322::CreateGlossaryEntriesRequest`
+        # @rtype: :class:`Tencentcloud::tokenhub::V20260322::CreateGlossaryEntriesResponse`
+        def CreateGlossaryEntries(request)
+          body = send_request('CreateGlossaryEntries', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateGlossaryEntriesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 批量创建 TokenPlan APIKey。
 
         # 传入名称前缀和数量，自动按 {ApiKeyName}-{序号} 格式生成名称（如 aaa-1, aaa-2）。允许同名。支持部分成功，最多 100 条。
@@ -67,6 +119,58 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateTokenPlanTeamOrderAndBuyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除术语库。
+
+        # 删除指定的术语库及其下所有术语条目。删除操作幂等，对不存在的术语库返回成功。调用接口后，若通过 DescribeGlossaries 接口查询不到对应术语库，则表示删除成功。
+
+        # @param request: Request instance for DeleteGlossary.
+        # @type request: :class:`Tencentcloud::tokenhub::V20260322::DeleteGlossaryRequest`
+        # @rtype: :class:`Tencentcloud::tokenhub::V20260322::DeleteGlossaryResponse`
+        def DeleteGlossary(request)
+          body = send_request('DeleteGlossary', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteGlossaryResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 批量删除术语条目。
+
+        # 在指定术语库下批量删除术语条目。单次最多删除 200 条。若术语库不存在或不属于当前应用，返回 ResourceNotFound 错误。
+
+        # @param request: Request instance for DeleteGlossaryEntries.
+        # @type request: :class:`Tencentcloud::tokenhub::V20260322::DeleteGlossaryEntriesRequest`
+        # @rtype: :class:`Tencentcloud::tokenhub::V20260322::DeleteGlossaryEntriesResponse`
+        def DeleteGlossaryEntries(request)
+          body = send_request('DeleteGlossaryEntries', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteGlossaryEntriesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -143,6 +247,58 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeApiKeyListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询术语库列表。
+
+        # 查询当前应用下的术语库列表。支持分页、过滤和排序。
+
+        # @param request: Request instance for DescribeGlossaries.
+        # @type request: :class:`Tencentcloud::tokenhub::V20260322::DescribeGlossariesRequest`
+        # @rtype: :class:`Tencentcloud::tokenhub::V20260322::DescribeGlossariesResponse`
+        def DescribeGlossaries(request)
+          body = send_request('DescribeGlossaries', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeGlossariesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询术语条目列表。
+
+        # 查询指定术语库下的术语条目。支持分页。
+
+        # @param request: Request instance for DescribeGlossaryEntries.
+        # @type request: :class:`Tencentcloud::tokenhub::V20260322::DescribeGlossaryEntriesRequest`
+        # @rtype: :class:`Tencentcloud::tokenhub::V20260322::DescribeGlossaryEntriesResponse`
+        def DescribeGlossaryEntries(request)
+          body = send_request('DescribeGlossaryEntries', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeGlossaryEntriesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -353,6 +509,32 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeUsageRankListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 批量修改术语条目。
+
+        # 在指定术语库下批量修改术语条目。单次最多修改 200 条。
+
+        # @param request: Request instance for ModifyGlossaryEntries.
+        # @type request: :class:`Tencentcloud::tokenhub::V20260322::ModifyGlossaryEntriesRequest`
+        # @rtype: :class:`Tencentcloud::tokenhub::V20260322::ModifyGlossaryEntriesResponse`
+        def ModifyGlossaryEntries(request)
+          body = send_request('ModifyGlossaryEntries', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyGlossaryEntriesResponse.new
             model.deserialize(response['Response'])
             model
           else

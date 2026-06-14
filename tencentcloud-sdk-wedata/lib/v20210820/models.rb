@@ -13736,26 +13736,28 @@ module TencentCloud
 
       # DescribeManualTriggerRecordPage请求参数结构体
       class DescribeManualTriggerRecordPageRequest < TencentCloud::Common::AbstractModel
-        # @param ProjectId: 项目ID
+        # @param ProjectId: <p>项目ID</p>
         # @type ProjectId: String
-        # @param TriggerName: 触发运行名称
+        # @param TriggerName: <p>触发运行名称</p>
         # @type TriggerName: String
-        # @param WorkflowKeyword: 工作流过滤关键字，工作流名称 or 工作流ID
+        # @param WorkflowKeyword: <p>工作流过滤关键字，工作流名称 or 工作流ID</p>
         # @type WorkflowKeyword: String
-        # @param Creator: 触发运行提交人过滤，多个提交人用英文逗号分割
+        # @param Creator: <p>触发运行提交人过滤，多个提交人用英文逗号分割</p>
         # @type Creator: String
-        # @param TriggerStartTime: 触发提交创建时间过滤，起始时间
+        # @param TriggerStartTime: <p>触发提交创建时间过滤，起始时间</p>
         # @type TriggerStartTime: String
-        # @param TriggerEndTime: 触发提交创建时间过滤，结束时间
+        # @param TriggerEndTime: <p>触发提交创建时间过滤，结束时间</p>
         # @type TriggerEndTime: String
-        # @param PageNumber: 页码，整型
+        # @param PageNumber: <p>页码，整型</p>
         # @type PageNumber: Integer
-        # @param PageSize: 每页数目，整型
+        # @param PageSize: <p>每页数目，整型</p>
         # @type PageSize: Integer
+        # @param TriggerId: <p>触发ID</p>
+        # @type TriggerId: String
 
-        attr_accessor :ProjectId, :TriggerName, :WorkflowKeyword, :Creator, :TriggerStartTime, :TriggerEndTime, :PageNumber, :PageSize
+        attr_accessor :ProjectId, :TriggerName, :WorkflowKeyword, :Creator, :TriggerStartTime, :TriggerEndTime, :PageNumber, :PageSize, :TriggerId
 
-        def initialize(projectid=nil, triggername=nil, workflowkeyword=nil, creator=nil, triggerstarttime=nil, triggerendtime=nil, pagenumber=nil, pagesize=nil)
+        def initialize(projectid=nil, triggername=nil, workflowkeyword=nil, creator=nil, triggerstarttime=nil, triggerendtime=nil, pagenumber=nil, pagesize=nil, triggerid=nil)
           @ProjectId = projectid
           @TriggerName = triggername
           @WorkflowKeyword = workflowkeyword
@@ -13764,6 +13766,7 @@ module TencentCloud
           @TriggerEndTime = triggerendtime
           @PageNumber = pagenumber
           @PageSize = pagesize
+          @TriggerId = triggerid
         end
 
         def deserialize(params)
@@ -13775,6 +13778,7 @@ module TencentCloud
           @TriggerEndTime = params['TriggerEndTime']
           @PageNumber = params['PageNumber']
           @PageSize = params['PageSize']
+          @TriggerId = params['TriggerId']
         end
       end
 
@@ -13783,7 +13787,7 @@ module TencentCloud
         # @param RequestFromSource: 请求来源，WEB 前端；CLIENT 客户端
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RequestFromSource: String
-        # @param Data: 详情结果
+        # @param Data: <p>详情结果</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: :class:`Tencentcloud::Wedata.v20210820.models.ManualTriggerRecordOpsDtoPage`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。

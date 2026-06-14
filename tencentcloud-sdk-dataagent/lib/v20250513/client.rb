@@ -77,6 +77,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 追加文件
+
+        # @param request: Request instance for AppendKnowledgeTask.
+        # @type request: :class:`Tencentcloud::dataagent::V20250513::AppendKnowledgeTaskRequest`
+        # @rtype: :class:`Tencentcloud::dataagent::V20250513::AppendKnowledgeTaskResponse`
+        def AppendKnowledgeTask(request)
+          body = send_request('AppendKnowledgeTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AppendKnowledgeTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 提供DataAgent 产品服务API
 
         # @param request: Request instance for ChatAI.
@@ -423,6 +447,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = QueryChunkListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询文件任务状态
+
+        # @param request: Request instance for QueryKnowledgeTask.
+        # @type request: :class:`Tencentcloud::dataagent::V20250513::QueryKnowledgeTaskRequest`
+        # @rtype: :class:`Tencentcloud::dataagent::V20250513::QueryKnowledgeTaskResponse`
+        def QueryKnowledgeTask(request)
+          body = send_request('QueryKnowledgeTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = QueryKnowledgeTaskResponse.new
             model.deserialize(response['Response'])
             model
           else

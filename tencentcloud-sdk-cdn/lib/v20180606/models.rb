@@ -2376,7 +2376,7 @@ module TencentCloud
         # @type Project: Integer
         # @param Area: <p>指定加速区域查询计费数据：<br>mainland：中国境内<br>overseas：中国境外<br>不填充时，默认为 mainland</p>
         # @type Area: String
-        # @param District: <p>Area 为 overseas 时，指定国家/地区查询<br>省份、国家/地区编码可以查看 <a href="https://cloud.tencent.com/document/product/228/6316#.E7.9C.81.E4.BB.BD.E6.98.A0.E5.B0.84">省份编码映射</a><br>不填充时，查询所有国家/地区</p>
+        # @param District: <p>Area 为 overseas 时，仅支持地区查询<br>省份、国家/地区编码可以查看 <a href="https://cloud.tencent.com/document/product/228/6316#.E7.9C.81.E4.BB.BD.E6.98.A0.E5.B0.84">省份编码映射</a><br>不填充时，查询所有国家/地区</p>
         # @type District: Integer
         # @param Metric: <p>计费统计类型<br>flux：计费流量<br>bandwidth：计费带宽<br>https：https请求数<br>默认为 bandwidth</p>
         # @type Metric: String

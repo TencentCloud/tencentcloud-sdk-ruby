@@ -9077,87 +9077,6 @@ module TencentCloud
         end
       end
 
-      # RecognizeHealthCodeOCR请求参数结构体
-      class RecognizeHealthCodeOCRRequest < TencentCloud::Common::AbstractModel
-        # @param ImageBase64: 图片的 Base64 值。支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。支持的图片大小：所下载图片经Base64编码后不超过 10M。图片下载时间不超过 3 秒。图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
-        # @type ImageBase64: String
-        # @param ImageUrl: 图片的 Url 地址。支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。支持的图片大小：所下载图片经 Base64 编码后不超过 10M。图片下载时间不超过 3 秒。图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。非腾讯云存储的 Url 速度和稳定性可能受一定影响。
-        # @type ImageUrl: String
-        # @param Type: 需要识别的健康码类型列表，为空或不填表示默认为自动识别。
-        # 0:自动识别
-        # @type Type: Integer
-
-        attr_accessor :ImageBase64, :ImageUrl, :Type
-
-        def initialize(imagebase64=nil, imageurl=nil, type=nil)
-          @ImageBase64 = imagebase64
-          @ImageUrl = imageurl
-          @Type = type
-        end
-
-        def deserialize(params)
-          @ImageBase64 = params['ImageBase64']
-          @ImageUrl = params['ImageUrl']
-          @Type = params['Type']
-        end
-      end
-
-      # RecognizeHealthCodeOCR返回参数结构体
-      class RecognizeHealthCodeOCRResponse < TencentCloud::Common::AbstractModel
-        # @param Name: 持码人姓名，如：王*（允许返回空值）
-        # @type Name: String
-        # @param IDNumber: 持码人身份证号，如：11**************01（允许返回空值）
-        # @type IDNumber: String
-        # @param Time: 健康码更新时间（允许返回空值）
-        # @type Time: String
-        # @param Color: 健康码颜色：绿色、黄色、红色（允许返回空值）
-        # @type Color: String
-        # @param TestingInterval: 核酸检测间隔时长（允许返回空值）
-        # @type TestingInterval: String
-        # @param TestingResult: 核酸检测结果：阴性、阳性、暂无核酸检测记录（允许返回空值）
-        # @type TestingResult: String
-        # @param TestingTime: 核酸检测时间（允许返回空值）
-        # @type TestingTime: String
-        # @param Vaccination: 疫苗接种信息，返回接种针数或接种情况（允许返回空值）
-        # @type Vaccination: String
-        # @param SpotName: 场所名称（允许返回空值）
-        # @type SpotName: String
-        # @param VaccinationTime: 疫苗接种时间
-        # @type VaccinationTime: String
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Name, :IDNumber, :Time, :Color, :TestingInterval, :TestingResult, :TestingTime, :Vaccination, :SpotName, :VaccinationTime, :RequestId
-
-        def initialize(name=nil, idnumber=nil, time=nil, color=nil, testinginterval=nil, testingresult=nil, testingtime=nil, vaccination=nil, spotname=nil, vaccinationtime=nil, requestid=nil)
-          @Name = name
-          @IDNumber = idnumber
-          @Time = time
-          @Color = color
-          @TestingInterval = testinginterval
-          @TestingResult = testingresult
-          @TestingTime = testingtime
-          @Vaccination = vaccination
-          @SpotName = spotname
-          @VaccinationTime = vaccinationtime
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @Name = params['Name']
-          @IDNumber = params['IDNumber']
-          @Time = params['Time']
-          @Color = params['Color']
-          @TestingInterval = params['TestingInterval']
-          @TestingResult = params['TestingResult']
-          @TestingTime = params['TestingTime']
-          @Vaccination = params['Vaccination']
-          @SpotName = params['SpotName']
-          @VaccinationTime = params['VaccinationTime']
-          @RequestId = params['RequestId']
-        end
-      end
-
       # RecognizeMedicalInvoiceOCR请求参数结构体
       class RecognizeMedicalInvoiceOCRRequest < TencentCloud::Common::AbstractModel
         # @param ImageBase64: 图片的Base64 值。支持的文件格式：PNG、JPG、JPEG，暂不支持 GIF 格式。支持的图片大小：所下载文件经Base64编码后不超过 10M。文件下载时间不超过 3 秒。输入参数 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
@@ -9551,62 +9470,6 @@ module TencentCloud
           @WarnCardInfos = params['WarnCardInfos']
           @AdvancedInfo = params['AdvancedInfo']
           @CardCount = params['CardCount']
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # RecognizeTravelCardOCR请求参数结构体
-      class RecognizeTravelCardOCRRequest < TencentCloud::Common::AbstractModel
-        # @param ImageBase64: 图片的 Base64 值。支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。支持的图片大小：所下载图片经Base64编码后不超过 10M。图片下载时间不超过 3 秒。图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
-        # @type ImageBase64: String
-        # @param ImageUrl: 图片的 Url 地址。支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。支持的图片大小：所下载图片经 Base64 编码后不超过 10M。图片下载时间不超过 3 秒。图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。非腾讯云存储的 Url 速度和稳定性可能受一定影响。
-        # @type ImageUrl: String
-
-        attr_accessor :ImageBase64, :ImageUrl
-
-        def initialize(imagebase64=nil, imageurl=nil)
-          @ImageBase64 = imagebase64
-          @ImageUrl = imageurl
-        end
-
-        def deserialize(params)
-          @ImageBase64 = params['ImageBase64']
-          @ImageUrl = params['ImageUrl']
-        end
-      end
-
-      # RecognizeTravelCardOCR返回参数结构体
-      class RecognizeTravelCardOCRResponse < TencentCloud::Common::AbstractModel
-        # @param Time: 行程卡更新时间，格式为：XXXX.XX.XX XX:XX:XX
-        # @type Time: String
-        # @param Color: 行程卡颜色：绿色、黄色、红色
-        # @type Color: String
-        # @param ReachedCity: 7天内到达或途经的城市（自2022年7月8日起，通信行程卡查询结果的覆盖时间范围由“14天”调整为“7天”）
-        # @type ReachedCity: Array
-        # @param RiskArea: 7天内到达或途径存在中高风险地区的城市（自2022年6月29日起，通信行程卡取消“星号”标记，改字段将返回空值）
-        # @type RiskArea: Array
-        # @param Telephone: 电话号码
-        # @type Telephone: String
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Time, :Color, :ReachedCity, :RiskArea, :Telephone, :RequestId
-
-        def initialize(time=nil, color=nil, reachedcity=nil, riskarea=nil, telephone=nil, requestid=nil)
-          @Time = time
-          @Color = color
-          @ReachedCity = reachedcity
-          @RiskArea = riskarea
-          @Telephone = telephone
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @Time = params['Time']
-          @Color = params['Color']
-          @ReachedCity = params['ReachedCity']
-          @RiskArea = params['RiskArea']
-          @Telephone = params['Telephone']
           @RequestId = params['RequestId']
         end
       end
@@ -14546,6 +14409,62 @@ module TencentCloud
               @VehicleRegCertInfos << vehicleregcertinfo_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # VerifyBizLicenseEnterprise3请求参数结构体
+      class VerifyBizLicenseEnterprise3Request < TencentCloud::Common::AbstractModel
+        # @param CreditCode: <p>统一社会信用代码</p>
+        # @type CreditCode: String
+        # @param EntName: <p>企业名称</p>
+        # @type EntName: String
+        # @param LrName: <p>法人代表</p>
+        # @type LrName: String
+        # @param VerifyType: <p>核验类型 </p><p>枚举值：</p><ul><li>ENT_2META： 企业名称 、统一社会信用代码</li><li>ENT_3META： 企业名称 、统一社会信用代码 、法人代表名称</li></ul>
+        # @type VerifyType: String
+
+        attr_accessor :CreditCode, :EntName, :LrName, :VerifyType
+
+        def initialize(creditcode=nil, entname=nil, lrname=nil, verifytype=nil)
+          @CreditCode = creditcode
+          @EntName = entname
+          @LrName = lrname
+          @VerifyType = verifytype
+        end
+
+        def deserialize(params)
+          @CreditCode = params['CreditCode']
+          @EntName = params['EntName']
+          @LrName = params['LrName']
+          @VerifyType = params['VerifyType']
+        end
+      end
+
+      # VerifyBizLicenseEnterprise3返回参数结构体
+      class VerifyBizLicenseEnterprise3Response < TencentCloud::Common::AbstractModel
+        # @param StatusCode: <p>0 成功，计费<br>1 系统异常，不计费<br>2 查询无结果，不计费</p>
+        # @type StatusCode: Integer
+        # @param VerifyResult: <p>验证结果<br>1：三要素完全匹配<br>0：三要素不完全匹配<br>仅StatusCode为0时返回</p>
+        # @type VerifyResult: Integer
+        # @param OperatingStatus: <p>企业状态</p><p>枚举值：</p><ul><li>1： 开业（在营）/ 在营</li><li>2： 迁出 / 非在营</li><li>3： 注销</li><li>4： 吊销</li><li>5： 撤销</li><li>6： 停业</li><li>7： 撤销登记</li><li>0： 其他</li><li>/： 无法查询</li></ul><p>企业状态  当VerifyType参数为ENT_2META时，可返回：  0-7,  /   当VerifyType参数为ENT_3META时，可返回  1，2</p>
+        # @type OperatingStatus: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :StatusCode, :VerifyResult, :OperatingStatus, :RequestId
+
+        def initialize(statuscode=nil, verifyresult=nil, operatingstatus=nil, requestid=nil)
+          @StatusCode = statuscode
+          @VerifyResult = verifyresult
+          @OperatingStatus = operatingstatus
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @StatusCode = params['StatusCode']
+          @VerifyResult = params['VerifyResult']
+          @OperatingStatus = params['OperatingStatus']
           @RequestId = params['RequestId']
         end
       end

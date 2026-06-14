@@ -200,22 +200,6 @@ module TencentCloud
         end
       end
 
-      # 高级选项设置
-      class AdvanceSettings < TencentCloud::Common::AbstractModel
-        # @param SubTaskConcurrency: 子任务单机并发数限制，默认值为2
-        # @type SubTaskConcurrency: Integer
-
-        attr_accessor :SubTaskConcurrency
-
-        def initialize(subtaskconcurrency=nil)
-          @SubTaskConcurrency = subtaskconcurrency
-        end
-
-        def deserialize(params)
-          @SubTaskConcurrency = params['SubTaskConcurrency']
-        end
-      end
-
       # 亲和规则
       class Affinity < TencentCloud::Common::AbstractModel
         # @param Scope: 亲和性范围
@@ -1347,8 +1331,8 @@ module TencentCloud
 
         attr_accessor :ConfigId, :ConfigName, :ConfigPath, :ConfigDesc, :ConfigTags, :ConfigPipeline, :ConfigCreateTime, :ConfigUpdateTime, :ConfigSchema, :ConfigAssociatedGroups, :ConfigAssociatedGroupList, :FilebeatConfigEnable, :FilebeatCloseTimeout, :FilebeatIgnoreOlder, :FilebeatHarvesterLimit, :FilebeatCloseInactive, :FilebeatCleanInactive, :CustomMultilinePattern
         extend Gem::Deprecate
-        deprecate :ConfigAssociatedGroups, :none, 2026, 5
-        deprecate :ConfigAssociatedGroups=, :none, 2026, 5
+        deprecate :ConfigAssociatedGroups, :none, 2026, 6
+        deprecate :ConfigAssociatedGroups=, :none, 2026, 6
 
         def initialize(configid=nil, configname=nil, configpath=nil, configdesc=nil, configtags=nil, configpipeline=nil, configcreatetime=nil, configupdatetime=nil, configschema=nil, configassociatedgroups=nil, configassociatedgrouplist=nil, filebeatconfigenable=nil, filebeatclosetimeout=nil, filebeatignoreolder=nil, filebeatharvesterlimit=nil, filebeatcloseinactive=nil, filebeatcleaninactive=nil, custommultilinepattern=nil)
           @ConfigId = configid
@@ -3349,42 +3333,6 @@ module TencentCloud
         end
       end
 
-      # ContinueRunFailedTaskBatch请求参数结构体
-      class ContinueRunFailedTaskBatchRequest < TencentCloud::Common::AbstractModel
-        # @param BatchId: 任务批次ID。在[任务管理](https://console.cloud.tencent.com/tsf/tct?rid=1)页面点击任务ID进入执行记录页，第一列即为任务批次ID，在[任务执行记录](https://console.cloud.tencent.com/tsf/tct?rid=1&tab=task)页能查看所有任务批次ID。
-        # @type BatchId: String
-
-        attr_accessor :BatchId
-
-        def initialize(batchid=nil)
-          @BatchId = batchid
-        end
-
-        def deserialize(params)
-          @BatchId = params['BatchId']
-        end
-      end
-
-      # ContinueRunFailedTaskBatch返回参数结构体
-      class ContinueRunFailedTaskBatchResponse < TencentCloud::Common::AbstractModel
-        # @param Result: true：操作成功、false：操作失败
-        # @type Result: Boolean
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Result, :RequestId
-
-        def initialize(result=nil, requestid=nil)
-          @Result = result
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @Result = params['Result']
-          @RequestId = params['RequestId']
-        end
-      end
-
       # cos临时账号信息
       class CosCredentials < TencentCloud::Common::AbstractModel
         # @param SessionToken: 会话Token
@@ -3731,10 +3679,10 @@ module TencentCloud
 
         attr_accessor :ApplicationName, :ApplicationType, :MicroserviceType, :ApplicationDesc, :ApplicationLogConfig, :ApplicationResourceType, :ApplicationRuntimeType, :ProgramId, :ServiceConfigList, :IgnoreCreateImageRepository, :ProgramIdList, :ApmInstanceId, :ProgramLanguage, :FrameworkType, :ServiceGovernanceConfig, :CreateSameNameImageRepository
         extend Gem::Deprecate
-        deprecate :ApplicationLogConfig, :none, 2026, 5
-        deprecate :ApplicationLogConfig=, :none, 2026, 5
-        deprecate :ApplicationResourceType, :none, 2026, 5
-        deprecate :ApplicationResourceType=, :none, 2026, 5
+        deprecate :ApplicationLogConfig, :none, 2026, 6
+        deprecate :ApplicationLogConfig=, :none, 2026, 6
+        deprecate :ApplicationResourceType, :none, 2026, 6
+        deprecate :ApplicationResourceType=, :none, 2026, 6
 
         def initialize(applicationname=nil, applicationtype=nil, microservicetype=nil, applicationdesc=nil, applicationlogconfig=nil, applicationresourcetype=nil, applicationruntimetype=nil, programid=nil, serviceconfiglist=nil, ignorecreateimagerepository=nil, programidlist=nil, apminstanceid=nil, programlanguage=nil, frameworktype=nil, servicegovernanceconfig=nil, createsamenameimagerepository=nil)
           @ApplicationName = applicationname
@@ -5178,177 +5126,6 @@ module TencentCloud
         end
       end
 
-      # CreateTaskFlow请求参数结构体
-      class CreateTaskFlowRequest < TencentCloud::Common::AbstractModel
-        # @param FlowName: 工作流名称
-        # @type FlowName: String
-        # @param TriggerRule: 触发方式
-        # @type TriggerRule: :class:`Tencentcloud::Tsf.v20180326.models.TaskRule`
-        # @param FlowEdges: 工作流任务节点列表
-        # @type FlowEdges: Array
-        # @param TimeOut: 工作流执行超时时间，单位：毫秒
-        # @type TimeOut: Integer
-        # @param ProgramIdList: 数据集列表
-        # @type ProgramIdList: Array
-
-        attr_accessor :FlowName, :TriggerRule, :FlowEdges, :TimeOut, :ProgramIdList
-
-        def initialize(flowname=nil, triggerrule=nil, flowedges=nil, timeout=nil, programidlist=nil)
-          @FlowName = flowname
-          @TriggerRule = triggerrule
-          @FlowEdges = flowedges
-          @TimeOut = timeout
-          @ProgramIdList = programidlist
-        end
-
-        def deserialize(params)
-          @FlowName = params['FlowName']
-          unless params['TriggerRule'].nil?
-            @TriggerRule = TaskRule.new
-            @TriggerRule.deserialize(params['TriggerRule'])
-          end
-          unless params['FlowEdges'].nil?
-            @FlowEdges = []
-            params['FlowEdges'].each do |i|
-              taskflowedge_tmp = TaskFlowEdge.new
-              taskflowedge_tmp.deserialize(i)
-              @FlowEdges << taskflowedge_tmp
-            end
-          end
-          @TimeOut = params['TimeOut']
-          @ProgramIdList = params['ProgramIdList']
-        end
-      end
-
-      # CreateTaskFlow返回参数结构体
-      class CreateTaskFlowResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 工作流 ID
-        # @type Result: String
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Result, :RequestId
-
-        def initialize(result=nil, requestid=nil)
-          @Result = result
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @Result = params['Result']
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # CreateTask请求参数结构体
-      class CreateTaskRequest < TencentCloud::Common::AbstractModel
-        # @param TaskName: 任务名称，任务长度64字符
-        # @type TaskName: String
-        # @param TaskContent: 任务内容，长度限制65536个字节
-        # @type TaskContent: String
-        # @param ExecuteType: 任务执行方式，unicast：随机单节点执行，broadcast：广播执行，shard：分片执行
-        # @type ExecuteType: String
-        # @param TaskType: 任务类型。当前只支持一种任务类型。枚举值，java：Java类任务
-        # @type TaskType: String
-        # @param TimeOut: 任务超时时间，取值大于0，单位：毫秒（ms）
-        # @type TimeOut: Integer
-        # @param GroupId: 部署组ID。在[应用管理](https://console.cloud.tencent.com/tsf/app?rid=1)，点击应用ID进入应用部署页查看部署组ID。
-        # @type GroupId: String
-        # @param TaskRule: 触发规则
-        # @type TaskRule: :class:`Tencentcloud::Tsf.v20180326.models.TaskRule`
-        # @param RetryCount: 重试次数，0 <= RetryCount<= 10
-        # @type RetryCount: Integer
-        # @param RetryInterval: 重试间隔， 0 <= RetryInterval <= 600000， 时间单位 ms
-        # @type RetryInterval: Integer
-        # @param ShardCount: 分片数量，仅当任务执行方式为分片执行时需要设置该值，取值范围2~1000
-        # @type ShardCount: Integer
-        # @param ShardArguments: 分片参数
-        # @type ShardArguments: Array
-        # @param SuccessOperator: 判断任务成功的操作符
-        # @type SuccessOperator: String
-        # @param SuccessRatio: 判断任务成功率的阈值，如100
-        # @type SuccessRatio: String
-        # @param AdvanceSettings: 高级设置
-        # @type AdvanceSettings: :class:`Tencentcloud::Tsf.v20180326.models.AdvanceSettings`
-        # @param TaskArgument: 任务参数，长度限制10000个字符
-        # @type TaskArgument: String
-        # @param ProgramIdList: 数据集列表
-        # @type ProgramIdList: Array
-
-        attr_accessor :TaskName, :TaskContent, :ExecuteType, :TaskType, :TimeOut, :GroupId, :TaskRule, :RetryCount, :RetryInterval, :ShardCount, :ShardArguments, :SuccessOperator, :SuccessRatio, :AdvanceSettings, :TaskArgument, :ProgramIdList
-
-        def initialize(taskname=nil, taskcontent=nil, executetype=nil, tasktype=nil, timeout=nil, groupid=nil, taskrule=nil, retrycount=nil, retryinterval=nil, shardcount=nil, shardarguments=nil, successoperator=nil, successratio=nil, advancesettings=nil, taskargument=nil, programidlist=nil)
-          @TaskName = taskname
-          @TaskContent = taskcontent
-          @ExecuteType = executetype
-          @TaskType = tasktype
-          @TimeOut = timeout
-          @GroupId = groupid
-          @TaskRule = taskrule
-          @RetryCount = retrycount
-          @RetryInterval = retryinterval
-          @ShardCount = shardcount
-          @ShardArguments = shardarguments
-          @SuccessOperator = successoperator
-          @SuccessRatio = successratio
-          @AdvanceSettings = advancesettings
-          @TaskArgument = taskargument
-          @ProgramIdList = programidlist
-        end
-
-        def deserialize(params)
-          @TaskName = params['TaskName']
-          @TaskContent = params['TaskContent']
-          @ExecuteType = params['ExecuteType']
-          @TaskType = params['TaskType']
-          @TimeOut = params['TimeOut']
-          @GroupId = params['GroupId']
-          unless params['TaskRule'].nil?
-            @TaskRule = TaskRule.new
-            @TaskRule.deserialize(params['TaskRule'])
-          end
-          @RetryCount = params['RetryCount']
-          @RetryInterval = params['RetryInterval']
-          @ShardCount = params['ShardCount']
-          unless params['ShardArguments'].nil?
-            @ShardArguments = []
-            params['ShardArguments'].each do |i|
-              shardargument_tmp = ShardArgument.new
-              shardargument_tmp.deserialize(i)
-              @ShardArguments << shardargument_tmp
-            end
-          end
-          @SuccessOperator = params['SuccessOperator']
-          @SuccessRatio = params['SuccessRatio']
-          unless params['AdvanceSettings'].nil?
-            @AdvanceSettings = AdvanceSettings.new
-            @AdvanceSettings.deserialize(params['AdvanceSettings'])
-          end
-          @TaskArgument = params['TaskArgument']
-          @ProgramIdList = params['ProgramIdList']
-        end
-      end
-
-      # CreateTask返回参数结构体
-      class CreateTaskResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 任务ID
-        # @type Result: String
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Result, :RequestId
-
-        def initialize(result=nil, requestid=nil)
-          @Result = result
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @Result = params['Result']
-          @RequestId = params['RequestId']
-        end
-      end
-
       # CreateUnitNamespaces请求参数结构体
       class CreateUnitNamespacesRequest < TencentCloud::Common::AbstractModel
         # @param GatewayInstanceId: 网关实体ID
@@ -6354,78 +6131,6 @@ module TencentCloud
         end
       end
 
-      # DeleteServerlessGroup请求参数结构体
-      class DeleteServerlessGroupRequest < TencentCloud::Common::AbstractModel
-        # @param GroupId: groupId，分组唯一标识
-        # @type GroupId: String
-
-        attr_accessor :GroupId
-
-        def initialize(groupid=nil)
-          @GroupId = groupid
-        end
-
-        def deserialize(params)
-          @GroupId = params['GroupId']
-        end
-      end
-
-      # DeleteServerlessGroup返回参数结构体
-      class DeleteServerlessGroupResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 结果true：成功；false：失败。
-        # @type Result: Boolean
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Result, :RequestId
-
-        def initialize(result=nil, requestid=nil)
-          @Result = result
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @Result = params['Result']
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # DeleteTask请求参数结构体
-      class DeleteTaskRequest < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务ID。在[任务管理](https://console.cloud.tencent.com/tsf/tct?rid=1)列表页第一列和任务基本信息页查看任务ID。
-        # @type TaskId: String
-
-        attr_accessor :TaskId
-
-        def initialize(taskid=nil)
-          @TaskId = taskid
-        end
-
-        def deserialize(params)
-          @TaskId = params['TaskId']
-        end
-      end
-
-      # DeleteTask返回参数结构体
-      class DeleteTaskResponse < TencentCloud::Common::AbstractModel
-        # @param Result: true：删除成功，false：删除失败
-        # @type Result: Boolean
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Result, :RequestId
-
-        def initialize(result=nil, requestid=nil)
-          @Result = result
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @Result = params['Result']
-          @RequestId = params['RequestId']
-        end
-      end
-
       # DeleteUnitNamespaces请求参数结构体
       class DeleteUnitNamespacesRequest < TencentCloud::Common::AbstractModel
         # @param GatewayInstanceId: 网关实体ID
@@ -7121,12 +6826,12 @@ module TencentCloud
 
         attr_accessor :GroupId, :TagName, :InstanceNum, :Server, :Reponame, :CpuLimit, :MemLimit, :JvmOpts, :CpuRequest, :MemRequest, :DoNotStart, :RepoName, :UpdateType, :UpdateIvl, :AgentCpuRequest, :AgentCpuLimit, :AgentMemRequest, :AgentMemLimit, :IstioCpuRequest, :IstioCpuLimit, :IstioMemRequest, :IstioMemLimit, :MaxSurge, :MaxUnavailable, :HealthCheckSettings, :Envs, :ServiceSetting, :DeployAgent, :SchedulingStrategy, :IncrementalDeployment, :RepoType, :VolumeInfos, :VolumeMountInfos, :VolumeInfoList, :VolumeMountInfoList, :VolumeClean, :AgentProfileList, :WarmupSetting
         extend Gem::Deprecate
-        deprecate :Reponame, :none, 2026, 5
-        deprecate :Reponame=, :none, 2026, 5
-        deprecate :VolumeInfos, :none, 2026, 5
-        deprecate :VolumeInfos=, :none, 2026, 5
-        deprecate :VolumeMountInfos, :none, 2026, 5
-        deprecate :VolumeMountInfos=, :none, 2026, 5
+        deprecate :Reponame, :none, 2026, 6
+        deprecate :Reponame=, :none, 2026, 6
+        deprecate :VolumeInfos, :none, 2026, 6
+        deprecate :VolumeInfos=, :none, 2026, 6
+        deprecate :VolumeMountInfos, :none, 2026, 6
+        deprecate :VolumeMountInfos=, :none, 2026, 6
 
         def initialize(groupid=nil, tagname=nil, instancenum=nil, server=nil, cpulimit=nil, memlimit=nil, jvmopts=nil, cpurequest=nil, memrequest=nil, donotstart=nil, reponame=nil, updatetype=nil, updateivl=nil, agentcpurequest=nil, agentcpulimit=nil, agentmemrequest=nil, agentmemlimit=nil, istiocpurequest=nil, istiocpulimit=nil, istiomemrequest=nil, istiomemlimit=nil, maxsurge=nil, maxunavailable=nil, healthchecksettings=nil, envs=nil, servicesetting=nil, deployagent=nil, schedulingstrategy=nil, incrementaldeployment=nil, repotype=nil, volumeinfos=nil, volumemountinfos=nil, volumeinfolist=nil, volumemountinfolist=nil, volumeclean=nil, agentprofilelist=nil, warmupsetting=nil)
           @GroupId = groupid
@@ -9137,45 +8842,6 @@ module TencentCloud
         def deserialize(params)
           unless params['Result'].nil?
             @Result = TsfPageFileConfig.new
-            @Result.deserialize(params['Result'])
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # DescribeFlowLastBatchState请求参数结构体
-      class DescribeFlowLastBatchStateRequest < TencentCloud::Common::AbstractModel
-        # @param FlowId: 工作流 ID。前往[工作流管理](https://console.cloud.tencent.com/tsf/tct?rid=1&tab=workflowManage)，在工作流列表第一列和工作流详情页查看工作流ID。
-        # @type FlowId: String
-
-        attr_accessor :FlowId
-
-        def initialize(flowid=nil)
-          @FlowId = flowid
-        end
-
-        def deserialize(params)
-          @FlowId = params['FlowId']
-        end
-      end
-
-      # DescribeFlowLastBatchState返回参数结构体
-      class DescribeFlowLastBatchStateResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 工作流批次最新状态
-        # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.TaskFlowLastBatchState`
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Result, :RequestId
-
-        def initialize(result=nil, requestid=nil)
-          @Result = result
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['Result'].nil?
-            @Result = TaskFlowLastBatchState.new
             @Result.deserialize(params['Result'])
           end
           @RequestId = params['RequestId']
@@ -12298,155 +11964,6 @@ module TencentCloud
         end
       end
 
-      # DescribeTaskDetail请求参数结构体
-      class DescribeTaskDetailRequest < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务ID。在[任务管理](https://console.cloud.tencent.com/tsf/tct?rid=1)列表页第一列和任务基本信息页查看任务ID。
-        # @type TaskId: String
-        # @param TaskLogId: 任务历史ID。查询任务列表 [DescribeTaskRecords](https://cloud.tencent.com/document/api/649/56136) 返回值字段 TaskLogId
-        # @type TaskLogId: String
-
-        attr_accessor :TaskId, :TaskLogId
-
-        def initialize(taskid=nil, tasklogid=nil)
-          @TaskId = taskid
-          @TaskLogId = tasklogid
-        end
-
-        def deserialize(params)
-          @TaskId = params['TaskId']
-          @TaskLogId = params['TaskLogId']
-        end
-      end
-
-      # DescribeTaskDetail返回参数结构体
-      class DescribeTaskDetailResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 任务详情
-        # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.TaskRecord`
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Result, :RequestId
-
-        def initialize(result=nil, requestid=nil)
-          @Result = result
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['Result'].nil?
-            @Result = TaskRecord.new
-            @Result.deserialize(params['Result'])
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # DescribeTaskLastStatus请求参数结构体
-      class DescribeTaskLastStatusRequest < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务ID。在[任务管理](https://console.cloud.tencent.com/tsf/tct?rid=1)列表页第一列和任务基本信息页查看任务ID。
-        # @type TaskId: String
-
-        attr_accessor :TaskId
-
-        def initialize(taskid=nil)
-          @TaskId = taskid
-        end
-
-        def deserialize(params)
-          @TaskId = params['TaskId']
-        end
-      end
-
-      # DescribeTaskLastStatus返回参数结构体
-      class DescribeTaskLastStatusResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 任务上一次执行状态
-        # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.TaskLastExecuteStatus`
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Result, :RequestId
-
-        def initialize(result=nil, requestid=nil)
-          @Result = result
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['Result'].nil?
-            @Result = TaskLastExecuteStatus.new
-            @Result.deserialize(params['Result'])
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # DescribeTaskRecords请求参数结构体
-      class DescribeTaskRecordsRequest < TencentCloud::Common::AbstractModel
-        # @param Offset: 翻页偏移量。默认值为0
-        # @type Offset: Integer
-        # @param Limit: 翻页查询单页数量。默认值为 20，最大值为 1000
-        # @type Limit: Integer
-        # @param SearchWord: 模糊查询关键字，支持任务ID和任务名称。
-        # @type SearchWord: String
-        # @param TaskState: 任务启用状态。一共2种状态可选，ENABLED：启用，DISABLED：停用
-        # @type TaskState: String
-        # @param GroupId: 部署组ID。前往[应用管理](https://console.cloud.tencent.com/tsf/app?rid=1)点击应用ID进入应用部署列表页面获取部署组ID。
-        # @type GroupId: String
-        # @param TaskType: 任务类型。当前只支持一种任务类型。枚举值，java：Java类任务
-        # @type TaskType: String
-        # @param ExecuteType: 任务执行方式，unicast：随机单节点执行，broadcast：广播执行，shard：分片执行
-        # @type ExecuteType: String
-        # @param Ids: 任务ID列表。在[任务管理](https://console.cloud.tencent.com/tsf/tct?rid=1)列表页第一列查看任务ID。
-        # @type Ids: Array
-
-        attr_accessor :Offset, :Limit, :SearchWord, :TaskState, :GroupId, :TaskType, :ExecuteType, :Ids
-
-        def initialize(offset=nil, limit=nil, searchword=nil, taskstate=nil, groupid=nil, tasktype=nil, executetype=nil, ids=nil)
-          @Offset = offset
-          @Limit = limit
-          @SearchWord = searchword
-          @TaskState = taskstate
-          @GroupId = groupid
-          @TaskType = tasktype
-          @ExecuteType = executetype
-          @Ids = ids
-        end
-
-        def deserialize(params)
-          @Offset = params['Offset']
-          @Limit = params['Limit']
-          @SearchWord = params['SearchWord']
-          @TaskState = params['TaskState']
-          @GroupId = params['GroupId']
-          @TaskType = params['TaskType']
-          @ExecuteType = params['ExecuteType']
-          @Ids = params['Ids']
-        end
-      end
-
-      # DescribeTaskRecords返回参数结构体
-      class DescribeTaskRecordsResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 任务记录列表
-        # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.TaskRecordPage`
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Result, :RequestId
-
-        def initialize(result=nil, requestid=nil)
-          @Result = result
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['Result'].nil?
-            @Result = TaskRecordPage.new
-            @Result.deserialize(params['Result'])
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
       # DescribeUnitApiUseDetail请求参数结构体
       class DescribeUnitApiUseDetailRequest < TencentCloud::Common::AbstractModel
         # @param GatewayDeployGroupId: 网关部署组ID
@@ -12870,78 +12387,6 @@ module TencentCloud
         end
       end
 
-      # DisableTaskFlow请求参数结构体
-      class DisableTaskFlowRequest < TencentCloud::Common::AbstractModel
-        # @param FlowId: 工作流 ID。[工作流管理](https://console.cloud.tencent.com/tsf/tct?rid=1&tab=workflowManage)列表页查看工作流ID。
-        # @type FlowId: String
-
-        attr_accessor :FlowId
-
-        def initialize(flowid=nil)
-          @FlowId = flowid
-        end
-
-        def deserialize(params)
-          @FlowId = params['FlowId']
-        end
-      end
-
-      # DisableTaskFlow返回参数结构体
-      class DisableTaskFlowResponse < TencentCloud::Common::AbstractModel
-        # @param Result: true成功，false: 失败
-        # @type Result: Boolean
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Result, :RequestId
-
-        def initialize(result=nil, requestid=nil)
-          @Result = result
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @Result = params['Result']
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # DisableTask请求参数结构体
-      class DisableTaskRequest < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务ID。[任务管理](https://console.cloud.tencent.com/tsf/tct?rid=1)列表页查看任务ID。
-        # @type TaskId: String
-
-        attr_accessor :TaskId
-
-        def initialize(taskid=nil)
-          @TaskId = taskid
-        end
-
-        def deserialize(params)
-          @TaskId = params['TaskId']
-        end
-      end
-
-      # DisableTask返回参数结构体
-      class DisableTaskResponse < TencentCloud::Common::AbstractModel
-        # @param Result: true：操作成功，false：操作失败
-        # @type Result: Boolean
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Result, :RequestId
-
-        def initialize(result=nil, requestid=nil)
-          @Result = result
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @Result = params['Result']
-          @RequestId = params['RequestId']
-        end
-      end
-
       # DisableUnitRoute请求参数结构体
       class DisableUnitRouteRequest < TencentCloud::Common::AbstractModel
         # @param Id: 网关实体ID
@@ -13200,78 +12645,6 @@ module TencentCloud
         end
       end
 
-      # EnableTaskFlow请求参数结构体
-      class EnableTaskFlowRequest < TencentCloud::Common::AbstractModel
-        # @param FlowId: 工作流 ID。[工作流管理](https://console.cloud.tencent.com/tsf/tct?rid=1&tab=workflowManage)列表页查看工作流ID。
-        # @type FlowId: String
-
-        attr_accessor :FlowId
-
-        def initialize(flowid=nil)
-          @FlowId = flowid
-        end
-
-        def deserialize(params)
-          @FlowId = params['FlowId']
-        end
-      end
-
-      # EnableTaskFlow返回参数结构体
-      class EnableTaskFlowResponse < TencentCloud::Common::AbstractModel
-        # @param Result: true成功，false: 失败
-        # @type Result: Boolean
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Result, :RequestId
-
-        def initialize(result=nil, requestid=nil)
-          @Result = result
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @Result = params['Result']
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # EnableTask请求参数结构体
-      class EnableTaskRequest < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务ID。[任务管理](https://console.cloud.tencent.com/tsf/tct?rid=1)列表页查看任务ID。
-        # @type TaskId: String
-
-        attr_accessor :TaskId
-
-        def initialize(taskid=nil)
-          @TaskId = taskid
-        end
-
-        def deserialize(params)
-          @TaskId = params['TaskId']
-        end
-      end
-
-      # EnableTask返回参数结构体
-      class EnableTaskResponse < TencentCloud::Common::AbstractModel
-        # @param Result: true：操作成功，false：操作失败
-        # @type Result: Boolean
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Result, :RequestId
-
-        def initialize(result=nil, requestid=nil)
-          @Result = result
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @Result = params['Result']
-          @RequestId = params['RequestId']
-        end
-      end
-
       # EnableUnitRoute请求参数结构体
       class EnableUnitRouteRequest < TencentCloud::Common::AbstractModel
         # @param Id: 网关实体ID
@@ -13420,78 +12793,6 @@ module TencentCloud
           @GroupId = params['GroupId']
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
-        end
-      end
-
-      # ExecuteTaskFlow请求参数结构体
-      class ExecuteTaskFlowRequest < TencentCloud::Common::AbstractModel
-        # @param FlowId: 工作流 ID。[工作流管理](https://console.cloud.tencent.com/tsf/tct?rid=1&tab=workflowManage)列表页查看工作流ID。
-        # @type FlowId: String
-
-        attr_accessor :FlowId
-
-        def initialize(flowid=nil)
-          @FlowId = flowid
-        end
-
-        def deserialize(params)
-          @FlowId = params['FlowId']
-        end
-      end
-
-      # ExecuteTaskFlow返回参数结构体
-      class ExecuteTaskFlowResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 操作成功返回工作流批次ID，操作失败返回空字符串。
-        # @type Result: String
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Result, :RequestId
-
-        def initialize(result=nil, requestid=nil)
-          @Result = result
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @Result = params['Result']
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # ExecuteTask请求参数结构体
-      class ExecuteTaskRequest < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务ID。在[任务管理](https://console.cloud.tencent.com/tsf/tct?rid=1)列表页查看任务ID。
-        # @type TaskId: String
-
-        attr_accessor :TaskId
-
-        def initialize(taskid=nil)
-          @TaskId = taskid
-        end
-
-        def deserialize(params)
-          @TaskId = params['TaskId']
-        end
-      end
-
-      # ExecuteTask返回参数结构体
-      class ExecuteTaskResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 操作成功返回任务批次ID，操作失败返回空字符串。
-        # @type Result: String
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Result, :RequestId
-
-        def initialize(result=nil, requestid=nil)
-          @Result = result
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @Result = params['Result']
-          @RequestId = params['RequestId']
         end
       end
 
@@ -14814,8 +14115,8 @@ module TencentCloud
 
         attr_accessor :Reponame, :Repotype, :TagCount, :IsPublic, :IsUserFavor, :IsQcloudOfficial, :FavorCount, :PullCount, :Description, :CreationTime, :UpdateTime, :TcrRepoInfo, :TcrBindingId, :ApplicationId, :ApplicationName, :ApplicationNameReal, :Public, :CreateMode, :RepoName, :RepoType
         extend Gem::Deprecate
-        deprecate :ApplicationName, :none, 2026, 5
-        deprecate :ApplicationName=, :none, 2026, 5
+        deprecate :ApplicationName, :none, 2026, 6
+        deprecate :ApplicationName=, :none, 2026, 6
 
         def initialize(reponame=nil, repotype=nil, tagcount=nil, ispublic=nil, isuserfavor=nil, isqcloudofficial=nil, favorcount=nil, pullcount=nil, description=nil, creationtime=nil, updatetime=nil, tcrrepoinfo=nil, tcrbindingid=nil, applicationid=nil, applicationname=nil, applicationnamereal=nil, public=nil, createmode=nil, reponame=nil, repotype=nil)
           @Reponame = reponame
@@ -16939,119 +16240,6 @@ module TencentCloud
         end
       end
 
-      # ModifyTask请求参数结构体
-      class ModifyTaskRequest < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务ID。在[任务管理](https://console.cloud.tencent.com/tsf/tct?rid=1)列表页查看任务ID。
-        # @type TaskId: String
-        # @param TaskName: 任务名称，长度限制为64字符。在任务管理列表页面第一列或是任务基本信息页查看任务名称。
-        # @type TaskName: String
-        # @param TaskType: 任务类型。当前只支持一种任务类型。枚举值，java：Java类任务
-        # @type TaskType: String
-        # @param TaskContent: 任务内容，长度限制为 65536 字节
-        # @type TaskContent: String
-        # @param ExecuteType: 任务执行方式，枚举值。unicast：随机单节点执行，broadcast：广播执行，shard：分片执行
-        # @type ExecuteType: String
-        # @param TaskRule: 触发规则
-        # @type TaskRule: :class:`Tencentcloud::Tsf.v20180326.models.TaskRule`
-        # @param TimeOut: 超时时间，取值大于0，单位：毫秒（ms）
-        # @type TimeOut: Integer
-        # @param GroupId: 部署组ID。在[应用管理](https://console.cloud.tencent.com/tsf/app?rid=1)，点击应用ID进入应用部署页查看部署组ID。
-        # @type GroupId: String
-        # @param ShardCount: 分片数量，取值范围2~1000
-        # @type ShardCount: Integer
-        # @param ShardArguments: 分片参数
-        # @type ShardArguments: Array
-        # @param AdvanceSettings: 高级设置
-        # @type AdvanceSettings: :class:`Tencentcloud::Tsf.v20180326.models.AdvanceSettings`
-        # @param SuccessOperator: 判断任务成功的操作符 GT/GTE
-        # @type SuccessOperator: String
-        # @param SuccessRatio: 判断任务成功率的阈值，取值范围：1-100，单位：百分比（%）
-        # @type SuccessRatio: Integer
-        # @param RetryCount: 重试次数，取值范围 0 - 10，单位：次
-        # @type RetryCount: Integer
-        # @param RetryInterval: 重试间隔，取值范围 0-600，单位：秒（s）
-        # @type RetryInterval: Integer
-        # @param TaskArgument: 任务参数，长度限制10000个字符
-        # @type TaskArgument: String
-        # @param ProgramIdList: 数据集列表。
-        # @type ProgramIdList: Array
-
-        attr_accessor :TaskId, :TaskName, :TaskType, :TaskContent, :ExecuteType, :TaskRule, :TimeOut, :GroupId, :ShardCount, :ShardArguments, :AdvanceSettings, :SuccessOperator, :SuccessRatio, :RetryCount, :RetryInterval, :TaskArgument, :ProgramIdList
-
-        def initialize(taskid=nil, taskname=nil, tasktype=nil, taskcontent=nil, executetype=nil, taskrule=nil, timeout=nil, groupid=nil, shardcount=nil, shardarguments=nil, advancesettings=nil, successoperator=nil, successratio=nil, retrycount=nil, retryinterval=nil, taskargument=nil, programidlist=nil)
-          @TaskId = taskid
-          @TaskName = taskname
-          @TaskType = tasktype
-          @TaskContent = taskcontent
-          @ExecuteType = executetype
-          @TaskRule = taskrule
-          @TimeOut = timeout
-          @GroupId = groupid
-          @ShardCount = shardcount
-          @ShardArguments = shardarguments
-          @AdvanceSettings = advancesettings
-          @SuccessOperator = successoperator
-          @SuccessRatio = successratio
-          @RetryCount = retrycount
-          @RetryInterval = retryinterval
-          @TaskArgument = taskargument
-          @ProgramIdList = programidlist
-        end
-
-        def deserialize(params)
-          @TaskId = params['TaskId']
-          @TaskName = params['TaskName']
-          @TaskType = params['TaskType']
-          @TaskContent = params['TaskContent']
-          @ExecuteType = params['ExecuteType']
-          unless params['TaskRule'].nil?
-            @TaskRule = TaskRule.new
-            @TaskRule.deserialize(params['TaskRule'])
-          end
-          @TimeOut = params['TimeOut']
-          @GroupId = params['GroupId']
-          @ShardCount = params['ShardCount']
-          unless params['ShardArguments'].nil?
-            @ShardArguments = []
-            params['ShardArguments'].each do |i|
-              shardargument_tmp = ShardArgument.new
-              shardargument_tmp.deserialize(i)
-              @ShardArguments << shardargument_tmp
-            end
-          end
-          unless params['AdvanceSettings'].nil?
-            @AdvanceSettings = AdvanceSettings.new
-            @AdvanceSettings.deserialize(params['AdvanceSettings'])
-          end
-          @SuccessOperator = params['SuccessOperator']
-          @SuccessRatio = params['SuccessRatio']
-          @RetryCount = params['RetryCount']
-          @RetryInterval = params['RetryInterval']
-          @TaskArgument = params['TaskArgument']
-          @ProgramIdList = params['ProgramIdList']
-        end
-      end
-
-      # ModifyTask返回参数结构体
-      class ModifyTaskResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 更新是否成功。true：操作成功、false：操作失败
-        # @type Result: Boolean
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Result, :RequestId
-
-        def initialize(result=nil, requestid=nil)
-          @Result = result
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @Result = params['Result']
-          @RequestId = params['RequestId']
-        end
-      end
-
       # ModifyUploadInfo请求参数结构体
       class ModifyUploadInfoRequest < TencentCloud::Common::AbstractModel
         # @param ApplicationId: 应用ID，通过调用DescribeApplications接口[获取应用列表](https://cloud.tencent.com/document/api/649/36090)从而获取应用ID，或登录[控制台](https://console.cloud.tencent.com/tsf/app?rid=1)进行查看，调用CreateApplication接口[创建应用](https://cloud.tencent.com/document/product/649/36094)时的返回值
@@ -18084,162 +17272,6 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # RedoTaskBatch请求参数结构体
-      class RedoTaskBatchRequest < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务ID。在[任务管理](https://console.cloud.tencent.com/tsf/tct?rid=1)列表页查看任务ID。
-        # @type TaskId: String
-        # @param BatchId: 任务批次ID。在[任务管理](https://console.cloud.tencent.com/tsf/tct?rid=1)页面点击任务ID进入任务详情，进入执行记录列表页，第一列即为任务批次ID。
-        # @type BatchId: String
-
-        attr_accessor :TaskId, :BatchId
-
-        def initialize(taskid=nil, batchid=nil)
-          @TaskId = taskid
-          @BatchId = batchid
-        end
-
-        def deserialize(params)
-          @TaskId = params['TaskId']
-          @BatchId = params['BatchId']
-        end
-      end
-
-      # RedoTaskBatch返回参数结构体
-      class RedoTaskBatchResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 批次流水ID
-        # @type Result: String
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Result, :RequestId
-
-        def initialize(result=nil, requestid=nil)
-          @Result = result
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @Result = params['Result']
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # RedoTaskExecute请求参数结构体
-      class RedoTaskExecuteRequest < TencentCloud::Common::AbstractModel
-        # @param BatchId: 任务批次ID。在[任务管理](https://console.cloud.tencent.com/tsf/tct?rid=1)页面第一列点击任务ID进入任务详情，进入执行记录列表页，第一列内容即为任务批次ID。
-        # @type BatchId: String
-        # @param ExecuteId: 任务执行ID。在[任务管理](https://console.cloud.tencent.com/tsf/tct?rid=1)页面第一列点击任务ID进入任务详情，进入执行记录页，点击批次ID进入执行详情列表页，第一列即为任务执行ID。
-        # @type ExecuteId: String
-        # @param TaskId: 任务ID。在[任务管理](https://console.cloud.tencent.com/tsf/tct?rid=1)列表页查看任务ID。
-        # @type TaskId: String
-
-        attr_accessor :BatchId, :ExecuteId, :TaskId
-
-        def initialize(batchid=nil, executeid=nil, taskid=nil)
-          @BatchId = batchid
-          @ExecuteId = executeid
-          @TaskId = taskid
-        end
-
-        def deserialize(params)
-          @BatchId = params['BatchId']
-          @ExecuteId = params['ExecuteId']
-          @TaskId = params['TaskId']
-        end
-      end
-
-      # RedoTaskExecute返回参数结构体
-      class RedoTaskExecuteResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 成功返回执行批次流水ID。失败返回空字符串。
-        # @type Result: String
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Result, :RequestId
-
-        def initialize(result=nil, requestid=nil)
-          @Result = result
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @Result = params['Result']
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # RedoTaskFlowBatch请求参数结构体
-      class RedoTaskFlowBatchRequest < TencentCloud::Common::AbstractModel
-        # @param FlowBatchId: 工作流批次 ID。在[工作流管理](https://console.cloud.tencent.com/tsf/tct?rid=1&tab=workflowManage)页面，点击第一列的工作流ID进入工作流执行记录列表页面，第一列的内容即为工作流批次ID。
-        # @type FlowBatchId: String
-
-        attr_accessor :FlowBatchId
-
-        def initialize(flowbatchid=nil)
-          @FlowBatchId = flowbatchid
-        end
-
-        def deserialize(params)
-          @FlowBatchId = params['FlowBatchId']
-        end
-      end
-
-      # RedoTaskFlowBatch返回参数结构体
-      class RedoTaskFlowBatchResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 工作流批次历史 ID。操作失败时不返回该字段，返回错误码。
-        # @type Result: String
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Result, :RequestId
-
-        def initialize(result=nil, requestid=nil)
-          @Result = result
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @Result = params['Result']
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # RedoTask请求参数结构体
-      class RedoTaskRequest < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务ID。在[任务管理](https://console.cloud.tencent.com/tsf/tct?rid=1)列表页查看任务ID。
-        # @type TaskId: String
-
-        attr_accessor :TaskId
-
-        def initialize(taskid=nil)
-          @TaskId = taskid
-        end
-
-        def deserialize(params)
-          @TaskId = params['TaskId']
-        end
-      end
-
-      # RedoTask返回参数结构体
-      class RedoTaskResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 操作成功任务批次ID。操作失败返回空字符串。
-        # @type Result: String
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Result, :RequestId
-
-        def initialize(result=nil, requestid=nil)
-          @Result = result
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @Result = params['Result']
           @RequestId = params['RequestId']
         end
       end
@@ -19533,27 +18565,6 @@ module TencentCloud
         end
       end
 
-      # 分片参数
-      class ShardArgument < TencentCloud::Common::AbstractModel
-        # @param ShardKey: 分片参数 KEY，整形, 范围 [1,1000]
-        # @type ShardKey: Integer
-        # @param ShardValue: 分片参数 VALUE
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ShardValue: String
-
-        attr_accessor :ShardKey, :ShardValue
-
-        def initialize(shardkey=nil, shardvalue=nil)
-          @ShardKey = shardkey
-          @ShardValue = shardvalue
-        end
-
-        def deserialize(params)
-          @ShardKey = params['ShardKey']
-          @ShardValue = params['ShardValue']
-        end
-      end
-
       # ShrinkGroup请求参数结构体
       class ShrinkGroupRequest < TencentCloud::Common::AbstractModel
         # @param GroupId: 部署组ID，可通过调用[DescribeGroups](https://cloud.tencent.com/document/api/649/36065)查询已创建的部署组列表或登录控制台进行查看；也可以调用[CreateGroup](https://cloud.tencent.com/document/api/649/36074)创建新的部署组。
@@ -19980,90 +18991,6 @@ module TencentCloud
         end
       end
 
-      # StopTaskBatch请求参数结构体
-      class StopTaskBatchRequest < TencentCloud::Common::AbstractModel
-        # @param BatchId: 任务批次ID。在[任务管理](https://console.cloud.tencent.com/tsf/tct?rid=1)页面点击任务ID进入任务详情，进入执行记录列表页，第一列即为任务批次ID。
-        # @type BatchId: String
-        # @param TaskId: 任务ID。在[任务管理](https://console.cloud.tencent.com/tsf/tct?rid=1)列表页面可以查看任务ID。
-        # @type TaskId: String
-
-        attr_accessor :BatchId, :TaskId
-
-        def initialize(batchid=nil, taskid=nil)
-          @BatchId = batchid
-          @TaskId = taskid
-        end
-
-        def deserialize(params)
-          @BatchId = params['BatchId']
-          @TaskId = params['TaskId']
-        end
-      end
-
-      # StopTaskBatch返回参数结构体
-      class StopTaskBatchResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 返回 true 或 false。true：操作成功，false：操作失败
-        # @type Result: Boolean
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Result, :RequestId
-
-        def initialize(result=nil, requestid=nil)
-          @Result = result
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @Result = params['Result']
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # StopTaskExecute请求参数结构体
-      class StopTaskExecuteRequest < TencentCloud::Common::AbstractModel
-        # @param ExecuteId: 任务执行ID。在[任务管理](https://console.cloud.tencent.com/tsf/tct?rid=1)页面点击任务ID进入任务详情，进入执行记录页，点击批次ID进入执行详情列表页，第一列即为任务执行ID。
-        # @type ExecuteId: String
-        # @param BatchId: 任务批次ID。在[任务管理](https://console.cloud.tencent.com/tsf/tct?rid=1)页面点击任务ID进入任务详情，进入执行记录列表页，第一列即为任务批次ID。
-        # @type BatchId: String
-        # @param TaskId: 任务ID。在[任务管理](https://console.cloud.tencent.com/tsf/tct?rid=1)列表页面可以查看任务ID。
-        # @type TaskId: String
-
-        attr_accessor :ExecuteId, :BatchId, :TaskId
-
-        def initialize(executeid=nil, batchid=nil, taskid=nil)
-          @ExecuteId = executeid
-          @BatchId = batchid
-          @TaskId = taskid
-        end
-
-        def deserialize(params)
-          @ExecuteId = params['ExecuteId']
-          @BatchId = params['BatchId']
-          @TaskId = params['TaskId']
-        end
-      end
-
-      # StopTaskExecute返回参数结构体
-      class StopTaskExecuteResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 返回 true 或 false。true：操作成功，false：操作失败
-        # @type Result: Boolean
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Result, :RequestId
-
-        def initialize(result=nil, requestid=nil)
-          @Result = result
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @Result = params['Result']
-          @RequestId = params['RequestId']
-        end
-      end
-
       # 标签
       class Tag < TencentCloud::Common::AbstractModel
         # @param TagKey: 标签键
@@ -20084,90 +19011,6 @@ module TencentCloud
         end
       end
 
-      # 工作流图中的边
-      class TaskFlowEdge < TencentCloud::Common::AbstractModel
-        # @param NodeId: 节点 ID，节点类型为任务时为任务ID，节点类型为逻辑节点"且"时为 AND，为逻辑节点"或"时为 OR，节点类型为头节点时为字符串"head"
-        # @type NodeId: String
-        # @param ChildNodeId: 子节点 ID，节点类型为任务时为任务ID，节点类型为逻辑节点"且"时为 AND，为逻辑节点"或"时为 OR
-        # @type ChildNodeId: String
-        # @param CoreNode: 是否核心任务,Y/N
-        # @type CoreNode: String
-        # @param EdgeType: 边类型，上下游任务依赖触发关系。一共2个值，Y：成功触发，N：失败触发
-        # @type EdgeType: String
-        # @param NodeType: 任务节点类型，一共有4种类型，AND：逻辑节点且，OR：逻辑节点或，TASK：任务节点，START：头节点
-        # @type NodeType: String
-        # @param PositionX: X轴坐标位置
-        # @type PositionX: String
-        # @param PositionY: Y轴坐标位置
-        # @type PositionY: String
-        # @param GraphId: 图 ID，新建工作流时自动生成，不需要填写，查看工作流图时后端返回
-        # @type GraphId: String
-        # @param FlowId: 工作流 ID，新建工作流时自动生成，不需要填写，查看工作流图时后端返回
-        # @type FlowId: String
-        # @param NodeName: 节点名称
-        # @type NodeName: String
-        # @param TaskId: 任务ID，新建工作流时不需要填写，查看工作流图时后端返回
-        # @type TaskId: String
-        # @param TaskLogId: 任务历史ID，新建工作流时不需要填写，查看工作流图时后端返回
-        # @type TaskLogId: String
-
-        attr_accessor :NodeId, :ChildNodeId, :CoreNode, :EdgeType, :NodeType, :PositionX, :PositionY, :GraphId, :FlowId, :NodeName, :TaskId, :TaskLogId
-
-        def initialize(nodeid=nil, childnodeid=nil, corenode=nil, edgetype=nil, nodetype=nil, positionx=nil, positiony=nil, graphid=nil, flowid=nil, nodename=nil, taskid=nil, tasklogid=nil)
-          @NodeId = nodeid
-          @ChildNodeId = childnodeid
-          @CoreNode = corenode
-          @EdgeType = edgetype
-          @NodeType = nodetype
-          @PositionX = positionx
-          @PositionY = positiony
-          @GraphId = graphid
-          @FlowId = flowid
-          @NodeName = nodename
-          @TaskId = taskid
-          @TaskLogId = tasklogid
-        end
-
-        def deserialize(params)
-          @NodeId = params['NodeId']
-          @ChildNodeId = params['ChildNodeId']
-          @CoreNode = params['CoreNode']
-          @EdgeType = params['EdgeType']
-          @NodeType = params['NodeType']
-          @PositionX = params['PositionX']
-          @PositionY = params['PositionY']
-          @GraphId = params['GraphId']
-          @FlowId = params['FlowId']
-          @NodeName = params['NodeName']
-          @TaskId = params['TaskId']
-          @TaskLogId = params['TaskLogId']
-        end
-      end
-
-      # 工作流最近批次的状态
-      class TaskFlowLastBatchState < TencentCloud::Common::AbstractModel
-        # @param FlowBatchId: 批次ID
-        # @type FlowBatchId: String
-        # @param FlowBatchLogId: 批次历史ID
-        # @type FlowBatchLogId: String
-        # @param State: 状态,WAITING/SUCCESS/FAILED/RUNNING/TERMINATING
-        # @type State: String
-
-        attr_accessor :FlowBatchId, :FlowBatchLogId, :State
-
-        def initialize(flowbatchid=nil, flowbatchlogid=nil, state=nil)
-          @FlowBatchId = flowbatchid
-          @FlowBatchLogId = flowbatchlogid
-          @State = state
-        end
-
-        def deserialize(params)
-          @FlowBatchId = params['FlowBatchId']
-          @FlowBatchLogId = params['FlowBatchLogId']
-          @State = params['State']
-        end
-      end
-
       # 任务id
       class TaskId < TencentCloud::Common::AbstractModel
         # @param TaskId: 任务ID
@@ -20181,187 +19024,6 @@ module TencentCloud
 
         def deserialize(params)
           @TaskId = params['TaskId']
-        end
-      end
-
-      # 任务最近一次执行状态
-      class TaskLastExecuteStatus < TencentCloud::Common::AbstractModel
-        # @param BatchId: 批次ID
-        # @type BatchId: String
-        # @param State: 运行状态，RUNNING/SUCCESS/FAIL/HALF/TERMINATED
-        # @type State: String
-        # @param BatchLogId: 批次历史ID
-        # @type BatchLogId: String
-
-        attr_accessor :BatchId, :State, :BatchLogId
-
-        def initialize(batchid=nil, state=nil, batchlogid=nil)
-          @BatchId = batchid
-          @State = state
-          @BatchLogId = batchlogid
-        end
-
-        def deserialize(params)
-          @BatchId = params['BatchId']
-          @State = params['State']
-          @BatchLogId = params['BatchLogId']
-        end
-      end
-
-      # 任务定义
-      class TaskRecord < TencentCloud::Common::AbstractModel
-        # @param TaskName: 任务名称
-        # @type TaskName: String
-        # @param TaskType: 任务类型
-        # @type TaskType: String
-        # @param ExecuteType: 任务执行方式，unicast：随机单节点执行，broadcast：广播执行，shard：分片执行
-        # @type ExecuteType: String
-        # @param TaskContent: 任务内容，长度限制65535字节
-        # @type TaskContent: String
-        # @param GroupId: 分组ID
-        # @type GroupId: String
-        # @param TimeOut: 超时时间，单位：毫秒。
-        # @type TimeOut: Integer
-        # @param RetryCount: 重试次数
-        # @type RetryCount: Integer
-        # @param RetryInterval: 重试间隔，单位：毫秒。
-        # @type RetryInterval: Integer
-        # @param TaskRule: 触发规则
-        # @type TaskRule: :class:`Tencentcloud::Tsf.v20180326.models.TaskRule`
-        # @param TaskState: 任务启用状态。一共2种状态可选，ENABLED：启用，DISABLED：停用
-        # @type TaskState: String
-        # @param TaskId: 任务ID
-        # @type TaskId: String
-        # @param SuccessOperator: 判断任务成功的操作符
-        # @type SuccessOperator: String
-        # @param SuccessRatio: 判断任务成功的阈值
-        # @type SuccessRatio: Integer
-        # @param ShardCount: 分片数量
-        # @type ShardCount: Integer
-        # @param AdvanceSettings: 高级设置
-        # @type AdvanceSettings: :class:`Tencentcloud::Tsf.v20180326.models.AdvanceSettings`
-        # @param ShardArguments: 分片参数
-        # @type ShardArguments: Array
-        # @param BelongFlowIds: 所属工作流ID
-        # @type BelongFlowIds: Array
-        # @param TaskLogId: 任务历史ID
-        # @type TaskLogId: String
-        # @param TriggerType: 触发类型，一共3种类型，WorkFlow：工作流触发，Cron：定时触发，FixRate：周期触发
-        # @type TriggerType: String
-        # @param TaskArgument: 任务参数，长度限制10000个字符
-        # @type TaskArgument: String
-
-        attr_accessor :TaskName, :TaskType, :ExecuteType, :TaskContent, :GroupId, :TimeOut, :RetryCount, :RetryInterval, :TaskRule, :TaskState, :TaskId, :SuccessOperator, :SuccessRatio, :ShardCount, :AdvanceSettings, :ShardArguments, :BelongFlowIds, :TaskLogId, :TriggerType, :TaskArgument
-
-        def initialize(taskname=nil, tasktype=nil, executetype=nil, taskcontent=nil, groupid=nil, timeout=nil, retrycount=nil, retryinterval=nil, taskrule=nil, taskstate=nil, taskid=nil, successoperator=nil, successratio=nil, shardcount=nil, advancesettings=nil, shardarguments=nil, belongflowids=nil, tasklogid=nil, triggertype=nil, taskargument=nil)
-          @TaskName = taskname
-          @TaskType = tasktype
-          @ExecuteType = executetype
-          @TaskContent = taskcontent
-          @GroupId = groupid
-          @TimeOut = timeout
-          @RetryCount = retrycount
-          @RetryInterval = retryinterval
-          @TaskRule = taskrule
-          @TaskState = taskstate
-          @TaskId = taskid
-          @SuccessOperator = successoperator
-          @SuccessRatio = successratio
-          @ShardCount = shardcount
-          @AdvanceSettings = advancesettings
-          @ShardArguments = shardarguments
-          @BelongFlowIds = belongflowids
-          @TaskLogId = tasklogid
-          @TriggerType = triggertype
-          @TaskArgument = taskargument
-        end
-
-        def deserialize(params)
-          @TaskName = params['TaskName']
-          @TaskType = params['TaskType']
-          @ExecuteType = params['ExecuteType']
-          @TaskContent = params['TaskContent']
-          @GroupId = params['GroupId']
-          @TimeOut = params['TimeOut']
-          @RetryCount = params['RetryCount']
-          @RetryInterval = params['RetryInterval']
-          unless params['TaskRule'].nil?
-            @TaskRule = TaskRule.new
-            @TaskRule.deserialize(params['TaskRule'])
-          end
-          @TaskState = params['TaskState']
-          @TaskId = params['TaskId']
-          @SuccessOperator = params['SuccessOperator']
-          @SuccessRatio = params['SuccessRatio']
-          @ShardCount = params['ShardCount']
-          unless params['AdvanceSettings'].nil?
-            @AdvanceSettings = AdvanceSettings.new
-            @AdvanceSettings.deserialize(params['AdvanceSettings'])
-          end
-          unless params['ShardArguments'].nil?
-            @ShardArguments = []
-            params['ShardArguments'].each do |i|
-              shardargument_tmp = ShardArgument.new
-              shardargument_tmp.deserialize(i)
-              @ShardArguments << shardargument_tmp
-            end
-          end
-          @BelongFlowIds = params['BelongFlowIds']
-          @TaskLogId = params['TaskLogId']
-          @TriggerType = params['TriggerType']
-          @TaskArgument = params['TaskArgument']
-        end
-      end
-
-      # 翻页查询的任务记录返回
-      class TaskRecordPage < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 总数量
-        # @type TotalCount: Integer
-        # @param Content: 任务记录列表
-        # @type Content: Array
-
-        attr_accessor :TotalCount, :Content
-
-        def initialize(totalcount=nil, content=nil)
-          @TotalCount = totalcount
-          @Content = content
-        end
-
-        def deserialize(params)
-          @TotalCount = params['TotalCount']
-          unless params['Content'].nil?
-            @Content = []
-            params['Content'].each do |i|
-              taskrecord_tmp = TaskRecord.new
-              taskrecord_tmp.deserialize(i)
-              @Content << taskrecord_tmp
-            end
-          end
-        end
-      end
-
-      # 任务规则
-      class TaskRule < TencentCloud::Common::AbstractModel
-        # @param RuleType: 触发规则类型，枚举值。一共3个值，Cron：定时触发，Repeat：周期触发，WorkFlow：工作流触发
-        # @type RuleType: String
-        # @param Expression: Cron类型规则，cron表达式。
-        # @type Expression: String
-        # @param RepeatInterval: 时间间隔， 单位毫秒
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type RepeatInterval: Integer
-
-        attr_accessor :RuleType, :Expression, :RepeatInterval
-
-        def initialize(ruletype=nil, expression=nil, repeatinterval=nil)
-          @RuleType = ruletype
-          @Expression = expression
-          @RepeatInterval = repeatinterval
-        end
-
-        def deserialize(params)
-          @RuleType = params['RuleType']
-          @Expression = params['Expression']
-          @RepeatInterval = params['RepeatInterval']
         end
       end
 
@@ -20397,42 +19059,6 @@ module TencentCloud
         end
       end
 
-      # TerminateTaskFlowBatch请求参数结构体
-      class TerminateTaskFlowBatchRequest < TencentCloud::Common::AbstractModel
-        # @param FlowBatchId: 工作流批次 ID，在[工作流执行记录](https://console.cloud.tencent.com/tsf/tct?rid=1&tab=taskflow)列表页第一列获取。
-        # @type FlowBatchId: String
-
-        attr_accessor :FlowBatchId
-
-        def initialize(flowbatchid=nil)
-          @FlowBatchId = flowbatchid
-        end
-
-        def deserialize(params)
-          @FlowBatchId = params['FlowBatchId']
-        end
-      end
-
-      # TerminateTaskFlowBatch返回参数结构体
-      class TerminateTaskFlowBatchResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 是否停止成功，true：停止成功，false：停止失败
-        # @type Result: Boolean
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Result, :RequestId
-
-        def initialize(result=nil, requestid=nil)
-          @Result = result
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @Result = params['Result']
-          @RequestId = params['RequestId']
-        end
-      end
-
       # jvm监控数据线程数据封装
       class ThreadPicture < TencentCloud::Common::AbstractModel
         # @param ThreadCount: 总线程数
@@ -20446,8 +19072,8 @@ module TencentCloud
 
         attr_accessor :ThreadCount, :ThreadActive, :DeamonThreadCount, :DaemonThreadCount
         extend Gem::Deprecate
-        deprecate :DeamonThreadCount, :none, 2026, 5
-        deprecate :DeamonThreadCount=, :none, 2026, 5
+        deprecate :DeamonThreadCount, :none, 2026, 6
+        deprecate :DeamonThreadCount=, :none, 2026, 6
 
         def initialize(threadcount=nil, threadactive=nil, deamonthreadcount=nil, daemonthreadcount=nil)
           @ThreadCount = threadcount

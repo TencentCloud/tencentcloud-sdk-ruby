@@ -1886,34 +1886,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 产品规划
-
-        # 本接口支持北京、上海、广东、江苏、吉林、黑龙江、天津、辽宁、浙江、河南、四川、贵州、山东、安徽、福建、江西、湖北、湖南等省份健康码的识别，包括持码人姓名、持码人身份证号、健康码更新时间、健康码颜色、核酸检测结果、核酸检测间隔时长、核酸检测时间，疫苗接种信息，八个字段的识别结果输出。不同省市健康码显示的字段信息有所不同，上述字段的识别结果可能为空，以图片上具体展示的信息为准。
-
-        # 默认接口请求频率限制：10次/秒。
-
-        # @param request: Request instance for RecognizeHealthCodeOCR.
-        # @type request: :class:`Tencentcloud::ocr::V20181119::RecognizeHealthCodeOCRRequest`
-        # @rtype: :class:`Tencentcloud::ocr::V20181119::RecognizeHealthCodeOCRResponse`
-        def RecognizeHealthCodeOCR(request)
-          body = send_request('RecognizeHealthCodeOCR', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = RecognizeHealthCodeOCRResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 医疗发票识别目前支持全国统一门诊发票、全国统一住院发票、以及部分地方的门诊和住院发票的识别。
 
         # 默认接口请求频率限制：5次/秒。
@@ -2030,34 +2002,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = RecognizeThaiIDCardOCRResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 产品规划
-
-        # 本接口支持通信大数据行程卡识别，包括行程卡颜色、更新时间、途经地、存在中高风险地区的城市、电话号码，五个字段的识别结果输出。
-
-        # 默认接口请求频率限制：20次/秒。
-
-        # @param request: Request instance for RecognizeTravelCardOCR.
-        # @type request: :class:`Tencentcloud::ocr::V20181119::RecognizeTravelCardOCRRequest`
-        # @rtype: :class:`Tencentcloud::ocr::V20181119::RecognizeTravelCardOCRResponse`
-        def RecognizeTravelCardOCR(request)
-          body = send_request('RecognizeTravelCardOCR', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = RecognizeTravelCardOCRResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2482,6 +2426,31 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = VehicleRegCertOCRResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 提供比对核验企业名称、统一社会信用代码、法人姓名一致性的服务，助力快速核验企业资质。
+        # 注意：核验准确率在99%以上，存在个别特殊情况下核验结果不准确，请选用前知悉。
+
+        # @param request: Request instance for VerifyBizLicenseEnterprise3.
+        # @type request: :class:`Tencentcloud::ocr::V20181119::VerifyBizLicenseEnterprise3Request`
+        # @rtype: :class:`Tencentcloud::ocr::V20181119::VerifyBizLicenseEnterprise3Response`
+        def VerifyBizLicenseEnterprise3(request)
+          body = send_request('VerifyBizLicenseEnterprise3', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = VerifyBizLicenseEnterprise3Response.new
             model.deserialize(response['Response'])
             model
           else

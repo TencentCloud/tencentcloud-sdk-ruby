@@ -128,6 +128,85 @@ module TencentCloud
         end
       end
 
+      # 追加文件
+      class AppendDocument < TencentCloud::Common::AbstractModel
+        # @param FileName: <p>文件名称</p>
+        # @type FileName: String
+        # @param FileId: <p>文件id</p>
+        # @type FileId: String
+        # @param FileUrl: <p>文件url</p>
+        # @type FileUrl: String
+        # @param FileSize: <p>文件大小</p>
+        # @type FileSize: Float
+
+        attr_accessor :FileName, :FileId, :FileUrl, :FileSize
+
+        def initialize(filename=nil, fileid=nil, fileurl=nil, filesize=nil)
+          @FileName = filename
+          @FileId = fileid
+          @FileUrl = fileurl
+          @FileSize = filesize
+        end
+
+        def deserialize(params)
+          @FileName = params['FileName']
+          @FileId = params['FileId']
+          @FileUrl = params['FileUrl']
+          @FileSize = params['FileSize']
+        end
+      end
+
+      # AppendKnowledgeTask请求参数结构体
+      class AppendKnowledgeTaskRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>实例id</p>
+        # @type InstanceId: String
+        # @param KnowledgeBaseId: <p>知识库id</p>
+        # @type KnowledgeBaseId: String
+        # @param FileId: <p>文件id</p>
+        # @type FileId: String
+        # @param Documents: <p>追加的文档列表</p>
+        # @type Documents: Array
+
+        attr_accessor :InstanceId, :KnowledgeBaseId, :FileId, :Documents
+
+        def initialize(instanceid=nil, knowledgebaseid=nil, fileid=nil, documents=nil)
+          @InstanceId = instanceid
+          @KnowledgeBaseId = knowledgebaseid
+          @FileId = fileid
+          @Documents = documents
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @KnowledgeBaseId = params['KnowledgeBaseId']
+          @FileId = params['FileId']
+          unless params['Documents'].nil?
+            @Documents = []
+            params['Documents'].each do |i|
+              appenddocument_tmp = AppendDocument.new
+              appenddocument_tmp.deserialize(i)
+              @Documents << appenddocument_tmp
+            end
+          end
+        end
+      end
+
+      # AppendKnowledgeTask返回参数结构体
+      class AppendKnowledgeTaskResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ChatAI请求参数结构体
       class ChatAIRequest < TencentCloud::Common::AbstractModel
         # @param SessionId: <p>会话ID</p>
@@ -556,6 +635,34 @@ module TencentCloud
           @DocumentSummary = params['DocumentSummary']
           @WebUrl = params['WebUrl']
           @Capabilities = params['Capabilities']
+        end
+      end
+
+      # 文件任务状态
+      class FileTaskStatus < TencentCloud::Common::AbstractModel
+        # @param FileId: <p>文件id</p>
+        # @type FileId: String
+        # @param Status: <p>状态</p><p>枚举值：</p><ul><li>0： 处理中</li><li>1： 可用</li><li>-1： 错误</li></ul>
+        # @type Status: Integer
+        # @param IsTerminated: <p>是否已拉取过状态</p><p>枚举值：</p><ul><li>0： 未被拉取过状态</li><li>1： 已被拉取过状态</li></ul>
+        # @type IsTerminated: Integer
+        # @param ErrorMsg: <p>错误信息，状态-1时不为空</p>
+        # @type ErrorMsg: String
+
+        attr_accessor :FileId, :Status, :IsTerminated, :ErrorMsg
+
+        def initialize(fileid=nil, status=nil, isterminated=nil, errormsg=nil)
+          @FileId = fileid
+          @Status = status
+          @IsTerminated = isterminated
+          @ErrorMsg = errormsg
+        end
+
+        def deserialize(params)
+          @FileId = params['FileId']
+          @Status = params['Status']
+          @IsTerminated = params['IsTerminated']
+          @ErrorMsg = params['ErrorMsg']
         end
       end
 
@@ -1208,6 +1315,57 @@ module TencentCloud
               chunk_tmp = Chunk.new
               chunk_tmp.deserialize(i)
               @Chunks << chunk_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # QueryKnowledgeTask请求参数结构体
+      class QueryKnowledgeTaskRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>实例id</p>
+        # @type InstanceId: String
+        # @param KnowledgeBaseId: <p>知识库id</p>
+        # @type KnowledgeBaseId: String
+        # @param FileIds: <p>文件id列表</p>
+        # @type FileIds: Array
+
+        attr_accessor :InstanceId, :KnowledgeBaseId, :FileIds
+
+        def initialize(instanceid=nil, knowledgebaseid=nil, fileids=nil)
+          @InstanceId = instanceid
+          @KnowledgeBaseId = knowledgebaseid
+          @FileIds = fileids
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @KnowledgeBaseId = params['KnowledgeBaseId']
+          @FileIds = params['FileIds']
+        end
+      end
+
+      # QueryKnowledgeTask返回参数结构体
+      class QueryKnowledgeTaskResponse < TencentCloud::Common::AbstractModel
+        # @param FileList: <p>文档任务详情对象</p>
+        # @type FileList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FileList, :RequestId
+
+        def initialize(filelist=nil, requestid=nil)
+          @FileList = filelist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['FileList'].nil?
+            @FileList = []
+            params['FileList'].each do |i|
+              filetaskstatus_tmp = FileTaskStatus.new
+              filetaskstatus_tmp.deserialize(i)
+              @FileList << filetaskstatus_tmp
             end
           end
           @RequestId = params['RequestId']

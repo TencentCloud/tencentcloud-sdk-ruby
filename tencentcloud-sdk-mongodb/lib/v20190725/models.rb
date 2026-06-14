@@ -719,37 +719,35 @@ module TencentCloud
 
       # CreateBackupDBInstance请求参数结构体
       class CreateBackupDBInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID。例如：cmgo-p8vn****。请登录 [MongoDB 控制台](https://console.cloud.tencent.com/mongodb)在实例列表复制实例 ID。
+        # @param InstanceId: <p>实例 ID。例如：cmgo-p8vn****。请登录 <a href="https://console.cloud.tencent.com/mongodb">MongoDB 控制台</a>在实例列表复制实例 ID。</p>
         # @type InstanceId: String
-        # @param BackupMethod: 设置备份方式。
-        # - 0：逻辑备份。
-        # - 1：物理备份。
-        # - 3：快照备份。
-        # **说明**:
-        # 1. 通用版实例支持逻辑备份与物理备份。云盘版实例支持物理备份与快照备份，暂不支持逻辑备份。
-        # 2. 实例开通存储加密，则备份方式不能为物理备份。
+        # @param BackupMethod: <p>设置备份方式。</p><ul><li>0：逻辑备份。</li><li>1：物理备份。</li><li>3：快照备份。<br><strong>说明</strong>:</li><li>通用版实例支持逻辑备份与物理备份。云盘版实例支持物理备份与快照备份，暂不支持逻辑备份。</li><li>实例开通存储加密，则备份方式不能为物理备份。</li></ul>
         # @type BackupMethod: Integer
-        # @param BackupRemark: 备份备注信息。
+        # @param BackupRemark: <p>备份备注信息。</p>
         # @type BackupRemark: String
+        # @param BackupRetentionDays: <p>保存天数，-2-永久保留（不定期保留），-1-跟随长期保留时长，0-按配置天数，1~7300-自定义天数（最长20年）</p><p>单位：天</p>
+        # @type BackupRetentionDays: Integer
 
-        attr_accessor :InstanceId, :BackupMethod, :BackupRemark
+        attr_accessor :InstanceId, :BackupMethod, :BackupRemark, :BackupRetentionDays
 
-        def initialize(instanceid=nil, backupmethod=nil, backupremark=nil)
+        def initialize(instanceid=nil, backupmethod=nil, backupremark=nil, backupretentiondays=nil)
           @InstanceId = instanceid
           @BackupMethod = backupmethod
           @BackupRemark = backupremark
+          @BackupRetentionDays = backupretentiondays
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
           @BackupMethod = params['BackupMethod']
           @BackupRemark = params['BackupRemark']
+          @BackupRetentionDays = params['BackupRetentionDays']
         end
       end
 
       # CreateBackupDBInstance返回参数结构体
       class CreateBackupDBInstanceResponse < TencentCloud::Common::AbstractModel
-        # @param AsyncRequestId: 查询备份流程的状态。
+        # @param AsyncRequestId: <p>查询备份流程的状态。</p>
         # @type AsyncRequestId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1276,6 +1274,58 @@ module TencentCloud
       class CreateLogDownloadTaskResponse < TencentCloud::Common::AbstractModel
         # @param Status: 任务状态
         # @type Status: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :RequestId
+
+        def initialize(status=nil, requestid=nil)
+          @Status = status
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateSlowLogPatternDownloadTask请求参数结构体
+      class CreateSlowLogPatternDownloadTaskRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>实例 ID。请登录 <a href="https://console.cloud.tencent.com/mongodb">MongoDB 控制台</a>在实例列表复制实例 ID。</p>
+        # @type InstanceId: String
+        # @param StartTime: <p>采集慢日志开始时间</p>
+        # @type StartTime: String
+        # @param EndTime: <p>采集慢日志结束时间</p>
+        # @type EndTime: String
+        # @param ThresholdMs: <p>慢日志采集阈值</p>
+        # @type ThresholdMs: Integer
+        # @param Commands: <p>慢日志类型</p>
+        # @type Commands: Array
+
+        attr_accessor :InstanceId, :StartTime, :EndTime, :ThresholdMs, :Commands
+
+        def initialize(instanceid=nil, starttime=nil, endtime=nil, thresholdms=nil, commands=nil)
+          @InstanceId = instanceid
+          @StartTime = starttime
+          @EndTime = endtime
+          @ThresholdMs = thresholdms
+          @Commands = commands
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @ThresholdMs = params['ThresholdMs']
+          @Commands = params['Commands']
+        end
+      end
+
+      # CreateSlowLogPatternDownloadTask返回参数结构体
+      class CreateSlowLogPatternDownloadTaskResponse < TencentCloud::Common::AbstractModel
+        # @param Status: <p>下载任务状态</p>
+        # @type Status: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -2432,6 +2482,63 @@ module TencentCloud
           @DiscountPrice = params['DiscountPrice']
           @Action = params['Action']
           @InstanceId = params['InstanceId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDBInstanceLogToCLS请求参数结构体
+      class DescribeDBInstanceLogToCLSRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>指定实例ID。例如：cmgo-p8vn****。请登录 MongoDB 控制台在实例列表复制实例 ID。</p>
+        # @type InstanceId: String
+        # @param CLSRegion: <p>CLS服务所在地域</p>
+        # @type CLSRegion: String
+
+        attr_accessor :InstanceId, :CLSRegion
+
+        def initialize(instanceid=nil, clsregion=nil)
+          @InstanceId = instanceid
+          @CLSRegion = clsregion
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @CLSRegion = params['CLSRegion']
+        end
+      end
+
+      # DescribeDBInstanceLogToCLS返回参数结构体
+      class DescribeDBInstanceLogToCLSResponse < TencentCloud::Common::AbstractModel
+        # @param ErrorLog: <p>实例错误日志投递配置</p>
+        # @type ErrorLog: :class:`Tencentcloud::Mongodb.v20190725.models.LogToCLSConfig`
+        # @param SlowLog: <p>实例慢日志投递配置</p>
+        # @type SlowLog: :class:`Tencentcloud::Mongodb.v20190725.models.LogToCLSConfig`
+        # @param OperationLog: <p>实例操作日志投递配置</p>
+        # @type OperationLog: :class:`Tencentcloud::Mongodb.v20190725.models.LogToCLSConfig`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrorLog, :SlowLog, :OperationLog, :RequestId
+
+        def initialize(errorlog=nil, slowlog=nil, operationlog=nil, requestid=nil)
+          @ErrorLog = errorlog
+          @SlowLog = slowlog
+          @OperationLog = operationlog
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ErrorLog'].nil?
+            @ErrorLog = LogToCLSConfig.new
+            @ErrorLog.deserialize(params['ErrorLog'])
+          end
+          unless params['SlowLog'].nil?
+            @SlowLog = LogToCLSConfig.new
+            @SlowLog.deserialize(params['SlowLog'])
+          end
+          unless params['OperationLog'].nil?
+            @OperationLog = LogToCLSConfig.new
+            @OperationLog.deserialize(params['OperationLog'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -4062,6 +4169,33 @@ module TencentCloud
         end
       end
 
+      # IncreaseDBInstanceConnectionLimit请求参数结构体
+      class IncreaseDBInstanceConnectionLimitRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # IncreaseDBInstanceConnectionLimit返回参数结构体
+      class IncreaseDBInstanceConnectionLimitResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # InquirePriceCreateDBInstances请求参数结构体
       class InquirePriceCreateDBInstancesRequest < TencentCloud::Common::AbstractModel
         # @param Zone: <p>实例所属区域及可用区信息。具体信息，请参见<a href="https://cloud.tencent.com/document/product/240/3637">地域和可用区</a>。</p>
@@ -5101,6 +5235,34 @@ module TencentCloud
         end
       end
 
+      # 日志投递CLS配置
+      class LogToCLSConfig < TencentCloud::Common::AbstractModel
+        # @param CLSRegion: <p>CLS服务所在地域</p>
+        # @type CLSRegion: String
+        # @param Status: <p>投递状态打开或者关闭</p>
+        # @type Status: String
+        # @param LogSetId: <p>CLS日志集ID</p>
+        # @type LogSetId: String
+        # @param LogTopicId: <p>日志主题ID</p>
+        # @type LogTopicId: String
+
+        attr_accessor :CLSRegion, :Status, :LogSetId, :LogTopicId
+
+        def initialize(clsregion=nil, status=nil, logsetid=nil, logtopicid=nil)
+          @CLSRegion = clsregion
+          @Status = status
+          @LogSetId = logsetid
+          @LogTopicId = logtopicid
+        end
+
+        def deserialize(params)
+          @CLSRegion = params['CLSRegion']
+          @Status = params['Status']
+          @LogSetId = params['LogSetId']
+          @LogTopicId = params['LogTopicId']
+        end
+      end
+
       # ModifyAuditService请求参数结构体
       class ModifyAuditServiceRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID，格式如：cmgo-xfts****，与云数据库控制台页面中显示的实例 ID 相同。
@@ -5192,6 +5354,66 @@ module TencentCloud
 
         def deserialize(params)
           @FailedBackups = params['FailedBackups']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyDBInstanceLogToCLS请求参数结构体
+      class ModifyDBInstanceLogToCLSRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>指定实例ID。例如：cmgo-p8vn****。请登录 MongoDB 控制台在实例列表复制实例 ID。</p>
+        # @type InstanceId: String
+        # @param LogType: <p>日志类型。MongoDB-ErrorLog：错误日志，MongoDB-SlowLog：慢日志，MongoDB-OperationLog：操作日志</p>
+        # @type LogType: String
+        # @param Status: <p>投递状态。ON：开启，OFF：关闭。</p>
+        # @type Status: String
+        # @param CreateLogset: <p>是否需要创建日志集。默认为 false。</p>
+        # @type CreateLogset: Boolean
+        # @param Logset: <p>需要创建日志集时为日志集名称；选择已有日志集时，为日志集 ID。默认为空。 说明：1. 当参数 Status 的值为 ON 时，Logset 和 LogTopic 参数必须填一个。2.  当参数 CreateLogset 的值为 true 时，Logset 填日志集命名，例如 my_test，否则需要填日志集 id，例如 6adsaw-****。</p>
+        # @type Logset: String
+        # @param CreateLogTopic: <p>是否需要创建日志主题。默认为 false。</p>
+        # @type CreateLogTopic: Boolean
+        # @param LogTopic: <p>需要创建日志主题时为日志主题名称；选择已有日志主题时，为日志主题 ID。默认为空。 说明：1. 当参数 Status 的值为 ON 时，Logset 和 LogTopic 参数必须填一个。2. 2.  当参数 CreateLogTopic 的值为 true 时，LogTopic 填日志主题命名，例如 my_test，否则需要填日志主题id，例如 6adsaw-****。</p>
+        # @type LogTopic: String
+        # @param CLSRegion: <p>CLS 所在地域，不填则默认为 Region 的参数值。</p>
+        # @type CLSRegion: String
+
+        attr_accessor :InstanceId, :LogType, :Status, :CreateLogset, :Logset, :CreateLogTopic, :LogTopic, :CLSRegion
+
+        def initialize(instanceid=nil, logtype=nil, status=nil, createlogset=nil, logset=nil, createlogtopic=nil, logtopic=nil, clsregion=nil)
+          @InstanceId = instanceid
+          @LogType = logtype
+          @Status = status
+          @CreateLogset = createlogset
+          @Logset = logset
+          @CreateLogTopic = createlogtopic
+          @LogTopic = logtopic
+          @CLSRegion = clsregion
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @LogType = params['LogType']
+          @Status = params['Status']
+          @CreateLogset = params['CreateLogset']
+          @Logset = params['Logset']
+          @CreateLogTopic = params['CreateLogTopic']
+          @LogTopic = params['LogTopic']
+          @CLSRegion = params['CLSRegion']
+        end
+      end
+
+      # ModifyDBInstanceLogToCLS返回参数结构体
+      class ModifyDBInstanceLogToCLSResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
