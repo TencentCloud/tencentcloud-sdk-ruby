@@ -4809,6 +4809,80 @@ module TencentCloud
         end
       end
 
+      # ModifyResourceUser请求参数结构体
+      class ModifyResourceUserRequest < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 项目Id
+        # @type ProjectId: Integer
+        # @param UserId: 用户id
+        # @type UserId: String
+        # @param Resource: 资源
+        # @type Resource: :class:`Tencentcloud::Bi.v20220105.models.UserResourceDTO`
+        # @param EntityIds: 实体类
+        # @type EntityIds: Array
+        # @param ResourceType: 资源类型
+        # @type ResourceType: String
+
+        attr_accessor :ProjectId, :UserId, :Resource, :EntityIds, :ResourceType
+
+        def initialize(projectid=nil, userid=nil, resource=nil, entityids=nil, resourcetype=nil)
+          @ProjectId = projectid
+          @UserId = userid
+          @Resource = resource
+          @EntityIds = entityids
+          @ResourceType = resourcetype
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @UserId = params['UserId']
+          unless params['Resource'].nil?
+            @Resource = UserResourceDTO.new
+            @Resource.deserialize(params['Resource'])
+          end
+          @EntityIds = params['EntityIds']
+          @ResourceType = params['ResourceType']
+        end
+      end
+
+      # ModifyResourceUser返回参数结构体
+      class ModifyResourceUserResponse < TencentCloud::Common::AbstractModel
+        # @param ErrorInfo: 自定义错误信息对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorInfo: :class:`Tencentcloud::Bi.v20220105.models.ErrorInfo`
+        # @param Extra: 扩展
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Extra: String
+        # @param Msg: 消息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Msg: String
+        # @param Data: 数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrorInfo, :Extra, :Msg, :Data, :RequestId
+
+        def initialize(errorinfo=nil, extra=nil, msg=nil, data=nil, requestid=nil)
+          @ErrorInfo = errorinfo
+          @Extra = extra
+          @Msg = msg
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ErrorInfo'].nil?
+            @ErrorInfo = ErrorInfo.new
+            @ErrorInfo.deserialize(params['ErrorInfo'])
+          end
+          @Extra = params['Extra']
+          @Msg = params['Msg']
+          @Data = params['Data']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyUserDetailInfo请求参数结构体
       class ModifyUserDetailInfoRequest < TencentCloud::Common::AbstractModel
         # @param UserId: 用户ID

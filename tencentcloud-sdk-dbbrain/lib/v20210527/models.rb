@@ -2649,11 +2649,11 @@ module TencentCloud
 
       # DescribeDBSpaceStatus请求参数结构体
       class DescribeDBSpaceStatusRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID 。
+        # @param InstanceId: <p>实例 ID。可通过 <a href="https://cloud.tencent.com/document/api/1130/57798">DescribeDiagDBInstances</a> 接口获取。(备注，dcdb的InstanceId 要求使用 <code>ClusterId&amp;InstanceId</code>代替)</p>
         # @type InstanceId: String
-        # @param RangeDays: 时间段天数，截止日期为当日，默认为7天。
+        # @param RangeDays: <p>时间段天数，截止日期为当日，默认为7天。</p>
         # @type RangeDays: Integer
-        # @param Product: 服务产品类型，支持值包括： "mysql" - 云数据库 MySQL， "cynosdb" - 云数据库 CynosDB  for MySQL，"mongodb" - 云数据库 MongoDB，默认为"mysql"。
+        # @param Product: <p>服务产品类型，支持值包括： &quot;mysql&quot; - 云数据库 MySQL， &quot;cynosdb&quot; - 云数据库 CynosDB  for MySQL，&quot;mongodb&quot; - 云数据库 MongoDB，&quot;dcdb&quot; -（TDSQL MySQL 版）、&quot;mariadb&quot; -（TDSQL MariaDB 版）默认为&quot;mysql&quot;。</p>
         # @type Product: String
 
         attr_accessor :InstanceId, :RangeDays, :Product
@@ -2673,13 +2673,13 @@ module TencentCloud
 
       # DescribeDBSpaceStatus返回参数结构体
       class DescribeDBSpaceStatusResponse < TencentCloud::Common::AbstractModel
-        # @param Growth: 磁盘增长量(MB)。
+        # @param Growth: <p>磁盘增长量(MB)。</p>
         # @type Growth: Integer
-        # @param Remain: 磁盘剩余(MB)。
+        # @param Remain: <p>磁盘剩余(MB)。</p>
         # @type Remain: Integer
-        # @param Total: 磁盘总量(MB)。
+        # @param Total: <p>磁盘总量(MB)。</p>
         # @type Total: Integer
-        # @param AvailableDays: 预计可用天数。
+        # @param AvailableDays: <p>预计可用天数。</p>
         # @type AvailableDays: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

@@ -362,10 +362,13 @@ module TencentCloud
         # @type PathMappingUnsupported: Boolean
         # @param PathMappingUnsupportedMsg: <p>禁用短路径访问开关原因</p>
         # @type PathMappingUnsupportedMsg: String
+        # @param ApiOnlineStatus: <p>API在线状态</p><p>枚举值：</p><ul><li>ONLINE： 在线</li><li>OFFLINE： 离线</li><li>UNKNOWN： 未知</li><li>DELETED： 查询服务治理API不存在</li></ul>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApiOnlineStatus: String
 
-        attr_accessor :ApiId, :NamespaceId, :NamespaceName, :MicroserviceId, :MicroserviceName, :Path, :PathMapping, :Method, :GroupId, :UsableStatus, :ReleaseStatus, :RateLimitStatus, :MockStatus, :CreatedTime, :UpdatedTime, :ReleasedTime, :GroupName, :Timeout, :Host, :ApiType, :Description, :ApiMatchType, :RpcExt, :GatewayDeployGroupId, :Md5, :RpcType, :PathMappingUnsupported, :PathMappingUnsupportedMsg
+        attr_accessor :ApiId, :NamespaceId, :NamespaceName, :MicroserviceId, :MicroserviceName, :Path, :PathMapping, :Method, :GroupId, :UsableStatus, :ReleaseStatus, :RateLimitStatus, :MockStatus, :CreatedTime, :UpdatedTime, :ReleasedTime, :GroupName, :Timeout, :Host, :ApiType, :Description, :ApiMatchType, :RpcExt, :GatewayDeployGroupId, :Md5, :RpcType, :PathMappingUnsupported, :PathMappingUnsupportedMsg, :ApiOnlineStatus
 
-        def initialize(apiid=nil, namespaceid=nil, namespacename=nil, microserviceid=nil, microservicename=nil, path=nil, pathmapping=nil, method=nil, groupid=nil, usablestatus=nil, releasestatus=nil, ratelimitstatus=nil, mockstatus=nil, createdtime=nil, updatedtime=nil, releasedtime=nil, groupname=nil, timeout=nil, host=nil, apitype=nil, description=nil, apimatchtype=nil, rpcext=nil, gatewaydeploygroupid=nil, md5=nil, rpctype=nil, pathmappingunsupported=nil, pathmappingunsupportedmsg=nil)
+        def initialize(apiid=nil, namespaceid=nil, namespacename=nil, microserviceid=nil, microservicename=nil, path=nil, pathmapping=nil, method=nil, groupid=nil, usablestatus=nil, releasestatus=nil, ratelimitstatus=nil, mockstatus=nil, createdtime=nil, updatedtime=nil, releasedtime=nil, groupname=nil, timeout=nil, host=nil, apitype=nil, description=nil, apimatchtype=nil, rpcext=nil, gatewaydeploygroupid=nil, md5=nil, rpctype=nil, pathmappingunsupported=nil, pathmappingunsupportedmsg=nil, apionlinestatus=nil)
           @ApiId = apiid
           @NamespaceId = namespaceid
           @NamespaceName = namespacename
@@ -394,6 +397,7 @@ module TencentCloud
           @RpcType = rpctype
           @PathMappingUnsupported = pathmappingunsupported
           @PathMappingUnsupportedMsg = pathmappingunsupportedmsg
+          @ApiOnlineStatus = apionlinestatus
         end
 
         def deserialize(params)
@@ -425,6 +429,7 @@ module TencentCloud
           @RpcType = params['RpcType']
           @PathMappingUnsupported = params['PathMappingUnsupported']
           @PathMappingUnsupportedMsg = params['PathMappingUnsupportedMsg']
+          @ApiOnlineStatus = params['ApiOnlineStatus']
         end
       end
 
@@ -643,6 +648,26 @@ module TencentCloud
           @PathMapping = params['PathMapping']
           @Host = params['Host']
           @Description = params['Description']
+        end
+      end
+
+      # API 参数
+      class ApiParam < TencentCloud::Common::AbstractModel
+        # @param Method: <p>接口Method</p>
+        # @type Method: String
+        # @param Path: <p>接口Path</p>
+        # @type Path: String
+
+        attr_accessor :Method, :Path
+
+        def initialize(method=nil, path=nil)
+          @Method = method
+          @Path = path
+        end
+
+        def deserialize(params)
+          @Method = params['Method']
+          @Path = params['Path']
         end
       end
 
@@ -4648,33 +4673,47 @@ module TencentCloud
 
       # CreateMicroservice请求参数结构体
       class CreateMicroserviceRequest < TencentCloud::Common::AbstractModel
-        # @param NamespaceId: 命名空间ID。该参数可以通过调用 [DescribeSimpleNamespaces](https://cloud.tencent.com/document/api/649/36096) 的返回值中的 NamespaceId 字段来获取或通过登录[控制台](https://console.cloud.tencent.com/tsf/resource?tab=namespace)查看；也可以调用[CreateNamespace](https://cloud.tencent.com/document/product/649/36098)创建新的命名空间。
+        # @param NamespaceId: <p>命名空间ID。该参数可以通过调用 <a href="https://cloud.tencent.com/document/api/649/36096">DescribeSimpleNamespaces</a> 的返回值中的 NamespaceId 字段来获取或通过登录<a href="https://console.cloud.tencent.com/tsf/resource?tab=namespace">控制台</a>查看；也可以调用<a href="https://cloud.tencent.com/document/product/649/36098">CreateNamespace</a>创建新的命名空间。</p>
         # @type NamespaceId: String
-        # @param MicroserviceName: 微服务名称。该参数可以通过调用 [DescribeMicroservices](https://cloud.tencent.com/document/product/649/36084) 的返回值中的 MicroserviceName 字段来获取或通过登录[控制台](https://console.cloud.tencent.com/tse/tsf-consul?tab=service)查看；也可以调用[CreateMicroserviceWithDetailResp](https://cloud.tencent.com/document/product/649/85860)创建新的微服务。
+        # @param MicroserviceName: <p>微服务名称。该参数可以通过调用 <a href="https://cloud.tencent.com/document/product/649/36084">DescribeMicroservices</a> 的返回值中的 MicroserviceName 字段来获取或通过登录<a href="https://console.cloud.tencent.com/tse/tsf-consul?tab=service">控制台</a>查看；也可以调用<a href="https://cloud.tencent.com/document/product/649/85860">CreateMicroserviceWithDetailResp</a>创建新的微服务。</p>
         # @type MicroserviceName: String
-        # @param MicroserviceDesc: 微服务备注信息，最多支持200个字符。
+        # @param MicroserviceDesc: <p>微服务备注信息，最多支持200个字符。</p>
         # @type MicroserviceDesc: String
+        # @param ServiceType: <p>服务类型，默认SDK</p><p>枚举值：</p><ul><li>SDK： sdk服务</li><li>MESH_EXTERNAL： mesh外部服务</li></ul>
+        # @type ServiceType: String
+        # @param ServiceUrl: <p>域名+端口，或者是纯域名方式，其他的不允许配置，不支持 IP</p>
+        # @type ServiceUrl: String
+        # @param Protocol: <p>协议类型</p>
+        # @type Protocol: String
+        # @param ServiceDiscovery: <p>服务发现方式</p><p>枚举值：</p><ul><li>DNS： DNS方式</li></ul>
+        # @type ServiceDiscovery: String
 
-        attr_accessor :NamespaceId, :MicroserviceName, :MicroserviceDesc
+        attr_accessor :NamespaceId, :MicroserviceName, :MicroserviceDesc, :ServiceType, :ServiceUrl, :Protocol, :ServiceDiscovery
 
-        def initialize(namespaceid=nil, microservicename=nil, microservicedesc=nil)
+        def initialize(namespaceid=nil, microservicename=nil, microservicedesc=nil, servicetype=nil, serviceurl=nil, protocol=nil, servicediscovery=nil)
           @NamespaceId = namespaceid
           @MicroserviceName = microservicename
           @MicroserviceDesc = microservicedesc
+          @ServiceType = servicetype
+          @ServiceUrl = serviceurl
+          @Protocol = protocol
+          @ServiceDiscovery = servicediscovery
         end
 
         def deserialize(params)
           @NamespaceId = params['NamespaceId']
           @MicroserviceName = params['MicroserviceName']
           @MicroserviceDesc = params['MicroserviceDesc']
+          @ServiceType = params['ServiceType']
+          @ServiceUrl = params['ServiceUrl']
+          @Protocol = params['Protocol']
+          @ServiceDiscovery = params['ServiceDiscovery']
         end
       end
 
       # CreateMicroservice返回参数结构体
       class CreateMicroserviceResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 新增结果。
-        # true：操作成功。
-        # false：操作失败。
+        # @param Result: <p>新增结果。<br>true：操作成功。<br>false：操作失败。</p>
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4694,31 +4733,47 @@ module TencentCloud
 
       # CreateMicroserviceWithDetailResp请求参数结构体
       class CreateMicroserviceWithDetailRespRequest < TencentCloud::Common::AbstractModel
-        # @param NamespaceId: 命名空间ID。该参数可以通过调用 [DescribeSimpleNamespaces](https://cloud.tencent.com/document/api/649/36096) 的返回值中的 NamespaceId 字段来获取或通过登录[控制台](https://console.cloud.tencent.com/tsf/resource?tab=namespace)查看；也可以调用[CreateNamespace](https://cloud.tencent.com/document/product/649/36098)创建新的命名空间。
+        # @param NamespaceId: <p>命名空间ID。该参数可以通过调用 <a href="https://cloud.tencent.com/document/api/649/36096">DescribeSimpleNamespaces</a> 的返回值中的 NamespaceId 字段来获取或通过登录<a href="https://console.cloud.tencent.com/tsf/resource?tab=namespace">控制台</a>查看；也可以调用<a href="https://cloud.tencent.com/document/product/649/36098">CreateNamespace</a>创建新的命名空间。</p>
         # @type NamespaceId: String
-        # @param MicroserviceName: 微服务名称，最多支持128个字符。
+        # @param MicroserviceName: <p>微服务名称，最多支持128个字符。</p>
         # @type MicroserviceName: String
-        # @param MicroserviceDesc: 微服务描述信息，最多支持200个字符。
+        # @param MicroserviceDesc: <p>微服务描述信息，最多支持200个字符。</p>
         # @type MicroserviceDesc: String
+        # @param ServiceType: <p>服务类型，默认SDK</p><p>枚举值：</p><ul><li>SDK： sdk服务</li><li>MESH_EXTERNAL： mesh外部服务</li></ul>
+        # @type ServiceType: String
+        # @param ServiceUrl: <p>域名+端口，或者是纯域名方式，其他的不允许配置，不支持 IP</p>
+        # @type ServiceUrl: String
+        # @param Protocol: <p>协议类型</p>
+        # @type Protocol: String
+        # @param ServiceDiscovery: <p>服务发现方式</p><p>枚举值：</p><ul><li>DNS： DNS方式</li></ul>
+        # @type ServiceDiscovery: String
 
-        attr_accessor :NamespaceId, :MicroserviceName, :MicroserviceDesc
+        attr_accessor :NamespaceId, :MicroserviceName, :MicroserviceDesc, :ServiceType, :ServiceUrl, :Protocol, :ServiceDiscovery
 
-        def initialize(namespaceid=nil, microservicename=nil, microservicedesc=nil)
+        def initialize(namespaceid=nil, microservicename=nil, microservicedesc=nil, servicetype=nil, serviceurl=nil, protocol=nil, servicediscovery=nil)
           @NamespaceId = namespaceid
           @MicroserviceName = microservicename
           @MicroserviceDesc = microservicedesc
+          @ServiceType = servicetype
+          @ServiceUrl = serviceurl
+          @Protocol = protocol
+          @ServiceDiscovery = servicediscovery
         end
 
         def deserialize(params)
           @NamespaceId = params['NamespaceId']
           @MicroserviceName = params['MicroserviceName']
           @MicroserviceDesc = params['MicroserviceDesc']
+          @ServiceType = params['ServiceType']
+          @ServiceUrl = params['ServiceUrl']
+          @Protocol = params['Protocol']
+          @ServiceDiscovery = params['ServiceDiscovery']
         end
       end
 
       # CreateMicroserviceWithDetailResp返回参数结构体
       class CreateMicroserviceWithDetailRespResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 微服务ID。
+        # @param Result: <p>微服务ID。</p>
         # @type Result: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6365,134 +6420,136 @@ module TencentCloud
 
       # DeployContainerApplication请求参数结构体
       class DeployContainerApplicationRequest < TencentCloud::Common::AbstractModel
-        # @param ApplicationId: 应用ID
+        # @param ApplicationId: <p>应用ID</p>
         # @type ApplicationId: String
-        # @param ObservabilityConfig: 可观测配置
+        # @param ObservabilityConfig: <p>可观测配置</p>
         # @type ObservabilityConfig: :class:`Tencentcloud::Tsf.v20180326.models.ContainerGroupObservabilityConfig`
-        # @param ClusterId: 集群ID
+        # @param ClusterId: <p>集群ID</p>
         # @type ClusterId: String
-        # @param GroupId: 部署组ID，分组唯一标识
+        # @param GroupId: <p>部署组ID，分组唯一标识</p>
         # @type GroupId: String
-        # @param Envs: 业务容器的环境变量参数
+        # @param Envs: <p>业务容器的环境变量参数</p>
         # @type Envs: Array
-        # @param VolumeMountInfoList: 业务容器的挂载信息
+        # @param VolumeMountInfoList: <p>业务容器的挂载信息</p>
         # @type VolumeMountInfoList: Array
-        # @param LifeCycleHookList: 业务主容器生命周期钩子列表
+        # @param LifeCycleHookList: <p>业务主容器生命周期钩子列表</p>
         # @type LifeCycleHookList: Array
-        # @param AdditionalContainerList: 附属容器列表
+        # @param AdditionalContainerList: <p>附属容器列表</p>
         # @type AdditionalContainerList: Array
-        # @param VolumeInfoList: 容器卷信息
+        # @param VolumeInfoList: <p>容器卷信息</p>
         # @type VolumeInfoList: Array
-        # @param ServiceSettingList: Service访问配置列表
+        # @param ServiceSettingList: <p>Service访问配置列表</p>
         # @type ServiceSettingList: Array
-        # @param Alias: 备注
+        # @param Alias: <p>备注</p>
         # @type Alias: String
-        # @param GroupName: 部署组名称
+        # @param GroupName: <p>部署组名称</p>
         # @type GroupName: String
-        # @param Tags: 标签列表
+        # @param Tags: <p>标签列表</p>
         # @type Tags: Array
-        # @param ContainerKind: 容器类型
+        # @param ContainerKind: <p>容器类型</p>
         # @type ContainerKind: String
-        # @param Server: 业务容器的 镜像Server ccr.ccs.tencentyun.com
+        # @param Server: <p>业务容器的 镜像Server ccr.ccs.tencentyun.com</p>
         # @type Server: String
-        # @param RepoName: 业务容器的镜像名
+        # @param RepoName: <p>业务容器的镜像名</p>
         # @type RepoName: String
-        # @param RepoType: 仓库类型
+        # @param RepoType: <p>仓库类型</p>
         # @type RepoType: String
-        # @param TcrRepoInfo: TCR仓库信息
+        # @param TcrRepoInfo: <p>TCR仓库信息</p>
         # @type TcrRepoInfo: :class:`Tencentcloud::Tsf.v20180326.models.TcrRepoInfo`
-        # @param SecretName: 容器访问凭证名称
+        # @param SecretName: <p>容器访问凭证名称</p>
         # @type SecretName: String
-        # @param TagName: 业务容器的镜像版本号
+        # @param TagName: <p>业务容器的镜像版本号</p>
         # @type TagName: String
-        # @param HealthCheckSettings: 健康检查
+        # @param HealthCheckSettings: <p>健康检查</p>
         # @type HealthCheckSettings: :class:`Tencentcloud::Tsf.v20180326.models.HealthCheckSettings`
-        # @param CpuRequest: 业务容器的 cpu  request
+        # @param CpuRequest: <p>业务容器的 cpu  request</p>
         # @type CpuRequest: String
-        # @param CpuLimit: 业务容器的 cpu limit
+        # @param CpuLimit: <p>业务容器的 cpu limit</p>
         # @type CpuLimit: String
-        # @param MemRequest: 业务容器的 mem request
+        # @param MemRequest: <p>业务容器的 mem request</p>
         # @type MemRequest: String
-        # @param MemLimit: 业务容器的 mem limit
+        # @param MemLimit: <p>业务容器的 mem limit</p>
         # @type MemLimit: String
-        # @param JvmOpts: 业务容器的 jvm 参数
+        # @param JvmOpts: <p>业务容器的 jvm 参数</p>
         # @type JvmOpts: String
-        # @param InitContainerEnable: 是否为初始化容器 业务主容器不能为初始化容
+        # @param InitContainerEnable: <p>是否为初始化容器 业务主容器不能为初始化容</p>
         # @type InitContainerEnable: Boolean
-        # @param PrivilegeContainerEnable: 业务主容器是否为特权容器
+        # @param PrivilegeContainerEnable: <p>业务主容器是否为特权容器</p>
         # @type PrivilegeContainerEnable: Boolean
-        # @param RunCommand: 业务主容器运行命令(转base64)
+        # @param RunCommand: <p>业务主容器运行命令(转base64)</p>
         # @type RunCommand: String
-        # @param RunArg: 业务主容器运行参数(转base64)
+        # @param RunArg: <p>业务主容器运行参数(转base64)</p>
         # @type RunArg: String
-        # @param InstanceNum: 实例数量
+        # @param InstanceNum: <p>实例数量</p>
         # @type InstanceNum: Integer
-        # @param SchedulingStrategy: 调度策略
+        # @param SchedulingStrategy: <p>调度策略</p>
         # @type SchedulingStrategy: :class:`Tencentcloud::Tsf.v20180326.models.SchedulingStrategy`
-        # @param RestartPolicy: 重启策略
+        # @param RestartPolicy: <p>重启策略</p>
         # @type RestartPolicy: String
-        # @param ServiceSpecEncode: 服务治理配置
+        # @param ServiceSpecEncode: <p>服务治理配置</p>
         # @type ServiceSpecEncode: String
-        # @param IstioMemRequest: istio容器的 mem Request
+        # @param IstioMemRequest: <p>istio容器的 mem Request</p>
         # @type IstioMemRequest: String
-        # @param IstioCpuRequest:  istio容器的 cpu Request
+        # @param IstioCpuRequest: <p>istio容器的 cpu Request</p>
         # @type IstioCpuRequest: String
-        # @param IstioMemLimit: istio容器的 mem Limit
+        # @param IstioMemLimit: <p>istio容器的 mem Limit</p>
         # @type IstioMemLimit: String
-        # @param IstioCpuLimit: istio容器的 cpu Limit
+        # @param IstioCpuLimit: <p>istio容器的 cpu Limit</p>
         # @type IstioCpuLimit: String
-        # @param ServiceGovernanceConfig: 服务治理配置
+        # @param ServiceGovernanceConfig: <p>服务治理配置</p>
         # @type ServiceGovernanceConfig: :class:`Tencentcloud::Tsf.v20180326.models.ContainerGroupServiceGovernanceConfig`
-        # @param AgentMemRequest: agent容器的 mem Request
+        # @param AgentMemRequest: <p>agent容器的 mem Request</p>
         # @type AgentMemRequest: String
-        # @param AgentCpuRequest: agent容器的 cpu Request
+        # @param AgentCpuRequest: <p>agent容器的 cpu Request</p>
         # @type AgentCpuRequest: String
-        # @param AgentMemLimit: agent容器的 mem Limit
+        # @param AgentMemLimit: <p>agent容器的 mem Limit</p>
         # @type AgentMemLimit: String
-        # @param AgentCpuLimit: agent容器的 cpu Limit
+        # @param AgentCpuLimit: <p>agent容器的 cpu Limit</p>
         # @type AgentCpuLimit: String
-        # @param UpdateType: 发布策略(0表示快速更新，1表示滚动更新。默认值为0)
+        # @param UpdateType: <p>发布策略(0表示快速更新，1表示滚动更新。默认值为0)</p>
         # @type UpdateType: Integer
-        # @param UpdateIvl: 更新间隔,单位秒
+        # @param UpdateIvl: <p>更新间隔,单位秒</p>
         # @type UpdateIvl: Integer
-        # @param MaxSurge: 对应更新策略和策略配置参数
+        # @param MaxSurge: <p>对应更新策略和策略配置参数</p>
         # @type MaxSurge: String
-        # @param MaxUnavailable: 对应更新策略和策略配置参数
+        # @param MaxUnavailable: <p>对应更新策略和策略配置参数</p>
         # @type MaxUnavailable: String
-        # @param WarmupSetting: 预热参数配置
+        # @param WarmupSetting: <p>预热参数配置</p>
         # @type WarmupSetting: :class:`Tencentcloud::Tsf.v20180326.models.WarmupSetting`
-        # @param ConfigTemplateId: 配置模版ID
+        # @param ConfigTemplateId: <p>配置模版ID</p>
         # @type ConfigTemplateId: String
-        # @param ConfigTemplateVersion: 配置模版Version
+        # @param ConfigTemplateVersion: <p>配置模版Version</p>
         # @type ConfigTemplateVersion: Integer
-        # @param VolumeClean: 是否清除数据卷信息
+        # @param VolumeClean: <p>是否清除数据卷信息</p>
         # @type VolumeClean: Boolean
-        # @param NamespaceId: 命名空间Id
+        # @param NamespaceId: <p>命名空间Id</p>
         # @type NamespaceId: String
-        # @param DeployAgent: 是否部署agent容器
+        # @param DeployAgent: <p>是否部署agent容器</p>
         # @type DeployAgent: Boolean
-        # @param AgentProfileList: javaagent信息: SERVICE_AGENT/OT_AGENT
+        # @param AgentProfileList: <p>javaagent信息: SERVICE_AGENT/OT_AGENT</p>
         # @type AgentProfileList: Array
-        # @param ServiceClean: 是否清除Service信息
+        # @param ServiceClean: <p>是否清除Service信息</p>
         # @type ServiceClean: Boolean
-        # @param EnvClean: 是否清除Env信息
+        # @param EnvClean: <p>是否清除Env信息</p>
         # @type EnvClean: Boolean
-        # @param DeployDesc: 本次部署的描述信息
+        # @param DeployDesc: <p>本次部署的描述信息</p>
         # @type DeployDesc: String
-        # @param K8sNamespaceName: k8s命名空间名称
+        # @param K8sNamespaceName: <p>k8s命名空间名称</p>
         # @type K8sNamespaceName: String
-        # @param StaticIpEnabled: 是否启用静态IP
+        # @param StaticIpEnabled: <p>是否启用静态IP</p>
         # @type StaticIpEnabled: Boolean
-        # @param PodManagementPolicyType: 启动策略[OrderedReady/Parallel]
+        # @param PodManagementPolicyType: <p>启动策略[OrderedReady/Parallel]</p>
         # @type PodManagementPolicyType: String
-        # @param Partition: 滚动更新分区序号
+        # @param Partition: <p>滚动更新分区序号</p>
         # @type Partition: Integer
-        # @param IncrementalDeployment: 是否是增量部署，增量部署只运行增量覆盖一级参数，不支持对一级参数中的子参数进行增量更新，例如更新VolumeMountInfoList时必须传入VolumeMountInfoList更新后的全量参数
+        # @param IncrementalDeployment: <p>是否是增量部署，增量部署只运行增量覆盖一级参数，不支持对一级参数中的子参数进行增量更新，例如更新VolumeMountInfoList时必须传入VolumeMountInfoList更新后的全量参数</p>
         # @type IncrementalDeployment: Boolean
+        # @param DoNotStart: <p>是否不立即启动</p>
+        # @type DoNotStart: Boolean
 
-        attr_accessor :ApplicationId, :ObservabilityConfig, :ClusterId, :GroupId, :Envs, :VolumeMountInfoList, :LifeCycleHookList, :AdditionalContainerList, :VolumeInfoList, :ServiceSettingList, :Alias, :GroupName, :Tags, :ContainerKind, :Server, :RepoName, :RepoType, :TcrRepoInfo, :SecretName, :TagName, :HealthCheckSettings, :CpuRequest, :CpuLimit, :MemRequest, :MemLimit, :JvmOpts, :InitContainerEnable, :PrivilegeContainerEnable, :RunCommand, :RunArg, :InstanceNum, :SchedulingStrategy, :RestartPolicy, :ServiceSpecEncode, :IstioMemRequest, :IstioCpuRequest, :IstioMemLimit, :IstioCpuLimit, :ServiceGovernanceConfig, :AgentMemRequest, :AgentCpuRequest, :AgentMemLimit, :AgentCpuLimit, :UpdateType, :UpdateIvl, :MaxSurge, :MaxUnavailable, :WarmupSetting, :ConfigTemplateId, :ConfigTemplateVersion, :VolumeClean, :NamespaceId, :DeployAgent, :AgentProfileList, :ServiceClean, :EnvClean, :DeployDesc, :K8sNamespaceName, :StaticIpEnabled, :PodManagementPolicyType, :Partition, :IncrementalDeployment
+        attr_accessor :ApplicationId, :ObservabilityConfig, :ClusterId, :GroupId, :Envs, :VolumeMountInfoList, :LifeCycleHookList, :AdditionalContainerList, :VolumeInfoList, :ServiceSettingList, :Alias, :GroupName, :Tags, :ContainerKind, :Server, :RepoName, :RepoType, :TcrRepoInfo, :SecretName, :TagName, :HealthCheckSettings, :CpuRequest, :CpuLimit, :MemRequest, :MemLimit, :JvmOpts, :InitContainerEnable, :PrivilegeContainerEnable, :RunCommand, :RunArg, :InstanceNum, :SchedulingStrategy, :RestartPolicy, :ServiceSpecEncode, :IstioMemRequest, :IstioCpuRequest, :IstioMemLimit, :IstioCpuLimit, :ServiceGovernanceConfig, :AgentMemRequest, :AgentCpuRequest, :AgentMemLimit, :AgentCpuLimit, :UpdateType, :UpdateIvl, :MaxSurge, :MaxUnavailable, :WarmupSetting, :ConfigTemplateId, :ConfigTemplateVersion, :VolumeClean, :NamespaceId, :DeployAgent, :AgentProfileList, :ServiceClean, :EnvClean, :DeployDesc, :K8sNamespaceName, :StaticIpEnabled, :PodManagementPolicyType, :Partition, :IncrementalDeployment, :DoNotStart
 
-        def initialize(applicationid=nil, observabilityconfig=nil, clusterid=nil, groupid=nil, envs=nil, volumemountinfolist=nil, lifecyclehooklist=nil, additionalcontainerlist=nil, volumeinfolist=nil, servicesettinglist=nil, _alias=nil, groupname=nil, tags=nil, containerkind=nil, server=nil, reponame=nil, repotype=nil, tcrrepoinfo=nil, secretname=nil, tagname=nil, healthchecksettings=nil, cpurequest=nil, cpulimit=nil, memrequest=nil, memlimit=nil, jvmopts=nil, initcontainerenable=nil, privilegecontainerenable=nil, runcommand=nil, runarg=nil, instancenum=nil, schedulingstrategy=nil, restartpolicy=nil, servicespecencode=nil, istiomemrequest=nil, istiocpurequest=nil, istiomemlimit=nil, istiocpulimit=nil, servicegovernanceconfig=nil, agentmemrequest=nil, agentcpurequest=nil, agentmemlimit=nil, agentcpulimit=nil, updatetype=nil, updateivl=nil, maxsurge=nil, maxunavailable=nil, warmupsetting=nil, configtemplateid=nil, configtemplateversion=nil, volumeclean=nil, namespaceid=nil, deployagent=nil, agentprofilelist=nil, serviceclean=nil, envclean=nil, deploydesc=nil, k8snamespacename=nil, staticipenabled=nil, podmanagementpolicytype=nil, partition=nil, incrementaldeployment=nil)
+        def initialize(applicationid=nil, observabilityconfig=nil, clusterid=nil, groupid=nil, envs=nil, volumemountinfolist=nil, lifecyclehooklist=nil, additionalcontainerlist=nil, volumeinfolist=nil, servicesettinglist=nil, _alias=nil, groupname=nil, tags=nil, containerkind=nil, server=nil, reponame=nil, repotype=nil, tcrrepoinfo=nil, secretname=nil, tagname=nil, healthchecksettings=nil, cpurequest=nil, cpulimit=nil, memrequest=nil, memlimit=nil, jvmopts=nil, initcontainerenable=nil, privilegecontainerenable=nil, runcommand=nil, runarg=nil, instancenum=nil, schedulingstrategy=nil, restartpolicy=nil, servicespecencode=nil, istiomemrequest=nil, istiocpurequest=nil, istiomemlimit=nil, istiocpulimit=nil, servicegovernanceconfig=nil, agentmemrequest=nil, agentcpurequest=nil, agentmemlimit=nil, agentcpulimit=nil, updatetype=nil, updateivl=nil, maxsurge=nil, maxunavailable=nil, warmupsetting=nil, configtemplateid=nil, configtemplateversion=nil, volumeclean=nil, namespaceid=nil, deployagent=nil, agentprofilelist=nil, serviceclean=nil, envclean=nil, deploydesc=nil, k8snamespacename=nil, staticipenabled=nil, podmanagementpolicytype=nil, partition=nil, incrementaldeployment=nil, donotstart=nil)
           @ApplicationId = applicationid
           @ObservabilityConfig = observabilityconfig
           @ClusterId = clusterid
@@ -6555,6 +6612,7 @@ module TencentCloud
           @PodManagementPolicyType = podmanagementpolicytype
           @Partition = partition
           @IncrementalDeployment = incrementaldeployment
+          @DoNotStart = donotstart
         end
 
         def deserialize(params)
@@ -6694,6 +6752,7 @@ module TencentCloud
           @PodManagementPolicyType = params['PodManagementPolicyType']
           @Partition = params['Partition']
           @IncrementalDeployment = params['IncrementalDeployment']
+          @DoNotStart = params['DoNotStart']
         end
       end
 
@@ -6721,9 +6780,7 @@ module TencentCloud
 
       # DeployContainerApplication返回参数结构体
       class DeployContainerApplicationResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 部署容器应用是否成功。
-        # true：成功。
-        # false：失败。
+        # @param Result: <p>部署容器应用是否成功。<br>true：成功。<br>false：失败。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.DeployContainerApplicationResp`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -8384,26 +8441,28 @@ module TencentCloud
 
       # DescribeContainerGroups请求参数结构体
       class DescribeContainerGroupsRequest < TencentCloud::Common::AbstractModel
-        # @param ApplicationId: 分组所属【应用ID】，可通过调用[DescribeApplications](https://cloud.tencent.com/document/product/649/36090)查询已创建的应用列表或登录[控制台](https://console.cloud.tencent.com/tsf/app?rid=1)进行查看；也可以调用[CreateApplication](https://cloud.tencent.com/document/product/649/36094)创建新的应用。
+        # @param ApplicationId: <p>分组所属【应用ID】，可通过调用<a href="https://cloud.tencent.com/document/product/649/36090">DescribeApplications</a>查询已创建的应用列表或登录<a href="https://console.cloud.tencent.com/tsf/app?rid=1">控制台</a>进行查看；也可以调用<a href="https://cloud.tencent.com/document/product/649/36094">CreateApplication</a>创建新的应用。</p>
         # @type ApplicationId: String
-        # @param SearchWord: 搜索字段，模糊搜索groupName字段
+        # @param SearchWord: <p>搜索字段，模糊搜索groupName字段</p>
         # @type SearchWord: String
-        # @param OrderBy: 排序字段，默认为 createTime字段，支持id， name， createTime
+        # @param OrderBy: <p>排序字段，默认为 createTime字段，支持id， name， createTime</p>
         # @type OrderBy: String
-        # @param OrderType: 排序方式，默认为1：倒序排序，0：正序，1：倒序
+        # @param OrderType: <p>排序方式，默认为1：倒序排序，0：正序，1：倒序</p>
         # @type OrderType: Integer
-        # @param Offset: 偏移量，取值从0开始
+        # @param Offset: <p>偏移量，取值从0开始</p>
         # @type Offset: Integer
-        # @param Limit: 分页个数，默认为20， 取值应为1~50
+        # @param Limit: <p>分页个数，默认为20， 取值应为1~50</p>
         # @type Limit: Integer
-        # @param ClusterId: 分组所属【集群ID】，可通过调用[DescribeClusters](https://cloud.tencent.com/document/product/649/85857)查询已创建的集群列表或登录[控制台](https://console.cloud.tencent.com/tsf/resource?rid=1&tab=docker)进行查看；也可以调用[CreateCluster](https://cloud.tencent.com/document/product/649/36049)创建新的集群。
+        # @param ClusterId: <p>分组所属【集群ID】，可通过调用<a href="https://cloud.tencent.com/document/product/649/85857">DescribeClusters</a>查询已创建的集群列表或登录<a href="https://console.cloud.tencent.com/tsf/resource?rid=1&amp;tab=docker">控制台</a>进行查看；也可以调用<a href="https://cloud.tencent.com/document/product/649/36049">CreateCluster</a>创建新的集群。</p>
         # @type ClusterId: String
-        # @param NamespaceId: 分组所属【命名空间 ID】，可通过调用[DescribeSimpleNamespaces](https://cloud.tencent.com/document/product/649/36096)查询已创建的命名空间列表或登录[控制台](https://console.cloud.tencent.com/tsf/resource?rid=1&tab=namespace)进行查看；也可以调用[CreateNamespace](https://cloud.tencent.com/document/product/649/36098)创建新的命名空间。
+        # @param NamespaceId: <p>分组所属【命名空间 ID】，可通过调用<a href="https://cloud.tencent.com/document/product/649/36096">DescribeSimpleNamespaces</a>查询已创建的命名空间列表或登录<a href="https://console.cloud.tencent.com/tsf/resource?rid=1&amp;tab=namespace">控制台</a>进行查看；也可以调用<a href="https://cloud.tencent.com/document/product/649/36098">CreateNamespace</a>创建新的命名空间。</p>
         # @type NamespaceId: String
+        # @param GroupIdList: <p>部署组ID列表</p>
+        # @type GroupIdList: Array
 
-        attr_accessor :ApplicationId, :SearchWord, :OrderBy, :OrderType, :Offset, :Limit, :ClusterId, :NamespaceId
+        attr_accessor :ApplicationId, :SearchWord, :OrderBy, :OrderType, :Offset, :Limit, :ClusterId, :NamespaceId, :GroupIdList
 
-        def initialize(applicationid=nil, searchword=nil, orderby=nil, ordertype=nil, offset=nil, limit=nil, clusterid=nil, namespaceid=nil)
+        def initialize(applicationid=nil, searchword=nil, orderby=nil, ordertype=nil, offset=nil, limit=nil, clusterid=nil, namespaceid=nil, groupidlist=nil)
           @ApplicationId = applicationid
           @SearchWord = searchword
           @OrderBy = orderby
@@ -8412,6 +8471,7 @@ module TencentCloud
           @Limit = limit
           @ClusterId = clusterid
           @NamespaceId = namespaceid
+          @GroupIdList = groupidlist
         end
 
         def deserialize(params)
@@ -8423,12 +8483,13 @@ module TencentCloud
           @Limit = params['Limit']
           @ClusterId = params['ClusterId']
           @NamespaceId = params['NamespaceId']
+          @GroupIdList = params['GroupIdList']
         end
       end
 
       # DescribeContainerGroups返回参数结构体
       class DescribeContainerGroupsResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 查询的权限数据对象
+        # @param Result: <p>查询的权限数据对象</p>
         # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.ContainGroupResult`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -8893,28 +8954,34 @@ module TencentCloud
 
       # DescribeGatewayApis请求参数结构体
       class DescribeGatewayApisRequest < TencentCloud::Common::AbstractModel
-        # @param GroupId: 分组ID
+        # @param GroupId: <p>分组ID</p>
         # @type GroupId: String
-        # @param Offset: 翻页偏移量
+        # @param Offset: <p>翻页偏移量</p>
         # @type Offset: Integer
-        # @param Limit: 每页的记录数
+        # @param Limit: <p>每页的记录数</p>
         # @type Limit: Integer
-        # @param SearchWord: 搜索关键字，支持 API path
+        # @param SearchWord: <p>搜索关键字，支持 API path</p>
         # @type SearchWord: String
-        # @param GatewayDeployGroupId: 部署组ID
+        # @param GatewayDeployGroupId: <p>部署组ID</p>
         # @type GatewayDeployGroupId: String
-        # @param ReleaseStatus: 发布状态, drafted(未发布)/released(已发布)/releasing(发布中)/failed(发布失败)
+        # @param ReleaseStatus: <p>发布状态, drafted(未发布)/released(已发布)/releasing(发布中)/failed(发布失败)</p>
         # @type ReleaseStatus: String
+        # @param ExtendFieldList: <p>返回扩展出参字段名</p>
+        # @type ExtendFieldList: Array
+        # @param ApiOnlineStatus: <p>服务接口状态</p><p>枚举值：</p><ul><li>ONLINE： 在线状态</li><li>OFFLINE： 离线状态</li><li>UNKNOWN： 未知</li><li>DELETED： 查询MS API不存在</li></ul>
+        # @type ApiOnlineStatus: String
 
-        attr_accessor :GroupId, :Offset, :Limit, :SearchWord, :GatewayDeployGroupId, :ReleaseStatus
+        attr_accessor :GroupId, :Offset, :Limit, :SearchWord, :GatewayDeployGroupId, :ReleaseStatus, :ExtendFieldList, :ApiOnlineStatus
 
-        def initialize(groupid=nil, offset=nil, limit=nil, searchword=nil, gatewaydeploygroupid=nil, releasestatus=nil)
+        def initialize(groupid=nil, offset=nil, limit=nil, searchword=nil, gatewaydeploygroupid=nil, releasestatus=nil, extendfieldlist=nil, apionlinestatus=nil)
           @GroupId = groupid
           @Offset = offset
           @Limit = limit
           @SearchWord = searchword
           @GatewayDeployGroupId = gatewaydeploygroupid
           @ReleaseStatus = releasestatus
+          @ExtendFieldList = extendfieldlist
+          @ApiOnlineStatus = apionlinestatus
         end
 
         def deserialize(params)
@@ -8924,12 +8991,14 @@ module TencentCloud
           @SearchWord = params['SearchWord']
           @GatewayDeployGroupId = params['GatewayDeployGroupId']
           @ReleaseStatus = params['ReleaseStatus']
+          @ExtendFieldList = params['ExtendFieldList']
+          @ApiOnlineStatus = params['ApiOnlineStatus']
         end
       end
 
       # DescribeGatewayApis返回参数结构体
       class DescribeGatewayApisResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 翻页结构
+        # @param Result: <p>翻页结构</p>
         # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.TsfPageApiDetailInfo`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -10443,22 +10512,25 @@ module TencentCloud
 
       # DescribeMsApiList请求参数结构体
       class DescribeMsApiListRequest < TencentCloud::Common::AbstractModel
-        # @param MicroserviceId: 微服务ID。该参数可以通过调用 [DescribeMicroservices](https://cloud.tencent.com/document/product/649/36084) 的返回值中的 MicroserviceId 字段来获取或通过登录[控制台](https://console.cloud.tencent.com/tse/tsf-consul?tab=service)查看；也可以调用[CreateMicroserviceWithDetailResp](https://cloud.tencent.com/document/product/649/85860)创建新的微服务。
+        # @param MicroserviceId: <p>微服务ID。该参数可以通过调用 <a href="https://cloud.tencent.com/document/product/649/36084">DescribeMicroservices</a> 的返回值中的 MicroserviceId 字段来获取或通过登录<a href="https://console.cloud.tencent.com/tse/tsf-consul?tab=service">控制台</a>查看；也可以调用<a href="https://cloud.tencent.com/document/product/649/85860">CreateMicroserviceWithDetailResp</a>创建新的微服务。</p>
         # @type MicroserviceId: String
-        # @param SearchWord: 搜索关键字。
+        # @param SearchWord: <p>搜索关键字。</p>
         # @type SearchWord: String
-        # @param Limit: 返回数量，默认为20，最大值为50。
+        # @param Limit: <p>返回数量，默认为20，最大值为50。</p>
         # @type Limit: Integer
-        # @param Offset: 偏移量，默认为0。
+        # @param Offset: <p>偏移量，默认为0。</p>
         # @type Offset: Integer
+        # @param BatchApiParamList: <p>批量查询API参数</p>
+        # @type BatchApiParamList: Array
 
-        attr_accessor :MicroserviceId, :SearchWord, :Limit, :Offset
+        attr_accessor :MicroserviceId, :SearchWord, :Limit, :Offset, :BatchApiParamList
 
-        def initialize(microserviceid=nil, searchword=nil, limit=nil, offset=nil)
+        def initialize(microserviceid=nil, searchword=nil, limit=nil, offset=nil, batchapiparamlist=nil)
           @MicroserviceId = microserviceid
           @SearchWord = searchword
           @Limit = limit
           @Offset = offset
+          @BatchApiParamList = batchapiparamlist
         end
 
         def deserialize(params)
@@ -10466,12 +10538,20 @@ module TencentCloud
           @SearchWord = params['SearchWord']
           @Limit = params['Limit']
           @Offset = params['Offset']
+          unless params['BatchApiParamList'].nil?
+            @BatchApiParamList = []
+            params['BatchApiParamList'].each do |i|
+              apiparam_tmp = ApiParam.new
+              apiparam_tmp.deserialize(i)
+              @BatchApiParamList << apiparam_tmp
+            end
+          end
         end
       end
 
       # DescribeMsApiList返回参数结构体
       class DescribeMsApiListResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 微服务API列表。
+        # @param Result: <p>微服务API列表。</p>
         # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.TsfApiListResponse`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -12747,31 +12827,33 @@ module TencentCloud
 
       # 独占实例
       class ExclusiveInstance < TencentCloud::Common::AbstractModel
-        # @param CenterType: 配置中心类型[注册中心Registration、配置中心Configuration]
+        # @param CenterType: <p>配置中心类型[注册中心Registration、配置中心Configuration]</p>
         # @type CenterType: String
-        # @param InstanceId: 实例id，通过[北极星控制台](https://console.cloud.tencent.com/tse/governance)获取
+        # @param InstanceId: <p>实例id，通过<a href="https://console.cloud.tencent.com/tse/governance">北极星控制台</a>获取</p>
         # @type InstanceId: String
-        # @param InstanceType: 实例类型，例如北极星Polaris
+        # @param InstanceType: <p>实例类型，例如北极星Polaris</p>
         # @type InstanceType: String
-        # @param InstanceName: 实例名称
+        # @param InstanceName: <p>实例名称</p>
         # @type InstanceName: String
-        # @param RegionId: 实例地域id，通过[北极星控制台](https://console.cloud.tencent.com/tse/governance)获取
+        # @param RegionId: <p>实例地域id，通过<a href="https://console.cloud.tencent.com/tse/governance">北极星控制台</a>获取</p>
         # @type RegionId: String
-        # @param InstanceNamespaceId: 实例命名空间ID，通过[北极星控制台](https://console.cloud.tencent.com/tse/governance)获取
+        # @param InstanceNamespaceId: <p>实例命名空间ID，通过<a href="https://console.cloud.tencent.com/tse/governance">北极星控制台</a>获取</p>
         # @type InstanceNamespaceId: String
-        # @param GroupId: 部署组Id
+        # @param GroupId: <p>部署组Id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupId: String
-        # @param CreateTime: 创建时间
+        # @param CreateTime: <p>创建时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: Integer
-        # @param UpdateTime: 更新时间
+        # @param UpdateTime: <p>更新时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: Integer
+        # @param ApplicationId: <p>文档ID</p>
+        # @type ApplicationId: String
 
-        attr_accessor :CenterType, :InstanceId, :InstanceType, :InstanceName, :RegionId, :InstanceNamespaceId, :GroupId, :CreateTime, :UpdateTime
+        attr_accessor :CenterType, :InstanceId, :InstanceType, :InstanceName, :RegionId, :InstanceNamespaceId, :GroupId, :CreateTime, :UpdateTime, :ApplicationId
 
-        def initialize(centertype=nil, instanceid=nil, instancetype=nil, instancename=nil, regionid=nil, instancenamespaceid=nil, groupid=nil, createtime=nil, updatetime=nil)
+        def initialize(centertype=nil, instanceid=nil, instancetype=nil, instancename=nil, regionid=nil, instancenamespaceid=nil, groupid=nil, createtime=nil, updatetime=nil, applicationid=nil)
           @CenterType = centertype
           @InstanceId = instanceid
           @InstanceType = instancetype
@@ -12781,6 +12863,7 @@ module TencentCloud
           @GroupId = groupid
           @CreateTime = createtime
           @UpdateTime = updatetime
+          @ApplicationId = applicationid
         end
 
         def deserialize(params)
@@ -12793,6 +12876,7 @@ module TencentCloud
           @GroupId = params['GroupId']
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
+          @ApplicationId = params['ApplicationId']
         end
       end
 
@@ -13247,35 +13331,37 @@ module TencentCloud
 
       # 微服务网关插件实例对象
       class GatewayPlugin < TencentCloud::Common::AbstractModel
-        # @param Id: 网关插件id
+        # @param Id: <p>网关插件id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: String
-        # @param Name: 插件名称
+        # @param Name: <p>插件名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
-        # @param Type: 插件类型
+        # @param Type: <p>插件类型</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
-        # @param Description: 插件描述
+        # @param Description: <p>插件描述</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
-        # @param CreatedTime: 创建时间
+        # @param CreatedTime: <p>创建时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreatedTime: String
-        # @param UpdatedTime: 更新时间
+        # @param UpdatedTime: <p>更新时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdatedTime: String
-        # @param Status: 发布状态
+        # @param Status: <p>发布状态</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
-        # @param DeleteDisabled: 是否禁用删除
+        # @param DeleteDisabled: <p>是否禁用删除</p>
         # @type DeleteDisabled: Boolean
-        # @param DeleteDisabledReason: 禁用原因
+        # @param DeleteDisabledReason: <p>禁用原因</p>
         # @type DeleteDisabledReason: String
+        # @param BindDisabled: <p>是否不可绑定</p><p>枚举值：</p><ul><li>true： 禁止绑定</li><li>false： 允许绑定</li></ul>
+        # @type BindDisabled: Boolean
 
-        attr_accessor :Id, :Name, :Type, :Description, :CreatedTime, :UpdatedTime, :Status, :DeleteDisabled, :DeleteDisabledReason
+        attr_accessor :Id, :Name, :Type, :Description, :CreatedTime, :UpdatedTime, :Status, :DeleteDisabled, :DeleteDisabledReason, :BindDisabled
 
-        def initialize(id=nil, name=nil, type=nil, description=nil, createdtime=nil, updatedtime=nil, status=nil, deletedisabled=nil, deletedisabledreason=nil)
+        def initialize(id=nil, name=nil, type=nil, description=nil, createdtime=nil, updatedtime=nil, status=nil, deletedisabled=nil, deletedisabledreason=nil, binddisabled=nil)
           @Id = id
           @Name = name
           @Type = type
@@ -13285,6 +13371,7 @@ module TencentCloud
           @Status = status
           @DeleteDisabled = deletedisabled
           @DeleteDisabledReason = deletedisabledreason
+          @BindDisabled = binddisabled
         end
 
         def deserialize(params)
@@ -13297,6 +13384,7 @@ module TencentCloud
           @Status = params['Status']
           @DeleteDisabled = params['DeleteDisabled']
           @DeleteDisabledReason = params['DeleteDisabledReason']
+          @BindDisabled = params['BindDisabled']
         end
       end
 
@@ -16340,24 +16428,30 @@ module TencentCloud
 
       # 微服务API数组
       class MsApiArray < TencentCloud::Common::AbstractModel
-        # @param Path: API 请求路径
+        # @param Path: <p>API 请求路径</p>
         # @type Path: String
-        # @param Method: 请求方法
+        # @param Method: <p>请求方法</p>
         # @type Method: String
-        # @param Description: 方法描述
+        # @param Description: <p>方法描述</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
-        # @param Status: API状态 0:离线 1:在线
+        # @param Status: <p>API状态 0:离线 1:在线</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
+        # @param ApiId: <p>API ID</p>
+        # @type ApiId: String
+        # @param SrcTypeName: <p>API来源</p><p>枚举值：</p><ul><li>FROM_CONSUL： 服务注册</li><li>FROM_MANUAL： 手动录入</li></ul>
+        # @type SrcTypeName: String
 
-        attr_accessor :Path, :Method, :Description, :Status
+        attr_accessor :Path, :Method, :Description, :Status, :ApiId, :SrcTypeName
 
-        def initialize(path=nil, method=nil, description=nil, status=nil)
+        def initialize(path=nil, method=nil, description=nil, status=nil, apiid=nil, srctypename=nil)
           @Path = path
           @Method = method
           @Description = description
           @Status = status
+          @ApiId = apiid
+          @SrcTypeName = srctypename
         end
 
         def deserialize(params)
@@ -16365,6 +16459,8 @@ module TencentCloud
           @Method = params['Method']
           @Description = params['Description']
           @Status = params['Status']
+          @ApiId = params['ApiId']
+          @SrcTypeName = params['SrcTypeName']
         end
       end
 
@@ -19344,25 +19440,28 @@ module TencentCloud
 
       # 业务日志列表
       class TsfPageBusinessLogV2 < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 总条数
+        # @param TotalCount: <p>总条数</p>
         # @type TotalCount: Integer
-        # @param Content: 业务日志列表
+        # @param Content: <p>业务日志列表</p>
         # @type Content: Array
-        # @param ScrollId: 游标ID
+        # @param ScrollId: <p>游标ID</p>
         # @type ScrollId: String
-        # @param Status: 查询状态，SUCCESS：查询成功完成，ERROR_RANGE_EXCEED：查询范围过大异常，ERROR_COMPLEX_CONDITION：查询条件复杂异常，ERROR_OTHER_CAUSE：其他异常
+        # @param Status: <p>查询状态，SUCCESS：查询成功完成，ERROR_RANGE_EXCEED：查询范围过大异常，ERROR_COMPLEX_CONDITION：查询条件复杂异常，ERROR_OTHER_CAUSE：其他异常</p>
         # @type Status: String
-        # @param SearchAfter: 查询es时，使用searchAfter返回的游标
+        # @param SearchAfter: <p>查询es时，使用searchAfter返回的游标</p>
         # @type SearchAfter: Array
+        # @param Compressed: <p>是否压缩</p>
+        # @type Compressed: Boolean
 
-        attr_accessor :TotalCount, :Content, :ScrollId, :Status, :SearchAfter
+        attr_accessor :TotalCount, :Content, :ScrollId, :Status, :SearchAfter, :Compressed
 
-        def initialize(totalcount=nil, content=nil, scrollid=nil, status=nil, searchafter=nil)
+        def initialize(totalcount=nil, content=nil, scrollid=nil, status=nil, searchafter=nil, compressed=nil)
           @TotalCount = totalcount
           @Content = content
           @ScrollId = scrollid
           @Status = status
           @SearchAfter = searchafter
+          @Compressed = compressed
         end
 
         def deserialize(params)
@@ -19378,6 +19477,7 @@ module TencentCloud
           @ScrollId = params['ScrollId']
           @Status = params['Status']
           @SearchAfter = params['SearchAfter']
+          @Compressed = params['Compressed']
         end
       end
 
@@ -20589,19 +20689,22 @@ module TencentCloud
 
       # UpdateHealthCheckSettings请求参数结构体
       class UpdateHealthCheckSettingsRequest < TencentCloud::Common::AbstractModel
-        # @param GroupId: 部署组ID，可通过调用[DescribeContainerGroups](https://cloud.tencent.com/document/api/649/36068)查询已创建的部署组列表或登录控制台进行查看；也可以调用[CreateContainGroup](https://cloud.tencent.com/document/api/649/36075)创建新的部署组。
+        # @param GroupId: <p>部署组ID，可通过调用<a href="https://cloud.tencent.com/document/api/649/36068">DescribeContainerGroups</a>查询已创建的部署组列表或登录控制台进行查看；也可以调用<a href="https://cloud.tencent.com/document/api/649/36075">CreateContainGroup</a>创建新的部署组。</p>
         # @type GroupId: String
-        # @param EnableHealthCheck: 是否开启健康检查
+        # @param EnableHealthCheck: <p>是否开启健康检查</p>
         # @type EnableHealthCheck: Boolean
-        # @param HealthCheckSettings: 健康检查配置
+        # @param HealthCheckSettings: <p>健康检查配置</p>
         # @type HealthCheckSettings: :class:`Tencentcloud::Tsf.v20180326.models.HealthCheckSettings`
+        # @param LivenessAutoRestart: <p>是否自动重启</p>
+        # @type LivenessAutoRestart: Boolean
 
-        attr_accessor :GroupId, :EnableHealthCheck, :HealthCheckSettings
+        attr_accessor :GroupId, :EnableHealthCheck, :HealthCheckSettings, :LivenessAutoRestart
 
-        def initialize(groupid=nil, enablehealthcheck=nil, healthchecksettings=nil)
+        def initialize(groupid=nil, enablehealthcheck=nil, healthchecksettings=nil, livenessautorestart=nil)
           @GroupId = groupid
           @EnableHealthCheck = enablehealthcheck
           @HealthCheckSettings = healthchecksettings
+          @LivenessAutoRestart = livenessautorestart
         end
 
         def deserialize(params)
@@ -20611,14 +20714,13 @@ module TencentCloud
             @HealthCheckSettings = HealthCheckSettings.new
             @HealthCheckSettings.deserialize(params['HealthCheckSettings'])
           end
+          @LivenessAutoRestart = params['LivenessAutoRestart']
         end
       end
 
       # UpdateHealthCheckSettings返回参数结构体
       class UpdateHealthCheckSettingsResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 更新健康检查配置操作是否成功。
-        # true：操作成功。
-        # false：操作失败。
+        # @param Result: <p>更新健康检查配置操作是否成功。<br>true：操作成功。<br>false：操作失败。</p>
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -20774,112 +20876,114 @@ module TencentCloud
 
       # 虚拟机部署组信息
       class VmGroup < TencentCloud::Common::AbstractModel
-        # @param GroupId: 部署组ID
+        # @param GroupId: <p>部署组ID</p>
         # @type GroupId: String
-        # @param GroupName: 部署组名称
+        # @param GroupName: <p>部署组名称</p>
         # @type GroupName: String
-        # @param GroupStatus: 部署组状态
+        # @param GroupStatus: <p>部署组状态</p>
         # @type GroupStatus: String
-        # @param PackageId: 程序包ID
+        # @param PackageId: <p>程序包ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PackageId: String
-        # @param PackageName: 程序包名称
+        # @param PackageName: <p>程序包名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PackageName: String
-        # @param PackageVersion: 程序包版本号
+        # @param PackageVersion: <p>程序包版本号</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PackageVersion: String
-        # @param ClusterId: 集群ID
+        # @param ClusterId: <p>集群ID</p>
         # @type ClusterId: String
-        # @param ClusterName: 集群名称
+        # @param ClusterName: <p>集群名称</p>
         # @type ClusterName: String
-        # @param NamespaceId: 命名空间ID
+        # @param NamespaceId: <p>命名空间ID</p>
         # @type NamespaceId: String
-        # @param NamespaceName: 命名空间名称
+        # @param NamespaceName: <p>命名空间名称</p>
         # @type NamespaceName: String
-        # @param ApplicationId: 应用ID
+        # @param ApplicationId: <p>应用ID</p>
         # @type ApplicationId: String
-        # @param ApplicationName: 应用名称
+        # @param ApplicationName: <p>应用名称</p>
         # @type ApplicationName: String
-        # @param InstanceCount: 部署组机器数目
+        # @param InstanceCount: <p>部署组机器数目</p>
         # @type InstanceCount: Integer
-        # @param RunInstanceCount: 部署组运行中机器数目
+        # @param RunInstanceCount: <p>部署组运行中机器数目</p>
         # @type RunInstanceCount: Integer
-        # @param StartupParameters: 部署组启动参数信息
+        # @param StartupParameters: <p>部署组启动参数信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartupParameters: String
-        # @param CreateTime: 部署组创建时间
+        # @param CreateTime: <p>部署组创建时间</p>
         # @type CreateTime: String
-        # @param UpdateTime: 部署组更新时间
+        # @param UpdateTime: <p>部署组更新时间</p>
         # @type UpdateTime: String
-        # @param OffInstanceCount: 部署组停止机器数目
+        # @param OffInstanceCount: <p>部署组停止机器数目</p>
         # @type OffInstanceCount: Integer
-        # @param GroupDesc: 部署组描述信息
+        # @param GroupDesc: <p>部署组描述信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupDesc: String
-        # @param MicroserviceType: 微服务类型
+        # @param MicroserviceType: <p>微服务类型</p>
         # @type MicroserviceType: String
-        # @param ApplicationType: 应用类型
+        # @param ApplicationType: <p>应用类型</p>
         # @type ApplicationType: String
-        # @param GroupResourceType: 部署组资源类型
+        # @param GroupResourceType: <p>部署组资源类型</p>
         # @type GroupResourceType: String
-        # @param UpdatedTime: 部署组更新时间戳
+        # @param UpdatedTime: <p>部署组更新时间戳</p>
         # @type UpdatedTime: Integer
-        # @param DeployDesc: 部署应用描述信息
+        # @param DeployDesc: <p>部署应用描述信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeployDesc: String
-        # @param UpdateType: 滚动发布的更新方式
+        # @param UpdateType: <p>滚动发布的更新方式</p>
         # @type UpdateType: Integer
-        # @param DeployBetaEnable: 发布是否启用beta批次
+        # @param DeployBetaEnable: <p>发布是否启用beta批次</p>
         # @type DeployBetaEnable: Boolean
-        # @param DeployBatch: 滚动发布的批次比例列表
+        # @param DeployBatch: <p>滚动发布的批次比例列表</p>
         # @type DeployBatch: Array
-        # @param DeployExeMode: 滚动发布的批次执行方式
+        # @param DeployExeMode: <p>滚动发布的批次执行方式</p>
         # @type DeployExeMode: String
-        # @param DeployWaitTime: 滚动发布的每个批次的等待时间
+        # @param DeployWaitTime: <p>滚动发布的每个批次的等待时间</p>
         # @type DeployWaitTime: Integer
-        # @param EnableHealthCheck: 是否开启了健康检查
+        # @param EnableHealthCheck: <p>是否开启了健康检查</p>
         # @type EnableHealthCheck: Boolean
-        # @param HealthCheckSettings: 健康检查配置
+        # @param HealthCheckSettings: <p>健康检查配置</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HealthCheckSettings: :class:`Tencentcloud::Tsf.v20180326.models.HealthCheckSettings`
-        # @param PackageType: 程序包类型
+        # @param PackageType: <p>程序包类型</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PackageType: String
-        # @param StartScript: 启动脚本 base64编码
+        # @param StartScript: <p>启动脚本 base64编码</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartScript: String
-        # @param StopScript: 停止脚本 base64编码
+        # @param StopScript: <p>停止脚本 base64编码</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StopScript: String
-        # @param Alias: 部署组备注
+        # @param Alias: <p>部署组备注</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Alias: String
-        # @param AgentProfileList: javaagent信息
+        # @param AgentProfileList: <p>javaagent信息</p>
         # @type AgentProfileList: Array
-        # @param WarmupSetting: 预热属性配置
+        # @param WarmupSetting: <p>预热属性配置</p>
         # @type WarmupSetting: :class:`Tencentcloud::Tsf.v20180326.models.WarmupSetting`
-        # @param GatewayConfig: Envoy网关配置
+        # @param GatewayConfig: <p>Envoy网关配置</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GatewayConfig: :class:`Tencentcloud::Tsf.v20180326.models.GatewayConfig`
-        # @param EnableBatchHealthCheck: 批次是否开启健康检查
+        # @param EnableBatchHealthCheck: <p>批次是否开启健康检查</p>
         # @type EnableBatchHealthCheck: Boolean
-        # @param FilebeatCgroupEnable: 是否开启cgroup控制内存cpu
+        # @param FilebeatCgroupEnable: <p>是否开启cgroup控制内存cpu</p>
         # @type FilebeatCgroupEnable: Boolean
-        # @param FilebeatMaxCpu: filebeat使用cpu上限
+        # @param FilebeatMaxCpu: <p>filebeat使用cpu上限</p>
         # @type FilebeatMaxCpu: Float
-        # @param FilebeatMaxMem: filebeat使用内存上限
+        # @param FilebeatMaxMem: <p>filebeat使用内存上限</p>
         # @type FilebeatMaxMem: Integer
-        # @param RepositoryId: 仓库ID
+        # @param RepositoryId: <p>仓库ID</p>
         # @type RepositoryId: String
-        # @param RepositoryName: 仓库名称
+        # @param RepositoryName: <p>仓库名称</p>
         # @type RepositoryName: String
-        # @param RepositoryType: 仓库类型
+        # @param RepositoryType: <p>仓库类型</p>
         # @type RepositoryType: String
+        # @param LivenessAutoRestart: <p>是否自动重启</p>
+        # @type LivenessAutoRestart: Boolean
 
-        attr_accessor :GroupId, :GroupName, :GroupStatus, :PackageId, :PackageName, :PackageVersion, :ClusterId, :ClusterName, :NamespaceId, :NamespaceName, :ApplicationId, :ApplicationName, :InstanceCount, :RunInstanceCount, :StartupParameters, :CreateTime, :UpdateTime, :OffInstanceCount, :GroupDesc, :MicroserviceType, :ApplicationType, :GroupResourceType, :UpdatedTime, :DeployDesc, :UpdateType, :DeployBetaEnable, :DeployBatch, :DeployExeMode, :DeployWaitTime, :EnableHealthCheck, :HealthCheckSettings, :PackageType, :StartScript, :StopScript, :Alias, :AgentProfileList, :WarmupSetting, :GatewayConfig, :EnableBatchHealthCheck, :FilebeatCgroupEnable, :FilebeatMaxCpu, :FilebeatMaxMem, :RepositoryId, :RepositoryName, :RepositoryType
+        attr_accessor :GroupId, :GroupName, :GroupStatus, :PackageId, :PackageName, :PackageVersion, :ClusterId, :ClusterName, :NamespaceId, :NamespaceName, :ApplicationId, :ApplicationName, :InstanceCount, :RunInstanceCount, :StartupParameters, :CreateTime, :UpdateTime, :OffInstanceCount, :GroupDesc, :MicroserviceType, :ApplicationType, :GroupResourceType, :UpdatedTime, :DeployDesc, :UpdateType, :DeployBetaEnable, :DeployBatch, :DeployExeMode, :DeployWaitTime, :EnableHealthCheck, :HealthCheckSettings, :PackageType, :StartScript, :StopScript, :Alias, :AgentProfileList, :WarmupSetting, :GatewayConfig, :EnableBatchHealthCheck, :FilebeatCgroupEnable, :FilebeatMaxCpu, :FilebeatMaxMem, :RepositoryId, :RepositoryName, :RepositoryType, :LivenessAutoRestart
 
-        def initialize(groupid=nil, groupname=nil, groupstatus=nil, packageid=nil, packagename=nil, packageversion=nil, clusterid=nil, clustername=nil, namespaceid=nil, namespacename=nil, applicationid=nil, applicationname=nil, instancecount=nil, runinstancecount=nil, startupparameters=nil, createtime=nil, updatetime=nil, offinstancecount=nil, groupdesc=nil, microservicetype=nil, applicationtype=nil, groupresourcetype=nil, updatedtime=nil, deploydesc=nil, updatetype=nil, deploybetaenable=nil, deploybatch=nil, deployexemode=nil, deploywaittime=nil, enablehealthcheck=nil, healthchecksettings=nil, packagetype=nil, startscript=nil, stopscript=nil, _alias=nil, agentprofilelist=nil, warmupsetting=nil, gatewayconfig=nil, enablebatchhealthcheck=nil, filebeatcgroupenable=nil, filebeatmaxcpu=nil, filebeatmaxmem=nil, repositoryid=nil, repositoryname=nil, repositorytype=nil)
+        def initialize(groupid=nil, groupname=nil, groupstatus=nil, packageid=nil, packagename=nil, packageversion=nil, clusterid=nil, clustername=nil, namespaceid=nil, namespacename=nil, applicationid=nil, applicationname=nil, instancecount=nil, runinstancecount=nil, startupparameters=nil, createtime=nil, updatetime=nil, offinstancecount=nil, groupdesc=nil, microservicetype=nil, applicationtype=nil, groupresourcetype=nil, updatedtime=nil, deploydesc=nil, updatetype=nil, deploybetaenable=nil, deploybatch=nil, deployexemode=nil, deploywaittime=nil, enablehealthcheck=nil, healthchecksettings=nil, packagetype=nil, startscript=nil, stopscript=nil, _alias=nil, agentprofilelist=nil, warmupsetting=nil, gatewayconfig=nil, enablebatchhealthcheck=nil, filebeatcgroupenable=nil, filebeatmaxcpu=nil, filebeatmaxmem=nil, repositoryid=nil, repositoryname=nil, repositorytype=nil, livenessautorestart=nil)
           @GroupId = groupid
           @GroupName = groupname
           @GroupStatus = groupstatus
@@ -20925,6 +21029,7 @@ module TencentCloud
           @RepositoryId = repositoryid
           @RepositoryName = repositoryname
           @RepositoryType = repositorytype
+          @LivenessAutoRestart = livenessautorestart
         end
 
         def deserialize(params)
@@ -20989,6 +21094,7 @@ module TencentCloud
           @RepositoryId = params['RepositoryId']
           @RepositoryName = params['RepositoryName']
           @RepositoryType = params['RepositoryType']
+          @LivenessAutoRestart = params['LivenessAutoRestart']
         end
       end
 
