@@ -11805,29 +11805,32 @@ module TencentCloud
 
       # 资源详情
       class NodeResourceSpec < TencentCloud::Common::AbstractModel
-        # @param InstanceType: 规格类型，如S2.MEDIUM8
+        # @param InstanceType: <p>规格类型，如S2.MEDIUM8</p>
         # @type InstanceType: String
-        # @param SystemDisk: 系统盘，系统盘个数不超过1块
+        # @param SystemDisk: <p>系统盘，系统盘个数不超过1块</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SystemDisk: Array
-        # @param Tags: 需要绑定的标签列表
+        # @param Tags: <p>需要绑定的标签列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
-        # @param DataDisk: 云数据盘，云数据盘总个数不超过15块
+        # @param DataDisk: <p>云数据盘，云数据盘总个数不超过15块</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataDisk: Array
-        # @param LocalDataDisk: 本地数据盘
+        # @param LocalDataDisk: <p>本地数据盘</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LocalDataDisk: Array
+        # @param SoftwareConfig: <p>节点配置信息，目前仅提供给terraform平台校验参数使用</p>
+        # @type SoftwareConfig: Array
 
-        attr_accessor :InstanceType, :SystemDisk, :Tags, :DataDisk, :LocalDataDisk
+        attr_accessor :InstanceType, :SystemDisk, :Tags, :DataDisk, :LocalDataDisk, :SoftwareConfig
 
-        def initialize(instancetype=nil, systemdisk=nil, tags=nil, datadisk=nil, localdatadisk=nil)
+        def initialize(instancetype=nil, systemdisk=nil, tags=nil, datadisk=nil, localdatadisk=nil, softwareconfig=nil)
           @InstanceType = instancetype
           @SystemDisk = systemdisk
           @Tags = tags
           @DataDisk = datadisk
           @LocalDataDisk = localdatadisk
+          @SoftwareConfig = softwareconfig
         end
 
         def deserialize(params)
@@ -11862,6 +11865,14 @@ module TencentCloud
               diskspecinfo_tmp = DiskSpecInfo.new
               diskspecinfo_tmp.deserialize(i)
               @LocalDataDisk << diskspecinfo_tmp
+            end
+          end
+          unless params['SoftwareConfig'].nil?
+            @SoftwareConfig = []
+            params['SoftwareConfig'].each do |i|
+              servicedeploy_tmp = ServiceDeploy.new
+              servicedeploy_tmp.deserialize(i)
+              @SoftwareConfig << servicedeploy_tmp
             end
           end
         end
@@ -15047,6 +15058,26 @@ module TencentCloud
               @ComponentInfoList << componentbasicrestartinfo_tmp
             end
           end
+        end
+      end
+
+      # 节点部署配置信息，给tf侧同学使用
+      class ServiceDeploy < TencentCloud::Common::AbstractModel
+        # @param SoftwareName: <p>组件名称</p>
+        # @type SoftwareName: String
+        # @param Roles: <p>组件下角色名称</p>
+        # @type Roles: Array
+
+        attr_accessor :SoftwareName, :Roles
+
+        def initialize(softwarename=nil, roles=nil)
+          @SoftwareName = softwarename
+          @Roles = roles
+        end
+
+        def deserialize(params)
+          @SoftwareName = params['SoftwareName']
+          @Roles = params['Roles']
         end
       end
 

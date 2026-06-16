@@ -4811,6 +4811,63 @@ module TencentCloud
         end
       end
 
+      # CreateFlowGroupReminds请求参数结构体
+      class CreateFlowGroupRemindsRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: <p>执行本接口操作的员工信息。<br>注: <code>在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。</code></p>
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param FlowGroupId: <p>合同(流程)组的合同组Id</p>
+        # @type FlowGroupId: String
+        # @param Agent: <p>代理企业和员工的信息。<br>在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。</p>
+        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
+
+        attr_accessor :Operator, :FlowGroupId, :Agent
+
+        def initialize(operator=nil, flowgroupid=nil, agent=nil)
+          @Operator = operator
+          @FlowGroupId = flowgroupid
+          @Agent = agent
+        end
+
+        def deserialize(params)
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          @FlowGroupId = params['FlowGroupId']
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+        end
+      end
+
+      # CreateFlowGroupReminds返回参数结构体
+      class CreateFlowGroupRemindsResponse < TencentCloud::Common::AbstractModel
+        # @param RemindFlowGroupRecords: <p>合同组催办接口返回的详细信息。</p>
+        # @type RemindFlowGroupRecords: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RemindFlowGroupRecords, :RequestId
+
+        def initialize(remindflowgrouprecords=nil, requestid=nil)
+          @RemindFlowGroupRecords = remindflowgrouprecords
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['RemindFlowGroupRecords'].nil?
+            @RemindFlowGroupRecords = []
+            params['RemindFlowGroupRecords'].each do |i|
+              remindflowgrouprecord_tmp = RemindFlowGroupRecord.new
+              remindflowgrouprecord_tmp.deserialize(i)
+              @RemindFlowGroupRecords << remindflowgrouprecord_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateFlowGroupSignReview请求参数结构体
       class CreateFlowGroupSignReviewRequest < TencentCloud::Common::AbstractModel
         # @param Operator: 执行本接口操作的员工信息。
@@ -17583,6 +17640,74 @@ module TencentCloud
         def deserialize(params)
           @SignId = params['SignId']
           @ApproverEmail = params['ApproverEmail']
+        end
+      end
+
+      # 催办合同组下签署人维度详细信息。
+      class RemindFlowGroupDetail < TencentCloud::Common::AbstractModel
+        # @param ApproverOrder: <p>该签署人在合同中的签署顺序</p>
+        # @type ApproverOrder: Integer
+        # @param SignId: <p>签署人对应的签署id</p>
+        # @type SignId: String
+        # @param Status: <p>催办状态</p><p>枚举值：</p><ul><li>0： 成功</li><li>2： 无需催办</li><li>5： 超过次数限制</li></ul>
+        # @type Status: Integer
+        # @param Reason: <p>描述当前催办结果的原因</p>
+        # @type Reason: String
+
+        attr_accessor :ApproverOrder, :SignId, :Status, :Reason
+
+        def initialize(approverorder=nil, signid=nil, status=nil, reason=nil)
+          @ApproverOrder = approverorder
+          @SignId = signid
+          @Status = status
+          @Reason = reason
+        end
+
+        def deserialize(params)
+          @ApproverOrder = params['ApproverOrder']
+          @SignId = params['SignId']
+          @Status = params['Status']
+          @Reason = params['Reason']
+        end
+      end
+
+      # 合同组催办接口返回的详细信息。
+      class RemindFlowGroupRecord < TencentCloud::Common::AbstractModel
+        # @param FlowIds: <p>对应签署人出现的合同列表</p>
+        # @type FlowIds: Array
+        # @param FlowNames: <p>对应签署人出现的合同名</p>
+        # @type FlowNames: Array
+        # @param ApproverName: <p>签署人姓名</p>
+        # @type ApproverName: String
+        # @param Mobile: <p>签署人手机号</p>
+        # @type Mobile: String
+        # @param RemindMessageList: <p>催办合同组下签署人维度详细信息</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RemindMessageList: Array
+
+        attr_accessor :FlowIds, :FlowNames, :ApproverName, :Mobile, :RemindMessageList
+
+        def initialize(flowids=nil, flownames=nil, approvername=nil, mobile=nil, remindmessagelist=nil)
+          @FlowIds = flowids
+          @FlowNames = flownames
+          @ApproverName = approvername
+          @Mobile = mobile
+          @RemindMessageList = remindmessagelist
+        end
+
+        def deserialize(params)
+          @FlowIds = params['FlowIds']
+          @FlowNames = params['FlowNames']
+          @ApproverName = params['ApproverName']
+          @Mobile = params['Mobile']
+          unless params['RemindMessageList'].nil?
+            @RemindMessageList = []
+            params['RemindMessageList'].each do |i|
+              remindflowgroupdetail_tmp = RemindFlowGroupDetail.new
+              remindflowgroupdetail_tmp.deserialize(i)
+              @RemindMessageList << remindflowgroupdetail_tmp
+            end
+          end
         end
       end
 

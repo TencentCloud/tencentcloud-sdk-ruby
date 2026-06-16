@@ -558,6 +558,54 @@ module TencentCloud
         end
       end
 
+      # 部署服务信息
+      class CloudAppServiceItem < TencentCloud::Common::AbstractModel
+        # @param ServiceName: 服务名
+        # @type ServiceName: String
+        # @param Framework: 框架名
+        # @type Framework: String
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param AppPath: 应用路径
+        # @type AppPath: String
+        # @param CreateTime: 服务创建时间
+        # @type CreateTime: String
+        # @param LatestVersionName: 最新版本名
+        # @type LatestVersionName: String
+        # @param LatestStatus: 最新版本状态
+        # @type LatestStatus: String
+        # @param LatestBuildTime: 最新版本构建时间
+        # @type LatestBuildTime: String
+        # @param DeployType: 部署类型
+        # @type DeployType: String
+
+        attr_accessor :ServiceName, :Framework, :Domain, :AppPath, :CreateTime, :LatestVersionName, :LatestStatus, :LatestBuildTime, :DeployType
+
+        def initialize(servicename=nil, framework=nil, domain=nil, apppath=nil, createtime=nil, latestversionname=nil, lateststatus=nil, latestbuildtime=nil, deploytype=nil)
+          @ServiceName = servicename
+          @Framework = framework
+          @Domain = domain
+          @AppPath = apppath
+          @CreateTime = createtime
+          @LatestVersionName = latestversionname
+          @LatestStatus = lateststatus
+          @LatestBuildTime = latestbuildtime
+          @DeployType = deploytype
+        end
+
+        def deserialize(params)
+          @ServiceName = params['ServiceName']
+          @Framework = params['Framework']
+          @Domain = params['Domain']
+          @AppPath = params['AppPath']
+          @CreateTime = params['CreateTime']
+          @LatestVersionName = params['LatestVersionName']
+          @LatestStatus = params['LatestStatus']
+          @LatestBuildTime = params['LatestBuildTime']
+          @DeployType = params['DeployType']
+        end
+      end
+
       # cls日志信息
       class ClsInfo < TencentCloud::Common::AbstractModel
         # @param ClsRegion: cls所属地域
@@ -2300,6 +2348,69 @@ module TencentCloud
         end
       end
 
+      # DescribeCloudAppList请求参数结构体
+      class DescribeCloudAppListRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: <p>环境ID</p>
+        # @type EnvId: String
+        # @param DeployType: <p>部署类型</p>
+        # @type DeployType: String
+        # @param SearchKey: <p>搜索关键字</p>
+        # @type SearchKey: String
+        # @param PageSize: <p>页大小</p>
+        # @type PageSize: Integer
+        # @param PageNo: <p>页号</p>
+        # @type PageNo: Integer
+
+        attr_accessor :EnvId, :DeployType, :SearchKey, :PageSize, :PageNo
+
+        def initialize(envid=nil, deploytype=nil, searchkey=nil, pagesize=nil, pageno=nil)
+          @EnvId = envid
+          @DeployType = deploytype
+          @SearchKey = searchkey
+          @PageSize = pagesize
+          @PageNo = pageno
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @DeployType = params['DeployType']
+          @SearchKey = params['SearchKey']
+          @PageSize = params['PageSize']
+          @PageNo = params['PageNo']
+        end
+      end
+
+      # DescribeCloudAppList返回参数结构体
+      class DescribeCloudAppListResponse < TencentCloud::Common::AbstractModel
+        # @param ServiceList: <p>服务列表</p>
+        # @type ServiceList: Array
+        # @param Total: <p>总数</p>
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ServiceList, :Total, :RequestId
+
+        def initialize(servicelist=nil, total=nil, requestid=nil)
+          @ServiceList = servicelist
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ServiceList'].nil?
+            @ServiceList = []
+            params['ServiceList'].each do |i|
+              cloudappserviceitem_tmp = CloudAppServiceItem.new
+              cloudappserviceitem_tmp.deserialize(i)
+              @ServiceList << cloudappserviceitem_tmp
+            end
+          end
+          @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeCloudBaseBuildService请求参数结构体
       class DescribeCloudBaseBuildServiceRequest < TencentCloud::Common::AbstractModel
         # @param EnvId: 环境id
@@ -2663,6 +2774,121 @@ module TencentCloud
             @Data = DescribeCreateMySQLResult.new
             @Data.deserialize(params['Data'])
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCreditsUsageDetail请求参数结构体
+      class DescribeCreditsUsageDetailRequest < TencentCloud::Common::AbstractModel
+        # @param Modules: <p>模块列表</p><p>枚举值：</p><ul><li>FLEXDB： 文档数据库</li><li>TDSQL： MYSQL数据库</li><li>SCF： 云函数</li><li>AI： 大模型</li><li>EKS： 云托管</li><li>COS： 云存储</li><li>HOSTING： 静态托管</li><li>Auth： 用户权限</li><li>APIInvocation： API调用</li><li>HTTPInvocation： HTTP调用</li><li>VM： 主机</li><li>Workflow： 工作流</li><li>Other： 其他</li><li>PostgreSQL： PostgreSQL</li><li>Token： Token</li></ul>
+        # @type Modules: Array
+        # @param StartDate: <p>开始日期</p>
+        # @type StartDate: String
+        # @param EndDate: <p>结束日期</p>
+        # @type EndDate: String
+        # @param NeedUsageDetails: <p>是否需要每日用量明细</p>
+        # @type NeedUsageDetails: Boolean
+        # @param EnvId: <p>环境id</p>
+        # @type EnvId: String
+
+        attr_accessor :Modules, :StartDate, :EndDate, :NeedUsageDetails, :EnvId
+
+        def initialize(modules=nil, startdate=nil, enddate=nil, needusagedetails=nil, envid=nil)
+          @Modules = modules
+          @StartDate = startdate
+          @EndDate = enddate
+          @NeedUsageDetails = needusagedetails
+          @EnvId = envid
+        end
+
+        def deserialize(params)
+          @Modules = params['Modules']
+          @StartDate = params['StartDate']
+          @EndDate = params['EndDate']
+          @NeedUsageDetails = params['NeedUsageDetails']
+          @EnvId = params['EnvId']
+        end
+      end
+
+      # DescribeCreditsUsageDetail返回参数结构体
+      class DescribeCreditsUsageDetailResponse < TencentCloud::Common::AbstractModel
+        # @param Usages: <p>用量数据</p>
+        # @type Usages: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Usages, :RequestId
+
+        def initialize(usages=nil, requestid=nil)
+          @Usages = usages
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Usages'].nil?
+            @Usages = []
+            params['Usages'].each do |i|
+              envpkgcreditsusage_tmp = EnvPkgCreditsUsage.new
+              envpkgcreditsusage_tmp.deserialize(i)
+              @Usages << envpkgcreditsusage_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCreditsUsage请求参数结构体
+      class DescribeCreditsUsageRequest < TencentCloud::Common::AbstractModel
+        # @param StartDate: <p>开始日期</p>
+        # @type StartDate: String
+        # @param EndDate: <p>结束日期</p>
+        # @type EndDate: String
+        # @param EnvId: <p>环境id</p>
+        # @type EnvId: String
+
+        attr_accessor :StartDate, :EndDate, :EnvId
+
+        def initialize(startdate=nil, enddate=nil, envid=nil)
+          @StartDate = startdate
+          @EndDate = enddate
+          @EnvId = envid
+        end
+
+        def deserialize(params)
+          @StartDate = params['StartDate']
+          @EndDate = params['EndDate']
+          @EnvId = params['EnvId']
+        end
+      end
+
+      # DescribeCreditsUsage返回参数结构体
+      class DescribeCreditsUsageResponse < TencentCloud::Common::AbstractModel
+        # @param DeductValue: <p>资源点套餐内用量</p>
+        # @type DeductValue: Float
+        # @param PackageDeductValue: <p>资源点资源包用量</p>
+        # @type PackageDeductValue: Float
+        # @param ReportValue: <p>资源点按量用量</p>
+        # @type ReportValue: Float
+        # @param HistoryDeducted: <p>历史周期资源点用量</p>
+        # @type HistoryDeducted: Float
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DeductValue, :PackageDeductValue, :ReportValue, :HistoryDeducted, :RequestId
+
+        def initialize(deductvalue=nil, packagedeductvalue=nil, reportvalue=nil, historydeducted=nil, requestid=nil)
+          @DeductValue = deductvalue
+          @PackageDeductValue = packagedeductvalue
+          @ReportValue = reportvalue
+          @HistoryDeducted = historydeducted
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @DeductValue = params['DeductValue']
+          @PackageDeductValue = params['PackageDeductValue']
+          @ReportValue = params['ReportValue']
+          @HistoryDeducted = params['HistoryDeducted']
           @RequestId = params['RequestId']
         end
       end
@@ -4533,6 +4759,53 @@ module TencentCloud
         end
       end
 
+      # 模块内资源点用量及原始用量数据结构
+      class EnvPkgCreditsUsage < TencentCloud::Common::AbstractModel
+        # @param EnvId: <p>环境id</p>
+        # @type EnvId: String
+        # @param Module: <p>模块</p>
+        # @type Module: String
+        # @param CreditsValue: <p>module总资源点用量</p>
+        # @type CreditsValue: Float
+        # @param MetricUsageDetail: <p>指标用量明细</p>
+        # @type MetricUsageDetail: Array
+        # @param DeductValue: <p>资源点套餐内用量</p>
+        # @type DeductValue: Float
+        # @param PackageDeductValue: <p>资源点资源包用量</p>
+        # @type PackageDeductValue: Float
+        # @param ReportValue: <p>资源点按量用量</p>
+        # @type ReportValue: Float
+
+        attr_accessor :EnvId, :Module, :CreditsValue, :MetricUsageDetail, :DeductValue, :PackageDeductValue, :ReportValue
+
+        def initialize(envid=nil, _module=nil, creditsvalue=nil, metricusagedetail=nil, deductvalue=nil, packagedeductvalue=nil, reportvalue=nil)
+          @EnvId = envid
+          @Module = _module
+          @CreditsValue = creditsvalue
+          @MetricUsageDetail = metricusagedetail
+          @DeductValue = deductvalue
+          @PackageDeductValue = packagedeductvalue
+          @ReportValue = reportvalue
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @Module = params['Module']
+          @CreditsValue = params['CreditsValue']
+          unless params['MetricUsageDetail'].nil?
+            @MetricUsageDetail = []
+            params['MetricUsageDetail'].each do |i|
+              metricusage_tmp = MetricUsage.new
+              metricusage_tmp.deserialize(i)
+              @MetricUsageDetail << metricusage_tmp
+            end
+          end
+          @DeductValue = params['DeductValue']
+          @PackageDeductValue = params['PackageDeductValue']
+          @ReportValue = params['ReportValue']
+        end
+      end
+
       # ExecutePGSql请求参数结构体
       class ExecutePGSqlRequest < TencentCloud::Common::AbstractModel
         # @param EnvId: <p>云开发环境ID</p>
@@ -5862,6 +6135,65 @@ module TencentCloud
         def deserialize(params)
           @Message = params['Message']
           @Locale = params['Locale']
+        end
+      end
+
+      # 指标用量明细
+      class MetricUsage < TencentCloud::Common::AbstractModel
+        # @param MetricName: <p>指标名称</p>
+        # @type MetricName: String
+        # @param ResourceType: <p>资源类型</p>
+        # @type ResourceType: String
+        # @param Value: <p>原始资源用量</p>
+        # @type Value: Integer
+        # @param CreditsValue: <p>资源点用量</p>
+        # @type CreditsValue: Float
+        # @param BillingCycleType: <p>计费周期类型，取值为hourly/daily</p>
+        # @type BillingCycleType: String
+        # @param Unit: <p>原始资源用量单位</p>
+        # @type Unit: String
+        # @param ValueDetailList: <p>原始资源用量明细</p>
+        # @type ValueDetailList: Array
+        # @param DeductValue: <p>资源点套餐内用量</p>
+        # @type DeductValue: Float
+        # @param PackageDeductValue: <p>资源点资源包用量</p>
+        # @type PackageDeductValue: Float
+        # @param ReportValue: <p>资源点按量用量</p>
+        # @type ReportValue: Float
+
+        attr_accessor :MetricName, :ResourceType, :Value, :CreditsValue, :BillingCycleType, :Unit, :ValueDetailList, :DeductValue, :PackageDeductValue, :ReportValue
+
+        def initialize(metricname=nil, resourcetype=nil, value=nil, creditsvalue=nil, billingcycletype=nil, unit=nil, valuedetaillist=nil, deductvalue=nil, packagedeductvalue=nil, reportvalue=nil)
+          @MetricName = metricname
+          @ResourceType = resourcetype
+          @Value = value
+          @CreditsValue = creditsvalue
+          @BillingCycleType = billingcycletype
+          @Unit = unit
+          @ValueDetailList = valuedetaillist
+          @DeductValue = deductvalue
+          @PackageDeductValue = packagedeductvalue
+          @ReportValue = reportvalue
+        end
+
+        def deserialize(params)
+          @MetricName = params['MetricName']
+          @ResourceType = params['ResourceType']
+          @Value = params['Value']
+          @CreditsValue = params['CreditsValue']
+          @BillingCycleType = params['BillingCycleType']
+          @Unit = params['Unit']
+          unless params['ValueDetailList'].nil?
+            @ValueDetailList = []
+            params['ValueDetailList'].each do |i|
+              valuedetail_tmp = ValueDetail.new
+              valuedetail_tmp.deserialize(i)
+              @ValueDetailList << valuedetail_tmp
+            end
+          end
+          @DeductValue = params['DeductValue']
+          @PackageDeductValue = params['PackageDeductValue']
+          @ReportValue = params['ReportValue']
         end
       end
 
@@ -8548,6 +8880,42 @@ module TencentCloud
         def deserialize(params)
           @BundleId = params['BundleId']
           @BundleConfig = params['BundleConfig']
+        end
+      end
+
+      # 资源用量明细结构
+      class ValueDetail < TencentCloud::Common::AbstractModel
+        # @param CalcTime: <p>时间</p>
+        # @type CalcTime: String
+        # @param RawValue: <p>原始资源用量</p>
+        # @type RawValue: Integer
+        # @param CreditsValue: <p>资源点用量</p>
+        # @type CreditsValue: Float
+        # @param DeductValue: <p>资源点套餐内用量</p>
+        # @type DeductValue: Float
+        # @param PackageDeductValue: <p>资源点资源包用量</p>
+        # @type PackageDeductValue: Float
+        # @param ReportValue: <p>资源点按量用量</p>
+        # @type ReportValue: Float
+
+        attr_accessor :CalcTime, :RawValue, :CreditsValue, :DeductValue, :PackageDeductValue, :ReportValue
+
+        def initialize(calctime=nil, rawvalue=nil, creditsvalue=nil, deductvalue=nil, packagedeductvalue=nil, reportvalue=nil)
+          @CalcTime = calctime
+          @RawValue = rawvalue
+          @CreditsValue = creditsvalue
+          @DeductValue = deductvalue
+          @PackageDeductValue = packagedeductvalue
+          @ReportValue = reportvalue
+        end
+
+        def deserialize(params)
+          @CalcTime = params['CalcTime']
+          @RawValue = params['RawValue']
+          @CreditsValue = params['CreditsValue']
+          @DeductValue = params['DeductValue']
+          @PackageDeductValue = params['PackageDeductValue']
+          @ReportValue = params['ReportValue']
         end
       end
 

@@ -894,6 +894,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询云应用服务列表信息
+
+        # @param request: Request instance for DescribeCloudAppList.
+        # @type request: :class:`Tencentcloud::tcb::V20180608::DescribeCloudAppListRequest`
+        # @rtype: :class:`Tencentcloud::tcb::V20180608::DescribeCloudAppListResponse`
+        def DescribeCloudAppList(request)
+          body = send_request('DescribeCloudAppList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCloudAppListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取云托管代码上传url
 
         # @param request: Request instance for DescribeCloudBaseBuildService.
@@ -955,6 +979,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeCreateMySQLResultResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询资源点模式下的资源点用量
+
+        # @param request: Request instance for DescribeCreditsUsage.
+        # @type request: :class:`Tencentcloud::tcb::V20180608::DescribeCreditsUsageRequest`
+        # @rtype: :class:`Tencentcloud::tcb::V20180608::DescribeCreditsUsageResponse`
+        def DescribeCreditsUsage(request)
+          body = send_request('DescribeCreditsUsage', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCreditsUsageResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询资源点模式下的资源点用量及原始用量明细
+
+        # @param request: Request instance for DescribeCreditsUsageDetail.
+        # @type request: :class:`Tencentcloud::tcb::V20180608::DescribeCreditsUsageDetailRequest`
+        # @rtype: :class:`Tencentcloud::tcb::V20180608::DescribeCreditsUsageDetailResponse`
+        def DescribeCreditsUsageDetail(request)
+          body = send_request('DescribeCreditsUsageDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCreditsUsageDetailResponse.new
             model.deserialize(response['Response'])
             model
           else
