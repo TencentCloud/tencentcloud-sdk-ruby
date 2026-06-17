@@ -2848,7 +2848,7 @@ module TencentCloud
         # @type Note: String
         # @param MinInsyncReplicas: <p>最小同步副本数</p><p>默认值：1</p><p>最小值为1</p>
         # @type MinInsyncReplicas: Integer
-        # @param UncleanLeaderElectionEnable: <p>是否允许未同步的副本选为leader，0:不允许，1:允许，默认不允许</p>
+        # @param UncleanLeaderElectionEnable: <p>是否允许未同步的副本选为leader，0:不允许，1:允许，默认取实例维度的值</p>
         # @type UncleanLeaderElectionEnable: Integer
         # @param RetentionMs: <p>可选参数，消息保留时间</p><p>取值范围：[60000, 7776000000]</p><p>单位：毫秒</p><p>默认值：7200000</p>
         # @type RetentionMs: Integer

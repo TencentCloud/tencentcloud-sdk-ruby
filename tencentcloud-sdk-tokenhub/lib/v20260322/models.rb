@@ -51,10 +51,14 @@ module TencentCloud
         # @type IpWhitelist: Array
         # @param Creator: 当Platform为maas时该字段为空
         # @type Creator: String
+        # @param QuotaSet: Token 限额信息多维度列表。未配置限额时不返回该字段。
+        # @type QuotaSet: Array
+        # @param QuotaStatus: Token 限额状态。空字符串表示未配置任何限额包；active 表示已配置且当前可用；inactive 表示已配置但额度耗尽
+        # @type QuotaStatus: String
 
-        attr_accessor :ApiKeyId, :Name, :ApiKey, :Remark, :Platform, :Uin, :SubUin, :Status, :BindType, :CreateTime, :UpdateTime, :AppId, :Editable, :BindingItems, :IpWhitelist, :Creator
+        attr_accessor :ApiKeyId, :Name, :ApiKey, :Remark, :Platform, :Uin, :SubUin, :Status, :BindType, :CreateTime, :UpdateTime, :AppId, :Editable, :BindingItems, :IpWhitelist, :Creator, :QuotaSet, :QuotaStatus
 
-        def initialize(apikeyid=nil, name=nil, apikey=nil, remark=nil, platform=nil, uin=nil, subuin=nil, status=nil, bindtype=nil, createtime=nil, updatetime=nil, appid=nil, editable=nil, bindingitems=nil, ipwhitelist=nil, creator=nil)
+        def initialize(apikeyid=nil, name=nil, apikey=nil, remark=nil, platform=nil, uin=nil, subuin=nil, status=nil, bindtype=nil, createtime=nil, updatetime=nil, appid=nil, editable=nil, bindingitems=nil, ipwhitelist=nil, creator=nil, quotaset=nil, quotastatus=nil)
           @ApiKeyId = apikeyid
           @Name = name
           @ApiKey = apikey
@@ -71,6 +75,8 @@ module TencentCloud
           @BindingItems = bindingitems
           @IpWhitelist = ipwhitelist
           @Creator = creator
+          @QuotaSet = quotaset
+          @QuotaStatus = quotastatus
         end
 
         def deserialize(params)
@@ -97,6 +103,15 @@ module TencentCloud
           end
           @IpWhitelist = params['IpWhitelist']
           @Creator = params['Creator']
+          unless params['QuotaSet'].nil?
+            @QuotaSet = []
+            params['QuotaSet'].each do |i|
+              quotainfo_tmp = QuotaInfo.new
+              quotainfo_tmp.deserialize(i)
+              @QuotaSet << quotainfo_tmp
+            end
+          end
+          @QuotaStatus = params['QuotaStatus']
         end
       end
 
@@ -666,12 +681,16 @@ module TencentCloud
         # @type IpWhitelist: Array
         # @param Creator: 当Platform为maas时该字段为空
         # @type Creator: String
+        # @param QuotaSet: Token 限额多维度信息。未配置限额时不返回该字段。
+        # @type QuotaSet: Array
+        # @param QuotaStatus: Token 限额状态。空字符串表示未配置任何限额包；active 表示已配置且当前可用；inactive 表示已配置但额度耗尽
+        # @type QuotaStatus: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ApiKeyId, :Name, :ApiKey, :Remark, :Platform, :Uin, :SubUin, :Status, :BindType, :CreateTime, :UpdateTime, :AppId, :Editable, :BindingItems, :IpWhitelist, :Creator, :RequestId
+        attr_accessor :ApiKeyId, :Name, :ApiKey, :Remark, :Platform, :Uin, :SubUin, :Status, :BindType, :CreateTime, :UpdateTime, :AppId, :Editable, :BindingItems, :IpWhitelist, :Creator, :QuotaSet, :QuotaStatus, :RequestId
 
-        def initialize(apikeyid=nil, name=nil, apikey=nil, remark=nil, platform=nil, uin=nil, subuin=nil, status=nil, bindtype=nil, createtime=nil, updatetime=nil, appid=nil, editable=nil, bindingitems=nil, ipwhitelist=nil, creator=nil, requestid=nil)
+        def initialize(apikeyid=nil, name=nil, apikey=nil, remark=nil, platform=nil, uin=nil, subuin=nil, status=nil, bindtype=nil, createtime=nil, updatetime=nil, appid=nil, editable=nil, bindingitems=nil, ipwhitelist=nil, creator=nil, quotaset=nil, quotastatus=nil, requestid=nil)
           @ApiKeyId = apikeyid
           @Name = name
           @ApiKey = apikey
@@ -688,6 +707,8 @@ module TencentCloud
           @BindingItems = bindingitems
           @IpWhitelist = ipwhitelist
           @Creator = creator
+          @QuotaSet = quotaset
+          @QuotaStatus = quotastatus
           @RequestId = requestid
         end
 
@@ -715,6 +736,15 @@ module TencentCloud
           end
           @IpWhitelist = params['IpWhitelist']
           @Creator = params['Creator']
+          unless params['QuotaSet'].nil?
+            @QuotaSet = []
+            params['QuotaSet'].each do |i|
+              quotainfo_tmp = QuotaInfo.new
+              quotainfo_tmp.deserialize(i)
+              @QuotaSet << quotainfo_tmp
+            end
+          end
+          @QuotaStatus = params['QuotaStatus']
           @RequestId = params['RequestId']
         end
       end
@@ -1713,6 +1743,46 @@ module TencentCloud
           @ApiKeyId = params['ApiKeyId']
           @KeyVersion = params['KeyVersion']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # Token 限额信息
+      class QuotaInfo < TencentCloud::Common::AbstractModel
+        # @param PkgId: 限额包 ID。
+        # @type PkgId: String
+        # @param Status: 限额包状态。取值：1（正常）、3（已耗尽）、4（已销毁）。
+        # @type Status: Integer
+        # @param CycleUnit: 限额周期。取值：d（按日）、m（按月）、lifetime（总额度，不重置）。
+        # @type CycleUnit: String
+        # @param CycleCredits: 维度当期限额总量（Token 数）。使用字符串避免大数精度丢失。
+        # @type CycleCredits: String
+        # @param CycleUsed: 维度当期已使用量（Token 数）。使用字符串避免大数精度丢失。
+        # @type CycleUsed: String
+        # @param StartTime: 限额生效起始时间。
+        # @type StartTime: String
+        # @param ExpireTime: 限额过期时间。
+        # @type ExpireTime: String
+
+        attr_accessor :PkgId, :Status, :CycleUnit, :CycleCredits, :CycleUsed, :StartTime, :ExpireTime
+
+        def initialize(pkgid=nil, status=nil, cycleunit=nil, cyclecredits=nil, cycleused=nil, starttime=nil, expiretime=nil)
+          @PkgId = pkgid
+          @Status = status
+          @CycleUnit = cycleunit
+          @CycleCredits = cyclecredits
+          @CycleUsed = cycleused
+          @StartTime = starttime
+          @ExpireTime = expiretime
+        end
+
+        def deserialize(params)
+          @PkgId = params['PkgId']
+          @Status = params['Status']
+          @CycleUnit = params['CycleUnit']
+          @CycleCredits = params['CycleCredits']
+          @CycleUsed = params['CycleUsed']
+          @StartTime = params['StartTime']
+          @ExpireTime = params['ExpireTime']
         end
       end
 

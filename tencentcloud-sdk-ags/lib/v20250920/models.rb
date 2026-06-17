@@ -1044,16 +1044,20 @@ module TencentCloud
 
       # PauseSandboxInstance返回参数结构体
       class PauseSandboxInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param InstanceStatus: <p>目标沙箱实例当前的状态</p><p>枚举值：</p><ul><li>PAUSING： 正在暂停中</li><li>PAUSED： 已暂停</li><li>PAUSE_FAILED： 暂停失败</li></ul>
+        # @type InstanceStatus: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :InstanceStatus, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(instancestatus=nil, requestid=nil)
+          @InstanceStatus = instancestatus
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @InstanceStatus = params['InstanceStatus']
           @RequestId = params['RequestId']
         end
       end

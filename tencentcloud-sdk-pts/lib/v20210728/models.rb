@@ -4549,9 +4549,9 @@ module TencentCloud
 
       # 带已执行任务的scenario
       class ScenarioWithJobs < TencentCloud::Common::AbstractModel
-        # @param Scenario: scecario结果
+        # @param Scenario: <p>Scenario结果</p>
         # @type Scenario: :class:`Tencentcloud::Pts.v20210728.models.Scenario`
-        # @param Jobs: job结果
+        # @param Jobs: <p>job结果</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Jobs: Array
 

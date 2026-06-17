@@ -3713,6 +3713,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 快速探测视频文件是否包含水印
+
+        # @param request: Request instance for DetectVideoWatermark.
+        # @type request: :class:`Tencentcloud::mps::V20190612::DetectVideoWatermarkRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::DetectVideoWatermarkResponse`
+        def DetectVideoWatermark(request)
+          body = send_request('DetectVideoWatermark', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DetectVideoWatermarkResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 禁用自动化触发编排任务。
 
         # @param request: Request instance for DisableSchedule.

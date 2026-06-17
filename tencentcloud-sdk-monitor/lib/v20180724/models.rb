@@ -2403,17 +2403,17 @@ module TencentCloud
 
       # CreateGrafanaNotificationChannel请求参数结构体
       class CreateGrafanaNotificationChannelRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: Grafana 实例 ID，例如：grafana-abcdefgh
+        # @param InstanceId: <p>Grafana 实例 ID，例如：grafana-abcdefgh</p>
         # @type InstanceId: String
-        # @param ChannelName: 告警通道名称，例如：test
+        # @param ChannelName: <p>告警通道名称，例如：my-channel</p>
         # @type ChannelName: String
-        # @param Receivers: 接受告警通道 ID 数组，值为告警管理/基础配置/通知模板中的模板 ID
+        # @param Receivers: <p>接受告警通道 ID 数组，值为告警管理/基础配置/通知模板中的模板 ID</p>
         # @type Receivers: Array
-        # @param OrgId: 默认为1，建议使用 OrganizationIds
+        # @param OrgId: <p>默认为1，建议使用 OrganizationIds</p>
         # @type OrgId: Integer
-        # @param ExtraOrgIds: 额外组织 ID 数组，已废弃，请使用 OrganizationIds
+        # @param ExtraOrgIds: <p>额外组织 ID 数组，已废弃，请使用 OrganizationIds</p>
         # @type ExtraOrgIds: Array
-        # @param OrganizationIds: 生效的所有组织 ID 数组，默认为 ["1"]
+        # @param OrganizationIds: <p>生效的所有组织 ID 数组，默认为 [&quot;1&quot;]</p>
         # @type OrganizationIds: Array
 
         attr_accessor :InstanceId, :ChannelName, :Receivers, :OrgId, :ExtraOrgIds, :OrganizationIds
@@ -2439,7 +2439,7 @@ module TencentCloud
 
       # CreateGrafanaNotificationChannel返回参数结构体
       class CreateGrafanaNotificationChannelResponse < TencentCloud::Common::AbstractModel
-        # @param ChannelId: 通道 ID
+        # @param ChannelId: <p>通道 ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ChannelId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -3293,13 +3293,13 @@ module TencentCloud
 
       # CreateSSOAccount请求参数结构体
       class CreateSSOAccountRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: Grafana 实例 ID，例如：grafana-abcdefgh
+        # @param InstanceId: <p>Grafana 实例 ID，例如：grafana-abcdefgh</p>
         # @type InstanceId: String
-        # @param UserId: 用户账号 ID ，例如：10000000
+        # @param UserId: <p>用户账号 ID ，例如：10000000</p>
         # @type UserId: String
-        # @param Role: 权限(只取数组中的第一个，其中 Organization 暂未使用，可不填)
+        # @param Role: <p>权限(只取数组中的第一个，其中 Organization 暂未使用，可不填)</p>
         # @type Role: Array
-        # @param Notes: 备注
+        # @param Notes: <p>备注</p>
         # @type Notes: String
 
         attr_accessor :InstanceId, :UserId, :Role, :Notes
@@ -3328,7 +3328,7 @@ module TencentCloud
 
       # CreateSSOAccount返回参数结构体
       class CreateSSOAccountResponse < TencentCloud::Common::AbstractModel
-        # @param UserId: 已添加的用户 UIN
+        # @param UserId: <p>已添加的用户 UIN</p>
         # @type UserId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3672,9 +3672,9 @@ module TencentCloud
 
       # DeleteGrafanaNotificationChannel请求参数结构体
       class DeleteGrafanaNotificationChannelRequest < TencentCloud::Common::AbstractModel
-        # @param ChannelIDs: 通道 ID 数组。例如：nchannel-abcd1234，通过 DescribeGrafanaChannels 获取
+        # @param ChannelIDs: <p>通道 ID 数组。例如：nchannel-abcd1234，通过 DescribeGrafanaChannels 获取</p>
         # @type ChannelIDs: Array
-        # @param InstanceId: Grafana 实例 ID，例如：grafana-abcdefgh
+        # @param InstanceId: <p>Grafana 实例 ID，例如：grafana-abcdefgh</p>
         # @type InstanceId: String
 
         attr_accessor :ChannelIDs, :InstanceId
@@ -5860,7 +5860,7 @@ module TencentCloud
 
       # DescribeDNSConfig请求参数结构体
       class DescribeDNSConfigRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: Grafana 实例 ID，例如：grafana-abcdefgh
+        # @param InstanceId: <p>Grafana 实例 ID，例如：grafana-abcdefgh</p>
         # @type InstanceId: String
 
         attr_accessor :InstanceId
@@ -5876,7 +5876,7 @@ module TencentCloud
 
       # DescribeDNSConfig返回参数结构体
       class DescribeDNSConfigResponse < TencentCloud::Common::AbstractModel
-        # @param NameServers: DNS 服务器数组
+        # @param NameServers: <p>DNS 服务器数组</p>
         # @type NameServers: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6038,17 +6038,17 @@ module TencentCloud
 
       # DescribeGrafanaChannels请求参数结构体
       class DescribeGrafanaChannelsRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: Grafana 实例 ID，例如：grafana-12345678
+        # @param InstanceId: <p>Grafana 实例 ID，例如：grafana-12345678</p>
         # @type InstanceId: String
-        # @param Offset: 偏移量
+        # @param Offset: <p>偏移量</p>
         # @type Offset: Integer
-        # @param Limit: 查询数量
+        # @param Limit: <p>查询数量</p>
         # @type Limit: Integer
-        # @param ChannelName: 告警通道名称，例如：test
+        # @param ChannelName: <p>告警通道名称，例如：test</p>
         # @type ChannelName: String
-        # @param ChannelIds: 告警通道 ID，例如：nchannel-abcd1234
+        # @param ChannelIds: <p>告警通道 ID，例如：nchannel-abcd1234</p>
         # @type ChannelIds: Array
-        # @param ChannelState: 告警通道状态(不用填写，目前只有可用和删除状态，默认只能查询可用的告警通道)
+        # @param ChannelState: <p>告警通道状态(不用填写，目前只有可用和删除状态，默认只能查询可用的告警通道)</p>
         # @type ChannelState: Integer
 
         attr_accessor :InstanceId, :Offset, :Limit, :ChannelName, :ChannelIds, :ChannelState
@@ -6074,7 +6074,7 @@ module TencentCloud
 
       # DescribeGrafanaChannels返回参数结构体
       class DescribeGrafanaChannelsResponse < TencentCloud::Common::AbstractModel
-        # @param NotificationChannelSet: 告警通道数组
+        # @param NotificationChannelSet: <p>告警通道数组</p>
         # @type NotificationChannelSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6258,11 +6258,11 @@ module TencentCloud
 
       # DescribeGrafanaIntegrations请求参数结构体
       class DescribeGrafanaIntegrationsRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID
+        # @param InstanceId: <p>实例 ID</p>
         # @type InstanceId: String
-        # @param IntegrationId: 集成 ID
+        # @param IntegrationId: <p>集成 ID</p>
         # @type IntegrationId: String
-        # @param Kind: 类型
+        # @param Kind: <p>类型</p>
         # @type Kind: String
 
         attr_accessor :InstanceId, :IntegrationId, :Kind
@@ -6282,7 +6282,7 @@ module TencentCloud
 
       # DescribeGrafanaIntegrations返回参数结构体
       class DescribeGrafanaIntegrationsResponse < TencentCloud::Common::AbstractModel
-        # @param IntegrationSet: 集成数组
+        # @param IntegrationSet: <p>集成数组</p>
         # @type IntegrationSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6309,17 +6309,17 @@ module TencentCloud
 
       # DescribeGrafanaNotificationChannels请求参数结构体
       class DescribeGrafanaNotificationChannelsRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: Grafana 实例 ID，例如：grafana-12345678
+        # @param InstanceId: <p>Grafana 实例 ID，例如：grafana-12345678</p>
         # @type InstanceId: String
-        # @param Offset: 偏移量
+        # @param Offset: <p>偏移量</p>
         # @type Offset: Integer
-        # @param Limit: 查询数量
+        # @param Limit: <p>查询数量</p>
         # @type Limit: Integer
-        # @param ChannelName: 告警通道名称，例如：test
+        # @param ChannelName: <p>告警通道名称，例如：test</p>
         # @type ChannelName: String
-        # @param ChannelIDs: 告警通道 ID，例如：nchannel-abcd1234
+        # @param ChannelIDs: <p>告警通道 ID，例如：nchannel-abcd1234</p>
         # @type ChannelIDs: Array
-        # @param ChannelState: 告警通道状态
+        # @param ChannelState: <p>告警通道状态</p>
         # @type ChannelState: Integer
 
         attr_accessor :InstanceId, :Offset, :Limit, :ChannelName, :ChannelIDs, :ChannelState
@@ -6345,7 +6345,7 @@ module TencentCloud
 
       # DescribeGrafanaNotificationChannels返回参数结构体
       class DescribeGrafanaNotificationChannelsResponse < TencentCloud::Common::AbstractModel
-        # @param NotificationChannelSet: 告警通道数组
+        # @param NotificationChannelSet: <p>告警通道数组</p>
         # @type NotificationChannelSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6372,7 +6372,7 @@ module TencentCloud
 
       # DescribeGrafanaWhiteList请求参数结构体
       class DescribeGrafanaWhiteListRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: Grafana 实例 ID，例如：grafana-abcdefgh
+        # @param InstanceId: <p>Grafana 实例 ID，例如：grafana-abcdefgh</p>
         # @type InstanceId: String
 
         attr_accessor :InstanceId
@@ -6388,7 +6388,7 @@ module TencentCloud
 
       # DescribeGrafanaWhiteList返回参数结构体
       class DescribeGrafanaWhiteListResponse < TencentCloud::Common::AbstractModel
-        # @param WhiteList: 数组
+        # @param WhiteList: <p>数组</p>
         # @type WhiteList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -9994,9 +9994,9 @@ module TencentCloud
 
       # DescribeSSOAccount请求参数结构体
       class DescribeSSOAccountRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: Grafana 实例 ID，例如：grafana-abcdefgh
+        # @param InstanceId: <p>Grafana 实例 ID，例如：grafana-abcdefgh</p>
         # @type InstanceId: String
-        # @param UserId: 填写对应的账号 ID，将会按账号 ID 进行过滤，例如：10000
+        # @param UserId: <p>填写对应的账号 ID，将会按账号 ID 进行过滤，例如：10000</p>
         # @type UserId: String
 
         attr_accessor :InstanceId, :UserId
@@ -10014,7 +10014,7 @@ module TencentCloud
 
       # DescribeSSOAccount返回参数结构体
       class DescribeSSOAccountResponse < TencentCloud::Common::AbstractModel
-        # @param AccountSet: 授权账号列表
+        # @param AccountSet: <p>授权账号列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AccountSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -10811,17 +10811,17 @@ module TencentCloud
 
       # Grafana 告警渠道
       class GrafanaChannel < TencentCloud::Common::AbstractModel
-        # @param ChannelId: 渠道 ID
+        # @param ChannelId: <p>渠道 ID</p>
         # @type ChannelId: String
-        # @param ChannelName: 渠道名
+        # @param ChannelName: <p>渠道名</p>
         # @type ChannelName: String
-        # @param Receivers: 告警通道模板 ID 数组
+        # @param Receivers: <p>告警通道模板 ID 数组</p>
         # @type Receivers: Array
-        # @param CreatedAt: 创建时间
+        # @param CreatedAt: <p>创建时间</p>
         # @type CreatedAt: String
-        # @param UpdatedAt: 更新时间
+        # @param UpdatedAt: <p>更新时间</p>
         # @type UpdatedAt: String
-        # @param OrganizationIds: 告警渠道的所有生效组织
+        # @param OrganizationIds: <p>告警渠道的所有生效组织</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OrganizationIds: Array
 
@@ -11028,9 +11028,9 @@ module TencentCloud
 
       # Grafana 插件
       class GrafanaPlugin < TencentCloud::Common::AbstractModel
-        # @param PluginId: Grafana 插件 ID
+        # @param PluginId: <p>Grafana 插件 ID</p>
         # @type PluginId: String
-        # @param Version: Grafana 插件版本
+        # @param Version: <p>Grafana 插件版本</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Version: String
 
@@ -12180,9 +12180,9 @@ module TencentCloud
 
       # ModifyGrafanaInstance请求参数结构体
       class ModifyGrafanaInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: Grafana 实例 ID，例如：grafana-abcdefgh
+        # @param InstanceId: <p>Grafana 实例 ID，例如：grafana-abcdefgh</p>
         # @type InstanceId: String
-        # @param InstanceName: Grafana 实例名称，例如：test
+        # @param InstanceName: <p>Grafana 实例名称，例如：test</p>
         # @type InstanceName: String
 
         attr_accessor :InstanceId, :InstanceName
@@ -16532,9 +16532,9 @@ module TencentCloud
 
       # UpdateGrafanaConfig请求参数结构体
       class UpdateGrafanaConfigRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID
+        # @param InstanceId: <p>实例 ID</p>
         # @type InstanceId: String
-        # @param Config: JSON 编码后的字符串，如 "{"server":{"root_url":"http://custom.domain"}}"
+        # @param Config: <p>JSON 编码后的字符串，如 &quot;{&quot;server&quot;:{&quot;root_url&quot;:&quot;http://custom.domain&quot;}}&quot;</p>
         # @type Config: String
 
         attr_accessor :InstanceId, :Config

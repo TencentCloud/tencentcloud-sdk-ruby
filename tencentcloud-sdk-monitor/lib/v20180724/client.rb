@@ -1650,7 +1650,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 列出 Grafana DNS 配置
+        # 列出 Grafana DNS 配置。
 
         # @param request: Request instance for DescribeDNSConfig.
         # @type request: :class:`Tencentcloud::monitor::V20180724::DescribeDNSConfigRequest`
@@ -1746,7 +1746,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 列出 Grafana 所有告警通道
+        # 列出 Grafana 所有告警通道。
 
         # @param request: Request instance for DescribeGrafanaChannels.
         # @type request: :class:`Tencentcloud::monitor::V20180724::DescribeGrafanaChannelsRequest`
@@ -2880,7 +2880,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 列出当前grafana实例的所有授权账号
+        # 列出当前grafana实例的所有授权账号.
 
         # @param request: Request instance for DescribeSSOAccount.
         # @type request: :class:`Tencentcloud::monitor::V20180724::DescribeSSOAccountRequest`

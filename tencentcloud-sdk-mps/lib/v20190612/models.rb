@@ -17834,6 +17834,57 @@ module TencentCloud
         end
       end
 
+      # DetectVideoWatermark请求参数结构体
+      class DetectVideoWatermarkRequest < TencentCloud::Common::AbstractModel
+        # @param InputInfo: <p>输入信息，当前仅支持 URL、COS</p>
+        # @type InputInfo: :class:`Tencentcloud::Mps.v20190612.models.MediaInputInfo`
+        # @param UserExtPara: <p>扩展参数，默认不填</p>
+        # @type UserExtPara: String
+
+        attr_accessor :InputInfo, :UserExtPara
+
+        def initialize(inputinfo=nil, userextpara=nil)
+          @InputInfo = inputinfo
+          @UserExtPara = userextpara
+        end
+
+        def deserialize(params)
+          unless params['InputInfo'].nil?
+            @InputInfo = MediaInputInfo.new
+            @InputInfo.deserialize(params['InputInfo'])
+          end
+          @UserExtPara = params['UserExtPara']
+        end
+      end
+
+      # DetectVideoWatermark返回参数结构体
+      class DetectVideoWatermarkResponse < TencentCloud::Common::AbstractModel
+        # @param Confidence: <p>是否存在水印的置信度</p><p>取值范围：[0, 100]</p>
+        # @type Confidence: Float
+        # @param HasWatermark: <p>视频中是否存在水印</p>
+        # @type HasWatermark: Boolean
+        # @param Description: <p>关于水印的一些描述性说明</p>
+        # @type Description: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Confidence, :HasWatermark, :Description, :RequestId
+
+        def initialize(confidence=nil, haswatermark=nil, description=nil, requestid=nil)
+          @Confidence = confidence
+          @HasWatermark = haswatermark
+          @Description = description
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Confidence = params['Confidence']
+          @HasWatermark = params['HasWatermark']
+          @Description = params['Description']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 诊断结果项。
       class DiagnoseResult < TencentCloud::Common::AbstractModel
         # @param Category: 诊断出的异常类别，取值范围：
