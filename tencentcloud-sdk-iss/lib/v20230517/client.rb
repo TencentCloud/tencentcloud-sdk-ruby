@@ -488,30 +488,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 用于删除网关。
-
-        # @param request: Request instance for DeleteGateway.
-        # @type request: :class:`Tencentcloud::iss::V20230517::DeleteGatewayRequest`
-        # @rtype: :class:`Tencentcloud::iss::V20230517::DeleteGatewayResponse`
-        def DeleteGateway(request)
-          body = send_request('DeleteGateway', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DeleteGatewayResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 用于删除组织。
 
         # @param request: Request instance for DeleteOrganization.
@@ -858,102 +834,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeGBDeviceAddrResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 用于获取网关详情。
-
-        # @param request: Request instance for DescribeGateway.
-        # @type request: :class:`Tencentcloud::iss::V20230517::DescribeGatewayRequest`
-        # @rtype: :class:`Tencentcloud::iss::V20230517::DescribeGatewayResponse`
-        def DescribeGateway(request)
-          body = send_request('DescribeGateway', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeGatewayResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 用于获取网关的数据及流量监控信息。
-
-        # @param request: Request instance for DescribeGatewayMonitor.
-        # @type request: :class:`Tencentcloud::iss::V20230517::DescribeGatewayMonitorRequest`
-        # @rtype: :class:`Tencentcloud::iss::V20230517::DescribeGatewayMonitorResponse`
-        def DescribeGatewayMonitor(request)
-          body = send_request('DescribeGatewayMonitor', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeGatewayMonitorResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 用于查询网关接入协议。
-
-        # @param request: Request instance for DescribeGatewayProtocol.
-        # @type request: :class:`Tencentcloud::iss::V20230517::DescribeGatewayProtocolRequest`
-        # @rtype: :class:`Tencentcloud::iss::V20230517::DescribeGatewayProtocolResponse`
-        def DescribeGatewayProtocol(request)
-          body = send_request('DescribeGatewayProtocol', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeGatewayProtocolResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 查询网关服务版本
-
-        # @param request: Request instance for DescribeGatewayVersion.
-        # @type request: :class:`Tencentcloud::iss::V20230517::DescribeGatewayVersionRequest`
-        # @rtype: :class:`Tencentcloud::iss::V20230517::DescribeGatewayVersionResponse`
-        def DescribeGatewayVersion(request)
-          body = send_request('DescribeGatewayVersion', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeGatewayVersionResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1363,54 +1243,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ListDevicesResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 用于查询网关下挂载的设备列表。
-
-        # @param request: Request instance for ListGatewayDevices.
-        # @type request: :class:`Tencentcloud::iss::V20230517::ListGatewayDevicesRequest`
-        # @rtype: :class:`Tencentcloud::iss::V20230517::ListGatewayDevicesResponse`
-        def ListGatewayDevices(request)
-          body = send_request('ListGatewayDevices', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = ListGatewayDevicesResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 用于获取网关列表。
-
-        # @param request: Request instance for ListGateways.
-        # @type request: :class:`Tencentcloud::iss::V20230517::ListGatewaysRequest`
-        # @rtype: :class:`Tencentcloud::iss::V20230517::ListGatewaysResponse`
-        def ListGateways(request)
-          body = send_request('ListGateways', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = ListGatewaysResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1881,30 +1713,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 用于修改网关信息（支持对网关名称和描述的修改）。
-
-        # @param request: Request instance for UpdateGateway.
-        # @type request: :class:`Tencentcloud::iss::V20230517::UpdateGatewayRequest`
-        # @rtype: :class:`Tencentcloud::iss::V20230517::UpdateGatewayResponse`
-        def UpdateGateway(request)
-          body = send_request('UpdateGateway', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = UpdateGatewayResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 用于修改组织。
 
         # @param request: Request instance for UpdateOrganization.
@@ -2035,30 +1843,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = UpdateUserDeviceResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 用于网关升级（支持对所有待更新的服务一键升级）。
-
-        # @param request: Request instance for UpgradeGateway.
-        # @type request: :class:`Tencentcloud::iss::V20230517::UpgradeGatewayRequest`
-        # @rtype: :class:`Tencentcloud::iss::V20230517::UpgradeGatewayResponse`
-        def UpgradeGateway(request)
-          body = send_request('UpgradeGateway', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = UpgradeGatewayResponse.new
             model.deserialize(response['Response'])
             model
           else

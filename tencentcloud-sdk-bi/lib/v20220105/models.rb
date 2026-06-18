@@ -529,6 +529,64 @@ module TencentCloud
         end
       end
 
+      # CreateCorpTag请求参数结构体
+      class CreateCorpTagRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 标签名
+        # @type Name: String
+
+        attr_accessor :Name
+
+        def initialize(name=nil)
+          @Name = name
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+        end
+      end
+
+      # CreateCorpTag返回参数结构体
+      class CreateCorpTagResponse < TencentCloud::Common::AbstractModel
+        # @param ErrorInfo: 自定义错误信息对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorInfo: :class:`Tencentcloud::Bi.v20220105.models.ErrorInfo`
+        # @param Extra: 扩展
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Extra: String
+        # @param Msg: 消息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Msg: String
+        # @param Data: 数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Bi.v20220105.models.DataId`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrorInfo, :Extra, :Msg, :Data, :RequestId
+
+        def initialize(errorinfo=nil, extra=nil, msg=nil, data=nil, requestid=nil)
+          @ErrorInfo = errorinfo
+          @Extra = extra
+          @Msg = msg
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ErrorInfo'].nil?
+            @ErrorInfo = ErrorInfo.new
+            @ErrorInfo.deserialize(params['ErrorInfo'])
+          end
+          @Extra = params['Extra']
+          @Msg = params['Msg']
+          unless params['Data'].nil?
+            @Data = DataId.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateDataTable请求参数结构体
       class CreateDataTableRequest < TencentCloud::Common::AbstractModel
         # @param Type: 后端提供字典：数据表类型，1、数据库建表，2、SQL建表，3、Excel上传，4、API接入，5、腾讯文档，6、云数据库，7、手工输入，8、关联查询
@@ -1317,6 +1375,93 @@ module TencentCloud
           end
           @Msg = params['Msg']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateTagTable请求参数结构体
+      class CreateTagTableRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 标签表名
+        # @type Name: String
+        # @param AutoImportProjectId: 标签表关联的项目id
+        # @type AutoImportProjectId: Integer
+        # @param AutoImportTableId: 标签表关联的数据表id
+        # @type AutoImportTableId: Integer
+        # @param AutoImportUinField: uin对应字段
+        # @type AutoImportUinField: String
+
+        attr_accessor :Name, :AutoImportProjectId, :AutoImportTableId, :AutoImportUinField
+
+        def initialize(name=nil, autoimportprojectid=nil, autoimporttableid=nil, autoimportuinfield=nil)
+          @Name = name
+          @AutoImportProjectId = autoimportprojectid
+          @AutoImportTableId = autoimporttableid
+          @AutoImportUinField = autoimportuinfield
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @AutoImportProjectId = params['AutoImportProjectId']
+          @AutoImportTableId = params['AutoImportTableId']
+          @AutoImportUinField = params['AutoImportUinField']
+        end
+      end
+
+      # CreateTagTable返回参数结构体
+      class CreateTagTableResponse < TencentCloud::Common::AbstractModel
+        # @param ErrorInfo: 自定义错误信息对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorInfo: :class:`Tencentcloud::Bi.v20220105.models.ErrorInfo`
+        # @param Data: 数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Bi.v20220105.models.CreateTagTableVO`
+        # @param Extra: 扩展
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Extra: String
+        # @param Msg: 信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Msg: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrorInfo, :Data, :Extra, :Msg, :RequestId
+
+        def initialize(errorinfo=nil, data=nil, extra=nil, msg=nil, requestid=nil)
+          @ErrorInfo = errorinfo
+          @Data = data
+          @Extra = extra
+          @Msg = msg
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ErrorInfo'].nil?
+            @ErrorInfo = ErrorInfo.new
+            @ErrorInfo.deserialize(params['ErrorInfo'])
+          end
+          unless params['Data'].nil?
+            @Data = CreateTagTableVO.new
+            @Data.deserialize(params['Data'])
+          end
+          @Extra = params['Extra']
+          @Msg = params['Msg']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 创建标签表出参
+      class CreateTagTableVO < TencentCloud::Common::AbstractModel
+        # @param Id: 标签表id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: Integer
+
+        attr_accessor :Id
+
+        def initialize(id=nil)
+          @Id = id
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
         end
       end
 
@@ -3685,6 +3830,119 @@ module TencentCloud
         end
       end
 
+      # EditCorpTag请求参数结构体
+      class EditCorpTagRequest < TencentCloud::Common::AbstractModel
+        # @param Id: 标签ID
+        # @type Id: Integer
+        # @param Name: 标签名称
+        # @type Name: String
+        # @param ImportType: 导入标签的模式(manual/auto)
+        # @type ImportType: String
+        # @param AutoImportTagTableId: 自动导入标签表的id
+        # @type AutoImportTagTableId: Integer
+        # @param AutoImportField: 自动导入标签的关联字段
+        # @type AutoImportField: String
+        # @param AsyncRequest: 是否异步请求
+        # @type AsyncRequest: Boolean
+        # @param AutoImportTagTableName: 自动导入标签表的表名
+        # @type AutoImportTagTableName: String
+        # @param TranId: 事务id
+        # @type TranId: String
+
+        attr_accessor :Id, :Name, :ImportType, :AutoImportTagTableId, :AutoImportField, :AsyncRequest, :AutoImportTagTableName, :TranId
+
+        def initialize(id=nil, name=nil, importtype=nil, autoimporttagtableid=nil, autoimportfield=nil, asyncrequest=nil, autoimporttagtablename=nil, tranid=nil)
+          @Id = id
+          @Name = name
+          @ImportType = importtype
+          @AutoImportTagTableId = autoimporttagtableid
+          @AutoImportField = autoimportfield
+          @AsyncRequest = asyncrequest
+          @AutoImportTagTableName = autoimporttagtablename
+          @TranId = tranid
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Name = params['Name']
+          @ImportType = params['ImportType']
+          @AutoImportTagTableId = params['AutoImportTagTableId']
+          @AutoImportField = params['AutoImportField']
+          @AsyncRequest = params['AsyncRequest']
+          @AutoImportTagTableName = params['AutoImportTagTableName']
+          @TranId = params['TranId']
+        end
+      end
+
+      # EditCorpTag返回参数结构体
+      class EditCorpTagResponse < TencentCloud::Common::AbstractModel
+        # @param ErrorInfo: 自定义错误信息对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorInfo: :class:`Tencentcloud::Bi.v20220105.models.ErrorInfo`
+        # @param Extra: 扩展
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Extra: String
+        # @param Msg: 消息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Msg: String
+        # @param Data: 数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Bi.v20220105.models.EditTagVO`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrorInfo, :Extra, :Msg, :Data, :RequestId
+
+        def initialize(errorinfo=nil, extra=nil, msg=nil, data=nil, requestid=nil)
+          @ErrorInfo = errorinfo
+          @Extra = extra
+          @Msg = msg
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ErrorInfo'].nil?
+            @ErrorInfo = ErrorInfo.new
+            @ErrorInfo.deserialize(params['ErrorInfo'])
+          end
+          @Extra = params['Extra']
+          @Msg = params['Msg']
+          unless params['Data'].nil?
+            @Data = EditTagVO.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 同步标签数据出参
+      class EditTagVO < TencentCloud::Common::AbstractModel
+        # @param TranId: 事务id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TranId: String
+        # @param TranStatus: 事务状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TranStatus: Integer
+        # @param Id: 标签信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: Integer
+
+        attr_accessor :TranId, :TranStatus, :Id
+
+        def initialize(tranid=nil, transtatus=nil, id=nil)
+          @TranId = tranid
+          @TranStatus = transtatus
+          @Id = id
+        end
+
+        def deserialize(params)
+          @TranId = params['TranId']
+          @TranStatus = params['TranStatus']
+          @Id = params['Id']
+        end
+      end
+
       # 报表嵌出数据结构-强鉴权
       class EmbedTokenInfo < TencentCloud::Common::AbstractModel
         # @param Id: 信息标识
@@ -4883,6 +5141,97 @@ module TencentCloud
         end
       end
 
+      # ModifyTagTable请求参数结构体
+      class ModifyTagTableRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 标签表名
+        # @type Name: String
+        # @param AutoImportProjectId: 标签表关联的项目id
+        # @type AutoImportProjectId: Integer
+        # @param AutoImportTableId: 标签表关联的数据表id
+        # @type AutoImportTableId: Integer
+        # @param AutoImportUinField: uin对应字段
+        # @type AutoImportUinField: String
+        # @param Id: 标签表id
+        # @type Id: Integer
+
+        attr_accessor :Name, :AutoImportProjectId, :AutoImportTableId, :AutoImportUinField, :Id
+
+        def initialize(name=nil, autoimportprojectid=nil, autoimporttableid=nil, autoimportuinfield=nil, id=nil)
+          @Name = name
+          @AutoImportProjectId = autoimportprojectid
+          @AutoImportTableId = autoimporttableid
+          @AutoImportUinField = autoimportuinfield
+          @Id = id
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @AutoImportProjectId = params['AutoImportProjectId']
+          @AutoImportTableId = params['AutoImportTableId']
+          @AutoImportUinField = params['AutoImportUinField']
+          @Id = params['Id']
+        end
+      end
+
+      # ModifyTagTable返回参数结构体
+      class ModifyTagTableResponse < TencentCloud::Common::AbstractModel
+        # @param ErrorInfo: 自定义错误信息对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorInfo: :class:`Tencentcloud::Bi.v20220105.models.ErrorInfo`
+        # @param Data: 数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Bi.v20220105.models.ModifyTagTableVO`
+        # @param Extra: 扩展
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Extra: String
+        # @param Msg: 信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Msg: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrorInfo, :Data, :Extra, :Msg, :RequestId
+
+        def initialize(errorinfo=nil, data=nil, extra=nil, msg=nil, requestid=nil)
+          @ErrorInfo = errorinfo
+          @Data = data
+          @Extra = extra
+          @Msg = msg
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ErrorInfo'].nil?
+            @ErrorInfo = ErrorInfo.new
+            @ErrorInfo.deserialize(params['ErrorInfo'])
+          end
+          unless params['Data'].nil?
+            @Data = ModifyTagTableVO.new
+            @Data.deserialize(params['Data'])
+          end
+          @Extra = params['Extra']
+          @Msg = params['Msg']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 创建标签表出参
+      class ModifyTagTableVO < TencentCloud::Common::AbstractModel
+        # @param Id: 标签表id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: Integer
+
+        attr_accessor :Id
+
+        def initialize(id=nil)
+          @Id = id
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+        end
+      end
+
       # ModifyUserDetailInfo请求参数结构体
       class ModifyUserDetailInfoRequest < TencentCloud::Common::AbstractModel
         # @param UserId: 用户ID
@@ -5216,6 +5565,72 @@ module TencentCloud
           end
           @Extra = params['Extra']
           @Msg = params['Msg']
+          @Data = params['Data']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyUserTag请求参数结构体
+      class ModifyUserTagRequest < TencentCloud::Common::AbstractModel
+        # @param UserId: 用户ID
+        # @type UserId: String
+        # @param TagList: 标签信息
+        # @type TagList: Array
+
+        attr_accessor :UserId, :TagList
+
+        def initialize(userid=nil, taglist=nil)
+          @UserId = userid
+          @TagList = taglist
+        end
+
+        def deserialize(params)
+          @UserId = params['UserId']
+          unless params['TagList'].nil?
+            @TagList = []
+            params['TagList'].each do |i|
+              usertaginfo_tmp = UserTagInfo.new
+              usertaginfo_tmp.deserialize(i)
+              @TagList << usertaginfo_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyUserTag返回参数结构体
+      class ModifyUserTagResponse < TencentCloud::Common::AbstractModel
+        # @param ErrorInfo: 自定义错误信息对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorInfo: :class:`Tencentcloud::Bi.v20220105.models.ErrorInfo`
+        # @param Msg: 消息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Msg: String
+        # @param Extra: 额外信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Extra: String
+        # @param Data: 数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrorInfo, :Msg, :Extra, :Data, :RequestId
+
+        def initialize(errorinfo=nil, msg=nil, extra=nil, data=nil, requestid=nil)
+          @ErrorInfo = errorinfo
+          @Msg = msg
+          @Extra = extra
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ErrorInfo'].nil?
+            @ErrorInfo = ErrorInfo.new
+            @ErrorInfo.deserialize(params['ErrorInfo'])
+          end
+          @Msg = params['Msg']
+          @Extra = params['Extra']
           @Data = params['Data']
           @RequestId = params['RequestId']
         end
@@ -7152,6 +7567,48 @@ module TencentCloud
               @UserGroupList << usergroupdto_tmp
             end
           end
+        end
+      end
+
+      # 用户标签信息
+      class UserTagInfo < TencentCloud::Common::AbstractModel
+        # @param Id: 标签ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: Integer
+        # @param Name: 标签名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Value: 标签值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: String
+        # @param IsExternalManage: 是否被托管
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsExternalManage: Boolean
+        # @param ManagePlatform: 标签托管平台
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ManagePlatform: String
+        # @param ImportType: 导入类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImportType: String
+
+        attr_accessor :Id, :Name, :Value, :IsExternalManage, :ManagePlatform, :ImportType
+
+        def initialize(id=nil, name=nil, value=nil, isexternalmanage=nil, manageplatform=nil, importtype=nil)
+          @Id = id
+          @Name = name
+          @Value = value
+          @IsExternalManage = isexternalmanage
+          @ManagePlatform = manageplatform
+          @ImportType = importtype
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Name = params['Name']
+          @Value = params['Value']
+          @IsExternalManage = params['IsExternalManage']
+          @ManagePlatform = params['ManagePlatform']
+          @ImportType = params['ImportType']
         end
       end
 

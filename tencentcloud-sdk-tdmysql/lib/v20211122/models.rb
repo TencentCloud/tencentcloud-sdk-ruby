@@ -1098,6 +1098,65 @@ module TencentCloud
         end
       end
 
+      # CreateUsers请求参数结构体
+      class CreateUsersRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>实例id</p>
+        # @type InstanceId: String
+        # @param Users: <p>新增用户列表</p>
+        # @type Users: Array
+        # @param Password: <p>未加密密码</p>
+        # @type Password: String
+        # @param EncryptedPassword: <p>加密密码</p>
+        # @type EncryptedPassword: String
+        # @param Description: <p>用户描述</p>
+        # @type Description: String
+
+        attr_accessor :InstanceId, :Users, :Password, :EncryptedPassword, :Description
+
+        def initialize(instanceid=nil, users=nil, password=nil, encryptedpassword=nil, description=nil)
+          @InstanceId = instanceid
+          @Users = users
+          @Password = password
+          @EncryptedPassword = encryptedpassword
+          @Description = description
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          unless params['Users'].nil?
+            @Users = []
+            params['Users'].each do |i|
+              user_tmp = User.new
+              user_tmp.deserialize(i)
+              @Users << user_tmp
+            end
+          end
+          @Password = params['Password']
+          @EncryptedPassword = params['EncryptedPassword']
+          @Description = params['Description']
+        end
+      end
+
+      # CreateUsers返回参数结构体
+      class CreateUsersResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: <p>任务id</p>
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :RequestId
+
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 云数据库参数信息。
       class DBParamValue < TencentCloud::Common::AbstractModel
         # @param Param: 参数名称
@@ -1314,6 +1373,53 @@ module TencentCloud
           @Deleted = params['Deleted']
           @IsSuccess = params['IsSuccess']
           @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteUsers请求参数结构体
+      class DeleteUsersRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>实例id</p>
+        # @type InstanceId: String
+        # @param Users: <p>批量删除用户列表</p>
+        # @type Users: Array
+
+        attr_accessor :InstanceId, :Users
+
+        def initialize(instanceid=nil, users=nil)
+          @InstanceId = instanceid
+          @Users = users
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          unless params['Users'].nil?
+            @Users = []
+            params['Users'].each do |i|
+              user_tmp = User.new
+              user_tmp.deserialize(i)
+              @Users << user_tmp
+            end
+          end
+        end
+      end
+
+      # DeleteUsers返回参数结构体
+      class DeleteUsersResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: <p>任务id</p>
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :RequestId
+
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
           @RequestId = params['RequestId']
         end
       end
@@ -2474,6 +2580,86 @@ module TencentCloud
         end
       end
 
+      # DescribeInstanceSSLStatus请求参数结构体
+      class DescribeInstanceSSLStatusRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>实例ID</p>
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeInstanceSSLStatus返回参数结构体
+      class DescribeInstanceSSLStatusResponse < TencentCloud::Common::AbstractModel
+        # @param SSLStatus: <p>SSL启用状态</p><p>枚举值：</p><ul><li>Enabled： SSL已开启</li><li>Disabled： SSL已关闭</li><li>Enabling： SSL开启中</li><li>Disabling： SSL关闭中</li></ul>
+        # @type SSLStatus: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SSLStatus, :RequestId
+
+        def initialize(sslstatus=nil, requestid=nil)
+          @SSLStatus = sslstatus
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @SSLStatus = params['SSLStatus']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeMaintenanceWindow请求参数结构体
+      class DescribeMaintenanceWindowRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>实例ID</p>
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeMaintenanceWindow返回参数结构体
+      class DescribeMaintenanceWindowResponse < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>实例ID</p>
+        # @type InstanceId: String
+        # @param MaintenanceWindow: <p>运维窗口时间范围</p>
+        # @type MaintenanceWindow: String
+        # @param WeekDays: <p>运维窗口天数范围</p>
+        # @type WeekDays: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InstanceId, :MaintenanceWindow, :WeekDays, :RequestId
+
+        def initialize(instanceid=nil, maintenancewindow=nil, weekdays=nil, requestid=nil)
+          @InstanceId = instanceid
+          @MaintenanceWindow = maintenancewindow
+          @WeekDays = weekdays
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @MaintenanceWindow = params['MaintenanceWindow']
+          @WeekDays = params['WeekDays']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeSaleInfo请求参数结构体
       class DescribeSaleInfoRequest < TencentCloud::Common::AbstractModel
         # @param SrcRegion: <p>灾备主实例地域</p>
@@ -2657,6 +2843,89 @@ module TencentCloud
           @AvailableDiskTypes = params['AvailableDiskTypes']
           @SupportTypes = params['SupportTypes']
           @IsSupportServerless = params['IsSupportServerless']
+        end
+      end
+
+      # DescribeSlowLogs请求参数结构体
+      class DescribeSlowLogsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param StartTime: 要检索日志的起始时间
+        # @type StartTime: String
+        # @param EndTime: 要检索日志的结束时间
+        # @type EndTime: String
+        # @param LogFilter: 过滤条件
+        # @type LogFilter: Array
+        # @param Limit: 单页条数限制
+        # @type Limit: Integer
+        # @param Offset: 偏移量
+        # @type Offset: Integer
+        # @param Order: 排序，可选：ASC，DESC
+        # @type Order: String
+        # @param OrderBy: 排序条件，根据业务字段不同，可选排序字段不一样
+        # @type OrderBy: String
+
+        attr_accessor :InstanceId, :StartTime, :EndTime, :LogFilter, :Limit, :Offset, :Order, :OrderBy
+
+        def initialize(instanceid=nil, starttime=nil, endtime=nil, logfilter=nil, limit=nil, offset=nil, order=nil, orderby=nil)
+          @InstanceId = instanceid
+          @StartTime = starttime
+          @EndTime = endtime
+          @LogFilter = logfilter
+          @Limit = limit
+          @Offset = offset
+          @Order = order
+          @OrderBy = orderby
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          unless params['LogFilter'].nil?
+            @LogFilter = []
+            params['LogFilter'].each do |i|
+              logfilter_tmp = LogFilter.new
+              logfilter_tmp.deserialize(i)
+              @LogFilter << logfilter_tmp
+            end
+          end
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @Order = params['Order']
+          @OrderBy = params['OrderBy']
+        end
+      end
+
+      # DescribeSlowLogs返回参数结构体
+      class DescribeSlowLogsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 日志总数
+        # @type TotalCount: Integer
+        # @param Items: 日志详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Items: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Items, :RequestId
+
+        def initialize(totalcount=nil, items=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Items = items
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              slowlogdata_tmp = SlowLogData.new
+              slowlogdata_tmp.deserialize(i)
+              @Items << slowlogdata_tmp
+            end
+          end
+          @RequestId = params['RequestId']
         end
       end
 
@@ -2916,6 +3185,78 @@ module TencentCloud
         def deserialize(params)
           @FlowId = params['FlowId']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 执行计划
+      class Explain < TencentCloud::Common::AbstractModel
+        # @param ID: <p>标识符</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ID: String
+        # @param SelectType: <p>查询类型</p><p>枚举值：</p><ul><li>SIMPLE： 没有子查询和 UNION 的普通查询，单表或普通 JOIN 都是 SIMPLE。</li></ul>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SelectType: String
+        # @param Table: <p>表名</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Table: String
+        # @param Partitions: <p>分区</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Partitions: String
+        # @param Type: <p>访问类型</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param PossibleKeys: <p>可能使用的索引</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PossibleKeys: String
+        # @param Key: <p>实际使用的索引</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Key: String
+        # @param KeyLen: <p>使用的索引长度</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KeyLen: String
+        # @param Ref: <p>与索引比较的列或常量</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Ref: String
+        # @param Rows: <p>估算扫描行数</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Rows: String
+        # @param Filtered: <p>条件过滤后剩余行的估算百分比</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Filtered: String
+        # @param Extra: <p>附加信息，如 Using index、Using filesort 等</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Extra: String
+
+        attr_accessor :ID, :SelectType, :Table, :Partitions, :Type, :PossibleKeys, :Key, :KeyLen, :Ref, :Rows, :Filtered, :Extra
+
+        def initialize(id=nil, selecttype=nil, table=nil, partitions=nil, type=nil, possiblekeys=nil, key=nil, keylen=nil, ref=nil, rows=nil, filtered=nil, extra=nil)
+          @ID = id
+          @SelectType = selecttype
+          @Table = table
+          @Partitions = partitions
+          @Type = type
+          @PossibleKeys = possiblekeys
+          @Key = key
+          @KeyLen = keylen
+          @Ref = ref
+          @Rows = rows
+          @Filtered = filtered
+          @Extra = extra
+        end
+
+        def deserialize(params)
+          @ID = params['ID']
+          @SelectType = params['SelectType']
+          @Table = params['Table']
+          @Partitions = params['Partitions']
+          @Type = params['Type']
+          @PossibleKeys = params['PossibleKeys']
+          @Key = params['Key']
+          @KeyLen = params['KeyLen']
+          @Ref = params['Ref']
+          @Rows = params['Rows']
+          @Filtered = params['Filtered']
+          @Extra = params['Extra']
         end
       end
 
@@ -3524,6 +3865,56 @@ module TencentCloud
         end
       end
 
+      # 慢日志过滤
+      class LogFilter < TencentCloud::Common::AbstractModel
+        # @param Type: 过滤条件名称。
+
+        # 如：sql - SQL命令详情
+
+        # host – 客户端 IP；
+        # user – 数据库账户；
+        # dbName – 数据库名称；
+        # sqlType - SQL类型；
+        # errCode - 错误码
+
+        # execTime - 执行时间
+        # lockWaitTime - 锁等待时间
+        # ioWaitTime - IO等待时间
+        # trxLivingTime - 事务执行时间
+        # cpuTime- Cpu时间
+
+        # threadId - 线程ID
+        # trxId - 事物ID
+        # checkRows - 扫描行数
+        # affectRows - 影响行数
+        # sentRows - 返回行数
+        # @type Type: String
+        # @param Compare: 过滤条件匹配类型。支持：
+        # INC – 包含；     （多个值之前是||的关系）
+        # EXC – 不包含； （多个值之前是&&的关系）
+        # EQS – 等于；     （多个值之前是||的关系）
+        # NEQ – 不等于；（多个值之前是&&的关系）
+
+        # RG – 范围；
+        # @type Compare: String
+        # @param Value: 过滤条件匹配值。当Compare=RG时，例：["1-100","200-300"]
+        # @type Value: Array
+
+        attr_accessor :Type, :Compare, :Value
+
+        def initialize(type=nil, compare=nil, value=nil)
+          @Type = type
+          @Compare = compare
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Compare = params['Compare']
+          @Value = params['Value']
+        end
+      end
+
       # 维护窗口配置
       class MaintenanceWindowInfo < TencentCloud::Common::AbstractModel
         # @param StartTime: 
@@ -3616,6 +4007,46 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyDBInstanceVPort请求参数结构体
+      class ModifyDBInstanceVPortRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 ID，形如：tdsql3-5baee8df。
+        # @type InstanceId: String
+        # @param Vport: 新的VPC端口，3308
+        # @type Vport: Integer
+
+        attr_accessor :InstanceId, :Vport
+
+        def initialize(instanceid=nil, vport=nil)
+          @InstanceId = instanceid
+          @Vport = vport
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Vport = params['Vport']
+        end
+      end
+
+      # ModifyDBInstanceVPort返回参数结构体
+      class ModifyDBInstanceVPortResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: 返回异步任务FlowId
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :RequestId
+
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
           @RequestId = params['RequestId']
         end
       end
@@ -3784,6 +4215,138 @@ module TencentCloud
 
       # ModifyInstanceName返回参数结构体
       class ModifyInstanceNameResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyInstanceNetwork请求参数结构体
+      class ModifyInstanceNetworkRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param VpcId: 希望转到的VPC网络的VpcId
+        # @type VpcId: String
+        # @param SubnetId: 希望转到的VPC网络的子网ID
+        # @type SubnetId: String
+        # @param VipReleaseDelay: VIP保留时长，单位小时，取值范围（0~168），0表示立即释放，有一分钟释放延迟。不传此参数，默认24小时释放VIP。
+        # @type VipReleaseDelay: Integer
+        # @param Vip: 指定vip变更，不填表示随机vip
+        # @type Vip: String
+
+        attr_accessor :InstanceId, :VpcId, :SubnetId, :VipReleaseDelay, :Vip
+
+        def initialize(instanceid=nil, vpcid=nil, subnetid=nil, vipreleasedelay=nil, vip=nil)
+          @InstanceId = instanceid
+          @VpcId = vpcid
+          @SubnetId = subnetid
+          @VipReleaseDelay = vipreleasedelay
+          @Vip = vip
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+          @VipReleaseDelay = params['VipReleaseDelay']
+          @Vip = params['Vip']
+        end
+      end
+
+      # ModifyInstanceNetwork返回参数结构体
+      class ModifyInstanceNetworkResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyInstanceSSLStatus请求参数结构体
+      class ModifyInstanceSSLStatusRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>实例ID</p>
+        # @type InstanceId: String
+        # @param Enabled: <p>是否启用SSL</p>
+        # @type Enabled: Boolean
+
+        attr_accessor :InstanceId, :Enabled
+
+        def initialize(instanceid=nil, enabled=nil)
+          @InstanceId = instanceid
+          @Enabled = enabled
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Enabled = params['Enabled']
+        end
+      end
+
+      # ModifyInstanceSSLStatus返回参数结构体
+      class ModifyInstanceSSLStatusResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: <p>异步流程ID</p>
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :RequestId
+
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyMaintenanceWindow请求参数结构体
+      class ModifyMaintenanceWindowRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>实例ID</p>
+        # @type InstanceId: String
+        # @param StartTime: <p>运维窗口开始时间</p><p>参数格式：hh:mm:ss</p>
+        # @type StartTime: String
+        # @param Duration: <p>运维窗口持续时间</p><p>取值范围：[1, 3]</p><p>单位：时</p>
+        # @type Duration: Integer
+        # @param WeekDays: <p>运维窗口日期</p><p>枚举值：</p><ul><li>Monday： 星期一</li><li>Tuesday： 星期二</li><li>Wednesday： 星期三</li><li>Thursday： 星期四</li><li>Friday： 星期五</li><li>Saturday： 星期六</li><li>Sunday： 星期日</li></ul>
+        # @type WeekDays: Array
+
+        attr_accessor :InstanceId, :StartTime, :Duration, :WeekDays
+
+        def initialize(instanceid=nil, starttime=nil, duration=nil, weekdays=nil)
+          @InstanceId = instanceid
+          @StartTime = starttime
+          @Duration = duration
+          @WeekDays = weekdays
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @StartTime = params['StartTime']
+          @Duration = params['Duration']
+          @WeekDays = params['WeekDays']
+        end
+      end
+
+      # ModifyMaintenanceWindow返回参数结构体
+      class ModifyMaintenanceWindowResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -4016,6 +4579,54 @@ module TencentCloud
         end
       end
 
+      # ResetUserPassword请求参数结构体
+      class ResetUserPasswordRequest < TencentCloud::Common::AbstractModel
+        # @param UserName: 用户名
+        # @type UserName: String
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param Host: 主机IP，IP段以%结尾，表示允许该IP段的所有IP
+        # @type Host: String
+        # @param Password: 新密码，要求长度8-32，至少包含英文、数字和符号中的两种
+        # @type Password: String
+        # @param EncryptedPassword: 加密密码
+        # @type EncryptedPassword: String
+
+        attr_accessor :UserName, :InstanceId, :Host, :Password, :EncryptedPassword
+
+        def initialize(username=nil, instanceid=nil, host=nil, password=nil, encryptedpassword=nil)
+          @UserName = username
+          @InstanceId = instanceid
+          @Host = host
+          @Password = password
+          @EncryptedPassword = encryptedpassword
+        end
+
+        def deserialize(params)
+          @UserName = params['UserName']
+          @InstanceId = params['InstanceId']
+          @Host = params['Host']
+          @Password = params['Password']
+          @EncryptedPassword = params['EncryptedPassword']
+        end
+      end
+
+      # ResetUserPassword返回参数结构体
+      class ResetUserPasswordResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # tag参数
       class ResourceTag < TencentCloud::Common::AbstractModel
         # @param TagKey: 标签键key
@@ -4175,6 +4786,115 @@ module TencentCloud
         def deserialize(params)
           @MinCcu = params['MinCcu']
           @MaxCcu = params['MaxCcu']
+        end
+      end
+
+      # 慢日志信息
+      class SlowLogData < TencentCloud::Common::AbstractModel
+        # @param Timestamp: <p>Sql的执行时间</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Timestamp: String
+        # @param QueryTime: <p>Sql的执行时长（秒）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QueryTime: Float
+        # @param SqlText: <p>Sql语句</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SqlText: String
+        # @param UserHost: <p>客户端地址</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserHost: String
+        # @param UserName: <p>用户名</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserName: String
+        # @param Database: <p>数据库名</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Database: String
+        # @param LockTime: <p>锁时长（秒）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LockTime: Float
+        # @param RowsExamined: <p>扫描行数</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RowsExamined: Integer
+        # @param RowsSent: <p>结果集行数</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RowsSent: Integer
+        # @param TransactionId: <p>事物ID</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TransactionId: String
+        # @param RpcTime: <p>rpc耗时</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RpcTime: Float
+        # @param StorageRpcTime: <p>与存储节点交互rpc耗时</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StorageRpcTime: Float
+        # @param RpcRetryDelayTime: <p>rpc重试延迟耗时</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RpcRetryDelayTime: Float
+        # @param NodeId: <p>node名称</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NodeId: String
+        # @param RpcTrace: <p>rpc 链路追踪</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RpcTrace: String
+        # @param TDStoreLockTime: <p>TDStore锁时长</p><p>单位：秒</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TDStoreLockTime: Float
+        # @param TraceId: <p>全局标识ID</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TraceId: String
+        # @param Explain: <p>执行计划</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Explain: Array
+
+        attr_accessor :Timestamp, :QueryTime, :SqlText, :UserHost, :UserName, :Database, :LockTime, :RowsExamined, :RowsSent, :TransactionId, :RpcTime, :StorageRpcTime, :RpcRetryDelayTime, :NodeId, :RpcTrace, :TDStoreLockTime, :TraceId, :Explain
+
+        def initialize(timestamp=nil, querytime=nil, sqltext=nil, userhost=nil, username=nil, database=nil, locktime=nil, rowsexamined=nil, rowssent=nil, transactionid=nil, rpctime=nil, storagerpctime=nil, rpcretrydelaytime=nil, nodeid=nil, rpctrace=nil, tdstorelocktime=nil, traceid=nil, explain=nil)
+          @Timestamp = timestamp
+          @QueryTime = querytime
+          @SqlText = sqltext
+          @UserHost = userhost
+          @UserName = username
+          @Database = database
+          @LockTime = locktime
+          @RowsExamined = rowsexamined
+          @RowsSent = rowssent
+          @TransactionId = transactionid
+          @RpcTime = rpctime
+          @StorageRpcTime = storagerpctime
+          @RpcRetryDelayTime = rpcretrydelaytime
+          @NodeId = nodeid
+          @RpcTrace = rpctrace
+          @TDStoreLockTime = tdstorelocktime
+          @TraceId = traceid
+          @Explain = explain
+        end
+
+        def deserialize(params)
+          @Timestamp = params['Timestamp']
+          @QueryTime = params['QueryTime']
+          @SqlText = params['SqlText']
+          @UserHost = params['UserHost']
+          @UserName = params['UserName']
+          @Database = params['Database']
+          @LockTime = params['LockTime']
+          @RowsExamined = params['RowsExamined']
+          @RowsSent = params['RowsSent']
+          @TransactionId = params['TransactionId']
+          @RpcTime = params['RpcTime']
+          @StorageRpcTime = params['StorageRpcTime']
+          @RpcRetryDelayTime = params['RpcRetryDelayTime']
+          @NodeId = params['NodeId']
+          @RpcTrace = params['RpcTrace']
+          @TDStoreLockTime = params['TDStoreLockTime']
+          @TraceId = params['TraceId']
+          unless params['Explain'].nil?
+            @Explain = []
+            params['Explain'].each do |i|
+              explain_tmp = Explain.new
+              explain_tmp.deserialize(i)
+              @Explain << explain_tmp
+            end
+          end
         end
       end
 

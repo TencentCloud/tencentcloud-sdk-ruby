@@ -1131,17 +1131,22 @@ module TencentCloud
         # @type CPU: String
         # @param Memory: <p>内存资源量</p>
         # @type Memory: String
+        # @param Storage: <p>自定义磁盘大小</p><p>枚举值：</p><ul><li>1Gi： 1Gi</li><li>5Gi： 5Gi</li><li>10Gi： 10Gi</li><li>20Gi： 20Gi</li></ul>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Storage: String
 
-        attr_accessor :CPU, :Memory
+        attr_accessor :CPU, :Memory, :Storage
 
-        def initialize(cpu=nil, memory=nil)
+        def initialize(cpu=nil, memory=nil, storage=nil)
           @CPU = cpu
           @Memory = memory
+          @Storage = storage
         end
 
         def deserialize(params)
           @CPU = params['CPU']
           @Memory = params['Memory']
+          @Storage = params['Storage']
         end
       end
 

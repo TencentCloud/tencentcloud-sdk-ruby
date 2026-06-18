@@ -101,6 +101,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建企业标签
+
+        # @param request: Request instance for CreateCorpTag.
+        # @type request: :class:`Tencentcloud::bi::V20220105::CreateCorpTagRequest`
+        # @rtype: :class:`Tencentcloud::bi::V20220105::CreateCorpTagResponse`
+        def CreateCorpTag(request)
+          body = send_request('CreateCorpTag', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateCorpTagResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 添加数据表
 
         # @param request: Request instance for CreateDataTable.
@@ -231,6 +255,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateProjectResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建标签表
+
+        # @param request: Request instance for CreateTagTable.
+        # @type request: :class:`Tencentcloud::bi::V20220105::CreateTagTableRequest`
+        # @rtype: :class:`Tencentcloud::bi::V20220105::CreateTagTableResponse`
+        def CreateTagTable(request)
+          body = send_request('CreateTagTable', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateTagTableResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -917,6 +965,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 编辑企业标签(异步)
+
+        # @param request: Request instance for EditCorpTag.
+        # @type request: :class:`Tencentcloud::bi::V20220105::EditCorpTagRequest`
+        # @rtype: :class:`Tencentcloud::bi::V20220105::EditCorpTagResponse`
+        def EditCorpTag(request)
+          body = send_request('EditCorpTag', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = EditCorpTagResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 页面截图导出
 
         # @param request: Request instance for ExportScreenPage.
@@ -1109,6 +1181,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 编辑标签表
+
+        # @param request: Request instance for ModifyTagTable.
+        # @type request: :class:`Tencentcloud::bi::V20220105::ModifyTagTableRequest`
+        # @rtype: :class:`Tencentcloud::bi::V20220105::ModifyTagTableResponse`
+        def ModifyTagTable(request)
+          body = send_request('ModifyTagTable', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyTagTableResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 修改用户角色信息
 
         # @param request: Request instance for ModifyUserDetailInfo.
@@ -1191,6 +1287,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyUserRoleProjectResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改用户标签值
+
+        # @param request: Request instance for ModifyUserTag.
+        # @type request: :class:`Tencentcloud::bi::V20220105::ModifyUserTagRequest`
+        # @rtype: :class:`Tencentcloud::bi::V20220105::ModifyUserTagResponse`
+        def ModifyUserTag(request)
+          body = send_request('ModifyUserTag', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyUserTagResponse.new
             model.deserialize(response['Response'])
             model
           else
