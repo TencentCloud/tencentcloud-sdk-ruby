@@ -19,28 +19,31 @@ module TencentCloud
     module V20230418
       # CreateRabbitMQServerlessBinding请求参数结构体
       class CreateRabbitMQServerlessBindingRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例Id
+        # @param InstanceId: <p>实例Id</p>
         # @type InstanceId: String
-        # @param VirtualHost: Vhost参数
+        # @param VirtualHost: <p>Vhost参数</p>
         # @type VirtualHost: String
-        # @param Source: 源exchange
+        # @param Source: <p>源exchange</p>
         # @type Source: String
-        # @param DestinationType: 目标类型,取值queue或exchange
+        # @param DestinationType: <p>目标类型,取值queue或exchange</p>
         # @type DestinationType: String
-        # @param Destination: 目标队列或者交换机
+        # @param Destination: <p>目标队列或者交换机</p>
         # @type Destination: String
-        # @param RoutingKey: 绑定key
+        # @param RoutingKey: <p>绑定key</p>
         # @type RoutingKey: String
+        # @param Arguments: <p>创建 Header 类型 Exchange 的 Binding 时，可以传入参数。其它类型 Exchange 无需传入</p>
+        # @type Arguments: Array
 
-        attr_accessor :InstanceId, :VirtualHost, :Source, :DestinationType, :Destination, :RoutingKey
+        attr_accessor :InstanceId, :VirtualHost, :Source, :DestinationType, :Destination, :RoutingKey, :Arguments
 
-        def initialize(instanceid=nil, virtualhost=nil, source=nil, destinationtype=nil, destination=nil, routingkey=nil)
+        def initialize(instanceid=nil, virtualhost=nil, source=nil, destinationtype=nil, destination=nil, routingkey=nil, arguments=nil)
           @InstanceId = instanceid
           @VirtualHost = virtualhost
           @Source = source
           @DestinationType = destinationtype
           @Destination = destination
           @RoutingKey = routingkey
+          @Arguments = arguments
         end
 
         def deserialize(params)
@@ -50,16 +53,24 @@ module TencentCloud
           @DestinationType = params['DestinationType']
           @Destination = params['Destination']
           @RoutingKey = params['RoutingKey']
+          unless params['Arguments'].nil?
+            @Arguments = []
+            params['Arguments'].each do |i|
+              rabbitmqserverlesskeyvaluepair_tmp = RabbitMQServerlessKeyValuePair.new
+              rabbitmqserverlesskeyvaluepair_tmp.deserialize(i)
+              @Arguments << rabbitmqserverlesskeyvaluepair_tmp
+            end
+          end
         end
       end
 
       # CreateRabbitMQServerlessBinding返回参数结构体
       class CreateRabbitMQServerlessBindingResponse < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 队列名称
+        # @param InstanceId: <p>队列名称</p>
         # @type InstanceId: String
-        # @param VirtualHost: vhost参数
+        # @param VirtualHost: <p>vhost参数</p>
         # @type VirtualHost: String
-        # @param BindingId: 路由关系Id
+        # @param BindingId: <p>路由关系Id</p>
         # @type BindingId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1345,26 +1356,21 @@ module TencentCloud
 
       # DescribeRabbitMQServerlessQueues请求参数结构体
       class DescribeRabbitMQServerlessQueuesRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例Id
+        # @param InstanceId: <p>实例Id</p>
         # @type InstanceId: String
-        # @param VirtualHost: Vhost参数
+        # @param VirtualHost: <p>Vhost参数</p>
         # @type VirtualHost: String
-        # @param Offset: 分页Offset
+        # @param Offset: <p>分页Offset</p>
         # @type Offset: Integer
-        # @param Limit: 分页Limit
+        # @param Limit: <p>分页Limit</p>
         # @type Limit: Integer
-        # @param SearchWord: 搜索关键词
+        # @param SearchWord: <p>搜索关键词</p>
         # @type SearchWord: String
-        # @param QueueType: 队列类型筛选，不填或 "all"：classic 和 quorum 队列；"classic"：筛选 classic 队列；"quorum"：筛选 quorum 队列
+        # @param QueueType: <p>队列类型筛选，不填或 &quot;all&quot;：classic 和 quorum 队列；&quot;classic&quot;：筛选 classic 队列；&quot;quorum&quot;：筛选 quorum 队列</p>
         # @type QueueType: String
-        # @param SortElement: 排序依据的字段：
-        # ConsumerNumber - 在线消费者数量；
-        # MessageHeapCount - 消息堆积数；
-        # MessageRateInOut - 生产消费速率之和；
-        # MessageRateIn - 生产速率；
-        # MessageRateOut - 消费速率；
+        # @param SortElement: <p>排序依据的字段：<br>messages_ready - 消息堆积数；<br>publish - 生产速率；<br>deliver - 消费速率；<br>consumers - 在线消费者数量；</p>
         # @type SortElement: String
-        # @param SortOrder: 排序顺序，ascend 或 descend
+        # @param SortOrder: <p>排序顺序，asc 或 desc</p>
         # @type SortOrder: String
 
         attr_accessor :InstanceId, :VirtualHost, :Offset, :Limit, :SearchWord, :QueueType, :SortElement, :SortOrder
@@ -1394,9 +1400,9 @@ module TencentCloud
 
       # DescribeRabbitMQServerlessQueues返回参数结构体
       class DescribeRabbitMQServerlessQueuesResponse < TencentCloud::Common::AbstractModel
-        # @param QueueInfoList: 队列列表信息
+        # @param QueueInfoList: <p>队列列表信息</p>
         # @type QueueInfoList: Array
-        # @param TotalCount: 数量
+        # @param TotalCount: <p>数量</p>
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2023,28 +2029,30 @@ module TencentCloud
 
       # Rabbitmq路由关系列表成员
       class RabbitMQBindingListInfo < TencentCloud::Common::AbstractModel
-        # @param BindingId: 路由关系id
+        # @param BindingId: <p>路由关系id</p>
         # @type BindingId: Integer
-        # @param VirtualHost: Vhost参数
+        # @param VirtualHost: <p>Vhost参数</p>
         # @type VirtualHost: String
-        # @param Source: 源exchange名称
+        # @param Source: <p>源exchange名称</p>
         # @type Source: String
-        # @param DestinationType: 目标类型,queue或exchange
+        # @param DestinationType: <p>目标类型,queue或exchange</p>
         # @type DestinationType: String
-        # @param Destination: 目标资源名称
+        # @param Destination: <p>目标资源名称</p>
         # @type Destination: String
-        # @param RoutingKey: 绑定key
+        # @param RoutingKey: <p>绑定key</p>
         # @type RoutingKey: String
-        # @param SourceExchangeType: 源exchange类型
+        # @param SourceExchangeType: <p>源exchange类型</p>
         # @type SourceExchangeType: String
-        # @param CreateTime: 创建时间
+        # @param CreateTime: <p>创建时间</p>
         # @type CreateTime: String
-        # @param ModifyTime: 修改时间
+        # @param ModifyTime: <p>修改时间</p>
         # @type ModifyTime: String
+        # @param Arguments: <p>绑定参数，header类型的Exchange绑定时，可以传入参数。其它类型 Exchange 无需传入</p>
+        # @type Arguments: Array
 
-        attr_accessor :BindingId, :VirtualHost, :Source, :DestinationType, :Destination, :RoutingKey, :SourceExchangeType, :CreateTime, :ModifyTime
+        attr_accessor :BindingId, :VirtualHost, :Source, :DestinationType, :Destination, :RoutingKey, :SourceExchangeType, :CreateTime, :ModifyTime, :Arguments
 
-        def initialize(bindingid=nil, virtualhost=nil, source=nil, destinationtype=nil, destination=nil, routingkey=nil, sourceexchangetype=nil, createtime=nil, modifytime=nil)
+        def initialize(bindingid=nil, virtualhost=nil, source=nil, destinationtype=nil, destination=nil, routingkey=nil, sourceexchangetype=nil, createtime=nil, modifytime=nil, arguments=nil)
           @BindingId = bindingid
           @VirtualHost = virtualhost
           @Source = source
@@ -2054,6 +2062,7 @@ module TencentCloud
           @SourceExchangeType = sourceexchangetype
           @CreateTime = createtime
           @ModifyTime = modifytime
+          @Arguments = arguments
         end
 
         def deserialize(params)
@@ -2066,6 +2075,14 @@ module TencentCloud
           @SourceExchangeType = params['SourceExchangeType']
           @CreateTime = params['CreateTime']
           @ModifyTime = params['ModifyTime']
+          unless params['Arguments'].nil?
+            @Arguments = []
+            params['Arguments'].each do |i|
+              rabbitmqserverlesskeyvaluepair_tmp = RabbitMQServerlessKeyValuePair.new
+              rabbitmqserverlesskeyvaluepair_tmp.deserialize(i)
+              @Arguments << rabbitmqserverlesskeyvaluepair_tmp
+            end
+          end
         end
       end
 
@@ -2777,6 +2794,26 @@ module TencentCloud
               @Tags << rabbitmqserverlesstag_tmp
             end
           end
+        end
+      end
+
+      # 键值对
+      class RabbitMQServerlessKeyValuePair < TencentCloud::Common::AbstractModel
+        # @param Key: 键
+        # @type Key: String
+        # @param Value: 值
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
         end
       end
 

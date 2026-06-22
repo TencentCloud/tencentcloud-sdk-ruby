@@ -600,12 +600,16 @@ module TencentCloud
         # @type EncryptType: Integer
         # @param EncryptSwitching: <p>凭据更新状态</p>
         # @type EncryptSwitching: Boolean
+        # @param CreateUinString: <p>创建者 uin 字符串</p>
+        # @type CreateUinString: String
+        # @param TargetUinString: <p>所属用户UIN 字符串</p>
+        # @type TargetUinString: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :SecretName, :Description, :KmsKeyId, :CreateUin, :Status, :DeleteTime, :CreateTime, :SecretType, :ProductName, :ResourceID, :RotationStatus, :RotationFrequency, :ResourceName, :ProjectID, :AssociatedInstanceIDs, :TargetUin, :AdditionalConfig, :EncryptType, :EncryptSwitching, :RequestId
+        attr_accessor :SecretName, :Description, :KmsKeyId, :CreateUin, :Status, :DeleteTime, :CreateTime, :SecretType, :ProductName, :ResourceID, :RotationStatus, :RotationFrequency, :ResourceName, :ProjectID, :AssociatedInstanceIDs, :TargetUin, :AdditionalConfig, :EncryptType, :EncryptSwitching, :CreateUinString, :TargetUinString, :RequestId
 
-        def initialize(secretname=nil, description=nil, kmskeyid=nil, createuin=nil, status=nil, deletetime=nil, createtime=nil, secrettype=nil, productname=nil, resourceid=nil, rotationstatus=nil, rotationfrequency=nil, resourcename=nil, projectid=nil, associatedinstanceids=nil, targetuin=nil, additionalconfig=nil, encrypttype=nil, encryptswitching=nil, requestid=nil)
+        def initialize(secretname=nil, description=nil, kmskeyid=nil, createuin=nil, status=nil, deletetime=nil, createtime=nil, secrettype=nil, productname=nil, resourceid=nil, rotationstatus=nil, rotationfrequency=nil, resourcename=nil, projectid=nil, associatedinstanceids=nil, targetuin=nil, additionalconfig=nil, encrypttype=nil, encryptswitching=nil, createuinstring=nil, targetuinstring=nil, requestid=nil)
           @SecretName = secretname
           @Description = description
           @KmsKeyId = kmskeyid
@@ -625,6 +629,8 @@ module TencentCloud
           @AdditionalConfig = additionalconfig
           @EncryptType = encrypttype
           @EncryptSwitching = encryptswitching
+          @CreateUinString = createuinstring
+          @TargetUinString = targetuinstring
           @RequestId = requestid
         end
 
@@ -648,6 +654,8 @@ module TencentCloud
           @AdditionalConfig = params['AdditionalConfig']
           @EncryptType = params['EncryptType']
           @EncryptSwitching = params['EncryptSwitching']
+          @CreateUinString = params['CreateUinString']
+          @TargetUinString = params['TargetUinString']
           @RequestId = params['RequestId']
         end
       end
@@ -1374,10 +1382,14 @@ module TencentCloud
         # @type EncryptType: Integer
         # @param EncryptSwitching: <p>凭据密钥加密切换中</p>
         # @type EncryptSwitching: Boolean
+        # @param CreateUinString: <p>创建者 UIN 字符串</p>
+        # @type CreateUinString: String
+        # @param TargetUinString: <p>所属者 UIN 字符串</p><p>用以兼容uint64,防止精度丢失</p>
+        # @type TargetUinString: String
 
-        attr_accessor :SecretName, :Description, :KmsKeyId, :CreateUin, :Status, :DeleteTime, :CreateTime, :KmsKeyType, :RotationStatus, :NextRotationTime, :SecretType, :ProductName, :ResourceName, :ProjectID, :AssociatedInstanceIDs, :TargetUin, :RotationFrequency, :ResourceID, :RotationBeginTime, :EncryptType, :EncryptSwitching
+        attr_accessor :SecretName, :Description, :KmsKeyId, :CreateUin, :Status, :DeleteTime, :CreateTime, :KmsKeyType, :RotationStatus, :NextRotationTime, :SecretType, :ProductName, :ResourceName, :ProjectID, :AssociatedInstanceIDs, :TargetUin, :RotationFrequency, :ResourceID, :RotationBeginTime, :EncryptType, :EncryptSwitching, :CreateUinString, :TargetUinString
 
-        def initialize(secretname=nil, description=nil, kmskeyid=nil, createuin=nil, status=nil, deletetime=nil, createtime=nil, kmskeytype=nil, rotationstatus=nil, nextrotationtime=nil, secrettype=nil, productname=nil, resourcename=nil, projectid=nil, associatedinstanceids=nil, targetuin=nil, rotationfrequency=nil, resourceid=nil, rotationbegintime=nil, encrypttype=nil, encryptswitching=nil)
+        def initialize(secretname=nil, description=nil, kmskeyid=nil, createuin=nil, status=nil, deletetime=nil, createtime=nil, kmskeytype=nil, rotationstatus=nil, nextrotationtime=nil, secrettype=nil, productname=nil, resourcename=nil, projectid=nil, associatedinstanceids=nil, targetuin=nil, rotationfrequency=nil, resourceid=nil, rotationbegintime=nil, encrypttype=nil, encryptswitching=nil, createuinstring=nil, targetuinstring=nil)
           @SecretName = secretname
           @Description = description
           @KmsKeyId = kmskeyid
@@ -1399,6 +1411,8 @@ module TencentCloud
           @RotationBeginTime = rotationbegintime
           @EncryptType = encrypttype
           @EncryptSwitching = encryptswitching
+          @CreateUinString = createuinstring
+          @TargetUinString = targetuinstring
         end
 
         def deserialize(params)
@@ -1423,6 +1437,8 @@ module TencentCloud
           @RotationBeginTime = params['RotationBeginTime']
           @EncryptType = params['EncryptType']
           @EncryptSwitching = params['EncryptSwitching']
+          @CreateUinString = params['CreateUinString']
+          @TargetUinString = params['TargetUinString']
         end
       end
 

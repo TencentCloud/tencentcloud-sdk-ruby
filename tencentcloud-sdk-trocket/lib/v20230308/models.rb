@@ -230,25 +230,26 @@ module TencentCloud
       class CreateConsumerGroupRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 腾讯云 RocketMQ 实例 ID，从 [DescribeFusionInstanceList](https://cloud.tencent.com/document/api/1493/106745) 接口或控制台获得。
         # @type InstanceId: String
-        # @param MaxRetryTimes: 最大重试次数，取值范围0～1000
+        # @param MaxRetryTimes: <p>最大重试次数，取值范围0～1000</p>
         # @type MaxRetryTimes: Integer
-        # @param ConsumeEnable: 是否开启消费
+        # @param ConsumeEnable: <p>是否开启消费</p>
         # @type ConsumeEnable: Boolean
-        # @param ConsumeMessageOrderly: 顺序投递：true
-        # 并发投递：false
+        # @param ConsumeMessageOrderly: <p>顺序投递：true<br>并发投递：false</p>
         # @type ConsumeMessageOrderly: Boolean
         # @param ConsumerGroup: 消费组名称，从 [DescribeConsumerGroupList](https://cloud.tencent.com/document/api/1493/101535) 接口返回的 [ConsumeGroupItem](https://cloud.tencent.com/document/api/1493/96031#ConsumeGroupItem) 或控制台获得。
         # @type ConsumerGroup: String
-        # @param Remark: 备注信息，最多 128 个字符
+        # @param Remark: <p>备注信息，最多 128 个字符</p>
         # @type Remark: String
-        # @param TagList: 标签列表
+        # @param TagList: <p>标签列表</p>
         # @type TagList: Array
-        # @param RetryPolicy: 重试策略
+        # @param RetryPolicy: <p>重试策略</p>
         # @type RetryPolicy: :class:`Tencentcloud::Trocket.v20230308.models.RetryPolicy`
+        # @param LiteTopic: <p>轻量主题</p>
+        # @type LiteTopic: String
 
-        attr_accessor :InstanceId, :MaxRetryTimes, :ConsumeEnable, :ConsumeMessageOrderly, :ConsumerGroup, :Remark, :TagList, :RetryPolicy
+        attr_accessor :InstanceId, :MaxRetryTimes, :ConsumeEnable, :ConsumeMessageOrderly, :ConsumerGroup, :Remark, :TagList, :RetryPolicy, :LiteTopic
 
-        def initialize(instanceid=nil, maxretrytimes=nil, consumeenable=nil, consumemessageorderly=nil, consumergroup=nil, remark=nil, taglist=nil, retrypolicy=nil)
+        def initialize(instanceid=nil, maxretrytimes=nil, consumeenable=nil, consumemessageorderly=nil, consumergroup=nil, remark=nil, taglist=nil, retrypolicy=nil, litetopic=nil)
           @InstanceId = instanceid
           @MaxRetryTimes = maxretrytimes
           @ConsumeEnable = consumeenable
@@ -257,6 +258,7 @@ module TencentCloud
           @Remark = remark
           @TagList = taglist
           @RetryPolicy = retrypolicy
+          @LiteTopic = litetopic
         end
 
         def deserialize(params)
@@ -278,14 +280,15 @@ module TencentCloud
             @RetryPolicy = RetryPolicy.new
             @RetryPolicy.deserialize(params['RetryPolicy'])
           end
+          @LiteTopic = params['LiteTopic']
         end
       end
 
       # CreateConsumerGroup返回参数结构体
       class CreateConsumerGroupResponse < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 集群ID
+        # @param InstanceId: <p>集群ID</p>
         # @type InstanceId: String
-        # @param ConsumerGroup: 消费组名称
+        # @param ConsumerGroup: <p>消费组名称</p>
         # @type ConsumerGroup: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -598,6 +601,7 @@ module TencentCloud
         # - FIFO: 顺序消息
         # - DELAY: 延时消息
         # - TRANSACTION: 事务消息
+        # - LITE: 轻量消息
         # @type TopicType: String
         # @param QueueNum: 队列数量，取值范围3～16
         # @type QueueNum: Integer
@@ -607,10 +611,14 @@ module TencentCloud
         # @type MsgTTL: Integer
         # @param TagList: 标签列表
         # @type TagList: Array
+        # @param AutoExpireDelete: 是否过期自动删除（仅针对轻量主题类型）
+        # @type AutoExpireDelete: Boolean
+        # @param AutoExpireTime: 过期时间，单位：秒（仅针对轻量主题类型）
+        # @type AutoExpireTime: Integer
 
-        attr_accessor :InstanceId, :Topic, :TopicType, :QueueNum, :Remark, :MsgTTL, :TagList
+        attr_accessor :InstanceId, :Topic, :TopicType, :QueueNum, :Remark, :MsgTTL, :TagList, :AutoExpireDelete, :AutoExpireTime
 
-        def initialize(instanceid=nil, topic=nil, topictype=nil, queuenum=nil, remark=nil, msgttl=nil, taglist=nil)
+        def initialize(instanceid=nil, topic=nil, topictype=nil, queuenum=nil, remark=nil, msgttl=nil, taglist=nil, autoexpiredelete=nil, autoexpiretime=nil)
           @InstanceId = instanceid
           @Topic = topic
           @TopicType = topictype
@@ -618,6 +626,8 @@ module TencentCloud
           @Remark = remark
           @MsgTTL = msgttl
           @TagList = taglist
+          @AutoExpireDelete = autoexpiredelete
+          @AutoExpireTime = autoexpiretime
         end
 
         def deserialize(params)
@@ -635,6 +645,8 @@ module TencentCloud
               @TagList << tag_tmp
             end
           end
+          @AutoExpireDelete = params['AutoExpireDelete']
+          @AutoExpireTime = params['AutoExpireTime']
         end
       end
 
@@ -1098,41 +1110,38 @@ module TencentCloud
 
       # DescribeConsumerGroup返回参数结构体
       class DescribeConsumerGroupResponse < TencentCloud::Common::AbstractModel
-        # @param ConsumerNum: 在线消费者数量
+        # @param ConsumerNum: <p>在线消费者数量</p>
         # @type ConsumerNum: Integer
-        # @param Tps: TPS
+        # @param Tps: <p>TPS</p>
         # @type Tps: Integer
-        # @param ConsumerLag: 消息堆积数量
+        # @param ConsumerLag: <p>消息堆积数量</p>
         # @type ConsumerLag: Integer
-        # @param ConsumeType: 消费类型，枚举值如下：
-
-        # - PULL：PULL 消费类型
-        # - PUSH：PUSH 消费类型
-        # - POP：POP 消费类型
+        # @param ConsumeType: <p>消费类型，枚举值如下：</p><ul><li>PULL：PULL 消费类型</li><li>PUSH：PUSH 消费类型</li><li>POP：POP 消费类型</li></ul>
         # @type ConsumeType: String
-        # @param CreatedTime: 创建时间，**Unix时间戳（毫秒）**
+        # @param CreatedTime: <p>创建时间，<strong>Unix时间戳（毫秒）</strong></p>
         # @type CreatedTime: Integer
-        # @param ConsumeMessageOrderly: 顺序投递：true
-        # 并发投递：false
+        # @param ConsumeMessageOrderly: <p>顺序投递：true<br>并发投递：false</p>
         # @type ConsumeMessageOrderly: Boolean
-        # @param ConsumeEnable: 是否开启消费
+        # @param ConsumeEnable: <p>是否开启消费</p>
         # @type ConsumeEnable: Boolean
-        # @param MaxRetryTimes: 最大重试次数
+        # @param MaxRetryTimes: <p>最大重试次数</p>
         # @type MaxRetryTimes: Integer
-        # @param Remark: 备注
+        # @param Remark: <p>备注</p>
         # @type Remark: String
-        # @param MessageModel: 消费模式：
-        # BROADCASTING 广播模式
-        # CLUSTERING 集群模式
+        # @param MessageModel: <p>消费模式：<br>BROADCASTING 广播模式<br>CLUSTERING 集群模式</p>
         # @type MessageModel: String
-        # @param RetryPolicy: 重试策略
+        # @param RetryPolicy: <p>重试策略</p>
         # @type RetryPolicy: :class:`Tencentcloud::Trocket.v20230308.models.RetryPolicy`
+        # @param ConsumeModel: <p>消费模式</p><p>枚举值：</p><ul><li>CLUSTERING： 集群/广播消费</li><li>LITE： LiteTopic消费</li></ul><p>默认值：CLUSTERING</p>
+        # @type ConsumeModel: String
+        # @param LiteTopic: <p>订阅的轻量主题（仅适用于轻量消费模式）</p>
+        # @type LiteTopic: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ConsumerNum, :Tps, :ConsumerLag, :ConsumeType, :CreatedTime, :ConsumeMessageOrderly, :ConsumeEnable, :MaxRetryTimes, :Remark, :MessageModel, :RetryPolicy, :RequestId
+        attr_accessor :ConsumerNum, :Tps, :ConsumerLag, :ConsumeType, :CreatedTime, :ConsumeMessageOrderly, :ConsumeEnable, :MaxRetryTimes, :Remark, :MessageModel, :RetryPolicy, :ConsumeModel, :LiteTopic, :RequestId
 
-        def initialize(consumernum=nil, tps=nil, consumerlag=nil, consumetype=nil, createdtime=nil, consumemessageorderly=nil, consumeenable=nil, maxretrytimes=nil, remark=nil, messagemodel=nil, retrypolicy=nil, requestid=nil)
+        def initialize(consumernum=nil, tps=nil, consumerlag=nil, consumetype=nil, createdtime=nil, consumemessageorderly=nil, consumeenable=nil, maxretrytimes=nil, remark=nil, messagemodel=nil, retrypolicy=nil, consumemodel=nil, litetopic=nil, requestid=nil)
           @ConsumerNum = consumernum
           @Tps = tps
           @ConsumerLag = consumerlag
@@ -1144,6 +1153,8 @@ module TencentCloud
           @Remark = remark
           @MessageModel = messagemodel
           @RetryPolicy = retrypolicy
+          @ConsumeModel = consumemodel
+          @LiteTopic = litetopic
           @RequestId = requestid
         end
 
@@ -1162,6 +1173,8 @@ module TencentCloud
             @RetryPolicy = RetryPolicy.new
             @RetryPolicy.deserialize(params['RetryPolicy'])
           end
+          @ConsumeModel = params['ConsumeModel']
+          @LiteTopic = params['LiteTopic']
           @RequestId = params['RequestId']
         end
       end
@@ -1600,10 +1613,12 @@ module TencentCloud
         # @type QueryDeadLetterMessage: Boolean
         # @param Tag: 消息 Tag，从 [DescribeMessageList](https://cloud.tencent.com/document/api/1493/114593) 接口返回的 [MessageItem](https://cloud.tencent.com/document/api/1493/96031#MessageItem) 或业务日志中获得。
         # @type Tag: String
+        # @param LiteTopic: 轻量主题
+        # @type LiteTopic: String
 
-        attr_accessor :InstanceId, :Topic, :StartTime, :EndTime, :TaskRequestId, :Offset, :Limit, :ConsumerGroup, :MsgId, :MsgKey, :RecentMessageNum, :QueryDeadLetterMessage, :Tag
+        attr_accessor :InstanceId, :Topic, :StartTime, :EndTime, :TaskRequestId, :Offset, :Limit, :ConsumerGroup, :MsgId, :MsgKey, :RecentMessageNum, :QueryDeadLetterMessage, :Tag, :LiteTopic
 
-        def initialize(instanceid=nil, topic=nil, starttime=nil, endtime=nil, taskrequestid=nil, offset=nil, limit=nil, consumergroup=nil, msgid=nil, msgkey=nil, recentmessagenum=nil, querydeadlettermessage=nil, tag=nil)
+        def initialize(instanceid=nil, topic=nil, starttime=nil, endtime=nil, taskrequestid=nil, offset=nil, limit=nil, consumergroup=nil, msgid=nil, msgkey=nil, recentmessagenum=nil, querydeadlettermessage=nil, tag=nil, litetopic=nil)
           @InstanceId = instanceid
           @Topic = topic
           @StartTime = starttime
@@ -1617,6 +1632,7 @@ module TencentCloud
           @RecentMessageNum = recentmessagenum
           @QueryDeadLetterMessage = querydeadlettermessage
           @Tag = tag
+          @LiteTopic = litetopic
         end
 
         def deserialize(params)
@@ -1633,6 +1649,7 @@ module TencentCloud
           @RecentMessageNum = params['RecentMessageNum']
           @QueryDeadLetterMessage = params['QueryDeadLetterMessage']
           @Tag = params['Tag']
+          @LiteTopic = params['LiteTopic']
         end
       end
 
@@ -1679,15 +1696,15 @@ module TencentCloud
         # @type InstanceId: String
         # @param Topic: 主题名称，从 [DescribeTopicList](https://cloud.tencent.com/document/api/1493/96030) 接口返回的 [TopicItem](https://cloud.tencent.com/document/api/1493/96031#TopicItem) 或控制台获得。
         # @type Topic: String
-        # @param MsgId: 消息 ID，从 [DescribeMessageList](https://cloud.tencent.com/document/api/1493/114593) 接口或业务日志中获得。
+        # @param MsgId: <p>消息 ID，从 <a href="https://cloud.tencent.com/document/api/1493/114593">DescribeMessageList</a> 接口或业务日志中获得。</p>
         # @type MsgId: String
         # @param Offset: 查询起始位置，默认为0。
         # @type Offset: Integer
         # @param Limit: 查询结果限制数量，默认20。
         # @type Limit: Integer
-        # @param QueryDeadLetterMessage: 是否是死信消息，默认为false
+        # @param QueryDeadLetterMessage: <p>是否是死信消息，默认为false</p>
         # @type QueryDeadLetterMessage: Boolean
-        # @param QueryDelayMessage: 是否是延时消息，默认为false
+        # @param QueryDelayMessage: <p>是否是延时消息，默认为false</p>
         # @type QueryDelayMessage: Boolean
 
         attr_accessor :InstanceId, :Topic, :MsgId, :Offset, :Limit, :QueryDeadLetterMessage, :QueryDelayMessage
@@ -1715,31 +1732,33 @@ module TencentCloud
 
       # DescribeMessage返回参数结构体
       class DescribeMessageResponse < TencentCloud::Common::AbstractModel
-        # @param Body: 消息体
+        # @param Body: <p>消息体</p>
         # @type Body: String
-        # @param Properties: 详情参数
+        # @param Properties: <p>详情参数</p>
         # @type Properties: String
-        # @param ProduceTime: 生产时间
+        # @param ProduceTime: <p>生产时间</p>
         # @type ProduceTime: String
-        # @param MessageId: 消息ID
+        # @param MessageId: <p>消息ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MessageId: String
-        # @param ProducerAddr: 生产者地址
+        # @param ProducerAddr: <p>生产者地址</p>
         # @type ProducerAddr: String
-        # @param MessageTracks: 消息消费情况列表
+        # @param MessageTracks: <p>消息消费情况列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MessageTracks: Array
-        # @param ShowTopicName: 主题名称
+        # @param ShowTopicName: <p>主题名称</p>
         # @type ShowTopicName: String
-        # @param MessageTracksCount: 消息消费情况列表总条数
+        # @param LiteTopic: <p>轻量主题名称</p>
+        # @type LiteTopic: String
+        # @param MessageTracksCount: <p>消息消费情况列表总条数</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MessageTracksCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Body, :Properties, :ProduceTime, :MessageId, :ProducerAddr, :MessageTracks, :ShowTopicName, :MessageTracksCount, :RequestId
+        attr_accessor :Body, :Properties, :ProduceTime, :MessageId, :ProducerAddr, :MessageTracks, :ShowTopicName, :LiteTopic, :MessageTracksCount, :RequestId
 
-        def initialize(body=nil, properties=nil, producetime=nil, messageid=nil, produceraddr=nil, messagetracks=nil, showtopicname=nil, messagetrackscount=nil, requestid=nil)
+        def initialize(body=nil, properties=nil, producetime=nil, messageid=nil, produceraddr=nil, messagetracks=nil, showtopicname=nil, litetopic=nil, messagetrackscount=nil, requestid=nil)
           @Body = body
           @Properties = properties
           @ProduceTime = producetime
@@ -1747,6 +1766,7 @@ module TencentCloud
           @ProducerAddr = produceraddr
           @MessageTracks = messagetracks
           @ShowTopicName = showtopicname
+          @LiteTopic = litetopic
           @MessageTracksCount = messagetrackscount
           @RequestId = requestid
         end
@@ -1766,6 +1786,7 @@ module TencentCloud
             end
           end
           @ShowTopicName = params['ShowTopicName']
+          @LiteTopic = params['LiteTopic']
           @MessageTracksCount = params['MessageTracksCount']
           @RequestId = params['RequestId']
         end
@@ -1777,11 +1798,11 @@ module TencentCloud
         # @type InstanceId: String
         # @param Topic: 主题名称，从 [DescribeTopicList](https://cloud.tencent.com/document/api/1493/96030) 接口返回的 [TopicItem](https://cloud.tencent.com/document/api/1493/96031#TopicItem) 或控制台获得。
         # @type Topic: String
-        # @param MsgId: 消息 ID，从 [DescribeMessageList](https://cloud.tencent.com/document/api/1493/114593) 接口返回的 [MessageItem](https://cloud.tencent.com/document/api/1493/96031#MessageItem) 或业务日志中获得。
+        # @param MsgId: <p>消息 ID，从 <a href="https://cloud.tencent.com/document/api/1493/114593">DescribeMessageList</a> 接口返回的 <a href="https://cloud.tencent.com/document/api/1493/96031#MessageItem">MessageItem</a> 或业务日志中获得。</p>
         # @type MsgId: String
-        # @param QueryDeadLetterMessage: 是否是死信消息，默认为false
+        # @param QueryDeadLetterMessage: <p>是否是死信消息，默认为false</p>
         # @type QueryDeadLetterMessage: Boolean
-        # @param QueryDelayMessage: 是否是延时消息，默认为false
+        # @param QueryDelayMessage: <p>是否是延时消息，默认为false</p>
         # @type QueryDelayMessage: Boolean
 
         attr_accessor :InstanceId, :Topic, :MsgId, :QueryDeadLetterMessage, :QueryDelayMessage
@@ -1805,24 +1826,28 @@ module TencentCloud
 
       # DescribeMessageTrace返回参数结构体
       class DescribeMessageTraceResponse < TencentCloud::Common::AbstractModel
-        # @param ShowTopicName: 主题名称
+        # @param ShowTopicName: <p>主题名称</p>
         # @type ShowTopicName: String
-        # @param Data: 轨迹详情
+        # @param LiteTopic: <p>轻量主题名称</p>
+        # @type LiteTopic: String
+        # @param Data: <p>轨迹详情</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ShowTopicName, :Data, :RequestId
+        attr_accessor :ShowTopicName, :LiteTopic, :Data, :RequestId
 
-        def initialize(showtopicname=nil, data=nil, requestid=nil)
+        def initialize(showtopicname=nil, litetopic=nil, data=nil, requestid=nil)
           @ShowTopicName = showtopicname
+          @LiteTopic = litetopic
           @Data = data
           @RequestId = requestid
         end
 
         def deserialize(params)
           @ShowTopicName = params['ShowTopicName']
+          @LiteTopic = params['LiteTopic']
           unless params['Data'].nil?
             @Data = []
             params['Data'].each do |i|
@@ -2586,35 +2611,34 @@ module TencentCloud
 
       # DescribeTopic返回参数结构体
       class DescribeTopicResponse < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: <p>实例ID</p>
         # @type InstanceId: String
-        # @param Topic: 主题名称
+        # @param Topic: <p>主题名称</p>
         # @type Topic: String
-        # @param TopicType: 主题类型
-        # UNSPECIFIED:未指定,
-        # NORMAL:普通消息,
-        # FIFO:顺序消息,
-        # DELAY:延时消息,
-        # TRANSACTION:事务消息
+        # @param TopicType: <p>主题类型<br>UNSPECIFIED:未指定,<br>NORMAL:普通消息,<br>FIFO:顺序消息,<br>DELAY:延时消息,<br>TRANSACTION:事务消息</p>
         # @type TopicType: String
-        # @param Remark: 备注
+        # @param Remark: <p>备注</p>
         # @type Remark: String
-        # @param CreatedTime: 创建时间，**Unix时间戳（毫秒）**
+        # @param CreatedTime: <p>创建时间，<strong>Unix时间戳（毫秒）</strong></p>
         # @type CreatedTime: Integer
-        # @param LastUpdateTime: 最后写入时间，**Unix时间戳（毫秒）**
+        # @param LastUpdateTime: <p>最后写入时间，<strong>Unix时间戳（毫秒）</strong></p>
         # @type LastUpdateTime: Integer
-        # @param SubscriptionCount: 订阅数量
+        # @param SubscriptionCount: <p>订阅数量</p>
         # @type SubscriptionCount: Integer
-        # @param SubscriptionData: 订阅关系列表
+        # @param SubscriptionData: <p>订阅关系列表</p>
         # @type SubscriptionData: Array
-        # @param MsgTTL: 消息保留时长，单位：小时
+        # @param MsgTTL: <p>消息保留时长，单位：小时</p>
         # @type MsgTTL: Integer
+        # @param AutoExpireDelete: <p>是否自动删除</p><p>仅适用于轻量主题</p>
+        # @type AutoExpireDelete: Boolean
+        # @param AutoExpireTime: <p>自动过期时间</p><p>单位：分钟</p><p>仅适用于轻量主题</p>
+        # @type AutoExpireTime: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :InstanceId, :Topic, :TopicType, :Remark, :CreatedTime, :LastUpdateTime, :SubscriptionCount, :SubscriptionData, :MsgTTL, :RequestId
+        attr_accessor :InstanceId, :Topic, :TopicType, :Remark, :CreatedTime, :LastUpdateTime, :SubscriptionCount, :SubscriptionData, :MsgTTL, :AutoExpireDelete, :AutoExpireTime, :RequestId
 
-        def initialize(instanceid=nil, topic=nil, topictype=nil, remark=nil, createdtime=nil, lastupdatetime=nil, subscriptioncount=nil, subscriptiondata=nil, msgttl=nil, requestid=nil)
+        def initialize(instanceid=nil, topic=nil, topictype=nil, remark=nil, createdtime=nil, lastupdatetime=nil, subscriptioncount=nil, subscriptiondata=nil, msgttl=nil, autoexpiredelete=nil, autoexpiretime=nil, requestid=nil)
           @InstanceId = instanceid
           @Topic = topic
           @TopicType = topictype
@@ -2624,6 +2648,8 @@ module TencentCloud
           @SubscriptionCount = subscriptioncount
           @SubscriptionData = subscriptiondata
           @MsgTTL = msgttl
+          @AutoExpireDelete = autoexpiredelete
+          @AutoExpireTime = autoexpiretime
           @RequestId = requestid
         end
 
@@ -2644,6 +2670,8 @@ module TencentCloud
             end
           end
           @MsgTTL = params['MsgTTL']
+          @AutoExpireDelete = params['AutoExpireDelete']
+          @AutoExpireTime = params['AutoExpireTime']
           @RequestId = params['RequestId']
         end
       end
@@ -3760,21 +3788,27 @@ module TencentCloud
         # @type InstanceId: String
         # @param Topic: 主题名称，从 [DescribeTopicList](https://cloud.tencent.com/document/api/1493/96030) 接口返回的 [TopicItem](https://cloud.tencent.com/document/api/1493/96031#TopicItem) 或控制台获得。
         # @type Topic: String
-        # @param QueueNum: 队列数量，取值范围3～16
+        # @param QueueNum: <p>队列数量，取值范围3～16</p>
         # @type QueueNum: Integer
-        # @param Remark: 备注信息，最多 128 个字符
+        # @param Remark: <p>备注信息，最多 128 个字符</p>
         # @type Remark: String
-        # @param MsgTTL: 消息保留时长（单位：小时）
+        # @param MsgTTL: <p>消息保留时长（单位：小时）</p>
         # @type MsgTTL: Integer
+        # @param AutoExpireDelete: <p>是否过期自动删除（仅针对轻量主题类型）</p>
+        # @type AutoExpireDelete: Boolean
+        # @param AutoExpireTime: <p>过期时间（仅针对轻量主题类型）</p><p>取值范围：[30, 720]</p><p>单位：分钟</p>
+        # @type AutoExpireTime: Integer
 
-        attr_accessor :InstanceId, :Topic, :QueueNum, :Remark, :MsgTTL
+        attr_accessor :InstanceId, :Topic, :QueueNum, :Remark, :MsgTTL, :AutoExpireDelete, :AutoExpireTime
 
-        def initialize(instanceid=nil, topic=nil, queuenum=nil, remark=nil, msgttl=nil)
+        def initialize(instanceid=nil, topic=nil, queuenum=nil, remark=nil, msgttl=nil, autoexpiredelete=nil, autoexpiretime=nil)
           @InstanceId = instanceid
           @Topic = topic
           @QueueNum = queuenum
           @Remark = remark
           @MsgTTL = msgttl
+          @AutoExpireDelete = autoexpiredelete
+          @AutoExpireTime = autoexpiretime
         end
 
         def deserialize(params)
@@ -3783,6 +3817,8 @@ module TencentCloud
           @QueueNum = params['QueueNum']
           @Remark = params['Remark']
           @MsgTTL = params['MsgTTL']
+          @AutoExpireDelete = params['AutoExpireDelete']
+          @AutoExpireTime = params['AutoExpireTime']
         end
       end
 
@@ -4220,15 +4256,18 @@ module TencentCloud
         # @type MsgKey: String
         # @param MsgTag: 消息Tag
         # @type MsgTag: String
+        # @param LiteTopic: 轻量主题
+        # @type LiteTopic: String
 
-        attr_accessor :InstanceId, :Topic, :MsgBody, :MsgKey, :MsgTag
+        attr_accessor :InstanceId, :Topic, :MsgBody, :MsgKey, :MsgTag, :LiteTopic
 
-        def initialize(instanceid=nil, topic=nil, msgbody=nil, msgkey=nil, msgtag=nil)
+        def initialize(instanceid=nil, topic=nil, msgbody=nil, msgkey=nil, msgtag=nil, litetopic=nil)
           @InstanceId = instanceid
           @Topic = topic
           @MsgBody = msgbody
           @MsgKey = msgkey
           @MsgTag = msgtag
+          @LiteTopic = litetopic
         end
 
         def deserialize(params)
@@ -4237,6 +4276,7 @@ module TencentCloud
           @MsgBody = params['MsgBody']
           @MsgKey = params['MsgKey']
           @MsgTag = params['MsgTag']
+          @LiteTopic = params['LiteTopic']
         end
       end
 

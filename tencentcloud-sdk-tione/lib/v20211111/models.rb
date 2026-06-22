@@ -3013,16 +3013,20 @@ module TencentCloud
 
       # DescribeBillingResourceGroupAttachedWorkspaces请求参数结构体
       class DescribeBillingResourceGroupAttachedWorkspacesRequest < TencentCloud::Common::AbstractModel
+        # @param ResourceGroupId: <p>资源组ID</p>
+        # @type ResourceGroupId: String
         # @param TiProjectId: <p>TI工作空间ID</p><p>仅用于“工作空间”白名单功能。如需使用，请联系TI管理员开通白名单。</p>
         # @type TiProjectId: String
 
-        attr_accessor :TiProjectId
+        attr_accessor :ResourceGroupId, :TiProjectId
 
-        def initialize(tiprojectid=nil)
+        def initialize(resourcegroupid=nil, tiprojectid=nil)
+          @ResourceGroupId = resourcegroupid
           @TiProjectId = tiprojectid
         end
 
         def deserialize(params)
+          @ResourceGroupId = params['ResourceGroupId']
           @TiProjectId = params['TiProjectId']
         end
       end
@@ -6211,10 +6215,31 @@ module TencentCloud
         # @param ErrMsg: <p>部署失败错误信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrMsg: String
+        # @param AvailableResource: <p>节点可用资源</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AvailableResource: :class:`Tencentcloud::Tione.v20211111.models.ResourceInfo`
+        # @param InstanceIP: <p>资源组节点的IP</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceIP: String
+        # @param InstanceName: <p>资源组节点的名称</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceName: String
+        # @param CvmInstanceType: <p>cvm机型</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CvmInstanceType: String
+        # @param AutoRenew: <p>是否自动续买</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AutoRenew: Boolean
+        # @param Isolated: <p>是否被隔离</p>
+        # @type Isolated: Boolean
+        # @param RepairTaskInfo: <p>维修任务信息</p>
+        # @type RepairTaskInfo: :class:`Tencentcloud::Tione.v20211111.models.RepairTaskInfo`
+        # @param ZoneName: <p>节点可用区名称</p>
+        # @type ZoneName: String
 
-        attr_accessor :InstanceId, :UsedResource, :TotalResource, :InstanceStatus, :SubUin, :CreateTime, :ExpireTime, :AutoRenewFlag, :SpecId, :SpecAlias, :SpecFeatures, :CvmInstanceId, :ErrCode, :ErrMsg
+        attr_accessor :InstanceId, :UsedResource, :TotalResource, :InstanceStatus, :SubUin, :CreateTime, :ExpireTime, :AutoRenewFlag, :SpecId, :SpecAlias, :SpecFeatures, :CvmInstanceId, :ErrCode, :ErrMsg, :AvailableResource, :InstanceIP, :InstanceName, :CvmInstanceType, :AutoRenew, :Isolated, :RepairTaskInfo, :ZoneName
 
-        def initialize(instanceid=nil, usedresource=nil, totalresource=nil, instancestatus=nil, subuin=nil, createtime=nil, expiretime=nil, autorenewflag=nil, specid=nil, specalias=nil, specfeatures=nil, cvminstanceid=nil, errcode=nil, errmsg=nil)
+        def initialize(instanceid=nil, usedresource=nil, totalresource=nil, instancestatus=nil, subuin=nil, createtime=nil, expiretime=nil, autorenewflag=nil, specid=nil, specalias=nil, specfeatures=nil, cvminstanceid=nil, errcode=nil, errmsg=nil, availableresource=nil, instanceip=nil, instancename=nil, cvminstancetype=nil, autorenew=nil, isolated=nil, repairtaskinfo=nil, zonename=nil)
           @InstanceId = instanceid
           @UsedResource = usedresource
           @TotalResource = totalresource
@@ -6229,6 +6254,14 @@ module TencentCloud
           @CvmInstanceId = cvminstanceid
           @ErrCode = errcode
           @ErrMsg = errmsg
+          @AvailableResource = availableresource
+          @InstanceIP = instanceip
+          @InstanceName = instancename
+          @CvmInstanceType = cvminstancetype
+          @AutoRenew = autorenew
+          @Isolated = isolated
+          @RepairTaskInfo = repairtaskinfo
+          @ZoneName = zonename
         end
 
         def deserialize(params)
@@ -6252,6 +6285,20 @@ module TencentCloud
           @CvmInstanceId = params['CvmInstanceId']
           @ErrCode = params['ErrCode']
           @ErrMsg = params['ErrMsg']
+          unless params['AvailableResource'].nil?
+            @AvailableResource = ResourceInfo.new
+            @AvailableResource.deserialize(params['AvailableResource'])
+          end
+          @InstanceIP = params['InstanceIP']
+          @InstanceName = params['InstanceName']
+          @CvmInstanceType = params['CvmInstanceType']
+          @AutoRenew = params['AutoRenew']
+          @Isolated = params['Isolated']
+          unless params['RepairTaskInfo'].nil?
+            @RepairTaskInfo = RepairTaskInfo.new
+            @RepairTaskInfo.deserialize(params['RepairTaskInfo'])
+          end
+          @ZoneName = params['ZoneName']
         end
       end
 
@@ -7609,7 +7656,7 @@ module TencentCloud
 
       # 数据源挂载配置
       class MountConfigureInfo < TencentCloud::Common::AbstractModel
-        # @param WorkDir: 数据源的相对路径，支持<@subaccount>这样的占位符
+        # @param WorkDir: <p>数据源的相对路径，支持&lt;@subaccount&gt;这样的占位符</p>
         # @type WorkDir: String
 
         attr_accessor :WorkDir
@@ -8915,6 +8962,42 @@ module TencentCloud
 
         def deserialize(params)
           @Enable = params['Enable']
+        end
+      end
+
+      # cvm维修任务信息
+      class RepairTaskInfo < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>维修任务ID</p>
+        # @type TaskId: String
+        # @param TaskTypeId: <p>任务类型ID<br>// - <code>101</code>：实例运行隐患<br>    // - <code>102</code>：实例运行异常<br>    // - <code>103</code>：实例硬盘异常<br>    // - <code>104</code>：实例网络连接异常<br>    // - <code>105</code>：实例运行预警<br>    // - <code>106</code>：实例硬盘预警<br>    // - <code>107</code>：实例维护升级</p>
+        # @type TaskTypeId: Integer
+        # @param TaskTypeName: <p>任务类型中文名</p>
+        # @type TaskTypeName: String
+        # @param CreateTime: <p>任务创建时间</p>
+        # @type CreateTime: String
+        # @param TaskDetail: <p>任务详情</p>
+        # @type TaskDetail: String
+        # @param Product: <p>产品类型，支持取值：<br>    //<br>    // - <code>CVM</code>：云服务器<br>    // - <code>CDH</code>：专用宿主机<br>    // - <code>CPM2.0</code>：裸金属云服务器</p>
+        # @type Product: String
+
+        attr_accessor :TaskId, :TaskTypeId, :TaskTypeName, :CreateTime, :TaskDetail, :Product
+
+        def initialize(taskid=nil, tasktypeid=nil, tasktypename=nil, createtime=nil, taskdetail=nil, product=nil)
+          @TaskId = taskid
+          @TaskTypeId = tasktypeid
+          @TaskTypeName = tasktypename
+          @CreateTime = createtime
+          @TaskDetail = taskdetail
+          @Product = product
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @TaskTypeId = params['TaskTypeId']
+          @TaskTypeName = params['TaskTypeName']
+          @CreateTime = params['CreateTime']
+          @TaskDetail = params['TaskDetail']
+          @Product = params['Product']
         end
       end
 

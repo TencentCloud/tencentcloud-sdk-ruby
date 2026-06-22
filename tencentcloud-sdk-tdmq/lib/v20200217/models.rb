@@ -6709,33 +6709,35 @@ module TencentCloud
 
       # DescribeRocketMQMsg请求参数结构体
       class DescribeRocketMQMsgRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群id
+        # @param ClusterId: <p>集群id</p>
         # @type ClusterId: String
-        # @param EnvironmentId: 命名空间，4.x 通用集群命名空间固定为: tdmq_default
+        # @param EnvironmentId: <p>命名空间，4.x 通用集群命名空间固定为: tdmq_default</p>
         # @type EnvironmentId: String
-        # @param TopicName: 主题，查询死信时传groupId
+        # @param TopicName: <p>主题，查询死信时传groupId</p>
         # @type TopicName: String
-        # @param MsgId: 消息id
+        # @param MsgId: <p>消息id</p>
         # @type MsgId: String
-        # @param PulsarMsgId: pulsar消息id
+        # @param PulsarMsgId: <p>pulsar消息id</p>
         # @type PulsarMsgId: String
-        # @param QueryDlqMsg: 查询死信时该值为true，只对Rocketmq有效
+        # @param QueryDlqMsg: <p>查询死信时该值为true，只对Rocketmq有效</p>
         # @type QueryDlqMsg: Boolean
-        # @param QueryDeadLetterMessage: 查询死信时该值为true，只对Rocketmq有效
+        # @param QueryDeadLetterMessage: <p>查询死信时该值为true，只对Rocketmq有效</p>
         # @type QueryDeadLetterMessage: Boolean
-        # @param Offset: 分页Offset
+        # @param Offset: <p>分页Offset</p>
         # @type Offset: Integer
-        # @param Limit: 分页Limit
+        # @param Limit: <p>分页Limit</p>
         # @type Limit: Integer
-        # @param FilterTrackGroup: 根据消费组名称过滤消费详情
+        # @param FilterTrackGroup: <p>根据消费组名称过滤消费详情</p>
         # @type FilterTrackGroup: String
+        # @param QueryDelayMessage: <p>查询延迟消息或定时消息时，该值为true</p>
+        # @type QueryDelayMessage: Boolean
 
-        attr_accessor :ClusterId, :EnvironmentId, :TopicName, :MsgId, :PulsarMsgId, :QueryDlqMsg, :QueryDeadLetterMessage, :Offset, :Limit, :FilterTrackGroup
+        attr_accessor :ClusterId, :EnvironmentId, :TopicName, :MsgId, :PulsarMsgId, :QueryDlqMsg, :QueryDeadLetterMessage, :Offset, :Limit, :FilterTrackGroup, :QueryDelayMessage
         extend Gem::Deprecate
         deprecate :QueryDlqMsg, :none, 2026, 6
         deprecate :QueryDlqMsg=, :none, 2026, 6
 
-        def initialize(clusterid=nil, environmentid=nil, topicname=nil, msgid=nil, pulsarmsgid=nil, querydlqmsg=nil, querydeadlettermessage=nil, offset=nil, limit=nil, filtertrackgroup=nil)
+        def initialize(clusterid=nil, environmentid=nil, topicname=nil, msgid=nil, pulsarmsgid=nil, querydlqmsg=nil, querydeadlettermessage=nil, offset=nil, limit=nil, filtertrackgroup=nil, querydelaymessage=nil)
           @ClusterId = clusterid
           @EnvironmentId = environmentid
           @TopicName = topicname
@@ -6746,6 +6748,7 @@ module TencentCloud
           @Offset = offset
           @Limit = limit
           @FilterTrackGroup = filtertrackgroup
+          @QueryDelayMessage = querydelaymessage
         end
 
         def deserialize(params)
@@ -6759,28 +6762,29 @@ module TencentCloud
           @Offset = params['Offset']
           @Limit = params['Limit']
           @FilterTrackGroup = params['FilterTrackGroup']
+          @QueryDelayMessage = params['QueryDelayMessage']
         end
       end
 
       # DescribeRocketMQMsg返回参数结构体
       class DescribeRocketMQMsgResponse < TencentCloud::Common::AbstractModel
-        # @param Body: 消息体
+        # @param Body: <p>消息体</p>
         # @type Body: String
-        # @param Properties: 详情参数
+        # @param Properties: <p>详情参数</p>
         # @type Properties: String
-        # @param ProduceTime: 生产时间
+        # @param ProduceTime: <p>生产时间</p>
         # @type ProduceTime: String
-        # @param MsgId: 消息id
+        # @param MsgId: <p>消息id</p>
         # @type MsgId: String
-        # @param ProducerAddr: 生产者地址
+        # @param ProducerAddr: <p>生产者地址</p>
         # @type ProducerAddr: String
-        # @param MessageTracks: 消费组消费情况列表
+        # @param MessageTracks: <p>消费组消费情况列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MessageTracks: Array
-        # @param ShowTopicName: 详情页展示的topic名称
+        # @param ShowTopicName: <p>详情页展示的topic名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ShowTopicName: String
-        # @param MessageTracksCount: 消费组消费情况列表总数
+        # @param MessageTracksCount: <p>消费组消费情况列表总数</p>
         # @type MessageTracksCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -9920,28 +9924,31 @@ module TencentCloud
 
       # ModifyRocketMQInstance请求参数结构体
       class ModifyRocketMQInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 专享实例ID
+        # @param InstanceId: <p>专享实例ID</p>
         # @type InstanceId: String
-        # @param Name: 实例名称
+        # @param Name: <p>实例名称</p>
         # @type Name: String
-        # @param Remark: 实例备注信息
+        # @param Remark: <p>实例备注信息</p>
         # @type Remark: String
-        # @param MessageRetention: 实例消息保留时间，小时为单位
+        # @param MessageRetention: <p>实例消息保留时间，小时为单位</p>
         # @type MessageRetention: Integer
-        # @param EnableDeletionProtection: 是否开启删除保护
+        # @param EnableDeletionProtection: <p>是否开启删除保护</p>
         # @type EnableDeletionProtection: Boolean
-        # @param SendReceiveRatio: 控制生产和消费消息的 TPS 占比，取值范围0～1，默认值为0.5
+        # @param SendReceiveRatio: <p>控制生产和消费消息的 TPS 占比，取值范围0～1，默认值为0.5</p>
         # @type SendReceiveRatio: Float
+        # @param AclEnabled: <p>是否开启ACL</p>
+        # @type AclEnabled: Boolean
 
-        attr_accessor :InstanceId, :Name, :Remark, :MessageRetention, :EnableDeletionProtection, :SendReceiveRatio
+        attr_accessor :InstanceId, :Name, :Remark, :MessageRetention, :EnableDeletionProtection, :SendReceiveRatio, :AclEnabled
 
-        def initialize(instanceid=nil, name=nil, remark=nil, messageretention=nil, enabledeletionprotection=nil, sendreceiveratio=nil)
+        def initialize(instanceid=nil, name=nil, remark=nil, messageretention=nil, enabledeletionprotection=nil, sendreceiveratio=nil, aclenabled=nil)
           @InstanceId = instanceid
           @Name = name
           @Remark = remark
           @MessageRetention = messageretention
           @EnableDeletionProtection = enabledeletionprotection
           @SendReceiveRatio = sendreceiveratio
+          @AclEnabled = aclenabled
         end
 
         def deserialize(params)
@@ -9951,6 +9958,7 @@ module TencentCloud
           @MessageRetention = params['MessageRetention']
           @EnableDeletionProtection = params['EnableDeletionProtection']
           @SendReceiveRatio = params['SendReceiveRatio']
+          @AclEnabled = params['AclEnabled']
         end
       end
 
@@ -12516,93 +12524,96 @@ module TencentCloud
 
       # RocketMQ集群基本信息
       class RocketMQClusterInfo < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群ID
+        # @param ClusterId: <p>集群ID</p>
         # @type ClusterId: String
-        # @param ClusterName: 集群名称
+        # @param ClusterName: <p>集群名称</p>
         # @type ClusterName: String
-        # @param Region: 地域信息
+        # @param Region: <p>地域信息</p>
         # @type Region: String
-        # @param CreateTime: 创建时间，毫秒为单位
+        # @param CreateTime: <p>创建时间，毫秒为单位</p>
         # @type CreateTime: Integer
-        # @param Remark: 集群说明信息
+        # @param Remark: <p>集群说明信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Remark: String
-        # @param PublicEndPoint: 公网接入地址
+        # @param PublicEndPoint: <p>公网接入地址</p>
         # @type PublicEndPoint: String
-        # @param VpcEndPoint: VPC接入地址
+        # @param VpcEndPoint: <p>VPC接入地址</p>
         # @type VpcEndPoint: String
-        # @param SupportNamespaceEndpoint: 是否支持命名空间接入点
+        # @param SupportNamespaceEndpoint: <p>是否支持命名空间接入点</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SupportNamespaceEndpoint: Boolean
-        # @param Vpcs: VPC信息
+        # @param Vpcs: <p>VPC信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Vpcs: Array
-        # @param IsVip: 是否为专享实例
+        # @param IsVip: <p>是否为专享实例</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsVip: Boolean
-        # @param RocketMQFlag: Rocketmq集群标识
+        # @param RocketMQFlag: <p>Rocketmq集群标识</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RocketMQFlag: Boolean
-        # @param Status: 计费状态，1表示正常，2表示已停服，3表示已销毁
+        # @param Status: <p>计费状态，1表示正常，2表示已停服，3表示已销毁</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
-        # @param IsolateTime: 欠费停服时间，毫秒为单位
+        # @param IsolateTime: <p>欠费停服时间，毫秒为单位</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsolateTime: Integer
-        # @param HttpPublicEndpoint: HTTP协议公网接入地址
+        # @param HttpPublicEndpoint: <p>HTTP协议公网接入地址</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HttpPublicEndpoint: String
-        # @param HttpVpcEndpoint: HTTP协议VPC接入地址
+        # @param HttpVpcEndpoint: <p>HTTP协议VPC接入地址</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HttpVpcEndpoint: String
-        # @param InternalEndpoint: TCP内部接入地址
+        # @param InternalEndpoint: <p>TCP内部接入地址</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InternalEndpoint: String
-        # @param HttpInternalEndpoint: HTTP协议内部接入地址
+        # @param HttpInternalEndpoint: <p>HTTP协议内部接入地址</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HttpInternalEndpoint: String
-        # @param AclEnabled: 是否开启ACL鉴权，专享实例支持关闭
+        # @param AclEnabled: <p>是否开启ACL鉴权，专享实例支持关闭</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AclEnabled: Boolean
-        # @param PublicClbId: 公网CLB实例ID
+        # @param PublicClbId: <p>公网CLB实例ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PublicClbId: String
-        # @param Vip: vip
+        # @param Vip: <p>vip</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Vip: String
-        # @param VpcId: 所属VPC
+        # @param VpcId: <p>所属VPC</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcId: String
-        # @param SupportMigration: 是否支持迁移
+        # @param SupportMigration: <p>是否支持迁移</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SupportMigration: Boolean
-        # @param InstanceStatus: 实例状态，0表示创建中，1表示正常，2表示隔离中，3表示已销毁，4 - 异常, 5 - 发货失败，6 - 变配中，7 - 变配失败
+        # @param InstanceStatus: <p>实例状态，0表示创建中，1表示正常，2表示隔离中，3表示已销毁，4 - 异常, 5 - 发货失败，6 - 变配中，7 - 变配失败</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceStatus: Integer
-        # @param ZoneId: 集群所属可用区，表明集群归属的可用区
+        # @param ZoneId: <p>集群所属可用区，表明集群归属的可用区</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ZoneId: Integer
-        # @param ZoneIds: 集群节点所在的可用区，若该集群为跨可用区集群，则包含该集群节点所在的多个可用区。
+        # @param ZoneIds: <p>集群节点所在的可用区，若该集群为跨可用区集群，则包含该集群节点所在的多个可用区。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ZoneIds: Array
-        # @param IsFrozen: 是否已冻结
+        # @param IsFrozen: <p>是否已冻结</p>
         # @type IsFrozen: Boolean
-        # @param AutoCreateTopicEnabled: 是否开启自动创建主题
+        # @param AutoCreateTopicEnabled: <p>是否开启自动创建主题</p>
         # @type AutoCreateTopicEnabled: Boolean
-        # @param AdminFeatureEnabled: 是否开启集群Admin能力
+        # @param AdminFeatureEnabled: <p>是否开启集群Admin能力</p>
         # @type AdminFeatureEnabled: Boolean
-        # @param AdminAccessKey: Admin AK
+        # @param AdminAccessKey: <p>Admin AK</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AdminAccessKey: String
-        # @param AdminSecretKey: Admin SK
+        # @param AdminSecretKey: <p>Admin SK</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AdminSecretKey: String
-        # @param EnableDeletionProtection: 是否开启删除保护
+        # @param EnableDeletionProtection: <p>是否开启删除保护</p>
         # @type EnableDeletionProtection: Boolean
+        # @param AutoCreateConsumeGroupEnabled: <p>是否开启自动创建消费组</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AutoCreateConsumeGroupEnabled: Boolean
 
-        attr_accessor :ClusterId, :ClusterName, :Region, :CreateTime, :Remark, :PublicEndPoint, :VpcEndPoint, :SupportNamespaceEndpoint, :Vpcs, :IsVip, :RocketMQFlag, :Status, :IsolateTime, :HttpPublicEndpoint, :HttpVpcEndpoint, :InternalEndpoint, :HttpInternalEndpoint, :AclEnabled, :PublicClbId, :Vip, :VpcId, :SupportMigration, :InstanceStatus, :ZoneId, :ZoneIds, :IsFrozen, :AutoCreateTopicEnabled, :AdminFeatureEnabled, :AdminAccessKey, :AdminSecretKey, :EnableDeletionProtection
+        attr_accessor :ClusterId, :ClusterName, :Region, :CreateTime, :Remark, :PublicEndPoint, :VpcEndPoint, :SupportNamespaceEndpoint, :Vpcs, :IsVip, :RocketMQFlag, :Status, :IsolateTime, :HttpPublicEndpoint, :HttpVpcEndpoint, :InternalEndpoint, :HttpInternalEndpoint, :AclEnabled, :PublicClbId, :Vip, :VpcId, :SupportMigration, :InstanceStatus, :ZoneId, :ZoneIds, :IsFrozen, :AutoCreateTopicEnabled, :AdminFeatureEnabled, :AdminAccessKey, :AdminSecretKey, :EnableDeletionProtection, :AutoCreateConsumeGroupEnabled
 
-        def initialize(clusterid=nil, clustername=nil, region=nil, createtime=nil, remark=nil, publicendpoint=nil, vpcendpoint=nil, supportnamespaceendpoint=nil, vpcs=nil, isvip=nil, rocketmqflag=nil, status=nil, isolatetime=nil, httppublicendpoint=nil, httpvpcendpoint=nil, internalendpoint=nil, httpinternalendpoint=nil, aclenabled=nil, publicclbid=nil, vip=nil, vpcid=nil, supportmigration=nil, instancestatus=nil, zoneid=nil, zoneids=nil, isfrozen=nil, autocreatetopicenabled=nil, adminfeatureenabled=nil, adminaccesskey=nil, adminsecretkey=nil, enabledeletionprotection=nil)
+        def initialize(clusterid=nil, clustername=nil, region=nil, createtime=nil, remark=nil, publicendpoint=nil, vpcendpoint=nil, supportnamespaceendpoint=nil, vpcs=nil, isvip=nil, rocketmqflag=nil, status=nil, isolatetime=nil, httppublicendpoint=nil, httpvpcendpoint=nil, internalendpoint=nil, httpinternalendpoint=nil, aclenabled=nil, publicclbid=nil, vip=nil, vpcid=nil, supportmigration=nil, instancestatus=nil, zoneid=nil, zoneids=nil, isfrozen=nil, autocreatetopicenabled=nil, adminfeatureenabled=nil, adminaccesskey=nil, adminsecretkey=nil, enabledeletionprotection=nil, autocreateconsumegroupenabled=nil)
           @ClusterId = clusterid
           @ClusterName = clustername
           @Region = region
@@ -12634,6 +12645,7 @@ module TencentCloud
           @AdminAccessKey = adminaccesskey
           @AdminSecretKey = adminsecretkey
           @EnableDeletionProtection = enabledeletionprotection
+          @AutoCreateConsumeGroupEnabled = autocreateconsumegroupenabled
         end
 
         def deserialize(params)
@@ -12675,6 +12687,7 @@ module TencentCloud
           @AdminAccessKey = params['AdminAccessKey']
           @AdminSecretKey = params['AdminSecretKey']
           @EnableDeletionProtection = params['EnableDeletionProtection']
+          @AutoCreateConsumeGroupEnabled = params['AutoCreateConsumeGroupEnabled']
         end
       end
 
@@ -13594,43 +13607,43 @@ module TencentCloud
 
       # RocketMQ专享实例信息
       class RocketMQVipInstance < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例id
+        # @param InstanceId: <p>实例id</p>
         # @type InstanceId: String
-        # @param InstanceName: 实例名称
+        # @param InstanceName: <p>实例名称</p>
         # @type InstanceName: String
-        # @param InstanceVersion: 实例版本
+        # @param InstanceVersion: <p>实例版本</p>
         # @type InstanceVersion: String
-        # @param Status: 实例状态，0表示创建中，1表示正常，2表示隔离中，3表示已销毁，4 - 异常, 5 - 发货失败，6 - 变配中，7 - 变配失败
+        # @param Status: <p>实例状态，0表示创建中，1表示正常，2表示隔离中，3表示已销毁，4 - 异常, 5 - 发货失败，6 - 变配中，7 - 变配失败</p>
         # @type Status: Integer
-        # @param NodeCount: 节点数量
+        # @param NodeCount: <p>节点数量</p>
         # @type NodeCount: Integer
-        # @param ConfigDisplay: 实例配置规格名称
+        # @param ConfigDisplay: <p>实例配置规格名称</p>
         # @type ConfigDisplay: String
-        # @param MaxTps: 峰值TPS
+        # @param MaxTps: <p>峰值TPS</p>
         # @type MaxTps: Integer
-        # @param MaxBandWidth: 峰值带宽，Mbps为单位
+        # @param MaxBandWidth: <p>峰值带宽，Mbps为单位</p>
         # @type MaxBandWidth: Integer
-        # @param MaxStorage: 存储容量，GB为单位
+        # @param MaxStorage: <p>存储容量，GB为单位</p>
         # @type MaxStorage: Integer
-        # @param ExpireTime: 实例到期时间，毫秒为单位
+        # @param ExpireTime: <p>实例到期时间，毫秒为单位</p>
         # @type ExpireTime: Integer
-        # @param AutoRenewFlag: 自动续费标记，0表示默认状态(用户未设置，即初始状态即手动续费)， 1表示自动续费，2表示明确不自动续费(用户设置)
+        # @param AutoRenewFlag: <p>自动续费标记，0表示默认状态(用户未设置，即初始状态即手动续费)， 1表示自动续费，2表示明确不自动续费(用户设置)</p>
         # @type AutoRenewFlag: Integer
-        # @param PayMode: 0-后付费，1-预付费
+        # @param PayMode: <p>0-后付费，1-预付费</p>
         # @type PayMode: Integer
-        # @param Remark: 备注信息
+        # @param Remark: <p>备注信息</p>
         # @type Remark: String
-        # @param SpecName: 实例配置ID
+        # @param SpecName: <p>实例规格</p><p>枚举值：</p><ul><li>rocket-vip-basic-0： 通用集群</li><li>rocket-vip-basic-1： 专享集群-基础型</li><li>rocket-vip-basic-2： 专享集群-标准型</li><li>rocket-vip-basic-3： 专享集群-高阶I型</li><li>rocket-vip-basic-4： 专享集群-高阶II型</li></ul>
         # @type SpecName: String
-        # @param MaxRetention: 最大可设置消息保留时间，小时为单位
+        # @param MaxRetention: <p>最大可设置消息保留时间，小时为单位</p>
         # @type MaxRetention: Integer
-        # @param MinRetention: 最小可设置消息保留时间，小时为单位
+        # @param MinRetention: <p>最小可设置消息保留时间，小时为单位</p>
         # @type MinRetention: Integer
-        # @param Retention: 实例消息保留时间，小时为单位
+        # @param Retention: <p>实例消息保留时间，小时为单位</p>
         # @type Retention: Integer
-        # @param AclEnabled: 是否开启ACL鉴权
+        # @param AclEnabled: <p>是否开启ACL鉴权</p>
         # @type AclEnabled: Boolean
-        # @param DestroyTime: 销毁时间
+        # @param DestroyTime: <p>销毁时间</p>
         # @type DestroyTime: Integer
 
         attr_accessor :InstanceId, :InstanceName, :InstanceVersion, :Status, :NodeCount, :ConfigDisplay, :MaxTps, :MaxBandWidth, :MaxStorage, :ExpireTime, :AutoRenewFlag, :PayMode, :Remark, :SpecName, :MaxRetention, :MinRetention, :Retention, :AclEnabled, :DestroyTime

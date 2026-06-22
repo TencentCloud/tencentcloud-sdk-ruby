@@ -401,14 +401,17 @@ module TencentCloud
         # @param LatencyMetrics: <p>本次响应生成的时延结果</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LatencyMetrics: :class:`Tencentcloud::Ccc.v20200210.models.AICallLatencyMetrics`
+        # @param TraverseReason: <p>节点跳转的原因，仅画布为灵活模式时有值</p>
+        # @type TraverseReason: String
 
-        attr_accessor :CanBeInterrupted, :SpokenText, :SpokenType, :LatencyMetrics
+        attr_accessor :CanBeInterrupted, :SpokenText, :SpokenType, :LatencyMetrics, :TraverseReason
 
-        def initialize(canbeinterrupted=nil, spokentext=nil, spokentype=nil, latencymetrics=nil)
+        def initialize(canbeinterrupted=nil, spokentext=nil, spokentype=nil, latencymetrics=nil, traversereason=nil)
           @CanBeInterrupted = canbeinterrupted
           @SpokenText = spokentext
           @SpokenType = spokentype
           @LatencyMetrics = latencymetrics
+          @TraverseReason = traversereason
         end
 
         def deserialize(params)
@@ -419,6 +422,7 @@ module TencentCloud
             @LatencyMetrics = AICallLatencyMetrics.new
             @LatencyMetrics.deserialize(params['LatencyMetrics'])
           end
+          @TraverseReason = params['TraverseReason']
         end
       end
 
