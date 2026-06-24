@@ -1030,10 +1030,14 @@ module TencentCloud
         # @type PodLabels: Array
         # @param EnableDefaultRayCluster: <p>是否创建默认raycluster</p>
         # @type EnableDefaultRayCluster: Boolean
+        # @param ImageInfoV2: <p>自定义镜像</p>
+        # @type ImageInfoV2: :class:`Tencentcloud::Emr.v20190103.models.ImageInfoV2`
+        # @param DynamicInstanceForm: <p>创建动态实例参数</p>
+        # @type DynamicInstanceForm: :class:`Tencentcloud::Emr.v20190103.models.DynamicInstanceForm`
 
-        attr_accessor :ComponentName, :PodNumber, :LimitCpu, :LimitMemory, :Service, :VolumeDir, :ExternalAccess, :Affinity, :Disks, :Tolerations, :PodAffinity, :PodAntiAffinity, :TopologySpreadConstraints, :PodLabels, :EnableDefaultRayCluster
+        attr_accessor :ComponentName, :PodNumber, :LimitCpu, :LimitMemory, :Service, :VolumeDir, :ExternalAccess, :Affinity, :Disks, :Tolerations, :PodAffinity, :PodAntiAffinity, :TopologySpreadConstraints, :PodLabels, :EnableDefaultRayCluster, :ImageInfoV2, :DynamicInstanceForm
 
-        def initialize(componentname=nil, podnumber=nil, limitcpu=nil, limitmemory=nil, service=nil, volumedir=nil, externalaccess=nil, affinity=nil, disks=nil, tolerations=nil, podaffinity=nil, podantiaffinity=nil, topologyspreadconstraints=nil, podlabels=nil, enabledefaultraycluster=nil)
+        def initialize(componentname=nil, podnumber=nil, limitcpu=nil, limitmemory=nil, service=nil, volumedir=nil, externalaccess=nil, affinity=nil, disks=nil, tolerations=nil, podaffinity=nil, podantiaffinity=nil, topologyspreadconstraints=nil, podlabels=nil, enabledefaultraycluster=nil, imageinfov2=nil, dynamicinstanceform=nil)
           @ComponentName = componentname
           @PodNumber = podnumber
           @LimitCpu = limitcpu
@@ -1049,6 +1053,8 @@ module TencentCloud
           @TopologySpreadConstraints = topologyspreadconstraints
           @PodLabels = podlabels
           @EnableDefaultRayCluster = enabledefaultraycluster
+          @ImageInfoV2 = imageinfov2
+          @DynamicInstanceForm = dynamicinstanceform
         end
 
         def deserialize(params)
@@ -1110,6 +1116,14 @@ module TencentCloud
             end
           end
           @EnableDefaultRayCluster = params['EnableDefaultRayCluster']
+          unless params['ImageInfoV2'].nil?
+            @ImageInfoV2 = ImageInfoV2.new
+            @ImageInfoV2.deserialize(params['ImageInfoV2'])
+          end
+          unless params['DynamicInstanceForm'].nil?
+            @DynamicInstanceForm = DynamicInstanceForm.new
+            @DynamicInstanceForm.deserialize(params['DynamicInstanceForm'])
+          end
         end
       end
 
@@ -1935,10 +1949,12 @@ module TencentCloud
         # @type SgIP: String
         # @param ContainerExtraConf: <p>额外容器相关配置</p>
         # @type ContainerExtraConf: :class:`Tencentcloud::Emr.v20190103.models.ContainerExtraConf`
+        # @param EnableSparkAppMonitorInfo: <p>spark监控</p>
+        # @type EnableSparkAppMonitorInfo: :class:`Tencentcloud::Emr.v20190103.models.EnableSparkAppMonitorInfo`
 
-        attr_accessor :InstanceName, :ClusterClass, :Software, :PlatFormType, :CosBucket, :EksClusterId, :ProductId, :ClientToken, :VPCSettings, :CloudResources, :SgId, :MetaDBInfo, :Tags, :LoginSettings, :ExternalService, :ZoneId, :DefaultMetaVersion, :NeedCdbAudit, :SgIP, :ContainerExtraConf
+        attr_accessor :InstanceName, :ClusterClass, :Software, :PlatFormType, :CosBucket, :EksClusterId, :ProductId, :ClientToken, :VPCSettings, :CloudResources, :SgId, :MetaDBInfo, :Tags, :LoginSettings, :ExternalService, :ZoneId, :DefaultMetaVersion, :NeedCdbAudit, :SgIP, :ContainerExtraConf, :EnableSparkAppMonitorInfo
 
-        def initialize(instancename=nil, clusterclass=nil, software=nil, platformtype=nil, cosbucket=nil, eksclusterid=nil, productid=nil, clienttoken=nil, vpcsettings=nil, cloudresources=nil, sgid=nil, metadbinfo=nil, tags=nil, loginsettings=nil, externalservice=nil, zoneid=nil, defaultmetaversion=nil, needcdbaudit=nil, sgip=nil, containerextraconf=nil)
+        def initialize(instancename=nil, clusterclass=nil, software=nil, platformtype=nil, cosbucket=nil, eksclusterid=nil, productid=nil, clienttoken=nil, vpcsettings=nil, cloudresources=nil, sgid=nil, metadbinfo=nil, tags=nil, loginsettings=nil, externalservice=nil, zoneid=nil, defaultmetaversion=nil, needcdbaudit=nil, sgip=nil, containerextraconf=nil, enablesparkappmonitorinfo=nil)
           @InstanceName = instancename
           @ClusterClass = clusterclass
           @Software = software
@@ -1959,6 +1975,7 @@ module TencentCloud
           @NeedCdbAudit = needcdbaudit
           @SgIP = sgip
           @ContainerExtraConf = containerextraconf
+          @EnableSparkAppMonitorInfo = enablesparkappmonitorinfo
         end
 
         def deserialize(params)
@@ -2014,6 +2031,10 @@ module TencentCloud
           unless params['ContainerExtraConf'].nil?
             @ContainerExtraConf = ContainerExtraConf.new
             @ContainerExtraConf.deserialize(params['ContainerExtraConf'])
+          end
+          unless params['EnableSparkAppMonitorInfo'].nil?
+            @EnableSparkAppMonitorInfo = EnableSparkAppMonitorInfo.new
+            @EnableSparkAppMonitorInfo.deserialize(params['EnableSparkAppMonitorInfo'])
           end
         end
       end
@@ -2716,30 +2737,36 @@ module TencentCloud
         end
       end
 
-      # 用户Hive-MetaDB信息
+      # 用户自定义数据库信息
       class CustomMetaDBInfo < TencentCloud::Common::AbstractModel
-        # @param MetaDataJdbcUrl: 自定义MetaDB的JDBC连接，示例: jdbc:mysql://10.10.10.10:3306/dbname
+        # @param MetaDataJdbcUrl: <p>自定义MetaDB的JDBC连接，示例: jdbc:mysql://10.10.10.10:3306/dbname</p>
         # @type MetaDataJdbcUrl: String
-        # @param MetaDataUser: 自定义MetaDB用户名
+        # @param MetaDataUser: <p>自定义MetaDB用户名</p>
         # @type MetaDataUser: String
-        # @param MetaDataPass: 自定义MetaDB密码
+        # @param MetaDataPass: <p>自定义MetaDB密码</p>
         # @type MetaDataPass: String
-        # @param MetaType: hive共享元数据库类型。取值范围：
-        # <li>EMR_DEFAULT_META：表示集群默认创建</li>
-        # <li>EMR_EXIST_META：表示集群使用指定EMR-MetaDB。</li>
-        # <li>USER_CUSTOM_META：表示集群使用自定义MetaDB。</li>
+        # @param MetaType: <p>hive共享元数据库类型。取值范围：</p><li>EMR_DEFAULT_META：表示集群默认创建</li><li>EMR_EXIST_META：表示集群使用指定EMR-MetaDB。</li><li>USER_CUSTOM_META：表示集群使用自定义MetaDB。</li>
         # @type MetaType: String
-        # @param UnifyMetaInstanceId: EMR-MetaDB实例
+        # @param UnifyMetaInstanceId: <p>EMR-MetaDB实例</p>
         # @type UnifyMetaInstanceId: String
+        # @param Components: <p>组件</p>
+        # @type Components: Array
+        # @param DefaultMetaVersion: <p>metadb版本</p>
+        # @type DefaultMetaVersion: String
+        # @param LinkInstanceId: <p>CDBId</p>
+        # @type LinkInstanceId: String
 
-        attr_accessor :MetaDataJdbcUrl, :MetaDataUser, :MetaDataPass, :MetaType, :UnifyMetaInstanceId
+        attr_accessor :MetaDataJdbcUrl, :MetaDataUser, :MetaDataPass, :MetaType, :UnifyMetaInstanceId, :Components, :DefaultMetaVersion, :LinkInstanceId
 
-        def initialize(metadatajdbcurl=nil, metadatauser=nil, metadatapass=nil, metatype=nil, unifymetainstanceid=nil)
+        def initialize(metadatajdbcurl=nil, metadatauser=nil, metadatapass=nil, metatype=nil, unifymetainstanceid=nil, components=nil, defaultmetaversion=nil, linkinstanceid=nil)
           @MetaDataJdbcUrl = metadatajdbcurl
           @MetaDataUser = metadatauser
           @MetaDataPass = metadatapass
           @MetaType = metatype
           @UnifyMetaInstanceId = unifymetainstanceid
+          @Components = components
+          @DefaultMetaVersion = defaultmetaversion
+          @LinkInstanceId = linkinstanceid
         end
 
         def deserialize(params)
@@ -2748,6 +2775,9 @@ module TencentCloud
           @MetaDataPass = params['MetaDataPass']
           @MetaType = params['MetaType']
           @UnifyMetaInstanceId = params['UnifyMetaInstanceId']
+          @Components = params['Components']
+          @DefaultMetaVersion = params['DefaultMetaVersion']
+          @LinkInstanceId = params['LinkInstanceId']
         end
       end
 
@@ -3072,8 +3102,10 @@ module TencentCloud
       # 共用组件信息
       class DependService < TencentCloud::Common::AbstractModel
         # @param ServiceName: 共用组件名
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceName: String
         # @param InstanceId: 共用组件集群
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
 
         attr_accessor :ServiceName, :InstanceId
@@ -3820,12 +3852,14 @@ module TencentCloud
         # @type PersistentVolume: :class:`Tencentcloud::Emr.v20190103.models.PersistentVolume`
         # @param RayClusterYaml: <p>rayClusterYamlJson</p>
         # @type RayClusterYaml: String
+        # @param ImageInfoV2: <p>镜像信息</p>
+        # @type ImageInfoV2: :class:`Tencentcloud::Emr.v20190103.models.ImageInfoV2`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RayClusterName, :RayClusterId, :SubmitType, :Namespace, :CreateTime, :UpdateTime, :Labels, :Tolerations, :Env, :SupportExternalKerberosService, :KerberosCluster, :Token, :HeadGroupSpec, :WorkerGroupSpecs, :StorageConfigEnabled, :RedisInstance, :CustomImage, :DashboardUrl, :TotalPodCount, :HighAvailability, :PersistentVolume, :RayClusterYaml, :RequestId
+        attr_accessor :RayClusterName, :RayClusterId, :SubmitType, :Namespace, :CreateTime, :UpdateTime, :Labels, :Tolerations, :Env, :SupportExternalKerberosService, :KerberosCluster, :Token, :HeadGroupSpec, :WorkerGroupSpecs, :StorageConfigEnabled, :RedisInstance, :CustomImage, :DashboardUrl, :TotalPodCount, :HighAvailability, :PersistentVolume, :RayClusterYaml, :ImageInfoV2, :RequestId
 
-        def initialize(rayclustername=nil, rayclusterid=nil, submittype=nil, namespace=nil, createtime=nil, updatetime=nil, labels=nil, tolerations=nil, env=nil, supportexternalkerberosservice=nil, kerberoscluster=nil, token=nil, headgroupspec=nil, workergroupspecs=nil, storageconfigenabled=nil, redisinstance=nil, customimage=nil, dashboardurl=nil, totalpodcount=nil, highavailability=nil, persistentvolume=nil, rayclusteryaml=nil, requestid=nil)
+        def initialize(rayclustername=nil, rayclusterid=nil, submittype=nil, namespace=nil, createtime=nil, updatetime=nil, labels=nil, tolerations=nil, env=nil, supportexternalkerberosservice=nil, kerberoscluster=nil, token=nil, headgroupspec=nil, workergroupspecs=nil, storageconfigenabled=nil, redisinstance=nil, customimage=nil, dashboardurl=nil, totalpodcount=nil, highavailability=nil, persistentvolume=nil, rayclusteryaml=nil, imageinfov2=nil, requestid=nil)
           @RayClusterName = rayclustername
           @RayClusterId = rayclusterid
           @SubmitType = submittype
@@ -3848,6 +3882,7 @@ module TencentCloud
           @HighAvailability = highavailability
           @PersistentVolume = persistentvolume
           @RayClusterYaml = rayclusteryaml
+          @ImageInfoV2 = imageinfov2
           @RequestId = requestid
         end
 
@@ -3914,13 +3949,17 @@ module TencentCloud
             @PersistentVolume.deserialize(params['PersistentVolume'])
           end
           @RayClusterYaml = params['RayClusterYaml']
+          unless params['ImageInfoV2'].nil?
+            @ImageInfoV2 = ImageInfoV2.new
+            @ImageInfoV2.deserialize(params['ImageInfoV2'])
+          end
           @RequestId = params['RequestId']
         end
       end
 
       # DescribeDynamicInstanceList请求参数结构体
       class DescribeDynamicInstanceListRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: emr 集群 id
+        # @param InstanceId: <p>emr 集群 id</p>
         # @type InstanceId: String
 
         attr_accessor :InstanceId
@@ -3936,15 +3975,18 @@ module TencentCloud
 
       # DescribeDynamicInstanceList返回参数结构体
       class DescribeDynamicInstanceListResponse < TencentCloud::Common::AbstractModel
-        # @param DynamicInstanceList: RayCluster 集群列表
+        # @param DynamicInstanceList: <p>RayCluster 集群列表</p>
         # @type DynamicInstanceList: Array
+        # @param WebUIInfos: <p>服务访问url</p>
+        # @type WebUIInfos: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :DynamicInstanceList, :RequestId
+        attr_accessor :DynamicInstanceList, :WebUIInfos, :RequestId
 
-        def initialize(dynamicinstancelist=nil, requestid=nil)
+        def initialize(dynamicinstancelist=nil, webuiinfos=nil, requestid=nil)
           @DynamicInstanceList = dynamicinstancelist
+          @WebUIInfos = webuiinfos
           @RequestId = requestid
         end
 
@@ -3955,6 +3997,14 @@ module TencentCloud
               raycluster_tmp = RayCluster.new
               raycluster_tmp.deserialize(i)
               @DynamicInstanceList << raycluster_tmp
+            end
+          end
+          unless params['WebUIInfos'].nil?
+            @WebUIInfos = []
+            params['WebUIInfos'].each do |i|
+              webuiinfo_tmp = WebUIInfo.new
+              webuiinfo_tmp.deserialize(i)
+              @WebUIInfos << webuiinfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -6940,41 +6990,62 @@ module TencentCloud
       # 创建DynamicInstance提交的表单数据
       class DynamicInstanceForm < TencentCloud::Common::AbstractModel
         # @param DynamicInstanceName: <p>DynamicInstance名，长度限制1-64字符，只能包含小写字母</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DynamicInstanceName: String
         # @param Namespace: <p>命名空间</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Namespace: String
         # @param SupportHA: <p>是否支持高可用</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SupportHA: Boolean
         # @param CustomImage: <p>自定义镜像信息</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CustomImage: :class:`Tencentcloud::Emr.v20190103.models.CustomImage`
         # @param DynamicInstanceGroups: <p>资源组配置</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DynamicInstanceGroups: Array
         # @param SupportPV: <p>是否支持存储配置</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SupportPV: Boolean
         # @param CBSVolumes: <p>cbs存储卷列表</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CBSVolumes: Array
         # @param CFSVolumes: <p>cfs存储卷列表，只包含cfs，不包含cfs turbo</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CFSVolumes: Array
         # @param COSVolumes: <p>cos存储卷列表</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type COSVolumes: Array
         # @param VolumeMounts: <p>挂载卷列表</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VolumeMounts: Array
         # @param Labels: <p>pod标签</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Labels: Array
         # @param Tolerations: <p>Tolerations定义</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tolerations: Array
         # @param Envs: <p>环境变量</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Envs: Array
         # @param DependServices: <p>依赖外部组件</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DependServices: Array
         # @param SupportToken: <p>是否开启token鉴权</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SupportToken: Boolean
         # @param CFSTurboVolumes: <p>cfs trubo挂载列表，不包含标准版cfs</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CFSTurboVolumes: Array
+        # @param ImageInfoV2: <p>自定义镜像</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImageInfoV2: :class:`Tencentcloud::Emr.v20190103.models.ImageInfoV2`
+        # @param GooseFSVolumes: <p>GooseFS盘</p>
+        # @type GooseFSVolumes: Array
 
-        attr_accessor :DynamicInstanceName, :Namespace, :SupportHA, :CustomImage, :DynamicInstanceGroups, :SupportPV, :CBSVolumes, :CFSVolumes, :COSVolumes, :VolumeMounts, :Labels, :Tolerations, :Envs, :DependServices, :SupportToken, :CFSTurboVolumes
+        attr_accessor :DynamicInstanceName, :Namespace, :SupportHA, :CustomImage, :DynamicInstanceGroups, :SupportPV, :CBSVolumes, :CFSVolumes, :COSVolumes, :VolumeMounts, :Labels, :Tolerations, :Envs, :DependServices, :SupportToken, :CFSTurboVolumes, :ImageInfoV2, :GooseFSVolumes
 
-        def initialize(dynamicinstancename=nil, namespace=nil, supportha=nil, customimage=nil, dynamicinstancegroups=nil, supportpv=nil, cbsvolumes=nil, cfsvolumes=nil, cosvolumes=nil, volumemounts=nil, labels=nil, tolerations=nil, envs=nil, dependservices=nil, supporttoken=nil, cfsturbovolumes=nil)
+        def initialize(dynamicinstancename=nil, namespace=nil, supportha=nil, customimage=nil, dynamicinstancegroups=nil, supportpv=nil, cbsvolumes=nil, cfsvolumes=nil, cosvolumes=nil, volumemounts=nil, labels=nil, tolerations=nil, envs=nil, dependservices=nil, supporttoken=nil, cfsturbovolumes=nil, imageinfov2=nil, goosefsvolumes=nil)
           @DynamicInstanceName = dynamicinstancename
           @Namespace = namespace
           @SupportHA = supportha
@@ -6991,6 +7062,8 @@ module TencentCloud
           @DependServices = dependservices
           @SupportToken = supporttoken
           @CFSTurboVolumes = cfsturbovolumes
+          @ImageInfoV2 = imageinfov2
+          @GooseFSVolumes = goosefsvolumes
         end
 
         def deserialize(params)
@@ -7083,57 +7156,96 @@ module TencentCloud
               @CFSTurboVolumes << cfsturbovolume_tmp
             end
           end
+          unless params['ImageInfoV2'].nil?
+            @ImageInfoV2 = ImageInfoV2.new
+            @ImageInfoV2.deserialize(params['ImageInfoV2'])
+          end
+          unless params['GooseFSVolumes'].nil?
+            @GooseFSVolumes = []
+            params['GooseFSVolumes'].each do |i|
+              goosefsvolume_tmp = GooseFSVolume.new
+              goosefsvolume_tmp.deserialize(i)
+              @GooseFSVolumes << goosefsvolume_tmp
+            end
+          end
         end
       end
 
       # 创建DynamicInstance提交的表单数据中的group部分
       class DynamicInstanceGroup < TencentCloud::Common::AbstractModel
         # @param GroupType: <p>资源组类型</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupType: String
         # @param GroupName: <p>资源组名称</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupName: String
         # @param PodCpu: <p>pod cpu核数</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PodCpu: Integer
         # @param PodMem: <p>pod mem大小（GB）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PodMem: Integer
         # @param PodGpuType: <p>pod gpu类型</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PodGpuType: String
         # @param PodGpu: <p>pod gpu块数</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PodGpu: Integer
         # @param PodNum: <p>pod个数</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PodNum: Integer
         # @param MinPodNum: <p>pod弹性最小个数</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MinPodNum: Integer
         # @param MaxPodNum: <p>pod弹性最大个数，当MaxPodNum &gt; MinPodNum时，默认表示开启弹性扩缩容，将在范围内扩缩容</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxPodNum: Integer
         # @param SupportPV: <p>是否支持存储配置</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SupportPV: Boolean
         # @param CBSVolumes: <p>cbs存储卷列表</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CBSVolumes: Array
         # @param CFSVolumes: <p>cfs存储卷列表</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CFSVolumes: Array
         # @param COSVolumes: <p>cos存储卷列表</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type COSVolumes: Array
         # @param VolumeMounts: <p>挂载卷列表</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VolumeMounts: Array
         # @param Labels: <p>pod标签</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Labels: Array
         # @param Tolerations: <p>Tolerations定义</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tolerations: Array
         # @param Envs: <p>环境变量</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Envs: Array
         # @param SchedulingPolicy: <p>节点调度策略</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SchedulingPolicy: String
         # @param ResourceLabel: <p>资源标签</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceLabel: String
         # @param PodGpuResourceKey: <p>GPU资源厂商key</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PodGpuResourceKey: String
         # @param CFSTurboVolumes: <p>CFS Turbo 挂载列表</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CFSTurboVolumes: Array
+        # @param GooseFSVolumes: <p>GooseFS盘</p>
+        # @type GooseFSVolumes: Array
+        # @param PreStartCommand: <p>启动前指令</p>
+        # @type PreStartCommand: String
+        # @param RayStartParams: <p>Ray启动前指令</p>
+        # @type RayStartParams: String
 
-        attr_accessor :GroupType, :GroupName, :PodCpu, :PodMem, :PodGpuType, :PodGpu, :PodNum, :MinPodNum, :MaxPodNum, :SupportPV, :CBSVolumes, :CFSVolumes, :COSVolumes, :VolumeMounts, :Labels, :Tolerations, :Envs, :SchedulingPolicy, :ResourceLabel, :PodGpuResourceKey, :CFSTurboVolumes
+        attr_accessor :GroupType, :GroupName, :PodCpu, :PodMem, :PodGpuType, :PodGpu, :PodNum, :MinPodNum, :MaxPodNum, :SupportPV, :CBSVolumes, :CFSVolumes, :COSVolumes, :VolumeMounts, :Labels, :Tolerations, :Envs, :SchedulingPolicy, :ResourceLabel, :PodGpuResourceKey, :CFSTurboVolumes, :GooseFSVolumes, :PreStartCommand, :RayStartParams
 
-        def initialize(grouptype=nil, groupname=nil, podcpu=nil, podmem=nil, podgputype=nil, podgpu=nil, podnum=nil, minpodnum=nil, maxpodnum=nil, supportpv=nil, cbsvolumes=nil, cfsvolumes=nil, cosvolumes=nil, volumemounts=nil, labels=nil, tolerations=nil, envs=nil, schedulingpolicy=nil, resourcelabel=nil, podgpuresourcekey=nil, cfsturbovolumes=nil)
+        def initialize(grouptype=nil, groupname=nil, podcpu=nil, podmem=nil, podgputype=nil, podgpu=nil, podnum=nil, minpodnum=nil, maxpodnum=nil, supportpv=nil, cbsvolumes=nil, cfsvolumes=nil, cosvolumes=nil, volumemounts=nil, labels=nil, tolerations=nil, envs=nil, schedulingpolicy=nil, resourcelabel=nil, podgpuresourcekey=nil, cfsturbovolumes=nil, goosefsvolumes=nil, prestartcommand=nil, raystartparams=nil)
           @GroupType = grouptype
           @GroupName = groupname
           @PodCpu = podcpu
@@ -7155,6 +7267,9 @@ module TencentCloud
           @ResourceLabel = resourcelabel
           @PodGpuResourceKey = podgpuresourcekey
           @CFSTurboVolumes = cfsturbovolumes
+          @GooseFSVolumes = goosefsvolumes
+          @PreStartCommand = prestartcommand
+          @RayStartParams = raystartparams
         end
 
         def deserialize(params)
@@ -7235,48 +7350,61 @@ module TencentCloud
               @CFSTurboVolumes << cfsturbovolume_tmp
             end
           end
+          unless params['GooseFSVolumes'].nil?
+            @GooseFSVolumes = []
+            params['GooseFSVolumes'].each do |i|
+              goosefsvolume_tmp = GooseFSVolume.new
+              goosefsvolume_tmp.deserialize(i)
+              @GooseFSVolumes << goosefsvolume_tmp
+            end
+          end
+          @PreStartCommand = params['PreStartCommand']
+          @RayStartParams = params['RayStartParams']
         end
       end
 
       # DynamicInstanceGroupSpec
       class DynamicInstanceGroupSpec < TencentCloud::Common::AbstractModel
-        # @param Name: group 名称
+        # @param Name: <p>group 名称</p>
         # @type Name: String
-        # @param PodCount: pod 数量
+        # @param PodCount: <p>pod 数量</p>
         # @type PodCount: Integer
-        # @param MinNodes: 最小节点数
+        # @param MinNodes: <p>最小节点数</p>
         # @type MinNodes: Integer
-        # @param MaxNodes: 最大节点数
+        # @param MaxNodes: <p>最大节点数</p>
         # @type MaxNodes: Integer
-        # @param StorageConfigEnabled:  是否开启存储配置
+        # @param StorageConfigEnabled: <p>是否开启存储配置</p>
         # @type StorageConfigEnabled: Boolean
-        # @param GroupType: headGroup:head;
-        # workerGroup:worker
+        # @param GroupType: <p>headGroup:head;<br>workerGroup:worker</p>
         # @type GroupType: String
-        # @param Cpu: CPU 核数
+        # @param Cpu: <p>CPU 核数</p>
         # @type Cpu: Integer
-        # @param MemSize: 内存(GB)
+        # @param MemSize: <p>内存(GB)</p>
         # @type MemSize: Integer
-        # @param GpuType: GPU类型
+        # @param GpuType: <p>GPU类型</p>
         # @type GpuType: String
-        # @param Gpu: GPU核数
+        # @param Gpu: <p>GPU核数</p>
         # @type Gpu: Integer
-        # @param ResourceLabels: 资源标签
+        # @param ResourceLabels: <p>资源标签</p>
         # @type ResourceLabels: String
-        # @param Env: 环境变量
+        # @param Env: <p>环境变量</p>
         # @type Env: Array
-        # @param Labels: 标签
+        # @param Labels: <p>标签</p>
         # @type Labels: Array
-        # @param Tolerations: 容忍度
+        # @param Tolerations: <p>容忍度</p>
         # @type Tolerations: Array
-        # @param Scheduler: 调度策略
+        # @param Scheduler: <p>调度策略</p>
         # @type Scheduler: String
-        # @param PersistentVolume: 卷目录
+        # @param PersistentVolume: <p>卷目录</p>
         # @type PersistentVolume: :class:`Tencentcloud::Emr.v20190103.models.PersistentVolume`
+        # @param PreStartCommand: <p>前置启动命令</p>
+        # @type PreStartCommand: String
+        # @param RayStartParams: <p>RayStart启动参数</p>
+        # @type RayStartParams: String
 
-        attr_accessor :Name, :PodCount, :MinNodes, :MaxNodes, :StorageConfigEnabled, :GroupType, :Cpu, :MemSize, :GpuType, :Gpu, :ResourceLabels, :Env, :Labels, :Tolerations, :Scheduler, :PersistentVolume
+        attr_accessor :Name, :PodCount, :MinNodes, :MaxNodes, :StorageConfigEnabled, :GroupType, :Cpu, :MemSize, :GpuType, :Gpu, :ResourceLabels, :Env, :Labels, :Tolerations, :Scheduler, :PersistentVolume, :PreStartCommand, :RayStartParams
 
-        def initialize(name=nil, podcount=nil, minnodes=nil, maxnodes=nil, storageconfigenabled=nil, grouptype=nil, cpu=nil, memsize=nil, gputype=nil, gpu=nil, resourcelabels=nil, env=nil, labels=nil, tolerations=nil, scheduler=nil, persistentvolume=nil)
+        def initialize(name=nil, podcount=nil, minnodes=nil, maxnodes=nil, storageconfigenabled=nil, grouptype=nil, cpu=nil, memsize=nil, gputype=nil, gpu=nil, resourcelabels=nil, env=nil, labels=nil, tolerations=nil, scheduler=nil, persistentvolume=nil, prestartcommand=nil, raystartparams=nil)
           @Name = name
           @PodCount = podcount
           @MinNodes = minnodes
@@ -7293,6 +7421,8 @@ module TencentCloud
           @Tolerations = tolerations
           @Scheduler = scheduler
           @PersistentVolume = persistentvolume
+          @PreStartCommand = prestartcommand
+          @RayStartParams = raystartparams
         end
 
         def deserialize(params)
@@ -7336,6 +7466,8 @@ module TencentCloud
             @PersistentVolume = PersistentVolume.new
             @PersistentVolume.deserialize(params['PersistentVolume'])
           end
+          @PreStartCommand = params['PreStartCommand']
+          @RayStartParams = params['RayStartParams']
         end
       end
 
@@ -7816,6 +7948,38 @@ module TencentCloud
         end
       end
 
+      # spark开启app监控 对应的Prometheus
+      class EnableSparkAppMonitorInfo < TencentCloud::Common::AbstractModel
+        # @param PrometheusInstanceId: <p>实例id</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PrometheusInstanceId: String
+        # @param GrafanaInstanceId: <p>grafana实例id</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GrafanaInstanceId: String
+        # @param EnableMonitor: <p>开启关闭状态</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnableMonitor: Boolean
+        # @param GrafanaURL: <p>grafana访问地址</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GrafanaURL: String
+
+        attr_accessor :PrometheusInstanceId, :GrafanaInstanceId, :EnableMonitor, :GrafanaURL
+
+        def initialize(prometheusinstanceid=nil, grafanainstanceid=nil, enablemonitor=nil, grafanaurl=nil)
+          @PrometheusInstanceId = prometheusinstanceid
+          @GrafanaInstanceId = grafanainstanceid
+          @EnableMonitor = enablemonitor
+          @GrafanaURL = grafanaurl
+        end
+
+        def deserialize(params)
+          @PrometheusInstanceId = params['PrometheusInstanceId']
+          @GrafanaInstanceId = params['GrafanaInstanceId']
+          @EnableMonitor = params['EnableMonitor']
+          @GrafanaURL = params['GrafanaURL']
+        end
+      end
+
       # 执行动作。
       class Execution < TencentCloud::Common::AbstractModel
         # @param JobType: 任务类型，目前支持以下类型。
@@ -8022,6 +8186,50 @@ module TencentCloud
         def deserialize(params)
           @PKey = params['PKey']
           @PValue = params['PValue']
+        end
+      end
+
+      # GooseFSVolume
+      class GooseFSVolume < TencentCloud::Common::AbstractModel
+        # @param VolumeName: <p>存储卷名</p>
+        # @type VolumeName: String
+        # @param ClusterId: <p>gooseFS实例ID</p>
+        # @type ClusterId: String
+        # @param Namespace: <p>gooseFS 命名空间</p>
+        # @type Namespace: String
+        # @param SubPath: <p>在命名空间中的挂载路径</p>
+        # @type SubPath: String
+        # @param FuseVersion: <p>FuseVERSION描述</p>
+        # @type FuseVersion: String
+        # @param ClientVersion: <p>Client Version描述，例如 GOOSE-1.5.2</p>
+        # @type ClientVersion: String
+        # @param MountOptions: <p>默认挂载参数</p>
+        # @type MountOptions: String
+        # @param JvmOptions: <p>默认JVM参数</p>
+        # @type JvmOptions: String
+
+        attr_accessor :VolumeName, :ClusterId, :Namespace, :SubPath, :FuseVersion, :ClientVersion, :MountOptions, :JvmOptions
+
+        def initialize(volumename=nil, clusterid=nil, namespace=nil, subpath=nil, fuseversion=nil, clientversion=nil, mountoptions=nil, jvmoptions=nil)
+          @VolumeName = volumename
+          @ClusterId = clusterid
+          @Namespace = namespace
+          @SubPath = subpath
+          @FuseVersion = fuseversion
+          @ClientVersion = clientversion
+          @MountOptions = mountoptions
+          @JvmOptions = jvmoptions
+        end
+
+        def deserialize(params)
+          @VolumeName = params['VolumeName']
+          @ClusterId = params['ClusterId']
+          @Namespace = params['Namespace']
+          @SubPath = params['SubPath']
+          @FuseVersion = params['FuseVersion']
+          @ClientVersion = params['ClientVersion']
+          @MountOptions = params['MountOptions']
+          @JvmOptions = params['JvmOptions']
         end
       end
 
@@ -8295,6 +8503,73 @@ module TencentCloud
           @ImageVersion = params['ImageVersion']
           @ImagePullPolicy = params['ImagePullPolicy']
           @Image = params['Image']
+        end
+      end
+
+      # EMR on TKE集群组件镜像信息
+      class ImageInfoV2 < TencentCloud::Common::AbstractModel
+        # @param ImageMode: <p>镜像类型</p><p>枚举值：</p><ul><li>official： 官方镜像</li><li>custom： 自定义镜像</li><li>imageUrl： 镜像地址</li></ul>
+        # @type ImageMode: String
+        # @param Region: <p>地域</p>
+        # @type Region: String
+        # @param LegacyCCR: <p>是否是存量镜像</p>
+        # @type LegacyCCR: Boolean
+        # @param FullImageUrl: <p>镜像地址</p>
+        # @type FullImageUrl: String
+        # @param MainVersion: <p>版本</p>
+        # @type MainVersion: String
+        # @param RegistryUrl: <p>镜像地址域名</p>
+        # @type RegistryUrl: String
+        # @param NamespaceName: <p>镜像命名空间</p>
+        # @type NamespaceName: String
+        # @param RepoName: <p>镜像仓库名</p>
+        # @type RepoName: String
+        # @param Tag: <p>镜像版本标签</p>
+        # @type Tag: String
+        # @param Username: <p>用户名</p>
+        # @type Username: String
+        # @param Password: <p>密码</p>
+        # @type Password: String
+        # @param ImagePullSecret: <p>镜像拉取密钥</p>
+        # @type ImagePullSecret: :class:`Tencentcloud::Emr.v20190103.models.ImagePullSecret`
+        # @param ImagePullPolicy: <p>镜像拉取策略</p>
+        # @type ImagePullPolicy: String
+
+        attr_accessor :ImageMode, :Region, :LegacyCCR, :FullImageUrl, :MainVersion, :RegistryUrl, :NamespaceName, :RepoName, :Tag, :Username, :Password, :ImagePullSecret, :ImagePullPolicy
+
+        def initialize(imagemode=nil, region=nil, legacyccr=nil, fullimageurl=nil, mainversion=nil, registryurl=nil, namespacename=nil, reponame=nil, tag=nil, username=nil, password=nil, imagepullsecret=nil, imagepullpolicy=nil)
+          @ImageMode = imagemode
+          @Region = region
+          @LegacyCCR = legacyccr
+          @FullImageUrl = fullimageurl
+          @MainVersion = mainversion
+          @RegistryUrl = registryurl
+          @NamespaceName = namespacename
+          @RepoName = reponame
+          @Tag = tag
+          @Username = username
+          @Password = password
+          @ImagePullSecret = imagepullsecret
+          @ImagePullPolicy = imagepullpolicy
+        end
+
+        def deserialize(params)
+          @ImageMode = params['ImageMode']
+          @Region = params['Region']
+          @LegacyCCR = params['LegacyCCR']
+          @FullImageUrl = params['FullImageUrl']
+          @MainVersion = params['MainVersion']
+          @RegistryUrl = params['RegistryUrl']
+          @NamespaceName = params['NamespaceName']
+          @RepoName = params['RepoName']
+          @Tag = params['Tag']
+          @Username = params['Username']
+          @Password = params['Password']
+          unless params['ImagePullSecret'].nil?
+            @ImagePullSecret = ImagePullSecret.new
+            @ImagePullSecret.deserialize(params['ImagePullSecret'])
+          end
+          @ImagePullPolicy = params['ImagePullPolicy']
         end
       end
 
@@ -10080,10 +10355,16 @@ module TencentCloud
         # @type ModifyDynamicInstanceGroup: :class:`Tencentcloud::Emr.v20190103.models.DynamicInstanceGroup`
         # @param CFSTurboVolumes: <p>cfs turbo挂载列表，不包含标准版</p>
         # @type CFSTurboVolumes: Array
+        # @param CustomImage: <p>自定义镜像</p>
+        # @type CustomImage: :class:`Tencentcloud::Emr.v20190103.models.CustomImage`
+        # @param ImageInfoV2: <p>自定义镜像</p>
+        # @type ImageInfoV2: :class:`Tencentcloud::Emr.v20190103.models.ImageInfoV2`
+        # @param GooseFSVolumes: <p>GooseFS盘</p>
+        # @type GooseFSVolumes: Array
 
-        attr_accessor :ModifyScope, :AddDynamicInstanceGroup, :SupportPV, :CBSVolumes, :CFSVolumes, :COSVolumes, :VolumeMounts, :Labels, :Tolerations, :Envs, :DependServices, :SupportNewToken, :ModifyDynamicInstanceGroup, :CFSTurboVolumes
+        attr_accessor :ModifyScope, :AddDynamicInstanceGroup, :SupportPV, :CBSVolumes, :CFSVolumes, :COSVolumes, :VolumeMounts, :Labels, :Tolerations, :Envs, :DependServices, :SupportNewToken, :ModifyDynamicInstanceGroup, :CFSTurboVolumes, :CustomImage, :ImageInfoV2, :GooseFSVolumes
 
-        def initialize(modifyscope=nil, adddynamicinstancegroup=nil, supportpv=nil, cbsvolumes=nil, cfsvolumes=nil, cosvolumes=nil, volumemounts=nil, labels=nil, tolerations=nil, envs=nil, dependservices=nil, supportnewtoken=nil, modifydynamicinstancegroup=nil, cfsturbovolumes=nil)
+        def initialize(modifyscope=nil, adddynamicinstancegroup=nil, supportpv=nil, cbsvolumes=nil, cfsvolumes=nil, cosvolumes=nil, volumemounts=nil, labels=nil, tolerations=nil, envs=nil, dependservices=nil, supportnewtoken=nil, modifydynamicinstancegroup=nil, cfsturbovolumes=nil, customimage=nil, imageinfov2=nil, goosefsvolumes=nil)
           @ModifyScope = modifyscope
           @AddDynamicInstanceGroup = adddynamicinstancegroup
           @SupportPV = supportpv
@@ -10098,6 +10379,9 @@ module TencentCloud
           @SupportNewToken = supportnewtoken
           @ModifyDynamicInstanceGroup = modifydynamicinstancegroup
           @CFSTurboVolumes = cfsturbovolumes
+          @CustomImage = customimage
+          @ImageInfoV2 = imageinfov2
+          @GooseFSVolumes = goosefsvolumes
         end
 
         def deserialize(params)
@@ -10182,6 +10466,22 @@ module TencentCloud
               cfsturbovolume_tmp = CFSTurboVolume.new
               cfsturbovolume_tmp.deserialize(i)
               @CFSTurboVolumes << cfsturbovolume_tmp
+            end
+          end
+          unless params['CustomImage'].nil?
+            @CustomImage = CustomImage.new
+            @CustomImage.deserialize(params['CustomImage'])
+          end
+          unless params['ImageInfoV2'].nil?
+            @ImageInfoV2 = ImageInfoV2.new
+            @ImageInfoV2.deserialize(params['ImageInfoV2'])
+          end
+          unless params['GooseFSVolumes'].nil?
+            @GooseFSVolumes = []
+            params['GooseFSVolumes'].each do |i|
+              goosefsvolume_tmp = GooseFSVolume.new
+              goosefsvolume_tmp.deserialize(i)
+              @GooseFSVolumes << goosefsvolume_tmp
             end
           end
         end
@@ -12099,10 +12399,14 @@ module TencentCloud
         # @type QuotaNum: Integer
         # @param QuotaUnit: <p>配额单位</p>
         # @type QuotaUnit: String
+        # @param NeedHpcClusterId: <p>是否需要提供高性能计算集群</p>
+        # @type NeedHpcClusterId: Boolean
+        # @param IsGpuInstance: <p>是否是GPU机型</p>
+        # @type IsGpuInstance: Boolean
 
-        attr_accessor :InstanceType, :Cpu, :Memory, :Order, :Num, :SellOutReason, :SystemDisk, :DataDisk, :LocalDataDisk, :SoldOutReason, :InstanceFamily, :NodeName, :NodeType, :Type, :TypeName, :FamilyName, :CpuType, :Remark, :OriginPrice, :PrepaidUnderwritePeriods, :GpuDesc, :QuotaNum, :QuotaUnit
+        attr_accessor :InstanceType, :Cpu, :Memory, :Order, :Num, :SellOutReason, :SystemDisk, :DataDisk, :LocalDataDisk, :SoldOutReason, :InstanceFamily, :NodeName, :NodeType, :Type, :TypeName, :FamilyName, :CpuType, :Remark, :OriginPrice, :PrepaidUnderwritePeriods, :GpuDesc, :QuotaNum, :QuotaUnit, :NeedHpcClusterId, :IsGpuInstance
 
-        def initialize(instancetype=nil, cpu=nil, memory=nil, order=nil, num=nil, selloutreason=nil, systemdisk=nil, datadisk=nil, localdatadisk=nil, soldoutreason=nil, instancefamily=nil, nodename=nil, nodetype=nil, type=nil, typename=nil, familyname=nil, cputype=nil, remark=nil, originprice=nil, prepaidunderwriteperiods=nil, gpudesc=nil, quotanum=nil, quotaunit=nil)
+        def initialize(instancetype=nil, cpu=nil, memory=nil, order=nil, num=nil, selloutreason=nil, systemdisk=nil, datadisk=nil, localdatadisk=nil, soldoutreason=nil, instancefamily=nil, nodename=nil, nodetype=nil, type=nil, typename=nil, familyname=nil, cputype=nil, remark=nil, originprice=nil, prepaidunderwriteperiods=nil, gpudesc=nil, quotanum=nil, quotaunit=nil, needhpcclusterid=nil, isgpuinstance=nil)
           @InstanceType = instancetype
           @Cpu = cpu
           @Memory = memory
@@ -12126,6 +12430,8 @@ module TencentCloud
           @GpuDesc = gpudesc
           @QuotaNum = quotanum
           @QuotaUnit = quotaunit
+          @NeedHpcClusterId = needhpcclusterid
+          @IsGpuInstance = isgpuinstance
         end
 
         def deserialize(params)
@@ -12173,6 +12479,8 @@ module TencentCloud
           @GpuDesc = params['GpuDesc']
           @QuotaNum = params['QuotaNum']
           @QuotaUnit = params['QuotaUnit']
+          @NeedHpcClusterId = params['NeedHpcClusterId']
+          @IsGpuInstance = params['IsGpuInstance']
         end
       end
 
@@ -12552,10 +12860,12 @@ module TencentCloud
         # @type StorageVolumeDetail: Array
         # @param CFSTurboVolumes: <p>cfs trubo存储卷</p>
         # @type CFSTurboVolumes: Array
+        # @param GooseFSVolumes: <p>goosefs volume挂载信息</p>
+        # @type GooseFSVolumes: Array
 
-        attr_accessor :CBSVolumes, :CFSVolumes, :COSVolumes, :StorageVolumeName, :VolumeMounts, :StorageVolumeDetail, :CFSTurboVolumes
+        attr_accessor :CBSVolumes, :CFSVolumes, :COSVolumes, :StorageVolumeName, :VolumeMounts, :StorageVolumeDetail, :CFSTurboVolumes, :GooseFSVolumes
 
-        def initialize(cbsvolumes=nil, cfsvolumes=nil, cosvolumes=nil, storagevolumename=nil, volumemounts=nil, storagevolumedetail=nil, cfsturbovolumes=nil)
+        def initialize(cbsvolumes=nil, cfsvolumes=nil, cosvolumes=nil, storagevolumename=nil, volumemounts=nil, storagevolumedetail=nil, cfsturbovolumes=nil, goosefsvolumes=nil)
           @CBSVolumes = cbsvolumes
           @CFSVolumes = cfsvolumes
           @COSVolumes = cosvolumes
@@ -12563,6 +12873,7 @@ module TencentCloud
           @VolumeMounts = volumemounts
           @StorageVolumeDetail = storagevolumedetail
           @CFSTurboVolumes = cfsturbovolumes
+          @GooseFSVolumes = goosefsvolumes
         end
 
         def deserialize(params)
@@ -12613,6 +12924,14 @@ module TencentCloud
               cfsturbovolume_tmp = CFSTurboVolume.new
               cfsturbovolume_tmp.deserialize(i)
               @CFSTurboVolumes << cfsturbovolume_tmp
+            end
+          end
+          unless params['GooseFSVolumes'].nil?
+            @GooseFSVolumes = []
+            params['GooseFSVolumes'].each do |i|
+              goosefsvolume_tmp = GooseFSVolume.new
+              goosefsvolume_tmp.deserialize(i)
+              @GooseFSVolumes << goosefsvolume_tmp
             end
           end
         end
@@ -13627,10 +13946,12 @@ module TencentCloud
         # @type SubmitType: Integer
         # @param DashboardUrl: <p>head访问地址,也是dashboard地址</p>
         # @type DashboardUrl: String
+        # @param Namespace: <p>命名空间</p>
+        # @type Namespace: String
 
-        attr_accessor :RayClusterName, :RayClusterId, :PodCount, :CreateTime, :RedisCount, :SubmitType, :DashboardUrl
+        attr_accessor :RayClusterName, :RayClusterId, :PodCount, :CreateTime, :RedisCount, :SubmitType, :DashboardUrl, :Namespace
 
-        def initialize(rayclustername=nil, rayclusterid=nil, podcount=nil, createtime=nil, rediscount=nil, submittype=nil, dashboardurl=nil)
+        def initialize(rayclustername=nil, rayclusterid=nil, podcount=nil, createtime=nil, rediscount=nil, submittype=nil, dashboardurl=nil, namespace=nil)
           @RayClusterName = rayclustername
           @RayClusterId = rayclusterid
           @PodCount = podcount
@@ -13638,6 +13959,7 @@ module TencentCloud
           @RedisCount = rediscount
           @SubmitType = submittype
           @DashboardUrl = dashboardurl
+          @Namespace = namespace
         end
 
         def deserialize(params)
@@ -13648,6 +13970,7 @@ module TencentCloud
           @RedisCount = params['RedisCount']
           @SubmitType = params['SubmitType']
           @DashboardUrl = params['DashboardUrl']
+          @Namespace = params['Namespace']
         end
       end
 
@@ -16928,6 +17251,33 @@ module TencentCloud
             @HostPath = HostPathVolumeSource.new
             @HostPath.deserialize(params['HostPath'])
           end
+        end
+      end
+
+      # WebUI访问信息
+      class WebUIInfo < TencentCloud::Common::AbstractModel
+        # @param Url: <p>访问地址，可能为空</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Url: String
+        # @param WebUIStatus: <p>WebUI状态包括：<br>-1表示当前服务没有WebUI；<br>0表示当前服务有WebUI，但是没有安装KNOX服务；<br>1表示当前服务有WebUI并安装有KNOX服务，但是KNOX没有开启公网访问；<br>2表示，当前服务有WebUI，安装有KNOX服务且已开启公网访问。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WebUIStatus: Integer
+        # @param ServiceName: <p>服务名</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceName: String
+
+        attr_accessor :Url, :WebUIStatus, :ServiceName
+
+        def initialize(url=nil, webuistatus=nil, servicename=nil)
+          @Url = url
+          @WebUIStatus = webuistatus
+          @ServiceName = servicename
+        end
+
+        def deserialize(params)
+          @Url = params['Url']
+          @WebUIStatus = params['WebUIStatus']
+          @ServiceName = params['ServiceName']
         end
       end
 

@@ -4644,34 +4644,38 @@ module TencentCloud
 
       # 消耗组件明细
       class CostComponentSet < TencentCloud::Common::AbstractModel
-        # @param ComponentCodeName: 组件类型名称
+        # @param ComponentCodeName: <p>组件类型名称</p>
         # @type ComponentCodeName: String
-        # @param ItemCodeName: 组件名称
+        # @param ItemCodeName: <p>组件名称</p>
         # @type ItemCodeName: String
-        # @param SinglePrice: 刊例价
+        # @param SinglePrice: <p>刊例价</p>
         # @type SinglePrice: String
-        # @param PriceUnit: 刊例价单位
+        # @param PriceUnit: <p>刊例价单位</p>
         # @type PriceUnit: String
-        # @param UsedAmount: 用量
+        # @param UsedAmount: <p>用量</p>
         # @type UsedAmount: String
-        # @param UsedAmountUnit: 用量单位
+        # @param UsedAmountUnit: <p>用量单位</p>
         # @type UsedAmountUnit: String
-        # @param Cost: 原价
+        # @param Cost: <p>原价</p>
         # @type Cost: String
-        # @param Discount: 折扣
+        # @param Discount: <p>折扣</p>
         # @type Discount: String
-        # @param RealCost: 折后价
+        # @param RealCost: <p>折后价</p>
         # @type RealCost: String
-        # @param VoucherPayAmount: 代金券支付金额
+        # @param VoucherPayAmount: <p>代金券支付金额</p>
         # @type VoucherPayAmount: String
-        # @param CashPayAmount: 现金支付金额
+        # @param CashPayAmount: <p>现金支付金额</p>
         # @type CashPayAmount: String
-        # @param IncentivePayAmount: 赠送金支付金额
+        # @param IncentivePayAmount: <p>赠送金支付金额</p>
         # @type IncentivePayAmount: String
+        # @param ComponentCode: <p>组件类型code</p>
+        # @type ComponentCode: String
+        # @param ItemCode: <p>组件名称code</p>
+        # @type ItemCode: String
 
-        attr_accessor :ComponentCodeName, :ItemCodeName, :SinglePrice, :PriceUnit, :UsedAmount, :UsedAmountUnit, :Cost, :Discount, :RealCost, :VoucherPayAmount, :CashPayAmount, :IncentivePayAmount
+        attr_accessor :ComponentCodeName, :ItemCodeName, :SinglePrice, :PriceUnit, :UsedAmount, :UsedAmountUnit, :Cost, :Discount, :RealCost, :VoucherPayAmount, :CashPayAmount, :IncentivePayAmount, :ComponentCode, :ItemCode
 
-        def initialize(componentcodename=nil, itemcodename=nil, singleprice=nil, priceunit=nil, usedamount=nil, usedamountunit=nil, cost=nil, discount=nil, realcost=nil, voucherpayamount=nil, cashpayamount=nil, incentivepayamount=nil)
+        def initialize(componentcodename=nil, itemcodename=nil, singleprice=nil, priceunit=nil, usedamount=nil, usedamountunit=nil, cost=nil, discount=nil, realcost=nil, voucherpayamount=nil, cashpayamount=nil, incentivepayamount=nil, componentcode=nil, itemcode=nil)
           @ComponentCodeName = componentcodename
           @ItemCodeName = itemcodename
           @SinglePrice = singleprice
@@ -4684,6 +4688,8 @@ module TencentCloud
           @VoucherPayAmount = voucherpayamount
           @CashPayAmount = cashpayamount
           @IncentivePayAmount = incentivepayamount
+          @ComponentCode = componentcode
+          @ItemCode = itemcode
         end
 
         def deserialize(params)
@@ -4699,6 +4705,8 @@ module TencentCloud
           @VoucherPayAmount = params['VoucherPayAmount']
           @CashPayAmount = params['CashPayAmount']
           @IncentivePayAmount = params['IncentivePayAmount']
+          @ComponentCode = params['ComponentCode']
+          @ItemCode = params['ItemCode']
         end
       end
 
@@ -4744,10 +4752,12 @@ module TencentCloud
         # @type OwnerUin: String
         # @param PayTime: <p>扣费时间：结算扣费时间</p>
         # @type PayTime: String
+        # @param BusinessCode: <p>产品名称code</p>
+        # @type BusinessCode: String
 
-        attr_accessor :PayerUin, :BusinessCodeName, :ProductCodeName, :PayModeName, :ProjectName, :RegionName, :ZoneName, :ResourceId, :ResourceName, :ActionTypeName, :OrderId, :BillId, :FeeBeginTime, :FeeEndTime, :ComponentSet, :ProductCode, :Tags, :OperateUin, :OwnerUin, :PayTime
+        attr_accessor :PayerUin, :BusinessCodeName, :ProductCodeName, :PayModeName, :ProjectName, :RegionName, :ZoneName, :ResourceId, :ResourceName, :ActionTypeName, :OrderId, :BillId, :FeeBeginTime, :FeeEndTime, :ComponentSet, :ProductCode, :Tags, :OperateUin, :OwnerUin, :PayTime, :BusinessCode
 
-        def initialize(payeruin=nil, businesscodename=nil, productcodename=nil, paymodename=nil, projectname=nil, regionname=nil, zonename=nil, resourceid=nil, resourcename=nil, actiontypename=nil, orderid=nil, billid=nil, feebegintime=nil, feeendtime=nil, componentset=nil, productcode=nil, tags=nil, operateuin=nil, owneruin=nil, paytime=nil)
+        def initialize(payeruin=nil, businesscodename=nil, productcodename=nil, paymodename=nil, projectname=nil, regionname=nil, zonename=nil, resourceid=nil, resourcename=nil, actiontypename=nil, orderid=nil, billid=nil, feebegintime=nil, feeendtime=nil, componentset=nil, productcode=nil, tags=nil, operateuin=nil, owneruin=nil, paytime=nil, businesscode=nil)
           @PayerUin = payeruin
           @BusinessCodeName = businesscodename
           @ProductCodeName = productcodename
@@ -4768,6 +4778,7 @@ module TencentCloud
           @OperateUin = operateuin
           @OwnerUin = owneruin
           @PayTime = paytime
+          @BusinessCode = businesscode
         end
 
         def deserialize(params)
@@ -4805,6 +4816,7 @@ module TencentCloud
           @OperateUin = params['OperateUin']
           @OwnerUin = params['OwnerUin']
           @PayTime = params['PayTime']
+          @BusinessCode = params['BusinessCode']
         end
       end
 
@@ -5579,7 +5591,7 @@ module TencentCloud
 
       # DescribeAccountBalance请求参数结构体
       class DescribeAccountBalanceRequest < TencentCloud::Common::AbstractModel
-        # @param TempCredit: 是否查询临时额度
+        # @param TempCredit: <p>是否查询临时额度</p>
         # @type TempCredit: Boolean
 
         attr_accessor :TempCredit
@@ -5595,35 +5607,35 @@ module TencentCloud
 
       # DescribeAccountBalance返回参数结构体
       class DescribeAccountBalanceResponse < TencentCloud::Common::AbstractModel
-        # @param Balance: 接口做过变更,为兼容老接口,本字段与RealBalance相同,为当前真实可用余额,单位 分
+        # @param Balance: <p>接口做过变更,为兼容老接口,本字段与RealBalance相同,为当前真实可用余额,单位 分</p>
         # @type Balance: Integer
-        # @param Uin: 查询的用户Uin
+        # @param Uin: <p>查询的用户Uin</p>
         # @type Uin: Integer
-        # @param RealBalance: 当前真实可用余额,单位 分
+        # @param RealBalance: <p>当前真实可用余额,单位 分。RealBalance=CashAccountBalance+IncomeIntoAccountBalance+PresentAccountBalance-FreezeAmount-OweAmount</p><p>单位：分</p>
         # @type RealBalance: Float
-        # @param CashAccountBalance: 现金账户余额,单位 分
+        # @param CashAccountBalance: <p>现金账户余额,单位 分</p>
         # @type CashAccountBalance: Float
-        # @param IncomeIntoAccountBalance: 收益转入账户余额,单位 分
+        # @param IncomeIntoAccountBalance: <p>收益转入账户余额,单位 分</p>
         # @type IncomeIntoAccountBalance: Float
-        # @param PresentAccountBalance: 赠送账户余额,单位 分
+        # @param PresentAccountBalance: <p>赠送账户余额,单位 分</p>
         # @type PresentAccountBalance: Float
-        # @param FreezeAmount: 冻结金额,单位 分
+        # @param FreezeAmount: <p>冻结金额,单位 分</p>
         # @type FreezeAmount: Float
-        # @param OweAmount: 欠费金额,单位 分
+        # @param OweAmount: <p>欠费金额,单位 分</p>
         # @type OweAmount: Float
-        # @param IsAllowArrears: 是否允许欠费消费
+        # @param IsAllowArrears: <p>是否允许欠费消费</p>
         # @type IsAllowArrears: Boolean
-        # @param IsCreditLimited: 是否限制信用额度
+        # @param IsCreditLimited: <p>是否限制信用额度</p>
         # @type IsCreditLimited: Boolean
-        # @param CreditAmount: 信用额度,单位 分
+        # @param CreditAmount: <p>信用额度,单位 分</p>
         # @type CreditAmount: Float
-        # @param CreditBalance: 可用信用额度,单位 分
+        # @param CreditBalance: <p>可用信用额度,单位 分。CreditBalance=CashAccountBalance+IncomeIntoAccountBalance+PresentAccountBalance+CreditAmount-OweAmount</p><p>单位：分</p>
         # @type CreditBalance: Float
-        # @param RealCreditBalance: 真实可用信用额度,单位 分
+        # @param RealCreditBalance: <p>真实可用信用额度,单位 分。RealCreditBalance=CreditBalance-FreezeAmount</p><p>单位：分</p>
         # @type RealCreditBalance: Float
-        # @param TempCredit: 临时额度，单位 分
+        # @param TempCredit: <p>临时额度，单位 分</p>
         # @type TempCredit: Float
-        # @param TempAmountInfoList: 临时额度详情
+        # @param TempAmountInfoList: <p>临时额度详情</p>
         # @type TempAmountInfoList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

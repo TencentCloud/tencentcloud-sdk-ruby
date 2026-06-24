@@ -55,86 +55,70 @@ module TencentCloud
 
       # CreateInstance请求参数结构体
       class CreateInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param VpcId: 私有网络 ID。
+        # @param VpcId: <p>私有网络 ID。</p>
         # @type VpcId: String
-        # @param SubnetId: 私有网络 VPC 的子网 ID。
+        # @param SubnetId: <p>私有网络 VPC 的子网 ID。</p>
         # @type SubnetId: String
-        # @param PayMode: 指定实例计费方式。
-        # - 0：按量付费。
-        # - 1：包年包月。
+        # @param PayMode: <p>指定实例计费方式。</p><ul><li>0：按量付费。</li><li>1：包年包月。</li></ul>
         # @type PayMode: Integer
-        # @param InstanceName: 设置实例名称。仅支持长度不超过 60 的中文/英文/数字/-/_。
+        # @param InstanceName: <p>设置实例名称。仅支持长度不超过 60 的中文/英文/数字/-/_。</p>
         # @type InstanceName: String
-        # @param SecurityGroupIds: 安全组 ID。
+        # @param SecurityGroupIds: <p>安全组 ID。</p>
         # @type SecurityGroupIds: Array
-        # @param PayPeriod: 若计费方式为包年包月，指定包年包月续费的时长。
-        # - 单位：月。
-        # - 取值范围：1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 24, 36。默认为1。
+        # @param PayPeriod: <p>若计费方式为包年包月，指定包年包月续费的时长。</p><ul><li>单位：月。</li><li>取值范围：1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 24, 36。默认为1。</li></ul>
         # @type PayPeriod: Integer
-        # @param AutoRenew: 若为包年包月计费，需指定是否开启自动续费。
-        # - 0：不开启自动续费。
-        # - 1：开启自动续费。
+        # @param AutoRenew: <p>若为包年包月计费，需指定是否开启自动续费。</p><ul><li>0：不开启自动续费。</li><li>1：开启自动续费。</li></ul>
         # @type AutoRenew: Integer
-        # @param Params: 实例额外参数，通过json提交。
+        # @param Params: <p>实例额外参数，通过json提交。</p>
         # @type Params: String
-        # @param ResourceTags: 以数组形式列出标签信息。
+        # @param ResourceTags: <p>以数组形式列出标签信息。</p>
         # @type ResourceTags: Array
-        # @param Project: 指定实例所属项目 ID。
+        # @param Project: <p>指定实例所属项目 ID。</p>
         # @type Project: String
-        # @param ProductType: 产品版本，0-标准版，1-容量增强版
+        # @param ProductType: <p>产品版本，0-标准版，1-容量增强版</p>
         # @type ProductType: Integer
-        # @param InstanceType: 实例类型。
-        # - base：免费测试版。
-        # - single：单机版。
-        # - cluster：高可用版。
+        # @param InstanceType: <p>实例类型。</p><ul><li>base：免费测试版。</li><li>single：单机版。</li><li>cluster：高可用版。</li></ul>
         # @type InstanceType: String
-        # @param Mode: 实例类型为高可用版，需指定可用区选项。
-        # - two：两可用区。
-        # - three：三可用区。
+        # @param Mode: <p>实例类型为高可用版，需指定可用区选项。</p><ul><li>two：两可用区。</li><li>three：三可用区。</li></ul>
         # @type Mode: String
-        # @param GoodsNum: 购买实例数量。
+        # @param GoodsNum: <p>购买实例数量。</p>
         # @type GoodsNum: Integer
-        # @param NetworkType: 网络类型。
-        # VPC或TCS
+        # @param NetworkType: <p>网络类型。<br>VPC或TCS</p>
         # @type NetworkType: String
-        # @param TemplateId: 实例所应用的参数模板 ID。
+        # @param TemplateId: <p>实例所应用的参数模板 ID。</p>
         # @type TemplateId: String
-        # @param Components: 组件具体设置列表。
+        # @param Components: <p>组件具体设置列表。</p>
         # @type Components: Array
-        # @param Zone: 实例类型为高可用版，通过该参数指定主可用区。
+        # @param Zone: <p>实例类型为高可用版，通过该参数指定主可用区。</p>
         # @type Zone: String
-        # @param SlaveZones: 实例类型为高可用版，通过该参数指定备可用区。
+        # @param SlaveZones: <p>实例类型为高可用版，通过该参数指定备可用区。</p>
         # @type SlaveZones: Array
-        # @param IsNoExpired: 是否长期有效
+        # @param IsNoExpired: <p>是否长期有效</p>
         # @type IsNoExpired: Boolean
-        # @param EngineName: 引擎名称，业务自定义。
+        # @param EngineName: <p>引擎名称，业务自定义。</p>
         # @type EngineName: String
-        # @param EngineVersion: 引擎版本，业务自定义。
+        # @param EngineVersion: <p>引擎版本，业务自定义。</p>
         # @type EngineVersion: String
-        # @param Brief: 实例描述。
+        # @param Brief: <p>实例描述。</p>
         # @type Brief: String
-        # @param Chief: 负责人信息。
+        # @param Chief: <p>负责人信息。</p>
         # @type Chief: String
-        # @param DBA: DBA人员信息
+        # @param DBA: <p>DBA人员信息</p>
         # @type DBA: String
-        # @param NodeType: 指定实例的节点类型。具体信息，请参见[选择节点类型](https://cloud.tencent.com/document/product/1709/113399)。
-        # - compute：计费型。
-        # - normal：标准型。
-        # - store：存储型。
+        # @param NodeType: <p>指定实例的节点类型。具体信息，请参见<a href="https://cloud.tencent.com/document/product/1709/113399">选择节点类型</a>。</p><ul><li>compute：计费型。</li><li>normal：标准型。</li><li>store：存储型。</li></ul>
         # @type NodeType: String
-        # @param Cpu: 指定实例所需的 CPU 核数。实例类型不同，支持的 CPU 核数存在差异。
-        # - 计算型： 1、2、4、8、16、24、32。
-        # - 标准型： 1、2、4、8、12、16。
-        # - 存储型： 1、2、4、6、8。
+        # @param Cpu: <p>指定实例所需的 CPU 核数。实例类型不同，支持的 CPU 核数存在差异。</p><ul><li>计算型： 1、2、4、8、16、24、32。</li><li>标准型： 1、2、4、8、12、16。</li><li>存储型： 1、2、4、6、8。</li></ul>
         # @type Cpu: Integer
-        # @param Memory: 指定实例所需的内存大小。单位：GB。选择具体规格，请参见[配置规格（选型）](https://cloud.tencent.com/document/product/1709/113399)。
+        # @param Memory: <p>指定实例所需的内存大小。单位：GB。选择具体规格，请参见<a href="https://cloud.tencent.com/document/product/1709/113399">配置规格（选型）</a>。</p>
         # @type Memory: Integer
-        # @param DiskSize: 指定实例所需的磁盘大小，单位：GB。选择具体规格，请参见[配置规格（选型）](https://cloud.tencent.com/document/product/1709/113399)。
+        # @param DiskSize: <p>指定实例所需的磁盘大小，单位：GB。选择具体规格，请参见<a href="https://cloud.tencent.com/document/product/1709/113399">配置规格（选型）</a>。</p>
         # @type DiskSize: Integer
-        # @param WorkerNodeNum: 指定实例所需配置的节点数量。选择方法，请参见[配置规格（选型）](https://cloud.tencent.com/document/product/1709/113399)。
+        # @param WorkerNodeNum: <p>指定实例所需配置的节点数量。选择方法，请参见<a href="https://cloud.tencent.com/document/product/1709/113399">配置规格（选型）</a>。</p>
         # @type WorkerNodeNum: Integer
+        # @param EnableEncryption: <p>是否开启磁盘数据存储加密（仅 CBS 数据盘生效，需落在 VECTORDB_DISK_ENCRYPT_REGION 白名单地域，默认 false 不开启）</p><p>默认值：true</p>
+        # @type EnableEncryption: Boolean
 
-        attr_accessor :VpcId, :SubnetId, :PayMode, :InstanceName, :SecurityGroupIds, :PayPeriod, :AutoRenew, :Params, :ResourceTags, :Project, :ProductType, :InstanceType, :Mode, :GoodsNum, :NetworkType, :TemplateId, :Components, :Zone, :SlaveZones, :IsNoExpired, :EngineName, :EngineVersion, :Brief, :Chief, :DBA, :NodeType, :Cpu, :Memory, :DiskSize, :WorkerNodeNum
+        attr_accessor :VpcId, :SubnetId, :PayMode, :InstanceName, :SecurityGroupIds, :PayPeriod, :AutoRenew, :Params, :ResourceTags, :Project, :ProductType, :InstanceType, :Mode, :GoodsNum, :NetworkType, :TemplateId, :Components, :Zone, :SlaveZones, :IsNoExpired, :EngineName, :EngineVersion, :Brief, :Chief, :DBA, :NodeType, :Cpu, :Memory, :DiskSize, :WorkerNodeNum, :EnableEncryption
         extend Gem::Deprecate
         deprecate :Project, :none, 2026, 6
         deprecate :Project=, :none, 2026, 6
@@ -163,7 +147,7 @@ module TencentCloud
         deprecate :NodeType, :none, 2026, 6
         deprecate :NodeType=, :none, 2026, 6
 
-        def initialize(vpcid=nil, subnetid=nil, paymode=nil, instancename=nil, securitygroupids=nil, payperiod=nil, autorenew=nil, params=nil, resourcetags=nil, project=nil, producttype=nil, instancetype=nil, mode=nil, goodsnum=nil, networktype=nil, templateid=nil, components=nil, zone=nil, slavezones=nil, isnoexpired=nil, enginename=nil, engineversion=nil, brief=nil, chief=nil, dba=nil, nodetype=nil, cpu=nil, memory=nil, disksize=nil, workernodenum=nil)
+        def initialize(vpcid=nil, subnetid=nil, paymode=nil, instancename=nil, securitygroupids=nil, payperiod=nil, autorenew=nil, params=nil, resourcetags=nil, project=nil, producttype=nil, instancetype=nil, mode=nil, goodsnum=nil, networktype=nil, templateid=nil, components=nil, zone=nil, slavezones=nil, isnoexpired=nil, enginename=nil, engineversion=nil, brief=nil, chief=nil, dba=nil, nodetype=nil, cpu=nil, memory=nil, disksize=nil, workernodenum=nil, enableencryption=nil)
           @VpcId = vpcid
           @SubnetId = subnetid
           @PayMode = paymode
@@ -194,6 +178,7 @@ module TencentCloud
           @Memory = memory
           @DiskSize = disksize
           @WorkerNodeNum = workernodenum
+          @EnableEncryption = enableencryption
         end
 
         def deserialize(params)
@@ -241,12 +226,13 @@ module TencentCloud
           @Memory = params['Memory']
           @DiskSize = params['DiskSize']
           @WorkerNodeNum = params['WorkerNodeNum']
+          @EnableEncryption = params['EnableEncryption']
         end
       end
 
       # CreateInstance返回参数结构体
       class CreateInstanceResponse < TencentCloud::Common::AbstractModel
-        # @param InstanceIds: 实例 ID。
+        # @param InstanceIds: <p>实例 ID。</p>
         # @type InstanceIds: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

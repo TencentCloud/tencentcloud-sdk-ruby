@@ -1522,21 +1522,21 @@ module TencentCloud
 
       # GetFlowStatisticByGroup请求参数结构体
       class GetFlowStatisticByGroupRequest < TencentCloud::Common::AbstractModel
-        # @param GroupId: 分组ID
+        # @param GroupId: <p>分组ID</p>
         # @type GroupId: String
-        # @param BeginTime: 开始查找时间
+        # @param BeginTime: <p>开始查找时间</p>
         # @type BeginTime: Integer
-        # @param EndTime: 截止时间
+        # @param EndTime: <p>截止时间</p>
         # @type EndTime: Integer
-        # @param Type: 流量种类（1：上行流量，2：下行流量， 3: 上下行总和）
+        # @param Type: <p>流量种类（1：上行流量，2：下行流量， 3: 上下行总和）</p>
         # @type Type: Integer
-        # @param TimeGranularity: 时间粒度（1：按小时统计，2：按天统计）
+        # @param TimeGranularity: <p>时间粒度</p><p>枚举值：</p><ul><li>1： 按小时统计</li><li>2： 按天统计</li><li>3： 按分钟统计</li><li>4： 按5分钟统计</li></ul>
         # @type TimeGranularity: Integer
-        # @param AccessRegion: 接入区域。取值范围：['MC','AP','EU','AM'] MC=中国大陆 AP=亚太 EU=欧洲 AM=美洲。不填代表全量区域。
+        # @param AccessRegion: <p>接入区域。取值范围：[&#39;MC&#39;,&#39;AP&#39;,&#39;EU&#39;,&#39;AM&#39;] MC=中国大陆 AP=亚太 EU=欧洲 AM=美洲。不填代表全量区域。</p>
         # @type AccessRegion: String
-        # @param GatewayType: 网关类型。0：公有云网关；1：自有网关。不传默认为0。
+        # @param GatewayType: <p>网关类型。0：公有云网关；1：自有网关。不传默认为0。</p>
         # @type GatewayType: Integer
-        # @param MpApplicationId: 应用ID, 查询分组流量时无需使用。 查询应用流量时该字段为应用ID，GroupId 填写 "-1"
+        # @param MpApplicationId: <p>应用ID, 查询分组流量时无需使用。 查询应用流量时该字段为应用ID，GroupId 填写 &quot;-1&quot;</p>
         # @type MpApplicationId: String
 
         attr_accessor :GroupId, :BeginTime, :EndTime, :Type, :TimeGranularity, :AccessRegion, :GatewayType, :MpApplicationId
@@ -1566,13 +1566,13 @@ module TencentCloud
 
       # GetFlowStatisticByGroup返回参数结构体
       class GetFlowStatisticByGroupResponse < TencentCloud::Common::AbstractModel
-        # @param NetDetails: 流量详细信息
+        # @param NetDetails: <p>流量详细信息</p>
         # @type NetDetails: Array
-        # @param MaxValue: 查找时间段流量使用最大值（单位：byte）
+        # @param MaxValue: <p>查找时间段流量使用最大值（单位：byte）</p>
         # @type MaxValue: Float
-        # @param AvgValue: 查找时间段流量使用平均值（单位：byte）
+        # @param AvgValue: <p>查找时间段流量使用平均值（单位：byte）</p>
         # @type AvgValue: Float
-        # @param TotalValue: 查找时间段流量使用总量（单位：byte）
+        # @param TotalValue: <p>查找时间段流量使用总量（单位：byte）</p>
         # @type TotalValue: Float
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1605,21 +1605,21 @@ module TencentCloud
 
       # GetFlowStatisticByName请求参数结构体
       class GetFlowStatisticByNameRequest < TencentCloud::Common::AbstractModel
-        # @param DeviceName: 设备名称
+        # @param DeviceName: <p>设备名称</p>
         # @type DeviceName: String
-        # @param BeginTime: 开始查找时间
+        # @param BeginTime: <p>开始查找时间</p>
         # @type BeginTime: Integer
-        # @param EndTime: 截止时间
+        # @param EndTime: <p>截止时间</p>
         # @type EndTime: Integer
-        # @param Type: 流量种类（1：上行流量，2：下行流量，3：上下行总和）
+        # @param Type: <p>流量种类（1：上行流量，2：下行流量，3：上下行总和）</p>
         # @type Type: Integer
-        # @param TimeGranularity: 时间粒度（1：按小时统计，2：按天统计）
+        # @param TimeGranularity: <p>时间粒度</p><p>枚举值：</p><ul><li>1： 按小时统计</li><li>2： 按天统计</li><li>3： 按分钟统计</li><li>4： 按5分钟统计</li></ul>
         # @type TimeGranularity: Integer
-        # @param AccessRegion: 接入区域。取值范围：['MC','AP','EU','AM'] MC=中国大陆 AP=亚太 EU=欧洲 AM=美洲。不填代表全量区域。
+        # @param AccessRegion: <p>接入区域。取值范围：[&#39;MC&#39;,&#39;AP&#39;,&#39;EU&#39;,&#39;AM&#39;] MC=中国大陆 AP=亚太 EU=欧洲 AM=美洲。不填代表全量区域。</p>
         # @type AccessRegion: String
-        # @param GatewayType: 网关类型。0：公有云网关；1：自有网关。不传默认为0。
+        # @param GatewayType: <p>网关类型。0：公有云网关；1：自有网关。不传默认为0。</p>
         # @type GatewayType: Integer
-        # @param DeviceList: 设备名列表，用于查询多设备流量，该字段启用时DeviceId可传"-1"
+        # @param DeviceList: <p>设备名列表，用于查询多设备流量，该字段启用时DeviceId可传&quot;-1&quot;</p>
         # @type DeviceList: Array
 
         attr_accessor :DeviceName, :BeginTime, :EndTime, :Type, :TimeGranularity, :AccessRegion, :GatewayType, :DeviceList
@@ -1649,13 +1649,13 @@ module TencentCloud
 
       # GetFlowStatisticByName返回参数结构体
       class GetFlowStatisticByNameResponse < TencentCloud::Common::AbstractModel
-        # @param NetDetails: 流量详细信息
+        # @param NetDetails: <p>流量详细信息</p>
         # @type NetDetails: Array
-        # @param MaxValue: 查找时间段流量使用最大值（单位：byte）
+        # @param MaxValue: <p>查找时间段流量使用最大值（单位：byte）</p>
         # @type MaxValue: Float
-        # @param AvgValue: 查找时间段流量使用平均值（单位：byte）
+        # @param AvgValue: <p>查找时间段流量使用平均值（单位：byte）</p>
         # @type AvgValue: Float
-        # @param TotalValue: 查找时间段流量使用总量（单位：byte）
+        # @param TotalValue: <p>查找时间段流量使用总量（单位：byte）</p>
         # @type TotalValue: Float
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1688,17 +1688,17 @@ module TencentCloud
 
       # GetFlowStatisticByRegion请求参数结构体
       class GetFlowStatisticByRegionRequest < TencentCloud::Common::AbstractModel
-        # @param BeginTime: 开始查找时间
+        # @param BeginTime: <p>开始查找时间</p>
         # @type BeginTime: Integer
-        # @param EndTime: 截止时间
+        # @param EndTime: <p>截止时间</p>
         # @type EndTime: Integer
-        # @param Type: 流量种类（1：上行流量，2：下行流量， 3: 上下行总和）
+        # @param Type: <p>流量种类（1：上行流量，2：下行流量， 3: 上下行总和）</p>
         # @type Type: Integer
-        # @param TimeGranularity: 时间粒度（1：按小时统计，2：按天统计）
+        # @param TimeGranularity: <p>时间粒度</p><p>枚举值：</p><ul><li>1： 按小时统计</li><li>2： 按天统计</li><li>3： 按分钟统计</li><li>4： 按5分钟统计</li></ul>
         # @type TimeGranularity: Integer
-        # @param GatewayType: 网关类型。0：公有云网关；1：自有网关。
+        # @param GatewayType: <p>网关类型。0：公有云网关；1：自有网关。</p>
         # @type GatewayType: Integer
-        # @param AccessRegion: 接入区域。取值范围：['MC','AP','EU','AM'] MC=中国大陆 AP=亚太 EU=欧洲 AM=美洲。不填代表全量区域。
+        # @param AccessRegion: <p>接入区域。取值范围：[&#39;MC&#39;,&#39;AP&#39;,&#39;EU&#39;,&#39;AM&#39;] MC=中国大陆 AP=亚太 EU=欧洲 AM=美洲。不填代表全量区域。</p>
         # @type AccessRegion: String
 
         attr_accessor :BeginTime, :EndTime, :Type, :TimeGranularity, :GatewayType, :AccessRegion
@@ -1724,13 +1724,13 @@ module TencentCloud
 
       # GetFlowStatisticByRegion返回参数结构体
       class GetFlowStatisticByRegionResponse < TencentCloud::Common::AbstractModel
-        # @param NetDetails: 流量详细信息
+        # @param NetDetails: <p>流量详细信息</p>
         # @type NetDetails: Array
-        # @param MaxValue: 查找时间段流量使用最大值（单位：byte）
+        # @param MaxValue: <p>查找时间段流量使用最大值（单位：byte）</p>
         # @type MaxValue: Float
-        # @param AvgValue: 查找时间段流量使用平均值（单位：byte）
+        # @param AvgValue: <p>查找时间段流量使用平均值（单位：byte）</p>
         # @type AvgValue: Float
-        # @param TotalValue: 查找时间段流量使用总量（单位：byte）
+        # @param TotalValue: <p>查找时间段流量使用总量（单位：byte）</p>
         # @type TotalValue: Float
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1763,21 +1763,21 @@ module TencentCloud
 
       # GetFlowStatistic请求参数结构体
       class GetFlowStatisticRequest < TencentCloud::Common::AbstractModel
-        # @param DeviceId: 设备ID
+        # @param DeviceId: <p>设备ID</p>
         # @type DeviceId: String
-        # @param BeginTime: 开始查找时间
+        # @param BeginTime: <p>开始查找时间</p>
         # @type BeginTime: Integer
-        # @param EndTime: 截止时间
+        # @param EndTime: <p>截止时间</p>
         # @type EndTime: Integer
-        # @param Type: 流量种类（1：上行流量，2：下行流量，3：上下行总和）
+        # @param Type: <p>流量种类（1：上行流量，2：下行流量，3：上下行总和）</p>
         # @type Type: Integer
-        # @param TimeGranularity: 时间粒度（1：按小时统计，2：按天统计）
+        # @param TimeGranularity: <p>时间粒度</p><p>枚举值：</p><ul><li>1： 按小时统计</li><li>2： 按天统计</li><li>3： 按分钟统计</li><li>4： 按5分钟统计</li></ul>
         # @type TimeGranularity: Integer
-        # @param AccessRegion: 接入区域。取值范围：['MC','AP','EU','AM'] MC=中国大陆 AP=亚太 EU=欧洲 AM=美洲。不填代表全量区域。
+        # @param AccessRegion: <p>接入区域。取值范围：[&#39;MC&#39;,&#39;AP&#39;,&#39;EU&#39;,&#39;AM&#39;] MC=中国大陆 AP=亚太 EU=欧洲 AM=美洲。不填代表全量区域。</p>
         # @type AccessRegion: String
-        # @param GatewayType: 网关类型。0：公有云网关；1：自有网关。不传默认为0。
+        # @param GatewayType: <p>网关类型。0：公有云网关；1：自有网关。不传默认为0。</p>
         # @type GatewayType: Integer
-        # @param DeviceList: 设备ID列表，用于查询多设备流量，该字段启用时DeviceId可传"-1"
+        # @param DeviceList: <p>设备ID列表，用于查询多设备流量，该字段启用时DeviceId可传&quot;-1&quot;</p>
         # @type DeviceList: Array
 
         attr_accessor :DeviceId, :BeginTime, :EndTime, :Type, :TimeGranularity, :AccessRegion, :GatewayType, :DeviceList
@@ -1807,13 +1807,13 @@ module TencentCloud
 
       # GetFlowStatistic返回参数结构体
       class GetFlowStatisticResponse < TencentCloud::Common::AbstractModel
-        # @param NetDetails: 流量详细信息
+        # @param NetDetails: <p>流量详细信息</p>
         # @type NetDetails: Array
-        # @param MaxValue: 查找时间段流量使用最大值（单位：byte）
+        # @param MaxValue: <p>查找时间段流量使用最大值（单位：byte）</p>
         # @type MaxValue: Float
-        # @param AvgValue: 查找时间段流量使用平均值（单位：byte）
+        # @param AvgValue: <p>查找时间段流量使用平均值（单位：byte）</p>
         # @type AvgValue: Float
-        # @param TotalValue: 查找时间段流量使用总量（单位：byte）
+        # @param TotalValue: <p>查找时间段流量使用总量（单位：byte）</p>
         # @type TotalValue: Float
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2200,19 +2200,19 @@ module TencentCloud
 
       # GetMultiFlowStatistic请求参数结构体
       class GetMultiFlowStatisticRequest < TencentCloud::Common::AbstractModel
-        # @param DeviceIds: 设备id列表，单次最多请求10个设备
+        # @param DeviceIds: <p>设备id列表，单次最多请求10个设备</p>
         # @type DeviceIds: Array
-        # @param BeginTime: 1659514436
+        # @param BeginTime: <p>1659514436</p>
         # @type BeginTime: Integer
-        # @param EndTime: 1659515000
+        # @param EndTime: <p>1659515000</p>
         # @type EndTime: Integer
-        # @param Type: 统计流量类型（1：上行流量，2：下行流量， 3: 上下行总和）
+        # @param Type: <p>统计流量类型（1：上行流量，2：下行流量， 3: 上下行总和）</p>
         # @type Type: Integer
-        # @param TimeGranularity: 统计时间粒度（1：按小时统计，2：按天统计）
+        # @param TimeGranularity: <p>统计时间粒度</p><p>枚举值：</p><ul><li>1： 按小时统计</li><li>2： 按天统计</li><li>3： 按分钟统计</li><li>4： 按5分钟统计</li></ul>
         # @type TimeGranularity: Integer
-        # @param AccessRegion: 接入区域。取值范围：['MC','AP','EU','AM'] MC=中国大陆 AP=亚太 EU=欧洲 AM=美洲。不填代表全量区域。
+        # @param AccessRegion: <p>接入区域。取值范围：[&#39;MC&#39;,&#39;AP&#39;,&#39;EU&#39;,&#39;AM&#39;] MC=中国大陆 AP=亚太 EU=欧洲 AM=美洲。不填代表全量区域。</p>
         # @type AccessRegion: String
-        # @param GatewayType: 网关类型。0：公有云网关；1：自有网关。不传默认为0。
+        # @param GatewayType: <p>网关类型。0：公有云网关；1：自有网关。不传默认为0。</p>
         # @type GatewayType: Integer
 
         attr_accessor :DeviceIds, :BeginTime, :EndTime, :Type, :TimeGranularity, :AccessRegion, :GatewayType
@@ -2240,7 +2240,7 @@ module TencentCloud
 
       # GetMultiFlowStatistic返回参数结构体
       class GetMultiFlowStatisticResponse < TencentCloud::Common::AbstractModel
-        # @param FlowDetails: 批量设备流量信息
+        # @param FlowDetails: <p>批量设备流量信息</p>
         # @type FlowDetails: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2428,25 +2428,23 @@ module TencentCloud
 
       # GetStatisticDataByName请求参数结构体
       class GetStatisticDataByNameRequest < TencentCloud::Common::AbstractModel
-        # @param DeviceName: 设备名。若不指定设备，可传"-1"
+        # @param DeviceName: <p>设备名。若不指定设备，可传&quot;-1&quot;</p>
         # @type DeviceName: String
-        # @param BeginTime: 统计开始时间，单位：s
+        # @param BeginTime: <p>统计开始时间，单位：s</p>
         # @type BeginTime: Integer
-        # @param EndTime: 统计结束时间，单位：s
+        # @param EndTime: <p>统计结束时间，单位：s</p>
         # @type EndTime: Integer
-        # @param TimeGranularity: 聚合粒度：
-        # 1:按小时统计
-        # 2:按天统计
+        # @param TimeGranularity: <p>时间粒度</p><p>枚举值：</p><ul><li>1： 按小时统计</li><li>2： 按天统计</li><li>3： 按分钟统计</li><li>4： 按5分钟统计</li></ul>
         # @type TimeGranularity: Integer
-        # @param AccessRegion: 接入区域。取值范围：['MC','AP','EU','AM'] MC=中国大陆 AP=亚太 EU=欧洲 AM=美洲。不填代表全量区域。
+        # @param AccessRegion: <p>接入区域。取值范围：[&#39;MC&#39;,&#39;AP&#39;,&#39;EU&#39;,&#39;AM&#39;] MC=中国大陆 AP=亚太 EU=欧洲 AM=美洲。不填代表全量区域。</p>
         # @type AccessRegion: String
-        # @param GatewayType: 网关类型。0：公有云网关；1：自有网关。不传默认为0。
+        # @param GatewayType: <p>网关类型。0：公有云网关；1：自有网关。不传默认为0。</p>
         # @type GatewayType: Integer
-        # @param DeviceList: 设备名列表，最多10个设备，下载多个设备流量时使用，此时DeviceName可传"-1"
+        # @param DeviceList: <p>设备名列表，最多10个设备，下载多个设备流量时使用，此时DeviceName可传&quot;-1&quot;</p>
         # @type DeviceList: Array
-        # @param GroupId: 设备分组ID，若不指定分组则不传，按分组下载数据时使用
+        # @param GroupId: <p>设备分组ID，若不指定分组则不传，按分组下载数据时使用</p>
         # @type GroupId: String
-        # @param MpApplicationId: 应用ID，若不指定应用不填，按应用下载数据时使用
+        # @param MpApplicationId: <p>应用ID，若不指定应用不填，按应用下载数据时使用</p>
         # @type MpApplicationId: String
 
         attr_accessor :DeviceName, :BeginTime, :EndTime, :TimeGranularity, :AccessRegion, :GatewayType, :DeviceList, :GroupId, :MpApplicationId
@@ -2478,7 +2476,7 @@ module TencentCloud
 
       # GetStatisticDataByName返回参数结构体
       class GetStatisticDataByNameResponse < TencentCloud::Common::AbstractModel
-        # @param FilePath: 文件地址url
+        # @param FilePath: <p>文件地址url</p>
         # @type FilePath: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2498,23 +2496,21 @@ module TencentCloud
 
       # GetStatisticData请求参数结构体
       class GetStatisticDataRequest < TencentCloud::Common::AbstractModel
-        # @param DeviceId: 设备ID。若不指定设备，可传"-1"
+        # @param DeviceId: <p>设备ID。若不指定设备，可传&quot;-1&quot;</p>
         # @type DeviceId: String
-        # @param BeginTime: 统计开始时间，单位：s
+        # @param BeginTime: <p>统计开始时间，单位：s</p>
         # @type BeginTime: Integer
-        # @param EndTime: 统计结束时间，单位：s
+        # @param EndTime: <p>统计结束时间，单位：s</p>
         # @type EndTime: Integer
-        # @param TimeGranularity: 聚合粒度：
-        # 1:按小时统计
-        # 2:按天统计
+        # @param TimeGranularity: <p>时间粒度</p><p>枚举值：</p><ul><li>1： 按小时统计</li><li>2： 按天统计</li><li>3： 按分钟统计</li><li>4： 按5分钟统计</li></ul>
         # @type TimeGranularity: Integer
-        # @param AccessRegion: 接入区域。取值范围：['MC','AP','EU','AM'] MC=中国大陆 AP=亚太 EU=欧洲 AM=美洲。不填代表全量区域。
+        # @param AccessRegion: <p>接入区域。取值范围：[&#39;MC&#39;,&#39;AP&#39;,&#39;EU&#39;,&#39;AM&#39;] MC=中国大陆 AP=亚太 EU=欧洲 AM=美洲。不填代表全量区域。</p>
         # @type AccessRegion: String
-        # @param GatewayType: 网关类型。0：公有云网关；1：自有网关。不传默认为0。
+        # @param GatewayType: <p>网关类型。0：公有云网关；1：自有网关。不传默认为0。</p>
         # @type GatewayType: Integer
-        # @param DeviceList: 设备ID列表，最多10个设备，下载多个设备流量和时使用，此时DeviceId可传"-1"
+        # @param DeviceList: <p>设备ID列表，最多10个设备，下载多个设备流量和时使用，此时DeviceId可传&quot;-1&quot;</p>
         # @type DeviceList: Array
-        # @param GroupId: 设备分组ID，若不指定分组则不传，按分组下载数据时使用
+        # @param GroupId: <p>设备分组ID，若不指定分组则不传，按分组下载数据时使用</p>
         # @type GroupId: String
 
         attr_accessor :DeviceId, :BeginTime, :EndTime, :TimeGranularity, :AccessRegion, :GatewayType, :DeviceList, :GroupId
@@ -2544,7 +2540,7 @@ module TencentCloud
 
       # GetStatisticData返回参数结构体
       class GetStatisticDataResponse < TencentCloud::Common::AbstractModel
-        # @param FilePath: 文件地址url
+        # @param FilePath: <p>文件地址url</p>
         # @type FilePath: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

@@ -2670,47 +2670,45 @@ module TencentCloud
 
       # CreateCdbProxyAddress请求参数结构体
       class CreateCdbProxyAddressRequest < TencentCloud::Common::AbstractModel
-        # @param ProxyGroupId: 代理组 ID。可通过 [DescribeCdbProxyInfo](https://cloud.tencent.com/document/api/236/90585) 接口获取。
+        # @param ProxyGroupId: <p>代理组 ID。可通过 <a href="https://cloud.tencent.com/document/api/236/90585">DescribeCdbProxyInfo</a> 接口获取。</p>
         # @type ProxyGroupId: String
-        # @param WeightMode: 权重分配模式，
-        # 系统自动分配："system"， 自定义："custom"
+        # @param WeightMode: <p>权重分配模式，<br>系统自动分配：&quot;system&quot;， 自定义：&quot;custom&quot;</p>
         # @type WeightMode: String
-        # @param IsKickOut: 是否开启延迟剔除，取值："true" | "false"
+        # @param IsKickOut: <p>是否开启延迟剔除，取值：&quot;true&quot; | &quot;false&quot;</p>
         # @type IsKickOut: Boolean
-        # @param MinCount: 最小保留数量，最小取值：0
+        # @param MinCount: <p>最小保留数量，最小取值：0</p>
         # @type MinCount: Integer
-        # @param MaxDelay: 延迟剔除阈值，最小取值：1，范围：1 - 10000，整数。
+        # @param MaxDelay: <p>延迟剔除阈值，最小取值：1，范围：1 - 10000，整数。</p>
         # @type MaxDelay: Integer
-        # @param FailOver: 是否开启故障转移，取值："true" | "false"
+        # @param FailOver: <p>是否开启故障转移，取值：&quot;true&quot; | &quot;false&quot;</p>
         # @type FailOver: Boolean
-        # @param AutoAddRo: 是否自动添加RO，取值："true" | "false"
+        # @param AutoAddRo: <p>是否自动添加RO，取值：&quot;true&quot; | &quot;false&quot;</p>
         # @type AutoAddRo: Boolean
-        # @param ReadOnly: 是否是只读，取值："true" | "false"
+        # @param ReadOnly: <p>是否是只读，取值：&quot;true&quot; | &quot;false&quot;</p>
         # @type ReadOnly: Boolean
-        # @param TransSplit: 是否开启事务分离，取值："true" | "false"
+        # @param TransSplit: <p>是否开启事务分离，取值：&quot;true&quot; | &quot;false&quot;</p>
         # @type TransSplit: Boolean
-        # @param ProxyAllocation: 读写权重分配
+        # @param ProxyAllocation: <p>读写权重分配</p>
         # @type ProxyAllocation: Array
-        # @param UniqVpcId: 私有网络 ID。可通过 [DescribeDBInstances](https://cloud.tencent.com/document/product/236/15872) 接口获取。
+        # @param UniqVpcId: <p>私有网络 ID。可通过 <a href="https://cloud.tencent.com/document/product/236/15872">DescribeDBInstances</a> 接口获取。</p>
         # @type UniqVpcId: String
-        # @param UniqSubnetId: 私有子网 ID。可通过 [DescribeDBInstances](https://cloud.tencent.com/document/product/236/15872) 接口获取。
+        # @param UniqSubnetId: <p>私有子网 ID。可通过 <a href="https://cloud.tencent.com/document/product/236/15872">DescribeDBInstances</a> 接口获取。</p>
         # @type UniqSubnetId: String
-        # @param ConnectionPool: 是否开启连接池。默认关闭。
-        # 注意：如需使用数据库代理连接池能力，MySQL 8.0 主实例的内核小版本要大于等于 MySQL 8.0 20230630。
+        # @param ConnectionPool: <p>是否开启连接池。默认关闭。<br>注意：如需使用数据库代理连接池能力，MySQL 8.0 主实例的内核小版本要大于等于 MySQL 8.0 20230630。</p>
         # @type ConnectionPool: Boolean
-        # @param Desc: 描述
+        # @param Desc: <p>描述</p>
         # @type Desc: String
-        # @param Vip: IP 地址。不填则默认为所选 VPC 下支持的随机一个 IP。
+        # @param Vip: <p>IP 地址。不填则默认为所选 VPC 下支持的随机一个 IP。</p>
         # @type Vip: String
-        # @param VPort: 端口。默认值3306。
+        # @param VPort: <p>端口。默认值3306。</p>
         # @type VPort: Integer
-        # @param SecurityGroup: 安全组
+        # @param SecurityGroup: <p>安全组</p>
         # @type SecurityGroup: Array
-        # @param ConnectionPoolType: 连接池类型。可选值 transaction（事务级别连接池），connection（会话级别连接池），ConnectionPool 为 true 时生效。默认值：connection。
+        # @param ConnectionPoolType: <p>连接池类型。可选值 transaction（事务级别连接池），connection（会话级别连接池），ConnectionPool 为 true 时生效。默认值：connection。</p>
         # @type ConnectionPoolType: String
-        # @param AutoLoadBalance: 是否开启自适应负载均衡。默认关闭。
+        # @param AutoLoadBalance: <p>是否开启自适应负载均衡。默认关闭。</p>
         # @type AutoLoadBalance: Boolean
-        # @param AccessMode: 接入模式。nearBy - 就近访问，balance - 均衡分配，默认值：nearBy。
+        # @param AccessMode: <p>接入模式。nearBy - 就近访问，balance - 均衡分配，默认值：nearBy。</p>
         # @type AccessMode: String
 
         attr_accessor :ProxyGroupId, :WeightMode, :IsKickOut, :MinCount, :MaxDelay, :FailOver, :AutoAddRo, :ReadOnly, :TransSplit, :ProxyAllocation, :UniqVpcId, :UniqSubnetId, :ConnectionPool, :Desc, :Vip, :VPort, :SecurityGroup, :ConnectionPoolType, :AutoLoadBalance, :AccessMode
@@ -2771,7 +2769,7 @@ module TencentCloud
 
       # CreateCdbProxyAddress返回参数结构体
       class CreateCdbProxyAddressResponse < TencentCloud::Common::AbstractModel
-        # @param AsyncRequestId: 异步任务ID
+        # @param AsyncRequestId: <p>异步任务ID</p>
         # @type AsyncRequestId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

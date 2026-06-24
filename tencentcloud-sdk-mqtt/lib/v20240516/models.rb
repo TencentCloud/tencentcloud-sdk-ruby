@@ -2377,8 +2377,8 @@ module TencentCloud
 
         attr_accessor :InstanceType, :InstanceId, :InstanceName, :TopicNum, :TopicNumLimit, :TpsLimit, :CreatedTime, :Remark, :InstanceStatus, :SkuCode, :MaxSubscriptionPerClient, :AuthorizationPolicyLimit, :ClientNumLimit, :DeviceCertificateProvisionType, :AutomaticActivation, :RenewFlag, :PayMode, :ExpiryTime, :DestroyTime, :X509Mode, :MaxCaNum, :RegistrationCode, :MaxSubscription, :AuthorizationPolicy, :SharedSubscriptionGroupLimit, :MaxTopicFilterPerSharedSubscriptionGroup, :AutoSubscriptionPolicyLimit, :MaxTopicFilterPerAutoSubscriptionPolicy, :UseDefaultServerCert, :TrustedCaLimit, :ServerCertLimit, :TopicPrefixSlashLimit, :MessageRate, :TransportLayerSecurity, :MessageEnrichmentRuleLimit, :BlockRuleLimit, :RequestId
         extend Gem::Deprecate
-        deprecate :MaxTopicFilterPerSharedSubscriptionGroup, :none, 2026, 5
-        deprecate :MaxTopicFilterPerSharedSubscriptionGroup=, :none, 2026, 5
+        deprecate :MaxTopicFilterPerSharedSubscriptionGroup, :none, 2026, 6
+        deprecate :MaxTopicFilterPerSharedSubscriptionGroup=, :none, 2026, 6
 
         def initialize(instancetype=nil, instanceid=nil, instancename=nil, topicnum=nil, topicnumlimit=nil, tpslimit=nil, createdtime=nil, remark=nil, instancestatus=nil, skucode=nil, maxsubscriptionperclient=nil, authorizationpolicylimit=nil, clientnumlimit=nil, devicecertificateprovisiontype=nil, automaticactivation=nil, renewflag=nil, paymode=nil, expirytime=nil, destroytime=nil, x509mode=nil, maxcanum=nil, registrationcode=nil, maxsubscription=nil, authorizationpolicy=nil, sharedsubscriptiongrouplimit=nil, maxtopicfilterpersharedsubscriptiongroup=nil, autosubscriptionpolicylimit=nil, maxtopicfilterperautosubscriptionpolicy=nil, usedefaultservercert=nil, trustedcalimit=nil, servercertlimit=nil, topicprefixslashlimit=nil, messagerate=nil, transportlayersecurity=nil, messageenrichmentrulelimit=nil, blockrulelimit=nil, requestid=nil)
           @InstanceType = instancetype
@@ -3834,12 +3834,12 @@ module TencentCloud
 
         attr_accessor :MsgId, :Tags, :Keys, :ProducerAddr, :ProduceTime, :DeadLetterResendTimes, :DeadLetterResendSuccessTimes, :SubTopic, :Qos
         extend Gem::Deprecate
-        deprecate :DeadLetterResendTimes, :none, 2026, 5
-        deprecate :DeadLetterResendTimes=, :none, 2026, 5
-        deprecate :DeadLetterResendSuccessTimes, :none, 2026, 5
-        deprecate :DeadLetterResendSuccessTimes=, :none, 2026, 5
-        deprecate :SubTopic, :none, 2026, 5
-        deprecate :SubTopic=, :none, 2026, 5
+        deprecate :DeadLetterResendTimes, :none, 2026, 6
+        deprecate :DeadLetterResendTimes=, :none, 2026, 6
+        deprecate :DeadLetterResendSuccessTimes, :none, 2026, 6
+        deprecate :DeadLetterResendSuccessTimes=, :none, 2026, 6
+        deprecate :SubTopic, :none, 2026, 6
+        deprecate :SubTopic=, :none, 2026, 6
 
         def initialize(msgid=nil, tags=nil, keys=nil, produceraddr=nil, producetime=nil, deadletterresendtimes=nil, deadletterresendsuccesstimes=nil, subtopic=nil, qos=nil)
           @MsgId = msgid
@@ -4495,8 +4495,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :Algorithm, :From, :Secret, :PublicKey, :Status, :Remark, :Text
         extend Gem::Deprecate
-        deprecate :Text, :none, 2026, 5
-        deprecate :Text=, :none, 2026, 5
+        deprecate :Text, :none, 2026, 6
+        deprecate :Text=, :none, 2026, 6
 
         def initialize(instanceid=nil, algorithm=nil, from=nil, secret=nil, publickey=nil, status=nil, remark=nil, text=nil)
           @InstanceId = instanceid

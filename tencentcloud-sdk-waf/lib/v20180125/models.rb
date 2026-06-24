@@ -10033,7 +10033,7 @@ module TencentCloud
 
       # DescribeLLMContentSecCheck请求参数结构体
       class DescribeLLMContentSecCheckRequest < TencentCloud::Common::AbstractModel
-        # @param ServiceId: <p>服务id,使用哪一套防护策略，就需要传哪一套服务id，模型会检测该服务id下的所有规则</p>
+        # @param ServiceId: <p>服务id，使用哪一套防护策略，就需要传哪一套服务id，模型会检测该服务id下的所有规则</p>
         # @type ServiceId: String
         # @param Type: <p>流量类型，是入向流量还是出向流量，入向：1，出向：2；入向和出向必填</p>
         # @type Type: Integer
@@ -10041,7 +10041,7 @@ module TencentCloud
         # @type InstanceId: String
         # @param Content: <p>要审核的内容</p>
         # @type Content: String
-        # @param ChatId: <p>对话的id</p>
+        # @param ChatId: <p>一问一答的对话的id</p>
         # @type ChatId: String
         # @param UserId: <p>标识用户的id，限速使用，不填，则限速会不生效</p>
         # @type UserId: String
@@ -10053,10 +10053,14 @@ module TencentCloud
         # @type ToolName: String
         # @param ToolArgs: <p>tool_call 场景工具参数</p>
         # @type ToolArgs: String
+        # @param SessionId: <p>多轮对话的id</p>
+        # @type SessionId: String
+        # @param IntentContent: <p>意图检测请求内容</p>
+        # @type IntentContent: :class:`Tencentcloud::Waf.v20180125.models.IntentContent`
 
-        attr_accessor :ServiceId, :Type, :InstanceId, :Content, :ChatId, :UserId, :TokenUsage, :ImageEncode, :ToolName, :ToolArgs
+        attr_accessor :ServiceId, :Type, :InstanceId, :Content, :ChatId, :UserId, :TokenUsage, :ImageEncode, :ToolName, :ToolArgs, :SessionId, :IntentContent
 
-        def initialize(serviceid=nil, type=nil, instanceid=nil, content=nil, chatid=nil, userid=nil, tokenusage=nil, imageencode=nil, toolname=nil, toolargs=nil)
+        def initialize(serviceid=nil, type=nil, instanceid=nil, content=nil, chatid=nil, userid=nil, tokenusage=nil, imageencode=nil, toolname=nil, toolargs=nil, sessionid=nil, intentcontent=nil)
           @ServiceId = serviceid
           @Type = type
           @InstanceId = instanceid
@@ -10067,6 +10071,8 @@ module TencentCloud
           @ImageEncode = imageencode
           @ToolName = toolname
           @ToolArgs = toolargs
+          @SessionId = sessionid
+          @IntentContent = intentcontent
         end
 
         def deserialize(params)
@@ -10080,6 +10086,11 @@ module TencentCloud
           @ImageEncode = params['ImageEncode']
           @ToolName = params['ToolName']
           @ToolArgs = params['ToolArgs']
+          @SessionId = params['SessionId']
+          unless params['IntentContent'].nil?
+            @IntentContent = IntentContent.new
+            @IntentContent.deserialize(params['IntentContent'])
+          end
         end
       end
 
@@ -14810,6 +14821,38 @@ module TencentCloud
         end
       end
 
+      # 大模型意图检测的请求内容
+      class IntentContent < TencentCloud::Common::AbstractModel
+        # @param AgentTrace: <p>agent的轨迹内容，参考用例</p>
+        # @type AgentTrace: String
+
+        attr_accessor :AgentTrace
+
+        def initialize(agenttrace=nil)
+          @AgentTrace = agenttrace
+        end
+
+        def deserialize(params)
+          @AgentTrace = params['AgentTrace']
+        end
+      end
+
+      # 大模型安全意图检测响应数据
+      class IntentDetectResult < TencentCloud::Common::AbstractModel
+        # @param IsUnSafe: <p>是否恶意意图</p><p>枚举值：</p><ul><li>1： 恶意</li><li>0： 正常</li></ul>
+        # @type IsUnSafe: Integer
+
+        attr_accessor :IsUnSafe
+
+        def initialize(isunsafe=nil)
+          @IsUnSafe = isunsafe
+        end
+
+        def deserialize(params)
+          @IsUnSafe = params['IsUnSafe']
+        end
+      end
+
       # 数据封装
       class IpAccessControlData < TencentCloud::Common::AbstractModel
         # @param Res: ip黑白名单
@@ -15146,10 +15189,12 @@ module TencentCloud
         # @type MsgID: String
         # @param ToolCallResult: <p>toolcall的检测结果</p>
         # @type ToolCallResult: :class:`Tencentcloud::Waf.v20180125.models.ToolCallResult`
+        # @param IntentDetectResult: <p>意图检测结果</p>
+        # @type IntentDetectResult: :class:`Tencentcloud::Waf.v20180125.models.IntentDetectResult`
 
-        attr_accessor :SensitiveResult, :KeyWordsResult, :DataCategoryResult, :PromptInjectionResult, :RuleId, :RuleName, :Action, :Payload, :ImageResult, :MsgID, :ToolCallResult
+        attr_accessor :SensitiveResult, :KeyWordsResult, :DataCategoryResult, :PromptInjectionResult, :RuleId, :RuleName, :Action, :Payload, :ImageResult, :MsgID, :ToolCallResult, :IntentDetectResult
 
-        def initialize(sensitiveresult=nil, keywordsresult=nil, datacategoryresult=nil, promptinjectionresult=nil, ruleid=nil, rulename=nil, action=nil, payload=nil, imageresult=nil, msgid=nil, toolcallresult=nil)
+        def initialize(sensitiveresult=nil, keywordsresult=nil, datacategoryresult=nil, promptinjectionresult=nil, ruleid=nil, rulename=nil, action=nil, payload=nil, imageresult=nil, msgid=nil, toolcallresult=nil, intentdetectresult=nil)
           @SensitiveResult = sensitiveresult
           @KeyWordsResult = keywordsresult
           @DataCategoryResult = datacategoryresult
@@ -15161,6 +15206,7 @@ module TencentCloud
           @ImageResult = imageresult
           @MsgID = msgid
           @ToolCallResult = toolcallresult
+          @IntentDetectResult = intentdetectresult
         end
 
         def deserialize(params)
@@ -15201,6 +15247,10 @@ module TencentCloud
           unless params['ToolCallResult'].nil?
             @ToolCallResult = ToolCallResult.new
             @ToolCallResult.deserialize(params['ToolCallResult'])
+          end
+          unless params['IntentDetectResult'].nil?
+            @IntentDetectResult = IntentDetectResult.new
+            @IntentDetectResult.deserialize(params['IntentDetectResult'])
           end
         end
       end

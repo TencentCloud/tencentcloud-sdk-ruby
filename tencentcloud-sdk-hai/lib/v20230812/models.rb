@@ -1843,16 +1843,19 @@ module TencentCloud
         # @type SuccessThreshold: Integer
         # @param FailureThreshold: <p>探测失败后，Kubernetes的重试次数</p>
         # @type FailureThreshold: Integer
+        # @param TcpSocket: <p>TCP Socket请求进行健康检查</p>
+        # @type TcpSocket: :class:`Tencentcloud::Hai.v20230812.models.TcpSocketConfig`
 
-        attr_accessor :HttpGet, :InitialDelaySeconds, :PeriodSeconds, :TimeoutSeconds, :SuccessThreshold, :FailureThreshold
+        attr_accessor :HttpGet, :InitialDelaySeconds, :PeriodSeconds, :TimeoutSeconds, :SuccessThreshold, :FailureThreshold, :TcpSocket
 
-        def initialize(httpget=nil, initialdelayseconds=nil, periodseconds=nil, timeoutseconds=nil, successthreshold=nil, failurethreshold=nil)
+        def initialize(httpget=nil, initialdelayseconds=nil, periodseconds=nil, timeoutseconds=nil, successthreshold=nil, failurethreshold=nil, tcpsocket=nil)
           @HttpGet = httpget
           @InitialDelaySeconds = initialdelayseconds
           @PeriodSeconds = periodseconds
           @TimeoutSeconds = timeoutseconds
           @SuccessThreshold = successthreshold
           @FailureThreshold = failurethreshold
+          @TcpSocket = tcpsocket
         end
 
         def deserialize(params)
@@ -1865,6 +1868,10 @@ module TencentCloud
           @TimeoutSeconds = params['TimeoutSeconds']
           @SuccessThreshold = params['SuccessThreshold']
           @FailureThreshold = params['FailureThreshold']
+          unless params['TcpSocket'].nil?
+            @TcpSocket = TcpSocketConfig.new
+            @TcpSocket.deserialize(params['TcpSocket'])
+          end
         end
       end
 
@@ -2351,6 +2358,22 @@ module TencentCloud
           @DiskType = params['DiskType']
           @DiskSize = params['DiskSize']
           @DiskName = params['DiskName']
+        end
+      end
+
+      # 推理服务TcpSocket的配置
+      class TcpSocketConfig < TencentCloud::Common::AbstractModel
+        # @param Port: 
+        # @type Port: Integer
+
+        attr_accessor :Port
+
+        def initialize(port=nil)
+          @Port = port
+        end
+
+        def deserialize(params)
+          @Port = params['Port']
         end
       end
 

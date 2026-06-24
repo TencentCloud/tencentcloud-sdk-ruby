@@ -453,7 +453,7 @@ module TencentCloud
 
       # QueryHunyuan3DPartJob请求参数结构体
       class QueryHunyuan3DPartJobRequest < TencentCloud::Common::AbstractModel
-        # @param JobId: 任务ID。
+        # @param JobId: <p>任务ID。</p>
         # @type JobId: String
 
         attr_accessor :JobId
@@ -469,24 +469,27 @@ module TencentCloud
 
       # QueryHunyuan3DPartJob返回参数结构体
       class QueryHunyuan3DPartJobResponse < TencentCloud::Common::AbstractModel
-        # @param Status: 任务状态。WAIT：等待中，RUN：执行中，FAIL：任务失败，DONE：任务成功 示例值：RUN。
+        # @param Status: <p>任务状态。WAIT：等待中，RUN：执行中，FAIL：任务失败，DONE：任务成功 示例值：RUN。</p>
         # @type Status: String
-        # @param ErrorCode: 错误码。
+        # @param ErrorCode: <p>错误码。</p>
         # @type ErrorCode: String
-        # @param ErrorMessage: 错误信息。
+        # @param ErrorMessage: <p>错误信息。</p>
         # @type ErrorMessage: String
-        # @param ResultFile3Ds: 生成文件的URL地址，有效期1天。
+        # @param ResultFile3Ds: <p>生成文件的URL地址，有效期1天。</p>
         # @type ResultFile3Ds: Array
+        # @param PartSegmentationInfo: <p>是否分步骤进行组件生成；<br>开启后，输入原始模型后，可生成带分割信息的模型以及分割数据，可对此信息编辑后再传入带有分割信息的模型和分割数据进行编辑后的组件生成；<br>此参数默认关闭。</p>
+        # @type PartSegmentationInfo: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Status, :ErrorCode, :ErrorMessage, :ResultFile3Ds, :RequestId
+        attr_accessor :Status, :ErrorCode, :ErrorMessage, :ResultFile3Ds, :PartSegmentationInfo, :RequestId
 
-        def initialize(status=nil, errorcode=nil, errormessage=nil, resultfile3ds=nil, requestid=nil)
+        def initialize(status=nil, errorcode=nil, errormessage=nil, resultfile3ds=nil, partsegmentationinfo=nil, requestid=nil)
           @Status = status
           @ErrorCode = errorcode
           @ErrorMessage = errormessage
           @ResultFile3Ds = resultfile3ds
+          @PartSegmentationInfo = partsegmentationinfo
           @RequestId = requestid
         end
 
@@ -502,6 +505,7 @@ module TencentCloud
               @ResultFile3Ds << file3d_tmp
             end
           end
+          @PartSegmentationInfo = params['PartSegmentationInfo']
           @RequestId = params['RequestId']
         end
       end
@@ -673,12 +677,18 @@ module TencentCloud
         # @type File: :class:`Tencentcloud::Ai3d.v20250513.models.InputFile3D`
         # @param Model: <p>组件生成模型版本，默认为1.5</p><p>枚举值：</p><ul><li>1.5： 1.5模型</li></ul><p>默认值：1.5</p>
         # @type Model: String
+        # @param PartSegmentationInfo: <p>是否分步骤进行组件生成；<br>开启后，输入原始模型后，可生成带分割信息的模型以及分割数据，可对此信息编辑后再传入带有分割信息的模型和分割数据进行编辑后的组件生成；<br>此参数默认关闭。</p>
+        # @type PartSegmentationInfo: String
+        # @param EnableStagedGeneration: <p>是否开启后处理，开启后将只输出一个模型链接，默认关闭。 （开启此接口后，需额外增加20积分）</p>
+        # @type EnableStagedGeneration: Boolean
 
-        attr_accessor :File, :Model
+        attr_accessor :File, :Model, :PartSegmentationInfo, :EnableStagedGeneration
 
-        def initialize(file=nil, model=nil)
+        def initialize(file=nil, model=nil, partsegmentationinfo=nil, enablestagedgeneration=nil)
           @File = file
           @Model = model
+          @PartSegmentationInfo = partsegmentationinfo
+          @EnableStagedGeneration = enablestagedgeneration
         end
 
         def deserialize(params)
@@ -687,6 +697,8 @@ module TencentCloud
             @File.deserialize(params['File'])
           end
           @Model = params['Model']
+          @PartSegmentationInfo = params['PartSegmentationInfo']
+          @EnableStagedGeneration = params['EnableStagedGeneration']
         end
       end
 

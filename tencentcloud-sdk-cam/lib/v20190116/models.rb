@@ -3153,6 +3153,117 @@ module TencentCloud
         end
       end
 
+      # ListAccounts请求参数结构体
+      class ListAccountsRequest < TencentCloud::Common::AbstractModel
+        # @param MaxItems: <p>返回结果的条数，当返回结果达到 MaxItems 限制被截断时，返回参数IsTruncated将等于true。</p><p>取值范围：[1, 100]</p>
+        # @type MaxItems: Integer
+        # @param Marker: <p>当请求的返回结果被截断时，可以使用Marker获取从当前截断位置之后的内容。</p>
+        # @type Marker: String
+        # @param UserType: <p>用户类型</p><p>枚举值：</p><ul><li>Owner： 主账号</li><li>SubUser： 普通子用户</li><li>CICUser： CIC 子用户</li><li>WechatCorpUser： 企业微信子用户</li><li>AgentIdentity： AgentIdentity子用户</li><li>Collaborator： 协作者</li><li>MessageReceiver： 消息接收者</li></ul>
+        # @type UserType: String
+
+        attr_accessor :MaxItems, :Marker, :UserType
+
+        def initialize(maxitems=nil, marker=nil, usertype=nil)
+          @MaxItems = maxitems
+          @Marker = marker
+          @UserType = usertype
+        end
+
+        def deserialize(params)
+          @MaxItems = params['MaxItems']
+          @Marker = params['Marker']
+          @UserType = params['UserType']
+        end
+      end
+
+      # ListAccounts返回参数结构体
+      class ListAccountsResponse < TencentCloud::Common::AbstractModel
+        # @param Users: <p>子账号列表。</p>
+        # @type Users: Array
+        # @param Marker: <p>当IsTruncated为true时才有此字段，当返回true时，需要继续调用此接口，并且使用Marker获取截断后的内容 。</p>
+        # @type Marker: String
+        # @param IsTruncated: <p>请求返回结果是否被截断。</p>
+        # @type IsTruncated: Boolean
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Users, :Marker, :IsTruncated, :RequestId
+
+        def initialize(users=nil, marker=nil, istruncated=nil, requestid=nil)
+          @Users = users
+          @Marker = marker
+          @IsTruncated = istruncated
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Users'].nil?
+            @Users = []
+            params['Users'].each do |i|
+              listalluser_tmp = ListAllUser.new
+              listalluser_tmp.deserialize(i)
+              @Users << listalluser_tmp
+            end
+          end
+          @Marker = params['Marker']
+          @IsTruncated = params['IsTruncated']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 账号详情
+      class ListAllUser < TencentCloud::Common::AbstractModel
+        # @param Uin: <p>子账号账号ID。</p>
+        # @type Uin: Integer
+        # @param Name: <p>子账号用户名。</p>
+        # @type Name: String
+        # @param Uid: <p>子账号 UID。</p>
+        # @type Uid: Integer
+        # @param Remark: <p>子账号备注。</p>
+        # @type Remark: String
+        # @param ConsoleLogin: <p>子账号能否登录控制台。</p>
+        # @type ConsoleLogin: Integer
+        # @param PhoneNum: <p>手机号。</p>
+        # @type PhoneNum: String
+        # @param CountryCode: <p>区号。</p>
+        # @type CountryCode: String
+        # @param Email: <p>邮箱。</p>
+        # @type Email: String
+        # @param CreateTime: <p>创建时间。</p><p>参数格式：YYYY-MM-DD hh:mm:ss</p>
+        # @type CreateTime: String
+        # @param UserType: <p>账号类型</p><p>枚举值：</p><ul><li>Owner： 主账号</li><li>SubUser： 子用户</li><li>CICUser： CIC 用户</li><li>WechatCorpUser： 企业微信子用户</li><li>AgentIdentity： AgentIdentity用户</li><li>Collaborator： 协作者</li><li>MessageReceiver： 消息接收者</li><li>Unknown： 未知</li></ul>
+        # @type UserType: String
+
+        attr_accessor :Uin, :Name, :Uid, :Remark, :ConsoleLogin, :PhoneNum, :CountryCode, :Email, :CreateTime, :UserType
+
+        def initialize(uin=nil, name=nil, uid=nil, remark=nil, consolelogin=nil, phonenum=nil, countrycode=nil, email=nil, createtime=nil, usertype=nil)
+          @Uin = uin
+          @Name = name
+          @Uid = uid
+          @Remark = remark
+          @ConsoleLogin = consolelogin
+          @PhoneNum = phonenum
+          @CountryCode = countrycode
+          @Email = email
+          @CreateTime = createtime
+          @UserType = usertype
+        end
+
+        def deserialize(params)
+          @Uin = params['Uin']
+          @Name = params['Name']
+          @Uid = params['Uid']
+          @Remark = params['Remark']
+          @ConsoleLogin = params['ConsoleLogin']
+          @PhoneNum = params['PhoneNum']
+          @CountryCode = params['CountryCode']
+          @Email = params['Email']
+          @CreateTime = params['CreateTime']
+          @UserType = params['UserType']
+        end
+      end
+
       # ListAttachedGroupPolicies请求参数结构体
       class ListAttachedGroupPoliciesRequest < TencentCloud::Common::AbstractModel
         # @param TargetGroupId: 用户组ID
