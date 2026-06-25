@@ -935,13 +935,13 @@ module TencentCloud
 
       # DescribeEndpointGroups请求参数结构体
       class DescribeEndpointGroupsRequest < TencentCloud::Common::AbstractModel
-        # @param GlobalAcceleratorId: 全球加速实例ID。
+        # @param GlobalAcceleratorId: <p>全球加速实例ID。</p>
         # @type GlobalAcceleratorId: String
-        # @param Offset: 偏移量，默认为0。
+        # @param Offset: <p>偏移量，默认为0。</p>
         # @type Offset: Integer
-        # @param Limit: 返回数量，默认为20，最大值为100。
+        # @param Limit: <p>返回数量，默认为10，最大值为10。</p>
         # @type Limit: Integer
-        # @param Filters: 过滤条件。  endpoint-group-id- String -（过滤条件）终端节点组实例ID。endpoint-group-type- String -（过滤条件）终端节点组实例类型。
+        # @param Filters: <p>过滤条件。  endpoint-group-id- String -（过滤条件）终端节点组实例ID。endpoint-group-type- String -（过滤条件）终端节点组实例类型。</p>
         # @type Filters: Array
 
         attr_accessor :GlobalAcceleratorId, :Offset, :Limit, :Filters
@@ -970,9 +970,9 @@ module TencentCloud
 
       # DescribeEndpointGroups返回参数结构体
       class DescribeEndpointGroupsResponse < TencentCloud::Common::AbstractModel
-        # @param EndpointGroupConfigurationSet: 符合条件的终端节点组。
+        # @param EndpointGroupConfigurationSet: <p>符合条件的终端节点组。</p>
         # @type EndpointGroupConfigurationSet: Array
-        # @param TotalCount: 符合条件的实例个数。
+        # @param TotalCount: <p>符合条件的实例个数。</p>
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

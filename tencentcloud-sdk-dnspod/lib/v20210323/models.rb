@@ -2667,6 +2667,70 @@ module TencentCloud
         end
       end
 
+      # DescribeDomainLogFilterFile请求参数结构体
+      class DescribeDomainLogFilterFileRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 要获取操作日志的域名
+        # @type Domain: String
+        # @param DomainId: 要获取操作日志的域名 Id，如果传了 DomainId，系统将会忽略 Domain 参数。 可以通过接口 DescribeDomainList 查到所有的 Domain 以及 DomainId
+        # @type DomainId: Integer
+        # @param Keyword: 通过关键字搜索，支持搜索字段：账户 UIN、操作 IP、操作内容
+        # @type Keyword: String
+        # @param OperateBegin: 操作时间范围起始时间(仅支持近6个月的日志查询)
+        # @type OperateBegin: String
+        # @param OperateEnd: 操作时间范围截止时间(仅支持近6个月的日志查询)
+        # @type OperateEnd: String
+        # @param OperateUin: 操作账号 UIN 精确匹配
+        # @type OperateUin: Integer
+        # @param OperateClientIP: 操作 IP 精确匹配
+        # @type OperateClientIP: String
+        # @param OperateContent: 操作内容 模糊匹配
+        # @type OperateContent: String
+
+        attr_accessor :Domain, :DomainId, :Keyword, :OperateBegin, :OperateEnd, :OperateUin, :OperateClientIP, :OperateContent
+
+        def initialize(domain=nil, domainid=nil, keyword=nil, operatebegin=nil, operateend=nil, operateuin=nil, operateclientip=nil, operatecontent=nil)
+          @Domain = domain
+          @DomainId = domainid
+          @Keyword = keyword
+          @OperateBegin = operatebegin
+          @OperateEnd = operateend
+          @OperateUin = operateuin
+          @OperateClientIP = operateclientip
+          @OperateContent = operatecontent
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @DomainId = params['DomainId']
+          @Keyword = params['Keyword']
+          @OperateBegin = params['OperateBegin']
+          @OperateEnd = params['OperateEnd']
+          @OperateUin = params['OperateUin']
+          @OperateClientIP = params['OperateClientIP']
+          @OperateContent = params['OperateContent']
+        end
+      end
+
+      # DescribeDomainLogFilterFile返回参数结构体
+      class DescribeDomainLogFilterFileResponse < TencentCloud::Common::AbstractModel
+        # @param DownloadURL: 文件下载地址。
+        # @type DownloadURL: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DownloadURL, :RequestId
+
+        def initialize(downloadurl=nil, requestid=nil)
+          @DownloadURL = downloadurl
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @DownloadURL = params['DownloadURL']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDomainLogList请求参数结构体
       class DescribeDomainLogListRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 域名

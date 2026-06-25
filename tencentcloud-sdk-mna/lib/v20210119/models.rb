@@ -1075,6 +1075,38 @@ module TencentCloud
         end
       end
 
+      # 网关信息
+      class GatewayInfo < TencentCloud::Common::AbstractModel
+        # @param GatewayId: <p>网关ID</p>
+        # @type GatewayId: String
+        # @param GatewayName: <p>网关名称</p>
+        # @type GatewayName: String
+        # @param CreateTime: <p>创建时间，单位：秒</p>
+        # @type CreateTime: Integer
+        # @param Status: <p>网关状态。0：正常，1：异常</p>
+        # @type Status: Integer
+        # @param InstanceSize: <p>网关实例数</p>
+        # @type InstanceSize: Integer
+
+        attr_accessor :GatewayId, :GatewayName, :CreateTime, :Status, :InstanceSize
+
+        def initialize(gatewayid=nil, gatewayname=nil, createtime=nil, status=nil, instancesize=nil)
+          @GatewayId = gatewayid
+          @GatewayName = gatewayname
+          @CreateTime = createtime
+          @Status = status
+          @InstanceSize = instancesize
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @GatewayName = params['GatewayName']
+          @CreateTime = params['CreateTime']
+          @Status = params['Status']
+          @InstanceSize = params['InstanceSize']
+        end
+      end
+
       # GetActiveDeviceCount请求参数结构体
       class GetActiveDeviceCountRequest < TencentCloud::Common::AbstractModel
         # @param Period: 查询粒度。0:day, 1:week, 2:month, 不传默认为day
@@ -1840,6 +1872,61 @@ module TencentCloud
           @MaxValue = params['MaxValue']
           @AvgValue = params['AvgValue']
           @TotalValue = params['TotalValue']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GetGatewayList请求参数结构体
+      class GetGatewayListRequest < TencentCloud::Common::AbstractModel
+        # @param PageNumber: 页码，从1开始
+        # @type PageNumber: Integer
+        # @param PageSize: 每页个数
+        # @type PageSize: Integer
+        # @param GatewayName: 网关名称
+        # @type GatewayName: String
+
+        attr_accessor :PageNumber, :PageSize, :GatewayName
+
+        def initialize(pagenumber=nil, pagesize=nil, gatewayname=nil)
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @GatewayName = gatewayname
+        end
+
+        def deserialize(params)
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          @GatewayName = params['GatewayName']
+        end
+      end
+
+      # GetGatewayList返回参数结构体
+      class GetGatewayListResponse < TencentCloud::Common::AbstractModel
+        # @param GatewayList: 网关列表
+        # @type GatewayList: Array
+        # @param Total: 总个数
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :GatewayList, :Total, :RequestId
+
+        def initialize(gatewaylist=nil, total=nil, requestid=nil)
+          @GatewayList = gatewaylist
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['GatewayList'].nil?
+            @GatewayList = []
+            params['GatewayList'].each do |i|
+              gatewayinfo_tmp = GatewayInfo.new
+              gatewayinfo_tmp.deserialize(i)
+              @GatewayList << gatewayinfo_tmp
+            end
+          end
+          @Total = params['Total']
           @RequestId = params['RequestId']
         end
       end

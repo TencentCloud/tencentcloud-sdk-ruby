@@ -4842,15 +4842,15 @@ module TencentCloud
 
       # 目标端为kafka时添加的同步选项字段
       class KafkaOption < TencentCloud::Common::AbstractModel
-        # @param DataType: 投递到kafka的数据类型，如Avro,Json,canal-pb,canal-json,debezium
+        # @param DataType: <p>投递到kafka的数据类型，如Avro,Json,canal-pb,canal-json,debezium</p>
         # @type DataType: String
-        # @param TopicType: 同步topic策略，如Single（集中投递到单topic）,Multi (自定义topic名称)
+        # @param TopicType: <p>同步topic策略，如Single（集中投递到单topic）,Multi (自定义topic名称)</p>
         # @type TopicType: String
-        # @param DDLTopicName: 用于存储ddl的topic
+        # @param DDLTopicName: <p>用于存储ddl的topic</p>
         # @type DDLTopicName: String
-        # @param TopicRules: 单topic和自定义topic的描述
+        # @param TopicRules: <p>单topic和自定义topic的描述</p>
         # @type TopicRules: Array
-        # @param DataOption: 其他附加信息，对于特定数据类型可设置额外参数，比如针对Canal兼容的功能支持："canalOfficialFormat":"on"表示打开Canal兼容功能，默认不带。
+        # @param DataOption: <p>其他附加信息，对于特定数据类型可设置额外参数。比如针对Canal兼容的功能支持：&quot;canalOfficialFormat&quot;:&quot;on&quot;表示打开Canal兼容功能，默认不带。针对大消息跳过的功能支持：&quot;skipLargeMessage&quot;:&quot;on&quot;表示开启跳过大消息，默认不带；开启时需同时设置&quot;maxMessageSizeMB&quot;为1~100的正整数字符串，表示最大消息大小阈值（MB），超过该大小的消息将被跳过，默认不带。</p>
         # @type DataOption: Array
 
         attr_accessor :DataType, :TopicType, :DDLTopicName, :TopicRules, :DataOption

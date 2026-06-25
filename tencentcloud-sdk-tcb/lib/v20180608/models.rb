@@ -3156,6 +3156,49 @@ module TencentCloud
         end
       end
 
+      # DescribeEnvPlans请求参数结构体
+      class DescribeEnvPlansRequest < TencentCloud::Common::AbstractModel
+        # @param PackageId: <p>套餐英文标识，不指定则返回所有可售卖套餐</p><p>枚举值：</p><ul><li>baas_integration： 集成版</li><li>baas_personal： 个人版</li><li>baas_pf_standard： 标准版</li><li>baas_pf_enterprise： 企业版</li><li>baas_pf_enterprise_senior： 企业高级版</li></ul>
+        # @type PackageId: String
+
+        attr_accessor :PackageId
+
+        def initialize(packageid=nil)
+          @PackageId = packageid
+        end
+
+        def deserialize(params)
+          @PackageId = params['PackageId']
+        end
+      end
+
+      # DescribeEnvPlans返回参数结构体
+      class DescribeEnvPlansResponse < TencentCloud::Common::AbstractModel
+        # @param PlanList: <p>云开发新套餐详情</p>
+        # @type PlanList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PlanList, :RequestId
+
+        def initialize(planlist=nil, requestid=nil)
+          @PlanList = planlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['PlanList'].nil?
+            @PlanList = []
+            params['PlanList'].each do |i|
+              planinfo_tmp = PlanInfo.new
+              planinfo_tmp.deserialize(i)
+              @PlanList << planinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeEnvs请求参数结构体
       class DescribeEnvsRequest < TencentCloud::Common::AbstractModel
         # @param EnvId: <p>环境ID，如果传了这个参数则只返回该环境的相关信息</p>
@@ -7368,6 +7411,42 @@ module TencentCloud
           @AclTag = params['AclTag']
           @EnvId = params['EnvId']
           @Rule = params['Rule']
+        end
+      end
+
+      # 套餐信息
+      class PlanInfo < TencentCloud::Common::AbstractModel
+        # @param PackageId: <p>套餐标识</p>
+        # @type PackageId: String
+        # @param PackageTitle: <p>套餐中文名称</p>
+        # @type PackageTitle: String
+        # @param PackageDescription: <p>套餐描述</p>
+        # @type PackageDescription: String
+        # @param UnitPrice: <p>单位原价</p>
+        # @type UnitPrice: String
+        # @param PackageType: <p>套餐类型</p>
+        # @type PackageType: String
+        # @param ResourceLimit: <p>json格式化用户资源限制</p>
+        # @type ResourceLimit: String
+
+        attr_accessor :PackageId, :PackageTitle, :PackageDescription, :UnitPrice, :PackageType, :ResourceLimit
+
+        def initialize(packageid=nil, packagetitle=nil, packagedescription=nil, unitprice=nil, packagetype=nil, resourcelimit=nil)
+          @PackageId = packageid
+          @PackageTitle = packagetitle
+          @PackageDescription = packagedescription
+          @UnitPrice = unitprice
+          @PackageType = packagetype
+          @ResourceLimit = resourcelimit
+        end
+
+        def deserialize(params)
+          @PackageId = params['PackageId']
+          @PackageTitle = params['PackageTitle']
+          @PackageDescription = params['PackageDescription']
+          @UnitPrice = params['UnitPrice']
+          @PackageType = params['PackageType']
+          @ResourceLimit = params['ResourceLimit']
         end
       end
 

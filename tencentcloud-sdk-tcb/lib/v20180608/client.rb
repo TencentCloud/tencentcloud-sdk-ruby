@@ -1146,6 +1146,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取可售卖的新套餐列表，含详情，如果传了PackageId，则只获取指定套餐详情
+
+        # @param request: Request instance for DescribeEnvPlans.
+        # @type request: :class:`Tencentcloud::tcb::V20180608::DescribeEnvPlansRequest`
+        # @rtype: :class:`Tencentcloud::tcb::V20180608::DescribeEnvPlansResponse`
+        def DescribeEnvPlans(request)
+          body = send_request('DescribeEnvPlans', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeEnvPlansResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取环境列表，含环境下的各个资源信息。尤其是各资源的唯一标识，是请求各资源的关键参数
 
         # @param request: Request instance for DescribeEnvs.

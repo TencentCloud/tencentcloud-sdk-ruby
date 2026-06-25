@@ -2020,6 +2020,101 @@ module TencentCloud
         end
       end
 
+      # DescribeDBAuditLogTopSqls请求参数结构体
+      class DescribeDBAuditLogTopSqlsRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: <p>开始时间，如“2019-09-10 12:13:14”。</p>
+        # @type StartTime: String
+        # @param EndTime: <p>截止时间，如“2019-09-11 10:13:14”，截止时间与开始时间的间隔小于7天。</p>
+        # @type EndTime: String
+        # @param Product: <p>服务产品类型，支持值包括： &quot;mysql&quot; - 云数据库 MySQL， &quot;cynosdb&quot; - 云数据库 CynosDB  for MySQL，默认为&quot;mysql&quot;。</p>
+        # @type Product: String
+        # @param InstanceId: <p>实例 ID 。</p>
+        # @type InstanceId: String
+        # @param OrderBy: <p>排序键，目前支持 QueryTime,ExecTimes,RowsSent,LockTime以及RowsExamined 等排序键，默认为QueryTime。</p>
+        # @type OrderBy: String
+        # @param OrderByDirection: <p>排序方式，支持ASC（升序）以及DESC（降序），默认为DESC。</p>
+        # @type OrderByDirection: String
+        # @param Limit: <p>返回数量，默认为20，最大值为100。</p>
+        # @type Limit: Integer
+        # @param Offset: <p>偏移量，默认为0。</p>
+        # @type Offset: Integer
+        # @param TableName: <p>表名</p>
+        # @type TableName: String
+        # @param Hosts: <p>Hosts名</p>
+        # @type Hosts: Array
+        # @param SqlCodes: <p>sql codes</p>
+        # @type SqlCodes: Array
+        # @param SqlSample: <p>sql语句</p>
+        # @type SqlSample: String
+        # @param Users: <p>用户名列表</p>
+        # @type Users: Array
+
+        attr_accessor :StartTime, :EndTime, :Product, :InstanceId, :OrderBy, :OrderByDirection, :Limit, :Offset, :TableName, :Hosts, :SqlCodes, :SqlSample, :Users
+
+        def initialize(starttime=nil, endtime=nil, product=nil, instanceid=nil, orderby=nil, orderbydirection=nil, limit=nil, offset=nil, tablename=nil, hosts=nil, sqlcodes=nil, sqlsample=nil, users=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @Product = product
+          @InstanceId = instanceid
+          @OrderBy = orderby
+          @OrderByDirection = orderbydirection
+          @Limit = limit
+          @Offset = offset
+          @TableName = tablename
+          @Hosts = hosts
+          @SqlCodes = sqlcodes
+          @SqlSample = sqlsample
+          @Users = users
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Product = params['Product']
+          @InstanceId = params['InstanceId']
+          @OrderBy = params['OrderBy']
+          @OrderByDirection = params['OrderByDirection']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @TableName = params['TableName']
+          @Hosts = params['Hosts']
+          @SqlCodes = params['SqlCodes']
+          @SqlSample = params['SqlSample']
+          @Users = params['Users']
+        end
+      end
+
+      # DescribeDBAuditLogTopSqls返回参数结构体
+      class DescribeDBAuditLogTopSqlsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: <p>符合条件的记录总数。</p>
+        # @type TotalCount: Integer
+        # @param TopSqls: <p>top sql 列表</p>
+        # @type TopSqls: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :TopSqls, :RequestId
+
+        def initialize(totalcount=nil, topsqls=nil, requestid=nil)
+          @TotalCount = totalcount
+          @TopSqls = topsqls
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['TopSqls'].nil?
+            @TopSqls = []
+            params['TopSqls'].each do |i|
+              topsqltpl_tmp = TopSqlTpl.new
+              topsqltpl_tmp.deserialize(i)
+              @TopSqls << topsqltpl_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDBAutonomyAction请求参数结构体
       class DescribeDBAutonomyActionRequest < TencentCloud::Common::AbstractModel
         # @param ActionId: 自治任务ID。可通过 [DescribeDBAutonomyActions](https://cloud.tencent.com/document/product/1130/116974) 接口获取。
@@ -8048,6 +8143,180 @@ module TencentCloud
           @InstanceNodeId = params['InstanceNodeId']
           @Key = params['Key']
           @Type = params['Type']
+        end
+      end
+
+      # 审计日志TopSql
+      class TopSqlTpl < TencentCloud::Common::AbstractModel
+        # @param ExecTimes: <p>执行次数</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExecTimes: Integer
+        # @param SqlTemplateId: <p>SQL模板Id，数据类型Long。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SqlTemplateId: String
+        # @param AffectRowsMin: <p>最小影响行数</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AffectRowsMin: Integer
+        # @param SqlTemplate: <p>sql模板</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SqlTemplate: String
+        # @param TableName: <p>表名</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableName: String
+        # @param AffectRowsMax: <p>最大影响行数</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AffectRowsMax: Integer
+        # @param SqlType: <p>sql类型</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SqlType: String
+        # @param AffectRows: <p>影响行数</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AffectRows: Integer
+        # @param DB: <p>DB名</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DB: String
+        # @param LockWaitTimeMin: <p>最小锁等待时间</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LockWaitTimeMin: Float
+        # @param CpuTime: <p>cpu时间</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CpuTime: Float
+        # @param IoWaitTimeMax: <p>最大io等待时间，单位秒</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IoWaitTimeMax: Float
+        # @param LockWaitTimeMax: <p>最大锁等待时间，单位秒</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LockWaitTimeMax: Float
+        # @param CheckRowsMin: <p>最小检查行数</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CheckRowsMin: Integer
+        # @param CheckRows: <p>检查行数</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CheckRows: Integer
+        # @param CpuTimeMax: <p>最大cpu时间，单位秒</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CpuTimeMax: Float
+        # @param IoWaitTimeMin: <p>最小io等待时间，单位秒</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IoWaitTimeMin: Integer
+        # @param LatencyMax: <p>最大执行时间，单位秒</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LatencyMax: Float
+        # @param IoWaitTime: <p>io等待时间，单位秒</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IoWaitTime: Float
+        # @param CheckRowsMax: <p>最大检查行数</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CheckRowsMax: Integer
+        # @param CpuTimeMin: <p>最小cpu时间，单位秒</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CpuTimeMin: Float
+        # @param SqlText: <p>sql详情</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SqlText: String
+        # @param LockWaitTime: <p>锁等待时间，单位秒</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LockWaitTime: Float
+        # @param LatencyMin: <p>最小执行时间，单位秒</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LatencyMin: Float
+        # @param Latency: <p>执行时间，单位秒</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Latency: Float
+        # @param QueryTimeRatio: <p>queryTime 占比，单位%</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QueryTimeRatio: String
+        # @param CheckRowsAvg: <p>平均扫描行数</p>
+        # @type CheckRowsAvg: Integer
+        # @param CpuTimeAvg: <p>平均cpu时间</p>
+        # @type CpuTimeAvg: Float
+        # @param IoWaitTimeAvg: <p>平均io等待时间</p>
+        # @type IoWaitTimeAvg: Float
+        # @param LatencyAvg: <p>平均执行时间</p>
+        # @type LatencyAvg: Float
+        # @param LockWaitTimeAvg: <p>平均锁等待时长</p>
+        # @type LockWaitTimeAvg: Float
+        # @param SentRows: <p>发送行数</p>
+        # @type SentRows: Integer
+        # @param SentRowsAvg: <p>平均发送行数</p>
+        # @type SentRowsAvg: Integer
+        # @param AffectRowsAvg: <p>平均影响行数</p>
+        # @type AffectRowsAvg: Integer
+
+        attr_accessor :ExecTimes, :SqlTemplateId, :AffectRowsMin, :SqlTemplate, :TableName, :AffectRowsMax, :SqlType, :AffectRows, :DB, :LockWaitTimeMin, :CpuTime, :IoWaitTimeMax, :LockWaitTimeMax, :CheckRowsMin, :CheckRows, :CpuTimeMax, :IoWaitTimeMin, :LatencyMax, :IoWaitTime, :CheckRowsMax, :CpuTimeMin, :SqlText, :LockWaitTime, :LatencyMin, :Latency, :QueryTimeRatio, :CheckRowsAvg, :CpuTimeAvg, :IoWaitTimeAvg, :LatencyAvg, :LockWaitTimeAvg, :SentRows, :SentRowsAvg, :AffectRowsAvg
+
+        def initialize(exectimes=nil, sqltemplateid=nil, affectrowsmin=nil, sqltemplate=nil, tablename=nil, affectrowsmax=nil, sqltype=nil, affectrows=nil, db=nil, lockwaittimemin=nil, cputime=nil, iowaittimemax=nil, lockwaittimemax=nil, checkrowsmin=nil, checkrows=nil, cputimemax=nil, iowaittimemin=nil, latencymax=nil, iowaittime=nil, checkrowsmax=nil, cputimemin=nil, sqltext=nil, lockwaittime=nil, latencymin=nil, latency=nil, querytimeratio=nil, checkrowsavg=nil, cputimeavg=nil, iowaittimeavg=nil, latencyavg=nil, lockwaittimeavg=nil, sentrows=nil, sentrowsavg=nil, affectrowsavg=nil)
+          @ExecTimes = exectimes
+          @SqlTemplateId = sqltemplateid
+          @AffectRowsMin = affectrowsmin
+          @SqlTemplate = sqltemplate
+          @TableName = tablename
+          @AffectRowsMax = affectrowsmax
+          @SqlType = sqltype
+          @AffectRows = affectrows
+          @DB = db
+          @LockWaitTimeMin = lockwaittimemin
+          @CpuTime = cputime
+          @IoWaitTimeMax = iowaittimemax
+          @LockWaitTimeMax = lockwaittimemax
+          @CheckRowsMin = checkrowsmin
+          @CheckRows = checkrows
+          @CpuTimeMax = cputimemax
+          @IoWaitTimeMin = iowaittimemin
+          @LatencyMax = latencymax
+          @IoWaitTime = iowaittime
+          @CheckRowsMax = checkrowsmax
+          @CpuTimeMin = cputimemin
+          @SqlText = sqltext
+          @LockWaitTime = lockwaittime
+          @LatencyMin = latencymin
+          @Latency = latency
+          @QueryTimeRatio = querytimeratio
+          @CheckRowsAvg = checkrowsavg
+          @CpuTimeAvg = cputimeavg
+          @IoWaitTimeAvg = iowaittimeavg
+          @LatencyAvg = latencyavg
+          @LockWaitTimeAvg = lockwaittimeavg
+          @SentRows = sentrows
+          @SentRowsAvg = sentrowsavg
+          @AffectRowsAvg = affectrowsavg
+        end
+
+        def deserialize(params)
+          @ExecTimes = params['ExecTimes']
+          @SqlTemplateId = params['SqlTemplateId']
+          @AffectRowsMin = params['AffectRowsMin']
+          @SqlTemplate = params['SqlTemplate']
+          @TableName = params['TableName']
+          @AffectRowsMax = params['AffectRowsMax']
+          @SqlType = params['SqlType']
+          @AffectRows = params['AffectRows']
+          @DB = params['DB']
+          @LockWaitTimeMin = params['LockWaitTimeMin']
+          @CpuTime = params['CpuTime']
+          @IoWaitTimeMax = params['IoWaitTimeMax']
+          @LockWaitTimeMax = params['LockWaitTimeMax']
+          @CheckRowsMin = params['CheckRowsMin']
+          @CheckRows = params['CheckRows']
+          @CpuTimeMax = params['CpuTimeMax']
+          @IoWaitTimeMin = params['IoWaitTimeMin']
+          @LatencyMax = params['LatencyMax']
+          @IoWaitTime = params['IoWaitTime']
+          @CheckRowsMax = params['CheckRowsMax']
+          @CpuTimeMin = params['CpuTimeMin']
+          @SqlText = params['SqlText']
+          @LockWaitTime = params['LockWaitTime']
+          @LatencyMin = params['LatencyMin']
+          @Latency = params['Latency']
+          @QueryTimeRatio = params['QueryTimeRatio']
+          @CheckRowsAvg = params['CheckRowsAvg']
+          @CpuTimeAvg = params['CpuTimeAvg']
+          @IoWaitTimeAvg = params['IoWaitTimeAvg']
+          @LatencyAvg = params['LatencyAvg']
+          @LockWaitTimeAvg = params['LockWaitTimeAvg']
+          @SentRows = params['SentRows']
+          @SentRowsAvg = params['SentRowsAvg']
+          @AffectRowsAvg = params['AffectRowsAvg']
         end
       end
 

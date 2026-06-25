@@ -1397,6 +1397,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 主机详情
+
+        # @param request: Request instance for DescribeCWPMachineDetail.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeCWPMachineDetailRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeCWPMachineDetailResponse`
+        def DescribeCWPMachineDetail(request)
+          body = send_request('DescribeCWPMachineDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCWPMachineDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 主机列表
+
+        # @param request: Request instance for DescribeCWPMachines.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeCWPMachinesRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeCWPMachinesResponse`
+        def DescribeCWPMachines(request)
+          body = send_request('DescribeCWPMachines', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCWPMachinesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取调用记录列表
 
         # @param request: Request instance for DescribeCallRecord.
@@ -5127,6 +5175,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyIaCTokenPeriodResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改主机资产备注信息
+
+        # @param request: Request instance for ModifyMachineRemark.
+        # @type request: :class:`Tencentcloud::csip::V20221121::ModifyMachineRemarkRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::ModifyMachineRemarkResponse`
+        def ModifyMachineRemark(request)
+          body = send_request('ModifyMachineRemark', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyMachineRemarkResponse.new
             model.deserialize(response['Response'])
             model
           else

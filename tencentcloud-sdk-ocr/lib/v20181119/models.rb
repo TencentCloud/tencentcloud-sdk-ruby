@@ -5576,18 +5576,21 @@ module TencentCloud
 
       # 文档智能元素组
       class ItemInfo < TencentCloud::Common::AbstractModel
-        # @param Key: key信息组
+        # @param Key: <p>key信息组</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Key: :class:`Tencentcloud::Ocr.v20181119.models.Key`
-        # @param Value: Value信息组
+        # @param Value: <p>Value信息组</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: :class:`Tencentcloud::Ocr.v20181119.models.Value`
+        # @param AuditResult: <p>返回这个字段是否比对审核通过</p><p>默认值：false</p>
+        # @type AuditResult: Boolean
 
-        attr_accessor :Key, :Value
+        attr_accessor :Key, :Value, :AuditResult
 
-        def initialize(key=nil, value=nil)
+        def initialize(key=nil, value=nil, auditresult=nil)
           @Key = key
           @Value = value
+          @AuditResult = auditresult
         end
 
         def deserialize(params)
@@ -5599,30 +5602,39 @@ module TencentCloud
             @Value = Value.new
             @Value.deserialize(params['Value'])
           end
+          @AuditResult = params['AuditResult']
         end
       end
 
       # 自定义抽取需要的字段名称、字段类型、字段提示词。
       class ItemNames < TencentCloud::Common::AbstractModel
-        # @param KeyName: 自定义抽取功能需返回的字段名称。
+        # @param KeyName: <p>自定义抽取功能需返回的字段名称。</p>
         # @type KeyName: String
-        # @param KeyType: 默认 0；0表示kv对  1表示 表格字段。
+        # @param KeyType: <p>默认 0；0表示kv对  1表示 表格字段。</p>
         # @type KeyType: Integer
-        # @param KeyPrompt: 抽取字段的描述内容。
+        # @param KeyPrompt: <p>抽取字段的描述内容。</p>
         # @type KeyPrompt: String
+        # @param KeyExpectedValue: <p>自定义字段对应期望的值内容（这个一般需要对字段审核比对才需要输入）。</p>
+        # @type KeyExpectedValue: String
+        # @param KeyAuditPrompt: <p>自定义字段审核比对的规则prompt。</p><p>比如keyname是姓名，KeyExpectedValue 张三，KeyAuditPrompt设置为“字符需要完全匹配则审核返回正确”/“字符匹配90%就审核返回正确”</p>
+        # @type KeyAuditPrompt: String
 
-        attr_accessor :KeyName, :KeyType, :KeyPrompt
+        attr_accessor :KeyName, :KeyType, :KeyPrompt, :KeyExpectedValue, :KeyAuditPrompt
 
-        def initialize(keyname=nil, keytype=nil, keyprompt=nil)
+        def initialize(keyname=nil, keytype=nil, keyprompt=nil, keyexpectedvalue=nil, keyauditprompt=nil)
           @KeyName = keyname
           @KeyType = keytype
           @KeyPrompt = keyprompt
+          @KeyExpectedValue = keyexpectedvalue
+          @KeyAuditPrompt = keyauditprompt
         end
 
         def deserialize(params)
           @KeyName = params['KeyName']
           @KeyType = params['KeyType']
           @KeyPrompt = params['KeyPrompt']
+          @KeyExpectedValue = params['KeyExpectedValue']
+          @KeyAuditPrompt = params['KeyAuditPrompt']
         end
       end
 

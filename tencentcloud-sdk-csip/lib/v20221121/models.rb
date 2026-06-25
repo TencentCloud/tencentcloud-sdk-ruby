@@ -1892,6 +1892,34 @@ module TencentCloud
         end
       end
 
+      # 操作资产标签资产信息
+      class AssetTagModifyAssetItem < TencentCloud::Common::AbstractModel
+        # @param AppID: <p>appid</p>
+        # @type AppID: Integer
+        # @param AssetType: <p>资产类型</p>
+        # @type AssetType: String
+        # @param InstanceID: <p>实例ID</p>
+        # @type InstanceID: String
+        # @param Provider: <p>云厂商</p>
+        # @type Provider: String
+
+        attr_accessor :AppID, :AssetType, :InstanceID, :Provider
+
+        def initialize(appid=nil, assettype=nil, instanceid=nil, provider=nil)
+          @AppID = appid
+          @AssetType = assettype
+          @InstanceID = instanceid
+          @Provider = provider
+        end
+
+        def deserialize(params)
+          @AppID = params['AppID']
+          @AssetType = params['AssetType']
+          @InstanceID = params['InstanceID']
+          @Provider = params['Provider']
+        end
+      end
+
       # 资产视角配置风险
       class AssetViewCFGRisk < TencentCloud::Common::AbstractModel
         # @param Id: 唯一id
@@ -3633,6 +3661,34 @@ module TencentCloud
 
         def deserialize(params)
           @InstallStatus = params['InstallStatus']
+        end
+      end
+
+      # 容器环境信息
+      class ContainerEnvInfo < TencentCloud::Common::AbstractModel
+        # @param NodeType: <p>节点类型</p>
+        # @type NodeType: String
+        # @param DockerVersion: <p>docker版本</p>
+        # @type DockerVersion: String
+        # @param ContainerdVersion: <p>containerd版本</p>
+        # @type ContainerdVersion: String
+        # @param FileSystemType: <p>文件系统类型</p>
+        # @type FileSystemType: String
+
+        attr_accessor :NodeType, :DockerVersion, :ContainerdVersion, :FileSystemType
+
+        def initialize(nodetype=nil, dockerversion=nil, containerdversion=nil, filesystemtype=nil)
+          @NodeType = nodetype
+          @DockerVersion = dockerversion
+          @ContainerdVersion = containerdversion
+          @FileSystemType = filesystemtype
+        end
+
+        def deserialize(params)
+          @NodeType = params['NodeType']
+          @DockerVersion = params['DockerVersion']
+          @ContainerdVersion = params['ContainerdVersion']
+          @FileSystemType = params['FileSystemType']
         end
       end
 
@@ -8598,6 +8654,115 @@ module TencentCloud
               @ProtectStatusList << filterdataobject_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCWPMachineDetail请求参数结构体
+      class DescribeCWPMachineDetailRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>实例ID</p>
+        # @type InstanceId: String
+        # @param MemberId: <p>集团账号的成员id</p>
+        # @type MemberId: Array
+
+        attr_accessor :InstanceId, :MemberId
+
+        def initialize(instanceid=nil, memberid=nil)
+          @InstanceId = instanceid
+          @MemberId = memberid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @MemberId = params['MemberId']
+        end
+      end
+
+      # DescribeCWPMachineDetail返回参数结构体
+      class DescribeCWPMachineDetailResponse < TencentCloud::Common::AbstractModel
+        # @param MachineDetail: <p>主机详情</p>
+        # @type MachineDetail: :class:`Tencentcloud::Csip.v20221121.models.MachineDetail`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :MachineDetail, :RequestId
+
+        def initialize(machinedetail=nil, requestid=nil)
+          @MachineDetail = machinedetail
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['MachineDetail'].nil?
+            @MachineDetail = MachineDetail.new
+            @MachineDetail.deserialize(params['MachineDetail'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCWPMachines请求参数结构体
+      class DescribeCWPMachinesRequest < TencentCloud::Common::AbstractModel
+        # @param MemberId: <p>集团账号的成员id</p>
+        # @type MemberId: Array
+        # @param Filter: <p>一、主表字段筛选（需要指定 OperatorType）<br>MachineName：主机名称，支持 OperatorType 9(模糊)、7(IN)，Values示例：[&quot;test-server&quot;]<br>MachineIp：内网IP，支持 OperatorType 9(模糊)、7(IN)，Values示例：[&quot;10.0.0.1&quot;]<br>MachineWanIp：外网IP，支持 OperatorType 9(模糊)、7(IN)，Values示例：[&quot;1.2.3.4&quot;]<br>InstanceID：实例ID，支持 OperatorType 9(模糊)、7(IN)，Values示例：[&quot;ins-xxxxx&quot;]<br>MachineStatus / InstanceStatus：实例状态，支持 OperatorType 7(IN)、1(等于)，Values示例：[&quot;RUNNING&quot;]，可选值：RUNNING/STOPPED/EXPIRED<br>MachineOs：操作系统类型，支持 OperatorType 7(IN)，Values示例：[&quot;1&quot;]，值为数字编码，见下方OsType说明<br>VpcId：VPC ID，支持 OperatorType 7(IN)、1(等于)，Values示例：[&quot;vpc-xxxxx&quot;]<br>CloudFromEnum：云服务商，支持 OperatorType 7(IN)、1(等于)，Values示例：[&quot;0&quot;]，值为数字编码，见下方CloudFrom说明<br>Region ：地域，支持 OperatorType 7(IN)、1(等于)，Values示例：[&quot;ap-guangzhou&quot;]<br>AppId：账号AppId，支持 OperatorType 7(IN)、1(等于)，Values示例：[&quot;1234567890&quot;]<br>ProjectId：项目ID，支持 OperatorType 7(IN)、1(等于)，Values示例：[&quot;0&quot;]</p><p>二、预筛选字段（不需要指定 OperatorType）<br>AgentStatus：Agent状态，单选，Values示例：[&quot;ONLINE&quot;]，可选值：ONLINE/OFFLINE/UNINSTALL<br>ProtectType：防护类型（综合），Values示例：[&quot;ULTIMATE&quot;]，可选值：BASIC/PRO/ULTIMATE/NONE<br>CsipProtectType：CSIP防护类型，Values示例：[&quot;ULTIMATE&quot;]，可选值：BASIC/PRO/ULTIMATE/NONE<br>CloudTags：云标签，Values示例：[&quot;tagKey$tagValue&quot;]，格式：tagKey$tagValue 或 tagKey（只匹配key），最多5个值<br>Tags：资产标签，Values示例：[&quot;123&quot;]，值为标签ID<br>ExposedStatus：暴露状态，单选，Values示例：[&quot;EXPOSED&quot;]，可选值：NOT_APPLICABLE/EXPOSED/UNEXPOSED</p><p>三、特殊筛选字段（不需要指定 OperatorType）<br>NetworkType：网络类型，单选，Values示例：[&quot;1&quot;]，1=VPC网络, 2=基础网络, 3=非腾讯云网络<br>MachineType：机器类型，可多选，Values示例：[&quot;CVM&quot;]，可选值：CVM/BM/ECM/LH/EKS-NATIVE/ECS/EC2/VMS<br>Common：通用搜索，单选，Values示例：[&quot;关键词&quot;]，同时对内网IP、外网IP、主机名称、实例ID做模糊匹配</p>
+        # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
+        # @param NeedTatStatus: <p>是否需要tat状态信息</p>
+        # @type NeedTatStatus: Boolean
+        # @param MoreInformation: <p>是否需要额外信息，如安全中心标签、腾讯云标签</p>
+        # @type MoreInformation: Boolean
+        # @param NeedContainerInfo: <p>是否需要容器信息，如容器数、核数、容器防护状态</p>
+        # @type NeedContainerInfo: Boolean
+
+        attr_accessor :MemberId, :Filter, :NeedTatStatus, :MoreInformation, :NeedContainerInfo
+
+        def initialize(memberid=nil, filter=nil, needtatstatus=nil, moreinformation=nil, needcontainerinfo=nil)
+          @MemberId = memberid
+          @Filter = filter
+          @NeedTatStatus = needtatstatus
+          @MoreInformation = moreinformation
+          @NeedContainerInfo = needcontainerinfo
+        end
+
+        def deserialize(params)
+          @MemberId = params['MemberId']
+          unless params['Filter'].nil?
+            @Filter = Filter.new
+            @Filter.deserialize(params['Filter'])
+          end
+          @NeedTatStatus = params['NeedTatStatus']
+          @MoreInformation = params['MoreInformation']
+          @NeedContainerInfo = params['NeedContainerInfo']
+        end
+      end
+
+      # DescribeCWPMachines返回参数结构体
+      class DescribeCWPMachinesResponse < TencentCloud::Common::AbstractModel
+        # @param Machines: <p>主机列表</p>
+        # @type Machines: Array
+        # @param Total: <p>总数</p>
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Machines, :Total, :RequestId
+
+        def initialize(machines=nil, total=nil, requestid=nil)
+          @Machines = machines
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Machines'].nil?
+            @Machines = []
+            params['Machines'].each do |i|
+              machine_tmp = Machine.new
+              machine_tmp.deserialize(i)
+              @Machines << machine_tmp
+            end
+          end
+          @Total = params['Total']
           @RequestId = params['RequestId']
         end
       end
@@ -17875,6 +18040,42 @@ module TencentCloud
         end
       end
 
+      # 磁盘分区信息
+      class DiskPartitionInfo < TencentCloud::Common::AbstractModel
+        # @param Name: <p>分区名称</p>
+        # @type Name: String
+        # @param Path: <p>挂载路径</p>
+        # @type Path: String
+        # @param Percent: <p>使用百分比</p>
+        # @type Percent: Float
+        # @param Size: <p>分区大小(MB)</p>
+        # @type Size: Integer
+        # @param Type: <p>分区类型</p>
+        # @type Type: String
+        # @param Used: <p>已使用(MB)</p>
+        # @type Used: Integer
+
+        attr_accessor :Name, :Path, :Percent, :Size, :Type, :Used
+
+        def initialize(name=nil, path=nil, percent=nil, size=nil, type=nil, used=nil)
+          @Name = name
+          @Path = path
+          @Percent = percent
+          @Size = size
+          @Type = type
+          @Used = used
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Path = params['Path']
+          @Percent = params['Percent']
+          @Size = params['Size']
+          @Type = params['Type']
+          @Used = params['Used']
+        end
+      end
+
       # 域名资产
       class DomainAssetVO < TencentCloud::Common::AbstractModel
         # @param AssetId: 资产id
@@ -21535,6 +21736,459 @@ module TencentCloud
         end
       end
 
+      # 主机列表
+      class Machine < TencentCloud::Common::AbstractModel
+        # @param AgentStatus: <p>Agent状态，取值：ONLINE-在线，OFFLINE-离线，UNINSTALL-未安装</p>
+        # @type AgentStatus: String
+        # @param AgentVersion: <p>Agent版本</p>
+        # @type AgentVersion: String
+        # @param AppId: <p>账号AppId</p>
+        # @type AppId: Integer
+        # @param CloudFromEnum: <p>云服务商</p>
+        # @type CloudFromEnum: String
+        # @param CloudTags: <p>云标签列表</p>
+        # @type CloudTags: Array
+        # @param CsipProtectType: <p>CSIP防护类型，取值：BASIC-基础版，PRO-专业版，ULTIMATE-旗舰版</p>
+        # @type CsipProtectType: String
+        # @param ExposedStatus: <p>暴露状态</p>
+        # @type ExposedStatus: String
+        # @param InstanceID: <p>实例ID</p>
+        # @type InstanceID: String
+        # @param InstanceStatus: <p>实例状态，取值：RUNNING-运行中，STOPPED-已关机，EXPIRED-待回收</p>
+        # @type InstanceStatus: String
+        # @param IpList: <p>网卡IP列表</p>
+        # @type IpList: Array
+        # @param IsNew: <p>是否为新增主机（15天内新增）</p>
+        # @type IsNew: Boolean
+        # @param KernelVersion: <p>内核版本</p>
+        # @type KernelVersion: String
+        # @param LatestOfflineTime: <p>最近一次离线时间（Unix时间戳）</p>
+        # @type LatestOfflineTime: Integer
+        # @param MachineIp: <p>内网IP</p>
+        # @type MachineIp: String
+        # @param MachineName: <p>主机名称</p>
+        # @type MachineName: String
+        # @param MachineOs: <p>操作系统</p>
+        # @type MachineOs: String
+        # @param MachineWanIp: <p>外网IP</p>
+        # @type MachineWanIp: String
+        # @param PayMode: <p>付费模式，取值：PREPAID-预付费，POSTPAID-后付费</p>
+        # @type PayMode: String
+        # @param ProjectId: <p>项目ID</p>
+        # @type ProjectId: Integer
+        # @param ProtectType: <p>防护类型，取值：NONE-无防护，BASIC-基础版，PRO-专业版，ULTIMATE-旗舰版，PRO_LH-轻量版</p>
+        # @type ProtectType: String
+        # @param Quuid: <p>主机唯一标识</p>
+        # @type Quuid: String
+        # @param RegionInfo: <p>地域信息</p>
+        # @type RegionInfo: :class:`Tencentcloud::Csip.v20221121.models.RegionInfo`
+        # @param Remark: <p>备注</p>
+        # @type Remark: String
+        # @param TagItems: <p>资产标签列表</p>
+        # @type TagItems: Array
+        # @param TagModifyInfo: <p>标签修改信息</p>
+        # @type TagModifyInfo: :class:`Tencentcloud::Csip.v20221121.models.AssetTagModifyAssetItem`
+        # @param TatStatus: <p>TAT状态，取值：ONLINE-在线，OFFLINE-离线</p>
+        # @type TatStatus: String
+        # @param Uuid: <p>Agent唯一标识</p>
+        # @type Uuid: String
+        # @param VpcId: <p>VPC ID</p>
+        # @type VpcId: String
+        # @param NodeType: <p>主机节点类型</p><p>枚举值：</p><ul><li>NONE： 主机节点</li><li>CLUSTER： 集群节点</li><li>CONTAINER： 容器节点</li></ul>
+        # @type NodeType: String
+        # @param ContainerDefendStatus: <p>容器防护状态</p><p>枚举值：</p><ul><li>Enabled： 开启防护</li><li>Disabled： 关闭防护</li><li>Unknown： 未知</li></ul>
+        # @type ContainerDefendStatus: String
+        # @param ContainerCount: <p>容器数量</p>
+        # @type ContainerCount: Integer
+        # @param CpuCoreCount: <p>核数</p>
+        # @type CpuCoreCount: Integer
+
+        attr_accessor :AgentStatus, :AgentVersion, :AppId, :CloudFromEnum, :CloudTags, :CsipProtectType, :ExposedStatus, :InstanceID, :InstanceStatus, :IpList, :IsNew, :KernelVersion, :LatestOfflineTime, :MachineIp, :MachineName, :MachineOs, :MachineWanIp, :PayMode, :ProjectId, :ProtectType, :Quuid, :RegionInfo, :Remark, :TagItems, :TagModifyInfo, :TatStatus, :Uuid, :VpcId, :NodeType, :ContainerDefendStatus, :ContainerCount, :CpuCoreCount
+
+        def initialize(agentstatus=nil, agentversion=nil, appid=nil, cloudfromenum=nil, cloudtags=nil, csipprotecttype=nil, exposedstatus=nil, instanceid=nil, instancestatus=nil, iplist=nil, isnew=nil, kernelversion=nil, latestofflinetime=nil, machineip=nil, machinename=nil, machineos=nil, machinewanip=nil, paymode=nil, projectid=nil, protecttype=nil, quuid=nil, regioninfo=nil, remark=nil, tagitems=nil, tagmodifyinfo=nil, tatstatus=nil, uuid=nil, vpcid=nil, nodetype=nil, containerdefendstatus=nil, containercount=nil, cpucorecount=nil)
+          @AgentStatus = agentstatus
+          @AgentVersion = agentversion
+          @AppId = appid
+          @CloudFromEnum = cloudfromenum
+          @CloudTags = cloudtags
+          @CsipProtectType = csipprotecttype
+          @ExposedStatus = exposedstatus
+          @InstanceID = instanceid
+          @InstanceStatus = instancestatus
+          @IpList = iplist
+          @IsNew = isnew
+          @KernelVersion = kernelversion
+          @LatestOfflineTime = latestofflinetime
+          @MachineIp = machineip
+          @MachineName = machinename
+          @MachineOs = machineos
+          @MachineWanIp = machinewanip
+          @PayMode = paymode
+          @ProjectId = projectid
+          @ProtectType = protecttype
+          @Quuid = quuid
+          @RegionInfo = regioninfo
+          @Remark = remark
+          @TagItems = tagitems
+          @TagModifyInfo = tagmodifyinfo
+          @TatStatus = tatstatus
+          @Uuid = uuid
+          @VpcId = vpcid
+          @NodeType = nodetype
+          @ContainerDefendStatus = containerdefendstatus
+          @ContainerCount = containercount
+          @CpuCoreCount = cpucorecount
+        end
+
+        def deserialize(params)
+          @AgentStatus = params['AgentStatus']
+          @AgentVersion = params['AgentVersion']
+          @AppId = params['AppId']
+          @CloudFromEnum = params['CloudFromEnum']
+          unless params['CloudTags'].nil?
+            @CloudTags = []
+            params['CloudTags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @CloudTags << tag_tmp
+            end
+          end
+          @CsipProtectType = params['CsipProtectType']
+          @ExposedStatus = params['ExposedStatus']
+          @InstanceID = params['InstanceID']
+          @InstanceStatus = params['InstanceStatus']
+          @IpList = params['IpList']
+          @IsNew = params['IsNew']
+          @KernelVersion = params['KernelVersion']
+          @LatestOfflineTime = params['LatestOfflineTime']
+          @MachineIp = params['MachineIp']
+          @MachineName = params['MachineName']
+          @MachineOs = params['MachineOs']
+          @MachineWanIp = params['MachineWanIp']
+          @PayMode = params['PayMode']
+          @ProjectId = params['ProjectId']
+          @ProtectType = params['ProtectType']
+          @Quuid = params['Quuid']
+          unless params['RegionInfo'].nil?
+            @RegionInfo = RegionInfo.new
+            @RegionInfo.deserialize(params['RegionInfo'])
+          end
+          @Remark = params['Remark']
+          unless params['TagItems'].nil?
+            @TagItems = []
+            params['TagItems'].each do |i|
+              minitagitem_tmp = MiniTagItem.new
+              minitagitem_tmp.deserialize(i)
+              @TagItems << minitagitem_tmp
+            end
+          end
+          unless params['TagModifyInfo'].nil?
+            @TagModifyInfo = AssetTagModifyAssetItem.new
+            @TagModifyInfo.deserialize(params['TagModifyInfo'])
+          end
+          @TatStatus = params['TatStatus']
+          @Uuid = params['Uuid']
+          @VpcId = params['VpcId']
+          @NodeType = params['NodeType']
+          @ContainerDefendStatus = params['ContainerDefendStatus']
+          @ContainerCount = params['ContainerCount']
+          @CpuCoreCount = params['CpuCoreCount']
+        end
+      end
+
+      # 主机列表
+      class MachineDetail < TencentCloud::Common::AbstractModel
+        # @param AgentStatus: <p>Agent状态</p>
+        # @type AgentStatus: String
+        # @param AgentVersion: <p>Agent版本</p>
+        # @type AgentVersion: String
+        # @param AppId: <p>账号AppId</p>
+        # @type AppId: Integer
+        # @param AssetTypeName: <p>资产类型名称</p>
+        # @type AssetTypeName: String
+        # @param BootTime: <p>系统启动时间（Unix时间戳）</p>
+        # @type BootTime: Integer
+        # @param BuyTime: <p>购买时间（Unix时间戳）</p>
+        # @type BuyTime: Integer
+        # @param CloudFromEnum: <p>云服务商</p>
+        # @type CloudFromEnum: String
+        # @param CloudTags: <p>云标签列表</p>
+        # @type CloudTags: Array
+        # @param CoreVersion: <p>内核版本</p>
+        # @type CoreVersion: String
+        # @param Cpu: <p>CPU信息</p>
+        # @type Cpu: String
+        # @param CpuLoad: <p>CPU负载</p>
+        # @type CpuLoad: String
+        # @param CpuSize: <p>CPU核数</p>
+        # @type CpuSize: Integer
+        # @param DeviceVersion: <p>设备型号</p>
+        # @type DeviceVersion: String
+        # @param Disks: <p>磁盘分区信息</p>
+        # @type Disks: Array
+        # @param EndTime: <p>到期时间（Unix时间戳）</p>
+        # @type EndTime: Integer
+        # @param ExposedStatus: <p>暴露状态</p>
+        # @type ExposedStatus: String
+        # @param InstallTime: <p>安装时间（Unix时间戳）</p>
+        # @type InstallTime: Integer
+        # @param InstanceID: <p>实例ID</p>
+        # @type InstanceID: String
+        # @param InstanceStatus: <p>实例状态</p>
+        # @type InstanceStatus: String
+        # @param KernelVersion: <p>内核版本</p>
+        # @type KernelVersion: String
+        # @param LatestLiveTime: <p>最近一次在线时间（Unix时间戳）</p>
+        # @type LatestLiveTime: Integer
+        # @param LatestOfflineTime: <p>最近一次离线时间（Unix时间戳）</p>
+        # @type LatestOfflineTime: Integer
+        # @param MachineIp: <p>内网IP</p>
+        # @type MachineIp: String
+        # @param MachineName: <p>主机名称</p>
+        # @type MachineName: String
+        # @param MachineOs: <p>操作系统（云采集）</p>
+        # @type MachineOs: String
+        # @param MachineStatus: <p>主机状态</p>
+        # @type MachineStatus: String
+        # @param MachineWanIp: <p>外网IP</p>
+        # @type MachineWanIp: String
+        # @param MemSize: <p>内存大小(MB)</p>
+        # @type MemSize: Integer
+        # @param MemoryLoad: <p>内存使用率</p>
+        # @type MemoryLoad: String
+        # @param NetCards: <p>网卡信息</p>
+        # @type NetCards: Array
+        # @param OsByAgent: <p>操作系统（端采集）</p>
+        # @type OsByAgent: String
+        # @param PayMode: <p>付费模式</p>
+        # @type PayMode: String
+        # @param ProjectId: <p>项目ID</p>
+        # @type ProjectId: Integer
+        # @param ProtectDays: <p>已防护天数</p>
+        # @type ProtectDays: Integer
+        # @param ProtectType: <p>防护类型</p>
+        # @type ProtectType: String
+        # @param Quuid: <p>主机唯一标识</p>
+        # @type Quuid: String
+        # @param RegionInfo: <p>地域信息</p>
+        # @type RegionInfo: :class:`Tencentcloud::Csip.v20221121.models.RegionInfo`
+        # @param Remark: <p>备注</p>
+        # @type Remark: String
+        # @param SerialNumber: <p>序列号</p>
+        # @type SerialNumber: String
+        # @param TagItems: <p>资产标签列表</p>
+        # @type TagItems: Array
+        # @param TagModifyInfo: <p>标签修改信息</p>
+        # @type TagModifyInfo: :class:`Tencentcloud::Csip.v20221121.models.AssetTagModifyAssetItem`
+        # @param Uuid: <p>Agent唯一标识</p>
+        # @type Uuid: String
+        # @param VpcCidrBlock: <p>VPC CIDR</p>
+        # @type VpcCidrBlock: String
+        # @param VpcId: <p>VPC ID</p>
+        # @type VpcId: String
+        # @param VpcName: <p>VPC名称</p>
+        # @type VpcName: String
+        # @param NodeType: <p>主机节点类型</p><p>枚举值：</p><ul><li>NONE： 主机节点</li><li>CLUSTER： 集群节点</li><li>CONTAINER： 容器节点</li></ul>
+        # @type NodeType: String
+        # @param ContainerDefendStatus: <p>容器防护状态</p><p>枚举值：</p><ul><li>Enabled： 开启防护</li><li>Disabled： 关闭防护</li><li>Unknown： 未知</li></ul>
+        # @type ContainerDefendStatus: String
+        # @param ClusterCaMd5: <p>集群签证md5</p>
+        # @type ClusterCaMd5: String
+        # @param ContainerEnvInfo: <p>容器环境信息</p>
+        # @type ContainerEnvInfo: :class:`Tencentcloud::Csip.v20221121.models.ContainerEnvInfo`
+        # @param ClusterId: <p>集群id</p>
+        # @type ClusterId: String
+        # @param ClusterName: <p>集群名称</p>
+        # @type ClusterName: String
+
+        attr_accessor :AgentStatus, :AgentVersion, :AppId, :AssetTypeName, :BootTime, :BuyTime, :CloudFromEnum, :CloudTags, :CoreVersion, :Cpu, :CpuLoad, :CpuSize, :DeviceVersion, :Disks, :EndTime, :ExposedStatus, :InstallTime, :InstanceID, :InstanceStatus, :KernelVersion, :LatestLiveTime, :LatestOfflineTime, :MachineIp, :MachineName, :MachineOs, :MachineStatus, :MachineWanIp, :MemSize, :MemoryLoad, :NetCards, :OsByAgent, :PayMode, :ProjectId, :ProtectDays, :ProtectType, :Quuid, :RegionInfo, :Remark, :SerialNumber, :TagItems, :TagModifyInfo, :Uuid, :VpcCidrBlock, :VpcId, :VpcName, :NodeType, :ContainerDefendStatus, :ClusterCaMd5, :ContainerEnvInfo, :ClusterId, :ClusterName
+
+        def initialize(agentstatus=nil, agentversion=nil, appid=nil, assettypename=nil, boottime=nil, buytime=nil, cloudfromenum=nil, cloudtags=nil, coreversion=nil, cpu=nil, cpuload=nil, cpusize=nil, deviceversion=nil, disks=nil, endtime=nil, exposedstatus=nil, installtime=nil, instanceid=nil, instancestatus=nil, kernelversion=nil, latestlivetime=nil, latestofflinetime=nil, machineip=nil, machinename=nil, machineos=nil, machinestatus=nil, machinewanip=nil, memsize=nil, memoryload=nil, netcards=nil, osbyagent=nil, paymode=nil, projectid=nil, protectdays=nil, protecttype=nil, quuid=nil, regioninfo=nil, remark=nil, serialnumber=nil, tagitems=nil, tagmodifyinfo=nil, uuid=nil, vpccidrblock=nil, vpcid=nil, vpcname=nil, nodetype=nil, containerdefendstatus=nil, clustercamd5=nil, containerenvinfo=nil, clusterid=nil, clustername=nil)
+          @AgentStatus = agentstatus
+          @AgentVersion = agentversion
+          @AppId = appid
+          @AssetTypeName = assettypename
+          @BootTime = boottime
+          @BuyTime = buytime
+          @CloudFromEnum = cloudfromenum
+          @CloudTags = cloudtags
+          @CoreVersion = coreversion
+          @Cpu = cpu
+          @CpuLoad = cpuload
+          @CpuSize = cpusize
+          @DeviceVersion = deviceversion
+          @Disks = disks
+          @EndTime = endtime
+          @ExposedStatus = exposedstatus
+          @InstallTime = installtime
+          @InstanceID = instanceid
+          @InstanceStatus = instancestatus
+          @KernelVersion = kernelversion
+          @LatestLiveTime = latestlivetime
+          @LatestOfflineTime = latestofflinetime
+          @MachineIp = machineip
+          @MachineName = machinename
+          @MachineOs = machineos
+          @MachineStatus = machinestatus
+          @MachineWanIp = machinewanip
+          @MemSize = memsize
+          @MemoryLoad = memoryload
+          @NetCards = netcards
+          @OsByAgent = osbyagent
+          @PayMode = paymode
+          @ProjectId = projectid
+          @ProtectDays = protectdays
+          @ProtectType = protecttype
+          @Quuid = quuid
+          @RegionInfo = regioninfo
+          @Remark = remark
+          @SerialNumber = serialnumber
+          @TagItems = tagitems
+          @TagModifyInfo = tagmodifyinfo
+          @Uuid = uuid
+          @VpcCidrBlock = vpccidrblock
+          @VpcId = vpcid
+          @VpcName = vpcname
+          @NodeType = nodetype
+          @ContainerDefendStatus = containerdefendstatus
+          @ClusterCaMd5 = clustercamd5
+          @ContainerEnvInfo = containerenvinfo
+          @ClusterId = clusterid
+          @ClusterName = clustername
+        end
+
+        def deserialize(params)
+          @AgentStatus = params['AgentStatus']
+          @AgentVersion = params['AgentVersion']
+          @AppId = params['AppId']
+          @AssetTypeName = params['AssetTypeName']
+          @BootTime = params['BootTime']
+          @BuyTime = params['BuyTime']
+          @CloudFromEnum = params['CloudFromEnum']
+          unless params['CloudTags'].nil?
+            @CloudTags = []
+            params['CloudTags'].each do |i|
+              tags_tmp = Tags.new
+              tags_tmp.deserialize(i)
+              @CloudTags << tags_tmp
+            end
+          end
+          @CoreVersion = params['CoreVersion']
+          @Cpu = params['Cpu']
+          @CpuLoad = params['CpuLoad']
+          @CpuSize = params['CpuSize']
+          @DeviceVersion = params['DeviceVersion']
+          unless params['Disks'].nil?
+            @Disks = []
+            params['Disks'].each do |i|
+              diskpartitioninfo_tmp = DiskPartitionInfo.new
+              diskpartitioninfo_tmp.deserialize(i)
+              @Disks << diskpartitioninfo_tmp
+            end
+          end
+          @EndTime = params['EndTime']
+          @ExposedStatus = params['ExposedStatus']
+          @InstallTime = params['InstallTime']
+          @InstanceID = params['InstanceID']
+          @InstanceStatus = params['InstanceStatus']
+          @KernelVersion = params['KernelVersion']
+          @LatestLiveTime = params['LatestLiveTime']
+          @LatestOfflineTime = params['LatestOfflineTime']
+          @MachineIp = params['MachineIp']
+          @MachineName = params['MachineName']
+          @MachineOs = params['MachineOs']
+          @MachineStatus = params['MachineStatus']
+          @MachineWanIp = params['MachineWanIp']
+          @MemSize = params['MemSize']
+          @MemoryLoad = params['MemoryLoad']
+          unless params['NetCards'].nil?
+            @NetCards = []
+            params['NetCards'].each do |i|
+              networkcardinfo_tmp = NetworkCardInfo.new
+              networkcardinfo_tmp.deserialize(i)
+              @NetCards << networkcardinfo_tmp
+            end
+          end
+          @OsByAgent = params['OsByAgent']
+          @PayMode = params['PayMode']
+          @ProjectId = params['ProjectId']
+          @ProtectDays = params['ProtectDays']
+          @ProtectType = params['ProtectType']
+          @Quuid = params['Quuid']
+          unless params['RegionInfo'].nil?
+            @RegionInfo = RegionInfo.new
+            @RegionInfo.deserialize(params['RegionInfo'])
+          end
+          @Remark = params['Remark']
+          @SerialNumber = params['SerialNumber']
+          unless params['TagItems'].nil?
+            @TagItems = []
+            params['TagItems'].each do |i|
+              minitagitem_tmp = MiniTagItem.new
+              minitagitem_tmp.deserialize(i)
+              @TagItems << minitagitem_tmp
+            end
+          end
+          unless params['TagModifyInfo'].nil?
+            @TagModifyInfo = AssetTagModifyAssetItem.new
+            @TagModifyInfo.deserialize(params['TagModifyInfo'])
+          end
+          @Uuid = params['Uuid']
+          @VpcCidrBlock = params['VpcCidrBlock']
+          @VpcId = params['VpcId']
+          @VpcName = params['VpcName']
+          @NodeType = params['NodeType']
+          @ContainerDefendStatus = params['ContainerDefendStatus']
+          @ClusterCaMd5 = params['ClusterCaMd5']
+          unless params['ContainerEnvInfo'].nil?
+            @ContainerEnvInfo = ContainerEnvInfo.new
+            @ContainerEnvInfo.deserialize(params['ContainerEnvInfo'])
+          end
+          @ClusterId = params['ClusterId']
+          @ClusterName = params['ClusterName']
+        end
+      end
+
+      # 简要的资产标签元素
+      class MiniTagItem < TencentCloud::Common::AbstractModel
+        # @param Color: <p>标签颜色</p>
+        # @type Color: String
+        # @param Description: <p>描述</p>
+        # @type Description: String
+        # @param ID: <p>标签ID</p>
+        # @type ID: Integer
+        # @param TagKey: <p>标签键</p>
+        # @type TagKey: String
+        # @param TagValue: <p>标签值</p>
+        # @type TagValue: String
+        # @param TagKeyEn: <p>标签键英文</p>
+        # @type TagKeyEn: String
+        # @param TagValueEn: <p>标签值英文</p>
+        # @type TagValueEn: String
+
+        attr_accessor :Color, :Description, :ID, :TagKey, :TagValue, :TagKeyEn, :TagValueEn
+
+        def initialize(color=nil, description=nil, id=nil, tagkey=nil, tagvalue=nil, tagkeyen=nil, tagvalueen=nil)
+          @Color = color
+          @Description = description
+          @ID = id
+          @TagKey = tagkey
+          @TagValue = tagvalue
+          @TagKeyEn = tagkeyen
+          @TagValueEn = tagvalueen
+        end
+
+        def deserialize(params)
+          @Color = params['Color']
+          @Description = params['Description']
+          @ID = params['ID']
+          @TagKey = params['TagKey']
+          @TagValue = params['TagValue']
+          @TagKeyEn = params['TagKeyEn']
+          @TagValueEn = params['TagValueEn']
+        end
+      end
+
       # ModifyAlarmRiskStatus请求参数结构体
       class ModifyAlarmRiskStatusRequest < TencentCloud::Common::AbstractModel
         # @param AlarmRiskIdSet: 告警或者风险id
@@ -22392,6 +23046,46 @@ module TencentCloud
         end
       end
 
+      # ModifyMachineRemark请求参数结构体
+      class ModifyMachineRemarkRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>实例ID</p>
+        # @type InstanceId: String
+        # @param Remark: <p>备注信息</p>
+        # @type Remark: String
+        # @param MemberId: <p>集团账号的成员id</p>
+        # @type MemberId: Array
+
+        attr_accessor :InstanceId, :Remark, :MemberId
+
+        def initialize(instanceid=nil, remark=nil, memberid=nil)
+          @InstanceId = instanceid
+          @Remark = remark
+          @MemberId = memberid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Remark = params['Remark']
+          @MemberId = params['MemberId']
+        end
+      end
+
+      # ModifyMachineRemark返回参数结构体
+      class ModifyMachineRemarkResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyOrganizationAccountStatus请求参数结构体
       class ModifyOrganizationAccountStatusRequest < TencentCloud::Common::AbstractModel
         # @param Status: 修改集团账号状态，1 开启， 0关闭
@@ -22781,6 +23475,42 @@ module TencentCloud
           @Nick = params['Nick']
           @IsCore = params['IsCore']
           @IsNewAsset = params['IsNewAsset']
+        end
+      end
+
+      # 网卡信息
+      class NetworkCardInfo < TencentCloud::Common::AbstractModel
+        # @param DnsServer: <p>DNS服务器</p>
+        # @type DnsServer: String
+        # @param Gateway: <p>网关</p>
+        # @type Gateway: String
+        # @param Ip: <p>IP地址</p>
+        # @type Ip: String
+        # @param Ipv6: <p>IPv6地址</p>
+        # @type Ipv6: String
+        # @param Mac: <p>MAC地址</p>
+        # @type Mac: String
+        # @param Name: <p>网卡名称</p>
+        # @type Name: String
+
+        attr_accessor :DnsServer, :Gateway, :Ip, :Ipv6, :Mac, :Name
+
+        def initialize(dnsserver=nil, gateway=nil, ip=nil, ipv6=nil, mac=nil, name=nil)
+          @DnsServer = dnsserver
+          @Gateway = gateway
+          @Ip = ip
+          @Ipv6 = ipv6
+          @Mac = mac
+          @Name = name
+        end
+
+        def deserialize(params)
+          @DnsServer = params['DnsServer']
+          @Gateway = params['Gateway']
+          @Ip = params['Ip']
+          @Ipv6 = params['Ipv6']
+          @Mac = params['Mac']
+          @Name = params['Name']
         end
       end
 
@@ -23269,6 +23999,38 @@ module TencentCloud
           @IsSupportNat = params['IsSupportNat']
           @RegionArea = params['RegionArea']
           @RegionNameEN = params['RegionNameEN']
+        end
+      end
+
+      # 地域信息
+      class RegionInfo < TencentCloud::Common::AbstractModel
+        # @param Region: <p>地域</p>
+        # @type Region: String
+        # @param RegionCode: <p>地域编码</p>
+        # @type RegionCode: String
+        # @param RegionId: <p>地域ID</p>
+        # @type RegionId: Integer
+        # @param RegionName: <p>地域名称</p>
+        # @type RegionName: String
+        # @param RegionNameEn: <p>地域英文名称</p>
+        # @type RegionNameEn: String
+
+        attr_accessor :Region, :RegionCode, :RegionId, :RegionName, :RegionNameEn
+
+        def initialize(region=nil, regioncode=nil, regionid=nil, regionname=nil, regionnameen=nil)
+          @Region = region
+          @RegionCode = regioncode
+          @RegionId = regionid
+          @RegionName = regionname
+          @RegionNameEn = regionnameen
+        end
+
+        def deserialize(params)
+          @Region = params['Region']
+          @RegionCode = params['RegionCode']
+          @RegionId = params['RegionId']
+          @RegionName = params['RegionName']
+          @RegionNameEn = params['RegionNameEn']
         end
       end
 

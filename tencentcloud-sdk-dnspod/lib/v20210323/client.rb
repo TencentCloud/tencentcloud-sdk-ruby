@@ -945,6 +945,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取域名操作日志导出文件下载地址
+
+        # @param request: Request instance for DescribeDomainLogFilterFile.
+        # @type request: :class:`Tencentcloud::dnspod::V20210323::DescribeDomainLogFilterFileRequest`
+        # @rtype: :class:`Tencentcloud::dnspod::V20210323::DescribeDomainLogFilterFileResponse`
+        def DescribeDomainLogFilterFile(request)
+          body = send_request('DescribeDomainLogFilterFile', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDomainLogFilterFileResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取域名日志
 
         # @param request: Request instance for DescribeDomainLogList.

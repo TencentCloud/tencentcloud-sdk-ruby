@@ -701,6 +701,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 按照Sql模板+schema的聚合方式，统计排序指定时间段内的top慢sql。
+
+        # @param request: Request instance for DescribeDBAuditLogTopSqls.
+        # @type request: :class:`Tencentcloud::dbbrain::V20210527::DescribeDBAuditLogTopSqlsRequest`
+        # @rtype: :class:`Tencentcloud::dbbrain::V20210527::DescribeDBAuditLogTopSqlsResponse`
+        def DescribeDBAuditLogTopSqls(request)
+          body = send_request('DescribeDBAuditLogTopSqls', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDBAuditLogTopSqlsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 自治中心-查询自治事件任务详情。
 
         # @param request: Request instance for DescribeDBAutonomyAction.

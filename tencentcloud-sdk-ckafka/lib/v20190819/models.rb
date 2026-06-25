@@ -2042,7 +2042,7 @@ module TencentCloud
         # @type InstanceName: String
         # @param ZoneId: <p>可用区。当购买多可用区实例时，当前参数为主可用区。  <a href="https://cloud.tencent.com/document/product/597/55246">查看可用区</a></p>
         # @type ZoneId: Integer
-        # @param Period: <p>预付费购买时长，例如 "1m",就是一个月,取值范围 1m~36m</p>
+        # @param Period: <p>预付费购买时长，例如 &quot;1m&quot;,就是一个月,取值范围 1m~36m</p>
         # @type Period: String
         # @param InstanceType: <p>国际站标准版实例规格。目前只有国际站标准版使用当前字段区分规格，国内站标准版使用峰值带宽区分规格。除了国际站标准版外的所有实例填写 1 即可。国际站标准版实例：入门型(general)]填写1；[标准型(standard)]填写2；[进阶型(advanced)]填写3；[容量型(capacity)]填写4；[高阶型1(specialized-1)]填写5；[高阶型2(specialized-2)]填写6；[高阶型3(specialized-3)]填写7；[高阶型4(specialized-4)]填写8。</p>
         # @type InstanceType: Integer
@@ -2058,7 +2058,7 @@ module TencentCloud
         # @type RenewFlag: Integer
         # @param KafkaVersion: <p>CKafka版本号[2.4.1, 2.4.2, 2.8.1, 3.2.3], 默认取值是2.4.1。2.4.1 与 2.4.2 属于同一个版本，传任意一个均可。</p>
         # @type KafkaVersion: String
-        # @param SpecificationsType: <p>实例类型: [标准版实例]填写 "standard" (默认), [专业版实例]填写 "profession",[高级版实例]填写"premium"</p>
+        # @param SpecificationsType: <p>实例类型: [标准版实例]填写 &quot;standard&quot; (默认), [专业版实例]填写 &quot;profession&quot;,[高级版实例]填写&quot;premium&quot;</p>
         # @type SpecificationsType: String
         # @param DiskSize: <p>磁盘大小，如果跟控制台规格配比不相符，则无法创建成功。默认取值为500，步长设置为100。可以通过以下链接查看计费规格：https://cloud.tencent.com/document/product/597/122562</p>
         # @type DiskSize: Integer
@@ -2068,7 +2068,7 @@ module TencentCloud
         # @type Partition: Integer
         # @param Tags: <p>标签</p>
         # @type Tags: Array
-        # @param DiskType: <p>专业版/高级版实例磁盘类型，标准版实例不需要填写。"CLOUD_SSD"：SSD云硬盘；"CLOUD_BASIC"：高性能云硬盘。不传默认为 "CLOUD_BASIC"</p>
+        # @param DiskType: <p>专业版/高级版实例磁盘类型，标准版实例不需要填写。&quot;CLOUD_SSD&quot;：SSD云硬盘；&quot;CLOUD_BASIC&quot;：高性能云硬盘。不传默认为 &quot;CLOUD_BASIC&quot;</p>
         # @type DiskType: String
         # @param MultiZoneFlag: <p>是否创建跨可用区实例，当前参数为 true 时，zoneIds必填</p>
         # @type MultiZoneFlag: Boolean
@@ -2084,10 +2084,12 @@ module TencentCloud
         # @type ElasticBandwidthSwitch: Integer
         # @param CustomSSLCertId: <p>自定义证书Id,仅当SpecificationsType为profession时生效,支持自定义证书能力</p><p>可通过<a href="https://cloud.tencent.com/document/product/400/41673">DescribeCertificateDetail</a>接口获取</p>
         # @type CustomSSLCertId: String
+        # @param StoreQuantityType: <p>弹性存储开关</p><p>枚举值：</p><ul><li>0： 关闭</li><li>1： 开启</li></ul><p>默认值：0</p>
+        # @type StoreQuantityType: Integer
 
-        attr_accessor :InstanceName, :ZoneId, :Period, :InstanceType, :VpcId, :SubnetId, :MsgRetentionTime, :ClusterId, :RenewFlag, :KafkaVersion, :SpecificationsType, :DiskSize, :BandWidth, :Partition, :Tags, :DiskType, :MultiZoneFlag, :ZoneIds, :PublicNetworkMonthly, :InstanceNum, :AutoVoucher, :ElasticBandwidthSwitch, :CustomSSLCertId
+        attr_accessor :InstanceName, :ZoneId, :Period, :InstanceType, :VpcId, :SubnetId, :MsgRetentionTime, :ClusterId, :RenewFlag, :KafkaVersion, :SpecificationsType, :DiskSize, :BandWidth, :Partition, :Tags, :DiskType, :MultiZoneFlag, :ZoneIds, :PublicNetworkMonthly, :InstanceNum, :AutoVoucher, :ElasticBandwidthSwitch, :CustomSSLCertId, :StoreQuantityType
 
-        def initialize(instancename=nil, zoneid=nil, period=nil, instancetype=nil, vpcid=nil, subnetid=nil, msgretentiontime=nil, clusterid=nil, renewflag=nil, kafkaversion=nil, specificationstype=nil, disksize=nil, bandwidth=nil, partition=nil, tags=nil, disktype=nil, multizoneflag=nil, zoneids=nil, publicnetworkmonthly=nil, instancenum=nil, autovoucher=nil, elasticbandwidthswitch=nil, customsslcertid=nil)
+        def initialize(instancename=nil, zoneid=nil, period=nil, instancetype=nil, vpcid=nil, subnetid=nil, msgretentiontime=nil, clusterid=nil, renewflag=nil, kafkaversion=nil, specificationstype=nil, disksize=nil, bandwidth=nil, partition=nil, tags=nil, disktype=nil, multizoneflag=nil, zoneids=nil, publicnetworkmonthly=nil, instancenum=nil, autovoucher=nil, elasticbandwidthswitch=nil, customsslcertid=nil, storequantitytype=nil)
           @InstanceName = instancename
           @ZoneId = zoneid
           @Period = period
@@ -2111,6 +2113,7 @@ module TencentCloud
           @AutoVoucher = autovoucher
           @ElasticBandwidthSwitch = elasticbandwidthswitch
           @CustomSSLCertId = customsslcertid
+          @StoreQuantityType = storequantitytype
         end
 
         def deserialize(params)
@@ -2144,6 +2147,7 @@ module TencentCloud
           @AutoVoucher = params['AutoVoucher']
           @ElasticBandwidthSwitch = params['ElasticBandwidthSwitch']
           @CustomSSLCertId = params['CustomSSLCertId']
+          @StoreQuantityType = params['StoreQuantityType']
         end
       end
 
@@ -2522,10 +2526,12 @@ module TencentCloud
         # @type ElasticBandwidthSwitch: Integer
         # @param CustomSSLCertId: <p>自定义证书Id,仅当SpecificationsType为profession时生效,支持自定义证书能力</p><p>可通过<a href="https://cloud.tencent.com/document/product/400/41673">DescribeCertificateDetail</a>接口获取</p>
         # @type CustomSSLCertId: String
+        # @param StoreQuantityType: <p>弹性存储开关</p><p>枚举值：</p><ul><li>0： 关闭</li><li>1： 开启</li></ul><p>默认值：0</p>
+        # @type StoreQuantityType: Integer
 
-        attr_accessor :VpcId, :SubnetId, :InstanceName, :InstanceType, :MsgRetentionTime, :ClusterId, :KafkaVersion, :SpecificationsType, :DiskType, :BandWidth, :DiskSize, :Partition, :TopicNum, :ZoneId, :MultiZoneFlag, :ZoneIds, :InstanceNum, :PublicNetworkMonthly, :Tags, :ElasticBandwidthSwitch, :CustomSSLCertId
+        attr_accessor :VpcId, :SubnetId, :InstanceName, :InstanceType, :MsgRetentionTime, :ClusterId, :KafkaVersion, :SpecificationsType, :DiskType, :BandWidth, :DiskSize, :Partition, :TopicNum, :ZoneId, :MultiZoneFlag, :ZoneIds, :InstanceNum, :PublicNetworkMonthly, :Tags, :ElasticBandwidthSwitch, :CustomSSLCertId, :StoreQuantityType
 
-        def initialize(vpcid=nil, subnetid=nil, instancename=nil, instancetype=nil, msgretentiontime=nil, clusterid=nil, kafkaversion=nil, specificationstype=nil, disktype=nil, bandwidth=nil, disksize=nil, partition=nil, topicnum=nil, zoneid=nil, multizoneflag=nil, zoneids=nil, instancenum=nil, publicnetworkmonthly=nil, tags=nil, elasticbandwidthswitch=nil, customsslcertid=nil)
+        def initialize(vpcid=nil, subnetid=nil, instancename=nil, instancetype=nil, msgretentiontime=nil, clusterid=nil, kafkaversion=nil, specificationstype=nil, disktype=nil, bandwidth=nil, disksize=nil, partition=nil, topicnum=nil, zoneid=nil, multizoneflag=nil, zoneids=nil, instancenum=nil, publicnetworkmonthly=nil, tags=nil, elasticbandwidthswitch=nil, customsslcertid=nil, storequantitytype=nil)
           @VpcId = vpcid
           @SubnetId = subnetid
           @InstanceName = instancename
@@ -2547,6 +2553,7 @@ module TencentCloud
           @Tags = tags
           @ElasticBandwidthSwitch = elasticbandwidthswitch
           @CustomSSLCertId = customsslcertid
+          @StoreQuantityType = storequantitytype
         end
 
         def deserialize(params)
@@ -2578,6 +2585,7 @@ module TencentCloud
           end
           @ElasticBandwidthSwitch = params['ElasticBandwidthSwitch']
           @CustomSSLCertId = params['CustomSSLCertId']
+          @StoreQuantityType = params['StoreQuantityType']
         end
       end
 
@@ -10359,34 +10367,36 @@ module TencentCloud
 
       # 创建MQTT 为Source的Data Hub Task参数
       class MqttParam < TencentCloud::Common::AbstractModel
-        # @param Topics: 需要同步的MQTT Topic列表, CSV格式
+        # @param Topics: <p>需要同步的MQTT Topic列表, CSV格式</p>
         # @type Topics: String
-        # @param CleanSession: 用于控制会话的持久性。cleanSession 为true时，连接时会创建一个全新的会话。 cleanSession = false时，连接时会恢复之前的会话。
+        # @param CleanSession: <p>用于控制会话的持久性。cleanSession 为true时，连接时会创建一个全新的会话。 cleanSession = false时，连接时会恢复之前的会话。</p>
         # @type CleanSession: Boolean
-        # @param Resource: MQTT instance-id
+        # @param Resource: <p>MQTT instance-id</p>
         # @type Resource: String
-        # @param Ip: MQTT实例VIP
+        # @param Ip: <p>MQTT实例VIP</p>
         # @type Ip: String
-        # @param Port: MQTT VIP 端口
+        # @param Port: <p>MQTT VIP 端口</p>
         # @type Port: Integer
-        # @param UserName: MQTT实例用户名
+        # @param UserName: <p>MQTT实例用户名</p>
         # @type UserName: String
-        # @param Password: MQTT实例内账户密码
+        # @param Password: <p>MQTT实例内账户密码</p>
         # @type Password: String
-        # @param Qos: QoS
+        # @param Qos: <p>QoS</p>
         # @type Qos: Integer
-        # @param MaxTasks: tasks.max 订阅Topic的并发Task个数, 默认为1; 当设置大于1时, 使用Shared Subscription
+        # @param MaxTasks: <p>tasks.max 订阅Topic的并发Task个数, 默认为1; 当设置大于1时, 使用Shared Subscription</p>
         # @type MaxTasks: Integer
-        # @param ServiceVip: MQTT 实例的Service VIP
+        # @param ServiceVip: <p>MQTT 实例的Service VIP</p>
         # @type ServiceVip: String
-        # @param UniqVpcId: MQTT实例的VPC ID
+        # @param UniqVpcId: <p>MQTT实例的VPC ID</p>
         # @type UniqVpcId: String
-        # @param SelfBuilt: 是否为自建集群, MQTT只支持非自建集群
+        # @param SelfBuilt: <p>是否为自建集群, MQTT只支持非自建集群</p>
         # @type SelfBuilt: Boolean
+        # @param SqlFilter: <p>MQTT消息过滤sql语句</p>
+        # @type SqlFilter: String
 
-        attr_accessor :Topics, :CleanSession, :Resource, :Ip, :Port, :UserName, :Password, :Qos, :MaxTasks, :ServiceVip, :UniqVpcId, :SelfBuilt
+        attr_accessor :Topics, :CleanSession, :Resource, :Ip, :Port, :UserName, :Password, :Qos, :MaxTasks, :ServiceVip, :UniqVpcId, :SelfBuilt, :SqlFilter
 
-        def initialize(topics=nil, cleansession=nil, resource=nil, ip=nil, port=nil, username=nil, password=nil, qos=nil, maxtasks=nil, servicevip=nil, uniqvpcid=nil, selfbuilt=nil)
+        def initialize(topics=nil, cleansession=nil, resource=nil, ip=nil, port=nil, username=nil, password=nil, qos=nil, maxtasks=nil, servicevip=nil, uniqvpcid=nil, selfbuilt=nil, sqlfilter=nil)
           @Topics = topics
           @CleanSession = cleansession
           @Resource = resource
@@ -10399,6 +10409,7 @@ module TencentCloud
           @ServiceVip = servicevip
           @UniqVpcId = uniqvpcid
           @SelfBuilt = selfbuilt
+          @SqlFilter = sqlfilter
         end
 
         def deserialize(params)
@@ -10414,6 +10425,7 @@ module TencentCloud
           @ServiceVip = params['ServiceVip']
           @UniqVpcId = params['UniqVpcId']
           @SelfBuilt = params['SelfBuilt']
+          @SqlFilter = params['SqlFilter']
         end
       end
 

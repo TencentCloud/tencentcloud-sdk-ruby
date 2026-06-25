@@ -14093,65 +14093,43 @@ module TencentCloud
 
       # 此结构体(FlowGroupInfo)描述的是合同组(流程组)的单个合同(流程)信息
       class FlowGroupInfo < TencentCloud::Common::AbstractModel
-        # @param FlowName: 合同流程的名称（可自定义此名称），长度不能超过200，只能由中文、字母、数字和下划线组成。
-        # 该名称还将用于合同签署完成后的下载文件名。
+        # @param FlowName: <p>合同流程的名称（可自定义此名称），长度不能超过200，只能由中文、字母、数字和下划线组成。<br>该名称还将用于合同签署完成后的下载文件名。</p>
         # @type FlowName: String
-        # @param Approvers: 签署流程参与者信息，最大限制50方
-        # 注意 approver中的顺序需要和模板中的顺序保持一致， 否则会导致模板中配置的信息无效。
+        # @param Approvers: <p>签署流程参与者信息，最大限制50方<br>注意 approver中的顺序需要和模板中的顺序保持一致， 否则会导致模板中配置的信息无效。</p>
         # @type Approvers: Array
-        # @param FileIds: 文件资源ID，通过多文件上传[UploadFiles](https://qian.tencent.com/developers/companyApis/templatesAndFiles/UploadFiles)接口获得，为32位字符串。
-        # 注：此字段定义为数组，但仅支持单个文件
+        # @param FileIds: <p>文件资源ID，通过多文件上传<a href="https://qian.tencent.com/developers/companyApis/templatesAndFiles/UploadFiles">UploadFiles</a>接口获得，为32位字符串。<br>注：此字段定义为数组，但仅支持单个文件</p>
         # @type FileIds: Array
-        # @param TemplateId: 合同模板ID，为32位字符串。
-        # 建议开发者保存此模板ID，后续用此模板发起合同流程需要此参数。
-        # 可登录腾讯电子签控制台，在 "模板"->"模板中心"->"列表展示设置"选中模板 ID 中查看某个模板的TemplateId(在页面中展示为模板ID)。
+        # @param TemplateId: <p>合同模板ID，为32位字符串。<br>建议开发者保存此模板ID，后续用此模板发起合同流程需要此参数。<br>可登录腾讯电子签控制台，在 &quot;模板&quot;-&gt;&quot;模板中心&quot;-&gt;&quot;列表展示设置&quot;选中模板 ID 中查看某个模板的TemplateId(在页面中展示为模板ID)。</p>
         # @type TemplateId: String
-        # @param FlowType: 签署流程的类型(如销售合同/入职合同等)，最大长度200个字符
+        # @param FlowType: <p>签署流程的类型(如销售合同/入职合同等)，最大长度200个字符</p>
         # @type FlowType: String
-        # @param FlowDescription: 签署流程描述,最大长度1000个字符
+        # @param FlowDescription: <p>签署流程描述,最大长度1000个字符</p>
         # @type FlowDescription: String
-        # @param Deadline: 签署流程的签署截止时间。
-
-        # 值为unix时间戳,精确到秒,不传默认为当前时间一年后
-        # 示例值：1604912664
+        # @param Deadline: <p>签署流程的签署截止时间。</p><p>值为unix时间戳,精确到秒,不传默认为当前时间一年后<br>示例值：1604912664</p>
         # @type Deadline: Integer
-        # @param CallbackUrl: 合同（流程）的回调地址
+        # @param CallbackUrl: <p>合同（流程）的回调地址</p>
         # @type CallbackUrl: String
-        # @param UserData: 调用方自定义的个性化字段(可自定义此字段的值)，并以base64方式编码，支持的最大数据大小为 20480长度。
-        # 在合同状态变更的回调信息等场景中，该字段的信息将原封不动地透传给贵方。
-        # 回调的相关说明可参考开发者中心的<a href="https://qian.tencent.com/developers/company/callback_types_v2" target="_blank">回调通知</a>模块。
+        # @param UserData: <p>调用方自定义的个性化字段(可自定义此字段的值)，并以base64方式编码，支持的最大数据大小为 20480长度。<br>在合同状态变更的回调信息等场景中，该字段的信息将原封不动地透传给贵方。<br>回调的相关说明可参考开发者中心的<a href="https://qian.tencent.com/developers/company/callback_types_v2" target="_blank">回调通知</a>模块。</p>
         # @type UserData: String
-        # @param Unordered: 发送类型：
-        # true：无序签
-        # false：有序签
-        # 注：默认为false（有序签），请和模板中的配置保持一致
-        # 示例值：true
+        # @param Unordered: <p>发送类型：<br>true：无序签<br>false：有序签<br>注：默认为false（有序签），请和模板中的配置保持一致<br>示例值：true</p>
         # @type Unordered: Boolean
-        # @param Components: 模板或者合同中的填写控件列表，列表中可支持下列多种填写控件，控件的详细定义参考开发者中心的Component结构体
-        # <ul><li>单行文本控件</li>
-        # <li>多行文本控件</li>
-        # <li>勾选框控件</li>
-        # <li>数字控件</li>
-        # <li>图片控件</li>
-        # <li>动态表格等填写控件</li></ul>
+        # @param Components: <p>模板或者合同中的填写控件列表，列表中可支持下列多种填写控件，控件的详细定义参考开发者中心的Component结构体</p><ul><li>单行文本控件</li><li>多行文本控件</li><li>勾选框控件</li><li>数字控件</li><li>图片控件</li><li>动态表格等填写控件</li></ul>
         # @type Components: Array
-        # @param NeedSignReview: 发起方企业的签署人进行签署操作是否需要企业内部审批。使用此功能需要发起方企业有参与签署。
-        # 若设置为true，审核结果需通过接口 [CreateFlowSignReview](https://qian.tencent.com/developers/companyApis/operateFlows/CreateFlowSignReview) 通知电子签，审核通过后，发起方企业签署人方可进行签署操作，否则会阻塞其签署操作。
-
-        # 注：企业可以通过此功能与企业内部的审批流程进行关联，支持手动、静默签署合同。
-        # 示例值：true
+        # @param NeedSignReview: <p>发起方企业的签署人进行签署操作是否需要企业内部审批。使用此功能需要发起方企业有参与签署。<br>若设置为true，审核结果需通过接口 <a href="https://qian.tencent.com/developers/companyApis/operateFlows/CreateFlowSignReview">CreateFlowSignReview</a> 通知电子签，审核通过后，发起方企业签署人方可进行签署操作，否则会阻塞其签署操作。</p><p>注：企业可以通过此功能与企业内部的审批流程进行关联，支持手动、静默签署合同。<br>示例值：true</p>
         # @type NeedSignReview: Boolean
-        # @param AutoSignScene: 个人自动签场景。发起自动签署时，需设置对应自动签署场景，目前仅支持场景：处方单-E_PRESCRIPTION_AUTO_SIGN
+        # @param AutoSignScene: <p>个人自动签场景。发起自动签署时，需设置对应自动签署场景，目前仅支持场景：处方单-E_PRESCRIPTION_AUTO_SIGN</p>
         # @type AutoSignScene: String
-        # @param FlowDisplayType: 在短信通知、填写、签署流程中，若标题、按钮、合同详情等地方存在“合同”字样时，可根据此配置指定文案，可选文案如下：  <ul><li> <b>0</b> :合同（默认值）</li> <li> <b>1</b> :文件</li> <li> <b>2</b> :协议</li><li> <b>3</b> :文书</li></ul>效果如下:![FlowDisplayType](https://qcloudimg.tencent-cloud.cn/raw/e4a2c4d638717cc901d3dbd5137c9bbc.png)
+        # @param FlowDisplayType: <p>在短信通知、填写、签署流程中，若标题、按钮、合同详情等地方存在“合同”字样时，可根据此配置指定文案，可选文案如下：  <ul><li> <b>0</b> :合同（默认值）</li> <li> <b>1</b> :文件</li> <li> <b>2</b> :协议</li><li> <b>3</b> :文书</li></ul>效果如下:<img src="https://qcloudimg.tencent-cloud.cn/raw/e4a2c4d638717cc901d3dbd5137c9bbc.png" alt="FlowDisplayType"></p>
         # @type FlowDisplayType: Integer
+        # @param CcInfos: <p>抄送人信息</p>
+        # @type CcInfos: Array
 
-        attr_accessor :FlowName, :Approvers, :FileIds, :TemplateId, :FlowType, :FlowDescription, :Deadline, :CallbackUrl, :UserData, :Unordered, :Components, :NeedSignReview, :AutoSignScene, :FlowDisplayType
+        attr_accessor :FlowName, :Approvers, :FileIds, :TemplateId, :FlowType, :FlowDescription, :Deadline, :CallbackUrl, :UserData, :Unordered, :Components, :NeedSignReview, :AutoSignScene, :FlowDisplayType, :CcInfos
         extend Gem::Deprecate
         deprecate :CallbackUrl, :none, 2026, 6
         deprecate :CallbackUrl=, :none, 2026, 6
 
-        def initialize(flowname=nil, approvers=nil, fileids=nil, templateid=nil, flowtype=nil, flowdescription=nil, deadline=nil, callbackurl=nil, userdata=nil, unordered=nil, components=nil, needsignreview=nil, autosignscene=nil, flowdisplaytype=nil)
+        def initialize(flowname=nil, approvers=nil, fileids=nil, templateid=nil, flowtype=nil, flowdescription=nil, deadline=nil, callbackurl=nil, userdata=nil, unordered=nil, components=nil, needsignreview=nil, autosignscene=nil, flowdisplaytype=nil, ccinfos=nil)
           @FlowName = flowname
           @Approvers = approvers
           @FileIds = fileids
@@ -14166,6 +14144,7 @@ module TencentCloud
           @NeedSignReview = needsignreview
           @AutoSignScene = autosignscene
           @FlowDisplayType = flowdisplaytype
+          @CcInfos = ccinfos
         end
 
         def deserialize(params)
@@ -14197,6 +14176,14 @@ module TencentCloud
           @NeedSignReview = params['NeedSignReview']
           @AutoSignScene = params['AutoSignScene']
           @FlowDisplayType = params['FlowDisplayType']
+          unless params['CcInfos'].nil?
+            @CcInfos = []
+            params['CcInfos'].each do |i|
+              ccinfo_tmp = CcInfo.new
+              ccinfo_tmp.deserialize(i)
+              @CcInfos << ccinfo_tmp
+            end
+          end
         end
       end
 

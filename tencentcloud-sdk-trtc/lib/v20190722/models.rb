@@ -6483,24 +6483,23 @@ module TencentCloud
 
       # StartWebRecord请求参数结构体
       class StartWebRecordRequest < TencentCloud::Common::AbstractModel
-        # @param RecordUrl: 【必填】需要录制的网页URL
+        # @param RecordUrl: <p>【必填】需要录制的网页URL</p>
         # @type RecordUrl: String
-        # @param StorageParams: 【必填】云存储相关的参数，目前支持腾讯云对象存储以及腾讯云云点播VOD，不支持第三方云存储；输出文件的存储格式仅支持hls或mp4
+        # @param StorageParams: <p>【必填】云存储相关的参数，目前支持腾讯云对象存储以及腾讯云云点播VOD，不支持第三方云存储；输出文件的存储格式仅支持hls或mp4</p>
         # @type StorageParams: :class:`Tencentcloud::Trtc.v20190722.models.StorageParams`
-        # @param SdkAppId: 【必填】TRTC的SdkAppId
+        # @param SdkAppId: <p>【必填】TRTC的SdkAppId</p>
         # @type SdkAppId: Integer
-        # @param MaxDurationLimit: 录制最大时长限制， 单位 s, 合法取值范围[1800, 86400], 默认 86400s(24 小时)
+        # @param MaxDurationLimit: <p>录制最大时长限制， 单位 s, 合法取值范围[1800, 86400], 默认 86400s(24 小时)</p>
         # @type MaxDurationLimit: Integer
-        # @param WebRecordVideoParams: 页面录制视频参数
+        # @param WebRecordVideoParams: <p>页面录制视频参数</p>
         # @type WebRecordVideoParams: :class:`Tencentcloud::Trtc.v20190722.models.WebRecordVideoParams`
-        # @param RecordId: 当对重复任务敏感时，请关注此值： 为了避免任务在短时间内重复发起，导致任务重复
-        # 传入录制RecordId来标识此次任务， 小于32字节，若携带RecordId发起两次以上的开始录制请求，任务只会启动一个，第二个报错FailedOperation.TaskExist。注意StartWebRecord调用失败时而非FailedOperation.TaskExist错误，请更换RecordId重新发起。
+        # @param RecordId: <p>当对重复任务敏感时，请关注此值： 为了避免任务在短时间内重复发起，导致任务重复<br>传入录制RecordId来标识此次任务， 小于32字节，若携带RecordId发起两次以上的开始录制请求，任务只会启动一个，第二个报错FailedOperation.TaskExist。注意StartWebRecord调用失败时而非FailedOperation.TaskExist错误，请更换RecordId重新发起。</p>
         # @type RecordId: String
-        # @param PublishCdnParams: 若您想要推流到CDN，可以使用PublishCdnParams.N参数设置，支持最多同时推流到10个CDN地址。若转推地址是腾讯云CDN时，请将IsTencentCdn明确设置为1
+        # @param PublishCdnParams: <p>若您想要推流到CDN，可以使用PublishCdnParams.N参数设置，支持最多同时推流到10个CDN地址。若转推地址是腾讯云CDN时，请将IsTencentCdn明确设置为1</p>
         # @type PublishCdnParams: Array
-        # @param ReadyTimeout: 录制页面资源加载的超时时间，单位：秒。默认值为 0 秒，该值需大于等于 0秒，且小于等于 60秒。录制页面未启用页面加载超时检测时，请勿设置此参数。
+        # @param ReadyTimeout: <p>录制页面资源加载的超时时间，单位：秒。默认值为 0 秒，该值需大于等于 0秒，且小于等于 60秒。录制页面未启用页面加载超时检测时，请勿设置此参数。</p>
         # @type ReadyTimeout: Integer
-        # @param EmulateMobileParams: 渲染移动模式参数；不准备渲染移动模式页面时，请勿设置此参数。
+        # @param EmulateMobileParams: <p>渲染移动模式参数；不准备渲染移动模式页面时，请勿设置此参数。</p>
         # @type EmulateMobileParams: :class:`Tencentcloud::Trtc.v20190722.models.EmulateMobileParams`
 
         attr_accessor :RecordUrl, :StorageParams, :SdkAppId, :MaxDurationLimit, :WebRecordVideoParams, :RecordId, :PublishCdnParams, :ReadyTimeout, :EmulateMobileParams
@@ -6548,7 +6547,7 @@ module TencentCloud
 
       # StartWebRecord返回参数结构体
       class StartWebRecordResponse < TencentCloud::Common::AbstractModel
-        # @param TaskId: 录制任务的唯一Id
+        # @param TaskId: <p>录制任务的唯一Id</p>
         # @type TaskId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
