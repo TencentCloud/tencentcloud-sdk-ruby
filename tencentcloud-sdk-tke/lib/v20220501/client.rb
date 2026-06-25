@@ -341,6 +341,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询节点池健康度相关信息
+
+        # @param request: Request instance for DescribeNodePoolsElasticityStrength.
+        # @type request: :class:`Tencentcloud::tke::V20220501::DescribeNodePoolsElasticityStrengthRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20220501::DescribeNodePoolsElasticityStrengthResponse`
+        def DescribeNodePoolsElasticityStrength(request)
+          body = send_request('DescribeNodePoolsElasticityStrength', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeNodePoolsElasticityStrengthResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询原生节点机型配置
 
         # @param request: Request instance for DescribeZoneInstanceConfigInfos.

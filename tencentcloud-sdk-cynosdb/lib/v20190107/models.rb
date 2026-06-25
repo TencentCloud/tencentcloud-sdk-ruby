@@ -19198,17 +19198,17 @@ module TencentCloud
         end
       end
 
-      # 查询过滤器
+      # 查询过滤器。用于 DescribeClusterAndInstances 接口的过滤条件。
       class QueryFilter < TencentCloud::Common::AbstractModel
-        # @param Values: 搜索字符串
+        # @param Values: 字段值列表，与 Names 一一对应。InstanceId/ClusterId 为精确匹配，InstanceName 默认模糊匹配
         # @type Values: Array
-        # @param Names: 搜索字段，目前支持："InstanceId", "ProjectId", "InstanceName", "Vip"
+        # @param Names: 搜索字段名称列表，仅支持以下 3 个字段（不区分大小写，多个值为 OR 关系）：ClusterId（按集群 ID 过滤，精确匹配）、InstanceId（按实例 ID 反查所属集群）、InstanceName（按实例名称反查所属集群，默认 LIKE 模糊匹配，ExactMatch=true 时精确匹配）。InstanceId 与 InstanceName 同时传入时取交集（AND 语义）。
         # @type Names: Array
-        # @param ExactMatch: 是否精确匹配
+        # @param ExactMatch: 是否精确匹配。仅对 InstanceName 生效：true 精确匹配，false（默认）LIKE 模糊匹配。
         # @type ExactMatch: Boolean
-        # @param Name: 搜索字段
+        # @param Name: 搜索字段名称（单个字段模式，与 Names 二选一）。支持：ClusterId、InstanceId、InstanceName
         # @type Name: String
-        # @param Operator: 操作符
+        # @param Operator: 操作符（预留字段，当前未启用）。可选值：>、>=、!=、=、<、<=
         # @type Operator: String
 
         attr_accessor :Values, :Names, :ExactMatch, :Name, :Operator

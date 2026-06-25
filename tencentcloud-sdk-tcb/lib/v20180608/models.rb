@@ -6626,21 +6626,25 @@ module TencentCloud
 
       # ModifyEnv请求参数结构体
       class ModifyEnvRequest < TencentCloud::Common::AbstractModel
-        # @param EnvId: 环境ID
+        # @param EnvId: <p>环境ID</p>
         # @type EnvId: String
-        # @param Alias: 环境备注名，要以a-z开头，不能包含 a-zA-z0-9- 以外的字符
+        # @param Alias: <p>环境备注名，要以a-z开头，不能包含 a-zA-z0-9- 以外的字符</p>
         # @type Alias: String
+        # @param CustomQps: <p>按量计费QPS上限，大于套餐配额时生效。-1表示关闭QPS按量计费。</p>
+        # @type CustomQps: Integer
 
-        attr_accessor :EnvId, :Alias
+        attr_accessor :EnvId, :Alias, :CustomQps
 
-        def initialize(envid=nil, _alias=nil)
+        def initialize(envid=nil, _alias=nil, customqps=nil)
           @EnvId = envid
           @Alias = _alias
+          @CustomQps = customqps
         end
 
         def deserialize(params)
           @EnvId = params['EnvId']
           @Alias = params['Alias']
+          @CustomQps = params['CustomQps']
         end
       end
 

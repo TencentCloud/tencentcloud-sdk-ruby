@@ -3553,18 +3553,15 @@ module TencentCloud
 
       # DeleteExporterIntegration请求参数结构体
       class DeleteExporterIntegrationRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID
+        # @param InstanceId: <p>实例 ID</p>
         # @type InstanceId: String
-        # @param Kind: 类型(可通过 DescribeExporterIntegrations获取)
+        # @param Kind: <p>类型(可通过 DescribeExporterIntegrations获取)</p>
         # @type Kind: String
-        # @param Name: 名字
+        # @param Name: <p>名字</p>
         # @type Name: String
-        # @param KubeType: Kubernetes 集群类型，取值如下：
-        # <li> 1= 容器集群(TKE) </li>
-        # <li> 2=弹性集群(EKS) </li>
-        # <li> 3= Prometheus管理的弹性集群(MEKS) </li>
+        # @param KubeType: <p>Kubernetes 集群类型，取值如下：</p><li> 1= 容器集群(TKE) </li><li> 2=弹性集群(EKS) </li><li> 3= Prometheus管理的弹性集群(MEKS) </li>
         # @type KubeType: Integer
-        # @param ClusterId: 集群 ID，可不填
+        # @param ClusterId: <p>集群 ID，可不填</p>
         # @type ClusterId: String
 
         attr_accessor :InstanceId, :Kind, :Name, :KubeType, :ClusterId

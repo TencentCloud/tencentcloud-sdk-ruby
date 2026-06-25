@@ -235,6 +235,8 @@ module TencentCloud
         # @type EnableAutoscaling: Boolean
         # @param Replicas: <p>期望节点数</p>
         # @type Replicas: Integer
+        # @param GPUConfigs: <p>机型和GPU配置相关信息</p>
+        # @type GPUConfigs: Array
         # @param InternetAccessible: <p>公网带宽设置</p>
         # @type InternetAccessible: :class:`Tencentcloud::Tke.v20220501.models.InternetAccessible`
         # @param DataDisks: <p>原生节点池数据盘列表</p>
@@ -250,9 +252,9 @@ module TencentCloud
         # @param Password: <p>原生节点池密码</p>
         # @type Password: String
 
-        attr_accessor :Scaling, :SubnetIds, :InstanceChargeType, :SystemDisk, :InstanceTypes, :SecurityGroupIds, :UpgradeSettings, :AutoRepair, :InstanceChargePrepaid, :Management, :HealthCheckPolicyName, :HostNamePattern, :KubeletArgs, :Lifecycle, :RuntimeRootDir, :EnableAutoscaling, :Replicas, :InternetAccessible, :DataDisks, :QGPUEnable, :KeyIds, :MachineType, :AutomationService, :Password
+        attr_accessor :Scaling, :SubnetIds, :InstanceChargeType, :SystemDisk, :InstanceTypes, :SecurityGroupIds, :UpgradeSettings, :AutoRepair, :InstanceChargePrepaid, :Management, :HealthCheckPolicyName, :HostNamePattern, :KubeletArgs, :Lifecycle, :RuntimeRootDir, :EnableAutoscaling, :Replicas, :GPUConfigs, :InternetAccessible, :DataDisks, :QGPUEnable, :KeyIds, :MachineType, :AutomationService, :Password
 
-        def initialize(scaling=nil, subnetids=nil, instancechargetype=nil, systemdisk=nil, instancetypes=nil, securitygroupids=nil, upgradesettings=nil, autorepair=nil, instancechargeprepaid=nil, management=nil, healthcheckpolicyname=nil, hostnamepattern=nil, kubeletargs=nil, lifecycle=nil, runtimerootdir=nil, enableautoscaling=nil, replicas=nil, internetaccessible=nil, datadisks=nil, qgpuenable=nil, keyids=nil, machinetype=nil, automationservice=nil, password=nil)
+        def initialize(scaling=nil, subnetids=nil, instancechargetype=nil, systemdisk=nil, instancetypes=nil, securitygroupids=nil, upgradesettings=nil, autorepair=nil, instancechargeprepaid=nil, management=nil, healthcheckpolicyname=nil, hostnamepattern=nil, kubeletargs=nil, lifecycle=nil, runtimerootdir=nil, enableautoscaling=nil, replicas=nil, gpuconfigs=nil, internetaccessible=nil, datadisks=nil, qgpuenable=nil, keyids=nil, machinetype=nil, automationservice=nil, password=nil)
           @Scaling = scaling
           @SubnetIds = subnetids
           @InstanceChargeType = instancechargetype
@@ -270,6 +272,7 @@ module TencentCloud
           @RuntimeRootDir = runtimerootdir
           @EnableAutoscaling = enableautoscaling
           @Replicas = replicas
+          @GPUConfigs = gpuconfigs
           @InternetAccessible = internetaccessible
           @DataDisks = datadisks
           @QGPUEnable = qgpuenable
@@ -315,6 +318,14 @@ module TencentCloud
           @RuntimeRootDir = params['RuntimeRootDir']
           @EnableAutoscaling = params['EnableAutoscaling']
           @Replicas = params['Replicas']
+          unless params['GPUConfigs'].nil?
+            @GPUConfigs = []
+            params['GPUConfigs'].each do |i|
+              gpuconfig_tmp = GPUConfig.new
+              gpuconfig_tmp.deserialize(i)
+              @GPUConfigs << gpuconfig_tmp
+            end
+          end
           unless params['InternetAccessible'].nil?
             @InternetAccessible = InternetAccessible.new
             @InternetAccessible.deserialize(params['InternetAccessible'])
@@ -1115,6 +1126,33 @@ module TencentCloud
             @HealthCheckTemplate = HealthCheckTemplate.new
             @HealthCheckTemplate.deserialize(params['HealthCheckTemplate'])
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeNodePoolsElasticityStrength请求参数结构体
+      class DescribeNodePoolsElasticityStrengthRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeNodePoolsElasticityStrength返回参数结构体
+      class DescribeNodePoolsElasticityStrengthResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end

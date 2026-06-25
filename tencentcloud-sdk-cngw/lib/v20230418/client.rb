@@ -17,28 +17,28 @@
 require 'json'
 
 module TencentCloud
-  module Tdmysql
-    module V20211122
+  module Cngw
+    module V20230418
       class Client < TencentCloud::Common::AbstractClient
 
         def initialize(credential, region, profile = nil)
-            api_version = '2021-11-22'
-            api_endpoint = 'tdmysql.tencentcloudapi.com'
-            sdk_version = 'TDMYSQL_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            api_version = '2023-04-18'
+            api_endpoint = 'cngw.tencentcloudapi.com'
+            sdk_version = 'CNGW_' + File.read(File.expand_path('../VERSION', __dir__)).strip
             super(credential, region, api_version, api_endpoint, sdk_version, profile)
         end
 
 
-        # 本接口（CancelIsolateDBInstances）提供批量解除隔离实例功能
+        # 为资源（模型 API / MCP Server）添加消费者组授权。
 
-        # @param request: Request instance for CancelIsolateDBInstances.
-        # @type request: :class:`Tencentcloud::tdmysql::V20211122::CancelIsolateDBInstancesRequest`
-        # @rtype: :class:`Tencentcloud::tdmysql::V20211122::CancelIsolateDBInstancesResponse`
-        def CancelIsolateDBInstances(request)
-          body = send_request('CancelIsolateDBInstances', request.serialize)
+        # @param request: Request instance for AddCloudNativeAPIGatewayConsumerGroupAuth.
+        # @type request: :class:`Tencentcloud::cngw::V20230418::AddCloudNativeAPIGatewayConsumerGroupAuthRequest`
+        # @rtype: :class:`Tencentcloud::cngw::V20230418::AddCloudNativeAPIGatewayConsumerGroupAuthResponse`
+        def AddCloudNativeAPIGatewayConsumerGroupAuth(request)
+          body = send_request('AddCloudNativeAPIGatewayConsumerGroupAuth', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = CancelIsolateDBInstancesResponse.new
+            model = AddCloudNativeAPIGatewayConsumerGroupAuthResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -53,16 +53,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（CreateCloneInstance）提供创建克隆实例功能
+        # 创建AI网关消费者。
 
-        # @param request: Request instance for CreateCloneInstance.
-        # @type request: :class:`Tencentcloud::tdmysql::V20211122::CreateCloneInstanceRequest`
-        # @rtype: :class:`Tencentcloud::tdmysql::V20211122::CreateCloneInstanceResponse`
-        def CreateCloneInstance(request)
-          body = send_request('CreateCloneInstance', request.serialize)
+        # @param request: Request instance for CreateCloudNativeAPIGatewayConsumer.
+        # @type request: :class:`Tencentcloud::cngw::V20230418::CreateCloudNativeAPIGatewayConsumerRequest`
+        # @rtype: :class:`Tencentcloud::cngw::V20230418::CreateCloudNativeAPIGatewayConsumerResponse`
+        def CreateCloudNativeAPIGatewayConsumer(request)
+          body = send_request('CreateCloudNativeAPIGatewayConsumer', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = CreateCloneInstanceResponse.new
+            model = CreateCloudNativeAPIGatewayConsumerResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -77,16 +77,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（CreateDBInstances）提供批量创建实例功能
+        # 创建AI 网关消费者组
 
-        # @param request: Request instance for CreateDBInstances.
-        # @type request: :class:`Tencentcloud::tdmysql::V20211122::CreateDBInstancesRequest`
-        # @rtype: :class:`Tencentcloud::tdmysql::V20211122::CreateDBInstancesResponse`
-        def CreateDBInstances(request)
-          body = send_request('CreateDBInstances', request.serialize)
+        # @param request: Request instance for CreateCloudNativeAPIGatewayConsumerGroup.
+        # @type request: :class:`Tencentcloud::cngw::V20230418::CreateCloudNativeAPIGatewayConsumerGroupRequest`
+        # @rtype: :class:`Tencentcloud::cngw::V20230418::CreateCloudNativeAPIGatewayConsumerGroupResponse`
+        def CreateCloudNativeAPIGatewayConsumerGroup(request)
+          body = send_request('CreateCloudNativeAPIGatewayConsumerGroup', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = CreateDBInstancesResponse.new
+            model = CreateCloudNativeAPIGatewayConsumerGroupResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -101,16 +101,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建实例手工备份  CreateDBSBackup
+        # 创建 LLM 模型 API。
 
-        # @param request: Request instance for CreateDBSBackup.
-        # @type request: :class:`Tencentcloud::tdmysql::V20211122::CreateDBSBackupRequest`
-        # @rtype: :class:`Tencentcloud::tdmysql::V20211122::CreateDBSBackupResponse`
-        def CreateDBSBackup(request)
-          body = send_request('CreateDBSBackup', request.serialize)
+        # @param request: Request instance for CreateCloudNativeAPIGatewayLLMModelAPI.
+        # @type request: :class:`Tencentcloud::cngw::V20230418::CreateCloudNativeAPIGatewayLLMModelAPIRequest`
+        # @rtype: :class:`Tencentcloud::cngw::V20230418::CreateCloudNativeAPIGatewayLLMModelAPIResponse`
+        def CreateCloudNativeAPIGatewayLLMModelAPI(request)
+          body = send_request('CreateCloudNativeAPIGatewayLLMModelAPI', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = CreateDBSBackupResponse.new
+            model = CreateCloudNativeAPIGatewayLLMModelAPIResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -125,16 +125,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（CreateUsers）用于批量创建用户
+        # 创建 LLM 模型服务。同一网关下 Name 唯一。
 
-        # @param request: Request instance for CreateUsers.
-        # @type request: :class:`Tencentcloud::tdmysql::V20211122::CreateUsersRequest`
-        # @rtype: :class:`Tencentcloud::tdmysql::V20211122::CreateUsersResponse`
-        def CreateUsers(request)
-          body = send_request('CreateUsers', request.serialize)
+        # @param request: Request instance for CreateCloudNativeAPIGatewayLLMModelService.
+        # @type request: :class:`Tencentcloud::cngw::V20230418::CreateCloudNativeAPIGatewayLLMModelServiceRequest`
+        # @rtype: :class:`Tencentcloud::cngw::V20230418::CreateCloudNativeAPIGatewayLLMModelServiceResponse`
+        def CreateCloudNativeAPIGatewayLLMModelService(request)
+          body = send_request('CreateCloudNativeAPIGatewayLLMModelService', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = CreateUsersResponse.new
+            model = CreateCloudNativeAPIGatewayLLMModelServiceResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -149,16 +149,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 删除实例手工备份 DeleteDBSBackupSets
+        # 创建AI网关MCP Server
 
-        # @param request: Request instance for DeleteDBSBackupSets.
-        # @type request: :class:`Tencentcloud::tdmysql::V20211122::DeleteDBSBackupSetsRequest`
-        # @rtype: :class:`Tencentcloud::tdmysql::V20211122::DeleteDBSBackupSetsResponse`
-        def DeleteDBSBackupSets(request)
-          body = send_request('DeleteDBSBackupSets', request.serialize)
+        # @param request: Request instance for CreateCloudNativeAPIGatewayMCPServer.
+        # @type request: :class:`Tencentcloud::cngw::V20230418::CreateCloudNativeAPIGatewayMCPServerRequest`
+        # @rtype: :class:`Tencentcloud::cngw::V20230418::CreateCloudNativeAPIGatewayMCPServerResponse`
+        def CreateCloudNativeAPIGatewayMCPServer(request)
+          body = send_request('CreateCloudNativeAPIGatewayMCPServer', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = DeleteDBSBackupSetsResponse.new
+            model = CreateCloudNativeAPIGatewayMCPServerResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -173,16 +173,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（DeleteUsers）用于批量删除用户
+        # 创建AI网关MCP Tool
 
-        # @param request: Request instance for DeleteUsers.
-        # @type request: :class:`Tencentcloud::tdmysql::V20211122::DeleteUsersRequest`
-        # @rtype: :class:`Tencentcloud::tdmysql::V20211122::DeleteUsersResponse`
-        def DeleteUsers(request)
-          body = send_request('DeleteUsers', request.serialize)
+        # @param request: Request instance for CreateCloudNativeAPIGatewayMCPTool.
+        # @type request: :class:`Tencentcloud::cngw::V20230418::CreateCloudNativeAPIGatewayMCPToolRequest`
+        # @rtype: :class:`Tencentcloud::cngw::V20230418::CreateCloudNativeAPIGatewayMCPToolResponse`
+        def CreateCloudNativeAPIGatewayMCPTool(request)
+          body = send_request('CreateCloudNativeAPIGatewayMCPTool', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = DeleteUsersResponse.new
+            model = CreateCloudNativeAPIGatewayMCPToolResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -197,16 +197,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（DescribeDBInstanceDetail）提供查询实例详情功能
+        # 创建消费者密钥。
 
-        # @param request: Request instance for DescribeDBInstanceDetail.
-        # @type request: :class:`Tencentcloud::tdmysql::V20211122::DescribeDBInstanceDetailRequest`
-        # @rtype: :class:`Tencentcloud::tdmysql::V20211122::DescribeDBInstanceDetailResponse`
-        def DescribeDBInstanceDetail(request)
-          body = send_request('DescribeDBInstanceDetail', request.serialize)
+        # @param request: Request instance for CreateCloudNativeAPIGatewaySecretKey.
+        # @type request: :class:`Tencentcloud::cngw::V20230418::CreateCloudNativeAPIGatewaySecretKeyRequest`
+        # @rtype: :class:`Tencentcloud::cngw::V20230418::CreateCloudNativeAPIGatewaySecretKeyResponse`
+        def CreateCloudNativeAPIGatewaySecretKey(request)
+          body = send_request('CreateCloudNativeAPIGatewaySecretKey', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = DescribeDBInstanceDetailResponse.new
+            model = CreateCloudNativeAPIGatewaySecretKeyResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -221,16 +221,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（DescribeDBInstances）提供查询实例列表功能
+        # 删除AI 网关消费者（被绑定到消费者组/密钥时需先解绑）。
 
-        # @param request: Request instance for DescribeDBInstances.
-        # @type request: :class:`Tencentcloud::tdmysql::V20211122::DescribeDBInstancesRequest`
-        # @rtype: :class:`Tencentcloud::tdmysql::V20211122::DescribeDBInstancesResponse`
-        def DescribeDBInstances(request)
-          body = send_request('DescribeDBInstances', request.serialize)
+        # @param request: Request instance for DeleteCloudNativeAPIGatewayConsumer.
+        # @type request: :class:`Tencentcloud::cngw::V20230418::DeleteCloudNativeAPIGatewayConsumerRequest`
+        # @rtype: :class:`Tencentcloud::cngw::V20230418::DeleteCloudNativeAPIGatewayConsumerResponse`
+        def DeleteCloudNativeAPIGatewayConsumer(request)
+          body = send_request('DeleteCloudNativeAPIGatewayConsumer', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = DescribeDBInstancesResponse.new
+            model = DeleteCloudNativeAPIGatewayConsumerResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -245,16 +245,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（DescribeDBParameters）用于获取实例的当前参数设置。
+        # 删除AI网关消费者组
 
-        # @param request: Request instance for DescribeDBParameters.
-        # @type request: :class:`Tencentcloud::tdmysql::V20211122::DescribeDBParametersRequest`
-        # @rtype: :class:`Tencentcloud::tdmysql::V20211122::DescribeDBParametersResponse`
-        def DescribeDBParameters(request)
-          body = send_request('DescribeDBParameters', request.serialize)
+        # @param request: Request instance for DeleteCloudNativeAPIGatewayConsumerGroup.
+        # @type request: :class:`Tencentcloud::cngw::V20230418::DeleteCloudNativeAPIGatewayConsumerGroupRequest`
+        # @rtype: :class:`Tencentcloud::cngw::V20230418::DeleteCloudNativeAPIGatewayConsumerGroupResponse`
+        def DeleteCloudNativeAPIGatewayConsumerGroup(request)
+          body = send_request('DeleteCloudNativeAPIGatewayConsumerGroup', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = DescribeDBParametersResponse.new
+            model = DeleteCloudNativeAPIGatewayConsumerGroupResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -269,16 +269,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询实例归档日志列表 DescribeDBSArchiveLogs
+        # 删除 LLM 模型 API。
 
-        # @param request: Request instance for DescribeDBSArchiveLogs.
-        # @type request: :class:`Tencentcloud::tdmysql::V20211122::DescribeDBSArchiveLogsRequest`
-        # @rtype: :class:`Tencentcloud::tdmysql::V20211122::DescribeDBSArchiveLogsResponse`
-        def DescribeDBSArchiveLogs(request)
-          body = send_request('DescribeDBSArchiveLogs', request.serialize)
+        # @param request: Request instance for DeleteCloudNativeAPIGatewayLLMModelAPI.
+        # @type request: :class:`Tencentcloud::cngw::V20230418::DeleteCloudNativeAPIGatewayLLMModelAPIRequest`
+        # @rtype: :class:`Tencentcloud::cngw::V20230418::DeleteCloudNativeAPIGatewayLLMModelAPIResponse`
+        def DeleteCloudNativeAPIGatewayLLMModelAPI(request)
+          body = send_request('DeleteCloudNativeAPIGatewayLLMModelAPI', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = DescribeDBSArchiveLogsResponse.new
+            model = DeleteCloudNativeAPIGatewayLLMModelAPIResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -293,16 +293,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取可恢复时间 DescribeDBSAvailableRecoveryTime
+        # 删除 LLM 模型服务（被模型 API 绑定时需先解绑）。
 
-        # @param request: Request instance for DescribeDBSAvailableRecoveryTime.
-        # @type request: :class:`Tencentcloud::tdmysql::V20211122::DescribeDBSAvailableRecoveryTimeRequest`
-        # @rtype: :class:`Tencentcloud::tdmysql::V20211122::DescribeDBSAvailableRecoveryTimeResponse`
-        def DescribeDBSAvailableRecoveryTime(request)
-          body = send_request('DescribeDBSAvailableRecoveryTime', request.serialize)
+        # @param request: Request instance for DeleteCloudNativeAPIGatewayLLMModelService.
+        # @type request: :class:`Tencentcloud::cngw::V20230418::DeleteCloudNativeAPIGatewayLLMModelServiceRequest`
+        # @rtype: :class:`Tencentcloud::cngw::V20230418::DeleteCloudNativeAPIGatewayLLMModelServiceResponse`
+        def DeleteCloudNativeAPIGatewayLLMModelService(request)
+          body = send_request('DeleteCloudNativeAPIGatewayLLMModelService', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = DescribeDBSAvailableRecoveryTimeResponse.new
+            model = DeleteCloudNativeAPIGatewayLLMModelServiceResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -317,16 +317,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询实例备份策略 DescribeDBSBackupPolicy
+        # 删除AI网关MCP服务
 
-        # @param request: Request instance for DescribeDBSBackupPolicy.
-        # @type request: :class:`Tencentcloud::tdmysql::V20211122::DescribeDBSBackupPolicyRequest`
-        # @rtype: :class:`Tencentcloud::tdmysql::V20211122::DescribeDBSBackupPolicyResponse`
-        def DescribeDBSBackupPolicy(request)
-          body = send_request('DescribeDBSBackupPolicy', request.serialize)
+        # @param request: Request instance for DeleteCloudNativeAPIGatewayMCPServer.
+        # @type request: :class:`Tencentcloud::cngw::V20230418::DeleteCloudNativeAPIGatewayMCPServerRequest`
+        # @rtype: :class:`Tencentcloud::cngw::V20230418::DeleteCloudNativeAPIGatewayMCPServerResponse`
+        def DeleteCloudNativeAPIGatewayMCPServer(request)
+          body = send_request('DeleteCloudNativeAPIGatewayMCPServer', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = DescribeDBSBackupPolicyResponse.new
+            model = DeleteCloudNativeAPIGatewayMCPServerResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -341,16 +341,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询实例备份集信息 DescribeDBSBackupSets
+        # 删除AI网关MCP Tool
 
-        # @param request: Request instance for DescribeDBSBackupSets.
-        # @type request: :class:`Tencentcloud::tdmysql::V20211122::DescribeDBSBackupSetsRequest`
-        # @rtype: :class:`Tencentcloud::tdmysql::V20211122::DescribeDBSBackupSetsResponse`
-        def DescribeDBSBackupSets(request)
-          body = send_request('DescribeDBSBackupSets', request.serialize)
+        # @param request: Request instance for DeleteCloudNativeAPIGatewayMCPTool.
+        # @type request: :class:`Tencentcloud::cngw::V20230418::DeleteCloudNativeAPIGatewayMCPToolRequest`
+        # @rtype: :class:`Tencentcloud::cngw::V20230418::DeleteCloudNativeAPIGatewayMCPToolResponse`
+        def DeleteCloudNativeAPIGatewayMCPTool(request)
+          body = send_request('DeleteCloudNativeAPIGatewayMCPTool', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = DescribeDBSBackupSetsResponse.new
+            model = DeleteCloudNativeAPIGatewayMCPToolResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -365,16 +365,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询实例备份空间概览 DescribeDBSBackupStatistics
+        # 删除消费者密钥（被绑定时需先解绑）。
 
-        # @param request: Request instance for DescribeDBSBackupStatistics.
-        # @type request: :class:`Tencentcloud::tdmysql::V20211122::DescribeDBSBackupStatisticsRequest`
-        # @rtype: :class:`Tencentcloud::tdmysql::V20211122::DescribeDBSBackupStatisticsResponse`
-        def DescribeDBSBackupStatistics(request)
-          body = send_request('DescribeDBSBackupStatistics', request.serialize)
+        # @param request: Request instance for DeleteCloudNativeAPIGatewaySecretKey.
+        # @type request: :class:`Tencentcloud::cngw::V20230418::DeleteCloudNativeAPIGatewaySecretKeyRequest`
+        # @rtype: :class:`Tencentcloud::cngw::V20230418::DeleteCloudNativeAPIGatewaySecretKeyResponse`
+        def DeleteCloudNativeAPIGatewaySecretKey(request)
+          body = send_request('DeleteCloudNativeAPIGatewaySecretKey', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = DescribeDBSBackupStatisticsResponse.new
+            model = DeleteCloudNativeAPIGatewaySecretKeyResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -389,16 +389,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询备份集统计详情 DescribeDBSBackupStatisticsDetail
+        # 查询云原生消费者详情
 
-        # @param request: Request instance for DescribeDBSBackupStatisticsDetail.
-        # @type request: :class:`Tencentcloud::tdmysql::V20211122::DescribeDBSBackupStatisticsDetailRequest`
-        # @rtype: :class:`Tencentcloud::tdmysql::V20211122::DescribeDBSBackupStatisticsDetailResponse`
-        def DescribeDBSBackupStatisticsDetail(request)
-          body = send_request('DescribeDBSBackupStatisticsDetail', request.serialize)
+        # @param request: Request instance for DescribeCloudNativeAPIGatewayConsumer.
+        # @type request: :class:`Tencentcloud::cngw::V20230418::DescribeCloudNativeAPIGatewayConsumerRequest`
+        # @rtype: :class:`Tencentcloud::cngw::V20230418::DescribeCloudNativeAPIGatewayConsumerResponse`
+        def DescribeCloudNativeAPIGatewayConsumer(request)
+          body = send_request('DescribeCloudNativeAPIGatewayConsumer', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = DescribeDBSBackupStatisticsDetailResponse.new
+            model = DescribeCloudNativeAPIGatewayConsumerResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -413,16 +413,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询实例克隆列表 DescribeDBSCloneInstances
+        # 查询消费者组详情。
 
-        # @param request: Request instance for DescribeDBSCloneInstances.
-        # @type request: :class:`Tencentcloud::tdmysql::V20211122::DescribeDBSCloneInstancesRequest`
-        # @rtype: :class:`Tencentcloud::tdmysql::V20211122::DescribeDBSCloneInstancesResponse`
-        def DescribeDBSCloneInstances(request)
-          body = send_request('DescribeDBSCloneInstances', request.serialize)
+        # @param request: Request instance for DescribeCloudNativeAPIGatewayConsumerGroup.
+        # @type request: :class:`Tencentcloud::cngw::V20230418::DescribeCloudNativeAPIGatewayConsumerGroupRequest`
+        # @rtype: :class:`Tencentcloud::cngw::V20230418::DescribeCloudNativeAPIGatewayConsumerGroupResponse`
+        def DescribeCloudNativeAPIGatewayConsumerGroup(request)
+          body = send_request('DescribeCloudNativeAPIGatewayConsumerGroup', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = DescribeDBSCloneInstancesResponse.new
+            model = DescribeCloudNativeAPIGatewayConsumerGroupResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -437,16 +437,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（DescribeDBSecurityGroups）用于查询实例安全组信息
+        # 查询单个 LLM 模型 API 详情。
 
-        # @param request: Request instance for DescribeDBSecurityGroups.
-        # @type request: :class:`Tencentcloud::tdmysql::V20211122::DescribeDBSecurityGroupsRequest`
-        # @rtype: :class:`Tencentcloud::tdmysql::V20211122::DescribeDBSecurityGroupsResponse`
-        def DescribeDBSecurityGroups(request)
-          body = send_request('DescribeDBSecurityGroups', request.serialize)
+        # @param request: Request instance for DescribeCloudNativeAPIGatewayLLMModelAPI.
+        # @type request: :class:`Tencentcloud::cngw::V20230418::DescribeCloudNativeAPIGatewayLLMModelAPIRequest`
+        # @rtype: :class:`Tencentcloud::cngw::V20230418::DescribeCloudNativeAPIGatewayLLMModelAPIResponse`
+        def DescribeCloudNativeAPIGatewayLLMModelAPI(request)
+          body = send_request('DescribeCloudNativeAPIGatewayLLMModelAPI', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = DescribeDBSecurityGroupsResponse.new
+            model = DescribeCloudNativeAPIGatewayLLMModelAPIResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -461,16 +461,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（DescribeDatabaseObjects）用于查询云数据库实例的数据库中的对象列表，包含表、存储过程、视图和函数。
+        # 查询 LLM 模型 API 列表。
 
-        # @param request: Request instance for DescribeDatabaseObjects.
-        # @type request: :class:`Tencentcloud::tdmysql::V20211122::DescribeDatabaseObjectsRequest`
-        # @rtype: :class:`Tencentcloud::tdmysql::V20211122::DescribeDatabaseObjectsResponse`
-        def DescribeDatabaseObjects(request)
-          body = send_request('DescribeDatabaseObjects', request.serialize)
+        # @param request: Request instance for DescribeCloudNativeAPIGatewayLLMModelAPIs.
+        # @type request: :class:`Tencentcloud::cngw::V20230418::DescribeCloudNativeAPIGatewayLLMModelAPIsRequest`
+        # @rtype: :class:`Tencentcloud::cngw::V20230418::DescribeCloudNativeAPIGatewayLLMModelAPIsResponse`
+        def DescribeCloudNativeAPIGatewayLLMModelAPIs(request)
+          body = send_request('DescribeCloudNativeAPIGatewayLLMModelAPIs', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = DescribeDatabaseObjectsResponse.new
+            model = DescribeCloudNativeAPIGatewayLLMModelAPIsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -485,16 +485,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（DescribeDatabases）用于查询云数据库实例的数据库列表。
+        # 查询单个 LLM 模型服务详情。
 
-        # @param request: Request instance for DescribeDatabases.
-        # @type request: :class:`Tencentcloud::tdmysql::V20211122::DescribeDatabasesRequest`
-        # @rtype: :class:`Tencentcloud::tdmysql::V20211122::DescribeDatabasesResponse`
-        def DescribeDatabases(request)
-          body = send_request('DescribeDatabases', request.serialize)
+        # @param request: Request instance for DescribeCloudNativeAPIGatewayLLMModelService.
+        # @type request: :class:`Tencentcloud::cngw::V20230418::DescribeCloudNativeAPIGatewayLLMModelServiceRequest`
+        # @rtype: :class:`Tencentcloud::cngw::V20230418::DescribeCloudNativeAPIGatewayLLMModelServiceResponse`
+        def DescribeCloudNativeAPIGatewayLLMModelService(request)
+          body = send_request('DescribeCloudNativeAPIGatewayLLMModelService', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = DescribeDatabasesResponse.new
+            model = DescribeCloudNativeAPIGatewayLLMModelServiceResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -509,16 +509,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（DescribeFlow）用于查询异步任务流程状态
+        # 查询 LLM 模型服务列表。
 
-        # @param request: Request instance for DescribeFlow.
-        # @type request: :class:`Tencentcloud::tdmysql::V20211122::DescribeFlowRequest`
-        # @rtype: :class:`Tencentcloud::tdmysql::V20211122::DescribeFlowResponse`
-        def DescribeFlow(request)
-          body = send_request('DescribeFlow', request.serialize)
+        # @param request: Request instance for DescribeCloudNativeAPIGatewayLLMModelServices.
+        # @type request: :class:`Tencentcloud::cngw::V20230418::DescribeCloudNativeAPIGatewayLLMModelServicesRequest`
+        # @rtype: :class:`Tencentcloud::cngw::V20230418::DescribeCloudNativeAPIGatewayLLMModelServicesResponse`
+        def DescribeCloudNativeAPIGatewayLLMModelServices(request)
+          body = send_request('DescribeCloudNativeAPIGatewayLLMModelServices', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = DescribeFlowResponse.new
+            model = DescribeCloudNativeAPIGatewayLLMModelServicesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -533,16 +533,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（DescribeInstanceSSLStatus）提供实例SSL状态查询
+        # 查询 AI 网关Token 消耗统计
 
-        # @param request: Request instance for DescribeInstanceSSLStatus.
-        # @type request: :class:`Tencentcloud::tdmysql::V20211122::DescribeInstanceSSLStatusRequest`
-        # @rtype: :class:`Tencentcloud::tdmysql::V20211122::DescribeInstanceSSLStatusResponse`
-        def DescribeInstanceSSLStatus(request)
-          body = send_request('DescribeInstanceSSLStatus', request.serialize)
+        # @param request: Request instance for DescribeCloudNativeAPIGatewayLLMTokenUsageList.
+        # @type request: :class:`Tencentcloud::cngw::V20230418::DescribeCloudNativeAPIGatewayLLMTokenUsageListRequest`
+        # @rtype: :class:`Tencentcloud::cngw::V20230418::DescribeCloudNativeAPIGatewayLLMTokenUsageListResponse`
+        def DescribeCloudNativeAPIGatewayLLMTokenUsageList(request)
+          body = send_request('DescribeCloudNativeAPIGatewayLLMTokenUsageList', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = DescribeInstanceSSLStatusResponse.new
+            model = DescribeCloudNativeAPIGatewayLLMTokenUsageListResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -557,16 +557,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询维护时间窗口配置
+        # 查询 AI 网关Token 消耗统计汇总
 
-        # @param request: Request instance for DescribeMaintenanceWindow.
-        # @type request: :class:`Tencentcloud::tdmysql::V20211122::DescribeMaintenanceWindowRequest`
-        # @rtype: :class:`Tencentcloud::tdmysql::V20211122::DescribeMaintenanceWindowResponse`
-        def DescribeMaintenanceWindow(request)
-          body = send_request('DescribeMaintenanceWindow', request.serialize)
+        # @param request: Request instance for DescribeCloudNativeAPIGatewayLLMTokenUsageStatistics.
+        # @type request: :class:`Tencentcloud::cngw::V20230418::DescribeCloudNativeAPIGatewayLLMTokenUsageStatisticsRequest`
+        # @rtype: :class:`Tencentcloud::cngw::V20230418::DescribeCloudNativeAPIGatewayLLMTokenUsageStatisticsResponse`
+        def DescribeCloudNativeAPIGatewayLLMTokenUsageStatistics(request)
+          body = send_request('DescribeCloudNativeAPIGatewayLLMTokenUsageStatistics', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = DescribeMaintenanceWindowResponse.new
+            model = DescribeCloudNativeAPIGatewayLLMTokenUsageStatisticsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -581,16 +581,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（DescribeSaleInfo）提供查询可用售卖地域功能
+        # 查询AI 网关MCP服务信息
 
-        # @param request: Request instance for DescribeSaleInfo.
-        # @type request: :class:`Tencentcloud::tdmysql::V20211122::DescribeSaleInfoRequest`
-        # @rtype: :class:`Tencentcloud::tdmysql::V20211122::DescribeSaleInfoResponse`
-        def DescribeSaleInfo(request)
-          body = send_request('DescribeSaleInfo', request.serialize)
+        # @param request: Request instance for DescribeCloudNativeAPIGatewayMCPServer.
+        # @type request: :class:`Tencentcloud::cngw::V20230418::DescribeCloudNativeAPIGatewayMCPServerRequest`
+        # @rtype: :class:`Tencentcloud::cngw::V20230418::DescribeCloudNativeAPIGatewayMCPServerResponse`
+        def DescribeCloudNativeAPIGatewayMCPServer(request)
+          body = send_request('DescribeCloudNativeAPIGatewayMCPServer', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = DescribeSaleInfoResponse.new
+            model = DescribeCloudNativeAPIGatewayMCPServerResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -605,16 +605,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口提供查询慢日志功能
+        # 查看 MCP Server ACL
 
-        # @param request: Request instance for DescribeSlowLogs.
-        # @type request: :class:`Tencentcloud::tdmysql::V20211122::DescribeSlowLogsRequest`
-        # @rtype: :class:`Tencentcloud::tdmysql::V20211122::DescribeSlowLogsResponse`
-        def DescribeSlowLogs(request)
-          body = send_request('DescribeSlowLogs', request.serialize)
+        # @param request: Request instance for DescribeCloudNativeAPIGatewayMCPServerACL.
+        # @type request: :class:`Tencentcloud::cngw::V20230418::DescribeCloudNativeAPIGatewayMCPServerACLRequest`
+        # @rtype: :class:`Tencentcloud::cngw::V20230418::DescribeCloudNativeAPIGatewayMCPServerACLResponse`
+        def DescribeCloudNativeAPIGatewayMCPServerACL(request)
+          body = send_request('DescribeCloudNativeAPIGatewayMCPServerACL', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = DescribeSlowLogsResponse.new
+            model = DescribeCloudNativeAPIGatewayMCPServerACLResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -629,16 +629,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（DescribeSpecs）提供查询售卖规格功能
+        # 查询 MCP Server 的认证配置
 
-        # @param request: Request instance for DescribeSpecs.
-        # @type request: :class:`Tencentcloud::tdmysql::V20211122::DescribeSpecsRequest`
-        # @rtype: :class:`Tencentcloud::tdmysql::V20211122::DescribeSpecsResponse`
-        def DescribeSpecs(request)
-          body = send_request('DescribeSpecs', request.serialize)
+        # @param request: Request instance for DescribeCloudNativeAPIGatewayMCPServerAuth.
+        # @type request: :class:`Tencentcloud::cngw::V20230418::DescribeCloudNativeAPIGatewayMCPServerAuthRequest`
+        # @rtype: :class:`Tencentcloud::cngw::V20230418::DescribeCloudNativeAPIGatewayMCPServerAuthResponse`
+        def DescribeCloudNativeAPIGatewayMCPServerAuth(request)
+          body = send_request('DescribeCloudNativeAPIGatewayMCPServerAuth', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = DescribeSpecsResponse.new
+            model = DescribeCloudNativeAPIGatewayMCPServerAuthResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -653,16 +653,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（DescribeUserPrivileges）提供查询用户的权限功能
+        # AI网关查询MCP服务列表
 
-        # @param request: Request instance for DescribeUserPrivileges.
-        # @type request: :class:`Tencentcloud::tdmysql::V20211122::DescribeUserPrivilegesRequest`
-        # @rtype: :class:`Tencentcloud::tdmysql::V20211122::DescribeUserPrivilegesResponse`
-        def DescribeUserPrivileges(request)
-          body = send_request('DescribeUserPrivileges', request.serialize)
+        # @param request: Request instance for DescribeCloudNativeAPIGatewayMCPServerList.
+        # @type request: :class:`Tencentcloud::cngw::V20230418::DescribeCloudNativeAPIGatewayMCPServerListRequest`
+        # @rtype: :class:`Tencentcloud::cngw::V20230418::DescribeCloudNativeAPIGatewayMCPServerListResponse`
+        def DescribeCloudNativeAPIGatewayMCPServerList(request)
+          body = send_request('DescribeCloudNativeAPIGatewayMCPServerList', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = DescribeUserPrivilegesResponse.new
+            model = DescribeCloudNativeAPIGatewayMCPServerListResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -677,16 +677,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（DescribeUsers）提供查询用户列表功能
+        # 查看AI网关MCP Tool
 
-        # @param request: Request instance for DescribeUsers.
-        # @type request: :class:`Tencentcloud::tdmysql::V20211122::DescribeUsersRequest`
-        # @rtype: :class:`Tencentcloud::tdmysql::V20211122::DescribeUsersResponse`
-        def DescribeUsers(request)
-          body = send_request('DescribeUsers', request.serialize)
+        # @param request: Request instance for DescribeCloudNativeAPIGatewayMCPTool.
+        # @type request: :class:`Tencentcloud::cngw::V20230418::DescribeCloudNativeAPIGatewayMCPToolRequest`
+        # @rtype: :class:`Tencentcloud::cngw::V20230418::DescribeCloudNativeAPIGatewayMCPToolResponse`
+        def DescribeCloudNativeAPIGatewayMCPTool(request)
+          body = send_request('DescribeCloudNativeAPIGatewayMCPTool', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = DescribeUsersResponse.new
+            model = DescribeCloudNativeAPIGatewayMCPToolResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -701,16 +701,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（DestroyInstances）提供批量销毁实例功能
+        # 查询云原生网关 MCP Server 下所有 Tool 的 ACL 状态一览（含 Server ACLType 回显）。
 
-        # @param request: Request instance for DestroyInstances.
-        # @type request: :class:`Tencentcloud::tdmysql::V20211122::DestroyInstancesRequest`
-        # @rtype: :class:`Tencentcloud::tdmysql::V20211122::DestroyInstancesResponse`
-        def DestroyInstances(request)
-          body = send_request('DestroyInstances', request.serialize)
+        # @param request: Request instance for DescribeCloudNativeAPIGatewayMCPToolACLList.
+        # @type request: :class:`Tencentcloud::cngw::V20230418::DescribeCloudNativeAPIGatewayMCPToolACLListRequest`
+        # @rtype: :class:`Tencentcloud::cngw::V20230418::DescribeCloudNativeAPIGatewayMCPToolACLListResponse`
+        def DescribeCloudNativeAPIGatewayMCPToolACLList(request)
+          body = send_request('DescribeCloudNativeAPIGatewayMCPToolACLList', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = DestroyInstancesResponse.new
+            model = DescribeCloudNativeAPIGatewayMCPToolACLListResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -725,16 +725,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（ExpandInstance）提供横向扩容实例功能
+        # 查询 AI 网关MCP Tool 列表
 
-        # @param request: Request instance for ExpandInstance.
-        # @type request: :class:`Tencentcloud::tdmysql::V20211122::ExpandInstanceRequest`
-        # @rtype: :class:`Tencentcloud::tdmysql::V20211122::ExpandInstanceResponse`
-        def ExpandInstance(request)
-          body = send_request('ExpandInstance', request.serialize)
+        # @param request: Request instance for DescribeCloudNativeAPIGatewayMCPToolList.
+        # @type request: :class:`Tencentcloud::cngw::V20230418::DescribeCloudNativeAPIGatewayMCPToolListRequest`
+        # @rtype: :class:`Tencentcloud::cngw::V20230418::DescribeCloudNativeAPIGatewayMCPToolListResponse`
+        def DescribeCloudNativeAPIGatewayMCPToolList(request)
+          body = send_request('DescribeCloudNativeAPIGatewayMCPToolList', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = ExpandInstanceResponse.new
+            model = DescribeCloudNativeAPIGatewayMCPToolListResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -749,16 +749,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（IsolateDBInstance）提供批量隔离实例功能
+        # 查询密钥详情（SecretValue 字段会被掩码）。
 
-        # @param request: Request instance for IsolateDBInstance.
-        # @type request: :class:`Tencentcloud::tdmysql::V20211122::IsolateDBInstanceRequest`
-        # @rtype: :class:`Tencentcloud::tdmysql::V20211122::IsolateDBInstanceResponse`
-        def IsolateDBInstance(request)
-          body = send_request('IsolateDBInstance', request.serialize)
+        # @param request: Request instance for DescribeCloudNativeAPIGatewaySecretKey.
+        # @type request: :class:`Tencentcloud::cngw::V20230418::DescribeCloudNativeAPIGatewaySecretKeyRequest`
+        # @rtype: :class:`Tencentcloud::cngw::V20230418::DescribeCloudNativeAPIGatewaySecretKeyResponse`
+        def DescribeCloudNativeAPIGatewaySecretKey(request)
+          body = send_request('DescribeCloudNativeAPIGatewaySecretKey', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = IsolateDBInstanceResponse.new
+            model = DescribeCloudNativeAPIGatewaySecretKeyResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -773,16 +773,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（ModifyAutoRenewFlag）用于修改自动续费标志
+        # 查询密钥明文值（KMS 类型密钥不可获取）。
 
-        # @param request: Request instance for ModifyAutoRenewFlag.
-        # @type request: :class:`Tencentcloud::tdmysql::V20211122::ModifyAutoRenewFlagRequest`
-        # @rtype: :class:`Tencentcloud::tdmysql::V20211122::ModifyAutoRenewFlagResponse`
-        def ModifyAutoRenewFlag(request)
-          body = send_request('ModifyAutoRenewFlag', request.serialize)
+        # @param request: Request instance for DescribeCloudNativeAPIGatewaySecretKeyValue.
+        # @type request: :class:`Tencentcloud::cngw::V20230418::DescribeCloudNativeAPIGatewaySecretKeyValueRequest`
+        # @rtype: :class:`Tencentcloud::cngw::V20230418::DescribeCloudNativeAPIGatewaySecretKeyValueResponse`
+        def DescribeCloudNativeAPIGatewaySecretKeyValue(request)
+          body = send_request('DescribeCloudNativeAPIGatewaySecretKeyValue', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = ModifyAutoRenewFlagResponse.new
+            model = DescribeCloudNativeAPIGatewaySecretKeyValueResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -797,16 +797,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（ModifyDBInstanceSecurityGroups）用于修改云数据库安全组
+        # 修改AI网关消费者
 
-        # @param request: Request instance for ModifyDBInstanceSecurityGroups.
-        # @type request: :class:`Tencentcloud::tdmysql::V20211122::ModifyDBInstanceSecurityGroupsRequest`
-        # @rtype: :class:`Tencentcloud::tdmysql::V20211122::ModifyDBInstanceSecurityGroupsResponse`
-        def ModifyDBInstanceSecurityGroups(request)
-          body = send_request('ModifyDBInstanceSecurityGroups', request.serialize)
+        # @param request: Request instance for ModifyCloudNativeAPIGatewayConsumer.
+        # @type request: :class:`Tencentcloud::cngw::V20230418::ModifyCloudNativeAPIGatewayConsumerRequest`
+        # @rtype: :class:`Tencentcloud::cngw::V20230418::ModifyCloudNativeAPIGatewayConsumerResponse`
+        def ModifyCloudNativeAPIGatewayConsumer(request)
+          body = send_request('ModifyCloudNativeAPIGatewayConsumer', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = ModifyDBInstanceSecurityGroupsResponse.new
+            model = ModifyCloudNativeAPIGatewayConsumerResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -821,16 +821,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口(ModifyDBInstanceVPort)修改实例VPC端口
+        # 修改消费者组。
 
-        # @param request: Request instance for ModifyDBInstanceVPort.
-        # @type request: :class:`Tencentcloud::tdmysql::V20211122::ModifyDBInstanceVPortRequest`
-        # @rtype: :class:`Tencentcloud::tdmysql::V20211122::ModifyDBInstanceVPortResponse`
-        def ModifyDBInstanceVPort(request)
-          body = send_request('ModifyDBInstanceVPort', request.serialize)
+        # @param request: Request instance for ModifyCloudNativeAPIGatewayConsumerGroup.
+        # @type request: :class:`Tencentcloud::cngw::V20230418::ModifyCloudNativeAPIGatewayConsumerGroupRequest`
+        # @rtype: :class:`Tencentcloud::cngw::V20230418::ModifyCloudNativeAPIGatewayConsumerGroupResponse`
+        def ModifyCloudNativeAPIGatewayConsumerGroup(request)
+          body = send_request('ModifyCloudNativeAPIGatewayConsumerGroup', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = ModifyDBInstanceVPortResponse.new
+            model = ModifyCloudNativeAPIGatewayConsumerGroupResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -845,16 +845,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（ModifyDBParameters）用于修改实例参数。
+        # 修改 LLM 模型 API。
 
-        # @param request: Request instance for ModifyDBParameters.
-        # @type request: :class:`Tencentcloud::tdmysql::V20211122::ModifyDBParametersRequest`
-        # @rtype: :class:`Tencentcloud::tdmysql::V20211122::ModifyDBParametersResponse`
-        def ModifyDBParameters(request)
-          body = send_request('ModifyDBParameters', request.serialize)
+        # @param request: Request instance for ModifyCloudNativeAPIGatewayLLMModelAPI.
+        # @type request: :class:`Tencentcloud::cngw::V20230418::ModifyCloudNativeAPIGatewayLLMModelAPIRequest`
+        # @rtype: :class:`Tencentcloud::cngw::V20230418::ModifyCloudNativeAPIGatewayLLMModelAPIResponse`
+        def ModifyCloudNativeAPIGatewayLLMModelAPI(request)
+          body = send_request('ModifyCloudNativeAPIGatewayLLMModelAPI', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = ModifyDBParametersResponse.new
+            model = ModifyCloudNativeAPIGatewayLLMModelAPIResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -869,16 +869,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 修改实例备份策略 ModifyDBSBackupPolicy
+        # 修改 LLM 模型服务。
 
-        # @param request: Request instance for ModifyDBSBackupPolicy.
-        # @type request: :class:`Tencentcloud::tdmysql::V20211122::ModifyDBSBackupPolicyRequest`
-        # @rtype: :class:`Tencentcloud::tdmysql::V20211122::ModifyDBSBackupPolicyResponse`
-        def ModifyDBSBackupPolicy(request)
-          body = send_request('ModifyDBSBackupPolicy', request.serialize)
+        # @param request: Request instance for ModifyCloudNativeAPIGatewayLLMModelService.
+        # @type request: :class:`Tencentcloud::cngw::V20230418::ModifyCloudNativeAPIGatewayLLMModelServiceRequest`
+        # @rtype: :class:`Tencentcloud::cngw::V20230418::ModifyCloudNativeAPIGatewayLLMModelServiceResponse`
+        def ModifyCloudNativeAPIGatewayLLMModelService(request)
+          body = send_request('ModifyCloudNativeAPIGatewayLLMModelService', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = ModifyDBSBackupPolicyResponse.new
+            model = ModifyCloudNativeAPIGatewayLLMModelServiceResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -893,16 +893,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 修改实例备份备注 ModifyDBSBackupSetComment
+        # 修改MCP服务配置
 
-        # @param request: Request instance for ModifyDBSBackupSetComment.
-        # @type request: :class:`Tencentcloud::tdmysql::V20211122::ModifyDBSBackupSetCommentRequest`
-        # @rtype: :class:`Tencentcloud::tdmysql::V20211122::ModifyDBSBackupSetCommentResponse`
-        def ModifyDBSBackupSetComment(request)
-          body = send_request('ModifyDBSBackupSetComment', request.serialize)
+        # @param request: Request instance for ModifyCloudNativeAPIGatewayMCPServer.
+        # @type request: :class:`Tencentcloud::cngw::V20230418::ModifyCloudNativeAPIGatewayMCPServerRequest`
+        # @rtype: :class:`Tencentcloud::cngw::V20230418::ModifyCloudNativeAPIGatewayMCPServerResponse`
+        def ModifyCloudNativeAPIGatewayMCPServer(request)
+          body = send_request('ModifyCloudNativeAPIGatewayMCPServer', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = ModifyDBSBackupSetCommentResponse.new
+            model = ModifyCloudNativeAPIGatewayMCPServerResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -917,16 +917,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（ModifyInstanceName）提供修改实例名称功能
+        # 修改 MCP Server ACL
 
-        # @param request: Request instance for ModifyInstanceName.
-        # @type request: :class:`Tencentcloud::tdmysql::V20211122::ModifyInstanceNameRequest`
-        # @rtype: :class:`Tencentcloud::tdmysql::V20211122::ModifyInstanceNameResponse`
-        def ModifyInstanceName(request)
-          body = send_request('ModifyInstanceName', request.serialize)
+        # @param request: Request instance for ModifyCloudNativeAPIGatewayMCPServerACL.
+        # @type request: :class:`Tencentcloud::cngw::V20230418::ModifyCloudNativeAPIGatewayMCPServerACLRequest`
+        # @rtype: :class:`Tencentcloud::cngw::V20230418::ModifyCloudNativeAPIGatewayMCPServerACLResponse`
+        def ModifyCloudNativeAPIGatewayMCPServerACL(request)
+          body = send_request('ModifyCloudNativeAPIGatewayMCPServerACL', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = ModifyInstanceNameResponse.new
+            model = ModifyCloudNativeAPIGatewayMCPServerACLResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -941,16 +941,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（ModifyInstanceNetwork）用于修改实例所属网络
+        # 修改 MCP Server 的认证配置
 
-        # @param request: Request instance for ModifyInstanceNetwork.
-        # @type request: :class:`Tencentcloud::tdmysql::V20211122::ModifyInstanceNetworkRequest`
-        # @rtype: :class:`Tencentcloud::tdmysql::V20211122::ModifyInstanceNetworkResponse`
-        def ModifyInstanceNetwork(request)
-          body = send_request('ModifyInstanceNetwork', request.serialize)
+        # @param request: Request instance for ModifyCloudNativeAPIGatewayMCPServerAuth.
+        # @type request: :class:`Tencentcloud::cngw::V20230418::ModifyCloudNativeAPIGatewayMCPServerAuthRequest`
+        # @rtype: :class:`Tencentcloud::cngw::V20230418::ModifyCloudNativeAPIGatewayMCPServerAuthResponse`
+        def ModifyCloudNativeAPIGatewayMCPServerAuth(request)
+          body = send_request('ModifyCloudNativeAPIGatewayMCPServerAuth', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = ModifyInstanceNetworkResponse.new
+            model = ModifyCloudNativeAPIGatewayMCPServerAuthResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -965,16 +965,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（ModifyInstanceSSLStatus）提供开关实例SSL的功能
+        # 创建AI 网关MCP Server
 
-        # @param request: Request instance for ModifyInstanceSSLStatus.
-        # @type request: :class:`Tencentcloud::tdmysql::V20211122::ModifyInstanceSSLStatusRequest`
-        # @rtype: :class:`Tencentcloud::tdmysql::V20211122::ModifyInstanceSSLStatusResponse`
-        def ModifyInstanceSSLStatus(request)
-          body = send_request('ModifyInstanceSSLStatus', request.serialize)
+        # @param request: Request instance for ModifyCloudNativeAPIGatewayMCPServerStatus.
+        # @type request: :class:`Tencentcloud::cngw::V20230418::ModifyCloudNativeAPIGatewayMCPServerStatusRequest`
+        # @rtype: :class:`Tencentcloud::cngw::V20230418::ModifyCloudNativeAPIGatewayMCPServerStatusResponse`
+        def ModifyCloudNativeAPIGatewayMCPServerStatus(request)
+          body = send_request('ModifyCloudNativeAPIGatewayMCPServerStatus', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = ModifyInstanceSSLStatusResponse.new
+            model = ModifyCloudNativeAPIGatewayMCPServerStatusResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -989,16 +989,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 新增/修改实例维护时间窗口配置
+        # 修改AI网关MCP Tool
 
-        # @param request: Request instance for ModifyMaintenanceWindow.
-        # @type request: :class:`Tencentcloud::tdmysql::V20211122::ModifyMaintenanceWindowRequest`
-        # @rtype: :class:`Tencentcloud::tdmysql::V20211122::ModifyMaintenanceWindowResponse`
-        def ModifyMaintenanceWindow(request)
-          body = send_request('ModifyMaintenanceWindow', request.serialize)
+        # @param request: Request instance for ModifyCloudNativeAPIGatewayMCPTool.
+        # @type request: :class:`Tencentcloud::cngw::V20230418::ModifyCloudNativeAPIGatewayMCPToolRequest`
+        # @rtype: :class:`Tencentcloud::cngw::V20230418::ModifyCloudNativeAPIGatewayMCPToolResponse`
+        def ModifyCloudNativeAPIGatewayMCPTool(request)
+          body = send_request('ModifyCloudNativeAPIGatewayMCPTool', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = ModifyMaintenanceWindowResponse.new
+            model = ModifyCloudNativeAPIGatewayMCPToolResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1013,16 +1013,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口(ModifyPrivileges)修改用户权限
+        # 修改 MCP Server Tool ACL
 
-        # @param request: Request instance for ModifyUserPrivileges.
-        # @type request: :class:`Tencentcloud::tdmysql::V20211122::ModifyUserPrivilegesRequest`
-        # @rtype: :class:`Tencentcloud::tdmysql::V20211122::ModifyUserPrivilegesResponse`
-        def ModifyUserPrivileges(request)
-          body = send_request('ModifyUserPrivileges', request.serialize)
+        # @param request: Request instance for ModifyCloudNativeAPIGatewayMCPToolACL.
+        # @type request: :class:`Tencentcloud::cngw::V20230418::ModifyCloudNativeAPIGatewayMCPToolACLRequest`
+        # @rtype: :class:`Tencentcloud::cngw::V20230418::ModifyCloudNativeAPIGatewayMCPToolACLResponse`
+        def ModifyCloudNativeAPIGatewayMCPToolACL(request)
+          body = send_request('ModifyCloudNativeAPIGatewayMCPToolACL', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = ModifyUserPrivilegesResponse.new
+            model = ModifyCloudNativeAPIGatewayMCPToolACLResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1037,16 +1037,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（ResetUserPassword）提供重置用户密码功能
+        # AI网关修改MCP Tool上下线状态
 
-        # @param request: Request instance for ResetUserPassword.
-        # @type request: :class:`Tencentcloud::tdmysql::V20211122::ResetUserPasswordRequest`
-        # @rtype: :class:`Tencentcloud::tdmysql::V20211122::ResetUserPasswordResponse`
-        def ResetUserPassword(request)
-          body = send_request('ResetUserPassword', request.serialize)
+        # @param request: Request instance for ModifyCloudNativeAPIGatewayMCPToolStatus.
+        # @type request: :class:`Tencentcloud::cngw::V20230418::ModifyCloudNativeAPIGatewayMCPToolStatusRequest`
+        # @rtype: :class:`Tencentcloud::cngw::V20230418::ModifyCloudNativeAPIGatewayMCPToolStatusResponse`
+        def ModifyCloudNativeAPIGatewayMCPToolStatus(request)
+          body = send_request('ModifyCloudNativeAPIGatewayMCPToolStatus', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = ResetUserPasswordResponse.new
+            model = ModifyCloudNativeAPIGatewayMCPToolStatusResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1061,16 +1061,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（ResetUsersPassword）用于批量重置用户密码
+        # 修改AI网关密钥
 
-        # @param request: Request instance for ResetUsersPassword.
-        # @type request: :class:`Tencentcloud::tdmysql::V20211122::ResetUsersPasswordRequest`
-        # @rtype: :class:`Tencentcloud::tdmysql::V20211122::ResetUsersPasswordResponse`
-        def ResetUsersPassword(request)
-          body = send_request('ResetUsersPassword', request.serialize)
+        # @param request: Request instance for ModifyCloudNativeAPIGatewaySecretKey.
+        # @type request: :class:`Tencentcloud::cngw::V20230418::ModifyCloudNativeAPIGatewaySecretKeyRequest`
+        # @rtype: :class:`Tencentcloud::cngw::V20230418::ModifyCloudNativeAPIGatewaySecretKeyResponse`
+        def ModifyCloudNativeAPIGatewaySecretKey(request)
+          body = send_request('ModifyCloudNativeAPIGatewaySecretKey', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = ResetUsersPasswordResponse.new
+            model = ModifyCloudNativeAPIGatewaySecretKeyResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1085,40 +1085,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（RestartDBInstances）用于重启数据库实例
+        # 从资源（模型 API / MCP Server）移除消费者组授权。
 
-        # @param request: Request instance for RestartDBInstances.
-        # @type request: :class:`Tencentcloud::tdmysql::V20211122::RestartDBInstancesRequest`
-        # @rtype: :class:`Tencentcloud::tdmysql::V20211122::RestartDBInstancesResponse`
-        def RestartDBInstances(request)
-          body = send_request('RestartDBInstances', request.serialize)
+        # @param request: Request instance for RemoveCloudNativeAPIGatewayConsumerGroupAuth.
+        # @type request: :class:`Tencentcloud::cngw::V20230418::RemoveCloudNativeAPIGatewayConsumerGroupAuthRequest`
+        # @rtype: :class:`Tencentcloud::cngw::V20230418::RemoveCloudNativeAPIGatewayConsumerGroupAuthResponse`
+        def RemoveCloudNativeAPIGatewayConsumerGroupAuth(request)
+          body = send_request('RemoveCloudNativeAPIGatewayConsumerGroupAuth', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = RestartDBInstancesResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 本接口（UpgradeInstance）提供纵向扩容实例功能
-
-        # @param request: Request instance for UpgradeInstance.
-        # @type request: :class:`Tencentcloud::tdmysql::V20211122::UpgradeInstanceRequest`
-        # @rtype: :class:`Tencentcloud::tdmysql::V20211122::UpgradeInstanceResponse`
-        def UpgradeInstance(request)
-          body = send_request('UpgradeInstance', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = UpgradeInstanceResponse.new
+            model = RemoveCloudNativeAPIGatewayConsumerGroupAuthResponse.new
             model.deserialize(response['Response'])
             model
           else

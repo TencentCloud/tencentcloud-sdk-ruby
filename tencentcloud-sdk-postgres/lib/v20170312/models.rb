@@ -443,36 +443,39 @@ module TencentCloud
 
       # 备份计划
       class BackupPlan < TencentCloud::Common::AbstractModel
-        # @param BackupPeriod: 备份周期
+        # @param BackupPeriod: <p>备份周期</p>
         # @type BackupPeriod: String
-        # @param BaseBackupRetentionPeriod: 数据备份保留时长。单位：天
+        # @param BaseBackupRetentionPeriod: <p>数据备份保留时长。单位：天</p>
         # @type BaseBackupRetentionPeriod: Integer
-        # @param MinBackupStartTime: 开始备份的最早时间
+        # @param MinBackupStartTime: <p>开始备份的最早时间</p>
         # @type MinBackupStartTime: String
-        # @param MaxBackupStartTime: 开始备份的最晚时间
+        # @param MaxBackupStartTime: <p>开始备份的最晚时间</p>
         # @type MaxBackupStartTime: String
-        # @param PlanId: 备份计划ID
+        # @param BackupMethod: <p>备份类型</p><p>枚举值：</p><ul><li>physical： 物理备份</li><li>logical： 逻辑备份</li><li>snapshot： 快照备份</li></ul>
+        # @type BackupMethod: String
+        # @param PlanId: <p>备份计划ID</p>
         # @type PlanId: String
-        # @param PlanName: 备份计划自定义名称。
+        # @param PlanName: <p>备份计划自定义名称。</p>
         # @type PlanName: String
-        # @param LogBackupRetentionPeriod: 日志备份保留时长。单位：天
+        # @param LogBackupRetentionPeriod: <p>日志备份保留时长。单位：天</p>
         # @type LogBackupRetentionPeriod: Integer
-        # @param CreatedTime: 创建时间。
+        # @param CreatedTime: <p>创建时间。</p>
         # @type CreatedTime: String
-        # @param UpdatedTime: 最近一次的修改时间。
+        # @param UpdatedTime: <p>最近一次的修改时间。</p>
         # @type UpdatedTime: String
-        # @param PlanType: 备份计划类型。系统默认创建的为default，自定义的为custom。
+        # @param PlanType: <p>备份计划类型。系统默认创建的为default，自定义的为custom。</p>
         # @type PlanType: String
-        # @param BackupPeriodType: 备份周期类型。当前支持week、month。
+        # @param BackupPeriodType: <p>备份周期类型。当前支持week、month。</p>
         # @type BackupPeriodType: String
 
-        attr_accessor :BackupPeriod, :BaseBackupRetentionPeriod, :MinBackupStartTime, :MaxBackupStartTime, :PlanId, :PlanName, :LogBackupRetentionPeriod, :CreatedTime, :UpdatedTime, :PlanType, :BackupPeriodType
+        attr_accessor :BackupPeriod, :BaseBackupRetentionPeriod, :MinBackupStartTime, :MaxBackupStartTime, :BackupMethod, :PlanId, :PlanName, :LogBackupRetentionPeriod, :CreatedTime, :UpdatedTime, :PlanType, :BackupPeriodType
 
-        def initialize(backupperiod=nil, basebackupretentionperiod=nil, minbackupstarttime=nil, maxbackupstarttime=nil, planid=nil, planname=nil, logbackupretentionperiod=nil, createdtime=nil, updatedtime=nil, plantype=nil, backupperiodtype=nil)
+        def initialize(backupperiod=nil, basebackupretentionperiod=nil, minbackupstarttime=nil, maxbackupstarttime=nil, backupmethod=nil, planid=nil, planname=nil, logbackupretentionperiod=nil, createdtime=nil, updatedtime=nil, plantype=nil, backupperiodtype=nil)
           @BackupPeriod = backupperiod
           @BaseBackupRetentionPeriod = basebackupretentionperiod
           @MinBackupStartTime = minbackupstarttime
           @MaxBackupStartTime = maxbackupstarttime
+          @BackupMethod = backupmethod
           @PlanId = planid
           @PlanName = planname
           @LogBackupRetentionPeriod = logbackupretentionperiod
@@ -487,6 +490,7 @@ module TencentCloud
           @BaseBackupRetentionPeriod = params['BaseBackupRetentionPeriod']
           @MinBackupStartTime = params['MinBackupStartTime']
           @MaxBackupStartTime = params['MaxBackupStartTime']
+          @BackupMethod = params['BackupMethod']
           @PlanId = params['PlanId']
           @PlanName = params['PlanName']
           @LogBackupRetentionPeriod = params['LogBackupRetentionPeriod']

@@ -5946,12 +5946,16 @@ module TencentCloud
         # @type TaskResultCode: Integer
         # @param TaskResultMsg: <p>任务返回错误信息</p>
         # @type TaskResultMsg: String
+        # @param RequestBody: <p>请求参数</p>
+        # @type RequestBody: String
+        # @param TaskType: <p>任务类型</p>
+        # @type TaskType: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TaskId, :TaskStatus, :OutputUrl, :CreateTime, :ScheduledTime, :FinishedTime, :TaskResultCode, :TaskResultMsg, :RequestId
+        attr_accessor :TaskId, :TaskStatus, :OutputUrl, :CreateTime, :ScheduledTime, :FinishedTime, :TaskResultCode, :TaskResultMsg, :RequestBody, :TaskType, :RequestId
 
-        def initialize(taskid=nil, taskstatus=nil, outputurl=nil, createtime=nil, scheduledtime=nil, finishedtime=nil, taskresultcode=nil, taskresultmsg=nil, requestid=nil)
+        def initialize(taskid=nil, taskstatus=nil, outputurl=nil, createtime=nil, scheduledtime=nil, finishedtime=nil, taskresultcode=nil, taskresultmsg=nil, requestbody=nil, tasktype=nil, requestid=nil)
           @TaskId = taskid
           @TaskStatus = taskstatus
           @OutputUrl = outputurl
@@ -5960,6 +5964,8 @@ module TencentCloud
           @FinishedTime = finishedtime
           @TaskResultCode = taskresultcode
           @TaskResultMsg = taskresultmsg
+          @RequestBody = requestbody
+          @TaskType = tasktype
           @RequestId = requestid
         end
 
@@ -5972,6 +5978,8 @@ module TencentCloud
           @FinishedTime = params['FinishedTime']
           @TaskResultCode = params['TaskResultCode']
           @TaskResultMsg = params['TaskResultMsg']
+          @RequestBody = params['RequestBody']
+          @TaskType = params['TaskType']
           @RequestId = params['RequestId']
         end
       end

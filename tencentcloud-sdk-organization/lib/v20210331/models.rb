@@ -6143,28 +6143,32 @@ module TencentCloud
 
       # 不允许删除的原因。
       class NotAllowReason < TencentCloud::Common::AbstractModel
-        # @param IsCreateMember: 是否创建的成员。true-是、false-否；成员不是创建的成员不允许删除
+        # @param IsCreateMember: <p>是否创建的成员。true-是、false-否；成员不是创建的成员不允许删除</p>
         # @type IsCreateMember: Boolean
-        # @param DeletionPermission: 成员删除许可。true-开启、false-关闭；成员删除许可关闭时不允许删除
+        # @param DeletionPermission: <p>成员删除许可。true-开启、false-关闭；成员删除许可关闭时不允许删除</p>
         # @type DeletionPermission: Boolean
-        # @param IsAssignManager: 是否可信服务委派管理员。true-是、false-否；成员是可信服务委派管理员不允许删除
+        # @param IsAssignManager: <p>是否可信服务委派管理员。true-是、false-否；成员是可信服务委派管理员不允许删除</p>
         # @type IsAssignManager: Boolean
-        # @param IsAuthManager: 是否主体管理员。true-是、false-否；成员是主体管理员不允许删除
+        # @param IsAuthManager: <p>是否主体管理员。true-是、false-否；成员是主体管理员不允许删除</p>
         # @type IsAuthManager: Boolean
-        # @param IsShareManager: 是否共享资源管理员。true-是、false-否；成员是共享资源管理员不允许删除
+        # @param IsShareManager: <p>是否共享资源管理员。true-是、false-否；成员是共享资源管理员不允许删除</p>
         # @type IsShareManager: Boolean
-        # @param OperateProcess: 成员是否设置了操作审批。true-是、false-否；成员设置了操作审批时不允许删除
+        # @param OperateProcess: <p>成员是否设置了操作审批。true-是、false-否；成员设置了操作审批时不允许删除</p>
         # @type OperateProcess: Boolean
-        # @param BillingPermission: 是否允许解除成员财务权限。true-是、false-否；成员不能解除财务权限时不允许删除
+        # @param BillingPermission: <p>是否允许解除成员财务权限。true-是、false-否；成员不能解除财务权限时不允许删除</p>
         # @type BillingPermission: Boolean
-        # @param ExistResources: 存在的资源列表。账号存在资源时不允许删除
+        # @param ExistResources: <p>存在的资源列表。账号存在资源时不允许删除</p>
         # @type ExistResources: Array
-        # @param DetectFailedResources: 检测失败的资源列表。账号有资源检测失败时不允许删除。
+        # @param DetectFailedResources: <p>检测失败的资源列表。账号有资源检测失败时不允许删除。</p>
         # @type DetectFailedResources: Array
+        # @param CICRoleConfig: <p>是否部署身份中心权限。部署权限不允许删除</p><p>枚举值：</p><ul><li>true： 是</li><li>false： 否</li></ul>
+        # @type CICRoleConfig: Boolean
+        # @param CICUserConfig: <p>是否同步身份中心用户。同步用户不允许删除</p><p>枚举值：</p><ul><li>true： 是</li><li>false： 否</li></ul>
+        # @type CICUserConfig: Boolean
 
-        attr_accessor :IsCreateMember, :DeletionPermission, :IsAssignManager, :IsAuthManager, :IsShareManager, :OperateProcess, :BillingPermission, :ExistResources, :DetectFailedResources
+        attr_accessor :IsCreateMember, :DeletionPermission, :IsAssignManager, :IsAuthManager, :IsShareManager, :OperateProcess, :BillingPermission, :ExistResources, :DetectFailedResources, :CICRoleConfig, :CICUserConfig
 
-        def initialize(iscreatemember=nil, deletionpermission=nil, isassignmanager=nil, isauthmanager=nil, issharemanager=nil, operateprocess=nil, billingpermission=nil, existresources=nil, detectfailedresources=nil)
+        def initialize(iscreatemember=nil, deletionpermission=nil, isassignmanager=nil, isauthmanager=nil, issharemanager=nil, operateprocess=nil, billingpermission=nil, existresources=nil, detectfailedresources=nil, cicroleconfig=nil, cicuserconfig=nil)
           @IsCreateMember = iscreatemember
           @DeletionPermission = deletionpermission
           @IsAssignManager = isassignmanager
@@ -6174,6 +6178,8 @@ module TencentCloud
           @BillingPermission = billingpermission
           @ExistResources = existresources
           @DetectFailedResources = detectfailedresources
+          @CICRoleConfig = cicroleconfig
+          @CICUserConfig = cicuserconfig
         end
 
         def deserialize(params)
@@ -6186,6 +6192,8 @@ module TencentCloud
           @BillingPermission = params['BillingPermission']
           @ExistResources = params['ExistResources']
           @DetectFailedResources = params['DetectFailedResources']
+          @CICRoleConfig = params['CICRoleConfig']
+          @CICUserConfig = params['CICUserConfig']
         end
       end
 

@@ -3089,22 +3089,28 @@ module TencentCloud
 
       # ExtractDocAgent请求参数结构体
       class ExtractDocAgentRequest < TencentCloud::Common::AbstractModel
-        # @param ImageBase64: 图片/PDF的 Base64 值。 要求图片/PDF经Base64编码后不超过 10M，分辨率建议600*800以上，支持PNG、JPG、JPEG、BMP、PDF格式。 图片支持的像素范围：需介于20-10000px之间。 图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
+        # @param ImageBase64: <p>图片/PDF的 Base64 值。 要求图片/PDF经Base64编码后不超过 10M，分辨率建议600*800以上，支持PNG、JPG、JPEG、BMP、PDF格式。 图片支持的像素范围：需介于20-10000px之间。 图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。</p>
         # @type ImageBase64: String
-        # @param ImageUrl: 图片/PDF的 Url 地址。 要求图片/PDF经Base64编码后不超过 10M，分辨率建议600*800以上，支持PNG、JPG、JPEG、BMP、PDF格式。 图片支持的像素范围：需介于20-10000px之间。 图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。非腾讯云存储的 Url 速度和稳定性可能受一定影响。
+        # @param ImageUrl: <p>图片/PDF的 Url 地址。 要求图片/PDF经Base64编码后不超过 10M，分辨率建议600*800以上，支持PNG、JPG、JPEG、BMP、PDF格式。 图片支持的像素范围：需介于20-10000px之间。 图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。非腾讯云存储的 Url 速度和稳定性可能受一定影响。</p>
         # @type ImageUrl: String
-        # @param ItemNames: 自定义抽取需要的字段名称、字段类型、字段提示词。
+        # @param ItemNames: <p>自定义抽取需要的字段名称、字段类型、字段提示词。</p>
         # @type ItemNames: Array
-        # @param PdfPageNumber: 需要识别的PDF页面的对应页码，仅支持PDF单页识别，当上传文件为PDF时有效。
+        # @param PdfPageNumber: <p>需要识别的PDF页面的对应页码，仅支持PDF单页识别，当上传文件为PDF时有效。</p>
         # @type PdfPageNumber: Integer
+        # @param EnableCoord: <p>是否需要返回坐标</p><p>默认值：false</p>
+        # @type EnableCoord: Boolean
+        # @param EnableAudit: <p>是否需要开启审核逻辑(支持对字段配置比对内容和比对的语意规则)</p><p>默认值：false</p>
+        # @type EnableAudit: Boolean
 
-        attr_accessor :ImageBase64, :ImageUrl, :ItemNames, :PdfPageNumber
+        attr_accessor :ImageBase64, :ImageUrl, :ItemNames, :PdfPageNumber, :EnableCoord, :EnableAudit
 
-        def initialize(imagebase64=nil, imageurl=nil, itemnames=nil, pdfpagenumber=nil)
+        def initialize(imagebase64=nil, imageurl=nil, itemnames=nil, pdfpagenumber=nil, enablecoord=nil, enableaudit=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
           @ItemNames = itemnames
           @PdfPageNumber = pdfpagenumber
+          @EnableCoord = enablecoord
+          @EnableAudit = enableaudit
         end
 
         def deserialize(params)
@@ -3119,18 +3125,20 @@ module TencentCloud
             end
           end
           @PdfPageNumber = params['PdfPageNumber']
+          @EnableCoord = params['EnableCoord']
+          @EnableAudit = params['EnableAudit']
         end
       end
 
       # ExtractDocAgent返回参数结构体
       class ExtractDocAgentResponse < TencentCloud::Common::AbstractModel
-        # @param Angle: 图片旋转角度(角度制)，文本的水平方向为 0；顺时针为正，逆时针为负。
+        # @param Angle: <p>图片旋转角度(角度制)，文本的水平方向为 0；顺时针为正，逆时针为负。</p>
         # @type Angle: Float
-        # @param StructuralList: 配置结构化文本信息。
+        # @param StructuralList: <p>配置结构化文本信息。</p>
         # @type StructuralList: Array
-        # @param ErrorCode: 任务执行错误码。当任务状态不为 FAIL 时，该值为""。
+        # @param ErrorCode: <p>任务执行错误码。当任务状态不为 FAIL 时，该值为&quot;&quot;。</p>
         # @type ErrorCode: String
-        # @param ErrorMessage: 任务执行错误信息。当任务状态不为 FAIL 时，该值为""。
+        # @param ErrorMessage: <p>任务执行错误信息。当任务状态不为 FAIL 时，该值为&quot;&quot;。</p>
         # @type ErrorMessage: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -7007,6 +7015,58 @@ module TencentCloud
           @MachineCode = params['MachineCode']
           @MachineNumber = params['MachineNumber']
           @QRCodeMark = params['QRCodeMark']
+        end
+      end
+
+      # MultimodalDocParse请求参数结构体
+      class MultimodalDocParseRequest < TencentCloud::Common::AbstractModel
+        # @param FileUrl: <p>文件的 Url 地址，支持FileType参数对应的文件格式及大小。文件下载时间不超过3秒。文件存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议文件存储于腾讯云。非腾讯云存储的 Url 速度和稳定性可能受一定影响。</p>
+        # @type FileUrl: String
+        # @param FileType: <p>支持解析的文件类型。</p><p>1：PDF 文档；</p><p>2：Word 文档（.doc / .docx）；</p><p>3：PPT 演示文稿（.ppt / .pptx）；</p><p>4：Excel 表格（.xls / .xlsx）；</p><p>5：Markdown 文档（.md）；</p><p>6：纯文本文件（.txt）；</p><p>7：图片文件（.png / .jpg / .jpeg 等）；</p><p>8：WPS 文档；</p><p>0：未知文件类型。</p><p></p><p>支持的文件大小：</p><p>PDF/WORD/PPT支持150M且300页以内、EXCEL支持10M以内、TXT支持10M以内、图片文件支持70M以内。</p><p></p><p>默认值：1</p>
+        # @type FileType: Integer
+        # @param ResultType: <p>输出格式。</p><p>1：json格式</p><p>2：markdown格式</p><p>3：xml格式</p><p>9：json+markdown+xml格式</p><p></p><p>默认值：9</p>
+        # @type ResultType: Integer
+        # @param EnableSubImg: <p>是否支持子图解析。</p><p></p><p>默认值：false</p>
+        # @type EnableSubImg: Boolean
+        # @param PageRange: <p>需要识别的页码范围，单次调用最多支持300页。</p><p>参数格式：1-10</p>
+        # @type PageRange: String
+
+        attr_accessor :FileUrl, :FileType, :ResultType, :EnableSubImg, :PageRange
+
+        def initialize(fileurl=nil, filetype=nil, resulttype=nil, enablesubimg=nil, pagerange=nil)
+          @FileUrl = fileurl
+          @FileType = filetype
+          @ResultType = resulttype
+          @EnableSubImg = enablesubimg
+          @PageRange = pagerange
+        end
+
+        def deserialize(params)
+          @FileUrl = params['FileUrl']
+          @FileType = params['FileType']
+          @ResultType = params['ResultType']
+          @EnableSubImg = params['EnableSubImg']
+          @PageRange = params['PageRange']
+        end
+      end
+
+      # MultimodalDocParse返回参数结构体
+      class MultimodalDocParseResponse < TencentCloud::Common::AbstractModel
+        # @param ResultUrl: <p>结果的临时下载地址。文件类型为zip压缩包，下载链接有效期30分钟。压缩包内包含*.md、*.json以及images文件夹。</p>
+        # @type ResultUrl: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ResultUrl, :RequestId
+
+        def initialize(resulturl=nil, requestid=nil)
+          @ResultUrl = resulturl
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ResultUrl = params['ResultUrl']
+          @RequestId = params['RequestId']
         end
       end
 

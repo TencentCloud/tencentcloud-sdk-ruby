@@ -29,6 +29,30 @@ module TencentCloud
         end
 
 
+        # 将Budget关联到企业型模型路由实例或企业型实例下的Key。资源已关联其他Budget时，本次请求会替换为新的Budget。
+
+        # @param request: Request instance for AssociateBudget.
+        # @type request: :class:`Tencentcloud::clb::V20180317::AssociateBudgetRequest`
+        # @rtype: :class:`Tencentcloud::clb::V20180317::AssociateBudgetResponse`
+        def AssociateBudget(request)
+          body = send_request('AssociateBudget', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AssociateBudgetResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 关联配置到server或location，根据配置类型关联到server或location。准备下线，请使用SetCustomizedConfigForLoadBalancer。
 
         # @param request: Request instance for AssociateCustomizedConfig.
@@ -247,6 +271,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建Budget对象。可在创建时通过Resources同时关联已存在的企业型模型路由实例或企业型实例下的Key。创建请求提交后，可通过DescribeBudgets查询状态。
+
+        # @param request: Request instance for CreateBudget.
+        # @type request: :class:`Tencentcloud::clb::V20180317::CreateBudgetRequest`
+        # @rtype: :class:`Tencentcloud::clb::V20180317::CreateBudgetResponse`
+        def CreateBudget(request)
+          body = send_request('CreateBudget', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateBudgetResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建CLB专有日志集，此日志集用于存储CLB的日志。
 
         # @param request: Request instance for CreateClsLogSet.
@@ -257,6 +305,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateClsLogSetResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建 API Key
+
+        # @param request: Request instance for CreateKey.
+        # @type request: :class:`Tencentcloud::clb::V20180317::CreateKeyRequest`
+        # @rtype: :class:`Tencentcloud::clb::V20180317::CreateKeyResponse`
+        def CreateKey(request)
+          body = send_request('CreateKey', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateKeyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 批量创建Key
+
+        # @param request: Request instance for CreateKeys.
+        # @type request: :class:`Tencentcloud::clb::V20180317::CreateKeysRequest`
+        # @rtype: :class:`Tencentcloud::clb::V20180317::CreateKeysResponse`
+        def CreateKeys(request)
+          body = send_request('CreateKeys', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateKeysResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -347,6 +443,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建模型路由实例
+
+        # @param request: Request instance for CreateModelRouter.
+        # @type request: :class:`Tencentcloud::clb::V20180317::CreateModelRouterRequest`
+        # @rtype: :class:`Tencentcloud::clb::V20180317::CreateModelRouterResponse`
+        def CreateModelRouter(request)
+          body = send_request('CreateModelRouter', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateModelRouterResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # CreateRule 接口用于在一个已存在的负载均衡七层监听器下创建转发规则，七层监听器中，后端服务必须绑定到规则上而非监听器上。
         # 本接口为异步接口，本接口返回成功后需以返回的RequestID为入参，调用 [DescribeTaskStatus](https://cloud.tencent.com/document/product/214/30683) 接口查询本次任务是否成功。
 
@@ -406,6 +526,78 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateTopicResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 在指定模型路由实例下创建一个用户组。用户组是介于模型路由实例与 Key 之间的一层可选分组，可为组内 Key 统一配置模型白名单，并通过关联 Budget 统一管理额度。创建为异步操作，接口会同步返回用户组ID，可凭返回的 RequestId 调用 DescribeAsyncJobs 查询创建进度。
+
+        # @param request: Request instance for CreateUserGroup.
+        # @type request: :class:`Tencentcloud::clb::V20180317::CreateUserGroupRequest`
+        # @rtype: :class:`Tencentcloud::clb::V20180317::CreateUserGroupResponse`
+        def CreateUserGroup(request)
+          body = send_request('CreateUserGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateUserGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除Budget对象。Budget存在任何关联资源时不允许删除，需要先调用DisassociateBudget解除关联。
+
+        # @param request: Request instance for DeleteBudgets.
+        # @type request: :class:`Tencentcloud::clb::V20180317::DeleteBudgetsRequest`
+        # @rtype: :class:`Tencentcloud::clb::V20180317::DeleteBudgetsResponse`
+        def DeleteBudgets(request)
+          body = send_request('DeleteBudgets', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteBudgetsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 批量删除 API Key。
+
+        # @param request: Request instance for DeleteKeys.
+        # @type request: :class:`Tencentcloud::clb::V20180317::DeleteKeysRequest`
+        # @rtype: :class:`Tencentcloud::clb::V20180317::DeleteKeysResponse`
+        def DeleteKeys(request)
+          body = send_request('DeleteKeys', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteKeysResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -520,6 +712,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除模型路由实例
+
+        # @param request: Request instance for DeleteModelRouters.
+        # @type request: :class:`Tencentcloud::clb::V20180317::DeleteModelRoutersRequest`
+        # @rtype: :class:`Tencentcloud::clb::V20180317::DeleteModelRoutersResponse`
+        def DeleteModelRouters(request)
+          body = send_request('DeleteModelRouters', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteModelRoutersResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # DeleteRewrite 接口支持删除指定转发规则之间的重定向关系。
         # 本接口为异步接口，本接口返回成功后需以返回的RequestID为入参，调用DescribeTaskStatus接口查询本次任务是否成功。
 
@@ -580,6 +796,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteTargetGroupsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 批量删除用户组。组内若仍存在 Key，将拒绝删除（错误码 ResourceInUse），需先将 Key 移出或迁移到其他组。删除为异步操作，可凭返回的 RequestId 调用 DescribeAsyncJobs 查询进度。
+
+        # @param request: Request instance for DeleteUserGroups.
+        # @type request: :class:`Tencentcloud::clb::V20180317::DeleteUserGroupsRequest`
+        # @rtype: :class:`Tencentcloud::clb::V20180317::DeleteUserGroupsResponse`
+        def DeleteUserGroups(request)
+          body = send_request('DeleteUserGroups', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteUserGroupsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -703,6 +943,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询异步任务信息
+
+        # @param request: Request instance for DescribeAsyncJobs.
+        # @type request: :class:`Tencentcloud::clb::V20180317::DescribeAsyncJobsRequest`
+        # @rtype: :class:`Tencentcloud::clb::V20180317::DescribeAsyncJobsResponse`
+        def DescribeAsyncJobs(request)
+          body = send_request('DescribeAsyncJobs', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAsyncJobsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询一个负载均衡所封禁的IP列表（黑名单）。（接口灰度中，如需使用请提工单）
 
         # @param request: Request instance for DescribeBlockIPList.
@@ -737,6 +1001,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeBlockIPTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询指定Budget关联的资源列表。支持按资源类型过滤。
+
+        # @param request: Request instance for DescribeBudgetAssociations.
+        # @type request: :class:`Tencentcloud::clb::V20180317::DescribeBudgetAssociationsRequest`
+        # @rtype: :class:`Tencentcloud::clb::V20180317::DescribeBudgetAssociationsResponse`
+        def DescribeBudgetAssociations(request)
+          body = send_request('DescribeBudgetAssociations', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBudgetAssociationsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询Budget列表。
+
+        # @param request: Request instance for DescribeBudgets.
+        # @type request: :class:`Tencentcloud::clb::V20180317::DescribeBudgetsRequest`
+        # @rtype: :class:`Tencentcloud::clb::V20180317::DescribeBudgetsResponse`
+        def DescribeBudgets(request)
+          body = send_request('DescribeBudgets', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBudgetsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1207,6 +1519,78 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询模型路由详细信息
+
+        # @param request: Request instance for DescribeModelRouterDetail.
+        # @type request: :class:`Tencentcloud::clb::V20180317::DescribeModelRouterDetailRequest`
+        # @rtype: :class:`Tencentcloud::clb::V20180317::DescribeModelRouterDetailResponse`
+        def DescribeModelRouterDetail(request)
+          body = send_request('DescribeModelRouterDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeModelRouterDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询用户配额信息
+
+        # @param request: Request instance for DescribeModelRouterQuota.
+        # @type request: :class:`Tencentcloud::clb::V20180317::DescribeModelRouterQuotaRequest`
+        # @rtype: :class:`Tencentcloud::clb::V20180317::DescribeModelRouterQuotaResponse`
+        def DescribeModelRouterQuota(request)
+          body = send_request('DescribeModelRouterQuota', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeModelRouterQuotaResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询模型路由列表页
+
+        # @param request: Request instance for DescribeModelRouters.
+        # @type request: :class:`Tencentcloud::clb::V20180317::DescribeModelRoutersRequest`
+        # @rtype: :class:`Tencentcloud::clb::V20180317::DescribeModelRoutersResponse`
+        def DescribeModelRouters(request)
+          body = send_request('DescribeModelRouters', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeModelRoutersResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询用户当前地域下的各项配额
 
         # @param request: Request instance for DescribeQuota.
@@ -1447,6 +1831,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询指定模型路由实例下的用户组列表或详情，支持按ID、名称、状态、标签过滤及分页。真实用户组按名称字典序升序返回；返回列表末尾恒追加一个「未分组」虚拟分组（UserGroupId 固定为 ugrp-ungrouped、UserGroupName 固定为 ungrouped），它并非用户真实创建的用户组，而是代表该实例下所有未归属任何用户组的 Key（其 KeyCount 为无组 Key 数，不计入 TotalCount，不可修改或删除）。
+
+        # @param request: Request instance for DescribeUserGroups.
+        # @type request: :class:`Tencentcloud::clb::V20180317::DescribeUserGroupsRequest`
+        # @rtype: :class:`Tencentcloud::clb::V20180317::DescribeUserGroupsResponse`
+        def DescribeUserGroups(request)
+          body = send_request('DescribeUserGroups', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeUserGroupsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 解除Budget与模型路由实例或Key的关联。
+
+        # @param request: Request instance for DisassociateBudget.
+        # @type request: :class:`Tencentcloud::clb::V20180317::DisassociateBudgetRequest`
+        # @rtype: :class:`Tencentcloud::clb::V20180317::DisassociateBudgetResponse`
+        def DisassociateBudget(request)
+          body = send_request('DisassociateBudget', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DisassociateBudgetResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 去关联个性化配置，准备下线，请使用SetCustomizedConfigForLoadBalancer。
 
         # @param request: Request instance for DisassociateCustomizedConfig.
@@ -1668,6 +2100,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改Budget属性。BudgetResetAt不支持作为入参设置。修改请求提交后，可通过DescribeBudgets查询状态。
+
+        # @param request: Request instance for ModifyBudgetAttributes.
+        # @type request: :class:`Tencentcloud::clb::V20180317::ModifyBudgetAttributesRequest`
+        # @rtype: :class:`Tencentcloud::clb::V20180317::ModifyBudgetAttributesResponse`
+        def ModifyBudgetAttributes(request)
+          body = send_request('ModifyBudgetAttributes', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyBudgetAttributesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # ModifyDomain接口用来修改负载均衡七层监听器下的域名。
         # 本接口为异步接口，本接口返回成功后需以返回的RequestID为入参，调用 [DescribeTaskStatus](https://cloud.tencent.com/document/product/214/30683) 接口查询本次任务是否成功。
 
@@ -1730,6 +2186,78 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyFunctionTargetsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改 API Key 的属性
+
+        # @param request: Request instance for ModifyKeyAttributes.
+        # @type request: :class:`Tencentcloud::clb::V20180317::ModifyKeyAttributesRequest`
+        # @rtype: :class:`Tencentcloud::clb::V20180317::ModifyKeyAttributesResponse`
+        def ModifyKeyAttributes(request)
+          body = send_request('ModifyKeyAttributes', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyKeyAttributesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 禁用/启用Key
+
+        # @param request: Request instance for ModifyKeysBlockStatus.
+        # @type request: :class:`Tencentcloud::clb::V20180317::ModifyKeysBlockStatusRequest`
+        # @rtype: :class:`Tencentcloud::clb::V20180317::ModifyKeysBlockStatusResponse`
+        def ModifyKeysBlockStatus(request)
+          body = send_request('ModifyKeysBlockStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyKeysBlockStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 批量变更 Key 的用户组归属：UserGroupId 传真实用户组ID表示批量入组/跨组移动，传 ugrp-ungrouped 表示批量移出到未分组。变更为异步操作，可凭返回的 RequestId 调用 DescribeAsyncJobs 查询进度。
+
+        # @param request: Request instance for ModifyKeysUserGroup.
+        # @type request: :class:`Tencentcloud::clb::V20180317::ModifyKeysUserGroupRequest`
+        # @rtype: :class:`Tencentcloud::clb::V20180317::ModifyKeysUserGroupResponse`
+        def ModifyKeysUserGroup(request)
+          body = send_request('ModifyKeysUserGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyKeysUserGroupResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1856,6 +2384,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyLoadBalancersProjectResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改模型路由属性。支持修改实例名称、限速配置、路由配置，以及替换企业型实例 HTTPS 服务端点绑定的证书（CertId）。每次调用至少传入一个待修改的属性字段，未传入的字段保持原值不变。其中证书替换在请求内同步完成，成功返回即已生效；其余属性修改异步生效，可通过 DescribeModelRouterDetail 接口查询修改结果。
+
+        # @param request: Request instance for ModifyModelRouterAttributes.
+        # @type request: :class:`Tencentcloud::clb::V20180317::ModifyModelRouterAttributesRequest`
+        # @rtype: :class:`Tencentcloud::clb::V20180317::ModifyModelRouterAttributesResponse`
+        def ModifyModelRouterAttributes(request)
+          body = send_request('ModifyModelRouterAttributes', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyModelRouterAttributesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2005,6 +2557,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyTargetWeightResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改用户组的名称、模型白名单或关联预算。仅修改传入的字段；其中数组类字段（Models）传入即整体覆盖。BudgetId 传入即关联/替换该组预算（不支持解绑，解绑用 DisassociateBudget）。修改为异步操作，可凭返回的 RequestId 调用 DescribeAsyncJobs 查询进度。
+
+        # @param request: Request instance for ModifyUserGroupAttributes.
+        # @type request: :class:`Tencentcloud::clb::V20180317::ModifyUserGroupAttributesRequest`
+        # @rtype: :class:`Tencentcloud::clb::V20180317::ModifyUserGroupAttributesResponse`
+        def ModifyUserGroupAttributes(request)
+          body = send_request('ModifyUserGroupAttributes', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyUserGroupAttributesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 批量重新生成Key
+
+        # @param request: Request instance for RegenerateKeys.
+        # @type request: :class:`Tencentcloud::clb::V20180317::RegenerateKeysRequest`
+        # @rtype: :class:`Tencentcloud::clb::V20180317::RegenerateKeysResponse`
+        def RegenerateKeys(request)
+          body = send_request('RegenerateKeys', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RegenerateKeysResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -849,23 +849,27 @@ module TencentCloud
 
       # CloseSSL请求参数结构体
       class CloseSSLRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID。请登录[Redis控制台](https://console.cloud.tencent.com/redis)在实例列表复制实例 ID。
+        # @param InstanceId: <p>实例 ID。请登录<a href="https://console.cloud.tencent.com/redis">Redis控制台</a>在实例列表复制实例 ID。</p>
         # @type InstanceId: String
+        # @param AddressType: <p>SSL地址类型。</p><p>枚举值：</p><ul><li>0：  不限。</li><li>1： 内网IPv4。</li><li>2：  内网IPv6。</li><li>3： 外网。</li><li>-1： 未指定。</li></ul><p>默认值：0</p>
+        # @type AddressType: Integer
 
-        attr_accessor :InstanceId
+        attr_accessor :InstanceId, :AddressType
 
-        def initialize(instanceid=nil)
+        def initialize(instanceid=nil, addresstype=nil)
           @InstanceId = instanceid
+          @AddressType = addresstype
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
+          @AddressType = params['AddressType']
         end
       end
 
       # CloseSSL返回参数结构体
       class CloseSSLResponse < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务ID。
+        # @param TaskId: <p>任务ID。</p>
         # @type TaskId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

@@ -1910,28 +1910,34 @@ module TencentCloud
 
       # CreateUserDirectory请求参数结构体
       class CreateUserDirectoryRequest < TencentCloud::Common::AbstractModel
-        # @param DirId: 目录id
+        # @param DirId: <p>目录id</p>
         # @type DirId: Integer
-        # @param DirName: 目录名称
+        # @param DirName: <p>目录名称</p>
         # @type DirName: String
-        # @param UserOrgSet: ioa分组信息
+        # @param UserOrgSet: <p>ioa分组信息</p>
         # @type UserOrgSet: Array
-        # @param Source: ioa关联用户源类型
+        # @param Source: <p>ioa关联用户源类型</p>
         # @type Source: Integer
-        # @param SourceName: ioa关联用户源名称
+        # @param SourceName: <p>ioa关联用户源名称</p>
         # @type SourceName: String
-        # @param UserCount: 目录包含用户数
+        # @param UserCount: <p>目录包含用户数</p>
         # @type UserCount: Integer
+        # @param AutoSync: <p>是否开启自动同步</p>
+        # @type AutoSync: Boolean
+        # @param SyncCron: <p>同步周期（5段式 crontab 表达式）</p>
+        # @type SyncCron: String
 
-        attr_accessor :DirId, :DirName, :UserOrgSet, :Source, :SourceName, :UserCount
+        attr_accessor :DirId, :DirName, :UserOrgSet, :Source, :SourceName, :UserCount, :AutoSync, :SyncCron
 
-        def initialize(dirid=nil, dirname=nil, userorgset=nil, source=nil, sourcename=nil, usercount=nil)
+        def initialize(dirid=nil, dirname=nil, userorgset=nil, source=nil, sourcename=nil, usercount=nil, autosync=nil, synccron=nil)
           @DirId = dirid
           @DirName = dirname
           @UserOrgSet = userorgset
           @Source = source
           @SourceName = sourcename
           @UserCount = usercount
+          @AutoSync = autosync
+          @SyncCron = synccron
         end
 
         def deserialize(params)
@@ -1948,12 +1954,14 @@ module TencentCloud
           @Source = params['Source']
           @SourceName = params['SourceName']
           @UserCount = params['UserCount']
+          @AutoSync = params['AutoSync']
+          @SyncCron = params['SyncCron']
         end
       end
 
       # CreateUserDirectory返回参数结构体
       class CreateUserDirectoryResponse < TencentCloud::Common::AbstractModel
-        # @param Id: 目录Id
+        # @param Id: <p>目录Id</p>
         # @type Id: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4195,9 +4203,9 @@ module TencentCloud
 
       # DescribeUserDirectory请求参数结构体
       class DescribeUserDirectoryRequest < TencentCloud::Common::AbstractModel
-        # @param Limit: 分页大小
+        # @param Limit: <p>分页大小</p>
         # @type Limit: Integer
-        # @param Offset: 分页偏移
+        # @param Offset: <p>分页偏移</p>
         # @type Offset: Integer
 
         attr_accessor :Limit, :Offset
@@ -4215,9 +4223,9 @@ module TencentCloud
 
       # DescribeUserDirectory返回参数结构体
       class DescribeUserDirectoryResponse < TencentCloud::Common::AbstractModel
-        # @param UserDirSet: 用户目录集
+        # @param UserDirSet: <p>用户目录集</p>
         # @type UserDirSet: Array
-        # @param TotalCount: 用户目录集总数
+        # @param TotalCount: <p>用户目录集总数</p>
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5204,25 +5212,28 @@ module TencentCloud
 
       # 同步过来的ioa用户分组信息
       class IOAUserGroup < TencentCloud::Common::AbstractModel
-        # @param OrgId: ioa用户组织id
+        # @param OrgId: <p>ioa用户组织id</p>
         # @type OrgId: Integer
-        # @param OrgName: ioa用户组织名称
+        # @param OrgName: <p>ioa用户组织名称</p>
         # @type OrgName: String
-        # @param OrgIdPath: ioa用户组织id路径
+        # @param OrgIdPath: <p>ioa用户组织id路径</p>
         # @type OrgIdPath: String
-        # @param OrgNamePath: ioa用户组织名称路径
+        # @param OrgNamePath: <p>ioa用户组织名称路径</p>
         # @type OrgNamePath: String
-        # @param Source: ioa关联用户源类型
+        # @param Source: <p>ioa关联用户源类型</p>
         # @type Source: Integer
+        # @param UserDirName: <p>用户所属目录</p>
+        # @type UserDirName: String
 
-        attr_accessor :OrgId, :OrgName, :OrgIdPath, :OrgNamePath, :Source
+        attr_accessor :OrgId, :OrgName, :OrgIdPath, :OrgNamePath, :Source, :UserDirName
 
-        def initialize(orgid=nil, orgname=nil, orgidpath=nil, orgnamepath=nil, source=nil)
+        def initialize(orgid=nil, orgname=nil, orgidpath=nil, orgnamepath=nil, source=nil, userdirname=nil)
           @OrgId = orgid
           @OrgName = orgname
           @OrgIdPath = orgidpath
           @OrgNamePath = orgnamepath
           @Source = source
+          @UserDirName = userdirname
         end
 
         def deserialize(params)
@@ -5231,6 +5242,7 @@ module TencentCloud
           @OrgIdPath = params['OrgIdPath']
           @OrgNamePath = params['OrgNamePath']
           @Source = params['Source']
+          @UserDirName = params['UserDirName']
         end
       end
 
@@ -6357,16 +6369,22 @@ module TencentCloud
 
       # ModifyUserDirectory请求参数结构体
       class ModifyUserDirectoryRequest < TencentCloud::Common::AbstractModel
-        # @param Id: 目录id
+        # @param Id: <p>目录id</p>
         # @type Id: Integer
-        # @param UserOrgSet: ioa分组信息
+        # @param UserOrgSet: <p>ioa分组信息</p>
         # @type UserOrgSet: Array
+        # @param AutoSync: <p>是否开启自动同步</p>
+        # @type AutoSync: Boolean
+        # @param SyncCron: <p>同步周期（5段式 crontab 表达式）</p>
+        # @type SyncCron: String
 
-        attr_accessor :Id, :UserOrgSet
+        attr_accessor :Id, :UserOrgSet, :AutoSync, :SyncCron
 
-        def initialize(id=nil, userorgset=nil)
+        def initialize(id=nil, userorgset=nil, autosync=nil, synccron=nil)
           @Id = id
           @UserOrgSet = userorgset
+          @AutoSync = autosync
+          @SyncCron = synccron
         end
 
         def deserialize(params)
@@ -6379,6 +6397,8 @@ module TencentCloud
               @UserOrgSet << userorg_tmp
             end
           end
+          @AutoSync = params['AutoSync']
+          @SyncCron = params['SyncCron']
         end
       end
 
@@ -8838,26 +8858,32 @@ module TencentCloud
 
       # 用户目录信息
       class UserDirectory < TencentCloud::Common::AbstractModel
-        # @param Id: 目录id
+        # @param Id: <p>目录id</p>
         # @type Id: Integer
-        # @param DirId: ioa目录id
+        # @param DirId: <p>ioa目录id</p>
         # @type DirId: Integer
-        # @param DirName: ioa目录名称
+        # @param DirName: <p>ioa目录名称</p>
         # @type DirName: String
-        # @param Source: ioa关联用户源类型
+        # @param Source: <p>ioa关联用户源类型</p>
         # @type Source: Integer
-        # @param SourceName: ioa关联用户源名称
+        # @param SourceName: <p>ioa关联用户源名称</p>
         # @type SourceName: String
-        # @param UserTotal: 目录包含用户数
+        # @param UserTotal: <p>目录包含用户数</p>
         # @type UserTotal: Integer
-        # @param CreateTime: 目录接入时间
+        # @param CreateTime: <p>目录接入时间</p>
         # @type CreateTime: String
-        # @param UserOrgSet: 目录下的组织细节信息
+        # @param UserOrgSet: <p>目录下的组织细节信息</p>
         # @type UserOrgSet: Array
+        # @param AutoSync: <p>是否开启自动同步</p>
+        # @type AutoSync: Boolean
+        # @param SyncCron: <p>同步周期（5段式 crontab 表达式）</p>
+        # @type SyncCron: String
+        # @param NextSyncTime: <p>下次同步时间</p><p>参数格式：2026-06-05T11:30:00+08:00</p>
+        # @type NextSyncTime: String
 
-        attr_accessor :Id, :DirId, :DirName, :Source, :SourceName, :UserTotal, :CreateTime, :UserOrgSet
+        attr_accessor :Id, :DirId, :DirName, :Source, :SourceName, :UserTotal, :CreateTime, :UserOrgSet, :AutoSync, :SyncCron, :NextSyncTime
 
-        def initialize(id=nil, dirid=nil, dirname=nil, source=nil, sourcename=nil, usertotal=nil, createtime=nil, userorgset=nil)
+        def initialize(id=nil, dirid=nil, dirname=nil, source=nil, sourcename=nil, usertotal=nil, createtime=nil, userorgset=nil, autosync=nil, synccron=nil, nextsynctime=nil)
           @Id = id
           @DirId = dirid
           @DirName = dirname
@@ -8866,6 +8892,9 @@ module TencentCloud
           @UserTotal = usertotal
           @CreateTime = createtime
           @UserOrgSet = userorgset
+          @AutoSync = autosync
+          @SyncCron = synccron
+          @NextSyncTime = nextsynctime
         end
 
         def deserialize(params)
@@ -8884,30 +8913,36 @@ module TencentCloud
               @UserOrgSet << userorg_tmp
             end
           end
+          @AutoSync = params['AutoSync']
+          @SyncCron = params['SyncCron']
+          @NextSyncTime = params['NextSyncTime']
         end
       end
 
       # 同步的ioa用户组织信息
       class UserOrg < TencentCloud::Common::AbstractModel
-        # @param OrgId: ioa用户组织id
+        # @param OrgId: <p>ioa用户组织id</p>
         # @type OrgId: Integer
-        # @param OrgName: ioa用户组织名称
+        # @param OrgName: <p>ioa用户组织名称</p>
         # @type OrgName: String
-        # @param OrgIdPath: ioa用户组织id路径
+        # @param OrgIdPath: <p>ioa用户组织id路径</p>
         # @type OrgIdPath: String
-        # @param OrgNamePath: ioa用户组织名称路径
+        # @param OrgNamePath: <p>ioa用户组织名称路径</p>
         # @type OrgNamePath: String
-        # @param UserTotal: ioa用户组织id下的用户数
+        # @param UserTotal: <p>ioa用户组织id下的用户数</p>
         # @type UserTotal: Integer
+        # @param BindGroupIds: <p>组织绑定的用户组 id 列表</p>
+        # @type BindGroupIds: Array
 
-        attr_accessor :OrgId, :OrgName, :OrgIdPath, :OrgNamePath, :UserTotal
+        attr_accessor :OrgId, :OrgName, :OrgIdPath, :OrgNamePath, :UserTotal, :BindGroupIds
 
-        def initialize(orgid=nil, orgname=nil, orgidpath=nil, orgnamepath=nil, usertotal=nil)
+        def initialize(orgid=nil, orgname=nil, orgidpath=nil, orgnamepath=nil, usertotal=nil, bindgroupids=nil)
           @OrgId = orgid
           @OrgName = orgname
           @OrgIdPath = orgidpath
           @OrgNamePath = orgnamepath
           @UserTotal = usertotal
+          @BindGroupIds = bindgroupids
         end
 
         def deserialize(params)
@@ -8916,6 +8951,7 @@ module TencentCloud
           @OrgIdPath = params['OrgIdPath']
           @OrgNamePath = params['OrgNamePath']
           @UserTotal = params['UserTotal']
+          @BindGroupIds = params['BindGroupIds']
         end
       end
 

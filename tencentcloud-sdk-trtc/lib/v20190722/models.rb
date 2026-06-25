@@ -198,29 +198,44 @@ module TencentCloud
 
       # 字幕对齐
       class AlignmentItem < TencentCloud::Common::AbstractModel
-        # @param TimeBeginMs: 字幕对应的时间起点
+        # @param Text: <p>字幕文本</p>
+        # @type Text: String
+        # @param TimeBeginMs: <p>字幕对应的时间起点</p>
         # @type TimeBeginMs: Integer
-        # @param TimeEndMs: 字幕对应的时间尾点
+        # @param TimeEndMs: <p>字幕对应的时间尾点</p>
         # @type TimeEndMs: Integer
-        # @param TextBegin: 字幕对应的文本索引起点
+        # @param TextBegin: <p>字幕对应的文本索引起点</p>
         # @type TextBegin: Integer
-        # @param TextEnd: 字幕对应的文本索引尾点
+        # @param TextEnd: <p>字幕对应的文本索引尾点</p>
         # @type TextEnd: Integer
+        # @param Words: <p>词级别时间戳</p>
+        # @type Words: Array
 
-        attr_accessor :TimeBeginMs, :TimeEndMs, :TextBegin, :TextEnd
+        attr_accessor :Text, :TimeBeginMs, :TimeEndMs, :TextBegin, :TextEnd, :Words
 
-        def initialize(timebeginms=nil, timeendms=nil, textbegin=nil, textend=nil)
+        def initialize(text=nil, timebeginms=nil, timeendms=nil, textbegin=nil, textend=nil, words=nil)
+          @Text = text
           @TimeBeginMs = timebeginms
           @TimeEndMs = timeendms
           @TextBegin = textbegin
           @TextEnd = textend
+          @Words = words
         end
 
         def deserialize(params)
+          @Text = params['Text']
           @TimeBeginMs = params['TimeBeginMs']
           @TimeEndMs = params['TimeEndMs']
           @TextBegin = params['TextBegin']
           @TextEnd = params['TextEnd']
+          unless params['Words'].nil?
+            @Words = []
+            params['Words'].each do |i|
+              worditem_tmp = WordItem.new
+              worditem_tmp.deserialize(i)
+              @Words << worditem_tmp
+            end
+          end
         end
       end
 
@@ -3841,58 +3856,40 @@ module TencentCloud
 
       # 混流布局参数。
       class McuLayout < TencentCloud::Common::AbstractModel
-        # @param UserMediaStream: 用户媒体流参数。不填时腾讯云后台按照上行主播的进房顺序自动填充。
+        # @param UserMediaStream: <p>用户媒体流参数。不填时腾讯云后台按照上行主播的进房顺序自动填充。</p>
         # @type UserMediaStream: :class:`Tencentcloud::Trtc.v20190722.models.UserMediaStream`
-        # @param ImageWidth: 子画面在输出时的宽度，单位为像素值，不填默认为0。
+        # @param ImageWidth: <p>子画面在输出时的宽度，单位为像素值，不填默认为0。</p>
         # @type ImageWidth: Integer
-        # @param ImageHeight: 子画面在输出时的高度，单位为像素值，不填默认为0。
+        # @param ImageHeight: <p>子画面在输出时的高度，单位为像素值，不填默认为0。</p>
         # @type ImageHeight: Integer
-        # @param LocationX: 子画面在输出时的X偏移，单位为像素值，LocationX与ImageWidth之和不能超过混流输出的总宽度，不填默认为0。
+        # @param LocationX: <p>子画面在输出时的X偏移，单位为像素值，LocationX与ImageWidth之和不能超过混流输出的总宽度，不填默认为0。</p>
         # @type LocationX: Integer
-        # @param LocationY: 子画面在输出时的Y偏移，单位为像素值，LocationY与ImageHeight之和不能超过混流输出的总高度，不填默认为0。
+        # @param LocationY: <p>子画面在输出时的Y偏移，单位为像素值，LocationY与ImageHeight之和不能超过混流输出的总高度，不填默认为0。</p>
         # @type LocationY: Integer
-        # @param ZOrder: 子画面在输出时的层级，不填默认为0。
+        # @param ZOrder: <p>子画面在输出时的层级，不填默认为0。</p>
         # @type ZOrder: Integer
-        # @param RenderMode: 子画面在输出时的显示模式：0为裁剪，1为缩放并显示背景，2为缩放并显示黑底。不填默认为0。
+        # @param RenderMode: <p>子画面在输出时的显示模式：0为裁剪，1为缩放并显示背景，2为缩放并显示黑底。不填默认为0。</p>
         # @type RenderMode: Integer
-        # @param BackGroundColor: 【此参数配置无效，暂不支持】子画面的背景颜色，常用的颜色有：
-        # 红色：0xcc0033。
-        # 黄色：0xcc9900。
-        # 绿色：0xcccc33。
-        # 蓝色：0x99CCFF。
-        # 黑色：0x000000。
-        # 白色：0xFFFFFF。
-        # 灰色：0x999999。
+        # @param BackGroundColor: <p>【此参数配置无效，暂不支持】子画面的背景颜色，常用的颜色有：<br>红色：0xcc0033。<br>黄色：0xcc9900。<br>绿色：0xcccc33。<br>蓝色：0x99CCFF。<br>黑色：0x000000。<br>白色：0xFFFFFF。<br>灰色：0x999999。</p>
         # @type BackGroundColor: String
-        # @param BackgroundImageUrl: 子画面的占位图片url，填写该参数，当用户关闭摄像头或未进入TRTC房间时，会在布局位置填充为指定图片。若指定图片与布局位置尺寸比例不一致，则会对图片进行拉伸处理，优先级高于BackGroundColor。支持png、jpg、jpeg、bmp、gif、webm格式。图片分辨率限制不超过2K，图片大小限制不超过5MB。
-        # 注：
-        # 1，您需要确保图片链接的可访问性，后台单次下载超时时间为10秒，最多重试3次，若最终图片下载失败，占位图片将不会生效。
-        # 2，url可支持字符集：【'0-9','a-z','A-Z','-', '.', '_', '~', ':', '/', '?', '#', '[', ']','@', '!', '&', '(', ')', '*', '+', ',', '%', '=', ';', '|'】，您需要确保url字符在可支持字符集内，若存在可支持字符集外的字符，占位图片将不会生效。
+        # @param BackgroundImageUrl: <p>子画面的占位图片url，填写该参数，当用户关闭摄像头或未进入TRTC房间时，会在布局位置填充为指定图片。若指定图片与布局位置尺寸比例不一致，则会对图片进行拉伸处理，优先级高于BackGroundColor。支持png、jpg、jpeg、bmp、gif、webm格式。图片分辨率限制不超过2K，图片大小限制不超过5MB。<br>注：<br>1，您需要确保图片链接的可访问性，后台单次下载超时时间为10秒，最多重试3次，若最终图片下载失败，占位图片将不会生效。<br>2，url可支持字符集：【&#39;0-9&#39;,&#39;a-z&#39;,&#39;A-Z&#39;,&#39;-&#39;, &#39;.&#39;, &#39;_&#39;, &#39;~&#39;, &#39;:&#39;, &#39;/&#39;, &#39;?&#39;, &#39;#&#39;, &#39;[&#39;, &#39;]&#39;,&#39;@&#39;, &#39;!&#39;, &#39;&amp;&#39;, &#39;(&#39;, &#39;)&#39;, &#39;*&#39;, &#39;+&#39;, &#39;,&#39;, &#39;%&#39;, &#39;=&#39;, &#39;;&#39;, &#39;|&#39;】，您需要确保url字符在可支持字符集内，若存在可支持字符集外的字符，占位图片将不会生效。</p>
         # @type BackgroundImageUrl: String
-        # @param CustomCrop: 客户自定义裁剪，针对原始输入流裁剪
+        # @param CustomCrop: <p>客户自定义裁剪，针对原始输入流裁剪</p>
         # @type CustomCrop: :class:`Tencentcloud::Trtc.v20190722.models.McuCustomCrop`
-        # @param BackgroundRenderMode: 子背景图在输出时的显示模式：0为裁剪，1为缩放并显示背景，2为缩放并显示黑底，3为变比例伸缩，4为自定义渲染。不填默认为3。
+        # @param BackgroundRenderMode: <p>子背景图在输出时的显示模式：0为裁剪，1为缩放并显示背景，2为缩放并显示黑底，3为变比例伸缩，4为自定义渲染。不填默认为3。</p>
         # @type BackgroundRenderMode: Integer
-        # @param TransparentUrl: 子画面的透明模版url，指向一张包含透明通道的模板图片。填写该参数，后台混流时会提取该模板图片的透明通道，将其缩放作为目标画面的透明通道，再和其他画面进行混合。您可以通过透明模版实现目标画面的半透明效果和任意形状裁剪（如圆角、星形、心形等）。 支持png格式。图片分辨率限制不超过2K，图片大小限制不超过5MB。
-        # 注：
-        # 1，模板图片宽高比应接近目标画面宽高比，以避免缩放适配目标画面时出现模板效果变形；2，透明模版只有RenderMode为0（裁剪）时才生效；3，您需要确保图片链接的可访问性，后台单次下载超时时间为10秒，最多重试3次，若最终图片下载失败，透明模板将不会生效。
-        # 2，url可支持字符集：【'0-9','a-z','A-Z','-', '.', '_', '~', ':', '/', '?', '#', '[', ']','@', '!', '&', '(', ')', '*', '+', ',', '%', '=', ';', '|'】，您需要确保url字符在可支持字符集内，若存在可支持字符集外的字符，透明模版将不会生效。
+        # @param TransparentUrl: <p>子画面的透明模版url，指向一张包含透明通道的模板图片。填写该参数，后台混流时会提取该模板图片的透明通道，将其缩放作为目标画面的透明通道，再和其他画面进行混合。您可以通过透明模版实现目标画面的半透明效果和任意形状裁剪（如圆角、星形、心形等）。 支持png格式。图片分辨率限制不超过2K，图片大小限制不超过5MB。<br>注：<br>1，模板图片宽高比应接近目标画面宽高比，以避免缩放适配目标画面时出现模板效果变形；2，透明模版只有RenderMode为0（裁剪）时才生效；3，您需要确保图片链接的可访问性，后台单次下载超时时间为10秒，最多重试3次，若最终图片下载失败，透明模板将不会生效。<br>2，url可支持字符集：【&#39;0-9&#39;,&#39;a-z&#39;,&#39;A-Z&#39;,&#39;-&#39;, &#39;.&#39;, &#39;_&#39;, &#39;~&#39;, &#39;:&#39;, &#39;/&#39;, &#39;?&#39;, &#39;#&#39;, &#39;[&#39;, &#39;]&#39;,&#39;@&#39;, &#39;!&#39;, &#39;&amp;&#39;, &#39;(&#39;, &#39;)&#39;, &#39;*&#39;, &#39;+&#39;, &#39;,&#39;, &#39;%&#39;, &#39;=&#39;, &#39;;&#39;, &#39;|&#39;】，您需要确保url字符在可支持字符集内，若存在可支持字符集外的字符，透明模版将不会生效。</p>
         # @type TransparentUrl: String
-        # @param BackgroundCustomRender: 子背景图的自定义渲染参数，当BackgroundRenderMode为4时必须配置。
+        # @param BackgroundCustomRender: <p>子背景图的自定义渲染参数，当BackgroundRenderMode为4时必须配置。</p>
         # @type BackgroundCustomRender: :class:`Tencentcloud::Trtc.v20190722.models.McuBackgroundCustomRender`
-        # @param BackGroundColorMode: 子背景色生效模式，默认值为0表示均不生效。
-        # bit0:占位图缩放是否生效。
-        # bit1:上行流缩放是否生效。
-        # 您可以将相应bit位置1启动生效，例如：
-        # 0(00)表示子背景色不生效。
-        # 1(01)表示子背景色只在占位图缩放时生效。
-        # 2(10)表示子背景色只在上行流缩放时生效。
-        # 3(11)表示子背景色在占位图缩放和上行流缩放时均生效。
+        # @param BackGroundColorMode: <p>子背景色生效模式，默认值为0表示均不生效。<br>bit0:占位图缩放是否生效。<br>bit1:上行流缩放是否生效。<br>您可以将相应bit位置1启动生效，例如：<br>0(00)表示子背景色不生效。<br>1(01)表示子背景色只在占位图缩放时生效。<br>2(10)表示子背景色只在上行流缩放时生效。<br>3(11)表示子背景色在占位图缩放和上行流缩放时均生效。</p>
         # @type BackGroundColorMode: Integer
+        # @param EnableStreamSEI: <p>是否保留上行SEI，1：保留 0：不保留</p><p>取值范围：[0, 1]</p><p>默认值：1</p>
+        # @type EnableStreamSEI: Integer
 
-        attr_accessor :UserMediaStream, :ImageWidth, :ImageHeight, :LocationX, :LocationY, :ZOrder, :RenderMode, :BackGroundColor, :BackgroundImageUrl, :CustomCrop, :BackgroundRenderMode, :TransparentUrl, :BackgroundCustomRender, :BackGroundColorMode
+        attr_accessor :UserMediaStream, :ImageWidth, :ImageHeight, :LocationX, :LocationY, :ZOrder, :RenderMode, :BackGroundColor, :BackgroundImageUrl, :CustomCrop, :BackgroundRenderMode, :TransparentUrl, :BackgroundCustomRender, :BackGroundColorMode, :EnableStreamSEI
 
-        def initialize(usermediastream=nil, imagewidth=nil, imageheight=nil, locationx=nil, locationy=nil, zorder=nil, rendermode=nil, backgroundcolor=nil, backgroundimageurl=nil, customcrop=nil, backgroundrendermode=nil, transparenturl=nil, backgroundcustomrender=nil, backgroundcolormode=nil)
+        def initialize(usermediastream=nil, imagewidth=nil, imageheight=nil, locationx=nil, locationy=nil, zorder=nil, rendermode=nil, backgroundcolor=nil, backgroundimageurl=nil, customcrop=nil, backgroundrendermode=nil, transparenturl=nil, backgroundcustomrender=nil, backgroundcolormode=nil, enablestreamsei=nil)
           @UserMediaStream = usermediastream
           @ImageWidth = imagewidth
           @ImageHeight = imageheight
@@ -3907,6 +3904,7 @@ module TencentCloud
           @TransparentUrl = transparenturl
           @BackgroundCustomRender = backgroundcustomrender
           @BackGroundColorMode = backgroundcolormode
+          @EnableStreamSEI = enablestreamsei
         end
 
         def deserialize(params)
@@ -3933,30 +3931,34 @@ module TencentCloud
             @BackgroundCustomRender.deserialize(params['BackgroundCustomRender'])
           end
           @BackGroundColorMode = params['BackGroundColorMode']
+          @EnableStreamSEI = params['EnableStreamSEI']
         end
       end
 
       # 混流布局参数。
       class McuLayoutParams < TencentCloud::Common::AbstractModel
-        # @param MixLayoutMode: 布局模式：动态布局（1：悬浮布局（默认），2：屏幕分享布局，3：九宫格布局），静态布局（4：自定义布局）。最多支持混入16路音视频流，如果用户只上行音频，也会被算作一路；自定义布局中，如果子画面只设置占位图，也被算作一路。
+        # @param MixLayoutMode: <p>布局模式：动态布局（1：悬浮布局（默认），2：屏幕分享布局，3：九宫格布局），静态布局（4：自定义布局）。最多支持混入16路音视频流，如果用户只上行音频，也会被算作一路；自定义布局中，如果子画面只设置占位图，也被算作一路。</p>
         # @type MixLayoutMode: Integer
-        # @param PureAudioHoldPlaceMode: 纯音频上行是否占布局位置，只在动态布局中有效。0表示纯音频不占布局位置，1表示纯音频占布局位置，不填默认为0。
+        # @param PureAudioHoldPlaceMode: <p>纯音频上行是否占布局位置，只在动态布局中有效。0表示纯音频不占布局位置，1表示纯音频占布局位置，不填默认为0。</p>
         # @type PureAudioHoldPlaceMode: Integer
-        # @param MixLayoutList: 自定义模板中有效，指定用户视频在混合画面中的位置，最多支持设置16个输入流。
+        # @param MixLayoutList: <p>自定义模板中有效，指定用户视频在混合画面中的位置，最多支持设置16个输入流。</p>
         # @type MixLayoutList: Array
-        # @param MaxVideoUser: 指定动态布局中悬浮布局和屏幕分享布局的大画面信息，只在悬浮布局和屏幕分享布局有效。
+        # @param MaxVideoUser: <p>指定动态布局中悬浮布局和屏幕分享布局的大画面信息，只在悬浮布局和屏幕分享布局有效。</p>
         # @type MaxVideoUser: :class:`Tencentcloud::Trtc.v20190722.models.MaxVideoUser`
-        # @param RenderMode: 屏幕分享模板、悬浮模板、九宫格模版有效，画面在输出时的显示模式：0为裁剪，1为缩放，2为缩放并显示黑底
+        # @param RenderMode: <p>屏幕分享模板、悬浮模板、九宫格模版有效，画面在输出时的显示模式：0为裁剪，1为缩放，2为缩放并显示黑底</p>
         # @type RenderMode: Integer
+        # @param EnableStreamSEI: <p>是否保留上行sei，1：保留 0：不保留，只对动态布局生效，自定义布局不生效</p><p>取值范围：[0, 1]</p><p>默认值：1</p>
+        # @type EnableStreamSEI: Integer
 
-        attr_accessor :MixLayoutMode, :PureAudioHoldPlaceMode, :MixLayoutList, :MaxVideoUser, :RenderMode
+        attr_accessor :MixLayoutMode, :PureAudioHoldPlaceMode, :MixLayoutList, :MaxVideoUser, :RenderMode, :EnableStreamSEI
 
-        def initialize(mixlayoutmode=nil, pureaudioholdplacemode=nil, mixlayoutlist=nil, maxvideouser=nil, rendermode=nil)
+        def initialize(mixlayoutmode=nil, pureaudioholdplacemode=nil, mixlayoutlist=nil, maxvideouser=nil, rendermode=nil, enablestreamsei=nil)
           @MixLayoutMode = mixlayoutmode
           @PureAudioHoldPlaceMode = pureaudioholdplacemode
           @MixLayoutList = mixlayoutlist
           @MaxVideoUser = maxvideouser
           @RenderMode = rendermode
+          @EnableStreamSEI = enablestreamsei
         end
 
         def deserialize(params)
@@ -3975,6 +3977,7 @@ module TencentCloud
             @MaxVideoUser.deserialize(params['MaxVideoUser'])
           end
           @RenderMode = params['RenderMode']
+          @EnableStreamSEI = params['EnableStreamSEI']
         end
       end
 
@@ -7234,7 +7237,7 @@ module TencentCloud
         # @type Language: String
         # @param PronunciationDict: <p>多音字/生僻字发音纠正词典条目。指定特定词语在本次请求中使用的发音。</p>
         # @type PronunciationDict: Array
-        # @param AlignmentMode: <p>默认为0，0表示不生成字幕，1表示生成字幕</p>
+        # @param AlignmentMode: <p>字幕级别</p><p>枚举值：</p><ul><li>0： 无字幕</li><li>1： 句子级别字幕</li><li>2： 词级别字幕，目前只有flow_01_ex支持词级别字幕</li></ul><p>默认值：0</p>
         # @type AlignmentMode: Integer
         # @param ExtraParams: <p>json字符串，用于拓展用法</p>
         # @type ExtraParams: String
@@ -7337,7 +7340,7 @@ module TencentCloud
         # @type Language: String
         # @param PronunciationDict: <p>多音字/生僻字发音纠正词典条目。指定特定词语在本次请求中使用的发音。</p>
         # @type PronunciationDict: Array
-        # @param AlignmentMode: <p>默认为0，0表示不生成字幕，1表示生成字幕</p>
+        # @param AlignmentMode: <p>字幕级别</p><p>枚举值：</p><ul><li>0： 无字幕</li><li>1： 句子级别字幕</li><li>2： 词级别字幕，目前只有flow_01_ex支持</li></ul><p>默认值：0</p>
         # @type AlignmentMode: Integer
         # @param ExtraParams: <p>json字符串，用于拓展用法</p>
         # @type ExtraParams: String
@@ -8486,6 +8489,38 @@ module TencentCloud
           @Height = params['Height']
           @Format = params['Format']
           @MaxMediaFileDuration = params['MaxMediaFileDuration']
+        end
+      end
+
+      # 词级别对齐信息
+      class WordItem < TencentCloud::Common::AbstractModel
+        # @param Word: <p>词对应的文本</p>
+        # @type Word: String
+        # @param TimeBeginMs: <p>词对应的时间起点</p>
+        # @type TimeBeginMs: Integer
+        # @param TimeEndMs: <p>词对应的时间尾点</p>
+        # @type TimeEndMs: Integer
+        # @param WordBegin: <p>词的索引起点</p>
+        # @type WordBegin: Integer
+        # @param WordEnd: <p>词的索引尾点</p>
+        # @type WordEnd: Integer
+
+        attr_accessor :Word, :TimeBeginMs, :TimeEndMs, :WordBegin, :WordEnd
+
+        def initialize(word=nil, timebeginms=nil, timeendms=nil, wordbegin=nil, wordend=nil)
+          @Word = word
+          @TimeBeginMs = timebeginms
+          @TimeEndMs = timeendms
+          @WordBegin = wordbegin
+          @WordEnd = wordend
+        end
+
+        def deserialize(params)
+          @Word = params['Word']
+          @TimeBeginMs = params['TimeBeginMs']
+          @TimeEndMs = params['TimeEndMs']
+          @WordBegin = params['WordBegin']
+          @WordEnd = params['WordEnd']
         end
       end
 

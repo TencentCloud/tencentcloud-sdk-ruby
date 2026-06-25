@@ -806,32 +806,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 历史接口，已经无用户调用
-
-        # 本接口（DescribeApiApp）用于根据应用ID搜索应用。此接口已下线，如需使用功能请使用DescribeApiAppsStatus接口。
-
-        # @param request: Request instance for DescribeApiApp.
-        # @type request: :class:`Tencentcloud::apigateway::V20180808::DescribeApiAppRequest`
-        # @rtype: :class:`Tencentcloud::apigateway::V20180808::DescribeApiAppResponse`
-        def DescribeApiApp(request)
-          body = send_request('DescribeApiApp', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeApiAppResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 本接口（DescribeApiAppBindApisStatus）查询应用绑定的Api列表。
 
         # @param request: Request instance for DescribeApiAppBindApisStatus.
@@ -978,7 +952,7 @@ module TencentCloud
         end
 
         # 本接口（DescribeApiKeysStatus）用于查询密钥列表。
-        # 当用户创建了多个密钥对时，可使用本接口查询一个或多个 API 密钥信息。
+        # 当用户创建了多个密钥对时，可使用本接口查询一个或多个 API 密钥信息1。
 
         # @param request: Request instance for DescribeApiKeysStatus.
         # @type request: :class:`Tencentcloud::apigateway::V20180808::DescribeApiKeysStatusRequest`

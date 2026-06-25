@@ -8164,7 +8164,7 @@ module TencentCloud
 
       # CreateAigcAudioTask请求参数结构体
       class CreateAigcAudioTaskRequest < TencentCloud::Common::AbstractModel
-        # @param ModelName: <p>模型名称。生音乐当前支持的模型: GL、MinimaxMusic。</p>
+        # @param ModelName: <p>模型名称。生音乐当前支持的模型: GL、MiniMaxMusic。</p>
         # @type ModelName: String
         # @param ModelVersion: <p>指定模型特定版本号。默认使用系统当前所支持的模型稳定版本。<br>模型GL支持的版本号：2.0、3.0-clip、3.0-pro。<br>模型MinimaxMusic支持的版本号：2.0、2.5、2.6。</p>
         # @type ModelVersion: String

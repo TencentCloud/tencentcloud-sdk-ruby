@@ -1033,6 +1033,8 @@ module TencentCloud
         # @type DiskEnhance: Integer
         # @param EnableDiagnose: <p>是否开启智能巡检</p>
         # @type EnableDiagnose: Boolean
+        # @param EnableCosBackup: <p>是否开启自动备份</p>
+        # @type EnableCosBackup: Boolean
         # @param CdcId: <p>cdcId，使用cdc子网时传递</p>
         # @type CdcId: String
         # @param DisasterRecoverGroupAffinity: <p>置放群组亲和度，范围[0,10]，0表示不开启</p>
@@ -1052,9 +1054,9 @@ module TencentCloud
         # @param AlarmPolicyIds: <p>已有的云监控告警策略 ID</p>
         # @type AlarmPolicyIds: Array
 
-        attr_accessor :Zone, :EsVersion, :VpcId, :SubnetId, :Password, :InstanceName, :NodeNum, :ChargeType, :ChargePeriod, :RenewFlag, :NodeType, :DiskType, :DiskSize, :TimeUnit, :AutoVoucher, :VoucherIds, :EnableDedicatedMaster, :MasterNodeNum, :MasterNodeType, :MasterNodeDiskSize, :ClusterNameInConf, :DeployMode, :MultiZoneInfo, :LicenseType, :NodeInfoList, :TagList, :BasicSecurityType, :SceneType, :WebNodeTypeInfo, :Protocol, :OperationDuration, :EnableHybridStorage, :DiskEnhance, :EnableDiagnose, :CdcId, :DisasterRecoverGroupAffinity, :SubProductCode, :ReadWriteMode, :EnableScheduleRecoverGroup, :EnableScheduleOperationDuration, :AutoScaleDiskInfoList, :EnableKibanaPublicAccess, :AlarmPolicyIds
+        attr_accessor :Zone, :EsVersion, :VpcId, :SubnetId, :Password, :InstanceName, :NodeNum, :ChargeType, :ChargePeriod, :RenewFlag, :NodeType, :DiskType, :DiskSize, :TimeUnit, :AutoVoucher, :VoucherIds, :EnableDedicatedMaster, :MasterNodeNum, :MasterNodeType, :MasterNodeDiskSize, :ClusterNameInConf, :DeployMode, :MultiZoneInfo, :LicenseType, :NodeInfoList, :TagList, :BasicSecurityType, :SceneType, :WebNodeTypeInfo, :Protocol, :OperationDuration, :EnableHybridStorage, :DiskEnhance, :EnableDiagnose, :EnableCosBackup, :CdcId, :DisasterRecoverGroupAffinity, :SubProductCode, :ReadWriteMode, :EnableScheduleRecoverGroup, :EnableScheduleOperationDuration, :AutoScaleDiskInfoList, :EnableKibanaPublicAccess, :AlarmPolicyIds
 
-        def initialize(zone=nil, esversion=nil, vpcid=nil, subnetid=nil, password=nil, instancename=nil, nodenum=nil, chargetype=nil, chargeperiod=nil, renewflag=nil, nodetype=nil, disktype=nil, disksize=nil, timeunit=nil, autovoucher=nil, voucherids=nil, enablededicatedmaster=nil, masternodenum=nil, masternodetype=nil, masternodedisksize=nil, clusternameinconf=nil, deploymode=nil, multizoneinfo=nil, licensetype=nil, nodeinfolist=nil, taglist=nil, basicsecuritytype=nil, scenetype=nil, webnodetypeinfo=nil, protocol=nil, operationduration=nil, enablehybridstorage=nil, diskenhance=nil, enablediagnose=nil, cdcid=nil, disasterrecovergroupaffinity=nil, subproductcode=nil, readwritemode=nil, enableschedulerecovergroup=nil, enablescheduleoperationduration=nil, autoscalediskinfolist=nil, enablekibanapublicaccess=nil, alarmpolicyids=nil)
+        def initialize(zone=nil, esversion=nil, vpcid=nil, subnetid=nil, password=nil, instancename=nil, nodenum=nil, chargetype=nil, chargeperiod=nil, renewflag=nil, nodetype=nil, disktype=nil, disksize=nil, timeunit=nil, autovoucher=nil, voucherids=nil, enablededicatedmaster=nil, masternodenum=nil, masternodetype=nil, masternodedisksize=nil, clusternameinconf=nil, deploymode=nil, multizoneinfo=nil, licensetype=nil, nodeinfolist=nil, taglist=nil, basicsecuritytype=nil, scenetype=nil, webnodetypeinfo=nil, protocol=nil, operationduration=nil, enablehybridstorage=nil, diskenhance=nil, enablediagnose=nil, enablecosbackup=nil, cdcid=nil, disasterrecovergroupaffinity=nil, subproductcode=nil, readwritemode=nil, enableschedulerecovergroup=nil, enablescheduleoperationduration=nil, autoscalediskinfolist=nil, enablekibanapublicaccess=nil, alarmpolicyids=nil)
           @Zone = zone
           @EsVersion = esversion
           @VpcId = vpcid
@@ -1089,6 +1091,7 @@ module TencentCloud
           @EnableHybridStorage = enablehybridstorage
           @DiskEnhance = diskenhance
           @EnableDiagnose = enablediagnose
+          @EnableCosBackup = enablecosbackup
           @CdcId = cdcid
           @DisasterRecoverGroupAffinity = disasterrecovergroupaffinity
           @SubProductCode = subproductcode
@@ -1162,6 +1165,7 @@ module TencentCloud
           @EnableHybridStorage = params['EnableHybridStorage']
           @DiskEnhance = params['DiskEnhance']
           @EnableDiagnose = params['EnableDiagnose']
+          @EnableCosBackup = params['EnableCosBackup']
           @CdcId = params['CdcId']
           @DisasterRecoverGroupAffinity = params['DisasterRecoverGroupAffinity']
           @SubProductCode = params['SubProductCode']

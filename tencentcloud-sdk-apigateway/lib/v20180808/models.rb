@@ -3562,46 +3562,6 @@ module TencentCloud
         end
       end
 
-      # DescribeApiApp请求参数结构体
-      class DescribeApiAppRequest < TencentCloud::Common::AbstractModel
-        # @param ApiAppId: 应用ID。
-        # @type ApiAppId: String
-
-        attr_accessor :ApiAppId
-
-        def initialize(apiappid=nil)
-          @ApiAppId = apiappid
-        end
-
-        def deserialize(params)
-          @ApiAppId = params['ApiAppId']
-        end
-      end
-
-      # DescribeApiApp返回参数结构体
-      class DescribeApiAppResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 应用详情。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Result: :class:`Tencentcloud::Apigateway.v20180808.models.ApiAppInfos`
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Result, :RequestId
-
-        def initialize(result=nil, requestid=nil)
-          @Result = result
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['Result'].nil?
-            @Result = ApiAppInfos.new
-            @Result.deserialize(params['Result'])
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
       # DescribeApiAppsStatus请求参数结构体
       class DescribeApiAppsStatusRequest < TencentCloud::Common::AbstractModel
         # @param Limit: 返回数量，默认为 20，最大值为 100。

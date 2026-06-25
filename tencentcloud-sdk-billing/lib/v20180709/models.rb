@@ -2217,84 +2217,86 @@ module TencentCloud
 
       # 账单明细数据对象
       class BillDetail < TencentCloud::Common::AbstractModel
-        # @param BusinessCodeName: 产品名称：用户所采购的各类云产品，例如：云服务器 CVM
+        # @param BusinessCodeName: <p>产品名称：用户所采购的各类云产品，例如：云服务器 CVM</p>
         # @type BusinessCodeName: String
-        # @param ProductCodeName: 子产品名称：用户采购的具体产品细分类型，例如：云服务器 CVM-标准型 S1
+        # @param ProductCodeName: <p>子产品名称：用户采购的具体产品细分类型，例如：云服务器 CVM-标准型 S1</p>
         # @type ProductCodeName: String
-        # @param PayModeName: 计费模式：资源的计费模式，区分为包年包月和按量计费
+        # @param PayModeName: <p>计费模式：资源的计费模式，区分为包年包月和按量计费</p>
         # @type PayModeName: String
-        # @param ProjectName: 项目名称：资源归属的项目，用户在控制台给资源自主分配项目，未分配则是默认项目
+        # @param ProjectName: <p>项目名称：资源归属的项目，用户在控制台给资源自主分配项目，未分配则是默认项目</p>
         # @type ProjectName: String
-        # @param RegionName: 地域：资源所属地域，如华南地区（广州）
+        # @param RegionName: <p>地域：资源所属地域，如华南地区（广州）</p>
         # @type RegionName: String
-        # @param ZoneName: 可用区：资源所属可用区，如广州三区
+        # @param ZoneName: <p>可用区：资源所属可用区，如广州三区</p>
         # @type ZoneName: String
-        # @param ResourceId: 资源 ID：账单中出账对象 ID，不同产品因资源形态不同，资源内容不完全相同，如云服务器 CVM 为对应的实例 ID
+        # @param ResourceId: <p>资源 ID：账单中出账对象 ID，不同产品因资源形态不同，资源内容不完全相同，如云服务器 CVM 为对应的实例 ID</p>
         # @type ResourceId: String
-        # @param ResourceName: 资源别名：用户在控制台为资源设置的名称，如果未设置，则默认为空
+        # @param ResourceName: <p>资源别名：用户在控制台为资源设置的名称，如果未设置，则默认为空</p>
         # @type ResourceName: String
-        # @param ActionTypeName: 交易类型，如包年包月新购、包年包月续费、按量计费扣费等类型
+        # @param ActionTypeName: <p>交易类型，如包年包月新购、包年包月续费、按量计费扣费等类型</p>
         # @type ActionTypeName: String
-        # @param OrderId: 订单ID：包年包月计费模式下对应子订单号。后付费计费模式下账单费用不存在订单概念，可忽略此参数。
+        # @param OrderId: <p>订单ID：包年包月计费模式下对应子订单号。后付费计费模式下账单费用不存在订单概念，可忽略此参数。</p>
         # @type OrderId: String
-        # @param BillId: 交易ID：结算扣费单号
+        # @param BillId: <p>交易ID：结算扣费单号</p>
         # @type BillId: String
-        # @param PayTime: 扣费时间：结算扣费时间
+        # @param PayTime: <p>扣费时间：结算扣费时间</p>
         # @type PayTime: String
-        # @param FeeBeginTime: 开始使用时间：产品服务开始使用时间
+        # @param FeeBeginTime: <p>开始使用时间：产品服务开始使用时间</p>
         # @type FeeBeginTime: String
-        # @param FeeEndTime: 结束使用时间：产品服务结束使用时间
+        # @param FeeEndTime: <p>结束使用时间：产品服务结束使用时间</p>
         # @type FeeEndTime: String
-        # @param ComponentSet: 组件列表
+        # @param ComponentSet: <p>组件列表</p>
         # @type ComponentSet: Array
-        # @param PayerUin: 支付者UIN：支付者的账号 ID，账号 ID 是用户在腾讯云的唯一账号标识
+        # @param PayerUin: <p>支付者UIN：支付者的账号 ID，账号 ID 是用户在腾讯云的唯一账号标识</p>
         # @type PayerUin: String
-        # @param OwnerUin: 使用者UIN：实际使用资源的账号 ID
+        # @param OwnerUin: <p>使用者UIN：实际使用资源的账号 ID</p>
         # @type OwnerUin: String
-        # @param OperateUin: 操作者UIN：操作者账号 ID（预付费资源下单或后付费操作开通资源账号的 ID 或者角色 ID ）
+        # @param OperateUin: <p>操作者UIN：操作者账号 ID（预付费资源下单或后付费操作开通资源账号的 ID 或者角色 ID ）</p>
         # @type OperateUin: String
-        # @param Tags: 标签信息
+        # @param Tags: <p>标签信息</p>
         # @type Tags: Array
-        # @param BusinessCode: 产品编码
+        # @param BusinessCode: <p>产品编码</p>
         # @type BusinessCode: String
-        # @param ProductCode: 子产品编码
+        # @param ProductCode: <p>子产品编码</p>
         # @type ProductCode: String
-        # @param ActionType: 交易类型编码
+        # @param ActionType: <p>交易类型编码</p>
         # @type ActionType: String
-        # @param RegionId: 地域ID
+        # @param RegionId: <p>地域ID</p>
         # @type RegionId: String
-        # @param ProjectId: 项目ID
+        # @param ProjectId: <p>项目ID</p>
         # @type ProjectId: Integer
-        # @param PriceInfo: 价格属性：该组件除单价、时长外的其他影响折扣定价的属性信息
+        # @param PriceInfo: <p>价格属性：该组件除单价、时长外的其他影响折扣定价的属性信息</p>
         # @type PriceInfo: Array
-        # @param AssociatedOrder: 关联交易单据ID：和本笔交易关联单据 ID，如，冲销订单，记录原订单、重结订单，退费单记录对应的原购买订单号
+        # @param AssociatedOrder: <p>关联交易单据ID：和本笔交易关联单据 ID，如，冲销订单，记录原订单、重结订单，退费单记录对应的原购买订单号</p>
         # @type AssociatedOrder: :class:`Tencentcloud::Billing.v20180709.models.BillDetailAssociatedOrder`
-        # @param Formula: 计算说明：特殊交易类型计费结算的详细计算说明，如退费及变配
+        # @param Formula: <p>计算说明：特殊交易类型计费结算的详细计算说明，如退费及变配</p>
         # @type Formula: String
-        # @param FormulaUrl: 计费规则：各产品详细的计费规则官网说明链接
+        # @param FormulaUrl: <p>计费规则：各产品详细的计费规则官网说明链接</p>
         # @type FormulaUrl: String
-        # @param BillDay: 账单归属日
+        # @param BillDay: <p>账单归属日</p>
         # @type BillDay: String
-        # @param BillMonth: 账单归属月
+        # @param BillMonth: <p>账单归属月</p>
         # @type BillMonth: String
-        # @param Id: 账单记录ID
+        # @param Id: <p>账单记录ID</p>
         # @type Id: String
-        # @param RegionType: 国内国际编码
+        # @param RegionType: <p>国内国际编码</p>
         # @type RegionType: String
-        # @param RegionTypeName: 国内国际：资源所属区域类型（国内、国际）
+        # @param RegionTypeName: <p>国内国际：资源所属区域类型（国内、国际）</p>
         # @type RegionTypeName: String
-        # @param ReserveDetail: 备注属性（实例配置）：其他备注信息，如预留实例的预留实例类型和交易类型、CCN 产品的两端地域信息
+        # @param ReserveDetail: <p>备注属性（实例配置）：其他备注信息，如预留实例的预留实例类型和交易类型、CCN 产品的两端地域信息</p>
         # @type ReserveDetail: String
-        # @param DiscountObject: 优惠对象
+        # @param DiscountObject: <p>优惠对象</p>
         # @type DiscountObject: String
-        # @param DiscountType: 优惠类型
+        # @param DiscountType: <p>优惠类型</p>
         # @type DiscountType: String
-        # @param DiscountContent: 优惠内容
+        # @param DiscountContent: <p>优惠内容</p>
         # @type DiscountContent: String
+        # @param ExtendField: <p>资源扩展信息：体现资源维度的扩展信息，与L2账单的扩展字段信息保持一致。</p>
+        # @type ExtendField: String
 
-        attr_accessor :BusinessCodeName, :ProductCodeName, :PayModeName, :ProjectName, :RegionName, :ZoneName, :ResourceId, :ResourceName, :ActionTypeName, :OrderId, :BillId, :PayTime, :FeeBeginTime, :FeeEndTime, :ComponentSet, :PayerUin, :OwnerUin, :OperateUin, :Tags, :BusinessCode, :ProductCode, :ActionType, :RegionId, :ProjectId, :PriceInfo, :AssociatedOrder, :Formula, :FormulaUrl, :BillDay, :BillMonth, :Id, :RegionType, :RegionTypeName, :ReserveDetail, :DiscountObject, :DiscountType, :DiscountContent
+        attr_accessor :BusinessCodeName, :ProductCodeName, :PayModeName, :ProjectName, :RegionName, :ZoneName, :ResourceId, :ResourceName, :ActionTypeName, :OrderId, :BillId, :PayTime, :FeeBeginTime, :FeeEndTime, :ComponentSet, :PayerUin, :OwnerUin, :OperateUin, :Tags, :BusinessCode, :ProductCode, :ActionType, :RegionId, :ProjectId, :PriceInfo, :AssociatedOrder, :Formula, :FormulaUrl, :BillDay, :BillMonth, :Id, :RegionType, :RegionTypeName, :ReserveDetail, :DiscountObject, :DiscountType, :DiscountContent, :ExtendField
 
-        def initialize(businesscodename=nil, productcodename=nil, paymodename=nil, projectname=nil, regionname=nil, zonename=nil, resourceid=nil, resourcename=nil, actiontypename=nil, orderid=nil, billid=nil, paytime=nil, feebegintime=nil, feeendtime=nil, componentset=nil, payeruin=nil, owneruin=nil, operateuin=nil, tags=nil, businesscode=nil, productcode=nil, actiontype=nil, regionid=nil, projectid=nil, priceinfo=nil, associatedorder=nil, formula=nil, formulaurl=nil, billday=nil, billmonth=nil, id=nil, regiontype=nil, regiontypename=nil, reservedetail=nil, discountobject=nil, discounttype=nil, discountcontent=nil)
+        def initialize(businesscodename=nil, productcodename=nil, paymodename=nil, projectname=nil, regionname=nil, zonename=nil, resourceid=nil, resourcename=nil, actiontypename=nil, orderid=nil, billid=nil, paytime=nil, feebegintime=nil, feeendtime=nil, componentset=nil, payeruin=nil, owneruin=nil, operateuin=nil, tags=nil, businesscode=nil, productcode=nil, actiontype=nil, regionid=nil, projectid=nil, priceinfo=nil, associatedorder=nil, formula=nil, formulaurl=nil, billday=nil, billmonth=nil, id=nil, regiontype=nil, regiontypename=nil, reservedetail=nil, discountobject=nil, discounttype=nil, discountcontent=nil, extendfield=nil)
           @BusinessCodeName = businesscodename
           @ProductCodeName = productcodename
           @PayModeName = paymodename
@@ -2332,6 +2334,7 @@ module TencentCloud
           @DiscountObject = discountobject
           @DiscountType = discounttype
           @DiscountContent = discountcontent
+          @ExtendField = extendfield
         end
 
         def deserialize(params)
@@ -2389,6 +2392,7 @@ module TencentCloud
           @DiscountObject = params['DiscountObject']
           @DiscountType = params['DiscountType']
           @DiscountContent = params['DiscountContent']
+          @ExtendField = params['ExtendField']
         end
       end
 

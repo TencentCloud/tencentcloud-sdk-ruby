@@ -4579,6 +4579,34 @@ module TencentCloud
         end
       end
 
+      # 重置密码的用户类型
+      class ResetUserPasswordInfo < TencentCloud::Common::AbstractModel
+        # @param UserName: <p>用户名</p>
+        # @type UserName: String
+        # @param Host: <p>host</p>
+        # @type Host: String
+        # @param Password: <p>明文密码</p>
+        # @type Password: String
+        # @param EncryptedPassword: <p>加密密码</p>
+        # @type EncryptedPassword: String
+
+        attr_accessor :UserName, :Host, :Password, :EncryptedPassword
+
+        def initialize(username=nil, host=nil, password=nil, encryptedpassword=nil)
+          @UserName = username
+          @Host = host
+          @Password = password
+          @EncryptedPassword = encryptedpassword
+        end
+
+        def deserialize(params)
+          @UserName = params['UserName']
+          @Host = params['Host']
+          @Password = params['Password']
+          @EncryptedPassword = params['EncryptedPassword']
+        end
+      end
+
       # ResetUserPassword请求参数结构体
       class ResetUserPasswordRequest < TencentCloud::Common::AbstractModel
         # @param UserName: 用户名
@@ -4623,6 +4651,53 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ResetUsersPassword请求参数结构体
+      class ResetUsersPasswordRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>实例id</p>
+        # @type InstanceId: String
+        # @param Users: <p>重置用户密码列表</p>
+        # @type Users: Array
+
+        attr_accessor :InstanceId, :Users
+
+        def initialize(instanceid=nil, users=nil)
+          @InstanceId = instanceid
+          @Users = users
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          unless params['Users'].nil?
+            @Users = []
+            params['Users'].each do |i|
+              resetuserpasswordinfo_tmp = ResetUserPasswordInfo.new
+              resetuserpasswordinfo_tmp.deserialize(i)
+              @Users << resetuserpasswordinfo_tmp
+            end
+          end
+        end
+      end
+
+      # ResetUsersPassword返回参数结构体
+      class ResetUsersPasswordResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: <p>任务id</p>
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :RequestId
+
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
           @RequestId = params['RequestId']
         end
       end
