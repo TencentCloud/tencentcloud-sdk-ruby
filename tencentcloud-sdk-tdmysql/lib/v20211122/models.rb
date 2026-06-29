@@ -4607,54 +4607,6 @@ module TencentCloud
         end
       end
 
-      # ResetUserPassword请求参数结构体
-      class ResetUserPasswordRequest < TencentCloud::Common::AbstractModel
-        # @param UserName: 用户名
-        # @type UserName: String
-        # @param InstanceId: 实例ID
-        # @type InstanceId: String
-        # @param Host: 主机IP，IP段以%结尾，表示允许该IP段的所有IP
-        # @type Host: String
-        # @param Password: 新密码，要求长度8-32，至少包含英文、数字和符号中的两种
-        # @type Password: String
-        # @param EncryptedPassword: 加密密码
-        # @type EncryptedPassword: String
-
-        attr_accessor :UserName, :InstanceId, :Host, :Password, :EncryptedPassword
-
-        def initialize(username=nil, instanceid=nil, host=nil, password=nil, encryptedpassword=nil)
-          @UserName = username
-          @InstanceId = instanceid
-          @Host = host
-          @Password = password
-          @EncryptedPassword = encryptedpassword
-        end
-
-        def deserialize(params)
-          @UserName = params['UserName']
-          @InstanceId = params['InstanceId']
-          @Host = params['Host']
-          @Password = params['Password']
-          @EncryptedPassword = params['EncryptedPassword']
-        end
-      end
-
-      # ResetUserPassword返回参数结构体
-      class ResetUserPasswordResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :RequestId
-
-        def initialize(requestid=nil)
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @RequestId = params['RequestId']
-        end
-      end
-
       # ResetUsersPassword请求参数结构体
       class ResetUsersPasswordRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: <p>实例id</p>

@@ -1037,30 +1037,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（ResetUserPassword）提供重置用户密码功能
-
-        # @param request: Request instance for ResetUserPassword.
-        # @type request: :class:`Tencentcloud::tdmysql::V20211122::ResetUserPasswordRequest`
-        # @rtype: :class:`Tencentcloud::tdmysql::V20211122::ResetUserPasswordResponse`
-        def ResetUserPassword(request)
-          body = send_request('ResetUserPassword', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = ResetUserPasswordResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 本接口（ResetUsersPassword）用于批量重置用户密码
 
         # @param request: Request instance for ResetUsersPassword.

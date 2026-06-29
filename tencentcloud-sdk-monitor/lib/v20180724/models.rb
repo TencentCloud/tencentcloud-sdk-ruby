@@ -2082,25 +2082,25 @@ module TencentCloud
 
       # CreateConditionsTemplate请求参数结构体
       class CreateConditionsTemplateRequest < TencentCloud::Common::AbstractModel
-        # @param Module: 固定值，monitor
+        # @param Module: <p>固定值，monitor</p>
         # @type Module: String
-        # @param ViewName: 视图名
+        # @param ViewName: <p>视图名</p>
         # @type ViewName: String
-        # @param GroupName: 组名
+        # @param GroupName: <p>组名</p>
         # @type GroupName: String
-        # @param IsUnionRule: 是否为与关系
+        # @param IsUnionRule: <p>是否为与关系</p>
         # @type IsUnionRule: Integer
-        # @param Remark: 备注
+        # @param Remark: <p>备注</p>
         # @type Remark: String
-        # @param ParentGroupID: 父ID
+        # @param ParentGroupID: <p>父ID</p>
         # @type ParentGroupID: Integer
-        # @param IsShielded: 是否屏蔽
+        # @param IsShielded: <p>是否屏蔽</p>
         # @type IsShielded: Integer
-        # @param ComplexExpression: 复合告警表达式
+        # @param ComplexExpression: <p>复合告警表达式</p>
         # @type ComplexExpression: String
-        # @param Conditions: 指标告警条件
+        # @param Conditions: <p>指标告警条件</p>
         # @type Conditions: Array
-        # @param EventConditions: 事件告警条件
+        # @param EventConditions: <p>事件告警条件</p>
         # @type EventConditions: Array
 
         attr_accessor :Module, :ViewName, :GroupName, :IsUnionRule, :Remark, :ParentGroupID, :IsShielded, :ComplexExpression, :Conditions, :EventConditions
@@ -2148,7 +2148,7 @@ module TencentCloud
 
       # CreateConditionsTemplate返回参数结构体
       class CreateConditionsTemplateResponse < TencentCloud::Common::AbstractModel
-        # @param GroupID: 模板策略组ID
+        # @param GroupID: <p>模板策略组ID</p>
         # @type GroupID: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4804,64 +4804,61 @@ module TencentCloud
 
       # DescribeAlarmPolicies请求参数结构体
       class DescribeAlarmPoliciesRequest < TencentCloud::Common::AbstractModel
-        # @param Module: 固定值，为"monitor"
+        # @param Module: <p>固定值，为&quot;monitor&quot;</p>
         # @type Module: String
-        # @param PageNumber: 页数，从 1 开始计数，默认 1
+        # @param PageNumber: <p>页数，从 1 开始计数，默认 1</p>
         # @type PageNumber: Integer
-        # @param PageSize: 每页的数量，取值1~100，默认20
+        # @param PageSize: <p>每页的数量，取值1~100，默认20</p>
         # @type PageSize: Integer
-        # @param PolicyName: 按策略名称模糊搜索
+        # @param PolicyName: <p>按策略名称模糊搜索</p>
         # @type PolicyName: String
-        # @param MonitorTypes: 根据监控类型过滤 不选默认查所有类型 "MT_QCE"=云产品监控,当Dimension不为空时，该项为必填项
+        # @param MonitorTypes: <p>根据监控类型过滤 不选默认查所有类型 &quot;MT_QCE&quot;=云产品监控,当Dimension不为空时，该项为必填项</p>
         # @type MonitorTypes: Array
-        # @param Namespaces: 根据命名空间过滤，不同策略类型的值详见
-        # [策略类型列表](https://cloud.tencent.com/document/product/248/50397)当Dimension不为空时，该项为必填项
+        # @param Namespaces: <p>根据命名空间过滤，不同策略类型的值详见<br><a href="https://cloud.tencent.com/document/product/248/50397">策略类型列表</a>当Dimension不为空时，该项为必填项</p>
         # @type Namespaces: Array
-        # @param Dimensions: 告警对象列表，JSON 字符串。外层数组，对应多个实例，内层为对象的维度。例如“云服务器-基础监控”可写为：`[[{"name":"unInstanceId","value":"ins-qr888845g"}]]`具体也可以参考下方的示例 2。不同云产品参数示例详见 [维度信息Dimensions列表](https://cloud.tencent.com/document/product/248/50397)注意：如果NeedCorrespondence传入1，即需要返回策略与实例对应关系，请传入不多于20个告警对象维度，否则容易请求超时
+        # @param Dimensions: <p>告警对象列表，JSON 字符串。外层数组，对应多个实例，内层为对象的维度。例如“云服务器-基础监控”可写为：<code>[[{&quot;name&quot;:&quot;unInstanceId&quot;,&quot;value&quot;:&quot;ins-qr888845g&quot;}]]</code>具体也可以参考下方的示例 2。不同云产品参数示例详见 <a href="https://cloud.tencent.com/document/product/248/50397">维度信息Dimensions列表</a>注意：如果NeedCorrespondence传入1，即需要返回策略与实例对应关系，请传入不多于20个告警对象维度，否则容易请求超时</p>
         # @type Dimensions: String
-        # @param ReceiverUids: 根据接收人搜索，可以使用“访问管理”的 [拉取子用户 ListUsers](https://cloud.tencent.com/document/product/598/34587) 接口获取用户列表 或 [查询子用户 GetUser](https://cloud.tencent.com/document/product/598/34590) 接口查询子用户详情，此处填入返回结果中的 `Uid` 字段
+        # @param ReceiverUids: <p>根据接收人搜索，可以使用“访问管理”的 <a href="https://cloud.tencent.com/document/product/598/34587">拉取子用户 ListUsers</a> 接口获取用户列表 或 <a href="https://cloud.tencent.com/document/product/598/34590">查询子用户 GetUser</a> 接口查询子用户详情，此处填入返回结果中的 <code>Uid</code> 字段</p>
         # @type ReceiverUids: Array
-        # @param ReceiverGroups: 根据接收组搜索，可以使用“访问管理”的 [查询用户组列表 ListGroups](https://cloud.tencent.com/document/product/598/34589) 接口获取用户组列表 或 [列出用户关联的用户组 ListGroupsForUser](https://cloud.tencent.com/document/product/598/34588) 查询某个子用户所在的用户组列表 ，此处填入返回结果中的 `GroupId ` 字段
+        # @param ReceiverGroups: <p>根据接收组搜索，可以使用“访问管理”的 <a href="https://cloud.tencent.com/document/product/598/34589">查询用户组列表 ListGroups</a> 接口获取用户组列表 或 <a href="https://cloud.tencent.com/document/product/598/34588">列出用户关联的用户组 ListGroupsForUser</a> 查询某个子用户所在的用户组列表 ，此处填入返回结果中的 <code>GroupId</code> 字段</p>
         # @type ReceiverGroups: Array
-        # @param PolicyType: 根据默认策略筛选 不传展示全部策略 DEFAULT=展示默认策略 NOT_DEFAULT=展示非默认策略
+        # @param PolicyType: <p>根据默认策略筛选 不传展示全部策略 DEFAULT=展示默认策略 NOT_DEFAULT=展示非默认策略</p>
         # @type PolicyType: Array
-        # @param Field: 排序字段，例如按照最后修改时间排序，Field: "UpdateTime"
+        # @param Field: <p>排序字段，例如按照最后修改时间排序，Field: &quot;UpdateTime&quot;</p>
         # @type Field: String
-        # @param Order: 排序顺序：升序：ASC  降序：DESC
+        # @param Order: <p>排序顺序：升序：ASC  降序：DESC</p>
         # @type Order: String
-        # @param ProjectIds: 策略所属项目的id数组，可在此页面查看
-        # [项目管理](https://console.cloud.tencent.com/project)
+        # @param ProjectIds: <p>策略所属项目的id数组，可在此页面查看<br><a href="https://console.cloud.tencent.com/project">项目管理</a></p>
         # @type ProjectIds: Array
-        # @param NoticeIds: 通知模板的id列表，可查询通知模板列表获取。
-        # 可使用 [查询通知模板列表](https://cloud.tencent.com/document/product/248/51280) 接口查询。
+        # @param NoticeIds: <p>通知模板的id列表，可查询通知模板列表获取。<br>可使用 <a href="https://cloud.tencent.com/document/product/248/51280">查询通知模板列表</a> 接口查询。</p>
         # @type NoticeIds: Array
-        # @param RuleTypes: 根据触发条件筛选 不传展示全部策略 STATIC=展示静态阈值策略 DYNAMIC=展示动态阈值策略
+        # @param RuleTypes: <p>根据触发条件筛选 不传展示全部策略 STATIC=展示静态阈值策略 DYNAMIC=展示动态阈值策略</p>
         # @type RuleTypes: Array
-        # @param Enable: 告警启停筛选，[1]：启用   [0]：停止，全部[0, 1]
+        # @param Enable: <p>告警启停筛选，[1]：启用   [0]：停止，全部[0, 1]</p>
         # @type Enable: Array
-        # @param NotBindingNoticeRule: 传 1 查询未配置通知规则的告警策略；不传或传其他数值，查询所有策略。
+        # @param NotBindingNoticeRule: <p>传 1 查询未配置通知规则的告警策略；不传或传其他数值，查询所有策略。</p>
         # @type NotBindingNoticeRule: Integer
-        # @param InstanceGroupId: 实例分组id
+        # @param InstanceGroupId: <p>实例分组id</p>
         # @type InstanceGroupId: Integer
-        # @param NeedCorrespondence: 是否需要策略与入参过滤维度参数的对应关系，1：是  0：否，默认为0
+        # @param NeedCorrespondence: <p>是否需要策略与入参过滤维度参数的对应关系，1：是  0：否，默认为0</p>
         # @type NeedCorrespondence: Integer
-        # @param TriggerTasks: 按照触发任务（例如弹性伸缩）过滤策略。最多10个
+        # @param TriggerTasks: <p>按照触发任务（例如弹性伸缩）过滤策略。最多10个</p>
         # @type TriggerTasks: Array
-        # @param OneClickPolicyType: 根据一键告警策略筛选 不传展示全部策略 ONECLICK=展示一键告警策略 NOT_ONECLICK=展示非一键告警策略
+        # @param OneClickPolicyType: <p>根据一键告警策略筛选 不传展示全部策略 ONECLICK=展示一键告警策略 NOT_ONECLICK=展示非一键告警策略</p>
         # @type OneClickPolicyType: Array
-        # @param NotBindAll: 返回结果过滤掉绑定全部对象的策略，1代表需要过滤，0则无需过滤
+        # @param NotBindAll: <p>返回结果过滤掉绑定全部对象的策略，1代表需要过滤，0则无需过滤</p>
         # @type NotBindAll: Integer
-        # @param NotInstanceGroup: 返回结果过滤掉关联实例为实例分组的策略，1代表需要过滤，0则无需过滤
+        # @param NotInstanceGroup: <p>返回结果过滤掉关联实例为实例分组的策略，1代表需要过滤，0则无需过滤</p>
         # @type NotInstanceGroup: Integer
-        # @param Tags: 策略根据标签过滤
+        # @param Tags: <p>策略根据标签过滤</p>
         # @type Tags: Array
-        # @param PromInsId: prom实例id，自定义指标策略时会用到
+        # @param PromInsId: <p>prom实例id，自定义指标策略时会用到</p>
         # @type PromInsId: String
-        # @param ReceiverOnCallFormIDs: 根据排班表搜索
+        # @param ReceiverOnCallFormIDs: <p>根据排班表搜索</p>
         # @type ReceiverOnCallFormIDs: Array
-        # @param NoticeContentTmplIDs: 通知内容模板ID筛选
+        # @param NoticeContentTmplIDs: <p>通知内容模板ID筛选</p>
         # @type NoticeContentTmplIDs: Array
-        # @param IsPredefined: 是否为预设策略，1是，0否
+        # @param IsPredefined: <p>是否为预设策略，1是，0否</p>
         # @type IsPredefined: Integer
 
         attr_accessor :Module, :PageNumber, :PageSize, :PolicyName, :MonitorTypes, :Namespaces, :Dimensions, :ReceiverUids, :ReceiverGroups, :PolicyType, :Field, :Order, :ProjectIds, :NoticeIds, :RuleTypes, :Enable, :NotBindingNoticeRule, :InstanceGroupId, :NeedCorrespondence, :TriggerTasks, :OneClickPolicyType, :NotBindAll, :NotInstanceGroup, :Tags, :PromInsId, :ReceiverOnCallFormIDs, :NoticeContentTmplIDs, :IsPredefined
@@ -4945,9 +4942,9 @@ module TencentCloud
 
       # DescribeAlarmPolicies返回参数结构体
       class DescribeAlarmPoliciesResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 策略总数
+        # @param TotalCount: <p>策略总数</p>
         # @type TotalCount: Integer
-        # @param Policies: 策略数组
+        # @param Policies: <p>策略数组</p>
         # @type Policies: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5103,21 +5100,19 @@ module TencentCloud
 
       # DescribeAlertRules请求参数结构体
       class DescribeAlertRulesRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: Prometheus 实例 ID
+        # @param InstanceId: <p>Prometheus 实例 ID</p>
         # @type InstanceId: String
-        # @param Limit: 返回数量，默认为 20，最大值为 100
+        # @param Limit: <p>返回数量，默认为 20，最大值为 100</p>
         # @type Limit: Integer
-        # @param Offset: 偏移量，默认为 0
+        # @param Offset: <p>偏移量，默认为 0</p>
         # @type Offset: Integer
-        # @param RuleId: 规则 ID
+        # @param RuleId: <p>规则 ID</p>
         # @type RuleId: String
-        # @param RuleState: 规则状态码，取值如下：
-        # <li>2=RuleEnabled</li>
-        # <li>3=RuleDisabled</li>
+        # @param RuleState: <p>规则状态码，取值如下：</p><li>2=RuleEnabled</li><li>3=RuleDisabled</li>
         # @type RuleState: Integer
-        # @param RuleName: 规则名称
+        # @param RuleName: <p>规则名称</p>
         # @type RuleName: String
-        # @param Type: 报警策略模板分类
+        # @param Type: <p>报警策略模板分类</p>
         # @type Type: String
 
         attr_accessor :InstanceId, :Limit, :Offset, :RuleId, :RuleState, :RuleName, :Type
@@ -5145,9 +5140,9 @@ module TencentCloud
 
       # DescribeAlertRules返回参数结构体
       class DescribeAlertRulesResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 报警规则数量
+        # @param TotalCount: <p>报警规则数量</p>
         # @type TotalCount: Integer
-        # @param AlertRuleSet: 报警规则详情
+        # @param AlertRuleSet: <p>报警规则详情</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AlertRuleSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -5448,29 +5443,29 @@ module TencentCloud
 
       # DescribeBasicAlarmList请求参数结构体
       class DescribeBasicAlarmListRequest < TencentCloud::Common::AbstractModel
-        # @param Module: 接口模块名，当前取值monitor
+        # @param Module: <p>接口模块名，当前取值monitor</p>
         # @type Module: String
-        # @param StartTime: 起始时间，默认一天前的时间戳
+        # @param StartTime: <p>起始时间，默认一天前的时间戳</p>
         # @type StartTime: Integer
-        # @param EndTime: 结束时间，默认当前时间戳
+        # @param EndTime: <p>结束时间，默认当前时间戳</p>
         # @type EndTime: Integer
-        # @param Limit: 分页参数，每页返回的数量，取值1~100，默认20
+        # @param Limit: <p>分页参数，每页返回的数量，取值1~100，默认20</p>
         # @type Limit: Integer
-        # @param Offset: 分页参数，页偏移量，从0开始计数，默认0
+        # @param Offset: <p>分页参数，页偏移量，从0开始计数，默认0</p>
         # @type Offset: Integer
-        # @param OccurTimeOrder: 根据发生时间排序，取值ASC或DESC
+        # @param OccurTimeOrder: <p>根据发生时间排序，取值ASC或DESC</p>
         # @type OccurTimeOrder: String
-        # @param ProjectIds: 根据项目ID过滤
+        # @param ProjectIds: <p>根据项目ID过滤</p>
         # @type ProjectIds: Array
-        # @param ViewNames: 根据策略类型过滤
+        # @param ViewNames: <p>根据策略类型过滤</p>
         # @type ViewNames: Array
-        # @param AlarmStatus: 根据告警状态过滤
+        # @param AlarmStatus: <p>根据告警状态过滤</p>
         # @type AlarmStatus: Array
-        # @param ObjLike: 根据告警对象过滤
+        # @param ObjLike: <p>根据告警对象过滤</p>
         # @type ObjLike: String
-        # @param InstanceGroupIds: 根据实例组ID过滤
+        # @param InstanceGroupIds: <p>根据实例组ID过滤</p>
         # @type InstanceGroupIds: Array
-        # @param MetricNames: 根据指标名过滤
+        # @param MetricNames: <p>根据指标名过滤</p>
         # @type MetricNames: Array
 
         attr_accessor :Module, :StartTime, :EndTime, :Limit, :Offset, :OccurTimeOrder, :ProjectIds, :ViewNames, :AlarmStatus, :ObjLike, :InstanceGroupIds, :MetricNames
@@ -5508,13 +5503,13 @@ module TencentCloud
 
       # DescribeBasicAlarmList返回参数结构体
       class DescribeBasicAlarmListResponse < TencentCloud::Common::AbstractModel
-        # @param Alarms: 告警列表
+        # @param Alarms: <p>告警列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Alarms: Array
-        # @param Total: 总数
+        # @param Total: <p>总数</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Total: Integer
-        # @param Warning: 备注信息
+        # @param Warning: <p>备注信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Warning: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -5647,17 +5642,17 @@ module TencentCloud
 
       # DescribeBindingPolicyObjectList请求参数结构体
       class DescribeBindingPolicyObjectListRequest < TencentCloud::Common::AbstractModel
-        # @param Module: 固定值，为"monitor"
+        # @param Module: <p>固定值，为&quot;monitor&quot;</p>
         # @type Module: String
-        # @param GroupId: 策略组id，如果有形如 policy-xxxx 的 id，请填到 PolicyId 字段中，本字段填 0
+        # @param GroupId: <p>策略组id，如果有形如 policy-xxxx 的 id，请填到 PolicyId 字段中，本字段填 0</p>
         # @type GroupId: Integer
-        # @param PolicyId: 告警策略id，形如 policy-xxxx，如果填入，则GroupId可以填0
+        # @param PolicyId: <p>告警策略id，形如 policy-xxxx，如果填入，则GroupId可以填0</p>
         # @type PolicyId: String
-        # @param Limit: 每次返回的数量，取值1~100，默认20
+        # @param Limit: <p>每次返回的数量，取值1~100，默认20</p>
         # @type Limit: Integer
-        # @param Offset: 偏移量，从0开始计数，默认0。举例来说，参数 Offset=0&Limit=20 返回第 0 到 19 项，Offset=20&Limit=20 返回第 20 到 39 项，以此类推
+        # @param Offset: <p>偏移量，从0开始计数，默认0。举例来说，参数 Offset=0&amp;Limit=20 返回第 0 到 19 项，Offset=20&amp;Limit=20 返回第 20 到 39 项，以此类推</p>
         # @type Offset: Integer
-        # @param Dimensions: 筛选对象的维度信息
+        # @param Dimensions: <p>筛选对象的维度信息</p>
         # @type Dimensions: Array
 
         attr_accessor :Module, :GroupId, :PolicyId, :Limit, :Offset, :Dimensions
@@ -5690,14 +5685,14 @@ module TencentCloud
 
       # DescribeBindingPolicyObjectList返回参数结构体
       class DescribeBindingPolicyObjectListResponse < TencentCloud::Common::AbstractModel
-        # @param List: 绑定的对象实例列表
+        # @param List: <p>绑定的对象实例列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type List: Array
-        # @param Total: 绑定的对象实例总数
+        # @param Total: <p>绑定的对象实例总数</p>
         # @type Total: Integer
-        # @param NoShieldedSum: 未屏蔽的对象实例数
+        # @param NoShieldedSum: <p>未屏蔽的对象实例数</p>
         # @type NoShieldedSum: Integer
-        # @param InstanceGroup: 绑定的实例分组信息，没有绑定实例分组则为空
+        # @param InstanceGroup: <p>绑定的实例分组信息，没有绑定实例分组则为空</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceGroup: :class:`Tencentcloud::Monitor.v20180724.models.DescribeBindingPolicyObjectListInstanceGroup`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -5781,21 +5776,21 @@ module TencentCloud
 
       # DescribeConditionsTemplateList请求参数结构体
       class DescribeConditionsTemplateListRequest < TencentCloud::Common::AbstractModel
-        # @param Module: 固定值，为"monitor"
+        # @param Module: <p>固定值，为&quot;monitor&quot;</p>
         # @type Module: String
-        # @param ViewName: 视图名，由 [DescribeAllNamespaces](https://cloud.tencent.com/document/product/248/48683) 获得。对于云产品监控，取接口出参的 QceNamespacesNew.N.Id，例如 cvm_device
+        # @param ViewName: <p>视图名，由 <a href="https://cloud.tencent.com/document/product/248/48683">DescribeAllNamespaces</a> 获得。对于云产品监控，取接口出参的 QceNamespacesNew.N.Id，例如 cvm_device</p>
         # @type ViewName: String
-        # @param GroupName: 根据触发条件模板名称过滤查询
+        # @param GroupName: <p>根据触发条件模板名称过滤查询</p>
         # @type GroupName: String
-        # @param GroupID: 根据触发条件模板ID过滤查询
+        # @param GroupID: <p>根据触发条件模板ID过滤查询</p>
         # @type GroupID: String
-        # @param Limit: 分页参数，每页返回的数量，取值1~100，默认20
+        # @param Limit: <p>分页参数，每页返回的数量，取值1~100，默认20</p>
         # @type Limit: Integer
-        # @param Offset: 分页参数，页偏移量，从0开始计数，默认0
+        # @param Offset: <p>分页参数，页偏移量，从0开始计数，默认0</p>
         # @type Offset: Integer
-        # @param UpdateTimeOrder: 指定按更新时间的排序方式，asc=升序, desc=降序
+        # @param UpdateTimeOrder: <p>指定按更新时间的排序方式，asc=升序, desc=降序</p>
         # @type UpdateTimeOrder: String
-        # @param PolicyCountOrder: 指定按绑定策略数目的排序方式，asc=升序, desc=降序
+        # @param PolicyCountOrder: <p>指定按绑定策略数目的排序方式，asc=升序, desc=降序</p>
         # @type PolicyCountOrder: String
 
         attr_accessor :Module, :ViewName, :GroupName, :GroupID, :Limit, :Offset, :UpdateTimeOrder, :PolicyCountOrder
@@ -5825,9 +5820,9 @@ module TencentCloud
 
       # DescribeConditionsTemplateList返回参数结构体
       class DescribeConditionsTemplateListResponse < TencentCloud::Common::AbstractModel
-        # @param Total: 模板总数
+        # @param Total: <p>模板总数</p>
         # @type Total: Integer
-        # @param TemplateGroupList: 模板列表
+        # @param TemplateGroupList: <p>模板列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TemplateGroupList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -5893,18 +5888,15 @@ module TencentCloud
 
       # DescribeExporterIntegrations请求参数结构体
       class DescribeExporterIntegrationsRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID
+        # @param InstanceId: <p>实例 ID</p>
         # @type InstanceId: String
-        # @param KubeType: Kubernetes 集群类型，可不填。取值如下：
-        # <li> 1= 容器集群(TKE) </li>
-        # <li> 2=弹性集群(EKS) </li>
-        # <li> 3= Prometheus管理的弹性集群(MEKS) </li>
+        # @param KubeType: <p>Kubernetes 集群类型，可不填。取值如下：</p><li> 1= 容器集群(TKE) </li><li> 2=弹性集群(EKS) </li><li> 3= Prometheus管理的弹性集群(MEKS) </li>
         # @type KubeType: Integer
-        # @param ClusterId: 集群 ID，可不填
+        # @param ClusterId: <p>集群 ID，可不填</p>
         # @type ClusterId: String
-        # @param Kind: 类型(不填返回全部集成。可通过 DescribePrometheusIntegrations 接口获取，取每一项中的 ExporterType 字段)
+        # @param Kind: <p>类型(不填返回全部集成。可通过 DescribePrometheusIntegrations 接口获取，取每一项中的 ExporterType 字段)</p>
         # @type Kind: String
-        # @param Name: 名字
+        # @param Name: <p>名字</p>
         # @type Name: String
 
         attr_accessor :InstanceId, :KubeType, :ClusterId, :Kind, :Name
@@ -5928,7 +5920,7 @@ module TencentCloud
 
       # DescribeExporterIntegrations返回参数结构体
       class DescribeExporterIntegrationsResponse < TencentCloud::Common::AbstractModel
-        # @param IntegrationSet: 集成配置列表
+        # @param IntegrationSet: <p>集成配置列表</p>
         # @type IntegrationSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -8780,6 +8772,40 @@ module TencentCloud
         end
       end
 
+      # DescribePrometheusCreateInstanceQuota请求参数结构体
+      class DescribePrometheusCreateInstanceQuotaRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribePrometheusCreateInstanceQuota返回参数结构体
+      class DescribePrometheusCreateInstanceQuotaResponse < TencentCloud::Common::AbstractModel
+        # @param QuotaDetail: <p>prometheus实例创建配额</p>
+        # @type QuotaDetail: :class:`Tencentcloud::Monitor.v20180724.models.PrometheusInstanceQuotaDetail`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :QuotaDetail, :RequestId
+
+        def initialize(quotadetail=nil, requestid=nil)
+          @QuotaDetail = quotadetail
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['QuotaDetail'].nil?
+            @QuotaDetail = PrometheusInstanceQuotaDetail.new
+            @QuotaDetail.deserialize(params['QuotaDetail'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribePrometheusGlobalConfig请求参数结构体
       class DescribePrometheusGlobalConfigRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例级别抓取配置
@@ -11159,19 +11185,19 @@ module TencentCloud
 
       # export 集成配置
       class IntegrationConfiguration < TencentCloud::Common::AbstractModel
-        # @param Name: 名字
+        # @param Name: <p>名字</p>
         # @type Name: String
-        # @param Kind: 类型
+        # @param Kind: <p>类型</p>
         # @type Kind: String
-        # @param Content: 内容
+        # @param Content: <p>内容</p>
         # @type Content: String
-        # @param Status: 状态
+        # @param Status: <p>状态</p>
         # @type Status: Integer
-        # @param Category: 实例类型
+        # @param Category: <p>实例类型</p>
         # @type Category: String
-        # @param InstanceDesc: 实例描述
+        # @param InstanceDesc: <p>实例描述</p>
         # @type InstanceDesc: String
-        # @param GrafanaDashboardURL: dashboard 的 URL
+        # @param GrafanaDashboardURL: <p>dashboard 的 URL</p>
         # @type GrafanaDashboardURL: String
 
         attr_accessor :Name, :Kind, :Content, :Status, :Category, :InstanceDesc, :GrafanaDashboardURL
@@ -11341,19 +11367,19 @@ module TencentCloud
 
       # Prometheus Agent 管理命令行
       class ManagementCommand < TencentCloud::Common::AbstractModel
-        # @param Install: Agent 安装命令
+        # @param Install: <p>Agent 安装命令</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Install: String
-        # @param Restart: Agent 重启命令
+        # @param Restart: <p>Agent 重启命令</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Restart: String
-        # @param Stop: Agent 停止命令
+        # @param Stop: <p>Agent 停止命令</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Stop: String
-        # @param StatusCheck: Agent 状态检测命令
+        # @param StatusCheck: <p>Agent 状态检测命令</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StatusCheck: String
-        # @param LogCheck: Agent 日志检测命令
+        # @param LogCheck: <p>Agent 日志检测命令</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogCheck: String
 
@@ -13304,26 +13330,26 @@ module TencentCloud
 
       # prometheus agent
       class PrometheusAgent < TencentCloud::Common::AbstractModel
-        # @param Name: Agent 名
+        # @param Name: <p>Agent 名</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
-        # @param AgentId: Agent ID
+        # @param AgentId: <p>Agent ID</p>
         # @type AgentId: String
-        # @param InstanceId: 实例 ID
+        # @param InstanceId: <p>实例 ID</p>
         # @type InstanceId: String
-        # @param Ipv4: Agent IP
+        # @param Ipv4: <p>Agent IP</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Ipv4: String
-        # @param HeartbeatTime: 心跳时间
+        # @param HeartbeatTime: <p>心跳时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HeartbeatTime: String
-        # @param LastError: 最近一次错误
+        # @param LastError: <p>最近一次错误</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LastError: String
-        # @param AgentVersion: Agent 版本
+        # @param AgentVersion: <p>Agent 版本</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AgentVersion: String
-        # @param Status: Agent 状态
+        # @param Status: <p>Agent 状态</p>
         # @type Status: Integer
 
         attr_accessor :Name, :AgentId, :InstanceId, :Ipv4, :HeartbeatTime, :LastError, :AgentVersion, :Status
@@ -13651,12 +13677,12 @@ module TencentCloud
 
       # 告警渠道使用自建alertmanager的配置
       class PrometheusAlertManagerConfig < TencentCloud::Common::AbstractModel
-        # @param Url: alertmanager url
+        # @param Url: <p>alertmanager url</p>
         # @type Url: String
-        # @param ClusterType: alertmanager部署所在集群类型
+        # @param ClusterType: <p>alertmanager部署所在集群类型</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterType: String
-        # @param ClusterId: alertmanager部署所在集群ID
+        # @param ClusterId: <p>alertmanager部署所在集群ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterId: String
 
@@ -13732,23 +13758,23 @@ module TencentCloud
 
       # Prometheus告警规则
       class PrometheusAlertRule < TencentCloud::Common::AbstractModel
-        # @param Name: 规则名称
+        # @param Name: <p>规则名称</p>
         # @type Name: String
-        # @param Rule: prometheus语句
+        # @param Rule: <p>prometheus语句</p>
         # @type Rule: String
-        # @param Labels: 额外标签
+        # @param Labels: <p>额外标签</p>
         # @type Labels: Array
-        # @param Template: 告警发送模板
+        # @param Template: <p>告警发送模板</p>
         # @type Template: String
-        # @param For: 持续时间
+        # @param For: <p>持续时间</p>
         # @type For: String
-        # @param Describe: 该条规则的描述信息
+        # @param Describe: <p>该条规则的描述信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Describe: String
-        # @param Annotations: 参考prometheus rule中的annotations
+        # @param Annotations: <p>参考prometheus rule中的annotations</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Annotations: Array
-        # @param RuleState: 告警规则状态
+        # @param RuleState: <p>告警规则状态</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleState: Integer
 
@@ -14015,9 +14041,9 @@ module TencentCloud
 
       # Prometheus 内部动态 api 代理响应
       class PrometheusDynamicAPIResponseHTTP < TencentCloud::Common::AbstractModel
-        # @param StatusCode: HTTP 状态码
+        # @param StatusCode: <p>HTTP 状态码</p>
         # @type StatusCode: Integer
-        # @param ResponseBody: HTTP 响应体
+        # @param ResponseBody: <p>HTTP 响应体</p>
         # @type ResponseBody: String
 
         attr_accessor :StatusCode, :ResponseBody
@@ -14066,6 +14092,30 @@ module TencentCloud
           @HasAgentManage = params['HasAgentManage']
           @HasTkeManage = params['HasTkeManage']
           @HasApiOperation = params['HasApiOperation']
+        end
+      end
+
+      # Prometheus实例创建配额信息
+      class PrometheusInstanceQuotaDetail < TencentCloud::Common::AbstractModel
+        # @param Limit: <p>prometheus实例创建总限制数量</p>
+        # @type Limit: Integer
+        # @param Usage: <p>当前账号下创建prometheus实例数量</p>
+        # @type Usage: Integer
+        # @param Available: <p>剩余可用prometheus实例创建数量</p>
+        # @type Available: Integer
+
+        attr_accessor :Limit, :Usage, :Available
+
+        def initialize(limit=nil, usage=nil, available=nil)
+          @Limit = limit
+          @Usage = usage
+          @Available = available
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @Usage = params['Usage']
+          @Available = params['Available']
         end
       end
 
@@ -14329,46 +14379,46 @@ module TencentCloud
 
       # 托管prometheusV2实例概览
       class PrometheusInstancesOverview < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: <p>实例ID</p>
         # @type InstanceId: String
-        # @param InstanceName: 实例名
+        # @param InstanceName: <p>实例名</p>
         # @type InstanceName: String
-        # @param VpcId: VPC ID
+        # @param VpcId: <p>VPC ID</p>
         # @type VpcId: String
-        # @param SubnetId: 子网ID
+        # @param SubnetId: <p>子网ID</p>
         # @type SubnetId: String
-        # @param InstanceStatus: 运行状态（1:正在创建；2:运行中；3:异常；4:重启中；5:销毁中； 6:已停机； 7: 已删除）
+        # @param InstanceStatus: <p>运行状态（1:正在创建；2:运行中；3:异常；4:重启中；5:销毁中； 6:已停机； 7: 已删除）</p>
         # @type InstanceStatus: Integer
-        # @param ChargeStatus: 计费状态（1:正常；2:过期; 3:销毁; 4:分配中; 5:分配失败）
+        # @param ChargeStatus: <p>计费状态（1:正常；2:过期; 3:销毁; 4:分配中; 5:分配失败）</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ChargeStatus: Integer
-        # @param EnableGrafana: 是否开启 Grafana（0:不开启，1:开启）
+        # @param EnableGrafana: <p>是否开启 Grafana（0:不开启，1:开启）</p>
         # @type EnableGrafana: Integer
-        # @param GrafanaURL: Grafana 面板 URL
+        # @param GrafanaURL: <p>Grafana 面板 URL</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GrafanaURL: String
-        # @param InstanceChargeType: 实例付费类型（1:试用版；2:预付费）
+        # @param InstanceChargeType: <p>实例付费类型（1:试用版；2:预付费）</p>
         # @type InstanceChargeType: Integer
-        # @param SpecName: 规格名称
+        # @param SpecName: <p>规格名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SpecName: String
-        # @param DataRetentionTime: 存储周期
+        # @param DataRetentionTime: <p>存储周期</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataRetentionTime: Integer
-        # @param ExpireTime: 购买的实例过期时间
+        # @param ExpireTime: <p>购买的实例过期时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExpireTime: String
-        # @param AutoRenewFlag: 自动续费标记(0:不自动续费；1:开启自动续费；2:禁止自动续费；-1:无效)
+        # @param AutoRenewFlag: <p>自动续费标记(0:不自动续费；1:开启自动续费；2:禁止自动续费；-1:无效)</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AutoRenewFlag: Integer
-        # @param BoundTotal: 绑定集群总数
+        # @param BoundTotal: <p>绑定集群总数</p>
         # @type BoundTotal: Integer
-        # @param BoundNormal: 绑定集群正常状态总数
+        # @param BoundNormal: <p>绑定集群正常状态总数</p>
         # @type BoundNormal: Integer
-        # @param ResourcePackageStatus: 资源包状态，0-无可用资源包，1-有可用资源包
+        # @param ResourcePackageStatus: <p>资源包状态，0-无可用资源包，1-有可用资源包</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourcePackageStatus: Integer
-        # @param ResourcePackageSpecName: 资源包规格名称
+        # @param ResourcePackageSpecName: <p>资源包规格名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourcePackageSpecName: String
 
@@ -14520,49 +14570,41 @@ module TencentCloud
 
       # 告警通知渠道配置
       class PrometheusNotificationItem < TencentCloud::Common::AbstractModel
-        # @param Enabled: 是否启用
+        # @param Enabled: <p>是否启用</p>
         # @type Enabled: Boolean
-        # @param Type: 通道类型，默认为amp，支持以下
-        # amp
-        # webhook
-        # alertmanager
+        # @param Type: <p>通道类型，默认为amp，支持以下<br>amp<br>webhook<br>alertmanager</p>
         # @type Type: String
-        # @param WebHook: 如果Type为webhook, 则该字段为必填项
+        # @param WebHook: <p>如果Type为webhook, 则该字段为必填项</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WebHook: String
-        # @param AlertManager: 如果Type为alertmanager, 则该字段为必填项
+        # @param AlertManager: <p>如果Type为alertmanager, 则该字段为必填项</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AlertManager: :class:`Tencentcloud::Monitor.v20180724.models.PrometheusAlertManagerConfig`
-        # @param RepeatInterval: 收敛时间
+        # @param RepeatInterval: <p>收敛时间</p>
         # @type RepeatInterval: String
-        # @param TimeRangeStart: 生效起始时间
+        # @param TimeRangeStart: <p>生效起始时间</p>
         # @type TimeRangeStart: String
-        # @param TimeRangeEnd: 生效结束时间
+        # @param TimeRangeEnd: <p>生效结束时间</p>
         # @type TimeRangeEnd: String
-        # @param NotifyWay: 告警通知方式。目前有SMS、EMAIL、CALL、WECHAT方式。
+        # @param NotifyWay: <p>告警通知方式。目前有SMS、EMAIL、CALL、WECHAT方式。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NotifyWay: Array
-        # @param ReceiverGroups: 告警接收组（用户组）
+        # @param ReceiverGroups: <p>告警接收组（用户组）</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReceiverGroups: Array
-        # @param PhoneNotifyOrder: 电话告警顺序。
-        # 注：NotifyWay选择CALL，采用该参数。
+        # @param PhoneNotifyOrder: <p>电话告警顺序。<br>注：NotifyWay选择CALL，采用该参数。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PhoneNotifyOrder: Array
-        # @param PhoneCircleTimes: 电话告警次数。
-        # 注：NotifyWay选择CALL，采用该参数。
+        # @param PhoneCircleTimes: <p>电话告警次数。<br>注：NotifyWay选择CALL，采用该参数。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PhoneCircleTimes: Integer
-        # @param PhoneInnerInterval: 电话告警轮内间隔。单位：秒
-        # 注：NotifyWay选择CALL，采用该参数。
+        # @param PhoneInnerInterval: <p>电话告警轮内间隔。单位：秒<br>注：NotifyWay选择CALL，采用该参数。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PhoneInnerInterval: Integer
-        # @param PhoneCircleInterval: 电话告警轮外间隔。单位：秒
-        # 注：NotifyWay选择CALL，采用该参数。
+        # @param PhoneCircleInterval: <p>电话告警轮外间隔。单位：秒<br>注：NotifyWay选择CALL，采用该参数。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PhoneCircleInterval: Integer
-        # @param PhoneArriveNotice: 电话告警触达通知
-        # 注：NotifyWay选择CALL，采用该参数。
+        # @param PhoneArriveNotice: <p>电话告警触达通知<br>注：NotifyWay选择CALL，采用该参数。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PhoneArriveNotice: Boolean
 
@@ -14697,9 +14739,9 @@ module TencentCloud
 
       # prometheus 报警规则 KV 参数
       class PrometheusRuleKV < TencentCloud::Common::AbstractModel
-        # @param Key: 键
+        # @param Key: <p>键</p>
         # @type Key: String
-        # @param Value: 值
+        # @param Value: <p>值</p>
         # @type Value: String
 
         attr_accessor :Key, :Value
@@ -14717,40 +14759,36 @@ module TencentCloud
 
       # prometheus 报警规则集
       class PrometheusRuleSet < TencentCloud::Common::AbstractModel
-        # @param RuleId: 规则 ID
+        # @param RuleId: <p>规则 ID</p>
         # @type RuleId: String
-        # @param RuleName: 规则名称
+        # @param RuleName: <p>规则名称</p>
         # @type RuleName: String
-        # @param RuleState: 规则状态码
+        # @param RuleState: <p>规则状态码</p>
         # @type RuleState: Integer
-        # @param Type: 规则类别
+        # @param Type: <p>规则类别</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
-        # @param Labels: 规则标签列表
+        # @param Labels: <p>规则标签列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Labels: Array
-        # @param Annotations: 规则注释列表
+        # @param Annotations: <p>规则注释列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Annotations: Array
-        # @param Expr: 规则表达式
+        # @param Expr: <p>规则表达式</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Expr: String
-        # @param Duration: 规则报警持续时间
+        # @param Duration: <p>规则报警持续时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Duration: String
-        # @param Receivers: 报警接收组列表
+        # @param Receivers: <p>报警接收组列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Receivers: Array
-        # @param Health: 规则运行健康状态，取值如下：
-        # <li>unknown 未知状态</li>
-        # <li>pending 加载中</li>
-        # <li>ok 运行正常</li>
-        # <li>err 运行错误</li>
+        # @param Health: <p>规则运行健康状态，取值如下：</p><li>unknown 未知状态</li><li>pending 加载中</li><li>ok 运行正常</li><li>err 运行错误</li>
         # @type Health: String
-        # @param CreatedAt: 规则创建时间
+        # @param CreatedAt: <p>规则创建时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreatedAt: String
-        # @param UpdatedAt: 规则更新时间
+        # @param UpdatedAt: <p>规则更新时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdatedAt: String
 
@@ -14833,9 +14871,9 @@ module TencentCloud
 
       # Prometheus 通用字符串类型 kv
       class PrometheusStringKeyValuePair < TencentCloud::Common::AbstractModel
-        # @param Key: 键
+        # @param Key: <p>键</p>
         # @type Key: String
-        # @param Value: 值
+        # @param Value: <p>值</p>
         # @type Value: String
 
         attr_accessor :Key, :Value
@@ -14853,9 +14891,9 @@ module TencentCloud
 
       # Prometheus 托管服务标签
       class PrometheusTag < TencentCloud::Common::AbstractModel
-        # @param Key: 标签的健值
+        # @param Key: <p>标签的健值</p>
         # @type Key: String
-        # @param Value: 标签对应的值
+        # @param Value: <p>标签对应的值</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
 
@@ -15014,28 +15052,24 @@ module TencentCloud
 
       # 云原生Prometheus模板可修改项
       class PrometheusTempModify < TencentCloud::Common::AbstractModel
-        # @param Name: 修改名称
+        # @param Name: <p>修改名称</p>
         # @type Name: String
-        # @param Describe: 修改描述
+        # @param Describe: <p>修改描述</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Describe: String
-        # @param ServiceMonitors: 当Level为cluster时有效，
-        # 模板中的ServiceMonitor规则列表
+        # @param ServiceMonitors: <p>当Level为cluster时有效，<br>模板中的ServiceMonitor规则列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceMonitors: Array
-        # @param PodMonitors: 当Level为cluster时有效，
-        # 模板中的PodMonitors规则列表
+        # @param PodMonitors: <p>当Level为cluster时有效，<br>模板中的PodMonitors规则列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PodMonitors: Array
-        # @param RawJobs: 当Level为cluster时有效，
-        # 模板中的RawJobs规则列表
+        # @param RawJobs: <p>当Level为cluster时有效，<br>模板中的RawJobs规则列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RawJobs: Array
-        # @param RecordRules: 当Level为instance时有效，
-        # 模板中的聚合规则列表
+        # @param RecordRules: <p>当Level为instance时有效，<br>模板中的聚合规则列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RecordRules: Array
-        # @param AlertDetailRules: 修改内容，只有当模板类型是Alert时生效
+        # @param AlertDetailRules: <p>修改内容，只有当模板类型是Alert时生效</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AlertDetailRules: Array
 
@@ -15099,26 +15133,26 @@ module TencentCloud
 
       # 云原生Prometheus模板同步目标
       class PrometheusTemplateSyncTarget < TencentCloud::Common::AbstractModel
-        # @param Region: 目标所在地域
+        # @param Region: <p>目标所在地域</p>
         # @type Region: String
-        # @param InstanceId: 目标实例
+        # @param InstanceId: <p>目标实例</p>
         # @type InstanceId: String
-        # @param ClusterId: 集群id，只有当采集模板的Level为cluster的时候需要
+        # @param ClusterId: <p>集群id，只有当采集模板的Level为cluster的时候需要</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterId: String
-        # @param SyncTime: 最后一次同步时间， 用于出参
+        # @param SyncTime: <p>最后一次同步时间， 用于出参</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SyncTime: String
-        # @param Version: 当前使用的模板版本，用于出参
+        # @param Version: <p>当前使用的模板版本，用于出参</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Version: String
-        # @param ClusterType: 集群类型，只有当采集模板的Level为cluster的时候需要
+        # @param ClusterType: <p>集群类型，只有当采集模板的Level为cluster的时候需要</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterType: String
-        # @param InstanceName: 用于出参，实例名称
+        # @param InstanceName: <p>用于出参，实例名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceName: String
-        # @param ClusterName: 用于出参，集群名称
+        # @param ClusterName: <p>用于出参，集群名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterName: String
 
@@ -15149,17 +15183,17 @@ module TencentCloud
 
       # PrometheusZoneItem 响应结构体内的地域信息
       class PrometheusZoneItem < TencentCloud::Common::AbstractModel
-        # @param Zone: 可用区
+        # @param Zone: <p>可用区</p>
         # @type Zone: String
-        # @param ZoneId: 可用区 ID
+        # @param ZoneId: <p>可用区 ID</p>
         # @type ZoneId: Integer
-        # @param ZoneState: 可用区状态( 0: 不可用；1: 可用)
+        # @param ZoneState: <p>可用区状态( 0: 不可用；1: 可用)</p>
         # @type ZoneState: Integer
-        # @param RegionId: 地域 ID
+        # @param RegionId: <p>地域 ID</p>
         # @type RegionId: Integer
-        # @param ZoneName: 可用区名（目前为中文）
+        # @param ZoneName: <p>可用区名（目前为中文）</p>
         # @type ZoneName: String
-        # @param ZoneResourceState: 可用区资源状态(0:资源不足，不可使用；1:资源足够)
+        # @param ZoneResourceState: <p>可用区资源状态(0:资源不足，不可使用；1:资源足够)</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ZoneResourceState: Integer
 
@@ -15258,21 +15292,21 @@ module TencentCloud
 
       # Prometheus 聚合规则响应结构体内信息
       class RecordingRuleSet < TencentCloud::Common::AbstractModel
-        # @param RuleId: 规则 ID
+        # @param RuleId: <p>规则 ID</p>
         # @type RuleId: String
-        # @param RuleState: 规则状态码
+        # @param RuleState: <p>规则状态码</p>
         # @type RuleState: Integer
-        # @param Name: 分组名称
+        # @param Name: <p>分组名称</p>
         # @type Name: String
-        # @param Group: 规则内容组
+        # @param Group: <p>规则内容组</p>
         # @type Group: String
-        # @param Total: 规则数量
+        # @param Total: <p>规则数量</p>
         # @type Total: Integer
-        # @param CreatedAt: 规则创建时间
+        # @param CreatedAt: <p>规则创建时间</p>
         # @type CreatedAt: String
-        # @param UpdatedAt: 规则最近更新时间
+        # @param UpdatedAt: <p>规则最近更新时间</p>
         # @type UpdatedAt: String
-        # @param RuleName: 规则名称
+        # @param RuleName: <p>规则名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleName: String
 

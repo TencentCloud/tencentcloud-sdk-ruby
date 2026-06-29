@@ -2804,6 +2804,64 @@ module TencentCloud
         end
       end
 
+      # 智能套图配置
+      class AiPosterSuiteConfig < TencentCloud::Common::AbstractModel
+        # @param Mode: <p>出图模式</p><p>枚举值：</p><ul><li>auto： 全自动模式。此模式下支持CustomVariables传入。</li><li>modify： 修改模式。此模式下需要在AddOnParameter.ExtPrompt字段提供对应描述。此模式下禁止CustomVariables传入。</li></ul><p>默认值：auto</p>
+        # @type Mode: String
+        # @param Definition: <p>电商平台视觉模板id</p><p>如需个性化定制视觉模板，请提交工单。</p>
+        # @type Definition: Integer
+        # @param Recipe: <p>子图配置。</p>
+        # @type Recipe: Array
+        # @param Language: <p>子图文案语言。</p><p>枚举值：</p><ul><li>zh-CN： 简体中文</li><li>en-US： 美式英语</li></ul><p>默认值：zh-CN</p><p>如需支持更多语言输出，请提交工单。</p>
+        # @type Language: String
+        # @param PanelRatio: <p>子图比例。</p><p>枚举值：</p><ul><li>1:1： 1:1</li><li>3:4： 3:4</li><li>4:3： 4:3</li><li>9:16： 9:16</li><li>16:9： 16:9</li></ul><p>默认值：1:1</p>
+        # @type PanelRatio: String
+        # @param PanelResolution: <p>子图分辨率</p><p>枚举值：</p><ul><li>720： 720</li><li>1K： 1K</li><li>2K： 2K</li><li>4K： 4K</li></ul><p>默认值：1K</p>
+        # @type PanelResolution: String
+        # @param CustomVariables: <p>用户自定义变量。</p>
+        # @type CustomVariables: Array
+        # @param Model: <p>模型名称。</p><p>枚举值：</p><ul><li>WAND-suite-1.0-flash： WAND-suite-1.0-flash</li></ul>
+        # @type Model: String
+
+        attr_accessor :Mode, :Definition, :Recipe, :Language, :PanelRatio, :PanelResolution, :CustomVariables, :Model
+
+        def initialize(mode=nil, definition=nil, recipe=nil, language=nil, panelratio=nil, panelresolution=nil, customvariables=nil, model=nil)
+          @Mode = mode
+          @Definition = definition
+          @Recipe = recipe
+          @Language = language
+          @PanelRatio = panelratio
+          @PanelResolution = panelresolution
+          @CustomVariables = customvariables
+          @Model = model
+        end
+
+        def deserialize(params)
+          @Mode = params['Mode']
+          @Definition = params['Definition']
+          unless params['Recipe'].nil?
+            @Recipe = []
+            params['Recipe'].each do |i|
+              recipeitem_tmp = RecipeItem.new
+              recipeitem_tmp.deserialize(i)
+              @Recipe << recipeitem_tmp
+            end
+          end
+          @Language = params['Language']
+          @PanelRatio = params['PanelRatio']
+          @PanelResolution = params['PanelResolution']
+          unless params['CustomVariables'].nil?
+            @CustomVariables = []
+            params['CustomVariables'].each do |i|
+              customvariable_tmp = CustomVariable.new
+              customvariable_tmp.deserialize(i)
+              @CustomVariables << customvariable_tmp
+            end
+          end
+          @Model = params['Model']
+        end
+      end
+
       # 媒体质检输入参数类型
       class AiQualityControlTaskInput < TencentCloud::Common::AbstractModel
         # @param Definition: 媒体质检模板 ID 。
@@ -11221,6 +11279,26 @@ module TencentCloud
         def deserialize(params)
           @WorkflowId = params['WorkflowId']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 自定义描述变量
+      class CustomVariable < TencentCloud::Common::AbstractModel
+        # @param Type: <p>用户自定义变量类型。</p><p>参数格式：PascalCase格式。</p><p>不能为UserPrompt。默认平台模板未适配自定义内容，如需适配需提交工单。</p>
+        # @type Type: String
+        # @param Description: <p>自定义变量描述。</p>
+        # @type Description: String
+
+        attr_accessor :Type, :Description
+
+        def initialize(type=nil, description=nil)
+          @Type = type
+          @Description = description
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Description = params['Description']
         end
       end
 
@@ -20526,10 +20604,12 @@ module TencentCloud
         # @type TransformConfig: :class:`Tencentcloud::Mps.v20190612.models.ImageTransformConfig`
         # @param AiTryOnConfig: <p>Ai 换装配置。</p>
         # @type AiTryOnConfig: :class:`Tencentcloud::Mps.v20190612.models.AiTryOnConfig`
+        # @param AiPosterSuiteConfig: <p>Ai套图配置。</p>
+        # @type AiPosterSuiteConfig: :class:`Tencentcloud::Mps.v20190612.models.AiPosterSuiteConfig`
 
-        attr_accessor :EncodeConfig, :EnhanceConfig, :EraseConfig, :BlindWatermarkConfig, :BeautyConfig, :TransformConfig, :AiTryOnConfig
+        attr_accessor :EncodeConfig, :EnhanceConfig, :EraseConfig, :BlindWatermarkConfig, :BeautyConfig, :TransformConfig, :AiTryOnConfig, :AiPosterSuiteConfig
 
-        def initialize(encodeconfig=nil, enhanceconfig=nil, eraseconfig=nil, blindwatermarkconfig=nil, beautyconfig=nil, transformconfig=nil, aitryonconfig=nil)
+        def initialize(encodeconfig=nil, enhanceconfig=nil, eraseconfig=nil, blindwatermarkconfig=nil, beautyconfig=nil, transformconfig=nil, aitryonconfig=nil, aipostersuiteconfig=nil)
           @EncodeConfig = encodeconfig
           @EnhanceConfig = enhanceconfig
           @EraseConfig = eraseconfig
@@ -20537,6 +20617,7 @@ module TencentCloud
           @BeautyConfig = beautyconfig
           @TransformConfig = transformconfig
           @AiTryOnConfig = aitryonconfig
+          @AiPosterSuiteConfig = aipostersuiteconfig
         end
 
         def deserialize(params)
@@ -20567,6 +20648,10 @@ module TencentCloud
           unless params['AiTryOnConfig'].nil?
             @AiTryOnConfig = AiTryOnConfig.new
             @AiTryOnConfig.deserialize(params['AiTryOnConfig'])
+          end
+          unless params['AiPosterSuiteConfig'].nil?
+            @AiPosterSuiteConfig = AiPosterSuiteConfig.new
+            @AiPosterSuiteConfig.deserialize(params['AiPosterSuiteConfig'])
           end
         end
       end
@@ -28992,6 +29077,26 @@ module TencentCloud
             @ImageTemplate = RawImageWatermarkInput.new
             @ImageTemplate.deserialize(params['ImageTemplate'])
           end
+        end
+      end
+
+      # 套图图片信息
+      class RecipeItem < TencentCloud::Common::AbstractModel
+        # @param Theme: <p>子图类型</p><p>枚举值：</p><ul><li>hero： 商品主图</li><li>detail： 商品细节图</li><li>selling： 核心卖点图</li><li>atmosphere： 场景氛围图</li><li>angles： 多角度图</li><li>scene： 使用场景图</li></ul>
+        # @type Theme: String
+        # @param Num: <p>对应子图数量。</p><p>取值范围：[1, 4]</p><p>单位：张</p><p>单种子图最多4张，子图总数必须在4-12张范围内。</p>
+        # @type Num: Integer
+
+        attr_accessor :Theme, :Num
+
+        def initialize(theme=nil, num=nil)
+          @Theme = theme
+          @Num = num
+        end
+
+        def deserialize(params)
+          @Theme = params['Theme']
+          @Num = params['Num']
         end
       end
 

@@ -21011,19 +21011,80 @@ module TencentCloud
         end
       end
 
+      # 知识库媒体分析信息。
+      class KnowledgeAnalysisInfo < TencentCloud::Common::AbstractModel
+        # @param Definition: <p>大模型解析模板号</p>
+        # @type Definition: Integer
+        # @param AnalysisResults: <p>大模型解析结果</p>
+        # @type AnalysisResults: Array
+
+        attr_accessor :Definition, :AnalysisResults
+
+        def initialize(definition=nil, analysisresults=nil)
+          @Definition = definition
+          @AnalysisResults = analysisresults
+        end
+
+        def deserialize(params)
+          @Definition = params['Definition']
+          unless params['AnalysisResults'].nil?
+            @AnalysisResults = []
+            params['AnalysisResults'].each do |i|
+              knowledgeanalysisresult_tmp = KnowledgeAnalysisResult.new
+              knowledgeanalysisresult_tmp.deserialize(i)
+              @AnalysisResults << knowledgeanalysisresult_tmp
+            end
+          end
+        end
+      end
+
+      # 知识库媒体分析结果。
+      class KnowledgeAnalysisResult < TencentCloud::Common::AbstractModel
+        # @param TaskType: <p>处理任务类型</p><p>枚举值：</p><ul><li>AiAnalysis.DescriptionTask： 智能摘要任务</li><li>AiAnalysis.VideoComprehensionTask： 视频理解任务</li><li>SmartSubtitle.AsrFullTextTask： 智能语音全文识别任务</li></ul>
+        # @type TaskType: String
+        # @param File: <p>任务输出文件集合</p>
+        # @type File: :class:`Tencentcloud::Vod.v20180717.models.MPSOutputFileInfo`
+
+        attr_accessor :TaskType, :File
+
+        def initialize(tasktype=nil, file=nil)
+          @TaskType = tasktype
+          @File = file
+        end
+
+        def deserialize(params)
+          @TaskType = params['TaskType']
+          unless params['File'].nil?
+            @File = MPSOutputFileInfo.new
+            @File.deserialize(params['File'])
+          end
+        end
+      end
+
       # 媒资智能知识库信息
       class KnowledgeBasesInfo < TencentCloud::Common::AbstractModel
         # @param Bases: <p>当前媒资当导入的知识库列表</p>
         # @type Bases: Array
+        # @param KnowledgeAnalysisInfos: <p>知识库中媒体分析信息</p>
+        # @type KnowledgeAnalysisInfos: Array
 
-        attr_accessor :Bases
+        attr_accessor :Bases, :KnowledgeAnalysisInfos
 
-        def initialize(bases=nil)
+        def initialize(bases=nil, knowledgeanalysisinfos=nil)
           @Bases = bases
+          @KnowledgeAnalysisInfos = knowledgeanalysisinfos
         end
 
         def deserialize(params)
           @Bases = params['Bases']
+          unless params['KnowledgeAnalysisInfos'].nil?
+            @KnowledgeAnalysisInfos = []
+            params['KnowledgeAnalysisInfos'].each do |i|
+              knowledgeanalysisinfo_tmp = KnowledgeAnalysisInfo.new
+              knowledgeanalysisinfo_tmp.deserialize(i)
+              @KnowledgeAnalysisInfos << knowledgeanalysisinfo_tmp
+            end
+          end
         end
       end
 

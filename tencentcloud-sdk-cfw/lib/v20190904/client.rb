@@ -1423,6 +1423,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # DescribeNDRAssetIdentificationCursorList - 游标获取NDR资产识别结果列表
+
+        # @param request: Request instance for DescribeNDRAssetIdentificationCursorList.
+        # @type request: :class:`Tencentcloud::cfw::V20190904::DescribeNDRAssetIdentificationCursorListRequest`
+        # @rtype: :class:`Tencentcloud::cfw::V20190904::DescribeNDRAssetIdentificationCursorListResponse`
+        def DescribeNDRAssetIdentificationCursorList(request)
+          body = send_request('DescribeNDRAssetIdentificationCursorList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeNDRAssetIdentificationCursorListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # DescribeNDRAssetIdentificationList - 获取NDR资产识别结果列表
 
         # @param request: Request instance for DescribeNDRAssetIdentificationList.

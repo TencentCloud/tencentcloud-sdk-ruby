@@ -4845,6 +4845,72 @@ module TencentCloud
         end
       end
 
+      # DescribeNDRAssetIdentificationCursorList请求参数结构体
+      class DescribeNDRAssetIdentificationCursorListRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: <p>每页条数</p>
+        # @type Limit: Integer
+        # @param Cursor: <p>分页游标</p><p>前一页返回的NextCursor</p>
+        # @type Cursor: String
+        # @param Filters: <p>查询过滤条件，多个条件之间为AND的关系</p>
+        # @type Filters: Array
+
+        attr_accessor :Limit, :Cursor, :Filters
+
+        def initialize(limit=nil, cursor=nil, filters=nil)
+          @Limit = limit
+          @Cursor = cursor
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @Cursor = params['Cursor']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              operatorfilter_tmp = OperatorFilter.new
+              operatorfilter_tmp.deserialize(i)
+              @Filters << operatorfilter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeNDRAssetIdentificationCursorList返回参数结构体
+      class DescribeNDRAssetIdentificationCursorListResponse < TencentCloud::Common::AbstractModel
+        # @param Data: <p>查询结果列表</p>
+        # @type Data: Array
+        # @param NextCursor: <p>下一页游标</p>
+        # @type NextCursor: String
+        # @param HasMore: <p>是否存在更多数据</p>
+        # @type HasMore: Boolean
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :NextCursor, :HasMore, :RequestId
+
+        def initialize(data=nil, nextcursor=nil, hasmore=nil, requestid=nil)
+          @Data = data
+          @NextCursor = nextcursor
+          @HasMore = hasmore
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              ndrassetserviceinfo_tmp = NDRAssetServiceInfo.new
+              ndrassetserviceinfo_tmp.deserialize(i)
+              @Data << ndrassetserviceinfo_tmp
+            end
+          end
+          @NextCursor = params['NextCursor']
+          @HasMore = params['HasMore']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeNDRAssetIdentificationList请求参数结构体
       class DescribeNDRAssetIdentificationListRequest < TencentCloud::Common::AbstractModel
         # @param Limit: 每页条数

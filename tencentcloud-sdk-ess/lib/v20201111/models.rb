@@ -1020,21 +1020,25 @@ module TencentCloud
 
       # 撤销失败的流程信息
       class CancelFailureFlow < TencentCloud::Common::AbstractModel
-        # @param FlowId: 合同流程ID，为32位字符串。
+        # @param FlowId: <p>合同流程ID，为32位字符串。</p>
         # @type FlowId: String
-        # @param Reason: 撤销失败原因
+        # @param Reason: <p>撤销失败原因</p>
         # @type Reason: String
+        # @param FlowName: <p>合同流程名称</p>
+        # @type FlowName: String
 
-        attr_accessor :FlowId, :Reason
+        attr_accessor :FlowId, :Reason, :FlowName
 
-        def initialize(flowid=nil, reason=nil)
+        def initialize(flowid=nil, reason=nil, flowname=nil)
           @FlowId = flowid
           @Reason = reason
+          @FlowName = flowname
         end
 
         def deserialize(params)
           @FlowId = params['FlowId']
           @Reason = params['Reason']
+          @FlowName = params['FlowName']
         end
       end
 
@@ -1178,7 +1182,7 @@ module TencentCloud
 
       # CancelOrganizationFlows返回参数结构体
       class CancelOrganizationFlowsResponse < TencentCloud::Common::AbstractModel
-        # @param TaskId: <p>批量撤销任务编号，为32位字符串，可用于<a href="https://qian.tencent.com/developers/partnerApis/operateFlows/DescribeCancelFlowsTask">查询批量撤销合同结果</a> 或关联<a href="https://qian.tencent.com/developers/partner/callback_types_contracts_sign#%E4%B9%9D-%E6%89%B9%E9%87%8F%E6%92%A4%E9%94%80%E7%BB%93%E6%9E%9C%E5%9B%9E%E8%B0%83">批量撤销任务结果回调</a></p>
+        # @param TaskId: <p>全量撤销企业合同任务编号，为32位字符串，可用于<a href="https://qian.tencent.com/developers/companyApis/operateFlows/CancelOrganizationFlows">查询批量撤销合同结果</a> 或关联<a href="https://qian.tencent.com/developers/company/callback_types_contracts_sign/#%E5%8D%81%E4%BA%8C-%E5%85%A8%E9%87%8F%E6%92%A4%E9%94%80%E7%BB%93%E6%9E%9C%E5%9B%9E%E8%B0%83">全量撤销企业合同任务结果回调</a></p>
         # @type TaskId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -9728,21 +9732,22 @@ module TencentCloud
 
       # DescribeCancelFlowsTask请求参数结构体
       class DescribeCancelFlowsTaskRequest < TencentCloud::Common::AbstractModel
-        # @param Operator: 执行本接口操作的员工信息。
-        # <br/>注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。
+        # @param Operator: <p>执行本接口操作的员工信息。<br><br>注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。</p>
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
-        # @param TaskId: 批量撤销任务编号，为32位字符串，通过接口[获取批量撤销签署流程腾讯电子签小程序链接](https://qian.tencent.com/developers/companyApis/operateFlows/CreateBatchCancelFlowUrl)获得。
+        # @param TaskId: <p>批量撤销任务编号，为32位字符串，通过接口<a href="https://qian.tencent.com/developers/companyApis/operateFlows/CreateBatchCancelFlowUrl">获取批量撤销签署流程腾讯电子签小程序链接</a>和接口<a href="https://qian.tencent.com/developers/companyApis/operateFlows/CancelOrganizationFlows">全量撤销企业合同</a>获得。</p>
         # @type TaskId: String
-        # @param Agent: 代理企业和员工的信息。
-        # <br/>在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
+        # @param Agent: <p>代理企业和员工的信息。<br><br>在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。</p>
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
+        # @param CancelType: <p>撤销任务类型</p><p>枚举值：</p><ul><li>0： 默认类型，获取批量撤销合同小程序链接的批量撤销任务</li><li>1： 全量撤销任务</li></ul><p>枚举值：</p><ul><li>0： 默认类型，批量撤销合同任务或者获取批量撤销合同小程序链接的批量撤销任务</li><li>1： 全量撤销任务</li></ul><p>枚举值：</p><ul><li>0： 默认类型，获取批量撤销合同小程序链接的批量撤销任务</li><li>1： 全量撤销任务</li></ul>
+        # @type CancelType: Integer
 
-        attr_accessor :Operator, :TaskId, :Agent
+        attr_accessor :Operator, :TaskId, :Agent, :CancelType
 
-        def initialize(operator=nil, taskid=nil, agent=nil)
+        def initialize(operator=nil, taskid=nil, agent=nil, canceltype=nil)
           @Operator = operator
           @TaskId = taskid
           @Agent = agent
+          @CancelType = canceltype
         end
 
         def deserialize(params)
@@ -9755,21 +9760,19 @@ module TencentCloud
             @Agent = Agent.new
             @Agent.deserialize(params['Agent'])
           end
+          @CancelType = params['CancelType']
         end
       end
 
       # DescribeCancelFlowsTask返回参数结构体
       class DescribeCancelFlowsTaskResponse < TencentCloud::Common::AbstractModel
-        # @param TaskId: 批量撤销任务编号，为32位字符串，通过接口[获取批量撤销签署流程腾讯电子签小程序链接](https://qian.tencent.com/developers/companyApis/operateFlows/CreateBatchCancelFlowUrl)获得。
+        # @param TaskId: <p>批量撤销任务编号，为32位字符串，通过接口<a href="https://qian.tencent.com/developers/companyApis/operateFlows/CreateBatchCancelFlowUrl">获取批量撤销签署流程腾讯电子签小程序链接</a>获得。</p>
         # @type TaskId: String
-        # @param TaskStatus: 任务状态，需要关注的状态
-        # <ul><li>**PROCESSING**  - 任务执行中</li>
-        # <li>**END** - 任务处理完成</li>
-        # <li>**TIMEOUT** 任务超时未处理完成，用户未在批量撤销链接有效期内操作</li></ul>
+        # @param TaskStatus: <p>任务状态，需要关注的状态</p><ul><li>**PROCESSING**  - 任务执行中</li><li>**END** - 任务处理完成</li><li>**TIMEOUT** 任务超时未处理完成，用户未在批量撤销链接有效期内操作</li></ul>
         # @type TaskStatus: String
-        # @param SuccessFlowIds: 批量撤销成功的签署流程编号
+        # @param SuccessFlowIds: <p>批量撤销成功的签署流程编号</p>
         # @type SuccessFlowIds: Array
-        # @param FailureFlows: 批量撤销失败的签署流程信息
+        # @param FailureFlows: <p>批量撤销失败的签署流程信息</p>
         # @type FailureFlows: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

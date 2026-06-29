@@ -439,35 +439,21 @@ module TencentCloud
 
       # CreateDeal请求参数结构体
       class CreateDealRequest < TencentCloud::Common::AbstractModel
-        # @param DealType: 询价类型，1 新购，2 续费，3 套餐升级（增值服务暂时只支持新购）
+        # @param DealType: <p>询价类型，1 新购，2 续费，3 套餐升级（增值服务暂时只支持新购）</p>
         # @type DealType: Integer
-        # @param GoodsType: 商品类型，1 域名套餐 2 增值服务
+        # @param GoodsType: <p>商品类型，1 域名套餐 2 增值服务</p>
         # @type GoodsType: Integer
-        # @param GoodsChildType: 套餐类型：
-        # DP_PLUS：专业版
-        # DP_EXPERT：企业版
-        # DP_ULTRA：尊享版
-
-        # 增值服务类型
-        # LB：负载均衡
-        # URL：URL转发
-        # DMONITOR_TASKS：D监控任务数
-        # DMONITOR_IP：D监控备用 IP 数
-        # CUSTOMLINE：自定义线路数
+        # @param GoodsChildType: <p>套餐类型 或 增值服务类型</p><p>枚举值：</p><ul><li>DP_PLUS： 专业版</li><li>DP_EXPERT： 企业版</li><li>DP_ULTRA： 尊享版</li><li>LB： 负载均衡</li><li>URL： URL转发</li><li>DMONITOR_TASKS： D监控任务数</li><li>DMONITOR_IP： D监控备用 IP 数</li><li>CUSTOMLINE： 自定义线路数</li></ul><p>升级场景，需传入当前域名绑定的套餐类型</p>
         # @type GoodsChildType: String
-        # @param GoodsNum: 增值服务购买数量，如果是域名套餐固定为1，如果是增值服务则按以下规则：
-        # 负载均衡、D监控任务数、D监控备用 IP 数、自定义线路数、URL 转发（必须是5的正整数倍，如 5、10、15 等）
+        # @param GoodsNum: <p>增值服务购买数量，如果是域名套餐固定为1，如果是增值服务则按以下规则：<br>负载均衡、D监控任务数、D监控备用 IP 数、自定义线路数、URL 转发（必须是5的正整数倍，如 5、10、15 等）</p>
         # @type GoodsNum: Integer
-        # @param AutoRenew: 是否开启自动续费，1 开启，2 不开启（增值服务暂不支持自动续费），默认值为 2 不开启
+        # @param AutoRenew: <p>是否开启自动续费，1 开启，2 不开启（增值服务暂不支持自动续费），默认值为 2 不开启</p>
         # @type AutoRenew: Integer
-        # @param Domain: 需要绑定套餐的域名，如 dnspod.cn，如果是续费或升级，domain 参数必须要传，新购可不传。
+        # @param Domain: <p>需要绑定套餐的域名，如 dnspod.cn，如果是续费或升级，domain 参数必须要传，新购可不传。</p>
         # @type Domain: String
-        # @param TimeSpan: 套餐时长：
-        # 1. 套餐以月为单位（按月只能是 3、6 还有 12 的倍数），套餐例如购买一年则传12，最大120 。（续费最低一年）
-        # 2. 升级套餐时不需要传。
-        # 3. 增值服务的时长单位为年，买一年传1（增值服务新购按年只能是 1，增值服务续费最大为 10）
+        # @param TimeSpan: <p>套餐时长：</p><ol><li>套餐以月为单位（按月只能是 3、6 还有 12 的倍数），套餐例如购买一年则传12，最大120 。（续费最低一年）</li><li>升级套餐时不需要传。</li><li>增值服务的时长单位为年，买一年传1（增值服务新购按年只能是 1，增值服务续费最大为 10）</li></ol>
         # @type TimeSpan: Integer
-        # @param NewPackageType: 套餐类型，需要升级到的套餐类型，只有升级时需要。
+        # @param NewPackageType: <p>套餐类型，需要升级到的套餐类型，只有升级时需要。</p>
         # @type NewPackageType: String
 
         attr_accessor :DealType, :GoodsType, :GoodsChildType, :GoodsNum, :AutoRenew, :Domain, :TimeSpan, :NewPackageType
@@ -497,9 +483,9 @@ module TencentCloud
 
       # CreateDeal返回参数结构体
       class CreateDealResponse < TencentCloud::Common::AbstractModel
-        # @param BigDealId: 大订单号，一个大订单号下可以有多个子订单，说明是同一次下单
+        # @param BigDealId: <p>大订单号，一个大订单号下可以有多个子订单，说明是同一次下单</p>
         # @type BigDealId: String
-        # @param DealList: 子订单列表
+        # @param DealList: <p>子订单列表</p>
         # @type DealList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

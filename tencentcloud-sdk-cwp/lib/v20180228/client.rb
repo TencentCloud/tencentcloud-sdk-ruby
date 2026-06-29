@@ -53,6 +53,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 添加漏洞忽略规则
+
+        # @param request: Request instance for AddVulIgnoreRule.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::AddVulIgnoreRuleRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::AddVulIgnoreRuleResponse`
+        def AddVulIgnoreRule(request)
+          body = send_request('AddVulIgnoreRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AddVulIgnoreRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 根据检测项id或事件id批量忽略事件或取消忽略
 
         # @param request: Request instance for ChangeRuleEventsIgnoreStatus.

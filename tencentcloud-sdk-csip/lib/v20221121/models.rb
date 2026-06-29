@@ -8387,6 +8387,235 @@ module TencentCloud
         end
       end
 
+      # DescribeCLSLogIndexV3请求参数结构体
+      class DescribeCLSLogIndexV3Request < TencentCloud::Common::AbstractModel
+        # @param Filters: <p>过滤条件</p>
+        # @type Filters: Array
+        # @param MemberId: <p>集团账号的成员id</p>
+        # @type MemberId: Array
+        # @param Limit: <p>limit限制</p>
+        # @type Limit: Integer
+        # @param Offset: <p>offset</p>
+        # @type Offset: Integer
+
+        attr_accessor :Filters, :MemberId, :Limit, :Offset
+
+        def initialize(filters=nil, memberid=nil, limit=nil, offset=nil)
+          @Filters = filters
+          @MemberId = memberid
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              logclsfilter_tmp = LogCLSFilter.new
+              logclsfilter_tmp.deserialize(i)
+              @Filters << logclsfilter_tmp
+            end
+          end
+          @MemberId = params['MemberId']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeCLSLogIndexV3返回参数结构体
+      class DescribeCLSLogIndexV3Response < TencentCloud::Common::AbstractModel
+        # @param TopicIndexInfos: <p>主题信息</p>
+        # @type TopicIndexInfos: Array
+        # @param TotalCount: <p>总数</p>
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TopicIndexInfos, :TotalCount, :RequestId
+
+        def initialize(topicindexinfos=nil, totalcount=nil, requestid=nil)
+          @TopicIndexInfos = topicindexinfos
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['TopicIndexInfos'].nil?
+            @TopicIndexInfos = []
+            params['TopicIndexInfos'].each do |i|
+              logtopicindexinfo_tmp = LogTopicIndexInfo.new
+              logtopicindexinfo_tmp.deserialize(i)
+              @TopicIndexInfos << logtopicindexinfo_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCLSLogListV3请求参数结构体
+      class DescribeCLSLogListV3Request < TencentCloud::Common::AbstractModel
+        # @param From: <p>开始时间</p>
+        # @type From: Integer
+        # @param To: <p>结束时间</p>
+        # @type To: Integer
+        # @param Query: <p>查询条件</p>
+        # @type Query: String
+        # @param SyntaxRule: <p>语法</p>
+        # @type SyntaxRule: Integer
+        # @param Topics: <p>主题</p>
+        # @type Topics: Array
+        # @param MemberId: <p>集团账号的成员id</p>
+        # @type MemberId: Array
+        # @param Sort: <p>排序</p>
+        # @type Sort: String
+        # @param Limit: <p>limit</p>
+        # @type Limit: Integer
+        # @param Offset: <p>offset</p>
+        # @type Offset: Integer
+        # @param SamplingRate: <p>采样</p>
+        # @type SamplingRate: Float
+        # @param HighLight: <p>是否高亮</p>
+        # @type HighLight: Boolean
+        # @param UseNewAnalysis: <p>是否采用新分析</p>
+        # @type UseNewAnalysis: Boolean
+        # @param QueryOptimize: <p>查询优化</p>
+        # @type QueryOptimize: Integer
+        # @param TopicId: <p>主题id</p>
+        # @type TopicId: String
+        # @param Context: <p>上下文信息</p>
+        # @type Context: String
+        # @param SubQueryTypes: <p>查询类型</p>
+        # @type SubQueryTypes: Array
+
+        attr_accessor :From, :To, :Query, :SyntaxRule, :Topics, :MemberId, :Sort, :Limit, :Offset, :SamplingRate, :HighLight, :UseNewAnalysis, :QueryOptimize, :TopicId, :Context, :SubQueryTypes
+
+        def initialize(from=nil, to=nil, query=nil, syntaxrule=nil, topics=nil, memberid=nil, sort=nil, limit=nil, offset=nil, samplingrate=nil, highlight=nil, usenewanalysis=nil, queryoptimize=nil, topicid=nil, context=nil, subquerytypes=nil)
+          @From = from
+          @To = to
+          @Query = query
+          @SyntaxRule = syntaxrule
+          @Topics = topics
+          @MemberId = memberid
+          @Sort = sort
+          @Limit = limit
+          @Offset = offset
+          @SamplingRate = samplingrate
+          @HighLight = highlight
+          @UseNewAnalysis = usenewanalysis
+          @QueryOptimize = queryoptimize
+          @TopicId = topicid
+          @Context = context
+          @SubQueryTypes = subquerytypes
+        end
+
+        def deserialize(params)
+          @From = params['From']
+          @To = params['To']
+          @Query = params['Query']
+          @SyntaxRule = params['SyntaxRule']
+          unless params['Topics'].nil?
+            @Topics = []
+            params['Topics'].each do |i|
+              logcontextinfo_tmp = LogContextInfo.new
+              logcontextinfo_tmp.deserialize(i)
+              @Topics << logcontextinfo_tmp
+            end
+          end
+          @MemberId = params['MemberId']
+          @Sort = params['Sort']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @SamplingRate = params['SamplingRate']
+          @HighLight = params['HighLight']
+          @UseNewAnalysis = params['UseNewAnalysis']
+          @QueryOptimize = params['QueryOptimize']
+          @TopicId = params['TopicId']
+          @Context = params['Context']
+          @SubQueryTypes = params['SubQueryTypes']
+        end
+      end
+
+      # DescribeCLSLogListV3返回参数结构体
+      class DescribeCLSLogListV3Response < TencentCloud::Common::AbstractModel
+        # @param Context: <p>上下文</p>
+        # @type Context: String
+        # @param ListOver: <p>listover</p>
+        # @type ListOver: Boolean
+        # @param Analysis: <p>是否采用分析</p>
+        # @type Analysis: Boolean
+        # @param Results: <p>结果</p>
+        # @type Results: Array
+        # @param ColNames: <p>列名</p>
+        # @type ColNames: Array
+        # @param AnalysisResults: <p>分析结果</p>
+        # @type AnalysisResults: Array
+        # @param AnalysisRecords: <p>分析记录</p>
+        # @type AnalysisRecords: Array
+        # @param Columns: <p>列名</p>
+        # @type Columns: Array
+        # @param SamplingRate: <p>采样</p>
+        # @type SamplingRate: Float
+        # @param Topics: <p>主题信息</p>
+        # @type Topics: :class:`Tencentcloud::Csip.v20221121.models.LogSearchTopics`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Context, :ListOver, :Analysis, :Results, :ColNames, :AnalysisResults, :AnalysisRecords, :Columns, :SamplingRate, :Topics, :RequestId
+
+        def initialize(context=nil, listover=nil, analysis=nil, results=nil, colnames=nil, analysisresults=nil, analysisrecords=nil, columns=nil, samplingrate=nil, topics=nil, requestid=nil)
+          @Context = context
+          @ListOver = listover
+          @Analysis = analysis
+          @Results = results
+          @ColNames = colnames
+          @AnalysisResults = analysisresults
+          @AnalysisRecords = analysisrecords
+          @Columns = columns
+          @SamplingRate = samplingrate
+          @Topics = topics
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Context = params['Context']
+          @ListOver = params['ListOver']
+          @Analysis = params['Analysis']
+          unless params['Results'].nil?
+            @Results = []
+            params['Results'].each do |i|
+              logsearchresult_tmp = LogSearchResult.new
+              logsearchresult_tmp.deserialize(i)
+              @Results << logsearchresult_tmp
+            end
+          end
+          @ColNames = params['ColNames']
+          unless params['AnalysisResults'].nil?
+            @AnalysisResults = []
+            params['AnalysisResults'].each do |i|
+              logitems_tmp = LogItems.new
+              logitems_tmp.deserialize(i)
+              @AnalysisResults << logitems_tmp
+            end
+          end
+          @AnalysisRecords = params['AnalysisRecords']
+          unless params['Columns'].nil?
+            @Columns = []
+            params['Columns'].each do |i|
+              logcolumn_tmp = LogColumn.new
+              logcolumn_tmp.deserialize(i)
+              @Columns << logcolumn_tmp
+            end
+          end
+          @SamplingRate = params['SamplingRate']
+          unless params['Topics'].nil?
+            @Topics = LogSearchTopics.new
+            @Topics.deserialize(params['Topics'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeCSIPRiskStatistics请求参数结构体
       class DescribeCSIPRiskStatisticsRequest < TencentCloud::Common::AbstractModel
         # @param MemberId: <p>集团账号的成员id</p>
@@ -21733,6 +21962,479 @@ module TencentCloud
           @Country = params['Country']
           @Region = params['Region']
           @City = params['City']
+        end
+      end
+
+      # 日志过滤器
+      class LogCLSFilter < TencentCloud::Common::AbstractModel
+        # @param Key: <p>键</p>
+        # @type Key: String
+        # @param Values: <p>值</p>
+        # @type Values: Array
+
+        attr_accessor :Key, :Values
+
+        def initialize(key=nil, values=nil)
+          @Key = key
+          @Values = values
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Values = params['Values']
+        end
+      end
+
+      # 日志列信息
+      class LogColumn < TencentCloud::Common::AbstractModel
+        # @param Name: <p>名称</p>
+        # @type Name: String
+        # @param Type: <p>类型</p>
+        # @type Type: String
+
+        attr_accessor :Name, :Type
+
+        def initialize(name=nil, type=nil)
+          @Name = name
+          @Type = type
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Type = params['Type']
+        end
+      end
+
+      # 日志检索上下文信息
+      class LogContextInfo < TencentCloud::Common::AbstractModel
+        # @param TopicId: <p>主题id</p>
+        # @type TopicId: String
+        # @param Context: <p>上下文</p>
+        # @type Context: String
+
+        attr_accessor :TopicId, :Context
+
+        def initialize(topicid=nil, context=nil)
+          @TopicId = topicid
+          @Context = context
+        end
+
+        def deserialize(params)
+          @TopicId = params['TopicId']
+          @Context = params['Context']
+        end
+      end
+
+      # 日志动态索引信息
+      class LogDynamicIndex < TencentCloud::Common::AbstractModel
+        # @param Status: <p>状态</p>
+        # @type Status: Boolean
+
+        attr_accessor :Status
+
+        def initialize(status=nil)
+          @Status = status
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+        end
+      end
+
+      # 日志全文索引信息
+      class LogFullTextInfo < TencentCloud::Common::AbstractModel
+        # @param CaseSensitive: <p>大小写敏感</p>
+        # @type CaseSensitive: Boolean
+        # @param Tokenizer: <p>token</p>
+        # @type Tokenizer: String
+        # @param ContainZH: <p>包含中文</p>
+        # @type ContainZH: Boolean
+
+        attr_accessor :CaseSensitive, :Tokenizer, :ContainZH
+
+        def initialize(casesensitive=nil, tokenizer=nil, containzh=nil)
+          @CaseSensitive = casesensitive
+          @Tokenizer = tokenizer
+          @ContainZH = containzh
+        end
+
+        def deserialize(params)
+          @CaseSensitive = params['CaseSensitive']
+          @Tokenizer = params['Tokenizer']
+          @ContainZH = params['ContainZH']
+        end
+      end
+
+      # 日志高亮信息
+      class LogHighLightItem < TencentCloud::Common::AbstractModel
+        # @param Key: <p>键</p>
+        # @type Key: String
+        # @param Values: <p>值</p>
+        # @type Values: Array
+
+        attr_accessor :Key, :Values
+
+        def initialize(key=nil, values=nil)
+          @Key = key
+          @Values = values
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Values = params['Values']
+        end
+      end
+
+      # 日志索引规则信息
+      class LogIndexRuleInfo < TencentCloud::Common::AbstractModel
+        # @param FullText: <p>全文索引</p>
+        # @type FullText: :class:`Tencentcloud::Csip.v20221121.models.LogFullTextInfo`
+        # @param KeyValue: <p>键值索引</p>
+        # @type KeyValue: :class:`Tencentcloud::Csip.v20221121.models.LogRuleKeyValueInfo`
+        # @param Tag: <p>标签</p>
+        # @type Tag: :class:`Tencentcloud::Csip.v20221121.models.LogRuleKeyValueInfo`
+        # @param DynamicIndex: <p>动态索引</p>
+        # @type DynamicIndex: :class:`Tencentcloud::Csip.v20221121.models.LogDynamicIndex`
+
+        attr_accessor :FullText, :KeyValue, :Tag, :DynamicIndex
+
+        def initialize(fulltext=nil, keyvalue=nil, tag=nil, dynamicindex=nil)
+          @FullText = fulltext
+          @KeyValue = keyvalue
+          @Tag = tag
+          @DynamicIndex = dynamicindex
+        end
+
+        def deserialize(params)
+          unless params['FullText'].nil?
+            @FullText = LogFullTextInfo.new
+            @FullText.deserialize(params['FullText'])
+          end
+          unless params['KeyValue'].nil?
+            @KeyValue = LogRuleKeyValueInfo.new
+            @KeyValue.deserialize(params['KeyValue'])
+          end
+          unless params['Tag'].nil?
+            @Tag = LogRuleKeyValueInfo.new
+            @Tag.deserialize(params['Tag'])
+          end
+          unless params['DynamicIndex'].nil?
+            @DynamicIndex = LogDynamicIndex.new
+            @DynamicIndex.deserialize(params['DynamicIndex'])
+          end
+        end
+      end
+
+      # 日志条目
+      class LogItem < TencentCloud::Common::AbstractModel
+        # @param Key: <p>键</p>
+        # @type Key: String
+        # @param Value: <p>值</p>
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
+        end
+      end
+
+      # 日志条目列表
+      class LogItems < TencentCloud::Common::AbstractModel
+        # @param Data: <p>数值</p>
+        # @type Data: Array
+
+        attr_accessor :Data
+
+        def initialize(data=nil)
+          @Data = data
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              logitem_tmp = LogItem.new
+              logitem_tmp.deserialize(i)
+              @Data << logitem_tmp
+            end
+          end
+        end
+      end
+
+      # 日志键值索引详情
+      class LogKeyValueInfo < TencentCloud::Common::AbstractModel
+        # @param Key: <p>键</p>
+        # @type Key: String
+        # @param Value: <p>值</p>
+        # @type Value: :class:`Tencentcloud::Csip.v20221121.models.LogValueInfo`
+
+        attr_accessor :Key, :Value
+
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          unless params['Value'].nil?
+            @Value = LogValueInfo.new
+            @Value.deserialize(params['Value'])
+          end
+        end
+      end
+
+      # 日志键值索引规则信息
+      class LogRuleKeyValueInfo < TencentCloud::Common::AbstractModel
+        # @param CaseSensitive: <p>大小写敏感</p>
+        # @type CaseSensitive: Boolean
+        # @param KeyValues: <p>键值索引信息</p>
+        # @type KeyValues: Array
+
+        attr_accessor :CaseSensitive, :KeyValues
+
+        def initialize(casesensitive=nil, keyvalues=nil)
+          @CaseSensitive = casesensitive
+          @KeyValues = keyvalues
+        end
+
+        def deserialize(params)
+          @CaseSensitive = params['CaseSensitive']
+          unless params['KeyValues'].nil?
+            @KeyValues = []
+            params['KeyValues'].each do |i|
+              logkeyvalueinfo_tmp = LogKeyValueInfo.new
+              logkeyvalueinfo_tmp.deserialize(i)
+              @KeyValues << logkeyvalueinfo_tmp
+            end
+          end
+        end
+      end
+
+      # 日志检索错误信息
+      class LogSearchErrors < TencentCloud::Common::AbstractModel
+        # @param TopicId: <p>主题</p>
+        # @type TopicId: String
+        # @param ErrorMsg: <p>错误信息</p>
+        # @type ErrorMsg: String
+        # @param ErrorCodeStr: <p>错误信息</p>
+        # @type ErrorCodeStr: String
+
+        attr_accessor :TopicId, :ErrorMsg, :ErrorCodeStr
+
+        def initialize(topicid=nil, errormsg=nil, errorcodestr=nil)
+          @TopicId = topicid
+          @ErrorMsg = errormsg
+          @ErrorCodeStr = errorcodestr
+        end
+
+        def deserialize(params)
+          @TopicId = params['TopicId']
+          @ErrorMsg = params['ErrorMsg']
+          @ErrorCodeStr = params['ErrorCodeStr']
+        end
+      end
+
+      # 日志检索信息
+      class LogSearchInfos < TencentCloud::Common::AbstractModel
+        # @param TopicId: <p>主题</p>
+        # @type TopicId: String
+        # @param Period: <p>时间间隔</p>
+        # @type Period: Integer
+        # @param Context: <p>上下文</p>
+        # @type Context: String
+
+        attr_accessor :TopicId, :Period, :Context
+
+        def initialize(topicid=nil, period=nil, context=nil)
+          @TopicId = topicid
+          @Period = period
+          @Context = context
+        end
+
+        def deserialize(params)
+          @TopicId = params['TopicId']
+          @Period = params['Period']
+          @Context = params['Context']
+        end
+      end
+
+      # 日志检索结果
+      class LogSearchResult < TencentCloud::Common::AbstractModel
+        # @param Time: <p>时间</p>
+        # @type Time: Integer
+        # @param TopicId: <p>主题</p>
+        # @type TopicId: String
+        # @param TopicName: <p>主题名</p>
+        # @type TopicName: String
+        # @param Source: <p>源</p>
+        # @type Source: String
+        # @param FileName: <p>文件名</p>
+        # @type FileName: String
+        # @param PkgId: <p>pkgid</p>
+        # @type PkgId: String
+        # @param PkgLogId: <p>pkglogid</p>
+        # @type PkgLogId: String
+        # @param LogJson: <p>json数据</p>
+        # @type LogJson: String
+        # @param HostName: <p>主机名</p>
+        # @type HostName: String
+        # @param RawLog: <p>log信息</p>
+        # @type RawLog: String
+        # @param IndexStatus: <p>索引状态</p>
+        # @type IndexStatus: String
+        # @param HighLights: <p>高亮信息</p>
+        # @type HighLights: Array
+
+        attr_accessor :Time, :TopicId, :TopicName, :Source, :FileName, :PkgId, :PkgLogId, :LogJson, :HostName, :RawLog, :IndexStatus, :HighLights
+
+        def initialize(time=nil, topicid=nil, topicname=nil, source=nil, filename=nil, pkgid=nil, pkglogid=nil, logjson=nil, hostname=nil, rawlog=nil, indexstatus=nil, highlights=nil)
+          @Time = time
+          @TopicId = topicid
+          @TopicName = topicname
+          @Source = source
+          @FileName = filename
+          @PkgId = pkgid
+          @PkgLogId = pkglogid
+          @LogJson = logjson
+          @HostName = hostname
+          @RawLog = rawlog
+          @IndexStatus = indexstatus
+          @HighLights = highlights
+        end
+
+        def deserialize(params)
+          @Time = params['Time']
+          @TopicId = params['TopicId']
+          @TopicName = params['TopicName']
+          @Source = params['Source']
+          @FileName = params['FileName']
+          @PkgId = params['PkgId']
+          @PkgLogId = params['PkgLogId']
+          @LogJson = params['LogJson']
+          @HostName = params['HostName']
+          @RawLog = params['RawLog']
+          @IndexStatus = params['IndexStatus']
+          unless params['HighLights'].nil?
+            @HighLights = []
+            params['HighLights'].each do |i|
+              loghighlightitem_tmp = LogHighLightItem.new
+              loghighlightitem_tmp.deserialize(i)
+              @HighLights << loghighlightitem_tmp
+            end
+          end
+        end
+      end
+
+      # 日志检索主题信息
+      class LogSearchTopics < TencentCloud::Common::AbstractModel
+        # @param Errors: <p>错误信息</p>
+        # @type Errors: Array
+        # @param Infos: <p>正常信息</p>
+        # @type Infos: Array
+
+        attr_accessor :Errors, :Infos
+
+        def initialize(errors=nil, infos=nil)
+          @Errors = errors
+          @Infos = infos
+        end
+
+        def deserialize(params)
+          unless params['Errors'].nil?
+            @Errors = []
+            params['Errors'].each do |i|
+              logsearcherrors_tmp = LogSearchErrors.new
+              logsearcherrors_tmp.deserialize(i)
+              @Errors << logsearcherrors_tmp
+            end
+          end
+          unless params['Infos'].nil?
+            @Infos = []
+            params['Infos'].each do |i|
+              logsearchinfos_tmp = LogSearchInfos.new
+              logsearchinfos_tmp.deserialize(i)
+              @Infos << logsearchinfos_tmp
+            end
+          end
+        end
+      end
+
+      # 日志主题索性信息
+      class LogTopicIndexInfo < TencentCloud::Common::AbstractModel
+        # @param TopicId: <p>主题</p>
+        # @type TopicId: String
+        # @param Status: <p>状态</p>
+        # @type Status: Boolean
+        # @param Rule: <p>规则</p>
+        # @type Rule: :class:`Tencentcloud::Csip.v20221121.models.LogIndexRuleInfo`
+        # @param ModifyTime: <p>修改时间</p>
+        # @type ModifyTime: String
+        # @param IncludeInternalFields: <p>是否包含</p>
+        # @type IncludeInternalFields: Boolean
+        # @param MetadataFlag: <p>元数据标签</p>
+        # @type MetadataFlag: Integer
+
+        attr_accessor :TopicId, :Status, :Rule, :ModifyTime, :IncludeInternalFields, :MetadataFlag
+
+        def initialize(topicid=nil, status=nil, rule=nil, modifytime=nil, includeinternalfields=nil, metadataflag=nil)
+          @TopicId = topicid
+          @Status = status
+          @Rule = rule
+          @ModifyTime = modifytime
+          @IncludeInternalFields = includeinternalfields
+          @MetadataFlag = metadataflag
+        end
+
+        def deserialize(params)
+          @TopicId = params['TopicId']
+          @Status = params['Status']
+          unless params['Rule'].nil?
+            @Rule = LogIndexRuleInfo.new
+            @Rule.deserialize(params['Rule'])
+          end
+          @ModifyTime = params['ModifyTime']
+          @IncludeInternalFields = params['IncludeInternalFields']
+          @MetadataFlag = params['MetadataFlag']
+        end
+      end
+
+      # 日志索引值描述信息
+      class LogValueInfo < TencentCloud::Common::AbstractModel
+        # @param Type: <p>类型</p>
+        # @type Type: String
+        # @param Tokenizer: <p>标签</p>
+        # @type Tokenizer: String
+        # @param SqlFlag: <p>sql标签</p>
+        # @type SqlFlag: Boolean
+        # @param ContainZH: <p>包含中文</p>
+        # @type ContainZH: Boolean
+        # @param Alias: <p>别名</p>
+        # @type Alias: String
+
+        attr_accessor :Type, :Tokenizer, :SqlFlag, :ContainZH, :Alias
+
+        def initialize(type=nil, tokenizer=nil, sqlflag=nil, containzh=nil, _alias=nil)
+          @Type = type
+          @Tokenizer = tokenizer
+          @SqlFlag = sqlflag
+          @ContainZH = containzh
+          @Alias = _alias
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Tokenizer = params['Tokenizer']
+          @SqlFlag = params['SqlFlag']
+          @ContainZH = params['ContainZH']
+          @Alias = params['Alias']
         end
       end
 

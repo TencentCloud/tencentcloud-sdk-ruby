@@ -39,21 +39,21 @@ module TencentCloud
 
       # 账号详细信息
       class AccountInfo < TencentCloud::Common::AbstractModel
-        # @param Notes: 账号备注信息
+        # @param Notes: <p>账号备注信息</p>
         # @type Notes: String
-        # @param Host: 账号的域名
+        # @param Host: <p>账号的域名</p>
         # @type Host: String
-        # @param User: 账号的名称
+        # @param User: <p>账号的名称</p>
         # @type User: String
-        # @param ModifyTime: 账号信息修改时间
+        # @param ModifyTime: <p>账号信息修改时间</p>
         # @type ModifyTime: String
-        # @param ModifyPasswordTime: 修改密码的时间
+        # @param ModifyPasswordTime: <p>修改密码的时间</p>
         # @type ModifyPasswordTime: String
-        # @param CreateTime: 该值已废弃
+        # @param CreateTime: <p>该值已废弃</p>
         # @type CreateTime: String
-        # @param MaxUserConnections: 用户最大可用实例连接数
+        # @param MaxUserConnections: <p>用户最大可用实例连接数</p>
         # @type MaxUserConnections: Integer
-        # @param OpenCam: 用户账号是否开启了密码轮转
+        # @param OpenCam: <p>用户账号是否开启了密码轮转</p>
         # @type OpenCam: Boolean
 
         attr_accessor :Notes, :Host, :User, :ModifyTime, :ModifyPasswordTime, :CreateTime, :MaxUserConnections, :OpenCam

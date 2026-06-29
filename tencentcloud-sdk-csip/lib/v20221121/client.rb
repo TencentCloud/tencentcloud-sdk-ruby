@@ -1325,6 +1325,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取日志索引信息
+
+        # @param request: Request instance for DescribeCLSLogIndexV3.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeCLSLogIndexV3Request`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeCLSLogIndexV3Response`
+        def DescribeCLSLogIndexV3(request)
+          body = send_request('DescribeCLSLogIndexV3', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCLSLogIndexV3Response.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 日志分析检索接口v3
+
+        # @param request: Request instance for DescribeCLSLogListV3.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeCLSLogListV3Request`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeCLSLogListV3Response`
+        def DescribeCLSLogListV3(request)
+          body = send_request('DescribeCLSLogListV3', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCLSLogListV3Response.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取风险中心风险概况示例
 
         # @param request: Request instance for DescribeCSIPRiskStatistics.

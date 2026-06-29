@@ -5996,31 +5996,35 @@ module TencentCloud
 
       # DescribeReleaseFiles请求参数结构体
       class DescribeReleaseFilesRequest < TencentCloud::Common::AbstractModel
-        # @param ProjectID: 项目 id
+        # @param ProjectID: <p>项目 id</p>
         # @type ProjectID: Integer
-        # @param FileVersion: 文件版本
+        # @param FileVersion: <p>文件版本</p>
         # @type FileVersion: String
-        # @param FileName: 查询过滤条件（根据sourcemap的文件名模糊匹配）
+        # @param FileName: <p>查询过滤条件（根据sourcemap的文件名模糊匹配）</p>
         # @type FileName: String
+        # @param IgnoreDefaultTimeRange: <p>false/不传=保留「最近 3 个月」约束（旧行为）；true=绕过时间窗口</p>
+        # @type IgnoreDefaultTimeRange: Boolean
 
-        attr_accessor :ProjectID, :FileVersion, :FileName
+        attr_accessor :ProjectID, :FileVersion, :FileName, :IgnoreDefaultTimeRange
 
-        def initialize(projectid=nil, fileversion=nil, filename=nil)
+        def initialize(projectid=nil, fileversion=nil, filename=nil, ignoredefaulttimerange=nil)
           @ProjectID = projectid
           @FileVersion = fileversion
           @FileName = filename
+          @IgnoreDefaultTimeRange = ignoredefaulttimerange
         end
 
         def deserialize(params)
           @ProjectID = params['ProjectID']
           @FileVersion = params['FileVersion']
           @FileName = params['FileName']
+          @IgnoreDefaultTimeRange = params['IgnoreDefaultTimeRange']
         end
       end
 
       # DescribeReleaseFiles返回参数结构体
       class DescribeReleaseFilesResponse < TencentCloud::Common::AbstractModel
-        # @param Files: 文件信息列表
+        # @param Files: <p>文件信息列表</p>
         # @type Files: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -7517,25 +7521,28 @@ module TencentCloud
 
       # 发布文件列表(SOURCEMAP)
       class ReleaseFile < TencentCloud::Common::AbstractModel
-        # @param Version: 文件版本
+        # @param Version: <p>文件版本</p>
         # @type Version: String
-        # @param FileKey: 文件唯一 key
+        # @param FileKey: <p>文件唯一 key</p>
         # @type FileKey: String
-        # @param FileName: 文件名
+        # @param FileName: <p>文件名</p>
         # @type FileName: String
-        # @param FileHash: 文件哈希值
+        # @param FileHash: <p>文件哈希值</p>
         # @type FileHash: String
-        # @param ID: 文件 id
+        # @param ID: <p>文件 id</p>
         # @type ID: Integer
+        # @param CreatedAt: <p>创建时间</p>
+        # @type CreatedAt: String
 
-        attr_accessor :Version, :FileKey, :FileName, :FileHash, :ID
+        attr_accessor :Version, :FileKey, :FileName, :FileHash, :ID, :CreatedAt
 
-        def initialize(version=nil, filekey=nil, filename=nil, filehash=nil, id=nil)
+        def initialize(version=nil, filekey=nil, filename=nil, filehash=nil, id=nil, createdat=nil)
           @Version = version
           @FileKey = filekey
           @FileName = filename
           @FileHash = filehash
           @ID = id
+          @CreatedAt = createdat
         end
 
         def deserialize(params)
@@ -7544,6 +7551,7 @@ module TencentCloud
           @FileName = params['FileName']
           @FileHash = params['FileHash']
           @ID = params['ID']
+          @CreatedAt = params['CreatedAt']
         end
       end
 

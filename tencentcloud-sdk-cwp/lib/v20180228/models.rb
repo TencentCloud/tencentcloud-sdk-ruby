@@ -111,6 +111,45 @@ module TencentCloud
         end
       end
 
+      # AddVulIgnoreRule请求参数结构体
+      class AddVulIgnoreRuleRequest < TencentCloud::Common::AbstractModel
+        # @param RuleDetailList: 忽略规则集合
+        # @type RuleDetailList: Array
+
+        attr_accessor :RuleDetailList
+
+        def initialize(ruledetaillist=nil)
+          @RuleDetailList = ruledetaillist
+        end
+
+        def deserialize(params)
+          unless params['RuleDetailList'].nil?
+            @RuleDetailList = []
+            params['RuleDetailList'].each do |i|
+              vulignorerule_tmp = VulIgnoreRule.new
+              vulignorerule_tmp.deserialize(i)
+              @RuleDetailList << vulignorerule_tmp
+            end
+          end
+        end
+      end
+
+      # AddVulIgnoreRule返回参数结构体
+      class AddVulIgnoreRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 节点关联的告警信息
       class AlarmInfo < TencentCloud::Common::AbstractModel
         # @param AlarmId: 该节点关联的告警，告警的table_name+id（t1:id1,t2:id2,...)
@@ -43896,6 +43935,59 @@ module TencentCloud
           end
           @Quuid = params['Quuid']
           @Score = params['Score']
+        end
+      end
+
+      # 漏洞忽略规则
+      class VulIgnoreRule < TencentCloud::Common::AbstractModel
+        # @param VulID: 漏洞规则ID
+        # @type VulID: Integer
+        # @param AssetScopeType: <li>0:全部主机</li>
+        # <li>1:自选主机</li>
+        # @type AssetScopeType: Integer
+        # @param IncludeQuuidList: 自选主机情况下自选主机quuid列表
+        # @type IncludeQuuidList: Array
+        # @param ExcludeQuuidList: 全部主机情况下排出的主机
+        # @type ExcludeQuuidList: Array
+        # @param Remark: 忽略的原因
+        # @type Remark: String
+        # @param ConfigHostCount: 配置主机数
+        # @type ConfigHostCount: Integer
+        # @param AffectedHostCount: 实际受影响主机数
+        # @type AffectedHostCount: Integer
+        # @param VulName: 漏洞名字
+        # @type VulName: String
+        # @param RuleID: 忽略规则ID
+        # @type RuleID: Integer
+        # @param ModifyTime: 最近更新时间
+        # @type ModifyTime: String
+
+        attr_accessor :VulID, :AssetScopeType, :IncludeQuuidList, :ExcludeQuuidList, :Remark, :ConfigHostCount, :AffectedHostCount, :VulName, :RuleID, :ModifyTime
+
+        def initialize(vulid=nil, assetscopetype=nil, includequuidlist=nil, excludequuidlist=nil, remark=nil, confighostcount=nil, affectedhostcount=nil, vulname=nil, ruleid=nil, modifytime=nil)
+          @VulID = vulid
+          @AssetScopeType = assetscopetype
+          @IncludeQuuidList = includequuidlist
+          @ExcludeQuuidList = excludequuidlist
+          @Remark = remark
+          @ConfigHostCount = confighostcount
+          @AffectedHostCount = affectedhostcount
+          @VulName = vulname
+          @RuleID = ruleid
+          @ModifyTime = modifytime
+        end
+
+        def deserialize(params)
+          @VulID = params['VulID']
+          @AssetScopeType = params['AssetScopeType']
+          @IncludeQuuidList = params['IncludeQuuidList']
+          @ExcludeQuuidList = params['ExcludeQuuidList']
+          @Remark = params['Remark']
+          @ConfigHostCount = params['ConfigHostCount']
+          @AffectedHostCount = params['AffectedHostCount']
+          @VulName = params['VulName']
+          @RuleID = params['RuleID']
+          @ModifyTime = params['ModifyTime']
         end
       end
 
