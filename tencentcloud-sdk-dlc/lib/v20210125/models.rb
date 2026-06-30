@@ -9383,6 +9383,45 @@ module TencentCloud
         end
       end
 
+      # DescribeTaskDetail请求参数结构体
+      class DescribeTaskDetailRequest < TencentCloud::Common::AbstractModel
+        # @param TaskInstanceId: 任务id
+        # @type TaskInstanceId: String
+
+        attr_accessor :TaskInstanceId
+
+        def initialize(taskinstanceid=nil)
+          @TaskInstanceId = taskinstanceid
+        end
+
+        def deserialize(params)
+          @TaskInstanceId = params['TaskInstanceId']
+        end
+      end
+
+      # DescribeTaskDetail返回参数结构体
+      class DescribeTaskDetailResponse < TencentCloud::Common::AbstractModel
+        # @param TaskDetail: 任务详情信息
+        # @type TaskDetail: :class:`Tencentcloud::Dlc.v20210125.models.TaskFullRespInfo`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskDetail, :RequestId
+
+        def initialize(taskdetail=nil, requestid=nil)
+          @TaskDetail = taskdetail
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['TaskDetail'].nil?
+            @TaskDetail = TaskFullRespInfo.new
+            @TaskDetail.deserialize(params['TaskDetail'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeTaskList请求参数结构体
       class DescribeTaskListRequest < TencentCloud::Common::AbstractModel
         # @param Limit: 返回数量，默认为10，最大值为100。

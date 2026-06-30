@@ -2573,17 +2573,15 @@ module TencentCloud
 
       # DescribeTRTCMarketQualityData请求参数结构体
       class DescribeTRTCMarketQualityDataRequest < TencentCloud::Common::AbstractModel
-        # @param SdkAppId: 用户SdkAppId（如：1400xxxxxx）
+        # @param SdkAppId: <p>用户SdkAppId（如：1400xxxxxx）</p>
         # @type SdkAppId: String
-        # @param StartTime: 查询开始时间，格式为YYYY-MM-DD。（查询时间范围根据监控仪表盘功能版本而定，【基础版】可查近30天，【进阶版】可查近60天）
+        # @param StartTime: <p>查询开始时间，格式为YYYY-MM-DD。（查询时间范围根据监控仪表盘功能版本而定，【基础版】可查近30天，【进阶版】可查近60天）</p>
         # @type StartTime: String
-        # @param EndTime: 查询结束时间，格式为YYYY-MM-DD。
+        # @param EndTime: <p>查询结束时间，格式为YYYY-MM-DD。</p>
         # @type EndTime: String
-        # @param Period: 返回数据的粒度，支持设为以下值：
-        # d：按天。此时返回查询时间范围内 UTC 时间为零点的数据。
-        # h：按小时。此时返回查询时间范围内 UTC 时间为整小时的数据。
+        # @param Period: <p>返回数据的粒度，支持设为以下值：<br>d：按天。此时返回查询时间范围内 UTC 时间为零点的数据。<br>h：按小时。此时返回查询时间范围内 UTC 时间为整小时的数据。</p>
         # @type Period: String
-        # @param IsFloat: 返回数据是否为小数
+        # @param IsFloat: <p>返回数据是否为小数</p>
         # @type IsFloat: Boolean
 
         attr_accessor :SdkAppId, :StartTime, :EndTime, :Period, :IsFloat
@@ -2607,7 +2605,7 @@ module TencentCloud
 
       # DescribeTRTCMarketQualityData返回参数结构体
       class DescribeTRTCMarketQualityDataResponse < TencentCloud::Common::AbstractModel
-        # @param Data: TRTC监控数据出参
+        # @param Data: <p>TRTC监控数据出参</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: :class:`Tencentcloud::Trtc.v20190722.models.TRTCDataResult`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。

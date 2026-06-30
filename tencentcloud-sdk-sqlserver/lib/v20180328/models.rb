@@ -949,56 +949,58 @@ module TencentCloud
 
       # CreateBasicDBInstances请求参数结构体
       class CreateBasicDBInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param Zone: 实例可用区，类似ap-guangzhou-1（广州一区）；实例可售卖区域可以通过接口DescribeZones获取
+        # @param Zone: <p>实例可用区，类似ap-guangzhou-1（广州一区）；实例可售卖区域可以通过接口DescribeZones获取</p>
         # @type Zone: String
-        # @param Cpu: 实例的CPU核心数
+        # @param Cpu: <p>实例的CPU核心数</p>
         # @type Cpu: Integer
-        # @param Memory: 实例内存大小，单位GB
+        # @param Memory: <p>实例内存大小，单位GB</p>
         # @type Memory: Integer
-        # @param Storage: 实例磁盘大小，单位GB
+        # @param Storage: <p>实例磁盘大小，单位GB</p>
         # @type Storage: Integer
-        # @param SubnetId: VPC子网ID，形如subnet-bdoe83fa
+        # @param SubnetId: <p>VPC子网ID，形如subnet-bdoe83fa</p>
         # @type SubnetId: String
-        # @param VpcId: VPC网络ID，形如vpc-dsp338hz
+        # @param VpcId: <p>VPC网络ID，形如vpc-dsp338hz</p>
         # @type VpcId: String
-        # @param MachineType: 购买实例的宿主机类型，CLOUD_PREMIUM-虚拟机高性能云硬盘，CLOUD_SSD-虚拟机SSD云硬盘,CLOUD_HSSD-虚拟机增强型SSD云硬盘，CLOUD_BSSD-虚拟机通用型SSD云盘
+        # @param MachineType: <p>购买实例的宿主机类型，CLOUD_PREMIUM-虚拟机高性能云硬盘，CLOUD_SSD-虚拟机SSD云硬盘,CLOUD_HSSD-虚拟机增强型SSD云硬盘，CLOUD_BSSD-虚拟机通用型SSD云盘</p>
         # @type MachineType: String
-        # @param InstanceChargeType: 付费模式，取值支持 PREPAID（预付费），POSTPAID（后付费）。
+        # @param InstanceChargeType: <p>付费模式，取值支持 PREPAID（预付费），POSTPAID（后付费）。</p>
         # @type InstanceChargeType: String
-        # @param ProjectId: 项目ID
+        # @param ProjectId: <p>项目ID</p>
         # @type ProjectId: Integer
-        # @param GoodsNum: 本次购买几个实例，默认值为1。取值不超过10
+        # @param GoodsNum: <p>本次购买几个实例，默认值为1。取值不超过10</p>
         # @type GoodsNum: Integer
-        # @param DBVersion: sqlserver版本，目前所有支持的版本有：2008R2 (SQL Server 2008 R2 Enterprise)，2012SP3 (SQL Server 2012 Enterprise)，201202 (SQL Server 2012 Standard)，2014SP2 (SQL Server 2014 Enterprise)，201402 (SQL Server 2014 Standard)，2016SP1 (SQL Server 2016 Enterprise)，201602 (SQL Server 2016 Standard)，2017 (SQL Server 2017 Enterprise)，201702 (SQL Server 2017 Standard)，2019 (SQL Server 2019 Enterprise)，201902 (SQL Server 2019 Standard)。每个地域支持售卖的版本不同，可通过DescribeProductConfig接口来拉取每个地域可售卖的版本信息。不填，默认为版本2008R2。
+        # @param DBVersion: <p>sqlserver版本，目前所有支持的版本有：2008R2 (SQL Server 2008 R2 Enterprise)，2012SP3 (SQL Server 2012 Enterprise)，201202 (SQL Server 2012 Standard)，2014SP2 (SQL Server 2014 Enterprise)，201402 (SQL Server 2014 Standard)，2016SP1 (SQL Server 2016 Enterprise)，201602 (SQL Server 2016 Standard)，2017 (SQL Server 2017 Enterprise)，201702 (SQL Server 2017 Standard)，2019 (SQL Server 2019 Enterprise)，201902 (SQL Server 2019 Standard)。每个地域支持售卖的版本不同，可通过DescribeProductConfig接口来拉取每个地域可售卖的版本信息。不填，默认为版本2008R2。</p>
         # @type DBVersion: String
-        # @param Period: 购买实例周期，默认取值为1，表示一个月。取值不超过48
+        # @param Period: <p>购买实例周期，默认取值为1，表示一个月。取值不超过48</p>
         # @type Period: Integer
-        # @param SecurityGroupList: 安全组列表，填写形如sg-xxx的安全组ID
+        # @param SecurityGroupList: <p>安全组列表，填写形如sg-xxx的安全组ID</p>
         # @type SecurityGroupList: Array
-        # @param AutoRenewFlag: 自动续费标志：0-正常续费  1-自动续费，默认为1自动续费。只在购买预付费实例时有效。
+        # @param AutoRenewFlag: <p>自动续费标志：0-正常续费  1-自动续费，默认为1自动续费。只在购买预付费实例时有效。</p>
         # @type AutoRenewFlag: Integer
-        # @param AutoVoucher: 是否自动使用代金券；1 - 是，0 - 否，默认不使用
+        # @param AutoVoucher: <p>是否自动使用代金券；1 - 是，0 - 否，默认不使用</p>
         # @type AutoVoucher: Integer
-        # @param VoucherIds: 代金券ID数组，目前单个订单只能使用一张
+        # @param VoucherIds: <p>代金券ID数组，目前单个订单只能使用一张</p>
         # @type VoucherIds: Array
-        # @param Weekly: 可维护时间窗配置，以周为单位，表示周几允许维护，1-7分别代表周一到周末
+        # @param Weekly: <p>可维护时间窗配置，以周为单位，表示周几允许维护，1-7分别代表周一到周末</p>
         # @type Weekly: Array
-        # @param StartTime: 可维护时间窗配置，每天可维护的开始时间
+        # @param StartTime: <p>可维护时间窗配置，每天可维护的开始时间</p>
         # @type StartTime: String
-        # @param Span: 可维护时间窗配置，持续时间，单位：小时
+        # @param Span: <p>可维护时间窗配置，持续时间，单位：小时</p>
         # @type Span: Integer
-        # @param ResourceTags: 新建实例绑定的标签集合
+        # @param ResourceTags: <p>新建实例绑定的标签集合</p>
         # @type ResourceTags: Array
-        # @param Collation: 系统字符集排序规则，默认：Chinese_PRC_CI_AS
+        # @param Collation: <p>系统字符集排序规则，默认：Chinese_PRC_CI_AS</p>
         # @type Collation: String
-        # @param TimeZone: 系统时区，默认：China Standard Time
+        # @param TimeZone: <p>系统时区，默认：China Standard Time</p>
         # @type TimeZone: String
-        # @param DiskEncryptFlag: 磁盘加密标识，0-不加密，1-加密
+        # @param DiskEncryptFlag: <p>磁盘加密标识，0-不加密，1-加密</p>
         # @type DiskEncryptFlag: Integer
+        # @param ThroughputPerformance: <p>额外磁盘 IO 吞吐量，仅 CLOUD_HSSD 支持</p><p>取值范围：[0, 650]</p><p>单位：MB/s</p>
+        # @type ThroughputPerformance: Integer
 
-        attr_accessor :Zone, :Cpu, :Memory, :Storage, :SubnetId, :VpcId, :MachineType, :InstanceChargeType, :ProjectId, :GoodsNum, :DBVersion, :Period, :SecurityGroupList, :AutoRenewFlag, :AutoVoucher, :VoucherIds, :Weekly, :StartTime, :Span, :ResourceTags, :Collation, :TimeZone, :DiskEncryptFlag
+        attr_accessor :Zone, :Cpu, :Memory, :Storage, :SubnetId, :VpcId, :MachineType, :InstanceChargeType, :ProjectId, :GoodsNum, :DBVersion, :Period, :SecurityGroupList, :AutoRenewFlag, :AutoVoucher, :VoucherIds, :Weekly, :StartTime, :Span, :ResourceTags, :Collation, :TimeZone, :DiskEncryptFlag, :ThroughputPerformance
 
-        def initialize(zone=nil, cpu=nil, memory=nil, storage=nil, subnetid=nil, vpcid=nil, machinetype=nil, instancechargetype=nil, projectid=nil, goodsnum=nil, dbversion=nil, period=nil, securitygrouplist=nil, autorenewflag=nil, autovoucher=nil, voucherids=nil, weekly=nil, starttime=nil, span=nil, resourcetags=nil, collation=nil, timezone=nil, diskencryptflag=nil)
+        def initialize(zone=nil, cpu=nil, memory=nil, storage=nil, subnetid=nil, vpcid=nil, machinetype=nil, instancechargetype=nil, projectid=nil, goodsnum=nil, dbversion=nil, period=nil, securitygrouplist=nil, autorenewflag=nil, autovoucher=nil, voucherids=nil, weekly=nil, starttime=nil, span=nil, resourcetags=nil, collation=nil, timezone=nil, diskencryptflag=nil, throughputperformance=nil)
           @Zone = zone
           @Cpu = cpu
           @Memory = memory
@@ -1022,6 +1024,7 @@ module TencentCloud
           @Collation = collation
           @TimeZone = timezone
           @DiskEncryptFlag = diskencryptflag
+          @ThroughputPerformance = throughputperformance
         end
 
         def deserialize(params)
@@ -1055,12 +1058,13 @@ module TencentCloud
           @Collation = params['Collation']
           @TimeZone = params['TimeZone']
           @DiskEncryptFlag = params['DiskEncryptFlag']
+          @ThroughputPerformance = params['ThroughputPerformance']
         end
       end
 
       # CreateBasicDBInstances返回参数结构体
       class CreateBasicDBInstancesResponse < TencentCloud::Common::AbstractModel
-        # @param DealName: 订单名称
+        # @param DealName: <p>订单名称</p>
         # @type DealName: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1235,62 +1239,66 @@ module TencentCloud
 
       # CreateCloudDBInstances请求参数结构体
       class CreateCloudDBInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param Zone: 实例可用区，类似ap-guangzhou-1（广州一区）；实例可售卖区域可以通过接口DescribeZones获取
+        # @param Zone: <p>实例可用区，类似ap-guangzhou-1（广州一区）；实例可售卖区域可以通过接口DescribeZones获取</p>
         # @type Zone: String
-        # @param Memory: 实例内存大小，单位GB
+        # @param Memory: <p>实例内存大小，单位GB</p>
         # @type Memory: Integer
-        # @param Storage: 实例磁盘大小，单位GB
+        # @param Storage: <p>实例磁盘大小，单位GB</p>
         # @type Storage: Integer
-        # @param Cpu: 实例核心数
+        # @param Cpu: <p>实例核心数</p>
         # @type Cpu: Integer
-        # @param MachineType: 购买实例的宿主机磁盘类型,CLOUD_HSSD-虚拟机加强型SSD云盘，CLOUD_TSSD-虚拟机极速型SSD云盘，CLOUD_BSSD-虚拟机通用型SSD云盘
+        # @param MachineType: <p>购买实例的宿主机磁盘类型,CLOUD_HSSD-虚拟机加强型SSD云盘，CLOUD_TSSD-虚拟机极速型SSD云盘，CLOUD_BSSD-虚拟机通用型SSD云盘</p>
         # @type MachineType: String
-        # @param InstanceChargeType: 付费模式，取值支持 PREPAID（预付费），POSTPAID（后付费）。
+        # @param InstanceChargeType: <p>付费模式，取值支持 PREPAID（预付费），POSTPAID（后付费）。</p>
         # @type InstanceChargeType: String
-        # @param ProjectId: 项目ID
+        # @param ProjectId: <p>项目ID</p>
         # @type ProjectId: Integer
-        # @param GoodsNum: 本次购买几个实例，默认值为1。取值不超过10
+        # @param GoodsNum: <p>本次购买几个实例，默认值为1。取值不超过10</p>
         # @type GoodsNum: Integer
-        # @param SubnetId: VPC子网ID，形如subnet-bdoe83fa；SubnetId和VpcId需同时设置或者同时不设置
+        # @param SubnetId: <p>VPC子网ID，形如subnet-bdoe83fa；SubnetId和VpcId需同时设置或者同时不设置</p>
         # @type SubnetId: String
-        # @param VpcId: VPC网络ID，形如vpc-dsp338hz；SubnetId和VpcId需同时设置或者同时不设置
+        # @param VpcId: <p>VPC网络ID，形如vpc-dsp338hz；SubnetId和VpcId需同时设置或者同时不设置</p>
         # @type VpcId: String
-        # @param Period: 购买实例周期，默认取值为1，表示一个月。取值不超过48
+        # @param Period: <p>购买实例周期，默认取值为1，表示一个月。取值不超过48</p>
         # @type Period: Integer
-        # @param AutoVoucher: 是否自动使用代金券；1 - 是，0 - 否，默认不使用
+        # @param AutoVoucher: <p>是否自动使用代金券；1 - 是，0 - 否，默认不使用</p>
         # @type AutoVoucher: Integer
-        # @param VoucherIds: 代金券ID数组，目前单个订单只能使用一张
+        # @param VoucherIds: <p>代金券ID数组，目前单个订单只能使用一张</p>
         # @type VoucherIds: Array
-        # @param DBVersion: sqlserver版本，目前所有支持的版本有：2008R2 (SQL Server 2008 R2 Enterprise)，2012SP3 (SQL Server 2012 Enterprise)，201202 (SQL Server 2012 Standard)，2014SP2 (SQL Server 2014 Enterprise)，201402 (SQL Server 2014 Standard)，2016SP1 (SQL Server 2016 Enterprise)，201602 (SQL Server 2016 Standard)，2017 (SQL Server 2017 Enterprise)，201702 (SQL Server 2017 Standard)，2019 (SQL Server 2019 Enterprise)，201902 (SQL Server 2019 Standard)。每个地域支持售卖的版本不同，可通过DescribeProductConfig接口来拉取每个地域可售卖的版本信息。不填，默认为版本2008R2。
+        # @param DBVersion: <p>sqlserver版本，目前所有支持的版本有：2008R2 (SQL Server 2008 R2 Enterprise)，2012SP3 (SQL Server 2012 Enterprise)，201202 (SQL Server 2012 Standard)，2014SP2 (SQL Server 2014 Enterprise)，201402 (SQL Server 2014 Standard)，2016SP1 (SQL Server 2016 Enterprise)，201602 (SQL Server 2016 Standard)，2017 (SQL Server 2017 Enterprise)，201702 (SQL Server 2017 Standard)，2019 (SQL Server 2019 Enterprise)，201902 (SQL Server 2019 Standard)。每个地域支持售卖的版本不同，可通过DescribeProductConfig接口来拉取每个地域可售卖的版本信息。不填，默认为版本2017。</p>
         # @type DBVersion: String
-        # @param AutoRenewFlag: 自动续费标志：0-正常续费  1-自动续费，默认为1自动续费。只在购买预付费实例时有效。
+        # @param AutoRenewFlag: <p>自动续费标志：0-正常续费  1-自动续费，默认为1自动续费。只在购买预付费实例时有效。</p>
         # @type AutoRenewFlag: Integer
-        # @param SecurityGroupList: 安全组列表，填写形如sg-xxx的安全组ID
+        # @param SecurityGroupList: <p>安全组列表，填写形如sg-xxx的安全组ID</p>
         # @type SecurityGroupList: Array
-        # @param Weekly: 可维护时间窗配置，以周为单位，表示周几允许维护，1-7分别代表周一到周末
+        # @param Weekly: <p>可维护时间窗配置，以周为单位，表示周几允许维护，1-7分别代表周一到周末</p>
         # @type Weekly: Array
-        # @param StartTime: 可维护时间窗配置，每天可维护的开始时间
+        # @param StartTime: <p>可维护时间窗配置，每天可维护的开始时间</p>
         # @type StartTime: String
-        # @param Span: 可维护时间窗配置，持续时间，单位：小时
+        # @param Span: <p>可维护时间窗配置，持续时间，单位：小时</p>
         # @type Span: Integer
-        # @param MultiZones: 是否跨可用区部署，默认值为false
+        # @param MultiZones: <p>是否跨可用区部署，默认值为false</p>
         # @type MultiZones: Boolean
-        # @param ResourceTags: 新建实例绑定的标签集合
+        # @param ResourceTags: <p>新建实例绑定的标签集合</p>
         # @type ResourceTags: Array
-        # @param Collation: 系统字符集排序规则，默认：Chinese_PRC_CI_AS
+        # @param Collation: <p>系统字符集排序规则，默认：Chinese_PRC_CI_AS</p>
         # @type Collation: String
-        # @param TimeZone: 系统时区，默认：China Standard Time
+        # @param TimeZone: <p>系统时区，默认：China Standard Time</p>
         # @type TimeZone: String
-        # @param MultiNodes: 是否多节点架构实例，默认值为false。当MultiNodes = true时，参数MultiZones必须取值为true。
+        # @param MultiNodes: <p>是否多节点架构实例，默认值为false。当MultiNodes = true时，参数MultiZones必须取值为true。</p>
         # @type MultiNodes: Boolean
-        # @param DrZones: 备节点可用区，默认为空。当MultiNodes = true时，主节点和备节点可用区不能全部相同。备机可用区集合最小为2个，最大不超过5个。
+        # @param DrZones: <p>备节点可用区，默认为空。当MultiNodes = true时，主节点和备节点可用区不能全部相同。备机可用区集合最小为2个，最大不超过5个。</p>
         # @type DrZones: Array
-        # @param DiskEncryptFlag: 磁盘加密标识，0-不加密，1-加密
+        # @param DiskEncryptFlag: <p>磁盘加密标识，0-不加密，1-加密</p>
         # @type DiskEncryptFlag: Integer
+        # @param ThroughputPerformance: <p>额外磁盘 IO 性能，仅 CLOUD_HSSD 支持</p><p>取值范围：[0, 650]</p><p>单位：MB/s</p>
+        # @type ThroughputPerformance: Integer
+        # @param AvailabilityStrategy: <p>可用性策略</p><p>枚举值：</p><ul><li>Async： 可用性优先（异步传输）</li><li>Sync： 可靠性优先（同步传输）</li></ul><p>默认值：Async</p><p>仅 AlwaysOn 双节点架构生效，单节点/多节点/MIRROR 架构忽略此参数</p>
+        # @type AvailabilityStrategy: String
 
-        attr_accessor :Zone, :Memory, :Storage, :Cpu, :MachineType, :InstanceChargeType, :ProjectId, :GoodsNum, :SubnetId, :VpcId, :Period, :AutoVoucher, :VoucherIds, :DBVersion, :AutoRenewFlag, :SecurityGroupList, :Weekly, :StartTime, :Span, :MultiZones, :ResourceTags, :Collation, :TimeZone, :MultiNodes, :DrZones, :DiskEncryptFlag
+        attr_accessor :Zone, :Memory, :Storage, :Cpu, :MachineType, :InstanceChargeType, :ProjectId, :GoodsNum, :SubnetId, :VpcId, :Period, :AutoVoucher, :VoucherIds, :DBVersion, :AutoRenewFlag, :SecurityGroupList, :Weekly, :StartTime, :Span, :MultiZones, :ResourceTags, :Collation, :TimeZone, :MultiNodes, :DrZones, :DiskEncryptFlag, :ThroughputPerformance, :AvailabilityStrategy
 
-        def initialize(zone=nil, memory=nil, storage=nil, cpu=nil, machinetype=nil, instancechargetype=nil, projectid=nil, goodsnum=nil, subnetid=nil, vpcid=nil, period=nil, autovoucher=nil, voucherids=nil, dbversion=nil, autorenewflag=nil, securitygrouplist=nil, weekly=nil, starttime=nil, span=nil, multizones=nil, resourcetags=nil, collation=nil, timezone=nil, multinodes=nil, drzones=nil, diskencryptflag=nil)
+        def initialize(zone=nil, memory=nil, storage=nil, cpu=nil, machinetype=nil, instancechargetype=nil, projectid=nil, goodsnum=nil, subnetid=nil, vpcid=nil, period=nil, autovoucher=nil, voucherids=nil, dbversion=nil, autorenewflag=nil, securitygrouplist=nil, weekly=nil, starttime=nil, span=nil, multizones=nil, resourcetags=nil, collation=nil, timezone=nil, multinodes=nil, drzones=nil, diskencryptflag=nil, throughputperformance=nil, availabilitystrategy=nil)
           @Zone = zone
           @Memory = memory
           @Storage = storage
@@ -1317,6 +1325,8 @@ module TencentCloud
           @MultiNodes = multinodes
           @DrZones = drzones
           @DiskEncryptFlag = diskencryptflag
+          @ThroughputPerformance = throughputperformance
+          @AvailabilityStrategy = availabilitystrategy
         end
 
         def deserialize(params)
@@ -1353,12 +1363,14 @@ module TencentCloud
           @MultiNodes = params['MultiNodes']
           @DrZones = params['DrZones']
           @DiskEncryptFlag = params['DiskEncryptFlag']
+          @ThroughputPerformance = params['ThroughputPerformance']
+          @AvailabilityStrategy = params['AvailabilityStrategy']
         end
       end
 
       # CreateCloudDBInstances返回参数结构体
       class CreateCloudDBInstancesResponse < TencentCloud::Common::AbstractModel
-        # @param DealName: 订单名称
+        # @param DealName: <p>订单名称</p>
         # @type DealName: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1378,60 +1390,62 @@ module TencentCloud
 
       # CreateCloudReadOnlyDBInstances请求参数结构体
       class CreateCloudReadOnlyDBInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 主实例ID，格式如：mssql-3l3fgqn7
+        # @param InstanceId: <p>主实例ID，格式如：mssql-3l3fgqn7</p>
         # @type InstanceId: String
-        # @param Zone: 实例可用区，类似ap-guangzhou-1（广州一区）；实例可售卖区域可以通过接口DescribeZones获取
+        # @param Zone: <p>实例可用区，类似ap-guangzhou-1（广州一区）；实例可售卖区域可以通过接口DescribeZones获取</p>
         # @type Zone: String
-        # @param ReadOnlyGroupType: 只读组类型选项，1-按照一个实例一个只读组的方式发货，2-新建只读组后发货，所有实例都在这个只读组下面， 3-发货的所有实例都在已有的只读组下面
+        # @param ReadOnlyGroupType: <p>只读组类型选项，1-按照一个实例一个只读组的方式发货，2-新建只读组后发货，所有实例都在这个只读组下面， 3-发货的所有实例都在已有的只读组下面</p>
         # @type ReadOnlyGroupType: Integer
-        # @param Memory: 实例内存大小，单位GB
+        # @param Memory: <p>实例内存大小，单位GB</p>
         # @type Memory: Integer
-        # @param Storage: 实例磁盘大小，单位GB
+        # @param Storage: <p>实例磁盘大小，单位GB</p>
         # @type Storage: Integer
-        # @param Cpu: 实例核心数
+        # @param Cpu: <p>实例核心数</p>
         # @type Cpu: Integer
-        # @param MachineType: 购买实例的宿主机磁盘类型,CLOUD_HSSD-虚拟机加强型SSD云盘，CLOUD_TSSD-虚拟机极速型SSD云盘，CLOUD_BSSD-虚拟机通用型SSD云盘
+        # @param MachineType: <p>购买实例的宿主机磁盘类型,CLOUD_HSSD-虚拟机加强型SSD云盘，CLOUD_TSSD-虚拟机极速型SSD云盘，CLOUD_BSSD-虚拟机通用型SSD云盘</p>
         # @type MachineType: String
-        # @param ReadOnlyGroupForcedUpgrade: 0-默认不升级主实例，1-强制升级主实例完成ro部署；主实例为非集群版时需要填1，强制升级为集群版。填1 说明您已同意将主实例升级到集群版实例。
+        # @param ReadOnlyGroupForcedUpgrade: <p>0-默认不升级主实例，1-强制升级主实例完成ro部署；主实例为非集群版时需要填1，强制升级为集群版。填1 说明您已同意将主实例升级到集群版实例。</p>
         # @type ReadOnlyGroupForcedUpgrade: Integer
-        # @param ReadOnlyGroupId: ReadOnlyGroupType=3时必填,已存在的只读组ID
+        # @param ReadOnlyGroupId: <p>ReadOnlyGroupType=3时必填,已存在的只读组ID</p>
         # @type ReadOnlyGroupId: String
-        # @param ReadOnlyGroupName: ReadOnlyGroupType=2时必填，新建的只读组名称
+        # @param ReadOnlyGroupName: <p>ReadOnlyGroupType=2时必填，新建的只读组名称</p>
         # @type ReadOnlyGroupName: String
-        # @param ReadOnlyGroupIsOfflineDelay: ReadOnlyGroupType=2时必填，新建的只读组是否开启延迟剔除功能，1-开启，0-关闭。当只读副本与主实例延迟大于阈值后，自动剔除。
+        # @param ReadOnlyGroupIsOfflineDelay: <p>ReadOnlyGroupType=2时必填，新建的只读组是否开启延迟剔除功能，1-开启，0-关闭。当只读副本与主实例延迟大于阈值后，自动剔除。</p>
         # @type ReadOnlyGroupIsOfflineDelay: Integer
-        # @param ReadOnlyGroupMaxDelayTime: ReadOnlyGroupType=2 且 ReadOnlyGroupIsOfflineDelay=1时必填，新建的只读组延迟剔除的阈值。
+        # @param ReadOnlyGroupMaxDelayTime: <p>ReadOnlyGroupType=2 且 ReadOnlyGroupIsOfflineDelay=1时必填，新建的只读组延迟剔除的阈值。</p>
         # @type ReadOnlyGroupMaxDelayTime: Integer
-        # @param ReadOnlyGroupMinInGroup: ReadOnlyGroupType=2 且 ReadOnlyGroupIsOfflineDelay=1时必填，新建的只读组延迟剔除后至少保留只读副本的个数。
+        # @param ReadOnlyGroupMinInGroup: <p>ReadOnlyGroupType=2 且 ReadOnlyGroupIsOfflineDelay=1时必填，新建的只读组延迟剔除后至少保留只读副本的个数。</p>
         # @type ReadOnlyGroupMinInGroup: Integer
-        # @param InstanceChargeType: 付费模式，取值支持 PREPAID（预付费），POSTPAID（后付费）。
+        # @param InstanceChargeType: <p>付费模式，取值支持 PREPAID（预付费），POSTPAID（后付费）。</p>
         # @type InstanceChargeType: String
-        # @param GoodsNum: 本次即将购买的实例数量，默认取值2。
+        # @param GoodsNum: <p>本次即将购买的实例数量，默认取值2。</p>
         # @type GoodsNum: Integer
-        # @param SubnetId: VPC子网ID，形如subnet-bdoe83fa；SubnetId和VpcId需同时设置或者同时不设置
+        # @param SubnetId: <p>VPC子网ID，形如subnet-bdoe83fa；SubnetId和VpcId需同时设置或者同时不设置</p>
         # @type SubnetId: String
-        # @param VpcId: VPC网络ID，形如vpc-dsp338hz；SubnetId和VpcId需同时设置或者同时不设置
+        # @param VpcId: <p>VPC网络ID，形如vpc-dsp338hz；SubnetId和VpcId需同时设置或者同时不设置</p>
         # @type VpcId: String
-        # @param Period: 购买实例周期，默认取值为1，表示一个月。取值不超过48
+        # @param Period: <p>购买实例周期，默认取值为1，表示一个月。取值不超过48</p>
         # @type Period: Integer
-        # @param SecurityGroupList: 安全组列表，填写形如sg-xxx的安全组ID
+        # @param SecurityGroupList: <p>安全组列表，填写形如sg-xxx的安全组ID</p>
         # @type SecurityGroupList: Array
-        # @param AutoVoucher: 是否自动使用代金券；1 - 是，0 - 否，默认不使用
+        # @param AutoVoucher: <p>是否自动使用代金券；1 - 是，0 - 否，默认不使用</p>
         # @type AutoVoucher: Integer
-        # @param VoucherIds: 代金券ID数组，目前单个订单只能使用一张
+        # @param VoucherIds: <p>代金券ID数组，目前单个订单只能使用一张</p>
         # @type VoucherIds: Array
-        # @param ResourceTags: 新建实例绑定的标签集合
+        # @param ResourceTags: <p>新建实例绑定的标签集合</p>
         # @type ResourceTags: Array
-        # @param Collation: 系统字符集排序规则，默认：Chinese_PRC_CI_AS
+        # @param Collation: <p>系统字符集排序规则，默认：Chinese_PRC_CI_AS</p>
         # @type Collation: String
-        # @param TimeZone: 系统时区，默认：China Standard Time
+        # @param TimeZone: <p>系统时区，默认：China Standard Time</p>
         # @type TimeZone: String
-        # @param DiskEncryptFlag: 磁盘加密标识，0-不加密，1-加密
+        # @param DiskEncryptFlag: <p>磁盘加密标识，0-不加密，1-加密</p>
         # @type DiskEncryptFlag: Integer
+        # @param ThroughputPerformance: <p>额外磁盘 IO 吞吐量，仅 CLOUD_HSSD 支持</p><p>取值范围：[0, 650]</p><p>单位：MB/s</p>
+        # @type ThroughputPerformance: Integer
 
-        attr_accessor :InstanceId, :Zone, :ReadOnlyGroupType, :Memory, :Storage, :Cpu, :MachineType, :ReadOnlyGroupForcedUpgrade, :ReadOnlyGroupId, :ReadOnlyGroupName, :ReadOnlyGroupIsOfflineDelay, :ReadOnlyGroupMaxDelayTime, :ReadOnlyGroupMinInGroup, :InstanceChargeType, :GoodsNum, :SubnetId, :VpcId, :Period, :SecurityGroupList, :AutoVoucher, :VoucherIds, :ResourceTags, :Collation, :TimeZone, :DiskEncryptFlag
+        attr_accessor :InstanceId, :Zone, :ReadOnlyGroupType, :Memory, :Storage, :Cpu, :MachineType, :ReadOnlyGroupForcedUpgrade, :ReadOnlyGroupId, :ReadOnlyGroupName, :ReadOnlyGroupIsOfflineDelay, :ReadOnlyGroupMaxDelayTime, :ReadOnlyGroupMinInGroup, :InstanceChargeType, :GoodsNum, :SubnetId, :VpcId, :Period, :SecurityGroupList, :AutoVoucher, :VoucherIds, :ResourceTags, :Collation, :TimeZone, :DiskEncryptFlag, :ThroughputPerformance
 
-        def initialize(instanceid=nil, zone=nil, readonlygrouptype=nil, memory=nil, storage=nil, cpu=nil, machinetype=nil, readonlygroupforcedupgrade=nil, readonlygroupid=nil, readonlygroupname=nil, readonlygroupisofflinedelay=nil, readonlygroupmaxdelaytime=nil, readonlygroupminingroup=nil, instancechargetype=nil, goodsnum=nil, subnetid=nil, vpcid=nil, period=nil, securitygrouplist=nil, autovoucher=nil, voucherids=nil, resourcetags=nil, collation=nil, timezone=nil, diskencryptflag=nil)
+        def initialize(instanceid=nil, zone=nil, readonlygrouptype=nil, memory=nil, storage=nil, cpu=nil, machinetype=nil, readonlygroupforcedupgrade=nil, readonlygroupid=nil, readonlygroupname=nil, readonlygroupisofflinedelay=nil, readonlygroupmaxdelaytime=nil, readonlygroupminingroup=nil, instancechargetype=nil, goodsnum=nil, subnetid=nil, vpcid=nil, period=nil, securitygrouplist=nil, autovoucher=nil, voucherids=nil, resourcetags=nil, collation=nil, timezone=nil, diskencryptflag=nil, throughputperformance=nil)
           @InstanceId = instanceid
           @Zone = zone
           @ReadOnlyGroupType = readonlygrouptype
@@ -1457,6 +1471,7 @@ module TencentCloud
           @Collation = collation
           @TimeZone = timezone
           @DiskEncryptFlag = diskencryptflag
+          @ThroughputPerformance = throughputperformance
         end
 
         def deserialize(params)
@@ -1492,12 +1507,13 @@ module TencentCloud
           @Collation = params['Collation']
           @TimeZone = params['TimeZone']
           @DiskEncryptFlag = params['DiskEncryptFlag']
+          @ThroughputPerformance = params['ThroughputPerformance']
         end
       end
 
       # CreateCloudReadOnlyDBInstances返回参数结构体
       class CreateCloudReadOnlyDBInstancesResponse < TencentCloud::Common::AbstractModel
-        # @param DealNames: 订单名称数组
+        # @param DealNames: <p>订单名称数组</p>
         # @type DealNames: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1517,58 +1533,60 @@ module TencentCloud
 
       # CreateDBInstances请求参数结构体
       class CreateDBInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param Zone: 实例可用区，类似ap-guangzhou-1（广州一区）；实例可售卖区域可以通过接口DescribeZones获取
+        # @param Zone: <p>实例可用区，类似ap-guangzhou-1（广州一区）；实例可售卖区域可以通过接口DescribeZones获取</p>
         # @type Zone: String
-        # @param Memory: 实例内存大小，单位GB
+        # @param Memory: <p>实例内存大小，单位GB</p>
         # @type Memory: Integer
-        # @param Storage: 实例磁盘大小，单位GB
+        # @param Storage: <p>实例磁盘大小，单位GB</p>
         # @type Storage: Integer
-        # @param InstanceChargeType: 付费模式，取值支持 PREPAID（预付费），POSTPAID（后付费）。
+        # @param InstanceChargeType: <p>付费模式，取值支持 PREPAID（预付费），POSTPAID（后付费）。</p>
         # @type InstanceChargeType: String
-        # @param ProjectId: 项目ID
+        # @param ProjectId: <p>项目ID</p>
         # @type ProjectId: Integer
-        # @param GoodsNum: 本次购买几个实例，默认值为1。取值不超过10
+        # @param GoodsNum: <p>本次购买几个实例，默认值为1。取值不超过10</p>
         # @type GoodsNum: Integer
-        # @param SubnetId: VPC子网ID，形如subnet-bdoe83fa；SubnetId和VpcId需同时设置或者同时不设置
+        # @param SubnetId: <p>VPC子网ID，形如subnet-bdoe83fa；SubnetId和VpcId需同时设置或者同时不设置</p>
         # @type SubnetId: String
-        # @param VpcId: VPC网络ID，形如vpc-dsp338hz；SubnetId和VpcId需同时设置或者同时不设置
+        # @param VpcId: <p>VPC网络ID，形如vpc-dsp338hz；SubnetId和VpcId需同时设置或者同时不设置</p>
         # @type VpcId: String
-        # @param Period: 购买实例周期，默认取值为1，表示一个月。取值不超过48
+        # @param Period: <p>购买实例周期，默认取值为1，表示一个月。取值不超过48</p>
         # @type Period: Integer
-        # @param AutoVoucher: 是否自动使用代金券；1 - 是，0 - 否，默认不使用
+        # @param AutoVoucher: <p>是否自动使用代金券；1 - 是，0 - 否，默认不使用</p>
         # @type AutoVoucher: Integer
-        # @param VoucherIds: 代金券ID数组，目前单个订单只能使用一张
+        # @param VoucherIds: <p>代金券ID数组，目前单个订单只能使用一张</p>
         # @type VoucherIds: Array
-        # @param DBVersion: sqlserver版本，目前所有支持的版本有：2008R2 (SQL Server 2008 R2 Enterprise)，2012SP3 (SQL Server 2012 Enterprise)，201202 (SQL Server 2012 Standard)，2014SP2 (SQL Server 2014 Enterprise)，201402 (SQL Server 2014 Standard)，2016SP1 (SQL Server 2016 Enterprise)，201602 (SQL Server 2016 Standard)，2017 (SQL Server 2017 Enterprise)，201702 (SQL Server 2017 Standard)，2019 (SQL Server 2019 Enterprise)，201902 (SQL Server 2019 Standard)。每个地域支持售卖的版本不同，可通过DescribeProductConfig接口来拉取每个地域可售卖的版本信息。不填，默认为版本2008R2。
+        # @param DBVersion: <p>sqlserver版本，目前所有支持的版本有：2008R2 (SQL Server 2008 R2 Enterprise)，2012SP3 (SQL Server 2012 Enterprise)，201202 (SQL Server 2012 Standard)，2014SP2 (SQL Server 2014 Enterprise)，201402 (SQL Server 2014 Standard)，2016SP1 (SQL Server 2016 Enterprise)，201602 (SQL Server 2016 Standard)，2017 (SQL Server 2017 Enterprise)，201702 (SQL Server 2017 Standard)，2019 (SQL Server 2019 Enterprise)，201902 (SQL Server 2019 Standard)。每个地域支持售卖的版本不同，可通过DescribeProductConfig接口来拉取每个地域可售卖的版本信息。不填，默认为版本2008R2。</p>
         # @type DBVersion: String
-        # @param AutoRenewFlag: 自动续费标志：0-正常续费  1-自动续费，默认为1自动续费。只在购买预付费实例时有效。
+        # @param AutoRenewFlag: <p>自动续费标志：0-正常续费  1-自动续费，默认为1自动续费。只在购买预付费实例时有效。</p>
         # @type AutoRenewFlag: Integer
-        # @param SecurityGroupList: 安全组列表，填写形如sg-xxx的安全组ID
+        # @param SecurityGroupList: <p>安全组列表，填写形如sg-xxx的安全组ID</p>
         # @type SecurityGroupList: Array
-        # @param Weekly: 可维护时间窗配置，以周为单位，表示周几允许维护，1-7分别代表周一到周末
+        # @param Weekly: <p>可维护时间窗配置，以周为单位，表示周几允许维护，1-7分别代表周一到周末</p>
         # @type Weekly: Array
-        # @param StartTime: 可维护时间窗配置，每天可维护的开始时间
+        # @param StartTime: <p>可维护时间窗配置，每天可维护的开始时间</p>
         # @type StartTime: String
-        # @param Span: 可维护时间窗配置，持续时间，单位：小时
+        # @param Span: <p>可维护时间窗配置，持续时间，单位：小时</p>
         # @type Span: Integer
-        # @param HAType: 购买高可用实例的类型：DUAL-双机高可用  CLUSTER-集群，默认值为DUAL
+        # @param HAType: <p>购买高可用实例的类型：DUAL-双机高可用  CLUSTER-集群，默认值为DUAL</p>
         # @type HAType: String
-        # @param MultiZones: 是否跨可用区部署，默认值为false
+        # @param MultiZones: <p>是否跨可用区部署，默认值为false</p>
         # @type MultiZones: Boolean
-        # @param ResourceTags: 新建实例绑定的标签集合
+        # @param ResourceTags: <p>新建实例绑定的标签集合</p>
         # @type ResourceTags: Array
-        # @param Collation: 系统字符集排序规则，默认：Chinese_PRC_CI_AS
+        # @param Collation: <p>系统字符集排序规则，默认：Chinese_PRC_CI_AS</p>
         # @type Collation: String
-        # @param TimeZone: 系统时区，默认：China Standard Time
+        # @param TimeZone: <p>系统时区，默认：China Standard Time</p>
         # @type TimeZone: String
-        # @param MultiNodes: 是否多节点架构实例，默认值为false。当MultiNodes = true时，参数MultiZones必须取值为true。
+        # @param MultiNodes: <p>是否多节点架构实例，默认值为false。当MultiNodes = true时，参数MultiZones必须取值为true。</p>
         # @type MultiNodes: Boolean
-        # @param DrZones: 备节点可用区，默认为空。当MultiNodes = true时，主节点和备节点可用区不能全部相同。备机可用区集合最小为2个，最大不超过5个。
+        # @param DrZones: <p>备节点可用区，默认为空。当MultiNodes = true时，主节点和备节点可用区不能全部相同。备机可用区集合最小为2个，最大不超过5个。</p>
         # @type DrZones: Array
+        # @param AvailabilityStrategy: <p>可用性策略</p><p>枚举值：</p><ul><li>Async： 可用性优先（异步传输）</li><li>Sync： 可靠性优先（同步传输）</li></ul><p>默认值：Async</p><p>仅 AlwaysOn 双节点架构生效，单节点/多节点/MIRROR 架构忽略此参数</p>
+        # @type AvailabilityStrategy: String
 
-        attr_accessor :Zone, :Memory, :Storage, :InstanceChargeType, :ProjectId, :GoodsNum, :SubnetId, :VpcId, :Period, :AutoVoucher, :VoucherIds, :DBVersion, :AutoRenewFlag, :SecurityGroupList, :Weekly, :StartTime, :Span, :HAType, :MultiZones, :ResourceTags, :Collation, :TimeZone, :MultiNodes, :DrZones
+        attr_accessor :Zone, :Memory, :Storage, :InstanceChargeType, :ProjectId, :GoodsNum, :SubnetId, :VpcId, :Period, :AutoVoucher, :VoucherIds, :DBVersion, :AutoRenewFlag, :SecurityGroupList, :Weekly, :StartTime, :Span, :HAType, :MultiZones, :ResourceTags, :Collation, :TimeZone, :MultiNodes, :DrZones, :AvailabilityStrategy
 
-        def initialize(zone=nil, memory=nil, storage=nil, instancechargetype=nil, projectid=nil, goodsnum=nil, subnetid=nil, vpcid=nil, period=nil, autovoucher=nil, voucherids=nil, dbversion=nil, autorenewflag=nil, securitygrouplist=nil, weekly=nil, starttime=nil, span=nil, hatype=nil, multizones=nil, resourcetags=nil, collation=nil, timezone=nil, multinodes=nil, drzones=nil)
+        def initialize(zone=nil, memory=nil, storage=nil, instancechargetype=nil, projectid=nil, goodsnum=nil, subnetid=nil, vpcid=nil, period=nil, autovoucher=nil, voucherids=nil, dbversion=nil, autorenewflag=nil, securitygrouplist=nil, weekly=nil, starttime=nil, span=nil, hatype=nil, multizones=nil, resourcetags=nil, collation=nil, timezone=nil, multinodes=nil, drzones=nil, availabilitystrategy=nil)
           @Zone = zone
           @Memory = memory
           @Storage = storage
@@ -1593,6 +1611,7 @@ module TencentCloud
           @TimeZone = timezone
           @MultiNodes = multinodes
           @DrZones = drzones
+          @AvailabilityStrategy = availabilitystrategy
         end
 
         def deserialize(params)
@@ -1627,14 +1646,15 @@ module TencentCloud
           @TimeZone = params['TimeZone']
           @MultiNodes = params['MultiNodes']
           @DrZones = params['DrZones']
+          @AvailabilityStrategy = params['AvailabilityStrategy']
         end
       end
 
       # CreateDBInstances返回参数结构体
       class CreateDBInstancesResponse < TencentCloud::Common::AbstractModel
-        # @param DealName: 订单名称
+        # @param DealName: <p>订单名称</p>
         # @type DealName: String
-        # @param DealNames: 订单名称数组
+        # @param DealNames: <p>订单名称数组</p>
         # @type DealNames: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2302,121 +2322,124 @@ module TencentCloud
 
       # 实例详细信息
       class DBInstance < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: <p>实例ID</p>
         # @type InstanceId: String
-        # @param Name: 实例名称
+        # @param Name: <p>实例名称</p>
         # @type Name: String
-        # @param ProjectId: 实例所在项目ID
+        # @param ProjectId: <p>实例所在项目ID</p>
         # @type ProjectId: Integer
-        # @param RegionId: 实例所在地域ID
+        # @param RegionId: <p>实例所在地域ID</p>
         # @type RegionId: Integer
-        # @param ZoneId: 实例所在可用区ID
+        # @param ZoneId: <p>实例所在可用区ID</p>
         # @type ZoneId: Integer
-        # @param VpcId: 实例所在私有网络ID，基础网络时为 0
+        # @param VpcId: <p>实例所在私有网络ID，基础网络时为 0</p>
         # @type VpcId: Integer
-        # @param SubnetId: 实例所在私有网络子网ID，基础网络时为 0
+        # @param SubnetId: <p>实例所在私有网络子网ID，基础网络时为 0</p>
         # @type SubnetId: Integer
-        # @param Status: 实例状态。取值范围： <li>1：申请中</li> <li>2：运行中</li> <li>3：受限运行中 (主备切换中)</li> <li>4：已隔离</li> <li>5：回收中</li> <li>6：已回收</li> <li>7：任务执行中 (实例做备份、回档等操作)</li> <li>8：已下线</li> <li>9：实例扩容中</li> <li>10：实例迁移中</li> <li>11：只读</li> <li>12：重启中</li>  <li>13：实例修改中且待切换</li> <li>14：订阅发布创建中</li> <li>15：订阅发布修改中</li> <li>16：实例修改中且切换中</li> <li>17：创建RO副本中</li>
+        # @param Status: <p>实例状态。取值范围： <li>1：申请中</li> <li>2：运行中</li> <li>3：受限运行中 (主备切换中)</li> <li>4：已隔离</li> <li>5：回收中</li> <li>6：已回收</li> <li>7：任务执行中 (实例做备份、回档等操作)</li> <li>8：已下线</li> <li>9：实例扩容中</li> <li>10：实例迁移中</li> <li>11：只读</li> <li>12：重启中</li>  <li>13：实例修改中且待切换</li> <li>14：订阅发布创建中</li> <li>15：订阅发布修改中</li> <li>16：实例修改中且切换中</li> <li>17：创建RO副本中</li></p>
         # @type Status: Integer
-        # @param Vip: 实例访问IP
+        # @param Vip: <p>实例访问IP</p>
         # @type Vip: String
-        # @param Vport: 实例访问端口
+        # @param Vport: <p>实例访问端口</p>
         # @type Vport: Integer
-        # @param CreateTime: 实例创建时间
+        # @param CreateTime: <p>实例创建时间</p>
         # @type CreateTime: String
-        # @param UpdateTime: 实例更新时间
+        # @param UpdateTime: <p>实例更新时间</p>
         # @type UpdateTime: String
-        # @param StartTime: 实例计费开始时间
+        # @param StartTime: <p>实例计费开始时间</p>
         # @type StartTime: String
-        # @param EndTime: 实例计费结束时间
+        # @param EndTime: <p>实例计费结束时间</p>
         # @type EndTime: String
-        # @param IsolateTime: 实例隔离时间
+        # @param IsolateTime: <p>实例隔离时间</p>
         # @type IsolateTime: String
-        # @param Memory: 实例内存大小，单位G
+        # @param Memory: <p>实例内存大小，单位G</p>
         # @type Memory: Integer
-        # @param UsedStorage: 实例已经使用存储空间大小，单位G
+        # @param UsedStorage: <p>实例已经使用存储空间大小，单位G</p>
         # @type UsedStorage: Integer
-        # @param Storage: 实例存储空间大小，单位G
+        # @param Storage: <p>实例存储空间大小，单位G</p>
         # @type Storage: Integer
-        # @param VersionName: 实例版本
+        # @param VersionName: <p>实例版本</p>
         # @type VersionName: String
-        # @param RenewFlag: 实例续费标记，0-正常续费，1-自动续费，2-到期不续费
+        # @param RenewFlag: <p>实例续费标记，0-正常续费，1-自动续费，2-到期不续费</p>
         # @type RenewFlag: Integer
-        # @param Model: 实例高可用， 1-双机高可用，2-单机，3-跨可用区，4-集群跨可用区，5-集群，6-多节点集群，7-多节点集群跨可用区，9-自研机房
+        # @param Model: <p>实例高可用， 1-双机高可用，2-单机，3-跨可用区，4-集群跨可用区，5-集群，6-多节点集群，7-多节点集群跨可用区，9-自研机房</p>
         # @type Model: Integer
-        # @param Region: 实例所在地域名称，如 ap-guangzhou
+        # @param Region: <p>实例所在地域名称，如 ap-guangzhou</p>
         # @type Region: String
-        # @param Zone: 实例所在可用区名称，如 ap-guangzhou-1
+        # @param Zone: <p>实例所在可用区名称，如 ap-guangzhou-1</p>
         # @type Zone: String
-        # @param BackupTime: 备份时间点
+        # @param BackupTime: <p>备份时间点</p>
         # @type BackupTime: String
-        # @param PayMode: 实例付费模式， 0-按量计费，1-包年包月
+        # @param PayMode: <p>实例付费模式， 0-按量计费，1-包年包月</p>
         # @type PayMode: Integer
-        # @param Uid: 实例唯一UID
+        # @param Uid: <p>实例唯一UID</p>
         # @type Uid: String
-        # @param Cpu: 实例cpu核心数
+        # @param Cpu: <p>实例cpu核心数</p>
         # @type Cpu: Integer
-        # @param Version: 实例版本代号
+        # @param Version: <p>实例版本代号</p>
         # @type Version: String
-        # @param Type: 实例类型代号："TS85"-物理机，本地SSD硬盘；"Z3"-物理机早期版本，本地SSD硬盘；"CLOUD_BASIC"-虚拟机，普通云硬盘；"CLOUD_PREMIUM"-虚拟机，高性能云硬盘；"CLOUD_SSD"-虚拟机，云SSD硬盘；"CLOUD_HSSD"-虚拟机，增强型SSD云硬盘；"CLOUD_TSSD"-虚拟机，极速型SSD云硬盘；"CLOUD_BSSD"-虚拟机，通用型SSD云硬盘
+        # @param Type: <p>实例类型代号：&quot;TS85&quot;-物理机，本地SSD硬盘；&quot;Z3&quot;-物理机早期版本，本地SSD硬盘；&quot;CLOUD_BASIC&quot;-虚拟机，普通云硬盘；&quot;CLOUD_PREMIUM&quot;-虚拟机，高性能云硬盘；&quot;CLOUD_SSD&quot;-虚拟机，云SSD硬盘；&quot;CLOUD_HSSD&quot;-虚拟机，增强型SSD云硬盘；&quot;CLOUD_TSSD&quot;-虚拟机，极速型SSD云硬盘；&quot;CLOUD_BSSD&quot;-虚拟机，通用型SSD云硬盘</p>
         # @type Type: String
-        # @param Pid: 计费ID
+        # @param Pid: <p>计费ID</p>
         # @type Pid: Integer
-        # @param UniqVpcId: 实例所属VPC的唯一字符串ID，格式如：vpc-xxx，基础网络时为空字符串
+        # @param UniqVpcId: <p>实例所属VPC的唯一字符串ID，格式如：vpc-xxx，基础网络时为空字符串</p>
         # @type UniqVpcId: String
-        # @param UniqSubnetId: 实例所属子网的唯一字符串ID，格式如： subnet-xxx，基础网络时为空字符串
+        # @param UniqSubnetId: <p>实例所属子网的唯一字符串ID，格式如： subnet-xxx，基础网络时为空字符串</p>
         # @type UniqSubnetId: String
-        # @param IsolateOperator: 实例隔离操作
+        # @param IsolateOperator: <p>实例隔离操作</p>
         # @type IsolateOperator: String
-        # @param SubFlag: 发布订阅标识，SUB-订阅实例，PUB-发布实例，空值-没有发布订阅的普通实例
+        # @param SubFlag: <p>发布订阅标识，SUB-订阅实例，PUB-发布实例，空值-没有发布订阅的普通实例</p>
         # @type SubFlag: String
-        # @param ROFlag: 只读标识，RO-只读实例，MASTER-有RO实例的主实例，空值-没有只读组的非RO实例
+        # @param ROFlag: <p>只读标识，RO-只读实例，MASTER-有RO实例的主实例，空值-没有只读组的非RO实例</p>
         # @type ROFlag: String
-        # @param HAFlag: 容灾类型，MIRROR-镜像，ALWAYSON-AlwaysOn, SINGLE-单例
+        # @param HAFlag: <p>容灾类型，MIRROR-镜像，ALWAYSON-AlwaysOn, SINGLE-单例</p>
         # @type HAFlag: String
-        # @param ResourceTags: 实例绑定的标签列表
+        # @param ResourceTags: <p>实例绑定的标签列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceTags: Array
-        # @param BackupModel: 备份模式，master_pkg-主节点打包备份(默认) ；master_no_pkg-主节点不打包备份；slave_pkg-从节点打包备份(always on集群有效)；slave_no_pkg-从节点不打包备份(always on集群有效)；只读副本对该值无效。
+        # @param BackupModel: <p>备份模式，master_pkg-主节点打包备份(默认) ；master_no_pkg-主节点不打包备份；slave_pkg-从节点打包备份(always on集群有效)；slave_no_pkg-从节点不打包备份(always on集群有效)；只读副本对该值无效。</p>
         # @type BackupModel: String
-        # @param InstanceNote: 实例备份信息
+        # @param InstanceNote: <p>实例备份信息</p>
         # @type InstanceNote: String
-        # @param BackupCycle: 备份周期
+        # @param BackupCycle: <p>备份周期</p>
         # @type BackupCycle: Array
-        # @param BackupCycleType: 备份周期类型，[daily、weekly、monthly]
+        # @param BackupCycleType: <p>备份周期类型，[daily、weekly、monthly]</p>
         # @type BackupCycleType: String
-        # @param BackupSaveDays: 数据(日志)备份保留时间
+        # @param BackupSaveDays: <p>数据(日志)备份保留时间</p>
         # @type BackupSaveDays: Integer
-        # @param InstanceType: 实例类型 HA-高可用，RO-只读实例，SI-基础版，BI-商业智能服务，cvmHA-云盘高可用，cvmRO-云盘只读实例，MultiHA-多节点，cvmMultiHA-云盘多节点
+        # @param InstanceType: <p>实例类型 HA-高可用，RO-只读实例，SI-基础版，BI-商业智能服务，cvmHA-云盘高可用，cvmRO-云盘只读实例，MultiHA-多节点，cvmMultiHA-云盘多节点</p>
         # @type InstanceType: String
-        # @param CrossRegions: 跨地域备份目的地域，如果为空，则表示未开启跨地域备份
+        # @param CrossRegions: <p>跨地域备份目的地域，如果为空，则表示未开启跨地域备份</p>
         # @type CrossRegions: Array
-        # @param CrossBackupEnabled: 跨地域备份状态 enable-开启，disable-关闭
+        # @param CrossBackupEnabled: <p>跨地域备份状态 enable-开启，disable-关闭</p>
         # @type CrossBackupEnabled: String
-        # @param CrossBackupSaveDays: 跨地域备份保留天数，则默认7天
+        # @param CrossBackupSaveDays: <p>跨地域备份保留天数，则默认7天</p>
         # @type CrossBackupSaveDays: Integer
-        # @param DnsPodDomain: 外网地址域名
+        # @param DnsPodDomain: <p>外网地址域名</p>
         # @type DnsPodDomain: String
-        # @param TgwWanVPort: 外网端口号
+        # @param TgwWanVPort: <p>外网端口号</p>
         # @type TgwWanVPort: Integer
-        # @param Collation: 系统字符集排序规则，默认：Chinese_PRC_CI_AS
+        # @param Collation: <p>系统字符集排序规则，默认：Chinese_PRC_CI_AS</p>
         # @type Collation: String
-        # @param TimeZone: 系统时区，默认：China Standard Time
+        # @param TimeZone: <p>系统时区，默认：China Standard Time</p>
         # @type TimeZone: String
-        # @param IsDrZone: 是否跨AZ
+        # @param IsDrZone: <p>是否跨AZ</p>
         # @type IsDrZone: Boolean
-        # @param SlaveZones: 双节点实例备可用区信息
+        # @param SlaveZones: <p>双节点实例备可用区信息</p>
         # @type SlaveZones: :class:`Tencentcloud::Sqlserver.v20180328.models.SlaveZones`
-        # @param Architecture: 架构标识，SINGLE-单节点 DOUBLE-双节点
+        # @param Architecture: <p>架构标识，SINGLE-单节点 DOUBLE-双节点</p>
         # @type Architecture: String
-        # @param Style: 类型标识，EXCLUSIVE-独享型，SHARED-共享型
+        # @param Style: <p>类型标识，EXCLUSIVE-独享型，SHARED-共享型</p>
         # @type Style: String
-        # @param MultiSlaveZones: 多节点实例备可用区信息
+        # @param MultiSlaveZones: <p>多节点实例备可用区信息</p>
         # @type MultiSlaveZones: Array
+        # @param ThroughputPerformance: <p>额外IO吞吐量</p><p>单位：MB/s</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ThroughputPerformance: Integer
 
-        attr_accessor :InstanceId, :Name, :ProjectId, :RegionId, :ZoneId, :VpcId, :SubnetId, :Status, :Vip, :Vport, :CreateTime, :UpdateTime, :StartTime, :EndTime, :IsolateTime, :Memory, :UsedStorage, :Storage, :VersionName, :RenewFlag, :Model, :Region, :Zone, :BackupTime, :PayMode, :Uid, :Cpu, :Version, :Type, :Pid, :UniqVpcId, :UniqSubnetId, :IsolateOperator, :SubFlag, :ROFlag, :HAFlag, :ResourceTags, :BackupModel, :InstanceNote, :BackupCycle, :BackupCycleType, :BackupSaveDays, :InstanceType, :CrossRegions, :CrossBackupEnabled, :CrossBackupSaveDays, :DnsPodDomain, :TgwWanVPort, :Collation, :TimeZone, :IsDrZone, :SlaveZones, :Architecture, :Style, :MultiSlaveZones
+        attr_accessor :InstanceId, :Name, :ProjectId, :RegionId, :ZoneId, :VpcId, :SubnetId, :Status, :Vip, :Vport, :CreateTime, :UpdateTime, :StartTime, :EndTime, :IsolateTime, :Memory, :UsedStorage, :Storage, :VersionName, :RenewFlag, :Model, :Region, :Zone, :BackupTime, :PayMode, :Uid, :Cpu, :Version, :Type, :Pid, :UniqVpcId, :UniqSubnetId, :IsolateOperator, :SubFlag, :ROFlag, :HAFlag, :ResourceTags, :BackupModel, :InstanceNote, :BackupCycle, :BackupCycleType, :BackupSaveDays, :InstanceType, :CrossRegions, :CrossBackupEnabled, :CrossBackupSaveDays, :DnsPodDomain, :TgwWanVPort, :Collation, :TimeZone, :IsDrZone, :SlaveZones, :Architecture, :Style, :MultiSlaveZones, :ThroughputPerformance
 
-        def initialize(instanceid=nil, name=nil, projectid=nil, regionid=nil, zoneid=nil, vpcid=nil, subnetid=nil, status=nil, vip=nil, vport=nil, createtime=nil, updatetime=nil, starttime=nil, endtime=nil, isolatetime=nil, memory=nil, usedstorage=nil, storage=nil, versionname=nil, renewflag=nil, model=nil, region=nil, zone=nil, backuptime=nil, paymode=nil, uid=nil, cpu=nil, version=nil, type=nil, pid=nil, uniqvpcid=nil, uniqsubnetid=nil, isolateoperator=nil, subflag=nil, roflag=nil, haflag=nil, resourcetags=nil, backupmodel=nil, instancenote=nil, backupcycle=nil, backupcycletype=nil, backupsavedays=nil, instancetype=nil, crossregions=nil, crossbackupenabled=nil, crossbackupsavedays=nil, dnspoddomain=nil, tgwwanvport=nil, collation=nil, timezone=nil, isdrzone=nil, slavezones=nil, architecture=nil, style=nil, multislavezones=nil)
+        def initialize(instanceid=nil, name=nil, projectid=nil, regionid=nil, zoneid=nil, vpcid=nil, subnetid=nil, status=nil, vip=nil, vport=nil, createtime=nil, updatetime=nil, starttime=nil, endtime=nil, isolatetime=nil, memory=nil, usedstorage=nil, storage=nil, versionname=nil, renewflag=nil, model=nil, region=nil, zone=nil, backuptime=nil, paymode=nil, uid=nil, cpu=nil, version=nil, type=nil, pid=nil, uniqvpcid=nil, uniqsubnetid=nil, isolateoperator=nil, subflag=nil, roflag=nil, haflag=nil, resourcetags=nil, backupmodel=nil, instancenote=nil, backupcycle=nil, backupcycletype=nil, backupsavedays=nil, instancetype=nil, crossregions=nil, crossbackupenabled=nil, crossbackupsavedays=nil, dnspoddomain=nil, tgwwanvport=nil, collation=nil, timezone=nil, isdrzone=nil, slavezones=nil, architecture=nil, style=nil, multislavezones=nil, throughputperformance=nil)
           @InstanceId = instanceid
           @Name = name
           @ProjectId = projectid
@@ -2472,6 +2495,7 @@ module TencentCloud
           @Architecture = architecture
           @Style = style
           @MultiSlaveZones = multislavezones
+          @ThroughputPerformance = throughputperformance
         end
 
         def deserialize(params)
@@ -2547,6 +2571,7 @@ module TencentCloud
               @MultiSlaveZones << slavezones_tmp
             end
           end
+          @ThroughputPerformance = params['ThroughputPerformance']
         end
       end
 
@@ -2774,8 +2799,8 @@ module TencentCloud
 
         attr_accessor :IsSubscribed, :CollationName, :IsAutoCleanupOn, :IsBrokerEnabled, :IsCdcEnabled, :IsDbChainingOn, :IsEncrypted, :IsFulltextEnabled, :IsMirroring, :IsPublished, :IsReadCommittedSnapshotOn, :IsTrustworthyOn, :MirroringState, :Name, :RecoveryModelDesc, :RetentionPeriod, :StateDesc, :UserAccessDesc, :CreateTime, :IsFullTextEnabled, :IsAvailabilityGroups, :AGSyncState
         extend Gem::Deprecate
-        deprecate :IsFulltextEnabled, :none, 2026, 5
-        deprecate :IsFulltextEnabled=, :none, 2026, 5
+        deprecate :IsFulltextEnabled, :none, 2026, 6
+        deprecate :IsFulltextEnabled=, :none, 2026, 6
 
         def initialize(issubscribed=nil, collationname=nil, isautocleanupon=nil, isbrokerenabled=nil, iscdcenabled=nil, isdbchainingon=nil, isencrypted=nil, ismirroring=nil, ispublished=nil, isreadcommittedsnapshoton=nil, istrustworthyon=nil, mirroringstate=nil, name=nil, recoverymodeldesc=nil, retentionperiod=nil, statedesc=nil, useraccessdesc=nil, createtime=nil, isfulltextenabled=nil, isavailabilitygroups=nil, agsyncstate=nil)
           @IsSubscribed = issubscribed
@@ -7211,8 +7236,8 @@ module TencentCloud
 
         attr_accessor :TotalCount, :Slowlogs, :SlowLogs, :RequestId
         extend Gem::Deprecate
-        deprecate :Slowlogs, :none, 2026, 5
-        deprecate :Slowlogs=, :none, 2026, 5
+        deprecate :Slowlogs, :none, 2026, 6
+        deprecate :Slowlogs=, :none, 2026, 6
 
         def initialize(totalcount=nil, slowlogs=nil, requestid=nil)
           @TotalCount = totalcount
@@ -7299,26 +7324,28 @@ module TencentCloud
 
       # DescribeUpgradeInstanceCheck请求参数结构体
       class DescribeUpgradeInstanceCheckRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 数据库实例ID，形如mssql-njj2mtpl
+        # @param InstanceId: <p>数据库实例ID，形如mssql-njj2mtpl</p>
         # @type InstanceId: String
-        # @param Cpu: 实例变配后的CPU核心数，不填则不修改
+        # @param Cpu: <p>实例变配后的CPU核心数，不填则不修改</p>
         # @type Cpu: Integer
-        # @param Memory: 实例变配后内存大小，单位GB，不填则不修改
+        # @param Memory: <p>实例变配后内存大小，单位GB，不填则不修改</p>
         # @type Memory: Integer
-        # @param Storage: 实例变配后磁盘大小，单位GB，不填则不修改
+        # @param Storage: <p>实例变配后磁盘大小，单位GB，不填则不修改</p>
         # @type Storage: Integer
-        # @param DBVersion: 实例版本，不填则不修改
+        # @param DBVersion: <p>实例版本，不填则不修改</p>
         # @type DBVersion: String
-        # @param HAType: 实例变配后的类型，可选值：CLUSTER-集群，不填则不修改
+        # @param HAType: <p>实例变配后的类型，可选值：CLUSTER-集群，不填则不修改</p>
         # @type HAType: String
-        # @param MultiZones: 实例变配后的跨可用区类型，可选值： SameZones-修改为同可用区 MultiZones-修改为跨可用区，不填则不修改
+        # @param MultiZones: <p>实例变配后的跨可用区类型，可选值： SameZones-修改为同可用区 MultiZones-修改为跨可用区，不填则不修改</p>
         # @type MultiZones: String
-        # @param DrZones: 多节点架构实例的备节点可用区，默认为空。如果需要在变配的同时修改指定备节点的可用区时必传，当MultiZones = MultiZones时主节点和备节点可用区不能全部相同。备机可用区集合最小为2个，最大不超过5个。
+        # @param DrZones: <p>多节点架构实例的备节点可用区，默认为空。如果需要在变配的同时修改指定备节点的可用区时必传，当MultiZones = MultiZones时主节点和备节点可用区不能全部相同。备机可用区集合最小为2个，最大不超过5个。</p>
         # @type DrZones: Array
+        # @param ThroughputPerformance: <p>额外磁盘IO吞吐量</p><p>取值范围：[0, 650]</p><p>单位：MB/s</p><p>不传-保持原值不变；0-取消额外IO；&gt;0-设为新值</p>
+        # @type ThroughputPerformance: Integer
 
-        attr_accessor :InstanceId, :Cpu, :Memory, :Storage, :DBVersion, :HAType, :MultiZones, :DrZones
+        attr_accessor :InstanceId, :Cpu, :Memory, :Storage, :DBVersion, :HAType, :MultiZones, :DrZones, :ThroughputPerformance
 
-        def initialize(instanceid=nil, cpu=nil, memory=nil, storage=nil, dbversion=nil, hatype=nil, multizones=nil, drzones=nil)
+        def initialize(instanceid=nil, cpu=nil, memory=nil, storage=nil, dbversion=nil, hatype=nil, multizones=nil, drzones=nil, throughputperformance=nil)
           @InstanceId = instanceid
           @Cpu = cpu
           @Memory = memory
@@ -7327,6 +7354,7 @@ module TencentCloud
           @HAType = hatype
           @MultiZones = multizones
           @DrZones = drzones
+          @ThroughputPerformance = throughputperformance
         end
 
         def deserialize(params)
@@ -7345,18 +7373,19 @@ module TencentCloud
               @DrZones << drzoneinfo_tmp
             end
           end
+          @ThroughputPerformance = params['ThroughputPerformance']
         end
       end
 
       # DescribeUpgradeInstanceCheck返回参数结构体
       class DescribeUpgradeInstanceCheckResponse < TencentCloud::Common::AbstractModel
-        # @param IsAffect: 本变配是否对实例有影响，0-没有影响 1-有影响
+        # @param IsAffect: <p>本变配是否对实例有影响，0-没有影响 1-有影响</p>
         # @type IsAffect: Integer
-        # @param Passed: 本变配是否可以执行 0-不通过，不能变配 1-通过，可以变配
+        # @param Passed: <p>本变配是否可以执行 0-不通过，不能变配 1-通过，可以变配</p>
         # @type Passed: Integer
-        # @param ModifyMode: 本变配是升配还是降配，down-降配 up-升配
+        # @param ModifyMode: <p>本变配是升配还是降配，down-降配 up-升配</p>
         # @type ModifyMode: String
-        # @param CheckItems: 检查项列表
+        # @param CheckItems: <p>检查项列表</p>
         # @type CheckItems: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -7432,8 +7461,8 @@ module TencentCloud
 
         attr_accessor :BucketName, :Region, :Path, :TmpSecretId, :TmpSecretKey, :XCosSecurityToken, :StartTime, :ExpiredTime, :CosSecurityToken, :RequestId
         extend Gem::Deprecate
-        deprecate :XCosSecurityToken, :none, 2026, 5
-        deprecate :XCosSecurityToken=, :none, 2026, 5
+        deprecate :XCosSecurityToken, :none, 2026, 6
+        deprecate :XCosSecurityToken=, :none, 2026, 6
 
         def initialize(bucketname=nil, region=nil, path=nil, tmpsecretid=nil, tmpsecretkey=nil, xcossecuritytoken=nil, starttime=nil, expiredtime=nil, cossecuritytoken=nil, requestid=nil)
           @BucketName = bucketname
@@ -7511,8 +7540,8 @@ module TencentCloud
 
         attr_accessor :BucketName, :Region, :Path, :TmpSecretId, :TmpSecretKey, :XCosSecurityToken, :StartTime, :ExpiredTime, :CosSecurityToken, :RequestId
         extend Gem::Deprecate
-        deprecate :XCosSecurityToken, :none, 2026, 5
-        deprecate :XCosSecurityToken=, :none, 2026, 5
+        deprecate :XCosSecurityToken, :none, 2026, 6
+        deprecate :XCosSecurityToken=, :none, 2026, 6
 
         def initialize(bucketname=nil, region=nil, path=nil, tmpsecretid=nil, tmpsecretkey=nil, xcossecuritytoken=nil, starttime=nil, expiredtime=nil, cossecuritytoken=nil, requestid=nil)
           @BucketName = bucketname
@@ -7953,33 +7982,34 @@ module TencentCloud
 
       # InquiryPriceCreateDBInstances请求参数结构体
       class InquiryPriceCreateDBInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param Zone: 可用区ID。该参数可以通过调用 DescribeZones 接口的返回值中的Zone字段来获取。
+        # @param Zone: <p>可用区ID。该参数可以通过调用 DescribeZones 接口的返回值中的Zone字段来获取。</p>
         # @type Zone: String
-        # @param Memory: 内存大小，单位：GB
+        # @param Memory: <p>内存大小，单位：GB</p>
         # @type Memory: Integer
-        # @param Storage: 实例容量大小，单位：GB。
+        # @param Storage: <p>实例容量大小，单位：GB。</p>
         # @type Storage: Integer
-        # @param InstanceChargeType: 计费类型，取值支持 PREPAID，POSTPAID。
+        # @param InstanceChargeType: <p>计费类型，取值支持 PREPAID，POSTPAID。</p>
         # @type InstanceChargeType: String
-        # @param Period: 购买时长，单位：月。取值为1到48，默认为1
+        # @param Period: <p>购买时长，单位：月。取值为1到48，默认为1</p>
         # @type Period: Integer
-        # @param GoodsNum: 一次性购买的实例数量。取值1-100，默认取值为1
+        # @param GoodsNum: <p>一次性购买的实例数量。取值1-100，默认取值为1</p>
         # @type GoodsNum: Integer
-        # @param DBVersion: sqlserver版本，目前所有支持的版本有：2008R2 (SQL Server 2008 R2 Enterprise)，2012SP3 (SQL Server 2012 Enterprise)，201202 (SQL Server 2012 Standard)，2014SP2 (SQL Server 2014 Enterprise)，201402 (SQL Server 2014 Standard)，2016SP1 (SQL Server 2016 Enterprise)，201602 (SQL Server 2016 Standard)，2017 (SQL Server 2017 Enterprise)，201702 (SQL Server 2017 Standard)，2019 (SQL Server 2019 Enterprise)，201902 (SQL Server 2019 Standard)。每个地域支持售卖的版本不同，可通过DescribeProductConfig接口来拉取每个地域可售卖的版本信息。不填，默认为版本2008R2。
+        # @param DBVersion: <p>sqlserver版本，目前所有支持的版本有：2008R2 (SQL Server 2008 R2 Enterprise)，2012SP3 (SQL Server 2012 Enterprise)，201202 (SQL Server 2012 Standard)，2014SP2 (SQL Server 2014 Enterprise)，201402 (SQL Server 2014 Standard)，2016SP1 (SQL Server 2016 Enterprise)，201602 (SQL Server 2016 Standard)，2017 (SQL Server 2017 Enterprise)，201702 (SQL Server 2017 Standard)，2019 (SQL Server 2019 Enterprise)，201902 (SQL Server 2019 Standard)。每个地域支持售卖的版本不同，可通过DescribeProductConfig接口来拉取每个地域可售卖的版本信息。不填，默认为版本2008R2。</p>
         # @type DBVersion: String
-        # @param Cpu: 预购买实例的CPU核心数
+        # @param Cpu: <p>预购买实例的CPU核心数</p>
         # @type Cpu: Integer
-        # @param InstanceType: 购买实例的类型 HA-高可用型(包括双机高可用，alwaysOn集群)，RO-只读副本型，SI-单节点型,cvmHA-虚拟机双机高可用,cvmRO-虚拟机只读，MultiHA-多节点，cvmMultiHA-云盘
+        # @param InstanceType: <p>购买实例的类型 HA-高可用型(包括双机高可用，alwaysOn集群)，RO-只读副本型，SI-单节点型,cvmHA-虚拟机双机高可用,cvmRO-虚拟机只读，MultiHA-多节点，cvmMultiHA-云盘</p>
         # @type InstanceType: String
-        # @param MachineType: 购买实例的宿主机类型，PM-物理机, CLOUD_PREMIUM-虚拟机高性能云盘，CLOUD_SSD-虚拟机SSD云盘,
-        # CLOUD_HSSD-虚拟机加强型SSD云盘，CLOUD_TSSD-虚拟机极速型SSD云盘，CLOUD_BSSD-虚拟机通用型SSD云盘
+        # @param MachineType: <p>购买实例的宿主机类型，PM-物理机, CLOUD_PREMIUM-虚拟机高性能云盘，CLOUD_SSD-虚拟机SSD云盘,<br>CLOUD_HSSD-虚拟机加强型SSD云盘，CLOUD_TSSD-虚拟机极速型SSD云盘，CLOUD_BSSD-虚拟机通用型SSD云盘</p>
         # @type MachineType: String
-        # @param DrZones: 备节点可用区，默认为空。如果是多节点架构时必传，并且备机可用区集合最小为2个，最大不超过5个。
+        # @param DrZones: <p>备节点可用区，默认为空。如果是多节点架构时必传，并且备机可用区集合最小为2个，最大不超过5个。</p>
         # @type DrZones: Array
+        # @param ThroughputPerformance: <p>额外磁盘 IO 吞吐量，仅 CLOUD_HSSD 支持</p><p>取值范围：[0, 650]</p><p>单位：MB/s</p>
+        # @type ThroughputPerformance: Integer
 
-        attr_accessor :Zone, :Memory, :Storage, :InstanceChargeType, :Period, :GoodsNum, :DBVersion, :Cpu, :InstanceType, :MachineType, :DrZones
+        attr_accessor :Zone, :Memory, :Storage, :InstanceChargeType, :Period, :GoodsNum, :DBVersion, :Cpu, :InstanceType, :MachineType, :DrZones, :ThroughputPerformance
 
-        def initialize(zone=nil, memory=nil, storage=nil, instancechargetype=nil, period=nil, goodsnum=nil, dbversion=nil, cpu=nil, instancetype=nil, machinetype=nil, drzones=nil)
+        def initialize(zone=nil, memory=nil, storage=nil, instancechargetype=nil, period=nil, goodsnum=nil, dbversion=nil, cpu=nil, instancetype=nil, machinetype=nil, drzones=nil, throughputperformance=nil)
           @Zone = zone
           @Memory = memory
           @Storage = storage
@@ -7991,6 +8021,7 @@ module TencentCloud
           @InstanceType = instancetype
           @MachineType = machinetype
           @DrZones = drzones
+          @ThroughputPerformance = throughputperformance
         end
 
         def deserialize(params)
@@ -8005,20 +8036,15 @@ module TencentCloud
           @InstanceType = params['InstanceType']
           @MachineType = params['MachineType']
           @DrZones = params['DrZones']
+          @ThroughputPerformance = params['ThroughputPerformance']
         end
       end
 
       # InquiryPriceCreateDBInstances返回参数结构体
       class InquiryPriceCreateDBInstancesResponse < TencentCloud::Common::AbstractModel
-        # @param OriginalPrice: 未打折前价格，其值除以100表示最终的价格。
-        # InstanceChargeType=PREPAID时，单位是"每月"。
-        # InstanceChargeType=POSTPAID时，单位是"每小时"。
-        # 例如10010，在InstanceChargeType=PREPAID情况下，表示每月100.10元。
+        # @param OriginalPrice: <p>未打折前价格，其值除以100表示最终的价格。<br>InstanceChargeType=PREPAID时，单位是&quot;每月&quot;。<br>InstanceChargeType=POSTPAID时，单位是&quot;每小时&quot;。<br>例如10010，在InstanceChargeType=PREPAID情况下，表示每月100.10元。</p>
         # @type OriginalPrice: Integer
-        # @param Price: 实际需要支付的价格，其值除以100表示最终的价格。
-        # InstanceChargeType=PREPAID时，单位是"每月"。
-        # InstanceChargeType=POSTPAID时，单位是"每小时"。
-        # 例如10010，在InstanceChargeType=PREPAID情况下，表示每月100.10元。
+        # @param Price: <p>实际需要支付的价格，其值除以100表示最终的价格。<br>InstanceChargeType=PREPAID时，单位是&quot;每月&quot;。<br>InstanceChargeType=POSTPAID时，单位是&quot;每小时&quot;。<br>例如10010，在InstanceChargeType=PREPAID情况下，表示每月100.10元。</p>
         # @type Price: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -8088,22 +8114,25 @@ module TencentCloud
 
       # InquiryPriceUpgradeDBInstance请求参数结构体
       class InquiryPriceUpgradeDBInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID，形如mssql-njj2mtpl
+        # @param InstanceId: <p>实例ID，形如mssql-njj2mtpl</p>
         # @type InstanceId: String
-        # @param Memory: 实例升级后的内存大小，单位GB，其值不能比当前实例内存小
+        # @param Memory: <p>实例升级后的内存大小，单位GB，其值不能比当前实例内存小</p>
         # @type Memory: Integer
-        # @param Storage: 实例升级后的磁盘大小，单位GB，其值不能比当前实例磁盘小
+        # @param Storage: <p>实例升级后的磁盘大小，单位GB，其值不能比当前实例磁盘小</p>
         # @type Storage: Integer
-        # @param Cpu: 实例升级后的CPU核心数，其值不能比当前实例CPU小
+        # @param Cpu: <p>实例升级后的CPU核心数，其值不能比当前实例CPU小</p>
         # @type Cpu: Integer
+        # @param ThroughputPerformance: <p>额外磁盘 IO 吞吐量</p><p>取值范围：[0, 650]</p><p>单位：MB/s</p>
+        # @type ThroughputPerformance: Integer
 
-        attr_accessor :InstanceId, :Memory, :Storage, :Cpu
+        attr_accessor :InstanceId, :Memory, :Storage, :Cpu, :ThroughputPerformance
 
-        def initialize(instanceid=nil, memory=nil, storage=nil, cpu=nil)
+        def initialize(instanceid=nil, memory=nil, storage=nil, cpu=nil, throughputperformance=nil)
           @InstanceId = instanceid
           @Memory = memory
           @Storage = storage
           @Cpu = cpu
+          @ThroughputPerformance = throughputperformance
         end
 
         def deserialize(params)
@@ -8111,14 +8140,15 @@ module TencentCloud
           @Memory = params['Memory']
           @Storage = params['Storage']
           @Cpu = params['Cpu']
+          @ThroughputPerformance = params['ThroughputPerformance']
         end
       end
 
       # InquiryPriceUpgradeDBInstance返回参数结构体
       class InquiryPriceUpgradeDBInstanceResponse < TencentCloud::Common::AbstractModel
-        # @param OriginalPrice: 未打折的原价，其值除以100表示最终的价格。例如10094表示100.94元
+        # @param OriginalPrice: <p>未打折的原价，其值除以100表示最终的价格。例如10094表示100.94元</p>
         # @type OriginalPrice: Integer
-        # @param Price: 实际需要支付价格，其值除以100表示最终的价格。例如10094表示100.94元
+        # @param Price: <p>实际需要支付价格，其值除以100表示最终的价格。例如10094表示100.94元</p>
         # @type Price: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -9366,8 +9396,8 @@ module TencentCloud
 
         attr_accessor :Errno, :Msg, :Code, :RequestId
         extend Gem::Deprecate
-        deprecate :Errno, :none, 2026, 5
-        deprecate :Errno=, :none, 2026, 5
+        deprecate :Errno, :none, 2026, 6
+        deprecate :Errno=, :none, 2026, 6
 
         def initialize(errno=nil, msg=nil, code=nil, requestid=nil)
           @Errno = errno
@@ -12207,43 +12237,56 @@ module TencentCloud
 
       # 实例可售卖的规格信息
       class SpecInfo < TencentCloud::Common::AbstractModel
-        # @param SpecId: 实例规格ID，利用DescribeZones返回的SpecId，结合DescribeProductConfig返回的可售卖规格信息，可获悉某个可用区下可购买什么规格的实例
+        # @param SpecId: <p>实例规格ID，利用DescribeZones返回的SpecId，结合DescribeProductConfig返回的可售卖规格信息，可获悉某个可用区下可购买什么规格的实例</p>
         # @type SpecId: Integer
-        # @param MachineType: 机型ID
+        # @param MachineType: <p>机型ID</p>
         # @type MachineType: String
-        # @param MachineTypeName: 机型中文名称
+        # @param MachineTypeName: <p>机型中文名称</p>
         # @type MachineTypeName: String
-        # @param Version: 数据库版本信息。取值为2008R2（表示SQL Server 2008 R2），2012SP3（表示SQL Server 2012），2016SP1（表示SQL Server 2016 SP1）
+        # @param Version: <p>数据库版本信息。取值为2008R2（表示SQL Server 2008 R2），2012SP3（表示SQL Server 2012），2016SP1（表示SQL Server 2016 SP1）</p>
         # @type Version: String
-        # @param VersionName: Version字段对应的版本名称
+        # @param VersionName: <p>Version字段对应的版本名称</p>
         # @type VersionName: String
-        # @param Memory: 内存大小，单位GB
+        # @param Memory: <p>内存大小，单位GB</p>
         # @type Memory: Integer
-        # @param CPU: CPU核数
+        # @param CPU: <p>CPU核数</p>
         # @type CPU: Integer
-        # @param MinStorage: 此规格下最小的磁盘大小，单位GB
+        # @param MinStorage: <p>此规格下最小的磁盘大小，单位GB</p>
         # @type MinStorage: Integer
-        # @param MaxStorage: 此规格下最大的磁盘大小，单位GB
+        # @param MaxStorage: <p>此规格下最大的磁盘大小，单位GB</p>
         # @type MaxStorage: Integer
-        # @param QPS: 此规格对应的QPS大小
+        # @param QPS: <p>此规格对应的QPS大小</p>
         # @type QPS: Integer
-        # @param SuitInfo: 此规格的中文描述信息
+        # @param SuitInfo: <p>此规格的中文描述信息</p>
         # @type SuitInfo: String
-        # @param Pid: 此规格对应的包年包月Pid
+        # @param Pid: <p>此规格对应的包年包月Pid</p>
         # @type Pid: Integer
-        # @param PostPid: 此规格对应的按量计费Pid列表
+        # @param PostPid: <p>此规格对应的按量计费Pid列表</p>
         # @type PostPid: Array
-        # @param PayModeStatus: 此规格下支持的付费模式，POST-仅支持按量计费 PRE-仅支持包年包月 ALL-支持所有
+        # @param PayModeStatus: <p>此规格下支持的付费模式，POST-仅支持按量计费 PRE-仅支持包年包月 ALL-支持所有</p>
         # @type PayModeStatus: String
-        # @param InstanceType: 购买实例的类型 HA-本地盘高可用(包括双机高可用，alwaysOn集群)，RO-本地盘只读副本，SI-云盘版单节点,BI-商业智能服务，cvmHA-云盘版高可用，cvmRO-云盘版只读副本，MultiHA-多节点，cvmMultiHA-云盘多节点
-        # 示例值：HA
+        # @param InstanceType: <p>购买实例的类型 HA-本地盘高可用(包括双机高可用，alwaysOn集群)，RO-本地盘只读副本，SI-云盘版单节点,BI-商业智能服务，cvmHA-云盘版高可用，cvmRO-云盘版只读副本，MultiHA-多节点，cvmMultiHA-云盘多节点<br>示例值：HA</p>
         # @type InstanceType: String
-        # @param MultiZonesStatus: 跨可用区类型，MultiZones-只支持跨可用区，SameZones-只支持同可用区，ALL-支持所有
+        # @param MultiZonesStatus: <p>跨可用区类型，MultiZones-只支持跨可用区，SameZones-只支持同可用区，ALL-支持所有</p>
         # @type MultiZonesStatus: String
+        # @param MinBaselineIOPS: <p>最小磁盘容量时的基准</p><p>单位：IOPS</p>
+        # @type MinBaselineIOPS: Integer
+        # @param MaxBaselineIOPS: <p>最大磁盘容量时的基准</p><p>单位：IOPS</p>
+        # @type MaxBaselineIOPS: Integer
+        # @param MinBaselineThroughput: <p>最小磁盘容量时的基准吞吐量</p><p>单位：MB/s</p>
+        # @type MinBaselineThroughput: Integer
+        # @param MaxBaselineThroughput: <p>最大磁盘容量时的基准吞吐量</p><p>单位：MB/s</p>
+        # @type MaxBaselineThroughput: Integer
+        # @param ExtraIOSupported: <p>是否支持额外 IO 性能</p><p>枚举值：</p><ul><li>TRUE： 支持额外 IO 性能</li><li>FALSE： 不支持额外 IO 性能</li></ul>
+        # @type ExtraIOSupported: Boolean
+        # @param MaxExtraThroughput: <p>额外 IO 最大吞吐量</p><p>单位：MB/s</p>
+        # @type MaxExtraThroughput: Integer
+        # @param MinDiskSizeForExtraIO: <p>支持额外 IO 的最小磁盘容量</p><p>单位： GB</p><p>默认值：460</p>
+        # @type MinDiskSizeForExtraIO: Integer
 
-        attr_accessor :SpecId, :MachineType, :MachineTypeName, :Version, :VersionName, :Memory, :CPU, :MinStorage, :MaxStorage, :QPS, :SuitInfo, :Pid, :PostPid, :PayModeStatus, :InstanceType, :MultiZonesStatus
+        attr_accessor :SpecId, :MachineType, :MachineTypeName, :Version, :VersionName, :Memory, :CPU, :MinStorage, :MaxStorage, :QPS, :SuitInfo, :Pid, :PostPid, :PayModeStatus, :InstanceType, :MultiZonesStatus, :MinBaselineIOPS, :MaxBaselineIOPS, :MinBaselineThroughput, :MaxBaselineThroughput, :ExtraIOSupported, :MaxExtraThroughput, :MinDiskSizeForExtraIO
 
-        def initialize(specid=nil, machinetype=nil, machinetypename=nil, version=nil, versionname=nil, memory=nil, cpu=nil, minstorage=nil, maxstorage=nil, qps=nil, suitinfo=nil, pid=nil, postpid=nil, paymodestatus=nil, instancetype=nil, multizonesstatus=nil)
+        def initialize(specid=nil, machinetype=nil, machinetypename=nil, version=nil, versionname=nil, memory=nil, cpu=nil, minstorage=nil, maxstorage=nil, qps=nil, suitinfo=nil, pid=nil, postpid=nil, paymodestatus=nil, instancetype=nil, multizonesstatus=nil, minbaselineiops=nil, maxbaselineiops=nil, minbaselinethroughput=nil, maxbaselinethroughput=nil, extraiosupported=nil, maxextrathroughput=nil, mindisksizeforextraio=nil)
           @SpecId = specid
           @MachineType = machinetype
           @MachineTypeName = machinetypename
@@ -12260,6 +12303,13 @@ module TencentCloud
           @PayModeStatus = paymodestatus
           @InstanceType = instancetype
           @MultiZonesStatus = multizonesstatus
+          @MinBaselineIOPS = minbaselineiops
+          @MaxBaselineIOPS = maxbaselineiops
+          @MinBaselineThroughput = minbaselinethroughput
+          @MaxBaselineThroughput = maxbaselinethroughput
+          @ExtraIOSupported = extraiosupported
+          @MaxExtraThroughput = maxextrathroughput
+          @MinDiskSizeForExtraIO = mindisksizeforextraio
         end
 
         def deserialize(params)
@@ -12279,38 +12329,58 @@ module TencentCloud
           @PayModeStatus = params['PayModeStatus']
           @InstanceType = params['InstanceType']
           @MultiZonesStatus = params['MultiZonesStatus']
+          @MinBaselineIOPS = params['MinBaselineIOPS']
+          @MaxBaselineIOPS = params['MaxBaselineIOPS']
+          @MinBaselineThroughput = params['MinBaselineThroughput']
+          @MaxBaselineThroughput = params['MaxBaselineThroughput']
+          @ExtraIOSupported = params['ExtraIOSupported']
+          @MaxExtraThroughput = params['MaxExtraThroughput']
+          @MinDiskSizeForExtraIO = params['MinDiskSizeForExtraIO']
         end
       end
 
       # 售卖配置状态
       class SpecSellStatus < TencentCloud::Common::AbstractModel
-        # @param Id: 可售卖的规格唯一ID
+        # @param Id: <p>可售卖的规格唯一ID</p>
         # @type Id: String
-        # @param SpecId: 实例规格ID
+        # @param SpecId: <p>实例规格ID</p>
         # @type SpecId: Integer
-        # @param PayModeStatus: 此规格下支持的付费模式，POST-仅支持按量计费 PRE-仅支持包年包月 ALL-支持所有
+        # @param PayModeStatus: <p>此规格下支持的付费模式，POST-仅支持按量计费 PRE-仅支持包年包月 ALL-支持所有</p>
         # @type PayModeStatus: String
-        # @param InstanceType: 产品类型，购买实例的类型 HA-本地盘高可用(包括双机高可用，alwaysOn集群)，RO-本地盘只读副本，SI-云盘版单节点,BI-商业智能服务，cvmHA-云盘版高可用，cvmRO-云盘版只读副本，MultiHA-多节点，cvmMultiHA-云盘多节点
+        # @param InstanceType: <p>产品类型，购买实例的类型 HA-本地盘高可用(包括双机高可用，alwaysOn集群)，RO-本地盘只读副本，SI-云盘版单节点,BI-商业智能服务，cvmHA-云盘版高可用，cvmRO-云盘版只读副本，MultiHA-多节点，cvmMultiHA-云盘多节点</p>
         # @type InstanceType: String
-        # @param MultiZonesStatus: 该规格支持的是否跨可用去，MultiZones-只支持跨可用区，SameZones-只支持同可用区，ALL-支持所有
+        # @param MultiZonesStatus: <p>该规格支持的是否跨可用去，MultiZones-只支持跨可用区，SameZones-只支持同可用区，ALL-支持所有</p>
         # @type MultiZonesStatus: String
-        # @param Architecture: 架构标识，SINGLE-单节点 DOUBLE-双节点 TRIPLE-三节点 MULTI-多节点
-        # 示例值：SINGLE
+        # @param Architecture: <p>架构标识，SINGLE-单节点 DOUBLE-双节点 TRIPLE-三节点 MULTI-多节点<br>示例值：SINGLE</p>
         # @type Architecture: String
-        # @param Style: 类型标识，EXCLUSIVE-独享型，SHARED-共享型
+        # @param Style: <p>类型标识，EXCLUSIVE-独享型，SHARED-共享型</p>
         # @type Style: String
-        # @param Version: 数据库版本信息
+        # @param Version: <p>数据库版本信息</p>
         # @type Version: String
-        # @param ZoneStatusSet: 每个可用区的售卖状态集合
+        # @param ZoneStatusSet: <p>每个可用区的售卖状态集合</p>
         # @type ZoneStatusSet: Array
-        # @param Price: 规格的参考价格，实际价格以询价接口为准
+        # @param Price: <p>规格的参考价格，实际价格以询价接口为准</p>
         # @type Price: :class:`Tencentcloud::Sqlserver.v20180328.models.Price`
-        # @param Status: 规格售卖状态 1-正常 2-关闭售卖但是可以升级 3-完全关闭售卖
+        # @param Status: <p>规格售卖状态 1-正常 2-关闭售卖但是可以升级 3-完全关闭售卖</p>
         # @type Status: Integer
+        # @param MinBaselineIOPS: <p>最小磁盘容量时的基准 </p><p>单位：IOPS</p>
+        # @type MinBaselineIOPS: Integer
+        # @param MaxBaselineIOPS: <p>最大磁盘容量时的基准 </p><p>单位：IOPS</p>
+        # @type MaxBaselineIOPS: Integer
+        # @param MinBaselineThroughput: <p>最小磁盘容量时的基准吞吐量 </p><p>单位：MB/s</p>
+        # @type MinBaselineThroughput: Integer
+        # @param MaxBaselineThroughput: <p>最大磁盘容量时的基准吞吐量 </p><p>单位：MB/s</p>
+        # @type MaxBaselineThroughput: Integer
+        # @param ExtraIOSupported: <p>是否支持额外 IO 性能</p><p>枚举值：</p><ul><li>TRUE： 支持额外 IO 性能</li><li>FALSE： 不支持额外 IO 性能</li></ul>
+        # @type ExtraIOSupported: Boolean
+        # @param MaxExtraThroughput: <p>额外 IO 最大吞吐量 </p><p>单位：MB/s</p>
+        # @type MaxExtraThroughput: Integer
+        # @param MinDiskSizeForExtraIO: <p>支持额外 IO 的最小磁盘容量</p><p>单位：GB</p><p>默认值：460</p>
+        # @type MinDiskSizeForExtraIO: Integer
 
-        attr_accessor :Id, :SpecId, :PayModeStatus, :InstanceType, :MultiZonesStatus, :Architecture, :Style, :Version, :ZoneStatusSet, :Price, :Status
+        attr_accessor :Id, :SpecId, :PayModeStatus, :InstanceType, :MultiZonesStatus, :Architecture, :Style, :Version, :ZoneStatusSet, :Price, :Status, :MinBaselineIOPS, :MaxBaselineIOPS, :MinBaselineThroughput, :MaxBaselineThroughput, :ExtraIOSupported, :MaxExtraThroughput, :MinDiskSizeForExtraIO
 
-        def initialize(id=nil, specid=nil, paymodestatus=nil, instancetype=nil, multizonesstatus=nil, architecture=nil, style=nil, version=nil, zonestatusset=nil, price=nil, status=nil)
+        def initialize(id=nil, specid=nil, paymodestatus=nil, instancetype=nil, multizonesstatus=nil, architecture=nil, style=nil, version=nil, zonestatusset=nil, price=nil, status=nil, minbaselineiops=nil, maxbaselineiops=nil, minbaselinethroughput=nil, maxbaselinethroughput=nil, extraiosupported=nil, maxextrathroughput=nil, mindisksizeforextraio=nil)
           @Id = id
           @SpecId = specid
           @PayModeStatus = paymodestatus
@@ -12322,6 +12392,13 @@ module TencentCloud
           @ZoneStatusSet = zonestatusset
           @Price = price
           @Status = status
+          @MinBaselineIOPS = minbaselineiops
+          @MaxBaselineIOPS = maxbaselineiops
+          @MinBaselineThroughput = minbaselinethroughput
+          @MaxBaselineThroughput = maxbaselinethroughput
+          @ExtraIOSupported = extraiosupported
+          @MaxExtraThroughput = maxextrathroughput
+          @MinDiskSizeForExtraIO = mindisksizeforextraio
         end
 
         def deserialize(params)
@@ -12346,6 +12423,13 @@ module TencentCloud
             @Price.deserialize(params['Price'])
           end
           @Status = params['Status']
+          @MinBaselineIOPS = params['MinBaselineIOPS']
+          @MaxBaselineIOPS = params['MaxBaselineIOPS']
+          @MinBaselineThroughput = params['MinBaselineThroughput']
+          @MaxBaselineThroughput = params['MaxBaselineThroughput']
+          @ExtraIOSupported = params['ExtraIOSupported']
+          @MaxExtraThroughput = params['MaxExtraThroughput']
+          @MinDiskSizeForExtraIO = params['MinDiskSizeForExtraIO']
         end
       end
 
@@ -12798,34 +12882,36 @@ module TencentCloud
 
       # UpgradeDBInstance请求参数结构体
       class UpgradeDBInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID，形如mssql-j8kv137v
+        # @param InstanceId: <p>实例ID，形如mssql-j8kv137v</p>
         # @type InstanceId: String
-        # @param Memory: 实例升级后内存大小，单位GB，其值不能小于当前实例内存大小
+        # @param Memory: <p>实例升级后内存大小，单位GB，其值不能小于当前实例内存大小</p>
         # @type Memory: Integer
-        # @param Storage: 实例升级后磁盘大小，单位GB，其值不能小于当前实例磁盘大小
+        # @param Storage: <p>实例升级后磁盘大小，单位GB，其值不能小于当前实例磁盘大小</p>
         # @type Storage: Integer
-        # @param AutoVoucher: 是否自动使用代金券，0 - 不使用；1 - 默认使用。取值默认为0
+        # @param AutoVoucher: <p>是否自动使用代金券，0 - 不使用；1 - 默认使用。取值默认为0</p>
         # @type AutoVoucher: Integer
-        # @param VoucherIds: 代金券ID，目前单个订单只能使用一张代金券
+        # @param VoucherIds: <p>代金券ID，目前单个订单只能使用一张代金券</p>
         # @type VoucherIds: Array
-        # @param Cpu: 实例升级后的CPU核心数
+        # @param Cpu: <p>实例升级后的CPU核心数</p>
         # @type Cpu: Integer
-        # @param DBVersion: 升级sqlserver的版本，目前支持：2008R2（SQL Server 2008 Enterprise），2012SP3（SQL Server 2012 Enterprise）版本等。每个地域支持售卖的版本不同，可通过DescribeProductConfig接口来拉取每个地域可售卖的版本信息，版本不支持降级，不填则不修改版本
+        # @param DBVersion: <p>升级sqlserver的版本，目前支持：2008R2（SQL Server 2008 Enterprise），2012SP3（SQL Server 2012 Enterprise）版本等。每个地域支持售卖的版本不同，可通过DescribeProductConfig接口来拉取每个地域可售卖的版本信息，版本不支持降级，不填则不修改版本</p>
         # @type DBVersion: String
-        # @param HAType: 升级sqlserver的高可用架构,从镜像容灾升级到always on集群容灾，仅支持2017及以上版本且支持always on高可用的实例，不支持降级到镜像方式容灾，CLUSTER-升级为always on容灾，不填则不修改高可用架构
+        # @param HAType: <p>升级sqlserver的高可用架构,从镜像容灾升级到always on集群容灾，仅支持2017及以上版本且支持always on高可用的实例，不支持降级到镜像方式容灾，CLUSTER-升级为always on容灾，不填则不修改高可用架构</p>
         # @type HAType: String
-        # @param MultiZones: 修改实例是否为跨可用区容灾，SameZones-修改为同可用区 MultiZones-修改为跨可用区
+        # @param MultiZones: <p>修改实例是否为跨可用区容灾，SameZones-修改为同可用区 MultiZones-修改为跨可用区</p>
         # @type MultiZones: String
-        # @param WaitSwitch: 执行变配的方式，默认为 1。支持值包括：0 - 立刻执行，1 - 维护时间窗执行
+        # @param WaitSwitch: <p>执行变配的方式，默认为 1。支持值包括：0 - 立刻执行，1 - 维护时间窗执行</p>
         # @type WaitSwitch: Integer
-        # @param DrZones: 多节点架构实例的备节点可用区，默认为空。如果需要在变配的同时修改指定备节点的可用区时必传，当MultiZones = MultiZones时主节点和备节点可用区不能全部相同。备机可用区集合最小为2个，最大不超过5个。
+        # @param DrZones: <p>多节点架构实例的备节点可用区，默认为空。如果需要在变配的同时修改指定备节点的可用区时必传，当MultiZones = MultiZones时主节点和备节点可用区不能全部相同。备机可用区集合最小为2个，最大不超过5个。</p>
         # @type DrZones: Array
-        # @param UpgradeCompatLevel: 是否自动升级数据库的兼容性级别，默认0。0-否，1-是
+        # @param UpgradeCompatLevel: <p>是否自动升级数据库的兼容性级别，默认0。0-否，1-是</p>
         # @type UpgradeCompatLevel: Integer
+        # @param ThroughputPerformance: <p>额外磁盘 IO 吞吐量，仅 CLOUD_HSSD 支持</p><p>取值范围：[0, 650]</p><p>单位：MB/s</p>
+        # @type ThroughputPerformance: Integer
 
-        attr_accessor :InstanceId, :Memory, :Storage, :AutoVoucher, :VoucherIds, :Cpu, :DBVersion, :HAType, :MultiZones, :WaitSwitch, :DrZones, :UpgradeCompatLevel
+        attr_accessor :InstanceId, :Memory, :Storage, :AutoVoucher, :VoucherIds, :Cpu, :DBVersion, :HAType, :MultiZones, :WaitSwitch, :DrZones, :UpgradeCompatLevel, :ThroughputPerformance
 
-        def initialize(instanceid=nil, memory=nil, storage=nil, autovoucher=nil, voucherids=nil, cpu=nil, dbversion=nil, hatype=nil, multizones=nil, waitswitch=nil, drzones=nil, upgradecompatlevel=nil)
+        def initialize(instanceid=nil, memory=nil, storage=nil, autovoucher=nil, voucherids=nil, cpu=nil, dbversion=nil, hatype=nil, multizones=nil, waitswitch=nil, drzones=nil, upgradecompatlevel=nil, throughputperformance=nil)
           @InstanceId = instanceid
           @Memory = memory
           @Storage = storage
@@ -12838,6 +12924,7 @@ module TencentCloud
           @WaitSwitch = waitswitch
           @DrZones = drzones
           @UpgradeCompatLevel = upgradecompatlevel
+          @ThroughputPerformance = throughputperformance
         end
 
         def deserialize(params)
@@ -12860,12 +12947,13 @@ module TencentCloud
             end
           end
           @UpgradeCompatLevel = params['UpgradeCompatLevel']
+          @ThroughputPerformance = params['ThroughputPerformance']
         end
       end
 
       # UpgradeDBInstance返回参数结构体
       class UpgradeDBInstanceResponse < TencentCloud::Common::AbstractModel
-        # @param DealName: 订单名称
+        # @param DealName: <p>订单名称</p>
         # @type DealName: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

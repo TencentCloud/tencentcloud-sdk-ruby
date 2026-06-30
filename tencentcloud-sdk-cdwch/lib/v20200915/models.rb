@@ -273,9 +273,9 @@ module TencentCloud
       class Charge < TencentCloud::Common::AbstractModel
         # @param ChargeType: 计费类型，“PREPAID” 预付费，“POSTPAID_BY_HOUR” 后付费
         # @type ChargeType: String
-        # @param RenewFlag: PREPAID需要传递，是否自动续费，1表示自动续费开启
+        # @param RenewFlag: ChargeType为PREPAID时，必传，表示是否自动续费，1表示自动续费开启
         # @type RenewFlag: Integer
-        # @param TimeSpan: 预付费需要传递，计费时间长度，多少个月
+        # @param TimeSpan: ChargeType为PREPAID时，必传，表示计费时间长度，多少个月
         # @type TimeSpan: Integer
 
         attr_accessor :ChargeType, :RenewFlag, :TimeSpan
@@ -556,48 +556,49 @@ module TencentCloud
 
       # CreateInstanceNew请求参数结构体
       class CreateInstanceNewRequest < TencentCloud::Common::AbstractModel
-        # @param Zone: 可用区
+        # @param Zone: <p>可用区</p>
         # @type Zone: String
-        # @param HaFlag: 是否高可用
+        # @param HaFlag: <p>是否高可用</p>
         # @type HaFlag: Boolean
-        # @param UserVPCId: 私有网络
+        # @param UserVPCId: <p>私有网络</p>
         # @type UserVPCId: String
-        # @param UserSubnetId: 子网
+        # @param UserSubnetId: <p>子网</p>
         # @type UserSubnetId: String
-        # @param ProductVersion: 系统版本
+        # @param ProductVersion: <p>系统版本</p>
         # @type ProductVersion: String
-        # @param ChargeProperties: 计费方式
+        # @param ChargeProperties: <p>计费方式</p>
         # @type ChargeProperties: :class:`Tencentcloud::Cdwch.v20200915.models.Charge`
-        # @param InstanceName: 实例名称
+        # @param InstanceName: <p>实例名称</p>
         # @type InstanceName: String
-        # @param DataSpec: 数据节点
-        # SpecName从DescribeSpec接口中返回的DataSpec.Name获取
+        # @param DataSpec: <p>数据节点<br>SpecName从DescribeSpec接口中返回的DataSpec.Name获取</p>
         # @type DataSpec: :class:`Tencentcloud::Cdwch.v20200915.models.NodeSpec`
-        # @param Tags: 标签列表（废弃）
+        # @param Tags: <p>标签列表（废弃）</p>
         # @type Tags: :class:`Tencentcloud::Cdwch.v20200915.models.Tag`
-        # @param ClsLogSetId: 日志主题ID
+        # @param ClsLogSetId: <p>日志主题ID</p>
         # @type ClsLogSetId: String
-        # @param CosBucketName: COS桶名称
+        # @param CosBucketName: <p>COS桶名称</p>
         # @type CosBucketName: String
-        # @param MountDiskType: 是否是裸盘挂载，默认值 0 为 未挂载，1 为挂载。
+        # @param MountDiskType: <p>是否是裸盘挂载，默认值 0 为 未挂载，1 为挂载。</p>
         # @type MountDiskType: Integer
-        # @param HAZk: 是否是ZK高可用
+        # @param HAZk: <p>是否是ZK高可用</p>
         # @type HAZk: Boolean
-        # @param CommonSpec: ZK节点SpecName从DescribeSpec接口中返回的CommonSpec结构体的Name（ZK节点）获取
+        # @param CommonSpec: <p>ZK节点SpecName从DescribeSpec接口中返回的CommonSpec结构体的Name（ZK节点）获取</p>
         # @type CommonSpec: :class:`Tencentcloud::Cdwch.v20200915.models.NodeSpec`
-        # @param TagItems: 标签列表
+        # @param TagItems: <p>标签列表</p>
         # @type TagItems: Array
-        # @param SecondaryZoneInfo: 副可用区信息
+        # @param SecondaryZoneInfo: <p>副可用区信息</p>
         # @type SecondaryZoneInfo: Array
-        # @param CkDefaultUserPwd: default账号登陆实例的密码。8-16个字符，至少包含大写字母、小写字母、数字和特殊字符!@#%^*中的三种，第一个字符不能为特殊字符
+        # @param CkDefaultUserPwd: <p>default账号登录实例的密码。8-16个字符，至少包含大写字母、小写字母、数字和特殊字符!@#%^*中的三种，第一个字符不能为特殊字符</p>
         # @type CkDefaultUserPwd: String
+        # @param ClusterType: <p>集群类型</p>
+        # @type ClusterType: String
 
-        attr_accessor :Zone, :HaFlag, :UserVPCId, :UserSubnetId, :ProductVersion, :ChargeProperties, :InstanceName, :DataSpec, :Tags, :ClsLogSetId, :CosBucketName, :MountDiskType, :HAZk, :CommonSpec, :TagItems, :SecondaryZoneInfo, :CkDefaultUserPwd
+        attr_accessor :Zone, :HaFlag, :UserVPCId, :UserSubnetId, :ProductVersion, :ChargeProperties, :InstanceName, :DataSpec, :Tags, :ClsLogSetId, :CosBucketName, :MountDiskType, :HAZk, :CommonSpec, :TagItems, :SecondaryZoneInfo, :CkDefaultUserPwd, :ClusterType
         extend Gem::Deprecate
-        deprecate :Tags, :none, 2026, 4
-        deprecate :Tags=, :none, 2026, 4
+        deprecate :Tags, :none, 2026, 6
+        deprecate :Tags=, :none, 2026, 6
 
-        def initialize(zone=nil, haflag=nil, uservpcid=nil, usersubnetid=nil, productversion=nil, chargeproperties=nil, instancename=nil, dataspec=nil, tags=nil, clslogsetid=nil, cosbucketname=nil, mountdisktype=nil, hazk=nil, commonspec=nil, tagitems=nil, secondaryzoneinfo=nil, ckdefaultuserpwd=nil)
+        def initialize(zone=nil, haflag=nil, uservpcid=nil, usersubnetid=nil, productversion=nil, chargeproperties=nil, instancename=nil, dataspec=nil, tags=nil, clslogsetid=nil, cosbucketname=nil, mountdisktype=nil, hazk=nil, commonspec=nil, tagitems=nil, secondaryzoneinfo=nil, ckdefaultuserpwd=nil, clustertype=nil)
           @Zone = zone
           @HaFlag = haflag
           @UserVPCId = uservpcid
@@ -615,6 +616,7 @@ module TencentCloud
           @TagItems = tagitems
           @SecondaryZoneInfo = secondaryzoneinfo
           @CkDefaultUserPwd = ckdefaultuserpwd
+          @ClusterType = clustertype
         end
 
         def deserialize(params)
@@ -661,16 +663,17 @@ module TencentCloud
             end
           end
           @CkDefaultUserPwd = params['CkDefaultUserPwd']
+          @ClusterType = params['ClusterType']
         end
       end
 
       # CreateInstanceNew返回参数结构体
       class CreateInstanceNewResponse < TencentCloud::Common::AbstractModel
-        # @param FlowId: 流程ID
+        # @param FlowId: <p>流程ID</p>
         # @type FlowId: String
-        # @param InstanceId: 实例ID
+        # @param InstanceId: <p>实例ID</p>
         # @type InstanceId: String
-        # @param ErrorMsg: 错误信息
+        # @param ErrorMsg: <p>错误信息</p>
         # @type ErrorMsg: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

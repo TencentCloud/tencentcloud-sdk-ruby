@@ -755,6 +755,9 @@ module TencentCloud
         # @type Zone: String
 
         attr_accessor :InstanceIds, :SecurityGroupIds, :Zone
+        extend Gem::Deprecate
+        deprecate :Zone, :none, 2026, 6
+        deprecate :Zone=, :none, 2026, 6
 
         def initialize(instanceids=nil, securitygroupids=nil, zone=nil)
           @InstanceIds = instanceids
@@ -12032,6 +12035,9 @@ module TencentCloud
         # @type Zone: String
 
         attr_accessor :InstanceIds, :SecurityGroupIds, :Zone
+        extend Gem::Deprecate
+        deprecate :Zone, :none, 2026, 6
+        deprecate :Zone=, :none, 2026, 6
 
         def initialize(instanceids=nil, securitygroupids=nil, zone=nil)
           @InstanceIds = instanceids

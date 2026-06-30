@@ -2499,6 +2499,69 @@ module TencentCloud
         end
       end
 
+      # DescribeMigrateGtidCompareReport请求参数结构体
+      class DescribeMigrateGtidCompareReportRequest < TencentCloud::Common::AbstractModel
+        # @param JobId: 任务id
+        # @type JobId: String
+        # @param CompareTaskId: 创建的校验任务id
+        # @type CompareTaskId: String
+        # @param NeedDiffDetail: 是否需要展示不一致详情
+        # @type NeedDiffDetail: Boolean
+
+        attr_accessor :JobId, :CompareTaskId, :NeedDiffDetail
+
+        def initialize(jobid=nil, comparetaskid=nil, needdiffdetail=nil)
+          @JobId = jobid
+          @CompareTaskId = comparetaskid
+          @NeedDiffDetail = needdiffdetail
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+          @CompareTaskId = params['CompareTaskId']
+          @NeedDiffDetail = params['NeedDiffDetail']
+        end
+      end
+
+      # DescribeMigrateGtidCompareReport返回参数结构体
+      class DescribeMigrateGtidCompareReportResponse < TencentCloud::Common::AbstractModel
+        # @param Conclusion: 校验结论
+        # @type Conclusion: String
+        # @param Status: 校验状态
+        # @type Status: String
+        # @param Type: 校验类型
+        # @type Type: String
+        # @param Detail: 不一致详情
+        # @type Detail: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Conclusion, :Status, :Type, :Detail, :RequestId
+
+        def initialize(conclusion=nil, status=nil, type=nil, detail=nil, requestid=nil)
+          @Conclusion = conclusion
+          @Status = status
+          @Type = type
+          @Detail = detail
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Conclusion = params['Conclusion']
+          @Status = params['Status']
+          @Type = params['Type']
+          unless params['Detail'].nil?
+            @Detail = []
+            params['Detail'].each do |i|
+              differencedetails_tmp = DifferenceDetails.new
+              differencedetails_tmp.deserialize(i)
+              @Detail << differencedetails_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeMigrationCheckJob请求参数结构体
       class DescribeMigrationCheckJobRequest < TencentCloud::Common::AbstractModel
         # @param JobId: 任务id，可通过[DescribeMigrationJobs](https://cloud.tencent.com/document/product/571/82084)接口获取。
@@ -3587,6 +3650,69 @@ module TencentCloud
         end
       end
 
+      # DescribeSyncGtidCompareReport请求参数结构体
+      class DescribeSyncGtidCompareReportRequest < TencentCloud::Common::AbstractModel
+        # @param JobId: 任务id
+        # @type JobId: String
+        # @param CompareTaskId: 创建的校验任务id
+        # @type CompareTaskId: String
+        # @param NeedDiffDetail: 是否需要展示不一致详情
+        # @type NeedDiffDetail: Boolean
+
+        attr_accessor :JobId, :CompareTaskId, :NeedDiffDetail
+
+        def initialize(jobid=nil, comparetaskid=nil, needdiffdetail=nil)
+          @JobId = jobid
+          @CompareTaskId = comparetaskid
+          @NeedDiffDetail = needdiffdetail
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+          @CompareTaskId = params['CompareTaskId']
+          @NeedDiffDetail = params['NeedDiffDetail']
+        end
+      end
+
+      # DescribeSyncGtidCompareReport返回参数结构体
+      class DescribeSyncGtidCompareReportResponse < TencentCloud::Common::AbstractModel
+        # @param Conclusion: 校验结论
+        # @type Conclusion: String
+        # @param Status: 校验状态
+        # @type Status: String
+        # @param Type: 校验类型
+        # @type Type: String
+        # @param Detail: 不一致详情
+        # @type Detail: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Conclusion, :Status, :Type, :Detail, :RequestId
+
+        def initialize(conclusion=nil, status=nil, type=nil, detail=nil, requestid=nil)
+          @Conclusion = conclusion
+          @Status = status
+          @Type = type
+          @Detail = detail
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Conclusion = params['Conclusion']
+          @Status = params['Status']
+          @Type = params['Type']
+          unless params['Detail'].nil?
+            @Detail = []
+            params['Detail'].each do |i|
+              differencedetails_tmp = DifferenceDetails.new
+              differencedetails_tmp.deserialize(i)
+              @Detail << differencedetails_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeSyncJobs请求参数结构体
       class DescribeSyncJobsRequest < TencentCloud::Common::AbstractModel
         # @param JobId: 同步任务id，如sync-werwfs23，可通过[DescribeSyncJobs](https://cloud.tencent.com/document/product/571/82103)接口获取。
@@ -4019,6 +4145,54 @@ module TencentCloud
               @Items << differenceitem_tmp
             end
           end
+        end
+      end
+
+      # 校验得出的不一致详情
+      class DifferenceDetails < TencentCloud::Common::AbstractModel
+        # @param Result: 校验结果
+        # @type Result: String
+        # @param SrcGtidSets: 源库gtid set
+        # @type SrcGtidSets: String
+        # @param DstGtidSets: 目标库gtid set
+        # @type DstGtidSets: String
+        # @param DiffSrc: 源库差异的gtid set
+        # @type DiffSrc: String
+        # @param DiffSrcTables: 源库中不一致的表
+        # @type DiffSrcTables: Array
+        # @param DiffDst: 目标库差异的gtid set
+        # @type DiffDst: String
+        # @param CompareTimestamp: 校验结束时间
+        # @type CompareTimestamp: String
+        # @param DiffSrcTablesNeedSync: 同步范围内的不一致表
+        # @type DiffSrcTablesNeedSync: Array
+        # @param DiffSrcIsNeedSync: 同步范围内是否存在不一致的表
+        # @type DiffSrcIsNeedSync: Boolean
+
+        attr_accessor :Result, :SrcGtidSets, :DstGtidSets, :DiffSrc, :DiffSrcTables, :DiffDst, :CompareTimestamp, :DiffSrcTablesNeedSync, :DiffSrcIsNeedSync
+
+        def initialize(result=nil, srcgtidsets=nil, dstgtidsets=nil, diffsrc=nil, diffsrctables=nil, diffdst=nil, comparetimestamp=nil, diffsrctablesneedsync=nil, diffsrcisneedsync=nil)
+          @Result = result
+          @SrcGtidSets = srcgtidsets
+          @DstGtidSets = dstgtidsets
+          @DiffSrc = diffsrc
+          @DiffSrcTables = diffsrctables
+          @DiffDst = diffdst
+          @CompareTimestamp = comparetimestamp
+          @DiffSrcTablesNeedSync = diffsrctablesneedsync
+          @DiffSrcIsNeedSync = diffsrcisneedsync
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @SrcGtidSets = params['SrcGtidSets']
+          @DstGtidSets = params['DstGtidSets']
+          @DiffSrc = params['DiffSrc']
+          @DiffSrcTables = params['DiffSrcTables']
+          @DiffDst = params['DiffDst']
+          @CompareTimestamp = params['CompareTimestamp']
+          @DiffSrcTablesNeedSync = params['DiffSrcTablesNeedSync']
+          @DiffSrcIsNeedSync = params['DiffSrcIsNeedSync']
         end
       end
 

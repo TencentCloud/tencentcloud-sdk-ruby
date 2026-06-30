@@ -1106,6 +1106,98 @@ module TencentCloud
         end
       end
 
+      # AddCloudNativeAPIGatewayConsumerInGroup请求参数结构体
+      class AddCloudNativeAPIGatewayConsumerInGroupRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: 网关实例id
+        # @type GatewayId: String
+        # @param ConsumerGroupId: <p>消费者组 ID（以 cg- 开头）。</p>
+        # @type ConsumerGroupId: String
+        # @param ConsumerIds: <p>消费者 ID 列表，长度 1-10。</p>
+        # @type ConsumerIds: Array
+
+        attr_accessor :GatewayId, :ConsumerGroupId, :ConsumerIds
+
+        def initialize(gatewayid=nil, consumergroupid=nil, consumerids=nil)
+          @GatewayId = gatewayid
+          @ConsumerGroupId = consumergroupid
+          @ConsumerIds = consumerids
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @ConsumerGroupId = params['ConsumerGroupId']
+          @ConsumerIds = params['ConsumerIds']
+        end
+      end
+
+      # AddCloudNativeAPIGatewayConsumerInGroup返回参数结构体
+      class AddCloudNativeAPIGatewayConsumerInGroupResponse < TencentCloud::Common::AbstractModel
+        # @param Result: <p>是否成功。</p>
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # BindCloudNativeAPIGatewaySecretKey请求参数结构体
+      class BindCloudNativeAPIGatewaySecretKeyRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: 网关实例id
+        # @type GatewayId: String
+        # @param ResourceType: 资源类型
+        # @type ResourceType: String
+        # @param ResourceIds: 资源ID，当前最多支持一个
+        # @type ResourceIds: Array
+        # @param SecretKeyId: 密钥id
+        # @type SecretKeyId: String
+
+        attr_accessor :GatewayId, :ResourceType, :ResourceIds, :SecretKeyId
+
+        def initialize(gatewayid=nil, resourcetype=nil, resourceids=nil, secretkeyid=nil)
+          @GatewayId = gatewayid
+          @ResourceType = resourcetype
+          @ResourceIds = resourceids
+          @SecretKeyId = secretkeyid
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @ResourceType = params['ResourceType']
+          @ResourceIds = params['ResourceIds']
+          @SecretKeyId = params['SecretKeyId']
+        end
+      end
+
+      # BindCloudNativeAPIGatewaySecretKey返回参数结构体
+      class BindCloudNativeAPIGatewaySecretKeyResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 结果
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 消费者结构
       class CNAPIGwConsumer < TencentCloud::Common::AbstractModel
         # @param ConsumerId: <p>消费者 ID。</p>
@@ -4362,6 +4454,90 @@ module TencentCloud
 
       # RemoveCloudNativeAPIGatewayConsumerGroupAuth返回参数结构体
       class RemoveCloudNativeAPIGatewayConsumerGroupAuthResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # RemoveCloudNativeAPIGatewayConsumerInGroup请求参数结构体
+      class RemoveCloudNativeAPIGatewayConsumerInGroupRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: 网关实例id
+        # @type GatewayId: String
+        # @param ConsumerGroupId: <p>消费者组 ID（以 cg- 开头）。</p>
+        # @type ConsumerGroupId: String
+        # @param ConsumerIds: <p>消费者 ID 列表，长度 1-10。</p>
+        # @type ConsumerIds: Array
+
+        attr_accessor :GatewayId, :ConsumerGroupId, :ConsumerIds
+
+        def initialize(gatewayid=nil, consumergroupid=nil, consumerids=nil)
+          @GatewayId = gatewayid
+          @ConsumerGroupId = consumergroupid
+          @ConsumerIds = consumerids
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @ConsumerGroupId = params['ConsumerGroupId']
+          @ConsumerIds = params['ConsumerIds']
+        end
+      end
+
+      # RemoveCloudNativeAPIGatewayConsumerInGroup返回参数结构体
+      class RemoveCloudNativeAPIGatewayConsumerInGroupResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UnbindCloudNativeAPIGatewaySecretKey请求参数结构体
+      class UnbindCloudNativeAPIGatewaySecretKeyRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: 网关实例id
+        # @type GatewayId: String
+        # @param ResourceType: 资源类型
+        # @type ResourceType: String
+        # @param ResourceIds: 资源ID，当前最多支持一个
+        # @type ResourceIds: Array
+        # @param SecretKeyId: 密钥id
+        # @type SecretKeyId: String
+
+        attr_accessor :GatewayId, :ResourceType, :ResourceIds, :SecretKeyId
+
+        def initialize(gatewayid=nil, resourcetype=nil, resourceids=nil, secretkeyid=nil)
+          @GatewayId = gatewayid
+          @ResourceType = resourcetype
+          @ResourceIds = resourceids
+          @SecretKeyId = secretkeyid
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @ResourceType = params['ResourceType']
+          @ResourceIds = params['ResourceIds']
+          @SecretKeyId = params['SecretKeyId']
+        end
+      end
+
+      # UnbindCloudNativeAPIGatewaySecretKey返回参数结构体
+      class UnbindCloudNativeAPIGatewaySecretKeyResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

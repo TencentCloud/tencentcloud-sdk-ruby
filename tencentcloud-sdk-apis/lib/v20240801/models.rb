@@ -1003,10 +1003,12 @@ module TencentCloud
         # @type FallbackModels: Array
         # @param ModelProtocol: <p>模型协议</p>
         # @type ModelProtocol: String
+        # @param RawCustomModelProtocolConfig: <p>自定义模型协议配置</p>
+        # @type RawCustomModelProtocolConfig: String
 
-        attr_accessor :InstanceID, :Name, :Description, :PubPath, :TargetModels, :PathMatchType, :InvokeLimitConfigStatus, :InvokeLimitConfig, :TokenLimitStatus, :TokenLimitConfig, :TmsStatus, :TmsConfig, :IpWhiteStatus, :IpWhiteList, :IpBlackList, :PluginConfigs, :Timeout, :PromptModerateStatus, :PromptModerateConfig, :SensitiveDataCheckStatus, :SensitiveDataCheckConfig, :TargetSelect, :FindHostKeyMethod, :HostKeyHeaderName, :FallbackStatus, :FallbackModels, :ModelProtocol
+        attr_accessor :InstanceID, :Name, :Description, :PubPath, :TargetModels, :PathMatchType, :InvokeLimitConfigStatus, :InvokeLimitConfig, :TokenLimitStatus, :TokenLimitConfig, :TmsStatus, :TmsConfig, :IpWhiteStatus, :IpWhiteList, :IpBlackList, :PluginConfigs, :Timeout, :PromptModerateStatus, :PromptModerateConfig, :SensitiveDataCheckStatus, :SensitiveDataCheckConfig, :TargetSelect, :FindHostKeyMethod, :HostKeyHeaderName, :FallbackStatus, :FallbackModels, :ModelProtocol, :RawCustomModelProtocolConfig
 
-        def initialize(instanceid=nil, name=nil, description=nil, pubpath=nil, targetmodels=nil, pathmatchtype=nil, invokelimitconfigstatus=nil, invokelimitconfig=nil, tokenlimitstatus=nil, tokenlimitconfig=nil, tmsstatus=nil, tmsconfig=nil, ipwhitestatus=nil, ipwhitelist=nil, ipblacklist=nil, pluginconfigs=nil, timeout=nil, promptmoderatestatus=nil, promptmoderateconfig=nil, sensitivedatacheckstatus=nil, sensitivedatacheckconfig=nil, targetselect=nil, findhostkeymethod=nil, hostkeyheadername=nil, fallbackstatus=nil, fallbackmodels=nil, modelprotocol=nil)
+        def initialize(instanceid=nil, name=nil, description=nil, pubpath=nil, targetmodels=nil, pathmatchtype=nil, invokelimitconfigstatus=nil, invokelimitconfig=nil, tokenlimitstatus=nil, tokenlimitconfig=nil, tmsstatus=nil, tmsconfig=nil, ipwhitestatus=nil, ipwhitelist=nil, ipblacklist=nil, pluginconfigs=nil, timeout=nil, promptmoderatestatus=nil, promptmoderateconfig=nil, sensitivedatacheckstatus=nil, sensitivedatacheckconfig=nil, targetselect=nil, findhostkeymethod=nil, hostkeyheadername=nil, fallbackstatus=nil, fallbackmodels=nil, modelprotocol=nil, rawcustommodelprotocolconfig=nil)
           @InstanceID = instanceid
           @Name = name
           @Description = description
@@ -1034,6 +1036,7 @@ module TencentCloud
           @FallbackStatus = fallbackstatus
           @FallbackModels = fallbackmodels
           @ModelProtocol = modelprotocol
+          @RawCustomModelProtocolConfig = rawcustommodelprotocolconfig
         end
 
         def deserialize(params)
@@ -1100,6 +1103,7 @@ module TencentCloud
             end
           end
           @ModelProtocol = params['ModelProtocol']
+          @RawCustomModelProtocolConfig = params['RawCustomModelProtocolConfig']
         end
       end
 
@@ -2850,10 +2854,12 @@ module TencentCloud
         # @param ModelProtocol: <p>模型类型</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModelProtocol: String
+        # @param RawCustomModelProtocolConfig: <p>自定义模型协议配置</p>
+        # @type RawCustomModelProtocolConfig: String
 
-        attr_accessor :AppID, :Uin, :InstanceID, :ID, :Name, :Description, :PubPath, :PathMatchType, :TargetModels, :ModelNames, :InvokeLimitConfigStatus, :InvokeLimitConfig, :CreateTime, :LastUpdateTime, :TokenLimitStatus, :TokenLimitConfig, :TmsStatus, :TmsConfig, :IpWhiteStatus, :IpWhiteList, :IpBlackStatus, :IpBlackList, :PluginConfigs, :Timeout, :Status, :RelateAgentAppNum, :Url, :PromptModerateStatus, :PromptModerateConfig, :SensitiveDataCheckStatus, :SensitiveDataCheckConfig, :TargetSelect, :FindHostKeyMethod, :HostKeyHeaderName, :FallbackStatus, :FallbackModels, :ModelProtocol
+        attr_accessor :AppID, :Uin, :InstanceID, :ID, :Name, :Description, :PubPath, :PathMatchType, :TargetModels, :ModelNames, :InvokeLimitConfigStatus, :InvokeLimitConfig, :CreateTime, :LastUpdateTime, :TokenLimitStatus, :TokenLimitConfig, :TmsStatus, :TmsConfig, :IpWhiteStatus, :IpWhiteList, :IpBlackStatus, :IpBlackList, :PluginConfigs, :Timeout, :Status, :RelateAgentAppNum, :Url, :PromptModerateStatus, :PromptModerateConfig, :SensitiveDataCheckStatus, :SensitiveDataCheckConfig, :TargetSelect, :FindHostKeyMethod, :HostKeyHeaderName, :FallbackStatus, :FallbackModels, :ModelProtocol, :RawCustomModelProtocolConfig
 
-        def initialize(appid=nil, uin=nil, instanceid=nil, id=nil, name=nil, description=nil, pubpath=nil, pathmatchtype=nil, targetmodels=nil, modelnames=nil, invokelimitconfigstatus=nil, invokelimitconfig=nil, createtime=nil, lastupdatetime=nil, tokenlimitstatus=nil, tokenlimitconfig=nil, tmsstatus=nil, tmsconfig=nil, ipwhitestatus=nil, ipwhitelist=nil, ipblackstatus=nil, ipblacklist=nil, pluginconfigs=nil, timeout=nil, status=nil, relateagentappnum=nil, url=nil, promptmoderatestatus=nil, promptmoderateconfig=nil, sensitivedatacheckstatus=nil, sensitivedatacheckconfig=nil, targetselect=nil, findhostkeymethod=nil, hostkeyheadername=nil, fallbackstatus=nil, fallbackmodels=nil, modelprotocol=nil)
+        def initialize(appid=nil, uin=nil, instanceid=nil, id=nil, name=nil, description=nil, pubpath=nil, pathmatchtype=nil, targetmodels=nil, modelnames=nil, invokelimitconfigstatus=nil, invokelimitconfig=nil, createtime=nil, lastupdatetime=nil, tokenlimitstatus=nil, tokenlimitconfig=nil, tmsstatus=nil, tmsconfig=nil, ipwhitestatus=nil, ipwhitelist=nil, ipblackstatus=nil, ipblacklist=nil, pluginconfigs=nil, timeout=nil, status=nil, relateagentappnum=nil, url=nil, promptmoderatestatus=nil, promptmoderateconfig=nil, sensitivedatacheckstatus=nil, sensitivedatacheckconfig=nil, targetselect=nil, findhostkeymethod=nil, hostkeyheadername=nil, fallbackstatus=nil, fallbackmodels=nil, modelprotocol=nil, rawcustommodelprotocolconfig=nil)
           @AppID = appid
           @Uin = uin
           @InstanceID = instanceid
@@ -2891,6 +2897,7 @@ module TencentCloud
           @FallbackStatus = fallbackstatus
           @FallbackModels = fallbackmodels
           @ModelProtocol = modelprotocol
+          @RawCustomModelProtocolConfig = rawcustommodelprotocolconfig
         end
 
         def deserialize(params)
@@ -2967,6 +2974,7 @@ module TencentCloud
             end
           end
           @ModelProtocol = params['ModelProtocol']
+          @RawCustomModelProtocolConfig = params['RawCustomModelProtocolConfig']
         end
       end
 
@@ -4153,10 +4161,12 @@ module TencentCloud
         # @type FallbackModels: Array
         # @param ModelProtocol: <p>模型类型</p>
         # @type ModelProtocol: String
+        # @param RawCustomModelProtocolConfig: <p>自定义模型协议配置</p>
+        # @type RawCustomModelProtocolConfig: String
 
-        attr_accessor :InstanceID, :ID, :Name, :Description, :TargetModels, :InvokeLimitConfigStatus, :InvokeLimitConfig, :TokenLimitStatus, :TokenLimitConfig, :TmsStatus, :TmsConfig, :IpWhiteStatus, :IpWhiteList, :IpBlackStatus, :IpBlackList, :PluginConfigs, :Timeout, :PromptModerateStatus, :PromptModerateConfig, :SensitiveDataCheckStatus, :SensitiveDataCheckConfig, :TargetSelect, :FindHostKeyMethod, :HostKeyHeaderName, :FallbackStatus, :FallbackModels, :ModelProtocol
+        attr_accessor :InstanceID, :ID, :Name, :Description, :TargetModels, :InvokeLimitConfigStatus, :InvokeLimitConfig, :TokenLimitStatus, :TokenLimitConfig, :TmsStatus, :TmsConfig, :IpWhiteStatus, :IpWhiteList, :IpBlackStatus, :IpBlackList, :PluginConfigs, :Timeout, :PromptModerateStatus, :PromptModerateConfig, :SensitiveDataCheckStatus, :SensitiveDataCheckConfig, :TargetSelect, :FindHostKeyMethod, :HostKeyHeaderName, :FallbackStatus, :FallbackModels, :ModelProtocol, :RawCustomModelProtocolConfig
 
-        def initialize(instanceid=nil, id=nil, name=nil, description=nil, targetmodels=nil, invokelimitconfigstatus=nil, invokelimitconfig=nil, tokenlimitstatus=nil, tokenlimitconfig=nil, tmsstatus=nil, tmsconfig=nil, ipwhitestatus=nil, ipwhitelist=nil, ipblackstatus=nil, ipblacklist=nil, pluginconfigs=nil, timeout=nil, promptmoderatestatus=nil, promptmoderateconfig=nil, sensitivedatacheckstatus=nil, sensitivedatacheckconfig=nil, targetselect=nil, findhostkeymethod=nil, hostkeyheadername=nil, fallbackstatus=nil, fallbackmodels=nil, modelprotocol=nil)
+        def initialize(instanceid=nil, id=nil, name=nil, description=nil, targetmodels=nil, invokelimitconfigstatus=nil, invokelimitconfig=nil, tokenlimitstatus=nil, tokenlimitconfig=nil, tmsstatus=nil, tmsconfig=nil, ipwhitestatus=nil, ipwhitelist=nil, ipblackstatus=nil, ipblacklist=nil, pluginconfigs=nil, timeout=nil, promptmoderatestatus=nil, promptmoderateconfig=nil, sensitivedatacheckstatus=nil, sensitivedatacheckconfig=nil, targetselect=nil, findhostkeymethod=nil, hostkeyheadername=nil, fallbackstatus=nil, fallbackmodels=nil, modelprotocol=nil, rawcustommodelprotocolconfig=nil)
           @InstanceID = instanceid
           @ID = id
           @Name = name
@@ -4184,6 +4194,7 @@ module TencentCloud
           @FallbackStatus = fallbackstatus
           @FallbackModels = fallbackmodels
           @ModelProtocol = modelprotocol
+          @RawCustomModelProtocolConfig = rawcustommodelprotocolconfig
         end
 
         def deserialize(params)
@@ -4250,6 +4261,7 @@ module TencentCloud
             end
           end
           @ModelProtocol = params['ModelProtocol']
+          @RawCustomModelProtocolConfig = params['RawCustomModelProtocolConfig']
         end
       end
 

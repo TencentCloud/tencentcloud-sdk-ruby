@@ -3725,6 +3725,78 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取通知资产范围配置
+
+        # @param request: Request instance for DescribeNotifyAssetConfig.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeNotifyAssetConfigRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeNotifyAssetConfigResponse`
+        def DescribeNotifyAssetConfig(request)
+          body = send_request('DescribeNotifyAssetConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeNotifyAssetConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取通知设置
+
+        # @param request: Request instance for DescribeNotifySetting.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeNotifySettingRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeNotifySettingResponse`
+        def DescribeNotifySetting(request)
+          body = send_request('DescribeNotifySetting', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeNotifySettingResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取告警中心通知高级配置
+
+        # @param request: Request instance for DescribeNotifySettingAlert.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeNotifySettingAlertRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeNotifySettingAlertResponse`
+        def DescribeNotifySettingAlert(request)
+          body = send_request('DescribeNotifySettingAlert', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeNotifySettingAlertResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询集团账号详情
 
         # @param request: Request instance for DescribeOrganizationInfo.
@@ -5247,6 +5319,78 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyMachineRemarkResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改通知资产范围配置
+
+        # @param request: Request instance for ModifyNotifyAssetConfig.
+        # @type request: :class:`Tencentcloud::csip::V20221121::ModifyNotifyAssetConfigRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::ModifyNotifyAssetConfigResponse`
+        def ModifyNotifyAssetConfig(request)
+          body = send_request('ModifyNotifyAssetConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyNotifyAssetConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改通知设置
+
+        # @param request: Request instance for ModifyNotifySetting.
+        # @type request: :class:`Tencentcloud::csip::V20221121::ModifyNotifySettingRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::ModifyNotifySettingResponse`
+        def ModifyNotifySetting(request)
+          body = send_request('ModifyNotifySetting', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyNotifySettingResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改告警中心通知高级配置
+
+        # @param request: Request instance for ModifyNotifySettingAlert.
+        # @type request: :class:`Tencentcloud::csip::V20221121::ModifyNotifySettingAlertRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::ModifyNotifySettingAlertResponse`
+        def ModifyNotifySettingAlert(request)
+          body = send_request('ModifyNotifySettingAlert', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyNotifySettingAlertResponse.new
             model.deserialize(response['Response'])
             model
           else

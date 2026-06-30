@@ -3481,9 +3481,9 @@ module TencentCloud
 
       # DeleteAlarmShields请求参数结构体
       class DeleteAlarmShieldsRequest < TencentCloud::Common::AbstractModel
-        # @param Module: 模块名，这里填“monitor”
+        # @param Module: <p>模块名，这里填“monitor”</p>
         # @type Module: String
-        # @param Shields: 屏蔽策略Id列表
+        # @param Shields: <p>屏蔽策略Id列表</p>
         # @type Shields: Array
 
         attr_accessor :Module, :Shields
@@ -4663,9 +4663,9 @@ module TencentCloud
 
       # DescribeAlarmNotice请求参数结构体
       class DescribeAlarmNoticeRequest < TencentCloud::Common::AbstractModel
-        # @param Module: 模块名，这里填“monitor”
+        # @param Module: <p>模块名，这里填“monitor”</p>
         # @type Module: String
-        # @param NoticeId: 告警通知模板 id
+        # @param NoticeId: <p>告警通知模板 id</p>
         # @type NoticeId: String
 
         attr_accessor :Module, :NoticeId
@@ -4683,7 +4683,7 @@ module TencentCloud
 
       # DescribeAlarmNotice返回参数结构体
       class DescribeAlarmNoticeResponse < TencentCloud::Common::AbstractModel
-        # @param Notice: 告警通知模板详细信息
+        # @param Notice: <p>告警通知模板详细信息</p>
         # @type Notice: :class:`Tencentcloud::Monitor.v20180724.models.AlarmNotice`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4706,29 +4706,29 @@ module TencentCloud
 
       # DescribeAlarmNotices请求参数结构体
       class DescribeAlarmNoticesRequest < TencentCloud::Common::AbstractModel
-        # @param Module: 模块名，这里填“monitor”
+        # @param Module: <p>模块名，这里填“monitor”</p>
         # @type Module: String
-        # @param PageNumber: 页码 最小为1
+        # @param PageNumber: <p>页码 最小为1</p>
         # @type PageNumber: Integer
-        # @param PageSize: 分页大小 1～200
+        # @param PageSize: <p>分页大小 1～200</p>
         # @type PageSize: Integer
-        # @param Order: 按更新时间排序方式 ASC=正序 DESC=倒序
+        # @param Order: <p>按更新时间排序方式 ASC=正序 DESC=倒序</p>
         # @type Order: String
-        # @param OwnerUid: 主账号 uid 用于创建预设通知
+        # @param OwnerUid: <p>主账号 uid 用于创建预设通知</p>
         # @type OwnerUid: Integer
-        # @param Name: 告警通知模板名称 用来模糊搜索
+        # @param Name: <p>告警通知模板名称 用来模糊搜索</p>
         # @type Name: String
-        # @param ReceiverType: 根据接收人过滤告警通知模板需要选定通知用户类型 USER=用户 GROUP=用户组 传空=不按接收人过滤
+        # @param ReceiverType: <p>根据接收人过滤告警通知模板需要选定通知用户类型 USER=用户 GROUP=用户组 传空=不按接收人过滤</p>
         # @type ReceiverType: String
-        # @param UserIds: 接收对象列表
+        # @param UserIds: <p>接收对象列表</p>
         # @type UserIds: Array
-        # @param GroupIds: 接收组列表
+        # @param GroupIds: <p>接收组列表</p>
         # @type GroupIds: Array
-        # @param NoticeIds: 根据通知模板 id 过滤，空数组/不传则不过滤
+        # @param NoticeIds: <p>根据通知模板 id 过滤，空数组/不传则不过滤</p>
         # @type NoticeIds: Array
-        # @param Tags: 模板根据标签过滤
+        # @param Tags: <p>模板根据标签过滤</p>
         # @type Tags: Array
-        # @param OnCallFormIDs: 值班列表
+        # @param OnCallFormIDs: <p>值班列表</p>
         # @type OnCallFormIDs: Array
 
         attr_accessor :Module, :PageNumber, :PageSize, :Order, :OwnerUid, :Name, :ReceiverType, :UserIds, :GroupIds, :NoticeIds, :Tags, :OnCallFormIDs
@@ -4773,9 +4773,9 @@ module TencentCloud
 
       # DescribeAlarmNotices返回参数结构体
       class DescribeAlarmNoticesResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 告警通知模板总数
+        # @param TotalCount: <p>告警通知模板总数</p>
         # @type TotalCount: Integer
-        # @param Notices: 告警通知模板列表
+        # @param Notices: <p>告警通知模板列表</p>
         # @type Notices: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4973,9 +4973,9 @@ module TencentCloud
 
       # DescribeAlarmPolicy请求参数结构体
       class DescribeAlarmPolicyRequest < TencentCloud::Common::AbstractModel
-        # @param Module: 固定值，为"monitor"
+        # @param Module: <p>固定值，为&quot;monitor&quot;</p>
         # @type Module: String
-        # @param PolicyId: 告警策略ID
+        # @param PolicyId: <p>告警策略ID</p>
         # @type PolicyId: String
 
         attr_accessor :Module, :PolicyId
@@ -4993,7 +4993,7 @@ module TencentCloud
 
       # DescribeAlarmPolicy返回参数结构体
       class DescribeAlarmPolicyResponse < TencentCloud::Common::AbstractModel
-        # @param Policy: 策略详情
+        # @param Policy: <p>策略详情</p>
         # @type Policy: :class:`Tencentcloud::Monitor.v20180724.models.AlarmPolicy`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5048,7 +5048,7 @@ module TencentCloud
 
       # DescribeAlarmSmsQuota请求参数结构体
       class DescribeAlarmSmsQuotaRequest < TencentCloud::Common::AbstractModel
-        # @param Module: 固定值，为"monitor"
+        # @param Module: <p>固定值，为&quot;monitor&quot;</p>
         # @type Module: String
 
         attr_accessor :Module
@@ -5064,11 +5064,11 @@ module TencentCloud
 
       # DescribeAlarmSmsQuota返回参数结构体
       class DescribeAlarmSmsQuotaResponse < TencentCloud::Common::AbstractModel
-        # @param Total: 配额总数
+        # @param Total: <p>配额总数</p>
         # @type Total: Integer
-        # @param Used: 总使用量
+        # @param Used: <p>总使用量</p>
         # @type Used: Integer
-        # @param QuotaList: 短信配额信息列表
+        # @param QuotaList: <p>短信配额信息列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QuotaList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -6688,9 +6688,9 @@ module TencentCloud
 
       # DescribePhoneAlarmFlowTotalCount请求参数结构体
       class DescribePhoneAlarmFlowTotalCountRequest < TencentCloud::Common::AbstractModel
-        # @param Module: 默认monitor
+        # @param Module: <p>默认monitor</p>
         # @type Module: String
-        # @param QueryTime: unix时间戳，单位：s
+        # @param QueryTime: <p>unix时间戳，单位：s</p>
         # @type QueryTime: Integer
 
         attr_accessor :Module, :QueryTime
@@ -6708,7 +6708,7 @@ module TencentCloud
 
       # DescribePhoneAlarmFlowTotalCount返回参数结构体
       class DescribePhoneAlarmFlowTotalCountResponse < TencentCloud::Common::AbstractModel
-        # @param Count: 电话流水总数
+        # @param Count: <p>电话流水总数</p>
         # @type Count: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -7142,7 +7142,7 @@ module TencentCloud
 
       # DescribePolicyConditionList请求参数结构体
       class DescribePolicyConditionListRequest < TencentCloud::Common::AbstractModel
-        # @param Module: 固定值，为"monitor"
+        # @param Module: <p>固定值，为&quot;monitor&quot;</p>
         # @type Module: String
 
         attr_accessor :Module
@@ -7158,7 +7158,7 @@ module TencentCloud
 
       # DescribePolicyConditionList返回参数结构体
       class DescribePolicyConditionListResponse < TencentCloud::Common::AbstractModel
-        # @param Conditions: 告警策略条件列表
+        # @param Conditions: <p>告警策略条件列表</p>
         # @type Conditions: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -7445,9 +7445,9 @@ module TencentCloud
 
       # DescribePolicyGroupInfo请求参数结构体
       class DescribePolicyGroupInfoRequest < TencentCloud::Common::AbstractModel
-        # @param Module: 固定值，为"monitor"
+        # @param Module: <p>固定值，为&quot;monitor&quot;</p>
         # @type Module: String
-        # @param GroupId: 策略组id
+        # @param GroupId: <p>策略组id</p>
         # @type GroupId: Integer
 
         attr_accessor :Module, :GroupId
@@ -7465,44 +7465,44 @@ module TencentCloud
 
       # DescribePolicyGroupInfo返回参数结构体
       class DescribePolicyGroupInfoResponse < TencentCloud::Common::AbstractModel
-        # @param GroupName: 策略组名称
+        # @param GroupName: <p>策略组名称</p>
         # @type GroupName: String
-        # @param ProjectId: 策略组所属的项目id
+        # @param ProjectId: <p>策略组所属的项目id</p>
         # @type ProjectId: Integer
-        # @param IsDefault: 是否为默认策略，0表示非默认策略，1表示默认策略
+        # @param IsDefault: <p>是否为默认策略，0表示非默认策略，1表示默认策略</p>
         # @type IsDefault: Integer
-        # @param ViewName: 策略类型
+        # @param ViewName: <p>策略类型</p>
         # @type ViewName: String
-        # @param Remark: 策略说明
+        # @param Remark: <p>策略说明</p>
         # @type Remark: String
-        # @param ShowName: 策略类型名称
+        # @param ShowName: <p>策略类型名称</p>
         # @type ShowName: String
-        # @param LastEditUin: 最近编辑的用户uin
+        # @param LastEditUin: <p>最近编辑的用户uin</p>
         # @type LastEditUin: String
-        # @param UpdateTime: 最近编辑时间
+        # @param UpdateTime: <p>最近编辑时间</p>
         # @type UpdateTime: String
-        # @param Region: 该策略支持的地域
+        # @param Region: <p>该策略支持的地域</p>
         # @type Region: Array
-        # @param DimensionGroup: 策略类型的维度列表
+        # @param DimensionGroup: <p>策略类型的维度列表</p>
         # @type DimensionGroup: Array
-        # @param ConditionsConfig: 阈值规则列表
+        # @param ConditionsConfig: <p>阈值规则列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConditionsConfig: Array
-        # @param EventConfig: 产品事件规则列表
+        # @param EventConfig: <p>产品事件规则列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EventConfig: Array
-        # @param ReceiverInfos: 用户接收人列表
+        # @param ReceiverInfos: <p>用户接收人列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReceiverInfos: Array
-        # @param Callback: 用户回调信息
+        # @param Callback: <p>用户回调信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Callback: :class:`Tencentcloud::Monitor.v20180724.models.DescribePolicyGroupInfoCallback`
-        # @param ConditionsTemp: 模板策略组
+        # @param ConditionsTemp: <p>模板策略组</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConditionsTemp: :class:`Tencentcloud::Monitor.v20180724.models.DescribePolicyGroupInfoConditionTpl`
-        # @param CanSetDefault: 是否可以设置成默认策略
+        # @param CanSetDefault: <p>是否可以设置成默认策略</p>
         # @type CanSetDefault: Boolean
-        # @param IsUnionRule: 是否且规则
+        # @param IsUnionRule: <p>是否且规则</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsUnionRule: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -7747,35 +7747,35 @@ module TencentCloud
 
       # DescribePolicyGroupList请求参数结构体
       class DescribePolicyGroupListRequest < TencentCloud::Common::AbstractModel
-        # @param Module: 固定值，为"monitor"
+        # @param Module: <p>固定值，为&quot;monitor&quot;</p>
         # @type Module: String
-        # @param Limit: 分页参数，每页返回的数量，取值1~100
+        # @param Limit: <p>分页参数，每页返回的数量，取值1~100</p>
         # @type Limit: Integer
-        # @param Offset: 分页参数，页偏移量，从0开始计数
+        # @param Offset: <p>分页参数，页偏移量，从0开始计数</p>
         # @type Offset: Integer
-        # @param Like: 按策略名搜索
+        # @param Like: <p>按策略名搜索</p>
         # @type Like: String
-        # @param InstanceGroupId: 实例分组id
+        # @param InstanceGroupId: <p>实例分组id</p>
         # @type InstanceGroupId: Integer
-        # @param UpdateTimeOrder: 按更新时间排序, asc 或者 desc
+        # @param UpdateTimeOrder: <p>按更新时间排序, asc 或者 desc</p>
         # @type UpdateTimeOrder: String
-        # @param ProjectIds: 项目id列表
+        # @param ProjectIds: <p>项目id列表</p>
         # @type ProjectIds: Array
-        # @param ViewNames: 告警策略类型列表
+        # @param ViewNames: <p>告警策略类型列表</p>
         # @type ViewNames: Array
-        # @param FilterUnuseReceiver: 是否过滤无接收人策略组, 1表示过滤, 0表示不过滤
+        # @param FilterUnuseReceiver: <p>是否过滤无接收人策略组, 1表示过滤, 0表示不过滤</p>
         # @type FilterUnuseReceiver: Integer
-        # @param Receivers: 过滤条件, 接收组列表
+        # @param Receivers: <p>过滤条件, 接收组列表</p>
         # @type Receivers: Array
-        # @param ReceiverUserList: 过滤条件, 接收人列表
+        # @param ReceiverUserList: <p>过滤条件, 接收人列表</p>
         # @type ReceiverUserList: Array
-        # @param Dimensions: 维度组合字段(json字符串), 例如[[{"name":"unInstanceId","value":"ins-6e4b2aaa"}]]
+        # @param Dimensions: <p>维度组合字段(json字符串), 例如[[{&quot;name&quot;:&quot;unInstanceId&quot;,&quot;value&quot;:&quot;ins-6e4b2aaa&quot;}]]</p>
         # @type Dimensions: String
-        # @param ConditionTempGroupId: 模板策略组id, 多个id用逗号分隔
+        # @param ConditionTempGroupId: <p>模板策略组id, 多个id用逗号分隔</p>
         # @type ConditionTempGroupId: String
-        # @param ReceiverType: 过滤条件, 接收人或者接收组, user表示接收人, group表示接收组
+        # @param ReceiverType: <p>过滤条件, 接收人或者接收组, user表示接收人, group表示接收组</p>
         # @type ReceiverType: String
-        # @param IsOpen: 过滤条件，告警策略是否已启动或停止
+        # @param IsOpen: <p>过滤条件，告警策略是否已启动或停止</p>
         # @type IsOpen: Boolean
 
         attr_accessor :Module, :Limit, :Offset, :Like, :InstanceGroupId, :UpdateTimeOrder, :ProjectIds, :ViewNames, :FilterUnuseReceiver, :Receivers, :ReceiverUserList, :Dimensions, :ConditionTempGroupId, :ReceiverType, :IsOpen
@@ -7819,12 +7819,12 @@ module TencentCloud
 
       # DescribePolicyGroupList返回参数结构体
       class DescribePolicyGroupListResponse < TencentCloud::Common::AbstractModel
-        # @param GroupList: 策略组列表
+        # @param GroupList: <p>策略组列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupList: Array
-        # @param Total: 策略组总数
+        # @param Total: <p>策略组总数</p>
         # @type Total: Integer
-        # @param Warning: 备注信息
+        # @param Warning: <p>备注信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Warning: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -7856,9 +7856,9 @@ module TencentCloud
 
       # DescribePolicyObjectCount请求参数结构体
       class DescribePolicyObjectCountRequest < TencentCloud::Common::AbstractModel
-        # @param Module: 固定值，为"monitor"
+        # @param Module: <p>固定值，为&quot;monitor&quot;</p>
         # @type Module: String
-        # @param GroupId: 策略组Id
+        # @param GroupId: <p>策略组Id</p>
         # @type GroupId: Integer
 
         attr_accessor :Module, :GroupId
@@ -7876,10 +7876,10 @@ module TencentCloud
 
       # DescribePolicyObjectCount返回参数结构体
       class DescribePolicyObjectCountResponse < TencentCloud::Common::AbstractModel
-        # @param IsMultiRegion: 是否为多地域
+        # @param IsMultiRegion: <p>是否为多地域</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsMultiRegion: Boolean
-        # @param RegionList: 地域统计列表
+        # @param RegionList: <p>地域统计列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegionList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -11143,10 +11143,10 @@ module TencentCloud
 
       # DescribeBasicAlarmList返回的Alarms里的InstanceGroup
       class InstanceGroup < TencentCloud::Common::AbstractModel
-        # @param InstanceGroupId: 实例组ID
+        # @param InstanceGroupId: <p>实例组ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceGroupId: Integer
-        # @param InstanceGroupName: 实例组名
+        # @param InstanceGroupName: <p>实例组名</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceGroupName: String
 
@@ -11165,9 +11165,9 @@ module TencentCloud
 
       # 告警对象所属实例组
       class InstanceGroups < TencentCloud::Common::AbstractModel
-        # @param Id: 实例组 Id
+        # @param Id: <p>实例组 Id</p>
         # @type Id: Integer
-        # @param Name: 实例组名称
+        # @param Name: <p>实例组名称</p>
         # @type Name: String
 
         attr_accessor :Id, :Name
@@ -11489,11 +11489,11 @@ module TencentCloud
 
       # 指标配置
       class MetricConfig < TencentCloud::Common::AbstractModel
-        # @param Operator: 允许使用的运算符
+        # @param Operator: <p>允许使用的运算符</p>
         # @type Operator: Array
-        # @param Period: 允许配置的数据周期，以秒为单位
+        # @param Period: <p>允许配置的数据周期，以秒为单位</p>
         # @type Period: Array
-        # @param ContinuePeriod: 允许配置的持续周期个数
+        # @param ContinuePeriod: <p>允许配置的持续周期个数</p>
         # @type ContinuePeriod: Array
 
         attr_accessor :Operator, :Period, :ContinuePeriod
@@ -11782,29 +11782,29 @@ module TencentCloud
 
       # ModifyAlarmPolicyCondition请求参数结构体
       class ModifyAlarmPolicyConditionRequest < TencentCloud::Common::AbstractModel
-        # @param Module: 模块名，固定值 monitor
+        # @param Module: <p>模块名，固定值 monitor</p>
         # @type Module: String
-        # @param PolicyId: 告警策略 ID
+        # @param PolicyId: <p>告警策略 ID</p>
         # @type PolicyId: String
-        # @param ConditionTemplateId: 触发条件模板 Id，可不传
+        # @param ConditionTemplateId: <p>触发条件模板 Id，可不传</p>
         # @type ConditionTemplateId: Integer
-        # @param Condition: 指标触发条件
+        # @param Condition: <p>指标触发条件</p>
         # @type Condition: :class:`Tencentcloud::Monitor.v20180724.models.AlarmPolicyCondition`
-        # @param EventCondition: 事件触发条件
+        # @param EventCondition: <p>事件触发条件</p>
         # @type EventCondition: :class:`Tencentcloud::Monitor.v20180724.models.AlarmPolicyEventCondition`
-        # @param Filter: 全局过滤条件
+        # @param Filter: <p>全局过滤条件</p>
         # @type Filter: :class:`Tencentcloud::Monitor.v20180724.models.AlarmPolicyFilter`
-        # @param GroupBy: 聚合维度列表，指定按哪些维度 key 来做 group by
+        # @param GroupBy: <p>聚合维度列表，指定按哪些维度 key 来做 group by</p>
         # @type GroupBy: Array
-        # @param LogAlarmReqInfo: 日志告警创建请求参数信息
+        # @param LogAlarmReqInfo: <p>日志告警创建请求参数信息</p>
         # @type LogAlarmReqInfo: :class:`Tencentcloud::Monitor.v20180724.models.LogAlarmReq`
-        # @param NoticeIds: 模板id，专供prom使用
+        # @param NoticeIds: <p>模板id，专供prom使用</p>
         # @type NoticeIds: Array
-        # @param Enable: 启停状态，0=停用，1=启用
+        # @param Enable: <p>启停状态，0=停用，1=启用</p>
         # @type Enable: Integer
-        # @param PolicyName: 专供prom策略名称
+        # @param PolicyName: <p>专供prom策略名称</p>
         # @type PolicyName: String
-        # @param EbSubject: 事件配置的告警
+        # @param EbSubject: <p>事件配置的告警</p>
         # @type EbSubject: String
 
         attr_accessor :Module, :PolicyId, :ConditionTemplateId, :Condition, :EventCondition, :Filter, :GroupBy, :LogAlarmReqInfo, :NoticeIds, :Enable, :PolicyName, :EbSubject
@@ -12239,21 +12239,21 @@ module TencentCloud
 
       # 修改告警策略组传入的指标阈值条件
       class ModifyPolicyGroupCondition < TencentCloud::Common::AbstractModel
-        # @param MetricId: 指标id
+        # @param MetricId: <p>指标id</p>
         # @type MetricId: Integer
-        # @param CalcType: 比较类型，1表示大于，2表示大于等于，3表示小于，4表示小于等于，5表示相等，6表示不相等
+        # @param CalcType: <p>比较类型，1表示大于，2表示大于等于，3表示小于，4表示小于等于，5表示相等，6表示不相等</p>
         # @type CalcType: Integer
-        # @param CalcValue: 检测阈值
+        # @param CalcValue: <p>检测阈值</p>
         # @type CalcValue: String
-        # @param CalcPeriod: 检测指标的数据周期
+        # @param CalcPeriod: <p>检测指标的数据周期</p>
         # @type CalcPeriod: Integer
-        # @param ContinuePeriod: 持续周期个数
+        # @param ContinuePeriod: <p>持续周期个数</p>
         # @type ContinuePeriod: Integer
-        # @param AlarmNotifyType: 告警发送收敛类型。0连续告警，1指数告警
+        # @param AlarmNotifyType: <p>告警发送收敛类型。0连续告警，1指数告警</p>
         # @type AlarmNotifyType: Integer
-        # @param AlarmNotifyPeriod: 告警发送周期单位秒。<0 不触发, 0 只触发一次, >0 每隔triggerTime秒触发一次
+        # @param AlarmNotifyPeriod: <p>告警发送周期单位秒。&lt;0 不触发, 0 只触发一次, &gt;0 每隔triggerTime秒触发一次</p>
         # @type AlarmNotifyPeriod: Integer
-        # @param RuleId: 规则id，不填表示新增，填写了ruleId表示在已存在的规则基础上进行修改
+        # @param RuleId: <p>规则id，不填表示新增，填写了ruleId表示在已存在的规则基础上进行修改</p>
         # @type RuleId: Integer
 
         attr_accessor :MetricId, :CalcType, :CalcValue, :CalcPeriod, :ContinuePeriod, :AlarmNotifyType, :AlarmNotifyPeriod, :RuleId
@@ -12283,13 +12283,13 @@ module TencentCloud
 
       # 修改告警策略组传入的事件告警条件
       class ModifyPolicyGroupEventCondition < TencentCloud::Common::AbstractModel
-        # @param EventId: 事件id
+        # @param EventId: <p>事件id</p>
         # @type EventId: Integer
-        # @param AlarmNotifyType: 告警发送收敛类型。0连续告警，1指数告警
+        # @param AlarmNotifyType: <p>告警发送收敛类型。0连续告警，1指数告警</p>
         # @type AlarmNotifyType: Integer
-        # @param AlarmNotifyPeriod: 告警发送周期单位秒。<0 不触发, 0 只触发一次, >0 每隔triggerTime秒触发一次
+        # @param AlarmNotifyPeriod: <p>告警发送周期单位秒。&lt;0 不触发, 0 只触发一次, &gt;0 每隔triggerTime秒触发一次</p>
         # @type AlarmNotifyPeriod: Integer
-        # @param RuleId: 规则id，不填表示新增，填写了ruleId表示在已存在的规则基础上进行修改
+        # @param RuleId: <p>规则id，不填表示新增，填写了ruleId表示在已存在的规则基础上进行修改</p>
         # @type RuleId: Integer
 
         attr_accessor :EventId, :AlarmNotifyType, :AlarmNotifyPeriod, :RuleId
@@ -12311,21 +12311,21 @@ module TencentCloud
 
       # ModifyPolicyGroup请求参数结构体
       class ModifyPolicyGroupRequest < TencentCloud::Common::AbstractModel
-        # @param Module: 固定值，为"monitor"
+        # @param Module: <p>固定值，为&quot;monitor&quot;</p>
         # @type Module: String
-        # @param GroupId: 策略组id
+        # @param GroupId: <p>策略组id</p>
         # @type GroupId: Integer
-        # @param ViewName: 告警类型
+        # @param ViewName: <p>告警类型</p>
         # @type ViewName: String
-        # @param GroupName: 策略组名称
+        # @param GroupName: <p>策略组名称</p>
         # @type GroupName: String
-        # @param IsUnionRule: 指标告警条件的且或关系，1表示且告警，所有指标告警条件都达到才告警，0表示或告警，任意指标告警条件达到都告警
+        # @param IsUnionRule: <p>是否复合告警</p><p>枚举值：</p><ul><li>1： 所有指标告警条件都达到才告警</li><li>0： 任意指标告警条件达到都告警</li></ul>
         # @type IsUnionRule: Integer
-        # @param Conditions: 指标告警条件规则，不填表示删除已有的所有指标告警条件规则
+        # @param Conditions: <p>指标告警条件规则，不填表示删除已有的所有指标告警条件规则</p>
         # @type Conditions: Array
-        # @param EventConditions: 事件告警条件，不填表示删除已有的事件告警条件
+        # @param EventConditions: <p>事件告警条件，不填表示删除已有的事件告警条件</p>
         # @type EventConditions: Array
-        # @param ConditionTempGroupId: 模板策略组id
+        # @param ConditionTempGroupId: <p>模板策略组id</p>
         # @type ConditionTempGroupId: Integer
 
         attr_accessor :Module, :GroupId, :ViewName, :GroupName, :IsUnionRule, :Conditions, :EventConditions, :ConditionTempGroupId
@@ -12369,7 +12369,7 @@ module TencentCloud
 
       # ModifyPolicyGroup返回参数结构体
       class ModifyPolicyGroupResponse < TencentCloud::Common::AbstractModel
-        # @param GroupId: 策略组id
+        # @param GroupId: <p>策略组id</p>
         # @type GroupId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -12789,9 +12789,9 @@ module TencentCloud
 
       # 策略类型
       class MonitorTypeNamespace < TencentCloud::Common::AbstractModel
-        # @param MonitorType: 监控类型
+        # @param MonitorType: <p>监控类型</p>
         # @type MonitorType: String
-        # @param Namespace: 策略类型值
+        # @param Namespace: <p>策略类型值</p>
         # @type Namespace: String
 
         attr_accessor :MonitorType, :Namespace
@@ -12809,9 +12809,9 @@ module TencentCloud
 
       # 通知模板与策略绑定关系
       class NoticeBindPolicys < TencentCloud::Common::AbstractModel
-        # @param NoticeId: 告警通知模板 ID
+        # @param NoticeId: <p>告警通知模板 ID</p>
         # @type NoticeId: String
-        # @param PolicyIds: 告警通知模板绑定的告警策略ID列表
+        # @param PolicyIds: <p>告警通知模板绑定的告警策略ID列表</p>
         # @type PolicyIds: Array
 
         attr_accessor :NoticeId, :PolicyIds
@@ -13110,9 +13110,9 @@ module TencentCloud
 
       # 监控数据点
       class Point < TencentCloud::Common::AbstractModel
-        # @param Timestamp: 该监控数据点生成的时间点
+        # @param Timestamp: <p>该监控数据点生成的时间点</p>
         # @type Timestamp: Integer
-        # @param Value: 监控数据点的值
+        # @param Value: <p>监控数据点的值</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: Float
 
@@ -13131,38 +13131,38 @@ module TencentCloud
 
       # 策略组信息
       class PolicyGroup < TencentCloud::Common::AbstractModel
-        # @param CanSetDefault: 是否可设为默认告警策略
+        # @param CanSetDefault: <p>是否可设为默认告警策略</p>
         # @type CanSetDefault: Boolean
-        # @param GroupID: 告警策略组ID
+        # @param GroupID: <p>告警策略组ID</p>
         # @type GroupID: Integer
-        # @param GroupName: 告警策略组名称
+        # @param GroupName: <p>告警策略组名称</p>
         # @type GroupName: String
-        # @param InsertTime: 创建时间
+        # @param InsertTime: <p>创建时间</p>
         # @type InsertTime: Integer
-        # @param IsDefault: 是否为默认告警策略
+        # @param IsDefault: <p>是否为默认告警策略</p>
         # @type IsDefault: Integer
-        # @param Enable: 告警策略启用状态
+        # @param Enable: <p>告警策略启用状态</p>
         # @type Enable: Boolean
-        # @param LastEditUin: 最后修改人UIN
+        # @param LastEditUin: <p>最后修改人UIN</p>
         # @type LastEditUin: Integer
-        # @param NoShieldedInstanceCount: 未屏蔽的实例数
+        # @param NoShieldedInstanceCount: <p>未屏蔽的实例数</p>
         # @type NoShieldedInstanceCount: Integer
-        # @param ParentGroupID: 父策略组ID
+        # @param ParentGroupID: <p>父策略组ID</p>
         # @type ParentGroupID: Integer
-        # @param ProjectID: 所属项目ID
+        # @param ProjectID: <p>所属项目ID</p>
         # @type ProjectID: Integer
-        # @param ReceiverInfos: 告警接收对象信息
+        # @param ReceiverInfos: <p>告警接收对象信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReceiverInfos: Array
-        # @param Remark: 备注信息
+        # @param Remark: <p>备注信息</p>
         # @type Remark: String
-        # @param UpdateTime: 修改时间
+        # @param UpdateTime: <p>修改时间</p>
         # @type UpdateTime: Integer
-        # @param TotalInstanceCount: 总绑定实例数
+        # @param TotalInstanceCount: <p>总绑定实例数</p>
         # @type TotalInstanceCount: Integer
-        # @param ViewName: 视图
+        # @param ViewName: <p>视图</p>
         # @type ViewName: String
-        # @param IsUnionRule: 是否为与关系规则
+        # @param IsUnionRule: <p>是否为与关系规则</p>
         # @type IsUnionRule: Integer
 
         attr_accessor :CanSetDefault, :GroupID, :GroupName, :InsertTime, :IsDefault, :Enable, :LastEditUin, :NoShieldedInstanceCount, :ParentGroupID, :ProjectID, :ReceiverInfos, :Remark, :UpdateTime, :TotalInstanceCount, :ViewName, :IsUnionRule
@@ -13215,36 +13215,36 @@ module TencentCloud
 
       # 2018版策略模板列表接收人信息
       class PolicyGroupReceiverInfo < TencentCloud::Common::AbstractModel
-        # @param EndTime: 有效时段结束时间
+        # @param EndTime: <p>有效时段结束时间</p>
         # @type EndTime: Integer
-        # @param NeedSendNotice: 是否需要发送通知
+        # @param NeedSendNotice: <p>是否需要发送通知</p>
         # @type NeedSendNotice: Integer
-        # @param NotifyWay: 告警接收渠道
+        # @param NotifyWay: <p>告警接收渠道</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NotifyWay: Array
-        # @param PersonInterval: 电话告警对个人间隔（秒）
+        # @param PersonInterval: <p>电话告警对个人间隔（秒）</p>
         # @type PersonInterval: Integer
-        # @param ReceiverGroupList: 消息接收组列表
+        # @param ReceiverGroupList: <p>消息接收组列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReceiverGroupList: Array
-        # @param ReceiverType: 接受者类型
+        # @param ReceiverType: <p>接受者类型</p>
         # @type ReceiverType: String
-        # @param ReceiverUserList: 接收人列表。通过平台接口查询到的接收人id列表
+        # @param ReceiverUserList: <p>接收人列表。通过平台接口查询到的接收人id列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReceiverUserList: Array
-        # @param RecoverNotify: 告警恢复通知方式
+        # @param RecoverNotify: <p>告警恢复通知方式</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RecoverNotify: Array
-        # @param RoundInterval: 电话告警每轮间隔（秒）
+        # @param RoundInterval: <p>电话告警每轮间隔（秒）</p>
         # @type RoundInterval: Integer
-        # @param RoundNumber: 电话告警轮数
+        # @param RoundNumber: <p>电话告警轮数</p>
         # @type RoundNumber: Integer
-        # @param SendFor: 电话告警通知时机。可选"OCCUR"(告警时通知),"RECOVER"(恢复时通知)
+        # @param SendFor: <p>电话告警通知时机。可选&quot;OCCUR&quot;(告警时通知),&quot;RECOVER&quot;(恢复时通知)</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SendFor: Array
-        # @param StartTime: 有效时段开始时间
+        # @param StartTime: <p>有效时段开始时间</p>
         # @type StartTime: Integer
-        # @param UIDList: 电话告警接收者uid
+        # @param UIDList: <p>电话告警接收者uid</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UIDList: Array
 
@@ -13285,9 +13285,11 @@ module TencentCloud
 
       # 策略标签
       class PolicyTag < TencentCloud::Common::AbstractModel
-        # @param Key: 标签Key
+        # @param Key: <p>标签Key</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Key: String
-        # @param Value: 标签Value
+        # @param Value: <p>标签Value</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
 
         attr_accessor :Key, :Value
@@ -15337,9 +15339,9 @@ module TencentCloud
 
       # DescribePolicyObjectCount接口返回的地域统计
       class RegionPolicyObjectCount < TencentCloud::Common::AbstractModel
-        # @param Region: 地域
+        # @param Region: <p>地域</p>
         # @type Region: String
-        # @param Count: 绑定的实例数量
+        # @param Count: <p>绑定的实例数量</p>
         # @type Count: Integer
 
         attr_accessor :Region, :Count
@@ -16108,15 +16110,15 @@ module TencentCloud
 
       # UnBindingAllPolicyObject请求参数结构体
       class UnBindingAllPolicyObjectRequest < TencentCloud::Common::AbstractModel
-        # @param Module: 固定值，为"monitor"
+        # @param Module: <p>固定值，为&quot;monitor&quot;</p>
         # @type Module: String
-        # @param GroupId: 策略组id，如传入 PolicyId 则该字段被忽略可传入任意值如 0
+        # @param GroupId: <p>策略组id，如传入 PolicyId 则该字段被忽略可传入任意值如 0</p>
         # @type GroupId: Integer
-        # @param PolicyId: 告警策略ID，使用此字段时 GroupId 会被忽略
+        # @param PolicyId: <p>告警策略ID，使用此字段时 GroupId 会被忽略</p>
         # @type PolicyId: String
-        # @param EbSubject: 事件配置的告警
+        # @param EbSubject: <p>事件配置的告警</p>
         # @type EbSubject: String
-        # @param EbEventFlag: 是否配置了事件告警
+        # @param EbEventFlag: <p>是否配置了事件告警</p>
         # @type EbEventFlag: Integer
 
         attr_accessor :Module, :GroupId, :PolicyId, :EbSubject, :EbEventFlag

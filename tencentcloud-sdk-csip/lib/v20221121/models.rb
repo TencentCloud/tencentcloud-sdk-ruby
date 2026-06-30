@@ -14776,6 +14776,129 @@ module TencentCloud
         end
       end
 
+      # DescribeNotifyAssetConfig请求参数结构体
+      class DescribeNotifyAssetConfigRequest < TencentCloud::Common::AbstractModel
+        # @param Modules: <p>模块名</p>
+        # @type Modules: Array
+
+        attr_accessor :Modules
+
+        def initialize(modules=nil)
+          @Modules = modules
+        end
+
+        def deserialize(params)
+          @Modules = params['Modules']
+        end
+      end
+
+      # DescribeNotifyAssetConfig返回参数结构体
+      class DescribeNotifyAssetConfigResponse < TencentCloud::Common::AbstractModel
+        # @param Items: <p>资产范围配置</p>
+        # @type Items: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Items, :RequestId
+
+        def initialize(items=nil, requestid=nil)
+          @Items = items
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              notifyassetconfigitem_tmp = NotifyAssetConfigItem.new
+              notifyassetconfigitem_tmp.deserialize(i)
+              @Items << notifyassetconfigitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeNotifySettingAlert请求参数结构体
+      class DescribeNotifySettingAlertRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeNotifySettingAlert返回参数结构体
+      class DescribeNotifySettingAlertResponse < TencentCloud::Common::AbstractModel
+        # @param Settings: <p>通知配置</p>
+        # @type Settings: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Settings, :RequestId
+
+        def initialize(settings=nil, requestid=nil)
+          @Settings = settings
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Settings'].nil?
+            @Settings = []
+            params['Settings'].each do |i|
+              notifysetting_tmp = NotifySetting.new
+              notifysetting_tmp.deserialize(i)
+              @Settings << notifysetting_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeNotifySetting请求参数结构体
+      class DescribeNotifySettingRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeNotifySetting返回参数结构体
+      class DescribeNotifySettingResponse < TencentCloud::Common::AbstractModel
+        # @param List: <p>通知设置列表</p>
+        # @type List: Array
+        # @param MemberId: <p>成员账号Id</p>
+        # @type MemberId: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :List, :MemberId, :RequestId
+
+        def initialize(list=nil, memberid=nil, requestid=nil)
+          @List = list
+          @MemberId = memberid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              notifysetting_tmp = NotifySetting.new
+              notifysetting_tmp.deserialize(i)
+              @List << notifysetting_tmp
+            end
+          end
+          @MemberId = params['MemberId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeOrganizationInfo请求参数结构体
       class DescribeOrganizationInfoRequest < TencentCloud::Common::AbstractModel
         # @param MemberId: 集团账号的成员id
@@ -23788,6 +23911,136 @@ module TencentCloud
         end
       end
 
+      # ModifyNotifyAssetConfig请求参数结构体
+      class ModifyNotifyAssetConfigRequest < TencentCloud::Common::AbstractModel
+        # @param Items: <p>资产范围配置</p>
+        # @type Items: Array
+
+        attr_accessor :Items
+
+        def initialize(items=nil)
+          @Items = items
+        end
+
+        def deserialize(params)
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              notifyassetconfigitem_tmp = NotifyAssetConfigItem.new
+              notifyassetconfigitem_tmp.deserialize(i)
+              @Items << notifyassetconfigitem_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyNotifyAssetConfig返回参数结构体
+      class ModifyNotifyAssetConfigResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyNotifySettingAlert请求参数结构体
+      class ModifyNotifySettingAlertRequest < TencentCloud::Common::AbstractModel
+        # @param Settings: <p>通知配置</p>
+        # @type Settings: Array
+
+        attr_accessor :Settings
+
+        def initialize(settings=nil)
+          @Settings = settings
+        end
+
+        def deserialize(params)
+          unless params['Settings'].nil?
+            @Settings = []
+            params['Settings'].each do |i|
+              notifysetting_tmp = NotifySetting.new
+              notifysetting_tmp.deserialize(i)
+              @Settings << notifysetting_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyNotifySettingAlert返回参数结构体
+      class ModifyNotifySettingAlertResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyNotifySetting请求参数结构体
+      class ModifyNotifySettingRequest < TencentCloud::Common::AbstractModel
+        # @param Module: <p>通知模块</p><p>枚举值：</p><ul><li>AkSk： 云API风险治理</li><li>Alert： 告警中心</li><li>Agent： 客户端</li></ul>
+        # @type Module: String
+        # @param Mode: <p>通知设置模式</p><p>枚举值：</p><ul><li>0： 标准模式</li><li>1： 高级模式</li></ul>
+        # @type Mode: Integer
+        # @param Status: <p>通知状态</p><p>枚举值：</p><ul><li>0： 通知关闭</li><li>1： 通知开启</li></ul>
+        # @type Status: Integer
+        # @param BeginTime: <p>通知开始时间</p><p>参数格式：hh:mm:ss</p>
+        # @type BeginTime: String
+        # @param EndTime: <p>通知结束时间</p><p>参数格式：hh:mm:ss</p>
+        # @type EndTime: String
+        # @param Option: <p>通知选项</p><p>枚举值：</p><ul><li>CRITICAL： 告警等级：严重</li><li>HIGH： 告警等级：高危</li><li>MEDIUM： 告警等级：中危</li><li>LOW： 告警等级：低危</li><li>INFO： 告警等级：提醒</li><li>AGENT_UNINSTALL： 客户端卸载</li><li>AGENT_OFFLINE： 客户端离线</li></ul>
+        # @type Option: Array
+
+        attr_accessor :Module, :Mode, :Status, :BeginTime, :EndTime, :Option
+
+        def initialize(_module=nil, mode=nil, status=nil, begintime=nil, endtime=nil, option=nil)
+          @Module = _module
+          @Mode = mode
+          @Status = status
+          @BeginTime = begintime
+          @EndTime = endtime
+          @Option = option
+        end
+
+        def deserialize(params)
+          @Module = params['Module']
+          @Mode = params['Mode']
+          @Status = params['Status']
+          @BeginTime = params['BeginTime']
+          @EndTime = params['EndTime']
+          @Option = params['Option']
+        end
+      end
+
+      # ModifyNotifySetting返回参数结构体
+      class ModifyNotifySettingResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyOrganizationAccountStatus请求参数结构体
       class ModifyOrganizationAccountStatusRequest < TencentCloud::Common::AbstractModel
         # @param Status: 修改集团账号状态，1 开启， 0关闭
@@ -24257,6 +24510,98 @@ module TencentCloud
           @Key = params['Key']
           @Date = params['Date']
           @Status = params['Status']
+        end
+      end
+
+      # 通知资产范围配置项
+      class NotifyAssetConfigItem < TencentCloud::Common::AbstractModel
+        # @param Module: <p>模块名</p>
+        # @type Module: String
+        # @param SubModule: <p>子模块</p>
+        # @type SubModule: String
+        # @param AssetRange: <p>资产范围</p><p>枚举值：</p><ul><li>0： 无含义</li><li>1： 全部</li><li>2： 自选</li><li>3： 按标签</li></ul>
+        # @type AssetRange: Integer
+        # @param InstanceIds: <p>选中的实例ID</p>
+        # @type InstanceIds: Array
+        # @param ExcludedInstanceIds: <p>剔除的实例ID</p>
+        # @type ExcludedInstanceIds: Array
+        # @param TagIds: <p>标签ID</p>
+        # @type TagIds: Array
+        # @param CloudTags: <p>云标签</p>
+        # @type CloudTags: Array
+        # @param TotalCount: <p>总数</p>
+        # @type TotalCount: Integer
+
+        attr_accessor :Module, :SubModule, :AssetRange, :InstanceIds, :ExcludedInstanceIds, :TagIds, :CloudTags, :TotalCount
+
+        def initialize(_module=nil, submodule=nil, assetrange=nil, instanceids=nil, excludedinstanceids=nil, tagids=nil, cloudtags=nil, totalcount=nil)
+          @Module = _module
+          @SubModule = submodule
+          @AssetRange = assetrange
+          @InstanceIds = instanceids
+          @ExcludedInstanceIds = excludedinstanceids
+          @TagIds = tagids
+          @CloudTags = cloudtags
+          @TotalCount = totalcount
+        end
+
+        def deserialize(params)
+          @Module = params['Module']
+          @SubModule = params['SubModule']
+          @AssetRange = params['AssetRange']
+          @InstanceIds = params['InstanceIds']
+          @ExcludedInstanceIds = params['ExcludedInstanceIds']
+          @TagIds = params['TagIds']
+          @CloudTags = params['CloudTags']
+          @TotalCount = params['TotalCount']
+        end
+      end
+
+      # 通知设置
+      class NotifySetting < TencentCloud::Common::AbstractModel
+        # @param Module: <p>通知模块</p><p>枚举值：</p><ul><li>AkSk： 云API风险治理</li><li>Alert： 告警中心</li><li>Agent： 客户端</li></ul>
+        # @type Module: String
+        # @param Mode: <p>通知设置模式</p><p>枚举值：</p><ul><li>0： 标准模式</li><li>1： 高级模式</li></ul>
+        # @type Mode: Integer
+        # @param Status: <p>通知状态</p><p>枚举值：</p><ul><li>0： 通知关闭</li><li>1： 通知开启</li></ul>
+        # @type Status: Integer
+        # @param BeginTime: <p>通知开始时间</p><p>参数格式：hh:mm:ss</p>
+        # @type BeginTime: String
+        # @param EndTime: <p>通知结束时间</p><p>参数格式：hh:mm:ss</p>
+        # @type EndTime: String
+        # @param AssetRange: <p>资产范围</p><p>枚举值：</p><ul><li>1： 全部主机</li><li>2： 自选主机</li><li>3： 按标签选择</li></ul>
+        # @type AssetRange: Integer
+        # @param Option: <p>通知选项</p><p>枚举值：</p><ul><li>CRITICAL： 告警等级：严重</li><li>HIGH： 告警等级：高危</li><li>MEDIUM： 告警等级：中危</li><li>LOW： 告警等级：低危</li><li>INFO： 告警等级：提醒</li><li>AGENT_UNINSTALL： 客户端卸载</li><li>AGENT_OFFLINE： 客户端离线</li></ul>
+        # @type Option: Array
+        # @param SubModule: <p>通知模块（二级模块）</p>
+        # @type SubModule: String
+        # @param Item: <p>处置状态等</p>
+        # @type Item: Array
+
+        attr_accessor :Module, :Mode, :Status, :BeginTime, :EndTime, :AssetRange, :Option, :SubModule, :Item
+
+        def initialize(_module=nil, mode=nil, status=nil, begintime=nil, endtime=nil, assetrange=nil, option=nil, submodule=nil, item=nil)
+          @Module = _module
+          @Mode = mode
+          @Status = status
+          @BeginTime = begintime
+          @EndTime = endtime
+          @AssetRange = assetrange
+          @Option = option
+          @SubModule = submodule
+          @Item = item
+        end
+
+        def deserialize(params)
+          @Module = params['Module']
+          @Mode = params['Mode']
+          @Status = params['Status']
+          @BeginTime = params['BeginTime']
+          @EndTime = params['EndTime']
+          @AssetRange = params['AssetRange']
+          @Option = params['Option']
+          @SubModule = params['SubModule']
+          @Item = params['Item']
         end
       end
 

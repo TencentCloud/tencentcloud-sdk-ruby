@@ -418,11 +418,11 @@ module TencentCloud
 
       # CreateEmailIdentity请求参数结构体
       class CreateEmailIdentityRequest < TencentCloud::Common::AbstractModel
-        # @param EmailIdentity: 您的发信域名，建议使用三级以上域名。例如：mail.qcloud.com。
+        # @param EmailIdentity: <p>您的发信域名，建议使用三级以上域名。例如：mail.qcloud.com。</p>
         # @type EmailIdentity: String
-        # @param DKIMOption: 生成的dkim密钥长度。0:1024，1:2048
+        # @param DKIMOption: <p>生成的dkim密钥长度。0:1024，1:2048</p>
         # @type DKIMOption: Integer
-        # @param TagList: tag 标签
+        # @param TagList: <p>tag 标签</p>
         # @type TagList: Array
 
         attr_accessor :EmailIdentity, :DKIMOption, :TagList
@@ -449,21 +449,24 @@ module TencentCloud
 
       # CreateEmailIdentity返回参数结构体
       class CreateEmailIdentityResponse < TencentCloud::Common::AbstractModel
-        # @param IdentityType: 验证类型。固定值：DOMAIN
+        # @param IdentityType: <p>验证类型。固定值：DOMAIN</p>
         # @type IdentityType: String
-        # @param VerifiedForSendingStatus: 是否已通过验证
+        # @param VerifiedForSendingStatus: <p>是否已通过验证</p>
         # @type VerifiedForSendingStatus: Boolean
-        # @param Attributes: 需要配置的DNS信息
+        # @param Attributes: <p>需要配置的DNS信息</p>
         # @type Attributes: Array
+        # @param DKIMOption: <p>dkim位数</p><p>枚举值：</p><ul><li>0： 1024</li><li>1： 2048</li><li>2： 双签</li></ul>
+        # @type DKIMOption: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :IdentityType, :VerifiedForSendingStatus, :Attributes, :RequestId
+        attr_accessor :IdentityType, :VerifiedForSendingStatus, :Attributes, :DKIMOption, :RequestId
 
-        def initialize(identitytype=nil, verifiedforsendingstatus=nil, attributes=nil, requestid=nil)
+        def initialize(identitytype=nil, verifiedforsendingstatus=nil, attributes=nil, dkimoption=nil, requestid=nil)
           @IdentityType = identitytype
           @VerifiedForSendingStatus = verifiedforsendingstatus
           @Attributes = attributes
+          @DKIMOption = dkimoption
           @RequestId = requestid
         end
 
@@ -478,6 +481,7 @@ module TencentCloud
               @Attributes << dnsattributes_tmp
             end
           end
+          @DKIMOption = params['DKIMOption']
           @RequestId = params['RequestId']
         end
       end
@@ -966,24 +970,26 @@ module TencentCloud
 
       # 发信域名验证列表结构体
       class EmailIdentity < TencentCloud::Common::AbstractModel
-        # @param IdentityName: 发信域名
+        # @param IdentityName: <p>发信域名</p>
         # @type IdentityName: String
-        # @param IdentityType: 验证类型，固定为DOMAIN
+        # @param IdentityType: <p>验证类型，固定为DOMAIN</p>
         # @type IdentityType: String
-        # @param SendingEnabled: 是否已通过验证
+        # @param SendingEnabled: <p>是否已通过验证</p>
         # @type SendingEnabled: Boolean
-        # @param CurrentReputationLevel: 当前信誉等级
+        # @param CurrentReputationLevel: <p>当前信誉等级</p>
         # @type CurrentReputationLevel: Integer
-        # @param DailyQuota: 当日最高发信量
+        # @param DailyQuota: <p>当日最高发信量</p>
         # @type DailyQuota: Integer
-        # @param SendIp: 域名配置的独立ip
+        # @param SendIp: <p>域名配置的独立ip</p>
         # @type SendIp: Array
-        # @param TagList: tag 标签
+        # @param TagList: <p>tag 标签</p>
         # @type TagList: Array
+        # @param DKIMOption: <p>dkim位数</p><p>枚举值：</p><ul><li>0： 1024</li><li>1： 2048</li><li>2： 双签</li></ul><p>默认值：0</p>
+        # @type DKIMOption: Integer
 
-        attr_accessor :IdentityName, :IdentityType, :SendingEnabled, :CurrentReputationLevel, :DailyQuota, :SendIp, :TagList
+        attr_accessor :IdentityName, :IdentityType, :SendingEnabled, :CurrentReputationLevel, :DailyQuota, :SendIp, :TagList, :DKIMOption
 
-        def initialize(identityname=nil, identitytype=nil, sendingenabled=nil, currentreputationlevel=nil, dailyquota=nil, sendip=nil, taglist=nil)
+        def initialize(identityname=nil, identitytype=nil, sendingenabled=nil, currentreputationlevel=nil, dailyquota=nil, sendip=nil, taglist=nil, dkimoption=nil)
           @IdentityName = identityname
           @IdentityType = identitytype
           @SendingEnabled = sendingenabled
@@ -991,6 +997,7 @@ module TencentCloud
           @DailyQuota = dailyquota
           @SendIp = sendip
           @TagList = taglist
+          @DKIMOption = dkimoption
         end
 
         def deserialize(params)
@@ -1008,6 +1015,7 @@ module TencentCloud
               @TagList << taglist_tmp
             end
           end
+          @DKIMOption = params['DKIMOption']
         end
       end
 
@@ -1120,7 +1128,7 @@ module TencentCloud
 
       # GetEmailIdentity请求参数结构体
       class GetEmailIdentityRequest < TencentCloud::Common::AbstractModel
-        # @param EmailIdentity: 发信域名
+        # @param EmailIdentity: <p>发信域名</p>
         # @type EmailIdentity: String
 
         attr_accessor :EmailIdentity
@@ -1136,21 +1144,24 @@ module TencentCloud
 
       # GetEmailIdentity返回参数结构体
       class GetEmailIdentityResponse < TencentCloud::Common::AbstractModel
-        # @param IdentityType: 验证类型。固定值：DOMAIN
+        # @param IdentityType: <p>验证类型。固定值：DOMAIN</p>
         # @type IdentityType: String
-        # @param VerifiedForSendingStatus: 是否已通过验证
+        # @param VerifiedForSendingStatus: <p>是否已通过验证</p>
         # @type VerifiedForSendingStatus: Boolean
-        # @param Attributes: DNS配置详情
+        # @param Attributes: <p>DNS配置详情</p>
         # @type Attributes: Array
+        # @param DKIMOption: <p>dkim密钥长度</p><p>枚举值：</p><ul><li>0： 1024</li><li>1： 2048</li><li>2： both</li></ul>
+        # @type DKIMOption: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :IdentityType, :VerifiedForSendingStatus, :Attributes, :RequestId
+        attr_accessor :IdentityType, :VerifiedForSendingStatus, :Attributes, :DKIMOption, :RequestId
 
-        def initialize(identitytype=nil, verifiedforsendingstatus=nil, attributes=nil, requestid=nil)
+        def initialize(identitytype=nil, verifiedforsendingstatus=nil, attributes=nil, dkimoption=nil, requestid=nil)
           @IdentityType = identitytype
           @VerifiedForSendingStatus = verifiedforsendingstatus
           @Attributes = attributes
+          @DKIMOption = dkimoption
           @RequestId = requestid
         end
 
@@ -1165,6 +1176,7 @@ module TencentCloud
               @Attributes << dnsattributes_tmp
             end
           end
+          @DKIMOption = params['DKIMOption']
           @RequestId = params['RequestId']
         end
       end
@@ -2467,37 +2479,48 @@ module TencentCloud
 
       # UpdateEmailIdentity请求参数结构体
       class UpdateEmailIdentityRequest < TencentCloud::Common::AbstractModel
-        # @param EmailIdentity: 请求验证的域名
+        # @param EmailIdentity: <p>请求验证的域名</p>
         # @type EmailIdentity: String
+        # @param NewAPI: <p>匹分控制台新老API</p>
+        # @type NewAPI: Boolean
+        # @param DKIMOption: <p>dkim位数</p><p>枚举值：</p><ul><li>0： 1024</li><li>1： 2048</li><li>2： 双签</li></ul>
+        # @type DKIMOption: Integer
 
-        attr_accessor :EmailIdentity
+        attr_accessor :EmailIdentity, :NewAPI, :DKIMOption
 
-        def initialize(emailidentity=nil)
+        def initialize(emailidentity=nil, newapi=nil, dkimoption=nil)
           @EmailIdentity = emailidentity
+          @NewAPI = newapi
+          @DKIMOption = dkimoption
         end
 
         def deserialize(params)
           @EmailIdentity = params['EmailIdentity']
+          @NewAPI = params['NewAPI']
+          @DKIMOption = params['DKIMOption']
         end
       end
 
       # UpdateEmailIdentity返回参数结构体
       class UpdateEmailIdentityResponse < TencentCloud::Common::AbstractModel
-        # @param IdentityType: 验证类型。固定值：DOMAIN
+        # @param IdentityType: <p>验证类型。固定值：DOMAIN</p>
         # @type IdentityType: String
-        # @param VerifiedForSendingStatus: 是否已通过验证
+        # @param VerifiedForSendingStatus: <p>是否已通过验证</p>
         # @type VerifiedForSendingStatus: Boolean
-        # @param Attributes: 需要配置的DNS信息
+        # @param Attributes: <p>需要配置的DNS信息</p>
         # @type Attributes: Array
+        # @param DKIMOption: <p>dkim位数</p><p>枚举值：</p><ul><li>0： 1024</li><li>1： 2048</li><li>2： 双签</li></ul>
+        # @type DKIMOption: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :IdentityType, :VerifiedForSendingStatus, :Attributes, :RequestId
+        attr_accessor :IdentityType, :VerifiedForSendingStatus, :Attributes, :DKIMOption, :RequestId
 
-        def initialize(identitytype=nil, verifiedforsendingstatus=nil, attributes=nil, requestid=nil)
+        def initialize(identitytype=nil, verifiedforsendingstatus=nil, attributes=nil, dkimoption=nil, requestid=nil)
           @IdentityType = identitytype
           @VerifiedForSendingStatus = verifiedforsendingstatus
           @Attributes = attributes
+          @DKIMOption = dkimoption
           @RequestId = requestid
         end
 
@@ -2512,6 +2535,7 @@ module TencentCloud
               @Attributes << dnsattributes_tmp
             end
           end
+          @DKIMOption = params['DKIMOption']
           @RequestId = params['RequestId']
         end
       end

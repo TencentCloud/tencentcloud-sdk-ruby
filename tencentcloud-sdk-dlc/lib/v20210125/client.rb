@@ -2839,6 +2839,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 该接口（DescribeTaskDetail）用于查询历史任务详情
+
+        # @param request: Request instance for DescribeTaskDetail.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::DescribeTaskDetailRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::DescribeTaskDetailResponse`
+        def DescribeTaskDetail(request)
+          body = send_request('DescribeTaskDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeTaskDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 该接口（DescribleTasks）用于查询任务列表
 
         # @param request: Request instance for DescribeTaskList.

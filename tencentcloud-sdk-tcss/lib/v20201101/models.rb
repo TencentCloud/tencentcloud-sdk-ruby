@@ -9844,7 +9844,7 @@ module TencentCloud
 
       # DescribeAssetImageRegistryRegistryDetail请求参数结构体
       class DescribeAssetImageRegistryRegistryDetailRequest < TencentCloud::Common::AbstractModel
-        # @param RegistryId: 仓库唯一id
+        # @param RegistryId: <p>仓库唯一id</p>
         # @type RegistryId: Integer
 
         attr_accessor :RegistryId
@@ -9860,37 +9860,37 @@ module TencentCloud
 
       # DescribeAssetImageRegistryRegistryDetail返回参数结构体
       class DescribeAssetImageRegistryRegistryDetailResponse < TencentCloud::Common::AbstractModel
-        # @param Name: 仓库名
+        # @param Name: <p>仓库名</p>
         # @type Name: String
-        # @param Username: 用户名
+        # @param Username: <p>用户名</p>
         # @type Username: String
-        # @param Password: 密码
+        # @param Password: <p>密码</p>
         # @type Password: String
-        # @param Url: 仓库url
+        # @param Url: <p>仓库url</p>
         # @type Url: String
-        # @param RegistryType: 仓库类型，列表：harbor
+        # @param RegistryType: <p>仓库类型，列表：harbor</p>
         # @type RegistryType: String
-        # @param RegistryVersion: 仓库版本
+        # @param RegistryVersion: <p>仓库版本</p>
         # @type RegistryVersion: String
-        # @param NetType: 网络类型，列表：public（公网）,private（私网）
+        # @param NetType: <p>网络类型，列表：public（公网）,private（私网）</p>
         # @type NetType: String
-        # @param RegistryRegion: 区域，列表:default（默认）
+        # @param RegistryRegion: <p>区域，列表:default（默认）</p>
         # @type RegistryRegion: String
-        # @param SpeedLimit: 限速
+        # @param SpeedLimit: <p>限速</p>
         # @type SpeedLimit: Integer
-        # @param Insecure: 安全模式（证书校验）：0（默认） 非安全模式（跳过证书校验）：1
+        # @param Insecure: <p>安全模式（证书校验）：0（默认） 非安全模式（跳过证书校验）：1</p>
         # @type Insecure: Integer
-        # @param ConnDetectDetail: 联通性检测结果详情
+        # @param ConnDetectDetail: <p>联通性检测结果详情</p>
         # @type ConnDetectDetail: Array
-        # @param InstanceID: tcr情况下instance_id
+        # @param InstanceID: <p>tcr情况下instance_id</p>
         # @type InstanceID: String
-        # @param SyncMode: 同步方式，0全量同步，1增量同步
+        # @param SyncMode: <p>同步方式，0全量同步，1增量同步</p>
         # @type SyncMode: Integer
-        # @param NeedScan: 是否自动授权&扫描，选择全量同步时只针对最新版本镜像，增量同步时则包含所有新增镜像
+        # @param NeedScan: <p>是否自动授权&amp;扫描，选择全量同步时只针对最新版本镜像，增量同步时则包含所有新增镜像</p>
         # @type NeedScan: Boolean
-        # @param WebhookUrl: webhook接入地址
+        # @param WebhookUrl: <p>webhook接入地址</p>
         # @type WebhookUrl: String
-        # @param WebhookToken: webhook接入token
+        # @param WebhookToken: <p>webhook接入token</p>
         # @type WebhookToken: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -27795,7 +27795,7 @@ module TencentCloud
 
       # RemoveAssetImageRegistryRegistryDetail请求参数结构体
       class RemoveAssetImageRegistryRegistryDetailRequest < TencentCloud::Common::AbstractModel
-        # @param RegistryId: 仓库唯一id
+        # @param RegistryId: <p>仓库唯一id</p>
         # @type RegistryId: Integer
 
         attr_accessor :RegistryId

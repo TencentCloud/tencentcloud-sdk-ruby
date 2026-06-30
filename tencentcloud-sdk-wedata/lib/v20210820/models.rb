@@ -1894,26 +1894,28 @@ module TencentCloud
 
       # BatchCreateTaskVersionAsync请求参数结构体
       class BatchCreateTaskVersionAsyncRequest < TencentCloud::Common::AbstractModel
-        # @param Tasks: 任务信息
+        # @param Tasks: <p>任务信息</p>
         # @type Tasks: Array
-        # @param ProjectId: 项目ID
+        # @param ProjectId: <p>项目ID</p>
         # @type ProjectId: String
-        # @param AutoRun: 是否自动运行
+        # @param AutoRun: <p>是否自动运行</p>
         # @type AutoRun: Boolean
-        # @param AlarmWays: 告警方式:email-邮件;sms-短信;wecom-企业微信
+        # @param AlarmWays: <p>告警方式:email-邮件;sms-短信;wecom-企业微信</p>
         # @type AlarmWays: String
-        # @param AlarmRecipientTypes: 告警对象:1-项目管理员，2-任务责任人
+        # @param AlarmRecipientTypes: <p>告警对象:1-项目管理员，2-任务责任人</p>
         # @type AlarmRecipientTypes: String
-        # @param NeedCheckParentSubmitted: 是否需要校验父任务已经提交到调度
+        # @param NeedCheckParentSubmitted: <p>是否需要校验父任务已经提交到调度</p>
         # @type NeedCheckParentSubmitted: Boolean
-        # @param EnableMakeUp: 是否需要补录中间实例
+        # @param EnableMakeUp: <p>是否需要补录中间实例</p>
         # @type EnableMakeUp: Boolean
-        # @param AssignApprovalList: 指定审批人列表
+        # @param AssignApprovalList: <p>指定审批人列表</p>
         # @type AssignApprovalList: Array
+        # @param PerTaskMissingInstanceStrategy: <p>任务缺失实例处理策略</p><p>MAKEUP:补录缺失的实例;FORCE_SUCCESS:将缺失的实例置成功;SKIP:不处理，忽略缺失的实例</p>
+        # @type PerTaskMissingInstanceStrategy: Array
 
-        attr_accessor :Tasks, :ProjectId, :AutoRun, :AlarmWays, :AlarmRecipientTypes, :NeedCheckParentSubmitted, :EnableMakeUp, :AssignApprovalList
+        attr_accessor :Tasks, :ProjectId, :AutoRun, :AlarmWays, :AlarmRecipientTypes, :NeedCheckParentSubmitted, :EnableMakeUp, :AssignApprovalList, :PerTaskMissingInstanceStrategy
 
-        def initialize(tasks=nil, projectid=nil, autorun=nil, alarmways=nil, alarmrecipienttypes=nil, needcheckparentsubmitted=nil, enablemakeup=nil, assignapprovallist=nil)
+        def initialize(tasks=nil, projectid=nil, autorun=nil, alarmways=nil, alarmrecipienttypes=nil, needcheckparentsubmitted=nil, enablemakeup=nil, assignapprovallist=nil, pertaskmissinginstancestrategy=nil)
           @Tasks = tasks
           @ProjectId = projectid
           @AutoRun = autorun
@@ -1922,6 +1924,7 @@ module TencentCloud
           @NeedCheckParentSubmitted = needcheckparentsubmitted
           @EnableMakeUp = enablemakeup
           @AssignApprovalList = assignapprovallist
+          @PerTaskMissingInstanceStrategy = pertaskmissinginstancestrategy
         end
 
         def deserialize(params)
@@ -1940,12 +1943,20 @@ module TencentCloud
           @NeedCheckParentSubmitted = params['NeedCheckParentSubmitted']
           @EnableMakeUp = params['EnableMakeUp']
           @AssignApprovalList = params['AssignApprovalList']
+          unless params['PerTaskMissingInstanceStrategy'].nil?
+            @PerTaskMissingInstanceStrategy = []
+            params['PerTaskMissingInstanceStrategy'].each do |i|
+              taskmissinginstancestrategy_tmp = TaskMissingInstanceStrategy.new
+              taskmissinginstancestrategy_tmp.deserialize(i)
+              @PerTaskMissingInstanceStrategy << taskmissinginstancestrategy_tmp
+            end
+          end
         end
       end
 
       # BatchCreateTaskVersionAsync返回参数结构体
       class BatchCreateTaskVersionAsyncResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 批量操作返回
+        # @param Data: <p>批量操作返回</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: :class:`Tencentcloud::Wedata.v20210820.models.BatchTaskOperateNew`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -4405,7 +4416,7 @@ module TencentCloud
       class CommitRuleGroupTaskRequest < TencentCloud::Common::AbstractModel
         # @param RuleGroupId: 规则组ID
         # @type RuleGroupId: Integer
-        # @param TriggerType: 触发类型 1.手动触发 2.调度事中触发 3.周期调度触发
+        # @param TriggerType: 触发类型：1-手动触发，2-调度事件触发，3-周期调度触发
         # @type TriggerType: Integer
         # @param ExecRuleConfig: 规则配置列表
         # @type ExecRuleConfig: Array
@@ -4413,7 +4424,7 @@ module TencentCloud
         # @type ExecConfig: :class:`Tencentcloud::Wedata.v20210820.models.RuleExecConfig`
         # @param ProjectId: 项目ID
         # @type ProjectId: String
-        # @param EngineType: 该规则运行的执行引擎，不传时会请求该数据源下默认的执行引擎
+        # @param EngineType: 执行引擎类型，可选值：MYSQL, HIVE, SPARK, LIVY, DLC, GBASE, CDW_PG, TCHouse-P, DORIS, TCHouse-D
         # @type EngineType: String
 
         attr_accessor :RuleGroupId, :TriggerType, :ExecRuleConfig, :ExecConfig, :ProjectId, :EngineType
@@ -4602,10 +4613,10 @@ module TencentCloud
         # @param Operator: 比较操作类型
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Operator: String
-        # @param CompareType: 比较类型
+        # @param CompareType: 比较类型：1-固定值, 2-波动值, 3-数值范围比较, 4-枚举范围比较, 5-不用比较, 6-字段数据相关性, 7-公平性
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CompareType: Integer
-        # @param ValueComputeType: 值比较类型
+        # @param ValueComputeType: 值比较类型：1-绝对值, 2-上升, 3-下降, 4-范围内, 5-范围外, 6-公平率, 7-公平差
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ValueComputeType: Integer
 
@@ -5905,15 +5916,15 @@ module TencentCloud
         # @type TableId: String
         # @param RuleTemplateId: 规则模板列表
         # @type RuleTemplateId: Integer
-        # @param Type: 规则类型 1.系统模版, 2.自定义模版, 3.自定义SQL
+        # @param Type: 规则类型：1-系统模版，2-自定义模版，3-自定义SQL
         # @type Type: Integer
-        # @param QualityDim: 规则所属质量维度（1：准确性，2：唯一性，3：完整性，4：一致性，5：及时性，6：有效性
+        # @param QualityDim: 质量维度：1-准确性，2-唯一性，3-完整性，4-一致性，5-及时性，6-有效性
         # @type QualityDim: Integer
         # @param SourceObjectDataTypeName: 源字段详细类型，int、string
         # @type SourceObjectDataTypeName: String
         # @param SourceObjectValue: 源字段名称
         # @type SourceObjectValue: String
-        # @param ConditionType: 检测范围 1.全表   2.条件扫描
+        # @param ConditionType: 检测范围类型：1-全表，2-条件扫描
         # @type ConditionType: Integer
         # @param ConditionExpression: 条件扫描WHERE条件表达式
         # @type ConditionExpression: String
@@ -5921,7 +5932,7 @@ module TencentCloud
         # @type CustomSql: String
         # @param CompareRule: 报警触发条件
         # @type CompareRule: :class:`Tencentcloud::Wedata.v20210820.models.CompareRule`
-        # @param AlarmLevel: 报警触发级别 1.低, 2.中, 3.高
+        # @param AlarmLevel: 告警级别：1-低，2-中，3-高
         # @type AlarmLevel: Integer
         # @param Description: 规则描述
         # @type Description: String
@@ -5941,7 +5952,7 @@ module TencentCloud
         # @type FieldConfig: :class:`Tencentcloud::Wedata.v20210820.models.RuleFieldConfig`
         # @param TargetObjectValue: 目标字段名称  CITY
         # @type TargetObjectValue: String
-        # @param SourceEngineTypes: 该规则支持的执行引擎列表
+        # @param SourceEngineTypes: 执行引擎多选（位运算数组）：2-HIVE，4-SPARK，8-LIVY，16-DLC，64-TCHouse-P，128-DORIS，256-TCHouse-D，512-EMR-StarRocks，1024-TCHouse-X
         # @type SourceEngineTypes: Array
 
         attr_accessor :ProjectId, :RuleGroupId, :Name, :TableId, :RuleTemplateId, :Type, :QualityDim, :SourceObjectDataTypeName, :SourceObjectValue, :ConditionType, :ConditionExpression, :CustomSql, :CompareRule, :AlarmLevel, :Description, :DatasourceId, :DatabaseId, :TargetDatabaseId, :TargetTableId, :TargetConditionExpr, :RelConditionExpr, :FieldConfig, :TargetObjectValue, :SourceEngineTypes
@@ -6033,17 +6044,17 @@ module TencentCloud
 
       # CreateRuleTemplate请求参数结构体
       class CreateRuleTemplateRequest < TencentCloud::Common::AbstractModel
-        # @param Type: 模板类型  1.系统模板   2.自定义模板
+        # @param Type: 模版类型：1-系统模版，2-用户自定义模版
         # @type Type: Integer
         # @param Name: 模板名称
         # @type Name: String
-        # @param QualityDim: 质量检测维度 1.准确性 2.唯一性 3.完整性 4.一致性 5.及时性 6.有效性
+        # @param QualityDim: 质量维度：1-准确性，2-唯一性，3-完整性，4-一致性，5-及时性，6-有效性
         # @type QualityDim: Integer
-        # @param SourceObjectType: 源端数据对象类型 1.常量  2.离线表级   2.离线字段级
+        # @param SourceObjectType: 源数据对象类型：1-常量，2-离线表级，3-离线字段级别
         # @type SourceObjectType: Integer
         # @param Description: 模板描述
         # @type Description: String
-        # @param SourceEngineTypes: 源端对应的引擎类型
+        # @param SourceEngineTypes: 执行引擎多选（位运算数组）：2-HIVE，4-SPARK，8-LIVY，16-DLC，64-TCHouse-P，128-DORIS，256-TCHouse-D，512-EMR-StarRocks，1024-TCHouse-X
         # @type SourceEngineTypes: Array
         # @param MultiSourceFlag: 是否关联其它库表
         # @type MultiSourceFlag: Boolean
@@ -10541,56 +10552,59 @@ module TencentCloud
 
       # 查询数据服务API的发布态信息详情出参
       class DescribeDataServicePublishedApiDetailResp < TencentCloud::Common::AbstractModel
-        # @param ApiName: 服务Api名称
+        # @param ApiName: <p>服务Api名称</p>
         # @type ApiName: String
-        # @param PathUrl: 服务请求Path
+        # @param PathUrl: <p>服务请求Path</p>
         # @type PathUrl: String
-        # @param OwnerName: 服务责任人名称
+        # @param OwnerName: <p>服务责任人名称</p>
         # @type OwnerName: String
-        # @param RequestType: 服务请求方式
+        # @param RequestType: <p>服务请求方式</p>
         # @type RequestType: String
-        # @param ApiTagNames: 服务标签名称集合
+        # @param ApiTagNames: <p>服务标签名称集合</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApiTagNames: String
-        # @param ApiDescription: 服务描述
+        # @param ApiDescription: <p>服务描述</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApiDescription: String
-        # @param RequestExample: 服务请求返回示例
+        # @param RequestExample: <p>服务请求返回示例</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RequestExample: String
-        # @param RequestSuccess: 服务请求成功返回示例
+        # @param RequestSuccess: <p>服务请求成功返回示例</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RequestSuccess: String
-        # @param RequestError: 服务请求失败返回示例
+        # @param RequestError: <p>服务请求失败返回示例</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RequestError: String
-        # @param RequestParam: 服务请求参数列表
+        # @param RequestParam: <p>服务请求参数列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RequestParam: Array
-        # @param ResponseParam: 服务响应参数列表
+        # @param ResponseParam: <p>服务响应参数列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResponseParam: Array
-        # @param MaxAllowQps: 最大qps
+        # @param MaxAllowQps: <p>最大qps</p>
         # @type MaxAllowQps: Integer
-        # @param MaxAllowPageSize: 最大记录数
+        # @param MaxAllowPageSize: <p>最大记录数</p>
         # @type MaxAllowPageSize: Integer
-        # @param TimeoutPeriod: 超时时间，单位ms
+        # @param TimeoutPeriod: <p>超时时间，单位ms</p>
         # @type TimeoutPeriod: Integer
-        # @param ApiId: ApiId
+        # @param ApiId: <p>ApiId</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApiId: String
-        # @param AuthType: 0:免认证 1:应用认证
+        # @param AuthType: <p>认证方式</p><p>枚举值：</p><ul><li>0： 免认证</li><li>1： 应用认证</li><li>2： OAuth2.0认证</li></ul>
         # @type AuthType: Integer
-        # @param GatewayApiUrl: 请求地址
+        # @param GatewayApiUrl: <p>请求地址</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GatewayApiUrl: String
-        # @param ApiStatus: 服务Api状态 1:已上线  3:已下线
+        # @param ApiStatus: <p>服务Api状态 1:已上线  3:已下线</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApiStatus: Integer
+        # @param EnablePage: <p>是否开启分页</p><p>枚举值：</p><ul><li>0： 开启分页</li><li>1： 未开启</li></ul>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnablePage: Integer
 
-        attr_accessor :ApiName, :PathUrl, :OwnerName, :RequestType, :ApiTagNames, :ApiDescription, :RequestExample, :RequestSuccess, :RequestError, :RequestParam, :ResponseParam, :MaxAllowQps, :MaxAllowPageSize, :TimeoutPeriod, :ApiId, :AuthType, :GatewayApiUrl, :ApiStatus
+        attr_accessor :ApiName, :PathUrl, :OwnerName, :RequestType, :ApiTagNames, :ApiDescription, :RequestExample, :RequestSuccess, :RequestError, :RequestParam, :ResponseParam, :MaxAllowQps, :MaxAllowPageSize, :TimeoutPeriod, :ApiId, :AuthType, :GatewayApiUrl, :ApiStatus, :EnablePage
 
-        def initialize(apiname=nil, pathurl=nil, ownername=nil, requesttype=nil, apitagnames=nil, apidescription=nil, requestexample=nil, requestsuccess=nil, requesterror=nil, requestparam=nil, responseparam=nil, maxallowqps=nil, maxallowpagesize=nil, timeoutperiod=nil, apiid=nil, authtype=nil, gatewayapiurl=nil, apistatus=nil)
+        def initialize(apiname=nil, pathurl=nil, ownername=nil, requesttype=nil, apitagnames=nil, apidescription=nil, requestexample=nil, requestsuccess=nil, requesterror=nil, requestparam=nil, responseparam=nil, maxallowqps=nil, maxallowpagesize=nil, timeoutperiod=nil, apiid=nil, authtype=nil, gatewayapiurl=nil, apistatus=nil, enablepage=nil)
           @ApiName = apiname
           @PathUrl = pathurl
           @OwnerName = ownername
@@ -10609,6 +10623,7 @@ module TencentCloud
           @AuthType = authtype
           @GatewayApiUrl = gatewayapiurl
           @ApiStatus = apistatus
+          @EnablePage = enablepage
         end
 
         def deserialize(params)
@@ -10644,6 +10659,7 @@ module TencentCloud
           @AuthType = params['AuthType']
           @GatewayApiUrl = params['GatewayApiUrl']
           @ApiStatus = params['ApiStatus']
+          @EnablePage = params['EnablePage']
         end
       end
 
@@ -16383,13 +16399,13 @@ module TencentCloud
 
       # DescribeRuleTemplates请求参数结构体
       class DescribeRuleTemplatesRequest < TencentCloud::Common::AbstractModel
-        # @param Type: 模板类型 1.系统模板 2.自定义模板
+        # @param Type: 模版类型：1-系统模版，2-用户自定义模版
         # @type Type: Integer
-        # @param SourceObjectType: 1.常量 2.离线表级 2.离线字段级
+        # @param SourceObjectType: 源数据对象类型：1-常量，2-离线表级，3-离线字段级别
         # @type SourceObjectType: Integer
         # @param ProjectId: 项目Id
         # @type ProjectId: String
-        # @param SourceEngineTypes: 源端对应的引擎类型
+        # @param SourceEngineTypes: 执行引擎多选（位运算数组）：2-HIVE，4-SPARK，8-LIVY，16-DLC，64-TCHouse-P，128-DORIS，256-TCHouse-D，512-EMR-StarRocks，1024-TCHouse-X
         # @type SourceEngineTypes: Array
 
         attr_accessor :Type, :SourceObjectType, :ProjectId, :SourceEngineTypes
@@ -16513,7 +16529,7 @@ module TencentCloud
         # @type ProjectId: String
         # @param RuleGroupId: 规则组id
         # @type RuleGroupId: Integer
-        # @param EngineType: 该规则运行的执行引擎，不传时会请求该数据源下默认的执行引擎
+        # @param EngineType: 执行引擎类型，可选值：MYSQL, HIVE, SPARK, LIVY, DLC, GBASE, CDW_PG, TCHouse-P, DORIS, TCHouse-D
         # @type EngineType: String
 
         attr_accessor :ProjectId, :RuleGroupId, :EngineType
@@ -17091,30 +17107,32 @@ module TencentCloud
 
       # DescribeStreamTaskLogList请求参数结构体
       class DescribeStreamTaskLogListRequest < TencentCloud::Common::AbstractModel
-        # @param ProjectId: 项目ID
+        # @param ProjectId: <p>项目ID</p>
         # @type ProjectId: String
-        # @param TaskId: 任务ID
+        # @param TaskId: <p>任务ID</p>
         # @type TaskId: String
-        # @param JobId: 作业ID
+        # @param JobId: <p>作业ID</p>
         # @type JobId: String
-        # @param EndTime: 结束时间
+        # @param EndTime: <p>结束时间</p>
         # @type EndTime: Integer
-        # @param StartTime: 开始时间
+        # @param StartTime: <p>开始时间</p>
         # @type StartTime: Integer
-        # @param Container: container名字
+        # @param Container: <p>container名字</p>
         # @type Container: String
-        # @param Limit: 条数
+        # @param Limit: <p>条数</p>
         # @type Limit: Integer
-        # @param OrderType: 排序类型 desc asc
+        # @param OrderType: <p>排序类型 desc asc</p>
         # @type OrderType: String
-        # @param RunningOrderId: 作业运行的实例ID
+        # @param RunningOrderId: <p>作业运行的实例ID</p>
         # @type RunningOrderId: Integer
-        # @param Keyword: 关键字
+        # @param Keyword: <p>关键字</p>
         # @type Keyword: String
+        # @param JobType: <p>任务类型，不传时按 <code>INTEGRATION</code> 处理 </p><p>枚举值：</p><ul><li>INTEGRATION： 集成任务</li><li>VALIDATE： 对账任务</li></ul>
+        # @type JobType: String
 
-        attr_accessor :ProjectId, :TaskId, :JobId, :EndTime, :StartTime, :Container, :Limit, :OrderType, :RunningOrderId, :Keyword
+        attr_accessor :ProjectId, :TaskId, :JobId, :EndTime, :StartTime, :Container, :Limit, :OrderType, :RunningOrderId, :Keyword, :JobType
 
-        def initialize(projectid=nil, taskid=nil, jobid=nil, endtime=nil, starttime=nil, container=nil, limit=nil, ordertype=nil, runningorderid=nil, keyword=nil)
+        def initialize(projectid=nil, taskid=nil, jobid=nil, endtime=nil, starttime=nil, container=nil, limit=nil, ordertype=nil, runningorderid=nil, keyword=nil, jobtype=nil)
           @ProjectId = projectid
           @TaskId = taskid
           @JobId = jobid
@@ -17125,6 +17143,7 @@ module TencentCloud
           @OrderType = ordertype
           @RunningOrderId = runningorderid
           @Keyword = keyword
+          @JobType = jobtype
         end
 
         def deserialize(params)
@@ -17138,15 +17157,16 @@ module TencentCloud
           @OrderType = params['OrderType']
           @RunningOrderId = params['RunningOrderId']
           @Keyword = params['Keyword']
+          @JobType = params['JobType']
         end
       end
 
       # DescribeStreamTaskLogList返回参数结构体
       class DescribeStreamTaskLogListResponse < TencentCloud::Common::AbstractModel
-        # @param ListOver: 是否是全量
+        # @param ListOver: <p>是否是全量</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ListOver: Boolean
-        # @param LogContentList: 日志集合
+        # @param LogContentList: <p>日志集合</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogContentList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -28007,125 +28027,130 @@ module TencentCloud
 
       # 补录计划
       class MakePlanOpsDto < TencentCloud::Common::AbstractModel
-        # @param PlanId: 补录计划ID
+        # @param PlanId: <p>补录计划ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PlanId: String
-        # @param MakeName: 补录计划名称
+        # @param MakeName: <p>补录计划名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MakeName: String
-        # @param ProjectId: 项目ID
+        # @param ProjectId: <p>项目ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProjectId: String
-        # @param CheckParent: 补录是否检查父任务状态
+        # @param CheckParent: <p>补录是否检查父任务状态</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CheckParent: Boolean
-        # @param SameSelfDependType: 是否使用任务原有自依赖配置
+        # @param SameSelfDependType: <p>是否使用任务原有自依赖配置</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SameSelfDependType: Boolean
-        # @param ParallelNum: 并行度，在SameSelfDependType为false时生效
+        # @param ParallelNum: <p>并行度，在SameSelfDependType为false时生效</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParallelNum: Integer
-        # @param SameCycle: 补录实例生成周期是否修改
+        # @param SameCycle: <p>补录实例生成周期是否修改</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SameCycle: Boolean
-        # @param SourceTaskCycle: 调度周期转换方式-原始周期类型
+        # @param SourceTaskCycle: <p>调度周期转换方式-原始周期类型</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SourceTaskCycle: String
-        # @param TargetTaskCycle: 调度周期转换方式-目标周期类型
+        # @param TargetTaskCycle: <p>调度周期转换方式-目标周期类型</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TargetTaskCycle: String
-        # @param TargetTaskAction: 调度周期转换方式-目标周期类型指定时间
+        # @param TargetTaskAction: <p>调度周期转换方式-目标周期类型指定时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TargetTaskAction: Integer
-        # @param MapParamList: 补录实例自定义参数
+        # @param MapParamList: <p>补录实例自定义参数</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MapParamList: Array
-        # @param MakeExtList: 补录扩展属性
+        # @param MakeExtList: <p>补录扩展属性</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MakeExtList: Array
-        # @param CreatorId: 创建人ID
+        # @param CreatorId: <p>创建人ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreatorId: String
-        # @param Creator: 创建人
+        # @param Creator: <p>创建人</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Creator: String
-        # @param CreateTime: 创建时间
+        # @param CreateTime: <p>创建时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
-        # @param TaskIdList: 补录任务ID集合
+        # @param TaskIdList: <p>补录任务ID集合</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskIdList: Array
-        # @param MakeDatetimeList: 补录计划日期范围
+        # @param MakeDatetimeList: <p>补录计划日期范围</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MakeDatetimeList: Array
-        # @param Remark: 补录计划说明
+        # @param Remark: <p>补录计划说明</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Remark: String
-        # @param SchedulerResourceGroup: 补录指定的调度资源组（ID）
+        # @param SchedulerResourceGroup: <p>补录指定的调度资源组（ID）</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SchedulerResourceGroup: String
-        # @param SchedulerResourceGroupName: 补录指定的调度资源组名称
+        # @param SchedulerResourceGroupName: <p>补录指定的调度资源组名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SchedulerResourceGroupName: String
-        # @param IntegrationResourceGroup: 补录指定的集成资源组（ID）
+        # @param IntegrationResourceGroup: <p>补录指定的集成资源组（ID）</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IntegrationResourceGroup: String
-        # @param IntegrationResourceGroupName: 补录指定的集成资源组名称
+        # @param IntegrationResourceGroupName: <p>补录指定的集成资源组名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IntegrationResourceGroupName: String
-        # @param TaskCount: 补录计划任务数量
+        # @param TaskCount: <p>补录计划任务数量</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskCount: Integer
-        # @param CompletePercent: 补录计划实例完成百分数
+        # @param CompletePercent: <p>补录计划实例完成百分数</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CompletePercent: Integer
-        # @param SuccessPercent: 补录计划实例成功百分数
+        # @param SuccessPercent: <p>补录计划实例成功百分数</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SuccessPercent: Integer
-        # @param CheckParentType: 补录检查父任务类型。取值范围：
-        # <li> NONE: 全部不检查 </li>
-        # <li> ALL: 检查全部上游父任务 </li>
-        # <li> MAKE_SCOPE: 只在（当前补录计划）选中任务中检查 </li>
+        # @param CheckParentType: <p>补录检查父任务类型。取值范围：</p><li> NONE: 全部不检查 </li><li> ALL: 检查全部上游父任务 </li><li> MAKE_SCOPE: 只在（当前补录计划）选中任务中检查 </li>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CheckParentType: String
-        # @param SameSelfWorkflowDependType: 是否和原任务保持相同工作流自依赖属性
+        # @param SameSelfWorkflowDependType: <p>是否和原任务保持相同工作流自依赖属性</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SameSelfWorkflowDependType: Boolean
-        # @param SelfWorkflowDependency: 工作流自依赖类型
+        # @param SelfWorkflowDependency: <p>工作流自依赖类型</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SelfWorkflowDependency: String
-        # @param MakeDataTimeOrder: 补录时间顺序
-        # NORMAL： 正常
-        # ORDER ： 按照实例时间顺序执行
-        # REVERSE： 实例数据时间逆序
+        # @param MakeDataTimeOrder: <p>补录时间顺序<br>NORMAL： 正常<br>ORDER ： 按照实例时间顺序执行<br>REVERSE： 实例数据时间逆序</p>
         # @type MakeDataTimeOrder: String
-        # @param ScheduleTimeZone: 补录时间范围的时区
+        # @param ScheduleTimeZone: <p>补录时间范围的时区</p>
         # @type ScheduleTimeZone: String
-        # @param AppParam: 执行应用参数
+        # @param AppParam: <p>执行应用参数</p>
         # @type AppParam: String
-        # @param TimeType: 补录计划时间范围的类型：
-        # DATA_TIME：实例数据时间；SCHEDULE_TIME 计划调度时间
+        # @param TimeType: <p>补录计划时间范围的类型：<br>DATA_TIME：实例数据时间；SCHEDULE_TIME 计划调度时间</p>
         # @type TimeType: String
-        # @param StartTime: 开始时间
+        # @param StartTime: <p>开始时间</p>
         # @type StartTime: String
-        # @param EndTime: 结束时间
+        # @param EndTime: <p>结束时间</p>
         # @type EndTime: String
-        # @param FailurePercent: 失败百分比
+        # @param FailurePercent: <p>失败百分比</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FailurePercent: Integer
-        # @param AlarmRule: 补录计划的告警规则
+        # @param AlarmRule: <p>补录计划的告警规则</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AlarmRule: :class:`Tencentcloud::Wedata.v20210820.models.MakePlanAlarmRule`
-        # @param RunType: 运行类型
+        # @param RunType: <p>运行类型</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RunType: Integer
-        # @param RunDateTime: 定时运行时间
+        # @param RunDateTime: <p>定时运行时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RunDateTime: String
+        # @param RunScheduleTimeZone: <p>定时补录计划 或者 指定时间段补录 执行时间点的时区</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RunScheduleTimeZone: String
+        # @param RunScheduleRangeStartTime: <p>指定时间段补录开始时间</p><p>参数格式：00:00 - 23:59</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RunScheduleRangeStartTime: String
+        # @param RunScheduleRangeEndTime: <p>指定时间段补录结束时间</p><p>参数格式：00:00 - 23:59</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RunScheduleRangeEndTime: String
+        # @param RunScheduleRangeWeekDays: <p>指定时间段补录生效日，星期一到星期日，1-7</p><p>枚举值：</p><ul><li>星期一： 1</li><li>星期二： 2</li></ul>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RunScheduleRangeWeekDays: Array
 
-        attr_accessor :PlanId, :MakeName, :ProjectId, :CheckParent, :SameSelfDependType, :ParallelNum, :SameCycle, :SourceTaskCycle, :TargetTaskCycle, :TargetTaskAction, :MapParamList, :MakeExtList, :CreatorId, :Creator, :CreateTime, :TaskIdList, :MakeDatetimeList, :Remark, :SchedulerResourceGroup, :SchedulerResourceGroupName, :IntegrationResourceGroup, :IntegrationResourceGroupName, :TaskCount, :CompletePercent, :SuccessPercent, :CheckParentType, :SameSelfWorkflowDependType, :SelfWorkflowDependency, :MakeDataTimeOrder, :ScheduleTimeZone, :AppParam, :TimeType, :StartTime, :EndTime, :FailurePercent, :AlarmRule, :RunType, :RunDateTime
+        attr_accessor :PlanId, :MakeName, :ProjectId, :CheckParent, :SameSelfDependType, :ParallelNum, :SameCycle, :SourceTaskCycle, :TargetTaskCycle, :TargetTaskAction, :MapParamList, :MakeExtList, :CreatorId, :Creator, :CreateTime, :TaskIdList, :MakeDatetimeList, :Remark, :SchedulerResourceGroup, :SchedulerResourceGroupName, :IntegrationResourceGroup, :IntegrationResourceGroupName, :TaskCount, :CompletePercent, :SuccessPercent, :CheckParentType, :SameSelfWorkflowDependType, :SelfWorkflowDependency, :MakeDataTimeOrder, :ScheduleTimeZone, :AppParam, :TimeType, :StartTime, :EndTime, :FailurePercent, :AlarmRule, :RunType, :RunDateTime, :RunScheduleTimeZone, :RunScheduleRangeStartTime, :RunScheduleRangeEndTime, :RunScheduleRangeWeekDays
 
-        def initialize(planid=nil, makename=nil, projectid=nil, checkparent=nil, sameselfdependtype=nil, parallelnum=nil, samecycle=nil, sourcetaskcycle=nil, targettaskcycle=nil, targettaskaction=nil, mapparamlist=nil, makeextlist=nil, creatorid=nil, creator=nil, createtime=nil, taskidlist=nil, makedatetimelist=nil, remark=nil, schedulerresourcegroup=nil, schedulerresourcegroupname=nil, integrationresourcegroup=nil, integrationresourcegroupname=nil, taskcount=nil, completepercent=nil, successpercent=nil, checkparenttype=nil, sameselfworkflowdependtype=nil, selfworkflowdependency=nil, makedatatimeorder=nil, scheduletimezone=nil, appparam=nil, timetype=nil, starttime=nil, endtime=nil, failurepercent=nil, alarmrule=nil, runtype=nil, rundatetime=nil)
+        def initialize(planid=nil, makename=nil, projectid=nil, checkparent=nil, sameselfdependtype=nil, parallelnum=nil, samecycle=nil, sourcetaskcycle=nil, targettaskcycle=nil, targettaskaction=nil, mapparamlist=nil, makeextlist=nil, creatorid=nil, creator=nil, createtime=nil, taskidlist=nil, makedatetimelist=nil, remark=nil, schedulerresourcegroup=nil, schedulerresourcegroupname=nil, integrationresourcegroup=nil, integrationresourcegroupname=nil, taskcount=nil, completepercent=nil, successpercent=nil, checkparenttype=nil, sameselfworkflowdependtype=nil, selfworkflowdependency=nil, makedatatimeorder=nil, scheduletimezone=nil, appparam=nil, timetype=nil, starttime=nil, endtime=nil, failurepercent=nil, alarmrule=nil, runtype=nil, rundatetime=nil, runscheduletimezone=nil, runschedulerangestarttime=nil, runschedulerangeendtime=nil, runschedulerangeweekdays=nil)
           @PlanId = planid
           @MakeName = makename
           @ProjectId = projectid
@@ -28164,6 +28189,10 @@ module TencentCloud
           @AlarmRule = alarmrule
           @RunType = runtype
           @RunDateTime = rundatetime
+          @RunScheduleTimeZone = runscheduletimezone
+          @RunScheduleRangeStartTime = runschedulerangestarttime
+          @RunScheduleRangeEndTime = runschedulerangeendtime
+          @RunScheduleRangeWeekDays = runschedulerangeweekdays
         end
 
         def deserialize(params)
@@ -28229,6 +28258,10 @@ module TencentCloud
           end
           @RunType = params['RunType']
           @RunDateTime = params['RunDateTime']
+          @RunScheduleTimeZone = params['RunScheduleTimeZone']
+          @RunScheduleRangeStartTime = params['RunScheduleRangeStartTime']
+          @RunScheduleRangeEndTime = params['RunScheduleRangeEndTime']
+          @RunScheduleRangeWeekDays = params['RunScheduleRangeWeekDays']
         end
       end
 
@@ -28822,7 +28855,7 @@ module TencentCloud
       class ModifyExecStrategyRequest < TencentCloud::Common::AbstractModel
         # @param RuleGroupId: 规则组ID
         # @type RuleGroupId: Integer
-        # @param MonitorType: 监控类型 1.未配置, 2.关联生产调度, 3.离线周期检测
+        # @param MonitorType: 监控类型：1-未配置，2-关联生产调度，3-离线周期检测
         # @type MonitorType: Integer
         # @param ExecQueue: 计算队列
         # @type ExecQueue: String
@@ -28838,12 +28871,7 @@ module TencentCloud
         # @type StartTime: String
         # @param EndTime: 离线周期模式下,生效日期-结束时间
         # @type EndTime: String
-        # @param CycleType: 离线周期模式下,调度周期
-        # MINUTE_CYCLE:I,
-        # HOUR_CYCLE:H,
-        # DAY_CYCLE:D,
-        # WEEK_CYCLE:W,
-        # MONTH_CYCLE:M
+        # @param CycleType: 周期类型：MINUTE-分钟，HOUR-小时，DAY-天，WEEK-周，MONTH-月，YEAR-年
         # @type CycleType: String
         # @param CycleStep: 离线周期模式下,调度步长
         # @type CycleStep: Integer
@@ -28857,9 +28885,9 @@ module TencentCloud
         # @type DatasourceId: String
         # @param TableId: 数据表Id
         # @type TableId: String
-        # @param ExecEngineType: 运行的执行引擎，不传时会请求该数据源下默认的执行引擎
+        # @param ExecEngineType: 执行引擎类型，可选值：MYSQL, HIVE, SPARK, LIVY, DLC, GBASE, CDW_PG, TCHouse-P, DORIS, TCHouse-D
         # @type ExecEngineType: String
-        # @param TriggerTypes: 触发场景
+        # @param TriggerTypes: 触发类型数组：1-手动触发，2-调度事件触发，3-周期调度触发
         # @type TriggerTypes: Array
 
         attr_accessor :RuleGroupId, :MonitorType, :ExecQueue, :ExecutorGroupId, :ExecutorGroupName, :Tasks, :ProjectId, :StartTime, :EndTime, :CycleType, :CycleStep, :TaskAction, :DelayTime, :DatabaseId, :DatasourceId, :TableId, :ExecEngineType, :TriggerTypes
@@ -29044,7 +29072,7 @@ module TencentCloud
         # @type ProjectId: String
         # @param RuleGroupId: 规则组ID
         # @type RuleGroupId: Integer
-        # @param MonitorStatus: 监控开关状态
+        # @param MonitorStatus: 监控是否开启：0-关闭，1-开启
         # @type MonitorStatus: Boolean
 
         attr_accessor :ProjectId, :RuleGroupId, :MonitorStatus
@@ -29164,7 +29192,7 @@ module TencentCloud
         # @type RuleGroupId: Integer
         # @param Receivers: 订阅人信息
         # @type Receivers: Array
-        # @param SubscribeType: 订阅类型
+        # @param SubscribeType: 订阅方式：1-邮件，2-短信，3-微信，4-语音，5-企微，6-HTTP连接，7-飞书群，8-钉钉群
         # @type SubscribeType: Array
         # @param ProjectId: 项目ID
         # @type ProjectId: String
@@ -29251,15 +29279,15 @@ module TencentCloud
         # @type TableId: String
         # @param RuleTemplateId: 规则模板ID
         # @type RuleTemplateId: Integer
-        # @param Type: 规则类型 1.系统模版, 2.自定义模版, 3.自定义SQL
+        # @param Type: 规则类型：1-系统模版，2-自定义模版，3-自定义SQL
         # @type Type: Integer
-        # @param QualityDim: 规则所属质量维度（1：准确性，2：唯一性，3：完整性，4：一致性，5：及时性，6：有效性）
+        # @param QualityDim: 质量维度：1-准确性，2-唯一性，3-完整性，4-一致性，5-及时性，6-有效性
         # @type QualityDim: Integer
         # @param SourceObjectDataTypeName: 源字段详细类型，int、string
         # @type SourceObjectDataTypeName: String
         # @param SourceObjectValue: 源字段名称
         # @type SourceObjectValue: String
-        # @param ConditionType: 检测范围 1.全表   2.条件扫描
+        # @param ConditionType: 检测范围类型：1-全表，2-条件扫描
         # @type ConditionType: Integer
         # @param ConditionExpression: 条件扫描WHERE条件表达式
         # @type ConditionExpression: String
@@ -29267,7 +29295,7 @@ module TencentCloud
         # @type CustomSql: String
         # @param CompareRule: 报警触发条件
         # @type CompareRule: :class:`Tencentcloud::Wedata.v20210820.models.CompareRule`
-        # @param AlarmLevel: 报警触发级别 1.低, 2.中, 3.高
+        # @param AlarmLevel: 告警级别：1-低，2-中，3-高
         # @type AlarmLevel: Integer
         # @param Description: 规则描述
         # @type Description: String
@@ -29283,7 +29311,7 @@ module TencentCloud
         # @type FieldConfig: :class:`Tencentcloud::Wedata.v20210820.models.RuleFieldConfig`
         # @param TargetObjectValue: 目标字段名称  CITY
         # @type TargetObjectValue: String
-        # @param SourceEngineTypes: 该规则适配的执行引擎
+        # @param SourceEngineTypes: 执行引擎多选（位运算数组）：2-HIVE，4-SPARK，8-LIVY，16-DLC，64-TCHouse-P，128-DORIS，256-TCHouse-D，512-EMR-StarRocks，1024-TCHouse-X
         # @type SourceEngineTypes: Array
         # @param TargetDatabaseName: 目标库名
         # @type TargetDatabaseName: String
@@ -29392,17 +29420,17 @@ module TencentCloud
       class ModifyRuleTemplateRequest < TencentCloud::Common::AbstractModel
         # @param TemplateId: 模板ID
         # @type TemplateId: Integer
-        # @param Type: 模板类型  1.系统模板   2.自定义模板
+        # @param Type: 模版类型：1-系统模版，2-用户自定义模版
         # @type Type: Integer
         # @param Name: 模板名称
         # @type Name: String
-        # @param QualityDim: 质量检测维度 1.准确性 2.唯一性 3.完整性 4.一致性 5.及时性 6.有效性
+        # @param QualityDim: 质量维度：1-准确性，2-唯一性，3-完整性，4-一致性，5-及时性，6-有效性
         # @type QualityDim: Integer
-        # @param SourceObjectType: 源端数据对象类型 1.常量  2.离线表级   2.离线字段级
+        # @param SourceObjectType: 源数据对象类型：1-常量，2-离线表级，3-离线字段级别
         # @type SourceObjectType: Integer
         # @param Description: 描述
         # @type Description: String
-        # @param SourceEngineTypes: 源端对应的引擎类型
+        # @param SourceEngineTypes: 执行引擎多选（位运算数组）：2-HIVE，4-SPARK，8-LIVY，16-DLC，64-TCHouse-P，128-DORIS，256-TCHouse-D，512-EMR-StarRocks，1024-TCHouse-X
         # @type SourceEngineTypes: Array
         # @param MultiSourceFlag: 是否关联其它库表
         # @type MultiSourceFlag: Boolean
@@ -33915,7 +33943,7 @@ module TencentCloud
         # @param Name: 规则名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
-        # @param Type: 规则类型 1.系统模版, 2.自定义模版, 3.自定义SQL
+        # @param Type: 规则类型：1-系统模版，2-自定义模版，3-自定义SQL
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: Integer
         # @param RuleTemplateId: 规则模板Id
@@ -33924,10 +33952,10 @@ module TencentCloud
         # @param RuleTemplateContent: 规则模板概述
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleTemplateContent: String
-        # @param QualityDim: 规则所属质量维度 1：准确性，2：唯一性，3：完整性，4：一致性，5：及时性，6：有效性
+        # @param QualityDim: 质量维度：1-准确性，2-唯一性，3-完整性，4-一致性，5-及时性，6-有效性
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QualityDim: Integer
-        # @param SourceObjectType: 规则适用的源数据对象类型（1：常量，2：离线表级，3：离线字段级别）
+        # @param SourceObjectType: 源数据对象类型：1-常量，2-离线表级，3-离线字段级别
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SourceObjectType: Integer
         # @param SourceObjectDataType: 规则适用的源数据对象类型（1：数值，2：字符串）
@@ -33939,7 +33967,7 @@ module TencentCloud
         # @param SourceObjectValue: 源字段名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SourceObjectValue: String
-        # @param ConditionType: 检测范围 1.全表, 2.条件扫描
+        # @param ConditionType: 检测范围类型：1-全表，2-条件扫描
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConditionType: Integer
         # @param ConditionExpression: 条件扫描WHERE条件表达式
@@ -33951,7 +33979,7 @@ module TencentCloud
         # @param CompareRule: 报警触发条件
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CompareRule: :class:`Tencentcloud::Wedata.v20210820.models.CompareRule`
-        # @param AlarmLevel: 报警触发级别 1.低, 2.中, 3.高
+        # @param AlarmLevel: 告警级别：1-低，2-中，3-高
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AlarmLevel: Integer
         # @param Description: 规则描述
@@ -33993,10 +34021,10 @@ module TencentCloud
         # @param SubQualityDim: 模版子维度：0.父维度类型,1.一致性: 枚举范围一致性,2.一致性：数值范围一致性,3.一致性：字段数据相关性
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubQualityDim: Integer
-        # @param TargetObjectType: 规则适用的目标数据对象类型（1：常量，2：离线表级，3：离线字段级别）
+        # @param TargetObjectType: 目标数据对象类型：1-常量，2-离线表级，3-离线字段级别
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TargetObjectType: Integer
-        # @param TargetObjectDataType: 规则适用的目标数据对象类型（1：数值，2：字符串）
+        # @param TargetObjectDataType: 目标字段数据类型：1-数值，2-字符串
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TargetObjectDataType: Integer
         # @param TargetObjectDataTypeName: 目标字段详细类型，INT、STRING
@@ -34005,7 +34033,7 @@ module TencentCloud
         # @param TargetObjectValue: 目标字段名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TargetObjectValue: String
-        # @param SourceEngineTypes: 源端对应的引擎类型
+        # @param SourceEngineTypes: 执行引擎多选（位运算数组）：2-HIVE，4-SPARK，8-LIVY，16-DLC，64-TCHouse-P，128-DORIS，256-TCHouse-D，512-EMR-StarRocks，1024-TCHouse-X
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SourceEngineTypes: Array
         # @param TableName: 表名称
@@ -34029,7 +34057,7 @@ module TencentCloud
         # @param DatabaseId: 数据库 id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DatabaseId: String
-        # @param MonitorStatus: 监控是否开启.0false,1true
+        # @param MonitorStatus: 监控是否开启：0-关闭，1-开启
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MonitorStatus: Integer
         # @param TriggerCondition: 触发条件
@@ -34038,7 +34066,7 @@ module TencentCloud
         # @param DsEnvType: 0或者未返回或者null：未定义，1：生产，2：开发
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DsEnvType: Integer
-        # @param DatasourceType: 数据源类型
+        # @param DatasourceType: 数据源类型：2-HIVE(EMR-Hive)，3-DLC，5-TCHouse-P，6-ICEBERG(EMR-Iceberg)，7-DORIS，8-TCHouse-D，9-EMR-StarRocks，11-TCHouse-X
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DatasourceType: Integer
         # @param SchemaName: 模式名称
@@ -34065,7 +34093,7 @@ module TencentCloud
         # @param FailMsg: 失败原因
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FailMsg: String
-        # @param GroupType: 任务类型
+        # @param GroupType: 任务类型（同MonitorType）：1-未配置，2-关联生产调度，3-离线周期检测
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupType: String
         # @param AspectTaskId: 编排任务id
@@ -34379,118 +34407,120 @@ module TencentCloud
 
       # 规则执行结果
       class RuleExecResult < TencentCloud::Common::AbstractModel
-        # @param RuleExecId: 规则执行ID
+        # @param RuleExecId: <p>规则执行ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleExecId: Integer
-        # @param RuleGroupExecId: 规则组执行ID
+        # @param RuleGroupExecId: <p>规则组执行ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleGroupExecId: Integer
-        # @param RuleGroupId: 规则组ID
+        # @param RuleGroupId: <p>规则组ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleGroupId: Integer
-        # @param RuleId: 规则ID
+        # @param RuleId: <p>规则ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleId: Integer
-        # @param RuleName: 规则名称
+        # @param RuleName: <p>规则名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleName: String
-        # @param RuleType: 规则类型 1.系统模版, 2.自定义模版, 3.自定义SQL
+        # @param RuleType: <p>规则类型 1.系统模版, 2.自定义模版, 3.自定义SQL</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleType: Integer
-        # @param SourceObjectDataTypeName: 源字段详细类型，int string
+        # @param SourceObjectDataTypeName: <p>源字段详细类型，int string</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SourceObjectDataTypeName: String
-        # @param SourceObjectValue: 源字段名称
+        # @param SourceObjectValue: <p>源字段名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SourceObjectValue: String
-        # @param ConditionExpression: 条件扫描WHERE条件表达式
+        # @param ConditionExpression: <p>条件扫描WHERE条件表达式</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConditionExpression: String
-        # @param ExecResultStatus: 检测结果（1:检测通过，2：触发规则，3：检测失败）
+        # @param ExecResultStatus: <p>检测结果（1:检测通过，2：触发规则，3：检测失败）</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExecResultStatus: Integer
-        # @param TriggerResult: 触发结果，告警发送成功, 阻断任务成功
+        # @param TriggerResult: <p>触发结果，告警发送成功, 阻断任务成功</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TriggerResult: String
-        # @param CompareResult: 对比结果
+        # @param CompareResult: <p>对比结果</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CompareResult: :class:`Tencentcloud::Wedata.v20210820.models.CompareResult`
-        # @param TemplateName: 模版名称
+        # @param TemplateName: <p>模版名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TemplateName: String
-        # @param QualityDim: 质量维度
+        # @param QualityDim: <p>质量维度</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QualityDim: Integer
-        # @param TargetDBTableName: 目标表-库表名称
+        # @param TargetDBTableName: <p>目标表-库表名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TargetDBTableName: String
-        # @param TargetObjectValue: 目标表-字段名称
+        # @param TargetObjectValue: <p>目标表-字段名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TargetObjectValue: String
-        # @param TargetObjectDataType: 目标表-字段类型
+        # @param TargetObjectDataType: <p>目标表-字段类型</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TargetObjectDataType: String
-        # @param FieldConfig: 自定义模版sql表达式参数
+        # @param FieldConfig: <p>自定义模版sql表达式参数</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FieldConfig: :class:`Tencentcloud::Wedata.v20210820.models.RuleFieldConfig`
-        # @param RelConditionExpr: 源字段与目标字段关联条件on表达式
+        # @param RelConditionExpr: <p>源字段与目标字段关联条件on表达式</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RelConditionExpr: String
-        # @param StartTime: 执行时间
+        # @param StartTime: <p>执行时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartTime: String
-        # @param AlarmLevel: 1/2/3:低/中/高
+        # @param AlarmLevel: <p>1/2/3:低/中/高</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AlarmLevel: Integer
-        # @param TriggerCondition: 触发条件
+        # @param TriggerCondition: <p>触发条件</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TriggerCondition: String
-        # @param RuleGroupName: 任务名称
+        # @param RuleGroupName: <p>任务名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleGroupName: String
-        # @param DatasourceId: 数据源ID
+        # @param DatasourceId: <p>数据源ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DatasourceId: String
-        # @param DatasourceName: 数据源名称
+        # @param DatasourceName: <p>数据源名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DatasourceName: String
-        # @param DatabaseName: 数据库名称
+        # @param DatabaseName: <p>数据库名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DatabaseName: String
-        # @param SchemaName: 模式名称
+        # @param SchemaName: <p>模式名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SchemaName: String
-        # @param TableName: 表名称
+        # @param TableName: <p>表名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TableName: String
-        # @param RuleGroupExist: 判断是否屏蔽监控 0.屏蔽 1.不屏蔽
+        # @param RuleGroupExist: <p>判断是否屏蔽监控 0.屏蔽 1.不屏蔽</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleGroupExist: Integer
-        # @param DatasourceType: 数据源类型
+        # @param DatasourceType: <p>数据源类型</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DatasourceType: Integer
-        # @param RuleGroupTableId: 数据表id
+        # @param RuleGroupTableId: <p>数据表id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleGroupTableId: Integer
-        # @param MonitorType: 监控方式 1.未配置, 2.关联生产调度, 3.离线周期检测
+        # @param MonitorType: <p>监控方式 1.未配置, 2.关联生产调度, 3.离线周期检测</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MonitorType: Integer
-        # @param FinishTime: 执行结束时间
+        # @param FinishTime: <p>执行结束时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FinishTime: String
-        # @param GroupType: 任务类型
+        # @param GroupType: <p>任务类型</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupType: String
-        # @param AspectTaskId: 编排任务id
+        # @param AspectTaskId: <p>编排任务id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AspectTaskId: String
-        # @param CatalogName: 目录
+        # @param CatalogName: <p>目录</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CatalogName: String
+        # @param RuleExecStatus: <p>规则执行状态</p><p>枚举值：</p><ul><li>0： 初始状态</li><li>1： 运行中</li><li>2： 运行成功</li><li>3： 运行失败</li><li>4： 被杀死</li></ul>
+        # @type RuleExecStatus: Integer
 
-        attr_accessor :RuleExecId, :RuleGroupExecId, :RuleGroupId, :RuleId, :RuleName, :RuleType, :SourceObjectDataTypeName, :SourceObjectValue, :ConditionExpression, :ExecResultStatus, :TriggerResult, :CompareResult, :TemplateName, :QualityDim, :TargetDBTableName, :TargetObjectValue, :TargetObjectDataType, :FieldConfig, :RelConditionExpr, :StartTime, :AlarmLevel, :TriggerCondition, :RuleGroupName, :DatasourceId, :DatasourceName, :DatabaseName, :SchemaName, :TableName, :RuleGroupExist, :DatasourceType, :RuleGroupTableId, :MonitorType, :FinishTime, :GroupType, :AspectTaskId, :CatalogName
+        attr_accessor :RuleExecId, :RuleGroupExecId, :RuleGroupId, :RuleId, :RuleName, :RuleType, :SourceObjectDataTypeName, :SourceObjectValue, :ConditionExpression, :ExecResultStatus, :TriggerResult, :CompareResult, :TemplateName, :QualityDim, :TargetDBTableName, :TargetObjectValue, :TargetObjectDataType, :FieldConfig, :RelConditionExpr, :StartTime, :AlarmLevel, :TriggerCondition, :RuleGroupName, :DatasourceId, :DatasourceName, :DatabaseName, :SchemaName, :TableName, :RuleGroupExist, :DatasourceType, :RuleGroupTableId, :MonitorType, :FinishTime, :GroupType, :AspectTaskId, :CatalogName, :RuleExecStatus
 
-        def initialize(ruleexecid=nil, rulegroupexecid=nil, rulegroupid=nil, ruleid=nil, rulename=nil, ruletype=nil, sourceobjectdatatypename=nil, sourceobjectvalue=nil, conditionexpression=nil, execresultstatus=nil, triggerresult=nil, compareresult=nil, templatename=nil, qualitydim=nil, targetdbtablename=nil, targetobjectvalue=nil, targetobjectdatatype=nil, fieldconfig=nil, relconditionexpr=nil, starttime=nil, alarmlevel=nil, triggercondition=nil, rulegroupname=nil, datasourceid=nil, datasourcename=nil, databasename=nil, schemaname=nil, tablename=nil, rulegroupexist=nil, datasourcetype=nil, rulegrouptableid=nil, monitortype=nil, finishtime=nil, grouptype=nil, aspecttaskid=nil, catalogname=nil)
+        def initialize(ruleexecid=nil, rulegroupexecid=nil, rulegroupid=nil, ruleid=nil, rulename=nil, ruletype=nil, sourceobjectdatatypename=nil, sourceobjectvalue=nil, conditionexpression=nil, execresultstatus=nil, triggerresult=nil, compareresult=nil, templatename=nil, qualitydim=nil, targetdbtablename=nil, targetobjectvalue=nil, targetobjectdatatype=nil, fieldconfig=nil, relconditionexpr=nil, starttime=nil, alarmlevel=nil, triggercondition=nil, rulegroupname=nil, datasourceid=nil, datasourcename=nil, databasename=nil, schemaname=nil, tablename=nil, rulegroupexist=nil, datasourcetype=nil, rulegrouptableid=nil, monitortype=nil, finishtime=nil, grouptype=nil, aspecttaskid=nil, catalogname=nil, ruleexecstatus=nil)
           @RuleExecId = ruleexecid
           @RuleGroupExecId = rulegroupexecid
           @RuleGroupId = rulegroupid
@@ -34527,6 +34557,7 @@ module TencentCloud
           @GroupType = grouptype
           @AspectTaskId = aspecttaskid
           @CatalogName = catalogname
+          @RuleExecStatus = ruleexecstatus
         end
 
         def deserialize(params)
@@ -34572,6 +34603,7 @@ module TencentCloud
           @GroupType = params['GroupType']
           @AspectTaskId = params['AspectTaskId']
           @CatalogName = params['CatalogName']
+          @RuleExecStatus = params['RuleExecStatus']
         end
       end
 
@@ -34604,7 +34636,7 @@ module TencentCloud
         # @param TableOwnerUserId: 表负责人userId
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TableOwnerUserId: Integer
-        # @param DatasourceType: 2.HIVE 3.DLC
+        # @param DatasourceType: 数据源类型：2-HIVE(EMR-Hive)，3-DLC，5-TCHouse-P，6-ICEBERG(EMR-Iceberg)，7-DORIS，8-TCHouse-D，9-EMR-StarRocks，11-TCHouse-X
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DatasourceType: Integer
         # @param ClusterDeployType: 集群部署类型，CVM/TKE
@@ -34795,109 +34827,115 @@ module TencentCloud
 
       # 数据质量规则组
       class RuleGroup < TencentCloud::Common::AbstractModel
-        # @param RuleGroupId: 规则组Id
+        # @param RuleGroupId: <p>规则组Id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleGroupId: Integer
-        # @param DatasourceId: 数据源Id
+        # @param DatasourceId: <p>数据源Id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DatasourceId: String
-        # @param DatasourceName: 数据源名称
+        # @param DatasourceName: <p>数据源名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DatasourceName: String
-        # @param DatasourceType: 数据源类型
+        # @param DatasourceType: <p>数据源类型：2-HIVE(EMR-Hive)，3-DLC，5-TCHouse-P，6-ICEBERG(EMR-Iceberg)，7-DORIS，8-TCHouse-D，9-EMR-StarRocks，11-TCHouse-X</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DatasourceType: Integer
-        # @param MonitorType: 监控类型 1.未配置, 2.关联生产调度, 3.离线周期检测
+        # @param MonitorType: <p>监控类型：1-未配置，2-关联生产调度，3-离线周期检测</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MonitorType: Integer
-        # @param UpdateTime: 更新时间
+        # @param UpdateTime: <p>更新时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
-        # @param TableName: 关联数据表名称
+        # @param TableName: <p>关联数据表名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TableName: String
-        # @param TableId: 关联数据表Id
+        # @param TableId: <p>关联数据表Id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TableId: String
-        # @param TableOwnerName: 关联数据表负责人
+        # @param TableOwnerName: <p>关联数据表负责人</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TableOwnerName: String
-        # @param ExecStrategy: 执行策略
+        # @param ExecStrategy: <p>执行策略</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExecStrategy: :class:`Tencentcloud::Wedata.v20210820.models.RuleGroupExecStrategy`
-        # @param Subscription: 执行策略
+        # @param Subscription: <p>执行策略</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Subscription: :class:`Tencentcloud::Wedata.v20210820.models.RuleGroupSubscribe`
-        # @param DatabaseId: 数据库id
+        # @param DatabaseId: <p>数据库id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DatabaseId: String
-        # @param DatabaseName: 数据库名称
+        # @param DatabaseName: <p>数据库名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DatabaseName: String
-        # @param SchemaName: 模式名称
+        # @param SchemaName: <p>模式名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SchemaName: String
-        # @param Permission: 是否有权限
+        # @param Permission: <p>是否有权限</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Permission: Boolean
-        # @param RuleCount: 已经配置的规则数量
+        # @param RuleCount: <p>已经配置的规则数量</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleCount: Integer
-        # @param MonitorStatus: 监控状态
+        # @param MonitorStatus: <p>监控是否开启：0-关闭，1-开启</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MonitorStatus: Boolean
-        # @param TableOwnerUserId: 表负责人UserId
+        # @param TableOwnerUserId: <p>表负责人UserId</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TableOwnerUserId: Integer
-        # @param InstanceId: 实例ID
+        # @param InstanceId: <p>实例ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
-        # @param CreateTime: 创建时间
+        # @param CreateTime: <p>创建时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
-        # @param StrategyConfig: 是否已配置执行策略
+        # @param StrategyConfig: <p>是否已配置执行策略</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StrategyConfig: Boolean
-        # @param SubscribeConfig: 是否已配置执行策略
+        # @param SubscribeConfig: <p>是否已配置执行策略</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubscribeConfig: Boolean
-        # @param DsEnvType: 数据源环境：0或者未返回.未定义，1.生产 2.开发
+        # @param DsEnvType: <p>数据源环境：0或者未返回.未定义，1.生产 2.开发</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DsEnvType: Integer
-        # @param ClusterDeployType: EMR集群部署方式：CVM/TKE
+        # @param ClusterDeployType: <p>EMR集群部署方式：CVM/TKE</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterDeployType: String
-        # @param Name: 任务名称
+        # @param Name: <p>任务名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
-        # @param ExecDetail: 执行详情
+        # @param ExecDetail: <p>执行详情</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExecDetail: String
-        # @param PipelineTaskCount: 事中关联任务数量
+        # @param PipelineTaskCount: <p>事中关联任务数量</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PipelineTaskCount: Integer
-        # @param EnableRuleCount: 有效规则数
+        # @param EnableRuleCount: <p>有效规则数</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnableRuleCount: Integer
-        # @param Description: 任务描述
+        # @param Description: <p>任务描述</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
-        # @param CreateUserName: 监控创建人
+        # @param CreateUserName: <p>监控创建人</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateUserName: String
-        # @param GroupType: 任务类型
+        # @param GroupType: <p>任务类型（同MonitorType）：1-未配置，2-关联生产调度，3-离线周期检测</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupType: String
-        # @param AspectTaskId: 任务id
+        # @param AspectTaskId: <p>任务id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AspectTaskId: String
-        # @param CatalogName: catalog名称
+        # @param CatalogName: <p>catalog名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CatalogName: String
+        # @param InChargeId: <p>负责人ID</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InChargeId: String
+        # @param InChargeName: <p>负责人名称</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InChargeName: String
 
-        attr_accessor :RuleGroupId, :DatasourceId, :DatasourceName, :DatasourceType, :MonitorType, :UpdateTime, :TableName, :TableId, :TableOwnerName, :ExecStrategy, :Subscription, :DatabaseId, :DatabaseName, :SchemaName, :Permission, :RuleCount, :MonitorStatus, :TableOwnerUserId, :InstanceId, :CreateTime, :StrategyConfig, :SubscribeConfig, :DsEnvType, :ClusterDeployType, :Name, :ExecDetail, :PipelineTaskCount, :EnableRuleCount, :Description, :CreateUserName, :GroupType, :AspectTaskId, :CatalogName
+        attr_accessor :RuleGroupId, :DatasourceId, :DatasourceName, :DatasourceType, :MonitorType, :UpdateTime, :TableName, :TableId, :TableOwnerName, :ExecStrategy, :Subscription, :DatabaseId, :DatabaseName, :SchemaName, :Permission, :RuleCount, :MonitorStatus, :TableOwnerUserId, :InstanceId, :CreateTime, :StrategyConfig, :SubscribeConfig, :DsEnvType, :ClusterDeployType, :Name, :ExecDetail, :PipelineTaskCount, :EnableRuleCount, :Description, :CreateUserName, :GroupType, :AspectTaskId, :CatalogName, :InChargeId, :InChargeName
 
-        def initialize(rulegroupid=nil, datasourceid=nil, datasourcename=nil, datasourcetype=nil, monitortype=nil, updatetime=nil, tablename=nil, tableid=nil, tableownername=nil, execstrategy=nil, subscription=nil, databaseid=nil, databasename=nil, schemaname=nil, permission=nil, rulecount=nil, monitorstatus=nil, tableowneruserid=nil, instanceid=nil, createtime=nil, strategyconfig=nil, subscribeconfig=nil, dsenvtype=nil, clusterdeploytype=nil, name=nil, execdetail=nil, pipelinetaskcount=nil, enablerulecount=nil, description=nil, createusername=nil, grouptype=nil, aspecttaskid=nil, catalogname=nil)
+        def initialize(rulegroupid=nil, datasourceid=nil, datasourcename=nil, datasourcetype=nil, monitortype=nil, updatetime=nil, tablename=nil, tableid=nil, tableownername=nil, execstrategy=nil, subscription=nil, databaseid=nil, databasename=nil, schemaname=nil, permission=nil, rulecount=nil, monitorstatus=nil, tableowneruserid=nil, instanceid=nil, createtime=nil, strategyconfig=nil, subscribeconfig=nil, dsenvtype=nil, clusterdeploytype=nil, name=nil, execdetail=nil, pipelinetaskcount=nil, enablerulecount=nil, description=nil, createusername=nil, grouptype=nil, aspecttaskid=nil, catalogname=nil, inchargeid=nil, inchargename=nil)
           @RuleGroupId = rulegroupid
           @DatasourceId = datasourceid
           @DatasourceName = datasourcename
@@ -34931,6 +34969,8 @@ module TencentCloud
           @GroupType = grouptype
           @AspectTaskId = aspecttaskid
           @CatalogName = catalogname
+          @InChargeId = inchargeid
+          @InChargeName = inchargename
         end
 
         def deserialize(params)
@@ -34973,6 +35013,8 @@ module TencentCloud
           @GroupType = params['GroupType']
           @AspectTaskId = params['AspectTaskId']
           @CatalogName = params['CatalogName']
+          @InChargeId = params['InChargeId']
+          @InChargeName = params['InChargeName']
         end
       end
 
@@ -35106,7 +35148,7 @@ module TencentCloud
         # @param RuleGroupId: 规则组ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleGroupId: Integer
-        # @param TriggerType: 执行触发类型（1：手动触发， 2：调度事中触发，3：周期调度触发）
+        # @param TriggerType: 触发类型：1-手动触发，2-调度事件触发，3-周期调度触发
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TriggerType: Integer
         # @param ExecTime: 执行时间 yyyy-MM-dd HH:mm:ss
@@ -35142,7 +35184,7 @@ module TencentCloud
         # @param ExecDetail: 执行详情，调度计划或者关联生产任务ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExecDetail: String
-        # @param EngineType: 实际执行引擎
+        # @param EngineType: 执行引擎类型，可选值：MYSQL, HIVE, SPARK, LIVY, DLC, GBASE, CDW_PG, TCHouse-P, DORIS, TCHouse-D
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EngineType: String
         # @param RuleExecResultVOList: 规则执行结果
@@ -35288,94 +35330,97 @@ module TencentCloud
 
       # 质量规则执行策略
       class RuleGroupExecStrategy < TencentCloud::Common::AbstractModel
-        # @param RuleGroupId: 规则组Id
+        # @param RuleGroupId: <p>规则组Id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleGroupId: Integer
-        # @param MonitorType: 监控类型 1.未配置, 2.关联生产调度, 3.离线周期检测
+        # @param MonitorType: 监控类型：1-未配置，2-关联生产调度，3-离线周期检测
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MonitorType: Integer
-        # @param ExecQueue: 计算队列
+        # @param ExecQueue: <p>计算队列</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExecQueue: String
-        # @param ExecutorGroupId: 执行资源组ID
+        # @param ExecutorGroupId: <p>执行资源组ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExecutorGroupId: String
-        # @param ExecutorGroupName: 执行资源组名称
+        # @param ExecutorGroupName: <p>执行资源组名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExecutorGroupName: String
-        # @param Tasks: 关联的生产调度任务列表
+        # @param Tasks: <p>关联的生产调度任务列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tasks: Array
-        # @param StartTime: 周期开始时间
+        # @param StartTime: <p>周期开始时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartTime: String
-        # @param EndTime: 周期结束时间
+        # @param EndTime: <p>周期结束时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTime: String
-        # @param CycleType: 调度周期类型
+        # @param CycleType: 周期类型：MINUTE-分钟，HOUR-小时，DAY-天，WEEK-周，MONTH-月，YEAR-年
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CycleType: String
-        # @param DelayTime: 延迟调度时间
+        # @param DelayTime: <p>延迟调度时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DelayTime: Integer
-        # @param CycleStep: 间隔
+        # @param CycleStep: <p>间隔</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CycleStep: Integer
-        # @param TaskAction: 时间指定
+        # @param TaskAction: <p>时间指定</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskAction: String
-        # @param ExecEngineType: 运行的执行引擎，不传时会请求该数据源下默认的执行引擎
+        # @param ExecEngineType: 执行引擎类型，可选值：MYSQL, HIVE, SPARK, LIVY, DLC, GBASE, CDW_PG, TCHouse-P, DORIS, TCHouse-D
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExecEngineType: String
-        # @param ExecPlan: 执行计划
+        # @param ExecPlan: <p>执行计划</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExecPlan: String
-        # @param RuleId: 规则id
+        # @param RuleId: <p>规则id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleId: Integer
-        # @param RuleName: 规则名称
+        # @param RuleName: <p>规则名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleName: String
-        # @param TriggerTypes: 触发类型
+        # @param TriggerTypes: 触发类型数组：1-手动触发，2-调度事件触发，3-周期调度触发
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TriggerTypes: Array
-        # @param DlcGroupName: DLC资源组
+        # @param DlcGroupName: <p>DLC资源组</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DlcGroupName: String
-        # @param RuleGroupName: 任务名称
+        # @param RuleGroupName: <p>任务名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleGroupName: String
-        # @param DatabaseName: 数据库名称
+        # @param DatabaseName: <p>数据库名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DatabaseName: String
-        # @param SchemaName: schema名称
+        # @param SchemaName: <p>schema名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SchemaName: String
-        # @param TableName: 表名称
+        # @param TableName: <p>表名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TableName: String
-        # @param DatasourceId: 数据源id
+        # @param DatasourceId: <p>数据源id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DatasourceId: String
-        # @param Description: 任务描述
+        # @param Description: <p>任务描述</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
-        # @param ScheduleTimeZone: 时区
+        # @param ScheduleTimeZone: <p>时区</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScheduleTimeZone: String
-        # @param GroupConfig: 任务监控参数
+        # @param GroupConfig: <p>任务监控参数</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupConfig: :class:`Tencentcloud::Wedata.v20210820.models.RuleGroupConfig`
-        # @param EngineParam: 引擎参数
+        # @param EngineParam: <p>引擎参数</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EngineParam: String
-        # @param CatalogName: catalog名称
+        # @param CatalogName: <p>catalog名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CatalogName: String
+        # @param ExecFailBlock: <p>执行失败是否阻塞下游</p><p>枚举值：</p><ul><li>0： 失败不阻塞（默认）</li><li>1： 失败阻塞</li></ul><p>默认值：0</p><p>仅作用于“关联生产调度”类型的质量监控</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExecFailBlock: Integer
 
-        attr_accessor :RuleGroupId, :MonitorType, :ExecQueue, :ExecutorGroupId, :ExecutorGroupName, :Tasks, :StartTime, :EndTime, :CycleType, :DelayTime, :CycleStep, :TaskAction, :ExecEngineType, :ExecPlan, :RuleId, :RuleName, :TriggerTypes, :DlcGroupName, :RuleGroupName, :DatabaseName, :SchemaName, :TableName, :DatasourceId, :Description, :ScheduleTimeZone, :GroupConfig, :EngineParam, :CatalogName
+        attr_accessor :RuleGroupId, :MonitorType, :ExecQueue, :ExecutorGroupId, :ExecutorGroupName, :Tasks, :StartTime, :EndTime, :CycleType, :DelayTime, :CycleStep, :TaskAction, :ExecEngineType, :ExecPlan, :RuleId, :RuleName, :TriggerTypes, :DlcGroupName, :RuleGroupName, :DatabaseName, :SchemaName, :TableName, :DatasourceId, :Description, :ScheduleTimeZone, :GroupConfig, :EngineParam, :CatalogName, :ExecFailBlock
 
-        def initialize(rulegroupid=nil, monitortype=nil, execqueue=nil, executorgroupid=nil, executorgroupname=nil, tasks=nil, starttime=nil, endtime=nil, cycletype=nil, delaytime=nil, cyclestep=nil, taskaction=nil, execenginetype=nil, execplan=nil, ruleid=nil, rulename=nil, triggertypes=nil, dlcgroupname=nil, rulegroupname=nil, databasename=nil, schemaname=nil, tablename=nil, datasourceid=nil, description=nil, scheduletimezone=nil, groupconfig=nil, engineparam=nil, catalogname=nil)
+        def initialize(rulegroupid=nil, monitortype=nil, execqueue=nil, executorgroupid=nil, executorgroupname=nil, tasks=nil, starttime=nil, endtime=nil, cycletype=nil, delaytime=nil, cyclestep=nil, taskaction=nil, execenginetype=nil, execplan=nil, ruleid=nil, rulename=nil, triggertypes=nil, dlcgroupname=nil, rulegroupname=nil, databasename=nil, schemaname=nil, tablename=nil, datasourceid=nil, description=nil, scheduletimezone=nil, groupconfig=nil, engineparam=nil, catalogname=nil, execfailblock=nil)
           @RuleGroupId = rulegroupid
           @MonitorType = monitortype
           @ExecQueue = execqueue
@@ -35404,6 +35449,7 @@ module TencentCloud
           @GroupConfig = groupconfig
           @EngineParam = engineparam
           @CatalogName = catalogname
+          @ExecFailBlock = execfailblock
         end
 
         def deserialize(params)
@@ -35445,6 +35491,7 @@ module TencentCloud
           end
           @EngineParam = params['EngineParam']
           @CatalogName = params['CatalogName']
+          @ExecFailBlock = params['ExecFailBlock']
         end
       end
 
@@ -35557,7 +35604,7 @@ module TencentCloud
         # @param Receivers: 订阅接收人列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Receivers: Array
-        # @param SubscribeType: 订阅方式 1.邮件email  2.短信sms
+        # @param SubscribeType: 订阅方式：1-邮件，2-短信，3-微信，4-语音，5-企微，6-HTTP连接，7-飞书群，8-钉钉群
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubscribeType: Array
         # @param WebHooks: 群机器人配置的webhook信息
@@ -35753,19 +35800,19 @@ module TencentCloud
         # @type Name: String
         # @param Description: 规则模版描述
         # @type Description: String
-        # @param Type: 模版类型（1：系统模版，2：自定义）
+        # @param Type: 模版类型：1-系统模版，2-用户自定义模版
         # @type Type: Integer
-        # @param SourceObjectType: 规则适用的源数据对象类型（1：常量，2：离线表级，3：离线字段级别）
+        # @param SourceObjectType: 源数据对象类型：1-常量，2-离线表级，3-离线字段级别
         # @type SourceObjectType: Integer
         # @param SourceObjectDataType: 规则适用的源数据对象类型（1：数值，2：字符串）
         # @type SourceObjectDataType: Integer
         # @param SourceContent: 规则模版源侧内容，区分引擎，JSON 结构
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SourceContent: String
-        # @param SourceEngineTypes: 源数据适用类型
+        # @param SourceEngineTypes: 执行引擎多选（位运算数组）：2-HIVE，4-SPARK，8-LIVY，16-DLC，64-TCHouse-P，128-DORIS，256-TCHouse-D，512-EMR-StarRocks，1024-TCHouse-X
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SourceEngineTypes: Array
-        # @param QualityDim: 规则所属质量维度（1：准确性，2：唯一性，3：完整性，4：一致性，5：及时性，6：有效性）
+        # @param QualityDim: 质量维度：1-准确性，2-唯一性，3-完整性，4-一致性，5-及时性，6-有效性
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QualityDim: Integer
         # @param CompareType: 规则支持的比较方式类型（1：固定值比较，大于、小于，大于等于等 2：波动值比较，绝对值、上升、下降）
@@ -41469,6 +41516,26 @@ module TencentCloud
             end
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 单任务的缺失实例处理策略
+      class TaskMissingInstanceStrategy < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>任务ID</p>
+        # @type TaskId: String
+        # @param MissingInstanceStrategy: <p>缺失实例处理策略</p>
+        # @type MissingInstanceStrategy: String
+
+        attr_accessor :TaskId, :MissingInstanceStrategy
+
+        def initialize(taskid=nil, missinginstancestrategy=nil)
+          @TaskId = taskid
+          @MissingInstanceStrategy = missinginstancestrategy
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @MissingInstanceStrategy = params['MissingInstanceStrategy']
         end
       end
 

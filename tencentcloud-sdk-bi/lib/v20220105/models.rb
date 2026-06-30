@@ -7212,10 +7212,22 @@ module TencentCloud
         # @param Id: <p>1</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: Integer
+        # @param LarkAppId: <p>飞书应用ID</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LarkAppId: String
+        # @param LarkUserId: <p>飞书UserId</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LarkUserId: String
+        # @param LarkOpenId: <p>飞书OpenId</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LarkOpenId: String
+        # @param LarkUserName: <p>飞书UserName</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LarkUserName: String
 
-        attr_accessor :UserId, :UserName, :CorpId, :Email, :LastLogin, :Status, :FirstModify, :PhoneNumber, :AreaCode, :CreatedUser, :CreatedAt, :UpdatedUser, :UpdatedAt, :GlobalUserName, :GlobalUserCode, :Mobile, :AppId, :AppUserId, :AppUserAliasName, :AppUserName, :InValidateAppRange, :EmailActivationStatus, :Id
+        attr_accessor :UserId, :UserName, :CorpId, :Email, :LastLogin, :Status, :FirstModify, :PhoneNumber, :AreaCode, :CreatedUser, :CreatedAt, :UpdatedUser, :UpdatedAt, :GlobalUserName, :GlobalUserCode, :Mobile, :AppId, :AppUserId, :AppUserAliasName, :AppUserName, :InValidateAppRange, :EmailActivationStatus, :Id, :LarkAppId, :LarkUserId, :LarkOpenId, :LarkUserName
 
-        def initialize(userid=nil, username=nil, corpid=nil, email=nil, lastlogin=nil, status=nil, firstmodify=nil, phonenumber=nil, areacode=nil, createduser=nil, createdat=nil, updateduser=nil, updatedat=nil, globalusername=nil, globalusercode=nil, mobile=nil, appid=nil, appuserid=nil, appuseraliasname=nil, appusername=nil, invalidateapprange=nil, emailactivationstatus=nil, id=nil)
+        def initialize(userid=nil, username=nil, corpid=nil, email=nil, lastlogin=nil, status=nil, firstmodify=nil, phonenumber=nil, areacode=nil, createduser=nil, createdat=nil, updateduser=nil, updatedat=nil, globalusername=nil, globalusercode=nil, mobile=nil, appid=nil, appuserid=nil, appuseraliasname=nil, appusername=nil, invalidateapprange=nil, emailactivationstatus=nil, id=nil, larkappid=nil, larkuserid=nil, larkopenid=nil, larkusername=nil)
           @UserId = userid
           @UserName = username
           @CorpId = corpid
@@ -7239,6 +7251,10 @@ module TencentCloud
           @InValidateAppRange = invalidateapprange
           @EmailActivationStatus = emailactivationstatus
           @Id = id
+          @LarkAppId = larkappid
+          @LarkUserId = larkuserid
+          @LarkOpenId = larkopenid
+          @LarkUserName = larkusername
         end
 
         def deserialize(params)
@@ -7265,34 +7281,41 @@ module TencentCloud
           @InValidateAppRange = params['InValidateAppRange']
           @EmailActivationStatus = params['EmailActivationStatus']
           @Id = params['Id']
+          @LarkAppId = params['LarkAppId']
+          @LarkUserId = params['LarkUserId']
+          @LarkOpenId = params['LarkOpenId']
+          @LarkUserName = params['LarkUserName']
         end
       end
 
       # 用户ID和用户名
       class UserInfo < TencentCloud::Common::AbstractModel
-        # @param UserId: 用户ID
+        # @param UserId: <p>用户ID</p>
         # @type UserId: String
-        # @param UserName: 用户名
+        # @param UserName: <p>用户名</p>
         # @type UserName: String
-        # @param Email: 邮箱
+        # @param Email: <p>邮箱</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Email: String
-        # @param PhoneNumber: 手机号
+        # @param PhoneNumber: <p>手机号</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PhoneNumber: String
-        # @param AreaCode: 手机号区号
+        # @param AreaCode: <p>手机号区号</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AreaCode: String
-        # @param AppUserId: 企微账号id
+        # @param AppUserId: <p>企微账号id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppUserId: String
-        # @param AppUserName: 企微账号名称
+        # @param AppUserName: <p>企微账号名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppUserName: String
+        # @param LarkOpenId: <p>飞书OpenId</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LarkOpenId: String
 
-        attr_accessor :UserId, :UserName, :Email, :PhoneNumber, :AreaCode, :AppUserId, :AppUserName
+        attr_accessor :UserId, :UserName, :Email, :PhoneNumber, :AreaCode, :AppUserId, :AppUserName, :LarkOpenId
 
-        def initialize(userid=nil, username=nil, email=nil, phonenumber=nil, areacode=nil, appuserid=nil, appusername=nil)
+        def initialize(userid=nil, username=nil, email=nil, phonenumber=nil, areacode=nil, appuserid=nil, appusername=nil, larkopenid=nil)
           @UserId = userid
           @UserName = username
           @Email = email
@@ -7300,6 +7323,7 @@ module TencentCloud
           @AreaCode = areacode
           @AppUserId = appuserid
           @AppUserName = appusername
+          @LarkOpenId = larkopenid
         end
 
         def deserialize(params)
@@ -7310,6 +7334,7 @@ module TencentCloud
           @AreaCode = params['AreaCode']
           @AppUserId = params['AppUserId']
           @AppUserName = params['AppUserName']
+          @LarkOpenId = params['LarkOpenId']
         end
       end
 

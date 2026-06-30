@@ -30074,28 +30074,46 @@ module TencentCloud
 
       # 流量调度规则
       class TrafficQosPolicySet < TencentCloud::Common::AbstractModel
-        # @param CcnId: CCN实例ID。形如：ccn-f49l6u0z。
+        # @param CcnId: <p>CCN实例ID。形如：ccn-f49l6u0z。</p>
         # @type CcnId: String
-        # @param QosId: qos id。
+        # @param QosId: <p>qos id。</p>
         # @type QosId: Integer
-        # @param QosPolicyDescription: 描述。
+        # @param QosPolicyDescription: <p>描述。</p>
         # @type QosPolicyDescription: String
-        # @param QosPolicyName: 名称。
+        # @param QosPolicyName: <p>名称。</p>
         # @type QosPolicyName: String
-        # @param Bandwidth: 带宽。
+        # @param Bandwidth: <p>带宽。</p>
         # @type Bandwidth: Integer
-        # @param QosPolicyId: 流量调度策略ID。
+        # @param QosPolicyId: <p>流量调度策略ID。</p>
         # @type QosPolicyId: String
+        # @param QosLevel: <p>服务等级信息</p>
+        # @type QosLevel: String
+        # @param ServiceLevel: <p>服务等级信息</p>
+        # @type ServiceLevel: String
+        # @param RegionFlowControlId: <p>带宽ID</p><p>参数格式：fcr-xxx</p>
+        # @type RegionFlowControlId: String
+        # @param LocalRegion: <p>源地域</p><p>参数格式：ap-xxx</p>
+        # @type LocalRegion: String
+        # @param RemoteRegion: <p>目的地域</p><p>参数格式：ap-xxx</p>
+        # @type RemoteRegion: String
+        # @param TrafficMatchPolicyId: <p>流量匹配策略ID</p>
+        # @type TrafficMatchPolicyId: String
 
-        attr_accessor :CcnId, :QosId, :QosPolicyDescription, :QosPolicyName, :Bandwidth, :QosPolicyId
+        attr_accessor :CcnId, :QosId, :QosPolicyDescription, :QosPolicyName, :Bandwidth, :QosPolicyId, :QosLevel, :ServiceLevel, :RegionFlowControlId, :LocalRegion, :RemoteRegion, :TrafficMatchPolicyId
 
-        def initialize(ccnid=nil, qosid=nil, qospolicydescription=nil, qospolicyname=nil, bandwidth=nil, qospolicyid=nil)
+        def initialize(ccnid=nil, qosid=nil, qospolicydescription=nil, qospolicyname=nil, bandwidth=nil, qospolicyid=nil, qoslevel=nil, servicelevel=nil, regionflowcontrolid=nil, localregion=nil, remoteregion=nil, trafficmatchpolicyid=nil)
           @CcnId = ccnid
           @QosId = qosid
           @QosPolicyDescription = qospolicydescription
           @QosPolicyName = qospolicyname
           @Bandwidth = bandwidth
           @QosPolicyId = qospolicyid
+          @QosLevel = qoslevel
+          @ServiceLevel = servicelevel
+          @RegionFlowControlId = regionflowcontrolid
+          @LocalRegion = localregion
+          @RemoteRegion = remoteregion
+          @TrafficMatchPolicyId = trafficmatchpolicyid
         end
 
         def deserialize(params)
@@ -30105,6 +30123,12 @@ module TencentCloud
           @QosPolicyName = params['QosPolicyName']
           @Bandwidth = params['Bandwidth']
           @QosPolicyId = params['QosPolicyId']
+          @QosLevel = params['QosLevel']
+          @ServiceLevel = params['ServiceLevel']
+          @RegionFlowControlId = params['RegionFlowControlId']
+          @LocalRegion = params['LocalRegion']
+          @RemoteRegion = params['RemoteRegion']
+          @TrafficMatchPolicyId = params['TrafficMatchPolicyId']
         end
       end
 

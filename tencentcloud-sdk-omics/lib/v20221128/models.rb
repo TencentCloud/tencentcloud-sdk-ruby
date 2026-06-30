@@ -136,8 +136,8 @@ module TencentCloud
 
         attr_accessor :Type, :ApplicationVersionId, :Name, :Description, :Entrypoint, :CreateTime, :CreatorName, :CreatorId, :GitInfo, :GitSource, :CosSource
         extend Gem::Deprecate
-        deprecate :GitInfo, :none, 2026, 4
-        deprecate :GitInfo=, :none, 2026, 4
+        deprecate :GitInfo, :none, 2026, 6
+        deprecate :GitInfo=, :none, 2026, 6
 
         def initialize(type=nil, applicationversionid=nil, name=nil, description=nil, entrypoint=nil, createtime=nil, creatorname=nil, creatorid=nil, gitinfo=nil, gitsource=nil, cossource=nil)
           @Type = type
@@ -1766,6 +1766,58 @@ module TencentCloud
         end
       end
 
+      # GetRunJobLog请求参数结构体
+      class GetRunJobLogRequest < TencentCloud::Common::AbstractModel
+        # @param RunUuid: <p>任务Uuid。</p>
+        # @type RunUuid: String
+        # @param JobId: <p>子任务id</p>
+        # @type JobId: String
+        # @param LogType: <p>日志类型</p><p>枚举值：</p><ul><li>stdout： 标准输出</li><li>stderr： 标准错误</li></ul>
+        # @type LogType: String
+        # @param ProjectId: <p>项目ID。<br>（不填使用指定地域下的默认项目）</p>
+        # @type ProjectId: String
+        # @param Path: <p>子任务路径，无子任务可填空</p>
+        # @type Path: String
+
+        attr_accessor :RunUuid, :JobId, :LogType, :ProjectId, :Path
+
+        def initialize(runuuid=nil, jobid=nil, logtype=nil, projectid=nil, path=nil)
+          @RunUuid = runuuid
+          @JobId = jobid
+          @LogType = logtype
+          @ProjectId = projectid
+          @Path = path
+        end
+
+        def deserialize(params)
+          @RunUuid = params['RunUuid']
+          @JobId = params['JobId']
+          @LogType = params['LogType']
+          @ProjectId = params['ProjectId']
+          @Path = params['Path']
+        end
+      end
+
+      # GetRunJobLog返回参数结构体
+      class GetRunJobLogResponse < TencentCloud::Common::AbstractModel
+        # @param Content: <p>日志内容</p>
+        # @type Content: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Content, :RequestId
+
+        def initialize(content=nil, requestid=nil)
+          @Content = content
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Content = params['Content']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # GetRunMetadataFile请求参数结构体
       class GetRunMetadataFileRequest < TencentCloud::Common::AbstractModel
         # @param RunUuid: 任务Uuid。
@@ -2808,8 +2860,8 @@ module TencentCloud
 
         attr_accessor :RunUuid, :ProjectId, :ApplicationId, :RunGroupId, :EnvironmentId, :UserDefinedId, :TableId, :TableRowUuid, :Status, :Input, :Option, :ExecutionTime, :Cache, :ErrorMessage, :CreateTime, :UpdateTime
         extend Gem::Deprecate
-        deprecate :Option, :none, 2026, 4
-        deprecate :Option=, :none, 2026, 4
+        deprecate :Option, :none, 2026, 6
+        deprecate :Option=, :none, 2026, 6
 
         def initialize(runuuid=nil, projectid=nil, applicationid=nil, rungroupid=nil, environmentid=nil, userdefinedid=nil, tableid=nil, tablerowuuid=nil, status=nil, input=nil, option=nil, executiontime=nil, cache=nil, errormessage=nil, createtime=nil, updatetime=nil)
           @RunUuid = runuuid

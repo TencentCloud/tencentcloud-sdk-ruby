@@ -9476,10 +9476,12 @@ module TencentCloud
         # @type NeedCdbAudit: Integer
         # @param ContainerExtraConf: <p>额外容器相关配置</p>
         # @type ContainerExtraConf: :class:`Tencentcloud::Emr.v20190103.models.ContainerExtraConf`
+        # @param CheckServiceDeployInfo: <p>是否强制检查自定义组件的合理性，目前仅提供给tf侧使用</p>
+        # @type CheckServiceDeployInfo: Boolean
 
-        attr_accessor :InstanceId, :SoftInfo, :CdbAutoRenew, :MetaType, :UnifyMetaInstanceId, :MetaDBInfo, :ExternalService, :Tags, :CloudResources, :ServiceDeployInfoList, :DefaultMetaVersion, :NeedCdbAudit, :ContainerExtraConf
+        attr_accessor :InstanceId, :SoftInfo, :CdbAutoRenew, :MetaType, :UnifyMetaInstanceId, :MetaDBInfo, :ExternalService, :Tags, :CloudResources, :ServiceDeployInfoList, :DefaultMetaVersion, :NeedCdbAudit, :ContainerExtraConf, :CheckServiceDeployInfo
 
-        def initialize(instanceid=nil, softinfo=nil, cdbautorenew=nil, metatype=nil, unifymetainstanceid=nil, metadbinfo=nil, externalservice=nil, tags=nil, cloudresources=nil, servicedeployinfolist=nil, defaultmetaversion=nil, needcdbaudit=nil, containerextraconf=nil)
+        def initialize(instanceid=nil, softinfo=nil, cdbautorenew=nil, metatype=nil, unifymetainstanceid=nil, metadbinfo=nil, externalservice=nil, tags=nil, cloudresources=nil, servicedeployinfolist=nil, defaultmetaversion=nil, needcdbaudit=nil, containerextraconf=nil, checkservicedeployinfo=nil)
           @InstanceId = instanceid
           @SoftInfo = softinfo
           @CdbAutoRenew = cdbautorenew
@@ -9493,6 +9495,7 @@ module TencentCloud
           @DefaultMetaVersion = defaultmetaversion
           @NeedCdbAudit = needcdbaudit
           @ContainerExtraConf = containerextraconf
+          @CheckServiceDeployInfo = checkservicedeployinfo
         end
 
         def deserialize(params)
@@ -9543,6 +9546,7 @@ module TencentCloud
             @ContainerExtraConf = ContainerExtraConf.new
             @ContainerExtraConf.deserialize(params['ContainerExtraConf'])
           end
+          @CheckServiceDeployInfo = params['CheckServiceDeployInfo']
         end
       end
 

@@ -330,13 +330,13 @@ module TencentCloud
 
       # CreateNoticeContentTmpl请求参数结构体
       class CreateNoticeContentTmplRequest < TencentCloud::Common::AbstractModel
-        # @param TmplName: 模板名称
+        # @param TmplName: <p>模板名称</p>
         # @type TmplName: String
-        # @param MonitorType: 监控类型
+        # @param MonitorType: <p>监控类型</p>
         # @type MonitorType: String
-        # @param TmplContents: 模板内容
+        # @param TmplContents: <p>模板内容</p>
         # @type TmplContents: :class:`Tencentcloud::Monitor.v20230616.models.NoticeContentTmplItem`
-        # @param TmplLanguage: 模板语言 en/zh
+        # @param TmplLanguage: <p>模板语言 en/zh</p>
         # @type TmplLanguage: String
 
         attr_accessor :TmplName, :MonitorType, :TmplContents, :TmplLanguage
@@ -361,7 +361,7 @@ module TencentCloud
 
       # CreateNoticeContentTmpl返回参数结构体
       class CreateNoticeContentTmplResponse < TencentCloud::Common::AbstractModel
-        # @param TmplID: 自定义内容模板ID
+        # @param TmplID: <p>自定义内容模板ID</p>
         # @type TmplID: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -381,7 +381,7 @@ module TencentCloud
 
       # DeleteNoticeContentTmpls请求参数结构体
       class DeleteNoticeContentTmplsRequest < TencentCloud::Common::AbstractModel
-        # @param TmplIDs: 要删除的模板id
+        # @param TmplIDs: <p>要删除的模板id</p>
         # @type TmplIDs: Array
 
         attr_accessor :TmplIDs
@@ -897,30 +897,30 @@ module TencentCloud
 
       # 自定义通知内容模板
       class NoticeContentTmpl < TencentCloud::Common::AbstractModel
-        # @param TmplID: 自定义通知内容模板id，唯一id
+        # @param TmplID: <p>自定义通知内容模板id，唯一id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TmplID: String
-        # @param TmplName: 自定义通知内容模板名
+        # @param TmplName: <p>自定义通知内容模板名</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TmplName: String
-        # @param TmplContents: 通知内容
+        # @param TmplContents: <p>通知内容</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TmplContents: :class:`Tencentcloud::Monitor.v20230616.models.NoticeContentTmplItem`
-        # @param CreateTime: Unix时间戳，秒
+        # @param CreateTime: <p>Unix时间戳，秒</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: Integer
-        # @param UpdateTime: Unix时间戳，秒
+        # @param UpdateTime: <p>Unix时间戳，秒</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: Integer
-        # @param LastModifier: 最后修改人
+        # @param LastModifier: <p>最后修改人</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LastModifier: String
-        # @param Creator: 创建人
+        # @param Creator: <p>创建人</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Creator: String
-        # @param MonitorType: 监控类型
+        # @param MonitorType: <p>监控类型</p>
         # @type MonitorType: String
-        # @param TmplLanguage: 模板语言 en/zh
+        # @param TmplLanguage: <p>模板语言 en/zh</p>
         # @type TmplLanguage: String
 
         attr_accessor :TmplID, :TmplName, :TmplContents, :CreateTime, :UpdateTime, :LastModifier, :Creator, :MonitorType, :TmplLanguage
@@ -1152,8 +1152,8 @@ module TencentCloud
 
         attr_accessor :TotalCount, :TotalPage, :CurrentPageNo, :IsEnd, :End
         extend Gem::Deprecate
-        deprecate :IsEnd, :none, 2026, 4
-        deprecate :IsEnd=, :none, 2026, 4
+        deprecate :IsEnd, :none, 2026, 6
+        deprecate :IsEnd=, :none, 2026, 6
 
         def initialize(totalcount=nil, totalpage=nil, currentpageno=nil, isend=nil, _end=nil)
           @TotalCount = totalcount

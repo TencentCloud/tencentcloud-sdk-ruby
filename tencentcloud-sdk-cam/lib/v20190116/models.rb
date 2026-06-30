@@ -4254,24 +4254,26 @@ module TencentCloud
 
       # 登录和敏感操作flag（校验方式是单选）
       class LoginActionFlag < TencentCloud::Common::AbstractModel
-        # @param Phone: 0: 非安全手机校验 1: 安全手机校验。
+        # @param Phone: <p>0: 非安全手机校验 1: 安全手机校验。</p>
         # @type Phone: Integer
-        # @param Token: 0: 非硬token校验 1: 硬token校验。
+        # @param Token: <p>0: 非硬token校验 1: 硬token校验。</p>
         # @type Token: Integer
-        # @param Stoken: 0: 非软token校验 1: 软token校验
+        # @param Stoken: <p>0: 非软token校验 1: 软token校验</p>
         # @type Stoken: Integer
-        # @param Wechat: 0: 非微信校验 1: 微信校验
+        # @param Wechat: <p>0: 非微信校验 1: 微信校验</p>
         # @type Wechat: Integer
-        # @param Custom: 0: 非自定义校验 1: 自定义校验
+        # @param Custom: <p>0: 非自定义校验 1: 自定义校验</p>
         # @type Custom: Integer
-        # @param Mail: 0: 非邮箱校验 1: 邮箱校验
+        # @param Mail: <p>0: 非邮箱校验 1: 邮箱校验</p>
         # @type Mail: Integer
-        # @param U2FToken: 0: 非u2f硬件token 1: u2f硬件token
+        # @param U2FToken: <p>0: 非u2f硬件token 1: u2f硬件token</p>
         # @type U2FToken: Integer
+        # @param Passkey: <p>0: 非passkey 校验 1: passkey校验</p>
+        # @type Passkey: Integer
 
-        attr_accessor :Phone, :Token, :Stoken, :Wechat, :Custom, :Mail, :U2FToken
+        attr_accessor :Phone, :Token, :Stoken, :Wechat, :Custom, :Mail, :U2FToken, :Passkey
 
-        def initialize(phone=nil, token=nil, stoken=nil, wechat=nil, custom=nil, mail=nil, u2ftoken=nil)
+        def initialize(phone=nil, token=nil, stoken=nil, wechat=nil, custom=nil, mail=nil, u2ftoken=nil, passkey=nil)
           @Phone = phone
           @Token = token
           @Stoken = stoken
@@ -4279,6 +4281,7 @@ module TencentCloud
           @Custom = custom
           @Mail = mail
           @U2FToken = u2ftoken
+          @Passkey = passkey
         end
 
         def deserialize(params)
@@ -4289,6 +4292,7 @@ module TencentCloud
           @Custom = params['Custom']
           @Mail = params['Mail']
           @U2FToken = params['U2FToken']
+          @Passkey = params['Passkey']
         end
       end
 

@@ -610,6 +610,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # gtid校验
+
+        # @param request: Request instance for DescribeMigrateGtidCompareReport.
+        # @type request: :class:`Tencentcloud::dts::V20211206::DescribeMigrateGtidCompareReportRequest`
+        # @rtype: :class:`Tencentcloud::dts::V20211206::DescribeMigrateGtidCompareReportResponse`
+        def DescribeMigrateGtidCompareReport(request)
+          body = send_request('DescribeMigrateGtidCompareReport', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeMigrateGtidCompareReportResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口用于创建校验后,获取校验的结果. 能查询到当前校验的状态和进度.
         # 若通过校验, 则可调用'StartMigrateJob' 开始迁移.
         # 若未通过校验, 则能查询到校验失败的原因. 请按照报错, 通过'ModifyMigrationJob'修改迁移配置或是调整源/目标实例的相关参数.
@@ -890,6 +914,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeSyncCompareTasksResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # gtid校验
+
+        # @param request: Request instance for DescribeSyncGtidCompareReport.
+        # @type request: :class:`Tencentcloud::dts::V20211206::DescribeSyncGtidCompareReportRequest`
+        # @rtype: :class:`Tencentcloud::dts::V20211206::DescribeSyncGtidCompareReportResponse`
+        def DescribeSyncGtidCompareReport(request)
+          body = send_request('DescribeSyncGtidCompareReport', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSyncGtidCompareReportResponse.new
             model.deserialize(response['Response'])
             model
           else

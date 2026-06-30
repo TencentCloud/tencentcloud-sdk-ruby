@@ -373,13 +373,13 @@ module TencentCloud
 
       # CreateEventBus请求参数结构体
       class CreateEventBusRequest < TencentCloud::Common::AbstractModel
-        # @param EventBusName: 事件集名称，只能包含字母、中文、数字、下划线、连字符，以字母/中文开头，以数字、字母或中文结尾，2~60个字符
+        # @param EventBusName: <p>事件集名称，只能包含字母、中文、数字、下划线、连字符，以字母/中文开头，以数字、字母或中文结尾，2~60个字符</p>
         # @type EventBusName: String
-        # @param Description: 事件集描述，只能包含数字、中英文及常用标点符号，不超过200个字符
+        # @param Description: <p>事件集描述，只能包含数字、中英文及常用标点符号，不超过200个字符</p>
         # @type Description: String
-        # @param SaveDays: EB存储时长
+        # @param SaveDays: <p>事件存储时长</p><p>单位：day</p>
         # @type SaveDays: Integer
-        # @param EnableStore: EB是否开启存储
+        # @param EnableStore: <p>是否开启事件存储</p>
         # @type EnableStore: Boolean
 
         attr_accessor :EventBusName, :Description, :SaveDays, :EnableStore
@@ -401,7 +401,7 @@ module TencentCloud
 
       # CreateEventBus返回参数结构体
       class CreateEventBusResponse < TencentCloud::Common::AbstractModel
-        # @param EventBusId: 事件集ID
+        # @param EventBusId: <p>事件集ID</p>
         # @type EventBusId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -829,19 +829,19 @@ module TencentCloud
 
       # DescribeLogTagValue请求参数结构体
       class DescribeLogTagValueRequest < TencentCloud::Common::AbstractModel
-        # @param StartTime: 起始时间
+        # @param StartTime: <p>起始时间</p>
         # @type StartTime: Integer
-        # @param EndTime: 结束时间
+        # @param EndTime: <p>结束时间</p>
         # @type EndTime: Integer
-        # @param EventBusId: 事件集ID
+        # @param EventBusId: <p>事件集ID</p>
         # @type EventBusId: String
-        # @param GroupField: 聚合字段,取值范围如下：Source(事件源),RuleIds(命中规则),Subject(实例ID),Region(地域)
+        # @param GroupField: <p>聚合字段,取值范围如下：Source(事件源),RuleIds(命中规则),Subject(实例ID),Region(地域)</p>
         # @type GroupField: String
-        # @param Page: 页数
+        # @param Page: <p>页数</p>
         # @type Page: Integer
-        # @param Limit: 每页数据大小
+        # @param Limit: <p>每页数据大小</p>
         # @type Limit: Integer
-        # @param Filter: 筛选条件
+        # @param Filter: <p>筛选条件</p>
         # @type Filter: Array
 
         attr_accessor :StartTime, :EndTime, :EventBusId, :GroupField, :Page, :Limit, :Filter
@@ -876,7 +876,7 @@ module TencentCloud
 
       # DescribeLogTagValue返回参数结构体
       class DescribeLogTagValueResponse < TencentCloud::Common::AbstractModel
-        # @param Results: 事件查询维度值结果
+        # @param Results: <p>事件查询维度值结果</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Results: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -897,22 +897,22 @@ module TencentCloud
 
       # 描述Es规则目标
       class ESTargetParams < TencentCloud::Common::AbstractModel
-        # @param NetMode: 网络连接类型
+        # @param NetMode: <p>网络连接类型</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NetMode: String
-        # @param IndexPrefix: 索引前缀
+        # @param IndexPrefix: <p>索引前缀</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IndexPrefix: String
-        # @param RotationInterval: es日志轮换粒度
+        # @param RotationInterval: <p>es日志轮换粒度</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RotationInterval: String
-        # @param OutputMode: DTS事件配置
+        # @param OutputMode: <p>DTS事件配置</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OutputMode: String
-        # @param IndexSuffixMode: DTS索引配置
+        # @param IndexSuffixMode: <p>DTS索引配置</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IndexSuffixMode: String
-        # @param IndexTemplateType: es模版类型
+        # @param IndexTemplateType: <p>es模版类型</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IndexTemplateType: String
 
@@ -1126,7 +1126,7 @@ module TencentCloud
 
       # GetEventBus请求参数结构体
       class GetEventBusRequest < TencentCloud::Common::AbstractModel
-        # @param EventBusId: 事件集ID
+        # @param EventBusId: <p>事件集ID</p>
         # @type EventBusId: String
 
         attr_accessor :EventBusId
@@ -1142,34 +1142,34 @@ module TencentCloud
 
       # GetEventBus返回参数结构体
       class GetEventBusResponse < TencentCloud::Common::AbstractModel
-        # @param ModTime: 更新时间
+        # @param ModTime: <p>更新时间</p>
         # @type ModTime: String
-        # @param Description: 事件集描述
+        # @param Description: <p>事件集描述</p>
         # @type Description: String
-        # @param ClsTopicId: 日志主题ID
+        # @param ClsTopicId: <p>日志主题ID</p>
         # @type ClsTopicId: String
-        # @param AddTime: 创建时间
+        # @param AddTime: <p>创建时间</p>
         # @type AddTime: String
-        # @param ClsLogsetId: 日志集ID
+        # @param ClsLogsetId: <p>日志集ID</p>
         # @type ClsLogsetId: String
-        # @param EventBusName: 事件集名称
+        # @param EventBusName: <p>事件集名称</p>
         # @type EventBusName: String
-        # @param EventBusId: 事件集ID
+        # @param EventBusId: <p>事件集ID</p>
         # @type EventBusId: String
-        # @param Type: （已废弃）事件集类型
+        # @param Type: <p>事件集类型</p><p>枚举值：</p><ul><li>Cloud： 云服务事件集</li><li>Platform： 平台事件集</li><li>Custom： 自定义事件集</li></ul>
         # @type Type: String
-        # @param PayMode: 计费模式
+        # @param PayMode: <p>计费模式</p>
         # @type PayMode: String
-        # @param SaveDays: EB日志存储时长
+        # @param SaveDays: <p>EB日志存储时长</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SaveDays: Integer
-        # @param LogTopicId: EB日志主题ID
+        # @param LogTopicId: <p>EB日志主题ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogTopicId: String
-        # @param EnableStore: 是否开启存储
+        # @param EnableStore: <p>是否开启存储</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnableStore: Boolean
-        # @param LinkMode: 消息序列，是否有序
+        # @param LinkMode: <p>消息序列，是否有序</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LinkMode: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -1214,7 +1214,7 @@ module TencentCloud
 
       # GetPlatformEventTemplate请求参数结构体
       class GetPlatformEventTemplateRequest < TencentCloud::Common::AbstractModel
-        # @param EventType: 平台产品事件类型
+        # @param EventType: <p>平台产品事件类型</p>
         # @type EventType: String
 
         attr_accessor :EventType
@@ -1230,7 +1230,7 @@ module TencentCloud
 
       # GetPlatformEventTemplate返回参数结构体
       class GetPlatformEventTemplateResponse < TencentCloud::Common::AbstractModel
-        # @param EventTemplate: 平台产品事件模板
+        # @param EventTemplate: <p>平台产品事件模板</p>
         # @type EventTemplate: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1250,9 +1250,9 @@ module TencentCloud
 
       # GetRule请求参数结构体
       class GetRuleRequest < TencentCloud::Common::AbstractModel
-        # @param EventBusId: 事件集ID
+        # @param EventBusId: <p>事件集ID</p>
         # @type EventBusId: String
-        # @param RuleId: 事件规则ID
+        # @param RuleId: <p>事件规则ID</p>
         # @type RuleId: String
 
         attr_accessor :EventBusId, :RuleId
@@ -1270,23 +1270,23 @@ module TencentCloud
 
       # GetRule返回参数结构体
       class GetRuleResponse < TencentCloud::Common::AbstractModel
-        # @param EventBusId: 事件集id
+        # @param EventBusId: <p>事件集id</p>
         # @type EventBusId: String
-        # @param RuleId: 事件规则id
+        # @param RuleId: <p>事件规则id</p>
         # @type RuleId: String
-        # @param RuleName: 事件规则名称
+        # @param RuleName: <p>事件规则名称</p>
         # @type RuleName: String
-        # @param Status: 事件规则状态
+        # @param Status: <p>事件规则状态</p>
         # @type Status: String
-        # @param Enable: 使能开关
+        # @param Enable: <p>使能开关</p>
         # @type Enable: Boolean
-        # @param Description: 事件规则描述
+        # @param Description: <p>事件规则描述</p>
         # @type Description: String
-        # @param EventPattern: 事件模式
+        # @param EventPattern: <p>事件模式</p>
         # @type EventPattern: String
-        # @param AddTime: 创建时间
+        # @param AddTime: <p>创建时间</p>
         # @type AddTime: String
-        # @param ModTime: 更新时间
+        # @param ModTime: <p>更新时间</p>
         # @type ModTime: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1693,17 +1693,17 @@ module TencentCloud
 
       # ListTargets请求参数结构体
       class ListTargetsRequest < TencentCloud::Common::AbstractModel
-        # @param EventBusId: 事件集ID
+        # @param EventBusId: <p>事件集ID</p>
         # @type EventBusId: String
-        # @param RuleId: 事件规则ID
+        # @param RuleId: <p>事件规则ID</p>
         # @type RuleId: String
-        # @param OrderBy: 根据哪个字段进行返回结果排序,支持以下字段：AddTime（创建时间）, ModTime（修改时间）
+        # @param OrderBy: <p>根据哪个字段进行返回结果排序,支持以下字段：AddTime（创建时间）, ModTime（修改时间）</p>
         # @type OrderBy: String
-        # @param Limit: 返回数量，默认为20，最大值为100。
+        # @param Limit: <p>返回数量，默认为20，最大值为100。</p>
         # @type Limit: Integer
-        # @param Offset: 分页偏移量，默认为0。
+        # @param Offset: <p>分页偏移量，默认为0。</p>
         # @type Offset: Integer
-        # @param Order: 以升序还是降序的方式返回结果，可选值 ASC（升序） 和 DESC（降序）
+        # @param Order: <p>以升序还是降序的方式返回结果，可选值 ASC（升序） 和 DESC（降序）</p>
         # @type Order: String
 
         attr_accessor :EventBusId, :RuleId, :OrderBy, :Limit, :Offset, :Order
@@ -1729,9 +1729,9 @@ module TencentCloud
 
       # ListTargets返回参数结构体
       class ListTargetsResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 目标总数
+        # @param TotalCount: <p>目标总数</p>
         # @type TotalCount: Integer
-        # @param Targets: 目标信息
+        # @param Targets: <p>目标信息</p>
         # @type Targets: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1847,10 +1847,10 @@ module TencentCloud
 
       # 平台事件名称
       class PlatformEventDetail < TencentCloud::Common::AbstractModel
-        # @param EventName: 事件名称
+        # @param EventName: <p>事件名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EventName: String
-        # @param EventType: 事件类型
+        # @param EventType: <p>事件类型</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EventType: String
 
@@ -1869,10 +1869,10 @@ module TencentCloud
 
       # 平台事件匹配规则
       class PlatformEventSummary < TencentCloud::Common::AbstractModel
-        # @param EventName: 平台事件名称
+        # @param EventName: <p>平台事件名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EventName: String
-        # @param EventPattern: 平台事件匹配规则
+        # @param EventPattern: <p>平台事件匹配规则</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EventPattern: String
 
@@ -1891,9 +1891,9 @@ module TencentCloud
 
       # 平台产品基础信息
       class PlatformProduct < TencentCloud::Common::AbstractModel
-        # @param ProductName: 平台产品名称
+        # @param ProductName: <p>平台产品名称</p>
         # @type ProductName: String
-        # @param ProductType: 平台产品类型
+        # @param ProductType: <p>平台产品类型</p>
         # @type ProductType: String
 
         attr_accessor :ProductName, :ProductType
@@ -2108,21 +2108,21 @@ module TencentCloud
 
       # SearchLog请求参数结构体
       class SearchLogRequest < TencentCloud::Common::AbstractModel
-        # @param StartTime: 起始时间unix 毫秒时间戳
+        # @param StartTime: <p>起始时间unix 毫秒时间戳</p>
         # @type StartTime: Integer
-        # @param EndTime: 结束时间unix 毫秒时间戳
+        # @param EndTime: <p>结束时间unix 毫秒时间戳</p>
         # @type EndTime: Integer
-        # @param EventBusId: 事件集ID
+        # @param EventBusId: <p>事件集ID</p>
         # @type EventBusId: String
-        # @param Page: 页码
+        # @param Page: <p>页码</p>
         # @type Page: Integer
-        # @param Limit: 每页数据大小
+        # @param Limit: <p>每页数据大小</p>
         # @type Limit: Integer
-        # @param Filter: 事件查询筛选条件；示例如下：[{"key":"host","operator":"eq","value":"106.53.106.243"},{"type":"AND","filters":[{"key":"region","operator":"like","value":"*guangzhou*"},{"key":"type","operator":"eq","value":"cvm:ErrorEvent:GuestReboot"}]},{"type":"OR","filters":[{"key":"field1","operator":"like","value":"*access*"},{"key":"field2","operator":"eq","value":"custorm"}]}]
+        # @param Filter: <p>事件查询筛选条件；示例如下：[{&quot;key&quot;:&quot;host&quot;,&quot;operator&quot;:&quot;eq&quot;,&quot;value&quot;:&quot;106.53.106.243&quot;},{&quot;type&quot;:&quot;AND&quot;,&quot;filters&quot;:[{&quot;key&quot;:&quot;region&quot;,&quot;operator&quot;:&quot;like&quot;,&quot;value&quot;:&quot;<em>guangzhou</em>&quot;},{&quot;key&quot;:&quot;type&quot;,&quot;operator&quot;:&quot;eq&quot;,&quot;value&quot;:&quot;cvm:ErrorEvent:GuestReboot&quot;}]},{&quot;type&quot;:&quot;OR&quot;,&quot;filters&quot;:[{&quot;key&quot;:&quot;field1&quot;,&quot;operator&quot;:&quot;like&quot;,&quot;value&quot;:&quot;<em>access</em>&quot;},{&quot;key&quot;:&quot;field2&quot;,&quot;operator&quot;:&quot;eq&quot;,&quot;value&quot;:&quot;custom&quot;}]}]</p>
         # @type Filter: Array
-        # @param OrderFields: 事件查询结果排序，["timestamp","subject"]
+        # @param OrderFields: <p>事件查询结果排序，[&quot;timestamp&quot;,&quot;subject&quot;]</p>
         # @type OrderFields: Array
-        # @param OrderBy: 排序方式，asc 从旧到新，desc 从新到旧
+        # @param OrderBy: <p>排序方式，asc 从旧到新，desc 从新到旧</p>
         # @type OrderBy: String
 
         attr_accessor :StartTime, :EndTime, :EventBusId, :Page, :Limit, :Filter, :OrderFields, :OrderBy
@@ -2159,16 +2159,16 @@ module TencentCloud
 
       # SearchLog返回参数结构体
       class SearchLogResponse < TencentCloud::Common::AbstractModel
-        # @param Total: 事件总数
+        # @param Total: <p>事件总数</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Total: Integer
-        # @param Limit: 每页事件条数
+        # @param Limit: <p>每页事件条数</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Limit: Integer
-        # @param Page: 页码
+        # @param Page: <p>页码</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Page: Integer
-        # @param Results: 事件查询结果
+        # @param Results: <p>事件查询结果</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Results: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -2202,28 +2202,28 @@ module TencentCloud
 
       # 日志检索详情
       class SearchLogResult < TencentCloud::Common::AbstractModel
-        # @param Timestamp: 单条日志上报时间
+        # @param Timestamp: <p>单条日志上报时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Timestamp: String
-        # @param Message: 日志内容详情
+        # @param Message: <p>日志内容详情</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Message: String
-        # @param Source: 事件来源
+        # @param Source: <p>事件来源</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Source: String
-        # @param Type: 事件类型
+        # @param Type: <p>事件类型</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
-        # @param RuleIds: 事件匹配规则
+        # @param RuleIds: <p>事件匹配规则</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleIds: String
-        # @param Subject: 实例ID
+        # @param Subject: <p>实例ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Subject: String
-        # @param Region: 地域
+        # @param Region: <p>地域</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Region: String
-        # @param Status: 事件状态
+        # @param Status: <p>事件状态</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
 
@@ -2254,10 +2254,10 @@ module TencentCloud
 
       # TDMQ参数详情
       class TDMQParams < TencentCloud::Common::AbstractModel
-        # @param ClusterType: 集群类型
+        # @param ClusterType: <p>集群类型</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterType: String
-        # @param ClusterEndPoint: 集群支撑网接入点
+        # @param ClusterEndPoint: <p>集群支撑网接入点</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterEndPoint: String
 
@@ -2296,23 +2296,23 @@ module TencentCloud
 
       # Target信息
       class Target < TencentCloud::Common::AbstractModel
-        # @param Type: 目标类型
+        # @param Type: <p>目标类型</p>
         # @type Type: String
-        # @param EventBusId: 事件集ID
+        # @param EventBusId: <p>事件集ID</p>
         # @type EventBusId: String
-        # @param TargetId: 目标ID
+        # @param TargetId: <p>目标ID</p>
         # @type TargetId: String
-        # @param TargetDescription: 目标描述
+        # @param TargetDescription: <p>目标描述</p>
         # @type TargetDescription: :class:`Tencentcloud::Eb.v20210416.models.TargetDescription`
-        # @param RuleId: 事件规则ID
+        # @param RuleId: <p>事件规则ID</p>
         # @type RuleId: String
-        # @param EnableBatchDelivery: 开启批量投递使能
+        # @param EnableBatchDelivery: <p>开启批量投递使能</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnableBatchDelivery: Boolean
-        # @param BatchTimeout: 批量投递最长等待时间
+        # @param BatchTimeout: <p>批量投递最长等待时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BatchTimeout: Integer
-        # @param BatchEventCount: 批量投递最大事件条数
+        # @param BatchEventCount: <p>批量投递最大事件条数</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BatchEventCount: Integer
 
@@ -2532,17 +2532,17 @@ module TencentCloud
 
       # UpdateEventBus请求参数结构体
       class UpdateEventBusRequest < TencentCloud::Common::AbstractModel
-        # @param EventBusId: 事件集ID
+        # @param EventBusId: <p>事件集ID</p>
         # @type EventBusId: String
-        # @param Description: 事件集描述，不限字符类型，200字符描述以内
+        # @param Description: <p>事件集描述，不限字符类型，200字符描述以内</p>
         # @type Description: String
-        # @param EventBusName: 事件集名称，只能包含字母、数字、下划线、连字符，以字母开头，以数字或字母结尾，2~60个字符
+        # @param EventBusName: <p>事件集名称，只能包含字母、数字、下划线、连字符，以字母开头，以数字或字母结尾，2~60个字符</p>
         # @type EventBusName: String
-        # @param SaveDays: EB日志存储时长
+        # @param SaveDays: <p>事件存储时长</p><p>单位：day</p>
         # @type SaveDays: Integer
-        # @param LogTopicId: EB日志主题ID
+        # @param LogTopicId: <p>事件存储主题ID</p>
         # @type LogTopicId: String
-        # @param EnableStore: 是否开启存储
+        # @param EnableStore: <p>是否开启存储</p>
         # @type EnableStore: Boolean
 
         attr_accessor :EventBusId, :Description, :EventBusName, :SaveDays, :LogTopicId, :EnableStore

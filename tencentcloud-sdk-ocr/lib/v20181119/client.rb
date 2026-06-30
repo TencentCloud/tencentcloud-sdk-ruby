@@ -2443,8 +2443,10 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 提供比对核验企业名称、统一社会信用代码、法人姓名一致性的服务，助力快速核验企业资质。
-        # 注意：核验准确率在99%以上，存在个别特殊情况下核验结果不准确，请选用前知悉。
+        # 提供比对核验企业名称、统一社会信用代码、法人姓名（可选）一致性的服务，助力快速核验企业资质。
+        # 注意：
+        # 存在个别特殊情况下核验结果不准确，请选用前知悉；
+        # 按周更新企业信息变更情况，如遇到未及时更新的情况，可联系在线客服转产品团队进行人工处理。
 
         # @param request: Request instance for VerifyBizLicenseEnterprise3.
         # @type request: :class:`Tencentcloud::ocr::V20181119::VerifyBizLicenseEnterprise3Request`

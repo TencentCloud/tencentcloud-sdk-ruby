@@ -461,6 +461,22 @@ module TencentCloud
         end
       end
 
+      # 视频解码参数
+      class DecodeParams < TencentCloud::Common::AbstractModel
+        # @param ImageFrequency: <p>视频截帧参数</p><p>取值范围：[0, 30]</p>
+        # @type ImageFrequency: Integer
+
+        attr_accessor :ImageFrequency
+
+        def initialize(imagefrequency=nil)
+          @ImageFrequency = imagefrequency
+        end
+
+        def deserialize(params)
+          @ImageFrequency = params['ImageFrequency']
+        end
+      end
+
       # DescribeTaskDetail请求参数结构体
       class DescribeTaskDetailRequest < TencentCloud::Common::AbstractModel
         # @param TaskId: <p>任务ID，创建任务后返回的TaskId字段</p>
@@ -1000,15 +1016,18 @@ module TencentCloud
         # @type ImageUrlList: Array
         # @param TextContent: <p>大模型审核场景下，base64编码的审核要求内容</p>
         # @type TextContent: String
+        # @param Title: <p>文章标题</p>
+        # @type Title: String
 
-        attr_accessor :Type, :Url, :BucketInfo, :ImageUrlList, :TextContent
+        attr_accessor :Type, :Url, :BucketInfo, :ImageUrlList, :TextContent, :Title
 
-        def initialize(type=nil, url=nil, bucketinfo=nil, imageurllist=nil, textcontent=nil)
+        def initialize(type=nil, url=nil, bucketinfo=nil, imageurllist=nil, textcontent=nil, title=nil)
           @Type = type
           @Url = url
           @BucketInfo = bucketinfo
           @ImageUrlList = imageurllist
           @TextContent = textcontent
+          @Title = title
         end
 
         def deserialize(params)
@@ -1017,6 +1036,7 @@ module TencentCloud
           @BucketInfo = params['BucketInfo']
           @ImageUrlList = params['ImageUrlList']
           @TextContent = params['TextContent']
+          @Title = params['Title']
         end
       end
 
@@ -1271,15 +1291,18 @@ module TencentCloud
         # @type ImageUrlList: Array
         # @param TextContent: <p>大模型审核场景下，base64编码的审核要求内容</p>
         # @type TextContent: String
+        # @param Title: <p>文章标题</p>
+        # @type Title: String
 
-        attr_accessor :Type, :Url, :BucketInfo, :ImageUrlList, :TextContent
+        attr_accessor :Type, :Url, :BucketInfo, :ImageUrlList, :TextContent, :Title
 
-        def initialize(type=nil, url=nil, bucketinfo=nil, imageurllist=nil, textcontent=nil)
+        def initialize(type=nil, url=nil, bucketinfo=nil, imageurllist=nil, textcontent=nil, title=nil)
           @Type = type
           @Url = url
           @BucketInfo = bucketinfo
           @ImageUrlList = imageurllist
           @TextContent = textcontent
+          @Title = title
         end
 
         def deserialize(params)
@@ -1291,6 +1314,7 @@ module TencentCloud
           end
           @ImageUrlList = params['ImageUrlList']
           @TextContent = params['TextContent']
+          @Title = params['Title']
         end
       end
 
@@ -1427,19 +1451,22 @@ module TencentCloud
 
       # 音视频任务结构
       class TaskInput < TencentCloud::Common::AbstractModel
-        # @param DataId: 数据ID
+        # @param DataId: <p>数据ID</p>
         # @type DataId: String
-        # @param Name: 任务名
+        # @param Name: <p>任务名</p>
         # @type Name: String
-        # @param Input: 任务输入
+        # @param Input: <p>任务输入</p>
         # @type Input: :class:`Tencentcloud::Vm.v20210922.models.StorageInfo`
+        # @param DecodeParams: <p>视频解码参数</p>
+        # @type DecodeParams: :class:`Tencentcloud::Vm.v20210922.models.DecodeParams`
 
-        attr_accessor :DataId, :Name, :Input
+        attr_accessor :DataId, :Name, :Input, :DecodeParams
 
-        def initialize(dataid=nil, name=nil, input=nil)
+        def initialize(dataid=nil, name=nil, input=nil, decodeparams=nil)
           @DataId = dataid
           @Name = name
           @Input = input
+          @DecodeParams = decodeparams
         end
 
         def deserialize(params)
@@ -1448,6 +1475,10 @@ module TencentCloud
           unless params['Input'].nil?
             @Input = StorageInfo.new
             @Input.deserialize(params['Input'])
+          end
+          unless params['DecodeParams'].nil?
+            @DecodeParams = DecodeParams.new
+            @DecodeParams.deserialize(params['DecodeParams'])
           end
         end
       end

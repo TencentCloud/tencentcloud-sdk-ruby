@@ -53,6 +53,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 将消费者添加到消费者组。
+
+        # @param request: Request instance for AddCloudNativeAPIGatewayConsumerInGroup.
+        # @type request: :class:`Tencentcloud::cngw::V20230418::AddCloudNativeAPIGatewayConsumerInGroupRequest`
+        # @rtype: :class:`Tencentcloud::cngw::V20230418::AddCloudNativeAPIGatewayConsumerInGroupResponse`
+        def AddCloudNativeAPIGatewayConsumerInGroup(request)
+          body = send_request('AddCloudNativeAPIGatewayConsumerInGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AddCloudNativeAPIGatewayConsumerInGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 添加密钥与资源的引用关系接口
+
+        # @param request: Request instance for BindCloudNativeAPIGatewaySecretKey.
+        # @type request: :class:`Tencentcloud::cngw::V20230418::BindCloudNativeAPIGatewaySecretKeyRequest`
+        # @rtype: :class:`Tencentcloud::cngw::V20230418::BindCloudNativeAPIGatewaySecretKeyResponse`
+        def BindCloudNativeAPIGatewaySecretKey(request)
+          body = send_request('BindCloudNativeAPIGatewaySecretKey', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = BindCloudNativeAPIGatewaySecretKeyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建AI网关消费者。
 
         # @param request: Request instance for CreateCloudNativeAPIGatewayConsumer.
@@ -1095,6 +1143,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = RemoveCloudNativeAPIGatewayConsumerGroupAuthResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 将消费者从消费者组移除。
+
+        # @param request: Request instance for RemoveCloudNativeAPIGatewayConsumerInGroup.
+        # @type request: :class:`Tencentcloud::cngw::V20230418::RemoveCloudNativeAPIGatewayConsumerInGroupRequest`
+        # @rtype: :class:`Tencentcloud::cngw::V20230418::RemoveCloudNativeAPIGatewayConsumerInGroupResponse`
+        def RemoveCloudNativeAPIGatewayConsumerInGroup(request)
+          body = send_request('RemoveCloudNativeAPIGatewayConsumerInGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RemoveCloudNativeAPIGatewayConsumerInGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 解绑密钥
+
+        # @param request: Request instance for UnbindCloudNativeAPIGatewaySecretKey.
+        # @type request: :class:`Tencentcloud::cngw::V20230418::UnbindCloudNativeAPIGatewaySecretKeyRequest`
+        # @rtype: :class:`Tencentcloud::cngw::V20230418::UnbindCloudNativeAPIGatewaySecretKeyResponse`
+        def UnbindCloudNativeAPIGatewaySecretKey(request)
+          body = send_request('UnbindCloudNativeAPIGatewaySecretKey', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UnbindCloudNativeAPIGatewaySecretKeyResponse.new
             model.deserialize(response['Response'])
             model
           else
