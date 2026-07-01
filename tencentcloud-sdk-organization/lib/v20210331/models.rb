@@ -194,24 +194,26 @@ module TencentCloud
 
       # AddPermissionPolicyToRoleConfiguration请求参数结构体
       class AddPermissionPolicyToRoleConfigurationRequest < TencentCloud::Common::AbstractModel
-        # @param ZoneId: 空间 ID
+        # @param ZoneId: <p>空间 ID</p>
         # @type ZoneId: String
-        # @param RoleConfigurationId: 权限配置 ID
+        # @param RoleConfigurationId: <p>权限配置 ID</p>
         # @type RoleConfigurationId: String
-        # @param RolePolicyType: 权限策略类型。取值：  System：系统策略。复用 CAM 的系统策略。 Custom: 自定义策略。按照 CAM 权限策略语法和结构编写的自定义策略。
+        # @param RolePolicyType: <p>权限策略类型。取值：  System：系统策略。复用 CAM 的系统策略。 Custom: 自定义策略。按照 CAM 权限策略语法和结构编写的自定义策略。</p>
         # @type RolePolicyType: String
-        # @param RolePolicyNames: 权限策略名称，长度最大为 20策略，每个策略长度最大32个字符。如果要添加系统策略，建议使用RolePolicies参数。自定义策略时，数组长度最大为1。
+        # @param RolePolicyNames: <p>权限策略名称，长度最大为 20策略，每个策略长度最大32个字符。如果要添加系统策略，建议使用RolePolicies参数。自定义策略时，数组长度最大为1。</p>
         # @type RolePolicyNames: Array
-        # @param RolePolicies: 添加的系统策略详情。
+        # @param RolePolicies: <p>添加的系统策略详情。</p>
         # @type RolePolicies: Array
-        # @param CustomPolicyDocument: 自定义策略内容。长度：最大 4096 个字符。当RolePolicyType为Inline时，该参数必须配置。关于权限策略的语法和结构，请参见权限策略语法和结构。
+        # @param CustomPolicyDocument: <p>自定义策略内容。长度：最大 4096 个字符。当RolePolicyType为Inline时，该参数必须配置。关于权限策略的语法和结构，请参见权限策略语法和结构。</p>
         # @type CustomPolicyDocument: String
-        # @param CustomPolicyDocuments: 自定义策略内容列表（跟RolePolicyNames一一对应）
+        # @param CustomPolicyDocuments: <p>自定义策略内容列表（跟RolePolicyNames一一对应）</p>
         # @type CustomPolicyDocuments: Array
+        # @param PolicyType: <p>是否公共策略</p><p>枚举值：</p><ul><li>1： 是</li><li>0： 不是</li></ul><p>默认值：1</p>
+        # @type PolicyType: Integer
 
-        attr_accessor :ZoneId, :RoleConfigurationId, :RolePolicyType, :RolePolicyNames, :RolePolicies, :CustomPolicyDocument, :CustomPolicyDocuments
+        attr_accessor :ZoneId, :RoleConfigurationId, :RolePolicyType, :RolePolicyNames, :RolePolicies, :CustomPolicyDocument, :CustomPolicyDocuments, :PolicyType
 
-        def initialize(zoneid=nil, roleconfigurationid=nil, rolepolicytype=nil, rolepolicynames=nil, rolepolicies=nil, custompolicydocument=nil, custompolicydocuments=nil)
+        def initialize(zoneid=nil, roleconfigurationid=nil, rolepolicytype=nil, rolepolicynames=nil, rolepolicies=nil, custompolicydocument=nil, custompolicydocuments=nil, policytype=nil)
           @ZoneId = zoneid
           @RoleConfigurationId = roleconfigurationid
           @RolePolicyType = rolepolicytype
@@ -219,6 +221,7 @@ module TencentCloud
           @RolePolicies = rolepolicies
           @CustomPolicyDocument = custompolicydocument
           @CustomPolicyDocuments = custompolicydocuments
+          @PolicyType = policytype
         end
 
         def deserialize(params)
@@ -236,6 +239,7 @@ module TencentCloud
           end
           @CustomPolicyDocument = params['CustomPolicyDocument']
           @CustomPolicyDocuments = params['CustomPolicyDocuments']
+          @PolicyType = params['PolicyType']
         end
       end
 
@@ -6915,8 +6919,8 @@ module TencentCloud
 
         attr_accessor :ProductResourceId, :ResourceGrantLast
         extend Gem::Deprecate
-        deprecate :ResourceGrantLast, :none, 2026, 6
-        deprecate :ResourceGrantLast=, :none, 2026, 6
+        deprecate :ResourceGrantLast, :none, 2026, 7
+        deprecate :ResourceGrantLast=, :none, 2026, 7
 
         def initialize(productresourceid=nil, resourcegrantlast=nil)
           @ProductResourceId = productresourceid
@@ -7750,8 +7754,8 @@ module TencentCloud
 
         attr_accessor :ResourceId, :ProductResourceId
         extend Gem::Deprecate
-        deprecate :ResourceId, :none, 2026, 6
-        deprecate :ResourceId=, :none, 2026, 6
+        deprecate :ResourceId, :none, 2026, 7
+        deprecate :ResourceId=, :none, 2026, 7
 
         def initialize(resourceid=nil, productresourceid=nil)
           @ResourceId = resourceid

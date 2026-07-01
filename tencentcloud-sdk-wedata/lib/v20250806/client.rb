@@ -2984,7 +2984,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询数据探索文件夹树，包括文件夹下的脚本
+        # 查询SQL文件夹树，包括文件夹下的脚本
 
         # @param request: Request instance for ListSQLFolderContents.
         # @type request: :class:`Tencentcloud::wedata::V20250806::ListSQLFolderContentsRequest`

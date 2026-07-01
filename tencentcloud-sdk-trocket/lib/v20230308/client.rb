@@ -971,6 +971,31 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取主题队列级别的消费详情
+        # 当前 API 适用集群：5.x 铂金版集群
+
+        # @param request: Request instance for DescribeTopicStats.
+        # @type request: :class:`Tencentcloud::trocket::V20230308::DescribeTopicStatsRequest`
+        # @rtype: :class:`Tencentcloud::trocket::V20230308::DescribeTopicStatsResponse`
+        def DescribeTopicStats(request)
+          body = send_request('DescribeTopicStats', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeTopicStatsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 检查迁移中的主题是否处于正常状态，只有处于正常状态的主题，才可以进入下一个迁移阶段
 
         # @param request: Request instance for DoHealthCheckOnMigratingTopic.

@@ -2923,69 +2923,67 @@ module TencentCloud
 
       # DescribeDataPvUrlStatisticsV2请求参数结构体
       class DescribeDataPvUrlStatisticsV2Request < TencentCloud::Common::AbstractModel
-        # @param StartTime: 开始时间
+        # @param StartTime: <p>开始时间</p>
         # @type StartTime: Integer
-        # @param Type: allcount：性能视图，day：14天数据，vp：性能，ckuv：uv，ckpv：pv，condition：条件列表，nettype/version/platform/isp/region/device/browser/ext1/ext2/ext3/ret/status/from/url/env/：网络平台视图/Version视图/设备视图/ISP视图/地区视图/浏览器视图/ext1视图等
+        # @param Type: <p>allcount：性能视图，day：14天数据，vp：性能，ckuv：uv，ckpv：pv，condition：条件列表，nettype/version/platform/isp/region/device/browser/ext1/ext2/ext3/ret/status/from/url/env/：网络平台视图/Version视图/设备视图/ISP视图/地区视图/浏览器视图/ext1视图等</p>
         # @type Type: String
-        # @param EndTime: 结束时间
+        # @param EndTime: <p>结束时间</p>
         # @type EndTime: Integer
-        # @param ID: 项目ID
+        # @param ID: <p>项目ID</p>
         # @type ID: Integer
-        # @param ExtSecond: 自定义2
+        # @param ExtSecond: <p>自定义2</p>
         # @type ExtSecond: String
-        # @param Engine: 浏览器引擎
+        # @param Engine: <p>浏览器引擎</p>
         # @type Engine: String
-        # @param Isp: 运营商
+        # @param Isp: <p>运营商</p>
         # @type Isp: String
-        # @param From: 来源页面
+        # @param From: <p>来源页面， 可多选，用 “,” 隔开的 String</p>
         # @type From: String
-        # @param Level: 日志等级
+        # @param Level: <p>日志等级</p>
         # @type Level: String
-        # @param Brand: 品牌
+        # @param Brand: <p>品牌</p>
         # @type Brand: String
-        # @param Area: 地区
+        # @param Area: <p>地区</p>
         # @type Area: String
-        # @param VersionNum: 版本
+        # @param VersionNum: <p>版本</p>
         # @type VersionNum: String
-        # @param Platform: 平台
+        # @param Platform: <p>平台</p>
         # @type Platform: String
-        # @param ExtThird: 自定义3
+        # @param ExtThird: <p>自定义3</p>
         # @type ExtThird: String
-        # @param ExtFirst: 自定义1
+        # @param ExtFirst: <p>自定义1</p>
         # @type ExtFirst: String
-        # @param NetType: 网络类型（1,2,3,4,5,100），1表示WIFI, 2表示2G, 3表示3G, 4表示4G, 5表示5G, 6表示6G, 100表示未知
+        # @param NetType: <p>网络类型（1,2,3,4,5,100），1表示WIFI, 2表示2G, 3表示3G, 4表示4G, 5表示5G, 6表示6G, 100表示未知</p>
         # @type NetType: String
-        # @param Device: 机型
+        # @param Device: <p>机型</p>
         # @type Device: String
-        # @param IsAbroad: 显示是否海外,1表示海外，0表示非海外；默认值为空，查询所有。
+        # @param IsAbroad: <p>显示是否海外,1表示海外，0表示非海外；默认值为空，查询所有。</p>
         # @type IsAbroad: String
-        # @param Os: 操作系统
+        # @param Os: <p>操作系统</p>
         # @type Os: String
-        # @param Browser: 浏览器
+        # @param Browser: <p>浏览器</p>
         # @type Browser: String
-        # @param Env: 环境
+        # @param Env: <p>环境</p>
         # @type Env: String
-        # @param GroupByType: group by 参数值枚举1:1m  2:5m  3:30m  4:1h
-        #  5:1d
+        # @param GroupByType: <p>group by 参数值枚举1:1m  2:5m  3:30m  4:1h<br> 5:1d</p>
         # @type GroupByType: Integer
-        # @param IsNewData: 1: 查询智研
-        # 0: 走旧逻辑，已下线，勿使用
+        # @param IsNewData: <p>1: 查询智研<br>0: 走旧逻辑，已下线，勿使用</p>
         # @type IsNewData: Integer
-        # @param ExtFourth: 自定义4
+        # @param ExtFourth: <p>自定义4</p>
         # @type ExtFourth: String
-        # @param ExtFifth: 自定义5
+        # @param ExtFifth: <p>自定义5</p>
         # @type ExtFifth: String
-        # @param ExtSixth: 自定义6
+        # @param ExtSixth: <p>自定义6</p>
         # @type ExtSixth: String
-        # @param ExtSeventh: 自定义7
+        # @param ExtSeventh: <p>自定义7</p>
         # @type ExtSeventh: String
-        # @param ExtEighth: 自定义8
+        # @param ExtEighth: <p>自定义8</p>
         # @type ExtEighth: String
-        # @param ExtNinth: 自定义9
+        # @param ExtNinth: <p>自定义9</p>
         # @type ExtNinth: String
-        # @param ExtTenth: 自定义10
+        # @param ExtTenth: <p>自定义10</p>
         # @type ExtTenth: String
-        # @param Granularity: 时间段
+        # @param Granularity: <p>时间段</p>
         # @type Granularity: String
 
         attr_accessor :StartTime, :Type, :EndTime, :ID, :ExtSecond, :Engine, :Isp, :From, :Level, :Brand, :Area, :VersionNum, :Platform, :ExtThird, :ExtFirst, :NetType, :Device, :IsAbroad, :Os, :Browser, :Env, :GroupByType, :IsNewData, :ExtFourth, :ExtFifth, :ExtSixth, :ExtSeventh, :ExtEighth, :ExtNinth, :ExtTenth, :Granularity
@@ -3061,7 +3059,7 @@ module TencentCloud
 
       # DescribeDataPvUrlStatisticsV2返回参数结构体
       class DescribeDataPvUrlStatisticsV2Response < TencentCloud::Common::AbstractModel
-        # @param Result: 返回值
+        # @param Result: <p>返回值</p>
         # @type Result: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5819,8 +5817,8 @@ module TencentCloud
 
         attr_accessor :Limit, :Offset, :Filters, :IsDemo
         extend Gem::Deprecate
-        deprecate :IsDemo, :none, 2026, 6
-        deprecate :IsDemo=, :none, 2026, 6
+        deprecate :IsDemo, :none, 2026, 7
+        deprecate :IsDemo=, :none, 2026, 7
 
         def initialize(limit=nil, offset=nil, filters=nil, isdemo=nil)
           @Limit = limit
@@ -6684,8 +6682,8 @@ module TencentCloud
 
         attr_accessor :EndTime, :StartTime, :ID, :IsDemo, :IDList
         extend Gem::Deprecate
-        deprecate :IsDemo, :none, 2026, 6
-        deprecate :IsDemo=, :none, 2026, 6
+        deprecate :IsDemo, :none, 2026, 7
+        deprecate :IsDemo=, :none, 2026, 7
 
         def initialize(endtime=nil, starttime=nil, id=nil, isdemo=nil, idlist=nil)
           @EndTime = endtime
@@ -6876,12 +6874,12 @@ module TencentCloud
 
         attr_accessor :ChargeStatuses, :ChargeTypes, :Limit, :Offset, :AreaIds, :InstanceStatuses, :InstanceIds, :Filters, :IsDemo
         extend Gem::Deprecate
-        deprecate :InstanceStatuses, :none, 2026, 6
-        deprecate :InstanceStatuses=, :none, 2026, 6
-        deprecate :InstanceIds, :none, 2026, 6
-        deprecate :InstanceIds=, :none, 2026, 6
-        deprecate :IsDemo, :none, 2026, 6
-        deprecate :IsDemo=, :none, 2026, 6
+        deprecate :InstanceStatuses, :none, 2026, 7
+        deprecate :InstanceStatuses=, :none, 2026, 7
+        deprecate :InstanceIds, :none, 2026, 7
+        deprecate :InstanceIds=, :none, 2026, 7
+        deprecate :IsDemo, :none, 2026, 7
+        deprecate :IsDemo=, :none, 2026, 7
 
         def initialize(chargestatuses=nil, chargetypes=nil, limit=nil, offset=nil, areaids=nil, instancestatuses=nil, instanceids=nil, filters=nil, isdemo=nil)
           @ChargeStatuses = chargestatuses

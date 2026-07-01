@@ -550,10 +550,20 @@ module TencentCloud
         # @type Header: Array
         # @param Body: 转发请求body
         # @type Body: Array
+        # @param IncludingUserProperties: 连接UserProperty作为Header转发，默认false
+        # @type IncludingUserProperties: Boolean
+        # @param VpcSvcId: vpcsvcId
+        # HTTP认证需要通过vpc网络访问时需要配置
+        # @type VpcSvcId: String
+        # @param NetworkType: 网络连接类型
+        # vpc：vpc网络
+        # public：公网
+        # 通过vpc网络连接需要设置VpcSvcId参数
+        # @type NetworkType: String
 
-        attr_accessor :InstanceId, :Endpoint, :Concurrency, :Method, :Status, :Remark, :ConnectTimeout, :ReadTimeout, :Header, :Body
+        attr_accessor :InstanceId, :Endpoint, :Concurrency, :Method, :Status, :Remark, :ConnectTimeout, :ReadTimeout, :Header, :Body, :IncludingUserProperties, :VpcSvcId, :NetworkType
 
-        def initialize(instanceid=nil, endpoint=nil, concurrency=nil, method=nil, status=nil, remark=nil, connecttimeout=nil, readtimeout=nil, header=nil, body=nil)
+        def initialize(instanceid=nil, endpoint=nil, concurrency=nil, method=nil, status=nil, remark=nil, connecttimeout=nil, readtimeout=nil, header=nil, body=nil, includinguserproperties=nil, vpcsvcid=nil, networktype=nil)
           @InstanceId = instanceid
           @Endpoint = endpoint
           @Concurrency = concurrency
@@ -564,6 +574,9 @@ module TencentCloud
           @ReadTimeout = readtimeout
           @Header = header
           @Body = body
+          @IncludingUserProperties = includinguserproperties
+          @VpcSvcId = vpcsvcid
+          @NetworkType = networktype
         end
 
         def deserialize(params)
@@ -591,6 +604,9 @@ module TencentCloud
               @Body << bodyitem_tmp
             end
           end
+          @IncludingUserProperties = params['IncludingUserProperties']
+          @VpcSvcId = params['VpcSvcId']
+          @NetworkType = params['NetworkType']
         end
       end
 
@@ -1741,19 +1757,30 @@ module TencentCloud
         # @type ClientId: String
         # @param Number: 客户端数量限制,最大1024，默认1024
         # @type Number: String
+        # @param OnlineStatus: 0:查询在线和离线客户端（默认值）
+        # 1:查询在线客户端
+        # 2:查询离线客户端
+        # @type OnlineStatus: Integer
+        # @param MaxTimestamp: 在线连接：表示最后的连接时间
+        # 离线连接：表示最后的断开连接时间
+        # @type MaxTimestamp: Integer
 
-        attr_accessor :InstanceId, :ClientId, :Number
+        attr_accessor :InstanceId, :ClientId, :Number, :OnlineStatus, :MaxTimestamp
 
-        def initialize(instanceid=nil, clientid=nil, number=nil)
+        def initialize(instanceid=nil, clientid=nil, number=nil, onlinestatus=nil, maxtimestamp=nil)
           @InstanceId = instanceid
           @ClientId = clientid
           @Number = number
+          @OnlineStatus = onlinestatus
+          @MaxTimestamp = maxtimestamp
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
           @ClientId = params['ClientId']
           @Number = params['Number']
+          @OnlineStatus = params['OnlineStatus']
+          @MaxTimestamp = params['MaxTimestamp']
         end
       end
 
@@ -2207,17 +2234,13 @@ module TencentCloud
 
       # DescribeInstanceList请求参数结构体
       class DescribeInstanceListRequest < TencentCloud::Common::AbstractModel
-        # @param Filters: 查询条件列表,支持以下字段
-        # InstanceName：集群名模糊搜索
-        # InstanceId：集群id精确搜索
-        # InstanceStatus：集群状态搜索（RUNNING-运行中，CREATING-创建中，MODIFYING-变配中，DELETING-删除中）
-        # 注意：配置TagFilters时该查询条件不生效。
+        # @param Filters: <p>查询条件列表,支持以下字段<br>InstanceName：集群名模糊搜索<br>InstanceId：集群id精确搜索<br>InstanceStatus：集群状态搜索（RUNNING-运行中，CREATING-创建中，MODIFYING-变配中，DELETING-删除中）<br>PayMode：付费模式搜索（PREPAID-包年包月，POSTPAID-按小时计费）<br>ExpiredBefore：按过期时间过滤：仅筛选包年包月（PREPAID）集群<br>注意：配置TagFilters时该查询条件不生效。</p>
         # @type Filters: Array
-        # @param Offset: 查询起始位置，默认0
+        # @param Offset: <p>查询起始位置，默认0</p>
         # @type Offset: Integer
-        # @param Limit: 查询结果限制数量，默认20，最大100
+        # @param Limit: <p>查询结果限制数量，默认20，最大100</p>
         # @type Limit: Integer
-        # @param TagFilters: 标签过滤器
+        # @param TagFilters: <p>标签过滤器</p>
         # @type TagFilters: Array
 
         attr_accessor :Filters, :Offset, :Limit, :TagFilters
@@ -2253,9 +2276,9 @@ module TencentCloud
 
       # DescribeInstanceList返回参数结构体
       class DescribeInstanceListResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 查询总数
+        # @param TotalCount: <p>查询总数</p>
         # @type TotalCount: Integer
-        # @param Data: 实例列表
+        # @param Data: <p>实例列表</p>
         # @type Data: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2372,15 +2395,21 @@ module TencentCloud
         # @type MessageEnrichmentRuleLimit: Integer
         # @param BlockRuleLimit: <p>封禁规则最大数量</p>
         # @type BlockRuleLimit: Integer
+        # @param DeleteProtect: <p>删除保护开关</p>
+        # @type DeleteProtect: Boolean
+        # @param EventDialect: <p>集群客户端事件格式</p><p>枚举值：</p><ul><li>V1： 详见官网文档</li><li>V2： 详见官网文档</li><li>V3： 详见官网文档</li></ul><p>默认值：V3</p>
+        # @type EventDialect: String
+        # @param HashMessagePolicy: <p>消息HASH策略</p><p>枚举值：</p><ul><li>TOPIC_NAME： 按主题名</li><li>CLIENT_ID： 按客户端ID</li></ul><p>默认值：TOPIC_NAME</p>
+        # @type HashMessagePolicy: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :InstanceType, :InstanceId, :InstanceName, :TopicNum, :TopicNumLimit, :TpsLimit, :CreatedTime, :Remark, :InstanceStatus, :SkuCode, :MaxSubscriptionPerClient, :AuthorizationPolicyLimit, :ClientNumLimit, :DeviceCertificateProvisionType, :AutomaticActivation, :RenewFlag, :PayMode, :ExpiryTime, :DestroyTime, :X509Mode, :MaxCaNum, :RegistrationCode, :MaxSubscription, :AuthorizationPolicy, :SharedSubscriptionGroupLimit, :MaxTopicFilterPerSharedSubscriptionGroup, :AutoSubscriptionPolicyLimit, :MaxTopicFilterPerAutoSubscriptionPolicy, :UseDefaultServerCert, :TrustedCaLimit, :ServerCertLimit, :TopicPrefixSlashLimit, :MessageRate, :TransportLayerSecurity, :MessageEnrichmentRuleLimit, :BlockRuleLimit, :RequestId
+        attr_accessor :InstanceType, :InstanceId, :InstanceName, :TopicNum, :TopicNumLimit, :TpsLimit, :CreatedTime, :Remark, :InstanceStatus, :SkuCode, :MaxSubscriptionPerClient, :AuthorizationPolicyLimit, :ClientNumLimit, :DeviceCertificateProvisionType, :AutomaticActivation, :RenewFlag, :PayMode, :ExpiryTime, :DestroyTime, :X509Mode, :MaxCaNum, :RegistrationCode, :MaxSubscription, :AuthorizationPolicy, :SharedSubscriptionGroupLimit, :MaxTopicFilterPerSharedSubscriptionGroup, :AutoSubscriptionPolicyLimit, :MaxTopicFilterPerAutoSubscriptionPolicy, :UseDefaultServerCert, :TrustedCaLimit, :ServerCertLimit, :TopicPrefixSlashLimit, :MessageRate, :TransportLayerSecurity, :MessageEnrichmentRuleLimit, :BlockRuleLimit, :DeleteProtect, :EventDialect, :HashMessagePolicy, :RequestId
         extend Gem::Deprecate
-        deprecate :MaxTopicFilterPerSharedSubscriptionGroup, :none, 2026, 6
-        deprecate :MaxTopicFilterPerSharedSubscriptionGroup=, :none, 2026, 6
+        deprecate :MaxTopicFilterPerSharedSubscriptionGroup, :none, 2026, 7
+        deprecate :MaxTopicFilterPerSharedSubscriptionGroup=, :none, 2026, 7
 
-        def initialize(instancetype=nil, instanceid=nil, instancename=nil, topicnum=nil, topicnumlimit=nil, tpslimit=nil, createdtime=nil, remark=nil, instancestatus=nil, skucode=nil, maxsubscriptionperclient=nil, authorizationpolicylimit=nil, clientnumlimit=nil, devicecertificateprovisiontype=nil, automaticactivation=nil, renewflag=nil, paymode=nil, expirytime=nil, destroytime=nil, x509mode=nil, maxcanum=nil, registrationcode=nil, maxsubscription=nil, authorizationpolicy=nil, sharedsubscriptiongrouplimit=nil, maxtopicfilterpersharedsubscriptiongroup=nil, autosubscriptionpolicylimit=nil, maxtopicfilterperautosubscriptionpolicy=nil, usedefaultservercert=nil, trustedcalimit=nil, servercertlimit=nil, topicprefixslashlimit=nil, messagerate=nil, transportlayersecurity=nil, messageenrichmentrulelimit=nil, blockrulelimit=nil, requestid=nil)
+        def initialize(instancetype=nil, instanceid=nil, instancename=nil, topicnum=nil, topicnumlimit=nil, tpslimit=nil, createdtime=nil, remark=nil, instancestatus=nil, skucode=nil, maxsubscriptionperclient=nil, authorizationpolicylimit=nil, clientnumlimit=nil, devicecertificateprovisiontype=nil, automaticactivation=nil, renewflag=nil, paymode=nil, expirytime=nil, destroytime=nil, x509mode=nil, maxcanum=nil, registrationcode=nil, maxsubscription=nil, authorizationpolicy=nil, sharedsubscriptiongrouplimit=nil, maxtopicfilterpersharedsubscriptiongroup=nil, autosubscriptionpolicylimit=nil, maxtopicfilterperautosubscriptionpolicy=nil, usedefaultservercert=nil, trustedcalimit=nil, servercertlimit=nil, topicprefixslashlimit=nil, messagerate=nil, transportlayersecurity=nil, messageenrichmentrulelimit=nil, blockrulelimit=nil, deleteprotect=nil, eventdialect=nil, hashmessagepolicy=nil, requestid=nil)
           @InstanceType = instancetype
           @InstanceId = instanceid
           @InstanceName = instancename
@@ -2417,6 +2446,9 @@ module TencentCloud
           @TransportLayerSecurity = transportlayersecurity
           @MessageEnrichmentRuleLimit = messageenrichmentrulelimit
           @BlockRuleLimit = blockrulelimit
+          @DeleteProtect = deleteprotect
+          @EventDialect = eventdialect
+          @HashMessagePolicy = hashmessagepolicy
           @RequestId = requestid
         end
 
@@ -2457,6 +2489,9 @@ module TencentCloud
           @TransportLayerSecurity = params['TransportLayerSecurity']
           @MessageEnrichmentRuleLimit = params['MessageEnrichmentRuleLimit']
           @BlockRuleLimit = params['BlockRuleLimit']
+          @DeleteProtect = params['DeleteProtect']
+          @EventDialect = params['EventDialect']
+          @HashMessagePolicy = params['HashMessagePolicy']
           @RequestId = params['RequestId']
         end
       end
@@ -3418,17 +3453,21 @@ module TencentCloud
         # @type InstanceId: String
         # @param ClientId: 客户端id
         # @type ClientId: String
+        # @param DeleteSession: 是否清理session，默认false
+        # @type DeleteSession: Boolean
 
-        attr_accessor :InstanceId, :ClientId
+        attr_accessor :InstanceId, :ClientId, :DeleteSession
 
-        def initialize(instanceid=nil, clientid=nil)
+        def initialize(instanceid=nil, clientid=nil, deletesession=nil)
           @InstanceId = instanceid
           @ClientId = clientid
+          @DeleteSession = deletesession
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
           @ClientId = params['ClientId']
+          @DeleteSession = params['DeleteSession']
         end
       end
 
@@ -3537,10 +3576,14 @@ module TencentCloud
         # @type DisconnectTime: Integer
         # @param MQTTClientSubscriptions: 客户端的订阅列表
         # @type MQTTClientSubscriptions: Array
+        # @param CleanSession: clean-session标志，在客户端使用mqtt5协议时，该字段即clean-start
+        # @type CleanSession: Boolean
+        # @param ExpireIntervalInSeconds: MQTT5协议：expireIntervalInSeconds
+        # @type ExpireIntervalInSeconds: Integer
 
-        attr_accessor :ClientId, :ClientAddress, :ProtocolVersion, :Keepalive, :ConnectionStatus, :CreateTime, :ConnectTime, :DisconnectTime, :MQTTClientSubscriptions
+        attr_accessor :ClientId, :ClientAddress, :ProtocolVersion, :Keepalive, :ConnectionStatus, :CreateTime, :ConnectTime, :DisconnectTime, :MQTTClientSubscriptions, :CleanSession, :ExpireIntervalInSeconds
 
-        def initialize(clientid=nil, clientaddress=nil, protocolversion=nil, keepalive=nil, connectionstatus=nil, createtime=nil, connecttime=nil, disconnecttime=nil, mqttclientsubscriptions=nil)
+        def initialize(clientid=nil, clientaddress=nil, protocolversion=nil, keepalive=nil, connectionstatus=nil, createtime=nil, connecttime=nil, disconnecttime=nil, mqttclientsubscriptions=nil, cleansession=nil, expireintervalinseconds=nil)
           @ClientId = clientid
           @ClientAddress = clientaddress
           @ProtocolVersion = protocolversion
@@ -3550,6 +3593,8 @@ module TencentCloud
           @ConnectTime = connecttime
           @DisconnectTime = disconnecttime
           @MQTTClientSubscriptions = mqttclientsubscriptions
+          @CleanSession = cleansession
+          @ExpireIntervalInSeconds = expireintervalinseconds
         end
 
         def deserialize(params)
@@ -3569,6 +3614,8 @@ module TencentCloud
               @MQTTClientSubscriptions << mqttclientsubscription_tmp
             end
           end
+          @CleanSession = params['CleanSession']
+          @ExpireIntervalInSeconds = params['ExpireIntervalInSeconds']
         end
       end
 
@@ -3718,10 +3765,15 @@ module TencentCloud
         # @type AutoSubscriptionPolicyLimit: Integer
         # @param MaxTopicFilterPerAutoSubscriptionPolicy: 单条自动订阅规则TopicFilter数限制
         # @type MaxTopicFilterPerAutoSubscriptionPolicy: Integer
+        # @param DeleteProtect: 集群删除保护开关
+        # @type DeleteProtect: Boolean
 
-        attr_accessor :InstanceId, :InstanceName, :Version, :InstanceType, :InstanceStatus, :TopicNumLimit, :Remark, :TopicNum, :SkuCode, :TpsLimit, :CreateTime, :MaxSubscriptionPerClient, :ClientNumLimit, :RenewFlag, :PayMode, :ExpiryTime, :DestroyTime, :AuthorizationPolicyLimit, :MaxCaNum, :MaxSubscription, :SharedSubscriptionGroupLimit, :MaxTopicFilterPerSharedSubscriptionGroup, :AutoSubscriptionPolicyLimit, :MaxTopicFilterPerAutoSubscriptionPolicy
+        attr_accessor :InstanceId, :InstanceName, :Version, :InstanceType, :InstanceStatus, :TopicNumLimit, :Remark, :TopicNum, :SkuCode, :TpsLimit, :CreateTime, :MaxSubscriptionPerClient, :ClientNumLimit, :RenewFlag, :PayMode, :ExpiryTime, :DestroyTime, :AuthorizationPolicyLimit, :MaxCaNum, :MaxSubscription, :SharedSubscriptionGroupLimit, :MaxTopicFilterPerSharedSubscriptionGroup, :AutoSubscriptionPolicyLimit, :MaxTopicFilterPerAutoSubscriptionPolicy, :DeleteProtect
+        extend Gem::Deprecate
+        deprecate :MaxTopicFilterPerSharedSubscriptionGroup, :none, 2026, 7
+        deprecate :MaxTopicFilterPerSharedSubscriptionGroup=, :none, 2026, 7
 
-        def initialize(instanceid=nil, instancename=nil, version=nil, instancetype=nil, instancestatus=nil, topicnumlimit=nil, remark=nil, topicnum=nil, skucode=nil, tpslimit=nil, createtime=nil, maxsubscriptionperclient=nil, clientnumlimit=nil, renewflag=nil, paymode=nil, expirytime=nil, destroytime=nil, authorizationpolicylimit=nil, maxcanum=nil, maxsubscription=nil, sharedsubscriptiongrouplimit=nil, maxtopicfilterpersharedsubscriptiongroup=nil, autosubscriptionpolicylimit=nil, maxtopicfilterperautosubscriptionpolicy=nil)
+        def initialize(instanceid=nil, instancename=nil, version=nil, instancetype=nil, instancestatus=nil, topicnumlimit=nil, remark=nil, topicnum=nil, skucode=nil, tpslimit=nil, createtime=nil, maxsubscriptionperclient=nil, clientnumlimit=nil, renewflag=nil, paymode=nil, expirytime=nil, destroytime=nil, authorizationpolicylimit=nil, maxcanum=nil, maxsubscription=nil, sharedsubscriptiongrouplimit=nil, maxtopicfilterpersharedsubscriptiongroup=nil, autosubscriptionpolicylimit=nil, maxtopicfilterperautosubscriptionpolicy=nil, deleteprotect=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @Version = version
@@ -3746,6 +3798,7 @@ module TencentCloud
           @MaxTopicFilterPerSharedSubscriptionGroup = maxtopicfilterpersharedsubscriptiongroup
           @AutoSubscriptionPolicyLimit = autosubscriptionpolicylimit
           @MaxTopicFilterPerAutoSubscriptionPolicy = maxtopicfilterperautosubscriptionpolicy
+          @DeleteProtect = deleteprotect
         end
 
         def deserialize(params)
@@ -3773,6 +3826,7 @@ module TencentCloud
           @MaxTopicFilterPerSharedSubscriptionGroup = params['MaxTopicFilterPerSharedSubscriptionGroup']
           @AutoSubscriptionPolicyLimit = params['AutoSubscriptionPolicyLimit']
           @MaxTopicFilterPerAutoSubscriptionPolicy = params['MaxTopicFilterPerAutoSubscriptionPolicy']
+          @DeleteProtect = params['DeleteProtect']
         end
       end
 
@@ -3834,12 +3888,12 @@ module TencentCloud
 
         attr_accessor :MsgId, :Tags, :Keys, :ProducerAddr, :ProduceTime, :DeadLetterResendTimes, :DeadLetterResendSuccessTimes, :SubTopic, :Qos
         extend Gem::Deprecate
-        deprecate :DeadLetterResendTimes, :none, 2026, 6
-        deprecate :DeadLetterResendTimes=, :none, 2026, 6
-        deprecate :DeadLetterResendSuccessTimes, :none, 2026, 6
-        deprecate :DeadLetterResendSuccessTimes=, :none, 2026, 6
-        deprecate :SubTopic, :none, 2026, 6
-        deprecate :SubTopic=, :none, 2026, 6
+        deprecate :DeadLetterResendTimes, :none, 2026, 7
+        deprecate :DeadLetterResendTimes=, :none, 2026, 7
+        deprecate :DeadLetterResendSuccessTimes, :none, 2026, 7
+        deprecate :DeadLetterResendSuccessTimes=, :none, 2026, 7
+        deprecate :SubTopic, :none, 2026, 7
+        deprecate :SubTopic=, :none, 2026, 7
 
         def initialize(msgid=nil, tags=nil, keys=nil, produceraddr=nil, producetime=nil, deadletterresendtimes=nil, deadletterresendsuccesstimes=nil, subtopic=nil, qos=nil)
           @MsgId = msgid
@@ -4495,8 +4549,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :Algorithm, :From, :Secret, :PublicKey, :Status, :Remark, :Text
         extend Gem::Deprecate
-        deprecate :Text, :none, 2026, 6
-        deprecate :Text=, :none, 2026, 6
+        deprecate :Text, :none, 2026, 7
+        deprecate :Text=, :none, 2026, 7
 
         def initialize(instanceid=nil, algorithm=nil, from=nil, secret=nil, publickey=nil, status=nil, remark=nil, text=nil)
           @InstanceId = instanceid

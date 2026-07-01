@@ -324,10 +324,16 @@ module TencentCloud
         # @type SecurityGroupIds: Array
         # @param NetEniType: <p>弹性网卡方案，0：POD弹性网卡，1：Node弹性网卡。</p><p>枚举值：</p><ul><li>0： POD弹性网卡</li><li>1： Node弹性网卡</li></ul>
         # @type NetEniType: Integer
+        # @param ClusterBuckets: <p>桶列表信息</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterBuckets: Array
+        # @param IsolationPolicyVersion: <p>集群隔离时间，0为7天，1为15天</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsolationPolicyVersion: Integer
 
-        attr_accessor :ClusterId, :Name, :Region, :AppId, :OwnerUin, :CreatorUin, :Status, :Remark, :CreateTime, :UpdateTime, :CuNum, :CuMem, :Zone, :StatusDesc, :CCNs, :NetEnvironmentType, :FreeCuNum, :Tags, :IsolatedTime, :ExpireTime, :SecondsUntilExpiry, :AutoRenewFlag, :DefaultCOSBucket, :CLSLogSet, :CLSTopicId, :CLSLogName, :CLSTopicName, :Version, :FreeCu, :DefaultLogCollectConf, :CustomizedDNSEnabled, :Correlations, :RunningCu, :PayMode, :IsNeedManageNode, :ClusterSessions, :ArchGeneration, :ClusterType, :Orders, :SqlGateways, :WebUIType, :Type, :SubEks, :AgentSerialId, :ResourceType, :BillingResourceMode, :MemRatio, :CrossTenantEniMode, :TotalCpu, :TotalMem, :RunningCpu, :RunningMem, :Setats, :Yarns, :DeploymentMode, :SlaveZones, :LogCOSBucket, :CdcId, :ClusterProcessMsg, :MaxCuPerJob, :HiveMetastore, :SecurityGroupIds, :NetEniType
+        attr_accessor :ClusterId, :Name, :Region, :AppId, :OwnerUin, :CreatorUin, :Status, :Remark, :CreateTime, :UpdateTime, :CuNum, :CuMem, :Zone, :StatusDesc, :CCNs, :NetEnvironmentType, :FreeCuNum, :Tags, :IsolatedTime, :ExpireTime, :SecondsUntilExpiry, :AutoRenewFlag, :DefaultCOSBucket, :CLSLogSet, :CLSTopicId, :CLSLogName, :CLSTopicName, :Version, :FreeCu, :DefaultLogCollectConf, :CustomizedDNSEnabled, :Correlations, :RunningCu, :PayMode, :IsNeedManageNode, :ClusterSessions, :ArchGeneration, :ClusterType, :Orders, :SqlGateways, :WebUIType, :Type, :SubEks, :AgentSerialId, :ResourceType, :BillingResourceMode, :MemRatio, :CrossTenantEniMode, :TotalCpu, :TotalMem, :RunningCpu, :RunningMem, :Setats, :Yarns, :DeploymentMode, :SlaveZones, :LogCOSBucket, :CdcId, :ClusterProcessMsg, :MaxCuPerJob, :HiveMetastore, :SecurityGroupIds, :NetEniType, :ClusterBuckets, :IsolationPolicyVersion
 
-        def initialize(clusterid=nil, name=nil, region=nil, appid=nil, owneruin=nil, creatoruin=nil, status=nil, remark=nil, createtime=nil, updatetime=nil, cunum=nil, cumem=nil, zone=nil, statusdesc=nil, ccns=nil, netenvironmenttype=nil, freecunum=nil, tags=nil, isolatedtime=nil, expiretime=nil, secondsuntilexpiry=nil, autorenewflag=nil, defaultcosbucket=nil, clslogset=nil, clstopicid=nil, clslogname=nil, clstopicname=nil, version=nil, freecu=nil, defaultlogcollectconf=nil, customizeddnsenabled=nil, correlations=nil, runningcu=nil, paymode=nil, isneedmanagenode=nil, clustersessions=nil, archgeneration=nil, clustertype=nil, orders=nil, sqlgateways=nil, webuitype=nil, type=nil, subeks=nil, agentserialid=nil, resourcetype=nil, billingresourcemode=nil, memratio=nil, crosstenantenimode=nil, totalcpu=nil, totalmem=nil, runningcpu=nil, runningmem=nil, setats=nil, yarns=nil, deploymentmode=nil, slavezones=nil, logcosbucket=nil, cdcid=nil, clusterprocessmsg=nil, maxcuperjob=nil, hivemetastore=nil, securitygroupids=nil, netenitype=nil)
+        def initialize(clusterid=nil, name=nil, region=nil, appid=nil, owneruin=nil, creatoruin=nil, status=nil, remark=nil, createtime=nil, updatetime=nil, cunum=nil, cumem=nil, zone=nil, statusdesc=nil, ccns=nil, netenvironmenttype=nil, freecunum=nil, tags=nil, isolatedtime=nil, expiretime=nil, secondsuntilexpiry=nil, autorenewflag=nil, defaultcosbucket=nil, clslogset=nil, clstopicid=nil, clslogname=nil, clstopicname=nil, version=nil, freecu=nil, defaultlogcollectconf=nil, customizeddnsenabled=nil, correlations=nil, runningcu=nil, paymode=nil, isneedmanagenode=nil, clustersessions=nil, archgeneration=nil, clustertype=nil, orders=nil, sqlgateways=nil, webuitype=nil, type=nil, subeks=nil, agentserialid=nil, resourcetype=nil, billingresourcemode=nil, memratio=nil, crosstenantenimode=nil, totalcpu=nil, totalmem=nil, runningcpu=nil, runningmem=nil, setats=nil, yarns=nil, deploymentmode=nil, slavezones=nil, logcosbucket=nil, cdcid=nil, clusterprocessmsg=nil, maxcuperjob=nil, hivemetastore=nil, securitygroupids=nil, netenitype=nil, clusterbuckets=nil, isolationpolicyversion=nil)
           @ClusterId = clusterid
           @Name = name
           @Region = region
@@ -391,6 +397,8 @@ module TencentCloud
           @HiveMetastore = hivemetastore
           @SecurityGroupIds = securitygroupids
           @NetEniType = netenitype
+          @ClusterBuckets = clusterbuckets
+          @IsolationPolicyVersion = isolationpolicyversion
         end
 
         def deserialize(params)
@@ -525,6 +533,81 @@ module TencentCloud
           end
           @SecurityGroupIds = params['SecurityGroupIds']
           @NetEniType = params['NetEniType']
+          unless params['ClusterBuckets'].nil?
+            @ClusterBuckets = []
+            params['ClusterBuckets'].each do |i|
+              clusterbucketinfo_tmp = ClusterBucketInfo.new
+              clusterbucketinfo_tmp.deserialize(i)
+              @ClusterBuckets << clusterbucketinfo_tmp
+            end
+          end
+          @IsolationPolicyVersion = params['IsolationPolicyVersion']
+        end
+      end
+
+      # ClusterBucketInfo 结构
+      class ClusterBucketInfo < TencentCloud::Common::AbstractModel
+        # @param SerialId: <p>桶唯一id</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SerialId: String
+        # @param ClusterId: <p>集群id</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterId: Integer
+        # @param Bucket: <p>桶名字</p>
+        # @type Bucket: String
+        # @param BucketType: <p>桶类型</p><p>枚举值：</p><ul><li>0： 普通桶</li><li>1： 加速桶</li></ul>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BucketType: Integer
+        # @param AuthMode: <p>鉴权类型</p><p>枚举值：</p><ul><li>0： 不鉴权</li><li>1： 鉴权</li></ul>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AuthMode: Integer
+        # @param IsDefault: <p>是否默认属性</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsDefault: Integer
+        # @param Status: <p>桶状态</p><p>枚举值：</p><ul><li>1： 正常</li><li>0： 禁用</li></ul>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+        # @param JobCount: <p>作业数量</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type JobCount: Integer
+        # @param Region: <p>地域</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Region: String
+        # @param CreateTime: <p>创建时间</p><p>参数格式：yyyy-MM-dd HH:mm:ss</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param UpdateTime: <p>更新时间</p><p>参数格式：yyyy-MM-dd HH:mm:ss</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+
+        attr_accessor :SerialId, :ClusterId, :Bucket, :BucketType, :AuthMode, :IsDefault, :Status, :JobCount, :Region, :CreateTime, :UpdateTime
+
+        def initialize(serialid=nil, clusterid=nil, bucket=nil, buckettype=nil, authmode=nil, isdefault=nil, status=nil, jobcount=nil, region=nil, createtime=nil, updatetime=nil)
+          @SerialId = serialid
+          @ClusterId = clusterid
+          @Bucket = bucket
+          @BucketType = buckettype
+          @AuthMode = authmode
+          @IsDefault = isdefault
+          @Status = status
+          @JobCount = jobcount
+          @Region = region
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @SerialId = params['SerialId']
+          @ClusterId = params['ClusterId']
+          @Bucket = params['Bucket']
+          @BucketType = params['BucketType']
+          @AuthMode = params['AuthMode']
+          @IsDefault = params['IsDefault']
+          @Status = params['Status']
+          @JobCount = params['JobCount']
+          @Region = params['Region']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
         end
       end
 
@@ -1150,16 +1233,22 @@ module TencentCloud
         # @type UseOldSystemConnector: Integer
         # @param ProgramArgsAfterGzip: <p>压缩参数</p>
         # @type ProgramArgsAfterGzip: String
-        # @param CheckpointTimeoutSecond: <p>checkpoint 超时时间</p>
+        # @param CheckpointTimeoutSecond: <p>checkpoint 超时时间</p><p>单位：秒</p>
         # @type CheckpointTimeoutSecond: Integer
-        # @param CheckpointIntervalSecond: <p>checkpoint 间隔时间</p>
+        # @param CheckpointIntervalSecond: <p>checkpoint 间隔时间</p><p>单位：秒</p>
         # @type CheckpointIntervalSecond: Integer
         # @param VariableReplaceMode: <p>变量替换模式</p><p>枚举值：</p><ul><li>0： 表变量替换</li><li>1： SQL全局变量替换</li></ul><p>默认值：1</p>
         # @type VariableReplaceMode: Integer
+        # @param OperatorName: <p>user</p>
+        # @type OperatorName: String
+        # @param ConfigScope: <p>配置更新范围 0=全量(默认) 1=仅开发 2=仅运维</p>
+        # @type ConfigScope: Integer
+        # @param StateCOSBucket: <p>状态桶名字</p>
+        # @type StateCOSBucket: String
 
-        attr_accessor :JobId, :EntrypointClass, :ProgramArgs, :Remark, :ResourceRefs, :DefaultParallelism, :Properties, :AutoDelete, :COSBucket, :LogCollect, :JobManagerSpec, :TaskManagerSpec, :ClsLogsetId, :ClsTopicId, :LogCollectType, :PythonVersion, :WorkSpaceId, :LogLevel, :AutoRecover, :ClazzLevels, :ExpertModeOn, :ExpertModeConfiguration, :TraceModeOn, :TraceModeConfiguration, :CheckpointRetainedNum, :JobGraph, :EsServerlessIndex, :EsServerlessSpace, :FlinkVersion, :JobManagerCpu, :JobManagerMem, :JdkVersion, :TaskManagerCpu, :TaskManagerMem, :UseOldSystemConnector, :ProgramArgsAfterGzip, :CheckpointTimeoutSecond, :CheckpointIntervalSecond, :VariableReplaceMode
+        attr_accessor :JobId, :EntrypointClass, :ProgramArgs, :Remark, :ResourceRefs, :DefaultParallelism, :Properties, :AutoDelete, :COSBucket, :LogCollect, :JobManagerSpec, :TaskManagerSpec, :ClsLogsetId, :ClsTopicId, :LogCollectType, :PythonVersion, :WorkSpaceId, :LogLevel, :AutoRecover, :ClazzLevels, :ExpertModeOn, :ExpertModeConfiguration, :TraceModeOn, :TraceModeConfiguration, :CheckpointRetainedNum, :JobGraph, :EsServerlessIndex, :EsServerlessSpace, :FlinkVersion, :JobManagerCpu, :JobManagerMem, :JdkVersion, :TaskManagerCpu, :TaskManagerMem, :UseOldSystemConnector, :ProgramArgsAfterGzip, :CheckpointTimeoutSecond, :CheckpointIntervalSecond, :VariableReplaceMode, :OperatorName, :ConfigScope, :StateCOSBucket
 
-        def initialize(jobid=nil, entrypointclass=nil, programargs=nil, remark=nil, resourcerefs=nil, defaultparallelism=nil, properties=nil, autodelete=nil, cosbucket=nil, logcollect=nil, jobmanagerspec=nil, taskmanagerspec=nil, clslogsetid=nil, clstopicid=nil, logcollecttype=nil, pythonversion=nil, workspaceid=nil, loglevel=nil, autorecover=nil, clazzlevels=nil, expertmodeon=nil, expertmodeconfiguration=nil, tracemodeon=nil, tracemodeconfiguration=nil, checkpointretainednum=nil, jobgraph=nil, esserverlessindex=nil, esserverlessspace=nil, flinkversion=nil, jobmanagercpu=nil, jobmanagermem=nil, jdkversion=nil, taskmanagercpu=nil, taskmanagermem=nil, useoldsystemconnector=nil, programargsaftergzip=nil, checkpointtimeoutsecond=nil, checkpointintervalsecond=nil, variablereplacemode=nil)
+        def initialize(jobid=nil, entrypointclass=nil, programargs=nil, remark=nil, resourcerefs=nil, defaultparallelism=nil, properties=nil, autodelete=nil, cosbucket=nil, logcollect=nil, jobmanagerspec=nil, taskmanagerspec=nil, clslogsetid=nil, clstopicid=nil, logcollecttype=nil, pythonversion=nil, workspaceid=nil, loglevel=nil, autorecover=nil, clazzlevels=nil, expertmodeon=nil, expertmodeconfiguration=nil, tracemodeon=nil, tracemodeconfiguration=nil, checkpointretainednum=nil, jobgraph=nil, esserverlessindex=nil, esserverlessspace=nil, flinkversion=nil, jobmanagercpu=nil, jobmanagermem=nil, jdkversion=nil, taskmanagercpu=nil, taskmanagermem=nil, useoldsystemconnector=nil, programargsaftergzip=nil, checkpointtimeoutsecond=nil, checkpointintervalsecond=nil, variablereplacemode=nil, operatorname=nil, configscope=nil, statecosbucket=nil)
           @JobId = jobid
           @EntrypointClass = entrypointclass
           @ProgramArgs = programargs
@@ -1199,6 +1288,9 @@ module TencentCloud
           @CheckpointTimeoutSecond = checkpointtimeoutsecond
           @CheckpointIntervalSecond = checkpointintervalsecond
           @VariableReplaceMode = variablereplacemode
+          @OperatorName = operatorname
+          @ConfigScope = configscope
+          @StateCOSBucket = statecosbucket
         end
 
         def deserialize(params)
@@ -1271,6 +1363,9 @@ module TencentCloud
           @CheckpointTimeoutSecond = params['CheckpointTimeoutSecond']
           @CheckpointIntervalSecond = params['CheckpointIntervalSecond']
           @VariableReplaceMode = params['VariableReplaceMode']
+          @OperatorName = params['OperatorName']
+          @ConfigScope = params['ConfigScope']
+          @StateCOSBucket = params['StateCOSBucket']
         end
       end
 
@@ -1665,25 +1760,29 @@ module TencentCloud
 
       # DeleteJobConfigs请求参数结构体
       class DeleteJobConfigsRequest < TencentCloud::Common::AbstractModel
-        # @param JobId: 作业ID
+        # @param JobId: <p>作业ID</p>
         # @type JobId: String
-        # @param JobConfigVersions: 作业配置版本数组
+        # @param JobConfigVersions: <p>作业配置版本数组</p>
         # @type JobConfigVersions: Array
-        # @param WorkSpaceId: 工作空间 SerialId
+        # @param WorkSpaceId: <p>工作空间 SerialId</p>
         # @type WorkSpaceId: String
+        # @param ConfigScope: <p>配置更新范围 0=全量(默认) 1=仅开发 2=仅运维</p><p>取值范围：[0, 2]</p>
+        # @type ConfigScope: Integer
 
-        attr_accessor :JobId, :JobConfigVersions, :WorkSpaceId
+        attr_accessor :JobId, :JobConfigVersions, :WorkSpaceId, :ConfigScope
 
-        def initialize(jobid=nil, jobconfigversions=nil, workspaceid=nil)
+        def initialize(jobid=nil, jobconfigversions=nil, workspaceid=nil, configscope=nil)
           @JobId = jobid
           @JobConfigVersions = jobconfigversions
           @WorkSpaceId = workspaceid
+          @ConfigScope = configscope
         end
 
         def deserialize(params)
           @JobId = params['JobId']
           @JobConfigVersions = params['JobConfigVersions']
           @WorkSpaceId = params['WorkSpaceId']
+          @ConfigScope = params['ConfigScope']
         end
       end
 
@@ -2821,12 +2920,15 @@ module TencentCloud
         # @type Filters: Array
         # @param WorkSpaceId: <p>工作空间 Serialid</p>
         # @type WorkSpaceId: String
+        # @param FlatMode: <p>返回形式</p><p>枚举值：</p><ul><li>0： 树形结构</li><li>1： 平铺结构</li></ul>
+        # @type FlatMode: Integer
 
-        attr_accessor :Filters, :WorkSpaceId
+        attr_accessor :Filters, :WorkSpaceId, :FlatMode
 
-        def initialize(filters=nil, workspaceid=nil)
+        def initialize(filters=nil, workspaceid=nil, flatmode=nil)
           @Filters = filters
           @WorkSpaceId = workspaceid
+          @FlatMode = flatmode
         end
 
         def deserialize(params)
@@ -2839,6 +2941,7 @@ module TencentCloud
             end
           end
           @WorkSpaceId = params['WorkSpaceId']
+          @FlatMode = params['FlatMode']
         end
       end
 
@@ -3765,16 +3868,22 @@ module TencentCloud
         # @param JobConfigItem: <p>运行中配置</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JobConfigItem: :class:`Tencentcloud::Oceanus.v20190422.models.JobConfig`
-        # @param CheckpointTimeoutSecond: <p>checkpoint 超时时间</p>
+        # @param CheckpointTimeoutSecond: <p>checkpoint 超时时间</p><p>单位：秒</p>
         # @type CheckpointTimeoutSecond: Integer
-        # @param CheckpointIntervalSecond: <p>checkpoint 间隔时间</p>
+        # @param CheckpointIntervalSecond: <p>checkpoint 间隔时间</p><p>单位：秒</p>
         # @type CheckpointIntervalSecond: Integer
         # @param VariableReplaceMode: <p>变量替换模式</p><p>枚举值：</p><ul><li>0： 表变量替换</li><li>1： 全局SQL变量替换</li></ul><p>默认值：0</p>
         # @type VariableReplaceMode: Integer
+        # @param StateCOSBucket: <p>快照桶</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StateCOSBucket: String
+        # @param LogCOSBucket: <p>日志桶</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogCOSBucket: String
 
-        attr_accessor :JobId, :EntrypointClass, :ProgramArgs, :Remark, :CreateTime, :Version, :DefaultParallelism, :Properties, :ResourceRefDetails, :CreatorUin, :UpdateTime, :COSBucket, :LogCollect, :MaxParallelism, :JobManagerSpec, :TaskManagerSpec, :ClsLogsetId, :ClsTopicId, :PythonVersion, :AutoRecover, :LogLevel, :ClazzLevels, :ExpertModeOn, :ExpertModeConfiguration, :TraceModeOn, :TraceModeConfiguration, :CheckpointRetainedNum, :JobGraph, :EsServerlessIndex, :EsServerlessSpace, :IndexName, :WorkspaceName, :FlinkVersion, :JdkVersion, :JobManagerCpu, :JobManagerMem, :TaskManagerCpu, :TaskManagerMem, :JobConfigItem, :CheckpointTimeoutSecond, :CheckpointIntervalSecond, :VariableReplaceMode
+        attr_accessor :JobId, :EntrypointClass, :ProgramArgs, :Remark, :CreateTime, :Version, :DefaultParallelism, :Properties, :ResourceRefDetails, :CreatorUin, :UpdateTime, :COSBucket, :LogCollect, :MaxParallelism, :JobManagerSpec, :TaskManagerSpec, :ClsLogsetId, :ClsTopicId, :PythonVersion, :AutoRecover, :LogLevel, :ClazzLevels, :ExpertModeOn, :ExpertModeConfiguration, :TraceModeOn, :TraceModeConfiguration, :CheckpointRetainedNum, :JobGraph, :EsServerlessIndex, :EsServerlessSpace, :IndexName, :WorkspaceName, :FlinkVersion, :JdkVersion, :JobManagerCpu, :JobManagerMem, :TaskManagerCpu, :TaskManagerMem, :JobConfigItem, :CheckpointTimeoutSecond, :CheckpointIntervalSecond, :VariableReplaceMode, :StateCOSBucket, :LogCOSBucket
 
-        def initialize(jobid=nil, entrypointclass=nil, programargs=nil, remark=nil, createtime=nil, version=nil, defaultparallelism=nil, properties=nil, resourcerefdetails=nil, creatoruin=nil, updatetime=nil, cosbucket=nil, logcollect=nil, maxparallelism=nil, jobmanagerspec=nil, taskmanagerspec=nil, clslogsetid=nil, clstopicid=nil, pythonversion=nil, autorecover=nil, loglevel=nil, clazzlevels=nil, expertmodeon=nil, expertmodeconfiguration=nil, tracemodeon=nil, tracemodeconfiguration=nil, checkpointretainednum=nil, jobgraph=nil, esserverlessindex=nil, esserverlessspace=nil, indexname=nil, workspacename=nil, flinkversion=nil, jdkversion=nil, jobmanagercpu=nil, jobmanagermem=nil, taskmanagercpu=nil, taskmanagermem=nil, jobconfigitem=nil, checkpointtimeoutsecond=nil, checkpointintervalsecond=nil, variablereplacemode=nil)
+        def initialize(jobid=nil, entrypointclass=nil, programargs=nil, remark=nil, createtime=nil, version=nil, defaultparallelism=nil, properties=nil, resourcerefdetails=nil, creatoruin=nil, updatetime=nil, cosbucket=nil, logcollect=nil, maxparallelism=nil, jobmanagerspec=nil, taskmanagerspec=nil, clslogsetid=nil, clstopicid=nil, pythonversion=nil, autorecover=nil, loglevel=nil, clazzlevels=nil, expertmodeon=nil, expertmodeconfiguration=nil, tracemodeon=nil, tracemodeconfiguration=nil, checkpointretainednum=nil, jobgraph=nil, esserverlessindex=nil, esserverlessspace=nil, indexname=nil, workspacename=nil, flinkversion=nil, jdkversion=nil, jobmanagercpu=nil, jobmanagermem=nil, taskmanagercpu=nil, taskmanagermem=nil, jobconfigitem=nil, checkpointtimeoutsecond=nil, checkpointintervalsecond=nil, variablereplacemode=nil, statecosbucket=nil, logcosbucket=nil)
           @JobId = jobid
           @EntrypointClass = entrypointclass
           @ProgramArgs = programargs
@@ -3817,6 +3926,8 @@ module TencentCloud
           @CheckpointTimeoutSecond = checkpointtimeoutsecond
           @CheckpointIntervalSecond = checkpointintervalsecond
           @VariableReplaceMode = variablereplacemode
+          @StateCOSBucket = statecosbucket
+          @LogCOSBucket = logcosbucket
         end
 
         def deserialize(params)
@@ -3895,6 +4006,8 @@ module TencentCloud
           @CheckpointTimeoutSecond = params['CheckpointTimeoutSecond']
           @CheckpointIntervalSecond = params['CheckpointIntervalSecond']
           @VariableReplaceMode = params['VariableReplaceMode']
+          @StateCOSBucket = params['StateCOSBucket']
+          @LogCOSBucket = params['LogCOSBucket']
         end
       end
 
@@ -4092,138 +4205,149 @@ module TencentCloud
 
       # Job详细信息
       class JobV1 < TencentCloud::Common::AbstractModel
-        # @param JobId: 作业ID
+        # @param JobId: <p>作业ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JobId: String
-        # @param Region: 地域
+        # @param Region: <p>地域</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Region: String
-        # @param Zone: 可用区
+        # @param Zone: <p>可用区</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Zone: String
-        # @param AppId: 用户AppId
+        # @param AppId: <p>用户AppId</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppId: Integer
-        # @param OwnerUin: 用户UIN
+        # @param OwnerUin: <p>用户UIN</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OwnerUin: String
-        # @param CreatorUin: 创建者UIN
+        # @param CreatorUin: <p>创建者UIN</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreatorUin: String
-        # @param Name: 作业名字
+        # @param Name: <p>作业名字</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
-        # @param JobType: 作业类型，1：sql作业，2：Jar作业
+        # @param JobType: <p>作业类型，1：sql作业，2：Jar作业</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JobType: Integer
-        # @param Status: 作业状态，1：未初始化，2：未发布，3：操作中，4：运行中，5：停止，6：暂停，-1：故障
+        # @param Status: <p>作业状态，1：未初始化，2：未发布，3：操作中，4：运行中，5：停止，6：暂停，-1：故障</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
-        # @param CreateTime: 作业创建时间
+        # @param CreateTime: <p>作业创建时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
-        # @param StartTime: 作业启动时间
+        # @param StartTime: <p>作业启动时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartTime: String
-        # @param StopTime: 作业停止时间
+        # @param StopTime: <p>作业停止时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StopTime: String
-        # @param UpdateTime: 作业更新时间
+        # @param UpdateTime: <p>作业更新时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
-        # @param TotalRunMillis: 作业累计运行时间
+        # @param TotalRunMillis: <p>作业累计运行时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalRunMillis: Integer
-        # @param Remark: 备注信息
+        # @param Remark: <p>备注信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Remark: String
-        # @param LastOpResult: 操作错误提示信息
+        # @param LastOpResult: <p>操作错误提示信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LastOpResult: String
-        # @param ClusterName: 集群名字
+        # @param ClusterName: <p>集群名字</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterName: String
-        # @param LatestJobConfigVersion: 最新配置版本号，包括已经删除的版本
+        # @param LatestJobConfigVersion: <p>最新配置版本号，包括已经删除的版本</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LatestJobConfigVersion: Integer
-        # @param LatestValidJobConfigVersion: 最新的版本号，不包括已经删除的版本号
+        # @param LatestValidJobConfigVersion: <p>最新的版本号，不包括已经删除的版本号</p>
         # @type LatestValidJobConfigVersion: Integer
-        # @param PublishedJobConfigVersion: 已发布的配置版本
+        # @param PublishedJobConfigVersion: <p>已发布的配置版本</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PublishedJobConfigVersion: Integer
-        # @param RunningCuNum: 运行的CU数量
+        # @param RunningCuNum: <p>运行的CU数量</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RunningCuNum: Integer
-        # @param CuMem: 作业内存规格
+        # @param CuMem: <p>作业内存规格</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CuMem: Integer
-        # @param StatusDesc: 作业状态描述
+        # @param StatusDesc: <p>作业状态描述</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StatusDesc: String
-        # @param CurrentRunMillis: 运行状态时表示单次运行时间
+        # @param CurrentRunMillis: <p>运行状态时表示单次运行时间</p><p>单位：毫秒</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CurrentRunMillis: Integer
-        # @param ClusterId: 作业所在的集群ID
+        # @param ClusterId: <p>作业所在的集群ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterId: String
-        # @param WebUIUrl: 作业管理WEB UI 入口
+        # @param WebUIUrl: <p>作业管理WEB UI 入口</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WebUIUrl: String
-        # @param SchedulerType: 作业所在集群类型
+        # @param SchedulerType: <p>作业所在集群类型</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SchedulerType: Integer
-        # @param ClusterStatus: 作业所在集群状态
+        # @param ClusterStatus: <p>作业所在集群状态</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterStatus: Integer
-        # @param RunningCu: 细粒度下的运行的CU数量
+        # @param RunningCu: <p>细粒度下的运行的CU数量</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RunningCu: Float
-        # @param FlinkVersion: 作业运行的 Flink 版本
+        # @param FlinkVersion: <p>作业运行的 Flink 版本</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlinkVersion: String
-        # @param WorkSpaceId: 工作空间 SerialId
+        # @param WorkSpaceId: <p>工作空间 SerialId</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WorkSpaceId: String
-        # @param WorkSpaceName: 工作空间名称
+        # @param WorkSpaceName: <p>工作空间名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WorkSpaceName: String
-        # @param Tags: 作业标签
+        # @param Tags: <p>作业标签</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
-        # @param EventInfo: 作业异常事件信息
+        # @param EventInfo: <p>作业异常事件信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EventInfo: :class:`Tencentcloud::Oceanus.v20190422.models.JobEventInfo`
-        # @param Description: 描述信息
+        # @param Description: <p>描述信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
-        # @param ScalingType: 0:代表没开启调优任务，1:开启智能调优，2:代表定时调优
-
+        # @param ScalingType: <p>0:代表没开启调优任务，1:开启智能调优，2:代表定时调优</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScalingType: Integer
-        # @param RunningCpu: 使用CPU数目
+        # @param RunningCpu: <p>使用CPU数目</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RunningCpu: Float
-        # @param RunningMem: 使用内存数量
+        # @param RunningMem: <p>使用内存数量</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RunningMem: Float
-        # @param OpenJobDefaultAlarm: 是否开了默认告警
+        # @param OpenJobDefaultAlarm: <p>是否开了默认告警</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OpenJobDefaultAlarm: Integer
-        # @param ProgressDesc: 操作中描述
+        # @param ProgressDesc: <p>操作中描述</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProgressDesc: String
-        # @param ContinueAlarm: 停止持续告警
+        # @param ContinueAlarm: <p>停止持续告警</p>
         # @type ContinueAlarm: Integer
-        # @param RestartCount: 作业重启次数
+        # @param RestartCount: <p>作业重启次数</p>
         # @type RestartCount: Integer
-        # @param ExpectJobDefaultAlarmStatus: 期望是开启默认告警
+        # @param ExpectJobDefaultAlarmStatus: <p>期望是开启默认告警</p>
         # @type ExpectJobDefaultAlarmStatus: Integer
-        # @param JdkVersion: jdk版本
+        # @param JdkVersion: <p>jdk版本</p>
         # @type JdkVersion: String
+        # @param StateCOSBucket: <p>状态桶名字</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StateCOSBucket: String
+        # @param NewStateCOSBucket: <p>新的状态桶名字</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NewStateCOSBucket: String
+        # @param StateCOSBucketType: <p>同类型</p><p>枚举值：</p><ul><li>0： 普通桶</li><li>1： 加速桶</li></ul>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StateCOSBucketType: Integer
+        # @param NewStateCOSBucketType: <p>新的桶类型</p><p>枚举值：</p><ul><li>0： 普通桶</li><li>1： 加速桶</li></ul>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NewStateCOSBucketType: Integer
 
-        attr_accessor :JobId, :Region, :Zone, :AppId, :OwnerUin, :CreatorUin, :Name, :JobType, :Status, :CreateTime, :StartTime, :StopTime, :UpdateTime, :TotalRunMillis, :Remark, :LastOpResult, :ClusterName, :LatestJobConfigVersion, :LatestValidJobConfigVersion, :PublishedJobConfigVersion, :RunningCuNum, :CuMem, :StatusDesc, :CurrentRunMillis, :ClusterId, :WebUIUrl, :SchedulerType, :ClusterStatus, :RunningCu, :FlinkVersion, :WorkSpaceId, :WorkSpaceName, :Tags, :EventInfo, :Description, :ScalingType, :RunningCpu, :RunningMem, :OpenJobDefaultAlarm, :ProgressDesc, :ContinueAlarm, :RestartCount, :ExpectJobDefaultAlarmStatus, :JdkVersion
+        attr_accessor :JobId, :Region, :Zone, :AppId, :OwnerUin, :CreatorUin, :Name, :JobType, :Status, :CreateTime, :StartTime, :StopTime, :UpdateTime, :TotalRunMillis, :Remark, :LastOpResult, :ClusterName, :LatestJobConfigVersion, :LatestValidJobConfigVersion, :PublishedJobConfigVersion, :RunningCuNum, :CuMem, :StatusDesc, :CurrentRunMillis, :ClusterId, :WebUIUrl, :SchedulerType, :ClusterStatus, :RunningCu, :FlinkVersion, :WorkSpaceId, :WorkSpaceName, :Tags, :EventInfo, :Description, :ScalingType, :RunningCpu, :RunningMem, :OpenJobDefaultAlarm, :ProgressDesc, :ContinueAlarm, :RestartCount, :ExpectJobDefaultAlarmStatus, :JdkVersion, :StateCOSBucket, :NewStateCOSBucket, :StateCOSBucketType, :NewStateCOSBucketType
 
-        def initialize(jobid=nil, region=nil, zone=nil, appid=nil, owneruin=nil, creatoruin=nil, name=nil, jobtype=nil, status=nil, createtime=nil, starttime=nil, stoptime=nil, updatetime=nil, totalrunmillis=nil, remark=nil, lastopresult=nil, clustername=nil, latestjobconfigversion=nil, latestvalidjobconfigversion=nil, publishedjobconfigversion=nil, runningcunum=nil, cumem=nil, statusdesc=nil, currentrunmillis=nil, clusterid=nil, webuiurl=nil, schedulertype=nil, clusterstatus=nil, runningcu=nil, flinkversion=nil, workspaceid=nil, workspacename=nil, tags=nil, eventinfo=nil, description=nil, scalingtype=nil, runningcpu=nil, runningmem=nil, openjobdefaultalarm=nil, progressdesc=nil, continuealarm=nil, restartcount=nil, expectjobdefaultalarmstatus=nil, jdkversion=nil)
+        def initialize(jobid=nil, region=nil, zone=nil, appid=nil, owneruin=nil, creatoruin=nil, name=nil, jobtype=nil, status=nil, createtime=nil, starttime=nil, stoptime=nil, updatetime=nil, totalrunmillis=nil, remark=nil, lastopresult=nil, clustername=nil, latestjobconfigversion=nil, latestvalidjobconfigversion=nil, publishedjobconfigversion=nil, runningcunum=nil, cumem=nil, statusdesc=nil, currentrunmillis=nil, clusterid=nil, webuiurl=nil, schedulertype=nil, clusterstatus=nil, runningcu=nil, flinkversion=nil, workspaceid=nil, workspacename=nil, tags=nil, eventinfo=nil, description=nil, scalingtype=nil, runningcpu=nil, runningmem=nil, openjobdefaultalarm=nil, progressdesc=nil, continuealarm=nil, restartcount=nil, expectjobdefaultalarmstatus=nil, jdkversion=nil, statecosbucket=nil, newstatecosbucket=nil, statecosbuckettype=nil, newstatecosbuckettype=nil)
           @JobId = jobid
           @Region = region
           @Zone = zone
@@ -4268,6 +4392,10 @@ module TencentCloud
           @RestartCount = restartcount
           @ExpectJobDefaultAlarmStatus = expectjobdefaultalarmstatus
           @JdkVersion = jdkversion
+          @StateCOSBucket = statecosbucket
+          @NewStateCOSBucket = newstatecosbucket
+          @StateCOSBucketType = statecosbuckettype
+          @NewStateCOSBucketType = newstatecosbuckettype
         end
 
         def deserialize(params)
@@ -4325,6 +4453,10 @@ module TencentCloud
           @RestartCount = params['RestartCount']
           @ExpectJobDefaultAlarmStatus = params['ExpectJobDefaultAlarmStatus']
           @JdkVersion = params['JdkVersion']
+          @StateCOSBucket = params['StateCOSBucket']
+          @NewStateCOSBucket = params['NewStateCOSBucket']
+          @StateCOSBucketType = params['StateCOSBucketType']
+          @NewStateCOSBucketType = params['NewStateCOSBucketType']
         end
       end
 
@@ -5411,52 +5543,60 @@ module TencentCloud
 
       # 描述Savepoint信息
       class Savepoint < TencentCloud::Common::AbstractModel
-        # @param Id: 主键
+        # @param Id: <p>主键</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: Integer
-        # @param VersionId: 版本号
+        # @param VersionId: <p>版本号</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VersionId: Integer
-        # @param Status: 状态 1: Active; 2: Expired; 3: InProgress; 4: Failed; 5: Timeout
+        # @param Status: <p>状态 1: Active; 2: Expired; 3: InProgress; 4: Failed; 5: Timeout</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
-        # @param CreateTime: 创建时间
+        # @param CreateTime: <p>创建时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: Integer
-        # @param UpdateTime: 更新时间
+        # @param UpdateTime: <p>更新时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: Integer
-        # @param Path: 路径
+        # @param Path: <p>路径</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Path: String
-        # @param Size: 大小
+        # @param Size: <p>大小</p><p>单位：Byte</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Size: Integer
-        # @param RecordType: 快照类型 1: savepoint；2: checkpoint；3: cancelWithSavepoint
+        # @param RecordType: <p>快照类型 1: savepoint；2: checkpoint；3: cancelWithSavepoint</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RecordType: Integer
-        # @param JobRuntimeId: 运行作业实例的顺序 ID
+        # @param JobRuntimeId: <p>运行作业实例的顺序 ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JobRuntimeId: Integer
-        # @param Description: 描述
+        # @param Description: <p>描述</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
-        # @param Timeout: 固定超时时间
+        # @param Timeout: <p>固定超时时间</p><p>单位：毫秒</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Timeout: Integer
-        # @param SerialId: 快照 serialId
+        # @param SerialId: <p>快照 serialId</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SerialId: String
-        # @param TimeConsuming: 耗时
+        # @param TimeConsuming: <p>耗时</p><p>单位：毫秒</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimeConsuming: Integer
-        # @param PathStatus: 快照路径状态 1：可用；2：不可用；
+        # @param PathStatus: <p>快照路径状态 1：可用；2：不可用；</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PathStatus: Integer
+        # @param FlinkVersion: <p>Flink版本</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FlinkVersion: String
+        # @param IsIncremental: <p>CheckPoint是否增量</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsIncremental: String
+        # @param CheckpointSize: <p>checkpoint 大小</p><p>单位：Byte</p>
+        # @type CheckpointSize: Integer
 
-        attr_accessor :Id, :VersionId, :Status, :CreateTime, :UpdateTime, :Path, :Size, :RecordType, :JobRuntimeId, :Description, :Timeout, :SerialId, :TimeConsuming, :PathStatus
+        attr_accessor :Id, :VersionId, :Status, :CreateTime, :UpdateTime, :Path, :Size, :RecordType, :JobRuntimeId, :Description, :Timeout, :SerialId, :TimeConsuming, :PathStatus, :FlinkVersion, :IsIncremental, :CheckpointSize
 
-        def initialize(id=nil, versionid=nil, status=nil, createtime=nil, updatetime=nil, path=nil, size=nil, recordtype=nil, jobruntimeid=nil, description=nil, timeout=nil, serialid=nil, timeconsuming=nil, pathstatus=nil)
+        def initialize(id=nil, versionid=nil, status=nil, createtime=nil, updatetime=nil, path=nil, size=nil, recordtype=nil, jobruntimeid=nil, description=nil, timeout=nil, serialid=nil, timeconsuming=nil, pathstatus=nil, flinkversion=nil, isincremental=nil, checkpointsize=nil)
           @Id = id
           @VersionId = versionid
           @Status = status
@@ -5471,6 +5611,9 @@ module TencentCloud
           @SerialId = serialid
           @TimeConsuming = timeconsuming
           @PathStatus = pathstatus
+          @FlinkVersion = flinkversion
+          @IsIncremental = isincremental
+          @CheckpointSize = checkpointsize
         end
 
         def deserialize(params)
@@ -5488,6 +5631,9 @@ module TencentCloud
           @SerialId = params['SerialId']
           @TimeConsuming = params['TimeConsuming']
           @PathStatus = params['PathStatus']
+          @FlinkVersion = params['FlinkVersion']
+          @IsIncremental = params['IsIncremental']
+          @CheckpointSize = params['CheckpointSize']
         end
       end
 
@@ -5575,10 +5721,12 @@ module TencentCloud
         # @type Name: String
         # @param Remark: <p>Setats集群描述</p>
         # @type Remark: String
+        # @param IsolationPolicyVersion: <p>集群隔离时间，0为7天，1为15天</p>
+        # @type IsolationPolicyVersion: Integer
 
-        attr_accessor :SetatsSerialId, :Status, :Warehouse, :MasterInfo, :WorkerInfo, :Tags, :AutoRenewFlag, :ExpireTime, :SecondsUntilExpiry, :CreateTime, :ManagerUrl, :IsolatedTime, :OwnerClusterGroupSerialId, :Type, :SetatsUiUrl, :ImageVersion, :WebUIType, :Name, :Remark
+        attr_accessor :SetatsSerialId, :Status, :Warehouse, :MasterInfo, :WorkerInfo, :Tags, :AutoRenewFlag, :ExpireTime, :SecondsUntilExpiry, :CreateTime, :ManagerUrl, :IsolatedTime, :OwnerClusterGroupSerialId, :Type, :SetatsUiUrl, :ImageVersion, :WebUIType, :Name, :Remark, :IsolationPolicyVersion
 
-        def initialize(setatsserialid=nil, status=nil, warehouse=nil, masterinfo=nil, workerinfo=nil, tags=nil, autorenewflag=nil, expiretime=nil, secondsuntilexpiry=nil, createtime=nil, managerurl=nil, isolatedtime=nil, ownerclustergroupserialid=nil, type=nil, setatsuiurl=nil, imageversion=nil, webuitype=nil, name=nil, remark=nil)
+        def initialize(setatsserialid=nil, status=nil, warehouse=nil, masterinfo=nil, workerinfo=nil, tags=nil, autorenewflag=nil, expiretime=nil, secondsuntilexpiry=nil, createtime=nil, managerurl=nil, isolatedtime=nil, ownerclustergroupserialid=nil, type=nil, setatsuiurl=nil, imageversion=nil, webuitype=nil, name=nil, remark=nil, isolationpolicyversion=nil)
           @SetatsSerialId = setatsserialid
           @Status = status
           @Warehouse = warehouse
@@ -5598,6 +5746,7 @@ module TencentCloud
           @WebUIType = webuitype
           @Name = name
           @Remark = remark
+          @IsolationPolicyVersion = isolationpolicyversion
         end
 
         def deserialize(params)
@@ -5636,6 +5785,7 @@ module TencentCloud
           @WebUIType = params['WebUIType']
           @Name = params['Name']
           @Remark = params['Remark']
+          @IsolationPolicyVersion = params['IsolationPolicyVersion']
         end
       end
 
@@ -6148,40 +6298,41 @@ module TencentCloud
 
       # 自定义树结构出参作业列表
       class TreeJobSets < TencentCloud::Common::AbstractModel
-        # @param JobId: 作业Id
+        # @param JobId: <p>作业Id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JobId: String
-        # @param Name: 作业名
+        # @param Name: <p>作业名</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
-        # @param JobType: 作业类型
+        # @param JobType: <p>作业类型</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JobType: Integer
-        # @param RunningCu: 作业占用资源
+        # @param RunningCu: <p>作业占用资源</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RunningCu: Float
-        # @param Status: 作业状态 启动或者停止或者暂停
+        # @param Status: <p>作业状态 启动或者停止或者暂停</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
-        # @param ScalingType: 0:代表没开启调优任务，1:开启智能调优，2:代表定时调优
-
+        # @param ScalingType: <p>0:代表没开启调优任务，1:开启智能调优，2:代表定时调优</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScalingType: Integer
-        # @param RunningCpu: RunningCpu
+        # @param RunningCpu: <p>RunningCpu</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RunningCpu: Float
-        # @param RunningMem: RunningMem
+        # @param RunningMem: <p>RunningMem</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RunningMem: Float
-        # @param DecodeSqlCode: sql
+        # @param DecodeSqlCode: <p>sql</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DecodeSqlCode: String
-        # @param PublishedJobConfigId: 发布版本配置id
+        # @param PublishedJobConfigId: <p>发布版本配置id</p>
         # @type PublishedJobConfigId: Integer
+        # @param FolderPath: <p>完整的文件夹路径，仅在平铺模式下返回</p>
+        # @type FolderPath: String
 
-        attr_accessor :JobId, :Name, :JobType, :RunningCu, :Status, :ScalingType, :RunningCpu, :RunningMem, :DecodeSqlCode, :PublishedJobConfigId
+        attr_accessor :JobId, :Name, :JobType, :RunningCu, :Status, :ScalingType, :RunningCpu, :RunningMem, :DecodeSqlCode, :PublishedJobConfigId, :FolderPath
 
-        def initialize(jobid=nil, name=nil, jobtype=nil, runningcu=nil, status=nil, scalingtype=nil, runningcpu=nil, runningmem=nil, decodesqlcode=nil, publishedjobconfigid=nil)
+        def initialize(jobid=nil, name=nil, jobtype=nil, runningcu=nil, status=nil, scalingtype=nil, runningcpu=nil, runningmem=nil, decodesqlcode=nil, publishedjobconfigid=nil, folderpath=nil)
           @JobId = jobid
           @Name = name
           @JobType = jobtype
@@ -6192,6 +6343,7 @@ module TencentCloud
           @RunningMem = runningmem
           @DecodeSqlCode = decodesqlcode
           @PublishedJobConfigId = publishedjobconfigid
+          @FolderPath = folderpath
         end
 
         def deserialize(params)
@@ -6205,6 +6357,7 @@ module TencentCloud
           @RunningMem = params['RunningMem']
           @DecodeSqlCode = params['DecodeSqlCode']
           @PublishedJobConfigId = params['PublishedJobConfigId']
+          @FolderPath = params['FolderPath']
         end
       end
 

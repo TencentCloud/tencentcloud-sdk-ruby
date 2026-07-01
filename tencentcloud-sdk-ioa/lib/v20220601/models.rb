@@ -2589,13 +2589,13 @@ module TencentCloud
 
       # DescribeDeviceHardwareInfoList请求参数结构体
       class DescribeDeviceHardwareInfoListRequest < TencentCloud::Common::AbstractModel
-        # @param GroupId: 【必填】设备分组id（需要和OsType匹配），下面是私有化场景下默认id：id-名称-操作系统1	全网终端	Win2	未分组终端	Win30000000	服务器	Win40000101	全网终端	Linux40000102	未分组终端	Linux40000103	服务器	Linux40000201	全网终端	macOS40000202	未分组终端	macOS40000203	服务器	macOS40000401	全网终端	Android40000402	未分组终端	Android40000501	全网终端	iOS40000502	未分组终端	iOSSaaS需要调用分组接口DescribeDeviceChildGroups获取对应分组id
+        # @param GroupId: <p>【必填】设备分组id（需要和OsType匹配），下面是私有化场景下默认id：id-名称-操作系统1    全网终端    Win2    未分组终端    Win30000000    服务器    Win40000101    全网终端    Linux40000102    未分组终端    Linux40000103    服务器    Linux40000201    全网终端    macOS40000202    未分组终端    macOS40000203    服务器    macOS40000401    全网终端    Android40000402    未分组终端    Android40000501    全网终端    iOS40000502    未分组终端    iOSSaaS需要调用分组接口DescribeDeviceChildGroups获取对应分组id</p>
         # @type GroupId: Integer
-        # @param OsType: 【必填】系统类型（0: win，1：linux，2: mac，4：android，5：ios，-1：全系统（SaaS一体化版本） ； 不传默认为0）(只支持32位)，需要和GroupId或者GroupIds匹配
+        # @param OsType: <p>【必填】系统类型（0: win，1：linux，2: mac，4：android，5：ios，-1：全系统（SaaS一体化版本））(只支持32位)，需要和GroupId或者GroupIds匹配</p><p>枚举值：</p><ul><li>0： Windows</li><li>1： Linux</li><li>2： macOS</li><li>4： Android</li><li>5： iOS</li><li>-1： 全系统（SaaS一体化版本）</li></ul>
         # @type OsType: Integer
         # @param DomainInstanceId: 管理域实例ID，用于CAM管理域权限分配。若企业未进行管理域的划分，可直接传入根域"1"，此时表示针对当前企业的全部设备和账号进行接口CRUD，具体CRUD的影响范围限制于相应接口的入参。
         # @type DomainInstanceId: String
-        # @param Condition: 过滤条件参数（字段含义请参考接口返回值）  - Name, 类型String，支持操作：【eq，like，ilike】，支持排序  - UserName, 类型String，支持操作：【eq，like，ilike】，支持排序  - IoaUserName，类型String，支持操作：【eq，like，ilike】，支持排序  - MacAddr, 类型String，支持操作：【eq，like，ilike】，支持排序  - Ip, 类型String，支持操作：【eq，like，ilike】，支持排序  - Mid, 类型String，支持操作：【eq，like，ilike】，支持排序  ，支持排序分页参数  - PageNum 从1开始，小于等于0时使用默认参数 - PageSize 最大值5000，最好不超过100
+        # @param Condition: <p>过滤条件参数（字段含义请参考接口返回值）  - Name, 类型String，支持操作：【eq，like，ilike】，支持排序  - UserName, 类型String，支持操作：【eq，like，ilike】，支持排序  - IoaUserName，类型String，支持操作：【eq，like，ilike】，支持排序  - MacAddr, 类型String，支持操作：【eq，like，ilike】，支持排序  - Ip, 类型String，支持操作：【eq，like，ilike】，支持排序  - Mid, 类型String，支持操作：【eq，like，ilike】，支持排序  ，支持排序分页参数  - PageNum 从1开始，小于等于0时使用默认参数 - PageSize 最大值5000，最好不超过100</p>
         # @type Condition: :class:`Tencentcloud::Ioa.v20220601.models.Condition`
 
         attr_accessor :GroupId, :OsType, :DomainInstanceId, :Condition
@@ -2620,7 +2620,7 @@ module TencentCloud
 
       # DescribeDeviceHardwareInfoList返回参数结构体
       class DescribeDeviceHardwareInfoListResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 分页的data数据
+        # @param Data: <p>分页的data数据</p>
         # @type Data: :class:`Tencentcloud::Ioa.v20220601.models.DescribeDeviceHardwareInfoListRspData`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3714,23 +3714,26 @@ module TencentCloud
 
       # DescribeSoftwareInformation请求参数结构体
       class DescribeSoftwareInformationRequest < TencentCloud::Common::AbstractModel
-        # @param Mid: 终端唯一标识Mid
+        # @param DomainInstanceId: 管理域实例ID，用于CAM管理域权限分配。若企业未进行管理域的划分，可直接传入根域"1"，此时表示针对当前企业的全部设备和账号进行接口CRUD，具体CRUD的影响范围限制于相应接口的入参。
+        # @type DomainInstanceId: String
+        # @param Mid: <p>终端唯一标识Mid</p>
         # @type Mid: String
-        # @param Condition: 过滤条件、分页参数
-        # <li>Name - String - 过滤支持：是 - 操作符:eq,like - 排序支持：是 。</li>
+        # @param Condition: <p>过滤条件、分页参数</p><li>Name - String - 过滤支持：是 - 操作符:eq,like - 排序支持：是 。</li>
         # @type Condition: :class:`Tencentcloud::Ioa.v20220601.models.Condition`
-        # @param OsType: 0:win 2:mac
+        # @param OsType: <p>0:win 2:mac</p>
         # @type OsType: Integer
 
-        attr_accessor :Mid, :Condition, :OsType
+        attr_accessor :DomainInstanceId, :Mid, :Condition, :OsType
 
-        def initialize(mid=nil, condition=nil, ostype=nil)
+        def initialize(domaininstanceid=nil, mid=nil, condition=nil, ostype=nil)
+          @DomainInstanceId = domaininstanceid
           @Mid = mid
           @Condition = condition
           @OsType = ostype
         end
 
         def deserialize(params)
+          @DomainInstanceId = params['DomainInstanceId']
           @Mid = params['Mid']
           unless params['Condition'].nil?
             @Condition = Condition.new
@@ -3742,7 +3745,7 @@ module TencentCloud
 
       # DescribeSoftwareInformation返回参数结构体
       class DescribeSoftwareInformationResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 业务响应数据
+        # @param Data: <p>业务响应数据</p>
         # @type Data: :class:`Tencentcloud::Ioa.v20220601.models.DescribeSoftwareInformationPageData`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

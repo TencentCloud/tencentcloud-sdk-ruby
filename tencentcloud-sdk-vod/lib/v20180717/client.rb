@@ -404,6 +404,34 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 用于创建并启用 AIGC 配额配置，配额用量从启用配额功能时开始累计，达到限额后将无法继续使用 AIGC 功能。
+
+        # 如果删除配额后重新启用，用量将清零并重新计算。
+
+        # 由于AGC内客生成为异步任务，无法获取实时用量数据，因此配额限制存在一定误差，无法实现与设置额度完全精准的控制。
+
+        # @param request: Request instance for CreateAigcQuota.
+        # @type request: :class:`Tencentcloud::vod::V20180717::CreateAigcQuotaRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::CreateAigcQuotaResponse`
+        def CreateAigcQuota(request)
+          body = send_request('CreateAigcQuota', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateAigcQuotaResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 该接口用于创建 AIGC 自定义主体（Vidu）。注意，调用本接口会产生费用，请参考[计费文档](https://cloud.tencent.com/document/product/266/95125#96b3b59a-f9e1-49e9-966a-bedb70a4bf12)。
 
         # @param request: Request instance for CreateAigcSubject.
@@ -1423,6 +1451,32 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 用于删除 AIGC 配额配置，删除后，将不再限制 AIGC 任务的发起。
+
+        # 如果删除配额后重新启用，用量将清零并重新计算。
+
+        # @param request: Request instance for DeleteAigcQuota.
+        # @type request: :class:`Tencentcloud::vod::V20180717::DeleteAigcQuotaRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::DeleteAigcQuotaResponse`
+        def DeleteAigcQuota(request)
+          body = send_request('DeleteAigcQuota', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteAigcQuotaResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除用户自定义转动图模板。
 
         # @param request: Request instance for DeleteAnimatedGraphicsTemplate.
@@ -2239,6 +2293,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeAigcFaceInfoAsyncResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 用于查询 AIGC 配额配置。
+
+        # @param request: Request instance for DescribeAigcQuotas.
+        # @type request: :class:`Tencentcloud::vod::V20180717::DescribeAigcQuotasRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::DescribeAigcQuotasResponse`
+        def DescribeAigcQuotas(request)
+          body = send_request('DescribeAigcQuotas', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAigcQuotasResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -4155,6 +4233,32 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyAdaptiveDynamicStreamingTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 用于编辑 AIGC 配额配置，配额用量从启用配额功能时开始累计，达到限额后将无法继续使用 AIGC 功能。
+
+        # 由于AGC内客生成为异步任务，无法获取实时用量数据，因此配额限制存在一定误差，无法实现与设置额度完全精准的控制。
+
+        # @param request: Request instance for ModifyAigcQuota.
+        # @type request: :class:`Tencentcloud::vod::V20180717::ModifyAigcQuotaRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::ModifyAigcQuotaResponse`
+        def ModifyAigcQuota(request)
+          body = send_request('ModifyAigcQuota', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyAigcQuotaResponse.new
             model.deserialize(response['Response'])
             model
           else

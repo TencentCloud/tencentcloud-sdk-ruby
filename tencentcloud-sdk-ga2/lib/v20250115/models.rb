@@ -154,13 +154,13 @@ module TencentCloud
 
       # CreateEndpointGroup请求参数结构体
       class CreateEndpointGroupRequest < TencentCloud::Common::AbstractModel
-        # @param GlobalAcceleratorId: 全球加速实例ID。
+        # @param GlobalAcceleratorId: <p>全球加速实例ID。</p>
         # @type GlobalAcceleratorId: String
-        # @param ListenerId: 监听器ID。
+        # @param ListenerId: <p>监听器ID。</p>
         # @type ListenerId: String
-        # @param EndpointGroupType: 终端节点组类型。支持VIRTUAL，DEFAULT。
+        # @param EndpointGroupType: <p>终端节点组类型。</p><p>枚举值：</p><ul><li>VIRTUAL： 自定义终端节点组</li><li>DEFAULT： 默认终端节点组</li></ul>
         # @type EndpointGroupType: String
-        # @param EndpointGroupConfiguration: 终端节点组配置。
+        # @param EndpointGroupConfiguration: <p>终端节点组配置。</p>
         # @type EndpointGroupConfiguration: :class:`Tencentcloud::Ga2.v20250115.models.EndpointGroupConfiguration`
 
         attr_accessor :GlobalAcceleratorId, :ListenerId, :EndpointGroupType, :EndpointGroupConfiguration
@@ -185,9 +185,9 @@ module TencentCloud
 
       # CreateEndpointGroup返回参数结构体
       class CreateEndpointGroupResponse < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务ID。
+        # @param TaskId: <p>任务ID。</p>
         # @type TaskId: String
-        # @param EndpointGroupId: 终端节点组实例ID。
+        # @param EndpointGroupId: <p>终端节点组实例ID。</p>
         # @type EndpointGroupId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -209,11 +209,11 @@ module TencentCloud
 
       # CreateForwardingPolicy请求参数结构体
       class CreateForwardingPolicyRequest < TencentCloud::Common::AbstractModel
-        # @param GlobalAcceleratorId: 全球加速实例ID。
+        # @param GlobalAcceleratorId: <p>全球加速实例ID。</p>
         # @type GlobalAcceleratorId: String
-        # @param ListenerId: 监听器ID。
+        # @param ListenerId: <p>监听器ID。</p>
         # @type ListenerId: String
-        # @param Host: 域名。
+        # @param Host: <p>域名。</p><p>参数格式：格式，必须满足正则表达式：^(<a href="?:[a-z0-9-]{0,61}[a-z0-9]">a-z0-9</a>?.)+[a-z]{2,}$</p><p>入参限制：长度范围是1-80。</p>
         # @type Host: String
 
         attr_accessor :GlobalAcceleratorId, :ListenerId, :Host
@@ -233,9 +233,9 @@ module TencentCloud
 
       # CreateForwardingPolicy返回参数结构体
       class CreateForwardingPolicyResponse < TencentCloud::Common::AbstractModel
-        # @param TaskId: 异步任务ID。
+        # @param TaskId: <p>异步任务ID。</p>
         # @type TaskId: String
-        # @param ForwardingPolicyId: 七层转发策略ID。
+        # @param ForwardingPolicyId: <p>七层转发策略ID。</p>
         # @type ForwardingPolicyId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -263,21 +263,21 @@ module TencentCloud
         # @type ListenerId: String
         # @param ForwardingPolicyId: <p>策略ID。</p>
         # @type ForwardingPolicyId: String
-        # @param RuleConditions: <p>七层转发规则条件信息。</p>
+        # @param RuleConditions: <p>七层转发规则条件信息。</p><p>数组长度最大不能超过1。</p>
         # @type RuleConditions: Array
-        # @param RuleActions: <p>七层转发规则行为信息。</p>
+        # @param RuleActions: <p>七层转发规则行为信息。</p><p>数组长度最大不能超过1。</p>
         # @type RuleActions: Array
-        # @param OriginHeaders: <p>回源Header信息。</p>
+        # @param OriginHeaders: <p>回源Header信息。</p><p>数组长度最大不能超过5。当RuleActions.RuleActionType是ForwardGroup时，此字段必传。</p>
         # @type OriginHeaders: Array
-        # @param EnableOriginSni: <p>是否开启回源sni。</p>
+        # @param EnableOriginSni: <p>是否开启回源sni。</p><p>默认值：False</p><p>当RuleActions.RuleActionType是ForwardGroup时，此字段必传。</p>
         # @type EnableOriginSni: Boolean
-        # @param OriginSni: <p>回源sni。</p>
+        # @param OriginSni: <p>回源sni。</p><p>入参限制：长度不能超过80。</p><p>当EnableOriginSni为True时，此字段必传。当RuleActions.RuleActionType是ForwardGroup时，此字段必传。</p>
         # @type OriginSni: String
-        # @param OriginHost: <p>回源host。</p>
+        # @param OriginHost: <p>回源host。</p><p>入参限制：长度不超过80。</p><p>当RuleActions.RuleActionType是ForwardGroup时，此字段必传。</p>
         # @type OriginHost: String
-        # @param ResponseHeaders: <p>源站响应头</p>
+        # @param ResponseHeaders: <p>源站响应头</p><p>数组长度不超过5。可以传空数组，代表清空配置。</p>
         # @type ResponseHeaders: Array
-        # @param HideResponseHeaders: <p>删除源站响应头</p>
+        # @param HideResponseHeaders: <p>删除源站响应头</p><p>数组长度不超过5。可以传空数组，代表清空配置。</p>
         # @type HideResponseHeaders: Array
 
         attr_accessor :GlobalAcceleratorId, :ListenerId, :ForwardingPolicyId, :RuleConditions, :RuleActions, :OriginHeaders, :EnableOriginSni, :OriginSni, :OriginHost, :ResponseHeaders, :HideResponseHeaders
@@ -447,27 +447,27 @@ module TencentCloud
         # @type PortRanges: :class:`Tencentcloud::Ga2.v20250115.models.PortRanges`
         # @param Description: <p>描述信息，最大长度不能超过100个字节。</p>
         # @type Description: String
-        # @param ListenerType: <p>监听类型，默认为智能路由。</p>
+        # @param ListenerType: <p>监听类型，默认为智能路由。</p><p>枚举值：</p><ul><li>Standard： 智能路由。</li></ul>
         # @type ListenerType: String
-        # @param Protocol: <p>协议，默认为TCP。</p>
+        # @param Protocol: <p>协议，默认为TCP。支持配置&#39;TCP&#39;, &#39;UDP&#39;, &#39;HTTP&#39;, &#39;HTTPS&#39;。</p>
         # @type Protocol: String
-        # @param IdleTimeout: <p>连接空闲等待时间。</p>
+        # @param IdleTimeout: <p>连接空闲等待时间。</p><p>1、HTTP/HTTPS监听器，默认值为15，支持范围为1-60；<br>2、TCP监听器，默认值为900，支持范围为10-900；<br>3、UDP监听器，默认值为20，支持范围为10-20；</p>
         # @type IdleTimeout: Integer
-        # @param GetRealIpType: <p>四层获取源IP方式，支持&#39;TOA&#39;, &#39;ProxyProtocol&#39;。</p>
+        # @param GetRealIpType: <p>四层获取源IP方式，支持&#39;TOA&#39;, &#39;ProxyProtocol&#39;, &#39;ProxyProtocolV2&#39;。</p><p>需要开启四层获取源IP方式，才填写此参数。</p>
         # @type GetRealIpType: String
-        # @param ClientAffinity: <p>是否开启会话保持。</p>
+        # @param ClientAffinity: <p>是否开启会话保持。支持配置&#39;Open&#39;, &#39;Close&#39;。</p><p>枚举值：</p><ul><li>Open： 开启。</li><li>Close： 关闭。</li></ul>
         # @type ClientAffinity: String
-        # @param RequestTimeout: <p>请求超时时间。</p>
+        # @param RequestTimeout: <p>请求超时时间。</p><p>取值范围：[1, 180]</p><p>默认值：60</p><p>当HTTPS监听器时才可配置此参数。</p>
         # @type RequestTimeout: Integer
         # @param XForwardedForRealIp: <p>是否打开七层获取源IP方式。</p>
         # @type XForwardedForRealIp: Boolean
-        # @param CertificationType: <p>解析方式。UNIDIRECTIONAL：双向。MUTUAL：单向。</p>
+        # @param CertificationType: <p>解析方式。</p><p>枚举值：</p><ul><li>UNIDIRECTIONAL： 双向。</li><li>U： 单向。</li></ul><p>HTTPS监听器，此字段必传。</p>
         # @type CertificationType: String
-        # @param CipherPolicyId: <p>加密算法套件。</p>
+        # @param CipherPolicyId: <p>加密算法套件。支持配置&#39;tls_policy_1.0-2&#39;, &#39;tls_policy_1.1-2&#39;, &#39;tls_policy_1.2&#39;, &#39;tls_policy_1.2_strict&#39;, &#39;tls_policy_1.2_strict-1.3&#39;。</p>
         # @type CipherPolicyId: String
-        # @param ServerCertificates: <p>服务器证书。</p>
+        # @param ServerCertificates: <p>服务器证书。</p><p>当是HTTPS监听器时，此字段必传。</p>
         # @type ServerCertificates: Array
-        # @param ClientCaCertificates: <p>客户端证书。</p>
+        # @param ClientCaCertificates: <p>客户端证书。</p><p>当时HTTPS监听器且开启双向认证时，此字段必传。</p>
         # @type ClientCaCertificates: Array
         # @param HttpVersion: <p>HTTPS监听器支持选择版本</p><p>枚举值：</p><ul><li>HTTP/1.1： HTTP/1.1</li><li>HTTP/2： HTTP/2</li></ul>
         # @type HttpVersion: String
@@ -1123,11 +1123,11 @@ module TencentCloud
 
       # DescribeGlobalAccelerators请求参数结构体
       class DescribeGlobalAcceleratorsRequest < TencentCloud::Common::AbstractModel
-        # @param Offset: 偏移量，默认为0。
+        # @param Offset: <p>偏移量，默认为0。</p>
         # @type Offset: Integer
-        # @param Limit: 返回数量，默认为20，最大值为100。
+        # @param Limit: <p>返回数量。</p><p>取值范围：[1, 200]</p><p>默认值：20</p>
         # @type Limit: Integer
-        # @param Filters: 过滤条件。<li>global-accelerator-id - String -（过滤条件）全球加速实例ID。</li> <li>global-accelerator-state - String -（过滤条件）全球加速实例状态。</li>
+        # @param Filters: <p>过滤条件。<li>global-accelerator-id - String -（过滤条件）全球加速实例ID。</li> <li>global-accelerator-state - String -（过滤条件）全球加速实例状态。</li></p>
         # @type Filters: Array
 
         attr_accessor :Offset, :Limit, :Filters
@@ -1154,9 +1154,9 @@ module TencentCloud
 
       # DescribeGlobalAccelerators返回参数结构体
       class DescribeGlobalAcceleratorsResponse < TencentCloud::Common::AbstractModel
-        # @param GlobalAcceleratorSet: 符合条件的全球加速实例。
+        # @param GlobalAcceleratorSet: <p>符合条件的全球加速实例。</p>
         # @type GlobalAcceleratorSet: Array
-        # @param TotalCount: 符合条件的实例个数。
+        # @param TotalCount: <p>符合条件的实例个数。</p>
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1315,51 +1315,51 @@ module TencentCloud
 
       # 终端节点组配置
       class EndpointGroupConfiguration < TencentCloud::Common::AbstractModel
-        # @param Name: <p>名称，最大长度不能超过60个字节。</p>
+        # @param Name: <p>终端节点组名称。</p><p>最大长度不能超过128个字节。必须以字母（a-z, A-Z）或中文字符开头。</p>
         # @type Name: String
-        # @param EndpointGroupRegion: <p>地域。</p>
+        # @param EndpointGroupRegion: <p>终端节点组所在地域。</p>
         # @type EndpointGroupRegion: String
         # @param EndpointConfigurations: <p>终端节点配置。</p>
         # @type EndpointConfigurations: Array
-        # @param CheckType: <p>检查协议。支持&#39;TCP&#39;, &#39;HTTP&#39;, &#39;HTTPS&#39;, &#39;PING&#39;, &#39;CUSTOM&#39;。</p>
+        # @param CheckType: <p>检查协议。支持配置&#39;TCP&#39;, &#39;HTTP&#39;, &#39;PING&#39;, &#39;CUSTOM&#39;。</p><p>枚举值：</p><ul><li>TCP： 当终端节点组所在监听器协议是TCP时，可以选择检查协议为TCP。</li><li>HTTP： 当终端节点组所在监听器协议是HTTP或HTTPS时，可以选择检查协议为HTTP。</li><li>PING： 当终端节点组所在监听器协议是UDP时，可以选择检查协议为PING。</li><li>CUSTOM： 当终端节点组所在监听器协议是UDP或TCP时，可以选择检查协议为CUSTOM。</li></ul><p>当开启健康检查时此字段必传。</p>
         # @type CheckType: String
-        # @param Description: <p>描述信息，最大长度不能超过100个字节。</p>
+        # @param Description: <p>描述信息。</p><p>默认值：默认值为空，代表不配置描述信息。</p><p>最大长度不能超过100个字节。</p>
         # @type Description: String
-        # @param CheckPort: <p>检查端口。</p>
+        # @param CheckPort: <p>检查端口。</p><p>入参限制：范围是1-65535。</p><p>当CheckType为CUSTOM时候，此字段必传。</p>
         # @type CheckPort: String
-        # @param ContextType: <p>检查内容。</p>
+        # @param ContextType: <p>检查内容。支持配置&#39;TEXT&#39;。</p><p>枚举值：</p><ul><li>TEXT： 文本内容。</li></ul><p>当CheckType为CUSTOM时候，此字段必传。</p>
         # @type ContextType: String
-        # @param CheckSendContext: <p>检查请求。</p>
+        # @param CheckSendContext: <p>检查请求。</p><p>入参限制：字节长度要在1-500范围内。</p><p>当CheckType为CUSTOM时候，此字段必传。</p>
         # @type CheckSendContext: String
-        # @param CheckRecvContext: <p>检查返回结果。</p>
+        # @param CheckRecvContext: <p>检查返回结果。</p><p>入参限制：字节长度要在1-500范围内。</p><p>当CheckType为CUSTOM时候，此字段必传。</p>
         # @type CheckRecvContext: String
-        # @param EnableHealthCheck: <p>是否开启健康检查。</p>
+        # @param EnableHealthCheck: <p>是否开启健康检查。</p><p>默认值：False</p>
         # @type EnableHealthCheck: Boolean
-        # @param ConnectTimeout: <p>响应超时时间。</p>
+        # @param ConnectTimeout: <p>响应超时时间。</p><p>取值范围：[1, 100]</p><p>默认值：2</p><p>开启健康检查时，此字段必传。</p>
         # @type ConnectTimeout: Integer
-        # @param HealthCheckInterval: <p>健康检查间隔。</p>
+        # @param HealthCheckInterval: <p>健康检查间隔。</p><p>取值范围：[5, 300]</p><p>默认值：30</p><p>开启健康检查，此字段必传。</p>
         # @type HealthCheckInterval: Integer
-        # @param UnhealthyThreshold: <p>不健康阀值。</p>
+        # @param UnhealthyThreshold: <p>不健康阀值。</p><p>取值范围：[1, 10]</p><p>默认值：3</p><p>开启健康检查，此字段必传。</p>
         # @type UnhealthyThreshold: Integer
-        # @param HealthyThreshold: <p>健康阈值。</p>
+        # @param HealthyThreshold: <p>健康阈值。</p><p>取值范围：[1, 10]</p><p>默认值：3</p><p>开启健康检查，此字段必传。</p>
         # @type HealthyThreshold: Integer
-        # @param ForwardProtocol: <p>回源协议。</p>
+        # @param ForwardProtocol: <p>回源协议。支持配置&#39;HTTP&#39;, &#39;HTTPS&#39;。</p><p>枚举值：</p><ul><li>HTTP： HTTP回源；当终端节点组所在监听器协议是HTTP或HTTPS时可以配置HTTP。</li><li>HTTPS： HTTPS回源；当终端节点组所在监听器协议是HTTPS时可以配置HTTPS。</li></ul><p>当终端节点组所在监听器协议为HTTP或HTTPS时候，此字段必传。</p>
         # @type ForwardProtocol: String
-        # @param CheckDomain: <p>检查域名。</p>
+        # @param CheckDomain: <p>检查域名。</p><p>入参限制：字节长度范围是3-80。</p><p>当CheckType是HTTP时，此字段必传。</p>
         # @type CheckDomain: String
-        # @param CheckPath: <p>检查URL。</p>
+        # @param CheckPath: <p>检查URL。</p><p>参数格式：必须满足正则：^[a-zA-Z0-9_.\-\/]{1,80}$</p><p>当CheckType是HTTP时，此字段必传。</p>
         # @type CheckPath: String
-        # @param CheckMethod: <p>请求方式。</p>
+        # @param CheckMethod: <p>请求方式。支持配置&#39;GET&#39;, &#39;HEAD&#39;。</p><p>枚举值：</p><ul><li>GET： 请求方式为GET。</li><li>HEAD： 请求方式为HEAD。</li></ul><p>当CheckType是HTTP时，此字段必传。</p>
         # @type CheckMethod: String
-        # @param StatusMask: <p>状态检测码。</p>
+        # @param StatusMask: <p>状态检测码。支持配置&#39;http_2xx&#39;, &#39;http_3xx&#39;, &#39;http_4xx&#39;, &#39;http_5xx&#39;。</p><p>枚举值：</p><ul><li>http_2xx： 2开头的http code。</li><li>http_3xx： 3开头的http code。</li><li>http_4xx： 4开头的http code。</li><li>http_5xx： 5开头的http code。</li></ul><p>当CheckType是HTTP时，此字段必传。</p>
         # @type StatusMask: Array
-        # @param PortOverrides: <p>端口映射。</p>
+        # @param PortOverrides: <p>端口映射。</p><p>入参限制：七层支持1个端口映射，四层支持最多30个端口映射。</p>
         # @type PortOverrides: Array
-        # @param IspType: <p>运用商类型。</p>
+        # @param IspType: <p>运营商类型。支持配置&#39;CMCC&#39;, &#39;CTCC&#39;, &#39;CUCC&#39;。</p><p>枚举值：</p><ul><li>CMCC： 中国移动</li><li>CUCC： 中国联通</li><li>CTCC： 中国电信</li></ul><p>当终端节点组地域为三网地域时，此字段必传。</p>
         # @type IspType: String
-        # @param CipherPolicyId: <p>HPPTS加密算法套件</p>
+        # @param CipherPolicyId: <p>HPPTS加密算法套件；支持配置&#39;tls_policy_1.0-2&#39;, &#39;tls_policy_1.1-2&#39;, &#39;tls_policy_1.2&#39;, &#39;tls_policy_1.2_strict&#39;, &#39;tls_policy_1.2_strict-1.3&#39;；</p><p>枚举值：</p><ul><li>tls_policy_1.0-2： 加密算法套件。</li><li>tls_policy_1.1-2： 加密算法套件。</li><li>tls_policy_1.2： 加密算法套件。</li><li>tls_policy_1.2_strict： 加密算法套件。</li><li>tls_policy_1.2_strict-1.3： 加密算法套件。</li></ul><p>当回源协议为HTTPS，此字段必传。</p>
         # @type CipherPolicyId: String
-        # @param HttpVersion: <p>HTTPS回源协议支持选择[&#39;HTTP/1.1&#39;, &#39;HTTP/2&#39;]</p><p>枚举值：</p><ul><li>HTTP/1.1： 版本HTTP/1.1</li><li>HTTP/2： 版本HTTP/2</li></ul>
+        # @param HttpVersion: <p>回源协议。支持配置&#39;HTTP/1.1&#39;, &#39;HTTP/2&#39;。</p><p>枚举值：</p><ul><li>HTTP/1.1： 版本HTTP/1.1</li><li>HTTP/2： 版本HTTP/2</li></ul><p>当回源协议为HTTPS时，此字段必传。</p>
         # @type HttpVersion: String
 
         attr_accessor :Name, :EndpointGroupRegion, :EndpointConfigurations, :CheckType, :Description, :CheckPort, :ContextType, :CheckSendContext, :CheckRecvContext, :EnableHealthCheck, :ConnectTimeout, :HealthCheckInterval, :UnhealthyThreshold, :HealthyThreshold, :ForwardProtocol, :CheckDomain, :CheckPath, :CheckMethod, :StatusMask, :PortOverrides, :IspType, :CipherPolicyId, :HttpVersion
@@ -1772,9 +1772,9 @@ module TencentCloud
 
       # 隐藏Header
       class HideResponseHeaders < TencentCloud::Common::AbstractModel
-        # @param Key: <p>key</p>
+        # @param Key: <p>key</p><p>入参限制：长度不能超过128</p><p>如果字符串包含$，那仅能配置&#39;$remote_addr&#39;, &#39;$remote_port&#39;，否则不支持。</p>
         # @type Key: String
-        # @param Value: <p>value</p>
+        # @param Value: <p>value</p><p>当前传&#39;&#39;值即可。</p>
         # @type Value: String
 
         attr_accessor :Key, :Value
@@ -1966,43 +1966,43 @@ module TencentCloud
         # @type EndpointGroupId: String
         # @param EndpointConfigurations: <p>终端节点配置。</p>
         # @type EndpointConfigurations: Array
-        # @param Name: <p>名称，最大长度不能超过60个字节。</p>
+        # @param Name: <p>名称。</p><p>入参限制：最大长度不能超过128个字节。</p><p>以大小写字母或中文开头。</p>
         # @type Name: String
-        # @param Description: <p>描述信息，最大长度不能超过100个字节。</p>
+        # @param Description: <p>描述信息。</p><p>入参限制：最大长度不能超过100个字节。</p>
         # @type Description: String
         # @param EnableHealthCheck: <p>是否开启健康检查。</p>
         # @type EnableHealthCheck: Boolean
-        # @param ConnectTimeout: <p>响应超时时间。</p>
+        # @param ConnectTimeout: <p>响应超时时间。</p><p>取值范围：[1, 100]</p><p>当开启健康检查时候，此参数必传。</p>
         # @type ConnectTimeout: Integer
-        # @param HealthCheckInterval: <p>健康检查间隔。</p>
+        # @param HealthCheckInterval: <p>健康检查间隔。</p><p>取值范围：[5, 300]</p><p>当开启健康检查时，此参数必传。</p>
         # @type HealthCheckInterval: Integer
-        # @param UnhealthyThreshold: <p>不健康阀值。</p>
+        # @param UnhealthyThreshold: <p>不健康阀值。</p><p>取值范围：[1, 10]</p><p>当开启健康检查时，此字段必传。</p>
         # @type UnhealthyThreshold: Integer
-        # @param HealthyThreshold: <p>健康阀值。</p>
+        # @param HealthyThreshold: <p>健康阀值。</p><p>取值范围：[1, 10]</p><p>当开启健康检查时，此字段必传。</p>
         # @type HealthyThreshold: Integer
-        # @param CheckType: <p>检查协议。</p>
+        # @param CheckType: <p>检查协议。</p><p>入参限制：支持填写：&#39;TCP&#39;, &#39;HTTP&#39;, &#39;PING&#39;, &#39;CUSTOM&#39;。</p><p>1、当监听器是TCP时，可以选CUSTOM+TCP。<br>2、当监听器是UDP时，可以选PING+CUSTOM。<br>3、当监听器是HTTP或HTTPS时，可以选HTTP。</p>
         # @type CheckType: String
-        # @param CheckPort: <p>检查端口。</p>
+        # @param CheckPort: <p>检查端口。</p><p>取值范围：[1, 65535]</p><p>当CheckType是CUSTOM时，此字段必传。</p>
         # @type CheckPort: Integer
-        # @param ContextType: <p>检查内容。</p>
+        # @param ContextType: <p>检查内容。</p><p>入参限制：仅支持TEXT。</p><p>当CheckType是CUSTOM时，此字段必传。</p>
         # @type ContextType: String
-        # @param CheckSendContext: <p>检查请求。</p>
+        # @param CheckSendContext: <p>检查请求。</p><p>入参限制：长度范围在1-500。</p><p>当CheckType是CUSTOM时，此字段必传。</p>
         # @type CheckSendContext: String
-        # @param CheckRecvContext: <p>检查返回结果。</p>
+        # @param CheckRecvContext: <p>检查返回结果。</p><p>入参限制：长度范围在1-500。</p><p>当CheckType是CUSTOM时，此字段必传。</p>
         # @type CheckRecvContext: String
-        # @param CheckDomain: <p>检查域名。</p>
+        # @param CheckDomain: <p>检查域名。</p><p>入参限制：长度范围在3-80。</p><p>当CheckType是HTTP时，此字段必传。</p>
         # @type CheckDomain: String
-        # @param CheckPath: <p>检查URL。</p>
+        # @param CheckPath: <p>检查URL。</p><p>入参限制：长度范围在3-80。</p><p>当CheckType是HTTP时，此字段必传。</p>
         # @type CheckPath: String
-        # @param CheckMethod: <p>请求方式。</p>
+        # @param CheckMethod: <p>请求方式。</p><p>入参限制：支持填写 &#39;GET&#39;, &#39;HEAD&#39;。</p><p>当CheckType是HTTP时，此字段必传。</p>
         # @type CheckMethod: String
-        # @param StatusMask: <p>状态检测码。</p>
+        # @param StatusMask: <p>状态检测码。</p><p>入参限制：支持选择&#39;http_2xx&#39;, &#39;http_3xx&#39;, &#39;http_4xx&#39;, &#39;http_5xx&#39;。</p><p>当CheckType是HTTP时，此字段必传。</p>
         # @type StatusMask: Array
-        # @param ForwardProtocol: <p>回源协议。</p>
+        # @param ForwardProtocol: <p>回源协议。</p><p>入参限制：支持选择：&#39;HTTP&#39;, &#39;HTTPS&#39;。</p><p>当监听器协议是HTTP时只能配置HTTP，是HTTPS时能配HTTP或HTTPS。</p>
         # @type ForwardProtocol: String
-        # @param PortOverrides: <p>端口映射。</p>
+        # @param PortOverrides: <p>端口映射。</p><p>当监听器协议是HTTP或HTTPS支持配置一对。当监听器协议是UDP或TCP支持配置最多30对。</p>
         # @type PortOverrides: Array
-        # @param CipherPolicyId: <p>HPPTS加密算法套件</p>
+        # @param CipherPolicyId: <p>HPPTS加密算法套件</p><p>入参限制：支持选择&#39;tls_policy_1.0-2&#39;, &#39;tls_policy_1.1-2&#39;, &#39;tls_policy_1.2&#39;, &#39;tls_policy_1.2_strict&#39;, &#39;tls_policy_1.2_strict-1.3&#39;。</p><p>当监听器协议是HTTPS时，才支持修改此参数。</p>
         # @type CipherPolicyId: String
         # @param HttpVersion: <p>仅HTTPS回源协议支持选择[&#39;HTTP/1.1&#39;, &#39;HTTP/2&#39;]</p><p>枚举值：</p><ul><li>HTTP/1.1： 版本HTTP/1.1</li><li>HTTP/2： 版本HTTP/2</li></ul>
         # @type HttpVersion: String
@@ -2100,13 +2100,13 @@ module TencentCloud
 
       # ModifyForwardingPolicy请求参数结构体
       class ModifyForwardingPolicyRequest < TencentCloud::Common::AbstractModel
-        # @param GlobalAcceleratorId: 全球加速实例ID。
+        # @param GlobalAcceleratorId: <p>全球加速实例ID。</p>
         # @type GlobalAcceleratorId: String
-        # @param ListenerId: 监听器ID。
+        # @param ListenerId: <p>监听器ID。</p>
         # @type ListenerId: String
-        # @param ForwardingPolicyId: 策略ID。
+        # @param ForwardingPolicyId: <p>策略ID。</p>
         # @type ForwardingPolicyId: String
-        # @param Host: 域名。
+        # @param Host: <p>域名。</p><p>入参限制：长度范围在1-80。</p><p>格式必须满足正则表达式：^(<a href="?:[a-z0-9-]{0,61}[a-z0-9]">a-z0-9</a>?.)+[a-z]{2,}$</p>
         # @type Host: String
 
         attr_accessor :GlobalAcceleratorId, :ListenerId, :ForwardingPolicyId, :Host
@@ -2128,7 +2128,7 @@ module TencentCloud
 
       # ModifyForwardingPolicy返回参数结构体
       class ModifyForwardingPolicyResponse < TencentCloud::Common::AbstractModel
-        # @param TaskId: 异步任务ID。
+        # @param TaskId: <p>异步任务ID。</p>
         # @type TaskId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2156,21 +2156,21 @@ module TencentCloud
         # @type ForwardingPolicyId: String
         # @param ForwardingRuleId: <p>七层转发规则ID。</p>
         # @type ForwardingRuleId: String
-        # @param RuleConditions: <p>七层转发规则条件信息。</p>
+        # @param RuleConditions: <p>七层转发规则条件信息。</p><p>入参限制：数组长度不能超过1。</p>
         # @type RuleConditions: Array
-        # @param RuleActions: <p>七层转发规则行为信息。</p>
+        # @param RuleActions: <p>七层转发规则行为信息。</p><p>入参限制：数组长度不能超过1。</p>
         # @type RuleActions: Array
-        # @param OriginHeaders: <p>回源Header信息。</p>
+        # @param OriginHeaders: <p>回源Header信息。</p><p>入参限制：数组长度在1-5。</p>
         # @type OriginHeaders: Array
         # @param EnableOriginSni: <p>是否开启回源sni。</p>
         # @type EnableOriginSni: Boolean
-        # @param OriginSni: <p>回源sni。</p>
+        # @param OriginSni: <p>回源sni。</p><p>入参限制：长度不能超过80。</p><p>当开启回源sni时，此字段必传。</p>
         # @type OriginSni: String
-        # @param OriginHost: <p>回源host。</p>
+        # @param OriginHost: <p>回源host。</p><p>入参限制：长度不能超过80。</p><p>当开启回源sni时，此字段必传。</p>
         # @type OriginHost: String
-        # @param ResponseHeaders: <p>源站响应头</p>
+        # @param ResponseHeaders: <p>源站响应头</p><p>入参限制：数组长度不能超过5。</p>
         # @type ResponseHeaders: Array
-        # @param HideResponseHeaders: <p>删除源站响应头</p>
+        # @param HideResponseHeaders: <p>删除源站响应头</p><p>入参限制：数组长度不能超过5。</p>
         # @type HideResponseHeaders: Array
 
         attr_accessor :GlobalAcceleratorId, :ListenerId, :ForwardingPolicyId, :ForwardingRuleId, :RuleConditions, :RuleActions, :OriginHeaders, :EnableOriginSni, :OriginSni, :OriginHost, :ResponseHeaders, :HideResponseHeaders
@@ -2263,15 +2263,15 @@ module TencentCloud
 
       # ModifyGlobalAccelerator请求参数结构体
       class ModifyGlobalAcceleratorRequest < TencentCloud::Common::AbstractModel
-        # @param GlobalAcceleratorId: 全球加速实例ID。
+        # @param GlobalAcceleratorId: <p>全球加速实例ID。</p>
         # @type GlobalAcceleratorId: String
-        # @param Name: 名称，最大长度不能超过60个字节。
+        # @param Name: <p>名称，最大长度不能超过60个字节。</p>
         # @type Name: String
-        # @param Description: 描述信息，最大长度不能超过100个字节。
+        # @param Description: <p>描述信息，最大长度不能超过100个字节。</p>
         # @type Description: String
-        # @param CrossBorderType: 跨境类型。
+        # @param CrossBorderType: <p>跨境类型。</p><p>枚举值：</p><ul><li>HighQuality： 精品跨境。</li><li>Unicom： 联通跨境。</li></ul>
         # @type CrossBorderType: String
-        # @param CrossBorderPromiseFlag: 代表是否跨境服务承诺。
+        # @param CrossBorderPromiseFlag: <p>代表是否填写跨境服务承诺书。</p><p>当CrossBorderType传入时，此字段必须填ture，代表填写跨境承诺书。</p>
         # @type CrossBorderPromiseFlag: Boolean
 
         attr_accessor :GlobalAcceleratorId, :Name, :Description, :CrossBorderType, :CrossBorderPromiseFlag
@@ -2295,7 +2295,7 @@ module TencentCloud
 
       # ModifyGlobalAccelerator返回参数结构体
       class ModifyGlobalAcceleratorResponse < TencentCloud::Common::AbstractModel
-        # @param TaskId: 异步任务ID。
+        # @param TaskId: <p>异步任务ID。</p>
         # @type TaskId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2323,25 +2323,25 @@ module TencentCloud
         # @type Name: String
         # @param Description: <p>描述信息，最大长度不能超过100个字节。</p>
         # @type Description: String
-        # @param IdleTimeout: <p>连接空闲等待时间。</p>
+        # @param IdleTimeout: <p>连接空闲等待时间。</p><p>1、HTTP/HTTPS监听器，支持范围为1-60；2、TCP监听器，支持范围为10-900；3、UDP监听器，支持范围为10-20；</p>
         # @type IdleTimeout: Integer
-        # @param ClientAffinity: <p>是否开启会话保持。</p>
+        # @param ClientAffinity: <p>是否开启会话保持。</p><p>枚举值：</p><ul><li>Open： 打开。</li><li>Close： 关闭。</li></ul><p>TCP/UDP监听器支持修改此参数。</p>
         # @type ClientAffinity: String
-        # @param ClientAffinityTime: <p>会话保持时间。</p>
+        # @param ClientAffinityTime: <p>会话保持时间。</p><p>取值范围：[60, 3600]</p>
         # @type ClientAffinityTime: Integer
-        # @param RequestTimeout: <p>请求超时时间。</p>
+        # @param RequestTimeout: <p>请求超时时间。</p><p>取值范围：[1, 180]</p><p>HTTPS监听器才支持此参数修改。</p>
         # @type RequestTimeout: Integer
-        # @param XForwardedForRealIp: <p>是否打开七层获取源IP方式。</p>
+        # @param XForwardedForRealIp: <p>是否打开七层获取源IP方式。</p><p>HTTPS/HTTP监听器才支持此参数修改。</p>
         # @type XForwardedForRealIp: Boolean
-        # @param CertificationType: <p>解析方式。UNIDIRECTIONAL：双向。MUTUAL：单向。</p>
+        # @param CertificationType: <p>解析方式。</p><p>枚举值：</p><ul><li>UNIDIRECTIONAL： 双向。</li><li>MUTUAL： 单向。</li></ul><p>HTTPS/HTTP监听器才支持修改此参数。</p>
         # @type CertificationType: String
-        # @param CipherPolicyId: <p>加密算法套件。</p>
+        # @param CipherPolicyId: <p>加密算法套件。</p><p>入参限制：支持选择tls_policy_1.0-2&#39;, &#39;tls_policy_1.1-2&#39;, &#39;tls_policy_1.2&#39;, &#39;tls_policy_1.2_strict&#39;, &#39;tls_policy_1.2_strict-1.3&#39;。</p><p>HTTPS监听器才支持此参数修改。</p>
         # @type CipherPolicyId: String
-        # @param ServerCertificates: <p>服务器证书。</p>
+        # @param ServerCertificates: <p>服务器证书。</p><p>HTTPS监听器才支持此参数修改。</p>
         # @type ServerCertificates: Array
-        # @param ClientCaCertificates: <p>客户端证书。</p>
+        # @param ClientCaCertificates: <p>客户端证书。</p><p>HTTPS监听器才支持此参数修改，并且开启双向认证。</p>
         # @type ClientCaCertificates: Array
-        # @param GetRealIpType: <p>四层获取源IP方式。</p>
+        # @param GetRealIpType: <p>获取源IP方式。</p><p>入参限制：支持选择&#39;ProxyProtocol&#39;, &#39;Close&#39;, &#39;ProxyProtocolV2&#39;, &#39;TOA&#39;。</p><p>TCP监听器才支持此参数修改。</p>
         # @type GetRealIpType: String
 
         attr_accessor :GlobalAcceleratorId, :ListenerId, :Name, :Description, :IdleTimeout, :ClientAffinity, :ClientAffinityTime, :RequestTimeout, :XForwardedForRealIp, :CertificationType, :CipherPolicyId, :ServerCertificates, :ClientCaCertificates, :GetRealIpType
@@ -2403,10 +2403,10 @@ module TencentCloud
 
       # 回源Header信息
       class OriginHeader < TencentCloud::Common::AbstractModel
-        # @param Key: 键。
+        # @param Key: <p>键。</p><p>参数格式：1、字符串只包含可打印的ASCII字符 2、不能包含这些字符()&lt;&gt;@,;:\&quot;/[ ]?={ }</p><p>入参限制：长度在1-40。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Key: String
-        # @param Value: 值。
+        # @param Value: <p>值。</p><p>入参限制：长度不能超过128</p><p>如果字符串包含$，那仅能配置&#39;$remote_addr&#39;, &#39;$remote_port&#39;，否则不支持。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
 
@@ -2469,9 +2469,9 @@ module TencentCloud
 
       # 响应Header
       class ResponseHeaders < TencentCloud::Common::AbstractModel
-        # @param Key: <p>key</p>
+        # @param Key: <p>key</p><p>参数格式：1、字符串只包含可打印的ASCII字符 2、不能包含这些字符()&lt;&gt;@,;:\&quot;/[ ]?={ }</p><p>入参限制：长度在1-40。</p>
         # @type Key: String
-        # @param Value: <p>value</p>
+        # @param Value: <p>value</p><p>入参限制：长度不能超过128</p><p>如果字符串包含$，那仅能配置&#39;$remote_addr&#39;, &#39;$remote_port&#39;，否则不支持。</p>
         # @type Value: String
 
         attr_accessor :Key, :Value
@@ -2489,10 +2489,10 @@ module TencentCloud
 
       # 七层转发规则行为信息
       class RuleAction < TencentCloud::Common::AbstractModel
-        # @param RuleActionType: 七层转发规则行为类型
+        # @param RuleActionType: <p>七层转发规则行为类型</p><p>枚举值：</p><ul><li>ForwardGroup： 转发策略为转发至终端节点组。</li><li>Drop： 转发策略为丢弃。</li></ul>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleActionType: String
-        # @param RuleActionValue: 七层转发规则行为值
+        # @param RuleActionValue: <p>七层转发规则行为值</p><p>当RuleActionType是Drop时，此字段不用传；当RuleActionType是ForwardGroup时，此字段必传，需要填写的是自定义终端节点组ID， 不支持配置默认终端节点组。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleActionValue: String
 
@@ -2511,10 +2511,10 @@ module TencentCloud
 
       # 七层转发规则条件信息
       class RuleCondition < TencentCloud::Common::AbstractModel
-        # @param RuleConditionType: 七层转发规则条件类型
+        # @param RuleConditionType: <p>七层转发规则条件类型</p><p>枚举值：</p><ul><li>Path： Path</li></ul>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleConditionType: String
-        # @param RuleConditionValue: 七层转发规则条件值
+        # @param RuleConditionValue: <p>七层转发规则条件值</p><p>参数格式：格式必须满足正则表达：^[a-zA-Z0-9_.-/]{1,80}$</p><p>数组长度不能超过1。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleConditionValue: Array
 

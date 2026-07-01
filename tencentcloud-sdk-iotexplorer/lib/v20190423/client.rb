@@ -869,6 +869,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建 TWeSee COS 直传凭据。调用方获取临时密钥后，可将视频 / 图片上传到返回的 StoragePath 前缀下；对象上传成功后由 COS 事件触发 TWeSee 任务创建。
+
+        # @param request: Request instance for CreateTWeSeeDirectUploadCredential.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::CreateTWeSeeDirectUploadCredentialRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::CreateTWeSeeDirectUploadCredentialResponse`
+        def CreateTWeSeeDirectUploadCredential(request)
+          body = send_request('CreateTWeSeeDirectUploadCredential', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateTWeSeeDirectUploadCredentialResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 开通 TWeSee 后付费服务
 
         # @param request: Request instance for CreateTWeSeePostPaidService.

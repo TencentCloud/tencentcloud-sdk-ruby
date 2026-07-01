@@ -16801,7 +16801,7 @@ module TencentCloud
 
       # DescribeLoginTypeGlobalConf返回参数结构体
       class DescribeLoginTypeGlobalConfResponse < TencentCloud::Common::AbstractModel
-        # @param Enable: <p>是否开启防卸载 <li>0 否</li> <li>1 是</li> <li>9 未设置,和0一样是未开启</li></p>
+        # @param Enable: <p>是否开启扫码登录 <li>0 否</li> <li>1 是</li> <li>9 未设置,和0一样是未开启</li></p>
         # @type Enable: Integer
         # @param Scope: <p>开启范围 <li>0 自选主机</li> <li>1 全部主机</li></p>
         # @type Scope: Integer

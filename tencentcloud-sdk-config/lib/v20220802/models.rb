@@ -760,7 +760,7 @@ module TencentCloud
 
       # CloseConfigRule请求参数结构体
       class CloseConfigRuleRequest < TencentCloud::Common::AbstractModel
-        # @param RuleId: 规则ID
+        # @param RuleId: <p>规则ID</p>
         # @type RuleId: String
 
         attr_accessor :RuleId
@@ -1526,7 +1526,7 @@ module TencentCloud
 
       # DeleteCompliancePack请求参数结构体
       class DeleteCompliancePackRequest < TencentCloud::Common::AbstractModel
-        # @param CompliancePackId: 合规包ID
+        # @param CompliancePackId: <p>合规包ID</p>
         # @type CompliancePackId: String
 
         attr_accessor :CompliancePackId
@@ -1558,7 +1558,7 @@ module TencentCloud
 
       # DeleteConfigRule请求参数结构体
       class DeleteConfigRuleRequest < TencentCloud::Common::AbstractModel
-        # @param RuleId: 规则ID
+        # @param RuleId: <p>规则ID</p>
         # @type RuleId: String
 
         attr_accessor :RuleId
@@ -2415,9 +2415,9 @@ module TencentCloud
 
       # DetachConfigRuleToCompliancePack请求参数结构体
       class DetachConfigRuleToCompliancePackRequest < TencentCloud::Common::AbstractModel
-        # @param CompliancePackId: 合规包ID
+        # @param CompliancePackId: <p>合规包ID</p>
         # @type CompliancePackId: String
-        # @param ConfigRuleId: 规则ID
+        # @param ConfigRuleId: <p>规则ID</p>
         # @type ConfigRuleId: String
 
         attr_accessor :CompliancePackId, :ConfigRuleId
@@ -2880,17 +2880,17 @@ module TencentCloud
 
       # ListAggregateDiscoveredResources请求参数结构体
       class ListAggregateDiscoveredResourcesRequest < TencentCloud::Common::AbstractModel
-        # @param MaxResults: 每页显示数量
+        # @param MaxResults: <p>每页显示数量</p>
         # @type MaxResults: Integer
-        # @param AccountGroupId: 账号组ID
+        # @param AccountGroupId: <p>账号组ID</p>
         # @type AccountGroupId: String
-        # @param Filters: resourceName：资源名  resourceId ：资源ID resourceType：资源类型
+        # @param Filters: <p>resourceName：资源名  resourceId ：资源ID resourceType：资源类型</p>
         # @type Filters: Array
-        # @param Tags: 标签
+        # @param Tags: <p>标签</p>
         # @type Tags: Array
-        # @param NextToken: 下一页token
+        # @param NextToken: <p>下一页token</p>
         # @type NextToken: String
-        # @param OrderType: 排序方式 asc、desc
+        # @param OrderType: <p>排序方式 asc、desc</p>
         # @type OrderType: String
 
         attr_accessor :MaxResults, :AccountGroupId, :Filters, :Tags, :NextToken, :OrderType
@@ -2930,19 +2930,22 @@ module TencentCloud
 
       # ListAggregateDiscoveredResources返回参数结构体
       class ListAggregateDiscoveredResourcesResponse < TencentCloud::Common::AbstractModel
-        # @param Items: 详情
+        # @param Items: <p>详情</p>
         # @type Items: Array
-        # @param NextToken: 下一页
+        # @param NextToken: <p>下一页</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NextToken: String
+        # @param Count: <p>总数</p>
+        # @type Count: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Items, :NextToken, :RequestId
+        attr_accessor :Items, :NextToken, :Count, :RequestId
 
-        def initialize(items=nil, nexttoken=nil, requestid=nil)
+        def initialize(items=nil, nexttoken=nil, count=nil, requestid=nil)
           @Items = items
           @NextToken = nexttoken
+          @Count = count
           @RequestId = requestid
         end
 
@@ -2956,6 +2959,7 @@ module TencentCloud
             end
           end
           @NextToken = params['NextToken']
+          @Count = params['Count']
           @RequestId = params['RequestId']
         end
       end
@@ -3064,28 +3068,26 @@ module TencentCloud
 
       # ListCompliancePacks请求参数结构体
       class ListCompliancePacksRequest < TencentCloud::Common::AbstractModel
-        # @param Limit: 数量
+        # @param Limit: <p>数量</p>
         # @type Limit: Integer
-        # @param Offset: 偏移量
+        # @param Offset: <p>偏移量</p>
         # @type Offset: Integer
-        # @param CompliancePackName: 合规包名称
+        # @param CompliancePackName: <p>合规包名称</p>
         # @type CompliancePackName: String
-        # @param RiskLevel: 风险等级
-        # 1：高风险。
-        # 2：中风险。
-        # 3：低风险。
+        # @param RiskLevel: <p>风险等级<br>1：高风险。<br>2：中风险。<br>3：低风险。</p>
         # @type RiskLevel: Array
-        # @param Status: 合规包状态 ACTIVE、NO_ACTIVE
+        # @param Status: <p>合规包状态 ACTIVE、NO_ACTIVE</p>
         # @type Status: String
-        # @param ComplianceResult: 评估状态合规： 'COMPLIANT'
-        # 不合规： 'NON_COMPLIANT'
+        # @param ComplianceResult: <p>评估状态合规： &#39;COMPLIANT&#39;<br>不合规： &#39;NON_COMPLIANT&#39;</p>
         # @type ComplianceResult: Array
-        # @param OrderType: 排序类型, 倒序：desc，顺序：asc
+        # @param OrderType: <p>排序类型, 倒序：desc，顺序：asc</p>
         # @type OrderType: String
+        # @param IncludeCompliancePackRuleResult: <p>包含合规包规则统计信息</p><p>枚举值：</p><ul><li>1： 是</li></ul>
+        # @type IncludeCompliancePackRuleResult: String
 
-        attr_accessor :Limit, :Offset, :CompliancePackName, :RiskLevel, :Status, :ComplianceResult, :OrderType
+        attr_accessor :Limit, :Offset, :CompliancePackName, :RiskLevel, :Status, :ComplianceResult, :OrderType, :IncludeCompliancePackRuleResult
 
-        def initialize(limit=nil, offset=nil, compliancepackname=nil, risklevel=nil, status=nil, complianceresult=nil, ordertype=nil)
+        def initialize(limit=nil, offset=nil, compliancepackname=nil, risklevel=nil, status=nil, complianceresult=nil, ordertype=nil, includecompliancepackruleresult=nil)
           @Limit = limit
           @Offset = offset
           @CompliancePackName = compliancepackname
@@ -3093,6 +3095,7 @@ module TencentCloud
           @Status = status
           @ComplianceResult = complianceresult
           @OrderType = ordertype
+          @IncludeCompliancePackRuleResult = includecompliancepackruleresult
         end
 
         def deserialize(params)
@@ -3103,14 +3106,15 @@ module TencentCloud
           @Status = params['Status']
           @ComplianceResult = params['ComplianceResult']
           @OrderType = params['OrderType']
+          @IncludeCompliancePackRuleResult = params['IncludeCompliancePackRuleResult']
         end
       end
 
       # ListCompliancePacks返回参数结构体
       class ListCompliancePacksResponse < TencentCloud::Common::AbstractModel
-        # @param Total: 总数
+        # @param Total: <p>总数</p>
         # @type Total: Integer
-        # @param Items: 详情
+        # @param Items: <p>详情</p>
         # @type Items: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3284,15 +3288,15 @@ module TencentCloud
 
       # ListDiscoveredResources请求参数结构体
       class ListDiscoveredResourcesRequest < TencentCloud::Common::AbstractModel
-        # @param MaxResults: 每页显示数量
+        # @param MaxResults: <p>每页显示数量</p>
         # @type MaxResults: Integer
-        # @param Filters: resourceName：资源名  resourceId ：资源ID
+        # @param Filters: <p>resourceName：资源名  resourceId ：资源ID</p>
         # @type Filters: Array
-        # @param Tags: 标签
+        # @param Tags: <p>标签</p>
         # @type Tags: Array
-        # @param NextToken: 下一页token
+        # @param NextToken: <p>下一页token</p>
         # @type NextToken: String
-        # @param OrderType: 排序方式 asc、desc
+        # @param OrderType: <p>排序方式 asc、desc</p>
         # @type OrderType: String
 
         attr_accessor :MaxResults, :Filters, :Tags, :NextToken, :OrderType
@@ -3330,19 +3334,22 @@ module TencentCloud
 
       # ListDiscoveredResources返回参数结构体
       class ListDiscoveredResourcesResponse < TencentCloud::Common::AbstractModel
-        # @param Items: 详情
+        # @param Items: <p>详情</p>
         # @type Items: Array
-        # @param NextToken: 下一页
+        # @param NextToken: <p>下一页</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NextToken: String
+        # @param Count: <p>总数</p>
+        # @type Count: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Items, :NextToken, :RequestId
+        attr_accessor :Items, :NextToken, :Count, :RequestId
 
-        def initialize(items=nil, nexttoken=nil, requestid=nil)
+        def initialize(items=nil, nexttoken=nil, count=nil, requestid=nil)
           @Items = items
           @NextToken = nexttoken
+          @Count = count
           @RequestId = requestid
         end
 
@@ -3356,6 +3363,7 @@ module TencentCloud
             end
           end
           @NextToken = params['NextToken']
+          @Count = params['Count']
           @RequestId = params['RequestId']
         end
       end
@@ -3685,7 +3693,7 @@ module TencentCloud
 
       # OpenConfigRule请求参数结构体
       class OpenConfigRuleRequest < TencentCloud::Common::AbstractModel
-        # @param RuleId: 规则ID
+        # @param RuleId: <p>规则ID</p>
         # @type RuleId: String
 
         attr_accessor :RuleId
@@ -4535,15 +4543,15 @@ module TencentCloud
 
       # UpdateCompliancePack请求参数结构体
       class UpdateCompliancePackRequest < TencentCloud::Common::AbstractModel
-        # @param CompliancePackName: 合规包名称
+        # @param CompliancePackName: <p>合规包名称</p>
         # @type CompliancePackName: String
-        # @param RiskLevel: 风险等级
+        # @param RiskLevel: <p>风险等级</p>
         # @type RiskLevel: Integer
-        # @param CompliancePackId: 合规包ID
+        # @param CompliancePackId: <p>合规包ID</p>
         # @type CompliancePackId: String
-        # @param ConfigRules: 合规包规则
+        # @param ConfigRules: <p>合规包规则</p>
         # @type ConfigRules: Array
-        # @param Description: 描述
+        # @param Description: <p>描述</p>
         # @type Description: String
 
         attr_accessor :CompliancePackName, :RiskLevel, :CompliancePackId, :ConfigRules, :Description
@@ -4590,10 +4598,9 @@ module TencentCloud
 
       # UpdateCompliancePackStatus请求参数结构体
       class UpdateCompliancePackStatusRequest < TencentCloud::Common::AbstractModel
-        # @param CompliancePackId: 合规包ID
+        # @param CompliancePackId: <p>合规包ID</p>
         # @type CompliancePackId: String
-        # @param Status: ACTIVE：启用
-        # UN_ACTIVE ：停用
+        # @param Status: <p>ACTIVE：启用<br>UN_ACTIVE ：停用</p>
         # @type Status: String
 
         attr_accessor :CompliancePackId, :Status
@@ -4714,27 +4721,23 @@ module TencentCloud
 
       # UpdateConfigRule请求参数结构体
       class UpdateConfigRuleRequest < TencentCloud::Common::AbstractModel
-        # @param TriggerType: 触发类型，最多支持两种
+        # @param TriggerType: <p>触发类型，最多支持两种</p>
         # @type TriggerType: Array
-        # @param RiskLevel: 风险等级
-        # 1：高风险。
-        # 2：中风险。
-        # 3：低风险。
+        # @param RiskLevel: <p>风险等级<br>1：高风险。<br>2：中风险。<br>3：低风险。</p>
         # @type RiskLevel: Integer
-        # @param RuleId: 规则ID
+        # @param RuleId: <p>规则ID</p>
         # @type RuleId: String
-        # @param RuleName: 规则名称
+        # @param RuleName: <p>规则名称</p>
         # @type RuleName: String
-        # @param InputParameter: 入参
+        # @param InputParameter: <p>入参</p>
         # @type InputParameter: Array
-        # @param Description: 描述
+        # @param Description: <p>描述</p>
         # @type Description: String
-        # @param RegionsScope: 规则评估地域范围，规则仅对指定地域中的资源生效。
-        # 支持的地域范围config:ListResourceRegions返回的地域
+        # @param RegionsScope: <p>规则评估地域范围，规则仅对指定地域中的资源生效。<br>支持的地域范围config:ListResourceRegions返回的地域</p>
         # @type RegionsScope: Array
-        # @param TagsScope: 规则评估标签范围，规则仅对绑定指定标签的资源生效。
+        # @param TagsScope: <p>规则评估标签范围，规则仅对绑定指定标签的资源生效。</p>
         # @type TagsScope: Array
-        # @param ExcludeResourceIdsScope: 规则对指定资源ID无效，即不对该资源执行评估。
+        # @param ExcludeResourceIdsScope: <p>规则对指定资源ID无效，即不对该资源执行评估。</p>
         # @type ExcludeResourceIdsScope: Array
 
         attr_accessor :TriggerType, :RiskLevel, :RuleId, :RuleName, :InputParameter, :Description, :RegionsScope, :TagsScope, :ExcludeResourceIdsScope

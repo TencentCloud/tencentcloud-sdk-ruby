@@ -2037,8 +2037,8 @@ module TencentCloud
 
         attr_accessor :GroupQuota, :CurrentNum, :CvmInHostGroupQuota, :CvmInSwGroupQuota, :CvmInRackGroupQuota, :CvmInSwitchGroupQuota, :RequestId
         extend Gem::Deprecate
-        deprecate :CvmInSwGroupQuota, :none, 2026, 6
-        deprecate :CvmInSwGroupQuota=, :none, 2026, 6
+        deprecate :CvmInSwGroupQuota, :none, 2026, 7
+        deprecate :CvmInSwGroupQuota=, :none, 2026, 7
 
         def initialize(groupquota=nil, currentnum=nil, cvminhostgroupquota=nil, cvminswgroupquota=nil, cvminrackgroupquota=nil, cvminswitchgroupquota=nil, requestid=nil)
           @GroupQuota = groupquota
@@ -3950,8 +3950,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :Password, :Username, :ForceStop, :StopType
         extend Gem::Deprecate
-        deprecate :ForceStop, :none, 2026, 6
-        deprecate :ForceStop=, :none, 2026, 6
+        deprecate :ForceStop, :none, 2026, 7
+        deprecate :ForceStop=, :none, 2026, 7
 
         def initialize(instanceid=nil, password=nil, username=nil, forcestop=nil, stoptype=nil)
           @InstanceId = instanceid
@@ -5519,6 +5519,8 @@ module TencentCloud
         # @type DedicatedClusterId: String
         # @param IsolatedSource: <p>实例隔离类型。取值范围：<br><li>ARREAR：表示欠费隔离<br></li><li>EXPIRE：表示到期隔离<br></li><li>MANMADE：表示主动退还隔离<br></li><li>NOTISOLATED：表示未隔离<br></li></p>
         # @type IsolatedSource: String
+        # @param DisasterRecoverGroupIds: <p>置放群组列表(目前仅支持一个)</p>
+        # @type DisasterRecoverGroupIds: Array
         # @param GPUInfo: <p>GPU信息。如果是gpu类型子机，该值会返回GPU信息，如果是其他类型子机则不返回。</p>
         # @type GPUInfo: :class:`Tencentcloud::Cvm.v20170312.models.GPUInfo`
         # @param LicenseType: <p>实例的操作系统许可类型，默认为TencentCloud</p>
@@ -5539,9 +5541,12 @@ module TencentCloud
         # @param CpuTopology: <p>描述了实例CPU拓扑结构的相关信息。</p>
         # @type CpuTopology: :class:`Tencentcloud::Cvm.v20170312.models.CpuTopology`
 
-        attr_accessor :Placement, :InstanceId, :InstanceType, :CPU, :Memory, :RestrictState, :InstanceName, :InstanceChargeType, :SystemDisk, :DataDisks, :PrivateIpAddresses, :PublicIpAddresses, :InternetAccessible, :VirtualPrivateCloud, :ImageId, :RenewFlag, :CreatedTime, :ExpiredTime, :OsName, :SecurityGroupIds, :LoginSettings, :InstanceState, :Tags, :StopChargingMode, :Uuid, :LatestOperation, :LatestOperationState, :LatestOperationRequestId, :DisasterRecoverGroupId, :IPv6Addresses, :CamRoleName, :HpcClusterId, :RdmaIpAddresses, :DedicatedClusterId, :IsolatedSource, :GPUInfo, :LicenseType, :DisableApiTermination, :DefaultLoginUser, :DefaultLoginPort, :LatestOperationErrorMsg, :Metadata, :PublicIPv6Addresses, :CpuTopology
+        attr_accessor :Placement, :InstanceId, :InstanceType, :CPU, :Memory, :RestrictState, :InstanceName, :InstanceChargeType, :SystemDisk, :DataDisks, :PrivateIpAddresses, :PublicIpAddresses, :InternetAccessible, :VirtualPrivateCloud, :ImageId, :RenewFlag, :CreatedTime, :ExpiredTime, :OsName, :SecurityGroupIds, :LoginSettings, :InstanceState, :Tags, :StopChargingMode, :Uuid, :LatestOperation, :LatestOperationState, :LatestOperationRequestId, :DisasterRecoverGroupId, :IPv6Addresses, :CamRoleName, :HpcClusterId, :RdmaIpAddresses, :DedicatedClusterId, :IsolatedSource, :DisasterRecoverGroupIds, :GPUInfo, :LicenseType, :DisableApiTermination, :DefaultLoginUser, :DefaultLoginPort, :LatestOperationErrorMsg, :Metadata, :PublicIPv6Addresses, :CpuTopology
+        extend Gem::Deprecate
+        deprecate :DisasterRecoverGroupId, :none, 2026, 7
+        deprecate :DisasterRecoverGroupId=, :none, 2026, 7
 
-        def initialize(placement=nil, instanceid=nil, instancetype=nil, cpu=nil, memory=nil, restrictstate=nil, instancename=nil, instancechargetype=nil, systemdisk=nil, datadisks=nil, privateipaddresses=nil, publicipaddresses=nil, internetaccessible=nil, virtualprivatecloud=nil, imageid=nil, renewflag=nil, createdtime=nil, expiredtime=nil, osname=nil, securitygroupids=nil, loginsettings=nil, instancestate=nil, tags=nil, stopchargingmode=nil, uuid=nil, latestoperation=nil, latestoperationstate=nil, latestoperationrequestid=nil, disasterrecovergroupid=nil, ipv6addresses=nil, camrolename=nil, hpcclusterid=nil, rdmaipaddresses=nil, dedicatedclusterid=nil, isolatedsource=nil, gpuinfo=nil, licensetype=nil, disableapitermination=nil, defaultloginuser=nil, defaultloginport=nil, latestoperationerrormsg=nil, metadata=nil, publicipv6addresses=nil, cputopology=nil)
+        def initialize(placement=nil, instanceid=nil, instancetype=nil, cpu=nil, memory=nil, restrictstate=nil, instancename=nil, instancechargetype=nil, systemdisk=nil, datadisks=nil, privateipaddresses=nil, publicipaddresses=nil, internetaccessible=nil, virtualprivatecloud=nil, imageid=nil, renewflag=nil, createdtime=nil, expiredtime=nil, osname=nil, securitygroupids=nil, loginsettings=nil, instancestate=nil, tags=nil, stopchargingmode=nil, uuid=nil, latestoperation=nil, latestoperationstate=nil, latestoperationrequestid=nil, disasterrecovergroupid=nil, ipv6addresses=nil, camrolename=nil, hpcclusterid=nil, rdmaipaddresses=nil, dedicatedclusterid=nil, isolatedsource=nil, disasterrecovergroupids=nil, gpuinfo=nil, licensetype=nil, disableapitermination=nil, defaultloginuser=nil, defaultloginport=nil, latestoperationerrormsg=nil, metadata=nil, publicipv6addresses=nil, cputopology=nil)
           @Placement = placement
           @InstanceId = instanceid
           @InstanceType = instancetype
@@ -5577,6 +5582,7 @@ module TencentCloud
           @RdmaIpAddresses = rdmaipaddresses
           @DedicatedClusterId = dedicatedclusterid
           @IsolatedSource = isolatedsource
+          @DisasterRecoverGroupIds = disasterrecovergroupids
           @GPUInfo = gpuinfo
           @LicenseType = licensetype
           @DisableApiTermination = disableapitermination
@@ -5653,6 +5659,7 @@ module TencentCloud
           @RdmaIpAddresses = params['RdmaIpAddresses']
           @DedicatedClusterId = params['DedicatedClusterId']
           @IsolatedSource = params['IsolatedSource']
+          @DisasterRecoverGroupIds = params['DisasterRecoverGroupIds']
           unless params['GPUInfo'].nil?
             @GPUInfo = GPUInfo.new
             @GPUInfo.deserialize(params['GPUInfo'])
@@ -7084,25 +7091,36 @@ module TencentCloud
 
       # ModifyInstancesDisasterRecoverGroup请求参数结构体
       class ModifyInstancesDisasterRecoverGroupRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceIds: 一个或多个待操作的实例ID。可通过[ DescribeInstances ](https://cloud.tencent.com/document/api/213/15728)接口返回值中的`InstanceId`获取。每次请求批量实例的上限为100
+        # @param InstanceIds: <p>一个或多个待操作的实例ID。可通过<a href="https://cloud.tencent.com/document/api/213/15728"> DescribeInstances </a>接口返回值中的<code>InstanceId</code>获取。每次请求批量实例的上限为100</p>
         # @type InstanceIds: Array
-        # @param DisasterRecoverGroupId: 分散置放群组ID，可使用[DescribeDisasterRecoverGroups](https://cloud.tencent.com/document/api/213/17810)接口获取
+        # @param DisasterRecoverGroupId: <p>分散置放群组ID，可使用<a href="https://cloud.tencent.com/document/api/213/17810">DescribeDisasterRecoverGroups</a>接口获取</p>
         # @type DisasterRecoverGroupId: String
-        # @param Force: 是否强制更换实例宿主机。取值范围：<br><li>true：表示允许实例更换宿主机，允许重启实例。本地盘子机不支持指定此参数。</li><br><li>false：不允许实例更换宿主机，只在当前宿主机上加入置放群组。这可能导致更换置放群组失败。</li><br><br>默认取值：false
+        # @param Force: <p>是否强制更换实例宿主机。取值范围：<br><li>true：表示允许实例更换宿主机，允许重启实例。本地盘子机不支持指定此参数。</li><br><li>false：不允许实例更换宿主机，只在当前宿主机上加入置放群组。这可能导致更换置放群组失败。</li><br><br>默认取值：false</p>
         # @type Force: Boolean
+        # @param DisasterRecoverGroupIds: <p>置放群组id列表(目前仅支持指定一个)</p>
+        # @type DisasterRecoverGroupIds: Array
+        # @param PartitionNumber: <p>分区置放群组的分区Id，取值范围：1-10，具体取决于所选置放群组的分区数量，如果选中的置放群组是分区置放群组，该值不传默认随机(该功能灰度中)</p>
+        # @type PartitionNumber: Integer
 
-        attr_accessor :InstanceIds, :DisasterRecoverGroupId, :Force
+        attr_accessor :InstanceIds, :DisasterRecoverGroupId, :Force, :DisasterRecoverGroupIds, :PartitionNumber
+        extend Gem::Deprecate
+        deprecate :DisasterRecoverGroupId, :none, 2026, 7
+        deprecate :DisasterRecoverGroupId=, :none, 2026, 7
 
-        def initialize(instanceids=nil, disasterrecovergroupid=nil, force=nil)
+        def initialize(instanceids=nil, disasterrecovergroupid=nil, force=nil, disasterrecovergroupids=nil, partitionnumber=nil)
           @InstanceIds = instanceids
           @DisasterRecoverGroupId = disasterrecovergroupid
           @Force = force
+          @DisasterRecoverGroupIds = disasterrecovergroupids
+          @PartitionNumber = partitionnumber
         end
 
         def deserialize(params)
           @InstanceIds = params['InstanceIds']
           @DisasterRecoverGroupId = params['DisasterRecoverGroupId']
           @Force = params['Force']
+          @DisasterRecoverGroupIds = params['DisasterRecoverGroupIds']
+          @PartitionNumber = params['PartitionNumber']
         end
       end
 
@@ -7630,8 +7648,8 @@ module TencentCloud
 
         attr_accessor :InstanceIds, :ForceReboot, :StopType
         extend Gem::Deprecate
-        deprecate :ForceReboot, :none, 2026, 6
-        deprecate :ForceReboot=, :none, 2026, 6
+        deprecate :ForceReboot, :none, 2026, 7
+        deprecate :ForceReboot=, :none, 2026, 7
 
         def initialize(instanceids=nil, forcereboot=nil, stoptype=nil)
           @InstanceIds = instanceids
@@ -8899,8 +8917,8 @@ module TencentCloud
 
         attr_accessor :InstanceIds, :ForceStop, :StopType, :StoppedMode
         extend Gem::Deprecate
-        deprecate :ForceStop, :none, 2026, 6
-        deprecate :ForceStop=, :none, 2026, 6
+        deprecate :ForceStop, :none, 2026, 7
+        deprecate :ForceStop=, :none, 2026, 7
 
         def initialize(instanceids=nil, forcestop=nil, stoptype=nil, stoppedmode=nil)
           @InstanceIds = instanceids

@@ -1037,7 +1037,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 终端自定义分组增减终端，私有化调用path为：/capi/Assets/Device/ModifyVirtualDeviceGroups
+        # 终端自定义分组批量增减终端，私有化调用path为：/capi/Assets/Device/ModifyVirtualDeviceGroups
 
         # @param request: Request instance for ModifyVirtualDeviceGroups.
         # @type request: :class:`Tencentcloud::ioa::V20220601::ModifyVirtualDeviceGroupsRequest`

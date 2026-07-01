@@ -312,8 +312,8 @@ module TencentCloud
 
         attr_accessor :ReqTime, :Seq, :IdCard, :Idcard, :Name, :Sim, :IsNeedCharge, :ChargeType, :ErrorCode, :ErrorMessage
         extend Gem::Deprecate
-        deprecate :Idcard, :none, 2026, 5
-        deprecate :Idcard=, :none, 2026, 5
+        deprecate :Idcard, :none, 2026, 7
+        deprecate :Idcard=, :none, 2026, 7
 
         def initialize(reqtime=nil, seq=nil, idcard=nil, name=nil, sim=nil, isneedcharge=nil, chargetype=nil, errorcode=nil, errormessage=nil)
           @ReqTime = reqtime
@@ -1986,32 +1986,19 @@ module TencentCloud
 
       # GetEidToken请求参数结构体
       class GetEidTokenRequest < TencentCloud::Common::AbstractModel
-        # @param MerchantId: EID商户ID。
-        # - 商户ID通过人脸核身控制台[自助接入](https://console.cloud.tencent.com/faceid/access)申请。
-        # - 商户ID与您通过腾讯云人脸核身控制台完成自助接入时所使用的腾讯云账号绑定。
-        # - 必须使用申请该商户ID时登录的腾讯云账号所对应的腾讯云API密钥调用该接口。
+        # @param MerchantId: <p>EID商户ID。</p><ul><li>商户ID通过人脸核身控制台<a href="https://console.cloud.tencent.com/faceid/access">自助接入</a>申请。</li><li>商户ID与您通过腾讯云人脸核身控制台完成自助接入时所使用的腾讯云账号绑定。</li><li>必须使用申请该商户ID时登录的腾讯云账号所对应的腾讯云API密钥调用该接口。</li></ul>
         # @type MerchantId: String
-        # @param IdCard: 身份标识。
-        # - 未使用OCR服务时，必须传入。
-        # - 规则：a-z，A-Z，0-9组合。
-        # - 最长长度32位。
+        # @param IdCard: <p>身份标识。</p><ul><li>未使用OCR服务时，必须传入。</li><li>规则：a-z，A-Z，0-9组合。</li><li>最长长度32位。</li></ul>
         # @type IdCard: String
-        # @param Name: 姓名。
-        # - 未使用OCR服务时，必须传入。
-        # - 最长长度32位。
-        # - 中文请使用UTF-8编码。
+        # @param Name: <p>姓名。</p><ul><li>未使用OCR服务时，必须传入。</li><li>最长长度32位。</li><li>中文请使用UTF-8编码。</li></ul>
         # @type Name: String
-        # @param Extra: 透传字段，在获取验证结果时返回。
-        # - 最长长度1024位。
+        # @param Extra: <p>透传字段，在获取验证结果时返回。</p><ul><li>最长长度1024位。</li></ul>
         # @type Extra: String
-        # @param Config: 小程序模式配置，包括如何传入姓名身份证的配置，以及是否使用意愿核身。
+        # @param Config: <p>小程序模式配置，包括如何传入姓名身份证的配置，以及是否使用意愿核身。</p>
         # @type Config: :class:`Tencentcloud::Faceid.v20180301.models.GetEidTokenConfig`
-        # @param RedirectUrl: 用户从Url中进入核身认证结束后重定向的回调链接地址。
-        # - 最长长度1024位。
-        # - EidToken会在该链接的query参数中。
+        # @param RedirectUrl: <p>用户从Url中进入核身认证结束后重定向的回调链接地址。</p><ul><li>最长长度1024位。</li><li>EidToken会在该链接的query参数中。</li></ul>
         # @type RedirectUrl: String
-        # @param Encryption: 敏感数据加密信息。
-        # - 对传入信息（姓名、身份证号）有加密需求的用户可使用此参数，详情请点击左侧链接。
+        # @param Encryption: <p>敏感数据加密信息。</p><ul><li>对传入信息（姓名、身份证号）有加密需求的用户可使用此参数，详情请点击左侧链接。</li></ul>
         # @type Encryption: :class:`Tencentcloud::Faceid.v20180301.models.Encryption`
 
         attr_accessor :MerchantId, :IdCard, :Name, :Extra, :Config, :RedirectUrl, :Encryption
@@ -2045,12 +2032,9 @@ module TencentCloud
 
       # GetEidToken返回参数结构体
       class GetEidTokenResponse < TencentCloud::Common::AbstractModel
-        # @param EidToken: 一次核身流程的标识。
-        # - 有效时间为600秒。
-        # - 完成核身后，可用该标识获取验证结果信息。
+        # @param EidToken: <p>一次核身流程的标识。</p><ul><li>有效时间为600秒。</li><li>完成核身后，可用该标识获取验证结果信息。</li></ul>
         # @type EidToken: String
-        # @param Url: 发起核身流程的URL。
-        # - 用于H5场景核身。
+        # @param Url: <p>发起核身流程的URL。</p><ul><li>用于H5场景核身。</li></ul>
         # @type Url: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3224,8 +3208,8 @@ module TencentCloud
 
         attr_accessor :IntentionVerifyVideo, :AsrResult, :ErrorCode, :ErrorMessage, :IntentionVerifyBestFrame, :AsrResultSimilarity, :IntentionVerifyAudio
         extend Gem::Deprecate
-        deprecate :AsrResultSimilarity, :none, 2026, 5
-        deprecate :AsrResultSimilarity=, :none, 2026, 5
+        deprecate :AsrResultSimilarity, :none, 2026, 7
+        deprecate :AsrResultSimilarity=, :none, 2026, 7
 
         def initialize(intentionverifyvideo=nil, asrresult=nil, errorcode=nil, errormessage=nil, intentionverifybestframe=nil, asrresultsimilarity=nil, intentionverifyaudio=nil)
           @IntentionVerifyVideo = intentionverifyvideo

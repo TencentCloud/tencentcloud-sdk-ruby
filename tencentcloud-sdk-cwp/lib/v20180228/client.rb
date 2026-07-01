@@ -5144,7 +5144,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取防卸载全局配置
+        # 获取扫码登录全局配置
 
         # @param request: Request instance for DescribeLoginTypeGlobalConf.
         # @type request: :class:`Tencentcloud::cwp::V20180228::DescribeLoginTypeGlobalConfRequest`

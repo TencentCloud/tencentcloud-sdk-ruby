@@ -29,6 +29,30 @@ module TencentCloud
         end
 
 
+        # 创建Agent
+
+        # @param request: Request instance for CopyAgentFromApp.
+        # @type request: :class:`Tencentcloud::adp::V20260520::CopyAgentFromAppRequest`
+        # @rtype: :class:`Tencentcloud::adp::V20260520::CopyAgentFromAppResponse`
+        def CopyAgentFromApp(request)
+          body = send_request('CopyAgentFromApp', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CopyAgentFromAppResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 复制应用
 
         # @param request: Request instance for CopyApp.

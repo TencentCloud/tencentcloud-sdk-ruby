@@ -2676,6 +2676,69 @@ module TencentCloud
         end
       end
 
+      # DescribeTopicStats请求参数结构体
+      class DescribeTopicStatsRequest < TencentCloud::Common::AbstractModel
+        # @param Topic: 主题名称，从 [DescribeTopicList](https://cloud.tencent.com/document/api/1493/96030) 接口返回的 [TopicItem](https://cloud.tencent.com/document/api/1493/96031#TopicItem) 或控制台获得。
+        # @type Topic: String
+        # @param InstanceId: 腾讯云 RocketMQ 实例 ID，从 [DescribeFusionInstanceList](https://cloud.tencent.com/document/api/1493/106745) 接口或控制台获得。
+        # @type InstanceId: String
+        # @param GroupId: <p>消费组ID，可通过DescribeConsumerGroupList接口返回的ConsumerGroup字段或控制台查询</p>
+        # @type GroupId: String
+        # @param Offset: 查询起始位置，默认为0。
+        # @type Offset: Integer
+        # @param Limit: 查询结果限制数量，默认20。
+        # @type Limit: Integer
+
+        attr_accessor :Topic, :InstanceId, :GroupId, :Offset, :Limit
+
+        def initialize(topic=nil, instanceid=nil, groupid=nil, offset=nil, limit=nil)
+          @Topic = topic
+          @InstanceId = instanceid
+          @GroupId = groupid
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @Topic = params['Topic']
+          @InstanceId = params['InstanceId']
+          @GroupId = params['GroupId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeTopicStats返回参数结构体
+      class DescribeTopicStatsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 查询总数
+        # @type TotalCount: Integer
+        # @param Data: <p>队列级别的消费详情</p>
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Data, :RequestId
+
+        def initialize(totalcount=nil, data=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              topicstatsdetail_tmp = TopicStatsDetail.new
+              topicstatsdetail_tmp.deserialize(i)
+              @Data << topicstatsdetail_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # Topic&Group维度的权限配置
       class DetailedRolePerm < TencentCloud::Common::AbstractModel
         # @param Resource: 权限对应的资源
@@ -4781,6 +4844,48 @@ module TencentCloud
           @TopicName = params['TopicName']
           @Success = params['Success']
           @Namespace = params['Namespace']
+        end
+      end
+
+      # 主题队列级别的消费详情
+      class TopicStatsDetail < TencentCloud::Common::AbstractModel
+        # @param BrokerName: <p>Broker节点名称</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BrokerName: String
+        # @param QueueId: <p>队列编号</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QueueId: Integer
+        # @param BrokerOffset: <p>生产消息位点</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BrokerOffset: Integer
+        # @param CommitOffset: <p>最新消费位点</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CommitOffset: Integer
+        # @param MessageCount: <p>堆积总数</p><p>单位：条</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MessageCount: Integer
+        # @param LastUpdateTimestamp: <p>最后消费时间</p><p>单位：毫秒</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LastUpdateTimestamp: Integer
+
+        attr_accessor :BrokerName, :QueueId, :BrokerOffset, :CommitOffset, :MessageCount, :LastUpdateTimestamp
+
+        def initialize(brokername=nil, queueid=nil, brokeroffset=nil, commitoffset=nil, messagecount=nil, lastupdatetimestamp=nil)
+          @BrokerName = brokername
+          @QueueId = queueid
+          @BrokerOffset = brokeroffset
+          @CommitOffset = commitoffset
+          @MessageCount = messagecount
+          @LastUpdateTimestamp = lastupdatetimestamp
+        end
+
+        def deserialize(params)
+          @BrokerName = params['BrokerName']
+          @QueueId = params['QueueId']
+          @BrokerOffset = params['BrokerOffset']
+          @CommitOffset = params['CommitOffset']
+          @MessageCount = params['MessageCount']
+          @LastUpdateTimestamp = params['LastUpdateTimestamp']
         end
       end
 

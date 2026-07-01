@@ -2532,6 +2532,26 @@ module TencentCloud
         end
       end
 
+      # EDR-攻击阶段对应数量
+      class AttackStageCount < TencentCloud::Common::AbstractModel
+        # @param AttackStage: <p>攻击阶段</p>
+        # @type AttackStage: String
+        # @param Count: <p>策略数量</p>
+        # @type Count: Integer
+
+        attr_accessor :AttackStage, :Count
+
+        def initialize(attackstage=nil, count=nil)
+          @AttackStage = attackstage
+          @Count = count
+        end
+
+        def deserialize(params)
+          @AttackStage = params['AttackStage']
+          @Count = params['Count']
+        end
+      end
+
       # 通用的下拉框列表
       class AttributeOptionSet < TencentCloud::Common::AbstractModel
         # @param Text: cvm实例类型
@@ -3030,6 +3050,34 @@ module TencentCloud
           @FileCnt = params['FileCnt']
           @LastScanStatus = params['LastScanStatus']
           @LastScanTime = params['LastScanTime']
+        end
+      end
+
+      # 安全中心标签
+      class CSIPTag < TencentCloud::Common::AbstractModel
+        # @param TagColor: <p>标签颜色</p>
+        # @type TagColor: String
+        # @param TagID: <p>标签ID</p>
+        # @type TagID: Integer
+        # @param TagKey: <p>标签键（根据语言环境返回中文或英文）</p>
+        # @type TagKey: String
+        # @param TagValue: <p>标签值（根据语言环境返回中文或英文）</p>
+        # @type TagValue: String
+
+        attr_accessor :TagColor, :TagID, :TagKey, :TagValue
+
+        def initialize(tagcolor=nil, tagid=nil, tagkey=nil, tagvalue=nil)
+          @TagColor = tagcolor
+          @TagID = tagid
+          @TagKey = tagkey
+          @TagValue = tagvalue
+        end
+
+        def deserialize(params)
+          @TagColor = params['TagColor']
+          @TagID = params['TagID']
+          @TagKey = params['TagKey']
+          @TagValue = params['TagValue']
         end
       end
 
@@ -7298,6 +7346,70 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAILinkSetting请求参数结构体
+      class DescribeAILinkSettingRequest < TencentCloud::Common::AbstractModel
+        # @param MemberId: <p>集团账号的成员id</p>
+        # @type MemberId: Array
+
+        attr_accessor :MemberId
+
+        def initialize(memberid=nil)
+          @MemberId = memberid
+        end
+
+        def deserialize(params)
+          @MemberId = params['MemberId']
+        end
+      end
+
+      # DescribeAILinkSetting返回参数结构体
+      class DescribeAILinkSettingResponse < TencentCloud::Common::AbstractModel
+        # @param AILinkEnable: <p>0 关闭AI-Link智链引擎，1 开启AI-Link智链引擎</p>
+        # @type AILinkEnable: Integer
+        # @param RuleScopeDeep: <p>深度模式 0-关闭 1-开启</p>
+        # @type RuleScopeDeep: Integer
+        # @param RuleScopeBalanced: <p>均衡模式 0-关闭 1-开启</p>
+        # @type RuleScopeBalanced: Integer
+        # @param RuleScopePrecise: <p>精准模式 0-关闭 1-开启</p>
+        # @type RuleScopePrecise: Integer
+        # @param Scope: <p>1 全部专业/旗舰版主机，0 Quuids列表主机</p>
+        # @type Scope: Integer
+        # @param Quuids: <p>自选主机Quuid列表</p>
+        # @type Quuids: Array
+        # @param ExcludeQuuids: <p>排除主机Quuid列表</p>
+        # @type ExcludeQuuids: Array
+        # @param AutoInclude: <p>新增资产自动包含 0 不包含 1包含</p>
+        # @type AutoInclude: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AILinkEnable, :RuleScopeDeep, :RuleScopeBalanced, :RuleScopePrecise, :Scope, :Quuids, :ExcludeQuuids, :AutoInclude, :RequestId
+
+        def initialize(ailinkenable=nil, rulescopedeep=nil, rulescopebalanced=nil, rulescopeprecise=nil, scope=nil, quuids=nil, excludequuids=nil, autoinclude=nil, requestid=nil)
+          @AILinkEnable = ailinkenable
+          @RuleScopeDeep = rulescopedeep
+          @RuleScopeBalanced = rulescopebalanced
+          @RuleScopePrecise = rulescopeprecise
+          @Scope = scope
+          @Quuids = quuids
+          @ExcludeQuuids = excludequuids
+          @AutoInclude = autoinclude
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @AILinkEnable = params['AILinkEnable']
+          @RuleScopeDeep = params['RuleScopeDeep']
+          @RuleScopeBalanced = params['RuleScopeBalanced']
+          @RuleScopePrecise = params['RuleScopePrecise']
+          @Scope = params['Scope']
+          @Quuids = params['Quuids']
+          @ExcludeQuuids = params['ExcludeQuuids']
+          @AutoInclude = params['AutoInclude']
           @RequestId = params['RequestId']
         end
       end
@@ -13815,6 +13927,244 @@ module TencentCloud
         end
       end
 
+      # DescribeEDRRuleList请求参数结构体
+      class DescribeEDRRuleListRequest < TencentCloud::Common::AbstractModel
+        # @param MemberId: <p>集团账号的成员id</p>
+        # @type MemberId: Array
+        # @param Filters: <p>PolicyType - int - 是否必填：否 - 策略类型<br>PolicyName - string - 是否必填：否 - 策略名称<br>Domain - string - 是否必填：否 - 域名(先对域名做urlencode,再base64)<br>PolicyAction- int - 是否必填：否 - 策略动作<br>IsEnabled - int - 是否必填：否 - 是否生效</p>
+        # @type Filters: Array
+        # @param Limit: <p>限制条数,默认10,最大100</p>
+        # @type Limit: Integer
+        # @param Offset: <p>偏移量,默认0</p>
+        # @type Offset: Integer
+        # @param Order: <p>排序方式: [ASC:升序|DESC:降序]</p>
+        # @type Order: String
+        # @param By: <p>可选排序列: [ModifyTime]</p>
+        # @type By: String
+
+        attr_accessor :MemberId, :Filters, :Limit, :Offset, :Order, :By
+
+        def initialize(memberid=nil, filters=nil, limit=nil, offset=nil, order=nil, by=nil)
+          @MemberId = memberid
+          @Filters = filters
+          @Limit = limit
+          @Offset = offset
+          @Order = order
+          @By = by
+        end
+
+        def deserialize(params)
+          @MemberId = params['MemberId']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              edrfilter_tmp = EDRFilter.new
+              edrfilter_tmp.deserialize(i)
+              @Filters << edrfilter_tmp
+            end
+          end
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @Order = params['Order']
+          @By = params['By']
+        end
+      end
+
+      # DescribeEDRRuleList返回参数结构体
+      class DescribeEDRRuleListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: <p>总数</p>
+        # @type TotalCount: Integer
+        # @param List: <p>列表</p>
+        # @type List: Array
+        # @param AttackStageCounts: <p>攻击阶段对应的策略数量</p>
+        # @type AttackStageCounts: Array
+        # @param DetectTypeCounts: <p>检测方式对应的策略数量</p>
+        # @type DetectTypeCounts: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :List, :AttackStageCounts, :DetectTypeCounts, :RequestId
+
+        def initialize(totalcount=nil, list=nil, attackstagecounts=nil, detecttypecounts=nil, requestid=nil)
+          @TotalCount = totalcount
+          @List = list
+          @AttackStageCounts = attackstagecounts
+          @DetectTypeCounts = detecttypecounts
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              edrrule_tmp = EDRRule.new
+              edrrule_tmp.deserialize(i)
+              @List << edrrule_tmp
+            end
+          end
+          unless params['AttackStageCounts'].nil?
+            @AttackStageCounts = []
+            params['AttackStageCounts'].each do |i|
+              attackstagecount_tmp = AttackStageCount.new
+              attackstagecount_tmp.deserialize(i)
+              @AttackStageCounts << attackstagecount_tmp
+            end
+          end
+          unless params['DetectTypeCounts'].nil?
+            @DetectTypeCounts = []
+            params['DetectTypeCounts'].each do |i|
+              detecttypecount_tmp = DetectTypeCount.new
+              detecttypecount_tmp.deserialize(i)
+              @DetectTypeCounts << detecttypecount_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeEdrAlertInfo请求参数结构体
+      class DescribeEdrAlertInfoRequest < TencentCloud::Common::AbstractModel
+        # @param Target: <p>告警定位信息（含跨账号AppID）</p>
+        # @type Target: :class:`Tencentcloud::Csip.v20221121.models.EdrAlertTarget`
+        # @param MemberId: <p>集团账号的成员id</p>
+        # @type MemberId: Array
+
+        attr_accessor :Target, :MemberId
+
+        def initialize(target=nil, memberid=nil)
+          @Target = target
+          @MemberId = memberid
+        end
+
+        def deserialize(params)
+          unless params['Target'].nil?
+            @Target = EdrAlertTarget.new
+            @Target.deserialize(params['Target'])
+          end
+          @MemberId = params['MemberId']
+        end
+      end
+
+      # DescribeEdrAlertInfo返回参数结构体
+      class DescribeEdrAlertInfoResponse < TencentCloud::Common::AbstractModel
+        # @param Alert: <p>告警详情</p>
+        # @type Alert: :class:`Tencentcloud::Csip.v20221121.models.EdrAlertDetail`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Alert, :RequestId
+
+        def initialize(alert=nil, requestid=nil)
+          @Alert = alert
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Alert'].nil?
+            @Alert = EdrAlertDetail.new
+            @Alert.deserialize(params['Alert'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeEdrAlertList请求参数结构体
+      class DescribeEdrAlertListRequest < TencentCloud::Common::AbstractModel
+        # @param MemberId: <p>集团账号的成员id</p>
+        # @type MemberId: Array
+        # @param Filters: <p>PolicyType - int - 是否必填：否 - 策略类型PolicyName - string - 是否必填：否 - 策略名称Domain - string - 是否必填：否 - 域名(先对域名做urlencode,再base64)PolicyAction- int - 是否必填：否 - 策略动作IsEnabled - int - 是否必填：否 - 是否生效</p>
+        # @type Filters: Array
+        # @param Limit: <p>限制条数,默认10,最大100</p>
+        # @type Limit: Integer
+        # @param Offset: <p>偏移量,默认0</p>
+        # @type Offset: Integer
+        # @param Order: <p>排序方式: [ASC:升序|DESC:降序]</p>
+        # @type Order: String
+        # @param By: <p>可选排序列: [LatestDetectTime]</p>
+        # @type By: String
+
+        attr_accessor :MemberId, :Filters, :Limit, :Offset, :Order, :By
+
+        def initialize(memberid=nil, filters=nil, limit=nil, offset=nil, order=nil, by=nil)
+          @MemberId = memberid
+          @Filters = filters
+          @Limit = limit
+          @Offset = offset
+          @Order = order
+          @By = by
+        end
+
+        def deserialize(params)
+          @MemberId = params['MemberId']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              edrfilter_tmp = EDRFilter.new
+              edrfilter_tmp.deserialize(i)
+              @Filters << edrfilter_tmp
+            end
+          end
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @Order = params['Order']
+          @By = params['By']
+        end
+      end
+
+      # DescribeEdrAlertList返回参数结构体
+      class DescribeEdrAlertListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: <p>总数</p>
+        # @type TotalCount: Integer
+        # @param List: <p>列表</p>
+        # @type List: Array
+        # @param AttackStageCounts: <p>攻击阶段对应的策略数量</p>
+        # @type AttackStageCounts: Array
+        # @param AlertCategoryCounts: <p>告警大类统计（随筛选变化，排除 AlertCategory filter）</p>
+        # @type AlertCategoryCounts: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :List, :AttackStageCounts, :AlertCategoryCounts, :RequestId
+
+        def initialize(totalcount=nil, list=nil, attackstagecounts=nil, alertcategorycounts=nil, requestid=nil)
+          @TotalCount = totalcount
+          @List = list
+          @AttackStageCounts = attackstagecounts
+          @AlertCategoryCounts = alertcategorycounts
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              edralertitem_tmp = EdrAlertItem.new
+              edralertitem_tmp.deserialize(i)
+              @List << edralertitem_tmp
+            end
+          end
+          unless params['AttackStageCounts'].nil?
+            @AttackStageCounts = []
+            params['AttackStageCounts'].each do |i|
+              attackstagecount_tmp = AttackStageCount.new
+              attackstagecount_tmp.deserialize(i)
+              @AttackStageCounts << attackstagecount_tmp
+            end
+          end
+          unless params['AlertCategoryCounts'].nil?
+            @AlertCategoryCounts = []
+            params['AlertCategoryCounts'].each do |i|
+              edralertcategorycount_tmp = EdrAlertCategoryCount.new
+              edralertcategorycount_tmp.deserialize(i)
+              @AlertCategoryCounts << edralertcategorycount_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeExposeAssetCategory请求参数结构体
       class DescribeExposeAssetCategoryRequest < TencentCloud::Common::AbstractModel
         # @param MemberId: <p>集团账号的成员id</p>
@@ -18392,6 +18742,26 @@ module TencentCloud
         end
       end
 
+      # EDR-检测方式对应策略数量
+      class DetectTypeCount < TencentCloud::Common::AbstractModel
+        # @param DetectType: <p>检测方式，0：主机检测，1：网络检测</p>
+        # @type DetectType: Integer
+        # @param Count: <p>策略数量</p>
+        # @type Count: Integer
+
+        attr_accessor :DetectType, :Count
+
+        def initialize(detecttype=nil, count=nil)
+          @DetectType = detecttype
+          @Count = count
+        end
+
+        def deserialize(params)
+          @DetectType = params['DetectType']
+          @Count = params['Count']
+        end
+      end
+
       # 磁盘分区信息
       class DiskPartitionInfo < TencentCloud::Common::AbstractModel
         # @param Name: <p>分区名称</p>
@@ -18600,6 +18970,30 @@ module TencentCloud
           @VerifyTXTRecord = params['VerifyTXTRecord']
           @VerifyStatus = params['VerifyStatus']
           @BotAccessCount = params['BotAccessCount']
+        end
+      end
+
+      # 反查域名信息
+      class DomainInfo < TencentCloud::Common::AbstractModel
+        # @param Domain: <p>域名</p>
+        # @type Domain: String
+        # @param AnalysisTime: <p>分析时间</p>
+        # @type AnalysisTime: String
+        # @param Tags: <p>标签</p>
+        # @type Tags: Array
+
+        attr_accessor :Domain, :AnalysisTime, :Tags
+
+        def initialize(domain=nil, analysistime=nil, tags=nil)
+          @Domain = domain
+          @AnalysisTime = analysistime
+          @Tags = tags
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @AnalysisTime = params['AnalysisTime']
+          @Tags = params['Tags']
         end
       end
 
@@ -21116,6 +21510,608 @@ module TencentCloud
         end
       end
 
+      # 描述键值对过滤器，用于条件过滤查询。例如过滤ID、名称、状态等
+
+      # 若存在多个Filter时，Filter间的关系为逻辑与（AND）关系。
+      # 若同一个Filter存在多个Values，同一Filter下Values间的关系为逻辑或（OR）关系。
+
+      # * 最多只能有5个Filter
+      # * 同一个Filter存在多个Values，Values值数量最多不能超过5个。
+      class EDRFilter < TencentCloud::Common::AbstractModel
+        # @param Name: <p>过滤键的名称。</p>
+        # @type Name: String
+        # @param Values: <p>一个或者多个过滤值。</p>
+        # @type Values: Array
+        # @param ExactMatch: <p>模糊搜索</p>
+        # @type ExactMatch: Boolean
+
+        attr_accessor :Name, :Values, :ExactMatch
+
+        def initialize(name=nil, values=nil, exactmatch=nil)
+          @Name = name
+          @Values = values
+          @ExactMatch = exactmatch
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Values = params['Values']
+          @ExactMatch = params['ExactMatch']
+        end
+      end
+
+      # EDR-策略内容
+      class EDRRule < TencentCloud::Common::AbstractModel
+        # @param RuleID: <p>策略ID</p>
+        # @type RuleID: String
+        # @param RuleType: <p>策略类型，0-系统策略/System Rule, 1-自定义策略/Custom Rule</p>
+        # @type RuleType: Integer
+        # @param Name: <p>策略名称</p>
+        # @type Name: String
+        # @param Description: <p>策略描述</p>
+        # @type Description: String
+        # @param ContentType: <p>内容类型 / Content Type: md5-文件MD5/File MD5, cmdline-命令行/Command Line, dns-DNS, ip_inbound-入站IP/Inbound IP, ip_outbound-出站IP/Outbound IP, custom_file-自定义文件/Custom File, process_network-进程网络/Process Network</p>
+        # @type ContentType: String
+        # @param Action: <p>执行动作 / Action: 0-告警/Alert, 1-放行/Allow, 2-告警并拦截/Alert and Block</p>
+        # @type Action: Integer
+        # @param Level: <p>告警等级 / Alert Level: 0-无/None, 1-高危/High, 2-中危/Medium, 3-低危/Low, 4-提示/Reminder</p>
+        # @type Level: Integer
+        # @param DetectMode: <p>检测模式 / Detect Mode: 0-精准/Precise, 1-均衡/Balanced, 2-深度/Deep</p>
+        # @type DetectMode: Integer
+        # @param DetectType: <p>检测方式 / Detect Type: 0-主机检测/Host Detection, 1-网络检测/Network Detection</p>
+        # @type DetectType: Integer
+        # @param AttackStage: <p>攻击阶段</p>
+        # @type AttackStage: String
+        # @param CWPScope: <p>主机生效资产范围 / Effective Scope: 0-指定主机/Specified Hosts, 1-全部主机/All Hosts, 2-专业版/Professional, 3-旗舰版/Flagship, 4-专业版+旗舰版/Professional+Flagship</p>
+        # @type CWPScope: Integer
+        # @param QUUIDS: <p>主机运行时的自选主机</p>
+        # @type QUUIDS: Array
+        # @param Status: <p>状态 / Status: 0-开启/Enabled, 1-关闭/Disabled</p>
+        # @type Status: Integer
+        # @param CreateTime: <p>创建时间</p>
+        # @type CreateTime: String
+        # @param ModifyTime: <p>修改时间</p>
+        # @type ModifyTime: String
+        # @param SupportBlock: <p>是否支持拦截 / Support Block: 0-不支持/Not Supported, 1-支持/Supported</p>
+        # @type SupportBlock: Integer
+        # @param Md5List: <p>MD5列表,ContentType=md5 时填充</p>
+        # @type Md5List: Array
+        # @param FileName: <p>文件名列表,ContentType=custom_file 时填充</p>
+        # @type FileName: Array
+        # @param FileDirectory: <p>文件目录列表,ContentType=custom_file 时填充</p>
+        # @type FileDirectory: Array
+        # @param Domains: <p>域名列表,ContentType=dns 时填充</p>
+        # @type Domains: Array
+        # @param OutboundIP: <p>出站IP列表,ContentType=ip_outbound 时填充</p>
+        # @type OutboundIP: Array
+        # @param InboundIP: <p>入站IP列表,ContentType=ip_inbound 时填充</p>
+        # @type InboundIP: Array
+        # @param CmdLineRules: <p>命令行规则,ContentType=cmdline 时填充</p>
+        # @type CmdLineRules: :class:`Tencentcloud::Csip.v20221121.models.RuleContentCmdLine`
+        # @param TCSSScope: <p>容器生效镜像范围 / Container Image Scope: 0-指定镜像/Specified Images, 1-全部镜像/All Images</p>
+        # @type TCSSScope: Integer
+        # @param ImageIDs: <p>生效镜像ID列表 / Image IDs (when TCSSScope=0)</p>
+        # @type ImageIDs: Array
+        # @param ImageNamesRegex: <p>镜像名正则表达式 / Image Names Regex</p>
+        # @type ImageNamesRegex: String
+        # @param Confidence: <p>置信度 / Confidence: 0-低/Low, 1-中/Medium, 2-高/High</p>
+        # @type Confidence: Integer
+        # @param ExcludeQUUIDS: <p>排除的主机列表 / Excluded Host QUUIDS</p>
+        # @type ExcludeQUUIDS: Array
+        # @param ExcludeImageIDs: <p>排除的镜像ID列表 / Excluded Image IDs</p>
+        # @type ExcludeImageIDs: Array
+        # @param ProcessNetworkRules: <p>进程网络规则 / Process network rules</p>
+        # @type ProcessNetworkRules: :class:`Tencentcloud::Csip.v20221121.models.RuleContentProcessNetwork`
+        # @param AppID: <p>策略对应APPID</p>
+        # @type AppID: Integer
+        # @param InstanceIDs: <p>自选实例ID范围</p>
+        # @type InstanceIDs: Array
+        # @param ExcludeInstanceIDs: <p>排除实例ID</p>
+        # @type ExcludeInstanceIDs: Array
+
+        attr_accessor :RuleID, :RuleType, :Name, :Description, :ContentType, :Action, :Level, :DetectMode, :DetectType, :AttackStage, :CWPScope, :QUUIDS, :Status, :CreateTime, :ModifyTime, :SupportBlock, :Md5List, :FileName, :FileDirectory, :Domains, :OutboundIP, :InboundIP, :CmdLineRules, :TCSSScope, :ImageIDs, :ImageNamesRegex, :Confidence, :ExcludeQUUIDS, :ExcludeImageIDs, :ProcessNetworkRules, :AppID, :InstanceIDs, :ExcludeInstanceIDs
+
+        def initialize(ruleid=nil, ruletype=nil, name=nil, description=nil, contenttype=nil, action=nil, level=nil, detectmode=nil, detecttype=nil, attackstage=nil, cwpscope=nil, quuids=nil, status=nil, createtime=nil, modifytime=nil, supportblock=nil, md5list=nil, filename=nil, filedirectory=nil, domains=nil, outboundip=nil, inboundip=nil, cmdlinerules=nil, tcssscope=nil, imageids=nil, imagenamesregex=nil, confidence=nil, excludequuids=nil, excludeimageids=nil, processnetworkrules=nil, appid=nil, instanceids=nil, excludeinstanceids=nil)
+          @RuleID = ruleid
+          @RuleType = ruletype
+          @Name = name
+          @Description = description
+          @ContentType = contenttype
+          @Action = action
+          @Level = level
+          @DetectMode = detectmode
+          @DetectType = detecttype
+          @AttackStage = attackstage
+          @CWPScope = cwpscope
+          @QUUIDS = quuids
+          @Status = status
+          @CreateTime = createtime
+          @ModifyTime = modifytime
+          @SupportBlock = supportblock
+          @Md5List = md5list
+          @FileName = filename
+          @FileDirectory = filedirectory
+          @Domains = domains
+          @OutboundIP = outboundip
+          @InboundIP = inboundip
+          @CmdLineRules = cmdlinerules
+          @TCSSScope = tcssscope
+          @ImageIDs = imageids
+          @ImageNamesRegex = imagenamesregex
+          @Confidence = confidence
+          @ExcludeQUUIDS = excludequuids
+          @ExcludeImageIDs = excludeimageids
+          @ProcessNetworkRules = processnetworkrules
+          @AppID = appid
+          @InstanceIDs = instanceids
+          @ExcludeInstanceIDs = excludeinstanceids
+        end
+
+        def deserialize(params)
+          @RuleID = params['RuleID']
+          @RuleType = params['RuleType']
+          @Name = params['Name']
+          @Description = params['Description']
+          @ContentType = params['ContentType']
+          @Action = params['Action']
+          @Level = params['Level']
+          @DetectMode = params['DetectMode']
+          @DetectType = params['DetectType']
+          @AttackStage = params['AttackStage']
+          @CWPScope = params['CWPScope']
+          @QUUIDS = params['QUUIDS']
+          @Status = params['Status']
+          @CreateTime = params['CreateTime']
+          @ModifyTime = params['ModifyTime']
+          @SupportBlock = params['SupportBlock']
+          @Md5List = params['Md5List']
+          @FileName = params['FileName']
+          @FileDirectory = params['FileDirectory']
+          @Domains = params['Domains']
+          @OutboundIP = params['OutboundIP']
+          @InboundIP = params['InboundIP']
+          unless params['CmdLineRules'].nil?
+            @CmdLineRules = RuleContentCmdLine.new
+            @CmdLineRules.deserialize(params['CmdLineRules'])
+          end
+          @TCSSScope = params['TCSSScope']
+          @ImageIDs = params['ImageIDs']
+          @ImageNamesRegex = params['ImageNamesRegex']
+          @Confidence = params['Confidence']
+          @ExcludeQUUIDS = params['ExcludeQUUIDS']
+          @ExcludeImageIDs = params['ExcludeImageIDs']
+          unless params['ProcessNetworkRules'].nil?
+            @ProcessNetworkRules = RuleContentProcessNetwork.new
+            @ProcessNetworkRules.deserialize(params['ProcessNetworkRules'])
+          end
+          @AppID = params['AppID']
+          @InstanceIDs = params['InstanceIDs']
+          @ExcludeInstanceIDs = params['ExcludeInstanceIDs']
+        end
+      end
+
+      # EDR告警大类对应的告警数量
+      class EdrAlertCategoryCount < TencentCloud::Common::AbstractModel
+        # @param AlertCategory: <p>告警大类</p>
+        # @type AlertCategory: String
+        # @param Count: <p>告警数量</p>
+        # @type Count: Integer
+
+        attr_accessor :AlertCategory, :Count
+
+        def initialize(alertcategory=nil, count=nil)
+          @AlertCategory = alertcategory
+          @Count = count
+        end
+
+        def deserialize(params)
+          @AlertCategory = params['AlertCategory']
+          @Count = params['Count']
+        end
+      end
+
+      # EDR告警详情（含content JSON + 资产/情报富化字段）
+      class EdrAlertDetail < TencentCloud::Common::AbstractModel
+        # @param Id: <p>主键ID</p>
+        # @type Id: Integer
+        # @param AppId: <p>租户ID</p>
+        # @type AppId: Integer
+        # @param AlertId: <p>告警唯一标识</p>
+        # @type AlertId: String
+        # @param AlertCategory: <p>告警大类（英文枚举：VIRUS_TROJAN/ABNORMAL_LOGIN/HOST_BEHAVIOR/NETWORK_BEHAVIOR/LINK_ENGINE）</p>
+        # @type AlertCategory: String
+        # @param AlertSubType: <p>告警子类型（英文枚举：MALWARE_FILE/MALWARE_PROCESS/RISK_LOGIN/BRUTE_FORCE/DNS/BASH/PRIV_ESCALATION/REVERSE_SHELL/NET_ATTACK/VUL_DEFENCE/MEMORY_SHELL_INJECT/MEMORY_SHELL_SCAN/MULTI_BEHAVIOR_ATTACK）</p>
+        # @type AlertSubType: String
+        # @param RuleId: <p>关联规则ID</p>
+        # @type RuleId: String
+        # @param RuleType: <p>规则类型: 0-系统规则 1-用户自定义</p>
+        # @type RuleType: Integer
+        # @param Level: <p>告警等级（英文枚举：CRITICAL/HIGH/MEDIUM/LOW/INFO）</p>
+        # @type Level: String
+        # @param Status: <p>处理状态（英文枚举：PENDING/PROCESSED/WHITELISTED/ISOLATED/CLEANED/IGNORED/ISOLATING/RESTORING/BLOCKED/DELETED）</p>
+        # @type Status: String
+        # @param AttackStage: <p>ATT&amp;CK攻击阶段</p>
+        # @type AttackStage: String
+        # @param DetectMode: <p>检测模式（英文枚举：PRECISE/BALANCED/DEEP）</p>
+        # @type DetectMode: String
+        # @param InstanceId: <p>实例ID</p>
+        # @type InstanceId: String
+        # @param Quuid: <p>主机UUID</p>
+        # @type Quuid: String
+        # @param EventCount: <p>聚合事件数</p>
+        # @type EventCount: Integer
+        # @param IsProVersion: <p>是否付费版</p>
+        # @type IsProVersion: Integer
+        # @param AlertSource: <p>告警来源（英文枚举：HOST/CONTAINER/K8S/CSIP）</p>
+        # @type AlertSource: String
+        # @param ImageId: <p>容器镜像ID（保留字段，恒为空串）</p>
+        # @type ImageId: String
+        # @param ContainerId: <p>容器ID（保留字段，恒为空串）</p>
+        # @type ContainerId: String
+        # @param ClusterId: <p>集群ID（保留字段，恒为空串）</p>
+        # @type ClusterId: String
+        # @param FirstDetectTime: <p>首次发现时间</p>
+        # @type FirstDetectTime: String
+        # @param LatestDetectTime: <p>最近发现时间</p>
+        # @type LatestDetectTime: String
+        # @param RuleName: <p>规则名称（规则富化）</p>
+        # @type RuleName: String
+        # @param ContentType: <p>内容类型: md5/cmdline/dns/ip_inbound/ip_outbound/custom_file/process_network</p>
+        # @type ContentType: String
+        # @param InstanceName: <p>实例名（资产富化）</p>
+        # @type InstanceName: String
+        # @param PublicIp: <p>公网IP（资产富化）</p>
+        # @type PublicIp: String
+        # @param PrivateIp: <p>内网IP（资产富化）</p>
+        # @type PrivateIp: String
+        # @param Content: <p>告警详情JSON字符串（前端通过JSON.parse解析，空值为&quot;{}&quot;）</p>
+        # @type Content: String
+        # @param AlertName: <p>告警名称（子类型中英文名）</p>
+        # @type AlertName: String
+        # @param CSIPTags: <p>安全中心标签</p>
+        # @type CSIPTags: Array
+        # @param HarmDesc: <p>危害描述（统一字段，合并原各子类型独立字段）</p>
+        # @type HarmDesc: String
+        # @param SuggestScheme: <p>修复建议（统一字段）</p>
+        # @type SuggestScheme: String
+        # @param HarmDescSource: <p>数据来源: vuldb/vdc/intel/default</p>
+        # @type HarmDescSource: String
+        # @param ThreatTags: <p>统一威胁情报标签（按子类型路由不同情报源）</p>
+        # @type ThreatTags: Array
+        # @param BashCmdDecoded: <p>Base64解码后的命令（高危命令子类型独有）</p>
+        # @type BashCmdDecoded: String
+        # @param NetVulName: <p>漏洞名称（网络攻击子类型独有）</p>
+        # @type NetVulName: String
+        # @param NetCVEId: <p>CVE编号（网络攻击子类型独有）</p>
+        # @type NetCVEId: String
+        # @param NetAbnormalAction: <p>异常行为（网络攻击子类型独有）</p>
+        # @type NetAbnormalAction: String
+        # @param IPIntel: <p>IP情报信息（为空时不返回）</p>
+        # @type IPIntel: :class:`Tencentcloud::Csip.v20221121.models.IPIntelInfo`
+        # @param MultiBehaviorDetectionMode: <p>多行为攻击规则类型分类: sequence/threshold/command</p>
+        # @type MultiBehaviorDetectionMode: String
+        # @param SourceDesc: <p>告警来源描述（按子类型派生，描述哪个引擎/规则检出）</p>
+        # @type SourceDesc: String
+        # @param ModifyTime: <p>处理时间参数格式：2026-05-26 19:45:48</p>
+        # @type ModifyTime: String
+        # @param IntelSource: <p>情报富化结果来源（标识本次详情是否成功命中外部情报）；取值 &quot;VDC&quot; / &quot;IPAnalysis&quot; / &quot;BreakingTI&quot; / 空串</p>
+        # @type IntelSource: String
+        # @param Verdict: <p>综合研判，中英文已翻译，中：恶意/安全/未知；英：Malicious/Safe/Unknown</p>
+        # @type Verdict: String
+        # @param VerdictBasis: <p>研判依据</p>
+        # @type VerdictBasis: String
+        # @param VirusName: <p>病毒名称</p>
+        # @type VirusName: String
+        # @param VirusFamily: <p>病毒家族</p>
+        # @type VirusFamily: String
+        # @param NetResponsePayload: <p>NetResponsePayload 响应数据包（base64 编码后的字符串）</p>
+        # @type NetResponsePayload: String
+        # @param NetSvcPs: <p>服务进程信息（base64 编码后的 JSON 字符串）</p>
+        # @type NetSvcPs: String
+
+        attr_accessor :Id, :AppId, :AlertId, :AlertCategory, :AlertSubType, :RuleId, :RuleType, :Level, :Status, :AttackStage, :DetectMode, :InstanceId, :Quuid, :EventCount, :IsProVersion, :AlertSource, :ImageId, :ContainerId, :ClusterId, :FirstDetectTime, :LatestDetectTime, :RuleName, :ContentType, :InstanceName, :PublicIp, :PrivateIp, :Content, :AlertName, :CSIPTags, :HarmDesc, :SuggestScheme, :HarmDescSource, :ThreatTags, :BashCmdDecoded, :NetVulName, :NetCVEId, :NetAbnormalAction, :IPIntel, :MultiBehaviorDetectionMode, :SourceDesc, :ModifyTime, :IntelSource, :Verdict, :VerdictBasis, :VirusName, :VirusFamily, :NetResponsePayload, :NetSvcPs
+
+        def initialize(id=nil, appid=nil, alertid=nil, alertcategory=nil, alertsubtype=nil, ruleid=nil, ruletype=nil, level=nil, status=nil, attackstage=nil, detectmode=nil, instanceid=nil, quuid=nil, eventcount=nil, isproversion=nil, alertsource=nil, imageid=nil, containerid=nil, clusterid=nil, firstdetecttime=nil, latestdetecttime=nil, rulename=nil, contenttype=nil, instancename=nil, publicip=nil, privateip=nil, content=nil, alertname=nil, csiptags=nil, harmdesc=nil, suggestscheme=nil, harmdescsource=nil, threattags=nil, bashcmddecoded=nil, netvulname=nil, netcveid=nil, netabnormalaction=nil, ipintel=nil, multibehaviordetectionmode=nil, sourcedesc=nil, modifytime=nil, intelsource=nil, verdict=nil, verdictbasis=nil, virusname=nil, virusfamily=nil, netresponsepayload=nil, netsvcps=nil)
+          @Id = id
+          @AppId = appid
+          @AlertId = alertid
+          @AlertCategory = alertcategory
+          @AlertSubType = alertsubtype
+          @RuleId = ruleid
+          @RuleType = ruletype
+          @Level = level
+          @Status = status
+          @AttackStage = attackstage
+          @DetectMode = detectmode
+          @InstanceId = instanceid
+          @Quuid = quuid
+          @EventCount = eventcount
+          @IsProVersion = isproversion
+          @AlertSource = alertsource
+          @ImageId = imageid
+          @ContainerId = containerid
+          @ClusterId = clusterid
+          @FirstDetectTime = firstdetecttime
+          @LatestDetectTime = latestdetecttime
+          @RuleName = rulename
+          @ContentType = contenttype
+          @InstanceName = instancename
+          @PublicIp = publicip
+          @PrivateIp = privateip
+          @Content = content
+          @AlertName = alertname
+          @CSIPTags = csiptags
+          @HarmDesc = harmdesc
+          @SuggestScheme = suggestscheme
+          @HarmDescSource = harmdescsource
+          @ThreatTags = threattags
+          @BashCmdDecoded = bashcmddecoded
+          @NetVulName = netvulname
+          @NetCVEId = netcveid
+          @NetAbnormalAction = netabnormalaction
+          @IPIntel = ipintel
+          @MultiBehaviorDetectionMode = multibehaviordetectionmode
+          @SourceDesc = sourcedesc
+          @ModifyTime = modifytime
+          @IntelSource = intelsource
+          @Verdict = verdict
+          @VerdictBasis = verdictbasis
+          @VirusName = virusname
+          @VirusFamily = virusfamily
+          @NetResponsePayload = netresponsepayload
+          @NetSvcPs = netsvcps
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @AppId = params['AppId']
+          @AlertId = params['AlertId']
+          @AlertCategory = params['AlertCategory']
+          @AlertSubType = params['AlertSubType']
+          @RuleId = params['RuleId']
+          @RuleType = params['RuleType']
+          @Level = params['Level']
+          @Status = params['Status']
+          @AttackStage = params['AttackStage']
+          @DetectMode = params['DetectMode']
+          @InstanceId = params['InstanceId']
+          @Quuid = params['Quuid']
+          @EventCount = params['EventCount']
+          @IsProVersion = params['IsProVersion']
+          @AlertSource = params['AlertSource']
+          @ImageId = params['ImageId']
+          @ContainerId = params['ContainerId']
+          @ClusterId = params['ClusterId']
+          @FirstDetectTime = params['FirstDetectTime']
+          @LatestDetectTime = params['LatestDetectTime']
+          @RuleName = params['RuleName']
+          @ContentType = params['ContentType']
+          @InstanceName = params['InstanceName']
+          @PublicIp = params['PublicIp']
+          @PrivateIp = params['PrivateIp']
+          @Content = params['Content']
+          @AlertName = params['AlertName']
+          unless params['CSIPTags'].nil?
+            @CSIPTags = []
+            params['CSIPTags'].each do |i|
+              csiptag_tmp = CSIPTag.new
+              csiptag_tmp.deserialize(i)
+              @CSIPTags << csiptag_tmp
+            end
+          end
+          @HarmDesc = params['HarmDesc']
+          @SuggestScheme = params['SuggestScheme']
+          @HarmDescSource = params['HarmDescSource']
+          @ThreatTags = params['ThreatTags']
+          @BashCmdDecoded = params['BashCmdDecoded']
+          @NetVulName = params['NetVulName']
+          @NetCVEId = params['NetCVEId']
+          @NetAbnormalAction = params['NetAbnormalAction']
+          unless params['IPIntel'].nil?
+            @IPIntel = IPIntelInfo.new
+            @IPIntel.deserialize(params['IPIntel'])
+          end
+          @MultiBehaviorDetectionMode = params['MultiBehaviorDetectionMode']
+          @SourceDesc = params['SourceDesc']
+          @ModifyTime = params['ModifyTime']
+          @IntelSource = params['IntelSource']
+          @Verdict = params['Verdict']
+          @VerdictBasis = params['VerdictBasis']
+          @VirusName = params['VirusName']
+          @VirusFamily = params['VirusFamily']
+          @NetResponsePayload = params['NetResponsePayload']
+          @NetSvcPs = params['NetSvcPs']
+        end
+      end
+
+      # EDR告警列表信息
+      class EdrAlertItem < TencentCloud::Common::AbstractModel
+        # @param Id: <p>告警表id</p>
+        # @type Id: Integer
+        # @param AppId: <p>APPID</p>
+        # @type AppId: Integer
+        # @param AlertId: <p>告警ID</p>
+        # @type AlertId: String
+        # @param AlertCategory: <p>告警大类</p>
+        # @type AlertCategory: String
+        # @param AlertSubType: <p>告警子类</p>
+        # @type AlertSubType: String
+        # @param RuleId: <p>策略ID</p>
+        # @type RuleId: String
+        # @param RuleType: <p>策略类型</p>
+        # @type RuleType: Integer
+        # @param Level: <p>告警等级</p>
+        # @type Level: String
+        # @param Status: <p>告警状态</p>
+        # @type Status: String
+        # @param AttackStage: <p>攻击阶段</p>
+        # @type AttackStage: String
+        # @param DetectMode: <p>检测模式</p>
+        # @type DetectMode: String
+        # @param InstanceId: <p>实例ID</p>
+        # @type InstanceId: String
+        # @param Quuid: <p>QUUID</p>
+        # @type Quuid: String
+        # @param IsProVersion: <p>是否付费</p>
+        # @type IsProVersion: Integer
+        # @param AlertSource: <p>告警来源</p>
+        # @type AlertSource: String
+        # @param ImageId: <p>镜像ID</p>
+        # @type ImageId: String
+        # @param ContainerId: <p>容器id</p>
+        # @type ContainerId: String
+        # @param ClusterId: <p>集群ID</p>
+        # @type ClusterId: String
+        # @param EventCount: <p>告警数量</p>
+        # @type EventCount: Integer
+        # @param FirstDetectTime: <p>最初发现时间</p>
+        # @type FirstDetectTime: String
+        # @param LatestDetectTime: <p>最近发现时间</p>
+        # @type LatestDetectTime: String
+        # @param RuleName: <p>规则名</p>
+        # @type RuleName: String
+        # @param ContentType: <p>策略类型</p>
+        # @type ContentType: String
+        # @param InstanceName: <p>实例名</p>
+        # @type InstanceName: String
+        # @param PublicIp: <p>公共IP</p>
+        # @type PublicIp: String
+        # @param PrivateIp: <p>内网IP</p>
+        # @type PrivateIp: String
+        # @param RaspOpen: <p>该机器是否开启应用防护</p>
+        # @type RaspOpen: Boolean
+
+        attr_accessor :Id, :AppId, :AlertId, :AlertCategory, :AlertSubType, :RuleId, :RuleType, :Level, :Status, :AttackStage, :DetectMode, :InstanceId, :Quuid, :IsProVersion, :AlertSource, :ImageId, :ContainerId, :ClusterId, :EventCount, :FirstDetectTime, :LatestDetectTime, :RuleName, :ContentType, :InstanceName, :PublicIp, :PrivateIp, :RaspOpen
+
+        def initialize(id=nil, appid=nil, alertid=nil, alertcategory=nil, alertsubtype=nil, ruleid=nil, ruletype=nil, level=nil, status=nil, attackstage=nil, detectmode=nil, instanceid=nil, quuid=nil, isproversion=nil, alertsource=nil, imageid=nil, containerid=nil, clusterid=nil, eventcount=nil, firstdetecttime=nil, latestdetecttime=nil, rulename=nil, contenttype=nil, instancename=nil, publicip=nil, privateip=nil, raspopen=nil)
+          @Id = id
+          @AppId = appid
+          @AlertId = alertid
+          @AlertCategory = alertcategory
+          @AlertSubType = alertsubtype
+          @RuleId = ruleid
+          @RuleType = ruletype
+          @Level = level
+          @Status = status
+          @AttackStage = attackstage
+          @DetectMode = detectmode
+          @InstanceId = instanceid
+          @Quuid = quuid
+          @IsProVersion = isproversion
+          @AlertSource = alertsource
+          @ImageId = imageid
+          @ContainerId = containerid
+          @ClusterId = clusterid
+          @EventCount = eventcount
+          @FirstDetectTime = firstdetecttime
+          @LatestDetectTime = latestdetecttime
+          @RuleName = rulename
+          @ContentType = contenttype
+          @InstanceName = instancename
+          @PublicIp = publicip
+          @PrivateIp = privateip
+          @RaspOpen = raspopen
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @AppId = params['AppId']
+          @AlertId = params['AlertId']
+          @AlertCategory = params['AlertCategory']
+          @AlertSubType = params['AlertSubType']
+          @RuleId = params['RuleId']
+          @RuleType = params['RuleType']
+          @Level = params['Level']
+          @Status = params['Status']
+          @AttackStage = params['AttackStage']
+          @DetectMode = params['DetectMode']
+          @InstanceId = params['InstanceId']
+          @Quuid = params['Quuid']
+          @IsProVersion = params['IsProVersion']
+          @AlertSource = params['AlertSource']
+          @ImageId = params['ImageId']
+          @ContainerId = params['ContainerId']
+          @ClusterId = params['ClusterId']
+          @EventCount = params['EventCount']
+          @FirstDetectTime = params['FirstDetectTime']
+          @LatestDetectTime = params['LatestDetectTime']
+          @RuleName = params['RuleName']
+          @ContentType = params['ContentType']
+          @InstanceName = params['InstanceName']
+          @PublicIp = params['PublicIp']
+          @PrivateIp = params['PrivateIp']
+          @RaspOpen = params['RaspOpen']
+        end
+      end
+
+      # EDR告警定位信息（ID + AlertID + AppID 三元组）
+      class EdrAlertTarget < TencentCloud::Common::AbstractModel
+        # @param Id: <p>告警主键ID</p>
+        # @type Id: Integer
+        # @param AppId: <p>告警所属账号ID（跨账号，前端必传）</p>
+        # @type AppId: Integer
+        # @param AlertId: <p>告警唯一标识</p>
+        # @type AlertId: String
+        # @param Quuid: <p>主机UUID（可选，由列表带回透传）</p>
+        # @type Quuid: String
+        # @param InstanceId: <p>实例ID（可选，由列表带回透传，用于安全中心标签富化）</p>
+        # @type InstanceId: String
+        # @param AlertSubType: <p>告警子类型</p>
+        # @type AlertSubType: String
+
+        attr_accessor :Id, :AppId, :AlertId, :Quuid, :InstanceId, :AlertSubType
+
+        def initialize(id=nil, appid=nil, alertid=nil, quuid=nil, instanceid=nil, alertsubtype=nil)
+          @Id = id
+          @AppId = appid
+          @AlertId = alertid
+          @Quuid = quuid
+          @InstanceId = instanceid
+          @AlertSubType = alertsubtype
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @AppId = params['AppId']
+          @AlertId = params['AlertId']
+          @Quuid = params['Quuid']
+          @InstanceId = params['InstanceId']
+          @AlertSubType = params['AlertSubType']
+        end
+      end
+
+      # EDR告警定位信息，用于永久忽略
+      class EdrAlertTargetForIgnore < TencentCloud::Common::AbstractModel
+        # @param Id: <p>告警主键ID</p>
+        # @type Id: Integer
+        # @param AppId: <p>告警所属账号ID（跨账号，前端必传）</p>
+        # @type AppId: Integer
+        # @param AlertId: <p>告警唯一标识</p>
+        # @type AlertId: String
+        # @param Quuid: <p>主机UUID（可选）</p>
+        # @type Quuid: String
+        # @param InstanceId: <p>实例ID（可选，用于白名单写入）</p>
+        # @type InstanceId: String
+
+        attr_accessor :Id, :AppId, :AlertId, :Quuid, :InstanceId
+
+        def initialize(id=nil, appid=nil, alertid=nil, quuid=nil, instanceid=nil)
+          @Id = id
+          @AppId = appid
+          @AlertId = alertid
+          @Quuid = quuid
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @AppId = params['AppId']
+          @AlertId = params['AlertId']
+          @Quuid = params['Quuid']
+          @InstanceId = params['InstanceId']
+        end
+      end
+
       # 统计条目
       class Element < TencentCloud::Common::AbstractModel
         # @param Key: 统计类型
@@ -21702,6 +22698,53 @@ module TencentCloud
         end
       end
 
+      # IP威胁情报信息（通过TIX IPAnalysis接口获取）
+      class IPIntelInfo < TencentCloud::Common::AbstractModel
+        # @param Tags: <p>情报标签（如常规木马、漏洞软件、窃密木马）</p>
+        # @type Tags: Array
+        # @param Basis: <p>研判依据</p>
+        # @type Basis: String
+        # @param ISP: <p>所属运营商</p>
+        # @type ISP: String
+        # @param Location: <p>地理位置</p>
+        # @type Location: String
+        # @param Characteristic: <p>家族团伙</p>
+        # @type Characteristic: String
+        # @param Purpose: <p>IP画像</p>
+        # @type Purpose: String
+        # @param Referer: <p>反查域名列表</p>
+        # @type Referer: Array
+
+        attr_accessor :Tags, :Basis, :ISP, :Location, :Characteristic, :Purpose, :Referer
+
+        def initialize(tags=nil, basis=nil, isp=nil, location=nil, characteristic=nil, purpose=nil, referer=nil)
+          @Tags = tags
+          @Basis = basis
+          @ISP = isp
+          @Location = location
+          @Characteristic = characteristic
+          @Purpose = purpose
+          @Referer = referer
+        end
+
+        def deserialize(params)
+          @Tags = params['Tags']
+          @Basis = params['Basis']
+          @ISP = params['ISP']
+          @Location = params['Location']
+          @Characteristic = params['Characteristic']
+          @Purpose = params['Purpose']
+          unless params['Referer'].nil?
+            @Referer = []
+            params['Referer'].each do |i|
+              domaininfo_tmp = DomainInfo.new
+              domaininfo_tmp.deserialize(i)
+              @Referer << domaininfo_tmp
+            end
+          end
+        end
+      end
+
       # IaC检测文件
       class IaCFile < TencentCloud::Common::AbstractModel
         # @param Id: <p>ID</p>
@@ -21818,6 +22861,26 @@ module TencentCloud
         def deserialize(params)
           @Name = params['Name']
           @Value = params['Value']
+        end
+      end
+
+      # instance_id和对应的appid账号信息
+      class InstanceIDWithAppIdItem < TencentCloud::Common::AbstractModel
+        # @param AppId: <p>APPID</p>
+        # @type AppId: Integer
+        # @param InstanceID: <p>实例ID</p>
+        # @type InstanceID: String
+
+        attr_accessor :AppId, :InstanceID
+
+        def initialize(appid=nil, instanceid=nil)
+          @AppId = appid
+          @InstanceID = instanceid
+        end
+
+        def deserialize(params)
+          @AppId = params['AppId']
+          @InstanceID = params['InstanceID']
         end
       end
 
@@ -23014,6 +24077,70 @@ module TencentCloud
         end
       end
 
+      # ModifyAILinkSetting请求参数结构体
+      class ModifyAILinkSettingRequest < TencentCloud::Common::AbstractModel
+        # @param AILinkEnable: <p>0 关闭AI-Link智链引擎，1 开启AI-Link智链引擎</p>
+        # @type AILinkEnable: Integer
+        # @param MemberId: <p>集团账号的成员id</p>
+        # @type MemberId: Array
+        # @param RuleScopeDeep: <p>深度模式 0-关闭 1-开启</p>
+        # @type RuleScopeDeep: Integer
+        # @param RuleScopeBalanced: <p>均衡模式 0-关闭 1-开启</p>
+        # @type RuleScopeBalanced: Integer
+        # @param RuleScopePrecise: <p>精准模式 0-关闭 1-开启</p>
+        # @type RuleScopePrecise: Integer
+        # @param Scope: <p>1 全部专业/旗舰版主机，0 自选主机列表</p>
+        # @type Scope: Integer
+        # @param Quuids: <p>自选主机Quuid列表（Scope=0时必填）</p>
+        # @type Quuids: Array
+        # @param ExcludeQuuids: <p>排除主机Quuid列表（Scope=1时生效）</p>
+        # @type ExcludeQuuids: Array
+        # @param AutoInclude: <p>新增资产自动包含 0 不包含 1包含</p>
+        # @type AutoInclude: Integer
+
+        attr_accessor :AILinkEnable, :MemberId, :RuleScopeDeep, :RuleScopeBalanced, :RuleScopePrecise, :Scope, :Quuids, :ExcludeQuuids, :AutoInclude
+
+        def initialize(ailinkenable=nil, memberid=nil, rulescopedeep=nil, rulescopebalanced=nil, rulescopeprecise=nil, scope=nil, quuids=nil, excludequuids=nil, autoinclude=nil)
+          @AILinkEnable = ailinkenable
+          @MemberId = memberid
+          @RuleScopeDeep = rulescopedeep
+          @RuleScopeBalanced = rulescopebalanced
+          @RuleScopePrecise = rulescopeprecise
+          @Scope = scope
+          @Quuids = quuids
+          @ExcludeQuuids = excludequuids
+          @AutoInclude = autoinclude
+        end
+
+        def deserialize(params)
+          @AILinkEnable = params['AILinkEnable']
+          @MemberId = params['MemberId']
+          @RuleScopeDeep = params['RuleScopeDeep']
+          @RuleScopeBalanced = params['RuleScopeBalanced']
+          @RuleScopePrecise = params['RuleScopePrecise']
+          @Scope = params['Scope']
+          @Quuids = params['Quuids']
+          @ExcludeQuuids = params['ExcludeQuuids']
+          @AutoInclude = params['AutoInclude']
+        end
+      end
+
+      # ModifyAILinkSetting返回参数结构体
+      class ModifyAILinkSettingResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyAlarmRiskStatus请求参数结构体
       class ModifyAlarmRiskStatusRequest < TencentCloud::Common::AbstractModel
         # @param AlarmRiskIdSet: 告警或者风险id
@@ -23831,6 +24958,212 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyEDRRule请求参数结构体
+      class ModifyEDRRuleRequest < TencentCloud::Common::AbstractModel
+        # @param RuleType: <p>策略类型 / Rule Type: 0-系统策略/System Rule, 1-自定义策略/Custom Rule</p>
+        # @type RuleType: Integer
+        # @param AlertAction: <p>执行动作 / Action: 0-告警/Alert, 1-放行/Allow, 2-告警并拦截/Alert and Block</p>
+        # @type AlertAction: Integer
+        # @param CWPScope: <p>生效资产 / Effective Scope: 0-指定主机/Specified Hosts, 1-全部主机/All Hosts, 2-专业版/Professional, 3-旗舰版/Flagship, 4-专业版+旗舰版/Professional+Flagship     QUUIDS        []string json:&quot;QUUIDS&quot;                                      // 主机列表 / Host QUUIDS (when Scope=0)</p>
+        # @type CWPScope: Integer
+        # @param TCSSScope: <p>容器生效镜像范围 / Container Image Scope: 0-指定镜像/Specified Images, 1-全部镜像/All Images</p>
+        # @type TCSSScope: Integer
+        # @param Status: <p>开关 / Status: 0-开启/Enabled, 1-关闭/Disabled</p>
+        # @type Status: Integer
+        # @param MemberId: <p>集团账号的成员id</p>
+        # @type MemberId: Array
+        # @param Name: <p>策略名称</p>
+        # @type Name: String
+        # @param ContentType: <p>内容类型 / Content Type: md5-文件MD5/File MD5, cmdline-命令行/Command Line, dns-DNS, ip_inbound-入站IP/Inbound IP, ip_outbound-出站IP/Outbound IP, custom_file-自定义文件/Custom File, process_network-进程网络/Process Network</p>
+        # @type ContentType: String
+        # @param Level: <p>告警等级 / Alert Level: 1-高危/High, 2-中危/Medium, 3-低危/Low, 4-提示/Reminder</p>
+        # @type Level: Integer
+        # @param DetectMode: <p>检测模式 / Detect Mode: 0-精准/Precise, 1-均衡/Balanced, 2-深度/Deep</p>
+        # @type DetectMode: Integer
+        # @param AttackStage: <p>攻击阶段</p>
+        # @type AttackStage: String
+        # @param RuleID: <p>策略</p>
+        # @type RuleID: String
+        # @param Description: <p>策略描述</p>
+        # @type Description: String
+        # @param DealOldEvents: <p>处理历史告警 / Handle Old Events: 0-否/No, 1-是/Yes</p>
+        # @type DealOldEvents: Integer
+        # @param Md5List: <p>ContentType=md5 时传入的 MD5 列表</p>
+        # @type Md5List: Array
+        # @param FileName: <p>ContentType=custom_file 时传入的文件名列表(Base64编码)</p>
+        # @type FileName: Array
+        # @param FileDirectory: <p>ContentType=custom_file 时传入的文件目录列表(Base64编码)</p>
+        # @type FileDirectory: Array
+        # @param CmdLineRules: <p>ContentType=cmdline 时传入的命令行规则，Process/PProcess/AProcess 的 Exe/Cmdline 字段需要 Base64 编码</p>
+        # @type CmdLineRules: :class:`Tencentcloud::Csip.v20221121.models.RuleContentCmdLine`
+        # @param Domains: <p>ContentType=dns 时传入的域名列表(Base64编码)</p>
+        # @type Domains: Array
+        # @param OutboundIP: <p>ContentType=ip_outbound 时传入的出站IP列表(Base64编码)</p>
+        # @type OutboundIP: Array
+        # @param InboundIP: <p>ContentType=ip_inbound 时传入的入站IP列表(Base64编码)</p>
+        # @type InboundIP: Array
+        # @param ImageIDs: <p>镜像ID列表 / Image IDs (when TCSSScope=0)</p>
+        # @type ImageIDs: Array
+        # @param ProcessNetworkRules: <p>ContentType=process_network 时传入的进程网络规则</p>
+        # @type ProcessNetworkRules: :class:`Tencentcloud::Csip.v20221121.models.RuleContentProcessNetwork`
+        # @param TargetAppIDs: <p>选择的多账号的APPID</p>
+        # @type TargetAppIDs: Array
+        # @param Target: <p>告警的加白目标机器信息</p>
+        # @type Target: :class:`Tencentcloud::Csip.v20221121.models.EdrAlertTarget`
+        # @param InstanceIDsWithAppId: <p>自选资产对应的实例ID和APPID</p>
+        # @type InstanceIDsWithAppId: Array
+        # @param ExcludeInstanceIDsWithAppId: <p>全选资产排除的实例ID和APPID</p>
+        # @type ExcludeInstanceIDsWithAppId: Array
+
+        attr_accessor :RuleType, :AlertAction, :CWPScope, :TCSSScope, :Status, :MemberId, :Name, :ContentType, :Level, :DetectMode, :AttackStage, :RuleID, :Description, :DealOldEvents, :Md5List, :FileName, :FileDirectory, :CmdLineRules, :Domains, :OutboundIP, :InboundIP, :ImageIDs, :ProcessNetworkRules, :TargetAppIDs, :Target, :InstanceIDsWithAppId, :ExcludeInstanceIDsWithAppId
+
+        def initialize(ruletype=nil, alertaction=nil, cwpscope=nil, tcssscope=nil, status=nil, memberid=nil, name=nil, contenttype=nil, level=nil, detectmode=nil, attackstage=nil, ruleid=nil, description=nil, dealoldevents=nil, md5list=nil, filename=nil, filedirectory=nil, cmdlinerules=nil, domains=nil, outboundip=nil, inboundip=nil, imageids=nil, processnetworkrules=nil, targetappids=nil, target=nil, instanceidswithappid=nil, excludeinstanceidswithappid=nil)
+          @RuleType = ruletype
+          @AlertAction = alertaction
+          @CWPScope = cwpscope
+          @TCSSScope = tcssscope
+          @Status = status
+          @MemberId = memberid
+          @Name = name
+          @ContentType = contenttype
+          @Level = level
+          @DetectMode = detectmode
+          @AttackStage = attackstage
+          @RuleID = ruleid
+          @Description = description
+          @DealOldEvents = dealoldevents
+          @Md5List = md5list
+          @FileName = filename
+          @FileDirectory = filedirectory
+          @CmdLineRules = cmdlinerules
+          @Domains = domains
+          @OutboundIP = outboundip
+          @InboundIP = inboundip
+          @ImageIDs = imageids
+          @ProcessNetworkRules = processnetworkrules
+          @TargetAppIDs = targetappids
+          @Target = target
+          @InstanceIDsWithAppId = instanceidswithappid
+          @ExcludeInstanceIDsWithAppId = excludeinstanceidswithappid
+        end
+
+        def deserialize(params)
+          @RuleType = params['RuleType']
+          @AlertAction = params['AlertAction']
+          @CWPScope = params['CWPScope']
+          @TCSSScope = params['TCSSScope']
+          @Status = params['Status']
+          @MemberId = params['MemberId']
+          @Name = params['Name']
+          @ContentType = params['ContentType']
+          @Level = params['Level']
+          @DetectMode = params['DetectMode']
+          @AttackStage = params['AttackStage']
+          @RuleID = params['RuleID']
+          @Description = params['Description']
+          @DealOldEvents = params['DealOldEvents']
+          @Md5List = params['Md5List']
+          @FileName = params['FileName']
+          @FileDirectory = params['FileDirectory']
+          unless params['CmdLineRules'].nil?
+            @CmdLineRules = RuleContentCmdLine.new
+            @CmdLineRules.deserialize(params['CmdLineRules'])
+          end
+          @Domains = params['Domains']
+          @OutboundIP = params['OutboundIP']
+          @InboundIP = params['InboundIP']
+          @ImageIDs = params['ImageIDs']
+          unless params['ProcessNetworkRules'].nil?
+            @ProcessNetworkRules = RuleContentProcessNetwork.new
+            @ProcessNetworkRules.deserialize(params['ProcessNetworkRules'])
+          end
+          @TargetAppIDs = params['TargetAppIDs']
+          unless params['Target'].nil?
+            @Target = EdrAlertTarget.new
+            @Target.deserialize(params['Target'])
+          end
+          unless params['InstanceIDsWithAppId'].nil?
+            @InstanceIDsWithAppId = []
+            params['InstanceIDsWithAppId'].each do |i|
+              instanceidwithappiditem_tmp = InstanceIDWithAppIdItem.new
+              instanceidwithappiditem_tmp.deserialize(i)
+              @InstanceIDsWithAppId << instanceidwithappiditem_tmp
+            end
+          end
+          unless params['ExcludeInstanceIDsWithAppId'].nil?
+            @ExcludeInstanceIDsWithAppId = []
+            params['ExcludeInstanceIDsWithAppId'].each do |i|
+              instanceidwithappiditem_tmp = InstanceIDWithAppIdItem.new
+              instanceidwithappiditem_tmp.deserialize(i)
+              @ExcludeInstanceIDsWithAppId << instanceidwithappiditem_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyEDRRule返回参数结构体
+      class ModifyEDRRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyEdrAlertPermanentIgnore请求参数结构体
+      class ModifyEdrAlertPermanentIgnoreRequest < TencentCloud::Common::AbstractModel
+        # @param Targets: <p>告警定位列表（支持跨账号），最多500条</p>
+        # @type Targets: Array
+        # @param MemberId: <p>集团账号的成员id</p>
+        # @type MemberId: Array
+
+        attr_accessor :Targets, :MemberId
+
+        def initialize(targets=nil, memberid=nil)
+          @Targets = targets
+          @MemberId = memberid
+        end
+
+        def deserialize(params)
+          unless params['Targets'].nil?
+            @Targets = []
+            params['Targets'].each do |i|
+              edralerttargetforignore_tmp = EdrAlertTargetForIgnore.new
+              edralerttargetforignore_tmp.deserialize(i)
+              @Targets << edralerttargetforignore_tmp
+            end
+          end
+          @MemberId = params['MemberId']
+        end
+      end
+
+      # ModifyEdrAlertPermanentIgnore返回参数结构体
+      class ModifyEdrAlertPermanentIgnoreResponse < TencentCloud::Common::AbstractModel
+        # @param IgnoredCount: <p>成功忽略的告警数</p>
+        # @type IgnoredCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :IgnoredCount, :RequestId
+
+        def initialize(ignoredcount=nil, requestid=nil)
+          @IgnoredCount = ignoredcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @IgnoredCount = params['IgnoredCount']
           @RequestId = params['RequestId']
         end
       end
@@ -25701,6 +27034,93 @@ module TencentCloud
           end
           @ContainerName = params['ContainerName']
           @ContainerID = params['ContainerID']
+        end
+      end
+
+      # EDR命令行规则
+      class RuleContentCmdLine < TencentCloud::Common::AbstractModel
+        # @param Process: <p>进程命令行信息</p>
+        # @type Process: :class:`Tencentcloud::Csip.v20221121.models.RuleContentProcessInfo`
+        # @param ParentProcess: <p>父进程命令行信息</p>
+        # @type ParentProcess: :class:`Tencentcloud::Csip.v20221121.models.RuleContentProcessInfo`
+        # @param AncestorProcess: <p>祖先进程命令行信息</p>
+        # @type AncestorProcess: :class:`Tencentcloud::Csip.v20221121.models.RuleContentProcessInfo`
+
+        attr_accessor :Process, :ParentProcess, :AncestorProcess
+
+        def initialize(process=nil, parentprocess=nil, ancestorprocess=nil)
+          @Process = process
+          @ParentProcess = parentprocess
+          @AncestorProcess = ancestorprocess
+        end
+
+        def deserialize(params)
+          unless params['Process'].nil?
+            @Process = RuleContentProcessInfo.new
+            @Process.deserialize(params['Process'])
+          end
+          unless params['ParentProcess'].nil?
+            @ParentProcess = RuleContentProcessInfo.new
+            @ParentProcess.deserialize(params['ParentProcess'])
+          end
+          unless params['AncestorProcess'].nil?
+            @AncestorProcess = RuleContentProcessInfo.new
+            @AncestorProcess.deserialize(params['AncestorProcess'])
+          end
+        end
+      end
+
+      # EDR命令行规则单规则
+      class RuleContentProcessInfo < TencentCloud::Common::AbstractModel
+        # @param Exe: <p>进程文件路径</p>
+        # @type Exe: String
+        # @param CmdLine: <p>进程命令行</p>
+        # @type CmdLine: String
+
+        attr_accessor :Exe, :CmdLine
+
+        def initialize(exe=nil, cmdline=nil)
+          @Exe = exe
+          @CmdLine = cmdline
+        end
+
+        def deserialize(params)
+          @Exe = params['Exe']
+          @CmdLine = params['CmdLine']
+        end
+      end
+
+      # 定义进程网络规则内容结构，用于反弹Shell白名单场景，支持进程匹配 + IP/端口过滤
+      class RuleContentProcessNetwork < TencentCloud::Common::AbstractModel
+        # @param Process: <p>当前进程</p>
+        # @type Process: :class:`Tencentcloud::Csip.v20221121.models.RuleContentProcessInfo`
+        # @param DstIP: <p>目标IP（必填）: 支持单个IP/IP范围/CIDR, 支持IPv4和IPv6</p>
+        # @type DstIP: String
+        # @param ParentProcess: <p>父进程</p>
+        # @type ParentProcess: :class:`Tencentcloud::Csip.v20221121.models.RuleContentProcessInfo`
+        # @param DstPorts: <p>目标端口列表（可选）: 支持1-65535, 为空表示不限端口</p>
+        # @type DstPorts: Array
+
+        attr_accessor :Process, :DstIP, :ParentProcess, :DstPorts
+
+        def initialize(process=nil, dstip=nil, parentprocess=nil, dstports=nil)
+          @Process = process
+          @DstIP = dstip
+          @ParentProcess = parentprocess
+          @DstPorts = dstports
+        end
+
+        def deserialize(params)
+          unless params['Process'].nil?
+            @Process = RuleContentProcessInfo.new
+            @Process.deserialize(params['Process'])
+          end
+          @DstIP = params['DstIP']
+          unless params['ParentProcess'].nil?
+            @ParentProcess = RuleContentProcessInfo.new
+            @ParentProcess.deserialize(params['ParentProcess'])
+          end
+          @DstPorts = params['DstPorts']
         end
       end
 

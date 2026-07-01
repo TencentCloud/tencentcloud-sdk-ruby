@@ -2242,8 +2242,8 @@ module TencentCloud
 
         attr_accessor :Name, :SegmentSet, :RecognitionSegmentSet
         extend Gem::Deprecate
-        deprecate :SegmentSet, :none, 2026, 6
-        deprecate :SegmentSet=, :none, 2026, 6
+        deprecate :SegmentSet, :none, 2026, 7
+        deprecate :SegmentSet=, :none, 2026, 7
 
         def initialize(name=nil, segmentset=nil, recognitionsegmentset=nil)
           @Name = name
@@ -4851,6 +4851,34 @@ module TencentCloud
         end
       end
 
+      # AIGC 配额
+      class AigcQuotaItem < TencentCloud::Common::AbstractModel
+        # @param QuotaType: <p>配额类型</p><p>枚举值：</p><ul><li>Image： AIGC 生图任务</li><li>Video： AIGC 生视频任务</li><li>Text： AIGC 生文任务</li></ul>
+        # @type QuotaType: String
+        # @param ApiToken: <p>仅当QuotaLimit=Text时有效，用于选择需要进行配额限制ApiToken</p>
+        # @type ApiToken: String
+        # @param QuotaLimit: <p>任务的配额数</p><p>单位：</p><ul><li>当QuotaLimit=Image时，单位为张</li><li>当QuotaLimit=Video时，单位为秒</li><li>当QuotaLimit=Text时，单位为token</li></ul>
+        # @type QuotaLimit: Integer
+        # @param Usage: <p>已经使用的用量数</p><p>单位：</p><ul><li>当QuotaLimit=Image时，单位为张</li><li>当QuotaLimit=Video时，单位为秒</li><li>当QuotaLimit=Text时，单位为token</li></ul>
+        # @type Usage: Integer
+
+        attr_accessor :QuotaType, :ApiToken, :QuotaLimit, :Usage
+
+        def initialize(quotatype=nil, apitoken=nil, quotalimit=nil, usage=nil)
+          @QuotaType = quotatype
+          @ApiToken = apitoken
+          @QuotaLimit = quotalimit
+          @Usage = usage
+        end
+
+        def deserialize(params)
+          @QuotaType = params['QuotaType']
+          @ApiToken = params['ApiToken']
+          @QuotaLimit = params['QuotaLimit']
+          @Usage = params['Usage']
+        end
+      end
+
       # AIGC 统计数据
       class AigcUsageDataItem < TencentCloud::Common::AbstractModel
         # @param Specification: <p>AIGC规格。<br>取值有：</p><li>Qwen2.0</li><li>Hunyuan3.0_1K</li><li>Hunyuan3.0_2K</li><li>Hunyuan3.0_4K</li><li>Mingmou1.0_1K</li><li>Mingmou1.0_2K</li><li>Mingmou1.0_4K</li><li>ViduQ2_T2i_1080P</li><li>ViduQ2_T2i_2K</li><li>ViduQ2_T2i_4K</li><li>ViduQ2_I2i_1080P</li><li>ViduQ2_I2i_2K</li><li>ViduQ2_I2i_4K</li><li>ViduQ2_Refer2i_1080P</li><li>ViduQ2_Refer2i_2K</li><li>ViduQ2_Refer2i_4K</li><li>Kling2.1_T2i_1K2K</li><li>Kling2.1_T2i_4K</li><li>Kling2.1_Refer2i_1K</li><li>Kling2.1_Refer2i_2K</li><li>Kling2.1_Refer2i_4K</li><li>Veo3.1Standard</li><li>Veo3.1Fast</li><li>Kling2.0&amp;2.1std_720P</li><li>Kling2.0&amp;2.1pro_1080P</li><li>Kling2.5pro_720P</li><li>Kling2.5pro_1080P</li><li>KlingO1_720P</li><li>KlingO1_1080P</li><li>KlingO1_NoVideo_720P</li><li>KlingO1_NoVideo_1080P</li><li>Kling2.6</li><li>Kling2.6Sound</li><li>Kling2.6MotionControl_720P</li><li>Kling2.6MotionControl_1080P</li><li>Kling3.0_720P</li><li>Kling3.0Sound_720P</li><li>Kling3.0CustomVoice_720P</li><li>Kling3.0_1080P</li><li>Kling3.0Sound_1080P</li><li>Kling3.0CustomVoice_1080P</li><li>Kling3.0CustomVoice_2K</li><li>Kling3.0CustomVoice_4K</li><li>Kling3.0MotionControl_720P</li><li>Kling3.0MotionControl_1080P</li><li>Kling3.0MotionControl_2K</li><li>Kling3.0MotionControl_4K</li><li>Kling_Avatar_I2v_720P</li><li>Kling_Avatar_I2v_1080P</li><li>Kling_Identifyface</li><li>Hailuo02&amp;2.3_768P</li><li>Hailuo02&amp;2.3_1080P</li><li>Hailuo2.3fast_768P</li><li>Hailuo2.3fast_1080P</li><li>ViduQ2_720P</li><li>ViduQ2_720P_OffPeak</li><li>ViduQ2_1080P</li><li>ViduQ2_1080P_OffPeak</li><li>ViduQ2_Refer_540P</li><li>ViduQ2_Refer_540P_OffPeak</li><li>ViduQ2_Refer_720P</li><li>ViduQ2_Refer_720P_OffPeak</li><li>ViduQ2_Refer_1080P</li><li>ViduQ2_Refer_1080P_OffPeak</li><li>ViduQ2pro_720P</li><li>ViduQ2pro_720P_OffPeak</li><li>ViduQ2pro_1080P</li><li>ViduQ2pro_1080P_OffPeak</li><li>ViduQ2pro_Refer_720P</li><li>ViduQ2pro_Refer_720P_OffPeak</li><li>ViduQ2pro_Refer_720P</li><li>ViduQ2pro_Refer_720P_OffPeak</li><li>ViduQ2pro_Refer_1080P</li><li>ViduQ2pro_Refer_1080P_OffPeak</li><li>ViduQ2turbo_720P</li><li>ViduQ2turbo_720P_OffPeak</li><li>ViduQ2turbo_1080P</li><li>ViduQ2turbo_1080P_OffPeak</li><li>ViduQ3_Refer_720P</li><li>ViduQ3_Refer_720P_OffPeak</li><li>ViduQ3_Refer_1080P</li><li>ViduQ3_Refer_1080P_OffPeak</li><li>ViduQ3_Refer_2K</li><li>ViduQ3_Refer_2K_OffPeak</li><li>ViduQ3_Refer_4K</li><li>ViduQ3_Refer_4K_OffPeak</li><li>ViduQ3pro_540P</li><li>ViduQ3pro_540P_OffPeak</li><li>ViduQ3pro_720P</li><li>ViduQ3pro_720P_OffPeak</li><li>ViduQ3pro_1080P</li><li>ViduQ3pro_1080P_OffPeak</li><li>ViduQ3turbo_540P</li><li>ViduQ3turbo_540P_OffPeak</li><li>ViduQ3turbo_720P</li><li>ViduQ3turbo_720P_OffPeak</li><li>ViduQ3turbo_1080P</li><li>ViduQ3turbo_1080P_OffPeak</li><li>ViduQ3turbo_2K</li><li>ViduQ3turbo_2K_OffPeak</li><li>ViduQ3turbo_4K</li><li>ViduQ3turbo_4K_OffPeak</li><li>Vidu_TemplateEffect</li><li>Hunyuan1.5_720P</li><li>Hunyuan1.5_1080P</li><li>Mingmou1.0_720P</li><li>Mingmou1.0_1080P</li><li>ImageProductImage</li><li>ImageChangeClothes</li><li>VideoProductShowcase</li><li>ImageOutPainting</li><li>FaceInfo</li><li>CustomVoice</li><li>Subject</li><li>unknown</li>
@@ -5792,8 +5820,8 @@ module TencentCloud
 
         attr_accessor :Switch, :SubtitleFormats, :SubtitleFormat, :SrcLanguage, :SubtitleName
         extend Gem::Deprecate
-        deprecate :SubtitleFormat, :none, 2026, 6
-        deprecate :SubtitleFormat=, :none, 2026, 6
+        deprecate :SubtitleFormat, :none, 2026, 7
+        deprecate :SubtitleFormat=, :none, 2026, 7
 
         def initialize(switch=nil, subtitleformats=nil, subtitleformat=nil, srclanguage=nil, subtitlename=nil)
           @Switch = switch
@@ -5836,8 +5864,8 @@ module TencentCloud
 
         attr_accessor :Switch, :SubtitleFormatsOperation, :SubtitleFormat, :SrcLanguage, :SubtitleName
         extend Gem::Deprecate
-        deprecate :SubtitleFormat, :none, 2026, 6
-        deprecate :SubtitleFormat=, :none, 2026, 6
+        deprecate :SubtitleFormat, :none, 2026, 7
+        deprecate :SubtitleFormat=, :none, 2026, 7
 
         def initialize(switch=nil, subtitleformatsoperation=nil, subtitleformat=nil, srclanguage=nil, subtitlename=nil)
           @Switch = switch
@@ -9059,6 +9087,50 @@ module TencentCloud
         end
       end
 
+      # CreateAigcQuota请求参数结构体
+      class CreateAigcQuotaRequest < TencentCloud::Common::AbstractModel
+        # @param SubAppId: <p><strong>点播应用 ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</strong></p>
+        # @type SubAppId: Integer
+        # @param QuotaType: <p>配额类型</p><p>枚举值：</p><ul><li>Image： AIGC 生图任务</li><li>Video： AIGC 生视频任务</li><li>Text： AIGC 生文任务</li></ul>
+        # @type QuotaType: String
+        # @param QuotaLimit: <p>任务的配额数</p><p>单位：</p><ul><li>当QuotaLimit=Image时，单位为张</li><li>当QuotaLimit=Video时，单位为秒</li><li>当QuotaLimit=Text时，单位为token</li></ul>
+        # @type QuotaLimit: Integer
+        # @param ApiToken: <p>仅当QuotaLimit=Text时有效，用于选择需要进行配额限制ApiToken</p>
+        # @type ApiToken: String
+
+        attr_accessor :SubAppId, :QuotaType, :QuotaLimit, :ApiToken
+
+        def initialize(subappid=nil, quotatype=nil, quotalimit=nil, apitoken=nil)
+          @SubAppId = subappid
+          @QuotaType = quotatype
+          @QuotaLimit = quotalimit
+          @ApiToken = apitoken
+        end
+
+        def deserialize(params)
+          @SubAppId = params['SubAppId']
+          @QuotaType = params['QuotaType']
+          @QuotaLimit = params['QuotaLimit']
+          @ApiToken = params['ApiToken']
+        end
+      end
+
+      # CreateAigcQuota返回参数结构体
+      class CreateAigcQuotaResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 创建主体输入信息。
       class CreateAigcSubjectInput < TencentCloud::Common::AbstractModel
         # @param SubjectName: <p>主体名称。</p>
@@ -10538,8 +10610,8 @@ module TencentCloud
 
         attr_accessor :Name, :SubAppId, :Comment, :MediaProcessTask, :AiContentReviewTask, :AiAnalysisTask, :AiRecognitionTaskSet, :AiRecognitionTask, :ReviewAudioVideoTask
         extend Gem::Deprecate
-        deprecate :AiRecognitionTask, :none, 2026, 6
-        deprecate :AiRecognitionTask=, :none, 2026, 6
+        deprecate :AiRecognitionTask, :none, 2026, 7
+        deprecate :AiRecognitionTask=, :none, 2026, 7
 
         def initialize(name=nil, subappid=nil, comment=nil, mediaprocesstask=nil, aicontentreviewtask=nil, aianalysistask=nil, airecognitiontaskset=nil, airecognitiontask=nil, reviewaudiovideotask=nil)
           @Name = name
@@ -12089,6 +12161,46 @@ module TencentCloud
         end
       end
 
+      # DeleteAigcQuota请求参数结构体
+      class DeleteAigcQuotaRequest < TencentCloud::Common::AbstractModel
+        # @param SubAppId: <p><strong>点播应用 ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</strong></p>
+        # @type SubAppId: Integer
+        # @param QuotaType: <p>配额类型</p><p>枚举值：</p><ul><li>Image： AIGC 生图任务</li><li>Video： AIGC 生视频任务</li><li>Text： AIGC 生文任务</li></ul>
+        # @type QuotaType: String
+        # @param ApiToken: <p>仅当QuotaLimit=Text时有效，用于选择需要进行配额限制ApiToken</p>
+        # @type ApiToken: String
+
+        attr_accessor :SubAppId, :QuotaType, :ApiToken
+
+        def initialize(subappid=nil, quotatype=nil, apitoken=nil)
+          @SubAppId = subappid
+          @QuotaType = quotatype
+          @ApiToken = apitoken
+        end
+
+        def deserialize(params)
+          @SubAppId = params['SubAppId']
+          @QuotaType = params['QuotaType']
+          @ApiToken = params['ApiToken']
+        end
+      end
+
+      # DeleteAigcQuota返回参数结构体
+      class DeleteAigcQuotaResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteAnimatedGraphicsTemplate请求参数结构体
       class DeleteAnimatedGraphicsTemplateRequest < TencentCloud::Common::AbstractModel
         # @param Definition: 转动图模板唯一标识。
@@ -13575,6 +13687,69 @@ module TencentCloud
         end
       end
 
+      # DescribeAigcQuotas请求参数结构体
+      class DescribeAigcQuotasRequest < TencentCloud::Common::AbstractModel
+        # @param SubAppId: <p><strong>点播应用 ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</strong></p>
+        # @type SubAppId: Integer
+        # @param QuotaType: <p>配额类型</p><p>枚举值：</p><ul><li>Image： AIGC 生图任务</li><li>Video： AIGC 生视频任务</li><li>Text： AIGC 生文任务</li></ul>
+        # @type QuotaType: String
+        # @param ApiToken: <p>仅当QuotaLimit=Text时有效，用于选择需要进行配额限制ApiToken</p>
+        # @type ApiToken: String
+        # @param Limit: <p>分页返回的记录条数，将返回第 Offset 到第 Offset+Limit-1 条。</p><p>取值范围：[1, 100]</p><p>默认值：10</p>
+        # @type Limit: Integer
+        # @param Offset: <p>分页返回的起始偏移量，默认值：0。将返回第 Offset 到第 Offset+Limit-1 条。</p><p>默认值：0</p>
+        # @type Offset: Integer
+
+        attr_accessor :SubAppId, :QuotaType, :ApiToken, :Limit, :Offset
+
+        def initialize(subappid=nil, quotatype=nil, apitoken=nil, limit=nil, offset=nil)
+          @SubAppId = subappid
+          @QuotaType = quotatype
+          @ApiToken = apitoken
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @SubAppId = params['SubAppId']
+          @QuotaType = params['QuotaType']
+          @ApiToken = params['ApiToken']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeAigcQuotas返回参数结构体
+      class DescribeAigcQuotasResponse < TencentCloud::Common::AbstractModel
+        # @param QuotaSet: <p>配额列表</p>
+        # @type QuotaSet: Array
+        # @param TotalCount: <p>总条数</p>
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :QuotaSet, :TotalCount, :RequestId
+
+        def initialize(quotaset=nil, totalcount=nil, requestid=nil)
+          @QuotaSet = quotaset
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['QuotaSet'].nil?
+            @QuotaSet = []
+            params['QuotaSet'].each do |i|
+              aigcquotaitem_tmp = AigcQuotaItem.new
+              aigcquotaitem_tmp.deserialize(i)
+              @QuotaSet << aigcquotaitem_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeAigcUsageData请求参数结构体
       class DescribeAigcUsageDataRequest < TencentCloud::Common::AbstractModel
         # @param StartTime: <p>起始日期。使用 <a href="https://cloud.tencent.com/document/product/266/11732#52">ISO 日期格式</a>。</p>
@@ -14621,8 +14796,8 @@ module TencentCloud
 
         attr_accessor :DomainName, :Domain, :Scheme, :PlayKey, :RequestId
         extend Gem::Deprecate
-        deprecate :DomainName, :none, 2026, 6
-        deprecate :DomainName=, :none, 2026, 6
+        deprecate :DomainName, :none, 2026, 7
+        deprecate :DomainName=, :none, 2026, 7
 
         def initialize(domainname=nil, domain=nil, scheme=nil, playkey=nil, requestid=nil)
           @DomainName = domainname
@@ -16228,8 +16403,8 @@ module TencentCloud
 
         attr_accessor :SubAppId, :RoundPlayIds, :Status, :CreateTime, :UpdateTime, :ScrollToken, :Offset, :Limit
         extend Gem::Deprecate
-        deprecate :Offset, :none, 2026, 6
-        deprecate :Offset=, :none, 2026, 6
+        deprecate :Offset, :none, 2026, 7
+        deprecate :Offset=, :none, 2026, 7
 
         def initialize(subappid=nil, roundplayids=nil, status=nil, createtime=nil, updatetime=nil, scrolltoken=nil, offset=nil, limit=nil)
           @SubAppId = subappid
@@ -16273,8 +16448,8 @@ module TencentCloud
 
         attr_accessor :TotalCount, :RoundPlaySet, :ScrollToken, :RequestId
         extend Gem::Deprecate
-        deprecate :TotalCount, :none, 2026, 6
-        deprecate :TotalCount=, :none, 2026, 6
+        deprecate :TotalCount, :none, 2026, 7
+        deprecate :TotalCount=, :none, 2026, 7
 
         def initialize(totalcount=nil, roundplayset=nil, scrolltoken=nil, requestid=nil)
           @TotalCount = totalcount
@@ -19212,8 +19387,8 @@ module TencentCloud
 
         attr_accessor :Uv, :Uid
         extend Gem::Deprecate
-        deprecate :Uid, :none, 2026, 6
-        deprecate :Uid=, :none, 2026, 6
+        deprecate :Uid, :none, 2026, 7
+        deprecate :Uid=, :none, 2026, 7
 
         def initialize(uv=nil, uid=nil)
           @Uv = uv
@@ -20811,8 +20986,8 @@ module TencentCloud
 
         attr_accessor :SubAppId, :FileId, :Definition, :ImportTasks
         extend Gem::Deprecate
-        deprecate :ImportTasks, :none, 2026, 6
-        deprecate :ImportTasks=, :none, 2026, 6
+        deprecate :ImportTasks, :none, 2026, 7
+        deprecate :ImportTasks=, :none, 2026, 7
 
         def initialize(subappid=nil, fileid=nil, definition=nil, importtasks=nil)
           @SubAppId = subappid
@@ -23465,8 +23640,8 @@ module TencentCloud
 
         attr_accessor :StartTimeOffset, :EndTimeOffset, :Confidence, :Suggestion, :Name, :Label, :Url, :AreaCoordSet, :PicUrlExpireTimeStamp, :PicUrlExpireTime
         extend Gem::Deprecate
-        deprecate :PicUrlExpireTimeStamp, :none, 2026, 6
-        deprecate :PicUrlExpireTimeStamp=, :none, 2026, 6
+        deprecate :PicUrlExpireTimeStamp, :none, 2026, 7
+        deprecate :PicUrlExpireTimeStamp=, :none, 2026, 7
 
         def initialize(starttimeoffset=nil, endtimeoffset=nil, confidence=nil, suggestion=nil, name=nil, label=nil, url=nil, areacoordset=nil, picurlexpiretimestamp=nil, picurlexpiretime=nil)
           @StartTimeOffset = starttimeoffset
@@ -23520,8 +23695,8 @@ module TencentCloud
 
         attr_accessor :StartTimeOffset, :EndTimeOffset, :Confidence, :Label, :Suggestion, :Url, :PicUrlExpireTimeStamp, :PicUrlExpireTime
         extend Gem::Deprecate
-        deprecate :PicUrlExpireTimeStamp, :none, 2026, 6
-        deprecate :PicUrlExpireTimeStamp=, :none, 2026, 6
+        deprecate :PicUrlExpireTimeStamp, :none, 2026, 7
+        deprecate :PicUrlExpireTimeStamp=, :none, 2026, 7
 
         def initialize(starttimeoffset=nil, endtimeoffset=nil, confidence=nil, label=nil, suggestion=nil, url=nil, picurlexpiretimestamp=nil, picurlexpiretime=nil)
           @StartTimeOffset = starttimeoffset
@@ -25143,8 +25318,8 @@ module TencentCloud
 
         attr_accessor :Duration, :Transitions, :MediaTransitions
         extend Gem::Deprecate
-        deprecate :Transitions, :none, 2026, 6
-        deprecate :Transitions=, :none, 2026, 6
+        deprecate :Transitions, :none, 2026, 7
+        deprecate :Transitions=, :none, 2026, 7
 
         def initialize(duration=nil, transitions=nil, mediatransitions=nil)
           @Duration = duration
@@ -25474,6 +25649,50 @@ module TencentCloud
 
       # ModifyAdaptiveDynamicStreamingTemplate返回参数结构体
       class ModifyAdaptiveDynamicStreamingTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyAigcQuota请求参数结构体
+      class ModifyAigcQuotaRequest < TencentCloud::Common::AbstractModel
+        # @param SubAppId: <p><strong>点播应用 ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</strong></p>
+        # @type SubAppId: Integer
+        # @param QuotaType: <p>配额类型</p><p>枚举值：</p><ul><li>Image： AIGC 生图任务</li><li>Video： AIGC 生视频任务</li><li>Text： AIGC 生文任务</li></ul>
+        # @type QuotaType: String
+        # @param QuotaLimit: <p>任务的配额数</p><p>单位：</p><ul><li>当QuotaLimit=Image时，单位为张</li><li>当QuotaLimit=Video时，单位为秒</li><li>当QuotaLimit=Text时，单位为token</li></ul>
+        # @type QuotaLimit: Integer
+        # @param ApiToken: <p>仅当QuotaLimit=Text时有效，用于选择需要进行配额限制ApiToken</p>
+        # @type ApiToken: String
+
+        attr_accessor :SubAppId, :QuotaType, :QuotaLimit, :ApiToken
+
+        def initialize(subappid=nil, quotatype=nil, quotalimit=nil, apitoken=nil)
+          @SubAppId = subappid
+          @QuotaType = quotatype
+          @QuotaLimit = quotalimit
+          @ApiToken = apitoken
+        end
+
+        def deserialize(params)
+          @SubAppId = params['SubAppId']
+          @QuotaType = params['QuotaType']
+          @QuotaLimit = params['QuotaLimit']
+          @ApiToken = params['ApiToken']
+        end
+      end
+
+      # ModifyAigcQuota返回参数结构体
+      class ModifyAigcQuotaResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -28787,10 +29006,10 @@ module TencentCloud
 
         attr_accessor :TaskId, :Status, :ErrCode, :Message, :FileId, :FileName, :FileUrl, :MetaData, :MediaProcessResultSet, :AiContentReviewResultSet, :AiAnalysisResultSet, :AiRecognitionResultSet, :TasksPriority, :TasksNotifyMode, :SessionContext, :SessionId, :Operator, :OperationType
         extend Gem::Deprecate
-        deprecate :ErrCode, :none, 2026, 6
-        deprecate :ErrCode=, :none, 2026, 6
-        deprecate :Message, :none, 2026, 6
-        deprecate :Message=, :none, 2026, 6
+        deprecate :ErrCode, :none, 2026, 7
+        deprecate :ErrCode=, :none, 2026, 7
+        deprecate :Message, :none, 2026, 7
+        deprecate :Message=, :none, 2026, 7
 
         def initialize(taskid=nil, status=nil, errcode=nil, message=nil, fileid=nil, filename=nil, fileurl=nil, metadata=nil, mediaprocessresultset=nil, aicontentreviewresultset=nil, aianalysisresultset=nil, airecognitionresultset=nil, taskspriority=nil, tasksnotifymode=nil, sessioncontext=nil, sessionid=nil, operator=nil, operationtype=nil)
           @TaskId = taskid
@@ -28904,8 +29123,8 @@ module TencentCloud
 
         attr_accessor :Name, :Type, :Comment, :MediaProcessTask, :AiContentReviewTask, :AiAnalysisTask, :AiRecognitionTaskSet, :AiRecognitionTask, :MiniProgramPublishTask, :ReviewAudioVideoTask, :CreateTime, :UpdateTime
         extend Gem::Deprecate
-        deprecate :AiRecognitionTask, :none, 2026, 6
-        deprecate :AiRecognitionTask=, :none, 2026, 6
+        deprecate :AiRecognitionTask, :none, 2026, 7
+        deprecate :AiRecognitionTask=, :none, 2026, 7
 
         def initialize(name=nil, type=nil, comment=nil, mediaprocesstask=nil, aicontentreviewtask=nil, aianalysistask=nil, airecognitiontaskset=nil, airecognitiontask=nil, miniprogrampublishtask=nil, reviewaudiovideotask=nil, createtime=nil, updatetime=nil)
           @Name = name
@@ -29813,8 +30032,8 @@ module TencentCloud
 
         attr_accessor :ProductType, :StartTime, :ExpireTime, :ProductInstanceId, :LastConsumeDate, :BindStatus, :ProductInstanceResourceSet, :ResourceSet, :ProductInstanceStatus, :RefundStatus, :RenewStatus
         extend Gem::Deprecate
-        deprecate :ProductInstanceResourceSet, :none, 2026, 6
-        deprecate :ProductInstanceResourceSet=, :none, 2026, 6
+        deprecate :ProductInstanceResourceSet, :none, 2026, 7
+        deprecate :ProductInstanceResourceSet=, :none, 2026, 7
 
         def initialize(producttype=nil, starttime=nil, expiretime=nil, productinstanceid=nil, lastconsumedate=nil, bindstatus=nil, productinstanceresourceset=nil, resourceset=nil, productinstancestatus=nil, refundstatus=nil, renewstatus=nil)
           @ProductType = producttype
@@ -32097,8 +32316,8 @@ module TencentCloud
 
         attr_accessor :FileId, :SubAppId, :SessionId, :SessionContext, :TasksPriority, :TasksNotifyMode
         extend Gem::Deprecate
-        deprecate :TasksNotifyMode, :none, 2026, 6
-        deprecate :TasksNotifyMode=, :none, 2026, 6
+        deprecate :TasksNotifyMode, :none, 2026, 7
+        deprecate :TasksNotifyMode=, :none, 2026, 7
 
         def initialize(fileid=nil, subappid=nil, sessionid=nil, sessioncontext=nil, taskspriority=nil, tasksnotifymode=nil)
           @FileId = fileid
@@ -32249,8 +32468,8 @@ module TencentCloud
 
         attr_accessor :Name, :SubAppId, :Comment, :MediaProcessTask, :AiContentReviewTask, :AiAnalysisTask, :AiRecognitionTaskSet, :AiRecognitionTask, :ReviewAudioVideoTask
         extend Gem::Deprecate
-        deprecate :AiRecognitionTask, :none, 2026, 6
-        deprecate :AiRecognitionTask=, :none, 2026, 6
+        deprecate :AiRecognitionTask, :none, 2026, 7
+        deprecate :AiRecognitionTask=, :none, 2026, 7
 
         def initialize(name=nil, subappid=nil, comment=nil, mediaprocesstask=nil, aicontentreviewtask=nil, aianalysistask=nil, airecognitiontaskset=nil, airecognitiontask=nil, reviewaudiovideotask=nil)
           @Name = name
@@ -32427,10 +32646,10 @@ module TencentCloud
 
         attr_accessor :FileId, :OriginalStorageClass, :TargetStorageClass, :RestoreTier, :RestoreDay, :Status, :Message
         extend Gem::Deprecate
-        deprecate :Status, :none, 2026, 6
-        deprecate :Status=, :none, 2026, 6
-        deprecate :Message, :none, 2026, 6
-        deprecate :Message=, :none, 2026, 6
+        deprecate :Status, :none, 2026, 7
+        deprecate :Status=, :none, 2026, 7
+        deprecate :Message, :none, 2026, 7
+        deprecate :Message=, :none, 2026, 7
 
         def initialize(fileid=nil, originalstorageclass=nil, targetstorageclass=nil, restoretier=nil, restoreday=nil, status=nil, message=nil)
           @FileId = fileid
@@ -32790,8 +33009,8 @@ module TencentCloud
 
         attr_accessor :ReviewResultSet, :MediaReviewResult, :RequestId
         extend Gem::Deprecate
-        deprecate :ReviewResultSet, :none, 2026, 6
-        deprecate :ReviewResultSet=, :none, 2026, 6
+        deprecate :ReviewResultSet, :none, 2026, 7
+        deprecate :ReviewResultSet=, :none, 2026, 7
 
         def initialize(reviewresultset=nil, mediareviewresult=nil, requestid=nil)
           @ReviewResultSet = reviewresultset
@@ -34291,8 +34510,8 @@ module TencentCloud
 
         attr_accessor :Url, :SubAppId, :StartTimeOffset, :EndTimeOffset, :IsPersistence, :ExpireTime, :Procedure, :ClassId, :SourceContext, :SessionContext, :Precision, :OutputMediaType, :ExtInfo
         extend Gem::Deprecate
-        deprecate :Precision, :none, 2026, 6
-        deprecate :Precision=, :none, 2026, 6
+        deprecate :Precision, :none, 2026, 7
+        deprecate :Precision=, :none, 2026, 7
 
         def initialize(url=nil, subappid=nil, starttimeoffset=nil, endtimeoffset=nil, ispersistence=nil, expiretime=nil, procedure=nil, classid=nil, sourcecontext=nil, sessioncontext=nil, precision=nil, outputmediatype=nil, extinfo=nil)
           @Url = url
@@ -35297,8 +35516,8 @@ module TencentCloud
 
         attr_accessor :Width, :Height, :CycleConfig
         extend Gem::Deprecate
-        deprecate :CycleConfig, :none, 2026, 6
-        deprecate :CycleConfig=, :none, 2026, 6
+        deprecate :CycleConfig, :none, 2026, 7
+        deprecate :CycleConfig=, :none, 2026, 7
 
         def initialize(width=nil, height=nil, cycleconfig=nil)
           @Width = width
@@ -35982,8 +36201,8 @@ module TencentCloud
 
         attr_accessor :Switch, :Definition
         extend Gem::Deprecate
-        deprecate :Definition, :none, 2026, 6
-        deprecate :Definition=, :none, 2026, 6
+        deprecate :Definition, :none, 2026, 7
+        deprecate :Definition=, :none, 2026, 7
 
         def initialize(switch=nil, definition=nil)
           @Switch = switch

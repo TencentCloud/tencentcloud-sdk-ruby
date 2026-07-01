@@ -100,8 +100,8 @@ module TencentCloud
 
         attr_accessor :PkgType, :MiniProgramAppId, :DeviceList
         extend Gem::Deprecate
-        deprecate :MiniProgramAppId, :none, 2026, 6
-        deprecate :MiniProgramAppId=, :none, 2026, 6
+        deprecate :MiniProgramAppId, :none, 2026, 7
+        deprecate :MiniProgramAppId=, :none, 2026, 7
 
         def initialize(pkgtype=nil, miniprogramappid=nil, devicelist=nil)
           @PkgType = pkgtype
@@ -136,8 +136,8 @@ module TencentCloud
 
         attr_accessor :DeviceList, :FailureList, :SuccessList, :RequestId
         extend Gem::Deprecate
-        deprecate :DeviceList, :none, 2026, 6
-        deprecate :DeviceList=, :none, 2026, 6
+        deprecate :DeviceList, :none, 2026, 7
+        deprecate :DeviceList=, :none, 2026, 7
 
         def initialize(devicelist=nil, failurelist=nil, successlist=nil, requestid=nil)
           @DeviceList = devicelist
@@ -2643,6 +2643,109 @@ module TencentCloud
 
         def deserialize(params)
           @CallbackId = params['CallbackId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateTWeSeeDirectUploadCredential请求参数结构体
+      class CreateTWeSeeDirectUploadCredentialRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: <p>产品 ID</p><p>非 IoT 设备可传 <code>default</code></p>
+        # @type ProductId: String
+        # @param DeviceName: <p>设备名称</p>
+        # @type DeviceName: String
+        # @param ServiceType: <p>算法类型</p><p>枚举值：</p><ul><li>VID_COMP： 视频理解（支持视频文件或多帧图片）</li><li>IMG_COMP： 图片理解（单帧图片）</li></ul>
+        # @type ServiceType: String
+        # @param ChannelId: <p>通道 ID</p><p>默认值：0</p>
+        # @type ChannelId: Integer
+        # @param CallbackId: <p>回调目标 ID</p>
+        # @type CallbackId: String
+        # @param ComprehensionConfig: <p>视觉理解配置项</p>
+        # @type ComprehensionConfig: :class:`Tencentcloud::Iotexplorer.v20190423.models.SeeComprehensionConfig`
+        # @param CustomId: <p>自定义事件 ID，会透传到任务元数据与回调中</p>
+        # @type CustomId: String
+        # @param DurationSeconds: <p>临时密钥有效期，单位：秒。默认 300 秒，取值范围 5 到 86400。</p>
+        # @type DurationSeconds: Integer
+        # @param MaxInvokeCount: <p>该直传凭据最多可触发的分析次数</p><p>取值范围：[1, 10000]</p><p>默认值：1</p>
+        # @type MaxInvokeCount: Integer
+        # @param StorageRegion: <p>上传 COS 存储桶所在地域。不填时使用默认地域。</p>
+        # @type StorageRegion: String
+        # @param UploadMethod: <p>上传方式</p><p>枚举值：</p><ul><li>single： 单文件上传</li><li>manifest： 上传源文件与 Manifest（先上传多个源文件，然后上传 Manifest JSON 触发分析）</li></ul><p>默认值：single</p>
+        # @type UploadMethod: String
+
+        attr_accessor :ProductId, :DeviceName, :ServiceType, :ChannelId, :CallbackId, :ComprehensionConfig, :CustomId, :DurationSeconds, :MaxInvokeCount, :StorageRegion, :UploadMethod
+
+        def initialize(productid=nil, devicename=nil, servicetype=nil, channelid=nil, callbackid=nil, comprehensionconfig=nil, customid=nil, durationseconds=nil, maxinvokecount=nil, storageregion=nil, uploadmethod=nil)
+          @ProductId = productid
+          @DeviceName = devicename
+          @ServiceType = servicetype
+          @ChannelId = channelid
+          @CallbackId = callbackid
+          @ComprehensionConfig = comprehensionconfig
+          @CustomId = customid
+          @DurationSeconds = durationseconds
+          @MaxInvokeCount = maxinvokecount
+          @StorageRegion = storageregion
+          @UploadMethod = uploadmethod
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+          @ServiceType = params['ServiceType']
+          @ChannelId = params['ChannelId']
+          @CallbackId = params['CallbackId']
+          unless params['ComprehensionConfig'].nil?
+            @ComprehensionConfig = SeeComprehensionConfig.new
+            @ComprehensionConfig.deserialize(params['ComprehensionConfig'])
+          end
+          @CustomId = params['CustomId']
+          @DurationSeconds = params['DurationSeconds']
+          @MaxInvokeCount = params['MaxInvokeCount']
+          @StorageRegion = params['StorageRegion']
+          @UploadMethod = params['UploadMethod']
+        end
+      end
+
+      # CreateTWeSeeDirectUploadCredential返回参数结构体
+      class CreateTWeSeeDirectUploadCredentialResponse < TencentCloud::Common::AbstractModel
+        # @param ExpiredTime: <p>访问 COS 的临时密钥过期时间（秒级 UNIX 时间戳）</p>
+        # @type ExpiredTime: Integer
+        # @param SecretId: <p>访问 COS 的临时密钥 SecretId</p>
+        # @type SecretId: String
+        # @param SecretKey: <p>访问 COS 的临时密钥 SecretKey</p>
+        # @type SecretKey: String
+        # @param StorageBucket: <p>COS 存储桶名称</p>
+        # @type StorageBucket: String
+        # @param StoragePath: <p>COS 对象 Key 前缀。返回的临时凭据仅允许上传到此前缀下，格式为 Direct/{Uin}/{SessionId}/。</p>
+        # @type StoragePath: String
+        # @param StorageRegion: <p>COS 存储桶所在地域</p>
+        # @type StorageRegion: String
+        # @param Token: <p>访问 COS 的临时密钥 Token</p>
+        # @type Token: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ExpiredTime, :SecretId, :SecretKey, :StorageBucket, :StoragePath, :StorageRegion, :Token, :RequestId
+
+        def initialize(expiredtime=nil, secretid=nil, secretkey=nil, storagebucket=nil, storagepath=nil, storageregion=nil, token=nil, requestid=nil)
+          @ExpiredTime = expiredtime
+          @SecretId = secretid
+          @SecretKey = secretkey
+          @StorageBucket = storagebucket
+          @StoragePath = storagepath
+          @StorageRegion = storageregion
+          @Token = token
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ExpiredTime = params['ExpiredTime']
+          @SecretId = params['SecretId']
+          @SecretKey = params['SecretKey']
+          @StorageBucket = params['StorageBucket']
+          @StoragePath = params['StoragePath']
+          @StorageRegion = params['StorageRegion']
+          @Token = params['Token']
           @RequestId = params['RequestId']
         end
       end
@@ -8103,8 +8206,8 @@ module TencentCloud
 
         attr_accessor :ModelId, :Sn, :ErrCode, :ErrMessage, :ExpireTime
         extend Gem::Deprecate
-        deprecate :ModelId, :none, 2026, 6
-        deprecate :ModelId=, :none, 2026, 6
+        deprecate :ModelId, :none, 2026, 7
+        deprecate :ModelId=, :none, 2026, 7
 
         def initialize(modelid=nil, sn=nil, errcode=nil, errmessage=nil, expiretime=nil)
           @ModelId = modelid
@@ -9822,8 +9925,8 @@ module TencentCloud
 
         attr_accessor :MiniProgramAppId, :DeviceList
         extend Gem::Deprecate
-        deprecate :MiniProgramAppId, :none, 2026, 6
-        deprecate :MiniProgramAppId=, :none, 2026, 6
+        deprecate :MiniProgramAppId, :none, 2026, 7
+        deprecate :MiniProgramAppId=, :none, 2026, 7
 
         def initialize(miniprogramappid=nil, devicelist=nil)
           @MiniProgramAppId = miniprogramappid
@@ -10606,10 +10709,12 @@ module TencentCloud
         # @type VectorSearchTopK: Integer
         # @param Order: <p>搜索结果的排序方式，可选值：</p><ul><li><code>CORRELATION</code>：按相关性（默认）</li><li><code>TIME_ASC</code>：按时间升序</li><li><code>TIME_DESC</code>：按时间降序</li></ul>
         # @type Order: String
+        # @param WithTaskInfo: <p>是否输出原始任务信息</p>
+        # @type WithTaskInfo: Boolean
 
-        attr_accessor :ProductId, :DeviceName, :Query, :SummaryLang, :ChannelId, :EnableSummary, :StartTimeMs, :EndTimeMs, :TimeZone, :SearchMode, :Limit, :VectorSearchRadius, :VectorSearchTopK, :Order
+        attr_accessor :ProductId, :DeviceName, :Query, :SummaryLang, :ChannelId, :EnableSummary, :StartTimeMs, :EndTimeMs, :TimeZone, :SearchMode, :Limit, :VectorSearchRadius, :VectorSearchTopK, :Order, :WithTaskInfo
 
-        def initialize(productid=nil, devicename=nil, query=nil, summarylang=nil, channelid=nil, enablesummary=nil, starttimems=nil, endtimems=nil, timezone=nil, searchmode=nil, limit=nil, vectorsearchradius=nil, vectorsearchtopk=nil, order=nil)
+        def initialize(productid=nil, devicename=nil, query=nil, summarylang=nil, channelid=nil, enablesummary=nil, starttimems=nil, endtimems=nil, timezone=nil, searchmode=nil, limit=nil, vectorsearchradius=nil, vectorsearchtopk=nil, order=nil, withtaskinfo=nil)
           @ProductId = productid
           @DeviceName = devicename
           @Query = query
@@ -10624,6 +10729,7 @@ module TencentCloud
           @VectorSearchRadius = vectorsearchradius
           @VectorSearchTopK = vectorsearchtopk
           @Order = order
+          @WithTaskInfo = withtaskinfo
         end
 
         def deserialize(params)
@@ -10641,6 +10747,7 @@ module TencentCloud
           @VectorSearchRadius = params['VectorSearchRadius']
           @VectorSearchTopK = params['VectorSearchTopK']
           @Order = params['Order']
+          @WithTaskInfo = params['WithTaskInfo']
         end
       end
 
@@ -15150,8 +15257,8 @@ module TencentCloud
 
         attr_accessor :ModelId, :Sn, :ExpireTime, :PkgType
         extend Gem::Deprecate
-        deprecate :ModelId, :none, 2026, 6
-        deprecate :ModelId=, :none, 2026, 6
+        deprecate :ModelId, :none, 2026, 7
+        deprecate :ModelId=, :none, 2026, 7
 
         def initialize(modelid=nil, sn=nil, expiretime=nil, pkgtype=nil)
           @ModelId = modelid
@@ -15181,10 +15288,10 @@ module TencentCloud
 
         attr_accessor :Sn, :ModelId, :ActiveNum
         extend Gem::Deprecate
-        deprecate :ModelId, :none, 2026, 6
-        deprecate :ModelId=, :none, 2026, 6
-        deprecate :ActiveNum, :none, 2026, 6
-        deprecate :ActiveNum=, :none, 2026, 6
+        deprecate :ModelId, :none, 2026, 7
+        deprecate :ModelId=, :none, 2026, 7
+        deprecate :ActiveNum, :none, 2026, 7
+        deprecate :ActiveNum=, :none, 2026, 7
 
         def initialize(sn=nil, modelid=nil, activenum=nil)
           @Sn = sn
@@ -15266,8 +15373,8 @@ module TencentCloud
 
         attr_accessor :Uin, :AppId, :InstanceId, :BotId, :Name, :Description, :TargetLanguage, :STTConfig, :LLMConfig, :TTSConfig, :AgentConfig, :ProductList, :CreateTime, :UpdateTime, :BoundProducts, :CustomTools, :WebhookTools, :BotType, :RAGConfig
         extend Gem::Deprecate
-        deprecate :ProductList, :none, 2026, 6
-        deprecate :ProductList=, :none, 2026, 6
+        deprecate :ProductList, :none, 2026, 7
+        deprecate :ProductList=, :none, 2026, 7
 
         def initialize(uin=nil, appid=nil, instanceid=nil, botid=nil, name=nil, description=nil, targetlanguage=nil, sttconfig=nil, llmconfig=nil, ttsconfig=nil, agentconfig=nil, productlist=nil, createtime=nil, updatetime=nil, boundproducts=nil, customtools=nil, webhooktools=nil, bottype=nil, ragconfig=nil)
           @Uin = uin

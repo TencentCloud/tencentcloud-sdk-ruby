@@ -1152,8 +1152,8 @@ module TencentCloud
 
         attr_accessor :TotalCount, :TotalPage, :CurrentPageNo, :IsEnd, :End
         extend Gem::Deprecate
-        deprecate :IsEnd, :none, 2026, 6
-        deprecate :IsEnd=, :none, 2026, 6
+        deprecate :IsEnd, :none, 2026, 7
+        deprecate :IsEnd=, :none, 2026, 7
 
         def initialize(totalcount=nil, totalpage=nil, currentpageno=nil, isend=nil, _end=nil)
           @TotalCount = totalcount

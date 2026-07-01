@@ -5194,10 +5194,12 @@ module TencentCloud
         # @type ExtraAttr: Array
         # @param MigrateWay: <p>pgsql迁移分类：logical(逻辑迁移)、physical(物理迁移)</p>
         # @type MigrateWay: String
+        # @param RateLimit: <p>迁移配置阶段限速相关参数</p>
+        # @type RateLimit: :class:`Tencentcloud::Dts.v20211206.models.RateLimit`
 
-        attr_accessor :DatabaseTable, :MigrateType, :Consistency, :IsMigrateAccount, :IsOverrideRoot, :IsDstReadOnly, :ExtraAttr, :MigrateWay
+        attr_accessor :DatabaseTable, :MigrateType, :Consistency, :IsMigrateAccount, :IsOverrideRoot, :IsDstReadOnly, :ExtraAttr, :MigrateWay, :RateLimit
 
-        def initialize(databasetable=nil, migratetype=nil, consistency=nil, ismigrateaccount=nil, isoverrideroot=nil, isdstreadonly=nil, extraattr=nil, migrateway=nil)
+        def initialize(databasetable=nil, migratetype=nil, consistency=nil, ismigrateaccount=nil, isoverrideroot=nil, isdstreadonly=nil, extraattr=nil, migrateway=nil, ratelimit=nil)
           @DatabaseTable = databasetable
           @MigrateType = migratetype
           @Consistency = consistency
@@ -5206,6 +5208,7 @@ module TencentCloud
           @IsDstReadOnly = isdstreadonly
           @ExtraAttr = extraattr
           @MigrateWay = migrateway
+          @RateLimit = ratelimit
         end
 
         def deserialize(params)
@@ -5230,6 +5233,10 @@ module TencentCloud
             end
           end
           @MigrateWay = params['MigrateWay']
+          unless params['RateLimit'].nil?
+            @RateLimit = RateLimit.new
+            @RateLimit.deserialize(params['RateLimit'])
+          end
         end
       end
 
@@ -6441,6 +6448,38 @@ module TencentCloud
           @Message = params['Message']
           @Solution = params['Solution']
           @HelpDoc = params['HelpDoc']
+        end
+      end
+
+      # 数据迁移限速配置对象
+      class RateLimit < TencentCloud::Common::AbstractModel
+        # @param DumpThread: <p>全量导出线程数，如果不设置或设置为0则表示保持当前值，最大值为16</p>
+        # @type DumpThread: Integer
+        # @param DumpRps: <p>全量导出Rps，如果不设置或设置为0则表示保持当前值，最大值为50000000</p>
+        # @type DumpRps: Integer
+        # @param LoadThread: <p>全量导入线程数，如果不设置或设置为0则表示保持当前值，最大值为16</p>
+        # @type LoadThread: Integer
+        # @param LoadRps: <p>全量导入Rps，如果不设置或设置为0则表示保持当前值，最大值为50000000</p>
+        # @type LoadRps: Integer
+        # @param SinkerThread: <p>增量导入线程数，如果不设置或设置为0则表示保持当前值，最大值为128</p>
+        # @type SinkerThread: Integer
+
+        attr_accessor :DumpThread, :DumpRps, :LoadThread, :LoadRps, :SinkerThread
+
+        def initialize(dumpthread=nil, dumprps=nil, loadthread=nil, loadrps=nil, sinkerthread=nil)
+          @DumpThread = dumpthread
+          @DumpRps = dumprps
+          @LoadThread = loadthread
+          @LoadRps = loadrps
+          @SinkerThread = sinkerthread
+        end
+
+        def deserialize(params)
+          @DumpThread = params['DumpThread']
+          @DumpRps = params['DumpRps']
+          @LoadThread = params['LoadThread']
+          @LoadRps = params['LoadRps']
+          @SinkerThread = params['SinkerThread']
         end
       end
 
