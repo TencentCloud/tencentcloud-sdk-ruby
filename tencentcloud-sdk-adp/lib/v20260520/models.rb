@@ -6218,25 +6218,28 @@ module TencentCloud
 
       # 单工作流配置
       class SingleWorkflowConfig < TencentCloud::Common::AbstractModel
-        # @param AsyncWorkflow: 是否开启异步工作流
+        # @param AsyncWorkflow: <p>是否开启异步工作流</p>
         # @type AsyncWorkflow: Boolean
-        # @param Status: 状态 发布状态(UNPUBLISHED: 待发布 PUBLISHING: 发布中 PUBLISHED: 已发布 PUBLISHED_FAIL:发布失败；DRAFT：待调试)
+        # @param Status: <p>状态 发布状态(UNPUBLISHED: 待发布 PUBLISHING: 发布中 PUBLISHED: 已发布 PUBLISHED_FAIL:发布失败；DRAFT：待调试)</p>
         # @type Status: String
-        # @param WorkflowDescription: 工作流描述
+        # @param WorkflowDescription: <p>工作流描述</p>
         # @type WorkflowDescription: String
-        # @param WorkflowId: 工作流Id
+        # @param WorkflowId: <p>工作流Id</p>
         # @type WorkflowId: String
-        # @param WorkflowName: 工作流名称
+        # @param WorkflowName: <p>工作流名称</p>
         # @type WorkflowName: String
+        # @param Enabled: <p>工作流是否启用</p>
+        # @type Enabled: Boolean
 
-        attr_accessor :AsyncWorkflow, :Status, :WorkflowDescription, :WorkflowId, :WorkflowName
+        attr_accessor :AsyncWorkflow, :Status, :WorkflowDescription, :WorkflowId, :WorkflowName, :Enabled
 
-        def initialize(asyncworkflow=nil, status=nil, workflowdescription=nil, workflowid=nil, workflowname=nil)
+        def initialize(asyncworkflow=nil, status=nil, workflowdescription=nil, workflowid=nil, workflowname=nil, enabled=nil)
           @AsyncWorkflow = asyncworkflow
           @Status = status
           @WorkflowDescription = workflowdescription
           @WorkflowId = workflowid
           @WorkflowName = workflowname
+          @Enabled = enabled
         end
 
         def deserialize(params)
@@ -6245,6 +6248,7 @@ module TencentCloud
           @WorkflowDescription = params['WorkflowDescription']
           @WorkflowId = params['WorkflowId']
           @WorkflowName = params['WorkflowName']
+          @Enabled = params['Enabled']
         end
       end
 

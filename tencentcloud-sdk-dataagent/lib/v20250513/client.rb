@@ -221,6 +221,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 执行datateam相关的命令行请求
+
+        # @param request: Request instance for ExecuteAgentApi.
+        # @type request: :class:`Tencentcloud::dataagent::V20250513::ExecuteAgentApiRequest`
+        # @rtype: :class:`Tencentcloud::dataagent::V20250513::ExecuteAgentApiResponse`
+        def ExecuteAgentApi(request)
+          body = send_request('ExecuteAgentApi', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ExecuteAgentApiResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 执行datateam相关的命令行请求
+
+        # @param request: Request instance for ExecuteAgentApiV1.
+        # @type request: :class:`Tencentcloud::dataagent::V20250513::ExecuteAgentApiV1Request`
+        # @rtype: :class:`Tencentcloud::dataagent::V20250513::ExecuteAgentApiV1Response`
+        def ExecuteAgentApiV1(request)
+          body = send_request('ExecuteAgentApiV1', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ExecuteAgentApiV1Response.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 根据知识库id查询jobs 列表
 
         # @param request: Request instance for GetJobsByKnowledgeBaseId.

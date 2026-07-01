@@ -789,25 +789,28 @@ module TencentCloud
 
       # CreateOIDCConfig请求参数结构体
       class CreateOIDCConfigRequest < TencentCloud::Common::AbstractModel
-        # @param IdentityUrl: 身份提供商URL
+        # @param IdentityUrl: <p>身份提供商URL</p>
         # @type IdentityUrl: String
-        # @param ClientId: 客户端ID
+        # @param ClientId: <p>客户端ID</p>
         # @type ClientId: Array
-        # @param Name: 名称
+        # @param Name: <p>名称</p>
         # @type Name: String
-        # @param IdentityKey: 签名公钥，需要base64
+        # @param IdentityKey: <p>签名公钥，需要base64</p>
         # @type IdentityKey: String
-        # @param Description: 描述
+        # @param Description: <p>描述</p>
         # @type Description: String
+        # @param AutoRotateKey: <p>OIDC公钥自动轮转开关</p><p>枚举值：</p><ul><li>0： 关闭</li><li>1： 开启</li></ul><p>默认值：0</p>
+        # @type AutoRotateKey: Integer
 
-        attr_accessor :IdentityUrl, :ClientId, :Name, :IdentityKey, :Description
+        attr_accessor :IdentityUrl, :ClientId, :Name, :IdentityKey, :Description, :AutoRotateKey
 
-        def initialize(identityurl=nil, clientid=nil, name=nil, identitykey=nil, description=nil)
+        def initialize(identityurl=nil, clientid=nil, name=nil, identitykey=nil, description=nil, autorotatekey=nil)
           @IdentityUrl = identityurl
           @ClientId = clientid
           @Name = name
           @IdentityKey = identitykey
           @Description = description
+          @AutoRotateKey = autorotatekey
         end
 
         def deserialize(params)
@@ -816,6 +819,7 @@ module TencentCloud
           @Name = params['Name']
           @IdentityKey = params['IdentityKey']
           @Description = params['Description']
+          @AutoRotateKey = params['AutoRotateKey']
         end
       end
 
@@ -1667,7 +1671,7 @@ module TencentCloud
 
       # DescribeOIDCConfig请求参数结构体
       class DescribeOIDCConfigRequest < TencentCloud::Common::AbstractModel
-        # @param Name: 名称
+        # @param Name: <p>名称</p>
         # @type Name: String
 
         attr_accessor :Name
@@ -1683,26 +1687,28 @@ module TencentCloud
 
       # DescribeOIDCConfig返回参数结构体
       class DescribeOIDCConfigResponse < TencentCloud::Common::AbstractModel
-        # @param ProviderType: 身份提供商类型 11角色身份提供商
+        # @param ProviderType: <p>身份提供商类型 11角色身份提供商</p>
         # @type ProviderType: Integer
-        # @param IdentityUrl: 身份提供商URL
+        # @param IdentityUrl: <p>身份提供商URL</p>
         # @type IdentityUrl: String
-        # @param IdentityKey: 签名公钥
+        # @param IdentityKey: <p>签名公钥</p>
         # @type IdentityKey: String
-        # @param ClientId: 客户端id
+        # @param ClientId: <p>客户端id</p>
         # @type ClientId: Array
-        # @param Status: 状态：0:未设置，11:已开启，2:已禁用
+        # @param Status: <p>状态：0:未设置，11:已开启，2:已禁用</p>
         # @type Status: Integer
-        # @param Description: 描述
+        # @param Description: <p>描述</p>
         # @type Description: String
-        # @param Name: 名称
+        # @param Name: <p>名称</p>
         # @type Name: String
+        # @param AutoRotateKey: <p>OIDC公钥自动轮转开关</p><p>枚举值：</p><ul><li>0： 关闭</li><li>1： 开启</li></ul><p>默认值：0</p>
+        # @type AutoRotateKey: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ProviderType, :IdentityUrl, :IdentityKey, :ClientId, :Status, :Description, :Name, :RequestId
+        attr_accessor :ProviderType, :IdentityUrl, :IdentityKey, :ClientId, :Status, :Description, :Name, :AutoRotateKey, :RequestId
 
-        def initialize(providertype=nil, identityurl=nil, identitykey=nil, clientid=nil, status=nil, description=nil, name=nil, requestid=nil)
+        def initialize(providertype=nil, identityurl=nil, identitykey=nil, clientid=nil, status=nil, description=nil, name=nil, autorotatekey=nil, requestid=nil)
           @ProviderType = providertype
           @IdentityUrl = identityurl
           @IdentityKey = identitykey
@@ -1710,6 +1716,7 @@ module TencentCloud
           @Status = status
           @Description = description
           @Name = name
+          @AutoRotateKey = autorotatekey
           @RequestId = requestid
         end
 
@@ -1721,6 +1728,7 @@ module TencentCloud
           @Status = params['Status']
           @Description = params['Description']
           @Name = params['Name']
+          @AutoRotateKey = params['AutoRotateKey']
           @RequestId = params['RequestId']
         end
       end
@@ -2276,8 +2284,8 @@ module TencentCloud
 
         attr_accessor :Policies, :Roles, :Idps, :User, :Group, :Member, :IdentityProviders, :RequestId
         extend Gem::Deprecate
-        deprecate :Idps, :none, 2026, 6
-        deprecate :Idps=, :none, 2026, 6
+        deprecate :Idps, :none, 2026, 7
+        deprecate :Idps=, :none, 2026, 7
 
         def initialize(policies=nil, roles=nil, idps=nil, user=nil, group=nil, member=nil, identityproviders=nil, requestid=nil)
           @Policies = policies
@@ -5309,25 +5317,28 @@ module TencentCloud
 
       # UpdateOIDCConfig请求参数结构体
       class UpdateOIDCConfigRequest < TencentCloud::Common::AbstractModel
-        # @param IdentityUrl: 身份提供商URL
+        # @param IdentityUrl: <p>身份提供商URL</p>
         # @type IdentityUrl: String
-        # @param ClientId: 客户端ID
+        # @param ClientId: <p>客户端ID</p>
         # @type ClientId: Array
-        # @param Name: 名称
+        # @param Name: <p>名称</p>
         # @type Name: String
-        # @param IdentityKey: 签名公钥，需要base64
+        # @param IdentityKey: <p>签名公钥，需要base64</p>
         # @type IdentityKey: String
-        # @param Description: 描述
+        # @param Description: <p>描述</p>
         # @type Description: String
+        # @param AutoRotateKey: <p>OIDC公钥自动轮转开关</p><p>枚举值：</p><ul><li>0： 关闭</li><li>1： 开启</li></ul><p>默认值：0</p>
+        # @type AutoRotateKey: Integer
 
-        attr_accessor :IdentityUrl, :ClientId, :Name, :IdentityKey, :Description
+        attr_accessor :IdentityUrl, :ClientId, :Name, :IdentityKey, :Description, :AutoRotateKey
 
-        def initialize(identityurl=nil, clientid=nil, name=nil, identitykey=nil, description=nil)
+        def initialize(identityurl=nil, clientid=nil, name=nil, identitykey=nil, description=nil, autorotatekey=nil)
           @IdentityUrl = identityurl
           @ClientId = clientid
           @Name = name
           @IdentityKey = identitykey
           @Description = description
+          @AutoRotateKey = autorotatekey
         end
 
         def deserialize(params)
@@ -5336,6 +5347,7 @@ module TencentCloud
           @Name = params['Name']
           @IdentityKey = params['IdentityKey']
           @Description = params['Description']
+          @AutoRotateKey = params['AutoRotateKey']
         end
       end
 

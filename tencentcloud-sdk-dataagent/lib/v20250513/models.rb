@@ -563,6 +563,94 @@ module TencentCloud
         end
       end
 
+      # ExecuteAgentApi请求参数结构体
+      class ExecuteAgentApiRequest < TencentCloud::Common::AbstractModel
+        # @param RequestPath: <p>参数路径</p>
+        # @type RequestPath: String
+        # @param RequestData: <p>参数值</p>
+        # @type RequestData: String
+        # @param RequestType: <p>post还是get</p><p>枚举值：</p><ul><li>post： post请求</li><li>get： get请求</li></ul>
+        # @type RequestType: String
+
+        attr_accessor :RequestPath, :RequestData, :RequestType
+
+        def initialize(requestpath=nil, requestdata=nil, requesttype=nil)
+          @RequestPath = requestpath
+          @RequestData = requestdata
+          @RequestType = requesttype
+        end
+
+        def deserialize(params)
+          @RequestPath = params['RequestPath']
+          @RequestData = params['RequestData']
+          @RequestType = params['RequestType']
+        end
+      end
+
+      # ExecuteAgentApi返回参数结构体
+      class ExecuteAgentApiResponse < TencentCloud::Common::AbstractModel
+        # @param RequestPath: <p>请求路径</p>
+        # @type RequestPath: String
+        # @param AgentData: <p>返回的具体指</p>
+        # @type AgentData: String
+        # @param ErrorMsg: <p>错误码信息</p>
+        # @type ErrorMsg: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestPath, :AgentData, :ErrorMsg, :RequestId
+
+        def initialize(requestpath=nil, agentdata=nil, errormsg=nil, requestid=nil)
+          @RequestPath = requestpath
+          @AgentData = agentdata
+          @ErrorMsg = errormsg
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestPath = params['RequestPath']
+          @AgentData = params['AgentData']
+          @ErrorMsg = params['ErrorMsg']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ExecuteAgentApiV1请求参数结构体
+      class ExecuteAgentApiV1Request < TencentCloud::Common::AbstractModel
+        # @param RequestPath: <p>参数路径</p>
+        # @type RequestPath: String
+        # @param RequestType: <p>post还是get</p><p>枚举值：</p><ul><li>post： post请求</li><li>get： get请求</li></ul>
+        # @type RequestType: String
+
+        attr_accessor :RequestPath, :RequestType
+
+        def initialize(requestpath=nil, requesttype=nil)
+          @RequestPath = requestpath
+          @RequestType = requesttype
+        end
+
+        def deserialize(params)
+          @RequestPath = params['RequestPath']
+          @RequestType = params['RequestType']
+        end
+      end
+
+      # ExecuteAgentApiV1返回参数结构体
+      class ExecuteAgentApiV1Response < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。本接口为流式响应接口，当请求成功时，RequestId 会被放在 HTTP 响应的 Header "X-TC-RequestId" 中。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 知识库文件信息
       class FileInfo < TencentCloud::Common::AbstractModel
         # @param FileName: <p>文件名称</p>

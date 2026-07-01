@@ -79,25 +79,36 @@ module TencentCloud
 
       # 升级实例 -- 新增分片类型
       class AddShardConfig < TencentCloud::Common::AbstractModel
-        # @param ShardCount: 新增分片的数量
+        # @param ShardCount: <p>新增分片的数量</p>
         # @type ShardCount: Integer
-        # @param ShardMemory: 分片内存大小，单位 GB
+        # @param ShardMemory: <p>分片内存大小，单位 GB</p>
         # @type ShardMemory: Integer
-        # @param ShardStorage: 分片存储大小，单位 GB
+        # @param ShardStorage: <p>分片存储大小，单位 GB</p>
         # @type ShardStorage: Integer
+        # @param DcnInsShardConfigs: <p>DCN实例的规格</p>
+        # @type DcnInsShardConfigs: Array
 
-        attr_accessor :ShardCount, :ShardMemory, :ShardStorage
+        attr_accessor :ShardCount, :ShardMemory, :ShardStorage, :DcnInsShardConfigs
 
-        def initialize(shardcount=nil, shardmemory=nil, shardstorage=nil)
+        def initialize(shardcount=nil, shardmemory=nil, shardstorage=nil, dcninsshardconfigs=nil)
           @ShardCount = shardcount
           @ShardMemory = shardmemory
           @ShardStorage = shardstorage
+          @DcnInsShardConfigs = dcninsshardconfigs
         end
 
         def deserialize(params)
           @ShardCount = params['ShardCount']
           @ShardMemory = params['ShardMemory']
           @ShardStorage = params['ShardStorage']
+          unless params['DcnInsShardConfigs'].nil?
+            @DcnInsShardConfigs = []
+            params['DcnInsShardConfigs'].each do |i|
+              dcninsshardconfig_tmp = DcnInsShardConfig.new
+              dcninsshardconfig_tmp.deserialize(i)
+              @DcnInsShardConfigs << dcninsshardconfig_tmp
+            end
+          end
         end
       end
 
@@ -1863,6 +1874,30 @@ module TencentCloud
           @PolarisServiceStatusDesc = params['PolarisServiceStatusDesc']
           @PolarisRegion = params['PolarisRegion']
           @IsDcnSwitchSupported = params['IsDcnSwitchSupported']
+        end
+      end
+
+      # DCN实例添加分片时对端实例期望添加的分片规格
+      class DcnInsShardConfig < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>实例ID</p>
+        # @type InstanceId: String
+        # @param Memory: <p>内存大小</p>
+        # @type Memory: Integer
+        # @param Storage: <p>磁盘大小</p>
+        # @type Storage: Integer
+
+        attr_accessor :InstanceId, :Memory, :Storage
+
+        def initialize(instanceid=nil, memory=nil, storage=nil)
+          @InstanceId = instanceid
+          @Memory = memory
+          @Storage = storage
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Memory = params['Memory']
+          @Storage = params['Storage']
         end
       end
 

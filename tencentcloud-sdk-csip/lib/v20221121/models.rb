@@ -10469,8 +10469,8 @@ module TencentCloud
 
         attr_accessor :Total, :Data, :DataSet, :RequestId
         extend Gem::Deprecate
-        deprecate :Data, :none, 2026, 6
-        deprecate :Data=, :none, 2026, 6
+        deprecate :Data, :none, 2026, 7
+        deprecate :Data=, :none, 2026, 7
 
         def initialize(total=nil, data=nil, dataset=nil, requestid=nil)
           @Total = total
@@ -20649,12 +20649,12 @@ module TencentCloud
 
         attr_accessor :UnprocessedRisk, :ConfigurationRisk, :BaselineDeviation, :LeakDetection, :SQLBehaviorAnomaly, :PermissionAnomaly, :LoginBehaviorAnomaly, :AttackSurfaceRisk, :AccountSensitiveOperation, :UnprocessedAlarm, :NumOfNewAlarmEvent, :NumOfNewConfigRisk
         extend Gem::Deprecate
-        deprecate :ConfigurationRisk, :none, 2026, 6
-        deprecate :ConfigurationRisk=, :none, 2026, 6
-        deprecate :BaselineDeviation, :none, 2026, 6
-        deprecate :BaselineDeviation=, :none, 2026, 6
-        deprecate :LeakDetection, :none, 2026, 6
-        deprecate :LeakDetection=, :none, 2026, 6
+        deprecate :ConfigurationRisk, :none, 2026, 7
+        deprecate :ConfigurationRisk=, :none, 2026, 7
+        deprecate :BaselineDeviation, :none, 2026, 7
+        deprecate :BaselineDeviation=, :none, 2026, 7
+        deprecate :LeakDetection, :none, 2026, 7
+        deprecate :LeakDetection=, :none, 2026, 7
 
         def initialize(unprocessedrisk=nil, configurationrisk=nil, baselinedeviation=nil, leakdetection=nil, sqlbehavioranomaly=nil, permissionanomaly=nil, loginbehavioranomaly=nil, attacksurfacerisk=nil, accountsensitiveoperation=nil, unprocessedalarm=nil, numofnewalarmevent=nil, numofnewconfigrisk=nil)
           @UnprocessedRisk = unprocessedrisk
@@ -20827,12 +20827,12 @@ module TencentCloud
 
         attr_accessor :Date, :UncontrolledAccount, :ConfigurationRisk, :BaselineRisk, :LeakDetectionRisk, :SQLBehaviorAnomaly, :PermissionAnomaly, :LoginBehaviorAnomaly, :AttackSurfaceRisk, :AccountSensitiveOperation
         extend Gem::Deprecate
-        deprecate :ConfigurationRisk, :none, 2026, 6
-        deprecate :ConfigurationRisk=, :none, 2026, 6
-        deprecate :BaselineRisk, :none, 2026, 6
-        deprecate :BaselineRisk=, :none, 2026, 6
-        deprecate :LeakDetectionRisk, :none, 2026, 6
-        deprecate :LeakDetectionRisk=, :none, 2026, 6
+        deprecate :ConfigurationRisk, :none, 2026, 7
+        deprecate :ConfigurationRisk=, :none, 2026, 7
+        deprecate :BaselineRisk, :none, 2026, 7
+        deprecate :BaselineRisk=, :none, 2026, 7
+        deprecate :LeakDetectionRisk, :none, 2026, 7
+        deprecate :LeakDetectionRisk=, :none, 2026, 7
 
         def initialize(date=nil, uncontrolledaccount=nil, configurationrisk=nil, baselinerisk=nil, leakdetectionrisk=nil, sqlbehavioranomaly=nil, permissionanomaly=nil, loginbehavioranomaly=nil, attacksurfacerisk=nil, accountsensitiveoperation=nil)
           @Date = date
@@ -25457,10 +25457,12 @@ module TencentCloud
         # @type AppID: Integer
         # @param AssetType: <p>资产类型</p>
         # @type AssetType: String
+        # @param Reason: <p>风险忽略原因</p>
+        # @type Reason: String
 
-        attr_accessor :CreateTime, :UpdateTime, :RiskStatus, :RiskContent, :Provider, :ProviderName, :CloudAccountId, :CloudAccountName, :InstanceId, :InstanceName, :RiskId, :RiskRuleId, :CheckStatus, :AppID, :AssetType
+        attr_accessor :CreateTime, :UpdateTime, :RiskStatus, :RiskContent, :Provider, :ProviderName, :CloudAccountId, :CloudAccountName, :InstanceId, :InstanceName, :RiskId, :RiskRuleId, :CheckStatus, :AppID, :AssetType, :Reason
 
-        def initialize(createtime=nil, updatetime=nil, riskstatus=nil, riskcontent=nil, provider=nil, providername=nil, cloudaccountid=nil, cloudaccountname=nil, instanceid=nil, instancename=nil, riskid=nil, riskruleid=nil, checkstatus=nil, appid=nil, assettype=nil)
+        def initialize(createtime=nil, updatetime=nil, riskstatus=nil, riskcontent=nil, provider=nil, providername=nil, cloudaccountid=nil, cloudaccountname=nil, instanceid=nil, instancename=nil, riskid=nil, riskruleid=nil, checkstatus=nil, appid=nil, assettype=nil, reason=nil)
           @CreateTime = createtime
           @UpdateTime = updatetime
           @RiskStatus = riskstatus
@@ -25476,6 +25478,7 @@ module TencentCloud
           @CheckStatus = checkstatus
           @AppID = appid
           @AssetType = assettype
+          @Reason = reason
         end
 
         def deserialize(params)
@@ -25494,6 +25497,7 @@ module TencentCloud
           @CheckStatus = params['CheckStatus']
           @AppID = params['AppID']
           @AssetType = params['AssetType']
+          @Reason = params['Reason']
         end
       end
 

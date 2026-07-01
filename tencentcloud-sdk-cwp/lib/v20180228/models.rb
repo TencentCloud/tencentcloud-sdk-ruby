@@ -4459,8 +4459,8 @@ module TencentCloud
 
         attr_accessor :Id, :Uuid, :Name, :Level, :Rule, :Decription, :Operator, :IsGlobal, :Status, :CreateTime, :ModifyTime, :Hostip, :Uuids, :White, :DealOldEvents, :Description
         extend Gem::Deprecate
-        deprecate :Decription, :none, 2026, 6
-        deprecate :Decription=, :none, 2026, 6
+        deprecate :Decription, :none, 2026, 7
+        deprecate :Decription=, :none, 2026, 7
 
         def initialize(id=nil, uuid=nil, name=nil, level=nil, rule=nil, decription=nil, operator=nil, isglobal=nil, status=nil, createtime=nil, modifytime=nil, hostip=nil, uuids=nil, white=nil, dealoldevents=nil, description=nil)
           @Id = id
@@ -5595,13 +5595,13 @@ module TencentCloud
 
       # CreateBuyBindTask请求参数结构体
       class CreateBuyBindTaskRequest < TencentCloud::Common::AbstractModel
-        # @param DealName: 订单号
+        # @param DealName: <p>订单号</p>
         # @type DealName: String
-        # @param LicenseType: 可选参数: 1专业版-包年包月 , 2 旗舰版-包年包月
+        # @param LicenseType: <p>授权类型</p><p>枚举值：</p><ul><li>1： 专业版-包年包月</li><li>2： 旗舰版-包年包月</li></ul>
         # @type LicenseType: Integer
-        # @param QuuidList: 机器列表
+        # @param QuuidList: <p>机器列表</p>
         # @type QuuidList: Array
-        # @param IsAll: 是否全选机器
+        # @param IsAll: <p>是否全选机器</p>
         # @type IsAll: Boolean
 
         attr_accessor :DealName, :LicenseType, :QuuidList, :IsAll
@@ -17342,16 +17342,16 @@ module TencentCloud
 
         attr_accessor :MachineCnt, :TencentCloudMachineCnt, :AliCloudMachineCnt, :BaiduCloudMachineCnt, :IDCMachineCnt, :OtherCloudMachineCnt, :ProtectMachineCnt, :BaseMachineCnt, :SpecialtyMachineCnt, :FlagshipMachineCnt, :RiskMachineCnt, :CompareYesterdayRiskMachineCnt, :CompareYesterdayNotProtectMachineCnt, :CompareYesterdayDeadlineMachineCnt, :DeadlineMachineCnt, :NotProtectMachineCnt, :LHGeneralDiscountCnt, :CompareYesterdayMachineCnt, :MachineDestroyAfterOfflineHours, :CloudFrom, :RequestId
         extend Gem::Deprecate
-        deprecate :TencentCloudMachineCnt, :none, 2026, 6
-        deprecate :TencentCloudMachineCnt=, :none, 2026, 6
-        deprecate :AliCloudMachineCnt, :none, 2026, 6
-        deprecate :AliCloudMachineCnt=, :none, 2026, 6
-        deprecate :BaiduCloudMachineCnt, :none, 2026, 6
-        deprecate :BaiduCloudMachineCnt=, :none, 2026, 6
-        deprecate :IDCMachineCnt, :none, 2026, 6
-        deprecate :IDCMachineCnt=, :none, 2026, 6
-        deprecate :OtherCloudMachineCnt, :none, 2026, 6
-        deprecate :OtherCloudMachineCnt=, :none, 2026, 6
+        deprecate :TencentCloudMachineCnt, :none, 2026, 7
+        deprecate :TencentCloudMachineCnt=, :none, 2026, 7
+        deprecate :AliCloudMachineCnt, :none, 2026, 7
+        deprecate :AliCloudMachineCnt=, :none, 2026, 7
+        deprecate :BaiduCloudMachineCnt, :none, 2026, 7
+        deprecate :BaiduCloudMachineCnt=, :none, 2026, 7
+        deprecate :IDCMachineCnt, :none, 2026, 7
+        deprecate :IDCMachineCnt=, :none, 2026, 7
+        deprecate :OtherCloudMachineCnt, :none, 2026, 7
+        deprecate :OtherCloudMachineCnt=, :none, 2026, 7
 
         def initialize(machinecnt=nil, tencentcloudmachinecnt=nil, alicloudmachinecnt=nil, baiducloudmachinecnt=nil, idcmachinecnt=nil, othercloudmachinecnt=nil, protectmachinecnt=nil, basemachinecnt=nil, specialtymachinecnt=nil, flagshipmachinecnt=nil, riskmachinecnt=nil, compareyesterdayriskmachinecnt=nil, compareyesterdaynotprotectmachinecnt=nil, compareyesterdaydeadlinemachinecnt=nil, deadlinemachinecnt=nil, notprotectmachinecnt=nil, lhgeneraldiscountcnt=nil, compareyesterdaymachinecnt=nil, machinedestroyafterofflinehours=nil, cloudfrom=nil, requestid=nil)
           @MachineCnt = machinecnt
@@ -19383,7 +19383,7 @@ module TencentCloud
 
       # DescribeProVersionStatus请求参数结构体
       class DescribeProVersionStatusRequest < TencentCloud::Common::AbstractModel
-        # @param Uuid: 主机安全客户端UUID、填写"all"表示所有主机。
+        # @param Uuid: <p>主机安全客户端UUID、填写&quot;all&quot;表示所有主机。</p>
         # @type Uuid: String
 
         attr_accessor :Uuid
@@ -19399,16 +19399,20 @@ module TencentCloud
 
       # DescribeProVersionStatus返回参数结构体
       class DescribeProVersionStatusResponse < TencentCloud::Common::AbstractModel
+        # @param Status: <p>开通状态。</p><li>UNOPENED：未开通专业版</li><li>OPENED：已开通专业版</li>
+        # @type Status: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :Status, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(status=nil, requestid=nil)
+          @Status = status
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @Status = params['Status']
           @RequestId = params['RequestId']
         end
       end
@@ -21012,16 +21016,20 @@ module TencentCloud
 
       # DescribeRecommendedProtectCpu返回参数结构体
       class DescribeRecommendedProtectCpuResponse < TencentCloud::Common::AbstractModel
+        # @param Number: <p>推荐购买数</p>
+        # @type Number: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :Number, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(number=nil, requestid=nil)
+          @Number = number
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @Number = params['Number']
           @RequestId = params['RequestId']
         end
       end
@@ -21750,16 +21758,48 @@ module TencentCloud
 
       # DescribeSafeInfo返回参数结构体
       class DescribeSafeInfoResponse < TencentCloud::Common::AbstractModel
+        # @param Context: <p>文本内容</p>
+        # @type Context: String
+        # @param Title: <p>标题</p>
+        # @type Title: String
+        # @param Url: <p>超链接地址</p>
+        # @type Url: String
+        # @param EffectHostCount: <p>受影响机器数</p>
+        # @type EffectHostCount: Integer
+        # @param EventName: <p>受影响事件名称</p>
+        # @type EventName: String
+        # @param EventCategory: <p>受影响事件类型 0 无 1 木马 2 漏洞 3基线</p>
+        # @type EventCategory: Integer
+        # @param IsShow: <p>是否展示通知</p>
+        # @type IsShow: Boolean
+        # @param Id: <p>Id值</p>
+        # @type Id: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :Context, :Title, :Url, :EffectHostCount, :EventName, :EventCategory, :IsShow, :Id, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(context=nil, title=nil, url=nil, effecthostcount=nil, eventname=nil, eventcategory=nil, isshow=nil, id=nil, requestid=nil)
+          @Context = context
+          @Title = title
+          @Url = url
+          @EffectHostCount = effecthostcount
+          @EventName = eventname
+          @EventCategory = eventcategory
+          @IsShow = isshow
+          @Id = id
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @Context = params['Context']
+          @Title = params['Title']
+          @Url = params['Url']
+          @EffectHostCount = params['EffectHostCount']
+          @EventName = params['EventName']
+          @EventCategory = params['EventCategory']
+          @IsShow = params['IsShow']
+          @Id = params['Id']
           @RequestId = params['RequestId']
         end
       end
@@ -23788,16 +23828,87 @@ module TencentCloud
 
       # DescribeTrialReport返回参数结构体
       class DescribeTrialReportResponse < TencentCloud::Common::AbstractModel
+        # @param IsShow: <p>是否展示</p>
+        # @type IsShow: Boolean
+        # @param AddMachineCnt: <p>新增机器数</p>
+        # @type AddMachineCnt: Integer
+        # @param BaselineRiskCnt: <p>基线风险数(检测项)</p>
+        # @type BaselineRiskCnt: Integer
+        # @param VulCnt: <p>漏洞数</p>
+        # @type VulCnt: Integer
+        # @param MalwareAlarmCnt: <p>木马告警成功数</p>
+        # @type MalwareAlarmCnt: Integer
+        # @param BruteAlarmCnt: <p>爆破告警成功数</p>
+        # @type BruteAlarmCnt: Integer
+        # @param AutoIsolateMalwareCnt: <p>自动隔离木马数(成功)</p>
+        # @type AutoIsolateMalwareCnt: Integer
+        # @param AutoBlockBruteCnt: <p>自动阻断数(成功)</p>
+        # @type AutoBlockBruteCnt: Integer
+        # @param AutoDefenceCnt: <p>自动防御漏洞数(成功)</p>
+        # @type AutoDefenceCnt: Integer
+        # @param AutoVulFixCnt: <p>漏洞自动修复数</p>
+        # @type AutoVulFixCnt: Integer
+        # @param JavaShellCnt: <p>java内存码告警数</p>
+        # @type JavaShellCnt: Integer
+        # @param FileTamperCnt: <p>核心文件监控告警数</p>
+        # @type FileTamperCnt: Integer
+        # @param EventCnt: <p>事件调查数</p>
+        # @type EventCnt: Integer
+        # @param DnsCnt: <p>恶意请求事件数</p>
+        # @type DnsCnt: Integer
+        # @param BashCnt: <p>高危命令事件数</p>
+        # @type BashCnt: Integer
+        # @param CloudFrom: <p>云服务器厂商类型</p>
+        # @type CloudFrom: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :IsShow, :AddMachineCnt, :BaselineRiskCnt, :VulCnt, :MalwareAlarmCnt, :BruteAlarmCnt, :AutoIsolateMalwareCnt, :AutoBlockBruteCnt, :AutoDefenceCnt, :AutoVulFixCnt, :JavaShellCnt, :FileTamperCnt, :EventCnt, :DnsCnt, :BashCnt, :CloudFrom, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(isshow=nil, addmachinecnt=nil, baselineriskcnt=nil, vulcnt=nil, malwarealarmcnt=nil, brutealarmcnt=nil, autoisolatemalwarecnt=nil, autoblockbrutecnt=nil, autodefencecnt=nil, autovulfixcnt=nil, javashellcnt=nil, filetampercnt=nil, eventcnt=nil, dnscnt=nil, bashcnt=nil, cloudfrom=nil, requestid=nil)
+          @IsShow = isshow
+          @AddMachineCnt = addmachinecnt
+          @BaselineRiskCnt = baselineriskcnt
+          @VulCnt = vulcnt
+          @MalwareAlarmCnt = malwarealarmcnt
+          @BruteAlarmCnt = brutealarmcnt
+          @AutoIsolateMalwareCnt = autoisolatemalwarecnt
+          @AutoBlockBruteCnt = autoblockbrutecnt
+          @AutoDefenceCnt = autodefencecnt
+          @AutoVulFixCnt = autovulfixcnt
+          @JavaShellCnt = javashellcnt
+          @FileTamperCnt = filetampercnt
+          @EventCnt = eventcnt
+          @DnsCnt = dnscnt
+          @BashCnt = bashcnt
+          @CloudFrom = cloudfrom
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @IsShow = params['IsShow']
+          @AddMachineCnt = params['AddMachineCnt']
+          @BaselineRiskCnt = params['BaselineRiskCnt']
+          @VulCnt = params['VulCnt']
+          @MalwareAlarmCnt = params['MalwareAlarmCnt']
+          @BruteAlarmCnt = params['BruteAlarmCnt']
+          @AutoIsolateMalwareCnt = params['AutoIsolateMalwareCnt']
+          @AutoBlockBruteCnt = params['AutoBlockBruteCnt']
+          @AutoDefenceCnt = params['AutoDefenceCnt']
+          @AutoVulFixCnt = params['AutoVulFixCnt']
+          @JavaShellCnt = params['JavaShellCnt']
+          @FileTamperCnt = params['FileTamperCnt']
+          @EventCnt = params['EventCnt']
+          @DnsCnt = params['DnsCnt']
+          @BashCnt = params['BashCnt']
+          unless params['CloudFrom'].nil?
+            @CloudFrom = []
+            params['CloudFrom'].each do |i|
+              cloudfromcnt_tmp = CloudFromCnt.new
+              cloudfromcnt_tmp.deserialize(i)
+              @CloudFrom << cloudfromcnt_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -28733,10 +28844,10 @@ module TencentCloud
 
         attr_accessor :Filters, :Fileds, :Fields, :Where
         extend Gem::Deprecate
-        deprecate :Fileds, :none, 2026, 6
-        deprecate :Fileds=, :none, 2026, 6
-        deprecate :Fields, :none, 2026, 6
-        deprecate :Fields=, :none, 2026, 6
+        deprecate :Fileds, :none, 2026, 7
+        deprecate :Fileds=, :none, 2026, 7
+        deprecate :Fields, :none, 2026, 7
+        deprecate :Fields=, :none, 2026, 7
 
         def initialize(filters=nil, fileds=nil, fields=nil, where=nil)
           @Filters = filters
@@ -34392,13 +34503,13 @@ module TencentCloud
 
       # ModifyLicenseBinds请求参数结构体
       class ModifyLicenseBindsRequest < TencentCloud::Common::AbstractModel
-        # @param ResourceId: 资源ID
+        # @param ResourceId: <p>资源ID</p>
         # @type ResourceId: String
-        # @param LicenseType: 授权类型
+        # @param LicenseType: <p>授权类型</p><p>枚举值：</p><ul><li>1： 专业版-包年包月</li><li>2： 旗舰版-包年包月</li></ul>
         # @type LicenseType: Integer
-        # @param IsAll: 是否全部机器(当全部机器数大于当前订单可用授权数时,多余机器会被跳过)
+        # @param IsAll: <p>是否全部机器(当全部机器数大于当前订单可用授权数时,多余机器会被跳过)</p>
         # @type IsAll: Boolean
-        # @param QuuidList: 需要绑定的机器quuid列表, 当IsAll = false 时必填,反之忽略该参数. 最大长度=2000
+        # @param QuuidList: <p>需要绑定的机器quuid列表, 当IsAll = false 时必填,反之忽略该参数. 最大长度=2000</p>
         # @type QuuidList: Array
 
         attr_accessor :ResourceId, :LicenseType, :IsAll, :QuuidList
@@ -34420,7 +34531,7 @@ module TencentCloud
 
       # ModifyLicenseBinds返回参数结构体
       class ModifyLicenseBindsResponse < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务ID
+        # @param TaskId: <p>任务ID</p>
         # @type TaskId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -34492,18 +34603,13 @@ module TencentCloud
 
       # ModifyLicenseUnBinds请求参数结构体
       class ModifyLicenseUnBindsRequest < TencentCloud::Common::AbstractModel
-        # @param ResourceId: 资源ID
+        # @param ResourceId: <p>资源ID</p>
         # @type ResourceId: String
-        # @param LicenseType: 授权类型
-        # - 0 按量付费-专业版
-        # - 1 包年包月-专业版
-        # - 2 包年包月-旗舰版
-        # - 3 包年包月-轻量版
+        # @param LicenseType: <p>授权类型</p><p>枚举值：</p><ul><li>1： 专业版-包年包月</li><li>2： 旗舰版-包年包月</li></ul>
         # @type LicenseType: Integer
-        # @param IsAll: 是否全部机器(当全部机器数大于当前订单可用授权数时,多余机器会被跳过)
+        # @param IsAll: <p>是否全部机器(当全部机器数大于当前订单可用授权数时,多余机器会被跳过)</p>
         # @type IsAll: Boolean
-        # @param QuuidList: 需要绑定的机器quuid列表, 当IsAll = false 时必填,反之忽略该参数.
-        # 最大长度=100
+        # @param QuuidList: <p>需要绑定的机器quuid列表, 当IsAll = false 时必填,反之忽略该参数.<br>最大长度=100</p>
         # @type QuuidList: Array
 
         attr_accessor :ResourceId, :LicenseType, :IsAll, :QuuidList
@@ -34525,7 +34631,7 @@ module TencentCloud
 
       # ModifyLicenseUnBinds返回参数结构体
       class ModifyLicenseUnBindsResponse < TencentCloud::Common::AbstractModel
-        # @param ErrMsg: 只有解绑失败的才有该值.
+        # @param ErrMsg: <p>只有解绑失败的才有该值.</p>
         # @type ErrMsg: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
