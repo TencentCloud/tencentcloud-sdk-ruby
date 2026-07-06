@@ -20894,9 +20894,9 @@ module TencentCloud
 
       # 运行时配置
       class RuntimeConfig < TencentCloud::Common::AbstractModel
-        # @param RuntimeType: 运行时类型，支持的类型有 docker、containerd
+        # @param RuntimeType: <p>运行时类型，支持的类型有 docker、containerd</p>
         # @type RuntimeType: String
-        # @param RuntimeVersion: 运行时版本，参考：https://cloud.tencent.com/document/api/457/105241
+        # @param RuntimeVersion: <p>运行时版本，参考：https://cloud.tencent.com/document/api/457/105241</p>
         # @type RuntimeVersion: String
 
         attr_accessor :RuntimeType, :RuntimeVersion

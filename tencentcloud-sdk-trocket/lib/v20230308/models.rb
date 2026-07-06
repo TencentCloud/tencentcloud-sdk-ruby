@@ -226,6 +226,30 @@ module TencentCloud
         end
       end
 
+      # 消费组标签
+      class ConsumerLabel < TencentCloud::Common::AbstractModel
+        # @param Label: <p>标签</p>
+        # @type Label: String
+        # @param State: <p>标签状态</p><p>枚举值：</p><ul><li>ACTIVE： 生效中</li><li>DELETING： 删除中</li><li>UNKNOWN： 未知</li></ul>
+        # @type State: String
+        # @param UpdatedAt: <p>更新时间</p><p>单位：毫秒(ms)</p>
+        # @type UpdatedAt: Integer
+
+        attr_accessor :Label, :State, :UpdatedAt
+
+        def initialize(label=nil, state=nil, updatedat=nil)
+          @Label = label
+          @State = state
+          @UpdatedAt = updatedat
+        end
+
+        def deserialize(params)
+          @Label = params['Label']
+          @State = params['State']
+          @UpdatedAt = params['UpdatedAt']
+        end
+      end
+
       # CreateConsumerGroup请求参数结构体
       class CreateConsumerGroupRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 腾讯云 RocketMQ 实例 ID，从 [DescribeFusionInstanceList](https://cloud.tencent.com/document/api/1493/106745) 接口或控制台获得。
@@ -304,6 +328,58 @@ module TencentCloud
         def deserialize(params)
           @InstanceId = params['InstanceId']
           @ConsumerGroup = params['ConsumerGroup']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateConsumerLabel请求参数结构体
+      class CreateConsumerLabelRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 腾讯云 RocketMQ 实例 ID，从 [DescribeFusionInstanceList](https://cloud.tencent.com/document/api/1493/106745) 接口或控制台获得。
+        # @type InstanceId: String
+        # @param Label: <p>标签</p>
+        # @type Label: String
+        # @param Group: <p>消费组</p>
+        # @type Group: String
+
+        attr_accessor :InstanceId, :Label, :Group
+
+        def initialize(instanceid=nil, label=nil, group=nil)
+          @InstanceId = instanceid
+          @Label = label
+          @Group = group
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Label = params['Label']
+          @Group = params['Group']
+        end
+      end
+
+      # CreateConsumerLabel返回参数结构体
+      class CreateConsumerLabelResponse < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>实例 ID</p>
+        # @type InstanceId: String
+        # @param Group: <p>消费组</p>
+        # @type Group: String
+        # @param Label: <p>标签</p>
+        # @type Label: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InstanceId, :Group, :Label, :RequestId
+
+        def initialize(instanceid=nil, group=nil, label=nil, requestid=nil)
+          @InstanceId = instanceid
+          @Group = group
+          @Label = label
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Group = params['Group']
+          @Label = params['Label']
           @RequestId = params['RequestId']
         end
       end
@@ -696,6 +772,86 @@ module TencentCloud
 
       # DeleteConsumerGroup返回参数结构体
       class DeleteConsumerGroupResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteConsumerLabel请求参数结构体
+      class DeleteConsumerLabelRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 腾讯云 RocketMQ 实例 ID，从 [DescribeFusionInstanceList](https://cloud.tencent.com/document/api/1493/106745) 接口或控制台获得。
+        # @type InstanceId: String
+        # @param Group: <p>消费组</p>
+        # @type Group: String
+        # @param Label: <p>标签</p>
+        # @type Label: String
+
+        attr_accessor :InstanceId, :Group, :Label
+
+        def initialize(instanceid=nil, group=nil, label=nil)
+          @InstanceId = instanceid
+          @Group = group
+          @Label = label
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Group = params['Group']
+          @Label = params['Label']
+        end
+      end
+
+      # DeleteConsumerLabel返回参数结构体
+      class DeleteConsumerLabelResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteConsumerRouteConfig请求参数结构体
+      class DeleteConsumerRouteConfigRequest < TencentCloud::Common::AbstractModel
+        # @param Topic: 主题名称，从 [DescribeTopicList](https://cloud.tencent.com/document/api/1493/96030) 接口返回的 [TopicItem](https://cloud.tencent.com/document/api/1493/96031#TopicItem) 或控制台获得。
+        # @type Topic: String
+        # @param InstanceId: 腾讯云 RocketMQ 实例 ID，从 [DescribeFusionInstanceList](https://cloud.tencent.com/document/api/1493/106745) 接口或控制台获得。
+        # @type InstanceId: String
+        # @param Group: <p>消费组</p>
+        # @type Group: String
+
+        attr_accessor :Topic, :InstanceId, :Group
+
+        def initialize(topic=nil, instanceid=nil, group=nil)
+          @Topic = topic
+          @InstanceId = instanceid
+          @Group = group
+        end
+
+        def deserialize(params)
+          @Topic = params['Topic']
+          @InstanceId = params['InstanceId']
+          @Group = params['Group']
+        end
+      end
+
+      # DeleteConsumerRouteConfig返回参数结构体
+      class DeleteConsumerRouteConfigResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -1179,6 +1335,104 @@ module TencentCloud
         end
       end
 
+      # DescribeConsumerLabelList请求参数结构体
+      class DescribeConsumerLabelListRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 腾讯云 RocketMQ 实例 ID，从 [DescribeFusionInstanceList](https://cloud.tencent.com/document/api/1493/106745) 接口或控制台获得。
+        # @type InstanceId: String
+        # @param Group: <p>消费组</p>
+        # @type Group: String
+
+        attr_accessor :InstanceId, :Group
+
+        def initialize(instanceid=nil, group=nil)
+          @InstanceId = instanceid
+          @Group = group
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Group = params['Group']
+        end
+      end
+
+      # DescribeConsumerLabelList返回参数结构体
+      class DescribeConsumerLabelListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 查询总数
+        # @type TotalCount: Integer
+        # @param Labels: <p>标签列表</p>
+        # @type Labels: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Labels, :RequestId
+
+        def initialize(totalcount=nil, labels=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Labels = labels
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Labels'].nil?
+            @Labels = []
+            params['Labels'].each do |i|
+              consumerlabel_tmp = ConsumerLabel.new
+              consumerlabel_tmp.deserialize(i)
+              @Labels << consumerlabel_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeConsumerLabel请求参数结构体
+      class DescribeConsumerLabelRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 腾讯云 RocketMQ 实例 ID，从 [DescribeFusionInstanceList](https://cloud.tencent.com/document/api/1493/106745) 接口或控制台获得。
+        # @type InstanceId: String
+        # @param Group: <p>消费组</p>
+        # @type Group: String
+        # @param Label: <p>标签</p>
+        # @type Label: String
+
+        attr_accessor :InstanceId, :Group, :Label
+
+        def initialize(instanceid=nil, group=nil, label=nil)
+          @InstanceId = instanceid
+          @Group = group
+          @Label = label
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Group = params['Group']
+          @Label = params['Label']
+        end
+      end
+
+      # DescribeConsumerLabel返回参数结构体
+      class DescribeConsumerLabelResponse < TencentCloud::Common::AbstractModel
+        # @param Label: <p>标签详情</p>
+        # @type Label: :class:`Tencentcloud::Trocket.v20230308.models.ConsumerLabel`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Label, :RequestId
+
+        def initialize(label=nil, requestid=nil)
+          @Label = label
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Label'].nil?
+            @Label = ConsumerLabel.new
+            @Label.deserialize(params['Label'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeConsumerLag请求参数结构体
       class DescribeConsumerLagRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 腾讯云 RocketMQ 实例 ID，从 [DescribeFusionInstanceList](https://cloud.tencent.com/document/api/1493/106745) 接口或控制台获得。
@@ -1223,6 +1477,120 @@ module TencentCloud
 
         def deserialize(params)
           @ConsumerLag = params['ConsumerLag']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeConsumerRouteConfig请求参数结构体
+      class DescribeConsumerRouteConfigRequest < TencentCloud::Common::AbstractModel
+        # @param Topic: 主题名称，从 [DescribeTopicList](https://cloud.tencent.com/document/api/1493/96030) 接口返回的 [TopicItem](https://cloud.tencent.com/document/api/1493/96031#TopicItem) 或控制台获得。
+        # @type Topic: String
+        # @param InstanceId: 腾讯云 RocketMQ 实例 ID，从 [DescribeFusionInstanceList](https://cloud.tencent.com/document/api/1493/106745) 接口或控制台获得。
+        # @type InstanceId: String
+        # @param Group: <p>消费组</p>
+        # @type Group: String
+
+        attr_accessor :Topic, :InstanceId, :Group
+
+        def initialize(topic=nil, instanceid=nil, group=nil)
+          @Topic = topic
+          @InstanceId = instanceid
+          @Group = group
+        end
+
+        def deserialize(params)
+          @Topic = params['Topic']
+          @InstanceId = params['InstanceId']
+          @Group = params['Group']
+        end
+      end
+
+      # DescribeConsumerRouteConfig返回参数结构体
+      class DescribeConsumerRouteConfigResponse < TencentCloud::Common::AbstractModel
+        # @param Version: <p>版本号</p>
+        # @type Version: Integer
+        # @param Rules: <p>路由规格</p>
+        # @type Rules: Array
+        # @param CutTimestamp: <p>切流时间戳</p>
+        # @type CutTimestamp: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Version, :Rules, :CutTimestamp, :RequestId
+
+        def initialize(version=nil, rules=nil, cuttimestamp=nil, requestid=nil)
+          @Version = version
+          @Rules = rules
+          @CutTimestamp = cuttimestamp
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Version = params['Version']
+          unless params['Rules'].nil?
+            @Rules = []
+            params['Rules'].each do |i|
+              routerule_tmp = RouteRule.new
+              routerule_tmp.deserialize(i)
+              @Rules << routerule_tmp
+            end
+          end
+          @CutTimestamp = params['CutTimestamp']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeConsumerRouteVersionList请求参数结构体
+      class DescribeConsumerRouteVersionListRequest < TencentCloud::Common::AbstractModel
+        # @param Topic: 主题名称，从 [DescribeTopicList](https://cloud.tencent.com/document/api/1493/96030) 接口返回的 [TopicItem](https://cloud.tencent.com/document/api/1493/96031#TopicItem) 或控制台获得。
+        # @type Topic: String
+        # @param InstanceId: 腾讯云 RocketMQ 实例 ID，从 [DescribeFusionInstanceList](https://cloud.tencent.com/document/api/1493/106745) 接口或控制台获得。
+        # @type InstanceId: String
+        # @param Group: <p>消费组</p>
+        # @type Group: String
+
+        attr_accessor :Topic, :InstanceId, :Group
+
+        def initialize(topic=nil, instanceid=nil, group=nil)
+          @Topic = topic
+          @InstanceId = instanceid
+          @Group = group
+        end
+
+        def deserialize(params)
+          @Topic = params['Topic']
+          @InstanceId = params['InstanceId']
+          @Group = params['Group']
+        end
+      end
+
+      # DescribeConsumerRouteVersionList返回参数结构体
+      class DescribeConsumerRouteVersionListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 查询总数
+        # @type TotalCount: Integer
+        # @param Versions: <p>版本列表</p>
+        # @type Versions: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Versions, :RequestId
+
+        def initialize(totalcount=nil, versions=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Versions = versions
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Versions'].nil?
+            @Versions = []
+            params['Versions'].each do |i|
+              routeruleversion_tmp = RouteRuleVersion.new
+              routeruleversion_tmp.deserialize(i)
+              @Versions << routeruleversion_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -4055,6 +4423,73 @@ module TencentCloud
         end
       end
 
+      # PutConsumerRouteConfig请求参数结构体
+      class PutConsumerRouteConfigRequest < TencentCloud::Common::AbstractModel
+        # @param Topic: 主题名称，从 [DescribeTopicList](https://cloud.tencent.com/document/api/1493/96030) 接口返回的 [TopicItem](https://cloud.tencent.com/document/api/1493/96031#TopicItem) 或控制台获得。
+        # @type Topic: String
+        # @param InstanceId: 腾讯云 RocketMQ 实例 ID，从 [DescribeFusionInstanceList](https://cloud.tencent.com/document/api/1493/106745) 接口或控制台获得。
+        # @type InstanceId: String
+        # @param Group: <p>消费组</p>
+        # @type Group: String
+        # @param Rules: <p>路由规则</p>
+        # @type Rules: Array
+
+        attr_accessor :Topic, :InstanceId, :Group, :Rules
+
+        def initialize(topic=nil, instanceid=nil, group=nil, rules=nil)
+          @Topic = topic
+          @InstanceId = instanceid
+          @Group = group
+          @Rules = rules
+        end
+
+        def deserialize(params)
+          @Topic = params['Topic']
+          @InstanceId = params['InstanceId']
+          @Group = params['Group']
+          unless params['Rules'].nil?
+            @Rules = []
+            params['Rules'].each do |i|
+              routerule_tmp = RouteRule.new
+              routerule_tmp.deserialize(i)
+              @Rules << routerule_tmp
+            end
+          end
+        end
+      end
+
+      # PutConsumerRouteConfig返回参数结构体
+      class PutConsumerRouteConfigResponse < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>实例 ID</p>
+        # @type InstanceId: String
+        # @param Topic: <p>主题</p>
+        # @type Topic: String
+        # @param Group: <p>消费组</p>
+        # @type Group: String
+        # @param Version: <p>版本号</p>
+        # @type Version: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InstanceId, :Topic, :Group, :Version, :RequestId
+
+        def initialize(instanceid=nil, topic=nil, group=nil, version=nil, requestid=nil)
+          @InstanceId = instanceid
+          @Topic = topic
+          @Group = group
+          @Version = version
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Topic = params['Topic']
+          @Group = params['Group']
+          @Version = params['Version']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # RemoveMigratingTopic请求参数结构体
       class RemoveMigratingTopicRequest < TencentCloud::Common::AbstractModel
         # @param TaskId: 任务ID，可在[DescribeSmoothMigrationTaskList](https://cloud.tencent.com/document/api/1493/119997)接口返回的[SmoothMigrationTaskItem](https://cloud.tencent.com/document/api/1493/96031#SmoothMigrationTaskItem)或控制台中获得。
@@ -4304,6 +4739,61 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 消费组路由规格
+      class RouteRule < TencentCloud::Common::AbstractModel
+        # @param MatchCondition: <p>路由匹配条件</p>
+        # @type MatchCondition: String
+        # @param TargetConsumerLabel: <p>标签</p>
+        # @type TargetConsumerLabel: String
+
+        attr_accessor :MatchCondition, :TargetConsumerLabel
+
+        def initialize(matchcondition=nil, targetconsumerlabel=nil)
+          @MatchCondition = matchcondition
+          @TargetConsumerLabel = targetconsumerlabel
+        end
+
+        def deserialize(params)
+          @MatchCondition = params['MatchCondition']
+          @TargetConsumerLabel = params['TargetConsumerLabel']
+        end
+      end
+
+      # 路由规则版本
+      class RouteRuleVersion < TencentCloud::Common::AbstractModel
+        # @param Version: <p>版本号</p>
+        # @type Version: Integer
+        # @param CutTimestamp: <p>切流时间戳</p><p>单位：毫秒（ms）</p>
+        # @type CutTimestamp: Integer
+        # @param UpdatedAt: <p>更新时间戳</p><p>单位：毫秒（ms）</p>
+        # @type UpdatedAt: Integer
+        # @param Rules: <p>路由规则列表</p>
+        # @type Rules: Array
+
+        attr_accessor :Version, :CutTimestamp, :UpdatedAt, :Rules
+
+        def initialize(version=nil, cuttimestamp=nil, updatedat=nil, rules=nil)
+          @Version = version
+          @CutTimestamp = cuttimestamp
+          @UpdatedAt = updatedat
+          @Rules = rules
+        end
+
+        def deserialize(params)
+          @Version = params['Version']
+          @CutTimestamp = params['CutTimestamp']
+          @UpdatedAt = params['UpdatedAt']
+          unless params['Rules'].nil?
+            @Rules = []
+            params['Rules'].each do |i|
+              routerule_tmp = RouteRule.new
+              routerule_tmp.deserialize(i)
+              @Rules << routerule_tmp
+            end
+          end
         end
       end
 

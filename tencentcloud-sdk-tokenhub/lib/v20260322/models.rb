@@ -895,12 +895,37 @@ module TencentCloud
 
       # DescribeModelList请求参数结构体
       class DescribeModelListRequest < TencentCloud::Common::AbstractModel
+        # @param ModelIds: <p>模型 ID 列表。最多支持 10 个，不支持重复。</p>
+        # @type ModelIds: Array
+        # @param ModelNames: <p>模型名称列表。最多支持 10 个，不支持重复。</p>
+        # @type ModelNames: Array
+        # @param ModelTypes: <p>模型类型列表，筛选指定类型的模型。最多支持 10 个，不支持重复。取值：Text（文本）、Vision（视觉）、Multimodal（多模态）、Speech（语音）、Embedding（向量）。</p>
+        # @type ModelTypes: Array
+        # @param Tags: <p>模型标签</p>
+        # @type Tags: Array
+        # @param Limit: <p>返回数量，默认为 20，最大值为 100。</p>
+        # @type Limit: Integer
+        # @param Offset: <p>偏移量，默认为 0。</p>
+        # @type Offset: Integer
 
+        attr_accessor :ModelIds, :ModelNames, :ModelTypes, :Tags, :Limit, :Offset
 
-        def initialize()
+        def initialize(modelids=nil, modelnames=nil, modeltypes=nil, tags=nil, limit=nil, offset=nil)
+          @ModelIds = modelids
+          @ModelNames = modelnames
+          @ModelTypes = modeltypes
+          @Tags = tags
+          @Limit = limit
+          @Offset = offset
         end
 
         def deserialize(params)
+          @ModelIds = params['ModelIds']
+          @ModelNames = params['ModelNames']
+          @ModelTypes = params['ModelTypes']
+          @Tags = params['Tags']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
         end
       end
 

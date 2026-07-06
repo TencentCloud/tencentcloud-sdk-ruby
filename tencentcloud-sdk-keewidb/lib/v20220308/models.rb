@@ -288,11 +288,11 @@ module TencentCloud
 
       # CreateInstances请求参数结构体
       class CreateInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param TypeId: <p>产品版本。14：极速版。</p>
+        # @param TypeId: <p>实例版本类型。</p><p>枚举值：</p><ul><li>11： 存储版标准架构。</li><li>12： 存储版集群架构。</li><li>13： 极速版标准架构。</li><li>14： 极速版集群架构。</li></ul>
         # @type TypeId: Integer
-        # @param UniqVpcId: <p>私有网络唯一ID。请登录控制台在私有网络列表查询，如：vpc-azlk3***。</p>
+        # @param UniqVpcId: <p>私有网络唯一ID。<br>请登录控制台在私有网络列表查询，如：vpc-azlk3***。</p>
         # @type UniqVpcId: String
-        # @param UniqSubnetId: <p>私有网络所属子网唯一ID。请登录控制台在私有网络列表查询，如：subnet-8abje***。</p>
+        # @param UniqSubnetId: <p>私有网络所属子网唯一ID。<br>请登录控制台在私有网络列表查询，如：subnet-8abje***。</p>
         # @type UniqSubnetId: String
         # @param BillingMode: <p>计费模式。<ul><li>0：按量计费。</li><li>1：包年包月。</li></ul></p>
         # @type BillingMode: Integer
@@ -304,17 +304,17 @@ module TencentCloud
         # @type ShardNum: Integer
         # @param ReplicasNum: <p>副本数。当前仅支持设置1个副本节点，即每一个分片仅包含1个主节点与1个副本节点，数据主从实时热备。</p>
         # @type ReplicasNum: Integer
-        # @param MachineMemory: <p>实例内存容量，单位：GB。KeeWiDB 内存容量<b>MachineMemory</b>与持久内存容量<b>MemSize</b>为固定搭配，即2GB内存，固定分配8GB的持久内存，不可选择。具体信息，请参见<a href="https://cloud.tencent.com/document/product/1520/80808">产品规格</a>。</p>
+        # @param MachineMemory: <p>实例内存容量，单位：GB。<br>极速版内存容量<b>MachineMemory</b>与持久内存容量<b>MemSize</b>为固定搭配，即2GB内存，固定分配8GB的持久内存，不可选择。具体信息，请参见<a href="https://cloud.tencent.com/document/product/1520/80808">产品规格</a>。</p><p>单位：GB</p>
         # @type MachineMemory: Integer
         # @param ZoneId: <p>实例所属的可用区ID。<ul><li>具体取值，请参见<a href="https://cloud.tencent.com/document/product/239/4106">地域和可用区</a>获取。</li><li>参数<b>ZoneId</b>和<b>ZoneName</b>至少配置其中一个。</li></ul></p>
         # @type ZoneId: Integer
         # @param ZoneName: <p>实例所属的可用区名称。<ul><li>具体取值，请参见<a href="https://cloud.tencent.com/document/product/239/4106">地域和可用区</a>获取。</li><li>参数<b>ZoneId</b>和<b>ZoneName</b>至少配置其中一个。</li></ul></p>
         # @type ZoneName: String
-        # @param InstanceName: <p>创建实例的名称。仅支持长度小于60的中文、英文或者数字，短划线"-"、下划线"_"。</p>
+        # @param InstanceName: <p>创建实例的名称。<br>仅支持长度小于60的中文、英文或者数字，短划线&quot;-&quot;、下划线&quot;_&quot;。</p>
         # @type InstanceName: String
         # @param NoAuth: <p>指明创建的实例是否需要支持免密访问。<ul><li>true：免密实例。</li><li>false：非免密实例，默认为非免密实例。此时，需要设置访问密码。</li></ul></p>
         # @type NoAuth: Boolean
-        # @param Password: <p>实例访问密码。<ul><li>当参数<b>NoAuth</b>为<b>true</b>时，Password为无需设置，否则Password为必填参数。</li><li>密码复杂度要求：<ul><li>8-30个字符。</li><li>至少包含小写字母、大写字母、数字和字符 ()`~!@#$%^&amp;*-+=_|{}[]:;&lt;&gt;,.?/ 中的2种。</li><li>不能以"/"开头。</li></ul></li></ul></p>
+        # @param Password: <p>实例访问密码。<ul><li>当参数<b>NoAuth</b>为<b>true</b>时，Password为无需设置，否则Password为必填参数。</li></p><li>密码复杂度要求：<ul><li>8-30个字符。</li><li>至少包含小写字母、大写字母、数字和字符 ()`~!@#$%^&amp;*-+=_|{}[]:;&lt;&gt;,.?/ 中的2种。</li><li>不能以"/"开头。</li></ul></li></ul>
         # @type Password: String
         # @param VPort: <p>自定义端口。默认为6379，范围[1024,65535]。</p>
         # @type VPort: Integer
@@ -324,11 +324,11 @@ module TencentCloud
         # @type SecurityGroupIdList: Array
         # @param ResourceTags: <p>给实例绑定标签。</p>
         # @type ResourceTags: Array
-        # @param MemSize: <p>极速版，单分片持久化内存容量。KeeWiDB 内存容量<b>MachineMemory</b>与持久内存容量<b>MemSize</b>为固定搭配，即2GB内存，固定分配8GB的持久内存，不可选择。具体信息，请参见<a href="https://cloud.tencent.com/document/product/1520/80808">产品规格</a>。</p>单位：GB。
+        # @param MemSize: <p>极速版，单分片持久化内存容量。<b>MachineMemory</b>与持久内存容量<b>MemSize</b>为固定搭配，即2GB内存，固定分配8GB的持久内存，不可选择。具体信息，请参见<a href="https://cloud.tencent.com/document/product/1520/80808">产品规格</a>。</p><p>单位：GB。</p>
         # @type MemSize: Integer
-        # @param DiskSize: <p>每个分片硬盘的容量。单位：GB。每一缓存分片容量，对应的磁盘容量范围不同。具体信息，请参见<a href="https://cloud.tencent.com/document/product/1520/80808">产品规格</a>。</p>
+        # @param DiskSize: <p>每个分片硬盘的容量。单位：GB。<br>每一缓存分片容量，对应的磁盘容量范围不同。具体信息，请参见<a href="https://cloud.tencent.com/document/product/1520/80808">产品规格</a>。</p>
         # @type DiskSize: Integer
-        # @param MachineCpu: <p>计算 CPU 核数，可忽略不传。CPU 核数与内存为固定搭配，具体信息，请参见<a href="https://cloud.tencent.com/document/product/1520/80808">产品规格</a>。</p>
+        # @param MachineCpu: <p>计算 CPU 核数。CPU 核数与内存为固定搭配，具体信息，请参见<a href="https://cloud.tencent.com/document/product/1520/80808">产品规格</a>。</p>
         # @type MachineCpu: Integer
         # @param ProjectId: <p>项目id，取值以用户账户&gt;用户账户相关接口查询&gt;项目列表返回的projectId为准。</p>
         # @type ProjectId: Integer
@@ -403,15 +403,15 @@ module TencentCloud
         # @type DealId: String
         # @param InstanceIds: <p>实例 ID 。</p>
         # @type InstanceIds: Array
-        # @param DealName: <p>订单号。    </p>
+        # @param DealName: <p>订单号。</p>
         # @type DealName: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :DealId, :InstanceIds, :DealName, :RequestId
         extend Gem::Deprecate
-        deprecate :DealId, :none, 2026, 5
-        deprecate :DealId=, :none, 2026, 5
+        deprecate :DealId, :none, 2026, 7
+        deprecate :DealId=, :none, 2026, 7
 
         def initialize(dealid=nil, instanceids=nil, dealname=nil, requestid=nil)
           @DealId = dealid
@@ -633,8 +633,8 @@ module TencentCloud
 
         attr_accessor :TotalCount, :BackupSet, :BackupRecord, :RequestId
         extend Gem::Deprecate
-        deprecate :BackupSet, :none, 2026, 5
-        deprecate :BackupSet=, :none, 2026, 5
+        deprecate :BackupSet, :none, 2026, 7
+        deprecate :BackupSet=, :none, 2026, 7
 
         def initialize(totalcount=nil, backupset=nil, backuprecord=nil, requestid=nil)
           @TotalCount = totalcount
@@ -737,8 +737,8 @@ module TencentCloud
 
         attr_accessor :DealIds, :DealName
         extend Gem::Deprecate
-        deprecate :DealIds, :none, 2026, 5
-        deprecate :DealIds=, :none, 2026, 5
+        deprecate :DealIds, :none, 2026, 7
+        deprecate :DealIds=, :none, 2026, 7
 
         def initialize(dealids=nil, dealname=nil)
           @DealIds = dealids
@@ -1062,56 +1062,55 @@ module TencentCloud
 
       # DescribeInstances请求参数结构体
       class DescribeInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param Limit: 每页输出的实例列表的大小，即每页输出的实例数量，默认值20，取值范围为[1,1000]。
+        # @param Limit: <p>每页输出的实例列表的大小，即每页输出的实例数量，默认值20，取值范围为[1,1000]。</p>
         # @type Limit: Integer
-        # @param Offset: 分页偏移量，取Limit整数倍。
-        # 计算公式为offset=limit*(页码-1)。例如 limit=10，第1页offset就为0，第2页offset就为10，依次类推。
+        # @param Offset: <p>分页偏移量，取Limit整数倍。<br>计算公式为offset=limit*(页码-1)。例如 limit=10，第1页offset就为0，第2页offset就为10，依次类推。</p>
         # @type Offset: Integer
-        # @param InstanceId: 实例 ID，如：kee-6ubh****。
+        # @param InstanceId: <p>实例 ID，如：kee-6ubh****。</p>
         # @type InstanceId: String
-        # @param OrderBy: 排序依据。枚举范围如下所示。 <ul><li>projectId：实例按照项目ID排序。</li><li>createtime：实例按照创建时间排序。</li><li>instancename：实例按照实例名称排序。</li><li>type：实例按照类型排序。</li><li>curDeadline：实例按照到期时间排序。</li></ul>
+        # @param OrderBy: <p>排序依据。枚举范围如下所示。 <ul><li>projectId：实例按照项目ID排序。</li><li>createtime：实例按照创建时间排序。</li><li>instancename：实例按照实例名称排序。</li><li>type：实例按照类型排序。</li><li>curDeadline：实例按照到期时间排序。</li></ul></p>
         # @type OrderBy: String
-        # @param OrderType: 排序方式。<ul><li>1：倒序。默认为倒序。</li><li>0：顺序。</li></ul>
+        # @param OrderType: <p>排序方式。<ul><li>1：倒序。默认为倒序。</li><li>0：顺序。</li></ul></p>
         # @type OrderType: Integer
-        # @param VpcIds: 私有网络ID数组。数组下标从0开始，如果不传则默认选择基础网络，如：47525
+        # @param VpcIds: <p>私有网络ID数组。数组下标从0开始，如果不传则默认选择基础网络，如：47525</p>
         # @type VpcIds: Array
-        # @param SubnetIds: 子网ID数组，数组下标从0开始，如：56854
+        # @param SubnetIds: <p>子网ID数组，数组下标从0开始，如：56854</p>
         # @type SubnetIds: Array
-        # @param ProjectIds: 项目ID 组成的数组，数组下标从0开始
+        # @param ProjectIds: <p>项目ID 组成的数组，数组下标从0开始</p>
         # @type ProjectIds: Array
-        # @param SearchKey: 查找关键字，可输入实例的ID或者实例名称。
+        # @param SearchKey: <p>查找关键字，可输入实例的ID或者实例名称。</p>
         # @type SearchKey: String
-        # @param InstanceName: 实例名称。
+        # @param InstanceName: <p>实例名称。</p>
         # @type InstanceName: String
-        # @param UniqVpcIds: 私有网络ID数组，数组下标从0开始，如果不传则默认选择基础网络，如：vpc-sad23jfdfk
+        # @param UniqVpcIds: <p>私有网络ID数组，数组下标从0开始，如果不传则默认选择基础网络，如：vpc-sad23jfdfk</p>
         # @type UniqVpcIds: Array
-        # @param UniqSubnetIds: 子网ID数组，数组下标从0开始，如：subnet-fdj24n34j2
+        # @param UniqSubnetIds: <p>子网ID数组，数组下标从0开始，如：subnet-fdj24n34j2</p>
         # @type UniqSubnetIds: Array
-        # @param Status: 实例状态。<ul><li>0：待初始化。</li><li>1：流程中。</li><li>2：运行中。</li><li>-2：已隔离。</li><li>-3：待删除。</li></ul>
+        # @param Status: <p>实例状态。<ul><li>0：待初始化。</li><li>1：流程中。</li><li>2：运行中。</li><li>-2：已隔离。</li><li>-3：待删除。</li></ul></p>
         # @type Status: Array
-        # @param AutoRenew: 续费模式。- 0：手动续费。- 1：自动续费。- 2：到期不再续费。
+        # @param AutoRenew: <p>续费模式。- 0：手动续费。- 1：自动续费。- 2：到期不再续费。</p>
         # @type AutoRenew: Array
-        # @param BillingMode: 计费模式。<ul><li>postpaid：按量计费。</li><li>prepaid：包年包月。</li></ul>
+        # @param BillingMode: <p>计费模式。<ul><li>postpaid：按量计费。</li><li>prepaid：包年包月。</li></ul></p>
         # @type BillingMode: String
-        # @param Type: 实例类型。<ul><li>13：标准版。</li><li>14：集群版。</li></ul>
+        # @param Type: <p>实例类型。</p><p>枚举值：</p><ul><li>11： 存储版标准架构。</li><li>12： 存储版集群架构。</li><li>13： 极速版标准架构。</li><li>14： 极速版集群架构。</li></ul>
         # @type Type: Integer
-        # @param SearchKeys: 搜索关键词：支持实例 ID、实例名称、私有网络IP地址。
+        # @param SearchKeys: <p>搜索关键词：支持实例 ID、实例名称、私有网络IP地址。</p>
         # @type SearchKeys: Array
-        # @param TypeList: 内部参数，用户可忽略。
+        # @param TypeList: <p>内部参数，用户可忽略。</p>
         # @type TypeList: Array
-        # @param MonitorVersion: 内部参数，用户可忽略。
+        # @param MonitorVersion: <p>内部参数，用户可忽略。</p>
         # @type MonitorVersion: String
-        # @param InstanceTags: 废弃字段。请使用TagList传参。
+        # @param InstanceTags: <p>废弃字段。请使用TagList传参。</p>
         # @type InstanceTags: :class:`Tencentcloud::Keewidb.v20220308.models.InstanceTagInfo`
-        # @param TagKeys: 根据标签的 Key 筛选资源，该参数不配置或者数组设置为空值，则不根据标签Key进行过滤。
+        # @param TagKeys: <p>根据标签的 Key 筛选资源，该参数不配置或者数组设置为空值，则不根据标签Key进行过滤。</p>
         # @type TagKeys: Array
-        # @param TagList: 根据标签的 Key 和 Value 筛选资源。该参数不配置或者数组设置为空值，则不根据标签进行过滤。
+        # @param TagList: <p>根据标签的 Key 和 Value 筛选资源。该参数不配置或者数组设置为空值，则不根据标签进行过滤。</p>
         # @type TagList: Array
 
         attr_accessor :Limit, :Offset, :InstanceId, :OrderBy, :OrderType, :VpcIds, :SubnetIds, :ProjectIds, :SearchKey, :InstanceName, :UniqVpcIds, :UniqSubnetIds, :Status, :AutoRenew, :BillingMode, :Type, :SearchKeys, :TypeList, :MonitorVersion, :InstanceTags, :TagKeys, :TagList
         extend Gem::Deprecate
-        deprecate :InstanceTags, :none, 2026, 5
-        deprecate :InstanceTags=, :none, 2026, 5
+        deprecate :InstanceTags, :none, 2026, 7
+        deprecate :InstanceTags=, :none, 2026, 7
 
         def initialize(limit=nil, offset=nil, instanceid=nil, orderby=nil, ordertype=nil, vpcids=nil, subnetids=nil, projectids=nil, searchkey=nil, instancename=nil, uniqvpcids=nil, uniqsubnetids=nil, status=nil, autorenew=nil, billingmode=nil, type=nil, searchkeys=nil, typelist=nil, monitorversion=nil, instancetags=nil, tagkeys=nil, taglist=nil)
           @Limit = limit
@@ -1176,9 +1175,9 @@ module TencentCloud
 
       # DescribeInstances返回参数结构体
       class DescribeInstancesResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 实例数
+        # @param TotalCount: <p>实例数</p>
         # @type TotalCount: Integer
-        # @param InstanceSet: 实例详细信息列表
+        # @param InstanceSet: <p>实例详细信息列表</p>
         # @type InstanceSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1675,8 +1674,8 @@ module TencentCloud
 
         attr_accessor :DealId, :DealName, :RequestId
         extend Gem::Deprecate
-        deprecate :DealId, :none, 2026, 5
-        deprecate :DealId=, :none, 2026, 5
+        deprecate :DealId, :none, 2026, 7
+        deprecate :DealId=, :none, 2026, 7
 
         def initialize(dealid=nil, dealname=nil, requestid=nil)
           @DealId = dealid
@@ -1821,109 +1820,109 @@ module TencentCloud
 
       # 实例详细信息
       class InstanceInfo < TencentCloud::Common::AbstractModel
-        # @param InstanceName: 实例名称。
+        # @param InstanceName: <p>实例名称。</p>
         # @type InstanceName: String
-        # @param InstanceId: 实例 ID。
+        # @param InstanceId: <p>实例 ID。</p>
         # @type InstanceId: String
-        # @param Appid: 用户的Appid。
+        # @param Appid: <p>用户的Appid。</p>
         # @type Appid: Integer
-        # @param ProjectId: 项目 ID。
+        # @param ProjectId: <p>项目 ID。</p>
         # @type ProjectId: Integer
-        # @param RegionId: 地域ID。<ul><li>1：广州。</li><li>4：上海。</li><li>8：北京。</li></ul>
+        # @param RegionId: <p>地域ID。<ul><li>1：广州。</li><li>4：上海。</li><li>8：北京。</li></ul></p>
         # @type RegionId: Integer
-        # @param ZoneId: 可用区 ID。
+        # @param ZoneId: <p>可用区 ID。</p>
         # @type ZoneId: Integer
-        # @param VpcId: VPC 网络 ID， 如：75101。该参数当前暂保留，可忽略。
+        # @param VpcId: <p>VPC 网络 ID， 如：75101。该参数当前暂保留，可忽略。</p>
         # @type VpcId: Integer
-        # @param Status: 实例当前状态。<ul><li>0：待初始化。</li><li>1：实例在流程中。</li><li>2：实例运行中。</li><li>-2：实例已隔离。</li><li>-3：实例待删除。</li></ul>
+        # @param Status: <p>实例当前状态。<ul><li>0：待初始化。</li><li>1：实例在流程中。</li><li>2：实例运行中。</li><li>-2：实例已隔离。</li><li>-3：实例待删除。</li></ul></p>
         # @type Status: Integer
-        # @param SubnetId: VPC 网络下子网 ID， 如：46315。该参数当前暂保留，可忽略。
+        # @param SubnetId: <p>VPC 网络下子网 ID， 如：46315。该参数当前暂保留，可忽略。</p>
         # @type SubnetId: Integer
-        # @param WanIp: 实例 VIP。
+        # @param WanIp: <p>实例 VIP。</p>
         # @type WanIp: String
-        # @param Port: 实例端口号。
+        # @param Port: <p>实例端口号。</p>
         # @type Port: Integer
-        # @param Createtime: 实例创建时间。
+        # @param Createtime: <p>实例创建时间。</p>
         # @type Createtime: String
-        # @param Size: 实例持久内存总容量大小，单位：MB。
+        # @param Size: <p>实例持久内存总容量大小，单位：MB。</p>
         # @type Size: Float
-        # @param Type: 实例类型。<ul><li>13：标准版。</li><li>14：集群版。</li></ul>
+        # @param Type: <p>实例类型。</p><p>枚举值：</p><ul><li>11： 存储版标准架构。</li><li>12： 存储版集群架构。</li><li>13： 极速版标准架构。</li><li>14： 极速版集群架构。</li></ul>
         # @type Type: Integer
-        # @param AutoRenewFlag: 实例是否设置自动续费标识。<ul><li>1：设置自动续费。</li><li>0：未设置自动续费。</li></ul>
+        # @param AutoRenewFlag: <p>实例是否设置自动续费标识。<ul><li>1：设置自动续费。</li><li>0：未设置自动续费。</li></ul></p>
         # @type AutoRenewFlag: Integer
-        # @param DeadlineTime: 实例到期时间。
+        # @param DeadlineTime: <p>实例到期时间。</p>
         # @type DeadlineTime: String
-        # @param Engine: 存储引擎。
+        # @param Engine: <p>存储引擎。</p>
         # @type Engine: String
-        # @param ProductType: 产品类型。<ul><li>standalone ：标准版。</li><li>cluster ：集群版。</li></ul>
+        # @param ProductType: <p>产品类型。<ul><li>standalone ：标准版。</li><li>cluster ：集群版。</li></ul></p>
         # @type ProductType: String
-        # @param UniqVpcId: VPC 网络 ID， 如：vpc-fk33jsf4****。
+        # @param UniqVpcId: <p>VPC 网络 ID， 如：vpc-fk33jsf4****。</p>
         # @type UniqVpcId: String
-        # @param UniqSubnetId: VPC 网络下子网 ID，如：subnet-fd3j6l3****。
+        # @param UniqSubnetId: <p>VPC 网络下子网 ID，如：subnet-fd3j6l3****。</p>
         # @type UniqSubnetId: String
-        # @param BillingMode: 计费模式。<ul><li>0：按量计费。</li><li>1：包年包月。</li></ul>
+        # @param BillingMode: <p>计费模式。<ul><li>0：按量计费。</li><li>1：包年包月。</li></ul></p>
         # @type BillingMode: Integer
-        # @param InstanceTitle: 实例运行状态描述：如”实例运行中“。
+        # @param InstanceTitle: <p>实例运行状态描述：如”实例运行中“。</p>
         # @type InstanceTitle: String
-        # @param OfflineTime: 计划下线时间。
+        # @param OfflineTime: <p>计划下线时间。</p>
         # @type OfflineTime: String
-        # @param SubStatus: 流程中的实例，返回子状态。
+        # @param SubStatus: <p>流程中的实例，返回子状态。</p>
         # @type SubStatus: Integer
-        # @param Tags: 反亲和性标签
+        # @param Tags: <p>反亲和性标签</p>
         # @type Tags: Array
-        # @param RedisShardSize: 分片大小。
+        # @param RedisShardSize: <p>分片大小。</p>
         # @type RedisShardSize: Integer
-        # @param RedisShardNum: 分片数量。
+        # @param RedisShardNum: <p>分片数量。</p>
         # @type RedisShardNum: Integer
-        # @param RedisReplicasNum: 副本数量。
+        # @param RedisReplicasNum: <p>副本数量。</p>
         # @type RedisReplicasNum: Integer
-        # @param PriceId: 计费 ID。
+        # @param PriceId: <p>计费 ID。</p>
         # @type PriceId: Integer
-        # @param CloseTime: 隔离时间。
+        # @param CloseTime: <p>隔离时间。</p>
         # @type CloseTime: String
-        # @param SlaveReadWeight: 从节点读取权重。
+        # @param SlaveReadWeight: <p>从节点读取权重。</p>
         # @type SlaveReadWeight: Integer
-        # @param InstanceTags: 实例关联的标签信息。
+        # @param InstanceTags: <p>实例关联的标签信息。</p>
         # @type InstanceTags: Array
-        # @param ProjectName: 项目名称。
+        # @param ProjectName: <p>项目名称。</p>
         # @type ProjectName: String
-        # @param NoAuth: 是否为免密实例；<ul><li>true：免密实例。</li><li>false：非免密实例。</li></ul>
+        # @param NoAuth: <p>是否为免密实例；<ul><li>true：免密实例。</li><li>false：非免密实例。</li></ul></p>
         # @type NoAuth: Boolean
-        # @param ClientLimit: 客户端连接数。
+        # @param ClientLimit: <p>客户端连接数。</p>
         # @type ClientLimit: Integer
-        # @param DtsStatus: DTS状态（内部参数，用户可忽略）。
+        # @param DtsStatus: <p>DTS状态（内部参数，用户可忽略）。</p>
         # @type DtsStatus: Integer
-        # @param NetLimit: 分片带宽上限，单位 MB。
+        # @param NetLimit: <p>分片带宽上限，单位 MB。</p>
         # @type NetLimit: Integer
-        # @param PasswordFree: 免密实例标识（内部参数，用户可忽略）。
+        # @param PasswordFree: <p>免密实例标识（内部参数，用户可忽略）。</p>
         # @type PasswordFree: Integer
-        # @param ReadOnly: 实例只读标识（内部参数，用户可忽略）。
+        # @param ReadOnly: <p>实例只读标识（内部参数，用户可忽略）。</p>
         # @type ReadOnly: Integer
-        # @param Vip6: 内部参数，用户可忽略。
+        # @param Vip6: <p>内部参数，用户可忽略。</p>
         # @type Vip6: String
-        # @param RemainBandwidthDuration: 内部参数，用户可忽略。
+        # @param RemainBandwidthDuration: <p>内部参数，用户可忽略。</p>
         # @type RemainBandwidthDuration: String
-        # @param DiskSize: 实例的磁盘容量大小。
+        # @param DiskSize: <p>实例的磁盘容量大小。</p>
         # @type DiskSize: Integer
-        # @param MonitorVersion: 监控版本。<ul><li>1m：分钟粒度监控。</li><li>5s：5秒粒度监控。</li></ul>
+        # @param MonitorVersion: <p>监控版本。<ul><li>1m：分钟粒度监控。</li><li>5s：5秒粒度监控。</li></ul></p>
         # @type MonitorVersion: String
-        # @param ClientLimitMin: 客户端最大连接数可设置的最小值。
+        # @param ClientLimitMin: <p>客户端最大连接数可设置的最小值。</p>
         # @type ClientLimitMin: Integer
-        # @param ClientLimitMax: 客户端最大连接数可设置的最大值。
+        # @param ClientLimitMax: <p>客户端最大连接数可设置的最大值。</p>
         # @type ClientLimitMax: Integer
-        # @param NodeSet: 实例的节点详细信息。
+        # @param NodeSet: <p>实例的节点详细信息。</p>
         # @type NodeSet: Array
-        # @param Region: 实例所在的地域信息，比如ap-guangzhou。
+        # @param Region: <p>实例所在的地域信息，比如ap-guangzhou。</p>
         # @type Region: String
-        # @param MachineMemory: 实例内存容量，单位：GB。KeeWiDB 内存容量
+        # @param MachineMemory: <p>实例内存容量，单位：GB。KeeWiDB 内存容量</p>
         # @type MachineMemory: Integer
-        # @param DiskShardSize: 单分片磁盘大小，单位：MB
+        # @param DiskShardSize: <p>单分片磁盘大小，单位：MB</p>
         # @type DiskShardSize: Integer
-        # @param DiskShardNum: 3
+        # @param DiskShardNum: <p>分片数量</p>
         # @type DiskShardNum: Integer
-        # @param DiskReplicasNum: 1
+        # @param DiskReplicasNum: <p>副本数量</p>
         # @type DiskReplicasNum: Integer
-        # @param Compression: 数据压缩开关。<ul><li>ON：开启。</li><li>OFF：关闭。</li></ul>
+        # @param Compression: <p>数据压缩开关。<ul><li>ON：开启。</li><li>OFF：关闭。</li></ul></p>
         # @type Compression: String
 
         attr_accessor :InstanceName, :InstanceId, :Appid, :ProjectId, :RegionId, :ZoneId, :VpcId, :Status, :SubnetId, :WanIp, :Port, :Createtime, :Size, :Type, :AutoRenewFlag, :DeadlineTime, :Engine, :ProductType, :UniqVpcId, :UniqSubnetId, :BillingMode, :InstanceTitle, :OfflineTime, :SubStatus, :Tags, :RedisShardSize, :RedisShardNum, :RedisReplicasNum, :PriceId, :CloseTime, :SlaveReadWeight, :InstanceTags, :ProjectName, :NoAuth, :ClientLimit, :DtsStatus, :NetLimit, :PasswordFree, :ReadOnly, :Vip6, :RemainBandwidthDuration, :DiskSize, :MonitorVersion, :ClientLimitMin, :ClientLimitMax, :NodeSet, :Region, :MachineMemory, :DiskShardSize, :DiskShardNum, :DiskReplicasNum, :Compression
@@ -2155,17 +2154,21 @@ module TencentCloud
         # @type NodeId: String
         # @param NodeRole: 节点角色
         # @type NodeRole: String
+        # @param ZoneId: 可用区ID
+        # @type ZoneId: Integer
 
-        attr_accessor :NodeId, :NodeRole
+        attr_accessor :NodeId, :NodeRole, :ZoneId
 
-        def initialize(nodeid=nil, noderole=nil)
+        def initialize(nodeid=nil, noderole=nil, zoneid=nil)
           @NodeId = nodeid
           @NodeRole = noderole
+          @ZoneId = zoneid
         end
 
         def deserialize(params)
           @NodeId = params['NodeId']
           @NodeRole = params['NodeRole']
+          @ZoneId = params['ZoneId']
         end
       end
 
@@ -2828,15 +2831,19 @@ module TencentCloud
       class ProxyNodeInfo < TencentCloud::Common::AbstractModel
         # @param NodeId: 节点ID
         # @type NodeId: String
+        # @param ZoneId: 可用区ID
+        # @type ZoneId: Integer
 
-        attr_accessor :NodeId
+        attr_accessor :NodeId, :ZoneId
 
-        def initialize(nodeid=nil)
+        def initialize(nodeid=nil, zoneid=nil)
           @NodeId = nodeid
+          @ZoneId = zoneid
         end
 
         def deserialize(params)
           @NodeId = params['NodeId']
+          @ZoneId = params['ZoneId']
         end
       end
 
@@ -2938,8 +2945,8 @@ module TencentCloud
 
         attr_accessor :DealId, :DealName, :RequestId
         extend Gem::Deprecate
-        deprecate :DealId, :none, 2026, 5
-        deprecate :DealId=, :none, 2026, 5
+        deprecate :DealId, :none, 2026, 7
+        deprecate :DealId=, :none, 2026, 7
 
         def initialize(dealid=nil, dealname=nil, requestid=nil)
           @DealId = dealid
@@ -3340,8 +3347,8 @@ module TencentCloud
 
         attr_accessor :DealId, :DealName, :RequestId
         extend Gem::Deprecate
-        deprecate :DealId, :none, 2026, 5
-        deprecate :DealId=, :none, 2026, 5
+        deprecate :DealId, :none, 2026, 7
+        deprecate :DealId=, :none, 2026, 7
 
         def initialize(dealid=nil, dealname=nil, requestid=nil)
           @DealId = dealid

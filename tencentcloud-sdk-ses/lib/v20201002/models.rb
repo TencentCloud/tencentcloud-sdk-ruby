@@ -1152,16 +1152,19 @@ module TencentCloud
         # @type Attributes: Array
         # @param DKIMOption: <p>dkim密钥长度</p><p>枚举值：</p><ul><li>0： 1024</li><li>1： 2048</li><li>2： both</li></ul>
         # @type DKIMOption: Integer
+        # @param TagList: <p>tag 标签</p>
+        # @type TagList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :IdentityType, :VerifiedForSendingStatus, :Attributes, :DKIMOption, :RequestId
+        attr_accessor :IdentityType, :VerifiedForSendingStatus, :Attributes, :DKIMOption, :TagList, :RequestId
 
-        def initialize(identitytype=nil, verifiedforsendingstatus=nil, attributes=nil, dkimoption=nil, requestid=nil)
+        def initialize(identitytype=nil, verifiedforsendingstatus=nil, attributes=nil, dkimoption=nil, taglist=nil, requestid=nil)
           @IdentityType = identitytype
           @VerifiedForSendingStatus = verifiedforsendingstatus
           @Attributes = attributes
           @DKIMOption = dkimoption
+          @TagList = taglist
           @RequestId = requestid
         end
 
@@ -1177,6 +1180,14 @@ module TencentCloud
             end
           end
           @DKIMOption = params['DKIMOption']
+          unless params['TagList'].nil?
+            @TagList = []
+            params['TagList'].each do |i|
+              taglist_tmp = TagList.new
+              taglist_tmp.deserialize(i)
+              @TagList << taglist_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -2144,8 +2155,8 @@ module TencentCloud
 
         attr_accessor :MessageId, :ToEmailAddress, :FromEmailAddress, :SendStatus, :DeliverStatus, :DeliverMessage, :RequestTime, :DeliverTime, :UserOpened, :UserClicked, :UserUnsubscribed, :UserComplainted, :UserComplained
         extend Gem::Deprecate
-        deprecate :UserComplainted, :none, 2026, 6
-        deprecate :UserComplainted=, :none, 2026, 6
+        deprecate :UserComplainted, :none, 2026, 7
+        deprecate :UserComplainted=, :none, 2026, 7
 
         def initialize(messageid=nil, toemailaddress=nil, fromemailaddress=nil, sendstatus=nil, deliverstatus=nil, delivermessage=nil, requesttime=nil, delivertime=nil, useropened=nil, userclicked=nil, userunsubscribed=nil, usercomplainted=nil, usercomplained=nil)
           @MessageId = messageid

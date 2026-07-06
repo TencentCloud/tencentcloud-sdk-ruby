@@ -4163,90 +4163,62 @@ module TencentCloud
 
       # CreateLiveTranscodeTemplate请求参数结构体
       class CreateLiveTranscodeTemplateRequest < TencentCloud::Common::AbstractModel
-        # @param TemplateName: 模板名称，例： 900p 仅支持字母和数字的组合。
-        # 长度限制：
-        #   标准转码：1-10个字符
-        #   极速高清转码：3-10个字符
+        # @param TemplateName: <p>模板名称，例： 900p 仅支持字母和数字的组合。<br>长度限制：<br>  标准转码：1-10个字符<br>  极速高清转码：3-10个字符</p>
         # @type TemplateName: String
-        # @param VideoBitrate: 视频码率。范围：0kbps - 8000kbps。
-        # 0为保持原始码率。
-        # 注: 转码模板有码率唯一要求，最终保存的码率可能与输入码率有所差别。
+        # @param VideoBitrate: <p>视频码率。范围：0kbps - 8000kbps。<br>0为保持原始码率。<br>注: 转码模板有码率唯一要求，最终保存的码率可能与输入码率有所差别。</p>
         # @type VideoBitrate: Integer
-        # @param Acodec: 音频编码：aac，默认aac。
-        # 注意：当前该参数未生效，待后续支持！
+        # @param Acodec: <p>音频编码：aac，默认aac。<br>注意：当前该参数未生效，待后续支持！</p>
         # @type Acodec: String
-        # @param AudioBitrate: 音频码率，默认0。
-        # 范围：0-500。
+        # @param AudioBitrate: <p>音频码率，默认0。<br>范围：0-500。</p>
         # @type AudioBitrate: Integer
-        # @param Vcodec: 视频编码：h264/h265/origin，默认origin。
-
-        # origin: 保持原始编码格式
+        # @param Vcodec: <p>视频编码：h264/h265/origin，默认origin。</p><p>origin: 保持原始编码格式</p>
         # @type Vcodec: String
-        # @param Description: 模板描述。
+        # @param Description: <p>模板描述。</p>
         # @type Description: String
-        # @param NeedVideo: 是否保留视频，0：否，1：是。默认1。
+        # @param NeedVideo: <p>是否保留视频，0：否，1：是。默认1。</p>
         # @type NeedVideo: Integer
-        # @param Width: 宽，默认0。
-        # 范围[0-3000]
-        # 数值必须是2的倍数，0是原始宽度
+        # @param Width: <p>宽，默认0。<br>范围[0-3000]<br>数值必须是2的倍数，0是原始宽度</p>
         # @type Width: Integer
-        # @param NeedAudio: 是否保留音频，0：否，1：是。默认1。
+        # @param NeedAudio: <p>是否保留音频，0：否，1：是。默认1。</p>
         # @type NeedAudio: Integer
-        # @param Height: 高，默认0。
-        # 范围[0-3000]
-        # 数值必须是2的倍数，0是原始高度。
-        # 极速高清模板（AiTransCode = 1 的时候）必须传。
+        # @param Height: <p>高，默认0。<br>范围[0-3000]<br>数值必须是2的倍数，0是原始高度。<br>极速高清模板（AiTransCode = 1 的时候）必须传。</p>
         # @type Height: Integer
-        # @param Fps: 帧率，默认0。
-        # 范围0-60fps
+        # @param Fps: <p>帧率，默认0。<br>范围0-60fps</p>
         # @type Fps: Integer
-        # @param Gop: 关键帧间隔，单位：秒。
-        # 默认原始的间隔
-        # 范围1-6
+        # @param Gop: <p>关键帧间隔，单位：秒。<br>默认原始的间隔<br>范围1-6</p>
         # @type Gop: Integer
-        # @param Rotate: 旋转角度，默认0。
-        # 可取值：0，90，180，270
+        # @param Rotate: <p>旋转角度，默认0。<br>可取值：0，90，180，270</p>
         # @type Rotate: Integer
-        # @param Profile: 编码质量：
-        # baseline/main/high。默认baseline
+        # @param Profile: <p>编码质量：<br>baseline/main/high。默认baseline</p>
         # @type Profile: String
-        # @param BitrateToOrig: 当设置的码率>原始码率时，是否以原始码率为准。
-        # 0：否， 1：是
-        # 默认 0。
+        # @param BitrateToOrig: <p>当设置的码率&gt;原始码率时，是否以原始码率为准。<br>0：否， 1：是<br>默认 0。</p>
         # @type BitrateToOrig: Integer
-        # @param HeightToOrig: 当设置的高度>原始高度时，是否以原始高度为准。
-        # 0：否， 1：是
-        # 默认 0。
+        # @param HeightToOrig: <p>当设置的高度&gt;原始高度时，是否以原始高度为准。<br>0：否， 1：是<br>默认 0。</p>
         # @type HeightToOrig: Integer
-        # @param FpsToOrig: 当设置的帧率>原始帧率时，是否以原始帧率为准。
-        # 0：否， 1：是
-        # 默认 0。
+        # @param FpsToOrig: <p>当设置的帧率&gt;原始帧率时，是否以原始帧率为准。<br>0：否， 1：是<br>默认 0。</p>
         # @type FpsToOrig: Integer
-        # @param AiTransCode: 是否是极速高清模板，0：否，1：是。默认0。
+        # @param AiTransCode: <p>是否是极速高清模板，0：否，1：是。默认0。</p>
         # @type AiTransCode: Integer
-        # @param AdaptBitratePercent: 极速高清视频码率压缩比。
-        # 极速高清目标码率=VideoBitrate * (1-AdaptBitratePercent)
-
-        # 取值范围：0.0到0.5
+        # @param AdaptBitratePercent: <p>极速高清视频码率压缩比。<br>极速高清目标码率=VideoBitrate * (1-AdaptBitratePercent)</p><p>取值范围：0.0 到 0.5<br>智能降码：0.5 到 0.9。</p>
         # @type AdaptBitratePercent: Float
-        # @param ShortEdgeAsHeight: 是否以短边作为高度，0：否，1：是。默认0。
+        # @param ShortEdgeAsHeight: <p>是否以短边作为高度，0：否，1：是。默认0。</p>
         # @type ShortEdgeAsHeight: Integer
-        # @param DRMType: DRM 加密类型，可选值：fairplay、normalaes、widevine。
-        # 不传递或者为空字符串，清空之前的DRM配置。
+        # @param DRMType: <p>DRM 加密类型，可选值：fairplay、normalaes、widevine。<br>不传递或者为空字符串，清空之前的DRM配置。</p>
         # @type DRMType: String
-        # @param DRMTracks: DRM 加密项，可选值：AUDIO、SD、HD、UHD1、UHD2，后四个为一组，同组中的内容只能选一个。
-        # 不传递或者为空字符串，清空之前的DRM配置。
+        # @param DRMTracks: <p>DRM 加密项，可选值：AUDIO、SD、HD、UHD1、UHD2，后四个为一组，同组中的内容只能选一个。<br>不传递或者为空字符串，清空之前的DRM配置。</p>
         # @type DRMTracks: String
-        # @param IsAdaptiveBitRate: 是否创建自适应码率，默认值 0。
-        # 0：否。
-        # 1：是。
+        # @param IsAdaptiveBitRate: <p>是否创建自适应码率，默认值 0。<br>0：否。<br>1：是。</p>
         # @type IsAdaptiveBitRate: Integer
-        # @param AdaptiveChildren: 自适应码率，子转码模板信息，当 IsAdaptiveBitRate 为 1 时有效。
+        # @param AdaptiveChildren: <p>自适应码率，子转码模板信息，当 IsAdaptiveBitRate 为 1 时有效。</p>
         # @type AdaptiveChildren: Array
+        # @param AudienceDrivenTranscode: <p>是否智能降码，1 表示智能降码。如果设置了智能降码，AiTransCode  = 1、Height = 0、VideoBitrate = 0、AdaptBitratePercent、AudienceThreshold 必须传递。</p>
+        # @type AudienceDrivenTranscode: Integer
+        # @param AudienceThreshold: <p>智能降码人数阈值，当 AudienceDrivenTranscode = 1 时需要传递。</p><p>取值范围：[100, 1000000]</p>
+        # @type AudienceThreshold: Integer
 
-        attr_accessor :TemplateName, :VideoBitrate, :Acodec, :AudioBitrate, :Vcodec, :Description, :NeedVideo, :Width, :NeedAudio, :Height, :Fps, :Gop, :Rotate, :Profile, :BitrateToOrig, :HeightToOrig, :FpsToOrig, :AiTransCode, :AdaptBitratePercent, :ShortEdgeAsHeight, :DRMType, :DRMTracks, :IsAdaptiveBitRate, :AdaptiveChildren
+        attr_accessor :TemplateName, :VideoBitrate, :Acodec, :AudioBitrate, :Vcodec, :Description, :NeedVideo, :Width, :NeedAudio, :Height, :Fps, :Gop, :Rotate, :Profile, :BitrateToOrig, :HeightToOrig, :FpsToOrig, :AiTransCode, :AdaptBitratePercent, :ShortEdgeAsHeight, :DRMType, :DRMTracks, :IsAdaptiveBitRate, :AdaptiveChildren, :AudienceDrivenTranscode, :AudienceThreshold
 
-        def initialize(templatename=nil, videobitrate=nil, acodec=nil, audiobitrate=nil, vcodec=nil, description=nil, needvideo=nil, width=nil, needaudio=nil, height=nil, fps=nil, gop=nil, rotate=nil, profile=nil, bitratetoorig=nil, heighttoorig=nil, fpstoorig=nil, aitranscode=nil, adaptbitratepercent=nil, shortedgeasheight=nil, drmtype=nil, drmtracks=nil, isadaptivebitrate=nil, adaptivechildren=nil)
+        def initialize(templatename=nil, videobitrate=nil, acodec=nil, audiobitrate=nil, vcodec=nil, description=nil, needvideo=nil, width=nil, needaudio=nil, height=nil, fps=nil, gop=nil, rotate=nil, profile=nil, bitratetoorig=nil, heighttoorig=nil, fpstoorig=nil, aitranscode=nil, adaptbitratepercent=nil, shortedgeasheight=nil, drmtype=nil, drmtracks=nil, isadaptivebitrate=nil, adaptivechildren=nil, audiencedriventranscode=nil, audiencethreshold=nil)
           @TemplateName = templatename
           @VideoBitrate = videobitrate
           @Acodec = acodec
@@ -4271,6 +4243,8 @@ module TencentCloud
           @DRMTracks = drmtracks
           @IsAdaptiveBitRate = isadaptivebitrate
           @AdaptiveChildren = adaptivechildren
+          @AudienceDrivenTranscode = audiencedriventranscode
+          @AudienceThreshold = audiencethreshold
         end
 
         def deserialize(params)
@@ -4305,12 +4279,14 @@ module TencentCloud
               @AdaptiveChildren << childtemplateinfo_tmp
             end
           end
+          @AudienceDrivenTranscode = params['AudienceDrivenTranscode']
+          @AudienceThreshold = params['AudienceThreshold']
         end
       end
 
       # CreateLiveTranscodeTemplate返回参数结构体
       class CreateLiveTranscodeTemplateResponse < TencentCloud::Common::AbstractModel
-        # @param TemplateId: 模板Id。
+        # @param TemplateId: <p>模板Id。</p>
         # @type TemplateId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -14573,81 +14549,60 @@ module TencentCloud
 
       # ModifyLiveTranscodeTemplate请求参数结构体
       class ModifyLiveTranscodeTemplateRequest < TencentCloud::Common::AbstractModel
-        # @param TemplateId: 模板 Id。
+        # @param TemplateId: <p>模板 Id。</p>
         # @type TemplateId: Integer
-        # @param Vcodec: 视频编码：h264/h265/origin，默认origin。
-
-        # origin: 保持原始编码格式
+        # @param Vcodec: <p>视频编码：h264/h265/origin，默认origin。</p><p>origin: 保持原始编码格式</p>
         # @type Vcodec: String
-        # @param Acodec: 音频编码：aac，默认aac。
-        # 注意：当前该参数未生效，待后续支持！
+        # @param Acodec: <p>音频编码：aac，默认aac。<br>注意：当前该参数未生效，待后续支持！</p>
         # @type Acodec: String
-        # @param AudioBitrate: 音频码率，默认0。
-        # 范围：0-500。
+        # @param AudioBitrate: <p>音频码率，默认0。<br>范围：0-500。</p>
         # @type AudioBitrate: Integer
-        # @param Description: 模板描述。
+        # @param Description: <p>模板描述。</p>
         # @type Description: String
-        # @param VideoBitrate: 视频码率。范围：0kbps - 8000kbps。
-        # 0为保持原始码率。
-        # 注: 转码模板有码率唯一要求，最终保存的码率可能与输入码率有所差别。
+        # @param VideoBitrate: <p>视频码率。范围：0kbps - 8000kbps。<br>0为保持原始码率。<br>注: 转码模板有码率唯一要求，最终保存的码率可能与输入码率有所差别。</p>
         # @type VideoBitrate: Integer
-        # @param Width: 宽。0-3000。
-        # 数值必须是2的倍数，0是原始宽度
+        # @param Width: <p>宽。0-3000。<br>数值必须是2的倍数，0是原始宽度</p>
         # @type Width: Integer
-        # @param NeedVideo: 是否保留视频，0：否，1：是。默认1。
+        # @param NeedVideo: <p>是否保留视频，0：否，1：是。默认1。</p>
         # @type NeedVideo: Integer
-        # @param NeedAudio: 是否保留音频，0：否，1：是。默认1。
+        # @param NeedAudio: <p>是否保留音频，0：否，1：是。默认1。</p>
         # @type NeedAudio: Integer
-        # @param Height: 高。0-3000。
-        # 数值必须是2的倍数，0是原始宽度
+        # @param Height: <p>高。0-3000。<br>数值必须是2的倍数，0是原始宽度</p>
         # @type Height: Integer
-        # @param Fps: 帧率，默认0。
-        # 范围0-60
+        # @param Fps: <p>帧率，默认0。<br>范围0-60</p>
         # @type Fps: Integer
-        # @param Gop: 关键帧间隔，单位：秒。
-        # 范围2-6
+        # @param Gop: <p>关键帧间隔，单位：秒。<br>范围2-6</p>
         # @type Gop: Integer
-        # @param Rotate: 旋转角度，默认0。
-        # 可取值：0，90，180，270
+        # @param Rotate: <p>旋转角度，默认0。<br>可取值：0，90，180，270</p>
         # @type Rotate: Integer
-        # @param Profile: 编码质量：
-        # baseline/main/high。
+        # @param Profile: <p>编码质量：<br>baseline/main/high。</p>
         # @type Profile: String
-        # @param BitrateToOrig: 当设置的码率>原始码率时，是否以原始码率为准。
-        # 0：否， 1：是
-        # 默认 0。
+        # @param BitrateToOrig: <p>当设置的码率&gt;原始码率时，是否以原始码率为准。<br>0：否， 1：是<br>默认 0。</p>
         # @type BitrateToOrig: Integer
-        # @param HeightToOrig: 当设置的高度>原始高度时，是否以原始高度为准。
-        # 0：否， 1：是
-        # 默认 0。
+        # @param HeightToOrig: <p>当设置的高度&gt;原始高度时，是否以原始高度为准。<br>0：否， 1：是<br>默认 0。</p>
         # @type HeightToOrig: Integer
-        # @param FpsToOrig: 当设置的帧率>原始帧率时，是否以原始帧率为准。
-        # 0：否， 1：是
-        # 默认 0。
+        # @param FpsToOrig: <p>当设置的帧率&gt;原始帧率时，是否以原始帧率为准。<br>0：否， 1：是<br>默认 0。</p>
         # @type FpsToOrig: Integer
-        # @param AdaptBitratePercent: 极速高清视频码率压缩比。
-        # 极速高清目标码率=VideoBitrate * (1-AdaptBitratePercent)
-
-        # 取值范围：0.0到0.5
+        # @param AdaptBitratePercent: <p>极速高清视频码率压缩比。<br>极速高清目标码率=VideoBitrate * (1-AdaptBitratePercent)</p><p>取值范围：0.0 到 0.5<br>智能降码：0.5 到 0.9</p>
         # @type AdaptBitratePercent: Float
-        # @param ShortEdgeAsHeight: 是否以短边作为高度，0：否，1：是。默认0。
+        # @param ShortEdgeAsHeight: <p>是否以短边作为高度，0：否，1：是。默认0。</p>
         # @type ShortEdgeAsHeight: Integer
-        # @param DRMType: DRM 加密类型，可选值：fairplay、normalaes、widevine。
-        # 不传递或者为空字符串，清空之前的DRM配置。
+        # @param DRMType: <p>DRM 加密类型，可选值：fairplay、normalaes、widevine。<br>不传递或者为空字符串，清空之前的DRM配置。</p>
         # @type DRMType: String
-        # @param DRMTracks: DRM 加密项，可选值：AUDIO、SD、HD、UHD1、UHD2，后四个为一组，同组中的内容只能选一个。
-        # 不传递或者为空字符串，清空之前的DRM配置。
+        # @param DRMTracks: <p>DRM 加密项，可选值：AUDIO、SD、HD、UHD1、UHD2，后四个为一组，同组中的内容只能选一个。<br>不传递或者为空字符串，清空之前的DRM配置。</p>
         # @type DRMTracks: String
-        # @param IsAdaptiveBitRate: 是否创建自适应码率，默认值 0。
-        # 0：否。
-        # 1：是。
+        # @param IsAdaptiveBitRate: <p>是否创建自适应码率，默认值 0。<br>0：否。<br>1：是。</p>
         # @type IsAdaptiveBitRate: Integer
-        # @param AdaptiveChildren: 自适应码率，子转码模板信息，当 IsAdaptiveBitRate 为 1 时有效。
+        # @param AdaptiveChildren: <p>自适应码率，子转码模板信息，当 IsAdaptiveBitRate 为 1 时有效。</p>
         # @type AdaptiveChildren: Array
+        # @param AudienceDrivenTranscode: <p>是否智能降码，1 表示智能降码。</p>
+        # @type AudienceDrivenTranscode: Integer
+        # @param AudienceThreshold: <p>智能降码人数阈值，当 AudienceDrivenTranscode = 1 时生效。  取值范围：[100, 1000000]。</p>
+        # @type AudienceThreshold: Integer
 
-        attr_accessor :TemplateId, :Vcodec, :Acodec, :AudioBitrate, :Description, :VideoBitrate, :Width, :NeedVideo, :NeedAudio, :Height, :Fps, :Gop, :Rotate, :Profile, :BitrateToOrig, :HeightToOrig, :FpsToOrig, :AdaptBitratePercent, :ShortEdgeAsHeight, :DRMType, :DRMTracks, :IsAdaptiveBitRate, :AdaptiveChildren
+        attr_accessor :TemplateId, :Vcodec, :Acodec, :AudioBitrate, :Description, :VideoBitrate, :Width, :NeedVideo, :NeedAudio, :Height, :Fps, :Gop, :Rotate, :Profile, :BitrateToOrig, :HeightToOrig, :FpsToOrig, :AdaptBitratePercent, :ShortEdgeAsHeight, :DRMType, :DRMTracks, :IsAdaptiveBitRate, :AdaptiveChildren, :AudienceDrivenTranscode, :AudienceThreshold
 
-        def initialize(templateid=nil, vcodec=nil, acodec=nil, audiobitrate=nil, description=nil, videobitrate=nil, width=nil, needvideo=nil, needaudio=nil, height=nil, fps=nil, gop=nil, rotate=nil, profile=nil, bitratetoorig=nil, heighttoorig=nil, fpstoorig=nil, adaptbitratepercent=nil, shortedgeasheight=nil, drmtype=nil, drmtracks=nil, isadaptivebitrate=nil, adaptivechildren=nil)
+        def initialize(templateid=nil, vcodec=nil, acodec=nil, audiobitrate=nil, description=nil, videobitrate=nil, width=nil, needvideo=nil, needaudio=nil, height=nil, fps=nil, gop=nil, rotate=nil, profile=nil, bitratetoorig=nil, heighttoorig=nil, fpstoorig=nil, adaptbitratepercent=nil, shortedgeasheight=nil, drmtype=nil, drmtracks=nil, isadaptivebitrate=nil, adaptivechildren=nil, audiencedriventranscode=nil, audiencethreshold=nil)
           @TemplateId = templateid
           @Vcodec = vcodec
           @Acodec = acodec
@@ -14671,6 +14626,8 @@ module TencentCloud
           @DRMTracks = drmtracks
           @IsAdaptiveBitRate = isadaptivebitrate
           @AdaptiveChildren = adaptivechildren
+          @AudienceDrivenTranscode = audiencedriventranscode
+          @AudienceThreshold = audiencethreshold
         end
 
         def deserialize(params)
@@ -14704,6 +14661,8 @@ module TencentCloud
               @AdaptiveChildren << childtemplateinfo_tmp
             end
           end
+          @AudienceDrivenTranscode = params['AudienceDrivenTranscode']
+          @AudienceThreshold = params['AudienceThreshold']
         end
       end
 
@@ -17428,91 +17387,69 @@ module TencentCloud
 
       # 转码模板信息。
       class TemplateInfo < TencentCloud::Common::AbstractModel
-        # @param Vcodec: 视频编码：h264/h265/origin，默认h264。
-
-        # origin: 保持原始编码格式
+        # @param Vcodec: <p>视频编码：h264/h265/origin，默认h264。</p><p>origin: 保持原始编码格式</p>
         # @type Vcodec: String
-        # @param VideoBitrate: 视频码率。范围：0kbps - 8000kbps。
-        # 0为保持原始码率。
-        # 注: 转码模板有码率唯一要求，最终保存的码率可能与输入码率有所差别。
+        # @param VideoBitrate: <p>视频码率。范围：0kbps - 8000kbps。<br>0为保持原始码率。<br>注: 转码模板有码率唯一要求，最终保存的码率可能与输入码率有所差别。</p>
         # @type VideoBitrate: Integer
-        # @param Acodec: 音频编码：aac，默认aac。
-        # 注意：当前该参数未生效，待后续支持！
+        # @param Acodec: <p>音频编码：aac，默认aac。<br>注意：当前该参数未生效，待后续支持！</p>
         # @type Acodec: String
-        # @param AudioBitrate: 音频码率。取值范围：0kbps - 500kbps。
-        # 默认0。
+        # @param AudioBitrate: <p>音频码率。取值范围：0kbps - 500kbps。<br>默认0。</p>
         # @type AudioBitrate: Integer
-        # @param Width: 宽，默认0。
-        # 范围[0-3000]
-        # 数值必须是2的倍数，0是原始宽度
+        # @param Width: <p>宽，默认0。<br>范围[0-3000]<br>数值必须是2的倍数，0是原始宽度</p>
         # @type Width: Integer
-        # @param Height: 高，默认0。
-        # 范围[0-3000]
-        # 数值必须是2的倍数，0是原始宽度
+        # @param Height: <p>高，默认0。<br>范围[0-3000]<br>数值必须是2的倍数，0是原始宽度</p>
         # @type Height: Integer
-        # @param Fps: 帧率，默认0。
-        # 范围0-60fps
+        # @param Fps: <p>帧率，默认0。<br>范围0-60fps</p>
         # @type Fps: Integer
-        # @param Gop: 关键帧间隔，单位：秒。
-        # 默认原始的间隔
-        # 范围2-6
+        # @param Gop: <p>关键帧间隔，单位：秒。<br>默认原始的间隔<br>范围2-6</p>
         # @type Gop: Integer
-        # @param Rotate: 旋转角度，默认0。
-        # 可取值：0，90，180，270
+        # @param Rotate: <p>旋转角度，默认0。<br>可取值：0，90，180，270</p>
         # @type Rotate: Integer
-        # @param Profile: 编码质量：
-        # baseline/main/high。默认baseline
+        # @param Profile: <p>编码质量：<br>baseline/main/high。默认baseline</p>
         # @type Profile: String
-        # @param BitrateToOrig: 当设置的码率>原始码率时，是否以原始码率为准。
-        # 0：否， 1：是
-        # 默认 0。
+        # @param BitrateToOrig: <p>当设置的码率&gt;原始码率时，是否以原始码率为准。<br>0：否， 1：是<br>默认 0。</p>
         # @type BitrateToOrig: Integer
-        # @param HeightToOrig: 当设置的高度>原始高度时，是否以原始高度为准。
-        # 0：否， 1：是
-        # 默认 0。
+        # @param HeightToOrig: <p>当设置的高度&gt;原始高度时，是否以原始高度为准。<br>0：否， 1：是<br>默认 0。</p>
         # @type HeightToOrig: Integer
-        # @param FpsToOrig: 当设置的帧率>原始帧率时，是否以原始帧率为准。
-        # 0：否， 1：是
-        # 默认 0。
+        # @param FpsToOrig: <p>当设置的帧率&gt;原始帧率时，是否以原始帧率为准。<br>0：否， 1：是<br>默认 0。</p>
         # @type FpsToOrig: Integer
-        # @param NeedVideo: 是否保留视频。0：否，1：是。
+        # @param NeedVideo: <p>是否保留视频。0：否，1：是。</p>
         # @type NeedVideo: Integer
-        # @param NeedAudio: 是否保留音频。0：否，1：是。
+        # @param NeedAudio: <p>是否保留音频。0：否，1：是。</p>
         # @type NeedAudio: Integer
-        # @param TemplateId: 模板 ID。
+        # @param TemplateId: <p>模板 ID。</p>
         # @type TemplateId: Integer
-        # @param TemplateName: 模板名称。
+        # @param TemplateName: <p>模板名称。</p>
         # @type TemplateName: String
-        # @param Description: 模板描述。
+        # @param Description: <p>模板描述。</p>
         # @type Description: String
-        # @param AiTransCode: 是否是极速高清模板，0：否，1：是。默认0。
+        # @param AiTransCode: <p>是否是极速高清模板，0：否，1：是。默认0。</p>
         # @type AiTransCode: Integer
-        # @param AdaptBitratePercent: 极速高清视频码率压缩比。
-        # 极速高清目标码率=VideoBitrate * (1-AdaptBitratePercent)
-
-        # 取值范围：0.0到0.5
+        # @param AdaptBitratePercent: <p>极速高清视频码率压缩比。<br>极速高清目标码率=VideoBitrate * (1-AdaptBitratePercent)</p><p>取值范围：0.0到0.5</p>
         # @type AdaptBitratePercent: Float
-        # @param ShortEdgeAsHeight: 是否以短边作为高度，0：否，1：是。默认0。
+        # @param ShortEdgeAsHeight: <p>是否以短边作为高度，0：否，1：是。默认0。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ShortEdgeAsHeight: Integer
-        # @param DRMType: DRM 加密类型，可选值：fairplay、normalaes、widevine。
+        # @param DRMType: <p>DRM 加密类型，可选值：fairplay、normalaes、widevine。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DRMType: String
-        # @param DRMTracks: DRM 加密项，多个用|分割，可选值：AUDIO、SD、HD、UHD1、UHD2，后四个为一组，同组中的内容只能选一个。
+        # @param DRMTracks: <p>DRM 加密项，多个用|分割，可选值：AUDIO、SD、HD、UHD1、UHD2，后四个为一组，同组中的内容只能选一个。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DRMTracks: String
-        # @param IsAdaptiveBitRate: 是否创建自适应码率，默认值 0。
-        # 0：否。
-        # 1：是。
+        # @param IsAdaptiveBitRate: <p>是否创建自适应码率，默认值 0。<br>0：否。<br>1：是。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsAdaptiveBitRate: Integer
-        # @param AdaptiveChildren: 自适应码率，子转码模板信息，当 IsAdaptiveBitRate 为 1 时有效。
+        # @param AdaptiveChildren: <p>自适应码率，子转码模板信息，当 IsAdaptiveBitRate 为 1 时有效。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AdaptiveChildren: Array
+        # @param AudienceDrivenTranscode: <p>是否按需转码，0 否，1 是。</p>
+        # @type AudienceDrivenTranscode: Integer
+        # @param AudienceThreshold: <p>按需转码人数阈值。</p>
+        # @type AudienceThreshold: Integer
 
-        attr_accessor :Vcodec, :VideoBitrate, :Acodec, :AudioBitrate, :Width, :Height, :Fps, :Gop, :Rotate, :Profile, :BitrateToOrig, :HeightToOrig, :FpsToOrig, :NeedVideo, :NeedAudio, :TemplateId, :TemplateName, :Description, :AiTransCode, :AdaptBitratePercent, :ShortEdgeAsHeight, :DRMType, :DRMTracks, :IsAdaptiveBitRate, :AdaptiveChildren
+        attr_accessor :Vcodec, :VideoBitrate, :Acodec, :AudioBitrate, :Width, :Height, :Fps, :Gop, :Rotate, :Profile, :BitrateToOrig, :HeightToOrig, :FpsToOrig, :NeedVideo, :NeedAudio, :TemplateId, :TemplateName, :Description, :AiTransCode, :AdaptBitratePercent, :ShortEdgeAsHeight, :DRMType, :DRMTracks, :IsAdaptiveBitRate, :AdaptiveChildren, :AudienceDrivenTranscode, :AudienceThreshold
 
-        def initialize(vcodec=nil, videobitrate=nil, acodec=nil, audiobitrate=nil, width=nil, height=nil, fps=nil, gop=nil, rotate=nil, profile=nil, bitratetoorig=nil, heighttoorig=nil, fpstoorig=nil, needvideo=nil, needaudio=nil, templateid=nil, templatename=nil, description=nil, aitranscode=nil, adaptbitratepercent=nil, shortedgeasheight=nil, drmtype=nil, drmtracks=nil, isadaptivebitrate=nil, adaptivechildren=nil)
+        def initialize(vcodec=nil, videobitrate=nil, acodec=nil, audiobitrate=nil, width=nil, height=nil, fps=nil, gop=nil, rotate=nil, profile=nil, bitratetoorig=nil, heighttoorig=nil, fpstoorig=nil, needvideo=nil, needaudio=nil, templateid=nil, templatename=nil, description=nil, aitranscode=nil, adaptbitratepercent=nil, shortedgeasheight=nil, drmtype=nil, drmtracks=nil, isadaptivebitrate=nil, adaptivechildren=nil, audiencedriventranscode=nil, audiencethreshold=nil)
           @Vcodec = vcodec
           @VideoBitrate = videobitrate
           @Acodec = acodec
@@ -17538,6 +17475,8 @@ module TencentCloud
           @DRMTracks = drmtracks
           @IsAdaptiveBitRate = isadaptivebitrate
           @AdaptiveChildren = adaptivechildren
+          @AudienceDrivenTranscode = audiencedriventranscode
+          @AudienceThreshold = audiencethreshold
         end
 
         def deserialize(params)
@@ -17573,6 +17512,8 @@ module TencentCloud
               @AdaptiveChildren << childtemplateinfo_tmp
             end
           end
+          @AudienceDrivenTranscode = params['AudienceDrivenTranscode']
+          @AudienceThreshold = params['AudienceThreshold']
         end
       end
 

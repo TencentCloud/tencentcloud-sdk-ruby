@@ -1477,24 +1477,28 @@ module TencentCloud
 
       # 云产品日志投递任务信息
       class CloudProductLogTaskInfo < TencentCloud::Common::AbstractModel
-        # @param ClsRegion: 日志服务地域
+        # @param ClsRegion: <p>日志服务地域</p>
         # @type ClsRegion: String
-        # @param InstanceId: 实例ID
+        # @param InstanceId: <p>实例ID</p>
         # @type InstanceId: String
-        # @param LogsetId: 日志集ID
+        # @param LogsetId: <p>日志集ID</p>
         # @type LogsetId: String
-        # @param TopicId: 日志主题ID
+        # @param TopicId: <p>日志主题ID</p>
         # @type TopicId: String
-        # @param Extend: 日志配置拓展信息， 一般用于存储额外的日志投递配置
+        # @param Extend: <p>日志配置拓展信息， 一般用于存储额外的日志投递配置</p>
         # @type Extend: String
-        # @param LogType: 日志类型，支持枚举：CDS-AUDIT、CDS-RISK、CDB-AUDIT、TDSQL-C-AUDIT、MongoDB-AUDIT、MongoDB-SlowLog、MongoDB-ErrorLog、TDMYSQL-SLOW、DCDB-AUDIT、DCDB-SLOW、DCDB-ERROR、MariaDB-AUDIT、MariaDB-SLOW、MariaDB-ERROR、PostgreSQL-SLOW、PostgreSQL-ERROR、PostgreSQL-AUDIT、BH-FILELOG、BH-COMMANDLOG、APIS-ACCESS
+        # @param LogType: <p>日志类型，支持枚举：CDS-AUDIT、CDS-RISK、CDB-AUDIT、TDSQL-C-AUDIT、MongoDB-AUDIT、MongoDB-SlowLog、MongoDB-ErrorLog、TDMYSQL-SLOW、DCDB-AUDIT、DCDB-SLOW、DCDB-ERROR、MariaDB-AUDIT、MariaDB-SLOW、MariaDB-ERROR、PostgreSQL-SLOW、PostgreSQL-ERROR、PostgreSQL-AUDIT、BH-FILELOG、BH-COMMANDLOG、APIS-ACCESS</p>
         # @type LogType: String
-        # @param Status: 任务状态， 0创建中 1创建完成 2 删除中
+        # @param Status: <p>任务状态， 0创建中 1创建完成 2 删除中</p>
         # @type Status: Integer
+        # @param TopicTags: <p>投递任务关联topic的标签信息</p>
+        # @type TopicTags: Array
+        # @param LogsetTags: <p>投递任务关联logset的标签信息</p>
+        # @type LogsetTags: Array
 
-        attr_accessor :ClsRegion, :InstanceId, :LogsetId, :TopicId, :Extend, :LogType, :Status
+        attr_accessor :ClsRegion, :InstanceId, :LogsetId, :TopicId, :Extend, :LogType, :Status, :TopicTags, :LogsetTags
 
-        def initialize(clsregion=nil, instanceid=nil, logsetid=nil, topicid=nil, extend=nil, logtype=nil, status=nil)
+        def initialize(clsregion=nil, instanceid=nil, logsetid=nil, topicid=nil, extend=nil, logtype=nil, status=nil, topictags=nil, logsettags=nil)
           @ClsRegion = clsregion
           @InstanceId = instanceid
           @LogsetId = logsetid
@@ -1502,6 +1506,8 @@ module TencentCloud
           @Extend = extend
           @LogType = logtype
           @Status = status
+          @TopicTags = topictags
+          @LogsetTags = logsettags
         end
 
         def deserialize(params)
@@ -1512,6 +1518,22 @@ module TencentCloud
           @Extend = params['Extend']
           @LogType = params['LogType']
           @Status = params['Status']
+          unless params['TopicTags'].nil?
+            @TopicTags = []
+            params['TopicTags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @TopicTags << tag_tmp
+            end
+          end
+          unless params['LogsetTags'].nil?
+            @LogsetTags = []
+            params['LogsetTags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @LogsetTags << tag_tmp
+            end
+          end
         end
       end
 
@@ -7955,13 +7977,16 @@ module TencentCloud
         # @type Limit: Integer
         # @param Filters: <ul><li>assumerName<ul><li>按照【云产品标识】进行过滤。</li><li>类型：String</li><li>必选：否</li><li>枚举：CDS、CWP、CDB、TDSQL-C、MongoDB、TDStore、DCDB、MariaDB、PostgreSQL、BH、APIS</li></ul></li><li>logType<ul><li>按照【日志类型】进行过滤。</li><li>类型：String</li><li>必选：否</li><li>枚举：CDS-AUDIT、CDS-RISK、CDB-AUDIT、TDSQL-C-AUDIT、MongoDB-AUDIT、MongoDB-SlowLog、MongoDB-ErrorLog、TDMYSQL-SLOW、DCDB-AUDIT、DCDB-SLOW、DCDB-ERROR、MariaDB-AUDIT、MariaDB-SLOW、MariaDB-ERROR、PostgreSQL-SLOW、PostgreSQL-ERROR、PostgreSQL-AUDIT、BH-FILELOG、BH-COMMANDLOG、APIS-ACCESS</li></ul></li><li>instanceId<ul><li>按照【实例ID】进行过滤。</li><li>类型：String</li><li>必选：否</li></ul></li></ul>
         # @type Filters: Array
+        # @param WithTags: <p>是否携带topic和logset的标签信息</p>
+        # @type WithTags: Boolean
 
-        attr_accessor :Offset, :Limit, :Filters
+        attr_accessor :Offset, :Limit, :Filters, :WithTags
 
-        def initialize(offset=nil, limit=nil, filters=nil)
+        def initialize(offset=nil, limit=nil, filters=nil, withtags=nil)
           @Offset = offset
           @Limit = limit
           @Filters = filters
+          @WithTags = withtags
         end
 
         def deserialize(params)
@@ -7975,6 +8000,7 @@ module TencentCloud
               @Filters << filter_tmp
             end
           end
+          @WithTags = params['WithTags']
         end
       end
 
@@ -7984,14 +8010,17 @@ module TencentCloud
         # @type Tasks: Array
         # @param TotalCount: <p>日志配置总数</p>
         # @type TotalCount: Integer
+        # @param Message: <p>额外信息。如查询topic、logset标签信息错误</p>
+        # @type Message: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Tasks, :TotalCount, :RequestId
+        attr_accessor :Tasks, :TotalCount, :Message, :RequestId
 
-        def initialize(tasks=nil, totalcount=nil, requestid=nil)
+        def initialize(tasks=nil, totalcount=nil, message=nil, requestid=nil)
           @Tasks = tasks
           @TotalCount = totalcount
+          @Message = message
           @RequestId = requestid
         end
 
@@ -8005,6 +8034,7 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+          @Message = params['Message']
           @RequestId = params['RequestId']
         end
       end
@@ -11643,42 +11673,48 @@ module TencentCloud
 
       # 投递DLC任务配置信息
       class DlcDeliverInfo < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务id。
+        # @param TaskId: <p>任务id。</p>
         # @type TaskId: String
-        # @param Uin: 账号id。
+        # @param Uin: <p>账号id。</p>
         # @type Uin: Integer
-        # @param TopicId: 日志主题id。
+        # @param TopicId: <p>日志主题id。</p>
         # @type TopicId: String
-        # @param Name: 任务名称。
+        # @param Name: <p>任务名称。</p>
         # @type Name: String
-        # @param DeliverType: 投递类型，0：实时投递，1：历史投递
+        # @param DeliverType: <p>投递类型，0：实时投递，1：历史投递</p>
         # @type DeliverType: Integer
-        # @param MaxSize: 投递文件大小，单位MB
+        # @param MaxSize: <p>投递文件大小，单位MB</p>
         # @type MaxSize: Integer
-        # @param Interval: 投递间隔 单位秒
+        # @param Interval: <p>投递间隔 单位秒</p>
         # @type Interval: Integer
-        # @param StartTime: 投递时间范围的开始时间
+        # @param StartTime: <p>投递时间范围的开始时间</p>
         # @type StartTime: Integer
-        # @param EndTime: 投递时间范围的结束时间
+        # @param EndTime: <p>投递时间范围的结束时间</p>
         # @type EndTime: Integer
-        # @param DlcInfo: dlc配置信息
+        # @param DlcInfo: <p>dlc配置信息</p>
         # @type DlcInfo: :class:`Tencentcloud::Cls.v20201016.models.DlcInfo`
-        # @param HasServicesLog: 是否开启投递服务日志。1关闭，2开启
+        # @param HasServicesLog: <p>是否开启投递服务日志。1关闭，2开启</p>
         # @type HasServicesLog: Integer
-        # @param Status: 任务状态。
+        # @param Status: <p>任务状态。</p>
         # @type Status: Integer
-        # @param Progress: 任务进度。历史投递任务生效。
+        # @param Progress: <p>任务进度。历史投递任务生效。</p>
         # @type Progress: Integer
-        # @param BizType: 日志主题类型。0:标准主题，1:指标主题
+        # @param BizType: <p>日志主题类型。0:标准主题，1:指标主题</p>
         # @type BizType: Integer
-        # @param CreateTime: 任务创建时间。
+        # @param CreateTime: <p>任务创建时间。</p>
         # @type CreateTime: Integer
-        # @param UpdateTime: 任务修改时间。
+        # @param UpdateTime: <p>任务修改时间。</p>
         # @type UpdateTime: Integer
+        # @param AutoCreateField: <p>自动创建dlc字段</p><p>默认值：false</p><p>当您的日志中有新增字段时，系统自动将其投递至DLC</p>
+        # @type AutoCreateField: Boolean
+        # @param DlcFailHandle: <p>将投递失败的日志存储至DLC表</p>
+        # @type DlcFailHandle: :class:`Tencentcloud::Cls.v20201016.models.DlcFailHandle`
+        # @param DSLFilter: <p>日志预过滤-数据写入 Splunk 的原始数据进行预过滤处理</p>
+        # @type DSLFilter: String
 
-        attr_accessor :TaskId, :Uin, :TopicId, :Name, :DeliverType, :MaxSize, :Interval, :StartTime, :EndTime, :DlcInfo, :HasServicesLog, :Status, :Progress, :BizType, :CreateTime, :UpdateTime
+        attr_accessor :TaskId, :Uin, :TopicId, :Name, :DeliverType, :MaxSize, :Interval, :StartTime, :EndTime, :DlcInfo, :HasServicesLog, :Status, :Progress, :BizType, :CreateTime, :UpdateTime, :AutoCreateField, :DlcFailHandle, :DSLFilter
 
-        def initialize(taskid=nil, uin=nil, topicid=nil, name=nil, delivertype=nil, maxsize=nil, interval=nil, starttime=nil, endtime=nil, dlcinfo=nil, hasserviceslog=nil, status=nil, progress=nil, biztype=nil, createtime=nil, updatetime=nil)
+        def initialize(taskid=nil, uin=nil, topicid=nil, name=nil, delivertype=nil, maxsize=nil, interval=nil, starttime=nil, endtime=nil, dlcinfo=nil, hasserviceslog=nil, status=nil, progress=nil, biztype=nil, createtime=nil, updatetime=nil, autocreatefield=nil, dlcfailhandle=nil, dslfilter=nil)
           @TaskId = taskid
           @Uin = uin
           @TopicId = topicid
@@ -11695,6 +11731,9 @@ module TencentCloud
           @BizType = biztype
           @CreateTime = createtime
           @UpdateTime = updatetime
+          @AutoCreateField = autocreatefield
+          @DlcFailHandle = dlcfailhandle
+          @DSLFilter = dslfilter
         end
 
         def deserialize(params)
@@ -11717,6 +11756,55 @@ module TencentCloud
           @BizType = params['BizType']
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
+          @AutoCreateField = params['AutoCreateField']
+          unless params['DlcFailHandle'].nil?
+            @DlcFailHandle = DlcFailHandle.new
+            @DlcFailHandle.deserialize(params['DlcFailHandle'])
+          end
+          @DSLFilter = params['DSLFilter']
+        end
+      end
+
+      # dlc投递失败处理信息
+      class DlcFailHandle < TencentCloud::Common::AbstractModel
+        # @param StoreToDlc: <p>是否存储到DLC</p><p>默认值：false</p><p>用于控制是否开启投递失败的日志存储至DLC表</p>
+        # @type StoreToDlc: Boolean
+        # @param DlcFailTableInfo: <p>DLC表信息</p>
+        # @type DlcFailTableInfo: :class:`Tencentcloud::Cls.v20201016.models.DlcFailTableInfo`
+
+        attr_accessor :StoreToDlc, :DlcFailTableInfo
+
+        def initialize(storetodlc=nil, dlcfailtableinfo=nil)
+          @StoreToDlc = storetodlc
+          @DlcFailTableInfo = dlcfailtableinfo
+        end
+
+        def deserialize(params)
+          @StoreToDlc = params['StoreToDlc']
+          unless params['DlcFailTableInfo'].nil?
+            @DlcFailTableInfo = DlcFailTableInfo.new
+            @DlcFailTableInfo.deserialize(params['DlcFailTableInfo'])
+          end
+        end
+      end
+
+      # dlc失败日志存储表信息
+      class DlcFailTableInfo < TencentCloud::Common::AbstractModel
+        # @param TableName: <p>DLC的表名称</p>
+        # @type TableName: String
+        # @param FieldName: <p>表中的字段名称</p><p>字段类型必须是String类型</p>
+        # @type FieldName: String
+
+        attr_accessor :TableName, :FieldName
+
+        def initialize(tablename=nil, fieldname=nil)
+          @TableName = tablename
+          @FieldName = fieldname
+        end
+
+        def deserialize(params)
+          @TableName = params['TableName']
+          @FieldName = params['FieldName']
         end
       end
 
@@ -14778,37 +14866,28 @@ module TencentCloud
 
       # ModifyCloudProductLogCollection请求参数结构体
       class ModifyCloudProductLogCollectionRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: <p>实例ID</p>
         # @type InstanceId: String
-        # @param AssumerName: 云产品标识，支持枚举：CDS、CWP、CDB、TDSQL-C、MongoDB、TDStore、DCDB、MariaDB、PostgreSQL、BH、APIS
+        # @param AssumerName: <p>云产品标识，支持枚举：CDS、CWP、CDB、TDSQL-C、MongoDB、TDStore、DCDB、MariaDB、PostgreSQL、BH、APIS</p>
         # @type AssumerName: String
-        # @param LogType: 日志类型，支持枚举：CDS-AUDIT、CDS-RISK、CDB-AUDIT、TDSQL-C-AUDIT、MongoDB-AUDIT、MongoDB-SlowLog、MongoDB-ErrorLog、TDMYSQL-SLOW、DCDB-AUDIT、DCDB-SLOW、DCDB-ERROR、MariaDB-AUDIT、MariaDB-SLOW、MariaDB-ERROR、PostgreSQL-SLOW、PostgreSQL-ERROR、PostgreSQL-AUDIT、BH-FILELOG、BH-COMMANDLOG、APIS-ACCESS
+        # @param LogType: <p>日志类型，支持枚举：CDS-AUDIT、CDS-RISK、CDB-AUDIT、TDSQL-C-AUDIT、MongoDB-AUDIT、MongoDB-SlowLog、MongoDB-ErrorLog、TDMYSQL-SLOW、DCDB-AUDIT、DCDB-SLOW、DCDB-ERROR、MariaDB-AUDIT、MariaDB-SLOW、MariaDB-ERROR、PostgreSQL-SLOW、PostgreSQL-ERROR、PostgreSQL-AUDIT、BH-FILELOG、BH-COMMANDLOG、APIS-ACCESS</p>
         # @type LogType: String
-        # @param CloudProductRegion: 云产品地域。 不同日志类型(LogType)地域入參格式存在差异， 请参考如下示例：
-        # - CDS所有日志类型：ap-guangzhou
-        # - CDB-AUDIT: gz
-        # - TDSQL-C-AUDIT: gz
-        # - MongoDB-AUDIT: gz
-        # - MongoDB-SlowLog：ap-guangzhou
-        # - MongoDB-ErrorLog：ap-guangzhou
-        # - TDMYSQL-SLOW：gz
-        # - DCDB所有日志类型：gz
-        # - MariaDB所有日志类型：gz
-        # - PostgreSQL所有日志类型：gz
-        # - BH所有日志类型：overseas-polaris(中国香港地区和其他)/fsi-polaris(金融区)/general-polaris(普通区)/intl-sg-prod(国际站)
-        # - APIS所有日志类型：gz
+        # @param CloudProductRegion: <p>云产品地域。 不同日志类型(LogType)地域入參格式存在差异， 请参考如下示例：</p><ul><li>CDS所有日志类型：ap-guangzhou</li><li>CDB-AUDIT: gz</li><li>TDSQL-C-AUDIT: gz</li><li>MongoDB-AUDIT: gz</li><li>MongoDB-SlowLog：ap-guangzhou</li><li>MongoDB-ErrorLog：ap-guangzhou</li><li>TDMYSQL-SLOW：gz</li><li>DCDB所有日志类型：gz</li><li>MariaDB所有日志类型：gz</li><li>PostgreSQL所有日志类型：gz</li><li>BH所有日志类型：overseas-polaris(中国香港地区和其他)/fsi-polaris(金融区)/general-polaris(普通区)/intl-sg-prod(国际站)</li><li>APIS所有日志类型：gz</li></ul>
         # @type CloudProductRegion: String
-        # @param Extend: 日志配置拓展信息， 一般用于存储额外的日志投递配置
+        # @param Extend: <p>日志配置拓展信息， 一般用于存储额外的日志投递配置</p>
         # @type Extend: String
+        # @param Tags: <p>标签描述列表，通过指定该参数可以同时绑定标签到相应的logset和topic。最大支持10个标签键值对，同一个资源只能绑定到同一个标签键下。</p>
+        # @type Tags: Array
 
-        attr_accessor :InstanceId, :AssumerName, :LogType, :CloudProductRegion, :Extend
+        attr_accessor :InstanceId, :AssumerName, :LogType, :CloudProductRegion, :Extend, :Tags
 
-        def initialize(instanceid=nil, assumername=nil, logtype=nil, cloudproductregion=nil, extend=nil)
+        def initialize(instanceid=nil, assumername=nil, logtype=nil, cloudproductregion=nil, extend=nil, tags=nil)
           @InstanceId = instanceid
           @AssumerName = assumername
           @LogType = logtype
           @CloudProductRegion = cloudproductregion
           @Extend = extend
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -14817,21 +14896,33 @@ module TencentCloud
           @LogType = params['LogType']
           @CloudProductRegion = params['CloudProductRegion']
           @Extend = params['Extend']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 
       # ModifyCloudProductLogCollection返回参数结构体
       class ModifyCloudProductLogCollectionResponse < TencentCloud::Common::AbstractModel
+        # @param Message: <p>额外信息。如修改topic、logset标签失败。</p>
+        # @type Message: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :Message, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(message=nil, requestid=nil)
+          @Message = message
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @Message = params['Message']
           @RequestId = params['RequestId']
         end
       end

@@ -2244,30 +2244,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（RollbackPGUserMigrations）用于按最近 N 条已应用 migration 倒序执行 rollback。
-
-        # @param request: Request instance for RollbackPGUserMigrations.
-        # @type request: :class:`Tencentcloud::tcb::V20180608::RollbackPGUserMigrationsRequest`
-        # @rtype: :class:`Tencentcloud::tcb::V20180608::RollbackPGUserMigrationsResponse`
-        def RollbackPGUserMigrations(request)
-          body = send_request('RollbackPGUserMigrations', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = RollbackPGUserMigrationsResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 本接口（RunCommands）用于执行文档型数据库命令。
 
         # @param request: Request instance for RunCommands.

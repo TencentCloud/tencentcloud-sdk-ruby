@@ -8267,7 +8267,7 @@ module TencentCloud
       class CreateAigcAudioTaskRequest < TencentCloud::Common::AbstractModel
         # @param ModelName: <p>模型名称。生音乐当前支持的模型: GL、MiniMaxMusic。</p>
         # @type ModelName: String
-        # @param ModelVersion: <p>指定模型特定版本号。默认使用系统当前所支持的模型稳定版本。<br>模型GL支持的版本号：2.0、3.0-clip、3.0-pro。<br>模型MinimaxMusic支持的版本号：2.0、2.5、2.6。</p>
+        # @param ModelVersion: <p>指定模型特定版本号。默认使用系统当前所支持的模型稳定版本。<br>模型GL支持的版本号：3.0-clip、3.0-pro。<br>模型MinimaxMusic支持的版本号：2.0、2.5、2.6。</p>
         # @type ModelVersion: String
         # @param SceneType: <p>指定场景生音频。音乐: music。</p>
         # @type SceneType: String
@@ -8375,6 +8375,8 @@ module TencentCloud
         # @type EnhancePrompt: Boolean
         # @param ImageInfos: <p>用于传入参考的资源图片信息，默认支持传入一张图片。</p><p>支持多图输入的模型：</p><ol><li>Kling 2.1，可支持最多 4 张图片输入作为资源图。</li><li>Kling 3.0-Omni，可支持最多 10 张图片输入作为资源图。</li><li>Kling O1，可支持最多 10 张图片输入作为资源图。</li><li>Vidu q2，可支持最多 7 张图片输入作为资源图。</li><li>Hunyuan 3.0，可支持最多 3 张图片输入作为资源图。</li><li>MJ v7，可支持最多 3 张图片输入作为资源图。</li></ol><p>注意：</p><ol><li>推荐图片小于7M，各模型限制不同。</li><li>图片格式支持：jpeg, png, webp。</li></ol>
         # @type ImageInfos: Array
+        # @param OutputImageCount: <p>指定图片输出张数。目前默认支持输出 1 张。</p>
+        # @type OutputImageCount: Integer
         # @param ExtraParameters: <p>用于传入模型要求的额外参数。</p>
         # @type ExtraParameters: :class:`Tencentcloud::Mps.v20190612.models.AigcImageExtraParam`
         # @param AdditionalParameters: <p>用于传入一些模型需要的特殊场景参数，Json格式序列化成字符串。 </p><ol><li>Hunyuan 3.0，支持自由设置分辨率宽高，宽、高均在 [512, 2048] 像素范围内，宽高乘积 ≤ 1024x1024 像素。</li><li>Qwen 0925，支持自由设置分辨率宽高，合法总像素范围 [512x512=261632, 2048x2048=4194304]。</li></ol><p>示例： {"size":"1024x1024"}。</p>
@@ -8384,9 +8386,9 @@ module TencentCloud
         # @param Operator: <p>接口操作者名称。</p>
         # @type Operator: String
 
-        attr_accessor :ModelName, :ModelVersion, :SceneType, :Prompt, :NegativePrompt, :EnhancePrompt, :ImageInfos, :ExtraParameters, :AdditionalParameters, :StoreCosParam, :Operator
+        attr_accessor :ModelName, :ModelVersion, :SceneType, :Prompt, :NegativePrompt, :EnhancePrompt, :ImageInfos, :OutputImageCount, :ExtraParameters, :AdditionalParameters, :StoreCosParam, :Operator
 
-        def initialize(modelname=nil, modelversion=nil, scenetype=nil, prompt=nil, negativeprompt=nil, enhanceprompt=nil, imageinfos=nil, extraparameters=nil, additionalparameters=nil, storecosparam=nil, operator=nil)
+        def initialize(modelname=nil, modelversion=nil, scenetype=nil, prompt=nil, negativeprompt=nil, enhanceprompt=nil, imageinfos=nil, outputimagecount=nil, extraparameters=nil, additionalparameters=nil, storecosparam=nil, operator=nil)
           @ModelName = modelname
           @ModelVersion = modelversion
           @SceneType = scenetype
@@ -8394,6 +8396,7 @@ module TencentCloud
           @NegativePrompt = negativeprompt
           @EnhancePrompt = enhanceprompt
           @ImageInfos = imageinfos
+          @OutputImageCount = outputimagecount
           @ExtraParameters = extraparameters
           @AdditionalParameters = additionalparameters
           @StoreCosParam = storecosparam
@@ -8415,6 +8418,7 @@ module TencentCloud
               @ImageInfos << aigcimageinfo_tmp
             end
           end
+          @OutputImageCount = params['OutputImageCount']
           unless params['ExtraParameters'].nil?
             @ExtraParameters = AigcImageExtraParam.new
             @ExtraParameters.deserialize(params['ExtraParameters'])

@@ -78,6 +78,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建消费组灰度标签
+
+        # @param request: Request instance for CreateConsumerLabel.
+        # @type request: :class:`Tencentcloud::trocket::V20230308::CreateConsumerLabelRequest`
+        # @rtype: :class:`Tencentcloud::trocket::V20230308::CreateConsumerLabelResponse`
+        def CreateConsumerLabel(request)
+          body = send_request('CreateConsumerLabel', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateConsumerLabelResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建 RocketMQ 5.x 集群。
         # 当前 API 适用集群：5.x 集群。创建 4.x 专享/通用集群的接口文档见 [CreateRocketMQVipInstance](https://cloud.tencent.com/document/product/1179/95721)。
 
@@ -188,6 +212,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteConsumerGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除消费组灰度标签
+
+        # @param request: Request instance for DeleteConsumerLabel.
+        # @type request: :class:`Tencentcloud::trocket::V20230308::DeleteConsumerLabelRequest`
+        # @rtype: :class:`Tencentcloud::trocket::V20230308::DeleteConsumerLabelResponse`
+        def DeleteConsumerLabel(request)
+          body = send_request('DeleteConsumerLabel', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteConsumerLabelResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除消费组灰度路由配置
+
+        # @param request: Request instance for DeleteConsumerRouteConfig.
+        # @type request: :class:`Tencentcloud::trocket::V20230308::DeleteConsumerRouteConfigRequest`
+        # @rtype: :class:`Tencentcloud::trocket::V20230308::DeleteConsumerRouteConfigResponse`
+        def DeleteConsumerRouteConfig(request)
+          body = send_request('DeleteConsumerRouteConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteConsumerRouteConfigResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -412,6 +484,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询消费组某个灰度标签详情
+
+        # @param request: Request instance for DescribeConsumerLabel.
+        # @type request: :class:`Tencentcloud::trocket::V20230308::DescribeConsumerLabelRequest`
+        # @rtype: :class:`Tencentcloud::trocket::V20230308::DescribeConsumerLabelResponse`
+        def DescribeConsumerLabel(request)
+          body = send_request('DescribeConsumerLabel', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeConsumerLabelResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询消费组下灰度标签列表
+
+        # @param request: Request instance for DescribeConsumerLabelList.
+        # @type request: :class:`Tencentcloud::trocket::V20230308::DescribeConsumerLabelListRequest`
+        # @rtype: :class:`Tencentcloud::trocket::V20230308::DescribeConsumerLabelListResponse`
+        def DescribeConsumerLabelList(request)
+          body = send_request('DescribeConsumerLabelList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeConsumerLabelListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询指定消费组堆积数。
         # 当前 API 适用集群：4.x 集群和 5.x 集群。
 
@@ -423,6 +543,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeConsumerLagResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询消费组当前生效的灰度路由配置
+
+        # @param request: Request instance for DescribeConsumerRouteConfig.
+        # @type request: :class:`Tencentcloud::trocket::V20230308::DescribeConsumerRouteConfigRequest`
+        # @rtype: :class:`Tencentcloud::trocket::V20230308::DescribeConsumerRouteConfigResponse`
+        def DescribeConsumerRouteConfig(request)
+          body = send_request('DescribeConsumerRouteConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeConsumerRouteConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询消费组灰度路由配置版本列表
+
+        # @param request: Request instance for DescribeConsumerRouteVersionList.
+        # @type request: :class:`Tencentcloud::trocket::V20230308::DescribeConsumerRouteVersionListRequest`
+        # @rtype: :class:`Tencentcloud::trocket::V20230308::DescribeConsumerRouteVersionListResponse`
+        def DescribeConsumerRouteVersionList(request)
+          body = send_request('DescribeConsumerRouteVersionList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeConsumerRouteVersionListResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1178,6 +1346,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyTopicResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 写入消费组灰度路由配置
+
+        # @param request: Request instance for PutConsumerRouteConfig.
+        # @type request: :class:`Tencentcloud::trocket::V20230308::PutConsumerRouteConfigRequest`
+        # @rtype: :class:`Tencentcloud::trocket::V20230308::PutConsumerRouteConfigResponse`
+        def PutConsumerRouteConfig(request)
+          body = send_request('PutConsumerRouteConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = PutConsumerRouteConfigResponse.new
             model.deserialize(response['Response'])
             model
           else

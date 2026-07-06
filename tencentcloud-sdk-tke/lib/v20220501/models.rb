@@ -1973,26 +1973,30 @@ module TencentCloud
 
       # 节点池弹性伸缩配置
       class MachineSetScaling < TencentCloud::Common::AbstractModel
-        # @param MinReplicas: 节点池最小副本数
+        # @param MinReplicas: <p>节点池最小副本数</p>
         # @type MinReplicas: Integer
-        # @param MaxReplicas: 节点池最大副本数
+        # @param MaxReplicas: <p>节点池最大副本数</p>
         # @type MaxReplicas: Integer
-        # @param CreatePolicy: 节点池扩容策略。ZoneEquality：多可用区打散；ZonePriority：首选可用区优先；
+        # @param CreatePolicy: <p>节点池扩容策略。ZoneEquality：多可用区打散；ZonePriority：首选可用区优先；</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreatePolicy: String
+        # @param ScaleDownMode: <p>扩缩容模式</p><p>枚举值：</p><ul><li>ShutdownAndDelete： 释放模式，默认</li><li>Shutdown： 停机模式，关机不计费</li></ul><p>默认值：ShutdownAndDelete</p>
+        # @type ScaleDownMode: String
 
-        attr_accessor :MinReplicas, :MaxReplicas, :CreatePolicy
+        attr_accessor :MinReplicas, :MaxReplicas, :CreatePolicy, :ScaleDownMode
 
-        def initialize(minreplicas=nil, maxreplicas=nil, createpolicy=nil)
+        def initialize(minreplicas=nil, maxreplicas=nil, createpolicy=nil, scaledownmode=nil)
           @MinReplicas = minreplicas
           @MaxReplicas = maxreplicas
           @CreatePolicy = createpolicy
+          @ScaleDownMode = scaledownmode
         end
 
         def deserialize(params)
           @MinReplicas = params['MinReplicas']
           @MaxReplicas = params['MaxReplicas']
           @CreatePolicy = params['CreatePolicy']
+          @ScaleDownMode = params['ScaleDownMode']
         end
       end
 
@@ -2100,16 +2104,22 @@ module TencentCloud
         # @type SecurityGroupIDs: Array
         # @param InstanceChargePrepaid: <p>节点预付费信息</p>
         # @type InstanceChargePrepaid: :class:`Tencentcloud::Tke.v20220501.models.InstanceChargePrepaid`
+        # @param InstanceChargeType: <p>节点计费类型变更</p><p>枚举值：</p><ul><li>POSTPAID_BY_HOUR： 目标计费类型为按量计费</li><li>PREPAID： 目标计费类型为包年包月计费</li></ul>
+        # @type InstanceChargeType: String
+        # @param ModifyPortableDataDisk: <p>是否同时切换弹性数据云盘计费模式。取值范围：  true：表示切换弹性数据云盘计费模式 false：表示不切换弹性数据云盘计费模式 默认取值：true。</p><p>默认值：true</p>
+        # @type ModifyPortableDataDisk: Boolean
 
-        attr_accessor :ClusterId, :MachineNames, :DisplayName, :SystemDisk, :SecurityGroupIDs, :InstanceChargePrepaid
+        attr_accessor :ClusterId, :MachineNames, :DisplayName, :SystemDisk, :SecurityGroupIDs, :InstanceChargePrepaid, :InstanceChargeType, :ModifyPortableDataDisk
 
-        def initialize(clusterid=nil, machinenames=nil, displayname=nil, systemdisk=nil, securitygroupids=nil, instancechargeprepaid=nil)
+        def initialize(clusterid=nil, machinenames=nil, displayname=nil, systemdisk=nil, securitygroupids=nil, instancechargeprepaid=nil, instancechargetype=nil, modifyportabledatadisk=nil)
           @ClusterId = clusterid
           @MachineNames = machinenames
           @DisplayName = displayname
           @SystemDisk = systemdisk
           @SecurityGroupIDs = securitygroupids
           @InstanceChargePrepaid = instancechargeprepaid
+          @InstanceChargeType = instancechargetype
+          @ModifyPortableDataDisk = modifyportabledatadisk
         end
 
         def deserialize(params)
@@ -2125,6 +2135,8 @@ module TencentCloud
             @InstanceChargePrepaid = InstanceChargePrepaid.new
             @InstanceChargePrepaid.deserialize(params['InstanceChargePrepaid'])
           end
+          @InstanceChargeType = params['InstanceChargeType']
+          @ModifyPortableDataDisk = params['ModifyPortableDataDisk']
         end
       end
 
@@ -2881,13 +2893,13 @@ module TencentCloud
 
       # 运行时配置
       class RuntimeConfig < TencentCloud::Common::AbstractModel
-        # @param RuntimeType: 运行时类型
+        # @param RuntimeType: <p>运行时类型</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuntimeType: String
-        # @param RuntimeVersion: 运行时版本
+        # @param RuntimeVersion: <p>运行时版本</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuntimeVersion: String
-        # @param RuntimeRootDir: 运行时根目录
+        # @param RuntimeRootDir: <p>运行时根目录</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuntimeRootDir: String
 
