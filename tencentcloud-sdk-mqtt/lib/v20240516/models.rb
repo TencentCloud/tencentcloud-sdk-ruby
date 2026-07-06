@@ -4230,10 +4230,12 @@ module TencentCloud
         # @type Header: Array
         # @param Body: 请求body
         # @type Body: Array
+        # @param IncludingUserProperties: 连接UserProperty作为Header转发，默认false
+        # @type IncludingUserProperties: Boolean
 
-        attr_accessor :InstanceId, :Endpoint, :Status, :Concurrency, :ConnectTimeout, :ReadTimeout, :Remark, :Method, :Header, :Body
+        attr_accessor :InstanceId, :Endpoint, :Status, :Concurrency, :ConnectTimeout, :ReadTimeout, :Remark, :Method, :Header, :Body, :IncludingUserProperties
 
-        def initialize(instanceid=nil, endpoint=nil, status=nil, concurrency=nil, connecttimeout=nil, readtimeout=nil, remark=nil, method=nil, header=nil, body=nil)
+        def initialize(instanceid=nil, endpoint=nil, status=nil, concurrency=nil, connecttimeout=nil, readtimeout=nil, remark=nil, method=nil, header=nil, body=nil, includinguserproperties=nil)
           @InstanceId = instanceid
           @Endpoint = endpoint
           @Status = status
@@ -4244,6 +4246,7 @@ module TencentCloud
           @Method = method
           @Header = header
           @Body = body
+          @IncludingUserProperties = includinguserproperties
         end
 
         def deserialize(params)
@@ -4271,6 +4274,7 @@ module TencentCloud
               @Body << bodyitem_tmp
             end
           end
+          @IncludingUserProperties = params['IncludingUserProperties']
         end
       end
 

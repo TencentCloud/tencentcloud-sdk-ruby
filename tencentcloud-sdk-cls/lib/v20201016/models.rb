@@ -2843,8 +2843,8 @@ module TencentCloud
 
         attr_accessor :Name, :AlarmTargets, :MonitorTime, :TriggerCount, :AlarmPeriod, :Condition, :AlarmLevel, :MultiConditions, :Status, :Enable, :MessageTemplate, :CallBack, :Analysis, :GroupTriggerStatus, :GroupTriggerCondition, :Tags, :MonitorObjectType, :Classifications, :AlarmNoticeIds, :MonitorNotice
         extend Gem::Deprecate
-        deprecate :Enable, :none, 2026, 6
-        deprecate :Enable=, :none, 2026, 6
+        deprecate :Enable, :none, 2026, 7
+        deprecate :Enable=, :none, 2026, 7
 
         def initialize(name=nil, alarmtargets=nil, monitortime=nil, triggercount=nil, alarmperiod=nil, condition=nil, alarmlevel=nil, multiconditions=nil, status=nil, enable=nil, messagetemplate=nil, callback=nil, analysis=nil, grouptriggerstatus=nil, grouptriggercondition=nil, tags=nil, monitorobjecttype=nil, classifications=nil, alarmnoticeids=nil, monitornotice=nil)
           @Name = name
@@ -3183,8 +3183,8 @@ module TencentCloud
 
         attr_accessor :Name, :TopicId, :Type, :LogType, :ConfigFlag, :LogsetId, :LogsetName, :TopicName, :HostFile, :ContainerFile, :ContainerStdout, :LogFormat, :ExtractRule, :ExcludePaths, :UserDefineRule, :GroupId, :GroupIds, :CollectInfos, :AdvancedConfig
         extend Gem::Deprecate
-        deprecate :LogFormat, :none, 2026, 6
-        deprecate :LogFormat=, :none, 2026, 6
+        deprecate :LogFormat, :none, 2026, 7
+        deprecate :LogFormat=, :none, 2026, 7
 
         def initialize(name=nil, topicid=nil, type=nil, logtype=nil, configflag=nil, logsetid=nil, logsetname=nil, topicname=nil, hostfile=nil, containerfile=nil, containerstdout=nil, logformat=nil, extractrule=nil, excludepaths=nil, userdefinerule=nil, groupid=nil, groupids=nil, collectinfos=nil, advancedconfig=nil)
           @Name = name
@@ -5142,36 +5142,40 @@ module TencentCloud
 
       # CreateScheduledSql请求参数结构体
       class CreateScheduledSqlRequest < TencentCloud::Common::AbstractModel
-        # @param SrcTopicId: 源日志主题ID- 通过[获取日志主题列表](https://cloud.tencent.com/document/product/614/56454)获取日志主题Id。
+        # @param SrcTopicId: <p>源日志主题ID- 通过<a href="https://cloud.tencent.com/document/product/614/56454">获取日志主题列表</a>获取日志主题Id。</p>
         # @type SrcTopicId: String
-        # @param Name: 任务名称，0~255字符
+        # @param Name: <p>任务名称，0~255字符</p>
         # @type Name: String
-        # @param EnableFlag: 任务启动状态.  1开启,  2关闭
+        # @param EnableFlag: <p>任务启动状态.  1开启,  2关闭</p>
         # @type EnableFlag: Integer
-        # @param DstResource: 定时SQL分析目标日志主题
+        # @param DstResource: <p>定时SQL分析目标日志主题</p>
         # @type DstResource: :class:`Tencentcloud::Cls.v20201016.models.ScheduledSqlResouceInfo`
-        # @param ScheduledSqlContent: 查询语句
+        # @param ScheduledSqlContent: <p>查询语句</p>
         # @type ScheduledSqlContent: String
-        # @param ProcessStartTime: 调度开始时间,Unix时间戳，单位ms
+        # @param ProcessStartTime: <p>调度开始时间,Unix时间戳，单位ms</p>
         # @type ProcessStartTime: Integer
-        # @param ProcessType: 调度类型，1:持续运行 2:指定时间范围
+        # @param ProcessType: <p>调度类型，1:持续运行 2:指定时间范围</p>
         # @type ProcessType: Integer
-        # @param ProcessPeriod: 调度周期(分钟)，1~1440分钟
+        # @param ProcessPeriod: <p>调度周期(分钟)，1~1440分钟</p>
         # @type ProcessPeriod: Integer
-        # @param ProcessTimeWindow: 单次查询的时间窗口,如果您的目标主题为指标主题，建议该参数的大小不超过30分钟，否则可能转指标失败。
+        # @param ProcessTimeWindow: <p>单次查询的时间窗口,如果您的目标主题为指标主题，建议该参数的大小不超过30分钟，否则可能转指标失败。</p>
         # @type ProcessTimeWindow: String
-        # @param ProcessDelay: 执行延迟(秒)，0~120秒，默认60秒
+        # @param ProcessDelay: <p>执行延迟(秒)，0~120秒，默认60秒</p>
         # @type ProcessDelay: Integer
-        # @param SrcTopicRegion: 源topicId的地域信息,支持地域见 [地域列表](https://cloud.tencent.com/document/api/614/56474#.E5.9C.B0.E5.9F.9F.E5.88.97.E8.A1.A8) 文档
+        # @param SrcTopicRegion: <p>源topicId的地域信息,支持地域见 <a href="https://cloud.tencent.com/document/api/614/56474#.E5.9C.B0.E5.9F.9F.E5.88.97.E8.A1.A8">地域列表</a> 文档</p>
         # @type SrcTopicRegion: String
-        # @param ProcessEndTime: 调度结束时间，当ProcessType=2时为必传字段, Unix时间戳，单位ms
+        # @param ProcessEndTime: <p>调度结束时间，当ProcessType=2时为必传字段, Unix时间戳，单位ms</p>
         # @type ProcessEndTime: Integer
-        # @param SyntaxRule: 查询语法规则。 默认值为0。0：Lucene语法，1：CQL语法
+        # @param SyntaxRule: <p>查询语法规则。 默认值为0。0：Lucene语法，1：CQL语法</p>
         # @type SyntaxRule: Integer
+        # @param HasServicesLog: <p>是否开启投递服务日志。1：关闭，2：开启。</p>
+        # @type HasServicesLog: Integer
+        # @param FullQuery: <p>全文检索标记。1：关闭，2：打开。默认：1</p>
+        # @type FullQuery: Integer
 
-        attr_accessor :SrcTopicId, :Name, :EnableFlag, :DstResource, :ScheduledSqlContent, :ProcessStartTime, :ProcessType, :ProcessPeriod, :ProcessTimeWindow, :ProcessDelay, :SrcTopicRegion, :ProcessEndTime, :SyntaxRule
+        attr_accessor :SrcTopicId, :Name, :EnableFlag, :DstResource, :ScheduledSqlContent, :ProcessStartTime, :ProcessType, :ProcessPeriod, :ProcessTimeWindow, :ProcessDelay, :SrcTopicRegion, :ProcessEndTime, :SyntaxRule, :HasServicesLog, :FullQuery
 
-        def initialize(srctopicid=nil, name=nil, enableflag=nil, dstresource=nil, scheduledsqlcontent=nil, processstarttime=nil, processtype=nil, processperiod=nil, processtimewindow=nil, processdelay=nil, srctopicregion=nil, processendtime=nil, syntaxrule=nil)
+        def initialize(srctopicid=nil, name=nil, enableflag=nil, dstresource=nil, scheduledsqlcontent=nil, processstarttime=nil, processtype=nil, processperiod=nil, processtimewindow=nil, processdelay=nil, srctopicregion=nil, processendtime=nil, syntaxrule=nil, hasserviceslog=nil, fullquery=nil)
           @SrcTopicId = srctopicid
           @Name = name
           @EnableFlag = enableflag
@@ -5185,6 +5189,8 @@ module TencentCloud
           @SrcTopicRegion = srctopicregion
           @ProcessEndTime = processendtime
           @SyntaxRule = syntaxrule
+          @HasServicesLog = hasserviceslog
+          @FullQuery = fullquery
         end
 
         def deserialize(params)
@@ -5204,12 +5210,14 @@ module TencentCloud
           @SrcTopicRegion = params['SrcTopicRegion']
           @ProcessEndTime = params['ProcessEndTime']
           @SyntaxRule = params['SyntaxRule']
+          @HasServicesLog = params['HasServicesLog']
+          @FullQuery = params['FullQuery']
         end
       end
 
       # CreateScheduledSql返回参数结构体
       class CreateScheduledSqlResponse < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务id
+        # @param TaskId: <p>任务id</p>
         # @type TaskId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -14595,8 +14603,8 @@ module TencentCloud
 
         attr_accessor :AlarmId, :Name, :MonitorTime, :Condition, :AlarmLevel, :MultiConditions, :TriggerCount, :AlarmPeriod, :AlarmTargets, :Status, :Enable, :MessageTemplate, :CallBack, :Analysis, :GroupTriggerStatus, :GroupTriggerCondition, :Tags, :MonitorObjectType, :Classifications, :AlarmNoticeIds, :MonitorNotice
         extend Gem::Deprecate
-        deprecate :Enable, :none, 2026, 6
-        deprecate :Enable=, :none, 2026, 6
+        deprecate :Enable, :none, 2026, 7
+        deprecate :Enable=, :none, 2026, 7
 
         def initialize(alarmid=nil, name=nil, monitortime=nil, condition=nil, alarmlevel=nil, multiconditions=nil, triggercount=nil, alarmperiod=nil, alarmtargets=nil, status=nil, enable=nil, messagetemplate=nil, callback=nil, analysis=nil, grouptriggerstatus=nil, grouptriggercondition=nil, tags=nil, monitorobjecttype=nil, classifications=nil, alarmnoticeids=nil, monitornotice=nil)
           @AlarmId = alarmid
@@ -14899,8 +14907,8 @@ module TencentCloud
 
         attr_accessor :ConfigExtraId, :Name, :TopicId, :HostFile, :ContainerFile, :ContainerStdout, :LogType, :LogFormat, :ExtractRule, :ExcludePaths, :UserDefineRule, :Type, :GroupId, :ConfigFlag, :LogsetId, :LogsetName, :TopicName, :AdvancedConfig
         extend Gem::Deprecate
-        deprecate :LogFormat, :none, 2026, 6
-        deprecate :LogFormat=, :none, 2026, 6
+        deprecate :LogFormat, :none, 2026, 7
+        deprecate :LogFormat=, :none, 2026, 7
 
         def initialize(configextraid=nil, name=nil, topicid=nil, hostfile=nil, containerfile=nil, containerstdout=nil, logtype=nil, logformat=nil, extractrule=nil, excludepaths=nil, userdefinerule=nil, type=nil, groupid=nil, configflag=nil, logsetid=nil, logsetname=nil, topicname=nil, advancedconfig=nil)
           @ConfigExtraId = configextraid
@@ -16669,32 +16677,36 @@ module TencentCloud
 
       # ModifyScheduledSql请求参数结构体
       class ModifyScheduledSqlRequest < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务ID，通过[获取定时SQL分析任务列表](https://cloud.tencent.com/document/product/614/95519)获取
+        # @param TaskId: <p>任务ID，通过<a href="https://cloud.tencent.com/document/product/614/95519">获取定时SQL分析任务列表</a>获取</p>
         # @type TaskId: String
-        # @param SrcTopicId: 源日志主题，通过[获取定时SQL分析任务列表](https://cloud.tencent.com/document/product/614/95519)获取
+        # @param SrcTopicId: <p>源日志主题，通过<a href="https://cloud.tencent.com/document/product/614/95519">获取定时SQL分析任务列表</a>获取</p>
         # @type SrcTopicId: String
-        # @param EnableFlag: 任务启动状态.   1开启,  2关闭
+        # @param EnableFlag: <p>任务启动状态.   1开启,  2关闭</p>
         # @type EnableFlag: Integer
-        # @param DstResource: 定时SQL分析的目标日志主题
+        # @param DstResource: <p>定时SQL分析的目标日志主题</p>
         # @type DstResource: :class:`Tencentcloud::Cls.v20201016.models.ScheduledSqlResouceInfo`
-        # @param ScheduledSqlContent: 查询语句
+        # @param ScheduledSqlContent: <p>查询语句</p>
         # @type ScheduledSqlContent: String
-        # @param ProcessPeriod: 调度周期(分钟)，1~1440分钟
+        # @param ProcessPeriod: <p>调度周期(分钟)，1~1440分钟</p>
         # @type ProcessPeriod: Integer
-        # @param ProcessTimeWindow: 单次查询的时间窗口. 例子中为近15分钟
+        # @param ProcessTimeWindow: <p>单次查询的时间窗口. 例子中为近15分钟</p>
         # @type ProcessTimeWindow: String
-        # @param ProcessDelay: 执行延迟(秒)，0~120秒，默认60秒
+        # @param ProcessDelay: <p>执行延迟(秒)，0~120秒，默认60秒</p>
         # @type ProcessDelay: Integer
-        # @param SrcTopicRegion: 源topicId的地域信息,支持地域见 [地域列表](https://cloud.tencent.com/document/api/614/56474#.E5.9C.B0.E5.9F.9F.E5.88.97.E8.A1.A8) 文档
+        # @param SrcTopicRegion: <p>源topicId的地域信息,支持地域见 <a href="https://cloud.tencent.com/document/api/614/56474#.E5.9C.B0.E5.9F.9F.E5.88.97.E8.A1.A8">地域列表</a> 文档</p>
         # @type SrcTopicRegion: String
-        # @param Name: 任务名称，0~255字符
+        # @param Name: <p>任务名称，0~255字符</p>
         # @type Name: String
-        # @param SyntaxRule: 语法规则。 默认值为0。 0：Lucene语法，1：CQL语法
+        # @param SyntaxRule: <p>语法规则。 默认值为0。 0：Lucene语法，1：CQL语法</p>
         # @type SyntaxRule: Integer
+        # @param HasServicesLog: <p>是否开启投递服务日志。1：关闭，2：开启。</p>
+        # @type HasServicesLog: Integer
+        # @param FullQuery: <p>全文检索查询标记。1：关闭，2：打开。</p>
+        # @type FullQuery: Integer
 
-        attr_accessor :TaskId, :SrcTopicId, :EnableFlag, :DstResource, :ScheduledSqlContent, :ProcessPeriod, :ProcessTimeWindow, :ProcessDelay, :SrcTopicRegion, :Name, :SyntaxRule
+        attr_accessor :TaskId, :SrcTopicId, :EnableFlag, :DstResource, :ScheduledSqlContent, :ProcessPeriod, :ProcessTimeWindow, :ProcessDelay, :SrcTopicRegion, :Name, :SyntaxRule, :HasServicesLog, :FullQuery
 
-        def initialize(taskid=nil, srctopicid=nil, enableflag=nil, dstresource=nil, scheduledsqlcontent=nil, processperiod=nil, processtimewindow=nil, processdelay=nil, srctopicregion=nil, name=nil, syntaxrule=nil)
+        def initialize(taskid=nil, srctopicid=nil, enableflag=nil, dstresource=nil, scheduledsqlcontent=nil, processperiod=nil, processtimewindow=nil, processdelay=nil, srctopicregion=nil, name=nil, syntaxrule=nil, hasserviceslog=nil, fullquery=nil)
           @TaskId = taskid
           @SrcTopicId = srctopicid
           @EnableFlag = enableflag
@@ -16706,6 +16718,8 @@ module TencentCloud
           @SrcTopicRegion = srctopicregion
           @Name = name
           @SyntaxRule = syntaxrule
+          @HasServicesLog = hasserviceslog
+          @FullQuery = fullquery
         end
 
         def deserialize(params)
@@ -16723,6 +16737,8 @@ module TencentCloud
           @SrcTopicRegion = params['SrcTopicRegion']
           @Name = params['Name']
           @SyntaxRule = params['SyntaxRule']
+          @HasServicesLog = params['HasServicesLog']
+          @FullQuery = params['FullQuery']
         end
       end
 
@@ -18108,8 +18124,8 @@ module TencentCloud
 
         attr_accessor :LogContent, :LineNum, :DstTopicId, :FailReason, :Time, :DstTopicName
         extend Gem::Deprecate
-        deprecate :DstTopicName, :none, 2026, 6
-        deprecate :DstTopicName=, :none, 2026, 6
+        deprecate :DstTopicName, :none, 2026, 7
+        deprecate :DstTopicName=, :none, 2026, 7
 
         def initialize(logcontent=nil, linenum=nil, dsttopicid=nil, failreason=nil, time=nil, dsttopicname=nil)
           @LogContent = logcontent
@@ -19023,10 +19039,10 @@ module TencentCloud
 
         attr_accessor :From, :To, :QueryString, :QuerySyntax, :TopicId, :Topics, :Sort, :Limit, :Offset, :Context, :SamplingRate, :UseNewAnalysis, :HighLight, :Query, :SyntaxRule
         extend Gem::Deprecate
-        deprecate :Query, :none, 2026, 6
-        deprecate :Query=, :none, 2026, 6
-        deprecate :SyntaxRule, :none, 2026, 6
-        deprecate :SyntaxRule=, :none, 2026, 6
+        deprecate :Query, :none, 2026, 7
+        deprecate :Query=, :none, 2026, 7
+        deprecate :SyntaxRule, :none, 2026, 7
+        deprecate :SyntaxRule=, :none, 2026, 7
 
         def initialize(from=nil, to=nil, querystring=nil, querysyntax=nil, topicid=nil, topics=nil, sort=nil, limit=nil, offset=nil, context=nil, samplingrate=nil, usenewanalysis=nil, highlight=nil, query=nil, syntaxrule=nil)
           @From = from
@@ -19972,8 +19988,8 @@ module TencentCloud
 
         attr_accessor :TopicId, :HashKey, :CompressType
         extend Gem::Deprecate
-        deprecate :HashKey, :none, 2026, 6
-        deprecate :HashKey=, :none, 2026, 6
+        deprecate :HashKey, :none, 2026, 7
+        deprecate :HashKey=, :none, 2026, 7
 
         def initialize(topicid=nil, hashkey=nil, compresstype=nil)
           @TopicId = topicid
@@ -20150,10 +20166,10 @@ module TencentCloud
 
         attr_accessor :CallbackType, :Url, :WebCallbackId, :Method, :NoticeContentId, :RemindType, :Mobiles, :UserIds, :Headers, :Body, :Index
         extend Gem::Deprecate
-        deprecate :Headers, :none, 2026, 6
-        deprecate :Headers=, :none, 2026, 6
-        deprecate :Body, :none, 2026, 6
-        deprecate :Body=, :none, 2026, 6
+        deprecate :Headers, :none, 2026, 7
+        deprecate :Headers=, :none, 2026, 7
+        deprecate :Body, :none, 2026, 7
+        deprecate :Body=, :none, 2026, 7
 
         def initialize(callbacktype=nil, url=nil, webcallbackid=nil, method=nil, noticecontentid=nil, remindtype=nil, mobiles=nil, userids=nil, headers=nil, body=nil, index=nil)
           @CallbackType = callbacktype

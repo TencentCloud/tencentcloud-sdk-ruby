@@ -235,24 +235,28 @@ module TencentCloud
 
       # 一致性校验详细信息
       class CompareDetailInfo < TencentCloud::Common::AbstractModel
-        # @param Difference: 数据不一致的表详情
+        # @param Difference: <p>数据不一致的表详情</p>
         # @type Difference: :class:`Tencentcloud::Dts.v20211206.models.DifferenceDetail`
-        # @param Skipped: 跳过校验的表详情
+        # @param Skipped: <p>跳过校验的表详情</p>
         # @type Skipped: :class:`Tencentcloud::Dts.v20211206.models.SkippedDetail`
-        # @param DifferenceAdvancedObjects: 数据库不一致的详情，mongodb业务用到
+        # @param DifferenceAdvancedObjects: <p>数据库不一致的详情，mongodb业务用到</p>
         # @type DifferenceAdvancedObjects: :class:`Tencentcloud::Dts.v20211206.models.DifferenceAdvancedObjectsDetail`
-        # @param DifferenceData: 数据不一致的详情，mongodb业务用到
+        # @param DifferenceData: <p>数据不一致的详情，mongodb业务用到</p>
         # @type DifferenceData: :class:`Tencentcloud::Dts.v20211206.models.DifferenceDataDetail`
-        # @param DifferenceRow: 数据行不一致的详情，mongodb业务用到
+        # @param DifferenceRow: <p>数据行不一致的详情，mongodb业务用到</p>
         # @type DifferenceRow: :class:`Tencentcloud::Dts.v20211206.models.DifferenceRowDetail`
-        # @param DifferenceSchema: 表结构不一致详情，pg用
+        # @param DifferenceSchema: <p>表结构不一致详情，pg用</p>
         # @type DifferenceSchema: :class:`Tencentcloud::Dts.v20211206.models.DifferenceSchemaDetail`
-        # @param DifferenceOwner: 对象owner不一致详情，pg用
+        # @param DifferenceOwner: <p>对象owner不一致详情，pg用</p>
         # @type DifferenceOwner: :class:`Tencentcloud::Dts.v20211206.models.DifferenceOwnerDetail`
+        # @param FullProgress: <p>全量阶段表的校验进度。该字段后续逐步取代Difference</p>
+        # @type FullProgress: :class:`Tencentcloud::Dts.v20211206.models.CompareTableInfo`
+        # @param IncDifference: <p>增量阶段表的校验进度</p>
+        # @type IncDifference: :class:`Tencentcloud::Dts.v20211206.models.CompareTableInfo`
 
-        attr_accessor :Difference, :Skipped, :DifferenceAdvancedObjects, :DifferenceData, :DifferenceRow, :DifferenceSchema, :DifferenceOwner
+        attr_accessor :Difference, :Skipped, :DifferenceAdvancedObjects, :DifferenceData, :DifferenceRow, :DifferenceSchema, :DifferenceOwner, :FullProgress, :IncDifference
 
-        def initialize(difference=nil, skipped=nil, differenceadvancedobjects=nil, differencedata=nil, differencerow=nil, differenceschema=nil, differenceowner=nil)
+        def initialize(difference=nil, skipped=nil, differenceadvancedobjects=nil, differencedata=nil, differencerow=nil, differenceschema=nil, differenceowner=nil, fullprogress=nil, incdifference=nil)
           @Difference = difference
           @Skipped = skipped
           @DifferenceAdvancedObjects = differenceadvancedobjects
@@ -260,6 +264,8 @@ module TencentCloud
           @DifferenceRow = differencerow
           @DifferenceSchema = differenceschema
           @DifferenceOwner = differenceowner
+          @FullProgress = fullprogress
+          @IncDifference = incdifference
         end
 
         def deserialize(params)
@@ -290,6 +296,14 @@ module TencentCloud
           unless params['DifferenceOwner'].nil?
             @DifferenceOwner = DifferenceOwnerDetail.new
             @DifferenceOwner.deserialize(params['DifferenceOwner'])
+          end
+          unless params['FullProgress'].nil?
+            @FullProgress = CompareTableInfo.new
+            @FullProgress.deserialize(params['FullProgress'])
+          end
+          unless params['IncDifference'].nil?
+            @IncDifference = CompareTableInfo.new
+            @IncDifference.deserialize(params['IncDifference'])
           end
         end
       end
@@ -422,6 +436,34 @@ module TencentCloud
         end
       end
 
+      # 不一致的表的校验结果
+      class CompareTableInfo < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 不一致表的数量
+        # @type TotalCount: Integer
+        # @param Items: 不一致的表的校验结果详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Items: Array
+
+        attr_accessor :TotalCount, :Items
+
+        def initialize(totalcount=nil, items=nil)
+          @TotalCount = totalcount
+          @Items = items
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              comparetableresult_tmp = CompareTableResult.new
+              comparetableresult_tmp.deserialize(i)
+              @Items << comparetableresult_tmp
+            end
+          end
+        end
+      end
+
       # 用于一致性校验的表配置
       class CompareTableItem < TencentCloud::Common::AbstractModel
         # @param TableName: 表名称
@@ -458,6 +500,66 @@ module TencentCloud
           end
           @FilterCondition = params['FilterCondition']
           @FilterTimeZone = params['FilterTimeZone']
+        end
+      end
+
+      # 不一致的表的校验结果详情。增量和全量都是这个结构，某些字段对增量没有意义，可以忽略。
+      class CompareTableResult < TencentCloud::Common::AbstractModel
+        # @param Db: 库名
+        # @type Db: String
+        # @param Schema: schema名
+        # @type Schema: String
+        # @param Table: 表名
+        # @type Table: String
+        # @param Conclusion: 校验结果
+        # @type Conclusion: String
+        # @param Status: 校验状态。仅全量阶段有意义
+        # @type Status: String
+        # @param Progress: 校验进度。仅全量阶段有意义
+        # @type Progress: Integer
+        # @param RowCount: 不一致行数
+        # @type RowCount: Integer
+        # @param StartedAt: 该表开始校验的时间
+        # @type StartedAt: String
+        # @param FinishedAt: 该表校验结束的时间
+        # @type FinishedAt: String
+        # @param ExpectedAt: 预计该表校验结束的时间
+        # @type ExpectedAt: String
+        # @param SrcItem: 源端行数，如果是行数校验此值有意义
+        # @type SrcItem: String
+        # @param DstItem: 目标端行数，如果是行数校验此值有意义
+        # @type DstItem: String
+
+        attr_accessor :Db, :Schema, :Table, :Conclusion, :Status, :Progress, :RowCount, :StartedAt, :FinishedAt, :ExpectedAt, :SrcItem, :DstItem
+
+        def initialize(db=nil, schema=nil, table=nil, conclusion=nil, status=nil, progress=nil, rowcount=nil, startedat=nil, finishedat=nil, expectedat=nil, srcitem=nil, dstitem=nil)
+          @Db = db
+          @Schema = schema
+          @Table = table
+          @Conclusion = conclusion
+          @Status = status
+          @Progress = progress
+          @RowCount = rowcount
+          @StartedAt = startedat
+          @FinishedAt = finishedat
+          @ExpectedAt = expectedat
+          @SrcItem = srcitem
+          @DstItem = dstitem
+        end
+
+        def deserialize(params)
+          @Db = params['Db']
+          @Schema = params['Schema']
+          @Table = params['Table']
+          @Conclusion = params['Conclusion']
+          @Status = params['Status']
+          @Progress = params['Progress']
+          @RowCount = params['RowCount']
+          @StartedAt = params['StartedAt']
+          @FinishedAt = params['FinishedAt']
+          @ExpectedAt = params['ExpectedAt']
+          @SrcItem = params['SrcItem']
+          @DstItem = params['DstItem']
         end
       end
 
@@ -2218,25 +2320,25 @@ module TencentCloud
 
       # DescribeCompareReport请求参数结构体
       class DescribeCompareReportRequest < TencentCloud::Common::AbstractModel
-        # @param JobId: 迁移任务 Id，可通过[DescribeMigrationJobs](https://cloud.tencent.com/document/product/571/82084)接口获取。
+        # @param JobId: <p>迁移任务 Id，可通过<a href="https://cloud.tencent.com/document/product/571/82084">DescribeMigrationJobs</a>接口获取。</p>
         # @type JobId: String
-        # @param CompareTaskId: 校验任务 Id，可通过[DescribeMigrationJobs](https://cloud.tencent.com/document/product/571/82084)接口获取。
+        # @param CompareTaskId: <p>校验任务 Id，可通过<a href="https://cloud.tencent.com/document/product/571/82084">DescribeMigrationJobs</a>接口获取。</p>
         # @type CompareTaskId: String
-        # @param DifferenceLimit: 校验不一致结果的 limit
+        # @param DifferenceLimit: <p>校验不一致结果的 limit</p>
         # @type DifferenceLimit: Integer
-        # @param DifferenceOffset: 不一致的 Offset
+        # @param DifferenceOffset: <p>不一致的 Offset</p>
         # @type DifferenceOffset: Integer
-        # @param DifferenceDB: 搜索条件，不一致的库名
+        # @param DifferenceDB: <p>搜索条件，不一致的库名</p>
         # @type DifferenceDB: String
-        # @param DifferenceTable: 搜索条件，不一致的表名
+        # @param DifferenceTable: <p>搜索条件，不一致的表名</p>
         # @type DifferenceTable: String
-        # @param SkippedLimit: 未校验的 Limit
+        # @param SkippedLimit: <p>未校验的 Limit</p>
         # @type SkippedLimit: Integer
-        # @param SkippedOffset: 未校验的 Offset
+        # @param SkippedOffset: <p>未校验的 Offset</p>
         # @type SkippedOffset: Integer
-        # @param SkippedDB: 搜索条件，未校验的库名
+        # @param SkippedDB: <p>搜索条件，未校验的库名</p>
         # @type SkippedDB: String
-        # @param SkippedTable: 搜索条件，未校验的表名
+        # @param SkippedTable: <p>搜索条件，未校验的表名</p>
         # @type SkippedTable: String
 
         attr_accessor :JobId, :CompareTaskId, :DifferenceLimit, :DifferenceOffset, :DifferenceDB, :DifferenceTable, :SkippedLimit, :SkippedOffset, :SkippedDB, :SkippedTable
@@ -2270,9 +2372,9 @@ module TencentCloud
 
       # DescribeCompareReport返回参数结构体
       class DescribeCompareReportResponse < TencentCloud::Common::AbstractModel
-        # @param Abstract: 一致性校验摘要信息
+        # @param Abstract: <p>一致性校验摘要信息</p>
         # @type Abstract: :class:`Tencentcloud::Dts.v20211206.models.CompareAbstractInfo`
-        # @param Detail: 一致性校验详细信息
+        # @param Detail: <p>一致性校验详细信息</p>
         # @type Detail: :class:`Tencentcloud::Dts.v20211206.models.CompareDetailInfo`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3496,25 +3598,25 @@ module TencentCloud
 
       # DescribeSyncCompareReport请求参数结构体
       class DescribeSyncCompareReportRequest < TencentCloud::Common::AbstractModel
-        # @param JobId: 任务 Id
+        # @param JobId: <p>任务 Id</p>
         # @type JobId: String
-        # @param CompareTaskId: 校验任务 Id
+        # @param CompareTaskId: <p>校验任务 Id</p>
         # @type CompareTaskId: String
-        # @param DifferenceLimit: 校验不一致结果的 limit
+        # @param DifferenceLimit: <p>校验不一致结果的 limit</p>
         # @type DifferenceLimit: Integer
-        # @param DifferenceOffset: 不一致的 Offset
+        # @param DifferenceOffset: <p>不一致的 Offset</p>
         # @type DifferenceOffset: Integer
-        # @param DifferenceDB: 搜索条件，不一致的库名
+        # @param DifferenceDB: <p>搜索条件，不一致的库名</p>
         # @type DifferenceDB: String
-        # @param DifferenceTable: 搜索条件，不一致的表名
+        # @param DifferenceTable: <p>搜索条件，不一致的表名</p>
         # @type DifferenceTable: String
-        # @param SkippedLimit: 未校验的 Limit
+        # @param SkippedLimit: <p>未校验的 Limit</p>
         # @type SkippedLimit: Integer
-        # @param SkippedOffset: 未校验的 Offset
+        # @param SkippedOffset: <p>未校验的 Offset</p>
         # @type SkippedOffset: Integer
-        # @param SkippedDB: 搜索条件，未校验的库名
+        # @param SkippedDB: <p>搜索条件，未校验的库名</p>
         # @type SkippedDB: String
-        # @param SkippedTable: 搜索条件，未校验的表名
+        # @param SkippedTable: <p>搜索条件，未校验的表名</p>
         # @type SkippedTable: String
 
         attr_accessor :JobId, :CompareTaskId, :DifferenceLimit, :DifferenceOffset, :DifferenceDB, :DifferenceTable, :SkippedLimit, :SkippedOffset, :SkippedDB, :SkippedTable
@@ -3548,13 +3650,13 @@ module TencentCloud
 
       # DescribeSyncCompareReport返回参数结构体
       class DescribeSyncCompareReportResponse < TencentCloud::Common::AbstractModel
-        # @param Abstract: 一致性校验摘要信息
+        # @param Abstract: <p>一致性校验摘要信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Abstract: :class:`Tencentcloud::Dts.v20211206.models.CompareAbstractInfo`
-        # @param Detail: 一致性校验详细信息
+        # @param Detail: <p>一致性校验详细信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Detail: :class:`Tencentcloud::Dts.v20211206.models.CompareDetailInfo`
-        # @param IncAbstract: 增量校验阶段的摘要
+        # @param IncAbstract: <p>增量校验阶段的摘要</p>
         # @type IncAbstract: :class:`Tencentcloud::Dts.v20211206.models.IncCompareAbstractInfo`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

@@ -3919,10 +3919,12 @@ module TencentCloud
         # @type TimeSpan: Integer
         # @param Egress: 网络出口，默认值：center_egress1，其它可选值：center_egress2、center_egress3。
         # @type Egress: String
+        # @param DesignatedZone: 仅用于申请特殊可用区带宽包，如：TEZ/EZ边缘可用区，CDZ专属可用区。具体可选可用区信息，请参考[DescribeDesignatedZones](https://cloud.tencent.com/document/product/215/128830)接口查询结果。
+        # @type DesignatedZone: String
 
-        attr_accessor :NetworkType, :ChargeType, :BandwidthPackageName, :BandwidthPackageCount, :InternetMaxBandwidth, :Tags, :Protocol, :TimeSpan, :Egress
+        attr_accessor :NetworkType, :ChargeType, :BandwidthPackageName, :BandwidthPackageCount, :InternetMaxBandwidth, :Tags, :Protocol, :TimeSpan, :Egress, :DesignatedZone
 
-        def initialize(networktype=nil, chargetype=nil, bandwidthpackagename=nil, bandwidthpackagecount=nil, internetmaxbandwidth=nil, tags=nil, protocol=nil, timespan=nil, egress=nil)
+        def initialize(networktype=nil, chargetype=nil, bandwidthpackagename=nil, bandwidthpackagecount=nil, internetmaxbandwidth=nil, tags=nil, protocol=nil, timespan=nil, egress=nil, designatedzone=nil)
           @NetworkType = networktype
           @ChargeType = chargetype
           @BandwidthPackageName = bandwidthpackagename
@@ -3932,6 +3934,7 @@ module TencentCloud
           @Protocol = protocol
           @TimeSpan = timespan
           @Egress = egress
+          @DesignatedZone = designatedzone
         end
 
         def deserialize(params)
@@ -3951,6 +3954,7 @@ module TencentCloud
           @Protocol = params['Protocol']
           @TimeSpan = params['TimeSpan']
           @Egress = params['Egress']
+          @DesignatedZone = params['DesignatedZone']
         end
       end
 
@@ -14537,24 +14541,13 @@ module TencentCloud
 
       # DescribeReserveIpAddresses请求参数结构体
       class DescribeReserveIpAddressesRequest < TencentCloud::Common::AbstractModel
-        # @param ReserveIpIds: 内网保留IP唯一ID 列表
+        # @param ReserveIpIds: <p>内网保留IP唯一ID 列表</p>
         # @type ReserveIpIds: Array
-        # @param Filters: 过滤条件，参数不支持同时指定ReserveIpIds和Filters。
-
-        # reserve-ip-id  - String - （过滤条件）内网保留 IP唯一 ID，形如：rsvip-pvqgv9vi。
-        # vpc-id - String - （过滤条件）VPC实例ID，形如：vpc-f49l6u0z。
-        # subnet-id - String - （过滤条件）所属子网实例ID，形如：subnet-f49l6u0z。
-        # address-ip - String - （过滤条件）内网保留 IP 地址，形如：192.168.0.10。
-        # ip-type - String - （过滤条件）业务类型 ipType，0。
-        # name - String - （过滤条件）名称。
-        # state - String - （过滤条件）状态，可选值：Bind， UnBind。
-        # resource-id - String - （过滤条件）绑定的实例资源，形如：eni-059qmnif。
-        # tag-key - String -（过滤条件）按照标签键进行过滤。
-        # tag:tag-key - String - （过滤条件）按照标签键值对进行过滤。 tag-key使用具体的标签键进行替换。
+        # @param Filters: <p>过滤条件，参数不支持同时指定ReserveIpIds和Filters。</p><p>reserve-ip-id  - String - （过滤条件）内网保留 IP唯一 ID，形如：rsvip-pvqgv9vi。<br>vpc-id - String - （过滤条件）VPC实例ID，形如：vpc-f49l6u0z。<br>subnet-id - String - （过滤条件）所属子网实例ID，形如：subnet-f49l6u0z。<br>reserve-address-ip - String - （过滤条件）内网保留 IP 地址，形如：192.168.0.10。<br>ip-type - String - （过滤条件）业务类型 ipType，0。<br>name - String - （过滤条件）名称。<br>state - String - （过滤条件）状态，可选值：Bind， UnBind。<br>resource-id - String - （过滤条件）绑定的实例资源，形如：eni-059qmnif。<br>tag-key - String -（过滤条件）按照标签键进行过滤。<br>tag:tag-key - String - （过滤条件）按照标签键值对进行过滤。 tag-key使用具体的标签键进行替换。</p>
         # @type Filters: Array
-        # @param Offset: 偏移量。
+        # @param Offset: <p>偏移量。</p>
         # @type Offset: Integer
-        # @param Limit: 请求对象个数。
+        # @param Limit: <p>请求对象个数。</p>
         # @type Limit: Integer
 
         attr_accessor :ReserveIpIds, :Filters, :Offset, :Limit
@@ -14583,9 +14576,9 @@ module TencentCloud
 
       # DescribeReserveIpAddresses返回参数结构体
       class DescribeReserveIpAddressesResponse < TencentCloud::Common::AbstractModel
-        # @param ReserveIpAddressSet: 内网保留 IP返回信息。
+        # @param ReserveIpAddressSet: <p>内网保留 IP返回信息。</p>
         # @type ReserveIpAddressSet: Array
-        # @param TotalCount: 返回内网保留IP的个数。
+        # @param TotalCount: <p>返回内网保留IP的个数。</p>
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

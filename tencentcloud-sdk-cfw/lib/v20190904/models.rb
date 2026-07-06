@@ -208,17 +208,17 @@ module TencentCloud
 
       # AddEnterpriseSecurityGroupRules请求参数结构体
       class AddEnterpriseSecurityGroupRulesRequest < TencentCloud::Common::AbstractModel
-        # @param Data: 创建规则数据
+        # @param Data: <p>创建规则数据</p>
         # @type Data: Array
-        # @param Type: 添加类型，0：添加到最后，1：添加到最前；2：中间插入；默认0添加到最后
+        # @param Type: <p>添加类型，0：添加到最后，1：添加到最前；2：中间插入；默认0添加到最后</p>
         # @type Type: Integer
-        # @param ClientToken: 保证请求幂等性。从您的客户端生成一个参数值，确保不同请求间该参数值唯一。ClientToken只支持ASCII字符，且不能超过64个字符。
+        # @param ClientToken: <p>保证请求幂等性。从您的客户端生成一个参数值，确保不同请求间该参数值唯一。ClientToken只支持ASCII字符，且不能超过64个字符。</p>
         # @type ClientToken: String
-        # @param IsDelay: （IsDelay为老版参数，新版无需输入）是否延迟下发，1则延迟下发，否则立即下发
+        # @param IsDelay: <p>（IsDelay为老版参数，新版无需输入）是否延迟下发，1则延迟下发，否则立即下发</p>
         # @type IsDelay: Integer
-        # @param From: 来源 默认空 覆盖导入是 batch_import_cover
+        # @param From: <p>来源 默认空 覆盖导入是 batch_import_cover</p>
         # @type From: String
-        # @param IsUseId: 是否复用rule id，1为是，默认不需要
+        # @param IsUseId: <p>是否复用rule id，1为是，默认不需要</p>
         # @type IsUseId: Integer
 
         attr_accessor :Data, :Type, :ClientToken, :IsDelay, :From, :IsUseId
@@ -251,9 +251,9 @@ module TencentCloud
 
       # AddEnterpriseSecurityGroupRules返回参数结构体
       class AddEnterpriseSecurityGroupRulesResponse < TencentCloud::Common::AbstractModel
-        # @param Status: 状态值，0：添加成功，非0：添加失败
+        # @param Status: <p>状态值，0：添加成功，非0：添加失败</p>
         # @type Status: Integer
-        # @param Rules: 添加成功的规则详情
+        # @param Rules: <p>添加成功的规则详情</p>
         # @type Rules: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -879,6 +879,77 @@ module TencentCloud
         end
       end
 
+      # 预接入检查结果，序列化后写入 cfw_gwlb_lead_switch.check_result 列
+      class ClusterFwPreAccessCheckResult < TencentCloud::Common::AbstractModel
+        # @param Status: 检查状态，0：进行中，1：通过，2：失败
+        # @type Status: Integer
+        # @param CurrentStage: 当前/最后所处检查项。Status=1（通过）时为 done，Status=2（失败）时为失败的检查项 key，Status=0（进行中）时为正在执行的检查项 key
+        # @type CurrentStage: String
+        # @param Stages: 逐条检查项结果列表，按执行顺序追加
+        # @type Stages: Array
+        # @param PolicyRouteReport: 策略路由配额核算报告，仅在 Status=1（通过）时非空
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PolicyRouteReport: :class:`Tencentcloud::Cfw.v20190904.models.PolicyRoutePreCheckReport`
+        # @param UpdateTime: 最近一次更新时间，格式：YYYY-MM-DD HH:MM:SS
+        # @type UpdateTime: String
+
+        attr_accessor :Status, :CurrentStage, :Stages, :PolicyRouteReport, :UpdateTime
+
+        def initialize(status=nil, currentstage=nil, stages=nil, policyroutereport=nil, updatetime=nil)
+          @Status = status
+          @CurrentStage = currentstage
+          @Stages = stages
+          @PolicyRouteReport = policyroutereport
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @CurrentStage = params['CurrentStage']
+          unless params['Stages'].nil?
+            @Stages = []
+            params['Stages'].each do |i|
+              clusterfwpreaccesscheckstage_tmp = ClusterFwPreAccessCheckStage.new
+              clusterfwpreaccesscheckstage_tmp.deserialize(i)
+              @Stages << clusterfwpreaccesscheckstage_tmp
+            end
+          end
+          unless params['PolicyRouteReport'].nil?
+            @PolicyRouteReport = PolicyRoutePreCheckReport.new
+            @PolicyRouteReport.deserialize(params['PolicyRouteReport'])
+          end
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # 单个阶段的实时检查状态
+      class ClusterFwPreAccessCheckStage < TencentCloud::Common::AbstractModel
+        # @param Stage: 检查项 key，与发起检查接口返回的 CheckItems[].Stage 一一对应
+        # @type Stage: String
+        # @param Status: 该检查项状态，0：进行中，1：通过，2：失败
+        # @type Status: Integer
+        # @param ErrorCode: 失败时的错误码（仅 Status=2 时有值）
+        # @type ErrorCode: String
+        # @param ErrorMessage: 失败时的具体错误信息（仅 Status=2 时有值）
+        # @type ErrorMessage: String
+
+        attr_accessor :Stage, :Status, :ErrorCode, :ErrorMessage
+
+        def initialize(stage=nil, status=nil, errorcode=nil, errormessage=nil)
+          @Stage = stage
+          @Status = status
+          @ErrorCode = errorcode
+          @ErrorMessage = errormessage
+        end
+
+        def deserialize(params)
+          @Stage = params['Stage']
+          @Status = params['Status']
+          @ErrorCode = params['ErrorCode']
+          @ErrorMessage = params['ErrorMessage']
+        end
+      end
+
       # 集群模式防火墙开关数据详情
       class ClusterSwitchDetail < TencentCloud::Common::AbstractModel
         # @param InsObj: <p>实例对象可以是ccnid类型:ccn-ad21xuds形式;nat网关类型:nat-da12daxd形式;ip类型:1.1.1.1形式等</p>
@@ -923,10 +994,12 @@ module TencentCloud
         # @type Bypass: Integer
         # @param Progress: <p>防火墙开关操作时的进度状态：</p><p>// 开启 — 自动模式（3步）<br>&quot;AUTO_OPEN_ORCHESTRATING&quot; // 步骤1: 预编排策略路由<br>&quot;AUTO_OPEN_CREATING_RESOURCES&quot; // 步骤2: 创建引流网络和资源<br>&quot;AUTO_OPEN_PUSHING_ROUTES&quot; // 步骤3: 创建策略路由</p><p>// 开启 — 手动模式（1步）<br>&quot;MANUAL_OPEN_CREATING_RESOURCES&quot; // 步骤1: 创建引流网络和资源</p><p>// 关闭 — 自动模式（2步）<br>&quot;AUTO_CLOSE_DELETING_ROUTES&quot; // 步骤1: 删除策略路由<br>&quot;AUTO_CLOSE_DELETING_RESOURCES&quot; // 步骤2: 删除引流网络和资源<br>// 关闭 — 手动模式（1步）<br>&quot;MANUAL_CLOSE_DELETING_RESOURCES&quot; // 步骤1: 删除引流网络和资源</p><p>// 修改 — 自动模式（3步）<br>&quot;AUTO_MODIFY_ORCHESTRATING&quot; // 步骤1: 预编排策略路由<br>&quot;AUTO_MODIFY_DELETING_ROUTES&quot; // 步骤2: 删除旧策略路由<br>&quot;AUTO_MODIFY_PUSHING_ROUTES&quot; // 步骤3: 创建新策略路由</p><p>// 修改 — 手动模式（1步，仅 VPC 防火墙存在手动模式修改）<br>&quot;MANUAL_MODIFY_UPDATING_RESOURCES&quot; // 步骤1: 更新引流网络和资源</p>
         # @type Progress: String
+        # @param CheckResult: <p>预检查项的结果</p>
+        # @type CheckResult: :class:`Tencentcloud::Cfw.v20190904.models.ClusterFwPreAccessCheckResult`
 
-        attr_accessor :InsObj, :ObjName, :FwType, :AssetType, :Region, :Status, :SwitchMode, :NonCluster, :IpVersion, :AttachIns, :Endpoints, :Idpsaction, :TransEnable, :Enable, :RoutingMode, :IsPeer, :PeerAppid, :PeerStatus, :Bypass, :Progress
+        attr_accessor :InsObj, :ObjName, :FwType, :AssetType, :Region, :Status, :SwitchMode, :NonCluster, :IpVersion, :AttachIns, :Endpoints, :Idpsaction, :TransEnable, :Enable, :RoutingMode, :IsPeer, :PeerAppid, :PeerStatus, :Bypass, :Progress, :CheckResult
 
-        def initialize(insobj=nil, objname=nil, fwtype=nil, assettype=nil, region=nil, status=nil, switchmode=nil, noncluster=nil, ipversion=nil, attachins=nil, endpoints=nil, idpsaction=nil, transenable=nil, enable=nil, routingmode=nil, ispeer=nil, peerappid=nil, peerstatus=nil, bypass=nil, progress=nil)
+        def initialize(insobj=nil, objname=nil, fwtype=nil, assettype=nil, region=nil, status=nil, switchmode=nil, noncluster=nil, ipversion=nil, attachins=nil, endpoints=nil, idpsaction=nil, transenable=nil, enable=nil, routingmode=nil, ispeer=nil, peerappid=nil, peerstatus=nil, bypass=nil, progress=nil, checkresult=nil)
           @InsObj = insobj
           @ObjName = objname
           @FwType = fwtype
@@ -947,6 +1020,7 @@ module TencentCloud
           @PeerStatus = peerstatus
           @Bypass = bypass
           @Progress = progress
+          @CheckResult = checkresult
         end
 
         def deserialize(params)
@@ -984,6 +1058,10 @@ module TencentCloud
           @PeerStatus = params['PeerStatus']
           @Bypass = params['Bypass']
           @Progress = params['Progress']
+          unless params['CheckResult'].nil?
+            @CheckResult = ClusterFwPreAccessCheckResult.new
+            @CheckResult.deserialize(params['CheckResult'])
+          end
         end
       end
 
@@ -4659,50 +4737,59 @@ module TencentCloud
 
       # DescribeLogStorageStatistic请求参数结构体
       class DescribeLogStorageStatisticRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: <p>开始时间</p><p>参数格式：2026-07-01 15:02:01</p>
+        # @type StartTime: String
+        # @param EndTime: <p>结束时间</p><p>参数格式：2026-07-01 15:02:01</p>
+        # @type EndTime: String
 
+        attr_accessor :StartTime, :EndTime
 
-        def initialize()
+        def initialize(starttime=nil, endtime=nil)
+          @StartTime = starttime
+          @EndTime = endtime
         end
 
         def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
         end
       end
 
       # DescribeLogStorageStatistic返回参数结构体
       class DescribeLogStorageStatisticResponse < TencentCloud::Common::AbstractModel
-        # @param ReturnCode: 返回状态码 0 成功 非0不成功
+        # @param ReturnCode: <p>返回状态码 0 成功 非0不成功</p>
         # @type ReturnCode: Integer
-        # @param ReturnMsg: 返回信息  success 成功 其他 不成功
+        # @param ReturnMsg: <p>返回信息  success 成功 其他 不成功</p>
         # @type ReturnMsg: String
-        # @param UsedSize: 已使用存储量，单位B
+        # @param UsedSize: <p>已使用存储量，单位B</p>
         # @type UsedSize: Integer
-        # @param TotalSize: 配额存储总量，单位B
+        # @param TotalSize: <p>配额存储总量，单位B</p>
         # @type TotalSize: Integer
-        # @param StorageDay: 存储天数
+        # @param StorageDay: <p>存储天数</p>
         # @type StorageDay: Integer
-        # @param AclSize: 访问控制日志存储量，单位B
+        # @param AclSize: <p>访问控制日志存储量，单位B</p>
         # @type AclSize: Integer
-        # @param IdsSize: 入侵防御日志存储量，单位B
+        # @param IdsSize: <p>入侵防御日志存储量，单位B</p>
         # @type IdsSize: Integer
-        # @param NetFlowSize: 流量日志存储量，单位B
+        # @param NetFlowSize: <p>流量日志存储量，单位B</p>
         # @type NetFlowSize: Integer
-        # @param OperateSize: 操作日志存储量，单位B
+        # @param OperateSize: <p>操作日志存储量，单位B</p>
         # @type OperateSize: Integer
-        # @param LeftSize: 剩余存储量，单位B
+        # @param LeftSize: <p>剩余存储量，单位B</p>
         # @type LeftSize: Integer
-        # @param PayMode: 计费模式，0后付费，1预付费
+        # @param PayMode: <p>计费模式，0后付费，1预付费</p>
         # @type PayMode: Integer
-        # @param TimeHistogram: 每日增加日志存储量柱状图
+        # @param TimeHistogram: <p>每日增加日志存储量柱状图</p>
         # @type TimeHistogram: Array
-        # @param TimeHistogramShow: 柱形图格式数据
+        # @param TimeHistogramShow: <p>柱形图格式数据</p>
         # @type TimeHistogramShow: :class:`Tencentcloud::Cfw.v20190904.models.StorageHistogramShow`
-        # @param ArrearsStopWriting: 后付费模式存储状态，0正常，1欠费停止写入
+        # @param ArrearsStopWriting: <p>后付费模式存储状态，0正常，1欠费停止写入</p>
         # @type ArrearsStopWriting: Integer
-        # @param NDRNetFlowSize: NDR流量日志存储量，单位B
+        # @param NDRNetFlowSize: <p>NDR流量日志存储量，单位B</p>
         # @type NDRNetFlowSize: Integer
-        # @param NDRRiskSize: NDR风险日志存储量，单位B
+        # @param NDRRiskSize: <p>NDR风险日志存储量，单位B</p>
         # @type NDRRiskSize: Integer
-        # @param NDRStorageDay: NDR日志存储天数
+        # @param NDRStorageDay: <p>NDR日志存储天数</p>
         # @type NDRStorageDay: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5740,6 +5827,121 @@ module TencentCloud
         end
       end
 
+      # DescribeOfflineExportTask请求参数结构体
+      class DescribeOfflineExportTaskRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: <p>分页参数</p>
+        # @type Limit: Integer
+        # @param Offset: <p>分页参数</p>
+        # @type Offset: Integer
+        # @param TaskName: <p>任务ID/任务名称</p>
+        # @type TaskName: String
+
+        attr_accessor :Limit, :Offset, :TaskName
+
+        def initialize(limit=nil, offset=nil, taskname=nil)
+          @Limit = limit
+          @Offset = offset
+          @TaskName = taskname
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @TaskName = params['TaskName']
+        end
+      end
+
+      # DescribeOfflineExportTask返回参数结构体
+      class DescribeOfflineExportTaskResponse < TencentCloud::Common::AbstractModel
+        # @param ReturnCode: <p>返回状态码 0 成功 非0不成功</p>
+        # @type ReturnCode: Integer
+        # @param ReturnMsg: <p>返回信息  success 成功 其他 不成功</p>
+        # @type ReturnMsg: String
+        # @param Data: <p>离线导出任务列表</p>
+        # @type Data: Array
+        # @param Total: <p>任务数量</p>
+        # @type Total: Integer
+        # @param ExportRemainQuota: <p>剩余导出文件配额，单位B</p>
+        # @type ExportRemainQuota: Integer
+        # @param ExportQuota: <p>导出文件配额，单位B</p>
+        # @type ExportQuota: Integer
+        # @param ExportLimit: <p>导出数据限制</p>
+        # @type ExportLimit: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ReturnCode, :ReturnMsg, :Data, :Total, :ExportRemainQuota, :ExportQuota, :ExportLimit, :RequestId
+
+        def initialize(returncode=nil, returnmsg=nil, data=nil, total=nil, exportremainquota=nil, exportquota=nil, exportlimit=nil, requestid=nil)
+          @ReturnCode = returncode
+          @ReturnMsg = returnmsg
+          @Data = data
+          @Total = total
+          @ExportRemainQuota = exportremainquota
+          @ExportQuota = exportquota
+          @ExportLimit = exportlimit
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ReturnCode = params['ReturnCode']
+          @ReturnMsg = params['ReturnMsg']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              offlineexporttask_tmp = OfflineExportTask.new
+              offlineexporttask_tmp.deserialize(i)
+              @Data << offlineexporttask_tmp
+            end
+          end
+          @Total = params['Total']
+          @ExportRemainQuota = params['ExportRemainQuota']
+          @ExportQuota = params['ExportQuota']
+          @ExportLimit = params['ExportLimit']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeOfflineExportTemporaryCredentials请求参数结构体
+      class DescribeOfflineExportTemporaryCredentialsRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>任务ID</p>
+        # @type TaskId: String
+
+        attr_accessor :TaskId
+
+        def initialize(taskid=nil)
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # DescribeOfflineExportTemporaryCredentials返回参数结构体
+      class DescribeOfflineExportTemporaryCredentialsResponse < TencentCloud::Common::AbstractModel
+        # @param ReturnCode: <p>返回状态码 0 成功 非0不成功</p>
+        # @type ReturnCode: Integer
+        # @param ReturnMsg: <p>返回信息  success 成功 其他 不成功</p>
+        # @type ReturnMsg: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ReturnCode, :ReturnMsg, :RequestId
+
+        def initialize(returncode=nil, returnmsg=nil, requestid=nil)
+          @ReturnCode = returncode
+          @ReturnMsg = returnmsg
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ReturnCode = params['ReturnCode']
+          @ReturnMsg = params['ReturnMsg']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeResourceGroupNew请求参数结构体
       class DescribeResourceGroupNewRequest < TencentCloud::Common::AbstractModel
         # @param QueryType: 查询类型 网络结构-vpc，业务识别-resource ，资源标签-tag
@@ -5984,32 +6186,47 @@ module TencentCloud
 
       # DescribeSerialRegion返回参数结构体
       class DescribeSerialRegionResponse < TencentCloud::Common::AbstractModel
-        # @param SerialRegionLst: 串行地域带宽分配
+        # @param SerialRegionLst: <p>串行地域带宽分配</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SerialRegionLst: Array
-        # @param UnUsedWidth: 剩余可分配通用带宽 单位M
+        # @param UnUsedWidth: <p>剩余可分配通用带宽 单位M</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UnUsedWidth: Integer
-        # @param UnUsedQuota: 可配置实例个数
+        # @param UnUsedQuota: <p>可配置实例个数</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UnUsedQuota: Integer
-        # @param BypassWidth: 旁路带宽数据
+        # @param BypassWidth: <p>旁路带宽数据</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BypassWidth: Integer
-        # @param SendBypassWidth: 赠送的旁路带宽数据
+        # @param SendBypassWidth: <p>赠送的旁路带宽数据</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SendBypassWidth: Integer
+        # @param EdgeWidth: <p>互联网边界防火墙总带宽</p>
+        # @type EdgeWidth: Integer
+        # @param EdgeElasticSwitch: <p>互联网边界弹性开关</p>
+        # @type EdgeElasticSwitch: Integer
+        # @param EdgeElasticBandwidth: <p>互联网边界弹性带宽值</p>
+        # @type EdgeElasticBandwidth: Integer
+        # @param EdgeElasticBandwidthLimit: <p>互联网边界弹性带宽上限</p>
+        # @type EdgeElasticBandwidthLimit: Integer
+        # @param EdgeElasticTrafficSwitch: <p>互联网边界防火墙计量开关</p><p>枚举值：</p><ul><li>0： 关闭</li><li>1： 打开</li></ul>
+        # @type EdgeElasticTrafficSwitch: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :SerialRegionLst, :UnUsedWidth, :UnUsedQuota, :BypassWidth, :SendBypassWidth, :RequestId
+        attr_accessor :SerialRegionLst, :UnUsedWidth, :UnUsedQuota, :BypassWidth, :SendBypassWidth, :EdgeWidth, :EdgeElasticSwitch, :EdgeElasticBandwidth, :EdgeElasticBandwidthLimit, :EdgeElasticTrafficSwitch, :RequestId
 
-        def initialize(serialregionlst=nil, unusedwidth=nil, unusedquota=nil, bypasswidth=nil, sendbypasswidth=nil, requestid=nil)
+        def initialize(serialregionlst=nil, unusedwidth=nil, unusedquota=nil, bypasswidth=nil, sendbypasswidth=nil, edgewidth=nil, edgeelasticswitch=nil, edgeelasticbandwidth=nil, edgeelasticbandwidthlimit=nil, edgeelastictrafficswitch=nil, requestid=nil)
           @SerialRegionLst = serialregionlst
           @UnUsedWidth = unusedwidth
           @UnUsedQuota = unusedquota
           @BypassWidth = bypasswidth
           @SendBypassWidth = sendbypasswidth
+          @EdgeWidth = edgewidth
+          @EdgeElasticSwitch = edgeelasticswitch
+          @EdgeElasticBandwidth = edgeelasticbandwidth
+          @EdgeElasticBandwidthLimit = edgeelasticbandwidthlimit
+          @EdgeElasticTrafficSwitch = edgeelastictrafficswitch
           @RequestId = requestid
         end
 
@@ -6026,6 +6243,11 @@ module TencentCloud
           @UnUsedQuota = params['UnUsedQuota']
           @BypassWidth = params['BypassWidth']
           @SendBypassWidth = params['SendBypassWidth']
+          @EdgeWidth = params['EdgeWidth']
+          @EdgeElasticSwitch = params['EdgeElasticSwitch']
+          @EdgeElasticBandwidth = params['EdgeElasticBandwidth']
+          @EdgeElasticBandwidthLimit = params['EdgeElasticBandwidthLimit']
+          @EdgeElasticTrafficSwitch = params['EdgeElasticTrafficSwitch']
           @RequestId = params['RequestId']
         end
       end
@@ -7191,6 +7413,105 @@ module TencentCloud
         end
       end
 
+      # ExportLogsOffline请求参数结构体
+      class ExportLogsOfflineRequest < TencentCloud::Common::AbstractModel
+        # @param Index: <p>日志类型标识</p><p>枚举值：</p><ul><li>cfw_netflow_border： 流量日志-互联网边界</li><li>cfw_netflow_vpc： 流量日志-VPC边界</li><li>cfw_netflow_nat： 流量日志-NAT边界</li><li>cfw_rule_acl： 访问控制-互联网边界</li><li>cfw_rule_vpc_acl： 访问控制-VPC边界</li><li>cfw_rule_nat_acl： 访问控制-NAT边界</li><li>cfw_rule_threatinfo： 入侵防御-入侵防御</li><li>cfw_netflow_nta： 全流量检测与响应-流量分析</li><li>cfw_ndr_subject_risk： 全流量检测与响应-流量风险</li><li>cfw_ndr_ai_audit： 全流量检测与响应-AI流量风险</li><li>operate_log_all： 操作日志</li></ul>
+        # @type Index: String
+        # @param StartTime: <p>筛选开始时间</p>
+        # @type StartTime: String
+        # @param EndTime: <p>筛选结束时间</p>
+        # @type EndTime: String
+        # @param TaskName: <p>任务名称</p>
+        # @type TaskName: String
+        # @param DataFormat: <p>数据格式</p><p>枚举值：</p><ul><li>.json： JSON格式</li><li>.csv： CSV格式</li></ul>
+        # @type DataFormat: String
+        # @param CompressionFormat: <p>压缩方式，.zip、.tar.gz、.tar.zst、.tar.lz4、传空不压缩</p>
+        # @type CompressionFormat: String
+        # @param Order: <p>日志排序，desc时间降序，asc时间升序</p>
+        # @type Order: String
+        # @param Length: <p>日志数量，传0按单次上限导出</p>
+        # @type Length: Integer
+        # @param Filters: <p>过滤条件组合</p>
+        # @type Filters: Array
+        # @param BucketName: <p>COS存储桶名称</p>
+        # @type BucketName: String
+        # @param BucketRegion: <p>COS存储桶地域</p>
+        # @type BucketRegion: String
+        # @param StorageDays: <p>文件过期时长，1一天，7七天，-1永久</p>
+        # @type StorageDays: Integer
+        # @param Query: <p>日志分析查询语句，Query和Filters不能同时使用，在一次请求中有且只能选择一个</p>
+        # @type Query: String
+        # @param TaskType: <p>导出任务类型，LogAnalysis日志分析导出，LogSearch日志审计导出</p>
+        # @type TaskType: String
+
+        attr_accessor :Index, :StartTime, :EndTime, :TaskName, :DataFormat, :CompressionFormat, :Order, :Length, :Filters, :BucketName, :BucketRegion, :StorageDays, :Query, :TaskType
+
+        def initialize(index=nil, starttime=nil, endtime=nil, taskname=nil, dataformat=nil, compressionformat=nil, order=nil, length=nil, filters=nil, bucketname=nil, bucketregion=nil, storagedays=nil, query=nil, tasktype=nil)
+          @Index = index
+          @StartTime = starttime
+          @EndTime = endtime
+          @TaskName = taskname
+          @DataFormat = dataformat
+          @CompressionFormat = compressionformat
+          @Order = order
+          @Length = length
+          @Filters = filters
+          @BucketName = bucketname
+          @BucketRegion = bucketregion
+          @StorageDays = storagedays
+          @Query = query
+          @TaskType = tasktype
+        end
+
+        def deserialize(params)
+          @Index = params['Index']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @TaskName = params['TaskName']
+          @DataFormat = params['DataFormat']
+          @CompressionFormat = params['CompressionFormat']
+          @Order = params['Order']
+          @Length = params['Length']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              commonfilter_tmp = CommonFilter.new
+              commonfilter_tmp.deserialize(i)
+              @Filters << commonfilter_tmp
+            end
+          end
+          @BucketName = params['BucketName']
+          @BucketRegion = params['BucketRegion']
+          @StorageDays = params['StorageDays']
+          @Query = params['Query']
+          @TaskType = params['TaskType']
+        end
+      end
+
+      # ExportLogsOffline返回参数结构体
+      class ExportLogsOfflineResponse < TencentCloud::Common::AbstractModel
+        # @param ReturnCode: <p>返回状态码 0 成功 非0不成功</p>
+        # @type ReturnCode: Integer
+        # @param ReturnMsg: <p>返回信息  success 成功 其他 不成功</p>
+        # @type ReturnMsg: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ReturnCode, :ReturnMsg, :RequestId
+
+        def initialize(returncode=nil, returnmsg=nil, requestid=nil)
+          @ReturnCode = returncode
+          @ReturnMsg = returnmsg
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ReturnCode = params['ReturnCode']
+          @ReturnMsg = params['ReturnMsg']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 字段可选项枚举值
       class FieldOption < TencentCloud::Common::AbstractModel
         # @param Text: 字段展示值
@@ -8204,25 +8525,28 @@ module TencentCloud
 
       # ModifyBlockIgnoreList请求参数结构体
       class ModifyBlockIgnoreListRequest < TencentCloud::Common::AbstractModel
-        # @param RuleType: 1封禁列表 2 放通列表
+        # @param RuleType: <p>1封禁列表 2 放通列表</p>
         # @type RuleType: Integer
-        # @param IOC: IP、Domain二选一（注：封禁列表，只能填写IP），不能同时为空
+        # @param IOC: <p>IP、Domain二选一（注：封禁列表，只能填写IP），不能同时为空</p>
         # @type IOC: Array
-        # @param IocAction: 可选值：delete（删除）、edit（编辑）、add（添加）  其他值无效
+        # @param IocAction: <p>可选值：delete（删除）、edit（编辑）、add（添加）  其他值无效</p>
         # @type IocAction: String
-        # @param StartTime: 时间格式：yyyy-MM-dd HH:mm:ss，IocAction 为edit或add时必填
+        # @param StartTime: <p>时间格式：yyyy-MM-dd HH:mm:ss，IocAction 为edit或add时必填</p>
         # @type StartTime: String
-        # @param EndTime: 时间格式：yyyy-MM-dd HH:mm:ss，IocAction 为edit或add时必填，必须大于当前时间且大于StartTime
+        # @param EndTime: <p>时间格式：yyyy-MM-dd HH:mm:ss，IocAction 为edit或add时必填，必须大于当前时间且大于StartTime</p>
         # @type EndTime: String
+        # @param IsFromWeChat: <p>是否来自微信</p><p>取值范围：[0, 1]</p>
+        # @type IsFromWeChat: Integer
 
-        attr_accessor :RuleType, :IOC, :IocAction, :StartTime, :EndTime
+        attr_accessor :RuleType, :IOC, :IocAction, :StartTime, :EndTime, :IsFromWeChat
 
-        def initialize(ruletype=nil, ioc=nil, iocaction=nil, starttime=nil, endtime=nil)
+        def initialize(ruletype=nil, ioc=nil, iocaction=nil, starttime=nil, endtime=nil, isfromwechat=nil)
           @RuleType = ruletype
           @IOC = ioc
           @IocAction = iocaction
           @StartTime = starttime
           @EndTime = endtime
+          @IsFromWeChat = isfromwechat
         end
 
         def deserialize(params)
@@ -8238,14 +8562,15 @@ module TencentCloud
           @IocAction = params['IocAction']
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
+          @IsFromWeChat = params['IsFromWeChat']
         end
       end
 
       # ModifyBlockIgnoreList返回参数结构体
       class ModifyBlockIgnoreListResponse < TencentCloud::Common::AbstractModel
-        # @param ReturnMsg: 接口返回信息
+        # @param ReturnMsg: <p>接口返回信息</p>
         # @type ReturnMsg: String
-        # @param ReturnCode: 接口返回错误码，0请求成功  非0失败
+        # @param ReturnCode: <p>接口返回错误码，0请求成功  非0失败</p>
         # @type ReturnCode: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -8425,7 +8750,7 @@ module TencentCloud
 
       # ModifyClusterNatFwSwitch请求参数结构体
       class ModifyClusterNatFwSwitchRequest < TencentCloud::Common::AbstractModel
-        # @param NatCcnSwitch: NAT CCN防火墙开关配置
+        # @param NatCcnSwitch: <p>NAT CCN防火墙开关配置</p>
         # @type NatCcnSwitch: :class:`Tencentcloud::Cfw.v20190904.models.NatCcnSwitchConfig`
 
         attr_accessor :NatCcnSwitch
@@ -10010,10 +10335,12 @@ module TencentCloud
         # @type Endpoints: Array
         # @param Progress: <p>防火墙开关操作时的进度状态：</p><p>// 开启 — 自动模式（3步）<br>&quot;AUTO_OPEN_ORCHESTRATING&quot;      // 步骤1: 预编排策略路由<br>&quot;AUTO_OPEN_CREATING_RESOURCES&quot; // 步骤2: 创建引流网络和资源<br>&quot;AUTO_OPEN_PUSHING_ROUTES&quot;     // 步骤3: 创建策略路由</p><p>// 开启 — 手动模式（1步）<br>&quot;MANUAL_OPEN_CREATING_RESOURCES&quot; // 步骤1: 创建引流网络和资源</p><p>// 关闭 — 自动模式（2步）<br>&quot;AUTO_CLOSE_DELETING_ROUTES&quot;    // 步骤1: 删除策略路由<br>&quot;AUTO_CLOSE_DELETING_RESOURCES&quot; // 步骤2: 删除引流网络和资源<br>// 关闭 — 手动模式（1步）<br>&quot;MANUAL_CLOSE_DELETING_RESOURCES&quot; // 步骤1: 删除引流网络和资源</p><p>// 修改 — 自动模式（3步）<br>&quot;AUTO_MODIFY_ORCHESTRATING&quot;   // 步骤1: 预编排策略路由<br>&quot;AUTO_MODIFY_DELETING_ROUTES&quot; // 步骤2: 删除旧策略路由<br>&quot;AUTO_MODIFY_PUSHING_ROUTES&quot;  // 步骤3: 创建新策略路由</p><p>// 修改 — 手动模式（1步，仅 VPC 防火墙存在手动模式修改）<br>&quot;MANUAL_MODIFY_UPDATING_RESOURCES&quot; // 步骤1: 更新引流网络和资源</p>
         # @type Progress: String
+        # @param CheckResult: <p>预接入检查结果</p>
+        # @type CheckResult: :class:`Tencentcloud::Cfw.v20190904.models.ClusterFwPreAccessCheckResult`
 
-        attr_accessor :InsObj, :ObjName, :FwType, :AssetType, :Region, :SwitchMode, :RoutingMode, :Status, :IpVersion, :NonCluster, :IpsAction, :TransEnable, :Bypass, :AttachId, :AttachName, :NatVpcId, :NatVpcName, :AttachIns, :Endpoints, :Progress
+        attr_accessor :InsObj, :ObjName, :FwType, :AssetType, :Region, :SwitchMode, :RoutingMode, :Status, :IpVersion, :NonCluster, :IpsAction, :TransEnable, :Bypass, :AttachId, :AttachName, :NatVpcId, :NatVpcName, :AttachIns, :Endpoints, :Progress, :CheckResult
 
-        def initialize(insobj=nil, objname=nil, fwtype=nil, assettype=nil, region=nil, switchmode=nil, routingmode=nil, status=nil, ipversion=nil, noncluster=nil, ipsaction=nil, transenable=nil, bypass=nil, attachid=nil, attachname=nil, natvpcid=nil, natvpcname=nil, attachins=nil, endpoints=nil, progress=nil)
+        def initialize(insobj=nil, objname=nil, fwtype=nil, assettype=nil, region=nil, switchmode=nil, routingmode=nil, status=nil, ipversion=nil, noncluster=nil, ipsaction=nil, transenable=nil, bypass=nil, attachid=nil, attachname=nil, natvpcid=nil, natvpcname=nil, attachins=nil, endpoints=nil, progress=nil, checkresult=nil)
           @InsObj = insobj
           @ObjName = objname
           @FwType = fwtype
@@ -10034,6 +10361,7 @@ module TencentCloud
           @AttachIns = attachins
           @Endpoints = endpoints
           @Progress = progress
+          @CheckResult = checkresult
         end
 
         def deserialize(params)
@@ -10071,6 +10399,10 @@ module TencentCloud
             end
           end
           @Progress = params['Progress']
+          unless params['CheckResult'].nil?
+            @CheckResult = ClusterFwPreAccessCheckResult.new
+            @CheckResult.deserialize(params['CheckResult'])
+          end
         end
       end
 
@@ -10369,6 +10701,56 @@ module TencentCloud
         end
       end
 
+      # 离线导出任务
+      class OfflineExportTask < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务ID
+        # @type TaskId: String
+        # @param TaskName: 任务名称
+        # @type TaskName: String
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
+        # @param DataLength: 日志总数
+        # @type DataLength: Integer
+        # @param Status: 任务状态，0等待下载，1下载中，2下载完成，3下载失败，4文件过期
+        # @type Status: Integer
+        # @param ExpireTime: 文件过期时间
+        # @type ExpireTime: String
+        # @param Progress: 下载进度
+        # @type Progress: Float
+        # @param ErrorInfo: 导出失败信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorInfo: String
+        # @param UseUserCos: 是否使用Cos
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UseUserCos: Integer
+
+        attr_accessor :TaskId, :TaskName, :CreateTime, :DataLength, :Status, :ExpireTime, :Progress, :ErrorInfo, :UseUserCos
+
+        def initialize(taskid=nil, taskname=nil, createtime=nil, datalength=nil, status=nil, expiretime=nil, progress=nil, errorinfo=nil, useusercos=nil)
+          @TaskId = taskid
+          @TaskName = taskname
+          @CreateTime = createtime
+          @DataLength = datalength
+          @Status = status
+          @ExpireTime = expiretime
+          @Progress = progress
+          @ErrorInfo = errorinfo
+          @UseUserCos = useusercos
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @TaskName = params['TaskName']
+          @CreateTime = params['CreateTime']
+          @DataLength = params['DataLength']
+          @Status = params['Status']
+          @ExpireTime = params['ExpireTime']
+          @Progress = params['Progress']
+          @ErrorInfo = params['ErrorInfo']
+          @UseUserCos = params['UseUserCos']
+        end
+      end
+
       # OpenClusterNatFwSwitch请求参数结构体
       class OpenClusterNatFwSwitchRequest < TencentCloud::Common::AbstractModel
         # @param NatCcnSwitch: NAT CCN防火墙开关配置
@@ -10437,6 +10819,50 @@ module TencentCloud
           @Name = params['Name']
           @Values = params['Values']
           @OperatorType = params['OperatorType']
+        end
+      end
+
+      # 策略路由预编排配额报告
+      class PolicyRoutePreCheckReport < TencentCloud::Common::AbstractModel
+        # @param NextHopCount: 本次编排生成的下一跳数量
+        # @type NextHopCount: Integer
+        # @param NextHopLimit: 下一跳上限
+        # @type NextHopLimit: Integer
+        # @param MatchRuleCount: 本次编排生成的匹配规则数
+        # @type MatchRuleCount: Integer
+        # @param MatchRuleLimit: 匹配规则上限
+        # @type MatchRuleLimit: Integer
+        # @param CloudExistingRuleCount: 云上已有匹配规则数（其他防火墙类型占用）
+        # @type CloudExistingRuleCount: Integer
+        # @param CloudExistingNextHopCount: 云上已有下一跳数（其他防火墙类型占用）
+        # @type CloudExistingNextHopCount: Integer
+        # @param AvailableRuleQuota: 可用匹配规则配额 = MatchRuleLimit - CloudExistingRuleCount - MatchRuleCount
+        # @type AvailableRuleQuota: Integer
+        # @param AvailableNextHopQuota: 可用下一跳配额 = NextHopLimit - CloudExistingNextHopCount - NextHopCount
+        # @type AvailableNextHopQuota: Integer
+
+        attr_accessor :NextHopCount, :NextHopLimit, :MatchRuleCount, :MatchRuleLimit, :CloudExistingRuleCount, :CloudExistingNextHopCount, :AvailableRuleQuota, :AvailableNextHopQuota
+
+        def initialize(nexthopcount=nil, nexthoplimit=nil, matchrulecount=nil, matchrulelimit=nil, cloudexistingrulecount=nil, cloudexistingnexthopcount=nil, availablerulequota=nil, availablenexthopquota=nil)
+          @NextHopCount = nexthopcount
+          @NextHopLimit = nexthoplimit
+          @MatchRuleCount = matchrulecount
+          @MatchRuleLimit = matchrulelimit
+          @CloudExistingRuleCount = cloudexistingrulecount
+          @CloudExistingNextHopCount = cloudexistingnexthopcount
+          @AvailableRuleQuota = availablerulequota
+          @AvailableNextHopQuota = availablenexthopquota
+        end
+
+        def deserialize(params)
+          @NextHopCount = params['NextHopCount']
+          @NextHopLimit = params['NextHopLimit']
+          @MatchRuleCount = params['MatchRuleCount']
+          @MatchRuleLimit = params['MatchRuleLimit']
+          @CloudExistingRuleCount = params['CloudExistingRuleCount']
+          @CloudExistingNextHopCount = params['CloudExistingNextHopCount']
+          @AvailableRuleQuota = params['AvailableRuleQuota']
+          @AvailableNextHopQuota = params['AvailableNextHopQuota']
         end
       end
 
@@ -10655,6 +11081,50 @@ module TencentCloud
 
         def deserialize(params)
           @RuleUuid = params['RuleUuid']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # RemoveOfflineExportTask请求参数结构体
+      class RemoveOfflineExportTaskRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务ID
+        # @type TaskId: String
+        # @param KeepFile: 是否保留文件，1保留，非1删除
+        # @type KeepFile: Integer
+
+        attr_accessor :TaskId, :KeepFile
+
+        def initialize(taskid=nil, keepfile=nil)
+          @TaskId = taskid
+          @KeepFile = keepfile
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @KeepFile = params['KeepFile']
+        end
+      end
+
+      # RemoveOfflineExportTask返回参数结构体
+      class RemoveOfflineExportTaskResponse < TencentCloud::Common::AbstractModel
+        # @param ReturnCode: 返回状态码 0 成功 非0不成功
+        # @type ReturnCode: Integer
+        # @param ReturnMsg: 返回信息  success 成功 其他 不成功
+        # @type ReturnMsg: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ReturnCode, :ReturnMsg, :RequestId
+
+        def initialize(returncode=nil, returnmsg=nil, requestid=nil)
+          @ReturnCode = returncode
+          @ReturnMsg = returnmsg
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ReturnCode = params['ReturnCode']
+          @ReturnMsg = params['ReturnMsg']
           @RequestId = params['RequestId']
         end
       end
@@ -10932,82 +11402,29 @@ module TencentCloud
 
       # SearchLog请求参数结构体
       class SearchLogRequest < TencentCloud::Common::AbstractModel
-        # @param From: 要检索分析的日志的起始时间，Unix时间戳（毫秒）
+        # @param From: <p>要检索分析的日志的起始时间，Unix时间戳（毫秒）</p>
         # @type From: Integer
-        # @param To: 要检索分析的日志的结束时间，Unix时间戳（毫秒）
+        # @param To: <p>要检索分析的日志的结束时间，Unix时间戳（毫秒）</p>
         # @type To: Integer
-        # @param Query: 检索分析语句，最大长度为12KB
-        # 语句由 <a href="https://cloud.tencent.com/document/product/614/47044" target="_blank">[检索条件]</a> | <a href="https://cloud.tencent.com/document/product/614/44061" target="_blank">[SQL语句]</a>构成，无需对日志进行统计分析时，可省略其中的管道符<code> | </code>及SQL语句
-        # 使用*或空字符串可查询所有日志
+        # @param Query: <p>检索分析语句，最大长度为12KB<br>语句由 <a href="https://cloud.tencent.com/document/product/614/47044" target="_blank">[检索条件]</a> | <a href="https://cloud.tencent.com/document/product/614/44061" target="_blank">[SQL语句]</a>构成，无需对日志进行统计分析时，可省略其中的管道符<code> | </code>及SQL语句<br>使用*或空字符串可查询所有日志</p>
         # @type Query: String
-        # @param SyntaxRule: 检索语法规则，默认值为0，推荐使用1 。
-
-        # - 0：Lucene语法
-        # - 1：CQL语法（日志服务专用检索语法，控制台默认也使用该语法规则）。
-
-        # 详细说明参见<a href="https://cloud.tencent.com/document/product/614/47044#RetrievesConditionalRules" target="_blank">检索条件语法规则</a>
+        # @param SyntaxRule: <p>检索语法规则，默认值为0，推荐使用1 。</p><ul><li>0：Lucene语法</li><li>1：CQL语法（日志服务专用检索语法，控制台默认也使用该语法规则）。</li></ul><p>详细说明参见<a href="https://cloud.tencent.com/document/product/614/47044#RetrievesConditionalRules" target="_blank">检索条件语法规则</a></p>
         # @type SyntaxRule: Integer
-        # @param TopicId: - 要检索分析的日志主题ID，仅能指定一个日志主题。
-        # - 如需同时检索多个日志主题，请使用Topics参数。
-        # - TopicId 和 Topics 不能同时使用，在一次请求中有且只能选择一个。
-        # 各日志主题ID如下
-        # 访问控制-互联网边界 cfw_rule_acl
-        # 访问控制-NAT边界 cfw_rule_nat_acl
-        # 访问控制-VPC边界 cfw_rule_vpc_acl
-        # 访问控制-DNS开关 cfw_rule_dns_acl
-        # 入侵防御 cfw_rule_threatinfo
-        # 全流量检测与响应日志-流量分析 cfw_netflow_nta
-        # 全流量检测与响应日志-流量告警 cfw_rule_ndr_threatinfo
-        # 零信任运维-数据库登录 cfw_operate_db
-        # 零信任运维-服务器访问 operate_remote_om
-        # 零信任运维-Web服务访问 operate_web_access
-        # 零信任运维-行为审计 remoteom_commands
-        # 流量日志-互联网边界 cfw_netflow_border
-        # 流量日志-NAT边界 cfw_netflow_nat
-        # 流量日志-VPC边界 cfw_netflow_vpc
-        # 流量日志-DNS开关 cfw_netflow_dns
-        # 流量日志-内网流量 cfw_netflow_fl
-        # 操作日志 operate_log_all
+        # @param TopicId: <ul><li>要检索分析的日志主题ID，仅能指定一个日志主题。</li><li>如需同时检索多个日志主题，请使用Topics参数。</li><li>TopicId 和 Topics 不能同时使用，在一次请求中有且只能选择一个。<br>各日志主题ID如下<br>访问控制-互联网边界 cfw_rule_acl<br>访问控制-NAT边界 cfw_rule_nat_acl<br>访问控制-VPC边界 cfw_rule_vpc_acl<br>访问控制-DNS开关 cfw_rule_dns_acl<br>入侵防御 cfw_rule_threatinfo<br>全流量检测与响应日志-流量分析 cfw_netflow_nta<br>全流量检测与响应日志-流量告警 cfw_rule_ndr_threatinfo<br>零信任运维-数据库登录 cfw_operate_db<br>零信任运维-服务器访问 operate_remote_om<br>零信任运维-Web服务访问 operate_web_access<br>零信任运维-行为审计 remoteom_commands<br>流量日志-互联网边界 cfw_netflow_border<br>流量日志-NAT边界 cfw_netflow_nat<br>流量日志-VPC边界 cfw_netflow_vpc<br>流量日志-DNS开关 cfw_netflow_dns<br>流量日志-内网流量 cfw_netflow_fl<br>操作日志 operate_log_all</li></ul>
         # @type TopicId: String
-        # @param Topics: - 要检索分析的日志主题列表，最大支持50个日志主题。
-        # - 检索单个日志主题时请使用TopicId。
-        # - TopicId 和 Topics 不能同时使用，在一次请求中有且只能选择一个。
+        # @param Topics: <ul><li>要检索分析的日志主题列表，最大支持50个日志主题。</li><li>检索单个日志主题时请使用TopicId。</li><li>TopicId 和 Topics 不能同时使用，在一次请求中有且只能选择一个。</li></ul>
         # @type Topics: Array
-        # @param Sort: 原始日志是否按时间排序返回；可选值：asc(升序)、desc(降序)，默认为 desc
-        # 注意：
-        # * 仅当检索分析语句(Query)不包含SQL时有效
-        # * SQL结果排序方式参考<a href="https://cloud.tencent.com/document/product/614/58978" target="_blank">SQL ORDER BY语法</a>
+        # @param Sort: <p>原始日志是否按时间排序返回；可选值：asc(升序)、desc(降序)，默认为 desc<br>注意：</p><ul><li>仅当检索分析语句(Query)不包含SQL时有效</li><li>SQL结果排序方式参考<a href="https://cloud.tencent.com/document/product/614/58978" target="_blank">SQL ORDER BY语法</a></li></ul>
         # @type Sort: String
-        # @param Limit: 表示单次查询返回的原始日志条数，默认为100，最大值为1000。
-        # 注意：
-        # * 仅当检索分析语句(Query)不包含SQL时有效
-        # * SQL结果条数指定方式参考<a href="https://cloud.tencent.com/document/product/614/58977" target="_blank">SQL LIMIT语法</a>
-
-        # 可通过两种方式获取后续更多日志：
-        # * Context:透传上次接口返回的Context值，获取后续更多日志，总计最多可获取1万条原始日志
-        # * Offset:偏移量，表示从第几行开始返回原始日志，无日志条数限制
+        # @param Limit: <p>表示单次查询返回的原始日志条数，默认为100，最大值为1000。<br>注意：</p><ul><li>仅当检索分析语句(Query)不包含SQL时有效</li><li>SQL结果条数指定方式参考<a href="https://cloud.tencent.com/document/product/614/58977" target="_blank">SQL LIMIT语法</a></li></ul><p>可通过两种方式获取后续更多日志：</p><ul><li>Context:透传上次接口返回的Context值，获取后续更多日志，总计最多可获取1万条原始日志</li><li>Offset:偏移量，表示从第几行开始返回原始日志，无日志条数限制</li></ul>
         # @type Limit: Integer
-        # @param Offset: 查询原始日志的偏移量，表示从第几行开始返回原始日志，默认为0。
-        # 注意：
-        # * 仅当检索分析语句(Query)不包含SQL时有效
-        # * 不能与Context参数同时使用
-        # * 仅适用于单日志主题检索
+        # @param Offset: <p>查询原始日志的偏移量，表示从第几行开始返回原始日志，默认为0。<br>注意：</p><ul><li>仅当检索分析语句(Query)不包含SQL时有效</li><li>不能与Context参数同时使用</li><li>仅适用于单日志主题检索</li></ul>
         # @type Offset: Integer
-        # @param Context: 透传上次接口返回的Context值，可获取后续更多日志，总计最多可获取1万条原始日志，过期时间1小时。
-        # 注意：
-        # * 透传该参数时，请勿修改除该参数外的其它参数
-        # * 仅适用于单日志主题检索，检索多个日志主题时，请使用Topics中的Context
-        # * 仅当检索分析语句(Query)不包含SQL时有效，SQL获取后续结果参考<a href="https://cloud.tencent.com/document/product/614/58977" target="_blank">SQL LIMIT语法</a>
+        # @param Context: <p>透传上次接口返回的Context值，可获取后续更多日志，总计最多可获取1万条原始日志，过期时间1小时。<br>注意：</p><ul><li>透传该参数时，请勿修改除该参数外的其它参数</li><li>仅适用于单日志主题检索，检索多个日志主题时，请使用Topics中的Context</li><li>仅当检索分析语句(Query)不包含SQL时有效，SQL获取后续结果参考<a href="https://cloud.tencent.com/document/product/614/58977" target="_blank">SQL LIMIT语法</a></li></ul>
         # @type Context: String
-        # @param SamplingRate: 执行统计分析（Query中包含SQL）时，是否对原始日志先进行采样，再进行统计分析。
-        # 0：自动采样;
-        # 0～1：按指定采样率采样，例如0.02;
-        # 1：不采样，即精确分析
-        # 默认值为1
+        # @param SamplingRate: <p>执行统计分析（Query中包含SQL）时，是否对原始日志先进行采样，再进行统计分析。<br>0：自动采样;<br>0～1：按指定采样率采样，例如0.02;<br>1：不采样，即精确分析<br>默认值为1</p>
         # @type SamplingRate: Float
-        # @param UseNewAnalysis: 为true代表使用新的检索结果返回方式，输出参数AnalysisRecords和Columns有效
-        # 为false时代表使用老的检索结果返回方式, 输出AnalysisResults和ColNames有效
-        # 两种返回方式在编码格式上有少量区别，建议使用true
+        # @param UseNewAnalysis: <p>为true代表使用新的检索结果返回方式，输出参数AnalysisRecords和Columns有效<br>为false时代表使用老的检索结果返回方式, 输出AnalysisResults和ColNames有效<br>两种返回方式在编码格式上有少量区别，建议使用true</p>
         # @type UseNewAnalysis: Boolean
 
         attr_accessor :From, :To, :Query, :SyntaxRule, :TopicId, :Topics, :Sort, :Limit, :Offset, :Context, :SamplingRate, :UseNewAnalysis
@@ -11052,38 +11469,31 @@ module TencentCloud
 
       # SearchLog返回参数结构体
       class SearchLogResponse < TencentCloud::Common::AbstractModel
-        # @param Context: 透传本次接口返回的Context值，可获取后续更多日志，过期时间1小时。
-        # 注意：
-        # * 仅适用于单日志主题检索，检索多个日志主题时，请使用Topics中的Context
+        # @param Context: <p>透传本次接口返回的Context值，可获取后续更多日志，过期时间1小时。<br>注意：</p><ul><li>仅适用于单日志主题检索，检索多个日志主题时，请使用Topics中的Context</li></ul>
         # @type Context: String
-        # @param ListOver: 符合检索条件的日志是否已全部返回，如未全部返回可使用Context参数获取后续更多日志
-        # 注意：仅当检索分析语句(Query)不包含SQL时有效
+        # @param ListOver: <p>符合检索条件的日志是否已全部返回，如未全部返回可使用Context参数获取后续更多日志<br>注意：仅当检索分析语句(Query)不包含SQL时有效</p>
         # @type ListOver: Boolean
-        # @param Analysis: 返回的是否为统计分析（即SQL）结果
+        # @param Analysis: <p>返回的是否为统计分析（即SQL）结果</p>
         # @type Analysis: Boolean
-        # @param Results: 匹配检索条件的原始日志
+        # @param Results: <p>匹配检索条件的原始日志</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Results: Array
-        # @param ColNames: 日志统计分析结果的列名
-        # 当UseNewAnalysis为false时生效
+        # @param ColNames: <p>日志统计分析结果的列名<br>当UseNewAnalysis为false时生效</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ColNames: Array
-        # @param AnalysisResults: 日志统计分析结果
-        # 当UseNewAnalysis为false时生效
+        # @param AnalysisResults: <p>日志统计分析结果<br>当UseNewAnalysis为false时生效</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AnalysisResults: Array
-        # @param AnalysisRecords: 日志统计分析结果
-        # 当UseNewAnalysis为true时生效
+        # @param AnalysisRecords: <p>日志统计分析结果<br>当UseNewAnalysis为true时生效</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AnalysisRecords: Array
-        # @param Columns: 日志统计分析结果的列属性
-        # 当UseNewAnalysis为true时生效
+        # @param Columns: <p>日志统计分析结果的列属性<br>当UseNewAnalysis为true时生效</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Columns: Array
-        # @param SamplingRate: 本次统计分析使用的采样率
+        # @param SamplingRate: <p>本次统计分析使用的采样率</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SamplingRate: Float
-        # @param Topics: 使用多日志主题检索时，各个日志主题的基本信息，例如报错信息。
+        # @param Topics: <p>使用多日志主题检索时，各个日志主题的基本信息，例如报错信息。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Topics: :class:`Tencentcloud::Cfw.v20190904.models.SearchLogTopics`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -12249,7 +12659,7 @@ module TencentCloud
 
       # UpdateCheckCcnNonDirectFlag请求参数结构体
       class UpdateCheckCcnNonDirectFlagRequest < TencentCloud::Common::AbstractModel
-        # @param CcnId: 云联网ID
+        # @param CcnId: <p>云联网ID</p>
         # @type CcnId: String
 
         attr_accessor :CcnId
@@ -12265,9 +12675,7 @@ module TencentCloud
 
       # UpdateCheckCcnNonDirectFlag返回参数结构体
       class UpdateCheckCcnNonDirectFlagResponse < TencentCloud::Common::AbstractModel
-        # @param Message: 检测更新状态
-        # "Checked"：重新检测完成
-        # "Checking": 正在重新检测中，请稍后刷新状态查看
+        # @param Message: <p>检测更新状态<br>&quot;Checked&quot;：重新检测完成<br>&quot;Checking&quot;: 正在重新检测中，请稍后刷新状态查看</p>
         # @type Message: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -12287,7 +12695,7 @@ module TencentCloud
 
       # UpdateClusterVpcFw请求参数结构体
       class UpdateClusterVpcFwRequest < TencentCloud::Common::AbstractModel
-        # @param CcnSwitch: ccn防火墙开关配置信息
+        # @param CcnSwitch: <p>ccn防火墙开关配置信息</p>
         # @type CcnSwitch: :class:`Tencentcloud::Cfw.v20190904.models.CcnSwitchInfo`
 
         attr_accessor :CcnSwitch

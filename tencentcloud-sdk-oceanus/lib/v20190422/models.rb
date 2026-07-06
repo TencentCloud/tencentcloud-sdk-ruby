@@ -2231,28 +2231,34 @@ module TencentCloud
 
       # DescribeJobEvents请求参数结构体
       class DescribeJobEventsRequest < TencentCloud::Common::AbstractModel
-        # @param JobId: 作业的 ID
+        # @param JobId: <p>作业的 ID</p>
         # @type JobId: String
-        # @param StartTimestamp: 筛选条件：起始 Unix 时间戳（秒）
+        # @param StartTimestamp: <p>筛选条件：起始 Unix 时间戳（秒）</p>
         # @type StartTimestamp: Integer
-        # @param EndTimestamp: 筛选条件：结束 Unix 时间戳（秒）
+        # @param EndTimestamp: <p>筛选条件：结束 Unix 时间戳（秒）</p>
         # @type EndTimestamp: Integer
-        # @param Types: 事件类型。如果不传则返回所有类型的数据
+        # @param Types: <p>事件类型。如果不传则返回所有类型的数据</p>
         # @type Types: Array
-        # @param RunningOrderIds: 运行实例 ID 数组
+        # @param RunningOrderIds: <p>运行实例 ID 数组</p>
         # @type RunningOrderIds: Array
-        # @param WorkSpaceId: 工作空间 SerialId
+        # @param WorkSpaceId: <p>工作空间 SerialId</p>
         # @type WorkSpaceId: String
+        # @param Limit: <p>返回条数</p>
+        # @type Limit: Integer
+        # @param Offset: <p>起始偏移个数</p>
+        # @type Offset: Integer
 
-        attr_accessor :JobId, :StartTimestamp, :EndTimestamp, :Types, :RunningOrderIds, :WorkSpaceId
+        attr_accessor :JobId, :StartTimestamp, :EndTimestamp, :Types, :RunningOrderIds, :WorkSpaceId, :Limit, :Offset
 
-        def initialize(jobid=nil, starttimestamp=nil, endtimestamp=nil, types=nil, runningorderids=nil, workspaceid=nil)
+        def initialize(jobid=nil, starttimestamp=nil, endtimestamp=nil, types=nil, runningorderids=nil, workspaceid=nil, limit=nil, offset=nil)
           @JobId = jobid
           @StartTimestamp = starttimestamp
           @EndTimestamp = endtimestamp
           @Types = types
           @RunningOrderIds = runningorderids
           @WorkSpaceId = workspaceid
+          @Limit = limit
+          @Offset = offset
         end
 
         def deserialize(params)
@@ -2262,21 +2268,23 @@ module TencentCloud
           @Types = params['Types']
           @RunningOrderIds = params['RunningOrderIds']
           @WorkSpaceId = params['WorkSpaceId']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
         end
       end
 
       # DescribeJobEvents返回参数结构体
       class DescribeJobEventsResponse < TencentCloud::Common::AbstractModel
-        # @param Events: 该作业指定范围内的事件列表
+        # @param Events: <p>该作业指定范围内的事件列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Events: Array
-        # @param RunningOrderIds: 该作业指定范围内运行实例 ID 数组，仅当入参没有传入 RunningOrderIds 参数时才会返回。倒序输出
+        # @param RunningOrderIds: <p>该作业指定范围内运行实例 ID 数组，仅当入参没有传入 RunningOrderIds 参数时才会返回。倒序输出</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RunningOrderIds: Array
-        # @param TotalCount: 事件的总数
+        # @param TotalCount: <p>事件的总数</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
-        # @param Versions: 实例对应的版本
+        # @param Versions: <p>实例对应的版本</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Versions: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -4013,31 +4021,37 @@ module TencentCloud
 
       # 描述作业发生的一个事件
       class JobEvent < TencentCloud::Common::AbstractModel
-        # @param Type: 内部定义的事件类型
+        # @param Type: <p>内部定义的事件类型</p>
         # @type Type: String
-        # @param Description: 事件类型的说明文字
+        # @param Description: <p>事件类型的说明文字</p>
         # @type Description: String
-        # @param Timestamp: 事件发生的 Unix 时间戳（秒）
+        # @param Timestamp: <p>事件发生的 Unix 时间戳（秒）</p>
         # @type Timestamp: Integer
-        # @param RunningOrderId: 事件发生时的运行 ID
+        # @param RunningOrderId: <p>事件发生时的运行 ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RunningOrderId: Integer
-        # @param Message: 事件的一些可选说明
+        # @param Message: <p>事件的一些可选说明</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Message: String
-        # @param SolutionLink: 异常事件的排查手册链接
+        # @param SolutionLink: <p>异常事件的排查手册链接</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SolutionLink: String
+        # @param CauseAnalysis: <p>异常事件原因分析</p>
+        # @type CauseAnalysis: String
+        # @param Solution: <p>异常事件处理的参考方案</p>
+        # @type Solution: String
 
-        attr_accessor :Type, :Description, :Timestamp, :RunningOrderId, :Message, :SolutionLink
+        attr_accessor :Type, :Description, :Timestamp, :RunningOrderId, :Message, :SolutionLink, :CauseAnalysis, :Solution
 
-        def initialize(type=nil, description=nil, timestamp=nil, runningorderid=nil, message=nil, solutionlink=nil)
+        def initialize(type=nil, description=nil, timestamp=nil, runningorderid=nil, message=nil, solutionlink=nil, causeanalysis=nil, solution=nil)
           @Type = type
           @Description = description
           @Timestamp = timestamp
           @RunningOrderId = runningorderid
           @Message = message
           @SolutionLink = solutionlink
+          @CauseAnalysis = causeanalysis
+          @Solution = solution
         end
 
         def deserialize(params)
@@ -4047,6 +4061,8 @@ module TencentCloud
           @RunningOrderId = params['RunningOrderId']
           @Message = params['Message']
           @SolutionLink = params['SolutionLink']
+          @CauseAnalysis = params['CauseAnalysis']
+          @Solution = params['Solution']
         end
       end
 

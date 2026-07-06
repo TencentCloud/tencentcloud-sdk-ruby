@@ -4879,6 +4879,113 @@ module TencentCloud
         end
       end
 
+      # AIGC生文明细
+      class AigcTextDetail < TencentCloud::Common::AbstractModel
+        # @param PageSize: <p>每页条数</p>
+        # @type PageSize: Integer
+        # @param ScrollToken: <p>上一页响应中返回的 scroll_token,用于翻下一页</p>
+        # @type ScrollToken: String
+        # @param Data: <p>生文详细数据</p>
+        # @type Data: Array
+
+        attr_accessor :PageSize, :ScrollToken, :Data
+
+        def initialize(pagesize=nil, scrolltoken=nil, data=nil)
+          @PageSize = pagesize
+          @ScrollToken = scrolltoken
+          @Data = data
+        end
+
+        def deserialize(params)
+          @PageSize = params['PageSize']
+          @ScrollToken = params['ScrollToken']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              aigctextdetaildata_tmp = AigcTextDetailData.new
+              aigctextdetaildata_tmp.deserialize(i)
+              @Data << aigctextdetaildata_tmp
+            end
+          end
+        end
+      end
+
+      # Aigc生文明细数据
+      class AigcTextDetailData < TencentCloud::Common::AbstractModel
+        # @param Timestamp: <p>请求开始时间(RFC3339)</p>
+        # @type Timestamp: String
+        # @param ReqId: <p>网关层请求 ID</p>
+        # @type ReqId: String
+        # @param ChatId: <p>后端模型返回的对话 ID</p>
+        # @type ChatId: String
+        # @param StatusCode: <p>返回给客户端的 HTTP 状态码</p>
+        # @type StatusCode: Integer
+        # @param Model: <p>模型名</p>
+        # @type Model: String
+        # @param SubAppId: <p>应用ID</p>
+        # @type SubAppId: Integer
+        # @param ApiKey: <p>脱敏后的 api_key:前 8 位 + ****(长度 ≤ 8 时原样返回)</p>
+        # @type ApiKey: String
+        # @param Stream: <p>是否流式返回</p>
+        # @type Stream: Boolean
+        # @param InputTokens: <p>输入 token 数</p>
+        # @type InputTokens: Integer
+        # @param OutputTokens: <p>输出 token 数</p>
+        # @type OutputTokens: Integer
+        # @param CacheInputTokens: <p>命中 prompt 缓存的 token 数</p>
+        # @type CacheInputTokens: Integer
+        # @param TotalTokens: <p>总 token 数</p>
+        # @type TotalTokens: Integer
+        # @param TPS: <p>生成阶段的tokens/秒</p>
+        # @type TPS: Float
+        # @param TTFT: <p>首字延迟(Time To First Token)</p><p>单位：秒</p>
+        # @type TTFT: Float
+        # @param Total: <p>端到端总耗时</p><p>单位：秒</p>
+        # @type Total: Float
+        # @param ApiType: <p>入口协议:completions / responses / anthropic</p>
+        # @type ApiType: String
+
+        attr_accessor :Timestamp, :ReqId, :ChatId, :StatusCode, :Model, :SubAppId, :ApiKey, :Stream, :InputTokens, :OutputTokens, :CacheInputTokens, :TotalTokens, :TPS, :TTFT, :Total, :ApiType
+
+        def initialize(timestamp=nil, reqid=nil, chatid=nil, statuscode=nil, model=nil, subappid=nil, apikey=nil, stream=nil, inputtokens=nil, outputtokens=nil, cacheinputtokens=nil, totaltokens=nil, tps=nil, ttft=nil, total=nil, apitype=nil)
+          @Timestamp = timestamp
+          @ReqId = reqid
+          @ChatId = chatid
+          @StatusCode = statuscode
+          @Model = model
+          @SubAppId = subappid
+          @ApiKey = apikey
+          @Stream = stream
+          @InputTokens = inputtokens
+          @OutputTokens = outputtokens
+          @CacheInputTokens = cacheinputtokens
+          @TotalTokens = totaltokens
+          @TPS = tps
+          @TTFT = ttft
+          @Total = total
+          @ApiType = apitype
+        end
+
+        def deserialize(params)
+          @Timestamp = params['Timestamp']
+          @ReqId = params['ReqId']
+          @ChatId = params['ChatId']
+          @StatusCode = params['StatusCode']
+          @Model = params['Model']
+          @SubAppId = params['SubAppId']
+          @ApiKey = params['ApiKey']
+          @Stream = params['Stream']
+          @InputTokens = params['InputTokens']
+          @OutputTokens = params['OutputTokens']
+          @CacheInputTokens = params['CacheInputTokens']
+          @TotalTokens = params['TotalTokens']
+          @TPS = params['TPS']
+          @TTFT = params['TTFT']
+          @Total = params['Total']
+          @ApiType = params['ApiType']
+        end
+      end
+
       # AIGC 统计数据
       class AigcUsageDataItem < TencentCloud::Common::AbstractModel
         # @param Specification: <p>AIGC规格。<br>取值有：</p><li>Qwen2.0</li><li>Hunyuan3.0_1K</li><li>Hunyuan3.0_2K</li><li>Hunyuan3.0_4K</li><li>Mingmou1.0_1K</li><li>Mingmou1.0_2K</li><li>Mingmou1.0_4K</li><li>ViduQ2_T2i_1080P</li><li>ViduQ2_T2i_2K</li><li>ViduQ2_T2i_4K</li><li>ViduQ2_I2i_1080P</li><li>ViduQ2_I2i_2K</li><li>ViduQ2_I2i_4K</li><li>ViduQ2_Refer2i_1080P</li><li>ViduQ2_Refer2i_2K</li><li>ViduQ2_Refer2i_4K</li><li>Kling2.1_T2i_1K2K</li><li>Kling2.1_T2i_4K</li><li>Kling2.1_Refer2i_1K</li><li>Kling2.1_Refer2i_2K</li><li>Kling2.1_Refer2i_4K</li><li>Veo3.1Standard</li><li>Veo3.1Fast</li><li>Kling2.0&amp;2.1std_720P</li><li>Kling2.0&amp;2.1pro_1080P</li><li>Kling2.5pro_720P</li><li>Kling2.5pro_1080P</li><li>KlingO1_720P</li><li>KlingO1_1080P</li><li>KlingO1_NoVideo_720P</li><li>KlingO1_NoVideo_1080P</li><li>Kling2.6</li><li>Kling2.6Sound</li><li>Kling2.6MotionControl_720P</li><li>Kling2.6MotionControl_1080P</li><li>Kling3.0_720P</li><li>Kling3.0Sound_720P</li><li>Kling3.0CustomVoice_720P</li><li>Kling3.0_1080P</li><li>Kling3.0Sound_1080P</li><li>Kling3.0CustomVoice_1080P</li><li>Kling3.0CustomVoice_2K</li><li>Kling3.0CustomVoice_4K</li><li>Kling3.0MotionControl_720P</li><li>Kling3.0MotionControl_1080P</li><li>Kling3.0MotionControl_2K</li><li>Kling3.0MotionControl_4K</li><li>Kling_Avatar_I2v_720P</li><li>Kling_Avatar_I2v_1080P</li><li>Kling_Identifyface</li><li>Hailuo02&amp;2.3_768P</li><li>Hailuo02&amp;2.3_1080P</li><li>Hailuo2.3fast_768P</li><li>Hailuo2.3fast_1080P</li><li>ViduQ2_720P</li><li>ViduQ2_720P_OffPeak</li><li>ViduQ2_1080P</li><li>ViduQ2_1080P_OffPeak</li><li>ViduQ2_Refer_540P</li><li>ViduQ2_Refer_540P_OffPeak</li><li>ViduQ2_Refer_720P</li><li>ViduQ2_Refer_720P_OffPeak</li><li>ViduQ2_Refer_1080P</li><li>ViduQ2_Refer_1080P_OffPeak</li><li>ViduQ2pro_720P</li><li>ViduQ2pro_720P_OffPeak</li><li>ViduQ2pro_1080P</li><li>ViduQ2pro_1080P_OffPeak</li><li>ViduQ2pro_Refer_720P</li><li>ViduQ2pro_Refer_720P_OffPeak</li><li>ViduQ2pro_Refer_720P</li><li>ViduQ2pro_Refer_720P_OffPeak</li><li>ViduQ2pro_Refer_1080P</li><li>ViduQ2pro_Refer_1080P_OffPeak</li><li>ViduQ2turbo_720P</li><li>ViduQ2turbo_720P_OffPeak</li><li>ViduQ2turbo_1080P</li><li>ViduQ2turbo_1080P_OffPeak</li><li>ViduQ3_Refer_720P</li><li>ViduQ3_Refer_720P_OffPeak</li><li>ViduQ3_Refer_1080P</li><li>ViduQ3_Refer_1080P_OffPeak</li><li>ViduQ3_Refer_2K</li><li>ViduQ3_Refer_2K_OffPeak</li><li>ViduQ3_Refer_4K</li><li>ViduQ3_Refer_4K_OffPeak</li><li>ViduQ3pro_540P</li><li>ViduQ3pro_540P_OffPeak</li><li>ViduQ3pro_720P</li><li>ViduQ3pro_720P_OffPeak</li><li>ViduQ3pro_1080P</li><li>ViduQ3pro_1080P_OffPeak</li><li>ViduQ3turbo_540P</li><li>ViduQ3turbo_540P_OffPeak</li><li>ViduQ3turbo_720P</li><li>ViduQ3turbo_720P_OffPeak</li><li>ViduQ3turbo_1080P</li><li>ViduQ3turbo_1080P_OffPeak</li><li>ViduQ3turbo_2K</li><li>ViduQ3turbo_2K_OffPeak</li><li>ViduQ3turbo_4K</li><li>ViduQ3turbo_4K_OffPeak</li><li>Vidu_TemplateEffect</li><li>Hunyuan1.5_720P</li><li>Hunyuan1.5_1080P</li><li>Mingmou1.0_720P</li><li>Mingmou1.0_1080P</li><li>ImageProductImage</li><li>ImageChangeClothes</li><li>VideoProductShowcase</li><li>ImageOutPainting</li><li>FaceInfo</li><li>CustomVoice</li><li>Subject</li><li>unknown</li>
@@ -13756,7 +13863,7 @@ module TencentCloud
         # @type StartTime: String
         # @param EndTime: <p>结束日期，需大于等于起始日期。使用 <a href="https://cloud.tencent.com/document/product/266/11732#52">ISO 日期格式</a>。</p>
         # @type EndTime: String
-        # @param AigcType: <p>AIGC类型。</p><p>枚举值：</p><ul><li>Video： 视频</li><li>Image： 图片</li><li>Text： 文本</li><li>Audio： 音频</li><li>SceneAigcVideo： 场景化视频处理</li><li>SceneAigcImage： 场景化图片处理</li><li>SceneAigcTime： 场景化处理次数</li></ul>
+        # @param AigcType: <p>AIGC类型。</p><p>枚举值：</p><ul><li>Video： 视频</li><li>Image： 图片</li><li>Text： 文本</li><li>Audio： 音频</li><li>SceneAigcVideo： 场景化视频处理</li><li>SceneAigcImage： 场景化图片处理</li><li>SceneAigcTime： 场景化处理次数</li><li>TextDetail： 文本详细记录</li></ul>
         # @type AigcType: String
         # @param SubAppId: <p><b>点播<a href="/document/product/266/14574">应用</a> ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b></p>
         # @type SubAppId: Integer
@@ -13764,16 +13871,25 @@ module TencentCloud
         # @type APIKey: String
         # @param APIKeys: <p>API Key</p>
         # @type APIKeys: Array
+        # @param ScrollToken: <p>查询游标</p>
+        # @type ScrollToken: String
+        # @param PageSize: <p>每页大小，最大 200，超出会被截断为 200</p>
+        # @type PageSize: Integer
+        # @param ReqId: <p>生文RequestId，当AigcType为TextDetail时有效。</p>
+        # @type ReqId: String
 
-        attr_accessor :StartTime, :EndTime, :AigcType, :SubAppId, :APIKey, :APIKeys
+        attr_accessor :StartTime, :EndTime, :AigcType, :SubAppId, :APIKey, :APIKeys, :ScrollToken, :PageSize, :ReqId
 
-        def initialize(starttime=nil, endtime=nil, aigctype=nil, subappid=nil, apikey=nil, apikeys=nil)
+        def initialize(starttime=nil, endtime=nil, aigctype=nil, subappid=nil, apikey=nil, apikeys=nil, scrolltoken=nil, pagesize=nil, reqid=nil)
           @StartTime = starttime
           @EndTime = endtime
           @AigcType = aigctype
           @SubAppId = subappid
           @APIKey = apikey
           @APIKeys = apikeys
+          @ScrollToken = scrolltoken
+          @PageSize = pagesize
+          @ReqId = reqid
         end
 
         def deserialize(params)
@@ -13783,6 +13899,9 @@ module TencentCloud
           @SubAppId = params['SubAppId']
           @APIKey = params['APIKey']
           @APIKeys = params['APIKeys']
+          @ScrollToken = params['ScrollToken']
+          @PageSize = params['PageSize']
+          @ReqId = params['ReqId']
         end
       end
 
@@ -13790,13 +13909,17 @@ module TencentCloud
       class DescribeAigcUsageDataResponse < TencentCloud::Common::AbstractModel
         # @param AigcUsageDataSet: <p>AIGC统计数据。</p>
         # @type AigcUsageDataSet: Array
+        # @param AigcTextDetails: <p>生文详细日志</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AigcTextDetails: :class:`Tencentcloud::Vod.v20180717.models.AigcTextDetail`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :AigcUsageDataSet, :RequestId
+        attr_accessor :AigcUsageDataSet, :AigcTextDetails, :RequestId
 
-        def initialize(aigcusagedataset=nil, requestid=nil)
+        def initialize(aigcusagedataset=nil, aigctextdetails=nil, requestid=nil)
           @AigcUsageDataSet = aigcusagedataset
+          @AigcTextDetails = aigctextdetails
           @RequestId = requestid
         end
 
@@ -13808,6 +13931,10 @@ module TencentCloud
               aigcusagedataitem_tmp.deserialize(i)
               @AigcUsageDataSet << aigcusagedataitem_tmp
             end
+          end
+          unless params['AigcTextDetails'].nil?
+            @AigcTextDetails = AigcTextDetail.new
+            @AigcTextDetails.deserialize(params['AigcTextDetails'])
           end
           @RequestId = params['RequestId']
         end

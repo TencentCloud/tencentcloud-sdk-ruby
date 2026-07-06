@@ -12002,11 +12002,11 @@ module TencentCloud
 
       # DescribeDspmAssetDatabaseList请求参数结构体
       class DescribeDspmAssetDatabaseListRequest < TencentCloud::Common::AbstractModel
-        # @param AssetId: 资产实例id
+        # @param AssetId: <p>资产实例id</p>
         # @type AssetId: String
-        # @param MemberId: 集团账号的成员id
+        # @param MemberId: <p>集团账号的成员id</p>
         # @type MemberId: Array
-        # @param Filter: 筛选项
+        # @param Filter: <p>筛选项</p>
         # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
 
         attr_accessor :AssetId, :MemberId, :Filter
@@ -12029,9 +12029,9 @@ module TencentCloud
 
       # DescribeDspmAssetDatabaseList返回参数结构体
       class DescribeDspmAssetDatabaseListResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 总数
+        # @param TotalCount: <p>总数</p>
         # @type TotalCount: Integer
-        # @param DataSet: 结果集
+        # @param DataSet: <p>结果集</p>
         # @type DataSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -12102,7 +12102,7 @@ module TencentCloud
         # @type DbName: String
         # @param TableName: 表名
         # @type TableName: String
-        # @param MemberId: 集团账号的成员id
+        # @param MemberId: <p>集团账号的成员id</p>
         # @type MemberId: Array
         # @param Filter: 筛选项
         # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
@@ -12378,7 +12378,7 @@ module TencentCloud
         # @type AssetId: String
         # @param DbName: 数据库名称
         # @type DbName: String
-        # @param MemberId: 集团账号的成员id
+        # @param MemberId: <p>集团账号的成员id</p>
         # @type MemberId: Array
         # @param Filter: 筛选项
         # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
@@ -12629,20 +12629,24 @@ module TencentCloud
 
       # DescribeDspmDictionaryList请求参数结构体
       class DescribeDspmDictionaryListRequest < TencentCloud::Common::AbstractModel
-        # @param DictType: 字典类型（RootCategory：一级分类，IdentifyRule:敏感识别数据项）
+        # @param DictType: <p>字典类型（RootCategory：一级分类，IdentifyRule:敏感识别数据项）</p>
         # @type DictType: String
-        # @param Filters: 筛选条件
+        # @param MemberId: <p>集团账号的成员id</p>
+        # @type MemberId: Array
+        # @param Filters: <p>筛选条件</p>
         # @type Filters: Array
 
-        attr_accessor :DictType, :Filters
+        attr_accessor :DictType, :MemberId, :Filters
 
-        def initialize(dicttype=nil, filters=nil)
+        def initialize(dicttype=nil, memberid=nil, filters=nil)
           @DictType = dicttype
+          @MemberId = memberid
           @Filters = filters
         end
 
         def deserialize(params)
           @DictType = params['DictType']
+          @MemberId = params['MemberId']
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
@@ -12656,7 +12660,7 @@ module TencentCloud
 
       # DescribeDspmDictionaryList返回参数结构体
       class DescribeDspmDictionaryListResponse < TencentCloud::Common::AbstractModel
-        # @param DataSet: 结果集
+        # @param DataSet: <p>结果集</p>
         # @type DataSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -13098,7 +13102,7 @@ module TencentCloud
 
       # DescribeDspmPayInfo请求参数结构体
       class DescribeDspmPayInfoRequest < TencentCloud::Common::AbstractModel
-        # @param MemberId: 集团账号的成员id
+        # @param MemberId: <p>集团账号的成员id</p>
         # @type MemberId: Array
 
         attr_accessor :MemberId
@@ -13703,31 +13707,35 @@ module TencentCloud
 
       # DescribeDspmStatistics请求参数结构体
       class DescribeDspmStatisticsRequest < TencentCloud::Common::AbstractModel
-        # @param MemberId: 集团账号的成员id
+        # @param MemberId: <p>集团账号的成员id</p>
         # @type MemberId: Array
+        # @param AssetType: <p>按照资产类型过滤</p><p>枚举值：</p><ul><li>cdb： cdb</li><li>mariadb： mariadb</li><li>cynosdb： cynosdb</li></ul><p>默认值：默认值为空，即不按照资产类型过滤，返回所有资产信息</p>
+        # @type AssetType: Array
 
-        attr_accessor :MemberId
+        attr_accessor :MemberId, :AssetType
 
-        def initialize(memberid=nil)
+        def initialize(memberid=nil, assettype=nil)
           @MemberId = memberid
+          @AssetType = assettype
         end
 
         def deserialize(params)
           @MemberId = params['MemberId']
+          @AssetType = params['AssetType']
         end
       end
 
       # DescribeDspmStatistics返回参数结构体
       class DescribeDspmStatisticsResponse < TencentCloud::Common::AbstractModel
-        # @param AssetCount: 资产统计信息
+        # @param AssetCount: <p>资产统计信息</p>
         # @type AssetCount: :class:`Tencentcloud::Csip.v20221121.models.DspmAssetCount`
-        # @param IpCount: 访问Ip统计信息
+        # @param IpCount: <p>访问Ip统计信息</p>
         # @type IpCount: :class:`Tencentcloud::Csip.v20221121.models.DspmIpCount`
-        # @param UserCount: 用户账号统计信息
+        # @param UserCount: <p>用户账号统计信息</p>
         # @type UserCount: :class:`Tencentcloud::Csip.v20221121.models.DspmAccountCount`
-        # @param RiskCount: 风险统计信息
+        # @param RiskCount: <p>风险统计信息</p>
         # @type RiskCount: :class:`Tencentcloud::Csip.v20221121.models.DspmRiskCount`
-        # @param AnalyseAssetStatusCount: 资产安全分析统计信息
+        # @param AnalyseAssetStatusCount: <p>资产安全分析统计信息</p>
         # @type AnalyseAssetStatusCount: :class:`Tencentcloud::Csip.v20221121.models.DspmSecurityAnalyseStatusCount`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -18109,7 +18117,7 @@ module TencentCloud
 
       # DescribeUserDspmInfoList请求参数结构体
       class DescribeUserDspmInfoListRequest < TencentCloud::Common::AbstractModel
-        # @param MemberId: 集团账号的成员id
+        # @param MemberId: <p>集团账号的成员id</p>
         # @type MemberId: Array
         # @param Filter: 过滤条件
         # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
@@ -19755,30 +19763,32 @@ module TencentCloud
 
       # dspm资产数据识别详情
       class DspmAssetDataScanDetail < TencentCloud::Common::AbstractModel
-        # @param Status: 识别任务状态 0:未识别 1:识别中 2:识别终止 3:识别成功 4:识别失败
+        # @param Status: <p>识别任务状态 0:未识别 1:识别中 2:识别终止 3:识别成功 4:识别失败</p>
         # @type Status: Integer
-        # @param StatusInfo: 识别任务状态 0:未识别 1:识别中 2:识别终止 3:识别成功 4:识别失败
+        # @param StatusInfo: <p>识别任务状态 0:未识别 1:识别中 2:识别终止 3:识别成功 4:识别失败</p>
         # @type StatusInfo: String
-        # @param Progress: 识别进度
+        # @param Progress: <p>识别进度</p>
         # @type Progress: Float
-        # @param LatestScanTime: 最近扫描时间
+        # @param LatestScanTime: <p>最近扫描时间</p>
         # @type LatestScanTime: String
-        # @param ErrorInfo: 识别失败信息
+        # @param ErrorInfo: <p>识别失败信息</p>
         # @type ErrorInfo: String
-        # @param DbCount: 数据库数量
+        # @param DbCount: <p>数据库数量</p>
         # @type DbCount: Integer
-        # @param CategoryIds: 分类id集合
+        # @param CategoryIds: <p>分类id集合</p>
         # @type CategoryIds: Array
-        # @param CategoryNames: 分类名称集合
+        # @param CategoryNames: <p>分类名称集合</p>
         # @type CategoryNames: Array
-        # @param TaskConfig: 扫描任务配置
+        # @param TaskConfig: <p>扫描任务配置</p>
         # @type TaskConfig: :class:`Tencentcloud::Csip.v20221121.models.DspmSensitiveScanTaskConfig`
-        # @param CategoryDetails: 识别结果分类详情
+        # @param CategoryDetails: <p>识别结果分类详情</p>
         # @type CategoryDetails: Array
+        # @param TaskId: <p>任务ID</p>
+        # @type TaskId: Integer
 
-        attr_accessor :Status, :StatusInfo, :Progress, :LatestScanTime, :ErrorInfo, :DbCount, :CategoryIds, :CategoryNames, :TaskConfig, :CategoryDetails
+        attr_accessor :Status, :StatusInfo, :Progress, :LatestScanTime, :ErrorInfo, :DbCount, :CategoryIds, :CategoryNames, :TaskConfig, :CategoryDetails, :TaskId
 
-        def initialize(status=nil, statusinfo=nil, progress=nil, latestscantime=nil, errorinfo=nil, dbcount=nil, categoryids=nil, categorynames=nil, taskconfig=nil, categorydetails=nil)
+        def initialize(status=nil, statusinfo=nil, progress=nil, latestscantime=nil, errorinfo=nil, dbcount=nil, categoryids=nil, categorynames=nil, taskconfig=nil, categorydetails=nil, taskid=nil)
           @Status = status
           @StatusInfo = statusinfo
           @Progress = progress
@@ -19789,6 +19799,7 @@ module TencentCloud
           @CategoryNames = categorynames
           @TaskConfig = taskconfig
           @CategoryDetails = categorydetails
+          @TaskId = taskid
         end
 
         def deserialize(params)
@@ -19812,28 +19823,29 @@ module TencentCloud
               @CategoryDetails << dspmidentifycategorydetail_tmp
             end
           end
+          @TaskId = params['TaskId']
         end
       end
 
       # dspm资产数据库信息
       class DspmAssetDatabaseInfo < TencentCloud::Common::AbstractModel
-        # @param AssetId: 资产实例id
+        # @param AssetId: <p>资产实例id</p>
         # @type AssetId: String
-        # @param DbName: 数据库名称
+        # @param DbName: <p>数据库名称</p>
         # @type DbName: String
-        # @param TableCount: 总表数
+        # @param TableCount: <p>总表数</p>
         # @type TableCount: Integer
-        # @param SensitiveTableCount: 敏感表数
+        # @param SensitiveTableCount: <p>敏感表数</p>
         # @type SensitiveTableCount: Integer
-        # @param RuleIds: 数据项id集合
+        # @param RuleIds: <p>数据项id集合</p>
         # @type RuleIds: Array
-        # @param RuleNames: 数据项名称集合
+        # @param RuleNames: <p>数据项名称集合</p>
         # @type RuleNames: Array
-        # @param CategoryIds: 分类id集合
+        # @param CategoryIds: <p>分类id集合</p>
         # @type CategoryIds: Array
-        # @param CategoryNames: 分类名称集合
+        # @param CategoryNames: <p>分类名称集合</p>
         # @type CategoryNames: Array
-        # @param CategoryDetails: 分类详情
+        # @param CategoryDetails: <p>分类详情</p>
         # @type CategoryDetails: Array
 
         attr_accessor :AssetId, :DbName, :TableCount, :SensitiveTableCount, :RuleIds, :RuleNames, :CategoryIds, :CategoryNames, :CategoryDetails
@@ -20298,12 +20310,14 @@ module TencentCloud
         # @type AccountOptSupported: Integer
         # @param InstanceType: 实例类型
         # @type InstanceType: Integer
+        # @param ClusterType: 集群类型（MongoDB），与云接口 DescribeDBInstances 的 ClusterType 一致：0-副本集 1-分片；非 MongoDB 资产固定 0
+        # @type ClusterType: Integer
         # @param IdentifyScanSupported: 是否支持敏感数据识别。0 不支持；1 支持
         # @type IdentifyScanSupported: Integer
 
-        attr_accessor :AssetId, :AssetType, :Name, :AccountCount, :PublicIp, :PrivateIp, :WanDomain, :Region, :VpcId, :VpcName, :SubnetId, :SubnetName, :Status, :CreateTime, :Manager, :BindIdentify, :IsManager, :RiskCount, :SafetyAdvice, :LogDeliveryStatus, :LogDeliverySupported, :DataScanInfo, :AppId, :NickName, :Uin, :SecurityAnalyseStatus, :TotalAuditLogs, :LogDeliveryDisableReason, :OldestOnlineLogTimestamp, :NewestOnlineLogTimestamp, :OperationErrorMsg, :AccountOptSupported, :InstanceType, :IdentifyScanSupported
+        attr_accessor :AssetId, :AssetType, :Name, :AccountCount, :PublicIp, :PrivateIp, :WanDomain, :Region, :VpcId, :VpcName, :SubnetId, :SubnetName, :Status, :CreateTime, :Manager, :BindIdentify, :IsManager, :RiskCount, :SafetyAdvice, :LogDeliveryStatus, :LogDeliverySupported, :DataScanInfo, :AppId, :NickName, :Uin, :SecurityAnalyseStatus, :TotalAuditLogs, :LogDeliveryDisableReason, :OldestOnlineLogTimestamp, :NewestOnlineLogTimestamp, :OperationErrorMsg, :AccountOptSupported, :InstanceType, :ClusterType, :IdentifyScanSupported
 
-        def initialize(assetid=nil, assettype=nil, name=nil, accountcount=nil, publicip=nil, privateip=nil, wandomain=nil, region=nil, vpcid=nil, vpcname=nil, subnetid=nil, subnetname=nil, status=nil, createtime=nil, manager=nil, bindidentify=nil, ismanager=nil, riskcount=nil, safetyadvice=nil, logdeliverystatus=nil, logdeliverysupported=nil, datascaninfo=nil, appid=nil, nickname=nil, uin=nil, securityanalysestatus=nil, totalauditlogs=nil, logdeliverydisablereason=nil, oldestonlinelogtimestamp=nil, newestonlinelogtimestamp=nil, operationerrormsg=nil, accountoptsupported=nil, instancetype=nil, identifyscansupported=nil)
+        def initialize(assetid=nil, assettype=nil, name=nil, accountcount=nil, publicip=nil, privateip=nil, wandomain=nil, region=nil, vpcid=nil, vpcname=nil, subnetid=nil, subnetname=nil, status=nil, createtime=nil, manager=nil, bindidentify=nil, ismanager=nil, riskcount=nil, safetyadvice=nil, logdeliverystatus=nil, logdeliverysupported=nil, datascaninfo=nil, appid=nil, nickname=nil, uin=nil, securityanalysestatus=nil, totalauditlogs=nil, logdeliverydisablereason=nil, oldestonlinelogtimestamp=nil, newestonlinelogtimestamp=nil, operationerrormsg=nil, accountoptsupported=nil, instancetype=nil, clustertype=nil, identifyscansupported=nil)
           @AssetId = assetid
           @AssetType = assettype
           @Name = name
@@ -20337,6 +20351,7 @@ module TencentCloud
           @OperationErrorMsg = operationerrormsg
           @AccountOptSupported = accountoptsupported
           @InstanceType = instancetype
+          @ClusterType = clustertype
           @IdentifyScanSupported = identifyscansupported
         end
 
@@ -20387,6 +20402,7 @@ module TencentCloud
           @OperationErrorMsg = params['OperationErrorMsg']
           @AccountOptSupported = params['AccountOptSupported']
           @InstanceType = params['InstanceType']
+          @ClusterType = params['ClusterType']
           @IdentifyScanSupported = params['IdentifyScanSupported']
         end
       end
@@ -20688,15 +20704,15 @@ module TencentCloud
 
       # dspm数据项详情
       class DspmIdentifyRuleDetail < TencentCloud::Common::AbstractModel
-        # @param RuleId: 数据项id
+        # @param RuleId: <p>数据项id</p>
         # @type RuleId: Integer
-        # @param RuleName: 数据项名称
+        # @param RuleName: <p>数据项名称</p>
         # @type RuleName: String
-        # @param LevelId: 敏感级别id
+        # @param LevelId: <p>敏感级别id</p>
         # @type LevelId: Integer
-        # @param LevelName: 敏感级别名称
+        # @param LevelName: <p>敏感级别名称</p>
         # @type LevelName: String
-        # @param LevelScore: 敏感程度
+        # @param LevelScore: <p>敏感程度</p>
         # @type LevelScore: Integer
 
         attr_accessor :RuleId, :RuleName, :LevelId, :LevelName, :LevelScore
@@ -24037,21 +24053,21 @@ module TencentCloud
         end
       end
 
-      # 简要的资产标签元素
+      # 简要的资产标签元素，CSIP 内部使用。
       class MiniTagItem < TencentCloud::Common::AbstractModel
-        # @param Color: <p>标签颜色</p>
+        # @param Color: 标签展示颜色。
         # @type Color: String
-        # @param Description: <p>描述</p>
+        # @param Description: 标签描述。
         # @type Description: String
-        # @param ID: <p>标签ID</p>
+        # @param ID: 标签 ID。
         # @type ID: Integer
-        # @param TagKey: <p>标签键</p>
+        # @param TagKey: 标签键（中文）。
         # @type TagKey: String
-        # @param TagValue: <p>标签值</p>
+        # @param TagValue: 标签值（中文）。
         # @type TagValue: String
-        # @param TagKeyEn: <p>标签键英文</p>
+        # @param TagKeyEn: 标签键（英文）。
         # @type TagKeyEn: String
-        # @param TagValueEn: <p>标签值英文</p>
+        # @param TagValueEn: 标签值（英文）。
         # @type TagValueEn: String
 
         attr_accessor :Color, :Description, :ID, :TagKey, :TagValue, :TagKeyEn, :TagValueEn
@@ -24486,7 +24502,7 @@ module TencentCloud
         # @type IsAgreeAuth: Boolean
         # @param IsRunAtOnce: 是否立即执行
         # @type IsRunAtOnce: Boolean
-        # @param MemberId: 集团账号的成员id
+        # @param MemberId: <p>集团账号的成员id</p>
         # @type MemberId: Array
         # @param ScheduleConfig: 调度周期配置
         # @type ScheduleConfig: :class:`Tencentcloud::Csip.v20221121.models.DspmScheduleConfig`
@@ -28396,11 +28412,11 @@ module TencentCloud
         end
       end
 
-      # 标签
+      # 云上原生标签键值对。
       class Tag < TencentCloud::Common::AbstractModel
-        # @param Name: 标签名称
+        # @param Name: 标签键。
         # @type Name: String
-        # @param Value: 标签内容
+        # @param Value: 标签值。
         # @type Value: String
 
         attr_accessor :Name, :Value

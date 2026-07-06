@@ -70,8 +70,8 @@ module TencentCloud
 
         attr_accessor :AutoScalingGroupId, :ActivityId, :ActivityType, :StatusCode, :StatusMessage, :Cause, :Description, :StartTime, :EndTime, :CreatedTime, :ActivityRelatedInstanceSet, :StatusMessageSimplified, :LifecycleActionResultSet, :DetailedStatusMessageSet, :InvocationResultSet, :RelatedInstanceSet
         extend Gem::Deprecate
-        deprecate :ActivityRelatedInstanceSet, :none, 2026, 4
-        deprecate :ActivityRelatedInstanceSet=, :none, 2026, 4
+        deprecate :ActivityRelatedInstanceSet, :none, 2026, 7
+        deprecate :ActivityRelatedInstanceSet=, :none, 2026, 7
 
         def initialize(autoscalinggroupid=nil, activityid=nil, activitytype=nil, statuscode=nil, statusmessage=nil, cause=nil, description=nil, starttime=nil, endtime=nil, createdtime=nil, activityrelatedinstanceset=nil, statusmessagesimplified=nil, lifecycleactionresultset=nil, detailedstatusmessageset=nil, invocationresultset=nil, relatedinstanceset=nil)
           @AutoScalingGroupId = autoscalinggroupid
@@ -2737,8 +2737,8 @@ module TencentCloud
 
         attr_accessor :SecurityService, :MonitorService, :AutomationService, :AutomationToolsService
         extend Gem::Deprecate
-        deprecate :AutomationService, :none, 2026, 4
-        deprecate :AutomationService=, :none, 2026, 4
+        deprecate :AutomationService, :none, 2026, 7
+        deprecate :AutomationService=, :none, 2026, 7
 
         def initialize(securityservice=nil, monitorservice=nil, automationservice=nil, automationtoolsservice=nil)
           @SecurityService = securityservice
@@ -4992,15 +4992,13 @@ module TencentCloud
 
       # RollbackInstanceRefresh请求参数结构体
       class RollbackInstanceRefreshRequest < TencentCloud::Common::AbstractModel
-        # @param AutoScalingGroupId: 伸缩组ID。可以通过以下方式获取可用的伸缩组ID：
-        # <li>通过登录 [控制台](https://console.cloud.tencent.com/autoscaling/group) 查询伸缩组ID。</li>
-        # <li>通过调用接口 [DescribeAutoScalingGroups](https://cloud.tencent.com/document/api/377/20438) ，取返回信息中的 AutoScalingGroupId 获取伸缩组ID。</li>
+        # @param AutoScalingGroupId: <p>伸缩组ID。可以通过以下方式获取可用的伸缩组ID： </p><li>通过登录 [控制台](https://console.cloud.tencent.com/autoscaling/group) 查询伸缩组ID。</li><li>通过调用接口 [DescribeAutoScalingGroups](https://cloud.tencent.com/document/api/377/20438) ，取返回信息中的 AutoScalingGroupId 获取伸缩组ID。</li>
         # @type AutoScalingGroupId: String
-        # @param RefreshSettings: 刷新设置。
+        # @param RefreshSettings: <p>刷新设置。</p>
         # @type RefreshSettings: :class:`Tencentcloud::As.v20180419.models.RefreshSettings`
-        # @param OriginRefreshActivityId: 原始刷新活动 ID。可以通过调用接口 [DescribeRefreshActivities](https://cloud.tencent.com/document/api/377/99175) ，取返回信息中的 OriginRefreshActivityId 获取原始刷新活动ID。
+        # @param OriginRefreshActivityId: <p>原始刷新活动 ID。可以通过调用接口 <a href="https://cloud.tencent.com/document/api/377/99175">DescribeRefreshActivities</a> ，取返回信息中的 OriginRefreshActivityId 获取原始刷新活动ID。</p>
         # @type OriginRefreshActivityId: String
-        # @param RefreshMode: 刷新模式，目前仅支持滚动更新，默认值为 ROLLING_UPDATE_RESET。
+        # @param RefreshMode: <p>刷新模式，目前仅支持滚动更新，默认值为 ROLLING_UPDATE_RESET。</p>
         # @type RefreshMode: String
 
         attr_accessor :AutoScalingGroupId, :RefreshSettings, :OriginRefreshActivityId, :RefreshMode
@@ -5025,7 +5023,7 @@ module TencentCloud
 
       # RollbackInstanceRefresh返回参数结构体
       class RollbackInstanceRefreshResponse < TencentCloud::Common::AbstractModel
-        # @param RefreshActivityId: 刷新活动 ID。
+        # @param RefreshActivityId: <p>刷新活动 ID。</p>
         # @type RefreshActivityId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

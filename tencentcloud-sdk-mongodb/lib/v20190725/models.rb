@@ -5596,8 +5596,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :Memory, :Volume, :OplogSize, :NodeNum, :ReplicateSetNum, :InMaintenance, :MongosMemory, :AddNodeList, :RemoveNodeList, :Cpu, :MachineCode
         extend Gem::Deprecate
-        deprecate :OplogSize, :none, 2026, 6
-        deprecate :OplogSize=, :none, 2026, 6
+        deprecate :OplogSize, :none, 2026, 7
+        deprecate :OplogSize=, :none, 2026, 7
 
         def initialize(instanceid=nil, memory=nil, volume=nil, oplogsize=nil, nodenum=nil, replicatesetnum=nil, inmaintenance=nil, mongosmemory=nil, addnodelist=nil, removenodelist=nil, cpu=nil, machinecode=nil)
           @InstanceId = instanceid
@@ -5722,13 +5722,11 @@ module TencentCloud
 
       # ModifyInstanceParams请求参数结构体
       class ModifyInstanceParamsRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 指定实例 ID。例如：cmgo-p8vn****。请登录 [MongoDB 控制台](https://console.cloud.tencent.com/mongodb)在实例列表复制实例 ID。
+        # @param InstanceId: <p>指定实例 ID。例如：cmgo-p8vn****。请登录 <a href="https://console.cloud.tencent.com/mongodb">MongoDB 控制台</a>在实例列表复制实例 ID。</p>
         # @type InstanceId: String
-        # @param InstanceParams: 指定需修改的参数名及值。当前所支持的参数名及对应取值范围，请通过 [DescribeInstanceParams ](https://cloud.tencent.com/document/product/240/65903)获取。
+        # @param InstanceParams: <p>指定需修改的参数名及值。当前所支持的参数名及对应取值范围，请通过 <a href="https://cloud.tencent.com/document/product/240/65903">DescribeInstanceParams </a>获取。</p>
         # @type InstanceParams: Array
-        # @param ModifyType: 操作类型，包括：
-        # - IMMEDIATELY：立即调整。
-        # - DELAY：延迟调整。可选字段，不配置该参数则默认为立即调整。
+        # @param ModifyType: <p>操作类型，包括：</p><ul><li>IMMEDIATELY：立即调整。</li><li>DELAY：延迟调整。可选字段，不配置该参数则默认为立即调整。</li></ul>
         # @type ModifyType: String
 
         attr_accessor :InstanceId, :InstanceParams, :ModifyType
@@ -5755,11 +5753,9 @@ module TencentCloud
 
       # ModifyInstanceParams返回参数结构体
       class ModifyInstanceParamsResponse < TencentCloud::Common::AbstractModel
-        # @param Changed: 修改参数配置是否生效。
-        # - true：参数修改后的值已生效。
-        # - false：执行失败。
+        # @param Changed: <p>修改参数配置是否生效。</p><ul><li>true：参数修改后的值已生效。</li><li>false：执行失败。</li></ul>
         # @type Changed: Boolean
-        # @param TaskId: 该参数暂时无意义(兼容前端保留)。
+        # @param TaskId: <p>该参数暂时无意义(兼容前端保留)。</p>
         # @type TaskId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

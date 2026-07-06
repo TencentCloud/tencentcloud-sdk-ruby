@@ -1887,43 +1887,43 @@ module TencentCloud
 
       # CreateAlarmShield请求参数结构体
       class CreateAlarmShieldRequest < TencentCloud::Common::AbstractModel
-        # @param Module: 模块名，这里填“monitor”
+        # @param Module: <p>模块名，这里填“monitor”</p>
         # @type Module: String
-        # @param Name: 屏蔽策略名称
+        # @param Name: <p>屏蔽策略名称</p>
         # @type Name: String
-        # @param MonitorType: 监控类型
+        # @param MonitorType: <p>监控类型</p>
         # @type MonitorType: String
-        # @param NameSpace: 命名空间即策略类型
+        # @param NameSpace: <p>命名空间即策略类型</p>
         # @type NameSpace: String
-        # @param ShieldTimeType: 屏蔽时间类型 FOREVER_SHIELD:永久屏蔽 PERIOD_SHIELD:绝对时间范围屏蔽 LOOP_SHIELD:相对时间范围屏蔽
+        # @param ShieldTimeType: <p>屏蔽时间类型 FOREVER_SHIELD:永久屏蔽 PERIOD_SHIELD:绝对时间范围屏蔽 LOOP_SHIELD:相对时间范围屏蔽</p>
         # @type ShieldTimeType: String
-        # @param ShieldObject: 屏蔽对象
+        # @param ShieldObject: <p>屏蔽对象</p>
         # @type ShieldObject: Array
-        # @param ShieldMetric: 屏蔽指标 为空则为全部指标
+        # @param ShieldMetric: <p>屏蔽指标 为空则为全部指标</p>
         # @type ShieldMetric: Array
-        # @param StartTime: 开始时间 相对时间范围:36000 绝对时间范围:1648742400 缺省:0
+        # @param StartTime: <p>开始时间 相对时间范围:36000 绝对时间范围:1648742400 缺省:0</p>
         # @type StartTime: Integer
-        # @param EndTime: 结束时间 相对时间范围:72000 绝对时间范围:1649088000 缺省:0
+        # @param EndTime: <p>结束时间 相对时间范围:72000 绝对时间范围:1649088000 缺省:0</p>
         # @type EndTime: Integer
-        # @param LoopStartDate: 循环开始日期 2022/04/01 缺省:0
+        # @param LoopStartDate: <p>循环开始日期 2022/04/01 缺省:0</p>
         # @type LoopStartDate: Integer
-        # @param LoopEndDate: 循环结束日期 2022/04/05 缺省:0
+        # @param LoopEndDate: <p>循环结束日期 2022/04/05 缺省:0</p>
         # @type LoopEndDate: Integer
-        # @param ShieldPolicyId: 需要屏蔽的策略ID
+        # @param ShieldPolicyId: <p>需要屏蔽的策略ID</p>
         # @type ShieldPolicyId: String
-        # @param ShieldAlarmLevel: 需要屏蔽的告警等级，取值范围Warn,Remind,Serious
+        # @param ShieldAlarmLevel: <p>需要屏蔽的告警等级，取值范围Warn,Remind,Serious</p>
         # @type ShieldAlarmLevel: Array
-        # @param VersionTag: 屏蔽类型，为OBJNAME是老版本实例名屏蔽，为POLICY是新版本维度匹配
+        # @param VersionTag: <p>屏蔽类型，为OBJNAME是实例屏蔽，为POLICY是策略屏蔽</p>
         # @type VersionTag: String
-        # @param Description: 屏蔽规则的描述
+        # @param Description: <p>屏蔽规则的描述</p>
         # @type Description: String
-        # @param TimeZone:  时区，东八区+8，西八区减8，以此类推
+        # @param TimeZone: <p>时区，东八区+8，西八区减8，以此类推</p>
         # @type TimeZone: Float
-        # @param ShieldEvent: 屏蔽事件 为空则为全部指标
+        # @param ShieldEvent: <p>屏蔽事件 为空则为全部指标</p>
         # @type ShieldEvent: Array
-        # @param ShieldMetricFlag: 是否对指标屏蔽 1=是 0=否
+        # @param ShieldMetricFlag: <p>是否对指标屏蔽 1=是 0=否</p>
         # @type ShieldMetricFlag: Integer
-        # @param ShieldEventFlag: 是否对事件屏蔽 1=是 0=否
+        # @param ShieldEventFlag: <p>是否对事件屏蔽 1=是 0=否</p>
         # @type ShieldEventFlag: Integer
 
         attr_accessor :Module, :Name, :MonitorType, :NameSpace, :ShieldTimeType, :ShieldObject, :ShieldMetric, :StartTime, :EndTime, :LoopStartDate, :LoopEndDate, :ShieldPolicyId, :ShieldAlarmLevel, :VersionTag, :Description, :TimeZone, :ShieldEvent, :ShieldMetricFlag, :ShieldEventFlag
@@ -1975,7 +1975,7 @@ module TencentCloud
 
       # CreateAlarmShield返回参数结构体
       class CreateAlarmShieldResponse < TencentCloud::Common::AbstractModel
-        # @param ShieldId: 屏蔽规则的Id
+        # @param ShieldId: <p>屏蔽规则的Id</p>
         # @type ShieldId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -12173,14 +12173,14 @@ module TencentCloud
 
         attr_accessor :AlarmNotifyPeriod, :AlarmNotifyType, :EventID, :RuleID, :MetricName, :Description
         extend Gem::Deprecate
-        deprecate :AlarmNotifyPeriod, :none, 2026, 6
-        deprecate :AlarmNotifyPeriod=, :none, 2026, 6
-        deprecate :AlarmNotifyType, :none, 2026, 6
-        deprecate :AlarmNotifyType=, :none, 2026, 6
-        deprecate :EventID, :none, 2026, 6
-        deprecate :EventID=, :none, 2026, 6
-        deprecate :RuleID, :none, 2026, 6
-        deprecate :RuleID=, :none, 2026, 6
+        deprecate :AlarmNotifyPeriod, :none, 2026, 7
+        deprecate :AlarmNotifyPeriod=, :none, 2026, 7
+        deprecate :AlarmNotifyType, :none, 2026, 7
+        deprecate :AlarmNotifyType=, :none, 2026, 7
+        deprecate :EventID, :none, 2026, 7
+        deprecate :EventID=, :none, 2026, 7
+        deprecate :RuleID, :none, 2026, 7
+        deprecate :RuleID=, :none, 2026, 7
 
         def initialize(alarmnotifyperiod=nil, alarmnotifytype=nil, eventid=nil, ruleid=nil, metricname=nil, description=nil)
           @AlarmNotifyPeriod = alarmnotifyperiod
@@ -15382,10 +15382,10 @@ module TencentCloud
 
         attr_accessor :URL, :URLRelabelConfig, :BasicAuth, :MaxBlockSize, :Label, :Headers, :RemoteWriteType
         extend Gem::Deprecate
-        deprecate :MaxBlockSize, :none, 2026, 6
-        deprecate :MaxBlockSize=, :none, 2026, 6
-        deprecate :Label, :none, 2026, 6
-        deprecate :Label=, :none, 2026, 6
+        deprecate :MaxBlockSize, :none, 2026, 7
+        deprecate :MaxBlockSize=, :none, 2026, 7
+        deprecate :Label, :none, 2026, 7
+        deprecate :Label=, :none, 2026, 7
 
         def initialize(url=nil, urlrelabelconfig=nil, basicauth=nil, maxblocksize=nil, label=nil, headers=nil, remotewritetype=nil)
           @URL = url

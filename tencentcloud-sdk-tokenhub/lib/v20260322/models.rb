@@ -906,16 +906,31 @@ module TencentCloud
 
       # DescribeModelList返回参数结构体
       class DescribeModelListResponse < TencentCloud::Common::AbstractModel
+        # @param ModelSet: <p>模型列表。</p>
+        # @type ModelSet: Array
+        # @param TotalCount: <p>符合条件的模型总数。</p>
+        # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :ModelSet, :TotalCount, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(modelset=nil, totalcount=nil, requestid=nil)
+          @ModelSet = modelset
+          @TotalCount = totalcount
           @RequestId = requestid
         end
 
         def deserialize(params)
+          unless params['ModelSet'].nil?
+            @ModelSet = []
+            params['ModelSet'].each do |i|
+              model_tmp = Model.new
+              model_tmp.deserialize(i)
+              @ModelSet << model_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -1559,6 +1574,307 @@ module TencentCloud
           @Target = params['Target']
           @CreatedTime = params['CreatedTime']
           @UpdatedTime = params['UpdatedTime']
+        end
+      end
+
+      # 模型信息
+      class Model < TencentCloud::Common::AbstractModel
+        # @param ModelName: <p>模型名称</p>
+        # @type ModelName: String
+        # @param ModelId: <p>模型 ID。</p>
+        # @type ModelId: String
+        # @param DisplayName: <p>模型显示名称。</p>
+        # @type DisplayName: String
+        # @param Description: <p>模型描述。</p>
+        # @type Description: String
+        # @param Summary: <p>模型概要。</p>
+        # @type Summary: String
+        # @param ModelType: <p>模型类型。取值：Text（文本）、Vision（视觉）、Multimodal（多模态）、Speech（语音）、Embedding（向量）。</p><p>枚举值：</p><ul><li>Text： 语言模型</li><li>Vision： 视觉模型</li><li>Multimodal： 多模态模型</li></ul>
+        # @type ModelType: String
+        # @param Brand: <p>模型品牌。</p>
+        # @type Brand: String
+        # @param ModelImage: <p>模型图标。</p>
+        # @type ModelImage: :class:`Tencentcloud::Tokenhub.v20260322.models.ModelImage`
+        # @param Provider: <p>模型供应商。</p>
+        # @type Provider: String
+        # @param Status: <p>模型状态。取值：online（上线）、offline（下线）。</p><p>枚举值：</p><ul><li>online ： 上线</li><li>pre-offline： 预下线</li></ul>
+        # @type Status: String
+        # @param Tags: <p>标签列表。</p>
+        # @type Tags: Array
+        # @param ModelChargingInfo: <p>计费信息列表。</p>
+        # @type ModelChargingInfo: Array
+        # @param ModelSpec: <p>模型规格。</p>
+        # @type ModelSpec: :class:`Tencentcloud::Tokenhub.v20260322.models.ModelSpec`
+        # @param ReleaseAt: <p>发布时间。</p>
+        # @type ReleaseAt: String
+        # @param RecommendWeight: <p>推荐顺序，值越小排序越靠前。</p>
+        # @type RecommendWeight: Integer
+        # @param ModelAccessInfo: <p>模型访问信息。包含模型在各站点和地域的可用性配置。为空时表示未配置地域信息，模型不可用。</p>
+        # @type ModelAccessInfo: :class:`Tencentcloud::Tokenhub.v20260322.models.ModelAccessInfo`
+        # @param FreeTrialInfo: <p>体验包信息。</p>
+        # @type FreeTrialInfo: :class:`Tencentcloud::Tokenhub.v20260322.models.ModelFreeTrialInfo`
+        # @param OfflineAt: <p>模型下线时间，Status=pre-offline 时，会配置模型下线时间</p>
+        # @type OfflineAt: String
+
+        attr_accessor :ModelName, :ModelId, :DisplayName, :Description, :Summary, :ModelType, :Brand, :ModelImage, :Provider, :Status, :Tags, :ModelChargingInfo, :ModelSpec, :ReleaseAt, :RecommendWeight, :ModelAccessInfo, :FreeTrialInfo, :OfflineAt
+
+        def initialize(modelname=nil, modelid=nil, displayname=nil, description=nil, summary=nil, modeltype=nil, brand=nil, modelimage=nil, provider=nil, status=nil, tags=nil, modelcharginginfo=nil, modelspec=nil, releaseat=nil, recommendweight=nil, modelaccessinfo=nil, freetrialinfo=nil, offlineat=nil)
+          @ModelName = modelname
+          @ModelId = modelid
+          @DisplayName = displayname
+          @Description = description
+          @Summary = summary
+          @ModelType = modeltype
+          @Brand = brand
+          @ModelImage = modelimage
+          @Provider = provider
+          @Status = status
+          @Tags = tags
+          @ModelChargingInfo = modelcharginginfo
+          @ModelSpec = modelspec
+          @ReleaseAt = releaseat
+          @RecommendWeight = recommendweight
+          @ModelAccessInfo = modelaccessinfo
+          @FreeTrialInfo = freetrialinfo
+          @OfflineAt = offlineat
+        end
+
+        def deserialize(params)
+          @ModelName = params['ModelName']
+          @ModelId = params['ModelId']
+          @DisplayName = params['DisplayName']
+          @Description = params['Description']
+          @Summary = params['Summary']
+          @ModelType = params['ModelType']
+          @Brand = params['Brand']
+          unless params['ModelImage'].nil?
+            @ModelImage = ModelImage.new
+            @ModelImage.deserialize(params['ModelImage'])
+          end
+          @Provider = params['Provider']
+          @Status = params['Status']
+          @Tags = params['Tags']
+          unless params['ModelChargingInfo'].nil?
+            @ModelChargingInfo = []
+            params['ModelChargingInfo'].each do |i|
+              modelcharginginfo_tmp = ModelChargingInfo.new
+              modelcharginginfo_tmp.deserialize(i)
+              @ModelChargingInfo << modelcharginginfo_tmp
+            end
+          end
+          unless params['ModelSpec'].nil?
+            @ModelSpec = ModelSpec.new
+            @ModelSpec.deserialize(params['ModelSpec'])
+          end
+          @ReleaseAt = params['ReleaseAt']
+          @RecommendWeight = params['RecommendWeight']
+          unless params['ModelAccessInfo'].nil?
+            @ModelAccessInfo = ModelAccessInfo.new
+            @ModelAccessInfo.deserialize(params['ModelAccessInfo'])
+          end
+          unless params['FreeTrialInfo'].nil?
+            @FreeTrialInfo = ModelFreeTrialInfo.new
+            @FreeTrialInfo.deserialize(params['FreeTrialInfo'])
+          end
+          @OfflineAt = params['OfflineAt']
+        end
+      end
+
+      # 模型访问信息
+      class ModelAccessInfo < TencentCloud::Common::AbstractModel
+        # @param ModelSiteRegions: 各站点的地域可用性列表。为空时表示未配置地域信息，模型不可用。
+        # @type ModelSiteRegions: Array
+
+        attr_accessor :ModelSiteRegions
+
+        def initialize(modelsiteregions=nil)
+          @ModelSiteRegions = modelsiteregions
+        end
+
+        def deserialize(params)
+          unless params['ModelSiteRegions'].nil?
+            @ModelSiteRegions = []
+            params['ModelSiteRegions'].each do |i|
+              modelsiteregion_tmp = ModelSiteRegion.new
+              modelsiteregion_tmp.deserialize(i)
+              @ModelSiteRegions << modelsiteregion_tmp
+            end
+          end
+        end
+      end
+
+      # 模型计费信息
+      class ModelChargingInfo < TencentCloud::Common::AbstractModel
+        # @param Type: 计费类型。取值：Uniform（统一计费）、Tiered（阶梯计费）。
+        # @type Type: String
+        # @param Name: 计费名称，阶梯计费时表示区间标识，统一计费为空。
+        # @type Name: String
+        # @param Scenario: 计费场景，用于区分同一产品不同功能的计费。
+        # @type Scenario: String
+        # @param ChargingItems: 计费条目列表，顺序即前端展示顺序。
+        # @type ChargingItems: Array
+        # @param ChargeUnit: 计费单位。取值：TOKEN（词元）、COUNT（次）、CREDIT（积分）、PICTURE（张）。
+        # @type ChargeUnit: String
+        # @param Reference: 计费参考链接。
+        # @type Reference: String
+
+        attr_accessor :Type, :Name, :Scenario, :ChargingItems, :ChargeUnit, :Reference
+
+        def initialize(type=nil, name=nil, scenario=nil, chargingitems=nil, chargeunit=nil, reference=nil)
+          @Type = type
+          @Name = name
+          @Scenario = scenario
+          @ChargingItems = chargingitems
+          @ChargeUnit = chargeunit
+          @Reference = reference
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Name = params['Name']
+          @Scenario = params['Scenario']
+          unless params['ChargingItems'].nil?
+            @ChargingItems = []
+            params['ChargingItems'].each do |i|
+              modelchargingitem_tmp = ModelChargingItem.new
+              modelchargingitem_tmp.deserialize(i)
+              @ChargingItems << modelchargingitem_tmp
+            end
+          end
+          @ChargeUnit = params['ChargeUnit']
+          @Reference = params['Reference']
+        end
+      end
+
+      # 计费条目
+      class ModelChargingItem < TencentCloud::Common::AbstractModel
+        # @param PriceName: 价格维度标识。取值：Input（输入）、Output（输出）、Cache（缓存命中）、Thinking（思考）、BatchInput（批量输入）、BatchOutput（批量输出）、BatchCache（批量缓存命中）、ImageInput（输入图片）、ImageOutput（输出图片）、Search（搜索调用）。
+        # @type PriceName: String
+        # @param DisplayName: 价格维度展示名，后端直接提供当前语言文本（如 输入、Input），前端无需翻译。
+        # @type DisplayName: String
+        # @param Price: 价格数值。
+        # @type Price: String
+        # @param PriceUnit: 价格单位，后端直接提供当前语言文本（如 元/百万tokens、元/张、积分/次）。
+        # @type PriceUnit: String
+
+        attr_accessor :PriceName, :DisplayName, :Price, :PriceUnit
+
+        def initialize(pricename=nil, displayname=nil, price=nil, priceunit=nil)
+          @PriceName = pricename
+          @DisplayName = displayname
+          @Price = price
+          @PriceUnit = priceunit
+        end
+
+        def deserialize(params)
+          @PriceName = params['PriceName']
+          @DisplayName = params['DisplayName']
+          @Price = params['Price']
+          @PriceUnit = params['PriceUnit']
+        end
+      end
+
+      # 模型体验包信息
+      class ModelFreeTrialInfo < TencentCloud::Common::AbstractModel
+        # @param RecommendWeight: 推荐顺序，值越小排序越靠前。为空表示使用模型默认权重。
+        # @type RecommendWeight: Integer
+        # @param CapacitySize: 体验包容量大小。
+        # @type CapacitySize: Integer
+        # @param Unit: 容量单位。取值：token。
+        # @type Unit: String
+        # @param ValidityDays: 有效期天数（如90天）。为空表示不限期。
+        # @type ValidityDays: Integer
+
+        attr_accessor :RecommendWeight, :CapacitySize, :Unit, :ValidityDays
+
+        def initialize(recommendweight=nil, capacitysize=nil, unit=nil, validitydays=nil)
+          @RecommendWeight = recommendweight
+          @CapacitySize = capacitysize
+          @Unit = unit
+          @ValidityDays = validitydays
+        end
+
+        def deserialize(params)
+          @RecommendWeight = params['RecommendWeight']
+          @CapacitySize = params['CapacitySize']
+          @Unit = params['Unit']
+          @ValidityDays = params['ValidityDays']
+        end
+      end
+
+      # 模型图标信息
+      class ModelImage < TencentCloud::Common::AbstractModel
+        # @param Url: 图标 URL。
+        # @type Url: String
+
+        attr_accessor :Url
+
+        def initialize(url=nil)
+          @Url = url
+        end
+
+        def deserialize(params)
+          @Url = params['Url']
+        end
+      end
+
+      # 模型上线的站点、地域信息
+      class ModelSiteRegion < TencentCloud::Common::AbstractModel
+        # @param Site: 站点标识。取值：domestic（国内站）、international（国际站）。
+        # @type Site: String
+        # @param Regions: 该站点下可用的地域列表，遵循腾讯云标准地域编码（如 ap-guangzhou、ap-beijing、ap-singapore、na-siliconvalley 等）。为空数组时表示该站点无可用地域。
+        # @type Regions: Array
+
+        attr_accessor :Site, :Regions
+
+        def initialize(site=nil, regions=nil)
+          @Site = site
+          @Regions = regions
+        end
+
+        def deserialize(params)
+          @Site = params['Site']
+          @Regions = params['Regions']
+        end
+      end
+
+      # 模型规格信息
+      class ModelSpec < TencentCloud::Common::AbstractModel
+        # @param TPM: 每分钟处理 Token 数（Tokens Per Minute）。
+        # @type TPM: String
+        # @param QPM: 每分钟请求数（Queries Per Minute）。
+        # @type QPM: String
+        # @param MaxInputToken: 最大输入 Token 长度。
+        # @type MaxInputToken: String
+        # @param MaxOutputToken: 最大输出 Token 长度。
+        # @type MaxOutputToken: String
+        # @param ContextLength: 上下文窗口长度。
+        # @type ContextLength: String
+        # @param Concurrency: 并发数。
+        # @type Concurrency: String
+        # @param InputDescription: 输入要求描述。
+        # @type InputDescription: String
+
+        attr_accessor :TPM, :QPM, :MaxInputToken, :MaxOutputToken, :ContextLength, :Concurrency, :InputDescription
+
+        def initialize(tpm=nil, qpm=nil, maxinputtoken=nil, maxoutputtoken=nil, contextlength=nil, concurrency=nil, inputdescription=nil)
+          @TPM = tpm
+          @QPM = qpm
+          @MaxInputToken = maxinputtoken
+          @MaxOutputToken = maxoutputtoken
+          @ContextLength = contextlength
+          @Concurrency = concurrency
+          @InputDescription = inputdescription
+        end
+
+        def deserialize(params)
+          @TPM = params['TPM']
+          @QPM = params['QPM']
+          @MaxInputToken = params['MaxInputToken']
+          @MaxOutputToken = params['MaxOutputToken']
+          @ContextLength = params['ContextLength']
+          @Concurrency = params['Concurrency']
+          @InputDescription = params['InputDescription']
         end
       end
 

@@ -650,14 +650,23 @@ module TencentCloud
         # @type ResourceTags: Array
         # @param GoodsNum: <p>单次批量创建 Memory 实例的数量。取值范围为 1-50。</p>
         # @type GoodsNum: Integer
+        # @param PayMode: <p>计费模式。</p><p>枚举值：</p><ul><li>0： 按量计费。</li><li>1： 包年包月。</li></ul>
+        # @type PayMode: Integer
+        # @param PayPeriod: <p>包年包月周期</p>
+        # @type PayPeriod: Integer
+        # @param AutoRenew: <p>是否自动续费</p>
+        # @type AutoRenew: Integer
 
-        attr_accessor :Name, :Description, :ResourceTags, :GoodsNum
+        attr_accessor :Name, :Description, :ResourceTags, :GoodsNum, :PayMode, :PayPeriod, :AutoRenew
 
-        def initialize(name=nil, description=nil, resourcetags=nil, goodsnum=nil)
+        def initialize(name=nil, description=nil, resourcetags=nil, goodsnum=nil, paymode=nil, payperiod=nil, autorenew=nil)
           @Name = name
           @Description = description
           @ResourceTags = resourcetags
           @GoodsNum = goodsnum
+          @PayMode = paymode
+          @PayPeriod = payperiod
+          @AutoRenew = autorenew
         end
 
         def deserialize(params)
@@ -672,6 +681,9 @@ module TencentCloud
             end
           end
           @GoodsNum = params['GoodsNum']
+          @PayMode = params['PayMode']
+          @PayPeriod = params['PayPeriod']
+          @AutoRenew = params['AutoRenew']
         end
       end
 
@@ -1359,6 +1371,8 @@ module TencentCloud
         # @type Status: Integer
         # @param PayMode: <p>Memory 实例计费模式。</p><ul><li>-1：免费体验。</li><li>0：包年包月。</li><li>1：按量计费。</li></ul>
         # @type PayMode: Integer
+        # @param AutoRenew: <p>是否自动续费</p><p>枚举值：</p><ul><li>0： 不自动续费</li><li>1： 自动续费</li></ul>
+        # @type AutoRenew: Integer
         # @param Version: <p>Memory 版本信息：v1。</p>
         # @type Version: String
         # @param MemoryUsage: <p>Memory 当前已写入的记忆条数。</p>
@@ -1384,9 +1398,9 @@ module TencentCloud
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :SpaceId, :Name, :Description, :AppId, :Region, :ResourceTags, :Status, :PayMode, :Version, :MemoryUsage, :MemoryLimit, :CreditUsage, :CreditLimit, :AccessUrl, :WanAccessUrl, :CreatedAt, :ExpiredAt, :IsolatedAt, :DestroyAt, :RequestId
+        attr_accessor :SpaceId, :Name, :Description, :AppId, :Region, :ResourceTags, :Status, :PayMode, :AutoRenew, :Version, :MemoryUsage, :MemoryLimit, :CreditUsage, :CreditLimit, :AccessUrl, :WanAccessUrl, :CreatedAt, :ExpiredAt, :IsolatedAt, :DestroyAt, :RequestId
 
-        def initialize(spaceid=nil, name=nil, description=nil, appid=nil, region=nil, resourcetags=nil, status=nil, paymode=nil, version=nil, memoryusage=nil, memorylimit=nil, creditusage=nil, creditlimit=nil, accessurl=nil, wanaccessurl=nil, createdat=nil, expiredat=nil, isolatedat=nil, destroyat=nil, requestid=nil)
+        def initialize(spaceid=nil, name=nil, description=nil, appid=nil, region=nil, resourcetags=nil, status=nil, paymode=nil, autorenew=nil, version=nil, memoryusage=nil, memorylimit=nil, creditusage=nil, creditlimit=nil, accessurl=nil, wanaccessurl=nil, createdat=nil, expiredat=nil, isolatedat=nil, destroyat=nil, requestid=nil)
           @SpaceId = spaceid
           @Name = name
           @Description = description
@@ -1395,6 +1409,7 @@ module TencentCloud
           @ResourceTags = resourcetags
           @Status = status
           @PayMode = paymode
+          @AutoRenew = autorenew
           @Version = version
           @MemoryUsage = memoryusage
           @MemoryLimit = memorylimit
@@ -1425,6 +1440,7 @@ module TencentCloud
           end
           @Status = params['Status']
           @PayMode = params['PayMode']
+          @AutoRenew = params['AutoRenew']
           @Version = params['Version']
           @MemoryUsage = params['MemoryUsage']
           @MemoryLimit = params['MemoryLimit']
@@ -2033,15 +2049,19 @@ module TencentCloud
       class RecoverMemoryPlusSpaceRequest < TencentCloud::Common::AbstractModel
         # @param SpaceIds: <p>指定需要恢复的 Memory 实例 ID 列表。</p>
         # @type SpaceIds: Array
+        # @param PayPeriod: <p>包年包月续费周期</p><p>单位：月</p>
+        # @type PayPeriod: Integer
 
-        attr_accessor :SpaceIds
+        attr_accessor :SpaceIds, :PayPeriod
 
-        def initialize(spaceids=nil)
+        def initialize(spaceids=nil, payperiod=nil)
           @SpaceIds = spaceids
+          @PayPeriod = payperiod
         end
 
         def deserialize(params)
           @SpaceIds = params['SpaceIds']
+          @PayPeriod = params['PayPeriod']
         end
       end
 

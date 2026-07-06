@@ -1399,7 +1399,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 日志审计日志查询
+        # 请使用 [日志分析SearchLog接口](https://cloud.tencent.com/document/product/1132/118363)
 
         # @param request: Request instance for DescribeLogs.
         # @type request: :class:`Tencentcloud::cfw::V20190904::DescribeLogsRequest`
@@ -1697,6 +1697,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeNatFwVpcDnsLstResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取日志离线导出任务列表
+
+        # @param request: Request instance for DescribeOfflineExportTask.
+        # @type request: :class:`Tencentcloud::cfw::V20190904::DescribeOfflineExportTaskRequest`
+        # @rtype: :class:`Tencentcloud::cfw::V20190904::DescribeOfflineExportTaskResponse`
+        def DescribeOfflineExportTask(request)
+          body = send_request('DescribeOfflineExportTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeOfflineExportTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取日志离线导出任务文件下载临时凭证
+
+        # @param request: Request instance for DescribeOfflineExportTemporaryCredentials.
+        # @type request: :class:`Tencentcloud::cfw::V20190904::DescribeOfflineExportTemporaryCredentialsRequest`
+        # @rtype: :class:`Tencentcloud::cfw::V20190904::DescribeOfflineExportTemporaryCredentialsResponse`
+        def DescribeOfflineExportTemporaryCredentials(request)
+          body = send_request('DescribeOfflineExportTemporaryCredentials', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeOfflineExportTemporaryCredentialsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2081,6 +2129,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ExpandCfwVerticalResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 日志审计日志离线导出
+
+        # @param request: Request instance for ExportLogsOffline.
+        # @type request: :class:`Tencentcloud::cfw::V20190904::ExportLogsOfflineRequest`
+        # @rtype: :class:`Tencentcloud::cfw::V20190904::ExportLogsOfflineResponse`
+        def ExportLogsOffline(request)
+          body = send_request('ExportLogsOffline', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ExportLogsOfflineResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -3117,6 +3189,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = RemoveNatAcRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除日志离线导出任务
+
+        # @param request: Request instance for RemoveOfflineExportTask.
+        # @type request: :class:`Tencentcloud::cfw::V20190904::RemoveOfflineExportTaskRequest`
+        # @rtype: :class:`Tencentcloud::cfw::V20190904::RemoveOfflineExportTaskResponse`
+        def RemoveOfflineExportTask(request)
+          body = send_request('RemoveOfflineExportTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RemoveOfflineExportTaskResponse.new
             model.deserialize(response['Response'])
             model
           else

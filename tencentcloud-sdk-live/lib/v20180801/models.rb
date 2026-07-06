@@ -12174,43 +12174,29 @@ module TencentCloud
 
       # 直播域名信息
       class DomainInfo < TencentCloud::Common::AbstractModel
-        # @param Name: 直播域名。
+        # @param Name: <p>直播域名。</p>
         # @type Name: String
-        # @param Type: 域名类型:
-        # 0: 推流。
-        # 1: 播放。
+        # @param Type: <p>域名类型:<br>0: 推流。<br>1: 播放。</p>
         # @type Type: Integer
-        # @param Status: 域名状态:
-        # 0: 停用。
-        # 1: 启用。
+        # @param Status: <p>域名状态:<br>0: 停用。<br>1: 启用。</p>
         # @type Status: Integer
-        # @param CreateTime: 添加时间。
-        # 注：此字段为北京时间（UTC+8时区）。
+        # @param CreateTime: <p>添加时间。<br>注：此字段为北京时间（UTC+8时区）。</p>
         # @type CreateTime: String
-        # @param BCName: 是否有 CName 到固定规则域名:
-        # 0: 否。
-        # 1: 是。
+        # @param BCName: <p>是否有 CName 到固定规则域名:<br>0: 否。<br>1: 是。</p>
         # @type BCName: Integer
-        # @param TargetDomain: cname 对应的域名。
+        # @param TargetDomain: <p>cname 对应的域名。</p>
         # @type TargetDomain: String
-        # @param PlayType: 播放区域，只在 Type=1 时该参数有意义。
-        # 1: 国内。
-        # 2: 全球。
-        # 3: 海外。
+        # @param PlayType: <p>播放区域，只在 Type=1 时该参数有意义。<br>1: 国内。<br>2: 全球。<br>3: 海外。</p>
         # @type PlayType: Integer
-        # @param IsDelayLive: 是否慢直播:
-        # 0: 普通直播。
-        # 1: 慢直播。
+        # @param IsDelayLive: <p>是否慢直播:<br>0: 普通直播。<br>1: 慢直播。</p>
         # @type IsDelayLive: Integer
-        # @param CurrentCName: 当前客户使用的 cname 信息。
+        # @param CurrentCName: <p>当前客户使用的 cname 信息。</p>
         # @type CurrentCName: String
-        # @param RentTag: 失效参数，可忽略。
+        # @param RentTag: <p>失效参数，可忽略。</p>
         # @type RentTag: Integer
-        # @param RentExpireTime: 失效参数，可忽略。
-        # 注：此字段为北京时间（UTC+8时区）。
+        # @param RentExpireTime: <p>失效参数，可忽略。<br>注：此字段为北京时间（UTC+8时区）。</p>
         # @type RentExpireTime: String
-        # @param IsMiniProgramLive: 0: 标准直播。
-        # 1: 小程序直播。
+        # @param IsMiniProgramLive: <p>0: 标准直播。<br>1: 小程序直播。</p>
         # @type IsMiniProgramLive: Integer
 
         attr_accessor :Name, :Type, :Status, :CreateTime, :BCName, :TargetDomain, :PlayType, :IsDelayLive, :CurrentCName, :RentTag, :RentExpireTime, :IsMiniProgramLive

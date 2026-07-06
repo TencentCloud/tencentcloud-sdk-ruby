@@ -383,24 +383,26 @@ module TencentCloud
 
       # 客户端节点属性
       class ClientNodeAttribute < TencentCloud::Common::AbstractModel
-        # @param ClientNodeIp: 客户端节点IP
+        # @param ClientNodeIp: <p>客户端节点IP</p>
         # @type ClientNodeIp: String
-        # @param Status: 客户端节点服务状态, Active(运行中), Adding(添加中), Destroying(销毁中), Down(已停止)
+        # @param Status: <p>客户端节点服务状态, Active(运行中), Adding(添加中), Destroying(销毁中), Down(已停止)</p>
         # @type Status: String
-        # @param ClientType: 客户端节点类型，extend(扩展节点)，manager(管理节点)
+        # @param ClientType: <p>客户端节点类型，extend(扩展节点)，manager(管理节点)</p>
         # @type ClientType: String
-        # @param VpcId: 节点所属vpcid
+        # @param VpcId: <p>节点所属vpcid</p>
         # @type VpcId: String
-        # @param SubnetId: 节点所属子网id
+        # @param SubnetId: <p>节点所属子网id</p>
         # @type SubnetId: String
-        # @param InstanceId: cvmId
+        # @param InstanceId: <p>cvmId</p>
         # @type InstanceId: String
-        # @param MountPoint: 自定义挂载点
+        # @param MountPoint: <p>自定义挂载点</p>
         # @type MountPoint: String
+        # @param ClusterId: <p>客户端集群id</p>
+        # @type ClusterId: String
 
-        attr_accessor :ClientNodeIp, :Status, :ClientType, :VpcId, :SubnetId, :InstanceId, :MountPoint
+        attr_accessor :ClientNodeIp, :Status, :ClientType, :VpcId, :SubnetId, :InstanceId, :MountPoint, :ClusterId
 
-        def initialize(clientnodeip=nil, status=nil, clienttype=nil, vpcid=nil, subnetid=nil, instanceid=nil, mountpoint=nil)
+        def initialize(clientnodeip=nil, status=nil, clienttype=nil, vpcid=nil, subnetid=nil, instanceid=nil, mountpoint=nil, clusterid=nil)
           @ClientNodeIp = clientnodeip
           @Status = status
           @ClientType = clienttype
@@ -408,6 +410,7 @@ module TencentCloud
           @SubnetId = subnetid
           @InstanceId = instanceid
           @MountPoint = mountpoint
+          @ClusterId = clusterid
         end
 
         def deserialize(params)
@@ -418,6 +421,7 @@ module TencentCloud
           @SubnetId = params['SubnetId']
           @InstanceId = params['InstanceId']
           @MountPoint = params['MountPoint']
+          @ClusterId = params['ClusterId']
         end
       end
 
@@ -476,37 +480,51 @@ module TencentCloud
 
       # CreateDataRepositoryTask请求参数结构体
       class CreateDataRepositoryTaskRequest < TencentCloud::Common::AbstractModel
-        # @param TaskType: 数据流通任务类型, FS_TO_COS(文件系统到COS Bucket),或者COS_TO_FS(COS Bucket到文件系统)
+        # @param TaskType: <p>数据流通任务类型, FS_TO_COS(文件系统到COS Bucket),或者COS_TO_FS(COS Bucket到文件系统)</p>
         # @type TaskType: String
-        # @param Bucket: COS存储桶名
+        # @param Bucket: <p>COS存储桶名</p>
         # @type Bucket: String
-        # @param FileSystemId: 文件系统ID
+        # @param FileSystemId: <p>文件系统ID</p>
         # @type FileSystemId: String
-        # @param TaskPath: 对于FS_TO_COS, TaskPath是Bucket映射目录的相对路径, 对于COS_TO_FS是COS上的路径。如果置为空, 则表示全部数据
+        # @param TaskPath: <p>对于FS_TO_COS, TaskPath是Bucket映射目录的相对路径, 对于COS_TO_FS是COS上的路径。如果置为空, 则表示全部数据</p>
         # @type TaskPath: String
-        # @param TaskName: 任务名称
+        # @param TaskName: <p>任务名称</p>
         # @type TaskName: String
-        # @param RepositoryType: 数据流通方式 MSP_AFM 手动加载  RAW_AFM 按需加载
+        # @param IsTaskPathAbsolute: <p>任务路径是否表示绝对路径（暂时仅支持沉降使用）</p>
+        # @type IsTaskPathAbsolute: Boolean
+        # @param RepositoryType: <p>数据流通方式 MSP_AFM 手动加载  RAW_AFM 按需加载</p>
         # @type RepositoryType: String
-        # @param TextLocation: 文件列表下载地址，以http开头
+        # @param TextLocation: <p>文件列表下载地址，以http开头</p>
         # @type TextLocation: String
-        # @param EnableDataFlowSubPath: 是否开启自定义路径(暂时仅供预热使用)
+        # @param EnableDataFlowSubPath: <p>是否开启自定义路径(暂时仅供预热使用)</p>
         # @type EnableDataFlowSubPath: Boolean
-        # @param DataFlowSubPath: 自定义路径(暂时仅供预热使用)
+        # @param DataFlowSubPath: <p>自定义路径(暂时仅供预热使用)</p>
         # @type DataFlowSubPath: String
+        # @param EnableCustomDestPath: <p>是否开启自定义目的路径（预热任务表示本地路径，沉降任务表示COS桶前缀）</p>
+        # @type EnableCustomDestPath: Boolean
+        # @param CustomDestPath: <p>自定义目的路径（预热任务表示本地路径，沉降任务表示COS桶前缀）</p>
+        # @type CustomDestPath: String
 
-        attr_accessor :TaskType, :Bucket, :FileSystemId, :TaskPath, :TaskName, :RepositoryType, :TextLocation, :EnableDataFlowSubPath, :DataFlowSubPath
+        attr_accessor :TaskType, :Bucket, :FileSystemId, :TaskPath, :TaskName, :IsTaskPathAbsolute, :RepositoryType, :TextLocation, :EnableDataFlowSubPath, :DataFlowSubPath, :EnableCustomDestPath, :CustomDestPath
+        extend Gem::Deprecate
+        deprecate :EnableDataFlowSubPath, :none, 2026, 7
+        deprecate :EnableDataFlowSubPath=, :none, 2026, 7
+        deprecate :DataFlowSubPath, :none, 2026, 7
+        deprecate :DataFlowSubPath=, :none, 2026, 7
 
-        def initialize(tasktype=nil, bucket=nil, filesystemid=nil, taskpath=nil, taskname=nil, repositorytype=nil, textlocation=nil, enabledataflowsubpath=nil, dataflowsubpath=nil)
+        def initialize(tasktype=nil, bucket=nil, filesystemid=nil, taskpath=nil, taskname=nil, istaskpathabsolute=nil, repositorytype=nil, textlocation=nil, enabledataflowsubpath=nil, dataflowsubpath=nil, enablecustomdestpath=nil, customdestpath=nil)
           @TaskType = tasktype
           @Bucket = bucket
           @FileSystemId = filesystemid
           @TaskPath = taskpath
           @TaskName = taskname
+          @IsTaskPathAbsolute = istaskpathabsolute
           @RepositoryType = repositorytype
           @TextLocation = textlocation
           @EnableDataFlowSubPath = enabledataflowsubpath
           @DataFlowSubPath = dataflowsubpath
+          @EnableCustomDestPath = enablecustomdestpath
+          @CustomDestPath = customdestpath
         end
 
         def deserialize(params)
@@ -515,16 +533,19 @@ module TencentCloud
           @FileSystemId = params['FileSystemId']
           @TaskPath = params['TaskPath']
           @TaskName = params['TaskName']
+          @IsTaskPathAbsolute = params['IsTaskPathAbsolute']
           @RepositoryType = params['RepositoryType']
           @TextLocation = params['TextLocation']
           @EnableDataFlowSubPath = params['EnableDataFlowSubPath']
           @DataFlowSubPath = params['DataFlowSubPath']
+          @EnableCustomDestPath = params['EnableCustomDestPath']
+          @CustomDestPath = params['CustomDestPath']
         end
       end
 
       # CreateDataRepositoryTask返回参数结构体
       class CreateDataRepositoryTaskResponse < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务ID
+        # @param TaskId: <p>任务ID</p>
         # @type TaskId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -567,8 +588,8 @@ module TencentCloud
 
         attr_accessor :Name, :Description, :VpcId, :SubnetId, :Zone, :Type, :Tag, :GooseFSxBuildElements, :SecurityGroupId, :ClusterPort
         extend Gem::Deprecate
-        deprecate :Type, :none, 2026, 5
-        deprecate :Type=, :none, 2026, 5
+        deprecate :Type, :none, 2026, 7
+        deprecate :Type=, :none, 2026, 7
 
         def initialize(name=nil, description=nil, vpcid=nil, subnetid=nil, zone=nil, type=nil, tag=nil, goosefsxbuildelements=nil, securitygroupid=nil, clusterport=nil)
           @Name = name
@@ -1693,8 +1714,8 @@ module TencentCloud
 
         attr_accessor :Model, :Capacity, :MappedBucketList
         extend Gem::Deprecate
-        deprecate :MappedBucketList, :none, 2026, 5
-        deprecate :MappedBucketList=, :none, 2026, 5
+        deprecate :MappedBucketList, :none, 2026, 7
+        deprecate :MappedBucketList=, :none, 2026, 7
 
         def initialize(model=nil, capacity=nil, mappedbucketlist=nil)
           @Model = model

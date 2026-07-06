@@ -899,55 +899,46 @@ module TencentCloud
 
       # 活体一比一详情
       class DetectDetail < TencentCloud::Common::AbstractModel
-        # @param ReqTime: 请求时间戳。
+        # @param ReqTime: <p>请求时间戳。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReqTime: String
-        # @param Seq: 本次活体一比一请求的唯一标记。
+        # @param Seq: <p>本次活体一比一请求的唯一标记。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Seq: String
-        # @param Idcard: 参与本次活体一比一的身份证号。
+        # @param Idcard: <p>参与本次活体一比一的身份证号。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Idcard: String
-        # @param Name: 参与本次活体一比一的姓名。
+        # @param Name: <p>参与本次活体一比一的姓名。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
-        # @param Sim: 本次活体一比一的相似度。
+        # @param Sim: <p>本次活体一比一的相似度。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Sim: String
-        # @param IsNeedCharge: 本次活体一比一是否收费
+        # @param IsNeedCharge: <p>本次活体一比一是否收费</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsNeedCharge: Boolean
-        # @param Errcode: 本次活体一比一最终结果。0为成功
+        # @param Errcode: <p>本次活体一比一最终结果。0为成功</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Errcode: Integer
-        # @param Errmsg: 本次活体一比一最终结果描述。（仅描述用，文案更新时不会通知。）
+        # @param Errmsg: <p>本次活体一比一最终结果描述。（仅描述用，文案更新时不会通知。）</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Errmsg: String
-        # @param Livestatus: 本次活体结果。0为成功
+        # @param Livestatus: <p>本次活体结果。0为成功</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Livestatus: Integer
-        # @param Livemsg: 本次活体结果描述。（仅描述用，文案更新时不会通知。）
+        # @param Livemsg: <p>本次活体结果描述。（仅描述用，文案更新时不会通知。）</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Livemsg: String
-        # @param Comparestatus: 本次一比一结果。0为成功
+        # @param Comparestatus: <p>本次一比一结果。0为成功</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Comparestatus: Integer
-        # @param Comparemsg: 本次一比一结果描述。（仅描述用，文案更新时不会通知。）
+        # @param Comparemsg: <p>本次一比一结果描述。（仅描述用，文案更新时不会通知。）</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Comparemsg: String
-        # @param CompareLibType: 比对库源类型。包括：
-        # 公安商业库；
-        # 业务方自有库（用户上传照片、客户的混合库、混合部署库）；
-        # 二次验证库；
-        # 人工审核库；
+        # @param CompareLibType: <p>比对库源类型。包括：商业库；业务方自有库（用户上传照片、客户的混合库、混合部署库）；二次验证库；人工审核库；</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CompareLibType: String
-        # @param LivenessMode: 枚举活体检测类型：
-        # 0：未知
-        # 1：数字活体
-        # 2：动作活体
-        # 3：静默活体
-        # 4：一闪活体（动作+光线）
+        # @param LivenessMode: <p>枚举活体检测类型：<br>0：未知<br>1：数字活体<br>2：动作活体<br>3：静默活体<br>4：一闪活体（动作+光线）</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LivenessMode: Integer
 

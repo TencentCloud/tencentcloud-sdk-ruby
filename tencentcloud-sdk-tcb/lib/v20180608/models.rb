@@ -242,17 +242,25 @@ module TencentCloud
         # @type AllocateId: String
         # @param ExternalAppId: <p>客户平台的应用标识，如果没有则不传</p>
         # @type ExternalAppId: String
+        # @param ExternalTag: <p>自定义标签</p><p>参数格式：逗号分隔的 key=value 对，key/value 仅允许字母、数字、下划线。k1=v1,k2=v2</p>
+        # @type ExternalTag: String
+        # @param RequireFunction: <p>是否需要云函数</p><p>默认值：false</p>
+        # @type RequireFunction: Boolean
 
-        attr_accessor :AllocateId, :ExternalAppId
+        attr_accessor :AllocateId, :ExternalAppId, :ExternalTag, :RequireFunction
 
-        def initialize(allocateid=nil, externalappid=nil)
+        def initialize(allocateid=nil, externalappid=nil, externaltag=nil, requirefunction=nil)
           @AllocateId = allocateid
           @ExternalAppId = externalappid
+          @ExternalTag = externaltag
+          @RequireFunction = requirefunction
         end
 
         def deserialize(params)
           @AllocateId = params['AllocateId']
           @ExternalAppId = params['ExternalAppId']
+          @ExternalTag = params['ExternalTag']
+          @RequireFunction = params['RequireFunction']
         end
       end
 
@@ -8493,8 +8501,8 @@ module TencentCloud
 
         attr_accessor :EnvId, :CdnDomain, :Bucket, :Regoin, :Status, :Region
         extend Gem::Deprecate
-        deprecate :Regoin, :none, 2026, 6
-        deprecate :Regoin=, :none, 2026, 6
+        deprecate :Regoin, :none, 2026, 7
+        deprecate :Regoin=, :none, 2026, 7
 
         def initialize(envid=nil, cdndomain=nil, bucket=nil, regoin=nil, status=nil, region=nil)
           @EnvId = envid

@@ -12160,9 +12160,9 @@ module TencentCloud
 
       # DisableClusterAudit请求参数结构体
       class DisableClusterAuditRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群ID
+        # @param ClusterId: <p>集群ID</p>
         # @type ClusterId: String
-        # @param DeleteLogSetAndTopic: 取值为true代表关闭集群审计时删除默认创建的日志集和主题，false代表不删除
+        # @param DeleteLogSetAndTopic: <p>取值为true代表关闭集群审计时删除默认创建的日志集和主题，false代表不删除</p>
         # @type DeleteLogSetAndTopic: Boolean
 
         attr_accessor :ClusterId, :DeleteLogSetAndTopic
@@ -12304,21 +12304,25 @@ module TencentCloud
 
       # DisableEventPersistence请求参数结构体
       class DisableEventPersistenceRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群ID
+        # @param ClusterId: <p>集群ID</p>
         # @type ClusterId: String
-        # @param DeleteLogSetAndTopic: 取值为true代表关闭集群审计时删除默认创建的日志集和主题，false代表不删除
+        # @param DeleteLogSetAndTopic: <p>取值为true代表关闭集群审计时删除默认创建的日志集和主题，false代表不删除</p>
         # @type DeleteLogSetAndTopic: Boolean
+        # @param ClusterType: <p>集群类型 tke/eks</p><p>默认值：tke</p>
+        # @type ClusterType: String
 
-        attr_accessor :ClusterId, :DeleteLogSetAndTopic
+        attr_accessor :ClusterId, :DeleteLogSetAndTopic, :ClusterType
 
-        def initialize(clusterid=nil, deletelogsetandtopic=nil)
+        def initialize(clusterid=nil, deletelogsetandtopic=nil, clustertype=nil)
           @ClusterId = clusterid
           @DeleteLogSetAndTopic = deletelogsetandtopic
+          @ClusterType = clustertype
         end
 
         def deserialize(params)
           @ClusterId = params['ClusterId']
           @DeleteLogSetAndTopic = params['DeleteLogSetAndTopic']
+          @ClusterType = params['ClusterType']
         end
       end
 
@@ -13140,22 +13144,25 @@ module TencentCloud
 
       # EnableClusterAudit请求参数结构体
       class EnableClusterAuditRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群ID
+        # @param ClusterId: <p>集群ID</p>
         # @type ClusterId: String
-        # @param LogsetId: CLS日志集ID，可以通过cls接口或者控制台获取
+        # @param LogsetId: <p>CLS日志集ID，可以通过cls接口或者控制台获取</p>
         # @type LogsetId: String
-        # @param TopicId: CLS日志主题ID，可以通过cls接口或者控制台获取
+        # @param TopicId: <p>CLS日志主题ID，可以通过cls接口或者控制台获取</p>
         # @type TopicId: String
-        # @param TopicRegion: topic所在region，默认为集群当前region
+        # @param TopicRegion: <p>topic所在region，默认为集群当前region</p>
         # @type TopicRegion: String
+        # @param ClusterType: <p>集群类型 tke/eks</p><p>默认值：tke</p>
+        # @type ClusterType: String
 
-        attr_accessor :ClusterId, :LogsetId, :TopicId, :TopicRegion
+        attr_accessor :ClusterId, :LogsetId, :TopicId, :TopicRegion, :ClusterType
 
-        def initialize(clusterid=nil, logsetid=nil, topicid=nil, topicregion=nil)
+        def initialize(clusterid=nil, logsetid=nil, topicid=nil, topicregion=nil, clustertype=nil)
           @ClusterId = clusterid
           @LogsetId = logsetid
           @TopicId = topicid
           @TopicRegion = topicregion
+          @ClusterType = clustertype
         end
 
         def deserialize(params)
@@ -13163,6 +13170,7 @@ module TencentCloud
           @LogsetId = params['LogsetId']
           @TopicId = params['TopicId']
           @TopicRegion = params['TopicRegion']
+          @ClusterType = params['ClusterType']
         end
       end
 
@@ -13346,22 +13354,25 @@ module TencentCloud
 
       # EnableEventPersistence请求参数结构体
       class EnableEventPersistenceRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群ID
+        # @param ClusterId: <p>集群ID</p>
         # @type ClusterId: String
-        # @param LogsetId: cls服务的logsetID，通过cls接口或者控制台获取
+        # @param LogsetId: <p>cls服务的logsetID，通过cls接口或者控制台获取</p>
         # @type LogsetId: String
-        # @param TopicId: cls服务的topicID，通过cls接口或者控制台获取
+        # @param TopicId: <p>cls服务的topicID，通过cls接口或者控制台获取</p>
         # @type TopicId: String
-        # @param TopicRegion: topic所在地域，默认为集群所在地域
+        # @param TopicRegion: <p>topic所在地域，默认为集群所在地域</p>
         # @type TopicRegion: String
+        # @param ClusterType: <p>集群类型 tke/eks</p><p>默认值：tke</p>
+        # @type ClusterType: String
 
-        attr_accessor :ClusterId, :LogsetId, :TopicId, :TopicRegion
+        attr_accessor :ClusterId, :LogsetId, :TopicId, :TopicRegion, :ClusterType
 
-        def initialize(clusterid=nil, logsetid=nil, topicid=nil, topicregion=nil)
+        def initialize(clusterid=nil, logsetid=nil, topicid=nil, topicregion=nil, clustertype=nil)
           @ClusterId = clusterid
           @LogsetId = logsetid
           @TopicId = topicid
           @TopicRegion = topicregion
+          @ClusterType = clustertype
         end
 
         def deserialize(params)
@@ -13369,6 +13380,7 @@ module TencentCloud
           @LogsetId = params['LogsetId']
           @TopicId = params['TopicId']
           @TopicRegion = params['TopicRegion']
+          @ClusterType = params['ClusterType']
         end
       end
 
@@ -20661,6 +20673,33 @@ module TencentCloud
         end
       end
 
+      # RotateClusterToken请求参数结构体
+      class RotateClusterTokenRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # RotateClusterToken返回参数结构体
+      class RotateClusterTokenResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 集群路由对象
       class RouteInfo < TencentCloud::Common::AbstractModel
         # @param RouteTableName: 路由表名称。
@@ -21990,17 +22029,21 @@ module TencentCloud
 
       # UninstallLogAgent请求参数结构体
       class UninstallLogAgentRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群ID
+        # @param ClusterId: <p>集群ID</p>
         # @type ClusterId: String
+        # @param ClusterType: <p>集群类型tke/eks</p><p>默认值：tke</p>
+        # @type ClusterType: String
 
-        attr_accessor :ClusterId
+        attr_accessor :ClusterId, :ClusterType
 
-        def initialize(clusterid=nil)
+        def initialize(clusterid=nil, clustertype=nil)
           @ClusterId = clusterid
+          @ClusterType = clustertype
         end
 
         def deserialize(params)
           @ClusterId = params['ClusterId']
+          @ClusterType = params['ClusterType']
         end
       end
 

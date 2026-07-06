@@ -2202,6 +2202,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 已不再使用
+
         # 分页获取产品事件的列表
 
         # @param request: Request instance for DescribeProductEventList.

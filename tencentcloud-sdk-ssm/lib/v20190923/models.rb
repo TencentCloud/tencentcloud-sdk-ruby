@@ -933,33 +933,34 @@ module TencentCloud
 
       # GetServiceStatus返回参数结构体
       class GetServiceStatusResponse < TencentCloud::Common::AbstractModel
-        # @param ServiceEnabled: true表示服务已开通，false 表示服务尚未开通。
+        # @param ServiceEnabled: <p>true表示服务已开通，false 表示服务尚未开通。</p>
         # @type ServiceEnabled: Boolean
-        # @param InvalidType: 服务不可用类型： 0-未购买，1-正常， 2-欠费停服， 3-资源释放。
+        # @param InvalidType: <p>服务不可用类型： 0-未购买，1-正常， 2-欠费停服， 3-资源释放。</p>
         # @type InvalidType: Integer
-        # @param AccessKeyEscrowEnabled: true表示用户已经可以使用密钥安全托管功能，
-        # false表示用户暂时不能使用密钥安全托管功能。
+        # @param AccessKeyEscrowEnabled: <p>true表示用户已经可以使用密钥安全托管功能，<br>false表示用户暂时不能使用密钥安全托管功能。</p>
         # @type AccessKeyEscrowEnabled: Boolean
-        # @param ExpireTime: 过期时间
+        # @param ExpireTime: <p>过期时间</p>
         # @type ExpireTime: String
-        # @param QPSLimit: 计算性能限制
+        # @param QPSLimit: <p>计算性能限制</p>
         # @type QPSLimit: Integer
-        # @param SecretLimit: 凭据个数限制
+        # @param SecretLimit: <p>凭据个数限制</p>
         # @type SecretLimit: Integer
-        # @param PayModel: 付费模式
+        # @param PayModel: <p>付费模式</p>
         # @type PayModel: String
-        # @param RenewFlag: 自动续费标识，0:手动续费 1:自动续费 2:到期不续
+        # @param RenewFlag: <p>自动续费标识，0:手动续费 1:自动续费 2:到期不续</p>
         # @type RenewFlag: Integer
-        # @param ResourceId: 资源id
+        # @param ResourceId: <p>资源id</p>
         # @type ResourceId: String
-        # @param TotalCount: 已托管凭据个数
+        # @param TotalCount: <p>已托管凭据个数</p>
         # @type TotalCount: Integer
+        # @param ResourceRegion: <p>预付费购买 SSM 资源的地域 ID</p>
+        # @type ResourceRegion: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ServiceEnabled, :InvalidType, :AccessKeyEscrowEnabled, :ExpireTime, :QPSLimit, :SecretLimit, :PayModel, :RenewFlag, :ResourceId, :TotalCount, :RequestId
+        attr_accessor :ServiceEnabled, :InvalidType, :AccessKeyEscrowEnabled, :ExpireTime, :QPSLimit, :SecretLimit, :PayModel, :RenewFlag, :ResourceId, :TotalCount, :ResourceRegion, :RequestId
 
-        def initialize(serviceenabled=nil, invalidtype=nil, accesskeyescrowenabled=nil, expiretime=nil, qpslimit=nil, secretlimit=nil, paymodel=nil, renewflag=nil, resourceid=nil, totalcount=nil, requestid=nil)
+        def initialize(serviceenabled=nil, invalidtype=nil, accesskeyescrowenabled=nil, expiretime=nil, qpslimit=nil, secretlimit=nil, paymodel=nil, renewflag=nil, resourceid=nil, totalcount=nil, resourceregion=nil, requestid=nil)
           @ServiceEnabled = serviceenabled
           @InvalidType = invalidtype
           @AccessKeyEscrowEnabled = accesskeyescrowenabled
@@ -970,6 +971,7 @@ module TencentCloud
           @RenewFlag = renewflag
           @ResourceId = resourceid
           @TotalCount = totalcount
+          @ResourceRegion = resourceregion
           @RequestId = requestid
         end
 
@@ -984,6 +986,7 @@ module TencentCloud
           @RenewFlag = params['RenewFlag']
           @ResourceId = params['ResourceId']
           @TotalCount = params['TotalCount']
+          @ResourceRegion = params['ResourceRegion']
           @RequestId = params['RequestId']
         end
       end

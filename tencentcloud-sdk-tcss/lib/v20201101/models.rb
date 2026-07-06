@@ -2548,89 +2548,80 @@ module TencentCloud
 
       # 集群资产返回的结构体
       class ClusterInfoItem < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群id
+        # @param ClusterId: <p>集群id</p>
         # @type ClusterId: String
-        # @param ClusterName: 集群名字
+        # @param ClusterCAMD5: <p>集群ca证书md5值</p>
+        # @type ClusterCAMD5: String
+        # @param ClusterName: <p>集群名字</p>
         # @type ClusterName: String
-        # @param ClusterVersion: 集群版本
+        # @param ClusterVersion: <p>集群版本</p>
         # @type ClusterVersion: String
-        # @param ClusterOs: 集群操作系统
+        # @param ClusterOs: <p>集群操作系统</p>
         # @type ClusterOs: String
-        # @param ClusterType: 集群类型
+        # @param ClusterType: <p>集群类型</p>
         # @type ClusterType: String
-        # @param ClusterNodeNum: 集群节点数
+        # @param ClusterNodeNum: <p>集群节点数</p>
         # @type ClusterNodeNum: Integer
-        # @param Region: 集群区域
+        # @param Region: <p>集群区域</p>
         # @type Region: String
-        # @param DefenderStatus: 防护状态:
-        # 已防护: Defended
-        # 未防护: UnDefended
-        # 部分防护: PartDefened
+        # @param DefenderStatus: <p>防护状态:<br>已防护: Defended<br>未防护: UnDefended<br>部分防护: PartDefened</p>
         # @type DefenderStatus: String
-        # @param ClusterStatus: 集群状态
+        # @param ClusterStatus: <p>集群状态</p>
         # @type ClusterStatus: String
-        # @param ClusterSubStatus: 集群运行子状态
+        # @param ClusterSubStatus: <p>集群运行子状态</p>
         # @type ClusterSubStatus: String
-        # @param ClusterCheckMode: 集群的检测模式，为Cluster_Normal或者Cluster_Actived.
+        # @param ClusterCheckMode: <p>集群的检测模式，为Cluster_Normal或者Cluster_Actived.</p>
         # @type ClusterCheckMode: String
-        # @param ClusterAutoCheck: 是否自动定期检测
+        # @param ClusterAutoCheck: <p>是否自动定期检测</p>
         # @type ClusterAutoCheck: Boolean
-        # @param DefenderErrorReason: 防护容器部署失败原因，为UserDaemonSetNotReady时,和UnreadyNodeNum转成"N个节点防御容器为就绪"，其他错误直接展示
+        # @param DefenderErrorReason: <p>防护容器部署失败原因，为UserDaemonSetNotReady时,和UnreadyNodeNum转成&quot;N个节点防御容器为就绪&quot;，其他错误直接展示</p>
         # @type DefenderErrorReason: String
-        # @param UnreadyNodeNum: 防御容器没有ready状态的节点数量
+        # @param UnreadyNodeNum: <p>防御容器没有ready状态的节点数量</p>
         # @type UnreadyNodeNum: Integer
-        # @param SeriousRiskCount: 严重风险检查项的数量
+        # @param SeriousRiskCount: <p>严重风险检查项的数量</p>
         # @type SeriousRiskCount: Integer
-        # @param HighRiskCount: 高风险检查项的数量
+        # @param HighRiskCount: <p>高风险检查项的数量</p>
         # @type HighRiskCount: Integer
-        # @param MiddleRiskCount: 中风险检查项的数量
+        # @param MiddleRiskCount: <p>中风险检查项的数量</p>
         # @type MiddleRiskCount: Integer
-        # @param HintRiskCount: 提示风险检查项的数量
+        # @param HintRiskCount: <p>提示风险检查项的数量</p>
         # @type HintRiskCount: Integer
-        # @param CheckFailReason: 检查失败原因
+        # @param CheckFailReason: <p>检查失败原因</p>
         # @type CheckFailReason: String
-        # @param CheckStatus: 检查状态,为Task_Running, NoRisk, HasRisk, Uncheck, Task_Error
+        # @param CheckStatus: <p>检查状态,为Task_Running, NoRisk, HasRisk, Uncheck, Task_Error</p>
         # @type CheckStatus: String
-        # @param TaskCreateTime: 任务创建时间,检查时间
+        # @param TaskCreateTime: <p>任务创建时间,检查时间</p>
         # @type TaskCreateTime: String
-        # @param AccessedStatus: 接入状态:
-        # 未接入: AccessedNone
-        # 已防护: AccessedDefended
-        # 未防护: AccessedInstalled
-        # 部分防护: AccessedPartialDefence
-        # 接入异常: AccessedException
-        # 卸载异常: AccessedUninstallException
-        # 接入中: AccessedInstalling
-        # 卸载中: AccessedUninstalling
+        # @param AccessedStatus: <p>接入状态:<br>未接入: AccessedNone<br>已防护: AccessedDefended<br>未防护: AccessedInstalled<br>部分防护: AccessedPartialDefence<br>接入异常: AccessedException<br>卸载异常: AccessedUninstallException<br>接入中: AccessedInstalling<br>卸载中: AccessedUninstalling</p>
         # @type AccessedStatus: String
-        # @param AccessedSubStatus: 接入失败原因
+        # @param AccessedSubStatus: <p>接入失败原因</p>
         # @type AccessedSubStatus: String
-        # @param AccessedErrorReason: 接入/卸载失败原因
+        # @param AccessedErrorReason: <p>接入/卸载失败原因</p>
         # @type AccessedErrorReason: String
-        # @param NodeCount: 节点总数
+        # @param NodeCount: <p>节点总数</p>
         # @type NodeCount: Integer
-        # @param OffLineNodeCount: 离线节点数
+        # @param OffLineNodeCount: <p>离线节点数</p>
         # @type OffLineNodeCount: Integer
-        # @param UnInstallAgentNodeCount: 未安装agent节点数
+        # @param UnInstallAgentNodeCount: <p>未安装agent节点数</p>
         # @type UnInstallAgentNodeCount: Integer
-        # @param ChargeCoresCnt: 计费核数(弹性计费核数+普通计费核数)
+        # @param ChargeCoresCnt: <p>计费核数(弹性计费核数+普通计费核数)</p>
         # @type ChargeCoresCnt: Integer
-        # @param MasterAddresses: master 地址列表
+        # @param MasterAddresses: <p>master 地址列表</p>
         # @type MasterAddresses: Array
-        # @param CoresCnt: 核数
+        # @param CoresCnt: <p>核数</p>
         # @type CoresCnt: Integer
-        # @param ClusterAuditStatus: 集群审计开关状态：
-        # 已关闭Closed/关闭中Closing/关闭失败CloseFailed/已开启Opened/开启中Opening/开启失败OpenFailed
+        # @param ClusterAuditStatus: <p>集群审计开关状态：<br>已关闭Closed/关闭中Closing/关闭失败CloseFailed/已开启Opened/开启中Opening/开启失败OpenFailed</p>
         # @type ClusterAuditStatus: String
-        # @param ClusterAuditFailedInfo: 集群审计开关失败信息
+        # @param ClusterAuditFailedInfo: <p>集群审计开关失败信息</p>
         # @type ClusterAuditFailedInfo: String
-        # @param OwnerName: 所有者名称
+        # @param OwnerName: <p>所有者名称</p>
         # @type OwnerName: String
 
-        attr_accessor :ClusterId, :ClusterName, :ClusterVersion, :ClusterOs, :ClusterType, :ClusterNodeNum, :Region, :DefenderStatus, :ClusterStatus, :ClusterSubStatus, :ClusterCheckMode, :ClusterAutoCheck, :DefenderErrorReason, :UnreadyNodeNum, :SeriousRiskCount, :HighRiskCount, :MiddleRiskCount, :HintRiskCount, :CheckFailReason, :CheckStatus, :TaskCreateTime, :AccessedStatus, :AccessedSubStatus, :AccessedErrorReason, :NodeCount, :OffLineNodeCount, :UnInstallAgentNodeCount, :ChargeCoresCnt, :MasterAddresses, :CoresCnt, :ClusterAuditStatus, :ClusterAuditFailedInfo, :OwnerName
+        attr_accessor :ClusterId, :ClusterCAMD5, :ClusterName, :ClusterVersion, :ClusterOs, :ClusterType, :ClusterNodeNum, :Region, :DefenderStatus, :ClusterStatus, :ClusterSubStatus, :ClusterCheckMode, :ClusterAutoCheck, :DefenderErrorReason, :UnreadyNodeNum, :SeriousRiskCount, :HighRiskCount, :MiddleRiskCount, :HintRiskCount, :CheckFailReason, :CheckStatus, :TaskCreateTime, :AccessedStatus, :AccessedSubStatus, :AccessedErrorReason, :NodeCount, :OffLineNodeCount, :UnInstallAgentNodeCount, :ChargeCoresCnt, :MasterAddresses, :CoresCnt, :ClusterAuditStatus, :ClusterAuditFailedInfo, :OwnerName
 
-        def initialize(clusterid=nil, clustername=nil, clusterversion=nil, clusteros=nil, clustertype=nil, clusternodenum=nil, region=nil, defenderstatus=nil, clusterstatus=nil, clustersubstatus=nil, clustercheckmode=nil, clusterautocheck=nil, defendererrorreason=nil, unreadynodenum=nil, seriousriskcount=nil, highriskcount=nil, middleriskcount=nil, hintriskcount=nil, checkfailreason=nil, checkstatus=nil, taskcreatetime=nil, accessedstatus=nil, accessedsubstatus=nil, accessederrorreason=nil, nodecount=nil, offlinenodecount=nil, uninstallagentnodecount=nil, chargecorescnt=nil, masteraddresses=nil, corescnt=nil, clusterauditstatus=nil, clusterauditfailedinfo=nil, ownername=nil)
+        def initialize(clusterid=nil, clustercamd5=nil, clustername=nil, clusterversion=nil, clusteros=nil, clustertype=nil, clusternodenum=nil, region=nil, defenderstatus=nil, clusterstatus=nil, clustersubstatus=nil, clustercheckmode=nil, clusterautocheck=nil, defendererrorreason=nil, unreadynodenum=nil, seriousriskcount=nil, highriskcount=nil, middleriskcount=nil, hintriskcount=nil, checkfailreason=nil, checkstatus=nil, taskcreatetime=nil, accessedstatus=nil, accessedsubstatus=nil, accessederrorreason=nil, nodecount=nil, offlinenodecount=nil, uninstallagentnodecount=nil, chargecorescnt=nil, masteraddresses=nil, corescnt=nil, clusterauditstatus=nil, clusterauditfailedinfo=nil, ownername=nil)
           @ClusterId = clusterid
+          @ClusterCAMD5 = clustercamd5
           @ClusterName = clustername
           @ClusterVersion = clusterversion
           @ClusterOs = clusteros
@@ -2667,6 +2658,7 @@ module TencentCloud
 
         def deserialize(params)
           @ClusterId = params['ClusterId']
+          @ClusterCAMD5 = params['ClusterCAMD5']
           @ClusterName = params['ClusterName']
           @ClusterVersion = params['ClusterVersion']
           @ClusterOs = params['ClusterOs']
@@ -3856,8 +3848,8 @@ module TencentCloud
 
         attr_accessor :Component, :Version, :FixedVersion, :Path, :Type, :Name
         extend Gem::Deprecate
-        deprecate :Component, :none, 2026, 6
-        deprecate :Component=, :none, 2026, 6
+        deprecate :Component, :none, 2026, 7
+        deprecate :Component=, :none, 2026, 7
 
         def initialize(component=nil, version=nil, fixedversion=nil, path=nil, type=nil, name=nil)
           @Component = component
@@ -4309,8 +4301,8 @@ module TencentCloud
 
         attr_accessor :All, :Images, :ScanType, :Id, :ExcludeIDs, :IsLatest, :ScanScope, :RegistryType, :Namespace, :ContainerRunning, :Timeout
         extend Gem::Deprecate
-        deprecate :All, :none, 2026, 6
-        deprecate :All=, :none, 2026, 6
+        deprecate :All, :none, 2026, 7
+        deprecate :All=, :none, 2026, 7
 
         def initialize(all=nil, images=nil, scantype=nil, id=nil, excludeids=nil, islatest=nil, scanscope=nil, registrytype=nil, namespace=nil, containerrunning=nil, timeout=nil)
           @All = all
@@ -4477,8 +4469,8 @@ module TencentCloud
 
         attr_accessor :Enable, :ScanTime, :ScanPeriod, :ScanVirus, :ScanRisk, :ScanVul, :All, :Images, :ContainerRunning, :ScanScope, :ScanEndTime, :ExcludeImages, :ClusterIDs
         extend Gem::Deprecate
-        deprecate :All, :none, 2026, 6
-        deprecate :All=, :none, 2026, 6
+        deprecate :All, :none, 2026, 7
+        deprecate :All=, :none, 2026, 7
 
         def initialize(enable=nil, scantime=nil, scanperiod=nil, scanvirus=nil, scanrisk=nil, scanvul=nil, all=nil, images=nil, containerrunning=nil, scanscope=nil, scanendtime=nil, excludeimages=nil, clusterids=nil)
           @Enable = enable
@@ -4558,8 +4550,8 @@ module TencentCloud
 
         attr_accessor :All, :Images, :ScanVul, :ScanVirus, :ScanRisk, :Filters, :ExcludeImageIds, :ContainerRunning, :ScanScope, :Timeout, :IsOneClickScanningTask, :ClusterIDs
         extend Gem::Deprecate
-        deprecate :All, :none, 2026, 6
-        deprecate :All=, :none, 2026, 6
+        deprecate :All, :none, 2026, 7
+        deprecate :All=, :none, 2026, 7
 
         def initialize(all=nil, images=nil, scanvul=nil, scanvirus=nil, scanrisk=nil, filters=nil, excludeimageids=nil, containerrunning=nil, scanscope=nil, timeout=nil, isoneclickscanningtask=nil, clusterids=nil)
           @All = all
@@ -9609,8 +9601,8 @@ module TencentCloud
 
         attr_accessor :ImageDigest, :ImageRepoAddress, :RegistryType, :ImageName, :ImageTag, :ScanTime, :ScanStatus, :VulCnt, :VirusCnt, :RiskCnt, :SentiveInfoCnt, :OsName, :ScanVirusError, :ScanVulError, :LayerInfo, :InstanceId, :InstanceName, :Namespace, :ScanRiskError, :ScanVirusProgress, :ScanVulProgress, :ScanRiskProgress, :ScanRemainTime, :CveStatus, :RiskStatus, :VirusStatus, :Progress, :IsAuthorized, :ImageSize, :ImageId, :RegistryRegion, :ImageCreateTime, :SensitiveInfoCnt, :Id, :Solution, :Reason, :RequestId
         extend Gem::Deprecate
-        deprecate :SentiveInfoCnt, :none, 2026, 6
-        deprecate :SentiveInfoCnt=, :none, 2026, 6
+        deprecate :SentiveInfoCnt, :none, 2026, 7
+        deprecate :SentiveInfoCnt=, :none, 2026, 7
 
         def initialize(imagedigest=nil, imagerepoaddress=nil, registrytype=nil, imagename=nil, imagetag=nil, scantime=nil, scanstatus=nil, vulcnt=nil, viruscnt=nil, riskcnt=nil, sentiveinfocnt=nil, osname=nil, scanviruserror=nil, scanvulerror=nil, layerinfo=nil, instanceid=nil, instancename=nil, namespace=nil, scanriskerror=nil, scanvirusprogress=nil, scanvulprogress=nil, scanriskprogress=nil, scanremaintime=nil, cvestatus=nil, riskstatus=nil, virusstatus=nil, progress=nil, isauthorized=nil, imagesize=nil, imageid=nil, registryregion=nil, imagecreatetime=nil, sensitiveinfocnt=nil, id=nil, solution=nil, reason=nil, requestid=nil)
           @ImageDigest = imagedigest
@@ -10777,8 +10769,8 @@ module TencentCloud
 
         attr_accessor :Enable, :ScanTime, :ScanPeriod, :ScanVirus, :ScanRisk, :ScanVul, :All, :Images, :ContainerRunning, :ScanScope, :ScanEndTime, :ExcludeImages, :LastScanTime, :ScanResult, :ClusterIDs, :RequestId
         extend Gem::Deprecate
-        deprecate :All, :none, 2026, 6
-        deprecate :All=, :none, 2026, 6
+        deprecate :All, :none, 2026, 7
+        deprecate :All=, :none, 2026, 7
 
         def initialize(enable=nil, scantime=nil, scanperiod=nil, scanvirus=nil, scanrisk=nil, scanvul=nil, all=nil, images=nil, containerrunning=nil, scanscope=nil, scanendtime=nil, excludeimages=nil, lastscantime=nil, scanresult=nil, clusterids=nil, requestid=nil)
           @Enable = enable
@@ -14815,8 +14807,8 @@ module TencentCloud
 
         attr_accessor :Enable, :ScanTime, :ScanPeriod, :ScanType, :All, :Images, :Id, :Latest, :ScanEndTime, :RegistryType, :ContainerRunning, :ScanScope, :Namespace, :ExcludeImageAssetIds, :LastScanTime, :ScanResult, :RequestId
         extend Gem::Deprecate
-        deprecate :All, :none, 2026, 6
-        deprecate :All=, :none, 2026, 6
+        deprecate :All, :none, 2026, 7
+        deprecate :All=, :none, 2026, 7
 
         def initialize(enable=nil, scantime=nil, scanperiod=nil, scantype=nil, all=nil, images=nil, id=nil, latest=nil, scanendtime=nil, registrytype=nil, containerrunning=nil, scanscope=nil, namespace=nil, excludeimageassetids=nil, lastscantime=nil, scanresult=nil, requestid=nil)
           @Enable = enable
@@ -16652,55 +16644,56 @@ module TencentCloud
 
       # DescribePurchaseStateInfo返回参数结构体
       class DescribePurchaseStateInfoResponse < TencentCloud::Common::AbstractModel
-        # @param State: 0：可申请试用可购买；1：只可购买(含试用审核不通过和试用过期)；2：试用生效中；3：专业版生效中；4：专业版过期
+        # @param State: <p>0：可申请试用可购买；1：只可购买(含试用审核不通过和试用过期)；2：试用生效中；3：专业版生效中；4：专业版过期</p>
         # @type State: Integer
-        # @param AllCoresCnt: 总资源核数 = 总防护核数 + 未防护核数
+        # @param AllCoresCnt: <p>总资源核数 = 总防护核数 + 未防护核数</p>
         # @type AllCoresCnt: Integer
-        # @param CoresCnt: 总防护核数 =已购核数+ 试用赠送核数 +弹性计费核数
+        # @param CoresCnt: <p>总防护核数 =已购核数+ 试用赠送核数 +弹性计费核数</p>
         # @type CoresCnt: Integer
-        # @param UndefendCoresCnt: 未防护核数(未开启防护资源核数)
+        # @param UndefendCoresCnt: <p>未防护核数(未开启防护资源核数)</p>
         # @type UndefendCoresCnt: Integer
-        # @param AuthorizedCoresCnt: 已购买核数
+        # @param AuthorizedCoresCnt: <p>已购买核数</p>
         # @type AuthorizedCoresCnt: Integer
-        # @param GivenAuthorizedCoresCnt: 试用赠送专业版核心数
+        # @param GivenAuthorizedCoresCnt: <p>试用赠送专业版核心数</p>
         # @type GivenAuthorizedCoresCnt: Integer
-        # @param CurrentFlexibleCoresCnt: 当前弹性计费核数数量
+        # @param CurrentFlexibleCoresCnt: <p>当前弹性计费核数数量</p>
         # @type CurrentFlexibleCoresCnt: Integer
-        # @param ImageCnt: 镜像数
+        # @param ImageCnt: <p>镜像数</p>
         # @type ImageCnt: Integer
-        # @param AuthorizedImageCnt: 已授权镜像数
+        # @param AuthorizedImageCnt: <p>已授权镜像数</p>
         # @type AuthorizedImageCnt: Integer
-        # @param ExpirationTime: 过期时间
+        # @param ExpirationTime: <p>过期时间</p>
         # @type ExpirationTime: String
-        # @param PurchasedAuthorizedCnt: 已购买镜像授权数
+        # @param PurchasedAuthorizedCnt: <p>已购买镜像授权数</p>
         # @type PurchasedAuthorizedCnt: Integer
-        # @param AutomaticRenewal: 0表示默认状态(用户未设置，即初始状态)， 1表示自动续费，2表示明确不自动续费(用户设置)
+        # @param AutomaticRenewal: <p>0表示默认状态(用户未设置，即初始状态)， 1表示自动续费，2表示明确不自动续费(用户设置)</p>
         # @type AutomaticRenewal: Integer
-        # @param GivenAuthorizedCnt: 试用期间赠送镜像授权数，可能会过期
+        # @param GivenAuthorizedCnt: <p>试用期间赠送镜像授权数，可能会过期</p>
         # @type GivenAuthorizedCnt: Integer
-        # @param BeginTime: 起始时间
+        # @param BeginTime: <p>起始时间</p>
         # @type BeginTime: String
-        # @param SubState: 子状态(具体意义依据State字段而定)
-        # State为4时，有效值为: ISOLATE(隔离) DESTROED(已销毁)
+        # @param SubState: <p>子状态(具体意义依据State字段而定)<br>State为4时，有效值为: ISOLATE(隔离) DESTROED(已销毁)</p>
         # @type SubState: String
-        # @param InquireKey: 计费key
+        # @param InquireKey: <p>计费key</p>
         # @type InquireKey: String
-        # @param DefendPolicy: 防护策略
+        # @param DefendPolicy: <p>防护策略</p>
         # @type DefendPolicy: String
-        # @param FlexibleCoresLimit: 弹性计费核数上限
+        # @param FlexibleCoresLimit: <p>弹性计费核数上限</p>
         # @type FlexibleCoresLimit: Integer
-        # @param DefendClusterCoresCnt: 已防护集群核数
+        # @param DefendClusterCoresCnt: <p>已防护集群核数</p>
         # @type DefendClusterCoresCnt: Integer
-        # @param DefendHostCoresCnt: 已防护主机核数
+        # @param DefendHostCoresCnt: <p>已防护主机核数</p>
         # @type DefendHostCoresCnt: Integer
-        # @param TrialCoresCnt: 试用的专业版核数
+        # @param TrialCoresCnt: <p>试用的专业版核数</p>
         # @type TrialCoresCnt: Integer
+        # @param NoContainerCoresCnt: <p>无容器核数</p>
+        # @type NoContainerCoresCnt: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :State, :AllCoresCnt, :CoresCnt, :UndefendCoresCnt, :AuthorizedCoresCnt, :GivenAuthorizedCoresCnt, :CurrentFlexibleCoresCnt, :ImageCnt, :AuthorizedImageCnt, :ExpirationTime, :PurchasedAuthorizedCnt, :AutomaticRenewal, :GivenAuthorizedCnt, :BeginTime, :SubState, :InquireKey, :DefendPolicy, :FlexibleCoresLimit, :DefendClusterCoresCnt, :DefendHostCoresCnt, :TrialCoresCnt, :RequestId
+        attr_accessor :State, :AllCoresCnt, :CoresCnt, :UndefendCoresCnt, :AuthorizedCoresCnt, :GivenAuthorizedCoresCnt, :CurrentFlexibleCoresCnt, :ImageCnt, :AuthorizedImageCnt, :ExpirationTime, :PurchasedAuthorizedCnt, :AutomaticRenewal, :GivenAuthorizedCnt, :BeginTime, :SubState, :InquireKey, :DefendPolicy, :FlexibleCoresLimit, :DefendClusterCoresCnt, :DefendHostCoresCnt, :TrialCoresCnt, :NoContainerCoresCnt, :RequestId
 
-        def initialize(state=nil, allcorescnt=nil, corescnt=nil, undefendcorescnt=nil, authorizedcorescnt=nil, givenauthorizedcorescnt=nil, currentflexiblecorescnt=nil, imagecnt=nil, authorizedimagecnt=nil, expirationtime=nil, purchasedauthorizedcnt=nil, automaticrenewal=nil, givenauthorizedcnt=nil, begintime=nil, substate=nil, inquirekey=nil, defendpolicy=nil, flexiblecoreslimit=nil, defendclustercorescnt=nil, defendhostcorescnt=nil, trialcorescnt=nil, requestid=nil)
+        def initialize(state=nil, allcorescnt=nil, corescnt=nil, undefendcorescnt=nil, authorizedcorescnt=nil, givenauthorizedcorescnt=nil, currentflexiblecorescnt=nil, imagecnt=nil, authorizedimagecnt=nil, expirationtime=nil, purchasedauthorizedcnt=nil, automaticrenewal=nil, givenauthorizedcnt=nil, begintime=nil, substate=nil, inquirekey=nil, defendpolicy=nil, flexiblecoreslimit=nil, defendclustercorescnt=nil, defendhostcorescnt=nil, trialcorescnt=nil, nocontainercorescnt=nil, requestid=nil)
           @State = state
           @AllCoresCnt = allcorescnt
           @CoresCnt = corescnt
@@ -16722,6 +16715,7 @@ module TencentCloud
           @DefendClusterCoresCnt = defendclustercorescnt
           @DefendHostCoresCnt = defendhostcorescnt
           @TrialCoresCnt = trialcorescnt
+          @NoContainerCoresCnt = nocontainercorescnt
           @RequestId = requestid
         end
 
@@ -16747,6 +16741,7 @@ module TencentCloud
           @DefendClusterCoresCnt = params['DefendClusterCoresCnt']
           @DefendHostCoresCnt = params['DefendHostCoresCnt']
           @TrialCoresCnt = params['TrialCoresCnt']
+          @NoContainerCoresCnt = params['NoContainerCoresCnt']
           @RequestId = params['RequestId']
         end
       end
@@ -23655,8 +23650,8 @@ module TencentCloud
 
         attr_accessor :ImageDigest, :ImageRepoAddress, :RegistryType, :ImageName, :ImageTag, :ImageSize, :ScanTime, :ScanStatus, :VulCnt, :VirusCnt, :RiskCnt, :SentiveInfoCnt, :IsTrustImage, :OsName, :ScanVirusError, :ScanVulError, :InstanceId, :InstanceName, :Namespace, :ScanRiskError, :ScanVirusProgress, :ScanVulProgress, :ScanRiskProgress, :ScanRemainTime, :CveStatus, :RiskStatus, :VirusStatus, :Progress, :IsAuthorized, :RegistryRegion, :Id, :ImageId, :ImageCreateTime, :IsLatestImage, :LowLevelVulCnt, :MediumLevelVulCnt, :HighLevelVulCnt, :CriticalLevelVulCnt, :ContainerCnt, :ComponentCnt, :IsRunning, :HasNeedFixVul, :SensitiveInfoCnt, :RecommendedFix, :Solution, :Reason
         extend Gem::Deprecate
-        deprecate :SentiveInfoCnt, :none, 2026, 6
-        deprecate :SentiveInfoCnt=, :none, 2026, 6
+        deprecate :SentiveInfoCnt, :none, 2026, 7
+        deprecate :SentiveInfoCnt=, :none, 2026, 7
 
         def initialize(imagedigest=nil, imagerepoaddress=nil, registrytype=nil, imagename=nil, imagetag=nil, imagesize=nil, scantime=nil, scanstatus=nil, vulcnt=nil, viruscnt=nil, riskcnt=nil, sentiveinfocnt=nil, istrustimage=nil, osname=nil, scanviruserror=nil, scanvulerror=nil, instanceid=nil, instancename=nil, namespace=nil, scanriskerror=nil, scanvirusprogress=nil, scanvulprogress=nil, scanriskprogress=nil, scanremaintime=nil, cvestatus=nil, riskstatus=nil, virusstatus=nil, progress=nil, isauthorized=nil, registryregion=nil, id=nil, imageid=nil, imagecreatetime=nil, islatestimage=nil, lowlevelvulcnt=nil, mediumlevelvulcnt=nil, highlevelvulcnt=nil, criticallevelvulcnt=nil, containercnt=nil, componentcnt=nil, isrunning=nil, hasneedfixvul=nil, sensitiveinfocnt=nil, recommendedfix=nil, solution=nil, reason=nil)
           @ImageDigest = imagedigest
@@ -30307,8 +30302,8 @@ module TencentCloud
 
         attr_accessor :ScanPeriod, :Enable, :ScanTime, :ScanType, :Images, :All, :Id, :Latest, :ContainerRunning, :ScanEndTime, :ScanScope, :RegistryType, :Namespace, :ExcludeImageAssetIds
         extend Gem::Deprecate
-        deprecate :All, :none, 2026, 6
-        deprecate :All=, :none, 2026, 6
+        deprecate :All, :none, 2026, 7
+        deprecate :All=, :none, 2026, 7
 
         def initialize(scanperiod=nil, enable=nil, scantime=nil, scantype=nil, images=nil, all=nil, id=nil, latest=nil, containerrunning=nil, scanendtime=nil, scanscope=nil, registrytype=nil, namespace=nil, excludeimageassetids=nil)
           @ScanPeriod = scanperiod

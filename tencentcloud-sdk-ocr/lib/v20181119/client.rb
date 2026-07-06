@@ -611,6 +611,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 接口下线
+
         # 本接口支持识别主流初高中数学符号和公式，返回公式的 Latex 格式文本。
 
         # 默认接口请求频率限制：5次/秒。
@@ -1604,6 +1606,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 接口下线
 
         # 公式识别是教育的基础OCR识别能力，可支持理科（数学、物理、化学、生物）的印刷体和手写体的公式识别。
 

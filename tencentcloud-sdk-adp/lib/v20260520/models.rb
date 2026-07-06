@@ -636,6 +636,36 @@ module TencentCloud
         end
       end
 
+      # Agent摘要信息
+      class AgentSummary < TencentCloud::Common::AbstractModel
+        # @param AgentId: <p>AgentId</p>
+        # @type AgentId: String
+        # @param Profile: <p>Agent 身份画像</p>
+        # @type Profile: :class:`Tencentcloud::Adp.v20260520.models.AgentProfile`
+        # @param AdvancedConfig: <p>高级设置;scope=0 时返回</p>
+        # @type AdvancedConfig: :class:`Tencentcloud::Adp.v20260520.models.AgentAdvancedConfig`
+
+        attr_accessor :AgentId, :Profile, :AdvancedConfig
+
+        def initialize(agentid=nil, profile=nil, advancedconfig=nil)
+          @AgentId = agentid
+          @Profile = profile
+          @AdvancedConfig = advancedconfig
+        end
+
+        def deserialize(params)
+          @AgentId = params['AgentId']
+          unless params['Profile'].nil?
+            @Profile = AgentProfile.new
+            @Profile.deserialize(params['Profile'])
+          end
+          unless params['AdvancedConfig'].nil?
+            @AdvancedConfig = AgentAdvancedConfig.new
+            @AdvancedConfig.deserialize(params['AdvancedConfig'])
+          end
+        end
+      end
+
       # 系统参数
       class AgentSystemVariable < TencentCloud::Common::AbstractModel
         # @param Name: <p>系统参数名</p>
@@ -2827,6 +2857,63 @@ module TencentCloud
         end
       end
 
+      # CreatePlugin请求参数结构体
+      class CreatePluginRequest < TencentCloud::Common::AbstractModel
+        # @param Profile: <p>插件基础资料</p>
+        # @type Profile: :class:`Tencentcloud::Adp.v20260520.models.PluginProfile`
+        # @param Config: <p>插件类型配置</p>
+        # @type Config: :class:`Tencentcloud::Adp.v20260520.models.PluginConfig`
+        # @param SpaceId: <p>当前空间id</p>
+        # @type SpaceId: String
+        # @param ToolList: <p>插件的工具列表</p>
+        # @type ToolList: :class:`Tencentcloud::Adp.v20260520.models.Tool`
+
+        attr_accessor :Profile, :Config, :SpaceId, :ToolList
+
+        def initialize(profile=nil, config=nil, spaceid=nil, toollist=nil)
+          @Profile = profile
+          @Config = config
+          @SpaceId = spaceid
+          @ToolList = toollist
+        end
+
+        def deserialize(params)
+          unless params['Profile'].nil?
+            @Profile = PluginProfile.new
+            @Profile.deserialize(params['Profile'])
+          end
+          unless params['Config'].nil?
+            @Config = PluginConfig.new
+            @Config.deserialize(params['Config'])
+          end
+          @SpaceId = params['SpaceId']
+          unless params['ToolList'].nil?
+            @ToolList = Tool.new
+            @ToolList.deserialize(params['ToolList'])
+          end
+        end
+      end
+
+      # CreatePlugin返回参数结构体
+      class CreatePluginResponse < TencentCloud::Common::AbstractModel
+        # @param PluginId: <p>插件id</p>
+        # @type PluginId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PluginId, :RequestId
+
+        def initialize(pluginid=nil, requestid=nil)
+          @PluginId = pluginid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @PluginId = params['PluginId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateRelease请求参数结构体
       class CreateReleaseRequest < TencentCloud::Common::AbstractModel
         # @param AppId: 应用ID
@@ -2879,6 +2966,126 @@ module TencentCloud
         def deserialize(params)
           @NeedApproval = params['NeedApproval']
           @ReleaseId = params['ReleaseId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateSkill请求参数结构体
+      class CreateSkillRequest < TencentCloud::Common::AbstractModel
+        # @param CreateType: <p>Skill 创建方式，必填；仅允许</p><p>枚举值：</p><ul><li>1： FILE_UPLOAD（文件上传）</li><li>3： AIGC（AIGC生成）</li></ul>
+        # @type CreateType: Integer
+        # @param FileUrl: <p>skill包文件地址（zip）；FILE_UPLOAD / AIGC 均必填</p>
+        # @type FileUrl: String
+        # @param SpaceId: <p>空间ID</p>
+        # @type SpaceId: String
+        # @param DisplayDescription: <p>skill展示描述</p>
+        # @type DisplayDescription: String
+        # @param DisplayName: <p>skill展示名称</p>
+        # @type DisplayName: String
+        # @param IconUrl: <p>图标地址</p>
+        # @type IconUrl: String
+        # @param Name: <p>skill业务唯一标识名（同企业下唯一）；未传时从skill包解析</p>
+        # @type Name: String
+        # @param SkillVersion: <p>版本号</p>
+        # @type SkillVersion: String
+        # @param UpdateDescription: <p>版本变更说明</p>
+        # @type UpdateDescription: String
+
+        attr_accessor :CreateType, :FileUrl, :SpaceId, :DisplayDescription, :DisplayName, :IconUrl, :Name, :SkillVersion, :UpdateDescription
+
+        def initialize(createtype=nil, fileurl=nil, spaceid=nil, displaydescription=nil, displayname=nil, iconurl=nil, name=nil, skillversion=nil, updatedescription=nil)
+          @CreateType = createtype
+          @FileUrl = fileurl
+          @SpaceId = spaceid
+          @DisplayDescription = displaydescription
+          @DisplayName = displayname
+          @IconUrl = iconurl
+          @Name = name
+          @SkillVersion = skillversion
+          @UpdateDescription = updatedescription
+        end
+
+        def deserialize(params)
+          @CreateType = params['CreateType']
+          @FileUrl = params['FileUrl']
+          @SpaceId = params['SpaceId']
+          @DisplayDescription = params['DisplayDescription']
+          @DisplayName = params['DisplayName']
+          @IconUrl = params['IconUrl']
+          @Name = params['Name']
+          @SkillVersion = params['SkillVersion']
+          @UpdateDescription = params['UpdateDescription']
+        end
+      end
+
+      # CreateSkill返回参数结构体
+      class CreateSkillResponse < TencentCloud::Common::AbstractModel
+        # @param SkillId: <p>创建成功后的skillID</p>
+        # @type SkillId: String
+        # @param VersionId: <p>创建成功后的版本ID</p>
+        # @type VersionId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SkillId, :VersionId, :RequestId
+
+        def initialize(skillid=nil, versionid=nil, requestid=nil)
+          @SkillId = skillid
+          @VersionId = versionid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @SkillId = params['SkillId']
+          @VersionId = params['VersionId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateSkillShare请求参数结构体
+      class CreateSkillShareRequest < TencentCloud::Common::AbstractModel
+        # @param ApplyRemark: <p>必填，申请备注（弹窗&quot;申请备注&quot;）</p>
+        # @type ApplyRemark: String
+        # @param SkillId: <p>必填，原skill_id</p>
+        # @type SkillId: String
+        # @param SpaceId: <p>空间ID，必填</p>
+        # @type SpaceId: String
+        # @param VersionId: <p>必填，被共享的版本id（必须高于已共享版本）</p>
+        # @type VersionId: String
+
+        attr_accessor :ApplyRemark, :SkillId, :SpaceId, :VersionId
+
+        def initialize(applyremark=nil, skillid=nil, spaceid=nil, versionid=nil)
+          @ApplyRemark = applyremark
+          @SkillId = skillid
+          @SpaceId = spaceid
+          @VersionId = versionid
+        end
+
+        def deserialize(params)
+          @ApplyRemark = params['ApplyRemark']
+          @SkillId = params['SkillId']
+          @SpaceId = params['SpaceId']
+          @VersionId = params['VersionId']
+        end
+      end
+
+      # CreateSkillShare返回参数结构体
+      class CreateSkillShareResponse < TencentCloud::Common::AbstractModel
+        # @param NeedApproval: <p>是否走了审批流（false表示无需审批已直接创建共享任务）</p>
+        # @type NeedApproval: Boolean
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :NeedApproval, :RequestId
+
+        def initialize(needapproval=nil, requestid=nil)
+          @NeedApproval = needapproval
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @NeedApproval = params['NeedApproval']
           @RequestId = params['RequestId']
         end
       end
@@ -3099,6 +3306,46 @@ module TencentCloud
         end
       end
 
+      # DeleteAgent请求参数结构体
+      class DeleteAgentRequest < TencentCloud::Common::AbstractModel
+        # @param AppId: <p>应用Id</p>
+        # @type AppId: String
+        # @param AgentId: <p>待删除AgentId</p>
+        # @type AgentId: String
+        # @param CollaborationMode: 协作模式；0-Claw模式；1-Multi-Agent模式
+        # @type CollaborationMode: Integer
+
+        attr_accessor :AppId, :AgentId, :CollaborationMode
+
+        def initialize(appid=nil, agentid=nil, collaborationmode=nil)
+          @AppId = appid
+          @AgentId = agentid
+          @CollaborationMode = collaborationmode
+        end
+
+        def deserialize(params)
+          @AppId = params['AppId']
+          @AgentId = params['AgentId']
+          @CollaborationMode = params['CollaborationMode']
+        end
+      end
+
+      # DeleteAgent返回参数结构体
+      class DeleteAgentResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteApp请求参数结构体
       class DeleteAppRequest < TencentCloud::Common::AbstractModel
         # @param AppId: app_id
@@ -3179,6 +3426,122 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeletePlugin请求参数结构体
+      class DeletePluginRequest < TencentCloud::Common::AbstractModel
+        # @param PluginId: <p>插件id</p>
+        # @type PluginId: String
+
+        attr_accessor :PluginId
+
+        def initialize(pluginid=nil)
+          @PluginId = pluginid
+        end
+
+        def deserialize(params)
+          @PluginId = params['PluginId']
+        end
+      end
+
+      # DeletePlugin返回参数结构体
+      class DeletePluginResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteSkill请求参数结构体
+      class DeleteSkillRequest < TencentCloud::Common::AbstractModel
+        # @param SkillId: <p>Skill ID，必填</p>
+        # @type SkillId: String
+        # @param SpaceId: <p>空间ID，必填</p>
+        # @type SpaceId: String
+
+        attr_accessor :SkillId, :SpaceId
+
+        def initialize(skillid=nil, spaceid=nil)
+          @SkillId = skillid
+          @SpaceId = spaceid
+        end
+
+        def deserialize(params)
+          @SkillId = params['SkillId']
+          @SpaceId = params['SpaceId']
+        end
+      end
+
+      # DeleteSkill返回参数结构体
+      class DeleteSkillResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteSkillShare请求参数结构体
+      class DeleteSkillShareRequest < TencentCloud::Common::AbstractModel
+        # @param ApplyRemark: <p>申请备注，必填（弹窗&quot;申请备注&quot;）</p>
+        # @type ApplyRemark: String
+        # @param SkillId: <p>原 Skill ID，必填（前端无须感知 _shared 后缀）</p>
+        # @type SkillId: String
+        # @param SpaceId: <p>空间ID，必填</p>
+        # @type SpaceId: String
+        # @param VersionId: <p>原版本 ID，必填（与 CreateSkillShare 上架时传的同一 version_id）</p>
+        # @type VersionId: String
+
+        attr_accessor :ApplyRemark, :SkillId, :SpaceId, :VersionId
+
+        def initialize(applyremark=nil, skillid=nil, spaceid=nil, versionid=nil)
+          @ApplyRemark = applyremark
+          @SkillId = skillid
+          @SpaceId = spaceid
+          @VersionId = versionid
+        end
+
+        def deserialize(params)
+          @ApplyRemark = params['ApplyRemark']
+          @SkillId = params['SkillId']
+          @SpaceId = params['SpaceId']
+          @VersionId = params['VersionId']
+        end
+      end
+
+      # DeleteSkillShare返回参数结构体
+      class DeleteSkillShareResponse < TencentCloud::Common::AbstractModel
+        # @param NeedApproval: <p>是否走审批流（false 表示无需审批已直接执行下架）</p>
+        # @type NeedApproval: Boolean
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :NeedApproval, :RequestId
+
+        def initialize(needapproval=nil, requestid=nil)
+          @NeedApproval = needapproval
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @NeedApproval = params['NeedApproval']
           @RequestId = params['RequestId']
         end
       end
@@ -3364,6 +3727,76 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAgentSummaryList请求参数结构体
+      class DescribeAgentSummaryListRequest < TencentCloud::Common::AbstractModel
+        # @param Scope: <p>查询范围；0-单应用查询；1-跨应用查询</p>
+        # @type Scope: Integer
+        # @param AppId: <p>应用Id，Scope=0 时为目标应用ID（必填）；scope=1 时无需填写</p>
+        # @type AppId: String
+        # @param FilterList: <p>过滤条件（name: "SearchWord", "SpaceId", "AgentSource", "AppId"）</p>
+        # @type FilterList: Array
+        # @param PageSize: <p>每页数目</p>
+        # @type PageSize: Integer
+        # @param PageNumber: <p>页码</p>
+        # @type PageNumber: Integer
+
+        attr_accessor :Scope, :AppId, :FilterList, :PageSize, :PageNumber
+
+        def initialize(scope=nil, appid=nil, filterlist=nil, pagesize=nil, pagenumber=nil)
+          @Scope = scope
+          @AppId = appid
+          @FilterList = filterlist
+          @PageSize = pagesize
+          @PageNumber = pagenumber
+        end
+
+        def deserialize(params)
+          @Scope = params['Scope']
+          @AppId = params['AppId']
+          unless params['FilterList'].nil?
+            @FilterList = []
+            params['FilterList'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @FilterList << filter_tmp
+            end
+          end
+          @PageSize = params['PageSize']
+          @PageNumber = params['PageNumber']
+        end
+      end
+
+      # DescribeAgentSummaryList返回参数结构体
+      class DescribeAgentSummaryListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: <p>总数</p>
+        # @type TotalCount: Integer
+        # @param AgentList: <p>Agent摘要信息</p>
+        # @type AgentList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :AgentList, :RequestId
+
+        def initialize(totalcount=nil, agentlist=nil, requestid=nil)
+          @TotalCount = totalcount
+          @AgentList = agentlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['AgentList'].nil?
+            @AgentList = []
+            params['AgentList'].each do |i|
+              agentsummary_tmp = AgentSummary.new
+              agentsummary_tmp.deserialize(i)
+              @AgentList << agentsummary_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -4173,6 +4606,107 @@ module TencentCloud
         end
       end
 
+      # DescribeSkillDetail请求参数结构体
+      class DescribeSkillDetailRequest < TencentCloud::Common::AbstractModel
+        # @param SkillId: skillID
+        # @type SkillId: String
+        # @param SpaceId: 空间ID
+        # @type SpaceId: String
+        # @param VersionFilterList: 版本过滤条件(多个Filter之间为AND关系,同一Filter的多个Values为OR关系): - Perspective: 视角枚举,字符串单值,Values 长度必须为 1,多值视为非法;仅作用于详情返回的 version_list 裁剪,不决定接口本身可见性;不传默认 USER (USER=使用者视角,version_list 仅返回已上线版本 / EDITOR=编辑者视角,version_list 返回全部存活版本 / ALL=全量视角,同 EDITOR)
+        # @type VersionFilterList: Array
+
+        attr_accessor :SkillId, :SpaceId, :VersionFilterList
+
+        def initialize(skillid=nil, spaceid=nil, versionfilterlist=nil)
+          @SkillId = skillid
+          @SpaceId = spaceid
+          @VersionFilterList = versionfilterlist
+        end
+
+        def deserialize(params)
+          @SkillId = params['SkillId']
+          @SpaceId = params['SpaceId']
+          unless params['VersionFilterList'].nil?
+            @VersionFilterList = []
+            params['VersionFilterList'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @VersionFilterList << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeSkillDetail返回参数结构体
+      class DescribeSkillDetailResponse < TencentCloud::Common::AbstractModel
+        # @param SkillDetail: skill详情
+        # @type SkillDetail: :class:`Tencentcloud::Adp.v20260520.models.SkillDetail`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SkillDetail, :RequestId
+
+        def initialize(skilldetail=nil, requestid=nil)
+          @SkillDetail = skilldetail
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['SkillDetail'].nil?
+            @SkillDetail = SkillDetail.new
+            @SkillDetail.deserialize(params['SkillDetail'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeSkillReferenceList请求参数结构体
+      class DescribeSkillReferenceListRequest < TencentCloud::Common::AbstractModel
+        # @param SkillId: <p>Skill ID，必填</p>
+        # @type SkillId: String
+        # @param SpaceId: <p>空间ID，必填</p>
+        # @type SpaceId: String
+
+        attr_accessor :SkillId, :SpaceId
+
+        def initialize(skillid=nil, spaceid=nil)
+          @SkillId = skillid
+          @SpaceId = spaceid
+        end
+
+        def deserialize(params)
+          @SkillId = params['SkillId']
+          @SpaceId = params['SpaceId']
+        end
+      end
+
+      # DescribeSkillReferenceList返回参数结构体
+      class DescribeSkillReferenceListResponse < TencentCloud::Common::AbstractModel
+        # @param ReferenceList: <p>按 SkillRefType 分组的引用汇总：某类型 total_count = 0 时不入组（不返回空占位） 本期同时落 OPENCLAW / AGENT / CORP_ASSISTANT 三路</p>
+        # @type ReferenceList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ReferenceList, :RequestId
+
+        def initialize(referencelist=nil, requestid=nil)
+          @ReferenceList = referencelist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ReferenceList'].nil?
+            @ReferenceList = []
+            params['ReferenceList'].each do |i|
+              skillreferencegroup_tmp = SkillReferenceGroup.new
+              skillreferencegroup_tmp.deserialize(i)
+              @ReferenceList << skillreferencegroup_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeSkillSummaryList请求参数结构体
       class DescribeSkillSummaryListRequest < TencentCloud::Common::AbstractModel
         # @param SpaceId: 空间ID，必填
@@ -4536,6 +5070,78 @@ module TencentCloud
           @InputPuPrice = params['InputPuPrice']
           @OutputCashPrice = params['OutputCashPrice']
           @OutputPuPrice = params['OutputPuPrice']
+        end
+      end
+
+      # FavoritePlugin请求参数结构体
+      class FavoritePluginRequest < TencentCloud::Common::AbstractModel
+        # @param PluginId: <p>插件id</p>
+        # @type PluginId: String
+        # @param SpaceId: <p>当前空间id</p>
+        # @type SpaceId: String
+
+        attr_accessor :PluginId, :SpaceId
+
+        def initialize(pluginid=nil, spaceid=nil)
+          @PluginId = pluginid
+          @SpaceId = spaceid
+        end
+
+        def deserialize(params)
+          @PluginId = params['PluginId']
+          @SpaceId = params['SpaceId']
+        end
+      end
+
+      # FavoritePlugin返回参数结构体
+      class FavoritePluginResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # FavoriteSkill请求参数结构体
+      class FavoriteSkillRequest < TencentCloud::Common::AbstractModel
+        # @param SkillId: <p>SkillId</p>
+        # @type SkillId: String
+        # @param SpaceId: <p>空间ID</p>
+        # @type SpaceId: String
+
+        attr_accessor :SkillId, :SpaceId
+
+        def initialize(skillid=nil, spaceid=nil)
+          @SkillId = skillid
+          @SpaceId = spaceid
+        end
+
+        def deserialize(params)
+          @SkillId = params['SkillId']
+          @SpaceId = params['SpaceId']
+        end
+      end
+
+      # FavoriteSkill返回参数结构体
+      class FavoriteSkillResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 
@@ -5384,6 +5990,134 @@ module TencentCloud
         end
       end
 
+      # ModifyPlugin请求参数结构体
+      class ModifyPluginRequest < TencentCloud::Common::AbstractModel
+        # @param PluginId: <p>插件id</p>
+        # @type PluginId: String
+        # @param PluginVersion: <p>插件版本号</p>
+        # @type PluginVersion: Integer
+        # @param Profile: <p>插件基础资料</p>
+        # @type Profile: :class:`Tencentcloud::Adp.v20260520.models.PluginProfile`
+        # @param Config: <p>插件类型配置</p>
+        # @type Config: :class:`Tencentcloud::Adp.v20260520.models.PluginConfig`
+        # @param UpdateMask: <p>指定需要更新的字段，避免全量覆盖</p>
+        # @type UpdateMask: :class:`Tencentcloud::Adp.v20260520.models.FieldMask`
+        # @param ToolList: <p>插件的工具列表，mcp插件不传</p>
+        # @type ToolList: Array
+
+        attr_accessor :PluginId, :PluginVersion, :Profile, :Config, :UpdateMask, :ToolList
+
+        def initialize(pluginid=nil, pluginversion=nil, profile=nil, config=nil, updatemask=nil, toollist=nil)
+          @PluginId = pluginid
+          @PluginVersion = pluginversion
+          @Profile = profile
+          @Config = config
+          @UpdateMask = updatemask
+          @ToolList = toollist
+        end
+
+        def deserialize(params)
+          @PluginId = params['PluginId']
+          @PluginVersion = params['PluginVersion']
+          unless params['Profile'].nil?
+            @Profile = PluginProfile.new
+            @Profile.deserialize(params['Profile'])
+          end
+          unless params['Config'].nil?
+            @Config = PluginConfig.new
+            @Config.deserialize(params['Config'])
+          end
+          unless params['UpdateMask'].nil?
+            @UpdateMask = FieldMask.new
+            @UpdateMask.deserialize(params['UpdateMask'])
+          end
+          unless params['ToolList'].nil?
+            @ToolList = []
+            params['ToolList'].each do |i|
+              tool_tmp = Tool.new
+              tool_tmp.deserialize(i)
+              @ToolList << tool_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyPlugin返回参数结构体
+      class ModifyPluginResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifySkill请求参数结构体
+      class ModifySkillRequest < TencentCloud::Common::AbstractModel
+        # @param SkillId: <p>SkillId</p>
+        # @type SkillId: String
+        # @param SpaceId: <p>空间ID</p>
+        # @type SpaceId: String
+        # @param DisplayDescription: <p>skill描述</p>
+        # @type DisplayDescription: String
+        # @param DisplayName: <p>skill名称</p>
+        # @type DisplayName: String
+        # @param FileUrl: <p>skill包文件地址（zip）；传入则触发新版本生成，需与SkillVersion、UpdateDescription配套传入</p>
+        # @type FileUrl: String
+        # @param IconUrl: <p>图标地址</p>
+        # @type IconUrl: String
+        # @param SkillVersion: <p>skill版本号（与FileUrl配套传入）</p>
+        # @type SkillVersion: String
+        # @param UpdateDescription: <p>版本变更说明（与FileUrl配套传入）</p>
+        # @type UpdateDescription: String
+
+        attr_accessor :SkillId, :SpaceId, :DisplayDescription, :DisplayName, :FileUrl, :IconUrl, :SkillVersion, :UpdateDescription
+
+        def initialize(skillid=nil, spaceid=nil, displaydescription=nil, displayname=nil, fileurl=nil, iconurl=nil, skillversion=nil, updatedescription=nil)
+          @SkillId = skillid
+          @SpaceId = spaceid
+          @DisplayDescription = displaydescription
+          @DisplayName = displayname
+          @FileUrl = fileurl
+          @IconUrl = iconurl
+          @SkillVersion = skillversion
+          @UpdateDescription = updatedescription
+        end
+
+        def deserialize(params)
+          @SkillId = params['SkillId']
+          @SpaceId = params['SpaceId']
+          @DisplayDescription = params['DisplayDescription']
+          @DisplayName = params['DisplayName']
+          @FileUrl = params['FileUrl']
+          @IconUrl = params['IconUrl']
+          @SkillVersion = params['SkillVersion']
+          @UpdateDescription = params['UpdateDescription']
+        end
+      end
+
+      # ModifySkill返回参数结构体
+      class ModifySkillResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifySpace请求参数结构体
       class ModifySpaceRequest < TencentCloud::Common::AbstractModel
         # @param Name: 工作空间名称,长度最大30个字符
@@ -5956,6 +6690,46 @@ module TencentCloud
         end
       end
 
+      # ReleaseSkill请求参数结构体
+      class ReleaseSkillRequest < TencentCloud::Common::AbstractModel
+        # @param SkillId: <p>SkillId</p>
+        # @type SkillId: String
+        # @param SpaceId: <p>空间ID</p>
+        # @type SpaceId: String
+        # @param VersionId: <p>版本ID</p>
+        # @type VersionId: String
+
+        attr_accessor :SkillId, :SpaceId, :VersionId
+
+        def initialize(skillid=nil, spaceid=nil, versionid=nil)
+          @SkillId = skillid
+          @SpaceId = spaceid
+          @VersionId = versionid
+        end
+
+        def deserialize(params)
+          @SkillId = params['SkillId']
+          @SpaceId = params['SpaceId']
+          @VersionId = params['VersionId']
+        end
+      end
+
+      # ReleaseSkill返回参数结构体
+      class ReleaseSkillResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 发布摘要信息
       class ReleaseSummary < TencentCloud::Common::AbstractModel
         # @param CreateTime: 创建时间 (Unix时间戳,秒级)
@@ -6430,6 +7204,47 @@ module TencentCloud
         end
       end
 
+      # skill详情
+      class SkillDetail < TencentCloud::Common::AbstractModel
+        # @param ReferenceSummaryList: 调用情况摘要
+        # @type ReferenceSummaryList: Array
+        # @param SkillSummary: Skill 摘要
+        # @type SkillSummary: :class:`Tencentcloud::Adp.v20260520.models.SkillSummary`
+        # @param VersionList: 版本列表
+        # @type VersionList: Array
+
+        attr_accessor :ReferenceSummaryList, :SkillSummary, :VersionList
+
+        def initialize(referencesummarylist=nil, skillsummary=nil, versionlist=nil)
+          @ReferenceSummaryList = referencesummarylist
+          @SkillSummary = skillsummary
+          @VersionList = versionlist
+        end
+
+        def deserialize(params)
+          unless params['ReferenceSummaryList'].nil?
+            @ReferenceSummaryList = []
+            params['ReferenceSummaryList'].each do |i|
+              skillreferencesummary_tmp = SkillReferenceSummary.new
+              skillreferencesummary_tmp.deserialize(i)
+              @ReferenceSummaryList << skillreferencesummary_tmp
+            end
+          end
+          unless params['SkillSummary'].nil?
+            @SkillSummary = SkillSummary.new
+            @SkillSummary.deserialize(params['SkillSummary'])
+          end
+          unless params['VersionList'].nil?
+            @VersionList = []
+            params['VersionList'].each do |i|
+              skillversion_tmp = SkillVersion.new
+              skillversion_tmp.deserialize(i)
+              @VersionList << skillversion_tmp
+            end
+          end
+        end
+      end
+
       # Skill 异常通知。
       class SkillNotice < TencentCloud::Common::AbstractModel
         # @param Level: 通知级别
@@ -6514,6 +7329,73 @@ module TencentCloud
           @IconUrl = params['IconUrl']
           @Name = params['Name']
           @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # 同一 SkillRefType 下的引用分组（含总数 + 引用详情列表）。 total_count 始终以未过滤的原始总量为准；reference_summary_list 受二次鉴权开关影响。
+      class SkillReferenceGroup < TencentCloud::Common::AbstractModel
+        # @param ReferenceSummaryList: <p>该类型下的引用详情列表</p>
+        # @type ReferenceSummaryList: Array
+        # @param ReferenceType: <table><tbody><tr><td>枚举项</td><td>枚举值</td><td>描述</td></tr><tr><td>SKILL_REF_UNKNOWN</td><td>0</td><td>占位</td></tr><tr><td>SKILL_REF_OPENCLAW</td><td>1</td><td>openclaw</td></tr><tr><td>SKILL_REF_AGENT</td><td>2</td><td>agent</td></tr><tr><td>SKILL_REF_CORP_ASSISTANT</td><td>3</td><td>企业助手</td></tr></tbody></table>
+        # @type ReferenceType: Integer
+        # @param TotalCount: <p>该类型下的引用总数</p>
+        # @type TotalCount: Integer
+
+        attr_accessor :ReferenceSummaryList, :ReferenceType, :TotalCount
+
+        def initialize(referencesummarylist=nil, referencetype=nil, totalcount=nil)
+          @ReferenceSummaryList = referencesummarylist
+          @ReferenceType = referencetype
+          @TotalCount = totalcount
+        end
+
+        def deserialize(params)
+          unless params['ReferenceSummaryList'].nil?
+            @ReferenceSummaryList = []
+            params['ReferenceSummaryList'].each do |i|
+              skillreferencesummary_tmp = SkillReferenceSummary.new
+              skillreferencesummary_tmp.deserialize(i)
+              @ReferenceSummaryList << skillreferencesummary_tmp
+            end
+          end
+          @ReferenceType = params['ReferenceType']
+          @TotalCount = params['TotalCount']
+        end
+      end
+
+      # 引用摘要（用于详情页展示，对应DB t_skill_reference）
+      class SkillReferenceSummary < TencentCloud::Common::AbstractModel
+        # @param ReferenceId: <p>关联ID</p>
+        # @type ReferenceId: String
+        # @param ReferenceName: <p>关联名称</p>
+        # @type ReferenceName: String
+        # @param ReferenceType: <p>关联类型</p><p>枚举值:<br>| uint | 描述 |<br>| --- | --- |<br>| 0 | 占位 |<br>| 1 | ClawPro |<br>| 2 | agent |</p>
+        # @type ReferenceType: Integer
+        # @param SpaceId: <p>空间ID</p>
+        # @type SpaceId: String
+        # @param SpaceName: <p>空间名称</p>
+        # @type SpaceName: String
+        # @param Owner: <p>Reference实例拥有者</p>
+        # @type Owner: String
+
+        attr_accessor :ReferenceId, :ReferenceName, :ReferenceType, :SpaceId, :SpaceName, :Owner
+
+        def initialize(referenceid=nil, referencename=nil, referencetype=nil, spaceid=nil, spacename=nil, owner=nil)
+          @ReferenceId = referenceid
+          @ReferenceName = referencename
+          @ReferenceType = referencetype
+          @SpaceId = spaceid
+          @SpaceName = spacename
+          @Owner = owner
+        end
+
+        def deserialize(params)
+          @ReferenceId = params['ReferenceId']
+          @ReferenceName = params['ReferenceName']
+          @ReferenceType = params['ReferenceType']
+          @SpaceId = params['SpaceId']
+          @SpaceName = params['SpaceName']
+          @Owner = params['Owner']
         end
       end
 
@@ -6954,6 +7836,78 @@ module TencentCloud
         def deserialize(params)
           @Request = params['Request']
           @Response = params['Response']
+        end
+      end
+
+      # UnfavoritePlugin请求参数结构体
+      class UnfavoritePluginRequest < TencentCloud::Common::AbstractModel
+        # @param PluginId: <p>插件id</p>
+        # @type PluginId: String
+        # @param SpaceId: <p>当前空间id</p>
+        # @type SpaceId: String
+
+        attr_accessor :PluginId, :SpaceId
+
+        def initialize(pluginid=nil, spaceid=nil)
+          @PluginId = pluginid
+          @SpaceId = spaceid
+        end
+
+        def deserialize(params)
+          @PluginId = params['PluginId']
+          @SpaceId = params['SpaceId']
+        end
+      end
+
+      # UnfavoritePlugin返回参数结构体
+      class UnfavoritePluginResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UnfavoriteSkill请求参数结构体
+      class UnfavoriteSkillRequest < TencentCloud::Common::AbstractModel
+        # @param SkillId: <p>SkillId</p>
+        # @type SkillId: String
+        # @param SpaceId: <p>空间ID</p>
+        # @type SpaceId: String
+
+        attr_accessor :SkillId, :SpaceId
+
+        def initialize(skillid=nil, spaceid=nil)
+          @SkillId = skillid
+          @SpaceId = spaceid
+        end
+
+        def deserialize(params)
+          @SkillId = params['SkillId']
+          @SpaceId = params['SpaceId']
+        end
+      end
+
+      # UnfavoriteSkill返回参数结构体
+      class UnfavoriteSkillResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 

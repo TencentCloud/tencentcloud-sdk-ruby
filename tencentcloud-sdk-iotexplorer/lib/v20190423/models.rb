@@ -14891,10 +14891,12 @@ module TencentCloud
         # @type MaxDuration: Integer
         # @param EnableKeywords: <p>是否生成关键词</p><p>默认值：false</p>
         # @type EnableKeywords: Boolean
+        # @param SummaryPrompt: <p>自定义摘要提示词</p>
+        # @type SummaryPrompt: String
 
-        attr_accessor :DetectTypes, :EnableSearch, :OutputLang, :AlternativeOutputLang, :MultiCameraLayout, :CustomDetectQueries, :MaxDuration, :EnableKeywords
+        attr_accessor :DetectTypes, :EnableSearch, :OutputLang, :AlternativeOutputLang, :MultiCameraLayout, :CustomDetectQueries, :MaxDuration, :EnableKeywords, :SummaryPrompt
 
-        def initialize(detecttypes=nil, enablesearch=nil, outputlang=nil, alternativeoutputlang=nil, multicameralayout=nil, customdetectqueries=nil, maxduration=nil, enablekeywords=nil)
+        def initialize(detecttypes=nil, enablesearch=nil, outputlang=nil, alternativeoutputlang=nil, multicameralayout=nil, customdetectqueries=nil, maxduration=nil, enablekeywords=nil, summaryprompt=nil)
           @DetectTypes = detecttypes
           @EnableSearch = enablesearch
           @OutputLang = outputlang
@@ -14903,6 +14905,7 @@ module TencentCloud
           @CustomDetectQueries = customdetectqueries
           @MaxDuration = maxduration
           @EnableKeywords = enablekeywords
+          @SummaryPrompt = summaryprompt
         end
 
         def deserialize(params)
@@ -14921,6 +14924,7 @@ module TencentCloud
           end
           @MaxDuration = params['MaxDuration']
           @EnableKeywords = params['EnableKeywords']
+          @SummaryPrompt = params['SummaryPrompt']
         end
       end
 

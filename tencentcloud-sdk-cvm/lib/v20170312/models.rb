@@ -783,24 +783,30 @@ module TencentCloud
 
       # CreateDisasterRecoverGroup请求参数结构体
       class CreateDisasterRecoverGroupRequest < TencentCloud::Common::AbstractModel
-        # @param Name: 分散置放群组名称，长度1-60个字符，支持中、英文。
+        # @param Name: <p>分散置放群组名称，长度1-60个字符，支持中、英文。</p>
         # @type Name: String
-        # @param Type: 分散置放群组类型，取值范围：<br><li>HOST：物理机</li><li>SW：交换机</li><li>RACK：机架</li>
+        # @param Type: <p>分散置放群组类型，取值范围：<br><li>HOST：物理机</li><li>SW：交换机</li><li>RACK：机架</li></p>
         # @type Type: String
-        # @param ClientToken: 用于保证请求幂等性的字符串。该字符串由客户生成，需保证不同请求之间唯一，最大值不超过64个ASCII字符。若不指定该参数，则无法保证请求的幂等性。<br>更多详细信息请参阅：如何保证幂等性。
+        # @param ClientToken: <p>用于保证请求幂等性的字符串。该字符串由客户生成，需保证不同请求之间唯一，最大值不超过64个ASCII字符。若不指定该参数，则无法保证请求的幂等性。<br>更多详细信息请参阅：如何保证幂等性。</p>
         # @type ClientToken: String
-        # @param Affinity: 置放群组的亲和度，在置放群组的实例会按该亲和度分布，亲和度的取值范围是：1-10，默认为1
+        # @param Affinity: <p>置放群组的亲和度，在置放群组的实例会按该亲和度分布，亲和度的取值范围是：1-10，默认为1</p>
         # @type Affinity: Integer
-        # @param TagSpecification: 标签描述列表。通过指定该参数可以绑定标签到置放群组。
+        # @param Strategy: <p>置放群组类型，当前支持两种，分散置放群组和分区置放群组(灰度中)，取值范围：PARTITION：分区置放群组，SPREAD：分散置放群组，不传该值默认是分散置放群组。</p>
+        # @type Strategy: String
+        # @param PartitionCount: <p>分区置放群组的分区数量，取值范围：2-30，当置放群组类型是分区置放群组时传入(分区置放群组功能灰度中)。</p>
+        # @type PartitionCount: Integer
+        # @param TagSpecification: <p>标签描述列表。通过指定该参数可以绑定标签到置放群组。</p>
         # @type TagSpecification: Array
 
-        attr_accessor :Name, :Type, :ClientToken, :Affinity, :TagSpecification
+        attr_accessor :Name, :Type, :ClientToken, :Affinity, :Strategy, :PartitionCount, :TagSpecification
 
-        def initialize(name=nil, type=nil, clienttoken=nil, affinity=nil, tagspecification=nil)
+        def initialize(name=nil, type=nil, clienttoken=nil, affinity=nil, strategy=nil, partitioncount=nil, tagspecification=nil)
           @Name = name
           @Type = type
           @ClientToken = clienttoken
           @Affinity = affinity
+          @Strategy = strategy
+          @PartitionCount = partitioncount
           @TagSpecification = tagspecification
         end
 
@@ -809,6 +815,8 @@ module TencentCloud
           @Type = params['Type']
           @ClientToken = params['ClientToken']
           @Affinity = params['Affinity']
+          @Strategy = params['Strategy']
+          @PartitionCount = params['PartitionCount']
           unless params['TagSpecification'].nil?
             @TagSpecification = []
             params['TagSpecification'].each do |i|
@@ -822,30 +830,36 @@ module TencentCloud
 
       # CreateDisasterRecoverGroup返回参数结构体
       class CreateDisasterRecoverGroupResponse < TencentCloud::Common::AbstractModel
-        # @param DisasterRecoverGroupId: 分散置放群组ID列表。
+        # @param DisasterRecoverGroupId: <p>分散置放群组ID列表。</p>
         # @type DisasterRecoverGroupId: String
-        # @param Type: 分散置放群组类型，取值范围：<br><li>HOST：物理机</li><li>SW：交换机</li><li>RACK：机架</li>
+        # @param Type: <p>分散置放群组类型，取值范围：<br><li>HOST：物理机</li><li>SW：交换机</li><li>RACK：机架</li></p>
         # @type Type: String
-        # @param Name: 分散置放群组名称，长度1-60个字符，支持中、英文。
+        # @param Name: <p>分散置放群组名称，长度1-60个字符，支持中、英文。</p>
         # @type Name: String
-        # @param CvmQuotaTotal: 置放群组内可容纳的云服务器数量。
+        # @param CvmQuotaTotal: <p>置放群组内可容纳的云服务器数量。</p>
         # @type CvmQuotaTotal: Integer
-        # @param CurrentNum: 置放群组内已有的云服务器数量。
+        # @param CurrentNum: <p>置放群组内已有的云服务器数量。</p>
         # @type CurrentNum: Integer
-        # @param CreateTime: 分散置放群组创建时间。按照ISO8601标准表示，并且使用UTC时间。格式为：YYYY-MM-DDThh:mm:ssZ。
+        # @param CreateTime: <p>分散置放群组创建时间。按照ISO8601标准表示，并且使用UTC时间。格式为：YYYY-MM-DDThh:mm:ssZ。</p>
         # @type CreateTime: String
+        # @param Strategy: <p>置放群组类型，当前支持两种，分散置放群组和分区置放群组(功能灰度中)，取值范围：PARTITION：分区置放群组，SPREAD：分散置放群组，默认是分散置放群组。</p>
+        # @type Strategy: String
+        # @param PartitionCount: <p>分区置放群组的分区数量，取值范围：2-30，当置放群组类型是分区置放群组时，才有该值(分区置放群组功能灰度中)。</p>
+        # @type PartitionCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :DisasterRecoverGroupId, :Type, :Name, :CvmQuotaTotal, :CurrentNum, :CreateTime, :RequestId
+        attr_accessor :DisasterRecoverGroupId, :Type, :Name, :CvmQuotaTotal, :CurrentNum, :CreateTime, :Strategy, :PartitionCount, :RequestId
 
-        def initialize(disasterrecovergroupid=nil, type=nil, name=nil, cvmquotatotal=nil, currentnum=nil, createtime=nil, requestid=nil)
+        def initialize(disasterrecovergroupid=nil, type=nil, name=nil, cvmquotatotal=nil, currentnum=nil, createtime=nil, strategy=nil, partitioncount=nil, requestid=nil)
           @DisasterRecoverGroupId = disasterrecovergroupid
           @Type = type
           @Name = name
           @CvmQuotaTotal = cvmquotatotal
           @CurrentNum = currentnum
           @CreateTime = createtime
+          @Strategy = strategy
+          @PartitionCount = partitioncount
           @RequestId = requestid
         end
 
@@ -856,6 +870,8 @@ module TencentCloud
           @CvmQuotaTotal = params['CvmQuotaTotal']
           @CurrentNum = params['CurrentNum']
           @CreateTime = params['CreateTime']
+          @Strategy = params['Strategy']
+          @PartitionCount = params['PartitionCount']
           @RequestId = params['RequestId']
         end
       end
