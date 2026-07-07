@@ -343,6 +343,30 @@ module TencentCloud
 
         # 创建Dspm资产列表导出任务
 
+        # @param request: Request instance for CreateDspmAssetIdentifyInfoExportJob.
+        # @type request: :class:`Tencentcloud::csip::V20221121::CreateDspmAssetIdentifyInfoExportJobRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::CreateDspmAssetIdentifyInfoExportJobResponse`
+        def CreateDspmAssetIdentifyInfoExportJob(request)
+          body = send_request('CreateDspmAssetIdentifyInfoExportJob', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateDspmAssetIdentifyInfoExportJobResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建Dspm资产列表导出任务
+
         # @param request: Request instance for CreateDspmAssetsExportJob.
         # @type request: :class:`Tencentcloud::csip::V20221121::CreateDspmAssetsExportJobRequest`
         # @rtype: :class:`Tencentcloud::csip::V20221121::CreateDspmAssetsExportJobResponse`
@@ -389,6 +413,126 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建dspm数据识别分类
+
+        # @param request: Request instance for CreateDspmIdentifyCategory.
+        # @type request: :class:`Tencentcloud::csip::V20221121::CreateDspmIdentifyCategoryRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::CreateDspmIdentifyCategoryResponse`
+        def CreateDspmIdentifyCategory(request)
+          body = send_request('CreateDspmIdentifyCategory', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateDspmIdentifyCategoryResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建dspm数据识别模板分类关联
+
+        # @param request: Request instance for CreateDspmIdentifyComplianceCategoryRelation.
+        # @type request: :class:`Tencentcloud::csip::V20221121::CreateDspmIdentifyComplianceCategoryRelationRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::CreateDspmIdentifyComplianceCategoryRelationResponse`
+        def CreateDspmIdentifyComplianceCategoryRelation(request)
+          body = send_request('CreateDspmIdentifyComplianceCategoryRelation', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateDspmIdentifyComplianceCategoryRelationResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建dspm数据识别模板
+
+        # @param request: Request instance for CreateDspmIdentifyComplianceGroup.
+        # @type request: :class:`Tencentcloud::csip::V20221121::CreateDspmIdentifyComplianceGroupRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::CreateDspmIdentifyComplianceGroupResponse`
+        def CreateDspmIdentifyComplianceGroup(request)
+          body = send_request('CreateDspmIdentifyComplianceGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateDspmIdentifyComplianceGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 复制dspm数据识别模板
+
+        # @param request: Request instance for CreateDspmIdentifyComplianceGroupCopy.
+        # @type request: :class:`Tencentcloud::csip::V20221121::CreateDspmIdentifyComplianceGroupCopyRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::CreateDspmIdentifyComplianceGroupCopyResponse`
+        def CreateDspmIdentifyComplianceGroupCopy(request)
+          body = send_request('CreateDspmIdentifyComplianceGroupCopy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateDspmIdentifyComplianceGroupCopyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建dspm数据识别模板数据项关联
+
+        # @param request: Request instance for CreateDspmIdentifyComplianceRuleRelation.
+        # @type request: :class:`Tencentcloud::csip::V20221121::CreateDspmIdentifyComplianceRuleRelationRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::CreateDspmIdentifyComplianceRuleRelationResponse`
+        def CreateDspmIdentifyComplianceRuleRelation(request)
+          body = send_request('CreateDspmIdentifyComplianceRuleRelation', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateDspmIdentifyComplianceRuleRelationResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建Dspm身份列表导出任务
 
         # @param request: Request instance for CreateDspmIdentifyInfoListExportJob.
@@ -399,6 +543,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateDspmIdentifyInfoListExportJobResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建dspm数据识别分级组
+
+        # @param request: Request instance for CreateDspmIdentifyLevelGroup.
+        # @type request: :class:`Tencentcloud::csip::V20221121::CreateDspmIdentifyLevelGroupRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::CreateDspmIdentifyLevelGroupResponse`
+        def CreateDspmIdentifyLevelGroup(request)
+          body = send_request('CreateDspmIdentifyLevelGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateDspmIdentifyLevelGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建dspm数据识别数据项
+
+        # @param request: Request instance for CreateDspmIdentifyRule.
+        # @type request: :class:`Tencentcloud::csip::V20221121::CreateDspmIdentifyRuleRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::CreateDspmIdentifyRuleResponse`
+        def CreateDspmIdentifyRule(request)
+          body = send_request('CreateDspmIdentifyRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateDspmIdentifyRuleResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -759,6 +951,150 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteDspmExportTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除dspm数据识别分类
+
+        # @param request: Request instance for DeleteDspmIdentifyCategory.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DeleteDspmIdentifyCategoryRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DeleteDspmIdentifyCategoryResponse`
+        def DeleteDspmIdentifyCategory(request)
+          body = send_request('DeleteDspmIdentifyCategory', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteDspmIdentifyCategoryResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除dspm数据识别模板分类关联
+
+        # @param request: Request instance for DeleteDspmIdentifyComplianceCategoryRelation.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DeleteDspmIdentifyComplianceCategoryRelationRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DeleteDspmIdentifyComplianceCategoryRelationResponse`
+        def DeleteDspmIdentifyComplianceCategoryRelation(request)
+          body = send_request('DeleteDspmIdentifyComplianceCategoryRelation', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteDspmIdentifyComplianceCategoryRelationResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除dspm数据识别模板
+
+        # @param request: Request instance for DeleteDspmIdentifyComplianceGroup.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DeleteDspmIdentifyComplianceGroupRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DeleteDspmIdentifyComplianceGroupResponse`
+        def DeleteDspmIdentifyComplianceGroup(request)
+          body = send_request('DeleteDspmIdentifyComplianceGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteDspmIdentifyComplianceGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除dspm数据识别模板数据项关联
+
+        # @param request: Request instance for DeleteDspmIdentifyComplianceRuleRelation.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DeleteDspmIdentifyComplianceRuleRelationRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DeleteDspmIdentifyComplianceRuleRelationResponse`
+        def DeleteDspmIdentifyComplianceRuleRelation(request)
+          body = send_request('DeleteDspmIdentifyComplianceRuleRelation', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteDspmIdentifyComplianceRuleRelationResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除dspm数据识别分级组
+
+        # @param request: Request instance for DeleteDspmIdentifyLevelGroup.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DeleteDspmIdentifyLevelGroupRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DeleteDspmIdentifyLevelGroupResponse`
+        def DeleteDspmIdentifyLevelGroup(request)
+          body = send_request('DeleteDspmIdentifyLevelGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteDspmIdentifyLevelGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除dspm数据识别数据项
+
+        # @param request: Request instance for DeleteDspmIdentifyRule.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DeleteDspmIdentifyRuleRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DeleteDspmIdentifyRuleResponse`
+        def DeleteDspmIdentifyRule(request)
+          body = send_request('DeleteDspmIdentifyRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteDspmIdentifyRuleResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2093,6 +2429,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询cos风险文件扫描任务
+
+        # @param request: Request instance for DescribeCosObjectScanTask.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeCosObjectScanTaskRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeCosObjectScanTaskResponse`
+        def DescribeCosObjectScanTask(request)
+          body = send_request('DescribeCosObjectScanTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCosObjectScanTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # cos概览信息
 
         # @param request: Request instance for DescribeCosOverview.
@@ -2741,6 +3101,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询dspm资产字段样本值
+
+        # @param request: Request instance for DescribeDspmAssetFieldSamples.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeDspmAssetFieldSamplesRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeDspmAssetFieldSamplesResponse`
+        def DescribeDspmAssetFieldSamples(request)
+          body = send_request('DescribeDspmAssetFieldSamples', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDspmAssetFieldSamplesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询dspm资产数据识别信息列表
+
+        # @param request: Request instance for DescribeDspmAssetIdentifyInfoList.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeDspmAssetIdentifyInfoListRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeDspmAssetIdentifyInfoListResponse`
+        def DescribeDspmAssetIdentifyInfoList(request)
+          body = send_request('DescribeDspmAssetIdentifyInfoList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDspmAssetIdentifyInfoListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询Dspm资产id列表
 
         # @param request: Request instance for DescribeDspmAssetIds.
@@ -2981,6 +3389,126 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询dspm数据识别分类列表
+
+        # @param request: Request instance for DescribeDspmIdentifyCategoryList.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeDspmIdentifyCategoryListRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeDspmIdentifyCategoryListResponse`
+        def DescribeDspmIdentifyCategoryList(request)
+          body = send_request('DescribeDspmIdentifyCategoryList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDspmIdentifyCategoryListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询dspm数据识别模板分类关联数据项列表
+
+        # @param request: Request instance for DescribeDspmIdentifyComplianceCategoryRuleList.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeDspmIdentifyComplianceCategoryRuleListRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeDspmIdentifyComplianceCategoryRuleListResponse`
+        def DescribeDspmIdentifyComplianceCategoryRuleList(request)
+          body = send_request('DescribeDspmIdentifyComplianceCategoryRuleList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDspmIdentifyComplianceCategoryRuleListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询dspm识别模板详情
+
+        # @param request: Request instance for DescribeDspmIdentifyComplianceGroupDetail.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeDspmIdentifyComplianceGroupDetailRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeDspmIdentifyComplianceGroupDetailResponse`
+        def DescribeDspmIdentifyComplianceGroupDetail(request)
+          body = send_request('DescribeDspmIdentifyComplianceGroupDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDspmIdentifyComplianceGroupDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询dspm数据识别模板列表
+
+        # @param request: Request instance for DescribeDspmIdentifyComplianceGroupList.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeDspmIdentifyComplianceGroupListRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeDspmIdentifyComplianceGroupListResponse`
+        def DescribeDspmIdentifyComplianceGroupList(request)
+          body = send_request('DescribeDspmIdentifyComplianceGroupList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDspmIdentifyComplianceGroupListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询dspm数据识别分布统计
+
+        # @param request: Request instance for DescribeDspmIdentifyDistributionStatistics.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeDspmIdentifyDistributionStatisticsRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeDspmIdentifyDistributionStatisticsResponse`
+        def DescribeDspmIdentifyDistributionStatistics(request)
+          body = send_request('DescribeDspmIdentifyDistributionStatistics', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDspmIdentifyDistributionStatisticsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询Dspm身份id列表
 
         # @param request: Request instance for DescribeDspmIdentifyIdList.
@@ -3039,6 +3567,102 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeDspmIdentifyInfoListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询dspm数据识别分级组列表
+
+        # @param request: Request instance for DescribeDspmIdentifyLevelGroupList.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeDspmIdentifyLevelGroupListRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeDspmIdentifyLevelGroupListResponse`
+        def DescribeDspmIdentifyLevelGroupList(request)
+          body = send_request('DescribeDspmIdentifyLevelGroupList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDspmIdentifyLevelGroupListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询dspm数据识别数据项详情
+
+        # @param request: Request instance for DescribeDspmIdentifyRuleDetail.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeDspmIdentifyRuleDetailRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeDspmIdentifyRuleDetailResponse`
+        def DescribeDspmIdentifyRuleDetail(request)
+          body = send_request('DescribeDspmIdentifyRuleDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDspmIdentifyRuleDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询dspm数据识别数据项列表
+
+        # @param request: Request instance for DescribeDspmIdentifyRuleList.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeDspmIdentifyRuleListRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeDspmIdentifyRuleListResponse`
+        def DescribeDspmIdentifyRuleList(request)
+          body = send_request('DescribeDspmIdentifyRuleList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDspmIdentifyRuleListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询dspm数据识别数据项验证结果
+
+        # @param request: Request instance for DescribeDspmIdentifyRuleTestResult.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeDspmIdentifyRuleTestResultRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeDspmIdentifyRuleTestResultResponse`
+        def DescribeDspmIdentifyRuleTestResult(request)
+          body = send_request('DescribeDspmIdentifyRuleTestResult', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDspmIdentifyRuleTestResultResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -5021,6 +5645,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改对象存储识别开关
+
+        # @param request: Request instance for ModifyCosAuditObjectIdentifyStatus.
+        # @type request: :class:`Tencentcloud::csip::V20221121::ModifyCosAuditObjectIdentifyStatusRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::ModifyCosAuditObjectIdentifyStatusResponse`
+        def ModifyCosAuditObjectIdentifyStatus(request)
+          body = send_request('ModifyCosAuditObjectIdentifyStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyCosAuditObjectIdentifyStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 设置对象存储扫描采样率
+
+        # @param request: Request instance for ModifyCosAuditObjectSampleRate.
+        # @type request: :class:`Tencentcloud::csip::V20221121::ModifyCosAuditObjectSampleRateRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::ModifyCosAuditObjectSampleRateResponse`
+        def ModifyCosAuditObjectSampleRate(request)
+          body = send_request('ModifyCosAuditObjectSampleRate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyCosAuditObjectSampleRateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 修改对象存储备注
 
         # @param request: Request instance for ModifyCosMarkInfo.
@@ -5055,6 +5727,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyDspmAccessRecordResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改dspm当前应用的数据识别模板
+
+        # @param request: Request instance for ModifyDspmApplyingIdentifyComplianceGroup.
+        # @type request: :class:`Tencentcloud::csip::V20221121::ModifyDspmApplyingIdentifyComplianceGroupRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::ModifyDspmApplyingIdentifyComplianceGroupResponse`
+        def ModifyDspmApplyingIdentifyComplianceGroup(request)
+          body = send_request('ModifyDspmApplyingIdentifyComplianceGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyDspmApplyingIdentifyComplianceGroupResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -5165,6 +5861,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改Dspm资产数据扫描任务状态
+
+        # @param request: Request instance for ModifyDspmAssetDataScanTaskStatus.
+        # @type request: :class:`Tencentcloud::csip::V20221121::ModifyDspmAssetDataScanTaskStatusRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::ModifyDspmAssetDataScanTaskStatusResponse`
+        def ModifyDspmAssetDataScanTaskStatus(request)
+          body = send_request('ModifyDspmAssetDataScanTaskStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyDspmAssetDataScanTaskStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 修改Dspm资产日志投递开关
 
         # @param request: Request instance for ModifyDspmAssetLogDeliverySwitch.
@@ -5237,6 +5957,102 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改dspm数据识别分类
+
+        # @param request: Request instance for ModifyDspmIdentifyCategory.
+        # @type request: :class:`Tencentcloud::csip::V20221121::ModifyDspmIdentifyCategoryRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::ModifyDspmIdentifyCategoryResponse`
+        def ModifyDspmIdentifyCategory(request)
+          body = send_request('ModifyDspmIdentifyCategory', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyDspmIdentifyCategoryResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改dspm数据识别模板
+
+        # @param request: Request instance for ModifyDspmIdentifyComplianceGroup.
+        # @type request: :class:`Tencentcloud::csip::V20221121::ModifyDspmIdentifyComplianceGroupRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::ModifyDspmIdentifyComplianceGroupResponse`
+        def ModifyDspmIdentifyComplianceGroup(request)
+          body = send_request('ModifyDspmIdentifyComplianceGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyDspmIdentifyComplianceGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改dspm数据识别模板状态
+
+        # @param request: Request instance for ModifyDspmIdentifyComplianceGroupStatus.
+        # @type request: :class:`Tencentcloud::csip::V20221121::ModifyDspmIdentifyComplianceGroupStatusRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::ModifyDspmIdentifyComplianceGroupStatusResponse`
+        def ModifyDspmIdentifyComplianceGroupStatus(request)
+          body = send_request('ModifyDspmIdentifyComplianceGroupStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyDspmIdentifyComplianceGroupStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改dspm数据识别模板数据项关联级别信息
+
+        # @param request: Request instance for ModifyDspmIdentifyComplianceRuleLevelInfo.
+        # @type request: :class:`Tencentcloud::csip::V20221121::ModifyDspmIdentifyComplianceRuleLevelInfoRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::ModifyDspmIdentifyComplianceRuleLevelInfoResponse`
+        def ModifyDspmIdentifyComplianceRuleLevelInfo(request)
+          body = send_request('ModifyDspmIdentifyComplianceRuleLevelInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyDspmIdentifyComplianceRuleLevelInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 修改Dspm身份信息
 
         # @param request: Request instance for ModifyDspmIdentifyInfo.
@@ -5247,6 +6063,102 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyDspmIdentifyInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改dspm数据识别分级组
+
+        # @param request: Request instance for ModifyDspmIdentifyLevelGroup.
+        # @type request: :class:`Tencentcloud::csip::V20221121::ModifyDspmIdentifyLevelGroupRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::ModifyDspmIdentifyLevelGroupResponse`
+        def ModifyDspmIdentifyLevelGroup(request)
+          body = send_request('ModifyDspmIdentifyLevelGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyDspmIdentifyLevelGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改dspm数据识别分级信息
+
+        # @param request: Request instance for ModifyDspmIdentifyLevelItem.
+        # @type request: :class:`Tencentcloud::csip::V20221121::ModifyDspmIdentifyLevelItemRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::ModifyDspmIdentifyLevelItemResponse`
+        def ModifyDspmIdentifyLevelItem(request)
+          body = send_request('ModifyDspmIdentifyLevelItem', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyDspmIdentifyLevelItemResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改dspm数据识别数据项
+
+        # @param request: Request instance for ModifyDspmIdentifyRule.
+        # @type request: :class:`Tencentcloud::csip::V20221121::ModifyDspmIdentifyRuleRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::ModifyDspmIdentifyRuleResponse`
+        def ModifyDspmIdentifyRule(request)
+          body = send_request('ModifyDspmIdentifyRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyDspmIdentifyRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改dspm数据识别数据项状态
+
+        # @param request: Request instance for ModifyDspmIdentifyRuleStatus.
+        # @type request: :class:`Tencentcloud::csip::V20221121::ModifyDspmIdentifyRuleStatusRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::ModifyDspmIdentifyRuleStatusResponse`
+        def ModifyDspmIdentifyRuleStatus(request)
+          body = send_request('ModifyDspmIdentifyRuleStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyDspmIdentifyRuleStatusResponse.new
             model.deserialize(response['Response'])
             model
           else

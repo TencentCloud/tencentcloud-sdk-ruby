@@ -1234,6 +1234,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 该接口用于查询内置镜像列表
+
+        # @param request: Request instance for DescribePresetImageList.
+        # @type request: :class:`Tencentcloud::tione::V20211111::DescribePresetImageListRequest`
+        # @rtype: :class:`Tencentcloud::tione::V20211111::DescribePresetImageListResponse`
+        def DescribePresetImageList(request)
+          body = send_request('DescribePresetImageList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePresetImageListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 公共算法版本列表
 
         # @param request: Request instance for DescribePublicAlgoVersionList.

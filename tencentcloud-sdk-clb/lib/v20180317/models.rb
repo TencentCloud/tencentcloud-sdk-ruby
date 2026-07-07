@@ -17,6 +17,93 @@
 module TencentCloud
   module Clb
     module V20180317
+      # AddModelKey请求参数结构体
+      class AddModelKeyRequest < TencentCloud::Common::AbstractModel
+        # @param ServiceProviderId: <p>服务提供商ID</p>
+        # @type ServiceProviderId: String
+        # @param Keys: <p>Key 列表，至少 1 个，最多 10 个</p>
+        # @type Keys: Array
+
+        attr_accessor :ServiceProviderId, :Keys
+
+        def initialize(serviceproviderid=nil, keys=nil)
+          @ServiceProviderId = serviceproviderid
+          @Keys = keys
+        end
+
+        def deserialize(params)
+          @ServiceProviderId = params['ServiceProviderId']
+          unless params['Keys'].nil?
+            @Keys = []
+            params['Keys'].each do |i|
+              keyitem_tmp = KeyItem.new
+              keyitem_tmp.deserialize(i)
+              @Keys << keyitem_tmp
+            end
+          end
+        end
+      end
+
+      # AddModelKey返回参数结构体
+      class AddModelKeyResponse < TencentCloud::Common::AbstractModel
+        # @param KeyIds: <p>生成的 Key ID 列表</p>
+        # @type KeyIds: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :KeyIds, :RequestId
+
+        def initialize(keyids=nil, requestid=nil)
+          @KeyIds = keyids
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @KeyIds = params['KeyIds']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # AddModelRewrite请求参数结构体
+      class AddModelRewriteRequest < TencentCloud::Common::AbstractModel
+        # @param ModelRouterId: <p>模型路由实例 ID。</p>
+        # @type ModelRouterId: String
+        # @param SourceModel: <p>源模型名（重写规则的 key）。</p><p>长度 1-255 字符；支持特殊值 <code>default</code> 表示兜底规则（命中所有未显式列出的源模型）。</p><p>不允许使用 <code>IntentRouter/</code> 前缀（大小写不敏感），即 IntentRouter 不能作为 source。</p>
+        # @type SourceModel: String
+        # @param TargetModel: <p>目标模型名（重写规则的 value）。</p><p>长度 1-255 字符；必须是已关联到该模型路由实例的模型（含 IntentRouter/* 也需先通过 AssociateModels 关联）。</p><p>不允许使用 <code>default</code>；不允许与 SourceModel 相同（大小写不敏感）。</p>
+        # @type TargetModel: String
+
+        attr_accessor :ModelRouterId, :SourceModel, :TargetModel
+
+        def initialize(modelrouterid=nil, sourcemodel=nil, targetmodel=nil)
+          @ModelRouterId = modelrouterid
+          @SourceModel = sourcemodel
+          @TargetModel = targetmodel
+        end
+
+        def deserialize(params)
+          @ModelRouterId = params['ModelRouterId']
+          @SourceModel = params['SourceModel']
+          @TargetModel = params['TargetModel']
+        end
+      end
+
+      # AddModelRewrite返回参数结构体
+      class AddModelRewriteResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # AssociateBudget请求参数结构体
       class AssociateBudgetRequest < TencentCloud::Common::AbstractModel
         # @param BudgetId: <p>Budget ID。</p>
@@ -103,6 +190,120 @@ module TencentCloud
         end
       end
 
+      # 模型路由待关联 Guardrail 防护配置
+      class AssociateGuardrailConfig < TencentCloud::Common::AbstractModel
+        # @param Type: <p>Guardrail 防护类型。</p><p>枚举值：</p><ul><li>WAF：使用腾讯云 WAF LLM SDK 接入配置对模型路由请求进行安全防护。</li></ul><p>当前仅支持 WAF；不传时默认为 WAF。</p>
+        # @type Type: String
+        # @param InstanceId: <p>关联的腾讯云 WAF 实例 ID。</p><p>当 Type 为 WAF 时必填。接口会校验该 WAF 实例存在且属于当前账号。</p>
+        # @type InstanceId: String
+        # @param ServiceId: <p>WAF LLM SDK 接入服务 ID。</p><p>该字段对应 WAF LLM SDK 接入配置中的服务标识，用于指定模型路由请求要绑定的 WAF 防护配置。当 Type 为 WAF 时必填。接口会校验该服务配置存在于指定的 WAF 实例下。</p>
+        # @type ServiceId: String
+        # @param InputCheckDepth: <p>最大检测对话轮数。</p><p>当 Type 为 WAF 时选填；未传时默认取值为 5。若传入，取值必须为正整数。</p>
+        # @type InputCheckDepth: Integer
+
+        attr_accessor :Type, :InstanceId, :ServiceId, :InputCheckDepth
+
+        def initialize(type=nil, instanceid=nil, serviceid=nil, inputcheckdepth=nil)
+          @Type = type
+          @InstanceId = instanceid
+          @ServiceId = serviceid
+          @InputCheckDepth = inputcheckdepth
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @InstanceId = params['InstanceId']
+          @ServiceId = params['ServiceId']
+          @InputCheckDepth = params['InputCheckDepth']
+        end
+      end
+
+      # AssociateModelRouterGuardrails请求参数结构体
+      class AssociateModelRouterGuardrailsRequest < TencentCloud::Common::AbstractModel
+        # @param Guardrails: <p>待关联的 Guardrail 防护配置列表。</p><p>当前最多支持 1 个元素。每个元素必须填写 InstanceId、ServiceId；Type 和 InputCheckDepth 为选填，不传时分别使用默认值 WAF 和 5。本结构不包含 GuardrailId，关联成功后由系统生成。</p>
+        # @type Guardrails: Array
+        # @param ModelRouterId: <p>模型路由实例 ID。</p>
+        # @type ModelRouterId: String
+
+        attr_accessor :Guardrails, :ModelRouterId
+
+        def initialize(guardrails=nil, modelrouterid=nil)
+          @Guardrails = guardrails
+          @ModelRouterId = modelrouterid
+        end
+
+        def deserialize(params)
+          unless params['Guardrails'].nil?
+            @Guardrails = []
+            params['Guardrails'].each do |i|
+              associateguardrailconfig_tmp = AssociateGuardrailConfig.new
+              associateguardrailconfig_tmp.deserialize(i)
+              @Guardrails << associateguardrailconfig_tmp
+            end
+          end
+          @ModelRouterId = params['ModelRouterId']
+        end
+      end
+
+      # AssociateModelRouterGuardrails返回参数结构体
+      class AssociateModelRouterGuardrailsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # AssociateModelsToModelRouter请求参数结构体
+      class AssociateModelsToModelRouterRequest < TencentCloud::Common::AbstractModel
+        # @param ModelRouterId: <p>模型路由实例ID</p>
+        # @type ModelRouterId: String
+        # @param Models: <p>需要关联的模型信息</p>
+        # @type Models: Array
+
+        attr_accessor :ModelRouterId, :Models
+
+        def initialize(modelrouterid=nil, models=nil)
+          @ModelRouterId = modelrouterid
+          @Models = models
+        end
+
+        def deserialize(params)
+          @ModelRouterId = params['ModelRouterId']
+          unless params['Models'].nil?
+            @Models = []
+            params['Models'].each do |i|
+              modelroutermodel_tmp = ModelRouterModel.new
+              modelroutermodel_tmp.deserialize(i)
+              @Models << modelroutermodel_tmp
+            end
+          end
+        end
+      end
+
+      # AssociateModelsToModelRouter返回参数结构体
+      class AssociateModelsToModelRouterResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # AssociateTargetGroups请求参数结构体
       class AssociateTargetGroupsRequest < TencentCloud::Common::AbstractModel
         # @param Associations: 绑定的关系数组，目标组类型需要一致。
@@ -140,6 +341,22 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 关联的模型路由实例
+      class AssociatedModelRouterItem < TencentCloud::Common::AbstractModel
+        # @param ModelRouterId: <p>模型路由实例ID</p>
+        # @type ModelRouterId: String
+
+        attr_accessor :ModelRouterId
+
+        def initialize(modelrouterid=nil)
+          @ModelRouterId = modelrouterid
+        end
+
+        def deserialize(params)
+          @ModelRouterId = params['ModelRouterId']
         end
       end
 
@@ -701,20 +918,26 @@ module TencentCloud
         # @type KeyId: String
         # @param ModelRouterId: <p>模型路由实例ID。</p><p>当Type为ModelRouter时表示关联资源本身；当Type为Key时表示Key所属实例。</p>
         # @type ModelRouterId: String
-        # @param Type: <p>关联资源类型。</p><p>枚举值：</p><ul><li>ModelRouter：模型路由实例</li><li>Key：模型路由Key</li></ul>
-        # @type Type: String
+        # @param ResourceName: <p>资源对象的名称。</p>
+        # @type ResourceName: String
         # @param Status: <p>关联关系的状态</p><p>枚举值：</p><ul><li>Active： 已生效</li><li>Configuring： 配置中</li><li>ConfigureFailed： 配置失败</li></ul>
         # @type Status: String
+        # @param Type: <p>关联资源类型。</p><p>枚举值：</p><ul><li>ModelRouter：模型路由实例</li><li>Key：模型路由Key</li><li>UserGroup：用户组</li></ul>
+        # @type Type: String
+        # @param UserGroupId: <p>关联的用户组id</p>
+        # @type UserGroupId: String
 
-        attr_accessor :BudgetId, :CreatedTime, :KeyId, :ModelRouterId, :Type, :Status
+        attr_accessor :BudgetId, :CreatedTime, :KeyId, :ModelRouterId, :ResourceName, :Status, :Type, :UserGroupId
 
-        def initialize(budgetid=nil, createdtime=nil, keyid=nil, modelrouterid=nil, type=nil, status=nil)
+        def initialize(budgetid=nil, createdtime=nil, keyid=nil, modelrouterid=nil, resourcename=nil, status=nil, type=nil, usergroupid=nil)
           @BudgetId = budgetid
           @CreatedTime = createdtime
           @KeyId = keyid
           @ModelRouterId = modelrouterid
-          @Type = type
+          @ResourceName = resourcename
           @Status = status
+          @Type = type
+          @UserGroupId = usergroupid
         end
 
         def deserialize(params)
@@ -722,8 +945,10 @@ module TencentCloud
           @CreatedTime = params['CreatedTime']
           @KeyId = params['KeyId']
           @ModelRouterId = params['ModelRouterId']
-          @Type = params['Type']
+          @ResourceName = params['ResourceName']
           @Status = params['Status']
+          @Type = params['Type']
+          @UserGroupId = params['UserGroupId']
         end
       end
 
@@ -996,6 +1221,73 @@ module TencentCloud
           @CertId = params['CertId']
           @CertCaId = params['CertCaId']
           @ExtCertIds = params['ExtCertIds']
+        end
+      end
+
+      # ChatCompletions请求参数结构体
+      class ChatCompletionsRequest < TencentCloud::Common::AbstractModel
+        # @param ApiKey: <p>virtual key，用于向代理网关鉴权</p>
+        # @type ApiKey: String
+        # @param Attachments: <p>多模态附件列表</p>
+        # @type Attachments: Array
+        # @param ChatContent: <p>聊天内容</p>
+        # @type ChatContent: String
+        # @param Model: <p>模型名称，配置的模型标识</p><p>示例：gpt-4o、deepseek-chat</p>
+        # @type Model: String
+        # @param ModelRouterId: <p>模型路由实例ID</p>
+        # @type ModelRouterId: String
+        # @param RequestPath: <p>请求路径</p><p>默认值：/v1/chat/completions</p>
+        # @type RequestPath: String
+
+        attr_accessor :ApiKey, :Attachments, :ChatContent, :Model, :ModelRouterId, :RequestPath
+
+        def initialize(apikey=nil, attachments=nil, chatcontent=nil, model=nil, modelrouterid=nil, requestpath=nil)
+          @ApiKey = apikey
+          @Attachments = attachments
+          @ChatContent = chatcontent
+          @Model = model
+          @ModelRouterId = modelrouterid
+          @RequestPath = requestpath
+        end
+
+        def deserialize(params)
+          @ApiKey = params['ApiKey']
+          unless params['Attachments'].nil?
+            @Attachments = []
+            params['Attachments'].each do |i|
+              multimodalityattachments_tmp = MultiModalityAttachments.new
+              multimodalityattachments_tmp.deserialize(i)
+              @Attachments << multimodalityattachments_tmp
+            end
+          end
+          @ChatContent = params['ChatContent']
+          @Model = params['Model']
+          @ModelRouterId = params['ModelRouterId']
+          @RequestPath = params['RequestPath']
+        end
+      end
+
+      # ChatCompletions返回参数结构体
+      class ChatCompletionsResponse < TencentCloud::Common::AbstractModel
+        # @param ChatResponseMessage: <p>聊天的返回信息</p>
+        # @type ChatResponseMessage: String
+        # @param ErrorInChat: <p>聊天请求发送过程中的失败信息</p>
+        # @type ErrorInChat: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ChatResponseMessage, :ErrorInChat, :RequestId
+
+        def initialize(chatresponsemessage=nil, errorinchat=nil, requestid=nil)
+          @ChatResponseMessage = chatresponsemessage
+          @ErrorInChat = errorinchat
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ChatResponseMessage = params['ChatResponseMessage']
+          @ErrorInChat = params['ErrorInChat']
+          @RequestId = params['RequestId']
         end
       end
 
@@ -1575,6 +1867,30 @@ module TencentCloud
         end
       end
 
+      # ModelAlias 积分系数配置
+      class Coefficient < TencentCloud::Common::AbstractModel
+        # @param InputCachedCoefficient: <p>缓存命中输入积分系数。</p><p>用于 provider prompt cache 命中的输入 token。</p><p>取值范围：[0, 5000]</p><p>默认值：3</p>
+        # @type InputCachedCoefficient: Float
+        # @param InputCoefficient: <p>输入积分系数。</p><p>取值范围：[1, 5000]</p><p>默认值：25</p>
+        # @type InputCoefficient: Float
+        # @param OutputCoefficient: <p>输出积分系数。</p><p>取值范围：[1, 5000]</p><p>默认值：100</p>
+        # @type OutputCoefficient: Float
+
+        attr_accessor :InputCachedCoefficient, :InputCoefficient, :OutputCoefficient
+
+        def initialize(inputcachedcoefficient=nil, inputcoefficient=nil, outputcoefficient=nil)
+          @InputCachedCoefficient = inputcachedcoefficient
+          @InputCoefficient = inputcoefficient
+          @OutputCoefficient = outputcoefficient
+        end
+
+        def deserialize(params)
+          @InputCachedCoefficient = params['InputCachedCoefficient']
+          @InputCoefficient = params['InputCoefficient']
+          @OutputCoefficient = params['OutputCoefficient']
+        end
+      end
+
       # 配置内容
       class ConfigListItem < TencentCloud::Common::AbstractModel
         # @param UconfigId: 配置ID
@@ -1613,11 +1929,62 @@ module TencentCloud
         end
       end
 
+      # CreateBYOKNetwork请求参数结构体
+      class CreateBYOKNetworkRequest < TencentCloud::Common::AbstractModel
+        # @param SubnetId: <p>子网 ID</p><p>参数格式：subnet-xxxxxxxx</p>
+        # @type SubnetId: String
+        # @param VpcId: <p>VPC 实例 ID</p><p>参数格式：vpc-xxxxxxxx</p>
+        # @type VpcId: String
+        # @param ServiceProviderName: <p>BYOK 的自定义名字</p><p>入参限制：1～256个字符，可选</p>
+        # @type ServiceProviderName: String
+        # @param Tags: <p>标签</p>
+        # @type Tags: Array
+
+        attr_accessor :SubnetId, :VpcId, :ServiceProviderName, :Tags
+
+        def initialize(subnetid=nil, vpcid=nil, serviceprovidername=nil, tags=nil)
+          @SubnetId = subnetid
+          @VpcId = vpcid
+          @ServiceProviderName = serviceprovidername
+          @Tags = tags
+        end
+
+        def deserialize(params)
+          @SubnetId = params['SubnetId']
+          @VpcId = params['VpcId']
+          @ServiceProviderName = params['ServiceProviderName']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              taginfo_tmp = TagInfo.new
+              taginfo_tmp.deserialize(i)
+              @Tags << taginfo_tmp
+            end
+          end
+        end
+      end
+
+      # CreateBYOKNetwork返回参数结构体
+      class CreateBYOKNetworkResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateBudget请求参数结构体
       class CreateBudgetRequest < TencentCloud::Common::AbstractModel
-        # @param BudgetConfigs: <p>预算配置数组。</p><p>数组长度最大为1。BudgetResetAt不支持作为入参设置。</p>
+        # @param BudgetConfigs: <p>预算配置数组。</p><p>数组长度最大为3，最多可同时配置1d、7d、30d三个刷新周期，且每种刷新周期只能出现一次。BudgetResetAt不支持作为入参设置，系统会按配置的刷新周期自动维护刷新时间。</p>
         # @type BudgetConfigs: Array
-        # @param BudgetName: <p>Budget名称。</p><p>不传默认为空字符串。</p>
+        # @param BudgetName: <p>Budget名称。</p><p>不传默认为 '-'。</p>
         # @type BudgetName: String
         # @param RateLimitConfig: <p>Budget限速配置。</p>
         # @type RateLimitConfig: :class:`Tencentcloud::Clb.v20180317.models.RateLimitConfigForBudget`
@@ -1689,8 +2056,8 @@ module TencentCloud
 
         attr_accessor :LogsetName, :Period, :LogsetType
         extend Gem::Deprecate
-        deprecate :Period, :none, 2026, 6
-        deprecate :Period=, :none, 2026, 6
+        deprecate :Period, :none, 2026, 7
+        deprecate :Period=, :none, 2026, 7
 
         def initialize(logsetname=nil, period=nil, logsettype=nil)
           @LogsetName = logsetname
@@ -1721,6 +2088,61 @@ module TencentCloud
 
         def deserialize(params)
           @LogsetId = params['LogsetId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateIntentRouter请求参数结构体
+      class CreateIntentRouterRequest < TencentCloud::Common::AbstractModel
+        # @param ModelRouterId: <p>模型路由实例ID。</p>
+        # @type ModelRouterId: String
+        # @param RouteName: <p>路由名称，用作LiteLLM的model_name。</p><p>必须以"IntentRouter/"为前缀，后缀仅支持字母、数字、连字符和下划线，后缀长度1-128个字符。</p>
+        # @type RouteName: String
+        # @param Tiers: <p>Tier配置列表。</p><p>每个Tier至少包含一个模型，模型名称必须是已关联到该实例的模型。</p>
+        # @type Tiers: Array
+        # @param RouterDescribe: <p>意图路由描述。</p>
+        # @type RouterDescribe: String
+
+        attr_accessor :ModelRouterId, :RouteName, :Tiers, :RouterDescribe
+
+        def initialize(modelrouterid=nil, routename=nil, tiers=nil, routerdescribe=nil)
+          @ModelRouterId = modelrouterid
+          @RouteName = routename
+          @Tiers = tiers
+          @RouterDescribe = routerdescribe
+        end
+
+        def deserialize(params)
+          @ModelRouterId = params['ModelRouterId']
+          @RouteName = params['RouteName']
+          unless params['Tiers'].nil?
+            @Tiers = []
+            params['Tiers'].each do |i|
+              tieritem_tmp = TierItem.new
+              tieritem_tmp.deserialize(i)
+              @Tiers << tieritem_tmp
+            end
+          end
+          @RouterDescribe = params['RouterDescribe']
+        end
+      end
+
+      # CreateIntentRouter返回参数结构体
+      class CreateIntentRouterResponse < TencentCloud::Common::AbstractModel
+        # @param IntentRouterId: <p>创建的意图路由ID（ir-xxx格式）。</p>
+        # @type IntentRouterId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :IntentRouterId, :RequestId
+
+        def initialize(intentrouterid=nil, requestid=nil)
+          @IntentRouterId = intentrouterid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @IntentRouterId = params['IntentRouterId']
           @RequestId = params['RequestId']
         end
       end
@@ -2275,71 +2697,79 @@ module TencentCloud
         end
       end
 
-      # CreateModelRouter请求参数结构体
-      class CreateModelRouterRequest < TencentCloud::Common::AbstractModel
-        # @param ModelRouterType: <p>模型路由类型</p><p>枚举值：</p><ul><li>Shared： 共享型</li><li>Enterprise： 企业级</li></ul>
-        # @type ModelRouterType: String
-        # @param ModelRouterName: <p>模型路由实例名称</p><p>默认值：-</p>
-        # @type ModelRouterName: String
-        # @param Schema: <p>模型路由实例的网络协议</p><p>枚举值：</p><ul><li>HTTP： HTTP协议</li><li>HTTPS： HTTPS协议</li></ul>
-        # @type Schema: String
-        # @param Port: <p>模型路由的监听端口</p><p>取值范围：[1, 65535]</p>
-        # @type Port: Integer
-        # @param CertId: <p>证书ID</p><p>入参限制：当Scheme为HTTPS时，该参数必传</p>
-        # @type CertId: String
-        # @param NetworkType: <p>网络类型</p><p>枚举值：</p><ul><li>Internet： 公网</li><li>Intranet： 内网</li></ul>
-        # @type NetworkType: String
-        # @param VpcId: <p>模型路由实例所属VPC的ID</p>
+      # CreateModel请求参数结构体
+      class CreateModelRequest < TencentCloud::Common::AbstractModel
+        # @param AccessType: <p>接入类型：PublicBYOK/PublicCustom/PrivateCustom</p>
+        # @type AccessType: String
+        # @param ModelProvider: <p>模型提供商</p>
+        # @type ModelProvider: String
+        # @param ModelIds: <p>通用模型标识列表</p>
+        # @type ModelIds: Array
+        # @param Keys: <p>Key 列表</p>
+        # @type Keys: Array
+        # @param ServiceProviderId: <p>BYOK ID(在自定义模型时在部署网络后必须填写)</p>
+        # @type ServiceProviderId: String
+        # @param ServiceProviderName: <p>服务供应商(创建BYOK自定义名称)。</p>
+        # @type ServiceProviderName: String
+        # @param Protocol: <p>模型协议</p>
+        # @type Protocol: String
+        # @param ApiBase: <p>API Base URL</p>
+        # @type ApiBase: String
+        # @param VpcId: <p>VPC ID</p>
         # @type VpcId: String
-        # @param SubnetId: <p>模型路由实例所属子网的ID</p>
+        # @param SubnetId: <p>子网 ID</p>
         # @type SubnetId: String
-        # @param BudgetId: <p>关联的积分预算ID</p>
-        # @type BudgetId: String
-        # @param RateLimitConfig: <p>限速配置</p>
-        # @type RateLimitConfig: :class:`Tencentcloud::Clb.v20180317.models.RateLimitConfigForModelRouter`
-        # @param RouterSetting: <p>路由配置</p>
-        # @type RouterSetting: :class:`Tencentcloud::Clb.v20180317.models.RouterSettingWithoutFallBack`
-        # @param Tags: <p>标签</p>
+        # @param HostHeader: <p>转发请求时添加的Host请求头</p>
+        # @type HostHeader: String
+        # @param Tags: <p>标签信息</p>
         # @type Tags: Array
-        # @param ClusterInfo: <p>集群信息</p>
-        # @type ClusterInfo: :class:`Tencentcloud::Clb.v20180317.models.ClusterInfo`
+        # @param VerifySSL: <p>是否校验服务提供商的SSL证书</p>
+        # @type VerifySSL: Boolean
 
-        attr_accessor :ModelRouterType, :ModelRouterName, :Schema, :Port, :CertId, :NetworkType, :VpcId, :SubnetId, :BudgetId, :RateLimitConfig, :RouterSetting, :Tags, :ClusterInfo
+        attr_accessor :AccessType, :ModelProvider, :ModelIds, :Keys, :ServiceProviderId, :ServiceProviderName, :Protocol, :ApiBase, :VpcId, :SubnetId, :HostHeader, :Tags, :VerifySSL
 
-        def initialize(modelroutertype=nil, modelroutername=nil, schema=nil, port=nil, certid=nil, networktype=nil, vpcid=nil, subnetid=nil, budgetid=nil, ratelimitconfig=nil, routersetting=nil, tags=nil, clusterinfo=nil)
-          @ModelRouterType = modelroutertype
-          @ModelRouterName = modelroutername
-          @Schema = schema
-          @Port = port
-          @CertId = certid
-          @NetworkType = networktype
+        def initialize(accesstype=nil, modelprovider=nil, modelids=nil, keys=nil, serviceproviderid=nil, serviceprovidername=nil, protocol=nil, apibase=nil, vpcid=nil, subnetid=nil, hostheader=nil, tags=nil, verifyssl=nil)
+          @AccessType = accesstype
+          @ModelProvider = modelprovider
+          @ModelIds = modelids
+          @Keys = keys
+          @ServiceProviderId = serviceproviderid
+          @ServiceProviderName = serviceprovidername
+          @Protocol = protocol
+          @ApiBase = apibase
           @VpcId = vpcid
           @SubnetId = subnetid
-          @BudgetId = budgetid
-          @RateLimitConfig = ratelimitconfig
-          @RouterSetting = routersetting
+          @HostHeader = hostheader
           @Tags = tags
-          @ClusterInfo = clusterinfo
+          @VerifySSL = verifyssl
         end
 
         def deserialize(params)
-          @ModelRouterType = params['ModelRouterType']
-          @ModelRouterName = params['ModelRouterName']
-          @Schema = params['Schema']
-          @Port = params['Port']
-          @CertId = params['CertId']
-          @NetworkType = params['NetworkType']
+          @AccessType = params['AccessType']
+          @ModelProvider = params['ModelProvider']
+          unless params['ModelIds'].nil?
+            @ModelIds = []
+            params['ModelIds'].each do |i|
+              modelitem_tmp = ModelItem.new
+              modelitem_tmp.deserialize(i)
+              @ModelIds << modelitem_tmp
+            end
+          end
+          unless params['Keys'].nil?
+            @Keys = []
+            params['Keys'].each do |i|
+              keyitem_tmp = KeyItem.new
+              keyitem_tmp.deserialize(i)
+              @Keys << keyitem_tmp
+            end
+          end
+          @ServiceProviderId = params['ServiceProviderId']
+          @ServiceProviderName = params['ServiceProviderName']
+          @Protocol = params['Protocol']
+          @ApiBase = params['ApiBase']
           @VpcId = params['VpcId']
           @SubnetId = params['SubnetId']
-          @BudgetId = params['BudgetId']
-          unless params['RateLimitConfig'].nil?
-            @RateLimitConfig = RateLimitConfigForModelRouter.new
-            @RateLimitConfig.deserialize(params['RateLimitConfig'])
-          end
-          unless params['RouterSetting'].nil?
-            @RouterSetting = RouterSettingWithoutFallBack.new
-            @RouterSetting.deserialize(params['RouterSetting'])
-          end
+          @HostHeader = params['HostHeader']
           unless params['Tags'].nil?
             @Tags = []
             params['Tags'].each do |i|
@@ -2348,10 +2778,159 @@ module TencentCloud
               @Tags << taginfo_tmp
             end
           end
+          @VerifySSL = params['VerifySSL']
+        end
+      end
+
+      # CreateModel返回参数结构体
+      class CreateModelResponse < TencentCloud::Common::AbstractModel
+        # @param ServiceProviderId: <p>服务供应商ID</p>
+        # @type ServiceProviderId: String
+        # @param KeyIds: <p>生成的 Key ID 列表</p>
+        # @type KeyIds: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ServiceProviderId, :KeyIds, :RequestId
+
+        def initialize(serviceproviderid=nil, keyids=nil, requestid=nil)
+          @ServiceProviderId = serviceproviderid
+          @KeyIds = keyids
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ServiceProviderId = params['ServiceProviderId']
+          @KeyIds = params['KeyIds']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateModelRouter请求参数结构体
+      class CreateModelRouterRequest < TencentCloud::Common::AbstractModel
+        # @param ModelRouterType: <p>模型路由类型</p><p>枚举值：</p><ul><li>Shared： 共享型</li><li>Enterprise： 企业级</li></ul>
+        # @type ModelRouterType: String
+        # @param BudgetId: <p>关联的积分预算ID</p>
+        # @type BudgetId: String
+        # @param CertId: <p>证书ID</p><p>入参限制：当Schema为HTTPS时，该参数必传</p>
+        # @type CertId: String
+        # @param ClusterInfo: <p>集群信息</p>
+        # @type ClusterInfo: :class:`Tencentcloud::Clb.v20180317.models.ClusterInfo`
+        # @param ModelRouterName: <p>模型路由实例名称</p><p>默认值：-</p>
+        # @type ModelRouterName: String
+        # @param NetworkType: <p>网络类型</p><p>枚举值：</p><ul><li>Internet： 公网</li><li>Intranet： 内网</li></ul>
+        # @type NetworkType: String
+        # @param Port: <p>模型路由的监听端口</p><p>取值范围：[1, 65535]</p>
+        # @type Port: Integer
+        # @param RateLimitConfig: <p>限速配置</p>
+        # @type RateLimitConfig: :class:`Tencentcloud::Clb.v20180317.models.RateLimitConfigForModelRouter`
+        # @param RouterSetting: <p>路由配置</p>
+        # @type RouterSetting: :class:`Tencentcloud::Clb.v20180317.models.RouterSettingWithoutFallBack`
+        # @param Schema: <p>模型路由实例的网络协议</p><p>枚举值：</p><ul><li>HTTP： HTTP协议</li><li>HTTPS： HTTPS协议</li></ul>
+        # @type Schema: String
+        # @param SubnetId: <p>模型路由实例所属子网的ID</p>
+        # @type SubnetId: String
+        # @param Tags: <p>标签</p>
+        # @type Tags: Array
+        # @param VpcId: <p>模型路由实例所属VPC的ID</p>
+        # @type VpcId: String
+
+        attr_accessor :ModelRouterType, :BudgetId, :CertId, :ClusterInfo, :ModelRouterName, :NetworkType, :Port, :RateLimitConfig, :RouterSetting, :Schema, :SubnetId, :Tags, :VpcId
+
+        def initialize(modelroutertype=nil, budgetid=nil, certid=nil, clusterinfo=nil, modelroutername=nil, networktype=nil, port=nil, ratelimitconfig=nil, routersetting=nil, schema=nil, subnetid=nil, tags=nil, vpcid=nil)
+          @ModelRouterType = modelroutertype
+          @BudgetId = budgetid
+          @CertId = certid
+          @ClusterInfo = clusterinfo
+          @ModelRouterName = modelroutername
+          @NetworkType = networktype
+          @Port = port
+          @RateLimitConfig = ratelimitconfig
+          @RouterSetting = routersetting
+          @Schema = schema
+          @SubnetId = subnetid
+          @Tags = tags
+          @VpcId = vpcid
+        end
+
+        def deserialize(params)
+          @ModelRouterType = params['ModelRouterType']
+          @BudgetId = params['BudgetId']
+          @CertId = params['CertId']
           unless params['ClusterInfo'].nil?
             @ClusterInfo = ClusterInfo.new
             @ClusterInfo.deserialize(params['ClusterInfo'])
           end
+          @ModelRouterName = params['ModelRouterName']
+          @NetworkType = params['NetworkType']
+          @Port = params['Port']
+          unless params['RateLimitConfig'].nil?
+            @RateLimitConfig = RateLimitConfigForModelRouter.new
+            @RateLimitConfig.deserialize(params['RateLimitConfig'])
+          end
+          unless params['RouterSetting'].nil?
+            @RouterSetting = RouterSettingWithoutFallBack.new
+            @RouterSetting.deserialize(params['RouterSetting'])
+          end
+          @Schema = params['Schema']
+          @SubnetId = params['SubnetId']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              taginfo_tmp = TagInfo.new
+              taginfo_tmp.deserialize(i)
+              @Tags << taginfo_tmp
+            end
+          end
+          @VpcId = params['VpcId']
+        end
+      end
+
+      # CreateModelRouterResourcePackage请求参数结构体
+      class CreateModelRouterResourcePackageRequest < TencentCloud::Common::AbstractModel
+        # @param ModelRouterResourcePackageAmount: <p>模型路由资源包容量</p><p>取值范围：[1000, 10000000]</p><p>单次购买的模型路由资源包容量下限为1000，上限为10000000</p>
+        # @type ModelRouterResourcePackageAmount: Integer
+        # @param AutoPurchaseFlag: <p>是否自动续订。</p><p>0:不自动续订, 1:用尽到期续订</p>
+        # @type AutoPurchaseFlag: Integer
+        # @param AutoVoucher: <p>该笔订单是否自动选择代金券</p><p>默认值：false（不自动选择代金券）</p><p>true时会为本笔订单自动匹配满足条件、最优惠的代金券</p>
+        # @type AutoVoucher: Boolean
+
+        attr_accessor :ModelRouterResourcePackageAmount, :AutoPurchaseFlag, :AutoVoucher
+
+        def initialize(modelrouterresourcepackageamount=nil, autopurchaseflag=nil, autovoucher=nil)
+          @ModelRouterResourcePackageAmount = modelrouterresourcepackageamount
+          @AutoPurchaseFlag = autopurchaseflag
+          @AutoVoucher = autovoucher
+        end
+
+        def deserialize(params)
+          @ModelRouterResourcePackageAmount = params['ModelRouterResourcePackageAmount']
+          @AutoPurchaseFlag = params['AutoPurchaseFlag']
+          @AutoVoucher = params['AutoVoucher']
+        end
+      end
+
+      # CreateModelRouterResourcePackage返回参数结构体
+      class CreateModelRouterResourcePackageResponse < TencentCloud::Common::AbstractModel
+        # @param ModelRouterResourcePackageIds: <p>模型路由资源包Id</p>
+        # @type ModelRouterResourcePackageIds: Array
+        # @param DealName: <p>订单号</p>
+        # @type DealName: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ModelRouterResourcePackageIds, :DealName, :RequestId
+
+        def initialize(modelrouterresourcepackageids=nil, dealname=nil, requestid=nil)
+          @ModelRouterResourcePackageIds = modelrouterresourcepackageids
+          @DealName = dealname
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ModelRouterResourcePackageIds = params['ModelRouterResourcePackageIds']
+          @DealName = params['DealName']
+          @RequestId = params['RequestId']
         end
       end
 
@@ -2787,6 +3366,42 @@ module TencentCloud
         end
       end
 
+      # DeleteIntentRouter请求参数结构体
+      class DeleteIntentRouterRequest < TencentCloud::Common::AbstractModel
+        # @param ModelRouterId: <p>模型路由实例ID。</p>
+        # @type ModelRouterId: String
+        # @param IntentRouterId: <p>意图路由ID（ir-xxx格式）。</p>
+        # @type IntentRouterId: String
+
+        attr_accessor :ModelRouterId, :IntentRouterId
+
+        def initialize(modelrouterid=nil, intentrouterid=nil)
+          @ModelRouterId = modelrouterid
+          @IntentRouterId = intentrouterid
+        end
+
+        def deserialize(params)
+          @ModelRouterId = params['ModelRouterId']
+          @IntentRouterId = params['IntentRouterId']
+        end
+      end
+
+      # DeleteIntentRouter返回参数结构体
+      class DeleteIntentRouterResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteKeys请求参数结构体
       class DeleteKeysRequest < TencentCloud::Common::AbstractModel
         # @param ModelRouterId: <p>模型路由ID</p>
@@ -2958,6 +3573,38 @@ module TencentCloud
 
       # DeleteLoadBalancerSnatIps返回参数结构体
       class DeleteLoadBalancerSnatIpsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteModel请求参数结构体
+      class DeleteModelRequest < TencentCloud::Common::AbstractModel
+        # @param ServiceProviderIds: <p>服务提供商ID列表</p>
+        # @type ServiceProviderIds: Array
+
+        attr_accessor :ServiceProviderIds
+
+        def initialize(serviceproviderids=nil)
+          @ServiceProviderIds = serviceproviderids
+        end
+
+        def deserialize(params)
+          @ServiceProviderIds = params['ServiceProviderIds']
+        end
+      end
+
+      # DeleteModel返回参数结构体
+      class DeleteModelResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -3234,6 +3881,42 @@ module TencentCloud
         end
       end
 
+      # DeregisterModelsFromServiceProvider请求参数结构体
+      class DeregisterModelsFromServiceProviderRequest < TencentCloud::Common::AbstractModel
+        # @param ServiceProviderId: <p>BYOK的ID</p>
+        # @type ServiceProviderId: String
+        # @param ModelAliases: <p>模型别名列表</p>
+        # @type ModelAliases: Array
+
+        attr_accessor :ServiceProviderId, :ModelAliases
+
+        def initialize(serviceproviderid=nil, modelaliases=nil)
+          @ServiceProviderId = serviceproviderid
+          @ModelAliases = modelaliases
+        end
+
+        def deserialize(params)
+          @ServiceProviderId = params['ServiceProviderId']
+          @ModelAliases = params['ModelAliases']
+        end
+      end
+
+      # DeregisterModelsFromServiceProvider返回参数结构体
+      class DeregisterModelsFromServiceProviderResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeregisterTargetGroupInstances请求参数结构体
       class DeregisterTargetGroupInstancesRequest < TencentCloud::Common::AbstractModel
         # @param TargetGroupId: 目标组ID。
@@ -3369,6 +4052,53 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAssociatedModelAvailability请求参数结构体
+      class DescribeAssociatedModelAvailabilityRequest < TencentCloud::Common::AbstractModel
+        # @param ModelRouterId: <p>模型路由ID</p>
+        # @type ModelRouterId: String
+        # @param Models: <p>模型列表</p>
+        # @type Models: Array
+
+        attr_accessor :ModelRouterId, :Models
+
+        def initialize(modelrouterid=nil, models=nil)
+          @ModelRouterId = modelrouterid
+          @Models = models
+        end
+
+        def deserialize(params)
+          @ModelRouterId = params['ModelRouterId']
+          @Models = params['Models']
+        end
+      end
+
+      # DescribeAssociatedModelAvailability返回参数结构体
+      class DescribeAssociatedModelAvailabilityResponse < TencentCloud::Common::AbstractModel
+        # @param ModelAvailability: <p>模型可用性列表</p>
+        # @type ModelAvailability: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ModelAvailability, :RequestId
+
+        def initialize(modelavailability=nil, requestid=nil)
+          @ModelAvailability = modelavailability
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ModelAvailability'].nil?
+            @ModelAvailability = []
+            params['ModelAvailability'].each do |i|
+              modelavailability_tmp = ModelAvailability.new
+              modelavailability_tmp.deserialize(i)
+              @ModelAvailability << modelavailability_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -3535,27 +4265,27 @@ module TencentCloud
       class DescribeBudgetAssociationsRequest < TencentCloud::Common::AbstractModel
         # @param BudgetId: <p>Budget ID。</p><p>一次只允许查询一个Budget。</p>
         # @type BudgetId: String
-        # @param Type: <p>资源类型。</p><p>枚举值：</p><ul><li>ModelRouter：模型路由实例</li><li>Key：模型路由Key</li></ul><p>不传时返回全部资源类型。</p>
-        # @type Type: String
-        # @param Offset: <p>本次查询偏移量</p>
-        # @type Offset: Integer
         # @param Limit: <p>本次查询限制的数量</p>
         # @type Limit: Integer
+        # @param Offset: <p>本次查询偏移量</p>
+        # @type Offset: Integer
+        # @param Type: <p>资源类型。</p><p>枚举值：</p><ul><li>ModelRouter：模型路由实例</li><li>Key：模型路由Key</li></ul><p>不传时返回全部资源类型。</p>
+        # @type Type: String
 
-        attr_accessor :BudgetId, :Type, :Offset, :Limit
+        attr_accessor :BudgetId, :Limit, :Offset, :Type
 
-        def initialize(budgetid=nil, type=nil, offset=nil, limit=nil)
+        def initialize(budgetid=nil, limit=nil, offset=nil, type=nil)
           @BudgetId = budgetid
-          @Type = type
-          @Offset = offset
           @Limit = limit
+          @Offset = offset
+          @Type = type
         end
 
         def deserialize(params)
           @BudgetId = params['BudgetId']
-          @Type = params['Type']
-          @Offset = params['Offset']
           @Limit = params['Limit']
+          @Offset = params['Offset']
+          @Type = params['Type']
         end
       end
 
@@ -4284,6 +5014,169 @@ module TencentCloud
         end
       end
 
+      # DescribeIntentRouterTiers请求参数结构体
+      class DescribeIntentRouterTiersRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeIntentRouterTiers返回参数结构体
+      class DescribeIntentRouterTiersResponse < TencentCloud::Common::AbstractModel
+        # @param TierSet: <p>Tier 字典列表（按 tier_id 升序排列）</p>
+        # @type TierSet: Array
+        # @param TotalCount: <p>Tier 总条数</p>
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TierSet, :TotalCount, :RequestId
+
+        def initialize(tierset=nil, totalcount=nil, requestid=nil)
+          @TierSet = tierset
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['TierSet'].nil?
+            @TierSet = []
+            params['TierSet'].each do |i|
+              intentroutertierdictitem_tmp = IntentRouterTierDictItem.new
+              intentroutertierdictitem_tmp.deserialize(i)
+              @TierSet << intentroutertierdictitem_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeIntentRouters请求参数结构体
+      class DescribeIntentRoutersRequest < TencentCloud::Common::AbstractModel
+        # @param ModelRouterId: <p>模型路由实例ID。</p>
+        # @type ModelRouterId: String
+        # @param IntentRouterIds: <p>意图路由ID列表</p>
+        # @type IntentRouterIds: Array
+
+        attr_accessor :ModelRouterId, :IntentRouterIds
+
+        def initialize(modelrouterid=nil, intentrouterids=nil)
+          @ModelRouterId = modelrouterid
+          @IntentRouterIds = intentrouterids
+        end
+
+        def deserialize(params)
+          @ModelRouterId = params['ModelRouterId']
+          @IntentRouterIds = params['IntentRouterIds']
+        end
+      end
+
+      # DescribeIntentRouters返回参数结构体
+      class DescribeIntentRoutersResponse < TencentCloud::Common::AbstractModel
+        # @param IntentRouterSet: <p>意图路由列表。</p>
+        # @type IntentRouterSet: Array
+        # @param TotalCount: <p>意图路由总数。</p>
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :IntentRouterSet, :TotalCount, :RequestId
+
+        def initialize(intentrouterset=nil, totalcount=nil, requestid=nil)
+          @IntentRouterSet = intentrouterset
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['IntentRouterSet'].nil?
+            @IntentRouterSet = []
+            params['IntentRouterSet'].each do |i|
+              intentrouteritem_tmp = IntentRouterItem.new
+              intentrouteritem_tmp.deserialize(i)
+              @IntentRouterSet << intentrouteritem_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeKeys请求参数结构体
+      class DescribeKeysRequest < TencentCloud::Common::AbstractModel
+        # @param ModelRouterId: <p>模型路由实例ID</p>
+        # @type ModelRouterId: String
+        # @param Filters: <p>过滤列表</p><p>支持：KeyName、BudgetId、tag-key、tag:&lt;tag-key&gt;。</p>
+        # @type Filters: Array
+        # @param KeyIds: <p>API Key的ID列表</p>
+        # @type KeyIds: Array
+        # @param Limit: <p>本次查询限制的数量</p><p>取值范围：[1, 100]</p><p>默认值：20</p>
+        # @type Limit: Integer
+        # @param Offset: <p>本次查询偏移量</p>
+        # @type Offset: Integer
+
+        attr_accessor :ModelRouterId, :Filters, :KeyIds, :Limit, :Offset
+
+        def initialize(modelrouterid=nil, filters=nil, keyids=nil, limit=nil, offset=nil)
+          @ModelRouterId = modelrouterid
+          @Filters = filters
+          @KeyIds = keyids
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @ModelRouterId = params['ModelRouterId']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @KeyIds = params['KeyIds']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeKeys返回参数结构体
+      class DescribeKeysResponse < TencentCloud::Common::AbstractModel
+        # @param Keys: <p>API Key列表</p>
+        # @type Keys: Array
+        # @param TotalCount: <p>符合条件的总数</p>
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Keys, :TotalCount, :RequestId
+
+        def initialize(keys=nil, totalcount=nil, requestid=nil)
+          @Keys = keys
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Keys'].nil?
+            @Keys = []
+            params['Keys'].each do |i|
+              keyinfo_tmp = KeyInfo.new
+              keyinfo_tmp.deserialize(i)
+              @Keys << keyinfo_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeLBListeners请求参数结构体
       class DescribeLBListenersRequest < TencentCloud::Common::AbstractModel
         # @param Backends: 需要查询的内网ip列表
@@ -4869,6 +5762,310 @@ module TencentCloud
         end
       end
 
+      # DescribeModelAliases请求参数结构体
+      class DescribeModelAliasesRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: <p>过滤条件</p><p>支持的过滤键：</p><ul><li>ModelAliasName：按模型别名过滤。</li></ul>
+        # @type Filters: Array
+        # @param Limit: <p>每页数量，取值范围：[1, 100]，默认值：20。</p>
+        # @type Limit: Integer
+        # @param Offset: <p>分页偏移量，默认值：0。</p>
+        # @type Offset: Integer
+        # @param Sort: <p>排序条件。支持按 InputCoefficient、InputCachedCoefficient 或 OutputCoefficient 排序，Order 支持 ASC、DESC。不传或传空数组时，默认按 OutputCoefficient 降序排列。最多支持 3 个排序条件，排序字段不可重复。</p>
+        # @type Sort: Array
+
+        attr_accessor :Filters, :Limit, :Offset, :Sort
+
+        def initialize(filters=nil, limit=nil, offset=nil, sort=nil)
+          @Filters = filters
+          @Limit = limit
+          @Offset = offset
+          @Sort = sort
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          unless params['Sort'].nil?
+            @Sort = []
+            params['Sort'].each do |i|
+              sort_tmp = Sort.new
+              sort_tmp.deserialize(i)
+              @Sort << sort_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeModelAliases返回参数结构体
+      class DescribeModelAliasesResponse < TencentCloud::Common::AbstractModel
+        # @param ModelAliasSet: <p>模型别名列表。</p>
+        # @type ModelAliasSet: Array
+        # @param TotalCount: <p>符合条件的总数。</p>
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ModelAliasSet, :TotalCount, :RequestId
+
+        def initialize(modelaliasset=nil, totalcount=nil, requestid=nil)
+          @ModelAliasSet = modelaliasset
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ModelAliasSet'].nil?
+            @ModelAliasSet = []
+            params['ModelAliasSet'].each do |i|
+              modelalias_tmp = ModelAlias.new
+              modelalias_tmp.deserialize(i)
+              @ModelAliasSet << modelalias_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeModelAssociations请求参数结构体
+      class DescribeModelAssociationsRequest < TencentCloud::Common::AbstractModel
+        # @param ModelRouterId: <p>模型路由实例ID</p>
+        # @type ModelRouterId: String
+        # @param Limit: <p>翻页限制</p><p>取值范围：[1, 100]</p><p>默认值：20</p>
+        # @type Limit: Integer
+        # @param Offset: <p>翻页偏移量</p><p>默认值：0</p>
+        # @type Offset: Integer
+
+        attr_accessor :ModelRouterId, :Limit, :Offset
+
+        def initialize(modelrouterid=nil, limit=nil, offset=nil)
+          @ModelRouterId = modelrouterid
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @ModelRouterId = params['ModelRouterId']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeModelAssociations返回参数结构体
+      class DescribeModelAssociationsResponse < TencentCloud::Common::AbstractModel
+        # @param ModelAssociationSet: <p>模型路由实例与模型的关联关系集合</p>
+        # @type ModelAssociationSet: Array
+        # @param ModelRouterId: <p>模型路由实例ID</p>
+        # @type ModelRouterId: String
+        # @param TotalCount: <p>符合条件的总数</p>
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ModelAssociationSet, :ModelRouterId, :TotalCount, :RequestId
+
+        def initialize(modelassociationset=nil, modelrouterid=nil, totalcount=nil, requestid=nil)
+          @ModelAssociationSet = modelassociationset
+          @ModelRouterId = modelrouterid
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ModelAssociationSet'].nil?
+            @ModelAssociationSet = []
+            params['ModelAssociationSet'].each do |i|
+              modelassociation_tmp = ModelAssociation.new
+              modelassociation_tmp.deserialize(i)
+              @ModelAssociationSet << modelassociation_tmp
+            end
+          end
+          @ModelRouterId = params['ModelRouterId']
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeModelKeys请求参数结构体
+      class DescribeModelKeysRequest < TencentCloud::Common::AbstractModel
+        # @param AccessType: <p>接入类型过滤：PublicBYOK/PublicCustom/PrivateCustom</p>
+        # @type AccessType: String
+        # @param Filters: <p>过滤条件</p>
+        # @type Filters: Array
+        # @param Limit: <p>返回数量限制</p>
+        # @type Limit: Integer
+        # @param Offset: <p>翻页启始索引</p>
+        # @type Offset: Integer
+        # @param ServiceProviderIds: <p>服务提供商ID</p>
+        # @type ServiceProviderIds: Array
+
+        attr_accessor :AccessType, :Filters, :Limit, :Offset, :ServiceProviderIds
+
+        def initialize(accesstype=nil, filters=nil, limit=nil, offset=nil, serviceproviderids=nil)
+          @AccessType = accesstype
+          @Filters = filters
+          @Limit = limit
+          @Offset = offset
+          @ServiceProviderIds = serviceproviderids
+        end
+
+        def deserialize(params)
+          @AccessType = params['AccessType']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @ServiceProviderIds = params['ServiceProviderIds']
+        end
+      end
+
+      # DescribeModelKeys返回参数结构体
+      class DescribeModelKeysResponse < TencentCloud::Common::AbstractModel
+        # @param Models: <p>模型列表（含 Key 信息）</p>
+        # @type Models: Array
+        # @param TotalCount: <p>模型总数</p>
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Models, :TotalCount, :RequestId
+
+        def initialize(models=nil, totalcount=nil, requestid=nil)
+          @Models = models
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Models'].nil?
+            @Models = []
+            params['Models'].each do |i|
+              modelkeyinfoitem_tmp = ModelKeyInfoItem.new
+              modelkeyinfoitem_tmp.deserialize(i)
+              @Models << modelkeyinfoitem_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeModelNames请求参数结构体
+      class DescribeModelNamesRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: <p>分页偏移量（&gt;=0）</p>
+        # @type Offset: Integer
+        # @param Limit: <p>每页数量（1-100）</p>
+        # @type Limit: Integer
+        # @param VpcId: <p>过滤PrivateCustom类型自建模型。如果传递了此参数，则只返回具有相同VPC Id的模型。</p>
+        # @type VpcId: String
+
+        attr_accessor :Offset, :Limit, :VpcId
+
+        def initialize(offset=nil, limit=nil, vpcid=nil)
+          @Offset = offset
+          @Limit = limit
+          @VpcId = vpcid
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @VpcId = params['VpcId']
+        end
+      end
+
+      # DescribeModelNames返回参数结构体
+      class DescribeModelNamesResponse < TencentCloud::Common::AbstractModel
+        # @param ModelNames: <p>模型标识聚合列表</p>
+        # @type ModelNames: Array
+        # @param TotalCount: <p>聚合后的模型标识总数</p>
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ModelNames, :TotalCount, :RequestId
+
+        def initialize(modelnames=nil, totalcount=nil, requestid=nil)
+          @ModelNames = modelnames
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ModelNames'].nil?
+            @ModelNames = []
+            params['ModelNames'].each do |i|
+              modelnameaggregateditem_tmp = ModelNameAggregatedItem.new
+              modelnameaggregateditem_tmp.deserialize(i)
+              @ModelNames << modelnameaggregateditem_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeModelRewrite请求参数结构体
+      class DescribeModelRewriteRequest < TencentCloud::Common::AbstractModel
+        # @param ModelRouterId: <p>模型路由实例 ID。</p>
+        # @type ModelRouterId: String
+        # @param SourceModel: <p>选填，按源模型名精确过滤（大小写敏感）。</p><p>长度 1-255 字符；不传则返回该实例的全部重写规则；命中至多 1 条；未命中返回空列表（不报错）。</p>
+        # @type SourceModel: String
+
+        attr_accessor :ModelRouterId, :SourceModel
+
+        def initialize(modelrouterid=nil, sourcemodel=nil)
+          @ModelRouterId = modelrouterid
+          @SourceModel = sourcemodel
+        end
+
+        def deserialize(params)
+          @ModelRouterId = params['ModelRouterId']
+          @SourceModel = params['SourceModel']
+        end
+      end
+
+      # DescribeModelRewrite返回参数结构体
+      class DescribeModelRewriteResponse < TencentCloud::Common::AbstractModel
+        # @param Rewrites: <p>重写规则列表，按 SourceModel 字典序排序。无规则或过滤未命中时为空数组。</p>
+        # @type Rewrites: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Rewrites, :RequestId
+
+        def initialize(rewrites=nil, requestid=nil)
+          @Rewrites = rewrites
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Rewrites'].nil?
+            @Rewrites = []
+            params['Rewrites'].each do |i|
+              rewriteitem_tmp = RewriteItem.new
+              rewriteitem_tmp.deserialize(i)
+              @Rewrites << rewriteitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeModelRouterDetail请求参数结构体
       class DescribeModelRouterDetailRequest < TencentCloud::Common::AbstractModel
         # @param ModelRouterId: <p>模型路由实例ID</p>
@@ -4904,6 +6101,128 @@ module TencentCloud
             @ModelRouter = ModelRouterDetail.new
             @ModelRouter.deserialize(params['ModelRouter'])
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeModelRouterGuardrails请求参数结构体
+      class DescribeModelRouterGuardrailsRequest < TencentCloud::Common::AbstractModel
+        # @param ModelRouterId: <p>模型路由实例 ID。</p>
+        # @type ModelRouterId: String
+
+        attr_accessor :ModelRouterId
+
+        def initialize(modelrouterid=nil)
+          @ModelRouterId = modelrouterid
+        end
+
+        def deserialize(params)
+          @ModelRouterId = params['ModelRouterId']
+        end
+      end
+
+      # DescribeModelRouterGuardrails返回参数结构体
+      class DescribeModelRouterGuardrailsResponse < TencentCloud::Common::AbstractModel
+        # @param Guardrails: <p>当前已关联的 Guardrail 防护配置列表。</p><p>当前最多返回 1 个元素。</p>
+        # @type Guardrails: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Guardrails, :RequestId
+
+        def initialize(guardrails=nil, requestid=nil)
+          @Guardrails = guardrails
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Guardrails'].nil?
+            @Guardrails = []
+            params['Guardrails'].each do |i|
+              guardrailconfig_tmp = GuardrailConfig.new
+              guardrailconfig_tmp.deserialize(i)
+              @Guardrails << guardrailconfig_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeModelRouterLogs请求参数结构体
+      class DescribeModelRouterLogsRequest < TencentCloud::Common::AbstractModel
+        # @param ModelRouterId: <p>模型路由实例ID</p>
+        # @type ModelRouterId: String
+        # @param KeyId: <p>Key的ID</p>
+        # @type KeyId: String
+        # @param Model: <p>模型名称</p>
+        # @type Model: String
+        # @param Status: <p>请求状态</p>
+        # @type Status: String
+        # @param StartTime: <p>开始时间，与EndTime需要同时传入、开始时间不得早于24小时前，默认仅查询近5分钟日志</p>
+        # @type StartTime: String
+        # @param EndTime: <p>结束时间，与StartTime需要同时传入、开始时间不得早于24小时前，默认仅查询近5分钟日志</p>
+        # @type EndTime: String
+        # @param NextToken: <p>游标NextToken</p>
+        # @type NextToken: String
+        # @param MaxResults: <p>本次查询最大数量</p><p>取值范围：[1, 100]</p><p>默认值：20</p>
+        # @type MaxResults: Integer
+
+        attr_accessor :ModelRouterId, :KeyId, :Model, :Status, :StartTime, :EndTime, :NextToken, :MaxResults
+
+        def initialize(modelrouterid=nil, keyid=nil, model=nil, status=nil, starttime=nil, endtime=nil, nexttoken=nil, maxresults=nil)
+          @ModelRouterId = modelrouterid
+          @KeyId = keyid
+          @Model = model
+          @Status = status
+          @StartTime = starttime
+          @EndTime = endtime
+          @NextToken = nexttoken
+          @MaxResults = maxresults
+        end
+
+        def deserialize(params)
+          @ModelRouterId = params['ModelRouterId']
+          @KeyId = params['KeyId']
+          @Model = params['Model']
+          @Status = params['Status']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @NextToken = params['NextToken']
+          @MaxResults = params['MaxResults']
+        end
+      end
+
+      # DescribeModelRouterLogs返回参数结构体
+      class DescribeModelRouterLogsResponse < TencentCloud::Common::AbstractModel
+        # @param Logs: <p>日志列表</p>
+        # @type Logs: Array
+        # @param TotalCount: <p>满足条件的数量</p>
+        # @type TotalCount: Integer
+        # @param NextToken: <p>游标NextToken</p>
+        # @type NextToken: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Logs, :TotalCount, :NextToken, :RequestId
+
+        def initialize(logs=nil, totalcount=nil, nexttoken=nil, requestid=nil)
+          @Logs = logs
+          @TotalCount = totalcount
+          @NextToken = nexttoken
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Logs'].nil?
+            @Logs = []
+            params['Logs'].each do |i|
+              modelrouterlog_tmp = ModelRouterLog.new
+              modelrouterlog_tmp.deserialize(i)
+              @Logs << modelrouterlog_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @NextToken = params['NextToken']
           @RequestId = params['RequestId']
         end
       end
@@ -4955,6 +6274,151 @@ module TencentCloud
               @Quotas << modelrouterquota_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeModelRouterResourcePackageDeduction请求参数结构体
+      class DescribeModelRouterResourcePackageDeductionRequest < TencentCloud::Common::AbstractModel
+        # @param DeductionTimeBegin: <p>抵扣起始时间</p>
+        # @type DeductionTimeBegin: String
+        # @param DeductionTimeEnd: <p>抵扣截止时间</p>
+        # @type DeductionTimeEnd: String
+        # @param ModelRouterResourcePackageId: <p>模型路由资源包Id</p>
+        # @type ModelRouterResourcePackageId: String
+        # @param Limit: <p>返回的数量</p><p>取值范围：[0, 100]</p><p>默认值：20</p>
+        # @type Limit: Integer
+        # @param Offset: <p>数据偏移量</p><p>默认值：0</p>
+        # @type Offset: Integer
+        # @param SortBy: <p>排序方式：asc，desc</p>
+        # @type SortBy: String
+
+        attr_accessor :DeductionTimeBegin, :DeductionTimeEnd, :ModelRouterResourcePackageId, :Limit, :Offset, :SortBy
+
+        def initialize(deductiontimebegin=nil, deductiontimeend=nil, modelrouterresourcepackageid=nil, limit=nil, offset=nil, sortby=nil)
+          @DeductionTimeBegin = deductiontimebegin
+          @DeductionTimeEnd = deductiontimeend
+          @ModelRouterResourcePackageId = modelrouterresourcepackageid
+          @Limit = limit
+          @Offset = offset
+          @SortBy = sortby
+        end
+
+        def deserialize(params)
+          @DeductionTimeBegin = params['DeductionTimeBegin']
+          @DeductionTimeEnd = params['DeductionTimeEnd']
+          @ModelRouterResourcePackageId = params['ModelRouterResourcePackageId']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @SortBy = params['SortBy']
+        end
+      end
+
+      # DescribeModelRouterResourcePackageDeduction返回参数结构体
+      class DescribeModelRouterResourcePackageDeductionResponse < TencentCloud::Common::AbstractModel
+        # @param ModelRouterResourcePackageDeductionSet: <p>模型路由资源包抵扣信息</p>
+        # @type ModelRouterResourcePackageDeductionSet: Array
+        # @param TotalCount: <p>符合查询条件的详情信息总数</p>
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ModelRouterResourcePackageDeductionSet, :TotalCount, :RequestId
+
+        def initialize(modelrouterresourcepackagedeductionset=nil, totalcount=nil, requestid=nil)
+          @ModelRouterResourcePackageDeductionSet = modelrouterresourcepackagedeductionset
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ModelRouterResourcePackageDeductionSet'].nil?
+            @ModelRouterResourcePackageDeductionSet = []
+            params['ModelRouterResourcePackageDeductionSet'].each do |i|
+              modelrouterresourcepackagededuction_tmp = ModelRouterResourcePackageDeduction.new
+              modelrouterresourcepackagededuction_tmp.deserialize(i)
+              @ModelRouterResourcePackageDeductionSet << modelrouterresourcepackagededuction_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeModelRouterResourcePackages请求参数结构体
+      class DescribeModelRouterResourcePackagesRequest < TencentCloud::Common::AbstractModel
+        # @param ModelRouterResourcePackageIds: <p>模型路由资源包Id。</p>
+        # @type ModelRouterResourcePackageIds: Array
+        # @param Offset: <p>数据偏移量。</p><p>默认值：0</p>
+        # @type Offset: Integer
+        # @param Limit: <p>返回的数量，最大值为100。</p><p>取值范围：[1, 100]</p><p>默认值：20</p>
+        # @type Limit: Integer
+        # @param OrderBy: <p>排序参数，支持以下字段：&quot;buyTime&quot;, &quot;startTime&quot;, &quot;endTime&quot;</p>
+        # @type OrderBy: String
+        # @param SortBy: <p>排序方式：asc，desc，默认asc</p>
+        # @type SortBy: String
+        # @param Filters: <p>查询的过滤条件。</p><p>每次请求的Filters的上限为10，Filter.Values的上限为100。 Filter.Name和Filter.Values皆为必填项。详细的过滤条件如下： status - Integer - 是否必填：否 - 状态：0-有效 1-已退款 2-已过期 3-已用完。 effect_time_start - String - 是否必填：否 - 生效起始时间,YYYY-MM-DD HH:MM:SS格式。 effect_time_end - String - 是否必填：否 - 生效截止时间。 expire_time_start - String - 是否必填：否 - 失效起始时间。 expire_time_end - String - 是否必填：否 - 失效截止时间。</p>
+        # @type Filters: Array
+
+        attr_accessor :ModelRouterResourcePackageIds, :Offset, :Limit, :OrderBy, :SortBy, :Filters
+
+        def initialize(modelrouterresourcepackageids=nil, offset=nil, limit=nil, orderby=nil, sortby=nil, filters=nil)
+          @ModelRouterResourcePackageIds = modelrouterresourcepackageids
+          @Offset = offset
+          @Limit = limit
+          @OrderBy = orderby
+          @SortBy = sortby
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @ModelRouterResourcePackageIds = params['ModelRouterResourcePackageIds']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @OrderBy = params['OrderBy']
+          @SortBy = params['SortBy']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeModelRouterResourcePackages返回参数结构体
+      class DescribeModelRouterResourcePackagesResponse < TencentCloud::Common::AbstractModel
+        # @param ModelRouterResourcePackageSet: <p>模型路由资源包信息</p>
+        # @type ModelRouterResourcePackageSet: Array
+        # @param TotalCount: <p>符合查询条件的模型路由资源包数量</p>
+        # @type TotalCount: Integer
+        # @param TotalDosage: <p>资源包的剩余总量</p>
+        # @type TotalDosage: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ModelRouterResourcePackageSet, :TotalCount, :TotalDosage, :RequestId
+
+        def initialize(modelrouterresourcepackageset=nil, totalcount=nil, totaldosage=nil, requestid=nil)
+          @ModelRouterResourcePackageSet = modelrouterresourcepackageset
+          @TotalCount = totalcount
+          @TotalDosage = totaldosage
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ModelRouterResourcePackageSet'].nil?
+            @ModelRouterResourcePackageSet = []
+            params['ModelRouterResourcePackageSet'].each do |i|
+              modelrouterpackage_tmp = ModelRouterPackage.new
+              modelrouterpackage_tmp.deserialize(i)
+              @ModelRouterResourcePackageSet << modelrouterpackage_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @TotalDosage = params['TotalDosage']
           @RequestId = params['RequestId']
         end
       end
@@ -5186,6 +6650,103 @@ module TencentCloud
               @RewriteSet << ruleoutput_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeServiceProviderHealthStatus请求参数结构体
+      class DescribeServiceProviderHealthStatusRequest < TencentCloud::Common::AbstractModel
+        # @param ServiceProviderId: <p>BYOK的ID</p>
+        # @type ServiceProviderId: String
+        # @param Limit: <p>本次查询的限制数量</p><p>取值范围：[1, 100]</p><p>默认值：20</p>
+        # @type Limit: Integer
+        # @param Offset: <p>本次查询翻页的偏移量</p>
+        # @type Offset: Integer
+
+        attr_accessor :ServiceProviderId, :Limit, :Offset
+
+        def initialize(serviceproviderid=nil, limit=nil, offset=nil)
+          @ServiceProviderId = serviceproviderid
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @ServiceProviderId = params['ServiceProviderId']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeServiceProviderHealthStatus返回参数结构体
+      class DescribeServiceProviderHealthStatusResponse < TencentCloud::Common::AbstractModel
+        # @param HealthCheckResults: <p>健康检查的结果</p>
+        # @type HealthCheckResults: Array
+        # @param TotalCount: <p>本次请求总数</p>
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :HealthCheckResults, :TotalCount, :RequestId
+
+        def initialize(healthcheckresults=nil, totalcount=nil, requestid=nil)
+          @HealthCheckResults = healthcheckresults
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['HealthCheckResults'].nil?
+            @HealthCheckResults = []
+            params['HealthCheckResults'].each do |i|
+              modelhealthcheckresults_tmp = ModelHealthCheckResults.new
+              modelhealthcheckresults_tmp.deserialize(i)
+              @HealthCheckResults << modelhealthcheckresults_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeSupportedProviders请求参数结构体
+      class DescribeSupportedProvidersRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeSupportedProviders返回参数结构体
+      class DescribeSupportedProvidersResponse < TencentCloud::Common::AbstractModel
+        # @param Providers: <p>Provider 列表</p>
+        # @type Providers: Array
+        # @param TotalCount: <p>Provider 总数</p>
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Providers, :TotalCount, :RequestId
+
+        def initialize(providers=nil, totalcount=nil, requestid=nil)
+          @Providers = providers
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Providers'].nil?
+            @Providers = []
+            params['Providers'].each do |i|
+              provideritem_tmp = ProviderItem.new
+              provideritem_tmp.deserialize(i)
+              @Providers << provideritem_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -5606,6 +7167,74 @@ module TencentCloud
         end
       end
 
+      # DescribeUpperModels请求参数结构体
+      class DescribeUpperModelsRequest < TencentCloud::Common::AbstractModel
+        # @param AccessType: <p>接入类型：PublicBYOK/PublicCustom/PrivateCustom</p>
+        # @type AccessType: String
+        # @param ApiBase: <p>上游 Provider API 地址</p><p>示例：https://api.moonshot.cn</p>
+        # @type ApiBase: String
+        # @param ApiKey: <p>上游 Provider API Key</p><p>用于鉴权访问上游模型列表接口</p>
+        # @type ApiKey: String
+        # @param HostHeader: <p>自定义 Host Header，可选</p><p>仅 VPC 内网场景需要，用于指定请求的 Host 头</p>
+        # @type HostHeader: String
+        # @param KeyId: <p>Key Id 配合ServiceProviderId一同输入，不指定则默认选用最近创建的Key</p>
+        # @type KeyId: String
+        # @param ModelPath: <p>模型列表端点路径，可选</p><p>默认值：/v1/models</p>
+        # @type ModelPath: String
+        # @param ModelProtocol: <p>模型协议</p>
+        # @type ModelProtocol: String
+        # @param ModelProvider: <p>模型提供商</p>
+        # @type ModelProvider: String
+        # @param ServiceProviderId: <p>BYOK 业务 ID，可选</p><p>格式：byok-xxxxxxxx</p>
+        # @type ServiceProviderId: String
+
+        attr_accessor :AccessType, :ApiBase, :ApiKey, :HostHeader, :KeyId, :ModelPath, :ModelProtocol, :ModelProvider, :ServiceProviderId
+
+        def initialize(accesstype=nil, apibase=nil, apikey=nil, hostheader=nil, keyid=nil, modelpath=nil, modelprotocol=nil, modelprovider=nil, serviceproviderid=nil)
+          @AccessType = accesstype
+          @ApiBase = apibase
+          @ApiKey = apikey
+          @HostHeader = hostheader
+          @KeyId = keyid
+          @ModelPath = modelpath
+          @ModelProtocol = modelprotocol
+          @ModelProvider = modelprovider
+          @ServiceProviderId = serviceproviderid
+        end
+
+        def deserialize(params)
+          @AccessType = params['AccessType']
+          @ApiBase = params['ApiBase']
+          @ApiKey = params['ApiKey']
+          @HostHeader = params['HostHeader']
+          @KeyId = params['KeyId']
+          @ModelPath = params['ModelPath']
+          @ModelProtocol = params['ModelProtocol']
+          @ModelProvider = params['ModelProvider']
+          @ServiceProviderId = params['ServiceProviderId']
+        end
+      end
+
+      # DescribeUpperModels返回参数结构体
+      class DescribeUpperModelsResponse < TencentCloud::Common::AbstractModel
+        # @param Models: <p>上游模型列表</p>
+        # @type Models: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Models, :RequestId
+
+        def initialize(models=nil, requestid=nil)
+          @Models = models
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Models = params['Models']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeUserGroups请求参数结构体
       class DescribeUserGroupsRequest < TencentCloud::Common::AbstractModel
         # @param ModelRouterId: <p>模型路由实例ID。</p>
@@ -5748,6 +7377,108 @@ module TencentCloud
 
       # DisassociateCustomizedConfig返回参数结构体
       class DisassociateCustomizedConfigResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 模型路由待解除关联 Guardrail 防护配置
+      class DisassociateGuardrailConfig < TencentCloud::Common::AbstractModel
+        # @param GuardrailId: <p>Guardrail 防护配置 ID。</p><p>可通过 DescribeModelRouterGuardrails 获取；DisassociateModelRouterGuardrails 使用该字段定位要解除关联的防护配置。</p>
+        # @type GuardrailId: String
+
+        attr_accessor :GuardrailId
+
+        def initialize(guardrailid=nil)
+          @GuardrailId = guardrailid
+        end
+
+        def deserialize(params)
+          @GuardrailId = params['GuardrailId']
+        end
+      end
+
+      # DisassociateModelRouterGuardrails请求参数结构体
+      class DisassociateModelRouterGuardrailsRequest < TencentCloud::Common::AbstractModel
+        # @param Guardrails: <p>待解除关联的 Guardrail 防护配置列表。</p><p>每个元素只需要填写 GuardrailId。</p>
+        # @type Guardrails: Array
+        # @param ModelRouterId: <p>模型路由实例 ID。</p>
+        # @type ModelRouterId: String
+
+        attr_accessor :Guardrails, :ModelRouterId
+
+        def initialize(guardrails=nil, modelrouterid=nil)
+          @Guardrails = guardrails
+          @ModelRouterId = modelrouterid
+        end
+
+        def deserialize(params)
+          unless params['Guardrails'].nil?
+            @Guardrails = []
+            params['Guardrails'].each do |i|
+              disassociateguardrailconfig_tmp = DisassociateGuardrailConfig.new
+              disassociateguardrailconfig_tmp.deserialize(i)
+              @Guardrails << disassociateguardrailconfig_tmp
+            end
+          end
+          @ModelRouterId = params['ModelRouterId']
+        end
+      end
+
+      # DisassociateModelRouterGuardrails返回参数结构体
+      class DisassociateModelRouterGuardrailsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DisassociateModelsFromModelRouter请求参数结构体
+      class DisassociateModelsFromModelRouterRequest < TencentCloud::Common::AbstractModel
+        # @param ModelRouterId: <p>模型路由实例ID</p>
+        # @type ModelRouterId: String
+        # @param Models: <p>需要解除关联的模型信息</p>
+        # @type Models: Array
+
+        attr_accessor :ModelRouterId, :Models
+
+        def initialize(modelrouterid=nil, models=nil)
+          @ModelRouterId = modelrouterid
+          @Models = models
+        end
+
+        def deserialize(params)
+          @ModelRouterId = params['ModelRouterId']
+          unless params['Models'].nil?
+            @Models = []
+            params['Models'].each do |i|
+              modelroutermodel_tmp = ModelRouterModel.new
+              modelroutermodel_tmp.deserialize(i)
+              @Models << modelroutermodel_tmp
+            end
+          end
+        end
+      end
+
+      # DisassociateModelsFromModelRouter返回参数结构体
+      class DisassociateModelsFromModelRouterResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -5953,6 +7684,38 @@ module TencentCloud
         end
       end
 
+      # 模型路由 Guardrail 防护配置
+      class GuardrailConfig < TencentCloud::Common::AbstractModel
+        # @param GuardrailId: <p>Guardrail 防护配置 ID。</p><p>DescribeModelRouterGuardrails 会返回该字段；DisassociateModelRouterGuardrails 和 ModifyModelRouterGuardrails 需要使用该字段定位要操作的防护配置。</p>
+        # @type GuardrailId: String
+        # @param Type: <p>Guardrail 防护类型。</p><p>枚举值：</p><ul><li>WAF：使用腾讯云 WAF LLM SDK 接入配置对模型路由请求进行安全防护。</li></ul><p>当前仅支持 WAF；AssociateModelRouterGuardrails 不传时默认为 WAF，ModifyModelRouterGuardrails 不传时沿用当前已关联 Guardrail 的 Type。</p>
+        # @type Type: String
+        # @param InstanceId: <p>关联的腾讯云 WAF 实例 ID。</p><p>ModifyModelRouterGuardrails 在 Type 为 WAF 时必填。DescribeModelRouterGuardrails 返回。接口会校验该 WAF 实例存在且属于当前账号。</p>
+        # @type InstanceId: String
+        # @param ServiceId: <p>WAF LLM SDK 接入服务 ID。</p><p>该字段对应 WAF LLM SDK 接入配置中的服务标识，用于指定模型路由请求要绑定的 WAF 防护配置。ModifyModelRouterGuardrails 在 Type 为 WAF 时必填。DescribeModelRouterGuardrails 返回。接口会校验该服务配置存在于指定的 WAF 实例下。</p>
+        # @type ServiceId: String
+        # @param InputCheckDepth: <p>最大检测对话轮数。</p><p>ModifyModelRouterGuardrails 选填；未传时沿用当前已关联 Guardrail 的 InputCheckDepth。DescribeModelRouterGuardrails 返回。若传入，取值必须为正整数。</p>
+        # @type InputCheckDepth: Integer
+
+        attr_accessor :GuardrailId, :Type, :InstanceId, :ServiceId, :InputCheckDepth
+
+        def initialize(guardrailid=nil, type=nil, instanceid=nil, serviceid=nil, inputcheckdepth=nil)
+          @GuardrailId = guardrailid
+          @Type = type
+          @InstanceId = instanceid
+          @ServiceId = serviceid
+          @InputCheckDepth = inputcheckdepth
+        end
+
+        def deserialize(params)
+          @GuardrailId = params['GuardrailId']
+          @Type = params['Type']
+          @InstanceId = params['InstanceId']
+          @ServiceId = params['ServiceId']
+          @InputCheckDepth = params['InputCheckDepth']
+        end
+      end
+
       # 健康检查信息。
       # 注意，自定义探测相关参数 目前只有少量区域灰度支持。
       class HealthCheck < TencentCloud::Common::AbstractModel
@@ -6109,6 +7872,92 @@ module TencentCloud
         def deserialize(params)
           @KeyName = params['KeyName']
           @PlainKey = params['PlainKey']
+        end
+      end
+
+      # InquirePriceCreateModelRouterResourcePackage请求参数结构体
+      class InquirePriceCreateModelRouterResourcePackageRequest < TencentCloud::Common::AbstractModel
+        # @param ModelRouterResourcePackageAmount: <p>模型路由资源包容量</p><p>取值范围：[1000, 10000000]</p><p>单次购买的模型路由资源包容量下限为1000，上限为10000000</p>
+        # @type ModelRouterResourcePackageAmount: Integer
+
+        attr_accessor :ModelRouterResourcePackageAmount
+
+        def initialize(modelrouterresourcepackageamount=nil)
+          @ModelRouterResourcePackageAmount = modelrouterresourcepackageamount
+        end
+
+        def deserialize(params)
+          @ModelRouterResourcePackageAmount = params['ModelRouterResourcePackageAmount']
+        end
+      end
+
+      # InquirePriceCreateModelRouterResourcePackage返回参数结构体
+      class InquirePriceCreateModelRouterResourcePackageResponse < TencentCloud::Common::AbstractModel
+        # @param ModelRouterResourcePackagePrice: <p>模型路由资源包价格</p>
+        # @type ModelRouterResourcePackagePrice: :class:`Tencentcloud::Clb.v20180317.models.ItemPrice`
+        # @param FirstBuy: <p>本次购买资源包是否可享受首购优惠</p><p>1:可享受首购优惠，0:不可享受首购优惠</p>
+        # @type FirstBuy: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ModelRouterResourcePackagePrice, :FirstBuy, :RequestId
+
+        def initialize(modelrouterresourcepackageprice=nil, firstbuy=nil, requestid=nil)
+          @ModelRouterResourcePackagePrice = modelrouterresourcepackageprice
+          @FirstBuy = firstbuy
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ModelRouterResourcePackagePrice'].nil?
+            @ModelRouterResourcePackagePrice = ItemPrice.new
+            @ModelRouterResourcePackagePrice.deserialize(params['ModelRouterResourcePackagePrice'])
+          end
+          @FirstBuy = params['FirstBuy']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # InquirePriceRefundModelRouterResourcePackage请求参数结构体
+      class InquirePriceRefundModelRouterResourcePackageRequest < TencentCloud::Common::AbstractModel
+        # @param ModelRouterResourcePackageIds: <p>待退款的模型路由资源包Id</p><p>非有效状态或者设置了自动续订且自动续订已生效的资源包不允许退款。</p>
+        # @type ModelRouterResourcePackageIds: Array
+
+        attr_accessor :ModelRouterResourcePackageIds
+
+        def initialize(modelrouterresourcepackageids=nil)
+          @ModelRouterResourcePackageIds = modelrouterresourcepackageids
+        end
+
+        def deserialize(params)
+          @ModelRouterResourcePackageIds = params['ModelRouterResourcePackageIds']
+        end
+      end
+
+      # InquirePriceRefundModelRouterResourcePackage返回参数结构体
+      class InquirePriceRefundModelRouterResourcePackageResponse < TencentCloud::Common::AbstractModel
+        # @param ModelRouterResourcePackageRefundPrice: <p>待退款的模型路由资源包可退价格</p>
+        # @type ModelRouterResourcePackageRefundPrice: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ModelRouterResourcePackageRefundPrice, :RequestId
+
+        def initialize(modelrouterresourcepackagerefundprice=nil, requestid=nil)
+          @ModelRouterResourcePackageRefundPrice = modelrouterresourcepackagerefundprice
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ModelRouterResourcePackageRefundPrice'].nil?
+            @ModelRouterResourcePackageRefundPrice = []
+            params['ModelRouterResourcePackageRefundPrice'].each do |i|
+              modelrouterresourcepackagerefundprice_tmp = ModelRouterResourcePackageRefundPrice.new
+              modelrouterresourcepackagerefundprice_tmp.deserialize(i)
+              @ModelRouterResourcePackageRefundPrice << modelrouterresourcepackagerefundprice_tmp
+            end
+          end
+          @RequestId = params['RequestId']
         end
       end
 
@@ -6322,6 +8171,97 @@ module TencentCloud
         end
       end
 
+      # 意图路由摘要信息对象（不含分层详情）。
+      class IntentRouterItem < TencentCloud::Common::AbstractModel
+        # @param CreatedTime: <p>创建时间（ISO 8601格式）。</p>
+        # @type CreatedTime: String
+        # @param IntentRouterId: <p>意图路由ID（ir-xxx格式）。</p>
+        # @type IntentRouterId: String
+        # @param RouteName: <p>路由名称（例如 IntentRouter/customer-support）。</p>
+        # @type RouteName: String
+        # @param RouterDescribe: <p>意图路由描述。</p>
+        # @type RouterDescribe: String
+        # @param Status: <p>状态。</p><p>枚举值：</p><ul><li>Provisioning：创建中</li><li>Active：正常</li><li>Configuring：配置中</li><li>ConfigureFailed：配置失败</li></ul>
+        # @type Status: String
+        # @param Tiers: <p>分层配置列表。</p>
+        # @type Tiers: Array
+        # @param UpdatedTime: <p>更新时间（ISO 8601格式）。</p>
+        # @type UpdatedTime: String
+
+        attr_accessor :CreatedTime, :IntentRouterId, :RouteName, :RouterDescribe, :Status, :Tiers, :UpdatedTime
+
+        def initialize(createdtime=nil, intentrouterid=nil, routename=nil, routerdescribe=nil, status=nil, tiers=nil, updatedtime=nil)
+          @CreatedTime = createdtime
+          @IntentRouterId = intentrouterid
+          @RouteName = routename
+          @RouterDescribe = routerdescribe
+          @Status = status
+          @Tiers = tiers
+          @UpdatedTime = updatedtime
+        end
+
+        def deserialize(params)
+          @CreatedTime = params['CreatedTime']
+          @IntentRouterId = params['IntentRouterId']
+          @RouteName = params['RouteName']
+          @RouterDescribe = params['RouterDescribe']
+          @Status = params['Status']
+          unless params['Tiers'].nil?
+            @Tiers = []
+            params['Tiers'].each do |i|
+              intentroutertieritem_tmp = IntentRouterTierItem.new
+              intentroutertieritem_tmp.deserialize(i)
+              @Tiers << intentroutertieritem_tmp
+            end
+          end
+          @UpdatedTime = params['UpdatedTime']
+        end
+      end
+
+      # IntentRouter Tier 字典项
+      class IntentRouterTierDictItem < TencentCloud::Common::AbstractModel
+        # @param TierId: <p>Tier 标识</p><p>枚举值：</p><ul><li>default： 默认</li><li>general_chat： 通用对话</li><li>transformation_rewrite： 转换与改写</li><li>knowledge_qa： 知识问答</li><li>summarization： 摘要</li><li>extraction_structuring： 抽取与结构化输出</li><li>content_generation： 内容生成</li><li>coding_technical： 编码与技术</li><li>data_math_analysis： 数据、数学与分析</li><li>reasoning_planning： 推理与规划</li><li>tool_agentic_workflow： 工具与智能体工作流</li></ul>
+        # @type TierId: String
+        # @param DisplayName: <p>Tier 显示名称（已国际化）</p>
+        # @type DisplayName: String
+        # @param Description: <p>Tier 描述（已国际化）</p>
+        # @type Description: String
+
+        attr_accessor :TierId, :DisplayName, :Description
+
+        def initialize(tierid=nil, displayname=nil, description=nil)
+          @TierId = tierid
+          @DisplayName = displayname
+          @Description = description
+        end
+
+        def deserialize(params)
+          @TierId = params['TierId']
+          @DisplayName = params['DisplayName']
+          @Description = params['Description']
+        end
+      end
+
+      # 意图路由分层配置对象，包含分层名称和该分层下的模型列表。
+      class IntentRouterTierItem < TencentCloud::Common::AbstractModel
+        # @param Models: <p>该分层下的模型显示名称列表。</p>
+        # @type Models: Array
+        # @param TierName: <p>Tier 标识。<br>枚举值：</p><ul><li>复杂度分层（4 个固定值，需全部包含）：SIMPLE、MEDIUM、COMPLEX、REASONING</li><li>default： 默认</li><li>general_chat： 通用对话</li><li>transformation_rewrite： 转换与改写</li><li>knowledge_qa： 知识问答</li><li>summarization： 摘要</li><li>extraction_structuring： 抽取与结构化输出</li><li>content_generation： 内容生成</li><li>coding_technical： 编码与技术</li><li>data_math_analysis： 数据、数学与分析</li><li>reasoning_planning： 推理与规划</li><li>tool_agentic_workflow： 工具与智能体工作流</li></ul>
+        # @type TierName: String
+
+        attr_accessor :Models, :TierName
+
+        def initialize(models=nil, tiername=nil)
+          @Models = models
+          @TierName = tiername
+        end
+
+        def deserialize(params)
+          @Models = params['Models']
+          @TierName = params['TierName']
+        end
+      end
+
       # 网络计费模式，最大出带宽
       class InternetAccessible < TencentCloud::Common::AbstractModel
         # @param InternetChargeType: TRAFFIC_POSTPAID_BY_HOUR 按流量按小时后计费 ; BANDWIDTH_POSTPAID_BY_HOUR 按带宽按小时后计费，国际站用户不支持该计费模式; BANDWIDTH_PACKAGE 按带宽包计费;BANDWIDTH_PREPAID按带宽预付费。
@@ -6426,6 +8366,140 @@ module TencentCloud
           @RequestId = params['RequestId']
           @Status = params['Status']
           @ResourceIds = params['ResourceIds']
+        end
+      end
+
+      # Key 详情
+      class KeyDetailItem < TencentCloud::Common::AbstractModel
+        # @param KeyId: Key 业务 ID
+        # @type KeyId: String
+        # @param CreatedAt: Key 创建时间（ISO 8601）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreatedAt: String
+        # @param Name: Key 显示名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+
+        attr_accessor :KeyId, :CreatedAt, :Name
+
+        def initialize(keyid=nil, createdat=nil, name=nil)
+          @KeyId = keyid
+          @CreatedAt = createdat
+          @Name = name
+        end
+
+        def deserialize(params)
+          @KeyId = params['KeyId']
+          @CreatedAt = params['CreatedAt']
+          @Name = params['Name']
+        end
+      end
+
+      # Key信息
+      class KeyInfo < TencentCloud::Common::AbstractModel
+        # @param Blocked: <p>是否禁用Key</p>
+        # @type Blocked: Boolean
+        # @param BudgetId: <p>Key关联的Budget ID。</p><p>未关联Budget时返回空字符串。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BudgetId: String
+        # @param BudgetName: <p>Key关联的Budget名称。</p><p>未关联Budget时返回空字符串。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BudgetName: String
+        # @param CreatedTime: <p>创建时间</p>
+        # @type CreatedTime: String
+        # @param CreditUsageSet: <p>Key按Budget刷新周期划分的Credit使用情况。</p><p>当关联Budget配置多个刷新周期时，按1d、7d、30d顺序返回各周期用量；未关联Budget时返回空数组。</p>
+        # @type CreditUsageSet: Array
+        # @param Key: <p>Key的值</p>
+        # @type Key: String
+        # @param KeyId: <p>Key的ID</p>
+        # @type KeyId: String
+        # @param KeyName: <p>Key名称</p>
+        # @type KeyName: String
+        # @param ModifiedTime: <p>修改时间</p>
+        # @type ModifiedTime: String
+        # @param RateLimitConfig: <p>限速信息</p>
+        # @type RateLimitConfig: :class:`Tencentcloud::Clb.v20180317.models.RateLimitConfigForKey`
+        # @param Status: <p>Key状态</p><p>枚举值：</p><ul><li>Active： 正常</li></ul>
+        # @type Status: String
+        # @param Tags: <p>标签</p>
+        # @type Tags: Array
+        # @param UserGroupId: <p>所属的用户组ID</p>
+        # @type UserGroupId: String
+        # @param UserGroupName: <p>所属的用户组名称</p>
+        # @type UserGroupName: String
+
+        attr_accessor :Blocked, :BudgetId, :BudgetName, :CreatedTime, :CreditUsageSet, :Key, :KeyId, :KeyName, :ModifiedTime, :RateLimitConfig, :Status, :Tags, :UserGroupId, :UserGroupName
+
+        def initialize(blocked=nil, budgetid=nil, budgetname=nil, createdtime=nil, creditusageset=nil, key=nil, keyid=nil, keyname=nil, modifiedtime=nil, ratelimitconfig=nil, status=nil, tags=nil, usergroupid=nil, usergroupname=nil)
+          @Blocked = blocked
+          @BudgetId = budgetid
+          @BudgetName = budgetname
+          @CreatedTime = createdtime
+          @CreditUsageSet = creditusageset
+          @Key = key
+          @KeyId = keyid
+          @KeyName = keyname
+          @ModifiedTime = modifiedtime
+          @RateLimitConfig = ratelimitconfig
+          @Status = status
+          @Tags = tags
+          @UserGroupId = usergroupid
+          @UserGroupName = usergroupname
+        end
+
+        def deserialize(params)
+          @Blocked = params['Blocked']
+          @BudgetId = params['BudgetId']
+          @BudgetName = params['BudgetName']
+          @CreatedTime = params['CreatedTime']
+          unless params['CreditUsageSet'].nil?
+            @CreditUsageSet = []
+            params['CreditUsageSet'].each do |i|
+              creditusage_tmp = CreditUsage.new
+              creditusage_tmp.deserialize(i)
+              @CreditUsageSet << creditusage_tmp
+            end
+          end
+          @Key = params['Key']
+          @KeyId = params['KeyId']
+          @KeyName = params['KeyName']
+          @ModifiedTime = params['ModifiedTime']
+          unless params['RateLimitConfig'].nil?
+            @RateLimitConfig = RateLimitConfigForKey.new
+            @RateLimitConfig.deserialize(params['RateLimitConfig'])
+          end
+          @Status = params['Status']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              taginfo_tmp = TagInfo.new
+              taginfo_tmp.deserialize(i)
+              @Tags << taginfo_tmp
+            end
+          end
+          @UserGroupId = params['UserGroupId']
+          @UserGroupName = params['UserGroupName']
+        end
+      end
+
+      # Key 项
+      class KeyItem < TencentCloud::Common::AbstractModel
+        # @param ApiKey: Provider API Key
+        # @type ApiKey: String
+        # @param Name: Key 标识名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+
+        attr_accessor :ApiKey, :Name
+
+        def initialize(apikey=nil, name=nil)
+          @ApiKey = apikey
+          @Name = name
+        end
+
+        def deserialize(params)
+          @ApiKey = params['ApiKey']
+          @Name = params['Name']
         end
       end
 
@@ -7038,8 +9112,8 @@ module TencentCloud
 
         attr_accessor :LoadBalancerId, :LoadBalancerName, :LoadBalancerType, :Forward, :Domain, :LoadBalancerVips, :Status, :CreateTime, :StatusTime, :ProjectId, :VpcId, :OpenBgp, :Snat, :Isolation, :Log, :SubnetId, :Tags, :SecureGroups, :TargetRegionInfo, :AnycastZone, :AddressIPVersion, :NumericalVpcId, :VipIsp, :MasterZone, :BackupZoneSet, :IsolatedTime, :ExpireTime, :ChargeType, :NetworkAttributes, :PrepaidAttributes, :LogSetId, :LogTopicId, :AddressIPv6, :ExtraInfo, :IsDDos, :ConfigId, :LoadBalancerPassToTarget, :ExclusiveCluster, :IPv6Mode, :SnatPro, :SnatIps, :SlaType, :IsBlock, :IsBlockTime, :LocalBgp, :ClusterTag, :MixIpTarget, :Zones, :NfvInfo, :HealthLogSetId, :HealthLogTopicId, :ClusterIds, :AttributeFlags, :LoadBalancerDomain, :Egress, :Exclusive, :TargetCount, :AssociateEndpoint, :AvailableZoneAffinityInfo
         extend Gem::Deprecate
-        deprecate :Log, :none, 2026, 6
-        deprecate :Log=, :none, 2026, 6
+        deprecate :Log, :none, 2026, 7
+        deprecate :Log=, :none, 2026, 7
 
         def initialize(loadbalancerid=nil, loadbalancername=nil, loadbalancertype=nil, forward=nil, domain=nil, loadbalancervips=nil, status=nil, createtime=nil, statustime=nil, projectid=nil, vpcid=nil, openbgp=nil, snat=nil, isolation=nil, log=nil, subnetid=nil, tags=nil, securegroups=nil, targetregioninfo=nil, anycastzone=nil, addressipversion=nil, numericalvpcid=nil, vipisp=nil, masterzone=nil, backupzoneset=nil, isolatedtime=nil, expiretime=nil, chargetype=nil, networkattributes=nil, prepaidattributes=nil, logsetid=nil, logtopicid=nil, addressipv6=nil, extrainfo=nil, isddos=nil, configid=nil, loadbalancerpasstotarget=nil, exclusivecluster=nil, ipv6mode=nil, snatpro=nil, snatips=nil, slatype=nil, isblock=nil, isblocktime=nil, localbgp=nil, clustertag=nil, mixiptarget=nil, zones=nil, nfvinfo=nil, healthlogsetid=nil, healthlogtopicid=nil, clusterids=nil, attributeflags=nil, loadbalancerdomain=nil, egress=nil, exclusive=nil, targetcount=nil, associateendpoint=nil, availablezoneaffinityinfo=nil)
           @LoadBalancerId = loadbalancerid
@@ -7610,10 +9684,334 @@ module TencentCloud
         end
       end
 
+      # 每个待探测模态的详细结果。
+      class ModalityProbeDetail < TencentCloud::Common::AbstractModel
+        # @param Modality: <p>探测的模态</p>
+        # @type Modality: String
+        # @param Status: <p>探测结果</p><p>枚举值：</p><ul><li>Supported： 模型支持该输入模态</li><li>Unsupported： 模型不支持该输入模态</li><li>Inconclusive： 模型未明确是否支持该模态，待重新探测</li></ul>
+        # @type Status: String
+        # @param ErrorInfo: <p>探测该模态请求的报错详情</p>
+        # @type ErrorInfo: :class:`Tencentcloud::Clb.v20180317.models.ProviderTestConnectionErrorInfo`
+
+        attr_accessor :Modality, :Status, :ErrorInfo
+
+        def initialize(modality=nil, status=nil, errorinfo=nil)
+          @Modality = modality
+          @Status = status
+          @ErrorInfo = errorinfo
+        end
+
+        def deserialize(params)
+          @Modality = params['Modality']
+          @Status = params['Status']
+          unless params['ErrorInfo'].nil?
+            @ErrorInfo = ProviderTestConnectionErrorInfo.new
+            @ErrorInfo.deserialize(params['ErrorInfo'])
+          end
+        end
+      end
+
+      # 模型别名对象
+      class ModelAlias < TencentCloud::Common::AbstractModel
+        # @param Coefficient: <p>模型积分系数配置，包含 <code>InputCoefficient</code>、<code>InputCachedCoefficient</code> 和 <code>OutputCoefficient</code>。</p><p>未配置时输入系数默认为 25，缓存命中输入系数默认为 3，输出系数默认为 100。</p>
+        # @type Coefficient: :class:`Tencentcloud::Clb.v20180317.models.Coefficient`
+        # @param ModelAliasName: <p>模型别名名称。</p><p>若用户配置了模型别名，则为该别名；未配置时为原始模型名称。</p>
+        # @type ModelAliasName: String
+        # @param ServiceProviderCoefficientSet: <p>该模型别名下各 BYOK 实例（ServiceProvider）的积分系数明细，体现 ModelAlias 与 ServiceProvider 的层级关系。</p><p>默认返回该别名引用的全部实例；某实例返回 <code>Coefficient</code> 表示其单独配置了 ServiceProvider 维度系数，否则继承顶层 ModelAlias 的 <code>Coefficient</code>。</p><p>该别名当前无有效 BYOK 引用时返回空数组。</p>
+        # @type ServiceProviderCoefficientSet: Array
+        # @param Source: <p>模型来源。</p><p>枚举值：</p><ul><li>BYOK：用户 BYOK 配置的模型。</li></ul>
+        # @type Source: String
+        # @param Status: <p>状态</p><p>枚举值：</p><ul><li>Active： 正常可用</li><li>Configuring： 变配中</li><li>ConfigureFailed： 变配失败</li></ul>
+        # @type Status: String
+
+        attr_accessor :Coefficient, :ModelAliasName, :ServiceProviderCoefficientSet, :Source, :Status
+
+        def initialize(coefficient=nil, modelaliasname=nil, serviceprovidercoefficientset=nil, source=nil, status=nil)
+          @Coefficient = coefficient
+          @ModelAliasName = modelaliasname
+          @ServiceProviderCoefficientSet = serviceprovidercoefficientset
+          @Source = source
+          @Status = status
+        end
+
+        def deserialize(params)
+          unless params['Coefficient'].nil?
+            @Coefficient = Coefficient.new
+            @Coefficient.deserialize(params['Coefficient'])
+          end
+          @ModelAliasName = params['ModelAliasName']
+          unless params['ServiceProviderCoefficientSet'].nil?
+            @ServiceProviderCoefficientSet = []
+            params['ServiceProviderCoefficientSet'].each do |i|
+              serviceprovidercoefficient_tmp = ServiceProviderCoefficient.new
+              serviceprovidercoefficient_tmp.deserialize(i)
+              @ServiceProviderCoefficientSet << serviceprovidercoefficient_tmp
+            end
+          end
+          @Source = params['Source']
+          @Status = params['Status']
+        end
+      end
+
+      # 模型关联信息
+      class ModelAssociation < TencentCloud::Common::AbstractModel
+        # @param InputModalitiesUnion: <p>该模型最大可支持的输入多模态能力列表</p><p>枚举值：</p><ul><li>text： 支持文本输入</li><li>image： 支持图像输入</li><li>file： 支持文件输入（当前仅支持pdf）</li></ul>
+        # @type InputModalitiesUnion: Array
+        # @param ModelName: <p>模型名称</p>
+        # @type ModelName: String
+        # @param ServiceProviders: <p>BYOK列表</p>
+        # @type ServiceProviders: Array
+        # @param Type: <p>模型类型</p>
+        # @type Type: String
+
+        attr_accessor :InputModalitiesUnion, :ModelName, :ServiceProviders, :Type
+
+        def initialize(inputmodalitiesunion=nil, modelname=nil, serviceproviders=nil, type=nil)
+          @InputModalitiesUnion = inputmodalitiesunion
+          @ModelName = modelname
+          @ServiceProviders = serviceproviders
+          @Type = type
+        end
+
+        def deserialize(params)
+          @InputModalitiesUnion = params['InputModalitiesUnion']
+          @ModelName = params['ModelName']
+          unless params['ServiceProviders'].nil?
+            @ServiceProviders = []
+            params['ServiceProviders'].each do |i|
+              serviceprovider_tmp = ServiceProvider.new
+              serviceprovider_tmp.deserialize(i)
+              @ServiceProviders << serviceprovider_tmp
+            end
+          end
+          @Type = params['Type']
+        end
+      end
+
+      # 模型可用性
+      class ModelAvailability < TencentCloud::Common::AbstractModel
+        # @param InputModalities: <p>该模型所有健康BYOK实例下支持的输入多模态能力的并集。模型不健康时返回空列表。</p><p>枚举值：</p><ul><li>text： 支持文本输入</li><li>image： 支持图像输入</li><li>file： 支持文件输入（当前仅支持pdf）</li></ul>
+        # @type InputModalities: Array
+        # @param Model: <p>模型</p>
+        # @type Model: String
+        # @param Status: <p>可用性状态</p><p>枚举值：</p><ul><li>Available： 可用</li><li>Unavailable： 不可用</li><li>Unknown： 未探测</li></ul>
+        # @type Status: String
+
+        attr_accessor :InputModalities, :Model, :Status
+
+        def initialize(inputmodalities=nil, model=nil, status=nil)
+          @InputModalities = inputmodalities
+          @Model = model
+          @Status = status
+        end
+
+        def deserialize(params)
+          @InputModalities = params['InputModalities']
+          @Model = params['Model']
+          @Status = params['Status']
+        end
+      end
+
+      # BYOK的健康检查结果
+      class ModelHealthCheckResults < TencentCloud::Common::AbstractModel
+        # @param ProviderKeyId: <p>BYOK的KeyID</p>
+        # @type ProviderKeyId: String
+        # @param Model: <p>模型</p>
+        # @type Model: String
+        # @param Status: <p>健康检查状态</p>
+        # @type Status: String
+
+        attr_accessor :ProviderKeyId, :Model, :Status
+
+        def initialize(providerkeyid=nil, model=nil, status=nil)
+          @ProviderKeyId = providerkeyid
+          @Model = model
+          @Status = status
+        end
+
+        def deserialize(params)
+          @ProviderKeyId = params['ProviderKeyId']
+          @Model = params['Model']
+          @Status = params['Status']
+        end
+      end
+
+      # model 信息
+      class ModelItem < TencentCloud::Common::AbstractModel
+        # @param ModelId: <p>模型唯一标识, 用于实际访问</p>
+        # @type ModelId: String
+        # @param InputModalities: <p>该模型当前支持的输入多模态能力列表</p><p>枚举值：</p><ul><li>text： 支持文本输入</li><li>image： 支持图像输入</li><li>file： 支持文件输入（当前仅支持pdf）</li></ul><p>默认值：text</p>
+        # @type InputModalities: Array
+        # @param ModelAlias: <p>模型别名, 可以用于实际访问</p>
+        # @type ModelAlias: String
+
+        attr_accessor :ModelId, :InputModalities, :ModelAlias
+
+        def initialize(modelid=nil, inputmodalities=nil, modelalias=nil)
+          @ModelId = modelid
+          @InputModalities = inputmodalities
+          @ModelAlias = modelalias
+        end
+
+        def deserialize(params)
+          @ModelId = params['ModelId']
+          @InputModalities = params['InputModalities']
+          @ModelAlias = params['ModelAlias']
+        end
+      end
+
+      # 模型及其 Key 信息
+      class ModelKeyInfoItem < TencentCloud::Common::AbstractModel
+        # @param AccessType: <p>接入类型</p>
+        # @type AccessType: String
+        # @param ApiBase: <p>API Base URL</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApiBase: String
+        # @param CreatedAt: <p>模型创建时间（ISO 8601）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreatedAt: String
+        # @param HostHeader: <p>自定义host header</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HostHeader: String
+        # @param KeyCount: <p>Key 数量</p>
+        # @type KeyCount: Integer
+        # @param Keys: <p>Key 详情列表</p>
+        # @type Keys: Array
+        # @param ModelIdsWithAlias: <p>model信息</p>
+        # @type ModelIdsWithAlias: Array
+        # @param ModelProvider: <p>模型供应商</p>
+        # @type ModelProvider: String
+        # @param Protocol: <p>模型协议</p>
+        # @type Protocol: String
+        # @param ServiceIps: <p>内部通信占用IP</p>
+        # @type ServiceIps: Array
+        # @param ServiceProviderId: <p>服务提供商ID</p>
+        # @type ServiceProviderId: String
+        # @param ServiceProviderName: <p>服务提供商自定义名称</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceProviderName: String
+        # @param Status: <p>模型状态</p><p>枚举值：</p><ul><li>Active： 运行中</li><li>Provisioning： 创建中</li><li>Configuring： 变配中</li><li>Deleting： 删除中</li><li>ProvisionFailed： 创建失败</li><li>ConfigureFailed： 变配失败</li><li>DeletionFailed： 删除失败</li><li>Disabled： 已禁用</li></ul>
+        # @type Status: String
+        # @param SubnetId: <p>子网 ID</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubnetId: String
+        # @param Tags: <p>标签信息</p>
+        # @type Tags: Array
+        # @param VerifySSL: <p>是否校验上游SSL</p>
+        # @type VerifySSL: Boolean
+        # @param VpcId: <p>VPC 实例 ID</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcId: String
+
+        attr_accessor :AccessType, :ApiBase, :CreatedAt, :HostHeader, :KeyCount, :Keys, :ModelIdsWithAlias, :ModelProvider, :Protocol, :ServiceIps, :ServiceProviderId, :ServiceProviderName, :Status, :SubnetId, :Tags, :VerifySSL, :VpcId
+
+        def initialize(accesstype=nil, apibase=nil, createdat=nil, hostheader=nil, keycount=nil, keys=nil, modelidswithalias=nil, modelprovider=nil, protocol=nil, serviceips=nil, serviceproviderid=nil, serviceprovidername=nil, status=nil, subnetid=nil, tags=nil, verifyssl=nil, vpcid=nil)
+          @AccessType = accesstype
+          @ApiBase = apibase
+          @CreatedAt = createdat
+          @HostHeader = hostheader
+          @KeyCount = keycount
+          @Keys = keys
+          @ModelIdsWithAlias = modelidswithalias
+          @ModelProvider = modelprovider
+          @Protocol = protocol
+          @ServiceIps = serviceips
+          @ServiceProviderId = serviceproviderid
+          @ServiceProviderName = serviceprovidername
+          @Status = status
+          @SubnetId = subnetid
+          @Tags = tags
+          @VerifySSL = verifyssl
+          @VpcId = vpcid
+        end
+
+        def deserialize(params)
+          @AccessType = params['AccessType']
+          @ApiBase = params['ApiBase']
+          @CreatedAt = params['CreatedAt']
+          @HostHeader = params['HostHeader']
+          @KeyCount = params['KeyCount']
+          unless params['Keys'].nil?
+            @Keys = []
+            params['Keys'].each do |i|
+              keydetailitem_tmp = KeyDetailItem.new
+              keydetailitem_tmp.deserialize(i)
+              @Keys << keydetailitem_tmp
+            end
+          end
+          unless params['ModelIdsWithAlias'].nil?
+            @ModelIdsWithAlias = []
+            params['ModelIdsWithAlias'].each do |i|
+              serviceprovidermodelitem_tmp = ServiceProviderModelItem.new
+              serviceprovidermodelitem_tmp.deserialize(i)
+              @ModelIdsWithAlias << serviceprovidermodelitem_tmp
+            end
+          end
+          @ModelProvider = params['ModelProvider']
+          @Protocol = params['Protocol']
+          @ServiceIps = params['ServiceIps']
+          @ServiceProviderId = params['ServiceProviderId']
+          @ServiceProviderName = params['ServiceProviderName']
+          @Status = params['Status']
+          @SubnetId = params['SubnetId']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              taginfo_tmp = TagInfo.new
+              taginfo_tmp.deserialize(i)
+              @Tags << taginfo_tmp
+            end
+          end
+          @VerifySSL = params['VerifySSL']
+          @VpcId = params['VpcId']
+        end
+      end
+
+      # 按模型标识聚合的信息
+      class ModelNameAggregatedItem < TencentCloud::Common::AbstractModel
+        # @param ModelName: <p>模型标识显示名称（优先使用 model_alias，否则使用 model_name）</p>
+        # @type ModelName: String
+        # @param ServiceProviders: <p>关联的服务商列表</p>
+        # @type ServiceProviders: Array
+        # @param InputModalitiesUnion: <p>该模型最大可支持的输入多模态能力列表。</p><p>枚举值：</p><ul><li>text： 支持文本输入</li><li>image： 支持图像输入</li><li>file： 支持文件输入（当前仅支持pdf）</li></ul>
+        # @type InputModalitiesUnion: Array
+
+        attr_accessor :ModelName, :ServiceProviders, :InputModalitiesUnion
+
+        def initialize(modelname=nil, serviceproviders=nil, inputmodalitiesunion=nil)
+          @ModelName = modelname
+          @ServiceProviders = serviceproviders
+          @InputModalitiesUnion = inputmodalitiesunion
+        end
+
+        def deserialize(params)
+          @ModelName = params['ModelName']
+          unless params['ServiceProviders'].nil?
+            @ServiceProviders = []
+            params['ServiceProviders'].each do |i|
+              serviceprovideritem_tmp = ServiceProviderItem.new
+              serviceprovideritem_tmp.deserialize(i)
+              @ServiceProviders << serviceprovideritem_tmp
+            end
+          end
+          @InputModalitiesUnion = params['InputModalitiesUnion']
+        end
+      end
+
       # 查询单个实例详细信息
       class ModelRouterDetail < TencentCloud::Common::AbstractModel
+        # @param BudgetId: <p>模型路由实例关联的Budget ID。</p><p>未关联Budget时返回空字符串。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BudgetId: String
+        # @param BudgetName: <p>模型路由实例关联的Budget名称。</p><p>未关联Budget时返回空字符串。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BudgetName: String
+        # @param ClusterInfo: <p>集群信息</p>
+        # @type ClusterInfo: :class:`Tencentcloud::Clb.v20180317.models.ClusterInfo`
         # @param CreatedTime: <p>创建时间</p>
         # @type CreatedTime: String
+        # @param CreditUsageSet: <p>模型路由实例按Budget刷新周期划分的Credit使用情况。</p><p>当关联Budget配置多个刷新周期时，按1d、7d、30d顺序返回各周期用量；未关联Budget时返回空数组。</p>
+        # @type CreditUsageSet: Array
         # @param Domain: <p>模型路由实例域名</p>
         # @type Domain: String
         # @param ModelRouterId: <p>模型路由ID</p>
@@ -7631,6 +10029,8 @@ module TencentCloud
         # @param RouterSetting: <p>模型路由的路由配置</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RouterSetting: :class:`Tencentcloud::Clb.v20180317.models.RouterSettingWithFallBack`
+        # @param SecurityGroups: <p>安全组ID列表</p>
+        # @type SecurityGroups: Array
         # @param SecurityStatus: <p>模型路由实例的安全状态</p><p>枚举值：</p><ul><li>Normal： 正常</li><li>Banned： 已封禁</li><li>Frozen： 已冻结</li></ul>
         # @type SecurityStatus: String
         # @param ServiceEndPoints: <p>模型路由网络配置列表</p>
@@ -7647,26 +10047,15 @@ module TencentCloud
         # @type Vip: String
         # @param VpcId: <p>模型路由实例所属VPC的ID</p>
         # @type VpcId: String
-        # @param BudgetId: <p>模型路由实例关联的Budget ID。</p><p>未关联Budget时返回空字符串。</p>
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type BudgetId: String
-        # @param BudgetName: <p>模型路由实例关联的Budget名称。</p><p>未关联Budget时返回空字符串。</p>
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type BudgetName: String
-        # @param CreditUsage: <p>模型路由实例的Credit使用情况。</p>
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type CreditUsage: :class:`Tencentcloud::Clb.v20180317.models.CreditUsage`
-        # @param CreditUsageSet: <p>模型路由实例按Budget刷新周期划分的Credit使用情况。</p><p>当关联Budget配置多个刷新周期时，按1d、7d、30d顺序返回各周期用量；未关联Budget时返回空数组。</p>
-        # @type CreditUsageSet: Array
-        # @param SecurityGroups: <p>安全组ID列表</p>
-        # @type SecurityGroups: Array
-        # @param ClusterInfo: <p>集群信息</p>
-        # @type ClusterInfo: :class:`Tencentcloud::Clb.v20180317.models.ClusterInfo`
 
-        attr_accessor :CreatedTime, :Domain, :ModelRouterId, :ModelRouterName, :ModelRouterType, :ModifiedTime, :NetworkType, :RateLimitConfig, :RouterSetting, :SecurityStatus, :ServiceEndPoints, :Status, :SubnetId, :Tags, :TradeStatus, :Vip, :VpcId, :BudgetId, :BudgetName, :CreditUsage, :CreditUsageSet, :SecurityGroups, :ClusterInfo
+        attr_accessor :BudgetId, :BudgetName, :ClusterInfo, :CreatedTime, :CreditUsageSet, :Domain, :ModelRouterId, :ModelRouterName, :ModelRouterType, :ModifiedTime, :NetworkType, :RateLimitConfig, :RouterSetting, :SecurityGroups, :SecurityStatus, :ServiceEndPoints, :Status, :SubnetId, :Tags, :TradeStatus, :Vip, :VpcId
 
-        def initialize(createdtime=nil, domain=nil, modelrouterid=nil, modelroutername=nil, modelroutertype=nil, modifiedtime=nil, networktype=nil, ratelimitconfig=nil, routersetting=nil, securitystatus=nil, serviceendpoints=nil, status=nil, subnetid=nil, tags=nil, tradestatus=nil, vip=nil, vpcid=nil, budgetid=nil, budgetname=nil, creditusage=nil, creditusageset=nil, securitygroups=nil, clusterinfo=nil)
+        def initialize(budgetid=nil, budgetname=nil, clusterinfo=nil, createdtime=nil, creditusageset=nil, domain=nil, modelrouterid=nil, modelroutername=nil, modelroutertype=nil, modifiedtime=nil, networktype=nil, ratelimitconfig=nil, routersetting=nil, securitygroups=nil, securitystatus=nil, serviceendpoints=nil, status=nil, subnetid=nil, tags=nil, tradestatus=nil, vip=nil, vpcid=nil)
+          @BudgetId = budgetid
+          @BudgetName = budgetname
+          @ClusterInfo = clusterinfo
           @CreatedTime = createdtime
+          @CreditUsageSet = creditusageset
           @Domain = domain
           @ModelRouterId = modelrouterid
           @ModelRouterName = modelroutername
@@ -7675,6 +10064,7 @@ module TencentCloud
           @NetworkType = networktype
           @RateLimitConfig = ratelimitconfig
           @RouterSetting = routersetting
+          @SecurityGroups = securitygroups
           @SecurityStatus = securitystatus
           @ServiceEndPoints = serviceendpoints
           @Status = status
@@ -7683,16 +10073,24 @@ module TencentCloud
           @TradeStatus = tradestatus
           @Vip = vip
           @VpcId = vpcid
-          @BudgetId = budgetid
-          @BudgetName = budgetname
-          @CreditUsage = creditusage
-          @CreditUsageSet = creditusageset
-          @SecurityGroups = securitygroups
-          @ClusterInfo = clusterinfo
         end
 
         def deserialize(params)
+          @BudgetId = params['BudgetId']
+          @BudgetName = params['BudgetName']
+          unless params['ClusterInfo'].nil?
+            @ClusterInfo = ClusterInfo.new
+            @ClusterInfo.deserialize(params['ClusterInfo'])
+          end
           @CreatedTime = params['CreatedTime']
+          unless params['CreditUsageSet'].nil?
+            @CreditUsageSet = []
+            params['CreditUsageSet'].each do |i|
+              creditusage_tmp = CreditUsage.new
+              creditusage_tmp.deserialize(i)
+              @CreditUsageSet << creditusage_tmp
+            end
+          end
           @Domain = params['Domain']
           @ModelRouterId = params['ModelRouterId']
           @ModelRouterName = params['ModelRouterName']
@@ -7707,6 +10105,7 @@ module TencentCloud
             @RouterSetting = RouterSettingWithFallBack.new
             @RouterSetting.deserialize(params['RouterSetting'])
           end
+          @SecurityGroups = params['SecurityGroups']
           @SecurityStatus = params['SecurityStatus']
           unless params['ServiceEndPoints'].nil?
             @ServiceEndPoints = []
@@ -7729,25 +10128,150 @@ module TencentCloud
           @TradeStatus = params['TradeStatus']
           @Vip = params['Vip']
           @VpcId = params['VpcId']
-          @BudgetId = params['BudgetId']
-          @BudgetName = params['BudgetName']
-          unless params['CreditUsage'].nil?
-            @CreditUsage = CreditUsage.new
-            @CreditUsage.deserialize(params['CreditUsage'])
-          end
-          unless params['CreditUsageSet'].nil?
-            @CreditUsageSet = []
-            params['CreditUsageSet'].each do |i|
-              creditusage_tmp = CreditUsage.new
-              creditusage_tmp.deserialize(i)
-              @CreditUsageSet << creditusage_tmp
-            end
-          end
-          @SecurityGroups = params['SecurityGroups']
-          unless params['ClusterInfo'].nil?
-            @ClusterInfo = ClusterInfo.new
-            @ClusterInfo.deserialize(params['ClusterInfo'])
-          end
+        end
+      end
+
+      # 模型路由日志
+      class ModelRouterLog < TencentCloud::Common::AbstractModel
+        # @param KeyId: <p>API Key的ID</p>
+        # @type KeyId: String
+        # @param Model: <p>模型</p>
+        # @type Model: String
+        # @param Provider: <p>所属厂商</p>
+        # @type Provider: String
+        # @param Status: <p>请求状态</p><p>枚举值：</p><ul><li>failure： 失败</li><li>success： 成功</li></ul>
+        # @type Status: String
+        # @param MaxRetries: <p>最大重试次数</p>
+        # @type MaxRetries: Integer
+        # @param TotalTokens: <p>单次请求消耗的总Token数量</p>
+        # @type TotalTokens: Integer
+        # @param InputTokens: <p>单次请求输入消耗的Token数量</p>
+        # @type InputTokens: Integer
+        # @param OutputTokens: <p>单次请求输出消耗的Token数量</p>
+        # @type OutputTokens: Integer
+        # @param RequestDuration: <p>请求耗时</p><p>单位：ms</p>
+        # @type RequestDuration: Integer
+        # @param RequesterIp: <p>请求IP</p>
+        # @type RequesterIp: String
+        # @param StartTime: <p>日志查询起始时间</p>
+        # @type StartTime: String
+        # @param EndTime: <p>日志查询结束时间</p>
+        # @type EndTime: String
+
+        attr_accessor :KeyId, :Model, :Provider, :Status, :MaxRetries, :TotalTokens, :InputTokens, :OutputTokens, :RequestDuration, :RequesterIp, :StartTime, :EndTime
+
+        def initialize(keyid=nil, model=nil, provider=nil, status=nil, maxretries=nil, totaltokens=nil, inputtokens=nil, outputtokens=nil, requestduration=nil, requesterip=nil, starttime=nil, endtime=nil)
+          @KeyId = keyid
+          @Model = model
+          @Provider = provider
+          @Status = status
+          @MaxRetries = maxretries
+          @TotalTokens = totaltokens
+          @InputTokens = inputtokens
+          @OutputTokens = outputtokens
+          @RequestDuration = requestduration
+          @RequesterIp = requesterip
+          @StartTime = starttime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @KeyId = params['KeyId']
+          @Model = params['Model']
+          @Provider = params['Provider']
+          @Status = params['Status']
+          @MaxRetries = params['MaxRetries']
+          @TotalTokens = params['TotalTokens']
+          @InputTokens = params['InputTokens']
+          @OutputTokens = params['OutputTokens']
+          @RequestDuration = params['RequestDuration']
+          @RequesterIp = params['RequesterIp']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+        end
+      end
+
+      # 模型路由关联的模型
+      class ModelRouterModel < TencentCloud::Common::AbstractModel
+        # @param ModelName: <p>模型名称</p>
+        # @type ModelName: String
+        # @param Provider: <p>所属厂商</p>
+        # @type Provider: String
+        # @param Type: <p>模型类型。</p><p>枚举值：</p><ul><li>BYOK： BYOK类型</li><li>Platform： 平台类型</li></ul>
+        # @type Type: String
+        # @param ServiceProviderId: <p>服务商/模型 ID（byok_model.model_id，形如 model-xxxxxxxx；Platform 类型不传）</p>
+        # @type ServiceProviderId: String
+
+        attr_accessor :ModelName, :Provider, :Type, :ServiceProviderId
+
+        def initialize(modelname=nil, provider=nil, type=nil, serviceproviderid=nil)
+          @ModelName = modelname
+          @Provider = provider
+          @Type = type
+          @ServiceProviderId = serviceproviderid
+        end
+
+        def deserialize(params)
+          @ModelName = params['ModelName']
+          @Provider = params['Provider']
+          @Type = params['Type']
+          @ServiceProviderId = params['ServiceProviderId']
+        end
+      end
+
+      # 模型路由资源包
+      class ModelRouterPackage < TencentCloud::Common::AbstractModel
+        # @param CapacitySize: <p>模型路由资源包总容量</p>
+        # @type CapacitySize: String
+        # @param CapacityRemain: <p>模型路由资源包总余量</p>
+        # @type CapacityRemain: String
+        # @param CapacitySizePrecise: <p>模型路由资源包容量精确值</p>
+        # @type CapacitySizePrecise: String
+        # @param CapacityRemainPrecise: <p>模型路由资源包总余量精确值</p>
+        # @type CapacityRemainPrecise: String
+        # @param AutoPurchaseFlag: <p>模型路由资源包设置用尽续购标志位 0:未设置 1:用尽到期新购</p><p>取值范围：[0, 1]</p>
+        # @type AutoPurchaseFlag: Integer
+        # @param ModelRouterResourcePackageId: <p>模型路由资源包Id</p>
+        # @type ModelRouterResourcePackageId: String
+        # @param CreateTime: <p>模型路由资源包创建时间</p>
+        # @type CreateTime: String
+        # @param DeductionStartTime: <p>模型路由资源包抵扣开始时间</p>
+        # @type DeductionStartTime: String
+        # @param DeductionEndTime: <p>模型路由资源包抵扣截止时间</p>
+        # @type DeductionEndTime: String
+        # @param ExpiredTime: <p>模型路由资源包失效时间</p>
+        # @type ExpiredTime: String
+        # @param Status: <p>模型路由资源包状态</p><p>枚举值：</p><ul><li>0： 有效</li><li>1： 已退款</li><li>2： 已过期</li><li>3： 已用完</li></ul>
+        # @type Status: Integer
+
+        attr_accessor :CapacitySize, :CapacityRemain, :CapacitySizePrecise, :CapacityRemainPrecise, :AutoPurchaseFlag, :ModelRouterResourcePackageId, :CreateTime, :DeductionStartTime, :DeductionEndTime, :ExpiredTime, :Status
+
+        def initialize(capacitysize=nil, capacityremain=nil, capacitysizeprecise=nil, capacityremainprecise=nil, autopurchaseflag=nil, modelrouterresourcepackageid=nil, createtime=nil, deductionstarttime=nil, deductionendtime=nil, expiredtime=nil, status=nil)
+          @CapacitySize = capacitysize
+          @CapacityRemain = capacityremain
+          @CapacitySizePrecise = capacitysizeprecise
+          @CapacityRemainPrecise = capacityremainprecise
+          @AutoPurchaseFlag = autopurchaseflag
+          @ModelRouterResourcePackageId = modelrouterresourcepackageid
+          @CreateTime = createtime
+          @DeductionStartTime = deductionstarttime
+          @DeductionEndTime = deductionendtime
+          @ExpiredTime = expiredtime
+          @Status = status
+        end
+
+        def deserialize(params)
+          @CapacitySize = params['CapacitySize']
+          @CapacityRemain = params['CapacityRemain']
+          @CapacitySizePrecise = params['CapacitySizePrecise']
+          @CapacityRemainPrecise = params['CapacityRemainPrecise']
+          @AutoPurchaseFlag = params['AutoPurchaseFlag']
+          @ModelRouterResourcePackageId = params['ModelRouterResourcePackageId']
+          @CreateTime = params['CreateTime']
+          @DeductionStartTime = params['DeductionStartTime']
+          @DeductionEndTime = params['DeductionEndTime']
+          @ExpiredTime = params['ExpiredTime']
+          @Status = params['Status']
         end
       end
 
@@ -7785,6 +10309,74 @@ module TencentCloud
           @Limit = params['Limit']
           @Used = params['Used']
           @Available = params['Available']
+        end
+      end
+
+      # 模型路由资源包抵扣信息
+      class ModelRouterResourcePackageDeduction < TencentCloud::Common::AbstractModel
+        # @param ActualDosage: <p>实际抵扣量</p>
+        # @type ActualDosage: String
+        # @param AfterDeductionRemain: <p>抵扣后包剩余量</p>
+        # @type AfterDeductionRemain: String
+        # @param BeforeDeductionRemain: <p>抵扣前包剩余量</p>
+        # @type BeforeDeductionRemain: String
+        # @param DeductionTime: <p>抵扣时间</p>
+        # @type DeductionTime: String
+        # @param Dosage: <p>原始用量</p>
+        # @type Dosage: String
+        # @param EndTime: <p>用量结束时间</p>
+        # @type EndTime: String
+        # @param ModelRouterId: <p>产生用量的模型路由实例Id</p>
+        # @type ModelRouterId: String
+        # @param ModelRouterResourcePackageId: <p>模型路由资源包Id</p>
+        # @type ModelRouterResourcePackageId: String
+        # @param StartTime: <p>用量开始时间</p>
+        # @type StartTime: String
+
+        attr_accessor :ActualDosage, :AfterDeductionRemain, :BeforeDeductionRemain, :DeductionTime, :Dosage, :EndTime, :ModelRouterId, :ModelRouterResourcePackageId, :StartTime
+
+        def initialize(actualdosage=nil, afterdeductionremain=nil, beforedeductionremain=nil, deductiontime=nil, dosage=nil, endtime=nil, modelrouterid=nil, modelrouterresourcepackageid=nil, starttime=nil)
+          @ActualDosage = actualdosage
+          @AfterDeductionRemain = afterdeductionremain
+          @BeforeDeductionRemain = beforedeductionremain
+          @DeductionTime = deductiontime
+          @Dosage = dosage
+          @EndTime = endtime
+          @ModelRouterId = modelrouterid
+          @ModelRouterResourcePackageId = modelrouterresourcepackageid
+          @StartTime = starttime
+        end
+
+        def deserialize(params)
+          @ActualDosage = params['ActualDosage']
+          @AfterDeductionRemain = params['AfterDeductionRemain']
+          @BeforeDeductionRemain = params['BeforeDeductionRemain']
+          @DeductionTime = params['DeductionTime']
+          @Dosage = params['Dosage']
+          @EndTime = params['EndTime']
+          @ModelRouterId = params['ModelRouterId']
+          @ModelRouterResourcePackageId = params['ModelRouterResourcePackageId']
+          @StartTime = params['StartTime']
+        end
+      end
+
+      # 模型路由资源包退款价格
+      class ModelRouterResourcePackageRefundPrice < TencentCloud::Common::AbstractModel
+        # @param ModelRouterPackageId: <p>模型路由资源包Id</p>
+        # @type ModelRouterPackageId: String
+        # @param Price: <p>可退还金额</p>
+        # @type Price: Float
+
+        attr_accessor :ModelRouterPackageId, :Price
+
+        def initialize(modelrouterpackageid=nil, price=nil)
+          @ModelRouterPackageId = modelrouterpackageid
+          @Price = price
+        end
+
+        def deserialize(params)
+          @ModelRouterPackageId = params['ModelRouterPackageId']
+          @Price = params['Price']
         end
       end
 
@@ -7887,6 +10479,40 @@ module TencentCloud
         end
       end
 
+      # BYOK健康探测结果
+      class ModelTestResult < TencentCloud::Common::AbstractModel
+        # @param Model: <p>模型</p>
+        # @type Model: String
+        # @param Status: <p>健康状况</p><p>枚举值：</p><ul><li>Success： 健康</li><li>Error： 不健康</li></ul>
+        # @type Status: String
+        # @param ErrorInfo: <p>错误信息</p>
+        # @type ErrorInfo: :class:`Tencentcloud::Clb.v20180317.models.ProviderTestConnectionErrorInfo`
+        # @param TestConnectionRequest: <p>探测请求</p>
+        # @type TestConnectionRequest: :class:`Tencentcloud::Clb.v20180317.models.TestConnectionRequestInfo`
+
+        attr_accessor :Model, :Status, :ErrorInfo, :TestConnectionRequest
+
+        def initialize(model=nil, status=nil, errorinfo=nil, testconnectionrequest=nil)
+          @Model = model
+          @Status = status
+          @ErrorInfo = errorinfo
+          @TestConnectionRequest = testconnectionrequest
+        end
+
+        def deserialize(params)
+          @Model = params['Model']
+          @Status = params['Status']
+          unless params['ErrorInfo'].nil?
+            @ErrorInfo = ProviderTestConnectionErrorInfo.new
+            @ErrorInfo.deserialize(params['ErrorInfo'])
+          end
+          unless params['TestConnectionRequest'].nil?
+            @TestConnectionRequest = TestConnectionRequestInfo.new
+            @TestConnectionRequest.deserialize(params['TestConnectionRequest'])
+          end
+        end
+      end
+
       # ModifyBlockIPList请求参数结构体
       class ModifyBlockIPListRequest < TencentCloud::Common::AbstractModel
         # @param LoadBalancerIds: 负载均衡实例ID
@@ -7953,7 +10579,7 @@ module TencentCloud
       class ModifyBudgetAttributesRequest < TencentCloud::Common::AbstractModel
         # @param BudgetId: <p>Budget ID。</p>
         # @type BudgetId: String
-        # @param BudgetConfigs: <p>预算配置数组。</p><p>数组长度最大为1。BudgetResetAt不支持作为入参设置。</p>
+        # @param BudgetConfigs: <p>预算配置数组。</p><p>数组长度最大为3，最多可同时配置1d、7d、30d三个刷新周期，且每种刷新周期只能出现一次。BudgetResetAt不支持作为入参设置，系统会按配置的刷新周期自动维护刷新时间。</p>
         # @type BudgetConfigs: Array
         # @param BudgetName: <p>Budget名称。</p>
         # @type BudgetName: String
@@ -8173,6 +10799,61 @@ module TencentCloud
 
       # ModifyFunctionTargets返回参数结构体
       class ModifyFunctionTargetsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyIntentRouterAttribute请求参数结构体
+      class ModifyIntentRouterAttributeRequest < TencentCloud::Common::AbstractModel
+        # @param IntentRouterId: <p>意图路由ID（ir-xxx格式）。</p>
+        # @type IntentRouterId: String
+        # @param ModelRouterId: <p>模型路由实例ID。</p>
+        # @type ModelRouterId: String
+        # @param RouteName: <p>新的路由名称。</p><p>选填；必须以"IntentRouter/"为前缀，后缀仅支持字母、数字、连字符和下划线，后缀长度1-128个字符。不传则不修改。</p>
+        # @type RouteName: String
+        # @param RouterDescribe: <p>意图路由描述。</p>
+        # @type RouterDescribe: String
+        # @param Tiers: <p>新的分层配置列表（全量替换）。</p><p>选填；不传则不修改。传入时必须为完整分层集合：复杂度分层须包含全部 4 个分层 SIMPLE/MEDIUM/COMPLEX/REASONING；语义分层须包含 default 及各语义 Tier（取决于实例所用协议，且不可跨协议变更）。每个分层至少包含一个模型，模型名称必须是已关联到该实例的模型。</p>
+        # @type Tiers: Array
+
+        attr_accessor :IntentRouterId, :ModelRouterId, :RouteName, :RouterDescribe, :Tiers
+
+        def initialize(intentrouterid=nil, modelrouterid=nil, routename=nil, routerdescribe=nil, tiers=nil)
+          @IntentRouterId = intentrouterid
+          @ModelRouterId = modelrouterid
+          @RouteName = routename
+          @RouterDescribe = routerdescribe
+          @Tiers = tiers
+        end
+
+        def deserialize(params)
+          @IntentRouterId = params['IntentRouterId']
+          @ModelRouterId = params['ModelRouterId']
+          @RouteName = params['RouteName']
+          @RouterDescribe = params['RouterDescribe']
+          unless params['Tiers'].nil?
+            @Tiers = []
+            params['Tiers'].each do |i|
+              tieritem_tmp = TierItem.new
+              tieritem_tmp.deserialize(i)
+              @Tiers << tieritem_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyIntentRouterAttribute返回参数结构体
+      class ModifyIntentRouterAttributeResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -8647,31 +11328,111 @@ module TencentCloud
         end
       end
 
+      # ModifyModelAliasAttributes请求参数结构体
+      class ModifyModelAliasAttributesRequest < TencentCloud::Common::AbstractModel
+        # @param Coefficient: <p>模型积分系数配置。</p><p>必填，至少包含 <code>InputCoefficient</code>、<code>InputCachedCoefficient</code>、<code>OutputCoefficient</code> 中的一个字段，未传字段保持原值。</p><p><code>InputCoefficient</code> 为非缓存命中输入积分系数。</p><p><code>InputCachedCoefficient</code> 为缓存命中输入积分系数，用于 provider prompt cache 命中的输入 token。</p><p><code>OutputCoefficient</code> 为输出积分系数。</p><p>各字段取值范围：[0, 5000]，仅支持整数，0 表示该类 token 不计积分。</p>
+        # @type Coefficient: :class:`Tencentcloud::Clb.v20180317.models.Coefficient`
+        # @param ModelAliasNames: <p>模型别名列表。</p><p>不传 <code>ServiceProviderIds</code>（按 ModelAlias 账号维度修改）时支持数组批量，同一份 Coefficient 应用到多个别名。</p><p>传入 <code>ServiceProviderIds</code>（按 ServiceProvider 维度修改）时只能传 1 个别名，锁定唯一 model 别名；去重后不等于 1 个将返回 InvalidParameter。</p>
+        # @type ModelAliasNames: Array
+        # @param ServiceProviderIds: <p>BYOK 实例（ServiceProvider）ID 列表。</p><p>可选，数组。传入时按 ServiceProvider 维度修改：把同一份 Coefficient 批量应用到数组内每一个实例（覆盖配置，仅作用于这些实例），此时 <code>ModelAliasNames</code> 只能传 1 个别名（即 1 别名 × N ServiceProvider）；数组需去重、非空、上限 100，任一实例不归属/不存在/该实例下无该别名将整批返回错误。不传时按 ModelAlias（账号）维度修改，作用于该别名下未单独配置覆盖的全部实例。</p>
+        # @type ServiceProviderIds: Array
+
+        attr_accessor :Coefficient, :ModelAliasNames, :ServiceProviderIds
+
+        def initialize(coefficient=nil, modelaliasnames=nil, serviceproviderids=nil)
+          @Coefficient = coefficient
+          @ModelAliasNames = modelaliasnames
+          @ServiceProviderIds = serviceproviderids
+        end
+
+        def deserialize(params)
+          unless params['Coefficient'].nil?
+            @Coefficient = Coefficient.new
+            @Coefficient.deserialize(params['Coefficient'])
+          end
+          @ModelAliasNames = params['ModelAliasNames']
+          @ServiceProviderIds = params['ServiceProviderIds']
+        end
+      end
+
+      # ModifyModelAliasAttributes返回参数结构体
+      class ModifyModelAliasAttributesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyModelAttributes请求参数结构体
+      class ModifyModelAttributesRequest < TencentCloud::Common::AbstractModel
+        # @param ServiceProviderId: <p>BYOK的ID</p><p>参数格式：byok-kot39u7j</p>
+        # @type ServiceProviderId: String
+        # @param ServiceProviderName: <p>BYOK的自定义名字</p><p>入参限制：1～256个字符</p>
+        # @type ServiceProviderName: String
+
+        attr_accessor :ServiceProviderId, :ServiceProviderName
+
+        def initialize(serviceproviderid=nil, serviceprovidername=nil)
+          @ServiceProviderId = serviceproviderid
+          @ServiceProviderName = serviceprovidername
+        end
+
+        def deserialize(params)
+          @ServiceProviderId = params['ServiceProviderId']
+          @ServiceProviderName = params['ServiceProviderName']
+        end
+      end
+
+      # ModifyModelAttributes返回参数结构体
+      class ModifyModelAttributesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyModelRouterAttributes请求参数结构体
       class ModifyModelRouterAttributesRequest < TencentCloud::Common::AbstractModel
         # @param ModelRouterId: <p>模型路由ID</p>
         # @type ModelRouterId: String
+        # @param CertId: <p>新的 HTTPS 证书ID，用于替换实例 HTTPS 服务端点当前绑定的证书。常用于证书到期前的更换场景。</p><p>使用限制：</p><ul><li>仅企业型（Enterprise）且服务端点协议为 HTTPS 的实例支持修改证书。</li><li>证书须为 SSL 证书控制台中状态为“已签发”（可用）且未过期的服务器证书（SVR 类型）。可在 <a href="https://console.cloud.tencent.com/ssl">SSL 证书控制台</a> 查看证书ID。</li><li>替换后新证书立即生效，过程中不会中断业务流量。</li><li>若传入的证书与当前绑定的证书相同，接口直接返回成功，不做任何变更。</li></ul><p>不传则证书保持不变。可通过 <code>DescribeModelRouterDetail</code> 接口的 <code>ServiceEndPoints.CertId</code> 字段查询当前绑定的证书。</p>
+        # @type CertId: String
         # @param ModelRouterName: <p>模型路由名称</p>
         # @type ModelRouterName: String
         # @param RateLimitConfig: <p>限速配置</p>
         # @type RateLimitConfig: :class:`Tencentcloud::Clb.v20180317.models.RateLimitConfigForModelRouter`
         # @param RouterSetting: <p>路由配置</p>
         # @type RouterSetting: :class:`Tencentcloud::Clb.v20180317.models.RouterSettingWithFallBack`
-        # @param CertId: <p>新的 HTTPS 证书ID，用于替换实例 HTTPS 服务端点当前绑定的证书。常用于证书到期前的更换场景。</p><p>使用限制：</p><ul><li>仅企业型（Enterprise）且服务端点协议为 HTTPS 的实例支持修改证书。</li><li>证书须为 SSL 证书控制台中状态为“已签发”（可用）且未过期的服务器证书（SVR 类型）。可在 <a href="https://console.cloud.tencent.com/ssl">SSL 证书控制台</a> 查看证书ID。</li><li>替换后新证书立即生效，过程中不会中断业务流量。</li><li>若传入的证书与当前绑定的证书相同，接口直接返回成功，不做任何变更。</li></ul><p>不传则证书保持不变。可通过 <code>DescribeModelRouterDetail</code> 接口的 <code>ServiceEndPoints.CertId</code> 字段查询当前绑定的证书。</p>
-        # @type CertId: String
 
-        attr_accessor :ModelRouterId, :ModelRouterName, :RateLimitConfig, :RouterSetting, :CertId
+        attr_accessor :ModelRouterId, :CertId, :ModelRouterName, :RateLimitConfig, :RouterSetting
 
-        def initialize(modelrouterid=nil, modelroutername=nil, ratelimitconfig=nil, routersetting=nil, certid=nil)
+        def initialize(modelrouterid=nil, certid=nil, modelroutername=nil, ratelimitconfig=nil, routersetting=nil)
           @ModelRouterId = modelrouterid
+          @CertId = certid
           @ModelRouterName = modelroutername
           @RateLimitConfig = ratelimitconfig
           @RouterSetting = routersetting
-          @CertId = certid
         end
 
         def deserialize(params)
           @ModelRouterId = params['ModelRouterId']
+          @CertId = params['CertId']
           @ModelRouterName = params['ModelRouterName']
           unless params['RateLimitConfig'].nil?
             @RateLimitConfig = RateLimitConfigForModelRouter.new
@@ -8681,12 +11442,90 @@ module TencentCloud
             @RouterSetting = RouterSettingWithFallBack.new
             @RouterSetting.deserialize(params['RouterSetting'])
           end
-          @CertId = params['CertId']
         end
       end
 
       # ModifyModelRouterAttributes返回参数结构体
       class ModifyModelRouterAttributesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyModelRouterGuardrails请求参数结构体
+      class ModifyModelRouterGuardrailsRequest < TencentCloud::Common::AbstractModel
+        # @param Guardrails: <p>待修改的 Guardrail 防护配置列表。</p><p>当前最多支持 1 个元素。每个元素必须填写 GuardrailId；当 Type 为 WAF 或未传按 WAF 处理时，InstanceId 和 ServiceId 必填；InputCheckDepth 为选填，不传时沿用当前已关联 Guardrail 的取值。</p>
+        # @type Guardrails: Array
+        # @param ModelRouterId: <p>模型路由实例 ID。</p>
+        # @type ModelRouterId: String
+
+        attr_accessor :Guardrails, :ModelRouterId
+
+        def initialize(guardrails=nil, modelrouterid=nil)
+          @Guardrails = guardrails
+          @ModelRouterId = modelrouterid
+        end
+
+        def deserialize(params)
+          unless params['Guardrails'].nil?
+            @Guardrails = []
+            params['Guardrails'].each do |i|
+              guardrailconfig_tmp = GuardrailConfig.new
+              guardrailconfig_tmp.deserialize(i)
+              @Guardrails << guardrailconfig_tmp
+            end
+          end
+          @ModelRouterId = params['ModelRouterId']
+        end
+      end
+
+      # ModifyModelRouterGuardrails返回参数结构体
+      class ModifyModelRouterGuardrailsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyModelRouterSecurityGroups请求参数结构体
+      class ModifyModelRouterSecurityGroupsRequest < TencentCloud::Common::AbstractModel
+        # @param ModelRouterId: <p>模型路由实例ID</p>
+        # @type ModelRouterId: String
+        # @param SecurityGroups: <p>需要绑定的安全组ID列表</p>
+        # @type SecurityGroups: Array
+
+        attr_accessor :ModelRouterId, :SecurityGroups
+
+        def initialize(modelrouterid=nil, securitygroups=nil)
+          @ModelRouterId = modelrouterid
+          @SecurityGroups = securitygroups
+        end
+
+        def deserialize(params)
+          @ModelRouterId = params['ModelRouterId']
+          @SecurityGroups = params['SecurityGroups']
+        end
+      end
+
+      # ModifyModelRouterSecurityGroups返回参数结构体
+      class ModifyModelRouterSecurityGroupsResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -8771,6 +11610,46 @@ module TencentCloud
 
       # ModifyRule返回参数结构体
       class ModifyRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyServiceProviderModelAttributes请求参数结构体
+      class ModifyServiceProviderModelAttributesRequest < TencentCloud::Common::AbstractModel
+        # @param ServiceProviderId: <p>BYOK 实例 ID</p>
+        # @type ServiceProviderId: String
+        # @param ModelName: <p>待修改的模型的名称（原始模型名称）</p>
+        # @type ModelName: String
+        # @param InputModalities: <p>该模型支持的输入多模态能力列表</p><p>枚举值：</p><ul><li>text： 支持文本输入</li><li>image： 支持图像输入</li><li>file： 支持文件输入（当前仅支持pdf）</li></ul>
+        # @type InputModalities: Array
+
+        attr_accessor :ServiceProviderId, :ModelName, :InputModalities
+
+        def initialize(serviceproviderid=nil, modelname=nil, inputmodalities=nil)
+          @ServiceProviderId = serviceproviderid
+          @ModelName = modelname
+          @InputModalities = inputmodalities
+        end
+
+        def deserialize(params)
+          @ServiceProviderId = params['ServiceProviderId']
+          @ModelName = params['ModelName']
+          @InputModalities = params['InputModalities']
+        end
+      end
+
+      # ModifyServiceProviderModelAttributes返回参数结构体
+      class ModifyServiceProviderModelAttributesResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -9147,6 +12026,26 @@ module TencentCloud
         end
       end
 
+      # 聊天测试接口多模态附件
+      class MultiModalityAttachments < TencentCloud::Common::AbstractModel
+        # @param Data: <p>base64 url编码的文件内容</p>
+        # @type Data: String
+        # @param Type: <p>附件类型</p><p>枚举值：</p><ul><li>image： 图像</li><li>pdf： pdf（文件）</li></ul>
+        # @type Type: String
+
+        attr_accessor :Data, :Type
+
+        def initialize(data=nil, type=nil)
+          @Data = data
+          @Type = type
+        end
+
+        def deserialize(params)
+          @Data = params['Data']
+          @Type = params['Type']
+        end
+      end
+
       # OAuth配置信息。
       class OAuth < TencentCloud::Common::AbstractModel
         # @param OAuthEnable: 开启或关闭鉴权。
@@ -9205,6 +12104,58 @@ module TencentCloud
             @LcuPrice = ItemPrice.new
             @LcuPrice.deserialize(params['LcuPrice'])
           end
+        end
+      end
+
+      # Provider 信息
+      class ProviderItem < TencentCloud::Common::AbstractModel
+        # @param Provider: <p>Provider 标识（如 openai）</p>
+        # @type Provider: String
+        # @param DisplayName: <p>显示名称（如 OpenAI）</p>
+        # @type DisplayName: String
+        # @param Protocols: <p>模型协议列表</p>
+        # @type Protocols: Array
+        # @param EnglishDisplayName: <p>英文显示名称</p>
+        # @type EnglishDisplayName: String
+
+        attr_accessor :Provider, :DisplayName, :Protocols, :EnglishDisplayName
+
+        def initialize(provider=nil, displayname=nil, protocols=nil, englishdisplayname=nil)
+          @Provider = provider
+          @DisplayName = displayname
+          @Protocols = protocols
+          @EnglishDisplayName = englishdisplayname
+        end
+
+        def deserialize(params)
+          @Provider = params['Provider']
+          @DisplayName = params['DisplayName']
+          @Protocols = params['Protocols']
+          @EnglishDisplayName = params['EnglishDisplayName']
+        end
+      end
+
+      # BYOK健康检查错误信息
+      class ProviderTestConnectionErrorInfo < TencentCloud::Common::AbstractModel
+        # @param HttpCode: <p>上游模型侧返回的HTTP状态码</p>
+        # @type HttpCode: Integer
+        # @param ErrorStatus: <p>错误状态码</p>
+        # @type ErrorStatus: String
+        # @param OriginalMessage: <p>探测请求错误信息</p>
+        # @type OriginalMessage: String
+
+        attr_accessor :HttpCode, :ErrorStatus, :OriginalMessage
+
+        def initialize(httpcode=nil, errorstatus=nil, originalmessage=nil)
+          @HttpCode = httpcode
+          @ErrorStatus = errorstatus
+          @OriginalMessage = originalmessage
+        end
+
+        def deserialize(params)
+          @HttpCode = params['HttpCode']
+          @ErrorStatus = params['ErrorStatus']
+          @OriginalMessage = params['OriginalMessage']
         end
       end
 
@@ -9305,6 +12256,42 @@ module TencentCloud
         end
       end
 
+      # RefundModelRouterResourcePackage请求参数结构体
+      class RefundModelRouterResourcePackageRequest < TencentCloud::Common::AbstractModel
+        # @param ModelRouterResourcePackageIds: <p>待退还的模型路由资源包Id</p><p>非有效状态或者设置了自动续订且自动续订已生效的资源包不允许退款。</p>
+        # @type ModelRouterResourcePackageIds: Array
+
+        attr_accessor :ModelRouterResourcePackageIds
+
+        def initialize(modelrouterresourcepackageids=nil)
+          @ModelRouterResourcePackageIds = modelrouterresourcepackageids
+        end
+
+        def deserialize(params)
+          @ModelRouterResourcePackageIds = params['ModelRouterResourcePackageIds']
+        end
+      end
+
+      # RefundModelRouterResourcePackage返回参数结构体
+      class RefundModelRouterResourcePackageResponse < TencentCloud::Common::AbstractModel
+        # @param DealNames: <p>退还模型路由资源包的订单号</p>
+        # @type DealNames: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DealNames, :RequestId
+
+        def initialize(dealnames=nil, requestid=nil)
+          @DealNames = dealnames
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @DealNames = params['DealNames']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # RegenerateKeys请求参数结构体
       class RegenerateKeysRequest < TencentCloud::Common::AbstractModel
         # @param ModelRouterId: <p>模型路由实例ID</p>
@@ -9327,22 +12314,23 @@ module TencentCloud
 
       # RegenerateKeys返回参数结构体
       class RegenerateKeysResponse < TencentCloud::Common::AbstractModel
-        # @param RegeneratedKeys: <p>重新生成后的Key的信息</p>
-        # @type RegeneratedKeys: Array
         # @param FailedKeyIds: <p>重新生成失败的Key的ID列表</p>
         # @type FailedKeyIds: Array
+        # @param RegeneratedKeys: <p>重新生成后的Key的信息</p>
+        # @type RegeneratedKeys: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RegeneratedKeys, :FailedKeyIds, :RequestId
+        attr_accessor :FailedKeyIds, :RegeneratedKeys, :RequestId
 
-        def initialize(regeneratedkeys=nil, failedkeyids=nil, requestid=nil)
-          @RegeneratedKeys = regeneratedkeys
+        def initialize(failedkeyids=nil, regeneratedkeys=nil, requestid=nil)
           @FailedKeyIds = failedkeyids
+          @RegeneratedKeys = regeneratedkeys
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @FailedKeyIds = params['FailedKeyIds']
           unless params['RegeneratedKeys'].nil?
             @RegeneratedKeys = []
             params['RegeneratedKeys'].each do |i|
@@ -9351,28 +12339,27 @@ module TencentCloud
               @RegeneratedKeys << regeneratedkey_tmp
             end
           end
-          @FailedKeyIds = params['FailedKeyIds']
           @RequestId = params['RequestId']
         end
       end
 
       # 重新生成的Key信息
       class RegeneratedKey < TencentCloud::Common::AbstractModel
-        # @param KeyId: <p>Key的ID</p>
-        # @type KeyId: String
         # @param Key: <p>重新生成的明文Key</p>
         # @type Key: String
+        # @param KeyId: <p>Key的ID</p>
+        # @type KeyId: String
 
-        attr_accessor :KeyId, :Key
+        attr_accessor :Key, :KeyId
 
-        def initialize(keyid=nil, key=nil)
-          @KeyId = keyid
+        def initialize(key=nil, keyid=nil)
           @Key = key
+          @KeyId = keyid
         end
 
         def deserialize(params)
-          @KeyId = params['KeyId']
           @Key = params['Key']
+          @KeyId = params['KeyId']
         end
       end
 
@@ -9421,6 +12408,49 @@ module TencentCloud
 
       # RegisterFunctionTargets返回参数结构体
       class RegisterFunctionTargetsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # RegisterModelsToServiceProvider请求参数结构体
+      class RegisterModelsToServiceProviderRequest < TencentCloud::Common::AbstractModel
+        # @param ServiceProviderId: <p>BYOK的ID</p>
+        # @type ServiceProviderId: String
+        # @param Models: <p>需要关联的模型信息</p>
+        # @type Models: Array
+
+        attr_accessor :ServiceProviderId, :Models
+
+        def initialize(serviceproviderid=nil, models=nil)
+          @ServiceProviderId = serviceproviderid
+          @Models = models
+        end
+
+        def deserialize(params)
+          @ServiceProviderId = params['ServiceProviderId']
+          unless params['Models'].nil?
+            @Models = []
+            params['Models'].each do |i|
+              modelitem_tmp = ModelItem.new
+              modelitem_tmp.deserialize(i)
+              @Models << modelitem_tmp
+            end
+          end
+        end
+      end
+
+      # RegisterModelsToServiceProvider返回参数结构体
+      class RegisterModelsToServiceProviderResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -9580,6 +12610,78 @@ module TencentCloud
         end
       end
 
+      # RemoveModelKey请求参数结构体
+      class RemoveModelKeyRequest < TencentCloud::Common::AbstractModel
+        # @param ServiceProviderId: <p>服务提供商ID</p>
+        # @type ServiceProviderId: String
+        # @param KeyIds: <p>Key 业务 ID 列表，至少 1 个，最多 10 个</p>
+        # @type KeyIds: Array
+
+        attr_accessor :ServiceProviderId, :KeyIds
+
+        def initialize(serviceproviderid=nil, keyids=nil)
+          @ServiceProviderId = serviceproviderid
+          @KeyIds = keyids
+        end
+
+        def deserialize(params)
+          @ServiceProviderId = params['ServiceProviderId']
+          @KeyIds = params['KeyIds']
+        end
+      end
+
+      # RemoveModelKey返回参数结构体
+      class RemoveModelKeyResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # RemoveModelRewrite请求参数结构体
+      class RemoveModelRewriteRequest < TencentCloud::Common::AbstractModel
+        # @param ModelRouterId: <p>模型路由实例 ID。</p>
+        # @type ModelRouterId: String
+        # @param SourceModel: <p>要删除的源模型名（重写规则的 key）。</p><p>长度 1-255 字符；支持特殊值 <code>default</code> 表示删除兜底规则。</p><p>当指定的 SourceModel 当前不存在重写规则时，请求幂等成功。</p>
+        # @type SourceModel: String
+
+        attr_accessor :ModelRouterId, :SourceModel
+
+        def initialize(modelrouterid=nil, sourcemodel=nil)
+          @ModelRouterId = modelrouterid
+          @SourceModel = sourcemodel
+        end
+
+        def deserialize(params)
+          @ModelRouterId = params['ModelRouterId']
+          @SourceModel = params['SourceModel']
+        end
+      end
+
+      # RemoveModelRewrite返回参数结构体
+      class RemoveModelRewriteResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # RenewLoadBalancers请求参数结构体
       class RenewLoadBalancersRequest < TencentCloud::Common::AbstractModel
         # @param LoadBalancerIds: 负载均衡实例唯一ID数组，最多支持20个。
@@ -9724,6 +12826,26 @@ module TencentCloud
         end
       end
 
+      # 单条模型重写规则。
+      class RewriteItem < TencentCloud::Common::AbstractModel
+        # @param SourceModel: <p>源模型名（重写规则的 key）。</p><p>特殊值 <code>default</code> 表示兜底规则（命中所有未显式列出的源模型）。</p>
+        # @type SourceModel: String
+        # @param TargetModel: <p>目标模型名（重写规则的 value）。</p>
+        # @type TargetModel: String
+
+        attr_accessor :SourceModel, :TargetModel
+
+        def initialize(sourcemodel=nil, targetmodel=nil)
+          @SourceModel = sourcemodel
+          @TargetModel = targetmodel
+        end
+
+        def deserialize(params)
+          @SourceModel = params['SourceModel']
+          @TargetModel = params['TargetModel']
+        end
+      end
+
       # 转发规则之间的重定向关系
       class RewriteLocationMap < TencentCloud::Common::AbstractModel
         # @param SourceLocationId: 源转发规则ID
@@ -9792,31 +12914,31 @@ module TencentCloud
 
       # 路由设置
       class RouterSettingWithFallBack < TencentCloud::Common::AbstractModel
+        # @param CrossModelGroupRoutingStrategy: <p>模型间路由策略。</p><p>枚举值：</p><ul><li>SimpleShuffle： 简单随机路由</li><li>LowestCost： 最低积分路由</li></ul>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CrossModelGroupRoutingStrategy: String
         # @param FallBack: <p>回退策略</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FallBack: :class:`Tencentcloud::Clb.v20180317.models.FallBackItem`
         # @param RoutingStrategy: <p>模型内路由策略</p><p>枚举值：</p><ul><li>SimpleShuffle： 简单随机路由</li><li>LeastBusy： 最低繁忙路由</li><li>LatencyBasedRouting： 最低延迟路由</li><li>UsageBasedRouting： 用量均衡路由</li><li>CostBasedRouting： 最低积分路由</li></ul>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RoutingStrategy: String
-        # @param CrossModelGroupRoutingStrategy: <p>模型间路由策略。</p><p>枚举值：</p><ul><li>SimpleShuffle： 简单随机路由</li><li>CostBasedRouting： 最低积分路由</li></ul>
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type CrossModelGroupRoutingStrategy: String
 
-        attr_accessor :FallBack, :RoutingStrategy, :CrossModelGroupRoutingStrategy
+        attr_accessor :CrossModelGroupRoutingStrategy, :FallBack, :RoutingStrategy
 
-        def initialize(fallback=nil, routingstrategy=nil, crossmodelgrouproutingstrategy=nil)
+        def initialize(crossmodelgrouproutingstrategy=nil, fallback=nil, routingstrategy=nil)
+          @CrossModelGroupRoutingStrategy = crossmodelgrouproutingstrategy
           @FallBack = fallback
           @RoutingStrategy = routingstrategy
-          @CrossModelGroupRoutingStrategy = crossmodelgrouproutingstrategy
         end
 
         def deserialize(params)
+          @CrossModelGroupRoutingStrategy = params['CrossModelGroupRoutingStrategy']
           unless params['FallBack'].nil?
             @FallBack = FallBackItem.new
             @FallBack.deserialize(params['FallBack'])
           end
           @RoutingStrategy = params['RoutingStrategy']
-          @CrossModelGroupRoutingStrategy = params['CrossModelGroupRoutingStrategy']
         end
       end
 
@@ -9888,10 +13010,10 @@ module TencentCloud
 
         attr_accessor :ListenerId, :Targets, :LocationId, :Domain, :Url, :Weight
         extend Gem::Deprecate
-        deprecate :Domain, :none, 2026, 6
-        deprecate :Domain=, :none, 2026, 6
-        deprecate :Url, :none, 2026, 6
-        deprecate :Url=, :none, 2026, 6
+        deprecate :Domain, :none, 2026, 7
+        deprecate :Domain=, :none, 2026, 7
+        deprecate :Url, :none, 2026, 7
+        deprecate :Url=, :none, 2026, 7
 
         def initialize(listenerid=nil, targets=nil, locationid=nil, domain=nil, url=nil, weight=nil)
           @ListenerId = listenerid
@@ -10289,6 +13411,140 @@ module TencentCloud
         end
       end
 
+      # BYOK信息
+      class ServiceProvider < TencentCloud::Common::AbstractModel
+        # @param AccessType: <p>BYOK类型</p>
+        # @type AccessType: String
+        # @param InputModalities: <p>单个byok实例下该模型可支持的输入多模态能力列表。</p><p>枚举值：</p><ul><li>text： 支持文本输入</li><li>file： 支持文件输入（当前仅支持pdf）</li><li>image： 支持图像输入</li></ul>
+        # @type InputModalities: Array
+        # @param Protocol: <p>模型协议</p>
+        # @type Protocol: String
+        # @param Provider: <p>BYOK的所属厂商</p>
+        # @type Provider: String
+        # @param ServiceProviderId: <p>BYOK实例ID</p>
+        # @type ServiceProviderId: String
+        # @param ServiceProviderName: <p>BYOK名称</p>
+        # @type ServiceProviderName: String
+
+        attr_accessor :AccessType, :InputModalities, :Protocol, :Provider, :ServiceProviderId, :ServiceProviderName
+
+        def initialize(accesstype=nil, inputmodalities=nil, protocol=nil, provider=nil, serviceproviderid=nil, serviceprovidername=nil)
+          @AccessType = accesstype
+          @InputModalities = inputmodalities
+          @Protocol = protocol
+          @Provider = provider
+          @ServiceProviderId = serviceproviderid
+          @ServiceProviderName = serviceprovidername
+        end
+
+        def deserialize(params)
+          @AccessType = params['AccessType']
+          @InputModalities = params['InputModalities']
+          @Protocol = params['Protocol']
+          @Provider = params['Provider']
+          @ServiceProviderId = params['ServiceProviderId']
+          @ServiceProviderName = params['ServiceProviderName']
+        end
+      end
+
+      # BYOK 实例（ServiceProvider）维度积分系数明细
+      class ServiceProviderCoefficient < TencentCloud::Common::AbstractModel
+        # @param Coefficient: <p>该 BYOK 实例（ServiceProvider）维度的积分系数。</p><p>可选字段：仅当该实例单独配置了 ServiceProvider 维度系数时返回，返回值即该实例的生效系数；未返回时表示该实例继承所属 ModelAlias 的 <code>Coefficient</code>。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Coefficient: :class:`Tencentcloud::Clb.v20180317.models.Coefficient`
+        # @param ServiceProviderId: <p>BYOK 实例（ServiceProvider）ID。</p>
+        # @type ServiceProviderId: String
+        # @param ServiceProviderName: <p>BYOK 实例（ServiceProvider）名称。</p>
+        # @type ServiceProviderName: String
+
+        attr_accessor :Coefficient, :ServiceProviderId, :ServiceProviderName
+
+        def initialize(coefficient=nil, serviceproviderid=nil, serviceprovidername=nil)
+          @Coefficient = coefficient
+          @ServiceProviderId = serviceproviderid
+          @ServiceProviderName = serviceprovidername
+        end
+
+        def deserialize(params)
+          unless params['Coefficient'].nil?
+            @Coefficient = Coefficient.new
+            @Coefficient.deserialize(params['Coefficient'])
+          end
+          @ServiceProviderId = params['ServiceProviderId']
+          @ServiceProviderName = params['ServiceProviderName']
+        end
+      end
+
+      # 服务商详情
+      class ServiceProviderItem < TencentCloud::Common::AbstractModel
+        # @param ServiceProviderId: <p>服务提供商 ID</p>
+        # @type ServiceProviderId: String
+        # @param ServiceProviderName: <p>用户自定义服务提供商名称</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceProviderName: String
+        # @param ModelProvider: <p>模型供应商</p>
+        # @type ModelProvider: String
+        # @param InputModalities: <p>该byok实例下该模型可支持的输入多模态能力列表。</p><p>枚举值：</p><ul><li>text： 支持文本输入</li><li>file： 支持文件输入（当前仅支持pdf）</li><li>image： 支持图像输入</li></ul>
+        # @type InputModalities: Array
+
+        attr_accessor :ServiceProviderId, :ServiceProviderName, :ModelProvider, :InputModalities
+
+        def initialize(serviceproviderid=nil, serviceprovidername=nil, modelprovider=nil, inputmodalities=nil)
+          @ServiceProviderId = serviceproviderid
+          @ServiceProviderName = serviceprovidername
+          @ModelProvider = modelprovider
+          @InputModalities = inputmodalities
+        end
+
+        def deserialize(params)
+          @ServiceProviderId = params['ServiceProviderId']
+          @ServiceProviderName = params['ServiceProviderName']
+          @ModelProvider = params['ModelProvider']
+          @InputModalities = params['InputModalities']
+        end
+      end
+
+      # model 信息
+      class ServiceProviderModelItem < TencentCloud::Common::AbstractModel
+        # @param AssociatedModelRouters: <p>关联的模型路由实例列表</p>
+        # @type AssociatedModelRouters: Array
+        # @param InputModalities: <p>该模型当前支持的输入多模态能力列表</p><p>枚举值：</p><ul><li>text： 支持文本输入</li><li>image： 支持图像输入</li><li>file： 支持文件输入（当前仅支持pdf）</li></ul><p>默认值：text</p>
+        # @type InputModalities: Array
+        # @param ModelAlias: <p>模型别名, 可以用于实际访问</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModelAlias: String
+        # @param ModelId: <p>模型唯一标识, 原始模型名称</p>
+        # @type ModelId: String
+        # @param ProbedInputModalities: <p>该模型经探测最多支持的输入多模态能力列表</p><p>枚举值：</p><ul><li>text： 支持文本输入</li><li>file： 支持文件输入（当前仅支持pdf）</li><li>image： 支持图像输入</li></ul><p>模型不健康时列表为空</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProbedInputModalities: Array
+
+        attr_accessor :AssociatedModelRouters, :InputModalities, :ModelAlias, :ModelId, :ProbedInputModalities
+
+        def initialize(associatedmodelrouters=nil, inputmodalities=nil, modelalias=nil, modelid=nil, probedinputmodalities=nil)
+          @AssociatedModelRouters = associatedmodelrouters
+          @InputModalities = inputmodalities
+          @ModelAlias = modelalias
+          @ModelId = modelid
+          @ProbedInputModalities = probedinputmodalities
+        end
+
+        def deserialize(params)
+          unless params['AssociatedModelRouters'].nil?
+            @AssociatedModelRouters = []
+            params['AssociatedModelRouters'].each do |i|
+              associatedmodelrouteritem_tmp = AssociatedModelRouterItem.new
+              associatedmodelrouteritem_tmp.deserialize(i)
+              @AssociatedModelRouters << associatedmodelrouteritem_tmp
+            end
+          end
+          @InputModalities = params['InputModalities']
+          @ModelAlias = params['ModelAlias']
+          @ModelId = params['ModelId']
+          @ProbedInputModalities = params['ProbedInputModalities']
+        end
+      end
+
       # SetCustomizedConfigForLoadBalancer请求参数结构体
       class SetCustomizedConfigForLoadBalancerRequest < TencentCloud::Common::AbstractModel
         # @param OperationType: 操作类型。
@@ -10574,6 +13830,26 @@ module TencentCloud
         def deserialize(params)
           @SubnetId = params['SubnetId']
           @Ip = params['Ip']
+        end
+      end
+
+      # 排序条件
+      class Sort < TencentCloud::Common::AbstractModel
+        # @param Field: <p>排序的字段</p>
+        # @type Field: String
+        # @param Order: <p>排序方式，支持ASC、DESC</p>
+        # @type Order: String
+
+        attr_accessor :Field, :Order
+
+        def initialize(field=nil, order=nil)
+          @Field = field
+          @Order = order
+        end
+
+        def deserialize(params)
+          @Field = params['Field']
+          @Order = params['Order']
         end
       end
 
@@ -11040,8 +14316,8 @@ module TencentCloud
 
         attr_accessor :IP, :Port, :HealthStatus, :TargetId, :HealthStatusDetail, :HealthStatusDetial, :TargetGroupId, :Weight
         extend Gem::Deprecate
-        deprecate :HealthStatusDetial, :none, 2026, 6
-        deprecate :HealthStatusDetial=, :none, 2026, 6
+        deprecate :HealthStatusDetial, :none, 2026, 7
+        deprecate :HealthStatusDetial=, :none, 2026, 7
 
         def initialize(ip=nil, port=nil, healthstatus=nil, targetid=nil, healthstatusdetail=nil, healthstatusdetial=nil, targetgroupid=nil, weight=nil)
           @IP = ip
@@ -11087,6 +14363,216 @@ module TencentCloud
           @Region = params['Region']
           @VpcId = params['VpcId']
           @NumericalVpcId = params['NumericalVpcId']
+        end
+      end
+
+      # BYOK健康检查请求
+      class TestConnectionRequestInfo < TencentCloud::Common::AbstractModel
+        # @param RequestUrl: <p>请求URL</p>
+        # @type RequestUrl: String
+        # @param RequestBody: <p>请求体</p>
+        # @type RequestBody: String
+        # @param RequestHeaders: <p>请求头</p>
+        # @type RequestHeaders: String
+
+        attr_accessor :RequestUrl, :RequestBody, :RequestHeaders
+
+        def initialize(requesturl=nil, requestbody=nil, requestheaders=nil)
+          @RequestUrl = requesturl
+          @RequestBody = requestbody
+          @RequestHeaders = requestheaders
+        end
+
+        def deserialize(params)
+          @RequestUrl = params['RequestUrl']
+          @RequestBody = params['RequestBody']
+          @RequestHeaders = params['RequestHeaders']
+        end
+      end
+
+      # TestModelInputModalities请求参数结构体
+      class TestModelInputModalitiesRequest < TencentCloud::Common::AbstractModel
+        # @param Model: <p>待探测的模型（原始模型名称）</p>
+        # @type Model: String
+        # @param ProviderKey: <p>待探测的API Key（明文）</p>
+        # @type ProviderKey: String
+        # @param ProviderKeyId: <p>已创建的BYOK API Key ID（与ProviderKey二选一传入）</p>
+        # @type ProviderKeyId: String
+        # @param AccessType: <p>BYOK类型，当ProviderKey传入时必填</p>
+        # @type AccessType: String
+        # @param ModelProtocol: <p>模型厂商协议，当ProviderKey传入时必填</p>
+        # @type ModelProtocol: String
+        # @param ModelProvider: <p>模型的厂商</p>
+        # @type ModelProvider: String
+        # @param ApiBase: <p>自定义ApiBase，当ProviderKey传入且AccessType且PrivateCustom/PublicCustom时必填</p>
+        # @type ApiBase: String
+        # @param HostHeader: <p>请求携带的Host头部，当AccessType为PrivateCustom时生效</p>
+        # @type HostHeader: String
+        # @param ServiceProviderId: <p>BYOK实例ID，当AccessType为PrivateCustom时生效，ProviderKey传入时必填</p>
+        # @type ServiceProviderId: String
+        # @param VerifySSL: <p>是否校验服务提供商的SSL证书</p><p>PublicBYOK时为True且禁止传入；若传入VerifySSL，则优先同步入参逻辑；若传入了ServiceProviderId则同步已创建的Byok实例该Model的逻辑；否则PublicCustom模式下为True，PrivateCustom模式下为False。</p>
+        # @type VerifySSL: Boolean
+
+        attr_accessor :Model, :ProviderKey, :ProviderKeyId, :AccessType, :ModelProtocol, :ModelProvider, :ApiBase, :HostHeader, :ServiceProviderId, :VerifySSL
+
+        def initialize(model=nil, providerkey=nil, providerkeyid=nil, accesstype=nil, modelprotocol=nil, modelprovider=nil, apibase=nil, hostheader=nil, serviceproviderid=nil, verifyssl=nil)
+          @Model = model
+          @ProviderKey = providerkey
+          @ProviderKeyId = providerkeyid
+          @AccessType = accesstype
+          @ModelProtocol = modelprotocol
+          @ModelProvider = modelprovider
+          @ApiBase = apibase
+          @HostHeader = hostheader
+          @ServiceProviderId = serviceproviderid
+          @VerifySSL = verifyssl
+        end
+
+        def deserialize(params)
+          @Model = params['Model']
+          @ProviderKey = params['ProviderKey']
+          @ProviderKeyId = params['ProviderKeyId']
+          @AccessType = params['AccessType']
+          @ModelProtocol = params['ModelProtocol']
+          @ModelProvider = params['ModelProvider']
+          @ApiBase = params['ApiBase']
+          @HostHeader = params['HostHeader']
+          @ServiceProviderId = params['ServiceProviderId']
+          @VerifySSL = params['VerifySSL']
+        end
+      end
+
+      # TestModelInputModalities返回参数结构体
+      class TestModelInputModalitiesResponse < TencentCloud::Common::AbstractModel
+        # @param Model: <p>探测的模型</p>
+        # @type Model: String
+        # @param SupportedModalities: <p>该模型确认支持的输入模态列表</p><p>枚举值：</p><ul><li>text： 支持文本输入</li><li>image： 支持图像输入</li><li>file： 支持文件输入（当前仅支持pdf）</li></ul><p>收到上游大模型对于输入模态的响应即为“确认支持”</p>
+        # @type SupportedModalities: Array
+        # @param ProbeDetails: <p>每个待探测模态的详细请求结果</p>
+        # @type ProbeDetails: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Model, :SupportedModalities, :ProbeDetails, :RequestId
+
+        def initialize(model=nil, supportedmodalities=nil, probedetails=nil, requestid=nil)
+          @Model = model
+          @SupportedModalities = supportedmodalities
+          @ProbeDetails = probedetails
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Model = params['Model']
+          @SupportedModalities = params['SupportedModalities']
+          unless params['ProbeDetails'].nil?
+            @ProbeDetails = []
+            params['ProbeDetails'].each do |i|
+              modalityprobedetail_tmp = ModalityProbeDetail.new
+              modalityprobedetail_tmp.deserialize(i)
+              @ProbeDetails << modalityprobedetail_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # TestServiceProviderConnection请求参数结构体
+      class TestServiceProviderConnectionRequest < TencentCloud::Common::AbstractModel
+        # @param Models: <p>需要探测的模型列表</p><p>入参限制：上限为20个模型</p>
+        # @type Models: Array
+        # @param ProviderKey: <p>需要探测的Key</p>
+        # @type ProviderKey: String
+        # @param ProviderKeyId: <p>需要探测的KeyId，和ProviderKey二者传一个即可</p>
+        # @type ProviderKeyId: String
+        # @param AccessType: <p>BYOK类型，当ProviderKey存在时必传</p>
+        # @type AccessType: String
+        # @param ModelProvider: <p>模型的厂商</p>
+        # @type ModelProvider: String
+        # @param ModelProtocol: <p>模型厂商协议，当ProviderKey存在时必传</p>
+        # @type ModelProtocol: String
+        # @param ApiBase: <p>BYOK类型，当AccessType为PublicCustom时生效</p>
+        # @type ApiBase: String
+        # @param HostHeader: <p>请求携带的Host头部，当AccessType为PrivateCustom时生效</p>
+        # @type HostHeader: String
+        # @param ServiceProviderId: <p>BYOK的ID，当AccessType为PrivateCustom时生效</p>
+        # @type ServiceProviderId: String
+        # @param VerifySSL: <p>是否校验服务提供商的SSL证书</p><p>默认值：AccessType取值为：</p><ul><li>PublicBYOK时，该参数无效；</li><li>PublicCustom时，该参数默认为true；</li><li>PrivateCustom时，该参数默认为false；</li></ul>
+        # @type VerifySSL: Boolean
+
+        attr_accessor :Models, :ProviderKey, :ProviderKeyId, :AccessType, :ModelProvider, :ModelProtocol, :ApiBase, :HostHeader, :ServiceProviderId, :VerifySSL
+
+        def initialize(models=nil, providerkey=nil, providerkeyid=nil, accesstype=nil, modelprovider=nil, modelprotocol=nil, apibase=nil, hostheader=nil, serviceproviderid=nil, verifyssl=nil)
+          @Models = models
+          @ProviderKey = providerkey
+          @ProviderKeyId = providerkeyid
+          @AccessType = accesstype
+          @ModelProvider = modelprovider
+          @ModelProtocol = modelprotocol
+          @ApiBase = apibase
+          @HostHeader = hostheader
+          @ServiceProviderId = serviceproviderid
+          @VerifySSL = verifyssl
+        end
+
+        def deserialize(params)
+          @Models = params['Models']
+          @ProviderKey = params['ProviderKey']
+          @ProviderKeyId = params['ProviderKeyId']
+          @AccessType = params['AccessType']
+          @ModelProvider = params['ModelProvider']
+          @ModelProtocol = params['ModelProtocol']
+          @ApiBase = params['ApiBase']
+          @HostHeader = params['HostHeader']
+          @ServiceProviderId = params['ServiceProviderId']
+          @VerifySSL = params['VerifySSL']
+        end
+      end
+
+      # TestServiceProviderConnection返回参数结构体
+      class TestServiceProviderConnectionResponse < TencentCloud::Common::AbstractModel
+        # @param Results: <p>探测结果</p>
+        # @type Results: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Results, :RequestId
+
+        def initialize(results=nil, requestid=nil)
+          @Results = results
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Results'].nil?
+            @Results = []
+            params['Results'].each do |i|
+              modeltestresult_tmp = ModelTestResult.new
+              modeltestresult_tmp.deserialize(i)
+              @Results << modeltestresult_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 意图路由分层配置对象。支持两种分层协议（二选一，不可混用）：① 复杂度分层——必须包含全部 4 个固定分层：SIMPLE/MEDIUM/COMPLEX/REASONING；② 语义分层——包含 default 及各语义 Tier。TierName 取值见下。
+      class TierItem < TencentCloud::Common::AbstractModel
+        # @param Models: <p>该分层下的模型显示名称列表。</p><p>至少包含一个模型，模型名称必须是已关联到该模型路由实例的模型。同一分层内不允许重复模型名称。</p>
+        # @type Models: Array
+        # @param TierName: <p>Tier 标识。<br>枚举值：</p><ul><li>复杂度分层（4 个固定值，需全部包含）：SIMPLE、MEDIUM、COMPLEX、REASONING</li><li>default：默认</li><li>general_chat：通用对话</li><li>transformation_rewrite：转换与改写</li><li>knowledge_qa：知识问答</li><li>summarization：摘要</li><li>extraction_structuring：抽取与结构化输出</li><li>content_generation：内容生成</li><li>coding_technical：编码与技术</li><li>data_math_analysis：数据、数学与分析</li><li>reasoning_planning：推理与规划</li><li>tool_agentic_workflow：工具与智能体工作流</li></ul>
+        # @type TierName: String
+
+        attr_accessor :Models, :TierName
+
+        def initialize(models=nil, tiername=nil)
+          @Models = models
+          @TierName = tiername
+        end
+
+        def deserialize(params)
+          @Models = params['Models']
+          @TierName = params['TierName']
         end
       end
 

@@ -1453,6 +1453,30 @@ module TencentCloud
         end
       end
 
+      # 备份使用量信息
+      class BackupVolumeInfo < TencentCloud::Common::AbstractModel
+        # @param BackupVolume: 备份使用量
+        # @type BackupVolume: Float
+        # @param BackupType: 备份类型
+        # @type BackupType: String
+        # @param BackupMethod: 备份方式
+        # @type BackupMethod: String
+
+        attr_accessor :BackupVolume, :BackupType, :BackupMethod
+
+        def initialize(backupvolume=nil, backuptype=nil, backupmethod=nil)
+          @BackupVolume = backupvolume
+          @BackupType = backuptype
+          @BackupMethod = backupmethod
+        end
+
+        def deserialize(params)
+          @BackupVolume = params['BackupVolume']
+          @BackupType = params['BackupType']
+          @BackupMethod = params['BackupMethod']
+        end
+      end
+
       # 计费资源信息
       class BillingResourceInfo < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
@@ -7465,6 +7489,100 @@ module TencentCloud
               @BackupList << backupfileinfo_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeBackupOverview请求参数结构体
+      class DescribeBackupOverviewRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群id
+        # @type ClusterId: String
+
+        attr_accessor :ClusterId
+
+        def initialize(clusterid=nil)
+          @ClusterId = clusterid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+        end
+      end
+
+      # DescribeBackupOverview返回参数结构体
+      class DescribeBackupOverviewResponse < TencentCloud::Common::AbstractModel
+        # @param BackupTotalVolume: 备份总容量
+        # @type BackupTotalVolume: Float
+        # @param BackupSnapshotVolume: 备份快照容量
+        # @type BackupSnapshotVolume: Float
+        # @param BackupLogicVolume: 备份逻辑容量
+        # @type BackupLogicVolume: Float
+        # @param LogTotalVolume: 日志总容量
+        # @type LogTotalVolume: Float
+        # @param LogBinlogVolume: 日志binlog容量
+        # @type LogBinlogVolume: Float
+        # @param LogRedoLogVolume: 日志redolog容量
+        # @type LogRedoLogVolume: Float
+        # @param CrossTotalVolume: 跨地域备份总容量
+        # @type CrossTotalVolume: Float
+        # @param CrossRegionBackupVolume: 跨地域备份容量
+        # @type CrossRegionBackupVolume: Float
+        # @param CrossRegionLogVolume: 跨地域日志容量
+        # @type CrossRegionLogVolume: Float
+        # @param BackupVolumeInfos: 备份容量详情
+        # @type BackupVolumeInfos: Array
+        # @param CrossRegionBackupVolumeInfos: 跨地域备份容量详情
+        # @type CrossRegionBackupVolumeInfos: Array
+        # @param CrossRegions: 跨地域信息
+        # @type CrossRegions: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :BackupTotalVolume, :BackupSnapshotVolume, :BackupLogicVolume, :LogTotalVolume, :LogBinlogVolume, :LogRedoLogVolume, :CrossTotalVolume, :CrossRegionBackupVolume, :CrossRegionLogVolume, :BackupVolumeInfos, :CrossRegionBackupVolumeInfos, :CrossRegions, :RequestId
+
+        def initialize(backuptotalvolume=nil, backupsnapshotvolume=nil, backuplogicvolume=nil, logtotalvolume=nil, logbinlogvolume=nil, logredologvolume=nil, crosstotalvolume=nil, crossregionbackupvolume=nil, crossregionlogvolume=nil, backupvolumeinfos=nil, crossregionbackupvolumeinfos=nil, crossregions=nil, requestid=nil)
+          @BackupTotalVolume = backuptotalvolume
+          @BackupSnapshotVolume = backupsnapshotvolume
+          @BackupLogicVolume = backuplogicvolume
+          @LogTotalVolume = logtotalvolume
+          @LogBinlogVolume = logbinlogvolume
+          @LogRedoLogVolume = logredologvolume
+          @CrossTotalVolume = crosstotalvolume
+          @CrossRegionBackupVolume = crossregionbackupvolume
+          @CrossRegionLogVolume = crossregionlogvolume
+          @BackupVolumeInfos = backupvolumeinfos
+          @CrossRegionBackupVolumeInfos = crossregionbackupvolumeinfos
+          @CrossRegions = crossregions
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @BackupTotalVolume = params['BackupTotalVolume']
+          @BackupSnapshotVolume = params['BackupSnapshotVolume']
+          @BackupLogicVolume = params['BackupLogicVolume']
+          @LogTotalVolume = params['LogTotalVolume']
+          @LogBinlogVolume = params['LogBinlogVolume']
+          @LogRedoLogVolume = params['LogRedoLogVolume']
+          @CrossTotalVolume = params['CrossTotalVolume']
+          @CrossRegionBackupVolume = params['CrossRegionBackupVolume']
+          @CrossRegionLogVolume = params['CrossRegionLogVolume']
+          unless params['BackupVolumeInfos'].nil?
+            @BackupVolumeInfos = []
+            params['BackupVolumeInfos'].each do |i|
+              backupvolumeinfo_tmp = BackupVolumeInfo.new
+              backupvolumeinfo_tmp.deserialize(i)
+              @BackupVolumeInfos << backupvolumeinfo_tmp
+            end
+          end
+          unless params['CrossRegionBackupVolumeInfos'].nil?
+            @CrossRegionBackupVolumeInfos = []
+            params['CrossRegionBackupVolumeInfos'].each do |i|
+              backupvolumeinfo_tmp = BackupVolumeInfo.new
+              backupvolumeinfo_tmp.deserialize(i)
+              @CrossRegionBackupVolumeInfos << backupvolumeinfo_tmp
+            end
+          end
+          @CrossRegions = params['CrossRegions']
           @RequestId = params['RequestId']
         end
       end

@@ -149,6 +149,26 @@ module TencentCloud
         end
       end
 
+      # 归集业务联系人信息
+      class ContactCollectInfo < TencentCloud::Common::AbstractModel
+        # @param ContactName: 业务联系人姓名
+        # @type ContactName: String
+        # @param ContactPhone: 联系人电话
+        # @type ContactPhone: String
+
+        attr_accessor :ContactName, :ContactPhone
+
+        def initialize(contactname=nil, contactphone=nil)
+          @ContactName = contactname
+          @ContactPhone = contactphone
+        end
+
+        def deserialize(params)
+          @ContactName = params['ContactName']
+          @ContactPhone = params['ContactPhone']
+        end
+      end
+
       # CreateCommonServiceWorkOrder请求参数结构体
       class CreateCommonServiceWorkOrderRequest < TencentCloud::Common::AbstractModel
         # @param DevicePositionSet: 设备及位置信息列表
@@ -2306,6 +2326,130 @@ module TencentCloud
         end
       end
 
+      # DescribeWorkOrderCarCollectList请求参数结构体
+      class DescribeWorkOrderCarCollectListRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: <p>过滤条件，支持 car-number（车牌号模糊匹配）、driver-name（驾驶员姓名模糊匹配）</p>
+        # @type Filters: Array
+        # @param Offset: <p>偏移量，默认为0</p>
+        # @type Offset: Integer
+        # @param Limit: <p>返回数量，默认为20，最大值为100</p>
+        # @type Limit: Integer
+
+        attr_accessor :Filters, :Offset, :Limit
+
+        def initialize(filters=nil, offset=nil, limit=nil)
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeWorkOrderCarCollectList返回参数结构体
+      class DescribeWorkOrderCarCollectListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: <p>符合条件的记录总数</p>
+        # @type TotalCount: Integer
+        # @param CarSet: <p>归集车辆信息列表</p>
+        # @type CarSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :CarSet, :RequestId
+
+        def initialize(totalcount=nil, carset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @CarSet = carset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['CarSet'].nil?
+            @CarSet = []
+            params['CarSet'].each do |i|
+              personnelvisitcar_tmp = PersonnelVisitCar.new
+              personnelvisitcar_tmp.deserialize(i)
+              @CarSet << personnelvisitcar_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeWorkOrderContactCollectList请求参数结构体
+      class DescribeWorkOrderContactCollectListRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: <p>过滤条件，支持 contact-name（联系人姓名模糊匹配）、contact-phone（联系人电话模糊匹配）</p>
+        # @type Filters: Array
+        # @param Offset: <p>偏移量，默认为0</p>
+        # @type Offset: Integer
+        # @param Limit: <p>返回数量，默认为20，最大值为100</p>
+        # @type Limit: Integer
+
+        attr_accessor :Filters, :Offset, :Limit
+
+        def initialize(filters=nil, offset=nil, limit=nil)
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeWorkOrderContactCollectList返回参数结构体
+      class DescribeWorkOrderContactCollectListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: <p>符合条件的记录总数</p>
+        # @type TotalCount: Integer
+        # @param ContactSet: <p>归集业务联系人信息列表</p>
+        # @type ContactSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :ContactSet, :RequestId
+
+        def initialize(totalcount=nil, contactset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @ContactSet = contactset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['ContactSet'].nil?
+            @ContactSet = []
+            params['ContactSet'].each do |i|
+              contactcollectinfo_tmp = ContactCollectInfo.new
+              contactcollectinfo_tmp.deserialize(i)
+              @ContactSet << contactcollectinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeWorkOrderList请求参数结构体
       class DescribeWorkOrderListRequest < TencentCloud::Common::AbstractModel
         # @param Filters: 过滤条件。支持：service-type、order-type、order-status、order-id
@@ -2366,6 +2510,68 @@ module TencentCloud
               workorderdata_tmp = WorkOrderData.new
               workorderdata_tmp.deserialize(i)
               @WorkOrderSet << workorderdata_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeWorkOrderPersonnelCollectList请求参数结构体
+      class DescribeWorkOrderPersonnelCollectListRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: <p>过滤条件，支持 personnel-name（姓名模糊匹配）、personnel-tel-number（手机号模糊匹配）</p>
+        # @type Filters: Array
+        # @param Offset: <p>偏移量，默认为0</p>
+        # @type Offset: Integer
+        # @param Limit: <p>返回数量，默认为20，最大值为100</p>
+        # @type Limit: Integer
+
+        attr_accessor :Filters, :Offset, :Limit
+
+        def initialize(filters=nil, offset=nil, limit=nil)
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeWorkOrderPersonnelCollectList返回参数结构体
+      class DescribeWorkOrderPersonnelCollectListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: <p>符合条件的记录总数</p>
+        # @type TotalCount: Integer
+        # @param PersonnelSet: <p>归集人员信息列表</p>
+        # @type PersonnelSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :PersonnelSet, :RequestId
+
+        def initialize(totalcount=nil, personnelset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @PersonnelSet = personnelset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['PersonnelSet'].nil?
+            @PersonnelSet = []
+            params['PersonnelSet'].each do |i|
+              personnel_tmp = Personnel.new
+              personnel_tmp.deserialize(i)
+              @PersonnelSet << personnel_tmp
             end
           end
           @RequestId = params['RequestId']

@@ -31496,6 +31496,42 @@ module TencentCloud
         end
       end
 
+      # 智能字幕识别片段。
+      class SmartSubtitleTaskFullTextSegmentItem < TencentCloud::Common::AbstractModel
+        # @param Confidence: <p>识别片段置信度。取值：0~100。</p>
+        # @type Confidence: Float
+        # @param StartTimeOffset: <p>识别片段起始的偏移时间，单位：秒。</p>
+        # @type StartTimeOffset: Float
+        # @param EndTimeOffset: <p>识别片段终止的偏移时间，单位：秒。</p>
+        # @type EndTimeOffset: Float
+        # @param Text: <p>识别文本。</p>
+        # @type Text: String
+        # @param Trans: <p>翻译文本。</p>
+        # @type Trans: String
+        # @param SpeakerId: <p>说话人ID</p>
+        # @type SpeakerId: String
+
+        attr_accessor :Confidence, :StartTimeOffset, :EndTimeOffset, :Text, :Trans, :SpeakerId
+
+        def initialize(confidence=nil, starttimeoffset=nil, endtimeoffset=nil, text=nil, trans=nil, speakerid=nil)
+          @Confidence = confidence
+          @StartTimeOffset = starttimeoffset
+          @EndTimeOffset = endtimeoffset
+          @Text = text
+          @Trans = trans
+          @SpeakerId = speakerid
+        end
+
+        def deserialize(params)
+          @Confidence = params['Confidence']
+          @StartTimeOffset = params['StartTimeOffset']
+          @EndTimeOffset = params['EndTimeOffset']
+          @Text = params['Text']
+          @Trans = params['Trans']
+          @SpeakerId = params['SpeakerId']
+        end
+      end
+
       # 智能字幕翻译的输入。
       class SmartSubtitleTaskResultInput < TencentCloud::Common::AbstractModel
         # @param Definition: <p>智能字幕模板 ID。</p>
@@ -31526,6 +31562,9 @@ module TencentCloud
 
       # 智能字幕识别结果。
       class SmartSubtitleTaskTextResultOutput < TencentCloud::Common::AbstractModel
+        # @param SegmentSet: <p>智能字幕识别片段列表。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SegmentSet: Array
         # @param RecognizeSubtitleResult: <p>识别字幕结果</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RecognizeSubtitleResult: Array
@@ -31536,15 +31575,24 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OutputStorage: :class:`Tencentcloud::Mps.v20190612.models.TaskOutputStorage`
 
-        attr_accessor :RecognizeSubtitleResult, :TransSubtitleResult, :OutputStorage
+        attr_accessor :SegmentSet, :RecognizeSubtitleResult, :TransSubtitleResult, :OutputStorage
 
-        def initialize(recognizesubtitleresult=nil, transsubtitleresult=nil, outputstorage=nil)
+        def initialize(segmentset=nil, recognizesubtitleresult=nil, transsubtitleresult=nil, outputstorage=nil)
+          @SegmentSet = segmentset
           @RecognizeSubtitleResult = recognizesubtitleresult
           @TransSubtitleResult = transsubtitleresult
           @OutputStorage = outputstorage
         end
 
         def deserialize(params)
+          unless params['SegmentSet'].nil?
+            @SegmentSet = []
+            params['SegmentSet'].each do |i|
+              smartsubtitletaskfulltextsegmentitem_tmp = SmartSubtitleTaskFullTextSegmentItem.new
+              smartsubtitletaskfulltextsegmentitem_tmp.deserialize(i)
+              @SegmentSet << smartsubtitletaskfulltextsegmentitem_tmp
+            end
+          end
           unless params['RecognizeSubtitleResult'].nil?
             @RecognizeSubtitleResult = []
             params['RecognizeSubtitleResult'].each do |i|

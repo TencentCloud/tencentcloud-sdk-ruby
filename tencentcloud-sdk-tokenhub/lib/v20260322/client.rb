@@ -29,6 +29,32 @@ module TencentCloud
         end
 
 
+        # 创建 API 密钥。
+
+        # 创建一个新的 API 密钥，创建成功后返回 API 密钥 ID。需指定平台类型、绑定方式和初始状态。
+
+        # @param request: Request instance for CreateApiKey.
+        # @type request: :class:`Tencentcloud::tokenhub::V20260322::CreateApiKeyRequest`
+        # @rtype: :class:`Tencentcloud::tokenhub::V20260322::CreateApiKeyResponse`
+        def CreateApiKey(request)
+          body = send_request('CreateApiKey', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateApiKeyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建术语库。
 
         # 在当前应用下创建一个新的翻译术语库，用于自定义源语言到目标语言的术语映射。创建成功后返回术语库 ID，可通过该 ID 进一步管理术语条目。
@@ -119,6 +145,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateTokenPlanTeamOrderAndBuyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除指定的 API 密钥，同时清理关联的模型绑定关系。
+
+        # @param request: Request instance for DeleteApiKey.
+        # @type request: :class:`Tencentcloud::tokenhub::V20260322::DeleteApiKeyRequest`
+        # @rtype: :class:`Tencentcloud::tokenhub::V20260322::DeleteApiKeyResponse`
+        def DeleteApiKey(request)
+          body = send_request('DeleteApiKey', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteApiKeyResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -517,6 +567,56 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeUsageRankListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 更新 API 密钥信息。
+
+        # 更新 API 密钥的备注信息、 IP 白名单和 Token 限额（修改限额推荐使用QuotaDesired参数）。所有可选参数不传表示不修改。
+
+        # @param request: Request instance for ModifyApiKeyInfo.
+        # @type request: :class:`Tencentcloud::tokenhub::V20260322::ModifyApiKeyInfoRequest`
+        # @rtype: :class:`Tencentcloud::tokenhub::V20260322::ModifyApiKeyInfoResponse`
+        def ModifyApiKeyInfo(request)
+          body = send_request('ModifyApiKeyInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyApiKeyInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 更新 API 密钥的启用或禁用状态。
+
+        # @param request: Request instance for ModifyApiKeyStatus.
+        # @type request: :class:`Tencentcloud::tokenhub::V20260322::ModifyApiKeyStatusRequest`
+        # @rtype: :class:`Tencentcloud::tokenhub::V20260322::ModifyApiKeyStatusResponse`
+        def ModifyApiKeyStatus(request)
+          body = send_request('ModifyApiKeyStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyApiKeyStatusResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -1118,16 +1118,22 @@ module TencentCloud
         # @type Image: :class:`Tencentcloud::Ai3d.v20250513.models.Image`
         # @param EnablePBR: <p>是否开启 PBR材质生成，默认 false。</p>
         # @type EnablePBR: Boolean
+        # @param EnableKeepUV: <p>是否保持模型UV，开启后模型布线纹理均不改变，UV布线不跟纹理进行改变，默认false</p>
+        # @type EnableKeepUV: Boolean
+        # @param TextureSize: <p>仅支持正方形贴图，分辨率区间为720～4096，默认为4096</p>
+        # @type TextureSize: Integer
 
-        attr_accessor :File3D, :Model, :MultiViewImages, :Prompt, :Image, :EnablePBR
+        attr_accessor :File3D, :Model, :MultiViewImages, :Prompt, :Image, :EnablePBR, :EnableKeepUV, :TextureSize
 
-        def initialize(file3d=nil, model=nil, multiviewimages=nil, prompt=nil, image=nil, enablepbr=nil)
+        def initialize(file3d=nil, model=nil, multiviewimages=nil, prompt=nil, image=nil, enablepbr=nil, enablekeepuv=nil, texturesize=nil)
           @File3D = file3d
           @Model = model
           @MultiViewImages = multiviewimages
           @Prompt = prompt
           @Image = image
           @EnablePBR = enablepbr
+          @EnableKeepUV = enablekeepuv
+          @TextureSize = texturesize
         end
 
         def deserialize(params)
@@ -1150,6 +1156,8 @@ module TencentCloud
             @Image.deserialize(params['Image'])
           end
           @EnablePBR = params['EnablePBR']
+          @EnableKeepUV = params['EnableKeepUV']
+          @TextureSize = params['TextureSize']
         end
       end
 

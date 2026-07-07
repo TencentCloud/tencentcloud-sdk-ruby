@@ -19,19 +19,19 @@ module TencentCloud
     module V20250115
       # 加速地域信息
       class AcceleratorAreas < TencentCloud::Common::AbstractModel
-        # @param AccelerateRegion: 加速地域。
+        # @param AccelerateRegion: <p>加速地域。</p>
         # @type AccelerateRegion: String
-        # @param Bandwidth: 带宽。
+        # @param Bandwidth: <p>带宽。</p>
         # @type Bandwidth: Integer
-        # @param IspType: 支持'BGP', '三网', '精品'，默认BGP。
+        # @param IspType: <p>支持&#39;BGP&#39;, &#39;QUALITY_BGP&#39;, &#39;STATIC_IP&#39;，默认BGP。</p><p>枚举值：</p><ul><li>BGP： BGP</li><li>STATIC_IP： 三网</li><li>QUALITY_BGP： 精品BGP</li></ul>
         # @type IspType: String
-        # @param IpVersion: 仅支持IPv4，默认是IPv4。
+        # @param IpVersion: <p>仅支持IPv4，默认是IPv4。</p>
         # @type IpVersion: String
-        # @param AcceleratorAreaId: 加速地域ID。
+        # @param AcceleratorAreaId: <p>加速地域ID。</p>
         # @type AcceleratorAreaId: String
-        # @param IpAddress: IP。
+        # @param IpAddress: <p>IP。</p>
         # @type IpAddress: Array
-        # @param IpAddressInfoSet: IP信息。
+        # @param IpAddressInfoSet: <p>IP信息。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IpAddressInfoSet: Array
 
@@ -1792,21 +1792,25 @@ module TencentCloud
 
       # 加速地域公网IP信息
       class IpAddressInfoSet < TencentCloud::Common::AbstractModel
-        # @param IpAddress: IP地址。
+        # @param IpAddress: <p>IP地址。</p>
         # @type IpAddress: String
-        # @param IspType: IP类型。
+        # @param IspType: <p>IP类型。</p>
         # @type IspType: String
+        # @param DdosProtectionType: <p>Ddos类型</p>
+        # @type DdosProtectionType: String
 
-        attr_accessor :IpAddress, :IspType
+        attr_accessor :IpAddress, :IspType, :DdosProtectionType
 
-        def initialize(ipaddress=nil, isptype=nil)
+        def initialize(ipaddress=nil, isptype=nil, ddosprotectiontype=nil)
           @IpAddress = ipaddress
           @IspType = isptype
+          @DdosProtectionType = ddosprotectiontype
         end
 
         def deserialize(params)
           @IpAddress = params['IpAddress']
           @IspType = params['IspType']
+          @DdosProtectionType = params['DdosProtectionType']
         end
       end
 

@@ -2087,8 +2087,8 @@ module TencentCloud
 
         attr_accessor :AppID, :Uin, :InstanceID, :ID, :Name, :Status, :RelateAgentAppNum, :RelateMcpServerNum, :RelateModelNum, :RelateServiceNum, :Content, :CreateTime, :LastUpdateTime, :Type
         extend Gem::Deprecate
-        deprecate :RelateAgentAppNum, :none, 2026, 6
-        deprecate :RelateAgentAppNum=, :none, 2026, 6
+        deprecate :RelateAgentAppNum, :none, 2026, 7
+        deprecate :RelateAgentAppNum=, :none, 2026, 7
 
         def initialize(appid=nil, uin=nil, instanceid=nil, id=nil, name=nil, status=nil, relateagentappnum=nil, relatemcpservernum=nil, relatemodelnum=nil, relateservicenum=nil, content=nil, createtime=nil, lastupdatetime=nil, type=nil)
           @AppID = appid
@@ -4359,14 +4359,14 @@ module TencentCloud
 
         attr_accessor :InstanceID, :Name, :PaasID, :Description, :LabelIDs, :CategoryIDs, :AuthType, :SignType, :LoginTypes, :TargetSelect, :PubPath, :RequestMethod, :HttpProtocolType, :CheckTargetCertsError, :HttpProtocolVersion, :Versions, :TargetPath, :RequestParamsValidatorStatus, :RequestParamsValidatorJsonInfoT, :ResponseParamsValidatorStatus, :ResponseParamsValidatorJsonInfoT, :InvokeLimitConfigStatus, :InvokeLimitConfig, :HealthCheckStatus, :HealthCheckConfig, :SourceTypeStatus, :SourceTypeConfig, :IpWhiteStatus, :IpWhiteList, :IpBlackStatus, :IpBlackList, :PluginConfigs, :ID
         extend Gem::Deprecate
-        deprecate :PaasID, :none, 2026, 6
-        deprecate :PaasID=, :none, 2026, 6
-        deprecate :AuthType, :none, 2026, 6
-        deprecate :AuthType=, :none, 2026, 6
-        deprecate :SignType, :none, 2026, 6
-        deprecate :SignType=, :none, 2026, 6
-        deprecate :LoginTypes, :none, 2026, 6
-        deprecate :LoginTypes=, :none, 2026, 6
+        deprecate :PaasID, :none, 2026, 7
+        deprecate :PaasID=, :none, 2026, 7
+        deprecate :AuthType, :none, 2026, 7
+        deprecate :AuthType=, :none, 2026, 7
+        deprecate :SignType, :none, 2026, 7
+        deprecate :SignType=, :none, 2026, 7
+        deprecate :LoginTypes, :none, 2026, 7
+        deprecate :LoginTypes=, :none, 2026, 7
 
         def initialize(instanceid=nil, name=nil, paasid=nil, description=nil, labelids=nil, categoryids=nil, authtype=nil, signtype=nil, logintypes=nil, targetselect=nil, pubpath=nil, requestmethod=nil, httpprotocoltype=nil, checktargetcertserror=nil, httpprotocolversion=nil, versions=nil, targetpath=nil, requestparamsvalidatorstatus=nil, requestparamsvalidatorjsoninfot=nil, responseparamsvalidatorstatus=nil, responseparamsvalidatorjsoninfot=nil, invokelimitconfigstatus=nil, invokelimitconfig=nil, healthcheckstatus=nil, healthcheckconfig=nil, sourcetypestatus=nil, sourcetypeconfig=nil, ipwhitestatus=nil, ipwhitelist=nil, ipblackstatus=nil, ipblacklist=nil, pluginconfigs=nil, id=nil)
           @InstanceID = instanceid
@@ -4931,24 +4931,24 @@ module TencentCloud
 
         attr_accessor :InstanceID, :Name, :PaasID, :Description, :LabelIDs, :CategoryIDs, :AuthType, :SignType, :LoginTypes, :TargetSelect, :PubPath, :RequestMethod, :TargetHosts, :HttpProtocolType, :CheckTargetCertsError, :HttpProtocolVersion, :Versions, :TargetPath, :RequestParamsValidatorStatus, :RequestParamsValidatorJsonInfoT, :ResponseParamsValidatorStatus, :ResponseParamsValidatorJsonInfoT, :InvokeLimitConfigStatus, :InvokeLimitConfig, :HealthCheckStatus, :HealthCheckConfig, :SourceTypeStatus, :SourceTypeConfig, :TokenLimitStatus, :TokenLimitConfig, :TmsStatus, :TmsConfig, :IpWhiteStatus, :IpWhiteList, :IpBlackStatus, :IpBlackList, :PluginConfigs, :ID, :Status, :Url, :App, :Catalogs, :Labels, :Logins, :AuthAppNum, :CreateTime, :LastUpdateTime, :AppID, :Uin, :Domain, :OpenMessageLogStatus, :CurrPaasIDSubscriptionID, :TargetServiceType, :SqlTemplate, :TargetHostType, :TargetServiceHostType, :TargetServerGroupID, :TargetServerGroup, :CustomHttpHost, :HttpHostType, :MockStatusCode, :MockBody, :MockHeaders, :PathMatchType, :CustomMatch, :Timeout, :McpServerNum
         extend Gem::Deprecate
-        deprecate :PaasID, :none, 2026, 6
-        deprecate :PaasID=, :none, 2026, 6
-        deprecate :AuthType, :none, 2026, 6
-        deprecate :AuthType=, :none, 2026, 6
-        deprecate :SignType, :none, 2026, 6
-        deprecate :SignType=, :none, 2026, 6
-        deprecate :LoginTypes, :none, 2026, 6
-        deprecate :LoginTypes=, :none, 2026, 6
-        deprecate :TokenLimitStatus, :none, 2026, 6
-        deprecate :TokenLimitStatus=, :none, 2026, 6
-        deprecate :TokenLimitConfig, :none, 2026, 6
-        deprecate :TokenLimitConfig=, :none, 2026, 6
-        deprecate :TmsStatus, :none, 2026, 6
-        deprecate :TmsStatus=, :none, 2026, 6
-        deprecate :TmsConfig, :none, 2026, 6
-        deprecate :TmsConfig=, :none, 2026, 6
-        deprecate :CurrPaasIDSubscriptionID, :none, 2026, 6
-        deprecate :CurrPaasIDSubscriptionID=, :none, 2026, 6
+        deprecate :PaasID, :none, 2026, 7
+        deprecate :PaasID=, :none, 2026, 7
+        deprecate :AuthType, :none, 2026, 7
+        deprecate :AuthType=, :none, 2026, 7
+        deprecate :SignType, :none, 2026, 7
+        deprecate :SignType=, :none, 2026, 7
+        deprecate :LoginTypes, :none, 2026, 7
+        deprecate :LoginTypes=, :none, 2026, 7
+        deprecate :TokenLimitStatus, :none, 2026, 7
+        deprecate :TokenLimitStatus=, :none, 2026, 7
+        deprecate :TokenLimitConfig, :none, 2026, 7
+        deprecate :TokenLimitConfig=, :none, 2026, 7
+        deprecate :TmsStatus, :none, 2026, 7
+        deprecate :TmsStatus=, :none, 2026, 7
+        deprecate :TmsConfig, :none, 2026, 7
+        deprecate :TmsConfig=, :none, 2026, 7
+        deprecate :CurrPaasIDSubscriptionID, :none, 2026, 7
+        deprecate :CurrPaasIDSubscriptionID=, :none, 2026, 7
 
         def initialize(instanceid=nil, name=nil, paasid=nil, description=nil, labelids=nil, categoryids=nil, authtype=nil, signtype=nil, logintypes=nil, targetselect=nil, pubpath=nil, requestmethod=nil, targethosts=nil, httpprotocoltype=nil, checktargetcertserror=nil, httpprotocolversion=nil, versions=nil, targetpath=nil, requestparamsvalidatorstatus=nil, requestparamsvalidatorjsoninfot=nil, responseparamsvalidatorstatus=nil, responseparamsvalidatorjsoninfot=nil, invokelimitconfigstatus=nil, invokelimitconfig=nil, healthcheckstatus=nil, healthcheckconfig=nil, sourcetypestatus=nil, sourcetypeconfig=nil, tokenlimitstatus=nil, tokenlimitconfig=nil, tmsstatus=nil, tmsconfig=nil, ipwhitestatus=nil, ipwhitelist=nil, ipblackstatus=nil, ipblacklist=nil, pluginconfigs=nil, id=nil, status=nil, url=nil, app=nil, catalogs=nil, labels=nil, logins=nil, authappnum=nil, createtime=nil, lastupdatetime=nil, appid=nil, uin=nil, domain=nil, openmessagelogstatus=nil, currpaasidsubscriptionid=nil, targetservicetype=nil, sqltemplate=nil, targethosttype=nil, targetservicehosttype=nil, targetservergroupid=nil, targetservergroup=nil, customhttphost=nil, httphosttype=nil, mockstatuscode=nil, mockbody=nil, mockheaders=nil, pathmatchtype=nil, custommatch=nil, timeout=nil, mcpservernum=nil)
           @InstanceID = instanceid

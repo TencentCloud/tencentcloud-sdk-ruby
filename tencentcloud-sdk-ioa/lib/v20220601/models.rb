@@ -2885,88 +2885,25 @@ module TencentCloud
       class DescribeDevicesRequest < TencentCloud::Common::AbstractModel
         # @param DomainInstanceId: 管理域实例ID，用于CAM管理域权限分配。若企业未进行管理域的划分，可直接传入根域"1"，此时表示针对当前企业的全部设备和账号进行接口CRUD，具体CRUD的影响范围限制于相应接口的入参。
         # @type DomainInstanceId: String
-        # @param Condition: 过滤条件参数（字段含义请参考接口返回值）
-
-        # - Mid, 类型String，支持操作：【eq，like，ilike】，支持排序
-        # - Name, 类型String，支持操作：【eq，like，ilike】，支持排序
-        # - Itime, 类型String，支持操作：【eq，like，ilike】，支持排序
-        # - UserName, 类型String，支持操作：【eq，like，ilike】，支持排序
-        # - MacAddr, 类型String，支持操作：【eq，like，ilike】，支持排序
-        # - UserId, 类型String，支持操作：【eq，like，ilike】，支持排序
-        # - Ip, 类型String，支持操作：【eq，like，ilike】，支持排序
-        # - Tags，类型String，支持操作：【eq，like，ilike】，支持排序
-        # - LocalIpList，类型String，支持操作：【eq，like，ilike】，支持排序
-        # - SerialNum，类型String，支持操作：【eq，like，ilike】，支持排序
-        # - Version，类型String，支持操作：【eq，like，ilike】，支持排序
-        # - StrVersion，类型String，支持操作：【eq，like，ilike】，支持排序
-        # - RtpStatus，类型String，支持操作：【eq，like，ilike】，**不支持排序**
-        # - HostName，类型String，支持操作：【eq，like，ilike】，支持排序
-        # - IoaUserName，类型String，支持操作：【eq，like，ilike】，支持排序
-        # - GroupName，类型String，支持操作：【eq，like，ilike】，支持排序
-        # - CriticalVulListCount，**类型Int**，支持操作：【eq】，**不支持排序**
-        # - RiskCount，**类型Int**，支持操作：【eq】，**不支持排序**
-        # - VulVersion，类型String，支持操作：【eq，like，ilike】，**不支持排序**
-        # - Virusver，类型String，支持操作：【eq，like，ilike】，**不支持排序**
-        # - SysRepver，类型String，支持操作：【eq，like，ilike】，**不支持排序**
-        # - BaseBoardSn，类型String，支持操作：【eq，like，ilike】，支持排序
-        # - Os，类型String，支持操作：【eq，like，ilike】，支持排序
-        # - ConnActiveTime，类型String，支持操作：【eq，like，ilike】，**不支持排序**
-        # - FirewallStatus，**类型Int**，支持操作：【eq】，**不支持排序**
-        # - ProfileName，类型String，支持操作：【eq，like，ilike】，支持排序
-        # - DomainName，类型String，支持操作：【eq，like，ilike】，支持排序
-        # - SysRepVersion，类型String，支持操作：【eq，like，ilike】，支持排序
-        # - VirusVer，类型String，支持操作：【eq，like，ilike】，支持排序
-        # - Cpu，类型String，支持操作：【eq，like，ilike】，支持排序
-        # - Memory，类型String，支持操作：【eq，like，ilike】，支持排序
-        # - HardDiskSize，类型String，支持操作：【eq，like，ilike】，支持排序
-        # - HardwareChangeCount，**类型Int**，支持操作：【eq】，支持排序
-        # - AccountName，类型String，支持操作：【like.ilike】，支持排序
-        # - AccountGroupName，类型String，支持操作：【like.ilike】，支持排序
-        # - ScreenRecordingPermission，**类型Int**，支持操作：【eq】，支持排序
-        # - DiskAccessPermission，**类型Int**，支持操作：【eq】，支持排序
-
-
-
-
-
-        # 分页参数
-        # - PageNum 从1开始，小于等于0时使用默认参数
-        # - PageSize 最大值5000，最好不超过100
+        # @param Condition: <p>过滤条件参数（字段含义请参考接口返回值）</p><ul><li>Mid, 类型String，支持操作：【eq，like，ilike】，支持排序</li><li>Name, 类型String，支持操作：【eq，like，ilike】，支持排序</li><li>Itime, 类型String，支持操作：【eq，like，ilike】，支持排序</li><li>UserName, 类型String，支持操作：【eq，like，ilike】，支持排序</li><li>MacAddr, 类型String，支持操作：【eq，like，ilike】，支持排序</li><li>UserId, 类型String，支持操作：【eq，like，ilike】，支持排序</li><li>Ip, 类型String，支持操作：【eq，like，ilike】，支持排序</li><li>Tags，类型String，支持操作：【eq，like，ilike】，支持排序</li><li>LocalIpList，类型String，支持操作：【eq，like，ilike】，支持排序</li><li>SerialNum，类型String，支持操作：【eq，like，ilike】，支持排序</li><li>Version，类型String，支持操作：【eq，like，ilike】，支持排序</li><li>StrVersion，类型String，支持操作：【eq，like，ilike】，支持排序</li><li>RtpStatus，类型String，支持操作：【eq，like，ilike】，<strong>不支持排序</strong></li><li>HostName，类型String，支持操作：【eq，like，ilike】，支持排序</li><li>IoaUserName，类型String，支持操作：【eq，like，ilike】，支持排序</li><li>GroupName，类型String，支持操作：【eq，like，ilike】，支持排序</li><li>CriticalVulListCount，<strong>类型Int</strong>，支持操作：【eq】，<strong>不支持排序</strong></li><li>RiskCount，<strong>类型Int</strong>，支持操作：【eq】，<strong>不支持排序</strong></li><li>VulVersion，类型String，支持操作：【eq，like，ilike】，<strong>不支持排序</strong></li><li>Virusver，类型String，支持操作：【eq，like，ilike】，<strong>不支持排序</strong></li><li>SysRepver，类型String，支持操作：【eq，like，ilike】，<strong>不支持排序</strong></li><li>BaseBoardSn，类型String，支持操作：【eq，like，ilike】，支持排序</li><li>Os，类型String，支持操作：【eq，like，ilike】，支持排序</li><li>ConnActiveTime，类型String，支持操作：【eq，like，ilike】，<strong>不支持排序</strong></li><li>FirewallStatus，<strong>类型Int</strong>，支持操作：【eq】，<strong>不支持排序</strong></li><li>DomainName，类型String，支持操作：【eq，like，ilike】，支持排序</li><li>SysRepVersion，类型String，支持操作：【eq，like，ilike】，支持排序</li><li>VirusVer，类型String，支持操作：【eq，like，ilike】，支持排序</li><li>Cpu，类型String，支持操作：【eq，like，ilike】，支持排序</li><li>Memory，类型String，支持操作：【eq，like，ilike】，支持排序</li><li>HardDiskSize，类型String，支持操作：【eq，like，ilike】，支持排序</li><li>AccountName，类型String，支持操作：【like.ilike】，支持排序</li><li>AccountGroupName，类型String，支持操作：【like.ilike】，支持排序</li></ul><p>分页参数</p><ul><li>PageNum 从1开始，小于等于0时使用默认参数</li><li>PageSize 最大值5000，最好不超过100</li></ul>
         # @type Condition: :class:`Tencentcloud::Ioa.v20220601.models.Condition`
-        # @param GroupId: 【和GroupIds必须有一个填写】设备分组id（需要和OsType匹配），下面是私有化场景下默认id：
-        # id-名称-操作系统
-        # 1	全网终端	Win
-        # 2	未分组终端	Win
-        # 30000000	服务器	Win
-        # 40000101	全网终端	Linux
-        # 40000102	未分组终端	Linux
-        # 40000103	服务器	Linux
-        # 40000201	全网终端	macOS
-        # 40000202	未分组终端	macOS
-        # 40000203	服务器	macOS
-        # 40000401	全网终端	Android
-        # 40000402	未分组终端	Android
-        # 40000501	全网终端	iOS
-        # 40000502	未分组终端	iOS
-
-
-        # SaaS需要调用分组接口DescribeDeviceChildGroups获取对应分组id
+        # @param GroupId: <p>【和GroupIds必须有一个填写】设备分组id（需要和OsType匹配），下面是私有化场景下默认id：<br>id-名称-操作系统<br>1    全网终端    Win<br>2    未分组终端    Win<br>30000000    服务器    Win<br>40000101    全网终端    Linux<br>40000102    未分组终端    Linux<br>40000103    服务器    Linux<br>40000201    全网终端    macOS<br>40000202    未分组终端    macOS<br>40000203    服务器    macOS<br>40000401    全网终端    Android<br>40000402    未分组终端    Android<br>40000501    全网终端    iOS<br>40000502    未分组终端    iOS</p><p>SaaS需要调用分组接口DescribeDeviceChildGroups获取对应分组id</p>
         # @type GroupId: Integer
-        # @param OsType: 系统类型（0: win，1：linux，2: mac，4：android，5：ios，-1：全系统（SaaS一体化版本） ； 不传默认为0）(只支持32位)，需要和GroupId或者GroupIds匹配
+        # @param OsType: <p>系统类型（0: win，1：linux，2: mac，4：android，5：ios，-1：全系统（SaaS一体化版本） ； 不传默认为0）(只支持32位)，需要和GroupId或者GroupIds匹配</p>
         # @type OsType: Integer
-        # @param OnlineStatus: 在线状态 （2表示在线，0或者1表示离线）
+        # @param OnlineStatus: <p>在线状态 （2表示在线，0或者1表示离线）</p>
         # @type OnlineStatus: Integer
-        # @param Filters: 过滤条件--兼容旧接口,参数同Condition
+        # @param Filters: <p>过滤条件--兼容旧接口,参数同Condition</p>
         # @type Filters: Array
-        # @param Sort: 排序字段--兼容旧接口,参数同Condition
+        # @param Sort: <p>排序字段--兼容旧接口,参数同Condition</p>
         # @type Sort: :class:`Tencentcloud::Ioa.v20220601.models.Sort`
-        # @param PageNum: 获取第几页--兼容旧接口,参数同Condition
+        # @param PageNum: <p>获取第几页--兼容旧接口,参数同Condition</p>
         # @type PageNum: Integer
-        # @param PageSize: 每页获取数--兼容旧接口,参数同Condition
+        # @param PageSize: <p>每页获取数--兼容旧接口,参数同Condition</p>
         # @type PageSize: Integer
-        # @param Status: 授权状态： 4基础授权 5高级授权
+        # @param Status: <p>授权状态： 4基础授权 5高级授权</p>
         # @type Status: Integer
-        # @param GroupIds: 【和GroupId必须有一个填写】设备分组id列表（需要和OsType匹配）
+        # @param GroupIds: <p>【和GroupId必须有一个填写】设备分组id列表（需要和OsType匹配）</p>
         # @type GroupIds: Array
 
         attr_accessor :DomainInstanceId, :Condition, :GroupId, :OsType, :OnlineStatus, :Filters, :Sort, :PageNum, :PageSize, :Status, :GroupIds
@@ -3015,7 +2952,7 @@ module TencentCloud
 
       # DescribeDevices返回参数结构体
       class DescribeDevicesResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 分页的data数据
+        # @param Data: <p>分页的data数据</p>
         # @type Data: :class:`Tencentcloud::Ioa.v20220601.models.DescribeDevicesPageRsp`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

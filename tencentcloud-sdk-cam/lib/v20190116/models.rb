@@ -3910,13 +3910,13 @@ module TencentCloud
 
       # ListPolicies请求参数结构体
       class ListPoliciesRequest < TencentCloud::Common::AbstractModel
-        # @param Rp: 每页数量，默认值是 20，必须大于 0 且小于或等于 200
+        # @param Rp: <p>每页数量，默认值是 20，必须大于 0 且小于或等于 200</p>
         # @type Rp: Integer
-        # @param Page: 页码，默认值是 1，从 1开始，不能大于 200
+        # @param Page: <p>页码，默认值是 1，从 1开始，不能大于 200</p>
         # @type Page: Integer
-        # @param Scope: 可取值 'All'、'QCS' 和 'Local'，'All' 获取所有策略，'QCS' 只获取预设策略，'Local' 只获取自定义策略，默认取 'All'
+        # @param Scope: <p>可取值 &#39;All&#39;、&#39;QCS&#39; 和 &#39;Local&#39;，&#39;All&#39; 获取所有策略，&#39;QCS&#39; 只获取预设策略，&#39;Local&#39; 只获取自定义策略，默认取 &#39;All&#39;</p>
         # @type Scope: String
-        # @param Keyword: 按策略名匹配
+        # @param Keyword: <p>按策略名匹配</p>
         # @type Keyword: String
 
         attr_accessor :Rp, :Page, :Scope, :Keyword
@@ -3938,20 +3938,11 @@ module TencentCloud
 
       # ListPolicies返回参数结构体
       class ListPoliciesResponse < TencentCloud::Common::AbstractModel
-        # @param TotalNum: 策略总数
+        # @param TotalNum: <p>策略总数</p>
         # @type TotalNum: Integer
-        # @param List: 策略数组，数组每个成员包括 policyId、policyName、addTime、type、description、 createMode 字段。其中：
-        # policyId：策略 id
-        # policyName：策略名
-        # addTime：策略创建时间
-        # type：1 表示自定义策略，2 表示预设策略
-        # description：策略描述
-        # createMode：1 表示按业务权限创建的策略，其他值表示可以查看策略语法和通过策略语法更新策略
-        # Attachments: 关联的用户数
-        # ServiceType: 策略关联的产品
-        # IsAttached: 当需要查询标记实体是否已经关联策略时不为null。0表示未关联策略，1表示已关联策略
+        # @param List: <p>策略数组，数组每个成员包括 policyId、policyName、addTime、type、description、 createMode 字段。其中：<br>policyId：策略 id<br>policyName：策略名<br>addTime：策略创建时间<br>type：1 表示自定义策略，2 表示预设策略<br>description：策略描述<br>createMode：1 表示按业务权限创建的策略，其他值表示可以查看策略语法和通过策略语法更新策略<br>Attachments: 关联的用户数<br>ServiceType: 策略关联的产品<br>IsAttached: 当需要查询标记实体是否已经关联策略时不为null。0表示未关联策略，1表示已关联策略</p>
         # @type List: Array
-        # @param ServiceTypeList: 保留字段
+        # @param ServiceTypeList: <p>保留字段</p>
         # @type ServiceTypeList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4900,51 +4891,53 @@ module TencentCloud
 
       # 策略信息
       class StrategyInfo < TencentCloud::Common::AbstractModel
-        # @param PolicyId: 策略ID。
+        # @param PolicyId: <p>策略ID。</p>
         # @type PolicyId: Integer
-        # @param PolicyName: 策略名称。
+        # @param PolicyName: <p>策略名称。</p>
         # @type PolicyName: String
-        # @param AddTime: 策略创建时间。
+        # @param AddTime: <p>策略创建时间。</p>
         # @type AddTime: String
-        # @param Type: 策略类型。1 表示自定义策略，2 表示预设策略。
+        # @param Type: <p>策略类型。1 表示自定义策略，2 表示预设策略。</p>
         # @type Type: Integer
-        # @param Description: 策略描述。
+        # @param Description: <p>策略描述。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
-        # @param CreateMode: 创建来源，1 通过控制台创建, 2 通过策略语法创建。
+        # @param CreateMode: <p>创建来源，1 通过控制台创建, 2 通过策略语法创建。</p>
         # @type CreateMode: Integer
-        # @param Attachments: 关联的用户数
+        # @param Attachments: <p>关联的用户数</p>
         # @type Attachments: Integer
-        # @param ServiceType: 策略关联的产品
+        # @param ServiceType: <p>策略关联的产品</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceType: String
-        # @param IsAttached: 当需要查询标记实体是否已经关联策略时不为null。0表示未关联策略，1表示已关联策略
+        # @param IsAttached: <p>当需要查询标记实体是否已经关联策略时不为null。0表示未关联策略，1表示已关联策略</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsAttached: Integer
-        # @param Deactived: 是否已下线
+        # @param Deactived: <p>是否已下线</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Deactived: Integer
-        # @param DeactivedDetail: 已下线产品列表
+        # @param DeactivedDetail: <p>已下线产品列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeactivedDetail: Array
-        # @param IsServiceLinkedPolicy: 是否是服务相关角色策略
+        # @param IsServiceLinkedPolicy: <p>是否是服务相关角色策略</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsServiceLinkedPolicy: Integer
-        # @param AttachEntityCount: 关联策略实体数
+        # @param AttachEntityCount: <p>关联策略实体数</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AttachEntityCount: Integer
-        # @param AttachEntityBoundaryCount: 关联权限边界实体数
+        # @param AttachEntityBoundaryCount: <p>关联权限边界实体数</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AttachEntityBoundaryCount: Integer
-        # @param UpdateTime: 最后编辑时间
+        # @param UpdateTime: <p>最后编辑时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
-        # @param Tags: 标签列表
+        # @param Tags: <p>标签列表</p>
         # @type Tags: Array
+        # @param PermissionLevel: <p>权限级别</p><p>枚举值：</p><ul><li>Global： 全局权限</li><li>Finance： 财务权限</li><li>CloudProduct： 云产品权限</li></ul>
+        # @type PermissionLevel: String
 
-        attr_accessor :PolicyId, :PolicyName, :AddTime, :Type, :Description, :CreateMode, :Attachments, :ServiceType, :IsAttached, :Deactived, :DeactivedDetail, :IsServiceLinkedPolicy, :AttachEntityCount, :AttachEntityBoundaryCount, :UpdateTime, :Tags
+        attr_accessor :PolicyId, :PolicyName, :AddTime, :Type, :Description, :CreateMode, :Attachments, :ServiceType, :IsAttached, :Deactived, :DeactivedDetail, :IsServiceLinkedPolicy, :AttachEntityCount, :AttachEntityBoundaryCount, :UpdateTime, :Tags, :PermissionLevel
 
-        def initialize(policyid=nil, policyname=nil, addtime=nil, type=nil, description=nil, createmode=nil, attachments=nil, servicetype=nil, isattached=nil, deactived=nil, deactiveddetail=nil, isservicelinkedpolicy=nil, attachentitycount=nil, attachentityboundarycount=nil, updatetime=nil, tags=nil)
+        def initialize(policyid=nil, policyname=nil, addtime=nil, type=nil, description=nil, createmode=nil, attachments=nil, servicetype=nil, isattached=nil, deactived=nil, deactiveddetail=nil, isservicelinkedpolicy=nil, attachentitycount=nil, attachentityboundarycount=nil, updatetime=nil, tags=nil, permissionlevel=nil)
           @PolicyId = policyid
           @PolicyName = policyname
           @AddTime = addtime
@@ -4961,6 +4954,7 @@ module TencentCloud
           @AttachEntityBoundaryCount = attachentityboundarycount
           @UpdateTime = updatetime
           @Tags = tags
+          @PermissionLevel = permissionlevel
         end
 
         def deserialize(params)
@@ -4987,6 +4981,7 @@ module TencentCloud
               @Tags << tag_tmp
             end
           end
+          @PermissionLevel = params['PermissionLevel']
         end
       end
 

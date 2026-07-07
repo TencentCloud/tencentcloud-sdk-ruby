@@ -163,6 +163,33 @@ module TencentCloud
         end
       end
 
+      # CreateApiKey请求参数结构体
+      class CreateApiKeyRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # CreateApiKey返回参数结构体
+      class CreateApiKeyResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 批量创建成功项
       class CreateApiKeysResultItem < TencentCloud::Common::AbstractModel
         # @param ApiKeyId: APIKey ID。
@@ -419,6 +446,33 @@ module TencentCloud
 
         def deserialize(params)
           @BigOrderId = params['BigOrderId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteApiKey请求参数结构体
+      class DeleteApiKeyRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DeleteApiKey返回参数结构体
+      class DeleteApiKeyResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -1900,6 +1954,60 @@ module TencentCloud
           @ContextLength = params['ContextLength']
           @Concurrency = params['Concurrency']
           @InputDescription = params['InputDescription']
+        end
+      end
+
+      # ModifyApiKeyInfo请求参数结构体
+      class ModifyApiKeyInfoRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # ModifyApiKeyInfo返回参数结构体
+      class ModifyApiKeyInfoResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyApiKeyStatus请求参数结构体
+      class ModifyApiKeyStatusRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # ModifyApiKeyStatus返回参数结构体
+      class ModifyApiKeyStatusResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 

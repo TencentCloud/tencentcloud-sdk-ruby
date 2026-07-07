@@ -58,31 +58,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 腾讯翻译为合作伙伴提供文本翻译、文档翻译、交互翻译、AI同传等多种机器翻译服务，具有toB多行业解决方案。作为WMT世界机器翻译大赛冠军，翻译准确度值得信赖，其中，交互翻译能力是业界领先技术；腾讯同传是AI同传业界标杆。<br />
-        # 提示：对于一般开发者，我们建议优先使用SDK接入简化开发。SDK使用介绍请直接查看 5. 开发者资源 部分。
-
-        # @param request: Request instance for TextTranslate.
-        # @type request: :class:`Tencentcloud::tmt::V20180321::TextTranslateRequest`
-        # @rtype: :class:`Tencentcloud::tmt::V20180321::TextTranslateResponse`
-        def TextTranslate(request)
-          body = send_request('TextTranslate', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = TextTranslateResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
 
       end
     end

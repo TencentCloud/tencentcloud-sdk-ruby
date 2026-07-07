@@ -2940,9 +2940,9 @@ module TencentCloud
 
       # DeleteGroupsSTD请求参数结构体
       class DeleteGroupsSTDRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 集群名称
+        # @param InstanceId: <p>集群名称</p>
         # @type InstanceId: String
-        # @param GroupNames: 用户组名称数组
+        # @param GroupNames: <p>用户组名称数组</p>
         # @type GroupNames: Array
 
         attr_accessor :InstanceId, :GroupNames
@@ -2960,15 +2960,18 @@ module TencentCloud
 
       # DeleteGroupsSTD返回参数结构体
       class DeleteGroupsSTDResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 删除返回结果
+        # @param Data: <p>删除返回结果</p>
         # @type Data: Array
+        # @param FlowId: <p>流程id</p>
+        # @type FlowId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Data, :RequestId
+        attr_accessor :Data, :FlowId, :RequestId
 
-        def initialize(data=nil, requestid=nil)
+        def initialize(data=nil, flowid=nil, requestid=nil)
           @Data = data
+          @FlowId = flowid
           @RequestId = requestid
         end
 
@@ -2981,6 +2984,7 @@ module TencentCloud
               @Data << resultitem_tmp
             end
           end
+          @FlowId = params['FlowId']
           @RequestId = params['RequestId']
         end
       end
@@ -3035,17 +3039,17 @@ module TencentCloud
 
       # DeleteUserManagerUserList请求参数结构体
       class DeleteUserManagerUserListRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 集群实例ID
+        # @param InstanceId: <p>集群实例ID</p>
         # @type InstanceId: String
-        # @param UserNameList: 集群用户名列表
+        # @param UserNameList: <p>集群用户名列表</p>
         # @type UserNameList: Array
-        # @param TkeClusterId: tke/eks集群id，容器集群传
+        # @param TkeClusterId: <p>tke/eks集群id，容器集群传</p>
         # @type TkeClusterId: String
-        # @param DisplayStrategy: 默认空，容器版传"native"
+        # @param DisplayStrategy: <p>默认空，容器版传&quot;native&quot;</p>
         # @type DisplayStrategy: String
-        # @param UserGroupList: 用户组
+        # @param UserGroupList: <p>用户组</p>
         # @type UserGroupList: Array
-        # @param DeleteHomeDir: 是否删除家目录，只针对cvm集群
+        # @param DeleteHomeDir: <p>是否删除家目录，只针对cvm集群</p>
         # @type DeleteHomeDir: Boolean
 
         attr_accessor :InstanceId, :UserNameList, :TkeClusterId, :DisplayStrategy, :UserGroupList, :DeleteHomeDir
@@ -3078,16 +3082,20 @@ module TencentCloud
 
       # DeleteUserManagerUserList返回参数结构体
       class DeleteUserManagerUserListResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: <p>流程id</p>
+        # @type FlowId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :FlowId, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @FlowId = params['FlowId']
           @RequestId = params['RequestId']
         end
       end
@@ -11248,15 +11256,15 @@ module TencentCloud
 
       # ModifyUserGroup请求参数结构体
       class ModifyUserGroupRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 集群字符串ID
+        # @param InstanceId: <p>集群字符串ID</p>
         # @type InstanceId: String
-        # @param Users: 用户信息列表
+        # @param Users: <p>用户信息列表</p>
         # @type Users: Array
-        # @param UserGroup: 用户主组，cvm集群为必填参数，tke集群选填
+        # @param UserGroup: <p>用户主组，cvm集群为必填参数，tke集群选填</p>
         # @type UserGroup: String
-        # @param Groups: 用户副组
+        # @param Groups: <p>用户副组</p>
         # @type Groups: Array
-        # @param Remark: 备注
+        # @param Remark: <p>备注</p>
         # @type Remark: String
 
         attr_accessor :InstanceId, :Users, :UserGroup, :Groups, :Remark
@@ -11280,29 +11288,33 @@ module TencentCloud
 
       # ModifyUserGroup返回参数结构体
       class ModifyUserGroupResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: <p>流程id</p>
+        # @type FlowId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :FlowId, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @FlowId = params['FlowId']
           @RequestId = params['RequestId']
         end
       end
 
       # ModifyUserManagerPwd请求参数结构体
       class ModifyUserManagerPwdRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 集群实例ID
+        # @param InstanceId: <p>集群实例ID</p>
         # @type InstanceId: String
-        # @param UserName: 用户名
+        # @param UserName: <p>用户名</p>
         # @type UserName: String
-        # @param PassWord: 密码
+        # @param PassWord: <p>密码</p>
         # @type PassWord: String
-        # @param SyncPwd: 是否同步密码
+        # @param SyncPwd: <p>是否同步密码</p>
         # @type SyncPwd: Boolean
 
         attr_accessor :InstanceId, :UserName, :PassWord, :SyncPwd
@@ -11324,38 +11336,35 @@ module TencentCloud
 
       # ModifyUserManagerPwd返回参数结构体
       class ModifyUserManagerPwdResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: <p>流程id</p>
+        # @type FlowId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :FlowId, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @FlowId = params['FlowId']
           @RequestId = params['RequestId']
         end
       end
 
       # ModifyUsersOfGroupSTD请求参数结构体
       class ModifyUsersOfGroupSTDRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 集群名称
+        # @param InstanceId: <p>集群名称</p>
         # @type InstanceId: String
-        # @param Group: 用户组名
+        # @param Group: <p>用户组名</p>
         # @type Group: String
-        # @param Users: 用户列表
+        # @param Users: <p>用户列表</p>
         # @type Users: Array
-        # @param Description: 用户组描述
+        # @param Description: <p>用户组描述</p>
         # @type Description: String
-        # @param OperateAction: 枚举类, ADD, DELETE, SYNC
-
-
-        # 枚举类说明:
-        # - ADD: 新增的批量用户, 多次新增相同的用户不会报错
-        # - DELETE: 从用户组里删除的批量用户, 删除不存在的用户不会报错
-        # - SYNC: 用于同步整个用户组, 当列表为空时代表清空整个用户组
-        # 默认为SYNC
+        # @param OperateAction: <p>枚举类, ADD, DELETE, SYNC</p><p>枚举类说明:</p><ul><li>ADD: 新增的批量用户, 多次新增相同的用户不会报错</li><li>DELETE: 从用户组里删除的批量用户, 删除不存在的用户不会报错</li><li>SYNC: 用于同步整个用户组, 当列表为空时代表清空整个用户组<br>默认为SYNC</li></ul>
         # @type OperateAction: String
 
         attr_accessor :InstanceId, :Group, :Users, :Description, :OperateAction
@@ -11379,20 +11388,24 @@ module TencentCloud
 
       # ModifyUsersOfGroupSTD返回参数结构体
       class ModifyUsersOfGroupSTDResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 是否修改成功
+        # @param Data: <p>是否修改成功</p>
         # @type Data: Boolean
+        # @param FlowId: <p>流程id</p>
+        # @type FlowId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Data, :RequestId
+        attr_accessor :Data, :FlowId, :RequestId
 
-        def initialize(data=nil, requestid=nil)
+        def initialize(data=nil, flowid=nil, requestid=nil)
           @Data = data
+          @FlowId = flowid
           @RequestId = requestid
         end
 
         def deserialize(params)
           @Data = params['Data']
+          @FlowId = params['FlowId']
           @RequestId = params['RequestId']
         end
       end

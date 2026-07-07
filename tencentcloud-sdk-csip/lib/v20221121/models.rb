@@ -5763,6 +5763,53 @@ module TencentCloud
         end
       end
 
+      # CreateDspmAssetIdentifyInfoExportJob请求参数结构体
+      class CreateDspmAssetIdentifyInfoExportJobRequest < TencentCloud::Common::AbstractModel
+        # @param AssetId: <p>资产实例id</p>
+        # @type AssetId: String
+        # @param MemberId: <p>集团账号的成员id</p>
+        # @type MemberId: Array
+        # @param Filter: <p>过滤器</p>
+        # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
+
+        attr_accessor :AssetId, :MemberId, :Filter
+
+        def initialize(assetid=nil, memberid=nil, filter=nil)
+          @AssetId = assetid
+          @MemberId = memberid
+          @Filter = filter
+        end
+
+        def deserialize(params)
+          @AssetId = params['AssetId']
+          @MemberId = params['MemberId']
+          unless params['Filter'].nil?
+            @Filter = Filter.new
+            @Filter.deserialize(params['Filter'])
+          end
+        end
+      end
+
+      # CreateDspmAssetIdentifyInfoExportJob返回参数结构体
+      class CreateDspmAssetIdentifyInfoExportJobResponse < TencentCloud::Common::AbstractModel
+        # @param JobID: <p>任务ID</p>
+        # @type JobID: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :JobID, :RequestId
+
+        def initialize(jobid=nil, requestid=nil)
+          @JobID = jobid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @JobID = params['JobID']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateDspmAssetsExportJob请求参数结构体
       class CreateDspmAssetsExportJobRequest < TencentCloud::Common::AbstractModel
         # @param MemberId: 集团账号的成员id
@@ -5958,6 +6005,241 @@ module TencentCloud
         end
       end
 
+      # CreateDspmIdentifyCategory请求参数结构体
+      class CreateDspmIdentifyCategoryRequest < TencentCloud::Common::AbstractModel
+        # @param Name: <p>分类名称</p>
+        # @type Name: String
+        # @param MemberId: <p>集团账号的成员id</p>
+        # @type MemberId: Array
+
+        attr_accessor :Name, :MemberId
+
+        def initialize(name=nil, memberid=nil)
+          @Name = name
+          @MemberId = memberid
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @MemberId = params['MemberId']
+        end
+      end
+
+      # CreateDspmIdentifyCategory返回参数结构体
+      class CreateDspmIdentifyCategoryResponse < TencentCloud::Common::AbstractModel
+        # @param Id: <p>分类ID</p>
+        # @type Id: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Id, :RequestId
+
+        def initialize(id=nil, requestid=nil)
+          @Id = id
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateDspmIdentifyComplianceCategoryRelation请求参数结构体
+      class CreateDspmIdentifyComplianceCategoryRelationRequest < TencentCloud::Common::AbstractModel
+        # @param ComplianceId: <p>识别模板ID</p>
+        # @type ComplianceId: Integer
+        # @param CategoryId: <p>分类ID</p>
+        # @type CategoryId: Integer
+        # @param ParentCategoryId: <p>父分类ID</p>
+        # @type ParentCategoryId: Integer
+        # @param MemberId: <p>集团账号的成员id</p>
+        # @type MemberId: Array
+
+        attr_accessor :ComplianceId, :CategoryId, :ParentCategoryId, :MemberId
+
+        def initialize(complianceid=nil, categoryid=nil, parentcategoryid=nil, memberid=nil)
+          @ComplianceId = complianceid
+          @CategoryId = categoryid
+          @ParentCategoryId = parentcategoryid
+          @MemberId = memberid
+        end
+
+        def deserialize(params)
+          @ComplianceId = params['ComplianceId']
+          @CategoryId = params['CategoryId']
+          @ParentCategoryId = params['ParentCategoryId']
+          @MemberId = params['MemberId']
+        end
+      end
+
+      # CreateDspmIdentifyComplianceCategoryRelation返回参数结构体
+      class CreateDspmIdentifyComplianceCategoryRelationResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateDspmIdentifyComplianceGroupCopy请求参数结构体
+      class CreateDspmIdentifyComplianceGroupCopyRequest < TencentCloud::Common::AbstractModel
+        # @param FromId: <p>来源模板ID</p>
+        # @type FromId: Integer
+        # @param MemberId: <p>集团账号的成员id</p>
+        # @type MemberId: Array
+        # @param Name: <p>模板名称</p>
+        # @type Name: String
+        # @param Description: <p>模板描述</p>
+        # @type Description: String
+
+        attr_accessor :FromId, :MemberId, :Name, :Description
+
+        def initialize(fromid=nil, memberid=nil, name=nil, description=nil)
+          @FromId = fromid
+          @MemberId = memberid
+          @Name = name
+          @Description = description
+        end
+
+        def deserialize(params)
+          @FromId = params['FromId']
+          @MemberId = params['MemberId']
+          @Name = params['Name']
+          @Description = params['Description']
+        end
+      end
+
+      # CreateDspmIdentifyComplianceGroupCopy返回参数结构体
+      class CreateDspmIdentifyComplianceGroupCopyResponse < TencentCloud::Common::AbstractModel
+        # @param Id: <p>模板ID</p>
+        # @type Id: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Id, :RequestId
+
+        def initialize(id=nil, requestid=nil)
+          @Id = id
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateDspmIdentifyComplianceGroup请求参数结构体
+      class CreateDspmIdentifyComplianceGroupRequest < TencentCloud::Common::AbstractModel
+        # @param Name: <p>级别名称</p>
+        # @type Name: String
+        # @param MemberId: <p>集团账号的成员id</p>
+        # @type MemberId: Array
+        # @param Description: <p>描述</p>
+        # @type Description: String
+        # @param LevelGroupId: <p>级别组ID</p>
+        # @type LevelGroupId: Integer
+        # @param Status: <p>状态</p><p>枚举值：</p><ul><li>0： 不启用</li><li>1： 启用</li></ul>
+        # @type Status: Integer
+
+        attr_accessor :Name, :MemberId, :Description, :LevelGroupId, :Status
+
+        def initialize(name=nil, memberid=nil, description=nil, levelgroupid=nil, status=nil)
+          @Name = name
+          @MemberId = memberid
+          @Description = description
+          @LevelGroupId = levelgroupid
+          @Status = status
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @MemberId = params['MemberId']
+          @Description = params['Description']
+          @LevelGroupId = params['LevelGroupId']
+          @Status = params['Status']
+        end
+      end
+
+      # CreateDspmIdentifyComplianceGroup返回参数结构体
+      class CreateDspmIdentifyComplianceGroupResponse < TencentCloud::Common::AbstractModel
+        # @param Id: <p>识别模板ID</p>
+        # @type Id: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Id, :RequestId
+
+        def initialize(id=nil, requestid=nil)
+          @Id = id
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateDspmIdentifyComplianceRuleRelation请求参数结构体
+      class CreateDspmIdentifyComplianceRuleRelationRequest < TencentCloud::Common::AbstractModel
+        # @param ComplianceId: <p>识别模板ID</p>
+        # @type ComplianceId: Integer
+        # @param CategoryId: <p>分类ID</p>
+        # @type CategoryId: Integer
+        # @param Rules: <p>无</p>
+        # @type Rules: Array
+        # @param MemberId: <p>集团账号的成员id</p>
+        # @type MemberId: Array
+
+        attr_accessor :ComplianceId, :CategoryId, :Rules, :MemberId
+
+        def initialize(complianceid=nil, categoryid=nil, rules=nil, memberid=nil)
+          @ComplianceId = complianceid
+          @CategoryId = categoryid
+          @Rules = rules
+          @MemberId = memberid
+        end
+
+        def deserialize(params)
+          @ComplianceId = params['ComplianceId']
+          @CategoryId = params['CategoryId']
+          unless params['Rules'].nil?
+            @Rules = []
+            params['Rules'].each do |i|
+              dspmidentifycategoryrulerelateitem_tmp = DspmIdentifyCategoryRuleRelateItem.new
+              dspmidentifycategoryrulerelateitem_tmp.deserialize(i)
+              @Rules << dspmidentifycategoryrulerelateitem_tmp
+            end
+          end
+          @MemberId = params['MemberId']
+        end
+      end
+
+      # CreateDspmIdentifyComplianceRuleRelation返回参数结构体
+      class CreateDspmIdentifyComplianceRuleRelationResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateDspmIdentifyInfoListExportJob请求参数结构体
       class CreateDspmIdentifyInfoListExportJobRequest < TencentCloud::Common::AbstractModel
         # @param MemberId: 集团账号的成员id
@@ -5997,6 +6279,117 @@ module TencentCloud
 
         def deserialize(params)
           @JobID = params['JobID']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateDspmIdentifyLevelGroup请求参数结构体
+      class CreateDspmIdentifyLevelGroupRequest < TencentCloud::Common::AbstractModel
+        # @param Name: <p>分级组名称</p>
+        # @type Name: String
+        # @param MemberId: <p>集团账号的成员id</p>
+        # @type MemberId: Array
+        # @param Description: <p>描述</p>
+        # @type Description: String
+        # @param LevelItems: <p>无</p>
+        # @type LevelItems: Array
+
+        attr_accessor :Name, :MemberId, :Description, :LevelItems
+
+        def initialize(name=nil, memberid=nil, description=nil, levelitems=nil)
+          @Name = name
+          @MemberId = memberid
+          @Description = description
+          @LevelItems = levelitems
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @MemberId = params['MemberId']
+          @Description = params['Description']
+          unless params['LevelItems'].nil?
+            @LevelItems = []
+            params['LevelItems'].each do |i|
+              dspmaddidentifylevelitem_tmp = DspmAddIdentifyLevelItem.new
+              dspmaddidentifylevelitem_tmp.deserialize(i)
+              @LevelItems << dspmaddidentifylevelitem_tmp
+            end
+          end
+        end
+      end
+
+      # CreateDspmIdentifyLevelGroup返回参数结构体
+      class CreateDspmIdentifyLevelGroupResponse < TencentCloud::Common::AbstractModel
+        # @param Id: <p>分级组ID</p>
+        # @type Id: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Id, :RequestId
+
+        def initialize(id=nil, requestid=nil)
+          @Id = id
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateDspmIdentifyRule请求参数结构体
+      class CreateDspmIdentifyRuleRequest < TencentCloud::Common::AbstractModel
+        # @param Name: <p>数据项名称</p>
+        # @type Name: String
+        # @param MemberId: <p>集团账号的成员id</p>
+        # @type MemberId: Array
+        # @param Description: <p>数据项描述</p>
+        # @type Description: String
+        # @param Status: <p>数据项启用状态</p><p>枚举值：</p><ul><li>0： 未启用</li><li>1： 启用</li></ul>
+        # @type Status: Integer
+        # @param StructuredRule: <p>结构化规则</p>
+        # @type StructuredRule: String
+        # @param UnStructuredRule: <p>非结构化规则</p>
+        # @type UnStructuredRule: String
+
+        attr_accessor :Name, :MemberId, :Description, :Status, :StructuredRule, :UnStructuredRule
+
+        def initialize(name=nil, memberid=nil, description=nil, status=nil, structuredrule=nil, unstructuredrule=nil)
+          @Name = name
+          @MemberId = memberid
+          @Description = description
+          @Status = status
+          @StructuredRule = structuredrule
+          @UnStructuredRule = unstructuredrule
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @MemberId = params['MemberId']
+          @Description = params['Description']
+          @Status = params['Status']
+          @StructuredRule = params['StructuredRule']
+          @UnStructuredRule = params['UnStructuredRule']
+        end
+      end
+
+      # CreateDspmIdentifyRule返回参数结构体
+      class CreateDspmIdentifyRuleResponse < TencentCloud::Common::AbstractModel
+        # @param Id: <p>数据项id</p>
+        # @type Id: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Id, :RequestId
+
+        def initialize(id=nil, requestid=nil)
+          @Id = id
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
           @RequestId = params['RequestId']
         end
       end
@@ -7071,6 +7464,234 @@ module TencentCloud
 
       # DeleteDspmExportTask返回参数结构体
       class DeleteDspmExportTaskResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteDspmIdentifyCategory请求参数结构体
+      class DeleteDspmIdentifyCategoryRequest < TencentCloud::Common::AbstractModel
+        # @param Ids: <p>分类ID集合</p>
+        # @type Ids: Array
+        # @param MemberId: <p>集团账号的成员id</p>
+        # @type MemberId: Array
+
+        attr_accessor :Ids, :MemberId
+
+        def initialize(ids=nil, memberid=nil)
+          @Ids = ids
+          @MemberId = memberid
+        end
+
+        def deserialize(params)
+          @Ids = params['Ids']
+          @MemberId = params['MemberId']
+        end
+      end
+
+      # DeleteDspmIdentifyCategory返回参数结构体
+      class DeleteDspmIdentifyCategoryResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteDspmIdentifyComplianceCategoryRelation请求参数结构体
+      class DeleteDspmIdentifyComplianceCategoryRelationRequest < TencentCloud::Common::AbstractModel
+        # @param ComplianceId: <p>识别模板ID</p>
+        # @type ComplianceId: Integer
+        # @param CategoryId: <p>分类ID</p>
+        # @type CategoryId: Integer
+        # @param MemberId: <p>集团账号的成员id</p>
+        # @type MemberId: Array
+
+        attr_accessor :ComplianceId, :CategoryId, :MemberId
+
+        def initialize(complianceid=nil, categoryid=nil, memberid=nil)
+          @ComplianceId = complianceid
+          @CategoryId = categoryid
+          @MemberId = memberid
+        end
+
+        def deserialize(params)
+          @ComplianceId = params['ComplianceId']
+          @CategoryId = params['CategoryId']
+          @MemberId = params['MemberId']
+        end
+      end
+
+      # DeleteDspmIdentifyComplianceCategoryRelation返回参数结构体
+      class DeleteDspmIdentifyComplianceCategoryRelationResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteDspmIdentifyComplianceGroup请求参数结构体
+      class DeleteDspmIdentifyComplianceGroupRequest < TencentCloud::Common::AbstractModel
+        # @param Ids: <p>识别模板ID集合</p>
+        # @type Ids: Array
+        # @param MemberId: <p>集团账号的成员id</p>
+        # @type MemberId: Array
+
+        attr_accessor :Ids, :MemberId
+
+        def initialize(ids=nil, memberid=nil)
+          @Ids = ids
+          @MemberId = memberid
+        end
+
+        def deserialize(params)
+          @Ids = params['Ids']
+          @MemberId = params['MemberId']
+        end
+      end
+
+      # DeleteDspmIdentifyComplianceGroup返回参数结构体
+      class DeleteDspmIdentifyComplianceGroupResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteDspmIdentifyComplianceRuleRelation请求参数结构体
+      class DeleteDspmIdentifyComplianceRuleRelationRequest < TencentCloud::Common::AbstractModel
+        # @param ComplianceId: <p>识别模板ID</p>
+        # @type ComplianceId: Integer
+        # @param CategoryId: <p>分类ID</p>
+        # @type CategoryId: Integer
+        # @param RuleIds: <p>数据项ID集合</p>
+        # @type RuleIds: Array
+        # @param MemberId: <p>集团账号的成员id</p>
+        # @type MemberId: Array
+
+        attr_accessor :ComplianceId, :CategoryId, :RuleIds, :MemberId
+
+        def initialize(complianceid=nil, categoryid=nil, ruleids=nil, memberid=nil)
+          @ComplianceId = complianceid
+          @CategoryId = categoryid
+          @RuleIds = ruleids
+          @MemberId = memberid
+        end
+
+        def deserialize(params)
+          @ComplianceId = params['ComplianceId']
+          @CategoryId = params['CategoryId']
+          @RuleIds = params['RuleIds']
+          @MemberId = params['MemberId']
+        end
+      end
+
+      # DeleteDspmIdentifyComplianceRuleRelation返回参数结构体
+      class DeleteDspmIdentifyComplianceRuleRelationResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteDspmIdentifyLevelGroup请求参数结构体
+      class DeleteDspmIdentifyLevelGroupRequest < TencentCloud::Common::AbstractModel
+        # @param Ids: <p>级别组id</p>
+        # @type Ids: Array
+        # @param MemberId: <p>集团账号的成员id</p>
+        # @type MemberId: Array
+
+        attr_accessor :Ids, :MemberId
+
+        def initialize(ids=nil, memberid=nil)
+          @Ids = ids
+          @MemberId = memberid
+        end
+
+        def deserialize(params)
+          @Ids = params['Ids']
+          @MemberId = params['MemberId']
+        end
+      end
+
+      # DeleteDspmIdentifyLevelGroup返回参数结构体
+      class DeleteDspmIdentifyLevelGroupResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteDspmIdentifyRule请求参数结构体
+      class DeleteDspmIdentifyRuleRequest < TencentCloud::Common::AbstractModel
+        # @param Ids: <p>数据项id</p>
+        # @type Ids: Array
+        # @param MemberId: <p>集团账号的成员id</p>
+        # @type MemberId: Array
+
+        attr_accessor :Ids, :MemberId
+
+        def initialize(ids=nil, memberid=nil)
+          @Ids = ids
+          @MemberId = memberid
+        end
+
+        def deserialize(params)
+          @Ids = params['Ids']
+          @MemberId = params['MemberId']
+        end
+      end
+
+      # DeleteDspmIdentifyRule返回参数结构体
+      class DeleteDspmIdentifyRuleResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -10606,6 +11227,68 @@ module TencentCloud
         end
       end
 
+      # DescribeCosObjectScanTask请求参数结构体
+      class DescribeCosObjectScanTaskRequest < TencentCloud::Common::AbstractModel
+        # @param TaskType: <p>1: 敏感数据识别 2:恶意文件扫描</p>
+        # @type TaskType: Integer
+        # @param MemberId: 集团账号的成员id
+        # @type MemberId: Array
+        # @param BucketSet: <p>存储桶列表</p>
+        # @type BucketSet: Array
+
+        attr_accessor :TaskType, :MemberId, :BucketSet
+
+        def initialize(tasktype=nil, memberid=nil, bucketset=nil)
+          @TaskType = tasktype
+          @MemberId = memberid
+          @BucketSet = bucketset
+        end
+
+        def deserialize(params)
+          @TaskType = params['TaskType']
+          @MemberId = params['MemberId']
+          @BucketSet = params['BucketSet']
+        end
+      end
+
+      # DescribeCosObjectScanTask返回参数结构体
+      class DescribeCosObjectScanTaskResponse < TencentCloud::Common::AbstractModel
+        # @param BucketTaskIdSet: <p>存储桶任务详情</p>
+        # @type BucketTaskIdSet: Array
+        # @param MemberTaskIdSet: <p>appid维度任务列表</p>
+        # @type MemberTaskIdSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :BucketTaskIdSet, :MemberTaskIdSet, :RequestId
+
+        def initialize(buckettaskidset=nil, membertaskidset=nil, requestid=nil)
+          @BucketTaskIdSet = buckettaskidset
+          @MemberTaskIdSet = membertaskidset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['BucketTaskIdSet'].nil?
+            @BucketTaskIdSet = []
+            params['BucketTaskIdSet'].each do |i|
+              cosbuckettaskinfo_tmp = CosBucketTaskInfo.new
+              cosbuckettaskinfo_tmp.deserialize(i)
+              @BucketTaskIdSet << cosbuckettaskinfo_tmp
+            end
+          end
+          unless params['MemberTaskIdSet'].nil?
+            @MemberTaskIdSet = []
+            params['MemberTaskIdSet'].each do |i|
+              cosassetsynctaskinfo_tmp = CosAssetSyncTaskInfo.new
+              cosassetsynctaskinfo_tmp.deserialize(i)
+              @MemberTaskIdSet << cosassetsynctaskinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeCosOverview请求参数结构体
       class DescribeCosOverviewRequest < TencentCloud::Common::AbstractModel
         # @param MemberId: 集团账号的成员id
@@ -12160,6 +12843,120 @@ module TencentCloud
         end
       end
 
+      # DescribeDspmAssetFieldSamples请求参数结构体
+      class DescribeDspmAssetFieldSamplesRequest < TencentCloud::Common::AbstractModel
+        # @param AssetId: <p>资产实例ID</p>
+        # @type AssetId: String
+        # @param DbName: <p>数据库名</p>
+        # @type DbName: String
+        # @param TableName: <p>表名</p>
+        # @type TableName: String
+        # @param FieldName: <p>字段名</p>
+        # @type FieldName: String
+        # @param MemberId: <p>集团账号的成员id</p>
+        # @type MemberId: Array
+        # @param SchemaName: <p>schema名</p>
+        # @type SchemaName: String
+
+        attr_accessor :AssetId, :DbName, :TableName, :FieldName, :MemberId, :SchemaName
+
+        def initialize(assetid=nil, dbname=nil, tablename=nil, fieldname=nil, memberid=nil, schemaname=nil)
+          @AssetId = assetid
+          @DbName = dbname
+          @TableName = tablename
+          @FieldName = fieldname
+          @MemberId = memberid
+          @SchemaName = schemaname
+        end
+
+        def deserialize(params)
+          @AssetId = params['AssetId']
+          @DbName = params['DbName']
+          @TableName = params['TableName']
+          @FieldName = params['FieldName']
+          @MemberId = params['MemberId']
+          @SchemaName = params['SchemaName']
+        end
+      end
+
+      # DescribeDspmAssetFieldSamples返回参数结构体
+      class DescribeDspmAssetFieldSamplesResponse < TencentCloud::Common::AbstractModel
+        # @param DataSet: <p>无</p>
+        # @type DataSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DataSet, :RequestId
+
+        def initialize(dataset=nil, requestid=nil)
+          @DataSet = dataset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @DataSet = params['DataSet']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDspmAssetIdentifyInfoList请求参数结构体
+      class DescribeDspmAssetIdentifyInfoListRequest < TencentCloud::Common::AbstractModel
+        # @param MemberId: <p>集团账号的成员id</p>
+        # @type MemberId: Array
+        # @param Filter: <p>筛选项</p>
+        # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
+        # @param ComplianceId: <p>识别模板id</p>
+        # @type ComplianceId: Integer
+
+        attr_accessor :MemberId, :Filter, :ComplianceId
+
+        def initialize(memberid=nil, filter=nil, complianceid=nil)
+          @MemberId = memberid
+          @Filter = filter
+          @ComplianceId = complianceid
+        end
+
+        def deserialize(params)
+          @MemberId = params['MemberId']
+          unless params['Filter'].nil?
+            @Filter = Filter.new
+            @Filter.deserialize(params['Filter'])
+          end
+          @ComplianceId = params['ComplianceId']
+        end
+      end
+
+      # DescribeDspmAssetIdentifyInfoList返回参数结构体
+      class DescribeDspmAssetIdentifyInfoListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: <p>总数</p>
+        # @type TotalCount: Integer
+        # @param DataSet: <p>结果集</p>
+        # @type DataSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :DataSet, :RequestId
+
+        def initialize(totalcount=nil, dataset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @DataSet = dataset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['DataSet'].nil?
+            @DataSet = []
+            params['DataSet'].each do |i|
+              dspmassetidentifyinfo_tmp = DspmAssetIdentifyInfo.new
+              dspmassetidentifyinfo_tmp.deserialize(i)
+              @DataSet << dspmassetidentifyinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDspmAssetIds请求参数结构体
       class DescribeDspmAssetIdsRequest < TencentCloud::Common::AbstractModel
         # @param MemberId: 集团账号的成员id
@@ -12744,6 +13541,314 @@ module TencentCloud
         end
       end
 
+      # DescribeDspmIdentifyCategoryList请求参数结构体
+      class DescribeDspmIdentifyCategoryListRequest < TencentCloud::Common::AbstractModel
+        # @param MemberId: <p>集团账号的成员id</p>
+        # @type MemberId: Array
+        # @param Filter: <p>过滤条件</p>
+        # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
+
+        attr_accessor :MemberId, :Filter
+
+        def initialize(memberid=nil, filter=nil)
+          @MemberId = memberid
+          @Filter = filter
+        end
+
+        def deserialize(params)
+          @MemberId = params['MemberId']
+          unless params['Filter'].nil?
+            @Filter = Filter.new
+            @Filter.deserialize(params['Filter'])
+          end
+        end
+      end
+
+      # DescribeDspmIdentifyCategoryList返回参数结构体
+      class DescribeDspmIdentifyCategoryListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: <p>总数</p><p>单位：数量</p>
+        # @type TotalCount: Integer
+        # @param DataSet: <p>无</p>
+        # @type DataSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :DataSet, :RequestId
+
+        def initialize(totalcount=nil, dataset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @DataSet = dataset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['DataSet'].nil?
+            @DataSet = []
+            params['DataSet'].each do |i|
+              dspmidentifycategoryitem_tmp = DspmIdentifyCategoryItem.new
+              dspmidentifycategoryitem_tmp.deserialize(i)
+              @DataSet << dspmidentifycategoryitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDspmIdentifyComplianceCategoryRuleList请求参数结构体
+      class DescribeDspmIdentifyComplianceCategoryRuleListRequest < TencentCloud::Common::AbstractModel
+        # @param ComplianceId: <p>识别模板ID</p>
+        # @type ComplianceId: Integer
+        # @param CategoryId: <p>分类ID</p>
+        # @type CategoryId: Integer
+        # @param MemberId: <p>集团账号的成员id</p>
+        # @type MemberId: Array
+        # @param Filter: <p>过滤条件</p>
+        # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
+
+        attr_accessor :ComplianceId, :CategoryId, :MemberId, :Filter
+
+        def initialize(complianceid=nil, categoryid=nil, memberid=nil, filter=nil)
+          @ComplianceId = complianceid
+          @CategoryId = categoryid
+          @MemberId = memberid
+          @Filter = filter
+        end
+
+        def deserialize(params)
+          @ComplianceId = params['ComplianceId']
+          @CategoryId = params['CategoryId']
+          @MemberId = params['MemberId']
+          unless params['Filter'].nil?
+            @Filter = Filter.new
+            @Filter.deserialize(params['Filter'])
+          end
+        end
+      end
+
+      # DescribeDspmIdentifyComplianceCategoryRuleList返回参数结构体
+      class DescribeDspmIdentifyComplianceCategoryRuleListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: <p>总数</p><p>单位：数量</p>
+        # @type TotalCount: Integer
+        # @param DataSet: <p>无</p>
+        # @type DataSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :DataSet, :RequestId
+
+        def initialize(totalcount=nil, dataset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @DataSet = dataset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['DataSet'].nil?
+            @DataSet = []
+            params['DataSet'].each do |i|
+              dspmidentifycategoryrulerelatedetailitem_tmp = DspmIdentifyCategoryRuleRelateDetailItem.new
+              dspmidentifycategoryrulerelatedetailitem_tmp.deserialize(i)
+              @DataSet << dspmidentifycategoryrulerelatedetailitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDspmIdentifyComplianceGroupDetail请求参数结构体
+      class DescribeDspmIdentifyComplianceGroupDetailRequest < TencentCloud::Common::AbstractModel
+        # @param MemberId: <p>集团账号的成员id</p>
+        # @type MemberId: Array
+        # @param Id: <p>识别模板ID</p>
+        # @type Id: Integer
+
+        attr_accessor :MemberId, :Id
+
+        def initialize(memberid=nil, id=nil)
+          @MemberId = memberid
+          @Id = id
+        end
+
+        def deserialize(params)
+          @MemberId = params['MemberId']
+          @Id = params['Id']
+        end
+      end
+
+      # DescribeDspmIdentifyComplianceGroupDetail返回参数结构体
+      class DescribeDspmIdentifyComplianceGroupDetailResponse < TencentCloud::Common::AbstractModel
+        # @param Id: <p>识别模板ID</p>
+        # @type Id: Integer
+        # @param Name: <p>识别模板名称</p>
+        # @type Name: String
+        # @param Description: <p>描述</p>
+        # @type Description: String
+        # @param Type: <p>模板类型</p><p>枚举值：</p><ul><li>0： 内置</li><li>1： 自定义</li></ul>
+        # @type Type: Integer
+        # @param Status: <p>状态</p><p>枚举值：</p><ul><li>0： 未启用</li><li>1： 启用</li></ul>
+        # @type Status: Integer
+        # @param LevelGroupId: <p>关联级别组ID</p>
+        # @type LevelGroupId: Integer
+        # @param Detail: <p>无</p>
+        # @type Detail: Array
+        # @param LevelGroupName: <p>关联级别组名称</p>
+        # @type LevelGroupName: String
+        # @param CreateTime: <p>创建时间</p>
+        # @type CreateTime: String
+        # @param ModifyTime: <p>修改时间</p>
+        # @type ModifyTime: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Id, :Name, :Description, :Type, :Status, :LevelGroupId, :Detail, :LevelGroupName, :CreateTime, :ModifyTime, :RequestId
+
+        def initialize(id=nil, name=nil, description=nil, type=nil, status=nil, levelgroupid=nil, detail=nil, levelgroupname=nil, createtime=nil, modifytime=nil, requestid=nil)
+          @Id = id
+          @Name = name
+          @Description = description
+          @Type = type
+          @Status = status
+          @LevelGroupId = levelgroupid
+          @Detail = detail
+          @LevelGroupName = levelgroupname
+          @CreateTime = createtime
+          @ModifyTime = modifytime
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Name = params['Name']
+          @Description = params['Description']
+          @Type = params['Type']
+          @Status = params['Status']
+          @LevelGroupId = params['LevelGroupId']
+          unless params['Detail'].nil?
+            @Detail = []
+            params['Detail'].each do |i|
+              dspmidentifycompliancecategoryrelation_tmp = DspmIdentifyComplianceCategoryRelation.new
+              dspmidentifycompliancecategoryrelation_tmp.deserialize(i)
+              @Detail << dspmidentifycompliancecategoryrelation_tmp
+            end
+          end
+          @LevelGroupName = params['LevelGroupName']
+          @CreateTime = params['CreateTime']
+          @ModifyTime = params['ModifyTime']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDspmIdentifyComplianceGroupList请求参数结构体
+      class DescribeDspmIdentifyComplianceGroupListRequest < TencentCloud::Common::AbstractModel
+        # @param MemberId: <p>集团账号的成员id</p>
+        # @type MemberId: Array
+        # @param Filter: <p>过滤条件</p>
+        # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
+
+        attr_accessor :MemberId, :Filter
+
+        def initialize(memberid=nil, filter=nil)
+          @MemberId = memberid
+          @Filter = filter
+        end
+
+        def deserialize(params)
+          @MemberId = params['MemberId']
+          unless params['Filter'].nil?
+            @Filter = Filter.new
+            @Filter.deserialize(params['Filter'])
+          end
+        end
+      end
+
+      # DescribeDspmIdentifyComplianceGroupList返回参数结构体
+      class DescribeDspmIdentifyComplianceGroupListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: <p>总数</p><p>单位：数量</p>
+        # @type TotalCount: Integer
+        # @param DataSet: <p>无</p>
+        # @type DataSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :DataSet, :RequestId
+
+        def initialize(totalcount=nil, dataset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @DataSet = dataset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['DataSet'].nil?
+            @DataSet = []
+            params['DataSet'].each do |i|
+              dspmidentifycomplianceitem_tmp = DspmIdentifyComplianceItem.new
+              dspmidentifycomplianceitem_tmp.deserialize(i)
+              @DataSet << dspmidentifycomplianceitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDspmIdentifyDistributionStatistics请求参数结构体
+      class DescribeDspmIdentifyDistributionStatisticsRequest < TencentCloud::Common::AbstractModel
+        # @param StatType: <p>统计类型</p><p>枚举值：</p><ul><li>FieldTop5Asset： 识别字段Top5</li><li>FieldCategoryDistribution： 识别字段分类分布</li><li>FieldLevelDistribution： 识别字段级别分布</li><li>AssetDistribution： 识别资产分布</li></ul>
+        # @type StatType: String
+        # @param MemberId: <p>集团账号的成员id</p>
+        # @type MemberId: Array
+        # @param AssetType: <p>资产类型</p><p>枚举值：</p><ul><li>cdb： 云数据库MySQL</li><li>mariadb： 云数据库MariaDB</li></ul>
+        # @type AssetType: String
+        # @param ComplianceId: <p>识别模板id</p>
+        # @type ComplianceId: Integer
+
+        attr_accessor :StatType, :MemberId, :AssetType, :ComplianceId
+
+        def initialize(stattype=nil, memberid=nil, assettype=nil, complianceid=nil)
+          @StatType = stattype
+          @MemberId = memberid
+          @AssetType = assettype
+          @ComplianceId = complianceid
+        end
+
+        def deserialize(params)
+          @StatType = params['StatType']
+          @MemberId = params['MemberId']
+          @AssetType = params['AssetType']
+          @ComplianceId = params['ComplianceId']
+        end
+      end
+
+      # DescribeDspmIdentifyDistributionStatistics返回参数结构体
+      class DescribeDspmIdentifyDistributionStatisticsResponse < TencentCloud::Common::AbstractModel
+        # @param DataSet: <p>结果</p>
+        # @type DataSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DataSet, :RequestId
+
+        def initialize(dataset=nil, requestid=nil)
+          @DataSet = dataset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['DataSet'].nil?
+            @DataSet = []
+            params['DataSet'].each do |i|
+              dspmstatisticsitem_tmp = DspmStatisticsItem.new
+              dspmstatisticsitem_tmp.deserialize(i)
+              @DataSet << dspmstatisticsitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDspmIdentifyIdList请求参数结构体
       class DescribeDspmIdentifyIdListRequest < TencentCloud::Common::AbstractModel
         # @param Filter: 筛选项
@@ -12913,6 +14018,241 @@ module TencentCloud
           @ApproveHistoryCount = params['ApproveHistoryCount']
           @AssetCount = params['AssetCount']
           @UinAccountCount = params['UinAccountCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDspmIdentifyLevelGroupList请求参数结构体
+      class DescribeDspmIdentifyLevelGroupListRequest < TencentCloud::Common::AbstractModel
+        # @param MemberId: <p>集团账号的成员id</p>
+        # @type MemberId: Array
+        # @param Filter: <p>过滤条件</p>
+        # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
+
+        attr_accessor :MemberId, :Filter
+
+        def initialize(memberid=nil, filter=nil)
+          @MemberId = memberid
+          @Filter = filter
+        end
+
+        def deserialize(params)
+          @MemberId = params['MemberId']
+          unless params['Filter'].nil?
+            @Filter = Filter.new
+            @Filter.deserialize(params['Filter'])
+          end
+        end
+      end
+
+      # DescribeDspmIdentifyLevelGroupList返回参数结构体
+      class DescribeDspmIdentifyLevelGroupListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: <p>总数</p><p>单位：数量</p>
+        # @type TotalCount: Integer
+        # @param DataSet: <p>无</p>
+        # @type DataSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :DataSet, :RequestId
+
+        def initialize(totalcount=nil, dataset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @DataSet = dataset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['DataSet'].nil?
+            @DataSet = []
+            params['DataSet'].each do |i|
+              dspmidentifylevelgroupitem_tmp = DspmIdentifyLevelGroupItem.new
+              dspmidentifylevelgroupitem_tmp.deserialize(i)
+              @DataSet << dspmidentifylevelgroupitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDspmIdentifyRuleDetail请求参数结构体
+      class DescribeDspmIdentifyRuleDetailRequest < TencentCloud::Common::AbstractModel
+        # @param Id: <p>数据项id</p>
+        # @type Id: Integer
+        # @param MemberId: <p>集团账号的成员id</p>
+        # @type MemberId: Array
+
+        attr_accessor :Id, :MemberId
+
+        def initialize(id=nil, memberid=nil)
+          @Id = id
+          @MemberId = memberid
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @MemberId = params['MemberId']
+        end
+      end
+
+      # DescribeDspmIdentifyRuleDetail返回参数结构体
+      class DescribeDspmIdentifyRuleDetailResponse < TencentCloud::Common::AbstractModel
+        # @param Id: <p>数据项id</p>
+        # @type Id: Integer
+        # @param Name: <p>数据项名称</p>
+        # @type Name: String
+        # @param Description: <p>数据项描述</p>
+        # @type Description: String
+        # @param Status: <p>数据项是否启用</p><p>枚举值：</p><ul><li>0： 否</li><li>1： 是</li></ul><p>默认值：0</p>
+        # @type Status: Integer
+        # @param Type: <p>数据项类型</p><p>枚举值：</p><ul><li>0： 内置</li><li>1： 自定义</li></ul>
+        # @type Type: Integer
+        # @param StructuredRule: <p>结构化规则</p>
+        # @type StructuredRule: String
+        # @param UnStructuredRule: <p>非结构化规则</p>
+        # @type UnStructuredRule: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Id, :Name, :Description, :Status, :Type, :StructuredRule, :UnStructuredRule, :RequestId
+
+        def initialize(id=nil, name=nil, description=nil, status=nil, type=nil, structuredrule=nil, unstructuredrule=nil, requestid=nil)
+          @Id = id
+          @Name = name
+          @Description = description
+          @Status = status
+          @Type = type
+          @StructuredRule = structuredrule
+          @UnStructuredRule = unstructuredrule
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Name = params['Name']
+          @Description = params['Description']
+          @Status = params['Status']
+          @Type = params['Type']
+          @StructuredRule = params['StructuredRule']
+          @UnStructuredRule = params['UnStructuredRule']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDspmIdentifyRuleList请求参数结构体
+      class DescribeDspmIdentifyRuleListRequest < TencentCloud::Common::AbstractModel
+        # @param MemberId: <p>集团账号的成员id</p>
+        # @type MemberId: Array
+        # @param Filter: <p>筛选项</p>
+        # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
+
+        attr_accessor :MemberId, :Filter
+
+        def initialize(memberid=nil, filter=nil)
+          @MemberId = memberid
+          @Filter = filter
+        end
+
+        def deserialize(params)
+          @MemberId = params['MemberId']
+          unless params['Filter'].nil?
+            @Filter = Filter.new
+            @Filter.deserialize(params['Filter'])
+          end
+        end
+      end
+
+      # DescribeDspmIdentifyRuleList返回参数结构体
+      class DescribeDspmIdentifyRuleListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: <p>总数</p><p>单位：数量</p>
+        # @type TotalCount: Integer
+        # @param DataSet: <p>结果</p>
+        # @type DataSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :DataSet, :RequestId
+
+        def initialize(totalcount=nil, dataset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @DataSet = dataset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['DataSet'].nil?
+            @DataSet = []
+            params['DataSet'].each do |i|
+              dspmidentifyruleitem_tmp = DspmIdentifyRuleItem.new
+              dspmidentifyruleitem_tmp.deserialize(i)
+              @DataSet << dspmidentifyruleitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDspmIdentifyRuleTestResult请求参数结构体
+      class DescribeDspmIdentifyRuleTestResultRequest < TencentCloud::Common::AbstractModel
+        # @param RuleType: <p>规则类型</p><p>枚举值：</p><ul><li>structured： 结构化规则</li><li>unstructrued： 非结构化规则</li></ul>
+        # @type RuleType: String
+        # @param RuleContent: <p>规则内容</p>
+        # @type RuleContent: String
+        # @param RuleId: <p>数据项id</p>
+        # @type RuleId: Integer
+        # @param MemberId: <p>集团账号的成员id</p>
+        # @type MemberId: Array
+        # @param StructuredTestContent: <p>结构化测试内容</p>
+        # @type StructuredTestContent: Array
+        # @param UnStructuredTestContent: <p>非结构化测试内容</p>
+        # @type UnStructuredTestContent: String
+
+        attr_accessor :RuleType, :RuleContent, :RuleId, :MemberId, :StructuredTestContent, :UnStructuredTestContent
+
+        def initialize(ruletype=nil, rulecontent=nil, ruleid=nil, memberid=nil, structuredtestcontent=nil, unstructuredtestcontent=nil)
+          @RuleType = ruletype
+          @RuleContent = rulecontent
+          @RuleId = ruleid
+          @MemberId = memberid
+          @StructuredTestContent = structuredtestcontent
+          @UnStructuredTestContent = unstructuredtestcontent
+        end
+
+        def deserialize(params)
+          @RuleType = params['RuleType']
+          @RuleContent = params['RuleContent']
+          @RuleId = params['RuleId']
+          @MemberId = params['MemberId']
+          unless params['StructuredTestContent'].nil?
+            @StructuredTestContent = []
+            params['StructuredTestContent'].each do |i|
+              dspmidentifyrulestructuredtestitem_tmp = DspmIdentifyRuleStructuredTestItem.new
+              dspmidentifyrulestructuredtestitem_tmp.deserialize(i)
+              @StructuredTestContent << dspmidentifyrulestructuredtestitem_tmp
+            end
+          end
+          @UnStructuredTestContent = params['UnStructuredTestContent']
+        end
+      end
+
+      # DescribeDspmIdentifyRuleTestResult返回参数结构体
+      class DescribeDspmIdentifyRuleTestResultResponse < TencentCloud::Common::AbstractModel
+        # @param IsMatch: <p>是否匹配成功</p><p>枚举值：</p><ul><li>true： 匹配成功</li><li>false： 匹配失败</li></ul>
+        # @type IsMatch: Boolean
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :IsMatch, :RequestId
+
+        def initialize(ismatch=nil, requestid=nil)
+          @IsMatch = ismatch
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @IsMatch = params['IsMatch']
           @RequestId = params['RequestId']
         end
       end
@@ -19162,6 +20502,26 @@ module TencentCloud
         end
       end
 
+      # dspm数据识别级别信息
+      class DspmAddIdentifyLevelItem < TencentCloud::Common::AbstractModel
+        # @param LevelName: <p>级别名称</p>
+        # @type LevelName: String
+        # @param LevelScore: <p>级别敏感程度</p><p>单位：分数</p>
+        # @type LevelScore: Integer
+
+        attr_accessor :LevelName, :LevelScore
+
+        def initialize(levelname=nil, levelscore=nil)
+          @LevelName = levelname
+          @LevelScore = levelscore
+        end
+
+        def deserialize(params)
+          @LevelName = params['LevelName']
+          @LevelScore = params['LevelScore']
+        end
+      end
+
       # 申请单信息
       class DspmApplyOrder < TencentCloud::Common::AbstractModel
         # @param OrderId: 申请单id
@@ -19945,6 +21305,113 @@ module TencentCloud
         end
       end
 
+      # dspm资产数据识别统计信息
+      class DspmAssetIdentifyInfo < TencentCloud::Common::AbstractModel
+        # @param AssetId: <p>资产实例id</p>
+        # @type AssetId: String
+        # @param AssetName: <p>资产名称</p>
+        # @type AssetName: String
+        # @param AssetType: <p>资产类型</p><p>枚举值：</p><ul><li>cdb： MySQL</li><li>mariadb： MariaDB</li><li>mongodb： MongoDB</li></ul>
+        # @type AssetType: String
+        # @param DetectedDbCount: <p>已检出数据库数量</p>
+        # @type DetectedDbCount: Integer
+        # @param DetectedTableCount: <p>已检出表数量</p>
+        # @type DetectedTableCount: Integer
+        # @param RuleIds: <p>数据项id集合</p>
+        # @type RuleIds: Array
+        # @param RuleNames: <p>数据项名称集合</p>
+        # @type RuleNames: Array
+        # @param CategoryIds: <p>分类id集合</p>
+        # @type CategoryIds: Array
+        # @param CategoryNames: <p>分类名称集合</p>
+        # @type CategoryNames: Array
+        # @param LevelId: <p>最高级别ID</p>
+        # @type LevelId: Integer
+        # @param LevelName: <p>最高级别名称</p>
+        # @type LevelName: String
+        # @param LevelScore: <p>级别敏感程度</p>
+        # @type LevelScore: Integer
+        # @param DetectedTime: <p>检出时间</p>
+        # @type DetectedTime: String
+        # @param CategoryDetails: <p>分类详情</p>
+        # @type CategoryDetails: Array
+        # @param AppId: <p>APPID</p>
+        # @type AppId: Integer
+        # @param NickName: <p>账号名称</p>
+        # @type NickName: String
+        # @param Uin: <p>账号ID</p>
+        # @type Uin: String
+
+        attr_accessor :AssetId, :AssetName, :AssetType, :DetectedDbCount, :DetectedTableCount, :RuleIds, :RuleNames, :CategoryIds, :CategoryNames, :LevelId, :LevelName, :LevelScore, :DetectedTime, :CategoryDetails, :AppId, :NickName, :Uin
+
+        def initialize(assetid=nil, assetname=nil, assettype=nil, detecteddbcount=nil, detectedtablecount=nil, ruleids=nil, rulenames=nil, categoryids=nil, categorynames=nil, levelid=nil, levelname=nil, levelscore=nil, detectedtime=nil, categorydetails=nil, appid=nil, nickname=nil, uin=nil)
+          @AssetId = assetid
+          @AssetName = assetname
+          @AssetType = assettype
+          @DetectedDbCount = detecteddbcount
+          @DetectedTableCount = detectedtablecount
+          @RuleIds = ruleids
+          @RuleNames = rulenames
+          @CategoryIds = categoryids
+          @CategoryNames = categorynames
+          @LevelId = levelid
+          @LevelName = levelname
+          @LevelScore = levelscore
+          @DetectedTime = detectedtime
+          @CategoryDetails = categorydetails
+          @AppId = appid
+          @NickName = nickname
+          @Uin = uin
+        end
+
+        def deserialize(params)
+          @AssetId = params['AssetId']
+          @AssetName = params['AssetName']
+          @AssetType = params['AssetType']
+          @DetectedDbCount = params['DetectedDbCount']
+          @DetectedTableCount = params['DetectedTableCount']
+          @RuleIds = params['RuleIds']
+          @RuleNames = params['RuleNames']
+          @CategoryIds = params['CategoryIds']
+          @CategoryNames = params['CategoryNames']
+          @LevelId = params['LevelId']
+          @LevelName = params['LevelName']
+          @LevelScore = params['LevelScore']
+          @DetectedTime = params['DetectedTime']
+          unless params['CategoryDetails'].nil?
+            @CategoryDetails = []
+            params['CategoryDetails'].each do |i|
+              dspmidentifycategorydetail_tmp = DspmIdentifyCategoryDetail.new
+              dspmidentifycategorydetail_tmp.deserialize(i)
+              @CategoryDetails << dspmidentifycategorydetail_tmp
+            end
+          end
+          @AppId = params['AppId']
+          @NickName = params['NickName']
+          @Uin = params['Uin']
+        end
+      end
+
+      # dspm数据识别任务状态
+      class DspmAssetIdentifyTaskStatus < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>任务ID</p>
+        # @type TaskId: Integer
+        # @param Status: <p>任务状态</p><p>枚举值：</p><ul><li>0： 未识别</li><li>1： 识别中</li><li>2： 识别终止</li><li>3： 识别成功</li><li>4： 识别失败</li><li>5： 暂停</li></ul>
+        # @type Status: Integer
+
+        attr_accessor :TaskId, :Status
+
+        def initialize(taskid=nil, status=nil)
+          @TaskId = taskid
+          @Status = status
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @Status = params['Status']
+        end
+      end
+
       # Dspm资产实例
       class DspmAssetInstance < TencentCloud::Common::AbstractModel
         # @param AssetId: 资产实例Id
@@ -20538,6 +22005,243 @@ module TencentCloud
         end
       end
 
+      # dspm数据识别分类列表项
+      class DspmIdentifyCategoryItem < TencentCloud::Common::AbstractModel
+        # @param Id: <p>分类ID</p>
+        # @type Id: Integer
+        # @param Name: <p>分类名称</p>
+        # @type Name: String
+        # @param Type: <p>类型</p><p>枚举值：</p><ul><li>0： 内置</li><li>1： 自定义</li></ul>
+        # @type Type: Integer
+        # @param UpdateTime: <p>更新时间</p>
+        # @type UpdateTime: String
+        # @param ComplianceRelations: <p>无</p>
+        # @type ComplianceRelations: Array
+
+        attr_accessor :Id, :Name, :Type, :UpdateTime, :ComplianceRelations
+
+        def initialize(id=nil, name=nil, type=nil, updatetime=nil, compliancerelations=nil)
+          @Id = id
+          @Name = name
+          @Type = type
+          @UpdateTime = updatetime
+          @ComplianceRelations = compliancerelations
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Name = params['Name']
+          @Type = params['Type']
+          @UpdateTime = params['UpdateTime']
+          unless params['ComplianceRelations'].nil?
+            @ComplianceRelations = []
+            params['ComplianceRelations'].each do |i|
+              dspmidentifyrefcomplianceinfo_tmp = DspmIdentifyRefComplianceInfo.new
+              dspmidentifyrefcomplianceinfo_tmp.deserialize(i)
+              @ComplianceRelations << dspmidentifyrefcomplianceinfo_tmp
+            end
+          end
+        end
+      end
+
+      # dspm数据识别分类数据项关联详情
+      class DspmIdentifyCategoryRuleRelateDetailItem < TencentCloud::Common::AbstractModel
+        # @param ComplianceId: <p>识别模板ID</p>
+        # @type ComplianceId: Integer
+        # @param CategoryId: <p>分类ID</p>
+        # @type CategoryId: Integer
+        # @param RuleId: <p>数据项ID</p>
+        # @type RuleId: Integer
+        # @param RuleName: <p>数据项名称</p>
+        # @type RuleName: String
+        # @param LevelId: <p>级别ID</p>
+        # @type LevelId: Integer
+        # @param LevelName: <p>级别名称</p>
+        # @type LevelName: String
+
+        attr_accessor :ComplianceId, :CategoryId, :RuleId, :RuleName, :LevelId, :LevelName
+
+        def initialize(complianceid=nil, categoryid=nil, ruleid=nil, rulename=nil, levelid=nil, levelname=nil)
+          @ComplianceId = complianceid
+          @CategoryId = categoryid
+          @RuleId = ruleid
+          @RuleName = rulename
+          @LevelId = levelid
+          @LevelName = levelname
+        end
+
+        def deserialize(params)
+          @ComplianceId = params['ComplianceId']
+          @CategoryId = params['CategoryId']
+          @RuleId = params['RuleId']
+          @RuleName = params['RuleName']
+          @LevelId = params['LevelId']
+          @LevelName = params['LevelName']
+        end
+      end
+
+      # dspm数据识别分类和数据项关联关系
+      class DspmIdentifyCategoryRuleRelateItem < TencentCloud::Common::AbstractModel
+        # @param RuleId: <p>数据项ID</p>
+        # @type RuleId: Integer
+        # @param LevelId: <p>级别ID</p>
+        # @type LevelId: Integer
+
+        attr_accessor :RuleId, :LevelId
+
+        def initialize(ruleid=nil, levelid=nil)
+          @RuleId = ruleid
+          @LevelId = levelid
+        end
+
+        def deserialize(params)
+          @RuleId = params['RuleId']
+          @LevelId = params['LevelId']
+        end
+      end
+
+      # dspm数据识别模板分类关联关系
+      class DspmIdentifyComplianceCategoryRelation < TencentCloud::Common::AbstractModel
+        # @param CategoryId: <p>分类ID</p>
+        # @type CategoryId: Integer
+        # @param CategoryName: <p>分类名称</p>
+        # @type CategoryName: String
+        # @param CategoryParentId: <p>父分类ID</p>
+        # @type CategoryParentId: String
+        # @param IsLeaf: <p>是否叶子节点</p>
+        # @type IsLeaf: Boolean
+        # @param CategoryType: <p>分类类型</p><p>枚举值：</p><ul><li>0： 内置</li><li>1： 自定义</li></ul>
+        # @type CategoryType: Integer
+        # @param CategoryGrade: <p>分类层级</p><p>单位：层</p>
+        # @type CategoryGrade: Integer
+        # @param RuleRelations: <p>无</p>
+        # @type RuleRelations: Array
+        # @param Children: <p>无</p>
+        # @type Children: Array
+
+        attr_accessor :CategoryId, :CategoryName, :CategoryParentId, :IsLeaf, :CategoryType, :CategoryGrade, :RuleRelations, :Children
+
+        def initialize(categoryid=nil, categoryname=nil, categoryparentid=nil, isleaf=nil, categorytype=nil, categorygrade=nil, rulerelations=nil, children=nil)
+          @CategoryId = categoryid
+          @CategoryName = categoryname
+          @CategoryParentId = categoryparentid
+          @IsLeaf = isleaf
+          @CategoryType = categorytype
+          @CategoryGrade = categorygrade
+          @RuleRelations = rulerelations
+          @Children = children
+        end
+
+        def deserialize(params)
+          @CategoryId = params['CategoryId']
+          @CategoryName = params['CategoryName']
+          @CategoryParentId = params['CategoryParentId']
+          @IsLeaf = params['IsLeaf']
+          @CategoryType = params['CategoryType']
+          @CategoryGrade = params['CategoryGrade']
+          unless params['RuleRelations'].nil?
+            @RuleRelations = []
+            params['RuleRelations'].each do |i|
+              dspmidentifycompliancerulerelation_tmp = DspmIdentifyComplianceRuleRelation.new
+              dspmidentifycompliancerulerelation_tmp.deserialize(i)
+              @RuleRelations << dspmidentifycompliancerulerelation_tmp
+            end
+          end
+          unless params['Children'].nil?
+            @Children = []
+            params['Children'].each do |i|
+              dspmidentifycompliancecategoryrelation_tmp = DspmIdentifyComplianceCategoryRelation.new
+              dspmidentifycompliancecategoryrelation_tmp.deserialize(i)
+              @Children << dspmidentifycompliancecategoryrelation_tmp
+            end
+          end
+        end
+      end
+
+      # dspm分类分级模板列表信息
+      class DspmIdentifyComplianceItem < TencentCloud::Common::AbstractModel
+        # @param Id: <p>识别模板ID</p>
+        # @type Id: Integer
+        # @param Name: <p>识别模板名称</p>
+        # @type Name: String
+        # @param Description: <p>描述</p>
+        # @type Description: String
+        # @param Status: <p>启用状态</p><p>枚举值：</p><ul><li>0： 不启用</li><li>1： 启用</li></ul>
+        # @type Status: Integer
+        # @param Type: <p>模板类型</p><p>枚举值：</p><ul><li>0： 内置</li><li>1： 自定义</li></ul>
+        # @type Type: Integer
+        # @param UpdateTime: <p>更新时间</p>
+        # @type UpdateTime: String
+        # @param ApplyStatus: <p>应用状态</p><p>枚举值：</p><ul><li>0： 未应用</li><li>1： 应用中</li></ul>
+        # @type ApplyStatus: Integer
+
+        attr_accessor :Id, :Name, :Description, :Status, :Type, :UpdateTime, :ApplyStatus
+
+        def initialize(id=nil, name=nil, description=nil, status=nil, type=nil, updatetime=nil, applystatus=nil)
+          @Id = id
+          @Name = name
+          @Description = description
+          @Status = status
+          @Type = type
+          @UpdateTime = updatetime
+          @ApplyStatus = applystatus
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Name = params['Name']
+          @Description = params['Description']
+          @Status = params['Status']
+          @Type = params['Type']
+          @UpdateTime = params['UpdateTime']
+          @ApplyStatus = params['ApplyStatus']
+        end
+      end
+
+      # dspm数据识别模板数据项关联关系
+      class DspmIdentifyComplianceRuleRelation < TencentCloud::Common::AbstractModel
+        # @param RuleId: <p>数据项ID</p>
+        # @type RuleId: Integer
+        # @param RuleName: <p>数据项名称</p>
+        # @type RuleName: String
+        # @param LevelId: <p>级别ID</p>
+        # @type LevelId: Integer
+        # @param LevelName: <p>级别名称</p>
+        # @type LevelName: String
+        # @param LevelScore: <p>级别程度</p><p>单位：分数</p>
+        # @type LevelScore: Integer
+        # @param StructuredStatus: <p>结构化规则状态</p><p>枚举值：</p><ul><li>0： 未配置</li><li>1： 已配置</li></ul>
+        # @type StructuredStatus: Integer
+        # @param UnStructuredStatus: <p>非结构化规则状态</p><p>枚举值：</p><ul><li>0： 未配置</li><li>1： 已配置</li></ul>
+        # @type UnStructuredStatus: Integer
+        # @param Status: <p>数据项开启状态</p><p>枚举值：</p><ul><li>0： 未开启</li><li>1： 已开启</li></ul>
+        # @type Status: Integer
+
+        attr_accessor :RuleId, :RuleName, :LevelId, :LevelName, :LevelScore, :StructuredStatus, :UnStructuredStatus, :Status
+
+        def initialize(ruleid=nil, rulename=nil, levelid=nil, levelname=nil, levelscore=nil, structuredstatus=nil, unstructuredstatus=nil, status=nil)
+          @RuleId = ruleid
+          @RuleName = rulename
+          @LevelId = levelid
+          @LevelName = levelname
+          @LevelScore = levelscore
+          @StructuredStatus = structuredstatus
+          @UnStructuredStatus = unstructuredstatus
+          @Status = status
+        end
+
+        def deserialize(params)
+          @RuleId = params['RuleId']
+          @RuleName = params['RuleName']
+          @LevelId = params['LevelId']
+          @LevelName = params['LevelName']
+          @LevelScore = params['LevelScore']
+          @StructuredStatus = params['StructuredStatus']
+          @UnStructuredStatus = params['UnStructuredStatus']
+          @Status = params['Status']
+        end
+      end
+
       # Dspm身份统计信息
       class DspmIdentifyCount < TencentCloud::Common::AbstractModel
         # @param IdentifyType: 身份类型。0-未定义 2-长期身份 3-临时身份
@@ -20702,6 +22406,108 @@ module TencentCloud
         end
       end
 
+      # dspm数据识别分级组列表项
+      class DspmIdentifyLevelGroupItem < TencentCloud::Common::AbstractModel
+        # @param Id: <p>级别组id</p>
+        # @type Id: Integer
+        # @param Name: <p>级别组名称</p>
+        # @type Name: String
+        # @param Description: <p>级别组描述</p>
+        # @type Description: String
+        # @param Type: <p>级别组类型</p><p>枚举值：</p><ul><li>0： 内置</li><li>1： 自定义</li></ul>
+        # @type Type: Integer
+        # @param LevelItems: <p>级别信息</p>
+        # @type LevelItems: Array
+        # @param UpdateTime: <p>更新时间</p><p>参数格式：YYYY-MM-DD hh:mm:ss</p>
+        # @type UpdateTime: String
+        # @param ComplianceRelations: <p>无</p>
+        # @type ComplianceRelations: Array
+
+        attr_accessor :Id, :Name, :Description, :Type, :LevelItems, :UpdateTime, :ComplianceRelations
+
+        def initialize(id=nil, name=nil, description=nil, type=nil, levelitems=nil, updatetime=nil, compliancerelations=nil)
+          @Id = id
+          @Name = name
+          @Description = description
+          @Type = type
+          @LevelItems = levelitems
+          @UpdateTime = updatetime
+          @ComplianceRelations = compliancerelations
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Name = params['Name']
+          @Description = params['Description']
+          @Type = params['Type']
+          unless params['LevelItems'].nil?
+            @LevelItems = []
+            params['LevelItems'].each do |i|
+              dspmidentifylevelitem_tmp = DspmIdentifyLevelItem.new
+              dspmidentifylevelitem_tmp.deserialize(i)
+              @LevelItems << dspmidentifylevelitem_tmp
+            end
+          end
+          @UpdateTime = params['UpdateTime']
+          unless params['ComplianceRelations'].nil?
+            @ComplianceRelations = []
+            params['ComplianceRelations'].each do |i|
+              dspmidentifyrefcomplianceinfo_tmp = DspmIdentifyRefComplianceInfo.new
+              dspmidentifyrefcomplianceinfo_tmp.deserialize(i)
+              @ComplianceRelations << dspmidentifyrefcomplianceinfo_tmp
+            end
+          end
+        end
+      end
+
+      # dspm数据识别级别信息
+      class DspmIdentifyLevelItem < TencentCloud::Common::AbstractModel
+        # @param LevelName: <p>级别名称</p>
+        # @type LevelName: String
+        # @param LevelScore: <p>级别风险程度（从低到高）</p><p>取值范围：[1, 10]</p><p>单位：程度</p>
+        # @type LevelScore: Integer
+        # @param LevelId: <p>级别id</p>
+        # @type LevelId: Integer
+
+        attr_accessor :LevelName, :LevelScore, :LevelId
+
+        def initialize(levelname=nil, levelscore=nil, levelid=nil)
+          @LevelName = levelname
+          @LevelScore = levelscore
+          @LevelId = levelid
+        end
+
+        def deserialize(params)
+          @LevelName = params['LevelName']
+          @LevelScore = params['LevelScore']
+          @LevelId = params['LevelId']
+        end
+      end
+
+      # dspm关联识别模板信息
+      class DspmIdentifyRefComplianceInfo < TencentCloud::Common::AbstractModel
+        # @param ComplianceId: <p>识别模板ID</p>
+        # @type ComplianceId: Integer
+        # @param ComplianceName: <p>识别模板名称</p>
+        # @type ComplianceName: String
+        # @param ComplianceType: <p>识别模板类型</p><p>枚举值：</p><ul><li>0： 内置</li><li>1： 自定义</li></ul>
+        # @type ComplianceType: Integer
+
+        attr_accessor :ComplianceId, :ComplianceName, :ComplianceType
+
+        def initialize(complianceid=nil, compliancename=nil, compliancetype=nil)
+          @ComplianceId = complianceid
+          @ComplianceName = compliancename
+          @ComplianceType = compliancetype
+        end
+
+        def deserialize(params)
+          @ComplianceId = params['ComplianceId']
+          @ComplianceName = params['ComplianceName']
+          @ComplianceType = params['ComplianceType']
+        end
+      end
+
       # dspm数据项详情
       class DspmIdentifyRuleDetail < TencentCloud::Common::AbstractModel
         # @param RuleId: <p>数据项id</p>
@@ -20731,6 +22537,81 @@ module TencentCloud
           @LevelId = params['LevelId']
           @LevelName = params['LevelName']
           @LevelScore = params['LevelScore']
+        end
+      end
+
+      # dspm分类分级数据项列表项
+      class DspmIdentifyRuleItem < TencentCloud::Common::AbstractModel
+        # @param Id: <p>数据项id</p>
+        # @type Id: Integer
+        # @param Name: <p>数据项名称</p>
+        # @type Name: String
+        # @param Description: <p>数据项描述</p>
+        # @type Description: String
+        # @param Status: <p>数据项是否启用</p><p>枚举值：</p><ul><li>0： 否</li><li>1： 是</li></ul>
+        # @type Status: Integer
+        # @param Type: <p>数据项类型</p><p>枚举值：</p><ul><li>0： 内置</li><li>1： 自定义</li></ul>
+        # @type Type: Integer
+        # @param UpdateTime: <p>更新时间</p>
+        # @type UpdateTime: String
+        # @param StructuredStatus: <p>结构化规则配置状态</p>
+        # @type StructuredStatus: Boolean
+        # @param UnStructuredStatus: <p>非结构化规则配置状态</p>
+        # @type UnStructuredStatus: Boolean
+        # @param ComplianceRelations: <p>无</p>
+        # @type ComplianceRelations: Array
+
+        attr_accessor :Id, :Name, :Description, :Status, :Type, :UpdateTime, :StructuredStatus, :UnStructuredStatus, :ComplianceRelations
+
+        def initialize(id=nil, name=nil, description=nil, status=nil, type=nil, updatetime=nil, structuredstatus=nil, unstructuredstatus=nil, compliancerelations=nil)
+          @Id = id
+          @Name = name
+          @Description = description
+          @Status = status
+          @Type = type
+          @UpdateTime = updatetime
+          @StructuredStatus = structuredstatus
+          @UnStructuredStatus = unstructuredstatus
+          @ComplianceRelations = compliancerelations
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Name = params['Name']
+          @Description = params['Description']
+          @Status = params['Status']
+          @Type = params['Type']
+          @UpdateTime = params['UpdateTime']
+          @StructuredStatus = params['StructuredStatus']
+          @UnStructuredStatus = params['UnStructuredStatus']
+          unless params['ComplianceRelations'].nil?
+            @ComplianceRelations = []
+            params['ComplianceRelations'].each do |i|
+              dspmidentifyrefcomplianceinfo_tmp = DspmIdentifyRefComplianceInfo.new
+              dspmidentifyrefcomplianceinfo_tmp.deserialize(i)
+              @ComplianceRelations << dspmidentifyrefcomplianceinfo_tmp
+            end
+          end
+        end
+      end
+
+      # dspm结构化数据项测试
+      class DspmIdentifyRuleStructuredTestItem < TencentCloud::Common::AbstractModel
+        # @param Name: <p>参数名</p>
+        # @type Name: String
+        # @param Value: <p>参数类型</p>
+        # @type Value: String
+
+        attr_accessor :Name, :Value
+
+        def initialize(name=nil, value=nil)
+          @Name = name
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Value = params['Value']
         end
       end
 
@@ -21364,6 +23245,30 @@ module TencentCloud
             @ScheduleConfig.deserialize(params['ScheduleConfig'])
           end
           @IsRunAtOnce = params['IsRunAtOnce']
+        end
+      end
+
+      # dspm统计项
+      class DspmStatisticsItem < TencentCloud::Common::AbstractModel
+        # @param Name: <p>统计项名称</p>
+        # @type Name: String
+        # @param Value: <p>统计值</p>
+        # @type Value: Integer
+        # @param Desc: <p>描述</p>
+        # @type Desc: String
+
+        attr_accessor :Name, :Value, :Desc
+
+        def initialize(name=nil, value=nil, desc=nil)
+          @Name = name
+          @Value = value
+          @Desc = desc
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Value = params['Value']
+          @Desc = params['Desc']
         end
       end
 
@@ -24251,6 +26156,82 @@ module TencentCloud
         end
       end
 
+      # ModifyCosAuditObjectIdentifyStatus请求参数结构体
+      class ModifyCosAuditObjectIdentifyStatusRequest < TencentCloud::Common::AbstractModel
+        # @param ResourceId: <p>资源id</p>
+        # @type ResourceId: String
+        # @param TextIdentifyStatus: <p>文本识别状态</p>
+        # @type TextIdentifyStatus: Integer
+        # @param ImageIdentifyStatus: <p>图片识别状态</p>
+        # @type ImageIdentifyStatus: Integer
+
+        attr_accessor :ResourceId, :TextIdentifyStatus, :ImageIdentifyStatus
+
+        def initialize(resourceid=nil, textidentifystatus=nil, imageidentifystatus=nil)
+          @ResourceId = resourceid
+          @TextIdentifyStatus = textidentifystatus
+          @ImageIdentifyStatus = imageidentifystatus
+        end
+
+        def deserialize(params)
+          @ResourceId = params['ResourceId']
+          @TextIdentifyStatus = params['TextIdentifyStatus']
+          @ImageIdentifyStatus = params['ImageIdentifyStatus']
+        end
+      end
+
+      # ModifyCosAuditObjectIdentifyStatus返回参数结构体
+      class ModifyCosAuditObjectIdentifyStatusResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyCosAuditObjectSampleRate请求参数结构体
+      class ModifyCosAuditObjectSampleRateRequest < TencentCloud::Common::AbstractModel
+        # @param BucketIdSet: <p>存储桶资产id集合</p>
+        # @type BucketIdSet: Array
+        # @param SampleRateSet: <p>采样率集合</p>
+        # @type SampleRateSet: Array
+
+        attr_accessor :BucketIdSet, :SampleRateSet
+
+        def initialize(bucketidset=nil, samplerateset=nil)
+          @BucketIdSet = bucketidset
+          @SampleRateSet = samplerateset
+        end
+
+        def deserialize(params)
+          @BucketIdSet = params['BucketIdSet']
+          @SampleRateSet = params['SampleRateSet']
+        end
+      end
+
+      # ModifyCosAuditObjectSampleRate返回参数结构体
+      class ModifyCosAuditObjectSampleRateResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyCosMarkInfo请求参数结构体
       class ModifyCosMarkInfoRequest < TencentCloud::Common::AbstractModel
         # @param BucketNameSet: 需要修改的存储桶列表
@@ -24331,6 +26312,42 @@ module TencentCloud
 
       # ModifyDspmAccessRecord返回参数结构体
       class ModifyDspmAccessRecordResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyDspmApplyingIdentifyComplianceGroup请求参数结构体
+      class ModifyDspmApplyingIdentifyComplianceGroupRequest < TencentCloud::Common::AbstractModel
+        # @param ComplianceId: <p>识别模板id</p>
+        # @type ComplianceId: Integer
+        # @param MemberId: <p>集团账号的成员id</p>
+        # @type MemberId: Array
+
+        attr_accessor :ComplianceId, :MemberId
+
+        def initialize(complianceid=nil, memberid=nil)
+          @ComplianceId = complianceid
+          @MemberId = memberid
+        end
+
+        def deserialize(params)
+          @ComplianceId = params['ComplianceId']
+          @MemberId = params['MemberId']
+        end
+      end
+
+      # ModifyDspmApplyingIdentifyComplianceGroup返回参数结构体
+      class ModifyDspmApplyingIdentifyComplianceGroupResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -24551,6 +26568,57 @@ module TencentCloud
         end
       end
 
+      # ModifyDspmAssetDataScanTaskStatus请求参数结构体
+      class ModifyDspmAssetDataScanTaskStatusRequest < TencentCloud::Common::AbstractModel
+        # @param TaskIds: <p>任务ID</p>
+        # @type TaskIds: Array
+        # @param Status: <p>任务状态</p><p>枚举值：</p><ul><li>1： 识别中</li><li>2： 识别终止</li><li>3： 识别成功</li><li>4： 识别失败</li><li>5： 暂停</li><li>0： 未识别</li></ul>
+        # @type Status: Integer
+        # @param MemberId: <p>集团账号的成员id</p>
+        # @type MemberId: Array
+
+        attr_accessor :TaskIds, :Status, :MemberId
+
+        def initialize(taskids=nil, status=nil, memberid=nil)
+          @TaskIds = taskids
+          @Status = status
+          @MemberId = memberid
+        end
+
+        def deserialize(params)
+          @TaskIds = params['TaskIds']
+          @Status = params['Status']
+          @MemberId = params['MemberId']
+        end
+      end
+
+      # ModifyDspmAssetDataScanTaskStatus返回参数结构体
+      class ModifyDspmAssetDataScanTaskStatusResponse < TencentCloud::Common::AbstractModel
+        # @param DataSet: <p>无</p>
+        # @type DataSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DataSet, :RequestId
+
+        def initialize(dataset=nil, requestid=nil)
+          @DataSet = dataset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['DataSet'].nil?
+            @DataSet = []
+            params['DataSet'].each do |i|
+              dspmassetidentifytaskstatus_tmp = DspmAssetIdentifyTaskStatus.new
+              dspmassetidentifytaskstatus_tmp.deserialize(i)
+              @DataSet << dspmassetidentifytaskstatus_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyDspmAssetLogDeliverySwitch请求参数结构体
       class ModifyDspmAssetLogDeliverySwitchRequest < TencentCloud::Common::AbstractModel
         # @param AssetId: 实例id
@@ -24686,6 +26754,178 @@ module TencentCloud
         end
       end
 
+      # ModifyDspmIdentifyCategory请求参数结构体
+      class ModifyDspmIdentifyCategoryRequest < TencentCloud::Common::AbstractModel
+        # @param Id: <p>分类ID</p>
+        # @type Id: Integer
+        # @param Name: <p>分类名称</p>
+        # @type Name: String
+        # @param MemberId: <p>集团账号的成员id</p>
+        # @type MemberId: Array
+
+        attr_accessor :Id, :Name, :MemberId
+
+        def initialize(id=nil, name=nil, memberid=nil)
+          @Id = id
+          @Name = name
+          @MemberId = memberid
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Name = params['Name']
+          @MemberId = params['MemberId']
+        end
+      end
+
+      # ModifyDspmIdentifyCategory返回参数结构体
+      class ModifyDspmIdentifyCategoryResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyDspmIdentifyComplianceGroup请求参数结构体
+      class ModifyDspmIdentifyComplianceGroupRequest < TencentCloud::Common::AbstractModel
+        # @param Id: <p>识别模板ID</p>
+        # @type Id: Integer
+        # @param Name: <p>识别模板名称</p>
+        # @type Name: String
+        # @param MemberId: <p>集团账号的成员id</p>
+        # @type MemberId: Array
+        # @param Description: <p>描述</p>
+        # @type Description: String
+        # @param Status: <p>状态</p><p>枚举值：</p><ul><li>0： 未启用</li><li>1： 启用</li></ul>
+        # @type Status: Integer
+
+        attr_accessor :Id, :Name, :MemberId, :Description, :Status
+
+        def initialize(id=nil, name=nil, memberid=nil, description=nil, status=nil)
+          @Id = id
+          @Name = name
+          @MemberId = memberid
+          @Description = description
+          @Status = status
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Name = params['Name']
+          @MemberId = params['MemberId']
+          @Description = params['Description']
+          @Status = params['Status']
+        end
+      end
+
+      # ModifyDspmIdentifyComplianceGroup返回参数结构体
+      class ModifyDspmIdentifyComplianceGroupResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyDspmIdentifyComplianceGroupStatus请求参数结构体
+      class ModifyDspmIdentifyComplianceGroupStatusRequest < TencentCloud::Common::AbstractModel
+        # @param Id: <p>识别模板ID</p>
+        # @type Id: Integer
+        # @param Status: <p>启用状态</p><p>枚举值：</p><ul><li>0： 不启用</li><li>1： 启用</li></ul>
+        # @type Status: Integer
+        # @param MemberId: <p>集团账号的成员id</p>
+        # @type MemberId: Array
+
+        attr_accessor :Id, :Status, :MemberId
+
+        def initialize(id=nil, status=nil, memberid=nil)
+          @Id = id
+          @Status = status
+          @MemberId = memberid
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Status = params['Status']
+          @MemberId = params['MemberId']
+        end
+      end
+
+      # ModifyDspmIdentifyComplianceGroupStatus返回参数结构体
+      class ModifyDspmIdentifyComplianceGroupStatusResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyDspmIdentifyComplianceRuleLevelInfo请求参数结构体
+      class ModifyDspmIdentifyComplianceRuleLevelInfoRequest < TencentCloud::Common::AbstractModel
+        # @param ComplianceId: <p>识别模板ID</p>
+        # @type ComplianceId: Integer
+        # @param RuleId: <p>数据项id</p>
+        # @type RuleId: Integer
+        # @param LevelId: <p>级别项id</p>
+        # @type LevelId: Integer
+        # @param MemberId: <p>集团账号的成员id</p>
+        # @type MemberId: Array
+
+        attr_accessor :ComplianceId, :RuleId, :LevelId, :MemberId
+
+        def initialize(complianceid=nil, ruleid=nil, levelid=nil, memberid=nil)
+          @ComplianceId = complianceid
+          @RuleId = ruleid
+          @LevelId = levelid
+          @MemberId = memberid
+        end
+
+        def deserialize(params)
+          @ComplianceId = params['ComplianceId']
+          @RuleId = params['RuleId']
+          @LevelId = params['LevelId']
+          @MemberId = params['MemberId']
+        end
+      end
+
+      # ModifyDspmIdentifyComplianceRuleLevelInfo返回参数结构体
+      class ModifyDspmIdentifyComplianceRuleLevelInfoResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyDspmIdentifyInfo请求参数结构体
       class ModifyDspmIdentifyInfoRequest < TencentCloud::Common::AbstractModel
         # @param Subject: 对象。uin或person id
@@ -24708,6 +26948,201 @@ module TencentCloud
 
       # ModifyDspmIdentifyInfo返回参数结构体
       class ModifyDspmIdentifyInfoResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyDspmIdentifyLevelGroup请求参数结构体
+      class ModifyDspmIdentifyLevelGroupRequest < TencentCloud::Common::AbstractModel
+        # @param Id: <p>级别组id</p>
+        # @type Id: Integer
+        # @param Name: <p>级别组名称</p>
+        # @type Name: String
+        # @param MemberId: <p>集团账号的成员id</p>
+        # @type MemberId: Array
+        # @param Description: <p>级别组描述</p>
+        # @type Description: String
+        # @param LevelItems: <p>级别信息</p>
+        # @type LevelItems: Array
+
+        attr_accessor :Id, :Name, :MemberId, :Description, :LevelItems
+
+        def initialize(id=nil, name=nil, memberid=nil, description=nil, levelitems=nil)
+          @Id = id
+          @Name = name
+          @MemberId = memberid
+          @Description = description
+          @LevelItems = levelitems
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Name = params['Name']
+          @MemberId = params['MemberId']
+          @Description = params['Description']
+          unless params['LevelItems'].nil?
+            @LevelItems = []
+            params['LevelItems'].each do |i|
+              dspmidentifylevelitem_tmp = DspmIdentifyLevelItem.new
+              dspmidentifylevelitem_tmp.deserialize(i)
+              @LevelItems << dspmidentifylevelitem_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyDspmIdentifyLevelGroup返回参数结构体
+      class ModifyDspmIdentifyLevelGroupResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyDspmIdentifyLevelItem请求参数结构体
+      class ModifyDspmIdentifyLevelItemRequest < TencentCloud::Common::AbstractModel
+        # @param Id: <p>级别组id</p>
+        # @type Id: Integer
+        # @param Name: <p>级别组名称</p>
+        # @type Name: String
+        # @param MemberId: <p>集团账号的成员id</p>
+        # @type MemberId: Array
+        # @param LevelScore: <p>敏感程度分</p><p>取值范围：[1, 10]</p><p>单位：敏感程度</p>
+        # @type LevelScore: Integer
+
+        attr_accessor :Id, :Name, :MemberId, :LevelScore
+
+        def initialize(id=nil, name=nil, memberid=nil, levelscore=nil)
+          @Id = id
+          @Name = name
+          @MemberId = memberid
+          @LevelScore = levelscore
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Name = params['Name']
+          @MemberId = params['MemberId']
+          @LevelScore = params['LevelScore']
+        end
+      end
+
+      # ModifyDspmIdentifyLevelItem返回参数结构体
+      class ModifyDspmIdentifyLevelItemResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyDspmIdentifyRule请求参数结构体
+      class ModifyDspmIdentifyRuleRequest < TencentCloud::Common::AbstractModel
+        # @param Id: <p>数据项id</p>
+        # @type Id: Integer
+        # @param Name: <p>数据项名称</p>
+        # @type Name: String
+        # @param MemberId: <p>集团账号的成员id</p>
+        # @type MemberId: Array
+        # @param Description: <p>数据项描述</p>
+        # @type Description: String
+        # @param Status: <p>数据项启用状态</p><p>枚举值：</p><ul><li>0： 未启用</li><li>1： 启用</li></ul>
+        # @type Status: Integer
+        # @param StructuredRule: <p>结构化规则</p>
+        # @type StructuredRule: String
+        # @param UnStructuredRule: <p>非结构化规则</p>
+        # @type UnStructuredRule: String
+
+        attr_accessor :Id, :Name, :MemberId, :Description, :Status, :StructuredRule, :UnStructuredRule
+
+        def initialize(id=nil, name=nil, memberid=nil, description=nil, status=nil, structuredrule=nil, unstructuredrule=nil)
+          @Id = id
+          @Name = name
+          @MemberId = memberid
+          @Description = description
+          @Status = status
+          @StructuredRule = structuredrule
+          @UnStructuredRule = unstructuredrule
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Name = params['Name']
+          @MemberId = params['MemberId']
+          @Description = params['Description']
+          @Status = params['Status']
+          @StructuredRule = params['StructuredRule']
+          @UnStructuredRule = params['UnStructuredRule']
+        end
+      end
+
+      # ModifyDspmIdentifyRule返回参数结构体
+      class ModifyDspmIdentifyRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyDspmIdentifyRuleStatus请求参数结构体
+      class ModifyDspmIdentifyRuleStatusRequest < TencentCloud::Common::AbstractModel
+        # @param Ids: <p>数据项id</p>
+        # @type Ids: Array
+        # @param Status: <p>数据项状态</p><p>枚举值：</p><ul><li>0： 关闭</li><li>1： 开启</li></ul>
+        # @type Status: Integer
+        # @param MemberId: <p>集团账号的成员id</p>
+        # @type MemberId: Array
+
+        attr_accessor :Ids, :Status, :MemberId
+
+        def initialize(ids=nil, status=nil, memberid=nil)
+          @Ids = ids
+          @Status = status
+          @MemberId = memberid
+        end
+
+        def deserialize(params)
+          @Ids = params['Ids']
+          @Status = params['Status']
+          @MemberId = params['MemberId']
+        end
+      end
+
+      # ModifyDspmIdentifyRuleStatus返回参数结构体
+      class ModifyDspmIdentifyRuleStatusResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

@@ -821,6 +821,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询工单归集的车辆信息列表，支持按车牌号、驾驶员姓名模糊搜索
+
+        # @param request: Request instance for DescribeWorkOrderCarCollectList.
+        # @type request: :class:`Tencentcloud::chc::V20230418::DescribeWorkOrderCarCollectListRequest`
+        # @rtype: :class:`Tencentcloud::chc::V20230418::DescribeWorkOrderCarCollectListResponse`
+        def DescribeWorkOrderCarCollectList(request)
+          body = send_request('DescribeWorkOrderCarCollectList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeWorkOrderCarCollectListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询工单归集的业务联系人信息列表，支持按姓名、电话模糊搜索
+
+        # @param request: Request instance for DescribeWorkOrderContactCollectList.
+        # @type request: :class:`Tencentcloud::chc::V20230418::DescribeWorkOrderContactCollectListRequest`
+        # @rtype: :class:`Tencentcloud::chc::V20230418::DescribeWorkOrderContactCollectListResponse`
+        def DescribeWorkOrderContactCollectList(request)
+          body = send_request('DescribeWorkOrderContactCollectList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeWorkOrderContactCollectListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询工单列表
 
         # @param request: Request instance for DescribeWorkOrderList.
@@ -831,6 +879,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeWorkOrderListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询工单归集的人员信息列表，支持按姓名、手机号模糊搜索
+
+        # @param request: Request instance for DescribeWorkOrderPersonnelCollectList.
+        # @type request: :class:`Tencentcloud::chc::V20230418::DescribeWorkOrderPersonnelCollectListRequest`
+        # @rtype: :class:`Tencentcloud::chc::V20230418::DescribeWorkOrderPersonnelCollectListResponse`
+        def DescribeWorkOrderPersonnelCollectList(request)
+          body = send_request('DescribeWorkOrderPersonnelCollectList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeWorkOrderPersonnelCollectListResponse.new
             model.deserialize(response['Response'])
             model
           else

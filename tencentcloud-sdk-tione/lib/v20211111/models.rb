@@ -2715,8 +2715,8 @@ module TencentCloud
 
         attr_accessor :ServiceId, :ServiceCategory
         extend Gem::Deprecate
-        deprecate :ServiceCategory, :none, 2026, 6
-        deprecate :ServiceCategory=, :none, 2026, 6
+        deprecate :ServiceCategory, :none, 2026, 7
+        deprecate :ServiceCategory=, :none, 2026, 7
 
         def initialize(serviceid=nil, servicecategory=nil)
           @ServiceId = serviceid
@@ -4115,8 +4115,8 @@ module TencentCloud
 
         attr_accessor :ServiceGroupId, :ServiceCategory
         extend Gem::Deprecate
-        deprecate :ServiceCategory, :none, 2026, 6
-        deprecate :ServiceCategory=, :none, 2026, 6
+        deprecate :ServiceCategory, :none, 2026, 7
+        deprecate :ServiceCategory=, :none, 2026, 7
 
         def initialize(servicegroupid=nil, servicecategory=nil)
           @ServiceGroupId = servicegroupid
@@ -4202,8 +4202,8 @@ module TencentCloud
 
         attr_accessor :ServiceGroupId, :ServiceCategory
         extend Gem::Deprecate
-        deprecate :ServiceCategory, :none, 2026, 6
-        deprecate :ServiceCategory=, :none, 2026, 6
+        deprecate :ServiceCategory, :none, 2026, 7
+        deprecate :ServiceCategory=, :none, 2026, 7
 
         def initialize(servicegroupid=nil, servicecategory=nil)
           @ServiceGroupId = servicegroupid
@@ -4261,8 +4261,8 @@ module TencentCloud
 
         attr_accessor :TiProjectId, :Offset, :Limit, :Order, :OrderField, :Filters, :TagFilters, :ServiceCategory
         extend Gem::Deprecate
-        deprecate :ServiceCategory, :none, 2026, 6
-        deprecate :ServiceCategory=, :none, 2026, 6
+        deprecate :ServiceCategory, :none, 2026, 7
+        deprecate :ServiceCategory=, :none, 2026, 7
 
         def initialize(tiprojectid=nil, offset=nil, limit=nil, order=nil, orderfield=nil, filters=nil, tagfilters=nil, servicecategory=nil)
           @TiProjectId = tiprojectid
@@ -4400,8 +4400,8 @@ module TencentCloud
 
         attr_accessor :ServiceId, :ServiceCategory
         extend Gem::Deprecate
-        deprecate :ServiceCategory, :none, 2026, 6
-        deprecate :ServiceCategory=, :none, 2026, 6
+        deprecate :ServiceCategory, :none, 2026, 7
+        deprecate :ServiceCategory=, :none, 2026, 7
 
         def initialize(serviceid=nil, servicecategory=nil)
           @ServiceId = serviceid
@@ -4812,6 +4812,80 @@ module TencentCloud
               platformimageinfo_tmp = PlatformImageInfo.new
               platformimageinfo_tmp.deserialize(i)
               @PlatformImageInfos << platformimageinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribePresetImageList请求参数结构体
+      class DescribePresetImageListRequest < TencentCloud::Common::AbstractModel
+        # @param TiProjectId: <p>TI工作空间ID</p><p>仅用于“工作空间”白名单功能。如需使用，请联系TI管理员开通白名单。</p>
+        # @type TiProjectId: String
+        # @param Filters: <p>业务过滤表达式</p>
+        # @type Filters: Array
+        # @param Offset: <p>分页排序</p>
+        # @type Offset: Integer
+        # @param Limit: <p>单页大小</p>
+        # @type Limit: Integer
+        # @param OrderField: <p>排序字段</p>
+        # @type OrderField: Array
+        # @param Order: <p>对应字段的排序方式</p>
+        # @type Order: Array
+
+        attr_accessor :TiProjectId, :Filters, :Offset, :Limit, :OrderField, :Order
+
+        def initialize(tiprojectid=nil, filters=nil, offset=nil, limit=nil, orderfield=nil, order=nil)
+          @TiProjectId = tiprojectid
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+          @OrderField = orderfield
+          @Order = order
+        end
+
+        def deserialize(params)
+          @TiProjectId = params['TiProjectId']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @OrderField = params['OrderField']
+          @Order = params['Order']
+        end
+      end
+
+      # DescribePresetImageList返回参数结构体
+      class DescribePresetImageListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: <p>记录总数</p>
+        # @type TotalCount: Integer
+        # @param PresetImageList: <p>镜像列表</p>
+        # @type PresetImageList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :PresetImageList, :RequestId
+
+        def initialize(totalcount=nil, presetimagelist=nil, requestid=nil)
+          @TotalCount = totalcount
+          @PresetImageList = presetimagelist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['PresetImageList'].nil?
+            @PresetImageList = []
+            params['PresetImageList'].each do |i|
+              presetimageinfo_tmp = PresetImageInfo.new
+              presetimageinfo_tmp.deserialize(i)
+              @PresetImageList << presetimageinfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -8440,8 +8514,8 @@ module TencentCloud
 
         attr_accessor :Name, :Uid, :ChargeType, :Phase, :IP, :CreateTime, :Containers, :ContainerInfos, :CrossTenantENIInfo, :Status, :StartScheduleTime, :Message, :NodeIP, :NodeId, :ResourceGroupId, :ResourceGroupName, :ResourceInfo
         extend Gem::Deprecate
-        deprecate :Containers, :none, 2026, 6
-        deprecate :Containers=, :none, 2026, 6
+        deprecate :Containers, :none, 2026, 7
+        deprecate :Containers=, :none, 2026, 7
 
         def initialize(name=nil, uid=nil, chargetype=nil, phase=nil, ip=nil, createtime=nil, containers=nil, containerinfos=nil, crosstenanteniinfo=nil, status=nil, startscheduletime=nil, message=nil, nodeip=nil, nodeid=nil, resourcegroupid=nil, resourcegroupname=nil, resourceinfo=nil)
           @Name = name
@@ -8571,6 +8645,128 @@ module TencentCloud
           @Host = params['Host']
           @Port = params['Port']
           @LoginCommand = params['LoginCommand']
+        end
+      end
+
+      # 预制镜像详情
+      class PresetImageInfo < TencentCloud::Common::AbstractModel
+        # @param ImageId: <p>镜像id</p>
+        # @type ImageId: String
+        # @param ImageRepo: <p>镜像仓库名称</p>
+        # @type ImageRepo: String
+        # @param ImageTag: <p>镜像标签</p>
+        # @type ImageTag: String
+        # @param ImageUrl: <p>镜像url地址</p>
+        # @type ImageUrl: String
+        # @param ImageSize: <p>镜像的大小</p>
+        # @type ImageSize: String
+        # @param Description: <p>镜像描述</p>
+        # @type Description: String
+        # @param ApplicableModuleList: <p>适用模块</p>
+        # @type ApplicableModuleList: Array
+        # @param Scenario: <p>使用场景</p>
+        # @type Scenario: String
+        # @param Framework: <p>框架名称</p>
+        # @type Framework: String
+        # @param FrameworkVersion: <p>框架版本</p>
+        # @type FrameworkVersion: String
+        # @param ChipTypeList: <p>芯片类型</p>
+        # @type ChipTypeList: Array
+        # @param ComputeLibVersion: <p>运行库版本</p>
+        # @type ComputeLibVersion: String
+        # @param PythonVersion: <p>python版本</p>
+        # @type PythonVersion: String
+        # @param OS: <p>操作系统</p>
+        # @type OS: String
+        # @param RuntimeLibList: <p>运行库列表</p>
+        # @type RuntimeLibList: Array
+        # @param SupportGpuList: <p>支持的gpu列表</p>
+        # @type SupportGpuList: Array
+        # @param ExtraAttributeList: <p>扩展属性</p>
+        # @type ExtraAttributeList: Array
+        # @param SupportDistributedDeploy: <p>是否支持分布式部署</p>
+        # @type SupportDistributedDeploy: Boolean
+        # @param IsLatestStable: <p>是否最新稳定版本</p>
+        # @type IsLatestStable: Boolean
+        # @param ImageName: <p>镜像的名称</p>
+        # @type ImageName: String
+        # @param Version: <p>镜像版本号（内部）</p>
+        # @type Version: Integer
+        # @param CreateTime: <p>录入时间</p><p>参数格式：YYYY-MM-DDThh:mm:ssZ</p>
+        # @type CreateTime: String
+        # @param UpdateTime: <p>更新时间</p><p>参数格式：YYYY-MM-DDThh:mm:ssZ</p>
+        # @type UpdateTime: String
+        # @param ImageType: <p>镜像类型</p><p>枚举值：</p><ul><li>TCR： TCR类型的镜像</li></ul>
+        # @type ImageType: String
+
+        attr_accessor :ImageId, :ImageRepo, :ImageTag, :ImageUrl, :ImageSize, :Description, :ApplicableModuleList, :Scenario, :Framework, :FrameworkVersion, :ChipTypeList, :ComputeLibVersion, :PythonVersion, :OS, :RuntimeLibList, :SupportGpuList, :ExtraAttributeList, :SupportDistributedDeploy, :IsLatestStable, :ImageName, :Version, :CreateTime, :UpdateTime, :ImageType
+
+        def initialize(imageid=nil, imagerepo=nil, imagetag=nil, imageurl=nil, imagesize=nil, description=nil, applicablemodulelist=nil, scenario=nil, framework=nil, frameworkversion=nil, chiptypelist=nil, computelibversion=nil, pythonversion=nil, os=nil, runtimeliblist=nil, supportgpulist=nil, extraattributelist=nil, supportdistributeddeploy=nil, islateststable=nil, imagename=nil, version=nil, createtime=nil, updatetime=nil, imagetype=nil)
+          @ImageId = imageid
+          @ImageRepo = imagerepo
+          @ImageTag = imagetag
+          @ImageUrl = imageurl
+          @ImageSize = imagesize
+          @Description = description
+          @ApplicableModuleList = applicablemodulelist
+          @Scenario = scenario
+          @Framework = framework
+          @FrameworkVersion = frameworkversion
+          @ChipTypeList = chiptypelist
+          @ComputeLibVersion = computelibversion
+          @PythonVersion = pythonversion
+          @OS = os
+          @RuntimeLibList = runtimeliblist
+          @SupportGpuList = supportgpulist
+          @ExtraAttributeList = extraattributelist
+          @SupportDistributedDeploy = supportdistributeddeploy
+          @IsLatestStable = islateststable
+          @ImageName = imagename
+          @Version = version
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @ImageType = imagetype
+        end
+
+        def deserialize(params)
+          @ImageId = params['ImageId']
+          @ImageRepo = params['ImageRepo']
+          @ImageTag = params['ImageTag']
+          @ImageUrl = params['ImageUrl']
+          @ImageSize = params['ImageSize']
+          @Description = params['Description']
+          @ApplicableModuleList = params['ApplicableModuleList']
+          @Scenario = params['Scenario']
+          @Framework = params['Framework']
+          @FrameworkVersion = params['FrameworkVersion']
+          @ChipTypeList = params['ChipTypeList']
+          @ComputeLibVersion = params['ComputeLibVersion']
+          @PythonVersion = params['PythonVersion']
+          @OS = params['OS']
+          unless params['RuntimeLibList'].nil?
+            @RuntimeLibList = []
+            params['RuntimeLibList'].each do |i|
+              runtimelib_tmp = RuntimeLib.new
+              runtimelib_tmp.deserialize(i)
+              @RuntimeLibList << runtimelib_tmp
+            end
+          end
+          @SupportGpuList = params['SupportGpuList']
+          unless params['ExtraAttributeList'].nil?
+            @ExtraAttributeList = []
+            params['ExtraAttributeList'].each do |i|
+              attribute_tmp = Attribute.new
+              attribute_tmp.deserialize(i)
+              @ExtraAttributeList << attribute_tmp
+            end
+          end
+          @SupportDistributedDeploy = params['SupportDistributedDeploy']
+          @IsLatestStable = params['IsLatestStable']
+          @ImageName = params['ImageName']
+          @Version = params['Version']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @ImageType = params['ImageType']
         end
       end
 
@@ -9406,6 +9602,26 @@ module TencentCloud
         end
       end
 
+      # 预制镜像中的运行库详情
+      class RuntimeLib < TencentCloud::Common::AbstractModel
+        # @param Name: <p>运行库名称</p>
+        # @type Name: String
+        # @param Version: <p>运行库版本号</p>
+        # @type Version: String
+
+        attr_accessor :Name, :Version
+
+        def initialize(name=nil, version=nil)
+          @Name = name
+          @Version = version
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Version = params['Version']
+        end
+      end
+
       # notebook ssh端口配置
       class SSHConfig < TencentCloud::Common::AbstractModel
         # @param Enable: 是否开启ssh
@@ -9618,10 +9834,10 @@ module TencentCloud
 
         attr_accessor :ServiceGroupId, :ServiceId, :ServiceGroupName, :ServiceDescription, :ServiceInfo, :ClusterId, :Region, :Namespace, :ChargeType, :ResourceGroupId, :ResourceGroupName, :Tags, :IngressName, :CreatedBy, :CreateTime, :UpdateTime, :Uin, :SubUin, :AppId, :BusinessStatus, :ServiceLimit, :ScheduledAction, :CreateFailedReason, :Status, :BillingInfo, :Weight, :CreateSource, :Version, :LatestVersion, :ResourceGroupSWType, :ArchiveStatus, :DeployType, :InstancePerReplicas, :MonitorSource, :SubUinName, :SchedulingPolicy, :ExternalResourceGroups, :Changer, :ChangerName
         extend Gem::Deprecate
-        deprecate :ServiceLimit, :none, 2026, 6
-        deprecate :ServiceLimit=, :none, 2026, 6
-        deprecate :ScheduledAction, :none, 2026, 6
-        deprecate :ScheduledAction=, :none, 2026, 6
+        deprecate :ServiceLimit, :none, 2026, 7
+        deprecate :ServiceLimit=, :none, 2026, 7
+        deprecate :ScheduledAction, :none, 2026, 7
+        deprecate :ScheduledAction=, :none, 2026, 7
 
         def initialize(servicegroupid=nil, serviceid=nil, servicegroupname=nil, servicedescription=nil, serviceinfo=nil, clusterid=nil, region=nil, namespace=nil, chargetype=nil, resourcegroupid=nil, resourcegroupname=nil, tags=nil, ingressname=nil, createdby=nil, createtime=nil, updatetime=nil, uin=nil, subuin=nil, appid=nil, businessstatus=nil, servicelimit=nil, scheduledaction=nil, createfailedreason=nil, status=nil, billinginfo=nil, weight=nil, createsource=nil, version=nil, latestversion=nil, resourcegroupswtype=nil, archivestatus=nil, deploytype=nil, instanceperreplicas=nil, monitorsource=nil, subuinname=nil, schedulingpolicy=nil, externalresourcegroups=nil, changer=nil, changername=nil)
           @ServiceGroupId = servicegroupid
@@ -10173,10 +10389,10 @@ module TencentCloud
 
         attr_accessor :Replicas, :ImageInfo, :Env, :Resources, :InstanceType, :ModelInfo, :LogEnable, :LogConfig, :AuthorizationEnable, :HorizontalPodAutoscaler, :Status, :Weight, :ResourceTotal, :OldReplicas, :HybridBillingPrepaidReplicas, :OldHybridBillingPrepaidReplicas, :ModelHotUpdateEnable, :InstanceAlias, :ScaleMode, :CronScaleJobs, :ScaleStrategy, :ScheduledAction, :PodList, :Pods, :PodInfos, :ServiceLimit, :ModelTurboEnable, :VolumeMount, :InferCodeInfo, :Command, :ServiceEIP, :ServicePort, :TerminationGracePeriodSeconds, :PreStopCommand, :GrpcEnable, :HealthProbe, :RollingUpdate, :InstancePerReplicas, :VolumeMounts, :SchedulingStrategy, :NodeCount
         extend Gem::Deprecate
-        deprecate :PodList, :none, 2026, 6
-        deprecate :PodList=, :none, 2026, 6
-        deprecate :Pods, :none, 2026, 6
-        deprecate :Pods=, :none, 2026, 6
+        deprecate :PodList, :none, 2026, 7
+        deprecate :PodList=, :none, 2026, 7
+        deprecate :Pods, :none, 2026, 7
+        deprecate :Pods=, :none, 2026, 7
 
         def initialize(replicas=nil, imageinfo=nil, env=nil, resources=nil, instancetype=nil, modelinfo=nil, logenable=nil, logconfig=nil, authorizationenable=nil, horizontalpodautoscaler=nil, status=nil, weight=nil, resourcetotal=nil, oldreplicas=nil, hybridbillingprepaidreplicas=nil, oldhybridbillingprepaidreplicas=nil, modelhotupdateenable=nil, instancealias=nil, scalemode=nil, cronscalejobs=nil, scalestrategy=nil, scheduledaction=nil, podlist=nil, pods=nil, podinfos=nil, servicelimit=nil, modelturboenable=nil, volumemount=nil, infercodeinfo=nil, command=nil, serviceeip=nil, serviceport=nil, terminationgraceperiodseconds=nil, prestopcommand=nil, grpcenable=nil, healthprobe=nil, rollingupdate=nil, instanceperreplicas=nil, volumemounts=nil, schedulingstrategy=nil, nodecount=nil)
           @Replicas = replicas
@@ -11767,8 +11983,8 @@ module TencentCloud
 
         attr_accessor :Replicas, :UpdatedReplicas, :ReadyReplicas, :AvailableReplicas, :UnavailableReplicas, :Status, :StatefulSetCondition, :Conditions, :Reason
         extend Gem::Deprecate
-        deprecate :StatefulSetCondition, :none, 2026, 6
-        deprecate :StatefulSetCondition=, :none, 2026, 6
+        deprecate :StatefulSetCondition, :none, 2026, 7
+        deprecate :StatefulSetCondition=, :none, 2026, 7
 
         def initialize(replicas=nil, updatedreplicas=nil, readyreplicas=nil, availablereplicas=nil, unavailablereplicas=nil, status=nil, statefulsetcondition=nil, conditions=nil, reason=nil)
           @Replicas = replicas
@@ -11828,8 +12044,8 @@ module TencentCloud
 
         attr_accessor :TiProjectId, :Name, :Description, :CreateTime, :ResourceGroups, :ActionType, :Status
         extend Gem::Deprecate
-        deprecate :ResourceGroups, :none, 2026, 6
-        deprecate :ResourceGroups=, :none, 2026, 6
+        deprecate :ResourceGroups, :none, 2026, 7
+        deprecate :ResourceGroups=, :none, 2026, 7
 
         def initialize(tiprojectid=nil, name=nil, description=nil, createtime=nil, resourcegroups=nil, actiontype=nil, status=nil)
           @TiProjectId = tiprojectid

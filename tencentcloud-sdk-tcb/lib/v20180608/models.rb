@@ -7472,17 +7472,14 @@ module TencentCloud
         # @type Status: Integer
         # @param Region: <p>地域</p>
         # @type Region: String
-        # @param Version: <p>数据库引擎版本</p>
-        # @type Version: String
 
-        attr_accessor :Name, :InstanceName, :Status, :Region, :Version
+        attr_accessor :Name, :InstanceName, :Status, :Region
 
-        def initialize(name=nil, instancename=nil, status=nil, region=nil, version=nil)
+        def initialize(name=nil, instancename=nil, status=nil, region=nil)
           @Name = name
           @InstanceName = instancename
           @Status = status
           @Region = region
-          @Version = version
         end
 
         def deserialize(params)
@@ -7490,7 +7487,6 @@ module TencentCloud
           @InstanceName = params['InstanceName']
           @Status = params['Status']
           @Region = params['Region']
-          @Version = params['Version']
         end
       end
 

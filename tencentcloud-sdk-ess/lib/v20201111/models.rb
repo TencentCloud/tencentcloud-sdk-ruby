@@ -8135,33 +8135,30 @@ module TencentCloud
 
       # CreateUserAutoSignEnableUrl请求参数结构体
       class CreateUserAutoSignEnableUrlRequest < TencentCloud::Common::AbstractModel
-        # @param Operator: 执行本接口操作的员工信息。
-        # 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
+        # @param Operator: <p>执行本接口操作的员工信息。<br>注: <code>在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。</code></p>
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
-        # @param SceneKey: 自动签使用的场景值, 可以选择的场景值如下:
-        # <ul><li> **E_PRESCRIPTION_AUTO_SIGN** :  电子处方场景</li><li> **OTHER** :  通用场景</li></ul>
+        # @param SceneKey: <p>自动签使用的场景值, 可以选择的场景值如下:</p><ul><li> **E_PRESCRIPTION_AUTO_SIGN** :  电子处方场景</li><li> **OTHER** :  通用场景</li></ul>
         # @type SceneKey: String
-        # @param AutoSignConfig: 自动签开通配置信息, 包括开通的人员的信息等
+        # @param AutoSignConfig: <p>自动签开通配置信息, 包括开通的人员的信息等</p>
         # @type AutoSignConfig: :class:`Tencentcloud::Ess.v20201111.models.AutoSignConfig`
-        # @param UrlType: 生成的链接类型：
-        # <ul><li> 不传(即为空值) 则会生成小程序端开通链接(默认)</li>
-        # <li> **H5SIGN** : 生成H5端开通链接</li></ul>
+        # @param UrlType: <p>生成的链接类型：</p><ul><li> 不传(即为空值) 则会生成小程序端开通链接(默认)</li><li> **H5SIGN** : 生成H5端开通链接</li></ul>
         # @type UrlType: String
-        # @param NotifyType: 是否通知开通方，通知类型:<ul><li>默认为不通知开通方</li><li>**SMS** :  短信通知 ,如果需要短信通知则NotifyAddress填写对方的手机号</li></ul>
+        # @param NotifyType: <p>是否通知开通方，通知类型:<ul><li>默认为不通知开通方</li><li><strong>SMS</strong> :  短信通知 ,如果需要短信通知则NotifyAddress填写对方的手机号</li></ul></p>
         # @type NotifyType: String
-        # @param NotifyAddress: 如果通知类型NotifyType选择为SMS，则此处为手机号, 其他通知类型不需要设置此项
+        # @param NotifyAddress: <p>如果通知类型NotifyType选择为SMS，则此处为手机号, 其他通知类型不需要设置此项</p>
         # @type NotifyAddress: String
-        # @param ExpiredTime: 链接的过期时间，格式为Unix时间戳，不能早于当前时间，且最大为当前时间往后30天。`如果不传，默认过期时间为当前时间往后7天。`
+        # @param ExpiredTime: <p>链接的过期时间，格式为Unix时间戳，不能早于当前时间，且最大为当前时间往后30天。<code>如果不传，默认过期时间为当前时间往后7天。</code></p>
         # @type ExpiredTime: Integer
-        # @param Agent: 代理企业和员工的信息。
-        # 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
+        # @param Agent: <p>代理企业和员工的信息。<br>在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。</p>
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
-        # @param UserData: 调用方自定义的个性化字段(可自定义此字段的值)，并以base64方式编码，支持的最大数据大小为 20480长度。 在个人自动签的开通、关闭等回调信息场景中，该字段的信息将原封不动地透传给贵方。
+        # @param UserData: <p>调用方自定义的个性化字段(可自定义此字段的值)，并以base64方式编码，支持的最大数据大小为 20480长度。 在个人自动签的开通、关闭等回调信息场景中，该字段的信息将原封不动地透传给贵方。</p>
         # @type UserData: String
+        # @param EndPoint: <p>要跳转的链接类型<ul><li> <strong>HTTP</strong>：跳转电子签小程序或者H5的http_url, 短信通知或者H5跳转适合此类型  ，此时返回长链</li><li><strong>HTTP_SHORT_URL</strong>：跳转电子签小程序或者H5的http_url, 短信通知或者H5跳转适合此类型，此时返回短链</li><li><strong>APP</strong>： 第三方APP或小程序跳转电子签小程序的path,  APP或者小程序跳转适合此类型，注意：仅UrlType为空，即获取小程序端开通链接时有效</li></ul></p>
+        # @type EndPoint: String
 
-        attr_accessor :Operator, :SceneKey, :AutoSignConfig, :UrlType, :NotifyType, :NotifyAddress, :ExpiredTime, :Agent, :UserData
+        attr_accessor :Operator, :SceneKey, :AutoSignConfig, :UrlType, :NotifyType, :NotifyAddress, :ExpiredTime, :Agent, :UserData, :EndPoint
 
-        def initialize(operator=nil, scenekey=nil, autosignconfig=nil, urltype=nil, notifytype=nil, notifyaddress=nil, expiredtime=nil, agent=nil, userdata=nil)
+        def initialize(operator=nil, scenekey=nil, autosignconfig=nil, urltype=nil, notifytype=nil, notifyaddress=nil, expiredtime=nil, agent=nil, userdata=nil, endpoint=nil)
           @Operator = operator
           @SceneKey = scenekey
           @AutoSignConfig = autosignconfig
@@ -8171,6 +8168,7 @@ module TencentCloud
           @ExpiredTime = expiredtime
           @Agent = agent
           @UserData = userdata
+          @EndPoint = endpoint
         end
 
         def deserialize(params)
@@ -8192,32 +8190,23 @@ module TencentCloud
             @Agent.deserialize(params['Agent'])
           end
           @UserData = params['UserData']
+          @EndPoint = params['EndPoint']
         end
       end
 
       # CreateUserAutoSignEnableUrl返回参数结构体
       class CreateUserAutoSignEnableUrlResponse < TencentCloud::Common::AbstractModel
-        # @param Url: 个人用户自动签的开通链接, 短链形式。过期时间受 `ExpiredTime` 参数控制。
+        # @param Url: <p>个人用户自动签的开通链接, 短链/长链接形式。过期时间受 <code>ExpiredTime</code> 参数控制。</p>
         # @type Url: String
-        # @param AppId: 腾讯电子签小程序的 AppID，用于其他小程序/APP等应用跳转至腾讯电子签小程序使用
-
-        # 注: `如果获取的是H5链接, 则不会返回此值`
+        # @param AppId: <p>腾讯电子签小程序的 AppID，用于其他小程序/APP等应用跳转至腾讯电子签小程序使用</p><p>注: <code>如果获取的是H5链接, 则不会返回此值</code></p>
         # @type AppId: String
-        # @param AppOriginalId: 腾讯电子签小程序的原始 Id,  ，用于其他小程序/APP等应用跳转至腾讯电子签小程序使用
-
-        # 注: `如果获取的是H5链接, 则不会返回此值`
+        # @param AppOriginalId: <p>腾讯电子签小程序的原始 Id,  ，用于其他小程序/APP等应用跳转至腾讯电子签小程序使用</p><p>注: <code>如果获取的是H5链接, 则不会返回此值</code></p>
         # @type AppOriginalId: String
-        # @param Path: 腾讯电子签小程序的跳转路径，用于其他小程序/APP等应用跳转至腾讯电子签小程序使用
-
-        # 注: `如果获取的是H5链接, 则不会返回此值`
+        # @param Path: <p>腾讯电子签小程序的跳转路径，用于其他小程序/APP等应用跳转至腾讯电子签小程序使用</p><p>注: <code>如果获取的是H5链接, 则不会返回此值</code></p>
         # @type Path: String
-        # @param QrCode: base64 格式的跳转二维码图片，可通过微信扫描后跳转到腾讯电子签小程序的开通界面。
-
-        # 注: `如果获取的是H5链接, 则不会返回此二维码图片`
+        # @param QrCode: <p>base64 格式的跳转二维码图片，可通过微信扫描后跳转到腾讯电子签小程序的开通界面。</p><p>注: <code>如果获取的是H5链接, 则不会返回此二维码图片</code></p>
         # @type QrCode: String
-        # @param UrlType: 返回的链接类型
-        # <ul><li> 空: 默认小程序端链接</li>
-        # <li> **H5SIGN** : h5端链接</li></ul>
+        # @param UrlType: <p>返回的链接类型</p><ul><li> 空: 默认小程序端链接</li><li> **H5SIGN** : h5端链接</li></ul>
         # @type UrlType: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -8247,28 +8236,28 @@ module TencentCloud
 
       # CreateUserAutoSignSealUrl请求参数结构体
       class CreateUserAutoSignSealUrlRequest < TencentCloud::Common::AbstractModel
-        # @param Operator: 执行本接口操作的员工信息。
-        # 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
+        # @param Operator: <p>执行本接口操作的员工信息。<br>注: <code>在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。</code></p>
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
-        # @param SceneKey: 自动签使用的场景值, 可以选择的场景值如下:
-        # <ul><li> **E_PRESCRIPTION_AUTO_SIGN** :  电子处方场景</li><li> **OTHER** :  通用场景</li></ul>
+        # @param SceneKey: <p>自动签使用的场景值, 可以选择的场景值如下:</p><ul><li> **E_PRESCRIPTION_AUTO_SIGN** :  电子处方场景</li><li> **OTHER** :  通用场景</li></ul>
         # @type SceneKey: String
-        # @param UserInfo: 自动签开通个人用户信息, 包括名字,身份证等。
+        # @param UserInfo: <p>自动签开通个人用户信息, 包括名字,身份证等。</p>
         # @type UserInfo: :class:`Tencentcloud::Ess.v20201111.models.UserThreeFactor`
-        # @param Agent: 代理企业和员工的信息。
-        # 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
+        # @param Agent: <p>代理企业和员工的信息。<br>在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。</p>
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
-        # @param ExpiredTime: 链接的过期时间，格式为Unix时间戳，不能早于当前时间，且最大为当前时间往后30天。`如果不传，默认过期时间为当前时间往后7天。`
+        # @param ExpiredTime: <p>链接的过期时间，格式为Unix时间戳，不能早于当前时间，且最大为当前时间往后30天。<code>如果不传，默认过期时间为当前时间往后7天。</code></p>
         # @type ExpiredTime: Integer
+        # @param EndPoint: <p>要跳转的链接类型<ul><li> <strong>HTTP</strong>：跳转电子签小程序的http_url, 短信通知或者H5跳转适合此类型  ，此时返回长链</li><li><strong>HTTP_SHORT_URL</strong>：跳转电子签小程序的http_url, 短信通知或者H5跳转适合此类型，此时返回短链</li><li><strong>APP</strong>： 第三方APP或小程序跳转电子签小程序的path,  APP或者小程序跳转适合此类型</li></ul></p>
+        # @type EndPoint: String
 
-        attr_accessor :Operator, :SceneKey, :UserInfo, :Agent, :ExpiredTime
+        attr_accessor :Operator, :SceneKey, :UserInfo, :Agent, :ExpiredTime, :EndPoint
 
-        def initialize(operator=nil, scenekey=nil, userinfo=nil, agent=nil, expiredtime=nil)
+        def initialize(operator=nil, scenekey=nil, userinfo=nil, agent=nil, expiredtime=nil, endpoint=nil)
           @Operator = operator
           @SceneKey = scenekey
           @UserInfo = userinfo
           @Agent = agent
           @ExpiredTime = expiredtime
+          @EndPoint = endpoint
         end
 
         def deserialize(params)
@@ -8286,20 +8275,21 @@ module TencentCloud
             @Agent.deserialize(params['Agent'])
           end
           @ExpiredTime = params['ExpiredTime']
+          @EndPoint = params['EndPoint']
         end
       end
 
       # CreateUserAutoSignSealUrl返回参数结构体
       class CreateUserAutoSignSealUrlResponse < TencentCloud::Common::AbstractModel
-        # @param AppId: 腾讯电子签小程序的AppId，用于其他小程序/APP等应用跳转至腾讯电子签小程序使用。
+        # @param AppId: <p>腾讯电子签小程序的AppId，用于其他小程序/APP等应用跳转至腾讯电子签小程序使用。</p>
         # @type AppId: String
-        # @param AppOriginalId: 腾讯电子签小程序的原始Id，用于其他小程序/APP等应用跳转至腾讯电子签小程序使用。
+        # @param AppOriginalId: <p>腾讯电子签小程序的原始Id，用于其他小程序/APP等应用跳转至腾讯电子签小程序使用。</p>
         # @type AppOriginalId: String
-        # @param Url: 个人用户自动签的开通链接, 短链形式。过期时间受 `ExpiredTime` 参数控制。
+        # @param Url: <p>个人用户自动签的开通链接, 短链或者长链接形式。过期时间受 <code>ExpiredTime</code> 参数控制。</p>
         # @type Url: String
-        # @param Path: 腾讯电子签小程序的跳转路径，用于其他小程序/APP等应用跳转至腾讯电子签小程序使用。
+        # @param Path: <p>腾讯电子签小程序的跳转路径，用于其他小程序/APP等应用跳转至腾讯电子签小程序使用。</p>
         # @type Path: String
-        # @param QrCode: base64格式的跳转二维码图片，可通过微信扫描后跳转到腾讯电子签小程序的开通界面。
+        # @param QrCode: <p>base64格式的跳转二维码图片，可通过微信扫描后跳转到腾讯电子签小程序的开通界面。</p>
         # @type QrCode: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -18797,13 +18787,15 @@ module TencentCloud
         # @type FileUrls: String
         # @param Agent: <p>代理企业和员工的信息。<br>在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。</p>
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
+        # @param Deadline: <p>文件过期时间的时间戳</p><p>取值范围：[1782835200, 4102329600]</p><p>单位：秒</p><p>设置上传文件的过期时间，此功能为付费能力，请联系电子签运营人员开通</p>
+        # @type Deadline: Integer
 
-        attr_accessor :BusinessType, :Caller, :FileInfos, :FileType, :CoverRect, :CustomIds, :FileUrls, :Agent
+        attr_accessor :BusinessType, :Caller, :FileInfos, :FileType, :CoverRect, :CustomIds, :FileUrls, :Agent, :Deadline
         extend Gem::Deprecate
         deprecate :FileUrls, :none, 2026, 7
         deprecate :FileUrls=, :none, 2026, 7
 
-        def initialize(businesstype=nil, caller=nil, fileinfos=nil, filetype=nil, coverrect=nil, customids=nil, fileurls=nil, agent=nil)
+        def initialize(businesstype=nil, caller=nil, fileinfos=nil, filetype=nil, coverrect=nil, customids=nil, fileurls=nil, agent=nil, deadline=nil)
           @BusinessType = businesstype
           @Caller = caller
           @FileInfos = fileinfos
@@ -18812,6 +18804,7 @@ module TencentCloud
           @CustomIds = customids
           @FileUrls = fileurls
           @Agent = agent
+          @Deadline = deadline
         end
 
         def deserialize(params)
@@ -18836,6 +18829,7 @@ module TencentCloud
             @Agent = Agent.new
             @Agent.deserialize(params['Agent'])
           end
+          @Deadline = params['Deadline']
         end
       end
 
@@ -18845,20 +18839,24 @@ module TencentCloud
         # @type FileIds: Array
         # @param TotalCount: <p>上传成功文件数量</p>
         # @type TotalCount: Integer
+        # @param Deadline: <p>文件过期时间的时间戳</p><p>单位：秒</p><p>默认值：当前上传时间的一小时内有效</p>
+        # @type Deadline: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :FileIds, :TotalCount, :RequestId
+        attr_accessor :FileIds, :TotalCount, :Deadline, :RequestId
 
-        def initialize(fileids=nil, totalcount=nil, requestid=nil)
+        def initialize(fileids=nil, totalcount=nil, deadline=nil, requestid=nil)
           @FileIds = fileids
           @TotalCount = totalcount
+          @Deadline = deadline
           @RequestId = requestid
         end
 
         def deserialize(params)
           @FileIds = params['FileIds']
           @TotalCount = params['TotalCount']
+          @Deadline = params['Deadline']
           @RequestId = params['RequestId']
         end
       end

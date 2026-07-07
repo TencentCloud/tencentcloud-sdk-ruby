@@ -5924,20 +5924,24 @@ module TencentCloud
         # @type ReturnCode: Integer
         # @param ReturnMsg: <p>返回信息  success 成功 其他 不成功</p>
         # @type ReturnMsg: String
+        # @param Link: <p>临时下载链接</p>
+        # @type Link: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ReturnCode, :ReturnMsg, :RequestId
+        attr_accessor :ReturnCode, :ReturnMsg, :Link, :RequestId
 
-        def initialize(returncode=nil, returnmsg=nil, requestid=nil)
+        def initialize(returncode=nil, returnmsg=nil, link=nil, requestid=nil)
           @ReturnCode = returncode
           @ReturnMsg = returnmsg
+          @Link = link
           @RequestId = requestid
         end
 
         def deserialize(params)
           @ReturnCode = params['ReturnCode']
           @ReturnMsg = params['ReturnMsg']
+          @Link = params['Link']
           @RequestId = params['RequestId']
         end
       end
