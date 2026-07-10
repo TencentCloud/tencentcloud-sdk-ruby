@@ -1827,22 +1827,25 @@ module TencentCloud
 
       # 计费条目
       class ModelChargingItem < TencentCloud::Common::AbstractModel
-        # @param PriceName: 价格维度标识。取值：Input（输入）、Output（输出）、Cache（缓存命中）、Thinking（思考）、BatchInput（批量输入）、BatchOutput（批量输出）、BatchCache（批量缓存命中）、ImageInput（输入图片）、ImageOutput（输出图片）、Search（搜索调用）。
+        # @param PriceName: <p>价格维度标识。取值：Input（输入）、Output（输出）、Cache（缓存命中）、Thinking（思考）、BatchInput（批量输入）、BatchOutput（批量输出）、BatchCache（批量缓存命中）、ImageInput（输入图片）、ImageOutput（输出图片）、Search（搜索调用）。</p>
         # @type PriceName: String
-        # @param DisplayName: 价格维度展示名，后端直接提供当前语言文本（如 输入、Input），前端无需翻译。
+        # @param DisplayName: <p>价格维度展示名，后端直接提供当前语言文本（如 输入、Input），前端无需翻译。</p>
         # @type DisplayName: String
-        # @param Price: 价格数值。
+        # @param Price: <p>价格数值。</p>
         # @type Price: String
-        # @param PriceUnit: 价格单位，后端直接提供当前语言文本（如 元/百万tokens、元/张、积分/次）。
+        # @param PriceUnit: <p>价格单位，后端直接提供当前语言文本（如 元/百万tokens、元/张、积分/次）。</p>
         # @type PriceUnit: String
+        # @param PeakPrice: <p>高峰价格，为空表示无高峰定价</p>
+        # @type PeakPrice: String
 
-        attr_accessor :PriceName, :DisplayName, :Price, :PriceUnit
+        attr_accessor :PriceName, :DisplayName, :Price, :PriceUnit, :PeakPrice
 
-        def initialize(pricename=nil, displayname=nil, price=nil, priceunit=nil)
+        def initialize(pricename=nil, displayname=nil, price=nil, priceunit=nil, peakprice=nil)
           @PriceName = pricename
           @DisplayName = displayname
           @Price = price
           @PriceUnit = priceunit
+          @PeakPrice = peakprice
         end
 
         def deserialize(params)
@@ -1850,6 +1853,7 @@ module TencentCloud
           @DisplayName = params['DisplayName']
           @Price = params['Price']
           @PriceUnit = params['PriceUnit']
+          @PeakPrice = params['PeakPrice']
         end
       end
 

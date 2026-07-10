@@ -3664,19 +3664,19 @@ module TencentCloud
         # @type Name: String
         # @param Query: <p>要执行的migration sql 语句</p>
         # @type Query: String
-        # @param Rollback: <p>回滚的sql 语句</p>
+        # @param Rollback: <p>回滚的sql 语句</p><p>deprecated</p>
         # @type Rollback: String
-        # @param Checksum: <p>migration query 语句的checksum值</p><p>由服务端自动生成，同版本 checksum 不一致会拒绝执行</p>
+        # @param Checksum: <p>migration query 语句的checksum值,由服务端自动生成，同版本 checksum 不一致会拒绝执行</p><p>deprecated</p>
         # @type Checksum: String
-        # @param Source: <p>用于标记调用来源</p>
+        # @param Source: <p>用于标记调用来源</p><p>deprecated</p>
         # @type Source: String
-        # @param CreatedBy: <p>用于标记该条migration由谁创建，目前默认调用的用户uin</p>
+        # @param CreatedBy: <p>用于标记该条migration由谁创建，目前默认调用的用户uin</p><p>deprecated</p>
         # @type CreatedBy: String
-        # @param CreatedAt: <p>该migration创建时间</p>
+        # @param CreatedAt: <p>该migration创建时间</p><p>deprecated</p>
         # @type CreatedAt: String
-        # @param AppliedAt: <p>该migration应用时间</p>
+        # @param AppliedAt: <p>该migration应用时间</p><p>deprecated</p>
         # @type AppliedAt: String
-        # @param DurationMs: <p>该migration执行耗时</p><p>单位：毫秒</p>
+        # @param DurationMs: <p>该migration执行耗时</p><p>单位：毫秒</p><p>deprecated</p>
         # @type DurationMs: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6433,13 +6433,13 @@ module TencentCloud
         # @type Version: String
         # @param Name: <p>migration 版本名</p><p>参数格式：仅允许小写字母和下划线</p>
         # @type Name: String
-        # @param Checksum: <p>migration query sql 语句checksum</p><p>服务端自动生成，同版本不同checksum会拒绝执行</p>
+        # @param Checksum: <p>migration query sql 语句checksum，服务端自动生成，同版本不同checksum会拒绝执行</p><p>deprecated</p>
         # @type Checksum: String
-        # @param AppliedAt: <p>应用时间</p>
+        # @param AppliedAt: <p>应用时间</p><p>deprecated</p>
         # @type AppliedAt: String
-        # @param Source: <p>请求来源</p>
+        # @param Source: <p>请求来源</p><p>deprecated</p>
         # @type Source: String
-        # @param CreatedBy: <p>migration 创建时间</p>
+        # @param CreatedBy: <p>migration 创建时间</p><p>deprecated</p>
         # @type CreatedBy: String
 
         attr_accessor :Version, :Name, :Checksum, :AppliedAt, :Source, :CreatedBy
@@ -7496,15 +7496,18 @@ module TencentCloud
         # @type EnvId: String
         # @param Migrations: <p>预览要执行的migration 列表</p>
         # @type Migrations: Array
-        # @param Source: <p>标记请求来源</p>
+        # @param Source: <p>标记请求来源</p><p>deprecated</p>
         # @type Source: String
+        # @param IncludeAll: <p>是否允许 out-of-order local migrations</p><p>默认值：false</p>
+        # @type IncludeAll: Boolean
 
-        attr_accessor :EnvId, :Migrations, :Source
+        attr_accessor :EnvId, :Migrations, :Source, :IncludeAll
 
-        def initialize(envid=nil, migrations=nil, source=nil)
+        def initialize(envid=nil, migrations=nil, source=nil, includeall=nil)
           @EnvId = envid
           @Migrations = migrations
           @Source = source
+          @IncludeAll = includeall
         end
 
         def deserialize(params)
@@ -7518,6 +7521,7 @@ module TencentCloud
             end
           end
           @Source = params['Source']
+          @IncludeAll = params['IncludeAll']
         end
       end
 
@@ -7878,17 +7882,20 @@ module TencentCloud
         # @type LockTimeoutMs: Integer
         # @param StatementTimeoutMs: <p>单条 SQL 执行最长时间，超过后由 PostgreSQL 取消该语句</p><p>单位：毫秒</p><p>默认值：300000</p>
         # @type StatementTimeoutMs: Integer
-        # @param Source: <p>标记请求来源</p>
+        # @param Source: <p>标记请求来源</p><p>deprecated</p>
         # @type Source: String
+        # @param IncludeAll: <p>为true时允许 out-of-order local migrations</p><p>默认值：false</p>
+        # @type IncludeAll: Boolean
 
-        attr_accessor :EnvId, :Migrations, :LockTimeoutMs, :StatementTimeoutMs, :Source
+        attr_accessor :EnvId, :Migrations, :LockTimeoutMs, :StatementTimeoutMs, :Source, :IncludeAll
 
-        def initialize(envid=nil, migrations=nil, locktimeoutms=nil, statementtimeoutms=nil, source=nil)
+        def initialize(envid=nil, migrations=nil, locktimeoutms=nil, statementtimeoutms=nil, source=nil, includeall=nil)
           @EnvId = envid
           @Migrations = migrations
           @LockTimeoutMs = locktimeoutms
           @StatementTimeoutMs = statementtimeoutms
           @Source = source
+          @IncludeAll = includeall
         end
 
         def deserialize(params)
@@ -7904,6 +7911,7 @@ module TencentCloud
           @LockTimeoutMs = params['LockTimeoutMs']
           @StatementTimeoutMs = params['StatementTimeoutMs']
           @Source = params['Source']
+          @IncludeAll = params['IncludeAll']
         end
       end
 

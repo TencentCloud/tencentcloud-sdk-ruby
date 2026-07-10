@@ -1008,6 +1008,50 @@ module TencentCloud
         end
       end
 
+      # CreateIgnoreDiagRecord请求参数结构体
+      class CreateIgnoreDiagRecordRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>实例ID。</p>
+        # @type InstanceId: String
+        # @param Product: <p>服务产品类型，取值：mysql（云数据库 MySQL）、cynosdb（TDSQL-C MySQL 版）、dcdb（TDSQL MySQL 版）、mariadb（TDSQL MariaDB 版）、redis（云数据库 Redis）、mongodb（云数据库 MongoDB）、postgres（云数据库 PostgreSQL）。</p>
+        # @type Product: String
+        # @param DiagItem: <p>诊断项名称，用于指定需要忽略或取消忽略的诊断事件类型。</p>
+        # @type DiagItem: String
+        # @param Status: <p>忽略状态，取值：1（取消忽略），2（忽略）。</p>
+        # @type Status: Integer
+
+        attr_accessor :InstanceId, :Product, :DiagItem, :Status
+
+        def initialize(instanceid=nil, product=nil, diagitem=nil, status=nil)
+          @InstanceId = instanceid
+          @Product = product
+          @DiagItem = diagitem
+          @Status = status
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Product = params['Product']
+          @DiagItem = params['DiagItem']
+          @Status = params['Status']
+        end
+      end
+
+      # CreateIgnoreDiagRecord返回参数结构体
+      class CreateIgnoreDiagRecordResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateKillTask请求参数结构体
       class CreateKillTaskRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: kill会话任务的关联实例ID。

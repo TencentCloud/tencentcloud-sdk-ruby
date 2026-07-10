@@ -43,24 +43,23 @@ module TencentCloud
       class AddTargetsToTargetGroupRequest < TencentCloud::Common::AbstractModel
         # @param TargetGroupId: 目标组 ID，格式为 lbtg- 后接 8 位字母数字。
         # @type TargetGroupId: String
+        # @param Targets: 需要添加至目标组的后端服务列表。单次请求最多支持添加 **50** 个后端服务。
+        # @type Targets: Array
         # @param DryRun: 是否预览此次请求。
         # - **false**（默认）：发送普通请求，直接添加后端服务至目标组。
         # - **true**：发送预览请求，检查添加后端服务的参数、格式、业务限制等是否符合要求。
         # @type DryRun: Boolean
-        # @param Targets: 需要添加至目标组的后端服务列表。单次请求最多支持添加 **50** 个后端服务。
-        # @type Targets: Array
 
-        attr_accessor :TargetGroupId, :DryRun, :Targets
+        attr_accessor :TargetGroupId, :Targets, :DryRun
 
-        def initialize(targetgroupid=nil, dryrun=nil, targets=nil)
+        def initialize(targetgroupid=nil, targets=nil, dryrun=nil)
           @TargetGroupId = targetgroupid
-          @DryRun = dryrun
           @Targets = targets
+          @DryRun = dryrun
         end
 
         def deserialize(params)
           @TargetGroupId = params['TargetGroupId']
-          @DryRun = params['DryRun']
           unless params['Targets'].nil?
             @Targets = []
             params['Targets'].each do |i|
@@ -69,6 +68,7 @@ module TencentCloud
               @Targets << targettoadd_tmp
             end
           end
+          @DryRun = params['DryRun']
         end
       end
 
@@ -593,28 +593,26 @@ module TencentCloud
         # @type ListenerId: String
         # @param LoadBalancerId: 负载均衡实例 ID，格式为 alb- 后接 8 位字母数字。
         # @type LoadBalancerId: String
+        # @param Rules: 转发规则列表。
+        # @type Rules: Array
         # @param ClientToken: 客户端Token，用于保证请求的幂等性。  从您的客户端生成一个参数值，确保不同请求间该参数值唯一。ClientToken只支持ASCII字符。  若您未指定，则系统自动使用API请求的RequestId作为ClientToken标识。每次API请求的RequestId不一样。
         # @type ClientToken: String
         # @param DryRun: 是否只预检查此次请求。
         # @type DryRun: Boolean
-        # @param Rules: 转发规则列表。
-        # @type Rules: Array
 
-        attr_accessor :ListenerId, :LoadBalancerId, :ClientToken, :DryRun, :Rules
+        attr_accessor :ListenerId, :LoadBalancerId, :Rules, :ClientToken, :DryRun
 
-        def initialize(listenerid=nil, loadbalancerid=nil, clienttoken=nil, dryrun=nil, rules=nil)
+        def initialize(listenerid=nil, loadbalancerid=nil, rules=nil, clienttoken=nil, dryrun=nil)
           @ListenerId = listenerid
           @LoadBalancerId = loadbalancerid
+          @Rules = rules
           @ClientToken = clienttoken
           @DryRun = dryrun
-          @Rules = rules
         end
 
         def deserialize(params)
           @ListenerId = params['ListenerId']
           @LoadBalancerId = params['LoadBalancerId']
-          @ClientToken = params['ClientToken']
-          @DryRun = params['DryRun']
           unless params['Rules'].nil?
             @Rules = []
             params['Rules'].each do |i|
@@ -623,6 +621,8 @@ module TencentCloud
               @Rules << ruleinput_tmp
             end
           end
+          @ClientToken = params['ClientToken']
+          @DryRun = params['DryRun']
         end
       end
 
@@ -648,46 +648,17 @@ module TencentCloud
 
       # CreateSecurityPolicy请求参数结构体
       class CreateSecurityPolicyRequest < TencentCloud::Common::AbstractModel
-        # @param Ciphers: 安全策略支持的加密套件列表。加密套件用于协商客户端与服务端之间的加密算法。
-
-        # **配置说明：**
-        # - 加密套件的可选范围取决于所选的 TLS 协议版本（TLSVersions 参数）。
-        # - 只要加密套件被任意一个已选 TLS 版本支持，即可添加到列表中。
-        # - 若 TLSVersions 包含 TLSv1.3：可不指定 TLSv1.3 专属加密套件（系统将自动补全全部 TLSv1.3 套件）；若指定，则必须包含全部 TLSv1.3 专属加密套件，不支持仅指定部分。
-
-        # **获取可用加密套件：**
-        # 请调用 [DescribeSecurityPolicyCapabilities](https://cloud.tencent.com/document/api/xxx) 接口查询各 TLS 版本支持的加密套件列表。
+        # @param Ciphers: <p>安全策略支持的加密套件列表。加密套件用于协商客户端与服务端之间的加密算法。</p><p><strong>配置说明：</strong></p><ul><li>加密套件的可选范围取决于所选的 TLS 协议版本（TLSVersions 参数）。</li><li>只要加密套件被任意一个已选 TLS 版本支持，即可添加到列表中。</li><li>若 TLSVersions 包含 TLSv1.3：可不指定 TLSv1.3 专属加密套件（系统将自动补全全部 TLSv1.3 套件）；若指定，则必须包含全部 TLSv1.3 专属加密套件，不支持仅指定部分。</li></ul><p><strong>获取可用加密套件：</strong><br>请调用 <a href="https://cloud.tencent.com/document/api/1822/133718">DescribeSecurityPolicyCapabilities</a> 接口查询各 TLS 版本支持的加密套件列表。</p>
         # @type Ciphers: Array
-        # @param TLSVersions: 安全策略支持的 TLS 协议版本列表。TLS（Transport Layer Security）协议用于保障客户端与负载均衡之间的通信安全。
-
-        # **可选值：**
-        # - **TLSv1.0**：兼容性最好，但安全性较低，不推荐在生产环境使用。
-        # - **TLSv1.1**：安全性略优于 TLSv1.0，但仍不推荐。
-        # - **TLSv1.2**：目前主流的安全协议版本，兼顾安全性与兼容性。
-        # - **TLSv1.3**：最新版本，安全性最高，性能更优，推荐优先使用。
-
-        # **建议：** 生产环境建议至少选择 TLSv1.2，若客户端支持，优先启用 TLSv1.3。
+        # @param TLSVersions: <p>安全策略支持的 TLS 协议版本列表。TLS（Transport Layer Security）协议用于保障客户端与负载均衡之间的通信安全。</p><p><strong>可选值：</strong></p><ul><li><strong>TLSv1.0</strong>：兼容性最好，但安全性较低，不推荐在生产环境使用。</li><li><strong>TLSv1.1</strong>：安全性略优于 TLSv1.0，但仍不推荐。</li><li><strong>TLSv1.2</strong>：目前主流的安全协议版本，兼顾安全性与兼容性。</li><li><strong>TLSv1.3</strong>：最新版本，安全性最高，性能更优，推荐优先使用。</li></ul><p><strong>建议：</strong> 生产环境建议至少选择 TLSv1.2，若客户端支持，优先启用 TLSv1.3。</p>
         # @type TLSVersions: Array
-        # @param ClientToken: 客户端幂等性令牌。
-
-        # 用于保证请求的幂等性，防止因网络超时或客户端重试导致的重复创建。建议使用 UUID 作为令牌值。相同的 ClientToken 在有效期内重复请求时，服务端将返回相同的结果。
+        # @param ClientToken: <p>客户端幂等性令牌。</p><p>用于保证请求的幂等性，防止因网络超时或客户端重试导致的重复创建。建议使用 UUID 作为令牌值。相同的 ClientToken 在有效期内重复请求时，服务端将返回相同的结果。</p>
         # @type ClientToken: String
-        # @param DryRun: 是否仅执行预检请求。取值：
-        # - **true**：仅执行预检请求，不实际创建资源。预检请求将验证参数格式、权限及资源配额等，帮助您在正式操作前发现潜在问题。
-        # - **false**（默认）：执行正常请求，通过预检后将直接创建安全策略。
+        # @param DryRun: <p>是否仅执行预检请求。取值：</p><ul><li><strong>true</strong>：仅执行预检请求，不实际创建资源。预检请求将验证参数格式、权限及资源配额等，帮助您在正式操作前发现潜在问题。</li><li><strong>false</strong>（默认）：执行正常请求，通过预检后将直接创建安全策略。</li></ul>
         # @type DryRun: Boolean
-        # @param SecurityPolicyName: 安全策略名称。用于标识和区分不同的安全策略。
-
-        # **命名规则：**
-        # - 长度为 2~128 个字符。
-        # - 必须以英文字母或中文开头。
-        # - 可包含英文字母、中文、数字、半角句号（.）、下划线（_）和短划线（-）。
-
-        # **建议：** 使用具有业务含义的名称，例如 "prod-high-security" 或 "测试环境策略"。
+        # @param SecurityPolicyName: <p>安全策略名称。用于标识和区分不同的安全策略。</p><p><strong>命名规则：</strong></p><ul><li>长度为 2~128 个字符。</li><li>必须以英文字母或中文开头。</li><li>可包含英文字母、中文、数字、半角句号（.）、下划线（_）和短划线（-）。</li></ul><p><strong>建议：</strong> 使用具有业务含义的名称，例如 &quot;prod-high-security&quot; 或 &quot;测试环境策略&quot;。</p>
         # @type SecurityPolicyName: String
-        # @param Tags: 安全策略的标签列表。标签用于对资源进行分类和管理，便于按业务、环境、部门等维度筛选和组织资源。
-
-        # 每个标签由键值对（Key-Value）组成，同一资源下标签键不可重复。
+        # @param Tags: <p>安全策略的标签列表。标签用于对资源进行分类和管理，便于按业务、环境、部门等维度筛选和组织资源。</p><p>每个标签由键值对（Key-Value）组成，同一资源下标签键不可重复。</p>
         # @type Tags: Array
 
         attr_accessor :Ciphers, :TLSVersions, :ClientToken, :DryRun, :SecurityPolicyName, :Tags
@@ -720,7 +691,7 @@ module TencentCloud
 
       # CreateSecurityPolicy返回参数结构体
       class CreateSecurityPolicyResponse < TencentCloud::Common::AbstractModel
-        # @param SecurityPolicyId: 安全策略 ID，格式为 tls- 后接 8 位字母数字。
+        # @param SecurityPolicyId: <p>安全策略 ID，格式为 tls- 后接 8 位字母数字。</p>
         # @type SecurityPolicyId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -740,34 +711,25 @@ module TencentCloud
 
       # CreateTargetGroup请求参数结构体
       class CreateTargetGroupRequest < TencentCloud::Common::AbstractModel
-        # @param TargetType: 目标组类型。取值：
-        # - **Instance**（默认）：Cvm服务器类型或者Eni网卡类型。
+        # @param TargetType: <p>目标组类型。取值：</p><ul><li><strong>Instance</strong>（默认）：Cvm服务器类型或者Eni网卡类型。</li></ul>
         # @type TargetType: String
-        # @param VpcId: 私有网络 ID。
+        # @param VpcId: <p>私有网络 ID。</p>
         # @type VpcId: String
-        # @param DryRun: 是否预览此次请求。
-        # - **false**（默认）：发送普通请求，直接创建目标组。
-        # - **true**：发送预览请求，检查创建目标组的参数、格式、业务限制等是否符合要求。
+        # @param DryRun: <p>是否预览此次请求。</p><ul><li><strong>false</strong>（默认）：发送普通请求，直接创建目标组。</li><li><strong>true</strong>：发送预览请求，检查创建目标组的参数、格式、业务限制等是否符合要求。</li></ul>
         # @type DryRun: Boolean
-        # @param HealthCheckConfig: 健康检查配置。
+        # @param HealthCheckConfig: <p>健康检查配置。</p>
         # @type HealthCheckConfig: :class:`Tencentcloud::Alb.v20251030.models.HealthCheckConfig`
-        # @param KeepaliveEnabled: 是否开启长连接。
+        # @param KeepaliveEnabled: <p>是否开启长连接。</p>
         # @type KeepaliveEnabled: Boolean
-        # @param Protocol: 后端服务协议类型。取值：
-        # - **HTTP**（默认）：支持绑定HTTP、HTTPS的监听器
-        # - **HTTPS**：支持绑定HTTPS类型的监听器
-        # - **GRPC**：支持绑定HTTPS类型的监听器
-        # - **GRPCS**：支持绑定HTTPS类型的监听器
+        # @param Protocol: <p>后端服务协议类型。取值：</p><ul><li><strong>HTTP</strong>（默认）：支持绑定HTTP、HTTPS的监听器</li><li><strong>HTTPS</strong>：支持绑定HTTPS类型的监听器</li><li><strong>GRPC</strong>：支持绑定HTTPS类型的监听器</li><li><strong>GRPCS</strong>：支持绑定HTTPS类型的监听器</li></ul>
         # @type Protocol: String
-        # @param SchedulerAlgorithm: 调度算法。取值：
-        # - **wrr**（默认）：加权轮训，按照权重选择后端服务器，权重越高的服务器被轮训到的概率越高。
-        # - **wlc**：加权最小连接数，当不同后端服务器权重值相同时，当前连接数越小的后端服务器被轮询到的概率越高。
+        # @param SchedulerAlgorithm: <p>调度算法。取值：</p><ul><li><strong>wrr</strong>（默认）：加权轮询，按照权重选择后端服务器，权重越高的服务器被轮询到的概率越高。</li><li><strong>wlc</strong>：加权最小连接数，当不同后端服务器权重值相同时，当前连接数越小的后端服务器被轮询到的概率越高。</li></ul>
         # @type SchedulerAlgorithm: String
-        # @param StickySessionConfig: 会话保持配置。
+        # @param StickySessionConfig: <p>会话保持配置。</p>
         # @type StickySessionConfig: :class:`Tencentcloud::Alb.v20251030.models.StickySessionConfig`
-        # @param Tags: 标签。
+        # @param Tags: <p>标签。</p>
         # @type Tags: Array
-        # @param TargetGroupName: 目标组名称。默认为目标组ID。长度为 **1-255** 个字符，可包含数字、大小写字母、中文、半角句号（.）、下划线（_）和短划线（-）。
+        # @param TargetGroupName: <p>目标组名称。默认为目标组ID。长度为 <strong>1-255</strong> 个字符，可包含数字、大小写字母、中文、半角句号（.）、下划线（_）和短划线（-）。</p>
         # @type TargetGroupName: String
 
         attr_accessor :TargetType, :VpcId, :DryRun, :HealthCheckConfig, :KeepaliveEnabled, :Protocol, :SchedulerAlgorithm, :StickySessionConfig, :Tags, :TargetGroupName
@@ -814,7 +776,7 @@ module TencentCloud
 
       # CreateTargetGroup返回参数结构体
       class CreateTargetGroupResponse < TencentCloud::Common::AbstractModel
-        # @param TargetGroupId: 目标组 ID，格式为 lbtg- 后接 8 位字母数字。
+        # @param TargetGroupId: <p>目标组 ID，格式为 lbtg- 后接 8 位字母数字。</p>
         # @type TargetGroupId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -857,23 +819,23 @@ module TencentCloud
 
       # DeleteHealthCheckTemplates请求参数结构体
       class DeleteHealthCheckTemplatesRequest < TencentCloud::Common::AbstractModel
+        # @param HealthCheckTemplateIds: 健康检查模板 ID 列表，ID 格式为 hct- 后接字母数字。
+        # @type HealthCheckTemplateIds: Array
         # @param DryRun: 是否预览此次请求。
         # - **false**（默认）：发送普通请求，直接删除模板。
         # - **true**：发送预览请求，检查删除模板的参数、格式、业务限制等是否符合要求。
         # @type DryRun: Boolean
-        # @param HealthCheckTemplateIds: 健康检查模板 ID 列表，ID 格式为 hct- 后接字母数字。
-        # @type HealthCheckTemplateIds: Array
 
-        attr_accessor :DryRun, :HealthCheckTemplateIds
+        attr_accessor :HealthCheckTemplateIds, :DryRun
 
-        def initialize(dryrun=nil, healthchecktemplateids=nil)
-          @DryRun = dryrun
+        def initialize(healthchecktemplateids=nil, dryrun=nil)
           @HealthCheckTemplateIds = healthchecktemplateids
+          @DryRun = dryrun
         end
 
         def deserialize(params)
-          @DryRun = params['DryRun']
           @HealthCheckTemplateIds = params['HealthCheckTemplateIds']
+          @DryRun = params['DryRun']
         end
       end
 
@@ -1190,17 +1152,13 @@ module TencentCloud
 
       # DescribeHealthCheckTemplates请求参数结构体
       class DescribeHealthCheckTemplatesRequest < TencentCloud::Common::AbstractModel
-        # @param Filters: 过滤器。通过指定的过滤条件来查询健康检查模版，支持：
-        # - Name的值为**HealthCheckTemplateName**。通过名称来筛选健康检查模版。**Values**的值为模版名称列表。
-        # - Name的值为**HealthCheckProtocol**。通过健康检查协议来筛选健康检查模版。**Values**的值为协议列表。
-        # - 通过标签方式筛选。
+        # @param Filters: <p>过滤器。通过指定的过滤条件来查询健康检查模板，支持：</p><ul><li>Name的值为<strong>HealthCheckTemplateName</strong>。通过名称来筛选健康检查模板。<strong>Values</strong>的值为模板名称列表。</li><li>Name的值为<strong>HealthCheckProtocol</strong>。通过健康检查协议来筛选健康检查模板。<strong>Values</strong>的值为协议列表。</li><li>通过标签方式筛选。</li></ul>
         # @type Filters: Array
-        # @param HealthCheckTemplateIds: 健康检查模板 ID 列表，ID 格式为 hct- 后接字母数字。
+        # @param HealthCheckTemplateIds: <p>健康检查模板 ID 列表，ID 格式为 hct- 后接字母数字。</p>
         # @type HealthCheckTemplateIds: Array
-        # @param MaxResults: 返回列表的数量，默认为20，最大值为100。
+        # @param MaxResults: <p>返回列表的数量，默认为20，最大值为100。</p>
         # @type MaxResults: String
-        # @param NextToken: 下一次查询的Token值。第一次查询和没有下一次查询时，无需填写。
-        # 如果有下一次查询，取值为上一次 API 调用返回的 NextToken 值。
+        # @param NextToken: <p>下一次查询的Token值。第一次查询和没有下一次查询时，无需填写。<br>如果有下一次查询，取值为上一次 API 调用返回的 NextToken 值。</p>
         # @type NextToken: String
 
         attr_accessor :Filters, :HealthCheckTemplateIds, :MaxResults, :NextToken
@@ -1229,11 +1187,11 @@ module TencentCloud
 
       # DescribeHealthCheckTemplates返回参数结构体
       class DescribeHealthCheckTemplatesResponse < TencentCloud::Common::AbstractModel
-        # @param HealthCheckTemplates: 健康检查模板列表。
+        # @param HealthCheckTemplates: <p>健康检查模板列表。</p>
         # @type HealthCheckTemplates: Array
-        # @param NextToken: 下一次查询的Token值，如果当前是最后一页，返回为空。
+        # @param NextToken: <p>下一次查询的Token值，如果当前是最后一页，返回为空。</p>
         # @type NextToken: String
-        # @param TotalCount: 经过筛选后查询到的健康检查模板总数。
+        # @param TotalCount: <p>经过筛选后查询到的健康检查模板总数。</p>
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2575,17 +2533,17 @@ module TencentCloud
 
       # HTTP重定向信息
       class HTTPRedirectInfo < TencentCloud::Common::AbstractModel
-        # @param HttpCode: 重定向的HTTP码，支持301、302、303、307、 308。
+        # @param HttpCode: <p>重定向的HTTP码，支持301、302、303、307、 308。</p>
         # @type HttpCode: Integer
-        # @param Host: 重定向的主机地址，默认值${host}。长度3 ~ 128个字符，支持的字符集为：a-z 0-9 _ . -。
+        # @param Host: <p>重定向的主机地址，默认值${host}。长度3 ~ 128个字符，支持的字符集为：a-z 0-9 _ . -。</p>
         # @type Host: String
-        # @param Path: 重定向的路径，默认值${path}。长度1 ~ 128个字符，支持的字符集为：a-z 0-9  ? =  _  . - / : 。
+        # @param Path: <p>重定向的路径，默认值${path}。长度1 ~ 128个字符，支持的字符集为：a-z A-Z 0-9  ? =  _  . - / : 。</p>
         # @type Path: String
-        # @param Port: 重定向的端口，默认值 ${port}。取值1 ~ 65535。
+        # @param Port: <p>重定向的端口，默认值 ${port}。取值1 ~ 65535。</p>
         # @type Port: String
-        # @param Protocol: 重定向的协议，取值：HTTP,HTTPS，默认值${protocol}。
+        # @param Protocol: <p>重定向的协议，取值：HTTP,HTTPS，默认值${protocol}。</p>
         # @type Protocol: String
-        # @param Query: 重定向的查询字符串，默认值${query}。长度1 ~ 128字符，支持可打印字符，不支持 #[]{}\|<>& 和空格。
+        # @param Query: <p>重定向的查询字符串，默认值${query}。长度1 ~ 128字符，支持可打印字符，不支持 #[]{}|&lt;&gt;&amp; 和空格。</p>
         # @type Query: String
 
         attr_accessor :HttpCode, :Host, :Path, :Port, :Protocol, :Query
@@ -2611,11 +2569,11 @@ module TencentCloud
 
       # HTTP重写信息
       class HTTPRewriteInfo < TencentCloud::Common::AbstractModel
-        # @param Host: 重写的主机地址，默认值${host}。长度3 ~ 128个字符，支持的字符集为：a-z 0-9 _ . -。
+        # @param Host: <p>重写的主机地址，默认值${host}。长度3 ~ 128个字符，支持的字符集为：a-z 0-9 _ . -。</p>
         # @type Host: String
-        # @param Path: 重写的路径，默认值${path}。长度1 ~ 128个字符，支持的字符集为：a-z 0-9 ? = _ . - / : 。
+        # @param Path: <p>重写的路径，默认值${path}。长度1 ~ 128个字符，支持的字符集为：a-z A-Z 0-9 ? = _ . - / : 。</p>
         # @type Path: String
-        # @param Query: 重写的查询字符串，默认值${query}。长度1 ~ 128字符，支持可打印字符，不支持 #[]{}|<>& 和空格。
+        # @param Query: <p>重写的查询字符串，默认值${query}。长度1 ~ 128字符，支持可打印字符，不支持 #[]{}|&lt;&gt;&amp; 和空格。</p>
         # @type Query: String
 
         attr_accessor :Host, :Path, :Query
@@ -3778,29 +3736,29 @@ module TencentCloud
       class ModifyLoadBalancerModificationProtectionRequest < TencentCloud::Common::AbstractModel
         # @param LoadBalancerId: 负载均衡实例 ID，格式为 alb- 后接 8 位字母数字。
         # @type LoadBalancerId: String
+        # @param ModificationProtectionEnabled: 是否开启修改保护。开启后，可防止实例被意外修改或删除。\n- true：开启修改保护\n- false：关闭修改保护
+        # @type ModificationProtectionEnabled: Boolean
         # @param DryRun: 是否只预检此次请求。取值：
         # - true：仅执行预检，不实际操作资源。检查参数完整性、请求格式及业务限制，通过返回 DryRunOperation，不通过返回对应错误。
         # - false（默认）：执行正常请求，检查通过后直接操作资源。
         # @type DryRun: Boolean
-        # @param ModificationProtectionEnabled: 是否开启修改保护。开启后，可防止实例被意外修改或删除。\n- true：开启修改保护\n- false：关闭修改保护
-        # @type ModificationProtectionEnabled: Boolean
         # @param Reason: 开启修改保护的原因说明。
         # 长度为 1~255 个字符，必须是中文和无害字符串中的字符， 可包含中文、字母、数字、短划线（-）、正斜线（/）、半角句号（.）、下划线（_）。
         # @type Reason: String
 
-        attr_accessor :LoadBalancerId, :DryRun, :ModificationProtectionEnabled, :Reason
+        attr_accessor :LoadBalancerId, :ModificationProtectionEnabled, :DryRun, :Reason
 
-        def initialize(loadbalancerid=nil, dryrun=nil, modificationprotectionenabled=nil, reason=nil)
+        def initialize(loadbalancerid=nil, modificationprotectionenabled=nil, dryrun=nil, reason=nil)
           @LoadBalancerId = loadbalancerid
-          @DryRun = dryrun
           @ModificationProtectionEnabled = modificationprotectionenabled
+          @DryRun = dryrun
           @Reason = reason
         end
 
         def deserialize(params)
           @LoadBalancerId = params['LoadBalancerId']
-          @DryRun = params['DryRun']
           @ModificationProtectionEnabled = params['ModificationProtectionEnabled']
+          @DryRun = params['DryRun']
           @Reason = params['Reason']
         end
       end
@@ -3874,44 +3832,15 @@ module TencentCloud
 
       # ModifySecurityPolicyAttributes请求参数结构体
       class ModifySecurityPolicyAttributesRequest < TencentCloud::Common::AbstractModel
-        # @param SecurityPolicyId: 安全策略 ID，格式为 tls- 后接 8 位字母数字。
+        # @param SecurityPolicyId: <p>安全策略 ID，格式为 tls- 后接 8 位字母数字。</p>
         # @type SecurityPolicyId: String
-        # @param Ciphers: 修改后的加密套件列表。加密套件用于协商客户端与服务端之间的加密算法。
-
-        # **配置说明：**
-        # - 加密套件的可选范围取决于所选的 TLS 协议版本（TLSVersions 参数）。
-        # - 只要加密套件被任意一个已选 TLS 版本支持，即可添加到列表中。
-        # - 若 TLSVersions 包含 TLSv1.3：可不指定 TLSv1.3 专属加密套件（系统将自动补全全部 TLSv1.3 套件）；若指定，则必须包含全部 TLSv1.3 专属加密套件，不支持仅指定部分。
-
-        # **获取可用加密套件：**
-        # 请调用 [DescribeSecurityPolicyCapabilities](https://cloud.tencent.com/document/api/xxx) 接口查询各 TLS 版本支持的加密套件列表。
-
-        # **注意：** 若不传此参数，则保持原有配置不变。
+        # @param Ciphers: <p>修改后的加密套件列表。加密套件用于协商客户端与服务端之间的加密算法。</p><p><strong>配置说明：</strong></p><ul><li>加密套件的可选范围取决于所选的 TLS 协议版本（TLSVersions 参数）。</li><li>只要加密套件被任意一个已选 TLS 版本支持，即可添加到列表中。</li><li>若 TLSVersions 包含 TLSv1.3：可不指定 TLSv1.3 专属加密套件（系统将自动补全全部 TLSv1.3 套件）；若指定，则必须包含全部 TLSv1.3 专属加密套件，不支持仅指定部分。</li></ul><p><strong>获取可用加密套件：</strong><br>请调用 <a href="https://cloud.tencent.com/document/api/1822/133718">DescribeSecurityPolicyCapabilities</a> 接口查询各 TLS 版本支持的加密套件列表。</p><p><strong>注意：</strong> 若不传此参数，则保持原有配置不变。</p>
         # @type Ciphers: Array
-        # @param DryRun: 是否仅执行预检请求。取值：
-        # - **true**：仅执行预检请求，不实际修改资源。预检请求将验证参数格式、权限及配置有效性等，帮助您在正式操作前发现潜在问题。
-        # - **false**（默认）：执行正常请求，通过预检后将直接修改安全策略。
+        # @param DryRun: <p>是否仅执行预检请求。取值：</p><ul><li><strong>true</strong>：仅执行预检请求，不实际修改资源。预检请求将验证参数格式、权限及配置有效性等，帮助您在正式操作前发现潜在问题。</li><li><strong>false</strong>（默认）：执行正常请求，通过预检后将直接修改安全策略。</li></ul>
         # @type DryRun: Boolean
-        # @param SecurityPolicyName: 修改后的安全策略名称。用于标识和区分不同的安全策略。
-
-        # **命名规则：**
-        # - 长度为 2~128 个字符。
-        # - 必须以英文字母或中文开头。
-        # - 可包含英文字母、中文、数字、半角句号（.）、下划线（_）和短划线（-）。
-
-        # **注意：** 若不传此参数，则保持原有名称不变。
+        # @param SecurityPolicyName: <p>修改后的安全策略名称。用于标识和区分不同的安全策略。</p><p><strong>命名规则：</strong></p><ul><li>长度为 2~128 个字符。</li><li>必须以英文字母或中文开头。</li><li>可包含英文字母、中文、数字、半角句号（.）、下划线（_）和短划线（-）。</li></ul><p><strong>注意：</strong> 若不传此参数，则保持原有名称不变。</p>
         # @type SecurityPolicyName: String
-        # @param TLSVersions: 修改后的 TLS 协议版本列表。TLS（Transport Layer Security）协议用于保障客户端与负载均衡之间的通信安全。
-
-        # **可选值：**
-        # - **TLSv1.0**：兼容性最好，但安全性较低，不推荐在生产环境使用。
-        # - **TLSv1.1**：安全性略优于 TLSv1.0，但仍不推荐。
-        # - **TLSv1.2**：目前主流的安全协议版本，兼顾安全性与兼容性。
-        # - **TLSv1.3**：最新版本，安全性最高，性能更优，推荐优先使用。
-
-        # **注意：**
-        # - 若不传此参数，则保持原有配置不变。
-        # - 修改 TLS 版本时，请同步检查 Ciphers 参数的配置是否兼容。
+        # @param TLSVersions: <p>修改后的 TLS 协议版本列表。TLS（Transport Layer Security）协议用于保障客户端与负载均衡之间的通信安全。</p><p><strong>可选值：</strong></p><ul><li><strong>TLSv1.0</strong>：兼容性最好，但安全性较低，不推荐在生产环境使用。</li><li><strong>TLSv1.1</strong>：安全性略优于 TLSv1.0，但仍不推荐。</li><li><strong>TLSv1.2</strong>：目前主流的安全协议版本，兼顾安全性与兼容性。</li><li><strong>TLSv1.3</strong>：最新版本，安全性最高，性能更优，推荐优先使用。</li></ul><p><strong>注意：</strong> </p><ul><li>若不传此参数，则保持原有配置不变。</li><li>修改 TLS 版本时，请同步检查 Ciphers 参数的配置是否兼容。</li></ul>
         # @type TLSVersions: Array
 
         attr_accessor :SecurityPolicyId, :Ciphers, :DryRun, :SecurityPolicyName, :TLSVersions
@@ -3951,23 +3880,19 @@ module TencentCloud
 
       # ModifyTargetGroupAttributes请求参数结构体
       class ModifyTargetGroupAttributesRequest < TencentCloud::Common::AbstractModel
-        # @param DryRun: 是否预览此次请求。
-        # - **false**（默认）：发送普通请求，直接修改目标组。
-        # - **true**：发送预览请求，检查修改目标组的参数、格式、业务限制等是否符合要求。
+        # @param DryRun: <p>是否预览此次请求。</p><ul><li><strong>false</strong>（默认）：发送普通请求，直接修改目标组。</li><li><strong>true</strong>：发送预览请求，检查修改目标组的参数、格式、业务限制等是否符合要求。</li></ul>
         # @type DryRun: Boolean
-        # @param HealthCheckConfig: 健康检查配置。
+        # @param HealthCheckConfig: <p>健康检查配置。</p>
         # @type HealthCheckConfig: :class:`Tencentcloud::Alb.v20251030.models.HealthCheckConfig`
-        # @param KeepaliveEnabled: 是否开启长连接。
+        # @param KeepaliveEnabled: <p>是否开启长连接。</p>
         # @type KeepaliveEnabled: Boolean
-        # @param SchedulerAlgorithm: 调度算法。取值：
-        # - **wrr**：加权轮训，按照权重选择后端服务器，权重越高的服务器被轮训到的概率越高。
-        # - **wlc**：加权最小连接数，当不同后端服务器权重值相同时，当前连接数越小的后端服务器被轮询到的概率越高。
+        # @param SchedulerAlgorithm: <p>调度算法。取值：</p><ul><li><strong>wrr</strong>：加权轮询，按照权重选择后端服务器，权重越高的服务器被轮询到的概率越高。</li><li><strong>wlc</strong>：加权最小连接数，当不同后端服务器权重值相同时，当前连接数越小的后端服务器被轮询到的概率越高。</li></ul>
         # @type SchedulerAlgorithm: String
-        # @param StickySessionConfig: 会话保持配置。
+        # @param StickySessionConfig: <p>会话保持配置。</p>
         # @type StickySessionConfig: :class:`Tencentcloud::Alb.v20251030.models.StickySessionConfig`
-        # @param TargetGroupId: 目标组 ID，格式为 lbtg- 后接 8 位字母数字。
+        # @param TargetGroupId: <p>目标组 ID，格式为 lbtg- 后接 8 位字母数字。</p>
         # @type TargetGroupId: String
-        # @param TargetGroupName: 目标组名称。长度为 1~255 个字符，可包含数字、大小写字母、中文、半角句号（.）、下划线（_）和短划线（-）。不传目标组名称时默认使用ID作为目标组名称。
+        # @param TargetGroupName: <p>目标组名称。长度为 1~255 个字符，可包含数字、大小写字母、中文、半角句号（.）、下划线（_）和短划线（-）。不传目标组名称时默认使用ID作为目标组名称。</p>
         # @type TargetGroupName: String
 
         attr_accessor :DryRun, :HealthCheckConfig, :KeepaliveEnabled, :SchedulerAlgorithm, :StickySessionConfig, :TargetGroupId, :TargetGroupName
@@ -4019,24 +3944,23 @@ module TencentCloud
       class ModifyTargetsInTargetGroupRequest < TencentCloud::Common::AbstractModel
         # @param TargetGroupId: 目标组 ID，格式为 lbtg- 后接 8 位字母数字。
         # @type TargetGroupId: String
+        # @param Targets: 需要修改的后端服务列表。
+        # @type Targets: Array
         # @param DryRun: 是否预览此次请求。
         # - **false**（默认）：发送普通请求，直接修改后端服务信息。
         # - **true**：发送预览请求，检查修改后端服务的参数、格式、业务限制等是否符合要求。
         # @type DryRun: Boolean
-        # @param Targets: 需要修改的后端服务列表。
-        # @type Targets: Array
 
-        attr_accessor :TargetGroupId, :DryRun, :Targets
+        attr_accessor :TargetGroupId, :Targets, :DryRun
 
-        def initialize(targetgroupid=nil, dryrun=nil, targets=nil)
+        def initialize(targetgroupid=nil, targets=nil, dryrun=nil)
           @TargetGroupId = targetgroupid
-          @DryRun = dryrun
           @Targets = targets
+          @DryRun = dryrun
         end
 
         def deserialize(params)
           @TargetGroupId = params['TargetGroupId']
-          @DryRun = params['DryRun']
           unless params['Targets'].nil?
             @Targets = []
             params['Targets'].each do |i|
@@ -4045,6 +3969,7 @@ module TencentCloud
               @Targets << targettomodify_tmp
             end
           end
+          @DryRun = params['DryRun']
         end
       end
 
@@ -4239,24 +4164,23 @@ module TencentCloud
       class RemoveTargetsFromTargetGroupRequest < TencentCloud::Common::AbstractModel
         # @param TargetGroupId: 目标组 ID，格式为 lbtg- 后接 8 位字母数字。
         # @type TargetGroupId: String
+        # @param Targets: 需要从目标组移除的后端服务列表。单次请求最多移除 **50** 个后端服务。
+        # @type Targets: Array
         # @param DryRun: 是否预览此次请求。
         # - **false**（默认）：发送普通请求，直接移除后端服务。
         # - **true**：发送预览请求，检查移除后端服务的参数、格式、业务限制等是否符合要求。
         # @type DryRun: Boolean
-        # @param Targets: 需要从目标组移除的后端服务列表。单次请求最多移除 **50** 个后端服务。
-        # @type Targets: Array
 
-        attr_accessor :TargetGroupId, :DryRun, :Targets
+        attr_accessor :TargetGroupId, :Targets, :DryRun
 
-        def initialize(targetgroupid=nil, dryrun=nil, targets=nil)
+        def initialize(targetgroupid=nil, targets=nil, dryrun=nil)
           @TargetGroupId = targetgroupid
-          @DryRun = dryrun
           @Targets = targets
+          @DryRun = dryrun
         end
 
         def deserialize(params)
           @TargetGroupId = params['TargetGroupId']
-          @DryRun = params['DryRun']
           unless params['Targets'].nil?
             @Targets = []
             params['Targets'].each do |i|
@@ -4265,6 +4189,7 @@ module TencentCloud
               @Targets << targettoremove_tmp
             end
           end
+          @DryRun = params['DryRun']
         end
       end
 
@@ -5287,21 +5212,15 @@ module TencentCloud
 
       # 可用区及子网映射结构体
       class ZoneMappingInfo < TencentCloud::Common::AbstractModel
-        # @param SubnetId: 子网 ID。
+        # @param SubnetId: <p>子网 ID。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubnetId: String
-        # @param ZoneId: 可用区ID。最多支持添加10个可用区。若当前地域支持2个及以上的可用区，至少需要添加2个可用区。
-        # 您可以通过调用[DescribeZones](~~36064~~)接口获取可用区ID对应的可用区的信息。
+        # @param ZoneId: <p>可用区ID。最多支持添加10个可用区。若当前地域支持2个及以上的可用区，至少需要添加2个可用区。<br>您可以通过调用<a href="https://cloud.tencent.com/document/api/1822/133727">DescribeZones</a>接口获取可用区ID对应的可用区的信息。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ZoneId: String
-        # @param LoadBalancerAddress: 负载均衡 VIP/EIP 信息
+        # @param LoadBalancerAddress: <p>负载均衡 VIP/EIP 信息</p>
         # @type LoadBalancerAddress: :class:`Tencentcloud::Alb.v20251030.models.LoadBalancerAddress`
-        # @param Status: 可用区状态。取值：
-        # - **Active**：运行中。
-        # - **Stopped**：已停止。
-        # - **Shifted**：已移除。
-        # - **Starting**：启动中。
-        # - **Stopping**：停止中。
+        # @param Status: <p>可用区状态。取值：</p><ul><li><strong>Active</strong>：运行中。</li><li><strong>Stopped</strong>：已停止。</li><li><strong>Shifted</strong>：已移除。</li><li><strong>Starting</strong>：启动中。</li><li><strong>Stopping</strong>：停止中。</li></ul>
         # @type Status: String
 
         attr_accessor :SubnetId, :ZoneId, :LoadBalancerAddress, :Status
@@ -5329,7 +5248,7 @@ module TencentCloud
         # @param SubnetId: <p>子网 ID。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubnetId: String
-        # @param ZoneId: <p>可用区ID。最多支持添加10个可用区。若当前地域支持2个及以上的可用区，至少需要添加2个可用区。<br>您可以通过调用<a href="~~36064~~">DescribeZones</a>接口获取可用区ID对应的可用区的信息。</p>
+        # @param ZoneId: <p>可用区ID。最多支持添加10个可用区。若当前地域支持2个及以上的可用区，至少需要添加2个可用区。<br>您可以通过调用<a href="https://cloud.tencent.com/document/api/1822/133727">DescribeZones</a>接口获取可用区ID对应的可用区的信息。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ZoneId: String
         # @param LoadBalancerAddress: <p>公网实例绑定的EIP实例ID。</p>

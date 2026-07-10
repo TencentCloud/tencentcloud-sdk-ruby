@@ -1366,26 +1366,28 @@ module TencentCloud
 
       # CreateSubscribe请求参数结构体
       class CreateSubscribeRequest < TencentCloud::Common::AbstractModel
-        # @param Product: 订阅的数据库类型，目前支持 cynosdbmysql(tdsql-c mysql版),mariadb,mongodb,mysql,percona,tdpg(tdsql postgresql版),tdsqlpercona(tdsql mysql版)
+        # @param Product: <p>订阅的数据库类型，目前支持 cynosdbmysql(tdsql-c mysql版),mariadb,mongodb,mysql,percona,tdpg(tdsql postgresql版),tdsqlpercona(tdsql mysql版)</p>
         # @type Product: String
-        # @param PayType: 付费方式，枚举值：0-包年包月，1-按量计费
+        # @param PayType: <p>付费方式，枚举值：0-包年包月，1-按量计费</p>
         # @type PayType: Integer
-        # @param Duration: 购买时长。当 payType 为包年包月时，该项需要填，单位为月，最小值为 1，最大值为 120。不填默认1
+        # @param Duration: <p>购买时长。当 payType 为包年包月时，该项需要填，单位为月，最小值为 1，最大值为 120。不填默认1</p>
         # @type Duration: Integer
-        # @param AutoRenew: 是否自动续费。当 payType 为包年包月时，该项需要填。枚举值：0-不自动续费，1-自动续费。默认不自动续费。按量计费设置该标识无效。
+        # @param AutoRenew: <p>是否自动续费。当 payType 为包年包月时，该项需要填。枚举值：0-不自动续费，1-自动续费。默认不自动续费。按量计费设置该标识无效。</p>
         # @type AutoRenew: Integer
-        # @param Count: 购买数量,默认为1，最大为10
+        # @param Count: <p>购买数量,默认为1，最大为10</p>
         # @type Count: Integer
-        # @param Tags: 实例资源标签
+        # @param Tags: <p>实例资源标签</p>
         # @type Tags: Array
-        # @param Name: 任务名，自定义
+        # @param Name: <p>任务名，自定义</p>
         # @type Name: String
-        # @param InstanceClass: 订阅实例规格，当前仅支持small、medium、large
+        # @param SubscribeVersion: <p>数据订阅版本，目前支持kafka和kafkaPro（专业版），如果不填，默认kafkaPro</p>
+        # @type SubscribeVersion: String
+        # @param InstanceClass: <p>订阅实例规格，当前仅支持small、medium、large</p>
         # @type InstanceClass: String
 
-        attr_accessor :Product, :PayType, :Duration, :AutoRenew, :Count, :Tags, :Name, :InstanceClass
+        attr_accessor :Product, :PayType, :Duration, :AutoRenew, :Count, :Tags, :Name, :SubscribeVersion, :InstanceClass
 
-        def initialize(product=nil, paytype=nil, duration=nil, autorenew=nil, count=nil, tags=nil, name=nil, instanceclass=nil)
+        def initialize(product=nil, paytype=nil, duration=nil, autorenew=nil, count=nil, tags=nil, name=nil, subscribeversion=nil, instanceclass=nil)
           @Product = product
           @PayType = paytype
           @Duration = duration
@@ -1393,6 +1395,7 @@ module TencentCloud
           @Count = count
           @Tags = tags
           @Name = name
+          @SubscribeVersion = subscribeversion
           @InstanceClass = instanceclass
         end
 
@@ -1411,13 +1414,14 @@ module TencentCloud
             end
           end
           @Name = params['Name']
+          @SubscribeVersion = params['SubscribeVersion']
           @InstanceClass = params['InstanceClass']
         end
       end
 
       # CreateSubscribe返回参数结构体
       class CreateSubscribeResponse < TencentCloud::Common::AbstractModel
-        # @param SubscribeIds: 数据订阅实例的ID数组
+        # @param SubscribeIds: <p>数据订阅实例的ID数组</p>
         # @type SubscribeIds: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

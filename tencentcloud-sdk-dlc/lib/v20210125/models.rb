@@ -1904,8 +1904,8 @@ module TencentCloud
 
         attr_accessor :EngineType, :DataEngineName, :ClusterType, :Mode, :AutoResume, :MinClusters, :MaxClusters, :DefaultDataEngine, :CidrBlock, :Message, :Size, :PayMode, :TimeSpan, :TimeUnit, :AutoRenew, :Tags, :AutoSuspend, :CrontabResumeSuspend, :CrontabResumeSuspendStrategy, :EngineExecType, :MaxConcurrency, :TolerableQueueTime, :AutoSuspendTime, :ResourceType, :DataEngineConfigPairs, :ImageVersionName, :MainClusterName, :ElasticSwitch, :ElasticLimit, :SessionResourceTemplate, :AutoAuthorization, :EngineNetworkId, :EngineGeneration
         extend Gem::Deprecate
-        deprecate :DefaultDataEngine, :none, 2026, 6
-        deprecate :DefaultDataEngine=, :none, 2026, 6
+        deprecate :DefaultDataEngine, :none, 2026, 7
+        deprecate :DefaultDataEngine=, :none, 2026, 7
 
         def initialize(enginetype=nil, dataenginename=nil, clustertype=nil, mode=nil, autoresume=nil, minclusters=nil, maxclusters=nil, defaultdataengine=nil, cidrblock=nil, message=nil, size=nil, paymode=nil, timespan=nil, timeunit=nil, autorenew=nil, tags=nil, autosuspend=nil, crontabresumesuspend=nil, crontabresumesuspendstrategy=nil, engineexectype=nil, maxconcurrency=nil, tolerablequeuetime=nil, autosuspendtime=nil, resourcetype=nil, dataengineconfigpairs=nil, imageversionname=nil, mainclustername=nil, elasticswitch=nil, elasticlimit=nil, sessionresourcetemplate=nil, autoauthorization=nil, enginenetworkid=nil, enginegeneration=nil)
           @EngineType = enginetype
@@ -6766,22 +6766,28 @@ module TencentCloud
 
       # DescribeDataEngineEvents请求参数结构体
       class DescribeDataEngineEventsRequest < TencentCloud::Common::AbstractModel
-        # @param DataEngineName: 虚拟集群名称
+        # @param DataEngineName: <p>虚拟集群名称</p>
         # @type DataEngineName: String
-        # @param Limit: 返回数量，默认为10，最大为100
+        # @param Limit: <p>返回数量，默认为10，最大为100</p>
         # @type Limit: Integer
-        # @param Offset: 偏移量，默认为0
+        # @param Offset: <p>偏移量，默认为0</p>
         # @type Offset: Integer
-        # @param SessionId: 资源组id
+        # @param SessionId: <p>资源组id</p>
         # @type SessionId: String
+        # @param StartTime: <p>查询开始时间，用于筛选资源组启停事件的时间范围，不传则不限制开始时间</p><p>参数格式：YYYY-mm-dd HH:MM:SS</p>
+        # @type StartTime: String
+        # @param EndTime: <p>查询结束时间，用于筛选资源组启停事件的时间范围，不传则不限制结束时间。需大于等于 StartTime</p><p>参数格式：YYYY-mm-dd HH:MM:SS</p>
+        # @type EndTime: String
 
-        attr_accessor :DataEngineName, :Limit, :Offset, :SessionId
+        attr_accessor :DataEngineName, :Limit, :Offset, :SessionId, :StartTime, :EndTime
 
-        def initialize(dataenginename=nil, limit=nil, offset=nil, sessionid=nil)
+        def initialize(dataenginename=nil, limit=nil, offset=nil, sessionid=nil, starttime=nil, endtime=nil)
           @DataEngineName = dataenginename
           @Limit = limit
           @Offset = offset
           @SessionId = sessionid
+          @StartTime = starttime
+          @EndTime = endtime
         end
 
         def deserialize(params)
@@ -6789,21 +6795,23 @@ module TencentCloud
           @Limit = params['Limit']
           @Offset = params['Offset']
           @SessionId = params['SessionId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
         end
       end
 
       # DescribeDataEngineEvents返回参数结构体
       class DescribeDataEngineEventsResponse < TencentCloud::Common::AbstractModel
-        # @param Events: 事件详细信息
+        # @param Events: <p>事件详细信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Events: Array
-        # @param Page: 分页号
+        # @param Page: <p>分页号</p>
         # @type Page: Integer
-        # @param Size: 分页大小
+        # @param Size: <p>分页大小</p>
         # @type Size: Integer
-        # @param TotalPages: 总页数
+        # @param TotalPages: <p>总页数</p>
         # @type TotalPages: Integer
-        # @param TotalCount: 总条数
+        # @param TotalCount: <p>总条数</p>
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -14616,8 +14624,8 @@ module TencentCloud
 
         attr_accessor :LifecycleEnable, :Expiration, :DropTable, :ExpiredField, :ExpiredFieldFormat
         extend Gem::Deprecate
-        deprecate :DropTable, :none, 2026, 6
-        deprecate :DropTable=, :none, 2026, 6
+        deprecate :DropTable, :none, 2026, 7
+        deprecate :DropTable=, :none, 2026, 7
 
         def initialize(lifecycleenable=nil, expiration=nil, droptable=nil, expiredfield=nil, expiredfieldformat=nil)
           @LifecycleEnable = lifecycleenable
@@ -15874,10 +15882,10 @@ module TencentCloud
 
         attr_accessor :DatabaseName, :TableName, :DatasourceConnectionName, :TableComment, :Type, :TableFormat, :UserAlias, :UserSubUin, :GovernPolicy, :DbGovernPolicyIsDisable, :SmartPolicy, :PrimaryKeys
         extend Gem::Deprecate
-        deprecate :GovernPolicy, :none, 2026, 6
-        deprecate :GovernPolicy=, :none, 2026, 6
-        deprecate :DbGovernPolicyIsDisable, :none, 2026, 6
-        deprecate :DbGovernPolicyIsDisable=, :none, 2026, 6
+        deprecate :GovernPolicy, :none, 2026, 7
+        deprecate :GovernPolicy=, :none, 2026, 7
+        deprecate :DbGovernPolicyIsDisable, :none, 2026, 7
+        deprecate :DbGovernPolicyIsDisable=, :none, 2026, 7
 
         def initialize(databasename=nil, tablename=nil, datasourceconnectionname=nil, tablecomment=nil, type=nil, tableformat=nil, useralias=nil, usersubuin=nil, governpolicy=nil, dbgovernpolicyisdisable=nil, smartpolicy=nil, primarykeys=nil)
           @DatabaseName = databasename

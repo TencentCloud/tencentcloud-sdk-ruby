@@ -3334,8 +3334,8 @@ module TencentCloud
 
         attr_accessor :ProjectId, :AlarmRegularName, :TaskId, :Id, :TaskType, :MonitorType
         extend Gem::Deprecate
-        deprecate :TaskId, :none, 2026, 6
-        deprecate :TaskId=, :none, 2026, 6
+        deprecate :TaskId, :none, 2026, 7
+        deprecate :TaskId=, :none, 2026, 7
 
         def initialize(projectid=nil, alarmregularname=nil, taskid=nil, id=nil, tasktype=nil, monitortype=nil)
           @ProjectId = projectid
@@ -11832,12 +11832,12 @@ module TencentCloud
 
         attr_accessor :ProjectId, :Category, :PageNumber, :PageSize, :EventName, :EventType, :EventSubType, :EventBroadcastType, :Status, :CreationTimeStart, :CreationTimeEnd, :EventTriggeredTimeStart, :EventTriggeredTimeEnd, :LogTimeStart, :LogTimeEnd, :Dimension, :TimeToLive, :SortItem, :SortType, :ConsumeCount
         extend Gem::Deprecate
-        deprecate :EventType, :none, 2026, 6
-        deprecate :EventType=, :none, 2026, 6
-        deprecate :EventBroadcastType, :none, 2026, 6
-        deprecate :EventBroadcastType=, :none, 2026, 6
-        deprecate :Status, :none, 2026, 6
-        deprecate :Status=, :none, 2026, 6
+        deprecate :EventType, :none, 2026, 7
+        deprecate :EventType=, :none, 2026, 7
+        deprecate :EventBroadcastType, :none, 2026, 7
+        deprecate :EventBroadcastType=, :none, 2026, 7
+        deprecate :Status, :none, 2026, 7
+        deprecate :Status=, :none, 2026, 7
 
         def initialize(projectid=nil, category=nil, pagenumber=nil, pagesize=nil, eventname=nil, eventtype=nil, eventsubtype=nil, eventbroadcasttype=nil, status=nil, creationtimestart=nil, creationtimeend=nil, eventtriggeredtimestart=nil, eventtriggeredtimeend=nil, logtimestart=nil, logtimeend=nil, dimension=nil, timetolive=nil, sortitem=nil, sorttype=nil, consumecount=nil)
           @ProjectId = projectid
@@ -20066,8 +20066,8 @@ module TencentCloud
 
         attr_accessor :DimType, :Count, :QualityDim
         extend Gem::Deprecate
-        deprecate :DimType, :none, 2026, 6
-        deprecate :DimType=, :none, 2026, 6
+        deprecate :DimType, :none, 2026, 7
+        deprecate :DimType=, :none, 2026, 7
 
         def initialize(dimtype=nil, count=nil, qualitydim=nil)
           @DimType = dimtype
@@ -29810,8 +29810,8 @@ module TencentCloud
 
         attr_accessor :ProjectId, :TaskId, :DelayTime, :StartupTime, :SelfDepend, :StartTime, :EndTime, :TaskAction, :CycleType, :CycleStep, :CrontabExpression, :ExecutionStartTime, :ExecutionEndTime, :TaskName, :RetryWait, :TryLimit, :Retriable, :RunPriority, :TaskExt, :ResourceGroup, :YarnQueue, :BrokerIp, :InCharge, :Notes, :TaskParamInfos, :SourceServer, :TargetServer, :DependencyWorkflow, :DependencyConfigDTOs, :ExecutionTTL, :ScriptChange, :InChargeIds
         extend Gem::Deprecate
-        deprecate :InCharge, :none, 2026, 6
-        deprecate :InCharge=, :none, 2026, 6
+        deprecate :InCharge, :none, 2026, 7
+        deprecate :InCharge=, :none, 2026, 7
 
         def initialize(projectid=nil, taskid=nil, delaytime=nil, startuptime=nil, selfdepend=nil, starttime=nil, endtime=nil, taskaction=nil, cycletype=nil, cyclestep=nil, crontabexpression=nil, executionstarttime=nil, executionendtime=nil, taskname=nil, retrywait=nil, trylimit=nil, retriable=nil, runpriority=nil, taskext=nil, resourcegroup=nil, yarnqueue=nil, brokerip=nil, incharge=nil, notes=nil, taskparaminfos=nil, sourceserver=nil, targetserver=nil, dependencyworkflow=nil, dependencyconfigdtos=nil, executionttl=nil, scriptchange=nil, inchargeids=nil)
           @ProjectId = projectid
@@ -32582,12 +32582,12 @@ module TencentCloud
 
         attr_accessor :ProjectId, :Name, :EventSubType, :TimeToLive, :TimeUnit, :Owner, :Description, :EventType, :EventBroadcastType, :DimensionFormat, :ValidConsumeCount
         extend Gem::Deprecate
-        deprecate :EventType, :none, 2026, 6
-        deprecate :EventType=, :none, 2026, 6
-        deprecate :EventBroadcastType, :none, 2026, 6
-        deprecate :EventBroadcastType=, :none, 2026, 6
-        deprecate :DimensionFormat, :none, 2026, 6
-        deprecate :DimensionFormat=, :none, 2026, 6
+        deprecate :EventType, :none, 2026, 7
+        deprecate :EventType=, :none, 2026, 7
+        deprecate :EventBroadcastType, :none, 2026, 7
+        deprecate :EventBroadcastType=, :none, 2026, 7
+        deprecate :DimensionFormat, :none, 2026, 7
+        deprecate :DimensionFormat=, :none, 2026, 7
 
         def initialize(projectid=nil, name=nil, eventsubtype=nil, timetolive=nil, timeunit=nil, owner=nil, description=nil, eventtype=nil, eventbroadcasttype=nil, dimensionformat=nil, validconsumecount=nil)
           @ProjectId = projectid
@@ -41541,305 +41541,308 @@ module TencentCloud
 
       # 任务运维详情
       class TaskOpsDto < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务ID
+        # @param TaskId: <p>任务ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskId: String
-        # @param VirtualTaskId: 虚拟任务id
+        # @param VirtualTaskId: <p>虚拟任务id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VirtualTaskId: String
-        # @param VirtualFlag: 虚拟任务标记
+        # @param VirtualFlag: <p>虚拟任务标记</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VirtualFlag: Boolean
-        # @param TaskName: 任务名
+        # @param TaskName: <p>任务名</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskName: String
-        # @param WorkflowId: 工作流id
+        # @param WorkflowId: <p>工作流id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WorkflowId: String
-        # @param RealWorkflowId: 任务为虚拟任务时，任务所在的真实工作流Id
+        # @param RealWorkflowId: <p>任务为虚拟任务时，任务所在的真实工作流Id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RealWorkflowId: String
-        # @param WorkflowName: 工作流名称
+        # @param WorkflowName: <p>工作流名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WorkflowName: String
-        # @param FolderId: 文件夹id
+        # @param FolderId: <p>文件夹id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FolderId: String
-        # @param FolderName: 文件夹名字
+        # @param FolderName: <p>文件夹名字</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FolderName: String
-        # @param CreateTime: 创建时间
+        # @param CreateTime: <p>创建时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
-        # @param LastUpdate: 最近更新时间
+        # @param LastUpdate: <p>最近更新时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LastUpdate: String
-        # @param Status: 任务状态
+        # @param Status: <p>任务状态</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
-        # @param InCharge: 责任人
+        # @param InCharge: <p>责任人</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InCharge: String
-        # @param InChargeId: 责任人用户id
+        # @param InChargeId: <p>责任人用户id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InChargeId: String
-        # @param StartTime: 调度生效日期
+        # @param StartTime: <p>调度生效日期</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartTime: String
-        # @param EndTime: 调度结束日期
+        # @param EndTime: <p>调度结束日期</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTime: String
-        # @param ExecutionStartTime: 执行时间左闭区间
+        # @param ExecutionStartTime: <p>执行时间左闭区间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExecutionStartTime: String
-        # @param ExecutionEndTime: 执行时间右闭区间
+        # @param ExecutionEndTime: <p>执行时间右闭区间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExecutionEndTime: String
-        # @param CycleType: 周期类型
+        # @param CycleType: <p>周期类型</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CycleType: String
-        # @param CycleStep: 步长
+        # @param CycleStep: <p>步长</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CycleStep: Integer
-        # @param CrontabExpression: 调度cron表达式
+        # @param CrontabExpression: <p>调度cron表达式</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CrontabExpression: String
-        # @param DelayTime: 延时执行时间，unit=分钟
+        # @param DelayTime: <p>延时执行时间，unit=分钟</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DelayTime: Integer
-        # @param StartupTime: 开始执行时间
+        # @param StartupTime: <p>开始执行时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartupTime: Integer
-        # @param RetryWait: 重试等待时间, unit=分钟
+        # @param RetryWait: <p>重试等待时间, unit=分钟</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RetryWait: Integer
-        # @param RetryAble: 是否可重试，1 代表可以重试
+        # @param RetryAble: <p>是否可重试，1 代表可以重试</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RetryAble: Integer
-        # @param TaskAction: 调度配置-弹性周期配置，小时/周/月/年调度才有，小时任务指定每天的0点3点4点跑，则为'0,3,4'
+        # @param TaskAction: <p>调度配置-弹性周期配置，小时/周/月/年调度才有，小时任务指定每天的0点3点4点跑，则为&#39;0,3,4&#39;</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskAction: String
-        # @param TryLimit: 运行次数限制
+        # @param TryLimit: <p>运行次数限制</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TryLimit: Integer
-        # @param RunPriority: 运行优先级
+        # @param RunPriority: <p>运行优先级</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RunPriority: Integer
-        # @param TaskType: 任务类型
+        # @param TaskType: <p>任务类型</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskType: :class:`Tencentcloud::Wedata.v20210820.models.TaskTypeOpsDto`
-        # @param BrokerIp: 指定的运行节点
+        # @param BrokerIp: <p>指定的运行节点</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BrokerIp: String
-        # @param ClusterId: 集群name
+        # @param ClusterId: <p>集群name</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterId: String
-        # @param MinDateTime: 最小数据时间
+        # @param MinDateTime: <p>最小数据时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MinDateTime: String
-        # @param MaxDateTime: 最大数据时间
+        # @param MaxDateTime: <p>最大数据时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxDateTime: String
-        # @param ExecutionTTL: 运行耗时超时时间
+        # @param ExecutionTTL: <p>运行耗时超时时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExecutionTTL: Integer
-        # @param SelfDepend: 自依赖类型
+        # @param SelfDepend: <p>自依赖类型</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SelfDepend: String
-        # @param LeftCoordinate: 左侧坐标
+        # @param LeftCoordinate: <p>左侧坐标</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LeftCoordinate: Float
-        # @param TopCoordinate: 顶部坐标
+        # @param TopCoordinate: <p>顶部坐标</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TopCoordinate: Float
-        # @param Notes: 任务备注
+        # @param Notes: <p>任务备注</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Notes: String
-        # @param InstanceInitStrategy: 任务初始化策略
+        # @param InstanceInitStrategy: <p>任务初始化策略</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceInitStrategy: String
-        # @param YarnQueue: 计算队列
+        # @param YarnQueue: <p>计算队列</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type YarnQueue: String
-        # @param LastSchedulerCommitTime: 最新调度提交时间
+        # @param LastSchedulerCommitTime: <p>最新调度提交时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LastSchedulerCommitTime: String
-        # @param NormalizedJobStartTime: 按cron表达式计算的任务开始执行时间
+        # @param NormalizedJobStartTime: <p>按cron表达式计算的任务开始执行时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NormalizedJobStartTime: String
-        # @param SchedulerDesc: 调度计划描述
+        # @param SchedulerDesc: <p>调度计划描述</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SchedulerDesc: String
-        # @param ResourceGroup: 计算资源组
+        # @param ResourceGroup: <p>计算资源组</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceGroup: String
-        # @param Creator: 任务创建人
+        # @param Creator: <p>任务创建人</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Creator: String
-        # @param DependencyRel: 任务依赖类型 and、or
+        # @param DependencyRel: <p>任务依赖类型 and、or</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DependencyRel: String
-        # @param DependencyWorkflow: 任务工作流依赖 yes、no
+        # @param DependencyWorkflow: <p>任务工作流依赖 yes、no</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DependencyWorkflow: String
-        # @param EventListenerConfig: 事件监听配置
+        # @param EventListenerConfig: <p>事件监听配置</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EventListenerConfig: String
-        # @param EventPublisherConfig: 事件驱动配置
+        # @param EventPublisherConfig: <p>事件驱动配置</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EventPublisherConfig: String
-        # @param VirtualTaskStatus: 虚拟任务状态
+        # @param VirtualTaskStatus: <p>虚拟任务状态</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VirtualTaskStatus: String
-        # @param TaskLinkInfo: 任务依赖边详情
+        # @param TaskLinkInfo: <p>任务依赖边详情</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskLinkInfo: :class:`Tencentcloud::Wedata.v20210820.models.LinkOpsDto`
-        # @param ProductName: 任务产品类型
+        # @param ProductName: <p>任务产品类型</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProductName: String
-        # @param ProjectId: 项目id
+        # @param ProjectId: <p>项目id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProjectId: String
-        # @param ProjectIdent: 项目标识
+        # @param ProjectIdent: <p>项目标识</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProjectIdent: String
-        # @param ProjectName: 项目名称
+        # @param ProjectName: <p>项目名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProjectName: String
-        # @param OwnId: 主账户userId
+        # @param OwnId: <p>主账户userId</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OwnId: String
-        # @param UserId: 用户userId
+        # @param UserId: <p>用户userId</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserId: String
-        # @param TenantId: 租户id
+        # @param TenantId: <p>租户id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TenantId: String
-        # @param UpdateUser: 更新人昵称
+        # @param UpdateUser: <p>更新人昵称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateUser: String
-        # @param UpdateTime: 更新时间
+        # @param UpdateTime: <p>更新时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
-        # @param UpdateUserId: 更新人userId
+        # @param UpdateUserId: <p>更新人userId</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateUserId: String
-        # @param TaskTypeId: 任务类型id
+        # @param TaskTypeId: <p>任务类型id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskTypeId: Integer
-        # @param TaskTypeDesc: 任务类型描述
+        # @param TaskTypeDesc: <p>任务类型描述</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskTypeDesc: String
-        # @param ShowWorkflow: 是否展示工作流
+        # @param ShowWorkflow: <p>是否展示工作流</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ShowWorkflow: Boolean
-        # @param FirstSubmitTime: 首次提交时间
+        # @param FirstSubmitTime: <p>首次提交时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FirstSubmitTime: String
-        # @param FirstRunTime: 首次运行时间
+        # @param FirstRunTime: <p>首次运行时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FirstRunTime: String
-        # @param ScheduleDesc: 调度描述
+        # @param ScheduleDesc: <p>调度描述</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScheduleDesc: String
-        # @param CycleNum: 周期
+        # @param CycleNum: <p>周期</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CycleNum: Integer
-        # @param Crontab: 表达式
+        # @param Crontab: <p>表达式</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Crontab: String
-        # @param StartDate: 开始日期
+        # @param StartDate: <p>开始日期</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartDate: String
-        # @param EndDate: 结束日期
+        # @param EndDate: <p>结束日期</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndDate: String
-        # @param CycleUnit: 周期单位
+        # @param CycleUnit: <p>周期单位</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CycleUnit: String
-        # @param InitStrategy: 初始化策略
+        # @param InitStrategy: <p>初始化策略</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InitStrategy: String
-        # @param Layer: 层级
+        # @param Layer: <p>层级</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Layer: String
-        # @param SourceServiceId: 来源数据源ID
+        # @param SourceServiceId: <p>来源数据源ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SourceServiceId: String
-        # @param SourceServiceType: 来源数据源类型
+        # @param SourceServiceType: <p>来源数据源类型</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SourceServiceType: String
-        # @param TargetServiceId: 目标数据源ID
+        # @param TargetServiceId: <p>目标数据源ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TargetServiceId: String
-        # @param TargetServiceType: 目标数据源类型
+        # @param TargetServiceType: <p>目标数据源类型</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TargetServiceType: String
-        # @param TasksStr: 子任务列表
+        # @param TasksStr: <p>子任务列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TasksStr: String
-        # @param Submit: 任务版本是否已提交
+        # @param Submit: <p>任务版本是否已提交</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Submit: Boolean
-        # @param ExecutorGroupId: 资源组id
+        # @param ExecutorGroupId: <p>资源组id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExecutorGroupId: String
-        # @param ExecutorGroupName: 资源组名称
+        # @param ExecutorGroupName: <p>资源组名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExecutorGroupName: String
-        # @param TaskExtInfo: 任务扩展信息(目前返沪离线同步的任务详情)
+        # @param TaskExtInfo: <p>任务扩展信息(目前返沪离线同步的任务详情)</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskExtInfo: String
-        # @param EventListenerInfos: 任务绑定的事件信息
+        # @param EventListenerInfos: <p>任务绑定的事件信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EventListenerInfos: Array
-        # @param ScriptInfo: 脚本信息
+        # @param ScriptInfo: <p>脚本信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScriptInfo: :class:`Tencentcloud::Wedata.v20210820.models.AiopsScriptInfo`
-        # @param DLCResourceConfig: DLC资源配置
+        # @param DLCResourceConfig: <p>DLC资源配置</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DLCResourceConfig: :class:`Tencentcloud::Wedata.v20210820.models.AiopsDLCResourceConfigDto`
-        # @param ParentTaskInfos: 父任务simple信息
+        # @param ParentTaskInfos: <p>父任务simple信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParentTaskInfos: :class:`Tencentcloud::Wedata.v20210820.models.AiopsSimpleTaskDto`
-        # @param ExtResourceFlag: 资源获取标识
+        # @param ExtResourceFlag: <p>资源获取标识</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExtResourceFlag: :class:`Tencentcloud::Wedata.v20210820.models.ExtResourceFlagDto`
-        # @param NewParentTaskInfos: 父任务simple信息(新)
+        # @param NewParentTaskInfos: <p>父任务simple信息(新)</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NewParentTaskInfos: Array
-        # @param SelfWorkFlowDependType: 任务自依赖类型：
-        # yes： 任务需满足自依赖
-        # no：任务无需满足自依赖
+        # @param SelfWorkFlowDependType: <p>任务自依赖类型：<br>yes： 任务需满足自依赖<br>no：任务无需满足自依赖</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SelfWorkFlowDependType: String
-        # @param AllowRedoType: 允许重跑类型，ALL 表示无论实例运行成功还是失败都允许重跑，NONE表示无论成功或者失败都不允许重跑，FAILURE 表示只有运行失败才能重跑
+        # @param AllowRedoType: <p>允许重跑类型，ALL 表示无论实例运行成功还是失败都允许重跑，NONE表示无论成功或者失败都不允许重跑，FAILURE 表示只有运行失败才能重跑</p>
         # @type AllowRedoType: String
-        # @param OwnerId: 负责人Id
+        # @param OwnerId: <p>负责人Id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OwnerId: String
-        # @param Privileges: 当前用户对该任务的权限列表， 当前支持
-        # CAN_MANAGE : 有权限管理操作
+        # @param Privileges: <p>当前用户对该任务的权限列表， 当前支持<br>CAN_MANAGE : 有权限管理操作</p>
         # @type Privileges: Array
-        # @param BundleId: bundle客户端唯一id
+        # @param BundleId: <p>bundle客户端唯一id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BundleId: String
-        # @param BundleInfo: bundle客户端信息
+        # @param BundleInfo: <p>bundle客户端信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BundleInfo: String
-        # @param WorkflowType: 工作流类型
+        # @param WorkflowType: <p>工作流类型</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WorkflowType: String
-        # @param TaskExtDTO: 任务扩展信息
+        # @param TaskExtDTO: <p>任务扩展信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskExtDTO: :class:`Tencentcloud::Wedata.v20210820.models.TaskExtOpsDto`
-        # @param ScheduleTimeZone: 任务时区
+        # @param ScheduleTimeZone: <p>任务时区</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScheduleTimeZone: String
+        # @param ProxyTaskId: <p>代理任务ID</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProxyTaskId: String
+        # @param ProxyTaskTypeId: <p>代理任务类型ID</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProxyTaskTypeId: Integer
 
-        attr_accessor :TaskId, :VirtualTaskId, :VirtualFlag, :TaskName, :WorkflowId, :RealWorkflowId, :WorkflowName, :FolderId, :FolderName, :CreateTime, :LastUpdate, :Status, :InCharge, :InChargeId, :StartTime, :EndTime, :ExecutionStartTime, :ExecutionEndTime, :CycleType, :CycleStep, :CrontabExpression, :DelayTime, :StartupTime, :RetryWait, :RetryAble, :TaskAction, :TryLimit, :RunPriority, :TaskType, :BrokerIp, :ClusterId, :MinDateTime, :MaxDateTime, :ExecutionTTL, :SelfDepend, :LeftCoordinate, :TopCoordinate, :Notes, :InstanceInitStrategy, :YarnQueue, :LastSchedulerCommitTime, :NormalizedJobStartTime, :SchedulerDesc, :ResourceGroup, :Creator, :DependencyRel, :DependencyWorkflow, :EventListenerConfig, :EventPublisherConfig, :VirtualTaskStatus, :TaskLinkInfo, :ProductName, :ProjectId, :ProjectIdent, :ProjectName, :OwnId, :UserId, :TenantId, :UpdateUser, :UpdateTime, :UpdateUserId, :TaskTypeId, :TaskTypeDesc, :ShowWorkflow, :FirstSubmitTime, :FirstRunTime, :ScheduleDesc, :CycleNum, :Crontab, :StartDate, :EndDate, :CycleUnit, :InitStrategy, :Layer, :SourceServiceId, :SourceServiceType, :TargetServiceId, :TargetServiceType, :TasksStr, :Submit, :ExecutorGroupId, :ExecutorGroupName, :TaskExtInfo, :EventListenerInfos, :ScriptInfo, :DLCResourceConfig, :ParentTaskInfos, :ExtResourceFlag, :NewParentTaskInfos, :SelfWorkFlowDependType, :AllowRedoType, :OwnerId, :Privileges, :BundleId, :BundleInfo, :WorkflowType, :TaskExtDTO, :ScheduleTimeZone
+        attr_accessor :TaskId, :VirtualTaskId, :VirtualFlag, :TaskName, :WorkflowId, :RealWorkflowId, :WorkflowName, :FolderId, :FolderName, :CreateTime, :LastUpdate, :Status, :InCharge, :InChargeId, :StartTime, :EndTime, :ExecutionStartTime, :ExecutionEndTime, :CycleType, :CycleStep, :CrontabExpression, :DelayTime, :StartupTime, :RetryWait, :RetryAble, :TaskAction, :TryLimit, :RunPriority, :TaskType, :BrokerIp, :ClusterId, :MinDateTime, :MaxDateTime, :ExecutionTTL, :SelfDepend, :LeftCoordinate, :TopCoordinate, :Notes, :InstanceInitStrategy, :YarnQueue, :LastSchedulerCommitTime, :NormalizedJobStartTime, :SchedulerDesc, :ResourceGroup, :Creator, :DependencyRel, :DependencyWorkflow, :EventListenerConfig, :EventPublisherConfig, :VirtualTaskStatus, :TaskLinkInfo, :ProductName, :ProjectId, :ProjectIdent, :ProjectName, :OwnId, :UserId, :TenantId, :UpdateUser, :UpdateTime, :UpdateUserId, :TaskTypeId, :TaskTypeDesc, :ShowWorkflow, :FirstSubmitTime, :FirstRunTime, :ScheduleDesc, :CycleNum, :Crontab, :StartDate, :EndDate, :CycleUnit, :InitStrategy, :Layer, :SourceServiceId, :SourceServiceType, :TargetServiceId, :TargetServiceType, :TasksStr, :Submit, :ExecutorGroupId, :ExecutorGroupName, :TaskExtInfo, :EventListenerInfos, :ScriptInfo, :DLCResourceConfig, :ParentTaskInfos, :ExtResourceFlag, :NewParentTaskInfos, :SelfWorkFlowDependType, :AllowRedoType, :OwnerId, :Privileges, :BundleId, :BundleInfo, :WorkflowType, :TaskExtDTO, :ScheduleTimeZone, :ProxyTaskId, :ProxyTaskTypeId
 
-        def initialize(taskid=nil, virtualtaskid=nil, virtualflag=nil, taskname=nil, workflowid=nil, realworkflowid=nil, workflowname=nil, folderid=nil, foldername=nil, createtime=nil, lastupdate=nil, status=nil, incharge=nil, inchargeid=nil, starttime=nil, endtime=nil, executionstarttime=nil, executionendtime=nil, cycletype=nil, cyclestep=nil, crontabexpression=nil, delaytime=nil, startuptime=nil, retrywait=nil, retryable=nil, taskaction=nil, trylimit=nil, runpriority=nil, tasktype=nil, brokerip=nil, clusterid=nil, mindatetime=nil, maxdatetime=nil, executionttl=nil, selfdepend=nil, leftcoordinate=nil, topcoordinate=nil, notes=nil, instanceinitstrategy=nil, yarnqueue=nil, lastschedulercommittime=nil, normalizedjobstarttime=nil, schedulerdesc=nil, resourcegroup=nil, creator=nil, dependencyrel=nil, dependencyworkflow=nil, eventlistenerconfig=nil, eventpublisherconfig=nil, virtualtaskstatus=nil, tasklinkinfo=nil, productname=nil, projectid=nil, projectident=nil, projectname=nil, ownid=nil, userid=nil, tenantid=nil, updateuser=nil, updatetime=nil, updateuserid=nil, tasktypeid=nil, tasktypedesc=nil, showworkflow=nil, firstsubmittime=nil, firstruntime=nil, scheduledesc=nil, cyclenum=nil, crontab=nil, startdate=nil, enddate=nil, cycleunit=nil, initstrategy=nil, layer=nil, sourceserviceid=nil, sourceservicetype=nil, targetserviceid=nil, targetservicetype=nil, tasksstr=nil, submit=nil, executorgroupid=nil, executorgroupname=nil, taskextinfo=nil, eventlistenerinfos=nil, scriptinfo=nil, dlcresourceconfig=nil, parenttaskinfos=nil, extresourceflag=nil, newparenttaskinfos=nil, selfworkflowdependtype=nil, allowredotype=nil, ownerid=nil, privileges=nil, bundleid=nil, bundleinfo=nil, workflowtype=nil, taskextdto=nil, scheduletimezone=nil)
+        def initialize(taskid=nil, virtualtaskid=nil, virtualflag=nil, taskname=nil, workflowid=nil, realworkflowid=nil, workflowname=nil, folderid=nil, foldername=nil, createtime=nil, lastupdate=nil, status=nil, incharge=nil, inchargeid=nil, starttime=nil, endtime=nil, executionstarttime=nil, executionendtime=nil, cycletype=nil, cyclestep=nil, crontabexpression=nil, delaytime=nil, startuptime=nil, retrywait=nil, retryable=nil, taskaction=nil, trylimit=nil, runpriority=nil, tasktype=nil, brokerip=nil, clusterid=nil, mindatetime=nil, maxdatetime=nil, executionttl=nil, selfdepend=nil, leftcoordinate=nil, topcoordinate=nil, notes=nil, instanceinitstrategy=nil, yarnqueue=nil, lastschedulercommittime=nil, normalizedjobstarttime=nil, schedulerdesc=nil, resourcegroup=nil, creator=nil, dependencyrel=nil, dependencyworkflow=nil, eventlistenerconfig=nil, eventpublisherconfig=nil, virtualtaskstatus=nil, tasklinkinfo=nil, productname=nil, projectid=nil, projectident=nil, projectname=nil, ownid=nil, userid=nil, tenantid=nil, updateuser=nil, updatetime=nil, updateuserid=nil, tasktypeid=nil, tasktypedesc=nil, showworkflow=nil, firstsubmittime=nil, firstruntime=nil, scheduledesc=nil, cyclenum=nil, crontab=nil, startdate=nil, enddate=nil, cycleunit=nil, initstrategy=nil, layer=nil, sourceserviceid=nil, sourceservicetype=nil, targetserviceid=nil, targetservicetype=nil, tasksstr=nil, submit=nil, executorgroupid=nil, executorgroupname=nil, taskextinfo=nil, eventlistenerinfos=nil, scriptinfo=nil, dlcresourceconfig=nil, parenttaskinfos=nil, extresourceflag=nil, newparenttaskinfos=nil, selfworkflowdependtype=nil, allowredotype=nil, ownerid=nil, privileges=nil, bundleid=nil, bundleinfo=nil, workflowtype=nil, taskextdto=nil, scheduletimezone=nil, proxytaskid=nil, proxytasktypeid=nil)
           @TaskId = taskid
           @VirtualTaskId = virtualtaskid
           @VirtualFlag = virtualflag
@@ -41938,6 +41941,8 @@ module TencentCloud
           @WorkflowType = workflowtype
           @TaskExtDTO = taskextdto
           @ScheduleTimeZone = scheduletimezone
+          @ProxyTaskId = proxytaskid
+          @ProxyTaskTypeId = proxytasktypeid
         end
 
         def deserialize(params)
@@ -42074,6 +42079,8 @@ module TencentCloud
             @TaskExtDTO.deserialize(params['TaskExtDTO'])
           end
           @ScheduleTimeZone = params['ScheduleTimeZone']
+          @ProxyTaskId = params['ProxyTaskId']
+          @ProxyTaskTypeId = params['ProxyTaskTypeId']
         end
       end
 

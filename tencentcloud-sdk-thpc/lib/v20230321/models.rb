@@ -258,8 +258,8 @@ module TencentCloud
 
         attr_accessor :Commands, :StorageMounts, :EnvVars, :Docker, :OutputRedirect, :JobType, :TaskType
         extend Gem::Deprecate
-        deprecate :JobType, :none, 2026, 6
-        deprecate :JobType=, :none, 2026, 6
+        deprecate :JobType, :none, 2026, 7
+        deprecate :JobType=, :none, 2026, 7
 
         def initialize(commands=nil, storagemounts=nil, envvars=nil, docker=nil, outputredirect=nil, jobtype=nil, tasktype=nil)
           @Commands = commands
@@ -3352,41 +3352,46 @@ module TencentCloud
 
       # 描述工作空间的信息
       class SpaceInfo < TencentCloud::Common::AbstractModel
-        # @param SpaceId: 工作空间ID
+        # @param SpaceId: <p>工作空间ID</p>
         # @type SpaceId: String
-        # @param SpaceFamily: 工作空间类型
+        # @param SpaceClass: <p>工作空间类别</p>
+        # @type SpaceClass: String
+        # @param SpaceFamily: <p>工作空间类型</p>
         # @type SpaceFamily: String
-        # @param SpaceType: 工作空间规格
+        # @param SpaceType: <p>工作空间规格</p>
         # @type SpaceType: String
-        # @param SpaceName: 工作空间名称
+        # @param SpaceName: <p>工作空间名称</p>
         # @type SpaceName: String
-        # @param SpaceState: 工作空间状态。取值范围：<br><li>PENDING：表示创建中<br></li><li>LAUNCH_FAILED：表示创建失败<br></li><li>ONLINE：表示运行中<br></li><li>ARREARS：表示隔离中<br></li><li>TERMINATING：表示销毁中。<br></li>
+        # @param SpaceState: <p>工作空间状态。取值范围：<br><li>PENDING：表示创建中<br></li><li>LAUNCH_FAILED：表示创建失败<br></li><li>ONLINE：表示运行中<br></li><li>ARREARS：表示隔离中<br></li><li>TERMINATING：表示销毁中。<br></li></p>
         # @type SpaceState: String
-        # @param SpaceChargeType: 工作空间计费模式
+        # @param SpaceChargeType: <p>工作空间计费模式</p>
         # @type SpaceChargeType: String
-        # @param ResourceId: 工作空间对应资源ID
+        # @param ResourceId: <p>工作空间对应资源ID</p>
         # @type ResourceId: String
-        # @param RenewFlag: 自动续费标识
+        # @param RenewFlag: <p>自动续费标识</p>
         # @type RenewFlag: String
-        # @param Tags: 工作空间关联的工作列表
+        # @param Tags: <p>工作空间关联的工作列表</p>
         # @type Tags: Array
-        # @param CreatedTime: 创建时间
+        # @param CreatedTime: <p>创建时间</p>
         # @type CreatedTime: String
-        # @param ExpiredTime: 到期时间
+        # @param ExpiredTime: <p>到期时间</p>
         # @type ExpiredTime: String
-        # @param Placement: 工作空间所在位置
+        # @param Placement: <p>工作空间所在位置</p>
         # @type Placement: :class:`Tencentcloud::Thpc.v20230321.models.Placement`
-        # @param LatestOperation: 工作空间的最新操作
+        # @param LatestOperation: <p>工作空间的最新操作</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LatestOperation: String
-        # @param LatestOperationState: 工作空间的最新操作状态
+        # @param LatestOperationState: <p>工作空间的最新操作状态</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LatestOperationState: String
+        # @param PrivateIpAddresses: <p>实例的内网IP</p>
+        # @type PrivateIpAddresses: Array
 
-        attr_accessor :SpaceId, :SpaceFamily, :SpaceType, :SpaceName, :SpaceState, :SpaceChargeType, :ResourceId, :RenewFlag, :Tags, :CreatedTime, :ExpiredTime, :Placement, :LatestOperation, :LatestOperationState
+        attr_accessor :SpaceId, :SpaceClass, :SpaceFamily, :SpaceType, :SpaceName, :SpaceState, :SpaceChargeType, :ResourceId, :RenewFlag, :Tags, :CreatedTime, :ExpiredTime, :Placement, :LatestOperation, :LatestOperationState, :PrivateIpAddresses
 
-        def initialize(spaceid=nil, spacefamily=nil, spacetype=nil, spacename=nil, spacestate=nil, spacechargetype=nil, resourceid=nil, renewflag=nil, tags=nil, createdtime=nil, expiredtime=nil, placement=nil, latestoperation=nil, latestoperationstate=nil)
+        def initialize(spaceid=nil, spaceclass=nil, spacefamily=nil, spacetype=nil, spacename=nil, spacestate=nil, spacechargetype=nil, resourceid=nil, renewflag=nil, tags=nil, createdtime=nil, expiredtime=nil, placement=nil, latestoperation=nil, latestoperationstate=nil, privateipaddresses=nil)
           @SpaceId = spaceid
+          @SpaceClass = spaceclass
           @SpaceFamily = spacefamily
           @SpaceType = spacetype
           @SpaceName = spacename
@@ -3400,10 +3405,12 @@ module TencentCloud
           @Placement = placement
           @LatestOperation = latestoperation
           @LatestOperationState = latestoperationstate
+          @PrivateIpAddresses = privateipaddresses
         end
 
         def deserialize(params)
           @SpaceId = params['SpaceId']
+          @SpaceClass = params['SpaceClass']
           @SpaceFamily = params['SpaceFamily']
           @SpaceType = params['SpaceType']
           @SpaceName = params['SpaceName']
@@ -3427,6 +3434,7 @@ module TencentCloud
           end
           @LatestOperation = params['LatestOperation']
           @LatestOperationState = params['LatestOperationState']
+          @PrivateIpAddresses = params['PrivateIpAddresses']
         end
       end
 

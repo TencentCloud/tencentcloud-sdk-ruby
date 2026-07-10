@@ -199,31 +199,35 @@ module TencentCloud
 
       # CreatePreCacheImageTask请求参数结构体
       class CreatePreCacheImageTaskRequest < TencentCloud::Common::AbstractModel
-        # @param Image: 镜像地址
+        # @param Image: <p>镜像地址</p>
         # @type Image: String
-        # @param ImageRegistryType: 镜像仓库类型：`enterprise`、`personal`。
+        # @param ImageRegistryType: <p>镜像仓库类型：<code>enterprise</code>、<code>personal</code>、<code>custom</code></p><p>枚举值：</p><ul><li>enterprise： tcr 企业容器镜像服务</li><li>personal： ccr 个人容器镜像服务</li></ul>
         # @type ImageRegistryType: String
+        # @param TimeoutMinutes: <p>预热超时时长</p>
+        # @type TimeoutMinutes: Integer
 
-        attr_accessor :Image, :ImageRegistryType
+        attr_accessor :Image, :ImageRegistryType, :TimeoutMinutes
 
-        def initialize(image=nil, imageregistrytype=nil)
+        def initialize(image=nil, imageregistrytype=nil, timeoutminutes=nil)
           @Image = image
           @ImageRegistryType = imageregistrytype
+          @TimeoutMinutes = timeoutminutes
         end
 
         def deserialize(params)
           @Image = params['Image']
           @ImageRegistryType = params['ImageRegistryType']
+          @TimeoutMinutes = params['TimeoutMinutes']
         end
       end
 
       # CreatePreCacheImageTask返回参数结构体
       class CreatePreCacheImageTaskResponse < TencentCloud::Common::AbstractModel
-        # @param Image: 镜像地址
+        # @param Image: <p>镜像地址</p>
         # @type Image: String
-        # @param ImageDigest: 镜像 Digest
+        # @param ImageDigest: <p>镜像 Digest</p>
         # @type ImageDigest: String
-        # @param ImageRegistryType: 镜像仓库类型：`enterprise`、`personal`。
+        # @param ImageRegistryType: <p>镜像仓库类型：<code>enterprise</code>、<code>personal</code>。</p>
         # @type ImageRegistryType: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

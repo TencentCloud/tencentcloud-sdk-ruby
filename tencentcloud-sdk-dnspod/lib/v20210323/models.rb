@@ -1389,7 +1389,7 @@ module TencentCloud
 
       # CreateSubdomainValidateTXTValue请求参数结构体
       class CreateSubdomainValidateTXTValueRequest < TencentCloud::Common::AbstractModel
-        # @param DomainZone: 要添加的子域名 Zone 域。
+        # @param DomainZone: <p>要添加的子域名 Zone 域。</p>
         # @type DomainZone: String
 
         attr_accessor :DomainZone
@@ -1405,36 +1405,41 @@ module TencentCloud
 
       # CreateSubdomainValidateTXTValue返回参数结构体
       class CreateSubdomainValidateTXTValueResponse < TencentCloud::Common::AbstractModel
-        # @param Domain: 需要添加 TXT 记录的主域名。
+        # @param Domain: <p>需要添加 TXT 记录的主域名。</p>
         # @type Domain: String
-        # @param Subdomain: 需要添加 TXT 记录的主机记录。
+        # @param Subdomain: <p>需要添加 TXT 记录的主机记录。</p>
         # @type Subdomain: String
-        # @param RecordType: 需要添加记录类型。
+        # @param RecordType: <p>需要添加记录类型。</p>
         # @type RecordType: String
-        # @param Value: 需要添加 TXT 记录的记录值。
+        # @param Value: <p>需要添加 TXT 记录的记录值。</p>
         # @type Value: String
-        # @param ParentDomain: 需要添加 TXT 记录的上级域名(可选，主域名和上级域名任选一个添加即可)。
+        # @param ParentDomain: <p>需要添加 TXT 记录的上级域名(可选，主域名和上级域名任选一个添加即可)。</p>
         # @type ParentDomain: String
+        # @param SubDomain: <p>需要添加 TXT 记录的主机记录。</p><p>新增规范参数，建议优先使用SubDomain参数</p>
+        # @type SubDomain: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Domain, :Subdomain, :RecordType, :Value, :ParentDomain, :RequestId
+        attr_accessor :Domain, :Subdomain, :RecordType, :Value, :ParentDomain, :SubDomain, :RequestId
+        extend Gem::Deprecate
+        deprecate :Subdomain, :none, 2026, 7
+        deprecate :Subdomain=, :none, 2026, 7
 
-        def initialize(domain=nil, subdomain=nil, recordtype=nil, value=nil, parentdomain=nil, requestid=nil)
+        def initialize(domain=nil, recordtype=nil, value=nil, parentdomain=nil, subdomain=nil, requestid=nil)
           @Domain = domain
-          @Subdomain = subdomain
           @RecordType = recordtype
           @Value = value
           @ParentDomain = parentdomain
+          @SubDomain = subdomain
           @RequestId = requestid
         end
 
         def deserialize(params)
           @Domain = params['Domain']
-          @Subdomain = params['Subdomain']
           @RecordType = params['RecordType']
           @Value = params['Value']
           @ParentDomain = params['ParentDomain']
+          @SubDomain = params['SubDomain']
           @RequestId = params['RequestId']
         end
       end
@@ -2214,43 +2219,48 @@ module TencentCloud
 
       # DescribeDomainAnalytics请求参数结构体
       class DescribeDomainAnalyticsRequest < TencentCloud::Common::AbstractModel
-        # @param Domain: 要查询解析量的域名
+        # @param Domain: <p>要查询解析量的域名</p>
         # @type Domain: String
-        # @param StartDate: 查询的开始时间，格式：YYYY-MM-DD
+        # @param StartDate: <p>查询的开始时间，格式：YYYY-MM-DD</p>
         # @type StartDate: String
-        # @param EndDate: 查询的结束时间，格式：YYYY-MM-DD
+        # @param EndDate: <p>查询的结束时间，格式：YYYY-MM-DD</p>
         # @type EndDate: String
-        # @param DnsFormat: DATE:按天维度统计 HOUR:按小时维度统计
+        # @param DnsFormat: <p>DATE:按天维度统计 HOUR:按小时维度统计</p>
         # @type DnsFormat: String
-        # @param DomainId: 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。
+        # @param DomainId: <p>域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。</p>
         # @type DomainId: Integer
+        # @param DNSFormat: <p>解析量数据格式</p><p>枚举值：</p><ul><li>DATE： 按天维度统计</li><li>HOUR： 按小时维度统计</li></ul><p>新增规范参数，同时传递DNSFormat和DnsFormat参数时，后端优先使用DNSFormat参数</p>
+        # @type DNSFormat: String
 
-        attr_accessor :Domain, :StartDate, :EndDate, :DnsFormat, :DomainId
+        attr_accessor :Domain, :StartDate, :EndDate, :DnsFormat, :DomainId, :DNSFormat
+        extend Gem::Deprecate
+        deprecate :DnsFormat, :none, 2026, 7
+        deprecate :DnsFormat=, :none, 2026, 7
 
-        def initialize(domain=nil, startdate=nil, enddate=nil, dnsformat=nil, domainid=nil)
+        def initialize(domain=nil, startdate=nil, enddate=nil, domainid=nil, dnsformat=nil)
           @Domain = domain
           @StartDate = startdate
           @EndDate = enddate
-          @DnsFormat = dnsformat
           @DomainId = domainid
+          @DNSFormat = dnsformat
         end
 
         def deserialize(params)
           @Domain = params['Domain']
           @StartDate = params['StartDate']
           @EndDate = params['EndDate']
-          @DnsFormat = params['DnsFormat']
           @DomainId = params['DomainId']
+          @DNSFormat = params['DNSFormat']
         end
       end
 
       # DescribeDomainAnalytics返回参数结构体
       class DescribeDomainAnalyticsResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 当前统计维度解析量小计
+        # @param Data: <p>当前统计维度解析量小计</p>
         # @type Data: Array
-        # @param Info: 域名解析量统计查询信息
+        # @param Info: <p>域名解析量统计查询信息</p>
         # @type Info: :class:`Tencentcloud::Dnspod.v20210323.models.DomainAnalyticsInfo`
-        # @param AliasData: 域名别名解析量统计信息
+        # @param AliasData: <p>域名别名解析量统计信息</p>
         # @type AliasData: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3639,15 +3649,19 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: <p>限制数量，当前Limit最大支持3000。默认值为100。</p>
         # @type Limit: Integer
-        # @param ErrorOnEmpty: <p>查询不到数据时是否报错</p>枚举值：<ul><li> yes： 报错</li><li> no： 不报错，返回空列表</li></ul>默认值：yes
+        # @param ErrorOnEmpty: <p>查询不到数据时是否报错</p><p>枚举值：</p><ul><li>yes： 报错</li><li>no： 不报错，返回空列表</li></ul><p>默认值：yes</p>
         # @type ErrorOnEmpty: String
+        # @param SubDomain: <p>解析记录的主机头，如果传了此参数，则只会返回此主机头对应的解析记录</p><p>新增规范参数，同时传递SubDomain和Subdomain参数时，后端优先使用SubDomain参数</p>
+        # @type SubDomain: String
 
-        attr_accessor :Domain, :DomainId, :Subdomain, :RecordType, :RecordLine, :RecordLineId, :GroupId, :Keyword, :SortField, :SortType, :Offset, :Limit, :ErrorOnEmpty
+        attr_accessor :Domain, :DomainId, :Subdomain, :RecordType, :RecordLine, :RecordLineId, :GroupId, :Keyword, :SortField, :SortType, :Offset, :Limit, :ErrorOnEmpty, :SubDomain
+        extend Gem::Deprecate
+        deprecate :Subdomain, :none, 2026, 7
+        deprecate :Subdomain=, :none, 2026, 7
 
-        def initialize(domain=nil, domainid=nil, subdomain=nil, recordtype=nil, recordline=nil, recordlineid=nil, groupid=nil, keyword=nil, sortfield=nil, sorttype=nil, offset=nil, limit=nil, erroronempty=nil)
+        def initialize(domain=nil, domainid=nil, recordtype=nil, recordline=nil, recordlineid=nil, groupid=nil, keyword=nil, sortfield=nil, sorttype=nil, offset=nil, limit=nil, erroronempty=nil, subdomain=nil)
           @Domain = domain
           @DomainId = domainid
-          @Subdomain = subdomain
           @RecordType = recordtype
           @RecordLine = recordline
           @RecordLineId = recordlineid
@@ -3658,12 +3672,12 @@ module TencentCloud
           @Offset = offset
           @Limit = limit
           @ErrorOnEmpty = erroronempty
+          @SubDomain = subdomain
         end
 
         def deserialize(params)
           @Domain = params['Domain']
           @DomainId = params['DomainId']
-          @Subdomain = params['Subdomain']
           @RecordType = params['RecordType']
           @RecordLine = params['RecordLine']
           @RecordLineId = params['RecordLineId']
@@ -3674,6 +3688,7 @@ module TencentCloud
           @Offset = params['Offset']
           @Limit = params['Limit']
           @ErrorOnEmpty = params['ErrorOnEmpty']
+          @SubDomain = params['SubDomain']
         end
       end
 
@@ -3892,43 +3907,48 @@ module TencentCloud
 
       # DescribeResolveCount请求参数结构体
       class DescribeResolveCountRequest < TencentCloud::Common::AbstractModel
-        # @param Domain: 要查询解析量的域名
+        # @param Domain: <p>要查询解析量的域名</p>
         # @type Domain: String
-        # @param StartDate: 查询的开始时间，格式：YYYY-MM-DD，最多允许查询最近32天的数据。
+        # @param StartDate: <p>查询的开始时间，格式：YYYY-MM-DD，最多允许查询最近32天的数据。</p>
         # @type StartDate: String
-        # @param EndDate: 查询的结束时间，格式：YYYY-MM-DD，最多允许查询最近32天的数据。
+        # @param EndDate: <p>查询的结束时间，格式：YYYY-MM-DD，最多允许查询最近32天的数据。</p>
         # @type EndDate: String
-        # @param DnsFormat: 数据统计格式，取值为minute、hour、day，分别表示按十分钟、小时、天统计数据
+        # @param DnsFormat: <p>数据统计格式</p><p>枚举值：</p><ul><li>minute： 按十分钟维度统计数据</li><li>hour： 按小时维度统计数据</li><li>day： 按天维度统计数据</li></ul>
         # @type DnsFormat: String
-        # @param DomainId: 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。可以通过接口DescribeDomainList查到所有的Domain以及DomainId
+        # @param DomainId: <p>域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。可以通过接口DescribeDomainList查到所有的Domain以及DomainId</p>
         # @type DomainId: Integer
+        # @param DNSFormat: <p>数据统计格式</p><p>枚举值：</p><ul><li>minute： 按十分钟维度统计数据</li><li>hour： 按小时维度统计数据</li><li>day： 按天维度统计数据</li></ul><p>新增规范参数，同时传递DNSFormat和DnsFormat参数时，后端优先使用DNSFormat参数</p>
+        # @type DNSFormat: String
 
-        attr_accessor :Domain, :StartDate, :EndDate, :DnsFormat, :DomainId
+        attr_accessor :Domain, :StartDate, :EndDate, :DnsFormat, :DomainId, :DNSFormat
+        extend Gem::Deprecate
+        deprecate :DnsFormat, :none, 2026, 7
+        deprecate :DnsFormat=, :none, 2026, 7
 
-        def initialize(domain=nil, startdate=nil, enddate=nil, dnsformat=nil, domainid=nil)
+        def initialize(domain=nil, startdate=nil, enddate=nil, domainid=nil, dnsformat=nil)
           @Domain = domain
           @StartDate = startdate
           @EndDate = enddate
-          @DnsFormat = dnsformat
           @DomainId = domainid
+          @DNSFormat = dnsformat
         end
 
         def deserialize(params)
           @Domain = params['Domain']
           @StartDate = params['StartDate']
           @EndDate = params['EndDate']
-          @DnsFormat = params['DnsFormat']
           @DomainId = params['DomainId']
+          @DNSFormat = params['DNSFormat']
         end
       end
 
       # DescribeResolveCount返回参数结构体
       class DescribeResolveCountResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 解析量明细
+        # @param Data: <p>解析量明细</p>
         # @type Data: Array
-        # @param Info: 解析量统计信息
+        # @param Info: <p>解析量统计信息</p>
         # @type Info: :class:`Tencentcloud::Dnspod.v20210323.models.ResolveCountInfo`
-        # @param AliasData: 别名解析量明细
+        # @param AliasData: <p>别名解析量明细</p>
         # @type AliasData: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4222,47 +4242,56 @@ module TencentCloud
 
       # DescribeSubdomainAnalytics请求参数结构体
       class DescribeSubdomainAnalyticsRequest < TencentCloud::Common::AbstractModel
-        # @param Domain: 要查询解析量的域名
+        # @param Domain: <p>要查询解析量的域名</p>
         # @type Domain: String
-        # @param StartDate: 查询的开始时间，格式：YYYY-MM-DD
+        # @param StartDate: <p>查询的开始时间，格式：YYYY-MM-DD</p>
         # @type StartDate: String
-        # @param EndDate: 查询的结束时间，格式：YYYY-MM-DD
+        # @param EndDate: <p>查询的结束时间，格式：YYYY-MM-DD</p>
         # @type EndDate: String
-        # @param Subdomain: 要查询解析量的子域名
-        # @type Subdomain: String
-        # @param DnsFormat: DATE:按天维度统计 HOUR:按小时维度统计
+        # @param DnsFormat: <p>DATE:按天维度统计 HOUR:按小时维度统计</p>
         # @type DnsFormat: String
-        # @param DomainId: 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。可以通过接口DescribeDomainList查到所有的Domain以及DomainId
+        # @param DomainId: <p>域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。可以通过接口DescribeDomainList查到所有的Domain以及DomainId</p>
         # @type DomainId: Integer
+        # @param Subdomain: <p>要查询解析量的子域名</p>
+        # @type Subdomain: String
+        # @param SubDomain: <p>要查询解析量的子域名</p><p>新增规范参数，同时传递SubDomain和Subdomain参数时，后端优先使用SubDomain参数</p>
+        # @type SubDomain: String
+        # @param DNSFormat: <p>解析量数据格式</p><p>枚举值：</p><ul><li>DATE： 按天维度统计</li><li>HOUR： 按小时维度统计</li></ul><p>新增规范参数，同时传递DNSFormat和DnsFormat参数时，后端优先使用DNSFormat参数</p>
+        # @type DNSFormat: String
 
-        attr_accessor :Domain, :StartDate, :EndDate, :Subdomain, :DnsFormat, :DomainId
+        attr_accessor :Domain, :StartDate, :EndDate, :DnsFormat, :DomainId, :Subdomain, :SubDomain, :DNSFormat
+        extend Gem::Deprecate
+        deprecate :DnsFormat, :none, 2026, 7
+        deprecate :DnsFormat=, :none, 2026, 7
+        deprecate :Subdomain, :none, 2026, 7
+        deprecate :Subdomain=, :none, 2026, 7
 
-        def initialize(domain=nil, startdate=nil, enddate=nil, subdomain=nil, dnsformat=nil, domainid=nil)
+        def initialize(domain=nil, startdate=nil, enddate=nil, domainid=nil, subdomain=nil, dnsformat=nil)
           @Domain = domain
           @StartDate = startdate
           @EndDate = enddate
-          @Subdomain = subdomain
-          @DnsFormat = dnsformat
           @DomainId = domainid
+          @SubDomain = subdomain
+          @DNSFormat = dnsformat
         end
 
         def deserialize(params)
           @Domain = params['Domain']
           @StartDate = params['StartDate']
           @EndDate = params['EndDate']
-          @Subdomain = params['Subdomain']
-          @DnsFormat = params['DnsFormat']
           @DomainId = params['DomainId']
+          @SubDomain = params['SubDomain']
+          @DNSFormat = params['DNSFormat']
         end
       end
 
       # DescribeSubdomainAnalytics返回参数结构体
       class DescribeSubdomainAnalyticsResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 当前统计维度解析量小计
+        # @param Data: <p>当前统计维度解析量小计</p>
         # @type Data: Array
-        # @param Info: 子域名解析量统计查询信息
+        # @param Info: <p>子域名解析量统计查询信息</p>
         # @type Info: :class:`Tencentcloud::Dnspod.v20210323.models.SubdomainAnalyticsInfo`
-        # @param AliasData: 子域名别名解析量统计信息
+        # @param AliasData: <p>子域名别名解析量统计信息</p>
         # @type AliasData: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4412,15 +4441,15 @@ module TencentCloud
 
       # DescribeVasList请求参数结构体
       class DescribeVasListRequest < TencentCloud::Common::AbstractModel
-        # @param Offset: 偏移量，默认值为0。
+        # @param Offset: <p>偏移量，默认值为0。</p>
         # @type Offset: Integer
-        # @param Limit: 限制数量，默认值为20。
+        # @param Limit: <p>限制数量，默认值为20。</p>
         # @type Limit: Integer
-        # @param DomainId: 域名ID
+        # @param DomainId: <p>域名ID</p>
         # @type DomainId: Integer
-        # @param ResourceIdList: 使用资源 ID 列表查询
+        # @param ResourceIdList: <p>使用资源 ID 列表查询</p>
         # @type ResourceIdList: Array
-        # @param LimitType: 增值服务类型
+        # @param LimitType: <p>增值服务类型</p>
         # @type LimitType: String
 
         attr_accessor :Offset, :Limit, :DomainId, :ResourceIdList, :LimitType
@@ -4444,29 +4473,34 @@ module TencentCloud
 
       # DescribeVasList返回参数结构体
       class DescribeVasListResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 符合筛选条件的套餐总数
+        # @param TotalCount: <p>符合筛选条件的套餐总数</p>
         # @type TotalCount: Integer
-        # @param VasList: 增值服务信息列表
+        # @param VasList: <p>增值服务信息列表</p>
         # @type VasList: Array
+        # @param VASList: <p>增值服务信息列表</p>
+        # @type VASList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TotalCount, :VasList, :RequestId
+        attr_accessor :TotalCount, :VasList, :VASList, :RequestId
+        extend Gem::Deprecate
+        deprecate :VasList, :none, 2026, 7
+        deprecate :VasList=, :none, 2026, 7
 
         def initialize(totalcount=nil, vaslist=nil, requestid=nil)
           @TotalCount = totalcount
-          @VasList = vaslist
+          @VASList = vaslist
           @RequestId = requestid
         end
 
         def deserialize(params)
           @TotalCount = params['TotalCount']
-          unless params['VasList'].nil?
-            @VasList = []
-            params['VasList'].each do |i|
+          unless params['VASList'].nil?
+            @VASList = []
+            params['VASList'].each do |i|
               vaslistitem_tmp = VasListItem.new
               vaslistitem_tmp.deserialize(i)
-              @VasList << vaslistitem_tmp
+              @VASList << vaslistitem_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -4554,33 +4588,42 @@ module TencentCloud
 
       # 域名解析量统计查询信息
       class DomainAnalyticsInfo < TencentCloud::Common::AbstractModel
-        # @param DnsFormat: DATE:按天维度统计 HOUR:按小时维度统计
+        # @param DnsFormat: <p>DATE:按天维度统计 HOUR:按小时维度统计</p>
         # @type DnsFormat: String
-        # @param DnsTotal: 当前统计周期解析量总计
+        # @param DnsTotal: <p>当前统计周期解析量总计</p>
         # @type DnsTotal: Integer
-        # @param Domain: 当前查询的域名
+        # @param Domain: <p>当前查询的域名</p>
         # @type Domain: String
-        # @param StartDate: 当前统计周期开始时间
+        # @param StartDate: <p>当前统计周期开始时间</p>
         # @type StartDate: String
-        # @param EndDate: 当前统计周期结束时间
+        # @param EndDate: <p>当前统计周期结束时间</p>
         # @type EndDate: String
+        # @param DNSFormat: <p>解析量数据格式</p><p>枚举值：</p><ul><li>DATE： 按天维度统计</li><li>HOUR： 按小时维度统计</li></ul>
+        # @type DNSFormat: String
+        # @param DNSTotal: <p>当前统计周期解析量总计</p>
+        # @type DNSTotal: Integer
 
-        attr_accessor :DnsFormat, :DnsTotal, :Domain, :StartDate, :EndDate
+        attr_accessor :DnsFormat, :DnsTotal, :Domain, :StartDate, :EndDate, :DNSFormat, :DNSTotal
+        extend Gem::Deprecate
+        deprecate :DnsFormat, :none, 2026, 7
+        deprecate :DnsFormat=, :none, 2026, 7
+        deprecate :DnsTotal, :none, 2026, 7
+        deprecate :DnsTotal=, :none, 2026, 7
 
-        def initialize(dnsformat=nil, dnstotal=nil, domain=nil, startdate=nil, enddate=nil)
-          @DnsFormat = dnsformat
-          @DnsTotal = dnstotal
+        def initialize(domain=nil, startdate=nil, enddate=nil, dnsformat=nil, dnstotal=nil)
           @Domain = domain
           @StartDate = startdate
           @EndDate = enddate
+          @DNSFormat = dnsformat
+          @DNSTotal = dnstotal
         end
 
         def deserialize(params)
-          @DnsFormat = params['DnsFormat']
-          @DnsTotal = params['DnsTotal']
           @Domain = params['Domain']
           @StartDate = params['StartDate']
           @EndDate = params['EndDate']
+          @DNSFormat = params['DNSFormat']
+          @DNSTotal = params['DNSTotal']
         end
       end
 
@@ -4674,90 +4717,97 @@ module TencentCloud
 
       # 域名详情
       class DomainInfo < TencentCloud::Common::AbstractModel
-        # @param DomainId: 域名ID
+        # @param DomainId: <p>域名ID</p>
         # @type DomainId: Integer
-        # @param Status: 域名状态，正常：ENABLE，暂停：PAUSE，封禁：SPAM
+        # @param Status: <p>域名状态，正常：ENABLE，暂停：PAUSE，封禁：SPAM</p>
         # @type Status: String
-        # @param Grade: 域名套餐等级
+        # @param Grade: <p>域名套餐等级</p>
         # @type Grade: String
-        # @param GroupId: 域名分组ID
+        # @param GroupId: <p>域名分组ID</p>
         # @type GroupId: Integer
-        # @param IsMark: 是否星标域名
+        # @param IsMark: <p>是否星标域名</p>
         # @type IsMark: String
-        # @param TTL: TTL(DNS记录缓存时间)，单位：秒
+        # @param TTL: <p>TTL(DNS记录缓存时间)，单位：秒</p>
         # @type TTL: Integer
-        # @param CnameSpeedup: cname加速启用状态
+        # @param CnameSpeedup: <p>CNAME加速启用状态</p>
         # @type CnameSpeedup: String
-        # @param Remark: 域名备注
+        # @param Remark: <p>域名备注</p>
         # @type Remark: String
-        # @param Punycode: 域名Punycode
+        # @param Punycode: <p>域名Punycode</p>
         # @type Punycode: String
-        # @param DnsStatus: 域名DNS状态，错误：dnserror，正常：空字符串
+        # @param DnsStatus: <p>域名DNS状态，错误：dnserror，正常：空字符串</p>
         # @type DnsStatus: String
-        # @param DnspodNsList: 域名的NS列表
+        # @param DnspodNsList: <p>域名的NS列表</p>
         # @type DnspodNsList: Array
-        # @param Domain: 域名
+        # @param Domain: <p>域名</p>
         # @type Domain: String
-        # @param GradeLevel: 域名等级代号
+        # @param GradeLevel: <p>域名等级代号</p>
         # @type GradeLevel: Integer
-        # @param UserId: 域名所属的用户ID
+        # @param UserId: <p>域名所属的用户ID</p>
         # @type UserId: Integer
-        # @param IsVip: 是否为付费域名
+        # @param IsVip: <p>是否为付费域名</p>
         # @type IsVip: String
-        # @param Owner: 域名所有者的账号
+        # @param Owner: <p>域名所有者的账号</p>
         # @type Owner: String
-        # @param GradeTitle: 域名等级的描述
+        # @param GradeTitle: <p>域名等级的描述</p>
         # @type GradeTitle: String
-        # @param CreatedOn: 域名创建时间
+        # @param CreatedOn: <p>域名创建时间</p>
         # @type CreatedOn: String
-        # @param UpdatedOn: 最后操作时间
+        # @param UpdatedOn: <p>最后操作时间</p>
         # @type UpdatedOn: String
-        # @param Uin: 腾讯云账户Uin
+        # @param Uin: <p>腾讯云账户Uin</p>
         # @type Uin: String
-        # @param ActualNsList: 域名实际使用的NS列表
+        # @param ActualNsList: <p>域名实际使用的NS列表</p>
         # @type ActualNsList: Array
-        # @param RecordCount: 域名的记录数量
+        # @param RecordCount: <p>域名的记录数量</p>
         # @type RecordCount: Integer
-        # @param OwnerNick: 域名所有者的账户昵称
+        # @param OwnerNick: <p>域名所有者的账户昵称</p>
         # @type OwnerNick: String
-        # @param IsGracePeriod: 是否在付费套餐宽限期
+        # @param IsGracePeriod: <p>是否在付费套餐宽限期</p>
         # @type IsGracePeriod: String
-        # @param VipBuffered: 是否在付费套餐缓冲期
+        # @param VipBuffered: <p>是否在付费套餐缓冲期</p>
         # @type VipBuffered: String
-        # @param VipStartAt: VIP套餐有效期开始时间
+        # @param VipStartAt: <p>VIP套餐有效期开始时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VipStartAt: String
-        # @param VipEndAt: VIP套餐有效期结束时间
+        # @param VipEndAt: <p>VIP套餐有效期结束时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VipEndAt: String
-        # @param VipAutoRenew: VIP套餐自动续费标识。可能的值为：default-默认；no-不自动续费；yes-自动续费
+        # @param VipAutoRenew: <p>VIP套餐自动续费标识。可能的值为：default-默认；no-不自动续费；yes-自动续费</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VipAutoRenew: String
-        # @param VipResourceId: VIP套餐资源ID
+        # @param VipResourceId: <p>VIP套餐资源ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VipResourceId: String
-        # @param IsSubDomain: 是否是子域名。
+        # @param IsSubDomain: <p>是否是子域名。</p>
         # @type IsSubDomain: Boolean
-        # @param TagList: 域名关联的标签列表
+        # @param TagList: <p>域名关联的标签列表</p>
         # @type TagList: Array
-        # @param SearchEnginePush: 是否启用搜索引擎推送
+        # @param SearchEnginePush: <p>是否启用搜索引擎推送</p>
         # @type SearchEnginePush: String
-        # @param SlaveDNS: 是否开启辅助 DNS
+        # @param SlaveDNS: <p>是否开启辅助 DNS</p>
         # @type SlaveDNS: String
+        # @param DNSStatus: <p>域名DNS状态，错误：dnserror，正常：空字符串</p>
+        # @type DNSStatus: String
+        # @param CNAMESpeedup: <p>CNAME加速启用状态</p>
+        # @type CNAMESpeedup: String
 
-        attr_accessor :DomainId, :Status, :Grade, :GroupId, :IsMark, :TTL, :CnameSpeedup, :Remark, :Punycode, :DnsStatus, :DnspodNsList, :Domain, :GradeLevel, :UserId, :IsVip, :Owner, :GradeTitle, :CreatedOn, :UpdatedOn, :Uin, :ActualNsList, :RecordCount, :OwnerNick, :IsGracePeriod, :VipBuffered, :VipStartAt, :VipEndAt, :VipAutoRenew, :VipResourceId, :IsSubDomain, :TagList, :SearchEnginePush, :SlaveDNS
+        attr_accessor :DomainId, :Status, :Grade, :GroupId, :IsMark, :TTL, :CnameSpeedup, :Remark, :Punycode, :DnsStatus, :DnspodNsList, :Domain, :GradeLevel, :UserId, :IsVip, :Owner, :GradeTitle, :CreatedOn, :UpdatedOn, :Uin, :ActualNsList, :RecordCount, :OwnerNick, :IsGracePeriod, :VipBuffered, :VipStartAt, :VipEndAt, :VipAutoRenew, :VipResourceId, :IsSubDomain, :TagList, :SearchEnginePush, :SlaveDNS, :DNSStatus, :CNAMESpeedup
+        extend Gem::Deprecate
+        deprecate :CnameSpeedup, :none, 2026, 7
+        deprecate :CnameSpeedup=, :none, 2026, 7
+        deprecate :DnsStatus, :none, 2026, 7
+        deprecate :DnsStatus=, :none, 2026, 7
 
-        def initialize(domainid=nil, status=nil, grade=nil, groupid=nil, ismark=nil, ttl=nil, cnamespeedup=nil, remark=nil, punycode=nil, dnsstatus=nil, dnspodnslist=nil, domain=nil, gradelevel=nil, userid=nil, isvip=nil, owner=nil, gradetitle=nil, createdon=nil, updatedon=nil, uin=nil, actualnslist=nil, recordcount=nil, ownernick=nil, isgraceperiod=nil, vipbuffered=nil, vipstartat=nil, vipendat=nil, vipautorenew=nil, vipresourceid=nil, issubdomain=nil, taglist=nil, searchenginepush=nil, slavedns=nil)
+        def initialize(domainid=nil, status=nil, grade=nil, groupid=nil, ismark=nil, ttl=nil, remark=nil, punycode=nil, dnspodnslist=nil, domain=nil, gradelevel=nil, userid=nil, isvip=nil, owner=nil, gradetitle=nil, createdon=nil, updatedon=nil, uin=nil, actualnslist=nil, recordcount=nil, ownernick=nil, isgraceperiod=nil, vipbuffered=nil, vipstartat=nil, vipendat=nil, vipautorenew=nil, vipresourceid=nil, issubdomain=nil, taglist=nil, searchenginepush=nil, slavedns=nil, dnsstatus=nil, cnamespeedup=nil)
           @DomainId = domainid
           @Status = status
           @Grade = grade
           @GroupId = groupid
           @IsMark = ismark
           @TTL = ttl
-          @CnameSpeedup = cnamespeedup
           @Remark = remark
           @Punycode = punycode
-          @DnsStatus = dnsstatus
           @DnspodNsList = dnspodnslist
           @Domain = domain
           @GradeLevel = gradelevel
@@ -4781,6 +4831,8 @@ module TencentCloud
           @TagList = taglist
           @SearchEnginePush = searchenginepush
           @SlaveDNS = slavedns
+          @DNSStatus = dnsstatus
+          @CNAMESpeedup = cnamespeedup
         end
 
         def deserialize(params)
@@ -4790,10 +4842,8 @@ module TencentCloud
           @GroupId = params['GroupId']
           @IsMark = params['IsMark']
           @TTL = params['TTL']
-          @CnameSpeedup = params['CnameSpeedup']
           @Remark = params['Remark']
           @Punycode = params['Punycode']
-          @DnsStatus = params['DnsStatus']
           @DnspodNsList = params['DnspodNsList']
           @Domain = params['Domain']
           @GradeLevel = params['GradeLevel']
@@ -4824,6 +4874,8 @@ module TencentCloud
           end
           @SearchEnginePush = params['SearchEnginePush']
           @SlaveDNS = params['SlaveDNS']
+          @DNSStatus = params['DNSStatus']
+          @CNAMESpeedup = params['CNAMESpeedup']
         end
       end
 
@@ -5764,24 +5816,29 @@ module TencentCloud
 
       # ModifyDynamicDNS请求参数结构体
       class ModifyDynamicDNSRequest < TencentCloud::Common::AbstractModel
-        # @param Domain: 域名
+        # @param Domain: <p>域名</p>
         # @type Domain: String
-        # @param RecordId: 记录ID。 可以通过接口DescribeRecordList查到所有的解析记录列表以及对应的RecordId
+        # @param RecordId: <p>记录ID。 可以通过接口DescribeRecordList查到所有的解析记录列表以及对应的RecordId</p>
         # @type RecordId: Integer
-        # @param RecordLine: 记录线路，中文，比如：默认。
+        # @param RecordLine: <p>记录线路，中文，比如：默认。</p>
         # @type RecordLine: String
-        # @param DomainId: 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。
+        # @param DomainId: <p>域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。</p>
         # @type DomainId: Integer
-        # @param SubDomain: 主机记录，如 www，如果不传，默认为 @。
+        # @param SubDomain: <p>主机记录，如 www，如果不传，默认为 @。</p>
         # @type SubDomain: String
-        # @param RecordLineId: 线路的 ID，英文字符串，比如：10=1。参数RecordLineId优先级高于RecordLine，如果同时传递二者，优先使用RecordLineId参数。
+        # @param RecordLineId: <p>线路的 ID，英文字符串，比如：10=1。参数RecordLineId优先级高于RecordLine，如果同时传递二者，优先使用RecordLineId参数。</p>
         # @type RecordLineId: String
-        # @param Value: IP 地址，支持 IPv4、IPv6，例如 119.29.29.29 或者 2402:4e00::
+        # @param Value: <p>IP 地址，支持 IPv4、IPv6，例如 119.29.29.29 或者 2402:4e00::</p>
         # @type Value: String
-        # @param Ttl: TTL值，如果不传，默认为域名的TTL值。
+        # @param Ttl: <p>TTL值，如果不传，默认为域名的TTL值。</p>
         # @type Ttl: Integer
+        # @param TTL: <p>TTL值，如果不传，默认为域名的TTL值。</p><p>新增规范参数，同时传递TTL和Ttl参数时，后端优先使用TTL参数</p>
+        # @type TTL: Integer
 
-        attr_accessor :Domain, :RecordId, :RecordLine, :DomainId, :SubDomain, :RecordLineId, :Value, :Ttl
+        attr_accessor :Domain, :RecordId, :RecordLine, :DomainId, :SubDomain, :RecordLineId, :Value, :Ttl, :TTL
+        extend Gem::Deprecate
+        deprecate :Ttl, :none, 2026, 7
+        deprecate :Ttl=, :none, 2026, 7
 
         def initialize(domain=nil, recordid=nil, recordline=nil, domainid=nil, subdomain=nil, recordlineid=nil, value=nil, ttl=nil)
           @Domain = domain
@@ -5791,7 +5848,7 @@ module TencentCloud
           @SubDomain = subdomain
           @RecordLineId = recordlineid
           @Value = value
-          @Ttl = ttl
+          @TTL = ttl
         end
 
         def deserialize(params)
@@ -5802,13 +5859,13 @@ module TencentCloud
           @SubDomain = params['SubDomain']
           @RecordLineId = params['RecordLineId']
           @Value = params['Value']
-          @Ttl = params['Ttl']
+          @TTL = params['TTL']
         end
       end
 
       # ModifyDynamicDNS返回参数结构体
       class ModifyDynamicDNSResponse < TencentCloud::Common::AbstractModel
-        # @param RecordId: 记录ID
+        # @param RecordId: <p>记录ID</p>
         # @type RecordId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -7189,37 +7246,46 @@ module TencentCloud
 
       # 域名解析量统计信息
       class ResolveCountInfo < TencentCloud::Common::AbstractModel
-        # @param DnsTotal: 当前统计周期解析量总计
+        # @param DnsTotal: <p>当前统计周期解析量总计</p>
         # @type DnsTotal: Integer
-        # @param Domain: 当前查询的域名
+        # @param Domain: <p>当前查询的域名</p>
         # @type Domain: String
-        # @param StartDate: 当前统计周期开始时间
+        # @param StartDate: <p>当前统计周期开始时间</p>
         # @type StartDate: String
-        # @param EndDate: 当前统计周期结束时间
+        # @param EndDate: <p>当前统计周期结束时间</p>
         # @type EndDate: String
-        # @param SubDomain: 当前统计的子域名
+        # @param SubDomain: <p>当前统计的子域名</p>
         # @type SubDomain: String
-        # @param DnsFormat: 数据统计格式，取值为minute、hour、day，分别表示按十分钟、小时、天统计数据
+        # @param DnsFormat: <p>数据统计格式，取值为minute、hour、day，分别表示按十分钟、小时、天统计数据</p>
         # @type DnsFormat: String
+        # @param DNSTotal: <p>当前统计周期解析量总计</p>
+        # @type DNSTotal: Integer
+        # @param DNSFormat: <p>数据统计格式，取值为minute、hour、day，分别表示按十分钟、小时、天统计数据</p>
+        # @type DNSFormat: String
 
-        attr_accessor :DnsTotal, :Domain, :StartDate, :EndDate, :SubDomain, :DnsFormat
+        attr_accessor :DnsTotal, :Domain, :StartDate, :EndDate, :SubDomain, :DnsFormat, :DNSTotal, :DNSFormat
+        extend Gem::Deprecate
+        deprecate :DnsTotal, :none, 2026, 7
+        deprecate :DnsTotal=, :none, 2026, 7
+        deprecate :DnsFormat, :none, 2026, 7
+        deprecate :DnsFormat=, :none, 2026, 7
 
-        def initialize(dnstotal=nil, domain=nil, startdate=nil, enddate=nil, subdomain=nil, dnsformat=nil)
-          @DnsTotal = dnstotal
+        def initialize(domain=nil, startdate=nil, enddate=nil, subdomain=nil, dnstotal=nil, dnsformat=nil)
           @Domain = domain
           @StartDate = startdate
           @EndDate = enddate
           @SubDomain = subdomain
-          @DnsFormat = dnsformat
+          @DNSTotal = dnstotal
+          @DNSFormat = dnsformat
         end
 
         def deserialize(params)
-          @DnsTotal = params['DnsTotal']
           @Domain = params['Domain']
           @StartDate = params['StartDate']
           @EndDate = params['EndDate']
           @SubDomain = params['SubDomain']
-          @DnsFormat = params['DnsFormat']
+          @DNSTotal = params['DNSTotal']
+          @DNSFormat = params['DNSFormat']
         end
       end
 
@@ -7564,37 +7630,50 @@ module TencentCloud
 
       # 子域名解析量统计查询信息
       class SubdomainAnalyticsInfo < TencentCloud::Common::AbstractModel
-        # @param DnsFormat: DATE:按天维度统计 HOUR:按小时维度统计
+        # @param DnsFormat: <p>DATE:按天维度统计 HOUR:按小时维度统计</p>
         # @type DnsFormat: String
-        # @param DnsTotal: 当前统计周期解析量总计
+        # @param DnsTotal: <p>当前统计周期解析量总计</p>
         # @type DnsTotal: Integer
-        # @param Domain: 当前查询的域名
+        # @param Domain: <p>当前查询的域名</p>
         # @type Domain: String
-        # @param StartDate: 当前统计周期开始时间
+        # @param StartDate: <p>当前统计周期开始时间</p>
         # @type StartDate: String
-        # @param EndDate: 当前统计周期结束时间
+        # @param EndDate: <p>当前统计周期结束时间</p>
         # @type EndDate: String
-        # @param Subdomain: 当前统计的子域名
+        # @param Subdomain: <p>当前统计的子域名</p>
         # @type Subdomain: String
+        # @param DNSFormat: <p>解析量数据格式</p><p>枚举值：</p><ul><li>DATE： 按天维度统计</li><li>HOUR： 按小时维度统计</li></ul>
+        # @type DNSFormat: String
+        # @param DNSTotal: <p>当前统计周期解析量总计</p>
+        # @type DNSTotal: Integer
+        # @param SubDomain: <p>当前统计的子域名</p>
+        # @type SubDomain: String
 
-        attr_accessor :DnsFormat, :DnsTotal, :Domain, :StartDate, :EndDate, :Subdomain
+        attr_accessor :DnsFormat, :DnsTotal, :Domain, :StartDate, :EndDate, :Subdomain, :DNSFormat, :DNSTotal, :SubDomain
+        extend Gem::Deprecate
+        deprecate :DnsFormat, :none, 2026, 7
+        deprecate :DnsFormat=, :none, 2026, 7
+        deprecate :DnsTotal, :none, 2026, 7
+        deprecate :DnsTotal=, :none, 2026, 7
+        deprecate :Subdomain, :none, 2026, 7
+        deprecate :Subdomain=, :none, 2026, 7
 
-        def initialize(dnsformat=nil, dnstotal=nil, domain=nil, startdate=nil, enddate=nil, subdomain=nil)
-          @DnsFormat = dnsformat
-          @DnsTotal = dnstotal
+        def initialize(domain=nil, startdate=nil, enddate=nil, dnsformat=nil, dnstotal=nil, subdomain=nil)
           @Domain = domain
           @StartDate = startdate
           @EndDate = enddate
-          @Subdomain = subdomain
+          @DNSFormat = dnsformat
+          @DNSTotal = dnstotal
+          @SubDomain = subdomain
         end
 
         def deserialize(params)
-          @DnsFormat = params['DnsFormat']
-          @DnsTotal = params['DnsTotal']
           @Domain = params['Domain']
           @StartDate = params['StartDate']
           @EndDate = params['EndDate']
-          @Subdomain = params['Subdomain']
+          @DNSFormat = params['DNSFormat']
+          @DNSTotal = params['DNSTotal']
+          @SubDomain = params['SubDomain']
         end
       end
 

@@ -4113,10 +4113,16 @@ module TencentCloud
         # @type EndTime: Integer
         # @param HasServicesLog: <p>是否开启投递服务日志。1关闭，2开启。默认开启</p>
         # @type HasServicesLog: Integer
+        # @param AutoCreateField: <p>自动创建dlc字段</p><p>默认值：false</p><p>当您的日志中有新增字段时，系统自动将其投递至DLC</p>
+        # @type AutoCreateField: Boolean
+        # @param DlcFailHandle: <p>将投递失败的日志存储至DLC表</p>
+        # @type DlcFailHandle: :class:`Tencentcloud::Cls.v20201016.models.DlcFailHandle`
+        # @param DSLFilter: <p>日志预过滤-数据写入 Splunk 的原始数据进行预过滤处理</p>
+        # @type DSLFilter: String
 
-        attr_accessor :TopicId, :Name, :DeliverType, :StartTime, :DlcInfo, :MaxSize, :Interval, :EndTime, :HasServicesLog
+        attr_accessor :TopicId, :Name, :DeliverType, :StartTime, :DlcInfo, :MaxSize, :Interval, :EndTime, :HasServicesLog, :AutoCreateField, :DlcFailHandle, :DSLFilter
 
-        def initialize(topicid=nil, name=nil, delivertype=nil, starttime=nil, dlcinfo=nil, maxsize=nil, interval=nil, endtime=nil, hasserviceslog=nil)
+        def initialize(topicid=nil, name=nil, delivertype=nil, starttime=nil, dlcinfo=nil, maxsize=nil, interval=nil, endtime=nil, hasserviceslog=nil, autocreatefield=nil, dlcfailhandle=nil, dslfilter=nil)
           @TopicId = topicid
           @Name = name
           @DeliverType = delivertype
@@ -4126,6 +4132,9 @@ module TencentCloud
           @Interval = interval
           @EndTime = endtime
           @HasServicesLog = hasserviceslog
+          @AutoCreateField = autocreatefield
+          @DlcFailHandle = dlcfailhandle
+          @DSLFilter = dslfilter
         end
 
         def deserialize(params)
@@ -4141,6 +4150,12 @@ module TencentCloud
           @Interval = params['Interval']
           @EndTime = params['EndTime']
           @HasServicesLog = params['HasServicesLog']
+          @AutoCreateField = params['AutoCreateField']
+          unless params['DlcFailHandle'].nil?
+            @DlcFailHandle = DlcFailHandle.new
+            @DlcFailHandle.deserialize(params['DlcFailHandle'])
+          end
+          @DSLFilter = params['DSLFilter']
         end
       end
 
@@ -15769,10 +15784,16 @@ module TencentCloud
         # @type HasServicesLog: Integer
         # @param Status: <p>任务状态。</p><p>枚举值：</p><ul><li>1： 运行</li><li>2： 停止</li></ul>
         # @type Status: Integer
+        # @param AutoCreateField: <p>自动创建dlc字段</p><p>默认值：false</p><p>当您的日志中有新增字段时，系统自动将其投递至DLC</p>
+        # @type AutoCreateField: Boolean
+        # @param DlcFailHandle: <p>将投递失败的日志存储至DLC表</p>
+        # @type DlcFailHandle: :class:`Tencentcloud::Cls.v20201016.models.DlcFailHandle`
+        # @param DSLFilter: <p>日志预过滤-数据写入 Splunk 的原始数据进行预过滤处理</p>
+        # @type DSLFilter: String
 
-        attr_accessor :TopicId, :TaskId, :Name, :DeliverType, :StartTime, :EndTime, :MaxSize, :Interval, :DlcInfo, :HasServicesLog, :Status
+        attr_accessor :TopicId, :TaskId, :Name, :DeliverType, :StartTime, :EndTime, :MaxSize, :Interval, :DlcInfo, :HasServicesLog, :Status, :AutoCreateField, :DlcFailHandle, :DSLFilter
 
-        def initialize(topicid=nil, taskid=nil, name=nil, delivertype=nil, starttime=nil, endtime=nil, maxsize=nil, interval=nil, dlcinfo=nil, hasserviceslog=nil, status=nil)
+        def initialize(topicid=nil, taskid=nil, name=nil, delivertype=nil, starttime=nil, endtime=nil, maxsize=nil, interval=nil, dlcinfo=nil, hasserviceslog=nil, status=nil, autocreatefield=nil, dlcfailhandle=nil, dslfilter=nil)
           @TopicId = topicid
           @TaskId = taskid
           @Name = name
@@ -15784,6 +15805,9 @@ module TencentCloud
           @DlcInfo = dlcinfo
           @HasServicesLog = hasserviceslog
           @Status = status
+          @AutoCreateField = autocreatefield
+          @DlcFailHandle = dlcfailhandle
+          @DSLFilter = dslfilter
         end
 
         def deserialize(params)
@@ -15801,6 +15825,12 @@ module TencentCloud
           end
           @HasServicesLog = params['HasServicesLog']
           @Status = params['Status']
+          @AutoCreateField = params['AutoCreateField']
+          unless params['DlcFailHandle'].nil?
+            @DlcFailHandle = DlcFailHandle.new
+            @DlcFailHandle.deserialize(params['DlcFailHandle'])
+          end
+          @DSLFilter = params['DSLFilter']
         end
       end
 

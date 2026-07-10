@@ -13275,13 +13275,13 @@ module TencentCloud
 
       # ListUpstreamOpsTasks请求参数结构体
       class ListUpstreamOpsTasksRequest < TencentCloud::Common::AbstractModel
-        # @param ProjectId: 项目Id
+        # @param ProjectId: <p>项目Id</p>
         # @type ProjectId: String
-        # @param TaskId: 任务Id
+        # @param TaskId: <p>任务Id</p>
         # @type TaskId: String
-        # @param PageNumber: 分页页码
+        # @param PageNumber: <p>分页页码</p>
         # @type PageNumber: String
-        # @param PageSize: 分页大小
+        # @param PageSize: <p>分页大小</p>
         # @type PageSize: String
 
         attr_accessor :ProjectId, :TaskId, :PageNumber, :PageSize
@@ -13303,7 +13303,7 @@ module TencentCloud
 
       # ListUpstreamOpsTasks返回参数结构体
       class ListUpstreamOpsTasksResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 上游任务详情
+        # @param Data: <p>上游任务详情</p>
         # @type Data: :class:`Tencentcloud::Wedata.v20250806.models.ParentDependencyConfigPage`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

@@ -10949,14 +10949,9 @@ module TencentCloud
 
       # 存储额外配置
       class StorageExtraConf < TencentCloud::Common::AbstractModel
-        # @param CFSStorageType: cfs的存储类型
-        #   // HP:通用性能型
-        #   // SD:通用标准型
-        #   // TP:turbo性能型
-        #   // TB:turbo标准型
-        #   // THP:吞吐型
+        # @param CFSStorageType: <p>cfs的存储类型<br>  // HP:通用性能型<br>  // SD:通用标准型<br>  // TP:turbo性能型<br>  // TB:turbo标准型<br>  // THP:吞吐型</p>
         # @type CFSStorageType: String
-        # @param CFSProtocol: cfs的协议
+        # @param CFSProtocol: <p>cfs的协议</p>
         # @type CFSProtocol: String
 
         attr_accessor :CFSStorageType, :CFSProtocol

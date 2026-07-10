@@ -3375,13 +3375,13 @@ module TencentCloud
 
       # DescribeBasicDeviceStatus请求参数结构体
       class DescribeBasicDeviceStatusRequest < TencentCloud::Common::AbstractModel
-        # @param IpList: IP 资源列表
+        # @param IpList: <p>IP 资源列表</p>
         # @type IpList: Array
-        # @param IdList: 域名化资源传id
+        # @param IdList: <p>域名化资源传id</p>
         # @type IdList: Array
-        # @param FilterRegion: 地域名称
+        # @param FilterRegion: <p>地域名称</p>
         # @type FilterRegion: Integer
-        # @param CnameWafIdList: cnameWaf资源
+        # @param CnameWafIdList: <p>cnameWaf资源</p>
         # @type CnameWafIdList: Array
 
         attr_accessor :IpList, :IdList, :FilterRegion, :CnameWafIdList
@@ -3403,14 +3403,11 @@ module TencentCloud
 
       # DescribeBasicDeviceStatus返回参数结构体
       class DescribeBasicDeviceStatusResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 返回资源及状态，状态码：
-        # 1 - 封堵状态
-        # 2 - 正常状态
-        # 3 - 攻击状态
+        # @param Data: <p>返回资源及状态，状态码：<br>1 - 封堵状态<br>2 - 正常状态<br>3 - 攻击状态</p>
         # @type Data: Array
-        # @param CLBData: 域名化资产的名称
+        # @param CLBData: <p>域名化资产的名称</p>
         # @type CLBData: Array
-        # @param CnameWafData: cnamewaf资源状态
+        # @param CnameWafData: <p>cnamewaf资源状态</p>
         # @type CnameWafData: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

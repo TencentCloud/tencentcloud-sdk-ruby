@@ -245,6 +245,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 对实例的某个诊断项设置忽略或取消忽略状态。
+
+        # @param request: Request instance for CreateIgnoreDiagRecord.
+        # @type request: :class:`Tencentcloud::dbbrain::V20210527::CreateIgnoreDiagRecordRequest`
+        # @rtype: :class:`Tencentcloud::dbbrain::V20210527::CreateIgnoreDiagRecordResponse`
+        def CreateIgnoreDiagRecord(request)
+          body = send_request('CreateIgnoreDiagRecord', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateIgnoreDiagRecordResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建中断会话的任务。
 
         # @param request: Request instance for CreateKillTask.

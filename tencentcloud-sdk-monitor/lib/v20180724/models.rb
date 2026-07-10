@@ -46,11 +46,11 @@ module TencentCloud
 
       # 告警事件
       class AlarmEvent < TencentCloud::Common::AbstractModel
-        # @param EventName: 事件名
+        # @param EventName: <p>事件名</p>
         # @type EventName: String
-        # @param Description: 展示的事件名
+        # @param Description: <p>展示的事件名</p>
         # @type Description: String
-        # @param Namespace: 告警策略类型
+        # @param Namespace: <p>告警策略类型</p>
         # @type Namespace: String
 
         attr_accessor :EventName, :Description, :Namespace
@@ -820,10 +820,10 @@ module TencentCloud
 
       # 告警策略过滤条件
       class AlarmPolicyFilter < TencentCloud::Common::AbstractModel
-        # @param Type: 过滤条件类型 DIMENSION=使用 Dimensions 做过滤
+        # @param Type: <p>过滤条件类型 DIMENSION=使用 Dimensions 做过滤</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
-        # @param Dimensions: AlarmPolicyDimension 二维数组序列化后的json字符串，一维数组之间互为或关系，一维数组内的元素互为与关系
+        # @param Dimensions: <p>AlarmPolicyDimension 二维数组序列化后的json字符串，一维数组之间互为或关系，一维数组内的元素互为与关系</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Dimensions: String
 
@@ -968,10 +968,10 @@ module TencentCloud
 
       # 告警策略触发任务
       class AlarmPolicyTriggerTask < TencentCloud::Common::AbstractModel
-        # @param Type: 触发任务类型 AS=弹性伸缩
+        # @param Type: <p>触发任务类型 AS=弹性伸缩</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
-        # @param TaskConfig: 用 json 表示配置信息 {"Key1":"Value1","Key2":"Value2"}
+        # @param TaskConfig: <p>用 json 表示配置信息 {&quot;Key1&quot;:&quot;Value1&quot;,&quot;Key2&quot;:&quot;Value2&quot;}</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskConfig: String
 
@@ -5016,15 +5016,15 @@ module TencentCloud
 
       # DescribeAlarmSmsQuota接口的配额信息
       class DescribeAlarmSmsQuotaQuota < TencentCloud::Common::AbstractModel
-        # @param Type: 配额类型
+        # @param Type: <p>配额类型</p>
         # @type Type: String
-        # @param Name: 配额名称
+        # @param Name: <p>配额名称</p>
         # @type Name: String
-        # @param FreeLeft: 免费配额剩余量
+        # @param FreeLeft: <p>免费配额剩余量</p>
         # @type FreeLeft: Integer
-        # @param PurchaseLeft: 付费配额剩余量
+        # @param PurchaseLeft: <p>付费配额剩余量</p>
         # @type PurchaseLeft: Integer
-        # @param Used: 已使用量
+        # @param Used: <p>已使用量</p>
         # @type Used: Integer
 
         attr_accessor :Type, :Name, :FreeLeft, :PurchaseLeft, :Used
@@ -5315,69 +5315,69 @@ module TencentCloud
 
       # DescribeBasicAlarmList返回的Alarms
       class DescribeBasicAlarmListAlarms < TencentCloud::Common::AbstractModel
-        # @param Id: 该条告警的ID
+        # @param Id: <p>该条告警的ID</p>
         # @type Id: Integer
-        # @param ProjectId: 项目ID
+        # @param ProjectId: <p>项目ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProjectId: Integer
-        # @param ProjectName: 项目名称
+        # @param ProjectName: <p>项目名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProjectName: String
-        # @param Status: 告警状态ID，0表示未恢复；1表示已恢复；2,3,5表示数据不足；4表示已失效
+        # @param Status: <p>告警状态ID，0表示未恢复；1表示已恢复；2,3,5表示数据不足；4表示已失效</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
-        # @param AlarmStatus: 告警状态，ALARM表示未恢复；OK表示已恢复；NO_DATA表示数据不足；NO_CONF表示已失效
+        # @param AlarmStatus: <p>告警状态，ALARM表示未恢复；OK表示已恢复；NO_DATA表示数据不足；NO_CONF表示已失效</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AlarmStatus: String
-        # @param GroupId: 策略组ID
+        # @param GroupId: <p>策略组ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupId: Integer
-        # @param GroupName: 策略组名
+        # @param GroupName: <p>策略组名</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupName: String
-        # @param FirstOccurTime: 发生时间
+        # @param FirstOccurTime: <p>发生时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FirstOccurTime: String
-        # @param Duration: 持续时间，单位s
+        # @param Duration: <p>持续时间，单位s</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Duration: Integer
-        # @param LastOccurTime: 结束时间
+        # @param LastOccurTime: <p>结束时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LastOccurTime: String
-        # @param Content: 告警内容
+        # @param Content: <p>告警内容</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Content: String
-        # @param ObjName: 告警对象
+        # @param ObjName: <p>告警对象</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ObjName: String
-        # @param ObjId: 告警对象ID
+        # @param ObjId: <p>告警对象ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ObjId: String
-        # @param ViewName: 策略类型
+        # @param ViewName: <p>策略类型</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ViewName: String
-        # @param Vpc: VPC，只有CVM有
+        # @param Vpc: <p>VPC，只有CVM有</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Vpc: String
-        # @param MetricId: 指标ID
+        # @param MetricId: <p>指标ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MetricId: Integer
-        # @param MetricName: 指标名
+        # @param MetricName: <p>指标名</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MetricName: String
-        # @param AlarmType: 告警类型，0表示指标告警，2表示产品事件告警，3表示平台事件告警
+        # @param AlarmType: <p>告警类型，0表示指标告警，2表示产品事件告警，3表示平台事件告警</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AlarmType: Integer
-        # @param Region: 地域
+        # @param Region: <p>地域</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Region: String
-        # @param Dimensions: 告警对象维度信息
+        # @param Dimensions: <p>告警对象维度信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Dimensions: String
-        # @param NotifyWay: 通知方式
+        # @param NotifyWay: <p>通知方式</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NotifyWay: Array
-        # @param InstanceGroup: 所属实例组信息
+        # @param InstanceGroup: <p>所属实例组信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceGroup: Array
 
@@ -6766,26 +6766,26 @@ module TencentCloud
 
       # DescribePolicyConditionList策略条件
       class DescribePolicyConditionListCondition < TencentCloud::Common::AbstractModel
-        # @param PolicyViewName: 策略视图名称
+        # @param PolicyViewName: <p>策略视图名称</p>
         # @type PolicyViewName: String
-        # @param EventMetrics: 事件告警条件
+        # @param EventMetrics: <p>事件告警条件</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EventMetrics: Array
-        # @param IsSupportMultiRegion: 是否支持多地域
+        # @param IsSupportMultiRegion: <p>是否支持多地域</p>
         # @type IsSupportMultiRegion: Boolean
-        # @param Metrics: 指标告警条件
+        # @param Metrics: <p>指标告警条件</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Metrics: Array
-        # @param Name: 策略类型名称
+        # @param Name: <p>策略类型名称</p>
         # @type Name: String
-        # @param SortId: 排序id
+        # @param SortId: <p>排序id</p>
         # @type SortId: Integer
-        # @param SupportDefault: 是否支持默认策略
+        # @param SupportDefault: <p>是否支持默认策略</p>
         # @type SupportDefault: Boolean
-        # @param SupportRegions: 支持该策略类型的地域列表
+        # @param SupportRegions: <p>支持该策略类型的地域列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SupportRegions: Array
-        # @param DeprecatingInfo: 弃用信息
+        # @param DeprecatingInfo: <p>弃用信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeprecatingInfo: :class:`Tencentcloud::Monitor.v20180724.models.DescribePolicyConditionListResponseDeprecatingInfo`
 
@@ -6835,22 +6835,22 @@ module TencentCloud
 
       # DescribePolicyConditionList.ConfigManual
       class DescribePolicyConditionListConfigManual < TencentCloud::Common::AbstractModel
-        # @param CalcType: 检测方式
+        # @param CalcType: <p>检测方式</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CalcType: :class:`Tencentcloud::Monitor.v20180724.models.DescribePolicyConditionListConfigManualCalcType`
-        # @param CalcValue: 检测阈值
+        # @param CalcValue: <p>检测阈值</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CalcValue: :class:`Tencentcloud::Monitor.v20180724.models.DescribePolicyConditionListConfigManualCalcValue`
-        # @param ContinueTime: 持续时间
+        # @param ContinueTime: <p>持续时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ContinueTime: :class:`Tencentcloud::Monitor.v20180724.models.DescribePolicyConditionListConfigManualContinueTime`
-        # @param Period: 数据周期
+        # @param Period: <p>数据周期</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Period: :class:`Tencentcloud::Monitor.v20180724.models.DescribePolicyConditionListConfigManualPeriod`
-        # @param PeriodNum: 持续周期个数
+        # @param PeriodNum: <p>持续周期个数</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PeriodNum: :class:`Tencentcloud::Monitor.v20180724.models.DescribePolicyConditionListConfigManualPeriodNum`
-        # @param StatType: 聚合方式
+        # @param StatType: <p>聚合方式</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StatType: :class:`Tencentcloud::Monitor.v20180724.models.DescribePolicyConditionListConfigManualStatType`
 
@@ -6895,10 +6895,10 @@ module TencentCloud
 
       # DescribePolicyConditionList.ConfigManual.CalcType
       class DescribePolicyConditionListConfigManualCalcType < TencentCloud::Common::AbstractModel
-        # @param Keys: CalcType 取值
+        # @param Keys: <p>CalcType 取值</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Keys: Array
-        # @param Need: 是否必须
+        # @param Need: <p>是否必须</p>
         # @type Need: Boolean
 
         attr_accessor :Keys, :Need
@@ -6916,19 +6916,19 @@ module TencentCloud
 
       # DescribePolicyConditionList.ConfigManual.CalcValue
       class DescribePolicyConditionListConfigManualCalcValue < TencentCloud::Common::AbstractModel
-        # @param Default: 默认值
+        # @param Default: <p>默认值</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Default: String
-        # @param Fixed: 固定值
+        # @param Fixed: <p>固定值</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Fixed: String
-        # @param Max: 最大值
+        # @param Max: <p>最大值</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Max: String
-        # @param Min: 最小值
+        # @param Min: <p>最小值</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Min: String
-        # @param Need: 是否必须
+        # @param Need: <p>是否必须</p>
         # @type Need: Boolean
 
         attr_accessor :Default, :Fixed, :Max, :Min, :Need
@@ -6952,13 +6952,13 @@ module TencentCloud
 
       # DescribePolicyConditionList.ConfigManual.ContinueTime
       class DescribePolicyConditionListConfigManualContinueTime < TencentCloud::Common::AbstractModel
-        # @param Default: 默认持续时间，单位：秒
+        # @param Default: <p>默认持续时间，单位：秒</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Default: Integer
-        # @param Keys: 可选持续时间，单位：秒
+        # @param Keys: <p>可选持续时间，单位：秒</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Keys: Array
-        # @param Need: 是否必须
+        # @param Need: <p>是否必须</p>
         # @type Need: Boolean
 
         attr_accessor :Default, :Keys, :Need
@@ -6978,13 +6978,13 @@ module TencentCloud
 
       # DescribePolicyConditionList.ConfigManual.Period
       class DescribePolicyConditionListConfigManualPeriod < TencentCloud::Common::AbstractModel
-        # @param Default: 默认周期，单位：秒
+        # @param Default: <p>默认周期，单位：秒</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Default: Integer
-        # @param Keys: 可选周期，单位：秒
+        # @param Keys: <p>可选周期，单位：秒</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Keys: Array
-        # @param Need: 是否必须
+        # @param Need: <p>是否必须</p>
         # @type Need: Boolean
 
         attr_accessor :Default, :Keys, :Need
@@ -7004,13 +7004,13 @@ module TencentCloud
 
       # DescribePolicyConditionList.ConfigManual.PeriodNum
       class DescribePolicyConditionListConfigManualPeriodNum < TencentCloud::Common::AbstractModel
-        # @param Default: 默认周期数
+        # @param Default: <p>默认周期数</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Default: Integer
-        # @param Keys: 可选周期数
+        # @param Keys: <p>可选周期数</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Keys: Array
-        # @param Need: 是否必须
+        # @param Need: <p>是否必须</p>
         # @type Need: Boolean
 
         attr_accessor :Default, :Keys, :Need
@@ -7030,28 +7030,28 @@ module TencentCloud
 
       # DescribePolicyConditionList.ConfigManual.StatType
       class DescribePolicyConditionListConfigManualStatType < TencentCloud::Common::AbstractModel
-        # @param P5: 数据聚合方式，周期5秒
+        # @param P5: <p>数据聚合方式，周期5秒</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type P5: String
-        # @param P10: 数据聚合方式，周期10秒
+        # @param P10: <p>数据聚合方式，周期10秒</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type P10: String
-        # @param P60: 数据聚合方式，周期1分钟
+        # @param P60: <p>数据聚合方式，周期1分钟</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type P60: String
-        # @param P300: 数据聚合方式，周期5分钟
+        # @param P300: <p>数据聚合方式，周期5分钟</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type P300: String
-        # @param P600: 数据聚合方式，周期10分钟
+        # @param P600: <p>数据聚合方式，周期10分钟</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type P600: String
-        # @param P1800: 数据聚合方式，周期30分钟
+        # @param P1800: <p>数据聚合方式，周期30分钟</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type P1800: String
-        # @param P3600: 数据聚合方式，周期1小时
+        # @param P3600: <p>数据聚合方式，周期1小时</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type P3600: String
-        # @param P86400: 数据聚合方式，周期1天
+        # @param P86400: <p>数据聚合方式，周期1天</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type P86400: String
 
@@ -7082,13 +7082,13 @@ module TencentCloud
 
       # DescribePolicyConditionList.EventMetric
       class DescribePolicyConditionListEventMetric < TencentCloud::Common::AbstractModel
-        # @param EventId: 事件id
+        # @param EventId: <p>事件id</p>
         # @type EventId: Integer
-        # @param EventShowName: 事件名称
+        # @param EventShowName: <p>事件名称</p>
         # @type EventShowName: String
-        # @param NeedRecovered: 是否需要恢复
+        # @param NeedRecovered: <p>是否需要恢复</p>
         # @type NeedRecovered: Boolean
-        # @param Type: 事件类型，预留字段，当前固定取值为2
+        # @param Type: <p>事件类型，预留字段，当前固定取值为2</p>
         # @type Type: Integer
 
         attr_accessor :EventId, :EventShowName, :NeedRecovered, :Type
@@ -7110,14 +7110,14 @@ module TencentCloud
 
       # 指标告警配置
       class DescribePolicyConditionListMetric < TencentCloud::Common::AbstractModel
-        # @param ConfigManual: 指标配置
+        # @param ConfigManual: <p>指标配置</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConfigManual: :class:`Tencentcloud::Monitor.v20180724.models.DescribePolicyConditionListConfigManual`
-        # @param MetricId: 指标id
+        # @param MetricId: <p>指标id</p>
         # @type MetricId: Integer
-        # @param MetricShowName: 指标名称
+        # @param MetricShowName: <p>指标名称</p>
         # @type MetricShowName: String
-        # @param MetricUnit: 指标单位
+        # @param MetricUnit: <p>指标单位</p>
         # @type MetricUnit: String
 
         attr_accessor :ConfigManual, :MetricId, :MetricShowName, :MetricUnit
@@ -7185,13 +7185,13 @@ module TencentCloud
 
       # DescribePolicyConditionListResponseDeprecatingInfo
       class DescribePolicyConditionListResponseDeprecatingInfo < TencentCloud::Common::AbstractModel
-        # @param Hidden: 是否隐藏
+        # @param Hidden: <p>是否隐藏</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Hidden: Boolean
-        # @param NewViewNames: 新视图名称
+        # @param NewViewNames: <p>新视图名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NewViewNames: Array
-        # @param Description: 描述
+        # @param Description: <p>描述</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
 
@@ -7375,34 +7375,34 @@ module TencentCloud
 
       # 查询策略输出的告警接收人信息
       class DescribePolicyGroupInfoReceiverInfo < TencentCloud::Common::AbstractModel
-        # @param ReceiverGroupList: 告警接收组id列表
+        # @param ReceiverGroupList: <p>告警接收组id列表</p>
         # @type ReceiverGroupList: Array
-        # @param ReceiverUserList: 告警接收人id列表
+        # @param ReceiverUserList: <p>告警接收人id列表</p>
         # @type ReceiverUserList: Array
-        # @param StartTime: 告警时间段开始时间。范围[0,86400)，作为 UNIX 时间戳转成北京时间后去掉日期，例如7200表示"10:0:0"
+        # @param StartTime: <p>告警时间段开始时间。范围[0,86400)，作为 UNIX 时间戳转成北京时间后去掉日期，例如7200表示&quot;10:0:0&quot;</p>
         # @type StartTime: Integer
-        # @param EndTime: 告警时间段结束时间。含义同StartTime
+        # @param EndTime: <p>告警时间段结束时间。含义同StartTime</p>
         # @type EndTime: Integer
-        # @param ReceiverType: 接收类型。“group”(接收组)或“user”(接收人)
+        # @param ReceiverType: <p>接收类型。“group”(接收组)或“user”(接收人)</p>
         # @type ReceiverType: String
-        # @param NotifyWay: 告警通知方式。可选 "SMS","SITE","EMAIL","CALL","WECHAT"
+        # @param NotifyWay: <p>告警通知方式。可选 &quot;SMS&quot;,&quot;SITE&quot;,&quot;EMAIL&quot;,&quot;CALL&quot;,&quot;WECHAT&quot;</p>
         # @type NotifyWay: Array
-        # @param UidList: 电话告警接收者uid
+        # @param UidList: <p>电话告警接收者uid</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UidList: Array
-        # @param RoundNumber: 电话告警轮数
+        # @param RoundNumber: <p>电话告警轮数</p>
         # @type RoundNumber: Integer
-        # @param RoundInterval: 电话告警每轮间隔（秒）
+        # @param RoundInterval: <p>电话告警每轮间隔（秒）</p>
         # @type RoundInterval: Integer
-        # @param PersonInterval: 电话告警对个人间隔（秒）
+        # @param PersonInterval: <p>电话告警对个人间隔（秒）</p>
         # @type PersonInterval: Integer
-        # @param NeedSendNotice: 是否需要电话告警触达提示。0不需要，1需要
+        # @param NeedSendNotice: <p>是否需要电话告警触达提示。0不需要，1需要</p>
         # @type NeedSendNotice: Integer
-        # @param SendFor: 电话告警通知时机。可选"OCCUR"(告警时通知),"RECOVER"(恢复时通知)
+        # @param SendFor: <p>电话告警通知时机。可选&quot;OCCUR&quot;(告警时通知),&quot;RECOVER&quot;(恢复时通知)</p>
         # @type SendFor: Array
-        # @param RecoverNotify: 恢复通知方式。可选"SMS"
+        # @param RecoverNotify: <p>恢复通知方式。可选&quot;SMS&quot;</p>
         # @type RecoverNotify: Array
-        # @param ReceiveLanguage: 告警发送语言
+        # @param ReceiveLanguage: <p>告警发送语言</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReceiveLanguage: String
 
@@ -7582,50 +7582,50 @@ module TencentCloud
 
       # DescribePolicyGroupList.Group
       class DescribePolicyGroupListGroup < TencentCloud::Common::AbstractModel
-        # @param GroupId: 策略组id
+        # @param GroupId: <p>策略组id</p>
         # @type GroupId: Integer
-        # @param GroupName: 策略组名称
+        # @param GroupName: <p>策略组名称</p>
         # @type GroupName: String
-        # @param IsOpen: 是否开启
+        # @param IsOpen: <p>是否开启</p>
         # @type IsOpen: Boolean
-        # @param ViewName: 策略视图名称
+        # @param ViewName: <p>策略视图名称</p>
         # @type ViewName: String
-        # @param LastEditUin: 最近编辑的用户uin
+        # @param LastEditUin: <p>最近编辑的用户uin</p>
         # @type LastEditUin: String
-        # @param UpdateTime: 最后修改时间
+        # @param UpdateTime: <p>最后修改时间</p>
         # @type UpdateTime: Integer
-        # @param InsertTime: 创建时间
+        # @param InsertTime: <p>创建时间</p>
         # @type InsertTime: Integer
-        # @param UseSum: 策略组绑定的实例数
+        # @param UseSum: <p>策略组绑定的实例数</p>
         # @type UseSum: Integer
-        # @param NoShieldedSum: 策略组绑定的未屏蔽实例数
+        # @param NoShieldedSum: <p>策略组绑定的未屏蔽实例数</p>
         # @type NoShieldedSum: Integer
-        # @param IsDefault: 是否为默认策略，0表示非默认策略，1表示默认策略
+        # @param IsDefault: <p>是否为默认策略，0表示非默认策略，1表示默认策略</p>
         # @type IsDefault: Integer
-        # @param CanSetDefault: 是否可以设置成默认策略
+        # @param CanSetDefault: <p>是否可以设置成默认策略</p>
         # @type CanSetDefault: Boolean
-        # @param ParentGroupId: 父策略组id
+        # @param ParentGroupId: <p>父策略组id</p>
         # @type ParentGroupId: Integer
-        # @param Remark: 策略组备注
+        # @param Remark: <p>策略组备注</p>
         # @type Remark: String
-        # @param ProjectId: 策略组所属项目id
+        # @param ProjectId: <p>策略组所属项目id</p>
         # @type ProjectId: Integer
-        # @param Conditions: 阈值规则列表
+        # @param Conditions: <p>阈值规则列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Conditions: Array
-        # @param EventConditions: 产品事件规则列表
+        # @param EventConditions: <p>产品事件规则列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EventConditions: Array
-        # @param ReceiverInfos: 用户接收人列表
+        # @param ReceiverInfos: <p>用户接收人列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReceiverInfos: Array
-        # @param ConditionsTemp: 模板策略组
+        # @param ConditionsTemp: <p>模板策略组</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConditionsTemp: :class:`Tencentcloud::Monitor.v20180724.models.DescribePolicyGroupInfoConditionTpl`
-        # @param InstanceGroup: 策略组绑定的实例组信息
+        # @param InstanceGroup: <p>策略组绑定的实例组信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceGroup: :class:`Tencentcloud::Monitor.v20180724.models.DescribePolicyGroupListGroupInstanceGroup`
-        # @param IsUnionRule: 且或规则标识, 0表示或规则(任意一条规则满足阈值条件就告警), 1表示且规则(所有规则都满足阈值条件才告警)
+        # @param IsUnionRule: <p>且或规则标识, 0表示或规则(任意一条规则满足阈值条件就告警), 1表示且规则(所有规则都满足阈值条件才告警)</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsUnionRule: Integer
 
@@ -10214,29 +10214,29 @@ module TencentCloud
 
       # 策略类型的维度信息
       class DimensionNew < TencentCloud::Common::AbstractModel
-        # @param Key: 维度 key 标示，后台英文名
+        # @param Key: <p>维度 key 标示，后台英文名</p>
         # @type Key: String
-        # @param Name: 维度 key 名称，中英文前台展示名
+        # @param Name: <p>维度 key 名称，中英文前台展示名</p>
         # @type Name: String
-        # @param IsRequired: 是否必选
+        # @param IsRequired: <p>是否必选</p>
         # @type IsRequired: Boolean
-        # @param Operators: 支持的操作符列表
+        # @param Operators: <p>支持的操作符列表</p>
         # @type Operators: Array
-        # @param IsMultiple: 是否支持多选
+        # @param IsMultiple: <p>是否支持多选</p>
         # @type IsMultiple: Boolean
-        # @param IsMutable: 创建后是否可以修改
+        # @param IsMutable: <p>创建后是否可以修改</p>
         # @type IsMutable: Boolean
-        # @param IsVisible: 是否展示给用户
+        # @param IsVisible: <p>是否展示给用户</p>
         # @type IsVisible: Boolean
-        # @param CanFilterPolicy: 能否用来过滤策略列表
+        # @param CanFilterPolicy: <p>能否用来过滤策略列表</p>
         # @type CanFilterPolicy: Boolean
-        # @param CanFilterHistory: 能否用来过滤告警历史
+        # @param CanFilterHistory: <p>能否用来过滤告警历史</p>
         # @type CanFilterHistory: Boolean
-        # @param CanGroupBy: 能否作为聚合维度
+        # @param CanGroupBy: <p>能否作为聚合维度</p>
         # @type CanGroupBy: Boolean
-        # @param MustGroupBy: 是否必须作为聚合维度
+        # @param MustGroupBy: <p>是否必须作为聚合维度</p>
         # @type MustGroupBy: Boolean
-        # @param ShowValueReplace: 前端翻译要替换的 key
+        # @param ShowValueReplace: <p>前端翻译要替换的 key</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ShowValueReplace: String
 
@@ -10368,6 +10368,46 @@ module TencentCloud
         end
       end
 
+      # EnablePredefinedPolicies请求参数结构体
+      class EnablePredefinedPoliciesRequest < TencentCloud::Common::AbstractModel
+        # @param PredefinedConfigID: 预设配置id
+        # @type PredefinedConfigID: String
+        # @param PredefinedGroupID: 云产品id
+        # @type PredefinedGroupID: String
+        # @param NoticeIDs: 通知模板id
+        # @type NoticeIDs: Array
+
+        attr_accessor :PredefinedConfigID, :PredefinedGroupID, :NoticeIDs
+
+        def initialize(predefinedconfigid=nil, predefinedgroupid=nil, noticeids=nil)
+          @PredefinedConfigID = predefinedconfigid
+          @PredefinedGroupID = predefinedgroupid
+          @NoticeIDs = noticeids
+        end
+
+        def deserialize(params)
+          @PredefinedConfigID = params['PredefinedConfigID']
+          @PredefinedGroupID = params['PredefinedGroupID']
+          @NoticeIDs = params['NoticeIDs']
+        end
+      end
+
+      # EnablePredefinedPolicies返回参数结构体
+      class EnablePredefinedPoliciesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # EnableSSOCamCheck请求参数结构体
       class EnableSSOCamCheckRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: Grafana 实例 ID，例如：grafana-abcdefgh
@@ -10406,19 +10446,19 @@ module TencentCloud
 
       # 事件告警条件
       class EventCondition < TencentCloud::Common::AbstractModel
-        # @param AlarmNotifyPeriod: 告警通知频率
+        # @param AlarmNotifyPeriod: <p>告警通知频率</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AlarmNotifyPeriod: String
-        # @param AlarmNotifyType: 重复通知策略预定义（0 - 只告警一次， 1 - 指数告警，2 - 连接告警）
+        # @param AlarmNotifyType: <p>重复通知策略预定义（0 - 只告警一次， 1 - 指数告警，2 - 连接告警）</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AlarmNotifyType: String
-        # @param EventID: 事件ID
+        # @param EventID: <p>事件ID</p>
         # @type EventID: String
-        # @param EventDisplayName: 事件展示名称（对外）
+        # @param EventDisplayName: <p>事件展示名称（对外）</p>
         # @type EventDisplayName: String
-        # @param RuleID: 规则ID
+        # @param RuleID: <p>规则ID</p>
         # @type RuleID: String
-        # @param MetricName: 指标名
+        # @param MetricName: <p>指标名</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MetricName: String
 
@@ -11404,39 +11444,39 @@ module TencentCloud
 
       # 指标，可用于设置告警、查询数据
       class Metric < TencentCloud::Common::AbstractModel
-        # @param Namespace: 告警策略类型
+        # @param Namespace: <p>告警策略类型</p>
         # @type Namespace: String
-        # @param MetricName: 指标名
+        # @param MetricName: <p>指标名</p>
         # @type MetricName: String
-        # @param Description: 指标展示名
+        # @param Description: <p>指标展示名</p>
         # @type Description: String
-        # @param Min: 最小值
+        # @param Min: <p>最小值</p>
         # @type Min: Float
-        # @param Max: 最大值
+        # @param Max: <p>最大值</p>
         # @type Max: Float
-        # @param Dimensions: 维度列表
+        # @param Dimensions: <p>维度列表</p>
         # @type Dimensions: Array
-        # @param Unit: 单位
+        # @param Unit: <p>单位</p>
         # @type Unit: String
-        # @param MetricConfig: 指标配置
+        # @param MetricConfig: <p>指标配置</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MetricConfig: :class:`Tencentcloud::Monitor.v20180724.models.MetricConfig`
-        # @param IsAdvanced: 是否为高级指标。1是 0否
+        # @param IsAdvanced: <p>是否为高级指标。1是 0否</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsAdvanced: Integer
-        # @param IsOpen: 高级指标是否开通。1是 0否
+        # @param IsOpen: <p>高级指标是否开通。1是 0否</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsOpen: Integer
-        # @param ProductId: 集成中心产品ID
+        # @param ProductId: <p>集成中心产品ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProductId: Integer
-        # @param Operators: 匹配运算符
+        # @param Operators: <p>匹配运算符</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Operators: Array
-        # @param Periods: 指标触发
+        # @param Periods: <p>指标触发</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Periods: Array
-        # @param IsLatenessMetric: 是否延迟指标
+        # @param IsLatenessMetric: <p>是否延迟指标</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsLatenessMetric: Integer
 
@@ -12114,21 +12154,21 @@ module TencentCloud
 
       # ModifyConditionsTemplateRequestCondition，Condition入参字段值
       class ModifyConditionsTemplateRequestCondition < TencentCloud::Common::AbstractModel
-        # @param CalcPeriod: 统计周期
+        # @param CalcPeriod: <p>统计周期</p>
         # @type CalcPeriod: String
-        # @param CalcType: 统计方式
+        # @param CalcType: <p>统计方式</p>
         # @type CalcType: String
-        # @param ContinuePeriod: 持续周期
+        # @param ContinuePeriod: <p>持续周期</p>
         # @type ContinuePeriod: String
-        # @param MetricID: 指标ID
+        # @param MetricID: <p>指标ID</p>
         # @type MetricID: Integer
-        # @param CalcValue: 统计值
+        # @param CalcValue: <p>统计值</p>
         # @type CalcValue: String
-        # @param AlarmNotifyPeriod: 告警通知周期
+        # @param AlarmNotifyPeriod: <p>告警通知周期</p>
         # @type AlarmNotifyPeriod: String
-        # @param AlarmNotifyType: 告警通知方式
+        # @param AlarmNotifyType: <p>告警通知方式</p>
         # @type AlarmNotifyType: Integer
-        # @param RuleID: 规则ID
+        # @param RuleID: <p>规则ID</p>
         # @type RuleID: Integer
 
         attr_accessor :CalcPeriod, :CalcType, :ContinuePeriod, :MetricID, :CalcValue, :AlarmNotifyPeriod, :AlarmNotifyType, :RuleID
@@ -15222,35 +15262,35 @@ module TencentCloud
 
       # 接收人信息
       class ReceiverInfo < TencentCloud::Common::AbstractModel
-        # @param StartTime: 告警时间段开始时间。范围[0,86400)，作为 UNIX 时间戳转成北京时间后去掉日期，例如7200表示"10:0:0"
+        # @param StartTime: <p>告警时间段开始时间。范围[0,86400)，作为 UNIX 时间戳转成北京时间后去掉日期，例如7200表示&quot;10:0:0&quot;</p>
         # @type StartTime: Integer
-        # @param EndTime: 告警时间段结束时间。含义同StartTime
+        # @param EndTime: <p>告警时间段结束时间。含义同StartTime</p>
         # @type EndTime: Integer
-        # @param NotifyWay: 告警通知方式。可选 "SMS","SITE","EMAIL","CALL","WECHAT"
+        # @param NotifyWay: <p>告警通知方式。可选 &quot;SMS&quot;,&quot;SITE&quot;,&quot;EMAIL&quot;,&quot;CALL&quot;,&quot;WECHAT&quot;</p>
         # @type NotifyWay: Array
-        # @param ReceiverType: 接收人类型。“group” 或 “user”
+        # @param ReceiverType: <p>接收人类型。“group” 或 “user”</p>
         # @type ReceiverType: String
-        # @param Id: ReceiverId
+        # @param Id: <p>ReceiverId</p>
         # @type Id: Integer
-        # @param SendFor: 电话告警通知时机。可选"OCCUR"(告警时通知),"RECOVER"(恢复时通知)
+        # @param SendFor: <p>电话告警通知时机。可选&quot;OCCUR&quot;(告警时通知),&quot;RECOVER&quot;(恢复时通知)</p>
         # @type SendFor: Array
-        # @param UidList: 电话告警接收者 UID
+        # @param UidList: <p>电话告警接收者 UID</p>
         # @type UidList: Array
-        # @param RoundNumber: 电话告警轮数
+        # @param RoundNumber: <p>电话告警轮数</p>
         # @type RoundNumber: Integer
-        # @param PersonInterval: 电话告警对个人间隔（秒）
+        # @param PersonInterval: <p>电话告警对个人间隔（秒）</p>
         # @type PersonInterval: Integer
-        # @param RoundInterval: 电话告警每轮间隔（秒）
+        # @param RoundInterval: <p>电话告警每轮间隔（秒）</p>
         # @type RoundInterval: Integer
-        # @param RecoverNotify: 恢复通知方式。可选"SMS"
+        # @param RecoverNotify: <p>恢复通知方式。可选&quot;SMS&quot;</p>
         # @type RecoverNotify: Array
-        # @param NeedSendNotice: 是否需要电话告警触达提示。0不需要，1需要
+        # @param NeedSendNotice: <p>是否需要电话告警触达提示。0不需要，1需要</p>
         # @type NeedSendNotice: Integer
-        # @param ReceiverGroupList: 接收组列表。通过平台接口查询到的接收组 ID 列表
+        # @param ReceiverGroupList: <p>接收组列表。通过平台接口查询到的接收组 ID 列表</p>
         # @type ReceiverGroupList: Array
-        # @param ReceiverUserList: 接收人列表。通过平台接口查询到的接收人 ID 列表
+        # @param ReceiverUserList: <p>接收人列表。通过平台接口查询到的接收人 ID 列表</p>
         # @type ReceiverUserList: Array
-        # @param ReceiveLanguage: 告警接收语言，枚举值（zh-CN，en-US）
+        # @param ReceiveLanguage: <p>告警接收语言，枚举值（zh-CN，en-US）</p>
         # @type ReceiveLanguage: String
 
         attr_accessor :StartTime, :EndTime, :NotifyWay, :ReceiverType, :Id, :SendFor, :UidList, :RoundNumber, :PersonInterval, :RoundInterval, :RecoverNotify, :NeedSendNotice, :ReceiverGroupList, :ReceiverUserList, :ReceiveLanguage
@@ -15927,30 +15967,30 @@ module TencentCloud
 
       # 模板列表
       class TemplateGroup < TencentCloud::Common::AbstractModel
-        # @param Conditions: 指标告警规则
+        # @param Conditions: <p>指标告警规则</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Conditions: Array
-        # @param EventConditions: 事件告警规则
+        # @param EventConditions: <p>事件告警规则</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EventConditions: Array
-        # @param PolicyGroups: 关联告警策略组
+        # @param PolicyGroups: <p>关联告警策略组</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PolicyGroups: Array
-        # @param GroupID: 模板策略组ID
+        # @param GroupID: <p>模板策略组ID</p>
         # @type GroupID: Integer
-        # @param GroupName: 模板策略组名称
+        # @param GroupName: <p>模板策略组名称</p>
         # @type GroupName: String
-        # @param InsertTime: 创建时间
+        # @param InsertTime: <p>创建时间</p>
         # @type InsertTime: Integer
-        # @param LastEditUin: 最后修改人UIN
+        # @param LastEditUin: <p>最后修改人UIN</p>
         # @type LastEditUin: Integer
-        # @param Remark: 备注
+        # @param Remark: <p>备注</p>
         # @type Remark: String
-        # @param UpdateTime: 更新时间
+        # @param UpdateTime: <p>更新时间</p>
         # @type UpdateTime: Integer
-        # @param ViewName: 视图
+        # @param ViewName: <p>视图</p>
         # @type ViewName: String
-        # @param IsUnionRule: 是否为与关系
+        # @param IsUnionRule: <p>是否为与关系</p>
         # @type IsUnionRule: Integer
 
         attr_accessor :Conditions, :EventConditions, :PolicyGroups, :GroupID, :GroupName, :InsertTime, :LastEditUin, :Remark, :UpdateTime, :ViewName, :IsUnionRule

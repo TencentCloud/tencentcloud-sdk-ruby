@@ -1201,34 +1201,34 @@ module TencentCloud
 
       # 备份设置
       class BackupConfigInfo < TencentCloud::Common::AbstractModel
-        # @param BackupCustomAutoTime: 系统自动时间
+        # @param BackupCustomAutoTime: <p>系统自动时间</p>
         # @type BackupCustomAutoTime: Boolean
-        # @param BackupTimeBeg: 表示全备开始时间，[0-24*3600]， 如0:00, 1:00, 2:00 分别为 0，3600， 7200
+        # @param BackupTimeBeg: <p>表示全备开始时间，[0-24*3600]， 如0:00, 1:00, 2:00 分别为 0，3600， 7200</p>
         # @type BackupTimeBeg: Integer
-        # @param BackupTimeEnd: 表示全备结束时间，[0-24*3600]， 如0:00, 1:00, 2:00 分别为 0，3600， 7200
+        # @param BackupTimeEnd: <p>表示全备结束时间，[0-24*3600]， 如0:00, 1:00, 2:00 分别为 0，3600， 7200</p>
         # @type BackupTimeEnd: Integer
-        # @param BackupWeekDays: 该参数目前不支持修改，无需填写。备份频率，长度为7的数组，分别对应周日到周六的备份方式，full-全量备份，increment-增量备份
+        # @param BackupWeekDays: <p>该参数目前不支持修改，无需填写。备份频率，长度为7的数组，分别对应周日到周六的备份方式，full-全量备份，increment-增量备份</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BackupWeekDays: Array
-        # @param BackupIntervalTime: 间隔时间
+        # @param BackupIntervalTime: <p>间隔时间</p>
         # @type BackupIntervalTime: Integer
-        # @param ReserveDuration: 表示保留备份时长, 单位秒，超过该时间将被清理, 七天表示为3600247=604800，最大为158112000
+        # @param ReserveDuration: <p>表示保留备份时长, 单位秒，超过该时间将被清理, 七天表示为3600247=604800，最大为158112000</p>
         # @type ReserveDuration: Integer
-        # @param CrossRegionsEnable: 跨地域备份开启
-        # yes-开启
-        # no-关闭
+        # @param CrossRegionsEnable: <p>跨地域备份开启<br>yes-开启<br>no-关闭</p>
         # @type CrossRegionsEnable: String
-        # @param CrossRegions: 跨地域备份地域
+        # @param CrossRegions: <p>跨地域备份地域</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CrossRegions: Array
-        # @param BackupTriggerStrategy: 自动数据备份触发策略，periodically:自动周期备份,frequent:高频备份
+        # @param CrossRegionSaveDays: <p>跨地域备份保留时间</p><p>单位：天</p>
+        # @type CrossRegionSaveDays: Integer
+        # @param BackupTriggerStrategy: <p>自动数据备份触发策略，periodically:自动周期备份,frequent:高频备份</p>
         # @type BackupTriggerStrategy: String
-        # @param AutoCopyVaults: 备份投递关系
+        # @param AutoCopyVaults: <p>备份投递关系</p>
         # @type AutoCopyVaults: Array
 
-        attr_accessor :BackupCustomAutoTime, :BackupTimeBeg, :BackupTimeEnd, :BackupWeekDays, :BackupIntervalTime, :ReserveDuration, :CrossRegionsEnable, :CrossRegions, :BackupTriggerStrategy, :AutoCopyVaults
+        attr_accessor :BackupCustomAutoTime, :BackupTimeBeg, :BackupTimeEnd, :BackupWeekDays, :BackupIntervalTime, :ReserveDuration, :CrossRegionsEnable, :CrossRegions, :CrossRegionSaveDays, :BackupTriggerStrategy, :AutoCopyVaults
 
-        def initialize(backupcustomautotime=nil, backuptimebeg=nil, backuptimeend=nil, backupweekdays=nil, backupintervaltime=nil, reserveduration=nil, crossregionsenable=nil, crossregions=nil, backuptriggerstrategy=nil, autocopyvaults=nil)
+        def initialize(backupcustomautotime=nil, backuptimebeg=nil, backuptimeend=nil, backupweekdays=nil, backupintervaltime=nil, reserveduration=nil, crossregionsenable=nil, crossregions=nil, crossregionsavedays=nil, backuptriggerstrategy=nil, autocopyvaults=nil)
           @BackupCustomAutoTime = backupcustomautotime
           @BackupTimeBeg = backuptimebeg
           @BackupTimeEnd = backuptimeend
@@ -1237,6 +1237,7 @@ module TencentCloud
           @ReserveDuration = reserveduration
           @CrossRegionsEnable = crossregionsenable
           @CrossRegions = crossregions
+          @CrossRegionSaveDays = crossregionsavedays
           @BackupTriggerStrategy = backuptriggerstrategy
           @AutoCopyVaults = autocopyvaults
         end
@@ -1250,6 +1251,7 @@ module TencentCloud
           @ReserveDuration = params['ReserveDuration']
           @CrossRegionsEnable = params['CrossRegionsEnable']
           @CrossRegions = params['CrossRegions']
+          @CrossRegionSaveDays = params['CrossRegionSaveDays']
           @BackupTriggerStrategy = params['BackupTriggerStrategy']
           unless params['AutoCopyVaults'].nil?
             @AutoCopyVaults = []
@@ -1567,22 +1569,25 @@ module TencentCloud
 
       # binlog配置信息
       class BinlogConfigInfo < TencentCloud::Common::AbstractModel
-        # @param BinlogSaveDays: binlog保留时间
+        # @param BinlogSaveDays: <p>binlog保留时间</p>
         # @type BinlogSaveDays: Integer
-        # @param BinlogCrossRegionsEnable: binlog异地地域备份是否开启
+        # @param BinlogCrossRegionsEnable: <p>binlog异地地域备份是否开启</p>
         # @type BinlogCrossRegionsEnable: String
-        # @param BinlogCrossRegions: binlog异地地域
+        # @param BinlogCrossRegions: <p>binlog异地地域</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BinlogCrossRegions: Array
-        # @param AutoCopyVaults: 保险箱信息
+        # @param BinlogCrossRegionSaveDays: <p>跨地域备份保留时间</p><p>单位：天</p>
+        # @type BinlogCrossRegionSaveDays: Integer
+        # @param AutoCopyVaults: <p>保险箱信息</p>
         # @type AutoCopyVaults: Array
 
-        attr_accessor :BinlogSaveDays, :BinlogCrossRegionsEnable, :BinlogCrossRegions, :AutoCopyVaults
+        attr_accessor :BinlogSaveDays, :BinlogCrossRegionsEnable, :BinlogCrossRegions, :BinlogCrossRegionSaveDays, :AutoCopyVaults
 
-        def initialize(binlogsavedays=nil, binlogcrossregionsenable=nil, binlogcrossregions=nil, autocopyvaults=nil)
+        def initialize(binlogsavedays=nil, binlogcrossregionsenable=nil, binlogcrossregions=nil, binlogcrossregionsavedays=nil, autocopyvaults=nil)
           @BinlogSaveDays = binlogsavedays
           @BinlogCrossRegionsEnable = binlogcrossregionsenable
           @BinlogCrossRegions = binlogcrossregions
+          @BinlogCrossRegionSaveDays = binlogcrossregionsavedays
           @AutoCopyVaults = autocopyvaults
         end
 
@@ -1590,6 +1595,7 @@ module TencentCloud
           @BinlogSaveDays = params['BinlogSaveDays']
           @BinlogCrossRegionsEnable = params['BinlogCrossRegionsEnable']
           @BinlogCrossRegions = params['BinlogCrossRegions']
+          @BinlogCrossRegionSaveDays = params['BinlogCrossRegionSaveDays']
           unless params['AutoCopyVaults'].nil?
             @AutoCopyVaults = []
             params['AutoCopyVaults'].each do |i|
@@ -1603,30 +1609,32 @@ module TencentCloud
 
       # Binlog描述
       class BinlogItem < TencentCloud::Common::AbstractModel
-        # @param FileName: Binlog文件名称
+        # @param FileName: <p>Binlog文件名称</p>
         # @type FileName: String
-        # @param FileSize: 文件大小，单位：字节
+        # @param FileSize: <p>文件大小，单位：字节</p>
         # @type FileSize: Integer
-        # @param StartTime: 事务最早时间
+        # @param StartTime: <p>事务最早时间</p>
         # @type StartTime: String
-        # @param FinishTime: 事务最晚时间
+        # @param FinishTime: <p>事务最晚时间</p>
         # @type FinishTime: String
-        # @param BinlogId: Binlog文件ID
+        # @param BinlogId: <p>Binlog文件ID</p>
         # @type BinlogId: Integer
-        # @param CrossRegions: binlog所跨地域
+        # @param CrossRegions: <p>binlog所跨地域</p>
         # @type CrossRegions: Array
-        # @param CopyStatus: 备份投递状态
+        # @param CopyStatus: <p>备份投递状态</p>
         # @type CopyStatus: String
-        # @param VaultInfos: 保险箱信息
+        # @param VaultInfos: <p>保险箱信息</p>
         # @type VaultInfos: Array
-        # @param EncryptKeyId: 加密秘钥key
+        # @param EncryptKeyId: <p>加密秘钥key</p>
         # @type EncryptKeyId: String
-        # @param EncryptRegion: 加密秘钥地域
+        # @param EncryptRegion: <p>加密秘钥地域</p>
         # @type EncryptRegion: String
+        # @param ExistRegions: <p>备份的地域分布信息</p>
+        # @type ExistRegions: Array
 
-        attr_accessor :FileName, :FileSize, :StartTime, :FinishTime, :BinlogId, :CrossRegions, :CopyStatus, :VaultInfos, :EncryptKeyId, :EncryptRegion
+        attr_accessor :FileName, :FileSize, :StartTime, :FinishTime, :BinlogId, :CrossRegions, :CopyStatus, :VaultInfos, :EncryptKeyId, :EncryptRegion, :ExistRegions
 
-        def initialize(filename=nil, filesize=nil, starttime=nil, finishtime=nil, binlogid=nil, crossregions=nil, copystatus=nil, vaultinfos=nil, encryptkeyid=nil, encryptregion=nil)
+        def initialize(filename=nil, filesize=nil, starttime=nil, finishtime=nil, binlogid=nil, crossregions=nil, copystatus=nil, vaultinfos=nil, encryptkeyid=nil, encryptregion=nil, existregions=nil)
           @FileName = filename
           @FileSize = filesize
           @StartTime = starttime
@@ -1637,6 +1645,7 @@ module TencentCloud
           @VaultInfos = vaultinfos
           @EncryptKeyId = encryptkeyid
           @EncryptRegion = encryptregion
+          @ExistRegions = existregions
         end
 
         def deserialize(params)
@@ -1657,6 +1666,34 @@ module TencentCloud
           end
           @EncryptKeyId = params['EncryptKeyId']
           @EncryptRegion = params['EncryptRegion']
+          unless params['ExistRegions'].nil?
+            @ExistRegions = []
+            params['ExistRegions'].each do |i|
+              binlogregioninfo_tmp = BinlogRegionInfo.new
+              binlogregioninfo_tmp.deserialize(i)
+              @ExistRegions << binlogregioninfo_tmp
+            end
+          end
+        end
+      end
+
+      # 各地域binlog保留信息
+      class BinlogRegionInfo < TencentCloud::Common::AbstractModel
+        # @param BackupRegion: <p>备份地域</p>
+        # @type BackupRegion: String
+        # @param BackupId: <p>备份ID</p>
+        # @type BackupId: Integer
+
+        attr_accessor :BackupRegion, :BackupId
+
+        def initialize(backupregion=nil, backupid=nil)
+          @BackupRegion = backupregion
+          @BackupId = backupid
+        end
+
+        def deserialize(params)
+          @BackupRegion = params['BackupRegion']
+          @BackupId = params['BackupId']
         end
       end
 
@@ -12936,34 +12973,36 @@ module TencentCloud
 
       # InquirePriceCreate请求参数结构体
       class InquirePriceCreateRequest < TencentCloud::Common::AbstractModel
-        # @param Zone: 可用区,每个地域提供最佳实践
+        # @param Zone: <p>可用区,每个地域提供最佳实践</p>
         # @type Zone: String
-        # @param GoodsNum: 购买计算节点个数
+        # @param GoodsNum: <p>购买计算节点个数</p>
         # @type GoodsNum: Integer
-        # @param InstancePayMode: 实例购买类型，可选值为：PREPAID, POSTPAID, SERVERLESS
+        # @param InstancePayMode: <p>实例购买类型，可选值为：PREPAID, POSTPAID, SERVERLESS</p>
         # @type InstancePayMode: String
-        # @param StoragePayMode: 存储购买类型，可选值为：PREPAID, POSTPAID
+        # @param StoragePayMode: <p>存储购买类型，可选值为：PREPAID, POSTPAID</p>
         # @type StoragePayMode: String
-        # @param DeviceType: 实例设备类型，支持值如下：
-        # - common：表示通用型
-        # - exclusive：表示独享型
+        # @param DeviceType: <p>实例设备类型，支持值如下：</p><ul><li>common：表示通用型</li><li>exclusive：表示独享型</li></ul>
         # @type DeviceType: String
-        # @param Cpu: CPU核数，PREPAID与POSTPAID实例类型必传
+        # @param Cpu: <p>CPU核数，PREPAID与POSTPAID实例类型必传</p>
         # @type Cpu: Integer
-        # @param Memory: 内存大小，单位G，PREPAID与POSTPAID实例类型必传
+        # @param Memory: <p>内存大小，单位G，PREPAID与POSTPAID实例类型必传</p>
         # @type Memory: Integer
-        # @param Ccu: Ccu大小，serverless类型必传
+        # @param Ccu: <p>Ccu大小，serverless类型必传</p>
         # @type Ccu: Float
-        # @param StorageLimit: 存储大小，PREPAID存储类型必传
+        # @param StorageLimit: <p>存储大小，PREPAID存储类型必传</p>
         # @type StorageLimit: Integer
-        # @param TimeSpan: 购买时长，PREPAID购买类型必传
+        # @param TimeSpan: <p>购买时长，PREPAID购买类型必传</p>
         # @type TimeSpan: Integer
-        # @param TimeUnit: 时长单位，可选值为：m,d。PREPAID购买类型必传
+        # @param TimeUnit: <p>时长单位，可选值为：m,d。PREPAID购买类型必传</p>
         # @type TimeUnit: String
+        # @param StorageVersion: <p>存储架构类型。 枚举值：1.0/2.0 默认值：1.0</p>
+        # @type StorageVersion: String
+        # @param IsMultiAz: <p>存储是否跨AZ，2.0存储架构下有效</p>
+        # @type IsMultiAz: Boolean
 
-        attr_accessor :Zone, :GoodsNum, :InstancePayMode, :StoragePayMode, :DeviceType, :Cpu, :Memory, :Ccu, :StorageLimit, :TimeSpan, :TimeUnit
+        attr_accessor :Zone, :GoodsNum, :InstancePayMode, :StoragePayMode, :DeviceType, :Cpu, :Memory, :Ccu, :StorageLimit, :TimeSpan, :TimeUnit, :StorageVersion, :IsMultiAz
 
-        def initialize(zone=nil, goodsnum=nil, instancepaymode=nil, storagepaymode=nil, devicetype=nil, cpu=nil, memory=nil, ccu=nil, storagelimit=nil, timespan=nil, timeunit=nil)
+        def initialize(zone=nil, goodsnum=nil, instancepaymode=nil, storagepaymode=nil, devicetype=nil, cpu=nil, memory=nil, ccu=nil, storagelimit=nil, timespan=nil, timeunit=nil, storageversion=nil, ismultiaz=nil)
           @Zone = zone
           @GoodsNum = goodsnum
           @InstancePayMode = instancepaymode
@@ -12975,6 +13014,8 @@ module TencentCloud
           @StorageLimit = storagelimit
           @TimeSpan = timespan
           @TimeUnit = timeunit
+          @StorageVersion = storageversion
+          @IsMultiAz = ismultiaz
         end
 
         def deserialize(params)
@@ -12989,14 +13030,16 @@ module TencentCloud
           @StorageLimit = params['StorageLimit']
           @TimeSpan = params['TimeSpan']
           @TimeUnit = params['TimeUnit']
+          @StorageVersion = params['StorageVersion']
+          @IsMultiAz = params['IsMultiAz']
         end
       end
 
       # InquirePriceCreate返回参数结构体
       class InquirePriceCreateResponse < TencentCloud::Common::AbstractModel
-        # @param InstancePrice: 实例价格
+        # @param InstancePrice: <p>实例价格</p>
         # @type InstancePrice: :class:`Tencentcloud::Cynosdb.v20190107.models.TradePrice`
-        # @param StoragePrice: 存储价格
+        # @param StoragePrice: <p>存储价格</p>
         # @type StoragePrice: :class:`Tencentcloud::Cynosdb.v20190107.models.TradePrice`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -14784,27 +14827,27 @@ module TencentCloud
 
       # 逻辑备份配置信息
       class LogicBackupConfigInfo < TencentCloud::Common::AbstractModel
-        # @param LogicBackupEnable: 是否开启自动逻辑备份
+        # @param LogicBackupEnable: <p>是否开启自动逻辑备份</p>
         # @type LogicBackupEnable: String
-        # @param LogicBackupTimeBeg: 自动逻辑备份开始时间
+        # @param LogicBackupTimeBeg: <p>自动逻辑备份开始时间</p>
         # @type LogicBackupTimeBeg: Integer
-        # @param LogicBackupTimeEnd: 自动逻辑备份结束时间
+        # @param LogicBackupTimeEnd: <p>自动逻辑备份结束时间</p>
         # @type LogicBackupTimeEnd: Integer
-        # @param LogicReserveDuration: 自动逻辑备份保留时间
-        # 单位：秒
+        # @param LogicReserveDuration: <p>自动逻辑备份保留时间<br>单位：秒</p>
         # @type LogicReserveDuration: Integer
-        # @param LogicCrossRegionsEnable: 是否开启跨地域逻辑备份
-        # 可选值：ON/OFF
+        # @param LogicCrossRegionsEnable: <p>是否开启跨地域逻辑备份<br>可选值：ON/OFF</p>
         # @type LogicCrossRegionsEnable: String
-        # @param LogicCrossRegions: 逻辑备份所跨地域
+        # @param LogicCrossRegions: <p>逻辑备份所跨地域</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogicCrossRegions: Array
-        # @param AutoCopyVaults: 备份投递关系
+        # @param AutoCopyVaults: <p>备份投递关系</p>
         # @type AutoCopyVaults: Array
+        # @param LogicCrossRegionSaveDays: <p>天</p><p>单位：跨地域逻辑备份保留时间</p>
+        # @type LogicCrossRegionSaveDays: Integer
 
-        attr_accessor :LogicBackupEnable, :LogicBackupTimeBeg, :LogicBackupTimeEnd, :LogicReserveDuration, :LogicCrossRegionsEnable, :LogicCrossRegions, :AutoCopyVaults
+        attr_accessor :LogicBackupEnable, :LogicBackupTimeBeg, :LogicBackupTimeEnd, :LogicReserveDuration, :LogicCrossRegionsEnable, :LogicCrossRegions, :AutoCopyVaults, :LogicCrossRegionSaveDays
 
-        def initialize(logicbackupenable=nil, logicbackuptimebeg=nil, logicbackuptimeend=nil, logicreserveduration=nil, logiccrossregionsenable=nil, logiccrossregions=nil, autocopyvaults=nil)
+        def initialize(logicbackupenable=nil, logicbackuptimebeg=nil, logicbackuptimeend=nil, logicreserveduration=nil, logiccrossregionsenable=nil, logiccrossregions=nil, autocopyvaults=nil, logiccrossregionsavedays=nil)
           @LogicBackupEnable = logicbackupenable
           @LogicBackupTimeBeg = logicbackuptimebeg
           @LogicBackupTimeEnd = logicbackuptimeend
@@ -14812,6 +14855,7 @@ module TencentCloud
           @LogicCrossRegionsEnable = logiccrossregionsenable
           @LogicCrossRegions = logiccrossregions
           @AutoCopyVaults = autocopyvaults
+          @LogicCrossRegionSaveDays = logiccrossregionsavedays
         end
 
         def deserialize(params)
@@ -14829,6 +14873,7 @@ module TencentCloud
               @AutoCopyVaults << createbackupvaultitem_tmp
             end
           end
+          @LogicCrossRegionSaveDays = params['LogicCrossRegionSaveDays']
         end
       end
 
@@ -15575,21 +15620,25 @@ module TencentCloud
 
       # ModifyBinlogSaveDays请求参数结构体
       class ModifyBinlogSaveDaysRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群ID
+        # @param ClusterId: <p>集群ID</p>
         # @type ClusterId: String
-        # @param BinlogSaveDays: Binlog保留天数
+        # @param BinlogSaveDays: <p>Binlog保留天数</p>
         # @type BinlogSaveDays: Integer
+        # @param BinlogCrossRegionSaveDays: <p>跨地域备份保留时间</p><p>单位：天</p>
+        # @type BinlogCrossRegionSaveDays: Integer
 
-        attr_accessor :ClusterId, :BinlogSaveDays
+        attr_accessor :ClusterId, :BinlogSaveDays, :BinlogCrossRegionSaveDays
 
-        def initialize(clusterid=nil, binlogsavedays=nil)
+        def initialize(clusterid=nil, binlogsavedays=nil, binlogcrossregionsavedays=nil)
           @ClusterId = clusterid
           @BinlogSaveDays = binlogsavedays
+          @BinlogCrossRegionSaveDays = binlogcrossregionsavedays
         end
 
         def deserialize(params)
           @ClusterId = params['ClusterId']
           @BinlogSaveDays = params['BinlogSaveDays']
+          @BinlogCrossRegionSaveDays = params['BinlogCrossRegionSaveDays']
         end
       end
 
@@ -17328,31 +17377,35 @@ module TencentCloud
 
       # ModifySnapBackupCrossRegionConfig请求参数结构体
       class ModifySnapBackupCrossRegionConfigRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群ID
+        # @param ClusterId: <p>集群ID</p>
         # @type ClusterId: String
-        # @param CrossRegionsEnable: 是否开启跨地域快照备份ON/OFF
+        # @param CrossRegionsEnable: <p>是否开启跨地域快照备份ON/OFF</p>
         # @type CrossRegionsEnable: String
-        # @param CrossRegions: 快照备份所跨地域
+        # @param CrossRegions: <p>快照备份所跨地域</p>
         # @type CrossRegions: Array
+        # @param CrossRegionSaveDays: <p>跨地域备份保留时间</p><p>单位：天</p>
+        # @type CrossRegionSaveDays: Integer
 
-        attr_accessor :ClusterId, :CrossRegionsEnable, :CrossRegions
+        attr_accessor :ClusterId, :CrossRegionsEnable, :CrossRegions, :CrossRegionSaveDays
 
-        def initialize(clusterid=nil, crossregionsenable=nil, crossregions=nil)
+        def initialize(clusterid=nil, crossregionsenable=nil, crossregions=nil, crossregionsavedays=nil)
           @ClusterId = clusterid
           @CrossRegionsEnable = crossregionsenable
           @CrossRegions = crossregions
+          @CrossRegionSaveDays = crossregionsavedays
         end
 
         def deserialize(params)
           @ClusterId = params['ClusterId']
           @CrossRegionsEnable = params['CrossRegionsEnable']
           @CrossRegions = params['CrossRegions']
+          @CrossRegionSaveDays = params['CrossRegionSaveDays']
         end
       end
 
       # ModifySnapBackupCrossRegionConfig返回参数结构体
       class ModifySnapBackupCrossRegionConfigResponse < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务id
+        # @param TaskId: <p>任务id</p>
         # @type TaskId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

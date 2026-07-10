@@ -4061,12 +4061,17 @@ module TencentCloud
 
       # RunDataRetrievalTask请求参数结构体
       class RunDataRetrievalTaskRequest < TencentCloud::Common::AbstractModel
+        # @param DataRetrievalId: <p>数据检索 ID。可通过 DescribeDataRetrieval 接口获取。</p>
+        # @type DataRetrievalId: String
 
+        attr_accessor :DataRetrievalId
 
-        def initialize()
+        def initialize(dataretrievalid=nil)
+          @DataRetrievalId = dataretrievalid
         end
 
         def deserialize(params)
+          @DataRetrievalId = params['DataRetrievalId']
         end
       end
 

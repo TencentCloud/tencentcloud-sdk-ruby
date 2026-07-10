@@ -1727,53 +1727,48 @@ module TencentCloud
 
       # CreateRabbitMQVipInstance请求参数结构体
       class CreateRabbitMQVipInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param ZoneIds: 可用区
+        # @param ZoneIds: <p>可用区</p>
         # @type ZoneIds: Array
-        # @param VpcId: 私有网络ID，形如 vpc-xxx。有效的 VpcId 可通过登录[私有网络](https://console.cloud.tencent.com/vpc/vpc?rid=1)控制台查询；也可以调用接口 [DescribeVpcEx](https://cloud.tencent.com/document/api/215/1372)，从接口返回中的 unVpcId 字段获取。若在创建子机时 VpcId 与 SubnetId 同时传入 DEFAULT，则强制使用默认 vpc 网络。
+        # @param VpcId: <p>私有网络ID，形如 vpc-xxx。有效的 VpcId 可通过登录<a href="https://console.cloud.tencent.com/vpc/vpc?rid=1">私有网络</a>控制台查询；也可以调用接口 <a href="https://cloud.tencent.com/document/api/215/1372">DescribeVpcEx</a>，从接口返回中的 unVpcId 字段获取。若在创建子机时 VpcId 与 SubnetId 同时传入 DEFAULT，则强制使用默认 vpc 网络。</p>
         # @type VpcId: String
-        # @param SubnetId: 私有网络子网 ID，形如 subnet-xxx。有效的私有网络子网 ID 可通过登录[子网控制台](https://console.cloud.tencent.com/vpc/subnet?rid=1)查询；也可以调用接口 [DescribeSubnets](https://cloud.tencent.com/document/api/215/15784)，从接口返回中的 unSubnetId 字段获取。若在创建子机时 SubnetId 与 VpcId 同时传入 DEFAULT，则强制使用默认 vpc 网络。
+        # @param SubnetId: <p>私有网络子网 ID，形如 subnet-xxx。有效的私有网络子网 ID 可通过登录<a href="https://console.cloud.tencent.com/vpc/subnet?rid=1">子网控制台</a>查询；也可以调用接口 <a href="https://cloud.tencent.com/document/api/215/15784">DescribeSubnets</a>，从接口返回中的 unSubnetId 字段获取。若在创建子机时 SubnetId 与 VpcId 同时传入 DEFAULT，则强制使用默认 vpc 网络。</p>
         # @type SubnetId: String
-        # @param ClusterName: 集群名称
+        # @param ClusterName: <p>集群名称</p>
         # @type ClusterName: String
-        # @param NodeSpec: 集群的节点规格，需要输入对应的规格标识：
-        # 2C8G：rabbit-vip-profession-2c8g
-        # 4C16G：rabbit-vip-profession-4c16g
-        # 8C32G：rabbit-vip-profession-8c32g
-        # 16C32G：rabbit-vip-basic-4
-        # 16C64G：rabbit-vip-profession-16c64g
-        # 2C4G：rabbit-vip-basic-5
-        # 4C8G：rabbit-vip-basic-1
-        # 8C16G（已售罄）：rabbit-vip-basic-2
-        # 不传默认为 4C8G：rabbit-vip-basic-1
+        # @param NodeSpec: <p>集群的节点规格，需要输入对应的规格标识：<br>2C8G：rabbit-vip-profession-2c8g<br>4C16G：rabbit-vip-profession-4c16g<br>8C32G：rabbit-vip-profession-8c32g<br>16C32G：rabbit-vip-basic-4<br>16C64G：rabbit-vip-profession-16c64g<br>2C4G：rabbit-vip-basic-5<br>4C8G：rabbit-vip-basic-1<br>8C16G（已售罄）：rabbit-vip-basic-2<br>不传默认为 4C8G：rabbit-vip-basic-1</p>
         # @type NodeSpec: String
-        # @param NodeNum: 节点数量,多可用区最少为3节点。不传默认单可用区为1,多可用区为3
+        # @param NodeNum: <p>节点数量,多可用区最少为3节点。不传默认单可用区为1,多可用区为3</p>
         # @type NodeNum: Integer
-        # @param StorageSize: 单节点存储规格,不传默认为200G
+        # @param StorageSize: <p>单节点存储规格,不传默认为200G</p>
         # @type StorageSize: Integer
-        # @param EnableCreateDefaultHaMirrorQueue: 是否开启默认镜像队列，true 表示为开启，false 表示为不开启。不传默认为 false
+        # @param EnableCreateDefaultHaMirrorQueue: <p>是否开启默认镜像队列，true 表示为开启，false 表示为不开启。不传默认为 false。该参数对4.x集群不生效。</p>
         # @type EnableCreateDefaultHaMirrorQueue: Boolean
-        # @param AutoRenewFlag: 仅预付费集群（PayMode 参数为 1 时）使用该参数，表示是否自动续费，true 表示打开自动续费。不传默认为 true
+        # @param AutoRenewFlag: <p>仅预付费集群（PayMode 参数为 1 时）使用该参数，表示是否自动续费，true 表示打开自动续费。不传默认为 true</p>
         # @type AutoRenewFlag: Boolean
-        # @param TimeSpan: 购买时长,不传默认为1(月)
+        # @param TimeSpan: <p>购买时长,不传默认为1(月)</p>
         # @type TimeSpan: Integer
-        # @param PayMode: 付费方式，0 为后付费，即按量计费；1 为预付费，即包年包月。默认包年包月
+        # @param PayMode: <p>付费方式，0 为后付费，即按量计费；1 为预付费，即包年包月。默认包年包月</p>
         # @type PayMode: Integer
-        # @param ClusterVersion: 集群版本，不传默认为 3.8.30，可选值为 3.8.30、3.11.8和3.13.7
+        # @param ClusterVersion: <p>集群版本，不传默认为 3.8.30，可选值为 3.8.30、3.11.8和3.13.7</p>
         # @type ClusterVersion: String
-        # @param IsIntl: 是否国际站请求，默认 false
+        # @param IsIntl: <p>是否国际站请求，默认 false</p>
         # @type IsIntl: Boolean
-        # @param ResourceTags: 资源标签列表
+        # @param ResourceTags: <p>资源标签列表</p>
         # @type ResourceTags: Array
-        # @param Bandwidth: 公网带宽大小，单位 Mbps
+        # @param Bandwidth: <p>公网带宽大小，单位 Mbps</p>
         # @type Bandwidth: Integer
-        # @param EnablePublicAccess: 是否打开公网接入，不传默认为false
+        # @param EnablePublicAccess: <p>是否打开公网接入，不传默认为false</p>
         # @type EnablePublicAccess: Boolean
-        # @param EnableDeletionProtection: 是否打开集群删除保护，不传默认为 false
+        # @param EnableDeletionProtection: <p>是否打开集群删除保护，不传默认为 false</p>
         # @type EnableDeletionProtection: Boolean
+        # @param ClusterType: <p>集群类型</p><p>枚举值：</p><ul><li>NORMAL： 公有云</li><li>CDC： 本地专用集群</li></ul>
+        # @type ClusterType: String
+        # @param CdcClusterId: <p>CDC 集群 ID</p>
+        # @type CdcClusterId: String
 
-        attr_accessor :ZoneIds, :VpcId, :SubnetId, :ClusterName, :NodeSpec, :NodeNum, :StorageSize, :EnableCreateDefaultHaMirrorQueue, :AutoRenewFlag, :TimeSpan, :PayMode, :ClusterVersion, :IsIntl, :ResourceTags, :Bandwidth, :EnablePublicAccess, :EnableDeletionProtection
+        attr_accessor :ZoneIds, :VpcId, :SubnetId, :ClusterName, :NodeSpec, :NodeNum, :StorageSize, :EnableCreateDefaultHaMirrorQueue, :AutoRenewFlag, :TimeSpan, :PayMode, :ClusterVersion, :IsIntl, :ResourceTags, :Bandwidth, :EnablePublicAccess, :EnableDeletionProtection, :ClusterType, :CdcClusterId
 
-        def initialize(zoneids=nil, vpcid=nil, subnetid=nil, clustername=nil, nodespec=nil, nodenum=nil, storagesize=nil, enablecreatedefaulthamirrorqueue=nil, autorenewflag=nil, timespan=nil, paymode=nil, clusterversion=nil, isintl=nil, resourcetags=nil, bandwidth=nil, enablepublicaccess=nil, enabledeletionprotection=nil)
+        def initialize(zoneids=nil, vpcid=nil, subnetid=nil, clustername=nil, nodespec=nil, nodenum=nil, storagesize=nil, enablecreatedefaulthamirrorqueue=nil, autorenewflag=nil, timespan=nil, paymode=nil, clusterversion=nil, isintl=nil, resourcetags=nil, bandwidth=nil, enablepublicaccess=nil, enabledeletionprotection=nil, clustertype=nil, cdcclusterid=nil)
           @ZoneIds = zoneids
           @VpcId = vpcid
           @SubnetId = subnetid
@@ -1791,6 +1786,8 @@ module TencentCloud
           @Bandwidth = bandwidth
           @EnablePublicAccess = enablepublicaccess
           @EnableDeletionProtection = enabledeletionprotection
+          @ClusterType = clustertype
+          @CdcClusterId = cdcclusterid
         end
 
         def deserialize(params)
@@ -1818,14 +1815,16 @@ module TencentCloud
           @Bandwidth = params['Bandwidth']
           @EnablePublicAccess = params['EnablePublicAccess']
           @EnableDeletionProtection = params['EnableDeletionProtection']
+          @ClusterType = params['ClusterType']
+          @CdcClusterId = params['CdcClusterId']
         end
       end
 
       # CreateRabbitMQVipInstance返回参数结构体
       class CreateRabbitMQVipInstanceResponse < TencentCloud::Common::AbstractModel
-        # @param TranId: 订单号 ID
+        # @param TranId: <p>订单号 ID</p>
         # @type TranId: String
-        # @param InstanceId: 实例 ID
+        # @param InstanceId: <p>实例 ID</p>
         # @type InstanceId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1847,15 +1846,15 @@ module TencentCloud
 
       # CreateRabbitMQVirtualHost请求参数结构体
       class CreateRabbitMQVirtualHostRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID，形如amqp-xxxxxxxx。有效的 InstanceId 可通过登录 [TDMQ RabbitMQ 控制台](https://console.cloud.tencent.com/trabbitmq/cluster?rid=1)查询。
+        # @param InstanceId: <p>实例 ID，形如amqp-xxxxxxxx。有效的 InstanceId 可通过登录 <a href="https://console.cloud.tencent.com/trabbitmq/cluster?rid=1">TDMQ RabbitMQ 控制台</a>查询。</p>
         # @type InstanceId: String
-        # @param VirtualHost: vhost名
+        # @param VirtualHost: <p>vhost名</p>
         # @type VirtualHost: String
-        # @param Description: 描述
+        # @param Description: <p>描述</p>
         # @type Description: String
-        # @param TraceFlag: 消息轨迹开关,true打开,false关闭,默认关闭
+        # @param TraceFlag: <p>消息轨迹开关,true打开,false关闭,默认关闭</p>
         # @type TraceFlag: Boolean
-        # @param MirrorQueuePolicyFlag: 是否创建镜像队列策略，默认值 true
+        # @param MirrorQueuePolicyFlag: <p>是否创建镜像队列策略，默认值 true。该参数对4.x集群不生效。</p>
         # @type MirrorQueuePolicyFlag: Boolean
 
         attr_accessor :InstanceId, :VirtualHost, :Description, :TraceFlag, :MirrorQueuePolicyFlag
@@ -1879,7 +1878,7 @@ module TencentCloud
 
       # CreateRabbitMQVirtualHost返回参数结构体
       class CreateRabbitMQVirtualHostResponse < TencentCloud::Common::AbstractModel
-        # @param VirtualHost: vhost名
+        # @param VirtualHost: <p>vhost名</p>
         # @type VirtualHost: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6734,8 +6733,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :EnvironmentId, :TopicName, :MsgId, :PulsarMsgId, :QueryDlqMsg, :QueryDeadLetterMessage, :Offset, :Limit, :FilterTrackGroup, :QueryDelayMessage
         extend Gem::Deprecate
-        deprecate :QueryDlqMsg, :none, 2026, 6
-        deprecate :QueryDlqMsg=, :none, 2026, 6
+        deprecate :QueryDlqMsg, :none, 2026, 7
+        deprecate :QueryDlqMsg=, :none, 2026, 7
 
         def initialize(clusterid=nil, environmentid=nil, topicname=nil, msgid=nil, pulsarmsgid=nil, querydlqmsg=nil, querydeadlettermessage=nil, offset=nil, limit=nil, filtertrackgroup=nil, querydelaymessage=nil)
           @ClusterId = clusterid
@@ -6842,8 +6841,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :EnvironmentId, :TopicName, :MsgId, :GroupName, :QueryDLQMsg, :QueryDeadLetterMessage
         extend Gem::Deprecate
-        deprecate :QueryDLQMsg, :none, 2026, 6
-        deprecate :QueryDLQMsg=, :none, 2026, 6
+        deprecate :QueryDLQMsg, :none, 2026, 7
+        deprecate :QueryDLQMsg=, :none, 2026, 7
 
         def initialize(clusterid=nil, environmentid=nil, topicname=nil, msgid=nil, groupname=nil, querydlqmsg=nil, querydeadlettermessage=nil)
           @ClusterId = clusterid
@@ -7562,8 +7561,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :EnvironmentId, :TopicName, :StartTime, :EndTime, :MsgId, :MsgKey, :Offset, :Limit, :TaskRequestId, :QueryDlqMsg, :NumOfLatestMsg, :Tag, :QueryDeadLetterMessage
         extend Gem::Deprecate
-        deprecate :QueryDlqMsg, :none, 2026, 6
-        deprecate :QueryDlqMsg=, :none, 2026, 6
+        deprecate :QueryDlqMsg, :none, 2026, 7
+        deprecate :QueryDlqMsg=, :none, 2026, 7
 
         def initialize(clusterid=nil, environmentid=nil, topicname=nil, starttime=nil, endtime=nil, msgid=nil, msgkey=nil, offset=nil, limit=nil, taskrequestid=nil, querydlqmsg=nil, numoflatestmsg=nil, tag=nil, querydeadlettermessage=nil)
           @ClusterId = clusterid
@@ -11250,75 +11249,79 @@ module TencentCloud
 
       # RabbitMQ 集群基本信息
       class RabbitMQClusterInfo < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群 ID
+        # @param ClusterId: <p>集群 ID</p>
         # @type ClusterId: String
-        # @param ClusterName: 集群名称
+        # @param ClusterName: <p>集群名称</p>
         # @type ClusterName: String
-        # @param Region: 地域信息
+        # @param Region: <p>地域信息</p>
         # @type Region: String
-        # @param CreateTime: 创建时间，毫秒为单位。unix 时间戳
+        # @param CreateTime: <p>创建时间，毫秒为单位。unix 时间戳</p>
         # @type CreateTime: Integer
-        # @param Remark: 集群说明信息
+        # @param Remark: <p>集群说明信息</p>
         # @type Remark: String
-        # @param Vpcs: VPC及网络信息
+        # @param Vpcs: <p>VPC及网络信息</p>
         # @type Vpcs: Array
-        # @param ZoneIds: 可用区信息
+        # @param ZoneIds: <p>可用区信息</p>
         # @type ZoneIds: Array
-        # @param VirtualHostNumber: 虚拟主机数量
+        # @param VirtualHostNumber: <p>虚拟主机数量</p>
         # @type VirtualHostNumber: Integer
-        # @param QueueNumber: 队列数量
+        # @param QueueNumber: <p>队列数量</p>
         # @type QueueNumber: Integer
-        # @param MessagePublishRate: 每秒生产消息数 单位：条/秒
+        # @param MessagePublishRate: <p>每秒生产消息数 单位：条/秒</p>
         # @type MessagePublishRate: Float
-        # @param MessageStackNumber: 堆积消息数 单位：条
+        # @param MessageStackNumber: <p>堆积消息数 单位：条</p>
         # @type MessageStackNumber: Integer
-        # @param ExpireTime: 实例到期时间，按量付费的资源该值为 0，毫秒为单位。unix 时间戳
+        # @param ExpireTime: <p>实例到期时间，按量付费的资源该值为 0，毫秒为单位。unix 时间戳</p>
         # @type ExpireTime: Integer
-        # @param ChannelNumber: Channel数量
+        # @param ChannelNumber: <p>Channel数量</p>
         # @type ChannelNumber: Integer
-        # @param ConnectionNumber: Connection数量
+        # @param ConnectionNumber: <p>Connection数量</p>
         # @type ConnectionNumber: Integer
-        # @param ConsumerNumber: Consumer数量
+        # @param ConsumerNumber: <p>Consumer数量</p>
         # @type ConsumerNumber: Integer
-        # @param ExchangeNumber: Exchang数量
+        # @param ExchangeNumber: <p>Exchang数量</p>
         # @type ExchangeNumber: Integer
-        # @param ExceptionInformation: 集群异常信息
+        # @param ExceptionInformation: <p>集群异常信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExceptionInformation: String
-        # @param ClusterStatus: 实例状态，0表示创建中，1表示正常，2表示隔离中，3表示已销毁，4 - 异常, 5 - 发货失败
+        # @param ClusterStatus: <p>实例状态，0表示创建中，1表示正常，2表示隔离中，3表示已销毁，4 - 异常, 5 - 发货失败</p>
         # @type ClusterStatus: Integer
-        # @param AutoRenewFlag: 自动续费标记，0表示默认状态(用户未设置，即初始状态即手动续费)， 1表示自动续费，2表示明确不自动续费(用户设置)
+        # @param AutoRenewFlag: <p>自动续费标记，0表示默认状态(用户未设置，即初始状态即手动续费)， 1表示自动续费，2表示明确不自动续费(用户设置)</p>
         # @type AutoRenewFlag: Integer
-        # @param MirrorQueuePolicyFlag: 是否开启镜像队列策略。1表示开启，0表示没开启。
+        # @param MirrorQueuePolicyFlag: <p>是否开启镜像队列策略。1表示开启，0表示没开启。</p>
         # @type MirrorQueuePolicyFlag: Integer
-        # @param MessageConsumeRate: 每秒消费消息数 单位：条/秒
+        # @param MessageConsumeRate: <p>每秒消费消息数 单位：条/秒</p>
         # @type MessageConsumeRate: Float
-        # @param ClusterVersion: 集群版本信息
+        # @param ClusterVersion: <p>集群版本信息</p>
         # @type ClusterVersion: String
-        # @param PayMode: 计费模式，0-后付费，1-预付费
+        # @param PayMode: <p>计费模式，0-后付费，1-预付费</p>
         # @type PayMode: Integer
-        # @param InstanceType: 实例类型，0 专享版、1 Serverless 版
+        # @param InstanceType: <p>实例类型，0 专享版、1 Serverless 版</p>
         # @type InstanceType: Integer
-        # @param IsolatedTime: 开始隔离时间。unix 时间戳
+        # @param IsolatedTime: <p>开始隔离时间。unix 时间戳</p>
         # @type IsolatedTime: Integer
-        # @param Container: 是否为容器实例，默认 true
+        # @param Container: <p>是否为容器实例，默认 true</p>
         # @type Container: Boolean
-        # @param Tags: 标签列表
+        # @param Tags: <p>标签列表</p>
         # @type Tags: Array
-        # @param EnableDeletionProtection: 是否已开启删除保护
+        # @param EnableDeletionProtection: <p>是否已开启删除保护</p>
         # @type EnableDeletionProtection: Boolean
-        # @param MirroredQueueRisk: 是否有vhost未开启镜像队列风险
+        # @param MirroredQueueRisk: <p>是否有vhost未开启镜像队列风险</p>
         # @type MirroredQueueRisk: Boolean
-        # @param EnableRiskWarning: 是否提示风险
+        # @param EnableRiskWarning: <p>是否提示风险</p>
         # @type EnableRiskWarning: Boolean
-        # @param ConsumeTimeout: 消费超时时间
+        # @param ConsumeTimeout: <p>消费超时时间</p>
         # @type ConsumeTimeout: Integer
-        # @param ChannelMax: 最大Channel数
+        # @param ChannelMax: <p>最大Channel数</p>
         # @type ChannelMax: Integer
+        # @param ClusterType: <p>集群类型</p><p>枚举值：</p><ul><li>NORMAL： 公有云</li><li>CDC： 本地专用集群</li></ul>
+        # @type ClusterType: String
+        # @param CdcClusterId: <p>CDC集群ID</p>
+        # @type CdcClusterId: String
 
-        attr_accessor :ClusterId, :ClusterName, :Region, :CreateTime, :Remark, :Vpcs, :ZoneIds, :VirtualHostNumber, :QueueNumber, :MessagePublishRate, :MessageStackNumber, :ExpireTime, :ChannelNumber, :ConnectionNumber, :ConsumerNumber, :ExchangeNumber, :ExceptionInformation, :ClusterStatus, :AutoRenewFlag, :MirrorQueuePolicyFlag, :MessageConsumeRate, :ClusterVersion, :PayMode, :InstanceType, :IsolatedTime, :Container, :Tags, :EnableDeletionProtection, :MirroredQueueRisk, :EnableRiskWarning, :ConsumeTimeout, :ChannelMax
+        attr_accessor :ClusterId, :ClusterName, :Region, :CreateTime, :Remark, :Vpcs, :ZoneIds, :VirtualHostNumber, :QueueNumber, :MessagePublishRate, :MessageStackNumber, :ExpireTime, :ChannelNumber, :ConnectionNumber, :ConsumerNumber, :ExchangeNumber, :ExceptionInformation, :ClusterStatus, :AutoRenewFlag, :MirrorQueuePolicyFlag, :MessageConsumeRate, :ClusterVersion, :PayMode, :InstanceType, :IsolatedTime, :Container, :Tags, :EnableDeletionProtection, :MirroredQueueRisk, :EnableRiskWarning, :ConsumeTimeout, :ChannelMax, :ClusterType, :CdcClusterId
 
-        def initialize(clusterid=nil, clustername=nil, region=nil, createtime=nil, remark=nil, vpcs=nil, zoneids=nil, virtualhostnumber=nil, queuenumber=nil, messagepublishrate=nil, messagestacknumber=nil, expiretime=nil, channelnumber=nil, connectionnumber=nil, consumernumber=nil, exchangenumber=nil, exceptioninformation=nil, clusterstatus=nil, autorenewflag=nil, mirrorqueuepolicyflag=nil, messageconsumerate=nil, clusterversion=nil, paymode=nil, instancetype=nil, isolatedtime=nil, container=nil, tags=nil, enabledeletionprotection=nil, mirroredqueuerisk=nil, enableriskwarning=nil, consumetimeout=nil, channelmax=nil)
+        def initialize(clusterid=nil, clustername=nil, region=nil, createtime=nil, remark=nil, vpcs=nil, zoneids=nil, virtualhostnumber=nil, queuenumber=nil, messagepublishrate=nil, messagestacknumber=nil, expiretime=nil, channelnumber=nil, connectionnumber=nil, consumernumber=nil, exchangenumber=nil, exceptioninformation=nil, clusterstatus=nil, autorenewflag=nil, mirrorqueuepolicyflag=nil, messageconsumerate=nil, clusterversion=nil, paymode=nil, instancetype=nil, isolatedtime=nil, container=nil, tags=nil, enabledeletionprotection=nil, mirroredqueuerisk=nil, enableriskwarning=nil, consumetimeout=nil, channelmax=nil, clustertype=nil, cdcclusterid=nil)
           @ClusterId = clusterid
           @ClusterName = clustername
           @Region = region
@@ -11351,6 +11354,8 @@ module TencentCloud
           @EnableRiskWarning = enableriskwarning
           @ConsumeTimeout = consumetimeout
           @ChannelMax = channelmax
+          @ClusterType = clustertype
+          @CdcClusterId = cdcclusterid
         end
 
         def deserialize(params)
@@ -11400,6 +11405,8 @@ module TencentCloud
           @EnableRiskWarning = params['EnableRiskWarning']
           @ConsumeTimeout = params['ConsumeTimeout']
           @ChannelMax = params['ChannelMax']
+          @ClusterType = params['ClusterType']
+          @CdcClusterId = params['CdcClusterId']
         end
       end
 
@@ -11936,10 +11943,14 @@ module TencentCloud
         # @type Tags: Array
         # @param PublicStreamAccessEndpoint: <p>公有数据流Stream接入点</p>
         # @type PublicStreamAccessEndpoint: String
+        # @param ClusterType: <p>集群类型</p><p>枚举值：</p><ul><li>NORMAL： 公有云</li><li>CDC： 本地专用集群</li></ul>
+        # @type ClusterType: String
+        # @param CdcClusterId: <p>CDC 集群 ID</p>
+        # @type CdcClusterId: String
 
-        attr_accessor :InstanceId, :InstanceName, :InstanceVersion, :Status, :NodeCount, :ConfigDisplay, :MaxTps, :MaxBandWidth, :MaxStorage, :ExpireTime, :AutoRenewFlag, :PayMode, :Remark, :SpecName, :ExceptionInformation, :ClusterStatus, :PublicAccessEndpoint, :Vpcs, :CreateTime, :InstanceType, :IsolatedTime, :EnableDeletionProtection, :Tags, :PublicStreamAccessEndpoint
+        attr_accessor :InstanceId, :InstanceName, :InstanceVersion, :Status, :NodeCount, :ConfigDisplay, :MaxTps, :MaxBandWidth, :MaxStorage, :ExpireTime, :AutoRenewFlag, :PayMode, :Remark, :SpecName, :ExceptionInformation, :ClusterStatus, :PublicAccessEndpoint, :Vpcs, :CreateTime, :InstanceType, :IsolatedTime, :EnableDeletionProtection, :Tags, :PublicStreamAccessEndpoint, :ClusterType, :CdcClusterId
 
-        def initialize(instanceid=nil, instancename=nil, instanceversion=nil, status=nil, nodecount=nil, configdisplay=nil, maxtps=nil, maxbandwidth=nil, maxstorage=nil, expiretime=nil, autorenewflag=nil, paymode=nil, remark=nil, specname=nil, exceptioninformation=nil, clusterstatus=nil, publicaccessendpoint=nil, vpcs=nil, createtime=nil, instancetype=nil, isolatedtime=nil, enabledeletionprotection=nil, tags=nil, publicstreamaccessendpoint=nil)
+        def initialize(instanceid=nil, instancename=nil, instanceversion=nil, status=nil, nodecount=nil, configdisplay=nil, maxtps=nil, maxbandwidth=nil, maxstorage=nil, expiretime=nil, autorenewflag=nil, paymode=nil, remark=nil, specname=nil, exceptioninformation=nil, clusterstatus=nil, publicaccessendpoint=nil, vpcs=nil, createtime=nil, instancetype=nil, isolatedtime=nil, enabledeletionprotection=nil, tags=nil, publicstreamaccessendpoint=nil, clustertype=nil, cdcclusterid=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @InstanceVersion = instanceversion
@@ -11964,6 +11975,8 @@ module TencentCloud
           @EnableDeletionProtection = enabledeletionprotection
           @Tags = tags
           @PublicStreamAccessEndpoint = publicstreamaccessendpoint
+          @ClusterType = clustertype
+          @CdcClusterId = cdcclusterid
         end
 
         def deserialize(params)
@@ -12005,6 +12018,8 @@ module TencentCloud
             end
           end
           @PublicStreamAccessEndpoint = params['PublicStreamAccessEndpoint']
+          @ClusterType = params['ClusterType']
+          @CdcClusterId = params['CdcClusterId']
         end
       end
 
@@ -12448,8 +12463,8 @@ module TencentCloud
 
         attr_accessor :MaxTpsPerNamespace, :MaxNamespaceNum, :UsedNamespaceNum, :MaxTopicNum, :UsedTopicNum, :MaxGroupNum, :UsedGroupNum, :MaxRetentionTime, :MaxLatencyTime, :MaxQueuesPerTopic, :TopicDistribution, :MaxRoleNum, :MaxTpsLimit
         extend Gem::Deprecate
-        deprecate :MaxTpsPerNamespace, :none, 2026, 6
-        deprecate :MaxTpsPerNamespace=, :none, 2026, 6
+        deprecate :MaxTpsPerNamespace, :none, 2026, 7
+        deprecate :MaxTpsPerNamespace=, :none, 2026, 7
 
         def initialize(maxtpspernamespace=nil, maxnamespacenum=nil, usednamespacenum=nil, maxtopicnum=nil, usedtopicnum=nil, maxgroupnum=nil, usedgroupnum=nil, maxretentiontime=nil, maxlatencytime=nil, maxqueuespertopic=nil, topicdistribution=nil, maxrolenum=nil, maxtpslimit=nil)
           @MaxTpsPerNamespace = maxtpspernamespace
@@ -12860,10 +12875,10 @@ module TencentCloud
 
         attr_accessor :Name, :ConsumerNum, :TPS, :TotalAccumulative, :ConsumptionMode, :ReadEnabled, :RetryPartitionNum, :CreateTime, :UpdateTime, :ClientProtocol, :Remark, :ConsumerType, :BroadcastEnabled, :GroupType, :RetryMaxTimes, :InstanceId, :Namespace, :SubscribeTopicNum, :TagList
         extend Gem::Deprecate
-        deprecate :TPS, :none, 2026, 6
-        deprecate :TPS=, :none, 2026, 6
-        deprecate :TotalAccumulative, :none, 2026, 6
-        deprecate :TotalAccumulative=, :none, 2026, 6
+        deprecate :TPS, :none, 2026, 7
+        deprecate :TPS=, :none, 2026, 7
+        deprecate :TotalAccumulative, :none, 2026, 7
+        deprecate :TotalAccumulative=, :none, 2026, 7
 
         def initialize(name=nil, consumernum=nil, tps=nil, totalaccumulative=nil, consumptionmode=nil, readenabled=nil, retrypartitionnum=nil, createtime=nil, updatetime=nil, clientprotocol=nil, remark=nil, consumertype=nil, broadcastenabled=nil, grouptype=nil, retrymaxtimes=nil, instanceid=nil, namespace=nil, subscribetopicnum=nil, taglist=nil)
           @Name = name

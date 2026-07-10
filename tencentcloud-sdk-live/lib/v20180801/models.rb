@@ -2493,9 +2493,9 @@ module TencentCloud
 
       # CreateAuditKeywords请求参数结构体
       class CreateAuditKeywordsRequest < TencentCloud::Common::AbstractModel
-        # @param Keywords: 关键词列表。
+        # @param Keywords: <p>关键词列表。</p>
         # @type Keywords: Array
-        # @param LibId: 直播审核词库Id。
+        # @param LibId: <p>直播审核词库Id。</p>
         # @type LibId: String
 
         attr_accessor :Keywords, :LibId
@@ -2520,18 +2520,21 @@ module TencentCloud
 
       # CreateAuditKeywords返回参数结构体
       class CreateAuditKeywordsResponse < TencentCloud::Common::AbstractModel
-        # @param KeywordIds: 添加成功的关键词 Id 列表。
+        # @param KeywordIds: <p>添加成功的关键词 Id 列表。</p>
         # @type KeywordIds: Array
-        # @param DupInfos: 重复关键词列表。
+        # @param DupInfos: <p>重复关键词列表。</p>
         # @type DupInfos: Array
+        # @param Keywords: <p>新增成功关键词列表</p>
+        # @type Keywords: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :KeywordIds, :DupInfos, :RequestId
+        attr_accessor :KeywordIds, :DupInfos, :Keywords, :RequestId
 
-        def initialize(keywordids=nil, dupinfos=nil, requestid=nil)
+        def initialize(keywordids=nil, dupinfos=nil, keywords=nil, requestid=nil)
           @KeywordIds = keywordids
           @DupInfos = dupinfos
+          @Keywords = keywords
           @RequestId = requestid
         end
 
@@ -2543,6 +2546,14 @@ module TencentCloud
               auditkeywordinfo_tmp = AuditKeywordInfo.new
               auditkeywordinfo_tmp.deserialize(i)
               @DupInfos << auditkeywordinfo_tmp
+            end
+          end
+          unless params['Keywords'].nil?
+            @Keywords = []
+            params['Keywords'].each do |i|
+              auditkeywordinfo_tmp = AuditKeywordInfo.new
+              auditkeywordinfo_tmp.deserialize(i)
+              @Keywords << auditkeywordinfo_tmp
             end
           end
           @RequestId = params['RequestId']

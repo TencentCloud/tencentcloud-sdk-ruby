@@ -14359,10 +14359,12 @@ module TencentCloud
         # @type GpuDesc: String
         # @param PartitionNumber: <p>分区置放群组分区数</p>
         # @type PartitionNumber: Integer
+        # @param HCCHpcClusterId: <p>高性能集群ID</p>
+        # @type HCCHpcClusterId: String
 
-        attr_accessor :Spec, :StorageType, :DiskType, :MemSize, :Cpu, :DiskSize, :RootSize, :MultiDisks, :Tags, :InstanceType, :LocalDiskNum, :DiskNum, :GpuDesc, :PartitionNumber
+        attr_accessor :Spec, :StorageType, :DiskType, :MemSize, :Cpu, :DiskSize, :RootSize, :MultiDisks, :Tags, :InstanceType, :LocalDiskNum, :DiskNum, :GpuDesc, :PartitionNumber, :HCCHpcClusterId
 
-        def initialize(spec=nil, storagetype=nil, disktype=nil, memsize=nil, cpu=nil, disksize=nil, rootsize=nil, multidisks=nil, tags=nil, instancetype=nil, localdisknum=nil, disknum=nil, gpudesc=nil, partitionnumber=nil)
+        def initialize(spec=nil, storagetype=nil, disktype=nil, memsize=nil, cpu=nil, disksize=nil, rootsize=nil, multidisks=nil, tags=nil, instancetype=nil, localdisknum=nil, disknum=nil, gpudesc=nil, partitionnumber=nil, hcchpcclusterid=nil)
           @Spec = spec
           @StorageType = storagetype
           @DiskType = disktype
@@ -14377,6 +14379,7 @@ module TencentCloud
           @DiskNum = disknum
           @GpuDesc = gpudesc
           @PartitionNumber = partitionnumber
+          @HCCHpcClusterId = hcchpcclusterid
         end
 
         def deserialize(params)
@@ -14408,6 +14411,7 @@ module TencentCloud
           @DiskNum = params['DiskNum']
           @GpuDesc = params['GpuDesc']
           @PartitionNumber = params['PartitionNumber']
+          @HCCHpcClusterId = params['HCCHpcClusterId']
         end
       end
 
