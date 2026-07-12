@@ -2440,13 +2440,13 @@ module TencentCloud
 
       # ImportKeyMaterial请求参数结构体
       class ImportKeyMaterialRequest < TencentCloud::Common::AbstractModel
-        # @param EncryptedKeyMaterial: 使用GetParametersForImport 返回的PublicKey加密后的密钥材料base64编码。对于国密版本region的KMS，导入的密钥材料长度要求为 128 bit，FIPS版本region的KMS， 导入的密钥材料长度要求为 256 bit。
+        # @param EncryptedKeyMaterial: <p>使用GetParametersForImport 返回的PublicKey加密后的密钥材料base64编码。对于国密版本region的KMS，导入的密钥材料长度要求为 128 bit，FIPS 140-2版本region的KMS， 导入的密钥材料长度要求为 256 bit。</p>
         # @type EncryptedKeyMaterial: String
-        # @param ImportToken: 通过调用GetParametersForImport获得的导入令牌。
+        # @param ImportToken: <p>通过调用GetParametersForImport获得的导入令牌。</p>
         # @type ImportToken: String
-        # @param KeyId: 指定导入密钥材料的CMK，需要和GetParametersForImport 指定的CMK相同。
+        # @param KeyId: <p>指定导入密钥材料的CMK，需要和GetParametersForImport 指定的CMK相同。</p>
         # @type KeyId: String
-        # @param ValidTo: 密钥材料过期时间 unix 时间戳，不指定或者 0 表示密钥材料不会过期，若指定过期时间，需要大于当前时间点，最大支持 2147443200。
+        # @param ValidTo: <p>密钥材料过期时间 unix 时间戳，不指定或者 0 表示密钥材料不会过期，若指定过期时间，需要大于当前时间点，最大支持 2147443200。</p>
         # @type ValidTo: Integer
 
         attr_accessor :EncryptedKeyMaterial, :ImportToken, :KeyId, :ValidTo
@@ -2500,61 +2500,61 @@ module TencentCloud
 
       # CMK属性信息
       class KeyMetadata < TencentCloud::Common::AbstractModel
-        # @param KeyId: CMK的全局唯一标识
+        # @param KeyId: <p>CMK的全局唯一标识</p>
         # @type KeyId: String
-        # @param Alias: 作为密钥更容易辨识，更容易被人看懂的别名
+        # @param Alias: <p>作为密钥更容易辨识，更容易被人看懂的别名</p>
         # @type Alias: String
-        # @param CreateTime: 密钥创建时间
+        # @param CreateTime: <p>密钥创建时间</p>
         # @type CreateTime: Integer
-        # @param Description: CMK的描述
+        # @param Description: <p>CMK的描述</p>
         # @type Description: String
-        # @param KeyState: CMK的状态， 取值为：Enabled | Disabled | PendingDelete | PendingImport | Archived
+        # @param KeyState: <p>CMK的状态， 取值为：Enabled | Disabled | PendingDelete | PendingImport | Archived</p>
         # @type KeyState: String
-        # @param KeyUsage: CMK用途，取值为: ENCRYPT_DECRYPT | ASYMMETRIC_DECRYPT_RSA_2048 | ASYMMETRIC_DECRYPT_SM2 | ASYMMETRIC_SIGN_VERIFY_SM2 | ASYMMETRIC_SIGN_VERIFY_RSA_2048 | ASYMMETRIC_SIGN_VERIFY_ECC
+        # @param KeyUsage: <p>CMK用途，取值为: ENCRYPT_DECRYPT | ASYMMETRIC_DECRYPT_RSA_2048 | ASYMMETRIC_DECRYPT_SM2 | ASYMMETRIC_SIGN_VERIFY_SM2 | ASYMMETRIC_SIGN_VERIFY_RSA_2048 | ASYMMETRIC_SIGN_VERIFY_ECC</p>
         # @type KeyUsage: String
-        # @param Type: CMK类型，2 表示符合FIPS标准，4表示符合国密标准
+        # @param Type: <p>CMK类型，2 表示符合FIPS 140-2标准，4表示符合国密标准</p><p>枚举值：</p><ul><li>2： 表示符合FIPS 140-2标准</li><li>4： 表示符合国密标准</li></ul>
         # @type Type: Integer
-        # @param CreatorUin: 创建者
+        # @param CreatorUin: <p>创建者</p>
         # @type CreatorUin: Integer
-        # @param KeyRotationEnabled: 是否开启了密钥轮换功能
+        # @param KeyRotationEnabled: <p>是否开启了密钥轮换功能</p>
         # @type KeyRotationEnabled: Boolean
-        # @param Owner: CMK的创建者，用户创建的为 user，授权各云产品自动创建的为对应的产品名
+        # @param Owner: <p>CMK的创建者，用户创建的为 user，授权各云产品自动创建的为对应的产品名</p>
         # @type Owner: String
-        # @param NextRotateTime: 在密钥轮换开启状态下，下次轮换的时间
+        # @param NextRotateTime: <p>在密钥轮换开启状态下，下次轮换的时间</p>
         # @type NextRotateTime: Integer
-        # @param DeletionDate: 计划删除的时间
+        # @param DeletionDate: <p>计划删除的时间</p>
         # @type DeletionDate: Integer
-        # @param Origin: CMK 密钥材料类型，由KMS创建的为： TENCENT_KMS， 由用户导入的类型为：EXTERNAL
+        # @param Origin: <p>CMK 密钥材料类型，由KMS创建的为： TENCENT_KMS， 由用户导入的类型为：EXTERNAL</p>
         # @type Origin: String
-        # @param ValidTo: 在Origin为  EXTERNAL 时有效，表示密钥材料的有效日期， 0 表示不过期
+        # @param ValidTo: <p>在Origin为  EXTERNAL 时有效，表示密钥材料的有效日期， 0 表示不过期</p>
         # @type ValidTo: Integer
-        # @param ResourceId: 资源ID，格式：creatorUin/$creatorUin/$keyId
+        # @param ResourceId: <p>资源ID，格式：creatorUin/$creatorUin/$keyId</p>
         # @type ResourceId: String
-        # @param HsmClusterId: HSM 集群 ID（仅对 KMS 独占版/托管版服务实例有效）
+        # @param HsmClusterId: <p>HSM 集群 ID（仅对 KMS 独占版/托管版服务实例有效）</p>
         # @type HsmClusterId: String
-        # @param RotateDays: 密钥轮转周期（天）
+        # @param RotateDays: <p>密钥轮转周期（天）</p>
         # @type RotateDays: Integer
-        # @param LastRotateTime: 上次乱转时间（Unix timestamp）
+        # @param LastRotateTime: <p>上次轮转时间（Unix timestamp）</p>
         # @type LastRotateTime: Integer
-        # @param IsSyncReplica:  密钥是否是主副本。0:主本，1:同步副本。
+        # @param IsSyncReplica: <p>密钥是否是主副本。0:主本，1:同步副本。</p>
         # @type IsSyncReplica: Integer
-        # @param SourceRegion: 同步的原始地域
+        # @param SourceRegion: <p>同步的原始地域</p>
         # @type SourceRegion: String
-        # @param SyncStatus: 密钥同步的状态，0:未同步,1:同步成功,2:同步失败,3:同步中。
+        # @param SyncStatus: <p>密钥同步的状态，0:未同步,1:同步成功,2:同步失败,3:同步中。</p>
         # @type SyncStatus: Integer
-        # @param SyncMessages: 同步的结果描述
+        # @param SyncMessages: <p>同步的结果描述</p>
         # @type SyncMessages: String
-        # @param SyncStartTime: 同步的开始时间
+        # @param SyncStartTime: <p>同步的开始时间</p>
         # @type SyncStartTime: Integer
-        # @param SyncEndTime: 同步的结束时间
+        # @param SyncEndTime: <p>同步的结束时间</p>
         # @type SyncEndTime: Integer
-        # @param SourceHsmClusterId: 同步的原始集群，如果为空，是公有云公共集群
+        # @param SourceHsmClusterId: <p>同步的原始集群，如果为空，是公有云公共集群</p>
         # @type SourceHsmClusterId: String
-        # @param AccountAppId: 成员账号appId
+        # @param AccountAppId: <p>成员账号appId</p>
         # @type AccountAppId: Integer
-        # @param AccountUin: 成员账号uin
+        # @param AccountUin: <p>成员账号uin</p>
         # @type AccountUin: Integer
-        # @param AccountName: 成员账号名称
+        # @param AccountName: <p>成员账号名称</p>
         # @type AccountName: String
 
         attr_accessor :KeyId, :Alias, :CreateTime, :Description, :KeyState, :KeyUsage, :Type, :CreatorUin, :KeyRotationEnabled, :Owner, :NextRotateTime, :DeletionDate, :Origin, :ValidTo, :ResourceId, :HsmClusterId, :RotateDays, :LastRotateTime, :IsSyncReplica, :SourceRegion, :SyncStatus, :SyncMessages, :SyncStartTime, :SyncEndTime, :SourceHsmClusterId, :AccountAppId, :AccountUin, :AccountName

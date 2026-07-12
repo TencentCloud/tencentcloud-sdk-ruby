@@ -141,11 +141,11 @@ module TencentCloud
 
       # 绑定资源项
       class BindingItem < TencentCloud::Common::AbstractModel
-        # @param ResourceId: 资源 ID（模型 ID 或服务 ID）。
+        # @param ResourceId: <p>资源 ID（模型 ID 或服务 ID）。</p>
         # @type ResourceId: String
-        # @param ResourceType: 资源类型。取值：endpoint（服务）、model（模型）。
+        # @param ResourceType: <p>资源类型。取值：endpoint（推理服务）、model（模型）。推荐绑定endpoint，绑定model即将下线。已绑定model的apikey仍可使用，但控制台回显将不会展示模型绑定列表。</p><p>枚举值：</p><ul><li>endpoint： 绑定到endpoint（默认推理服务或自定义推理服务）</li></ul>
         # @type ResourceType: String
-        # @param Status: 资源状态
+        # @param Status: <p>资源状态</p>
         # @type Status: String
 
         attr_accessor :ResourceId, :ResourceType, :Status
@@ -165,27 +165,78 @@ module TencentCloud
 
       # CreateApiKey请求参数结构体
       class CreateApiKeyRequest < TencentCloud::Common::AbstractModel
+        # @param ApiKeyName: <p>API 密钥名称，创建后不可修改。</p>
+        # @type ApiKeyName: String
+        # @param Platform: <p>平台类型。取值：maas</p>
+        # @type Platform: String
+        # @param BindType: <p>绑定类型。取值：all（全部模型和接入点）、model_custom_endpoint_custom（自定义模型+自定义接入点）。</p><p>枚举值：</p><ul><li>all： 全部模型和接入点</li><li>model_custom_endpoint_custom： 自定义模型+自定义接入点</li></ul>
+        # @type BindType: String
+        # @param Remark: <p>备注信息</p>
+        # @type Remark: String
+        # @param Status: <p>初始状态。取值：enable（启用）、disable（禁用）。不传默认 enable。</p>
+        # @type Status: String
+        # @param Bindings: <p>资源绑定列表（model 和 endpoint 混合），每项需显式指定 ResourceType。BindType 为 all 时不填；BindType 为model_custom_endpoint_custom时必填。</p>
+        # @type Bindings: Array
+        # @param IpWhitelist: <p>IP 白名单列表。支持 IPv4（如 1.2.3.4）和 CIDR（如 10.0.0.0/24）格式，IPv6暂不支持。最多 50 个条目，不支持重复。不传或传空数组表示不限制 IP。</p>
+        # @type IpWhitelist: Array
+        # @param Quotas: <p>Token 限额配置多维度列表。可选，不传表示不开启限额。</p>
+        # @type Quotas: Array
 
+        attr_accessor :ApiKeyName, :Platform, :BindType, :Remark, :Status, :Bindings, :IpWhitelist, :Quotas
 
-        def initialize()
+        def initialize(apikeyname=nil, platform=nil, bindtype=nil, remark=nil, status=nil, bindings=nil, ipwhitelist=nil, quotas=nil)
+          @ApiKeyName = apikeyname
+          @Platform = platform
+          @BindType = bindtype
+          @Remark = remark
+          @Status = status
+          @Bindings = bindings
+          @IpWhitelist = ipwhitelist
+          @Quotas = quotas
         end
 
         def deserialize(params)
+          @ApiKeyName = params['ApiKeyName']
+          @Platform = params['Platform']
+          @BindType = params['BindType']
+          @Remark = params['Remark']
+          @Status = params['Status']
+          unless params['Bindings'].nil?
+            @Bindings = []
+            params['Bindings'].each do |i|
+              bindingitem_tmp = BindingItem.new
+              bindingitem_tmp.deserialize(i)
+              @Bindings << bindingitem_tmp
+            end
+          end
+          @IpWhitelist = params['IpWhitelist']
+          unless params['Quotas'].nil?
+            @Quotas = []
+            params['Quotas'].each do |i|
+              quotacreateitem_tmp = QuotaCreateItem.new
+              quotacreateitem_tmp.deserialize(i)
+              @Quotas << quotacreateitem_tmp
+            end
+          end
         end
       end
 
       # CreateApiKey返回参数结构体
       class CreateApiKeyResponse < TencentCloud::Common::AbstractModel
+        # @param ApiKeyId: <p>apikey id</p>
+        # @type ApiKeyId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :ApiKeyId, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(apikeyid=nil, requestid=nil)
+          @ApiKeyId = apikeyid
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @ApiKeyId = params['ApiKeyId']
           @RequestId = params['RequestId']
         end
       end
@@ -452,12 +503,21 @@ module TencentCloud
 
       # DeleteApiKey请求参数结构体
       class DeleteApiKeyRequest < TencentCloud::Common::AbstractModel
+        # @param ApiKeyId: <p>API 密钥 ID。</p>
+        # @type ApiKeyId: String
+        # @param Platform: <p>平台类型。取值：maas。</p>
+        # @type Platform: String
 
+        attr_accessor :ApiKeyId, :Platform
 
-        def initialize()
+        def initialize(apikeyid=nil, platform=nil)
+          @ApiKeyId = apikeyid
+          @Platform = platform
         end
 
         def deserialize(params)
+          @ApiKeyId = params['ApiKeyId']
+          @Platform = params['Platform']
         end
       end
 
@@ -1963,12 +2023,44 @@ module TencentCloud
 
       # ModifyApiKeyInfo请求参数结构体
       class ModifyApiKeyInfoRequest < TencentCloud::Common::AbstractModel
+        # @param ApiKeyId: <p>API 密钥 ID。</p>
+        # @type ApiKeyId: String
+        # @param Platform: <p>平台类型。取值：maas。</p>
+        # @type Platform: String
+        # @param ApiKeyName: <p>API 密钥名称。最大 128 字符。不传表示不修改。</p>
+        # @type ApiKeyName: String
+        # @param Remark: <p>备注。</p>
+        # @type Remark: String
+        # @param IpWhitelist: <p>IP 白名单列表。支持 IPv4（如 1.2.3.4）、CIDR（如 10.0.0.0/24）格式，IPv6暂不支持。最多 50 个，不支持重复。传入空数组表示清空白名单（不限制 IP）。不传表示不修改。</p>
+        # @type IpWhitelist: Array
+        # @param QuotasDesired: <p>【修改限额推荐使用QuotaDesired参数】Token 限额期望状态。可选，不传表示不修改，传入空数组表示清空。和 Quotas（Token限额配置）字段互斥，不支持同时传入</p>
+        # @type QuotasDesired: Array
 
+        attr_accessor :ApiKeyId, :Platform, :ApiKeyName, :Remark, :IpWhitelist, :QuotasDesired
 
-        def initialize()
+        def initialize(apikeyid=nil, platform=nil, apikeyname=nil, remark=nil, ipwhitelist=nil, quotasdesired=nil)
+          @ApiKeyId = apikeyid
+          @Platform = platform
+          @ApiKeyName = apikeyname
+          @Remark = remark
+          @IpWhitelist = ipwhitelist
+          @QuotasDesired = quotasdesired
         end
 
         def deserialize(params)
+          @ApiKeyId = params['ApiKeyId']
+          @Platform = params['Platform']
+          @ApiKeyName = params['ApiKeyName']
+          @Remark = params['Remark']
+          @IpWhitelist = params['IpWhitelist']
+          unless params['QuotasDesired'].nil?
+            @QuotasDesired = []
+            params['QuotasDesired'].each do |i|
+              quotasdesired_tmp = QuotasDesired.new
+              quotasdesired_tmp.deserialize(i)
+              @QuotasDesired << quotasdesired_tmp
+            end
+          end
         end
       end
 
@@ -1990,12 +2082,25 @@ module TencentCloud
 
       # ModifyApiKeyStatus请求参数结构体
       class ModifyApiKeyStatusRequest < TencentCloud::Common::AbstractModel
+        # @param ApiKeyId: <p>API 密钥 ID。</p>
+        # @type ApiKeyId: String
+        # @param Platform: <p>平台类型。取值：maas。</p>
+        # @type Platform: String
+        # @param Status: <p>状态。取值：enable（启用）、disable（禁用）。</p>
+        # @type Status: String
 
+        attr_accessor :ApiKeyId, :Platform, :Status
 
-        def initialize()
+        def initialize(apikeyid=nil, platform=nil, status=nil)
+          @ApiKeyId = apikeyid
+          @Platform = platform
+          @Status = status
         end
 
         def deserialize(params)
+          @ApiKeyId = params['ApiKeyId']
+          @Platform = params['Platform']
+          @Status = params['Status']
         end
       end
 
@@ -2196,6 +2301,30 @@ module TencentCloud
         end
       end
 
+      # Token 限额配置项（创建 API 密钥时用）
+      class QuotaCreateItem < TencentCloud::Common::AbstractModel
+        # @param CycleUnit: <p>限额周期。取值：d（按日）、m（按月）、lifetime（总额度，不重置）。</p>
+        # @type CycleUnit: String
+        # @param CycleCredits: <p>维度当期限额总量（Token 数），不能大于10万亿。使用字符串避免大数精度丢失。</p>
+        # @type CycleCredits: String
+        # @param MonthStartDay: <p>月度限额起始日。CycleUnit 为 m 时可选，1~31，默认 1。小月（如 2 月）由下游自动取该月最后一天。</p>
+        # @type MonthStartDay: Integer
+
+        attr_accessor :CycleUnit, :CycleCredits, :MonthStartDay
+
+        def initialize(cycleunit=nil, cyclecredits=nil, monthstartday=nil)
+          @CycleUnit = cycleunit
+          @CycleCredits = cyclecredits
+          @MonthStartDay = monthstartday
+        end
+
+        def deserialize(params)
+          @CycleUnit = params['CycleUnit']
+          @CycleCredits = params['CycleCredits']
+          @MonthStartDay = params['MonthStartDay']
+        end
+      end
+
       # Token 限额信息
       class QuotaInfo < TencentCloud::Common::AbstractModel
         # @param PkgId: 限额包 ID。
@@ -2233,6 +2362,30 @@ module TencentCloud
           @CycleUsed = params['CycleUsed']
           @StartTime = params['StartTime']
           @ExpireTime = params['ExpireTime']
+        end
+      end
+
+      # Token 限额期望状态
+      class QuotasDesired < TencentCloud::Common::AbstractModel
+        # @param CycleUnit: <p>限额周期，必填。取值：d（按日）、m（按月）、lifetime（总额度）。</p>
+        # @type CycleUnit: String
+        # @param CycleCredits: <p>单周期额度（Token 数），必填，不能大于10万亿。使用字符串避免大数精度丢失。同维度若与现网不同视为升配/降配。</p>
+        # @type CycleCredits: String
+        # @param MonthStartDay: <p>月度限额起始日。CycleUnit=m 时可选，1~31，默认 1。小月（如 2 月）由下游自动取该月最后一天。已有月度限额包时，更新月起始日视为周期窗口切换，会 delete 旧包后 add 新包，累计额度会重置</p>
+        # @type MonthStartDay: Integer
+
+        attr_accessor :CycleUnit, :CycleCredits, :MonthStartDay
+
+        def initialize(cycleunit=nil, cyclecredits=nil, monthstartday=nil)
+          @CycleUnit = cycleunit
+          @CycleCredits = cyclecredits
+          @MonthStartDay = monthstartday
+        end
+
+        def deserialize(params)
+          @CycleUnit = params['CycleUnit']
+          @CycleCredits = params['CycleCredits']
+          @MonthStartDay = params['MonthStartDay']
         end
       end
 

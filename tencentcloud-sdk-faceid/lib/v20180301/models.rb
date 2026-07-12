@@ -2675,34 +2675,28 @@ module TencentCloud
 
       # IdCardOCRVerification请求参数结构体
       class IdCardOCRVerificationRequest < TencentCloud::Common::AbstractModel
-        # @param IdCard: 身份证号。
-        # - 姓名和身份证号、ImageBase64、ImageUrl三者必须提供其中之一。
-        # - 若都提供了，则按照姓名和身份证号>ImageBase64>ImageUrl的优先级使用参数。
+        # @param IdCard: <p>身份证号。</p><ul><li>姓名和身份证号、ImageBase64、ImageUrl三者必须提供其中之一。</li><li>若都提供了，则按照姓名和身份证号&gt;ImageBase64&gt;ImageUrl的优先级使用参数。</li></ul>
         # @type IdCard: String
-        # @param Name: 姓名。
+        # @param Name: <p>姓名。</p>
         # @type Name: String
-        # @param ImageBase64: 身份证人像面的 Base64 值。
-        # - 支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。
-        # - 支持的图片大小：所下载图片经Base64编码后不超过 3M。请使用标准的Base64编码方式(带=补位)，编码规范参考RFC4648。
+        # @param ImageBase64: <p>身份证人像面的 Base64 值。</p><ul><li>支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。</li><li>支持的图片大小：所下载图片经Base64编码后不超过 3M。请使用标准的Base64编码方式(带=补位)，编码规范参考RFC4648。</li></ul>
         # @type ImageBase64: String
-        # @param ImageUrl: 身份证人像面的 Url 地址。
-        # - 支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。
-        # - 支持的图片大小：所下载图片经 Base64 编码后不超过 3M。图片下载时间不超过 3 秒。
-        # - 图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。
-        # - 非腾讯云存储的 Url 速度和稳定性可能受一定影响。
+        # @param ImageUrl: <p>身份证人像面的 Url 地址。</p><ul><li>支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。</li><li>支持的图片大小：所下载图片经 Base64 编码后不超过 3M。图片下载时间不超过 3 秒。</li><li>图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。</li><li>非腾讯云存储的 Url 速度和稳定性可能受一定影响。</li></ul>
         # @type ImageUrl: String
-        # @param Encryption: 敏感数据加密信息。
-        # - 对传入信息（姓名、身份证号）有加密需求的用户可使用此参数，详情请点击左侧链接。
+        # @param Encryption: <p>敏感数据加密信息。</p><ul><li>对传入信息（姓名、身份证号）有加密需求的用户可使用此参数，详情请点击左侧链接。</li></ul>
         # @type Encryption: :class:`Tencentcloud::Faceid.v20180301.models.Encryption`
+        # @param Config: <p>告警配置。</p><ul><li>仅当使用ImageBase64或者ImageUrl时，告警配置生效</li><li>以下可选字段均为bool 类型，默认false。<ul><li>CopyWarn，复印件告警。</li><li>BorderCheckWarn，边框和框内遮挡告警。</li><li>ReshootWarn，翻拍告警。</li><li>DetectPsWarn，PS检测告警（疑似存在PS痕迹）。</li><li>TempIdWarn，临时身份证告警。</li><li>Quality，图片质量告警（评价图片模糊程度）。</li></ul></li><li>SDK 设置方式参考：Config = Json.stringify({&quot;CopyWarn&quot;:true,&quot;ReshootWarn&quot;:true})。</li><li>API 3.0 Explorer 设置方式参考：Config = {&quot;CopyWarn&quot;:true,&quot;Quality&quot;:true}。</li></ul>
+        # @type Config: String
 
-        attr_accessor :IdCard, :Name, :ImageBase64, :ImageUrl, :Encryption
+        attr_accessor :IdCard, :Name, :ImageBase64, :ImageUrl, :Encryption, :Config
 
-        def initialize(idcard=nil, name=nil, imagebase64=nil, imageurl=nil, encryption=nil)
+        def initialize(idcard=nil, name=nil, imagebase64=nil, imageurl=nil, encryption=nil, config=nil)
           @IdCard = idcard
           @Name = name
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
           @Encryption = encryption
+          @Config = config
         end
 
         def deserialize(params)
@@ -2714,47 +2708,44 @@ module TencentCloud
             @Encryption = Encryption.new
             @Encryption.deserialize(params['Encryption'])
           end
+          @Config = params['Config']
         end
       end
 
       # IdCardOCRVerification返回参数结构体
       class IdCardOCRVerificationResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 认证结果码，收费情况如下。
-        # - 收费结果码：
-        # 0: 姓名和身份证号一致。
-        # -1: 姓名和身份证号不一致。
-        # - 不收费结果码：
-        # -2: 非法身份证号（长度、校验位等不正确）。
-        # -3: 非法姓名（长度、格式等不正确）。
-        # -4: 证件库服务异常。
-        # -5: 证件库中无此身份证记录。
-        # -6: 权威比对系统升级中，请稍后再试。
-        # -7: 认证次数超过当日限制。
+        # @param Result: <p>认证结果码，收费情况如下。</p><ul><li>收费结果码：<br>0: 姓名和身份证号一致。<br>-1: 姓名和身份证号不一致。</li><li>不收费结果码：<br>-2: 非法身份证号（长度、校验位等不正确）。<br>-3: 非法姓名（长度、格式等不正确）。<br>-4: 证件库服务异常。<br>-5: 证件库中无此身份证记录。<br>-6: 权威比对系统升级中，请稍后再试。<br>-7: 认证次数超过当日限制。</li></ul>
         # @type Result: String
-        # @param Description: 业务结果描述。
+        # @param Description: <p>业务结果描述。</p>
         # @type Description: String
-        # @param Name: 用于验证的姓名。
+        # @param Name: <p>用于验证的姓名。</p>
         # @type Name: String
-        # @param IdCard: 用于验证的身份证号。
+        # @param IdCard: <p>用于验证的身份证号。</p>
         # @type IdCard: String
-        # @param Sex: OCR得到的性别。
+        # @param Sex: <p>OCR得到的性别。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Sex: String
-        # @param Nation: OCR得到的民族。
+        # @param Nation: <p>OCR得到的民族。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Nation: String
-        # @param Birth: OCR得到的生日。
+        # @param Birth: <p>OCR得到的生日。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Birth: String
-        # @param Address: OCR得到的地址。
+        # @param Address: <p>OCR得到的地址。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Address: String
+        # @param Portrait: <p>身份证头像照片的base64编码</p>
+        # @type Portrait: String
+        # @param Warnings: <p>告警信息。</p><ul><li>Code 告警码列表和释义：<br>  &#39;-9101&#39;：身份证边框不完整告警。<br>  &#39;-9102&#39;：身份证复印件告警。<br>  &#39;-9103&#39;：身份证翻拍告警。<br>  &#39;-9105&#39;：身份证框内遮挡告警。&#39;<br>  &#39;-9104&#39;：临时身份证告警。<br>  &#39;-9106&#39;：身份证 PS 告警（疑似存在PS痕迹）。<br>  &#39;-9107&#39;：身份证反光告警。<br>  &#39;-9108&#39;：身份证复印件告警（仅黑白复印件）。<br>  &#39;-9109&#39;：身份证有效日期不合法告警。<br>  &#39;-8001&#39;：图片模糊告警。</li><li>多个会用“|” 隔开，如 &quot;-9101|-9106|-9104&quot;。</li></ul>
+        # @type Warnings: String
+        # @param Quality: <p>图片质量分数。</p><ul><li>当请求Config中配置图片模糊告警该参数才有意义。</li><li><ul><li>取值范围（0～100），目前默认阈值是50分，低于50分会触发模糊告警。</li></ul></li></ul>
+        # @type Quality: Float
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Result, :Description, :Name, :IdCard, :Sex, :Nation, :Birth, :Address, :RequestId
+        attr_accessor :Result, :Description, :Name, :IdCard, :Sex, :Nation, :Birth, :Address, :Portrait, :Warnings, :Quality, :RequestId
 
-        def initialize(result=nil, description=nil, name=nil, idcard=nil, sex=nil, nation=nil, birth=nil, address=nil, requestid=nil)
+        def initialize(result=nil, description=nil, name=nil, idcard=nil, sex=nil, nation=nil, birth=nil, address=nil, portrait=nil, warnings=nil, quality=nil, requestid=nil)
           @Result = result
           @Description = description
           @Name = name
@@ -2763,6 +2754,9 @@ module TencentCloud
           @Nation = nation
           @Birth = birth
           @Address = address
+          @Portrait = portrait
+          @Warnings = warnings
+          @Quality = quality
           @RequestId = requestid
         end
 
@@ -2775,6 +2769,9 @@ module TencentCloud
           @Nation = params['Nation']
           @Birth = params['Birth']
           @Address = params['Address']
+          @Portrait = params['Portrait']
+          @Warnings = params['Warnings']
+          @Quality = params['Quality']
           @RequestId = params['RequestId']
         end
       end

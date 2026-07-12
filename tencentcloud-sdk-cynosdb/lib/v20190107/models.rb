@@ -8305,6 +8305,42 @@ module TencentCloud
         end
       end
 
+      # DescribeClusterLevels请求参数结构体
+      class DescribeClusterLevelsRequest < TencentCloud::Common::AbstractModel
+        # @param Zone: 可用区
+        # @type Zone: String
+
+        attr_accessor :Zone
+
+        def initialize(zone=nil)
+          @Zone = zone
+        end
+
+        def deserialize(params)
+          @Zone = params['Zone']
+        end
+      end
+
+      # DescribeClusterLevels返回参数结构体
+      class DescribeClusterLevelsResponse < TencentCloud::Common::AbstractModel
+        # @param LevelList: 集群类型列表
+        # @type LevelList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :LevelList, :RequestId
+
+        def initialize(levellist=nil, requestid=nil)
+          @LevelList = levellist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @LevelList = params['LevelList']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeClusterParamLogs请求参数结构体
       class DescribeClusterParamLogsRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID

@@ -676,6 +676,53 @@ module TencentCloud
         end
       end
 
+      # 灰度命中规则
+      class BetaLabel < TencentCloud::Common::AbstractModel
+        # @param Key: <p>键</p>
+        # @type Key: String
+        # @param Value: <p>值</p>
+        # @type Value: :class:`Tencentcloud::Tse.v20201207.models.BetaLabelMatchString`
+
+        attr_accessor :Key, :Value
+
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          unless params['Value'].nil?
+            @Value = BetaLabelMatchString.new
+            @Value.deserialize(params['Value'])
+          end
+        end
+      end
+
+      # 命中匹配方式与值
+      class BetaLabelMatchString < TencentCloud::Common::AbstractModel
+        # @param Type: <p>类型</p><p>枚举值：</p><ul><li>EXAT： 精确匹配</li></ul>
+        # @type Type: String
+        # @param Value: <p>值</p>
+        # @type Value: String
+        # @param ValueType: <p>值类型</p><p>枚举值：</p><ul><li>TEXT： 文本</li></ul>
+        # @type ValueType: String
+
+        attr_accessor :Type, :Value, :ValueType
+
+        def initialize(type=nil, value=nil, valuetype=nil)
+          @Type = type
+          @Value = value
+          @ValueType = valuetype
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Value = params['Value']
+          @ValueType = params['ValueType']
+        end
+      end
+
       # BindAutoScalerResourceStrategyToGroups请求参数结构体
       class BindAutoScalerResourceStrategyToGroupsRequest < TencentCloud::Common::AbstractModel
         # @param GatewayId: 网关实例ID
@@ -2550,48 +2597,52 @@ module TencentCloud
 
       # 配置文件发布
       class ConfigFileRelease < TencentCloud::Common::AbstractModel
-        # @param Id: 配置文件发布id
+        # @param Id: <p>配置文件发布id</p>
         # @type Id: Integer
-        # @param Name: 配置文件发布名称
+        # @param Name: <p>配置文件发布名称</p>
         # @type Name: String
-        # @param Namespace: 配置文件发布命名空间
+        # @param Namespace: <p>配置文件发布命名空间</p>
         # @type Namespace: String
-        # @param Group: 配置文件发布组
+        # @param Group: <p>配置文件发布组</p>
         # @type Group: String
-        # @param FileName: 配置文件发布文件名称
+        # @param FileName: <p>配置文件发布文件名称</p>
         # @type FileName: String
-        # @param Content: 配置文件发布内容
+        # @param Content: <p>配置文件发布内容</p>
         # @type Content: String
-        # @param Comment: 配置文件发布注释
+        # @param Comment: <p>配置文件发布注释</p>
         # @type Comment: String
-        # @param Md5: 配置文件发布Md5
+        # @param Md5: <p>配置文件发布Md5</p>
         # @type Md5: String
-        # @param Version: 配置文件发布版本
+        # @param Version: <p>配置文件发布版本</p>
         # @type Version: Integer
-        # @param CreateTime: 配置文件发布创建时间
+        # @param CreateTime: <p>配置文件发布创建时间</p>
         # @type CreateTime: String
-        # @param CreateBy: 配置文件发布创建者
+        # @param CreateBy: <p>配置文件发布创建者</p>
         # @type CreateBy: String
-        # @param ModifyTime: 配置文件发布修改时间
+        # @param ModifyTime: <p>配置文件发布修改时间</p>
         # @type ModifyTime: String
-        # @param ModifyBy: 配置文件发布修改者
+        # @param ModifyBy: <p>配置文件发布修改者</p>
         # @type ModifyBy: String
-        # @param ReleaseDescription: 发布描述
+        # @param ReleaseDescription: <p>发布描述</p>
         # @type ReleaseDescription: String
-        # @param Active: 是否生效
+        # @param Active: <p>是否生效</p>
         # @type Active: Boolean
-        # @param Format: 格式
+        # @param Format: <p>格式</p>
         # @type Format: String
-        # @param ConfigFileId: 配置文件ID
+        # @param ConfigFileId: <p>配置文件ID</p>
         # @type ConfigFileId: String
-        # @param ConfigFileSupportedClient: 配置文件类型
+        # @param ConfigFileSupportedClient: <p>配置文件类型</p>
         # @type ConfigFileSupportedClient: Integer
-        # @param ConfigFilePersistent: 配置文件持久化
+        # @param ConfigFilePersistent: <p>配置文件持久化</p>
         # @type ConfigFilePersistent: :class:`Tencentcloud::Tse.v20201207.models.ConfigFilePersistent`
+        # @param BetaLabels: <p>灰度标签</p>
+        # @type BetaLabels: Array
+        # @param ReleaseType: <p>发布类型</p><p>枚举值：</p><ul><li>gary： 灰度发布</li></ul>
+        # @type ReleaseType: String
 
-        attr_accessor :Id, :Name, :Namespace, :Group, :FileName, :Content, :Comment, :Md5, :Version, :CreateTime, :CreateBy, :ModifyTime, :ModifyBy, :ReleaseDescription, :Active, :Format, :ConfigFileId, :ConfigFileSupportedClient, :ConfigFilePersistent
+        attr_accessor :Id, :Name, :Namespace, :Group, :FileName, :Content, :Comment, :Md5, :Version, :CreateTime, :CreateBy, :ModifyTime, :ModifyBy, :ReleaseDescription, :Active, :Format, :ConfigFileId, :ConfigFileSupportedClient, :ConfigFilePersistent, :BetaLabels, :ReleaseType
 
-        def initialize(id=nil, name=nil, namespace=nil, group=nil, filename=nil, content=nil, comment=nil, md5=nil, version=nil, createtime=nil, createby=nil, modifytime=nil, modifyby=nil, releasedescription=nil, active=nil, format=nil, configfileid=nil, configfilesupportedclient=nil, configfilepersistent=nil)
+        def initialize(id=nil, name=nil, namespace=nil, group=nil, filename=nil, content=nil, comment=nil, md5=nil, version=nil, createtime=nil, createby=nil, modifytime=nil, modifyby=nil, releasedescription=nil, active=nil, format=nil, configfileid=nil, configfilesupportedclient=nil, configfilepersistent=nil, betalabels=nil, releasetype=nil)
           @Id = id
           @Name = name
           @Namespace = namespace
@@ -2611,6 +2662,8 @@ module TencentCloud
           @ConfigFileId = configfileid
           @ConfigFileSupportedClient = configfilesupportedclient
           @ConfigFilePersistent = configfilepersistent
+          @BetaLabels = betalabels
+          @ReleaseType = releasetype
         end
 
         def deserialize(params)
@@ -2636,6 +2689,15 @@ module TencentCloud
             @ConfigFilePersistent = ConfigFilePersistent.new
             @ConfigFilePersistent.deserialize(params['ConfigFilePersistent'])
           end
+          unless params['BetaLabels'].nil?
+            @BetaLabels = []
+            params['BetaLabels'].each do |i|
+              betalabel_tmp = BetaLabel.new
+              betalabel_tmp.deserialize(i)
+              @BetaLabels << betalabel_tmp
+            end
+          end
+          @ReleaseType = params['ReleaseType']
         end
       end
 

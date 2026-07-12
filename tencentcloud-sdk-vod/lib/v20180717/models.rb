@@ -6719,6 +6719,62 @@ module TencentCloud
         end
       end
 
+      # 图片美颜效果项。
+      class BeautyEffectItem < TencentCloud::Common::AbstractModel
+        # @param Switch: <p>是否开启美颜。</p><p>枚举值：</p><ul><li>ON： 开</li><li>OFF： 关</li></ul>
+        # @type Switch: String
+        # @param Type: <p>美颜项。</p>
+        # @type Type: String
+        # @param Value: <p>美颜强度。</p>
+        # @type Value: Integer
+        # @param ResourcePath: <p>附加资源路径。</p>
+        # @type ResourcePath: String
+        # @param ExtInfo: <p>附加信息。</p>
+        # @type ExtInfo: String
+
+        attr_accessor :Switch, :Type, :Value, :ResourcePath, :ExtInfo
+
+        def initialize(switch=nil, type=nil, value=nil, resourcepath=nil, extinfo=nil)
+          @Switch = switch
+          @Type = type
+          @Value = value
+          @ResourcePath = resourcepath
+          @ExtInfo = extinfo
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          @Type = params['Type']
+          @Value = params['Value']
+          @ResourcePath = params['ResourcePath']
+          @ExtInfo = params['ExtInfo']
+        end
+      end
+
+      # 美颜滤镜项。
+      class BeautyFilterItem < TencentCloud::Common::AbstractModel
+        # @param Switch: <p>是否开启滤镜。</p><p>枚举值：</p><ul><li>ON： 开</li><li>OFF： 关</li></ul>
+        # @type Switch: String
+        # @param Type: <p>滤镜项。</p>
+        # @type Type: String
+        # @param Value: <p>滤镜强度。</p>
+        # @type Value: Integer
+
+        attr_accessor :Switch, :Type, :Value
+
+        def initialize(switch=nil, type=nil, value=nil)
+          @Switch = switch
+          @Type = type
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          @Type = params['Type']
+          @Value = params['Value']
+        end
+      end
+
       # 视频画面黑边、白边、黑屏、白屏检测的控制参数。
       class BlackWhiteEdgeConfigureInfo < TencentCloud::Common::AbstractModel
         # @param Switch: 视频画面黑边、白边、黑屏、白屏检测开关，可选值：
@@ -20403,6 +20459,40 @@ module TencentCloud
         end
       end
 
+      # 图片美颜配置。
+      class ImageBeautyConfig < TencentCloud::Common::AbstractModel
+        # @param BeautyEffectItems: <p>美颜效果项。</p>
+        # @type BeautyEffectItems: Array
+        # @param BeautyFilterItems: <p>美颜滤镜项。</p>
+        # @type BeautyFilterItems: Array
+
+        attr_accessor :BeautyEffectItems, :BeautyFilterItems
+
+        def initialize(beautyeffectitems=nil, beautyfilteritems=nil)
+          @BeautyEffectItems = beautyeffectitems
+          @BeautyFilterItems = beautyfilteritems
+        end
+
+        def deserialize(params)
+          unless params['BeautyEffectItems'].nil?
+            @BeautyEffectItems = []
+            params['BeautyEffectItems'].each do |i|
+              beautyeffectitem_tmp = BeautyEffectItem.new
+              beautyeffectitem_tmp.deserialize(i)
+              @BeautyEffectItems << beautyeffectitem_tmp
+            end
+          end
+          unless params['BeautyFilterItems'].nil?
+            @BeautyFilterItems = []
+            params['BeautyFilterItems'].each do |i|
+              beautyfilteritem_tmp = BeautyFilterItem.new
+              beautyfilteritem_tmp.deserialize(i)
+              @BeautyFilterItems << beautyfilteritem_tmp
+            end
+          end
+        end
+      end
+
       # 图片模糊处理。
       class ImageBlur < TencentCloud::Common::AbstractModel
         # @param Type: 图片模糊的操作类型。可选模式有：
@@ -29365,23 +29455,27 @@ module TencentCloud
 
       # 图片异步处理任务信息。
       class ProcessImageAsyncInput < TencentCloud::Common::AbstractModel
-        # @param FileId: 图片处理的FileId。
+        # @param FileId: <p>图片处理的FileId。</p>
         # @type FileId: String
-        # @param ImageTaskInput: 图片处理参数。
+        # @param Url: <p>图片URL。</p>
+        # @type Url: String
+        # @param ImageTaskInput: <p>图片处理参数。</p>
         # @type ImageTaskInput: :class:`Tencentcloud::Vod.v20180717.models.ProcessImageAsyncTaskInput`
-        # @param OutputConfig: 图片处理任务的输出媒体文件配置。
+        # @param OutputConfig: <p>图片处理任务的输出媒体文件配置。</p>
         # @type OutputConfig: :class:`Tencentcloud::Vod.v20180717.models.ProcessImageAsyncOutputConfig`
 
-        attr_accessor :FileId, :ImageTaskInput, :OutputConfig
+        attr_accessor :FileId, :Url, :ImageTaskInput, :OutputConfig
 
-        def initialize(fileid=nil, imagetaskinput=nil, outputconfig=nil)
+        def initialize(fileid=nil, url=nil, imagetaskinput=nil, outputconfig=nil)
           @FileId = fileid
+          @Url = url
           @ImageTaskInput = imagetaskinput
           @OutputConfig = outputconfig
         end
 
         def deserialize(params)
           @FileId = params['FileId']
+          @Url = params['Url']
           unless params['ImageTaskInput'].nil?
             @ImageTaskInput = ProcessImageAsyncTaskInput.new
             @ImageTaskInput.deserialize(params['ImageTaskInput'])
@@ -29578,20 +29672,24 @@ module TencentCloud
         end
       end
 
-      # 图片异步处理配置
+      # 图片异步处理配置。
       class ProcessImageAsyncTask < TencentCloud::Common::AbstractModel
-        # @param EncodeConfig: 图片转码输出配置。
+        # @param EncodeConfig: <p>图片转码输出配置。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EncodeConfig: :class:`Tencentcloud::Vod.v20180717.models.ImageEncodeConfig`
-        # @param EnhanceConfig: 图片增强配置。
+        # @param EnhanceConfig: <p>图片增强配置。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnhanceConfig: :class:`Tencentcloud::Vod.v20180717.models.ImageEnhanceConfig`
+        # @param BeautyConfig: <p>图片美颜配置。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BeautyConfig: :class:`Tencentcloud::Vod.v20180717.models.ImageBeautyConfig`
 
-        attr_accessor :EncodeConfig, :EnhanceConfig
+        attr_accessor :EncodeConfig, :EnhanceConfig, :BeautyConfig
 
-        def initialize(encodeconfig=nil, enhanceconfig=nil)
+        def initialize(encodeconfig=nil, enhanceconfig=nil, beautyconfig=nil)
           @EncodeConfig = encodeconfig
           @EnhanceConfig = enhanceconfig
+          @BeautyConfig = beautyconfig
         end
 
         def deserialize(params)
@@ -29602,6 +29700,10 @@ module TencentCloud
           unless params['EnhanceConfig'].nil?
             @EnhanceConfig = ImageEnhanceConfig.new
             @EnhanceConfig.deserialize(params['EnhanceConfig'])
+          end
+          unless params['BeautyConfig'].nil?
+            @BeautyConfig = ImageBeautyConfig.new
+            @BeautyConfig.deserialize(params['BeautyConfig'])
           end
         end
       end

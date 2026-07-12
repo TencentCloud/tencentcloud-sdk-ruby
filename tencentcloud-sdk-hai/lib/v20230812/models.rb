@@ -126,10 +126,14 @@ module TencentCloud
         # @type CPU: String
         # @param Memory: 内存
         # @type Memory: String
+        # @param PrepaidEnable: 该套餐是否支持包年包月
+        # @type PrepaidEnable: Boolean
+        # @param PostpaidEnable: 该套餐是否支持按量计费
+        # @type PostpaidEnable: Boolean
 
-        attr_accessor :BundleType, :Count, :GPUCount, :GPUMemory, :GPUPerformance, :CPU, :Memory
+        attr_accessor :BundleType, :Count, :GPUCount, :GPUMemory, :GPUPerformance, :CPU, :Memory, :PrepaidEnable, :PostpaidEnable
 
-        def initialize(bundletype=nil, count=nil, gpucount=nil, gpumemory=nil, gpuperformance=nil, cpu=nil, memory=nil)
+        def initialize(bundletype=nil, count=nil, gpucount=nil, gpumemory=nil, gpuperformance=nil, cpu=nil, memory=nil, prepaidenable=nil, postpaidenable=nil)
           @BundleType = bundletype
           @Count = count
           @GPUCount = gpucount
@@ -137,6 +141,8 @@ module TencentCloud
           @GPUPerformance = gpuperformance
           @CPU = cpu
           @Memory = memory
+          @PrepaidEnable = prepaidenable
+          @PostpaidEnable = postpaidenable
         end
 
         def deserialize(params)
@@ -147,6 +153,8 @@ module TencentCloud
           @GPUPerformance = params['GPUPerformance']
           @CPU = params['CPU']
           @Memory = params['Memory']
+          @PrepaidEnable = params['PrepaidEnable']
+          @PostpaidEnable = params['PostpaidEnable']
         end
       end
 
@@ -313,10 +321,12 @@ module TencentCloud
         # @type NetworkSetting: :class:`Tencentcloud::Hai.v20230812.models.NetworkSetting`
         # @param SecurityType: <p>推理服务安全类型</p><p>枚举值：</p><ul><li>STANDARD： 标准推理服务</li><li>CONFIDENTIAL： 可信推理服务</li></ul>
         # @type SecurityType: String
+        # @param ServiceChargePrepaid: <p>包年包月参数(ServiceChargeType为包月时必填)</p>
+        # @type ServiceChargePrepaid: :class:`Tencentcloud::Hai.v20230812.models.ServiceChargePrepaid`
 
-        attr_accessor :TemplateId, :ServiceName, :Replicas, :ServiceChargeType, :HyperParam, :NetworkSetting, :SecurityType
+        attr_accessor :TemplateId, :ServiceName, :Replicas, :ServiceChargeType, :HyperParam, :NetworkSetting, :SecurityType, :ServiceChargePrepaid
 
-        def initialize(templateid=nil, servicename=nil, replicas=nil, servicechargetype=nil, hyperparam=nil, networksetting=nil, securitytype=nil)
+        def initialize(templateid=nil, servicename=nil, replicas=nil, servicechargetype=nil, hyperparam=nil, networksetting=nil, securitytype=nil, servicechargeprepaid=nil)
           @TemplateId = templateid
           @ServiceName = servicename
           @Replicas = replicas
@@ -324,6 +334,7 @@ module TencentCloud
           @HyperParam = hyperparam
           @NetworkSetting = networksetting
           @SecurityType = securitytype
+          @ServiceChargePrepaid = servicechargeprepaid
         end
 
         def deserialize(params)
@@ -340,6 +351,10 @@ module TencentCloud
             @NetworkSetting.deserialize(params['NetworkSetting'])
           end
           @SecurityType = params['SecurityType']
+          unless params['ServiceChargePrepaid'].nil?
+            @ServiceChargePrepaid = ServiceChargePrepaid.new
+            @ServiceChargePrepaid.deserialize(params['ServiceChargePrepaid'])
+          end
         end
       end
 
@@ -409,7 +424,7 @@ module TencentCloud
 
       # DeleteService请求参数结构体
       class DeleteServiceRequest < TencentCloud::Common::AbstractModel
-        # @param ServiceId: 服务ID
+        # @param ServiceId: <p>服务ID</p>
         # @type ServiceId: String
 
         attr_accessor :ServiceId
@@ -453,16 +468,19 @@ module TencentCloud
         # @type NetworkSetting: :class:`Tencentcloud::Hai.v20230812.models.NetworkSetting`
         # @param SecurityType: <p>安全类型</p><p>枚举值：</p><ul><li>STANDARD： 标准推理</li><li>CONFIDENTIAL： 可信推理</li></ul>
         # @type SecurityType: String
+        # @param ServiceChargePrepaid: <p>包年包月参数(包月时必填)</p>
+        # @type ServiceChargePrepaid: :class:`Tencentcloud::Hai.v20230812.models.ServiceChargePrepaid`
 
-        attr_accessor :ServiceMetaData, :ComputeInfo, :DeploymentConfigs, :HyperParam, :NetworkSetting, :SecurityType
+        attr_accessor :ServiceMetaData, :ComputeInfo, :DeploymentConfigs, :HyperParam, :NetworkSetting, :SecurityType, :ServiceChargePrepaid
 
-        def initialize(servicemetadata=nil, computeinfo=nil, deploymentconfigs=nil, hyperparam=nil, networksetting=nil, securitytype=nil)
+        def initialize(servicemetadata=nil, computeinfo=nil, deploymentconfigs=nil, hyperparam=nil, networksetting=nil, securitytype=nil, servicechargeprepaid=nil)
           @ServiceMetaData = servicemetadata
           @ComputeInfo = computeinfo
           @DeploymentConfigs = deploymentconfigs
           @HyperParam = hyperparam
           @NetworkSetting = networksetting
           @SecurityType = securitytype
+          @ServiceChargePrepaid = servicechargeprepaid
         end
 
         def deserialize(params)
@@ -491,6 +509,10 @@ module TencentCloud
             @NetworkSetting.deserialize(params['NetworkSetting'])
           end
           @SecurityType = params['SecurityType']
+          unless params['ServiceChargePrepaid'].nil?
+            @ServiceChargePrepaid = ServiceChargePrepaid.new
+            @ServiceChargePrepaid.deserialize(params['ServiceChargePrepaid'])
+          end
         end
       end
 
@@ -2101,6 +2123,30 @@ module TencentCloud
         end
       end
 
+      # 服务级包年包月入参
+      class ServiceChargePrepaid < TencentCloud::Common::AbstractModel
+        # @param Period: <p>购买时长，默认1</p>
+        # @type Period: Integer
+        # @param TimeUnit: <p>时长单位：MONTH(月)/DAY(天)</p>
+        # @type TimeUnit: String
+        # @param RenewFlag: <p>自动续费：NOTIFY_AND_AUTO_RENEW/NOTIFY_AND_MANUAL_RENEW/DISABLE_NOTIFY_AND_MANUAL_RENEW</p>
+        # @type RenewFlag: String
+
+        attr_accessor :Period, :TimeUnit, :RenewFlag
+
+        def initialize(period=nil, timeunit=nil, renewflag=nil)
+          @Period = period
+          @TimeUnit = timeunit
+          @RenewFlag = renewflag
+        end
+
+        def deserialize(params)
+          @Period = params['Period']
+          @TimeUnit = params['TimeUnit']
+          @RenewFlag = params['RenewFlag']
+        end
+      end
+
       # 服务详情
       class ServiceDetail < TencentCloud::Common::AbstractModel
         # @param ServiceId: 服务id
@@ -2129,10 +2175,20 @@ module TencentCloud
         # @type RoleComputeSet: Array
         # @param TargetReplicas: 
         # @type TargetReplicas: Integer
+        # @param ChargeType: 计费类型：POSTPAID_BY_HOUR(按量)/PREPAID_BY_MONTH(包月)
+        # @type ChargeType: String
+        # @param ExpireTime: 到期时间(包月)，按量为空
+        # @type ExpireTime: String
+        # @param RenewFlag: 自动续费标识(包月)
+        # @type RenewFlag: String
+        # @param RestrictState: 受限状态(如欠费隔离)
+        # @type RestrictState: String
+        # @param IsCustomDeploy: 是否自定义部署：1是 0否
+        # @type IsCustomDeploy: Integer
 
-        attr_accessor :ServiceId, :ServiceName, :ServiceState, :RunningReplicas, :TotalReplicas, :CreateTime, :ComputeSet, :ModelName, :DeploymentConfigs, :HyperParam, :SecurityType, :RoleComputeSet, :TargetReplicas
+        attr_accessor :ServiceId, :ServiceName, :ServiceState, :RunningReplicas, :TotalReplicas, :CreateTime, :ComputeSet, :ModelName, :DeploymentConfigs, :HyperParam, :SecurityType, :RoleComputeSet, :TargetReplicas, :ChargeType, :ExpireTime, :RenewFlag, :RestrictState, :IsCustomDeploy
 
-        def initialize(serviceid=nil, servicename=nil, servicestate=nil, runningreplicas=nil, totalreplicas=nil, createtime=nil, computeset=nil, modelname=nil, deploymentconfigs=nil, hyperparam=nil, securitytype=nil, rolecomputeset=nil, targetreplicas=nil)
+        def initialize(serviceid=nil, servicename=nil, servicestate=nil, runningreplicas=nil, totalreplicas=nil, createtime=nil, computeset=nil, modelname=nil, deploymentconfigs=nil, hyperparam=nil, securitytype=nil, rolecomputeset=nil, targetreplicas=nil, chargetype=nil, expiretime=nil, renewflag=nil, restrictstate=nil, iscustomdeploy=nil)
           @ServiceId = serviceid
           @ServiceName = servicename
           @ServiceState = servicestate
@@ -2146,6 +2202,11 @@ module TencentCloud
           @SecurityType = securitytype
           @RoleComputeSet = rolecomputeset
           @TargetReplicas = targetreplicas
+          @ChargeType = chargetype
+          @ExpireTime = expiretime
+          @RenewFlag = renewflag
+          @RestrictState = restrictstate
+          @IsCustomDeploy = iscustomdeploy
         end
 
         def deserialize(params)
@@ -2186,6 +2247,11 @@ module TencentCloud
             end
           end
           @TargetReplicas = params['TargetReplicas']
+          @ChargeType = params['ChargeType']
+          @ExpireTime = params['ExpireTime']
+          @RenewFlag = params['RenewFlag']
+          @RestrictState = params['RestrictState']
+          @IsCustomDeploy = params['IsCustomDeploy']
         end
       end
 

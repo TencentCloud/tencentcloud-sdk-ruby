@@ -5413,6 +5413,22 @@ module TencentCloud
         end
       end
 
+      # 参考音频信息。
+      class AigcVideoReferenceAudioInfo < TencentCloud::Common::AbstractModel
+        # @param AudioUrl: <p>参考音频URL信息。需外网可访问。</p>
+        # @type AudioUrl: String
+
+        attr_accessor :AudioUrl
+
+        def initialize(audiourl=nil)
+          @AudioUrl = audiourl
+        end
+
+        def deserialize(params)
+          @AudioUrl = params['AudioUrl']
+        end
+      end
+
       # 用于AIGC生视频创作的参考图片信息。
       class AigcVideoReferenceImageInfo < TencentCloud::Common::AbstractModel
         # @param ImageUrl: 用于指导视频生成的图片 URL。该URL需外网可访问。同时允许爬虫拉取。
@@ -8474,6 +8490,8 @@ module TencentCloud
         # @type ImageInfos: Array
         # @param VideoInfos: <p>目前仅 Kling O1、Kling 3.0-Omni、Vidu q2-pro、H2 1.0 支持参考视频信息传入。</p><ol><li>Kling O1、3.0-Omni 可作为特征参考视频，也可作为待编辑视频，默认为待编辑视频；可选择性保留视频原声。</li><li>Vidu q2-pro 支持视频参考。</li><li>H2 1.0 支持视频参考。</li></ol>
         # @type VideoInfos: Array
+        # @param AudioInfos: <p>部分模型支持参考音频传入，使用URL传入。</p>
+        # @type AudioInfos: Array
         # @param Duration: <p>生成视频的时长。<br>注意：</p><ol><li>Kling，默认：5 秒。<ul><li>O1 支持 3-10 秒。</li><li>3.0-Omni 支持 3-15 秒，当使用视频参考时只支持 3-10 秒。</li><li>3.0 支持 3-15 秒。</li><li>其他版本支持 5、10 秒。</li></ul></li><li>Hailuo 的 std 模式可支持 6、10 秒，其他仅 6 秒。默认：6 秒。</li><li>Vidu，默认：5 秒。<ul><li>q3-pro、q3-turbo、q3、q3-mix 支持 3-16 秒。</li><li>q2-pro、q2-turbo、q2 支持 1-10 秒。 </li></ul></li><li>PixVerse，默认：5 秒。<ul><li>v5.6 支持 5、8、10 秒。</li><li>v6、c1 支持 1-15 秒。</li></ul></li><li>H2，支持 3-15 秒，默认 ：5 秒。</li></ol>
         # @type Duration: Integer
         # @param ExtraParameters: <p>用于传入要求的额外参数。</p>
@@ -8485,9 +8503,9 @@ module TencentCloud
         # @param Operator: <p>接口操作者名称。</p>
         # @type Operator: String
 
-        attr_accessor :ModelName, :ModelVersion, :SceneType, :Prompt, :NegativePrompt, :EnhancePrompt, :ImageUrl, :LastImageUrl, :ImageInfos, :VideoInfos, :Duration, :ExtraParameters, :StoreCosParam, :AdditionalParameters, :Operator
+        attr_accessor :ModelName, :ModelVersion, :SceneType, :Prompt, :NegativePrompt, :EnhancePrompt, :ImageUrl, :LastImageUrl, :ImageInfos, :VideoInfos, :AudioInfos, :Duration, :ExtraParameters, :StoreCosParam, :AdditionalParameters, :Operator
 
-        def initialize(modelname=nil, modelversion=nil, scenetype=nil, prompt=nil, negativeprompt=nil, enhanceprompt=nil, imageurl=nil, lastimageurl=nil, imageinfos=nil, videoinfos=nil, duration=nil, extraparameters=nil, storecosparam=nil, additionalparameters=nil, operator=nil)
+        def initialize(modelname=nil, modelversion=nil, scenetype=nil, prompt=nil, negativeprompt=nil, enhanceprompt=nil, imageurl=nil, lastimageurl=nil, imageinfos=nil, videoinfos=nil, audioinfos=nil, duration=nil, extraparameters=nil, storecosparam=nil, additionalparameters=nil, operator=nil)
           @ModelName = modelname
           @ModelVersion = modelversion
           @SceneType = scenetype
@@ -8498,6 +8516,7 @@ module TencentCloud
           @LastImageUrl = lastimageurl
           @ImageInfos = imageinfos
           @VideoInfos = videoinfos
+          @AudioInfos = audioinfos
           @Duration = duration
           @ExtraParameters = extraparameters
           @StoreCosParam = storecosparam
@@ -8528,6 +8547,14 @@ module TencentCloud
               aigcvideoreferencevideoinfo_tmp = AigcVideoReferenceVideoInfo.new
               aigcvideoreferencevideoinfo_tmp.deserialize(i)
               @VideoInfos << aigcvideoreferencevideoinfo_tmp
+            end
+          end
+          unless params['AudioInfos'].nil?
+            @AudioInfos = []
+            params['AudioInfos'].each do |i|
+              aigcvideoreferenceaudioinfo_tmp = AigcVideoReferenceAudioInfo.new
+              aigcvideoreferenceaudioinfo_tmp.deserialize(i)
+              @AudioInfos << aigcvideoreferenceaudioinfo_tmp
             end
           end
           @Duration = params['Duration']

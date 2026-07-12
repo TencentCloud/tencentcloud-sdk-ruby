@@ -1877,6 +1877,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询可支持的集群类型列表
+
+        # @param request: Request instance for DescribeClusterLevels.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::DescribeClusterLevelsRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::DescribeClusterLevelsResponse`
+        def DescribeClusterLevels(request)
+          body = send_request('DescribeClusterLevels', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeClusterLevelsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DescribeClusterParamLogs）用于查询参数修改记录。
 
         # @param request: Request instance for DescribeClusterParamLogs.
