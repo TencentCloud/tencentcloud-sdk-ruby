@@ -107,9 +107,9 @@ module TencentCloud
 
       # CreateAccelerateAreas请求参数结构体
       class CreateAccelerateAreasRequest < TencentCloud::Common::AbstractModel
-        # @param GlobalAcceleratorId: 全球加速实例ID。
+        # @param GlobalAcceleratorId: <p>全球加速实例ID。</p>
         # @type GlobalAcceleratorId: String
-        # @param AcceleratorAreas: 加速地域信息。
+        # @param AcceleratorAreas: <p>加速地域信息。一次最多创建10组加速地域。</p>
         # @type AcceleratorAreas: Array
 
         attr_accessor :GlobalAcceleratorId, :AcceleratorAreas
@@ -134,7 +134,7 @@ module TencentCloud
 
       # CreateAccelerateAreas返回参数结构体
       class CreateAccelerateAreasResponse < TencentCloud::Common::AbstractModel
-        # @param TaskId: 异步任务ID。
+        # @param TaskId: <p>异步任务ID。</p>
         # @type TaskId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1926,9 +1926,9 @@ module TencentCloud
 
       # ModifyAccelerateAreas请求参数结构体
       class ModifyAccelerateAreasRequest < TencentCloud::Common::AbstractModel
-        # @param GlobalAcceleratorId: 全球加速实例ID。
+        # @param GlobalAcceleratorId: <p>全球加速实例ID。</p>
         # @type GlobalAcceleratorId: String
-        # @param AcceleratorAreas: 加速地域信息。
+        # @param AcceleratorAreas: <p>加速地域信息。</p><p>入参限制：数组长度不能超过10。</p>
         # @type AcceleratorAreas: Array
 
         attr_accessor :GlobalAcceleratorId, :AcceleratorAreas
@@ -1953,7 +1953,7 @@ module TencentCloud
 
       # ModifyAccelerateAreas返回参数结构体
       class ModifyAccelerateAreasResponse < TencentCloud::Common::AbstractModel
-        # @param TaskId: 异步任务ID。
+        # @param TaskId: <p>异步任务ID。</p>
         # @type TaskId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

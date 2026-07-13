@@ -243,22 +243,25 @@ module TencentCloud
 
       # BuildCustomerCluster请求参数结构体
       class BuildCustomerClusterRequest < TencentCloud::Common::AbstractModel
-        # @param FileSystemId: 文件系统id
+        # @param FileSystemId: <p>文件系统id</p>
         # @type FileSystemId: String
-        # @param VpcId: vpc网络ID
+        # @param VpcId: <p>vpc网络ID</p>
         # @type VpcId: String
-        # @param SubnetId: 子网id
+        # @param SubnetId: <p>子网id</p>
         # @type SubnetId: String
-        # @param ClusterName: 集群名称
+        # @param ClusterName: <p>集群名称</p>
         # @type ClusterName: String
+        # @param Zone: <p>可用区</p>
+        # @type Zone: String
 
-        attr_accessor :FileSystemId, :VpcId, :SubnetId, :ClusterName
+        attr_accessor :FileSystemId, :VpcId, :SubnetId, :ClusterName, :Zone
 
-        def initialize(filesystemid=nil, vpcid=nil, subnetid=nil, clustername=nil)
+        def initialize(filesystemid=nil, vpcid=nil, subnetid=nil, clustername=nil, zone=nil)
           @FileSystemId = filesystemid
           @VpcId = vpcid
           @SubnetId = subnetid
           @ClusterName = clustername
+          @Zone = zone
         end
 
         def deserialize(params)
@@ -266,12 +269,13 @@ module TencentCloud
           @VpcId = params['VpcId']
           @SubnetId = params['SubnetId']
           @ClusterName = params['ClusterName']
+          @Zone = params['Zone']
         end
       end
 
       # BuildCustomerCluster返回参数结构体
       class BuildCustomerClusterResponse < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 客户端集群Id
+        # @param ClusterId: <p>客户端集群Id</p>
         # @type ClusterId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

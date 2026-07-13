@@ -3672,96 +3672,102 @@ module TencentCloud
 
       # ModifyApmInstance请求参数结构体
       class ModifyApmInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 业务系统 ID
+        # @param InstanceId: <p>业务系统 ID</p>
         # @type InstanceId: String
-        # @param Name: 业务系统名
+        # @param Name: <p>业务系统名</p>
         # @type Name: String
-        # @param Tags: Tag 列表
+        # @param Tags: <p>Tag 列表</p>
         # @type Tags: Array
-        # @param Description: 业务系统描述
+        # @param Description: <p>业务系统描述</p>
         # @type Description: String
-        # @param TraceDuration: Trace 数据保存时长（单位：天）
+        # @param TraceDuration: <p>Trace 数据保存时长（单位：天）</p>
         # @type TraceDuration: Integer
-        # @param OpenBilling: 是否开启计费
+        # @param OpenBilling: <p>是否开启计费</p>
         # @type OpenBilling: Boolean
-        # @param SpanDailyCounters: 业务系统上报额度
+        # @param SpanDailyCounters: <p>业务系统上报额度</p>
         # @type SpanDailyCounters: Integer
-        # @param ErrRateThreshold: 错误率警示线，当应用的平均错误率超出该阈值时，系统会给出异常提示。
+        # @param ErrRateThreshold: <p>错误率警示线，当应用的平均错误率超出该阈值时，系统会给出异常提示。</p>
         # @type ErrRateThreshold: Integer
-        # @param SampleRate: 采样率（单位：%）
+        # @param SampleRate: <p>采样率（单位：%）</p>
         # @type SampleRate: Integer
-        # @param ErrorSample: 是否开启错误采样（0=关, 1=开）
+        # @param ErrorSample: <p>是否开启错误采样（0=关, 1=开）</p>
         # @type ErrorSample: Integer
-        # @param SlowRequestSavedThreshold: 采样慢调用保存阈值（单位：ms）
+        # @param SlowRequestSavedThreshold: <p>采样慢调用保存阈值（单位：ms）</p>
         # @type SlowRequestSavedThreshold: Integer
-        # @param IsRelatedLog: 是否开启日志功能（0=关, 1=开）
+        # @param IsRelatedLog: <p>是否开启日志功能（0=关, 1=开）</p>
         # @type IsRelatedLog: Integer
-        # @param LogRegion: 日志地域，开启日志功能后才会生效
+        # @param LogRegion: <p>日志地域，开启日志功能后才会生效</p>
         # @type LogRegion: String
-        # @param LogTopicID: CLS 日志主题 ID，开启日志功能后才会生效
+        # @param LogTopicID: <p>CLS 日志主题 ID，开启日志功能后才会生效</p>
         # @type LogTopicID: String
-        # @param LogSet: 日志集，开启日志功能后才会生效
+        # @param LogSet: <p>日志集，开启日志功能后才会生效</p>
         # @type LogSet: String
-        # @param LogSource: 日志源，开启日志功能后才会生效
+        # @param LogSource: <p>日志源，开启日志功能后才会生效</p>
         # @type LogSource: String
-        # @param CustomShowTags: 用户自定义展示标签列表
+        # @param CustomShowTags: <p>用户自定义展示标签列表</p>
         # @type CustomShowTags: Array
-        # @param PayMode: 修改计费模式（1为预付费，0为按量付费）
+        # @param PayMode: <p>修改计费模式（1为预付费，0为按量付费）</p>
         # @type PayMode: Integer
-        # @param ResponseDurationWarningThreshold: 响应时间警示线
+        # @param ResponseDurationWarningThreshold: <p>响应时间警示线</p>
         # @type ResponseDurationWarningThreshold: Integer
-        # @param Free: 是否免费（0=付费版；1=TSF 受限免费版；2=免费版），默认0
+        # @param Free: <p>是否免费（0=付费版；1=TSF 受限免费版；2=免费版），默认0</p>
         # @type Free: Integer
-        # @param IsRelatedDashboard: 是否关联 Dashboard（0=关,1=开）
+        # @param IsRelatedDashboard: <p>是否关联 Dashboard（0=关,1=开）</p>
         # @type IsRelatedDashboard: Integer
-        # @param DashboardTopicID: 关联的 Dashboard ID，开启关联 Dashboard 后才会生效
+        # @param DashboardTopicID: <p>关联的 Dashboard ID，开启关联 Dashboard 后才会生效</p>
         # @type DashboardTopicID: String
-        # @param IsSqlInjectionAnalysis: 是否开启 SQL 注入检测（0=关,1=开）
+        # @param IsSqlInjectionAnalysis: <p>是否开启 SQL 注入检测（0=关,1=开）</p>
         # @type IsSqlInjectionAnalysis: Integer
-        # @param IsInstrumentationVulnerabilityScan: 是否开启组件漏洞检测（0=关,1=开）
+        # @param IsInstrumentationVulnerabilityScan: <p>是否开启组件漏洞检测（0=关,1=开）</p>
         # @type IsInstrumentationVulnerabilityScan: Integer
-        # @param IsRemoteCommandExecutionAnalysis: 是否开启远程命令攻击检测
+        # @param IsRemoteCommandExecutionAnalysis: <p>是否开启远程命令攻击检测</p>
         # @type IsRemoteCommandExecutionAnalysis: Integer
-        # @param IsMemoryHijackingAnalysis: 是否开启内存马检测
+        # @param IsMemoryHijackingAnalysis: <p>是否开启内存马检测</p>
         # @type IsMemoryHijackingAnalysis: Integer
-        # @param LogIndexType: CLS索引类型(0=全文索引，1=键值索引)
+        # @param LogIndexType: <p>CLS索引类型(0=全文索引，1=键值索引)</p>
         # @type LogIndexType: Integer
-        # @param LogTraceIdKey: traceId的索引key: 当CLS索引类型为键值索引时生效
+        # @param LogTraceIdKey: <p>traceId的索引key: 当CLS索引类型为键值索引时生效</p>
         # @type LogTraceIdKey: String
-        # @param IsDeleteAnyFileAnalysis: 是否开启删除任意文件检测（0-关闭，1-开启）
+        # @param IsDeleteAnyFileAnalysis: <p>是否开启删除任意文件检测（0-关闭，1-开启）</p>
         # @type IsDeleteAnyFileAnalysis: Integer
-        # @param IsReadAnyFileAnalysis: 是否开启读取任意文件检测（0-关闭，1-开启）
+        # @param IsReadAnyFileAnalysis: <p>是否开启读取任意文件检测（0-关闭，1-开启）</p>
         # @type IsReadAnyFileAnalysis: Integer
-        # @param IsUploadAnyFileAnalysis: 是否开启上传任意文件检测（0-关闭，1-开启）
+        # @param IsUploadAnyFileAnalysis: <p>是否开启上传任意文件检测（0-关闭，1-开启）</p>
         # @type IsUploadAnyFileAnalysis: Integer
-        # @param IsIncludeAnyFileAnalysis: 是否开启包含任意文件检测（0-关闭，1-开启）
+        # @param IsIncludeAnyFileAnalysis: <p>是否开启包含任意文件检测（0-关闭，1-开启）</p>
         # @type IsIncludeAnyFileAnalysis: Integer
-        # @param IsDirectoryTraversalAnalysis: 是否开启目录遍历检测（0-关闭，1-开启）
+        # @param IsDirectoryTraversalAnalysis: <p>是否开启目录遍历检测（0-关闭，1-开启）</p>
         # @type IsDirectoryTraversalAnalysis: Integer
-        # @param IsTemplateEngineInjectionAnalysis: 是否开启模板引擎注入检测（0-关闭，1-开启）
+        # @param IsTemplateEngineInjectionAnalysis: <p>是否开启模板引擎注入检测（0-关闭，1-开启）</p>
         # @type IsTemplateEngineInjectionAnalysis: Integer
-        # @param IsScriptEngineInjectionAnalysis: 是否开启脚本引擎注入检测（0-关闭，1-开启）
+        # @param IsScriptEngineInjectionAnalysis: <p>是否开启脚本引擎注入检测（0-关闭，1-开启）</p>
         # @type IsScriptEngineInjectionAnalysis: Integer
-        # @param IsExpressionInjectionAnalysis: 是否开启表达式注入检测（0-关闭，1-开启）
+        # @param IsExpressionInjectionAnalysis: <p>是否开启表达式注入检测（0-关闭，1-开启）</p>
         # @type IsExpressionInjectionAnalysis: Integer
-        # @param IsJNDIInjectionAnalysis: 是否开启JNDI注入检测（0-关闭，1-开启）
+        # @param IsJNDIInjectionAnalysis: <p>是否开启JNDI注入检测（0-关闭，1-开启）</p>
         # @type IsJNDIInjectionAnalysis: Integer
-        # @param IsJNIInjectionAnalysis: 是否开启JNI注入检测（0-关闭，1-开启）
+        # @param IsJNIInjectionAnalysis: <p>是否开启JNI注入检测（0-关闭，1-开启）</p>
         # @type IsJNIInjectionAnalysis: Integer
-        # @param IsWebshellBackdoorAnalysis: 是否开启Webshell后门检测（0-关闭，1-开启）
+        # @param IsWebshellBackdoorAnalysis: <p>是否开启Webshell后门检测（0-关闭，1-开启）</p>
         # @type IsWebshellBackdoorAnalysis: Integer
-        # @param IsDeserializationAnalysis: 是否开启反序列化检测（0-关闭，1-开启）
+        # @param IsDeserializationAnalysis: <p>是否开启反序列化检测（0-关闭，1-开启）</p>
         # @type IsDeserializationAnalysis: Integer
-        # @param UrlLongSegmentThreshold: URL长分段收敛阈值
+        # @param UrlLongSegmentThreshold: <p>URL长分段收敛阈值</p>
         # @type UrlLongSegmentThreshold: Integer
-        # @param UrlNumberSegmentThreshold: URL数字分段收敛阈值
+        # @param UrlNumberSegmentThreshold: <p>URL数字分段收敛阈值</p>
         # @type UrlNumberSegmentThreshold: Integer
-        # @param LogSpanIdKey: spanId的索引key: 当CLS索引类型为键值索引时生效
+        # @param LogSpanIdKey: <p>spanId的索引key: 当CLS索引类型为键值索引时生效</p>
         # @type LogSpanIdKey: String
+        # @param EnableHeadSampler: <p>是否开启探针头采样</p>
+        # @type EnableHeadSampler: Boolean
+        # @param HeadSamplerType: <p>头采类型</p><p>枚举值：</p><ul><li>parentbased_traceidratio： 默认</li></ul>
+        # @type HeadSamplerType: String
+        # @param HeadSamplerArg: <p>头采采样率</p><p>取值范围：[0, 100]</p>
+        # @type HeadSamplerArg: Integer
 
-        attr_accessor :InstanceId, :Name, :Tags, :Description, :TraceDuration, :OpenBilling, :SpanDailyCounters, :ErrRateThreshold, :SampleRate, :ErrorSample, :SlowRequestSavedThreshold, :IsRelatedLog, :LogRegion, :LogTopicID, :LogSet, :LogSource, :CustomShowTags, :PayMode, :ResponseDurationWarningThreshold, :Free, :IsRelatedDashboard, :DashboardTopicID, :IsSqlInjectionAnalysis, :IsInstrumentationVulnerabilityScan, :IsRemoteCommandExecutionAnalysis, :IsMemoryHijackingAnalysis, :LogIndexType, :LogTraceIdKey, :IsDeleteAnyFileAnalysis, :IsReadAnyFileAnalysis, :IsUploadAnyFileAnalysis, :IsIncludeAnyFileAnalysis, :IsDirectoryTraversalAnalysis, :IsTemplateEngineInjectionAnalysis, :IsScriptEngineInjectionAnalysis, :IsExpressionInjectionAnalysis, :IsJNDIInjectionAnalysis, :IsJNIInjectionAnalysis, :IsWebshellBackdoorAnalysis, :IsDeserializationAnalysis, :UrlLongSegmentThreshold, :UrlNumberSegmentThreshold, :LogSpanIdKey
+        attr_accessor :InstanceId, :Name, :Tags, :Description, :TraceDuration, :OpenBilling, :SpanDailyCounters, :ErrRateThreshold, :SampleRate, :ErrorSample, :SlowRequestSavedThreshold, :IsRelatedLog, :LogRegion, :LogTopicID, :LogSet, :LogSource, :CustomShowTags, :PayMode, :ResponseDurationWarningThreshold, :Free, :IsRelatedDashboard, :DashboardTopicID, :IsSqlInjectionAnalysis, :IsInstrumentationVulnerabilityScan, :IsRemoteCommandExecutionAnalysis, :IsMemoryHijackingAnalysis, :LogIndexType, :LogTraceIdKey, :IsDeleteAnyFileAnalysis, :IsReadAnyFileAnalysis, :IsUploadAnyFileAnalysis, :IsIncludeAnyFileAnalysis, :IsDirectoryTraversalAnalysis, :IsTemplateEngineInjectionAnalysis, :IsScriptEngineInjectionAnalysis, :IsExpressionInjectionAnalysis, :IsJNDIInjectionAnalysis, :IsJNIInjectionAnalysis, :IsWebshellBackdoorAnalysis, :IsDeserializationAnalysis, :UrlLongSegmentThreshold, :UrlNumberSegmentThreshold, :LogSpanIdKey, :EnableHeadSampler, :HeadSamplerType, :HeadSamplerArg
 
-        def initialize(instanceid=nil, name=nil, tags=nil, description=nil, traceduration=nil, openbilling=nil, spandailycounters=nil, errratethreshold=nil, samplerate=nil, errorsample=nil, slowrequestsavedthreshold=nil, isrelatedlog=nil, logregion=nil, logtopicid=nil, logset=nil, logsource=nil, customshowtags=nil, paymode=nil, responsedurationwarningthreshold=nil, free=nil, isrelateddashboard=nil, dashboardtopicid=nil, issqlinjectionanalysis=nil, isinstrumentationvulnerabilityscan=nil, isremotecommandexecutionanalysis=nil, ismemoryhijackinganalysis=nil, logindextype=nil, logtraceidkey=nil, isdeleteanyfileanalysis=nil, isreadanyfileanalysis=nil, isuploadanyfileanalysis=nil, isincludeanyfileanalysis=nil, isdirectorytraversalanalysis=nil, istemplateengineinjectionanalysis=nil, isscriptengineinjectionanalysis=nil, isexpressioninjectionanalysis=nil, isjndiinjectionanalysis=nil, isjniinjectionanalysis=nil, iswebshellbackdooranalysis=nil, isdeserializationanalysis=nil, urllongsegmentthreshold=nil, urlnumbersegmentthreshold=nil, logspanidkey=nil)
+        def initialize(instanceid=nil, name=nil, tags=nil, description=nil, traceduration=nil, openbilling=nil, spandailycounters=nil, errratethreshold=nil, samplerate=nil, errorsample=nil, slowrequestsavedthreshold=nil, isrelatedlog=nil, logregion=nil, logtopicid=nil, logset=nil, logsource=nil, customshowtags=nil, paymode=nil, responsedurationwarningthreshold=nil, free=nil, isrelateddashboard=nil, dashboardtopicid=nil, issqlinjectionanalysis=nil, isinstrumentationvulnerabilityscan=nil, isremotecommandexecutionanalysis=nil, ismemoryhijackinganalysis=nil, logindextype=nil, logtraceidkey=nil, isdeleteanyfileanalysis=nil, isreadanyfileanalysis=nil, isuploadanyfileanalysis=nil, isincludeanyfileanalysis=nil, isdirectorytraversalanalysis=nil, istemplateengineinjectionanalysis=nil, isscriptengineinjectionanalysis=nil, isexpressioninjectionanalysis=nil, isjndiinjectionanalysis=nil, isjniinjectionanalysis=nil, iswebshellbackdooranalysis=nil, isdeserializationanalysis=nil, urllongsegmentthreshold=nil, urlnumbersegmentthreshold=nil, logspanidkey=nil, enableheadsampler=nil, headsamplertype=nil, headsamplerarg=nil)
           @InstanceId = instanceid
           @Name = name
           @Tags = tags
@@ -3805,6 +3811,9 @@ module TencentCloud
           @UrlLongSegmentThreshold = urllongsegmentthreshold
           @UrlNumberSegmentThreshold = urlnumbersegmentthreshold
           @LogSpanIdKey = logspanidkey
+          @EnableHeadSampler = enableheadsampler
+          @HeadSamplerType = headsamplertype
+          @HeadSamplerArg = headsamplerarg
         end
 
         def deserialize(params)
@@ -3858,6 +3867,9 @@ module TencentCloud
           @UrlLongSegmentThreshold = params['UrlLongSegmentThreshold']
           @UrlNumberSegmentThreshold = params['UrlNumberSegmentThreshold']
           @LogSpanIdKey = params['LogSpanIdKey']
+          @EnableHeadSampler = params['EnableHeadSampler']
+          @HeadSamplerType = params['HeadSamplerType']
+          @HeadSamplerArg = params['HeadSamplerArg']
         end
       end
 

@@ -1772,8 +1772,8 @@ module TencentCloud
 
         attr_accessor :TaskName, :TaskType, :SourceResource, :TargetResource, :TransformParam, :PrivateLinkParam, :SchemaId, :TransformsParam, :TaskId, :Tags, :Description
         extend Gem::Deprecate
-        deprecate :PrivateLinkParam, :none, 2026, 6
-        deprecate :PrivateLinkParam=, :none, 2026, 6
+        deprecate :PrivateLinkParam, :none, 2026, 7
+        deprecate :PrivateLinkParam=, :none, 2026, 7
 
         def initialize(taskname=nil, tasktype=nil, sourceresource=nil, targetresource=nil, transformparam=nil, privatelinkparam=nil, schemaid=nil, transformsparam=nil, taskid=nil, tags=nil, description=nil)
           @TaskName = taskname
@@ -2165,8 +2165,8 @@ module TencentCloud
 
         attr_accessor :ReturnCode, :ReturnMessage, :Data, :DeleteRouteTimestamp
         extend Gem::Deprecate
-        deprecate :DeleteRouteTimestamp, :none, 2026, 6
-        deprecate :DeleteRouteTimestamp=, :none, 2026, 6
+        deprecate :DeleteRouteTimestamp, :none, 2026, 7
+        deprecate :DeleteRouteTimestamp=, :none, 2026, 7
 
         def initialize(returncode=nil, returnmessage=nil, data=nil, deleteroutetimestamp=nil)
           @ReturnCode = returncode
@@ -4109,8 +4109,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :ResourceType, :ResourceName, :Offset, :Limit, :SearchWord
         extend Gem::Deprecate
-        deprecate :SearchWord, :none, 2026, 6
-        deprecate :SearchWord=, :none, 2026, 6
+        deprecate :SearchWord, :none, 2026, 7
+        deprecate :SearchWord=, :none, 2026, 7
 
         def initialize(instanceid=nil, resourcetype=nil, resourcename=nil, offset=nil, limit=nil, searchword=nil)
           @InstanceId = instanceid
@@ -5619,8 +5619,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :SearchWord, :Status, :Offset, :Limit, :TagKey, :Filters, :InstanceIds, :InstanceIdList, :TagList
         extend Gem::Deprecate
-        deprecate :InstanceIds, :none, 2026, 6
-        deprecate :InstanceIds=, :none, 2026, 6
+        deprecate :InstanceIds, :none, 2026, 7
+        deprecate :InstanceIds=, :none, 2026, 7
 
         def initialize(instanceid=nil, searchword=nil, status=nil, offset=nil, limit=nil, tagkey=nil, filters=nil, instanceids=nil, instanceidlist=nil, taglist=nil)
           @InstanceId = instanceid
@@ -5705,8 +5705,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :SearchWord, :Status, :Offset, :Limit, :TagKey, :VpcId
         extend Gem::Deprecate
-        deprecate :TagKey, :none, 2026, 6
-        deprecate :TagKey=, :none, 2026, 6
+        deprecate :TagKey, :none, 2026, 7
+        deprecate :TagKey=, :none, 2026, 7
 
         def initialize(instanceid=nil, searchword=nil, status=nil, offset=nil, limit=nil, tagkey=nil, vpcid=nil)
           @InstanceId = instanceid
@@ -8866,6 +8866,45 @@ module TencentCloud
         end
       end
 
+      # IsolatedInstancePre请求参数结构体
+      class IsolatedInstancePreRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: ckafka集群实例Id
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # IsolatedInstancePre返回参数结构体
+      class IsolatedInstancePreResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 返回结果
+        # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.CreateInstancePreResp`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = CreateInstancePreResp.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 操作型结果返回值
       class JgwOperateResponse < TencentCloud::Common::AbstractModel
         # @param ReturnCode: <p>返回的code，0为正常，非0为错误</p>
@@ -9795,8 +9834,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :MsgRetentionTime, :InstanceName, :Config, :DynamicRetentionConfig, :RebalanceTime, :PublicNetwork, :DynamicDiskConfig, :MaxMessageByte, :UncleanLeaderElectionEnable, :DeleteProtectionEnable, :RetentionBytes, :AdminSecurity, :TransactionalIdExpirationMs
         extend Gem::Deprecate
-        deprecate :DynamicDiskConfig, :none, 2026, 6
-        deprecate :DynamicDiskConfig=, :none, 2026, 6
+        deprecate :DynamicDiskConfig, :none, 2026, 7
+        deprecate :DynamicDiskConfig=, :none, 2026, 7
 
         def initialize(instanceid=nil, msgretentiontime=nil, instancename=nil, config=nil, dynamicretentionconfig=nil, rebalancetime=nil, publicnetwork=nil, dynamicdiskconfig=nil, maxmessagebyte=nil, uncleanleaderelectionenable=nil, deleteprotectionenable=nil, retentionbytes=nil, adminsecurity=nil, transactionalidexpirationms=nil)
           @InstanceId = instanceid
@@ -13040,8 +13079,8 @@ module TencentCloud
 
         attr_accessor :ZoneId, :IsInternalApp, :AppId, :Flag, :ZoneName, :ZoneStatus, :Exflag, :SoldOut, :SalesInfo, :ExtraFlag
         extend Gem::Deprecate
-        deprecate :Exflag, :none, 2026, 6
-        deprecate :Exflag=, :none, 2026, 6
+        deprecate :Exflag, :none, 2026, 7
+        deprecate :Exflag=, :none, 2026, 7
 
         def initialize(zoneid=nil, isinternalapp=nil, appid=nil, flag=nil, zonename=nil, zonestatus=nil, exflag=nil, soldout=nil, salesinfo=nil, extraflag=nil)
           @ZoneId = zoneid

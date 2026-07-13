@@ -1950,6 +1950,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 隔离预付费实例，该接口会对实例执行隔离的动作，执行成功后实例会被隔离
+
+        # @param request: Request instance for IsolatedInstancePre.
+        # @type request: :class:`Tencentcloud::ckafka::V20190819::IsolatedInstancePreRequest`
+        # @rtype: :class:`Tencentcloud::ckafka::V20190819::IsolatedInstancePreResponse`
+        def IsolatedInstancePre(request)
+          body = send_request('IsolatedInstancePre', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = IsolatedInstancePreResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 修改实例公网IP白名单列表接口
 
         # @param request: Request instance for ModifyAccessPolicy.

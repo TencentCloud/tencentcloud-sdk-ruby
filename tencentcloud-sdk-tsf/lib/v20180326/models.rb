@@ -866,25 +866,28 @@ module TencentCloud
 
       # 应用列表其它字段
       class ApplicationAttribute < TencentCloud::Common::AbstractModel
-        # @param InstanceCount: 总实例个数
+        # @param InstanceCount: <p>总实例个数</p>
         # @type InstanceCount: Integer
-        # @param RunInstanceCount: 运行实例个数
+        # @param RunInstanceCount: <p>运行实例个数</p>
         # @type RunInstanceCount: Integer
-        # @param GroupCount: 应用下部署组个数
+        # @param GroupCount: <p>应用下部署组个数</p>
         # @type GroupCount: Integer
-        # @param RunningGroupCount: 运行中部署组个数
+        # @param RunningGroupCount: <p>运行中部署组个数</p>
         # @type RunningGroupCount: String
-        # @param AbnormalCount: 异常部署组个数
+        # @param AbnormalCount: <p>异常部署组个数</p>
         # @type AbnormalCount: String
+        # @param ImageTagCount: <p>镜像tag数量</p>
+        # @type ImageTagCount: Integer
 
-        attr_accessor :InstanceCount, :RunInstanceCount, :GroupCount, :RunningGroupCount, :AbnormalCount
+        attr_accessor :InstanceCount, :RunInstanceCount, :GroupCount, :RunningGroupCount, :AbnormalCount, :ImageTagCount
 
-        def initialize(instancecount=nil, runinstancecount=nil, groupcount=nil, runninggroupcount=nil, abnormalcount=nil)
+        def initialize(instancecount=nil, runinstancecount=nil, groupcount=nil, runninggroupcount=nil, abnormalcount=nil, imagetagcount=nil)
           @InstanceCount = instancecount
           @RunInstanceCount = runinstancecount
           @GroupCount = groupcount
           @RunningGroupCount = runninggroupcount
           @AbnormalCount = abnormalcount
+          @ImageTagCount = imagetagcount
         end
 
         def deserialize(params)
@@ -893,6 +896,7 @@ module TencentCloud
           @GroupCount = params['GroupCount']
           @RunningGroupCount = params['RunningGroupCount']
           @AbnormalCount = params['AbnormalCount']
+          @ImageTagCount = params['ImageTagCount']
         end
       end
 

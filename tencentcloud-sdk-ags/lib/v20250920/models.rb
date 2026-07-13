@@ -1623,15 +1623,15 @@ module TencentCloud
 
       # UpdateSandboxTool请求参数结构体
       class UpdateSandboxToolRequest < TencentCloud::Common::AbstractModel
-        # @param ToolId: 沙箱工具ID
+        # @param ToolId: <p>沙箱工具ID</p>
         # @type ToolId: String
-        # @param Description: 沙箱工具描述，最大长度200字符
+        # @param Description: <p>沙箱工具描述，最大长度200字符</p>
         # @type Description: String
-        # @param NetworkConfiguration: 网络配置
+        # @param NetworkConfiguration: <p>网络配置</p>
         # @type NetworkConfiguration: :class:`Tencentcloud::Ags.v20250920.models.NetworkConfiguration`
-        # @param Tags: 标签
+        # @param Tags: <p>标签</p>
         # @type Tags: Array
-        # @param CustomConfiguration: 沙箱工具自定义配置
+        # @param CustomConfiguration: <p>沙箱工具自定义配置</p>
         # @type CustomConfiguration: :class:`Tencentcloud::Ags.v20250920.models.CustomConfiguration`
 
         attr_accessor :ToolId, :Description, :NetworkConfiguration, :Tags, :CustomConfiguration

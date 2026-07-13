@@ -4494,18 +4494,22 @@ module TencentCloud
       class CosBucketId < TencentCloud::Common::AbstractModel
         # @param AppId: appid
         # @type AppId: String
+        # @param IsAutoMonitor: 
+        # @type IsAutoMonitor: Integer
         # @param BucketIdSet: bucket id集合
         # @type BucketIdSet: Array
 
-        attr_accessor :AppId, :BucketIdSet
+        attr_accessor :AppId, :IsAutoMonitor, :BucketIdSet
 
-        def initialize(appid=nil, bucketidset=nil)
+        def initialize(appid=nil, isautomonitor=nil, bucketidset=nil)
           @AppId = appid
+          @IsAutoMonitor = isautomonitor
           @BucketIdSet = bucketidset
         end
 
         def deserialize(params)
           @AppId = params['AppId']
+          @IsAutoMonitor = params['IsAutoMonitor']
           @BucketIdSet = params['BucketIdSet']
         end
       end

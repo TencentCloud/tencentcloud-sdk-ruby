@@ -1589,9 +1589,9 @@ module TencentCloud
 
       # DescribeBackupDetail请求参数结构体
       class DescribeBackupDetailRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID，请登录[Redis控制台](https://console.cloud.tencent.com/redis/instance/list)在实例列表复制实例 ID。
+        # @param InstanceId: <p>实例 ID，请登录<a href="https://console.cloud.tencent.com/redis/instance/list">Redis控制台</a>在实例列表复制实例 ID。</p>
         # @type InstanceId: String
-        # @param BackupId: 备份 ID，可通过接口 [DescribeInstanceBackups](https://cloud.tencent.com/document/product/239/20011) 返回的参数 **RedisBackupSet** 获取。
+        # @param BackupId: <p>备份 ID，可通过接口 <a href="https://cloud.tencent.com/document/product/239/20011">DescribeInstanceBackups</a> 返回的参数 <strong>RedisBackupSet</strong> 获取。</p>
         # @type BackupId: String
 
         attr_accessor :InstanceId, :BackupId
@@ -1609,48 +1609,44 @@ module TencentCloud
 
       # DescribeBackupDetail返回参数结构体
       class DescribeBackupDetailResponse < TencentCloud::Common::AbstractModel
-        # @param BackupId: 备份 ID。
+        # @param BackupId: <p>备份 ID。</p>
         # @type BackupId: String
-        # @param StartTime: 备份开始时间。
+        # @param StartTime: <p>备份开始时间。</p>
         # @type StartTime: String
-        # @param EndTime: 备份结束时间。
+        # @param EndTime: <p>备份结束时间。</p>
         # @type EndTime: String
-        # @param BackupType: 备份方式。
-
-        # - 1：手动备份。
-        # -  0：自动备份。
+        # @param BackupType: <p>备份方式。 </p><ul><li>1：手动备份。</li><li>0：自动备份。</li></ul>
         # @type BackupType: String
-        # @param Status: 备份状态。
-
-        # - 1：备份被其它流程锁定。
-        # - 2：备份正常，没有被任何流程锁定。
-        # - -1：备份已过期。
-        # - 3：备份正在被导出。
-        # - 4：备份导出成功。
+        # @param Status: <p>备份状态。 </p><ul><li>1：备份被其它流程锁定。</li><li>2：备份正常，没有被任何流程锁定。</li><li>-1：备份已过期。</li><li>3：备份正在被导出。</li><li>4：备份导出成功。</li></ul>
         # @type Status: Integer
-        # @param Remark: 备份的备注信息。
+        # @param Remark: <p>备份的备注信息。</p>
         # @type Remark: String
-        # @param Locked: 备份是否被锁定。
-
-        # - 0：未被锁定。
-        # - 1：已被锁定。
+        # @param Locked: <p>备份是否被锁定。</p><ul><li>0：未被锁定。</li><li>1：已被锁定。</li></ul>
         # @type Locked: Integer
-        # @param BackupSize: 备份文件大小。单位：Byte。
+        # @param BackupSize: <p>备份文件大小。单位：Byte。</p>
         # @type BackupSize: Integer
-        # @param InstanceType: 实例类型。
+        # @param InstanceType: <p>实例类型。</p>
         # @type InstanceType: Integer
-        # @param MemSize: 单分片内存规格大小，单位：MB。
+        # @param MemSize: <p>单分片内存规格大小，单位：MB。</p>
         # @type MemSize: Integer
-        # @param ShardNum: 分片数量。
+        # @param ShardNum: <p>分片数量。</p>
         # @type ShardNum: Integer
-        # @param ReplicasNum: 副本数量。
+        # @param ReplicasNum: <p>副本数量。</p>
         # @type ReplicasNum: Integer
+        # @param Encrypted: <p>是否已加密。</p><p>枚举值：</p><ul><li>true： 已加密</li><li>false： 未加密</li></ul>
+        # @type Encrypted: Boolean
+        # @param DecryptKey: <p>解密密钥。</p>
+        # @type DecryptKey: String
+        # @param KmsKeyId: <p>KMS的密钥ID。</p>
+        # @type KmsKeyId: String
+        # @param KeyAlgorithm: <p>加密该备份文件的加密算法。</p><p>枚举值：</p><ul><li>AES-256-CBC： 当前仅支持AES-256-CBC</li></ul>
+        # @type KeyAlgorithm: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :BackupId, :StartTime, :EndTime, :BackupType, :Status, :Remark, :Locked, :BackupSize, :InstanceType, :MemSize, :ShardNum, :ReplicasNum, :RequestId
+        attr_accessor :BackupId, :StartTime, :EndTime, :BackupType, :Status, :Remark, :Locked, :BackupSize, :InstanceType, :MemSize, :ShardNum, :ReplicasNum, :Encrypted, :DecryptKey, :KmsKeyId, :KeyAlgorithm, :RequestId
 
-        def initialize(backupid=nil, starttime=nil, endtime=nil, backuptype=nil, status=nil, remark=nil, locked=nil, backupsize=nil, instancetype=nil, memsize=nil, shardnum=nil, replicasnum=nil, requestid=nil)
+        def initialize(backupid=nil, starttime=nil, endtime=nil, backuptype=nil, status=nil, remark=nil, locked=nil, backupsize=nil, instancetype=nil, memsize=nil, shardnum=nil, replicasnum=nil, encrypted=nil, decryptkey=nil, kmskeyid=nil, keyalgorithm=nil, requestid=nil)
           @BackupId = backupid
           @StartTime = starttime
           @EndTime = endtime
@@ -1663,6 +1659,10 @@ module TencentCloud
           @MemSize = memsize
           @ShardNum = shardnum
           @ReplicasNum = replicasnum
+          @Encrypted = encrypted
+          @DecryptKey = decryptkey
+          @KmsKeyId = kmskeyid
+          @KeyAlgorithm = keyalgorithm
           @RequestId = requestid
         end
 
@@ -1679,6 +1679,10 @@ module TencentCloud
           @MemSize = params['MemSize']
           @ShardNum = params['ShardNum']
           @ReplicasNum = params['ReplicasNum']
+          @Encrypted = params['Encrypted']
+          @DecryptKey = params['DecryptKey']
+          @KmsKeyId = params['KmsKeyId']
+          @KeyAlgorithm = params['KeyAlgorithm']
           @RequestId = params['RequestId']
         end
       end
@@ -2195,25 +2199,19 @@ module TencentCloud
 
       # DescribeInstanceBackups请求参数结构体
       class DescribeInstanceBackupsRequest < TencentCloud::Common::AbstractModel
-        # @param Limit: 每页输出的备份列表大小。默认大小为20，最大值为 100。
+        # @param Limit: <p>每页输出的备份列表大小。默认大小为20，最大值为 100。</p>
         # @type Limit: Integer
-        # @param Offset: 分页偏移量，取Limit整数倍。计算公式：offset=limit*(页码-1)。
+        # @param Offset: <p>分页偏移量，取Limit整数倍。计算公式：offset=limit*(页码-1)。</p>
         # @type Offset: Integer
-        # @param InstanceId: 待操作的实例ID，可通过 DescribeInstance 接口返回值中的 InstanceId 获取。
+        # @param InstanceId: <p>待操作的实例ID，可通过 DescribeInstance 接口返回值中的 InstanceId 获取。</p>
         # @type InstanceId: String
-        # @param BeginTime: 开始时间，格式如：2017-02-08 16:46:34。查询实例在 [beginTime, endTime] 时间段内开始备份的备份列表，查询时间最大跨度30天。
+        # @param BeginTime: <p>开始时间，格式如：2017-02-08 16:46:34。查询实例在 [beginTime, endTime] 时间段内开始备份的备份列表，查询时间最大跨度30天。</p>
         # @type BeginTime: String
-        # @param EndTime: 结束时间，格式如：2017-02-08 19:09:26。查询实例在 [beginTime, endTime] 时间段内开始备份的备份列表，查询时间最大跨度30天。
+        # @param EndTime: <p>结束时间，格式如：2017-02-08 19:09:26。查询实例在 [beginTime, endTime] 时间段内开始备份的备份列表，查询时间最大跨度30天。</p>
         # @type EndTime: String
-        # @param Status: 备份任务的状态：
-        # 1：备份在流程中。
-        # 2：备份正常。
-        # 3：备份转RDB文件处理中。
-        # 4：已完成RDB转换。
-        # -1：备份已过期。
-        # -2：备份已删除。
+        # @param Status: <p>备份任务的状态：<br>1：备份在流程中。<br>2：备份正常。<br>3：备份转RDB文件处理中。<br>4：已完成RDB转换。<br>-1：备份已过期。<br>-2：备份已删除。</p>
         # @type Status: Array
-        # @param InstanceName: 实例名称，支持根据实例名称模糊搜索。
+        # @param InstanceName: <p>实例名称，支持根据实例名称模糊搜索。</p>
         # @type InstanceName: String
 
         attr_accessor :Limit, :Offset, :InstanceId, :BeginTime, :EndTime, :Status, :InstanceName
@@ -2241,9 +2239,9 @@ module TencentCloud
 
       # DescribeInstanceBackups返回参数结构体
       class DescribeInstanceBackupsResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 备份总数。
+        # @param TotalCount: <p>备份总数。</p>
         # @type TotalCount: Integer
-        # @param BackupSet: 实例的备份数组。
+        # @param BackupSet: <p>实例的备份数组。</p>
         # @type BackupSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -8299,49 +8297,42 @@ module TencentCloud
 
       # 实例的备份数组
       class RedisBackupSet < TencentCloud::Common::AbstractModel
-        # @param StartTime: 备份开始时间。
+        # @param StartTime: <p>备份开始时间。</p>
         # @type StartTime: String
-        # @param BackupId: 备份任务ID。
+        # @param BackupId: <p>备份任务ID。</p>
         # @type BackupId: String
-        # @param BackupType: 备份类型。
-        # - 1：凌晨系统发起的自动备份。
-        # - 0：用户发起的手动备份。
+        # @param BackupType: <p>备份类型。</p><ul><li>1：凌晨系统发起的自动备份。</li><li>0：用户发起的手动备份。</li></ul>
         # @type BackupType: String
-        # @param Status: 备份状态。
-        # - 1：备份被其它流程锁定。
-        # - 2：备份正常，没有被任何流程锁定。
-        # - -1：备份已过期。
-        # - 3：备份正在被导出。
-        # - 4：备份导出成功。
+        # @param Status: <p>备份状态。 </p><ul><li>1：备份被其它流程锁定。</li><li>2：备份正常，没有被任何流程锁定。</li><li>-1：备份已过期。</li><li>3：备份正在被导出。</li><li>4：备份导出成功。</li></ul>
         # @type Status: Integer
-        # @param Remark: 备份的备注信息。
+        # @param Remark: <p>备份的备注信息。</p>
         # @type Remark: String
-        # @param Locked: 备份是否被锁定。
-        # - 0：未被锁定。
-        # - 1：已被锁定。
+        # @param Locked: <p>备份是否被锁定。</p><ul><li>0：未被锁定。</li><li>1：已被锁定。</li></ul>
         # @type Locked: Integer
-        # @param BackupSize: 内部字段，用户可忽略。
+        # @param BackupSize: <p>内部字段，用户可忽略。</p>
         # @type BackupSize: Integer
-        # @param FullBackup: 内部字段，用户可忽略。
+        # @param FullBackup: <p>内部字段，用户可忽略。</p>
         # @type FullBackup: Integer
-        # @param InstanceType: 内部字段，用户可忽略。
+        # @param InstanceType: <p>内部字段，用户可忽略。</p>
         # @type InstanceType: Integer
-        # @param InstanceId: 实例 ID。
+        # @param InstanceId: <p>实例 ID。</p>
         # @type InstanceId: String
-        # @param InstanceName: 实例名称。
+        # @param InstanceName: <p>实例名称。</p>
         # @type InstanceName: String
-        # @param Region: 本地备份所在地域。
+        # @param Region: <p>本地备份所在地域。</p>
         # @type Region: String
-        # @param EndTime: 备份结束时间。
+        # @param EndTime: <p>备份结束时间。</p>
         # @type EndTime: String
-        # @param FileType: 备份文件类型。
+        # @param FileType: <p>备份文件类型。</p>
         # @type FileType: String
-        # @param ExpireTime: 备份文件过期时间。
+        # @param ExpireTime: <p>备份文件过期时间。</p>
         # @type ExpireTime: String
+        # @param Encrypted: <p>备份文件是否加密</p>
+        # @type Encrypted: Boolean
 
-        attr_accessor :StartTime, :BackupId, :BackupType, :Status, :Remark, :Locked, :BackupSize, :FullBackup, :InstanceType, :InstanceId, :InstanceName, :Region, :EndTime, :FileType, :ExpireTime
+        attr_accessor :StartTime, :BackupId, :BackupType, :Status, :Remark, :Locked, :BackupSize, :FullBackup, :InstanceType, :InstanceId, :InstanceName, :Region, :EndTime, :FileType, :ExpireTime, :Encrypted
 
-        def initialize(starttime=nil, backupid=nil, backuptype=nil, status=nil, remark=nil, locked=nil, backupsize=nil, fullbackup=nil, instancetype=nil, instanceid=nil, instancename=nil, region=nil, endtime=nil, filetype=nil, expiretime=nil)
+        def initialize(starttime=nil, backupid=nil, backuptype=nil, status=nil, remark=nil, locked=nil, backupsize=nil, fullbackup=nil, instancetype=nil, instanceid=nil, instancename=nil, region=nil, endtime=nil, filetype=nil, expiretime=nil, encrypted=nil)
           @StartTime = starttime
           @BackupId = backupid
           @BackupType = backuptype
@@ -8357,6 +8348,7 @@ module TencentCloud
           @EndTime = endtime
           @FileType = filetype
           @ExpireTime = expiretime
+          @Encrypted = encrypted
         end
 
         def deserialize(params)
@@ -8375,6 +8367,7 @@ module TencentCloud
           @EndTime = params['EndTime']
           @FileType = params['FileType']
           @ExpireTime = params['ExpireTime']
+          @Encrypted = params['Encrypted']
         end
       end
 

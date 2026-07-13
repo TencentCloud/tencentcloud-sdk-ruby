@@ -58,8 +58,8 @@ module TencentCloud
 
         attr_accessor :Notes, :Host, :User, :ModifyTime, :ModifyPasswordTime, :CreateTime, :MaxUserConnections, :OpenCam
         extend Gem::Deprecate
-        deprecate :CreateTime, :none, 2026, 6
-        deprecate :CreateTime=, :none, 2026, 6
+        deprecate :CreateTime, :none, 2026, 7
+        deprecate :CreateTime=, :none, 2026, 7
 
         def initialize(notes=nil, host=nil, user=nil, modifytime=nil, modifypasswordtime=nil, createtime=nil, maxuserconnections=nil, opencam=nil)
           @Notes = notes
@@ -442,8 +442,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :StartTime, :EndTime, :AggregationConditions, :AuditLogFilter, :LogFilter
         extend Gem::Deprecate
-        deprecate :AuditLogFilter, :none, 2026, 6
-        deprecate :AuditLogFilter=, :none, 2026, 6
+        deprecate :AuditLogFilter, :none, 2026, 7
+        deprecate :AuditLogFilter=, :none, 2026, 7
 
         def initialize(instanceid=nil, starttime=nil, endtime=nil, aggregationconditions=nil, auditlogfilter=nil, logfilter=nil)
           @InstanceId = instanceid
@@ -1107,10 +1107,10 @@ module TencentCloud
 
         attr_accessor :ExpandThreshold, :ShrinkThreshold, :ExpandPeriod, :ShrinkPeriod, :ExpandSecondPeriod, :ShrinkSecondPeriod
         extend Gem::Deprecate
-        deprecate :ExpandPeriod, :none, 2026, 6
-        deprecate :ExpandPeriod=, :none, 2026, 6
-        deprecate :ShrinkPeriod, :none, 2026, 6
-        deprecate :ShrinkPeriod=, :none, 2026, 6
+        deprecate :ExpandPeriod, :none, 2026, 7
+        deprecate :ExpandPeriod=, :none, 2026, 7
+        deprecate :ShrinkPeriod, :none, 2026, 7
+        deprecate :ShrinkPeriod=, :none, 2026, 7
 
         def initialize(expandthreshold=nil, shrinkthreshold=nil, expandperiod=nil, shrinkperiod=nil, expandsecondperiod=nil, shrinksecondperiod=nil)
           @ExpandThreshold = expandthreshold
@@ -1427,8 +1427,8 @@ module TencentCloud
 
         attr_accessor :Name, :Size, :Date, :IntranetUrl, :InternetUrl, :Type, :BinlogStartTime, :BinlogFinishTime, :Region, :Status, :RemoteInfo, :CosStorageType, :InstanceId, :Progress
         extend Gem::Deprecate
-        deprecate :InstanceId, :none, 2026, 6
-        deprecate :InstanceId=, :none, 2026, 6
+        deprecate :InstanceId, :none, 2026, 7
+        deprecate :InstanceId=, :none, 2026, 7
 
         def initialize(name=nil, size=nil, date=nil, intraneturl=nil, interneturl=nil, type=nil, binlogstarttime=nil, binlogfinishtime=nil, region=nil, status=nil, remoteinfo=nil, cosstoragetype=nil, instanceid=nil, progress=nil)
           @Name = name
@@ -2376,8 +2376,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :StartTime, :EndTime, :Order, :OrderBy, :Filter, :LogFilter, :ColumnFilter
         extend Gem::Deprecate
-        deprecate :Filter, :none, 2026, 6
-        deprecate :Filter=, :none, 2026, 6
+        deprecate :Filter, :none, 2026, 7
+        deprecate :Filter=, :none, 2026, 7
 
         def initialize(instanceid=nil, starttime=nil, endtime=nil, order=nil, orderby=nil, filter=nil, logfilter=nil, columnfilter=nil)
           @InstanceId = instanceid
@@ -2924,8 +2924,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :SpecifiedRollbackTime, :SpecifiedBackupId, :UniqVpcId, :UniqSubnetId, :Memory, :Volume, :InstanceName, :SecurityGroup, :ResourceTags, :Cpu, :ProtectMode, :DeployMode, :SlaveZone, :BackupZone, :DeviceType, :InstanceNodes, :DeployGroupId, :DryRun, :CageId, :ProjectId, :PayType, :Period, :ClusterTopology, :SrcRegion, :SpecifiedSubBackupId, :MasterZone, :Zone, :FourthZone
         extend Gem::Deprecate
-        deprecate :MasterZone, :none, 2026, 6
-        deprecate :MasterZone=, :none, 2026, 6
+        deprecate :MasterZone, :none, 2026, 7
+        deprecate :MasterZone=, :none, 2026, 7
 
         def initialize(instanceid=nil, specifiedrollbacktime=nil, specifiedbackupid=nil, uniqvpcid=nil, uniqsubnetid=nil, memory=nil, volume=nil, instancename=nil, securitygroup=nil, resourcetags=nil, cpu=nil, protectmode=nil, deploymode=nil, slavezone=nil, backupzone=nil, devicetype=nil, instancenodes=nil, deploygroupid=nil, dryrun=nil, cageid=nil, projectid=nil, paytype=nil, period=nil, clustertopology=nil, srcregion=nil, specifiedsubbackupid=nil, masterzone=nil, zone=nil, fourthzone=nil)
           @InstanceId = instanceid
@@ -4284,6 +4284,38 @@ module TencentCloud
         end
       end
 
+      # 投递错误
+      class DeliverSummary < TencentCloud::Common::AbstractModel
+        # @param DeliverType: <p>投递类型，store（存储类），mq（消息通道）</p>
+        # @type DeliverType: String
+        # @param DeliverSubType: <p>投递子类型：cls，ckafka。</p>
+        # @type DeliverSubType: String
+        # @param DeliverConsumer: <p>投递者</p>
+        # @type DeliverConsumer: String
+        # @param DeliverConsumerName: <p>投递者名称</p>
+        # @type DeliverConsumerName: String
+        # @param DeliverError: <p>投递异常错误</p>
+        # @type DeliverError: String
+
+        attr_accessor :DeliverType, :DeliverSubType, :DeliverConsumer, :DeliverConsumerName, :DeliverError
+
+        def initialize(delivertype=nil, deliversubtype=nil, deliverconsumer=nil, deliverconsumername=nil, delivererror=nil)
+          @DeliverType = delivertype
+          @DeliverSubType = deliversubtype
+          @DeliverConsumer = deliverconsumer
+          @DeliverConsumerName = deliverconsumername
+          @DeliverError = delivererror
+        end
+
+        def deserialize(params)
+          @DeliverType = params['DeliverType']
+          @DeliverSubType = params['DeliverSubType']
+          @DeliverConsumer = params['DeliverConsumer']
+          @DeliverConsumerName = params['DeliverConsumerName']
+          @DeliverError = params['DeliverError']
+        end
+      end
+
       # 置放群组信息
       class DeployGroupInfo < TencentCloud::Common::AbstractModel
         # @param DeployGroupId: 置放群组 ID。
@@ -4574,15 +4606,15 @@ module TencentCloud
 
       # DescribeAuditInstanceList请求参数结构体
       class DescribeAuditInstanceListRequest < TencentCloud::Common::AbstractModel
-        # @param AuditSwitch: 实例审计开启的状态。1-已开启审计；0-未开启审计。
+        # @param AuditSwitch: <p>实例审计开启的状态。1-已开启审计；0-未开启审计。</p>
         # @type AuditSwitch: Integer
-        # @param Filters: 查询实例列表的过滤条件。
+        # @param Filters: <p>查询实例列表的过滤条件。</p>
         # @type Filters: Array
-        # @param AuditMode: 实例的审计规则模式。1-规则审计；0-全审计。
+        # @param AuditMode: <p>实例的审计规则模式。1-规则审计；0-全审计。</p>
         # @type AuditMode: Integer
-        # @param Limit: 单次请求返回的数量。默认值为30，最大值为 20000。
+        # @param Limit: <p>单次请求返回的数量。默认值为30，最大值为 20000。</p>
         # @type Limit: Integer
-        # @param Offset: 偏移量，默认值为 0。
+        # @param Offset: <p>偏移量，默认值为 0。</p>
         # @type Offset: Integer
 
         attr_accessor :AuditSwitch, :Filters, :AuditMode, :Limit, :Offset
@@ -4613,9 +4645,9 @@ module TencentCloud
 
       # DescribeAuditInstanceList返回参数结构体
       class DescribeAuditInstanceListResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 符合查询条件的实例总数。
+        # @param TotalCount: <p>符合查询条件的实例总数。</p>
         # @type TotalCount: Integer
-        # @param Items: 审计实例详细信息列表。
+        # @param Items: <p>审计实例详细信息列表。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Items: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -5115,10 +5147,10 @@ module TencentCloud
 
         attr_accessor :StartTimeMin, :StartTimeMax, :BackupExpireDays, :BackupMethod, :BinlogExpireDays, :BackupTimeWindow, :EnableBackupPeriodSave, :BackupPeriodSaveDays, :BackupPeriodSaveInterval, :BackupPeriodSaveCount, :StartBackupPeriodSaveDate, :EnableBackupArchive, :BackupArchiveDays, :EnableBinlogArchive, :BinlogArchiveDays, :EnableBackupStandby, :BackupStandbyDays, :EnableBinlogStandby, :BinlogStandbyDays, :RequestId
         extend Gem::Deprecate
-        deprecate :StartTimeMin, :none, 2026, 6
-        deprecate :StartTimeMin=, :none, 2026, 6
-        deprecate :StartTimeMax, :none, 2026, 6
-        deprecate :StartTimeMax=, :none, 2026, 6
+        deprecate :StartTimeMin, :none, 2026, 7
+        deprecate :StartTimeMin=, :none, 2026, 7
+        deprecate :StartTimeMax, :none, 2026, 7
+        deprecate :StartTimeMax=, :none, 2026, 7
 
         def initialize(starttimemin=nil, starttimemax=nil, backupexpiredays=nil, backupmethod=nil, binlogexpiredays=nil, backuptimewindow=nil, enablebackupperiodsave=nil, backupperiodsavedays=nil, backupperiodsaveinterval=nil, backupperiodsavecount=nil, startbackupperiodsavedate=nil, enablebackuparchive=nil, backuparchivedays=nil, enablebinlogarchive=nil, binlogarchivedays=nil, enablebackupstandby=nil, backupstandbydays=nil, enablebinlogstandby=nil, binlogstandbydays=nil, requestid=nil)
           @StartTimeMin = starttimemin
@@ -7819,8 +7851,8 @@ module TencentCloud
 
         attr_accessor :Count, :CustomConf, :WeightRule, :CustomConfInfo, :RequestId
         extend Gem::Deprecate
-        deprecate :CustomConf, :none, 2026, 6
-        deprecate :CustomConf=, :none, 2026, 6
+        deprecate :CustomConf, :none, 2026, 7
+        deprecate :CustomConf=, :none, 2026, 7
 
         def initialize(count=nil, customconf=nil, weightrule=nil, customconfinfo=nil, requestid=nil)
           @Count = count
@@ -9363,65 +9395,54 @@ module TencentCloud
 
       # 实例审计详情信息
       class InstanceDbAuditStatus < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID。
+        # @param InstanceId: <p>实例ID。</p>
         # @type InstanceId: String
-        # @param AuditStatus: 审计状态。ON-表示审计已开启，OFF-表示审计关闭
+        # @param AuditStatus: <p>审计状态。ON-表示审计已开启，OFF-表示审计关闭</p>
         # @type AuditStatus: String
-        # @param AuditTask: 任务状态。0-无任务；1-审计开启中，2-审计关闭中。
+        # @param AuditTask: <p>任务状态。0-无任务；1-审计开启中，2-审计关闭中。</p>
         # @type AuditTask: Integer
-        # @param LogExpireDay: 日志保留时长。支持值包括：
-        # 7 - 一周；
-        # 30 - 一个月；
-        # 90 - 三个月；
-        # 180 - 六个月；
-        # 365 - 一年；
-        # 1095 - 三年；
-        # 1825 - 五年。
+        # @param LogExpireDay: <p>日志保留时长。支持值包括：<br>7 - 一周；<br>30 - 一个月；<br>90 - 三个月；<br>180 - 六个月；<br>365 - 一年；<br>1095 - 三年；<br>1825 - 五年。</p>
         # @type LogExpireDay: Integer
-        # @param HighLogExpireDay: 高频存储时长。支持值包括：
-        # 3 - 3天；
-        # 7 - 一周；
-        # 30 - 一个月；
-        # 90 - 三个月；
-        # 180 - 六个月；
-        # 365 - 一年；
-        # 1095 - 三年；
-        # 1825 - 五年。
+        # @param HighLogExpireDay: <p>高频存储时长。支持值包括：<br>3 - 3天；<br>7 - 一周；<br>30 - 一个月；<br>90 - 三个月；<br>180 - 六个月；<br>365 - 一年；<br>1095 - 三年；<br>1825 - 五年。</p>
         # @type HighLogExpireDay: Integer
-        # @param LowLogExpireDay: 低频存储时长。单位：天，等于日志保存时长减去高频存储时长。
+        # @param LowLogExpireDay: <p>低频存储时长。单位：天，等于日志保存时长减去高频存储时长。</p>
         # @type LowLogExpireDay: Integer
-        # @param BillingAmount: 日志存储量(单位：GB)。
+        # @param BillingAmount: <p>日志存储量(单位：GB)。</p>
         # @type BillingAmount: Float
-        # @param HighRealStorage: 高频存储量(单位：GB)。
+        # @param HighRealStorage: <p>高频存储量(单位：GB)。</p>
         # @type HighRealStorage: Float
-        # @param LowRealStorage: 低频存储量(单位：GB)。
+        # @param LowRealStorage: <p>低频存储量(单位：GB)。</p>
         # @type LowRealStorage: Float
-        # @param AuditAll: 是否为全审计。true-表示全审计。
+        # @param AuditAll: <p>是否为全审计（true-表示全审计）</p>
         # @type AuditAll: Boolean
-        # @param CreateAt: 审计开通时间。
+        # @param CreateAt: <p>审计开通时间。</p>
         # @type CreateAt: String
-        # @param InstanceInfo: 实例相关信息
+        # @param InstanceInfo: <p>实例相关信息</p>
         # @type InstanceInfo: :class:`Tencentcloud::Cdb.v20170320.models.AuditInstanceInfo`
-        # @param RealStorage: 总存储量(单位：GB)。
+        # @param RealStorage: <p>总存储量(单位：GB)。</p>
         # @type RealStorage: Float
-        # @param OldRule: 是否包含审计策略
+        # @param OldRule: <p>是否包含审计策略</p>
         # @type OldRule: Boolean
-        # @param RuleTemplateIds: 实例所应用的规则模板。
+        # @param RuleTemplateIds: <p>实例所应用的规则模板。</p>
         # @type RuleTemplateIds: Array
-        # @param TrialStatus: 限免状态
+        # @param TrialStatus: <p>限免状态</p>
         # @type TrialStatus: String
-        # @param TrialStartTime: 限免开启时间
+        # @param TrialStartTime: <p>限免开启时间</p>
         # @type TrialStartTime: Integer
-        # @param TrialDuration: 限免持续时间
+        # @param TrialDuration: <p>限免持续时间</p>
         # @type TrialDuration: Integer
-        # @param TrialCloseTime: 限免关闭时间
+        # @param TrialCloseTime: <p>限免关闭时间</p>
         # @type TrialCloseTime: Integer
-        # @param TrialDescribeLogHours: 限免期查询日志时长
+        # @param TrialDescribeLogHours: <p>限免期查询日志时长</p>
         # @type TrialDescribeLogHours: Integer
+        # @param DeliverSummary: <p>投递信息</p>
+        # @type DeliverSummary: Array
+        # @param Deliver: <p>是否开启了投递，ON：开启，OFF：关闭</p>
+        # @type Deliver: String
 
-        attr_accessor :InstanceId, :AuditStatus, :AuditTask, :LogExpireDay, :HighLogExpireDay, :LowLogExpireDay, :BillingAmount, :HighRealStorage, :LowRealStorage, :AuditAll, :CreateAt, :InstanceInfo, :RealStorage, :OldRule, :RuleTemplateIds, :TrialStatus, :TrialStartTime, :TrialDuration, :TrialCloseTime, :TrialDescribeLogHours
+        attr_accessor :InstanceId, :AuditStatus, :AuditTask, :LogExpireDay, :HighLogExpireDay, :LowLogExpireDay, :BillingAmount, :HighRealStorage, :LowRealStorage, :AuditAll, :CreateAt, :InstanceInfo, :RealStorage, :OldRule, :RuleTemplateIds, :TrialStatus, :TrialStartTime, :TrialDuration, :TrialCloseTime, :TrialDescribeLogHours, :DeliverSummary, :Deliver
 
-        def initialize(instanceid=nil, auditstatus=nil, audittask=nil, logexpireday=nil, highlogexpireday=nil, lowlogexpireday=nil, billingamount=nil, highrealstorage=nil, lowrealstorage=nil, auditall=nil, createat=nil, instanceinfo=nil, realstorage=nil, oldrule=nil, ruletemplateids=nil, trialstatus=nil, trialstarttime=nil, trialduration=nil, trialclosetime=nil, trialdescribeloghours=nil)
+        def initialize(instanceid=nil, auditstatus=nil, audittask=nil, logexpireday=nil, highlogexpireday=nil, lowlogexpireday=nil, billingamount=nil, highrealstorage=nil, lowrealstorage=nil, auditall=nil, createat=nil, instanceinfo=nil, realstorage=nil, oldrule=nil, ruletemplateids=nil, trialstatus=nil, trialstarttime=nil, trialduration=nil, trialclosetime=nil, trialdescribeloghours=nil, deliversummary=nil, deliver=nil)
           @InstanceId = instanceid
           @AuditStatus = auditstatus
           @AuditTask = audittask
@@ -9442,6 +9463,8 @@ module TencentCloud
           @TrialDuration = trialduration
           @TrialCloseTime = trialclosetime
           @TrialDescribeLogHours = trialdescribeloghours
+          @DeliverSummary = deliversummary
+          @Deliver = deliver
         end
 
         def deserialize(params)
@@ -9468,6 +9491,15 @@ module TencentCloud
           @TrialDuration = params['TrialDuration']
           @TrialCloseTime = params['TrialCloseTime']
           @TrialDescribeLogHours = params['TrialDescribeLogHours']
+          unless params['DeliverSummary'].nil?
+            @DeliverSummary = []
+            params['DeliverSummary'].each do |i|
+              deliversummary_tmp = DeliverSummary.new
+              deliversummary_tmp.deserialize(i)
+              @DeliverSummary << deliversummary_tmp
+            end
+          end
+          @Deliver = params['Deliver']
         end
       end
 
@@ -9823,8 +9855,8 @@ module TencentCloud
 
         attr_accessor :AsyncRequestId, :RequestId
         extend Gem::Deprecate
-        deprecate :AsyncRequestId, :none, 2026, 6
-        deprecate :AsyncRequestId=, :none, 2026, 6
+        deprecate :AsyncRequestId, :none, 2026, 7
+        deprecate :AsyncRequestId=, :none, 2026, 7
 
         def initialize(asyncrequestid=nil, requestid=nil)
           @AsyncRequestId = asyncrequestid
@@ -10228,8 +10260,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :NewPassword, :Accounts, :SkipValidatePassword
         extend Gem::Deprecate
-        deprecate :SkipValidatePassword, :none, 2026, 6
-        deprecate :SkipValidatePassword=, :none, 2026, 6
+        deprecate :SkipValidatePassword, :none, 2026, 7
+        deprecate :SkipValidatePassword=, :none, 2026, 7
 
         def initialize(instanceid=nil, newpassword=nil, accounts=nil, skipvalidatepassword=nil)
           @InstanceId = instanceid
@@ -10571,8 +10603,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :LogExpireDay, :HighLogExpireDay, :AuditAll, :AuditRuleFilters, :RuleTemplateIds
         extend Gem::Deprecate
-        deprecate :AuditRuleFilters, :none, 2026, 6
-        deprecate :AuditRuleFilters=, :none, 2026, 6
+        deprecate :AuditRuleFilters, :none, 2026, 7
+        deprecate :AuditRuleFilters=, :none, 2026, 7
 
         def initialize(instanceid=nil, logexpireday=nil, highlogexpireday=nil, auditall=nil, auditrulefilters=nil, ruletemplateids=nil)
           @InstanceId = instanceid
@@ -11335,8 +11367,8 @@ module TencentCloud
 
         attr_accessor :AsyncRequestId, :RequestId
         extend Gem::Deprecate
-        deprecate :AsyncRequestId, :none, 2026, 6
-        deprecate :AsyncRequestId=, :none, 2026, 6
+        deprecate :AsyncRequestId, :none, 2026, 7
+        deprecate :AsyncRequestId=, :none, 2026, 7
 
         def initialize(asyncrequestid=nil, requestid=nil)
           @AsyncRequestId = asyncrequestid
@@ -11761,8 +11793,8 @@ module TencentCloud
 
         attr_accessor :RoGroupId, :RoGroupInfo, :RoWeightValues, :IsBalanceRoLoad, :ReplicationDelayTime
         extend Gem::Deprecate
-        deprecate :ReplicationDelayTime, :none, 2026, 6
-        deprecate :ReplicationDelayTime=, :none, 2026, 6
+        deprecate :ReplicationDelayTime, :none, 2026, 7
+        deprecate :ReplicationDelayTime=, :none, 2026, 7
 
         def initialize(rogroupid=nil, rogroupinfo=nil, roweightvalues=nil, isbalanceroload=nil, replicationdelaytime=nil)
           @RoGroupId = rogroupid
@@ -11993,8 +12025,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :LogExpireDay, :HighLogExpireDay, :AuditRuleFilters, :RuleTemplateIds, :AuditAll
         extend Gem::Deprecate
-        deprecate :AuditRuleFilters, :none, 2026, 6
-        deprecate :AuditRuleFilters=, :none, 2026, 6
+        deprecate :AuditRuleFilters, :none, 2026, 7
+        deprecate :AuditRuleFilters=, :none, 2026, 7
 
         def initialize(instanceid=nil, logexpireday=nil, highlogexpireday=nil, auditrulefilters=nil, ruletemplateids=nil, auditall=nil)
           @InstanceId = instanceid
@@ -12273,8 +12305,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :ParamName, :OldValue, :NewValue, :IsSucess, :ModifyTime, :IsSuccess
         extend Gem::Deprecate
-        deprecate :IsSucess, :none, 2026, 6
-        deprecate :IsSucess=, :none, 2026, 6
+        deprecate :IsSucess, :none, 2026, 7
+        deprecate :IsSucess=, :none, 2026, 7
 
         def initialize(instanceid=nil, paramname=nil, oldvalue=nil, newvalue=nil, issucess=nil, modifytime=nil, issuccess=nil)
           @InstanceId = instanceid

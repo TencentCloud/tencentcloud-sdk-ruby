@@ -5541,13 +5541,13 @@ module TencentCloud
 
       # DescribeBindingPolicyObjectList接口的Dimension
       class DescribeBindingPolicyObjectListDimension < TencentCloud::Common::AbstractModel
-        # @param RegionId: 地域id
+        # @param RegionId: <p>地域id</p>
         # @type RegionId: Integer
-        # @param Region: 地域简称
+        # @param Region: <p>地域简称</p>
         # @type Region: String
-        # @param Dimensions: 维度组合json字符串
+        # @param Dimensions: <p>维度组合json字符串</p>
         # @type Dimensions: String
-        # @param EventDimensions: 事件维度组合json字符串
+        # @param EventDimensions: <p>事件维度组合json字符串</p>
         # @type EventDimensions: String
 
         attr_accessor :RegionId, :Region, :Dimensions, :EventDimensions
@@ -5569,13 +5569,13 @@ module TencentCloud
 
       # 查询策略绑定对象列表接口返回的对象实例信息
       class DescribeBindingPolicyObjectListInstance < TencentCloud::Common::AbstractModel
-        # @param UniqueId: 对象唯一id
+        # @param UniqueId: <p>对象唯一id</p>
         # @type UniqueId: String
-        # @param Dimensions: 表示对象实例的维度集合，jsonObj字符串
+        # @param Dimensions: <p>表示对象实例的维度集合，jsonObj字符串</p>
         # @type Dimensions: String
-        # @param IsShielded: 对象是否被屏蔽，0表示未屏蔽，1表示被屏蔽
+        # @param IsShielded: <p>对象是否被屏蔽，0表示未屏蔽，1表示被屏蔽</p>
         # @type IsShielded: Integer
-        # @param Region: 对象所在的地域
+        # @param Region: <p>对象所在的地域</p>
         # @type Region: String
 
         attr_accessor :UniqueId, :Dimensions, :IsShielded, :Region
@@ -5597,21 +5597,21 @@ module TencentCloud
 
       # DescribeBindingPolicyObjectList返回的是实例分组信息
       class DescribeBindingPolicyObjectListInstanceGroup < TencentCloud::Common::AbstractModel
-        # @param InstanceGroupId: 实例分组id
+        # @param InstanceGroupId: <p>实例分组id</p>
         # @type InstanceGroupId: Integer
-        # @param ViewName: 告警策略类型名称
+        # @param ViewName: <p>告警策略类型名称</p>
         # @type ViewName: String
-        # @param LastEditUin: 最后编辑uin
+        # @param LastEditUin: <p>最后编辑uin</p>
         # @type LastEditUin: String
-        # @param GroupName: 实例分组名称
+        # @param GroupName: <p>实例分组名称</p>
         # @type GroupName: String
-        # @param InstanceSum: 实例数量
+        # @param InstanceSum: <p>实例数量</p>
         # @type InstanceSum: Integer
-        # @param UpdateTime: 更新时间
+        # @param UpdateTime: <p>更新时间</p>
         # @type UpdateTime: Integer
-        # @param InsertTime: 创建时间
+        # @param InsertTime: <p>创建时间</p>
         # @type InsertTime: Integer
-        # @param Regions: 实例所在的地域集合
+        # @param Regions: <p>实例所在的地域集合</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Regions: Array
 
@@ -7212,11 +7212,11 @@ module TencentCloud
 
       # 查询策略输出的用户回调信息
       class DescribePolicyGroupInfoCallback < TencentCloud::Common::AbstractModel
-        # @param CallbackUrl: 用户回调接口地址
+        # @param CallbackUrl: <p>用户回调接口地址</p>
         # @type CallbackUrl: String
-        # @param ValidFlag: 用户回调接口状态，0表示未验证，1表示已验证，2表示存在url但没有通过验证
+        # @param ValidFlag: <p>用户回调接口状态，0表示未验证，1表示已验证，2表示存在url但没有通过验证</p>
         # @type ValidFlag: Integer
-        # @param VerifyCode: 用户回调接口验证码
+        # @param VerifyCode: <p>用户回调接口验证码</p>
         # @type VerifyCode: String
 
         attr_accessor :CallbackUrl, :ValidFlag, :VerifyCode
@@ -7236,30 +7236,30 @@ module TencentCloud
 
       # 查询策略输出的阈值告警条件
       class DescribePolicyGroupInfoCondition < TencentCloud::Common::AbstractModel
-        # @param MetricShowName: 指标名称
+        # @param MetricShowName: <p>指标名称</p>
         # @type MetricShowName: String
-        # @param Period: 数据聚合周期(单位秒)
+        # @param Period: <p>数据聚合周期(单位秒)</p>
         # @type Period: Integer
-        # @param MetricId: 指标id
+        # @param MetricId: <p>指标id</p>
         # @type MetricId: Integer
-        # @param RuleId: 阈值规则id
+        # @param RuleId: <p>阈值规则id</p>
         # @type RuleId: Integer
-        # @param Unit: 指标单位
+        # @param Unit: <p>指标单位</p>
         # @type Unit: String
-        # @param AlarmNotifyType: 告警发送收敛类型。0连续告警，1指数告警
+        # @param AlarmNotifyType: <p>告警发送收敛类型。0连续告警，1指数告警</p>
         # @type AlarmNotifyType: Integer
-        # @param AlarmNotifyPeriod: 告警发送周期单位秒。<0 不触发, 0 只触发一次, >0 每隔triggerTime秒触发一次
+        # @param AlarmNotifyPeriod: <p>告警发送周期单位秒。&lt;0 不触发, 0 只触发一次, &gt;0 每隔triggerTime秒触发一次</p>
         # @type AlarmNotifyPeriod: Integer
-        # @param CalcType: 比较类型，1表示大于，2表示大于等于，3表示小于，4表示小于等于，5表示相等，6表示不相等，7表示日同比上涨，8表示日同比下降，9表示周同比上涨，10表示周同比下降，11表示周期环比上涨，12表示周期环比下降
+        # @param CalcType: <p>比较类型，1表示大于，2表示大于等于，3表示小于，4表示小于等于，5表示相等，6表示不相等，7表示日同比上涨，8表示日同比下降，9表示周同比上涨，10表示周同比下降，11表示周期环比上涨，12表示周期环比下降</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CalcType: Integer
-        # @param CalcValue: 检测阈值
+        # @param CalcValue: <p>检测阈值</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CalcValue: String
-        # @param ContinueTime: 持续多长时间触发规则会告警(单位秒)
+        # @param ContinueTime: <p>持续多长时间触发规则会告警(单位秒)</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ContinueTime: Integer
-        # @param MetricName: 告警指标名
+        # @param MetricName: <p>告警指标名</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MetricName: String
 
@@ -7296,23 +7296,23 @@ module TencentCloud
 
       # 查询策略输出的模板策略组信息
       class DescribePolicyGroupInfoConditionTpl < TencentCloud::Common::AbstractModel
-        # @param GroupId: 策略组id
+        # @param GroupId: <p>策略组id</p>
         # @type GroupId: Integer
-        # @param GroupName: 策略组名称
+        # @param GroupName: <p>策略组名称</p>
         # @type GroupName: String
-        # @param ViewName: 策略类型
+        # @param ViewName: <p>策略类型</p>
         # @type ViewName: String
-        # @param Remark: 策略组说明
+        # @param Remark: <p>策略组说明</p>
         # @type Remark: String
-        # @param LastEditUin: 最后编辑的用户uin
+        # @param LastEditUin: <p>最后编辑的用户uin</p>
         # @type LastEditUin: String
-        # @param UpdateTime: 更新时间
+        # @param UpdateTime: <p>更新时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: Integer
-        # @param InsertTime: 创建时间
+        # @param InsertTime: <p>创建时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InsertTime: Integer
-        # @param IsUnionRule: 是否且规则
+        # @param IsUnionRule: <p>是否且规则</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsUnionRule: Integer
 
@@ -7343,15 +7343,15 @@ module TencentCloud
 
       # 查询策略输出的事件告警条件
       class DescribePolicyGroupInfoEventCondition < TencentCloud::Common::AbstractModel
-        # @param EventId: 事件id
+        # @param EventId: <p>事件id</p>
         # @type EventId: Integer
-        # @param RuleId: 事件告警规则id
+        # @param RuleId: <p>事件告警规则id</p>
         # @type RuleId: Integer
-        # @param EventShowName: 事件名称
+        # @param EventShowName: <p>事件名称</p>
         # @type EventShowName: String
-        # @param AlarmNotifyPeriod: 告警发送周期单位秒。<0 不触发, 0 只触发一次, >0 每隔triggerTime秒触发一次
+        # @param AlarmNotifyPeriod: <p>告警发送周期单位秒。&lt;0 不触发, 0 只触发一次, &gt;0 每隔triggerTime秒触发一次</p>
         # @type AlarmNotifyPeriod: Integer
-        # @param AlarmNotifyType: 告警发送收敛类型。0连续告警，1指数告警
+        # @param AlarmNotifyType: <p>告警发送收敛类型。0连续告警，1指数告警</p>
         # @type AlarmNotifyType: Integer
 
         attr_accessor :EventId, :RuleId, :EventShowName, :AlarmNotifyPeriod, :AlarmNotifyType
@@ -7707,19 +7707,19 @@ module TencentCloud
 
       # DescribePolicyGroupList接口策略组绑定的实例分组信息
       class DescribePolicyGroupListGroupInstanceGroup < TencentCloud::Common::AbstractModel
-        # @param InstanceGroupId: 实例分组名称id
+        # @param InstanceGroupId: <p>实例分组名称id</p>
         # @type InstanceGroupId: Integer
-        # @param ViewName: 策略类型视图名称
+        # @param ViewName: <p>策略类型视图名称</p>
         # @type ViewName: String
-        # @param LastEditUin: 最近编辑的用户uin
+        # @param LastEditUin: <p>最近编辑的用户uin</p>
         # @type LastEditUin: String
-        # @param GroupName: 实例分组名称
+        # @param GroupName: <p>实例分组名称</p>
         # @type GroupName: String
-        # @param InstanceSum: 实例数量
+        # @param InstanceSum: <p>实例数量</p>
         # @type InstanceSum: Integer
-        # @param UpdateTime: 更新时间
+        # @param UpdateTime: <p>更新时间</p>
         # @type UpdateTime: Integer
-        # @param InsertTime: 创建时间
+        # @param InsertTime: <p>创建时间</p>
         # @type InsertTime: Integer
 
         attr_accessor :InstanceGroupId, :ViewName, :LastEditUin, :GroupName, :InstanceSum, :UpdateTime, :InsertTime

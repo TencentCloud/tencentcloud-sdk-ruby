@@ -257,6 +257,77 @@ module TencentCloud
         end
       end
 
+      # CreateEndpoint请求参数结构体
+      class CreateEndpointRequest < TencentCloud::Common::AbstractModel
+        # @param EndpointName: <p>服务名称。最大 64 字符。</p>
+        # @type EndpointName: String
+        # @param ModelId: <p>模型 ID。可通过 DescribeModelList 接口获取。</p>
+        # @type ModelId: String
+        # @param ChargeType: <p>计费方式。取值：FREE（免费体验）、TOKEN（按 Token 计费）、TPM（TPM 保障）、COMPUTE_UNIT（按算力单元计费）。</p>
+        # @type ChargeType: String
+        # @param RPM: <p>RPM（每分钟请求数）限流上限。可选。必须大于 0，且不能超过用户在该模型上的 RPM 上限。不传则使用默认值（60）。</p>
+        # @type RPM: Integer
+        # @param TPM: <p>TPM（每分钟 Token 数）限流上限，单位为 tokens/min。可选。必须大于 0，且不能超过用户在该模型上的 TPM 上限。设置后会同时作用于输入 TPM 和输出 TPM。不传则使用默认值（0 表示不限流）。</p>
+        # @type TPM: Integer
+        # @param AutoAdjustQuota: <p>自动调整配额</p>
+        # @type AutoAdjustQuota: Integer
+        # @param EndpointId: <p>自定义推理服务 id</p>
+        # @type EndpointId: String
+
+        attr_accessor :EndpointName, :ModelId, :ChargeType, :RPM, :TPM, :AutoAdjustQuota, :EndpointId
+
+        def initialize(endpointname=nil, modelid=nil, chargetype=nil, rpm=nil, tpm=nil, autoadjustquota=nil, endpointid=nil)
+          @EndpointName = endpointname
+          @ModelId = modelid
+          @ChargeType = chargetype
+          @RPM = rpm
+          @TPM = tpm
+          @AutoAdjustQuota = autoadjustquota
+          @EndpointId = endpointid
+        end
+
+        def deserialize(params)
+          @EndpointName = params['EndpointName']
+          @ModelId = params['ModelId']
+          @ChargeType = params['ChargeType']
+          @RPM = params['RPM']
+          @TPM = params['TPM']
+          @AutoAdjustQuota = params['AutoAdjustQuota']
+          @EndpointId = params['EndpointId']
+        end
+      end
+
+      # CreateEndpoint返回参数结构体
+      class CreateEndpointResponse < TencentCloud::Common::AbstractModel
+        # @param EndpointId: <p>推理服务 ID。</p>
+        # @type EndpointId: String
+        # @param Endpoint: <p>推理服务详情信息。</p>
+        # @type Endpoint: :class:`Tencentcloud::Tokenhub.v20260322.models.EndpointCreateDetail`
+        # @param StopReason: <p>停止原因。当推理服务状态为已停止时返回。取值：FREE_QUOTA_EXHAUSTED（免费额度已用尽）、NO_FREE_PACKAGE（无可用免费包）、INSUFFICIENT_BALANCE（余额不足）、BILLING_ISOLATED（账户欠费隔离）、INTERNAL_ERROR（内部错误）。</p>
+        # @type StopReason: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :EndpointId, :Endpoint, :StopReason, :RequestId
+
+        def initialize(endpointid=nil, endpoint=nil, stopreason=nil, requestid=nil)
+          @EndpointId = endpointid
+          @Endpoint = endpoint
+          @StopReason = stopreason
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @EndpointId = params['EndpointId']
+          unless params['Endpoint'].nil?
+            @Endpoint = EndpointCreateDetail.new
+            @Endpoint.deserialize(params['Endpoint'])
+          end
+          @StopReason = params['StopReason']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateGlossaryEntries请求参数结构体
       class CreateGlossaryEntriesRequest < TencentCloud::Common::AbstractModel
         # @param GlossaryId: 术语库 ID。可通过 DescribeGlossaries 接口获取。
@@ -523,6 +594,33 @@ module TencentCloud
 
       # DeleteApiKey返回参数结构体
       class DeleteApiKeyResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteEndpoint请求参数结构体
+      class DeleteEndpointRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DeleteEndpoint返回参数结构体
+      class DeleteEndpointResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -863,6 +961,45 @@ module TencentCloud
         end
       end
 
+      # DescribeEndpoint请求参数结构体
+      class DescribeEndpointRequest < TencentCloud::Common::AbstractModel
+        # @param EndpointId: <p>推理服务 ID。可通过 DescribeEndpointList 接口获取。</p>
+        # @type EndpointId: String
+
+        attr_accessor :EndpointId
+
+        def initialize(endpointid=nil)
+          @EndpointId = endpointid
+        end
+
+        def deserialize(params)
+          @EndpointId = params['EndpointId']
+        end
+      end
+
+      # DescribeEndpoint返回参数结构体
+      class DescribeEndpointResponse < TencentCloud::Common::AbstractModel
+        # @param Endpoint: <p>推理服务详情。</p>
+        # @type Endpoint: :class:`Tencentcloud::Tokenhub.v20260322.models.EndpointDetail`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Endpoint, :RequestId
+
+        def initialize(endpoint=nil, requestid=nil)
+          @Endpoint = endpoint
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Endpoint'].nil?
+            @Endpoint = EndpointDetail.new
+            @Endpoint.deserialize(params['Endpoint'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeGlossaries请求参数结构体
       class DescribeGlossariesRequest < TencentCloud::Common::AbstractModel
         # @param Limit: 返回数量。默认为 20，最大值为 100。
@@ -1003,6 +1140,79 @@ module TencentCloud
           @Total = params['Total']
           @Page = params['Page']
           @PageSize = params['PageSize']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeModelEndpointList请求参数结构体
+      class DescribeModelEndpointListRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: <p>偏移量，从 0 开始，默认为 0。</p>
+        # @type Offset: Integer
+        # @param Limit: <p>每页返回数量，默认为 20，最大值为 100。</p>
+        # @type Limit: Integer
+        # @param Filters: <p>过滤条件列表。支持的过滤字段：Status（状态，取值 ACTIVE/INACTIVE）、ChargeType（计费方式，取值 FREE/TOKEN）、RequestSource（创建来源，取值 MC/GW）、ModelName（模型名称）、ModelId（模型 ID）、PaymentEnabled（是否已开启后付费，取值 true/false）。</p>
+        # @type Filters: Array
+        # @param Sorts: <p>排序条件列表。支持的排序字段：CreatedTime、UpdatedTime。不传时使用默认排序规则。</p>
+        # @type Sorts: Array
+
+        attr_accessor :Offset, :Limit, :Filters, :Sorts
+
+        def initialize(offset=nil, limit=nil, filters=nil, sorts=nil)
+          @Offset = offset
+          @Limit = limit
+          @Filters = filters
+          @Sorts = sorts
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              requestfilter_tmp = RequestFilter.new
+              requestfilter_tmp.deserialize(i)
+              @Filters << requestfilter_tmp
+            end
+          end
+          unless params['Sorts'].nil?
+            @Sorts = []
+            params['Sorts'].each do |i|
+              requestsort_tmp = RequestSort.new
+              requestsort_tmp.deserialize(i)
+              @Sorts << requestsort_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeModelEndpointList返回参数结构体
+      class DescribeModelEndpointListResponse < TencentCloud::Common::AbstractModel
+        # @param ModelEndpointSet: <p>模型接入点列表。</p>
+        # @type ModelEndpointSet: Array
+        # @param TotalCount: <p>符合条件的总数。</p>
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ModelEndpointSet, :TotalCount, :RequestId
+
+        def initialize(modelendpointset=nil, totalcount=nil, requestid=nil)
+          @ModelEndpointSet = modelendpointset
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ModelEndpointSet'].nil?
+            @ModelEndpointSet = []
+            params['ModelEndpointSet'].each do |i|
+              modelendpointview_tmp = ModelEndpointView.new
+              modelendpointview_tmp.deserialize(i)
+              @ModelEndpointSet << modelendpointview_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -1628,6 +1838,86 @@ module TencentCloud
         end
       end
 
+      # 创建推理服务返回的详情信息
+      class EndpointCreateDetail < TencentCloud::Common::AbstractModel
+        # @param PreResourceId: 预付费包 id
+        # @type PreResourceId: String
+
+        attr_accessor :PreResourceId
+
+        def initialize(preresourceid=nil)
+          @PreResourceId = preresourceid
+        end
+
+        def deserialize(params)
+          @PreResourceId = params['PreResourceId']
+        end
+      end
+
+      # 推理服务详情
+      class EndpointDetail < TencentCloud::Common::AbstractModel
+        # @param EndpointId: <p>推理服务 ID。</p>
+        # @type EndpointId: String
+        # @param EndpointName: <p>服务名称。</p>
+        # @type EndpointName: String
+        # @param ModelName: <p>模型名称。</p>
+        # @type ModelName: String
+        # @param ModelId: <p>模型 ID。</p>
+        # @type ModelId: String
+        # @param Status: <p>状态。取值：ACTIVE（使用中）、INACTIVE（停止中）。</p>
+        # @type Status: String
+        # @param ServiceType: <p>服务类型。取值：TEXT_GENERATION（文本生成）、IMAGE_GENERATION（图片生成）、VIDEO_GENERATION（视频生成）。</p>
+        # @type ServiceType: String
+        # @param ChargeType: <p>计费方式。取值：FREE（免费体验）、TOKEN（按 Token 计费）</p><p>枚举值：</p><ul><li>FREE： 免费体验</li><li>TOKEN： 按 Token 计费</li></ul>
+        # @type ChargeType: String
+        # @param PaymentEnabled: <p>是否开启付费计费。true 表示已开启付费资源包，false 表示仅使用免费额度。</p>
+        # @type PaymentEnabled: Boolean
+        # @param ChargeDetail: <p>计费详情信息，JSON 格式字符串。不同 ChargeType 对应不同的 JSON 结构：</p><ul><li>免费额度信息（所有类型均可能包含）：{&quot;FreeQuota&quot;: {&quot;TotalQuota&quot;: 200, &quot;UsedQuota&quot;: 56, &quot;UsagePercent&quot;: 28, &quot;ExpireTime&quot;: &quot;2026-06-15T00:00:00Z&quot;}}</li><li>TPM 类型额外包含：{&quot;Tpm&quot;: {&quot;TpmInputLimit&quot;: 1000, &quot;TpmOutputLimit&quot;: 1000}}</li><li>其他类型：预留扩展。</li></ul>
+        # @type ChargeDetail: String
+        # @param StopReason: <p>停止原因。当状态为 INACTIVE 时返回。取值：FREE_QUOTA_EXHAUSTED（免费额度已用尽）、NO_FREE_PACKAGE（无可用免费包）、INSUFFICIENT_BALANCE（余额不足，格式为 INSUFFICIENT_BALANCE:&lt;待支付资源ID&gt;）、BILLING_ISOLATED（账户欠费隔离）、INTERNAL_ERROR（内部错误）。当值为 INSUFFICIENT_BALANCE 时，冒号后附带待支付的 TPM 包资源 ID，前端可据此引导用户前往对应订单页完成支付。</p>
+        # @type StopReason: String
+        # @param TPM: <p>TPM（每分钟 Token 限流）。当推理服务未单独设置时，回退为关联模型的默认 TPM 值。</p>
+        # @type TPM: Integer
+        # @param AutoAdjustQuota: <p>自动调整配额</p>
+        # @type AutoAdjustQuota: Integer
+        # @param RPM: <p>RPM（每分钟请求数限流）。当推理服务未单独设置时，回退为关联模型的默认 RPM 值。</p>
+        # @type RPM: Integer
+
+        attr_accessor :EndpointId, :EndpointName, :ModelName, :ModelId, :Status, :ServiceType, :ChargeType, :PaymentEnabled, :ChargeDetail, :StopReason, :TPM, :AutoAdjustQuota, :RPM
+
+        def initialize(endpointid=nil, endpointname=nil, modelname=nil, modelid=nil, status=nil, servicetype=nil, chargetype=nil, paymentenabled=nil, chargedetail=nil, stopreason=nil, tpm=nil, autoadjustquota=nil, rpm=nil)
+          @EndpointId = endpointid
+          @EndpointName = endpointname
+          @ModelName = modelname
+          @ModelId = modelid
+          @Status = status
+          @ServiceType = servicetype
+          @ChargeType = chargetype
+          @PaymentEnabled = paymentenabled
+          @ChargeDetail = chargedetail
+          @StopReason = stopreason
+          @TPM = tpm
+          @AutoAdjustQuota = autoadjustquota
+          @RPM = rpm
+        end
+
+        def deserialize(params)
+          @EndpointId = params['EndpointId']
+          @EndpointName = params['EndpointName']
+          @ModelName = params['ModelName']
+          @ModelId = params['ModelId']
+          @Status = params['Status']
+          @ServiceType = params['ServiceType']
+          @ChargeType = params['ChargeType']
+          @PaymentEnabled = params['PaymentEnabled']
+          @ChargeDetail = params['ChargeDetail']
+          @StopReason = params['StopReason']
+          @TPM = params['TPM']
+          @AutoAdjustQuota = params['AutoAdjustQuota']
+          @RPM = params['RPM']
+        end
+      end
+
       # 新建术语条目项
       class GlossaryEntryInput < TencentCloud::Common::AbstractModel
         # @param SourceTerm: 源语言术语。最大 1000 字符。
@@ -1917,6 +2207,66 @@ module TencentCloud
         end
       end
 
+      # 模型接入点概览信息
+      class ModelEndpointView < TencentCloud::Common::AbstractModel
+        # @param EndpointId: <p>推理服务 ID。网关默认创建的 id 与模型 id 相同；控制台自定义推理服务以 ep- 开头。</p>
+        # @type EndpointId: String
+        # @param EndpointName: <p>推理服务名称。未激活时与 ModelId 相同。</p>
+        # @type EndpointName: String
+        # @param ModelId: <p>模型 ID。</p>
+        # @type ModelId: String
+        # @param ModelName: <p>模型名称。</p>
+        # @type ModelName: String
+        # @param Status: <p>状态。取值：ACTIVE（运行中）、INACTIVE（已停止）。</p>
+        # @type Status: String
+        # @param ServiceType: <p>服务类型。固定为 TEXT_GENERATION（文本生成）。</p>
+        # @type ServiceType: String
+        # @param ChargeType: <p>计费方式。取值：FREE（免费体验）、TOKEN（按 Token 计费）。未激活时为空。</p>
+        # @type ChargeType: String
+        # @param PaymentEnabled: <p>是否已开启后付费。true 表示已开启，false 表示未开启。未激活时为 false。</p>
+        # @type PaymentEnabled: Boolean
+        # @param ChargeDetail: <p>计费详情信息，JSON 格式字符串，包含免费额度用量等信息。未激活时为空。</p>
+        # @type ChargeDetail: String
+        # @param StopReason: <p>停止原因。当状态为 INACTIVE 时返回。取值：FREE_QUOTA_EXHAUSTED（免费额度已用尽）、NO_FREE_PACKAGE（无可用免费包）、INSUFFICIENT_BALANCE（余额不足）、BILLING_ISOLATED（账户欠费隔离）、INTERNAL_ERROR（内部错误）。</p>
+        # @type StopReason: String
+        # @param RPM: <p>推理服务的 rpm 限制，没设置就按模型维度 rpm 限制展示</p>
+        # @type RPM: Integer
+        # @param TPM: <p>推理服务的tpm 限制，没设置就按模型维度 tpm 限制展示</p>
+        # @type TPM: Integer
+
+        attr_accessor :EndpointId, :EndpointName, :ModelId, :ModelName, :Status, :ServiceType, :ChargeType, :PaymentEnabled, :ChargeDetail, :StopReason, :RPM, :TPM
+
+        def initialize(endpointid=nil, endpointname=nil, modelid=nil, modelname=nil, status=nil, servicetype=nil, chargetype=nil, paymentenabled=nil, chargedetail=nil, stopreason=nil, rpm=nil, tpm=nil)
+          @EndpointId = endpointid
+          @EndpointName = endpointname
+          @ModelId = modelid
+          @ModelName = modelname
+          @Status = status
+          @ServiceType = servicetype
+          @ChargeType = chargetype
+          @PaymentEnabled = paymentenabled
+          @ChargeDetail = chargedetail
+          @StopReason = stopreason
+          @RPM = rpm
+          @TPM = tpm
+        end
+
+        def deserialize(params)
+          @EndpointId = params['EndpointId']
+          @EndpointName = params['EndpointName']
+          @ModelId = params['ModelId']
+          @ModelName = params['ModelName']
+          @Status = params['Status']
+          @ServiceType = params['ServiceType']
+          @ChargeType = params['ChargeType']
+          @PaymentEnabled = params['PaymentEnabled']
+          @ChargeDetail = params['ChargeDetail']
+          @StopReason = params['StopReason']
+          @RPM = params['RPM']
+          @TPM = params['TPM']
+        end
+      end
+
       # 模型体验包信息
       class ModelFreeTrialInfo < TencentCloud::Common::AbstractModel
         # @param RecommendWeight: 推荐顺序，值越小排序越靠前。为空表示使用模型默认权重。
@@ -2106,6 +2456,38 @@ module TencentCloud
 
       # ModifyApiKeyStatus返回参数结构体
       class ModifyApiKeyStatusResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyEndpoint请求参数结构体
+      class ModifyEndpointRequest < TencentCloud::Common::AbstractModel
+        # @param AutoAdjustQuota: 自动调整配额
+        # @type AutoAdjustQuota: Integer
+
+        attr_accessor :AutoAdjustQuota
+
+        def initialize(autoadjustquota=nil)
+          @AutoAdjustQuota = autoadjustquota
+        end
+
+        def deserialize(params)
+          @AutoAdjustQuota = params['AutoAdjustQuota']
+        end
+      end
+
+      # ModifyEndpoint返回参数结构体
+      class ModifyEndpointResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

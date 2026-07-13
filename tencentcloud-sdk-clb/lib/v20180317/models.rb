@@ -1763,17 +1763,21 @@ module TencentCloud
         # @type ClusterId: String
         # @param Type: <p>集群类型</p><p>枚举值：</p><ul><li>Public： 公有云集群</li><li>Exclusive： 独占集群</li></ul><p>默认值：Public</p>
         # @type Type: String
+        # @param ClusterName: <p>集群名称</p>
+        # @type ClusterName: String
 
-        attr_accessor :ClusterId, :Type
+        attr_accessor :ClusterId, :Type, :ClusterName
 
-        def initialize(clusterid=nil, type=nil)
+        def initialize(clusterid=nil, type=nil, clustername=nil)
           @ClusterId = clusterid
           @Type = type
+          @ClusterName = clustername
         end
 
         def deserialize(params)
           @ClusterId = params['ClusterId']
           @Type = params['Type']
+          @ClusterName = params['ClusterName']
         end
       end
 

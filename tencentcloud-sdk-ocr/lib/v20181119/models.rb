@@ -2020,14 +2020,11 @@ module TencentCloud
 
       # DriverLicenseOCR请求参数结构体
       class DriverLicenseOCRRequest < TencentCloud::Common::AbstractModel
-        # @param ImageBase64: 图片的 Base64 值。要求图片经Base64编码后不超过 10M，分辨率建议500*800以上，支持PNG、JPG、JPEG、BMP格式。建议卡片部分占据图片2/3以上。图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
+        # @param ImageBase64: <p>图片的 Base64 值。要求图片经Base64编码后不超过 10M，分辨率建议500*800以上，支持PNG、JPG、JPEG、BMP格式。建议卡片部分占据图片2/3以上。图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。</p>
         # @type ImageBase64: String
-        # @param ImageUrl: 图片的 Url 地址。要求图片经Base64编码后不超过 10M，分辨率建议500*800以上，支持PNG、JPG、JPEG、BMP格式。建议卡片部分占据图片2/3以上。图片下载时间不超过 3 秒。建议图片存储于腾讯云，可保障更高的下载速度和稳定性。
+        # @param ImageUrl: <p>图片的 Url 地址。要求图片经Base64编码后不超过 10M，分辨率建议500*800以上，支持PNG、JPG、JPEG、BMP格式。建议卡片部分占据图片2/3以上。图片下载时间不超过 3 秒。建议图片存储于腾讯云，可保障更高的下载速度和稳定性。</p>
         # @type ImageUrl: String
-        # @param CardSide: FRONT 为驾驶证主页正面（有红色印章的一面），
-        # BACK 为驾驶证副页正面（有档案编号的一面）。
-        # DOUBLE 支持自动识别驾驶证正副页单面，和正副双面同框识别
-        # 默认值为：FRONT。
+        # @param CardSide: <p>FRONT 为驾驶证主页正面（有红色印章的一面），<br>BACK 为驾驶证副页正面（有档案编号的一面）。<br>DOUBLE 支持自动识别驾驶证正副页单面，和正副双面同框识别<br>默认值为：FRONT。</p>
         # @type CardSide: String
 
         attr_accessor :ImageBase64, :ImageUrl, :CardSide
@@ -2047,64 +2044,49 @@ module TencentCloud
 
       # DriverLicenseOCR返回参数结构体
       class DriverLicenseOCRResponse < TencentCloud::Common::AbstractModel
-        # @param Name: 驾驶证正页姓名
+        # @param Name: <p>驾驶证正页姓名</p>
         # @type Name: String
-        # @param Sex: 性别
+        # @param Sex: <p>性别</p>
         # @type Sex: String
-        # @param Nationality: 国籍
+        # @param Nationality: <p>国籍</p>
         # @type Nationality: String
-        # @param Address: 住址
+        # @param Address: <p>住址</p>
         # @type Address: String
-        # @param DateOfBirth: 出生日期（YYYY-MM-DD）
+        # @param DateOfBirth: <p>出生日期（YYYY-MM-DD）</p>
         # @type DateOfBirth: String
-        # @param DateOfFirstIssue: 初次领证日期（YYYY-MM-DD）
+        # @param DateOfFirstIssue: <p>初次领证日期（YYYY-MM-DD）</p>
         # @type DateOfFirstIssue: String
-        # @param Class: 准驾车型
+        # @param Class: <p>准驾车型</p>
         # @type Class: String
-        # @param StartDate: 有效期开始时间（YYYY-MM-DD）
+        # @param StartDate: <p>有效期开始时间（YYYY-MM-DD）</p>
         # @type StartDate: String
-        # @param EndDate: 有效期截止时间（新版驾驶证返回 YYYY-MM-DD，
-        # 老版驾驶证返回有效期限 X年）
+        # @param EndDate: <p>有效期截止时间（新版驾驶证返回 YYYY-MM-DD，老版驾驶证返回有效期限 X年；若驾驶证有效期为长期，则返回&quot;长期&quot;）</p>
         # @type EndDate: String
-        # @param CardCode: 驾驶证正页证号
+        # @param CardCode: <p>驾驶证正页证号</p>
         # @type CardCode: String
-        # @param ArchivesCode: 档案编号
+        # @param ArchivesCode: <p>档案编号</p>
         # @type ArchivesCode: String
-        # @param Record: 记录
+        # @param Record: <p>记录</p>
         # @type Record: String
-        # @param RecognizeWarnCode: Code 告警码列表和释义：
-        # -9102  复印件告警
-        # -9103  翻拍件告警
-        # -9104  反光告警
-        # -9105  模糊告警
-        # -9106  边框不完整告警
-        # 注：告警码可以同时存在多个
+        # @param RecognizeWarnCode: <p>Code 告警码列表和释义：<br>-9102  复印件告警<br>-9103  翻拍件告警<br>-9104  反光告警<br>-9105  模糊告警<br>-9106  边框不完整告警<br>注：告警码可以同时存在多个</p>
         # @type RecognizeWarnCode: Array
-        # @param RecognizeWarnMsg: 告警码说明：
-        # WARN_DRIVER_LICENSE_COPY_CARD 复印件告警
-        # WARN_DRIVER_LICENSE_SCREENED_CARD 翻拍件告警
-        # WARN_DRIVER_LICENSE_REFLECTION 反光告警
-        # WARN_DRIVER_LICENSE_BLUR 模糊告警
-        # WARN_DRIVER_LICENSE_BORDER_INCOMPLETE 边框不完整告警
-        # 注：告警信息可以同时存在多个
+        # @param RecognizeWarnMsg: <p>告警码说明：<br>WARN_DRIVER_LICENSE_COPY_CARD 复印件告警<br>WARN_DRIVER_LICENSE_SCREENED_CARD 翻拍件告警<br>WARN_DRIVER_LICENSE_REFLECTION 反光告警<br>WARN_DRIVER_LICENSE_BLUR 模糊告警<br>WARN_DRIVER_LICENSE_BORDER_INCOMPLETE 边框不完整告警<br>注：告警信息可以同时存在多个</p>
         # @type RecognizeWarnMsg: Array
-        # @param IssuingAuthority: 发证单位
+        # @param IssuingAuthority: <p>发证单位</p>
         # @type IssuingAuthority: String
-        # @param State: 状态（仅电子驾驶证支持返回该字段）
+        # @param State: <p>状态（仅电子驾驶证支持返回该字段）</p>
         # @type State: String
-        # @param CumulativeScore: 累积记分（仅电子驾驶证支持返回该字段）
+        # @param CumulativeScore: <p>累积记分（仅电子驾驶证支持返回该字段）</p>
         # @type CumulativeScore: String
-        # @param CurrentTime: 当前时间（仅电子驾驶证支持返回该字段）
+        # @param CurrentTime: <p>当前时间（仅电子驾驶证支持返回该字段）</p>
         # @type CurrentTime: String
-        # @param GenerateTime: 生成时间（仅电子驾驶证支持返回该字段）
+        # @param GenerateTime: <p>生成时间（仅电子驾驶证支持返回该字段）</p>
         # @type GenerateTime: String
-        # @param BackPageName: 驾驶证副页姓名
+        # @param BackPageName: <p>驾驶证副页姓名</p>
         # @type BackPageName: String
-        # @param BackPageCardCode: 驾驶证副页证号
+        # @param BackPageCardCode: <p>驾驶证副页证号</p>
         # @type BackPageCardCode: String
-        # @param DriverLicenseType: 驾驶证类型
-        # 电子驾驶证：Electronic
-        # 普通驾驶证：Normal
+        # @param DriverLicenseType: <p>驾驶证类型<br>电子驾驶证：Electronic<br>普通驾驶证：Normal</p>
         # @type DriverLicenseType: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5325,16 +5307,16 @@ module TencentCloud
 
       # 头像位置坐标
       class ImageCoordinates < TencentCloud::Common::AbstractModel
-        # @param X: 头像左上角横坐标
+        # @param X: <p>头像左上角横坐标</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type X: Integer
-        # @param Y: 头像左上角纵坐标
+        # @param Y: <p>头像左上角纵坐标</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Y: Integer
-        # @param Width: 头像框宽度
+        # @param Width: <p>头像框宽度</p><p>单位：px</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Width: Integer
-        # @param Height: 头像框高度
+        # @param Height: <p>头像框高度</p><p>单位：px</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Height: Integer
 
@@ -9751,13 +9733,13 @@ module TencentCloud
 
       # 矩形坐标
       class Rect < TencentCloud::Common::AbstractModel
-        # @param X: 左上角x
+        # @param X: <p>左上角x</p>
         # @type X: Integer
-        # @param Y: 左上角y
+        # @param Y: <p>左上角y</p>
         # @type Y: Integer
-        # @param Width: 宽度
+        # @param Width: <p>宽度</p><p>单位：px</p>
         # @type Width: Integer
-        # @param Height: 高度
+        # @param Height: <p>高度</p><p>单位：px</p>
         # @type Height: Integer
 
         attr_accessor :X, :Y, :Width, :Height

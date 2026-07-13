@@ -242,7 +242,7 @@ module TencentCloud
         end
       end
 
-      # 安全组地址模版
+      # 安全组地址模板
       class AddressTemplateSpecification < TencentCloud::Common::AbstractModel
         # @param AddressId: IP地址ID，例如：ipm-2uw6ujo6。
         # @type AddressId: String
@@ -264,105 +264,73 @@ module TencentCloud
 
       # 企业安全组规则列表信息
       class AnalysisSgRuleInfoResp < TencentCloud::Common::AbstractModel
-        # @param Id: 规则id  等同RuleUuid
+        # @param Id: <p>规则id  等同RuleUuid</p>
         # @type Id: Integer
-        # @param RuleId: 规则Id
+        # @param RuleId: <p>规则Id</p>
         # @type RuleId: String
-        # @param OrderIndex: 排序
+        # @param OrderIndex: <p>排序</p>
         # @type OrderIndex: Integer
-        # @param CfwOrderIndex: 云防排序
+        # @param CfwOrderIndex: <p>云防排序</p>
         # @type CfwOrderIndex: Integer
-        # @param SourceId: 源规则内容
+        # @param SourceId: <p>源规则内容</p>
         # @type SourceId: String
-        # @param SourceType: 源规则类型
-        # 取值范围 0/1/2/3/4/5/6/7/8/9/100
-        # 0表示ip(net),
-        # 1表示VPC实例(instance)
-        # 2表示子网实例(instance)
-        # 3表示CVM实例(instance)
-        # 4表示CLB实例(instance)
-        # 5表示ENI实例(instance)
-        # 6表示数据库实例(instance)
-        # 7表示模板(template)
-        # 8表示标签(tag)
-        # 9表示地域(region)
-        # 100表示资产分组(resourcegroup)
+        # @param SourceType: <p>源规则类型<br>取值范围 0/1/2/3/4/5/6/7/8/9<br>0表示ip(net),<br>1表示VPC实例(instance)<br>2表示子网实例(instance)<br>3表示CVM实例(instance)<br>4表示CLB实例(instance)<br>5表示ENI实例(instance)<br>6表示数据库实例(instance)<br>7表示模板(template)<br>8表示标签(tag)<br>9表示地域(region)</p><p>枚举值：</p><ul><li>0： IP / CIDR</li><li>1： VPC 实例</li><li>2： 子网 </li><li>3： CVM 实例</li><li>4： CLB 实例</li><li>5： ENI（弹性网卡）实例</li><li>6： CDB（云数据库）实例</li><li>7： 参数模板</li><li>8： 标签</li><li>9： 地域</li></ul>
         # @type SourceType: Integer
-        # @param TargetId: 目的规则内容
+        # @param TargetId: <p>目的规则内容</p>
         # @type TargetId: String
-        # @param TargetType: 目的规则类型
-        # 取值范围 0/1/2/3/4/5/6/7/8/9/100
-        # 0表示ip(net),
-        # 1表示VPC实例(instance)
-        # 2表示子网实例(instance)
-        # 3表示CVM实例(instance)
-        # 4表示CLB实例(instance)
-        # 5表示ENI实例(instance)
-        # 6表示数据库实例(instance)
-        # 7表示模板(template)
-        # 8表示标签(tag)
-        # 9表示地域(region)
-        # 100表示资产分组(resourcegroup)
+        # @param TargetType: <p>目的规则类型<br>取值范围 0/1/2/3/4/5/6/7/8/9/100<br>0表示ip(net),<br>1表示VPC实例(instance)<br>2表示子网实例(instance)<br>3表示CVM实例(instance)<br>4表示CLB实例(instance)<br>5表示ENI实例(instance)<br>6表示数据库实例(instance)<br>7表示模板(template)<br>8表示标签(tag)<br>9表示地域(region)<br>100表示资产分组(resourcegroup)</p><p>枚举值：</p><ul><li>0： IP / CIDR</li><li>1： VPC 实例</li><li>2： 子网 </li><li>3： CVM 实例</li><li>4： CLB 实例</li><li>5： ENI（弹性网卡）实例</li><li>6： CDB（云数据库）实例</li><li>7： 参数模板</li><li>8： 标签</li><li>9： 地域</li></ul>
         # @type TargetType: Integer
-        # @param Protocol: 协议名称
-        # 取值范围:TCP/ANY/ICMP/UDP
-        # ANY:表示所有
+        # @param Protocol: <p>协议名称<br>取值范围:TCP/ANY/ICMP/UDP<br>ANY:表示所有</p>
         # @type Protocol: String
-        # @param Port: 端口
+        # @param Port: <p>端口</p>
         # @type Port: String
-        # @param Strategy: 规则策略
-        # 取值范围:1/2
-        # 1:阻断
-        # 2:放行
+        # @param Strategy: <p>规则策略<br>取值范围:1/2<br>1:阻断<br>2:放行</p>
         # @type Strategy: Integer
-        # @param Detail: 描述
+        # @param Detail: <p>描述</p>
         # @type Detail: String
-        # @param Region: 地域
+        # @param Region: <p>地域</p>
         # @type Region: String
-        # @param ServiceTemplateId: 服务模板id
+        # @param ServiceTemplateId: <p>服务模板id</p>
         # @type ServiceTemplateId: String
-        # @param SouInstanceName: 源资产名称
+        # @param SouInstanceName: <p>源资产名称</p>
         # @type SouInstanceName: String
-        # @param SouPublicIp: 源资产公网ip
+        # @param SouPublicIp: <p>源资产公网ip</p>
         # @type SouPublicIp: String
-        # @param SouPrivateIp: 源资产内网ip
+        # @param SouPrivateIp: <p>源资产内网ip</p>
         # @type SouPrivateIp: String
-        # @param SouCidr: 源资产网段信息
+        # @param SouCidr: <p>源资产网段信息</p>
         # @type SouCidr: String
-        # @param SouParameterName: 源模板名称
+        # @param SouParameterName: <p>源模板名称</p>
         # @type SouParameterName: String
-        # @param InstanceName: 目的资产名称
+        # @param InstanceName: <p>目的资产名称</p>
         # @type InstanceName: String
-        # @param PublicIp: 目的资产公网ip
+        # @param PublicIp: <p>目的资产公网ip</p>
         # @type PublicIp: String
-        # @param PrivateIp: 目的资产内网ip
+        # @param PrivateIp: <p>目的资产内网ip</p>
         # @type PrivateIp: String
-        # @param Cidr: 目的资产网段信息
+        # @param Cidr: <p>目的资产网段信息</p>
         # @type Cidr: String
-        # @param ParameterName: 目的模板名称
+        # @param ParameterName: <p>目的模板名称</p>
         # @type ParameterName: String
-        # @param ProtocolPortName: 端口模板名称
+        # @param ProtocolPortName: <p>端口模板名称</p>
         # @type ProtocolPortName: String
-        # @param DnsParseCount: 域名解析的IP统计
+        # @param DnsParseCount: <p>域名解析的IP统计</p>
         # @type DnsParseCount: :class:`Tencentcloud::Fwm.v20250611.models.SgDnsParseCount`
-        # @param Scope: 规则生效范围
+        # @param Scope: <p>规则生效范围</p>
         # @type Scope: String
-        # @param RulePartition: 分区：
-        # 1防火墙管理最前分区
-        # 2是云防规则
-        # 3防火墙管理最后分区
+        # @param RulePartition: <p>分区：<br>1防火墙管理最前分区<br>2是云防规则<br>3防火墙管理最后分区</p>
         # @type RulePartition: Integer
-        # @param GroupId: 规则组Id
+        # @param GroupId: <p>规则组Id</p>
         # @type GroupId: String
-        # @param GroupName: 规则组名称
+        # @param GroupName: <p>规则组名称</p>
         # @type GroupName: String
-        # @param GroupRuleId: 规则组内规则id
+        # @param GroupRuleId: <p>规则组内规则id</p>
         # @type GroupRuleId: String
-        # @param StrategyId: 策略Id
+        # @param StrategyId: <p>策略Id</p>
         # @type StrategyId: String
-        # @param IpVersion: ip类型
+        # @param IpVersion: <p>ip类型</p>
         # @type IpVersion: String
-        # @param BelongMember: 成员信息
+        # @param BelongMember: <p>成员信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BelongMember: :class:`Tencentcloud::Fwm.v20250611.models.MemberInfo`
 
@@ -487,13 +455,13 @@ module TencentCloud
 
       # 通用筛选条件
       class CommonFilter < TencentCloud::Common::AbstractModel
-        # @param Name: 筛选字段名。支持：SecurityGroupId、FwGroupId、Ip（IP地址模糊搜索）、InstanceName（实例名称模糊搜索）、VpcId（VPC ID精确搜索）
+        # @param Name: <p>筛选字段名。支持：SecurityGroupId、FwGroupId、IP（IP地址模糊搜索）、InstanceName（实例名称模糊搜索）、VpcId（VPC ID精确搜索）</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
-        # @param Values: 筛选值列表
+        # @param Values: <p>筛选值列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Values: Array
-        # @param OperatorType: 操作类型。1=等于，7=in，9=模糊匹配
+        # @param OperatorType: <p>操作类型。1=等于，7=in，9=模糊匹配</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OperatorType: Integer
 
@@ -2932,37 +2900,37 @@ module TencentCloud
 
       # NAT边界规则
       class NatAclRule < TencentCloud::Common::AbstractModel
-        # @param SourceContent: 源地址内容
+        # @param SourceContent: <p>源地址内容</p>
         # @type SourceContent: String
-        # @param SourceType: 源类型：ip/url/template/instance/tag
+        # @param SourceType: <p>源类型：ip/url/template/instance/tag</p>
         # @type SourceType: String
-        # @param TargetContent: 目的地址内容
+        # @param TargetContent: <p>目的地址内容</p>
         # @type TargetContent: String
-        # @param TargetType: 目的类型：ip/url/template/instance/tag
+        # @param TargetType: <p>目的类型：ip/url/template/instance/tag</p>
         # @type TargetType: String
-        # @param Protocol: 协议：TCP/UDP/ICMP/ANY/HTTP/HTTPS/DNS/FTP等
+        # @param Protocol: <p>协议：TCP/UDP/ICMP/ANY/HTTP/HTTPS/DNS/FTP等</p>
         # @type Protocol: String
-        # @param RuleAction: 动作：accept/drop/log
+        # @param RuleAction: <p>动作：accept/drop/log</p>
         # @type RuleAction: String
-        # @param OrderIndex: 优先级（从1开始）
+        # @param OrderIndex: <p>优先级（从1开始）</p>
         # @type OrderIndex: Integer
-        # @param Scope: 规则生效范围：ALL-全局生效，ap-xxx-地域生效，cfwnat-xxx-NAT防火墙实例生效
+        # @param Scope: <p>规则生效范围：ALL-全局生效，ap-xxx-地域生效，cfwnat-xxx-NAT防火墙实例生效</p>
         # @type Scope: String
-        # @param Direction: 规则方向：1-入站规则，0-出站规则
+        # @param Direction: <p>规则方向：1-入站规则，0-出站规则</p>
         # @type Direction: Integer
-        # @param RuleId: 规则ID（修改时必填）
+        # @param RuleId: <p>规则ID（修改时必填）</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleId: String
-        # @param Port: 端口（ICMP协议时为空）
+        # @param Port: <p>端口（ICMP协议时为空）</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Port: String
-        # @param Description: 规则描述
+        # @param Description: <p>规则描述</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
-        # @param ParamTemplateId: 端口模板ID
+        # @param ParamTemplateId: <p>端口模板ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParamTemplateId: String
-        # @param BelongMemberId: 规则归属的成员账号ID（当Scope为cfwnat-xxx或SourceType/DestType为instance/tag时必填）
+        # @param BelongMemberId: <p>规则归属的成员账号ID(当Scope为cfwnat-xxx或SourceType/DestType为instance/tag时必填)</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BelongMemberId: String
 
@@ -3525,89 +3493,63 @@ module TencentCloud
 
       # 企业安全组规则列表信息
       class SecGroupRuleResp < TencentCloud::Common::AbstractModel
-        # @param OrderIndex: 排序
+        # @param OrderIndex: <p>排序</p>
         # @type OrderIndex: Integer
-        # @param RuleId: 主键id
+        # @param RuleId: <p>主键id</p>
         # @type RuleId: String
-        # @param IpVersion: ip类型
+        # @param IpVersion: <p>ip类型</p>
         # @type IpVersion: String
-        # @param SourceId: 源规则内容
+        # @param SourceId: <p>源规则内容</p>
         # @type SourceId: String
-        # @param SourceType: 源规则类型
-        # 取值范围 0/1/2/3/4/5/6/7/8/9/100
-        # 0表示ip(net),
-        # 1表示VPC实例(instance)
-        # 2表示子网实例(instance)
-        # 3表示CVM实例(instance)
-        # 4表示CLB实例(instance)
-        # 5表示ENI实例(instance)
-        # 6表示数据库实例(instance)
-        # 7表示模板(template)
-        # 8表示标签(tag)
-        # 9表示地域(region)
-        # 100表示资产分组(resourcegroup)
+        # @param SourceType: <p>源规则类型<br>取值范围 0/1/2/3/4/5/6/7/8/9/100<br>0表示ip(net),<br>1表示VPC实例(instance)<br>2表示子网实例(instance)<br>3表示CVM实例(instance)<br>4表示CLB实例(instance)<br>5表示ENI实例(instance)<br>6表示数据库实例(instance)<br>7表示模板(template)<br>8表示标签(tag)<br>9表示地域(region)<br>100表示资产分组(resourcegroup)</p>
         # @type SourceType: Integer
-        # @param TargetId: 目的规则内容
+        # @param TargetId: <p>目的规则内容</p>
         # @type TargetId: String
-        # @param TargetType: 目的规则类型
-        # 取值范围 0/1/2/3/4/5/6/7/8/9/100
-        # 0表示ip(net),
-        # 1表示VPC实例(instance)
-        # 2表示子网实例(instance)
-        # 3表示CVM实例(instance)
-        # 4表示CLB实例(instance)
-        # 5表示ENI实例(instance)
-        # 6表示数据库实例(instance)
-        # 7表示模板(template)
-        # 8表示标签(tag)
-        # 9表示地域(region)
-        # 100表示资产分组(resourcegroup)
+        # @param TargetType: <p>目的规则类型<br>取值范围 0/1/2/3/4/5/6/7/8/9/100<br>0表示ip(net),<br>1表示VPC实例(instance)<br>2表示子网实例(instance)<br>3表示CVM实例(instance)<br>4表示CLB实例(instance)<br>5表示ENI实例(instance)<br>6表示数据库实例(instance)<br>7表示模板(template)<br>8表示标签(tag)<br>9表示地域(region)<br>100表示资产分组(resourcegroup)</p>
         # @type TargetType: Integer
-        # @param Protocol: 协议名称
-        # 取值范围:TCP/ANY/ICMP/UDP
-        # ANY:表示所有
+        # @param Protocol: <p>协议名称<br>取值范围:TCP/ANY/ICMP/UDP<br>ANY:表示所有</p>
         # @type Protocol: String
-        # @param Port: 端口
+        # @param Port: <p>端口</p>
         # @type Port: String
-        # @param Strategy: 策略
+        # @param Strategy: <p>策略</p>
         # @type Strategy: Integer
-        # @param Detail: 描述
+        # @param Detail: <p>描述</p>
         # @type Detail: String
-        # @param Region: 地域
+        # @param Region: <p>地域</p>
         # @type Region: String
-        # @param ServiceTemplateId: 服务模板id
+        # @param ServiceTemplateId: <p>服务模板id</p>
         # @type ServiceTemplateId: String
-        # @param SouInstanceName: 源资产名称
+        # @param SouInstanceName: <p>源资产名称</p>
         # @type SouInstanceName: String
-        # @param SouPublicIp: 源资产公网ip
+        # @param SouPublicIp: <p>源资产公网ip</p>
         # @type SouPublicIp: String
-        # @param SouPrivateIp: 源资产内网ip
+        # @param SouPrivateIp: <p>源资产内网ip</p>
         # @type SouPrivateIp: String
-        # @param SouCidr: 源资产网段信息
+        # @param SouCidr: <p>源资产网段信息</p>
         # @type SouCidr: String
-        # @param SouParameterName: 源模板名称
+        # @param SouParameterName: <p>源模板名称</p>
         # @type SouParameterName: String
-        # @param InstanceName: 目的资产名称
+        # @param InstanceName: <p>目的资产名称</p>
         # @type InstanceName: String
-        # @param PublicIp: 目的资产公网ip
+        # @param PublicIp: <p>目的资产公网ip</p>
         # @type PublicIp: String
-        # @param PrivateIp: 目的资产内网ip
+        # @param PrivateIp: <p>目的资产内网ip</p>
         # @type PrivateIp: String
-        # @param Cidr: 目的资产网段信息
+        # @param Cidr: <p>目的资产网段信息</p>
         # @type Cidr: String
-        # @param ParameterName: 目的模板名称
+        # @param ParameterName: <p>目的模板名称</p>
         # @type ParameterName: String
-        # @param ProtocolPortName: 端口模板名称
+        # @param ProtocolPortName: <p>端口模板名称</p>
         # @type ProtocolPortName: String
-        # @param Id: 规则id  等同RuleUuid
+        # @param Id: <p>规则id  等同RuleUuid</p>
         # @type Id: Integer
-        # @param DnsParseCount: 域名解析的IP统计
+        # @param DnsParseCount: <p>域名解析的IP统计</p>
         # @type DnsParseCount: :class:`Tencentcloud::Fwm.v20250611.models.SgDnsParseCount`
-        # @param Scope: 规则生效范围
+        # @param Scope: <p>规则生效范围</p>
         # @type Scope: String
-        # @param IsNew: 规则最新一次是否有改动 取值范围：0/1 0:否 1:是
+        # @param IsNew: <p>规则最近一次是否有改动 取值范围：0/1 0:否 1:是</p>
         # @type IsNew: Integer
-        # @param BelongMember: 规则归属的成员账号（当FwGroupId为cfwg-xxx或SourceType/DestType为instance/tag时必填)
+        # @param BelongMember: <p>规则归属的成员账号（当FwGroupId为cfwg-xxx或SourceType/DestType为instance/tag时必填)</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BelongMember: :class:`Tencentcloud::Fwm.v20250611.models.MemberInfo`
 
@@ -3864,7 +3806,7 @@ module TencentCloud
         end
       end
 
-      # 安全组服务模版
+      # 安全组服务模板
       class ServiceTemplateSpecification < TencentCloud::Common::AbstractModel
         # @param ServiceId:  协议端口ID，例如：ppm-f5n1f8da。
         # @type ServiceId: String

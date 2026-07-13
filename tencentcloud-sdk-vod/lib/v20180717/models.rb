@@ -5552,12 +5552,15 @@ module TencentCloud
         # @type FileInfos: Array
         # @param ProcedureTaskIds: <p>任务类型为 Procedure 的任务 ID。若发起<a href="https://cloud.tencent.com/document/product/266/126239">创建 AIGC 生视频任务</a>时指定了任务流模板(Procedure)，当该任务流模板指定了 MediaProcessTask、AiAnalysisTask、AiRecognitionTask 中的一个或多个时发起该任务。</p>
         # @type ProcedureTaskIds: Array
+        # @param Usage: <p>AIGC 生视频任务的用量信息。</p>
+        # @type Usage: :class:`Tencentcloud::Vod.v20180717.models.AigcVideoTaskUsage`
 
-        attr_accessor :FileInfos, :ProcedureTaskIds
+        attr_accessor :FileInfos, :ProcedureTaskIds, :Usage
 
-        def initialize(fileinfos=nil, proceduretaskids=nil)
+        def initialize(fileinfos=nil, proceduretaskids=nil, usage=nil)
           @FileInfos = fileinfos
           @ProcedureTaskIds = proceduretaskids
+          @Usage = usage
         end
 
         def deserialize(params)
@@ -5570,6 +5573,10 @@ module TencentCloud
             end
           end
           @ProcedureTaskIds = params['ProcedureTaskIds']
+          unless params['Usage'].nil?
+            @Usage = AigcVideoTaskUsage.new
+            @Usage.deserialize(params['Usage'])
+          end
         end
       end
 
@@ -5625,6 +5632,26 @@ module TencentCloud
             @MetaData.deserialize(params['MetaData'])
           end
           @UsageType = params['UsageType']
+        end
+      end
+
+      # AIGC 生视频任务的用量。
+      class AigcVideoTaskUsage < TencentCloud::Common::AbstractModel
+        # @param InputTokens: <p>输入 Token 数目。</p>
+        # @type InputTokens: Integer
+        # @param ThoughtTokens: <p>思考产生的 Token 数目。</p>
+        # @type ThoughtTokens: Integer
+
+        attr_accessor :InputTokens, :ThoughtTokens
+
+        def initialize(inputtokens=nil, thoughttokens=nil)
+          @InputTokens = inputtokens
+          @ThoughtTokens = thoughttokens
+        end
+
+        def deserialize(params)
+          @InputTokens = params['InputTokens']
+          @ThoughtTokens = params['ThoughtTokens']
         end
       end
 

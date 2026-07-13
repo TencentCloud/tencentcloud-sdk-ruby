@@ -1787,7 +1787,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（PromoteDBInstanceToActive）用于灾备实例转正
+        # 本接口（PromoteDBInstanceToActive）用于将灾备实例或只读实例转为独立的主实例
 
         # @param request: Request instance for PromoteDBInstanceToActive.
         # @type request: :class:`Tencentcloud::mongodb::V20190725::PromoteDBInstanceToActiveRequest`

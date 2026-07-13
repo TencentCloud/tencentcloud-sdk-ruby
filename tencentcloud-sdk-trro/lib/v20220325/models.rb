@@ -252,15 +252,15 @@ module TencentCloud
 
       # CreateDevice请求参数结构体
       class CreateDeviceRequest < TencentCloud::Common::AbstractModel
-        # @param ProjectId: 创建设备所归属的项目ID
+        # @param ProjectId: <p>创建设备所归属的项目ID</p>
         # @type ProjectId: String
-        # @param DeviceId: 创建设备ID，项目内需要唯一，由小写英文字母、数字和下划线构成，长度不超过18
+        # @param DeviceId: <p>创建设备ID，项目内需要唯一，由小写英文字母、数字和下划线构成，长度不超过32</p>
         # @type DeviceId: String
-        # @param DeviceName: 创建设备名称，长度小于24, 可包含中文、数字、英文字母和下划线
+        # @param DeviceName: <p>创建设备名称，长度小于24, 可包含中文、数字、英文字母和下划线</p>
         # @type DeviceName: String
-        # @param DeviceType: 设备类型，field为现场设备（受控设备），remote为远端设备（操控设备），不填默认为field
+        # @param DeviceType: <p>设备类型</p><p>枚举值：</p><ul><li>field： 现场设备（受控设备）</li><li>remote： 远端设备（操控设备）</li></ul>
         # @type DeviceType: String
-        # @param DeviceToken: 设备认证口令，由大小写英文字母和数字构成，须为16位
+        # @param DeviceToken: <p>设备认证口令，由大小写英文字母和数字构成，须为16位</p>
         # @type DeviceToken: String
 
         attr_accessor :ProjectId, :DeviceId, :DeviceName, :DeviceType, :DeviceToken
@@ -2083,8 +2083,8 @@ module TencentCloud
 
         attr_accessor :DeviceType, :StartTime, :EndTime, :SessionId, :Rate, :Fps, :Lost, :NetworkLatency, :VideoLatency, :CpuUsed, :MemUsed, :TimeOffset, :ProjectId, :DeviceId, :Ver, :SdkMode, :DecodeCost, :RenderConst, :K100, :K150, :NACK, :BitRateEstimate, :Width, :Height, :EncodeCost, :CaptureCost, :RenderCost, :ConfigWidth, :ConfigHeight, :FrameDelta, :MaxFrameDelta, :TotalBitrateEstimate, :Lag100Duration, :Lag150Duration, :MultiMode, :MultiNet, :ControlLatency
         extend Gem::Deprecate
-        deprecate :RenderConst, :none, 2026, 5
-        deprecate :RenderConst=, :none, 2026, 5
+        deprecate :RenderConst, :none, 2026, 7
+        deprecate :RenderConst=, :none, 2026, 7
 
         def initialize(devicetype=nil, starttime=nil, endtime=nil, sessionid=nil, rate=nil, fps=nil, lost=nil, networklatency=nil, videolatency=nil, cpuused=nil, memused=nil, timeoffset=nil, projectid=nil, deviceid=nil, ver=nil, sdkmode=nil, decodecost=nil, renderconst=nil, k100=nil, k150=nil, nack=nil, bitrateestimate=nil, width=nil, height=nil, encodecost=nil, capturecost=nil, rendercost=nil, configwidth=nil, configheight=nil, framedelta=nil, maxframedelta=nil, totalbitrateestimate=nil, lag100duration=nil, lag150duration=nil, multimode=nil, multinet=nil, controllatency=nil)
           @DeviceType = devicetype
